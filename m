@@ -2,69 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 593C1994EE1
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 15:22:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C0E9994F95
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 15:28:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFA9410E525;
-	Tue,  8 Oct 2024 13:22:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WyWx8rBt";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B766C10E533;
+	Tue,  8 Oct 2024 13:28:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
- [209.85.215.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5D8C10E525
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 13:22:25 +0000 (UTC)
-Received: by mail-pg1-f179.google.com with SMTP id
- 41be03b00d2f7-7c3d415f85eso664318a12.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 08 Oct 2024 06:22:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728393745; x=1728998545; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=YuOpg8tkvWoeClMNamH2mlGkYuGgAwuHdZS0sE5jCK0=;
- b=WyWx8rBt/lXkcEA+yY+qkLiEKzAee8NGkxvytz3+BCJUNc1lm6mm81I3DeiukpxXOu
- M1yiPmSknWL9pKS0Ont4DcQOMjJxsB4zu2LtIHvWvfERymSx1gIVYmcwdHA6r2BZp6rD
- cOTtYw8Xse566v+mO+BMZPk+eDmBoId+V/kTS9QTKm6C0T56hdp7x7U/yf5rtbCM5FOs
- 3JYB23oy2TRbqfbI9fLWU6sW79UW3Q6hnUSvhl8syuv2BeEKk2pcN5/LAmT9jjWyabX0
- stf9IX0HGw3mTlsWWDSbiQPta7NodSrUl2EDrT59ia1gyg7F9WXfoJkbJMAlh3bTlHkE
- fgGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728393745; x=1728998545;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=YuOpg8tkvWoeClMNamH2mlGkYuGgAwuHdZS0sE5jCK0=;
- b=a8eJD9zECz9/ENuRtDd2kIESdKUidd8NUk5BlIaPwwrm6pCYfwy1j8gPAeZ4p9iIxz
- RG7HrslLGCZ+4wxjxYhMp9ozHoZ4Z/KnnHBh165h4kq9arBxIouOLATf8zwz87V116Qp
- CVIa4hiNkUUaDnEEEhfVPARIdSwDbPKMocThkd1pDMNItZ+/8/ew48CwNrWpUI438FxS
- HNvLjQU45sbCP6NEQ5+soCZqZ50WPbeR1xVDyarSWnhdhRpCzgRLxvbgqDyQqaV92wKb
- E2/42zH/iH+6jaVr73Hml9nj45u8mDN7hJYdR1w6eAXCImeZhEHjx63hEgq/bMgIISks
- nubA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWwDnUE4To7wSftRTYQnSalasni/NnSjr4CNPYRyfWFB4E1a7iMW/4Wap/ESgvphcfqUARW8qFT@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy4I58UTXnQ/iMI6i11jXoCRZodzBDyu/pTNMao3Q5fU3xf3ZUQ
- ZNT2kamGIOr8eEQ/hShmF+P8IVkfuUfWg8nF6h6WeteJurI68JrOYJJMk6eqqUcT5yTBn14bwA5
- KMhJrsWPcIGQZPlNHnGOO6wHLmHrCkYAF
-X-Google-Smtp-Source: AGHT+IF/lTFZKz1tnOFDynN1dT2Nkxa0rZJVKrdMo5q5nw2OfUIdwwlW87PoDP99rhVIGRrU2PVkMdb8Bx37En+6alg=
-X-Received: by 2002:a17:902:d50f:b0:206:b1fa:ccb9 with SMTP id
- d9443c01a7336-20bfe39ffcfmr94667895ad.6.1728393745000; Tue, 08 Oct 2024
- 06:22:25 -0700 (PDT)
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B5D710E533
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 13:28:44 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 498DScbX709534; Tue, 8 Oct 2024 18:58:38 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 498DScKR709533;
+ Tue, 8 Oct 2024 18:58:38 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v1 1/6] drm/amdgpu: optimize insert_nop using multi dwords
+Date: Tue,  8 Oct 2024 18:58:28 +0530
+Message-Id: <20241008132833.709515-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20241008035953.595701-1-sunil.khatri@amd.com>
-In-Reply-To: <20241008035953.595701-1-sunil.khatri@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 8 Oct 2024 09:22:13 -0400
-Message-ID: <CADnq5_NtxLADcJnjF8R9E-xu209Wso4sj00JJdytcXnPvLCTeA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: fix dm_suspend/resume arguments to ip_block
-To: Sunil Khatri <sunil.khatri@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,62 +44,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 8, 2024 at 12:00=E2=80=AFAM Sunil Khatri <sunil.khatri@amd.com>=
- wrote:
->
-> "build failure after merge of the amdgpu tree"
-> dm_suspend/dm_resume functions argument mismatch
-> not caught in validation as it was under config
-> CONFIG_DEBUG_KERNEL_DC which wasnt enabled by
-> default.
->
-> Change argument from adev to ip_block.
->
-> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+Optimize the ring_insert_nop fn for n dwords in one
+step rather then call to amdgpu_ring_write for each
+nop packet. This avoid function call for each nop
+packet and also wptr is updated once only.
 
-Please add:
-Fixes: 982d7f9bfe4a ("drm/amdgpu: update the handle ptr in suspend")
-Fixes: 7feb4f3ad8be ("drm/amdgpu: update the handle ptr in resume")
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 22 +++++++++++++++++++---
+ 1 file changed, 19 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 03bce2fa866a..910293664902 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -108,10 +108,26 @@ int amdgpu_ring_alloc(struct amdgpu_ring *ring, unsigned int ndw)
+  */
+ void amdgpu_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
+ {
+-	int i;
++	uint32_t occupied, chunk1, chunk2;
++	uint32_t *dst;
+ 
+-	for (i = 0; i < count; i++)
+-		amdgpu_ring_write(ring, ring->funcs->nop);
++	occupied = ring->wptr & ring->buf_mask;
++	dst = &ring->ring[occupied];
++	chunk1 = ring->buf_mask + 1 - occupied;
++	chunk1 = (chunk1 >= count) ? count : chunk1;
++	chunk2 = count - chunk1;
++
++	if (chunk1)
++		memset32(dst, ring->funcs->nop, chunk1);
++
++	if (chunk2) {
++		dst = ring->ring;
++		memset32(dst, ring->funcs->nop, chunk2);
++	}
++
++	ring->wptr += count;
++	ring->wptr &= ring->ptr_mask;
++	ring->count_dw -= count;
+ }
+ 
+ /**
+-- 
+2.34.1
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-
-
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index e4511f2fb929..6d5b899941af 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -5201,15 +5201,20 @@ static ssize_t s3_debug_store(struct device *devi=
-ce,
->         int s3_state;
->         struct drm_device *drm_dev =3D dev_get_drvdata(device);
->         struct amdgpu_device *adev =3D drm_to_adev(drm_dev);
-> +       struct amdgpu_ip_block *ip_block;
-> +
-> +       ip_block =3D amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYP=
-E_DCE);
-> +       if (!ip_block)
-> +               return -EINVAL;
->
->         ret =3D kstrtoint(buf, 0, &s3_state);
->
->         if (ret =3D=3D 0) {
->                 if (s3_state) {
-> -                       dm_resume(adev);
-> +                       dm_resume(ip_block);
->                         drm_kms_helper_hotplug_event(adev_to_drm(adev));
->                 } else
-> -                       dm_suspend(adev);
-> +                       dm_suspend(ip_block);
->         }
->
->         return ret =3D=3D 0 ? count : 0;
-> --
-> 2.34.1
->
