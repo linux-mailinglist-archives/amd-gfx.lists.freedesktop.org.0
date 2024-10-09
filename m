@@ -2,146 +2,123 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C432996DA0
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 16:25:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A96E4996DA7
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 16:25:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEBC010E749;
-	Wed,  9 Oct 2024 14:25:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4884910E741;
+	Wed,  9 Oct 2024 14:25:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZqCnVZSm";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ICPi3cnz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2053.outbound.protection.outlook.com [40.107.93.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 439ED10E742
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 14:25:20 +0000 (UTC)
+ (mail-dm6nam10on2080.outbound.protection.outlook.com [40.107.93.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB6710E741
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 14:25:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dOFfPUvu5Xzgv+51ZybIA2EZCqznx7CbJxd8LhA90McZzQrXnUoUvXerwdbwFtZm7MA8Nw+R96oO9AQU3ta52PuikPUSW/sIeDYmcJjhsUMWmqEWlhhUQwHs6trT8imj+ppVjl262dwaUitauF4mAMZ5gzhBcEsKR8XJb46h/c7i2/rkr8qnFoJWQU688z9plXvQcGcTx3gtCa2HE+xaWXFTf/6N+ouquKGX8syvee5Z2rAWhuElC/F7SIKqm3k7yJvExYzOPI0ByXtSuwzTzEbSaCvrMA5Koa7RDX6CzndFeCAEEKRFoSbeApYMkuLWUf1X0IkXtQNDsjwJWDRKvA==
+ b=llna6hBcGU3KlPwI4ivq7o36YADGOm8ofUNUaWHx2NVUxTIXZDZIoPItdk6BxF11Z9YUlFyspH9dhXD5GZ6amEsXvjgmOgWpXQEuhrq49KOCyG2j3QA1HZbUPuiaMCeeQ3VXV52CQfidYJW/ks23H7n5ci/rg4WwGD/A18UP/0+x4q9kUaBvfaAFdqSdsXdzCvPNr67kL9bW7cT8XyVd+cgIB70O9UTJRwAL3uOCmhzI4qBsTE8iNryOcuJl/OZrirFGJ5dcG5Ej5SZNj+78k+xADCBpPaqKO2pipG55H2H2lKnsgnnwrl+5FL22Q5wcyhP2X2yBjDAWwJS9qP8aDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CcqwnKsJxqN26Jhjz/Mitqzfij6UftMcZz1Pa4aEp2U=;
- b=IaXzvvO9vIOw80sEfVM5s4jxtAmCs3sKuY3aVxEXXA6G3jBVY73tzffHjM3qCI2ohY7Bj1uqvCm7OqbEgXBJ+dutM7/cdACe2CkdrdI1lZojcs2jsF1yP3swmqGg7LJqpsPSR1m/AOGpTBA6ur+B8KQFEAnfy1RN3j4fTRQi7HiAzybbRsxj8XWA6cann7fMD7nEH9NjtzlG8Xs6RlsOW3/jbp4UMmagZBffeuFmk7gzxcDZO0yaTX8Tvst4lzC503trT6gTgMdycDjiWrISfEKl/3RDH8dcr1vxiNMGZvPYGCNCmL/eJYy/HOOpgF1zMVQUWBxXasAjUOBm3xO5sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=0sR1RIJsWw++GA2glmPxZEFwrQulmCrH3Ue13VxoxzM=;
+ b=pVkQqXI5aiDqXVyWsGMNGnrOQV0WKuCWBzVa6EXlhu8ijssjRmR/mYDVMpFxBDOv7VHMnvFQQp8BY++PtUvnN+Qq9OL4RNbhbHR338B1lOCIqsMqpQdB1/e0kU4feGHtTigOY5Jf8B9gjbFNmIiFW/qwv/P1gE4FV6Ra2HcQQ+uDrS3sFXcBYEBXkagWFzvbj9P6LLTnQNmY4LEf5wqMBy2eAMFJYxDrzbph/CbGDJSLczK+ytPk5W0h37It5n8ssfOlpL9cCEgrg54UZyyNUL07dQ0ZPWiuhiw0dVS33Ev549+jLhFwcEyxg5ZlKTECxpZH+57L5bnT+1ol2llc6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CcqwnKsJxqN26Jhjz/Mitqzfij6UftMcZz1Pa4aEp2U=;
- b=ZqCnVZSmn4UMW3GJI5Oja7PPcIo6xcaFIg8FLQvqsP6oa+Ada4JJnB4AytcGhOjTiqPNC+S4t0HTCM3kIv/rD3iaAaxl1IRTg5g7L2Ao8Lv9lKd+8zCiDb0dWVe3Hs/hExL/eaz+nl/Dvk9HDV0h+XRdIlc2Nt2gmMmh7n+XwzM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by BL3PR12MB6596.namprd12.prod.outlook.com (2603:10b6:208:38f::11)
+ bh=0sR1RIJsWw++GA2glmPxZEFwrQulmCrH3Ue13VxoxzM=;
+ b=ICPi3cnzPmOKCEnPB2g6taaOLMCwKWtMa3v4HSnIMzZLGKo+9fKBWLAt7a3vUghKdyfdDRQt6TAQPOZRbH+WwgxzLFq0FEk0nGVKkMmn6z6z2KvFGgCdDDq2YccHmihrZw0Da5EbWLoftRCZAzk9BGyLm+2jVSp+K6iVqUXSpkc=
+Received: from MN0P222CA0027.NAMP222.PROD.OUTLOOK.COM (2603:10b6:208:531::35)
+ by SA1PR12MB7197.namprd12.prod.outlook.com (2603:10b6:806:2bd::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.22; Wed, 9 Oct
- 2024 14:25:13 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.8026.020; Wed, 9 Oct 2024
- 14:25:13 +0000
-Content-Type: multipart/alternative;
- boundary="------------58OvEp53pKOLCOHous8vZIR4"
-Message-ID: <ec919dc7-8745-4efc-8611-299a59b80861@amd.com>
-Date: Wed, 9 Oct 2024 16:25:09 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] Add submission flag to disable implicit sync.
-To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, amd-gfx@lists.freedesktop.org
-Cc: airlied@gmail.com, faith@gfxstrand.net, friedrich.vock@gmx.de
-References: <20240808010905.439060-1-bas@basnieuwenhuizen.nl>
- <CAP+8YyGODBJO3hDKo8H9KwpdwR=O+ROOpxqrs8ureyvOVm7YoQ@mail.gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <CAP+8YyGODBJO3hDKo8H9KwpdwR=O+ROOpxqrs8ureyvOVm7YoQ@mail.gmail.com>
-X-ClientProxiedBy: FR2P281CA0025.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ 2024 14:25:39 +0000
+Received: from BL02EPF0001A104.namprd05.prod.outlook.com
+ (2603:10b6:208:531:cafe::c9) by MN0P222CA0027.outlook.office365.com
+ (2603:10b6:208:531::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.17 via Frontend
+ Transport; Wed, 9 Oct 2024 14:25:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A104.mail.protection.outlook.com (10.167.241.135) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8048.13 via Frontend Transport; Wed, 9 Oct 2024 14:25:38 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 9 Oct 2024 09:25:35 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Aurabindo Pillai
+ <aurabindo.pillai@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Roman Li
+ <roman.li@amd.com>, Alex Hung <alex.hung@amd.com>, Harry Wentland
+ <harry.wentland@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>
+Subject: [PATCH] drm/amd/display: Add hpd_source index out-of-bounds check for
+ dcn3x link encoder creation
+Date: Wed, 9 Oct 2024 19:55:18 +0530
+Message-ID: <20241009142518.548229-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BL3PR12MB6596:EE_
-X-MS-Office365-Filtering-Correlation-Id: e3893605-d725-4413-ff65-08dce86e3050
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A104:EE_|SA1PR12MB7197:EE_
+X-MS-Office365-Filtering-Correlation-Id: 732182f4-84e1-4ce7-ede0-08dce86e3f81
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NzV6dFNIZVMyUHhESkVxaWI2RkMrWW9DWXRyQVFJdzR0bjRiQ1lsenU5Y1Zq?=
- =?utf-8?B?dFgxWFJRRkxrYnYxTW96eXd3V3Uybm1YQUdEdGhMOE9MK3daSW1yMjR1Z0Q4?=
- =?utf-8?B?eFBtRUFNMmhjdWxnL04wVEN0UkgxdGs5a0hxa3QwMlE3OS9KSitqenJYeW9l?=
- =?utf-8?B?WVAvWEFKc1dvcmRYcFFIeithalJoNmtoOWF0amU3RXlRTXN1ZXpFaWVlNlV0?=
- =?utf-8?B?UGR3aWwwQXErNFd3NngxV2JQdGZDMVJ2QTNXQ1c0TDROUG9vaGZpb01ob1do?=
- =?utf-8?B?RFRIVWMzSjFiS2FHSEk3V0hTaHBXWFFZYWNadFI1WXlwNnRlMGNCdG0zR1lE?=
- =?utf-8?B?ZWpiSVlVUHJpNWROcU4zZERZMmdPZTBzWDlKK3UxUEY2cGptUEZvUzBPakJX?=
- =?utf-8?B?a1ZBMHV5M2tPU2VkQkpoTDM5VG9jb2FsMk1vUGp5YzVXYXI2My9PWlo1NDV4?=
- =?utf-8?B?bWs4Y1BQMHY4aEw0WmtBUFpLRTVuQ2s1MGF5YU42NGNUWHRUdm5oVXQ5Qlhp?=
- =?utf-8?B?REZWSzJpQkNNNEY4c0liaklrS3d4T0p6N25xYUhVM1Y2SGFnYktkMlQxTXAy?=
- =?utf-8?B?TWRzSDhVRlQycFdqdTFKWDhqYlJEc0dVVE5IRXZvK2tRK1l6aU1GM1J0VUVX?=
- =?utf-8?B?dHhOL3E3V05VSGc0Mi9TWnMvdTVZZ2dWVFNuZVFTQVk1QTFwVXYrRlNBL3pK?=
- =?utf-8?B?eTFMODZoRjZUWEFCc0JmT1BXU05xL2hnQVRGMkR2NlppdGdWTzZIR1pubUtx?=
- =?utf-8?B?U2xkUWo0ZXRZZ2ZMdER0N2habUtCYkZJUmgwK0xlMDlxRi9HaEdmL2V4VFM3?=
- =?utf-8?B?WkduY09QSUh4NjBBK2Nnekp6eVl0YU9BTnhwL0t0UTJrWFF6SEpBM0lVR3BD?=
- =?utf-8?B?Q1FxSURzU0tuZjlZSmVtcE1TcWxaU3dYNXN5U2NUOFM1ZFA5TjZFYTVxWVBY?=
- =?utf-8?B?MEp0RUZJVXZ5OWhxREt1TDR2eURzeis0S2FIY0xHVkJPUXI4WUhXZ21aMEdu?=
- =?utf-8?B?K3BSNG1LTHVkRjZCMExOc2kvNFRaeS9XY0hjMmFsaHdXeGFIbDFVcnZtbEN4?=
- =?utf-8?B?clE5VHppVE11d09ZNE5DaXhGL2NqQzBhY1hBWmRxZEVpSndVb2xkYjR3T2Qz?=
- =?utf-8?B?Q3J4cTZmQldQKzRnbHpiS2k5dlhHT3JySzdZbElKYVRwVjlnZkN4TTRzaURz?=
- =?utf-8?B?SE9sbFJLRFNtLzljRWhHOFdRc1IxWkRNOUduU3I5N1dWZHA3Smkxckw4eWJq?=
- =?utf-8?B?bmJCU0hsMXV4WkpuTkVma2JmRTJPeStwdVE4TlByLzJnUWRpVUlUYWRrM2hC?=
- =?utf-8?B?b0FoYTN6dkNDaDN4dmdPQmtnNzI3d01UMFlpNzBBOS9VbkpkUG5XODh5aS9z?=
- =?utf-8?B?cTJKU2RiTTBWbXFYd2xuVjBCazRnSFYrS25kUjlveXFtakxxOXNURkZ0YnZF?=
- =?utf-8?B?alZOY0I1R3JrdmJVZ2dZZGQ0VERZMmVaMUcwMU80d2xKOHRvWWoxVk1KZHBS?=
- =?utf-8?B?V2g4K2hydU5MdEpDYUxoQlloa0E2SU1zNERyTHFQaTRWbUsxK29GQU9SRk9Q?=
- =?utf-8?B?SDlNeWlVbU96SUN1RSt5c2NiUEt4ZUtZNGVNWkJiTUFSdlQ0d1BJQUJhN1ln?=
- =?utf-8?Q?efc9tRarTTrJIre3SfjfSvGwKEIeeyoqic6gDqzp+8o0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUM2TkFwMHdraGZzVU9pbm1mUTBLUXdKUWtZb3RqdkkxNldRNm9kTlg3T0Zj?=
- =?utf-8?B?RmdUVjlOS0xXaG1OMEVrMllCQVJDck1CK0dBM0QwU0FZdzZ1WnppZVI5VHF2?=
- =?utf-8?B?b0pWT3lEN2ZXSW9RTVExOGY5NnZEL2hCMC8wbjFVS2k0dC9ITUh0SEtnRzJL?=
- =?utf-8?B?YUlKQTRtUzBZSTBIb2c5amFXVEw4ekkxUHhweDk4WFg2NWFsNXE2M1NZNWEr?=
- =?utf-8?B?ZVVyU1dVS1BpeFZ4eVMrYTNHQi9JY2E0V0U3dW1iZnpLQ1VkcWNGdzJ6Z3Yy?=
- =?utf-8?B?RzRhbUZIN0hNTUo2cGZPVzdZMHhtcThZUmNpZWhPZyttQk1Fby83R3l0RVdC?=
- =?utf-8?B?UUdtZXhCSHBOTjJNVDJlM0ZnVmFrT0ZkajNPQ25rclc4NWhwYkpoTDFCSGNR?=
- =?utf-8?B?TnZZMkVXSVVBbXlTd0xaMEpqcWlmNkVZMCtCR29sb3pYNk9DK2lMN2plZHlR?=
- =?utf-8?B?RFEycU5SQjlmWWIxWTBoKzlQK0lhb1pHV2RyNUs3MGl0ZWJqQUtzQmZlRTJT?=
- =?utf-8?B?ZzBRN1VHWVBmSm9wQlVIUWJXOE9NRFNHQ2FvbWpBdElCZ1Z0TW8zNjExMVpX?=
- =?utf-8?B?elZjb1NZRHhQMk5obm93eGNuVkFONHE3ZFVxK0ZTeFp1alpYL1FZWjZrU2Zk?=
- =?utf-8?B?bWdLQ1hHdHlJNlNDcW9NM0Eyc080UXVvQUI3cFE0eCtIUWxWaUY1Njk2Y0VD?=
- =?utf-8?B?QWNZcWRYZHByamNFRGp0WGlSYU8vaWxvY1VmVjhEbHZxRnpPVTVycC9Sak1C?=
- =?utf-8?B?SVNjeFdpOEVOKzFHSVJ2bHFFbGtzL0hYQXBVeHVIMWhhZ3hxazYxOWJsSDFv?=
- =?utf-8?B?UE1MbG4vN3hjVUV4bStZT01SaGpYQ3hmL0o3RnFJeGxTN1o0clFkTExuVU9Y?=
- =?utf-8?B?eGd5aS9XcFgzakJLMUVtRUZuTkVUTVcrL1JLanhPN2N5Z1cwMklyWHBMbjNp?=
- =?utf-8?B?OTBaYVlYUWlPcy9uejFoZVBpa1JKdG1KcTZRRnEzRElKNW1MOXhBZTdLSW5E?=
- =?utf-8?B?RGJSTFc2Qm5MdjkxMFVtMXNhZkcyc25xdGVQa0ttT0k2TDBYVDQvYkQ3QklV?=
- =?utf-8?B?UnJQRWFRYm8vdTdDNG80Z0p0MGdGRS9wR1Z5MEFxcmR3NTlBY0RGekdycEFG?=
- =?utf-8?B?NFVqa2tTL3NlUHdxRzZ5dEtFYSs1ZGlMSDJwZENRZzcwciszVDdTZkhTQ2hm?=
- =?utf-8?B?MVhXSUZJanI5d2laNHBtN3lsNmk0eHc4QzVqYUlEeDNoUmJRNDA3bktLZWty?=
- =?utf-8?B?cHFRZkhWczVRdlExaVNKSGZ4TTc5aStrU3FCR2NLNXJHQll3ZkM2aFk2eExG?=
- =?utf-8?B?UklOTGU1b0JSMC9oOXE4ODdJRUhjRTJ1RTdjK1RyaVJENldVKytxY1poQUhG?=
- =?utf-8?B?cmJkN0pmVU9XQnlyV3AvcFRWYVpvL3ptdUwvK2NCT0YwbXR1MWttSDhVNWtC?=
- =?utf-8?B?cUhOaDZlK0pERUdlcGl2Z3IxNGJnb3lUcmJrQ1ZlSUFXUmp3ZUdldzgydGZ2?=
- =?utf-8?B?d2dwV1FhOFAyNnVrYnJVVFg0YTZ1Y01yc1Exdzh2aXF1WExiOUxmd1hlYWhm?=
- =?utf-8?B?LzN1c3BFd2gzYzhSK3lxNmlHcHdQa1lQM0tnS2NDSTFIOHc4Qm12WTd5ZUNz?=
- =?utf-8?B?YkwrZXIxbmgvck9QQlNUdHBQdXNva2k1NjhTREdQNjZEWmFRTGpNV045SHNO?=
- =?utf-8?B?di9HMHJPSE9nQTJjY0N6d2YrK0F0TWFaWUZhOERrbnUvU1NCZ2dxVFkrVzlZ?=
- =?utf-8?B?SDYvaThGQWZMc3VyVWRJNDEzdXJMcG8rVTU2RWFKektaRVRPTnlyWU9jL1l6?=
- =?utf-8?B?NitJRXVBMzdSUzFOUFgzdS91bmd6bHJlU0ZaSTU2UTU4UXRUZ0wvb21QeXQ5?=
- =?utf-8?B?TTl2OG1iTGZjalpzbkFrQ05UbDlyMFBPY3N1OTRPMkdGN2VYTSs3YUR0TVFR?=
- =?utf-8?B?YXZSZDJJM1licll4VFBnZXN2Q3FFb2NlRGdhTDhlNEg3S3BjOXZrblhrWXA2?=
- =?utf-8?B?MFdWWExMQzhoMmJxQlhnTTE0b3pCWU9LaTVWRjR5dk1HNmdTcjhuMkF2THQw?=
- =?utf-8?B?U2pZS0pNQzdUbmovMWpOTGQyazNoTTdNTlFqWCtjUTBNVVNoRHU4b0dQc1pT?=
- =?utf-8?Q?cvaw=3D?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?AEfvwK6TNrS5h/LLnfraCR7V8UEdNP9N332YoBzsAyIlkje/mCiZDezLEgjq?=
+ =?us-ascii?Q?DNQa0C/XtKBT8swMgm9I60YmCWUWBOrY/ujHyJ9V2Vxe7gLhYWTPl7H4Mtvp?=
+ =?us-ascii?Q?cRWhJLnV4hTXWC+KZjNCq1tqiV1KaXnuOGiGCTtxJJcZBc1C9Ogp9ZP6n2on?=
+ =?us-ascii?Q?1VIwMmiTsEt1EBZuAV2ZHXLIX6FQ2N3o/XJcNAULhArBQkMQdKpck/WgVmdR?=
+ =?us-ascii?Q?wZlbXGwp/xBe1y+k4vp6KU8HCnivXfSIKMySrNO4m6YbKklqiOojNIK8i3rF?=
+ =?us-ascii?Q?z2hCzryPk4+1pF3nz9WP8K/1OpUU7IJNaViIV2jDqDl/K5ecQQHr7zqdJB2C?=
+ =?us-ascii?Q?Gts9PZaeD0759WwtPif3L341wAMYeuAuW3i7E0QbyMQFRxzK89SCB2Y1diE1?=
+ =?us-ascii?Q?HGCeg57xCzltDsf5+P+MYZ1POBvUp/rw3fSj40A7xGLhV3xbEbeoH19Jv4jK?=
+ =?us-ascii?Q?DBKhtDP4w3VHiUHRDqJWeh46J1HF7S427WoSb/GYOw/2PDvwKF/pxNW5f2e2?=
+ =?us-ascii?Q?EBtiZF4vp06JlCqIhwvjeeGt+BK7oyrnIHmTi1htgNVVbwHbI3hMJaiYbSto?=
+ =?us-ascii?Q?Cg7x4SxH2OvdPPYvaYI//GLPlS6lPL+0gjtcPKlmHpEE4R3DTdTYDP81BArx?=
+ =?us-ascii?Q?MzhGwR0r0WmPhyX1f6HhP7tDz9JxpguSjZHsK4e4zgG9k99mW7YMaFxUcLYP?=
+ =?us-ascii?Q?tWR0KGbdhtS/yIHp9vuCzER+xIbJx5kQcHoR4BYBTK2fxdR8DOFhqqLDnsnh?=
+ =?us-ascii?Q?XfM1uPka1p4VYpNschbIWJTc6eyltHhbb7RTSjaniwGh18owkIVyYlYmsRUv?=
+ =?us-ascii?Q?tUEtHyCfOs/jOzke9c1FcGKYN6lzmonvHpAqdQ5nixm9rQ/R7UyCFIeCXBph?=
+ =?us-ascii?Q?WycefMKXxPzAww/M1huGspg2b/wsqfU28HgLpwLmWKapFsaJHkf2Gvuj2mF7?=
+ =?us-ascii?Q?IVRhqqBf+wqAg+ZgPUu4vRByAb/J3EIE8aKmgZnmn7GfGCw181CeEz5A95f1?=
+ =?us-ascii?Q?ZfyFkOgMbiJrw8+yBMSii/mJO4yRSQJo/REVxJgIdydjhChqxrIHNn3c/tsa?=
+ =?us-ascii?Q?Or2z0gLFCi5Ikv1ul85hVkSwyXEcpuMZB9DVIdoUPoym5YhuojKvHivVR9GN?=
+ =?us-ascii?Q?Y+la+3WcGQk9v0xrlfE+weTim1NXIw+Mw8FukIXu7AW+3zzZa6jM/3s/GKHl?=
+ =?us-ascii?Q?8owJDAE9xSVtlON7eVoz+WS19PY+g+8RM10lG5Yp3EciFGFG6tV3FlUFWJeg?=
+ =?us-ascii?Q?JdDlhmCfWR83FtsV6Ht5vOi0K1pFAs9LvM66Z3of818kWj29dE7dJmgndSnB?=
+ =?us-ascii?Q?8St5jcmnl1V8BvN+xttyXofH5wKUdkdrUdfrQnDJpEMwrRYUVW+Z+5h0nBMk?=
+ =?us-ascii?Q?F90eJuZX5nQtCGmBafzyT6eEQvQS?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3893605-d725-4413-ff65-08dce86e3050
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 14:25:13.6751 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 14:25:38.8356 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 732182f4-84e1-4ce7-ede0-08dce86e3f81
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MpW0GGzn2ZSMF0tR28ExSE03pw9a23FOuHDPStrlmNHrcT3eNQrLcYl5rcYqyUrX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6596
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A104.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7197
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,157 +133,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---------------58OvEp53pKOLCOHous8vZIR4
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+This patch adds a boundary check for the hpd_source index during the
+link encoder creation process for dcn3x IP's. The check ensures that the
+index is within the valid range of the link_enc_hpd_regs array to
+prevent out-of-bounds access.
 
-Already working on that, but userqueues have pushed that back quite a bit.
+Cc: Tom Chung <chiahsuan.chung@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Roman Li <roman.li@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c  | 2 +-
+ .../gpu/drm/amd/display/dc/resource/dcn301/dcn301_resource.c    | 2 +-
+ .../gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c    | 2 +-
+ .../gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c    | 2 +-
+ drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c  | 2 +-
+ .../gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c    | 2 +-
+ .../gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c    | 2 +-
+ .../gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c    | 2 +-
+ drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c  | 2 +-
+ .../gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c    | 2 +-
+ drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c  | 2 +-
+ .../gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c    | 2 +-
+ 12 files changed, 12 insertions(+), 12 deletions(-)
 
-Sorry,
-Christian.
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
+index 5040a4c6ed18..baa4e2647dad 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
+@@ -927,7 +927,7 @@ static struct link_encoder *dcn30_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ 	dcn30_link_encoder_construct(enc20,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn301/dcn301_resource.c
+index 7d04739c3ba1..d8a7c2cf05de 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn301/dcn301_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn301/dcn301_resource.c
+@@ -883,7 +883,7 @@ static struct link_encoder *dcn301_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ 	dcn301_link_encoder_construct(enc20,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c
+index 5791b5cc2875..40c20b04635a 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c
+@@ -893,7 +893,7 @@ static struct link_encoder *dcn302_link_encoder_create(
+ {
+ 	struct dcn20_link_encoder *enc20 = kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ 	dcn30_link_encoder_construct(enc20, enc_init_data, &link_enc_feature,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c
+index 63f0f882c861..daf1b65fd088 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c
+@@ -839,7 +839,7 @@ static struct link_encoder *dcn303_link_encoder_create(
+ {
+ 	struct dcn20_link_encoder *enc20 = kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ 	dcn30_link_encoder_construct(enc20, enc_init_data, &link_enc_feature,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
+index ac8cb20e2e3b..36bb26182e11 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
+@@ -1093,7 +1093,7 @@ static struct link_encoder *dcn31_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ 	dcn31_link_encoder_construct(enc20,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c
+index 169924d0a839..58a5fbcf22bf 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c
+@@ -1149,7 +1149,7 @@ static struct link_encoder *dcn31_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ 	dcn31_link_encoder_construct(enc20,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
+index f6b840f046a5..3acad708c31b 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
+@@ -1091,7 +1091,7 @@ static struct link_encoder *dcn31_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ 	dcn31_link_encoder_construct(enc20,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
+index 5fd52c5fcee4..ce56f5d162c0 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
+@@ -1085,7 +1085,7 @@ static struct link_encoder *dcn31_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ 	dcn31_link_encoder_construct(enc20,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+index a124ad9bd108..a1890df29f5c 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+@@ -1039,7 +1039,7 @@ static struct link_encoder *dcn32_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ #undef REG_STRUCT
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
+index 827a94f84f10..35acc13cb5a9 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
+@@ -1035,7 +1035,7 @@ static struct link_encoder *dcn321_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ #undef REG_STRUCT
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
+index 893a9d9ee870..795f2c71c70f 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
+@@ -1074,7 +1074,7 @@ static struct link_encoder *dcn35_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ #undef REG_STRUCT
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
+index 70abd32ce2ad..0b8dc2eff596 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
+@@ -1054,7 +1054,7 @@ static struct link_encoder *dcn35_link_encoder_create(
+ 	struct dcn20_link_encoder *enc20 =
+ 		kzalloc(sizeof(struct dcn20_link_encoder), GFP_KERNEL);
+ 
+-	if (!enc20)
++	if (!enc20 || enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs))
+ 		return NULL;
+ 
+ #undef REG_STRUCT
+-- 
+2.34.1
 
-Am 09.10.24 um 16:17 schrieb Bas Nieuwenhuizen:
-> Friendly ping on reviewing this series from the AMD side. Thanks!
->
-> On Thu, Aug 8, 2024 at 3:09 AM Bas Nieuwenhuizen 
-> <bas@basnieuwenhuizen.nl> wrote:
->
->     For the rationale see the earlier RFC by Faith:
->     https://lists.freedesktop.org/archives/amd-gfx/2024-August/112273.html
->
->     This mainly makes two changes:
->
->     1. Uses a submission flag rather than a context creation flag.
->     2. Uses DMA_RESV_USAGE_BOOKKEEP to avoid adding implicit fences still.
->
->     Note that this doesn't disable implicit sync wrt VM ops
->     (map/unmap), I know we have series for that going around,
->     but I believe doing just submissions here is less involved and
->     doesn't really complicate doing VM ops later.
->
->     As of now this has received a limited set of testing, no full CTS
->     runs etc yet.
->
->     For Userspace see:
->
->     libdrm:
->     https://gitlab.freedesktop.org/bnieuwenhuizen/drm/-/commits/basic-explicit-sync
->
->     mesa:
->     https://gitlab.freedesktop.org/bnieuwenhuizen/mesa/-/commits/basic-explicit-sync
->
->     (Still missing a bunch of the version bumps & version checks,
->     would like to postpone that till we know the actual version)
->
->     Bas Nieuwenhuizen (6):
->       amdgpu: Add usage argument to amdgpu_sync_resv.
->       amdgpu: Ignore BOOKKEEP fences for submissions.
->       drm/amdgpu: Check cs flags.
->       drm/amdgpu: Add UAPI for disabling implicit sync per submission.
->       drm/amdgpu: Implement disabling implicit sync per submission.
->       drm/amdgpu: Bump the driver version for the new flag.
->
->      .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |  1 +
->      drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        | 21
->     ++++++++++++++++---
->      drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h        |  1 +
->      drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  3 ++-
->      drivers/gpu/drm/amd/amdgpu/amdgpu_object.c    |  3 ++-
->      drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c      |  7 +++----
->      drivers/gpu/drm/amd/amdgpu/amdgpu_sync.h      |  4 ++--
->      drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c   |  3 ++-
->      include/uapi/drm/amdgpu_drm.h                 |  6 ++++++
->      9 files changed, 37 insertions(+), 12 deletions(-)
->
->     -- 
->     2.45.2
->
-
---------------58OvEp53pKOLCOHous8vZIR4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    Already working on that, but userqueues have pushed that back quite
-    a bit.<br>
-    <br>
-    Sorry,<br>
-    Christian.<br>
-    <br>
-    <div class="moz-cite-prefix">Am 09.10.24 um 16:17 schrieb Bas
-      Nieuwenhuizen:<br>
-    </div>
-    <blockquote type="cite" cite="mid:CAP+8YyGODBJO3hDKo8H9KwpdwR=O+ROOpxqrs8ureyvOVm7YoQ@mail.gmail.com">
-      
-      <div dir="ltr">Friendly ping on reviewing this series from the AMD
-        side. Thanks!<br>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Thu, Aug 8, 2024 at 3:09 AM
-          Bas Nieuwenhuizen &lt;<a href="mailto:bas@basnieuwenhuizen.nl" moz-do-not-send="true" class="moz-txt-link-freetext">bas@basnieuwenhuizen.nl</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">For
-          the rationale see the earlier RFC by Faith: <a href="https://lists.freedesktop.org/archives/amd-gfx/2024-August/112273.html" rel="noreferrer" target="_blank" moz-do-not-send="true" class="moz-txt-link-freetext">https://lists.freedesktop.org/archives/amd-gfx/2024-August/112273.html</a><br>
-          <br>
-          This mainly makes two changes:<br>
-          <br>
-          1. Uses a submission flag rather than a context creation flag.<br>
-          2. Uses DMA_RESV_USAGE_BOOKKEEP to avoid adding implicit
-          fences still.<br>
-          <br>
-          Note that this doesn't disable implicit sync wrt VM ops
-          (map/unmap), I know we have series for that going around,<br>
-          but I believe doing just submissions here is less involved and
-          doesn't really complicate doing VM ops later.<br>
-          <br>
-          As of now this has received a limited set of testing, no full
-          CTS runs etc yet.<br>
-          <br>
-          For Userspace see:<br>
-          <br>
-          libdrm: <a href="https://gitlab.freedesktop.org/bnieuwenhuizen/drm/-/commits/basic-explicit-sync" rel="noreferrer" target="_blank" moz-do-not-send="true" class="moz-txt-link-freetext">https://gitlab.freedesktop.org/bnieuwenhuizen/drm/-/commits/basic-explicit-sync</a><br>
-          <br>
-          mesa: <a href="https://gitlab.freedesktop.org/bnieuwenhuizen/mesa/-/commits/basic-explicit-sync" rel="noreferrer" target="_blank" moz-do-not-send="true" class="moz-txt-link-freetext">https://gitlab.freedesktop.org/bnieuwenhuizen/mesa/-/commits/basic-explicit-sync</a><br>
-          <br>
-          (Still missing a bunch of the version bumps &amp; version
-          checks, would like to postpone that till we know the actual
-          version)<br>
-          <br>
-          Bas Nieuwenhuizen (6):<br>
-          &nbsp; amdgpu: Add usage argument to amdgpu_sync_resv.<br>
-          &nbsp; amdgpu: Ignore BOOKKEEP fences for submissions.<br>
-          &nbsp; drm/amdgpu: Check cs flags.<br>
-          &nbsp; drm/amdgpu: Add UAPI for disabling implicit sync per
-          submission.<br>
-          &nbsp; drm/amdgpu: Implement disabling implicit sync per
-          submission.<br>
-          &nbsp; drm/amdgpu: Bump the driver version for the new flag.<br>
-          <br>
-          &nbsp;.../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c&nbsp; |&nbsp; 1 +<br>
-          &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c&nbsp; &nbsp; &nbsp; &nbsp; | 21
-          ++++++++++++++++---<br>
-          &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h&nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; 1 +<br>
-          &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c&nbsp; &nbsp; &nbsp; &nbsp;|&nbsp; 3 ++-<br>
-          &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_object.c&nbsp; &nbsp; |&nbsp; 3 ++-<br>
-          &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c&nbsp; &nbsp; &nbsp; |&nbsp; 7 +++----<br>
-          &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_sync.h&nbsp; &nbsp; &nbsp; |&nbsp; 4 ++--<br>
-          &nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c&nbsp; &nbsp;|&nbsp; 3 ++-<br>
-          &nbsp;include/uapi/drm/amdgpu_drm.h&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|&nbsp; 6 ++++++<br>
-          &nbsp;9 files changed, 37 insertions(+), 12 deletions(-)<br>
-          <br>
-          -- <br>
-          2.45.2<br>
-          <br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------58OvEp53pKOLCOHous8vZIR4--
