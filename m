@@ -2,153 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A740996A0C
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 14:31:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39BBF996BFA
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 15:32:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1EF110E6DE;
-	Wed,  9 Oct 2024 12:31:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF0C810E702;
+	Wed,  9 Oct 2024 13:32:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gVXQV7iW";
+	dkim=pass (2048-bit key; unprotected) header.d=cirrus.com header.i=@cirrus.com header.b="WI0sVayc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2049.outbound.protection.outlook.com [40.107.100.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0744110E6DE;
- Wed,  9 Oct 2024 12:31:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mcT1j96/2zLcBGXHp5VhR15lJGY3uLdZ6zhHLhL3KZMrPOsJ9JR40paPWjlaScTugHL1CKKzwF/H2F0GE4WL2xDD6PJuKySFpVqyMo/k/dlGAexCx8Bwdy9lHLnv3exhn6AmQ2IUqwdJ6RIpurnjFNhZnnqps/r2TpsxBeZyrsqIub5gBbFXPQznGLf21nkJoN6TP+91EuEAHkJvFXvNLN5vNSZSdRfqGKBnf9lTvtJ2+EGdw0/K8GWtaSLzzXqizHAi90vEexS0v7lAymoQn+/Ys53eEUznw9Ld3w4LmOQs+Azdg0gnZ0Y712Qaie8ALeHCyR1+HvrMm/k95NB2Dw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KvFpFF/CoAkMPH3WvTVwhdczLDcIyraHxwEbWVC/3Fk=;
- b=ieau+wNqQIvCgksO5YDDZcHFqgkt4UcZisyIvJMbM375pphnUehbd8YQ70N5t/idigCSKv2/OgYOVMMc5Tpk2/ABUB2b3TOvb5Rsn51rf473X2mRPNCkUR5l7tPoYKEJQH9sSx/+1U/6cJSZ2GGMl9yicIuXJk81WRoM6WOb4eHK036jMX3tW8AcaFLiazusu/y8HfteQMbznkWUYgDQXxTMGbJSIjcA2acWAyd/bx1ftdsT4jP4TE/ko3BQpZG85zV5ve62lpHhHS4RJX1weeqkh5VpfjzP2SJPpbyvjClz4EOZShQzDyyxsZp2O8LHQrfd5hS7voZKS32Wod7X4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KvFpFF/CoAkMPH3WvTVwhdczLDcIyraHxwEbWVC/3Fk=;
- b=gVXQV7iWBcNRWlrgBCUTV4vfkCZ7QXCblNAoYJXXGaWkscbq0BquVlNE+pFxXpspOxQN534JXsMZnfDUJzKHSWpNKSY1VaKs7kdFtCU3p/abxVRefMlsCIjR/GTYV7kHzzIQ9vj6UfCJ0CikvP0OZrnlTXW0sEMCAeb/2wj2S88=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ1PR12MB6124.namprd12.prod.outlook.com (2603:10b6:a03:459::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Wed, 9 Oct
- 2024 12:31:53 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.8026.020; Wed, 9 Oct 2024
- 12:31:53 +0000
-Message-ID: <6426b779-bd4d-4c85-b99d-4ddedf75d837@amd.com>
-Date: Wed, 9 Oct 2024 14:31:45 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/amdgpu: prevent BO_HANDLES error from being
- overwritten
-To: Mohammed Anees <pvmohammedanees2003@gmail.com>,
- alexander.deucher@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- simona@ffwll.ch, srinivasan.shanmugam@amd.com, David.Wu3@amd.com,
- felix.kuehling@amd.com, YuanShang.Mao@amd.com,
- pierre-eric.pelloux-prayer@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20241009122831.109809-1-pvmohammedanees2003@gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20241009122831.109809-1-pvmohammedanees2003@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0382.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f7::20) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-Greylist: delayed 1557 seconds by postgrey-1.36 at gabe;
+ Wed, 09 Oct 2024 13:14:30 UTC
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com
+ [67.231.149.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1B510E266;
+ Wed,  9 Oct 2024 13:14:30 +0000 (UTC)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+ by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4994xc0x003245;
+ Wed, 9 Oct 2024 07:48:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=
+ PODMain02222019; bh=b9CbWLDMZti2ojgRTihH3RA0WYLUzEcG7aX6pdihoQY=; b=
+ WI0sVaycTZYkwMgmtYcXXMdvigsiua8Ix4Qh02mNCGH2fBXcoCmYBNNsEO5BXVde
+ 1Bz9WSIl3H9aytV4MjeLGq5iNgl4nMnifXKD7gZBG7Nh0M0RDNAmEax34ZlRrQpc
+ BqxwXp6rQsj7d8HBI3neZNecBDiZiUXrqk9SjO/XH7GSP3KBa0vc3lo3Nh2evgTs
+ vMpU/eouIhXwHQgJkPlVYadHgMk2W3tKDA7WeoPiKLk9i2DcqwNiAeCbgFtNS1E3
+ D/03y3ryRn8KcZ7U0bo3WMxdHCmB9tG9qfIm/V0gyX7oGE/Hh+fOgbX3EkFod4UH
+ WWLlkgIPTShr+Vylj7CyYA==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+ by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 4232uy5xfs-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 09 Oct 2024 07:48:17 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Oct 2024
+ 13:48:15 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Wed, 9 Oct 2024 13:48:15 +0100
+Received: from [198.90.208.18] (ediswws06.ad.cirrus.com [198.90.208.18])
+ by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 33C5E82024A;
+ Wed,  9 Oct 2024 12:48:15 +0000 (UTC)
+Message-ID: <41a0ad69-912b-4eb3-84f7-fb385433c056@opensource.cirrus.com>
+Date: Wed, 9 Oct 2024 13:48:15 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ1PR12MB6124:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0ee07cbc-7574-4448-0446-08dce85e5abd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|921020;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OTNXRjR3cHA4TWlqUHI5cUxqR0ZCOTlTSittYXRGaEJ3M2xrbzRvVGJaSE5S?=
- =?utf-8?B?WCtVSDZsUEU3VU9oejR3TVhZY0I1Rkh2MFR6cGNUd3VKcG1ybStSbEE0LzZL?=
- =?utf-8?B?M0lqYUthVXFSTTM4UlVBamtDSlIrNmFVRWwzQzJra21PM0ZtMjE2ZVBBQm0r?=
- =?utf-8?B?aVdFeVN0b0puY0c0RGpqU1lWaFBIdGRVdmh5MGRNL1g5MlFJQUZBODc3UVBM?=
- =?utf-8?B?RnJGczV3c2lBdmEra1JRTHVCdzJQVnZhLzZnNVBWbUViQi9uWE1LdHkzOGtE?=
- =?utf-8?B?ZGRTQ2c3bkdjSnBuaXFlRWRFY3NNc3pxUnp0VGZ2SEx1Yy9lWU9vdE8yS2pD?=
- =?utf-8?B?Q3FVeXYra2ZPTlJ4WHVncmFHWGErWXAwYzRoV1oxL0VXaVJvTEhpeGZSVW9M?=
- =?utf-8?B?OWV2MEFsZkQvd2I0bVFEMm9qb2lmclNEZnU3TjhGM3BOdU5qRFZOcHpUcHlO?=
- =?utf-8?B?K0RYaENzcW5LQUVFNU13UGM0YzFhc1R5d2ZSSnVVT3FuVkpLQWZYRER0YXZB?=
- =?utf-8?B?Zml3ZHQ1L3FhMm9wdVp3RkNNVnJkQkxqRWlYV1ozalpVaVFRSlBQazNyL1NX?=
- =?utf-8?B?dW1jRCtzd1hpQWhyTWlndWFaWFVGSFFzaHE3VzBBSytEUnRsZjdPa1RqR0h4?=
- =?utf-8?B?TnhrUW5SUmhiWVc1cFAxVm5kYzBHRzBGVTZTdXlaalgxS0tGYmtSNXUybDUx?=
- =?utf-8?B?WEhtY09jWTJzTUgzVEV0WHZzdy8yaVRibEdNN0FyL042TmxuZTNYR3hpTHFu?=
- =?utf-8?B?MGROblI2YmxpYmlqSE16VS9NWkRDV0NPeTlsUDZ2MlhlOGk4clpPbXVkSGc4?=
- =?utf-8?B?bEtiams3a1ZUZXdXYXZWMWd1ek9kaC9DVkdVd0l5ZDZ1MVFxUzE2aE4zVFBh?=
- =?utf-8?B?VmNEdUNGa1g1dHk4VzUweDlEUVBraXNadXFDMEVVeStybmJ0enVzUldIdzJP?=
- =?utf-8?B?dHFnelZ6VXg4RXpxZkw0aG54UjRRbWsyT21RZkxDT2VNRTB4engrNzV5MVY4?=
- =?utf-8?B?dVdTd2xwU2RmQ0VzRERDc1RuYlhOTUExOVJRMU01TVQ2eFpZSEZva1lGRWV2?=
- =?utf-8?B?RFpJMmFVbi9EY3hUREhVS1B1L2hSTDJYWllxdGFkV25LcVlTR0RGaFFDTHFM?=
- =?utf-8?B?Y2tpRVBZV05SSm5xV1k3bnB4Qm0vazFoV20rdkxLcUR5OS9iYmlQSkU3SHlS?=
- =?utf-8?B?cnROYmJrYzRjdm1NSU9TWTJyWGFreEI4d2dqd0JZeUhXRGNYSjcrZzNxTXNt?=
- =?utf-8?B?eDNLSlBzSW1HUzBjMkJTaUF4YkVHMlpGVVppSDBWS3VyRzEyditFd3RXQWUx?=
- =?utf-8?B?QkJqUjRrMktuYXJOZ0ZvMWNHbTlNOFRjT1lQZW1QcTBVTy9oMkJGQ2wxWGJk?=
- =?utf-8?B?QzdlMVJHNmluY1JGWFBwajdWaVRGSTJDOW81cGd6L1lzZzFra2FQQ3BBblFl?=
- =?utf-8?B?TnZjN2hzZ2Y2MGNMa2Qyc2dtS3VzdUtNM0I3Wi9Qa0gwYjh5alQvdUFUbXpG?=
- =?utf-8?B?M2tvZEZ1Wk5MVTYremdlRmpZRjlQTVI2cEg5bGFid2tRdDdOTXQ0NXk5dmFZ?=
- =?utf-8?B?SEM3UGYrYldaOW9ibUNQTkI3Q0FDekRIbHJzR0dNVEs1TUx4SWR6RzlCU1hx?=
- =?utf-8?B?cEFpdW9yd3dMY21RNnpTMGN6MDNSaFVOUldSK0VBNWdZTEF2RnFhbnhleEE5?=
- =?utf-8?B?WE9mSmZodWJvV2kvajAxZlBBMXN4UlBHNzdLdkhkdWNYRGJuM0VlR1RTOVJV?=
- =?utf-8?Q?4SLB/NyNXfDuuc9wRVU5NDb6jXiPCUiji5hMEGa?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(921020); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MDlEMEVWZk5sVzQ1ZFRrZ3MrT2Y5ZXdENVJUd2M3czc4S2I0VHlQNm5mOVlw?=
- =?utf-8?B?cVhDaCtYZ09vbktSWnNTUkpPTi8zLzUrVm4vQjB5VXA0S0JkT1RsUlRLclBY?=
- =?utf-8?B?VmpBbmo4MlE5THhiczZCeVV0SHAyTFcydDdkZ0hSVkZLSjRyTVkxeS9yLzhL?=
- =?utf-8?B?OWtHdUppREFpbklBY1dNdmw2bnp3eGR5TVljdUxVK0hTTm1rTi9remVmbkQ5?=
- =?utf-8?B?d2ZZVWs5UEJqZjlzMkdFZ0thQlYxRmJDMFFMUG5RVnR4U1JQQVZFTW1vWkNQ?=
- =?utf-8?B?UGpLWksvMDdsY0JIUWV0ZDZRRlNIUDNpSUxTUTZ0c0Zoc1dqT1dSdjBwdUFT?=
- =?utf-8?B?Vm95SmUyUS95WkZYd1BvdzZvWHJUWG5haVFsL0FXc3RRMkY5WVJmaXFmQk9P?=
- =?utf-8?B?WnRib1ExeUEySDlLdHRobE50TEZVdnA2NWFWeGlDc2hCMDZGamZWYUloaEk3?=
- =?utf-8?B?eVM1cWV1ZE9iSjFqbXdYWGt0VHRKNG53NTBpSE9KbFdEMkRBUGVRZXQvQnAy?=
- =?utf-8?B?enBsTXkzOVIvNzM2aGJCclNWeW8vTXlKTjRZdktxbk9VSkVLNFA2UEtWUEts?=
- =?utf-8?B?YkFWTFA4aGYza2EvMGNUNWpPZ04zaS82N1ZFMGxQcTJnem5mem0rNFVBZ2FO?=
- =?utf-8?B?VEN1UUlPUzUrZi9XLy9lL1RWb2dYcXh3TmNlaVp3cWd1eDdqQ0NwdnNQMlZs?=
- =?utf-8?B?aWxTenFaci9FTjNpWHIrZDFFL0p5T1JxQzA5WmFpYnI5THliOW8wcmkxdEVz?=
- =?utf-8?B?U0lkZkZpU1o4L3A1NDBQdGNMSDJaTVhJdnBZS3pHWHFWcll5ajVEaVlHTEJl?=
- =?utf-8?B?YW56MFd6dDM3QW9mL0t6blF2NWFmdERiTVllL0J5M1BlbVJMb3VmSCtZaWxj?=
- =?utf-8?B?NlRIejNZNDNPMDR2K21qUXl0QjRZcm1kUlo2dkYzRTl6aFowQU5hSEJXbzZw?=
- =?utf-8?B?YyswQlFuR1BzVURzVzRZSFBZaDZxZktyY3BUcEFKaW9OUTFOeitsU1JDU1NM?=
- =?utf-8?B?djkzYkQwYTVFaEUwZVBVbjdGZzBiVm9JT2JhWnFuSVplL0VCeTdQUzU0TVZJ?=
- =?utf-8?B?UEloLytEZXRhbm9uRTVOTkF2SVJtZVR4bXprVFpVWFBlR2hRZDJTZXdZMmNC?=
- =?utf-8?B?TlNJOWFudlFzYjBLbDM0WFZwRlRQZ2NGUFFnZEdGUzlia1BFVUVvbnF5VjRK?=
- =?utf-8?B?R0dZQzBqUmxUbXNMK2tmeUQvNTFqQmF2emwyVFZpVzEyazJVTTQ3clJCdFd5?=
- =?utf-8?B?bTQ3cW1XbUZGQ2hzYm1WaGlPT0JVbFJ3b3ptTVNhbnJ6TytOQ09oSVZwL2NO?=
- =?utf-8?B?dWgzSFh3WnY2WkMycGh6d2l0QnZiSnh6by9FMmVreEJSYVJTbHZ2M3hRMFdp?=
- =?utf-8?B?cTIzTURYUFY0dzR3WHc5VWxjL3pQVS9NbUppK0ZWamY5OHM2YXlRQXlsRk9y?=
- =?utf-8?B?SEovSWtlTWt1L0lldVZJOXZWTVFpTEFremc3T1J5dFhWQWdrZkxwdXZRYzBn?=
- =?utf-8?B?M3NOd1psakU1NFpsNjlwOSs5c1JQUUlab2ZJNFBWQ1FzamhKN1dYNE1OT05I?=
- =?utf-8?B?bVl6aGdmWkpwQW9wY2VGNTM3MHNGdmRZdEx2Wkxvd1ZSOEsrZGlHeDVtb1VW?=
- =?utf-8?B?VkE4OXdnN2ExWThZZWtDS2Nib3lnY3loa1ZzRXVtbktrQ1U1ck11MGhaQ1lO?=
- =?utf-8?B?aXFtM3p6c0RqR21LZkNJNU5TZE5LM05zMnYzcGFpM042YnQ1WlFuT01UY0Mw?=
- =?utf-8?B?ZGFzbklOU000RDUzUXNMb1JvK21qVDBINnNrQ0xwT0hXQ1Zod0Q3Y1kzNGw0?=
- =?utf-8?B?NVFCdjJzTE5KdFlyWS95MjFTUzlBaFJMTC9FNEdCWWtJd2VXKzR5QkJ5K01a?=
- =?utf-8?B?eUxFMXRsTmt6dmZ4OXhQOGhqN051U2Z3cVZFVmQzbnY2WjZyZ253L3IzSmwy?=
- =?utf-8?B?Q0V2ckY2TUROQ0NEaHJQNjU4enNjY3V5dkxNUlp4bUovZVN6Zjk1M2R2Uitq?=
- =?utf-8?B?clVERDZjQnl2aTlxVS94WFFHdER4QWUvak44UG84aTZhYk42T2ppdjhuSm0w?=
- =?utf-8?B?RVVwdk1weDNQMG93WjB1eTkraGd6SlAySzdXcGxPYTVWRVovbVlZTDhYVWk2?=
- =?utf-8?Q?Bc2Y=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ee07cbc-7574-4448-0446-08dce85e5abd
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 12:31:52.9709 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9tjSMCzzHRao5LyF81vF7JKjTBq8zL4/aok+yJGydc722OAecrzKd9rHLmr9GDyf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6124
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/51] treewide: Switch to __pm_runtime_put_autosuspend()
+To: "Rafael J. Wysocki" <rafael@kernel.org>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>
+CC: <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <linux-bluetooth@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-crypto@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <linux-i3c@lists.infradead.org>, <linux-iio@vger.kernel.org>,
+ <linux-input@vger.kernel.org>, <patches@opensource.cirrus.com>,
+ <iommu@lists.linux.dev>, <imx@lists.linux.dev>,
+ <linux-mediatek@lists.infradead.org>, <linux-media@vger.kernel.org>,
+ <linux-mmc@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+ <netdev@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
+ <linux-pci@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <linux-pwm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+ <linux-staging@lists.linux.dev>, <linux-usb@vger.kernel.org>,
+ <linux-serial@vger.kernel.org>, <greybus-dev@lists.linaro.org>,
+ <asahi@lists.linux.dev>, Andy Shevchenko <andy.shevchenko@gmail.com>
+References: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
+ <CAPDyKFp0N6UJhnHS164Tdf=xkWB0jzq65L9TdvYazeBQ-6WjeQ@mail.gmail.com>
+ <20241007184924.GH14766@pendragon.ideasonboard.com>
+ <CAPDyKFpQVnF7eQv3dup8k-3EijnMjuveCG9sZ=Rpey1Y6MBJEg@mail.gmail.com>
+ <20241007222502.GG30699@pendragon.ideasonboard.com>
+ <CAPDyKFrGNwna6Y2pqSRaBbRYHKRaD2ayqQHLtoqLPOu9Et7qTg@mail.gmail.com>
+ <CAJZ5v0jvJyS7D5-wURi2kyWN-rmNa+YqupeQJ000pQRVd9VBcQ@mail.gmail.com>
+Content-Language: en-GB
+From: Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <CAJZ5v0jvJyS7D5-wURi2kyWN-rmNa+YqupeQJ000pQRVd9VBcQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: ltWPFp1gnPUjzPmaRQ9EaXCq91PhMVjU
+X-Proofpoint-ORIG-GUID: ltWPFp1gnPUjzPmaRQ9EaXCq91PhMVjU
+X-Proofpoint-Spam-Reason: safe
+X-Mailman-Approved-At: Wed, 09 Oct 2024 13:32:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,43 +103,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 09.10.24 um 14:28 schrieb Mohammed Anees:
-> Before this patch, if multiple BO_HANDLES chunks were submitted,
-> the error -EINVAL would be correctly set but could be overwritten
-> by the return value from amdgpu_cs_p1_bo_handles(). This patch
-> ensures that if there are multiple BO_HANDLES, we stop.
->
-> Cc: stable@vger.kernel.org
-> Fixes: fec5f8e8c6bc ("drm/amdgpu: disallow multiple BO_HANDLES chunks in one submit")
-> Signed-off-by: Mohammed Anees <pvmohammedanees2003@gmail.com>
+On 08/10/2024 7:24 pm, Rafael J. Wysocki wrote:
+> On Tue, Oct 8, 2024 at 12:35 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>>
+>> On Tue, 8 Oct 2024 at 00:25, Laurent Pinchart
+>> <laurent.pinchart@ideasonboard.com> wrote:
+>>>
+>>> Hi Ulf,
+>>>
+>>> On Tue, Oct 08, 2024 at 12:08:24AM +0200, Ulf Hansson wrote:
+>>>> On Mon, 7 Oct 2024 at 20:49, Laurent Pinchart wrote:
+>>>>> On Fri, Oct 04, 2024 at 04:38:36PM +0200, Ulf Hansson wrote:
+>>>>>> On Fri, 4 Oct 2024 at 11:41, Sakari Ailus wrote:
+>>>>>>>
+>>>>>>> Hello everyone,
+>>>>>>>
+>>>>>>> This set will switch the users of pm_runtime_put_autosuspend() to
+>>>>>>> __pm_runtime_put_autosuspend() while the former will soon be re-purposed
+>>>>>>> to include a call to pm_runtime_mark_last_busy(). The two are almost
+>>>>>>> always used together, apart from bugs which are likely common. Going
+>>>>>>> forward, most new users should be using pm_runtime_put_autosuspend().
+>>>>>>>
+>>>>>>> Once this conversion is done and pm_runtime_put_autosuspend() re-purposed,
+>>>>>>> I'll post another set to merge the calls to __pm_runtime_put_autosuspend()
+>>>>>>> and pm_runtime_mark_last_busy().
+>>>>>>
+>>>>>> That sounds like it could cause a lot of churns.
+>>>>>>
+>>>>>> Why not add a new helper function that does the
+>>>>>> pm_runtime_put_autosuspend() and the pm_runtime_mark_last_busy()
+>>>>>> things? Then we can start moving users over to this new interface,
+>>>>>> rather than having this intermediate step?
+>>>>>
+>>>>> I think the API would be nicer if we used the shortest and simplest
+>>>>> function names for the most common use cases. Following
+>>>>> pm_runtime_put_autosuspend() with pm_runtime_mark_last_busy() is that
+>>>>> most common use case. That's why I like Sakari's approach of repurposing
+>>>>> pm_runtime_put_autosuspend(), and introducing
+>>>>> __pm_runtime_put_autosuspend() for the odd cases where
+>>>>> pm_runtime_mark_last_busy() shouldn't be called.
+>>>>
+>>>> Okay, so the reason for this approach is because we couldn't find a
+>>>> short and descriptive name that could be used in favor of
+>>>> pm_runtime_put_autosuspend(). Let me throw some ideas at it and maybe
+>>>> you like it - or not. :-)
+>>>
+>>> I like the idea at least :-)
+>>>
+>>>> I don't know what options you guys discussed, but to me the entire
+>>>> "autosuspend"-suffix isn't really that necessary in my opinion. There
+>>>> are more ways than calling pm_runtime_put_autosuspend() that triggers
+>>>> us to use the RPM_AUTO flag for rpm_suspend(). For example, just
+>>>> calling pm_runtime_put() has the similar effect.
+>>>
+>>> To be honest, I'm lost there. pm_runtime_put() calls
+>>> __pm_runtime_idle(RPM_GET_PUT | RPM_ASYNC), while
+>>> pm_runtime_put_autosuspend() calls __pm_runtime_suspend(RPM_GET_PUT |
+>>> RPM_ASYNC | RPM_AUTO).
+>>
+>> __pm_runtime_idle() ends up calling rpm_idle(), which may call
+>> rpm_suspend() - if it succeeds to idle the device. In that case, it
+>> tags on the RPM_AUTO flag in the call to rpm_suspend(). Quite similar
+>> to what is happening when calling pm_runtime_put_autosuspend().
+> 
+> Right.
+> 
+> For almost everybody, except for a small bunch of drivers that
+> actually have a .runtime_idle() callback, pm_runtime_put() is
+> literally equivalent to pm_runtime_put_autosuspend().
+> 
+> So really the question is why anyone who doesn't provide a
+> .runtime_idle() callback bothers with using this special
+> pm_runtime_put_autosuspend() thing,
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Because they are following the documentation? It says:
 
-@Pierre-Eric can you pick that one up and push to amd-staging-drm-next?
+"Drivers should call pm_runtime_mark_last_busy() to update this field
+after carrying out I/O, typically just before calling
+pm_runtime_put_autosuspend()."
 
-Alex is currently on XDC and I'm a bit busy as well.
+and
 
-Thanks,
-Christian.
+"In order to use autosuspend, subsystems or drivers must call
+pm_runtime_use_autosuspend() (...), and thereafter they should use the
+various `*_autosuspend()` helper functions instead of the non#
+autosuspend counterparts"
 
-> ---
-> v2:
-> - Switched to goto free_partial_kdata for error handling, following the existing pattern.
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> index 1e475eb01417..d891ab779ca7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -265,7 +265,7 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p,
->   
->   			/* Only a single BO list is allowed to simplify handling. */
->   			if (p->bo_list)
-> -				ret = -EINVAL;
-> +				goto free_partial_kdata;
->   
->   			ret = amdgpu_cs_p1_bo_handles(p, p->chunks[i].kdata);
->   			if (ret)
+So the documentation says I should be using pm_runtime_put_autosuspend()
+instead of pm_runtime_put().
+
+Seems unfair to criticise people for following the documentation.
 
