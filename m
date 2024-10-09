@@ -2,93 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B25D1996C02
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 15:32:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C2AD9969B6
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 14:14:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD61A10E70F;
-	Wed,  9 Oct 2024 13:32:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B00CE10E286;
+	Wed,  9 Oct 2024 12:14:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Ih6htpbw";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cQEuIcPT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com
- [209.85.219.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34A3510E6C9
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 10:28:23 +0000 (UTC)
-Received: by mail-yb1-f169.google.com with SMTP id
- 3f1490d57ef6-e28fc33fd8eso764305276.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 09 Oct 2024 03:28:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1728469702; x=1729074502; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/fIjIpUdHAzWUFceihGJMz4qHHzjyT7pvRboVHLIXt8=;
- b=Ih6htpbwyLr654Nkt0W1aNcLBG72rAoTYIbz3MlR/dx0LY1I1quiAPH62Bvr6guBhP
- TWgKZPQvKtxuOzGF/CDtXsbp7fL08QmZwjo4beiB7YF2T4og3N8zG64JVdW38+lxoBAg
- 3ZB3Ds8D4zn05KDMdZ+eXGctHsTrzWLbsAbpsY77N1mlujxg04igISPToeQNyZ5cC9cc
- 7JOhXjdXh+hL/Ryy+2KOOceD6Fjb7+pPol+BWjcJKav80da/VdLrcMwssxWgr9fWzv+C
- 15g9wrq1Y3BLuhPm/SIHj2VTu8RYUo3Y+WIbDBgVWros7auRbDy2gg0MMXcU9dGuZPFO
- 76bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728469702; x=1729074502;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=/fIjIpUdHAzWUFceihGJMz4qHHzjyT7pvRboVHLIXt8=;
- b=txTFUQUyFcCvt/J0xR+WqUCa/VvHdqvx+DVcSGCiPo/scA37RzpnX54GCEJJ4pABoM
- V+slgPend2GXfvLFTskdbuhPKFnCbxfCsyZN0h6jf9sbXls4nX2Y3Ztmq5XkaY1vrRa0
- QK+j3ZP0fB8hPm7+qSakJe176xn2oa/OVpcUPBr7tAhcDuekqx3fZj58BxnHcGb4ks6+
- lmmYqEkX1v9tF33t1yXw9a5WMSP+l3ZK3v2p3XQEmoQbyjJ7ODIm/9rgon2LJoqs/g9y
- VjloixvE0wbfxOc7lpE8R+O2qMltphbsZ1XhpsJYRJ8g5iNX505MpGQD9QmbY+SBeaEI
- 0DQw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWtR59KO14HYs9+sQo268fZFy6Ax8K5HFejuCOHolXmmxQ1Um1bX2NMSRTjlnk9N9Hy6VdMz+Uz@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwripJ1Mrqg1MGerznGTZVGPxrkHNDFDqN5UTjVvPL0piVvhXcF
- LKdyPU5KjPLnvpnELWKHbMgLSj1gPxN+D4PVYuQbZcZzWKGbe2n9MyUoVn/QlwoDXSyhNBfvmHN
- yhp5aCUr0QRW9uUCs0fTj/W/vAzyQJHSNQvlUtg==
-X-Google-Smtp-Source: AGHT+IHNaU3Z3+DDKTWwqyhccdWy6KGvX0jRFFJtFda2WTvGLlJcpHA53hhWZp12VBznxD4kUpVSZMoh/Lgesk7avnk=
-X-Received: by 2002:a25:eb02:0:b0:e25:96a4:1706 with SMTP id
- 3f1490d57ef6-e28fe43f3d1mr1744852276.19.1728469701975; Wed, 09 Oct 2024
- 03:28:21 -0700 (PDT)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2067.outbound.protection.outlook.com [40.107.236.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 880F310E286
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 12:14:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xG/2kNPtbsHNssnntlxnlBIX1mTmh9d0JTnPtLvsmvvlenKoAT3p54WhqUqxRBNF6he5GVg92YcidxZlADO0D+3xH6icexNof28acafTJeIxY2P4YwoFj/fRHY+IZoNDy99BkFYjZBku00h7eh9UXrpWXaR0Xjhii4Dq4phBC1VOIPZZLoq466aTDtR48VgfU4Rck09LLsaS9X28ONDNqc4CHwep2WxBCY8DtG0rSCeRrvXfyBAnWWVfELzswqeme5o2UXBF+UwzgCXQDWddtGgwlgiuOXzNEg9ZqJH3oOncOVCEyCIA6RQC+/aXaaGE1JDtN7n1HR4nU2DUVhMhMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8y5mcY+keA9QFqYIi31YOmYC8RyDL6HtCMDkYokQQnk=;
+ b=m5Z3gn9owXFC1hanxOCiPUNPoXKIgiX3O6BCQdWEQhCxOUr0ezRtOnnlQqhZv8QzJdjGkbU7j0p6gd/potYeRi+Nn/6tx0NeCc/qkw33nUHdZZStSIfsWO7ny4omTI3IbFW0FsIsdv9w7LMun9PFvrwTZoM3XXQut7q7BOPWmZhN4Qu+OGA5W+Vyu+OsWTdUT/Y2zMd/piB/4t+gQ7+62pU6MPi0qfx2eIeWfm7Xdh47jdO+osNPoOCtF5IRIsrKQAKgUAYJnaAMOwDgeHh3x9VGGXJtTW0E7UcB+701vP/tbMtVdGPFYEdnzToMdF/H95Mp14BcZzAyeSaf6zzOOQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8y5mcY+keA9QFqYIi31YOmYC8RyDL6HtCMDkYokQQnk=;
+ b=cQEuIcPTDRDeXfwZLZgbXTZnpiiJ9StTbosBcQk59Z2AtQ9hSxjxNOHAYkZpANhSAVuA3fMoWyaoPE1n52aYg7pd60IB2KWgK2HrdaogIXh5uPTCfFSL8wKf6/rUumjydkrQzvkbGVk6DGga8pV/RtiqricLlFOQ8LQ7f9bWHzw=
+Received: from SN6PR2101CA0017.namprd21.prod.outlook.com
+ (2603:10b6:805:106::27) by DM6PR12MB4041.namprd12.prod.outlook.com
+ (2603:10b6:5:210::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Wed, 9 Oct
+ 2024 12:14:38 +0000
+Received: from SA2PEPF00003F67.namprd04.prod.outlook.com
+ (2603:10b6:805:106:cafe::ae) by SN6PR2101CA0017.outlook.office365.com
+ (2603:10b6:805:106::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.6 via Frontend
+ Transport; Wed, 9 Oct 2024 12:14:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF00003F67.mail.protection.outlook.com (10.167.248.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8048.13 via Frontend Transport; Wed, 9 Oct 2024 12:14:38 +0000
+Received: from asad-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 9 Oct
+ 2024 07:14:35 -0500
+From: Asad Kamal <asad.kamal@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <lijo.lazar@amd.com>
+CC: <le.ma@amd.com>, <hawking.zhang@amd.com>, <shiwu.zhang@amd.com>,
+ <Asad.Kamal@amd.com>, <charis.poag@amd.com>, <donald.cheung@amd.com>,
+ <sepehr.khatir@amd.com>, <daniel.oliveira@amd.com>
+Subject: [PATCH v2 1/2] drm/amd/pm: Update SMUv13.0.6 PMFW headers
+Date: Wed, 9 Oct 2024 20:14:16 +0800
+Message-ID: <20241009121417.346166-1-asad.kamal@amd.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-References: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
- <CAPDyKFp0N6UJhnHS164Tdf=xkWB0jzq65L9TdvYazeBQ-6WjeQ@mail.gmail.com>
- <20241007184924.GH14766@pendragon.ideasonboard.com>
- <CAPDyKFpQVnF7eQv3dup8k-3EijnMjuveCG9sZ=Rpey1Y6MBJEg@mail.gmail.com>
- <20241007222502.GG30699@pendragon.ideasonboard.com>
- <CAPDyKFrGNwna6Y2pqSRaBbRYHKRaD2ayqQHLtoqLPOu9Et7qTg@mail.gmail.com>
- <CAJZ5v0jvJyS7D5-wURi2kyWN-rmNa+YqupeQJ000pQRVd9VBcQ@mail.gmail.com>
-In-Reply-To: <CAJZ5v0jvJyS7D5-wURi2kyWN-rmNa+YqupeQJ000pQRVd9VBcQ@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 9 Oct 2024 12:27:45 +0200
-Message-ID: <CAPDyKFqh_BS=6eN4tQzZ20sWCHL3kdnrY=1Mgd7B9gfBamm8bw@mail.gmail.com>
-Subject: Re: [PATCH 00/51] treewide: Switch to __pm_runtime_put_autosuspend()
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org, 
- dmaengine@vger.kernel.org, linux-gpio@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
- linux-i3c@lists.infradead.org, linux-iio@vger.kernel.org, 
- linux-input@vger.kernel.org, patches@opensource.cirrus.com, 
- iommu@lists.linux.dev, imx@lists.linux.dev, 
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org, 
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- linux-sound@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-staging@lists.linux.dev, linux-usb@vger.kernel.org, 
- linux-serial@vger.kernel.org, greybus-dev@lists.linaro.org, 
- asahi@lists.linux.dev, Andy Shevchenko <andy.shevchenko@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 09 Oct 2024 13:32:04 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F67:EE_|DM6PR12MB4041:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f6d45c4-52b9-4fb4-bca0-08dce85bf251
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WIsRwLcWPDJ8qI1MjP2e1cZmq272eGUdNBuGMM36saqX7nMgTQP32Jxukad/?=
+ =?us-ascii?Q?W7E0HBDnJD5+umFNwKSJr8Mgp7EgPzTpJEiAhJJlLy4AllhFae4mVo+7JAnN?=
+ =?us-ascii?Q?9sPzjfiW5oSpmO03X5XReAV8DVgKmy2GZzcJOqcfkVLCY5FHqqysAsWuGtf4?=
+ =?us-ascii?Q?HH5vcevr/R+Kb2SqDYcPmgqPggvHjLUXfyGak69q1xjPpxM+U+URv1AQdyLz?=
+ =?us-ascii?Q?r+1qfYPxBX6dFE3rG4H4alLxXBBDlurhf+dQx/mTNVivtDwno5j8+YShejmJ?=
+ =?us-ascii?Q?c8E4HDNDGrsXnfPXDWZQEyY6qPG1Wwo7rUXUKmCXIWcpjTZY9gzdsg9o4bx3?=
+ =?us-ascii?Q?IRDKijqz90gZMM+W7XqO3NozLiu4WTfrUWr7LWaoa+ZoTbyxQjbETTMc1fKr?=
+ =?us-ascii?Q?J3HlDbRZmEkCOD0qCAdYexHNFh3bU0KSc2zCyOCOTWhda4eKHwnw7pjpEZ7a?=
+ =?us-ascii?Q?yXykm3R4dDTBcMxZGypcMFaPqLFBJ5N9Kl6bSpJ1yhN/0IfSC1LLp+V98VTF?=
+ =?us-ascii?Q?3Wyz4cJ60ax+ZqkYzSQHCW13YzwkioGDI+wHJbzIjtFGvv22WloBHprNpcav?=
+ =?us-ascii?Q?B7zfvaw0eONOh7sIAK3eiW9NzLJFJZLfspPsX5NBcJNAo2xhlMf+vVBaEkG2?=
+ =?us-ascii?Q?mEV6dXlh0Oley6SBGjkIs1LOEi3s5FVdN/uJdvMWPgVbQ6L1vp0BHxp9zyw3?=
+ =?us-ascii?Q?kkL8Mlz5w4B1P60SfUIXRkjthufoj9J1Ni6QdfSwYK2n368L404wcur2gnUV?=
+ =?us-ascii?Q?6kh+w+KbectrI7O25Jxu9z7ImmDIkz77cGOdzOrdPI8+yRCsXHjEaLrnLDpW?=
+ =?us-ascii?Q?6LNKhb1r2gGAQDYMmdsi/KwQP7zVfZp9fJCvXdi0wB2DMMgv4+OLeDbjXjsU?=
+ =?us-ascii?Q?RqtRQt19Q1+/12kzLG0R4PxwyNCueS/PTLBuOQkeK4Pu+latd2kqPHitwZKV?=
+ =?us-ascii?Q?g0VDx3NkMMUrBo/5QMLucuu0QIFhOGmX+nAVXmTzXoB/68iNo6yZE5zcoL3g?=
+ =?us-ascii?Q?dwZgkRJQsxOkQMNavF8J8KNJ3WKV7SoIWo/dQS2awefBwI1tmPqgf/Y+bNRs?=
+ =?us-ascii?Q?e0wf4YuyJV17NaBFhTD9dqMquTAp03GpPIWa2rnQKHfDnOrXzHwcQrRLloQA?=
+ =?us-ascii?Q?7H5UkuGuhTl837ZbFZxHzOD0vIbuBZ9ydPTJYVh43BQbr5vxbb72qhCIwLFs?=
+ =?us-ascii?Q?gufzDuNX39AAaQNbNZvaAds2LPIdo91uspXG/7Ih+XAkVMgS+lifQ6GPwmFJ?=
+ =?us-ascii?Q?xh0u84pMVCtQtJTbHgXkaT61/Vq0gc9MU2q9o+oMFcaUNCeGeZDsYs5kMJk0?=
+ =?us-ascii?Q?mXhs79gPWNWCUix6TE9PqGXt6BPFrmUUfenmig/RcA1NOREUIUHPlqQ4qWXs?=
+ =?us-ascii?Q?5VWlFnAHHyzusVbs+zr/IJz51DeN?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 12:14:38.4097 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f6d45c4-52b9-4fb4-bca0-08dce85bf251
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F67.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4041
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,140 +130,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 8 Oct 2024 at 20:25, Rafael J. Wysocki <rafael@kernel.org> wrote:
->
-> On Tue, Oct 8, 2024 at 12:35=E2=80=AFAM Ulf Hansson <ulf.hansson@linaro.o=
-rg> wrote:
-> >
-> > On Tue, 8 Oct 2024 at 00:25, Laurent Pinchart
-> > <laurent.pinchart@ideasonboard.com> wrote:
-> > >
-> > > Hi Ulf,
-> > >
-> > > On Tue, Oct 08, 2024 at 12:08:24AM +0200, Ulf Hansson wrote:
-> > > > On Mon, 7 Oct 2024 at 20:49, Laurent Pinchart wrote:
-> > > > > On Fri, Oct 04, 2024 at 04:38:36PM +0200, Ulf Hansson wrote:
-> > > > > > On Fri, 4 Oct 2024 at 11:41, Sakari Ailus wrote:
-> > > > > > >
-> > > > > > > Hello everyone,
-> > > > > > >
-> > > > > > > This set will switch the users of pm_runtime_put_autosuspend(=
-) to
-> > > > > > > __pm_runtime_put_autosuspend() while the former will soon be =
-re-purposed
-> > > > > > > to include a call to pm_runtime_mark_last_busy(). The two are=
- almost
-> > > > > > > always used together, apart from bugs which are likely common=
-. Going
-> > > > > > > forward, most new users should be using pm_runtime_put_autosu=
-spend().
-> > > > > > >
-> > > > > > > Once this conversion is done and pm_runtime_put_autosuspend()=
- re-purposed,
-> > > > > > > I'll post another set to merge the calls to __pm_runtime_put_=
-autosuspend()
-> > > > > > > and pm_runtime_mark_last_busy().
-> > > > > >
-> > > > > > That sounds like it could cause a lot of churns.
-> > > > > >
-> > > > > > Why not add a new helper function that does the
-> > > > > > pm_runtime_put_autosuspend() and the pm_runtime_mark_last_busy(=
-)
-> > > > > > things? Then we can start moving users over to this new interfa=
-ce,
-> > > > > > rather than having this intermediate step?
-> > > > >
-> > > > > I think the API would be nicer if we used the shortest and simple=
-st
-> > > > > function names for the most common use cases. Following
-> > > > > pm_runtime_put_autosuspend() with pm_runtime_mark_last_busy() is =
-that
-> > > > > most common use case. That's why I like Sakari's approach of repu=
-rposing
-> > > > > pm_runtime_put_autosuspend(), and introducing
-> > > > > __pm_runtime_put_autosuspend() for the odd cases where
-> > > > > pm_runtime_mark_last_busy() shouldn't be called.
-> > > >
-> > > > Okay, so the reason for this approach is because we couldn't find a
-> > > > short and descriptive name that could be used in favor of
-> > > > pm_runtime_put_autosuspend(). Let me throw some ideas at it and may=
-be
-> > > > you like it - or not. :-)
-> > >
-> > > I like the idea at least :-)
-> > >
-> > > > I don't know what options you guys discussed, but to me the entire
-> > > > "autosuspend"-suffix isn't really that necessary in my opinion. The=
-re
-> > > > are more ways than calling pm_runtime_put_autosuspend() that trigge=
-rs
-> > > > us to use the RPM_AUTO flag for rpm_suspend(). For example, just
-> > > > calling pm_runtime_put() has the similar effect.
-> > >
-> > > To be honest, I'm lost there. pm_runtime_put() calls
-> > > __pm_runtime_idle(RPM_GET_PUT | RPM_ASYNC), while
-> > > pm_runtime_put_autosuspend() calls __pm_runtime_suspend(RPM_GET_PUT |
-> > > RPM_ASYNC | RPM_AUTO).
-> >
-> > __pm_runtime_idle() ends up calling rpm_idle(), which may call
-> > rpm_suspend() - if it succeeds to idle the device. In that case, it
-> > tags on the RPM_AUTO flag in the call to rpm_suspend(). Quite similar
-> > to what is happening when calling pm_runtime_put_autosuspend().
->
-> Right.
->
-> For almost everybody, except for a small bunch of drivers that
-> actually have a .runtime_idle() callback, pm_runtime_put() is
-> literally equivalent to pm_runtime_put_autosuspend().
->
-> So really the question is why anyone who doesn't provide a
-> .runtime_idle() callback bothers with using this special
-> pm_runtime_put_autosuspend() thing, which really means "do a
-> runtime_put(), but skip my .runtime_idle() callback".
+Update pmfw headers for smuv13.0.6 to version 0xE
 
-My guess is that it's in most cases a legacy pattern that is being
-followed. Also note that rpm_idle() didn't "always" tag on the
-RPM_AUTO flag, even if it's quite a while ago (2013) since we added
-it.
+Signed-off-by: Asad Kamal <asad.kamal@amd.com>
+---
+ drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Unless there is some actual optimization involved, as it also allows
-us to skip calling rpm_idle() and go directly for rpm_suspend().
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h
+index 822c6425d90e..0f96b8c59a0e 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h
+@@ -123,7 +123,7 @@ typedef enum {
+   VOLTAGE_GUARDBAND_COUNT
+ } GFX_GUARDBAND_e;
+ 
+-#define SMU_METRICS_TABLE_VERSION 0xD
++#define SMU_METRICS_TABLE_VERSION 0xE
+ 
+ typedef struct __attribute__((packed, aligned(4))) {
+   uint32_t AccumulationCounter;
+@@ -231,6 +231,9 @@ typedef struct __attribute__((packed, aligned(4))) {
+   // PER XCD ACTIVITY
+   uint32_t GfxBusy[8];
+   uint64_t GfxBusyAcc[8];
++
++  //PCIE BW Data and error count
++  uint32_t PCIeOtherEndRecoveryAcc;       // The Pcie counter itself is accumulated
+ } MetricsTableX_t;
+ 
+ typedef struct __attribute__((packed, aligned(4))) {
+-- 
+2.46.0
 
->
-> > >
-> > > >
-> > > > Moreover, it's similar for pm_runtime_mark_last_busy(), it's called
-> > > > during rpm_resume() too, for example. So why bother about having
-> > > > "mark_last_busy" in the new name too.
-> > > >
-> > > > That said, my suggestion is simply "pm_runtime_put_suspend".
-> > >
-> > > Can we do even better, and make pm_runtime_put() to handle autosuspen=
-d
-> > > automatically when autosuspend is enabled ?
-> >
-> > As stated above, this is already the case.
->
-> What really is needed appears to be a combination of
-> pm_runtime_mark_last_busy() with pm_runtime_put().
-
-This makes sense to me too, but I don't think we should limit it to this.
-
-Making pm_runtime_put_autosuspend (or if the name
-"pm_runtime_put_suspend" is better?) to do the similar thing, is
-probably a good idea too. At least in my opinion.
-
->
-> Granted, pm_runtime_put() could do the pm_runtime_mark_last_busy()
-> thing automatically if autosuspend is enabled and the only consequence
-> of it might be delaying a suspend of the device until its autosuspend
-> timer expires, which should not be a problem in the vast majority of
-> cases.
-
-Right.
-
-I guess we should expect the *sync* variants to be used, if the timer
-really needs to be overridden.
-
-Kind regards
-Uffe
