@@ -2,30 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFD77996DA4
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 16:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B91FC996D9B
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 16:25:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51B6010E74D;
-	Wed,  9 Oct 2024 14:25:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 432E710E742;
+	Wed,  9 Oct 2024 14:25:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68AA910E73C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E0B110E749
  for <amd-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 14:25:18 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 499EPAlu891912; Wed, 9 Oct 2024 19:55:10 +0530
+ 499EPAxf891917; Wed, 9 Oct 2024 19:55:10 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 499EP9Rl891911;
- Wed, 9 Oct 2024 19:55:09 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 499EPA94891916;
+ Wed, 9 Oct 2024 19:55:10 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 00/13] Code clean up for function pointers
-Date: Wed,  9 Oct 2024 19:54:49 +0530
-Message-Id: <20241009142502.891864-1-sunil.khatri@amd.com>
+Subject: [PATCH v1 01/13] drm/amdgpu: validate sw_init before function call
+Date: Wed,  9 Oct 2024 19:54:50 +0530
+Message-Id: <20241009142502.891864-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241009142502.891864-1-sunil.khatri@amd.com>
+References: <20241009142502.891864-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -42,53 +44,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Validate the function pointers and clean up the unused or dummy
-functions.
+Before making a function call to sw_init, validate
+the function pointer like we do in late_init.
 
-Sunil Khatri (13):
-  drm/amdgpu: validate sw_init before function call
-  drm/amdgpu: clean the dummy sw_init functions
-  drm/amdgpu: validate sw_fini before function call
-  drm/amdgpu: clean the dummy sw_fini functions
-  drm/amdgpu: validate hw_fini before function call
-  drm/amdgpu: validate suspend before function call
-  drm/amdgpu: validate resume before function call
-  drm/amdgpu: validate wait_for_idle before function call
-  drm/amdgpu: clean the dummy resume functions
-  drm/amdgpu: clean the dummy suspend functions
-  drm/amdgpu: clean the dummy hw_fini functions
-  drm/amdgpu: clean the dummy wait_for_idle functions
-  drm/amdgpu: clean the dummy soft_reset functions
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/amd/amdgpu/aldebaran.c        |  38 ++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c       |  12 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 131 ++++++++++--------
- drivers/gpu/drm/amd/amdgpu/amdgpu_isp.c       |  34 -----
- drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c     |  12 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c      |  21 +--
- drivers/gpu/drm/amd/amdgpu/cik.c              |  30 +---
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |   6 -
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |   6 -
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |   6 -
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |   6 -
- drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c         |   6 -
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c        |   6 -
- drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c        |   6 -
- drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c        |   6 -
- drivers/gpu/drm/amd/amdgpu/mes_v12_0.c        |  11 +-
- drivers/gpu/drm/amd/amdgpu/nv.c               |  18 ---
- drivers/gpu/drm/amd/amdgpu/si.c               |  37 -----
- drivers/gpu/drm/amd/amdgpu/sienna_cichlid.c   |  43 +++---
- drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.c     |  29 ++--
- drivers/gpu/drm/amd/amdgpu/soc15.c            |  12 --
- drivers/gpu/drm/amd/amdgpu/soc21.c            |  18 ---
- drivers/gpu/drm/amd/amdgpu/soc24.c            |  18 ---
- drivers/gpu/drm/amd/amdgpu/vi.c               |  18 ---
- drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c    |  13 --
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c    |   6 -
- .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  |  12 --
- 27 files changed, 150 insertions(+), 411 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 38a7423101f3..782f01ab39e2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2851,11 +2851,13 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
+ 	for (i = 0; i < adev->num_ip_blocks; i++) {
+ 		if (!adev->ip_blocks[i].status.valid)
+ 			continue;
+-		r = adev->ip_blocks[i].version->funcs->sw_init(&adev->ip_blocks[i]);
+-		if (r) {
+-			DRM_ERROR("sw_init of IP block <%s> failed %d\n",
++		if (adev->ip_blocks[i].version->funcs->sw_init) {
++			r = adev->ip_blocks[i].version->funcs->sw_init(&adev->ip_blocks[i]);
++			if (r) {
++				DRM_ERROR("sw_init of IP block <%s> failed %d\n",
+ 				  adev->ip_blocks[i].version->funcs->name, r);
+-			goto init_failed;
++				goto init_failed;
++			}
+ 		}
+ 		adev->ip_blocks[i].status.sw = true;
+ 
 -- 
 2.34.1
 
