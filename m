@@ -2,119 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5004599C552
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Oct 2024 11:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 337FC99CAAD
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Oct 2024 14:50:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E54A110E256;
-	Mon, 14 Oct 2024 09:19:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE2D10E291;
+	Mon, 14 Oct 2024 12:50:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="b7gr0cVj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cQE1S9YH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2050.outbound.protection.outlook.com [40.107.94.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F86910E256
- for <amd-gfx@lists.freedesktop.org>; Mon, 14 Oct 2024 09:19:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ohCzd2H4zmldmxeZtuymJKNYSUJpIc2SUb9U8FIjtIWA4ZLqWIbRKQ/nCYO2/3tr/Afi13O29k57VvUACHmW9EKKbaoN0iLpJ++7oQflqBAwb3c+Fr3GhkL9xJ5CAFjpXnRz2y00avq2LmRcuRUNOttHDFT0A/qtbZSYfKT8z5kfLXrdmW4dA3ENCag4qpocyuoa/JXHnWzgBiNaqFebUoDKQ21HrW4HwoyiMldFVlVddlTnSqIGgzGQo/Y1bVegDiS3HSaLlXPkpKqCyKBACc/ZDoqvzGfdTYsuVE6lY2V/ChNUiAY+A/yz/Ozh5c9t1gpvfzN2CsfOVQJgTwFrzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HMpzMh8tELi3OqaQf7pV8NIRA8ob0zlZ0+C+42sFTNw=;
- b=tEktFXXDZL2ejmlegVPwWVXBiuy792mDVqv9fQCiV+H/6Qrd021SJD1RSk/bHH0WvWInPnYTFoXUh+p58CgILjdteU5+LkUAbE5qq12EsfftYQrezJuaHTrZMJrEtFemqkXtpeZy6Lj5uVmhvj1r+O1GPsM/nIP3dN7YYje7LCtgeX6tQhaRaEwhMou/AaMbAjV919o0LL3l6s+9Qs+o51ms0TXYrd13xDDvIovrhEYx+/kCrBfnWiJKemGJT0W0o28BLAnNOLPLarPVXx+GEhlVpKaBCeGlZooly6cgG7EnNziaUYiNgJ+aZ/x1hpnetHW9FnJpX/UbRWpPbw/9MA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HMpzMh8tELi3OqaQf7pV8NIRA8ob0zlZ0+C+42sFTNw=;
- b=b7gr0cVjOndkbxMMzLxQtYeDYgQfbjn+gCgIuJ31jl3valGOA5f2j4CZbGKeP0ZEKzSrmewrrEd4HhRdBDrb+fCDj1LV2k1YAGLk/8LZcQNH01c5uolgE9z9ESw5qCShQSI9WdvGQJBjj9sxpXMwQaAHf3VmDUC3Pk1lnyeA+9Q=
-Received: from BLAPR03CA0051.namprd03.prod.outlook.com (2603:10b6:208:32d::26)
- by IA0PR12MB8325.namprd12.prod.outlook.com (2603:10b6:208:407::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.26; Mon, 14 Oct
- 2024 09:19:29 +0000
-Received: from BN3PEPF0000B370.namprd21.prod.outlook.com
- (2603:10b6:208:32d:cafe::9b) by BLAPR03CA0051.outlook.office365.com
- (2603:10b6:208:32d::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.27 via Frontend
- Transport; Mon, 14 Oct 2024 09:19:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN3PEPF0000B370.mail.protection.outlook.com (10.167.243.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8093.1 via Frontend Transport; Mon, 14 Oct 2024 09:19:29 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 14 Oct
- 2024 04:19:26 -0500
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Asad.Kamal@amd.com>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, Hao Zhou
- <hao.zhou@amd.com>
-Subject: [PATCH] drm/amdgpu: Use SPX as default in partition config
-Date: Mon, 14 Oct 2024 14:49:11 +0530
-Message-ID: <20241014091911.3036389-1-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22DF610E972
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Oct 2024 15:59:19 +0000 (UTC)
+Received: by mail-ed1-f42.google.com with SMTP id
+ 4fb4d7f45d1cf-5c918c067a1so1248031a12.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Oct 2024 08:59:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1728575957; x=1729180757; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=TwbGM2GBS24VwCv3G0yCYJQXN3/p1wbB4ScKP62AMAA=;
+ b=cQE1S9YHPFhCxCAKpcXsf6ip+mYS1lmPIrT5bywAI23mMk5jrmW71NpQZHRsZf8R7K
+ USfetphcX+TAyMPMFCi0ab2xlq9TQZPvgiQ4IvybBFEaJKU5F95hDY7z9I15egSLMXA5
+ Xj/+pGP7cWoTKFgvyO6l0yAXGo0xgCWigWHW56W7R3mtL0hrRLc0tZNL8HKj2Pjsfw0a
+ kfsP6po6WLgmDzQGim+IOAWozIj5w8mmzPJiIe+XlldwQLLJ8ikF7oIThQHpoLQIt+9U
+ KhfxoSyicyOdMz1Uy2DoIpO1zPxYW+zGJLKxxb38vBlgMnbWwjIgZTT/XqmLnDef6Uic
+ v9ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1728575957; x=1729180757;
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=TwbGM2GBS24VwCv3G0yCYJQXN3/p1wbB4ScKP62AMAA=;
+ b=U9YaFjdzvWhH8qcBXwtoGxaqeTnRT2yDsprvrIICHK191Z0PdQa27Km7/2amY4co0/
+ UtOijO/LY2TjoYTSGxduuSMhuuHT0gbCnocYPBfXJY5QDXYgvnENAsN71VqrNsWWdwpZ
+ TW3kV7sXwtfaslXOulHKm79FBc0OaVqmN7Wlg//9UUR2xt+WYihQf2bGiOUgqPnlMidq
+ Gza2c0494MeIhd0dhbpqQH1Ak1RDdgZNiGvll/VK77WQNmQ34x8sfZRnHVFjiy2Ngf0d
+ oSIItks9LBuBgfUi2oPP/o0URMauWqC+W2LaPi+hQVq4FjBm0w1iFyzuE9SushnqWixS
+ 9Q/A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW8ILwgEZDA7fTWvjgG50seT39Kp4qwGQ4vk1i1gBTR1L/rwWOrWjAZiiKTIsaQPAPQb9zTa6Ze@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxpk5Oy9+B0uHI2yCENjzI0AH4ZLpCTxpTO/3VJl1UBogx9qgnN
+ O61Zqm8Dp0wVFA8EHHDaMICloaaXz08b4cZVRfSttqJv5eeODdWd
+X-Google-Smtp-Source: AGHT+IElbzBU/j/0Stgy5/nLvDDKlh349Y4ohJfeszQYxvSNuC6NwtvuuGPvY9h7LABNl5BavOlG5A==
+X-Received: by 2002:a17:907:972a:b0:a99:537d:5d10 with SMTP id
+ a640c23a62f3a-a998cf3aee8mr538206466b.0.1728575957212; 
+ Thu, 10 Oct 2024 08:59:17 -0700 (PDT)
+Received: from [192.168.0.101]
+ (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
+ by smtp.googlemail.com with ESMTPSA id
+ a640c23a62f3a-a99a80dc6bfsm107133666b.162.2024.10.10.08.59.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 10 Oct 2024 08:59:16 -0700 (PDT)
+Message-ID: <ec6a9eff-89b0-4fd6-b3b3-5b234ee79f92@gmail.com>
+Date: Thu, 10 Oct 2024 16:59:15 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B370:EE_|IA0PR12MB8325:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa01f1cc-6c03-4843-98f5-08dcec314e81
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wACBww+QeYy3T8WRylWrYiuzfSA86C9l/lYN/UQWNy7x/Ka03RFkH+ysS+AA?=
- =?us-ascii?Q?j0h0rscfKCHipvrnJ/2opyUWFkA5UC05T3AGsSNtTLomUFbyCGUm7ugoB7tm?=
- =?us-ascii?Q?Oyhwglpu3YaNdd0fG0/nuUw9F0qSK6NYj51c8ATM21qc4pVYJLhtfFmbQtD9?=
- =?us-ascii?Q?DlHV3BPIsM9v9Cwrz2rViEmTEFkbEMU0U/9/NbrzccPrx6XLyi0lxBWCuVmM?=
- =?us-ascii?Q?U0CZTbiKTVeASNgOgC2VG8MscAz7yd0xEAjEHCBYxUGea1IeZg9Z8P1b//NO?=
- =?us-ascii?Q?WLgdFQqgYZDEktytHyjo8eQCepQd9HuT0Ha0lguWJn8DGzKQU/Fr+28AU93l?=
- =?us-ascii?Q?gmtlSVc8mz/AUrR1csUYzgNCfpD9TH/7h69c94hAYtv0OfDhsrH6IB4O2Agi?=
- =?us-ascii?Q?x2+xneY8ggZ43oL+J8ri+Uq2zrURYRMntGVmYUSeBs/gRKm1WHR51iDqwxOj?=
- =?us-ascii?Q?ZjBz36sw+dUI+xBtLPVyypAwGoLMQarAkQiNzSiU9sKbpkd5jcy2Or76cLKX?=
- =?us-ascii?Q?/FfTF10KMR9Z9WyzCsesvsGb7DoJGtDDRyhBDNyAGVUVTgFd5iDPRhwiwjr6?=
- =?us-ascii?Q?nyxMGITts8Cu2x+b38iSeRYpykwJR8rxmx3Kuwqs/CdI9jss55dLS0TMTxqd?=
- =?us-ascii?Q?/L54PtzUE6LwUoOPgJj36nSZPFxisgpKxIJGuzGjOm8RmAiTwqg+XaHkfDVb?=
- =?us-ascii?Q?n12NWdgxCdqx6oqIC85YNjmV5p5rwS0EDf7sI3SPwHLuMy3d7V4Q14fs/Z7E?=
- =?us-ascii?Q?RULwQqk8wHYPwWWCGorliTXB4PWayXqTwDc3MSsD3OoCAZXPiVlP5gmx6LEn?=
- =?us-ascii?Q?AyFXB2ynwecQ+G/Pn2fi+NA2UUm7kLt7NNERUvru7v/YIg4t+eJsFFkRJfsk?=
- =?us-ascii?Q?IQx2Ticm/bz09Yi1rgJKOcAnD+z7D+arEudOX7+IJpMtqpQeTGJNjMJP3usC?=
- =?us-ascii?Q?7F2yvwyhHwBbfRPPXu/ETtiRCCb82nvc0TX8jVKUB+pii+xNtutVWmqG9LCD?=
- =?us-ascii?Q?fI5gT6ab27xNg1GYKMhyIUlc3By2unuy6o7zaekq6wh/RtqCH+YHL8sTrwlr?=
- =?us-ascii?Q?fWzR5iNaMHFts12A0QHB30JsXBZBPXg2epOrWgOcWEHC8BUMAQBMgy+6V9nR?=
- =?us-ascii?Q?Kp2WHSbueBmvbfK4XsMAgIwbhow/QnPIfGxX8p3MkGv9a4KDFDWrnu5dgrOp?=
- =?us-ascii?Q?7Q7fCYhE6AECWyyEHTlfw4iL2xzdCAsu9JWXyXjMwZCxxAX1M0HdejdGy5Gs?=
- =?us-ascii?Q?9mRxRXGpDr6OFcJdQ03iMc3R01ou5lSD+5vcxqPDWtkoFGKulEFgYM+D8YiW?=
- =?us-ascii?Q?7ehYBwzeARfjNSC7qz7Iap1bkcvx+ArI+yEjQZ3N+0cITEz/sBB0MqWADXcB?=
- =?us-ascii?Q?wrRSAmZI3Fdjf1DtebCPSA8nucxn?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2024 09:19:29.3655 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa01f1cc-6c03-4843-98f5-08dcec314e81
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B370.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8325
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Roman Li <roman.li@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+From: "Colin King (gmail)" <colin.i.king@gmail.com>
+Subject: re: drm/amd/display: Introduce DML2
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 14 Oct 2024 12:50:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,50 +87,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In certain cases - ex: when a reset is required on initialization - XCP
-manager won't have a valid partition mode. In such cases, use SPX as the
-default selected mode for which partition configuration details are
-populated.
+Hi,
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reported-by: Hao Zhou <hao.zhou@amd.com>
+Static analysis on linux-next has found a potential issue in function 
+dml_rq_dlg_get_rq_reg in 
+drivers/gpu/drm/amd/display/dc/dml2/dml_display_rq_dlg_calc.c
 
-Fixes: c7de57033d9b ("drm/amdgpu: Add sysfs nodes to get xcp details")
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+The issue is as follows:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-index 111bf897e72e..83a16918ea76 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-@@ -606,7 +606,7 @@ void amdgpu_xcp_cfg_sysfs_init(struct amdgpu_device *adev)
- {
- 	struct amdgpu_xcp_res_details *xcp_res;
- 	struct amdgpu_xcp_cfg *xcp_cfg;
--	int i, r, j, rid;
-+	int i, r, j, rid, mode;
- 
- 	if (!adev->xcp_mgr)
- 		return;
-@@ -625,11 +625,15 @@ void amdgpu_xcp_cfg_sysfs_init(struct amdgpu_device *adev)
- 	if (r)
- 		goto err1;
- 
--	r = amdgpu_xcp_get_res_info(xcp_cfg->xcp_mgr, xcp_cfg->xcp_mgr->mode, xcp_cfg);
-+	mode = (xcp_cfg->xcp_mgr->mode ==
-+		AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE) ?
-+		       AMDGPU_SPX_PARTITION_MODE :
-+		       xcp_cfg->xcp_mgr->mode;
-+	r = amdgpu_xcp_get_res_info(xcp_cfg->xcp_mgr, mode, xcp_cfg);
- 	if (r)
- 		goto err1;
- 
--	xcp_cfg->mode = xcp_cfg->xcp_mgr->mode;
-+	xcp_cfg->mode = mode;
- 	for (i = 0; i < xcp_cfg->num_res; i++) {
- 		xcp_res = &xcp_cfg->xcp_res[i];
- 		rid = xcp_res->id;
--- 
-2.25.1
+         if (min_meta_chunk_bytes == 0)
+                 rq_regs->rq_regs_l.min_meta_chunk_size = 0;
+         else
+                 rq_regs->rq_regs_l.min_meta_chunk_size = 
+(dml_uint_t)(dml_log2((dml_float_t) min_meta_chunk_bytes) - 6 + 1);
 
+         if ( == 0)
+                 rq_regs->rq_regs_c.min_meta_chunk_size = 0;
+         else
+                 rq_regs->rq_regs_c.min_meta_chunk_size = 
+(dml_uint_t)(dml_log2((dml_float_t) p1_min_meta_chunk_bytes) - 6 + 1);
+
+it appears that the second if statement is checking for 
+min_meta_chunk_bytes == 0 and I think it should be in fact checking for 
+p1_min_meta_chunk_bytes == 0 instead. I don't have the hardware so I 
+can't test this hypothesis.
+
+Regards,
+
+Colin
