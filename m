@@ -2,77 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD99D9989F1
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Oct 2024 16:41:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4845F9989F2
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Oct 2024 16:41:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7AB10E932;
-	Thu, 10 Oct 2024 14:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8DA610E945;
+	Thu, 10 Oct 2024 14:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lNqlaOUs";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="VGAqGt9y";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="MEv8I47T";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C47D110E8D4;
- Thu, 10 Oct 2024 11:22:07 +0000 (UTC)
-Received: by mail-ed1-f47.google.com with SMTP id
- 4fb4d7f45d1cf-5c915308486so1044006a12.0; 
- Thu, 10 Oct 2024 04:22:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728559326; x=1729164126; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=JckSSufIviovUZkUcMEHSF3a41RUVzp568xffw5Iahs=;
- b=lNqlaOUspKJhYo47bjmk/cg8/unM7sJOtkDEhd/1HsARIV7hscIvKJMTUpAkfSzFeE
- dqLPO4UsYjSfaA4H0p6W9VElRSJSaeI7+AtEmxcT9rhvLp7SexAiaFkKLddwu0weH27G
- aei25UXzj7hoWaZmHDceDbdN8zc0L3j1z9QvHu/eXMF2smsqMZbdNEjdS5wsJ3/pOoQr
- c/wRg6EsustSXKnE3EG45sLY4rvwyK29ipWx94lRCI38g1hppeCReMY+4MK6UlZQEdqz
- pyc0EuWUuvxSOI+PYyMUpe8+Ljc99dmbNhgDjc8ki6CaI/2TsqwKWr/hryNRMY0/AbUw
- 9wlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728559326; x=1729164126;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=JckSSufIviovUZkUcMEHSF3a41RUVzp568xffw5Iahs=;
- b=VRisfb3He6gNf/R+bvG85Ikji0/OYgCiYEG+B86QVJ2uG7A2dRTZajOtCXktXS/jM4
- RjOMVjvQ0SC/zp5arHbvyXYkY58TCZ/M8RWW+tM0uU+oJCX1ewY5yaRkF/VcT5IMX8Nc
- b55Fq169SI+eXw2c8QEs2IKg77PEAahJlPlypZkSJAylpJJIRsCZ7boSAGDDXKJkXjyD
- axsE+lUj7/Xhlp+/9QZ6IEdVee/3LOPjhigMyFBcCz+D5pBhnIcnsBRoBXUHxpPBX7lK
- qCksQ4G6z+I3m1N8UD7xo9iE2cFTudry/b6k0XXdkCnahJHE+HBGAMUGANS4z54W5Luw
- l9hQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWGJbiT1uyjI4bbfdeJ5TIZHTxQytrdrQeff6xf2fewcdNX3T4QY/Ic3avogRRiOBRPxxnneIh/ug6F@lists.freedesktop.org,
- AJvYcCX2j5AoHOtOTrk+OT89fXr9WNub3GDs38IcY8r86QKKXtXtdfMbXqXZIXyEj7IsQubOoK/nz4MY@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyFFrcQl0/JT4SdczpvP9+L0Ou6xAlKPI+r+ORhq7Xus29St4cD
- IFV2EI34Qx2QSBDUb+KZYk6xTDDtAGOtsQnkvS/rP7qBu7GOCv4R
-X-Google-Smtp-Source: AGHT+IE9jQYtbc132fpV9cXJCTAdP6bxnOpxNEz+fnN/RwAvvgCjaaXajnFV2/oUWVMdVi2FqZHy0g==
-X-Received: by 2002:a05:6402:548a:b0:5c8:9f3d:d906 with SMTP id
- 4fb4d7f45d1cf-5c91d5bd0b8mr3492737a12.18.1728559325850; 
- Thu, 10 Oct 2024 04:22:05 -0700 (PDT)
-Received: from localhost
- (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5c9370d22fesm640154a12.19.2024.10.10.04.22.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Oct 2024 04:22:05 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Leo Liu <leo.liu@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/amdgpu: Fix potential integer overflow on shift of
- a int
-Date: Thu, 10 Oct 2024 12:22:04 +0100
-Message-Id: <20241010112204.636188-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.39.5
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+ [85.215.255.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6D8210E911
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Oct 2024 13:57:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1728568640; cv=none;
+ d=strato.com; s=strato-dkim-0002;
+ b=UHykHgXBqzJ8Eua0HGkvi0oTgVsZB91QlXNy05j2zkjTuQvDST5mnOIRaUHr7/dfto
+ itWkks27uu/7ickJNHd1p9f4TThRfwPoMefXol/zF/YuSrYobMT6yDc62ZXRS5ll8NyU
+ siBR9CtowyOrFluVntFWAi6HhxmmwSJCu1a/jMxyAKfBHnR/YXJb3pJ0FG9DTP05RTyi
+ agxUATX2nRuizqg/EghIEvePpt5mZZEBJYUPB77Q4k6dZGdzMxQm4C/LE+lA1PEaQs8v
+ fvHgZaZUTV/Sijhj1Gn3B2oX4s1vN4oT25nD4VX1Ct1OLg964v5VagAH09Zk7uS+NeBc
+ LXPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1728568640;
+ s=strato-dkim-0002; d=strato.com;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=nTmyN/S6mYtoNSRaOImOVWIvqfwSir4wwvzhSOMIxxk=;
+ b=VM/fm8IYN8mLGPgrX9gO7zBcq9OCEb3u/shhlEE1KGfnd9L6qjHfQa/kGqFRjnFkAi
+ Mm8D1kisCuI5S3MOo+GiNHEwV5C2fXlIOO/XgCBBs+eAD93WDdrlsXPbCO7raQMK5qAX
+ L2AfgLdAA/atqgaQoyZZh9IxMMUuieJch5ee+BPUlDzy9Eet3CB0+ucFr3odK2rQ0FHx
+ CNR3lUHlr7r05QfhrprPIoeRwl4W6fqsCdiGupgF7IRjo5gV075DRMFwUmh6MTr66tfB
+ xYrqUssDAhLMndVmr/jGAmAqcp4dB+nPwCUVaQrxoKB4uBkoZAl2Pt5Ruk6cAyhQU1V4
+ /wiA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1728568640;
+ s=strato-dkim-0002; d=xenosoft.de;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=nTmyN/S6mYtoNSRaOImOVWIvqfwSir4wwvzhSOMIxxk=;
+ b=VGAqGt9yR2gG1vwBP5+rRa8GlTT34q0k8wabEgwe2kFovh3eZp/vnATpmIafYIf2St
+ aAQskyv/T1Gcg2ccyboF7TtzidWK/1+AvoLDtktrs+OmKwS/MhyeEBIcMky11BSqaXBa
+ foP16odqvzvDxmuMn1v3ePLv2HNaI1iTRY8ecIBXYpvw3GNPA/vYyAje4sOzcyq4GAO6
+ xZawY4cBZs7zNxScUWbLEOrrYwCg3TeH6u+5UW0KZJYRe+MQVfBWp9vhhthPkwcARYIA
+ TniIqkAzFOZF8KmIl4EzJnuBmnqPSUlzl0P4UhYAqkqZQc6Nw4tYX7czBnKH9wMehZFo
+ GzOQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1728568640;
+ s=strato-dkim-0003; d=xenosoft.de;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=nTmyN/S6mYtoNSRaOImOVWIvqfwSir4wwvzhSOMIxxk=;
+ b=MEv8I47TJyLa3v3C5pQjaNAahPf+Yj8yc+cWeFDyvgO3reII+pZoxqgbcXcDio8Hs1
+ c3wBsyMoIddaUtk8gkBg==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5i1s3PFXXvQIhef8w/WHZGY1bRFY7PZniOs3Ug="
+Received: from smtpclient.apple by smtp.strato.de (RZmta 51.2.8 AUTH)
+ with ESMTPSA id e0da1a09ADvJvcw
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+ (Client did not present a certificate);
+ Thu, 10 Oct 2024 15:57:19 +0200 (CEST)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+Mime-Version: 1.0 (1.0)
+Subject: [PATCHES] drm/radeon issues
+Date: Thu, 10 Oct 2024 15:57:08 +0200
+Message-Id: <6C389917-EF59-444B-9C33-C3F9A9AD3921@xenosoft.de>
+References: <EE14413A-3528-4646-A353-DB5131E56BA2@xenosoft.de>
+Cc: =?utf-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>,
+ alexander.deucher@amd.com
+In-Reply-To: <EE14413A-3528-4646-A353-DB5131E56BA2@xenosoft.de>
+To: "R.T.Dickinson" <rtd@a-eon.com>, mad skateman <madskateman@gmail.com>,
+ Darren Stevens <darren@stevens-zone.net>, hypexed@yahoo.com.au,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Christian Zigotzky <info@xenosoft.de>
+X-Mailer: iPhone Mail (22A3354)
 X-Mailman-Approved-At: Thu, 10 Oct 2024 14:41:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,47 +97,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The left shift of int 32 bit integer constant 1 is evaluated using 32 bit
-arithmetic and then assigned to and operated upon using a 64 bit unsigned
-integer. In the case where the shift is 32 or more this can lead to an
-overflow. Avoid this by shifting using the BIT_ULL macro instead.
+Hi All,
 
-Fixes: f0b19b84d391 ("drm/amdgpu: add amdgpu_jpeg_sched_mask debugfs")
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+There is another issue with the Radeon DRM driver but there is already a pat=
+ch available for this issue.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-index 95e2796919fc..136a0c8d8c7a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-@@ -357,14 +357,14 @@ static int amdgpu_debugfs_jpeg_sched_mask_set(void *data, u64 val)
- 	if (!adev)
- 		return -ENODEV;
- 
--	mask = (1 << (adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings)) - 1;
-+	mask = (BIT_ULL(adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings)) - 1;
- 	if ((val & mask) == 0)
- 		return -EINVAL;
- 
- 	for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
- 		for (j = 0; j < adev->jpeg.num_jpeg_rings; ++j) {
- 			ring = &adev->jpeg.inst[i].ring_dec[j];
--			if (val & (1 << ((i * adev->jpeg.num_jpeg_rings) + j)))
-+			if (val & BIT_ULL((i * adev->jpeg.num_jpeg_rings) + j))
- 				ring->sched.ready = true;
- 			else
- 				ring->sched.ready = false;
-@@ -388,7 +388,7 @@ static int amdgpu_debugfs_jpeg_sched_mask_get(void *data, u64 *val)
- 		for (j = 0; j < adev->jpeg.num_jpeg_rings; ++j) {
- 			ring = &adev->jpeg.inst[i].ring_dec[j];
- 			if (ring->sched.ready)
--				mask |= 1 << ((i * adev->jpeg.num_jpeg_rings) + j);
-+				mask |= BIT_ULL((i * adev->jpeg.num_jpeg_rings) + j);
- 		}
- 	}
- 	*val = mask;
--- 
-2.39.5
+Link: https://lists.freedesktop.org/archives/dri-devel/2024-October/473314.h=
+tml
+
+I compiled a new RC2 of kernel 6.12 with this patch for the X1000 and X5000 t=
+oday.
+
+Download: https://github.com/chzigotzky/kernels/releases/tag/v6.12.0-rc2-2
+
+We need 3 patches for the Radeon DRM driver currently.
+
+Please test it.
+
+Thanks,
+Christian
+
+
+> On 08 October 2024 at 11:00am, Christian Zigotzky <chzigotzky@xenosoft.de>=
+ wrote:
+>=20
+> =EF=BB=BFHi All,
+>=20
+> I have released the RC2 of kernel 6.12 with Christian Koenig=E2=80=99s pat=
+ch for the X1000 and X5000.
+>=20
+> Download and further information: https://github.com/chzigotzky/kernels/re=
+leases/tag/v6.12.0-rc2
+>=20
+> Please test the kernels because of the second Radeon DRM driver issue.
+>=20
+> Thanks,
+> Christian
+>=20
+>> Am 07.10.2024 um 20:36 schrieb Alex Deucher <alexdeucher@gmail.com>:
+>>=20
+>> =EF=BB=BFAdd a few people.
+>>=20
+>> This should fix the radeon ttm gem conversion.
+>>=20
+>> Alex
+>>=20
+>>=20
+>>=20
+>>> On Mon, Oct 7, 2024 at 2:33=E2=80=AFPM Christian K=C3=B6nig
+>>> <ckoenig.leichtzumerken@gmail.com> wrote:
+>>>=20
+>>> Make sure to always set the GEM function pointer even for in kernel
+>>> allocations. This fixes a NULL pointer deref caused by switching to GEM
+>>> references.
+>>>=20
+>>> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+>>> Fixes: fd69ef05029f ("drm/radeon: use GEM references instead of TTMs")
+>>> ---
+>>> drivers/gpu/drm/radeon/radeon_gem.c    | 3 ---
+>>> drivers/gpu/drm/radeon/radeon_object.c | 1 +
+>>> 2 files changed, 1 insertion(+), 3 deletions(-)
+>>>=20
+>>> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeo=
+n/radeon_gem.c
+>>> index 9735f4968b86..bf2d4b16dc2a 100644
+>>> --- a/drivers/gpu/drm/radeon/radeon_gem.c
+>>> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
+>>> @@ -44,8 +44,6 @@ struct sg_table *radeon_gem_prime_get_sg_table(struct d=
+rm_gem_object *obj);
+>>> int radeon_gem_prime_pin(struct drm_gem_object *obj);
+>>> void radeon_gem_prime_unpin(struct drm_gem_object *obj);
+>>>=20
+>>> -const struct drm_gem_object_funcs radeon_gem_object_funcs;
+>>> -
+>>> static vm_fault_t radeon_gem_fault(struct vm_fault *vmf)
+>>> {
+>>>       struct ttm_buffer_object *bo =3D vmf->vma->vm_private_data;
+>>> @@ -132,7 +130,6 @@ int radeon_gem_object_create(struct radeon_device *r=
+dev, unsigned long size,
+>>>               return r;
+>>>       }
+>>>       *obj =3D &robj->tbo.base;
+>>> -       (*obj)->funcs =3D &radeon_gem_object_funcs;
+>>>       robj->pid =3D task_pid_nr(current);
+>>>=20
+>>>       mutex_lock(&rdev->gem.mutex);
+>>> diff --git a/drivers/gpu/drm/radeon/radeon_object.c b/drivers/gpu/drm/ra=
+deon/radeon_object.c
+>>> index d0e4b43d155c..7672404fdb29 100644
+>>> --- a/drivers/gpu/drm/radeon/radeon_object.c
+>>> +++ b/drivers/gpu/drm/radeon/radeon_object.c
+>>> @@ -151,6 +151,7 @@ int radeon_bo_create(struct radeon_device *rdev,
+>>>       if (bo =3D=3D NULL)
+>>>               return -ENOMEM;
+>>>       drm_gem_private_object_init(rdev_to_drm(rdev), &bo->tbo.base, size=
+);
+>>> +       bo->tbo.base.funcs =3D &radeon_gem_object_funcs;
+>>>       bo->rdev =3D rdev;
+>>>       bo->surface_reg =3D -1;
+>>>       INIT_LIST_HEAD(&bo->list);
+>>> --
+>>> 2.34.1
+>>>=20
 
