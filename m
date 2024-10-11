@@ -2,84 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B10099CAAA
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Oct 2024 14:50:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E12999CAAC
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Oct 2024 14:50:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12C5D10E286;
-	Mon, 14 Oct 2024 12:50:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA41810E25E;
+	Mon, 14 Oct 2024 12:50:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="jKaeuRf9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="Ac/Mr6jH";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="gq8bRrxB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E40DB10E156
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Oct 2024 23:49:21 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49AJjQdS000324;
- Thu, 10 Oct 2024 23:49:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- qhj9QjPhMY3N3l11uQGEoOZB1Qu4SEZj3Soa9AAkvms=; b=jKaeuRf9LdWpnvNB
- NFBShdRFQXyynqiREd0rHzQ+Q6Wny12zpyza530MXWdtAoxY51M5+cku/u6kEgUV
- ut5tMr7jRg4DQxjUTevIVJGn5JUV1xT4GVBESuGgYL834lne8tyipLTSqdxSiOy0
- WPqWjdYuqVMqSqhCoJu4s++8Qt7m4okT+aqPPJVL82OCIKU6UdHi10GtjIF7GAWv
- a4Hwsy+FFJPy9iht6wnOPEnHMWEQN+mNT+6VypYhz1Mhr3C+opjuaY4ktSH29pFb
- 1UO/yEbd+85bphzvvRJ8SPPLKOg0RM/NhErzZL2oGpcpE9h16+bIN6njo0RiokiJ
- ISb3iQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426nc2gdss-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 10 Oct 2024 23:49:05 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49ANn42x026374
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 10 Oct 2024 23:49:04 GMT
-Received: from [10.81.24.74] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 10 Oct
- 2024 16:49:04 -0700
-Message-ID: <b7abd0b6-ac96-48ca-8165-a3b408137007@quicinc.com>
-Date: Thu, 10 Oct 2024 16:49:03 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHES] drm/radeon issues
-To: Christian Zigotzky <chzigotzky@xenosoft.de>, R.T.Dickinson
- <rtd@a-eon.com>, mad skateman <madskateman@gmail.com>, Darren Stevens
- <darren@stevens-zone.net>, <hypexed@yahoo.com.au>, linuxppc-dev
- <linuxppc-dev@lists.ozlabs.org>, Christian Zigotzky <info@xenosoft.de>
-CC: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>, Hans
- de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
- <amd-gfx@lists.freedesktop.org>, Alex Deucher <alexdeucher@gmail.com>,
- <alexander.deucher@amd.com>
-References: <EE14413A-3528-4646-A353-DB5131E56BA2@xenosoft.de>
- <6C389917-EF59-444B-9C33-C3F9A9AD3921@xenosoft.de>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <6C389917-EF59-444B-9C33-C3F9A9AD3921@xenosoft.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: tdJz5yjJOWf3Dah3YuI-X5mA9T24VSNu
-X-Proofpoint-GUID: tdJz5yjJOWf3Dah3YuI-X5mA9T24VSNu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 lowpriorityscore=0
- malwarescore=0 clxscore=1011 suspectscore=0 impostorscore=0 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410100157
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+ [81.169.146.165])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6872F10EA2D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2024 03:54:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1728618844; cv=none;
+ d=strato.com; s=strato-dkim-0002;
+ b=UiCljemeMgCdPUs2LOsRJrup3bkfI7rwwjcWMOrW+89zkzJ6VrGxNTOhRGCHzWPFce
+ W70kopLomdhX5KRMPImd64yyC5ys5FpZ5R2t4rK0SSERe7VDFOPxukFPl7PnrMrLIXns
+ vt4xMrvpncI0z7fSFmBlEgK3naie1DrZijIMmpQnbdnTkhu5joAKevYW5+xxRmAjaiXx
+ xG+j7lwB8TskQheAUrM4/Dhidp/rtQP/XWzFkb0obpdHj2ne4E3FAZIo90Tt4rkv1wA9
+ 8FduEJvtXVweASfT9RLQgbtIaWuLHRtba0y9OkXcIdqbvyoN8AKxmhDo/+7i1z9mrqW9
+ kFHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1728618844;
+ s=strato-dkim-0002; d=strato.com;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=Sw5kvAhQnV+uYxbzFDKschXQBdixLP9VwVOC5axrod8=;
+ b=C3iaajA2e5kdq6A/v64H37z3SJeh+esfn8atx1FIxW0Q2cihgqKxtv3T0ryFYkwDFS
+ 3gkNsycb12e/yvn8RW9bVDrKcl/MrvXVN1M+YdGkq3XhFumP8D/94cPmlgUtyHnh5tIo
+ KaK7F505urv65G9Yy3z5p+w5Cvj+OxFn7LuGZahmZxzkLhKGQjpyWoSteJoVZPQFynXB
+ fY0HX5oTQDsNfKbo7IGpBVfGM1h2yIAb4dBKXBIYI4rPCX3FlAsBIHbCV0bIUnpPmZ4s
+ zkIt0iaCO6hNq0O8+GM2YZfOqY/0PiBGiYldjqmvxn3N9HaCQQj0gYcbWB56Uxr8ybuX
+ EDvg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1728618844;
+ s=strato-dkim-0002; d=xenosoft.de;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=Sw5kvAhQnV+uYxbzFDKschXQBdixLP9VwVOC5axrod8=;
+ b=Ac/Mr6jH/SZwQXsnC26RqtCEQvjfa+EvFyOsBAQZFlSsbdFmG+LdcXBOGuJaz3qwAt
+ WdowTPWtdQIBLTbjM5JcAJU2G2rDUBuH8t4l/O9FwlAMatoSiZYcgyHIqGO6nBqszf5n
+ QMGQtZpadKg1L8Dv4trcpSF+9uonOTn5q4sGve1sv4nX7mtwl+xFolcWo0CJdyl+CrRL
+ /2XlzmSzGHxnJyFR09YcjDrIV36h5cEb+UvNQGS1j+OZGJBmSFf39usHGCnd5oUWkGj2
+ o2iM3TC7sm2Mx0dKVmJdFEZ9H168bCTIxlEu9sfmJ2OjAtBedLrHNf+V+Qh2E6vtXjae
+ Wlew==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1728618844;
+ s=strato-dkim-0003; d=xenosoft.de;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=Sw5kvAhQnV+uYxbzFDKschXQBdixLP9VwVOC5axrod8=;
+ b=gq8bRrxBanOYS2JJnQjyc23TjbXS02K3w8jBe+jzvZehVp7IB8zQEnnsShXQ5+l+XE
+ jrfDIVPteDS0SLEeBSAw==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5i8sy+VWyhJ8tyaNDmc6CleQOst1T66EaU95I4="
+Received: from smtpclient.apple by smtp.strato.de (RZmta 51.2.8 AUTH)
+ with ESMTPSA id e0da1a09B3s3wbG
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+ (Client did not present a certificate);
+ Fri, 11 Oct 2024 05:54:03 +0200 (CEST)
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+Mime-Version: 1.0 (1.0)
+Subject: [PATCHES] drm/radeon issues
+Date: Fri, 11 Oct 2024 05:53:52 +0200
+Message-Id: <14691DD3-987C-4CC7-AA58-D3BF952F6224@xenosoft.de>
+References: <b7abd0b6-ac96-48ca-8165-a3b408137007@quicinc.com>
+Cc: "R.T.Dickinson" <rtd@a-eon.com>, mad skateman <madskateman@gmail.com>,
+ Darren Stevens <darren@stevens-zone.net>, hypexed@yahoo.com.au,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Christian Zigotzky <info@xenosoft.de>,
+ =?utf-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>,
+ alexander.deucher@amd.com
+In-Reply-To: <b7abd0b6-ac96-48ca-8165-a3b408137007@quicinc.com>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+X-Mailer: iPhone Mail (22A3354)
 X-Mailman-Approved-At: Mon, 14 Oct 2024 12:50:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,18 +98,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 10/10/24 06:57, Christian Zigotzky wrote:
-> Hi All,
-> 
-> There is another issue with the Radeon DRM driver but there is already a patch available for this issue.
-> 
-> Link: https://lists.freedesktop.org/archives/dri-devel/2024-October/473314.html
-> 
-> I compiled a new RC2 of kernel 6.12 with this patch for the X1000 and X5000 today.
-> 
-> Download: https://github.com/chzigotzky/kernels/releases/tag/v6.12.0-rc2-2
-> 
-> We need 3 patches for the Radeon DRM driver currently.
+On 11 October 2024 at 01:49am, Jeff Johnson <quic_jjohnson@quicinc.com> wrot=
+e:
 
 Can you provide links to all 3 patches?
 
@@ -121,4 +114,9 @@ Based upon my search of lore I found:
 [PATCH] drm/radeon: always set GEM function pointer
 
 But that is only 2 patches.
+
+- - -
+
+The third patch: https://github.com/chzigotzky/kernels/blob/main/patches/X10=
+00/radeon_encoders.patch=
 
