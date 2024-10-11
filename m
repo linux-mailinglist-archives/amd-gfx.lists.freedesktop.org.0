@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16C699A9D6
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Oct 2024 19:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A291799AD78
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Oct 2024 22:28:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6451C10EBB5;
-	Fri, 11 Oct 2024 17:23:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55B0110E0B7;
+	Fri, 11 Oct 2024 20:28:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="W/JXZScI";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ydITXvjD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2083.outbound.protection.outlook.com [40.107.102.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4897D10EBB5
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2024 17:23:32 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2053.outbound.protection.outlook.com [40.107.243.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A493410E0B7
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2024 20:28:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UJLESDmdwREAUeaRf5YFf4V5GHCJHrBQUaYziQdKz2UFylJVQ01CNurAclhpdMF2lfYY38OKONoWvFR82BgeKHPaRRMb8CfS4OrN6wH2lVUjEONdopxKJ2bhS35BNJiqLwL6dUBA2eHlPGRMyeVb0p+9jlytC7sGUtIkQAk957pDjh57Bqfm0lptBd9o2+39GfPCfJjOvpFHllkrSzkKFE75Tcz+A9K7QIv/1pSjGMRGMf394kOyG9crRrJJzREgzNzm/R5FZrj68KDM58LuAjLdqEITjuKW5En3m2Vb/ojnsTGKzkDOi/3k9w2uZjPBOrTB8m5/fynKH3iGT9xpjw==
+ b=Eeb72KY+6jFQ5gQVaJN7BxxZprjfxAKdwdFgHaYfAIk9a36u4qgdEzO5ULtzLC5on5nBRSgKyDvbs4fCYhW/MCdRvekM2PZFpAoNOhEPU0hG5h6HCbrV1t6exApbCkqX2hfLddh03OggDzl/PPLBF4uAscbd9UHMHBO46L9MuzBT8uvd4xHCgFaemz6QehBQ8iQmrmu/nF7xLnHGQcr3YY7j8MMdc+Cdn+Yfe9xqmnoH4hV0Fe+7bpweN3VbmaEKUJJRobj21oPiP8EN0SItB8RYqoT+i7C0DQ523KoktwlLwPYpWzVYFoeahAN2qfBzC9gZ9hWJ0xZSJbsCExkskw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rxje4wUcAWCnGo7U6tyn6ULM/Opk2qAxVpWtJ7mKjbY=;
- b=lYSj4Z0W8F5d0CVH4V3axe8zuWZAzl1tT86cvQOtPTjbCKxK0RkzDXv2qRi+AjgmiW0inVCwPdZqfDTKyVchCEVXUVWsfTsRjNx7PiAcUMMZCUnj4fyEq4QLRPTEo/3NexkNwHkjw0ZuXECPjpnqJI2cY06OGrvyr8MVBruPeWyhyWF8pBOpBWw9KY8Huxb8mAgQU1akHQ28cj76eg81+2dNEjFtdP6Ko6PpNOHyk1GjJoOYym67OdXS/TKKhjS9h9zYLf23g51pDIxTrBPwgz/jCWXZsMHOAZUffM72sWm5/HDSyJr4ORECJDG+V9HBXDNWTIUq/L74hg8ZIhngmA==
+ bh=+K9wu/z8xX7762dbJqcpQoYEJOKu23lkJR3O8wPoDts=;
+ b=xyYSTxnWIMnkQv/XSGNPuhrO6hv2I4QX+iHYwdou+PBqe5smvbmnYhhGxlBV/3Ph2GTKhCQIhu0YAkxHAIRgBNdfFD8LRHnof8ViFqXf6mxuvdt62B22/DpimyyRb0GkXDwt/y5BEbrAhuHxXzxi7zTY6jeLp6Y8WHtZcJw3xF32BtcgdlXHniFNuV7qOkNu2OfSDa3C+vVyeG3/w9wQlwIO5Mhrc9U8e1gzCRMFOZNLZmB8e9JjDloCSNPDJSSBDSinOv6GYmNuqpwPZOGHH7/BX2wrs51AmEGcAOXuSYNegfhlfyVhCcxYP7Mj/naaXOYQoKKl45HJEMoE5qmmEw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rxje4wUcAWCnGo7U6tyn6ULM/Opk2qAxVpWtJ7mKjbY=;
- b=W/JXZScI33G0pfEvVzvpolJR5hezhivVOITkbCtjFax2vEz6AUL5OMfSWibUr2k3KLa43YkNqbpY74lrP8B3xJeiqy1duVquvQ4ct/LCFYzEN6bptNWPey0R/dk/M9zqviF7ZPe9quiHCP1ZMDwR8VQzB3e6SYTAPVj9QA5XRpA=
-Received: from SJ0PR13CA0046.namprd13.prod.outlook.com (2603:10b6:a03:2c2::21)
- by MW4PR12MB5666.namprd12.prod.outlook.com (2603:10b6:303:188::20)
+ bh=+K9wu/z8xX7762dbJqcpQoYEJOKu23lkJR3O8wPoDts=;
+ b=ydITXvjDyfgTeWzultCLvLYnVtoRIqfPVfm4XDB5aBgykbxjoeFPJk27+F5Ra9eWN9jK4OepKktkV8/FiDMZHqX904m3Hc7En7xC7LoXGE0gSmv2SkTNCvj7n2PzkhyEJMvOFRZcpyDjeyOZvpqeU5a1Fw9zkIgjpCKAM8qjLTg=
+Received: from CH2PR20CA0018.namprd20.prod.outlook.com (2603:10b6:610:58::28)
+ by SJ1PR12MB6193.namprd12.prod.outlook.com (2603:10b6:a03:459::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.18; Fri, 11 Oct
- 2024 17:23:27 +0000
-Received: from SJ5PEPF00000206.namprd05.prod.outlook.com
- (2603:10b6:a03:2c2:cafe::8a) by SJ0PR13CA0046.outlook.office365.com
- (2603:10b6:a03:2c2::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.17 via Frontend
- Transport; Fri, 11 Oct 2024 17:23:27 +0000
+ 2024 20:27:58 +0000
+Received: from CH2PEPF0000013C.namprd02.prod.outlook.com
+ (2603:10b6:610:58:cafe::ec) by CH2PR20CA0018.outlook.office365.com
+ (2603:10b6:610:58::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.21 via Frontend
+ Transport; Fri, 11 Oct 2024 20:27:58 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,72 +48,72 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ5PEPF00000206.mail.protection.outlook.com (10.167.244.39) with Microsoft
+ CH2PEPF0000013C.mail.protection.outlook.com (10.167.244.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8048.13 via Frontend Transport; Fri, 11 Oct 2024 17:23:27 +0000
-Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.8048.13 via Frontend Transport; Fri, 11 Oct 2024 20:27:58 +0000
+Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 11 Oct
- 2024 12:23:26 -0500
-From: Mario Limonciello <mario.limonciello@amd.com>
+ 2024 15:27:57 -0500
+From: Philip Yang <Philip.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH] drm/amd: Guard against bad data for ATIF ACPI method
-Date: Fri, 11 Oct 2024 12:23:15 -0500
-Message-ID: <20241011172315.35231-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.34.1
+CC: <Felix.Kuehling@amd.com>, Philip Yang <Philip.Yang@amd.com>
+Subject: [PATCH v3] drm/amdkfd: Accounting pdd vram_usage for svm
+Date: Fri, 11 Oct 2024 16:22:32 -0400
+Message-ID: <20241011202232.3354-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000206:EE_|MW4PR12MB5666:EE_
-X-MS-Office365-Filtering-Correlation-Id: dbf5ee6f-cf1c-45a8-014d-08dcea196b19
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000013C:EE_|SJ1PR12MB6193:EE_
+X-MS-Office365-Filtering-Correlation-Id: df2f896c-55bb-425d-ea5d-08dcea3331e3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xE5NmhMRyOueA0qMbQUC8NtVg/5Ry4o40OIyZEOuysu/DAknPjf+FQqQMAz6?=
- =?us-ascii?Q?ydoRDOCK7OaEPCnKpeXM5Mr6cv2CvJs5m4n+qdVYH/9m/Wbl/uqO7gAqlAy6?=
- =?us-ascii?Q?TgNlauEumeieBhsT207FPtUnFv7kZk6yMTAcNq6azq3HgqoY4dluK7cYTehz?=
- =?us-ascii?Q?A0sn8oTRgy3Xpwq0HzRC90/Y6xeDPZw1jlsKi3IAJF4isf9DWxIvrOfWPbS+?=
- =?us-ascii?Q?R5wW0f/SBb5DIqL3mkTiml4ewqJoCOXmjrN2TeR5CgMJYixcGqA2FWyxiFdm?=
- =?us-ascii?Q?0yvmkb1m6vreSkIuh2kmND86AOsg5X3LWaNk028t4RtqR6VjOe3QeKWXFJXL?=
- =?us-ascii?Q?h4o3cpRfI52jGvILIWdkBQPgWVPt3vXIaHTwVVzDFMZkG9DmM8aSHEC+zSzC?=
- =?us-ascii?Q?Zkyzz3VeF+hXlJleCUBJAW2rq3vRR4+cSyRtdRWNeAC7O1hffaSB0ekm/rZ8?=
- =?us-ascii?Q?XEYgkl0dCbDX68PVzS8viAQp0DN+tmOVBqVk6190zx+Zcs6ATJ3UXTQWzKOo?=
- =?us-ascii?Q?7pPnpn4HMk8pXz6yWcROhuVKuQmvwKdkXMGwB91y7rzewVXGhxMAXRaK6tbv?=
- =?us-ascii?Q?qHPfe0pWV7+owlQ0js2ypm//2GbacOHdPIgE54aZvCmjoWtS6L3p9r/Cwyzf?=
- =?us-ascii?Q?PKVSGZ/9co72MPnOhiY2/bKtcXtPI9j4m6+sbGu7IZWFPX8QFUMILbxv4FjB?=
- =?us-ascii?Q?igPo0NUcbL3ZKsnWljnL7mIBAGqVVnbkEj6No4X/pkxj2z6QuH5vtw512134?=
- =?us-ascii?Q?R8/os+cB4iHNkJ4YC1H8ula6/w8qZ9axsVIy6y33GT3GKea2Hvunery7FMry?=
- =?us-ascii?Q?RrXBSDeFhHTTJjG3VC3rqufPFdopY7O4vOs9fv/Avmu/J1B33BtC+LLZySly?=
- =?us-ascii?Q?AK45wUNuon/WSo8UyQQwsaHJOTYPQXF33HqO60I8PA5dJgJSAWObf7Vv3Uay?=
- =?us-ascii?Q?txi+64F3zp/R7pb8dEFF0oRzLKwUh6nZQOAjgk0+BFlpHLm4vLl7q5ujhLS2?=
- =?us-ascii?Q?sQYDYTYAP7cAFvofsIrI8WloaWL1CZ7idLqAIDPHoILLWvCbOxu2bysmuevd?=
- =?us-ascii?Q?9oP0qayrvFQWC/jiSBWT4MHKNU3WAId7erDcRniUcW+zlitStdxoJiqWcspx?=
- =?us-ascii?Q?GGasBAXmRRC4g50lIdQFVlofAqIK2RpBGHDGQ1rw1Y/5lCbGMgzYv0A2otN1?=
- =?us-ascii?Q?2BywfVGgfP7Tea53AbpZ/sKqe403OM/bZbDJP07FKfhvvFRIeWJ5qc+O4OUm?=
- =?us-ascii?Q?hwytwZDf7CzSjQ4gBY373MeyRCQ9D3Yw8mqylYADsOGbqSw3aptuo0E9UCsv?=
- =?us-ascii?Q?/3uM7ebQZRZyhdZlkWL02T0mjJwBtXBLE1VQiMFMJrYyQb+Qrm08xd+f+EWx?=
- =?us-ascii?Q?m1fwHwP38RLFiKrKnYWD6EzWALsY?=
+ ARA:13230040|36860700013|1800799024|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?lVnq2secMCudZv7hu0Cdba1bsGu4g29Ds1F+kK9M+KeeJsLFMVH+HwzwCC3u?=
+ =?us-ascii?Q?rdN8ueTsiagsaSlGUvfEV5vi8j3X8WMTC+ZO/yYDPle+o3LiOQfU1qcrgPnM?=
+ =?us-ascii?Q?GhQLnJsYKl3KCgdVoNwinnvSgDziNEbIxVwpHnjaUySCuQ8sCL+6VhbOeVCb?=
+ =?us-ascii?Q?9bz286JpiHAUpwPpvMXF3SFvm6+Hz0Du8fkMBslGWm6W+zsoqrJCydva1AcB?=
+ =?us-ascii?Q?6Zxn0OSkQ/VellaewfxQKyqKO85N8zUgMPShqzknciwqnUgc/Ta39vamSdAq?=
+ =?us-ascii?Q?BN174/KAAC75nDNT7/FLhAT7hicuy4gomGt+jQDsAlGWa8T7TReoZLBKK9u6?=
+ =?us-ascii?Q?dJ65XsmXQ1HZuJOZL8LmrPg8q/VfcUNTE7r757jBmoMInR3TBqrEKDLo/sfw?=
+ =?us-ascii?Q?ee29/TxTKhqcHGpPMX7os12k6ZrARU5ESldrFnhDPF/+vH+sgibp45Sl8sbj?=
+ =?us-ascii?Q?gNAoSRnEAAI7E8OW0VJrbE41WeQlp0qDQenIB+ecjheU/e/gnMLXZ7EZxiot?=
+ =?us-ascii?Q?APeulHJYAs691yFRAKoNlLI1/ZWkjEtHld/TCDnj0Tuf5NJoh/L7sJcRyHUH?=
+ =?us-ascii?Q?9QT8kPKysi01Q3Djc7qKMNPHF5SlHZgoLaaFol4Bu8c0/8ACQgXNMPV/OnTe?=
+ =?us-ascii?Q?GQ+/7OSa4EvQHo0AUUV6Q3Nk2p3XbyTGigV5BnRssYQu0meFLxQwHp1aj5Og?=
+ =?us-ascii?Q?TvnPyGqNqKHJ9VFoOh2j4+rBRDJ4kdxFX/K0oJrLyqLriagXlJNY3mbhQhEN?=
+ =?us-ascii?Q?KlbuS2ElARVkotI96TUSasLQCRJFIYzYutTtJTvZ6H3RZ1CPzVapRKJIlYLg?=
+ =?us-ascii?Q?jjEdrmFgAIA+0jwPmyz/vih2GI3L+0jF/cwR1a9WuQPFFOA0weOtfT6BZL8T?=
+ =?us-ascii?Q?5w31JoVjnvumfsMsg4M7HSmhKZoM9kC9UkNt1HapxrYC2gcc8Y5IL+O7es8h?=
+ =?us-ascii?Q?cJO27jyOXx54u0GR/mB6ec7uGAwOZPUDkOQj6fyGVtb8k8YrGLP9Cggrc31w?=
+ =?us-ascii?Q?9cHzMpRzEJ7E8Eegpl/8/ho9osuCI6Qqz6dShADzhuec4Y9OLsf60Cw1d+RW?=
+ =?us-ascii?Q?rsHE8pyNZbIcPcqH7B2ytlgKRI8DyWqBXML48CP53IG1C3nInGsGKcDmETDj?=
+ =?us-ascii?Q?uE/ZYqQEQClkvsMOIZZbJlIigUH42EdNsxt+4AgNCigdPuo374SPOJnURI77?=
+ =?us-ascii?Q?RoX04K311udQck5mktYcxXUuJqjjugMmy622kN+TGChGy7GPkRFpmtZ5aKot?=
+ =?us-ascii?Q?Giir1H7ztYgcxHNdt2H5hCiSg694hjKkZRo0kBOKwATgm0GOlB2CGIK6UFch?=
+ =?us-ascii?Q?iujXCoxaGYVdmZMKLod74/WPIyUJItUBZEh5gCv8YXHfPnd6sPitboCbvuuN?=
+ =?us-ascii?Q?5WzmKoNkcI2vs5fiAIsGw/0UgEeP?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
+ SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2024 17:23:27.0244 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dbf5ee6f-cf1c-45a8-014d-08dcea196b19
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2024 20:27:58.0238 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: df2f896c-55bb-425d-ea5d-08dcea3331e3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000206.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013C.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5666
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6193
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,70 +128,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If a BIOS provides bad data in response to an ATIF method call
-this causes a NULL pointer dereference in the caller.
+Process device data pdd->vram_usage is read by rocm-smi via sysfs, this
+is currently missing the svm_bo usage accounting, so "rocm-smi
+--showpids" per process VRAM usage report is incorrect.
 
-```
-? show_regs (arch/x86/kernel/dumpstack.c:478 (discriminator 1))
-? __die (arch/x86/kernel/dumpstack.c:423 arch/x86/kernel/dumpstack.c:434)
-? page_fault_oops (arch/x86/mm/fault.c:544 (discriminator 2) arch/x86/mm/fault.c:705 (discriminator 2))
-? do_user_addr_fault (arch/x86/mm/fault.c:440 (discriminator 1) arch/x86/mm/fault.c:1232 (discriminator 1))
-? acpi_ut_update_object_reference (drivers/acpi/acpica/utdelete.c:642)
-? exc_page_fault (arch/x86/mm/fault.c:1542)
-? asm_exc_page_fault (./arch/x86/include/asm/idtentry.h:623)
-? amdgpu_atif_query_backlight_caps.constprop.0 (drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c:387 (discriminator 2)) amdgpu
-? amdgpu_atif_query_backlight_caps.constprop.0 (drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c:386 (discriminator 1)) amdgpu
-```
+Add pdd->vram_usage accounting when svm_bo allocation and release,
+change to atomic64_t type because it is updated outside process mutex
+now.
 
-It has been encountered on at least one system, so guard for it.
-
-Cc: stable@vger.kernel.org
-Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c |  6 +++---
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c |  4 ++--
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c     | 26 ++++++++++++++++++++++++
+ 4 files changed, 32 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index f85ace0384d2..1f5a296f5ed2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -147,6 +147,7 @@ static union acpi_object *amdgpu_atif_call(struct amdgpu_atif *atif,
- 					   struct acpi_buffer *params)
- {
- 	acpi_status status;
-+	union acpi_object *obj;
- 	union acpi_object atif_arg_elements[2];
- 	struct acpi_object_list atif_arg;
- 	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
-@@ -169,16 +170,24 @@ static union acpi_object *amdgpu_atif_call(struct amdgpu_atif *atif,
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index a1f191a5984b..065d87841459 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -1148,7 +1148,7 @@ static int kfd_ioctl_alloc_memory_of_gpu(struct file *filep,
  
- 	status = acpi_evaluate_object(atif->handle, NULL, &atif_arg,
- 				      &buffer);
-+	obj = (union acpi_object *)buffer.pointer;
- 
--	/* Fail only if calling the method fails and ATIF is supported */
-+	/* Fail if calling the method fails and ATIF is supported */
- 	if (ACPI_FAILURE(status) && status != AE_NOT_FOUND) {
- 		DRM_DEBUG_DRIVER("failed to evaluate ATIF got %s\n",
- 				 acpi_format_exception(status));
--		kfree(buffer.pointer);
-+		kfree(obj);
- 		return NULL;
+ 		if (flags & KFD_IOC_ALLOC_MEM_FLAGS_AQL_QUEUE_MEM)
+ 			size >>= 1;
+-		WRITE_ONCE(pdd->vram_usage, pdd->vram_usage + PAGE_ALIGN(size));
++		atomic64_add(PAGE_ALIGN(size), &pdd->vram_usage);
  	}
  
--	return buffer.pointer;
-+	if (obj->type != ACPI_TYPE_BUFFER) {
-+		DRM_DEBUG_DRIVER("bad object returned from ATIF: %d\n",
-+				 obj->type);
-+		kfree(obj);
-+		return NULL;
+ 	mutex_unlock(&p->mutex);
+@@ -1219,7 +1219,7 @@ static int kfd_ioctl_free_memory_of_gpu(struct file *filep,
+ 		kfd_process_device_remove_obj_handle(
+ 			pdd, GET_IDR_HANDLE(args->handle));
+ 
+-	WRITE_ONCE(pdd->vram_usage, pdd->vram_usage - size);
++	atomic64_sub(size, &pdd->vram_usage);
+ 
+ err_unlock:
+ err_pdd:
+@@ -2347,7 +2347,7 @@ static int criu_restore_memory_of_gpu(struct kfd_process_device *pdd,
+ 	} else if (bo_bucket->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM) {
+ 		bo_bucket->restored_offset = offset;
+ 		/* Update the VRAM usage count */
+-		WRITE_ONCE(pdd->vram_usage, pdd->vram_usage + bo_bucket->size);
++		atomic64_add(bo_bucket->size, &pdd->vram_usage);
+ 	}
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index 6a5bf88cc232..9e5ca0b93b2a 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -775,7 +775,7 @@ struct kfd_process_device {
+ 	enum kfd_pdd_bound bound;
+ 
+ 	/* VRAM usage */
+-	uint64_t vram_usage;
++	atomic64_t vram_usage;
+ 	struct attribute attr_vram;
+ 	char vram_filename[MAX_SYSFS_FILENAME_LEN];
+ 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index 7909dfd158be..4810521736a9 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -332,7 +332,7 @@ static ssize_t kfd_procfs_show(struct kobject *kobj, struct attribute *attr,
+ 	} else if (strncmp(attr->name, "vram_", 5) == 0) {
+ 		struct kfd_process_device *pdd = container_of(attr, struct kfd_process_device,
+ 							      attr_vram);
+-		return snprintf(buffer, PAGE_SIZE, "%llu\n", READ_ONCE(pdd->vram_usage));
++		return snprintf(buffer, PAGE_SIZE, "%llu\n", atomic64_read(&pdd->vram_usage));
+ 	} else if (strncmp(attr->name, "sdma_", 5) == 0) {
+ 		struct kfd_process_device *pdd = container_of(attr, struct kfd_process_device,
+ 							      attr_sdma);
+@@ -1625,7 +1625,7 @@ struct kfd_process_device *kfd_create_process_device_data(struct kfd_node *dev,
+ 	pdd->bound = PDD_UNBOUND;
+ 	pdd->already_dequeued = false;
+ 	pdd->runtime_inuse = false;
+-	pdd->vram_usage = 0;
++	atomic64_set(&pdd->vram_usage, 0);
+ 	pdd->sdma_past_activity_counter = 0;
+ 	pdd->user_gpu_id = dev->id;
+ 	atomic64_set(&pdd->evict_duration_counter, 0);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+index 857ec6f23bba..3e2911895c74 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+@@ -405,6 +405,27 @@ static void svm_range_bo_release(struct kref *kref)
+ 		spin_lock(&svm_bo->list_lock);
+ 	}
+ 	spin_unlock(&svm_bo->list_lock);
++
++	if (mmget_not_zero(svm_bo->eviction_fence->mm)) {
++		struct kfd_process_device *pdd;
++		struct kfd_process *p;
++		struct mm_struct *mm;
++
++		mm = svm_bo->eviction_fence->mm;
++		/*
++		 * The forked child process takes svm_bo device pages ref, svm_bo could be
++		 * released after parent process is gone.
++		 */
++		p = kfd_lookup_process_by_mm(mm);
++		if (p) {
++			pdd = kfd_get_process_device_data(svm_bo->node, p);
++			if (pdd)
++				atomic64_sub(amdgpu_bo_size(svm_bo->bo), &pdd->vram_usage);
++			kfd_unref_process(p);
++		}
++		mmput(mm);
 +	}
 +
-+	return obj;
- }
+ 	if (!dma_fence_is_signaled(&svm_bo->eviction_fence->base))
+ 		/* We're not in the eviction worker. Signal the fence. */
+ 		dma_fence_signal(&svm_bo->eviction_fence->base);
+@@ -532,6 +553,7 @@ int
+ svm_range_vram_node_new(struct kfd_node *node, struct svm_range *prange,
+ 			bool clear)
+ {
++	struct kfd_process_device *pdd;
+ 	struct amdgpu_bo_param bp;
+ 	struct svm_range_bo *svm_bo;
+ 	struct amdgpu_bo_user *ubo;
+@@ -623,6 +645,10 @@ svm_range_vram_node_new(struct kfd_node *node, struct svm_range *prange,
+ 	list_add(&prange->svm_bo_list, &svm_bo->range_list);
+ 	spin_unlock(&svm_bo->list_lock);
  
- /**
++	pdd = svm_range_get_pdd_by_node(prange, node);
++	if (pdd)
++		atomic64_add(amdgpu_bo_size(bo), &pdd->vram_usage);
++
+ 	return 0;
+ 
+ reserve_bo_failed:
 -- 
-2.43.0
+2.43.2
 
