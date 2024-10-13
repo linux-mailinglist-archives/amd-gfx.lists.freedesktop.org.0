@@ -2,87 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E12999CAAC
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Oct 2024 14:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41A4C99CAAF
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Oct 2024 14:50:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA41810E25E;
-	Mon, 14 Oct 2024 12:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E541110E29D;
+	Mon, 14 Oct 2024 12:50:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="Ac/Mr6jH";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="gq8bRrxB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m6jjrEpo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
- [81.169.146.165])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6872F10EA2D
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Oct 2024 03:54:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1728618844; cv=none;
- d=strato.com; s=strato-dkim-0002;
- b=UiCljemeMgCdPUs2LOsRJrup3bkfI7rwwjcWMOrW+89zkzJ6VrGxNTOhRGCHzWPFce
- W70kopLomdhX5KRMPImd64yyC5ys5FpZ5R2t4rK0SSERe7VDFOPxukFPl7PnrMrLIXns
- vt4xMrvpncI0z7fSFmBlEgK3naie1DrZijIMmpQnbdnTkhu5joAKevYW5+xxRmAjaiXx
- xG+j7lwB8TskQheAUrM4/Dhidp/rtQP/XWzFkb0obpdHj2ne4E3FAZIo90Tt4rkv1wA9
- 8FduEJvtXVweASfT9RLQgbtIaWuLHRtba0y9OkXcIdqbvyoN8AKxmhDo/+7i1z9mrqW9
- kFHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1728618844;
- s=strato-dkim-0002; d=strato.com;
- h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
- From:Subject:Sender;
- bh=Sw5kvAhQnV+uYxbzFDKschXQBdixLP9VwVOC5axrod8=;
- b=C3iaajA2e5kdq6A/v64H37z3SJeh+esfn8atx1FIxW0Q2cihgqKxtv3T0ryFYkwDFS
- 3gkNsycb12e/yvn8RW9bVDrKcl/MrvXVN1M+YdGkq3XhFumP8D/94cPmlgUtyHnh5tIo
- KaK7F505urv65G9Yy3z5p+w5Cvj+OxFn7LuGZahmZxzkLhKGQjpyWoSteJoVZPQFynXB
- fY0HX5oTQDsNfKbo7IGpBVfGM1h2yIAb4dBKXBIYI4rPCX3FlAsBIHbCV0bIUnpPmZ4s
- zkIt0iaCO6hNq0O8+GM2YZfOqY/0PiBGiYldjqmvxn3N9HaCQQj0gYcbWB56Uxr8ybuX
- EDvg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1728618844;
- s=strato-dkim-0002; d=xenosoft.de;
- h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
- From:Subject:Sender;
- bh=Sw5kvAhQnV+uYxbzFDKschXQBdixLP9VwVOC5axrod8=;
- b=Ac/Mr6jH/SZwQXsnC26RqtCEQvjfa+EvFyOsBAQZFlSsbdFmG+LdcXBOGuJaz3qwAt
- WdowTPWtdQIBLTbjM5JcAJU2G2rDUBuH8t4l/O9FwlAMatoSiZYcgyHIqGO6nBqszf5n
- QMGQtZpadKg1L8Dv4trcpSF+9uonOTn5q4sGve1sv4nX7mtwl+xFolcWo0CJdyl+CrRL
- /2XlzmSzGHxnJyFR09YcjDrIV36h5cEb+UvNQGS1j+OZGJBmSFf39usHGCnd5oUWkGj2
- o2iM3TC7sm2Mx0dKVmJdFEZ9H168bCTIxlEu9sfmJ2OjAtBedLrHNf+V+Qh2E6vtXjae
- Wlew==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1728618844;
- s=strato-dkim-0003; d=xenosoft.de;
- h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
- From:Subject:Sender;
- bh=Sw5kvAhQnV+uYxbzFDKschXQBdixLP9VwVOC5axrod8=;
- b=gq8bRrxBanOYS2JJnQjyc23TjbXS02K3w8jBe+jzvZehVp7IB8zQEnnsShXQ5+l+XE
- jrfDIVPteDS0SLEeBSAw==
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5i8sy+VWyhJ8tyaNDmc6CleQOst1T66EaU95I4="
-Received: from smtpclient.apple by smtp.strato.de (RZmta 51.2.8 AUTH)
- with ESMTPSA id e0da1a09B3s3wbG
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
- (Client did not present a certificate);
- Fri, 11 Oct 2024 05:54:03 +0200 (CEST)
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-Mime-Version: 1.0 (1.0)
-Subject: [PATCHES] drm/radeon issues
-Date: Fri, 11 Oct 2024 05:53:52 +0200
-Message-Id: <14691DD3-987C-4CC7-AA58-D3BF952F6224@xenosoft.de>
-References: <b7abd0b6-ac96-48ca-8165-a3b408137007@quicinc.com>
-Cc: "R.T.Dickinson" <rtd@a-eon.com>, mad skateman <madskateman@gmail.com>,
- Darren Stevens <darren@stevens-zone.net>, hypexed@yahoo.com.au,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Christian Zigotzky <info@xenosoft.de>,
- =?utf-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>,
- alexander.deucher@amd.com
-In-Reply-To: <b7abd0b6-ac96-48ca-8165-a3b408137007@quicinc.com>
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-X-Mailer: iPhone Mail (22A3354)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 402CA10E259
+ for <amd-gfx@lists.freedesktop.org>; Sun, 13 Oct 2024 21:31:06 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-37d4fd00574so2048255f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 13 Oct 2024 14:31:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1728855064; x=1729459864; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5xmURMaQB+kGaBR3ftXlO/ng8uDZS60gJunFqpNO3LI=;
+ b=m6jjrEpohmCitoy0xrziwRYYCUT7cQ6O4lCXpF0rAXGFa1GCtlYUyayCCJ7ckqA+Ff
+ TemBhLJkeUMPTMQPHWSbYkG/NPcfRAT90wxF+PFfKpJOFsyS1VFMKnuThIOYaORMX0wm
+ YlC+iCqHgpgFRTlQF441dUywBNS4Keg2lVIoQE6ebd+YorK9DgWiWoj3YcgCqJ4OEBhf
+ A+/Ox8Z4jRwKBBAtNfaFAfgjqZzWYXQx0xWgDvX/Os3F+A0V2n2Ta9b5vi/8iXY7yoDN
+ E1t9KP19/NbIm0kaJAHMtUcK1sZq8XcTnsKWds2LA9G8+LaMrtkiv9z4jxgLPe0AKE5X
+ mXbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1728855064; x=1729459864;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=5xmURMaQB+kGaBR3ftXlO/ng8uDZS60gJunFqpNO3LI=;
+ b=qamFAZoaDTWnxXcHx7NFGyow+k+rVG2+QxHbIYiUdAoBakB188uLLtJ6tjtaMDiyYh
+ aqcQspJW687LyAMzjjmHuqmkJRdKNHxg3tWtavm9G9FRNToJlItO/KmEUQk9V7NblTIt
+ 8B0qaV5clANNxO2jGNtB2bE4Zf2PxNaRtnkuyl+xARp/sdO15ksem2II8NfYWSLLpGVh
+ rVuVDZO5YQS1eHAXdhzrfOVixHVq/tm17WaYQ1IacCSmZvL5YIvPnRY0JQSPmbyC0bBl
+ vK2OJWxClxhVP3XNRbua0YObDvOnxiNIkLQIW52jtxfY3V6Bcudl5vOPpgGrRM6QpXKw
+ nGtw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVx7Mr5sR0DznYs2xr1F1+TJ5lbOArO0UftknQu53sT0SVx6Me+NouOLnyynzDjbsLH5pTLqSXh@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxB4NI1JyG/TuAIzM2Dksg5c01f4oAXN5MV5+My9D8ArDuIi9M9
+ 9jrjTucz+DiXg12NBGh3/7LNjLv/t5rEqHeCcoh+pkfOJHAcHzGA
+X-Google-Smtp-Source: AGHT+IGz9v7rDMqSJARiljy8htrk4kg2Dmg1qxC2+iB38XQ4EDYnr7OU5moms3j0Ydhr9mjD5DBZOA==
+X-Received: by 2002:adf:f805:0:b0:377:94b:4f51 with SMTP id
+ ffacd0b85a97d-37d5529bc83mr6691981f8f.22.1728855064210; 
+ Sun, 13 Oct 2024 14:31:04 -0700 (PDT)
+Received: from localhost.localdomain ([109.175.243.76])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-37d4b6a88c9sm9639468f8f.20.2024.10.13.14.31.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 13 Oct 2024 14:31:03 -0700 (PDT)
+From: Stuart Hayhurst <stuart.a.hayhurst@gmail.com>
+To: mario.limonciello@amd.com
+Cc: Hamza.Mahfooz@amd.com, Marc.Rossi@amd.com, amd-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/amd/display: Disable PSR-SU on Parade 08-01 TCON too
+Date: Sun, 13 Oct 2024 22:31:03 +0100
+Message-ID: <20241013213103.55357-1-stuart.a.hayhurst@gmail.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240205211233.2601-1-mario.limonciello@amd.com>
+References: <20240205211233.2601-1-mario.limonciello@amd.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 14 Oct 2024 12:50:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,25 +83,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 11 October 2024 at 01:49am, Jeff Johnson <quic_jjohnson@quicinc.com> wrot=
-e:
-
-Can you provide links to all 3 patches?
-
-6.12-rc2 was back merged to my ath.git project, but then my laptop
-stopped booting correctly and I discovered a few Radeon KASAN reports.
-Based upon my search of lore I found:
-
-20241003060650.18454-1-wuhoipok@gmail.com
-[PATCH] drm/radeon: add late_register for connector
-
-20241007183241.1584-1-christian.koenig@amd.com
-[PATCH] drm/radeon: always set GEM function pointer
-
-But that is only 2 patches.
-
-- - -
-
-The third patch: https://github.com/chzigotzky/kernels/blob/main/patches/X10=
-00/radeon_encoders.patch=
-
+Hi, can this be considered again please? Still facing issues with the 660M in
+my Lenovo Yoga 7 14ARB7. This fixes the weird behaviour I have with black
+screens, back-traces and flickering.
