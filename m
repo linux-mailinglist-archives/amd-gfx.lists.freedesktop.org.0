@@ -2,106 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860EE99C462
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Oct 2024 10:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5004599C552
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Oct 2024 11:19:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C296910E408;
-	Mon, 14 Oct 2024 08:57:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E54A110E256;
+	Mon, 14 Oct 2024 09:19:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Fxs9jFg5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ylSOd51l";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Fxs9jFg5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ylSOd51l";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="b7gr0cVj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41A7E10E3FB;
- Mon, 14 Oct 2024 08:57:51 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id D90E721C43;
- Mon, 14 Oct 2024 08:57:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1728896269; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Yyfk7Urx3CBMGBPz1PtyKY00vgZ2B3FcxD0YGl3GZkY=;
- b=Fxs9jFg551PHLJlfikjzYhQqJmXw4a6YCf2ZfkPCyY069L8EG156vJRXL/v5ilc9Ca/Y+e
- IsQHJRaaBzGUvrwgorsz7BDeBmvIUuBRqLqvZ8e/++l68j1LFEdeWIbOaf+Bnrvd1iuOxK
- b09ugva/DoydsWpV7lb/rs+T93i3VbY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1728896269;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Yyfk7Urx3CBMGBPz1PtyKY00vgZ2B3FcxD0YGl3GZkY=;
- b=ylSOd51la8BCVUXg2Ptyr+rBPQgb2I/c7A2r1qah/yG2L+VpTdUxZc6m1Y0j80GonoRCzA
- FCB5iQEki79mSvCg==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1728896269; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Yyfk7Urx3CBMGBPz1PtyKY00vgZ2B3FcxD0YGl3GZkY=;
- b=Fxs9jFg551PHLJlfikjzYhQqJmXw4a6YCf2ZfkPCyY069L8EG156vJRXL/v5ilc9Ca/Y+e
- IsQHJRaaBzGUvrwgorsz7BDeBmvIUuBRqLqvZ8e/++l68j1LFEdeWIbOaf+Bnrvd1iuOxK
- b09ugva/DoydsWpV7lb/rs+T93i3VbY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1728896269;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Yyfk7Urx3CBMGBPz1PtyKY00vgZ2B3FcxD0YGl3GZkY=;
- b=ylSOd51la8BCVUXg2Ptyr+rBPQgb2I/c7A2r1qah/yG2L+VpTdUxZc6m1Y0j80GonoRCzA
- FCB5iQEki79mSvCg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 93CED13A42;
- Mon, 14 Oct 2024 08:57:49 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id CKPcIg3dDGfXfAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 14 Oct 2024 08:57:49 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: simona@ffwll.ch, airlied@gmail.com, javierm@redhat.com, jfalempe@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>
-Subject: [PATCH v4 12/12] drm/client: Add client-lib module
-Date: Mon, 14 Oct 2024 10:55:26 +0200
-Message-ID: <20241014085740.582287-13-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241014085740.582287-1-tzimmermann@suse.de>
-References: <20241014085740.582287-1-tzimmermann@suse.de>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2050.outbound.protection.outlook.com [40.107.94.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F86910E256
+ for <amd-gfx@lists.freedesktop.org>; Mon, 14 Oct 2024 09:19:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ohCzd2H4zmldmxeZtuymJKNYSUJpIc2SUb9U8FIjtIWA4ZLqWIbRKQ/nCYO2/3tr/Afi13O29k57VvUACHmW9EKKbaoN0iLpJ++7oQflqBAwb3c+Fr3GhkL9xJ5CAFjpXnRz2y00avq2LmRcuRUNOttHDFT0A/qtbZSYfKT8z5kfLXrdmW4dA3ENCag4qpocyuoa/JXHnWzgBiNaqFebUoDKQ21HrW4HwoyiMldFVlVddlTnSqIGgzGQo/Y1bVegDiS3HSaLlXPkpKqCyKBACc/ZDoqvzGfdTYsuVE6lY2V/ChNUiAY+A/yz/Ozh5c9t1gpvfzN2CsfOVQJgTwFrzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HMpzMh8tELi3OqaQf7pV8NIRA8ob0zlZ0+C+42sFTNw=;
+ b=tEktFXXDZL2ejmlegVPwWVXBiuy792mDVqv9fQCiV+H/6Qrd021SJD1RSk/bHH0WvWInPnYTFoXUh+p58CgILjdteU5+LkUAbE5qq12EsfftYQrezJuaHTrZMJrEtFemqkXtpeZy6Lj5uVmhvj1r+O1GPsM/nIP3dN7YYje7LCtgeX6tQhaRaEwhMou/AaMbAjV919o0LL3l6s+9Qs+o51ms0TXYrd13xDDvIovrhEYx+/kCrBfnWiJKemGJT0W0o28BLAnNOLPLarPVXx+GEhlVpKaBCeGlZooly6cgG7EnNziaUYiNgJ+aZ/x1hpnetHW9FnJpX/UbRWpPbw/9MA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HMpzMh8tELi3OqaQf7pV8NIRA8ob0zlZ0+C+42sFTNw=;
+ b=b7gr0cVjOndkbxMMzLxQtYeDYgQfbjn+gCgIuJ31jl3valGOA5f2j4CZbGKeP0ZEKzSrmewrrEd4HhRdBDrb+fCDj1LV2k1YAGLk/8LZcQNH01c5uolgE9z9ESw5qCShQSI9WdvGQJBjj9sxpXMwQaAHf3VmDUC3Pk1lnyeA+9Q=
+Received: from BLAPR03CA0051.namprd03.prod.outlook.com (2603:10b6:208:32d::26)
+ by IA0PR12MB8325.namprd12.prod.outlook.com (2603:10b6:208:407::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.26; Mon, 14 Oct
+ 2024 09:19:29 +0000
+Received: from BN3PEPF0000B370.namprd21.prod.outlook.com
+ (2603:10b6:208:32d:cafe::9b) by BLAPR03CA0051.outlook.office365.com
+ (2603:10b6:208:32d::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.27 via Frontend
+ Transport; Mon, 14 Oct 2024 09:19:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN3PEPF0000B370.mail.protection.outlook.com (10.167.243.167) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8093.1 via Frontend Transport; Mon, 14 Oct 2024 09:19:29 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 14 Oct
+ 2024 04:19:26 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Asad.Kamal@amd.com>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, Hao Zhou
+ <hao.zhou@amd.com>
+Subject: [PATCH] drm/amdgpu: Use SPX as default in partition config
+Date: Mon, 14 Oct 2024 14:49:11 +0530
+Message-ID: <20241014091911.3036389-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,suse.de:email,suse.de:mid];
- FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- RCPT_COUNT_SEVEN(0.00)[10]; FUZZY_BLOCKED(0.00)[rspamd.com];
- R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
-X-Spam-Score: -2.80
-X-Spam-Flag: NO
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B370:EE_|IA0PR12MB8325:EE_
+X-MS-Office365-Filtering-Correlation-Id: fa01f1cc-6c03-4843-98f5-08dcec314e81
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wACBww+QeYy3T8WRylWrYiuzfSA86C9l/lYN/UQWNy7x/Ka03RFkH+ysS+AA?=
+ =?us-ascii?Q?j0h0rscfKCHipvrnJ/2opyUWFkA5UC05T3AGsSNtTLomUFbyCGUm7ugoB7tm?=
+ =?us-ascii?Q?Oyhwglpu3YaNdd0fG0/nuUw9F0qSK6NYj51c8ATM21qc4pVYJLhtfFmbQtD9?=
+ =?us-ascii?Q?DlHV3BPIsM9v9Cwrz2rViEmTEFkbEMU0U/9/NbrzccPrx6XLyi0lxBWCuVmM?=
+ =?us-ascii?Q?U0CZTbiKTVeASNgOgC2VG8MscAz7yd0xEAjEHCBYxUGea1IeZg9Z8P1b//NO?=
+ =?us-ascii?Q?WLgdFQqgYZDEktytHyjo8eQCepQd9HuT0Ha0lguWJn8DGzKQU/Fr+28AU93l?=
+ =?us-ascii?Q?gmtlSVc8mz/AUrR1csUYzgNCfpD9TH/7h69c94hAYtv0OfDhsrH6IB4O2Agi?=
+ =?us-ascii?Q?x2+xneY8ggZ43oL+J8ri+Uq2zrURYRMntGVmYUSeBs/gRKm1WHR51iDqwxOj?=
+ =?us-ascii?Q?ZjBz36sw+dUI+xBtLPVyypAwGoLMQarAkQiNzSiU9sKbpkd5jcy2Or76cLKX?=
+ =?us-ascii?Q?/FfTF10KMR9Z9WyzCsesvsGb7DoJGtDDRyhBDNyAGVUVTgFd5iDPRhwiwjr6?=
+ =?us-ascii?Q?nyxMGITts8Cu2x+b38iSeRYpykwJR8rxmx3Kuwqs/CdI9jss55dLS0TMTxqd?=
+ =?us-ascii?Q?/L54PtzUE6LwUoOPgJj36nSZPFxisgpKxIJGuzGjOm8RmAiTwqg+XaHkfDVb?=
+ =?us-ascii?Q?n12NWdgxCdqx6oqIC85YNjmV5p5rwS0EDf7sI3SPwHLuMy3d7V4Q14fs/Z7E?=
+ =?us-ascii?Q?RULwQqk8wHYPwWWCGorliTXB4PWayXqTwDc3MSsD3OoCAZXPiVlP5gmx6LEn?=
+ =?us-ascii?Q?AyFXB2ynwecQ+G/Pn2fi+NA2UUm7kLt7NNERUvru7v/YIg4t+eJsFFkRJfsk?=
+ =?us-ascii?Q?IQx2Ticm/bz09Yi1rgJKOcAnD+z7D+arEudOX7+IJpMtqpQeTGJNjMJP3usC?=
+ =?us-ascii?Q?7F2yvwyhHwBbfRPPXu/ETtiRCCb82nvc0TX8jVKUB+pii+xNtutVWmqG9LCD?=
+ =?us-ascii?Q?fI5gT6ab27xNg1GYKMhyIUlc3By2unuy6o7zaekq6wh/RtqCH+YHL8sTrwlr?=
+ =?us-ascii?Q?fWzR5iNaMHFts12A0QHB30JsXBZBPXg2epOrWgOcWEHC8BUMAQBMgy+6V9nR?=
+ =?us-ascii?Q?Kp2WHSbueBmvbfK4XsMAgIwbhow/QnPIfGxX8p3MkGv9a4KDFDWrnu5dgrOp?=
+ =?us-ascii?Q?7Q7fCYhE6AECWyyEHTlfw4iL2xzdCAsu9JWXyXjMwZCxxAX1M0HdejdGy5Gs?=
+ =?us-ascii?Q?9mRxRXGpDr6OFcJdQ03iMc3R01ou5lSD+5vcxqPDWtkoFGKulEFgYM+D8YiW?=
+ =?us-ascii?Q?7ehYBwzeARfjNSC7qz7Iap1bkcvx+ArI+yEjQZ3N+0cITEz/sBB0MqWADXcB?=
+ =?us-ascii?Q?wrRSAmZI3Fdjf1DtebCPSA8nucxn?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2024 09:19:29.3655 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa01f1cc-6c03-4843-98f5-08dcec314e81
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B370.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8325
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,167 +129,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add drm_client_lib.ko to contain DRM's built-in client. Move the
-existing client for fbdev emulation into the new module. Protect the
-new module behind CONFIG_DRM_CLIENT_LIB.
+In certain cases - ex: when a reset is required on initialization - XCP
+manager won't have a valid partition mode. In such cases, use SPX as the
+default selected mode for which partition configuration details are
+populated.
 
-The Kconfig rules separate the DRM drivers from the DRM clients. A
-driver can opt into the default clients, but the user configures
-each client individually. To do so, DRM drivers still select
-DRM_CLIENT_SELECTION. The option is now a tristate that further
-selects all dependencies of the enabled DRM clients. There's
-a menu option for each client. Enabling at least one client also
-selects DRM_CLIENT_SETUP, so that drivers call drm_client_setup().
-New DRM clients should depend on DRM_CLIENT_SELECTION.
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+Reported-by: Hao Zhou <hao.zhou@amd.com>
 
-There are existing kernel options in drm_fb_helper.o, so leave this
-file in the KMS-helper module for now.
-
-v3:
-- fix commit changelog
-v2:
-- keep client code in core
-- protect lib with DRM_CLIENT_LIB
-- remove duplicate line from Makefile (Jocelyn)
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Fixes: c7de57033d9b ("drm/amdgpu: Add sysfs nodes to get xcp details")
 ---
- drivers/gpu/drm/Kconfig                 | 26 ++++++++++++++++++++-----
- drivers/gpu/drm/Makefile                | 14 +++++++++----
- drivers/gpu/drm/drm_client_setup.c      |  3 +++
- drivers/gpu/drm/drm_kms_helper_common.c |  3 +++
- 4 files changed, 37 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index ea1cc924528c..a9055c0b9a1a 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -9,8 +9,6 @@ menuconfig DRM
- 	tristate "Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)"
- 	depends on (AGP || AGP=n) && !EMULATED_CMPXCHG && HAS_DMA
- 	select DRM_PANEL_ORIENTATION_QUIRKS
--	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
--	select FB_CORE if DRM_FBDEV_EMULATION
- 	select HDMI
- 	select I2C
- 	select DMA_SHARED_BUFFER
-@@ -218,10 +216,19 @@ config DRM_CLIENT
- 	  option. Drivers that support the default clients should
- 	  select DRM_CLIENT_SELECTION instead.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+index 111bf897e72e..83a16918ea76 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+@@ -606,7 +606,7 @@ void amdgpu_xcp_cfg_sysfs_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_xcp_res_details *xcp_res;
+ 	struct amdgpu_xcp_cfg *xcp_cfg;
+-	int i, r, j, rid;
++	int i, r, j, rid, mode;
  
-+config DRM_CLIENT_LIB
-+	tristate
-+	depends on DRM
-+	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
-+	select FB_CORE if DRM_FBDEV_EMULATION
-+	help
-+	  This option enables the DRM client library and selects all
-+	  modules and components according to the enabled clients.
-+
- config DRM_CLIENT_SELECTION
--	bool
-+	tristate
- 	depends on DRM
--	select DRM_CLIENT_SETUP if DRM_FBDEV_EMULATION
-+	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
- 	help
- 	  Drivers that support in-kernel DRM clients have to select this
- 	  option.
-@@ -229,11 +236,18 @@ config DRM_CLIENT_SELECTION
- config DRM_CLIENT_SETUP
- 	bool
- 	depends on DRM_CLIENT_SELECTION
-+	help
-+	  Enables the DRM client selection. DRM drivers that support the
-+	  default clients should select DRM_CLIENT_SELECTION instead.
-+
-+menu "Supported DRM clients"
-+	depends on DRM_CLIENT_SELECTION
+ 	if (!adev->xcp_mgr)
+ 		return;
+@@ -625,11 +625,15 @@ void amdgpu_xcp_cfg_sysfs_init(struct amdgpu_device *adev)
+ 	if (r)
+ 		goto err1;
  
- config DRM_FBDEV_EMULATION
- 	bool "Enable legacy fbdev support for your modesetting driver"
--	depends on DRM
-+	depends on DRM_CLIENT_SELECTION
- 	select DRM_CLIENT
-+	select DRM_CLIENT_SETUP
- 	select FRAMEBUFFER_CONSOLE_DETECT_PRIMARY if FRAMEBUFFER_CONSOLE
- 	default FB
- 	help
-@@ -272,6 +286,8 @@ config DRM_FBDEV_LEAK_PHYS_SMEM
- 	  If in doubt, say "N" or spread the word to your closed source
- 	  library vendor.
+-	r = amdgpu_xcp_get_res_info(xcp_cfg->xcp_mgr, xcp_cfg->xcp_mgr->mode, xcp_cfg);
++	mode = (xcp_cfg->xcp_mgr->mode ==
++		AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE) ?
++		       AMDGPU_SPX_PARTITION_MODE :
++		       xcp_cfg->xcp_mgr->mode;
++	r = amdgpu_xcp_get_res_info(xcp_cfg->xcp_mgr, mode, xcp_cfg);
+ 	if (r)
+ 		goto err1;
  
-+endmenu
-+
- config DRM_LOAD_EDID_FIRMWARE
- 	bool "Allow to specify an EDID data set instead of probing for it"
- 	depends on DRM
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index c3e5d353588e..edfd2ebaf153 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -145,13 +145,19 @@ drm_kms_helper-y := \
- 	drm_probe_helper.o \
- 	drm_self_refresh_helper.o \
- 	drm_simple_kms_helper.o
--drm_kms_helper-$(CONFIG_DRM_CLIENT_SETUP) += \
--	drm_client_setup.o
- drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
--drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += \
-+obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
-+
-+#
-+# DRM clients
-+#
-+
-+drm_client_lib-y := \
-+	drm_client_setup.o
-+drm_client_lib-$(CONFIG_DRM_FBDEV_EMULATION) += \
- 	drm_fbdev_client.o \
- 	drm_fb_helper.o
--obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
-+obj-$(CONFIG_DRM_CLIENT_LIB) += drm_client_lib.o
- 
- #
- # Drivers and the rest
-diff --git a/drivers/gpu/drm/drm_client_setup.c b/drivers/gpu/drm/drm_client_setup.c
-index 5969c4ffe31b..c14221ca5a0d 100644
---- a/drivers/gpu/drm/drm_client_setup.c
-+++ b/drivers/gpu/drm/drm_client_setup.c
-@@ -64,3 +64,6 @@ void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color
- 	drm_client_setup_with_fourcc(dev, fourcc);
- }
- EXPORT_SYMBOL(drm_client_setup_with_color_mode);
-+
-+MODULE_DESCRIPTION("In-kernel DRM clients");
-+MODULE_LICENSE("GPL and additional rights");
-diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
-index cfdbc1ac88dc..ecff0b1414ac 100644
---- a/drivers/gpu/drm/drm_kms_helper_common.c
-+++ b/drivers/gpu/drm/drm_kms_helper_common.c
-@@ -31,11 +31,13 @@
- 
- #if defined(CONFIG_DRM_FBDEV_EMULATION)
- bool drm_fbdev_emulation = true;
-+EXPORT_SYMBOL(drm_fbdev_emulation);
- module_param_named(fbdev_emulation, drm_fbdev_emulation, bool, 0600);
- MODULE_PARM_DESC(fbdev_emulation,
- 		 "Enable legacy fbdev emulation [default=true]");
- 
- int drm_fbdev_overalloc = CONFIG_DRM_FBDEV_OVERALLOC;
-+EXPORT_SYMBOL(drm_fbdev_overalloc);
- module_param(drm_fbdev_overalloc, int, 0444);
- MODULE_PARM_DESC(drm_fbdev_overalloc,
- 		 "Overallocation of the fbdev buffer (%) [default="
-@@ -55,6 +57,7 @@ MODULE_PARM_DESC(drm_fbdev_overalloc,
-  * considered as a broken and legacy behaviour from a modern fbdev device.
-  */
- bool drm_leak_fbdev_smem;
-+EXPORT_SYMBOL(drm_leak_fbdev_smem);
- #if IS_ENABLED(CONFIG_DRM_FBDEV_LEAK_PHYS_SMEM)
- module_param_unsafe(drm_leak_fbdev_smem, bool, 0600);
- MODULE_PARM_DESC(drm_leak_fbdev_smem,
+-	xcp_cfg->mode = xcp_cfg->xcp_mgr->mode;
++	xcp_cfg->mode = mode;
+ 	for (i = 0; i < xcp_cfg->num_res; i++) {
+ 		xcp_res = &xcp_cfg->xcp_res[i];
+ 		rid = xcp_res->id;
 -- 
-2.46.0
+2.25.1
 
