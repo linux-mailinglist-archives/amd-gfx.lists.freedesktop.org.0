@@ -2,181 +2,128 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68CC49A294B
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Oct 2024 18:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1D869A2958
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Oct 2024 18:45:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FFA310E168;
-	Thu, 17 Oct 2024 16:44:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBFED10E885;
+	Thu, 17 Oct 2024 16:44:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EJXWMUB8";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TfXyzNu3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 160DE10E168;
- Thu, 17 Oct 2024 16:44:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729183450; x=1760719450;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=mF5yBJXuZj8ANZ/cYV+2booiwGLwwA5Utl8RFr3pMqc=;
- b=EJXWMUB8LsnpwrFDtDEzuPACciwhwwNjj68uWYFjTaMBeb9JtC39gyDQ
- fIKKqQ6znJ9Q+BvCn7mgEoY857rqMClFw71GSgKtI34EAsS4zRStekxrg
- e98CWNtgk061tGkjcU0d3BD48Zccn/wPBVPCd5QeLD0zFEfZV0p5V7X9O
- z7aO6gj3Bih4gnw4YmLb2mfs705eWD43FffYwjBqIaJUkSUCZPs3wFYV7
- wl0cuTeVZ80R72S7MJlkg5sWmZzLbqPMI4kjhDdeoJ0hbXP31Nb6MQPJI
- 0l0OgJ6QEvNtMp2XT8aWQURsOgSpTJoFR2hKbHfXaPw1YhcSgTx7hGvsB w==;
-X-CSE-ConnectionGUID: mzW42sUHTnC50CURRYI5AA==
-X-CSE-MsgGUID: I8ivanrOTXK6iIEYnoVPLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="32369297"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="32369297"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 09:44:09 -0700
-X-CSE-ConnectionGUID: RzoSr1m7T5G+ho9AK33ifA==
-X-CSE-MsgGUID: NRpRoUaITsiEFN9HZK8EIw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,211,1725346800"; d="scan'208";a="109411051"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Oct 2024 09:44:08 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 17 Oct 2024 09:44:07 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 17 Oct 2024 09:44:07 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.48) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 17 Oct 2024 09:44:06 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2047.outbound.protection.outlook.com [40.107.223.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62CCA10E884
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Oct 2024 16:44:55 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lYrrbi4F+LtwsLZ6BL7kJrDCDiBK4mWPj2nusNPA14LywNmIgMnQtk8YEryK9uNKfs8KXAwMH8M7YV61cgPsiW/1iHq1d13z0pUEE5b8xrfOrVyozCZHmv0zN7qbc3AnyqmXeT4LyAMtN764atIVfArfqDSSjpGGQMG9XiXl2NbgK5Fjoaqnzj649p1yCaFg4RXU6IDJsMbO2he1rEdQ+dqdwNdyjB2xIFe4luanZZfjFjuUIs4+RsYcSZMs3RjlrDzUeO+HAd6Fl0MUZYDlV62AAjiRYaMVSLpcI9Fi8ExF7OL0nXPe1DJeTc5oz3PwZzn4zWvIIBOWAOMwLD69fw==
+ b=PLCDN4p5hrSkPQESnVuqlSNMw5sE0vSYIya5zT+XqHeeEPccteGOqRFH7NplxZq+rR792uuTlUNpGQAwwgi9758HVSh/bapry+FOTPWoqUrDl/LoqrFQDX4K7bjVoJ3PezKBkmwUjXby2PKkbSWTiRdHkf+nKk691/j9sgDQSbVxlf2iAjeFaDNGavj+VxnM1roWHuhXZSqnl+MsoUzqHr4SPeZPSgi9ZPvZq+xG/xxCNewhXyb1uUNk+hjirHlVkzlV/dyuBNvPt2XK8+NVE+Qa0j+C6XiNjND+Q3PpQcav5yEANpIscXVULnGBnJZVI4PrGG7JV5/Laqd30B+c5A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CWTgg4cchy6tr9B4UWNJ2J4f+f3fmdfeVf1sv64zS/M=;
- b=AhmbQUQsv8O7xftCDcv01g8sGI5Ta2GuY9rNs8DPumSSb2d8xrZQOXgo3+qBnvLFOGrro2iQLu10LQeHD7rUzz0HiaJn9UsfCMPUx6uL1WyckFRdt0nHx1NiE8bZZf82c/jApk7fCrRviRjZcG1D4agknZTQqA95fQ/4Hly/kgQcrwqgqYTke6zVZgaNKuk4OCtS6g7tXC0hE7Uxz+amsLB0a2OyBy3W98JFwfAp2BJjIzR1KdohgJ9oZeXFClFW8x+I4/9xiSdIKH4qJGcnPkhLxRaAeAyXYzCdOVrTWwkIjCAYx1DmLwaqquaKRcUWSpmagmQk5yRE0uZSG9cCcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by PH8PR11MB6801.namprd11.prod.outlook.com (2603:10b6:510:1c9::8)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=9X8vEB0NUO/UsJTWohfdmjika0jIzXwpH0i3jQOk9OY=;
+ b=HjhjISY6OgXTaEK2qjmI7xkqxidrUqWQ2ojxIi7utixWiLj99aFH374YEY0e5TGIxW98oAjih6gzlcY2hzavW0DYt8a72M0iPNnu70jYGc18yF8xQyJ4ZhrqxTnGCsWwboOdZMgV21MbZs1BHmTcGnD/PW5kmvJoyrUh9GO+QzqYAzFsR0G4TCAqynkXK6Kic1rKE0ZZvDpDNV24r8NAp4o68kPfwPx8ecyjugfDShLnyhol5L7sbczRiGRD4Q01dKeevZxdeXkxnyrI+ChkBiq6DjG3gmgopbigZs7aOa1C+1yigrRoUsd5/AxoKXuqMipS2BbwRssrEEuoClWv0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9X8vEB0NUO/UsJTWohfdmjika0jIzXwpH0i3jQOk9OY=;
+ b=TfXyzNu3Crj4U5utdeECq6Ilm5Y3QnZ56LlANpdrpycRKxXH4VE1wk96cTJj9Bl0bznuEKmGqpJGaStvcnYiltNtKFYUxZQ8lENVWcNRdhzzPzdW0Ce9T7rz/uvG9Zuc+Dt/qlQs4fGwpZC3HFdUy50ExaxCme6JnUxNAmhxH6g=
+Received: from CH2PR15CA0025.namprd15.prod.outlook.com (2603:10b6:610:51::35)
+ by DS0PR12MB7632.namprd12.prod.outlook.com (2603:10b6:8:11f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.18; Thu, 17 Oct
- 2024 16:44:00 +0000
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8069.018; Thu, 17 Oct 2024
- 16:44:00 +0000
-Date: Thu, 17 Oct 2024 12:43:51 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-CC: Raag Jadav <raag.jadav@intel.com>, <airlied@gmail.com>, <simona@ffwll.ch>, 
- <lucas.demarchi@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <jani.nikula@linux.intel.com>, <andriy.shevchenko@linux.intel.com>,
- <joonas.lahtinen@linux.intel.com>, <tursulin@ursulin.net>,
- <lina@asahilina.net>, <intel-xe@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <himal.prasad.ghimiray@intel.com>, <francois.dugast@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <anshuman.gupta@intel.com>,
- <andi.shyti@linux.intel.com>, <matthew.d.roper@intel.com>,
- <boris.brezillon@collabora.com>, <adrian.larumbe@collabora.com>,
- <kernel@collabora.com>, <maraeo@gmail.com>, <friedrich.vock@gmx.de>,
- <michel@daenzer.net>, <joshua@froggi.es>, <alexander.deucher@amd.com>,
- <andrealmeid@igalia.com>, <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
-Message-ID: <ZxE-x6osh_jFHl5X@intel.com>
-References: <20240930073845.347326-1-raag.jadav@intel.com>
- <20240930073845.347326-2-raag.jadav@intel.com>
- <ZxB6yKRrgvCoRK7y@black.fi.intel.com>
- <9b720b21-6195-408c-88bf-a092e0e7555c@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9b720b21-6195-408c-88bf-a092e0e7555c@amd.com>
-X-ClientProxiedBy: MW4P222CA0008.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:303:114::13) To BYAPR11MB2854.namprd11.prod.outlook.com
- (2603:10b6:a02:c9::12)
+ 2024 16:44:49 +0000
+Received: from CH1PEPF0000AD7C.namprd04.prod.outlook.com
+ (2603:10b6:610:51:cafe::31) by CH2PR15CA0025.outlook.office365.com
+ (2603:10b6:610:51::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.18 via Frontend
+ Transport; Thu, 17 Oct 2024 16:44:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD7C.mail.protection.outlook.com (10.167.244.84) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8069.17 via Frontend Transport; Thu, 17 Oct 2024 16:44:48 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 17 Oct 2024 11:44:46 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>
+Subject: [PATCH v2 1/2] drm/amdgpu/gfx9: Add cleaner shader for GFX9.4.2
+Date: Thu, 17 Oct 2024 22:14:29 +0530
+Message-ID: <20241017164430.3674916-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|PH8PR11MB6801:EE_
-X-MS-Office365-Filtering-Correlation-Id: b8855940-146e-43f1-b0df-08dceecae6b9
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7C:EE_|DS0PR12MB7632:EE_
+X-MS-Office365-Filtering-Correlation-Id: b091cd64-1fe3-4382-af4a-08dceecb03b4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?M3rEXuCYE5kLvszGNMxWse9cK9HbOGDCuZVD9ff2GISpL5gV93iDZaiUSJ?=
- =?iso-8859-1?Q?4I0wElDsMXjo41KjTY3yTkpfsp1cxUC+6UYANLkT2RESSKeXCPTjrOyL4Y?=
- =?iso-8859-1?Q?iGlbj+udp1FdN085cQ8TsyhMl7DHNuprRNaqxD5p0RqrRYNNnYPK3gemGl?=
- =?iso-8859-1?Q?iTbdhVqfhgyWwKE8GxOU+ySzxJjDNd+1z42vrvoQHgF++Yye6i8ekF/c+3?=
- =?iso-8859-1?Q?E/+mUaHWCWC4Y9zEDJnCk9qiW47cWFvlnCsZlebOjdb5RowjXgJq3F3uBj?=
- =?iso-8859-1?Q?7ewTsmUFFy04qPAFFW3/r2G9iCMORcRvmWrxt0nA+XSDKq51Ru5rfeEKha?=
- =?iso-8859-1?Q?qq2s3p/T/udc/7pe30FGlrJ3jDmh9cTXKM5ctErFSDNKVkkasaPiB3BXpu?=
- =?iso-8859-1?Q?PcgNAckqbTJWLzzB5D4QsP9B5wx7jaDumjTfXVvmjM0H7B8b1zaGpbfEvP?=
- =?iso-8859-1?Q?81dKrCUepxCmGiJDJwiTKhCbzvyPqBQvACrA43y0TiE1Ku3a8iNbqti0sQ?=
- =?iso-8859-1?Q?oISwG+VT5uYDZFePbor0QebbfRepMvRyILDRtoBsGTRTbVO+hIM/uAFKfQ?=
- =?iso-8859-1?Q?I3N0WwqyCDhgreqAm1TWDYud8YUAgTsR+R5NXQF9uAuxVUu7ZER0Yo1iu/?=
- =?iso-8859-1?Q?eLurdxqFCOeyB9mv4/xu6Fv6Iv9iUOLdwYbTRm4ybyRbJF3cY+seMS05Tm?=
- =?iso-8859-1?Q?njI4S440Bzv9hMfbynca7AfMoIw1324oNNFMFO2zmMHi6Evh1LKpaGYyWC?=
- =?iso-8859-1?Q?R5ZfS5HROGPn/BY0xpd/w41QRpn/WHN/JAn0mDIrue6iq//zIpqON2ftE3?=
- =?iso-8859-1?Q?bh0ATjz0eUEPQQDp9Vpgzyr3rVLHNiK5MBkJjUh2hOAsoVQJxhJ6tLMNfm?=
- =?iso-8859-1?Q?SCUhN72UoLcfKET7KXLdLu5vIW1Mb9kL3COUBCjD2aqEnISvhQL/d/IdvO?=
- =?iso-8859-1?Q?hwvdrF4auMVd+dPv5WgfLSLRxFjZtDdceKu9JijydK5cAgsykeJcD3sGvd?=
- =?iso-8859-1?Q?pMvMshZU7bxwvaNTk5hecc1+wK5mVR4vY5vdq7UF7u7yeFPCzuYSsiU/fn?=
- =?iso-8859-1?Q?bZRMCv3+/2t2Y7xz0pRqUpN3oQYUOL9fOfudhiGb3hlul9SfjdMT3gxEw3?=
- =?iso-8859-1?Q?mN9IkRU7ab3R7rf8j0ZIcjmKSky2pZvej0qJerlNxyKyfgu4acO/k0Um3M?=
- =?iso-8859-1?Q?aDlt1zQfoSFIBDiwWQAe65Z0PKTYbEGRWHSMUiKHh+a2AYEQ6mFK5ynKTw?=
- =?iso-8859-1?Q?8laxsvTOPmaBTXOhBichBXaKi4XfslrqbC7cCSb9nQAH4heWY7ZMkGtC4r?=
- =?iso-8859-1?Q?AhTjzOs3vKpGvHYHbU/vspi3fTpCFPHeHXoXcuYGj2sv6JRvQFijo0NT6F?=
- =?iso-8859-1?Q?Onb7JyhiWZ?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(7416014)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?mHaGNO9HTWXNqay4Cnmxmn1xs1Yu03T3MDkHyFk7lwwybDAZEBTfvpi5qN?=
- =?iso-8859-1?Q?UMU0Cnd/hvsNFZcMDAoxuMkOQng8zxBaACiCWySlHh1sEEtNfxGLV/1nkv?=
- =?iso-8859-1?Q?vDor/BaprtMHhBfMsKJ4srySO5Najvm4Q9ebyPCoOTrhnVm3nHSoTtZ21i?=
- =?iso-8859-1?Q?gkW2aRJn7643uVsE40V7XCO/2NnMCeqFNHh32tvx1qOZjXHz25vFRein7H?=
- =?iso-8859-1?Q?hsNskiFO00bCt45VE/5hUm1DVW8nUgIzwv+NPL174hgUwClKvISZAmX9e7?=
- =?iso-8859-1?Q?oWd9nwaSrn/JePt8HuTVAU5r7ODz4bq8ZM0f9eTf/94Dzm2qnE6V1fAYpT?=
- =?iso-8859-1?Q?VecOhT/ZCo0uGUaUNekVaID31LElHFed8rmgOiOvPFxK6k1FQm1C/My7OV?=
- =?iso-8859-1?Q?LXWCOFozvDraV7FufAvqUeH+QlbkKK558sC/5OyENxSfMWW9kjz2825dMK?=
- =?iso-8859-1?Q?TkGPnVMDlUoaIS+hl8+bMaLZ9sdRnW7U7k3lM2uDuTNHCf0sQLDO3de3Qo?=
- =?iso-8859-1?Q?o0YPwHmhNqSoR3vSFJjK5eGNPC7ULjSVLZXpzAb72fGzoenG1IZ95TtBzb?=
- =?iso-8859-1?Q?EypKT/rrkvZ8kgGIYYQUr71P/wSklNrMg+p18DXS/rzGCLwOj5d7YbgixG?=
- =?iso-8859-1?Q?62jjBGr1+s1zGk9VUReI4cfOnhn5wljyfvFyJOsZccjp4efpqdqIONK1xX?=
- =?iso-8859-1?Q?GCtv+hKAEIADb3EcSTFKQR4kY2u4CGrzrOB0KDZ1fuSQ8NBSyXk5X1n1wR?=
- =?iso-8859-1?Q?0IHRt6614DRh4O5w0zZF72oJ+sHKSXj0LvQrtGS6sRvTVEIU3kPL1+IlvQ?=
- =?iso-8859-1?Q?IRrcq83rem+wKBYQw1diHFrv4UIvqhrm3p2Jgfi3W1jZ4O0dDvNrTQ4BKV?=
- =?iso-8859-1?Q?QmFW7jTjI/2T17OuSPmPqLSWuZZ7LwKYNPNwPjbOsy+XRW2OS8baHtfD5D?=
- =?iso-8859-1?Q?2UEtLihjEDW5MXmFeiNa/o/O7IAnQbYtV++8ICsXzDKlMmv4wsL/ElO9ov?=
- =?iso-8859-1?Q?gbQk/2cblQarjdk6o33ZvhrH5BxSu9CzirYEtEEvQ3PicWI6ujktv0g/PM?=
- =?iso-8859-1?Q?HkdfXSxpeS/YSIDl2Lc9ws+t4i28UdqNhUPXqeja4bsLhfvUsW8N73Wsm0?=
- =?iso-8859-1?Q?xCACaSbA7bV2IA3CGok4bl9hVx68NaOKSC2fyuwscTMZHr8uG7LmmxIBFS?=
- =?iso-8859-1?Q?LSqgm1Tts7ZygZ2KMQLWIupFdYUi8KlsORIQc51mYUi6V+DjV3bfxET5Ce?=
- =?iso-8859-1?Q?hqvEuJHuvEKD8wOiYqWxicxIpq6WPpcaVjupNCF0XAH/jRe+NBX0nrvReR?=
- =?iso-8859-1?Q?hxLR1RbD2o7tEI9ZLR4z0XmVofhQgU92PmddN0pCcsnyT0g44fsJsCJCB3?=
- =?iso-8859-1?Q?2jLD+OothkydEA3dOAdcdOKcKzWY81D9PBohk740QbtYJ/7rr8tt3mIrKB?=
- =?iso-8859-1?Q?4LitzMl9DkgdV8BspDYrRIt0RWRt+9QSO1yX3n+9/vgZdSWxLfvsQxgGGJ?=
- =?iso-8859-1?Q?Ya6QemzVsYFFdGeDiaJd21NXj51iJn7SO/uyPA4PT73NjbZCAjfkt9ysPS?=
- =?iso-8859-1?Q?h0Zbpf6hekfcDq6ipV46unkXGhHWMC7ZdXf42MnlyLuvylcND3WfcmcyMu?=
- =?iso-8859-1?Q?CrCyUG8l684iBiSTTiWsMuKfg+ssW9yzyPKNjeBN6Pj2UzMeeAoIxxrw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b8855940-146e-43f1-b0df-08dceecae6b9
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2024 16:44:00.4710 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y7mfkAbzoyRfFq6y+V/70dpGPNbq0XH0E6gT7BAMvy2GrnlGUoiqnZwA7f7uU/GqvdKhMUx720wywgDMGmm7hw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6801
-X-OriginatorOrg: intel.com
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Snc2Tm1lSDVnNXQwT0tRdnNUT1ZXcUdQWGxIdWxGaWV6bDlNc2RIZXZrWU0y?=
+ =?utf-8?B?dDVxdXh6Nkt3UmJOalJoZHVsOXlpOUJhNy94ZzlHZ2I3SUZrNlRMdHNxc3hH?=
+ =?utf-8?B?aDc3bFlieVZhWi81Tmh4Z0hjTU5zMXJSbEc2NFh6aWtEc1JJVDFuM2R6Yklu?=
+ =?utf-8?B?Z25OTU5BWFVuMUEvV0NnQ092blRsYm96Y2hGMDRYOHBzeWIyTFc1cnpoYkRm?=
+ =?utf-8?B?Qjkva0VIdnJKcTcya2ZUMVZZVTBQRldWN2lKeWYyRktiOUYwMkZ3NVViWFhF?=
+ =?utf-8?B?bUcxS094amlRcy9ib3kzNk9TdWJTL2J4dk13S0d5N0VWN2o5d0x0WURzNmg3?=
+ =?utf-8?B?YlVKY3A1Zy9MWHo0dDZYazBsZzU2SHIvQmgyRXB0bDcyd2JtQVVvdmVvRGRB?=
+ =?utf-8?B?L1ZtRDhKMWNKL1g5QnErdEpTMFE4ZWdGVnQrNFRJVkthdTB2T2VFbEZwbk5L?=
+ =?utf-8?B?Tjdta08wV0RvUmduaXhaTE5OVWVpRkRNTkliVTd3bVk3L2JDRUN6QVNZREVG?=
+ =?utf-8?B?WktTNFg2MitIS2tOWDRsL2J2TXI2c3h2U3pSb1pEV3dZazB5YjRESG5vNmxr?=
+ =?utf-8?B?ck9YMzBLellWcDFrcmxUTG54SFZ5NU1mYzYwRm91MzFIbTUyRHUyanU2eHla?=
+ =?utf-8?B?bXkzVFI4clRVOWtHV1JsdGgwOXhLRWtDR1c3aWU4UHR3dTZYK1MyVER5cXcy?=
+ =?utf-8?B?L3U0cnpzRFZnOElFcTd5c0Z4ZXhpQkdXU1NDNEhueHozc1FMeHZjbEtmWHBV?=
+ =?utf-8?B?S1B3MTNXUEJQQm5LOHEvSXBpMnRHd0dNMlZYemJMb3dUZ2JEL2NhZjBNVDVY?=
+ =?utf-8?B?VVpWU1UzQ0hsQk5FY1hVZUh2NHNRUEU3cC92MG1xTWJvL2VRamx5M2RSRHgy?=
+ =?utf-8?B?RGFWRnF4UHZ1TDdXczhHR2JnTUZTZ2hCZHFCblEwU253RXR5L0JYblNLUVJz?=
+ =?utf-8?B?UVJmTGR1MUQwa3lHOXNjM3kveEgwcVZnQXNjUkZOSExKRWx5cUkxZWt3OFYx?=
+ =?utf-8?B?ZzNLVnphZlU2eFNxSkpmWWNVTFdwSzI0VGREUTRqTnNmMy9Ic0R1RGE3eXV3?=
+ =?utf-8?B?bnRqOGY5R2Fkbk92c0U1QWJSUjBiV2t3SnI3VHh1bDBWVEllRmVkM29qaW44?=
+ =?utf-8?B?d1lZbEZpVklmL3hqVjVmZjdsQkZYTUJGZWt1eHFhVW04MGNsQWhLclczZ2F5?=
+ =?utf-8?B?cVp2YmJJQ1N5V3UrTFFhaGw5T2s0aU4xbWs5dWhPeVpveS9JbXo0eUpxQXZi?=
+ =?utf-8?B?MVg4bkRLUVUvVUtPTXllMEFHN1VFRXd1eXlrTmhjbVVJYmZhZHd0K0lDOGRE?=
+ =?utf-8?B?WjVTeCtzOVdoWTI4blJIbndnK3I3ZXdWOXgxaTVSLzRrOVl1K2sraDVmOFZ4?=
+ =?utf-8?B?L25rbkZLMmhIcjRRSWRuOHBBNDNDeGNmbHQyRzdVd0h6YWJGM1J4VzZTZjJB?=
+ =?utf-8?B?Z1J1U280UDVScVM5ajEwUzAwbWRKMEw2cGJJUmVYaXVUK2Mxam1PRy9rZ0p4?=
+ =?utf-8?B?N3Q2ZGdkeG5hQm9uUDVnZm53R1RlZ3FmZG01UkdNUUpya09nMVh3cS9XMUM2?=
+ =?utf-8?B?OEEyR0dxY2pxVXRzUmNCV1Z6SEZMWFFoeHRIVi9RdUR5SVB0T0dJczc3czRl?=
+ =?utf-8?B?dzBkN0xSRU4ya00vbFBDOW1qWGJMVVE3VGtSeFhrc0RKWHMvM2dYK2VHY1M0?=
+ =?utf-8?B?K3NMNXJUQVFZS3l6OHlmSm14K1VLRWRpWkdOT0lETU1Ya1dWWWNtbFhqMjFQ?=
+ =?utf-8?B?TWxPaTQzSXBjdjhTL1BzVnBqeEJoSFgyUlE0TXVUWisrRWsrVk53WU9zaitt?=
+ =?utf-8?B?QTdiNTdYY1RjNUFBc3FEQzBWdlFxU2hOY1BEU1liVHFjRWtibGhnOUNSVkFx?=
+ =?utf-8?B?ZXJlNVkzU000aEtKVHp3U2JjMVIxdmQ5djkxQTRqZG82YUE9PQ==?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2024 16:44:48.6931 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b091cd64-1fe3-4382-af4a-08dceecb03b4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD7C.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7632
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -191,263 +138,269 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 17, 2024 at 09:59:10AM +0200, Christian König wrote:
-> Am 17.10.24 um 04:47 schrieb Raag Jadav:
-> > On Mon, Sep 30, 2024 at 01:08:41PM +0530, Raag Jadav wrote:
-> > > Introduce device wedged event, which will notify userspace of wedged
-> > > (hanged/unusable) state of the DRM device through a uevent. This is
-> > > useful especially in cases where the device is no longer operating as
-> > > expected even after a hardware reset and has become unrecoverable from
-> > > driver context.
-> 
-> Well introduce is probably the wrong wording since i915 already has that and
-> amdgpu looked into it but never upstreamed the support.
+This commit adds the cleaner shader microcode for GFX9.4.2 GPUs. The
+cleaner shader is a piece of GPU code that is used to clear or
+initialize certain GPU resources, such as Local Data Share (LDS), Vector
+General Purpose Registers (VGPRs), and Scalar General Purpose Registers
+(SGPRs).
 
-in i915 we have the reset and error uevents, but not one specific for 'wedge'.
-This would indeed be a new one.
+Clearing these resources is important for ensuring data isolation
+between different workloads running on the GPU. Without the cleaner
+shader, residual data from a previous workload could potentially be
+accessed by a subsequent workload, leading to data leaks and incorrect
+computation results.
 
-> 
-> I would rather say standardize.
-> 
-> > > 
-> > > Purpose of this implementation is to provide drivers a generic way to
-> > > recover with the help of userspace intervention. Different drivers may
-> > > have different ideas of a "wedged device" depending on their hardware
-> > > implementation, and hence the vendor agnostic nature of the event.
-> > > It is up to the drivers to decide when they see the need for recovery
-> > > and how they want to recover from the available methods.
-> > > 
-> > > Current implementation defines three recovery methods, out of which,
-> > > drivers can choose to support any one or multiple of them. Preferred
-> > > recovery method will be sent in the uevent environment as WEDGED=<method>.
-> > > Userspace consumers (sysadmin) can define udev rules to parse this event
-> > > and take respective action to recover the device.
-> > > 
-> > >      =============== ==================================
-> > >      Recovery method Consumer expectations
-> > >      =============== ==================================
-> > >      rebind          unbind + rebind driver
-> > >      bus-reset       unbind + reset bus device + rebind
-> > >      reboot          reboot system
-> > >      =============== ==================================
-> 
-> Well that sounds like userspace would need to be involved in recovery.
-> 
-> That in turn is a complete no-go since we at least need to signal all
-> dma_fences to unblock the kernel. In other words things like bus reset needs
-> to happen inside the kernel and *not* in userspace.
-> 
-> What we can do is to signal to userspace: Hey a bus reset of device X
-> happened, maybe restart container, daemon, whatever service which was using
-> this device.
+The cleaner shader microcode is represented as an array of 32-bit words
+(`gfx_9_4_2_cleaner_shader_hex`). This array is the binary
+representation of the cleaner shader code, which is written in a
+low-level GPU instruction set.
 
-Well, when we declare device 'wedged' it is because we don't want to take
-any drastic measures inside the kernel and want to leave it in a protected
-and unusable state. In a way that users wouldn't lose display for instance,
-or at least the device is in a debugable state.
+When the cleaner shader feature is enabled, the AMDGPU driver loads this
+array into a specific location in the GPU memory. The GPU then reads
+this memory location to fetch and execute the cleaner shader
+instructions.
 
-Then, the instructions here is to tell what could possibly be attempted
-from userspace to get the device to an usable state.
+The cleaner shader is executed automatically by the GPU at the end of
+each workload, before the next workload starts. This ensures that all
+GPU resources are in a clean state before the start of each workload.
 
-The 'wedge' mode (the one emiting this uevent) needs to be responsible
-for signaling all the fences and everything needed for a clean unbind
-and whatever next step might be indicated to userspace.
+This addition is part of the cleaner shader feature implementation. The
+cleaner shader feature helps resource utilization by cleaning up GPU
+resources after they are used. It also enhances security and reliability
+by preventing data leaks between workloads.
 
-That should already be part of any wedged mode, regardless the uevent
-to inform the userspace here.
+Cc: Christian KÃ¶nig <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Suggested-by: Alex Deucher <alexander.deucher@amd.com>
+---
+v2:
+  - Reordered the patches 1 & 2 (Alex)
+  - Updated comments to "// Note: original source code from SQ team"
+    (Alex)
 
-> 
-> Regards,
-> Christian.
-> 
-> > > 
-> > > v4: s/drm_dev_wedged/drm_dev_wedged_event
-> > >      Use drm_info() (Jani)
-> > >      Kernel doc adjustment (Aravind)
-> > > v5: Send recovery method with uevent (Lina)
-> > > v6: Access wedge_recovery_opts[] using helper function (Jani)
-> > >      Use snprintf() (Jani)
-> > > v7: Convert recovery helpers into regular functions (Andy, Jani)
-> > >      Aesthetic adjustments (Andy)
-> > >      Handle invalid method cases
-> > > 
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > ---
-> > Cc'ing amd, collabora and others as I found semi-related work at
-> > 
-> > https://lore.kernel.org/dri-devel/20230627132323.115440-1-andrealmeid@igalia.com/
-> > https://lore.kernel.org/amd-gfx/20240725150055.1991893-1-alexander.deucher@amd.com/
-> > https://lore.kernel.org/dri-devel/20241011225906.3789965-3-adrian.larumbe@collabora.com/
-> > https://lore.kernel.org/amd-gfx/CAAxE2A5v_RkZ9ex4=7jiBSKVb22_1FAj0AANBcmKtETt5c3gVA@mail.gmail.com/
-> > 
-> > 
-> > Please share feedback about usefulness and adoption of this.
-> > Improvements are welcome.
-> > 
-> > Raag
-> > 
-> > >   drivers/gpu/drm/drm_drv.c | 77 +++++++++++++++++++++++++++++++++++++++
-> > >   include/drm/drm_device.h  | 23 ++++++++++++
-> > >   include/drm/drm_drv.h     |  3 ++
-> > >   3 files changed, 103 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > > index ac30b0ec9d93..cfe9600da2ee 100644
-> > > --- a/drivers/gpu/drm/drm_drv.c
-> > > +++ b/drivers/gpu/drm/drm_drv.c
-> > > @@ -26,6 +26,8 @@
-> > >    * DEALINGS IN THE SOFTWARE.
-> > >    */
-> > > +#include <linux/array_size.h>
-> > > +#include <linux/build_bug.h>
-> > >   #include <linux/debugfs.h>
-> > >   #include <linux/fs.h>
-> > >   #include <linux/module.h>
-> > > @@ -33,6 +35,7 @@
-> > >   #include <linux/mount.h>
-> > >   #include <linux/pseudo_fs.h>
-> > >   #include <linux/slab.h>
-> > > +#include <linux/sprintf.h>
-> > >   #include <linux/srcu.h>
-> > >   #include <linux/xarray.h>
-> > > @@ -70,6 +73,42 @@ static struct dentry *drm_debugfs_root;
-> > >   DEFINE_STATIC_SRCU(drm_unplug_srcu);
-> > > +/*
-> > > + * Available recovery methods for wedged device. To be sent along with device
-> > > + * wedged uevent.
-> > > + */
-> > > +static const char *const drm_wedge_recovery_opts[] = {
-> > > +	[DRM_WEDGE_RECOVERY_REBIND] = "rebind",
-> > > +	[DRM_WEDGE_RECOVERY_BUS_RESET] = "bus-reset",
-> > > +	[DRM_WEDGE_RECOVERY_REBOOT] = "reboot",
-> > > +};
-> > > +
-> > > +static bool drm_wedge_recovery_is_valid(enum drm_wedge_recovery method)
-> > > +{
-> > > +	static_assert(ARRAY_SIZE(drm_wedge_recovery_opts) == DRM_WEDGE_RECOVERY_MAX);
-> > > +
-> > > +	return method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX;
-> > > +}
-> > > +
-> > > +/**
-> > > + * drm_wedge_recovery_name - provide wedge recovery name
-> > > + * @method: method to be used for recovery
-> > > + *
-> > > + * This validates wedge recovery @method against the available ones in
-> > > + * drm_wedge_recovery_opts[] and provides respective recovery name in string
-> > > + * format if found valid.
-> > > + *
-> > > + * Returns: pointer to const recovery string on success, NULL otherwise.
-> > > + */
-> > > +const char *drm_wedge_recovery_name(enum drm_wedge_recovery method)
-> > > +{
-> > > +	if (drm_wedge_recovery_is_valid(method))
-> > > +		return drm_wedge_recovery_opts[method];
-> > > +
-> > > +	return NULL;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_wedge_recovery_name);
-> > > +
-> > >   /*
-> > >    * DRM Minors
-> > >    * A DRM device can provide several char-dev interfaces on the DRM-Major. Each
-> > > @@ -497,6 +536,44 @@ void drm_dev_unplug(struct drm_device *dev)
-> > >   }
-> > >   EXPORT_SYMBOL(drm_dev_unplug);
-> > > +/**
-> > > + * drm_dev_wedged_event - generate a device wedged uevent
-> > > + * @dev: DRM device
-> > > + * @method: method to be used for recovery
-> > > + *
-> > > + * This generates a device wedged uevent for the DRM device specified by @dev.
-> > > + * Recovery @method from drm_wedge_recovery_opts[] (if supprted by the device)
-> > > + * is sent in the uevent environment as WEDGED=<method>, on the basis of which,
-> > > + * userspace may take respective action to recover the device.
-> > > + *
-> > > + * Returns: 0 on success, or negative error code otherwise.
-> > > + */
-> > > +int drm_dev_wedged_event(struct drm_device *dev, enum drm_wedge_recovery method)
-> > > +{
-> > > +	/* Event string length up to 16+ characters with available methods */
-> > > +	char event_string[32] = {};
-> > > +	char *envp[] = { event_string, NULL };
-> > > +	const char *recovery;
-> > > +
-> > > +	recovery = drm_wedge_recovery_name(method);
-> > > +	if (!recovery) {
-> > > +		drm_err(dev, "device wedged, invalid recovery method %d\n", method);
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	if (!test_bit(method, &dev->wedge_recovery)) {
-> > > +		drm_err(dev, "device wedged, %s based recovery not supported\n",
-> > > +			drm_wedge_recovery_name(method));
-> > > +		return -EOPNOTSUPP;
-> > > +	}
-> > > +
-> > > +	snprintf(event_string, sizeof(event_string), "WEDGED=%s", recovery);
-> > > +
-> > > +	drm_info(dev, "device wedged, generating uevent for %s based recovery\n", recovery);
-> > > +	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_dev_wedged_event);
-> > > +
-> > >   /*
-> > >    * DRM internal mount
-> > >    * We want to be able to allocate our own "struct address_space" to control
-> > > diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> > > index c91f87b5242d..fed6f20e52fb 100644
-> > > --- a/include/drm/drm_device.h
-> > > +++ b/include/drm/drm_device.h
-> > > @@ -40,6 +40,26 @@ enum switch_power_state {
-> > >   	DRM_SWITCH_POWER_DYNAMIC_OFF = 3,
-> > >   };
-> > > +/**
-> > > + * enum drm_wedge_recovery - Recovery method for wedged device in order of
-> > > + * severity. To be set as bit fields in drm_device.wedge_recovery variable.
-> > > + * Drivers can choose to support any one or multiple of them depending on
-> > > + * their needs.
-> > > + */
-> > > +enum drm_wedge_recovery {
-> > > +	/** @DRM_WEDGE_RECOVERY_REBIND: unbind + rebind driver */
-> > > +	DRM_WEDGE_RECOVERY_REBIND,
-> > > +
-> > > +	/** @DRM_WEDGE_RECOVERY_BUS_RESET: unbind + reset bus device + rebind */
-> > > +	DRM_WEDGE_RECOVERY_BUS_RESET,
-> > > +
-> > > +	/** @DRM_WEDGE_RECOVERY_REBOOT: reboot system */
-> > > +	DRM_WEDGE_RECOVERY_REBOOT,
-> > > +
-> > > +	/** @DRM_WEDGE_RECOVERY_MAX: for bounds checking, do not use */
-> > > +	DRM_WEDGE_RECOVERY_MAX
-> > > +};
-> > > +
-> > >   /**
-> > >    * struct drm_device - DRM device structure
-> > >    *
-> > > @@ -317,6 +337,9 @@ struct drm_device {
-> > >   	 * Root directory for debugfs files.
-> > >   	 */
-> > >   	struct dentry *debugfs_root;
-> > > +
-> > > +	/** @wedge_recovery: Supported recovery methods for wedged device */
-> > > +	unsigned long wedge_recovery;
-> > >   };
-> > >   #endif
-> > > diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> > > index 02ea4e3248fd..d8dbc77010b0 100644
-> > > --- a/include/drm/drm_drv.h
-> > > +++ b/include/drm/drm_drv.h
-> > > @@ -462,6 +462,9 @@ bool drm_dev_enter(struct drm_device *dev, int *idx);
-> > >   void drm_dev_exit(int idx);
-> > >   void drm_dev_unplug(struct drm_device *dev);
-> > > +const char *drm_wedge_recovery_name(enum drm_wedge_recovery method);
-> > > +int drm_dev_wedged_event(struct drm_device *dev, enum drm_wedge_recovery method);
-> > > +
-> > >   /**
-> > >    * drm_dev_is_unplugged - is a DRM device unplugged
-> > >    * @dev: DRM device
-> > > -- 
-> > > 2.34.1
-> > > 
-> 
+ .../drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h  |  44 ++++-
+ .../amd/amdgpu/gfx_v9_4_2_cleaner_shader.asm  | 153 ++++++++++++++++++
+ 2 files changed, 196 insertions(+), 1 deletion(-)
+ create mode 100755 drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2_cleaner_shader.asm
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h
+index 36c0292b5110..0b6bd09b7529 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: MIT */
+ /*
+- * Copyright 2018 Advanced Micro Devices, Inc.
++ * Copyright 2024 Advanced Micro Devices, Inc.
+  *
+  * Permission is hereby granted, free of charge, to any person obtaining a
+  * copy of this software and associated documentation files (the "Software"),
+@@ -24,3 +24,45 @@
+ static const u32 __maybe_unused gfx_9_0_cleaner_shader_hex[] = {
+ 	/* Add the cleaner shader code here */
+ };
++
++/* Define the cleaner shader gfx_9_4_2 */
++static const u32 gfx_9_4_2_cleaner_shader_hex[] = {
++	0xbf068100, 0xbf84003b,
++	0xbf8a0000, 0xb07c0000,
++	0xbe8200ff, 0x00000078,
++	0xbf110802, 0x7e000280,
++	0x7e020280, 0x7e040280,
++	0x7e060280, 0x7e080280,
++	0x7e0a0280, 0x7e0c0280,
++	0x7e0e0280, 0x80828802,
++	0xbe803202, 0xbf84fff5,
++	0xbf9c0000, 0xbe8200ff,
++	0x80000000, 0x86020102,
++	0xbf840011, 0xbefe00c1,
++	0xbeff00c1, 0xd28c0001,
++	0x0001007f, 0xd28d0001,
++	0x0002027e, 0x10020288,
++	0xbe8200bf, 0xbefc00c1,
++	0xd89c2000, 0x00020201,
++	0xd89c6040, 0x00040401,
++	0x320202ff, 0x00000400,
++	0x80828102, 0xbf84fff8,
++	0xbefc00ff, 0x0000005c,
++	0xbf800000, 0xbe802c80,
++	0xbe812c80, 0xbe822c80,
++	0xbe832c80, 0x80fc847c,
++	0xbf84fffa, 0xbee60080,
++	0xbee70080, 0xbeea0180,
++	0xbeec0180, 0xbeee0180,
++	0xbef00180, 0xbef20180,
++	0xbef40180, 0xbef60180,
++	0xbef80180, 0xbefa0180,
++	0xbf810000, 0xbf8d0001,
++	0xbefc00ff, 0x0000005c,
++	0xbf800000, 0xbe802c80,
++	0xbe812c80, 0xbe822c80,
++	0xbe832c80, 0x80fc847c,
++	0xbf84fffa, 0xbee60080,
++	0xbee70080, 0xbeea01ff,
++	0x000000ee, 0xbf810000,
++};
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2_cleaner_shader.asm b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2_cleaner_shader.asm
+new file mode 100755
+index 000000000000..ebc64cb6c7c9
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2_cleaner_shader.asm
+@@ -0,0 +1,153 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright 2024 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ */
++
++// This shader is to clean LDS, SGPRs and VGPRs. It is  first 64 Dwords or 256 bytes of 192 Dwords cleaner shader.
++//To turn this shader program on for complitaion change this to main and lower shader main to main_1
++ 
++// MI200 : Clear SGPRs, VGPRs and LDS
++//   Uses two kernels launched separately:
++//   1. Clean VGPRs, LDS, and lower SGPRs
++//        Launches one workgroup per CU, each workgroup with 4x wave64 per SIMD in the CU
++//        Waves are "wave64" and have 128 VGPRs each, which uses all 512 VGPRs per SIMD
++//        Waves in the workgroup share the 64KB of LDS
++//        Each wave clears SGPRs 0 - 95. Because there are 4 waves/SIMD, this is physical SGPRs 0-383
++//        Each wave clears 128 VGPRs, so all 512 in the SIMD
++//        The first wave of the workgroup clears its 64KB of LDS
++//        The shader starts with "S_BARRIER" to ensure SPI has launched all waves of the workgroup
++//          before any wave in the workgroup could end.  Without this, it is possible not all SGPRs get cleared.
++//    2. Clean remaining SGPRs
++//        Launches a workgroup with 24 waves per workgroup, yielding 6 waves per SIMD in each CU
++//        Waves are allocating 96 SGPRs
++//          CP sets up SPI_RESOURCE_RESERVE_* registers to prevent these waves from allocating SGPRs 0-223.
++//          As such, these 6 waves per SIMD are allocated physical SGPRs 224-799
++//        Barriers do not work for >16 waves per workgroup, so we cannot start with S_BARRIER
++//          Instead, the shader starts with an S_SETHALT 1. Once all waves are launched CP will send unhalt command
++//        The shader then clears all SGPRs allocated to it, cleaning out physical SGPRs 224-799
++ 
++shader main
++  asic(MI200)
++  type(CS)
++  wave_size(64)
++// Note: original source code from SQ team
++
++//   (theorhetical fastest = ~512clks vgpr + 1536 lds + ~128 sgpr  = 2176 clks)
++
++  s_cmp_eq_u32 s0, 1                                // Bit0 is set, sgpr0 is set then clear VGPRS and LDS as FW set COMPUTE_USER_DATA_3
++  s_cbranch_scc0  label_0023                        // Clean VGPRs and LDS if sgpr0 of wave is set, scc = (s3 == 1)
++  S_BARRIER
++
++  s_movk_i32    m0, 0x0000
++  s_mov_b32     s2, 0x00000078  // Loop 128/8=16 times  (loop unrolled for performance)
++  //
++  // CLEAR VGPRs
++  //
++  s_set_gpr_idx_on  s2, 0x8    // enable Dest VGPR indexing
++label_0005:
++  v_mov_b32     v0, 0
++  v_mov_b32     v1, 0
++  v_mov_b32     v2, 0
++  v_mov_b32     v3, 0
++  v_mov_b32     v4, 0
++  v_mov_b32     v5, 0
++  v_mov_b32     v6, 0
++  v_mov_b32     v7, 0
++  s_sub_u32     s2, s2, 8
++  s_set_gpr_idx_idx  s2
++  s_cbranch_scc0  label_0005
++  s_set_gpr_idx_off
++ 
++  //
++  //
++ 
++  s_mov_b32     s2, 0x80000000                      // Bit31 is first_wave
++  s_and_b32     s2, s2, s1                          // sgpr0 has tg_size (first_wave) term as in ucode only COMPUTE_PGM_RSRC2.tg_size_en is set
++  s_cbranch_scc0  label_clean_sgpr_1                // Clean LDS if its first wave of ThreadGroup/WorkGroup
++  // CLEAR LDS
++  //
++  s_mov_b32 exec_lo, 0xffffffff
++  s_mov_b32 exec_hi, 0xffffffff
++  v_mbcnt_lo_u32_b32  v1, exec_hi, 0          // Set V1 to thread-ID (0..63)
++  v_mbcnt_hi_u32_b32  v1, exec_lo, v1         // Set V1 to thread-ID (0..63)
++  v_mul_u32_u24  v1, 0x00000008, v1           // * 8, so each thread is a double-dword address (8byte)
++  s_mov_b32     s2, 0x00000003f               // 64 loop iteraions
++  s_mov_b32     m0, 0xffffffff
++  // Clear all of LDS space
++  // Each FirstWave of WorkGroup clears 64kbyte block
++ 
++label_001F:
++  ds_write2_b64  v1, v[2:3], v[2:3] offset1:32
++  ds_write2_b64  v1, v[4:5], v[4:5] offset0:64 offset1:96
++  v_add_co_u32     v1, vcc, 0x00000400, v1
++  s_sub_u32     s2, s2, 1
++  s_cbranch_scc0  label_001F
++  //
++  // CLEAR SGPRs
++  //
++label_clean_sgpr_1:
++  s_mov_b32     m0, 0x0000005c   // Loop 96/4=24 times  (loop unrolled for performance)
++  s_nop 0
++label_sgpr_loop:
++  s_movreld_b32     s0, 0
++  s_movreld_b32     s1, 0
++  s_movreld_b32     s2, 0
++  s_movreld_b32     s3, 0
++  s_sub_u32         m0, m0, 4
++  s_cbranch_scc0  label_sgpr_loop
++ 
++  //clear vcc, flat scratch
++  s_mov_b32 flat_scratch_lo, 0   //clear  flat scratch lo SGPR 
++  s_mov_b32 flat_scratch_hi, 0   //clear  flat scratch hi SGPR 
++  s_mov_b64 vcc, 0               //clear vcc
++  s_mov_b64 ttmp0, 0             //Clear ttmp0 and ttmp1 
++  s_mov_b64 ttmp2, 0             //Clear ttmp2 and ttmp3 
++  s_mov_b64 ttmp4, 0             //Clear ttmp4 and ttmp5 
++  s_mov_b64 ttmp6, 0             //Clear ttmp6 and ttmp7 
++  s_mov_b64 ttmp8, 0             //Clear ttmp8 and ttmp9 
++  s_mov_b64 ttmp10, 0            //Clear ttmp10 and ttmp11 
++  s_mov_b64 ttmp12, 0            //Clear ttmp12 and ttmp13 
++  s_mov_b64 ttmp14, 0            //Clear ttmp14 and ttmp15 
++s_endpgm
++
++label_0023:
++
++  s_sethalt 1
++
++  s_mov_b32     m0, 0x0000005c   // Loop 96/4=24 times  (loop unrolled for performance)
++  s_nop 0
++label_sgpr_loop1:
++
++  s_movreld_b32     s0, 0
++  s_movreld_b32     s1, 0
++  s_movreld_b32     s2, 0
++  s_movreld_b32     s3, 0
++  s_sub_u32         m0, m0, 4
++  s_cbranch_scc0  label_sgpr_loop1
++ 
++  //clear vcc, flat scratch
++  s_mov_b32 flat_scratch_lo, 0   //clear  flat scratch lo SGPR 
++  s_mov_b32 flat_scratch_hi, 0   //clear  flat scratch hi SGPR 
++  s_mov_b64 vcc, 0xee            //clear vcc
++
++s_endpgm
++end  
++  
+-- 
+2.34.1
+
