@@ -2,143 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A36459A343E
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Oct 2024 07:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 777349A3745
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Oct 2024 09:35:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C209B10E364;
-	Fri, 18 Oct 2024 05:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0F310E8B1;
+	Fri, 18 Oct 2024 07:35:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="aumnVYBS";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AfYLf3QO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2083.outbound.protection.outlook.com [40.107.223.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51DEF10E364
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Oct 2024 05:31:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BIjy16zs2IFrV7FHEsWBeqbJbHAVtQI1uH3LKoClrQMDsGEMtO7I+BWSB3nAowuhERtPo99y+L2l4G81dHC/Hz7k3QwzVLtfRY9xwXI+2eOxmCkRZ/sZe9zNA0z2qf94Pmoh2QAyJE0QSrrM0kddsAxyNnapMBgFyCjGWojpOb66OAqyr+hevQe9qqmqgQCJWCte36GefkN54/mhLS+RdOzrrgQ6xJDlSjaQwVvcYkEtO646HwKk5J4bwMicSkgDcH1CRIuH/TYOyFLlU93Px7yfWUf5knfqUsuKYLtRvEdFvQXGcBm3PAb/XaetBkqMbik5cAYi9lpoJGaaJ4cKUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+lGUFPjD4qOnV1YPLdBzGEM55z3c/m81Pq1D3ekQrqc=;
- b=kLGrbR8x9bYfuKUTYdXZnM1+2K5YDawqfmoh6xGplgxrtWYQrcMMs5YcGdmY8K4i2WImruS+zyoY67y24FB0Fv1sAeLtoxb2AuUIV2CUkppBux3nVFsOV8SKtRh8yceSES8Iiq4+zYN0cy5XbCVpIpHV+aE9yVC4+HqUSHdhIpy7X/9gOBcdIIKp3qkwrNG0VF4FbTQFFjjI0eibBzSwQ3jNw1HhP1Se7Bl7Ze1yLxtF0mLu6NLKA48bq/rj4keLXglulTUjzk5Gkf9uupoJpGrkKp0t/WbFrn+XB22ZpwlEM69ZoeizaRPFR1PtXEDUg1XELZGMErc9RcsRVraTZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+lGUFPjD4qOnV1YPLdBzGEM55z3c/m81Pq1D3ekQrqc=;
- b=aumnVYBSOM8StbuR7kkAaHCtWWZddCBU+w4rDP/W9XEHTA2X2J5ZcDO5H2/VG3OhfwX4nLc+QzCUB1yUOYdH0Mj6VUzgacT7rfGu8FZ00+QhP3NZOfi0Mpl2bQDFsB9OZvXiadfjrNMrne2VdDzK9wQksiW8vxfYDdrJsr8l6R0=
-Received: from DM6PR12MB4340.namprd12.prod.outlook.com (2603:10b6:5:2a8::7) by
- LV2PR12MB5775.namprd12.prod.outlook.com (2603:10b6:408:179::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.18; Fri, 18 Oct
- 2024 05:31:07 +0000
-Received: from DM6PR12MB4340.namprd12.prod.outlook.com
- ([fe80::bcdd:c459:3f9:5bb4]) by DM6PR12MB4340.namprd12.prod.outlook.com
- ([fe80::bcdd:c459:3f9:5bb4%4]) with mapi id 15.20.8069.020; Fri, 18 Oct 2024
- 05:31:06 +0000
-From: "Zhao, Victor" <Victor.Zhao@amd.com>
-To: "Zhao, Victor" <Victor.Zhao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdkfd: fix the hang caused by the write reorder to
- fence_addr
-Thread-Topic: [PATCH] drm/amdkfd: fix the hang caused by the write reorder to
- fence_addr
-Thread-Index: AQHbIG98KT+by9y8V0y4SUCwBjXTdLKL/Kqw
-Date: Fri, 18 Oct 2024 05:31:06 +0000
-Message-ID: <DM6PR12MB434046E7907D855106E4475DFA402@DM6PR12MB4340.namprd12.prod.outlook.com>
-References: <20241017083457.183631-1-Victor.Zhao@amd.com>
-In-Reply-To: <20241017083457.183631-1-Victor.Zhao@amd.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=7a85212e-c79d-421b-a9d3-4768edf4fcde;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-10-18T05:29:57Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR12MB4340:EE_|LV2PR12MB5775:EE_
-x-ms-office365-filtering-correlation-id: 337ace8b-8c1b-4d26-326b-08dcef3610cc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?IOT7QqVl/eB1bnaJx1LAtktKFTQkHmunbhFLlaMrH8q9a/tL236qBgokv4we?=
- =?us-ascii?Q?XKXwUwKAWo9+b6Pmcv+R/J2MwvH9zHKNuVrdiDG6qS3jOHxaeRdn6I/C3+yt?=
- =?us-ascii?Q?NZ8KvEjL4bE6Yb3xxGbjqOX9UzI/pqX4YfOmjSFOn4VGHrUmJzWQf4NyTcyd?=
- =?us-ascii?Q?TaHZmjirFrIaeoi4TkaVJfgA77GKZtMOaWs54QtSrPKCn0bkXZgqPowC1pEq?=
- =?us-ascii?Q?lak+1jPt/oqt/JfxHv4v6FVXOMDw815Yze+JSB1K/TEVFk07i0FIEwt/dTUh?=
- =?us-ascii?Q?lUwt08rakdIw8Zpabw1N8z8/7f4W1PeguWsQadMi67ac5oL3zS2Wx28Gc5Ok?=
- =?us-ascii?Q?9Ay1JMVRwyEfmeg1KA5wSfDMVG5BHWHdAqRSBZRjbuzvr5tG2bhySGydxeSO?=
- =?us-ascii?Q?9kPF3QCsjCEQxn8JTkqSAXjH/GXNcHL7lf2uKFlRNNTYnt4HL+YQ2L07mp9Z?=
- =?us-ascii?Q?k/AMfFQJomzYZ48Ej1Cpyurz/OSu1renY+4LBSKqOeRt0QGNCbscH5sW+nCR?=
- =?us-ascii?Q?D6X1IdtmPfHwNmRxUt65eGmEEUL3nM6vj2+phtvA+Vt8BaR6vcfAArY7c+0m?=
- =?us-ascii?Q?yqcq/A1FLvgZvHlC8o+gN5x7h9gL+GTX/mxR/j13Qika8g7YGjas4wwMQgbS?=
- =?us-ascii?Q?WpWhguMlNxgYGW6ehZwFzhDsjPescjMUcko4tIvKMRhzAPljfGDBkmz6CdC9?=
- =?us-ascii?Q?8N7ABoNTVtUIKoWqdxsqTPpFs85dFXEJuOldybgDQAYpslZ7SeH5QGJYzHzY?=
- =?us-ascii?Q?VVDdLGxYHSQgN/2nbX7NrRYSJvE/gEFebGBXRYR9fQe1Bp0uvvzFMd8C8TEt?=
- =?us-ascii?Q?Q/onCLapJmQK4NFs93s1pQRAlhaz3z9z3nTRY6zWPpDWXd2nC5fojZu/Bexr?=
- =?us-ascii?Q?7UBdJdKCfyYXRSe5aSnvqXgGdxbGXb7Lyhn934zHL4fNwnWnWoAgsc7y7aDO?=
- =?us-ascii?Q?qwXY+ZOt05nw14pgTKbvKoyScpkf/bkGEbCG8tbGDtPhFRWNdBSF3Ue8Cq5B?=
- =?us-ascii?Q?sqqkwb6n6caMXPUGckVfAF/6b6x1YzLDNH8YqTun1ftpB5BnAq/VBNVNMk5e?=
- =?us-ascii?Q?YXNWjfmEaqD8GY836YhnVbrsqndw+i9EElJzFiH2TIoWLCH4BrtcYvp6cj39?=
- =?us-ascii?Q?5CKUug2nsxEV1/Gmyl/azCJl8F2nera8cAaVsV8ZZV0EaUwdhOJBL3WKXn/r?=
- =?us-ascii?Q?h+qEgrPQ7T45LFgaZ/M182AnQkfqw+Q0dozFWFlpOb7beMYiSRvT36dNo7Ai?=
- =?us-ascii?Q?ZwQfbwfDr/i1N3MqJw2sx5sNqf27wr2B85sFKFyFOH7ufBGZBUbycjc1g4Pg?=
- =?us-ascii?Q?D1kRW610Hsj5uDhgRO+G0dDnfRa8JUIj4zp/mUOiNpjxKszSiVHwvD+TXg7I?=
- =?us-ascii?Q?XU7hyoU=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4340.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?24W5TLQ/j+ndT4CUOnhKh1d5mfFPbEneKqXl2yF/5tnC1imIh2UjqCLp+A65?=
- =?us-ascii?Q?IJOgBlnu6XkWBC2Y4b+A59jh6fyWvDfpdjFOTqanuIUOCgxOYSaYS8mrpMRz?=
- =?us-ascii?Q?fr9AAKSJ7rFBJE1BSq95zNBRZvK/HdyY2FUg1GaVwXCihOH3thqkNivWKiXj?=
- =?us-ascii?Q?ZwrG4JJvHF0nVQjA9yOQ6tEKO5F4FeVzui+8jz3vpFtrTtG0K+PABFCNbBwt?=
- =?us-ascii?Q?LsJbJNblYHbJVcYeL2qck8/hQWEHJYhe85RVCpmdcF8j9NuXh7aGzExnd0dJ?=
- =?us-ascii?Q?Lo/MIxXRLeNZlzLcyagr/ln0ZbvN86mgkbA6EdGtaYZCFN72akB18aMtLgEU?=
- =?us-ascii?Q?N0cPN2n5NdSrdoRjzCOVtC9afew89wYAGGgM9z2JH7AQ7O6ShA3Nyv7hB1tU?=
- =?us-ascii?Q?UHAzSIG5G/dz8Frbrod3jzkcUGzSRm8dnBsuzaLTX/ah+drfGvgu7T37Srbq?=
- =?us-ascii?Q?3/udw7dNdt0yPhNYCRfVuwu7O3+FjdKrI6pzd8aD60E7IgayRWplmsU9HaqJ?=
- =?us-ascii?Q?+rCALjHI/4k9pdHMfAGY2AU//xKm5JS8+GVYcUmtU4zpRnFzsg3zfTvDPVIR?=
- =?us-ascii?Q?VxJ3yfH25/fSwKfGwyHrWwxb1FPZGYiiGx422Q/zj5HIwsTzUfv4LuqHD24d?=
- =?us-ascii?Q?mfwVOROFaMYjjXi+RqrUXGoT8Y+98rhOK5CbxUZEz968gdakB0NpgSt+oC8K?=
- =?us-ascii?Q?stIqKzZgX09y0etVRCRB+07+MkDfFymm5Y964rBTIMx0yqAIFRt5wCk+yxgx?=
- =?us-ascii?Q?s4WNc5rONmKL7rOo8R4KiKy9NPLAE/K4qVo/VuR8/NFt9V2UmrHz1Jt9oq0V?=
- =?us-ascii?Q?BVd0yaepFjtfjS3ImGpLN3wDlX2L8MedSI6B9Xd0wlHl030WH8xwWP0lbQos?=
- =?us-ascii?Q?VcpUfin1hw16Cx+DWU1MQu2WRqlBfjJTIaPQr3mXp0Pxp81WjSOL+x3L0LuR?=
- =?us-ascii?Q?f5MuJBBFe90RYWaRS1tRG0bpn5yf7oydcIMhCtlqSzqgVHyoCN1qbEeG76kW?=
- =?us-ascii?Q?PCHAbmdTC4DMd69ozwQDiTkxkMVYvrqNelx8UyHHE2tmHA7LrY5LObQjo1l6?=
- =?us-ascii?Q?vRSBmfPOPBY9PoxKeQZJ7NYaz/Kpq8q5ZGKYIMFh+XvXDx+30I2hGlJXSraR?=
- =?us-ascii?Q?QGmXg+YvEMXDv77nerjUC+TaJT1V9rzmBw2FKXQ08PEJgE6DwmtbMCUCHegs?=
- =?us-ascii?Q?gQ/XDaWN+fAYw30DU0Bk2QX6HkD7xztEICbJY08y/EmmlGElxmQYlwolS3CB?=
- =?us-ascii?Q?1Q4AgJZqnEmAzwx/fr3Kj0A482Vsshu92mmfh0+qnZxfs1q9whOS49lS9VCL?=
- =?us-ascii?Q?Xqvfd4DXoWye0HTOc5T52tW4BOyx6VgjI4vvvikZrjy7FGna5B00q5qX0E8n?=
- =?us-ascii?Q?b9opDFxcswlmdJEgp/JQ9sUVgcBrPwfWChvlBHI6eVa1KBFNiJ1kGOOAx02I?=
- =?us-ascii?Q?hWFJRdqr5Uqt0oUVpRpT1J0p06b3oQv6WPPmZnzL8K62pYewScUb/gaaWKVx?=
- =?us-ascii?Q?FtxdxvJl4fadKVOrqVvNO8IHG4TfP6i/rvRUybnk2SIh6tH1ClLX/E/3xL27?=
- =?us-ascii?Q?6fIsifrJKAKGdKaIUH8=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
+ [209.85.216.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68F5A10E1CF;
+ Thu, 17 Oct 2024 08:43:13 +0000 (UTC)
+Received: by mail-pj1-f53.google.com with SMTP id
+ 98e67ed59e1d1-2e2a999b287so558498a91.0; 
+ Thu, 17 Oct 2024 01:43:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1729154593; x=1729759393; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:from:content-language
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=yQAB3nnQ+Mdlc/tt0eBAd1ec+dzX44ggYry/kZq7/hI=;
+ b=AfYLf3QOsX9ZhB3XAQPYF12xh25nA9V5CgX3ujOXuwkDeIdtcRetx22Y76PVMkxdZQ
+ ULTI6C2nN9aKa6qCjdWQgx1ShMMXjOHwTF21HJvig0x+vLa9M/XI0H3O7Upu0e6Nhh65
+ MDD9BBWc/GJRGG9hB5X649MUlLkz2P69/aTzHsnT2EJaqusRxAWvAWWqpPiz4Y56+X7i
+ VEw39pmJ/5tfVdhjVTJ0LSDmgKbrzXbGGzpXNydq/mM3IH5KKynlHPNe4eeTKbOT3jbr
+ PKY2pktiADuOO3d3kYlbdZp0oMP3va3KzeaoxQIg0FFT7+Lu7IAF5j/Qx0jLMHz5DvxS
+ bVww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1729154593; x=1729759393;
+ h=content-transfer-encoding:cc:to:subject:from:content-language
+ :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=yQAB3nnQ+Mdlc/tt0eBAd1ec+dzX44ggYry/kZq7/hI=;
+ b=BY5RhF727T1qfV4cxzZIOb8PZ5F/n/zJuE+EZwrQuhU3EjaVNVgsndcIymqejxKzuV
+ uvUjsl69vXUjrEuzj3CWp5lWPX5tYNs3obhgfu530yKqGzRRqFZzKIGbK1gIx57b1WT8
+ 00tEOhz4ttFeoF1LHbBwb2ts9QpVRBkRERiv4xRNQxEB2pRrqAAtFgUibqu+7XHLlfHC
+ ZQqulIvYptp01FQyWjGUJ8MhSYVZ0t8u9tkSBama+dLPtUXsftbtNmteAvHQAiRbVZlH
+ hp1VLPUtzI45G1StuW6DjBgCSSlsG3MADoM0/DOh37yjnYXOaHEdwlF9c7oeOJzZcRca
+ q5Sg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX5Z5X4cvC3eQOwzLflgWQCfLHXfPTDGHQWlA1YfiZNJMbjZtUo/ThRRRAd0DSNg4KqJCNp2blsvjk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzoBBH3y6mbVrwq4x2GkGwvV2HEWmiiO5jAMnQRIEvAz7TAXEt4
+ ShgMQPGtiWpQ92wDaXsaUaEBCbaOX+6qxTel9as1mKV6M+2NKc0d
+X-Google-Smtp-Source: AGHT+IGyP031j7KiczoaeT0zkXTCu6uPPcWuYBfUrEHy6wZ3NZAs2wt8XjaAOno4+gv2ZLCwzZsYcA==
+X-Received: by 2002:a17:90a:d808:b0:2e2:d74f:65b5 with SMTP id
+ 98e67ed59e1d1-2e2f0ad1729mr23181386a91.16.1729154592825; 
+ Thu, 17 Oct 2024 01:43:12 -0700 (PDT)
+Received: from [192.168.1.101] (14-202-215-216.tpgi.com.au. [14.202.215.216])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-2e3e090756bsm1280567a91.50.2024.10.17.01.43.06
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 17 Oct 2024 01:43:12 -0700 (PDT)
+Message-ID: <65fe0dd4-e7bb-40d1-9b89-7b330984268a@gmail.com>
+Date: Thu, 17 Oct 2024 16:43:04 +0800
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4340.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 337ace8b-8c1b-4d26-326b-08dcef3610cc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2024 05:31:06.8559 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: E/UZuAg9ReJTzMpeeqEyWLLtKafUXt1Xfq36uN6tXvMWU3G+zE0+cWWScegRbruO
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5775
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+From: Tuo Li <islituo@gmail.com>
+Subject: [BUG] drm/amd/display: possible null-pointer dereference or redundant
+ null check in amdgpu_dm.c
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, simona@ffwll.ch, alex.hung@amd.com,
+ hamza.mahfooz@amd.com, Roman.Li@amd.com, chiahsuan.chung@amd.com,
+ aurabindo.pillai@amd.com, Wayne.Lin@amd.com, hersenxs.wu@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, baijiaju1990@gmail.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 18 Oct 2024 07:35:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,58 +88,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+Hello,
 
-Ping. Please help review.
+Our static analysis tool has identified a potential null-pointer dereference or
+redundant null check related to the wait-completion synchronization mechanism in
+amdgpu_dm.c in Linux 6.11.
 
-Thanks,
-Victor
+Consider the following execution scenario:
 
------Original Message-----
-From: Victor Zhao <Victor.Zhao@amd.com>
-Sent: Thursday, October 17, 2024 4:35 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhao, Victor <Victor.Zhao@amd.com>
-Subject: [PATCH] drm/amdkfd: fix the hang caused by the write reorder to fe=
-nce_addr
+  dmub_aux_setconfig_callback()      //731
+    if (adev->dm.dmub_notify)        //734
+    complete(&adev->dm.dmub_aux_transfer_done);  //737
 
-make sure KFD_FENCE_INIT write to fence_addr before pm_send_query_status ca=
-lled, to avoid qcm fence timeout caused by incorrect ordering.
+The variable adev->dm.dmub_notify is checked by an if statement at Line 734,
+which indicates that adev->dm.dmub_notify can NULL. Then, complete() is called
+at Line 737 which wakes up the wait_for_completion().
 
-Signed-off-by: Victor Zhao <Victor.Zhao@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 1 +  drivers/gpu/d=
-rm/amd/amdkfd/kfd_device_queue_manager.h | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+Consider the wait_for_completion()
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index b2b16a812e73..d9264a353775 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -2254,6 +2254,7 @@ static int unmap_queues_cpsch(struct device_queue_man=
-ager *dqm,
-                goto out;
+  amdgpu_dm_process_dmub_aux_transfer_sync()    //12271
+    p_notify = adev->dm.dmub_notify;            //12278
+    wait_for_completion_timeout(&adev->dm.dmub_aux_transfer_done, ...); // 12287
+    if (p_notify->result != AUX_RET_SUCCESS)    //12293
 
-        *dqm->fence_addr =3D KFD_FENCE_INIT;
-+       mb();
-        pm_send_query_status(&dqm->packet_mgr, dqm->fence_gpu_addr,
-                                KFD_FENCE_COMPLETED);
-        /* should be timed out */
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-index 09ab36f8e8c6..bddb169bb301 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-@@ -260,7 +260,7 @@ struct device_queue_manager {
-        uint16_t                vmid_pasid[VMID_NUM];
-        uint64_t                pipelines_addr;
-        uint64_t                fence_gpu_addr;
--       uint64_t                *fence_addr;
-+       volatile uint64_t       *fence_addr;
-        struct kfd_mem_obj      *fence_mem;
-        bool                    active_runlist;
-        int                     sched_policy;
---
-2.34.1
+The value of adev->dm.dmub_notify is assigned to p_notify at Line 12278. If
+adev->dm.dmub_notify at Line 734 is checked to be NULL, the value p_notify after
+the wait_for_completion_timeout() at Line 12278 can also be NULL. However, it is
+dereferenced at Line 12293 without rechecking, causing a possible null dereference.
+
+In fact, dmub_aux_setconfig_callback() is registered only if
+adev->dm.dmub_notify is checked to be not NULL:
+
+  adev->dm.dmub_notify = kzalloc(...);    //2006
+  if (!adev->dm.dmub_notify) {            //2007
+    ......
+    goto error;                           //2009
+  }                                       //2010
+  ......
+  register_dmub_notify_callback(..., dmub_aux_setconfig_callback, ...)  //2019
+
+I am not sure if adev->dm.dmub_notify is assigned with NULL elsewhere. If not,
+the if check at Line 734 can be redundant.
+Any feedback would be appreciated, thanks!
+
+Sincerely,
+Tuo Li
+
 
