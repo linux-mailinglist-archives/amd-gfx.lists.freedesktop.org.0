@@ -2,53 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF3C29A4E15
-	for <lists+amd-gfx@lfdr.de>; Sat, 19 Oct 2024 15:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D249A4E67
+	for <lists+amd-gfx@lfdr.de>; Sat, 19 Oct 2024 15:52:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECC0A10E295;
-	Sat, 19 Oct 2024 13:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E064810E25E;
+	Sat, 19 Oct 2024 13:52:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QPkph3RR";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="bSPoMted";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD5B210E0E1;
- Fri, 18 Oct 2024 15:39:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uAKgg0PK3Ns1x2j047c/B6AdWZAjNNefT0K3xPP74cw=; b=QPkph3RRLqyDXrExJ2lSKpUEvE
- rogiffyMTz+OK4bPc2OtBBLfWegHAJ+uSD7QoDsPizthMzgSTIeqWivBZlRug9GYov5Zsb37lgXIE
- pC1ioyo9emSBwDHbFYOHPdioYM6ykp2QfMuEOx2sInmVdpyNz04SE6WFsUhozXU0FfRL11c5HGfJP
- HyZoJn6UEXw+kFJB9f3AKqLh5ztPPHR+ozktDvkW2mk5wWpW9r2Kvp/KvKC881m+OkUzXKhocog/W
- K+yINRF7SLGSZeXNAe1ol0w6I3vYloujWg6jx68j5wTQvNA1z9Wz5EU8u5SnWhOXCwoEqSKYHZ+Y7
- p5S2zZHg==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1t1p4v-00C8S4-Sz; Fri, 18 Oct 2024 17:39:49 +0200
-Message-ID: <4d281aa4-1271-40bb-aa11-adc68b588a55@igalia.com>
-Date: Fri, 18 Oct 2024 16:39:49 +0100
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
+ [209.85.208.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E6B110E0EA
+ for <amd-gfx@lists.freedesktop.org>; Sat, 19 Oct 2024 13:52:15 +0000 (UTC)
+Received: by mail-lj1-f176.google.com with SMTP id
+ 38308e7fff4ca-2fb470a8b27so35789461fa.1
+ for <amd-gfx@lists.freedesktop.org>; Sat, 19 Oct 2024 06:52:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1729345934; x=1729950734; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=vQwmYNtzm3cZvNfpTYZFoEiYNHH4mYbWhA3IgVfwxn8=;
+ b=bSPoMtedn5f+zQiZucnMzvaVtLoZVgrZykBTyorsMiK8zYx9VUnL5OF56HR8pEWnDR
+ vaQwil2X9Le2syiBW9qVEBPKWwP3cPklnGsg5DLW4v4ltNbKBPcC0pB7QNNre5vXLZnp
+ gvGtck0cK9al3tnGZ0rwhQgP0bBBF7W6iRTfXnwKY0bNG4Iq0IXmMhaMh2m4x+byLG0F
+ 65RPDbfCxHFJh3wwMYHYOSBwOpMQtOsC2WTkjYlBeeXa7yKnIegdOTYbe4BuK2JTj41Y
+ nDlL7Yk4wv53zE3UwcAykVEy8xCi52slK1Y7GGn+f8KkYj25Jpzin+cw02h0yebmaSDK
+ AF1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1729345934; x=1729950734;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vQwmYNtzm3cZvNfpTYZFoEiYNHH4mYbWhA3IgVfwxn8=;
+ b=LrCvUJ6ndvMx6xVtRvXXTpFUqja8TmUXVjjpjcektcv1d/kLxBFWjVIe6hKws6hlKP
+ LoIshsmpXnPLMh9XL8S4ZIp0qsTxr1jljSXpwpeLlEVOMPB6e4mfFFruPCVjzwimiEuM
+ LuNVzlYr/TOKOAYO54IVgLlwo79EVQjX0R5xPqijjhJoP+5khaiz45eqVRPXMPnWK3as
+ jR+1W6GlZaRq7SD9NXOjOodUAcVBB5jcUoQD6yFfw25jHEQFnDLI0Js3e7qNPiYsh/VV
+ 6YoIYwhe89MQ6q2hmx528guSeIwnjUL2Z6yWsLXYPOpPjj9HYBajegdb9sFIGDjL7jTg
+ lSkQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVoX4bZRYknx4strdH5TLjursoFq6Ov8inINBzg8sSxfH+ydBcpMS4T/vBi0D8RI5z9mpf2JLH8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxT7cIfFb7U9jTjVPsiqR2QjSfTh0hPeg3s2aHVRkYUuv2rIxHP
+ dx0UHSNjV8bLY9ts0+lnlCSI7ap+jy1/vZjBvMWPYddiZs4rvRYMC21ipaBIyxM=
+X-Google-Smtp-Source: AGHT+IHtKTwuA/16eF7+hnpWDZ2rjnjnTyFtXBWks05kOqX6iBQ8/kSxxHlzDOwjU9qt3ITnAANufg==
+X-Received: by 2002:a05:6512:2210:b0:52c:ad70:6feb with SMTP id
+ 2adb3069b0e04-53a15b808bcmr1583655e87.20.1729345933627; 
+ Sat, 19 Oct 2024 06:52:13 -0700 (PDT)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-53a15211e36sm534215e87.283.2024.10.19.06.52.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 19 Oct 2024 06:52:13 -0700 (PDT)
+Date: Sat, 19 Oct 2024 16:52:11 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
+Subject: Re: [PATCH 11/28] drm/msm: Use video aperture helpers
+Message-ID: <nua5c3v4vxxqlhtozshhhw6u2fpnhjzmmnbnx7joknlzotm5yr@zbhplfbawmu4>
+References: <20240930130921.689876-1-tzimmermann@suse.de>
+ <20240930130921.689876-12-tzimmermann@suse.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] drm/amdgpu: make drm-memory-* report resident
- memory
-To: Yunxiang Li <Yunxiang.Li@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: Alexander.Deucher@amd.com, christian.koenig@amd.com
-References: <20241018133308.889-1-Yunxiang.Li@amd.com>
- <20241018133308.889-3-Yunxiang.Li@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20241018133308.889-3-Yunxiang.Li@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 19 Oct 2024 13:05:06 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240930130921.689876-12-tzimmermann@suse.de>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,76 +88,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 18/10/2024 14:33, Yunxiang Li wrote:
-> The old behavior reports the resident memory usage for this key and the
-> documentation say so as well. However this was accidentally changed to
-> include buffers that was evicted.
+On Mon, Sep 30, 2024 at 03:03:09PM +0200, Thomas Zimmermann wrote:
+> DRM's aperture functions have long been implemented as helpers
+> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
+> calling the video functions directly.
 > 
-> Fixes: a2529f67e2ed ("drm/amdgpu: Use drm_print_memory_stats helper from fdinfo")
-> Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Marijn Suijten <marijn.suijten@somainline.org>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c | 7 ++++---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 1 -
->   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h | 1 -
->   3 files changed, 4 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/msm/msm_kms.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> index 00a4ab082459f..8281dd45faaa0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> @@ -33,6 +33,7 @@
->   #include <drm/amdgpu_drm.h>
->   #include <drm/drm_debugfs.h>
->   #include <drm/drm_drv.h>
-> +#include <drm/drm_file.h>
->   
->   #include "amdgpu.h"
->   #include "amdgpu_vm.h"
-> @@ -95,11 +96,11 @@ void amdgpu_show_fdinfo(struct drm_printer *p, struct drm_file *file)
->   
->   	/* Legacy amdgpu keys, alias to drm-resident-memory-: */
->   	drm_printf(p, "drm-memory-vram:\t%llu KiB\n",
-> -		   stats[TTM_PL_VRAM].total/1024UL);
-> +		   stats[TTM_PL_VRAM].drm.resident/1024UL);
->   	drm_printf(p, "drm-memory-gtt: \t%llu KiB\n",
-> -		   stats[TTM_PL_TT].total/1024UL);
-> +		   stats[TTM_PL_TT].drm.resident/1024UL);
->   	drm_printf(p, "drm-memory-cpu: \t%llu KiB\n",
-> -		   stats[TTM_PL_SYSTEM].total/1024UL);
-> +		   stats[TTM_PL_SYSTEM].drm.resident/1024UL);
->   
->   	/* Amdgpu specific memory accounting keys: */
->   	drm_printf(p, "amd-memory-visible-vram:\t%llu KiB\n",
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> index 045222b6bd049..2a53e72f3964f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> @@ -1223,7 +1223,6 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
->   
->   	/* DRM stats common fields: */
->   
-> -	stats[type].total += size;
->   	if (drm_gem_object_is_shared_for_memory_stats(obj))
->   		stats[type].drm.shared += size;
->   	else
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> index 7260349917ef0..a5653f474f85c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> @@ -142,7 +142,6 @@ struct amdgpu_bo_vm {
->   struct amdgpu_mem_stats {
->   	struct drm_memory_stats drm;
->   
-> -	uint64_t total;
->   	uint64_t visible;
->   	uint64_t evicted;
->   	uint64_t evicted_visible;
 
-LGTM, thanks for fixing it!
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-
-Regards,
-
-Tvrtko
+-- 
+With best wishes
+Dmitry
