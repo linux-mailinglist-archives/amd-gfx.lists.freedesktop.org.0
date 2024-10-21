@@ -2,45 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3C69A69A2
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Oct 2024 15:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 756FB9A699C
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Oct 2024 15:06:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0333610E4F3;
-	Mon, 21 Oct 2024 13:06:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2D3310E4E7;
+	Mon, 21 Oct 2024 13:06:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Wygiq216";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="IURMCoJp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE7E210E28C
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Oct 2024 07:41:19 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECD6E10E2D8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Oct 2024 10:30:03 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id D56CF5C3987;
- Mon, 21 Oct 2024 07:41:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0E46C4CEC3;
- Mon, 21 Oct 2024 07:41:18 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 5FC5BA42529;
+ Mon, 21 Oct 2024 10:29:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9CA9C4CEC3;
+ Mon, 21 Oct 2024 10:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1729496479;
- bh=vV1omfsJH3+NqWDGbQ7eBMjQ938gt+tKwRI/A27hOVU=;
- h=Subject:To:Cc:From:Date:From;
- b=Wygiq216bWSzNwKYTjCuflUeYG2M/37xR7HG9mscYX10dYycR2y0MTprDmbnz4MdF
- LIt9Ct617cMYWzqry0mWmbeoQrxnRA0is7d3K6dd7WVGZMiU+XyFTUy2zvg52/nEYl
- R4YfBnSmTOIO99JNrih1TVFUZN+lG22ipNph4F5E=
-Subject: Patch "drm/radeon: Fix encoder->possible_clones" has been added to
- the 6.6-stable tree
-To: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- erhard_f@mailbox.org, gregkh@linuxfoundation.org,
- ville.syrjala@linux.intel.com
-Cc: <stable-commits@vger.kernel.org>
-From: <gregkh@linuxfoundation.org>
-Date: Mon, 21 Oct 2024 09:40:27 +0200
-Message-ID: <2024102127-handbook-grandson-a161@gregkh>
+ s=korg; t=1729506602;
+ bh=aajy0ciFapoZIi+Rdm8tI2/ZNdQmHIiwr9ESeZ68U0E=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=IURMCoJpQDsL//BM/pzzdiSYAINS66ubjl1Wc+kaQlhJUBsAjgBKFqPbFCIczUapx
+ R400U9UmOCKO8/Uli5aKWvHVkwn+kJR0pC99VR/FHssyUIG7xc4UsitiLqIqjNO3yz
+ Sui1+vYJqEvWGRfP8+GWEAWIONbc6ZPLMCY58EQs=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Erhard Furtner <erhard_f@mailbox.org>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH 6.11 059/135] drm/radeon: Fix encoder->possible_clones
+Date: Mon, 21 Oct 2024 12:23:35 +0200
+Message-ID: <20241021102301.636004012@linuxfoundation.org>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241021102259.324175287@linuxfoundation.org>
+References: <20241021102259.324175287@linuxfoundation.org>
+User-Agent: quilt/0.67
+X-stable: review
+X-Patchwork-Hint: ignore
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
 X-Mailman-Approved-At: Mon, 21 Oct 2024 13:06:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,29 +60,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+6.11-stable review patch.  If anyone has any objections, please let me know.
 
-This is a note to let you know that I've just added the patch titled
-
-    drm/radeon: Fix encoder->possible_clones
-
-to the 6.6-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
-
-The filename of the patch is:
-     drm-radeon-fix-encoder-possible_clones.patch
-and it can be found in the queue-6.6 subdirectory.
-
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
-
-
-From 28127dba64d8ae1a0b737b973d6d029908599611 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Mon, 14 Oct 2024 19:09:36 +0300
-Subject: drm/radeon: Fix encoder->possible_clones
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+------------------
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
@@ -113,7 +97,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/radeon/radeon_encoders.c
 +++ b/drivers/gpu/drm/radeon/radeon_encoders.c
-@@ -42,7 +42,7 @@ static uint32_t radeon_encoder_clones(st
+@@ -43,7 +43,7 @@ static uint32_t radeon_encoder_clones(st
  	struct radeon_device *rdev = dev->dev_private;
  	struct radeon_encoder *radeon_encoder = to_radeon_encoder(encoder);
  	struct drm_encoder *clone_encoder;
@@ -124,6 +108,3 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  	/* DIG routing gets problematic */
 
 
-Patches currently in stable-queue which might be from ville.syrjala@linux.intel.com are
-
-queue-6.6/drm-radeon-fix-encoder-possible_clones.patch
