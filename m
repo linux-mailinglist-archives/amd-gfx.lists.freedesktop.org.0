@@ -2,76 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 017989B0304
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2024 14:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33A3C9B030D
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2024 14:48:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 885EC10EA9E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA55610EAA5;
 	Fri, 25 Oct 2024 12:48:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="c2RmtRy/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="gDKxLQ2G";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0EA010E13B
- for <amd-gfx@lists.freedesktop.org>; Thu, 24 Oct 2024 08:17:22 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-431481433bdso6149765e9.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 24 Oct 2024 01:17:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1729757841; x=1730362641; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=jmI8CZ4fHAq0Xmul0DkZ8lYpCWQ/gTUaITTUgzA92+U=;
- b=c2RmtRy/TIg0nBSP0MqppUOL6RdgnGOn9fRmmLwMznsloRodFx5YrVPEtKwQ3KQzME
- MG+8+WT/9jK8rzoWzXyL4FZehVaRNq5Dd/TyRXhALwKQGx3zhyoXf0ngTx7IOLoSXaPu
- fqEgyoXF/jbgzXz4/dQOm1YGM4Z8c05CI8uP8g2rhTWqdvy6z8XpbK/g3vvv/ZjvYjyF
- hqwBOqKDXj7KyvDjGgLFBaIkpSCUAG6onGmOqYe8c5vKnxtY+L33XJfvXYj4dUsDGzt9
- m7bk6J8YQjqFy2H3KqNKeaDCm0VHFIDWriTHHJo/+y4iCbiT26btZFHIQTXZM1YsUOJK
- eovQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1729757841; x=1730362641;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=jmI8CZ4fHAq0Xmul0DkZ8lYpCWQ/gTUaITTUgzA92+U=;
- b=DPVeC2tOt3UIgWoFITr10WqEipg3SayKKGk07m1pUqwG0TeGk6WQRaGjACOWlR2aQl
- ZSWD9p2SmdRUdrYvbKSeCzQrYAU8C46E+brGYb0p/N3rCyfVFfirJ870Jw1vbxJ1r/pD
- Ajd9o00W4BpCZrD2+6LIrDy/CPL2UTFJ6/twWEivc9fazy09DjFubFviqs0vWoLzkVhQ
- MVAGw2NCMH9aOWW8nz+3fkhAWNYp2fPSVdfB07YtQu2lkiAZb5+XcWE3M6BPKpdog7LS
- kT0CG0WaGDT8cZsK4PjLaeLHub9G2evMbPk+Siwcd2iYZO88K20nIhGwbXDmZopP3JQ/
- MDDg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW4bPeeHxZJCnQ7SuePjMEqkc8rkpRgAFPnKAiIacJzctvN9Gb0oQaIiN6vzmuJ80DRUS/pQEIJ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywyu4IplsKJ58E8YDG2fqDwq7Flt623+9YsdKoOWtmlB1wrkwlx
- 3RQEYzu53VqkpCtP7Ex7ltIPFNMqzOKC4n+tFnpKD+EiZybk/e1tiv/6yIOhb7s=
-X-Google-Smtp-Source: AGHT+IE3Nx3OTYwJ2zj5wQUJ52gt4WAcF+S2WAkAz8S9e4+HmoQbErAeCCyoj3cZNQaSJWvWbko8rg==
-X-Received: by 2002:a05:600c:1c11:b0:42c:a574:6360 with SMTP id
- 5b1f17b1804b1-431841aff4emr45292785e9.29.1729757840836; 
- Thu, 24 Oct 2024 01:17:20 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43186c0f4cbsm38315275e9.38.2024.10.24.01.17.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Oct 2024 01:17:20 -0700 (PDT)
-Date: Thu, 24 Oct 2024 11:17:16 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Sunil Khatri <sunil.khatri@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Lijo Lazar <lijo.lazar@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Ma Jun <Jun.Ma2@amd.com>, Victor Lu <victorchengchi.lu@amd.com>,
- Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-Subject: [PATCH next] drm/amdgpu: Fix amdgpu_ip_block_hw_fini()
-Message-ID: <f4fc849e-4e76-4448-8657-caa4c69910b0@stanley.mountain>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7FA310E8CE;
+ Thu, 24 Oct 2024 08:29:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Ukhu1zEgudrLrY4FbTtrJ0nj4ZcHWLk3Hk7myyRZWso=; b=gDKxLQ2GzSkytVi8d7dxLZowcY
+ eKvfDCnK2LvTFU8z1U4GQ0WRLi4OsUTlciXZIEWs+4wRfr3KbOhnEO0hSb6V/HSsSmNEhzPIRk5r7
+ SVdIrRR+C4CrpPmnqW7F5AzjIheq/bfkpuHezw5Et8dzbp6y3dLaaHXZWTPZpzPNHfDF2YaaQnBl/
+ EsMfHg0SdjaedfIrEUp81uxg3nJV5rh5yJPOiI6v1fVux5JjMZoJocSpNTk48HukrSwyiejkFN43W
+ LjHmlTgZXNzRkr+VfP88JHmK30cOE74hlhteEIFdgdPLcbYlY0FKnHGcbS9WrOPGlr1oTUzmai907
+ 6v45iEJg==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1t3tDe-00EQ5y-09; Thu, 24 Oct 2024 10:29:22 +0200
+Message-ID: <50803e40-eaaf-4301-8459-e1b465b2d6f7@igalia.com>
+Date: Thu, 24 Oct 2024 09:29:21 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] drm/amdgpu: track bo memory stats at runtime
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Li, Yunxiang (Teddy)" <Yunxiang.Li@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <20241018133308.889-1-Yunxiang.Li@amd.com>
+ <20241018133308.889-5-Yunxiang.Li@amd.com>
+ <1057097f-02f4-4f0f-9ac5-37aa84570b47@amd.com>
+ <SA1PR12MB8599E3DD01B4A45AD7CA71FAED4C2@SA1PR12MB8599.namprd12.prod.outlook.com>
+ <53382fc0-0686-46af-9285-0cd6aec314ae@amd.com>
+ <cd2b57c6-1947-4dbd-bae8-ecdb2b42de72@igalia.com>
+ <47e4b79b-2c08-4ee8-b472-5482bc159856@amd.com>
+ <6d324aca-76fd-420b-9bae-6c0984e659e1@igalia.com>
+ <7503c3fd-deea-4eb9-9324-ab4f13f70332@amd.com>
+ <2141a4f4-bcf4-4419-8756-fb5afd6c7f3a@igalia.com>
+ <c80eb8ff-3965-4036-b763-20c4c2550e04@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <c80eb8ff-3965-4036-b763-20c4c2550e04@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 25 Oct 2024 12:48:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,27 +73,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This NULL check is reversed so the function doesn't work.
 
-Fixes: dad01f93f432 ("drm/amdgpu: validate hw_fini before function call")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 23/10/2024 13:56, Christian König wrote:
+> Am 23.10.24 um 14:24 schrieb Tvrtko Ursulin:
+>> [SNIP]
+>>>> To fold or not the special placements (GWS, GDS & co) is also 
+>>>> tangential. In my patch I just preserved the legacy behaviour so it 
+>>>> can easily be tweaked on top.
+>>>
+>>> Yeah, but again the original behavior is completely broken.
+>>>
+>>> GWS, GDS and OA are counted in blocks of HW units (multiplied by 
+>>> PAGE_SIZE IIRC to avoid some GEM&TTM warnings).
+>>>
+>>> When you accumulate that anywhere in the memory stats then that is 
+>>> just completely off.
+>>
+>> Ooops. :) Are they backed by some memory though, be it system or VRAM?
+> 
+> GDS is an internal 4 or 64KiB memory block which is only valid while 
+> shaders are running. It is used to communicate stuff between different 
+> shader stages and not even CPU accessible.
+> 
+> GWS and OA are not even memory, those are just HW blocks which implement 
+> a fixed function.
+> 
+> IIRC most HW generation have 16 of each and when setting up the 
+> application virtual address space you can specify how many will be used 
+> by the application.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 91c1f2188498..f12fab13386a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3309,7 +3309,7 @@ static void amdgpu_ip_block_hw_fini(struct amdgpu_ip_block *ip_block)
- {
- 	int r;
- 
--	if (ip_block->version->funcs->hw_fini) {
-+	if (!ip_block->version->funcs->hw_fini) {
- 		DRM_ERROR("hw_fini of IP block <%s> not defined\n",
- 			  ip_block->version->funcs->name);
- 	} else {
--- 
-2.45.2
+I see, thank you! Though I could have bothered to look in the code or 
+even instrument at runtime too.
 
+I agree removing it from system is correct. If wanted and/or desirable 
+some or all could be exported as different memory regions even. DRM 
+fdinfo specs already allows that. Like:
+
+drm-total-vram: ...
+drm-total-gds: ...
+drm-total-oa: ...
+
+Etc.
+
+Regards,
+
+Tvrtko
