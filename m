@@ -2,63 +2,147 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3238D9ADE27
-	for <lists+amd-gfx@lfdr.de>; Thu, 24 Oct 2024 09:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8689ADC84
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Oct 2024 08:49:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 176FD10E1A8;
-	Thu, 24 Oct 2024 07:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9681410E205;
+	Thu, 24 Oct 2024 06:49:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="YYFnAr4J";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WKzE8iYh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA6510E1A1;
- Wed, 23 Oct 2024 14:27:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tLwZz3dM+fD3AkNaqH0UmCbJ45ssV7iY/xpbwObpiMA=; b=YYFnAr4JS660C2VvI/hd/dFCys
- nRH+OxAKADTGc6gWUuMhAf20TcQsSRv+TFV2O802MeIhz0Jcdqm0tBfZA7IRm3Z52SfYx/mI1Qgef
- 0E5zTfOIO3AwGiizqqYxTNodftLux86WFLDKJYF+W/RUeRPMO2YlTgQt34uLiuML4kyjFrCWlXcWY
- OY+8cqVEpOa8tE+zoIKQbXKNWlrOTIDy17rtVKLJxHL0uSse9c3nidv7THaHsCDSTu5N9tng3nihI
- MTZvZ1Fs8UbZAtL4ZWSxy+dvu+2Ih6sugNim9KawHV/IQnEg8sH736qi6r+0LROT9iXjXXrk4XC23
- U/9lZBFA==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1t3cKI-00E4Ir-7M; Wed, 23 Oct 2024 16:27:06 +0200
-Message-ID: <385066fa-e4ee-4621-8714-70928e91259b@igalia.com>
-Date: Wed, 23 Oct 2024 15:27:05 +0100
-MIME-Version: 1.0
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2056.outbound.protection.outlook.com [40.107.220.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E392E10E205
+ for <amd-gfx@lists.freedesktop.org>; Thu, 24 Oct 2024 06:49:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=re8YnnXBjLOD1UhRbXSlsuEbrBpMiFmRhquQCWvr5BtTExarndIzUO7ILiFSgZCgms4wT/OenwiIvYyh2ZYNoT4Qrhmio+1O4xmDfIWF8beW9Su4dAormxCO1tmy+WbfhbHvPlv2LnMqtIrUdnhaZpdQ9TKxVQVmbehxQNRBMraTZ7l8w7jOzaDGsfXhzVwehkgMGhGE5lKZnR8qZtoFCIK8p5PEhdz0FilGJj9Mjrf1WLRQKbWPk8VJliEtpxnUcPPNkbt03JdwK9sktxgELVehngJMotp9BsAg6ZiTRZgQS3rEHVhs+xtKsJxukIWOaP9uRNGpdbMnNgzy3yk+SA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KrX066wfkTAfT5s5ihsaGebq0ks5Lmpk29CGjRu0tMo=;
+ b=f1CaAauYToCyDBe/eIH84N5YIZDIMrXObY43nJMJ/DKO/hctqse03bfKs+JqiG+sR61J/NeVuBqoN8j78/YC3gBDZJklTueit4f+K9xwyGKcOJg5Uyrxtl4jW2yT9ObU0dvnghY8WU01uWNXzmW+QGTamZxI/MJSUPo+JZcYz2hcd4O2TVFW4Ddrs2zppNtL9Df/hpJFuvvy2Kl3Yag7oRAPIFuNXmQBtTT0Rnilm6jlot+hFZaQYDIuJZrsgPnmbdO2IOUnr01BwW/U1IdkLJh13xIADjskmlhT3fGkk25eLA6IlP6Wl+Sqm0KpjiSnuLpwzCpKZMV6zmijfcTs5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KrX066wfkTAfT5s5ihsaGebq0ks5Lmpk29CGjRu0tMo=;
+ b=WKzE8iYhaFxKZzBK1jFjDDwBnW77G2Hl205K0zCbU2F+GBT6ldVucbqOUvkhAWyX2s2EQxqAbJPIK/dytCatusXxzSWhdRGABgQeINA2bymlzCkdRV9X96+Vmxm0upb7vTDT/aWUCKiWC+SgTHYnwPJyWhwvOSZrbQkJHEYTSBs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
+ DS7PR12MB5888.namprd12.prod.outlook.com (2603:10b6:8:7b::16) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8069.27; Thu, 24 Oct 2024 06:49:09 +0000
+Received: from DS0PR12MB7804.namprd12.prod.outlook.com
+ ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
+ ([fe80::8327:d71a:ce21:a290%5]) with mapi id 15.20.8069.027; Thu, 24 Oct 2024
+ 06:49:09 +0000
+Message-ID: <cc4c4f4c-1b8b-4f0e-ac8d-6cf3af338bd8@amd.com>
+Date: Thu, 24 Oct 2024 12:19:01 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] drm/amdgpu: track bo memory stats at runtime
-To: "Li, Yunxiang (Teddy)" <Yunxiang.Li@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20241018133308.889-1-Yunxiang.Li@amd.com>
- <20241018133308.889-5-Yunxiang.Li@amd.com>
- <1057097f-02f4-4f0f-9ac5-37aa84570b47@amd.com>
- <SA1PR12MB8599E3DD01B4A45AD7CA71FAED4C2@SA1PR12MB8599.namprd12.prod.outlook.com>
- <53382fc0-0686-46af-9285-0cd6aec314ae@amd.com>
- <cd2b57c6-1947-4dbd-bae8-ecdb2b42de72@igalia.com>
- <47e4b79b-2c08-4ee8-b472-5482bc159856@amd.com>
- <6d324aca-76fd-420b-9bae-6c0984e659e1@igalia.com>
- <7503c3fd-deea-4eb9-9324-ab4f13f70332@amd.com>
- <2141a4f4-bcf4-4419-8756-fb5afd6c7f3a@igalia.com>
- <SA1PR12MB859920867E49C80E5059C97BED4D2@SA1PR12MB8599.namprd12.prod.outlook.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <SA1PR12MB859920867E49C80E5059C97BED4D2@SA1PR12MB8599.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 24 Oct 2024 07:48:40 +0000
+Subject: Re: [PATCH] drm/amdgpu: skip pci_restore_state under sriov during
+ device init
+To: Victor Zhao <Victor.Zhao@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20241024054920.3011641-1-Victor.Zhao@amd.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <20241024054920.3011641-1-Victor.Zhao@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BMXP287CA0020.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:b00:2c::28) To DS0PR12MB7804.namprd12.prod.outlook.com
+ (2603:10b6:8:142::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|DS7PR12MB5888:EE_
+X-MS-Office365-Filtering-Correlation-Id: 655fa162-ecdb-4ed6-1f90-08dcf3f7f5c1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cFJMUXI1eHJqRU81SmJ5VnNuNW11NFQ3Nk5vTDIxOWpZclpLd3YvSHQxZFFD?=
+ =?utf-8?B?Q2RYUnlOS2l2VnI0OWEwUytQQmRQYjd2TXJrU3JEN3hDUm5JM1pLcG03eEVD?=
+ =?utf-8?B?V3FSVGxiSFBidGdVc1hFMFI4a1Zlamg2QlM3a1FXRUFwQnFidDhIaTZOenR3?=
+ =?utf-8?B?NUlQdlVIVTFjVFQxaHNsdFdCZTlnSm10STFlVzBsYWRwcVdDOVk2dTJYQ1pw?=
+ =?utf-8?B?WFBzb1NMVUFmZFlxOFh4Qzk4YnArdWFOdXYzQ0JVTHpQQ3hhMFNNZ2Q5SVl1?=
+ =?utf-8?B?U2lqZ01ncW95L2NIZzhyZlNvWU91cjluMC9aWlZxeVVBU1VmdnhOMy9BSlFm?=
+ =?utf-8?B?UmgxTUV6QzZOYy9iSnZUS2lDRmhtTzBKRG9DVVc4dWtiVy9SZEpHdXJVZENK?=
+ =?utf-8?B?WHAvOFh0S2JvTFVSdzZTNWV5Q3VlZ25wTW5yQ214REJnV0ZxaS9uQ0pndWxj?=
+ =?utf-8?B?d0l5SFJoamc3UnZHcWxPT0tOaVQxYmtrbkJSRXpaSitjdmFpL3A1RUNzV0VZ?=
+ =?utf-8?B?bHFKSWNubmZXa2F4eGVpUzZ2TjYrNGprSXpaYmU0bWtBOEJHYjNuMmxwaHJ3?=
+ =?utf-8?B?ekxKUHBEZEJxaXdBVHZkcENtNG1QN3d4Rm50VEM5TDcrakJoMERDbXZzS1Nt?=
+ =?utf-8?B?a0k5ZUY3Mk9mNDJGY2hUSlRoVjlCdTNpT1pwRHhyLzRRUG5FaWI3dGprck81?=
+ =?utf-8?B?NnpNcTZERXFmZUErUGEzejVFQ1BrSnAwVERiTndrR0YyZVIzYXV3dlVxQzNm?=
+ =?utf-8?B?V0lpSnJYTllkSzNBR2sxb1E1YzVWdGc2VHN1cmhoZlFOa0hPSklnKzJUNUZw?=
+ =?utf-8?B?UG9PcTd6YVB0TFVBY3Q3cUlPVWNDbktaUGlIZEFSVk5oOGpOSW9XdFZNSi9F?=
+ =?utf-8?B?RHlhOElCR0FLT1Q5OUVSeXduSnJZZ0R4Wk5uQW50aFlYalUxOFdlTVFnNnVL?=
+ =?utf-8?B?UXBHVkUvbTJEZWRjQTN3cjQxanRpTmxKOVNyTG8rTVFOMllZYTV1YVdyRGd0?=
+ =?utf-8?B?OXMzZXB0YUJzYUhibCtDS3I0NGpReXFjbHRkVWZtSlFnWjUwMU15QjA1WStS?=
+ =?utf-8?B?RkNYbHhxU016Y080Y2pOUm9NZlpmbGxPVXpycW4xZkl6eTZaVzFkdXBvbWxM?=
+ =?utf-8?B?WnA5SnpZRDI5T1U0N0JDaHlFQkNDUzVoclRTdStOWFM1UmszamhNeGZYZ05k?=
+ =?utf-8?B?WEQzY2IvTkdiTGhKVDl2TTlKTGlqcjVwSUNoekpTRm9oNndqcXNqWUUwbWRk?=
+ =?utf-8?B?SE1FNXF4alBwVnNuU0kvZWZVZ1M0d2JpTjM1cGd2SDVMTnVjK0RXWTBTRFdy?=
+ =?utf-8?B?dHRCQnFXK21HdFVMNzEwMlN4VU5lVjhMOEw1Y0xMWnE4Tnp3YnJnTE9tc2lk?=
+ =?utf-8?B?R2VIWFZUWU56ejVaeHZzVTY4OUEwYlZnQ0lOZ0k0MmRnY3lsL054WlZNQVlF?=
+ =?utf-8?B?R1M4d2k5dHoxRXdZSFdJa3BsSlBwMGgzV015WUlza0VlVUcvR215Z0VEQmJF?=
+ =?utf-8?B?em5mWFoxdFd3YXFGaW9wWmNWV1hVWXRHZ3gzZXJNNTQ3bVZmckNTSWpIcUd4?=
+ =?utf-8?B?NzRlZ0ZlbXVzQUFSTDArb0NBKzJ2UUtoMHh3UDJMdkRWSWlNRkVTZVEyY0cy?=
+ =?utf-8?B?Z1dQaERYR2hRUTRmWVpLRGNUTURCQmFYWmlMNUg5NExmYzVqNWw2VTc1VktH?=
+ =?utf-8?B?S0JSS2hWTDhaeUYwVzcyd0twclhSaHpFVVBJU3ViRWRJVG1xR1lZWkJiZmdv?=
+ =?utf-8?Q?D65CH6QWOe1XTb2V0DbJShW9LulEbI2md6y9pob?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFFHTnBVNjIwRy9YWmt5Y2FqVXRnbDRkQTdNcURsQjAxWHBwWHpiYU1LK01k?=
+ =?utf-8?B?RG9MdFM0V0pLL1NNR00yYThmeVFCdTNXSXhoV3lvTTJwNEI1S1hYYytsUUlZ?=
+ =?utf-8?B?ajNlM29oUXNZWnd6eXlwaW5XYUtqZ1ZyUmQ2RlhxV2VacG15LzdSMVRhMm5N?=
+ =?utf-8?B?UmtQNUJ3Nmp0TkozMDdHbVNFZVBRbk5waUFVcCtRaHRibU5CbDRWWktHMFln?=
+ =?utf-8?B?VUszamkrQVFRTWpjZlpUUitVQ0RyUmw2NDNRRkdDR2FWSi84KzExdWVxU2Yv?=
+ =?utf-8?B?RkFOV2tZUDRSYzRjaUdhVy9OUUJyNnRDUSt4WW1Oc2p3ODRmYm8vTUQrWVo1?=
+ =?utf-8?B?b0h0RXFhbmY3Y2xYZGlxMUdpNmI3ZEtScWlQbExML0ZTUUZBWTBlVGpMbTRN?=
+ =?utf-8?B?WjZJNlErWjV6SEgrRjdsVGlnMVZXczFuMllkZkd4RXd6WWVpdXNnZzlxc2kz?=
+ =?utf-8?B?YUt3UW9MZnowWFhpbHZXZVlEOHQ4OXQvd2FrUytpV29rcC85d3JZRFZLWWd1?=
+ =?utf-8?B?ZWtTQ29IZFpVQWlMb0hmd0hrNUR3dDdVSjBkNjBBczNmTmJ5L2F5VFNIMnlq?=
+ =?utf-8?B?a1RTVmtBcXdVTnpGT0hrblNodUlFeCt5Y1lqanIzU0s2amtzK29YSHhiMXQx?=
+ =?utf-8?B?VFltNjFWb0lXalFzRExDQ2xHenFQNmxxbWVldVhaUktZREN0TVM5ZVFHc2RN?=
+ =?utf-8?B?K1IvUHF3QjRHb3lPS0JYTHVtQXVNYWhIM0ZQWjl4V0pnTjRwbDRvK0gxNjJK?=
+ =?utf-8?B?WVVzRVI2YjZsQUUreEd1MHNQR3JEQ2Q5VkZqZFFQOU5YWkhaSmtnaUQ4Y0tG?=
+ =?utf-8?B?aC9NVWx1d0ZwaHZpcEc1Y1lXbW1OMDVYMU1jY3J6OGE0Q1FaQWN6QS9zU2RR?=
+ =?utf-8?B?Z1VPT3Y5RG1aUHV5bHVjWGVyb0FCUFg3Z1dEWjVjazlVelZlSTBUV3B4YUZQ?=
+ =?utf-8?B?L2FRTmtPS09oT2dTWEQ4cHBXemtQR201WWc3S1lYbXRyWnRWdTNtOEYvWjlH?=
+ =?utf-8?B?NmxyQ1hJZTI0c2tLeGFtZFI2ZHVvZGw3a1dOaW5ZdHljKytyT1prU2hsaUdS?=
+ =?utf-8?B?akVnSStLNUFEaXhXLzBaeHBnRVJUeE5jTTBQdnNwaHF6WFhld3NMbTBPMFE4?=
+ =?utf-8?B?N0dxMC83bEhkcGNMOXZuditGRE9sanhNQ3BQdHZWdzU2VkZnQmYvRDc4bEFj?=
+ =?utf-8?B?SHJYbFV0OUZDbzFhMDRLa1ZwSHJ1UGZOYmtZTFhCRENYMVcrU0M2bjRQak0w?=
+ =?utf-8?B?ZEEwSGlQVGZKVHpaTW1GK0VZaXl1QlUvdHJPSGJqS1phdjBlajdsOWE2RWVG?=
+ =?utf-8?B?U1BUV2dDNVNiVXliS1QxcC9aNzFXa1B2VzJMSWdNeGFlMFpVMmN5N3VyTEht?=
+ =?utf-8?B?eU1hSVovdXd0M2EzOVF1d1dnSCtVeHZzQUFHYk5nM2p2RFQwSGlsa1pHa0xm?=
+ =?utf-8?B?a240VlJKWE5TUFZ3VzRyVmh4WjFObXpRWFhDekxOdWRvWnRWMU12TzA0cEww?=
+ =?utf-8?B?L0w1dlBISlBxYTQ1L0ZHMEdURW5ueWlyQUM1QnRZOVRvNDFRdG5xQWtiOVov?=
+ =?utf-8?B?blg5TFhtMnhkaW9nT0NEWE05cStGUVVSQnJxMkpTbFBIREJjVGxuV3p3UHQx?=
+ =?utf-8?B?ZTVOMnNYZGZSNmJoRWZMTCt2SVNpL0ZrU3dsV3NTWHQ0RVA4M2xtRTk5WWZ0?=
+ =?utf-8?B?bmxBTFdkUmpYK2tQYTE3MVliVGl6TDJkWnUxQW1heXlWdFRFMzFQWGQ0VFlS?=
+ =?utf-8?B?WEhyWXdFZTVVYjZGbzZ0SUo0dERUSEJnRUtHaWR0bFpIMnZhQ0ZJK21zWUdu?=
+ =?utf-8?B?OTBSNllDcFNWZ05MRTB0SDBXWDBoTmlVZWZNdjh2OXA3MmRvdEQ5L2NHdTFM?=
+ =?utf-8?B?bk4wQms5SWtmNE5zbmVBNE0xdWZYeEJjZEZNejlhNERHdStaemR6NjVUTHNT?=
+ =?utf-8?B?S1JSOHc0Ty9Pa1JqRjEwMVh6M3VoYVNYYStsL3RUYWM2QmFyS1JxSDdmTjRS?=
+ =?utf-8?B?d0srVnRMbTVPMmJYdHdlKzJtemVhQ21QVldZenhWRVRET3ErVUFzUzd6aEUw?=
+ =?utf-8?B?bWIzUTJqLzJYQlREdW9odXNvMWFOUkpNTDNEZDlKaUZnWnBObEZFY3hpV21G?=
+ =?utf-8?Q?puAtSWnF8HwQWiOyvUKLSH3Bi?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 655fa162-ecdb-4ed6-1f90-08dcf3f7f5c1
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 06:49:08.8891 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YajNHiCFG6LCd3eYE9H/ehiXJEUPJyk2C1wzWVi5V0uNBfFXjcSxFCJ9La5JDuE2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5888
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,248 +158,41 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-On 23/10/2024 14:31, Li, Yunxiang (Teddy) wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
+
+On 10/24/2024 11:19 AM, Victor Zhao wrote:
+> during device init, under sriov, pci_restore_state happens after
+> fullaccess released, and it can have race condition with mmio protection
+> enable from host side.
 > 
->> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Sent: Wednesday, October 23, 2024 8:25
->> On 23/10/2024 13:12, Christian König wrote:
->>> Am 23.10.24 um 13:37 schrieb Tvrtko Ursulin:
->>>>
->>>> On 23/10/2024 10:14, Christian König wrote:
->>>>> Am 23.10.24 um 09:38 schrieb Tvrtko Ursulin:
->>>>>>
->>>>>> On 22/10/2024 17:24, Christian König wrote:
->>>>>>> Am 22.10.24 um 17:17 schrieb Li, Yunxiang (Teddy):
->>>>>>>> [Public]
->>>>>>>>
->>>>>>>>>> +static uint32_t fold_memtype(uint32_t memtype) {
->>>>>>>>> In general please add prefixes to even static functions, e.g.
->>>>>>>>> amdgpu_vm_ or
->>>>>>>>> amdgpu_bo_.
->>>>>>>>>
->>>>>>>>>> +   /* Squash private placements into 'cpu' to keep the legacy
->>>>>>>>>> userspace view.
->>>>>>>>> */
->>>>>>>>>> +   switch (mem_type) {
->>>>>>>>>> +   case TTM_PL_VRAM:
->>>>>>>>>> +   case TTM_PL_TT:
->>>>>>>>>> +           return memtype
->>>>>>>>>> +   default:
->>>>>>>>>> +           return TTM_PL_SYSTEM;
->>>>>>>>>> +   }
->>>>>>>>>> +}
->>>>>>>>>> +
->>>>>>>>>> +static uint32_t bo_get_memtype(struct amdgpu_bo *bo) {
->>>>>>>>> That whole function belongs into amdgpu_bo.c
->>>>>>>> Do you mean bo_get_memtype or fold_memtype? I debated whether
->>>>>>>> bo_get_memtype should go into amdgpu_vm.c or amdgpu_bo.c, and
->>>>>>>> since it's using fold_memtype and only useful for memory stats
->>>>>>>> because of folding the private placements I just left them here
->>>>>>>> together with the other mem stats code.
->>>>>>>>
->>>>>>>> I can move it to amdgpu_bo.c make it return the memtype verbatim
->>>>>>>> and just fold it when I do the accounting.
->>>>>>>
->>>>>>> I think that folding GDS, GWS and OA into system is also a bug. We
->>>>>>> should really not doing that.
->>>>>>>
->>>>>>> Just wanted to point out for this round that the code to query the
->>>>>>> current placement from a BO should probably go into amdgpu_bo.c
->>>>>>> and not amdgpu_vm.c
->>>>>>>
->>>>>>>>
->>>>>>>>>> +   struct ttm_resource *res = bo->tbo.resource;
->>>>>>>>>> +   const uint32_t domain_to_pl[] = {
->>>>>>>>>> +           [ilog2(AMDGPU_GEM_DOMAIN_CPU)]      =
->>>>>>>>>> +TTM_PL_SYSTEM,
->>>>>>>>>> +           [ilog2(AMDGPU_GEM_DOMAIN_GTT)]      = TTM_PL_TT,
->>>>>>>>>> +           [ilog2(AMDGPU_GEM_DOMAIN_VRAM)]     =
->> TTM_PL_VRAM,
->>>>>>>>>> +           [ilog2(AMDGPU_GEM_DOMAIN_GDS)]      =
->>>>>>>>>> +AMDGPU_PL_GDS,
->>>>>>>>>> +           [ilog2(AMDGPU_GEM_DOMAIN_GWS)]      =
->>>>>>>>>> +AMDGPU_PL_GWS,
->>>>>>>>>> +           [ilog2(AMDGPU_GEM_DOMAIN_OA)]       =
->> AMDGPU_PL_OA,
->>>>>>>>>> +           [ilog2(AMDGPU_GEM_DOMAIN_DOORBELL)] =
->>>>>>>>> AMDGPU_PL_DOORBELL,
->>>>>>>>>> +   };
->>>>>>>>>> +   uint32_t domain;
->>>>>>>>>> +
->>>>>>>>>> +   if (res)
->>>>>>>>>> +           return fold_memtype(res->mem_type);
->>>>>>>>>> +
->>>>>>>>>> +   /*
->>>>>>>>>> +    * If no backing store use one of the preferred domain for
->>>>>>>>>> basic
->>>>>>>>>> +    * stats. We take the MSB since that should give a
->>>>>>>>>> +reasonable
->>>>>>>>>> +    * view.
->>>>>>>>>> +    */
->>>>>>>>>> +   BUILD_BUG_ON(TTM_PL_VRAM < TTM_PL_TT ||
->> TTM_PL_VRAM <
->>>>>>>>> TTM_PL_SYSTEM);
->>>>>>>>>> +   domain = fls(bo->preferred_domains &
->>>>>>>>>> +AMDGPU_GEM_DOMAIN_MASK);
->>>>>>>>>> +   if (drm_WARN_ON_ONCE(&adev->ddev,
->>>>>>>>>> +                        domain == 0 || --domain >=
->>>>>>>>>> ARRAY_SIZE(domain_to_pl)))
->>>>>>>>> It's perfectly legal to create a BO without a placement. That
->>>>>>>>> one just won't have a backing store.
->>>>>>>>>
->>>>>>>> This is lifted from the previous change I'm rebasing onto. I
->>>>>>>> think what it’s trying to do is if the BO doesn't have a
->>>>>>>> placement, use the "biggest" (VRAM > TT > SYSTEM) preferred
->>>>>>>> placement for the purpose of accounting. Previously we just
->>>>>>>> ignore BOs that doesn't have a placement. I guess there's
->>>>>>>> argument for going with either approaches.
->>>>>>>
->>>>>>> I was not arguing, I'm simply pointing out a bug. It's perfectly
->>>>>>> valid for bo->preferred_domains to be 0.
->>>>>>>
->>>>>>> So the following WARN_ON() that no bit is set is incorrect.
->>>>>>>
->>>>>>>>
->>>>>>>>>> +           return 0;
->>>>>>>>>> +   return fold_memtype(domain_to_pl[domain])
->>>>>>>>> That would need specular execution mitigation if I'm not
->>>>>>>>> completely mistaken.
->>>>>>>>>
->>>>>>>>> Better use a switch/case statement.
->>>>>>>>>
->>>>>>>> Do you mean change the array indexing to a switch statement?
->>>>>>>
->>>>>>> Yes.
->>>>>>
->>>>>> Did you mean array_index_nospec?
->>>>>
->>>>> Yes.
->>>>>
->>>>>> Domain is not a direct userspace input and is calculated from the
->>>>>> mask which sanitized to allowed values prior to this call. So I
->>>>>> *think* switch is an overkill but don't mind it either. Just
->>>>>> commenting FWIW.
->>>>>
->>>>> I missed that the mask is applied.
->>>>>
->>>>> Thinking more about it I'm not sure if we should do this conversion
->>>>> in the first place. IIRC Tvrtko you once suggested a patch which
->>>>> switched a bunch of code to use the TTM placement instead of the
->>>>> UAPI flags.
->>>>
->>>> Maybe 8fb0efb10184 ("drm/amdgpu: Reduce mem_type to domain double
->>>> indirection") is what are you thinking of?
->>>
->>> Yes, exactly that one.
->>>
->>>>
->>>>> Going more into this direction I think when we want to look at the
->>>>> current placement we should probably also use the TTM PL enumeration
->>>>> directly.
->>>>
->>>> It does this already. The placement flags are just to "invent" a TTM
->>>> PL enum when bo->tbo.resource == NULL.
->>>
->>> Ah, good point! I though we would do the mapping the other way around.
->>>
->>> In this case that is even more something we should probably not do at all.
->>>
->>> When bo->tbo.resource is NULL then this BO isn't resident at all, so
->>> it should not account to resident memory.
->>
->> It doesn't, only for total. I should have pasted more context..:
->>
->>        struct ttm_resource *res = bo->tbo.resource; ...
->>           /* DRM stats common fields: */
->>
->>           stats[type].total += size;
->>           if (drm_gem_object_is_shared_for_memory_stats(obj))
->>                   stats[type].drm.shared += size;
->>           else
->>                   stats[type].drm.private += size;
->>
->>           if (res) {
->>                   stats[type].drm.resident += size
->>
->> So if no current placement it does not count towards drm-resident-, only
->> drm-total- (which is drm.private + drm.resident). Total and resident intend to be
->> analogue to for instance VIRT and RES in top(1), or VZS and RSS in ps(1).
->>
->>>> Again, based of the same enum. Not sure if you have something other
->>>> in mind or you are happy with that?
->>>
->>> I think that for drm-total-* we should use the GEM flags and for
->>> drm-resident-* we should use the TTM placement.
->>
->> Agreed! :)
->>
+> Since msix was toggled during pci_restore_state, if mmio protection
+> happens during this time, guest side msix will not be properly
+> programmed and leading to missing interrupts.
 > 
-> Oof I missed the distinction between resident and total as well. Just want to double confirm the drm-total- semantics.
+> So skip pci_restore_state during device init.
 > 
-> Does drm-total- track the BOs that prefer the placement (derived from the preferred domain) and drm-resident- track the actual placement, or does drm-total- track drm-resident- plus BOs that don't have a placement but prefers here?
+> Signed-off-by: Victor Zhao <Victor.Zhao@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 6c0ff1c2ae4c..52803cd91ef5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -4524,7 +4524,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+>  		dev_err(adev->dev, "amdgpu_pmu_init failed\n");
+>  
+>  	/* Have stored pci confspace at hand for restore in sudden PCI error */
+> -	if (amdgpu_device_cache_pci_state(adev->pdev))
+> +	if (!amdgpu_sriov_vf(adev) && amdgpu_device_cache_pci_state(adev->pdev))
 
-Preferred domain is only used as an aid when there is no backing store. 
-Putting that aside, it is supposed to be simple:
+This also prevents caching the state. If the intention is that way, put
+the check inside amdgpu_device_cache_pci_state to make it explicit that
+VFs avoid caching config space.
 
-Total - BO exists, whether or not it currently has a backing store.
+Thanks,
+Lijo
 
-Resident - BO has a backing store.
-
-Active and purgeable are a sub-variant of resident.
-
-Again, preferred placement only comes into the picture (in the current 
-implementation) when there is not backing store. Because we must account 
-the total and looking at the preferred tells us to where.
-
-Yeah it may be that one second you have:
-
-total-vram: 4 KiB
-resident-vram: 0
-total-system: 0
-resident-system: 0
-
-And the second:
-
-total-vram: 0
-resident-vram: 0
-total-system: 4 KiB
-resident-system: 4 KiB
-
-All with a single 4k BO, which happened to instantiate its backing store 
-in it's 2nd preferred placement.
-
-But IMO it is better than not accounting it under total anywhere in the 
-first case.
-
-Have I managed to explain it good enough?
-
-Regards,
-
-Tvrtko
-
->>>>
->>>> Then what Teddy does is IMO only tangential, he just changes when
->>>> stats are collected and not this aspect.
->>>
->>> Yeah, right but we should probably fix it up in the right way while on it.
->>
->> Okay, we just need to align on is there a problem and how to fix it.
->>
->>>> To fold or not the special placements (GWS, GDS & co) is also
->>>> tangential. In my patch I just preserved the legacy behaviour so it
->>>> can easily be tweaked on top.
->>>
->>> Yeah, but again the original behavior is completely broken.
->>>
->>> GWS, GDS and OA are counted in blocks of HW units (multiplied by
->>> PAGE_SIZE IIRC to avoid some GEM&TTM warnings).
->>>
->>> When you accumulate that anywhere in the memory stats then that is
->>> just completely off.
->>
->> Ooops. :) Are they backed by some memory though, be it system or VRAM?
->>
->> Regards,
->>
->> Tvrtko
+>  		pci_restore_state(pdev);
+>  
+>  	/* if we have > 1 VGA cards, then disable the amdgpu VGA resources */
