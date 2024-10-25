@@ -2,121 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A2C9AFEB2
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2024 11:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3449AFF18
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2024 11:54:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D46D10EA51;
-	Fri, 25 Oct 2024 09:45:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5FF710EA5C;
+	Fri, 25 Oct 2024 09:54:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iW/q1f8w";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Jl/DyNPR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2066.outbound.protection.outlook.com [40.107.94.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6FD710EA51
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Oct 2024 09:45:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ueKD2cJBKvVBZRqR+8wtkE0n/pkrp9H+S00YZN3pbeIoRh4tKlnumogRiHB+jq8jbc+KMyfpAjvei+Is4XdFI/XqEx7n4uj2QOtHl5ImJFCFdFiz/hPD8XlDYfGUU+L/RIhufLzEM1A9ujzSSjzQOuszM41Ig9m6jPhSkACvq9cFJprYt20O0oVpSPoA/+ZYr012mSsgKASTKrSxJNX0+UvzTC0g18+jzIRK8BODroP8MeU+29Umc6aJ7hJVVsV9jO3UfRYVyySJptoOxsdJoASCMkDjRPEWIUo0GjgssuU1e79VfHLcobPdHl5XrcKP5J9P3rNUwPS+0iTLU8Ocsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xYjnrSLg93R3Y3BRgYKj5fjm0wGy+KNrlekGzKJ93ZE=;
- b=YJd8TZub2yPNMNWqJbzQ4qNbB5Twhhq4XQVW2ITMSAn/OHFQdqwMnTF63vEfJvAN8Gh+HAysgFzsGy+XUnkPcWXpf6pmhtJBdu6D6hYV6xH2zmt2OXQMZDyQqPyQ78abKAGctGUsxGiVOdZTlfzslCLi5BnXeki/4pxrykumkSyMdUUHwQ4AQ7dcMx7gpAFrZcojFThxN8JYwwpRrgzSC1lp+dLH+1TxYGgG5/t1Xqse2Z9pvpy2ItDFURc7hXHAbNrxzboCj7UINmmhPtsRDIM3PoUkZT9YQojqVhpnC89PHguT6FaAkhI5NOUDp1Y29fo+JAV3/3mND222vX28mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xYjnrSLg93R3Y3BRgYKj5fjm0wGy+KNrlekGzKJ93ZE=;
- b=iW/q1f8wMUNKx3qhj6tmRkRoHfs1oCmRpzDAa/Nf+Ii1uY0d+oUis3O1owDXNtUyiwQsNoU2KJOgjYH9YgSQ5ENjerS+X5404AbtoQqVDR14mQH0l6oYcoxOr/4T7YSvjH0go5fjkTFswGBcWUxYtdHFekWxPZ7CK7IO6ajdOqQ=
-Received: from MN0PR05CA0020.namprd05.prod.outlook.com (2603:10b6:208:52c::34)
- by IA1PR12MB6260.namprd12.prod.outlook.com (2603:10b6:208:3e4::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Fri, 25 Oct
- 2024 09:45:32 +0000
-Received: from BL6PEPF00022573.namprd02.prod.outlook.com
- (2603:10b6:208:52c:cafe::dc) by MN0PR05CA0020.outlook.office365.com
- (2603:10b6:208:52c::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.9 via Frontend
- Transport; Fri, 25 Oct 2024 09:45:32 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF00022573.mail.protection.outlook.com (10.167.249.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8093.14 via Frontend Transport; Fri, 25 Oct 2024 09:45:32 +0000
-Received: from prike-code-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 25 Oct
- 2024 04:45:30 -0500
-From: Prike Liang <Prike.Liang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, <Lijo.Lazar@amd.com>, Prike Liang
- <Prike.Liang@amd.com>
-Subject: [PATCH v4 2/2] drm/amdgpu: clean up the suspend_complete
-Date: Fri, 25 Oct 2024 17:45:19 +0800
-Message-ID: <20241025094519.55723-2-Prike.Liang@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241025094519.55723-1-Prike.Liang@amd.com>
-References: <20241025094519.55723-1-Prike.Liang@amd.com>
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com
+ [209.85.128.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D09A510EA62
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Oct 2024 09:54:53 +0000 (UTC)
+Received: by mail-yw1-f171.google.com with SMTP id
+ 00721157ae682-6db20e22c85so16228627b3.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Oct 2024 02:54:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1729850093; x=1730454893; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ovzUCbOnf8ad3/AG/s6edyQx3Y96JvN5zzmYGNZvn88=;
+ b=Jl/DyNPRX/eoKtpxLAqJf5AOKVzH1SuPyBTwxzNEy0SBCAQxqPJGANZjTxNO6vNBCI
+ K77XrnW5Cc8fsrhchzftfpC/JYeIcp4ZxGBPLpzg0WJDJt0JDoZe8F4Cle+KTjBc70YV
+ mPqlYGPfFhugHkmDk0Uc1Wvwd9Ryt7Mf+aMdI/wKTHBg+NAKk68jVgb4mMHbCmn1Ocjn
+ ubcpmaMTq2W1v5jO9HxP5jVV33FMzgNMiX9jUMh9kGq2WQfoc8TyeGW2VZD5TJ9z/Ac8
+ 4fSVON/7YsATDJwQt74JgP2vNps3JZjnpfhqIjmgZma414XPVqB5l2DRmFZTaosrDIdA
+ eMyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1729850093; x=1730454893;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ovzUCbOnf8ad3/AG/s6edyQx3Y96JvN5zzmYGNZvn88=;
+ b=wsjwKf7XN1sbAcfcPCzOSP6ylHqCCXMgHXmWf+29F2WQH2CTy4UAAY1qQunPECWPVM
+ 9e/Y+PFlKfTkHvHuU1/qLTNNv/Hc/eyNkKGTLZ4wgw0+13d/BnD74T0ShIHBTChu4+Xc
+ wq50bZqJHLys1kRrL+DiNFCnPs9+ywvyEhuZThJ+X7f+q0SLRST3FvCTxARvpOSLgqDl
+ lg0dRY9HIJwKhPBmZWiQ+W4nNmXplJeH1/xXWbBMIDFCNix57rNs+wSj5wIUBhLtUU6D
+ mGxK6uAD9BfXeZnP3YYxuAsgPo5irTHo1kuq+vfp3S192T+daKcLwD6pjmPNXaLreNG8
+ 490A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWMtV/Yz8IFjTGEi9taZxDoXpPDe3pybZF/bjvrMLBM/erfZaKVtVzNTmBHnN4tU/qo7ulLBUp2@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzlXkD8zChnNdKTonSmZglHYxsBW9oBdhl31jHKeHzWeHyMjuF0
+ FtyJq5xCU9euL1fjNTohqjWmuUOED9DurCn/lnq+Ezt2UQhbI2/NoDkunJwvIzQiD/sxxyARtYK
+ SUEj3YmrcvrTFl0vvBU0LcbOO1U5K/S+etf6TKg==
+X-Google-Smtp-Source: AGHT+IFZu/LyAjfpwX5MrN+JVkr0x0xSzSrKk0A5Mdi5tj38z9PJE4G47Yh4NVVkEqgziX0kL7VNUYJrsxipC6JS6p4=
+X-Received: by 2002:a05:690c:fc7:b0:6e7:fb87:7094 with SMTP id
+ 00721157ae682-6e85814d77fmr57343097b3.6.1729850092872; Fri, 25 Oct 2024
+ 02:54:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00022573:EE_|IA1PR12MB6260:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6920c860-82bf-4407-3c58-08dcf4d9c4c2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?b6+9kIfMHbtOM1uyCrDMaigl+IQbL+fLjMruZQ/e1J3qpTazW1zTa5NyF5hr?=
- =?us-ascii?Q?3Qe3JTHxzfNsjX4MRa8LNZd1hhzsL4PlkXSPwvbU5EhVwAwA6YPGXJOVWmfs?=
- =?us-ascii?Q?RZVRl5z6vfN+KzkdBBscEP9EzWyanxtjp6yTBloymrjVc6aomrT+4PTj3YHl?=
- =?us-ascii?Q?r85OC+e3Y010d31SGd9EdAh2xmRGr9H+YRmdrJEXcqKMAT2fFlkQhRtG9mdr?=
- =?us-ascii?Q?ZOoYJuk4rYGx/Pxnddti8tIhrtMQoi9g4czKIhBaJCGFPwMSOhtKmxF1V0V5?=
- =?us-ascii?Q?NXcPXUeIZYJ/+Zgxt72pn2BAUDRzSg8yZuisD25q/upfcgdjrL5jLEsLxEnx?=
- =?us-ascii?Q?xOWOvOiyoaTNgaYfzRTpcDtj6hHHCUrRvFuUcHynSBcbr2tVZha5F/aeHtvc?=
- =?us-ascii?Q?stJ2qOWbWlOUZ97Ck9RqiBxUVvylvg2pHGi7yWSeU9rRAntW4Y04nnb4RDHs?=
- =?us-ascii?Q?OxLin72bTM6Mnvb74wZHe2+EpK30RLxZit3HVyatU0vI5GDvOBWF39BVabFN?=
- =?us-ascii?Q?XSSJXJ4P/wFM8GLmzIknklZ7oTPf4TRV/6LOevGUz9o1vMNKTY7Cx0Cw0WBp?=
- =?us-ascii?Q?+fOmjaoGHZnUJr0y/1Ke7IXO5xTAACqdtO3/i9cdDGsy3vjsSwbR6U7t+l7r?=
- =?us-ascii?Q?PR+w97WRD+7S7h5s8rxYZpMX5MHz4LhyjJJlisNoHYx3LndigrL0cIFh8fY3?=
- =?us-ascii?Q?PPybIZ/Sz/RqSue9U+1daL5z1Bd5rKQhrtgW6/AxD0YEqublJLL+2XEZ7mPT?=
- =?us-ascii?Q?+95PzSRsC+IEdbabH8gw4V+X+ASyuIBNZPBjReScgbX3PwZwe7fNBukjeHN+?=
- =?us-ascii?Q?JnveqoQ06Zi6mOAA+m6lqDAUE1qrTm9X46Ho31ymL6gCCspFc/i81ttCD4S+?=
- =?us-ascii?Q?atolFqh5awiWLJjd6UVwyWrkmiDshRBhfZCGRUdFbIwjsAsmhtvERRCGVI1r?=
- =?us-ascii?Q?FSQxnH3sP7JoOOr/3U6qNnwlQd+cRP6+XiedVwt+6Tsae6V7a6vZuV0oO+0O?=
- =?us-ascii?Q?SYhK71J8jXiELXxRQLArZ9j1e668PvVmSM3Co9g1+Uwwizwk2f062a/uFV42?=
- =?us-ascii?Q?r0b6SXnGkzwWzvnr9xQ60lCboUzs3j2a0ejBWfwM5/wkyHUm+hMOCUoKrjZ2?=
- =?us-ascii?Q?tuMNZOBigfQYMASjbYqrTZT8VE5CYoTvz/TJsjT3nix3DgtCN3WrTXNDaIkf?=
- =?us-ascii?Q?OW51LZhiMxJfBFrsQmwEFmuHWYAmN81ixymrsCCsYbXInsVoIt/A6GSDz0//?=
- =?us-ascii?Q?6qrYJvtmGRc41ozvAAQAEmV4Wf8SdxpNs11Fky61LZ5N2CB0wUlRW1Nin701?=
- =?us-ascii?Q?AxFAN21zEFeYjifKLDoKNl/P76TtepFJgM5J9k2I9/EY7tABXJhPM4L1E0bE?=
- =?us-ascii?Q?kQVcwtQlGMTjzotakmyiyo+BYyWRo14Ovbu6LPSJTeufn0nAkA=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 09:45:32.5287 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6920c860-82bf-4407-3c58-08dcf4d9c4c2
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022573.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6260
+References: <20241002182200.15363-1-ville.syrjala@linux.intel.com>
+ <ZxtMz8JP3DbzpMew@intel.com>
+In-Reply-To: <ZxtMz8JP3DbzpMew@intel.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 25 Oct 2024 12:54:42 +0300
+Message-ID: <CAA8EJprT=BGyMnvkjS4BkRqar1hHn_hpXFaz9gstPL_9u1rAsQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2] drm: Treewide plane/crtc legacy state sweeping
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Alain Volmat <alain.volmat@foss.st.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, 
+ amd-gfx@lists.freedesktop.org, Andy Yan <andy.yan@rock-chips.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Danilo Krummrich <dakr@redhat.com>, freedreno@lists.freedesktop.org, 
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Inki Dae <inki.dae@samsung.com>, Jyri Sarha <jyri.sarha@iki.fi>, 
+ Karol Herbst <kherbst@redhat.com>, linux-amlogic@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, linux-arm-msm@vger.kernel.orga, 
+ linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+ Liviu Dudau <liviu.dudau@arm.com>, Lyude Paul <lyude@redhat.com>, 
+ =?UTF-8?B?TWHDrXJhIENhbmFs?= <mairacanal@riseup.net>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, nouveau@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.orga, 
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Rob Clark <robdclark@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, Sandy Huang <hjc@rock-chips.com>,
+ Sean Paul <sean@poorly.run>, 
+ spice-devel@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ xen-devel@lists.xenproject.org, Xinhui Pan <Xinhui.Pan@amd.com>, 
+ Zack Rusin <zack.rusin@broadcom.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,105 +102,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To check the status of S3 suspend completion,
-use the PM core pm_suspend_global_flags bit(1)
-to detect S3 abort events. Therefore, clean up
-the AMDGPU driver's private flag suspend_complete.
+On Fri, 25 Oct 2024 at 10:46, Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Wed, Oct 02, 2024 at 09:21:58PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> >
+> > An attempt to hide the drm_plane/crtc legacy state better.
+> >
+> > This also highlights the fact that a lot of supposedly
+> > atomic drivers are poking around in the legacy crtc state,
+> > which is rather questionable. For planes we did force the
+> > legacy state to NULL already to force drivers to behave.
+> > But even then it seems capable of confusing people with
+> > its high profile location directly under drm_plane.
+> >
+> > This might end up as some kind of conflict
+> > galore, but the alternative would involve trying
+> > to wean the atomic drivers off one by one,
+> > which would probably take forever. At least with
+> > this the issue becomes visible and shouldn't be
+> > forgotten as easily.
+>
+> Ping, anyone have thoughts on this? I'd like to get something
+> like this in at some point to make the legacy state (ab)users
+> easily visible...
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 2 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 --
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 4 ++--
- drivers/gpu/drm/amd/amdgpu/soc15.c      | 7 ++-----
- drivers/gpu/drm/amd/amdgpu/soc21.c      | 5 +++--
- 5 files changed, 7 insertions(+), 13 deletions(-)
+I think that's a good idea. I hope to find a time slot and check the
+(ab)using of legacy state in drm/msm driver.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 48c9b9b06905..9b35763ae0a7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1111,8 +1111,6 @@ struct amdgpu_device {
- 	bool				in_s3;
- 	bool				in_s4;
- 	bool				in_s0ix;
--	/* indicate amdgpu suspension status */
--	bool				suspend_complete;
- 
- 	enum pp_mp1_state               mp1_state;
- 	struct amdgpu_doorbell_index doorbell_index;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 680e44fdee6e..78972151b970 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2501,7 +2501,6 @@ static int amdgpu_pmops_suspend(struct device *dev)
- 	struct drm_device *drm_dev = dev_get_drvdata(dev);
- 	struct amdgpu_device *adev = drm_to_adev(drm_dev);
- 
--	adev->suspend_complete = false;
- 	if (amdgpu_acpi_is_s0ix_active(adev))
- 		adev->in_s0ix = true;
- 	else if (amdgpu_acpi_is_s3_active(adev))
-@@ -2516,7 +2515,6 @@ static int amdgpu_pmops_suspend_noirq(struct device *dev)
- 	struct drm_device *drm_dev = dev_get_drvdata(dev);
- 	struct amdgpu_device *adev = drm_to_adev(drm_dev);
- 
--	adev->suspend_complete = true;
- 	if (amdgpu_acpi_should_gpu_reset(adev))
- 		return amdgpu_asic_reset(adev);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index b4c4b9916289..6ffcee3008ba 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -3276,8 +3276,8 @@ static int gfx_v9_0_cp_gfx_start(struct amdgpu_device *adev)
- 	 * confirmed that the APU gfx10/gfx11 needn't such update.
- 	 */
- 	if (adev->flags & AMD_IS_APU &&
--			adev->in_s3 && !adev->suspend_complete) {
--		DRM_INFO(" Will skip the CSB packet resubmit\n");
-+			adev->in_s3 && !pm_resume_via_firmware()) {
-+		DRM_INFO("Will skip the CSB packet resubmit\n");
- 		return 0;
- 	}
- 	r = amdgpu_ring_alloc(ring, gfx_v9_0_get_csb_size(adev) + 4 + 3);
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-index 12ff6cf568dc..d9d11131a744 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-@@ -584,13 +584,10 @@ static bool soc15_need_reset_on_resume(struct amdgpu_device *adev)
- 	 *    performing pm core test.
- 	 */
- 	if (adev->flags & AMD_IS_APU && adev->in_s3 &&
--			!pm_resume_via_firmware()) {
--		adev->suspend_complete = false;
-+			!pm_resume_via_firmware())
- 		return true;
--	} else {
--		adev->suspend_complete = true;
-+	else
- 		return false;
--	}
- }
- 
- static int soc15_asic_reset(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
-index c4b950e75133..6a54d9c14157 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc21.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
-@@ -902,9 +902,10 @@ static bool soc21_need_reset_on_resume(struct amdgpu_device *adev)
- 	/* Will reset for the following suspend abort cases.
- 	 * 1) Only reset dGPU side.
- 	 * 2) S3 suspend got aborted and TOS is active.
-+	 *    As for dGPU suspend abort cases the SOL value
-+	 *    will be kept as zero at this resume point.
- 	 */
--	if (!(adev->flags & AMD_IS_APU) && adev->in_s3 &&
--	    !adev->suspend_complete) {
-+	if (!(adev->flags & AMD_IS_APU) && adev->in_s3) {
- 		sol_reg1 = RREG32_SOC15(MP0, 0, regMP0_SMN_C2PMSG_81);
- 		msleep(100);
- 		sol_reg2 = RREG32_SOC15(MP0, 0, regMP0_SMN_C2PMSG_81);
--- 
-2.34.1
+>
+> >
+> > The cc list was getting way out of hand, so I had
+> > to trim it a bit. Hopefully I didn't chop off too
+> > many names...
 
+
+
+--=20
+With best wishes
+Dmitry
