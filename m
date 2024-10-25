@@ -2,56 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999239B031D
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2024 14:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C5199B0314
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2024 14:48:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4418810EAC0;
-	Fri, 25 Oct 2024 12:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0068110EAB8;
+	Fri, 25 Oct 2024 12:48:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rx45vCsx";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
- Fri, 25 Oct 2024 03:56:26 UTC
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC57010E1ED;
- Fri, 25 Oct 2024 03:56:26 +0000 (UTC)
-X-UUID: 629cda28928411efa216b1d71e6e1362-20241025
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.38, REQID:ae7975e5-53d8-485d-a6d9-ab93ee85b120, IP:0,
- U
- RL:0,TC:0,Content:0,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
- :release,TS:25
-X-CID-META: VersionHash:82c5f88, CLOUDID:e6841dc3a29fef6cc4c4d47c9684e538,
- BulkI
- D:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:5,IP:nil,URL:0,
- File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:N
- O,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 629cda28928411efa216b1d71e6e1362-20241025
-Received: from node2.com.cn [(10.44.16.197)] by mailgw.kylinos.cn
- (envelope-from <zenghongling@kylinos.cn>) (Generic MTA)
- with ESMTP id 591682689; Fri, 25 Oct 2024 11:51:15 +0800
-Received: from node2.com.cn (localhost [127.0.0.1])
- by node2.com.cn (NSMail) with SMTP id BE1E7B804842;
- Fri, 25 Oct 2024 11:51:15 +0800 (CST)
-X-ns-mid: postfix-671B15B3-636278766
-Received: from localhost.localdomain (unknown [172.25.120.36])
- by node2.com.cn (NSMail) with ESMTPA id 02073B804842;
- Fri, 25 Oct 2024 03:51:12 +0000 (UTC)
-From: Hongling Zeng <zenghongling@kylinos.cn>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch, zhongling0719@126.com,
- Hongling Zeng <zenghongling@kylinos.cn>
-Subject: [PATCH] amdgpu/fence: replace call_rcu by kfree_rcu for simple
- kmem_cache_free callback
-Date: Fri, 25 Oct 2024 11:51:10 +0800
-Message-Id: <20241025035110.10854-1-zenghongling@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 781DB10EA2C;
+ Fri, 25 Oct 2024 08:48:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729846136; x=1761382136;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HOrpC2uoJMmbO1MzoGJ6GQKp5hqOj/+01ny6zeG0vw0=;
+ b=Rx45vCsxhfxIV/ZvdyZmTGKehs+HxjH75xcScWZDRo12XtOdoHm59+0L
+ pjqDqKoaHLgwW+25NQgL4rPwcOiyzmKd0pbbxXfxU2aO2UsFZyOSdnSG3
+ cXEDMRaeRB5W6NyILyeiiUUXaHgGwA27IraE6j3tJgyZhyZ7YDyLAwDwt
+ 5L1Pa14OyMrIqqm1jDXIj7xIi+g0Ao2a49JmP9evbL7YKV+ipnkqb5K4B
+ lUUVEK1ipecQjMBj4p20iizqNqNWnaUV8VnF9oKjxvkt8UeZl3AhZ8Kge
+ oGu+3TqSFzkwufy2VAsRdlU4FmIKTZT9BdYF7aBQG6WNVRwFnKXN94D16 Q==;
+X-CSE-ConnectionGUID: XDzvbDA3TAGS+SOJAGGuOg==
+X-CSE-MsgGUID: TcF5bxsfRR2sLL/hdEtYUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="32369497"
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="32369497"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2024 01:48:55 -0700
+X-CSE-ConnectionGUID: nEPiNH1VRNuwApaKQmN3uA==
+X-CSE-MsgGUID: rqm0TBk3TGKq+p66FAKmjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80768510"
+Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
+ by orviesa010.jf.intel.com with ESMTP; 25 Oct 2024 01:48:49 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, lina@asahilina.net,
+ michal.wajdeczko@intel.com, christian.koenig@amd.com
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v8 0/4] Introduce DRM device wedged event
+Date: Fri, 25 Oct 2024 14:18:13 +0530
+Message-Id: <20241025084817.144621-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 25 Oct 2024 12:48:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,54 +73,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Since SLOB was removed and since
-commit 6c6c47b063b5 ("mm, slab: call kvfree_rcu_barrier() from kmem_cache=
-_destroy()"),
-it is not necessary to use call_rcu when the callback only performs
-kmem_cache_free. Use kfree_rcu() directly.
+This series introduces device wedged event in DRM subsystem and uses
+it in xe and i915 drivers. Detailed description in commit message.
 
-Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 16 +---------------
- 1 file changed, 1 insertion(+), 15 deletions(-)
+This was earlier attempted as xe specific uevent in v1 and v2.
+https://patchwork.freedesktop.org/series/136909/
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_fence.c
-index 2f24a6a..d047afe 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-@@ -818,20 +818,6 @@ static bool amdgpu_job_fence_enable_signaling(struct=
- dma_fence *f)
- 	return true;
- }
-=20
--/**
-- * amdgpu_fence_free - free up the fence memory
-- *
-- * @rcu: RCU callback head
-- *
-- * Free up the fence memory after the RCU grace period.
-- */
--static void amdgpu_fence_free(struct rcu_head *rcu)
--{
--	struct dma_fence *f =3D container_of(rcu, struct dma_fence, rcu);
--
--	/* free fence_slab if it's separated fence*/
--	kmem_cache_free(amdgpu_fence_slab, to_amdgpu_fence(f));
--}
-=20
- /**
-  * amdgpu_job_fence_free - free up the job with embedded fence
-@@ -858,7 +844,7 @@ static void amdgpu_job_fence_free(struct rcu_head *rc=
-u)
-  */
- static void amdgpu_fence_release(struct dma_fence *f)
- {
--	call_rcu(&f->rcu, amdgpu_fence_free);
-+	kfree_rcu(f, rcu);
- }
-=20
- /**
---=20
-2.1.0
+Similar work by André Almeida.
+https://lore.kernel.org/dri-devel/20221125175203.52481-1-andrealmeid@igalia.com/
+
+v2: Change authorship to Himal (Aravind)
+    Add uevent for all device wedged cases (Aravind)
+
+v3: Generic re-implementation in DRM subsystem (Lucas)
+
+v4: s/drm_dev_wedged/drm_dev_wedged_event
+    Use drm_info() (Jani)
+    Kernel doc adjustment (Aravind)
+    Change authorship to Raag (Aravind)
+
+v5: Send recovery method with uevent (Lina)
+    Expose supported recovery methods via sysfs (Lucas)
+
+v6: Access wedge_recovery_opts[] using helper function (Jani)
+    Use snprintf() (Jani)
+
+v7: Convert recovery helpers into regular functions (Andy, Jani)
+    Aesthetic adjustments (Andy)
+    Handle invalid method cases
+    Add documentation to drm-uapi.rst (Sima)
+
+v8: Drop sysfs and allow sending multiple methods with uevent (Lucas, Michal)
+    Improve documentation (Christian, Rodrigo)
+    static_assert() globally (Andy)
+
+Raag Jadav (4):
+  drm: Introduce device wedged event
+  drm/doc: Document device wedged event
+  drm/xe: Use device wedged event
+  drm/i915: Use device wedged event
+
+ Documentation/gpu/drm-uapi.rst        | 75 +++++++++++++++++++++++++++
+ drivers/gpu/drm/drm_drv.c             | 51 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_reset.c |  3 ++
+ drivers/gpu/drm/xe/xe_device.c        |  9 +++-
+ include/drm/drm_device.h              |  7 +++
+ include/drm/drm_drv.h                 |  1 +
+ 6 files changed, 144 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
 
