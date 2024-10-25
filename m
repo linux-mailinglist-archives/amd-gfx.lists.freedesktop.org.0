@@ -2,68 +2,142 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3F709B031A
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2024 14:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C1289B0270
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Oct 2024 14:33:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C660310EAB3;
-	Fri, 25 Oct 2024 12:48:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5505910EA91;
+	Fri, 25 Oct 2024 12:33:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nJC+IzWi";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jzuof8Zx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D63910EA54;
- Fri, 25 Oct 2024 09:47:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729849666; x=1761385666;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6rbifKS/b/8sjhIHVhRdr8q9RaoX7LEiMZO8Aw36+T4=;
- b=nJC+IzWiZGGOYaXM+dnlGzSkn3nBUeI4dacqAn8C7Pl8OpNlopRy8sQV
- hft9/IzYpLPmi0R9p6A0wyTITyBeh+AngwUQZ6gEOV6bMAfVTPHRveFFk
- TaDtB1KfnjH7zcs/DLig2z6E+5gsX/qUsRLkWq4ziM1PhD11wukqi1W1E
- VFW2DNZFfhzLobMK56PU4Ry7gsSjdqzuj9kSTCiPLNcZPVfa0UF6A1CXH
- V9ItVEF+idXWt23mNpHfuoUH20ZFaJpRTmIErI/RdrtOv/6LJPqj/P63e
- Mj0eqeQQAl4pVW1WZUB6+x8KsaYYe14q5AIjAhCJYup3VypnStOcWCSNY Q==;
-X-CSE-ConnectionGUID: We3x6rq5TJCJTaT1syeESA==
-X-CSE-MsgGUID: WuGuWlzcTXqGwaVEdx9zvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="46996336"
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="46996336"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 02:47:45 -0700
-X-CSE-ConnectionGUID: KEo2T9dkTJus/LCCLp7lIw==
-X-CSE-MsgGUID: stIku8ljRxKprzLmkTjRng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="81038257"
-Received: from zzombora-mobl1.ti.intel.com (HELO localhost) ([10.245.246.193])
- by orviesa006-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 02:47:39 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: kernel test robot <lkp@intel.com>, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, David Airlie <airlied@gmail.com>, Hamza
- Mahfooz <hamza.mahfooz@amd.com>, Javier Martinez
- Canillas <javierm@redhat.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, Simon Ser
- <contact@emersion.fr>, Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann
- <tzimmermann@suse.de>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>,
- amd-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- nouveau@lists.freedesktop.org, xen-devel@lists.xenproject.org
-Subject: Re: [PATCH 2/2] drm: remove driver date from struct drm_driver and
- all drivers
-In-Reply-To: <202410251351.r16zfufe-lkp@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241024162240.2398664-2-jani.nikula@intel.com>
- <202410251351.r16zfufe-lkp@intel.com>
-Date: Fri, 25 Oct 2024 12:47:35 +0300
-Message-ID: <878qucqzt4.fsf@intel.com>
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2042.outbound.protection.outlook.com [40.107.212.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F416910EA91
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Oct 2024 12:33:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=apfsl8NYB5iF/sUA46YtgNlr5fkOacX6TE5glopBGNa9RvOn0Bc9Cevv5xD4Jbg3Hpgv1llEki01R895Sp189m8xFw3/L5RfeXwwvnxOSttx2pvdi6i1As6vkBLmWCKdrEuTo9w12+xZGJymeRuwQnlZOy3BpsOnRDYLodq8YAAEz8/g40Rp1Gqb95SKxvMe1+tAhjU7RKZ8uCQGHNils4+GRia+Ps7laD9Yo7OVcmEFJx/n/k77nNN9vfX67BVnK4SZpUTBIAX4wlaL7XyuJCFW6nluGlyIfYqoaYXrlofD57fbM+EQ0lP3hrb8BJkV8o9pMs/UkHZr6pBIUnvy0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VxCFtAjiP4OE4Q4xtVqB/IQutpjhQC9SC9ivDnnCcRE=;
+ b=sO13xY57bx1p/lVB/DS150LDdmSJLrTL6q2zD70TIkgwQJDPFNZVp9/Wntl8y5a++d5RowZiBj7ojfkbv74vdN3CZWlqiYJ2RvOj4S919OlCSVbSvxswT9nqFe1IRqtCeLs8E0fd8zoPZZzfinax4mIPG4PyD+eSVMIYbEVlMDxP9b9rblMQVbGW1JEfPO3obYNIaq/OOhidN9rJzZnhuKrV47NJ4FtKZIrdgaRtmGcTlNJGTpWCpTOFADw5hCv/P26RFm+/La9BVs3ndT9KOCRWXActkgsHEuCWr0H88u03l4fUEkSkgXMTTOnpbN/JpSSCbp3nOWuWj5eaP3nNkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VxCFtAjiP4OE4Q4xtVqB/IQutpjhQC9SC9ivDnnCcRE=;
+ b=jzuof8ZxQgKxUzgq4Bn2N2p+sw56C+D7d1SdGARIBhnbTSFMFHIoMwT4M0fkqtpPiqid8V5DTl6VdsZczG4PbLojNLciBikH+if0K7tvclOuLdHX1kmIqRJ6Z/Wd+Mu4IX6J2VFyjT/vCLPZyJ8HHCV1zY1yEZLIVAivGjcgHLs=
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
+ by PH7PR12MB7259.namprd12.prod.outlook.com (2603:10b6:510:207::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Fri, 25 Oct
+ 2024 12:33:46 +0000
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::c593:f43d:c798:e009]) by BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::c593:f43d:c798:e009%7]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
+ 12:33:46 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "Zhou1, Tao" <Tao.Zhou1@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: optimize ACA log print
+Thread-Topic: [PATCH] drm/amdgpu: optimize ACA log print
+Thread-Index: AQHbJq4/9bp1LgoK80GKW1wS5+6ay7KXZsxQ
+Date: Fri, 25 Oct 2024 12:33:46 +0000
+Message-ID: <BN9PR12MB5257F8B8506C1A743F3B7722FC4F2@BN9PR12MB5257.namprd12.prod.outlook.com>
+References: <20241025071922.95979-1-kevinyang.wang@amd.com>
+In-Reply-To: <20241025071922.95979-1-kevinyang.wang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=72d4d709-23c5-4481-b741-3b94d1e7e0c2;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution Only;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-10-25T12:33:22Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|PH7PR12MB7259:EE_
+x-ms-office365-filtering-correlation-id: 0973a7fb-9d5f-41fa-4941-08dcf4f14565
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?hp4H2f3bwGWfPdC8agCJczjQh4M6QJ81zMKWdQkYmdqwG0VIC8S+HjBAcmE5?=
+ =?us-ascii?Q?BT5ID1bvSeyRuJlP/LR28+SQoq4wl3t+j7shnqU3U85S6j3CNajJNWLkEsxM?=
+ =?us-ascii?Q?G3K5HWY3pkINJD39x7vj7zUBG1kytcYLg2rx7fqAtScFCwAMGrFKnRlA+pzX?=
+ =?us-ascii?Q?8Pl5sac4pgrFjbjlq2MgJf5HRa3vQc4mOwSPC133qxKL2NoV3NfgM8N1Yt8r?=
+ =?us-ascii?Q?Mgc5i99ExhRimrFzbFtdfylvWiDWrKPhajmGJKKL1HoyZVepGToVjp2clfHt?=
+ =?us-ascii?Q?Ipjs766rPuVzmBZlWytu7A/f4cvBysvZKga3m4Zg1qC+eUUes3WvLVsga53+?=
+ =?us-ascii?Q?tYKFLV2gru1m0lCuBJZcdZCpN3BPKhW+NNMNUCwpawaL1vBIWOJe3X5w1Zm4?=
+ =?us-ascii?Q?SKNtrhHs8eaGHGzElvbp1Wy032myxAILVuHrBTMTc5lI4MTJ6GNY1depmjAq?=
+ =?us-ascii?Q?VT4mILeGQLJikY/uLz0gghP3AngzcwAvMUslOndszK7vjlyEpKyJqYvwQjNa?=
+ =?us-ascii?Q?+a/23lgFG0y8SDKFctMkEGcd0bfY2ueSjzWX3bu/rS9ptxQT8pV3oYhg3/7M?=
+ =?us-ascii?Q?SS3t/Ez+zb+6FNKCwceNonpN1d6+kYoJhTbIK+90pE8L4aCKamz0Km3rCTLZ?=
+ =?us-ascii?Q?1lUa3t2fjxExjUfY2vidB36U3lrf3FW1ArUm6Favc2YPoYWt8lPsstkCvj69?=
+ =?us-ascii?Q?y1np54Qu8wTCaoBYCGfuy4HVrEi8c2DpumwG9wBnYY6oe4rxtEJXu0zhGFUl?=
+ =?us-ascii?Q?WzBDwrQpd0xuM0mjWwenfJTHEQ3YHKcTwQhKbMtrEm6Oic7v3vNZMsWXTGvf?=
+ =?us-ascii?Q?2+Wl46wOzN3BJ060a7WOV7X5kErr/yQjfeRZEQIvlGy+csAssJZD5zhbyoTX?=
+ =?us-ascii?Q?j+VQ1YGznM21QT1qGcwB6XW5dN7B7gdWaa9V19XP9z3O2npmP23dlx/iSMiO?=
+ =?us-ascii?Q?nAq7+tW7RGufB16DQn0suf2djuh1R9Qf4i5jwZBRARYSOWj9w8FD6Xj0S3Q4?=
+ =?us-ascii?Q?OSFcEsmivLH2UOgp4j6BzrUGr0k8/9ASfHzYZoRGS4Q3DRLisKlA6aAGflhZ?=
+ =?us-ascii?Q?JxqLXZXfaRk/0sKL1DZYPM22dVsiaIFy9hhpebktzfhni8pSvM8DpumTdQiy?=
+ =?us-ascii?Q?t6ByjWtByo4jz1Rcn0bKM+Ga/EYGP5bWFOGEqvBEBLxfOVDhw9M4adlWUuzy?=
+ =?us-ascii?Q?PnB8kqD400mgYkjPUoQqxkwUXakLECwBMtU1+8DA2tcvDZzDJ+7leW8WkI06?=
+ =?us-ascii?Q?iciwWwez5NjlOJIc5KFEOBHM3xCE6MX5IdDM3nqNE7evziufIgknmet764Aj?=
+ =?us-ascii?Q?WYb481bRoitp7aN7zYO21X4k5ge3t1ZHzkA2I+6eabI5lPgJqgOji4QsUeLe?=
+ =?us-ascii?Q?1WYfIsU=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?XZsEyIItcUSkWidpSdZ4BTwg4x5er/G3YPGQTkMw+S33ZPEbOF/2xcju8x1w?=
+ =?us-ascii?Q?J6/98Jrww4lSb3xEkciy3OimTMCpCRnFqtFAicugPn7hzBDCSj4edAAk0Va+?=
+ =?us-ascii?Q?b7J/yaqXOfF+vg2rFSxri/YZNGRyoJ7E/XS1H5DPTKBw7qPQIrW3miKsiEiV?=
+ =?us-ascii?Q?Skq45NTZoqtrfJ0ZYU3uzQnPMJzhUbVxjB5gmCIjvJjRdBYZ4Zyi+iYlAQhp?=
+ =?us-ascii?Q?YWDas/5hL2g3b/qUTv8Ro+Zt1snw7L8NWwqj5Iux7fjXpNxj5ZBWoFP81olE?=
+ =?us-ascii?Q?2ee1GEU9o6okSgZ+KTycavrNas9z4icDVY5A35DGVulzF2T1C9YVxaQEg0yA?=
+ =?us-ascii?Q?otIyNvQXJZmiYCfc/T8bTuYU6X5DgeIi7NkuiqRqlOLFj8wjCPCZq1bFQZO/?=
+ =?us-ascii?Q?ggMVVBWHpQnNfm9NfwIYM2gFCrtOJLskQz5fFCxcvyta9sQvG/lEn8mHjhTX?=
+ =?us-ascii?Q?PUB0ljBI5j4dCvi9Iz2jYe9GAL5Q7HAW0NwoD8lBepd8+V16hko4/Dm0/n+0?=
+ =?us-ascii?Q?ARjdFlA2WkFAZqCC/Hps0ApjHVVKZwhBvzQhdwnD2KsttrLtFG0Kk5NiMhWV?=
+ =?us-ascii?Q?/9qgtOuzswGD/SEEZy9jW01z0C1oVYQRRIknEuU/+TluuTEfccGyj6MZk9iZ?=
+ =?us-ascii?Q?W6rLZ7LxS5HLcmJEq13DJlpNTTVWmvjmI3KYDjkPPYs97XO2SLPmoYGMZXnX?=
+ =?us-ascii?Q?DkFgHb6qlY5PNBj24mh8Qrd5Hvfqk/H9vukpCaNt+eRdPQU+iHbYBpMyCEIT?=
+ =?us-ascii?Q?t7EKEM291jLwQDH6IK8CfbEkQAUab5rKYty1i0Cb6F6P3UGCvxh+rwU8PeFR?=
+ =?us-ascii?Q?GwYpJWpSATCgoQDQ9XtT+QlFax580BZ0rCnPFkfrtGytSCo7NjH+I9+9SklJ?=
+ =?us-ascii?Q?0FBylWtBUu9nAb8nKSCL9JllaeVzZTatruNvBRAAx3x22JVf3aywOYgF3zYL?=
+ =?us-ascii?Q?Hne3QgT3kx5gCqudXh/Qn+7nUm4UvBqM+zDJOcxGwbvJb1yNRGPgNrTFa+t8?=
+ =?us-ascii?Q?GjpGlvSiZUeXqAmOxPGJcFnN7MhsVuIf5Y7l2VOFu1x4ys13v1FN0ZZxY7oA?=
+ =?us-ascii?Q?KUyy0cE3hcF6bB1SBSROtuNENgK4upckaQrLWE+9Yj7JNKD99kCgr+Qrt6Ym?=
+ =?us-ascii?Q?R5w8SIZI1wZ1HRw5iwQTupNfg0c91hTDVihdCSvjFP/7QDSp3H7aDi4yso99?=
+ =?us-ascii?Q?mVzApinyvtmBZPnJnDxE+MYh5QnJufg+GkSNH3cMvfB90y09DhQhDaImsICJ?=
+ =?us-ascii?Q?HRljWc+g4Khz/ZonXNGEoPUwl5/dYzcwBURKU9EPvKj1svbm4ggbvuLNjaO7?=
+ =?us-ascii?Q?ywtu8j6bhUywWDt+bi6ny36gdTCdflPBT4H/IfO7JNcVDQWdqUwBfxwbzLLE?=
+ =?us-ascii?Q?b9H5h9/SUyljaIahU5qGezoHu11RsiswIdG8vclX3fZWu/vBqBQVRPMvZnFV?=
+ =?us-ascii?Q?fVVth7AM+9AZ+BUUx4zUsO1rcjcW8nmqnimkBKjtrlir6cDzmZEgM2C+UGNw?=
+ =?us-ascii?Q?5jSMRKzIc/JHeZHFZtGmbk2nqkbpgobrfWf+cYjDvaVPulb32+puiU02RGD+?=
+ =?us-ascii?Q?jhzvqxS8GnJjLryvEA3bbRhQ39AwMI3B3qP1wWjh?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Mailman-Approved-At: Fri, 25 Oct 2024 12:48:03 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0973a7fb-9d5f-41fa-4941-08dcf4f14565
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2024 12:33:46.8114 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wXTEfMZVtbeJflxUnhu5L1XEBszLj2G1npwJtcGAvG8Ijso5/Qy89G6ztVOvJAuuA5cd/bRFwniVPMP2FzN2hQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7259
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,71 +152,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 25 Oct 2024, kernel test robot <lkp@intel.com> wrote:
-> Hi Jani,
->
-> kernel test robot noticed the following build warnings:
->
-> [auto build test WARNING on drm-misc/drm-misc-next]
-> [also build test WARNING on next-20241024]
-> [cannot apply to drm-exynos/exynos-drm-next shawnguo/for-next drm-xe/drm-xe-next linus/master v6.12-rc4]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-remove-driver-date-from-struct-drm_driver-and-all-drivers/20241025-002344
-> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-> patch link:    https://lore.kernel.org/r/20241024162240.2398664-2-jani.nikula%40intel.com
-> patch subject: [PATCH 2/2] drm: remove driver date from struct drm_driver and all drivers
-> config: i386-buildonly-randconfig-004-20241025 (https://download.01.org/0day-ci/archive/20241025/202410251351.r16zfufe-lkp@intel.com/config)
-> compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241025/202410251351.r16zfufe-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202410251351.r16zfufe-lkp@intel.com/
->
-> All warnings (new ones prefixed by >>):
->
->    drivers/accel/qaic/qaic_drv.c:211:10: error: 'const struct drm_driver' has no member named 'date'
->      211 |         .date                   = "20190618",
->          |          ^~~~
->>> drivers/accel/qaic/qaic_drv.c:211:35: warning: initialization of 'unsigned int' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
->      211 |         .date                   = "20190618",
->          |                                   ^~~~~~~~~~
->    drivers/accel/qaic/qaic_drv.c:211:35: note: (near initialization for 'qaic_accel_driver.driver_features')
->    drivers/accel/qaic/qaic_drv.c:211:35: warning: initialized field overwritten [-Woverride-init]
->    drivers/accel/qaic/qaic_drv.c:211:35: note: (near initialization for 'qaic_accel_driver.driver_features')
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Hrmh, looks like I missed all of drivers/accel, I'll send an update
-later.
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 
-BR,
-Jani.
+Regards,
+Hawking
+-----Original Message-----
+From: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
+Sent: Friday, October 25, 2024 15:19
+To: amd-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>
+Subject: [PATCH] drm/amdgpu: optimize ACA log print
 
+- skip to print CE ACA log.
+- optimize ACA log print for MCA.
 
->
->
-> vim +211 drivers/accel/qaic/qaic_drv.c
->
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  205  
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  206  static const struct drm_driver qaic_accel_driver = {
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  207  	.driver_features	= DRIVER_GEM | DRIVER_COMPUTE_ACCEL,
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  208  
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  209  	.name			= QAIC_NAME,
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  210  	.desc			= QAIC_DESC,
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27 @211  	.date			= "20190618",
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  212  
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  213  	.fops			= &qaic_accel_fops,
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  214  	.open			= qaic_open,
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  215  	.postclose		= qaic_postclose,
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  216  
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  217  	.ioctls			= qaic_drm_ioctls,
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  218  	.num_ioctls		= ARRAY_SIZE(qaic_drm_ioctls),
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  219  	.gem_prime_import	= qaic_gem_prime_import,
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  220  };
-> c501ca23a6a306 Jeffrey Hugo 2023-03-27  221  
+Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
--- 
-Jani Nikula, Intel
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_mca.c
+index 18ee60378727..3ca03b5e0f91 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
+@@ -348,6 +348,24 @@ static bool amdgpu_mca_bank_should_update(struct amdgp=
+u_device *adev, enum amdgp
+        return ret;
+ }
+
++static bool amdgpu_mca_bank_should_dump(struct amdgpu_device *adev, enum a=
+mdgpu_mca_error_type type,
++                                       struct mca_bank_entry *entry)
++{
++       bool ret;
++
++       switch (type) {
++       case AMDGPU_MCA_ERROR_TYPE_CE:
++               ret =3D amdgpu_mca_is_deferred_error(adev, entry->regs[MCA_=
+REG_IDX_STATUS]);
++               break;
++       case AMDGPU_MCA_ERROR_TYPE_UE:
++       default:
++               ret =3D true;
++               break;
++       }
++
++       return ret;
++}
++
+ static int amdgpu_mca_smu_get_mca_set(struct amdgpu_device *adev, enum amd=
+gpu_mca_error_type type, struct mca_bank_set *mca_set,
+                                      struct ras_query_context *qctx)  { @@=
+ -373,7 +391,8 @@ static int amdgpu_mca_smu_get_mca_set(struct amdgpu_devic=
+e *adev, enum amdgpu_mc
+
+                amdgpu_mca_bank_set_add_entry(mca_set, &entry);
+
+-               amdgpu_mca_smu_mca_bank_dump(adev, i, &entry, qctx);
++               if (amdgpu_mca_bank_should_dump(adev, type, &entry))
++                       amdgpu_mca_smu_mca_bank_dump(adev, i, &entry, qctx)=
+;
+        }
+
+        return 0;
+--
+2.34.1
+
