@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4F49B5127
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Oct 2024 18:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2F29B5124
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Oct 2024 18:43:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD0910E39A;
-	Tue, 29 Oct 2024 17:43:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A35F510E6B0;
+	Tue, 29 Oct 2024 17:43:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="tba89lOr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="srEpH3Tz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2229110E39B
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 17:43:01 +0000 (UTC)
+ (mail-bn8nam11on2059.outbound.protection.outlook.com [40.107.236.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D187910E6BE
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 17:43:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bJjqNCXKBD0nr33yCbQZfTA22H1mdrFlQQtdKlD75uUxwILXvsCVgVxFFNLxBNG42Ut/hZXgYvwU4qR9eMCkqIHPzXngxLWpdAg9zA+I1wMO20MoFzW233HG5jO895/vGF4n4iUv1AHjZObkTGp0iaRr+EUnQ5yxFtRlSKWUj4mJGBt9Zqmaa/356ZCCCwEh6Bq+9otSMe+PJZLw5OlXZc1CEOhEbf+b3REXjl1ivoR1DfTcQ/gG8B9yZhYxyMyxLmWpS9O8cIwD57CcwjQpAAC3njQXX4N4IjnQ21ICNaXyQBuH8Qw9gXGiAk0PNNCasIb4oPJ3uQ6SvcC0iBDpKg==
+ b=gj3O8mIjIMHp7cPunYkf+YtjTGMvEBgDVivhGbnJdXFZk7DRn3LbPGsMvegMSakYD5RBW5kxiVE/KIC0kIWO9+xqFOhZYE9Bab94fAQScGnvHn9efSOSu9PEJ4XZjR4SeMb7cCRtE1X/+IDEwxKegn8uEOJpFMr1QLLt37/SUTEJa33QtPA2Lj+s/C+4YtWyS2aH/X0D5ur0FihWmo5pI0cNxpamQVbYLcpXdZEcAVUUWErpxP3XEfVHPdujIHEYbFWfTLIsMCvmrOiz+rHA8hrcPDxPUTa5/8lSbGJP18H4Q44nV0HEbYumzgie5X9MA2pSD54bte21Ffm+rF8hRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lYWDB3DOhbNWyeRRlRpdg+ZP8p9fb+BekQ9giAat900=;
- b=iYGyCK02LdkeNm7/gG44S51X/18JwWQ7TbDONTIoyztrmd77oDseiv+UwR3Wn1L/o0VBjRTxZyZkEKtMz72wmzMBU2kbWRJhZ0AJd436ABbzOjGvQUOt4zXLDyA5edlCp6M/EIAHXHJwyS5vNwNT3e7YOyK8jA++AlBpf5vhsM8UBxsjJL1hdj61aPGg6n8sg4qNPpXy1or93tvvOhWqw77AyS/hcGTufFli9hAPePPRZjLtx1Gc+xETpuHi9ILrQBrVeY/BNpT66wPMXN/mGgdHoSsUQE9FIvxIb9xonFgHURi+V31Rf3cBbVAhDpxu7nUafUHPgKw7vxrNe+zphA==
+ bh=+lhSQSigvwe7sD7U1Opfa0omw736EFurehsaHHXgC90=;
+ b=ghMg6uJUwHie9Sf5fZxCwaeKuupdCdPPdDF+bf5SdpuYZuHf9TenyELzphyNXy7p2b9jLS1mIpB1z6XAADMSk9a4YeeSesXZ4opRrLrpzGOZEI3KaAhaIdYKiUt/6LLX2zmSy8a6K5/fSqg53SgAsjmLqDj7oMm3D/zvF5Unq76sV7VQte7O+DDZkLezYW0am4kffQhh6K7B6/OPm3Q19lIoDAPEfej6zthJib+4GxFQb2Xeknwi0zkGtZgdzJ9TKgkfKWBBmRsF0tYyLkIQEXo3Yuq2Rqwu8Hmip5njkt5wwPSULjoDgSmim9fAypV/G9MWnlnEqOOOwKpcBSfdVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lYWDB3DOhbNWyeRRlRpdg+ZP8p9fb+BekQ9giAat900=;
- b=tba89lOriFgm/mgvKnxyShr+Z4AXxoJ6pRbe0U9kKWdxiXtrQPPzWkM2bWx0YW49Aws5OP4jVqRSYTjj7PfqSQSt0qG6hDcxV1jxjCrRmzzS+z2XKVaiV4I1gYWsfriAZsO32Lq4GLNdYMJA5UZfIV3QPheYrbmYRIDx8Zj+JB0=
-Received: from SA9PR13CA0146.namprd13.prod.outlook.com (2603:10b6:806:27::31)
- by SJ2PR12MB8651.namprd12.prod.outlook.com (2603:10b6:a03:541::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.32; Tue, 29 Oct
- 2024 17:42:53 +0000
+ bh=+lhSQSigvwe7sD7U1Opfa0omw736EFurehsaHHXgC90=;
+ b=srEpH3Tzi9D4qkU6anCX4dJjo5E5cWuHNqv+/7OFnRUw8di0K9s5rZrrYfGtHwoHkde6U+Bn3w4FvOh/LYri9mm2VSg//F0ZKmghaI71yJMvH46bgUFYElWZzkqUHXmWyDw0d9sis3APeufF3W39WmGMboZM/l6vMylC1huQHkU=
+Received: from SA9PR13CA0121.namprd13.prod.outlook.com (2603:10b6:806:27::6)
+ by DM4PR12MB6208.namprd12.prod.outlook.com (2603:10b6:8:a5::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.25; Tue, 29 Oct
+ 2024 17:42:54 +0000
 Received: from SN1PEPF000397B1.namprd05.prod.outlook.com
- (2603:10b6:806:27:cafe::82) by SA9PR13CA0146.outlook.office365.com
- (2603:10b6:806:27::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.13 via Frontend
- Transport; Tue, 29 Oct 2024 17:42:53 +0000
+ (2603:10b6:806:27:cafe::18) by SA9PR13CA0121.outlook.office365.com
+ (2603:10b6:806:27::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.17 via Frontend
+ Transport; Tue, 29 Oct 2024 17:42:54 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,19 +50,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SN1PEPF000397B1.mail.protection.outlook.com (10.167.248.55) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8114.16 via Frontend Transport; Tue, 29 Oct 2024 17:42:53 +0000
+ 15.20.8114.16 via Frontend Transport; Tue, 29 Oct 2024 17:42:54 +0000
 Received: from atitest-Rembrandt.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 29 Oct 2024 12:42:52 -0500
+ 15.1.2507.39; Tue, 29 Oct 2024 12:42:53 -0500
 From: <boyuan.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <leo.liu@amd.com>,
  <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
  <sunil.khatri@amd.com>
 CC: Boyuan Zhang <boyuan.zhang@amd.com>
-Subject: [PATCH 01/29] drm/amd/pm: add inst to dpm_set_vcn_enable
-Date: Tue, 29 Oct 2024 13:42:12 -0400
-Message-ID: <20241029174240.682928-2-boyuan.zhang@amd.com>
+Subject: [PATCH 02/29] drm/amd/pm: power up or down vcn by instance
+Date: Tue, 29 Oct 2024 13:42:13 -0400
+Message-ID: <20241029174240.682928-3-boyuan.zhang@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241029174240.682928-1-boyuan.zhang@amd.com>
 References: <20241029174240.682928-1-boyuan.zhang@amd.com>
@@ -74,58 +74,58 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B1:EE_|SJ2PR12MB8651:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0324ef5d-be3f-4769-fea5-08dcf8411dd8
+X-MS-TrafficTypeDiagnostic: SN1PEPF000397B1:EE_|DM4PR12MB6208:EE_
+X-MS-Office365-Filtering-Correlation-Id: 376b3554-1933-4e4f-35f7-08dcf8411e31
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YzhKbXZLWmNFSXNaUXlXaGhsa0tyM2V3bnNrV1hsaVdOdVBIYTVORHdPdnZE?=
- =?utf-8?B?UnkvdjQ5WGRya2JTeHUvOWkxd1prWlM5aHlKd0dIYlpPUFlCckhycnlMNnVH?=
- =?utf-8?B?ZmN5L1RrYXBvdktwZy9xTWNIZXZQeklBMDByaTU4V2UycEVFUVlwdnIzK01D?=
- =?utf-8?B?RHlodEIycitISk1XbmlsMjRvMzBEcnM5Z0p4TVBvL1NON2Yyci8yNisyM1Rn?=
- =?utf-8?B?QzFxd2EwTFg4QU9FRCtzbGcxUmZOb2E5czJCblZEdExyc3RkejYyMWFQTlJ3?=
- =?utf-8?B?T2YyejRnWWV1NDNlT2RVUVJzajNNbityd3J0RDlyVGxwMlpSU1pocHZOMGNB?=
- =?utf-8?B?amQrNE12Z3pEWnR1b2VXWG9tK01kWVVKQWxmWFM4QjJQakIwd3FkMXJKWFZW?=
- =?utf-8?B?MWZ4QjcvQ0hVUDhKSnhZdCtSeGRtZk5ZNlJKOWRHV2x4UzZXU3RYYTJadjJh?=
- =?utf-8?B?R0lneTFSM1IyZ3Y4UE1kYzlScnVORmk4aVdUQmpzNUdKU0M2UTZMdmkwTjRB?=
- =?utf-8?B?V2ZxTXFpZFB1NTNwc012NzdIbDhoUWU5WXBQY1BqSGhpTjk4RjNGczBJd3NR?=
- =?utf-8?B?d3dzZGhYSkxYcmpiaXpOM1IvbE45K1FidVVkK2g0dEhya0o5ZjErVlhpM2lJ?=
- =?utf-8?B?N0RaL3BWMlNRVWsyYVR6N1BrY1MxRFBBbTcxZVhYL05LQ0t2ODlOeEdJVE5W?=
- =?utf-8?B?WE9TOXAyN3dnT1lMMGtWTS9HZGJwSVdBLy84MG5lOGpOQktVL2pBekVPUEd0?=
- =?utf-8?B?UGNlR1F1em9jdUZ1cm9hekZqZUFtK0ZPbDRteWxLV1MzOGQzcGhkNnZnRTE3?=
- =?utf-8?B?ZndVeC9wNzBtZnFJdTZEdHJUa051Vi9SZkdrWUVUZG0xTVZZaGNiQjF6ejlx?=
- =?utf-8?B?NEpNejM0aHh0azFJS2UwelNQelF4QWFGZEdOQ2RmZ1FzZ2ZyZVRVZEZXT2Rv?=
- =?utf-8?B?Q2NPU3UzLzg1WUNmemVma3lOdklnaFRKUkxIdVhjbk1FbjhxWmh2bUxwODBL?=
- =?utf-8?B?WG9oYzNHaVRDb1U1dk5xbTVtcVFJaG5hVFBqcVpodEk1NnNjRGNkQXB4M2Ju?=
- =?utf-8?B?a1p0Mkx4VlFyaVpLckw0b0MrZFBoY0pMZkxYTVBNSFNBR3E1cXV2dEdISndx?=
- =?utf-8?B?WlE3ckJRM1VHWjUxc1BucnNlT3NRUWFaeStkaytnNU5aNW0wWTlveDJxY3Ju?=
- =?utf-8?B?R1V0MFNvcEp3UzVEYXVnZ0E0NVExak1UZVp3dDk1Q05kWS9rYy92MDFNbEdP?=
- =?utf-8?B?akhkbVZad0RlLzNIcld5SGZaR3VYT1FwOE5QZU9KcGRndHlLYjFQTjJCWlN4?=
- =?utf-8?B?aWNrRXJvYmFENVRHSGoxM1lHK1FxUHRjb05qd1JxendObTk0S0RxM3gwZmpX?=
- =?utf-8?B?MTFzeEZtR0oxVjJEQlE2bzJWQ21CWTNPbXZuSDVEcGpXRzQ1R1lmdmFKLzdU?=
- =?utf-8?B?TS9RRmdTK2E5em42c2dPNi9GenR5RUdGbmtGOUNaUWNMZW5qY2RpNGRxMG5j?=
- =?utf-8?B?dWUxQ1JFakN0NTFPWWdzNHV5WWFiOHBnempXOEkwY1E2MEJLVFlxcG03Tldq?=
- =?utf-8?B?MzdCVmNjYldmWS91MnNkVlNiZy91NTY2K2xzckt1ZUd2QjY5eStLR2ZTUE05?=
- =?utf-8?B?dnZUL0pXaUx3SFViaU5yNFk3U2U2RkkzRXZEb1JlS0RYOUJaNmVnaWtqaktB?=
- =?utf-8?B?bDNQWHJZS1BzTkJRa2hkeTNKWlJhOURjSFdBWDNabmIrUzV6eWJQblJZTjQ1?=
- =?utf-8?B?RFZJb0pmYlk0Ry8wZkkzQ0lCRDh1em81QlBLTDh3eWFhditmUDRtcXFGV2ll?=
- =?utf-8?B?YWdrTmFjQzdVeW1EYlFiKzU1Z1lhR0I2OEl3VmNSQ0ZpejFJWkpGMmIwZHpx?=
- =?utf-8?B?OTF4OVg3bWkycWdsc3QrVXkrTStwckcveUN0OUZpclc1dnc9PQ==?=
+ ARA:13230040|376014|1800799024|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SnY3eERsM1NVbTZPN0FxV2Nka2l2aEpFQy9HTzBzZWV4TUVUS2I1MzJ6MWpo?=
+ =?utf-8?B?QlZ0OWk3S25mSW5uMmwyTUNzTTYxaytucVZjVjlmaUhNQjZwQVFhMmVtQ0Mv?=
+ =?utf-8?B?YXh1cXdXNHg0TWxjcWxBSC8yU09ydFkxU2Z3eWMwdUx4RkljZkhHUHEzUkxT?=
+ =?utf-8?B?ZmNKMDVrZHcwSG9zVGJLU20vU1g2N2txa1pkQ1MrNGp5ZkQ5Y0p6T09HRlJD?=
+ =?utf-8?B?NWMyWW9tcGVSd1ZXL2MrSDU0U0NXN0Mxb3FPcjVUVHVSZVpjb1RBOENMK1Z5?=
+ =?utf-8?B?eGNZR0lwSnlsUnB5MU5rdmhES3E1MU5qSHFVWFZveEJ2N1FaTFdtOHZjZ1RZ?=
+ =?utf-8?B?eHJ5Uzk0b0VZZk40UHBnTHlUQVljUGR4Rm1DUFZ2a1VjampnYWpDeG9Dczc1?=
+ =?utf-8?B?VE9ZMGs0V095Z082MnJBbEtPMGYxTG0reTJQWEVOZlZxblpwSUpuMVcxVTlZ?=
+ =?utf-8?B?WEEzZEZ1cUVCZWcwcGM0VnIzOTN2WlhWU3pYd3lOVFErYkZETTByN1p5aHRx?=
+ =?utf-8?B?a1JLeElXZ1c4V1AvTTlML1dtSWtsT2x4ZU5iVFlvTzZuVDhKWHY0SGd5MjdP?=
+ =?utf-8?B?UHhmRG1IdmFSbStidVNZUThsL1VKUkJUQzUraGhSdE1FeHRRZVh4dDl0TGdY?=
+ =?utf-8?B?TWZFVTdja3JBN1FFdi9vUTd1ZE56a2Q3SjdiYWFhZGdGVGM2SThCc2tFN1hM?=
+ =?utf-8?B?Um9aUkEvc0YxTVRqZHFLcDB5RnJycytZZFE2c2JEMzdiU3B2dTQvWFRuVzZY?=
+ =?utf-8?B?U1FPdmZYclFZV1dCQ0E0KzlYbFUvdmNCNGJzMVNoK25tZTI3RDJQNVlFMU10?=
+ =?utf-8?B?Y0NTNHZwUmtPalp3ZHEwbjBocUhyVmpDQkk3UW9IcVNDNmVKRUsxU3BFVm5v?=
+ =?utf-8?B?bmI3OXZoQWcyd0lzWU1pcmVLWjBTM1dza0tickdLU3JzdVFYbVVNT1BPY0JQ?=
+ =?utf-8?B?M3AzVzkySTFTUng1WFZxK2RJQXQxQyt4ZEwvZXI4aGZHUDFtWnE2bUVMY1pl?=
+ =?utf-8?B?WUp6dkZKSVFBd29kWnFvOEZBWGhaQktPSXVVZGI1QUhoMzBBN0JlZnl6Nm9l?=
+ =?utf-8?B?cU5QM3d6Z0dwQzVob1dtK2lFNXU1SE1UeXNSRmVYakg2S0JuSnp3YUNwV2li?=
+ =?utf-8?B?Ni96ZERmSldBVXRCcDd6YmZYSWl5VHFJYjRtMlVla3pqUFlqZXJtNmcxd3JB?=
+ =?utf-8?B?SXVoZFIrSm9JZi9qNVQxRUhIaCt3eGJzc3hQMmg3Q3p6SWdsbFRDQ0tGN0Zo?=
+ =?utf-8?B?b1JWRjR1UmhqWENvbm5lVmxLR1R1WjVzeUYrblhxcGMrdUhhcjNQRmdGd29K?=
+ =?utf-8?B?dy9xaS9CT21ZTXJQa3N3WCtuVXdWMEtrQWRqNlhta3hzYkU0SWcyNEJrS3Y0?=
+ =?utf-8?B?cTZocVNjUmFhN2prRDF2aXlDMG91bE9aaXRva1JKZ0IvdnBzSk1SQzR0SHRN?=
+ =?utf-8?B?LzhoT3lIMEw2cjhmRWhyQUpwb3pJZEhqRll4U08zM1lkeEVKQnhSTy9ZbWpt?=
+ =?utf-8?B?THEwNmxTUHU1UE1DaGpvbTdET3VCWVBuc1IxeTR5ZDB6eFk3R0htM2R2cjVF?=
+ =?utf-8?B?dFpqUlNWRmh4V1d5Tk0rWlh6emhGdmNEcVZVZFVYYUFUU1JJWFRsSTA5TjFq?=
+ =?utf-8?B?UnhRQmttY0lISFV1NGMyODRmaXhGWll5WEEvVnVxT1NJODJldWN2OFpKaEJh?=
+ =?utf-8?B?cnYwbUsrdE5tbjMrVmNKTTg0V29BMmlkL2lZSldhN2w4WEdTcDM2NThQSHNO?=
+ =?utf-8?B?UjUrazIyOWxienB1WEp5NjFEbzZKcEphdmRlZStxTVdFVmY2bityRFBHemdo?=
+ =?utf-8?B?UXpOU3FGWGl4Q1o4VnlBZHhZelBjbkd3REJkaGtlZDU3cFE2dWpFczFOT29M?=
+ =?utf-8?B?NXN1Uk82bk5rYlBYMjBDK2tia0twc1I3QXVubHdMakdxaFE9PQ==?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2024 17:42:53.6309 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0324ef5d-be3f-4769-fea5-08dcf8411dd8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2024 17:42:54.2090 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 376b3554-1933-4e4f-35f7-08dcf8411e31
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B1.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8651
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6208
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,220 +142,164 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Boyuan Zhang <boyuan.zhang@amd.com>
 
-Add an instance parameter to the existing function dpm_set_vcn_enable()
-for future implementation. Re-write all pptable functions accordingly.
+For smu ip with multiple vcn instances (smu 11/13/14), remove all the
+for loop in dpm_set_vcn_enable() functions. And use the instance
+argument to power up/down vcn for the given instance only, instead
+of powering up/down for all vcn instances.
 
-v2: Remove duplicated dpm_set_vcn_enable() functions in v1. Instead,
-adding instance parameter to existing functions.
+v2: remove all duplicated functions in v1.
+
+remove for-loop from each ip, and temporarily move to dpm_set_vcn_enable,
+in order to keep the exact same logic as before, until further separation
+in the next patch.
 
 Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
-Suggested-by: Christian König <christian.koenig@amd.com>
-Suggested-by: Alex Deucher <alexander.deucher@amd.com>
 Acked-by: Christian König <christian.koenig@amd.com>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c               | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h           | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h            | 3 ++-
- drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h            | 3 ++-
- drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c       | 4 +++-
- drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c         | 4 +++-
- drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 4 +++-
- drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c        | 4 +++-
- drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c         | 4 +++-
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c          | 3 ++-
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_5_ppt.c    | 4 +++-
- drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c    | 4 +++-
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c          | 3 ++-
- 13 files changed, 31 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     |  9 +++--
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 20 +++++------
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    | 16 ++++-----
+ .../gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c    | 35 ++++++++-----------
+ 4 files changed, 35 insertions(+), 45 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 8d4aee4e2287..fe2a740766a2 100644
+index fe2a740766a2..ccacba56159e 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -252,7 +252,7 @@ static int smu_dpm_set_vcn_enable(struct smu_context *smu,
+@@ -238,6 +238,7 @@ static int smu_dpm_set_vcn_enable(struct smu_context *smu,
+ {
+ 	struct smu_power_context *smu_power = &smu->smu_power;
+ 	struct smu_power_gate *power_gate = &smu_power->power_gate;
++	struct amdgpu_device *adev = smu->adev;
+ 	int ret = 0;
+ 
+ 	/*
+@@ -252,9 +253,11 @@ static int smu_dpm_set_vcn_enable(struct smu_context *smu,
  	if (atomic_read(&power_gate->vcn_gated) ^ enable)
  		return 0;
  
--	ret = smu->ppt_funcs->dpm_set_vcn_enable(smu, enable);
-+	ret = smu->ppt_funcs->dpm_set_vcn_enable(smu, enable, 0xff);
- 	if (!ret)
- 		atomic_set(&power_gate->vcn_gated, !enable);
+-	ret = smu->ppt_funcs->dpm_set_vcn_enable(smu, enable, 0xff);
+-	if (!ret)
+-		atomic_set(&power_gate->vcn_gated, !enable);
++	for (int i = 0; i < adev->vcn.num_vcn_inst; i++) {
++		ret = smu->ppt_funcs->dpm_set_vcn_enable(smu, enable, i);
++		if (ret)
++			return ret;
++	}
  
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-index 8bb32b3f0d9c..4ebcc1e53ea2 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-@@ -739,7 +739,7 @@ struct pptable_funcs {
- 	 * @dpm_set_vcn_enable: Enable/disable VCN engine dynamic power
- 	 *                      management.
- 	 */
--	int (*dpm_set_vcn_enable)(struct smu_context *smu, bool enable);
-+	int (*dpm_set_vcn_enable)(struct smu_context *smu, bool enable, int inst);
- 
- 	/**
- 	 * @dpm_set_jpeg_enable: Enable/disable JPEG engine dynamic power
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h
-index 044d6893b43e..ae3563d71fa0 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h
-@@ -255,7 +255,8 @@ int smu_v13_0_wait_for_event(struct smu_context *smu, enum smu_event_type event,
- 			     uint64_t event_arg);
- 
- int smu_v13_0_set_vcn_enable(struct smu_context *smu,
--			     bool enable);
-+			      bool enable,
-+			      int inst);
- 
- int smu_v13_0_set_jpeg_enable(struct smu_context *smu,
- 			      bool enable);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h
-index 07c220102c1d..0546b02e198d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0.h
-@@ -210,7 +210,8 @@ int smu_v14_0_wait_for_event(struct smu_context *smu, enum smu_event_type event,
- 			     uint64_t event_arg);
- 
- int smu_v14_0_set_vcn_enable(struct smu_context *smu,
--			     bool enable);
-+			      bool enable,
-+			      int inst);
- 
- int smu_v14_0_set_jpeg_enable(struct smu_context *smu,
- 			      bool enable);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-index 5ad09323a29d..6c8e80f6b592 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-@@ -1571,7 +1571,9 @@ static bool arcturus_is_dpm_running(struct smu_context *smu)
- 	return !!(feature_enabled & SMC_DPM_FEATURE);
+ 	return ret;
  }
- 
--static int arcturus_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
-+static int arcturus_dpm_set_vcn_enable(struct smu_context *smu,
-+					bool enable,
-+					int inst)
- {
- 	int ret = 0;
- 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index 9fa305ba6422..faa8e7d9c3c6 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -1135,7 +1135,9 @@ static int navi10_set_default_dpm_table(struct smu_context *smu)
- 	return 0;
- }
- 
--static int navi10_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
-+static int navi10_dpm_set_vcn_enable(struct smu_context *smu,
-+				      bool enable,
-+				      int inst)
- {
- 	int ret = 0;
- 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index 77e58eb46328..a9cb28ce2133 100644
+index a9cb28ce2133..24cf17e172f4 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -1152,7 +1152,9 @@ static int sienna_cichlid_set_default_dpm_table(struct smu_context *smu)
- 	return 0;
- }
- 
--static int sienna_cichlid_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
-+static int sienna_cichlid_dpm_set_vcn_enable(struct smu_context *smu,
-+					      bool enable,
-+					      int inst)
+@@ -1157,19 +1157,15 @@ static int sienna_cichlid_dpm_set_vcn_enable(struct smu_context *smu,
+ 					      int inst)
  {
  	struct amdgpu_device *adev = smu->adev;
- 	int i, ret = 0;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-index 6c43724c01dd..cd3e9ba3eff4 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-@@ -461,7 +461,9 @@ static int vangogh_init_smc_tables(struct smu_context *smu)
- 	return smu_v11_0_init_smc_tables(smu);
- }
+-	int i, ret = 0;
++	int ret = 0;
  
--static int vangogh_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
-+static int vangogh_dpm_set_vcn_enable(struct smu_context *smu,
-+				       bool enable,
-+				       int inst)
- {
- 	int ret = 0;
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		if (adev->vcn.harvest_config & (1 << i))
+-			continue;
+-		/* vcn dpm on is a prerequisite for vcn power gate messages */
+-		if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_MM_DPM_PG_BIT)) {
+-			ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
+-							      SMU_MSG_PowerUpVcn : SMU_MSG_PowerDownVcn,
+-							      0x10000 * i, NULL);
+-			if (ret)
+-				return ret;
+-		}
++	if (adev->vcn.harvest_config & (1 << inst))
++		return ret;
++	/* vcn dpm on is a prerequisite for vcn power gate messages */
++	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_MM_DPM_PG_BIT)) {
++		ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
++                                            SMU_MSG_PowerUpVcn : SMU_MSG_PowerDownVcn,
++                                            0x10000 * inst, NULL);
+ 	}
  
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-index 0b210b1f2628..a34797f3576b 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-@@ -645,7 +645,9 @@ static enum amd_pm_state_type renoir_get_current_power_state(struct smu_context
- 	return pm_type;
- }
- 
--static int renoir_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
-+static int renoir_dpm_set_vcn_enable(struct smu_context *smu,
-+				      bool enable,
-+				      int inst)
- {
- 	int ret = 0;
- 
+ 	return ret;
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-index 6cfd66363915..2bfea740dace 100644
+index 2bfea740dace..bb506d15d787 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-@@ -2104,7 +2104,8 @@ int smu_v13_0_get_current_pcie_link_speed(struct smu_context *smu)
- }
- 
- int smu_v13_0_set_vcn_enable(struct smu_context *smu,
--			     bool enable)
-+			      bool enable,
-+			      int inst)
+@@ -2108,18 +2108,14 @@ int smu_v13_0_set_vcn_enable(struct smu_context *smu,
+ 			      int inst)
  {
  	struct amdgpu_device *adev = smu->adev;
- 	int i, ret = 0;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_5_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_5_ppt.c
-index a71b7c0803f1..f5db181ef489 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_5_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_5_ppt.c
-@@ -193,7 +193,9 @@ static int smu_v13_0_5_system_features_control(struct smu_context *smu, bool en)
+-	int i, ret = 0;
++	int ret = 0;
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		if (adev->vcn.harvest_config & (1 << i))
+-			continue;
++	if (adev->vcn.harvest_config & (1 << inst))
++		return ret;
+ 
+-		ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
+-						      SMU_MSG_PowerUpVcn : SMU_MSG_PowerDownVcn,
+-						      i << 16U, NULL);
+-		if (ret)
+-			return ret;
+-	}
++	ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
++					      SMU_MSG_PowerUpVcn : SMU_MSG_PowerDownVcn,
++					      inst << 16U, NULL);
+ 
  	return ret;
  }
- 
--static int smu_v13_0_5_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
-+static int smu_v13_0_5_dpm_set_vcn_enable(struct smu_context *smu,
-+					   bool enable,
-+					   int inst)
- {
- 	int ret = 0;
- 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-index 71d58c8c8cc0..73b4506ef5a8 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-@@ -220,7 +220,9 @@ static int yellow_carp_system_features_control(struct smu_context *smu, bool en)
- 	return ret;
- }
- 
--static int yellow_carp_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
-+static int yellow_carp_dpm_set_vcn_enable(struct smu_context *smu,
-+					   bool enable,
-+					   int inst)
- {
- 	int ret = 0;
- 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-index f7745eaf118e..ecb0164d533e 100644
+index ecb0164d533e..5460f8e62264 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-@@ -1507,7 +1507,8 @@ int smu_v14_0_set_single_dpm_table(struct smu_context *smu,
- }
- 
- int smu_v14_0_set_vcn_enable(struct smu_context *smu,
--			     bool enable)
-+			      bool enable,
-+			      int inst)
+@@ -1511,29 +1511,24 @@ int smu_v14_0_set_vcn_enable(struct smu_context *smu,
+ 			      int inst)
  {
  	struct amdgpu_device *adev = smu->adev;
- 	int i, ret = 0;
+-	int i, ret = 0;
++	int ret = 0;
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		if (adev->vcn.harvest_config & (1 << i))
+-			continue;
++	if (adev->vcn.harvest_config & (1 << inst))
++		return ret;
+ 
+-		if (smu->is_apu) {
+-			if (i == 0)
+-				ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
+-								      SMU_MSG_PowerUpVcn0 : SMU_MSG_PowerDownVcn0,
+-								      i << 16U, NULL);
+-			else if (i == 1)
+-				ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
+-								      SMU_MSG_PowerUpVcn1 : SMU_MSG_PowerDownVcn1,
+-								      i << 16U, NULL);
+-		} else {
++	if (smu->is_apu) {
++		if (inst == 0)
+ 			ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
+-							      SMU_MSG_PowerUpVcn : SMU_MSG_PowerDownVcn,
+-							      i << 16U, NULL);
+-		}
+-
+-		if (ret)
+-			return ret;
++							      SMU_MSG_PowerUpVcn0 : SMU_MSG_PowerDownVcn0,
++							      inst << 16U, NULL);
++		else if (inst == 1)
++			ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
++							      SMU_MSG_PowerUpVcn1 : SMU_MSG_PowerDownVcn1,
++							      inst << 16U, NULL);
++	} else {
++		ret = smu_cmn_send_smc_msg_with_param(smu, enable ?
++						      SMU_MSG_PowerUpVcn : SMU_MSG_PowerDownVcn,
++						      inst << 16U, NULL);
+ 	}
+ 
+ 	return ret;
 -- 
 2.34.1
 
