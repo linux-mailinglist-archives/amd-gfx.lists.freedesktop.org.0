@@ -2,126 +2,147 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E109C9B427F
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Oct 2024 07:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 768149B4291
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Oct 2024 07:48:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 906CA10E5A7;
-	Tue, 29 Oct 2024 06:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EADD10E23D;
+	Tue, 29 Oct 2024 06:48:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XjEKUL9e";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nGs3nado";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81E6710E5A7
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 06:42:15 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2071.outbound.protection.outlook.com [40.107.95.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF11710E23D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 06:48:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rscbYB//Lb499iuXT6/yapNYKxQ+xUhTaNb+/n01ctjs53M3Qgzr+gXslR9+lvpL8z1bkCIzbH5/xsZczaz6Yc/Nnr6iaq1GE81vmJpuZ6b3AAD7b0jIpne7F6oBqFuoP4YGY4RNvo8H9pimYcqtbm1qDenYReF0ySE4/ijZTSx1zTa3/U4IpsP3uA8ZTw29WjJpN38WxCGX3ygwv4YyP/L8lTLt/o3qgoPHjUgy8DbxOvXvf8mwsXYDFyq34faOpuI3LW8jwjAnty0tx1AHCQfbxcjVoAfKcTwPVKp6HC0+ToA9swneCHB84RzIWQYExmEJUUUgy+yaT0UQJMc7zw==
+ b=cYeXNBQolHqgqord+tU00gfwE0fAvLsshz3WOwzPPtAc43raCRl4EI1FhWERujDI9oKvekCnusK6AgA67alYLYs7z4LVQ4ZfgdM5uODoCSwJS5FKyyr4cjv683nTTf+BPn9mdWUaDZYVjVfekuS9j9pQWG1JiyR+WDhq5d9aOchrVPEaWuT5gIbjBpcU8vwlxHCrwrWxkS6AHdOx2CORXQaABelYBW07qB/2UoQAj/yAHb0n/YhEauEQh+ier0faXiD05FU2vSnlfpiZ23nAthnvjl1teq1RMaDE682VA9YpCmoXDrCIgdXdgXKaRROTcAxgr/6t7b5xbS/dq9eCkw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QKt1exwVWix4Eu3iXj12ZctlpfXNuGxbeKRzwrFnm4M=;
- b=E3TArxrwFx+7jFdoInDL6ehm3MMWMe5PtmDwSMhVVNaxOZb8m8uwndYVqpCz64t1km3JmbzBzzdGHalMQAgRjVhZ7bHmoSGulKHCdCLZDMDMczMWH60mLR8B9wx/jRBOySA65HbpGmRcj9PPbg3wWQdk7dTFbZHtI7s6zxMBteX2+OcME9xsfBxz3Bg3wu0ABXrCXDU1av4lvPr/zUneM4p/6fNoyCrEs/ShjxjoMgbw76dkR2iVpoM2be2b6uBO3zKg2UQRRMcsZc8XjFcB2lXUW1FN0lr0R+CpQWPrmLBfULvY0lAzoVJHYLUg6Tqp1HgwnvWQ0O/OHBv/IyKk0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=DDz39BOB9zPorOSen2Md7mCymjwqUcXOhX/2WZurCII=;
+ b=cEWnq7wUs9R0Bx9dIVZOzOF+Y1CP4e+iTikSB5aBrZsLzNqmYEchpFAOcnf7Ei12r9DhtpANVYjWRYchyOtFWUpheEyk4MPnsa+fdZzxgtjeEo2q0cvuFsbPPmX1CbiXBaIgHhcj2PkCeLo908+HGWn9i9+/BFRz9C4X+5iJrIktRucDEb5IlHluRXK8WCM5mojMTr1nv6kstLHO8clZ72qHQy23f+0XUTIrcS6xFNJLYvcVWOJLda9v+YBedKuPrT5HkfuDqIQGG7nAOTWkJdB11+puj3g28jBdLvzQmW7A2glbCW8DOPxuhODmes2e+GxCoSel7c07eHmSMPHvfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QKt1exwVWix4Eu3iXj12ZctlpfXNuGxbeKRzwrFnm4M=;
- b=XjEKUL9eQgbs+Tdd+yb3dAF0fB+iUcFbPwtUECzoepP6AEhEZGVLLb1voDV7jcACluuZAgavKhaRd1YG00uWd9FkkKIZ4UWWCRFY4OI70VBGIbqJUq9KmN0AudPVbg0w7sWjoXZerMSjfz3Fha5P4v5YsPPTF3koLbaSdAAwVmA=
-Received: from PH0P220CA0025.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::18)
- by PH0PR12MB8125.namprd12.prod.outlook.com (2603:10b6:510:293::6) with
+ bh=DDz39BOB9zPorOSen2Md7mCymjwqUcXOhX/2WZurCII=;
+ b=nGs3nado7XjuXqIk+Sog8qa00VdDMx9B0PDyJN5o9K3UTx+5g8U091NWcpk/wjNDMRx/6JaEy3x8pxWdodQbCxUJINeVrgU0m2uW22hz8lnguvacr7aj0I1GTB6epVPrM3Qm3ytxDwcQ6VF/SXi6//+fcC2S8SfuNWZ+AFlk2DY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from IA0PR12MB8208.namprd12.prod.outlook.com (2603:10b6:208:409::17)
+ by DM4PR12MB5794.namprd12.prod.outlook.com (2603:10b6:8:61::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.27; Tue, 29 Oct
- 2024 06:42:12 +0000
-Received: from SN1PEPF00036F3F.namprd05.prod.outlook.com
- (2603:10b6:510:d3:cafe::80) by PH0P220CA0025.outlook.office365.com
- (2603:10b6:510:d3::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.17 via Frontend
- Transport; Tue, 29 Oct 2024 06:42:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SN1PEPF00036F3F.mail.protection.outlook.com (10.167.248.23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8114.16 via Frontend Transport; Tue, 29 Oct 2024 06:42:12 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 29 Oct
- 2024 01:42:11 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 29 Oct
- 2024 01:42:11 -0500
-Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Tue, 29 Oct 2024 01:42:04 -0500
-From: "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- <Tim.Huang@amd.com>, "Jesse.zhang@amd.com" <jesse.zhang@amd.com>,
- Jesse Zhang <Jesse.Zhang@amd.com>
-Subject: [PATCH V4 5/5] drm/amdgpu: Add sysfs interface for jpeg reset mask
-Date: Tue, 29 Oct 2024 14:41:36 +0800
-Message-ID: <20241029064136.3057034-5-jesse.zhang@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241029064136.3057034-1-jesse.zhang@amd.com>
-References: <20241029064136.3057034-1-jesse.zhang@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.24; Tue, 29 Oct
+ 2024 06:48:29 +0000
+Received: from IA0PR12MB8208.namprd12.prod.outlook.com
+ ([fe80::14af:1677:d840:8d2]) by IA0PR12MB8208.namprd12.prod.outlook.com
+ ([fe80::14af:1677:d840:8d2%4]) with mapi id 15.20.8093.024; Tue, 29 Oct 2024
+ 06:48:28 +0000
+Content-Type: multipart/alternative;
+ boundary="------------oH6O3pp0q1FcfEnCFEpvFtz2"
+Message-ID: <c401ea1c-0b2f-4591-abe9-6a911c55b3a0@amd.com>
+Date: Tue, 29 Oct 2024 12:18:22 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Group gfx sysfs functions
+Content-Language: en-GB
+From: SRINIVASAN SHANMUGAM <srinivasan.shanmugam@amd.com>
+To: Lijo Lazar <lijo.lazar@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Hawking.Zhang@amd.com, Alexander.Deucher@amd.com, Christian.Koenig@amd.com
+References: <20241029052700.3164571-1-lijo.lazar@amd.com>
+ <93ad9f9b-9803-4ba3-b29a-06b5c53b5ccd@amd.com>
+In-Reply-To: <93ad9f9b-9803-4ba3-b29a-06b5c53b5ccd@amd.com>
+X-ClientProxiedBy: PN2PR01CA0154.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:26::9) To IA0PR12MB8208.namprd12.prod.outlook.com
+ (2603:10b6:208:409::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00036F3F:EE_|PH0PR12MB8125:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5da84c73-faaa-44ce-5db0-08dcf7e4d1dd
+X-MS-TrafficTypeDiagnostic: IA0PR12MB8208:EE_|DM4PR12MB5794:EE_
+X-MS-Office365-Filtering-Correlation-Id: f7734871-a925-4b6c-c270-08dcf7e5b1ba
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?c3m0EBIrIspJpi7Jr+NV+0EVRnpG48RtmcB31lGqIWjwR9KiIA4Ag+20FgoU?=
- =?us-ascii?Q?Yag2XR/MI04T9zKcdehTYhrF0Ww5eZG8VruXIVoQzoH6n3PmMeVVu/SUaw1D?=
- =?us-ascii?Q?/rSH52PqJndq/6RBTm3FMXvj7VLtQYZK8g+yPpgrOGrp6ChY8t3Tot3BTI7n?=
- =?us-ascii?Q?PRgQKLsRNUduRQGlDbniQ9eQa8pSy3Rga2CW4JFJxlzRh7mlEXcz2dbP2/59?=
- =?us-ascii?Q?EYDeMa2aCLQHnLoX+fy1G4t+x/VoMCDnJtoG1+f250y8yS92todqPWJNNUuo?=
- =?us-ascii?Q?FhaMcavoJC1ypHTGqZ+D9dard00LBzZ0n1Y5qlgyCeItIaBQFrDGaSIsrfgI?=
- =?us-ascii?Q?njkf7qHi2fwn1RRhFipWIFS10ByEJDG+A/C6tsHCns/en3AkQEQFvi3ocRcx?=
- =?us-ascii?Q?lfBZBL3C+xTBKP9S1dIo8EkoGegdk5uP9/YPmDYLxDwLFL3K5zVStt230HPU?=
- =?us-ascii?Q?yBK5JcNmR32eOEYIZbM7YdFcUakMqLWorJiIQtloPv/bUa/r3NPhHK6tqTU6?=
- =?us-ascii?Q?+nY+s+pIJMnmQFwHEY61Ie/PJcHmoAPkzuwsC4DzFqyhiGCTiI7RTWAW2vNy?=
- =?us-ascii?Q?68iZ/4w+ypLuKUwAoIlJ94b32s3ENQGHQgeC9KYTVPh7k3Wurkf9O8GKCS+t?=
- =?us-ascii?Q?y/b2obFWWE8R6WQ+lFG9BMn3UEhqJM0X8rLZIloZhVZHUVw1lcNn0ff8YUiU?=
- =?us-ascii?Q?9lCzbNBfPu8cRhIqSUBDnullGBIGwhkGQsRQx4lbbPr35dKrHbKptZfwETVH?=
- =?us-ascii?Q?RpHFgk/Rjh3/8f5WhrkGzGGDrm6KHOWlmn2WDRq+GHxxybv4YyMoB/ubNPgV?=
- =?us-ascii?Q?1c/Pj+3ZAoXhaTNK4Nlg7Bf6kwmMzyVKF6SYo4vM9jzqNGnf1rfCcCUFLl2P?=
- =?us-ascii?Q?7ZxRy31ol5ZmPx65iUbDl6GfoQuM18v3u7uQ1iYGrvshimbJC4T/sFE6Ya9q?=
- =?us-ascii?Q?sd/zpT3UPraPPfUAAzf5Nj7khA1e1wSqATaPF/0ZvuajTuH57/54E+twxZC+?=
- =?us-ascii?Q?v2XwFk8S8r+VibEp+sP7qWmnLaGnXqCSEQQ2GFwTffaWH2JY8EjL6RDzKXs8?=
- =?us-ascii?Q?ctfB1OAFwa3DX0IFmvrGrVlL/YNYuoYB5FV4voEKwr0A7Te8Jzc/gmlrzJ3s?=
- =?us-ascii?Q?bWQos9dhkzijGN7Qshp5lGb890oW/fBySCDpdp7s0HfdmVuKHOPBLXzvsHeU?=
- =?us-ascii?Q?UIoBOlCaeCOp5rMtygS2QkxP8+oEpnMqeZ819b/k8VqnIbCMi+FdJm3eStvF?=
- =?us-ascii?Q?Vec+WahFl2n7C5cRqokeC7+Oj7D4Uk4aN7NuXEsrEtvh+2Tcg93zZ2F1z5ux?=
- =?us-ascii?Q?RXtyeZCrGCfJgFRVZlSd1I3u25FXUYqJVytwFMRRfmF+1yKjevnhQ+D3RjK/?=
- =?us-ascii?Q?zxSqRFkcMZvjFv04U8uzruQldHJSkbCLgwkZY4B3662IHa4vgw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RlR0S2V3MVZwRzcwS200ZnpDeWszOTZ4dmNSQjdkdnluNDlabUtVem5qdjB6?=
+ =?utf-8?B?ZmZBcTB5NmdFSEtjdUpqaTU4RmlEZENYMmpOT3BmWDlwcE56dmI2b1hSRWFn?=
+ =?utf-8?B?Q2o0Mm9sTFRENWJZaHBoejBwQk5NZHdkajNqOU5IcXhlcWJ4S0M5Vjc1Ujd0?=
+ =?utf-8?B?ek85SS8wQTl1THBhaEZkWEx3a2xLZGNVQjFIQnRubUhoZGJQS2JGZFhNRkJs?=
+ =?utf-8?B?ZWdELzQ5bWRWRTRBUzdLeEkrMUNuZkk2Z3dqMmp3RHlKNEVhNDM4TEYrb1JO?=
+ =?utf-8?B?eGlpMWNjRzBsRDlyTmNYaUN0eWVjOCt3WURuM3VBZkk0SUs5M3VwamtoZTFa?=
+ =?utf-8?B?eXgzUlFZelVFWWxEdWdpc0lwcXNkUVpiN1NaSnBqc2kreE12SWtMdW5KMXR0?=
+ =?utf-8?B?Lzl3NDVlNGFGMHh1Y3JKaTVRT1J5OUZSNFZSSm9hSkpLbDRaYytLY3JxY2gy?=
+ =?utf-8?B?OHNMeUtGaWJQc2NZMkFaT1FwM3RRL3Zpa3hXZElPNG1KMGoxRUw4ejJ3bHJ1?=
+ =?utf-8?B?dXlRSEhuVDg5K2pUR3BQNjg0OFN1UWkxTjg1SWFZYncxZkcxVmYwcGZmSy85?=
+ =?utf-8?B?UkQ4bkxqL2dTaXVhUDlRNkhMYU5TRVYyc3ZMazU2UXowRXdjS0swcWVSUzBq?=
+ =?utf-8?B?R1MwdjFZbmdXN2EwbFhQelIydDMvaEtwS3RFbmdiWkszeC8rZGdDd1RYMitz?=
+ =?utf-8?B?L3ZHUitxMjY5bTFVVmZpUkRoUUduYnlHQXFZdjFoMHFMSVZSU3dHRU9RK3E3?=
+ =?utf-8?B?TjRacFVtOWFXSHlhTEtPSGtnOGE1WWFaQWRyaXNtRkVweXRtNDNIVFJTeXM2?=
+ =?utf-8?B?U3Q2a0RPUGlIcnFnS0tqODQ2NTFzUktLZWJIMWV5OGRwRnZjMlBqck8xR21K?=
+ =?utf-8?B?YVZDT3paeTJzRVlRZzJkTnYrTGNCT3RtNGZTR2dWc3hKZzVpUXMrQ3FIb0cx?=
+ =?utf-8?B?WlBRVlJrTlVDY2czbHFJNjNwUlFmMXBFMmJ2aDRVYS8vdVhDNWNDRWJyZlRW?=
+ =?utf-8?B?dHJPRlZhRmlBZ00vWFpNeFBqOXFlRitmR1pyNUU0Y3pESWhQbm5UV0NmWDhE?=
+ =?utf-8?B?N2VVK01NRWVGREJhd09YdW0ySk9ka0dCcXNwRnl4cDJDam1CTjRwRDhick9s?=
+ =?utf-8?B?UWViZ0c1WFdzYlJreFhPZldzTkdFZlhwbVUyRUx4cURUeXNrK0tkSlpUTk8r?=
+ =?utf-8?B?bndRbE1TL0VKTnpIR1ZpYTJrSGRpZjZPZTI0Qm8vb0VlazFVUHQ2aDhTOUJ1?=
+ =?utf-8?B?U1VmWUdYbHdrUjFpL2hOM21VUmJvL0tzVDNiQS9YdE5oNXhTZmliTnVMeDhN?=
+ =?utf-8?B?SWRXRGNZUTBFbE0xYTZMaCt2b2czUWY1OW5VRmxrM3BzN3NOTVpTYUxkYXNq?=
+ =?utf-8?B?NjIrMjhzaFluTVJ1SkFxTVJ4dDdxUGVodjZDdkc3VFUxZGxNUjAwKytsSzNl?=
+ =?utf-8?B?RDdYeW9aTGo5ZG92Mm9FWVFYZnZvL2ZTUVlNT0lBaXhUelBtTGdCWEcwZUZq?=
+ =?utf-8?B?K1FyOTZjbm1YQ2FXd0ZQMThvWE9kR0t4V05Ia2VZM2lvcWxrY1Qwelh3YnpN?=
+ =?utf-8?B?MDVqS3VHa29rWEFycWZTZU5pMUc2NUhKY0g0dUt2a2hFRjJpbmYrVnFMRHBH?=
+ =?utf-8?B?M3pKVmJCMVo5dTZidUJiWklJaDVMaFAwbVdORVpGNVppQVVSV2tSdzhwNWk0?=
+ =?utf-8?Q?5m+Z7H9ja6ueUsIApYhS?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR12MB8208.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?anJwQXZURzhxUFNsSWozanFuK01iVTBFK1I3U2lZSURHSW85anhIejVNQVlY?=
+ =?utf-8?B?Q1pEaDlvb0NGLzJCb0RkS3dnSDY3bldKUUZoYmlwY1cyOEphcEFyVC9oMzRm?=
+ =?utf-8?B?b3l4TUlMUGRiSmlzcWlSMHpFdDU5UXNmeDJ4SmZqa2VncnA0M2NEQ0sxOUZ3?=
+ =?utf-8?B?RHJscUI2S2NmK0JLOTU0dmdDNExJSkFRZXNpYWUyL3VuWUdZeHFma2VSTDN0?=
+ =?utf-8?B?M21sNytqOCtEbnJYWjE0WnRLTmZTWWloTmJtR3RqNkVqdEtrUjFvM2lzTmUw?=
+ =?utf-8?B?dFJqaDR4QVN6YVhmZmF6dVhWYjFvdkVMdGp3a1ExV09nVi93UzBWVmUrSkI4?=
+ =?utf-8?B?LzBJYm9GR255OC9MREZnWTdjYnU5dTFXbzFqc0xnd1VUdElwY1ZBTVQrQzYx?=
+ =?utf-8?B?b0NNS2I2NHNPandIL2ZmUXdkQVVQSFlZTWJGdHhnOTlYZXhPRWdLRG4yekV3?=
+ =?utf-8?B?RnBhTmxCOXZNOE9TRTRQRVZnRVRDUTBuVDJUSjRTUkppcVlnVFlaZ082OUU4?=
+ =?utf-8?B?TjZDbm5rWFpFR0dZOVVjLzJ5d05pek5nWEtpY0RHKzNrZFo5QkF1WVljOTVt?=
+ =?utf-8?B?bmU5VGxHcmE5NEEvN05zSFVpQUNLd0FYMG8zYkNBanZ2c2M1MExlNDgxc09l?=
+ =?utf-8?B?d0VnSFQwczhnUjJ6MjRZWTRwQWVIU1lpemtqanB5SnVDcGhESk9mQ3krY1Z1?=
+ =?utf-8?B?N2NxeElqTHRDb0czVXZBd2w2Rlp6Z1VKR0gvY0ZGMk1LejZEazFYWXdGVjIz?=
+ =?utf-8?B?ZHovN0N3a2Fzay9OMCtnaUpvbHFpOSs0Q05sWnBNc3RDTEs4Q2hHamRsV1pU?=
+ =?utf-8?B?VGlqMzhBb3oydUdaWFJMSDBLSWlLTTJJSjBwbVB0UWQ5WHBVeWUxQlVad1Nn?=
+ =?utf-8?B?UTRSREtrUVp6UHMwOWJ4VVVtRWhuUXUyTnhMSENBN0lwQ0krV2RPdmpib2hs?=
+ =?utf-8?B?RFQrNUY4Z2VKSnZWN0sxbG43cjRpcWJNQ2FodUxOVng2cWlva2JHU3BXdCsr?=
+ =?utf-8?B?alY4bG84T210RFpnUWhGbmhTMXNkWDVLdTlwMmMxN2VuQmh5QW9vN29OTEV2?=
+ =?utf-8?B?V3FvUmQ5NThEMVl5MDBXc0cyUmdJeFg1TXNqdTY4bmY0Rjk0alJ2VUN2bWFG?=
+ =?utf-8?B?NXdQbUdNVHJHd1BNdEJJa2dUQ1d6Y004MXZxQjl3WDVYZThsMEV3MlVDS05T?=
+ =?utf-8?B?QTc2S2JobWVXR2ZDOVF3WEJHeTVVYjN1TlVIdi9sV01pNlN6cDZlSWFoSU5Q?=
+ =?utf-8?B?cGxMYmFMbXdPMzVmaHFmKzNYdlBOTzdSWUVTU2Z2dEJxejh2dktEUm1pVzVt?=
+ =?utf-8?B?STVidk1jMEExelhubUh5SlUyWGZqVW5tNytnNnVYbVBMaUFBWG4vV09Wd0Qw?=
+ =?utf-8?B?UmNrdXROWDdRN0VGM0w4UlliTjRSUGpEMjVHVjd6Vm5JYVhtVUxsOFY2Tno1?=
+ =?utf-8?B?dXZJOHBWT1pXN2ExVkVmS3VpQS9rUW9DYyt4VXRHOVZwUXI1Z3h1MEU2SFZU?=
+ =?utf-8?B?eUNNYURHMUtabzVWbmp1YXlwTFZ0Nk9wR09CWWhraG14cWlYTHY4Uys4SzA1?=
+ =?utf-8?B?dkNKRjFyWmdPdjRwdStQSzFYdmJZRFRHck1pNHd2TmZLTEdOVVY3N21YWkx4?=
+ =?utf-8?B?VFJkTUo5aXNLUy8wNWdsZVZORk44VnlBY0M0NndKOTRqNmFKcGptNXZsSGpp?=
+ =?utf-8?B?dUtkYkNrYTA4SnBYNmdQcC92S2pnWWxrdTdmMkFiRWpaRXMvQnZuTmlhNlNR?=
+ =?utf-8?B?UjhyeWRpN0F5dlJPYjZkcmxodXluZmpiSTBCdUd3dHEvWUVzbWs5dlNnYkpv?=
+ =?utf-8?B?RWFiQ01FeXRPOSt1dG9naU9OeG9PdWpocmJuVUJWb0xzVU5FM2hPVXlSZTJZ?=
+ =?utf-8?B?UzJTcm1MWmJZTjEybFN3SmVOTEhlRGJ4ZGtNWThVY3YvVHFuQ0k4aUErYVMy?=
+ =?utf-8?B?dm91KzVnRnNxTUZhMGtLTlJlM2hsZG45Y1NsWGJRbi9ia1F3Qk5zVFpoZmY5?=
+ =?utf-8?B?Ym1ENzIzdy9sc2RFaEhTQmZtUnVHS3ZzUXNhNUUzS0N2eFdqNVhNRmpHU05Z?=
+ =?utf-8?B?LzQ3b01Tb1BUUmVJdjhLa25ud1NyK3RpOS9MNzVxbCsrSDUwa3NsZVpsTUlt?=
+ =?utf-8?Q?kXwxhhgcSucXvoj2U5zVz418q?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2024 06:42:12.4536 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5da84c73-faaa-44ce-5db0-08dcf7e4d1dd
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7734871-a925-4b6c-c270-08dcf7e5b1ba
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8208.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2024 06:48:28.4144 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F3F.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8125
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: W4aMvusBa0uynEORJcc3dHO6nDCQNPzZwoRXoykbdkl9teBEch8o6AAwMHZ2Ejzmg7la+2NinNfV/yMuGLrV8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5794
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,196 +157,531 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add the sysfs interface for jpeg:
-jpeg_reset_mask
+--------------oH6O3pp0q1FcfEnCFEpvFtz2
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The interface is read-only and show the resets supported by the IP.
-For example, full adapter reset (mode1/mode2/BACO/etc),
-soft reset, queue reset, and pipe reset.
 
-V2: the sysfs node returns a text string instead of some flags (Christian)
-v3: add a generic helper which takes the ring as parameter
-    and print the strings in the order they are applied (Christian)
+On 10/29/2024 12:07 PM, SRINIVASAN SHANMUGAM wrote:
+>
+>
+> On 10/29/2024 10:57 AM, Lijo Lazar wrote:
+>> Make amdgpu_gfx_sysfs_init/fini functions as common entry points for all
+>> gfx related sysfs nodes.
+>>
+>> Signed-off-by: Lijo Lazar<lijo.lazar@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 37 ++++++++++++++++++++++---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 --
+>>   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  |  5 ++--
+>>   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  |  4 +--
+>>   drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  |  4 +--
+>>   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   |  4 +--
+>>   drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c |  5 ----
+>>   7 files changed, 42 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>> index e96984c53e72..86a6fd3015c2 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>> @@ -1602,7 +1602,7 @@ static DEVICE_ATTR(current_compute_partition, 0644,
+>>   static DEVICE_ATTR(available_compute_partition, 0444,
+>>   		   amdgpu_gfx_get_available_compute_partition, NULL);
+>>   
+>> -int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
+>> +static int amdgpu_gfx_sysfs_xcp_init(struct amdgpu_device *adev)
+>>   {
+>>   	struct amdgpu_xcp_mgr *xcp_mgr = adev->xcp_mgr;
+>>   	bool xcp_switch_supported;
+>> @@ -1629,7 +1629,7 @@ int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
+>>   	return r;
+>>   }
+>>   
+>> -void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
+>> +static void amdgpu_gfx_sysfs_xcp_fini(struct amdgpu_device *adev)
+>>   {
+>>   	struct amdgpu_xcp_mgr *xcp_mgr = adev->xcp_mgr;
+>>   	bool xcp_switch_supported;
+>> @@ -1646,10 +1646,13 @@ void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
+>>   				   &dev_attr_available_compute_partition);
+>>   }
+>>   
+>> -int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev)
+>> +static int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev)
+>>   {
+>>   	int r;
+>>   
+>> +	if (!adev->gfx.enable_cleaner_shader)
+>> +		return 0;
+>> +
+>
+> This check seems to be incorrect here, because enforce_isolation and 
+> cleaner shader are two different entities, with this check 
+> enforce_isolation node won't be created for some of the ASIC's where 
+> we don't load cleaner shader explictly.
+>
+Correction, this check "
 
-    check amdgpu_gpu_recovery  before creating sysfs file itself,
-    and initialize supported_reset_types in IP version files (Lijo)
+!adev->gfx.enable_cleaner_shader"handles for ASIC's where we don't load cleaner shader explictly, but 
+having it here I'm not certain cz I think we expect enforce_isolation 
+node to be created independent of run_cleaner_shader, would request 
+Alex/Christian, to comment onto it further. -Srini
 
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
-Suggested-by:Alex Deucher <alexander.deucher@amd.com>
+> And moreover this grouping, its better to be done for all sysfs 
+> entires in amdgpu ie., not only gfx, for other modules like even pm 
+> etc., so that we can have one common sysfs amdgpu framework, improving 
+> code consistency and maintainability
+>
+> I had initiated this https://patchwork.freedesktop.org/patch/595215/ 
+> <https://patchwork.freedesktop.org/patch/595215/> , but I couldn't 
+> finish it because of other work commitments.
+>
+>>   	r = device_create_file(adev->dev, &dev_attr_enforce_isolation);
+>>   	if (r)
+>>   		return r;
+>> @@ -1661,12 +1664,38 @@ int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev)
+>>   	return 0;
+>>   }
+>>   
+>> -void amdgpu_gfx_sysfs_isolation_shader_fini(struct amdgpu_device *adev)
+>> +static void amdgpu_gfx_sysfs_isolation_shader_fini(struct amdgpu_device *adev)
+>>   {
+>> +	if (!adev->gfx.enable_cleaner_shader)
+>> +		return;
+>> +
+>
+> Same here
+>
+> -Srini
+>
+>>   	device_remove_file(adev->dev, &dev_attr_enforce_isolation);
+>>   	device_remove_file(adev->dev, &dev_attr_run_cleaner_shader);
+>>   }
+>>   
+>> +int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
+>> +{
+>> +	int r;
+>> +
+>> +	r = amdgpu_gfx_sysfs_xcp_init(adev);
+>> +	if (r) {
+>> +		dev_err(adev->dev, "failed to create xcp sysfs files");
+>> +		return r;
+>> +	}
+>> +
+>> +	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
+>> +	if (r)
+>> +		dev_err(adev->dev, "failed to create isolation sysfs files");
+>> +
+>> +	return r;
+>> +}
+>> +
+>> +void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
+>> +{
+>> +	amdgpu_gfx_sysfs_xcp_fini(adev);
+>> +	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
+>> +}
+>> +
+>>   int amdgpu_gfx_cleaner_shader_sw_init(struct amdgpu_device *adev,
+>>   				      unsigned int cleaner_shader_size)
+>>   {
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+>> index f710178a21bc..b8a2f60688dc 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+>> @@ -577,8 +577,6 @@ void amdgpu_gfx_cleaner_shader_sw_fini(struct amdgpu_device *adev);
+>>   void amdgpu_gfx_cleaner_shader_init(struct amdgpu_device *adev,
+>>   				    unsigned int cleaner_shader_size,
+>>   				    const void *cleaner_shader_ptr);
+>> -int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev);
+>> -void amdgpu_gfx_sysfs_isolation_shader_fini(struct amdgpu_device *adev);
+>>   void amdgpu_gfx_enforce_isolation_handler(struct work_struct *work);
+>>   void amdgpu_gfx_enforce_isolation_ring_begin_use(struct amdgpu_ring *ring);
+>>   void amdgpu_gfx_enforce_isolation_ring_end_use(struct amdgpu_ring *ring);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>> index 9da95b25e158..d1a18ca584dd 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>> @@ -4853,9 +4853,10 @@ static int gfx_v10_0_sw_init(struct amdgpu_ip_block *ip_block)
+>>   
+>>   	gfx_v10_0_alloc_ip_dump(adev);
+>>   
+>> -	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
+>> +	r = amdgpu_gfx_sysfs_init(adev);
+>>   	if (r)
+>>   		return r;
+>> +
+>>   	return 0;
+>>   }
+>>   
+>> @@ -4907,7 +4908,7 @@ static int gfx_v10_0_sw_fini(struct amdgpu_ip_block *ip_block)
+>>   		gfx_v10_0_rlc_backdoor_autoload_buffer_fini(adev);
+>>   
+>>   	gfx_v10_0_free_microcode(adev);
+>> -	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
+>> +	amdgpu_gfx_sysfs_fini(adev);
+>>   
+>>   	kfree(adev->gfx.ip_dump_core);
+>>   	kfree(adev->gfx.ip_dump_compute_queues);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+>> index 5aff8f72de9c..22811b624532 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+>> @@ -1717,7 +1717,7 @@ static int gfx_v11_0_sw_init(struct amdgpu_ip_block *ip_block)
+>>   
+>>   	gfx_v11_0_alloc_ip_dump(adev);
+>>   
+>> -	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
+>> +	r = amdgpu_gfx_sysfs_init(adev);
+>>   	if (r)
+>>   		return r;
+>>   
+>> @@ -1782,7 +1782,7 @@ static int gfx_v11_0_sw_fini(struct amdgpu_ip_block *ip_block)
+>>   
+>>   	gfx_v11_0_free_microcode(adev);
+>>   
+>> -	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
+>> +	amdgpu_gfx_sysfs_fini(adev);
+>>   
+>>   	kfree(adev->gfx.ip_dump_core);
+>>   	kfree(adev->gfx.ip_dump_compute_queues);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+>> index 9fec28d8a5fc..1b99f90cd193 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+>> @@ -1466,7 +1466,7 @@ static int gfx_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
+>>   
+>>   	gfx_v12_0_alloc_ip_dump(adev);
+>>   
+>> -	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
+>> +	r = amdgpu_gfx_sysfs_init(adev);
+>>   	if (r)
+>>   		return r;
+>>   
+>> @@ -1529,7 +1529,7 @@ static int gfx_v12_0_sw_fini(struct amdgpu_ip_block *ip_block)
+>>   
+>>   	gfx_v12_0_free_microcode(adev);
+>>   
+>> -	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
+>> +	amdgpu_gfx_sysfs_fini(adev);
+>>   
+>>   	kfree(adev->gfx.ip_dump_core);
+>>   	kfree(adev->gfx.ip_dump_compute_queues);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>> index 66947850d7e4..987e52c47635 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>> @@ -2402,7 +2402,7 @@ static int gfx_v9_0_sw_init(struct amdgpu_ip_block *ip_block)
+>>   
+>>   	gfx_v9_0_alloc_ip_dump(adev);
+>>   
+>> -	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
+>> +	r = amdgpu_gfx_sysfs_init(adev);
+>>   	if (r)
+>>   		return r;
+>>   
+>> @@ -2443,7 +2443,7 @@ static int gfx_v9_0_sw_fini(struct amdgpu_ip_block *ip_block)
+>>   	}
+>>   	gfx_v9_0_free_microcode(adev);
+>>   
+>> -	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
+>> +	amdgpu_gfx_sysfs_fini(adev);
+>>   
+>>   	kfree(adev->gfx.ip_dump_core);
+>>   	kfree(adev->gfx.ip_dump_compute_queues);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+>> index 016290f00592..983088805c3a 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+>> @@ -1171,10 +1171,6 @@ static int gfx_v9_4_3_sw_init(struct amdgpu_ip_block *ip_block)
+>>   
+>>   	gfx_v9_4_3_alloc_ip_dump(adev);
+>>   
+>> -	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
+>> -	if (r)
+>> -		return r;
+>> -
+>>   	return 0;
+>>   }
+>>   
+>> @@ -1199,7 +1195,6 @@ static int gfx_v9_4_3_sw_fini(struct amdgpu_ip_block *ip_block)
+>>   	amdgpu_bo_unref(&adev->gfx.rlc.clear_state_obj);
+>>   	gfx_v9_4_3_free_microcode(adev);
+>>   	amdgpu_gfx_sysfs_fini(adev);
+>> -	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
+>>   
+>>   	kfree(adev->gfx.ip_dump_core);
+>>   	kfree(adev->gfx.ip_dump_compute_queues);
+--------------oH6O3pp0q1FcfEnCFEpvFtz2
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 10/29/2024 12:07 PM, SRINIVASAN
+      SHANMUGAM wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:93ad9f9b-9803-4ba3-b29a-06b5c53b5ccd@amd.com">
+      
+      <p><br>
+      </p>
+      <div class="moz-cite-prefix">On 10/29/2024 10:57 AM, Lijo Lazar
+        wrote:<br>
+      </div>
+      <blockquote type="cite" cite="mid:20241029052700.3164571-1-lijo.lazar@amd.com">
+        <pre class="moz-quote-pre" wrap="">Make amdgpu_gfx_sysfs_init/fini functions as common entry points for all
+gfx related sysfs nodes.
+
+Signed-off-by: Lijo Lazar <a class="moz-txt-link-rfc2396E" href="mailto:lijo.lazar@amd.com" moz-do-not-send="true">&lt;lijo.lazar@amd.com&gt;</a>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 35 ++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h |  3 ++
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c   |  7 +++++
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c |  8 ++++++
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c |  8 ++++++
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c |  7 +++++
- 6 files changed, 68 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 37 ++++++++++++++++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 --
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  |  5 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  |  4 +--
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  |  4 +--
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   |  4 +--
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c |  5 ----
+ 7 files changed, 42 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-index 95e2796919fc..f971ffdffce9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-@@ -415,3 +415,38 @@ void amdgpu_debugfs_jpeg_sched_mask_init(struct amdgpu_device *adev)
- 			    &amdgpu_debugfs_jpeg_sched_mask_fops);
- #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index e96984c53e72..86a6fd3015c2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -1602,7 +1602,7 @@ static DEVICE_ATTR(current_compute_partition, 0644,
+ static DEVICE_ATTR(available_compute_partition, 0444,
+ 		   amdgpu_gfx_get_available_compute_partition, NULL);
+ 
+-int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
++static int amdgpu_gfx_sysfs_xcp_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_xcp_mgr *xcp_mgr = adev-&gt;xcp_mgr;
+ 	bool xcp_switch_supported;
+@@ -1629,7 +1629,7 @@ int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
+ 	return r;
  }
-+
-+static ssize_t amdgpu_get_jpeg_reset_mask(struct device *dev,
-+						struct device_attribute *attr,
-+						char *buf)
+ 
+-void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
++static void amdgpu_gfx_sysfs_xcp_fini(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_xcp_mgr *xcp_mgr = adev-&gt;xcp_mgr;
+ 	bool xcp_switch_supported;
+@@ -1646,10 +1646,13 @@ void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
+ 				   &amp;dev_attr_available_compute_partition);
+ }
+ 
+-int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev)
++static int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev)
+ {
+ 	int r;
+ 
++	if (!adev-&gt;gfx.enable_cleaner_shader)
++		return 0;
++</pre>
+      </blockquote>
+      <p>This check seems to be incorrect here, because
+        enforce_isolation and cleaner shader are two different entities,
+        with this check enforce_isolation node won't be created for some
+        of the ASIC's where we don't load cleaner shader explictly.<br>
+      </p>
+    </blockquote>
+    Correction, this check &quot;
+    <pre class="moz-quote-pre" wrap="">!adev-&gt;gfx.enable_cleaner_shader&quot; <span style="white-space: normal">handles for ASIC's where we don't load cleaner shader explictly, but having it here I'm not certain cz I think we expect enforce_isolation node to be created independent of run_cleaner_shader, would request Alex/Christian, to comment onto it further.
+
+-Srini
+</span></pre>
+    <blockquote type="cite" cite="mid:93ad9f9b-9803-4ba3-b29a-06b5c53b5ccd@amd.com">
+      <p> </p>
+      <p>And moreover this grouping, its better to be done for all sysfs
+        entires in amdgpu ie., not only gfx, for other modules like even
+        pm etc., so that we can have one common sysfs amdgpu framework,
+        <span data-teams="true"><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr"> improving code consistency and maintainability</span></span></p>
+      <p><span data-teams="true"><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">I had initiated this </span></span><span data-teams="true"><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr"><a aria-label="Link https://patchwork.freedesktop.org/patch/595215/" id="menurifo" href="https://patchwork.freedesktop.org/patch/595215/" rel="noreferrer noopener" target="_blank" class="fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn moz-txt-link-freetext" title="https://patchwork.freedesktop.org/patch/595215/" moz-do-not-send="true">https://patchwork.freedesktop.org/patch/595215/</a>
+          </span></span><span data-teams="true"><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">,</span></span> but I couldn't finish it because
+        of other work commitments.<br>
+      </p>
+      <blockquote type="cite" cite="mid:20241029052700.3164571-1-lijo.lazar@amd.com">
+        <pre class="moz-quote-pre" wrap=""> 	r = device_create_file(adev-&gt;dev, &amp;dev_attr_enforce_isolation);
+ 	if (r)
+ 		return r;
+@@ -1661,12 +1664,38 @@ int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev)
+ 	return 0;
+ }
+ 
+-void amdgpu_gfx_sysfs_isolation_shader_fini(struct amdgpu_device *adev)
++static void amdgpu_gfx_sysfs_isolation_shader_fini(struct amdgpu_device *adev)
+ {
++	if (!adev-&gt;gfx.enable_cleaner_shader)
++		return;
++</pre>
+      </blockquote>
+      <p>Same here</p>
+      <p>-Srini<br>
+      </p>
+      <blockquote type="cite" cite="mid:20241029052700.3164571-1-lijo.lazar@amd.com">
+        <pre class="moz-quote-pre" wrap=""> 	device_remove_file(adev-&gt;dev, &amp;dev_attr_enforce_isolation);
+ 	device_remove_file(adev-&gt;dev, &amp;dev_attr_run_cleaner_shader);
+ }
+ 
++int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
 +{
-+	struct drm_device *ddev = dev_get_drvdata(dev);
-+	struct amdgpu_device *adev = drm_to_adev(ddev);
++	int r;
 +
-+	if (!adev)
-+		return -ENODEV;
-+
-+	return amdgpu_show_reset_mask(buf, adev->jpeg.supported_reset);
-+}
-+
-+static DEVICE_ATTR(jpeg_reset_mask, 0444,
-+		   amdgpu_get_jpeg_reset_mask, NULL);
-+
-+int amdgpu_jpeg_sysfs_reset_mask_init(struct amdgpu_device *adev)
-+{
-+	int r = 0;
-+
-+	if (adev->jpeg.num_jpeg_inst) {
-+		r = device_create_file(adev->dev, &dev_attr_jpeg_reset_mask);
-+		if (r)
-+			return r;
++	r = amdgpu_gfx_sysfs_xcp_init(adev);
++	if (r) {
++		dev_err(adev-&gt;dev, &quot;failed to create xcp sysfs files&quot;);
++		return r;
 +	}
++
++	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
++	if (r)
++		dev_err(adev-&gt;dev, &quot;failed to create isolation sysfs files&quot;);
 +
 +	return r;
 +}
 +
-+void amdgpu_jpeg_sysfs_reset_mask_fini(struct amdgpu_device *adev)
++void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
 +{
-+	if (adev->jpeg.num_jpeg_inst)
-+		device_remove_file(adev->dev, &dev_attr_jpeg_reset_mask);
++	amdgpu_gfx_sysfs_xcp_fini(adev);
++	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
 +}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h
-index 819dc7a0af99..3eb4a4653fce 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h
-@@ -128,6 +128,7 @@ struct amdgpu_jpeg {
- 	uint16_t inst_mask;
- 	uint8_t num_inst_per_aid;
- 	bool	indirect_sram;
-+	uint32_t supported_reset;
- };
++
+ int amdgpu_gfx_cleaner_shader_sw_init(struct amdgpu_device *adev,
+ 				      unsigned int cleaner_shader_size)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index f710178a21bc..b8a2f60688dc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -577,8 +577,6 @@ void amdgpu_gfx_cleaner_shader_sw_fini(struct amdgpu_device *adev);
+ void amdgpu_gfx_cleaner_shader_init(struct amdgpu_device *adev,
+ 				    unsigned int cleaner_shader_size,
+ 				    const void *cleaner_shader_ptr);
+-int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev);
+-void amdgpu_gfx_sysfs_isolation_shader_fini(struct amdgpu_device *adev);
+ void amdgpu_gfx_enforce_isolation_handler(struct work_struct *work);
+ void amdgpu_gfx_enforce_isolation_ring_begin_use(struct amdgpu_ring *ring);
+ void amdgpu_gfx_enforce_isolation_ring_end_use(struct amdgpu_ring *ring);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 9da95b25e158..d1a18ca584dd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -4853,9 +4853,10 @@ static int gfx_v10_0_sw_init(struct amdgpu_ip_block *ip_block)
  
- int amdgpu_jpeg_sw_init(struct amdgpu_device *adev);
-@@ -150,5 +151,7 @@ int amdgpu_jpeg_ras_sw_init(struct amdgpu_device *adev);
- int amdgpu_jpeg_psp_update_sram(struct amdgpu_device *adev, int inst_idx,
- 			       enum AMDGPU_UCODE_ID ucode_id);
- void amdgpu_debugfs_jpeg_sched_mask_init(struct amdgpu_device *adev);
-+int amdgpu_jpeg_sysfs_reset_mask_init(struct amdgpu_device *adev);
-+void amdgpu_jpeg_sysfs_reset_mask_fini(struct amdgpu_device *adev);
+ 	gfx_v10_0_alloc_ip_dump(adev);
  
- #endif /*__AMDGPU_JPEG_H__*/
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-index 20e1fe89c463..c675d6619f9a 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-@@ -121,6 +121,12 @@ static int jpeg_v4_0_sw_init(struct amdgpu_ip_block *ip_block)
- 	adev->jpeg.inst->external.jpeg_pitch[0] = SOC15_REG_OFFSET(JPEG, 0, regUVD_JPEG_PITCH);
- 
- 	r = amdgpu_jpeg_ras_sw_init(adev);
-+	if (r)
-+		return r;
-+	/* TODO: Add queue reset mask when FW fully supports it */
-+	adev->jpeg.supported_reset =
-+		amdgpu_get_soft_full_reset_mask(&adev->jpeg.inst[0].ring_dec[0]);
-+	r = amdgpu_jpeg_sysfs_reset_mask_init(adev);
+-	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
++	r = amdgpu_gfx_sysfs_init(adev);
  	if (r)
  		return r;
- 
-@@ -143,6 +149,7 @@ static int jpeg_v4_0_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
- 
-+	amdgpu_jpeg_sysfs_reset_mask_fini(adev);
- 	r = amdgpu_jpeg_sw_fini(adev);
- 
- 	return r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-index 2a53537db135..a785c970a908 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-@@ -159,6 +159,13 @@ static int jpeg_v4_0_3_sw_init(struct amdgpu_ip_block *ip_block)
- 		}
- 	}
- 
-+	/* TODO: Add queue reset mask when FW fully supports it */
-+	adev->jpeg.supported_reset =
-+		amdgpu_get_soft_full_reset_mask(&adev->jpeg.inst[0].ring_dec[0]);
-+	r = amdgpu_jpeg_sysfs_reset_mask_init(adev);
-+	if (r)
-+		return r;
 +
  	return 0;
  }
  
-@@ -178,6 +185,7 @@ static int jpeg_v4_0_3_sw_fini(struct amdgpu_ip_block *ip_block)
+@@ -4907,7 +4908,7 @@ static int gfx_v10_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ 		gfx_v10_0_rlc_backdoor_autoload_buffer_fini(adev);
+ 
+ 	gfx_v10_0_free_microcode(adev);
+-	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
++	amdgpu_gfx_sysfs_fini(adev);
+ 
+ 	kfree(adev-&gt;gfx.ip_dump_core);
+ 	kfree(adev-&gt;gfx.ip_dump_compute_queues);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index 5aff8f72de9c..22811b624532 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -1717,7 +1717,7 @@ static int gfx_v11_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 
+ 	gfx_v11_0_alloc_ip_dump(adev);
+ 
+-	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
++	r = amdgpu_gfx_sysfs_init(adev);
  	if (r)
  		return r;
  
-+	amdgpu_jpeg_sysfs_reset_mask_fini(adev);
- 	r = amdgpu_jpeg_sw_fini(adev);
+@@ -1782,7 +1782,7 @@ static int gfx_v11_0_sw_fini(struct amdgpu_ip_block *ip_block)
  
- 	return r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c
-index ef2d4237925b..e130bb2345e4 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c
-@@ -153,6 +153,13 @@ static int jpeg_v4_0_5_sw_init(struct amdgpu_ip_block *ip_block)
- 		adev->jpeg.inst[i].external.jpeg_pitch[0] = SOC15_REG_OFFSET(JPEG, i, regUVD_JPEG_PITCH);
+ 	gfx_v11_0_free_microcode(adev);
+ 
+-	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
++	amdgpu_gfx_sysfs_fini(adev);
+ 
+ 	kfree(adev-&gt;gfx.ip_dump_core);
+ 	kfree(adev-&gt;gfx.ip_dump_compute_queues);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+index 9fec28d8a5fc..1b99f90cd193 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+@@ -1466,7 +1466,7 @@ static int gfx_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 
+ 	gfx_v12_0_alloc_ip_dump(adev);
+ 
+-	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
++	r = amdgpu_gfx_sysfs_init(adev);
+ 	if (r)
+ 		return r;
+ 
+@@ -1529,7 +1529,7 @@ static int gfx_v12_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ 
+ 	gfx_v12_0_free_microcode(adev);
+ 
+-	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
++	amdgpu_gfx_sysfs_fini(adev);
+ 
+ 	kfree(adev-&gt;gfx.ip_dump_core);
+ 	kfree(adev-&gt;gfx.ip_dump_compute_queues);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 66947850d7e4..987e52c47635 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -2402,7 +2402,7 @@ static int gfx_v9_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 
+ 	gfx_v9_0_alloc_ip_dump(adev);
+ 
+-	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
++	r = amdgpu_gfx_sysfs_init(adev);
+ 	if (r)
+ 		return r;
+ 
+@@ -2443,7 +2443,7 @@ static int gfx_v9_0_sw_fini(struct amdgpu_ip_block *ip_block)
  	}
+ 	gfx_v9_0_free_microcode(adev);
  
-+	/* TODO: Add queue reset mask when FW fully supports it */
-+	adev->jpeg.supported_reset =
-+		amdgpu_get_soft_full_reset_mask(&adev->jpeg.inst[0].ring_dec[0]);
-+	r = amdgpu_jpeg_sysfs_reset_mask_init(adev);
-+	if (r)
-+		return r;
-+
+-	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
++	amdgpu_gfx_sysfs_fini(adev);
+ 
+ 	kfree(adev-&gt;gfx.ip_dump_core);
+ 	kfree(adev-&gt;gfx.ip_dump_compute_queues);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index 016290f00592..983088805c3a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -1171,10 +1171,6 @@ static int gfx_v9_4_3_sw_init(struct amdgpu_ip_block *ip_block)
+ 
+ 	gfx_v9_4_3_alloc_ip_dump(adev);
+ 
+-	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
+-	if (r)
+-		return r;
+-
  	return 0;
  }
  
-@@ -172,6 +179,7 @@ static int jpeg_v4_0_5_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
+@@ -1199,7 +1195,6 @@ static int gfx_v9_4_3_sw_fini(struct amdgpu_ip_block *ip_block)
+ 	amdgpu_bo_unref(&amp;adev-&gt;gfx.rlc.clear_state_obj);
+ 	gfx_v9_4_3_free_microcode(adev);
+ 	amdgpu_gfx_sysfs_fini(adev);
+-	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
  
-+	amdgpu_jpeg_sysfs_reset_mask_fini(adev);
- 	r = amdgpu_jpeg_sw_fini(adev);
- 
- 	return r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
-index 7954a6fae464..078b4f9bd312 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
-@@ -100,6 +100,12 @@ static int jpeg_v5_0_0_sw_init(struct amdgpu_ip_block *ip_block)
- 	adev->jpeg.internal.jpeg_pitch[0] = regUVD_JPEG_PITCH_INTERNAL_OFFSET;
- 	adev->jpeg.inst->external.jpeg_pitch[0] = SOC15_REG_OFFSET(JPEG, 0, regUVD_JPEG_PITCH);
- 
-+	/* TODO: Add queue reset mask when FW fully supports it */
-+	adev->jpeg.supported_reset =
-+		amdgpu_get_soft_full_reset_mask(&adev->jpeg.inst[0].ring_dec[0]);
-+	r = amdgpu_jpeg_sysfs_reset_mask_init(adev);
-+	if (r)
-+		return r;
- 	return 0;
- }
- 
-@@ -119,6 +125,7 @@ static int jpeg_v5_0_0_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
- 
-+	amdgpu_jpeg_sysfs_reset_mask_fini(adev);
- 	r = amdgpu_jpeg_sw_fini(adev);
- 
- 	return r;
--- 
-2.25.1
+ 	kfree(adev-&gt;gfx.ip_dump_core);
+ 	kfree(adev-&gt;gfx.ip_dump_compute_queues);
+</pre>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
 
+--------------oH6O3pp0q1FcfEnCFEpvFtz2--
