@@ -2,80 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6089B5E13
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4749B5E11
 	for <lists+amd-gfx@lfdr.de>; Wed, 30 Oct 2024 09:42:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E24E210E760;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE6AA10E3F5;
 	Wed, 30 Oct 2024 08:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="aXimRinc";
+	dkim=pass (2048-bit key; unprotected) header.d=mandelbit.com header.i=@mandelbit.com header.b="Yn7q5Kvm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 323 seconds by postgrey-1.36 at gabe;
- Tue, 29 Oct 2024 19:49:22 UTC
-Received: from mout.web.de (mout.web.de [212.227.15.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 321ED10E6F1
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 19:49:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1730231360; x=1730836160; i=markus.elfring@web.de;
- bh=KVa6sUoEsISVLJqp9YsSnJ2+WbranhY7bY8+FHwY44g=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
- Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=aXimRincFyn0PlgowV7FNHByhEhkYIXLOUdGYARKCj90/EwuDo1QfYsfTZK032WL
- DD9LHTe57bjutJdEMBWa6ANusXGrxS7hAO0Mujn9HTOt18Dk3fP+VQszNaGHlXh0R
- 7uIrNhJeuOcui2tL1QRFuNhlfJKIffWP8kF+s1+6ZJrd3qN1w9/6ZcTOe0dDSgSYd
- hHRUzbkIdkLrAdqhtUalH9I76QleZj19iMN19fuuiLTtm+kjwkCVpjSQJUiaFVIVA
- kx6ZtRKpSz7O2H2PNMtNqUdhM6C/BTldt2RKWKf8fIaMIeAOB67OSJl09btIOZ/Ia
- l2lJbYmkR+k+uzh9GQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.89.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MNORC-1tUf2q1qyA-00QntE; Tue, 29
- Oct 2024 20:43:42 +0100
-Message-ID: <58a77f5d-74a1-4ea2-942e-a352f30f66bd@web.de>
-Date: Tue, 29 Oct 2024 20:43:28 +0100
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAF0610E3C6
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 23:32:27 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-4315f24a6bbso57213455e9.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 16:32:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mandelbit.com; s=google; t=1730244746; x=1730849546;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=lStBLLzkZ4IOiXePrysaFTO8S5eHIYxzOD5lofFbrsc=;
+ b=Yn7q5KvmN9aRhV1EsHajHk7HFH05X08+y+aGVzH+CxBJJckezPVHCe5aCujTDLE3iE
+ fvY7j6pEyxaW8r1cSKYuSjObc0DclnNoYu9ifoszxm4gsz548cAyUAfkd+sT6s/k4UjG
+ 0FU0bODmzaxhTDFEkpxl+z7nEWxBbAFgwxnRaEwb2uhxZgCIf7qt045KAyZrglRTWihI
+ d33xEhRcFaufsSWLeBukcEgV/LUGP839sTGFoqqJGEuuyf7GY01+IpCPDPozIqK7zG76
+ JU14lCaX397wiH6qVTt/sKI5pepDaBK6PiKjDRBVCKAWPXGLkAmmzlEQJ/F15AtlkLF1
+ TgQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1730244746; x=1730849546;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=lStBLLzkZ4IOiXePrysaFTO8S5eHIYxzOD5lofFbrsc=;
+ b=RTmId8gr9rE8m1zAIeetCBcr86S5EWjz8eCeRg9fRPw5WlkWrsd/5ck6VnA8MimLI+
+ QjYwTxkHL7eIDSDYRAhG0E8c8nM1TR8N0jCLFJGEztFAxvRmBLBv1J7DeJWIvKu/Vv3o
+ D9NN5owfOLXwDphCF6oir+DyiCeOQJRP6qVOV8w9R2qIjXV/sytuNlfelXgFw3nyTz/n
+ 8YXJf6KJkfO9t9MXi0t9NkHDVJ1M37QNa7bzHNxz7+SS+tRg9IxlyTiqIG3d/HEPosVM
+ FLn3kyoRIFW0B64TcBaE5/kpiwDppdVQOkh/55Wj/Ih+p0uZ8AAVi8PVvE1uF4OfVA59
+ xQgA==
+X-Gm-Message-State: AOJu0Yyq7vMJ6jzvB61DFu3+BkK/nudC8xdQK0BKTOWsxAZCov9Gtnf5
+ OZ8Th5a9Pmoj+PFzGTO1nDQihcFOT9ylw20a4LynKLrBjno6eBoNsHsd1setAE0=
+X-Google-Smtp-Source: AGHT+IFN08GgIIYQERPKFyJ+37fpuAaUFrLVX8d6AuuDSZctnK3MH0jcrfXMRdO8stPaqw7wQC8yUA==
+X-Received: by 2002:a05:600c:3b9c:b0:42f:7c9e:1f96 with SMTP id
+ 5b1f17b1804b1-4319ac6fc1cmr134931455e9.1.1730244746154; 
+ Tue, 29 Oct 2024 16:32:26 -0700 (PDT)
+Received: from serenity.mandelbit.com ([2001:67c:2fbc:1:c559:9886:6c0b:569f])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-431bd97d77dsm3515305e9.22.2024.10.29.16.32.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 29 Oct 2024 16:32:25 -0700 (PDT)
+From: Antonio Quartulli <antonio@mandelbit.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ mario.limonciello@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Antonio Quartulli <antonio@mandelbit.com>
+Subject: [PATCH] amdgpu: prevent NULL pointer dereference if ATIF is not
+ supported
+Date: Wed, 30 Oct 2024 00:32:32 +0100
+Message-ID: <20241029233232.27692-1-antonio@mandelbit.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Li Huafei <lihuafei1@huawei.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
- David Airlie <airlied@gmail.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: LKML <linux-kernel@vger.kernel.org>, Hawking Zhang
- <Hawking.Zhang@amd.com>, Le Ma <le.ma@amd.com>, Likun Gao
- <Likun.Gao@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- Pratap Nirujogi <Pratap.Nirujogi@amd.com>, Tim Huang <Tim.Huang@amd.com>,
- Victor Lu <victorchengchi.lu@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>,
- Yifan Zhang <yifan1.zhang@amd.com>
-References: <20241029202758.2764535-1-lihuafei1@huawei.com>
-Subject: Re: [PATCH v3] drm/amdgpu: Fix the memory allocation issue in
- amdgpu_discovery_get_nps_info()
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20241029202758.2764535-1-lihuafei1@huawei.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:1eb1mV/sniekV3cSxKRVEOdxvIGkwE3QOfs5C6TbZLC6LbNAORa
- npSbXL1ta54UfT/tJNlaAU7eceDkl2BOSVQszkTX0QzOpY299Uejg0csBbz9Q9oarjvZILm
- rg/OpEwzNhIyXbR4DJtJcYZ/2Pk+RT06aTl8wbqtFMpq2q+bEN8ic49EbISdHBrrzwB83L0
- 1ftm2HB80Bxp2+nVLxT2g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:VBWmokV05Og=;7saiEzx3dBT5lo9PdehhJBMSDfo
- KkXuROz4Y80mL5YMSFi4lqorDsZ9W0A+NWYkU5GbQYvD7YzhY1YzonLtAi3p5rAbaTIW9PP14
- pSqwiXSCQmE3lWzxkl5bgqSTU8OUGqyZ/MXTyaQJpnTxaQlW5nqEQB6ZZDN++3Nev++od1AyM
- 1FQMD1EAkwETFC71ImMjY7dqYOpP3MQiCLFKttOeXrJX2BUtEwm7h3UFXfKdmUs/Amu5ujOq3
- Q+ETQd8jU9aWwFDl1bFOTQNhw8qF+mU4Sqn0PdmXpctm8M6C/30tyTMcdyTg/4EmPBtwlcbMV
- oRBVpl7ibvf8rSlMYPmNODOXwlYXaTUleDFNlbxLD+mgEm2qCiYWrYFe21uB4hlytHXPBIjLt
- mTipHVnbZNPEeJwMzDcg069378pFWIWADH6D7WanpYHmi1XdRnUg4CyXIAZsxOOya8JW+NyQ8
- D2O/y6iSjWXxG/4tAGCGPLYQdrWgi+jXhhSJWQzCJbEidCf7lsSVYTGDHpNeh/6lf/qgvGJp+
- 9FYmgI/mHAeq9LKSgBqbpEKYCOV1KzddZpoQUReBECTMsTYdgcR96RnmOc1++MM2I7SwPyocM
- WbV9z7scmApGDa7JAqC32bSLmOZGaCLUuIdxrq2uShMIPEuXPp4cToqL4UkS9c7Qd10ccJ1YR
- hoosGl/DVvqTwN9m3MUNjJlDzCVvNZAUrmQ1j0vGMBJBivz0+XItZjXJtUK6UFOHR5banmYA2
- VTgbygXqvNnWS4n2wx+/5nAxcHAfSE7DjfQy6bcsKdbiCuJB9al7OqDvev9oop5dwsFdJFG+V
- 5EPbJ42idniKqT53xTh7ecSw==
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 30 Oct 2024 08:42:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,22 +81,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-=E2=80=A6
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -1757,11 +1757,13 @@ int amdgpu_discovery_get_nps_info(struct amdgpu_=
-device *adev,
->
->  	switch (le16_to_cpu(nps_info->v1.header.version_major)) {
->  	case 1:
-> +		mem_ranges =3D kvcalloc(nps_info->v1.count,
-> +				      sizeof(struct amdgpu_gmc_memrange),
-> +				      GFP_KERNEL);
-=E2=80=A6
+acpi_evaluate_object() may return AE_NOT_FOUND (failure), which
+would result in dereferencing buffer.pointer (obj) while being NULL.
 
-Can the specification =E2=80=9Csizeof(*mem_ranges)=E2=80=9D be more approp=
-riate here?
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
-cumentation/process/coding-style.rst?h=3Dv6.12-rc5#n941
+Bail out also when status is AE_NOT_FOUND with a proper error message.
 
-Regards,
-Markus
+This fixes 1 FORWARD_NULL issue reported by Coverity
+Report: CID 1600951:  Null pointer dereferences  (FORWARD_NULL)
+
+Signed-off-by: Antonio Quartulli <antonio@mandelbit.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+index cce85389427f..f10c3261a4ab 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+@@ -172,10 +172,13 @@ static union acpi_object *amdgpu_atif_call(struct amdgpu_atif *atif,
+ 				      &buffer);
+ 	obj = (union acpi_object *)buffer.pointer;
+ 
+-	/* Fail if calling the method fails and ATIF is supported */
+-	if (ACPI_FAILURE(status) && status != AE_NOT_FOUND) {
+-		DRM_DEBUG_DRIVER("failed to evaluate ATIF got %s\n",
+-				 acpi_format_exception(status));
++	/* Fail if calling the method fails */
++	if (ACPI_FAILURE(status)) {
++		if (status != AE_NOT_FOUND)
++			DRM_DEBUG_DRIVER("failed to evaluate ATIF got %s\n",
++					 acpi_format_exception(status));
++		else
++			DRM_DEBUG_DRIVER("ATIF not supported\n");
+ 		kfree(obj);
+ 		return NULL;
+ 	}
+-- 
+2.45.2
+
