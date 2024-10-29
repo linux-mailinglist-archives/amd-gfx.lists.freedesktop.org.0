@@ -2,50 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF079B4527
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Oct 2024 10:02:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F6A99B44FA
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Oct 2024 09:55:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E88110E0DD;
-	Tue, 29 Oct 2024 09:02:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=oriole.systems header.i=@oriole.systems header.b="uXTldACC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7D7310E5E1;
+	Tue, 29 Oct 2024 08:55:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from coleridge.oriole.systems (coleridge.oriole.systems
- [89.238.76.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D8C310E0DD
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 09:02:48 +0000 (UTC)
-Date: Tue, 29 Oct 2024 10:02:43 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=oriole.systems;
- s=canary-202303; t=1730192566;
- bh=I5CpmtB2qnXFPQxNl0i3Q4xcPqwsAMkyLqnWSsGKRZ8=;
- h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
- Content-Type:In-Reply-To:From:Sender:Reply-To:Subject:Date:
- Message-Id:To:Cc:Mime-Version:Content-Type:
- Content-Transfer-Encoding:In-Reply-To:References;
- b=uXTldACCcNlVUabVOHQOoklI75MTCGb0A3FRGumMrvAkO8RGlyLVGljLEdjKuP7HP
- RSOz6RJCRv6fDyqbHpSKc8wXE/gZOydc/LWskIRGy/iILyBBOx65PY6i4IqlFIecoc
- +a8i7sCSzLw34cKcRYsmiTiKXwORgf7gB4mjnwq/huABWF4YkiI8Za1Edmlqdesm6+
- ojE0oqfmPURDOMjueyCtf4af0TkLf/JSa5VsJkoYGaZ85lGHU6ItFB7AKLw+7pdIUE
- sKrQjofFb1wBxIlJp2SJsByTveJZKV8YQhhLc8Z9K6WtxPumSukbDk9Oyg2OMfMH/R
- aVJ0sA+HT/8Xg==
-From: Wolfgang =?utf-8?Q?M=C3=BCller?= <wolf@oriole.systems>
-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Cc: Alex Deucher <alexdeucher@gmail.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [RFC PATCH] drm/amd/pm: add zero RPM OD setting support for SMU13
-Message-ID: <3h6ntuiiltyzizfh4ghz73vuer7mps42hpsykfqli2ist6ot46@mcigulkqtd65>
-Mail-Followup-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>, 
- Alex Deucher <alexdeucher@gmail.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20241019143706.18779-1-wolf@oriole.systems>
- <CADnq5_MvJET2hk0aeTbUTEvUb57-figFbfPfNvfsjsTuSY0ing@mail.gmail.com>
- <BL1PR12MB51587D600285FD9B64734ED78E4B2@BL1PR12MB5158.namprd12.prod.outlook.com>
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5571D10E58B;
+ Tue, 29 Oct 2024 02:17:49 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.88.234])
+ by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4Xcv4w0FmBz1jw4v;
+ Tue, 29 Oct 2024 10:16:16 +0800 (CST)
+Received: from kwepemf500004.china.huawei.com (unknown [7.202.181.242])
+ by mail.maildlp.com (Postfix) with ESMTPS id 35F62140391;
+ Tue, 29 Oct 2024 10:17:46 +0800 (CST)
+Received: from lihuafei.huawei.com (10.90.53.74) by
+ kwepemf500004.china.huawei.com (7.202.181.242) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Tue, 29 Oct 2024 10:17:45 +0800
+From: Li Huafei <lihuafei1@huawei.com>
+To: <alexander.deucher@amd.com>, <lijo.lazar@amd.com>
+CC: <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <airlied@gmail.com>,
+ <simona@ffwll.ch>, <Hawking.Zhang@amd.com>, <yifan1.zhang@amd.com>,
+ <Likun.Gao@amd.com>, <Tim.Huang@amd.com>, <pratap.nirujogi@amd.com>,
+ <victorchengchi.lu@amd.com>, <Jun.Ma2@amd.com>, <le.ma@amd.com>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lihuafei1@huawei.com>
+Subject: [PATCH v2] drm/amdgpu: Fix possible NULL pointer dereference
+Date: Tue, 29 Oct 2024 18:18:39 +0800
+Message-ID: <20241029101839.2605713-1-lihuafei1@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <BL1PR12MB51587D600285FD9B64734ED78E4B2@BL1PR12MB5158.namprd12.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.90.53.74]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ kwepemf500004.china.huawei.com (7.202.181.242)
+X-Mailman-Approved-At: Tue, 29 Oct 2024 08:55:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,24 +55,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-10-29 02:52, Feng, Kenneth wrote:
-> However, I think it would be better to add the setting of
-> OverDriveTable.FanZeroRpmStopTemp for this interface.
-> OverDriveTable.FanZeroRpmStopTemp determines if the fan can stop when
-> the temperature is below this temperature setting(in the condition
-> that zero RPM is enabled).
-> It makes this interface more advanced. OverDriveTable.FanZeroRpmEnable
-> and OverDriveTable.FanZeroRpmStopTemp are a pair to be arbitered in
-> pmfw.
+Fix the potential NULL pointer dereference on mem_ranges in
+amdgpu_discovery_get_nps_info(). Additionally, assign the output
+parameters nps_type and range_cnt after the kvzalloc() call to prevent
+modifying the output parameters in case of an error return.
 
-Sure, that sounds good to me. I'll add a second commit implementing
-this. With two settings now exposed I also think it'd be better to
-rename the knob from fan_zero_rpm to fan_zero_rpm_enable. Makes its
-purpose a whole lot clearer and is in line with the name in
-OverDriveTable.
+Fixes: b194d21b9bcc ("drm/amdgpu: Use NPS ranges from discovery table")
+Signed-off-by: Li Huafei <lihuafei1@huawei.com>
+---
+Changes in v2:
+ - kvzalloc() call uses 'nps_info->v1.count' instead of '*range_cnt'
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-I'll send v2 along with these changes sometime today. Thanks for the
-feedback!
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 4bd61c169ca8..9a0b1b208a9d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -1757,11 +1757,13 @@ int amdgpu_discovery_get_nps_info(struct amdgpu_device *adev,
+ 
+ 	switch (le16_to_cpu(nps_info->v1.header.version_major)) {
+ 	case 1:
+-		*nps_type = nps_info->v1.nps_type;
+-		*range_cnt = nps_info->v1.count;
+ 		mem_ranges = kvzalloc(
+-			*range_cnt * sizeof(struct amdgpu_gmc_memrange),
++			nps_info->v1.count * sizeof(struct amdgpu_gmc_memrange),
+ 			GFP_KERNEL);
++		if (!mem_ranges)
++			return -ENOMEM;
++		*nps_type = nps_info->v1.nps_type;
++		*range_cnt = nps_info->v1.count;
+ 		for (i = 0; i < *range_cnt; i++) {
+ 			mem_ranges[i].base_address =
+ 				nps_info->v1.instance_info[i].base_address;
 -- 
-Wolf
+2.25.1
+
