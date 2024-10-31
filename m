@@ -2,142 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10B39B8A3A
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Nov 2024 05:25:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3733D9B8CEE
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Nov 2024 09:22:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DCF610E088;
-	Fri,  1 Nov 2024 04:25:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D38EC10E955;
+	Fri,  1 Nov 2024 08:22:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2KfFP92L";
+	dkim=pass (2048-bit key; unprotected) header.d=mandelbit.com header.i=@mandelbit.com header.b="Muy8WJb0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2047.outbound.protection.outlook.com [40.107.95.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A96910E088
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 04:25:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HmUSl8hM8ElKHk5G0fye0SaA5AsoKhBl0aoIRX+iVKQ75pocuU/FRnIevxQyQ08o4mrdf9NxrdfCR5icBo4tCbefqgl5v64sYY/yEjw84rc9odg5Cn7N6ltn8PfnMHcpd1NFNE+ggjNfT1Ylg8bNxiHTm2jwqAoz73KhndMzkoiQGebp5cGvBDc1QU3oBP+UNCeSXv1yAQqWG9s/dF3FetzFT7VRbLAoxD2oLno9ShYV7hNLx1Oe+5OzTKxjZdWnUoj2u1qGCsTZtIy7B7r4zWRLS3GxELQS0aNvdkFV25DnFpkx8mHpL590OUGoFpKetq1Q5k5vGD3YC4TDuBqH5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S2gpe1TpnBWEBRuKo+Oz0fH1/ZN7o3k1/vi+oKZN8V0=;
- b=QtjbI885EnL85dRyulaMfu9HJCJP4yv3Kbo2RP05brRUPVdOboz5gMUxRVRq2qphDE9YDtIFe5Tu/s0+t7OlFwfAdKHx9ff54ixdhZjjQTRdLVyan5qmBj+SFcIaH5jeDV2gpV/Wq5BfOuY3jmdSfuIUGH7vQn47BmAPIdgtgwi2JEZjlgT1QIqdbapy2tjNTx/9SZl3GFEgIsnMvI+Zg390jHv67V9NpK9OoHbePcQxEAUTaABU0frS2VaZMnci+vzgRm06uoXcmaWfEEN2nEIwfgQORZtGIm8yOiOJ2L9yfKCYF/getIiN4NQ0pd9AA25kk4v2qz8B7yzMaGgB1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S2gpe1TpnBWEBRuKo+Oz0fH1/ZN7o3k1/vi+oKZN8V0=;
- b=2KfFP92Lka0k6ClAKYb9PDuWGbhiQM1K1S16vWtX73aJkGgFUrr6seEmy1Oymu4CUTB54ZDFyFI9j3f6eABuLKUHIZckuKWKxyBQ8jUUmKBJc0/JeDlpEnFL2DuXaqNlRZze07Y5b3ObJ2XhjWgK9ULUjNkrlprgg1dHaTcIIcg=
-Received: from PH7PR12MB5997.namprd12.prod.outlook.com (2603:10b6:510:1d9::21)
- by CH3PR12MB8726.namprd12.prod.outlook.com (2603:10b6:610:17b::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.20; Fri, 1 Nov
- 2024 04:25:47 +0000
-Received: from PH7PR12MB5997.namprd12.prod.outlook.com
- ([fe80::c5da:9b53:9d77:c708]) by PH7PR12MB5997.namprd12.prod.outlook.com
- ([fe80::c5da:9b53:9d77:c708%5]) with mapi id 15.20.8093.027; Fri, 1 Nov 2024
- 04:25:47 +0000
-From: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Subject: RE: [PATCH] drm/amd/pm: always pick the pptable from IFWI
-Thread-Topic: [PATCH] drm/amd/pm: always pick the pptable from IFWI
-Thread-Index: AQHbLBIld514GrEUOUys1SY5/DtlmrKhzugA
-Date: Fri, 1 Nov 2024 04:25:47 +0000
-Message-ID: <PH7PR12MB5997D0E3DE5B4A2546DD15D882562@PH7PR12MB5997.namprd12.prod.outlook.com>
-References: <20241101035701.86175-1-kenneth.feng@amd.com>
-In-Reply-To: <20241101035701.86175-1-kenneth.feng@amd.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=1c76c8d4-3ebc-4803-9bd6-6c9489844103;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-11-01T04:07:11Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR12MB5997:EE_|CH3PR12MB8726:EE_
-x-ms-office365-filtering-correlation-id: dd5b6ee8-d7e3-4192-5887-08dcfa2d4239
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?rh/U4wOHHNOCb4+p/IEmI/sZI0bOu0k5d0LCXgr2HTotnyer/KR2lCN22s4+?=
- =?us-ascii?Q?X34df+4kCaHhHfRb8AQHIgFZMHFq6R7lAfss6mDE/KoXFs8kTmwX2oXzht6B?=
- =?us-ascii?Q?jViGTgENx2G3417ZAtt4215kHTZ20dITl7JVMXEaBcjtz6b2/XYTzaaZtEqS?=
- =?us-ascii?Q?7MId7sQ6EkVeyH0Uafc9Jdkagq7BMRvxQcHT7E/YPcA+ILWQ/CkZsuatYEct?=
- =?us-ascii?Q?53+VDR4atsWDsLtriYQMxI1lS1HBXOJ+3nlmorOB9HINFVrsUFGq1bCG/CWF?=
- =?us-ascii?Q?xQofm+I+PZNmlm/9T3sU8/nhjlffGrP1jnnG9EPLX6CtBc9kw4R+cSHw+b0v?=
- =?us-ascii?Q?GvtFy86PrGUEtllDmIb7FstcGWjOslDLmTNCo+IDCvgW4GoJ3f+w7e9qjkd2?=
- =?us-ascii?Q?02y+n0MMWpaVnJm/lNTvkXCeR4ZC1RlFioZMk2Jlhh/FxIc3DgMj926+5rUt?=
- =?us-ascii?Q?knHVobtBVZYo9jPExI3NAI4nlLlUXI6e/oMwXiftxU6ohck0rrvx3hdRHiaM?=
- =?us-ascii?Q?aXPLHtHZ7CgyeNBUQVrlK8VlEfzz+4BXFtJ8uIWfqGaktc+rpzHB4bfI0ZKb?=
- =?us-ascii?Q?qzwLO8+dwY8of0ytkTMD00t4N/x2PheLm9pbsRhFNA7FE1Qupm0EqrUfhY5R?=
- =?us-ascii?Q?1FYFCQR1ZrRiGOu+vRlCkFvaQQMWLaUSromeWMo4VzDGml6OIrWWNT7K15HN?=
- =?us-ascii?Q?r1oEmPHW+gexU2snSODYxoo9pYCQNhwNO+zi09L3yMGYVocLtLrTfgjwobFr?=
- =?us-ascii?Q?tT+dG/u8iK0wzMDEbOWPURZ4tqZoadU/r1nA2i1SdsTmXzVDwwHbP1ezUhPH?=
- =?us-ascii?Q?Gw/JPwQf0LW/vB9Dg/BFKawxLCfeHIgaoyxwTQhNHRirD6FXcG+KePbbV/TU?=
- =?us-ascii?Q?38mmN9ZKR+2lbmhRlsVwla0eK/k3h5Ke0diDSJsXVskqXwMU23ov7OYF6X2B?=
- =?us-ascii?Q?9lmErpxk3rwLE9ZySMPDsRq/NRwsFbl8Lbp/AecDDDdnZve6Z8AUBhYC6j3V?=
- =?us-ascii?Q?+iNcHkPxsuI3k8bW8dxs0jmDYM2J2ZBS7v0Nm2lnjy0e8jmZinzFlVMpVEjn?=
- =?us-ascii?Q?VLbOco2ohpW9D9Wfr+d4nrKgDEbnc/iVjRRx49g6VRmWXAwa4wMUX1vlWGzW?=
- =?us-ascii?Q?XlLvSYAaR69OGRoHqkAQOLMRdpYPPlnpdKLCBqWszloHqfT05/RxU+jxM3hD?=
- =?us-ascii?Q?9azC0nylx1FvkxEc1hJ2YaiohlhJinL0EFxu2q49xUBXw2vxlM7Pw3DNBH/X?=
- =?us-ascii?Q?rIO9Kyhp2EBOE9rX8H95J7vDpTk4UMO4rm8lQLp5sDUoRtsOjI3xz/q9TAWB?=
- =?us-ascii?Q?VwTi7qzKbhHMQFnEgzuCAg4C13yEOL3mxviKWGud+fEWQdk7yotA70SMoSRC?=
- =?us-ascii?Q?W8Um84Y=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5997.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?weha7knrYnfw2k/QcIUjD2SkU1rk3I7iiyLA+b9Q34vUJX4pe2ERcNHNSf5D?=
- =?us-ascii?Q?wXvLTN2P5ESobHJB3rvZp1LtAQiDDcHihV+7Lz8Na7u4IC3HSuNfE6ZL5zAG?=
- =?us-ascii?Q?IVbCnmmpVUx4Zsmu/0Xu34mW/t/zQDxSfn5dzIxuoEu+YH629EHTQ2vWMR4x?=
- =?us-ascii?Q?pmYyzfZtW5gKxc+0yeNxd3GupvEGGGVvI1gi7mcCci+J5d7MTo4cBEYgfAHV?=
- =?us-ascii?Q?OiTsOB05qUd/IfezpLVo9HlBtoHpNkNd4hmgwYKuqk5wI0WKcitYlvVsBZGY?=
- =?us-ascii?Q?4Z4WP3otC4ZYVM4ws0J/3nScu3tZszSrrCfriPwwqeqF0RtfH8WrppAq8bsz?=
- =?us-ascii?Q?8c56EcKbq32fIIYFTL0/bZ2hA+MlBv/2uyS2nzjVzM3/isnfaVlpwBVOKtGO?=
- =?us-ascii?Q?tHB0yxAkA7iAvbGHN8bp8B6AXAngi6wVqn14hvwBaXMwIUcy2GrU62o7fcDD?=
- =?us-ascii?Q?1DFlD5FaDSsbajo9aZHGouEXjFnZrszgEzkuEg1upCl3fosBKymMclRe8f/3?=
- =?us-ascii?Q?vo4vHjpE07DNMzAK4rtpKpN2Sx2QYTO6gTllEmXpO5dS29EBw4/CiKMOqlh2?=
- =?us-ascii?Q?matA7JJloaAP3375xENNPEsC3coXp8PkGoMUMT6MdUe4OXc0+xzJtJSlMONH?=
- =?us-ascii?Q?Rmmq5VuoWiyrfyFX2H9dHMVpMG8g99gnKDur7zH3Km7sCOsIGbKufMsxCyMB?=
- =?us-ascii?Q?6+gsJVmFBqAQueqf5mLFbhh7Dhb884Jl9CLO/nexqXIeGTtWODaf12ufVqhg?=
- =?us-ascii?Q?zDfQgiPHYjz8Cqz6vMZuHx5FgviHanVv9WVkgnohAGYmAPQUB/BRFfs9D/rw?=
- =?us-ascii?Q?KequjlO0UDlq+9672d6JvpifrBx3rKzoVU3hS3DHraXRQKbUrfqDk0gqXl+9?=
- =?us-ascii?Q?9IuLJuWuPBxXU540iU1hT0sOMTF8uIBZk4ds3OwoqKkGaEis39RUh4fCKOkw?=
- =?us-ascii?Q?ifQGoZBA9WNorEvWUwcQWjLEzQEmjo/fbTYf4MtQBfzK16v8Wzhbfkwf+ssY?=
- =?us-ascii?Q?6A1FH1xvtTFb5i/kN1O98wg14NIEBTb/hw+zlDwHpEJukJI3oAjme5wo/hYi?=
- =?us-ascii?Q?f8J56wRJspzQzapDwQscHWaw8YiMOkjqOMo7hVqeVDdO0qLjTK5Qy2Ayvoyn?=
- =?us-ascii?Q?tlEoFnb6fdiTVf8z3Ybj1gbFFtNA/AecUM6P5ZmNc0Ng12VlUTxGDnX9Bz+R?=
- =?us-ascii?Q?0/TH70dyPS9SNp3Jz+S/mNK3TW40HAlt9UXnAXkD5GlFIkcUTOZPgiGNF2bF?=
- =?us-ascii?Q?TXQOtHeI8a4HQ7NblQ5wRTFTHjWu6VLPhooYDHCYkQ/FCtj7oOC12fdkXacI?=
- =?us-ascii?Q?53HXzFFxwwlcKbVwp9xZHs5yk9WftV7eSgJ1Gbj5Lfrp3vDklJdnrEC4E+ko?=
- =?us-ascii?Q?/m7nSjGUIuEvqNbRiOPclgQF6CyHpvjfzCsdlslsUmhbzp0dZc1l+/bxiEu9?=
- =?us-ascii?Q?q7QE5wtDlKGDSQFtHBkXm9fZGthrFd66al7kMuG/lgJ+APvDfE3WUmq/q15y?=
- =?us-ascii?Q?3q35UzrmSh4RPdCqUhLh4Zq5XSC9rkA8K/jWW16VMBbDRPkvgS/2TYDun41U?=
- =?us-ascii?Q?KJ68IpqgACLm4dIaGqk=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60C4710E929
+ for <amd-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 20:50:19 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-43167ff0f91so12192175e9.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 13:50:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mandelbit.com; s=google; t=1730407817; x=1731012617;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=bw5E/KRCdHkbAWHdLK4V3a1ff0D3uJNNEH7nWj1aLMU=;
+ b=Muy8WJb0fHTV3RCoQtSSWvIXiQqF9fvZmv/hmAZ2UBM4GK0moO9hpizHYh5/BVhDgp
+ d4XAPS4uZhm8STnaJ3fneVO3lkabWuHOEWP9tFHo0KDkoNWSH/CZooNp4EwNvfOz79Z3
+ je/RpHW2Ct8cmrYxR2tIHYJDrqzi6amI9wguBnSQ9Q3U9U5tcgH9FXx0ZXBzgaKBTMUv
+ J/kRqC2rmTHrWLblFXrbOyKNdIWKee1JOEbO3dCkCX+dRFitf1vb4qNZCt9zugxev1RB
+ ckuF4IXo7cSbah7UIofnPiicYhz1RWlBaPyF9p4dtt9r5MaT2PlhItKD47S7Sad34Ygg
+ iu3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1730407817; x=1731012617;
+ h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bw5E/KRCdHkbAWHdLK4V3a1ff0D3uJNNEH7nWj1aLMU=;
+ b=XdhvtWlRHieB/wNfq0xTfKev5VXutggSIidCLLZXsqBLUvMF5c0JWhYbjpMPDVpzBO
+ Y5PftmS65EbDEtiU7NtByCDzgBsGR4bjU/YvT63lSNBnxiNvhMsT9q4EPBPV1Pl4mOVG
+ yQN9Ff7DmyeHGQVt4XZXBfxc3br/Xn24+gmv0UsfBcxhnFz5r22YzIbBSYAulNaMbyQH
+ wXRoc115Ws7XROa1vgC9hrBkiYMe1CEVMdW5gaTn1oJuXQEiedeOwqRRnte24jaH/2hp
+ TCmB6UIMQgQYm361NJ7YAfQUd+vXOs2B/LdoNRBIj5tJEDz9VyntPXnvrOb5YJ+d/EQd
+ 9bDg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXUc02FfT77Mg3Ua0FsU8Bqz4f5+FadS5AvLbSxBpwnLvmbG5xh8CeIyuGeb3KoJyXEodaxfA9F@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy6X6igf2ywi2W4lgYsgQWPrqs6rYHItOFMkyXdBoD9/3JKTXEO
+ U+oLJYilXeTpiR/2ZMuMlupLKLhonX3y2VIpWkek2Kf4jmk0zce/xvYsOJoM5WE=
+X-Google-Smtp-Source: AGHT+IFJf4Ul+62BnxQ2eJNGCbrmvPuv0OuD2YyiaLm8VqwUGEtl+XHwm3TI3xThkWHpVZs762iwJw==
+X-Received: by 2002:a05:600c:1396:b0:430:582f:3a9d with SMTP id
+ 5b1f17b1804b1-4327b80d1a9mr45198245e9.26.1730407817378; 
+ Thu, 31 Oct 2024 13:50:17 -0700 (PDT)
+Received: from ?IPV6:2001:67c:2fbc:1:56a2:399b:490:2ad?
+ ([2001:67c:2fbc:1:56a2:399b:490:2ad])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4327d5ac387sm39945825e9.1.2024.10.31.13.50.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 31 Oct 2024 13:50:16 -0700 (PDT)
+Message-ID: <34c84c6a-9b0d-4d04-9ce3-edf1bb850b2c@mandelbit.com>
+Date: Thu, 31 Oct 2024 21:50:34 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5997.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd5b6ee8-d7e3-4192-5887-08dcfa2d4239
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Nov 2024 04:25:47.0791 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nliIrXJP5fsCm68+Q6Kitm3HrOBnU8VqBoCCP7q/p4xF6Tjw6hl20j96NJDUkG4a
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8726
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] amdgpu: prevent NULL pointer dereference if ATIF is
+ not supported
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Xinhui.Pan@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20241031152848.4716-1-antonio@mandelbit.com>
+ <00e9b1f0-7bc1-418c-8e67-e8f1893be665@amd.com>
+Content-Language: en-US
+From: Antonio Quartulli <antonio@mandelbit.com>
+Autocrypt: addr=antonio@mandelbit.com; keydata=
+ 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
+Organization: Mandelbit SRL
+In-Reply-To: <00e9b1f0-7bc1-418c-8e67-e8f1893be665@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 01 Nov 2024 08:22:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,140 +131,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+On 31/10/2024 20:37, Mario Limonciello wrote:
+> On 10/31/2024 10:28, Antonio Quartulli wrote:
+>> acpi_evaluate_object() may return AE_NOT_FOUND (failure), which
+>> would result in dereferencing buffer.pointer (obj) while being NULL.
+>>
+>> Although this case may be unrealistic for the current code, it is
+>> still better to protect against possible bugs.
+>>
+>> Bail out also when status is AE_NOT_FOUND.
+>>
+>> This fixes 1 FORWARD_NULL issue reported by Coverity
+>> Report: CID 1600951:  Null pointer dereferences  (FORWARD_NULL)
+>>
+>> Signed-off-by: Antonio Quartulli <antonio@mandelbit.com>
+> 
+> Can you please dig up the right Fixes: tag?
 
-I suppose there is no backward compatibility issue with this patch.
+Fixes: c9b7c809b89f ("drm/amd: Guard against bad data for ATIF ACPI method")
 
-Reviewed-by: Yang Wang <kevinyang.wang@amd.com>
+Your commit :)
 
-Best Regards,
-Kevin
+Should I send v3 with the Fixes tag in it?
 
------Original Message-----
-From: Kenneth Feng <kenneth.feng@amd.com>
-Sent: Friday, November 1, 2024 11:57 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; Feng, Kenneth <Kenneth.Feng=
-@amd.com>
-Subject: [PATCH] drm/amd/pm: always pick the pptable from IFWI
+Interestingly, this pattern of checking for AE_NOT_FOUND is shared by 
+other functions, however, they don't try to dereference the pointer to 
+the buffer before the return statement (which caused the Coverity report).
+It's the caller that checks if the return value is NULL or not.
 
-always pick the pptable from IFWI on smu v14.0.2/3
+For this function it was the same, until you added this extra check on 
+obj->type, without checking if obj was NULL or not.
 
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
----
- .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 65 +------------------
- 1 file changed, 1 insertion(+), 64 deletions(-)
+If we want to keep the original pattern and continue checking for 
+AE_NOT_FOUND, we could rather do:
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers=
-/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-index e8ef6aa1d664..59b369eff30f 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-@@ -367,54 +367,6 @@ static int smu_v14_0_2_store_powerplay_table(struct sm=
-u_context *smu)
-        return 0;
- }
+-       if (obj->type != ACPI_TYPE_BUFFER) {
++       if (obj && obj->type != ACPI_TYPE_BUFFER) {
 
--#ifndef atom_smc_dpm_info_table_14_0_0
--struct atom_smc_dpm_info_table_14_0_0 {
--       struct atom_common_table_header table_header;
--       BoardTable_t BoardTable;
--};
--#endif
--
--static int smu_v14_0_2_append_powerplay_table(struct smu_context *smu) -{
--       struct smu_table_context *table_context =3D &smu->smu_table;
--       PPTable_t *smc_pptable =3D table_context->driver_pptable;
--       struct atom_smc_dpm_info_table_14_0_0 *smc_dpm_table;
--       BoardTable_t *BoardTable =3D &smc_pptable->BoardTable;
--       int index, ret;
--
--       index =3D get_index_into_master_table(atom_master_list_of_data_tabl=
-es_v2_1,
--                                           smc_dpm_info);
--
--       ret =3D amdgpu_atombios_get_data_table(smu->adev, index, NULL, NULL=
-, NULL,
--                                            (uint8_t **)&smc_dpm_table);
--       if (ret)
--               return ret;
--
--       memcpy(BoardTable, &smc_dpm_table->BoardTable, sizeof(BoardTable_t)=
-);
--
--       return 0;
--}
--
--#if 0
--static int smu_v14_0_2_get_pptable_from_pmfw(struct smu_context *smu,
--                                            void **table,
--                                            uint32_t *size)
--{
--       struct smu_table_context *smu_table =3D &smu->smu_table;
--       void *combo_pptable =3D smu_table->combo_pptable;
--       int ret =3D 0;
--
--       ret =3D smu_cmn_get_combo_pptable(smu);
--       if (ret)
--               return ret;
--
--       *table =3D combo_pptable;
--       *size =3D sizeof(struct smu_14_0_powerplay_table);
--
--       return 0;
--}
--#endif
--
- static int smu_v14_0_2_get_pptable_from_pmfw(struct smu_context *smu,
-                                             void **table,
-                                             uint32_t *size)
-@@ -436,16 +388,12 @@ static int smu_v14_0_2_get_pptable_from_pmfw(struct s=
-mu_context *smu,  static int smu_v14_0_2_setup_pptable(struct smu_context *=
-smu)  {
-        struct smu_table_context *smu_table =3D &smu->smu_table;
--       struct amdgpu_device *adev =3D smu->adev;
-        int ret =3D 0;
+But this feel more like "bike shed color picking" than anything else :)
+Anyway, up to you Mario, I am open to change the patch again if the 
+latter pattern is more preferable.
 
-        if (amdgpu_sriov_vf(smu->adev))
-                return 0;
+Regards,
 
--       if (!adev->scpm_enabled)
--               ret =3D smu_v14_0_setup_pptable(smu);
--       else
--               ret =3D smu_v14_0_2_get_pptable_from_pmfw(smu,
-+       ret =3D smu_v14_0_2_get_pptable_from_pmfw(smu,
-                                                        &smu_table->power_p=
-lay_table,
-                                                        &smu_table->power_p=
-lay_table_size);
-        if (ret)
-@@ -455,16 +403,6 @@ static int smu_v14_0_2_setup_pptable(struct smu_contex=
-t *smu)
-        if (ret)
-                return ret;
+> 
+> Besides that, LGTM.
+> 
+> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+> 
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/ 
+>> drm/amd/amdgpu/amdgpu_acpi.c
+>> index cce85389427f..b8d4e07d2043 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+>> @@ -172,8 +172,8 @@ static union acpi_object *amdgpu_atif_call(struct 
+>> amdgpu_atif *atif,
+>>                         &buffer);
+>>       obj = (union acpi_object *)buffer.pointer;
+>> -    /* Fail if calling the method fails and ATIF is supported */
+>> -    if (ACPI_FAILURE(status) && status != AE_NOT_FOUND) {
+>> +    /* Fail if calling the method fails */
+>> +    if (ACPI_FAILURE(status)) {
+>>           DRM_DEBUG_DRIVER("failed to evaluate ATIF got %s\n",
+>>                    acpi_format_exception(status));
+>>           kfree(obj);
+> 
 
--       /*
--        * With SCPM enabled, the operation below will be handled
--        * by PSP. Driver involvment is unnecessary and useless.
--        */
--       if (!adev->scpm_enabled) {
--               ret =3D smu_v14_0_2_append_powerplay_table(smu);
--               if (ret)
--                       return ret;
--       }
--
-        ret =3D smu_v14_0_2_check_powerplay_table(smu);
-        if (ret)
-                return ret;
-@@ -2785,7 +2723,6 @@ static const struct pptable_funcs smu_v14_0_2_ppt_fun=
-cs =3D {
-        .check_fw_status =3D smu_v14_0_check_fw_status,
-        .setup_pptable =3D smu_v14_0_2_setup_pptable,
-        .check_fw_version =3D smu_v14_0_check_fw_version,
--       .write_pptable =3D smu_cmn_write_pptable,
-        .set_driver_table_location =3D smu_v14_0_set_driver_table_location,
-        .system_features_control =3D smu_v14_0_system_features_control,
-        .set_allowed_mask =3D smu_v14_0_set_allowed_mask,
---
-2.34.1
+-- 
+Antonio Quartulli
+
+CEO and Co-Founder
+Mandelbit Srl
+https://www.mandelbit.com
 
