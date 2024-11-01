@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BE49B927D
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Nov 2024 14:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96EBE9B927F
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Nov 2024 14:50:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCD6310E9C6;
-	Fri,  1 Nov 2024 13:50:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E76010E9CA;
+	Fri,  1 Nov 2024 13:50:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XYPZ6nEZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nIsSLnO0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2084.outbound.protection.outlook.com [40.107.220.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6362710E9C6
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 13:50:15 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2046.outbound.protection.outlook.com [40.107.223.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04BF610E9CA
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 13:50:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eeNoEzZgqq8g1wB7Kzaz3pliCEgZ4fyPyjSoH48WwEzScxTeWWUMx0l8idzk4JWhEjQLhMPPcFZDCT4pRjZy3o8+8InU3Y4KU9NeeiZwE4GYhx+xtFJ0XjZibdFXBbGyT6HDahrmjdNMNGtFBFbBW269puw00QXfKE2q/efW2xpOmTqT6F/qFy9L5LgYwP7ZmA6x9vor9YqsWfmBKGiWfclz9hN+9dSKRZaG47FbbCd2CsJ76iNG3WKhTt15UtezBUBqR1FMNL7Tpt2U0W1yw0hzFhKiU8vN682pLj/IjsdoWf6xUjISggS/Y8DIgNcxu6u7NnNq3ASi+Z09e1nwJA==
+ b=XRR/2Sfe+AqUTytT2Gu0/p4qsOOxUj4Ie7nqZZbe60fXVxzBBt1XFaKAMhYrk+nC+Mt2GfDtWgbqWlKfeE2DshV7UqES6LqhBsnfyfDW26r9tIf+BuXW4RXyk9kjh+zEbDee1xauvvC6wNqF1r3E6Q6JZAmwavgUHGtT/z8NXxB/bQSqpePbGcJANNpCS1JSlhjr6zKBcK97IQ2rMGZ3E08tJ5vbkcaIt2xH3pa6AVZW6Hi1HELqBYCV7zoxHDhYrg5q80NUnSCE43ZA2ah9W6WgOE0VWuNnGZd7Kn/YvE+wfEWM04xieshHY5ITtN/yGDE+zYRJL2VJfr8/q+jjHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G+ZC6nq4JkyBUwtfNfpciv9InWnq//jHxdMzfnsgkmg=;
- b=WIX6LAhqlLF103l/P3RLYC55TboA6Ky35wUjbW7pX9O/UMagmPpb4BZKddD9zPl31fsj+u2cUVH8b3ROxRQplS1k/dE4Zhq+b8O2FAzHD1upBQWJOKFnWiBaEMw4Gxs/GRJQFtjoeDX8mqldQm4uI4HIOVMO89k6lVgCPtutTa1iL6VeT2CXu+XQo05dJwE5486Ba9Xr+X4wPCmej4bufrySgUPYJAur6A08Jcf/We57dMfyRgyMw2mtXy6Wsr2oYhP9od/1+zFWYlHSBHzrMvVGHkTbUrYx5Ff306BjAXmoS/S3560XT/zvi8cKlWk46GE4ZWoExSfx2B/54U9dfA==
+ bh=3XgUICwQBZfVFSvhK6GQkIRAitVseb106CtWtDhWeMY=;
+ b=F5J6qri/6QXGn30/Bhlqa6BfI0tfuADOhcnhbVZ7wakwr0k9m/zz8y3ZJjrCYfekUF/l8bkodBRUlSAUjz9iB8tskEjmI+BeNCd7vK9pgMcfofsjdxpIRVaDFZlcUuzBvSAURij+2tDP2Ey744LqCEHLLq8AqvlvvB2CXhQMWmrSqmQ1yR5FhxOrvKw+jARu6k1IUoWVu+u89fH9f8B0VpD40Ttxo5ZLExkrK9s+KfLQ9yVzDCmMhW/N4hkGVL7oAmK7dJ3uGcrBv5rcxBXlx2yWUgIqhheL+g8lmqNWgtirvsK0MBTcWdu2/deXXcPGm7tdALyoNxSCP9wZ6OJ1kA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G+ZC6nq4JkyBUwtfNfpciv9InWnq//jHxdMzfnsgkmg=;
- b=XYPZ6nEZL6VMFkba9k28XuZw0eUICnLAlS+2HmZ2DsmPxMp98KDO0oIbgdPwijXSaBN3Y+kIcL8atujSnuoqlGG0Oxca4PKQagR4X9JnMYTrZ7LxtOlWEDixcqmeBYfl+B3WK8DqeI3Dp0i3rb3P3dCRw2uVqZFHVd9YnDeFXr8=
-Received: from BN0PR02CA0004.namprd02.prod.outlook.com (2603:10b6:408:e4::9)
- by PH0PR12MB7840.namprd12.prod.outlook.com (2603:10b6:510:28a::16) with
+ bh=3XgUICwQBZfVFSvhK6GQkIRAitVseb106CtWtDhWeMY=;
+ b=nIsSLnO0HFCITSMvmZYqjeIwDSgVwK3+oDwclAsVOYpDFCSHdvh4ojnEa+PgyC7YWp5yP4H9QyeSinvQz4oEY/ovPiDChzrTHHGVcef2uxuOlllsNvMPg8JVMdFVORZpdIojZe3CjTqNt8w6wxguYKh3G3u4fbqQE8J/BBqOukU=
+Received: from BN0PR02CA0027.namprd02.prod.outlook.com (2603:10b6:408:e4::32)
+ by DM4PR12MB7623.namprd12.prod.outlook.com (2603:10b6:8:108::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.18; Fri, 1 Nov
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.23; Fri, 1 Nov
  2024 13:50:12 +0000
 Received: from BN1PEPF0000468A.namprd05.prod.outlook.com
- (2603:10b6:408:e4:cafe::65) by BN0PR02CA0004.outlook.office365.com
- (2603:10b6:408:e4::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.23 via Frontend
- Transport; Fri, 1 Nov 2024 13:50:11 +0000
+ (2603:10b6:408:e4:cafe::b7) by BN0PR02CA0027.outlook.office365.com
+ (2603:10b6:408:e4::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.25 via Frontend
+ Transport; Fri, 1 Nov 2024 13:50:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN1PEPF0000468A.mail.protection.outlook.com (10.167.243.135) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8114.16 via Frontend Transport; Fri, 1 Nov 2024 13:50:11 +0000
+ 15.20.8114.16 via Frontend Transport; Fri, 1 Nov 2024 13:50:12 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 1 Nov
- 2024 08:50:09 -0500
+ 2024 08:50:11 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -63,11 +63,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Li" <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Tom Chung
  <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed
  <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>, Daniel Wheeler
- <daniel.wheeler@amd.com>, Samson Tam <Samson.Tam@amd.com>, Alvin Lee
- <alvin.lee2@amd.com>
-Subject: [PATCH 06/17] drm/amd/display: fix asserts in SPL during bootup
-Date: Fri, 1 Nov 2024 09:49:29 -0400
-Message-ID: <20241101134940.1426653-7-zaeem.mohamed@amd.com>
+ <daniel.wheeler@amd.com>
+Subject: [PATCH 07/17] drm/amd/display: Fix brightness level not retained over
+ reboot
+Date: Fri, 1 Nov 2024 09:49:30 -0400
+Message-ID: <20241101134940.1426653-8-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241101134940.1426653-1-zaeem.mohamed@amd.com>
 References: <20241101134940.1426653-1-zaeem.mohamed@amd.com>
@@ -79,50 +79,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF0000468A:EE_|PH0PR12MB7840:EE_
-X-MS-Office365-Filtering-Correlation-Id: db098693-1464-4e41-73e6-08dcfa7c1b16
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000468A:EE_|DM4PR12MB7623:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5293b805-2a65-44eb-27ca-08dcfa7c1ba3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?jXzzib7s0YETdrAXJoXDUfE0aO0BLvpOsajEAkJQpP+6r8I9ek2a1bAE61MR?=
- =?us-ascii?Q?ZFsnlqKRn5FuWDf3JPaeQzMfigh7fHq4du15uPLZOzSmac346abQ6mUKs+Yn?=
- =?us-ascii?Q?3FdA4nS1r0UlpkEqyEBflrDEfz3B8EN2mlodF01GdzufPJoyZvcOGZdvoHub?=
- =?us-ascii?Q?QT0m8VpRiyX2wApl9twxLBB3Wk9FrCMsByP/HWrozYwNqOBqY9DUAYy+0ekp?=
- =?us-ascii?Q?qKAyj/spES9hsVzJYrdtTs0DppKbY29PLT3aytp2B26Yy3ogfkG5Oa44yaSY?=
- =?us-ascii?Q?gqrevBWmkXQNgh+VaLA6yZoUrVFzfK+/cVVYYYr1NhgZFAgKc6FzXa1izk4A?=
- =?us-ascii?Q?KOx9DLJm9xEV3ShoCb89lYw5JsLf5uqyGs5FOohO8x3IFjmLRM3Lw3k8iT/A?=
- =?us-ascii?Q?ObzEB26wZZw4pBHyBB5PF+kIrLrQzZ82aqoNXjDwYm8/WuOrXqZKX/p3QYhN?=
- =?us-ascii?Q?P05O0Hsv7dgxy9jIVMUYciE/OvDNpOs+sgRbuJGf3xGiLwHW2p8qtVXYusv9?=
- =?us-ascii?Q?PIPr6/MuACHtNnvT2FoM/IT4ArbXhPFI/wQRMMYfm5AUQFYa/uBn7A2XxSb5?=
- =?us-ascii?Q?Ht+e5rgqgICKO2aARyzkTRhL0U//cV4MSPEj+gpEhmwxmvgrLmDNkoQ7Fdrp?=
- =?us-ascii?Q?BvTHAigUYJ0nru8YfvfAuprHLcJBTchzYTSwds7rz72q0nrYX+H3r5FmC+2H?=
- =?us-ascii?Q?iwkHgJ/x55v6UhV+rxeRy8teZkiovE7nxfQLtqe5jNuwQyzjfepxCLe7/aB7?=
- =?us-ascii?Q?XyZIFTlQNA/SevZwfO+PxShFChxG/NpFmVClOQt8yUuDVYucVc57xNe3mIwl?=
- =?us-ascii?Q?DFcCj8uVC5W/SJcEbaG2QUOdeLBi/MY6u8Elt7/SQ/qfhOJIpwOi3iqC6JGM?=
- =?us-ascii?Q?pNImQvsSKS8w24fsFyl0wNQYVH7FMum2XsowmWX7R1yzEXUZr6Qz5UEKe4UA?=
- =?us-ascii?Q?ah76njfIcI1NpwhDtkt8xmB2S8ezJ/Efk6o7MXQ8L7C95Jy03elj8zPXhe6C?=
- =?us-ascii?Q?PQxN/FbUxU2DA2z6VyuGpGfyfnHl9WqsgjOkCcL+qyN6lWeh98eKGObe2MnS?=
- =?us-ascii?Q?NKDuPIT7pziQeYNG1mNkjR8QNlWsl/q62tuwI/vc9IKvXJGtEZTt1ACEAMfD?=
- =?us-ascii?Q?ZIQWKJrX+wwTTdU+CggXp9E2xFvWxSjm9JsGPRdju5w09I4wUUAHFsQwlBMC?=
- =?us-ascii?Q?Lbg6TYb5wPV3Xftm1hJ4YhH6VjUs6ZDCc7OHWo/+AVd60HFuty3q+kZHRgKT?=
- =?us-ascii?Q?XWKjPZ2pHbHWEd30pHHBP29AY5rLMd5NgQm1egWltL9QPuLUUPTXslHgpRM8?=
- =?us-ascii?Q?9xWTGnnvpMIFc1pyhy6wojS+9C2ptVnSYQVWA/Y+IPYYgD6ZDNxRditg0MRv?=
- =?us-ascii?Q?XVULvnRbfn2/H09PlU+sXrm/Z/MGWDwiqiqUuHag4nJQFqOsGw=3D=3D?=
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2aA7M+vwTVFb1PjWq/c6T6QNIsZq0oKVjPgTTa3Tj0QxzvXjBJzpBYpRUrf5?=
+ =?us-ascii?Q?RpWdQQPRaGSxwjvG+4TeycSADsYWo//xhHnX+6BY8McrOVt5RiN+sGe7Qyka?=
+ =?us-ascii?Q?2p9YTOIlfswDV0h2yFGcbwF8IV0QRKPDMWEudl98IpNTwsobqQ6+kvlEcfJb?=
+ =?us-ascii?Q?z5IFWyYVtTiGo8eIqLiROYMOPVAWRSGAZwaHQEtvsLc/YGyaL60Ej1VDzXdR?=
+ =?us-ascii?Q?FzNwH3HsE83mU3kyAK8O69pJhkjTEa9h1Fa7qE5wnWXPFeLv9+NW4Egl7dOR?=
+ =?us-ascii?Q?/fPbMcECOQmqTZ54LUyhW/QhPIC0DJ0O6NG7TShNpmDlP9NGVLES1laPQuSr?=
+ =?us-ascii?Q?xEhH/HAo7oThf6vU/mxvKFa4YpiHnnawCWeXd552YVMVw3F6gDkq0zcji0Ot?=
+ =?us-ascii?Q?0vBgNqVxH9SLygZR8wPERmhiD0B1OWu39d6uy8XWErosBr9LOcBNfo3Ii5uR?=
+ =?us-ascii?Q?o8+QMrbr3b+Nz5mjaQHkG+zRQqn1YS3oczqLWlhJYNV6TIiejUuWKhXtmGZu?=
+ =?us-ascii?Q?5ZO2yAROBqCG+5hxlpG7Rj3bXIHcTBq+bBAsrV9Cw/fKveE09aUdwaiqozm/?=
+ =?us-ascii?Q?K+M5q1fVQaz123tpJ0mOENwpVu0NknFBluFVSDXOMIu+Ru+OSpWCym5gR+8F?=
+ =?us-ascii?Q?Vxohtcg72CYUJ7Zy+/CYdf8KQxgzlbAgvv61mrr/0mV1+JBEFRhswUJUgByH?=
+ =?us-ascii?Q?gP/pwI0eIsf3onSYdv2IEtKtjsmLkhbCPXSNaLtjAItP/6sVIZBqv49vF0Ar?=
+ =?us-ascii?Q?D4deG1FjlDUmxHmRFZNGHh9vVdr5z3rg8YqfmucOemDUWkSIf9e0G5GWpDYp?=
+ =?us-ascii?Q?0+2jKx16g84C0rpbckhrAPJNU4HXdZCx2EMM1I3yVtGy0ULAmrp3YqsMndtL?=
+ =?us-ascii?Q?ze+rdAs3kuzcDH9ngluX7Cgcm6PRqre/wN9iPwyTw3RA5kXMWp1sdJxNKV7R?=
+ =?us-ascii?Q?2nBaS7oYrYpVzbJfV6rNrYLejTWqehR8oaEZ73kKxFFDtf3kUxlsRbqIGrho?=
+ =?us-ascii?Q?lndPqEecsXkXL4vzU9FiyTQAExpI0o0vGBtAc9+w9IxbZqbxCyYoUHnS2K8n?=
+ =?us-ascii?Q?RE+k2Po1lbiuXgPXQ6ksKosBCKrlM77Ik4medzAWRb6AdW9vaKHuY4P4YLoy?=
+ =?us-ascii?Q?d5MkFIfRbHdWzd2DQpkGUyNFheCJCUEzfJVymsMZ6pz/CWt6dsztFZY2A2L9?=
+ =?us-ascii?Q?vVlkA2bpLyheFBE8jOfGmVJ3D6HIJirnN7qp0E93tINZtZjLU6CNTpbTagKo?=
+ =?us-ascii?Q?eai1MI0Q54gEG1iiJps+8XEQoQY8oI8KFhWnxiPJoWAjXBIlA7QIukvA0QJA?=
+ =?us-ascii?Q?E07S3ikkrFbcF65BTllAoNVP+IEwnY2hfVf95PbLgUHwj4RQgWYcgystDJP2?=
+ =?us-ascii?Q?G94CvApEOc7EbLOklya7zu/rTpAK7qpne2z5U8itYkAoB6I/tw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 13:50:11.6331 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: db098693-1464-4e41-73e6-08dcfa7c1b16
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 13:50:12.5706 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5293b805-2a65-44eb-27ca-08dcfa7c1ba3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468A.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7840
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7623
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,138 +137,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Samson Tam <Samson.Tam@amd.com>
+From: Tom Chung <chiahsuan.chung@amd.com>
 
 [Why]
-During mode validation, there maybe modes that fail
- max_downscale_src_width check and scaling_quality
- taps are 0.  This will cause an assert to trigger
- in spl_set_filters_data() because taps are 0.
+During boot up and resume the DC layer will reset the panel
+brightness to fix a flicker issue.
+
+It will cause the dm->actual_brightness is not the current panel
+brightness level. (the dm->brightness is the correct panel level)
 
 [How]
-Move taps calculation for non-adaptive scaling mode
- to separate function and call it
- if max_downscale_src_width fails.  This will
- populate taps if scaling_quality taps are 0.
+Set the backlight level after do the set mode.
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
-Signed-off-by: Samson Tam <Samson.Tam@amd.com>
+Reviewed-by: Sun peng Li <sunpeng.li@amd.com>
+Signed-off-by: Tom Chung <chiahsuan.chung@amd.com>
 Signed-off-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/spl/dc_spl.c | 86 ++++++++++++---------
- 1 file changed, 48 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/dc_spl.c b/drivers/gpu/drm/amd/display/dc/spl/dc_spl.c
-index 133906e73a65..9095da7b842b 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/dc_spl.c
-+++ b/drivers/gpu/drm/amd/display/dc/spl/dc_spl.c
-@@ -868,6 +868,50 @@ static bool spl_get_isharp_en(struct spl_in *spl_in,
- 	return enable_isharp;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index bbfc47f6595f..2599a99509de 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -9411,6 +9411,7 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
+ 	bool mode_set_reset_required = false;
+ 	u32 i;
+ 	struct dc_commit_streams_params params = {dc_state->streams, dc_state->stream_count};
++	bool set_backlight_level = false;
+ 
+ 	/* Disable writeback */
+ 	for_each_old_connector_in_state(state, connector, old_con_state, i) {
+@@ -9530,6 +9531,7 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
+ 			acrtc->hw_mode = new_crtc_state->mode;
+ 			crtc->hwmode = new_crtc_state->mode;
+ 			mode_set_reset_required = true;
++			set_backlight_level = true;
+ 		} else if (modereset_required(new_crtc_state)) {
+ 			drm_dbg_atomic(dev,
+ 				       "Atomic commit: RESET. crtc id %d:[%p]\n",
+@@ -9581,6 +9583,19 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
+ 				acrtc->otg_inst = status->primary_otg_inst;
+ 		}
+ 	}
++
++	/* During boot up and resume the DC layer will reset the panel brightness
++	 * to fix a flicker issue.
++	 * It will cause the dm->actual_brightness is not the current panel brightness
++	 * level. (the dm->brightness is the correct panel level)
++	 * So we set the backlight level with dm->brightness value after set mode
++	 */
++	if (set_backlight_level) {
++		for (i = 0; i < dm->num_of_edps; i++) {
++			if (dm->backlight_dev[i])
++				amdgpu_dm_backlight_set_level(dm, i, dm->brightness[i]);
++		}
++	}
  }
  
-+/* Calculate number of tap with adaptive scaling off */
-+static void spl_get_taps_non_adaptive_scaler(
-+	  struct spl_scratch *spl_scratch, const struct spl_taps *in_taps)
-+{
-+	if (in_taps->h_taps == 0) {
-+		if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.horz) > 1)
-+			spl_scratch->scl_data.taps.h_taps = spl_min(2 * spl_fixpt_ceil(
-+				spl_scratch->scl_data.ratios.horz), 8);
-+		else
-+			spl_scratch->scl_data.taps.h_taps = 4;
-+	} else
-+		spl_scratch->scl_data.taps.h_taps = in_taps->h_taps;
-+
-+	if (in_taps->v_taps == 0) {
-+		if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert) > 1)
-+			spl_scratch->scl_data.taps.v_taps = spl_min(spl_fixpt_ceil(spl_fixpt_mul_int(
-+				spl_scratch->scl_data.ratios.vert, 2)), 8);
-+		else
-+			spl_scratch->scl_data.taps.v_taps = 4;
-+	} else
-+		spl_scratch->scl_data.taps.v_taps = in_taps->v_taps;
-+
-+	if (in_taps->v_taps_c == 0) {
-+		if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert_c) > 1)
-+			spl_scratch->scl_data.taps.v_taps_c = spl_min(spl_fixpt_ceil(spl_fixpt_mul_int(
-+				spl_scratch->scl_data.ratios.vert_c, 2)), 8);
-+		else
-+			spl_scratch->scl_data.taps.v_taps_c = 4;
-+	} else
-+		spl_scratch->scl_data.taps.v_taps_c = in_taps->v_taps_c;
-+
-+	if (in_taps->h_taps_c == 0) {
-+		if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.horz_c) > 1)
-+			spl_scratch->scl_data.taps.h_taps_c = spl_min(2 * spl_fixpt_ceil(
-+				spl_scratch->scl_data.ratios.horz_c), 8);
-+		else
-+			spl_scratch->scl_data.taps.h_taps_c = 4;
-+	} else if ((in_taps->h_taps_c % 2) != 0 && in_taps->h_taps_c != 1)
-+		/* Only 1 and even h_taps_c are supported by hw */
-+		spl_scratch->scl_data.taps.h_taps_c = in_taps->h_taps_c - 1;
-+	else
-+		spl_scratch->scl_data.taps.h_taps_c = in_taps->h_taps_c;
-+}
-+
- /* Calculate optimal number of taps */
- static bool spl_get_optimal_number_of_taps(
- 	  int max_downscale_src_width, struct spl_in *spl_in, struct spl_scratch *spl_scratch,
-@@ -883,7 +927,7 @@ static bool spl_get_optimal_number_of_taps(
- 	if (spl_scratch->scl_data.viewport.width > spl_scratch->scl_data.h_active &&
- 		max_downscale_src_width != 0 &&
- 		spl_scratch->scl_data.viewport.width > max_downscale_src_width) {
--		memcpy(&spl_scratch->scl_data.taps, in_taps, sizeof(struct spl_taps));
-+		spl_get_taps_non_adaptive_scaler(spl_scratch, in_taps);
- 		*enable_easf_v = false;
- 		*enable_easf_h = false;
- 		*enable_isharp = false;
-@@ -910,43 +954,9 @@ static bool spl_get_optimal_number_of_taps(
- 	 * From programming guide: taps = min{ ceil(2*H_RATIO,1), 8} for downscaling
- 	 * taps = 4 for upscaling
- 	 */
--	if (skip_easf) {
--		if (in_taps->h_taps == 0) {
--			if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.horz) > 1)
--				spl_scratch->scl_data.taps.h_taps = spl_min(2 * spl_fixpt_ceil(
--					spl_scratch->scl_data.ratios.horz), 8);
--			else
--				spl_scratch->scl_data.taps.h_taps = 4;
--		} else
--			spl_scratch->scl_data.taps.h_taps = in_taps->h_taps;
--		if (in_taps->v_taps == 0) {
--			if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert) > 1)
--				spl_scratch->scl_data.taps.v_taps = spl_min(spl_fixpt_ceil(spl_fixpt_mul_int(
--					spl_scratch->scl_data.ratios.vert, 2)), 8);
--			else
--				spl_scratch->scl_data.taps.v_taps = 4;
--		} else
--			spl_scratch->scl_data.taps.v_taps = in_taps->v_taps;
--		if (in_taps->v_taps_c == 0) {
--			if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert_c) > 1)
--				spl_scratch->scl_data.taps.v_taps_c = spl_min(spl_fixpt_ceil(spl_fixpt_mul_int(
--					spl_scratch->scl_data.ratios.vert_c, 2)), 8);
--			else
--				spl_scratch->scl_data.taps.v_taps_c = 4;
--		} else
--			spl_scratch->scl_data.taps.v_taps_c = in_taps->v_taps_c;
--		if (in_taps->h_taps_c == 0) {
--			if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.horz_c) > 1)
--				spl_scratch->scl_data.taps.h_taps_c = spl_min(2 * spl_fixpt_ceil(
--					spl_scratch->scl_data.ratios.horz_c), 8);
--			else
--				spl_scratch->scl_data.taps.h_taps_c = 4;
--		} else if ((in_taps->h_taps_c % 2) != 0 && in_taps->h_taps_c != 1)
--			/* Only 1 and even h_taps_c are supported by hw */
--			spl_scratch->scl_data.taps.h_taps_c = in_taps->h_taps_c - 1;
--		else
--			spl_scratch->scl_data.taps.h_taps_c = in_taps->h_taps_c;
--	} else {
-+	if (skip_easf)
-+		spl_get_taps_non_adaptive_scaler(spl_scratch, in_taps);
-+	else {
- 		if (spl_is_yuv420(spl_in->basic_in.format)) {
- 			spl_scratch->scl_data.taps.h_taps = 6;
- 			spl_scratch->scl_data.taps.v_taps = 6;
+ static void dm_set_writeback(struct amdgpu_display_manager *dm,
 -- 
 2.34.1
 
