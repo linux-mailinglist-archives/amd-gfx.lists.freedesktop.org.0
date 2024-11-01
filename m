@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB8179B927E
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Nov 2024 14:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD059B9281
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Nov 2024 14:50:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD90810E9C8;
-	Fri,  1 Nov 2024 13:50:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF7110E9CD;
+	Fri,  1 Nov 2024 13:50:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DC0omhFp";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="da61h52c";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2064.outbound.protection.outlook.com [40.107.236.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B897A10E9C6
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 13:50:16 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2079.outbound.protection.outlook.com [40.107.243.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 741FA10E9CB
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 13:50:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XCtBlV8SRlPa7CgRg7Zx/tvMppVEaDzzNGHliiJRj0srSETPmp0n56WkwWTOL/KhNpheZm/HX7Nx6pbpZRHRNi+oCXQ/Frm7/AO1SCuki08nLEWei1Ud1WlWBehVv+U2YWZwGUvE9ONLAdIHKnNEK9LC8c+5YaVSSxaz8lqR9kNjK6ia5sY/a7/r9bHOxOBz/tS9bRwlJw85FJk7aDCtU1go8bMxeH7y1zjAX92ruAC4vlzJ9WZI0lNkhtPJezh2tE/VtjKV0PvQLrJgr2UzhfDUnD0OK0uVaFYTq5BAWjVzLJ1KmgStWbTudQEfJsM6WCwdopiIsLK9Iznz8LjhoA==
+ b=oAt1sMrtGL74HgFDpkklESpK6A/PbrMHSUbY2NnWG0eza770z/9Fs4TUimjx+vJPPe/uddP4ivAIB80F5RQGX0vUT0xPEsQ2lpecxHCvVHZRx40WVT9caj+sUGVq2ccdxq+6UoCb6jYoflQ5Fo/jGqOSC56LpGXtBMh0qv3qYDkRvvQLeef/WqU4tAhhV+cOoAoiqme3pWNoQQm6YIQwf+wtkGAqhIG+P2DEZw/PjylBEO8C5tuEgHh2k4I0+TkGjzUCn5euFUMBD5IuP8lD8sLSAAhcSiDzDnEyJz0WUU6Uep8yND5Ok0lFqEb9FSJowwuw3cc0iRU1LcBSJw4wKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n326qJQtNaqxhO0O+8RbcRGf273WWnr3PFbo9heYjUc=;
- b=GwrOiRvLrdKnxztQNLp1FmSfVcHJgX6HlwriDI+oc2kX7zzTvyctcSAdWdACx1c7Y5A8vnwiE/eaLw/EdMzSo6R7XwlZDpstyedMTQ9ntOZCzKzlrGnCH273VbBZFaZJXK8e/FcaS3mkrBt/iYYRQXFAroi/uOyq4mJ7n2+d5PfGpcvxxPb9Y87QL444QRDDfV/utOFxkzJ03X6Yf9NGBwSrkUqJu9XyS6GjwejOQ9PXwe/9pxcKD/bgP5PSL743c9cxluI5ND6t3m/gSKLVIGPJcXkyeiAeqG+ILPJlSpjooG/69eoGpup3ykM5UpX8t7gmzDvPhtwfq2CTnvpI5Q==
+ bh=DlAgyIlnusZpAZidwMEY4gkn9SPw4SCLfv7EwUVxX9Q=;
+ b=gvz7tudSQYOvd2Xiw0xgYjsSdEVBYPTv/JRJkhpWxd3/8GGD8pgvBaDDmSeXDzAqf45Pq5pvZvVkE8vlkN9RNCok6B8Ylqk2BB+g/QpmTg41Dq9jeG7XjR0WpNCFy3jeMr2S5f0uRHelO1ew1wwTXVnHpQXM4+vBceZlBRBhoflWJSlTH0+zfhkMBWB90j1F92Q+1ut9I8g24HCzFtovD2Lgioq/2RL2bmwBPjRV8nfUx2wr5lhcIq33KWMPzYLq9COdaEkZHien+Pic1cV7f0q3oJkp55DW2+pu2ZeDPQq5AWuMMenNKBuB2KPaxsmZ2CX24EVj/1o9bW7BMwydVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n326qJQtNaqxhO0O+8RbcRGf273WWnr3PFbo9heYjUc=;
- b=DC0omhFp06uc36bVX6p1n50qYl1Ryn+ZK1UBl6vFvQDWynGCS9QoxUp+DvoxUycycU6XKl9DDKqv/pBglaE+Lb44UpXMQFsgyVO0O1/vfPbm4WniMh9MsDxkV32+Ooq18a99doesrm9SJXoqhvd92ehWHUQ+Y/wYKtqj1MY5W/A=
-Received: from BN0PR02CA0030.namprd02.prod.outlook.com (2603:10b6:408:e4::35)
- by IA1PR12MB8359.namprd12.prod.outlook.com (2603:10b6:208:3fc::15)
+ bh=DlAgyIlnusZpAZidwMEY4gkn9SPw4SCLfv7EwUVxX9Q=;
+ b=da61h52cufCkQica+6XuRsfKfWz2LLLObLrAoppLbQKuNxnV8cvf3L5nMJqUBXbVS2mYfso0lZTzjxtF0eIvzo3aVKRajGFWyJB0wCMUEDi74BwfIhK9jn3Fl3gBwDT9jHjfBPZ6ZTUHbgeTcCBtzVpiutcPnp7DTL45h/2A/0M=
+Received: from BN0PR02CA0019.namprd02.prod.outlook.com (2603:10b6:408:e4::24)
+ by SN7PR12MB7298.namprd12.prod.outlook.com (2603:10b6:806:2ae::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.20; Fri, 1 Nov
- 2024 13:50:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.22; Fri, 1 Nov
+ 2024 13:50:16 +0000
 Received: from BN1PEPF0000468A.namprd05.prod.outlook.com
- (2603:10b6:408:e4:cafe::9c) by BN0PR02CA0030.outlook.office365.com
- (2603:10b6:408:e4::35) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:e4:cafe::d9) by BN0PR02CA0019.outlook.office365.com
+ (2603:10b6:408:e4::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.25 via Frontend
- Transport; Fri, 1 Nov 2024 13:50:14 +0000
+ Transport; Fri, 1 Nov 2024 13:50:16 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN1PEPF0000468A.mail.protection.outlook.com (10.167.243.135) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8114.16 via Frontend Transport; Fri, 1 Nov 2024 13:50:13 +0000
+ 15.20.8114.16 via Frontend Transport; Fri, 1 Nov 2024 13:50:16 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 1 Nov
- 2024 08:50:12 -0500
+ 2024 08:50:13 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -63,11 +63,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Li" <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Tom Chung
  <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed
  <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>, Daniel Wheeler
- <daniel.wheeler@amd.com>, Samson Tam <Samson.Tam@amd.com>, Navid Assadian
- <Navid.Assadian@amd.com>
-Subject: [PATCH 08/17] drm/amd/display: SPL cleanup
-Date: Fri, 1 Nov 2024 09:49:31 -0400
-Message-ID: <20241101134940.1426653-9-zaeem.mohamed@amd.com>
+ <daniel.wheeler@amd.com>, Ausef Yousof <Ausef.Yousof@amd.com>, Charlene Liu
+ <charlene.liu@amd.com>
+Subject: [PATCH 09/17] drm/amd/display: Remove hw w/a toggle if on DP2/HPO
+Date: Fri, 1 Nov 2024 09:49:32 -0400
+Message-ID: <20241101134940.1426653-10-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241101134940.1426653-1-zaeem.mohamed@amd.com>
 References: <20241101134940.1426653-1-zaeem.mohamed@amd.com>
@@ -79,50 +79,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF0000468A:EE_|IA1PR12MB8359:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1081d952-10ca-47bc-8bc3-08dcfa7c1c72
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000468A:EE_|SN7PR12MB7298:EE_
+X-MS-Office365-Filtering-Correlation-Id: f185f1fc-1df6-40ce-1a4f-08dcfa7c1dc5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ASM83oKBqef66nhGtWgWFs2Q8y4jhRGBPuYi4fE6UlnPQeKFZGYmCopyYLQT?=
- =?us-ascii?Q?42WfV245JUk6QhCrUdmhKBhJrEaLir9SR5YhS1lzmDU/FQaWLG/vNu4z/PCg?=
- =?us-ascii?Q?IpGQz+yymfXQmMgI9CEw8XuFh1Xmkxwg6olT0lU1OuAsc0uQvZ5m+O356Msy?=
- =?us-ascii?Q?6qYzlg26pkupV57BwYdF158WYKwFwUzOCQdbHDUagkBSh+aSQZ9Q9r7yfFUe?=
- =?us-ascii?Q?ocS5M6VmX9MS4WuDNu014egcNv9Ac6hAJxlGrz4KKDz+v/1Oavxyq7pvpmbn?=
- =?us-ascii?Q?VqpWSK8OW+G5azJWG4Qw0W5GZ7zucBaUsmU4LRhp5k5E9BEorV7khn+pGTXW?=
- =?us-ascii?Q?0HFkPAyAmZBYM6qRzi+UBatwCWQvHxpOKCM4BipKM/gJeCeXxKckwMCnSbLZ?=
- =?us-ascii?Q?HWttlbd6jaMBT/sn/iB3CSQlF6RYLSmwq7kaLW55I6h7ZzVGT2Fm7Y6+o90t?=
- =?us-ascii?Q?YXh/J7U64GwJBurOKwmunvkvgeSOKDCKGbNPUS/ygfN1cgxVBephI1DWoW21?=
- =?us-ascii?Q?2RXd7Z21DUsYEUZVbK0CZ4737Zyi3f8NYku3sVr70jwcDAREI6SXT3ou2xzw?=
- =?us-ascii?Q?9y5ZUrF5nbVNxeFIGLSRNTDQ2xd2o7OchjgaDwK+EVd+Q7l125FcyyjIwVX7?=
- =?us-ascii?Q?mLF9kLEI9KHy5GngU4JuzOIfFHimzvOGDJ8Uj4qWT1D4RsTpGy982pMbKqU+?=
- =?us-ascii?Q?mmp2L22YQAhJZHy2dATQVZKgo7AaBeiASdQppWlE8Q5lVMUQUdYAVTjagJmM?=
- =?us-ascii?Q?KjZM43tIKb1xO9m8TAh1QRa/gCMnLq0FpVg4/1GyFALdQh5Y0KXcKBeF9TBL?=
- =?us-ascii?Q?fvrM+pLE5vK/Ban0zzefJYMknOoUEc4XAgp7G1MyHLAdBET8D6I5nlN4UEpA?=
- =?us-ascii?Q?Fo3de93GZI4HVIn8UaXpdH8ekEBQGPqqUgZbggXXA0+HC5+5OLDFSNHpTEsN?=
- =?us-ascii?Q?LsuhDbPM0B5CCN8JW8DUARQrXm6+urqcr8lLohOm96mDWHWjdDs4ATzLHaZO?=
- =?us-ascii?Q?iSGWy4cremc88MyV3y+9+SUBgvrmXqMwqXnp4LNCf7yDcwAsJGdbFoTQS29B?=
- =?us-ascii?Q?VVJbw/gBNry9PdK/TzpHi1ZFCJeUJh6LAGr2qG47ljUTkgFTmfPtQPGFJAdP?=
- =?us-ascii?Q?5pLH9Ih3eCw8rtyrcyXTW6MAZQIOl5nYbaNdSKZqdZ4pHzBuBz4XY2IgvwP7?=
- =?us-ascii?Q?0r5drZCKJbvrhmv5/iJtqR50YK7RismEfojhDp6EeVQGI0cx3zFjvs0kzlMI?=
- =?us-ascii?Q?MamX+RpSwLvc/bLUkiE7GWKrHhhkyk6Yf0KGZn96SXMUPAvnZXqclPLmLnWb?=
- =?us-ascii?Q?QFgB1zvugidm4gZtkI9HFaziPeC0byN/30jB2lBQsM4v3x9J30pRMsVZfGs4?=
- =?us-ascii?Q?8XtJ7SqwZS3dqTquNX8GRmXDA2XrT0mmAvKdN+mvG6Nn4Ejh7g=3D=3D?=
+ ARA:13230040|376014|1800799024|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?61Se5R0PFBG9ZlqPlbYp0cOHB08fmlxsXGbV2530Ug1H1VVeTLAqQCSqSq4h?=
+ =?us-ascii?Q?3yZxwZU1GzOH2vZtnVaDpLNieaOWd915D4I+nTqPbJiZrDaReJ1nunWniCx3?=
+ =?us-ascii?Q?TeZ6oNX/7tAM/iudhAxhC8gyBXyJVCmiLX714aunanaC5rngVJKg9NdxAfXc?=
+ =?us-ascii?Q?U7nJht/0lXIXBjBF6i1T5oyxAvFNGr6VOsxaVvdKVFBof442uiGsy1jvIcpd?=
+ =?us-ascii?Q?lr1xBS6i187VKtqgqcf20/6bEbDYYxSLvlPOq6rZj7ThhBDvU9L+0Kd25fXN?=
+ =?us-ascii?Q?o9dFXnlAlERxSVgMins9OICEEokmjuKYZ0HFDk0kIaRYvWcCSQObgXprZ6Lq?=
+ =?us-ascii?Q?HrYs+Z4igdJwhj56yDvgFuLzm2tzH9jx54JtyhDHY0fcjPyLb1FjC0B+VFoi?=
+ =?us-ascii?Q?voK8B2Nxhif3Es+6cXmSF7eaXzEp+WHGFqFzCSBsJ4f9jnMYGjef3o0mPia4?=
+ =?us-ascii?Q?ktlAl5FUaNIR4eFh8+B/U+oD8EL0ZVnuuLOXdfmAbE1xE/zBrnXgRQE0/q2w?=
+ =?us-ascii?Q?V6I1x6Yo/VgDPcAFf4KgIoT2tV/ekNmemmZHylG1Wx37+wKGQRlFs0IFXiTR?=
+ =?us-ascii?Q?ZTTF8tr0v+tppEL5zz4qPLPJgvZTLuq87wsV/V9CveYIf3ugE028xrWYcVrb?=
+ =?us-ascii?Q?9oepDTz6CBd3oipAOisIfo6hnltXRrv1X4gFqFikhYb60lbJIHbPTPONxSQJ?=
+ =?us-ascii?Q?xok+ER10fTQNIMPrb1Yyh0Pedtndy/vFbp/xBEKkLMJNMfB9vv6oJPdCr4S3?=
+ =?us-ascii?Q?U+DMcKgncdekdlQhWgVYZFkqn9O9Rb4FiWS/fDOhPboXo/5udza9fT/zkM4Y?=
+ =?us-ascii?Q?iGt4uJNOshycXygubAa7NDVWDgvf+QXl23v3fn00YPJBNHKdNe3B0lqrFACt?=
+ =?us-ascii?Q?w+vlIxqj6wFNxUHrCWiWDajPG0QG9soSABwPDfRXoET9dqDVbBdOczsfauLw?=
+ =?us-ascii?Q?qTc7Jndg6ETTRjwvlG/nK/ComDKcC2jYTXgNcObaojsUet+HM5uX1yc8JPMu?=
+ =?us-ascii?Q?Og8zLiCY7xcDsXPGavsOnapYTdbrfpeKGVwl/mnU8whw4wncVPxb5LNVR/H5?=
+ =?us-ascii?Q?oYSDXCmru+hIuwnziz1oJQwGEjNgyiHIEY8X2n94VFhiifEMq/ZAkKGwk6me?=
+ =?us-ascii?Q?eD8n4gsCdTfZvaVEN+xs5Nvj0kypLpmRiYlP/krBn0cZ+tvC0KjZa9jMxq2K?=
+ =?us-ascii?Q?OgGhi9YjD0ItMpNRFMtfAmUNPstdwBtYh4Ycdc3mJ38H3vVMJuEyaYk4Wj1N?=
+ =?us-ascii?Q?MrU0bUgQWbY+jv0AFiqr+ul8RP9leZ5gA3OiITo9TLe86j3Cwazp6ooqwUJX?=
+ =?us-ascii?Q?zWgFV7pA1rdXcx0VH+k6nqSPgbwZz/YymZEhm0TGnDl/8gqwcypMSVzCchFh?=
+ =?us-ascii?Q?T2z+RrFRtk0VyKEnsyjfqcSdZhkwleEufcw16y7TODIk27rhDA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 13:50:13.9144 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1081d952-10ca-47bc-8bc3-08dcfa7c1c72
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 13:50:16.1488 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f185f1fc-1df6-40ce-1a4f-08dcfa7c1dc5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468A.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8359
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7298
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,222 +137,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Samson Tam <Samson.Tam@amd.com>
+From: Ausef Yousof <Ausef.Yousof@amd.com>
 
-[Why & How]
-Move from pointer to callback to reference callback directly
-Missed renaming fixpt functions with spl prefix
+[why&how]
+Applying a hw w/a only relevant to DIG FIFO causing corruption
+using HPO, do not apply the w/a if on DP2/HPO
 
-Reviewed-by: Navid Assadian <Navid.Assadian@amd.com>
-Signed-off-by: Samson Tam <Samson.Tam@amd.com>
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+Signed-off-by: Ausef Yousof <Ausef.Yousof@amd.com>
 Signed-off-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dc_spl_translate.c | 14 ++++----
- drivers/gpu/drm/amd/display/dc/spl/dc_spl.c   |  2 +-
- .../gpu/drm/amd/display/dc/spl/dc_spl_types.h |  4 +--
- .../drm/amd/display/dc/spl/spl_fixpt31_32.c   | 34 +++++++++----------
- 4 files changed, 27 insertions(+), 27 deletions(-)
+ .../drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_spl_translate.c b/drivers/gpu/drm/amd/display/dc/dc_spl_translate.c
-index 24aa9df892f3..c8d8e335fa37 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_spl_translate.c
-+++ b/drivers/gpu/drm/amd/display/dc/dc_spl_translate.c
-@@ -8,13 +8,13 @@
- #include "dcn32/dcn32_dpp.h"
- #include "dcn401/dcn401_dpp.h"
- 
--static struct spl_funcs dcn2_spl_funcs = {
-+static struct spl_callbacks dcn2_spl_callbacks = {
- 	.spl_calc_lb_num_partitions = dscl2_spl_calc_lb_num_partitions,
- };
--static struct spl_funcs dcn32_spl_funcs = {
-+static struct spl_callbacks dcn32_spl_callbacks = {
- 	.spl_calc_lb_num_partitions = dscl32_spl_calc_lb_num_partitions,
- };
--static struct spl_funcs dcn401_spl_funcs = {
-+static struct spl_callbacks dcn401_spl_callbacks = {
- 	.spl_calc_lb_num_partitions = dscl401_spl_calc_lb_num_partitions,
- };
- static void populate_splrect_from_rect(struct spl_rect *spl_rect, const struct rect *rect)
-@@ -77,16 +77,16 @@ void translate_SPL_in_params_from_pipe_ctx(struct pipe_ctx *pipe_ctx, struct spl
- 	// This is used to determine the vtap support
- 	switch (plane_state->ctx->dce_version)	{
- 	case DCN_VERSION_2_0:
--		spl_in->funcs = &dcn2_spl_funcs;
-+		spl_in->callbacks = dcn2_spl_callbacks;
- 		break;
- 	case DCN_VERSION_3_2:
--		spl_in->funcs = &dcn32_spl_funcs;
-+		spl_in->callbacks = dcn32_spl_callbacks;
- 		break;
- 	case DCN_VERSION_4_01:
--		spl_in->funcs = &dcn401_spl_funcs;
-+		spl_in->callbacks = dcn401_spl_callbacks;
- 		break;
- 	default:
--		spl_in->funcs = &dcn2_spl_funcs;
-+		spl_in->callbacks = dcn2_spl_callbacks;
- 	}
- 	// Make format field from spl_in point to plane_res scl_data format
- 	spl_in->basic_in.format = (enum spl_pixel_format)pipe_ctx->plane_res.scl_data.format;
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/dc_spl.c b/drivers/gpu/drm/amd/display/dc/spl/dc_spl.c
-index 9095da7b842b..a29a9f131e04 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/dc_spl.c
-+++ b/drivers/gpu/drm/amd/display/dc/spl/dc_spl.c
-@@ -981,7 +981,7 @@ static bool spl_get_optimal_number_of_taps(
- 	else
- 		lb_config = LB_MEMORY_CONFIG_0;
- 	// Determine max vtap support by calculating how much line buffer can fit
--	spl_in->funcs->spl_calc_lb_num_partitions(spl_in->basic_out.alpha_en, &spl_scratch->scl_data,
-+	spl_in->callbacks.spl_calc_lb_num_partitions(spl_in->basic_out.alpha_en, &spl_scratch->scl_data,
- 			lb_config, &num_part_y, &num_part_c);
- 	/* MAX_V_TAPS = MIN (NUM_LINES - MAX(CEILING(V_RATIO,1)-2, 0), 8) */
- 	if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert) > 2)
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/dc_spl_types.h b/drivers/gpu/drm/amd/display/dc/spl/dc_spl_types.h
-index 8b00ccb1dfda..55d557df4aa5 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/dc_spl_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/spl/dc_spl_types.h
-@@ -497,7 +497,7 @@ enum scale_to_sharpness_policy {
- 	SCALE_TO_SHARPNESS_ADJ_YUV = 1,
- 	SCALE_TO_SHARPNESS_ADJ_ALL = 2
- };
--struct spl_funcs	{
-+struct spl_callbacks {
- 	void (*spl_calc_lb_num_partitions)
- 		(bool alpha_en,
- 		const struct spl_scaler_data *scl_data,
-@@ -518,7 +518,7 @@ struct spl_in	{
- 	// Basic slice information
- 	int odm_slice_index;	// ODM Slice Index using get_odm_split_index
- 	struct spl_taps scaling_quality; // Explicit Scaling Quality
--	struct spl_funcs *funcs;
-+	struct spl_callbacks callbacks;
- 	// Inputs for isharp and EASF
- 	struct adaptive_sharpness adaptive_sharpness;	//	Adaptive Sharpness
- 	enum linear_light_scaling lls_pref;	//	Linear Light Scaling
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c b/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-index 5fd79d9c67e2..131f1e3949d3 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-@@ -22,7 +22,7 @@ static inline unsigned long long abs_i64(
-  * result = dividend / divisor
-  * *remainder = dividend % divisor
-  */
--static inline unsigned long long complete_integer_division_u64(
-+static inline unsigned long long spl_complete_integer_division_u64(
- 	unsigned long long dividend,
- 	unsigned long long divisor,
- 	unsigned long long *remainder)
-@@ -60,7 +60,7 @@ struct spl_fixed31_32 spl_fixpt_from_fraction(long long numerator, long long den
- 
- 	/* determine integer part */
- 
--	unsigned long long res_value = complete_integer_division_u64(
-+	unsigned long long res_value = spl_complete_integer_division_u64(
- 		arg1_value, arg2_value, &remainder);
- 
- 	SPL_ASSERT(res_value <= (unsigned long long)LONG_MAX);
-@@ -286,7 +286,7 @@ struct spl_fixed31_32 spl_fixpt_cos(struct spl_fixed31_32 arg)
-  *
-  * Calculated as Taylor series.
-  */
--static struct spl_fixed31_32 fixed31_32_exp_from_taylor_series(struct spl_fixed31_32 arg)
-+static struct spl_fixed31_32 spl_fixed31_32_exp_from_taylor_series(struct spl_fixed31_32 arg)
- {
- 	unsigned int n = 9;
- 
-@@ -345,14 +345,14 @@ struct spl_fixed31_32 spl_fixpt_exp(struct spl_fixed31_32 arg)
- 
- 		if (m > 0)
- 			return spl_fixpt_shl(
--				fixed31_32_exp_from_taylor_series(r),
-+				spl_fixed31_32_exp_from_taylor_series(r),
- 				(unsigned char)m);
- 		else
- 			return spl_fixpt_div_int(
--				fixed31_32_exp_from_taylor_series(r),
-+				spl_fixed31_32_exp_from_taylor_series(r),
- 				1LL << -m);
- 	} else if (arg.value != 0)
--		return fixed31_32_exp_from_taylor_series(arg);
-+		return spl_fixed31_32_exp_from_taylor_series(arg);
- 	else
- 		return spl_fixpt_one;
- }
-@@ -396,7 +396,7 @@ struct spl_fixed31_32 spl_fixpt_log(struct spl_fixed31_32 arg)
-  * part in 32 bits. It is used in hw programming (scaler)
-  */
- 
--static inline unsigned int ux_dy(
-+static inline unsigned int spl_ux_dy(
- 	long long value,
- 	unsigned int integer_bits,
- 	unsigned int fractional_bits)
-@@ -415,13 +415,13 @@ static inline unsigned int ux_dy(
- 	return result | fractional_part;
- }
- 
--static inline unsigned int clamp_ux_dy(
-+static inline unsigned int spl_clamp_ux_dy(
- 	long long value,
- 	unsigned int integer_bits,
- 	unsigned int fractional_bits,
- 	unsigned int min_clamp)
- {
--	unsigned int truncated_val = ux_dy(value, integer_bits, fractional_bits);
-+	unsigned int truncated_val = spl_ux_dy(value, integer_bits, fractional_bits);
- 
- 	if (value >= (1LL << (integer_bits + FIXED31_32_BITS_PER_FRACTIONAL_PART)))
- 		return (1 << (integer_bits + fractional_bits)) - 1;
-@@ -433,40 +433,40 @@ static inline unsigned int clamp_ux_dy(
- 
- unsigned int spl_fixpt_u4d19(struct spl_fixed31_32 arg)
- {
--	return ux_dy(arg.value, 4, 19);
-+	return spl_ux_dy(arg.value, 4, 19);
- }
- 
- unsigned int spl_fixpt_u3d19(struct spl_fixed31_32 arg)
- {
--	return ux_dy(arg.value, 3, 19);
-+	return spl_ux_dy(arg.value, 3, 19);
- }
- 
- unsigned int spl_fixpt_u2d19(struct spl_fixed31_32 arg)
- {
--	return ux_dy(arg.value, 2, 19);
-+	return spl_ux_dy(arg.value, 2, 19);
- }
- 
- unsigned int spl_fixpt_u0d19(struct spl_fixed31_32 arg)
- {
--	return ux_dy(arg.value, 0, 19);
-+	return spl_ux_dy(arg.value, 0, 19);
- }
- 
- unsigned int spl_fixpt_clamp_u0d14(struct spl_fixed31_32 arg)
- {
--	return clamp_ux_dy(arg.value, 0, 14, 1);
-+	return spl_clamp_ux_dy(arg.value, 0, 14, 1);
- }
- 
- unsigned int spl_fixpt_clamp_u0d10(struct spl_fixed31_32 arg)
- {
--	return clamp_ux_dy(arg.value, 0, 10, 1);
-+	return spl_clamp_ux_dy(arg.value, 0, 10, 1);
- }
- 
- int spl_fixpt_s4d19(struct spl_fixed31_32 arg)
- {
- 	if (arg.value < 0)
--		return -(int)ux_dy(spl_fixpt_abs(arg).value, 4, 19);
-+		return -(int)spl_ux_dy(spl_fixpt_abs(arg).value, 4, 19);
- 	else
--		return ux_dy(arg.value, 4, 19);
-+		return spl_ux_dy(arg.value, 4, 19);
- }
- 
- struct spl_fixed31_32 spl_fixpt_from_ux_dy(unsigned int value,
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+index 1d4fe0de0f67..07b49b4030f9 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+@@ -133,6 +133,8 @@ static void dcn35_disable_otg_wa(struct clk_mgr *clk_mgr_base, struct dc_state *
+ 	for (i = 0; i < dc->res_pool->pipe_count; ++i) {
+ 		struct pipe_ctx *old_pipe = &dc->current_state->res_ctx.pipe_ctx[i];
+ 		struct pipe_ctx *new_pipe = &context->res_ctx.pipe_ctx[i];
++		struct clk_mgr_internal *clk_mgr_internal = TO_CLK_MGR_INTERNAL(clk_mgr_base);
++		struct dccg *dccg = clk_mgr_internal->dccg;
+ 		struct pipe_ctx *pipe = safe_to_lower
+ 			? &context->res_ctx.pipe_ctx[i]
+ 			: &dc->current_state->res_ctx.pipe_ctx[i];
+@@ -149,8 +151,13 @@ static void dcn35_disable_otg_wa(struct clk_mgr *clk_mgr_base, struct dc_state *
+ 		new_pipe->stream_res.stream_enc &&
+ 		new_pipe->stream_res.stream_enc->funcs->is_fifo_enabled &&
+ 		new_pipe->stream_res.stream_enc->funcs->is_fifo_enabled(new_pipe->stream_res.stream_enc);
+-		if (pipe->stream && (pipe->stream->dpms_off || dc_is_virtual_signal(pipe->stream->signal) ||
+-			!pipe->stream->link_enc) && !stream_changed_otg_dig_on) {
++		bool has_active_hpo = dccg->ctx->dc->link_srv->dp_is_128b_132b_signal(old_pipe) && dccg->ctx->dc->link_srv->dp_is_128b_132b_signal(new_pipe);
++
++		if (!has_active_hpo && !dccg->ctx->dc->link_srv->dp_is_128b_132b_signal(pipe) &&
++					(pipe->stream && (pipe->stream->dpms_off || dc_is_virtual_signal(pipe->stream->signal) ||
++					!pipe->stream->link_enc) && !stream_changed_otg_dig_on)) {
++
++
+ 			/* This w/a should not trigger when we have a dig active */
+ 			if (disable) {
+ 				if (pipe->stream_res.tg && pipe->stream_res.tg->funcs->immediate_disable_crtc)
 -- 
 2.34.1
 
