@@ -2,98 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DEF9BAF02
-	for <lists+amd-gfx@lfdr.de>; Mon,  4 Nov 2024 10:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 718529BAF0B
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Nov 2024 10:05:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2D5810E3AA;
-	Mon,  4 Nov 2024 09:05:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB8D910E3B5;
+	Mon,  4 Nov 2024 09:05:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E307610E0AA;
- Sun,  3 Nov 2024 20:02:05 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-20cdbe608b3so34483735ad.1; 
- Sun, 03 Nov 2024 12:02:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730664125; x=1731268925;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=VjfQvqCHHfDeXG4GMQuNHaE4bkPmkI1XqjnN8lstP2Q=;
- b=B9ksgQUWMm4edPb2eWP6UTUv+MzvLGDVmUC3e8+x6/2O0PaExYdslBKyp2XfAyLDwK
- d2tPQv1UX5lcoDIFkidplm6HegmiK4sWmWjxGiZq5N2UzqofKQDiUBQWHzEMu0d13QuC
- tBEAW8zrf+/Garr8IAgE4kW2pRqGATzRohQ+JFR3iCnbB+bnv02TFC87M5fCs+I0+PjI
- Swx+iYdaBEh06JBGLULHkp+NwcubvvEPk40yOecsjBumkRtq9YzUDvD3Txd0T+NpjzhS
- kjmKsvBZksbyTFlkkidKhJJRrxrH3Krq8FxWklLDaqVbZiAbKmvxZazWADI8St38TXxQ
- 2cFA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWyBAoB8U3GdDAVPzw9ejiBsgEdqbwunAjftlAleHuQuN7n1NivlAsBOPTBs9wcx/YC0GCGFuo7@lists.freedesktop.org,
- AJvYcCXqLhaR3s/2h/fBh1wfOBcgjzYbbIeiCmWs5BtU5GjxAZUpOtFo4c2Ip1tswX1TgEeoUxP4d4tZce6O@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyNUAqSSNb/F+IPxzIVzGiBfZwSBpp+bngzeShQobURFajlMWJC
- EBWKRTPEW/g1XO3YajkGQjUDFMzoZBxKtm5d9LtxXuCKvI2r2nxD
-X-Google-Smtp-Source: AGHT+IHAS+v1ffLBb+GI+ZNM4/mlV92TQI2AYHoaDbWsFSd1zPZgooqCqKQWbVDQVnW3KjMuxbyzsA==
-X-Received: by 2002:a17:902:ce91:b0:20b:6624:70b2 with SMTP id
- d9443c01a7336-210f75154e9mr256357005ad.19.1730664125219; 
- Sun, 03 Nov 2024 12:02:05 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-21105707059sm49877745ad.81.2024.11.03.12.02.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 03 Nov 2024 12:02:04 -0800 (PST)
-Date: Mon, 4 Nov 2024 05:02:03 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Davidlohr Bueso <dave@stgolabs.net>,
- Jonathan Cameron <jonathan.cameron@huawei.com>,
- Dave Jiang <dave.jiang@intel.com>,
- Alison Schofield <alison.schofield@intel.com>,
- Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Naveen Krishna Chatradhi <naveenkrishna.chatradhi@amd.com>,
- Carlos Bilbao <carlos.bilbao.osdev@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- "David E. Box" <david.e.box@linux.intel.com>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Richard Henderson <richard.henderson@linaro.org>,
- Matt Turner <mattst88@gmail.com>, Frederic Barrat <fbarrat@linux.ibm.com>,
- Andrew Donnellan <ajd@linux.ibm.com>, Arnd Bergmann <arnd@arndb.de>,
- Logan Gunthorpe <logang@deltatee.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>,
- Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
- Dan Williams <dan.j.williams@intel.com>,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-cxl@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- linux-mtd@lists.infradead.org, platform-driver-x86@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-alpha@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-hyperv@vger.kernel.org
-Subject: Re: [PATCH v2 00/10] sysfs: constify struct bin_attribute (Part 1)
-Message-ID: <20241103200203.GA183945@rocinante>
-References: <20241103-sysfs-const-bin_attr-v2-0-71110628844c@weissschuh.net>
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4F4410E06A
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 Nov 2024 01:21:37 +0000 (UTC)
+X-UUID: 1efe68629a4b11efa216b1d71e6e1362-20241104
+X-CID-O-RULE: Release_Ham
+X-CID-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.38, REQID:71e3df18-611f-4318-98da-1cf5882465ea, IP:5,
+ U
+ RL:0,TC:0,Content:0,EDM:0,RT:0,SF:-6,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+ :release,TS:-1
+X-CID-INFO: VERSION:1.1.38, REQID:71e3df18-611f-4318-98da-1cf5882465ea, IP:5,
+ URL
+ :0,TC:0,Content:0,EDM:0,RT:0,SF:-6,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+ elease,TS:-1
+X-CID-META: VersionHash:82c5f88, CLOUDID:2565d0f338c499430975168a6f8a1b63,
+ BulkI
+ D:2411040918031A9FK27B,BulkQuantity:1,Recheck:0,SF:64|66|17|44|101|841|25|
+ 100|19|102,TC:nil,Content:0,EDM:-3,IP:-2,URL:0,File:nil,RT:nil,Bulk:40,QS:
+ nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_FAS,TF_CID_SPAM_FSD,TF_CID_SPAM_FSI,TF_CID_SPAM_SNR
+X-UUID: 1efe68629a4b11efa216b1d71e6e1362-20241104
+X-User: yaolu@kylinos.cn
+Received: from localhost.localdomain [(111.48.58.10)] by mailgw.kylinos.cn
+ (envelope-from <yaolu@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1787099959; Mon, 04 Nov 2024 09:21:30 +0800
+From: Lu Yao <yaolu@kylinos.cn>
+To: alexander.deucher@amd.com
+Cc: jfalempe@redhat.com,
+	amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 4/4] drm/amd/display: add non-DC drm_panic support
+Date: Mon,  4 Nov 2024 09:21:27 +0800
+Message-Id: <20241104012127.21561-1-yaolu@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241031180430.3993389-5-alexander.deucher@amd.com>
+References: <20241031180430.3993389-5-alexander.deucher@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241103-sysfs-const-bin_attr-v2-0-71110628844c@weissschuh.net>
 X-Mailman-Approved-At: Mon, 04 Nov 2024 09:05:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -109,44 +63,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello,
-
-> struct bin_attribute contains a bunch of pointer members, which when
-> overwritten by accident or malice can lead to system instability and
-> security problems.
-> Moving the definitions of struct bin_attribute to read-only memory
-> makes these modifications impossible.
-> The same change has been performed for many other structures in the
-> past. (struct class, struct ctl_table...)
-> 
-> For the structure definitions throughout the core to be moved to
-> read-only memory the following steps are necessary.
-> 
-> 1) Change all callbacks invoked from the sysfs core to only pass const
->    pointers
-> 2) Adapt the sysfs core to only work in terms of const pointers
-> 3) Adapt the sysfs core APIs to allow const pointers
-> 4) Change all structure definitions through the core to const
-> 
-> This series provides the foundation for step 1) above.
-> It converts some callbacks in a single step to const and provides a
-> foundation for those callbacks where a single step is not possible.
-> 
-> Patches 1-5 change the bin_attribute callbacks of 'struct
-> attribute_group'. The remaining ones touch 'struct bin_attribute' itself.
-> 
-> The techniques employed by this series can later be reused for the
-> same change for other sysfs attributes.
-> 
-> This series is intended to be merged through the driver core tree.
-
-This is very nice.  Thank you!
-
-For PCI changes:
-  Acked-by: Krzysztof Wilczyński <kw@linux.com>
-
-This reminded me of an old discussions with Greg and Bjorn about how to set
-size correctly for our ROM and BAR sysfs objects.  Nice to see a very nice
-approach here, indeed.
-
-	Krzysztof
+on 2024/11/1 02:04, Alex Deucher wrote:
+> Add support for the drm_panic module, which displays a pretty user
+> friendly message on the screen when a Linux kernel panic occurs.
+>
+> Adapt Lu Yao's code to use common helpers derived from
+> Jocelyn's patch.  This extends the non-DC code to enable
+> access to non-CPU accessible VRAM and adds support for
+> other DCE versions.
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Lu Yao <yaolu@kylinos.cn>
+> Cc: Jocelyn Falempe <jfalempe@redhat.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c | 27 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c | 27 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c  | 27 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c  | 26 +++++++++++++++++++++++++
+>  4 files changed, 107 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+> index 5098c50d54c8..a26f2381504b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+> @@ -2687,6 +2687,32 @@ static const struct drm_crtc_helper_funcs dce_v10_0_crtc_helper_funcs = {
+>  	.get_scanout_position = amdgpu_crtc_get_scanout_position,
+>  };
+>  
+> +static void dce_v10_0_panic_flush(struct drm_plane *plane)
+> +{
+> +	struct drm_framebuffer *fb;
+> +	struct amdgpu_crtc *amdgpu_crtc;
+> +	struct amdgpu_device *adev;
+> +	uint32_t fb_format;
+> +
+> +	if (!plane->fb)
+> +		return;
+> +
+> +	fb = plane->fb;
+> +	amdgpu_crtc = to_amdgpu_crtc(plane->crtc);
+> +	adev = drm_to_adev(fb->dev);
+> +
+> +	/* Disable DC tiling */
+> +	fb_format = RREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset);
+> +	fb_format &= ~GRPH_CONTROL__GRPH_ARRAY_MODE_MASK;
+> +	WREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset, fb_format);
+> +
+> +}
+> +
+For non-DC ip, 'mmGRPH_CONTROL' and 'GRPH_CONTROL__GRPH_ARRAY_MODE_MASK' val are same, so whether the panic_flush function can also be made same?
+>
+> +static const struct drm_plane_helper_funcs dce_v10_0_drm_primary_plane_helper_funcs = {
+> +	.get_scanout_buffer = amdgpu_display_get_scanout_buffer,
+The definition of 'amdgpu_display_get_scanout_buffer' seems to be missing. 
