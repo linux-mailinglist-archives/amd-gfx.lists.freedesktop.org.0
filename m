@@ -2,68 +2,124 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D809BEFDF
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Nov 2024 15:13:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5E1E9BF121
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Nov 2024 16:05:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 467D010E166;
-	Wed,  6 Nov 2024 14:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 481F210E71D;
+	Wed,  6 Nov 2024 15:05:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Tds6aq+K";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="x8X+LaTM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
- [209.85.216.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F324D10E166
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Nov 2024 14:13:41 +0000 (UTC)
-Received: by mail-pj1-f49.google.com with SMTP id
- 98e67ed59e1d1-2e2da8529e1so661151a91.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 06 Nov 2024 06:13:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1730902421; x=1731507221; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=XkzDIJBLDpzrRNx05a/Y7CfdjEzAgFpo9KZdki0kInw=;
- b=Tds6aq+KktUbgTy8qnKIqSGBBzYkRodI5W884DdzXhkQq4xBWHGU5edZkfCEe+kRcE
- 6h+3qK0kFGJxfmfxwFJsOS3ah5qO9ZXhTZT7cfxsZ6bswAR52BHOh3678SBlsJ+BsJxa
- dO6wynNBpNMrCy6C7foZ0bc2iSPNAyz8UNLHgbkAO3U3fPtN7W+OlRbYCrA+pi4Epmhd
- jMawl7O+Z2PT0qkyHR4FQljgTgypvCHEHse9qrAvBKS9YnBY7KWqhcSISC2seLGuuh+A
- nxlRRKccucQDvysUIO7eo4Sp+vlGWSq1xtRnket4C5nSNTyD0kM8JqGhog6fKehPSzJj
- 7pvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730902421; x=1731507221;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=XkzDIJBLDpzrRNx05a/Y7CfdjEzAgFpo9KZdki0kInw=;
- b=BS9EUi4AsdRhZt6/MdPwRlDsL8zj+7bIQ2T5aXIqHoAn0soO8Q5pn2bYrCkKu1jsfn
- uq4MGNjFbsybE2mvXNYF6nijE7YoqO893aVZ/wUV8/txKWlK9OxN4Q6IuipuRybERicU
- FAfXaDqwV/Ba2wjefU8fZxwQdiCde8uxvBNGcecUNZtgKNxsLKtde5z+Ib8VVKMzJpzu
- RpgQRvDBvusooweVgMkuQW6WUsabiJOTvfTpI61DTupbpR4W7VkLs/5lR0MlAkp1sVk7
- Q/0elYKdIfTrPrBcRhQK07RFe4AUGspj1iCFOJ2z03afS2g9CUY8TH9lQ5yJe6Q5gfYr
- qctA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWXONfjNMMFbQ/9NY329rH4KrYsjkTm7Uh3PUgtI1h+IaTFG3QT5Aoi7qkR/PW5ZdcAHnvXaExP@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz8fkeV1zbyHr52Vmqzys06sg4KnWsSnIYMUOc0FYX3Qqm/4+Q6
- fm8nklW5HUKd2TD/88hKb99tYZ3zj8901MoElDeYCzz+fD3Xe9bJ90TQ48x4hJAksgAE5wYxnbn
- HDfm/fBPiTDgn+5vRiQnFSfDaiWk0UQ==
-X-Google-Smtp-Source: AGHT+IFrpHbhUwMs1+HneKEgv58UfTqcxijyolwrrvuBOuC5FHCKYG/KK1LDcRvQBTTYWdHG3C6MDaGp44rbkCl+ogM=
-X-Received: by 2002:a17:90b:510:b0:2db:60b:eec with SMTP id
- 98e67ed59e1d1-2e8f11bf830mr19099903a91.7.1730902420977; Wed, 06 Nov 2024
- 06:13:40 -0800 (PST)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2040.outbound.protection.outlook.com [40.107.101.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A407E10E70C;
+ Wed,  6 Nov 2024 15:05:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wCCRYdRkdO0migYqM08N2I0clXfn/X9WCKXs/P0f/Eu++YgcQ3xsb+pnzJ8zJiMWYY7+nZbYyaJ1RBvM7Dg600F8yGa2pL5CzsDxqg9SwQ1PXCoHv8E8WlY5W/1YnmlemL6aK936kzAP/FPe/dLReCDOwkpZBcxFrompbEY6IKMZulSxqBE0ZfFr6CsaTm+Chfe7+N1RQA4AA9CJA+sqJK17d+xgkenD4hj4Yn00YE0ACe+lHU2DdoLTCdgcYNjWRG4X57daC+HSBBPwiJEV79HIPTMVSLhPAOxUYzGofy1pJK8cxrFC6zQPnnhMUBSaVLFlzyTg0LijqQRPJSYzzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kXglTitnOjAMuN9KsN6Dn8zzFMOBB8dNLjio1/a6v5E=;
+ b=KCaa1MJ4IlFxqhVjoRmbTwAgvadHFNUo/FMZayRWDpziBfsm0xusDXD19mnoF+1Vd8Zhj+JDDZsyh0fiFLb7uL4vuPyO3cRK8DDQ60G3g7s/SOuRx9R2NKzPCwZGU+u/gFn/rouIuW3/E2IpX/AWb92LouYSAwPETNTD5zaswWBkw5QgtdIDFVV8k3w0mGG8CX6TRbuE4fQ1h3ZipC/ShTVnk6xKXP38/HEpB3ltBnRLD/vUfaz6jJ1eFHdXzBz2f9igeRQA8jeVeTfFC0uWKVGI4p2lFDIuKlf4MPgy0IDqjeRTgJ62i/6YKKl65zbup+CUxtycN4iNo+hTYcTHfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kXglTitnOjAMuN9KsN6Dn8zzFMOBB8dNLjio1/a6v5E=;
+ b=x8X+LaTMP1GJRr/ukpS//nJQFIkDam77yIrckvij9slXTSrr1lyBxIOYNYTcdM2jlAMH/SkGXCUn2XOK34AcUnic+FZqBRH6wshsaCcQ1E3JZ3HllvgiogNlpsVzEd/DOl5c+85Hg4zRjp7xTk18+BHF54e5WbQMvOOpDNcZOMg=
+Received: from BY3PR05CA0051.namprd05.prod.outlook.com (2603:10b6:a03:39b::26)
+ by PH8PR12MB7304.namprd12.prod.outlook.com (2603:10b6:510:217::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.19; Wed, 6 Nov
+ 2024 15:04:59 +0000
+Received: from SJ5PEPF00000207.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b:cafe::3e) by BY3PR05CA0051.outlook.office365.com
+ (2603:10b6:a03:39b::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.18 via Frontend
+ Transport; Wed, 6 Nov 2024 15:04:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ5PEPF00000207.mail.protection.outlook.com (10.167.244.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8137.17 via Frontend Transport; Wed, 6 Nov 2024 15:04:59 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 6 Nov
+ 2024 09:04:58 -0600
+Received: from jzuo-linux.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Wed, 6 Nov 2024 09:04:58 -0600
+From: Fangzhi Zuo <Jerry.Zuo@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <lyude@redhat.com>,
+ <jani.nikula@intel.com>, <imre.deak@intel.com>, <simona@ffwll.ch>,
+ <wayne.lin@amd.com>
+CC: <harry.wentland@amd.com>, <rodrigo.siqueira@amd.com>, Fangzhi Zuo
+ <Jerry.Zuo@amd.com>
+Subject: [PATCH v3 0/2] Refactor MST DSC Determination Policy
+Date: Wed, 6 Nov 2024 10:03:11 -0500
+Message-ID: <20241106150444.424579-1-Jerry.Zuo@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20241106021900.4104215-1-srinivasan.shanmugam@amd.com>
-In-Reply-To: <20241106021900.4104215-1-srinivasan.shanmugam@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 6 Nov 2024 09:13:29 -0500
-Message-ID: <CADnq5_MjmeN2HDzubBEp96rYiG-ji5W+f5eTbXdbFGfnoF0x4w@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/gfx10: Add cleaner shader for GFX10.3.0
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: Jerry.Zuo@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000207:EE_|PH8PR12MB7304:EE_
+X-MS-Office365-Filtering-Correlation-Id: c233880a-7b0f-4c93-9db9-08dcfe746212
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?uei2DMnQQE9Ox1SbrzI2B3gzJXA9qGxOfBrAtSVJbXu740gtNMhIITbuyBRB?=
+ =?us-ascii?Q?0lVXqIFJSlS3ufMD/uHrxo5mFjN3m4zuXyRfqTbuNqNpVGJUpd7cpxDh+LuY?=
+ =?us-ascii?Q?AUbhBj1LX908EMt/iSDB6igPzvFygGkW6facmZgxLY+yUZ08njJxFJ5FJyS4?=
+ =?us-ascii?Q?HU0kFBpmJlkr+pXkgUSnjaXU+VAIoQaoEYSlY2Y9aGO6QAx6TJBq0fGww37z?=
+ =?us-ascii?Q?c67NJKR4xIs3j8ogEle9tVnq/8aVlYE71THWvRVVeFRDSMlyfYYBaCoLJm5q?=
+ =?us-ascii?Q?FjN7hnjzECe6kWFdSsWucgvhewBHzEDtbCWrd2vQ2ccoqKOqgrq5PdzKs1kE?=
+ =?us-ascii?Q?fU1nm+JRFIpxOWcqKq36IJuMeSWdt8m5j3BksRPjcxA3Wu/2Pv4Pw0ZfaOHt?=
+ =?us-ascii?Q?NXnx34JUCMto8mNJvnuNlaaaup9WMJPgUSC0XYPCKhsNCSJP9J+U7HHYBhMf?=
+ =?us-ascii?Q?KhX0p1H6mXdNMWehAVl0kONi/b4C/qlMkN3tw1KIMmte4PaimYaGohopdMcY?=
+ =?us-ascii?Q?8QXMLOYECKu9IdnSrQhmq0Ico5tpOI/aBl0RctXFC0O3NIUn5Tr3oLgIcnA4?=
+ =?us-ascii?Q?WobknugiFu3kxnzCOOn9/BkRFy71E7yEhcUs2i0Dm8HQZTAgzujb/fT4W4lP?=
+ =?us-ascii?Q?yQJtB7i732ERjIN/B4uNEtYNARgfI/vHITlsYjiS5Vpgujb7I4bDPnm96qBA?=
+ =?us-ascii?Q?w6EL9FU8qSAU1KpR9HijZW3FQ+y2bQgX9K/b2fTwvA/wxYb2m7z7PPN3IfeM?=
+ =?us-ascii?Q?Gn33NmVGjSWysj1glFVTGcrMk6Ob672b0IRnLwYNLTFO1JZBigVCZGOUrHn8?=
+ =?us-ascii?Q?4XiFnRwh5Yu4NIbAC2vC3PThUbNXrN5WVpq+HtaMosWotYMxbDDRwbLBci++?=
+ =?us-ascii?Q?Q71WTYe5idwGj1k75aNiZkMUVe2yFljOuWYZartUbQN9zdjqGPL+CV4BaRY0?=
+ =?us-ascii?Q?+TCcQdqd+lVa46YIK8yymI15VHkyufQLnJzSmwlTPYPXkSwK+KVRaMkyyLOl?=
+ =?us-ascii?Q?3QV6VUu23Cu+MCDNSTJRB8cO3Nj9oUNOsJz80olouNCVe1wDSdwGaRGlVJO9?=
+ =?us-ascii?Q?HOmW777Ln6DF7JxsxhA1hG0nCmeH5T2xORxZhheC1sChQS9kr8aB0rkGTOIa?=
+ =?us-ascii?Q?uJKm+7ca+/kqNiYhQm6eCiMIo8OK+npi5E5lqvha2rqGCF4+WzjpRFw1RzxD?=
+ =?us-ascii?Q?RneQdey1Bvy8CrwgLxUzbCjGpwwIZtPq75bqeOLBh2rQCjz1t7ACjlEPFbdM?=
+ =?us-ascii?Q?5BvAsDwPCMi+/TKVmGrZFKvHlwP4Uw58lNUfefxbqoBs4dq/d6+gC4s7fnJ0?=
+ =?us-ascii?Q?8/m+k7nVhK2NvSco85SKYy7iukQ4e0jWFs8YOIEkssNpMXG2LoPRyEg1oyLN?=
+ =?us-ascii?Q?dDY4i4na2p+wSx6dEgS/SSQf8qAw4++Vax7kWJFxceO5OoqVsA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2024 15:04:59.3253 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c233880a-7b0f-4c93-9db9-08dcfe746212
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000207.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7304
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,324 +134,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 5, 2024 at 9:19=E2=80=AFPM Srinivasan Shanmugam
-<srinivasan.shanmugam@amd.com> wrote:
->
-> This commit adds the cleaner shader microcode for GFX10.3.0 GPUs. The
-> cleaner shader is a piece of GPU code that is used to clear or
-> initialize certain GPU resources, such as Local Data Share (LDS), Vector
-> General Purpose Registers (VGPRs), and Scalar General Purpose Registers
-> (SGPRs).
->
-> Clearing these resources is important for ensuring data isolation
-> between different workloads running on the GPU. Without the cleaner
-> shader, residual data from a previous workload could potentially be
-> accessed by a subsequent workload, leading to data leaks and incorrect
-> computation results.
->
-> The cleaner shader microcode is represented as an array of 32-bit words
-> (`gfx_10_3_0_cleaner_shader_hex`). This array is the binary
-> representation of the cleaner shader code, which is written in a
-> low-level GPU instruction set.
->
-> When the cleaner shader feature is enabled, the AMDGPU driver loads this
-> array into a specific location in the GPU memory. The GPU then reads
-> this memory location to fetch and execute the cleaner shader
-> instructions.
->
-> The cleaner shader is executed automatically by the GPU at the end of
-> each workload, before the next workload starts. This ensures that all
-> GPU resources are in a clean state before the start of each workload.
->
-> This addition is part of the cleaner shader feature implementation. The
-> cleaner shader feature helps resource utilization by cleaning up GPU
-> resources after they are used. It also enhances security and reliability
-> by preventing data leaks between workloads.
->
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+The patch series is to refactor existing dsc determination policy for
+dsc decompression and dsc passthrough given a mst output port.
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Original routine was written based on different peer device types
+which is not accurate and shows difficulty when expanding support of
+products that do not fully comply with DP specs.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        |  15 +++
->  .../drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h |  56 ++++++++
->  .../amd/amdgpu/gfx_v10_3_0_cleaner_shader.asm | 124 ++++++++++++++++++
->  3 files changed, 195 insertions(+)
->  create mode 100644 drivers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h
->  create mode 100644 drivers/gpu/drm/amd/amdgpu/gfx_v10_3_0_cleaner_shader=
-.asm
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfx_v10_0.c
-> index 4607d5c071ce..4f1cc61f9c43 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -45,6 +45,7 @@
->  #include "clearstate_gfx10.h"
->  #include "v10_structs.h"
->  #include "gfx_v10_0.h"
-> +#include "gfx_v10_0_cleaner_shader.h"
->  #include "nbio_v2_3.h"
->
->  /*
-> @@ -4733,6 +4734,20 @@ static int gfx_v10_0_sw_init(struct amdgpu_ip_bloc=
-k *ip_block)
->                 break;
->         }
->         switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
-> +       case IP_VERSION(10, 3, 0):
-> +               adev->gfx.cleaner_shader_ptr =3D gfx_10_3_0_cleaner_shade=
-r_hex;
-> +               adev->gfx.cleaner_shader_size =3D sizeof(gfx_10_3_0_clean=
-er_shader_hex);
-> +               if (adev->gfx.me_fw_version >=3D 64 &&
-> +                   adev->gfx.pfp_fw_version >=3D 100 &&
-> +                   adev->gfx.mec_fw_version >=3D 122) {
-> +                       adev->gfx.enable_cleaner_shader =3D true;
-> +                       r =3D amdgpu_gfx_cleaner_shader_sw_init(adev, ade=
-v->gfx.cleaner_shader_size);
-> +                       if (r) {
-> +                               adev->gfx.enable_cleaner_shader =3D false=
-;
-> +                               dev_err(adev->dev, "Failed to initialize =
-cleaner shader\n");
-> +                       }
-> +               }
-> +               break;
->         default:
->                 adev->gfx.enable_cleaner_shader =3D false;
->                 break;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h b/driv=
-ers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h
-> new file mode 100644
-> index 000000000000..bc8417063af9
-> --- /dev/null
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h
-> @@ -0,0 +1,56 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright 2024 Advanced Micro Devices, Inc.
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining=
- a
-> + * copy of this software and associated documentation files (the "Softwa=
-re"),
-> + * to deal in the Software without restriction, including without limita=
-tion
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicen=
-se,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice shall be includ=
-ed in
-> + * all copies or substantial portions of the Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
-SS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILI=
-TY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SH=
-ALL
-> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES=
- OR
-> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> + * OTHER DEALINGS IN THE SOFTWARE.
-> + */
-> +
-> +/* Define the cleaner shader gfx_10_3_0 */
-> +static const u32 gfx_10_3_0_cleaner_shader_hex[] =3D {
-> +       0xb0804004, 0xbf8a0000,
-> +       0xbe8203b8, 0xbefc0380,
-> +       0x7e008480, 0x7e028480,
-> +       0x7e048480, 0x7e068480,
-> +       0x7e088480, 0x7e0a8480,
-> +       0x7e0c8480, 0x7e0e8480,
-> +       0xbefc0302, 0x80828802,
-> +       0xbf84fff5, 0xbe8203ff,
-> +       0x80000000, 0x87020002,
-> +       0xbf840012, 0xbefe03c1,
-> +       0xbeff03c1, 0xd7650001,
-> +       0x0001007f, 0xd7660001,
-> +       0x0002027e, 0x16020288,
-> +       0xbe8203bf, 0xbefc03c1,
-> +       0xd9382000, 0x00020201,
-> +       0xd9386040, 0x00040401,
-> +       0xd70f6a01, 0x000202ff,
-> +       0x00000400, 0x80828102,
-> +       0xbf84fff7, 0xbefc03ff,
-> +       0x00000068, 0xbe803080,
-> +       0xbe813080, 0xbe823080,
-> +       0xbe833080, 0x80fc847c,
-> +       0xbf84fffa, 0xbeea0480,
-> +       0xbeec0480, 0xbeee0480,
-> +       0xbef00480, 0xbef20480,
-> +       0xbef40480, 0xbef60480,
-> +       0xbef80480, 0xbefa0480,
-> +       0xbf810000, 0xbf9f0000,
-> +       0xbf9f0000, 0xbf9f0000,
-> +       0xbf9f0000, 0xbf9f0000,
-> +};
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_3_0_cleaner_shader.asm b/=
-drivers/gpu/drm/amd/amdgpu/gfx_v10_3_0_cleaner_shader.asm
-> new file mode 100644
-> index 000000000000..83c7be34515d
-> --- /dev/null
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_3_0_cleaner_shader.asm
-> @@ -0,0 +1,124 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright 2024 Advanced Micro Devices, Inc.
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining=
- a
-> + * copy of this software and associated documentation files (the "Softwa=
-re"),
-> + * to deal in the Software without restriction, including without limita=
-tion
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicen=
-se,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice shall be includ=
-ed in
-> + * all copies or substantial portions of the Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
-SS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILI=
-TY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SH=
-ALL
-> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES=
- OR
-> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> + * OTHER DEALINGS IN THE SOFTWARE.
-> + */
-> +
-> +// This shader is to clean LDS, SGPRs and VGPRs. It is  first 64 Dwords =
-or 256 bytes of 192 Dwords cleaner shader.
-> +//To turn this shader program on for complitaion change this to main and=
- lower shader main to main_1
-> +
-> +// Navi2 : Clear SGPRs, VGPRs and LDS
-> +//   Launch 32 waves per CU (16 per SIMD) as a workgroup (threadgroup) t=
-o fill every wave slot
-> +//   Waves are "wave32" and have 64 VGPRs each, which uses all 1024 VGPR=
-s per SIMD
-> +//   Waves are launched in "CU" mode, and the workgroup shares 64KB of L=
-DS (half of the WGP's LDS)
-> +//      It takes 2 workgroups to use all of LDS: one on each CU of the W=
-GP
-> +//   Each wave clears SGPRs 0 - 107
-> +//   Each wave clears VGPRs 0 - 63
-> +//   The first wave of the workgroup clears its 64KB of LDS
-> +//   The shader starts with "S_BARRIER" to ensure SPI has launched all w=
-aves of the workgroup
-> +//       before any wave in the workgroup could end.  Without this, it i=
-s possible not all SGPRs get cleared.
-> +
-> +
-> +shader main
-> +  asic(GFX10)
-> +  type(CS)
-> +  wave_size(32)
-> +// Note: original source code from SQ team
-> +
-> +//
-> +// Create 32 waves in a threadgroup (CS waves)
-> +// Each allocates 64 VGPRs
-> +// The workgroup allocates all of LDS (64kbytes)
-> +//
-> +// Takes about 2500 clocks to run.
-> +//   (theorhetical fastest =3D 1024clks vgpr + 640lds =3D 1660 clks)
-> +//
-> +  S_BARRIER
-> +  s_mov_b32     s2, 0x00000038  // Loop 64/8=3D8 times  (loop unrolled f=
-or performance)
-> +  s_mov_b32     m0, 0
-> +  //
-> +  // CLEAR VGPRs
-> +  //
-> +label_0005:
-> +  v_movreld_b32     v0, 0
-> +  v_movreld_b32     v1, 0
-> +  v_movreld_b32     v2, 0
-> +  v_movreld_b32     v3, 0
-> +  v_movreld_b32     v4, 0
-> +  v_movreld_b32     v5, 0
-> +  v_movreld_b32     v6, 0
-> +  v_movreld_b32     v7, 0
-> +  s_mov_b32         m0, s2
-> +  s_sub_u32     s2, s2, 8
-> +  s_cbranch_scc0  label_0005
-> +  //
-> +  s_mov_b32     s2, 0x80000000                     // Bit31 is first_wav=
-e
-> +  s_and_b32     s2, s2, s0                                  // sgpr0 has=
- tg_size (first_wave) term as in ucode only COMPUTE_PGM_RSRC2.tg_size_en is=
- set
-> +  s_cbranch_scc0  label_0023                         // Clean LDS if its=
- first wave of ThreadGroup/WorkGroup
-> +  // CLEAR LDS
-> +  //
-> +  s_mov_b32 exec_lo, 0xffffffff
-> +  s_mov_b32 exec_hi, 0xffffffff
-> +  v_mbcnt_lo_u32_b32  v1, exec_hi, 0          // Set V1 to thread-ID (0.=
-.63)
-> +  v_mbcnt_hi_u32_b32  v1, exec_lo, v1        // Set V1 to thread-ID (0..=
-63)
-> +  v_mul_u32_u24  v1, 0x00000008, v1          // * 8, so each thread is a=
- double-dword address (8byte)
-> +  s_mov_b32     s2, 0x00000003f                    // 64 loop iterations
-> +  s_mov_b32     m0, 0xffffffff
-> +  // Clear all of LDS space
-> +  // Each FirstWave of WorkGroup clears 64kbyte block
-> +
-> +label_001F:
-> +  ds_write2_b64  v1, v[2:3], v[2:3] offset1:32
-> +  ds_write2_b64  v1, v[4:5], v[4:5] offset0:64 offset1:96
-> +  v_add_co_u32     v1, vcc, 0x00000400, v1
-> +  s_sub_u32     s2, s2, 1
-> +  s_cbranch_scc0  label_001F
-> +
-> +  //
-> +  // CLEAR SGPRs
-> +  //
-> +label_0023:
-> +  s_mov_b32     m0, 0x00000068  // Loop 108/4=3D27 times  (loop unrolled=
- for performance)
-> +label_sgpr_loop:
-> +  s_movreld_b32     s0, 0
-> +  s_movreld_b32     s1, 0
-> +  s_movreld_b32     s2, 0
-> +  s_movreld_b32     s3, 0
-> +  s_sub_u32         m0, m0, 4
-> +  s_cbranch_scc0  label_sgpr_loop
-> +
-> +  //clear vcc
-> +  s_mov_b32 flat_scratch_lo, 0   //clear  flat scratch lo SGPR
-> +  s_mov_b32 flat_scratch_hi, 0   //clear  flat scratch hi SGPR
-> +  s_mov_b64 vcc, 0          //clear vcc
-> +  s_mov_b64 ttmp0, 0        //Clear ttmp0 and ttmp1
-> +  s_mov_b64 ttmp2, 0        //Clear ttmp2 and ttmp3
-> +  s_mov_b64 ttmp4, 0        //Clear ttmp4 and ttmp5
-> +  s_mov_b64 ttmp6, 0        //Clear ttmp6 and ttmp7
-> +  s_mov_b64 ttmp8, 0        //Clear ttmp8 and ttmp9
-> +  s_mov_b64 ttmp10, 0       //Clear ttmp10 and ttmp11
-> +  s_mov_b64 ttmp12, 0       //Clear ttmp12 and ttmp13
-> +  s_mov_b64 ttmp14, 0       //Clear ttmp14 and ttmp15
-> +
-> + s_endpgm
-> +
-> +end
-> +
-> +
-> --
-> 2.34.1
->
+To make the routine more accurate and generic, the series includes below changes:
+1. Refactor MST DSC determination policy solely based on
+   topology connection status and dsc dpcd capability info.
+2. Dependency changes required for each vendor due to interface change.
+
+v2: split original single patch into two
+v3: rebase against the latest code
+
+Fangzhi Zuo (2):
+  drm/display/dsc: Refactor DRM MST DSC Determination Policy
+  drm/display/dsc: MST DSC Interface Change
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |   2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  20 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  28 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 258 ++++++++----------
+ drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ include/drm/display/drm_dp_mst_helper.h       |   9 +-
+ 7 files changed, 144 insertions(+), 178 deletions(-)
+
+-- 
+2.43.0
+
