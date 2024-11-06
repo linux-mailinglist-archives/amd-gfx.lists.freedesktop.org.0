@@ -2,59 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60B769BE0AD
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Nov 2024 09:24:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEB5D9BE0B2
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Nov 2024 09:24:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A6B410E682;
-	Wed,  6 Nov 2024 08:24:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="NVjPzRJ3";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEF5710E689;
+	Wed,  6 Nov 2024 08:24:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B982D10E5CF
- for <amd-gfx@lists.freedesktop.org>; Tue,  5 Nov 2024 15:33:09 +0000 (UTC)
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
- [209.85.218.48]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id 0B128339482
- for <amd-gfx@lists.freedesktop.org>; Tue,  5 Nov 2024 15:33:08 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1730820788; bh=psYStCboaD6sVOcvG7VhgIgJJzLSCZV/tC1mXCRY/Ak=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=NVjPzRJ3fVQzH4hhhZLXZpZa3anx4UlHQkH8jVwCKMEXuqpXnt6YjyaJb0xB9DIXL
- HmeLUvJ8KoPlQsTJ8JmJqnkq7vQeG7qTP3WJOY8WxN+EwBuhiZsu53pmYX0GYeGU1B
- 0Hlh8zq6aBxsO07ikWjbCgGJmscUxG0ICN7ZU7tDbe3XrwEgYAiASBGNT/U3TXeXN3
- /MbzMxkdZ/NKV8jggr48UX1/Xiafrqptpil14VgBNsSVJnO+azxpZ4HTRxR+SgNKm/
- ygGHLBjZi6YBAw1HkDKuvlSjNzttJ2L1vttxv9PD6GxIsm5ZtTskFhHukKOlKUBXJy
- IS3Fynu2FRb4g==
-Received: by mail-ej1-f48.google.com with SMTP id
- a640c23a62f3a-a9a628b68a7so864850566b.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 05 Nov 2024 07:33:08 -0800 (PST)
-X-Gm-Message-State: AOJu0YwluiL2OsWB8eMlDMXldjBmUtNKUklk61g+CUf/EqI46beaepAi
- jr4z1IHtKIAFexOX/Jpo9UaCKaf4PYm6ybP9SbcpMBe6x5uzcAIKghPiRlXBQlJrMWJDNea5dPm
- +1Ac9kouW+Mrk9YcBybQ8Sqzdg4Q=
-X-Google-Smtp-Source: AGHT+IH44y8UigUlHg/nJvDwJ1opIABD70aW4JXw4cM3T5wWWz3bxQrkmWKzSqt4lUM3HJBU8hgGhE48+FQTqZLWZwA=
-X-Received: by 2002:a17:907:1c85:b0:a9a:1f38:e736 with SMTP id
- a640c23a62f3a-a9e654fb423mr1637908966b.31.1730820787592; Tue, 05 Nov 2024
- 07:33:07 -0800 (PST)
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2F4410E185;
+ Wed,  6 Nov 2024 01:40:57 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.163.252])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Xjnsl0cV2z10PcB;
+ Wed,  6 Nov 2024 09:38:35 +0800 (CST)
+Received: from dggpeml500024.china.huawei.com (unknown [7.185.36.10])
+ by mail.maildlp.com (Postfix) with ESMTPS id D4AE3180AEB;
+ Wed,  6 Nov 2024 09:40:54 +0800 (CST)
+Received: from huawei.com (10.175.112.208) by dggpeml500024.china.huawei.com
+ (7.185.36.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 6 Nov
+ 2024 09:40:54 +0800
+From: Yuan Can <yuancan@huawei.com>
+To: <Felix.Kuehling@amd.com>, <alexander.deucher@amd.com>,
+ <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <airlied@gmail.com>,
+ <simona@ffwll.ch>, <mukul.joshi@amd.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+CC: <yuancan@huawei.com>
+Subject: [PATCH] drm/amdkfd: Fix wrong usage of INIT_WORK()
+Date: Wed, 6 Nov 2024 09:35:41 +0800
+Message-ID: <20241106013541.77666-1-yuancan@huawei.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <49676545.2155587.1730128258922.ref@mail.yahoo.com>
- <49676545.2155587.1730128258922@mail.yahoo.com>
- <1193254694.2164272.1730128713802@mail.yahoo.com>
- <CAFZQkGzsS=QVycX_vkOa4SSaZ_+VLa_MCm-gtbnXgXwfq0ruDw@mail.gmail.com>
- <587512969.4692493.1730819727679@mail.yahoo.com>
-In-Reply-To: <587512969.4692493.1730819727679@mail.yahoo.com>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Tue, 5 Nov 2024 16:32:56 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGxsh6+_zCcED2e_O2qZCYcHiFRFTQ6xUj8_wJ4BhX05rA@mail.gmail.com>
-Message-ID: <CAFZQkGxsh6+_zCcED2e_O2qZCYcHiFRFTQ6xUj8_wJ4BhX05rA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu add "pixel_encoding"
-To: "Matias N. Goldberg" <dark_sylinc@yahoo.com.ar>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "harry.wentland@amd.com" <harry.wentland@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.175.112.208]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpeml500024.china.huawei.com (7.185.36.10)
 X-Mailman-Approved-At: Wed, 06 Nov 2024 08:24:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,28 +52,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am Di., 5. Nov. 2024 um 16:16 Uhr schrieb Matias N. Goldberg
-<dark_sylinc@yahoo.com.ar>:
->
-> > That's not a problem, incompatible options can just be rejected in atom=
-ic tests.
->
-> I was thinking from a user perspective. It'd be easier for user-space con=
-fig apps to present only the valid options, rather than offering all possib=
-le combinations only to reject them after the user selected an invalid conf=
-ig (or perform hundreds of atomic tests every time we need to show a config=
- dialog).
-No, it's way easier to deal with 3 separate properties and have the
-very simple logic (for which no atomic tests have to be made) in the
-UI to prevent the user from setting obviously invalid combinations.
-Having to split up an enum with tens or hundreds of values into
-options the user can understand and that we can properly use is a lot
-more effort.
+In kfd_procfs_show(), the sdma_activity_work_handler is a local variable
+and the sdma_activity_work_handler.sdma_activity_work should initialize
+with INIT_WORK_ONSTACK() instead of INIT_WORK().
 
-> > opRGB is not supported by any screen I've ever looked at, so it doesn't=
- surprise me that you'd get glitches.
->
-> I don't know if it was just a fallback, but my screen *does* work when us=
-ing opRGB with rgb encoding (it glitches when using yuv encoding).
-That's most likely not because of the value of "opRGB", but just what
-it does with all unsupported colorspace values.
+Fixes: 32cb59f31362 ("drm/amdkfd: Track SDMA utilization per process")
+Signed-off-by: Yuan Can <yuancan@huawei.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index d4aa843aacfd..2792015f1054 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -338,8 +338,8 @@ static ssize_t kfd_procfs_show(struct kobject *kobj, struct attribute *attr,
+ 							      attr_sdma);
+ 		struct kfd_sdma_activity_handler_workarea sdma_activity_work_handler;
+ 
+-		INIT_WORK(&sdma_activity_work_handler.sdma_activity_work,
+-					kfd_sdma_activity_worker);
++		INIT_WORK_ONSTACK(&sdma_activity_work_handler.sdma_activity_work,
++				  kfd_sdma_activity_worker);
+ 
+ 		sdma_activity_work_handler.pdd = pdd;
+ 		sdma_activity_work_handler.sdma_activity_counter = 0;
+@@ -347,6 +347,7 @@ static ssize_t kfd_procfs_show(struct kobject *kobj, struct attribute *attr,
+ 		schedule_work(&sdma_activity_work_handler.sdma_activity_work);
+ 
+ 		flush_work(&sdma_activity_work_handler.sdma_activity_work);
++		destroy_work_on_stack(&sdma_activity_work_handler.sdma_activity_work);
+ 
+ 		return snprintf(buffer, PAGE_SIZE, "%llu\n",
+ 				(sdma_activity_work_handler.sdma_activity_counter)/
+-- 
+2.17.1
+
