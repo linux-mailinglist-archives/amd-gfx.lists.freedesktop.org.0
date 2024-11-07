@@ -2,99 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F143E9BFF8A
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Nov 2024 09:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE1BB9BFF85
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 Nov 2024 09:03:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95DAE10E7D2;
-	Thu,  7 Nov 2024 08:03:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59C9310E7CA;
+	Thu,  7 Nov 2024 08:03:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8093910E0CC;
- Wed,  6 Nov 2024 20:05:16 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id
- d9443c01a7336-20cb7139d9dso2418515ad.1; 
- Wed, 06 Nov 2024 12:05:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730923516; x=1731528316;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=57haWgxVK3Bhz2CTFQJdY/J31Debho+HXpt9b6frcmw=;
- b=KT2lEbsoLa302AWNF7jbAop0ZXYPUGWXNNFre7qkoOyoO0XYMB627nBKycPW8kxaP9
- QxpnMSzcg9chwPdRiy6XNOfJWBTuJBTYejWAHdKaEZL5Q7onpS4A4xBMhdyBCz1ypubj
- HnrEDGVqCvJZXdT5pR2IJgba0O3P8n3s4AhqXdlX6ZFSSiWLYZWaqi3/D8yVCKqrtd/q
- OyM7Xmxx/LH/MCTNN/MRk0RT2UEbgYI2QhdNQ2IkFL9BODMl9yJ+0SBdpf0qaISokMTJ
- jWlX0iA9g2sPErZcbVv7Ox2egyuxOJcPeH9ljYlQaFAuRpCjpzmmokzLhaQHGRvVBAZL
- Cn9w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWUXYXDObxHrhlqBbxO1bfbBMZILVV7mscByYCA9FKcnn1NClvkO7Bal7curt3w1zQr2Oj9SFTMht/p@lists.freedesktop.org,
- AJvYcCXXDX8lNtp/M2L4BD7GLqaDVio963qvKxXtKZtSI8VO+sHPwB5wOl2fojhSVQFMEKvrBX5jMnmF@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxQcsVPkCDr+dVgvTfC1DuqKodngFJ/AwGDM6PsDsS7IfUtLgiT
- qMiYNyUlb2JB8dkSJfGT3NBRa42Nj3ZGWZDNQ1/QaxSE05R5SCfr
-X-Google-Smtp-Source: AGHT+IFmoIbZw8g1IipDn3Lp+ri/9C7OdJSPor3hPH1pRa7RYRF3y6lGuH/8ZaeEQ1eFo8eAFPaCWQ==
-X-Received: by 2002:a17:902:cecd:b0:20c:a97d:cc7f with SMTP id
- d9443c01a7336-210c6c3ec78mr567878865ad.41.1730923515866; 
- Wed, 06 Nov 2024 12:05:15 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-211057c076bsm99997795ad.197.2024.11.06.12.05.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 06 Nov 2024 12:05:15 -0800 (PST)
-Date: Thu, 7 Nov 2024 05:05:13 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Davidlohr Bueso <dave@stgolabs.net>,
- Jonathan Cameron <jonathan.cameron@huawei.com>,
- Dave Jiang <dave.jiang@intel.com>,
- Alison Schofield <alison.schofield@intel.com>,
- Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Naveen Krishna Chatradhi <naveenkrishna.chatradhi@amd.com>,
- Carlos Bilbao <carlos.bilbao.osdev@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- "David E. Box" <david.e.box@linux.intel.com>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Richard Henderson <richard.henderson@linaro.org>,
- Matt Turner <mattst88@gmail.com>, Frederic Barrat <fbarrat@linux.ibm.com>,
- Andrew Donnellan <ajd@linux.ibm.com>, Arnd Bergmann <arnd@arndb.de>,
- Logan Gunthorpe <logang@deltatee.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>,
- Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
- Dan Williams <dan.j.williams@intel.com>,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-cxl@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- linux-mtd@lists.infradead.org, platform-driver-x86@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-alpha@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-hyperv@vger.kernel.org
-Subject: Re: [PATCH v2 02/10] sysfs: introduce callback
- attribute_group::bin_size
-Message-ID: <20241106200513.GB174958@rocinante>
-References: <20241103-sysfs-const-bin_attr-v2-0-71110628844c@weissschuh.net>
- <20241103-sysfs-const-bin_attr-v2-2-71110628844c@weissschuh.net>
+Received: from dggsgout11.his.huawei.com (dggsgout11.his.huawei.com
+ [45.249.212.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91C3410E03C;
+ Thu,  7 Nov 2024 00:57:32 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.93.142])
+ by dggsgout11.his.huawei.com (SkyGuard) with ESMTP id 4XkNvT1669z4f3mJG;
+ Thu,  7 Nov 2024 08:57:09 +0800 (CST)
+Received: from mail02.huawei.com (unknown [10.116.40.128])
+ by mail.maildlp.com (Postfix) with ESMTP id 064ED1A0359;
+ Thu,  7 Nov 2024 08:57:28 +0800 (CST)
+Received: from [10.174.176.73] (unknown [10.174.176.73])
+ by APP4 (Coremail) with SMTP id gCh0CgCHYoZzECxnGnRCBA--.54616S3;
+ Thu, 07 Nov 2024 08:57:25 +0800 (CST)
+Subject: Re: [PATCH 6.6 00/28] fix CVE-2024-46701
+To: Chuck Lever III <chuck.lever@oracle.com>, Yu Kuai <yukuai1@huaweicloud.com>
+Cc: Greg KH <gregkh@linuxfoundation.org>,
+ linux-stable <stable@vger.kernel.org>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "sunpeng.li@amd.com" <sunpeng.li@amd.com>,
+ "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Al Viro <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>,
+ Liam Howlett <liam.howlett@oracle.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Hugh Dickins <hughd@google.com>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ Sasha Levin <sashal@kernel.org>,
+ "srinivasan.shanmugam@amd.com" <srinivasan.shanmugam@amd.com>,
+ "chiahsuan.chung@amd.com" <chiahsuan.chung@amd.com>,
+ "mingo@kernel.org" <mingo@kernel.org>,
+ "mgorman@techsingularity.net" <mgorman@techsingularity.net>,
+ "chengming.zhou@linux.dev" <chengming.zhou@linux.dev>,
+ "zhangpeng.00@bytedance.com" <zhangpeng.00@bytedance.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux FS Devel <linux-fsdevel@vger.kernel.org>,
+ "maple-tree@lists.infradead.org" <maple-tree@lists.infradead.org>,
+ linux-mm <linux-mm@kvack.org>, "yi.zhang@huawei.com" <yi.zhang@huawei.com>,
+ yangerkun <yangerkun@huawei.com>, "yukuai (C)" <yukuai3@huawei.com>
+References: <20241024132009.2267260-1-yukuai1@huaweicloud.com>
+ <2024110625-earwig-deport-d050@gregkh>
+ <7AB98056-93CC-4DE5-AD42-49BA582D3BEF@oracle.com>
+From: Yu Kuai <yukuai1@huaweicloud.com>
+Message-ID: <8bdd405e-0086-5441-e185-3641446ba49d@huaweicloud.com>
+Date: Thu, 7 Nov 2024 08:57:23 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241103-sysfs-const-bin_attr-v2-2-71110628844c@weissschuh.net>
+In-Reply-To: <7AB98056-93CC-4DE5-AD42-49BA582D3BEF@oracle.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: gCh0CgCHYoZzECxnGnRCBA--.54616S3
+X-Coremail-Antispam: 1UD129KBjvJXoW7ZFy8CryxXw1UtrWkXFWxCrg_yoW8tF4Upa
+ yfJ3Z8Kr47ur18Gws7tayjvay0kan5X345urn5K345ZF1Y9FySgrWI9F15uF97GrsxCr17
+ KF1aqwn7J3WUJaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUB214x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+ JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+ CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+ 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+ W8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka
+ 0xkIwI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVWrXVW3AwCF04k20xvY0x
+ 0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
+ 7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Wrv_Gr1UMIIYrxkI7VAKI48JMIIF0x
+ vE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE
+ 42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6x
+ kF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRJMa0UUUUU
+X-CM-SenderInfo: 51xn3trlr6x35dzhxuhorxvhhfrp/
 X-Mailman-Approved-At: Thu, 07 Nov 2024 08:03:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -110,33 +96,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+Hi,
 
-> Several drivers need to dynamically calculate the size of an binary
-> attribute. Currently this is done by assigning attr->size from the
-> is_bin_visible() callback.
+在 2024/11/06 23:19, Chuck Lever III 写道:
 > 
-> This has drawbacks:
-> * It is not documented.
-> * A single attribute can be instantiated multiple times, overwriting the
->   shared size field.
-> * It prevents the structure to be moved to read-only memory.
 > 
-> Introduce a new dedicated callback to calculate the size of the
-> attribute.
+>> On Nov 6, 2024, at 1:16 AM, Greg KH <gregkh@linuxfoundation.org> wrote:
+>>
+>> On Thu, Oct 24, 2024 at 09:19:41PM +0800, Yu Kuai wrote:
+>>> From: Yu Kuai <yukuai3@huawei.com>
+>>>
+>>> Fix patch is patch 27, relied patches are from:
+> 
+> I assume patch 27 is:
+> 
+> libfs: fix infinite directory reads for offset dir
+> 
+> https://lore.kernel.org/stable/20241024132225.2271667-12-yukuai1@huaweicloud.com/
+> 
+> I don't think the Maple tree patches are a hard
+> requirement for this fix. And note that libfs did
+> not use Maple tree originally because I was told
+> at that time that Maple tree was not yet mature.
+> 
+> So, a better approach might be to fit the fix
+> onto linux-6.6.y while sticking with xarray.
 
-Would it be possible to have a helper that when run against a specific
-kobject reference, then it would refresh or re-run the size callbacks?
+The painful part is that using xarray is not acceptable, the offet
+is just 32 bit and if it overflows, readdir will read nothing. That's
+why maple_tree has to be used.
 
-We have an use case where we resize BARs on demand via sysfs, and currently
-the only way to update the size of each resource sysfs object is to remove
-and added them again, which is a bit crude, and can also be unsafe.
+Thanks,
+Kuai
 
-Hence the question.
+> 
+> This is the first I've heard of this CVE. It
+> would help if the patch authors got some
+> notification when these are filed.
+> 
+> 
+>>> - patches from set [1] to add helpers to maple_tree, the last patch to
+>>> improve fork() performance is not backported;
+>>
+>> So things slowed down?
+>>
+>>> - patches from set [2] to change maple_tree, and follow up fixes;
+>>> - patches from set [3] to convert offset_ctx from xarray to maple_tree;
+>>>
+>>> Please notice that I'm not an expert in this area, and I'm afraid to
+>>> make manual changes. That's why patch 16 revert the commit that is
+>>> different from mainline and will cause conflict backporting new patches.
+>>> patch 28 pick the original mainline patch again.
+>>>
+>>> (And this is what we did to fix the CVE in downstream kernels).
+>>>
+>>> [1] https://lore.kernel.org/all/20231027033845.90608-1-zhangpeng.00@bytedance.com/
+>>> [2] https://lore.kernel.org/all/20231101171629.3612299-2-Liam.Howlett@oracle.com/T/
+>>> [3] https://lore.kernel.org/all/170820083431.6328.16233178852085891453.stgit@91.116.238.104.host.secureserver.net/
+>>
+>> This series looks rough.  I want to have the maintainers of these
+>> files/subsystems to ack this before being able to take them.
+>>
+>> thanks,
+>>
+>> greg k-h
+> 
+> --
+> Chuck Lever
+> 
+> 
 
-There exist the sysfs_update_groups(), but the BAR resource sysfs objects
-are currently, at least not yet, added to any attribute group.
-
-Thank you!
-
-	Krzysztof
