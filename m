@@ -2,67 +2,167 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18869C3551
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Nov 2024 00:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E87E99C355B
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Nov 2024 01:06:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB83C10E181;
-	Sun, 10 Nov 2024 23:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7405110E056;
+	Mon, 11 Nov 2024 00:06:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QKazXrYo";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qEB9JfbH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AF8510E18A
- for <amd-gfx@lists.freedesktop.org>; Sun, 10 Nov 2024 15:48:38 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-20cf6eea3c0so36934535ad.0
- for <amd-gfx@lists.freedesktop.org>; Sun, 10 Nov 2024 07:48:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1731253717; x=1731858517; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=vbNVMHXE6okzkAIY6un2S18hiMmIIRF9zQ7fJ2bLEN0=;
- b=QKazXrYoiURdA8/QOpdPoL+N2r5OkDm/QrPpoamZ56IbVPkJlb4pP6/tZZrAgHEB8+
- pPNSZCVeamYDWlHfbMck1G6VehMHVYPHApkocAHtegX2tceIcbnxq58mBPSCEaU77z/j
- vqisSOU/B5U+quwaCS11ivN3XjSLT+BzpkcsWCW8LFtvl4L2Vm1k53jThGQUxmGCnZaB
- TjSSxzx/G0i/dzKBWwrZ0tgamreID7dDcA0a6UhFzda0FopQnzAMzovg+QWF29FaccUb
- tTqn+WY/gZnZ5YcfvDug/fEPtk05Uw+jAq24VESsX+DUvt7J1v8TEduLmQ/HvE/JHMOS
- KibQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1731253717; x=1731858517;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=vbNVMHXE6okzkAIY6un2S18hiMmIIRF9zQ7fJ2bLEN0=;
- b=aJMEd0u+Oh2xVGsHet3W4SQddJU6IOP2KimBXFm0+0+BKVhrjWFzpDYbleJCsA9PH0
- 4YlO/uCLgPfupFWNXGQdAn+JV+iQcTIfkv5nhlZixUoeUn+xiM8m00IFFrbyGpV/QsYl
- dO6GhtqmquSVv+9F3TCF0uKYaz9myK5g/EPRn2wwjwaqKkntcpIMX6jdnq04kdgw8//C
- agkcobTarwm9XA7sbhofjDWjHX6id4J2MhyaPm96y4Zcd9uU4BPCs6AkwKuaMJZqmKv8
- wp9jq8lVCGP3ksIFYuuFvbNwmozJxaCvp4QNq6vpblu4q6wMNszZyN6RS+dLPQcButL1
- g5UA==
-X-Gm-Message-State: AOJu0YwKs4derdugQt6D3jM6+OTZccf0guaRmYKKlE0OS/Jpb0cA/Fvf
- DNRFx9kUiIW0fYAme1Ag0ayRy4HY+bYiEsst7jPhvD+3hynF7pbWa3v18jjbH8YfkbdYkGAszwF
- sOQINxmuNBFnqcZa9APBoASmgZk9A+8/a
-X-Google-Smtp-Source: AGHT+IGHIAjpRwYCVGzCe8UJMWflk1osaB5h3P0mOLex2qWkNZeKsP7l0QbIY2YxRGpfTxdKJ/c3hIUlDhbY7TSK/yo=
-X-Received: by 2002:a17:903:110c:b0:211:6b31:2f30 with SMTP id
- d9443c01a7336-211835ccb20mr136324125ad.50.1731253716036; Sun, 10 Nov 2024
- 07:48:36 -0800 (PST)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2048.outbound.protection.outlook.com [40.107.93.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C33AF10E3D9
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 00:06:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MiIVz1y3DVd3TvLX12RE0YM31ljPfnOAtETtFDYTM7mHlMDEdu6z7dDsCflUQznWa4Qg2Co5eOcyZBrT1/ljBOp2rZCcO5474ahyEGT04D+mPdpAqHVer106YRrpqI1bHYvBPXn8fwAF1LhveUKVi7SXfMSL7ZDxEKCeLPBXcyPji59gTdz4kIkAwZyUC57/noz9uPUu1FB7374bcuLUplvOi+uSy48lEef3rjR5YDRTJubrq7U4IGuEReK+IXvyNx0SIusgWX/eebjek+y4cvOmkVncBaMkDUjq0ZJ6mPDIV4bDCn9VkChncjArI29XRKl56b47JxoiLEESM+r2lQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e3b6HoOBRHlszp2VyG2i81c/J8tFcBbcQhfV1SjlpoM=;
+ b=w3U2UaXOOTz+U3YKU73cexVET2ksOguUvSOnpzfdTMyAOGu+1GlZq9WF20PzegZ6mLfcE4pDLL8+iIgidfnDdytsHhyZX5L4qe85nNiK6JXkAu3n4ofG2lzSZcZWnbj2nCryiJcgWEja/S/Ooc0NYd0N9M04l75Ted5rO7ceGj2ivWSFCkQxy3rluYWUItcwc67qsDkVXwtMveb0p8Oil4tTisoe4xafyEx/WAFkfmSMiqLo+SKu2gFSyvI6QSW1H66pPbvLh6jpw7XTFvpqIqix3w41+y7L/bxD7uh0/BkyvsjrA/EBbyKu8a/nhkSSYEFeyzeeSUuKbrKE5qI9Yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e3b6HoOBRHlszp2VyG2i81c/J8tFcBbcQhfV1SjlpoM=;
+ b=qEB9JfbHnzZucs/NQetcTAO1m6WtTjuHVAY0wt5F+qcX1wFlH8j7QyJXSiB69FEiIcwBJtKcjfHcSeB69yZU0E3zWvp/9k2lT7CYUU1k+2x9EMurGqHpdLmrAsfpYVB1GypoPmCGLyhQgaLQhqEHB3Mf1NEo6vA8mGu70+NZVwQ=
+Received: from BL1PR12MB5269.namprd12.prod.outlook.com (2603:10b6:208:30b::20)
+ by SJ2PR12MB8011.namprd12.prod.outlook.com (2603:10b6:a03:4c8::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Mon, 11 Nov
+ 2024 00:06:25 +0000
+Received: from BL1PR12MB5269.namprd12.prod.outlook.com
+ ([fe80::962e:1ce3:e83f:8482]) by BL1PR12MB5269.namprd12.prod.outlook.com
+ ([fe80::962e:1ce3:e83f:8482%7]) with mapi id 15.20.8137.027; Mon, 11 Nov 2024
+ 00:06:24 +0000
+From: "Liu, Monk" <Monk.Liu@amd.com>
+To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, Alex Deucher <alexdeucher@gmail.com>, "Zhao,
+ Victor" <Victor.Zhao@amd.com>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Yang,
+ Philip" <Philip.Yang@amd.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>
+Subject: RE: [PATCH 2/2] drm/amdkfd: use cache GTT buffer for PQ and wb pool
+Thread-Topic: [PATCH 2/2] drm/amdkfd: use cache GTT buffer for PQ and wb pool
+Thread-Index: AQHbMBZHMXJO9/1Wb0SUcDj9uFrCqbKqXF8AgAD3oQCAAGQwgIABdj0ggAALTuCAAAgzAIAD9wiQ
+Date: Mon, 11 Nov 2024 00:06:24 +0000
+Message-ID: <BL1PR12MB526947542E06B1334FBEC54784582@BL1PR12MB5269.namprd12.prod.outlook.com>
+References: <20241106063322.2443403-1-Victor.Zhao@amd.com>
+ <20241106063322.2443403-2-Victor.Zhao@amd.com>
+ <CADnq5_NDDBsWrZvxQrCk8-qXfk-xBUBTM62SNawC__BANtpjOQ@mail.gmail.com>
+ <6dc831bf-f7d8-4e9d-98c8-8204b330e466@amd.com>
+ <7c8e9102-0d4f-405c-8749-1653118400f1@amd.com>
+ <BL1PR12MB5269C32C36AEBAE40FBC131A845D2@BL1PR12MB5269.namprd12.prod.outlook.com>
+ <BL1PR12MB52690F8688563810F74A261A845D2@BL1PR12MB5269.namprd12.prod.outlook.com>
+ <7c0bc3a5-756d-4c60-b459-73a2ee910ce7@amd.com>
+In-Reply-To: <7c0bc3a5-756d-4c60-b459-73a2ee910ce7@amd.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=b22c15cf-df27-41a7-9f3b-e1d27ff14794;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution Only;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-11-10T23:59:24Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5269:EE_|SJ2PR12MB8011:EE_
+x-ms-office365-filtering-correlation-id: 4aa01953-be41-44e2-699b-08dd01e4ae65
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?dXdJVUlRVWo1WWhrc2V2MEVtTjZ1WHdBQ09aeUtWS3JQY3FFQ0xUZUdCS1JU?=
+ =?utf-8?B?bm1FWDVQTEtWU2ZRR3BPK3lrR3ZZYUtaclZVVTdqUDRXN2dXeG9PSWgwelRU?=
+ =?utf-8?B?ZnhPVWxRMnRVQVJDUzV5ajk1WWIvaGZyVjQwUllkSjlPVVNLNUFhQnB2dm1m?=
+ =?utf-8?B?M0VNMVNxRy9KeTIwbXVkU3pXcVc4c0ptSmRwL3NNR3BNU3hBVU95ejRRNzEr?=
+ =?utf-8?B?SHlGT1dvczkxS3N0M2lrd3NYdVN5czhYN0piY3RpalE1SlAvRFloM1EyWC9w?=
+ =?utf-8?B?emxOS2JndE9LMmR3NHRsRy9jMGxDNVhwNTVmRHQvSjNBeE85K3FDcUpxdkVi?=
+ =?utf-8?B?aWwrTnBhNytXeTBGVVg0ZldIOHdZWmZsMVFFMWVOTEtMZ0p2bloyYVl5eDhI?=
+ =?utf-8?B?U0NQNnN5QVc0OENMS2xuQXZhS0lnRDZRNmxJVUM0VmEvSXY0c3B0VDY0Tlhk?=
+ =?utf-8?B?M1RoQ1grblZLTmtrVkVzTWdBL2l5SVM2clJlcjY1eWwzN3BCYXpIS0NUU1p2?=
+ =?utf-8?B?Nzc1SlFZSnJvTWZFR3BJbG5oUzAwR2dmN1FjU09DK0w3cU1FeHJoZWVnWW90?=
+ =?utf-8?B?TkFENmhBdkswTVFaL1poK3U2RE5udS9wN2JsUmtXWS85bStFcVUwS1BYc0ZS?=
+ =?utf-8?B?em13R3M1K0FrQU42ZnZnZ3VFUXIwRGc3Qk5ybGZOclpVaGZZd0U3OEl2UVlN?=
+ =?utf-8?B?ckVqM3hHZDlURzNjeGhDdUFHRTJLbG5RUStlVHhEaWhtT1JRVFY1WEhtNjR6?=
+ =?utf-8?B?alYzR0pWQm5YekV5c0lPK3dFUHVpZEY4Y0Rha1FOcE9jaWVrNTN6VmpmRWVR?=
+ =?utf-8?B?b1o5NzNDYXBiQ25FbFJRays3NlBBck5sN2NLb3V1aitHSkhibHRkYkdFcU8z?=
+ =?utf-8?B?YlhxSWtTNTZsV1NLOGM5em1HeGZYU1F5TTlwcnZGTzFzUkNLMTByWFFLdlpk?=
+ =?utf-8?B?ZTRzUzFOdjB4azcxUDNPd1hSeDV6K24reDZuemhkM2NwVld5UXZqVWY3cUt1?=
+ =?utf-8?B?eGJMZFArMGt0VFo0aWhDcmo5VThuU01JMTBtd2p3bUs2dnZyZ2wwRjd0S3ZW?=
+ =?utf-8?B?NmRqSjk5Sy9wc1dnVkdnVytjc1pPcHFqdktDdHNsR3dSaU9LMEtrN0JrN0o3?=
+ =?utf-8?B?UnBSZHBuNzZ4SFlLY2d1Y3VWSVBncWxhZmZRN053ZVhJSURjYmRGRjB3eC9q?=
+ =?utf-8?B?WmdDZEM3TzZOTmQvUFFiTjJHSXZJbEZIZkFOYlpoNis5R2drMWUwUnIxZCtR?=
+ =?utf-8?B?aVJhV3hPT1VWcFo5YzJQUEJ0OXluaWhvZWNqY0ZrMmNrMnJHRkpPNGwvNTJE?=
+ =?utf-8?B?Z1NlTWluWlBSUVBnS2pBeDhXL0dpbTZvWTU4U0UzTk5ydThkU3ZEbkY0NjU2?=
+ =?utf-8?B?Vmh5OWErbVAzSHlKYU1la2QyVDJ3OFRudHMxRG0xMm8xVitsYzJnUXlWZDJn?=
+ =?utf-8?B?RXorSzcyNTNlNUZhMVdBdWpKL3RHL3lxZzkrR0JGVGErU3BVVm85ZDc2OG5n?=
+ =?utf-8?B?REhiQStjTXhMNTh1N002bDVhMVNWdS9EN29TZlY5Q25IVkZ2MWl3SFlGU0Uz?=
+ =?utf-8?B?ZGJPMFJmVXh5c0pRUHBmRkRhdG1RVVlaR2dNU0ZDblMwM2pTZHY3dDRzV2Rx?=
+ =?utf-8?B?UGFHbXlwN1RkdmwzNXNrLzE1d2Vzc0xPOUxEckxZV2NuWFFzSEhFMmVTb3k0?=
+ =?utf-8?B?RHgzMldvaTFnOGNiQ3VMOUtRazJGUDZlZDlCOFJyUFBpZUc3MUZvbThub2lX?=
+ =?utf-8?B?bEptMFUwZEYrdTNBRm50blpiajBuLzhDNTZ2Wk1BRWtjZkI5MUhDL3JNUWor?=
+ =?utf-8?Q?oqFPGzKgC6q7WyTXDajE/UOC3R1BhAMwRhfWc=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5269.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?LzF2YVlpOUR2a1hVV05pc3ZSanc2STZybHNCWVFnbUVaYjBZNE1UTEUrVmdi?=
+ =?utf-8?B?ODlGYWJ3aUhTeEQyOFI1ZHNURUZCdjJXSnE5Mi9NTVB1aHdsdmRhZitxMm41?=
+ =?utf-8?B?OXBGZE5EeHdqOFRSUDBBVHZyWUZ6YU1GdHNlQzRteDFyL1FXUjBqOENZUTlL?=
+ =?utf-8?B?U0E1ckdaakU4VVpsa2VzT1M1Sjh5Y09INTd4clc3bjhjcnd4N24xVFV3RUF6?=
+ =?utf-8?B?MkRlL3d3b29yWEpqekdjNHNMT3dUbENOcDhhSEFNSUdDTWpwTXFBMTFockYw?=
+ =?utf-8?B?RW5WaFFUOXI4ZE55Y3JvZlZPcmRSOG5Dbm1zSDJCdnpidFZDRUNFd1dqOHNp?=
+ =?utf-8?B?VG8xZk9yOThqdThycVdKMFBoc0tiK3BiN1pvejVyVGlHTndKN2RiREt3YnlO?=
+ =?utf-8?B?Z3I5ZHRsV252Y2NoajROK0NyK3JqK0dSNzZ4U3Mwa0NHdjZObGwrbEh0dWF6?=
+ =?utf-8?B?NFVGbmR0OE14MkpCS1piTC9TNXN3ZEtOOVpYRDBGeXdxLzVRZmxNa0lnNURP?=
+ =?utf-8?B?eHB1ZWI1eUtsOExNNzFXODZiWXNYUXpKS3Y5STVJN25CcVQ1N1ZHb2NWRXRK?=
+ =?utf-8?B?VU5lTEtMRlJ2T2gwTHYzRTA2Vmg0cnlqQTNnQnB2OHovSVptSEhyWWR6dXpP?=
+ =?utf-8?B?VE9jbzJyeUpjdmwrOWp3QnIxSnhCUUE2MHEzckxvYjB2cG5YMGIrTWRKZEY5?=
+ =?utf-8?B?QzZrS3R6YXpZeFdaRlpUbG1xdlo0RlEzSEtLOGZPV2JWd2Y1SHExZlk1aUk2?=
+ =?utf-8?B?MHhPcFdXVHFmeDBQUGY2cFpzaENYdFh4VmVzZ0FRRjJVVU9raDZJK3FsWEc4?=
+ =?utf-8?B?RFRzS0VDbUhQc25Oc0lQWDNuMEFhWStKUU5tN3JLSWVFWWxHSkRZOE8ycXd5?=
+ =?utf-8?B?Q3FNUFg5S2NnWTN0TWo0eHpwcm5Xc0djbWhCMGI2cWF3aVFtdUQ4RmtncGJH?=
+ =?utf-8?B?alkrUDBpbUZ2dVB5WURwUTFxbTZzeVNoYjhBWldma25ackVXSEgvSnEzME9j?=
+ =?utf-8?B?RzdJN3VwUFR4SHJZcEZVZk96ZFkwdjl4VHFwWmVMd051dlZWMlB4d3VXUDlG?=
+ =?utf-8?B?a2VnSFQwUDZFQTFBd0h4NHdWS0VMVXdOTmlOWkRVYXNQdWJkK05XWEppQmJl?=
+ =?utf-8?B?aHpSdDgyemFIQ0VIeUVlZ29lZWh6eDVGd0VYd0ZQWUIreXVUUS90WVluVzB5?=
+ =?utf-8?B?dFlKVFc1cFJad1hJQUxhWFlLeGl2Sit5QmUzOVV0ZmlRd2UzWi9JNVIycEp0?=
+ =?utf-8?B?SFFKWjVIQ1hjbkl3c21SL3h6ZHhSUFFtYU9vRUwrSk5jWVFlR2QrZ1ZhYTNO?=
+ =?utf-8?B?SVZGVVZtMDNjbzR5SWdTWlhCSjVpNGZEU1BEb010OG9PRzAvVVZSUW9qZXd5?=
+ =?utf-8?B?eWZ6ejM2STZEbmJ0RmIvNlJNa2l1K2E2OXNDbmVWbGdVQ2pLakJxTncvMkk4?=
+ =?utf-8?B?dTFmL1FhUnBIYnlkUlBXZGJIWmM3ZTlkRnRuWWNOcTl5aEE2VkF1V20wRS94?=
+ =?utf-8?B?N25LdW05U2JneGV6Z2FncUNhSDZNR0dmTlhZcXlTYWY4YVlBazc3V09MM1BO?=
+ =?utf-8?B?WTZDWWNrUXArWWNhSXJiVjFCN29SQkFLbzVLL2hSWk9zN2dReUpubXQvSko3?=
+ =?utf-8?B?TmlNYWREeXNlNFNKNHlFZy9DUU84OThyZmFXQVB3ZkdEQ1RrKytjZWMrRStq?=
+ =?utf-8?B?TytLaytSTzZ3TUtmejBuaVRVMjh6VjVBZERIRWl0QWNqQU84U0pQTEJDSWVX?=
+ =?utf-8?B?eDZqeEVmUjJmZDJ6NWJPT3dEZW0vQ1EyUERJNVFqRnlKbGIvNElhQzFSNVVh?=
+ =?utf-8?B?b2lLWnhmSFlLT1VWUWU2bzZSaUw1OXBnRTFhTHBwUXBQVVhDWHlRWE1UajU4?=
+ =?utf-8?B?RCsyVG5oOC9tRXBoU20rNlR4S1RPZFdEUFk2Z2I5NnYvM1N1UWl3ckJjVXhZ?=
+ =?utf-8?B?TytPdDFWUmFaYjRtUFVRK1gyeU5ZeGhNRGgxUkQrZkp5STZEemFPOWgyVHdF?=
+ =?utf-8?B?MVh4QlpnSkNhTDdHVHdaemtDOEFwOW1WUnJQY29MT3NYZTh4cElyQzFPYWYx?=
+ =?utf-8?B?ckdreHgvY0phbUpMUyt5RHhpZzJhZzgwNlFDU285ekxXUHR5MkMwcDdjR2Yr?=
+ =?utf-8?Q?uMyM=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <CAE6xmHJLMixQpiJaPGLkzL3wsfeFQBbEVn2U2fwi=o5eFn86Tg@mail.gmail.com>
- <CADnq5_PF7JkqiQyuvPxwCLLLQEbfbH4hHcRep+51_peUTqHbmQ@mail.gmail.com>
-In-Reply-To: <CADnq5_PF7JkqiQyuvPxwCLLLQEbfbH4hHcRep+51_peUTqHbmQ@mail.gmail.com>
-From: Kenneth Topp <twenty88@gmail.com>
-Date: Sun, 10 Nov 2024 10:48:25 -0500
-Message-ID: <CAE6xmHJ1chyowoKEOrACBFHvmwqJPRjb9H6hDpM_JiyzGFq3pw@mail.gmail.com>
-Subject: Re: no-retry page fault on 6.11.6 kernel with radeon VII
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sun, 10 Nov 2024 23:59:39 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5269.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4aa01953-be41-44e2-699b-08dd01e4ae65
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2024 00:06:24.6258 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TE5jfKAChgPIuQjxRQo0HgqZMze+NzpzP0OpWMZP/52edvKMJZETSiZdjnO5T5iO
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8011
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,790 +177,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 7, 2024 at 2:04=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com>=
- wrote:
->
-> On Thu, Nov 7, 2024 at 3:03=E2=80=AFAM Kenneth Topp <twenty88@gmail.com> =
-wrote:
-> >
-> > Greetings,
-> >
-> > I'm getting no-retry page fault fatal errors (kills Xwayland):
-> >
-> > [  177.470230 <    6.102062 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.470483 <    0.000253 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.470535 <    0.000052 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc2000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.470584 <    0.000049 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x0030113D
-> > [  177.470625 <    0.000041 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: TCP (0x8)
-> > [  177.470666 <    0.000041 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x1
-> > [  177.470706 <    0.000040 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x6
-> > [  177.470745 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x3
-> > [  177.470784 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x1
-> > [  177.470822 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> >
->
-> This is equivalent to a segfault on the CPU, only it's the GPU.  This
-> is probably a mesa bug.  The GPU process associated with Xwayland has
-> caused a segfault on the GPU.  The TCP block is part of the shader
-> hardware.  So likely you have a shader used by Xwayland that tried to
-> read an unmapped virtual address (0x0000800101dc2000) on the GPU.
->
-> Alex
-
-
-Thanks for the response.
-
-Is there a way to "strace" the command stream that chrome/xwayland is sendi=
-ng
-to the GPU to further pinpoint what's going on or produce a
-core/stacktrace or gpu
-equivalent of that?  This is obviously an old GPU, but given that this
-issue is somehow
-related to my motherboard/OS swap, since I didn't see this issue
-before I'm compelled
-to try to track it down.  However, if the bug is just in some ancient
-code path for this
-specific gpu model, I'm not convinced that it's worth anyone's time,
-especially since
-there doesn't seem to be similar reports.  I'll probably be getting
-RDNA4 next year.
-
-But please let me know because I'm happy to work on this (debugging at leas=
-t).
-
-ken
-
-
->
-> > I can seem to trigger this at will by visiting a specific website with
-> > brave-browser and clicking around (website is the plex web interface
-> > to their media server product).  I haven't tried other browsers, but
-> > I've been using the browser without issues for a few days. I'm running
-> > fedora 41 with fairly stock settings, on an amd cpu and radeon VII
-> > gpu.  This started after a recent upgrade of my cpu/motherboard, but
-> > I've used this GPU on my old machine going to the website without
-> > issue in the past.
-> >
-> > Because I can trigger this specifically and otherwise the machine
-> > seems fine, I'm thinking this is a driver issue.  If there's any way I
-> > can diagnose this further, I'd be happy to do so.
-> >
-> > Thanks,
-> >
-> > Ken
-> >
-> >
-> >
-> > full kernel log (grep amdgpu)
-> >
-> >
-> > [   24.704005 <    0.131995 >] myhost kernel: [drm] amdgpu kernel
-> > modesetting enabled.
-> > [   24.705003 <    0.000998 >] myhost kernel: amdgpu: vga_switcheroo:
-> > detected switching method \_SB_.PCI0.GP17.VGA_.ATPX handle
-> > [   24.705058 <    0.000055 >] myhost kernel: amdgpu: ATPX version 1,
-> > functions 0x00000000
-> > [   24.708005 <    0.002947 >] myhost kernel: amdgpu: Virtual CRAT
-> > table created for CPU
-> > [   24.708021 <    0.000016 >] myhost kernel: amdgpu: Topology: Add CPU=
- node
-> > [   24.708038 <    0.000017 >] myhost kernel: amdgpu 0000:03:00.0:
-> > enabling device (0006 -> 0007)
-> > [   24.710022 <    0.000006 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: Fetched VBIOS from VFCT
-> > [   24.710081 <    0.000059 >] myhost kernel: amdgpu: ATOM BIOS:
-> > 113-D3600200-106
-> > [   24.813006 <    0.005001 >] myhost kernel: amdgpu 0000:03:00.0:
-> > vgaarb: deactivate vga console
-> > [   24.813157 <    0.000151 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: Trusted Memory Zone (TMZ) feature not supported
-> > [   24.813239 <    0.000082 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: MEM ECC is not presented.
-> > [   24.813308 <    0.000069 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: SRAM ECC is not presented.
-> > [   24.813382 <    0.000074 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: RAS INFO: ras initialized successfully, hardware ability[4]
-> > ras_mask[4]
-> > [   24.813477 <    0.000014 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VRAM: 16368M 0x0000008000000000 - 0x00000083FEFFFFFF (16368M
-> > used)
-> > [   24.813544 <    0.000067 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
-> > [   24.813620 <    0.000006 >] myhost kernel: [drm] amdgpu: 16368M of
-> > VRAM memory ready
-> > [   24.813625 <    0.000005 >] myhost kernel: [drm] amdgpu: 95403M of
-> > GTT memory ready.
-> > [   24.813648 <    0.000005 >] myhost kernel: amdgpu: hwmgr_sw_init
-> > smu backed is vega20_smu
-> > [   24.839004 <    0.017000 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* TIMEOUT ERROR !!!
-> > [   24.839016 <    0.000012 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* ReadData() - I2C error occurred :8
-> > [   24.839020 <    0.000004 >] myhost kernel: [drm:unlock_bus
-> > [amdgpu]] *ERROR* Failed to unlock the bus from SMU
-> > [   24.860013 <    0.000008 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* TIMEOUT ERROR !!!
-> > [   24.860019 <    0.000006 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* ReadData() - I2C error occurred :8
-> > [   24.860026 <    0.000007 >] myhost kernel: [drm:unlock_bus
-> > [amdgpu]] *ERROR* Failed to unlock the bus from SMU
-> > [   24.881040 <    0.000013 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* TIMEOUT ERROR !!!
-> > [   24.881047 <    0.000007 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* ReadData() - I2C error occurred :8
-> > [   24.881053 <    0.000006 >] myhost kernel: [drm:unlock_bus
-> > [amdgpu]] *ERROR* Failed to unlock the bus from SMU
-> > [   24.902005 <    0.017973 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* TIMEOUT ERROR !!!
-> > [   24.902026 <    0.000021 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* ReadData() - I2C error occurred :8
-> > [   24.902040 <    0.000014 >] myhost kernel: [drm:unlock_bus
-> > [amdgpu]] *ERROR* Failed to unlock the bus from SMU
-> > [   24.923021 <    0.000013 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* TIMEOUT ERROR !!!
-> > [   24.923025 <    0.000004 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* ReadData() - I2C error occurred :8
-> > [   24.923034 <    0.000009 >] myhost kernel: [drm:unlock_bus
-> > [amdgpu]] *ERROR* Failed to unlock the bus from SMU
-> > [   24.944047 <    0.000039 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* TIMEOUT ERROR !!!
-> > [   24.944052 <    0.000005 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* ReadData() - I2C error occurred :8
-> > [   24.944056 <    0.000004 >] myhost kernel: [drm:unlock_bus
-> > [amdgpu]] *ERROR* Failed to unlock the bus from SMU
-> > [   24.965056 <    0.000040 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* TIMEOUT ERROR !!!
-> > [   24.965073 <    0.000017 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* ReadData() - I2C error occurred :8
-> > [   24.965078 <    0.000005 >] myhost kernel: [drm:unlock_bus
-> > [amdgpu]] *ERROR* Failed to unlock the bus from SMU
-> > [   24.986099 <    0.000074 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* TIMEOUT ERROR !!!
-> > [   24.986127 <    0.000028 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* ReadData() - I2C error occurred :8
-> > [   24.996025 <    0.009898 >] myhost kernel: [drm:unlock_bus
-> > [amdgpu]] *ERROR* Failed to unlock the bus from SMU
-> > [   25.051032 <    0.048858 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: reserve 0x400000 from 0x83fe000000 for PSP TMR
-> > [   25.163034 <    0.112002 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: RAP: optional rap ta ucode is not available
-> > [   25.184032 <    0.017019 >] myhost kernel: snd_hda_intel
-> > 0000:03:00.1: bound 0000:03:00.0 (ops
-> > amdgpu_dm_audio_component_bind_ops [amdgpu])
-> > [   25.689067 <    0.000045 >] myhost kernel:
-> > [drm:smu_v11_0_i2c_xfer.cold [amdgpu]] *ERROR* Received
-> > I2C_NAK_7B_ADDR_NOACK !!!
-> > [   25.689076 <    0.000009 >] myhost kernel: [drm:smu_v11_0_i2c_xfer
-> > [amdgpu]] *ERROR* WriteI2CData() - I2C error occurred :1
-> > [   25.689085 <    0.000009 >] myhost kernel:
-> > [drm:amdgpu_ras_eeprom_init [amdgpu]] *ERROR* Failed to read EEPROM
-> > table header, res:-5
-> > [   25.689110 <    0.000025 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: Failed to initialize ras recovery! (-5)
-> > [   25.739062 <    0.049952 >] myhost kernel: amdgpu: HMM registered
-> > 16368MB device memory
-> > [   25.740003 <    0.000941 >] myhost kernel: kfd kfd: amdgpu:
-> > Allocated 3969056 bytes on gart
-> > [   25.740290 <    0.000287 >] myhost kernel: kfd kfd: amdgpu: Total
-> > number of KFD nodes to be created: 1
-> > [   25.740320 <    0.000030 >] myhost kernel: amdgpu: Virtual CRAT
-> > table created for GPU
-> > [   25.740325 <    0.000005 >] myhost kernel: amdgpu: Topology: Add
-> > dGPU node [0x66af:0x1002]
-> > [   25.740331 <    0.000006 >] myhost kernel: kfd kfd: amdgpu: added
-> > device 1002:66af
-> > [   25.740356 <    0.000025 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: SE 4, SH per SE 1, CU per SH 16, active_cu_number 60
-> > [   25.740444 <    0.000088 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring gfx uses VM inv eng 0 on hub 0
-> > [   25.740495 <    0.000051 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring comp_1.0.0 uses VM inv eng 1 on hub 0
-> > [   25.740537 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring comp_1.1.0 uses VM inv eng 4 on hub 0
-> > [   25.740576 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring comp_1.2.0 uses VM inv eng 5 on hub 0
-> > [   25.740615 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring comp_1.3.0 uses VM inv eng 6 on hub 0
-> > [   25.740654 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring comp_1.0.1 uses VM inv eng 7 on hub 0
-> > [   25.740693 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring comp_1.1.1 uses VM inv eng 8 on hub 0
-> > [   25.740735 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring comp_1.2.1 uses VM inv eng 9 on hub 0
-> > [   25.740773 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring comp_1.3.1 uses VM inv eng 10 on hub 0
-> > [   25.740812 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring kiq_0.2.1.0 uses VM inv eng 11 on hub 0
-> > [   25.740850 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring sdma0 uses VM inv eng 0 on hub 8
-> > [   25.740887 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring page0 uses VM inv eng 1 on hub 8
-> > [   25.740973 <    0.000086 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring sdma1 uses VM inv eng 4 on hub 8
-> > [   25.741023 <    0.000050 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring page1 uses VM inv eng 5 on hub 8
-> > [   25.741061 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring uvd_0 uses VM inv eng 6 on hub 8
-> > [   25.741100 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring uvd_enc_0.0 uses VM inv eng 7 on hub 8
-> > [   25.741137 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring uvd_enc_0.1 uses VM inv eng 8 on hub 8
-> > [   25.741173 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring uvd_1 uses VM inv eng 9 on hub 8
-> > [   25.741210 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring uvd_enc_1.0 uses VM inv eng 10 on hub 8
-> > [   25.741247 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring uvd_enc_1.1 uses VM inv eng 11 on hub 8
-> > [   25.741284 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring vce0 uses VM inv eng 12 on hub 8
-> > [   25.741322 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring vce1 uses VM inv eng 13 on hub 8
-> > [   25.741361 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring vce2 uses VM inv eng 14 on hub 8
-> > [   25.748016 <    0.006655 >] myhost kernel: amdgpu: Detected AMDGPU
-> > DF Counters. # of Counters =3D 8.
-> > [   25.748034 <    0.000018 >] myhost kernel: amdgpu: Detected AMDGPU
-> > 2 Perf Events.
-> > [   25.748041 <    0.000007 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: Runtime PM not available
-> > [   25.748138 <    0.000097 >] myhost kernel: [drm] Initialized amdgpu
-> > 3.59.0 for 0000:03:00.0 on minor 1
-> > [   25.758015 <    0.009877 >] myhost kernel: fbcon: amdgpudrmfb (fb0)
-> > is primary device
-> > [   25.987041 <    0.029999 >] myhost kernel: amdgpu 0000:03:00.0:
-> > [drm] fb0: amdgpudrmfb frame buffer device
-> > [   26.005302 <    0.018261 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > enabling device (0006 -> 0007)
-> > [   26.005642 <    0.000006 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: Fetched VBIOS from VFCT
-> > [   26.005721 <    0.000079 >] myhost kernel: amdgpu: ATOM BIOS: 102-RA=
-PHAEL-008
-> > [   26.043035 <    0.037314 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental
-> > (default)
-> > [   26.043390 <    0.000013 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: VRAM: 2048M 0x000000F400000000 - 0x000000F47FFFFFFF (2048M
-> > used)
-> > [   26.043477 <    0.000087 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: GART: 1024M 0x0000000000000000 - 0x000000003FFFFFFF
-> > [   26.043582 <    0.000011 >] myhost kernel: [drm] amdgpu: 2048M of
-> > VRAM memory ready
-> > [   26.043589 <    0.000007 >] myhost kernel: [drm] amdgpu: 95403M of
-> > GTT memory ready.
-> > [   26.066028 <    0.022403 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: reserve 0xa00000 from 0xf47e000000 for PSP TMR
-> > [   26.132029 <    0.066001 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: RAS: optional ras ta ucode is not available
-> > [   26.138005 <    0.005976 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: RAP: optional rap ta ucode is not available
-> > [   26.138081 <    0.000076 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: SECUREDISPLAY: securedisplay ta ucode is not available
-> > [   26.140004 <    0.001923 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: SMU is initialized successfully!
-> > [   26.142005 <    0.000992 >] myhost kernel: snd_hda_intel
-> > 0000:7d:00.1: bound 0000:7d:00.0 (ops
-> > amdgpu_dm_audio_component_bind_ops [amdgpu])
-> > [   26.146003 <    0.003000 >] myhost kernel: kfd kfd: amdgpu:
-> > Allocated 3969056 bytes on gart
-> > [   26.146054 <    0.000051 >] myhost kernel: kfd kfd: amdgpu: Total
-> > number of KFD nodes to be created: 1
-> > [   26.146102 <    0.000048 >] myhost kernel: amdgpu: Virtual CRAT
-> > table created for GPU
-> > [   26.146106 <    0.000004 >] myhost kernel: amdgpu: Topology: Add
-> > dGPU node [0x13c0:0x1002]
-> > [   26.146110 <    0.000004 >] myhost kernel: kfd kfd: amdgpu: added
-> > device 1002:13c0
-> > [   26.146135 <    0.000025 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: SE 1, SH per SE 1, CU per SH 2, active_cu_number 2
-> > [   26.146175 <    0.000040 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring gfx_0.0.0 uses VM inv eng 0 on hub 0
-> > [   26.146212 <    0.000037 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring gfx_0.1.0 uses VM inv eng 1 on hub 0
-> > [   26.146247 <    0.000035 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring comp_1.0.0 uses VM inv eng 4 on hub 0
-> > [   26.146280 <    0.000033 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring comp_1.1.0 uses VM inv eng 5 on hub 0
-> > [   26.146314 <    0.000034 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring comp_1.2.0 uses VM inv eng 6 on hub 0
-> > [   26.146348 <    0.000034 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring comp_1.3.0 uses VM inv eng 7 on hub 0
-> > [   26.146383 <    0.000035 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring comp_1.0.1 uses VM inv eng 8 on hub 0
-> > [   26.146416 <    0.000033 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring comp_1.1.1 uses VM inv eng 9 on hub 0
-> > [   26.146449 <    0.000033 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring comp_1.2.1 uses VM inv eng 10 on hub 0
-> > [   26.146482 <    0.000033 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring comp_1.3.1 uses VM inv eng 11 on hub 0
-> > [   26.146516 <    0.000034 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring kiq_0.2.1.0 uses VM inv eng 12 on hub 0
-> > [   26.146548 <    0.000032 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring sdma0 uses VM inv eng 13 on hub 0
-> > [   26.146582 <    0.000034 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring vcn_dec_0 uses VM inv eng 0 on hub 8
-> > [   26.146614 <    0.000032 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring vcn_enc_0.0 uses VM inv eng 1 on hub 8
-> > [   26.146648 <    0.000034 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring vcn_enc_0.1 uses VM inv eng 4 on hub 8
-> > [   26.146682 <    0.000034 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: ring jpeg_dec uses VM inv eng 5 on hub 8
-> > [   26.147003 <    0.000321 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > amdgpu: Runtime PM not available
-> > [   26.148013 <    0.001010 >] myhost kernel: [drm] Initialized amdgpu
-> > 3.59.0 for 0000:7d:00.0 on minor 0
-> > [   26.154014 <    0.006001 >] myhost kernel: amdgpu 0000:7d:00.0:
-> > [drm] Cannot find any crtc or sizes
-> > [  177.470230 <    6.102062 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.470483 <    0.000253 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.470535 <    0.000052 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc2000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.470584 <    0.000049 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x0030113D
-> > [  177.470625 <    0.000041 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: TCP (0x8)
-> > [  177.470666 <    0.000041 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x1
-> > [  177.470706 <    0.000040 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x6
-> > [  177.470745 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x3
-> > [  177.470784 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x1
-> > [  177.470822 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.470860 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.470898 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.470935 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dd8000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.470974 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.471021 <    0.000047 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.471060 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.471098 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.471137 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.471176 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.471213 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.471249 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.471286 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.471323 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc0000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.471361 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.471398 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.471435 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.471471 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.471509 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.471544 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.471580 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.471616 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.471653 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.471688 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dd0000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.471725 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.471761 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.471797 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.471831 <    0.000034 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.471868 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.471903 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.471938 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.471974 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.472013 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.472048 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc8000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.472086 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.472123 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.472159 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.472194 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.472228 <    0.000034 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.472263 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.472298 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.472333 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.472369 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.472404 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc0000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.472439 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.472474 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.472509 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.472544 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.472580 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.472616 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.472650 <    0.000034 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.472685 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.472722 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.472758 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dd6000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.472795 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.472830 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.472866 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.472902 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.472936 <    0.000034 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.472972 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.473015 <    0.000043 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.473052 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.473088 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.473124 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dd2000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.473161 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.473197 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.473232 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.473267 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.473301 <    0.000034 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.473336 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.473371 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.473406 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.473442 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.473477 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc8000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.473512 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.473549 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.473583 <    0.000034 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.473618 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.473726 <    0.000108 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.473768 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.473803 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  177.473852 <    0.000049 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  177.473887 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  177.473923 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dd4000 from IH
-> > client 0x1b (UTCL2)
-> > [  177.473961 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  177.473997 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  177.474038 <    0.000041 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  177.474073 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  177.474109 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  177.474143 <    0.000034 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  177.474177 <    0.000034 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.729538 <    0.000143 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.729809 <    0.000271 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.729885 <    0.000076 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc2000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.729931 <    0.000046 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x0030113D
-> > [  187.729968 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: TCP (0x8)
-> > [  187.730028 <    0.000060 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x1
-> > [  187.730068 <    0.000040 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x6
-> > [  187.730107 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x3
-> > [  187.730143 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x1
-> > [  187.730180 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.730217 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.730254 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.730299 <    0.000045 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dda000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.730345 <    0.000046 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  187.730391 <    0.000046 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  187.730432 <    0.000041 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  187.730469 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  187.730506 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  187.730710 <    0.000204 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  187.730837 <    0.000127 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.730921 <    0.000084 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.730996 <    0.000075 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.731095 <    0.000099 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc2000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.731169 <    0.000074 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  187.731243 <    0.000074 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  187.731315 <    0.000072 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  187.731387 <    0.000072 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  187.731493 <    0.000106 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  187.731595 <    0.000102 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  187.731693 <    0.000098 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.731769 <    0.000076 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.731819 <    0.000050 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.731868 <    0.000049 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc0000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.731916 <    0.000048 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  187.731964 <    0.000048 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  187.732020 <    0.000056 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  187.732067 <    0.000047 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  187.732116 <    0.000049 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  187.732167 <    0.000051 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  187.732216 <    0.000049 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.732255 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.732294 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.732331 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dd8000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.732377 <    0.000046 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x0030113D
-> > [  187.732425 <    0.000048 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: TCP (0x8)
-> > [  187.732464 <    0.000039 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x1
-> > [  187.732499 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x6
-> > [  187.732536 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x3
-> > [  187.732573 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x1
-> > [  187.732608 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.732645 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.732680 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.732717 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dd0000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.732755 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x0030113D
-> > [  187.732793 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: TCP (0x8)
-> > [  187.732829 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x1
-> > [  187.732864 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x6
-> > [  187.732902 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x3
-> > [  187.732937 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x1
-> > [  187.732973 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.733015 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.733060 <    0.000045 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.733096 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc8000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.733131 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x0030113D
-> > [  187.733167 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: TCP (0x8)
-> > [  187.733204 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x1
-> > [  187.733239 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x6
-> > [  187.733275 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x3
-> > [  187.733310 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x1
-> > [  187.733346 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.733384 <    0.000038 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.733419 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.733456 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc8000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.733492 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  187.733543 <    0.000051 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  187.733585 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  187.733622 <    0.000037 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  187.733670 <    0.000048 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  187.733721 <    0.000051 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  187.733770 <    0.000049 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.733818 <    0.000048 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.733865 <    0.000047 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.733915 <    0.000050 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dc0000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.733963 <    0.000048 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  187.734020 <    0.000057 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  187.734070 <    0.000050 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  187.734117 <    0.000047 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  187.734164 <    0.000047 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  187.734211 <    0.000047 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  187.734261 <    0.000050 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.734308 <    0.000047 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: [gfxhub0] no-retry page fault (src_id:0 ring:158 vmid:3
-> > pasid:32776)
-> > [  187.734358 <    0.000050 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:  for process Xwayland pid 5930 thread Xwayland:cs0 pid 6496)
-> > [  187.734407 <    0.000049 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:   in page starting at address 0x0000800101dd6000 from IH
-> > client 0x1b (UTCL2)
-> > [  187.734455 <    0.000048 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > [  187.734497 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          Faulty UTCL2 client ID: CB (0x0)
-> > [  187.734533 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MORE_FAULTS: 0x0
-> > [  187.734575 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          WALKER_ERROR: 0x0
-> > [  187.734617 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          PERMISSION_FAULTS: 0x0
-> > [  187.734659 <    0.000042 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          MAPPING_ERROR: 0x0
-> > [  187.734695 <    0.000036 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu:          RW: 0x0
-> > [  187.734730 <    0.000035 >] myhost kernel: amdgpu 0000:03:00.0:
-> > amdgpu: ring gfx timeout, but soft recovered
+W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5hbCBEaXN0cmlidXRpb24gT25seV0N
+Cg0KPj4gQWxsIHByaW9yIGxvYWRzL3N0b3JlcyBhcmUgc3VwcG9zZWQgdG8gYmUgZ2xvYmFsbHkg
+dmlzaWJsZS4gSGVuY2UgbWIoKSBmb2xsb3dlZCBieSBhIHdyaXRlIHBvaW50ZXIgdXBkYXRlIGFs
+c28gc2hvdWxkIGd1YXJhbnRlZSB0aGUgc2FtZSAoRnJvbSBBcmNoIG1hbnVhbCkuDQoNCiAgICAg
+ICAgVGhlIE1GRU5DRSBpbnN0cnVjdGlvbiBlc3RhYmxpc2hlcyBhIG1lbW9yeSBmZW5jZSBmb3Ig
+Ym90aCBsb2FkcyBhbmQgc3RvcmVzLiBUaGUgcHJvY2Vzc29yIGVuc3VyZXMgdGhhdCBubyBsb2Fk
+IG9yIHN0b3JlIGFmdGVyIE1GRU5DRSB3aWxsIGJlY29tZSBnbG9iYWxseSB2aXNpYmxlICp1bnRp
+bCBhbGwgbG9hZHMgYW5kIHN0b3JlcyBiZWZvcmUgTUZFTkNFIGFyZSBnbG9iYWxseSB2aXNpYmxl
+LioNCg0KPDwNCg0KTGlqbywgdHdvIHRoaW5ncyBJIHNoYWxsIHN0YXRlIGhlcmU6DQoNCjEpIGZy
+b20gb3VyIGV4cGVyaWVuY2UgaXQgaXMgbm90IHRydWUsIHRoZSBXQyBzdG9yYWdlIGJ1ZmZlciBm
+cm9tIENQVSBpcyBub3QgZmx1c2hlZCB3aGVuIG1mZW5jZSBwcmVzZW50cywgbGlrZSBJIHNhaWQs
+IHdlIGRpZCBtYW55IC4uIG1hbnkgZXhwZXJpbWVudCBiZWZvcmUgc3VibWl0dGluZyB0aGlzIHBh
+dGNoDQoyKSBmcm9tIEludGVsJ3MgQ1BVIHNwZWMgKEN1c3RvbWVyJ3MgcGxhdGZvcm0gaXMgd2l0
+aCBJbnRlbCBDUFUpLCB0aGUgV0Mgc3RvcmFnZSBkb2Vzbid0IGJlbG9uZyB0byB0aGUgY2FjaGUg
+bm9yIHRvIHRoZSByZWd1bGFyIENQVSBpbnRlcm5hbCBzdG9yYWdlIHBsYWNlLiAoSSBjYW4gaGVs
+cCB0byBnZXQgbW9yZSBsaXRlcmFsIGFuZCBmb3JtYWwgZGVzY3JpcHRpb25zIGxhdGVyIGZvciB5
+b3UgZm9yIGRvdWJsZSBjb25maXJtLCB0aGlzIGlzIHdoYXQgSSBoZWFyZCBmcm9tIGN1c3RvbWVy
+IGR1cmluZyBvbi1zaXRlIHN1cHBvcnQpDQozKSB3aXRob3V0IHRoaXMgcGF0Y2gsIHdoZW4gdGhl
+IGlzc3VlcyBoYXBwZW5zLCB3ZSBjYW4gc2VlIHRoZSAibGFzdCBoZWFkZXIgZHVtcCIgaXMgMCwg
+YW5kIHlvdSBjYW4gc2VlIGluIEtGRCBjb2RlIHRoZSBISVEgJ3MgUFEgd2FzIHByZXZpb3VzbHkg
+Y2xlYXJlZCBieSAibWVtc2V0KCkiIHdpdGggMCBhbmQgbGF0ZXIgZm9sbG93ZWQgdGhlIFBNNCBm
+dWxmaWxsaW5nLCBzbyB0aGUgdGhpbmcgaXMgdGhlIDAgaXMgZmV0Y2hlZCBieSBNRUMgYnV0IHRo
+ZSBjb3JyZWN0ZWQgUE00IHdhcyBzb21laG93IHN0dWNrIGluIFdDIHN0b3JhZ2UgYnVmZmVyIG9j
+Y2FzaW9uYWxseS4NCg0KQXQgbGFzdCwgZnJvbSBhbnkgdGhlb3JpY2FsIHBlcnNwZWN0aXZlIHRo
+ZSByaW5nIGJ1ZmZlciBzaG91bGQgYmUgc25vb3BlZCB0byBndWFyYW50ZWUgdGhlIGNvaGVyZW5j
+ZSBiZXR3ZWVuIENQVSBhbmQgR1BVLCBhZ2FpbiwgSSBkb24ndCBzZWUgYW55IHJlYXNvbiBub3Qg
+dG8gaG9ub3IgdGhpcyBwb2ludCBmb3IgSElRIGdpdmVuIHRoZSBzdGF0dWVzIG9mIGFsbCBHRlgg
+cXVldWVzLCBhbmQgZXZlbiB0aGUgdXNlciBxdWV1ZXMgYWxsb2NhdGVkIGJ5IEgtUy1BIHJ1bnRp
+bWUgaXMgYWxzbyBjYWNoZSBtYXBwaW5nLg0KDQpNb25rIExpdSB8IENsb3VkIEdQVSAmIFZpcnR1
+YWxpemF0aW9uIHwgQU1EDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBMYXph
+ciwgTGlqbyA8TGlqby5MYXphckBhbWQuY29tPg0KU2VudDogRnJpZGF5LCBOb3ZlbWJlciA4LCAy
+MDI0IDc6MjYgUE0NClRvOiBMaXUsIE1vbmsgPE1vbmsuTGl1QGFtZC5jb20+OyBLb2VuaWcsIENo
+cmlzdGlhbiA8Q2hyaXN0aWFuLktvZW5pZ0BhbWQuY29tPjsgQWxleCBEZXVjaGVyIDxhbGV4ZGV1
+Y2hlckBnbWFpbC5jb20+OyBaaGFvLCBWaWN0b3IgPFZpY3Rvci5aaGFvQGFtZC5jb20+DQpDYzog
+YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IFlhbmcsIFBoaWxpcCA8UGhpbGlwLllhbmdA
+YW1kLmNvbT47IEt1ZWhsaW5nLCBGZWxpeCA8RmVsaXguS3VlaGxpbmdAYW1kLmNvbT4NClN1Ympl
+Y3Q6IFJlOiBbUEFUQ0ggMi8yXSBkcm0vYW1ka2ZkOiB1c2UgY2FjaGUgR1RUIGJ1ZmZlciBmb3Ig
+UFEgYW5kIHdiIHBvb2wNCg0KDQoNCk9uIDExLzgvMjAyNCA0OjI5IFBNLCBMaXUsIE1vbmsgd3Jv
+dGU6DQo+IFtBTUQgT2ZmaWNpYWwgVXNlIE9ubHkgLSBBTUQgSW50ZXJuYWwgRGlzdHJpYnV0aW9u
+IE9ubHldDQo+DQo+IFRvIGJlIGNsZWFyIGZvciB0aGUgbWIoKSBhcHByb2FjaDogRXZlbiBpZiB3
+ZSBpbnNlcnQgbWIoKSBpbiBwcmlvciB0byBhbWRncHVfcmluZ19zZXRfd3B0cihyaW5nKSwgR1BV
+IG1pZ2h0IHN0aWxsIGZldGNoIHN0YWxsZWQgZGF0YSBmcm9tIFBRIGR1ZSB0byBVU1dDIGF0dHJp
+YnV0ZXMuDQo+DQpJbnNlcnRpbmcgYW4gbWIoKSBkb2Vzbid0IGNhdXNlIFdDIGJ1ZmZlciBmbHVz
+aCBpcyBhIHdyb25nIGFzc3VtcHRpb24uDQoNCkFsbCBwcmlvciBsb2Fkcy9zdG9yZXMgYXJlIHN1
+cHBvc2VkIHRvIGJlIGdsb2JhbGx5IHZpc2libGUuIEhlbmNlIG1iKCkgZm9sbG93ZWQgYnkgYSB3
+cml0ZSBwb2ludGVyIHVwZGF0ZSBhbHNvIHNob3VsZCBndWFyYW50ZWUgdGhlIHNhbWUgKEZyb20g
+QXJjaCBtYW51YWwpLg0KDQogICAgICAgIFRoZSBNRkVOQ0UgaW5zdHJ1Y3Rpb24gZXN0YWJsaXNo
+ZXMgYSBtZW1vcnkgZmVuY2UgZm9yIGJvdGggbG9hZHMgYW5kIHN0b3Jlcy4gVGhlIHByb2Nlc3Nv
+ciBlbnN1cmVzIHRoYXQgbm8gbG9hZCBvciBzdG9yZSBhZnRlciBNRkVOQ0Ugd2lsbCBiZWNvbWUg
+Z2xvYmFsbHkgdmlzaWJsZSAqdW50aWwgYWxsIGxvYWRzIGFuZCBzdG9yZXMgYmVmb3JlIE1GRU5D
+RSBhcmUgZ2xvYmFsbHkgdmlzaWJsZS4qDQoNCg0KSWdub3JpbmcgdGhlIGFtZGdwdSBkcml2ZXIg
+cGFydCBvZiBpdCAtIGlmIG1iKCkgaXMgbm90IHdvcmtpbmcgYXMgZXhwZWN0ZWQgYXMgeW91IGNs
+YWltIHRoYXQgbWVhbnMgc29tZXRoaW5nIGlzIHdyb25nIHdpdGggdGhlIHN5c3RlbS4NCg0KVVNX
+QyBvciBXQiBmb3IgcmluZyB0eXBlIG1heSBzdGlsbCBiZSBhIHNlcGFyYXRlIGRpc2N1c3Npb24u
+DQoNClRoYW5rcywNCkxpam8NCg0KPiBUaGUgaXNzdWUgaGVyZSBpcyBub3QgdGhlIHJlLW9yZGVy
+aW5nIGJ1dCB0aGUgc3RhbGxlZCBQUS4NCj4NCj4gTW9uayBMaXUgfCBDbG91ZCBHUFUgJiBWaXJ0
+dWFsaXphdGlvbiB8IEFNRA0KPg0KPg0KPg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
+PiBGcm9tOiBMaXUsIE1vbmsNCj4gU2VudDogRnJpZGF5LCBOb3ZlbWJlciA4LCAyMDI0IDY6MjIg
+UE0NCj4gVG86IEtvZW5pZywgQ2hyaXN0aWFuIDxDaHJpc3RpYW4uS29lbmlnQGFtZC5jb20+OyBM
+YXphciwgTGlqbw0KPiA8TGlqby5MYXphckBhbWQuY29tPjsgQWxleCBEZXVjaGVyIDxhbGV4ZGV1
+Y2hlckBnbWFpbC5jb20+OyBaaGFvLA0KPiBWaWN0b3IgPFZpY3Rvci5aaGFvQGFtZC5jb20+DQo+
+IENjOiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgWWFuZywgUGhpbGlwIDxQaGlsaXAu
+WWFuZ0BhbWQuY29tPjsNCj4gS3VlaGxpbmcsIEZlbGl4IDxGZWxpeC5LdWVobGluZ0BhbWQuY29t
+Pg0KPiBTdWJqZWN0OiBSRTogW1BBVENIIDIvMl0gZHJtL2FtZGtmZDogdXNlIGNhY2hlIEdUVCBi
+dWZmZXIgZm9yIFBRIGFuZA0KPiB3YiBwb29sDQo+DQo+IENocmlzdGlhbi9MaWpvDQo+DQo+IFdl
+IHZlcmlmaWVkIGFsbCBhcHByb2FjaGVzLCBhbmQgd2Uga25vdyB3aGF0IHdvcmtzIGFuZCBub3Qg
+d29ya3MsIG9idmlvdXNseSB0aGUgbWIoKSBkb2Vzbid0IHdvcmsuDQo+DQo+IFRoZSB3YXkgb2Yg
+bWIoKSBiZXR3ZWVuIHNldCB3cHRyX3BvbGxpbmcgYW5kIGtpY2tpbmcgb2ZmIGRvb3JiZWxsIGlz
+IHRoZW9yZXRpY2FsbHkgY29ycmVjdCwgYW5kIEknbSBub3Qgb2JqZWN0IHRvIGRvIHNvLi4uIGJ1
+dCB0aGlzIHdvbid0IHJlc29sdmUgdGhlIGlzc3VlIHdlIGhpdC4NCj4gRmlyc3Qgb2YgYWxsLCBV
+U1dDIHdpbGwgaGF2ZSBzb21lIGNoYW5jZSB0aGF0IHRoZSBkYXRhIGlzIHN0aWxsIGluIENQVSdz
+IFdDIHN0b3JhZ2UgcGxhY2UgYW5kIG5vdCBmbHVzaGVkIHRvIHRoZSBtZW1vcnkgYW5kIGV2ZW4g
+d2l0aCBNQigpIGdldCByaWQgb2YgcmUtb3JkZXJpbmcgR1BVIG1pZ2h0IHN0aWxsIGhhdmUgYSBj
+aGFuY2UgdG8gcmVhZCBzdGFsbGVkIGRhdGEgZnJvbSByaW5nIGJ1ZmZlciBhcyBsb25nIGFzIGl0
+IGlzIG1hcHBlZCBVU1dDLg0KPg0KPiBUaGlzIGlzIHdoeSBvbmx5IGNhY2hlIHBsdXMgc25vb3Ag
+bWVtb3J5IGNhbiBnZXQgcmlkIG9mIGluY29uc2lzdGVuY2UgaXNzdWVzLg0KPg0KPiBCZXNpZGVz
+LCBkbyB5b3Uga25vdyB3aGF0J3MgdGhlIHJhdGlvbmFsIHRvIGtlZXAgYWxsIEdGWCBLQ1EgY2Fj
+aGUrc25vb3AgYnV0IG9ubHkgSElRL0tJUSBmcm9tIEtGRCBjb25maWd1cmVkIHRvIFVTV0MgPw0K
+Pg0KPiBGb3IgcGVyZm9ybWFuY2UgY29uY2VybiB0aGF0IGxvb2tzIHRvIG1lIGFsd2F5cyB0aGUg
+c2Vjb25kIHByaW9yaXR5IGNvbXBhcmVkIHRvICJjb3JyZWN0IiBlc3BlY2lhbGx5IHVuZGVyIHRo
+ZSBjYXNlIEhJUSBjb250cmlidXRlcyB2ZXJ5IGxpdHRsZSB0byBST0NNIHBlcmZvcm1hbmNlIHdo
+ZW4gc3dpdGNoaW5nIHRvIGNhY2hlIG1hcHBpbmcuDQo+DQo+DQo+IE1vbmsgTGl1IHwgQ2xvdWQg
+R1BVICYgVmlydHVhbGl6YXRpb24gfCBBTUQNCj4NCj4NCj4NCj4NCj4NCj4NCj4NCj4gLS0tLS1P
+cmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS29lbmlnLCBDaHJpc3RpYW4gPENocmlzdGlh
+bi5Lb2VuaWdAYW1kLmNvbT4NCj4gU2VudDogVGh1cnNkYXksIE5vdmVtYmVyIDcsIDIwMjQgNzo1
+NyBQTQ0KPiBUbzogTGF6YXIsIExpam8gPExpam8uTGF6YXJAYW1kLmNvbT47IEFsZXggRGV1Y2hl
+cg0KPiA8YWxleGRldWNoZXJAZ21haWwuY29tPjsgWmhhbywgVmljdG9yIDxWaWN0b3IuWmhhb0Bh
+bWQuY29tPg0KPiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IExpdSwgTW9uayA8
+TW9uay5MaXVAYW1kLmNvbT47IFlhbmcsDQo+IFBoaWxpcCA8UGhpbGlwLllhbmdAYW1kLmNvbT47
+IEt1ZWhsaW5nLCBGZWxpeCA8RmVsaXguS3VlaGxpbmdAYW1kLmNvbT4NCj4gU3ViamVjdDogUmU6
+IFtQQVRDSCAyLzJdIGRybS9hbWRrZmQ6IHVzZSBjYWNoZSBHVFQgYnVmZmVyIGZvciBQUSBhbmQN
+Cj4gd2IgcG9vbA0KPg0KPiBBbSAwNy4xMS4yNCB1bSAwNjo1OCBzY2hyaWViIExhemFyLCBMaWpv
+Og0KPj4gT24gMTEvNi8yMDI0IDg6NDIgUE0sIEFsZXggRGV1Y2hlciB3cm90ZToNCj4+PiBPbiBX
+ZWQsIE5vdiA2LCAyMDI0IGF0IDE6NDnigK9BTSBWaWN0b3IgWmhhbyA8VmljdG9yLlpoYW9AYW1k
+LmNvbT4gd3JvdGU6DQo+Pj4+IEZyb206IE1vbmsgTGl1IDxNb25rLkxpdUBhbWQuY29tPg0KPj4+
+Pg0KPj4+PiBBcyBjYWNoZSBHVFQgYnVmZmVyIGlzIHNub29wZWQsIHRoaXMgd2F5IHRoZSBjb2hl
+cmVuY2UgYmV0d2VlbiBDUFUNCj4+Pj4gd3JpdGUgYW5kIEdQVSBmZXRjaCBpcyBndWFyYW50ZWVk
+LCBidXQgb3JpZ2luYWwgY29kZSB1c2VzIFdDICsNCj4+Pj4gdW5zbm9vcGVkIGZvciBISVEgUFEo
+cmluZyBidWZmZXIpIHdoaWNoIGludHJvZHVjZXMgY29oZXJlbmN5IGlzc3VlczoNCj4+Pj4gTUVD
+IGZldGNoZXMgYSBzdGFsbCBkYXRhIGZyb20gUFEgYW5kIGxlYWRzIHRvIE1FQyBoYW5nLg0KPj4+
+IENhbiB5b3UgZWxhYm9yYXRlIG9uIHRoaXM/ICBJIGNhbiBzZWUgQ1BVIHJlYWRzIGJlaW5nIHNs
+b3dlciBiZWNhdXNlDQo+Pj4gdGhlIG1lbW9yeSBpcyB1bmNhY2hlZCwgYnV0IHRoZSByaW5nIGJ1
+ZmZlciBpcyBtb3N0bHkgd3JpdGVzIGFueXdheS4NCj4+PiBJSVJDLCB0aGUgZHJpdmVyIHVzZXMg
+VVNXQyBmb3IgbW9zdCBpZiBub3QgYWxsIG9mIHRoZSBvdGhlciByaW5nDQo+Pj4gYnVmZmVycyBt
+YW5hZ2VkIGJ5IHRoZSBrZXJuZWwuICBXaHkgYXJlbid0IHRob3NlIGEgcHJvYmxlbT8NCj4+IFdl
+IGhhdmUgdGhpcyBvbiBvdGhlciByaW5ncyAtDQo+PiAgICAgICAgICBtYigpOw0KPj4gICAgICAg
+ICAgYW1kZ3B1X3Jpbmdfc2V0X3dwdHIocmluZyk7DQo+Pg0KPj4gSSB0aGluayB0aGUgc29sdXRp
+b24gc2hvdWxkIGJlIHRvIHVzZSBiYXJyaWVyIGJlZm9yZSB3cml0ZSBwb2ludGVyDQo+PiB1cGRh
+dGVzIHJhdGhlciB0aGFuIHJlbHlpbmcgb24gUENJZSBzbm9vcGluZy4NCj4NCj4gWWVhaCwgY29t
+cGxldGVseSBhZ3JlZSBhcyB3ZWxsLiBUaGUgYmFycmllciBhbHNvIHRha2VzIGNhcmUgb2YgcHJl
+dmVudGluZyB0aGUgY29tcGlsZXIgZnJvbSByZS1vcmRlcmluZyB3cml0ZXMuDQo+DQo+IFJlZ2Fy
+ZHMsDQo+IENocmlzdGlhbi4NCj4NCj4+DQo+PiBUaGFua3MsDQo+PiBMaWpvDQo+Pg0KPj4+IEFs
+ZXgNCj4+Pg0KPj4+PiBTaWduZWQtb2ZmLWJ5OiBNb25rIExpdSA8TW9uay5MaXVAYW1kLmNvbT4N
+Cj4+Pj4gLS0tDQo+Pj4+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2RldmljZS5j
+IHwgMiArLQ0KPj4+PiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlv
+bigtKQ0KPj4+Pg0KPj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQv
+a2ZkX2RldmljZS5jDQo+Pj4+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2Rldmlj
+ZS5jDQo+Pj4+IGluZGV4IDFmMWQ3OWFjNWU2Yy4uZmIwODdhMGZmNWJjIDEwMDY0NA0KPj4+PiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfZGV2aWNlLmMNCj4+Pj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2RldmljZS5jDQo+Pj4+IEBAIC03NzksNyAr
+Nzc5LDcgQEAgYm9vbCBrZ2Qya2ZkX2RldmljZV9pbml0KHN0cnVjdCBrZmRfZGV2ICprZmQsDQo+
+Pj4+ICAgICAgICAgIGlmIChhbWRncHVfYW1ka2ZkX2FsbG9jX2d0dF9tZW0oDQo+Pj4+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICBrZmQtPmFkZXYsIHNpemUsICZrZmQtPmd0dF9tZW0sDQo+Pj4+
+ICAgICAgICAgICAgICAgICAgICAgICAgICAma2ZkLT5ndHRfc3RhcnRfZ3B1X2FkZHIsICZrZmQt
+Pmd0dF9zdGFydF9jcHVfcHRyLA0KPj4+PiAtICAgICAgICAgICAgICAgICAgICAgICBmYWxzZSwg
+dHJ1ZSkpIHsNCj4+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgZmFsc2UsIGZhbHNlKSkgew0K
+Pj4+PiAgICAgICAgICAgICAgICAgIGRldl9lcnIoa2ZkX2RldmljZSwgIkNvdWxkIG5vdCBhbGxv
+Y2F0ZSAlZCBieXRlc1xuIiwgc2l6ZSk7DQo+Pj4+ICAgICAgICAgICAgICAgICAgZ290byBhbGxv
+Y19ndHRfbWVtX2ZhaWx1cmU7DQo+Pj4+ICAgICAgICAgIH0NCj4+Pj4gLS0NCj4+Pj4gMi4zNC4x
+DQo+Pj4+DQo+DQo=
