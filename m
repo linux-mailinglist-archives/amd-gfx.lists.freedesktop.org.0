@@ -2,63 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA49E9C6AE5
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 09:49:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3F59C6AE1
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 09:49:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8977510E6A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39EF610E6A5;
 	Wed, 13 Nov 2024 08:49:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="dz6Czezm";
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="ZSd7Tal6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76DC710E234;
- Tue, 12 Nov 2024 16:45:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=f9JaviCbLXmyeAuQ/U0n+aUYuMEEP12gJE4r6O2lA6Y=; b=dz6CzezmviA0qhKwz4iETP5x++
- 60lndbluRwU2y7LIH/85fO/EIxtU0DTh93U+Loi47xtk4d5Hxt32CLMbrYemVc0eYVEz2ljYazoHw
- oI1VjVYYPwbdxUpwpB757Rn5ZlzzdK8eGro/nIUB+rBY1xqaFITK8rI9vvwYxQ2MX3ski8MVtLDMf
- v0c46+ni+C2Nm1P2Y619iYPRJB2UOnhErPAcP3S8Z3uAd7DDT5L+WID89wr9hDhGLiftrIZ89SXbq
- LNMa8ZgeGN8fpHIvQN+nFyZitDtl4aMlfFN19uO7dlCNb86S+0RjiXk/OVhjaizKOUZXi2sAJrJ4p
- qFs4H62g==;
-Received: from [179.118.191.54] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tAu0X-005xVV-V4; Tue, 12 Nov 2024 17:44:50 +0100
-Message-ID: <0829825f-6e6e-465e-aa3c-444d57bd115e@igalia.com>
-Date: Tue, 12 Nov 2024 13:44:43 -0300
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 241F810E623;
+ Tue, 12 Nov 2024 18:34:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+ s=mail; t=1731436454;
+ bh=N0c1AAbtePVSIawYLO3q1m7P6uw9XKLYSSRostz+3OQ=;
+ h=From:Subject:Date:To:Cc:From;
+ b=ZSd7Tal6uncyzkCLszuWlsuHp0Htz1BcIfaA7ab67Z2Fvb/rQVsHHSDaDetTeZWEn
+ b1XkfbT1hhjqo+1k5rXt2rUijbRZGZnSsruu9YuSOLFdgHsSdSCQ/s+k5C5fZ6TxxG
+ Xc6RDnMkt4wtuZ3e7AyexjzW/6pduXD6WMw+GaPQ=
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Subject: [PATCH v2 0/7] drm/amd: Switch over to struct drm_edid
+Date: Tue, 12 Nov 2024 19:34:09 +0100
+Message-Id: <20241112-amdgpu-drm_edid-v2-0-1399dc0f0469@weissschuh.net>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v9 2/2] drm/amdgpu: Enable async flip on overlay
- planes
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: kernel-dev@igalia.com, Daniel Stone <daniel@fooishbar.org>,
- Xaver Hugl <xaver.hugl@gmail.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, joshua@froggi.es,
- Leo Li <sunpeng.li@amd.com>, Maxime Ripard <mripard@kernel.org>,
- Simon Ser <contact@emersion.fr>, dmitry.baryshkov@linaro.org,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- Alex Deucher <alexander.deucher@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>
-References: <20241101-tonyk-async_flip-v9-0-681814efbfbe@igalia.com>
- <20241101-tonyk-async_flip-v9-2-681814efbfbe@igalia.com>
- <3a97b828-2864-45fd-9fa1-5341bd456d3e@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <3a97b828-2864-45fd-9fa1-5341bd456d3e@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKGfM2cC/2WNQQ6CMBBFr0JmbQ2tWKkr72GIqZ0pnYVAWkAN4
+ e5WXLp8L/nvL5AoMiU4FwtEmjlx32VQuwJcsF1LgjEzqFJVpZZHYR/YDpPA+LgRMoqDQqMN+nt
+ tDOTVEMnzaytem8yB09jH93Ywy6/9tWpZ/7VmKUphyWrtpD85X12exCklF6aw72iEZl3XD7xmj
+ JGzAAAA
+X-Change-ID: 20240615-amdgpu-drm_edid-32d969dfb899
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, 
+ jinzh <jinzh@github.amd.com>, Aric Cyr <Aric.Cyr@amd.com>, 
+ Alan Liu <HaoPing.Liu@amd.com>, Tony Cheng <Tony.Cheng@amd.com>, 
+ Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, Harry Wentland <Harry.Wentland@amd.com>, 
+ Melissa Wen <mwen@igalia.com>, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1731436454; l=2732;
+ i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
+ bh=N0c1AAbtePVSIawYLO3q1m7P6uw9XKLYSSRostz+3OQ=;
+ b=DSan8VeZ7z6jB8KBMTo1YdJljrXaXmpIwmBYKc4f+pXlBmb7Gc3xQgOb8/t/+Sr+ybouB/T2u
+ w8012xFrELoDJzXSW3yrth4Kwa64Dvu6H1KIVEjBjxpgrwRw8+vKYJ6
+X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
+ pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-Mailman-Approved-At: Wed, 13 Nov 2024 08:49:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,55 +72,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Harry, thanks for the reply!
+The AMD DRM drivers use 'struct edid', raw pointers and even custom
+structs to represent EDID data.
+Uniformly switch to the safe and recommended "struct drm_edid".
 
-Em 11/11/2024 18:10, Harry Wentland escreveu:
-> On 2024-11-01 14:23, André Almeida wrote:
->> amdgpu can handle async flips on overlay planes, so allow it for atomic
->> async checks.
->>
->> Signed-off-by: André Almeida <andrealmeid@igalia.com>
->> ---
->>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 3 +--
->>   1 file changed, 1 insertion(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->> index 495e3cd70426db0182cb2811bc6d5d09f52f8a4b..4c6aed5ca777d76245f5f2865046f0f598be342a 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->> @@ -1266,8 +1266,7 @@ static int amdgpu_dm_plane_atomic_async_check(struct drm_plane *plane,
->>   	struct drm_plane_state *new_plane_state;
->>   	struct dm_crtc_state *dm_new_crtc_state;
->>   
->> -	/* Only support async updates on cursor planes. */
->> -	if (plane->type != DRM_PLANE_TYPE_CURSOR)
->> +	if (plane->type != DRM_PLANE_TYPE_CURSOR && plane->type != DRM_PLANE_TYPE_OVERLAY)
-> 
-> This wouldn't just be called for flips, though, but could also be
-> called for updates on a plane, right? Those could cause for problems.
-> 
+Some uses of "struct edid" are left because some ad-hoc parsing is still
+being done inside the drivers.
 
-I see, I think you are right and can be called from a non-flip commmit.
+Patches 1 and 2 delete some dead code.
+The remaining patches perform the actual conversion in steps.
 
-> There's also nothing special about OVERLAY vs PRIMARY planes, other
-> than that amdgpu needs a PRIMARY plane, IIRC. So updates on PRIMARY
-> planes should also work (or not).
-> 
+If some patches are already acceptable as they are, I'd be happy for
+those to be picked up from the series.
 
-Right, the PRIMARY plane type is already supported for every DRM driver 
-in the API so I didn't explicitly added it here.
+Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
+---
+Changes in v2:
+- Remove a wrong kfree(struct drm_edid);
+- Drop patch "drm/edid: constify argument of drm_edid_is_valid()"
+- Add missing call to drm_edid_connector_update()
+- Drop drm_edid_equal()
+- Add patch to remove edid_extract_panel_id()
+- Link to v1: https://lore.kernel.org/r/20240818-amdgpu-drm_edid-v1-0-aea66c1f7cf4@weissschuh.net
 
-> Maybe this should check that we're actually dealing with a simple
-> flip, i.e., a simple surface address update.
-> 
+---
+Thomas Weißschuh (7):
+      drm/amd/display: Remove spurious declaration of dm_helpers_get_sbios_edid()
+      drm/amd/display: Remove EDID members of ddc_service
+      drm/amd/display: Use struct edid in dc_link_add_remote_sink()
+      drm/amdgpu: Switch amdgpu_connector to struct drm_edid
+      drm/amd/display: Switch dc_sink to struct drm_edid
+      drm/amd/display: Drop opencoded edid panel id extraction
+      drm/amd/display: Switch dc_link_add_remote_sink() to struct drm_edid
 
-Right, that makes sense to me, thanks!
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c     | 55 +++++++++++-----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h           |  3 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c             |  4 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c             |  4 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c              |  4 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c              |  4 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 20 ++------
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c  | 36 +++++---------
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |  6 +--
+ .../gpu/drm/amd/display/dc/core/dc_link_exports.c  |  5 +-
+ drivers/gpu/drm/amd/display/dc/dc.h                |  8 ++--
+ drivers/gpu/drm/amd/display/dc/dc_ddc_types.h      |  7 ---
+ drivers/gpu/drm/amd/display/dc/dc_types.h          |  5 --
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h        |  4 +-
+ drivers/gpu/drm/amd/display/dc/inc/link.h          |  3 +-
+ .../gpu/drm/amd/display/dc/link/link_detection.c   | 49 ++++++++++---------
+ .../gpu/drm/amd/display/dc/link/link_detection.h   |  3 +-
+ 17 files changed, 92 insertions(+), 128 deletions(-)
+---
+base-commit: 377dda2cff59825079aee3906aa4904779747b0b
+change-id: 20240615-amdgpu-drm_edid-32d969dfb899
 
-> Harry
-> 
->>   		return -EINVAL;
->>   
->>   	new_plane_state = drm_atomic_get_new_plane_state(state, plane);
->>
-> 
+Best regards,
+-- 
+Thomas Weißschuh <linux@weissschuh.net>
 
