@@ -2,121 +2,153 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03419C6388
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Nov 2024 22:37:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 561D39C6569
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 00:46:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69D6D10E66C;
-	Tue, 12 Nov 2024 21:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC40810E1A9;
+	Tue, 12 Nov 2024 23:46:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="teqgm8yd";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xlxBjJSB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2074.outbound.protection.outlook.com [40.107.220.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61E1A10E66B
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Nov 2024 21:37:41 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2047.outbound.protection.outlook.com [40.107.223.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80BBD10E1A9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Nov 2024 23:46:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NMH92RnaK88PGL54HpQBtC1fKyg1zsvLhjlfEPks/UeYBJWgEHqbrvp9XYesYooxg0BJ0ZqMhC6D5SPo1Yg7oJWqN72HgKcJ9i0UWgFx6sutfRUVPqt6gNCx/7vDFiPyV6Ui7ZoCHXmE7yY/niOGclaRNF+dLtThAwvRbjZbFvdnUl4ZboLd9gRBTxN3mMeVsyOmtVX0IRDdgwVu4tmPBhxkrR/IrHjaHvCYbzv7C29AoVk+uAj/DT+joZo0u1NTWu4V5/MiGdz+EG21xkyimmryGdl5xdbdg3sdr/GSjwbRhrjJUdHLRB7WyuZIj57lDtnbriYVS54/TLcQ5+dzaA==
+ b=qv7ekjGGhKavBRv3PFrr9Ja1gGN5vLm4368/tDAxp5zWTZdu/Nq20YykvVQmI7V0YmEDNus9l2V3xu41BOra+xkCGE5WvB+5+QoPHq1wSie6wpPrjEXhXBQZ3VdulpaOYwBLkcJtvNjSc7OSouTqqrjzL/1cz08KP8c4gl1d3uIHJbFEsEC9adLubtrKVN0e9Ssuf5Kb11wvGKHrJ9JfHzKJweVGVS/dpw1Qpr7mv7gYVwy782/+w9GpeQXN2/gwJInD58mSoXacoD/xj6Yz7BOb+AD1Q+pPikjXVknE6kr9fJ8+gvb84EW/5QP5lWWhTPGqYPEOWB+Xyls7aA0uLA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iSZUqwp4gAKocWGM4i2mREjlSKi2tURZuZ47d5DoNPI=;
- b=W6jcdpiaTcM8Y1b2vUP3EaL+oUPtfp++NMIzcA7muNAHsH5u4bcjS4v05uyEL1DeTg+VfCL97EJ2nNpVTtEdB/5jKwesCRXIZNuC3panZoMNE7mEHAuu8kt2qDpMwShzB3vJlbZNWYlVQmCTusHS3vuOLG2cDFB/DKv8QaXk7rpTMNpvLFAzu5Yk4jDJ7C1HcegASYZDjkWESuYHcFy3I7NEF8+MLvYWZAyzxCarC9hG/jjVvN4r3rzYGXwnNtSdcTB1osETezZQeeVLaACOFhgudRxPfkvqHS6zfqFqSrMPNzOp+k+yuCeODFcTSx2R+Hq27FwNMr63bf9r1oH/Rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=25TxwjT/8DFIKg2BrnolvM9Z4MWBwz3JNnaBofbRdfM=;
+ b=EYGAeIiehCbRrTCQT/utQ6nvAR2N1zBz5UXWD6/z7+FsihA4OVDqVss0pONZYpjHJLlNoZZOhdN3e3V+eE73OVgpiBg47io6oi18jLZB0d34Sn80/846BIG9DVBi/2dpsBcgMYX3tPjGVL16UqCAjCZTegIeklGYdU24umXwfpbvG8QRSKmcITcjf9lQhhGOIC9xU0Xjyw8NGFfr8328k4X2XGuy9+dxKaFVa6ItZEPTrdN5HHTPQAdowanzEnfeJIQK0E6CPg9hcC9Psf+8C9Ch0ci2mRO+rCKV4kUha9C1v59wprws+bv7Q9rOyGqdTSb/Irs66epqUP6y4ThO4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iSZUqwp4gAKocWGM4i2mREjlSKi2tURZuZ47d5DoNPI=;
- b=teqgm8ydHUkqC+a3fXVdfrMXnp81p8ursLHrmsQFJmlk0ruIKMeeGglA8aXAJNH0x1kc/hX5/6mN4VeHNAWURxuAPfANxB1B3+mhwGgCqt+LkzSwkT5gpTvAWmxjQlEnBPZe660SP+BCk4NNjAW79yAwmDuoFLbDXdeegbsPwvQ=
-Received: from BN0PR03CA0047.namprd03.prod.outlook.com (2603:10b6:408:e7::22)
- by PH7PR12MB5596.namprd12.prod.outlook.com (2603:10b6:510:136::13)
+ bh=25TxwjT/8DFIKg2BrnolvM9Z4MWBwz3JNnaBofbRdfM=;
+ b=xlxBjJSBznEBghc28T6AOtQsguP9BvOUVMtAVlZeKjxPQbUMTr26y8x26N0Hh+R2h6EvayZ7wD5lYpBxsK10z/Ni60Uwto4VKVk3vMOFmI+U5UH9Kv1w45f4xIe7TpVQf5vwRTIWm835UfSZzPtrIUAqFI2s+Qsr8EjTYyR/M5M=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by SN7PR12MB7323.namprd12.prod.outlook.com (2603:10b6:806:29a::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29; Tue, 12 Nov
- 2024 21:37:38 +0000
-Received: from BL6PEPF00020E5F.namprd04.prod.outlook.com
- (2603:10b6:408:e7:cafe::dd) by BN0PR03CA0047.outlook.office365.com
- (2603:10b6:408:e7::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29 via Frontend
- Transport; Tue, 12 Nov 2024 21:37:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF00020E5F.mail.protection.outlook.com (10.167.249.20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8158.14 via Frontend Transport; Tue, 12 Nov 2024 21:37:38 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 12 Nov
- 2024 15:37:32 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <yaolu@kylinos.cn>, <jfalempe@redhat.com>, <harry.wentland@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH 6/6] drm/amd/display: add non-DC drm_panic support
-Date: Tue, 12 Nov 2024 16:37:16 -0500
-Message-ID: <20241112213716.49355-7-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241112213716.49355-1-alexander.deucher@amd.com>
-References: <20241112213716.49355-1-alexander.deucher@amd.com>
-MIME-Version: 1.0
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.26; Tue, 12 Nov
+ 2024 23:46:28 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::9269:317f:e85:cf81]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::9269:317f:e85:cf81%5]) with mapi id 15.20.8137.027; Tue, 12 Nov 2024
+ 23:46:28 +0000
+Message-ID: <bfa7bfa7-c134-4268-97aa-7b9baf899be3@amd.com>
+Date: Tue, 12 Nov 2024 18:46:25 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND] amdkfd: check ret code for ioctls
+To: Zhu Lingshan <lingshan.zhu@amd.com>, alexander.deucher@amd.com
+Cc: ray.huang@amd.com, amd-gfx@lists.freedesktop.org
+References: <20241031105059.251085-1-lingshan.zhu@amd.com>
+ <616bc79f-ad92-4b22-8df0-0a0ebe27fcf6@amd.com>
+ <2ca21e92-6324-413f-9df9-0bfcf638c669@amd.com>
+ <76ef68f6-dd23-41b3-8dec-d35e6874de01@amd.com>
+ <cc6f4141-a085-41e7-b772-8c400788c1b9@amd.com>
+ <d96c1117-7eb9-4c65-ab0a-1f4507d32674@amd.com>
+ <87029c10-4fce-4a42-a04b-ed2633c69148@amd.com>
+Content-Language: en-US
+From: Felix Kuehling <felix.kuehling@amd.com>
+In-Reply-To: <87029c10-4fce-4a42-a04b-ed2633c69148@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: YQBPR01CA0139.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:1::39) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E5F:EE_|PH7PR12MB5596:EE_
-X-MS-Office365-Filtering-Correlation-Id: e6aaa888-9a0c-4768-033a-08dd03623ab1
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|SN7PR12MB7323:EE_
+X-MS-Office365-Filtering-Correlation-Id: f7312069-0253-4eed-429d-08dd03743a21
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?yBe3fLcBAQCnc3E8ENXWNCRvGEhJRngLdzwDGeBMQRv3txSeKY04oLS+ZC/E?=
- =?us-ascii?Q?k62354AEVIbrXka62mNWT0Vz2mnfRy3pDJkBijYEzS11P3fRMguNQeRR/Rbu?=
- =?us-ascii?Q?UTtbCtvTGAHySTp/qIX9xTJizTjjwYNuUee1RENbhi+QtOQS9xw9zWJfboOK?=
- =?us-ascii?Q?xuBj1pjGgUUtHPOWQ8MvTbnhWkgM8+B6uSrvLAdYDwb2fl0eubmJQ3WE7ZPi?=
- =?us-ascii?Q?xgvTA7iPuaKmKBDllqG9OvPk8IV7OTuzGHbKdGjkwT39AHk5PnL/GsIUORpO?=
- =?us-ascii?Q?6MZAUKvaZx0vfdrWqOlDVE12uCxD1l1Murhy5T2R5jvQYDVkXVrtSL5akMTr?=
- =?us-ascii?Q?SdpPFr3iZAIb9D/2Z/qZhZFLLeRpKJv/SYi30KmO+t5A7hemCoYslUmKLZ/x?=
- =?us-ascii?Q?P/ub25Gg62cshMOn94dscS55RMvC/oBoglwpHhgeG2UqWFalnExP7An+AHNL?=
- =?us-ascii?Q?dxiNRJn8wtkyQ47zuXuQxpFiYaAWC7yjptYbNWIq1sVxod5SWPD7xOaa2LNm?=
- =?us-ascii?Q?E16Z88A6cUf+tjfiYee+J7DFTh/LxdUZY5dUdq8n0tatdmdOUhiqcQIWl42f?=
- =?us-ascii?Q?8Jui0ZEy+XBV/EA90yYCed2Yyt/vEqTFYn9M8xWXOb3HLFUFbO1j8eSWYMuY?=
- =?us-ascii?Q?bXc8K/m3krXcUDN0O8iNtAWPtNLXG1ZYhtUGAgaRqBvnm+GkOYKFBh6Dnh1T?=
- =?us-ascii?Q?KnQiVShd8GrFneMPUstgbFzBfmFngh655AIi6nHL30gu4qrNofrCL6ZFmB3r?=
- =?us-ascii?Q?KfhdvsTSwhc4NsddkB+43lhnZ8u8eUySKY+kpHfbpWbuT9bKIIEgOiHdZarU?=
- =?us-ascii?Q?6YeZ4Mau+R4bMXEXs1hn74DZdmXikKrN1cyYVaadItJ2U6sYcrUBrh0M7Row?=
- =?us-ascii?Q?zZCbXadV98dox3I6Qm3SDc2wOLwRGMQpx+6pQ4CjbNxvsOM508OHDUj9orko?=
- =?us-ascii?Q?quu2nyt0E91CH7FhkvLK+a12h+6UFQboWEouPnXH3stJm5ic6bP6lXMMqa+3?=
- =?us-ascii?Q?xN9Ebm4YxZnSU0LIQPABbHjKFT74XgMI1LDIRSV/sVFjM2eRqDwzCCKi4uG6?=
- =?us-ascii?Q?yL5cVnKGfS5l+QLZNPg1sUXFOo4udBWWwxjceDfvvGU5mgmgD6GwvQIjB0i8?=
- =?us-ascii?Q?yhWQtR3cqlA2P00p811rXdWVhO0MRhzbuY4FRucnzid1k9UzpiDR3Kr1DtL3?=
- =?us-ascii?Q?xK90Oonk+BU1M5dZ4Xo9sOcXM1qF2iQA7m9v5AK7PnRvwnaJLgztg6XR+rx/?=
- =?us-ascii?Q?axYjPY3YsKSkRO0qFXwJRvimagYcXTnCMdVD/kIytCHgGwptLQrQFvKhK9VD?=
- =?us-ascii?Q?KZpt7GzWIlI7IutzG0RWrXZdeqCw3QoOHY/Oz2p2udyZ00xJMreI9epsXEtR?=
- =?us-ascii?Q?zPcw64KSekL6iCcfZBNVKGZwFIEXTjuOs+ih35C2foblsrBa5A=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Z2NDSFVQSjYyOGhJQTNNeUFtb29IbHZ5bWVESEdaWHNtbW1OUlRlMlVVbFlV?=
+ =?utf-8?B?R0QveFpXU01sQ3U0NTZiT2RSakZwKzNSTTF6SGR0c09MZVd1eTg3NFFuS3Bn?=
+ =?utf-8?B?Tit5TnhkQVhkWVI4S2lCREFQeWxmcGkrcUpVRzMrY0pHNVlVRkdNUUhTamRa?=
+ =?utf-8?B?bWEyTHdrdmE5TnBjTUFqQUR2Zmo0Ry9YK2YycHVlZWlPWUlyem40TEljaVB1?=
+ =?utf-8?B?YVAxU0p0ZThseGpuQ1ppeGJ4RWNNa3h6U1d6d1dsQVJ2d0kxL2lmL2VYMXVH?=
+ =?utf-8?B?OHgvTmF4RGZPMnVwVEN2bndaMDFObHJVK09FVnJ2U1ZjWGlmLzA2TDZac3lF?=
+ =?utf-8?B?OEZ5WHA2SnBvRHYvQW4wZFliMUZXeFRiamcwajhaRVB5aUpXV2FHRGViaGx6?=
+ =?utf-8?B?VXY3ZDY0aHIvTk85dXlLam03T3IvMkkrRnFNRHdGQkZQL0FMOTJ4Q2Q0c3dn?=
+ =?utf-8?B?Q0grZlBsdTBhMXRydzcybGI3OWNnaS8xNXFuYUZIU1J5a2ZvcnZZdno0YkUx?=
+ =?utf-8?B?U3ZHNEx6UjAyeGtoNFB5cGpOZWZzV3ROL2w5eHdZVVhpOEpEQ0Y5czBvcFlR?=
+ =?utf-8?B?RU9aMHNXZnhUdXBobnU0bjQvV2Z2RXllOStMRkJUOW9pdlpOcUJHUVVWd1J5?=
+ =?utf-8?B?RjU5aEkyaE5KZGhiSUsrQ3lGRHRaWGpuNFhoYm0wV0tZSno1QkxhdS9Mc1Vz?=
+ =?utf-8?B?cmVETll5alA1eG05UGYyNzZYR0o5ZitSOU5lZ0RnRHlZWFl6Y2d3YjBibzcw?=
+ =?utf-8?B?WCtrcjYvRUxSS3hiNmhFTEwyUDZYTllwOThIMU1CVXlzV1FySmVMZUYrMlVz?=
+ =?utf-8?B?WENEdjFIN0lYNVZvTFg0N09hK3h6NWZCYXdHaExkVVh4NjJXU09lNXFBYUIr?=
+ =?utf-8?B?Mkl0UDVqR2poS3Y5blRnZmxFTFNSQlJBYkFmRzVaSjRucElhSVUzZWY5NTB0?=
+ =?utf-8?B?NkNmbEpaNWNCZU5lRTFwaDVycDhTaitHSnRCVWpIbjFNR0hweS9jbzZ3UkF3?=
+ =?utf-8?B?YVZNT0tNMFY2eCtBQ0NXTjRCR3RuTWdGV1lwZzc2aFEwSFFpTC9RakZvUmN5?=
+ =?utf-8?B?T1JwdEJNbGNlNUJWb1gzc1dPV1o5YlV1amhWNkZhaHY4bkxCajBCeEpOUnBt?=
+ =?utf-8?B?ZkF5SUZWTnlzV2pzVVhqaHBjOTREa3ovc0V0MUFaSlYxVGdSZHVxRE5LWHpP?=
+ =?utf-8?B?U093VlZGZGkwNVVlZXRKRTU1R2J6bHJOeTRjN2Jjby81ZnQ5dDBQZHhRNEpI?=
+ =?utf-8?B?dFZsclpDdDgxNE5PN0Y5S0RobHRpUTMwNCtodG0wc2pJUVViSmpKdHNuTEVp?=
+ =?utf-8?B?eHAzc0VrT3cvbUtRdmVNWlREb0c4TlEvTUtTQjFEK2NGWGNjQ05wT081MTYy?=
+ =?utf-8?B?MDFWNmR1dE5PWjNZekJlSEkrSHdQbHpuU2FFZXVscVlYU1VJRUgreVFIZWJS?=
+ =?utf-8?B?eS9CUlBnV2FxL2QrZy9RR0xzMnlMUHJWSzljaFFBNlFwaklybGZDb0t0eWpa?=
+ =?utf-8?B?NUZuK1lYYytHb0xUY0N0SE9nL01ISEsrd2J5c29QYTR3RERScXduN3RCU2tk?=
+ =?utf-8?B?ejE1MlpqeU9MOEJPd2hVaGNLd3hlM2dxWVR1L1lQWGpOTWRDVVlBb2dtcnpO?=
+ =?utf-8?B?Rlg0Mm5oTEFnU2JSM1pSOXhTd2FsRDBjeUo0amhIS2FPUmF5bjRweVdmdXd0?=
+ =?utf-8?B?bE5oOG9kcWhzMms2KzZMRlBOelhsdjV4ZkxON1NCQkV3TU5TRlB5RWFHS2Mz?=
+ =?utf-8?Q?KLim/Z0zKIDhpZFbzKxpGEmFYv7Z1FFaSdmSM6a?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXp4aTdDanphQzh6ZFFZYWZIUFErNVlpVDh6citOM0plS0V3YzBJRGNJc255?=
+ =?utf-8?B?c0RiRHd0Z011N1FQWVhlMFpwK3ZTNjZBSklyVmRpYW9yeWNXMlhsekpnWUNX?=
+ =?utf-8?B?dTJMZjRTQ2cwaTA3VDRIUFluMGhyWGdDZm9CN2lOK3NGdFBrZWZWYnIvcUto?=
+ =?utf-8?B?TUZveDRUa0hhYm1lUnBwMDVPbXVFYi9iMElTMFd6R2pzcm9kbHFvUkZJczVB?=
+ =?utf-8?B?MUZqRkVKdnZLbWw1amFTMlplcndrWFFsL1kvdFZxVGRCbXk3VldOUWFpNFZo?=
+ =?utf-8?B?SFhRNUYveStjdUZVeW1hRWJkRjRQaHRUeE1neTJEQ05UUDJqOVVDR2xuVTFD?=
+ =?utf-8?B?eGM5M1l5OE1yT2NudHFjd2M1NDJkZ1cwZi9RWEhKVklQakg3ajh3NzlPRExi?=
+ =?utf-8?B?djB4MGRwUGxHNmlPdm41V0xhUTNwaFNBSkFNdDdvOHl1OHBkNFExckc0dG9y?=
+ =?utf-8?B?RnQ4NFVkeUpnTE12dzBxbEcvTDNwdmkrS2NUQTMvSU5nOU53ZitGMFNtMUxW?=
+ =?utf-8?B?bVJ0R2U0OXFSd0FFM3J4YWNsQ0NsYnFrMVc3emlQcVZMNGxqdXNNa2VQYzJy?=
+ =?utf-8?B?RDlHVy9YWDkvdzNXV0VRc3lLZ0I4RUpUMFNPQ1lyN3FxSWozNjR3eXBUd2tm?=
+ =?utf-8?B?SEFmS05nbnArN1JYMjBIalN0R0svTzJuUDBWYVpCdzkzQ1hFbksxOFRxK1lV?=
+ =?utf-8?B?bEtJekFpRVFWRFFZMVNCRFYxNXNSbjEvZTBxeXZlaWROcUgrVXZzYUc0NEhE?=
+ =?utf-8?B?TWMreXpLRFdjS3B1ZXJ0T0pKcUhuZkFxQUJvL2lwRWJPN2tFZnAzNmt5ZWRv?=
+ =?utf-8?B?U0x2aFVlZlgzTUpoYmh6MitPZDg0djdodHFmUTkvdzRBbkpWOU1GSjQyMDJP?=
+ =?utf-8?B?OTUzdzNScXBrR3B3aEJ4R3JEK1pjUUZ4M1l2azl4anFSaXNxWkRTSFg0ZGoz?=
+ =?utf-8?B?bGJlNkpnS25tLzJOU2t3NVZ3cGoxMjJRYWUzT3QrREVjTmg0SStuelZ6UG4x?=
+ =?utf-8?B?VDRkZ1lPY0xXaHEwSDFBejJTalc1NzZoa01WWjdITVdnN2hGWlZNZDJ3MXVH?=
+ =?utf-8?B?eVJwcm14eGJ0WUVSSmtVemdoVHlEOGFBUm9vV1plN052WlR0NzhmemM0NW55?=
+ =?utf-8?B?WHBJd2dTYU1zSGVpYnJ4OElELzZYVnkrNGM0RFNLTGZQeTJ5bm9XU1R1R0FM?=
+ =?utf-8?B?cmwvUnFUNXZLQ1piRmNaZHNPcCtZVkx0SHZqd2laVENxM1FXZU1hd005ZEJt?=
+ =?utf-8?B?NVR3WXRFdFZVUE9iZVF4WXE3R2hkZVpiYUxIZjZ6RHlLckhPUURaOVVuSDdw?=
+ =?utf-8?B?ZC9DZVozYjRTcjFQWXRLM3RzVHVUNjBwaW1OVVJmUDhtVWJhYmVDWmZua0ZN?=
+ =?utf-8?B?RjhDbk90OXlwV2MxZXpObFc3VEMyWkd0R2VGak5COFlmUUZXS2RxcytOTERq?=
+ =?utf-8?B?dHFEcUpoSzdOblB0NFUyTkExYmxpN3ZXSmpnWXNXeW9TbGpTWFZ6R2FyQU5z?=
+ =?utf-8?B?TnJLdk8zU1E3TDBuUFBBUDZaYlJlWHpEWitoaEtHWmh0cFRoUG54N1llVkhu?=
+ =?utf-8?B?aVlTWVRvbU5kdG1DdjduaGl5aDdQOTRqSGNNZGdneXdKdkl2NjdncmpidVM2?=
+ =?utf-8?B?bFMySjQ0UlZ4NzZkbk1NOFRuZWI0ZXd2eFBEVTlBaHdTbk9kOGZhc1NZblNM?=
+ =?utf-8?B?TjBmbTdCVGxoQ0QxQ3ZtdDhaWFJ3SzFFWGcwTzlNK0hQOXhZVWNWZzlzMGQy?=
+ =?utf-8?B?Q1lUa00zelNUTWV1eU91ZldhdG1UbGVJeFBTYURPZ2ZOZVVmRzJVaW9jMU9V?=
+ =?utf-8?B?M1QxZEoxQ3BMbC9QblZWSjFGZy9lTTBkcVlHZjBaOFBvWVZrRnpDUkRlQVly?=
+ =?utf-8?B?NDdWZkV1ajE1WXFBTkxPQUVhTzl6ZlJaOGgxN1VId0FJL0hZK29BMEpTYkh5?=
+ =?utf-8?B?QkdhMk55VFRZRURlVlY4NU9lNVVLcTkzTnpaTWtVdFBBV2tkSUJoWlJtYm5i?=
+ =?utf-8?B?ZUFzZ0UzS293SHJCYldKRDBLQk9qcGlvenlOVVI2aXFsQmZqQVMrS1Y2N2RU?=
+ =?utf-8?B?cVhXUEcwQUc1MEN6V3ZSNlZUb2d3NUpTSzJHeHgrZ3c5SE4rMGF4UG1xNzVH?=
+ =?utf-8?Q?/mylI+sQMM2ZIyxiBJLLQ/Pgx?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 21:37:38.1586 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6aaa888-9a0c-4768-033a-08dd03623ab1
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7312069-0253-4eed-429d-08dd03743a21
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 23:46:28.4260 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E5F.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5596
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bUbpdsK06KkECaxZXx5MUqH/OZ2PJskOOaWkgk2KJc2drH8oyMSAnsD4rG08c/OAWIQSTSB9jSphAoAf/QpS8g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7323
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,204 +163,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add support for the drm_panic module, which displays a pretty user
-friendly message on the screen when a Linux kernel panic occurs.
 
-Adapt Lu Yao's code to use common helpers derived from
-Jocelyn's patch.  This extends the non-DC code to enable
-access to non-CPU accessible VRAM and adds support for
-other DCE versions.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: Lu Yao <yaolu@kylinos.cn>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c | 27 ++++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c | 27 ++++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c  | 27 ++++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c  | 26 +++++++++++++++++++++++++
- 4 files changed, 107 insertions(+)
+On 2024-11-12 2:35, Zhu Lingshan wrote:
+> On 11/12/2024 6:21 AM, Felix Kuehling wrote:
+>>
+>> On 2024-11-11 03:08, Zhu Lingshan wrote:
+>>> On 11/5/2024 4:50 AM, Felix Kuehling wrote:
+>>>> On 2024-10-31 22:35, Zhu Lingshan wrote:
+>>>>> On 10/31/2024 11:30 PM, Felix Kuehling wrote:
+>>>>>> On 2024-10-31 6:50, Zhu Lingshan wrote:
+>>>>>>> The ioctl functions may fail, causing the args unreliable.
+>>>>>>> Therefore, the args should not be copied to user space.
+>>>>>>>
+>>>>>>> The return code provides enough information for
+>>>>>>> error handling in user space.
+>>>>>>>
+>>>>>>> This commit checks the return code of the ioctl functions
+>>>>>>> and handles errors appropriately when they fail.
+>>>>>> I have reviewed and rejected this patch before. My opinion has not changed. The existing code copies the ioctl arg structure back to user mode even in error cases because user mode needs additional information from that structure for some ioctls.
+>>>>> how can the user space program distinguish the "good informational parameters" from the  "bad default legacy parameters"? There can be other user space programs other than thunk.
+>>>>>
+>>>>> what if the user space program doing pulling mode, it can pull the args changes because ioctl is usually slower, our code should be robust.
+>>>>>
+>>>>> usually the return code provides enough information for the user space programs.
+>>>> I don't understand your concern. Even without your patch, the failing ioctl still returns the error code to user mode. User mode can safely ignore additional information returned in the argument structure. You are raising concerns about performance or robustness. I don't see that either of those are negatively impacted by copying additional information in the argument struct to user mode.
+>>> Still the questions:
+>>> 1) how can the user space program distinguish the "good informational parameters" from the  "bad default legacy parameters"? 2) what if the user space program doing pulling mode, pull the args before error code returned. Memory changes are usually faster than error code.
+>>
+>> There are no "bad default legacy parameters". Ioctls that were defined to return additional information in the parameter structure on errors have always done so. This should be documented in the kfd_ioctl.h header, though some ioctls have better documentation than others. For a good example, see kfd_ioctl_dbg_trap_get_queue_snapshot_args and kfd_ioctl_dbg_trap_get_device_snapshot_args, which do return the number of queues or devices in the parameter structure if user mode didn't allocate enough space.
+>>
+>> Another example is kfd_ioctl_map_memory_to_gpu_args and kfd_ioctl_unmap_memory_from_gpu_args, which returns the number of successful mappings if the ioctl fails. This is necessary to restart the operation after -ERESTARTSYS and skip mappings that were already completed.
+> I believe these are bugs that should be fixed. If request N but only allocate M where M < N, the kernel space should return a proper error code and then user space should reduce the requesting number, like N/2.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-index 8bc997b66424..c5e3d2251b18 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-@@ -2687,6 +2687,32 @@ static const struct drm_crtc_helper_funcs dce_v10_0_crtc_helper_funcs = {
- 	.get_scanout_position = amdgpu_crtc_get_scanout_position,
- };
- 
-+static void dce_v10_0_panic_flush(struct drm_plane *plane)
-+{
-+	struct drm_framebuffer *fb;
-+	struct amdgpu_crtc *amdgpu_crtc;
-+	struct amdgpu_device *adev;
-+	uint32_t fb_format;
-+
-+	if (!plane->fb)
-+		return;
-+
-+	fb = plane->fb;
-+	amdgpu_crtc = to_amdgpu_crtc(plane->crtc);
-+	adev = drm_to_adev(fb->dev);
-+
-+	/* Disable DC tiling */
-+	fb_format = RREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset);
-+	fb_format &= ~GRPH_CONTROL__GRPH_ARRAY_MODE_MASK;
-+	WREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset, fb_format);
-+
-+}
-+
-+static const struct drm_plane_helper_funcs dce_v10_0_drm_primary_plane_helper_funcs = {
-+	.get_scanout_buffer = amdgpu_display_get_scanout_buffer,
-+	.panic_flush = dce_v10_0_panic_flush,
-+};
-+
- static int dce_v10_0_crtc_init(struct amdgpu_device *adev, int index)
- {
- 	struct amdgpu_crtc *amdgpu_crtc;
-@@ -2734,6 +2760,7 @@ static int dce_v10_0_crtc_init(struct amdgpu_device *adev, int index)
- 	amdgpu_crtc->encoder = NULL;
- 	amdgpu_crtc->connector = NULL;
- 	drm_crtc_helper_add(&amdgpu_crtc->base, &dce_v10_0_crtc_helper_funcs);
-+	drm_plane_helper_add(amdgpu_crtc->base.primary, &dce_v10_0_drm_primary_plane_helper_funcs);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-index 504939e3c0c3..ea42a4472bf6 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-@@ -2800,6 +2800,32 @@ static const struct drm_crtc_helper_funcs dce_v11_0_crtc_helper_funcs = {
- 	.get_scanout_position = amdgpu_crtc_get_scanout_position,
- };
- 
-+static void dce_v11_0_panic_flush(struct drm_plane *plane)
-+{
-+	struct drm_framebuffer *fb;
-+	struct amdgpu_crtc *amdgpu_crtc;
-+	struct amdgpu_device *adev;
-+	uint32_t fb_format;
-+
-+	if (!plane->fb)
-+		return;
-+
-+	fb = plane->fb;
-+	amdgpu_crtc = to_amdgpu_crtc(plane->crtc);
-+	adev = drm_to_adev(fb->dev);
-+
-+	/* Disable DC tiling */
-+	fb_format = RREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset);
-+	fb_format &= ~GRPH_CONTROL__GRPH_ARRAY_MODE_MASK;
-+	WREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset, fb_format);
-+
-+}
-+
-+static const struct drm_plane_helper_funcs dce_v11_0_drm_primary_plane_helper_funcs = {
-+	.get_scanout_buffer = amdgpu_display_get_scanout_buffer,
-+	.panic_flush = dce_v11_0_panic_flush,
-+};
-+
- static int dce_v11_0_crtc_init(struct amdgpu_device *adev, int index)
- {
- 	struct amdgpu_crtc *amdgpu_crtc;
-@@ -2847,6 +2873,7 @@ static int dce_v11_0_crtc_init(struct amdgpu_device *adev, int index)
- 	amdgpu_crtc->encoder = NULL;
- 	amdgpu_crtc->connector = NULL;
- 	drm_crtc_helper_add(&amdgpu_crtc->base, &dce_v11_0_crtc_helper_funcs);
-+	drm_plane_helper_add(amdgpu_crtc->base.primary, &dce_v11_0_drm_primary_plane_helper_funcs);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index a33e33743a93..915804a6a1d7 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -2602,6 +2602,32 @@ static const struct drm_crtc_helper_funcs dce_v6_0_crtc_helper_funcs = {
- 	.get_scanout_position = amdgpu_crtc_get_scanout_position,
- };
- 
-+static void dce_v6_0_panic_flush(struct drm_plane *plane)
-+{
-+	struct drm_framebuffer *fb;
-+	struct amdgpu_crtc *amdgpu_crtc;
-+	struct amdgpu_device *adev;
-+	uint32_t fb_format;
-+
-+	if (!plane->fb)
-+		return;
-+
-+	fb = plane->fb;
-+	amdgpu_crtc = to_amdgpu_crtc(plane->crtc);
-+	adev = drm_to_adev(fb->dev);
-+
-+	/* Disable DC tiling */
-+	fb_format = RREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset);
-+	fb_format &= ~GRPH_ARRAY_MODE(0x7);
-+	WREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset, fb_format);
-+
-+}
-+
-+static const struct drm_plane_helper_funcs dce_v6_0_drm_primary_plane_helper_funcs = {
-+	.get_scanout_buffer = amdgpu_display_get_scanout_buffer,
-+	.panic_flush = dce_v6_0_panic_flush,
-+};
-+
- static int dce_v6_0_crtc_init(struct amdgpu_device *adev, int index)
- {
- 	struct amdgpu_crtc *amdgpu_crtc;
-@@ -2629,6 +2655,7 @@ static int dce_v6_0_crtc_init(struct amdgpu_device *adev, int index)
- 	amdgpu_crtc->encoder = NULL;
- 	amdgpu_crtc->connector = NULL;
- 	drm_crtc_helper_add(&amdgpu_crtc->base, &dce_v6_0_crtc_helper_funcs);
-+	drm_plane_helper_add(amdgpu_crtc->base.primary, &dce_v6_0_drm_primary_plane_helper_funcs);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index aff58d56864a..f2edc0fece5b 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -2613,6 +2613,31 @@ static const struct drm_crtc_helper_funcs dce_v8_0_crtc_helper_funcs = {
- 	.get_scanout_position = amdgpu_crtc_get_scanout_position,
- };
- 
-+static void dce_v8_0_panic_flush(struct drm_plane *plane)
-+{
-+	struct drm_framebuffer *fb;
-+	struct amdgpu_crtc *amdgpu_crtc;
-+	struct amdgpu_device *adev;
-+	uint32_t fb_format;
-+
-+	if (!plane->fb)
-+		return;
-+
-+	fb = plane->fb;
-+	amdgpu_crtc = to_amdgpu_crtc(plane->crtc);
-+	adev = drm_to_adev(fb->dev);
-+
-+	/* Disable DC tiling */
-+	fb_format = RREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset);
-+	fb_format &= ~GRPH_CONTROL__GRPH_ARRAY_MODE_MASK;
-+	WREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset, fb_format);
-+}
-+
-+static const struct drm_plane_helper_funcs dce_v8_0_drm_primary_plane_helper_funcs = {
-+	.get_scanout_buffer = amdgpu_display_get_scanout_buffer,
-+	.panic_flush = dce_v8_0_panic_flush,
-+};
-+
- static int dce_v8_0_crtc_init(struct amdgpu_device *adev, int index)
- {
- 	struct amdgpu_crtc *amdgpu_crtc;
-@@ -2640,6 +2665,7 @@ static int dce_v8_0_crtc_init(struct amdgpu_device *adev, int index)
- 	amdgpu_crtc->encoder = NULL;
- 	amdgpu_crtc->connector = NULL;
- 	drm_crtc_helper_add(&amdgpu_crtc->base, &dce_v8_0_crtc_helper_funcs);
-+	drm_plane_helper_add(amdgpu_crtc->base.primary, &dce_v8_0_drm_primary_plane_helper_funcs);
- 
- 	return 0;
- }
--- 
-2.47.0
+That's not how these ioctls work. The ioctl needs to return data for all queues or all devices. User mode may not know that number ahead of time and may not have allocated enough memory. So the ioctl needs to be able to return the required allocation size in the failure case. This is what it's designed to do.
 
+> 
+> We must keep do defensive programming to reduce potential risks & bugs, keep our system robust, we should not assume the other side work perfectly as expected.  
+
+Exactly. More information makes this easier. Removing information that has always been available breaks the ABI and does not improve robustness.
+
+>>
+>>
+>>>> You mention that there can be other user mode clients other than Thunk. That's true. E.g. rocm-gdb calls KFD ioctls directly. And it depends on some of the additional information about errors. If you know of other user mode clients that are broken by the current behaviour, please point them out.
+>>>>
+>>>> Before anything else, we do not break existing user mode. Your patch breaks that rule. There is really no room for discussion here. I'm not seeing any reasonable argument to even consider your proposal.
+>>> If a user space program needs to read arguments to do error recovery, then it is a buggy user space program that should be fixed.
+>>> Usually the error code provides enough information for error handling. Why our KFD user space are exceptive?
+>>
+>> See my examples above. User mode is not buggy if it uses documented API behaviour, like what I showed above. In the case of -ERESTARTSYS, saving information in the argument structure is also necessary for the kernel mode driver itself, not just user mode.
+> so we need a list to document what parameters are guaranteed to be safe to read in user space?
+
+I don't think it's a safety concern. If you make it one, you need to define what you consider unsafe. From the kernel's point of view, user mode can do whatever they want with the data returned to user mode. If user mode ends up crashing because of it, that's a user mode bug unless the kernel violated some API contract.
+
+That said, I did point you to API documentation that explains exactly what ioctl args contain useful information after certain ioctls return an error.
+
+ And Kernel must always make sure the parameters are reasonable even when ioctls fail in the first place?> I am not sure this is a good practice, we don't see many drivers rely on this kind of design.
+
+I disagree. You can see the same behaviour in drm_ioctl.c:
+
+        retcode = drm_ioctl_kernel(filp, func, kdata, ioctl->flags);
+        if (copy_to_user((void __user *)arg, kdata, out_size) != 0)
+                retcode = -EFAULT;
+
+	...
+
+This is the ioctl handler used by many GPU drivers in the kernel, including amdgpu.
+
+> 
+> Here is an example explains why this is messy:
+> 
+> kfd_ioctl returns -EINVAL if the requesting ioctl number > AMDKFD_CORE_IOCTL_COUNT. Here no kfd ioctl functions are invoked, therefore the arguments are not touched, they are legacy values or random values, even all 0.> 
+> Other kfd ioctl functions, like kfd_ioctl_create_queue and kfd_ioctl_destroy_queue, they also may return -EINVAL, but the arguments may be modified. How can the user space tell whether the arguments are modified by kernel, containing useful information, or not touched at all?
+
+They know by reading the API documentation.
+
+Regards,
+  Felix
+
+> 
+> And what if the user space pull memory changes of the arguments?> 
+> Thanks
+> Lingshan
+>>
+>> Regards,
+>>   Felix
+>>
+>>
+>>>
+>>> Thanks
+>>> Lingshan
+>>>> Regards,
+>>>>    Felix
+>>>>
+>>>>> Thanks
+>>>>> Lingshan
+>>>>>> Regards,
+>>>>>>    Felix
+>>>>>>
+>>>>>>> Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
+>>>>>>> ---
+>>>>>>>   drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 3 +++
+>>>>>>>   1 file changed, 3 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+>>>>>>> index 3e6b4736a7fe..a184ca0023b5 100644
+>>>>>>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+>>>>>>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+>>>>>>> @@ -3327,6 +3327,8 @@ static long kfd_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
+>>>>>>>       }
+>>>>>>>         retcode = func(filep, process, kdata);
+>>>>>>> +    if (retcode)
+>>>>>>> +        goto err_retcode;
+>>>>>>>         if (cmd & IOC_OUT)
+>>>>>>>           if (copy_to_user((void __user *)arg, kdata, usize) != 0)
+>>>>>>> @@ -3340,6 +3342,7 @@ static long kfd_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
+>>>>>>>       if (kdata != stack_kdata)
+>>>>>>>           kfree(kdata);
+>>>>>>>   +err_retcode:
+>>>>>>>       if (retcode)
+>>>>>>>           dev_dbg(kfd_device, "ioctl cmd (#0x%x), arg 0x%lx, ret = %d\n",
+>>>>>>>                   nr, arg, retcode);
+> 
