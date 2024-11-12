@@ -2,150 +2,229 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EEC69C6A08
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 08:31:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 661A39C6AEA
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 09:49:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 670C210E34C;
-	Wed, 13 Nov 2024 07:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4692C10E6AA;
+	Wed, 13 Nov 2024 08:49:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hB1PC7uk";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="ndIQYEGQ";
+	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="IBxexDRR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2066.outbound.protection.outlook.com [40.107.92.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3316D10E26E
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Nov 2024 07:31:07 +0000 (UTC)
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 040BE10E1D9;
+ Tue, 12 Nov 2024 15:43:36 +0000 (UTC)
+Received: from pps.filterd (m0333521.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ACFNaDi015029;
+ Tue, 12 Nov 2024 15:37:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+ :content-id:content-transfer-encoding:content-type:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to; s=
+ corp-2023-11-20; bh=DPQ849vxdg0tMaUXMm/X0hjIHk98A3vrACmb1/ckn0I=; b=
+ ndIQYEGQ4R6AdDVWsTYQm4q+7bsi48aD450q0EGVv3lZHWKpgkqsPMzVe6yHZTFf
+ ROyoKvMV7SUam64qd37FQ+4R4dGbpKXtlduhee47ESEZ4ykTKe+Q8td6AR4tomix
+ XY/9FeBd6EP4Ol7Au6F5+8HmqnA/NygmO6l5LfNlMzT1z0hdfbP3fQVhoB1BiYdy
+ dVqSoy4brrmhk2HEHnmyoULprnBA0/1aOzBSaMw8ZwjNLrSrjtVii7OtW1TirPQP
+ YeZcruOE1seyE8KylK5yV/5H1Y2ZubDsde9or25GGqDhiu7+iW6291DKPP9Uk2US
+ QYUKP+7ZfTTYQgCsuoQpJQ==
+Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 42t0kbvpqt-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 12 Nov 2024 15:37:33 +0000 (GMT)
+Received: from pps.filterd
+ (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 4ACEVXvg036004; Tue, 12 Nov 2024 15:37:33 GMT
+Received: from nam12-mw2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12lp2049.outbound.protection.outlook.com [104.47.66.49])
+ by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
+ 42sx681tbt-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 12 Nov 2024 15:37:33 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u0fiAlpMx55ArdpKfBo+gYljge8rudgkv0wI1mS1IajfcywIWEWmN7B+Kuj9VuQulBPy4H6cViuZ3CibaaIdbYbC4CfCZuhbKycFFy8DiYfvrCsq8/C4gotNFZscNkZtLpTT8oiXX1NiY+FyWQAmr4qc4krF/x+SN9W0lteAzuxhpie4msZvvLcoU8uV1jsE/PikS0fI/RMLq0SlLFNwJ0QHL0n/q85YS7efgKWHuOtfhVzIG0H/CTaahu7p5DUGu5X88Q8DIJTWsXjoAHMEF3SjnnowL4fg1UzExgk9hqc30ug4EYvDr78pdb6S1LgDn8nArT2wJKzB6uDNQsoCKw==
+ b=kewmpRFJnnjsU62Fzk4kJYD+eqKfxsq8EN2VPpCzsfhkFzjlnW5yqaxacy3ktL6nKQWl3WV8DeoyoK+tnGM/n3Vrk/icAaVg9kVM8bXJdvdB8woYrzSCnhn/JX3dQmFoZ/qxPolEoGBsGUUxSRM+m+jh47m6vuM7j/PBPFebJIRZoPnMSSFIZU+gqu+oaIz0ByBkZEnZpaZDou1bNDYeormGGSnEyaPGvDvVCmnXf82NvdOwp+kYpuz9B5FcnS8x9D3sMDLgsv8DNZzIk65E3vs7diz/YHwKvje1EXt2GW7o8CzPmwGvBcSc+yVP7iQ8calcLj+4uhYmqdjOfWKAkQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S9xGGBhlvbvYH5+/61N2XblJx4caRoAc2IkCvThRj2A=;
- b=AeQ7qFdS8p5qYo2v87sIPWZbDxutM5C0hLVS789mLvg1UB6mKQkkxZNgHSt2Wk5TUGlQmNjqsr3waODvhPNNi/6BjRCnZfxTca3n1SrBM8LuD547lDo6WY9t1hAX0arGx/ltbq+H4w99nkv4Qte5ZSiYOqUWaRsTPnx/PRrs9FXfl8TMhMu7ZxG1p/yyOArPXFrN054X3WEsyKQBzsFxjRggX0pOlIrhd/vsfA5FmLUfDhpDXbVj7I31XehXn8Er+CRdcoWHQvylmH4mm6fjmuLprdl/jDQOf8mvkqb+PRlpaONWRcFlxlyrtK0R4vHnnu9JskMLpu8ew+z6wdVJFg==
+ bh=DPQ849vxdg0tMaUXMm/X0hjIHk98A3vrACmb1/ckn0I=;
+ b=j3GQfc5BAOUylvxm9oUAhZlpjcVnCJJag5EgS01ySmkryhiSuxKHwzR5bPinnCpdJQUlGBVSEkPNfjJ2zPCggVGYL6xMGvvuE8XZDd+jX3LsKfnNL2HIv5117QsegMenfGLsUiHPt8ZgDxCUeN/qREDV1ALLyTrbvYf+6CvL228Y4Eq/+/A24XRC79mJlovtd/EmpBcXdJ71Zfj3r5srxYpXx+V0HlSSf6A9vawc7eup5vcJKJFyN5X8adI9VQb6cOVginmPyM5D0AL4LWN7R9YbsaFoIU35ajQp/KdUA+0UGMtkkfR0wFcNnztcOWutFti9UL9bYKXyG542+96y2w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S9xGGBhlvbvYH5+/61N2XblJx4caRoAc2IkCvThRj2A=;
- b=hB1PC7ukrIXZBJnEUxa1swqPFIdEkfwEBzVVMI/w2teXFUKgOLhk9XqVn8NR+/kApgABEpjVhI7Am/qp5uqTi2b+60AI64bPMQ3pWPiv/unrRx7a3gX99Kmw1vwzhLxOz3+NF5NcQUo21jhWoDrMeNcDxubDvcKpMj0FAiBFT7c=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- CY5PR12MB9055.namprd12.prod.outlook.com (2603:10b6:930:35::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8158.17; Wed, 13 Nov 2024 07:31:00 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290%6]) with mapi id 15.20.8158.013; Wed, 13 Nov 2024
- 07:31:00 +0000
-Message-ID: <95614ce0-656b-4c15-a5b2-6c5997dc9a95@amd.com>
-Date: Wed, 13 Nov 2024 13:00:52 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amd/pm: fix and simplify workload handling
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Kenneth Feng <kenneth.feng@amd.com>
-References: <20241112202847.8509-1-alexander.deucher@amd.com>
- <657e02e0-3dde-4ca3-bc4c-9e3b9ace3f8f@amd.com>
- <CADnq5_MA8vZCq0cjgw4ctch2YfG_nj=ceSK5H4AdVAC5QEDiNQ@mail.gmail.com>
+ bh=DPQ849vxdg0tMaUXMm/X0hjIHk98A3vrACmb1/ckn0I=;
+ b=IBxexDRRKgEGik1s2K0sOmwAUJvXcVepMmHXvBrvqoacfei/8gkyaY2aSjFaMgJ87n/JSCTYBE2S3ZXMw8/AjRdR8knHggZ0pg9w+lX/1ph/4rvawVBLG4m/eMkQS8DEtzdPVV4XkZGgnkrJExBE7gmxL1cCMpYI7AloBWq8vrs=
+Received: from BN0PR10MB5128.namprd10.prod.outlook.com (2603:10b6:408:117::24)
+ by SA6PR10MB8160.namprd10.prod.outlook.com (2603:10b6:806:43f::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.17; Tue, 12 Nov
+ 2024 15:37:29 +0000
+Received: from BN0PR10MB5128.namprd10.prod.outlook.com
+ ([fe80::743a:3154:40da:cf90]) by BN0PR10MB5128.namprd10.prod.outlook.com
+ ([fe80::743a:3154:40da:cf90%4]) with mapi id 15.20.8137.027; Tue, 12 Nov 2024
+ 15:37:29 +0000
+From: Chuck Lever III <chuck.lever@oracle.com>
+To: yangerkun <yangerkun@huaweicloud.com>
+CC: Yu Kuai <yukuai1@huaweicloud.com>, Chuck Lever <cel@kernel.org>,
+ linux-stable <stable@vger.kernel.org>, "harry.wentland@amd.com"
+ <harry.wentland@amd.com>, "sunpeng.li@amd.com" <sunpeng.li@amd.com>,
+ "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>, "Xinhui.Pan@amd.com"
+ <Xinhui.Pan@amd.com>, "airlied@gmail.com" <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Al Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>,
+ Liam Howlett <liam.howlett@oracle.com>, Andrew Morton
+ <akpm@linux-foundation.org>, Hugh Dickins <hughd@google.com>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ Greg KH <gregkh@linuxfoundation.org>, Sasha Levin <sashal@kernel.org>,
+ "srinivasan.shanmugam@amd.com" <srinivasan.shanmugam@amd.com>,
+ "chiahsuan.chung@amd.com" <chiahsuan.chung@amd.com>,
+ "mingo@kernel.org" <mingo@kernel.org>,
+ "mgorman@techsingularity.net" <mgorman@techsingularity.net>,
+ "chengming.zhou@linux.dev" <chengming.zhou@linux.dev>,
+ "zhangpeng.00@bytedance.com" <zhangpeng.00@bytedance.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Linux
+ Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux FS Devel
+ <linux-fsdevel@vger.kernel.org>, "maple-tree@lists.infradead.org"
+ <maple-tree@lists.infradead.org>, linux-mm <linux-mm@kvack.org>,
+ "yi.zhang@huawei.com" <yi.zhang@huawei.com>, "yukuai (C)"
+ <yukuai3@huawei.com>
+Subject: Re: [RFC PATCH 6/6 6.6] libfs: fix infinite directory reads for
+ offset dir
+Thread-Topic: [RFC PATCH 6/6 6.6] libfs: fix infinite directory reads for
+ offset dir
+Thread-Index: AQHbM9Qf5MGHjWzrD0e387x3Myz9zbKxXU4AgADJ6QCAAAuNgIAAA+kAgADL1YCAAMdYAA==
+Date: Tue, 12 Nov 2024 15:37:29 +0000
+Message-ID: <C4E2D262-4864-45FD-A985-9C9F64EF83B5@oracle.com>
+References: <20241111005242.34654-1-cel@kernel.org>
+ <20241111005242.34654-7-cel@kernel.org>
+ <278433c2-611c-6c8e-7964-5c11977b68b7@huaweicloud.com>
+ <96A93064-8DCE-4B78-9F2A-CF6E7EEABEB1@oracle.com>
+ <73a05cb9-569c-9b3c-3359-824e76b14461@huaweicloud.com>
+ <09F40EA2-9537-4C7A-A221-AA403ED3FF64@oracle.com>
+ <dd6bd7f5-cf2e-3123-3017-c209d81ab290@huaweicloud.com>
+In-Reply-To: <dd6bd7f5-cf2e-3123-3017-c209d81ab290@huaweicloud.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <CADnq5_MA8vZCq0cjgw4ctch2YfG_nj=ceSK5H4AdVAC5QEDiNQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN3PR01CA0003.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:95::14) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Apple Mail (2.3776.700.51.11.1)
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN0PR10MB5128:EE_|SA6PR10MB8160:EE_
+x-ms-office365-filtering-correlation-id: a2fd88c3-5b9e-44eb-cebf-08dd032feabb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|7416014|366016|38070700018; 
+x-microsoft-antispam-message-info: =?utf-8?B?RnZ5VHRWN0dWc0JDTmljQWZRLzV5ejNORjRVbG5XdnlwYWc3M2w3RFZaaU1N?=
+ =?utf-8?B?c3pEUW1vbW9WZDh0WkJLYXhBNU9WT0ZOM0dBc3NVZy9naXRuMlE1WWFoSDFI?=
+ =?utf-8?B?Q3dqRkcrUXJYTSsxNlNma0xjcG9yUkJmRXBnN0lOTzBHdFNnSTdqeXhBTzhS?=
+ =?utf-8?B?UVBTa1ZoOUIyOTl1SmVDTENYT1RLWEwvR3RTb3V3b0szamgyNEgwN2lEeFFL?=
+ =?utf-8?B?U3J3eEM2ZlZud0NUcXB4d3FFR1h0dmxrM1l4VDhEVnhhZlZ1dllLUzdtRW9v?=
+ =?utf-8?B?TVluRjFqNVprK0JHa255dWhtTUpMWVp2cXBFL2E1VXBuUjkxNmE0OTJ6U1hC?=
+ =?utf-8?B?NmlNbkcrUFdNQXhjOFQ1eUszTTBjM0lIaHV6eG44ZmorVFdqYXFDUWUrTERP?=
+ =?utf-8?B?aHI1dlBhSHRLc0pXdTBoUjNIYjMrSmRsZ0w4TmxWZFJOd24wbHZTeGtlVXFL?=
+ =?utf-8?B?NlluU0RVRFo2cU5jZ1pRSk4rVXp1VDBFdW83L2YvMHRxc3UwSVRKWHgxcWls?=
+ =?utf-8?B?aXNvYWRCMjZSK1F0T1U1dGdTaXVMUVNSem1rejQ3bDRBRjlNMXBXanJpZXJC?=
+ =?utf-8?B?NmJPSkpXeWpzd2o2QXo1NG9QZ1pJTVJxZlVVOVB4eHhWM3VLMWRpTnBTczRB?=
+ =?utf-8?B?UU9YVHQyOUF2SVN0RnJCbjk5ejJHWVJhZEc4YTE5aHpXR3Y3WHpTMjVTUnRt?=
+ =?utf-8?B?NytQcjlXTldTbVE2bVZBTEcrM1AvZU9LTVY1Y3NvT0pUU1JTeUp6aHlMY1R0?=
+ =?utf-8?B?VzNIcmxWSGhoMDdETHBPQ3FlY256dlZDYTYrMUtDU0lhNFFxQ3VBVVF1eldZ?=
+ =?utf-8?B?T3V1T0ExWE5tYW16Z0JFcStOZWhFVGpabGg1ZGFJQWQ5TzI2RFk2dVVEYXFp?=
+ =?utf-8?B?V2JSeGRqYWt0NGw5TUx3S0JFRDdsN2NlSVBaNjZpbG1hb2lhSHZtL29WanFK?=
+ =?utf-8?B?Uy9CVGRyNkpBVGlpM1dqZUhPcEhNakdyZXlsekxKcXR0eWxmV0hOT3FrUUVt?=
+ =?utf-8?B?K1hyY3BpcG9mb0p4ZlR1OUwvM0Y4YitPTjV3bXgrOTJ1UnUxNVJmSXpaWDVk?=
+ =?utf-8?B?UDlhVlJVMTJkUEQxN0wvZ09mWlp0cGF5SndZQWJUOVRFZUJSMTQ3N3ZFSVpB?=
+ =?utf-8?B?QlRjOE9BOUhoVEo1Z0pYZDRvTFRVM3kxT2t0RFFnQ2xHMW5MVWtRd0tQMmZq?=
+ =?utf-8?B?akpCblVCQ2NLcEFQS3FYWWFSN2ZiL3hiNDcxMVFSV1pvM0lXRktGa3ZyeHJM?=
+ =?utf-8?B?cWlLRENpYW10OW9ibEVIMFlJejhxVE1KYzFOYTcrVzR0TUVZYndxaUxWMmRX?=
+ =?utf-8?B?VlcwTTVzTmxnR3Q3Rk1sMVFHUlNoeXVyQ2hMdEluenJtUnRXdC8xTUZkb3Ro?=
+ =?utf-8?B?cXhNUmsyRlRkS2NZYUJyeVlQY1JiZGUxSjRRQnc5UXo3Sk5hdEhyc0hrZ0dn?=
+ =?utf-8?B?anpjQnk5aGpwYWppZG5sK0Z5NnB3cEdpMEpVNnU2ZlAyeURxdmFzYUxJaVEy?=
+ =?utf-8?B?d2U5eU5zblgvZmpKME1admNObzN3dnRkWTcwT0dRRjVvcDhPa2kxaHhRYU1t?=
+ =?utf-8?B?UXlESE5LcmR3V1BSZG9ZdmMvUHdNbzhQWEZNVmtsZDlnTXhGbTZwQ3MvQnZQ?=
+ =?utf-8?B?NkIvc3RRTE5RY3hTZWdZYmZyVFIrZTRQbXNPdlcvMzJESHE3cWs3RERsNUI4?=
+ =?utf-8?B?NXVkanhXWks2MS9PVlZreW4xWTdMQlZLTSs5TWwzd0VkRWtVbGlJNFFzZnpN?=
+ =?utf-8?B?ZnBQYVNEVWpmN2lzYjVWNkFCUkJFNmdSNHVKWWpTZDVxTjAwU3Z6V0hnV2x5?=
+ =?utf-8?B?ZWVmcnNFSThmWkF4RU5HMlJWVTA2WGFEN3R2aW1jZGNmVFZTMUp6VDM3R25v?=
+ =?utf-8?Q?X1fG2+cjdQnu/?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN0PR10MB5128.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UUVid3hmVmFnMEdQY3gyZUkxSDBwWkpnbWtmVGFVNVJrVnFDejYrU1FCSzgz?=
+ =?utf-8?B?RnpnQ2o2LzZWNDZGQjJVMFF3cVdCL0s4c0x5a1JBK0FkRXFqQ2lPNlp1Sml1?=
+ =?utf-8?B?bVRTd3NLSXo2MjZtWnhiTCtvaU9nMFVWNy9RWEdkVENBWHBpSFh0VTYxN2hJ?=
+ =?utf-8?B?Nzk5anUzVmNDQ0pTakdMY2pYY0RYN0FNQks1S0wvS2FBbHhJWnlsSGQwLzJq?=
+ =?utf-8?B?ZEJCSzlyZFpXNlNuOHhtM2dGMzN5bE1tQ3ZEZnQwblZrMVRHYlZWbUFvWVNk?=
+ =?utf-8?B?bVlXSUpyRWRpczF5S1FGNWF6QkR1cWFzVmM1S1FIMXpLR09Cdjk1aFZnZ0ll?=
+ =?utf-8?B?ZERJUWJvdWpJVGRJMm12UDJGYUNGaDl1TitkWVZDa2N2Qk5wNmdsbzlhOU1S?=
+ =?utf-8?B?c0Z0OEFNTFg1ZW54T3VVOElhRWlpSWlvajdPa3RISml1VkJUQlQxNTdDajhu?=
+ =?utf-8?B?ZkdxdE5FTlRVMHZQeThRaC9uVk44Y1haNmgxK1krR2dtckk5MVFJVHQxMXp0?=
+ =?utf-8?B?R2JiZWlXYWYzTEkxajlPaGZMNnpKSXI4UmJHbzhCTkhsZjg2cytiWEFzWFVy?=
+ =?utf-8?B?VGpHS1I5OXo2a1dLZ0d2U3h1OVZGRUxtRmRDcDA4MmJjL0lvZjdEemtwNzNI?=
+ =?utf-8?B?WFBIL0UrL2ZZUjZRVzRjVmU0ZG42eEpoaXprZEFOcTc2MFFCYlhUOXZqeE91?=
+ =?utf-8?B?S2F0Y05vUW1tRFZsYkVnZ2wrUyt4ZHUycytoY25aem5mZDhMUzVDeitKVzJW?=
+ =?utf-8?B?VFkxNnh2cWhiUTRxeHNuZzVuTWRHcDcwZndCRml5djk3S0pteEQwajJyYUcz?=
+ =?utf-8?B?ZmNWN3VFWG9qRkJybnVIaDBMdXFvVTB6cGxpYUc1OERFZ0pxdnl0Y05FTW9u?=
+ =?utf-8?B?TEpCNGl4M3NCRyt4eGJnN1U0Q1pvVEdzbnFYOU5rSnhNc1RTc1B1K0JlS3k5?=
+ =?utf-8?B?UmNpWmxKZFhld2lJRlc4TzcwUGZpczR0ZTVDeFBzYmRzb2RlaWFiM21pamhH?=
+ =?utf-8?B?UHd4VHFvUWphb0FCS0tGSXdCSkluZE5Nd0V5UU9uTGk5VFMxQUh6b0pNRzhB?=
+ =?utf-8?B?clBOZVBkYlZsOGpsZWY1aWkwanNoWGw2bTdhSFk2R21yZ3J6QzVjREpNbDk5?=
+ =?utf-8?B?UjVkTFYrcnYvQmxaeXZoSW1CUEo2QWNTeWRJZkVmK2pxOHZZRTNkNmhZMEIr?=
+ =?utf-8?B?L3piMjVkbFhJUFdsYmEwQXo0NGFsbnlIZmVYOWhPVEtDaXhTVFhod2RRRjh1?=
+ =?utf-8?B?eCtjUzIvVi9vdEwwVVlqdG84L0J0OGJqOHZIV1JWWEZnaFJJQnJGck92OHQ0?=
+ =?utf-8?B?R2JGUExwTFZZQzNxN1VjM3R4NFJDZUVVSFQ3L05EV3Y1cGZpZUFnNlc3VUxv?=
+ =?utf-8?B?UDVHcVBsM3NYNk1jYktEOXB6SGxwV1Bnbk54NE9sbi9ZTE9QQ0pNK0dlWnhk?=
+ =?utf-8?B?R2tYK3RrclNEdjdpWmhrYkliRC9BQVhFYzU1cWZYUmlvejFrSnhwaDdLc2Jo?=
+ =?utf-8?B?KzlkbTdkOXNveTgrZmNYLzJ0MGhyeWx5dEtaclVIckd1Y1BwZnlhS1o0RzV2?=
+ =?utf-8?B?ckRUSmRSdnRWMCs2ZVFRMWF0VEVWNkF5YWpiSDJhTDh3TDJyVEJEcEtoZWNP?=
+ =?utf-8?B?UEJ2bnd6Q3JMYVJqanBhTExOcEFuQ2hsVEcwSTJsOEZ2OHdIMDFVWm9aTnY3?=
+ =?utf-8?B?SDBxK25KTGIwckJ1bUVRb1pwMXRJbnlaRzh6WldMSzZqSmdyNG1UUVBnVGRR?=
+ =?utf-8?B?aUtMWnNBa2NYM1NmRWYveXpmcHJrS0hqTjg1VEY0ZVJrYkZEZ1lEVDFyTFl3?=
+ =?utf-8?B?dFB6RHp5Q054STV4NDY4Z2QySEt0NzJPMEdkclVXNmJIOHNaRGZ3SzdJWFFE?=
+ =?utf-8?B?eGgycHE5S3ZGcTNyVitIR0pUUDdvSnpMSFZvV0xnMkFqdGdCSU02eXU0cnY2?=
+ =?utf-8?B?Ymxad0lya3hjQjNSQzZXYVM4QmlkV2ZDeXZ4OE1TSGVBdHhIaDIrbUp5eXZX?=
+ =?utf-8?B?aG9UcVJKSFl1cjZTVFZLQW1sdWZTQTd0cUtucGZQbjY0eVl0bHlvZmxGU1JR?=
+ =?utf-8?B?dWRUOXlBdnZxV2RlbnNtaGlETXlEVW1SKzNRU1NzOWtmdzZYUnRGZ1V0U0pS?=
+ =?utf-8?B?ZDh1UTR1dS81Mm42VkI1MWttL2tYYzZWRE1GL2hJdks5RHd6Q29lR3hKMGE3?=
+ =?utf-8?B?U1E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4F19CD34336413408DD49B36EA7174FC@namprd10.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|CY5PR12MB9055:EE_
-X-MS-Office365-Filtering-Correlation-Id: edf2aa40-8d9e-4de9-993c-08dd03b51f08
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VjN1MGNBcytHSmN3bmZrL05VZ0Fpdms5Q1hzVjNXMHdVLzlWb0pseFNKcCtp?=
- =?utf-8?B?Wm5ISHlMS1JIUzdMUmNqdDB4aXYrYzJKcWpQK2Q1MDdpYit5eWNIS1JMa24x?=
- =?utf-8?B?YTdicFVPZUVZVWR2NmVFdEtaeTZSM3ZxMlBCQWIxNzd0My9YKzhxQ0JPRk9F?=
- =?utf-8?B?azdOTnFPT3hYYnVEY1lreXU4bUtvRFNyYzJyY2Y4R0t4NDMwT3VIM2xJdERS?=
- =?utf-8?B?Y2pxZGkrTnQzMXFRRVcrSCtocFNmRjZxdUdHT2RVM1Bwejk2TndIMGMyRDhI?=
- =?utf-8?B?NzdNQ3g4c01GckQyTDdhL3lxeGd1T3J3TFBERGpQbmVsSWhRTjh5eWVEUmhO?=
- =?utf-8?B?a1JUNFVkMFRGWk52RFIyRjdZQitOejZXTE5mS2xOOHZFNjZ5YS8wT2ZhTEdD?=
- =?utf-8?B?RkQxRXdnaW05Si9JaWxxQVJWb1Ryclp3a1ZtN1c1S0xQYjdzWnYxL3M3azFn?=
- =?utf-8?B?VENEbG54cmFhUTJVRGVhcHpXWm1wc0pqcVFYWGx1RGxmUDc0UUlnOE5TRGVh?=
- =?utf-8?B?TWpZczZEejVjNUVkdmFqelBhUzBDQTcxQ3o5WlA3Zm9OQURuSVYrTC95L3hN?=
- =?utf-8?B?MlowVzljWXM1QmVIYnNpQStJNXBYRVMzUUNsNHN1bG9keVcyK2RiTU1NK1Bl?=
- =?utf-8?B?L0c4Y2E0UjlpbGJXVFlOYmR6R1BVRFFiWm1CdG84ODFHNkJqT1l4Ync1TUZK?=
- =?utf-8?B?andNYVN6ajM1dCs0VE5iaWFOdWNqdWhUOVcrWGVvMlRlM1R5blBLY1JHZnha?=
- =?utf-8?B?b0djN3NxTGJDOVNNZUdJRVhXUkE0bmZxTjZVdS9ZMHJ2cVNucG5vd0xWbENr?=
- =?utf-8?B?RWxVeFBYcm1pelNyZVN0RCtwVllnWHdNWTV0RkEyengwakRLdTMzSUcxU2Q0?=
- =?utf-8?B?S25QRjYzeTU0NVZGdFNhSTNwTmFWTjN6dHpLcWFoZ0MvNWVpMjVvcm5mMmNW?=
- =?utf-8?B?M3BwTE82Mjllb0JwQmYzOWlrMWloU242S1RLTlpyRlpqeFhzNFE5V3h5cXA3?=
- =?utf-8?B?bXQycUx2Wmp3ZWlrK2lNTHA4YXFRYmdxSDQyOUIvZWM3QUFKbExPcktCYW5V?=
- =?utf-8?B?N2FDeklBZFlKWUpqZUhSVXdUS3VjTFdjNklySnovR0pLbmptZEUvbmhoa2Zx?=
- =?utf-8?B?c0NpN3FReEEwNVpGWTFPZi9tWjJVTHhTUlRnTm5yamdoSHg4TC9RSmVhK2RR?=
- =?utf-8?B?Tnl6NDBkckF5cEVhL1NTZHY5cXhIdVhXcDdIYTU1TkpwUUpHNjRzdHJqUyth?=
- =?utf-8?B?Tlltd0JVeVpTR2kyckFPZUd4UTg5K3B2WXk1Z1p3eUYzS3lpQ205QjlUR0VP?=
- =?utf-8?B?TWc1ajNwTHEycytyRE1UQjNvM3RRdDREemd1ZFY2K0VrZ2V1K3l2TUgrSWpx?=
- =?utf-8?B?QkUzSXlpMWdxbjdCTVpEZjFLQTQ3SjEwcGk2OExyRytyVmNKcG1xRzdVZ0pB?=
- =?utf-8?B?Q29aMFk1YTAxTlVjemdid2doWnJtLzUrazZZbU8xT1lKaHBod3dmKzZIbkVE?=
- =?utf-8?B?aEx6d2xjaUhPNmtaNzRaWndtRWtFQitkbWd6VFVTUXRaNEg3TjBXTTZDcVFR?=
- =?utf-8?B?MWVzYjdOUmJNeGhVZWVDc2VFc1Z5NmFDSkFwT0xwU2M4RnZBQ0JqenJZTVVs?=
- =?utf-8?B?WGQxTEVFVjBrTU96N3IyWUlqenpqYW1DQTdxVzdoRkhWNWNmQ3V3TndvSzdX?=
- =?utf-8?B?aW1OYUJGNEFob2R6cjVnSXRsdHhNWHpkTEZtQ3J6SFlDVFVRMUxpMWNXSUs3?=
- =?utf-8?Q?hOUz6WHNVjX0XCNPuw=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eWVTUDhSNmhoWnJHdEl6ckZ0R3AyemY2aDkxaytPWFcrRnU2VDFVY2cyZXhn?=
- =?utf-8?B?bnBicEk5SWFLQzM1Zisyc2tOem85dTJjckVFSURuanpkSit4Ukk2N0Rpakho?=
- =?utf-8?B?RFdkWEJ0TTNiajl5MUg2VG1oaWluYlJpdjliaVdFa3FzV1RKemxkTzVZK0RM?=
- =?utf-8?B?MTVpSldMVXVFaVZnNE40L2h3RUJHaXVYTFA2cjlpa0w0SWJjY0xDdlpNVkJY?=
- =?utf-8?B?QUE5bzFLT0pONTRrOEJwNE9GZkVoOS95R1JNYXRuVXR0UXpLZ0NSQWVYelQ5?=
- =?utf-8?B?U2l3MHVLVFBuMXpkQUM0Rlc1Ykd6dW9RS0F6aCtPVDRkbFBSNVNtQVJ3Wm05?=
- =?utf-8?B?NGp6YTZpNVpkTTBwK1pNNjE0ZU8wcVFSOG1Mb2R6Uks3dDNPMHQrRk44YU0w?=
- =?utf-8?B?bTJTNFJvVytOckRtNnBEeDFGZ0ZGVWU5YTNubGN3VTkwZlhPc0FzUWN6WDJW?=
- =?utf-8?B?MU5PY1kwOEcwN1NkaWVYYXhrUGE0ZmlLL0x6dVNqbXlXQU5GcmFKWVhnWTA4?=
- =?utf-8?B?RURUOEFPdjNZajY5Nm5WNFpGSU5iRTFPYXVIZ3ljZ2UwaFg2bXBTdVR4ZDJF?=
- =?utf-8?B?TFVuN2hEU3dleW9VV3hNamRpZ1owMUorRzlISGFCcHZLWFJkMlQxdnpSek1o?=
- =?utf-8?B?eTBGTGFVY09oYmVQbE5CK0xLRkltTUpaeVhlRFpweWFkTjRtZzZEV2dRbnd1?=
- =?utf-8?B?R2ptMTBQaGJQR1FrUm5RejA1ZGtVT2tibW1tZkxWczZIUlJOUzdPeXFyU0Ir?=
- =?utf-8?B?NDM0UzNybm41N3ZPU2dxZEdSSTFTUmRxaGJPV1NmcTFXVWxPWUNzaFdOOVRC?=
- =?utf-8?B?T25KVng4dVJqd1lmb0FFeURzUFZBNjBVV2FDT0I2clhacVNlWG9rQmJDSndJ?=
- =?utf-8?B?VEdab1RpSW91UlJ1THZZeEN2ODM2RmNTeFRVOWhqSER5MkorMzIxZ3QweTQ5?=
- =?utf-8?B?QjJVOWliUTllK3BCWFFzYWFMZjZqMmcyU0c4U1JMemFOaElyUjBJVXBOeVpN?=
- =?utf-8?B?OTZJMEJ0cTV6WHZvR3VaQllQNDA2eUZEenUvOUc0SWdybzJBbVRxcUF2L0FW?=
- =?utf-8?B?S3ZvMGo3YVRvVG9OTWJuMjN2dFVDMk9vZzFMaVQ5REE0WTJKZUliRXhPd1Jp?=
- =?utf-8?B?eTRwWFp2ZVZqMFVzSy9aWmdvRW9QMmNLYzhvYyt3dkI4amZQVUVRaDRaUkZ1?=
- =?utf-8?B?YS9tQnp1TW1HNjJueVh6eS84cldKYjI5OEdBUml5Qm9hbDBkQnpuUm9xRHhV?=
- =?utf-8?B?ZWt6ejVYUlRBZU84NmJHYXl1a3U1Wk56YlF5QVFOb3ptMDhRMXI0WFVsaHdO?=
- =?utf-8?B?cDI3NDdENmdQdW5pSUt1ZW9BWXllK3JxMVVEb2x4TExUaEdydnRVcUY2TFVh?=
- =?utf-8?B?TUp4ZEd3dzhYUmJCWHRpejdwNmV6SEtpN052YjlQeDducTdOUkZrQ0c2RHNu?=
- =?utf-8?B?SzZIZHduOXB1MUlxczBLc3RXUzNSU0NPWDhNWFV5V01xOWF1WnovVGtVWHFT?=
- =?utf-8?B?aWUwNnhvcXE0QjBTWHlyV1NnTUNLZUlWVFRJaFRYZytSd0NPZTdraWFETzJz?=
- =?utf-8?B?N0dYNjhTSzBSOHBMSWdlbENIVEVTVGlYa0pXWW11NDVKRll4c25DOFN0akVH?=
- =?utf-8?B?Y253azZqR0xROGpJUnlqUUo5aHFZc0o3R2x0SXhMTkJQK0RLcERoNldxSlM2?=
- =?utf-8?B?YU9ERVBkL1ozaGtYVGJLaU5nRjNhT0x2TGIrYnRid0t5TE5ZMjdJR21INENE?=
- =?utf-8?B?OUhSV09NZllPd3NCbzZmZGVpRWR3VlhwOEd3YUFHVmEwNUxCODB1aTYxR0VK?=
- =?utf-8?B?c2YvZHV3blRBdUEvKzNzbXd2Qm50NG5OSlZDVVFwYWJYcWdYSlQzS0RQY3E3?=
- =?utf-8?B?L1JCQWR1OE56ZXRQTVlSR0tLTFJxUFJvd0FzRmtTVHFpN1NJZXBxQXdhM01Z?=
- =?utf-8?B?a2VITDVrdmFWZTJMVGhSUmpnbGtPZFpjRENRZWVlMjZlMGc1cXM3NmhuZ2Nh?=
- =?utf-8?B?OE1EY1VYaFZMeWs4M29MOEdFVUtmYnBGOGpZai9JZUdPOXRCUWdSOEQ0bEt6?=
- =?utf-8?B?M0VXQ3dEMG95U2FJOHdGN1FVKys1NDV1TTloY1hBNERMempsbXlBUUEwSXdO?=
- =?utf-8?Q?EXzJL/hv86uuTWTAFb+VfJ94y?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: edf2aa40-8d9e-4de9-993c-08dd03b51f08
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: HFsd406hxmxwWaL4rECTSSZd7yjvq2a2zBYaShp0iQjsohoVEGeRVFQg3PXg+G+C/w2twQx/psnxfPuPBjY50xKoAqaGlmKE5vRxWHv7rpmU+5BVlhMwetd6R95+ocKF2A7J7PUR9HdQI30tnXE3yn9bFCrGKWxTXe4U3aFTkyZ2nEwzt+jr1wg9Qc8vgDj7I4dG9A8jIhXEOcssf5I1XGb1tkoXJkEVO0cmtbttIJ0K3jGlj/wQcFiIEaXUGHYzHYhDBRpxEZ14cpxl3odhnvizI7feNDTyJCMBUwfG5PeLGirum/KvDOad2iHoasMyqFHiFixhrwy+CoVsFG7MXM6/sNeU4JoJnMO9NcsomcFVOGGakc+oDB3z+na6+5soJqTjC1N4czVuj/9S9HmAmGGfOCsms9sVe6TEQpQjCxtRhcxMZBbht2E4ib+NZurp3O9ysA0ObUIqMim3ontoFiRBltg+Ayu5CCgu03FpyDMpghvUrIpJ0/oATuUGL/fdQouDBMNPVOGbxCdTBA03T/JzM5QS9IMwcQHjSTbA9rCHl8lKKT21wJXmner5QL9168UoisXnxCG5OQEkBR/I/cT4kDIayO0evJo+PTA1b6w=
+X-OriginatorOrg: oracle.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2024 07:31:00.4605 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Qk9zo8b51DVjx6Hw88/Njgn/sUuIfC4COWGrKn+45jFScDR77T718eldx7SXZQpZ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB9055
+X-MS-Exchange-CrossTenant-AuthSource: BN0PR10MB5128.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2fd88c3-5b9e-44eb-cebf-08dd032feabb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2024 15:37:29.2968 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H04D900JfgJDeannQrnXPoQkxH+8hMGiB/6XZbmw2X6cZlFxkkcSM000V5V7aHJyzyozKiU7MIrULKBVk6UXHw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA6PR10MB8160
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-11-12_05,2024-11-12_02,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ malwarescore=0 mlxscore=0
+ bulkscore=0 suspectscore=0 phishscore=0 mlxlogscore=999 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2409260000
+ definitions=main-2411120124
+X-Proofpoint-GUID: lFTcqopYsXGg58vN5Zlfl7GI0Dw4dn2a
+X-Proofpoint-ORIG-GUID: lFTcqopYsXGg58vN5Zlfl7GI0Dw4dn2a
+X-Mailman-Approved-At: Wed, 13 Nov 2024 08:49:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,853 +239,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 11/13/2024 11:27 AM, Alex Deucher wrote:
-> On Tue, Nov 12, 2024 at 11:59 PM Lazar, Lijo <lijo.lazar@amd.com> wrote:
->>
->>
->>
->> On 11/13/2024 1:58 AM, Alex Deucher wrote:
->>> smu->workload_mask is IP specific and should not be messed with in
->>> the common code. The mask bits vary across SMU versions.
->>>
->>> Move all handling of smu->workload_mask in to the backends and
->>> simplify the code.  Store the user's preference in smu->power_profile_mode
->>> which will be reflected in sysfs.  For internal driver profile
->>> switches for KFD or VCN, just update the workload mask so that the
->>> user's preference is retained.  Remove all of the extra now unused
->>> workload related elements in the smu structure.
->>>
->>> v2: use refcounts for workload profiles
->>>
->>> Fixes: 8cc438be5d49 ("drm/amd/pm: correct the workload setting")
->>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->>> Cc: Kenneth Feng <kenneth.feng@amd.com>
->>> Cc: Lijo Lazar <lijo.lazar@amd.com>
->>> ---
->>>  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 128 +++++++++---------
->>>  drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  13 +-
->>>  .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  20 +--
->>>  .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   |  20 +--
->>>  .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  21 +--
->>>  .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  |  17 +--
->>>  .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   |  17 +--
->>>  .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  |  33 ++---
->>>  .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  |  21 +--
->>>  .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  |  33 ++---
->>>  drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c        |   8 --
->>>  drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h        |   2 -
->>>  12 files changed, 162 insertions(+), 171 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->>> index c3a6b6f20455..41b591ecfb64 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->>> @@ -72,6 +72,10 @@ static int smu_set_power_limit(void *handle, uint32_t limit);
->>>  static int smu_set_fan_speed_rpm(void *handle, uint32_t speed);
->>>  static int smu_set_gfx_cgpg(struct smu_context *smu, bool enabled);
->>>  static int smu_set_mp1_state(void *handle, enum pp_mp1_state mp1_state);
->>> +static void smu_power_profile_mode_get(struct smu_context *smu,
->>> +                                    enum PP_SMC_POWER_PROFILE profile_mode);
->>> +static void smu_power_profile_mode_put(struct smu_context *smu,
->>> +                                    enum PP_SMC_POWER_PROFILE profile_mode);
->>>
->>>  static int smu_sys_get_pp_feature_mask(void *handle,
->>>                                      char *buf)
->>> @@ -765,6 +769,7 @@ static int smu_early_init(struct amdgpu_ip_block *ip_block)
->>>       smu->user_dpm_profile.fan_mode = -1;
->>>
->>>       mutex_init(&smu->message_lock);
->>> +     mutex_init(&smu->workload_lock);
->>>
->>>       adev->powerplay.pp_handle = smu;
->>>       adev->powerplay.pp_funcs = &swsmu_pm_funcs;
->>> @@ -1268,9 +1273,6 @@ static int smu_sw_init(struct amdgpu_ip_block *ip_block)
->>>       INIT_WORK(&smu->interrupt_work, smu_interrupt_work_fn);
->>>       atomic64_set(&smu->throttle_int_counter, 0);
->>>       smu->watermarks_bitmap = 0;
->>> -     smu->power_profile_mode = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
->>> -     smu->default_power_profile_mode = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
->>> -     smu->user_dpm_profile.user_workload_mask = 0;
->>>
->>>       for (i = 0; i < adev->vcn.num_vcn_inst; i++)
->>>               atomic_set(&smu->smu_power.power_gate.vcn_gated[i], 1);
->>> @@ -1278,33 +1280,13 @@ static int smu_sw_init(struct amdgpu_ip_block *ip_block)
->>>       atomic_set(&smu->smu_power.power_gate.vpe_gated, 1);
->>>       atomic_set(&smu->smu_power.power_gate.umsch_mm_gated, 1);
->>>
->>> -     smu->workload_priority[PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT] = 0;
->>> -     smu->workload_priority[PP_SMC_POWER_PROFILE_FULLSCREEN3D] = 1;
->>> -     smu->workload_priority[PP_SMC_POWER_PROFILE_POWERSAVING] = 2;
->>> -     smu->workload_priority[PP_SMC_POWER_PROFILE_VIDEO] = 3;
->>> -     smu->workload_priority[PP_SMC_POWER_PROFILE_VR] = 4;
->>> -     smu->workload_priority[PP_SMC_POWER_PROFILE_COMPUTE] = 5;
->>> -     smu->workload_priority[PP_SMC_POWER_PROFILE_CUSTOM] = 6;
->>> -
->>>       if (smu->is_apu ||
->>> -         !smu_is_workload_profile_available(smu, PP_SMC_POWER_PROFILE_FULLSCREEN3D)) {
->>> -             smu->driver_workload_mask =
->>> -                     1 << smu->workload_priority[PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT];
->>> -     } else {
->>> -             smu->driver_workload_mask =
->>> -                     1 << smu->workload_priority[PP_SMC_POWER_PROFILE_FULLSCREEN3D];
->>> -             smu->default_power_profile_mode = PP_SMC_POWER_PROFILE_FULLSCREEN3D;
->>> -     }
->>> -
->>> -     smu->workload_mask = smu->driver_workload_mask |
->>> -                                                     smu->user_dpm_profile.user_workload_mask;
->>> -     smu->workload_setting[0] = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
->>> -     smu->workload_setting[1] = PP_SMC_POWER_PROFILE_FULLSCREEN3D;
->>> -     smu->workload_setting[2] = PP_SMC_POWER_PROFILE_POWERSAVING;
->>> -     smu->workload_setting[3] = PP_SMC_POWER_PROFILE_VIDEO;
->>> -     smu->workload_setting[4] = PP_SMC_POWER_PROFILE_VR;
->>> -     smu->workload_setting[5] = PP_SMC_POWER_PROFILE_COMPUTE;
->>> -     smu->workload_setting[6] = PP_SMC_POWER_PROFILE_CUSTOM;
->>> +         !smu_is_workload_profile_available(smu, PP_SMC_POWER_PROFILE_FULLSCREEN3D))
->>> +             smu->power_profile_mode = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
->>> +     else
->>> +             smu->power_profile_mode = PP_SMC_POWER_PROFILE_FULLSCREEN3D;
->>> +     smu_power_profile_mode_get(smu, smu->power_profile_mode);
->>> +
->>>       smu->display_config = &adev->pm.pm_display_cfg;
->>>
->>>       smu->smu_dpm.dpm_level = AMD_DPM_FORCED_LEVEL_AUTO;
->>> @@ -2252,24 +2234,41 @@ static int smu_enable_umd_pstate(void *handle,
->>>  }
->>>
->>>  static int smu_bump_power_profile_mode(struct smu_context *smu,
->>> -                                        long *param,
->>> -                                        uint32_t param_size)
->>> +                                    long *param,
->>> +                                    uint32_t param_size,
->>> +                                    bool enable)
->>>  {
->>>       int ret = 0;
->>>
->>>       if (smu->ppt_funcs->set_power_profile_mode)
->>> -             ret = smu->ppt_funcs->set_power_profile_mode(smu, param, param_size);
->>> +             ret = smu->ppt_funcs->set_power_profile_mode(smu, param, param_size, enable);
->>
->> Have a different expectation with refcount; not expecting to see
->> enable/disable. I think only switch power_profile_mode is required.
->>
->> Workload mask is then created based on non-zero refcounts in this array
->> - smu->workload_refcount[]. If it is different from the current mask,
->> then it's applied.
-> 
-> I tried that originally, but the problem was the custom profiles.
-> They need a bunch of extra parameters so it seemed easier to just
-> leave the set_power_profile backend API as is.  Although thinking
-> about it more I can save them off in amdgpu_smu.c when I update the
-> ref count and then just pass the mask to the backend set_power_profile
-> API.  
-
-Does the requirement translate to always do a force update if
-smu->power_profile_mode == custom? If so, this can be checked/done in
-backend.
-
-Thanks,
-Lijo
-
-Additionally for resume, we need to make sure the current
-> profile gets sent to PMFW.  Once again, thinking about it more, I can
-> just clear the backend workload_mask on suspend and then on resume, it
-> won't match and will update.
-> 
->>
->>>
->>>       return ret;
->>>  }
->>>
->>> +static void smu_power_profile_mode_get(struct smu_context *smu,
->>> +                                    enum PP_SMC_POWER_PROFILE profile_mode)
->>> +{
->>> +     mutex_lock(&smu->workload_lock);
->>
->> I think this is not needed. DPM calls are already under lock, not seeing
->> a case where it could do toggle get/put at the sametime.
-> 
-> Will drop.
-> 
->>
->>> +     smu->workload_refcount[profile_mode]++;
->>> +     mutex_unlock(&smu->workload_lock);
->>> +}
->>> +
->>> +static void smu_power_profile_mode_put(struct smu_context *smu,
->>> +                                    enum PP_SMC_POWER_PROFILE profile_mode)
->>> +{
->>> +     mutex_lock(&smu->workload_lock);
->>> +     if (smu->workload_refcount[profile_mode])
->>> +             smu->workload_refcount[profile_mode]--;
->>> +     mutex_unlock(&smu->workload_lock);
->>> +}
->>> +
->>>  static int smu_adjust_power_state_dynamic(struct smu_context *smu,
->>>                                         enum amd_dpm_forced_level level,
->>>                                         bool skip_display_settings,
->>>                                         bool init)
->>>  {
->>>       int ret = 0;
->>> -     int index = 0;
->>>       long workload[1];
->>>       struct smu_dpm_context *smu_dpm_ctx = &(smu->smu_dpm);
->>>
->>> @@ -2307,13 +2306,11 @@ static int smu_adjust_power_state_dynamic(struct smu_context *smu,
->>>       }
->>>
->>>       if (smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL &&
->>> -             smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM) {
->>> -             index = fls(smu->workload_mask);
->>> -             index = index > 0 && index <= WORKLOAD_POLICY_MAX ? index - 1 : 0;
->>> -             workload[0] = smu->workload_setting[index];
->>> +         smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM) {
->>> +             workload[0] = smu->power_profile_mode;
->>>
->>> -             if (init || smu->power_profile_mode != workload[0])
->>> -                     smu_bump_power_profile_mode(smu, workload, 0);
->>> +             if (init)
->>> +                     smu_bump_power_profile_mode(smu, workload, 0, true);
->>
->> Same here - not expecting to have init check here. Since workload_mask
->> is 0 during init and workload_refcount is changed, it will set the right
->> mask on smu_bump_power_profile_mode().
-> 
-> This was to cover resume so we apply the current state to PMFW on
-> resume.  Otherwise, the driver would skip the state update because it
-> thinks the state is already up to date.
-> 
->>
->>>       }
->>>
->>>       return ret;
->>> @@ -2361,12 +2358,11 @@ static int smu_handle_dpm_task(void *handle,
->>>
->>>  static int smu_switch_power_profile(void *handle,
->>>                                   enum PP_SMC_POWER_PROFILE type,
->>> -                                 bool en)
->>> +                                 bool enable)
->>>  {
->>>       struct smu_context *smu = handle;
->>>       struct smu_dpm_context *smu_dpm_ctx = &(smu->smu_dpm);
->>>       long workload[1];
->>> -     uint32_t index;
->>>
->>>       if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled)
->>>               return -EOPNOTSUPP;
->>> @@ -2374,24 +2370,16 @@ static int smu_switch_power_profile(void *handle,
->>>       if (!(type < PP_SMC_POWER_PROFILE_CUSTOM))
->>>               return -EINVAL;
->>>
->>> -     if (!en) {
->>> -             smu->driver_workload_mask &= ~(1 << smu->workload_priority[type]);
->>> -             index = fls(smu->workload_mask);
->>> -             index = index > 0 && index <= WORKLOAD_POLICY_MAX ? index - 1 : 0;
->>> -             workload[0] = smu->workload_setting[index];
->>> -     } else {
->>> -             smu->driver_workload_mask |= (1 << smu->workload_priority[type]);
->>> -             index = fls(smu->workload_mask);
->>> -             index = index <= WORKLOAD_POLICY_MAX ? index - 1 : 0;
->>> -             workload[0] = smu->workload_setting[index];
->>> -     }
->>> -
->>> -     smu->workload_mask = smu->driver_workload_mask |
->>> -                                              smu->user_dpm_profile.user_workload_mask;
->>> +     workload[0] = type;
->>>
->>>       if (smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL &&
->>> -             smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM)
->>> -             smu_bump_power_profile_mode(smu, workload, 0);
->>> +         smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM) {
->>> +             if (enable)
->>> +                     smu_power_profile_mode_get(smu, type);
->>> +             else
->>> +                     smu_power_profile_mode_put(smu, type);
->>> +             smu_bump_power_profile_mode(smu, workload, 0, enable);
->>> +     }
->>>
->>>       return 0;
->>>  }
->>> @@ -3090,21 +3078,27 @@ static int smu_set_power_profile_mode(void *handle,
->>>                                     uint32_t param_size)
->>>  {
->>>       struct smu_context *smu = handle;
->>> -     int ret;
->>> +     long workload[1];
->>> +     int ret = 0;
->>>
->>>       if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled ||
->>>           !smu->ppt_funcs->set_power_profile_mode)
->>>               return -EOPNOTSUPP;
->>>
->>> -     if (smu->user_dpm_profile.user_workload_mask &
->>> -        (1 << smu->workload_priority[param[param_size]]))
->>> -        return 0;
->>> -
->>> -     smu->user_dpm_profile.user_workload_mask =
->>> -             (1 << smu->workload_priority[param[param_size]]);
->>> -     smu->workload_mask = smu->user_dpm_profile.user_workload_mask |
->>> -             smu->driver_workload_mask;
->>> -     ret = smu_bump_power_profile_mode(smu, param, param_size);
->>> +     if (param[param_size] != smu->power_profile_mode) {
->>> +             /* clear the old user preference */
->>> +             workload[0] = smu->power_profile_mode;
->>> +             smu_power_profile_mode_put(smu, smu->power_profile_mode);
->>> +             ret = smu_bump_power_profile_mode(smu, workload, 0, false);
->>> +             if (ret)
->>> +                     return ret;
->>
->> Here as well - no need to call twice with false/true. Put the existing
->> one and get the new one. If smu_bump_power_profile_mode call fails, then
->> we have to reverse the operation though - this is true for other cases also.
-> 
-> Good catch.  Will fix.
-> 
-> Alex
-> 
->>
->> Thanks,
->> Lijo
->>
->>> +             /* set the new user preference */
->>> +             smu_power_profile_mode_get(smu, param[param_size]);
->>> +             ret = smu_bump_power_profile_mode(smu, param, param_size, true);
->>> +             if (!ret)
->>> +                     /* store the user's preference */
->>> +                     smu->power_profile_mode = param[param_size];
->>> +     }
->>>
->>>       return ret;
->>>  }
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
->>> index fa93a8879113..da7558a65c09 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
->>> @@ -240,7 +240,6 @@ struct smu_user_dpm_profile {
->>>       /* user clock state information */
->>>       uint32_t clk_mask[SMU_CLK_COUNT];
->>>       uint32_t clk_dependency;
->>> -     uint32_t user_workload_mask;
->>>  };
->>>
->>>  #define SMU_TABLE_INIT(tables, table_id, s, a, d)    \
->>> @@ -557,12 +556,12 @@ struct smu_context {
->>>       uint32_t hard_min_uclk_req_from_dal;
->>>       bool disable_uclk_switch;
->>>
->>> +     /* backend specific workload mask */
->>>       uint32_t workload_mask;
->>> -     uint32_t driver_workload_mask;
->>> -     uint32_t workload_priority[WORKLOAD_POLICY_MAX];
->>> -     uint32_t workload_setting[WORKLOAD_POLICY_MAX];
->>> +     /* default/user workload preference */
->>>       uint32_t power_profile_mode;
->>> -     uint32_t default_power_profile_mode;
->>> +     uint32_t workload_refcount[PP_SMC_POWER_PROFILE_COUNT];
->>> +     struct mutex workload_lock;
->>>       bool pm_enabled;
->>>       bool is_apu;
->>>
->>> @@ -734,8 +733,10 @@ struct pptable_funcs {
->>>        *                          create/set custom power profile modes.
->>>        * &input: Power profile mode parameters.
->>>        * &size: Size of &input.
->>> +      * &enable: enable/disable the profile
->>>        */
->>> -     int (*set_power_profile_mode)(struct smu_context *smu, long *input, uint32_t size);
->>> +     int (*set_power_profile_mode)(struct smu_context *smu, long *input,
->>> +                                   uint32_t size, bool enable);
->>>
->>>       /**
->>>        * @dpm_set_vcn_enable: Enable/disable VCN engine dynamic power
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
->>> index 4b36c230e43a..1e44cf6fec4b 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
->>> @@ -1443,7 +1443,8 @@ static int arcturus_get_power_profile_mode(struct smu_context *smu,
->>>
->>>  static int arcturus_set_power_profile_mode(struct smu_context *smu,
->>>                                          long *input,
->>> -                                        uint32_t size)
->>> +                                        uint32_t size,
->>> +                                        bool enable)
->>>  {
->>>       DpmActivityMonitorCoeffInt_t activity_monitor;
->>>       int workload_type = 0;
->>> @@ -1455,8 +1456,9 @@ static int arcturus_set_power_profile_mode(struct smu_context *smu,
->>>               return -EINVAL;
->>>       }
->>>
->>> -     if ((profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) &&
->>> -          (smu->smc_fw_version >= 0x360d00)) {
->>> +     if (enable &&
->>> +         (profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) &&
->>> +         (smu->smc_fw_version >= 0x360d00)) {
->>>               if (size != 10)
->>>                       return -EINVAL;
->>>
->>> @@ -1520,18 +1522,18 @@ static int arcturus_set_power_profile_mode(struct smu_context *smu,
->>>               return -EINVAL;
->>>       }
->>>
->>> +     if (enable)
->>> +             smu->workload_mask |= (1 << workload_type);
->>> +     else
->>> +             smu->workload_mask &= ~(1 << workload_type);
->>>       ret = smu_cmn_send_smc_msg_with_param(smu,
->>>                                         SMU_MSG_SetWorkloadMask,
->>>                                         smu->workload_mask,
->>>                                         NULL);
->>> -     if (ret) {
->>> +     if (ret)
->>>               dev_err(smu->adev->dev, "Fail to set workload type %d\n", workload_type);
->>> -             return ret;
->>> -     }
->>> -
->>> -     smu_cmn_assign_power_profile(smu);
->>>
->>> -     return 0;
->>> +     return ret;
->>>  }
->>>
->>>  static int arcturus_set_performance_level(struct smu_context *smu,
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
->>> index 211635dabed8..d944a9f954d0 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
->>> @@ -2006,19 +2006,19 @@ static int navi10_get_power_profile_mode(struct smu_context *smu, char *buf)
->>>       return size;
->>>  }
->>>
->>> -static int navi10_set_power_profile_mode(struct smu_context *smu, long *input, uint32_t size)
->>> +static int navi10_set_power_profile_mode(struct smu_context *smu, long *input,
->>> +                                      uint32_t size, bool enable)
->>>  {
->>>       DpmActivityMonitorCoeffInt_t activity_monitor;
->>>       int workload_type, ret = 0;
->>> +     uint32_t profile_mode = input[size];
->>>
->>> -     smu->power_profile_mode = input[size];
->>> -
->>> -     if (smu->power_profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
->>> -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", smu->power_profile_mode);
->>> +     if (profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
->>> +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", profile_mode);
->>>               return -EINVAL;
->>>       }
->>>
->>> -     if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>> +     if (enable && profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>>               if (size != 10)
->>>                       return -EINVAL;
->>>
->>> @@ -2080,16 +2080,18 @@ static int navi10_set_power_profile_mode(struct smu_context *smu, long *input, u
->>>       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>>       workload_type = smu_cmn_to_asic_specific_index(smu,
->>>                                                      CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                    smu->power_profile_mode);
->>> +                                                    profile_mode);
->>>       if (workload_type < 0)
->>>               return -EINVAL;
->>>
->>> +     if (enable)
->>> +             smu->workload_mask |= (1 << workload_type);
->>> +     else
->>> +             smu->workload_mask &= ~(1 << workload_type);
->>>       ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadMask,
->>>                                   smu->workload_mask, NULL);
->>>       if (ret)
->>>               dev_err(smu->adev->dev, "[%s] Failed to set work load mask!", __func__);
->>> -     else
->>> -             smu_cmn_assign_power_profile(smu);
->>>
->>>       return ret;
->>>  }
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
->>> index 844532a9b641..4967e087088b 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
->>> @@ -1704,22 +1704,23 @@ static int sienna_cichlid_get_power_profile_mode(struct smu_context *smu, char *
->>>       return size;
->>>  }
->>>
->>> -static int sienna_cichlid_set_power_profile_mode(struct smu_context *smu, long *input, uint32_t size)
->>> +static int sienna_cichlid_set_power_profile_mode(struct smu_context *smu,
->>> +                                              long *input, uint32_t size,
->>> +                                              bool enable)
->>>  {
->>>
->>>       DpmActivityMonitorCoeffIntExternal_t activity_monitor_external;
->>>       DpmActivityMonitorCoeffInt_t *activity_monitor =
->>>               &(activity_monitor_external.DpmActivityMonitorCoeffInt);
->>> +     uint32_t profile_mode = input[size];
->>>       int workload_type, ret = 0;
->>>
->>> -     smu->power_profile_mode = input[size];
->>> -
->>> -     if (smu->power_profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
->>> -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", smu->power_profile_mode);
->>> +     if (profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
->>> +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", profile_mode);
->>>               return -EINVAL;
->>>       }
->>>
->>> -     if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>> +     if (enable && profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>>               if (size != 10)
->>>                       return -EINVAL;
->>>
->>> @@ -1781,16 +1782,18 @@ static int sienna_cichlid_set_power_profile_mode(struct smu_context *smu, long *
->>>       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>>       workload_type = smu_cmn_to_asic_specific_index(smu,
->>>                                                      CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                    smu->power_profile_mode);
->>> +                                                    profile_mode);
->>>       if (workload_type < 0)
->>>               return -EINVAL;
->>>
->>> +     if (enable)
->>> +             smu->workload_mask |= (1 << workload_type);
->>> +     else
->>> +             smu->workload_mask &= ~(1 << workload_type);
->>>       ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadMask,
->>>                                   smu->workload_mask, NULL);
->>>       if (ret)
->>>               dev_err(smu->adev->dev, "[%s] Failed to set work load mask!", __func__);
->>> -     else
->>> -             smu_cmn_assign_power_profile(smu);
->>>
->>>       return ret;
->>>  }
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
->>> index f89c487dce72..b5dba4826f81 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
->>> @@ -1056,7 +1056,8 @@ static int vangogh_get_power_profile_mode(struct smu_context *smu,
->>>       return size;
->>>  }
->>>
->>> -static int vangogh_set_power_profile_mode(struct smu_context *smu, long *input, uint32_t size)
->>> +static int vangogh_set_power_profile_mode(struct smu_context *smu, long *input,
->>> +                                       uint32_t size, bool enable)
->>>  {
->>>       int workload_type, ret;
->>>       uint32_t profile_mode = input[size];
->>> @@ -1067,7 +1068,7 @@ static int vangogh_set_power_profile_mode(struct smu_context *smu, long *input,
->>>       }
->>>
->>>       if (profile_mode == PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT ||
->>> -                     profile_mode == PP_SMC_POWER_PROFILE_POWERSAVING)
->>> +         profile_mode == PP_SMC_POWER_PROFILE_POWERSAVING)
->>>               return 0;
->>>
->>>       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>> @@ -1080,18 +1081,18 @@ static int vangogh_set_power_profile_mode(struct smu_context *smu, long *input,
->>>               return -EINVAL;
->>>       }
->>>
->>> +     if (enable)
->>> +             smu->workload_mask |= (1 << workload_type);
->>> +     else
->>> +             smu->workload_mask &= ~(1 << workload_type);
->>>       ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_ActiveProcessNotify,
->>>                                   smu->workload_mask,
->>>                                   NULL);
->>> -     if (ret) {
->>> +     if (ret)
->>>               dev_err_once(smu->adev->dev, "Fail to set workload type %d\n",
->>>                                       workload_type);
->>> -             return ret;
->>> -     }
->>> -
->>> -     smu_cmn_assign_power_profile(smu);
->>>
->>> -     return 0;
->>> +     return ret;
->>>  }
->>>
->>>  static int vangogh_set_soft_freq_limited_range(struct smu_context *smu,
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->>> index 75a9ea87f419..2d1eae79ab9d 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->>> @@ -864,7 +864,8 @@ static int renoir_force_clk_levels(struct smu_context *smu,
->>>       return ret;
->>>  }
->>>
->>> -static int renoir_set_power_profile_mode(struct smu_context *smu, long *input, uint32_t size)
->>> +static int renoir_set_power_profile_mode(struct smu_context *smu, long *input,
->>> +                                      uint32_t size, bool enable)
->>>  {
->>>       int workload_type, ret;
->>>       uint32_t profile_mode = input[size];
->>> @@ -875,7 +876,7 @@ static int renoir_set_power_profile_mode(struct smu_context *smu, long *input, u
->>>       }
->>>
->>>       if (profile_mode == PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT ||
->>> -                     profile_mode == PP_SMC_POWER_PROFILE_POWERSAVING)
->>> +         profile_mode == PP_SMC_POWER_PROFILE_POWERSAVING)
->>>               return 0;
->>>
->>>       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>> @@ -891,17 +892,17 @@ static int renoir_set_power_profile_mode(struct smu_context *smu, long *input, u
->>>               return -EINVAL;
->>>       }
->>>
->>> +     if (enable)
->>> +             smu->workload_mask |= (1 << workload_type);
->>> +     else
->>> +             smu->workload_mask &= ~(1 << workload_type);
->>>       ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_ActiveProcessNotify,
->>>                                   smu->workload_mask,
->>>                                   NULL);
->>> -     if (ret) {
->>> +     if (ret)
->>>               dev_err_once(smu->adev->dev, "Fail to set workload type %d\n", workload_type);
->>> -             return ret;
->>> -     }
->>>
->>> -     smu_cmn_assign_power_profile(smu);
->>> -
->>> -     return 0;
->>> +     return ret;
->>>  }
->>>
->>>  static int renoir_set_peak_clock_by_device(struct smu_context *smu)
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
->>> index 80c6b1e523aa..3cc734331891 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
->>> @@ -2573,22 +2573,22 @@ static int smu_v13_0_0_get_power_profile_mode(struct smu_context *smu,
->>>
->>>  static int smu_v13_0_0_set_power_profile_mode(struct smu_context *smu,
->>>                                             long *input,
->>> -                                           uint32_t size)
->>> +                                           uint32_t size,
->>> +                                           bool enable)
->>>  {
->>>       DpmActivityMonitorCoeffIntExternal_t activity_monitor_external;
->>>       DpmActivityMonitorCoeffInt_t *activity_monitor =
->>>               &(activity_monitor_external.DpmActivityMonitorCoeffInt);
->>> +     uint32_t profile_mode = input[size];
->>>       int workload_type, ret = 0;
->>>       u32 workload_mask;
->>>
->>> -     smu->power_profile_mode = input[size];
->>> -
->>> -     if (smu->power_profile_mode >= PP_SMC_POWER_PROFILE_COUNT) {
->>> -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", smu->power_profile_mode);
->>> +     if (profile_mode >= PP_SMC_POWER_PROFILE_COUNT) {
->>> +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", profile_mode);
->>>               return -EINVAL;
->>>       }
->>>
->>> -     if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>> +     if (enable && profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>>               if (size != 9)
->>>                       return -EINVAL;
->>>
->>> @@ -2641,13 +2641,18 @@ static int smu_v13_0_0_set_power_profile_mode(struct smu_context *smu,
->>>       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>>       workload_type = smu_cmn_to_asic_specific_index(smu,
->>>                                                      CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                    smu->power_profile_mode);
->>> +                                                    profile_mode);
->>>
->>>       if (workload_type < 0)
->>>               return -EINVAL;
->>>
->>>       workload_mask = 1 << workload_type;
->>>
->>> +     if (enable)
->>> +             smu->workload_mask |= workload_mask;
->>> +     else
->>> +             smu->workload_mask &= ~workload_mask;
->>> +
->>>       /* Add optimizations for SMU13.0.0/10.  Reuse the power saving profile */
->>>       if ((amdgpu_ip_version(smu->adev, MP1_HWIP, 0) == IP_VERSION(13, 0, 0) &&
->>>            ((smu->adev->pm.fw_version == 0x004e6601) ||
->>> @@ -2658,25 +2663,13 @@ static int smu_v13_0_0_set_power_profile_mode(struct smu_context *smu,
->>>                                                              CMN2ASIC_MAPPING_WORKLOAD,
->>>                                                              PP_SMC_POWER_PROFILE_POWERSAVING);
->>>               if (workload_type >= 0)
->>> -                     workload_mask |= 1 << workload_type;
->>> +                     smu->workload_mask |= 1 << workload_type;
->>>       }
->>>
->>> -     smu->workload_mask |= workload_mask;
->>>       ret = smu_cmn_send_smc_msg_with_param(smu,
->>>                                              SMU_MSG_SetWorkloadMask,
->>>                                              smu->workload_mask,
->>>                                              NULL);
->>> -     if (!ret) {
->>> -             smu_cmn_assign_power_profile(smu);
->>> -             if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_POWERSAVING) {
->>> -                     workload_type = smu_cmn_to_asic_specific_index(smu,
->>> -                                                            CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                            PP_SMC_POWER_PROFILE_FULLSCREEN3D);
->>> -                     smu->power_profile_mode = smu->workload_mask & (1 << workload_type)
->>> -                                                                             ? PP_SMC_POWER_PROFILE_FULLSCREEN3D
->>> -                                                                             : PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
->>> -             }
->>> -     }
->>>
->>>       return ret;
->>>  }
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
->>> index c5d3e25cc967..1aafd23857f0 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
->>> @@ -2528,22 +2528,23 @@ do {                                                                                                  \
->>>       return result;
->>>  }
->>>
->>> -static int smu_v13_0_7_set_power_profile_mode(struct smu_context *smu, long *input, uint32_t size)
->>> +static int smu_v13_0_7_set_power_profile_mode(struct smu_context *smu,
->>> +                                           long *input, uint32_t size,
->>> +                                           bool enable)
->>>  {
->>>
->>>       DpmActivityMonitorCoeffIntExternal_t activity_monitor_external;
->>>       DpmActivityMonitorCoeffInt_t *activity_monitor =
->>>               &(activity_monitor_external.DpmActivityMonitorCoeffInt);
->>> +     uint32_t profile_mode = input[size];
->>>       int workload_type, ret = 0;
->>>
->>> -     smu->power_profile_mode = input[size];
->>> -
->>> -     if (smu->power_profile_mode > PP_SMC_POWER_PROFILE_WINDOW3D) {
->>> -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", smu->power_profile_mode);
->>> +     if (profile_mode > PP_SMC_POWER_PROFILE_WINDOW3D) {
->>> +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", profile_mode);
->>>               return -EINVAL;
->>>       }
->>>
->>> -     if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>> +     if (enable && profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>>               if (size != 8)
->>>                       return -EINVAL;
->>>
->>> @@ -2590,17 +2591,19 @@ static int smu_v13_0_7_set_power_profile_mode(struct smu_context *smu, long *inp
->>>       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>>       workload_type = smu_cmn_to_asic_specific_index(smu,
->>>                                                      CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                    smu->power_profile_mode);
->>> +                                                    profile_mode);
->>>       if (workload_type < 0)
->>>               return -EINVAL;
->>>
->>> +     if (enable)
->>> +             smu->workload_mask |= (1 << workload_type);
->>> +     else
->>> +             smu->workload_mask &= ~(1 << workload_type);
->>>       ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadMask,
->>>                                   smu->workload_mask, NULL);
->>>
->>>       if (ret)
->>>               dev_err(smu->adev->dev, "[%s] Failed to set work load mask!", __func__);
->>> -     else
->>> -             smu_cmn_assign_power_profile(smu);
->>>
->>>       return ret;
->>>  }
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
->>> index 59b369eff30f..b64490bcfd62 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
->>> @@ -1719,21 +1719,21 @@ static int smu_v14_0_2_get_power_profile_mode(struct smu_context *smu,
->>>
->>>  static int smu_v14_0_2_set_power_profile_mode(struct smu_context *smu,
->>>                                             long *input,
->>> -                                           uint32_t size)
->>> +                                           uint32_t size,
->>> +                                           bool enable)
->>>  {
->>>       DpmActivityMonitorCoeffIntExternal_t activity_monitor_external;
->>>       DpmActivityMonitorCoeffInt_t *activity_monitor =
->>>               &(activity_monitor_external.DpmActivityMonitorCoeffInt);
->>> +     uint32_t profile_mode = input[size];
->>>       int workload_type, ret = 0;
->>> -     uint32_t current_profile_mode = smu->power_profile_mode;
->>> -     smu->power_profile_mode = input[size];
->>>
->>> -     if (smu->power_profile_mode >= PP_SMC_POWER_PROFILE_COUNT) {
->>> -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", smu->power_profile_mode);
->>> +     if (profile_mode >= PP_SMC_POWER_PROFILE_COUNT) {
->>> +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", profile_mode);
->>>               return -EINVAL;
->>>       }
->>>
->>> -     if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>> +     if (enable && profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
->>>               if (size != 9)
->>>                       return -EINVAL;
->>>
->>> @@ -1783,23 +1783,24 @@ static int smu_v14_0_2_set_power_profile_mode(struct smu_context *smu,
->>>               }
->>>       }
->>>
->>> -     if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_COMPUTE)
->>> -             smu_v14_0_deep_sleep_control(smu, false);
->>> -     else if (current_profile_mode == PP_SMC_POWER_PROFILE_COMPUTE)
->>> -             smu_v14_0_deep_sleep_control(smu, true);
->>> -
->>>       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>>       workload_type = smu_cmn_to_asic_specific_index(smu,
->>>                                                      CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                    smu->power_profile_mode);
->>> +                                                    profile_mode);
->>>       if (workload_type < 0)
->>>               return -EINVAL;
->>>
->>> -     ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadMask,
->>> -                                                                               smu->workload_mask, NULL);
->>> +     if (enable)
->>> +             smu->workload_mask |= (1 << workload_type);
->>> +     else
->>> +             smu->workload_mask &= ~(1 << workload_type);
->>>
->>> -     if (!ret)
->>> -             smu_cmn_assign_power_profile(smu);
->>> +     /* disable deep sleep if compute is enabled */
->>> +     if (profile_mode == PP_SMC_POWER_PROFILE_COMPUTE)
->>> +             smu_v14_0_deep_sleep_control(smu, !enable);
->>> +
->>> +     ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadMask,
->>> +                                           smu->workload_mask, NULL);
->>>
->>>       return ret;
->>>  }
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
->>> index fd2aa949538e..63c4f75fa118 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
->>> @@ -1141,14 +1141,6 @@ int smu_cmn_set_mp1_state(struct smu_context *smu,
->>>       return ret;
->>>  }
->>>
->>> -void smu_cmn_assign_power_profile(struct smu_context *smu)
->>> -{
->>> -     uint32_t index;
->>> -     index = fls(smu->workload_mask);
->>> -     index = index > 0 && index <= WORKLOAD_POLICY_MAX ? index - 1 : 0;
->>> -     smu->power_profile_mode = smu->workload_setting[index];
->>> -}
->>> -
->>>  bool smu_cmn_is_audio_func_enabled(struct amdgpu_device *adev)
->>>  {
->>>       struct pci_dev *p = NULL;
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
->>> index 8a801e389659..1de685defe85 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
->>> @@ -130,8 +130,6 @@ void smu_cmn_init_soft_gpu_metrics(void *table, uint8_t frev, uint8_t crev);
->>>  int smu_cmn_set_mp1_state(struct smu_context *smu,
->>>                         enum pp_mp1_state mp1_state);
->>>
->>> -void smu_cmn_assign_power_profile(struct smu_context *smu);
->>> -
->>>  /*
->>>   * Helper function to make sysfs_emit_at() happy. Align buf to
->>>   * the current page boundary and record the offset.
+DQoNCj4gT24gTm92IDExLCAyMDI0LCBhdCAxMDo0M+KAr1BNLCB5YW5nZXJrdW4gPHlhbmdlcmt1
+bkBodWF3ZWljbG91ZC5jb20+IHdyb3RlOg0KPiANCj4gDQo+IA0KPiDlnKggMjAyNC8xMS8xMSAy
+MzozNCwgQ2h1Y2sgTGV2ZXIgSUlJIOWGmemBkzoNCj4+PiBPbiBOb3YgMTEsIDIwMjQsIGF0IDEw
+OjIw4oCvQU0sIHlhbmdlcmt1biA8eWFuZ2Vya3VuQGh1YXdlaWNsb3VkLmNvbT4gd3JvdGU6DQo+
+Pj4gDQo+Pj4gDQo+Pj4gDQo+Pj4g5ZyoIDIwMjQvMTEvMTEgMjI6MzksIENodWNrIExldmVyIElJ
+SSDlhpnpgZM6DQo+Pj4+PiBPbiBOb3YgMTAsIDIwMjQsIGF0IDk6MzbigK9QTSwgWXUgS3VhaSA8
+eXVrdWFpMUBodWF3ZWljbG91ZC5jb20+IHdyb3RlOg0KPj4+Pj4gDQo+Pj4+PiBIaSwNCj4+Pj4+
+IA0KPj4+Pj4g5ZyoIDIwMjQvMTEvMTEgODo1MiwgY2VsQGtlcm5lbC5vcmcg5YaZ6YGTOg0KPj4+
+Pj4+IEZyb206IHlhbmdlcmt1biA8eWFuZ2Vya3VuQGh1YXdlaS5jb20+DQo+Pj4+Pj4gWyBVcHN0
+cmVhbSBjb21taXQgNjRhN2NlNzZmYjkwMWJmOWY5YzM2Y2Y1ZDY4MTMyOGZjMGZkNGI1YSBdDQo+
+Pj4+Pj4gQWZ0ZXIgd2Ugc3dpdGNoIHRtcGZzIGRpciBvcGVyYXRpb25zIGZyb20gc2ltcGxlX2Rp
+cl9vcGVyYXRpb25zIHRvDQo+Pj4+Pj4gc2ltcGxlX29mZnNldF9kaXJfb3BlcmF0aW9ucywgZXZl
+cnkgcmVuYW1lIGhhcHBlbmVkIHdpbGwgZmlsbCBuZXcgZGVudHJ5DQo+Pj4+Pj4gdG8gZGVzdCBk
+aXIncyBtYXBsZSB0cmVlKCZTSE1FTV9JKGlub2RlKS0+ZGlyX29mZnNldHMtPm10KSB3aXRoIGEg
+ZnJlZQ0KPj4+Pj4+IGtleSBzdGFydGluZyB3aXRoIG9jdHgtPm5ld3hfb2Zmc2V0LCBhbmQgdGhl
+biBzZXQgbmV3eF9vZmZzZXQgZXF1YWxzIHRvDQo+Pj4+Pj4gZnJlZSBrZXkgKyAxLiBUaGlzIHdp
+bGwgbGVhZCB0byBpbmZpbml0ZSByZWFkZGlyIGNvbWJpbmUgd2l0aCByZW5hbWUNCj4+Pj4+PiBo
+YXBwZW5lZCBhdCB0aGUgc2FtZSB0aW1lLCB3aGljaCBmYWlsIGdlbmVyaWMvNzM2IGluIHhmc3Rl
+c3RzKGRldGFpbCBzaG93DQo+Pj4+Pj4gYXMgYmVsb3cpLg0KPj4+Pj4+IDEuIGNyZWF0ZSA1MDAw
+IGZpbGVzKDEgMiAzLi4uKSB1bmRlciBvbmUgZGlyDQo+Pj4+Pj4gMi4gY2FsbCByZWFkZGlyKG1h
+biAzIHJlYWRkaXIpIG9uY2UsIGFuZCBnZXQgb25lIGVudHJ5DQo+Pj4+Pj4gMy4gcmVuYW1lKGVu
+dHJ5LCAiVEVNUEZJTEUiKSwgdGhlbiByZW5hbWUoIlRFTVBGSUxFIiwgZW50cnkpDQo+Pj4+Pj4g
+NC4gbG9vcCAyfjMsIHVudGlsIHJlYWRkaXIgcmV0dXJuIG5vdGhpbmcgb3Igd2UgbG9vcCB0b28g
+bWFueQ0KPj4+Pj4+ICAgIHRpbWVzKHRtcGZzIGJyZWFrIHRlc3Qgd2l0aCB0aGUgc2Vjb25kIGNv
+bmRpdGlvbikNCj4+Pj4+PiBXZSBjaG9vc2UgdGhlIHNhbWUgbG9naWMgd2hhdCBjb21taXQgOWIz
+NzhmNmFkNDhjZiAoImJ0cmZzOiBmaXggaW5maW5pdGUNCj4+Pj4+PiBkaXJlY3RvcnkgcmVhZHMi
+KSB0byBmaXggaXQsIHJlY29yZCB0aGUgbGFzdF9pbmRleCB3aGVuIHdlIG9wZW4gZGlyLCBhbmQN
+Cj4+Pj4+PiBkbyBub3QgZW1pdCB0aGUgZW50cnkgd2hpY2ggaW5kZXggPj0gbGFzdF9pbmRleC4g
+VGhlIGZpbGUtPnByaXZhdGVfZGF0YQ0KPj4+Pj4gDQo+Pj4+PiBQbGVhc2Ugbm90aWNlIHRoaXMg
+cmVxdWlyZXMgbGFzdF9pbmRleCBzaG91bGQgbmV2ZXIgb3ZlcmZsb3csIG90aGVyd2lzZQ0KPj4+
+Pj4gcmVhZGRpciB3aWxsIGJlIG1lc3NlZCB1cC4NCj4+Pj4gSXQgd291bGQgaGVscCB5b3VyIGNh
+dXNlIGlmIHlvdSBjb3VsZCBiZSBtb3JlIHNwZWNpZmljDQo+Pj4+IHRoYW4gIm1lc3NlZCB1cCIu
+DQo+Pj4+Pj4gbm93IHVzZWQgaW4gb2Zmc2V0IGRpciBjYW4gdXNlIGRpcmVjdGx5IHRvIGRvIHRo
+aXMsIGFuZCB3ZSBhbHNvIHVwZGF0ZQ0KPj4+Pj4+IHRoZSBsYXN0X2luZGV4IHdoZW4gd2UgbGxz
+ZWVrIHRoZSBkaXIgZmlsZS4NCj4+Pj4+PiBGaXhlczogYTJlNDU5NTU1YzVmICgic2htZW06IHN0
+YWJsZSBkaXJlY3Rvcnkgb2Zmc2V0cyIpDQo+Pj4+Pj4gU2lnbmVkLW9mZi1ieTogeWFuZ2Vya3Vu
+IDx5YW5nZXJrdW5AaHVhd2VpLmNvbT4NCj4+Pj4+PiBMaW5rOiBodHRwczovL2xvcmUua2VybmVs
+Lm9yZy9yLzIwMjQwNzMxMDQzODM1LjE4Mjg2OTctMS15YW5nZXJrdW5AaHVhd2VpLmNvbQ0KPj4+
+Pj4+IFJldmlld2VkLWJ5OiBDaHVjayBMZXZlciA8Y2h1Y2subGV2ZXJAb3JhY2xlLmNvbT4NCj4+
+Pj4+PiBbYnJhdW5lcjogb25seSB1cGRhdGUgbGFzdF9pbmRleCBhZnRlciBzZWVrIHdoZW4gb2Zm
+c2V0IGlzIHplcm8gbGlrZSBKYW4gc3VnZ2VzdGVkXQ0KPj4+Pj4+IFNpZ25lZC1vZmYtYnk6IENo
+cmlzdGlhbiBCcmF1bmVyIDxicmF1bmVyQGtlcm5lbC5vcmc+DQo+Pj4+Pj4gTGluazogaHR0cHM6
+Ly9udmQubmlzdC5nb3YvdnVsbi9kZXRhaWwvQ1ZFLTIwMjQtNDY3MDENCj4+Pj4+PiBbIGNlbDog
+YWRqdXN0ZWQgdG8gYXBwbHkgdG8gb3JpZ2luL2xpbnV4LTYuNi55IF0NCj4+Pj4+PiBTaWduZWQt
+b2ZmLWJ5OiBDaHVjayBMZXZlciA8Y2h1Y2subGV2ZXJAb3JhY2xlLmNvbT4NCj4+Pj4+PiAtLS0N
+Cj4+Pj4+PiAgZnMvbGliZnMuYyB8IDM3ICsrKysrKysrKysrKysrKysrKysrKysrKystLS0tLS0t
+LS0tLS0NCj4+Pj4+PiAgMSBmaWxlIGNoYW5nZWQsIDI1IGluc2VydGlvbnMoKyksIDEyIGRlbGV0
+aW9ucygtKQ0KPj4+Pj4+IGRpZmYgLS1naXQgYS9mcy9saWJmcy5jIGIvZnMvbGliZnMuYw0KPj4+
+Pj4+IGluZGV4IGE4NzAwNWM4OTUzNC4uYjU5ZmYwZGZlYTFmIDEwMDY0NA0KPj4+Pj4+IC0tLSBh
+L2ZzL2xpYmZzLmMNCj4+Pj4+PiArKysgYi9mcy9saWJmcy5jDQo+Pj4+Pj4gQEAgLTQ0OSw2ICs0
+NDksMTQgQEAgdm9pZCBzaW1wbGVfb2Zmc2V0X2Rlc3Ryb3koc3RydWN0IG9mZnNldF9jdHggKm9j
+dHgpDQo+Pj4+Pj4gICB4YV9kZXN0cm95KCZvY3R4LT54YSk7DQo+Pj4+Pj4gIH0NCj4+Pj4+PiAg
+K3N0YXRpYyBpbnQgb2Zmc2V0X2Rpcl9vcGVuKHN0cnVjdCBpbm9kZSAqaW5vZGUsIHN0cnVjdCBm
+aWxlICpmaWxlKQ0KPj4+Pj4+ICt7DQo+Pj4+Pj4gKyBzdHJ1Y3Qgb2Zmc2V0X2N0eCAqY3R4ID0g
+aW5vZGUtPmlfb3AtPmdldF9vZmZzZXRfY3R4KGlub2RlKTsNCj4+Pj4+PiArDQo+Pj4+Pj4gKyBm
+aWxlLT5wcml2YXRlX2RhdGEgPSAodm9pZCAqKWN0eC0+bmV4dF9vZmZzZXQ7DQo+Pj4+Pj4gKyBy
+ZXR1cm4gMDsNCj4+Pj4+PiArfQ0KPj4+Pj4gDQo+Pj4+PiBMb29rcyBsaWtlIHhhcnJheSBpcyBz
+dGlsbCB1c2VkLg0KPj4+PiBUaGF0J3Mgbm90IGdvaW5nIHRvIGNoYW5nZSwgYXMgc2V2ZXJhbCBm
+b2xrcyBoYXZlIGFscmVhZHkNCj4+Pj4gZXhwbGFpbmVkLg0KPj4+Pj4gSSdtIGluIHRoZSBjYyBs
+aXN0ICxzbyBJIGFzc3VtZSB5b3Ugc2F3IG15IHNldCwgdGhlbiBJIGRvbid0IGtub3cgd2h5DQo+
+Pj4+PiB5b3UncmUgaWdub3JpbmcgbXkgY29uY2VybnMuDQo+Pj4+PiAxKSBuZXh0X29mZnNldCBp
+cyAzMi1iaXQgYW5kIGNhbiBvdmVyZmxvdyBpbiBhIGxvbmctdGltZSBydW5uaW5nDQo+Pj4+PiBt
+YWNoaW5lLg0KPj4+Pj4gMikgT25jZSBuZXh0X29mZnNldCBvdmVyZmxvd3MsIHJlYWRkaXIgd2ls
+bCBza2lwIHRoZSBmaWxlcyB0aGF0IG9mZnNldA0KPj4+Pj4gaXMgYmlnZ2VyLg0KPj4+IA0KPj4+
+IEknbSBzb3JyeSwgSSdtIGEgbGl0dGxlIGJ1c3kgdGhlc2UgZGF5cywgc28gSSBoYXZlbid0IHJl
+c3BvbmRlZCB0byB0aGlzDQo+Pj4gc2VyaWVzIG9mIGVtYWlscy4NCj4+PiANCj4+Pj4gSW4gdGhh
+dCBjYXNlLCB0aGF0IGVudHJ5IHdvbid0IGJlIHZpc2libGUgdmlhIGdldGRlbnRzKDMpDQo+Pj4+
+IHVudGlsIHRoZSBkaXJlY3RvcnkgaXMgcmUtb3BlbmVkIG9yIHRoZSBwcm9jZXNzIGRvZXMgYW4N
+Cj4+Pj4gbHNlZWsoZmQsIDAsIFNFRUtfU0VUKS4NCj4+PiANCj4+PiBZZXMuDQo+Pj4gDQo+Pj4+
+IFRoYXQgaXMgdGhlIHByb3BlciBhbmQgZXhwZWN0ZWQgYmVoYXZpb3IuIEkgc3VzcGVjdCB5b3UN
+Cj4+Pj4gd2lsbCBzZWUgZXhhY3RseSB0aGF0IGJlaGF2aW9yIHdpdGggZXh0NCBhbmQgMzItYml0
+DQo+Pj4+IGRpcmVjdG9yeSBvZmZzZXRzLCBmb3IgZXhhbXBsZS4NCj4+PiANCj4+PiBFbW0uLi4N
+Cj4+PiANCj4+PiBGb3IgdGhpcyBjYXNlIGxpa2UgdGhpczoNCj4+PiANCj4+PiAxLiBta2RpciAv
+dG1wL2RpciBhbmQgdG91Y2ggL3RtcC9kaXIvZmlsZTEgL3RtcC9kaXIvZmlsZTINCj4+PiAyLiBv
+cGVuIC90bXAvZGlyIHdpdGggZmQxDQo+Pj4gMy4gcmVhZGRpciBhbmQgZ2V0IC90bXAvZGlyL2Zp
+bGUxDQo+Pj4gNC4gcm0gL3RtcC9kaXIvZmlsZTINCj4+PiA1LiB0b3VjaCAvdG1wL2Rpci9maWxl
+Mg0KPj4+IDQuIGxvb3AgNH41IGZvciAyXjMyIHRpbWVzDQo+Pj4gNS4gcmVhZGRpciAvdG1wL2Rp
+ciB3aXRoIGZkMQ0KPj4+IA0KPj4+IEZvciB0bXBmcyBub3csIHdlIG1heSBzZWUgbm8gL3RtcC9k
+aXIvZmlsZTIsIHNpbmNlIHRoZSBvZmZzZXQgaGFzIGJlZW4gb3ZlcmZsb3csIGZvciBleHQ0IGl0
+IGlzIG9rLi4uIFNvIHdlIHRoaW5rIHRoaXMgd2lsbCBiZSBhIHByb2JsZW0uDQo+Pj4gDQo+Pj4+
+IERvZXMgdGhhdCBub3QgZGlyZWN0bHkgYWRkcmVzcyB5b3VyIGNvbmNlcm4/IE9yIGRvIHlvdQ0K
+Pj4+PiBtZWFuIHRoYXQgRXJrdW4ncyBwYXRjaCBpbnRyb2R1Y2VzIGEgbmV3IGlzc3VlPw0KPj4+
+IA0KPj4+IFllcywgdG8gYmUgaG9uZXN0LCBteSBwZXJzb25hbCBmZWVsaW5nIGlzIGEgcHJvYmxl
+bS4gQnV0IGZvciA2NGJpdCwgaXQgbWF5IG5ldmVyIGJlZW4gdHJpZ2dlci4NCj4+IFRoYW5rcyBm
+b3IgY29uZmlybWluZy4NCj4+IEluIHRoYXQgY2FzZSwgdGhlIHByZWZlcnJlZCB3YXkgdG8gaGFu
+ZGxlIGl0IGlzIHRvIGZpeA0KPj4gdGhlIGlzc3VlIGluIHVwc3RyZWFtLCBhbmQgdGhlbiBiYWNr
+cG9ydCB0aGF0IGZpeCB0byBMVFMuDQo+PiBEZXBlbmRlbmNlIG9uIDY0LWJpdCBvZmZzZXRzIHRv
+IGF2b2lkIGEgZmFpbHVyZSBjYXNlDQo+PiBzaG91bGQgYmUgY29uc2lkZXJlZCBhIHdvcmthcm91
+bmQsIG5vdCBhIHJlYWwgZml4LCBJTUhPLg0KPiANCj4gWWVzLg0KPiANCj4+IERvIHlvdSBoYXZl
+IGEgZmV3IG1vbWVudHMgdG8gYWRkcmVzcyBpdCwgb3IgaWYgbm90IEkNCj4+IHdpbGwgc2VlIHRv
+IGl0Lg0KPiANCj4gWW91IGNhbiB0cnkgdG8gZG8gdGhpcywgZm9yIHRoZSByZWFzb24gSSBhbSBx
+dWl0ZSBidXN5IG5vdyB1bnRpbCBlbmQgb2YgdGhpcyBtb250aC4uLiBTb3JyeS4NCg0KTm8gd29y
+cmllcyENCg0KDQo+PiBJIHRoaW5rIHJlZHVjaW5nIHRoZSB4YV9saW1pdCBpbiBzaW1wbGVfb2Zm
+c2V0X2FkZCgpIHRvLA0KPj4gc2F5LCAyLi4xNiB3b3VsZCBtYWtlIHRoZSByZXByb2R1Y2VyIGZp
+cmUgYWxtb3N0DQo+PiBpbW1lZGlhdGVseS4NCj4gDQo+IFllcy4NCj4gDQo+Pj4+IElmIHRoZXJl
+IGlzIGEgcHJvYmxlbSBoZXJlLCBwbGVhc2UgY29uc3RydWN0IGEgcmVwcm9kdWNlcg0KPj4+PiBh
+Z2FpbnN0IHRoaXMgcGF0Y2ggc2V0IGFuZCBwb3N0IGl0Lg0KPj4+Pj4gVGhhbmtzLA0KPj4+Pj4g
+S3VhaQ0KPj4+Pj4gDQo+Pj4+Pj4gKw0KPj4+Pj4+ICAvKioNCj4+Pj4+PiAgICogb2Zmc2V0X2Rp
+cl9sbHNlZWsgLSBBZHZhbmNlIHRoZSByZWFkIHBvc2l0aW9uIG9mIGEgZGlyZWN0b3J5IGRlc2Ny
+aXB0b3INCj4+Pj4+PiAgICogQGZpbGU6IGFuIG9wZW4gZGlyZWN0b3J5IHdob3NlIHBvc2l0aW9u
+IGlzIHRvIGJlIHVwZGF0ZWQNCj4+Pj4+PiBAQCAtNDYyLDYgKzQ3MCw5IEBAIHZvaWQgc2ltcGxl
+X29mZnNldF9kZXN0cm95KHN0cnVjdCBvZmZzZXRfY3R4ICpvY3R4KQ0KPj4+Pj4+ICAgKi8NCj4+
+Pj4+PiAgc3RhdGljIGxvZmZfdCBvZmZzZXRfZGlyX2xsc2VlayhzdHJ1Y3QgZmlsZSAqZmlsZSwg
+bG9mZl90IG9mZnNldCwgaW50IHdoZW5jZSkNCj4+Pj4+PiAgew0KPj4+Pj4+ICsgc3RydWN0IGlu
+b2RlICppbm9kZSA9IGZpbGUtPmZfaW5vZGU7DQo+Pj4+Pj4gKyBzdHJ1Y3Qgb2Zmc2V0X2N0eCAq
+Y3R4ID0gaW5vZGUtPmlfb3AtPmdldF9vZmZzZXRfY3R4KGlub2RlKTsNCj4+Pj4+PiArDQo+Pj4+
+Pj4gICBzd2l0Y2ggKHdoZW5jZSkgew0KPj4+Pj4+ICAgY2FzZSBTRUVLX0NVUjoNCj4+Pj4+PiAg
+IG9mZnNldCArPSBmaWxlLT5mX3BvczsNCj4+Pj4+PiBAQCAtNDc1LDggKzQ4Niw5IEBAIHN0YXRp
+YyBsb2ZmX3Qgb2Zmc2V0X2Rpcl9sbHNlZWsoc3RydWN0IGZpbGUgKmZpbGUsIGxvZmZfdCBvZmZz
+ZXQsIGludCB3aGVuY2UpDQo+Pj4+Pj4gICB9DQo+Pj4+Pj4gICAgIC8qIEluIHRoaXMgY2FzZSwg
+LT5wcml2YXRlX2RhdGEgaXMgcHJvdGVjdGVkIGJ5IGZfcG9zX2xvY2sgKi8NCj4+Pj4+PiAtIGZp
+bGUtPnByaXZhdGVfZGF0YSA9IE5VTEw7DQo+Pj4+Pj4gLSByZXR1cm4gdmZzX3NldHBvcyhmaWxl
+LCBvZmZzZXQsIFUzMl9NQVgpOw0KPj4+Pj4+ICsgaWYgKCFvZmZzZXQpDQo+Pj4+Pj4gKyBmaWxl
+LT5wcml2YXRlX2RhdGEgPSAodm9pZCAqKWN0eC0+bmV4dF9vZmZzZXQ7DQo+Pj4+Pj4gKyByZXR1
+cm4gdmZzX3NldHBvcyhmaWxlLCBvZmZzZXQsIExPTkdfTUFYKTsNCj4+Pj4+PiAgfQ0KPj4+Pj4+
+ICAgIHN0YXRpYyBzdHJ1Y3QgZGVudHJ5ICpvZmZzZXRfZmluZF9uZXh0KHN0cnVjdCB4YV9zdGF0
+ZSAqeGFzKQ0KPj4+Pj4+IEBAIC01MDUsNyArNTE3LDcgQEAgc3RhdGljIGJvb2wgb2Zmc2V0X2Rp
+cl9lbWl0KHN0cnVjdCBkaXJfY29udGV4dCAqY3R4LCBzdHJ1Y3QgZGVudHJ5ICpkZW50cnkpDQo+
+Pj4+Pj4gICAgIGlub2RlLT5pX2lubywgZnNfdW1vZGVfdG9fZHR5cGUoaW5vZGUtPmlfbW9kZSkp
+Ow0KPj4+Pj4+ICB9DQo+Pj4+Pj4gIC1zdGF0aWMgdm9pZCAqb2Zmc2V0X2l0ZXJhdGVfZGlyKHN0
+cnVjdCBpbm9kZSAqaW5vZGUsIHN0cnVjdCBkaXJfY29udGV4dCAqY3R4KQ0KPj4+Pj4+ICtzdGF0
+aWMgdm9pZCBvZmZzZXRfaXRlcmF0ZV9kaXIoc3RydWN0IGlub2RlICppbm9kZSwgc3RydWN0IGRp
+cl9jb250ZXh0ICpjdHgsIGxvbmcgbGFzdF9pbmRleCkNCj4+Pj4+PiAgew0KPj4+Pj4+ICAgc3Ry
+dWN0IG9mZnNldF9jdHggKnNvX2N0eCA9IGlub2RlLT5pX29wLT5nZXRfb2Zmc2V0X2N0eChpbm9k
+ZSk7DQo+Pj4+Pj4gICBYQV9TVEFURSh4YXMsICZzb19jdHgtPnhhLCBjdHgtPnBvcyk7DQo+Pj4+
+Pj4gQEAgLTUxNCwxNyArNTI2LDIxIEBAIHN0YXRpYyB2b2lkICpvZmZzZXRfaXRlcmF0ZV9kaXIo
+c3RydWN0IGlub2RlICppbm9kZSwgc3RydWN0IGRpcl9jb250ZXh0ICpjdHgpDQo+Pj4+Pj4gICB3
+aGlsZSAodHJ1ZSkgew0KPj4+Pj4+ICAgZGVudHJ5ID0gb2Zmc2V0X2ZpbmRfbmV4dCgmeGFzKTsN
+Cj4+Pj4+PiAgIGlmICghZGVudHJ5KQ0KPj4+Pj4+IC0gcmV0dXJuIEVSUl9QVFIoLUVOT0VOVCk7
+DQo+Pj4+Pj4gKyByZXR1cm47DQo+Pj4+Pj4gKw0KPj4+Pj4+ICsgaWYgKGRlbnRyeTJvZmZzZXQo
+ZGVudHJ5KSA+PSBsYXN0X2luZGV4KSB7DQo+Pj4+Pj4gKyBkcHV0KGRlbnRyeSk7DQo+Pj4+Pj4g
+KyByZXR1cm47DQo+Pj4+Pj4gKyB9DQo+Pj4+Pj4gICAgIGlmICghb2Zmc2V0X2Rpcl9lbWl0KGN0
+eCwgZGVudHJ5KSkgew0KPj4+Pj4+ICAgZHB1dChkZW50cnkpOw0KPj4+Pj4+IC0gYnJlYWs7DQo+
+Pj4+Pj4gKyByZXR1cm47DQo+Pj4+Pj4gICB9DQo+Pj4+Pj4gICAgIGRwdXQoZGVudHJ5KTsNCj4+
+Pj4+PiAgIGN0eC0+cG9zID0geGFzLnhhX2luZGV4ICsgMTsNCj4+Pj4+PiAgIH0NCj4+Pj4+PiAt
+IHJldHVybiBOVUxMOw0KPj4+Pj4+ICB9DQo+Pj4+Pj4gICAgLyoqDQo+Pj4+Pj4gQEAgLTU1MSwy
+MiArNTY3LDE5IEBAIHN0YXRpYyB2b2lkICpvZmZzZXRfaXRlcmF0ZV9kaXIoc3RydWN0IGlub2Rl
+ICppbm9kZSwgc3RydWN0IGRpcl9jb250ZXh0ICpjdHgpDQo+Pj4+Pj4gIHN0YXRpYyBpbnQgb2Zm
+c2V0X3JlYWRkaXIoc3RydWN0IGZpbGUgKmZpbGUsIHN0cnVjdCBkaXJfY29udGV4dCAqY3R4KQ0K
+Pj4+Pj4+ICB7DQo+Pj4+Pj4gICBzdHJ1Y3QgZGVudHJ5ICpkaXIgPSBmaWxlLT5mX3BhdGguZGVu
+dHJ5Ow0KPj4+Pj4+ICsgbG9uZyBsYXN0X2luZGV4ID0gKGxvbmcpZmlsZS0+cHJpdmF0ZV9kYXRh
+Ow0KPj4+Pj4+ICAgICBsb2NrZGVwX2Fzc2VydF9oZWxkKCZkX2lub2RlKGRpciktPmlfcndzZW0p
+Ow0KPj4+Pj4+ICAgICBpZiAoIWRpcl9lbWl0X2RvdHMoZmlsZSwgY3R4KSkNCj4+Pj4+PiAgIHJl
+dHVybiAwOw0KPj4+Pj4+ICAtIC8qIEluIHRoaXMgY2FzZSwgLT5wcml2YXRlX2RhdGEgaXMgcHJv
+dGVjdGVkIGJ5IGZfcG9zX2xvY2sgKi8NCj4+Pj4+PiAtIGlmIChjdHgtPnBvcyA9PSBESVJfT0ZG
+U0VUX01JTikNCj4+Pj4+PiAtIGZpbGUtPnByaXZhdGVfZGF0YSA9IE5VTEw7DQo+Pj4+Pj4gLSBl
+bHNlIGlmIChmaWxlLT5wcml2YXRlX2RhdGEgPT0gRVJSX1BUUigtRU5PRU5UKSkNCj4+Pj4+PiAt
+IHJldHVybiAwOw0KPj4+Pj4+IC0gZmlsZS0+cHJpdmF0ZV9kYXRhID0gb2Zmc2V0X2l0ZXJhdGVf
+ZGlyKGRfaW5vZGUoZGlyKSwgY3R4KTsNCj4+Pj4+PiArIG9mZnNldF9pdGVyYXRlX2RpcihkX2lu
+b2RlKGRpciksIGN0eCwgbGFzdF9pbmRleCk7DQo+Pj4+Pj4gICByZXR1cm4gMDsNCj4+Pj4+PiAg
+fQ0KPj4+Pj4+ICAgIGNvbnN0IHN0cnVjdCBmaWxlX29wZXJhdGlvbnMgc2ltcGxlX29mZnNldF9k
+aXJfb3BlcmF0aW9ucyA9IHsNCj4+Pj4+PiArIC5vcGVuID0gb2Zmc2V0X2Rpcl9vcGVuLA0KPj4+
+Pj4+ICAgLmxsc2VlayA9IG9mZnNldF9kaXJfbGxzZWVrLA0KPj4+Pj4+ICAgLml0ZXJhdGVfc2hh
+cmVkID0gb2Zmc2V0X3JlYWRkaXIsDQo+Pj4+Pj4gICAucmVhZCA9IGdlbmVyaWNfcmVhZF9kaXIs
+DQo+Pj4+IC0tDQo+Pj4+IENodWNrIExldmVyDQo+PiAtLQ0KPj4gQ2h1Y2sgTGV2ZXINCg0KDQot
+LQ0KQ2h1Y2sgTGV2ZXINCg0KDQo=
