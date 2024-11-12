@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4900B9C61F3
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Nov 2024 20:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0BD9C61F5
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Nov 2024 20:58:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED79D10E629;
-	Tue, 12 Nov 2024 19:58:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87F4410E633;
+	Tue, 12 Nov 2024 19:58:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HvG42nQ/";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2puJGvV3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2066.outbound.protection.outlook.com [40.107.95.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 442C910E629
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Nov 2024 19:58:21 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2050.outbound.protection.outlook.com [40.107.223.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E368010E633
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Nov 2024 19:58:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q8kRvJ09mBx8Waerq5mce0B8YvA3pdS2mekkW9za9sdmq/K2OPNNq/e6FiRCfy+M/yo5vvFNPl2kB9uCECicKvybV7e0d315HyAKXSDPtd2jFOvCD5ljOSw5ZtOWeRWnJa4zA042fuSeammWIISRFGZIP0mMGTHgahAku7laLd7f7kOdkq3ETbbxUO2beW8lDUjtOOyT0Z0p2GzfSqj2S4NxEn4QpyH5Va0e5WZzXaZDYtNOwzWPJmvba5NU5p0vNBuWK9mCXxHi02DKESYG9oWVaJv+JLRx2huBTL7n2vXVRwy8nl3nkdjvf+sYQSLM+WQzA1TazwtAxD7nb7jhlQ==
+ b=dd+kCxgWllYonquQdgqULsHOcvPAyCfLQ76qSr/0iQjnDCdnGMI84dc7rPfPp2gXChcvjwIGJDkdLO3L8qvuTYE+JKdtRpUvNJ8Z/OZAo+JElbvzFJHk8RoPrDYN3pr8O1+gRvMp8U8kvtb/fG9FUrZE949mIkGMoHeCVcnFAq+rxp4juScBHvZmZSkILEdXHLEDjTUFqbzZPwG/8+YIuXOcLRJrudZuqVcgBM7WCcW+N3aPIKFQnAJq8ui+Qg/aG4uMkORNOWqSGgiHHVSV7pdNOzu1/YLUHLxk4TXCsB5EwaWMHCz3b6REpB4xg9ItH6QYd99olgKshPxUMvl9kA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mGLXLAKq52pRAcUOpkTSJsS6yNOMMnY6amIahUcDP1E=;
- b=hvzUyB+RZJMBGrUoK8WaQN60+6Cyqdf2H6IZ3M6WT/NLBMHWiOiwngx+26jmjDXOo9fZXLsmovMw2RSFVsMxEZtmGxJhJBLXxgkH6k6pb4tHsAV6IC0lFih1R5d9XC01/UK4eovgwNAkGr0PoYjUO5YzFLv7WTuwRCyO276j33XfFMXD9oHtSSC+gErtlbwFGwJcSk008O1HJadjALUCW9bjm4ZMuG4h7r2uN7CBXEv/FM6NyLoGVnwA4BFG1os8OW+dSSiaUx9SJzlwjwkFwXy44ck20ml39y/G9r3h6XuQ8e6IkgXeL7HlzEd0yxPY7Cqxrqd8TSq8Q84gFE5o0w==
+ bh=XiaQDFHZZ2B5eKFuAGUBpD1FRzjkWT5xBR7DYDfu5JQ=;
+ b=ZjRy7H24OS73qPF4X+4pQIJXlVPM2+n0ETdGrutx9NTH3KSdHSKGBJSGI69+INi/ytye8H+WNRQjVmO2zWHNvV5pJt9iQiswyU3O0lG5vSeCrHinMnjuYcH9tXwMqTQEiRAiRWrxpc+U4IFnmCqSoU2l7aWrszREPr8Mw4gH0cEqtm1TtiQ07cqhb3IZTkJXKfmCwoIqb62wwkz1ufE7kKWADpaxCnagqfEg4TVu8VCvYYGq6ZLwTmrPjoA8v8KZNj32toaXbEwfAww+guQctDaY0J55WaR/4SJ3ZnxS1t3awdA9FoAnH0OuB19JSmGvkT5XpbcyM7zwpGrLq69m2A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mGLXLAKq52pRAcUOpkTSJsS6yNOMMnY6amIahUcDP1E=;
- b=HvG42nQ/IQBb0gnSm8ftJe1f4QLBqFSDFAMeIDIu7O+Sy7UPubhBgdtryDHfBJbqF/HBMNgQ+urTeS/F0xUWkyt1MGckxD/CiLLjfwO41nIM64Fwi1ue1Ob8RtLRMp4slxZu/H6KygsvS3IOzc4uSMZGJywK0E8/nMwVFsN+l08=
-Received: from BY5PR20CA0024.namprd20.prod.outlook.com (2603:10b6:a03:1f4::37)
- by PH8PR12MB6771.namprd12.prod.outlook.com (2603:10b6:510:1c6::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.27; Tue, 12 Nov
- 2024 19:58:17 +0000
+ bh=XiaQDFHZZ2B5eKFuAGUBpD1FRzjkWT5xBR7DYDfu5JQ=;
+ b=2puJGvV348NuFwjhkQJkWFhryq//7ezR1/bcYvN0ovKAlEv/En9Ouq6RlXc0VDXsjT7nKJZu6lY4F8PJ2EvPlbvzwZtThogg7whItYwIp+CWqKXw8/2nBgSszO91Yon8FLsT3HAbACLQuAVqNSDLnv2TvIP8MhEJ5DTHeQruLA0=
+Received: from BY5PR20CA0009.namprd20.prod.outlook.com (2603:10b6:a03:1f4::22)
+ by DM6PR12MB4107.namprd12.prod.outlook.com (2603:10b6:5:218::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.28; Tue, 12 Nov
+ 2024 19:58:18 +0000
 Received: from SJ1PEPF000023D7.namprd21.prod.outlook.com
- (2603:10b6:a03:1f4:cafe::40) by BY5PR20CA0024.outlook.office365.com
- (2603:10b6:a03:1f4::37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29 via Frontend
+ (2603:10b6:a03:1f4:cafe::a9) by BY5PR20CA0009.outlook.office365.com
+ (2603:10b6:a03:1f4::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.16 via Frontend
  Transport; Tue, 12 Nov 2024 19:58:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SJ1PEPF000023D7.mail.protection.outlook.com (10.167.244.72) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8182.1 via Frontend Transport; Tue, 12 Nov 2024 19:58:16 +0000
+ 15.20.8182.1 via Frontend Transport; Tue, 12 Nov 2024 19:58:17 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 12 Nov
- 2024 13:58:15 -0600
+ 2024 13:58:16 -0600
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -63,11 +63,15 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Li" <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Tom Chung
  <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed
  <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>, Daniel Wheeler
- <daniel.wheeler@amd.com>
-Subject: [PATCH 0/9] DC Patches November 12, 2024
-Date: Tue, 12 Nov 2024 14:55:55 -0500
-Message-ID: <20241112195752.127546-1-hamza.mahfooz@amd.com>
+ <daniel.wheeler@amd.com>, Yihan Zhu <Yihan.Zhu@amd.com>,
+ <stable@vger.kernel.org>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Subject: [PATCH 1/9] drm/amd/display: update pipe selection policy to check
+ head pipe
+Date: Tue, 12 Nov 2024 14:55:56 -0500
+Message-ID: <20241112195752.127546-2-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.46.1
+In-Reply-To: <20241112195752.127546-1-hamza.mahfooz@amd.com>
+References: <20241112195752.127546-1-hamza.mahfooz@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -76,50 +80,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D7:EE_|PH8PR12MB6771:EE_
-X-MS-Office365-Filtering-Correlation-Id: 17f53b25-5cb1-4738-9278-08dd03545970
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D7:EE_|DM6PR12MB4107:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ab6c7f8-a614-4720-c870-08dd035459e7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|1800799024|36860700013|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4f0k3KmX6/H+b9JAI2w045Q8X8BciLDR22NQCYIM41Lzop27bsmcK9Ex5i8V?=
- =?us-ascii?Q?NXDWBHdUmsRUJHP+w3oTVYY9eaksQE6k3do3t03gD+0BdUwh4p4VnvzWTnd9?=
- =?us-ascii?Q?QHink45A8attbiuByvpjw7t0of1j5zV+pZJAh8a7OMyEQCTkvEbzbSSSSBxE?=
- =?us-ascii?Q?8HSaZ60VH6/lmV5ZG6kfkRZeutVrYxMc6ImBArT4zX2KNPpUacy+iScp6yBt?=
- =?us-ascii?Q?eUCUZtf6zh/GarUgqc0as3oilrXnxtPzF0fOyCPB+UtIjUMd+h/dQgebnEfG?=
- =?us-ascii?Q?KLapN9k8HLZSck2/KEktY4x9yFDnW+clKz7rakzmcySzcnZ120eXhrVVC61H?=
- =?us-ascii?Q?z3lAqkNavPlDBK/CsAiJiXMEGG9ZY1J4ae/lq65QBGRYClSPcz+Qy/v8AO2C?=
- =?us-ascii?Q?6ctKm8gESSpEuWMB4jyW6CwjmO1XMofX+EHhwhGmrOYiYbIBuLjUApQ6Zm9q?=
- =?us-ascii?Q?L2hsGCmHYvTIAG6DIs7WhB3LNKhdKE6+3pidVHASOzDAaLnqEv34M87hPtZi?=
- =?us-ascii?Q?/3RG8gPB7ZaMNq0hkFwYL5dlQ/Fo/yI5JyeKTCAot/g84sMlyb7hVxzIC+2g?=
- =?us-ascii?Q?REQxvU5IKlJFrq+/7jkA20uQ4Gw0lMUz8n3BO3qF1bLqKI3RYf8E2CYkOkyB?=
- =?us-ascii?Q?Vk7eoHaaRI/fWEV5kjZvUHASPz5PEWuiONcIKkZgb18kUEXQV7D2x3ISTsaO?=
- =?us-ascii?Q?3H3ZudsllPlj5zLUrRJ7OOehB3tZ2DVZK77kdKRmH+0l4uzIKW/+XKC4T/Wt?=
- =?us-ascii?Q?CKPRshcuwquWgHMFx4f8CUtcJKW3R9n6JSrBmhQoQJP5hfpgl+j+L9s6Tj2K?=
- =?us-ascii?Q?LNl/n4bMSnmzqnkyzBuRHDf2cs6Tm7MVXpIrk7dWnNkuNjBmPrtjqF2AA8uv?=
- =?us-ascii?Q?nwGnmUumfAukDOWctzz/Mv5PdFIUifq5vQetgEr/uq5fpZEEtmUXdU/yUnlV?=
- =?us-ascii?Q?qxqfjpACsuPow2xiw0qh/GmaiHqV419dJ+CF1uXI3cNF1aT2cEmtagLlSF1j?=
- =?us-ascii?Q?UK1qCy//DyVGWyXc8yv3IZE/OA4ftWNa4vqJs0NFm9u0yMiWeyucaKhpPfst?=
- =?us-ascii?Q?vYD0P9P8IhXHlM77irJVZP3nIhw+lnj72spbK6AA15fvXmoRdX+wzWFUE/RN?=
- =?us-ascii?Q?xcAueKJYtxSwtd0zYtwp+0sPfoe+C0CnQ/EhGeQjtcMm3Eboqk+A4SzaF7Z1?=
- =?us-ascii?Q?zzlQeCcyL6oiwnIqM31qmTGe5XcnEb8+Y0Kx9YPnR05SswLxemHRi3J9eWvv?=
- =?us-ascii?Q?BAB+pF1ZOaPEUNh1PGgY0hPIUQhPx83rV65HEOzxRVG8WaJU985szhI+6Clu?=
- =?us-ascii?Q?AVUB42iHO+1n6LZ9jVA24TeIb39xM9C9ggWromhM//iNreSWBMFsgY+s074P?=
- =?us-ascii?Q?x1VT1L3b9depLWFVeYpPmLacYhZRvAeYAixzRSrQw7rQnjN2tg=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?XnK1sDNxx0gYgTZpn2hJoX8KO4007hyIDkJvyYP/dlrxyUf7ymChjiWeFmop?=
+ =?us-ascii?Q?jP4ADvSwPGmFaPBH+4HcO6JbV2yshlaQOPZlgyprMGtUMPbM7FIDtCOsuCZk?=
+ =?us-ascii?Q?gWGyNz4bArKQ73mNV1HhwsBFOQtDVxCZ/iBfnE4Yso1W6J9xFN9m/CZZf+/m?=
+ =?us-ascii?Q?m3OsSF4XbikIyAlvsQZ5ntbvjuSgVTZrSF0LixH8tjtgVTYh4h7sgbwa5i4C?=
+ =?us-ascii?Q?Zjg/Qam/JPRgHA3MwmTlVUuLnp68M2ngionTa3iAGS21iy2e5mmKFKYM8Rrx?=
+ =?us-ascii?Q?pKgJf+MyFWiuNz/h6B7cSELd662sLaEmLWWGgiD+j9OG3d50XyKvKtlAar5C?=
+ =?us-ascii?Q?8kp/N7lC0p2ENeZHO2HidXACqgSuxVru1lT7GqRWsI/umYFNgUhfBGQ/e88d?=
+ =?us-ascii?Q?TcB9aQ4+oFH2nS8I4hirbTG5U/hUK8OU+vIA4ZpMhnlsdmUSWqY8riwQnp8p?=
+ =?us-ascii?Q?CNoMxHdRiQkzBiLPj+yp+psQo7XSJjQh9313YpsdKNpDewBa6UmRKFM0Y9ex?=
+ =?us-ascii?Q?Eo5NgphxTMtKI4w4A44uDcranPHaYUpWgPKpyZFV/R1aAAsAuVjNrRdIEBaf?=
+ =?us-ascii?Q?vQw4kfU67l1iqzpK3rhzglVaGej4KJP/Rbwx6YigpRERG3B6ptgEfHDDcEKX?=
+ =?us-ascii?Q?bkEAmgqa5V3KHsW3srnyx36h9dv9IjX6Q2Vvd6GGE0b04QEHyCsVbEG9LRa9?=
+ =?us-ascii?Q?EXCukPA4nbUJ6JWtRy+07l6jRAREJnXLdB1Pq9n7ANgSTmzQ//MQs9puUqsH?=
+ =?us-ascii?Q?ostigPngtFtEbP9gAcRaGegIY4WaNGeGoqAq5LjFaZkaHz1YdlNG7LQEXdLB?=
+ =?us-ascii?Q?H1Pr/c7Ip2X3yeb7LvdhfuUHkkJf6K/yvP/9z2U70PtqUtghI6zdThiGtUWY?=
+ =?us-ascii?Q?YWXIsaYIQICy3Ac6xNi+h9DM7tw83le2PedgR6i62BE21CglhHewLa0NPSQS?=
+ =?us-ascii?Q?0JP6m11AVXHmw1h+Gr+OZIGkQml4RliEmnr1txx6ilZASNec3GZFFUYU6NgX?=
+ =?us-ascii?Q?KFUKzpHDnayxi4mrWpR/PGAlmggnVesiRO+D1tmNo+2591R2GZK5jzM+9w3q?=
+ =?us-ascii?Q?eCam1MNgG8oy1Stni9OlnxYHcB31ycjcwrovT5bnUmMENll4QtW0K3nFp4Oc?=
+ =?us-ascii?Q?iWoifwm/AEN5mLIcuFc39Xdv3SE+PaDuFileMLeBjjp+oISZFu8FB/SxB7Mz?=
+ =?us-ascii?Q?Buf220VnPdQ0uI7DJ29cgspBTrxFZ0VTHkRhQodqUW9JL3TkHhl0r82NBqkP?=
+ =?us-ascii?Q?ZOlBLfYMyvdylNk1yC+NQmR9fQnKo5zeWJsG6/yN7XH4GyDxmbPl5vSYKvM4?=
+ =?us-ascii?Q?K2ntX0zuGBbca3eIbIU2OpmSLnQSzMjpGC3r0TVKcXLAZ9Zagmpd47Hwd9u6?=
+ =?us-ascii?Q?b+M+pdEcAL29T7tyPfzYYAtSXpv94GTxuX3NAz2mfFEt34OKZg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 19:58:16.7601 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17f53b25-5cb1-4738-9278-08dd03545970
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 19:58:17.5414 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ab6c7f8-a614-4720-c870-08dd035459e7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D7.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6771
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4107
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,51 +138,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+From: Yihan Zhu <Yihan.Zhu@amd.com>
 
-Aric Cyr (1):
-  drm/amd/display: 3.2.310
+[Why]
+No check on head pipe during the dml to dc hw mapping will allow illegal
+pipe usage. This will result in a wrong pipe topology to cause mpcc tree
+totally mess up then cause a display hang.
 
-Austin Zheng (1):
-  drm/amd/display: Populate Power Profile In Case of Early Return
+[How]
+Avoid to use the pipe is head in all check and avoid ODM slice during
+preferred pipe check.
 
-Chris Park (1):
-  drm/amd/display: Ignore scalar validation failure if pipe is phantom
+v2: Added pipe type check for DPP pipe type before executing head pipe
+    check in the pipe selection logic in DML2 to avoid NULL pointer
+    de-reference.
 
-Dillon Varone (1):
-  drm/amd/display: Enable Request rate limiter during C-State on dcn401
+Cc: stable@vger.kernel.org
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Yihan Zhu <Yihan.Zhu@amd.com>
+Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+---
+ .../display/dc/dml2/dml2_dc_resource_mgmt.c   | 23 ++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-Joshua Aberback (1):
-  drm/amd/display: Fix handling of plane refcount
-
-Ovidiu Bunea (1):
-  drm/amd/display: Remove PIPE_DTO_SRC_SEL programming from
-    set_dtbclk_dto
-
-Samson Tam (2):
-  drm/amd/display: add public taps API in SPL
-  drm/amd/display: allow chroma 1:1 scaling when sharpness is off
-
-Yihan Zhu (1):
-  drm/amd/display: update pipe selection policy to check head pipe
-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  7 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  8 ++
- drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
- .../amd/display/dc/dccg/dcn35/dcn35_dccg.c    | 15 +--
- .../src/dml2_core/dml2_core_dcn4_calcs.c      |  6 ++
- .../display/dc/dml2/dml2_dc_resource_mgmt.c   | 23 ++++-
- .../display/dc/hubbub/dcn10/dcn10_hubbub.h    |  8 +-
- .../display/dc/hubbub/dcn20/dcn20_hubbub.h    |  1 +
- .../display/dc/hubbub/dcn401/dcn401_hubbub.c  | 24 ++++-
- .../display/dc/hubbub/dcn401/dcn401_hubbub.h  |  7 +-
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 13 ++-
- .../gpu/drm/amd/display/dc/inc/hw/dchubbub.h  |  2 +-
- .../dc/resource/dcn401/dcn401_resource.h      |  3 +-
- drivers/gpu/drm/amd/display/dc/spl/dc_spl.c   | 97 +++++++++++++------
- drivers/gpu/drm/amd/display/dc/spl/dc_spl.h   |  2 +
- 15 files changed, 166 insertions(+), 52 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
+index 6eccf0241d85..1ed21c1b86a5 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
+@@ -258,12 +258,25 @@ static unsigned int find_preferred_pipe_candidates(const struct dc_state *existi
+ 	 * However this condition comes with a caveat. We need to ignore pipes that will
+ 	 * require a change in OPP but still have the same stream id. For example during
+ 	 * an MPC to ODM transiton.
++	 *
++	 * Adding check to avoid pipe select on the head pipe by utilizing dc resource
++	 * helper function resource_get_primary_dpp_pipe and comparing the pipe index.
+ 	 */
+ 	if (existing_state) {
+ 		for (i = 0; i < pipe_count; i++) {
+ 			if (existing_state->res_ctx.pipe_ctx[i].stream && existing_state->res_ctx.pipe_ctx[i].stream->stream_id == stream_id) {
++				struct pipe_ctx *head_pipe =
++					resource_is_pipe_type(&existing_state->res_ctx.pipe_ctx[i], DPP_PIPE) ?
++						resource_get_primary_dpp_pipe(&existing_state->res_ctx.pipe_ctx[i]) :
++							NULL;
++
++				// we should always respect the head pipe from selection
++				if (head_pipe && head_pipe->pipe_idx == i)
++					continue;
+ 				if (existing_state->res_ctx.pipe_ctx[i].plane_res.hubp &&
+-					existing_state->res_ctx.pipe_ctx[i].plane_res.hubp->opp_id != i)
++					existing_state->res_ctx.pipe_ctx[i].plane_res.hubp->opp_id != i &&
++						(existing_state->res_ctx.pipe_ctx[i].prev_odm_pipe ||
++						existing_state->res_ctx.pipe_ctx[i].next_odm_pipe))
+ 					continue;
+ 
+ 				preferred_pipe_candidates[num_preferred_candidates++] = i;
+@@ -292,6 +305,14 @@ static unsigned int find_last_resort_pipe_candidates(const struct dc_state *exis
+ 	 */
+ 	if (existing_state) {
+ 		for (i  = 0; i < pipe_count; i++) {
++			struct pipe_ctx *head_pipe =
++				resource_is_pipe_type(&existing_state->res_ctx.pipe_ctx[i], DPP_PIPE) ?
++					resource_get_primary_dpp_pipe(&existing_state->res_ctx.pipe_ctx[i]) :
++						NULL;
++
++			// we should always respect the head pipe from selection
++			if (head_pipe && head_pipe->pipe_idx == i)
++				continue;
+ 			if ((existing_state->res_ctx.pipe_ctx[i].plane_res.hubp &&
+ 				existing_state->res_ctx.pipe_ctx[i].plane_res.hubp->opp_id != i) ||
+ 				existing_state->res_ctx.pipe_ctx[i].stream_res.tg)
 -- 
 2.46.1
 
