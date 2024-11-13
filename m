@@ -2,54 +2,158 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CC79C6AE2
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 09:49:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA329C6A65
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 09:13:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F74A10E6A6;
-	Wed, 13 Nov 2024 08:49:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B618E10E352;
+	Wed, 13 Nov 2024 08:13:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="VUP3FlB2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SMltYxsx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B81E510E61F;
- Tue, 12 Nov 2024 18:36:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
- s=mail; t=1731436589;
- bh=+55KiKJDO0XlLRpgGt/vQ9q4UhxzJcIzO9UWJpYd12M=;
- h=From:Date:Subject:To:Cc:From;
- b=VUP3FlB2+Kc+yJhI/SOLhjnRbtwISSxMgEmZtBl8XdahhjkJfLo2nUIGmmQw4nI5t
- YStZcNCjdmKS/xgTCfo1Pu16DoQqsDagZLoQeA0LZh4ycRHd7sJI9Wo4mchkdyb9oa
- CX2RiPFqgpM16JA3kI9fNLgyanukaC9t3Hg5SAB8=
-From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Date: Tue, 12 Nov 2024 19:36:10 +0100
-Subject: [PATCH v3] drm/radeon: Switch radeon_connector to struct drm_edid
-MIME-Version: 1.0
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2058.outbound.protection.outlook.com [40.107.244.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2B6F10E352
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Nov 2024 08:13:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V1aP4KDqrbSSYI6k1+qhbqQZolziEqNMSVewxqDV83Le3LrlHDfMSEXvOkwurhQJccAZCVhOewgnhz+J2JOMt4gZ7fLtDm97ecyNibI/pUixqwscGUb6XgxRuF/FcJX+C0H30Xkcn2ufE7ubn6EFxYjZxhHjowopqmvYk/BaN99Dm56kG1UfddbeOVlwwfTatu81RmAlZUPG0CRDYFcMR1J5xzY7CMYSyPVor53j51wN+2AFcornUjOsD6KF7zQsP06R9niYNWpQ3QoE2aMfStdhTghfCbyLnS5vj3we9rhWdErJh05fGFTHfJELFT9MS3WC13gnZK+7Tdzyi38F6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bPEpNyyFKDcnyoqxEz1qVvEMC63fkwedsGWolHnKpV8=;
+ b=aCNInxSjamjIf92ZBMVNifZ3zzJdQAtIBorhl6SZDG3gPKdp3L9QMofPmpJ/IfSdipmZfW3tDwyegTAM5+k7spyTu0XIIpD1QLG8jYRjLO+D12ARgrfzBHvghAoNzLN7ltz95auXzkcTrJwA7ZiwjNAI03/ulFgMnKKMrrO6J3NM9Ikone7vLXUkZOiPJORST2YqCH2ZIpTKItoNPHZ3uJiSZjOCK6Rjhz+JNKL+mXIg+H1TpPTjxdoqRsc+l21M5BZpkYvBt2aT7bFEXKI+T/vMZ3vb9K7SWyQIcmOulATDyfoIcYVAUdxwbzFzS/eKBxRFuOjukwZedYmtIt1KIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bPEpNyyFKDcnyoqxEz1qVvEMC63fkwedsGWolHnKpV8=;
+ b=SMltYxsx1pX8xpNZ864HEthqygBO2VbvysI61tRnwvB7Y0FdJRz2OIorKa9zI85P0EWwFxI6Sr0M3DDfc4LPNYQe/jfeEOR07M8uFmLnXDwOOXsuZHJnl4EWW6i5qo77sclQVm7pEr8a+jjkskG5WeHsoZs0zKP1BEws/hT9H1M=
+Received: from BL1PR12MB5849.namprd12.prod.outlook.com (2603:10b6:208:384::18)
+ by DS0PR12MB8220.namprd12.prod.outlook.com (2603:10b6:8:f5::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29; Wed, 13 Nov
+ 2024 08:13:42 +0000
+Received: from BL1PR12MB5849.namprd12.prod.outlook.com
+ ([fe80::b77f:9333:3a5a:d285]) by BL1PR12MB5849.namprd12.prod.outlook.com
+ ([fe80::b77f:9333:3a5a:d285%3]) with mapi id 15.20.8158.013; Wed, 13 Nov 2024
+ 08:13:42 +0000
+From: "Chen, Jiqian" <Jiqian.Chen@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "Pelloux-Prayer, Pierre-Eric" <Pierre-eric.Pelloux-prayer@amd.com>, "Huang,
+ Ray" <Ray.Huang@amd.com>, "Chen, Jiqian" <Jiqian.Chen@amd.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: set passthrough mode for xen pvh/hvm
+Thread-Topic: [PATCH 1/2] drm/amdgpu: set passthrough mode for xen pvh/hvm
+Thread-Index: AQHbL0jm3UEePSCKkkenk2kiUagDhrK1bywA
+Date: Wed, 13 Nov 2024 08:13:42 +0000
+Message-ID: <BL1PR12MB5849050822DACADF5273CD26E75A2@BL1PR12MB5849.namprd12.prod.outlook.com>
+References: <20241105060531.3503788-1-Jiqian.Chen@amd.com>
+ <20241105060531.3503788-2-Jiqian.Chen@amd.com>
+In-Reply-To: <20241105060531.3503788-2-Jiqian.Chen@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-imapappendstamp: BL1PR12MB5849.namprd12.prod.outlook.com
+ (15.20.8158.013)
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5849:EE_|DS0PR12MB8220:EE_
+x-ms-office365-filtering-correlation-id: 5b86d7a5-6e35-4c99-2598-08dd03bb164c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?ZlQ1Wi93QlY5UjhsTlYyb1YrbzZuL3NXd3JNM1FOOURsNlc4ZVBWS0p1amdV?=
+ =?utf-8?B?QlVRbEpRSldlL2VlVWVFSzZNTlkzbkt4ZSs3MldmOWxKak9oYmttcGxLNERC?=
+ =?utf-8?B?V2ZuNEhJR2xPMDF3WnViTmEzZklBb01PSHo5NFprVzdCR2s0ek9QOEdJbUIv?=
+ =?utf-8?B?NWRwVXhDTE9qdTROQzlrNHovS0RESy9EUkRTa2VyYm1IRlBwY2hrZlJEUENv?=
+ =?utf-8?B?ZVZHNGlGU2pjRG1LRmFFYTFZNEpkY3NMVnNyQlBJbDY5eW9ZVi9nR3pKUmRI?=
+ =?utf-8?B?RGtManREYVBFOVVuRkR3VzVVMC9paEdhczFTWFZTM1ZMTTFUWjBVZk5ldzJX?=
+ =?utf-8?B?UnRSaHl6dk9JZVpwR2VjWitJeVJEa3NiNGlZVEVMQlROL2dHU2lteTRhNDdt?=
+ =?utf-8?B?LzV1L05mUWhQMVNZYWpsVUF2MGNoSnpzQVpyajJjNW93UWdRTStjdVFDa0t0?=
+ =?utf-8?B?Nk5VVTlDNjJaek5MQnNxdXRtWmZtS1NhNVhiYmZDeW5DcWRwckxmcXdIWlpE?=
+ =?utf-8?B?QVdycER3ZGNLRUVNZGo5azJuWklOU0UyeTFhcVRZMWQ2M2xsWWlXcVR5UXl1?=
+ =?utf-8?B?dCtlREIxa1EzRmxEUTI3RGt3dDlGNmRzUjlRckFrSVhQcmVZN0xKclJ6eHpR?=
+ =?utf-8?B?SHhLR3plTytldGx5K3p5M3RxZ21hMzMyS0lsL1hiOXhQZU0wbTVVQVdNRVlO?=
+ =?utf-8?B?SWRDV0hwNm1hZ0dRMEl5UGhRMldkU1hVR2VGNnhzUlg2OEtRemtpY1VPLzIz?=
+ =?utf-8?B?allqN0xDSmNtNHhmUWhwZzJKNSttSUZQRW9aTGN1UERlWHFoMEM4RGdtUjRm?=
+ =?utf-8?B?bTdJNkVhOVJ6UUllZ092M2ZpZ0JKNUNkNHgxa2F2VHJUeHVVU3U4ZFlYdFQx?=
+ =?utf-8?B?OGxpM3F2aDgvT2o3ZFEvV0V0aHBlT1FucjVHUjJYK0dRUXl4aFN6bzVIOWJX?=
+ =?utf-8?B?L1ZzUHFIbUxONnQ5VXVnMUR2cjVrTFl6QkIzN2hBTURqeG5wajNkdHBndk1R?=
+ =?utf-8?B?a0x5aXcyWGhkRWMzbHpueEpGVUF5Znk5VlhtTnlQK2FEVi9uSHVtWFBpZ0M5?=
+ =?utf-8?B?TjE3L2VDdkhRK3EwZ2t1bkdJaG5TbVROYjg2a2NvV1JvVit3dThTMEphUVF3?=
+ =?utf-8?B?WXFOZ3BOS2UvVWhxK2taOWs3bzRHQW4vRm1kaGVCR3NULzAxbUlaaUpkUlUr?=
+ =?utf-8?B?YnEzY1oxMlZvYXlGS2NSMnowbmRxQkNKcUJQYnlxT2h0KzVQb3BSQnlwdkZH?=
+ =?utf-8?B?dGRudSt6STZnQXRjVTFyNS84T0Q1djQ2b3hVVDh5KzJtaGZTcFg4UDBrL1RF?=
+ =?utf-8?B?U0N2Umc4YlpGdzNzVHNZa2NoV1daODl0M0hOSXB4dXNrTTFhYVorSVk5RzF6?=
+ =?utf-8?B?NXRkQWJNemM1NWcrQmRlcjhYRDZUN0FhYTFlOVVvbUdWWll5RlQrbkNsak5q?=
+ =?utf-8?B?cHo3b1E3VGtSc3JUSG50TlBTN1p1SVFzdmw3UERDb3VlbzJoYTJFMnFXU05n?=
+ =?utf-8?B?cUJWSFB4TGpCdzdjYWQ4NU5VOGc0a0ozVm13djRxZ3lzTmhsa0pncDdrMnBQ?=
+ =?utf-8?B?ajhKOUdaSHAzaUdPLzZ0UU42NHBFbnE4MUNpM0locTcrdllXdFpFd01Qc2dQ?=
+ =?utf-8?B?aVd0ajI5WGxNMno5eHM3Rk5NdTkyVXRZSUlHZzNEdnZVNk5UMnV3K09xKzdu?=
+ =?utf-8?B?T25GV3J5ckdZUTFSdTBiNGlSN1Aya25CYWxDWVNwUG95eVAwOVhjOWUwejds?=
+ =?utf-8?B?YUZySEVnMmtXalFqVm1kMmJodElIVnRqSWZzNzBvcDRkSnF3QVNtclA3enpt?=
+ =?utf-8?Q?zPyBLWD6W5tE7aCFqGs7oZdkBmRZpg7GfPuGk=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5849.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Zm9nWWlWbkVNK3UzSklmUldxNE5vTUkxeTNES0tpRXlxeGlhT3lXWnI2Smc5?=
+ =?utf-8?B?SFF5bWNXTmlSU2dWMlRVRWtjNG5ZdG13ZXJ6QlQ2cXNNMUdIRmRqUTJxNlhX?=
+ =?utf-8?B?cXFBVkpiWHdvUVZMT2txL1kzMzdkZEhhV05YY0UwSmNOWmlQdGhYM3lqUVd4?=
+ =?utf-8?B?VTJBNlVxVzNseElSUFpLbnU1RW1pZVZETklvK3d6NWZienZZZ3NhUDNZeXpE?=
+ =?utf-8?B?aktoa0Q3Q2dSd25BR2haK00yQTJOcEF0NGthRGtZUFlGSDluUkRESzBha2NP?=
+ =?utf-8?B?V2kvMnFQa3F5V0liRGQ4WVFDWXk5NEJJdDJZdzdyaisrRGpFQmtFUnJQNlVO?=
+ =?utf-8?B?ZDVIejhrN1pjdUxXSlpROFlzNzRUbUcrSzNxK3VXMjFLMFZORHRjVmpOdGRW?=
+ =?utf-8?B?Wk5ZM3MxWXVSMUY5SkdOWGdjVmFJbE1BZXQrOGp0eUlQUVZHVnpkc1ZScVNR?=
+ =?utf-8?B?LzNzU1Y2dG14cW53OC9ucTV2NkJTeXpHR2NaczA5djVORTMwWmF4N3F0SC83?=
+ =?utf-8?B?cFNEUVF3NEM3dk5xVG0xVFQ5TFhQSTNOcndKWVZOaGJZeXAvSXMxQzVmZno5?=
+ =?utf-8?B?RTl5ZGFZTDhXLzVPdUY1OEJ1UHhYd0Nobnk0WGc1S2x5aTVDb2xLbzRLVEts?=
+ =?utf-8?B?RGQrZG5NOHFVTFc0NFkxSHliNnNrL1pFRk1ZM1ovcVU1VFRYeVVBOW91TVhN?=
+ =?utf-8?B?dlllbnM5bm5iYm5TQTdKcEhTT3J2MmZXcGxLdVJYdWxldGVnUSt6WXBuTVMy?=
+ =?utf-8?B?cXIyT2RESkM2U3BXazNqYXVuSlRBVGRBWFF0Y0tFa1FScDNmc2FsYktXblo1?=
+ =?utf-8?B?a3hqWTRsNDhZRVhZRmtoenZtc2szS01GMXpYbVk0Y1djR21SZkdJSDJmYW15?=
+ =?utf-8?B?cmpXbTF5bE16THZkdC91T21iRVJVeUFvK1Q4SHhiSUhpa1N5Y21kOEpJM3hE?=
+ =?utf-8?B?NWd6dHdIMnV3U2RoUHU0cGZjUFJRUVNLWDJSemN4S0NtT0VZNTJkdnpDU0o0?=
+ =?utf-8?B?dnVQdmNKaVZ3K2lDblNQTS9KRDFjZGtvN3NPVHlYZXRYajFSYlFUbTBHZ2Mz?=
+ =?utf-8?B?cHVORFNoM2w2WVdqeVF6V1ZRRS9RUmwwbWd4dWFBeVVQYy9xanNoRWxLVzA3?=
+ =?utf-8?B?S2pXYUhXRGViL1Q3ZkpIZVRXOHFMUU80bGl6dkFINTFRNXBVZjQxeW4zU0ZO?=
+ =?utf-8?B?UERrOFZ2MmkwRVN6TG9pd2YxZ1FwSnJqYW13cFZhZUU5RjJ4MEFkNVVOb0JH?=
+ =?utf-8?B?THE0OS9kSnVOeTF1UlUwQytmLzEzcVNOZEFHcUUzSlYrL090azV2VUk4S2xE?=
+ =?utf-8?B?L0JQL29IL1pmOGFJMEpWOHlYa3dLdEtYTFY3VWdaaU56MzNlSnNqUjNtMURZ?=
+ =?utf-8?B?b2U2MzFMTGExeTFKVGlDUTlhVUxTN291c2c2Q1lFbXVvY0hCV1AwU3pzM0ts?=
+ =?utf-8?B?ODZpQzNhZUxSaXN4ckg5NXc3b1JtODBuZzhRSFYrbCtMRmlkeDV3Ukpaak5R?=
+ =?utf-8?B?ZG5sSHplM3FLaFVlOHdoTlplUm5ONW9aUStNWGp6MWg5ZnhESW9HVTdqREpy?=
+ =?utf-8?B?RmhFN2FyZHBqSER5QW82bnFqQll0MVJaVFo5SW9nckZlVmI1WG1kWHVKWXBW?=
+ =?utf-8?B?OFdPZ2RzT3Z0Q1ZoUXFDMXVFMEZhUXBPNkxWeURZV2ovRnQ0MlVhZW9jckZW?=
+ =?utf-8?B?bjI3cW94OGNuWCtYd0V2STJhbHVKK05xMjhPaVR0NlVOS2ZmL0E1TC82ZzV0?=
+ =?utf-8?B?bnRpMFBzaUJpNWxudGhWOGZHQVBMR3dPQmpIVkZLc1JvUnlDMzdMY3JYSi9u?=
+ =?utf-8?B?Z25nQjN3YlBYV3BqckdvdTFSZUZGM3VDZGlzVklKZHdFZk1OTC9PcFBuMjgz?=
+ =?utf-8?B?L2dnTEdCaWNIWGN3TUxucnhyZkdacVYzN2FTOTJsR2s2QU5LRlRjUDUrckNE?=
+ =?utf-8?B?SE5ZbDRxT1BzdmpieTdoV2FXWjZWMVZ0Y3NEdEJJTXUwQ1hkbUJJUDV3NWVk?=
+ =?utf-8?B?cWg0RENZZ1lWdkV2WXVyUnNhbnVZNVFFVGZ4ZmxwaWxrVGxYckVBSGVoWlhq?=
+ =?utf-8?B?R2tJMkxEeUw2L3k4clNoZHVJZ29BRWtFdXE1aGcycDFic2VUWEFraDM2VUtE?=
+ =?utf-8?Q?cfRI=3D?=
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241112-radeon-drm_edid-v3-1-8c1d9cf92915@weissschuh.net>
-X-B4-Tracking: v=1; b=H4sIABmgM2cC/3XNQQ6CMBQE0KuYrq3h/4IUV97DGIPtx3Zh0Raqh
- nB3Cy40IS5nknkzsEDeUmC71cA8RRts61IQ6xVTpnYX4lanzDDDPJMgua81tY5rfz2RtppXTaZ
- IiS0hliytbp4a+5zFw/GTPd37BHff0tjQtf41v0aY2v8HETjw/Fw2WkMFAmn/IBtCUKY3G0cdm
- 8CIPwjiEsGEFFIgFAVIAL1AxnF8Axa5BjINAQAA
-X-Change-ID: 20240818-radeon-drm_edid-9f0cec36e227
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1731436588; l=10962;
- i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
- bh=+55KiKJDO0XlLRpgGt/vQ9q4UhxzJcIzO9UWJpYd12M=;
- b=jKt0rDrggKJ4oAIJCQEqkEOlc4RZo+XzccjJ0uhAVpaLubbjJNunQbuO8gl01L4xUOUeyMl4e
- osnfHZha4A/Ad2yYP7ig9x/PkGg92NF2d+Pkt7wc5VtVtabK556P3Mw
-X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
- pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
-X-Mailman-Approved-At: Wed, 13 Nov 2024 08:49:34 +0000
+Content-ID: <3900711B8A7D644C846AF96837B87449@amdcloud.onmicrosoft.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5849.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b86d7a5-6e35-4c99-2598-08dd03bb164c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2024 08:13:42.4066 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KEQ/ba6SiGS0jSchqN1g7WTmU3pt/MuFZ3blU6QjBqmzc1eBHgusNkGhghnQ8no/+tnd8OKYgzBzZThHnKCePw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8220
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,249 +168,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-"struct drm_edid" is the safe and recommended alternative to "struct edid".
-
-Rename the member to make sure that no usage sites are missed,
-as "struct drm_edid" has some restrictions, for example it can not be
-used with kfree().
-
-Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
----
-Changes in v3:
-- Rebase onto drm-next
-- Link to v2: https://lore.kernel.org/r/20240822-radeon-drm_edid-v2-1-58321551811d@weissschuh.net
-
-Changes in v2:
-- Simplify some logic as drm_edid_*()-APIs can handle NULL
-- Correctly use drm_edid_read_switcheroo()
-- Link to v1: https://lore.kernel.org/r/20240818-radeon-drm_edid-v1-1-4b7fdd19132e@weissschuh.net
----
-This is only compile-tested.
----
- drivers/gpu/drm/radeon/radeon_audio.c      |  4 +--
- drivers/gpu/drm/radeon/radeon_combios.c    |  4 +--
- drivers/gpu/drm/radeon/radeon_connectors.c | 56 +++++++++++++-----------------
- drivers/gpu/drm/radeon/radeon_mode.h       |  5 ++-
- 4 files changed, 31 insertions(+), 38 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/radeon_audio.c b/drivers/gpu/drm/radeon/radeon_audio.c
-index 47aa06a9a94221555a4828f41a57cbe03d637ee1..59d0e47c94d0d6195e83195e90a2ad1509734c2d 100644
---- a/drivers/gpu/drm/radeon/radeon_audio.c
-+++ b/drivers/gpu/drm/radeon/radeon_audio.c
-@@ -311,7 +311,7 @@ static void radeon_audio_write_sad_regs(struct drm_encoder *encoder)
- 	if (!connector)
- 		return;
- 
--	sad_count = drm_edid_to_sad(radeon_connector->edid, &sads);
-+	sad_count = drm_edid_to_sad(drm_edid_raw(radeon_connector->drm_edid), &sads);
- 	if (sad_count < 0)
- 		DRM_ERROR("Couldn't read SADs: %d\n", sad_count);
- 	if (sad_count <= 0)
-@@ -335,7 +335,7 @@ static void radeon_audio_write_speaker_allocation(struct drm_encoder *encoder)
- 	if (!connector)
- 		return;
- 
--	sad_count = drm_edid_to_speaker_allocation(radeon_connector->edid, &sadb);
-+	sad_count = drm_edid_to_speaker_allocation(drm_edid_raw(radeon_connector->drm_edid), &sadb);
- 	if (sad_count < 0) {
- 		DRM_DEBUG("Couldn't read Speaker Allocation Data Block: %d\n",
- 			  sad_count);
-diff --git a/drivers/gpu/drm/radeon/radeon_combios.c b/drivers/gpu/drm/radeon/radeon_combios.c
-index df8d7f56b0289996fef8e049d7ce36295f37314d..f4947acd0419ce02052d9f9b9604bd80e494327a 100644
---- a/drivers/gpu/drm/radeon/radeon_combios.c
-+++ b/drivers/gpu/drm/radeon/radeon_combios.c
-@@ -390,10 +390,10 @@ bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev)
- }
- 
- /* this is used for atom LCDs as well */
--struct edid *
-+const struct drm_edid *
- radeon_bios_get_hardcoded_edid(struct radeon_device *rdev)
- {
--	return drm_edid_duplicate(drm_edid_raw(rdev->mode_info.bios_hardcoded_edid));
-+	return drm_edid_dup(rdev->mode_info.bios_hardcoded_edid);
- }
- 
- static struct radeon_i2c_bus_rec combios_setup_i2c_bus(struct radeon_device *rdev,
-diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
-index f9c73c55f04f76ed5c78e9169004f8a7dea6004e..203fea5b01463807396c19fc107489779f068aac 100644
---- a/drivers/gpu/drm/radeon/radeon_connectors.c
-+++ b/drivers/gpu/drm/radeon/radeon_connectors.c
-@@ -261,7 +261,7 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 	struct radeon_device *rdev = dev->dev_private;
- 	struct radeon_connector *radeon_connector = to_radeon_connector(connector);
- 
--	if (radeon_connector->edid)
-+	if (radeon_connector->drm_edid)
- 		return;
- 
- 	/* on hw with routers, select right port */
-@@ -271,8 +271,8 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 	if ((radeon_connector_encoder_get_dp_bridge_encoder_id(connector) !=
- 	     ENCODER_OBJECT_ID_NONE) &&
- 	    radeon_connector->ddc_bus->has_aux) {
--		radeon_connector->edid = drm_get_edid(connector,
--						      &radeon_connector->ddc_bus->aux.ddc);
-+		radeon_connector->drm_edid = drm_edid_read_ddc(connector,
-+							       &radeon_connector->ddc_bus->aux.ddc);
- 	} else if ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) ||
- 		   (connector->connector_type == DRM_MODE_CONNECTOR_eDP)) {
- 		struct radeon_connector_atom_dig *dig = radeon_connector->con_priv;
-@@ -280,22 +280,22 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 		if ((dig->dp_sink_type == CONNECTOR_OBJECT_ID_DISPLAYPORT ||
- 		     dig->dp_sink_type == CONNECTOR_OBJECT_ID_eDP) &&
- 		    radeon_connector->ddc_bus->has_aux)
--			radeon_connector->edid = drm_get_edid(&radeon_connector->base,
--							      &radeon_connector->ddc_bus->aux.ddc);
-+			radeon_connector->drm_edid = drm_edid_read_ddc(&radeon_connector->base,
-+								       &radeon_connector->ddc_bus->aux.ddc);
- 		else if (radeon_connector->ddc_bus)
--			radeon_connector->edid = drm_get_edid(&radeon_connector->base,
--							      &radeon_connector->ddc_bus->adapter);
-+			radeon_connector->drm_edid = drm_edid_read_ddc(&radeon_connector->base,
-+								       &radeon_connector->ddc_bus->adapter);
- 	} else if (vga_switcheroo_handler_flags() & VGA_SWITCHEROO_CAN_SWITCH_DDC &&
- 		   connector->connector_type == DRM_MODE_CONNECTOR_LVDS &&
- 		   radeon_connector->ddc_bus) {
--		radeon_connector->edid = drm_get_edid_switcheroo(&radeon_connector->base,
--								 &radeon_connector->ddc_bus->adapter);
-+		radeon_connector->drm_edid = drm_edid_read_switcheroo(&radeon_connector->base,
-+								      &radeon_connector->ddc_bus->adapter);
- 	} else if (radeon_connector->ddc_bus) {
--		radeon_connector->edid = drm_get_edid(&radeon_connector->base,
--						      &radeon_connector->ddc_bus->adapter);
-+		radeon_connector->drm_edid = drm_edid_read_ddc(&radeon_connector->base,
-+							       &radeon_connector->ddc_bus->adapter);
- 	}
- 
--	if (!radeon_connector->edid) {
-+	if (!radeon_connector->drm_edid) {
- 		/* don't fetch the edid from the vbios if ddc fails and runpm is
- 		 * enabled so we report disconnected.
- 		 */
-@@ -306,34 +306,30 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 			/* some laptops provide a hardcoded edid in rom for LCDs */
- 			if (((connector->connector_type == DRM_MODE_CONNECTOR_LVDS) ||
- 			     (connector->connector_type == DRM_MODE_CONNECTOR_eDP)))
--				radeon_connector->edid = radeon_bios_get_hardcoded_edid(rdev);
-+				radeon_connector->drm_edid = radeon_bios_get_hardcoded_edid(rdev);
- 		} else {
- 			/* some servers provide a hardcoded edid in rom for KVMs */
--			radeon_connector->edid = radeon_bios_get_hardcoded_edid(rdev);
-+			radeon_connector->drm_edid = radeon_bios_get_hardcoded_edid(rdev);
- 		}
- 	}
-+
-+	drm_edid_connector_update(&radeon_connector->base, radeon_connector->drm_edid);
- }
- 
- static void radeon_connector_free_edid(struct drm_connector *connector)
- {
- 	struct radeon_connector *radeon_connector = to_radeon_connector(connector);
- 
--	kfree(radeon_connector->edid);
--	radeon_connector->edid = NULL;
-+	drm_edid_free(radeon_connector->drm_edid);
-+	radeon_connector->drm_edid = NULL;
- }
- 
- static int radeon_ddc_get_modes(struct drm_connector *connector)
- {
- 	struct radeon_connector *radeon_connector = to_radeon_connector(connector);
--	int ret;
- 
--	if (radeon_connector->edid) {
--		drm_connector_update_edid_property(connector, radeon_connector->edid);
--		ret = drm_add_edid_modes(connector, radeon_connector->edid);
--		return ret;
--	}
--	drm_connector_update_edid_property(connector, NULL);
--	return 0;
-+	drm_edid_connector_update(connector, radeon_connector->drm_edid);
-+	return drm_edid_connector_add_modes(connector);
- }
- 
- static struct drm_encoder *radeon_best_single_encoder(struct drm_connector *connector)
-@@ -869,7 +865,7 @@ radeon_lvds_detect(struct drm_connector *connector, bool force)
- 
- 	/* check for edid as well */
- 	radeon_connector_get_edid(connector);
--	if (radeon_connector->edid)
-+	if (radeon_connector->drm_edid)
- 		ret = connector_status_connected;
- 	/* check acpi lid status ??? */
- 
-@@ -1012,13 +1008,12 @@ radeon_vga_detect(struct drm_connector *connector, bool force)
- 		radeon_connector_free_edid(connector);
- 		radeon_connector_get_edid(connector);
- 
--		if (!radeon_connector->edid) {
-+		if (!radeon_connector->drm_edid) {
- 			DRM_ERROR("%s: probed a monitor but no|invalid EDID\n",
- 					connector->name);
- 			ret = connector_status_connected;
- 		} else {
--			radeon_connector->use_digital =
--				!!(radeon_connector->edid->input & DRM_EDID_INPUT_DIGITAL);
-+			radeon_connector->use_digital = drm_edid_is_digital(radeon_connector->drm_edid);
- 
- 			/* some oems have boards with separate digital and analog connectors
- 			 * with a shared ddc line (often vga + hdmi)
-@@ -1270,7 +1265,7 @@ radeon_dvi_detect(struct drm_connector *connector, bool force)
- 		radeon_connector_free_edid(connector);
- 		radeon_connector_get_edid(connector);
- 
--		if (!radeon_connector->edid) {
-+		if (!radeon_connector->drm_edid) {
- 			DRM_ERROR("%s: probed a monitor but no|invalid EDID\n",
- 					connector->name);
- 			/* rs690 seems to have a problem with connectors not existing and always
-@@ -1286,8 +1281,7 @@ radeon_dvi_detect(struct drm_connector *connector, bool force)
- 				broken_edid = true; /* defer use_digital to later */
- 			}
- 		} else {
--			radeon_connector->use_digital =
--				!!(radeon_connector->edid->input & DRM_EDID_INPUT_DIGITAL);
-+			radeon_connector->use_digital = drm_edid_is_digital(radeon_connector->drm_edid);
- 
- 			/* some oems have boards with separate digital and analog connectors
- 			 * with a shared ddc line (often vga + hdmi)
-diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
-index 4063d3801e819ba2726b63225e5f3f7d85eb760f..0ac57ff1b9185d8594029441258c8dfe37c724d6 100644
---- a/drivers/gpu/drm/radeon/radeon_mode.h
-+++ b/drivers/gpu/drm/radeon/radeon_mode.h
-@@ -41,7 +41,6 @@
- struct drm_fb_helper;
- struct drm_fb_helper_surface_size;
- 
--struct edid;
- struct drm_edid;
- struct radeon_bo;
- struct radeon_device;
-@@ -524,7 +523,7 @@ struct radeon_connector {
- 	bool use_digital;
- 	/* we need to mind the EDID between detect
- 	   and get modes due to analog/digital/tvencoder */
--	struct edid *edid;
-+	const struct drm_edid *drm_edid;
- 	void *con_priv;
- 	bool dac_load_detect;
- 	bool detected_by_load; /* if the connection status was determined by load */
-@@ -846,7 +845,7 @@ radeon_get_crtc_scanout_position(struct drm_crtc *crtc, bool in_vblank_irq,
- 				 const struct drm_display_mode *mode);
- 
- extern bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev);
--extern struct edid *
-+extern const struct drm_edid *
- radeon_bios_get_hardcoded_edid(struct radeon_device *rdev);
- extern bool radeon_atom_get_clock_info(struct drm_device *dev);
- extern bool radeon_combios_get_clock_info(struct drm_device *dev);
-
----
-base-commit: 377dda2cff59825079aee3906aa4904779747b0b
-change-id: 20240818-radeon-drm_edid-9f0cec36e227
-
-Best regards,
--- 
-Thomas Weißschuh <linux@weissschuh.net>
-
+SGksDQoNCk9uIDIwMjQvMTEvNSAxNDowNSwgSmlxaWFuIENoZW4gd3JvdGU6DQo+IEZyb206IEh1
+YW5nIFJ1aSA8cmF5Lmh1YW5nQGFtZC5jb20+DQo+IA0KPiBUaGVyZSBpcyBhbiBzZWNvbmQgc3Rh
+Z2UgdHJhbnNsYXRpb24gYmV0d2VlbiB0aGUgZ3Vlc3QgbWFjaGluZSBhZGRyZXNzDQo+IGFuZCBo
+b3N0IG1hY2hpbmUgYWRkcmVzcyBpbiBYZW4gUFZIL0hWTS4gVGhlIFBDSSBiYXIgYWRkcmVzcyBp
+biB0aGUgeGVuDQo+IGd1ZXN0IGtlcm5lbCBhcmUgbm90IHRyYW5zbGF0ZWQgYXQgdGhlIHNlY29u
+ZCBzdGFnZSBvbiBYZW4gUFZIL0hWTSwgc28NCj4gaXQncyBub3QgdGhlIHJlYWwgcGh5c2ljYWwg
+YWRkcmVzcyB0aGF0IGhhcmR3YXJlIHdvdWxkIGxpa2UgdG8ga25vdywgc28NCj4gd2UgbmVlZCB0
+byBzZXQgcGFzc3Rocm91Z2ggbW9kZSBmb3IgWGVuIFBWSC9IVk0gYXMgd2VsbC4NCj4gDQo+IFNp
+Z25lZC1vZmYtYnk6IEh1YW5nIFJ1aSA8cmF5Lmh1YW5nQGFtZC5jb20+DQo+IFNpZ25lZC1vZmYt
+Ynk6IEppcWlhbiBDaGVuIDxKaXFpYW4uQ2hlbkBhbWQuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92aXJ0LmMgfCAzICsrLQ0KPiAgMSBmaWxlIGNoYW5n
+ZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92aXJ0LmMgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfdmlydC5jDQo+IGluZGV4IGI2Mzk3ZDMyMjllMS4uMDgzNmZiNzdi
+MjYzIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdmly
+dC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92aXJ0LmMNCj4g
+QEAgLTc2NCw3ICs3NjQsOCBAQCB2b2lkIGFtZGdwdV9kZXRlY3RfdmlydHVhbGl6YXRpb24oc3Ry
+dWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpDQo+ICANCj4gIAlpZiAoIXJlZykgew0KPiAgCQkvKiBw
+YXNzdGhyb3VnaCBtb2RlIGV4Y2x1cyBzcmlvdiBtb2QgKi8NCj4gLQkJaWYgKGlzX3ZpcnR1YWxf
+bWFjaGluZSgpICYmICF4ZW5faW5pdGlhbF9kb21haW4oKSkNCj4gKwkJaWYgKGlzX3ZpcnR1YWxf
+bWFjaGluZSgpICYmDQo+ICsJCSAgICAhKHhlbl9pbml0aWFsX2RvbWFpbigpICYmIHhlbl9wdl9k
+b21haW4oKSkpDQo+ICAJCQlhZGV2LT52aXJ0LmNhcHMgfD0gQU1ER1BVX1BBU1NUSFJPVUdIX01P
+REU7DQo+ICAJfQ0KPiAgDQoNCkRvIHlvdSBoYXZlIGFueSBjb21tZW50cyBvbiB0aGlzIHBhdGNo
+Pw0KDQotLSANCkJlc3QgcmVnYXJkcywNCkppcWlhbiBDaGVuLg0K
