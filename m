@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F23C9C7DC7
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 22:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B1E9C7DCC
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 22:45:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 047B210E6E7;
-	Wed, 13 Nov 2024 21:45:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D998010E723;
+	Wed, 13 Nov 2024 21:45:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RirnkHpK";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wluo9tou";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2049.outbound.protection.outlook.com [40.107.220.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A080010E6E7
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Nov 2024 21:45:20 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2087.outbound.protection.outlook.com [40.107.93.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C0CA10E70A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Nov 2024 21:45:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cKYWmuZywfuL+TXIm4SxwKpUyFnKtEw1NryeqN0lGpO/vbGmNt6q9LjSohX3dQ0ChSOYArfbyH34M6zbPAv+qc1RZkr1CIIZpNmLZDMUAVaW4Kq19jITPxMKEJyOtBRWszP3kAl8HEQKhlfoAaf/nqTPcu2DnU33BhIb9TZXD9Ha4Os5Ws/pBry49DF72N9U/T+9NvgPF+qbL1XizKfQxLXP/flnjVXhALgyxu3Pvl235QolpqQ71qmPdMH9PN1sw38KAsF1RG8COpkfhaEfWA+oIuvID9JYr6W+/nuG3KfSmw78iOz8Fsnoj7UYM3ANT4BADRnvlbmXrXqjCaZ1pw==
+ b=rliMiEvrOKKlQ7YCyCwpP/OctORvBCRgb+0B+BtZu59Gd8FXtNaDcXC3POmuDSkYiQgWDNskpWy+4NksCVT0npbJstviIz48v2BAt8yX8S429jEgwwJw5AHjml+iW2RS4HnCgnkAsOZs3lRrTw6vxQTTc8WvTz6rbKcqdSJqMklG02mEEQnrEzsPmmdIxMbEG7KS3KPt9plm1A2cq1UV9qwbOJymbV9fp5Qv5xTTvpNhtHRul3RyVYJ3e1CJVAB+UdJ910i4o+ThfiaUMRczMdV6dY2pDT1J7CwkCxFEcDXFe78mBKu1a2EnaScCN+TrruQyeiCe79Fbm5RFaYp8Wg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zB1Hg04VdneZGQIbLq6du4R/OUB5lTlSXm+mv3fLyog=;
- b=wP3uZ53FCkH2Nmhjz7O//skxmnQYUIOlhoQxLqkq29aEasAuo8DKJigPfarbqfSAb5Xhgf0MQ2DTSTYdVRxtu1J/kMKso7QUdjgsSK/WIDCufEwmvRPGeF/WhCwMg2lI11nqcyY2JUFkGwtBfLOuozQBqe0rOZ722EHdiFQG8W9PNlAjngD7e4Y099LUi2S3wQFF8cSTYu/zucbBNiZn/OUK5ieb7noul4+ZtK+JFXdMfXWQzCHZsb7BypMkeusrhJ99pclIeGrII2jZ15X8AhJH9bINvQdT31Zn6oHhxcQFEPPb0WaBUBuMvLMormpIjqZv++iYBxNpKiQowi0Bpw==
+ bh=PURvOTvKh74vMG5q3MhkzRMrpBDWgIFBNxQAVOQBhkI=;
+ b=CrITcFw9mmPCeUh8/p633ys8DCoHJLLXhd5O9ub8eCPtYLxNsrjomm0uqxFw44cEXbfz8dX6T4TcTxtz8hvjVRP/hgMBKlLgDUMQIrQXsOd0m3lwZ+t0nbEZJpkVvZnVaA86DNCg5evkIh1/ef7zCAC3qAatElEjWiUy4wzjW+WRuMZ1PKo6voizpSqn+sDurHJfylZWF3HJr9B0YuaVxD/EsI1bxki3zYtL1pJIuqS7bCOT9tS39Gjrn6rRfi7PnGLeMnw/kDSKDTPmBunSBg5fjVloMbPakZUq2XdsNQ85NsOoLgJuM6PmExWy6vbY19IEYiwhmXps6V5QSGaC0g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zB1Hg04VdneZGQIbLq6du4R/OUB5lTlSXm+mv3fLyog=;
- b=RirnkHpKELqMDoqtgqJ9d48pqC5HG+kvnc84f305WjzcPUC73frr64YRZ4uv+I376rI9RK++/PwhbkoMUCyMBVIc2dQWY5wqSL+cy13HILjrT13MN4TrFBeawYrk207AdK0Suu6WLt89NnxDLdJS8d/dvEmxH5dX5vWvVNqFmes=
-Received: from SJ0PR05CA0152.namprd05.prod.outlook.com (2603:10b6:a03:339::7)
- by SN7PR12MB7835.namprd12.prod.outlook.com (2603:10b6:806:328::22)
+ bh=PURvOTvKh74vMG5q3MhkzRMrpBDWgIFBNxQAVOQBhkI=;
+ b=wluo9touT5mPniIrHX/yfGsx0AEzKoHuVTFI14YyqW0IxcEoGnZrAEcYaGz/Z4zispWb92dYEEL1X6hjebkrzOvwbtFBFEAlJo1/gSIwJlw87SrDzOdlVoBhdlOuSH3+yTfgZfqh/Q30oMaM8gu0LDueYmn9FA7Bhm01e8qumGU=
+Received: from SJ0PR05CA0162.namprd05.prod.outlook.com (2603:10b6:a03:339::17)
+ by BY5PR12MB4162.namprd12.prod.outlook.com (2603:10b6:a03:201::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.28; Wed, 13 Nov
- 2024 21:45:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29; Wed, 13 Nov
+ 2024 21:45:18 +0000
 Received: from SJ1PEPF00001CE2.namprd05.prod.outlook.com
- (2603:10b6:a03:339:cafe::6d) by SJ0PR05CA0152.outlook.office365.com
- (2603:10b6:a03:339::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.14 via Frontend
- Transport; Wed, 13 Nov 2024 21:45:17 +0000
+ (2603:10b6:a03:339:cafe::18) by SJ0PR05CA0162.outlook.office365.com
+ (2603:10b6:a03:339::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.17 via Frontend
+ Transport; Wed, 13 Nov 2024 21:45:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -58,9 +58,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 11/15] drm/amdgpu/vcn: switch work handler to be per instance
-Date: Wed, 13 Nov 2024 16:44:47 -0500
-Message-ID: <20241113214453.17081-12-alexander.deucher@amd.com>
+Subject: [PATCH 12/15] drm/amdgpu/vcn: make powergating status per instance
+Date: Wed, 13 Nov 2024 16:44:48 -0500
+Message-ID: <20241113214453.17081-13-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241113214453.17081-1-alexander.deucher@amd.com>
 References: <20241113214453.17081-1-alexander.deucher@amd.com>
@@ -72,50 +72,50 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE2:EE_|SN7PR12MB7835:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f3bfb88-7885-4d03-92bb-08dd042c76b5
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE2:EE_|BY5PR12MB4162:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d3e6743-119f-46c6-dba3-08dd042c773f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?aCByyCXAoLSfCjAgiWWRvkHfZ5c6O7h7cIYxgmIG+MkjyRp+1onnZ4bHhg3k?=
- =?us-ascii?Q?DQVoI4bUFPyNbtB3q3SisFf1WwDc2MP+XHeDUBxgR8iDxxnoxNc2668P1NvW?=
- =?us-ascii?Q?KQnwDXLfejn4ssXDzQQA7DCM3IduHWWVuwaCokncNc15Oc/K08rEa7luXi1U?=
- =?us-ascii?Q?32uBodF5zqHOc2yUSpb0WMnN21AjeZW0wauecF9M51z+YK1Dr8cbuADUf8x2?=
- =?us-ascii?Q?ey7VgXiZSNC+ALvNorqr7jDd7XKdP9TfznpAzqlo+9nTkwtI14AKkH8IlmCC?=
- =?us-ascii?Q?+K5zEUczi11RIW9I7kjmtfjFQQx9RUIUZLfJy8+7P0p2V/5lwke4p9+mnj8g?=
- =?us-ascii?Q?8FHmEgkc7BN9aq8dxjfvsNzHSgMcbQwGNmbPNk/xMpTzvpyzIGmvEQPMIj90?=
- =?us-ascii?Q?74gDagq1/YYkyLryrOkwWb0bs3ruuyyyfpilGkuvNhSbvnbRy5uUOuaTGnlq?=
- =?us-ascii?Q?PMUjYPeGMWkWWMpJKq9W836sKkY7jllcDEbavhT0SjPhvoJpWprlAjPjZP8C?=
- =?us-ascii?Q?Q9Uom2v9M8TDkaBzhSXFPHfq8B4wLDmJqcxvH/V24ONQhjr/Kas77gicICMX?=
- =?us-ascii?Q?MVLtLGLrwavia8XmM5Mmj8i/c7bbu+b09XhKmv8H7iQ+w5s3WF5256UjJNte?=
- =?us-ascii?Q?DDY91bnViHN4N2wuGq5bGLB4z9Mlf2yZ+a7N4OZN98RLXapcclZNYVciVdjC?=
- =?us-ascii?Q?DjQEj3BJqDUj9u8Jkwcz85enqCCmZBqr8KWw/t0R1LB4Xjazf2A0XdrVzyLJ?=
- =?us-ascii?Q?zA/0iKLWf5DcsNhQyAFBDy5TXc/1FAyst86BXKA8WTzGL7bu29sx8m9QCGx8?=
- =?us-ascii?Q?oKjM03db0thx+xlmXNpgLfo/X5jQRTAUslQITDA1gVVTeW7H6GI2UCzvEbJJ?=
- =?us-ascii?Q?RfX8aaKvK0v1RY8AYEpfbC+1OBytHwGh/NiOAw7phtGZ/ZjyxZnRO06OluAh?=
- =?us-ascii?Q?f/FSiMRpRIo+ThYFVkPF7az+6rF1TwRKICwWV43nwmry2J2+PjwwnNr7rGOu?=
- =?us-ascii?Q?EtvYIw3VukhVTK4TIbFlLOPu6k5TStKADlMqfvLa+L1GL8apD05V3QtEXGXi?=
- =?us-ascii?Q?nSYyqA/FT5N+MXLUCy2Hipe9YfK4+tLbVAt9HsruaJoxa8ve2qpt+Q+VHLoa?=
- =?us-ascii?Q?VgxpVTarclIV8c8qvdEJ2AkCio4SnEp5C0L2oj6IpYgDUDh0FAmlW4FxKx+j?=
- =?us-ascii?Q?/o6HmC9BtnXJMSxom8Q70O/8OnZRZS1qUOCoEIn89JueLte4Mi35G5QNfoln?=
- =?us-ascii?Q?BiBbZ+n24I5O6ixTDsg+TbulzxSYLi7wGb6bxjYrQ5DWnZiGbQuSSlXOt4mV?=
- =?us-ascii?Q?ntnhwNwhpu94PMeBwvYVSP8IpBpYOGpo831SH84JRJbnQeeRBCgXY0bR4a8f?=
- =?us-ascii?Q?JoFB231cjgPM8CI8vwFRD6phEHEFxgTbymBHyidKVfMIeeZY8Q=3D=3D?=
+ ARA:13230040|376014|1800799024|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?li52AX0/KDpnxOtYnIaY2eqNpQqdsSFQinmqAJnaMqKEnQ7SsLkVGrol9Myn?=
+ =?us-ascii?Q?h9D/fdN4jaEdiLBFdimq2nqAoDJJCO0aIniyCYlkJXR4BC/0G99r8l/zGEjD?=
+ =?us-ascii?Q?yUgdM22i8yR2j/p1XBcEpzlzHFn5KQwWSRNnW1HqyMWcO6kYnAGcBxwM8uih?=
+ =?us-ascii?Q?yjszL0hcnEdqgwYjMUxeTwBwZ4JPafsbYjumDNTuhctFv0Jf4/xJRHr2yqNt?=
+ =?us-ascii?Q?p1rN/okNjMBy+B5vp1+4yiQIYfWVS6N8D2ur8tNgoVqalUFITmnGg/oxmosS?=
+ =?us-ascii?Q?dGWDSNamjEKnzMICj49z0Rl4C2D3bqKj4uyhnZRneBssRkql8M4QV8NqHXE7?=
+ =?us-ascii?Q?0Duyj0nQkTA/mLU0s12xiwVXmGcGn9Yn37c2YIIX/i+60wHWRY0UA5NXkyMC?=
+ =?us-ascii?Q?+5Kf5/eHTjXHg1Mpq5qvb07whk5MK2s0wuSHHU+ykqAZdmNrv9Rc+8Izf3+b?=
+ =?us-ascii?Q?b+UEjNgrcKXLPGSai2dRAfkI9iLZBwYjqTpTetHUzS7vUNrLw7YblvCTwZUP?=
+ =?us-ascii?Q?F21OWWEc6S1np8cK4OPtYZ2CJ8NBnx+h+fR7GQue4nHgDk0n8lG5nxg4oWiL?=
+ =?us-ascii?Q?hoxlvFtxTObYcooeT3vUvb+swgN2r3Xf0s+uNYWinArsJcreY1sBk0431KxK?=
+ =?us-ascii?Q?cYCF8kHHXA1Q6fl2m2YZQwrjp+qa3UvUSqVkjOccWQQSIXeszXhk1yLuFKk3?=
+ =?us-ascii?Q?MoAW467i9ne7NgBYNE8IZQWtR87dym+5urun0QSh25iHay/JlufY4EZF2Dtl?=
+ =?us-ascii?Q?nQog/Y7GGA5B2+3XTIIIRpm6o4dPA0HXhmw0cyG5idZUtJ6F7UuundiqFlLU?=
+ =?us-ascii?Q?hhp8AWrdzzo6Eb7Ngp9y4OnwFNqGe62AKgG2vRxZDEIcUOcevL3QfPV4UP/B?=
+ =?us-ascii?Q?D4PdT6YvJZ9W8YQ4SuWcntk7DWv0XkquzBNPiRy9O6GjAhytA2uR6V7F1aBE?=
+ =?us-ascii?Q?ydebHkIi478t5/bRJ+0ymnoatTNCQ5i34V2KNg1bkR08m+xmOfydCmHwo2DS?=
+ =?us-ascii?Q?H5JXGcJPV2QXUiTgBpX7PTXHyBID1KX4ukVX6TVB1DcFYZbx7fEpAhSzWbUJ?=
+ =?us-ascii?Q?9MCA1sp/683E8IkfPrpJy11IJefIImEcFy7Pao8/2BS9MBjDE1wNSm0ELUUF?=
+ =?us-ascii?Q?uYJfRWRZxXae0h3urVI35TUYgb0vHgzgt/RI0+mdyBkGV8AJrM2BvEyBHISb?=
+ =?us-ascii?Q?soFyoLRvaJSStZ8J+Jt5V0Yka73xG6apFnhZ6qUAFPdJcxs8bblomKSMp6N1?=
+ =?us-ascii?Q?nPsrYA/IK2QFSLvXORO288KwS8rJYpv1/Znjxo9o5PKJ44cvdM4zDEn1BOK/?=
+ =?us-ascii?Q?puHO+TYxwDNXzXGRz27MtsihxIgyGO7uHCB9lDvuIc+wtRVD+b+o/FGgXJlC?=
+ =?us-ascii?Q?DhbDpHpvrX35UONyX8nHn1iMdKfRDSbLV0hp4hmRPxFvksTU0w=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2024 21:45:17.0192 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f3bfb88-7885-4d03-92bb-08dd042c76b5
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2024 21:45:17.8630 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d3e6743-119f-46c6-dba3-08dd042c773f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE2.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7835
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4162
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,422 +130,684 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Have a separate work handler for each VCN instance. This
-paves the way for per instance VCN power gating at runtime.
+Store it per instance so we can track it per instance.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 83 +++++++++++++------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h |  8 ++-
- drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c   | 17 ++---
- drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   |  4 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   |  4 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   |  5 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c |  4 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c |  5 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c |  5 +-
- 10 files changed, 75 insertions(+), 62 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c     |  6 +--
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c     | 11 ++--
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c     | 43 +++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c     | 49 ++++++++++++------
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c     | 60 ++++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c   | 63 ++++++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c   | 48 +++++++++++------
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c   | 48 +++++++++++------
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c |  8 +--
+ 10 files changed, 214 insertions(+), 124 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index b4a550795470..3383e4146c6a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -118,12 +118,15 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev)
- 	unsigned int fw_shared_size, log_offset;
- 	int i, r;
- 
--	INIT_DELAYED_WORK(&adev->vcn.idle_work, amdgpu_vcn_idle_work_handler);
--	mutex_init(&adev->vcn.vcn_pg_lock);
- 	mutex_init(&adev->vcn.vcn1_jpeg1_workaround);
--	atomic_set(&adev->vcn.total_submission_cnt, 0);
--	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
-+	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
-+		mutex_init(&adev->vcn.inst[i].vcn_pg_lock);
-+		adev->vcn.inst[i].adev = adev;
-+		adev->vcn.inst[i].inst = i;
-+		atomic_set(&adev->vcn.inst[i].total_submission_cnt, 0);
-+		INIT_DELAYED_WORK(&adev->vcn.inst[i].idle_work, amdgpu_vcn_idle_work_handler);
- 		atomic_set(&adev->vcn.inst[i].dpg_enc_submission_cnt, 0);
-+	}
- 
- 	if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
- 	    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-@@ -271,10 +274,10 @@ int amdgpu_vcn_sw_fini(struct amdgpu_device *adev)
- 			amdgpu_ring_fini(&adev->vcn.inst[j].ring_enc[i]);
- 
- 		amdgpu_ucode_release(&adev->vcn.inst[j].fw);
-+		mutex_destroy(&adev->vcn.inst[j].vcn_pg_lock);
- 	}
- 
- 	mutex_destroy(&adev->vcn.vcn1_jpeg1_workaround);
--	mutex_destroy(&adev->vcn.vcn_pg_lock);
- 
- 	return 0;
- }
-@@ -325,8 +328,10 @@ int amdgpu_vcn_save_vcpu_bo(struct amdgpu_device *adev)
- int amdgpu_vcn_suspend(struct amdgpu_device *adev)
- {
- 	bool in_ras_intr = amdgpu_ras_intr_triggered();
-+	int i;
- 
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
-+	for (i = 0; i < adev->vcn.num_vcn_inst; ++i)
-+		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
- 
- 	/* err_event_athub will corrupt VCPU buffer, so we need to
- 	 * restore fw data and clear buffer in amdgpu_vcn_resume() */
-@@ -382,46 +387,45 @@ int amdgpu_vcn_resume(struct amdgpu_device *adev)
- 
- static void amdgpu_vcn_idle_work_handler(struct work_struct *work)
- {
--	struct amdgpu_device *adev =
--		container_of(work, struct amdgpu_device, vcn.idle_work.work);
-+	struct amdgpu_vcn_inst *vcn_inst =
-+		container_of(work, struct amdgpu_vcn_inst, idle_work.work);
-+	struct amdgpu_device *adev = vcn_inst->adev;
- 	unsigned int fences = 0, fence[AMDGPU_MAX_VCN_INSTANCES] = {0};
--	unsigned int i, j;
-+	unsigned int i = vcn_inst->inst, j;
- 	int r = 0;
- 
--	for (j = 0; j < adev->vcn.num_vcn_inst; ++j) {
--		if (adev->vcn.harvest_config & (1 << j))
--			continue;
--
--		for (i = 0; i < adev->vcn.num_enc_rings; ++i)
--			fence[j] += amdgpu_fence_count_emitted(&adev->vcn.inst[j].ring_enc[i]);
-+	if (adev->vcn.harvest_config & (1 << i))
-+		return;
- 
--		/* Only set DPG pause for VCN3 or below, VCN4 and above will be handled by FW */
--		if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG &&
--		    !adev->vcn.using_unified_queue) {
--			struct dpg_pause_state new_state;
-+	for (j = 0; j < adev->vcn.num_enc_rings; ++j)
-+		fence[i] += amdgpu_fence_count_emitted(&vcn_inst->ring_enc[j]);
- 
--			if (fence[j] ||
--				unlikely(atomic_read(&adev->vcn.inst[j].dpg_enc_submission_cnt)))
--				new_state.fw_based = VCN_DPG_STATE__PAUSE;
--			else
--				new_state.fw_based = VCN_DPG_STATE__UNPAUSE;
-+	/* Only set DPG pause for VCN3 or below, VCN4 and above will be handled by FW */
-+	if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG &&
-+	    !adev->vcn.using_unified_queue) {
-+		struct dpg_pause_state new_state;
- 
--			adev->vcn.pause_dpg_mode(adev, j, &new_state);
--		}
-+		if (fence[i] ||
-+		    unlikely(atomic_read(&vcn_inst->dpg_enc_submission_cnt)))
-+			new_state.fw_based = VCN_DPG_STATE__PAUSE;
-+		else
-+			new_state.fw_based = VCN_DPG_STATE__UNPAUSE;
- 
--		fence[j] += amdgpu_fence_count_emitted(&adev->vcn.inst[j].ring_dec);
--		fences += fence[j];
-+		adev->vcn.pause_dpg_mode(adev, i, &new_state);
- 	}
- 
--	if (!fences && !atomic_read(&adev->vcn.total_submission_cnt)) {
-+	fence[i] += amdgpu_fence_count_emitted(&vcn_inst->ring_dec);
-+	fences += fence[i];
-+
-+	if (!fences && !atomic_read(&vcn_inst->total_submission_cnt)) {
- 		amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCN,
--		       AMD_PG_STATE_GATE);
-+						       AMD_PG_STATE_GATE);
- 		r = amdgpu_dpm_switch_power_profile(adev, PP_SMC_POWER_PROFILE_VIDEO,
--				false);
-+						    false);
- 		if (r)
- 			dev_warn(adev->dev, "(%d) failed to disable video power profile mode\n", r);
- 	} else {
--		schedule_delayed_work(&adev->vcn.idle_work, VCN_IDLE_TIMEOUT);
-+		schedule_delayed_work(&vcn_inst->idle_work, VCN_IDLE_TIMEOUT);
- 	}
- }
- 
-@@ -430,18 +434,18 @@ void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring)
- 	struct amdgpu_device *adev = ring->adev;
- 	int r = 0;
- 
--	atomic_inc(&adev->vcn.total_submission_cnt);
-+	atomic_inc(&adev->vcn.inst[ring->me].total_submission_cnt);
- 
--	if (!cancel_delayed_work_sync(&adev->vcn.idle_work)) {
-+	if (!cancel_delayed_work_sync(&adev->vcn.inst[ring->me].idle_work)) {
- 		r = amdgpu_dpm_switch_power_profile(adev, PP_SMC_POWER_PROFILE_VIDEO,
- 				true);
- 		if (r)
- 			dev_warn(adev->dev, "(%d) failed to switch to video power profile mode\n", r);
- 	}
- 
--	mutex_lock(&adev->vcn.vcn_pg_lock);
-+	mutex_lock(&adev->vcn.inst[ring->me].vcn_pg_lock);
- 	amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCN,
--	       AMD_PG_STATE_UNGATE);
-+					       AMD_PG_STATE_UNGATE);
- 
- 	/* Only set DPG pause for VCN3 or below, VCN4 and above will be handled by FW */
- 	if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG &&
-@@ -466,7 +470,7 @@ void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring)
- 
- 		adev->vcn.pause_dpg_mode(adev, ring->me, &new_state);
- 	}
--	mutex_unlock(&adev->vcn.vcn_pg_lock);
-+	mutex_unlock(&adev->vcn.inst[ring->me].vcn_pg_lock);
- }
- 
- void amdgpu_vcn_ring_end_use(struct amdgpu_ring *ring)
-@@ -479,9 +483,10 @@ void amdgpu_vcn_ring_end_use(struct amdgpu_ring *ring)
- 	    !adev->vcn.using_unified_queue)
- 		atomic_dec(&ring->adev->vcn.inst[ring->me].dpg_enc_submission_cnt);
- 
--	atomic_dec(&ring->adev->vcn.total_submission_cnt);
-+	atomic_dec(&ring->adev->vcn.inst[ring->me].total_submission_cnt);
- 
--	schedule_delayed_work(&ring->adev->vcn.idle_work, VCN_IDLE_TIMEOUT);
-+	schedule_delayed_work(&ring->adev->vcn.inst[ring->me].idle_work,
-+			      VCN_IDLE_TIMEOUT);
- }
- 
- int amdgpu_vcn_dec_ring_test_ring(struct amdgpu_ring *ring)
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-index 7b528123b36e..0d9a4d946eac 100644
+index 0d9a4d946eac..dc3c7b7bdd33 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-@@ -279,6 +279,8 @@ struct amdgpu_vcn_fw_shared {
- };
- 
- struct amdgpu_vcn_inst {
-+	struct amdgpu_device	*adev;
-+	int			inst;
- 	struct amdgpu_bo	*vcpu_bo;
- 	void			*cpu_addr;
- 	uint64_t		gpu_addr;
-@@ -300,6 +302,9 @@ struct amdgpu_vcn_inst {
- 	const struct firmware	*fw; /* VCN firmware */
- 	uint8_t			vcn_config;
+@@ -304,6 +304,7 @@ struct amdgpu_vcn_inst {
  	uint32_t		vcn_codec_disable_mask;
-+	atomic_t		total_submission_cnt;
-+	struct mutex		vcn_pg_lock;
-+	struct delayed_work	idle_work;
+ 	atomic_t		total_submission_cnt;
+ 	struct mutex		vcn_pg_lock;
++	enum amd_powergating_state cur_state;
+ 	struct delayed_work	idle_work;
  };
  
- struct amdgpu_vcn_ras {
-@@ -308,7 +313,6 @@ struct amdgpu_vcn_ras {
- 
+@@ -314,7 +315,6 @@ struct amdgpu_vcn_ras {
  struct amdgpu_vcn {
  	unsigned		fw_version;
--	struct delayed_work	idle_work;
  	unsigned		num_enc_rings;
- 	enum amd_powergating_state cur_state;
+-	enum amd_powergating_state cur_state;
  	bool			indirect_sram;
-@@ -316,9 +320,7 @@ struct amdgpu_vcn {
- 	uint8_t	num_vcn_inst;
- 	struct amdgpu_vcn_inst	 inst[AMDGPU_MAX_VCN_INSTANCES];
- 	struct amdgpu_vcn_reg	 internal;
--	struct mutex		 vcn_pg_lock;
- 	struct mutex		vcn1_jpeg1_workaround;
--	atomic_t		 total_submission_cnt;
  
- 	unsigned	harvest_config;
- 	int (*pause_dpg_mode)(struct amdgpu_device *adev,
+ 	uint8_t	num_vcn_inst;
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-index 5ea96c983517..9ca964e11540 100644
+index 9ca964e11540..406886f13566 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-@@ -150,7 +150,7 @@ static int vcn_v1_0_sw_init(struct amdgpu_ip_block *ip_block)
- 		return r;
- 
- 	/* Override the work func */
--	adev->vcn.idle_work.work.func = vcn_v1_0_idle_work_handler;
-+	adev->vcn.inst->idle_work.work.func = vcn_v1_0_idle_work_handler;
- 
- 	amdgpu_vcn_setup_ucode(adev);
- 
-@@ -277,7 +277,7 @@ static int vcn_v1_0_hw_fini(struct amdgpu_ip_block *ip_block)
- {
- 	struct amdgpu_device *adev = ip_block->adev;
- 
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
-+	cancel_delayed_work_sync(&adev->vcn.inst->idle_work);
+@@ -280,7 +280,7 @@ static int vcn_v1_0_hw_fini(struct amdgpu_ip_block *ip_block)
+ 	cancel_delayed_work_sync(&adev->vcn.inst->idle_work);
  
  	if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
- 		(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
-@@ -301,7 +301,7 @@ static int vcn_v1_0_suspend(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 	bool idle_work_unexecuted;
- 
--	idle_work_unexecuted = cancel_delayed_work_sync(&adev->vcn.idle_work);
-+	idle_work_unexecuted = cancel_delayed_work_sync(&adev->vcn.inst->idle_work);
- 	if (idle_work_unexecuted) {
- 		if (adev->pm.dpm_enabled)
- 			amdgpu_dpm_enable_vcn(adev, false, 0);
-@@ -1828,8 +1828,9 @@ static int vcn_v1_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
- 
- static void vcn_v1_0_idle_work_handler(struct work_struct *work)
- {
--	struct amdgpu_device *adev =
--		container_of(work, struct amdgpu_device, vcn.idle_work.work);
-+	struct amdgpu_vcn_inst *vcn_inst =
-+		container_of(work, struct amdgpu_vcn_inst, idle_work.work);
-+	struct amdgpu_device *adev = vcn_inst->adev;
- 	unsigned int fences = 0, i;
- 
- 	for (i = 0; i < adev->vcn.num_enc_rings; ++i)
-@@ -1862,14 +1863,14 @@ static void vcn_v1_0_idle_work_handler(struct work_struct *work)
- 			amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCN,
- 			       AMD_PG_STATE_GATE);
- 	} else {
--		schedule_delayed_work(&adev->vcn.idle_work, VCN_IDLE_TIMEOUT);
-+		schedule_delayed_work(&adev->vcn.inst->idle_work, VCN_IDLE_TIMEOUT);
+-		(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
++		(adev->vcn.inst->cur_state != AMD_PG_STATE_GATE &&
+ 		 RREG32_SOC15(VCN, 0, mmUVD_STATUS))) {
+ 		vcn_v1_0_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
  	}
- }
+@@ -1813,7 +1813,7 @@ static int vcn_v1_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+ 	int ret;
+ 	struct amdgpu_device *adev = ip_block->adev;
  
- static void vcn_v1_0_ring_begin_use(struct amdgpu_ring *ring)
- {
- 	struct	amdgpu_device *adev = ring->adev;
--	bool set_clocks = !cancel_delayed_work_sync(&adev->vcn.idle_work);
-+	bool set_clocks = !cancel_delayed_work_sync(&adev->vcn.inst->idle_work);
+-	if (state == adev->vcn.cur_state)
++	if (state == adev->vcn.inst->cur_state)
+ 		return 0;
  
- 	mutex_lock(&adev->vcn.vcn1_jpeg1_workaround);
+ 	if (state == AMD_PG_STATE_GATE)
+@@ -1822,7 +1822,7 @@ static int vcn_v1_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+ 		ret = vcn_v1_0_start(adev);
  
-@@ -1921,7 +1922,7 @@ void vcn_v1_0_set_pg_for_begin_use(struct amdgpu_ring *ring, bool set_clocks)
- 
- void vcn_v1_0_ring_end_use(struct amdgpu_ring *ring)
- {
--	schedule_delayed_work(&ring->adev->vcn.idle_work, VCN_IDLE_TIMEOUT);
-+	schedule_delayed_work(&ring->adev->vcn.inst->idle_work, VCN_IDLE_TIMEOUT);
- 	mutex_unlock(&ring->adev->vcn.vcn1_jpeg1_workaround);
+ 	if (!ret)
+-		adev->vcn.cur_state = state;
++		adev->vcn.inst->cur_state = state;
+ 	return ret;
  }
  
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-index e42cfc731ad8..115f33c3ab68 100644
+index 115f33c3ab68..f445ae401359 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-@@ -313,7 +313,7 @@ static int vcn_v2_0_hw_fini(struct amdgpu_ip_block *ip_block)
- {
- 	struct amdgpu_device *adev = ip_block->adev;
- 
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
-+	cancel_delayed_work_sync(&adev->vcn.inst->idle_work);
+@@ -316,8 +316,8 @@ static int vcn_v2_0_hw_fini(struct amdgpu_ip_block *ip_block)
+ 	cancel_delayed_work_sync(&adev->vcn.inst->idle_work);
  
  	if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
- 	    (adev->vcn.cur_state != AMD_PG_STATE_GATE &&
+-	    (adev->vcn.cur_state != AMD_PG_STATE_GATE &&
+-	      RREG32_SOC15(VCN, 0, mmUVD_STATUS)))
++	    (adev->vcn.inst->cur_state != AMD_PG_STATE_GATE &&
++	     RREG32_SOC15(VCN, 0, mmUVD_STATUS)))
+ 		vcn_v2_0_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
+ 
+ 	return 0;
+@@ -1810,11 +1810,11 @@ static int vcn_v2_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 
+ 	if (amdgpu_sriov_vf(adev)) {
+-		adev->vcn.cur_state = AMD_PG_STATE_UNGATE;
++		adev->vcn.inst->cur_state = AMD_PG_STATE_UNGATE;
+ 		return 0;
+ 	}
+ 
+-	if (state == adev->vcn.cur_state)
++	if (state == adev->vcn.inst->cur_state)
+ 		return 0;
+ 
+ 	if (state == AMD_PG_STATE_GATE)
+@@ -1823,7 +1823,8 @@ static int vcn_v2_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+ 		ret = vcn_v2_0_start(adev);
+ 
+ 	if (!ret)
+-		adev->vcn.cur_state = state;
++		adev->vcn.inst->cur_state = state;
++
+ 	return ret;
+ }
+ 
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-index b9be304aa294..6fb08ed09310 100644
+index 6fb08ed09310..1d3780a2d851 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-@@ -390,12 +390,12 @@ static int vcn_v2_5_hw_fini(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 	int i;
+@@ -95,8 +95,11 @@ static const struct amdgpu_hwip_reg_entry vcn_reg_list_2_5[] = {
+ static void vcn_v2_5_set_dec_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v2_5_set_enc_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v2_5_set_irq_funcs(struct amdgpu_device *adev);
++static int vcn_v2_5_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++					       enum amd_powergating_state state,
++					       int i);
+ static int vcn_v2_5_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-				enum amd_powergating_state state);
++					  enum amd_powergating_state state);
+ static int vcn_v2_5_pause_dpg_mode(struct amdgpu_device *adev,
+ 				int inst_idx, struct dpg_pause_state *new_state);
+ static int vcn_v2_5_sriov_start(struct amdgpu_device *adev);
+@@ -397,9 +400,9 @@ static int vcn_v2_5_hw_fini(struct amdgpu_ip_block *ip_block)
+ 		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
  
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
--
- 	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
- 		if (adev->vcn.harvest_config & (1 << i))
- 			continue;
- 
-+		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
-+
  		if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
- 		    (adev->vcn.cur_state != AMD_PG_STATE_GATE &&
+-		    (adev->vcn.cur_state != AMD_PG_STATE_GATE &&
++		    (adev->vcn.inst[i].cur_state != AMD_PG_STATE_GATE &&
  		     RREG32_SOC15(VCN, i, mmUVD_STATUS)))
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-index a3627700ed48..70a1b85a4efa 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -422,12 +422,12 @@ static int vcn_v3_0_hw_fini(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 	int i;
+-			vcn_v2_5_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
++			vcn_v2_5_set_powergating_state_inst(ip_block, AMD_PG_STATE_GATE, i);
  
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
--
- 	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
- 		if (adev->vcn.harvest_config & (1 << i))
- 			continue;
+ 		if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__VCN))
+ 			amdgpu_irq_put(adev, &adev->vcn.inst[i].ras_poison_irq, 0);
+@@ -1805,27 +1808,39 @@ static int vcn_v2_5_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+ 	return 0;
+ }
  
-+		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
-+
- 		if (!amdgpu_sriov_vf(adev)) {
- 			if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
- 				(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-index e11bd6cae8fc..656c2a1c4bf9 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-@@ -359,11 +359,12 @@ static int vcn_v4_0_hw_fini(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 	int i;
- 
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
--
- 	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
- 		if (adev->vcn.harvest_config & (1 << i))
- 			continue;
-+
-+		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
-+
- 		if (!amdgpu_sriov_vf(adev)) {
- 			if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
- 				(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-index d4d92d4e2cab..8eea78c498da 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-@@ -331,8 +331,10 @@ static int vcn_v4_0_3_hw_init(struct amdgpu_ip_block *ip_block)
- static int vcn_v4_0_3_hw_fini(struct amdgpu_ip_block *ip_block)
+-static int vcn_v2_5_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-					  enum amd_powergating_state state)
++static int vcn_v2_5_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++					       enum amd_powergating_state state,
++					       int i)
  {
  	struct amdgpu_device *adev = ip_block->adev;
-+	int i;
+-	int ret = 0, i;
++	int ret;
  
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
+ 	if (amdgpu_sriov_vf(adev))
+ 		return 0;
+ 
+-	if (state == adev->vcn.cur_state)
++	if (state == adev->vcn.inst[i].cur_state)
+ 		return 0;
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-		if (state == AMD_PG_STATE_GATE)
+-			ret |= vcn_v2_5_stop(adev, i);
+-		else
+-			ret |= vcn_v2_5_start(adev, i);
+-	}
++	if (state == AMD_PG_STATE_GATE)
++		ret = vcn_v2_5_stop(adev, i);
++	else
++		ret = vcn_v2_5_start(adev, i);
+ 
+ 	if (!ret)
+-		adev->vcn.cur_state = state;
++		adev->vcn.inst[i].cur_state = state;
++
++	return ret;
++}
++
++static int vcn_v2_5_set_powergating_state(struct amdgpu_ip_block *ip_block,
++					  enum amd_powergating_state state)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	int ret = 0, i;
++
 +	for (i = 0; i < adev->vcn.num_vcn_inst; ++i)
-+		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
++		ret |= vcn_v2_5_set_powergating_state_inst(ip_block,
++							   state, i);
  
- 	if (adev->vcn.cur_state != AMD_PG_STATE_GATE)
- 		vcn_v4_0_3_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+index 70a1b85a4efa..13b9ed96cccd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+@@ -105,8 +105,11 @@ static int vcn_v3_0_start_sriov(struct amdgpu_device *adev);
+ static void vcn_v3_0_set_dec_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v3_0_set_enc_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v3_0_set_irq_funcs(struct amdgpu_device *adev);
++static int vcn_v3_0_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++					       enum amd_powergating_state state,
++					       int i);
+ static int vcn_v3_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-			enum amd_powergating_state state);
++					  enum amd_powergating_state state);
+ static int vcn_v3_0_pause_dpg_mode(struct amdgpu_device *adev,
+ 			int inst_idx, struct dpg_pause_state *new_state);
+ 
+@@ -430,9 +433,11 @@ static int vcn_v3_0_hw_fini(struct amdgpu_ip_block *ip_block)
+ 
+ 		if (!amdgpu_sriov_vf(adev)) {
+ 			if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
+-				(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
+-				 RREG32_SOC15(VCN, i, mmUVD_STATUS))) {
+-				vcn_v3_0_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
++			    (adev->vcn.inst[i].cur_state != AMD_PG_STATE_GATE &&
++			     RREG32_SOC15(VCN, i, mmUVD_STATUS))) {
++				vcn_v3_0_set_powergating_state_inst(ip_block,
++								    AMD_PG_STATE_GATE,
++								    i);
+ 			}
+ 		}
+ 	}
+@@ -2147,33 +2152,45 @@ static int vcn_v3_0_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+ 	return 0;
+ }
+ 
+-static int vcn_v3_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-					  enum amd_powergating_state state)
++static int vcn_v3_0_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++					       enum amd_powergating_state state,
++					       int i)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+-	int ret = 0, i;
++	int ret = 0;
+ 
+ 	/* for SRIOV, guest should not control VCN Power-gating
+ 	 * MMSCH FW should control Power-gating and clock-gating
+ 	 * guest should avoid touching CGC and PG
+ 	 */
+ 	if (amdgpu_sriov_vf(adev)) {
+-		adev->vcn.cur_state = AMD_PG_STATE_UNGATE;
++		adev->vcn.inst[i].cur_state = AMD_PG_STATE_UNGATE;
+ 		return 0;
+ 	}
+ 
+-	if (state == adev->vcn.cur_state)
++	if (state == adev->vcn.inst[i].cur_state)
+ 		return 0;
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-		if (state == AMD_PG_STATE_GATE)
+-			ret |= vcn_v3_0_stop(adev, i);
+-		else
+-			ret |= vcn_v3_0_start(adev, i);
+-	}
++	if (state == AMD_PG_STATE_GATE)
++		ret = vcn_v3_0_stop(adev, i);
++	else
++		ret = vcn_v3_0_start(adev, i);
+ 
+ 	if (!ret)
+-		adev->vcn.cur_state = state;
++		adev->vcn.inst[i].cur_state = state;
++
++	return ret;
++}
++
++static int vcn_v3_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
++					  enum amd_powergating_state state)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	int ret = 0, i;
++
++	for (i = 0; i < adev->vcn.num_vcn_inst; ++i)
++		ret |= vcn_v3_0_set_powergating_state_inst(ip_block,
++							   state, i);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+index 656c2a1c4bf9..9b7fc7ee4188 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+@@ -96,8 +96,11 @@ static int amdgpu_ih_clientid_vcns[] = {
+ static int vcn_v4_0_start_sriov(struct amdgpu_device *adev);
+ static void vcn_v4_0_set_unified_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v4_0_set_irq_funcs(struct amdgpu_device *adev);
++static int vcn_v4_0_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++					       enum amd_powergating_state state,
++					       int i);
+ static int vcn_v4_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-        enum amd_powergating_state state);
++					  enum amd_powergating_state state);
+ static int vcn_v4_0_pause_dpg_mode(struct amdgpu_device *adev,
+         int inst_idx, struct dpg_pause_state *new_state);
+ static void vcn_v4_0_unified_ring_set_wptr(struct amdgpu_ring *ring);
+@@ -367,9 +370,9 @@ static int vcn_v4_0_hw_fini(struct amdgpu_ip_block *ip_block)
+ 
+ 		if (!amdgpu_sriov_vf(adev)) {
+ 			if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
+-				(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
++				(adev->vcn.inst[i].cur_state != AMD_PG_STATE_GATE &&
+ 				 RREG32_SOC15(VCN, i, regUVD_STATUS))) {
+-				vcn_v4_0_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
++				vcn_v4_0_set_powergating_state_inst(ip_block, AMD_PG_STATE_GATE, i);
+ 			}
+ 		}
+ 		if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__VCN))
+@@ -2039,41 +2042,52 @@ static int vcn_v4_0_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+ 	return 0;
+ }
+ 
+-/**
+- * vcn_v4_0_set_powergating_state - set VCN block powergating state
+- *
+- * @handle: amdgpu_device pointer
+- * @state: power gating state
+- *
+- * Set VCN block powergating state
+- */
+-static int vcn_v4_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-					  enum amd_powergating_state state)
++static int vcn_v4_0_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++					       enum amd_powergating_state state,
++					       int i)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+-	int ret = 0, i;
++	int ret = 0;
+ 
+ 	/* for SRIOV, guest should not control VCN Power-gating
+ 	 * MMSCH FW should control Power-gating and clock-gating
+ 	 * guest should avoid touching CGC and PG
+ 	 */
+ 	if (amdgpu_sriov_vf(adev)) {
+-		adev->vcn.cur_state = AMD_PG_STATE_UNGATE;
++		adev->vcn.inst[i].cur_state = AMD_PG_STATE_UNGATE;
+ 		return 0;
+ 	}
+ 
+-	if (state == adev->vcn.cur_state)
++	if (state == adev->vcn.inst[i].cur_state)
+ 		return 0;
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-		if (state == AMD_PG_STATE_GATE)
+-			ret |= vcn_v4_0_stop(adev, i);
+-		else
+-			ret |= vcn_v4_0_start(adev, i);
+-	}
++	if (state == AMD_PG_STATE_GATE)
++		ret = vcn_v4_0_stop(adev, i);
++	else
++		ret = vcn_v4_0_start(adev, i);
+ 
+ 	if (!ret)
+-		adev->vcn.cur_state = state;
++		adev->vcn.inst[i].cur_state = state;
++
++	return ret;
++}
++
++/**
++ * vcn_v4_0_set_powergating_state - set VCN block powergating state
++ *
++ * @handle: amdgpu_device pointer
++ * @state: power gating state
++ *
++ * Set VCN block powergating state
++ */
++static int vcn_v4_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
++					  enum amd_powergating_state state)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	int ret = 0, i;
++
++	for (i = 0; i < adev->vcn.num_vcn_inst; ++i)
++		ret |= vcn_v4_0_set_powergating_state_inst(ip_block, state, i);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+index 8eea78c498da..60b6cece499a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+@@ -87,8 +87,11 @@ static const struct amdgpu_hwip_reg_entry vcn_reg_list_4_0_3[] = {
+ static int vcn_v4_0_3_start_sriov(struct amdgpu_device *adev);
+ static void vcn_v4_0_3_set_unified_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v4_0_3_set_irq_funcs(struct amdgpu_device *adev);
++static int vcn_v4_0_3_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++						 enum amd_powergating_state state,
++						 int i);
+ static int vcn_v4_0_3_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-		enum amd_powergating_state state);
++					    enum amd_powergating_state state);
+ static int vcn_v4_0_3_pause_dpg_mode(struct amdgpu_device *adev,
+ 		int inst_idx, struct dpg_pause_state *new_state);
+ static void vcn_v4_0_3_unified_ring_set_wptr(struct amdgpu_ring *ring);
+@@ -333,11 +336,12 @@ static int vcn_v4_0_3_hw_fini(struct amdgpu_ip_block *ip_block)
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	int i;
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i)
++	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+ 		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
+ 
+-	if (adev->vcn.cur_state != AMD_PG_STATE_GATE)
+-		vcn_v4_0_3_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
++		if (adev->vcn.inst[i].cur_state != AMD_PG_STATE_GATE)
++			vcn_v4_0_3_set_powergating_state_inst(ip_block, AMD_PG_STATE_GATE, i);
++	}
+ 
+ 	return 0;
+ }
+@@ -1633,41 +1637,52 @@ static int vcn_v4_0_3_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+ 	return 0;
+ }
+ 
+-/**
+- * vcn_v4_0_3_set_powergating_state - set VCN block powergating state
+- *
+- * @handle: amdgpu_device pointer
+- * @state: power gating state
+- *
+- * Set VCN block powergating state
+- */
+-static int vcn_v4_0_3_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-					  enum amd_powergating_state state)
++static int vcn_v4_0_3_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++						 enum amd_powergating_state state,
++						 int i)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+-	int ret = 0, i;
++	int ret = 0;
+ 
+ 	/* for SRIOV, guest should not control VCN Power-gating
+ 	 * MMSCH FW should control Power-gating and clock-gating
+ 	 * guest should avoid touching CGC and PG
+ 	 */
+ 	if (amdgpu_sriov_vf(adev)) {
+-		adev->vcn.cur_state = AMD_PG_STATE_UNGATE;
++		adev->vcn.inst[i].cur_state = AMD_PG_STATE_UNGATE;
+ 		return 0;
+ 	}
+ 
+-	if (state == adev->vcn.cur_state)
++	if (state == adev->vcn.inst[i].cur_state)
+ 		return 0;
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-		if (state == AMD_PG_STATE_GATE)
+-			ret |= vcn_v4_0_3_stop(adev, i);
+-		else
+-			ret |= vcn_v4_0_3_start(adev, i);
+-	}
++	if (state == AMD_PG_STATE_GATE)
++		ret = vcn_v4_0_3_stop(adev, i);
++	else
++		ret = vcn_v4_0_3_start(adev, i);
+ 
+ 	if (!ret)
+-		adev->vcn.cur_state = state;
++		adev->vcn.inst[i].cur_state = state;
++
++	return ret;
++}
++
++/**
++ * vcn_v4_0_3_set_powergating_state - set VCN block powergating state
++ *
++ * @handle: amdgpu_device pointer
++ * @state: power gating state
++ *
++ * Set VCN block powergating state
++ */
++static int vcn_v4_0_3_set_powergating_state(struct amdgpu_ip_block *ip_block,
++					    enum amd_powergating_state state)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	int ret = 0, i;
++
++	for (i = 0; i < adev->vcn.num_vcn_inst; ++i)
++		vcn_v4_0_3_set_powergating_state_inst(ip_block, state, i);
+ 
+ 	return ret;
+ }
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-index 26bd1954b5e3..7086f98c2ddc 100644
+index 7086f98c2ddc..422f90c3d2b3 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-@@ -300,11 +300,12 @@ static int vcn_v4_0_5_hw_fini(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 	int i;
+@@ -95,8 +95,11 @@ static int amdgpu_ih_clientid_vcns[] = {
  
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
--
- 	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
- 		if (adev->vcn.harvest_config & (1 << i))
- 			continue;
-+
-+		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
-+
+ static void vcn_v4_0_5_set_unified_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v4_0_5_set_irq_funcs(struct amdgpu_device *adev);
++static int vcn_v4_0_5_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++						 enum amd_powergating_state state,
++						 int i);
+ static int vcn_v4_0_5_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-		enum amd_powergating_state state);
++					    enum amd_powergating_state state);
+ static int vcn_v4_0_5_pause_dpg_mode(struct amdgpu_device *adev,
+ 		int inst_idx, struct dpg_pause_state *new_state);
+ static void vcn_v4_0_5_unified_ring_set_wptr(struct amdgpu_ring *ring);
+@@ -308,9 +311,9 @@ static int vcn_v4_0_5_hw_fini(struct amdgpu_ip_block *ip_block)
+ 
  		if (!amdgpu_sriov_vf(adev)) {
  			if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
- 				(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
+-				(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
+-				RREG32_SOC15(VCN, i, regUVD_STATUS))) {
+-				vcn_v4_0_5_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
++			    (adev->vcn.inst[i].cur_state != AMD_PG_STATE_GATE &&
++			     RREG32_SOC15(VCN, i, regUVD_STATUS))) {
++				vcn_v4_0_5_set_powergating_state_inst(ip_block, AMD_PG_STATE_GATE, i);
+ 			}
+ 		}
+ 	}
+@@ -1517,6 +1520,27 @@ static int vcn_v4_0_5_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+ 	return 0;
+ }
+ 
++static int vcn_v4_0_5_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++						 enum amd_powergating_state state,
++						 int i)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	int ret = 0;
++
++	if (state == adev->vcn.inst[i].cur_state)
++		return 0;
++
++	if (state == AMD_PG_STATE_GATE)
++		ret = vcn_v4_0_5_stop(adev, i);
++	else
++		ret = vcn_v4_0_5_start(adev, i);
++
++	if (!ret)
++		adev->vcn.inst[i].cur_state = state;
++
++	return ret;
++}
++
+ /**
+  * vcn_v4_0_5_set_powergating_state - set VCN block powergating state
+  *
+@@ -1526,23 +1550,13 @@ static int vcn_v4_0_5_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+  * Set VCN block powergating state
+  */
+ static int vcn_v4_0_5_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-		enum amd_powergating_state state)
++					    enum amd_powergating_state state)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	int ret = 0, i;
+ 
+-	if (state == adev->vcn.cur_state)
+-		return 0;
+-
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-		if (state == AMD_PG_STATE_GATE)
+-			ret |= vcn_v4_0_5_stop(adev, i);
+-		else
+-			ret |= vcn_v4_0_5_start(adev, i);
+-	}
+-
+-	if (!ret)
+-		adev->vcn.cur_state = state;
++	for (i = 0; i < adev->vcn.num_vcn_inst; ++i)
++		vcn_v4_0_5_set_powergating_state_inst(ip_block, state, i);
+ 
+ 	return ret;
+ }
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-index 95b31167f552..4c641813aeff 100644
+index 4c641813aeff..8c953cd1f95a 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-@@ -274,11 +274,12 @@ static int vcn_v5_0_0_hw_fini(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 	int i;
+@@ -78,8 +78,11 @@ static int amdgpu_ih_clientid_vcns[] = {
  
--	cancel_delayed_work_sync(&adev->vcn.idle_work);
--
- 	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
- 		if (adev->vcn.harvest_config & (1 << i))
- 			continue;
-+
-+		cancel_delayed_work_sync(&adev->vcn.inst[i].idle_work);
-+
+ static void vcn_v5_0_0_set_unified_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v5_0_0_set_irq_funcs(struct amdgpu_device *adev);
++static int vcn_v5_0_0_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++						 enum amd_powergating_state state,
++						 int i);
+ static int vcn_v5_0_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-		enum amd_powergating_state state);
++					    enum amd_powergating_state state);
+ static int vcn_v5_0_0_pause_dpg_mode(struct amdgpu_device *adev,
+ 		int inst_idx, struct dpg_pause_state *new_state);
+ static void vcn_v5_0_0_unified_ring_set_wptr(struct amdgpu_ring *ring);
+@@ -282,9 +285,9 @@ static int vcn_v5_0_0_hw_fini(struct amdgpu_ip_block *ip_block)
+ 
  		if (!amdgpu_sriov_vf(adev)) {
  			if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
- 				(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
+-				(adev->vcn.cur_state != AMD_PG_STATE_GATE &&
+-				RREG32_SOC15(VCN, i, regUVD_STATUS))) {
+-				vcn_v5_0_0_set_powergating_state(ip_block, AMD_PG_STATE_GATE);
++			    (adev->vcn.inst[i].cur_state != AMD_PG_STATE_GATE &&
++			     RREG32_SOC15(VCN, i, regUVD_STATUS))) {
++				vcn_v5_0_0_set_powergating_state_inst(ip_block, AMD_PG_STATE_GATE, i);
+ 			}
+ 		}
+ 	}
+@@ -1254,6 +1257,27 @@ static int vcn_v5_0_0_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+ 	return 0;
+ }
+ 
++static int vcn_v5_0_0_set_powergating_state_inst(struct amdgpu_ip_block *ip_block,
++						 enum amd_powergating_state state,
++						 int i)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	int ret = 0;
++
++	if (state == adev->vcn.inst[i].cur_state)
++		return 0;
++
++	if (state == AMD_PG_STATE_GATE)
++		ret = vcn_v5_0_0_stop(adev, i);
++	else
++		ret = vcn_v5_0_0_start(adev, i);
++
++	if (!ret)
++		adev->vcn.inst[i].cur_state = state;
++
++	return ret;
++}
++
+ /**
+  * vcn_v5_0_0_set_powergating_state - set VCN block powergating state
+  *
+@@ -1263,23 +1287,13 @@ static int vcn_v5_0_0_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+  * Set VCN block powergating state
+  */
+ static int vcn_v5_0_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+-		enum amd_powergating_state state)
++					    enum amd_powergating_state state)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	int ret = 0, i;
+ 
+-	if (state == adev->vcn.cur_state)
+-		return 0;
+-
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-		if (state == AMD_PG_STATE_GATE)
+-			ret |= vcn_v5_0_0_stop(adev, i);
+-		else
+-			ret |= vcn_v5_0_0_start(adev, i);
+-	}
+-
+-	if (!ret)
+-		adev->vcn.cur_state = state;
++	for (i = 0; i < adev->vcn.num_vcn_inst; ++i)
++		vcn_v5_0_0_set_powergating_state_inst(ip_block, state, i);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 2a9f041cf46d..abbd751926bb 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -2031,15 +2031,15 @@ static int smu_hw_fini(struct amdgpu_ip_block *ip_block)
+ 	if (amdgpu_sriov_vf(adev) && !amdgpu_sriov_is_pp_one_vf(adev))
+ 		return 0;
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
++	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+ 		smu_dpm_set_vcn_enable(smu, false, i);
++		adev->vcn.inst[i].cur_state = AMD_PG_STATE_GATE;
++	}
+ 	smu_dpm_set_jpeg_enable(smu, false);
++	adev->jpeg.cur_state = AMD_PG_STATE_GATE;
+ 	smu_dpm_set_vpe_enable(smu, false);
+ 	smu_dpm_set_umsch_mm_enable(smu, false);
+ 
+-	adev->vcn.cur_state = AMD_PG_STATE_GATE;
+-	adev->jpeg.cur_state = AMD_PG_STATE_GATE;
+-
+ 	if (!smu->pm_enabled)
+ 		return 0;
+ 
 -- 
 2.47.0
 
