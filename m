@@ -2,158 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF8DC9C68C5
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 06:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 526919C68F4
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Nov 2024 06:58:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E760E10E343;
-	Wed, 13 Nov 2024 05:32:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EFE510E02A;
+	Wed, 13 Nov 2024 05:58:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="5ib2geLS";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hfFLLbxQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2056.outbound.protection.outlook.com [40.107.96.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE02110E343
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Nov 2024 05:32:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nWaUf0Prx42F7xWbUOhKlCTLSotuhH5zW5dqMjSGRT9T8KJp3YpnHDKPPC4nXvyOrDQuQ5tBn7LTaNaqZ+tTbjD/ooGy3WtAAGna5auAT8HIMqkBk6QVCOfdsGLdle4uWWRiKlPnCkgNVIoJaZ1oOi079fGxDTyPXST0FavB8QNVfComdq/yFiN2drwyO2ZJKb88biE2+M1w11/ZoHkiX2DmKT4FF7GT4btzIYST9AuRAZTTNd/xJmBaOpZ2NRUmeTUfenq1XRJ3AsNGwdGORSCtRhbUYzgTfktg2pDPavRpgUjO8W2W5yERPxOJTvLanVLrv/S5My5ox0gy20c7zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MNy4HT7HQBueAM3V+i6zwlRwGeKqR2mRgRVBT6kED28=;
- b=v2sZOq2XzJv408lDOyGO4oLZjkW0Uaw12KxBmBvN8mwgwGEBCg8vasqATG11Rphk48zkAEKXTGwXM8q3OQ4iy2nKnDXnlinrqBd2oW3uEIYUIugky2d2PDGKT1YXqSqc+d1kw6dH3UqY/P87sXbg2SYRNoFe3PNX/DCDT0qA8FAekshom1k5kPzjAdqhH2/QP0VcxBz1BfZjhGOnHY61zUyqrzKySDtFy4LrebKBtY8DmduOK+3FcFGTUny5reQ/g0TVXNXgcyGeMuKP65jSJVVbXbeW8ij2STe2OYBL81qZtgiqNduSo5U/DxuFf8+pGcpmiQbgKANsHk7xUBrRlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MNy4HT7HQBueAM3V+i6zwlRwGeKqR2mRgRVBT6kED28=;
- b=5ib2geLSL6LCY5zcmS6mfOCEmGExSZOsVxXcIMex7SJDuGo0gpM/PuVGqdcxabnMm2ju1tGXfleERlte0iuLxzeJD1HdxU8F9cqlnwiMeFsLNoBpIn0GsveByw2iZealMQ2qF9i3f8oMMhf4Li+CgYWRJbZCK/aP3yVocJQ2cmI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- CYYPR12MB8732.namprd12.prod.outlook.com (2603:10b6:930:c8::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8158.17; Wed, 13 Nov 2024 05:32:49 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290%6]) with mapi id 15.20.8158.013; Wed, 13 Nov 2024
- 05:32:49 +0000
-Message-ID: <e568ec2b-028c-4221-ab21-940e600e1508@amd.com>
-Date: Wed, 13 Nov 2024 11:02:40 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/amdgpu: fix vcn sw init failed
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- "Prosyak, Vitaly" <Vitaly.Prosyak@amd.com>, "Huang, Tim" <Tim.Huang@amd.com>
-References: <20241112143050.1931822-1-jesse.zhang@amd.com>
- <20241112143050.1931822-2-jesse.zhang@amd.com>
- <910caa3a-802a-41d6-ae07-c39292081d4d@amd.com>
- <DM4PR12MB51524E90E5A98A03BF7FDD8CE35A2@DM4PR12MB5152.namprd12.prod.outlook.com>
- <63fcdfc5-af2a-4065-ab5a-81ca5dca6db9@amd.com>
- <CADnq5_Pix7r90tHzXF85vNMrqk+KZSOGSgHRuCvHH1LSG6JVgQ@mail.gmail.com>
- <e8698f59-6fe2-41b3-b023-5e9af848a0c1@amd.com>
- <CADnq5_MNGZKhmd3JMy_=ZahBzUMPxgOtT+T-7j12GDBx7mF=Pg@mail.gmail.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <CADnq5_MNGZKhmd3JMy_=ZahBzUMPxgOtT+T-7j12GDBx7mF=Pg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PR01CA0231.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:eb::7) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
+ [209.85.216.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29E3110E02A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Nov 2024 05:58:07 +0000 (UTC)
+Received: by mail-pj1-f41.google.com with SMTP id
+ 98e67ed59e1d1-2e2ab5bbc01so436381a91.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Nov 2024 21:58:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1731477486; x=1732082286; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uNhUIXfw9tAHF4hW1oPkujNugiDwoR0aT/aO2nn6K6w=;
+ b=hfFLLbxQgi8qPCmZIcFnORGi7yZYHVFgzYqPDoQH1PuuiclgE9OYA/h+7+b5Vqw3hf
+ nb/tkLlMDDBHSXcYwzaLlmmIEOrLlEkkXfSAwLnb09c8PZWhTKqMvFNyrZYrO8PEbN6E
+ dXHTCtUxief63rkEwSRe+ImFtXuz3Nx8mD/s9xTDyqGEKtojYf9Hc59UUb6QXip29eqa
+ GwEvwJmqkZVmaBwfF2wcNAzoZhqcVcvXP8DG4wMLC8+sPKL6HkBzk4bRBSOlQs/YrYA/
+ toUSDQ8lybiaSQNLK+WHYbWn38VR9A32dY3qcvabtS4VrC6iEDh1nJPfLX3gXz8JoHVq
+ q8tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1731477486; x=1732082286;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=uNhUIXfw9tAHF4hW1oPkujNugiDwoR0aT/aO2nn6K6w=;
+ b=vE9dfwk8NFXGyqyjrGLj7Xk8qfR6Zmo9SBjT1bmx+mp1GcxhdIj6XXLn6UJyUpzCWK
+ kmwaGK46mUA/+/1FbzabvFhll0WZL9bO2WWh3Fm6SWtNRnyyyj3NFPCkArqucCzXKU73
+ SjJmReMSO5pIXpu3q00Js2QusGYP5swWdA+zq9skQFnjvv3hveUNZc/DcRaeuB7MEzE4
+ zcWl7NgAY5b/XwALJy4vHzJaJBixlHtyRdFCX3rN4xx9f21crXIF9WbpjsEkgvZJN2tj
+ r8dJpjo8rW2TPX28AKA0N/vYNYBzM9yfmoFnXITr63mLresEMNsmCKoAaaEjmNUegNcs
+ uiVA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXIfvcjk/ChfiTtk16aE6JPoj7yoUc7Xsx7ctzTR54Mq2i913YaLXuLflFAZXx4SmieOTcZ/kQD@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyV8HukgvUro6hpymMX3m/ATEG0bZbwQ4Jl3RFYZCKjiYv5k3Rg
+ j6ocG6gT2gw4fhLP7+KUvu5twCBRIBZdvL8umRkVhogM1F+aN/hq8Pr+eMb44dxPbyptQdKFsva
+ kaSCrg6s8l3MZz+v32pyjOgygL3OgM4uB
+X-Google-Smtp-Source: AGHT+IE/ujVb3EQFeih5JjQ6nWYmiJ7F+tv6BRQTBL3KgZTHaJ4mKI6b8ixKFnP9Mg6PUJXcCMeGGtXUoq2A5QJU2kE=
+X-Received: by 2002:a17:90b:1806:b0:2e5:5a58:630 with SMTP id
+ 98e67ed59e1d1-2e9b16527efmr10717058a91.5.1731477486070; Tue, 12 Nov 2024
+ 21:58:06 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|CYYPR12MB8732:EE_
-X-MS-Office365-Filtering-Correlation-Id: 289fe4d2-fc62-43a4-8739-08dd03a49bfa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VmtWam5CZGNhVGJvRzR2SjhoUm5HL0NKcDBHc3kzRmtOUEI5TUhzL1VFY29C?=
- =?utf-8?B?aU94UHJCUkFadlFNNkJqdVN6aXpINVZET2VDeFdwQk43RXN0aG5ER3R4cjZp?=
- =?utf-8?B?U2JqZkR5WDZqeXQvYkhiN0diRHZpczczR1VNeUxwRlV6cjlQR25UY29FNmtq?=
- =?utf-8?B?NlphUm1peUEwY0J2dnZheWRYR1VCQ2RJNE5DalIyMlRpcUJ1cU5xYkZFdDVV?=
- =?utf-8?B?dkcrUG5oQWZMWFJ3ZXdpV1hsNzV4b3RCKzlsaFZJdllmdzc3VXFnVWJYNnRa?=
- =?utf-8?B?UEpjT3RqM2czREkwVndIS2haQWlyL3VPM08yU09zeWl5ZUhmaXd1SjZVVTF4?=
- =?utf-8?B?T2thZGFnMzlmNHFFaWV2dFQzdTluM3dkOWwweWJkVHAwNmIvMnBBMVJxWlRP?=
- =?utf-8?B?MkhIb1o5TFdmUVBqN0xkZ256YTExa2REWDNYTzZIZE42Z0FuSGhlSWVPbWQv?=
- =?utf-8?B?M2xwUDlvUmphZC9SSXNMRTFuelFtUC9PVDdKUUZocXJvVGFONGNxUStEc05t?=
- =?utf-8?B?MjRCanZ6YWxaVEsxQXNvc2lzS0tIUDRoSnZ1SHF1T1JGeEUrcThHN04zV1lR?=
- =?utf-8?B?M0FFRU1OLytFalY1NzFNbi94V0gwNkJYKzlod1NDdmpURktNQUlYWm1qdUlk?=
- =?utf-8?B?WEQ5aUU5U240cWl1L1J4aEZOS2lOdUlPQTlDSU5jUFEvNk9qMW11bzhCbGpz?=
- =?utf-8?B?bWZYT0ppa090VFVacHZ4RVBhVlpnRnBzRnJEWU9VcXN6bFdhcDRxbjFSQ1dV?=
- =?utf-8?B?WjlQVFF2WXNndGhnQ2RrdE1qcDVvR3B5clFzYStzckdienJQeEFtL1BqekhH?=
- =?utf-8?B?ZjRaYUtkNGljak9JOVZhUmJ2K0tXS3IrV3F5Sm9uMjgzK015VldpT3FEUHRp?=
- =?utf-8?B?bU96SDZmM0hURm1EOGUvMEh3V20rQXNqeWcvUk14UGdiT1kwQkUrcVdsUlBs?=
- =?utf-8?B?YW1zandTM0lYN2pESHVMNFROTjFvTDd4Y0xBZFJWK2VXYXFmdE1ROTFMNkg2?=
- =?utf-8?B?dUpYeExIVXF5NnFyS1FoMk5nNXJmd2RDRm9VbHgwK2liMVBYSmZpd0ZvQVVx?=
- =?utf-8?B?QjNGRy96N3l2NnR0WVh6VzJ6SkNpcllLVW9OTFdHTzZtbG1oVzU4QUx4dXY1?=
- =?utf-8?B?a0tmV3N3OXJWQldIbG9ycFk3bFY5UXo0OFdpa1hDQmQzSVVHbEQ2QVhjTXRE?=
- =?utf-8?B?aGQ3c2hNbVRveTVsOWZUZHRsS0Z4ams0M3owcHdwSVpJWDkxekdtU1g2TlZW?=
- =?utf-8?B?eU0rWEpqbzdiV2JHWW9yUTh1TXlkMDh3OWRvWkx5cFVYenpEYUR5Nm8rT2FG?=
- =?utf-8?B?QmkyTHZEOVFlUVJvVVBVaERQT0ZuYmo2dlU4MFBLZDVUcXlSUlkxZnpsMXo5?=
- =?utf-8?B?RWRpMkdYd1VEV1lZLzMxbzRFanhzZ09rSzVoYkhzT0pvR1VXdEJMclYwSmx3?=
- =?utf-8?B?UXNaYVBxNnYyRGQ4eVZGLzlHRG4xclh2YW5LL3lEVllKWGd2Tm00Qmo2OGFR?=
- =?utf-8?B?RjNBUmVXaWRCWncxSXhCRTZNOWdwVVI1VHVqbFIzNHhuOUM4dTdnOEh2RVBL?=
- =?utf-8?B?R2s3cHlqbFRENlIvR1hJZFgyZjFyUTdHekNSZWVwYXVGTlFPVDFyVzMxRUJJ?=
- =?utf-8?B?cUpXbGhxQVJObkY2bjFEd2FDajFwUUhzZVIwclNXUG51eVZUeXJSSlU3eXV0?=
- =?utf-8?B?U1JITzg1dTY2dFlnNkhJeVNYQU5lYXNEKzBDQmFOaW5VcG9MTjNRSFVVOFI2?=
- =?utf-8?Q?3osFXxrEY9HK2bOgVcTziTIr7WmGlyhl0RCmtJT?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d3J2bThSazcyc3ZUei84OE9PeTlmNmNJd21VYzdDTVNMZ0pGT1RiVVZnTnlE?=
- =?utf-8?B?UEdnNnBza2tFL1VYUEk3MEtUd2x6NDYrR2ZBMEdDN1E2UEp1U0V6ZmR4ZFl2?=
- =?utf-8?B?di9zbU5oWWRPVXk4SW5VZEJ5ZTBrV1p5bGtnaGV2WlNqeHltYXU2UWRBMGdz?=
- =?utf-8?B?NDByemtNcDZOcjhMV2p6eUxGNTNXVFB2My9HMzNvS1RJVkVZOXRCR29oS25X?=
- =?utf-8?B?UytmZlowTnNKNmNJY1FKZ2ZMeTExaW0zM0hrdWp2R0lpbEhYUlJMZ05WMzBl?=
- =?utf-8?B?dGFNbXRXWlJZcDFwZk15ZmVBbE9MYkwwUVFBbExWME15RmRUZEd1RWtFLzZ4?=
- =?utf-8?B?RDZlU3RleHBYRzZJTlB5cXAxOWdMY2JReFQ2em1EV2VRd0pBMUVQVFpOVUdn?=
- =?utf-8?B?eXBPVys3bVdGTUZVVXArV3J4a01IcDBBbnZZSEU4M1lKTzlqdmlZL082STdP?=
- =?utf-8?B?SGs1WldFcGtBRDNNQkdub25LWDQwMi95Y0xOYUI4REhtTEFVT0J0RUNuOVIz?=
- =?utf-8?B?R29vOWs1WkNsVktWMFoyMFIzT082aEh0cGVkZHBZZ05wTmpzaXlWRVdkQ2tZ?=
- =?utf-8?B?SWJOLzVwalJVYmJtL2U5V2lkUTFRNWxtWEhOSStpWDZ5ZE51M3MrWUxUMjVI?=
- =?utf-8?B?bkt6M3pOQzJDUlc3dDV6N1JnYmZFYlpHTEN5clB6VmpGMmNQZlFDSmJ3Umo0?=
- =?utf-8?B?OFpJVlhmQmlXdStLTWNHa2ZJa2R1Mi93VER3QmZwY2xYVHliemcySVhpMU9o?=
- =?utf-8?B?ZklRNVhKQ2hSQloyWXQzSVJ6MEdEOGdXVXJGdzg2T0ZoMVZmUFJNLzdsVzhF?=
- =?utf-8?B?OFNWcEJxRitubGhXbWNBZ1JQOFQvM0o4bjFJVGM3RUxnajl2YTlDZmtNUWo5?=
- =?utf-8?B?d2ErdzJLZkhRNFRpdkg2RUFJOHd2R3BWdEVEZUI3SFFHVFJtM2lpcnBaNHdh?=
- =?utf-8?B?SFBFZVJaYVNaSUEzWXhUcVAyTjZkUzJ6TTdEWHpjdXY5c1lKeGswbkRDUVFk?=
- =?utf-8?B?eFhLSndNTGkwQys1RzF1Zmsyelord25VUTNqUHorRzQxaUVKL2tSNldWODlP?=
- =?utf-8?B?ZlFiNFM1RE9tMXAwK1oyb3R5V3VjWXNIVlJmTXUzOGI0VDNMTDZNd2dTY1dF?=
- =?utf-8?B?OXBSeFJ2VVhEN1pXODk4NngxUitFcDBkLzMvMHI4MVdiWEFUTjdNRGdWYXVK?=
- =?utf-8?B?MnJ3YS9hZWR0VnZmQ0U2Q01lU1ZQTjZYQUdJVnpzWDRhdFEwNW1HU2Y2bmdw?=
- =?utf-8?B?SlR0dldITndaT0lXdmtyZU4rS2VDNFduSStvNkJnVUZGWC9Za1k0S0FMaTVV?=
- =?utf-8?B?bXJ3Rk1KQmpneHhZYnBLN2RRcTdZQ1huTXNtcWxyQ0VUTlZBajNEN3BPaFkr?=
- =?utf-8?B?Sy96K3l2d1NHWSt2RitldXZLbkRVS2oydEtiV3d3T3NuM0tLL3VJYTNadVZ5?=
- =?utf-8?B?VWJ0ZGM2WDdqQlF1N0VGTDVRS1loUW9COVdPTWFaa2hibzhUcG5xSFhnTFo4?=
- =?utf-8?B?Tnd2TmpXR0syUVVOdGIzdTQyM0JocVBOSHpxUWlzZmtzcXNnRnF1VXkzTHVT?=
- =?utf-8?B?Z2lJUk1BNlgzaHFka2dlVW5ZVjJwaHZTVyt0MVdIWmR0U3phc0xxRXJ5Unp0?=
- =?utf-8?B?cWR3UURkb3lFSDhBVHlhRUdkaUdHVmg0OTEvbmxPbGpLYjJtMWxLZ2JGbHZp?=
- =?utf-8?B?UVFWbllmb3BzZTNJWjgyWUMzcWt2REZKUFlTdG9xWGxrVnVBOFZQRGtSeG1E?=
- =?utf-8?B?Nkxwb0g3VzZKS3lOd3MrNU5Ba0lkQjAxd2NUakE1dndteGVuS1orOThpSkhk?=
- =?utf-8?B?aXo0VUdwdEdwYzF6MGg2dEJjNFppMkczYUtWaVhqVkQvM2FiYWcwMjdnSXdm?=
- =?utf-8?B?b3ArSWlXbmhyM1FPcW5pZmNvclVnTlV6UHlaT2Qyclg4UjkvM25vRkorNHVB?=
- =?utf-8?B?NEJtckVPS3dhZXU5QUJBS3pPMkNpdW5XR2gyeW0vSDR4dzc5dnF1eUNvRmov?=
- =?utf-8?B?QllFTG1VOG9CZ1NHVlQ3T0tDNFc2eFVpN0MrUlFPZ2VxbnRabkJpRi9PMlRz?=
- =?utf-8?B?TWpFamFqM0xtdlZVeWYzMTgzZHJUS0dCQzNQVXN1ajdwN0FYVFpqWTVsRW5k?=
- =?utf-8?Q?fMf9T+9RFpUkjO0+b0c7+QLCn?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 289fe4d2-fc62-43a4-8739-08dd03a49bfa
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2024 05:32:48.8010 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1kQt7UgE2KHCyjMIb7uNSjZU7wm+QODYQLnzy/ruLuRbPgWpr+ukLn2pZl1ULJYU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8732
+References: <20241112202847.8509-1-alexander.deucher@amd.com>
+ <657e02e0-3dde-4ca3-bc4c-9e3b9ace3f8f@amd.com>
+In-Reply-To: <657e02e0-3dde-4ca3-bc4c-9e3b9ace3f8f@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 13 Nov 2024 00:57:54 -0500
+Message-ID: <CADnq5_MA8vZCq0cjgw4ctch2YfG_nj=ceSK5H4AdVAC5QEDiNQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amd/pm: fix and simplify workload handling
+To: "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Kenneth Feng <kenneth.feng@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,171 +79,978 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Nov 12, 2024 at 11:59=E2=80=AFPM Lazar, Lijo <lijo.lazar@amd.com> w=
+rote:
+>
+>
+>
+> On 11/13/2024 1:58 AM, Alex Deucher wrote:
+> > smu->workload_mask is IP specific and should not be messed with in
+> > the common code. The mask bits vary across SMU versions.
+> >
+> > Move all handling of smu->workload_mask in to the backends and
+> > simplify the code.  Store the user's preference in smu->power_profile_m=
+ode
+> > which will be reflected in sysfs.  For internal driver profile
+> > switches for KFD or VCN, just update the workload mask so that the
+> > user's preference is retained.  Remove all of the extra now unused
+> > workload related elements in the smu structure.
+> >
+> > v2: use refcounts for workload profiles
+> >
+> > Fixes: 8cc438be5d49 ("drm/amd/pm: correct the workload setting")
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Kenneth Feng <kenneth.feng@amd.com>
+> > Cc: Lijo Lazar <lijo.lazar@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 128 +++++++++---------
+> >  drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  13 +-
+> >  .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  20 +--
+> >  .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   |  20 +--
+> >  .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  21 +--
+> >  .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  |  17 +--
+> >  .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   |  17 +--
+> >  .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  |  33 ++---
+> >  .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  |  21 +--
+> >  .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  |  33 ++---
+> >  drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c        |   8 --
+> >  drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h        |   2 -
+> >  12 files changed, 162 insertions(+), 171 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/dr=
+m/amd/pm/swsmu/amdgpu_smu.c
+> > index c3a6b6f20455..41b591ecfb64 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> > @@ -72,6 +72,10 @@ static int smu_set_power_limit(void *handle, uint32_=
+t limit);
+> >  static int smu_set_fan_speed_rpm(void *handle, uint32_t speed);
+> >  static int smu_set_gfx_cgpg(struct smu_context *smu, bool enabled);
+> >  static int smu_set_mp1_state(void *handle, enum pp_mp1_state mp1_state=
+);
+> > +static void smu_power_profile_mode_get(struct smu_context *smu,
+> > +                                    enum PP_SMC_POWER_PROFILE profile_=
+mode);
+> > +static void smu_power_profile_mode_put(struct smu_context *smu,
+> > +                                    enum PP_SMC_POWER_PROFILE profile_=
+mode);
+> >
+> >  static int smu_sys_get_pp_feature_mask(void *handle,
+> >                                      char *buf)
+> > @@ -765,6 +769,7 @@ static int smu_early_init(struct amdgpu_ip_block *i=
+p_block)
+> >       smu->user_dpm_profile.fan_mode =3D -1;
+> >
+> >       mutex_init(&smu->message_lock);
+> > +     mutex_init(&smu->workload_lock);
+> >
+> >       adev->powerplay.pp_handle =3D smu;
+> >       adev->powerplay.pp_funcs =3D &swsmu_pm_funcs;
+> > @@ -1268,9 +1273,6 @@ static int smu_sw_init(struct amdgpu_ip_block *ip=
+_block)
+> >       INIT_WORK(&smu->interrupt_work, smu_interrupt_work_fn);
+> >       atomic64_set(&smu->throttle_int_counter, 0);
+> >       smu->watermarks_bitmap =3D 0;
+> > -     smu->power_profile_mode =3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
+> > -     smu->default_power_profile_mode =3D PP_SMC_POWER_PROFILE_BOOTUP_D=
+EFAULT;
+> > -     smu->user_dpm_profile.user_workload_mask =3D 0;
+> >
+> >       for (i =3D 0; i < adev->vcn.num_vcn_inst; i++)
+> >               atomic_set(&smu->smu_power.power_gate.vcn_gated[i], 1);
+> > @@ -1278,33 +1280,13 @@ static int smu_sw_init(struct amdgpu_ip_block *=
+ip_block)
+> >       atomic_set(&smu->smu_power.power_gate.vpe_gated, 1);
+> >       atomic_set(&smu->smu_power.power_gate.umsch_mm_gated, 1);
+> >
+> > -     smu->workload_priority[PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT] =3D 0=
+;
+> > -     smu->workload_priority[PP_SMC_POWER_PROFILE_FULLSCREEN3D] =3D 1;
+> > -     smu->workload_priority[PP_SMC_POWER_PROFILE_POWERSAVING] =3D 2;
+> > -     smu->workload_priority[PP_SMC_POWER_PROFILE_VIDEO] =3D 3;
+> > -     smu->workload_priority[PP_SMC_POWER_PROFILE_VR] =3D 4;
+> > -     smu->workload_priority[PP_SMC_POWER_PROFILE_COMPUTE] =3D 5;
+> > -     smu->workload_priority[PP_SMC_POWER_PROFILE_CUSTOM] =3D 6;
+> > -
+> >       if (smu->is_apu ||
+> > -         !smu_is_workload_profile_available(smu, PP_SMC_POWER_PROFILE_=
+FULLSCREEN3D)) {
+> > -             smu->driver_workload_mask =3D
+> > -                     1 << smu->workload_priority[PP_SMC_POWER_PROFILE_=
+BOOTUP_DEFAULT];
+> > -     } else {
+> > -             smu->driver_workload_mask =3D
+> > -                     1 << smu->workload_priority[PP_SMC_POWER_PROFILE_=
+FULLSCREEN3D];
+> > -             smu->default_power_profile_mode =3D PP_SMC_POWER_PROFILE_=
+FULLSCREEN3D;
+> > -     }
+> > -
+> > -     smu->workload_mask =3D smu->driver_workload_mask |
+> > -                                                     smu->user_dpm_pro=
+file.user_workload_mask;
+> > -     smu->workload_setting[0] =3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
+> > -     smu->workload_setting[1] =3D PP_SMC_POWER_PROFILE_FULLSCREEN3D;
+> > -     smu->workload_setting[2] =3D PP_SMC_POWER_PROFILE_POWERSAVING;
+> > -     smu->workload_setting[3] =3D PP_SMC_POWER_PROFILE_VIDEO;
+> > -     smu->workload_setting[4] =3D PP_SMC_POWER_PROFILE_VR;
+> > -     smu->workload_setting[5] =3D PP_SMC_POWER_PROFILE_COMPUTE;
+> > -     smu->workload_setting[6] =3D PP_SMC_POWER_PROFILE_CUSTOM;
+> > +         !smu_is_workload_profile_available(smu, PP_SMC_POWER_PROFILE_=
+FULLSCREEN3D))
+> > +             smu->power_profile_mode =3D PP_SMC_POWER_PROFILE_BOOTUP_D=
+EFAULT;
+> > +     else
+> > +             smu->power_profile_mode =3D PP_SMC_POWER_PROFILE_FULLSCRE=
+EN3D;
+> > +     smu_power_profile_mode_get(smu, smu->power_profile_mode);
+> > +
+> >       smu->display_config =3D &adev->pm.pm_display_cfg;
+> >
+> >       smu->smu_dpm.dpm_level =3D AMD_DPM_FORCED_LEVEL_AUTO;
+> > @@ -2252,24 +2234,41 @@ static int smu_enable_umd_pstate(void *handle,
+> >  }
+> >
+> >  static int smu_bump_power_profile_mode(struct smu_context *smu,
+> > -                                        long *param,
+> > -                                        uint32_t param_size)
+> > +                                    long *param,
+> > +                                    uint32_t param_size,
+> > +                                    bool enable)
+> >  {
+> >       int ret =3D 0;
+> >
+> >       if (smu->ppt_funcs->set_power_profile_mode)
+> > -             ret =3D smu->ppt_funcs->set_power_profile_mode(smu, param=
+, param_size);
+> > +             ret =3D smu->ppt_funcs->set_power_profile_mode(smu, param=
+, param_size, enable);
+>
+> Have a different expectation with refcount; not expecting to see
+> enable/disable. I think only switch power_profile_mode is required.
+>
+> Workload mask is then created based on non-zero refcounts in this array
+> - smu->workload_refcount[]. If it is different from the current mask,
+> then it's applied.
 
+I tried that originally, but the problem was the custom profiles.
+They need a bunch of extra parameters so it seemed easier to just
+leave the set_power_profile backend API as is.  Although thinking
+about it more I can save them off in amdgpu_smu.c when I update the
+ref count and then just pass the mask to the backend set_power_profile
+API.  Additionally for resume, we need to make sure the current
+profile gets sent to PMFW.  Once again, thinking about it more, I can
+just clear the backend workload_mask on suspend and then on resume, it
+won't match and will update.
 
-On 11/13/2024 10:54 AM, Alex Deucher wrote:
-> On Wed, Nov 13, 2024 at 12:03 AM Lazar, Lijo <lijo.lazar@amd.com> wrote:
->>
->>
->>
->> On 11/13/2024 10:16 AM, Alex Deucher wrote:
->>> On Tue, Nov 12, 2024 at 10:24 PM Lazar, Lijo <lijo.lazar@amd.com> wrote:
->>>>
->>>>
->>>>
->>>> On 11/13/2024 7:58 AM, Zhang, Jesse(Jie) wrote:
->>>>> [AMD Official Use Only - AMD Internal Distribution Only]
->>>>>
->>>>> Hi, Lijo,
->>>>>
->>>>> -----Original Message-----
->>>>> From: Lazar, Lijo <Lijo.Lazar@amd.com>
->>>>> Sent: Tuesday, November 12, 2024 10:54 PM
->>>>> To: Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>; amd-gfx@lists.freedesktop.org
->>>>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Prosyak, Vitaly <Vitaly.Prosyak@amd.com>; Huang, Tim <Tim.Huang@amd.com>
->>>>> Subject: Re: [PATCH 2/2] drm/amdgpu: fix vcn sw init failed
->>>>>
->>>>>
->>>>>
->>>>> On 11/12/2024 8:00 PM, Jesse.zhang@amd.com wrote:
->>>>>> [ 2875.870277] [drm:amdgpu_device_init [amdgpu]] *ERROR* sw_init of IP
->>>>>> block <vcn_v4_0_3> failed -22 [ 2875.880494] amdgpu 0000:01:00.0:
->>>>>> amdgpu: amdgpu_device_ip_init failed [ 2875.887689] amdgpu
->>>>>> 0000:01:00.0: amdgpu: Fatal error during GPU init [ 2875.894791] amdgpu 0000:01:00.0: amdgpu: amdgpu: finishing device.
->>>>>>
->>>>>> Add irqs with different IRQ source pointer for vcn0 and vcn1.
->>>>>>
->>>>>> Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
->>>>>> ---
->>>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 19 +++++++++++++------
->>>>>>  1 file changed, 13 insertions(+), 6 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
->>>>>> b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
->>>>>> index ef3dfd44a022..82b90f1e6f33 100644
->>>>>> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
->>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
->>>>>> @@ -83,6 +83,10 @@ static const struct amdgpu_hwip_reg_entry
->>>>>> vcn_reg_list_4_0_3[] = {
->>>>>>
->>>>>>  #define NORMALIZE_VCN_REG_OFFSET(offset) \
->>>>>>               (offset & 0x1FFFF)
->>>>>> +static int amdgpu_ih_clientid_vcns[] = {
->>>>>> +     SOC15_IH_CLIENTID_VCN,
->>>>>> +     SOC15_IH_CLIENTID_VCN1
->>>>>
->>>>> This is not valid for 4.0.3. It uses only the same client id, different node_id to distinguish. Also, there are max of 4 instances.
->>>>>
->>>>> I would say that entire IP instance series was done in a haste without applying thought and breaks other things including ip block mask.
->>>>>
->>>>> If the same client id is used, it returns -EINVAL (because of the following check) and sw init fails at step vcn_v4_0_3_sw_init / amdgpu_irq_add_id.
->>>>>
->>>>> amdgpu_irq_add_id:
->>>>> if (adev->irq.client[client_id].sources[src_id] != NULL)
->>>>>         return -EINVAL;
->>>>>
->>>>
->>>> We had some side discussions on IP block-per-instance approach.
->>>> Personally, I was not in favour of it as I thought allowing IP block to
->>>> handle its own instances is the better approach and that could handle
->>>> dependencies between instances. Turns out that there are more like
->>>> handling common things for all instances as in this example.
->>>
->>> We tried that route as well before this one and it was ugly as well.
->>>
->>>>
->>>> I would prefer to revert the patch series and consider all angles before
->>>> moving forward on the approach. Will leave this to Alex/Christian/Leo on
->>>> the final decsion.
->>>
->>> Do the attached patches fix it?
->>>
->>
->> This is kind of a piece-meal fix. This doesn't address the larger
->> problem of how to handle things common for all IP instances.
-> 
-> I think we'll need to handle them as we encounter them.  We can always
-> split common stuff out to helpers which can be used by multiple
-> instances.
+>
+> >
+> >       return ret;
+> >  }
+> >
+> > +static void smu_power_profile_mode_get(struct smu_context *smu,
+> > +                                    enum PP_SMC_POWER_PROFILE profile_=
+mode)
+> > +{
+> > +     mutex_lock(&smu->workload_lock);
+>
+> I think this is not needed. DPM calls are already under lock, not seeing
+> a case where it could do toggle get/put at the sametime.
 
-I don't think so. It made a fundamental change. We changed the base
-layer of considering IP as a single block. A common swinit or swfini is
-no longer the case. Consider how a sysfs initialization like
-enable_isolation could be handled if the same approach is taken for GFX IP.
+Will drop.
 
-I would still say that we broke the current foundation with this
-approach and hoping that uppper layer fixes can help to hold things
-together. Or, it needs a start-from-scratch approach.
+>
+> > +     smu->workload_refcount[profile_mode]++;
+> > +     mutex_unlock(&smu->workload_lock);
+> > +}
+> > +
+> > +static void smu_power_profile_mode_put(struct smu_context *smu,
+> > +                                    enum PP_SMC_POWER_PROFILE profile_=
+mode)
+> > +{
+> > +     mutex_lock(&smu->workload_lock);
+> > +     if (smu->workload_refcount[profile_mode])
+> > +             smu->workload_refcount[profile_mode]--;
+> > +     mutex_unlock(&smu->workload_lock);
+> > +}
+> > +
+> >  static int smu_adjust_power_state_dynamic(struct smu_context *smu,
+> >                                         enum amd_dpm_forced_level level=
+,
+> >                                         bool skip_display_settings,
+> >                                         bool init)
+> >  {
+> >       int ret =3D 0;
+> > -     int index =3D 0;
+> >       long workload[1];
+> >       struct smu_dpm_context *smu_dpm_ctx =3D &(smu->smu_dpm);
+> >
+> > @@ -2307,13 +2306,11 @@ static int smu_adjust_power_state_dynamic(struc=
+t smu_context *smu,
+> >       }
+> >
+> >       if (smu_dpm_ctx->dpm_level !=3D AMD_DPM_FORCED_LEVEL_MANUAL &&
+> > -             smu_dpm_ctx->dpm_level !=3D AMD_DPM_FORCED_LEVEL_PERF_DET=
+ERMINISM) {
+> > -             index =3D fls(smu->workload_mask);
+> > -             index =3D index > 0 && index <=3D WORKLOAD_POLICY_MAX ? i=
+ndex - 1 : 0;
+> > -             workload[0] =3D smu->workload_setting[index];
+> > +         smu_dpm_ctx->dpm_level !=3D AMD_DPM_FORCED_LEVEL_PERF_DETERMI=
+NISM) {
+> > +             workload[0] =3D smu->power_profile_mode;
+> >
+> > -             if (init || smu->power_profile_mode !=3D workload[0])
+> > -                     smu_bump_power_profile_mode(smu, workload, 0);
+> > +             if (init)
+> > +                     smu_bump_power_profile_mode(smu, workload, 0, tru=
+e);
+>
+> Same here - not expecting to have init check here. Since workload_mask
+> is 0 during init and workload_refcount is changed, it will set the right
+> mask on smu_bump_power_profile_mode().
 
-Thanks,
-Lijo
+This was to cover resume so we apply the current state to PMFW on
+resume.  Otherwise, the driver would skip the state update because it
+thinks the state is already up to date.
 
-  But I think once we get past this refactoring it will put
-> us in a better place for dealing with multiple IP instances.  Consider
-> the case of a part with multiple blocks of the same type with
-> different IP versions.  Those would not easily be handled with a
-> single IP block handling multiple IP instances.
-> 
-> Alex
-> 
->>
->> Thanks,
->> Lijo
->>
->>> Alex
->>>
->>>>
->>>> Thanks,
->>>> Lijo
->>>>
->>>>> Regards
->>>>> Jesse
->>>>>
->>>>>
->>>>> Thanks,
->>>>> Lijo
->>>>>
->>>>>> +};
->>>>>>
->>>>>>  static int vcn_v4_0_3_start_sriov(struct amdgpu_device *adev);
->>>>>> static void vcn_v4_0_3_set_unified_ring_funcs(struct amdgpu_device
->>>>>> *adev, int inst); @@ -150,9 +154,9 @@ static int vcn_v4_0_3_sw_init(struct amdgpu_ip_block *ip_block)
->>>>>>       if (r)
->>>>>>               return r;
->>>>>>
->>>>>> -     /* VCN DEC TRAP */
->>>>>> -     r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_VCN,
->>>>>> -             VCN_4_0__SRCID__UVD_ENC_GENERAL_PURPOSE, &adev->vcn.inst->irq);
->>>>>> +     /* VCN UNIFIED TRAP */
->>>>>> +     r = amdgpu_irq_add_id(adev, amdgpu_ih_clientid_vcns[inst],
->>>>>> +                     VCN_4_0__SRCID__UVD_ENC_GENERAL_PURPOSE,
->>>>>> +&adev->vcn.inst[inst].irq);
->>>>>>       if (r)
->>>>>>               return r;
->>>>>>
->>>>>> @@ -174,7 +178,7 @@ static int vcn_v4_0_3_sw_init(struct
->>>>>> amdgpu_ip_block *ip_block)
->>>>>>
->>>>>>       ring->vm_hub = AMDGPU_MMHUB0(adev->vcn.inst[inst].aid_id);
->>>>>>       sprintf(ring->name, "vcn_unified_%d", adev->vcn.inst[inst].aid_id);
->>>>>> -     r = amdgpu_ring_init(adev, ring, 512, &adev->vcn.inst->irq, 0,
->>>>>> +     r = amdgpu_ring_init(adev, ring, 512, &adev->vcn.inst[inst].irq, 0,
->>>>>>                                AMDGPU_RING_PRIO_DEFAULT,
->>>>>>                                &adev->vcn.inst[inst].sched_score);
->>>>>>       if (r)
->>>>>> @@ -1734,9 +1738,12 @@ static const struct amdgpu_irq_src_funcs vcn_v4_0_3_irq_funcs = {
->>>>>>   */
->>>>>>  static void vcn_v4_0_3_set_irq_funcs(struct amdgpu_device *adev, int
->>>>>> inst)  {
->>>>>> -     adev->vcn.inst->irq.num_types++;
->>>>>> +     if (adev->vcn.harvest_config & (1 << inst))
->>>>>> +             return;
->>>>>> +
->>>>>> +     adev->vcn.inst[inst].irq.num_types = adev->vcn.num_enc_rings + 1;
->>>>>>
->>>>>> -     adev->vcn.inst->irq.funcs = &vcn_v4_0_3_irq_funcs;
->>>>>> +     adev->vcn.inst[inst].irq.funcs = &vcn_v4_0_3_irq_funcs;
->>>>>>  }
->>>>>>
->>>>>>  static void vcn_v4_0_3_print_ip_state(struct amdgpu_ip_block
->>>>>> *ip_block, struct drm_printer *p)
+>
+> >       }
+> >
+> >       return ret;
+> > @@ -2361,12 +2358,11 @@ static int smu_handle_dpm_task(void *handle,
+> >
+> >  static int smu_switch_power_profile(void *handle,
+> >                                   enum PP_SMC_POWER_PROFILE type,
+> > -                                 bool en)
+> > +                                 bool enable)
+> >  {
+> >       struct smu_context *smu =3D handle;
+> >       struct smu_dpm_context *smu_dpm_ctx =3D &(smu->smu_dpm);
+> >       long workload[1];
+> > -     uint32_t index;
+> >
+> >       if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled)
+> >               return -EOPNOTSUPP;
+> > @@ -2374,24 +2370,16 @@ static int smu_switch_power_profile(void *handl=
+e,
+> >       if (!(type < PP_SMC_POWER_PROFILE_CUSTOM))
+> >               return -EINVAL;
+> >
+> > -     if (!en) {
+> > -             smu->driver_workload_mask &=3D ~(1 << smu->workload_prior=
+ity[type]);
+> > -             index =3D fls(smu->workload_mask);
+> > -             index =3D index > 0 && index <=3D WORKLOAD_POLICY_MAX ? i=
+ndex - 1 : 0;
+> > -             workload[0] =3D smu->workload_setting[index];
+> > -     } else {
+> > -             smu->driver_workload_mask |=3D (1 << smu->workload_priori=
+ty[type]);
+> > -             index =3D fls(smu->workload_mask);
+> > -             index =3D index <=3D WORKLOAD_POLICY_MAX ? index - 1 : 0;
+> > -             workload[0] =3D smu->workload_setting[index];
+> > -     }
+> > -
+> > -     smu->workload_mask =3D smu->driver_workload_mask |
+> > -                                              smu->user_dpm_profile.us=
+er_workload_mask;
+> > +     workload[0] =3D type;
+> >
+> >       if (smu_dpm_ctx->dpm_level !=3D AMD_DPM_FORCED_LEVEL_MANUAL &&
+> > -             smu_dpm_ctx->dpm_level !=3D AMD_DPM_FORCED_LEVEL_PERF_DET=
+ERMINISM)
+> > -             smu_bump_power_profile_mode(smu, workload, 0);
+> > +         smu_dpm_ctx->dpm_level !=3D AMD_DPM_FORCED_LEVEL_PERF_DETERMI=
+NISM) {
+> > +             if (enable)
+> > +                     smu_power_profile_mode_get(smu, type);
+> > +             else
+> > +                     smu_power_profile_mode_put(smu, type);
+> > +             smu_bump_power_profile_mode(smu, workload, 0, enable);
+> > +     }
+> >
+> >       return 0;
+> >  }
+> > @@ -3090,21 +3078,27 @@ static int smu_set_power_profile_mode(void *han=
+dle,
+> >                                     uint32_t param_size)
+> >  {
+> >       struct smu_context *smu =3D handle;
+> > -     int ret;
+> > +     long workload[1];
+> > +     int ret =3D 0;
+> >
+> >       if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled ||
+> >           !smu->ppt_funcs->set_power_profile_mode)
+> >               return -EOPNOTSUPP;
+> >
+> > -     if (smu->user_dpm_profile.user_workload_mask &
+> > -        (1 << smu->workload_priority[param[param_size]]))
+> > -        return 0;
+> > -
+> > -     smu->user_dpm_profile.user_workload_mask =3D
+> > -             (1 << smu->workload_priority[param[param_size]]);
+> > -     smu->workload_mask =3D smu->user_dpm_profile.user_workload_mask |
+> > -             smu->driver_workload_mask;
+> > -     ret =3D smu_bump_power_profile_mode(smu, param, param_size);
+> > +     if (param[param_size] !=3D smu->power_profile_mode) {
+> > +             /* clear the old user preference */
+> > +             workload[0] =3D smu->power_profile_mode;
+> > +             smu_power_profile_mode_put(smu, smu->power_profile_mode);
+> > +             ret =3D smu_bump_power_profile_mode(smu, workload, 0, fal=
+se);
+> > +             if (ret)
+> > +                     return ret;
+>
+> Here as well - no need to call twice with false/true. Put the existing
+> one and get the new one. If smu_bump_power_profile_mode call fails, then
+> we have to reverse the operation though - this is true for other cases al=
+so.
+
+Good catch.  Will fix.
+
+Alex
+
+>
+> Thanks,
+> Lijo
+>
+> > +             /* set the new user preference */
+> > +             smu_power_profile_mode_get(smu, param[param_size]);
+> > +             ret =3D smu_bump_power_profile_mode(smu, param, param_siz=
+e, true);
+> > +             if (!ret)
+> > +                     /* store the user's preference */
+> > +                     smu->power_profile_mode =3D param[param_size];
+> > +     }
+> >
+> >       return ret;
+> >  }
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gp=
+u/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > index fa93a8879113..da7558a65c09 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > @@ -240,7 +240,6 @@ struct smu_user_dpm_profile {
+> >       /* user clock state information */
+> >       uint32_t clk_mask[SMU_CLK_COUNT];
+> >       uint32_t clk_dependency;
+> > -     uint32_t user_workload_mask;
+> >  };
+> >
+> >  #define SMU_TABLE_INIT(tables, table_id, s, a, d)    \
+> > @@ -557,12 +556,12 @@ struct smu_context {
+> >       uint32_t hard_min_uclk_req_from_dal;
+> >       bool disable_uclk_switch;
+> >
+> > +     /* backend specific workload mask */
+> >       uint32_t workload_mask;
+> > -     uint32_t driver_workload_mask;
+> > -     uint32_t workload_priority[WORKLOAD_POLICY_MAX];
+> > -     uint32_t workload_setting[WORKLOAD_POLICY_MAX];
+> > +     /* default/user workload preference */
+> >       uint32_t power_profile_mode;
+> > -     uint32_t default_power_profile_mode;
+> > +     uint32_t workload_refcount[PP_SMC_POWER_PROFILE_COUNT];
+> > +     struct mutex workload_lock;
+> >       bool pm_enabled;
+> >       bool is_apu;
+> >
+> > @@ -734,8 +733,10 @@ struct pptable_funcs {
+> >        *                          create/set custom power profile modes=
+.
+> >        * &input: Power profile mode parameters.
+> >        * &size: Size of &input.
+> > +      * &enable: enable/disable the profile
+> >        */
+> > -     int (*set_power_profile_mode)(struct smu_context *smu, long *inpu=
+t, uint32_t size);
+> > +     int (*set_power_profile_mode)(struct smu_context *smu, long *inpu=
+t,
+> > +                                   uint32_t size, bool enable);
+> >
+> >       /**
+> >        * @dpm_set_vcn_enable: Enable/disable VCN engine dynamic power
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/driver=
+s/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+> > index 4b36c230e43a..1e44cf6fec4b 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+> > @@ -1443,7 +1443,8 @@ static int arcturus_get_power_profile_mode(struct=
+ smu_context *smu,
+> >
+> >  static int arcturus_set_power_profile_mode(struct smu_context *smu,
+> >                                          long *input,
+> > -                                        uint32_t size)
+> > +                                        uint32_t size,
+> > +                                        bool enable)
+> >  {
+> >       DpmActivityMonitorCoeffInt_t activity_monitor;
+> >       int workload_type =3D 0;
+> > @@ -1455,8 +1456,9 @@ static int arcturus_set_power_profile_mode(struct=
+ smu_context *smu,
+> >               return -EINVAL;
+> >       }
+> >
+> > -     if ((profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) &&
+> > -          (smu->smc_fw_version >=3D 0x360d00)) {
+> > +     if (enable &&
+> > +         (profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) &&
+> > +         (smu->smc_fw_version >=3D 0x360d00)) {
+> >               if (size !=3D 10)
+> >                       return -EINVAL;
+> >
+> > @@ -1520,18 +1522,18 @@ static int arcturus_set_power_profile_mode(stru=
+ct smu_context *smu,
+> >               return -EINVAL;
+> >       }
+> >
+> > +     if (enable)
+> > +             smu->workload_mask |=3D (1 << workload_type);
+> > +     else
+> > +             smu->workload_mask &=3D ~(1 << workload_type);
+> >       ret =3D smu_cmn_send_smc_msg_with_param(smu,
+> >                                         SMU_MSG_SetWorkloadMask,
+> >                                         smu->workload_mask,
+> >                                         NULL);
+> > -     if (ret) {
+> > +     if (ret)
+> >               dev_err(smu->adev->dev, "Fail to set workload type %d\n",=
+ workload_type);
+> > -             return ret;
+> > -     }
+> > -
+> > -     smu_cmn_assign_power_profile(smu);
+> >
+> > -     return 0;
+> > +     return ret;
+> >  }
+> >
+> >  static int arcturus_set_performance_level(struct smu_context *smu,
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/=
+gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+> > index 211635dabed8..d944a9f954d0 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+> > @@ -2006,19 +2006,19 @@ static int navi10_get_power_profile_mode(struct=
+ smu_context *smu, char *buf)
+> >       return size;
+> >  }
+> >
+> > -static int navi10_set_power_profile_mode(struct smu_context *smu, long=
+ *input, uint32_t size)
+> > +static int navi10_set_power_profile_mode(struct smu_context *smu, long=
+ *input,
+> > +                                      uint32_t size, bool enable)
+> >  {
+> >       DpmActivityMonitorCoeffInt_t activity_monitor;
+> >       int workload_type, ret =3D 0;
+> > +     uint32_t profile_mode =3D input[size];
+> >
+> > -     smu->power_profile_mode =3D input[size];
+> > -
+> > -     if (smu->power_profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
+> > -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, smu->power_profile_mode);
+> > +     if (profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
+> > +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, profile_mode);
+> >               return -EINVAL;
+> >       }
+> >
+> > -     if (smu->power_profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> > +     if (enable && profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> >               if (size !=3D 10)
+> >                       return -EINVAL;
+> >
+> > @@ -2080,16 +2080,18 @@ static int navi10_set_power_profile_mode(struct=
+ smu_context *smu, long *input, u
+> >       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
+> >       workload_type =3D smu_cmn_to_asic_specific_index(smu,
+> >                                                      CMN2ASIC_MAPPING_W=
+ORKLOAD,
+> > -                                                    smu->power_profile=
+_mode);
+> > +                                                    profile_mode);
+> >       if (workload_type < 0)
+> >               return -EINVAL;
+> >
+> > +     if (enable)
+> > +             smu->workload_mask |=3D (1 << workload_type);
+> > +     else
+> > +             smu->workload_mask &=3D ~(1 << workload_type);
+> >       ret =3D smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadM=
+ask,
+> >                                   smu->workload_mask, NULL);
+> >       if (ret)
+> >               dev_err(smu->adev->dev, "[%s] Failed to set work load mas=
+k!", __func__);
+> > -     else
+> > -             smu_cmn_assign_power_profile(smu);
+> >
+> >       return ret;
+> >  }
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/=
+drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+> > index 844532a9b641..4967e087088b 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+> > @@ -1704,22 +1704,23 @@ static int sienna_cichlid_get_power_profile_mod=
+e(struct smu_context *smu, char *
+> >       return size;
+> >  }
+> >
+> > -static int sienna_cichlid_set_power_profile_mode(struct smu_context *s=
+mu, long *input, uint32_t size)
+> > +static int sienna_cichlid_set_power_profile_mode(struct smu_context *s=
+mu,
+> > +                                              long *input, uint32_t si=
+ze,
+> > +                                              bool enable)
+> >  {
+> >
+> >       DpmActivityMonitorCoeffIntExternal_t activity_monitor_external;
+> >       DpmActivityMonitorCoeffInt_t *activity_monitor =3D
+> >               &(activity_monitor_external.DpmActivityMonitorCoeffInt);
+> > +     uint32_t profile_mode =3D input[size];
+> >       int workload_type, ret =3D 0;
+> >
+> > -     smu->power_profile_mode =3D input[size];
+> > -
+> > -     if (smu->power_profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
+> > -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, smu->power_profile_mode);
+> > +     if (profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
+> > +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, profile_mode);
+> >               return -EINVAL;
+> >       }
+> >
+> > -     if (smu->power_profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> > +     if (enable && profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> >               if (size !=3D 10)
+> >                       return -EINVAL;
+> >
+> > @@ -1781,16 +1782,18 @@ static int sienna_cichlid_set_power_profile_mod=
+e(struct smu_context *smu, long *
+> >       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
+> >       workload_type =3D smu_cmn_to_asic_specific_index(smu,
+> >                                                      CMN2ASIC_MAPPING_W=
+ORKLOAD,
+> > -                                                    smu->power_profile=
+_mode);
+> > +                                                    profile_mode);
+> >       if (workload_type < 0)
+> >               return -EINVAL;
+> >
+> > +     if (enable)
+> > +             smu->workload_mask |=3D (1 << workload_type);
+> > +     else
+> > +             smu->workload_mask &=3D ~(1 << workload_type);
+> >       ret =3D smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadM=
+ask,
+> >                                   smu->workload_mask, NULL);
+> >       if (ret)
+> >               dev_err(smu->adev->dev, "[%s] Failed to set work load mas=
+k!", __func__);
+> > -     else
+> > -             smu_cmn_assign_power_profile(smu);
+> >
+> >       return ret;
+> >  }
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers=
+/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> > index f89c487dce72..b5dba4826f81 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> > @@ -1056,7 +1056,8 @@ static int vangogh_get_power_profile_mode(struct =
+smu_context *smu,
+> >       return size;
+> >  }
+> >
+> > -static int vangogh_set_power_profile_mode(struct smu_context *smu, lon=
+g *input, uint32_t size)
+> > +static int vangogh_set_power_profile_mode(struct smu_context *smu, lon=
+g *input,
+> > +                                       uint32_t size, bool enable)
+> >  {
+> >       int workload_type, ret;
+> >       uint32_t profile_mode =3D input[size];
+> > @@ -1067,7 +1068,7 @@ static int vangogh_set_power_profile_mode(struct =
+smu_context *smu, long *input,
+> >       }
+> >
+> >       if (profile_mode =3D=3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT ||
+> > -                     profile_mode =3D=3D PP_SMC_POWER_PROFILE_POWERSAV=
+ING)
+> > +         profile_mode =3D=3D PP_SMC_POWER_PROFILE_POWERSAVING)
+> >               return 0;
+> >
+> >       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
+> > @@ -1080,18 +1081,18 @@ static int vangogh_set_power_profile_mode(struc=
+t smu_context *smu, long *input,
+> >               return -EINVAL;
+> >       }
+> >
+> > +     if (enable)
+> > +             smu->workload_mask |=3D (1 << workload_type);
+> > +     else
+> > +             smu->workload_mask &=3D ~(1 << workload_type);
+> >       ret =3D smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_ActiveProces=
+sNotify,
+> >                                   smu->workload_mask,
+> >                                   NULL);
+> > -     if (ret) {
+> > +     if (ret)
+> >               dev_err_once(smu->adev->dev, "Fail to set workload type %=
+d\n",
+> >                                       workload_type);
+> > -             return ret;
+> > -     }
+> > -
+> > -     smu_cmn_assign_power_profile(smu);
+> >
+> > -     return 0;
+> > +     return ret;
+> >  }
+> >
+> >  static int vangogh_set_soft_freq_limited_range(struct smu_context *smu=
+,
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/=
+gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
+> > index 75a9ea87f419..2d1eae79ab9d 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
+> > @@ -864,7 +864,8 @@ static int renoir_force_clk_levels(struct smu_conte=
+xt *smu,
+> >       return ret;
+> >  }
+> >
+> > -static int renoir_set_power_profile_mode(struct smu_context *smu, long=
+ *input, uint32_t size)
+> > +static int renoir_set_power_profile_mode(struct smu_context *smu, long=
+ *input,
+> > +                                      uint32_t size, bool enable)
+> >  {
+> >       int workload_type, ret;
+> >       uint32_t profile_mode =3D input[size];
+> > @@ -875,7 +876,7 @@ static int renoir_set_power_profile_mode(struct smu=
+_context *smu, long *input, u
+> >       }
+> >
+> >       if (profile_mode =3D=3D PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT ||
+> > -                     profile_mode =3D=3D PP_SMC_POWER_PROFILE_POWERSAV=
+ING)
+> > +         profile_mode =3D=3D PP_SMC_POWER_PROFILE_POWERSAVING)
+> >               return 0;
+> >
+> >       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
+> > @@ -891,17 +892,17 @@ static int renoir_set_power_profile_mode(struct s=
+mu_context *smu, long *input, u
+> >               return -EINVAL;
+> >       }
+> >
+> > +     if (enable)
+> > +             smu->workload_mask |=3D (1 << workload_type);
+> > +     else
+> > +             smu->workload_mask &=3D ~(1 << workload_type);
+> >       ret =3D smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_ActiveProces=
+sNotify,
+> >                                   smu->workload_mask,
+> >                                   NULL);
+> > -     if (ret) {
+> > +     if (ret)
+> >               dev_err_once(smu->adev->dev, "Fail to set workload type %=
+d\n", workload_type);
+> > -             return ret;
+> > -     }
+> >
+> > -     smu_cmn_assign_power_profile(smu);
+> > -
+> > -     return 0;
+> > +     return ret;
+> >  }
+> >
+> >  static int renoir_set_peak_clock_by_device(struct smu_context *smu)
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/dri=
+vers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> > index 80c6b1e523aa..3cc734331891 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> > @@ -2573,22 +2573,22 @@ static int smu_v13_0_0_get_power_profile_mode(s=
+truct smu_context *smu,
+> >
+> >  static int smu_v13_0_0_set_power_profile_mode(struct smu_context *smu,
+> >                                             long *input,
+> > -                                           uint32_t size)
+> > +                                           uint32_t size,
+> > +                                           bool enable)
+> >  {
+> >       DpmActivityMonitorCoeffIntExternal_t activity_monitor_external;
+> >       DpmActivityMonitorCoeffInt_t *activity_monitor =3D
+> >               &(activity_monitor_external.DpmActivityMonitorCoeffInt);
+> > +     uint32_t profile_mode =3D input[size];
+> >       int workload_type, ret =3D 0;
+> >       u32 workload_mask;
+> >
+> > -     smu->power_profile_mode =3D input[size];
+> > -
+> > -     if (smu->power_profile_mode >=3D PP_SMC_POWER_PROFILE_COUNT) {
+> > -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, smu->power_profile_mode);
+> > +     if (profile_mode >=3D PP_SMC_POWER_PROFILE_COUNT) {
+> > +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, profile_mode);
+> >               return -EINVAL;
+> >       }
+> >
+> > -     if (smu->power_profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> > +     if (enable && profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> >               if (size !=3D 9)
+> >                       return -EINVAL;
+> >
+> > @@ -2641,13 +2641,18 @@ static int smu_v13_0_0_set_power_profile_mode(s=
+truct smu_context *smu,
+> >       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
+> >       workload_type =3D smu_cmn_to_asic_specific_index(smu,
+> >                                                      CMN2ASIC_MAPPING_W=
+ORKLOAD,
+> > -                                                    smu->power_profile=
+_mode);
+> > +                                                    profile_mode);
+> >
+> >       if (workload_type < 0)
+> >               return -EINVAL;
+> >
+> >       workload_mask =3D 1 << workload_type;
+> >
+> > +     if (enable)
+> > +             smu->workload_mask |=3D workload_mask;
+> > +     else
+> > +             smu->workload_mask &=3D ~workload_mask;
+> > +
+> >       /* Add optimizations for SMU13.0.0/10.  Reuse the power saving pr=
+ofile */
+> >       if ((amdgpu_ip_version(smu->adev, MP1_HWIP, 0) =3D=3D IP_VERSION(=
+13, 0, 0) &&
+> >            ((smu->adev->pm.fw_version =3D=3D 0x004e6601) ||
+> > @@ -2658,25 +2663,13 @@ static int smu_v13_0_0_set_power_profile_mode(s=
+truct smu_context *smu,
+> >                                                              CMN2ASIC_M=
+APPING_WORKLOAD,
+> >                                                              PP_SMC_POW=
+ER_PROFILE_POWERSAVING);
+> >               if (workload_type >=3D 0)
+> > -                     workload_mask |=3D 1 << workload_type;
+> > +                     smu->workload_mask |=3D 1 << workload_type;
+> >       }
+> >
+> > -     smu->workload_mask |=3D workload_mask;
+> >       ret =3D smu_cmn_send_smc_msg_with_param(smu,
+> >                                              SMU_MSG_SetWorkloadMask,
+> >                                              smu->workload_mask,
+> >                                              NULL);
+> > -     if (!ret) {
+> > -             smu_cmn_assign_power_profile(smu);
+> > -             if (smu->power_profile_mode =3D=3D PP_SMC_POWER_PROFILE_P=
+OWERSAVING) {
+> > -                     workload_type =3D smu_cmn_to_asic_specific_index(=
+smu,
+> > -                                                            CMN2ASIC_M=
+APPING_WORKLOAD,
+> > -                                                            PP_SMC_POW=
+ER_PROFILE_FULLSCREEN3D);
+> > -                     smu->power_profile_mode =3D smu->workload_mask & =
+(1 << workload_type)
+> > -                                                                      =
+       ? PP_SMC_POWER_PROFILE_FULLSCREEN3D
+> > -                                                                      =
+       : PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
+> > -             }
+> > -     }
+> >
+> >       return ret;
+> >  }
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/dri=
+vers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+> > index c5d3e25cc967..1aafd23857f0 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+> > @@ -2528,22 +2528,23 @@ do {                                           =
+                                                       \
+> >       return result;
+> >  }
+> >
+> > -static int smu_v13_0_7_set_power_profile_mode(struct smu_context *smu,=
+ long *input, uint32_t size)
+> > +static int smu_v13_0_7_set_power_profile_mode(struct smu_context *smu,
+> > +                                           long *input, uint32_t size,
+> > +                                           bool enable)
+> >  {
+> >
+> >       DpmActivityMonitorCoeffIntExternal_t activity_monitor_external;
+> >       DpmActivityMonitorCoeffInt_t *activity_monitor =3D
+> >               &(activity_monitor_external.DpmActivityMonitorCoeffInt);
+> > +     uint32_t profile_mode =3D input[size];
+> >       int workload_type, ret =3D 0;
+> >
+> > -     smu->power_profile_mode =3D input[size];
+> > -
+> > -     if (smu->power_profile_mode > PP_SMC_POWER_PROFILE_WINDOW3D) {
+> > -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, smu->power_profile_mode);
+> > +     if (profile_mode > PP_SMC_POWER_PROFILE_WINDOW3D) {
+> > +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, profile_mode);
+> >               return -EINVAL;
+> >       }
+> >
+> > -     if (smu->power_profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> > +     if (enable && profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> >               if (size !=3D 8)
+> >                       return -EINVAL;
+> >
+> > @@ -2590,17 +2591,19 @@ static int smu_v13_0_7_set_power_profile_mode(s=
+truct smu_context *smu, long *inp
+> >       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
+> >       workload_type =3D smu_cmn_to_asic_specific_index(smu,
+> >                                                      CMN2ASIC_MAPPING_W=
+ORKLOAD,
+> > -                                                    smu->power_profile=
+_mode);
+> > +                                                    profile_mode);
+> >       if (workload_type < 0)
+> >               return -EINVAL;
+> >
+> > +     if (enable)
+> > +             smu->workload_mask |=3D (1 << workload_type);
+> > +     else
+> > +             smu->workload_mask &=3D ~(1 << workload_type);
+> >       ret =3D smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadM=
+ask,
+> >                                   smu->workload_mask, NULL);
+> >
+> >       if (ret)
+> >               dev_err(smu->adev->dev, "[%s] Failed to set work load mas=
+k!", __func__);
+> > -     else
+> > -             smu_cmn_assign_power_profile(smu);
+> >
+> >       return ret;
+> >  }
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/dri=
+vers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> > index 59b369eff30f..b64490bcfd62 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> > @@ -1719,21 +1719,21 @@ static int smu_v14_0_2_get_power_profile_mode(s=
+truct smu_context *smu,
+> >
+> >  static int smu_v14_0_2_set_power_profile_mode(struct smu_context *smu,
+> >                                             long *input,
+> > -                                           uint32_t size)
+> > +                                           uint32_t size,
+> > +                                           bool enable)
+> >  {
+> >       DpmActivityMonitorCoeffIntExternal_t activity_monitor_external;
+> >       DpmActivityMonitorCoeffInt_t *activity_monitor =3D
+> >               &(activity_monitor_external.DpmActivityMonitorCoeffInt);
+> > +     uint32_t profile_mode =3D input[size];
+> >       int workload_type, ret =3D 0;
+> > -     uint32_t current_profile_mode =3D smu->power_profile_mode;
+> > -     smu->power_profile_mode =3D input[size];
+> >
+> > -     if (smu->power_profile_mode >=3D PP_SMC_POWER_PROFILE_COUNT) {
+> > -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, smu->power_profile_mode);
+> > +     if (profile_mode >=3D PP_SMC_POWER_PROFILE_COUNT) {
+> > +             dev_err(smu->adev->dev, "Invalid power profile mode %d\n"=
+, profile_mode);
+> >               return -EINVAL;
+> >       }
+> >
+> > -     if (smu->power_profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> > +     if (enable && profile_mode =3D=3D PP_SMC_POWER_PROFILE_CUSTOM) {
+> >               if (size !=3D 9)
+> >                       return -EINVAL;
+> >
+> > @@ -1783,23 +1783,24 @@ static int smu_v14_0_2_set_power_profile_mode(s=
+truct smu_context *smu,
+> >               }
+> >       }
+> >
+> > -     if (smu->power_profile_mode =3D=3D PP_SMC_POWER_PROFILE_COMPUTE)
+> > -             smu_v14_0_deep_sleep_control(smu, false);
+> > -     else if (current_profile_mode =3D=3D PP_SMC_POWER_PROFILE_COMPUTE=
+)
+> > -             smu_v14_0_deep_sleep_control(smu, true);
+> > -
+> >       /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
+> >       workload_type =3D smu_cmn_to_asic_specific_index(smu,
+> >                                                      CMN2ASIC_MAPPING_W=
+ORKLOAD,
+> > -                                                    smu->power_profile=
+_mode);
+> > +                                                    profile_mode);
+> >       if (workload_type < 0)
+> >               return -EINVAL;
+> >
+> > -     ret =3D smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadM=
+ask,
+> > -                                                                      =
+         smu->workload_mask, NULL);
+> > +     if (enable)
+> > +             smu->workload_mask |=3D (1 << workload_type);
+> > +     else
+> > +             smu->workload_mask &=3D ~(1 << workload_type);
+> >
+> > -     if (!ret)
+> > -             smu_cmn_assign_power_profile(smu);
+> > +     /* disable deep sleep if compute is enabled */
+> > +     if (profile_mode =3D=3D PP_SMC_POWER_PROFILE_COMPUTE)
+> > +             smu_v14_0_deep_sleep_control(smu, !enable);
+> > +
+> > +     ret =3D smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadM=
+ask,
+> > +                                           smu->workload_mask, NULL);
+> >
+> >       return ret;
+> >  }
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/a=
+md/pm/swsmu/smu_cmn.c
+> > index fd2aa949538e..63c4f75fa118 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+> > @@ -1141,14 +1141,6 @@ int smu_cmn_set_mp1_state(struct smu_context *sm=
+u,
+> >       return ret;
+> >  }
+> >
+> > -void smu_cmn_assign_power_profile(struct smu_context *smu)
+> > -{
+> > -     uint32_t index;
+> > -     index =3D fls(smu->workload_mask);
+> > -     index =3D index > 0 && index <=3D WORKLOAD_POLICY_MAX ? index - 1=
+ : 0;
+> > -     smu->power_profile_mode =3D smu->workload_setting[index];
+> > -}
+> > -
+> >  bool smu_cmn_is_audio_func_enabled(struct amdgpu_device *adev)
+> >  {
+> >       struct pci_dev *p =3D NULL;
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/a=
+md/pm/swsmu/smu_cmn.h
+> > index 8a801e389659..1de685defe85 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+> > @@ -130,8 +130,6 @@ void smu_cmn_init_soft_gpu_metrics(void *table, uin=
+t8_t frev, uint8_t crev);
+> >  int smu_cmn_set_mp1_state(struct smu_context *smu,
+> >                         enum pp_mp1_state mp1_state);
+> >
+> > -void smu_cmn_assign_power_profile(struct smu_context *smu);
+> > -
+> >  /*
+> >   * Helper function to make sysfs_emit_at() happy. Align buf to
+> >   * the current page boundary and record the offset.
