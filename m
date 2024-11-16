@@ -2,74 +2,127 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C7E9CFDA4
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Nov 2024 10:51:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA95D9CFCAD
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Nov 2024 05:45:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D066210E3EA;
-	Sat, 16 Nov 2024 09:51:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E755410E197;
+	Sat, 16 Nov 2024 04:45:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="m6MEEdBZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="V4gWcW/j";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
- [209.85.222.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CAE810E8C3
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Nov 2024 21:18:11 +0000 (UTC)
-Received: by mail-qk1-f182.google.com with SMTP id
- af79cd13be357-7b1601e853eso56585a.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Nov 2024 13:18:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1731705490; x=1732310290;
- darn=lists.freedesktop.org; 
- h=cc:to:message-id:content-transfer-encoding:mime-version:subject
- :date:from:from:to:cc:subject:date:message-id:reply-to;
- bh=6ktpPIpScaeZrvvX2nXn5N10awI15hiN2fEar3uZkg4=;
- b=m6MEEdBZXdU3VMHMRnK9rSSNvxcRGdhWT9e+r3XbOg5Ga0qhotS2EuupazX5YuMX4o
- EmNsTOUQQG4w7051W021G7cLWOdaRrD3FXdSifjqT/6z8C9KdRfVZdv2uUEuc3mKGc6V
- FuNtzckRHZ3WYMNV7mO2uUBIM0dop6VHHG/Qk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1731705490; x=1732310290;
- h=cc:to:message-id:content-transfer-encoding:mime-version:subject
- :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=6ktpPIpScaeZrvvX2nXn5N10awI15hiN2fEar3uZkg4=;
- b=ZN5ciUjs4aVzm8l9qy1CCCS4/un8Fph0PoORcG0oU8t+myoSaAQIfuTB6bbXmPa6+S
- ejOPbd3KUNrV13c5jUCDKcFXwyRu8Zdws8PWpOx8LIw4d5m5syx9zdconiHaozdvC+Ld
- 035YwHWLdq3hoB+NGzoiD4A4m6NONFVF6M8xeSYmMpg60Sc8gBjV7KXA2gwESSo7lCGD
- q4WhON+CChavQI47ph/5mKQgeB0yev4ms9hS5vUXe4B/R89f3TDXFv+bFChcwo35vWzv
- 8M84+t/Ll5aSvLYTh+E1cApZ+7be9FaeHRUvOGLArdLh/QkSxU2xiRQDV04gLBf7Jq6K
- +LvA==
-X-Gm-Message-State: AOJu0YyLsNbI0HJyCAobOXmgrl+wpfId1RtlzyAePluuPHHTS/VLlU+r
- 9xCGlTR57mIYxz0IDAHpci5Nv04qAcR+hnZTdeX1dLUsv8NXuEDl4mwlHOuXHg==
-X-Google-Smtp-Source: AGHT+IE2A9GCtwE3/owQJADRhxcYUckzzduFbZHTdlECCq0jAYNjYOc/PgF+/w+kQmwAjzx8y1wjNg==
-X-Received: by 2002:a05:620a:c4d:b0:7b1:4536:8dc1 with SMTP id
- af79cd13be357-7b36236406dmr634270585a.62.1731705490448; 
- Fri, 15 Nov 2024 13:18:10 -0800 (PST)
-Received: from wilburliny.c.googlers.com
- (204.246.236.35.bc.googleusercontent.com. [35.236.246.204])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7b35ca58f06sm200356385a.113.2024.11.15.13.18.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 Nov 2024 13:18:10 -0800 (PST)
-From: Steven 'Steve' Kendall <skend@chromium.org>
-Date: Fri, 15 Nov 2024 21:17:58 +0000
-Subject: [PATCH] drm/radeon: Fix spurious unplug event on radeon HDMI
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2074.outbound.protection.outlook.com [40.107.212.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DBE110E197
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Nov 2024 04:45:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xKeDFREpOMrJcSs8TYwlRRjRJIaOLEZc/IoaFFUwIgQ5EZN8lPPxfSS9Fg275IQ5npvNcHffZCCd5qBW+/TC6rPRR7MWXpNBnyiXwqmzICN3hc/QkOE6BPfIKCEoELvFgN+ryjntdAfqxnss/zTMSX3mcgy2z4ZaAIt4fYiC95n7Q18E/D/r8a1qF2HGPXc5haplr9c+0Bqm7/pTD0qJm+ODfI+fcBiMcPQ4KN1Z1wrvTJBmo/sibotuh4cMcXAPJQyEiOszYsb1Bl5RRj6ewraSryUmpI79i6B9d85ceB+ywC+OcibloMWZbStiic6lyhKHMaZr7/eCc52N4TBMjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=REDRM4il7njBYyjDe36b/nf90ILcqKIJn2qlcJTUMRk=;
+ b=vpw1N54k94Lq4tqRUF54fa0Xf/VL8dwiKLlHMLuOCwlr9TrXOBo2t5PxK9D2ljiOrz0buAFSB76KGdn4ilHyoHKA4CJBRiDIWj9AgtN/cRt5gfFIHZhQ3SYpsbBZvAbXHjLvkCi/X36oDnL8SSA5hHw1/mDCdyflOYb8bYDFlzFDEiTsBzEuAmhXcYKWhNAYKzKXAJmTbnfTFfEc+MqUjiWSPJI9wDF9sjCdzDihZ85H1WCqnC74ei9BlI0+Jri1Vi/aZZR5QuxxRgLze09nhbLCsOtB4Eb+10eV3eIs6Pz/aopiZ6YOLA2d7uZH0bMs/giXsNPDRcyekIgNCvxVMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=REDRM4il7njBYyjDe36b/nf90ILcqKIJn2qlcJTUMRk=;
+ b=V4gWcW/jBTX3/e3gCMiGAE9SwrYTMM8w/v4p8yEPcA8Q4yz1JGzqRUT1hJjjEhVfRpyysZcj+x8AJF1anMGhH9NTVe99w9Rur8E3KzbkRYDnOl4gek++Gifs8U+rWXq4Jaw1YgWDKCpY2ltKpipupISY8tH5OGOwbBvwPflPxrI=
+Received: from SJ0PR03CA0386.namprd03.prod.outlook.com (2603:10b6:a03:3a1::31)
+ by IA0PR12MB7673.namprd12.prod.outlook.com (2603:10b6:208:435::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.19; Sat, 16 Nov
+ 2024 04:45:13 +0000
+Received: from SJ5PEPF000001F1.namprd05.prod.outlook.com
+ (2603:10b6:a03:3a1:cafe::7) by SJ0PR03CA0386.outlook.office365.com
+ (2603:10b6:a03:3a1::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18 via Frontend
+ Transport; Sat, 16 Nov 2024 04:45:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SJ5PEPF000001F1.mail.protection.outlook.com (10.167.242.69) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8158.14 via Frontend Transport; Sat, 16 Nov 2024 04:45:12 +0000
+Received: from MKM-L10-YUNXIA9.amd.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 15 Nov
+ 2024 22:45:10 -0600
+From: Yunxiang Li <Yunxiang.Li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
+ <tvrtko.ursulin@igalia.com>
+CC: <Alexander.Deucher@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>
+Subject: [PATCH v8 0/5] rework bo mem stats tracking
+Date: Fri, 15 Nov 2024 23:44:47 -0500
+Message-ID: <20241116044452.5925-1-Yunxiang.Li@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-hdmi-audio-radeon-connectors-v1-1-d6d66d3128dd@chromium.org>
-X-B4-Tracking: v=1; b=H4sIAIW6N2cC/x3MwQqDMAwA0F+RnA1YmaD7lbFD16Saw5KRThHEf
- 7d4fJd3QGEXLvBsDnDepIhpRWgbSEvUmVGoGvquf4QQBlzoKxhXEkOPxKaYTJXT37xgHnOOaRq
- nT0dQi59zlv3uX+/zvACACToWbgAAAA==
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Takashi Iwai <tiwai@suse.de>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, Steven 'Steve' Kendall <skend@chromium.org>
-X-Mailer: b4 0.13.0
-X-Mailman-Approved-At: Sat, 16 Nov 2024 09:51:56 +0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
+ (10.181.40.144)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F1:EE_|IA0PR12MB7673:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d2321da-610f-45c9-88a3-08dd05f9750d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aVpvZFlxRGdRd2l6a1pDODZuYUVUc0lERlM2OVhjeCtEblJhYkJkTWoxT1N3?=
+ =?utf-8?B?ZTZTcmRqamVhYmtmZDNTc1lkc1VZMjFsdmJRa25EaU1IVGpwR210eWJMbVQ1?=
+ =?utf-8?B?M0R0cTNMSTBVcDl3dmNGZ3BUYXVYcHorLzQ3SDE2d29FZjhkK2V1d1RTNkVK?=
+ =?utf-8?B?RkllQUVxNWlEWGMwdWFPalphYVI2TUo4U3FvRVZUUi83UitYUmwzZzhicEJs?=
+ =?utf-8?B?WW45ZXZxUXVsL0h6S3FaTFpLVlArNUN0bk9SYUMxRTJkNjdBTUtmUUxPTXVu?=
+ =?utf-8?B?eXVFKzFyb0Fqd2xGNFJqa2M4U1d2UWRaV1BDWjFvaUhldkEvUzgrZ0JkT3hu?=
+ =?utf-8?B?Y01DQWtkRm9tMytPamZjNWxrdUt3Q2RkNHU5RGkrK0EyZ3UrVlpESE5LWWxS?=
+ =?utf-8?B?dmRpU2VZWFNOU0l3dWw2d0tjOE5MMGdUaFFvSjhBckJSZ2hyVVdSWit4WjdC?=
+ =?utf-8?B?ZWVOQ2FJTklQRXNNK3c1aGo4cUtVVlRIaWFwSkkwRCsvTS9qVzJGaEo2aEp3?=
+ =?utf-8?B?WVdnY3lVQ2VNbTdrUFU0MGlvMGdwdXNvMmRrNXJpSXhGTGxMSjJpQkttN3pP?=
+ =?utf-8?B?Z0xLc2hrMlNPU3ZnL3AxRGNHT0Q1bUZseVV3T28xcnBHYUcxNk9QZmNJSElt?=
+ =?utf-8?B?b3J2SzlRMXdqWEdlYXJVc3k4MlUrc0RIR2svMkp6amdibG0xMU1GY3BkSnda?=
+ =?utf-8?B?NWJtTUl2eStIY2VXSTdHL3FqN1ZvRUw5bk1iQjJzcHhETXk3TWFWa0s5K2pT?=
+ =?utf-8?B?YnBBTndYUU01Um9HdDdUVWdGcGQza3ZSNmFmeDdybWRiY1F4TWU4U3lDbUR0?=
+ =?utf-8?B?WUhNZFcyNTh2VVp4NGJ0bFFZWjFNVmhXa3ZNQmhwNFRPZGFPbkMyemxLVkcy?=
+ =?utf-8?B?RXZFUkVkSkkyTlZDMzRjazRGNkNReW91QmYwMU0zbHBTQWVIT0IvK1owZGZt?=
+ =?utf-8?B?RVRxcTZYWTBLcnNjc3dIYXNkNXpYUzkyRDJHMUxkQXB0bTJ5cWV2MG5VeC95?=
+ =?utf-8?B?OFQrYjI3V2lDSW93Q1dGblVWYVNJVGxUS3ZHMU4ycnZManEvSFA2NEpOVHJN?=
+ =?utf-8?B?cnRhWnJlQ0xod0VrMUdqR0VJRXdIQW1jc0p3MTlkby9FRXg1R3MyS3R5TTIz?=
+ =?utf-8?B?aVpiL054NGRudDFvcWRRQitaenBGYVp0UFp3dEtvdnpUdDBLbHkvcUJDakNz?=
+ =?utf-8?B?K1c0Q1VqeW9zVGlWY3BBelljUlNrZXBhTkVzcTNuKzdhekNtR2k3bE5YYmo1?=
+ =?utf-8?B?SUdZdjluWkU5TGFyRTErQ0RkQVkzY0xWNlNxQ2l5bU1kNDA3NGJsNnY5Y1ox?=
+ =?utf-8?B?RW1mbG91SXBBN0wwY3RycnlhbE5aMFlzeVI3eDI1NTV6bG5jeFozOVZjRTlT?=
+ =?utf-8?B?NWt0VkpBeFFPclNUR0htN2x2dzZlb2VTVEFweFpvRzVaYUc4MG0vS1pBVGlU?=
+ =?utf-8?B?cGlIZnc5U3B1ZE5YeCtFcDk1UWFFRVhRK0RUL3YvZmQ5L0Fpei9VYWNWcDdO?=
+ =?utf-8?B?NkVCcVUwbktkbDBaMVJPU2ltMVBWZndyVVk0UVhpRGN3ZnEwQ1F1cHNpTEdT?=
+ =?utf-8?B?Y3FrRWlSWFFGQzIvcVBSODdzUTBBcmJ5MmQ4VVJ6ZXk3a21rbldOYjdkQzZW?=
+ =?utf-8?B?MWVjVFlhdStNNTdvTnhqTDROSG9wZnYzVzRmemdrWlJmTGd6VmtYM1cra0d4?=
+ =?utf-8?B?R2NkRG5HUFhqendpODZML2N2ZXhnRVNlUGduSFJ5VXFlSVJTVDA2eWVRWGZR?=
+ =?utf-8?B?T29lblFKc2tWU2h1Qk1YN0tCV2xaWHNadUErbUtDaklhcUNjbkFBTXBFT3lq?=
+ =?utf-8?B?ZExvWWdOS2RoZytlVEFRVjkyTjdYamRYTDF0SzVzUG5xVU9sVUlZWFVjVlB5?=
+ =?utf-8?B?WGtRYmZBdHR4MFFldlZ3eE4vdWJaNlQySGtmcFFYUUpPT1E9PQ==?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2024 04:45:12.3576 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d2321da-610f-45c9-88a3-08dd05f9750d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7673
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,62 +137,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On several HP models (tested on HP 3125 and HP Probook 455 G2),
-spurious unplug events are emitted upon login on Chrome OS.
-This is likely due to the way Chrome OS restarts graphics
-upon login, so it's possible it's an issue on other
-distributions but not as common, though I haven't
-reproduced the issue elsewhere.
-Use logic from an earlier version of the merged change
-(see link below) which iterates over connectors and finds
-matching encoders, rather than the other way around.
-Also fixes an issue with screen mirroring on Chrome OS.
-I've deployed this patch on Fedora and did not observe
-any regression on these devices.
+Right now every time the fdinfo is read, we go through the vm lists and
+lock all the BOs to calcuate the statistics. This causes a lot of lock
+contention when the VM is actively used. It gets worse if there is a lot
+of shared BOs or if there's a lot of submissions. We have seen
+submissions lock-up for seconds due to fdinfo for some workload.
+Therefore, rework the implementation to track the BOs as they get moved
+around.
 
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1569#note_1603002
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/3771
-Fixes: 20ea34710f7b ("drm/radeon: Add HD-audio component notifier support (v6)")
-Signed-off-by: Steven 'Steve' Kendall <skend@chromium.org>
----
- drivers/gpu/drm/radeon/radeon_audio.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+The amd-only visible memory stat is removed to simplify implementation,
+it's unclear how useful this stat is since kernel map/unmap BOs whenever
+it wants to and on a modern system all of VRAM can be mapped if needed.
 
-diff --git a/drivers/gpu/drm/radeon/radeon_audio.c b/drivers/gpu/drm/radeon/radeon_audio.c
-index 47aa06a9a942..5b69cc8011b4 100644
---- a/drivers/gpu/drm/radeon/radeon_audio.c
-+++ b/drivers/gpu/drm/radeon/radeon_audio.c
-@@ -760,16 +760,20 @@ static int radeon_audio_component_get_eld(struct device *kdev, int port,
- 	if (!rdev->audio.enabled || !rdev->mode_info.mode_config_initialized)
- 		return 0;
- 
--	list_for_each_entry(encoder, &rdev_to_drm(rdev)->mode_config.encoder_list, head) {
-+	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
-+		const struct drm_connector_helper_funcs *connector_funcs =
-+				connector->helper_private;
-+		encoder = connector_funcs->best_encoder(connector);
-+
-+		if (!encoder)
-+			continue;
-+
- 		if (!radeon_encoder_is_digital(encoder))
- 			continue;
- 		radeon_encoder = to_radeon_encoder(encoder);
- 		dig = radeon_encoder->enc_priv;
- 		if (!dig->pin || dig->pin->id != port)
- 			continue;
--		connector = radeon_get_connector_for_encoder(encoder);
--		if (!connector)
--			continue;
- 		*enabled = true;
- 		ret = drm_eld_size(connector->eld);
- 		memcpy(buf, connector->eld, min(max_bytes, ret));
+v5: rebase on top of the drm_print_memory_stats refactor
+v6: split the drm changes into a seperate patch for drm-devel review,
+fix handling of drm-total- vs drm-resident- and handle drm-purgable-.
+v7: make drm-active- optional
+v8: clearify documentation, minor tweaks, and some bug fixes found
+during testing
 
----
-base-commit: 2d5404caa8c7bb5c4e0435f94b28834ae5456623
-change-id: 20241115-hdmi-audio-radeon-connectors-f8ffac989b0d
+Yunxiang Li (5):
+  drm: add drm_memory_stats_is_zero
+  drm: make drm-active- stats optional
+  Documentation/gpu: Clarify drm memory stats definition
+  drm/amdgpu: remove unused function parameter
+  drm/amdgpu: track bo memory stats at runtime
 
-Best regards,
+ Documentation/gpu/drm-usage-stats.rst       |  36 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |  17 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c  |  17 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c     |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  | 111 +++++-------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h  |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      | 179 ++++++++++++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h      |  20 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c   |   1 +
+ drivers/gpu/drm/drm_file.c                  |  23 ++-
+ drivers/gpu/drm/i915/i915_drm_client.c      |   1 +
+ drivers/gpu/drm/xe/xe_drm_client.c          |   1 +
+ include/drm/drm_file.h                      |   1 +
+ include/drm/drm_gem.h                       |  14 +-
+ 16 files changed, 254 insertions(+), 182 deletions(-)
+
 -- 
-Steven 'Steve' Kendall <skend@chromium.org>
+2.34.1
 
