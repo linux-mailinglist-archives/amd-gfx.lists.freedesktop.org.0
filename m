@@ -2,62 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 199A39D0291
-	for <lists+amd-gfx@lfdr.de>; Sun, 17 Nov 2024 10:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E36239D0B12
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 Nov 2024 09:41:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12C8810E031;
-	Sun, 17 Nov 2024 09:16:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C54A10E44B;
+	Mon, 18 Nov 2024 08:41:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nvlUOnGQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="mTU1+u6c";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87B6C10E031;
- Sun, 17 Nov 2024 09:16:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731834978; x=1763370978;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=g4ehLSqsya6NJQtkjdgyvdNG0TLIzz8TwUMtsuSLxek=;
- b=nvlUOnGQFRniMBtCbZiWxcQZN7nc8DKM5MUbFqMcn2ij7fYOMHK+8qYT
- 2SI4S9fFzbPQaBQ3yUF53hywP0F8RfVncc6lucBgLa31vkSPg1HQU1azA
- VRkZO1CWc8Wp3+MKayL/pcHhOfTlhbuatvOQUsGZceofIqdCEvYRyZVDR
- T7s+IIcs6nX1ZruGqwCJ5LmACx1IoJ1/QQSZcodKzRwig5aEmRubkYANu
- lSQoNuEeogj2EbMljpd9W3rVi9beOWppAJsuO3aGLwd3bVA4BsB4/AswS
- aZ9B5Bj4+L0v7R5QQx55bfD/UtF90Rk062tMw60U7HPXA7uhLmEn7UZuH w==;
-X-CSE-ConnectionGUID: C56V5acmT3GpQUbPN6axvw==
-X-CSE-MsgGUID: ynWz6apLQ2yETUlnWRjg3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11258"; a="31739669"
-X-IronPort-AV: E=Sophos;i="6.12,161,1728975600"; d="scan'208";a="31739669"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2024 01:16:17 -0800
-X-CSE-ConnectionGUID: jraRo+LeTxqqej/ImtU/gw==
-X-CSE-MsgGUID: cqMAJ3wyScW0hGareT7SIQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,161,1728975600"; d="scan'208";a="112241906"
-Received: from lkp-server01.sh.intel.com (HELO 1e3cc1889ffb) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 17 Nov 2024 01:16:14 -0800
-Received: from kbuild by 1e3cc1889ffb with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tCbO8-0001fH-24;
- Sun, 17 Nov 2024 09:16:12 +0000
-Date: Sun, 17 Nov 2024 17:15:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian =?unknown-8bit?B?S8O2bmln?= <ckoenig.leichtzumerken@gmail.com>, 
- kraxel@redhat.com, airlied@redhat.com, alexander.deucher@amd.com,
- zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- virtualization@lists.linux.dev, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 4/7] drm/vmwgfx: use the new drm_exec object
-Message-ID: <202411171611.9LEZwWSe-lkp@intel.com>
-References: <20241114153020.6209-5-christian.koenig@amd.com>
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0A710E0F3;
+ Sun, 17 Nov 2024 12:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+ s=201909; t=1731846322;
+ bh=tp2Q+8b3zGUBih3afpuzhAn88G4uKrpXKwQ9ivMWqHM=;
+ h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+ b=mTU1+u6copmZDAjfqnXWv+2ujIPjQ3JtoGu9so550WGMXDTKHgPRUtKWL5WTQKacA
+ ukYIXyZnvXaIaM7phYyg2ffevuNcZwkVM+fGzA0yJe4hA6ivVJfsyMN2k5es56Dca2
+ xnyEpYxwi2vRkSTSXt4SDnE54vHeCtrhpgtS0p+MhXC1a/iPqUZ6noNUE4xD/tX6x3
+ 9xyLmagErBzssEeKDZj2zkr4owFCFT2YctuTq6qJ9KGCJplX90TRwhVHol5EujIAFV
+ JLHuHIFQhKPYuj26daIFU9Gqj0sP+YYyQFfmqJ5wJevMLVh4tXn5ub20TQGEUboHP9
+ 4WeeB6bi4EbDw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Xrqhp5Zp2z4xf5;
+ Sun, 17 Nov 2024 23:25:14 +1100 (AEDT)
+From: Michael Ellerman <patch-notifications@ellerman.id.au>
+To: linux-gpio@vger.kernel.org, Julia Lawall <Julia.Lawall@inria.fr>
+Cc: kernel-janitors@vger.kernel.org, audit@vger.kernel.org,
+ linux-mtd@lists.infradead.org, Zhihao Cheng <chengzhihao1@huawei.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-usb@vger.kernel.org, linux-mm@kvack.org, maple-tree@lists.infradead.org,
+ alsa-devel@alsa-project.org, Sanyog Kale <sanyog.r.kale@intel.com>,
+ Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, dccp@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, Jan Kara <jack@suse.cz>,
+ drbd-dev@lists.linbit.com, linux-sound@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ nvdimm@lists.linux.dev, linux-leds@vger.kernel.org,
+ Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>,
+ linuxppc-dev@lists.ozlabs.org, tipc-discussion@lists.sourceforge.
+ net, Robin Murphy <robin.murphy@arm.com>, iommu@lists.linux.dev,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ linux-trace-kernel@vger.kernel.org, Neil Brown <neilb@suse.de>,
+ Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
+ Tom Talpey <tom@talpey.com>, linux-nfs@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-wireless@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org
+In-Reply-To: <20240930112121.95324-1-Julia.Lawall@inria.fr>
+References: <20240930112121.95324-1-Julia.Lawall@inria.fr>
+Subject: Re: (subset) [PATCH 00/35] Reorganize kerneldoc parameter names
+Message-Id: <173184539760.890800.14513086226459117952.b4-ty@ellerman.id.au>
+Date: Sun, 17 Nov 2024 23:09:57 +1100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241114153020.6209-5-christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 18 Nov 2024 08:41:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,58 +79,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Christian,
+On Mon, 30 Sep 2024 13:20:46 +0200, Julia Lawall wrote:
+> Reorganize kerneldoc parameter names to match the parameter
+> order in the function header.
+> 
+> The misordered cases were identified using the following
+> Coccinelle semantic patch:
+> 
+> // <smpl>
+> @initialize:ocaml@
+> @@
+> 
+> [...]
 
-kernel test robot noticed the following build warnings:
+Applied to powerpc/next.
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on drm/drm-next drm-exynos/exynos-drm-next linus/master drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip v6.12-rc7 next-20241115]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[11/35] powerpc/ps3: Reorganize kerneldoc parameter names
+        https://git.kernel.org/powerpc/c/276e036e5844116e563fa90f676c625bb742cc57
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/drm-qxl-switch-to-using-drm_exec-v2/20241115-014610
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20241114153020.6209-5-christian.koenig%40amd.com
-patch subject: [PATCH 4/7] drm/vmwgfx: use the new drm_exec object
-config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20241117/202411171611.9LEZwWSe-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241117/202411171611.9LEZwWSe-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411171611.9LEZwWSe-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/vmwgfx/vmwgfx_validation.c:861: warning: Function parameter or struct member 'fence' not described in 'vmw_validation_bo_fence'
-
-
-vim +861 drivers/gpu/drm/vmwgfx/vmwgfx_validation.c
-
-   850	
-   851	/**
-   852	 * vmw_validation_bo_fence - Unreserve and fence buffer objects registered
-   853	 * with a validation context
-   854	 * @ctx: The validation context
-   855	 *
-   856	 * This function unreserves the buffer objects previously reserved using
-   857	 * vmw_validation_bo_reserve, and fences them with a fence object.
-   858	 */
-   859	void vmw_validation_bo_fence(struct vmw_validation_context *ctx,
-   860				     struct vmw_fence_obj *fence)
- > 861	{
-   862		struct vmw_validation_bo_node *entry;
-   863	
-   864		list_for_each_entry(entry, &ctx->bo_list, base.head) {
-   865			dma_resv_add_fence(entry->base.bo->base.resv, &fence->base,
-   866					   DMA_RESV_USAGE_READ);
-   867		}
-   868		drm_exec_fini(&ctx->exec);
-   869	}
-   870	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+cheers
