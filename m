@@ -2,69 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E36239D0B12
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 Nov 2024 09:41:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8149D04E9
+	for <lists+amd-gfx@lfdr.de>; Sun, 17 Nov 2024 18:54:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C54A10E44B;
-	Mon, 18 Nov 2024 08:41:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8335310E13D;
+	Sun, 17 Nov 2024 17:54:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="mTU1+u6c";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oMuUwbqM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0A710E0F3;
- Sun, 17 Nov 2024 12:25:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
- s=201909; t=1731846322;
- bh=tp2Q+8b3zGUBih3afpuzhAn88G4uKrpXKwQ9ivMWqHM=;
- h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
- b=mTU1+u6copmZDAjfqnXWv+2ujIPjQ3JtoGu9so550WGMXDTKHgPRUtKWL5WTQKacA
- ukYIXyZnvXaIaM7phYyg2ffevuNcZwkVM+fGzA0yJe4hA6ivVJfsyMN2k5es56Dca2
- xnyEpYxwi2vRkSTSXt4SDnE54vHeCtrhpgtS0p+MhXC1a/iPqUZ6noNUE4xD/tX6x3
- 9xyLmagErBzssEeKDZj2zkr4owFCFT2YctuTq6qJ9KGCJplX90TRwhVHol5EujIAFV
- JLHuHIFQhKPYuj26daIFU9Gqj0sP+YYyQFfmqJ5wJevMLVh4tXn5ub20TQGEUboHP9
- 4WeeB6bi4EbDw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4Xrqhp5Zp2z4xf5;
- Sun, 17 Nov 2024 23:25:14 +1100 (AEDT)
-From: Michael Ellerman <patch-notifications@ellerman.id.au>
-To: linux-gpio@vger.kernel.org, Julia Lawall <Julia.Lawall@inria.fr>
-Cc: kernel-janitors@vger.kernel.org, audit@vger.kernel.org,
- linux-mtd@lists.infradead.org, Zhihao Cheng <chengzhihao1@huawei.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-usb@vger.kernel.org, linux-mm@kvack.org, maple-tree@lists.infradead.org,
- alsa-devel@alsa-project.org, Sanyog Kale <sanyog.r.kale@intel.com>,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, dccp@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, Jan Kara <jack@suse.cz>,
- drbd-dev@lists.linbit.com, linux-sound@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- nvdimm@lists.linux.dev, linux-leds@vger.kernel.org,
- Nicholas Piggin <npiggin@gmail.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>,
- linuxppc-dev@lists.ozlabs.org, tipc-discussion@lists.sourceforge.
- net, Robin Murphy <robin.murphy@arm.com>, iommu@lists.linux.dev,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- linux-trace-kernel@vger.kernel.org, Neil Brown <neilb@suse.de>,
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Tom Talpey <tom@talpey.com>, linux-nfs@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-wireless@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org
-In-Reply-To: <20240930112121.95324-1-Julia.Lawall@inria.fr>
-References: <20240930112121.95324-1-Julia.Lawall@inria.fr>
-Subject: Re: (subset) [PATCH 00/35] Reorganize kerneldoc parameter names
-Message-Id: <173184539760.890800.14513086226459117952.b4-ty@ellerman.id.au>
-Date: Sun, 17 Nov 2024 23:09:57 +1100
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2064.outbound.protection.outlook.com [40.107.244.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD94710E13D
+ for <amd-gfx@lists.freedesktop.org>; Sun, 17 Nov 2024 17:54:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TfUoWKBJNRl0rLr6EX70EtQBW7vgAVY0+XgFFIFj+5R0RkfbkT31rMZFSAktjupi6f2rYPqJ3e/cM9vE9cehKE7rL860thYg4Pe8GnXWEiAEpAdR8dcdU0S45Qb/ejJFhEF7d6suK6ZuBlnJbTyMeyIP/xsIUnk1vSutrp7J1TNXbu12kksEyMiqIg3xDXd6vilcDX8jLyrJQq/mjgXr+8qVD+nAzOuR/gxEoeBSc/VDNwNSOrR5p21ry+q2oKp+XTTFb8nJZZneinlMkrSPyhQSAQVWEXRekCV4P1LDRmaJYIbb7yS+V+Fb18R/VDkN3Oqodqcks+fdnVwFIll9bA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xsa+qUJzeEokZ4EbuHL8Ccgb2CK36s7kjjrI89rhRZg=;
+ b=XukzIQn2QhLVfq2AxcSmBU1m5pP+FodQN88l3PZtKBl/uc1VqpmnJ+jWaIPEHelJt/mAtxaO59lAOOO1UpD1My+EX+mortydLnKYfl1bkPTIe3IEDURFMMeRVq3e851mB9uqmBsJKGXurVaTmSPTIiuPYWAid0nyy9Mkluecv1F8/n1/ZTTbRTOSRABlBtM0PENR4KxXGkODuvCqrNfN284xa3B6lBZRnjWEGPjae5qQVf7nii/Khdqe8nqQAcVVfbKKKfTn/USMZ1m6ULcIb792sf+e29qlzcxfp4Dc/5xRKt0YvFhEbdrGP6b9bCjzWhoOHFPU1aaL0/FtwpSRgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 165.204.84.12) smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=amd.com; dmarc=fail (p=quarantine sp=quarantine pct=100)
+ action=quarantine header.from=amd.com; dkim=none (message not signed);
+ arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xsa+qUJzeEokZ4EbuHL8Ccgb2CK36s7kjjrI89rhRZg=;
+ b=oMuUwbqMjholwzbxZpjp4QyvkBbPSDguU1X5Co+d2rWIjgAHbyJB7Tm1clu+f1Uvqq5mUfRuRSwK8B46SwVVyLpw/bksziU1Z+BoA0DChzP1ZVZk17SImmOydpoW0Q/ZgI2Pg3T9un5zUwcCVFCmNrjZ3mmMH77thOsjlYU6bKw=
+Received: from PH8PR21CA0002.namprd21.prod.outlook.com (2603:10b6:510:2ce::16)
+ by DM4PR12MB6448.namprd12.prod.outlook.com (2603:10b6:8:8a::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8158.22; Sun, 17 Nov 2024 17:54:26 +0000
+Received: from CY4PEPF0000EE3F.namprd03.prod.outlook.com
+ (2603:10b6:510:2ce:cafe::8) by PH8PR21CA0002.outlook.office365.com
+ (2603:10b6:510:2ce::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.12 via Frontend
+ Transport; Sun, 17 Nov 2024 17:54:25 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 165.204.84.12) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=amd.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ amd.com discourages use of 165.204.84.12 as permitted sender)
+Received: from SATLEXMB04.amd.com (165.204.84.12) by
+ CY4PEPF0000EE3F.mail.protection.outlook.com (10.167.242.17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8158.14 via Frontend Transport; Sun, 17 Nov 2024 17:54:25 +0000
+Received: from mkm-d10-yfeng11.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 17 Nov
+ 2024 11:53:06 -0600
+From: Yuan Feng <yfeng1@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Aric Cyr <aric.cyr@amd.com>, Alex Hung <alex.hung@amd.com>, Hamza Mahfooz
+ <hamza.mahfooz@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>
+Subject: [PATCH] drm/amd/display: 3.2.310
+Date: Sun, 17 Nov 2024 12:52:43 -0500
+Message-ID: <20241117175243.2239-1-yfeng1@amd.com>
+X-Mailer: git-send-email 2.39.1.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 18 Nov 2024 08:41:10 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3F:EE_|DM4PR12MB6448:EE_
+X-MS-Office365-Filtering-Correlation-Id: 39ccf624-da72-44bf-aa8f-08dd0730e00f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oFRtQ28PDuQk+PCpuV7D/7jDULPY1FLtOvNNAnQvdr7SXT+ttbQzT8/Z294J?=
+ =?us-ascii?Q?aqJ4kyi/36R9biEivzubSID/l/lVF0fBBgv2NSUjq7v+KGaWum73QV3bnxOx?=
+ =?us-ascii?Q?pokSlDupilqs+hNSK3BpVDt54zkRBIIMph3MXhPgfZaAK5RP6d8vG+D+uLl4?=
+ =?us-ascii?Q?RarikdgUbkOKwz7xoGwaWKSAhZpC/e0iIwAss9RY2Qn8QNEEJ/CIiUM0VSaI?=
+ =?us-ascii?Q?VqDjpJGc6gGj9llFdU88PEcnVj2X1PnquekVj4V5iYPy8eJdaVF+TmJxRWcM?=
+ =?us-ascii?Q?yQdJZ8Mc7e4btg4PVMbgQPEKEYA+n30JjDfhSVO3Spk1xaQpxYf3xxa79PpE?=
+ =?us-ascii?Q?vswN5ZonAtHj1sKY2XzDb+fuXuaex0E4G1XYX4eeV94gtCIUfYaCvHCmhDaA?=
+ =?us-ascii?Q?3g8u+93WMjYeItktAzZMm08/tpKOj2MdNKKHVPqiWVu9+YcXGCgDMrgqxdio?=
+ =?us-ascii?Q?GC14Y2uT/YLOzS06hNcDRz4Tl/RL1etrzyPyzE8KzE9BM6/xTidiOE3hKGRM?=
+ =?us-ascii?Q?+SU46q3zURrOV95d+x/TCwDF3yYQqrSPegJzGFMcTJchn/Xbj4GNFT0y6fbJ?=
+ =?us-ascii?Q?pKyhFagQZsA/2CNXumNdDF9xqn9XgHGq2kvmptcGbnSUgepw5c0Z4ieJaM0F?=
+ =?us-ascii?Q?invQVRI3SYKS8Qv3kCaVbP6YYJHUBYbm2z4KEqAmSoM453zljM7t/RrCGAWG?=
+ =?us-ascii?Q?07xoeTYUHyspn2mxwgI4t9TgXpInUxXsa/OY4Kv6WxHvjSZCVSjlzH6QlEf8?=
+ =?us-ascii?Q?z29FZY/0C3fOJMnaLuzQ3htMzuA6fmaSbZWTLFbl6EzRwxa6iAOii+PIbIdk?=
+ =?us-ascii?Q?2M9tj3ZaEHiW0YHs/oDkrLHu3o3T0SntWbdhoumZi/nEceaI9tP2fOfwOjdg?=
+ =?us-ascii?Q?Bsxn+U4JsWe08a6BSmdbsEwP1bKC1hR121exwc+O+/gDLoQlPRB7jTkgg1yd?=
+ =?us-ascii?Q?AeSy0EFSOU2ERTJDJ309FFmu6YRo6U3zOUujimVITb8h9LCST7xwtAmSdjGf?=
+ =?us-ascii?Q?spyaiDM8I4sDFF5LHvadoXoYh+sEJAdXaUJHxGdJ0HS8ASmlZTcEYJCDtA3y?=
+ =?us-ascii?Q?IX3uL/zO99QUKTTwPx96wq3ntnfQ3hPX3q5/ai7rnFqHHQpw7ttrupRBif6B?=
+ =?us-ascii?Q?t968Foyj9X/3BZTr5kwUryO0dAgCvKwoM95vRHPDnBZlEgN+b/oDEwZPnMQN?=
+ =?us-ascii?Q?hgsqKOJfOPpNa4K9jv2l/Qi2XBJUh58irSdwUeX/nansVN83KC6UK+NiwNN4?=
+ =?us-ascii?Q?gC+uF7QTEI2JsW5gBycGAJNG4CiInq91GHn+EPPumRAcQkk4BFcAVfqNmOEV?=
+ =?us-ascii?Q?QDQWI/YR55CTZzbhII9P+a2joPzY4WYVbZkpVBRRsxjoDaVLf4MU4qEIXRCG?=
+ =?us-ascii?Q?ydyUlVd51KlbV1xgVsNm4elel87hzF7R0HZPo7A2iYOgbxamWg=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.12; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:atlvpn-bp.amd.com; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2024 17:54:25.3707 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39ccf624-da72-44bf-aa8f-08dd0730e00f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.12];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3F.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6448
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,22 +129,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Sep 2024 13:20:46 +0200, Julia Lawall wrote:
-> Reorganize kerneldoc parameter names to match the parameter
-> order in the function header.
-> 
-> The misordered cases were identified using the following
-> Coccinelle semantic patch:
-> 
-> // <smpl>
-> @initialize:ocaml@
-> @@
-> 
-> [...]
+From: Aric Cyr <aric.cyr@amd.com>
 
-Applied to powerpc/next.
+This version brings along the following:
 
-[11/35] powerpc/ps3: Reorganize kerneldoc parameter names
-        https://git.kernel.org/powerpc/c/276e036e5844116e563fa90f676c625bb742cc57
+- DC core fixes
+- DCN35 fix
+- DCN4+ fixes
+- DML2 fix
+- New SPL features
 
-cheers
+Reviewed-by: Alex Hung <alex.hung@amd.com>
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index e143fab00a86..104051935884 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -55,7 +55,7 @@ struct aux_payload;
+ struct set_config_cmd_payload;
+ struct dmub_notification;
+ 
+-#define DC_VER "3.2.309"
++#define DC_VER "3.2.310"
+ 
+ #define MAX_SURFACES 3
+ #define MAX_PLANES 6
+-- 
+2.39.1.windows.1
+
