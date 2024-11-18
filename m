@@ -2,55 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B576E9D2178
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Nov 2024 09:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8849D13A7
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 Nov 2024 15:52:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1DE210E5E4;
-	Tue, 19 Nov 2024 08:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C65310E4FE;
+	Mon, 18 Nov 2024 14:52:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Q6+vsu2O";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CIMfnFNL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB40010E1C1;
- Mon, 18 Nov 2024 14:47:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=mDCJIOza/IYsiEyD5hk1kWh3Loos8kCt5nJxdAil/eg=; b=Q6+vsu2OlijVpRi0yakZnPnQUB
- KROQ2/IIOcOq8Cs4csP2NYd6qmgceLETKtZK6KM+NfA4PmHOaIz7FPK/tWYupMGF8RD7rsV4/grK7
- pblU1hOAmtwMiTeSmxMsQrZF7l9kvzYKU0rfgR7BYUCRHfIyC774NmFg2LzBYrB/Yg6U6fibNiJzF
- gPN9RVoATI32SigUgP/RUWP/kgBZcO7Iu9PgTKqPmizyVEFlifMMq6oJu53NtdttiztilkSbABTtx
- oTR+yJIQgY8viknucMIXypnxmHMfK8HaQU/1CBPIOXQqc5yt4WKCw86LBQmatLw/pfm+s9Ur/k7iS
- ihfwpmFw==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tD32I-008YP0-Pd; Mon, 18 Nov 2024 15:47:30 +0100
-Message-ID: <73032ce8-ab60-4af3-befc-f24dc57e28fb@igalia.com>
-Date: Mon, 18 Nov 2024 14:47:30 +0000
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
+ [209.85.214.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BFD810E4F8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Nov 2024 14:52:35 +0000 (UTC)
+Received: by mail-pl1-f174.google.com with SMTP id
+ d9443c01a7336-20ca17bf0d9so2321395ad.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Nov 2024 06:52:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1731941555; x=1732546355; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+GQicecLKVFkA4REsB8PO0yweiugf1pKcEalo34PjyM=;
+ b=CIMfnFNLMEU8ahggj5Qd3kOQhIWndZcJSMhpqkM2l22+BkqcyfOIaLZec0V5lLuGcm
+ WsR4PANy0c0lhe+SCG/dDCcEVawc6slK2h6K5A/fdPWkJHPvXrq7cALw5/0GiRaj7CzR
+ 1uC+l3UpuMkg6sSuRjjieJD9qjVcMCBKT1M2HifrgbaRBnUfwTJtU6yvyozxIDvAFFom
+ Nk19S1ylS6sQPB0sXsdcxmCwvO95d0C95/KPuhni9zrKf8IKIyAIeY0+KAQKpZlwiwHe
+ Esw735ehvoAR2AtRJpJdvF03KUCqB66evRVzrOj7eNa2DwnMRGwn3Rg7wX/gXbPqp8Ni
+ p8lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1731941555; x=1732546355;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=+GQicecLKVFkA4REsB8PO0yweiugf1pKcEalo34PjyM=;
+ b=WwTZ0D5AkEqKz3V2Dbi0dLqS5vPZVjJ3tUy+1FdjtojJ2p+8kC5U8/yOINwj36H2er
+ TfvE4bF94bu85CgRQPn2+CmacT7eeYMgz6qmEEEjwzr0A3uBhm0EHzMqdsb7hJrbICDo
+ wT6rtJ8xLvY2yuIidR04JxL7VqrqpUf4cNQzEVxEnJkPbk/JYlTAPnBZQhh1T9hx5aTR
+ p0M6cLMybGEDCkOxwhg9fYbYXp0eDI9GkZCWf6mpgtfZm8G9HVmhWTYvN2tcszqrWIKy
+ zw9VPQtT+97Q19A1P/P4hcq5aeYiiTO3ZWAv2tuQ+5jSwRqsWf0Ps5/IOmy3UkkZbfyq
+ 0mrA==
+X-Gm-Message-State: AOJu0Yx+I4n9cDDJ/EhRdL6rM97uxnH5GO8eln/jwC8hZ7GXji81CCNp
+ cVIlQZ7cS3Mw1p1WCj14HyvryuRaZhUHAAihZM6kh/NwxHoYySnUJT8JIRG79ZMOOhBfTyDheS6
+ FNVbRhugwrvqFec3Go8FQI2tqXTM=
+X-Google-Smtp-Source: AGHT+IGlUrkuIXqjmFtjKiorAP136PdCn8U4hJWzA2KzQHxL7gow9cvZtQW6mA5F/pD20mXzeFVr/ScEPA1yYLc4CnE=
+X-Received: by 2002:a17:903:268c:b0:211:ee14:11bf with SMTP id
+ d9443c01a7336-211ee141701mr49076505ad.12.1731941554942; Mon, 18 Nov 2024
+ 06:52:34 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/5] Documentation/gpu: Clarify drm memory stats
- definition
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
- christian.koenig@amd.com
-Cc: Alexander.Deucher@amd.com, dri-devel@lists.freedesktop.org
-References: <20241116044452.5925-1-Yunxiang.Li@amd.com>
- <20241116044452.5925-4-Yunxiang.Li@amd.com>
- <93826dcc-82de-4fb5-8574-7e6cb8355da4@gmail.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <93826dcc-82de-4fb5-8574-7e6cb8355da4@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 19 Nov 2024 08:19:19 +0000
+References: <20241118080114.428845-1-kenneth.feng@amd.com>
+In-Reply-To: <20241118080114.428845-1-kenneth.feng@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 18 Nov 2024 09:52:23 -0500
+Message-ID: <CADnq5_Mixd5HbmOQSb=79GGfj91Ar43NQnxFS5FwMrN=N8aMgg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/pm: disable pcie speed switching on Intel
+ platform for smu v14.0.2/3
+To: Kenneth Feng <kenneth.feng@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, kevinyang.wang@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,129 +76,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Nov 18, 2024 at 3:04=E2=80=AFAM Kenneth Feng <kenneth.feng@amd.com>=
+ wrote:
+>
+> disable pcie speed switching on Intel platform for smu v14.0.2/3
+> based on Intel's requirement.
+>
+> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
 
-On 18/11/2024 14:03, Christian König wrote:
-> Am 16.11.24 um 05:44 schrieb Yunxiang Li:
->> Define how to handle buffers with multiple possible placement so we
->> don't get incompatible implementations. Callout the resident requirement
->> for drm-purgeable- explicitly. Remove the requirement for there to be
->> only drm-memory- or only drm-resident-, it's not what's implemented and
->> having both is better for back-compat. Also re-order the paragraphs to
->> flow better.
->>
->> Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
->> CC: dri-devel@lists.freedesktop.org
->> ---
->>   Documentation/gpu/drm-usage-stats.rst | 36 ++++++++++++---------------
->>   1 file changed, 16 insertions(+), 20 deletions(-)
->>
->> diff --git a/Documentation/gpu/drm-usage-stats.rst 
->> b/Documentation/gpu/drm-usage-stats.rst
->> index ff964c707754a..973663f91a292 100644
->> --- a/Documentation/gpu/drm-usage-stats.rst
->> +++ b/Documentation/gpu/drm-usage-stats.rst
->> @@ -140,13 +140,9 @@ both.
->>   Memory
->>   ^^^^^^
->> -- drm-memory-<region>: <uint> [KiB|MiB]
->> -
->> -Each possible memory type which can be used to store buffer objects 
->> by the
->> -GPU in question shall be given a stable and unique name to be 
->> returned as the
->> -string here.
->> -
->> -The region name "memory" is reserved to refer to normal system memory.
->> +Each possible memory type which can be used to store buffer objects 
->> by the GPU
->> +in question shall be given a stable and unique name to be used as the 
->> "<region>"
->> +string. The region name "memory" is reserved to refer to normal 
->> system memory.
-> 
-> That looks like you squashed the "The region name..." sentence at the 
-> end. Is that really helpful and intended?
-> 
->>   Value shall reflect the amount of storage currently consumed by the 
->> buffer
->>   objects belong to this client, in the respective memory region.
->> @@ -154,31 +150,27 @@ objects belong to this client, in the respective 
->> memory region.
->>   Default unit shall be bytes with optional unit specifiers of 'KiB' 
->> or 'MiB'
->>   indicating kibi- or mebi-bytes.
->> -This key is deprecated and is an alias for drm-resident-<region>. 
->> Only one of
->> -the two should be present in the output.
->> +- drm-total-<region>: <uint> [KiB|MiB]
->> +
->> +The total size of all created buffers including shared and private 
->> memory. The
-> 
-> Maybe write "requested" instead of "created" since without a backing 
-> store it is questionable if the BO is really "created".
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Hmm is the term "requested" in colloquial use either by end users or 
-user space developers in the context of buffer objects?
-
-If we think the sentence needs to be improved upon, maybe something 
-like: "The total size of all buffers, either created by user space APIs, 
-or internally by the driver, including both shared and private buffers."
-
-?
-
-Regards,
-
-Tvrtko
-
-> 
-> Apart from those two nit picks it looks good to me,
-> Christian.
-> 
->> +backing store for the buffers does not have to be currently 
->> instantiated to
->> +count under this category. To avoid double counting, if a buffer 
->> falls under
->> +multiple regions, the implementation should pick only one of the 
->> regions, and do
->> +so in a consistent manner.
->>   - drm-shared-<region>: <uint> [KiB|MiB]
->>   The total size of buffers that are shared with another file (e.g., 
->> have more
->> -than a single handle).
->> -
->> -- drm-total-<region>: <uint> [KiB|MiB]
->> -
->> -The total size of all created buffers including shared and private 
->> memory. The
->> -backing store for the buffers does not have to be currently 
->> instantiated to be
->> -counted under this category.
->> +than a single handle). Same caveat as drm-total- applies.
->>   - drm-resident-<region>: <uint> [KiB|MiB]
->>   The total size of buffers that are resident (have their backing 
->> store present or
->>   instantiated) in the specified region.
->> -This is an alias for drm-memory-<region> and only one of the two 
->> should be
->> -present in the output.
->> -
->>   - drm-purgeable-<region>: <uint> [KiB|MiB]
->> -The total size of buffers that are purgeable.
->> +The total size of buffers that are resident and purgeable.
->>   For example drivers which implement a form of 'madvise' like 
->> functionality can
->>   here count buffers which have instantiated backing store, but have 
->> been marked
->> @@ -192,6 +184,10 @@ One practical example of this can be presence of 
->> unsignaled fences in an GEM
->>   buffer reservation object. Therefore the active category is a subset of
->>   resident.
->> +- drm-memory-<region>: <uint> [KiB|MiB]
->> +
->> +This key is deprecated and is an alias for drm-resident-<region> if 
->> present.
->> +
->>   Implementation Details
->>   ======================
-> 
+> ---
+>  drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drive=
+rs/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> index 59b369eff30f..337d3312ef30 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+> @@ -1472,6 +1472,14 @@ static int smu_v14_0_2_update_pcie_parameters(stru=
+ct smu_context *smu,
+>                 if (pcie_table->pcie_lane[i] > pcie_width_cap)
+>                         pcie_table->pcie_lane[i] =3D pcie_width_cap;
+>
+> +               if (i < pcie_table->num_of_link_levels - 1 &&
+> +                       !(smu->adev->pm.pp_feature & PP_PCIE_DPM_MASK)) {
+> +                       if (pcie_table->pcie_gen[i] < pcie_gen_cap)
+> +                               pcie_table->pcie_gen[i] =3D pcie_gen_cap;
+> +                       if (pcie_table->pcie_lane[i] < pcie_width_cap)
+> +                               pcie_table->pcie_lane[i] =3D pcie_width_c=
+ap;
+> +               }
+> +
+>                 smu_pcie_arg =3D i << 16;
+>                 smu_pcie_arg |=3D pcie_table->pcie_gen[i] << 8;
+>                 smu_pcie_arg |=3D pcie_table->pcie_lane[i];
+> --
+> 2.34.1
+>
