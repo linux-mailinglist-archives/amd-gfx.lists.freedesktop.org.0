@@ -2,66 +2,163 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 857659D13AF
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 Nov 2024 15:53:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFCA49D1441
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 Nov 2024 16:17:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97ED010E505;
-	Mon, 18 Nov 2024 14:53:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF99810E523;
+	Mon, 18 Nov 2024 15:17:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hwah4JkR";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="X/qeDhyr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 605D910E4F8;
- Mon, 18 Nov 2024 14:53:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731941606; x=1763477606;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=1s7Fh4HxKXv3JE+rDne90uVtk7RGKEPj5xN45HrpX+A=;
- b=hwah4JkRpI6REZs7LvFlZHxD3nsgo6HNbaOqodZ312CmsYp10yLvORl9
- ZCvSEhF3HeHnSrwyYMWr8tQIMqD98uVFW4xd00x2NlL0J72xnHc3UIPmB
- msUJvNWlLtqAM0KsejAOapJG4+Nb5CWnhoOnNOyBBsRnEwcP0KyMj9LAg
- 0YAeyqTaQj+o1snVW2yVytSUdwf6cL0SBE+V4m6Sh0kaY8HJ7appNqj6i
- y0GjQrd6yfT4lyM5xjDlNQcX9vjIrSSr7bjxyFlcuKc/LFWrol4Urst4a
- gTR7oqhn4htcBCVRB7VMOjC0GCyzu/zmZ2rCViMgJqjZB56/9f4YoUBlq w==;
-X-CSE-ConnectionGUID: d24q6GHnTWOt1aPS95UVKQ==
-X-CSE-MsgGUID: TwFaokMDQK+qj2IIFeXwvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="49335331"
-X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="49335331"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 06:53:26 -0800
-X-CSE-ConnectionGUID: aU28ITtOR7OLXrx6dcwhiA==
-X-CSE-MsgGUID: 2wKyjTcwTLO8gR7vknmBbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,164,1728975600"; d="scan'208";a="90044090"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2024 06:53:20 -0800
-Message-ID: <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
-Date: Mon, 18 Nov 2024 20:26:37 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
-To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com, andrealmeid@igalia.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20241115050733.806934-1-raag.jadav@intel.com>
- <20241115050733.806934-2-raag.jadav@intel.com>
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2057.outbound.protection.outlook.com [40.107.100.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C987010E522;
+ Mon, 18 Nov 2024 15:17:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dUZL1BSS8vdqxHK2bDWln/cpjlBzjZ2w3dscijo/tGT2CAkVdr5rg9YmRnyNSIHHbuseCN/YS6ryyUbygMUlEiqNpBoUqAtf8ZMGYr+2+/mbyGjmExGNKkn9iW/oeaszV27IGAgeIZ7KwCiF4bXkkdcgYpggjLVSp5GMNABXE+nyLe+XY4wU5APnAbZYv6LiafFntXneJ/KGLqGzlno8k5oWYd9HsS0CRoPoejKCnDFqbGahloqxRYerO7bCZ5ztxoIQHIejxTyh4cgVpUMQJeiWnAZDsUnnkLN1Ky2Lysgeec8Wpjv7v06UnU+mhnFgyEFkSwhLcGDJO2OtPUJd5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a1W2+Y796R2PP1KDFRh2B8/iu48m6y2uZfsxof7Eo74=;
+ b=ytHBd7u4brJPRGvvDiubvoDBrtlJjZRQESuiZe0KXPnxNqnVaPE7afUhlQQjfHaa6AAlMecHAkJ6ZhoXqM+G/tM6caJZe00OWJaNtzRS2xoXgyxYvMzfiTjxusRu0d+QJwSqhp5bH1ES3YaAFEnFmrzA+wqyCfGbM4jQnlvCC9B9s348IsmXI4eC6vpzRZQti5xR6EcnjaZjfPHT6PeYqpbOz+W2QJqHv+u7GpoVqXoSxJjeoDTMtBgx/LI7dMFiJHh72S0bxOYcB++dvwuJRv30G6lxR7aay9BdYs7wVXm8uAOM3prqjVp1jWrRzjKzSMRlhOCS0fkW8sKcTmGIEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a1W2+Y796R2PP1KDFRh2B8/iu48m6y2uZfsxof7Eo74=;
+ b=X/qeDhyrxuQlB5Hr7L540T9IRFBkGEscoT8p6Y5Y4bCi9xgvMNNp6mx+bspDFoZGrGLSJDrMkdRVysC2AZuxuIxqke9QD/PWWVgxpZFxW5scKmgC7U6HVT/FXkn1JUhVChlFW+cdT9mPyF8pSZmPHvUSJWRiKb5XkGWO9o24EYE=
+Received: from SA1PR12MB8599.namprd12.prod.outlook.com (2603:10b6:806:254::7)
+ by SA1PR12MB7198.namprd12.prod.outlook.com (2603:10b6:806:2bf::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.22; Mon, 18 Nov
+ 2024 15:17:08 +0000
+Received: from SA1PR12MB8599.namprd12.prod.outlook.com
+ ([fe80::25da:4b98:9743:616b]) by SA1PR12MB8599.namprd12.prod.outlook.com
+ ([fe80::25da:4b98:9743:616b%5]) with mapi id 15.20.8137.027; Mon, 18 Nov 2024
+ 15:17:08 +0000
+From: "Li, Yunxiang (Teddy)" <Yunxiang.Li@amd.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Rob
+ Clark <robdclark@gmail.com>
+Subject: RE: [PATCH v7 2/4] drm: make drm-active- stats optional
+Thread-Topic: [PATCH v7 2/4] drm: make drm-active- stats optional
+Thread-Index: AQHbM4clYcRVPZqy5EGHckfjBQhXvLKx4jgAgAtPDvA=
+Date: Mon, 18 Nov 2024 15:17:07 +0000
+Message-ID: <SA1PR12MB8599BD231D856C89DE4207BAED272@SA1PR12MB8599.namprd12.prod.outlook.com>
+References: <20241110154152.592-1-Yunxiang.Li@amd.com>
+ <20241110154152.592-3-Yunxiang.Li@amd.com>
+ <3706dc4f-db98-45e0-b870-f10368ab1ab9@igalia.com>
+In-Reply-To: <3706dc4f-db98-45e0-b870-f10368ab1ab9@igalia.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20241115050733.806934-2-raag.jadav@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ActionId=3491aec8-9873-4cae-ae8d-e6e881f069da;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=0;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=true;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open Source;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2024-11-18T15:11:45Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA1PR12MB8599:EE_|SA1PR12MB7198:EE_
+x-ms-office365-filtering-correlation-id: eb94e494-5022-4f8a-99c5-08dd07e41141
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?cUFCekh4eHFLT2ZuZGxJWDl3U3A0Nm54TzAxVUZwYmdJaFBIQlVhc0w1Mnp2?=
+ =?utf-8?B?YUEwdGU5NEFNajRicm8vQkg4dDUwYXJRN3pUQk1wcVdDTjNwNTFwWWphNGRB?=
+ =?utf-8?B?ZWd4MzVYTzFiU1pHVjkzSFBjLzdKMW5RaFRsMXphL2FsWFpXS1R2NVhiWm0r?=
+ =?utf-8?B?TjNvcHZCZ3RlZ1RXNkc0WmM2V1l0WmdJWVo3UzI5b2p5b1B5OHhQQjJSZURn?=
+ =?utf-8?B?cE1TN2F2MU5YNk80S1BGWDNJZGV6OFdnR0E3dlVkenRGdEVQN3NDWFhtV09Z?=
+ =?utf-8?B?VkFXRmIxRDIxWEtWTmFpSUlDTHYxYW5TZEU3N001V3NFWlU0YzIveHlKVGE3?=
+ =?utf-8?B?WUdQbExEck5pc0ZnNWdGR290Z2tCa3FPUGh2R1BOK3dyWEhJcGxKajZhR3c1?=
+ =?utf-8?B?dE5TTHNaMkp4NHZaRjJqSGdnWXFuUVdSdk5XbjhmN1RGejNQejZ2NE5uTHlw?=
+ =?utf-8?B?cmc2YkhEOS9KRCs0OXhBRUM2MjFJaFU1N1lYYlF2dURiQ2ZwU29ONkFQeHFH?=
+ =?utf-8?B?KzZ2emVSakRUMXJGZE56YUNCVzYrYXc1R3A1aHU1T0RSVEJDYkkwTG9yUFEx?=
+ =?utf-8?B?NFRNYlhpcUVvZmc3Lzk1VDVwZ0VFZlg1M1VkUlFyeXc2bDcvZEcxTkF5Y05t?=
+ =?utf-8?B?UWF4YkluV2cvZXRaYlBGOVQ2UzJYaE5qU0dhT3dJQXM3ZGhseStXMjVtby9y?=
+ =?utf-8?B?a1lidGxhY0c2cUFjWlZzZHdOVGU0aDdzQXdqQVNuSnRNNWY0S0FObThiejdi?=
+ =?utf-8?B?a0JhSnBxbW84WmxMTy9XV0lwSE5GVWkvMEg0MGVJSHZLVWc2TU9pbi8ybHd4?=
+ =?utf-8?B?VUJJbHRzV3lsL3M1b1I0YVlBQk1LdENRdDVuV2VKYnA3ckpjVllFbVB6Zm02?=
+ =?utf-8?B?R3Y0amtHZy8xRUVoUFdYM2ovdXNLVW5iMHVMd09jczhXQzJhQUxidHlraGgv?=
+ =?utf-8?B?ditwN01HYkFYTjgyejhWVWIrZFhhaEtMN0FxVmdFV1VQRzVHVFBwZVlTSlF2?=
+ =?utf-8?B?YzhiNWdKdWFSNnk2MHhNbWRtMm1zMUlEQkxmc3MrcXFaZDVFb0lsZ3RvTjdZ?=
+ =?utf-8?B?VFlaUjlpMkZkRWJVTVZjVWtrSTc3RlBkaWRML25Kd0ZTQUh2enRHUlQrNi9H?=
+ =?utf-8?B?djVLM3g4RldjR21SR2xhOUFXK2UwMVpEM25TLzByYVFpU2xoREV5T1Q3KzVi?=
+ =?utf-8?B?dzlydzh1MVV5cDZ4TjMzbkhjR0IxMUFHd0J0RHRtTmhMTjdtY3Yra0MyTk0v?=
+ =?utf-8?B?YXltM0huSUxJZmdXRFBBMmN5SFpTSHlSQzdrK21IN0FkcUFySUZVRnkxVU1r?=
+ =?utf-8?B?VXhXdEllZ29NNWhhZ2hRRGFWSE5XTlJaWXlFcS9qSWxOQVpPV2U2dFdLTWx2?=
+ =?utf-8?B?TVM0bm9nSFlnb1ZjSGdIZXE2bmhqS1dPZ3FuYnI5RWlaWW9Kd09uUHdhZ3lm?=
+ =?utf-8?B?WVdzMUVBZ0w5LzJqM0x4eEc1S3hOaWVJbXBBV2NTMnkxOTcwNVF1MmhtNDhw?=
+ =?utf-8?B?Y05lVmR5M0lncXB4Y0F0cVpDN3J4Rmxob3Ivcmozc0ZCZVNHVWtIMmdDNWpZ?=
+ =?utf-8?B?NDVtelFBMUR6dWZ5cHBvUm1vSVRBY2hqZFBHanRxZmVEOG4yVlJiSCtCMkU2?=
+ =?utf-8?B?Y0l0VVpPVEZ4WWxmWk9UZGJqeVFJaEVJM2x4eFNMZHZmWlZBWjgxaGZQcktM?=
+ =?utf-8?B?dmNlRXpkZUU2WlBVeC83bThMdWxCTnRTTEFEK3RQYjNwUzE0MjV0UDNLbDl6?=
+ =?utf-8?B?M2VtK0dzRk04eGpKVktYbk1YRnZsK2FpaVZwajZZdFdnbCtoMGZvSkhENWIx?=
+ =?utf-8?Q?rH8hkAx/F0QkHU5VpRah51jiLO0eQXwcZIl2c=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA1PR12MB8599.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OEt5MFBEWnVxYUlzYzFFVDU3djhCZ05jVlNxUHA4MkJBUlhRVi9TK0JQcTh6?=
+ =?utf-8?B?UWx6Sllsa2lrUnpZQ1QxWGFhTTM2ZUdHbVdBbG9ZR2hFOGJwSCtUU1B0ZDlD?=
+ =?utf-8?B?UGh0djhpeFNaY01jcldTWU9zcTdzUFhEUUp4eVJWN1VienpDWWZQSzBVR084?=
+ =?utf-8?B?RlNzd2M2RTEwMGpRWnRkbUl1WlFNUDFOdlVZdjhwRlVKaTBFa05NWmxVMlZr?=
+ =?utf-8?B?M0JTckVZY3Z2TytmY1hDUENPbXZDM0kvYk1MMFFaSlNvd1hQZHlwcjBwbGNy?=
+ =?utf-8?B?SUdmVGYvV0xrSzhxaWVhS29xdEw2WTJndlNtcGRnRFVoRUg4L2JxNHFnSlVB?=
+ =?utf-8?B?ZHZnZ2drM2hKWDdxZTlycDJUcVNSdVBwUno5VmxTRTJicENZZTREbCtuQ2Ji?=
+ =?utf-8?B?ZlVZUndIWWFFNXdqQ0ZSckJtQ2pEQ0JwVWdadWRCWjNCc3o2TndwcGwwMWFW?=
+ =?utf-8?B?M3E1MVUxQ21CemdnT1J5cHFFa2owMStpTDZGd2xvLzE2YUNZZHhoVysxWGtw?=
+ =?utf-8?B?OHByandoTG5jNWUyVWpxTXVXRFFSUVRFVFhTK0pBMTBZMzlLMzhMcUYxUG1o?=
+ =?utf-8?B?QlhFOHJDdGxEZ3EreVdvdzZoallkRzJRTjErVDkxYm4zMFdaY1FZL09wM2lD?=
+ =?utf-8?B?REtyeVZaT0RiSXI2bXpSN1hoaDNkU1Zvek5Ha0xiekxqVEYwZWk3SHJCUjQv?=
+ =?utf-8?B?cWpxdVNpWFNPcHh5VXNsTDVXcENiME5NSExJd3NpVlRBTmZ5M2VJKzRIUUdx?=
+ =?utf-8?B?RjJsdEhwZlBZeDM4b0k3Vk0wV3NnZE5KUEQyVWFHWmh6RXR3aWQwZFhPSlF6?=
+ =?utf-8?B?NmJOOGkwT210VGJTS3ZaQU41M2dqQ2NuZ1dkNjF2UXZYazNMenNUUU5ET21l?=
+ =?utf-8?B?aU5QZDNLL3VLZ1BWcTI1MERlYVViR2RzUnhKSlFNd2xiUTBiSEJIY3ZlRDhu?=
+ =?utf-8?B?V1NOeWtxd29UbzZ4ckY4MGhodkZpc0pxNGYzSXFZaXhQOU1LUnZ2YjZYeGdn?=
+ =?utf-8?B?UWc4NzNaMVVzenN1ZE9POTZxaTYzQ2JoWW9UbXhZWmdpelBaRmFueVowa3JT?=
+ =?utf-8?B?M2pnS2xubjA2M1UvaEdDZVBIYWlvMGdjZmxIbHluNUFMYnRJWjZPTmVKdk83?=
+ =?utf-8?B?U3dtWmRHVUtMaFNWWkRYNlVRMFNZTjBLS1prVlQxTGtSdngrTXZFcTRtbnZj?=
+ =?utf-8?B?UkFDcEQwOUlKM213V0F6aGh4Mk9COWdnVlRwWnJMZ3VFYUlXOEFNdVdWUlZQ?=
+ =?utf-8?B?OGlVWmtZU25qY1FkeFZLd09TalpsN1lncVIwRS9qb0Rva3gydFFabFRyRW82?=
+ =?utf-8?B?WGZ6OFFLVUJsZ0pHNkVXRFRWL3pwTEpHSVFMYWZmbTRHZW9WbUV5YjNxYm42?=
+ =?utf-8?B?U3lEbnl3OTZDS1ROZGtrSGcvb1NZdDcrUitXVmlWc1V6ZFZ0RlBiamNOVE53?=
+ =?utf-8?B?QUlJUUFSWitOajlUWTk4VnY4eFprNE01Yk5HVGVIMWZyYTdZbFk2UnpOeUZD?=
+ =?utf-8?B?SnNyRFhWaUZmQ2J5U01zSVdEV29iUkI3dTVMcHNJQlBCSDd3c3RWbFZDRzUx?=
+ =?utf-8?B?ekljenFLdjVWUXl3dThaK2FucE5yYzhPalViVmZwSzVPd1NwS1dlOWxudU92?=
+ =?utf-8?B?UkdEQTNCV25nUGo2MjNJNjdEenVxeFVCejdEdTVJTW1FUnViZGtISnJsOXNH?=
+ =?utf-8?B?bEJaR1YzYWpteTQyN1o5aEFxRUNsaVYyTEdYKzRvTThsdGNGTDdoOE5OYXNS?=
+ =?utf-8?B?ME92ZTZpYU1zWjhlRkhJSnlOdUlLMGMyR2Y2NGpVN1Y4UTN6b3dOWEFiczFj?=
+ =?utf-8?B?Vkh1aWFWM2VWR2lIQU1ZT3JoM3VTSFEyTlJoS0Y5dEpNZ1M1Y2ZCa2VRS1ZC?=
+ =?utf-8?B?MCsyTnEzRFZRam1DbENOMFltSDUwRFloTmZEcVFjOTJOV01GK0hXSUZEU0RH?=
+ =?utf-8?B?Vk9vOWNrZnBobFBubXFMV0IxSlE5NEVQVDVTS3B3NEovZGovUTlCeUNLR1Fv?=
+ =?utf-8?B?L1pWUFVTWHVRdml2aXNNOVlHc1JPWXlBSlU5MC9yVGZsOStVU0E3MncrRitu?=
+ =?utf-8?B?ZG81RGMxQ09QZENMYmxBa3djcFdrdVluNUIzYU10TEswOElpSEc4S0VTanBV?=
+ =?utf-8?Q?T/yI=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB8599.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb94e494-5022-4f8a-99c5-08dd07e41141
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2024 15:17:07.9312 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Fu+NR4Io0ihM/rhrd18rbzvYbXcq1LcKPO2271+PUnOpQfGOETS3M2NSA/npiad+D6qXAro85p/rw0IvFxzr/Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7198
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,244 +173,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 15/11/24 10:37, Raag Jadav wrote:
-> Introduce device wedged event, which notifies userspace of 'wedged'
-> (hanged/unusable) state of the DRM device through a uevent. This is
-> useful especially in cases where the device is no longer operating as
-> expected and has become unrecoverable from driver context. Purpose of
-> this implementation is to provide drivers a generic way to recover with
-> the help of userspace intervention without taking any drastic measures
-> in the driver.
->
-> A 'wedged' device is basically a dead device that needs attention. The
-> uevent is the notification that is sent to userspace along with a hint
-> about what could possibly be attempted to recover the device and bring
-> it back to usable state. Different drivers may have different ideas of
-> a 'wedged' device depending on their hardware implementation, and hence
-> the vendor agnostic nature of the event. It is up to the drivers to
-> decide when they see the need for recovery and how they want to recover
-> from the available methods.
->
-> Prerequisites
-> -------------
->
-> The driver, before opting for recovery, needs to make sure that the
-> 'wedged' device doesn't harm the system as a whole by taking care of the
-> prerequisites. Necessary actions must include disabling DMA to system
-> memory as well as any communication channels with other devices. Further,
-> the driver must ensure that all dma_fences are signalled and any device
-> state that the core kernel might depend on are cleaned up. Once the event
-> is sent, the device must be kept in 'wedged' state until the recovery is
-> performed. New accesses to the device (IOCTLs) should be blocked,
-> preferably with an error code that resembles the type of failure the
-> device has encountered. This will signify the reason for wegeding which
-> can be reported to the application if needed.
-
-should we even drop the mmaps we created?
-
-Thanks,
-Aravind.
->
-> Recovery
-> --------
->
-> Current implementation defines three recovery methods, out of which,
-> drivers can use any one, multiple or none. Method(s) of choice will be
-> sent in the uevent environment as ``WEDGED=<method1>[,<method2>]`` in
-> order of less to more side-effects. If driver is unsure about recovery
-> or method is unknown (like soft/hard reboot, firmware flashing, hardware
-> replacement or any other procedure which can't be attempted on the fly),
-> ``WEDGED=unknown`` will be sent instead.
->
-> Userspace consumers can parse this event and attempt recovery as per the
-> following expectations.
->
->     =============== ================================
->     Recovery method Consumer expectations
->     =============== ================================
->     none            optional telemetry collection
->     rebind          unbind + bind driver
->     bus-reset       unbind + reset bus device + bind
->     unknown         admin/user policy
->     =============== ================================
->
-> The only exception to this is ``WEDGED=none``, which signifies that the
-> device was temporarily 'wedged' at some point but was able to recover
-> using device specific methods like reset. No explicit action is expected
-> from userspace consumers in this case, but they can still take additional
-> steps like gathering telemetry information (devcoredump, syslog). This is
-> useful because the first hang is usually the most critical one which can
-> result in consequential hangs or complete wedging.
->
-> Example
-> -------
->
-> Udev rule::
->
->     SUBSYSTEM=="drm", ENV{WEDGED}=="rebind", DEVPATH=="*/drm/card[0-9]",
->     RUN+="/path/to/rebind.sh $env{DEVPATH}"
->
-> Recovery script::
->
->     #!/bin/sh
->
->     DEVPATH=$(readlink -f /sys/$1/device)
->     DEVICE=$(basename $DEVPATH)
->     DRIVER=$(readlink -f $DEVPATH/driver)
->
->     echo -n $DEVICE > $DRIVER/unbind
->     sleep 1
->     echo -n $DEVICE > $DRIVER/bind
->
-> Customization
-> -------------
->
-> Although basic recovery is possible with a simple script, admin/users can
-> define custom policies around recovery action. For example, if the driver
-> supports multiple recovery methods, consumers can opt for the suitable one
-> based on policy definition. Consumers can also choose to have the device
-> available for debugging or additional data collection before performing
-> the recovery. This is useful especially when the driver is unsure about
-> recovery or method is unknown.
->
-> v4: s/drm_dev_wedged/drm_dev_wedged_event
->     Use drm_info() (Jani)
->     Kernel doc adjustment (Aravind)
-> v5: Send recovery method with uevent (Lina)
-> v6: Access wedge_recovery_opts[] using helper function (Jani)
->     Use snprintf() (Jani)
-> v7: Convert recovery helpers into regular functions (Andy, Jani)
->     Aesthetic adjustments (Andy)
->     Handle invalid method cases
-> v8: Allow sending multiple methods with uevent (Lucas, Michal)
->     static_assert() globally (Andy)
-> v9: Provide 'none' method for reset cases (Christian)
->     Provide recovery opts using switch cases
->
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> ---
->  drivers/gpu/drm/drm_drv.c | 63 +++++++++++++++++++++++++++++++++++++++
->  include/drm/drm_device.h  |  8 +++++
->  include/drm/drm_drv.h     |  1 +
->  3 files changed, 72 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index c2c172eb25df..115e1d1c80ea 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -26,6 +26,7 @@
->   * DEALINGS IN THE SOFTWARE.
->   */
->  
-> +#include <linux/bitops.h>
->  #include <linux/debugfs.h>
->  #include <linux/fs.h>
->  #include <linux/module.h>
-> @@ -33,6 +34,7 @@
->  #include <linux/mount.h>
->  #include <linux/pseudo_fs.h>
->  #include <linux/slab.h>
-> +#include <linux/sprintf.h>
->  #include <linux/srcu.h>
->  #include <linux/xarray.h>
->  
-> @@ -497,6 +499,67 @@ void drm_dev_unplug(struct drm_device *dev)
->  }
->  EXPORT_SYMBOL(drm_dev_unplug);
->  
-> +/*
-> + * Available recovery methods for wedged device. To be sent along with device
-> + * wedged uevent.
-> + */
-> +static const char *drm_get_wedge_recovery(unsigned int opt)
-> +{
-> +	switch (BIT(opt)) {
-> +	case DRM_WEDGE_RECOVERY_NONE:
-> +		return "none";
-> +	case DRM_WEDGE_RECOVERY_REBIND:
-> +		return "rebind";
-> +	case DRM_WEDGE_RECOVERY_BUS_RESET:
-> +		return "bus-reset";
-> +	default:
-> +		return NULL;
-> +	}
-> +}
-> +
-> +/**
-> + * drm_dev_wedged_event - generate a device wedged uevent
-> + * @dev: DRM device
-> + * @method: method(s) to be used for recovery
-> + *
-> + * This generates a device wedged uevent for the DRM device specified by @dev.
-> + * Recovery @method\(s) of choice will be sent in the uevent environment as
-> + * ``WEDGED=<method1>[,<method2>]`` in order of less to more side-effects.
-> + * If caller is unsure about recovery or @method is unknown (0),
-> + * ``WEDGED=unknown`` will be sent instead.
-> + *
-> + * Returns: 0 on success, negative error code otherwise.
-> + */
-> +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
-> +{
-> +	const char *recovery = NULL;
-> +	unsigned int len, opt;
-> +	/* Event string length up to 28+ characters with available methods */
-> +	char event_string[32];
-> +	char *envp[] = { event_string, NULL };
-> +
-> +	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
-> +
-> +	for_each_set_bit(opt, &method, BITS_PER_TYPE(method)) {
-> +		recovery = drm_get_wedge_recovery(opt);
-> +		if (drm_WARN(dev, !recovery, "device wedged, invalid recovery method %u\n", opt))
-> +			break;
-> +
-> +		len += scnprintf(event_string + len, sizeof(event_string), "%s,", recovery);
-> +	}
-> +
-> +	if (recovery)
-> +		/* Get rid of trailing comma */
-> +		event_string[len - 1] = '\0';
-> +	else
-> +		/* Caller is unsure about recovery, do the best we can at this point. */
-> +		snprintf(event_string, sizeof(event_string), "%s", "WEDGED=unknown");
-> +
-> +	drm_info(dev, "device wedged, needs recovery\n");
-> +	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-> +}
-> +EXPORT_SYMBOL(drm_dev_wedged_event);
-> +
->  /*
->   * DRM internal mount
->   * We want to be able to allocate our own "struct address_space" to control
-> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> index c91f87b5242d..6ea54a578cda 100644
-> --- a/include/drm/drm_device.h
-> +++ b/include/drm/drm_device.h
-> @@ -21,6 +21,14 @@ struct inode;
->  struct pci_dev;
->  struct pci_controller;
->  
-> +/*
-> + * Recovery methods for wedged device in order of less to more side-effects.
-> + * To be used with drm_dev_wedged_event() as recovery @method. Callers can
-> + * use any one, multiple (or'd) or none depending on their needs.
-> + */
-> +#define DRM_WEDGE_RECOVERY_NONE		BIT(0)	/* optional telemetry collection */
-> +#define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
-> +#define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
->  
->  /**
->   * enum switch_power_state - power state of drm device
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index 1bbbcb8e2d23..f41a82839e28 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -479,6 +479,7 @@ void drm_put_dev(struct drm_device *dev);
->  bool drm_dev_enter(struct drm_device *dev, int *idx);
->  void drm_dev_exit(int idx);
->  void drm_dev_unplug(struct drm_device *dev);
-> +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method);
->  
->  /**
->   * drm_dev_is_unplugged - is a DRM device unplugged
+W1B1YmxpY10NCg0KPiBGcm9tOiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaWdhbGlh
+LmNvbT4NCj4gU2VudDogTW9uZGF5LCBOb3ZlbWJlciAxMSwgMjAyNCA1OjMwDQo+IE9uIDEwLzEx
+LzIwMjQgMTU6NDEsIFl1bnhpYW5nIExpIHdyb3RlOg0KPiA+IE1ha2UgZHJtLWFjdGl2ZS0gb3B0
+aW9uYWwganVzdCBsaWtlIGRybS1yZXNpZGVudC0gYW5kIGRybS1wdXJnZWFibGUtLg0KPg0KPiBB
+cyBKYW5pIGhhcyBhbHJlYWR5IGNvbW1lbnRlZCB0aGUgY29tbWl0IG1lc3NhZ2UgbmVlZHMgc29t
+ZSB3b3JrLg0KPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFl1bnhpYW5nIExpIDxZdW54aWFuZy5MaUBh
+bWQuY29tPg0KPiA+IENDOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4gQ0M6
+IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gPiBDQzogYW1kLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcNCj4gPiAtLS0NCj4gPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L2FtZGdwdV9mZGluZm8uYyB8ICAxICsNCj4gPiAgIGRyaXZlcnMvZ3B1L2RybS9kcm1fZmlsZS5j
+ICAgICAgICAgICAgICAgICB8IDEzICsrKysrKystLS0tLS0NCj4gPiAgIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jICAgICB8ICAxICsNCj4gPiAgIGRyaXZlcnMvZ3B1L2Ry
+bS94ZS94ZV9kcm1fY2xpZW50LmMgICAgICAgICB8ICAxICsNCj4gPiAgIGluY2x1ZGUvZHJtL2Ry
+bV9nZW0uaCAgICAgICAgICAgICAgICAgICAgICB8IDE0ICsrKysrKysrLS0tLS0tDQo+ID4gICA1
+IGZpbGVzIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKyksIDEyIGRlbGV0aW9ucygtKQ0KPiA+DQo+
+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mZGluZm8u
+Yw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ZkaW5mby5jDQo+ID4g
+aW5kZXggZGYyY2Y1YzMzOTI1NS4uNzcxN2UzZTRmMDViNSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmRpbmZvLmMNCj4gPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmRpbmZvLmMNCj4gPiBAQCAtOTcsNiArOTcsNyBA
+QCB2b2lkIGFtZGdwdV9zaG93X2ZkaW5mbyhzdHJ1Y3QgZHJtX3ByaW50ZXIgKnAsDQo+ID4gc3Ry
+dWN0IGRybV9maWxlICpmaWxlKQ0KPiA+DQo+ID4gICAgICAgICAgICAgZHJtX3ByaW50X21lbW9y
+eV9zdGF0cyhwLA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJnN0YXRz
+W2ldLmRybSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIERSTV9HRU1f
+T0JKRUNUX0FDVElWRSB8DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBE
+Uk1fR0VNX09CSkVDVF9SRVNJREVOVCB8DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBEUk1fR0VNX09CSkVDVF9QVVJHRUFCTEUsDQo+ID4gICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBwbF9uYW1lW2ldKTsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2RybV9maWxlLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZpbGUuYw0KPiA+IGluZGV4
+IGUyODVmY2MyOGM1OWMuLmZkMDY2NzEwNTQ3MjMgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2RybV9maWxlLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZpbGUuYw0K
+PiA+IEBAIC04ODQsNyArODg0LDkgQEAgdm9pZCBkcm1fcHJpbnRfbWVtb3J5X3N0YXRzKHN0cnVj
+dCBkcm1fcHJpbnRlciAqcCwNCj4gPiAgIHsNCj4gPiAgICAgcHJpbnRfc2l6ZShwLCAidG90YWwi
+LCByZWdpb24sIHN0YXRzLT5wcml2YXRlICsgc3RhdHMtPnNoYXJlZCk7DQo+ID4gICAgIHByaW50
+X3NpemUocCwgInNoYXJlZCIsIHJlZ2lvbiwgc3RhdHMtPnNoYXJlZCk7DQo+ID4gLSAgIHByaW50
+X3NpemUocCwgImFjdGl2ZSIsIHJlZ2lvbiwgc3RhdHMtPmFjdGl2ZSk7DQo+ID4gKw0KPiA+ICsg
+ICBpZiAoc3VwcG9ydGVkX3N0YXR1cyAmIERSTV9HRU1fT0JKRUNUX0FDVElWRSkNCj4gPiArICAg
+ICAgICAgICBwcmludF9zaXplKHAsICJhY3RpdmUiLCByZWdpb24sIHN0YXRzLT5hY3RpdmUpOw0K
+PiA+DQo+ID4gICAgIGlmIChzdXBwb3J0ZWRfc3RhdHVzICYgRFJNX0dFTV9PQkpFQ1RfUkVTSURF
+TlQpDQo+ID4gICAgICAgICAgICAgcHJpbnRfc2l6ZShwLCAicmVzaWRlbnQiLCByZWdpb24sIHN0
+YXRzLT5yZXNpZGVudCk7IEBAIC05MTcsMTUNCj4gPiArOTE5LDEzIEBAIHZvaWQgZHJtX3Nob3df
+bWVtb3J5X3N0YXRzKHN0cnVjdCBkcm1fcHJpbnRlciAqcCwgc3RydWN0DQo+ID4gZHJtX2ZpbGUg
+KmZpbGUpDQo+ID4NCj4gPiAgICAgICAgICAgICBpZiAob2JqLT5mdW5jcyAmJiBvYmotPmZ1bmNz
+LT5zdGF0dXMpIHsNCj4gPiAgICAgICAgICAgICAgICAgICAgIHMgPSBvYmotPmZ1bmNzLT5zdGF0
+dXMob2JqKTsNCj4gPiAtICAgICAgICAgICAgICAgICAgIHN1cHBvcnRlZF9zdGF0dXMgPSBEUk1f
+R0VNX09CSkVDVF9SRVNJREVOVCB8DQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgRFJNX0dFTV9PQkpFQ1RfUFVSR0VBQkxFOw0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+c3VwcG9ydGVkX3N0YXR1cyB8PSBzOw0KPg0KPiBJIHRoaW5rIHRoaXMgaXMgY29ycmVjdCBhbmQg
+SSB0aGluayBJJ3ZlIHJhaXNlZCB0aGF0IGl0IHNob3VsZCBiZSBsaWtlIHRoaXMgd2hlbiB0aGUg
+Y29kZQ0KPiB3YXMgb3JpZ2luYWxseSBhZGRlZC4gSSBvbmx5IGRvbid0IHJlbWVtYmVyIHdoYXQg
+d2FzIHRoZSBhcmd1bWVudCB0byBrZWVwIGl0DQo+IGhhcmRjb2RlZCwgaWYgdGhlcmUgd2FzIGFu
+eS4gQWRkaW5nIFJvYiBpbiBjYXNlIGhlIGNhbiByZW1lbWJlci4NCj4NCj4gPiAgICAgICAgICAg
+ICB9DQo+ID4NCj4gPiAtICAgICAgICAgICBpZiAoZHJtX2dlbV9vYmplY3RfaXNfc2hhcmVkX2Zv
+cl9tZW1vcnlfc3RhdHMob2JqKSkgew0KPiA+ICsgICAgICAgICAgIGlmIChkcm1fZ2VtX29iamVj
+dF9pc19zaGFyZWRfZm9yX21lbW9yeV9zdGF0cyhvYmopKQ0KPiA+ICAgICAgICAgICAgICAgICAg
+ICAgc3RhdHVzLnNoYXJlZCArPSBvYmotPnNpemU7DQo+ID4gLSAgICAgICAgICAgfSBlbHNlIHsN
+Cj4gPiArICAgICAgICAgICBlbHNlDQo+ID4gICAgICAgICAgICAgICAgICAgICBzdGF0dXMucHJp
+dmF0ZSArPSBvYmotPnNpemU7DQo+ID4gLSAgICAgICAgICAgfQ0KPg0KPiBEcml2ZSBieSBjbGVh
+bnVwLCBva2F5Lg0KPg0KPiA+DQo+ID4gICAgICAgICAgICAgaWYgKHMgJiBEUk1fR0VNX09CSkVD
+VF9SRVNJREVOVCkgew0KPiA+ICAgICAgICAgICAgICAgICAgICAgc3RhdHVzLnJlc2lkZW50ICs9
+IGFkZF9zaXplOw0KPiA+IEBAIC05MzgsNiArOTM4LDcgQEAgdm9pZCBkcm1fc2hvd19tZW1vcnlf
+c3RhdHMoc3RydWN0IGRybV9wcmludGVyICpwLA0KPiA+IHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkN
+Cj4gPg0KPiA+ICAgICAgICAgICAgIGlmICghZG1hX3Jlc3ZfdGVzdF9zaWduYWxlZChvYmotPnJl
+c3YsIGRtYV9yZXN2X3VzYWdlX3J3KHRydWUpKSkgew0KPiA+ICAgICAgICAgICAgICAgICAgICAg
+c3RhdHVzLmFjdGl2ZSArPSBhZGRfc2l6ZTsNCj4gPiArICAgICAgICAgICAgICAgICAgIHN1cHBv
+cnRlZF9zdGF0dXMgfD0gRFJNX0dFTV9PQkpFQ1RfQUNUSVZFOw0KPg0KPiBJIHdvbmRlciB3aGF0
+IGJlaGF2aW91ciB3ZSBzaG91bGQgaGF2ZSBoZXJlIGlmIHRoZSBkcml2ZXIgaGFzIHJlcG9ydGVk
+DQo+IERSTV9HRU1fT0JKRUNUX0FDVElWRSB2aWEgaXRzIHN0YXR1cyB2ZnVuYy4gTGlrZSBzaG91
+bGQgaXQgYmUgbGlrZSB0aGlzOg0KPg0KPiAgICAgaWYgKChzICYgRFJNX0dFTV9PQkpFQ1RfQUNU
+SVZFKSB8fA0KPiAgICAgICAgICFkbWFfcmVzdl90ZXN0X3NpZ25hbGVkKG9iai0+cmVzdiwgZG1h
+X3Jlc3ZfdXNhZ2VfcncodHJ1ZSkpKSB7DQo+ICAgICAgICAgLi4uDQo+DQo+ID8NCj4NCj4gU28g
+aWYgc29tZSBkcml2ZXIgc3RhcnRzIHJlcG9ydGluZyB0aGlzIGZsYWcgX2FuZF8gaXMgc3RpbGwg
+Y2FsbGluZw0KPiBkcm1fc2hvd19tZW1vcnlfc3RhdHMoKSwgaXQncyB2ZXJzaW9uIG9mIGFjdGl2
+aXR5IHRyYWNraW5nIGlzIHVzZWQgaW5zdGVhZCBvZiB0aGUNCj4gdGhlIGRtYV9yZXN2IGJhc2Vk
+IHRlc3QuDQoNCkkgZG9uJ3QgdGhpbmsgdGhhdCBpcyBmZWFzaWJsZSB3aXRoIHRoZSBjdXJyZW50
+IEFQSSwgYmVjYXVzZSB0aGVyZSdzIG5vIHdheSB0byBkaWZmZXJlbnRpYXRlICJkcml2ZXIgdGhp
+bmtzIGEgQk8gaXMgbm90IGFjdGl2ZSIgYW5kICJkcml2ZXIgZG9lcyBub3QgaW1wbGVtZW50IGFj
+dGl2aXR5IHRyYWNraW5nIi4gSSB0aGluayBpdCdzIHByb2JhYmx5IG9rYXkgdG8ga2VlcCBpdCBs
+aWtlIHRoaXMgdW50aWwgc29tZW9uZSB3YW50cyB0byBkbyBpdCBkaWZmZXJlbnRseSBhbmQgcmVm
+YWN0b3IgdGhlbi4NCg0KVGVkZHkNCg0KPiA+DQo+ID4gICAgICAgICAgICAgICAgICAgICAvKiBJ
+ZiBzdGlsbCBhY3RpdmUsIGRvbid0IGNvdW50IGFzIHB1cmdlYWJsZTogKi8NCj4gPiAgICAgICAg
+ICAgICAgICAgICAgIHMgJj0gfkRSTV9HRU1fT0JKRUNUX1BVUkdFQUJMRTsNCj4gPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50LmMNCj4gPiBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jDQo+ID4gaW5kZXggZjU4NjgyNTA1NDkx
+OC4uMTY4ZDczNzUzMDRiYyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2RybV9jbGllbnQuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJt
+X2NsaWVudC5jDQo+ID4gQEAgLTEwMiw2ICsxMDIsNyBAQCBzdGF0aWMgdm9pZCBzaG93X21lbWlu
+Zm8oc3RydWN0IGRybV9wcmludGVyICpwLCBzdHJ1Y3QNCj4gZHJtX2ZpbGUgKmZpbGUpDQo+ID4g
+ICAgIGZvcl9lYWNoX21lbW9yeV9yZWdpb24obXIsIGk5MTUsIGlkKQ0KPiA+ICAgICAgICAgICAg
+IGRybV9wcmludF9tZW1vcnlfc3RhdHMocCwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICZzdGF0c1tpZF0sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBEUk1fR0VNX09CSkVDVF9BQ1RJVkUgfA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgRFJNX0dFTV9PQkpFQ1RfUkVTSURFTlQgfA0KPiA+ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgRFJNX0dFTV9PQkpFQ1RfUFVSR0VBQkxFLA0KPiA+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbXItPnVhYmlfbmFtZSk7DQo+ID4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kcm1fY2xpZW50LmMNCj4gPiBiL2RyaXZlcnMv
+Z3B1L2RybS94ZS94ZV9kcm1fY2xpZW50LmMNCj4gPiBpbmRleCA2YTI2OTIzZmExMGUwLi41NDk0
+MWI0ZTg1MGM0IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kcm1fY2xp
+ZW50LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZHJtX2NsaWVudC5jDQo+ID4g
+QEAgLTIyOSw2ICsyMjksNyBAQCBzdGF0aWMgdm9pZCBzaG93X21lbWluZm8oc3RydWN0IGRybV9w
+cmludGVyICpwLCBzdHJ1Y3QNCj4gZHJtX2ZpbGUgKmZpbGUpDQo+ID4gICAgICAgICAgICAgaWYg
+KG1hbikgew0KPiA+ICAgICAgICAgICAgICAgICAgICAgZHJtX3ByaW50X21lbW9yeV9zdGF0cyhw
+LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAmc3RhdHNb
+bWVtX3R5cGVdLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBEUk1fR0VNX09CSkVDVF9BQ1RJVkUgfA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBEUk1fR0VNX09CSkVDVF9SRVNJREVOVCB8DQo+ID4gICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChtZW1fdHlwZSAhPSBYRV9QTF9TWVNU
+RU0gPyAwIDoNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+RFJNX0dFTV9PQkpFQ1RfUFVSR0VBQkxFKSwNCj4gZGlmZiAtLWdpdA0KPiA+IGEvaW5jbHVkZS9k
+cm0vZHJtX2dlbS5oIGIvaW5jbHVkZS9kcm0vZHJtX2dlbS5oIGluZGV4DQo+ID4gYmFlNDg2NWIy
+MTAxYS4uNTg0ZmZkZjVjMjU0MiAxMDA2NDQNCj4gPiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fZ2Vt
+LmgNCj4gPiArKysgYi9pbmNsdWRlL2RybS9kcm1fZ2VtLmgNCj4gPiBAQCAtNDgsMTkgKzQ4LDIx
+IEBAIHN0cnVjdCBkcm1fZ2VtX29iamVjdDsNCj4gPiAgICAqIGVudW0gZHJtX2dlbV9vYmplY3Rf
+c3RhdHVzIC0gYml0bWFzayBvZiBvYmplY3Qgc3RhdGUgZm9yIGZkaW5mbyByZXBvcnRpbmcNCj4g
+PiAgICAqIEBEUk1fR0VNX09CSkVDVF9SRVNJREVOVDogb2JqZWN0IGlzIHJlc2lkZW50IGluIG1l
+bW9yeSAoaWUuIG5vdA0KPiB1bnBpbm5lZCkNCj4gPiAgICAqIEBEUk1fR0VNX09CSkVDVF9QVVJH
+RUFCTEU6IG9iamVjdCBtYXJrZWQgYXMgcHVyZ2VhYmxlIGJ5DQo+ID4gdXNlcnNwYWNlDQo+ID4g
+KyAqIEBEUk1fR0VNX09CSkVDVF9BQ1RJVkU6IG9iamVjdCBpcyBjdXJyZW50bHkgdXNlZCBieSBh
+biBhY3RpdmUNCj4gPiArIHN1Ym1pc3Npb24NCj4gPiAgICAqDQo+ID4gICAgKiBCaXRtYXNrIG9m
+IHN0YXR1cyB1c2VkIGZvciBmZGluZm8gbWVtb3J5IHN0YXRzLCBzZWUNCj4gPiAmZHJtX2dlbV9v
+YmplY3RfZnVuY3Muc3RhdHVzDQo+ID4gLSAqIGFuZCBkcm1fc2hvd19mZGluZm8oKS4gIE5vdGUg
+dGhhdCBhbiBvYmplY3QgY2FuDQo+ID4gRFJNX0dFTV9PQkpFQ1RfUFVSR0VBQkxFIGlmDQo+ID4g
+LSAqIGl0IHN0aWxsIGFjdGl2ZSBvciBub3QgcmVzaWRlbnQsIGluIHdoaWNoIGNhc2UgZHJtX3No
+b3dfZmRpbmZvKCkNCj4gPiB3aWxsIG5vdA0KPiA+ICsgKiBhbmQgZHJtX3Nob3dfZmRpbmZvKCku
+ICBOb3RlIHRoYXQgYW4gb2JqZWN0IGNhbiByZXBvcnQNCj4gPiArIERSTV9HRU1fT0JKRUNUX1BV
+UkdFQUJMRQ0KPiA+ICsgKiBhbmQgYmUgYWN0aXZlIG9yIG5vdCByZXNpZGVudCwgaW4gd2hpY2gg
+Y2FzZSBkcm1fc2hvd19mZGluZm8oKQ0KPiA+ICsgd2lsbCBub3QNCj4gPiAgICAqIGFjY291bnQg
+Zm9yIGl0IGFzIHB1cmdlYWJsZS4gIFNvIGRyaXZlcnMgZG8gbm90IG5lZWQgdG8gY2hlY2sgaWYN
+Cj4gPiB0aGUgYnVmZmVyDQo+ID4gLSAqIGlzIGlkbGUgYW5kIHJlc2lkZW50IHRvIHJldHVybiB0
+aGlzIGJpdC4gIChJZS4gdXNlcnNwYWNlIGNhbiBtYXJrDQo+ID4gYSBidWZmZXINCj4gPiAtICog
+YXMgcHVyZ2VhYmxlIGV2ZW4gd2hpbGUgaXQgaXMgc3RpbGwgYnVzeSBvbiB0aGUgR1BVLi4gaXQg
+ZG9lcyBub3QNCj4gPiBfYWN0dWFsbHlfDQo+ID4gLSAqIGJlY29tZSBwdXJlZ2VhYmxlIHVudGls
+IGl0IGJlY29tZXMgaWRsZS4gIFRoZSBzdGF0dXMgZ2VtIG9iamVjdA0KPiA+IGZ1bmMgZG9lcw0K
+PiA+IC0gKiBub3QgbmVlZCB0byBjb25zaWRlciB0aGlzLikNCj4gPiArICogaXMgaWRsZSBhbmQg
+cmVzaWRlbnQgdG8gcmV0dXJuIHRoaXMgYml0LCBpLmUuIHVzZXJzcGFjZSBjYW4gbWFyayBhDQo+
+ID4gKyBidWZmZXIgYXMNCj4gPiArICogcHVyZ2VhYmxlIGV2ZW4gd2hpbGUgaXQgaXMgc3RpbGwg
+YnVzeSBvbiB0aGUgR1BVLiBJdCB3aGlsbCBub3QgZ2V0DQo+ID4gKyByZXBvcnRlZA0KPg0KPiBH
+b29kIGNsZWFudXAuDQo+DQo+IHMvd2hpbGwvd2lsbC8NCj4NCj4gPiArICogaW4gdGhlIHB1cmVn
+ZWFibGUgc3RhdHMgdW50aWwgaXQgYmVjb21lcyBpZGxlLiAgVGhlIHN0YXR1cyBnZW0NCj4gPiAr
+IG9iamVjdCBmdW5jDQo+ID4gKyAqIGRvZXMgbm90IG5lZWQgdG8gY29uc2lkZXIgdGhpcy4NCj4g
+PiAgICAqLw0KPiA+ICAgZW51bSBkcm1fZ2VtX29iamVjdF9zdGF0dXMgew0KPiA+ICAgICBEUk1f
+R0VNX09CSkVDVF9SRVNJREVOVCAgPSBCSVQoMCksDQo+ID4gICAgIERSTV9HRU1fT0JKRUNUX1BV
+UkdFQUJMRSA9IEJJVCgxKSwNCj4gPiArICAgRFJNX0dFTV9PQkpFQ1RfQUNUSVZFID0gQklUKDIp
+LA0KPiA+ICAgfTsNCj4gPg0KPiA+ICAgLyoqDQo+DQo+IFJlZ2FyZHMsDQo+DQo+IFR2cnRrbw0K
