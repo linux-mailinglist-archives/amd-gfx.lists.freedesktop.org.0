@@ -2,34 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C32C29D5A98
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Nov 2024 09:03:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45A999D5D4C
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 Nov 2024 11:31:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6D2010E0D8;
-	Fri, 22 Nov 2024 08:03:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8408E10EB47;
+	Fri, 22 Nov 2024 10:31:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D65010E0D8
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Nov 2024 08:03:45 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 4AM83epc2740517; Fri, 22 Nov 2024 13:33:40 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 4AM83e0i2740516;
- Fri, 22 Nov 2024 13:33:40 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v2 2/2] drm/amdgpu: add "restore" missing variable comment
-Date: Fri, 22 Nov 2024 13:33:36 +0530
-Message-Id: <20241122080336.2740473-2-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241122080336.2740473-1-sunil.khatri@amd.com>
-References: <20241122080336.2740473-1-sunil.khatri@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Greylist: delayed 457 seconds by postgrey-1.36 at gabe;
+ Fri, 22 Nov 2024 09:25:03 UTC
+Received: from mailgw.gate-on.net (auth.Gate-On.Net [210.197.74.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B634510EB18
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Nov 2024 09:25:03 +0000 (UTC)
+Received: from vega.pgw.jp (unknown [49.135.95.135])
+ by mailgw.gate-on.net (Postfix) with ESMTP id 9957C800B1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Nov 2024 18:17:24 +0900 (JST)
+Received: from localhost (vega.pgw.jp [10.5.0.30])
+ by vega.pgw.jp (Postfix) with SMTP
+ id AD24CA53D; Fri, 22 Nov 2024 18:17:23 +0900 (JST)
+From: <xkabe@vega.pgw.jp>
+To: amd-gfx@lists.freedesktop.org
+Cc: xkabe@vega.pgw.jp
+Subject: [bugreport] Invoking Xorg -retro and using radeon.ko renders root
+ window stipple in colored dots, not B/W standard stipple
+X-Mailer: mnews [version 1.22PL5] 2002-11-27(Wed)
+Date: Fri, 22 Nov 2024 18:17:23 +0900
+Message-ID: <241122181723.M0121717@vega.pgw.jp>
+X-Mailman-Approved-At: Fri, 22 Nov 2024 10:31:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,38 +43,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-add "restore" missing variable in the fucntions
-sdma_v4_4_2_page_resume and sdma_v4_4_2_inst_start.
+Subject: [bugreport] Invoking Xorg -retro and using radeon.ko renders root window stipple in colored dots, not B/W standard stipple
 
-This fixes the warning:
-warning: Function parameter or struct member 'restore' not described in 'sdma_v4_4_2_page_resume'
-warning: Function parameter or struct member 'restore' not described in 'sdma_v4_4_2_inst_start'
+Graphic card: RV280 ATI Radeon 9200 Pro (PCI id 1002:5960,subid 148c:2094)
+kernel: kernel-5.14.0-427.42.1.el9_4 (Rocky Linux 9.4)
+Xorg: xorg-x11-server-Xorg-1.20.11-24.el9
+radeon.ko: git master (xf86-video-ati-22.0.0, 888b33c67) to xf86-video-ati-7.10.0
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index e70460693ef2..e1674da07c23 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -764,6 +764,7 @@ static void sdma_v4_4_2_gfx_resume(struct amdgpu_device *adev, unsigned int i, b
-  *
-  * @adev: amdgpu_device pointer
-  * @i: instance to resume
-+ * @restore: boolean to say restore needed or not
-  *
-  * Set up the page DMA ring buffers and enable them.
-  * Returns 0 for success, error for failure.
-@@ -928,6 +929,7 @@ static int sdma_v4_4_2_inst_load_microcode(struct amdgpu_device *adev,
-  *
-  * @adev: amdgpu_device pointer
-  * @inst_mask: mask of dma engine instances to be enabled
-+ * @restore: boolean to say restore needed or not
-  *
-  * Set up the DMA engines and enable them.
-  * Returns 0 for success, error for failure.
+Compiled and installed radeon.ko from https://gitlab.freedesktop.org/xorg/driver/xf86-video-ati.git .
+
+Full power-cycle the machine, and invoking the following for the first time
+xinit -- /usr/bin/Xorg -retro 
+renders root window stipple in colored dots, not Black/White standard stipple.
+
+Exit the X session, and re-invoking
+xinit -- /usr/bin/Xorg -retro 
+renders the root stipple correctly.
+
+It looks like something is not initialized when root stipple pattern is rendered.
+Application is not affected, works perfectly. Only the root window stipple is the problem.
+
+Uninstalling radeon.ko and using modesetting_drv.so has no problem.
+
+I tried the following versions, and all had the same results.
+Since not many people uses Xorg -retro, this seems to be a longstanding bug.
+- master 888b33c67
+- tag: xf86-video-ati-22.0.0
+- tag: xf86-video-ati-19.1.0
+- tag: xf86-video-ati-19.0.0
+- tag: xf86-video-ati-18.1.0
+- tag: xf86-video-ati-18.0.0 (Tue Mar 6 18:15:45 2018 +0100)
+- tag: xf86-video-ati-7.10.0 (Fri Sep 8 17:02:59 2017 +0900)
+I was not able to rewind further, since the Xorg buildsystem is too recent.
+
 -- 
-2.34.1
-
+kabe
