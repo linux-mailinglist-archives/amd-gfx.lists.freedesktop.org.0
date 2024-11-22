@@ -2,70 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382269D7C92
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Nov 2024 09:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC9B9D623C
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 Nov 2024 17:27:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A13D510E3A3;
-	Mon, 25 Nov 2024 08:10:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF8310EC08;
+	Fri, 22 Nov 2024 16:27:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MnxVOmUh";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Xvzp5yUM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1A5F10E301;
- Fri, 22 Nov 2024 16:02:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732291375; x=1763827375;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=QRr37RA14akjZg3hT7KJvo3SRw4lq5ZSzKxt1VhKt3c=;
- b=MnxVOmUhJtx2tmsCjh9cBn1FVXZJMveTpLp+abS119EEbEDqWfj+PlzQ
- gev+gAaNO+xJHXd8OORFnNzzMwNwkEVeXzmCdQOo4dzqc8T943i5c/MLt
- H52ngeMXtAoU+GwtmBczCpfLl2v2nX28Fxwy54k3n/6PyoKv2VB6b8lZv
- P6Cf1lDRmfaA+Fnkzc3QF/Z7AXHoHvHqf1Wj4ZbmiH6396P7LmWEFzaAS
- Dll3ORmcFP4FvSFO9TrbvMp0z8H7RI1k0eeFqxjQtq5s0c7ONRSPM4Z/T
- piAcnNeIC52c8ft66xWEliJQznUcsCTgmqvZTBmzRfBABvK0U2gFuv5cL g==;
-X-CSE-ConnectionGUID: OzkhO8e6SQmBT4hITFuGhg==
-X-CSE-MsgGUID: TaOIuaiuQKm/BKbqTEPqHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32602270"
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32602270"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 08:02:55 -0800
-X-CSE-ConnectionGUID: 6L6QQQs1R0Ow/CMsbIOrnw==
-X-CSE-MsgGUID: uANIV3POT0usWdgqIyN+mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90251722"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 08:02:50 -0800
-Date: Fri, 22 Nov 2024 18:02:47 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
- airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, andrealmeid@igalia.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
-Message-ID: <Z0CrJ3C3wJqtySLp@black.fi.intel.com>
-References: <20241115050733.806934-1-raag.jadav@intel.com>
- <20241115050733.806934-2-raag.jadav@intel.com>
- <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
- <Z0Atv3Zw1d0N8hvv@black.fi.intel.com>
- <3644d364-6021-46fe-b3a2-689821551984@amd.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2087.outbound.protection.outlook.com [40.107.237.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFB110EC08
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Nov 2024 16:27:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RbZ347tX6G1WqN0kvsLGtG3PUXm2ZozdbIHRmbsqQDCmCueDxqBx6Vr1VV6lXCzVttOyRo0nrIorsooEamo+VophZrvgjZAS8grGJ9x2VmWvOz0jGYTY01DyFf284ecmK2gRuCAvHnxdZXx1knTgp/TOdDey28+UvaZh0iweo8Z82fOQC45mZfwtR4ctpeNpkmdJgravV5m0j7tRYZbMN+mQETMazEr44bfbukWdvou9hG2GSZDYtAUUN8tPWdHrfF+70QAV9E5gbwbErhe2jX5J9u2vV2e2TDi8uIWQsrby6eFnmMO11JOc7ce4WjHB9CSVk+BGcRM2AOCY6SQNwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ufX4ttw51HwNF7j8mUcES9xOI+6U4X9jZChEugYzhfg=;
+ b=Elp2fTjl8pVFnNYLKZR4GwdeAKlFYxnBwKpG2mShDFughR7I5w4sxCf0KPZo/2wBVR01qY8xJ7IJx6VBBk+5O4DjsyQHBmtWT/ahBuasNC9XwFosIHf+IPu/xcg2yVO+iwIghcuUtJqDWunJJTsEMPsLquqinvujCIHJbRShLTp9XiBM9C8sRZ5XIyEWJ6Vp5zK3zBDs4a1CZ0e2GUtSk04iGQzFH/BAOJ/kF1qe2sjh/dg7sP2CY4obo3WU6kmyDD6c0sJxD9v1pi5d6XJTOnSZM1rzV6RQqSJtlnmYsK34D9i2LIuESrNrbg7MciwBnS1Gs9HAtbxq1Aeqds1pDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.12) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ufX4ttw51HwNF7j8mUcES9xOI+6U4X9jZChEugYzhfg=;
+ b=Xvzp5yUMPiqK86IIYP0l4OZdmbE8OQsOgHlNcFmHjpeLTGRT+uRaAZKotmeGuSlBOXEaItPLjFYSXHkxkJIPJccZS8wDA4K0zyhCsSwQjTqFXjGLRzjdnu2GIuZQJkWyi7LQv7F8jtDMHWHs6UtN4kjsLbEIua6F+M2+U5Dxz1s=
+Received: from BY1P220CA0011.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:59d::11)
+ by SA0PR12MB7075.namprd12.prod.outlook.com (2603:10b6:806:2d5::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.17; Fri, 22 Nov
+ 2024 16:27:17 +0000
+Received: from SJ1PEPF00001CDC.namprd05.prod.outlook.com
+ (2603:10b6:a03:59d:cafe::e8) by BY1P220CA0011.outlook.office365.com
+ (2603:10b6:a03:59d::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.25 via Frontend
+ Transport; Fri, 22 Nov 2024 16:27:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.12)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.12 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.12; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.12) by
+ SJ1PEPF00001CDC.mail.protection.outlook.com (10.167.242.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8182.16 via Frontend Transport; Fri, 22 Nov 2024 16:27:17 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Nov
+ 2024 10:27:16 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>, David Belanger
+ <david.belanger@amd.com>
+Subject: [PATCH 1/5] drm/amdgpu/hdp4.0: do a posting read when flushing HDP
+Date: Fri, 22 Nov 2024 11:26:53 -0500
+Message-ID: <20241122162657.1056489-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3644d364-6021-46fe-b3a2-689821551984@amd.com>
-X-Mailman-Approved-At: Mon, 25 Nov 2024 08:10:45 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDC:EE_|SA0PR12MB7075:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01f8fa34-f4c1-4ab7-9403-08dd0b1287f6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+GxivXJB81LdoijDt+ct56YjGv9E891xVd7EVM07+AynUgL2bQFSR9zAcFov?=
+ =?us-ascii?Q?Zd4xhWpioy/aPXYdVc+zq25t3rsuZdAuetuMu9CbdKtMLvTakWXJ0KUPwd/6?=
+ =?us-ascii?Q?SYj89hwPforZ1bler+2r+MvzTIYmzL35AZ0oI72or30edONyZauuX6nwnwL+?=
+ =?us-ascii?Q?ewwf2Xyeg3jYbAqcXG5JpIKuT9ySFKd0KzwrpBIrIYSy3xEJPjLY0IIvwDFL?=
+ =?us-ascii?Q?9BCazK30h30YMftp3/a9Ji8rPQyXSPgHEVlNXpObcDnEzKFDc2Q+pWer0vMg?=
+ =?us-ascii?Q?h7ytPEoM18SCtzL3Iyvy0/9foP+YtnZi74xDymITkggYqvRa4wmeKL8y2C9t?=
+ =?us-ascii?Q?pQ+A409+nqswhd2sN2lDyzxIotiZdWKusgMlctPa+cgJgnNfOHImpROI9gxD?=
+ =?us-ascii?Q?cd8aOur3K9aM4rXMfm6srcxa0GASOBNa0tA/DavdadoUpl8ws4bBhoUBqbO+?=
+ =?us-ascii?Q?AyVKyq2WiPj6GiLZX4iCDLFXH7WupPfusJi5o8QB+QeeHdcyttrBVApMd7b8?=
+ =?us-ascii?Q?OzTDr77HU9bkVzIj5AwXwZvIDuNB6Oij837rR/dNwQ14urz7hZHsw7Z26xk1?=
+ =?us-ascii?Q?vWAJRI4mgKpduGr6pOZOyG8vfs92wt2vUwaY+xjWsdR7T6HYfxziS23/WU3B?=
+ =?us-ascii?Q?oCJch094pNmt5S/HLdM3BjdcxdT4FJXhveM+YNNA2mWjvr8XHcQk65xKxPG3?=
+ =?us-ascii?Q?L+8RMkAaBYmXwV6sb2xSHcCNwu8H5ARANONx+kVDCG3VIRIzncX9mhztWoPw?=
+ =?us-ascii?Q?//fYqdV/s1PLIyEu2Fenln3UXevE941sP917LXCwICiFKkjmzcKLf9l6e5Yo?=
+ =?us-ascii?Q?l08bIHrVYiGrXmbhtnIfWSPdQZ4fFZ9rdMQcIYACDYBsonfW7dYmRe+c9Xkl?=
+ =?us-ascii?Q?Xlz3yrHFMFbjE5bFF6MRrrZINZic+JiLBGrz4jqdmLkHw1i7HDO3yrH8I/Tr?=
+ =?us-ascii?Q?NWCn4zKAVLo0uYgh0z83E1fQu/EJi6xtbiwHuff9nZLNgTfLQsWjtgbqoyOD?=
+ =?us-ascii?Q?ktphCKQpwlhtiDDvBv4A+IQbjkElDF42It1mLcJ6WDRfClhEo3zZyx3SsaHn?=
+ =?us-ascii?Q?pIF2ah2TAhRWt0WeUHjsDc2d0XAlOdjMNQOSV2OeorqNkfIA9hm7Avvbqel3?=
+ =?us-ascii?Q?4P8bIbwExOkRsYrCWFsfyC5BmV3V+udltP2B0M+tgvFRjsDLdetQo8lB78d1?=
+ =?us-ascii?Q?kQfcxu71WqgPcVDshefS9Hrez4Yne7jABiiVrYn+LklLje41VIFLcib7wk/A?=
+ =?us-ascii?Q?mlESgCJ51vTfUQjKdMTh0g0qM1M5IQXB639qqzdiESXmP6e0NabGePKdgdzG?=
+ =?us-ascii?Q?5xa395CsLs7FLDWhG7WqES08vXEiOufkYd9n9d1T4mzkE2n/R1rZtTPX8uu9?=
+ =?us-ascii?Q?QkPHu99WXEw3dOTLp/JUC0oH8elOyGbq32bgJZ5jnp50pC1rybwwbrWXtCtq?=
+ =?us-ascii?Q?w+x7sz9D94C2+IaHmetagP+uuvXhXYW8?=
+X-Forefront-Antispam-Report: CIP:165.204.84.12; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:atlvpn-bp.amd.com; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2024 16:27:17.3160 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01f8fa34-f4c1-4ab7-9403-08dd0b1287f6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.12];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDC.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7075
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,53 +130,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 22, 2024 at 11:09:32AM +0100, Christian König wrote:
-> Am 22.11.24 um 08:07 schrieb Raag Jadav:
-> > On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
-> > > On 15/11/24 10:37, Raag Jadav wrote:
-> > > > Introduce device wedged event, which notifies userspace of 'wedged'
-> > > > (hanged/unusable) state of the DRM device through a uevent. This is
-> > > > useful especially in cases where the device is no longer operating as
-> > > > expected and has become unrecoverable from driver context. Purpose of
-> > > > this implementation is to provide drivers a generic way to recover with
-> > > > the help of userspace intervention without taking any drastic measures
-> > > > in the driver.
-> > > > 
-> > > > A 'wedged' device is basically a dead device that needs attention. The
-> > > > uevent is the notification that is sent to userspace along with a hint
-> > > > about what could possibly be attempted to recover the device and bring
-> > > > it back to usable state. Different drivers may have different ideas of
-> > > > a 'wedged' device depending on their hardware implementation, and hence
-> > > > the vendor agnostic nature of the event. It is up to the drivers to
-> > > > decide when they see the need for recovery and how they want to recover
-> > > > from the available methods.
-> > > > 
-> > > > Prerequisites
-> > > > -------------
-> > > > 
-> > > > The driver, before opting for recovery, needs to make sure that the
-> > > > 'wedged' device doesn't harm the system as a whole by taking care of the
-> > > > prerequisites. Necessary actions must include disabling DMA to system
-> > > > memory as well as any communication channels with other devices. Further,
-> > > > the driver must ensure that all dma_fences are signalled and any device
-> > > > state that the core kernel might depend on are cleaned up. Once the event
-> > > > is sent, the device must be kept in 'wedged' state until the recovery is
-> > > > performed. New accesses to the device (IOCTLs) should be blocked,
-> > > > preferably with an error code that resembles the type of failure the
-> > > > device has encountered. This will signify the reason for wegeding which
-> > > > can be reported to the application if needed.
-> > > should we even drop the mmaps we created?
-> > Whatever is required for a clean recovery, yes.
-> > 
-> > Although how would this play out? Do we risk loosing display?
-> > Or any other possible side-effects?
-> 
-> Before sending a wedge event all DMA transfers of the device have to be
-> blocked.
-> 
-> So yes, all display, mmap() and file descriptor connections you had with the
-> device would need to be re-created.
+Need to read back to make sure the write goes through.
 
-Does it mean we'd have to rely on userspace to unmap()?
+Cc: David Belanger <david.belanger@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-Raag
+diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
+index e019249883fb..194026e9be33 100644
+--- a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
+@@ -40,10 +40,12 @@
+ static void hdp_v4_0_flush_hdp(struct amdgpu_device *adev,
+ 				struct amdgpu_ring *ring)
+ {
+-	if (!ring || !ring->funcs->emit_wreg)
++	if (!ring || !ring->funcs->emit_wreg) {
+ 		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+-	else
++		RREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2);
++	} else {
+ 		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++	}
+ }
+ 
+ static void hdp_v4_0_invalidate_hdp(struct amdgpu_device *adev,
+@@ -54,11 +56,13 @@ static void hdp_v4_0_invalidate_hdp(struct amdgpu_device *adev,
+ 	    amdgpu_ip_version(adev, HDP_HWIP, 0) == IP_VERSION(4, 4, 5))
+ 		return;
+ 
+-	if (!ring || !ring->funcs->emit_wreg)
++	if (!ring || !ring->funcs->emit_wreg) {
+ 		WREG32_SOC15_NO_KIQ(HDP, 0, mmHDP_READ_CACHE_INVALIDATE, 1);
+-	else
++		RREG32_SOC15_NO_KIQ(HDP, 0, mmHDP_READ_CACHE_INVALIDATE);
++	} else {
+ 		amdgpu_ring_emit_wreg(ring, SOC15_REG_OFFSET(
+ 			HDP, 0, mmHDP_READ_CACHE_INVALIDATE), 1);
++	}
+ }
+ 
+ static void hdp_v4_0_query_ras_error_count(struct amdgpu_device *adev,
+-- 
+2.47.0
+
