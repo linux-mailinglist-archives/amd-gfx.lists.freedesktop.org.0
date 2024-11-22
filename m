@@ -2,147 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7937F9D6046
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Nov 2024 15:28:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C82869D7C93
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Nov 2024 09:10:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B28510E0F5;
-	Fri, 22 Nov 2024 14:28:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A903D10E5C5;
+	Mon, 25 Nov 2024 08:10:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VGlFe3E+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Fj1Ncw/p";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2057.outbound.protection.outlook.com [40.107.93.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 831A710EB96
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Nov 2024 14:28:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q6EGxkKHnyDqEH0qGL71ya/Rv1+tOatjXuWcrYVJpP94XySRzxJHnBY4EanTQJPzBfZnJDRxFdxRfgUA/N2nxw/+FOw4T0T9TmgRHlqglTVnf5XhE14njvdWk/tFbGtQynnLSqvbSo45e8bb8u9C7DMPxnkNgMis4+k4Hldw+xAG5LPfRU+pklFyYuh9pRkiMrZivqxD/23fGyuQvCm9F6T+JquLl2PLcuJa26vnp8tMSeWp1rjShmNSXzhUwVY/fbc4cSd1xr69ev1QZMLFtOAxugZ3nwGENIJqtiC0sdl2rz+HdotGN89/f2NpPXaRmM+UixBbthTZeHnrVWP8qQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EMRYR6tzJEjeJXIS71bN28m77OqoKV/i/rVWm21D0f4=;
- b=MiZBpz2HZLtjo2+9p/mu0U9456BkojWY8IdwVQyTEKODzjDmlndS+7qHvwvy0l7PG4TcMsVIjeUhUxWZhzXo2+VNfPEBguUQxTYXMyDMn1mXOPDEhBp6V9E4xf+RnCGTD2nNSMO8JwPEF5QjRbQ/CRgYStLkNElDzaHDNNsuk+EOR7siKOY3bsp8p3Q1/6oaqcaHoBi1dMIsT2fdPfK1veCLmTH2Z2bTWANY9VMrzx5KF4lYHD6BeHB0BUEaOuYuc3ovS0Fxn0xC1t+gci01KFcvbx7b/E3yYvWTsWlFw4UhcqRgmk6nfy0bzQ09HBQLOp4KDBCFb4S3o4KVOhgb0Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EMRYR6tzJEjeJXIS71bN28m77OqoKV/i/rVWm21D0f4=;
- b=VGlFe3E+/Dlg+sUkEXvKPvn55ntc6KmSEGVIGDgv7dQA82j/nBaN0R3kwRgmA+lyewy0GbEhWWZys5MadACpM3ieJYanV+eVORPndY8XW4h01k+QPhAjJWx1tI16H9GWG9l2n+fsJNyUbdo4OdNAbtDa3U3pY/iYJF1uXtMZaAM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- MN0PR12MB5764.namprd12.prod.outlook.com (2603:10b6:208:377::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8158.18; Fri, 22 Nov 2024 14:28:17 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290%7]) with mapi id 15.20.8182.013; Fri, 22 Nov 2024
- 14:28:17 +0000
-Message-ID: <10227541-3d1b-4e48-9a17-b9c0dc25a541@amd.com>
-Date: Fri, 22 Nov 2024 19:58:11 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd: Add Suspend/Hibernate notification callback
- support
-To: Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20241118200323.16541-1-mario.limonciello@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20241118200323.16541-1-mario.limonciello@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BMXP287CA0015.INDP287.PROD.OUTLOOK.COM
- (2603:1096:b00:2c::32) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE2E010EBB6;
+ Fri, 22 Nov 2024 14:37:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=tljsRWZ6gN6pFvwuG/Dk34JHxfyW4vkJss9YIAkk5l4=; b=Fj1Ncw/pVv/ie+27i3QfP6sMvJ
+ YXaLW7cdHYsmE+8ValHYIq4JOcX8c0vN5HlMaLaW/Ksz6M1XMb35/n7Xf+7GaAJnlUT3OHDu46Vhz
+ P2/qbdOo4XLJTvGbb6uzo5w6q9Z7iiYoYQfuzpsH+kfN8AmdnOqCjmGeciWDEHeX+lmY/IIxcC3tE
+ eewFvWig6pFMRR167kfhBE6AqvWwbNrLwsBDHkGcbOgZnpyA3J6PeE4zoAkLdjW5w7UESNvRuROFF
+ 0fzdaSdExPGsayxi9M8sREfylNrpNMri2YzawiGUv7d5M/3u5Osu7SXXFi21bczGRBU3wf3FRliVF
+ 5hQi2L0A==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tEUmK-00AzAD-JA; Fri, 22 Nov 2024 15:37:00 +0100
+Message-ID: <0af583a5-85d0-4c33-84e9-3856bde9fb4b@igalia.com>
+Date: Fri, 22 Nov 2024 14:36:59 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|MN0PR12MB5764:EE_
-X-MS-Office365-Filtering-Correlation-Id: bdb407ba-e9d3-401c-8e2a-08dd0b01e809
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MUorK2l4RGFWdmJRNWp3djY2T1NsY1dCcGFFbi9LRmlZazgzZWk4QlRIMkht?=
- =?utf-8?B?Wk5iNTc0eTRaeFR6OTg3Ryt0M0pYRzZOVks2eHFXd2g2dTMzSTFlZmcvV2ZK?=
- =?utf-8?B?ZmZ0S3lqK1ZZUjVlRHhkSHFKOVgyZjNzbFYxT3JHclV5WkVUenJFOExXa1NZ?=
- =?utf-8?B?ZTd6b1Y5TFZqMmdVTXNreTlneTkxWnRlS1B5V3J1TUh5NE4wTitZczJoWkR0?=
- =?utf-8?B?Ym01RlpEdEQwK2F4Zm9hL29KelZocVljUWY1ZFhmMXhQOXFUSVdRRVFPY21m?=
- =?utf-8?B?cmtMQkdiejVoYjN6UjhPZXdoUnNnWE9nRlMrUUFHRExLZkZQZUg1c09GWjZ2?=
- =?utf-8?B?TXRrek1vSHBOaVBFcXcwU1hRVW9kbGtaN0pWMFZqRGwxaktJWndpU2FhSzBp?=
- =?utf-8?B?RmZZUmx2MG45cExHQ1Fsall1aDA5cUlpUzg0UDBrUkM2OTYvUnJNN3Btbkly?=
- =?utf-8?B?S2I4eEhmSHNMb3NCbW1pSHpKWVV6VU5ldlhDa2Q0ZFhvb3FnU3hXWTNnekx2?=
- =?utf-8?B?KzU0c1lJNnV6ZzZNTEdHM2xuZ0YzbTZFRmdsRlJWbEJOOGFHeHkreHpYc01D?=
- =?utf-8?B?ZnBjejZJMEQ1T1UzYWpWNVlGNTJjWlh6VnBRQS9FZGxWRUw1NTZjY3pNZGdB?=
- =?utf-8?B?ZmZibkd5SGdnSUp0bFpyWklQdDFrU2Y3U2JIZWFjZUQ2SEtZK0ZEYzVmRk80?=
- =?utf-8?B?Y0oySlRKQkJ2WmZPRVorc24yYW9neVZ0VVYwdklwUm0xamV2Q3pXWUdRZ3BR?=
- =?utf-8?B?T1hqeHlmYWp2azdKcHJVdlNNSXc1aXNXM1RFSkI1YkxQYklxYWdXZ2RqSnJr?=
- =?utf-8?B?ZGNGeElQZitHb2ZIVnNOZ25OZ1VCa2l2TzFibHZVVW9GM29BOEVKdW9USEhn?=
- =?utf-8?B?dGlxMTRrTUxuTFlUb1lIQy9SdHBBVDJ1bGVqSEFHYXI3N2piaHpYUVFXNmEv?=
- =?utf-8?B?OWFkY1ZoZWxneERxT3RueWUzMHUzZS9ERTNvOXZEc2NmRlJ6MWhHcDVCVGsw?=
- =?utf-8?B?N0xRbnlxYUhRNi8yUHdYM3c4bU0yV1gxSnF2M2FPSjFiVUNCeFkyMXZtOWZm?=
- =?utf-8?B?azd4M2xwZ1lWOHQwM2tDYm1DalQ4REVUMHFUQzJmd2VrMFlsR1doSEo5aitJ?=
- =?utf-8?B?VGczazJvNGdlS0xiOTJoSXF0a0hSZUp1c2VPWmpGOEtBb3Bjd2Fmb0lkTWhz?=
- =?utf-8?B?Nkt3UnhtaGthdWlkenpBUFRsMXYyVkpYeXVmN1RHWEhsbWNsUFFJYWJYSncz?=
- =?utf-8?B?YWJPNDNtbm9YUEVobHJLWU5MdUtCZWhodlN4YVBWcHpTQS8ybzVIRzIxcktJ?=
- =?utf-8?B?S3I3MHdaK282b1pjeVVQdGZuU0hGckgxTlFNWkRJb1IwcU56SGt0RVRoeTZC?=
- =?utf-8?B?eVFSQ0VHQzZ2Yy9reGI4bHN1WGtFZ0tIWWV6OXZreExBS25mNDZkVTQ5SjRN?=
- =?utf-8?B?OXBpaU83eGcvK0IyS2dyWi93SXBmYSs4bjVjTlNyL2t4R0R4dmJNS0YvZlJ6?=
- =?utf-8?B?OGF3YkVNd1VUdlpqUjVXQzVmL1BDdE96K2JPbzZqalJYbEFXWGE5VFo4d1hn?=
- =?utf-8?B?Z1Qxci9KU0Fnckd6RUlwMjliSTh4V3lwem9uMkVneEpIWWVwOUJIdTZqMVAx?=
- =?utf-8?B?QXVHNGpqTk5SQnp6YXNSN1NpaTRXN1FJZzZwcEF6a2pjTU9aSnFxb1RKU0Y2?=
- =?utf-8?B?QmZrU1J4eUFpQkwrVVVCRExPRWdwYmQ1Y2xzY1ZsZzV0Vk44TmtmSTZ3PT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QmpzRjBBaUxGWGJhWGloaVI3ODBFbmsvV2M1ZmplWHZ2RGdUWHlCL3NmVlNR?=
- =?utf-8?B?S0pLSS95aEJQdzBwYlpIemM5V1RZS2gyQU16VXJCZGtoalVvdy80OFV6ZzVP?=
- =?utf-8?B?d1JacEJwcy9ZYjREV05UOHR5bzRFVTV6bVRPRDNuSVd1N0ZFK21WNzJSaUtX?=
- =?utf-8?B?TFoyR1IrQ094KzdEQzA4Wm5OMUZ0dkhpUnp3eVdnTmxIMjhWUmZwbWcxTGhk?=
- =?utf-8?B?OFZlVzJFZHcvQ2ZEYm03bHJlV05LWStGa1hhcXE1Zlp3QURRQzlIMVNPa3RW?=
- =?utf-8?B?blpCeVRxQVBhZXhWcysxUEpxbmMwamVqZkhrUnBYTk8xQmR1dnd4SzU4OVFr?=
- =?utf-8?B?ODVVaXBUV09jZytuTW5DMXE4K25LeXF3UWpTOUQyZUlGQWF5SGxpZzNNWU5R?=
- =?utf-8?B?Q3VuSVJaQXkwbVpqVkFOcDcwTTl6VlVNVHVPeUpldFJtU0FLenhQMXJ1MHdQ?=
- =?utf-8?B?SVpiUGd0RnNzdzZscHNDbmdYZXBSbXdCbjhBN2RGZ2VtUXZJMDU4Y2JITjNY?=
- =?utf-8?B?WGx3L2JoRFFEL1hKU3ovUmlwaUtYZzlkT1RFUzBrYThqMXNSQy9FdmRhTE1U?=
- =?utf-8?B?MEx6eUhPWEkybVh5WkR1ckJtOGtrUXpuL0t6TjNkVGpoMVlFYmJQVW5scWc0?=
- =?utf-8?B?eWZGcGE0YThXY2NJSGRPRmd2SkFQalQ0VWVqcjQwdVVMSDd2OTlLWDcvaUR6?=
- =?utf-8?B?TU5VbFhQOU5nZHlFcjg1aXZjdmVsSTAzQml5THdTSVpyekt6V1Rlc2FvckM3?=
- =?utf-8?B?R0dCaTUvaTR2cWw5c3FoOWNJb29pRncyS2hNc3lTVmZ0VXB0MkV4Ti9sN1A3?=
- =?utf-8?B?dmZETXpldGtScVhMbnJsTlJ5aG1McEZBQUZNenV2eHAzVWw3MXN0eVBNa3ht?=
- =?utf-8?B?NW01RWgwc2hqR2Ryc25tYjRjYk9BWGV1dXdnWFliOHpYcHZlTU9uRHVQZndR?=
- =?utf-8?B?M25sYlZFWXZHSFpjSHIrZXhsUE1lM202TU9JNS9iZzJWMmlra2tKZHFENWRs?=
- =?utf-8?B?VkZQQ2x0Tml3RmxaeXc2U1Q5YWVCWmtLbEE0OHV1eXUzYURmVGFqVGJSUTJ6?=
- =?utf-8?B?YVE1a0s3MXc2czQ2V0wrYXE1TXhsSW9yaStXbitLSmphWVlMdXlndUpxbFlj?=
- =?utf-8?B?UXhDZHYwNE9SUEJ3QXdTayt1YnYrNjc0dmJ2dHQ1Z1czQnVpRGRLT2doNFJG?=
- =?utf-8?B?eldEU2dYS3Y5SHZHc3EwSFZsQjEvdS92R0RnU2hyajA0UHIrUytxZ3BvUkVj?=
- =?utf-8?B?NlNGMGIyRVd5aW9KWkZzZFQreC9EMVZwd1pBYzlFNFpqeXN4V2VXWWY0VFlX?=
- =?utf-8?B?OFF6dEtobXlCNHFNclhQRXdGVjloZ1VJeS9nZE9hdDFrK2xueTZtbXdjT1VN?=
- =?utf-8?B?QVZwUmJ6TmlOYmt1dEZyU2gyZm5hNmlyTWd3K1J6ZzBHbzN2WHBGczVxRkx2?=
- =?utf-8?B?Vmg5V3dwN3o5Rkx1TlVnSzJLeW5yc2poRjFNTnNrZEhQK0h3SGx6L1ErUU1S?=
- =?utf-8?B?ZnNnckxLTGdhVmplbDZEL25YblVDQ2ZqVEJFTVRSUVhVNlkwK2Z2dkpzcjlz?=
- =?utf-8?B?L2Jyb1VidHo3MUhvZGwyM0tyRlRzcEZNR2NaYlYrYXduaDNvVVV0V0xLK25u?=
- =?utf-8?B?RlhtVkxVOWFCb2ZWbi92cjd4K0VrV28ydi9sMlFpWmR5amZ1OSt1UHNiNFRH?=
- =?utf-8?B?bTNsS2I2TWFuTUtONnRkY0szQnhwYzIycjgxNzdtT3FkMzhCd0tRME5tb3Y2?=
- =?utf-8?B?aFlLajZ1cDJUWUZqN1RuVmNpRnhsSC9xZGtxOGk4dnduN3NIeWVybW0yL0V0?=
- =?utf-8?B?UGNKY213SGJCYWh0eTBmSUlOQWZ2WlV4WEdvbU14MG93RXQ5aDE3WDF2NGZl?=
- =?utf-8?B?b3pZY3o3UlR0UEJ6d29RWGdYSFZ2SzRSOUtnNlkwSkJPYVpIa0ZDNzl6RTZY?=
- =?utf-8?B?Zml0czRyL0tYTVhFTVVUalNmbTJ1RTJMWlo5RVRhN1BuWVA4OVMrTTNvWGVZ?=
- =?utf-8?B?dzM3MjBxUk1qMHNrbFFyRmFGdHo2VnNJTkhsSnBjV2RQMjZBZjFvZDJOdXkx?=
- =?utf-8?B?Q21ndWJwZ3pLdzZ0QlZsTFc1eWRWZi9OQkdWNTUrZVE1VVBUcEwzOCtoUVhY?=
- =?utf-8?Q?sS5EWixpJhhlvbuTNqseOs7Ya?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bdb407ba-e9d3-401c-8e2a-08dd0b01e809
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2024 14:28:17.6339 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /vZsaLhhgigKcy+o3r6WhfXFZbzO4KUlgiIzksD+stVKASh5rhzJM9o8vv2zzDnX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5764
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Make the submission path memory reclaim safe
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, stable@vger.kernel.org,
+ Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>,
+ Philipp Stanner <pstanner@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Tejun Heo <tj@kernel.org>
+References: <20241113134838.52608-1-tursulin@igalia.com>
+ <e30428ce-a4d1-43e0-89d3-1487f7af2fde@amd.com>
+ <154641d9-be2a-4018-af5e-a57dbffb45d5@igalia.com>
+ <61ad957b-34be-4ee5-944f-261c7a412962@igalia.com>
+ <14e6e7a3-4077-4074-aaae-3be4b6fd071d@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <14e6e7a3-4077-4074-aaae-3be4b6fd071d@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 25 Nov 2024 08:10:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,115 +70,211 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-
-On 11/19/2024 1:33 AM, Mario Limonciello wrote:
-> As part of the suspend sequence VRAM needs to be evicted on dGPUs.
-> In order to make suspend/resume more reliable we moved this into
-> the pmops prepare() callback so that the suspend sequence would fail
-> but the system could remain operational under high memory usage suspend.
+On 22/11/2024 13:46, Christian König wrote:
+> Am 22.11.24 um 12:34 schrieb Tvrtko Ursulin:
+>> On 13/11/2024 14:42, Tvrtko Ursulin wrote:
+>>> On 13/11/2024 14:26, Christian König wrote:
+>>>> Am 13.11.24 um 14:48 schrieb Tvrtko Ursulin:
+>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>>
+>>>>> As commit 746ae46c1113 ("drm/sched: Mark scheduler work queues with 
+>>>>> WQ_MEM_RECLAIM")
+>>>>> points out, ever since
+>>>>> a6149f039369 ("drm/sched: Convert drm scheduler to use a work queue 
+>>>>> rather than kthread"),
+>>>>> any workqueue flushing done from the job submission path must only
+>>>>> involve memory reclaim safe workqueues to be safe against reclaim
+>>>>> deadlocks.
+>>>>>
+>>>>> This is also pointed out by workqueue sanity checks:
+>>>>>
+>>>>>   [ ] workqueue: WQ_MEM_RECLAIM sdma0:drm_sched_run_job_work 
+>>>>> [gpu_sched] is flushing !WQ_MEM_RECLAIM 
+>>>>> events:amdgpu_device_delay_enable_gfx_off [amdgpu]
+>>>>> ...
+>>>>>   [ ] Workqueue: sdma0 drm_sched_run_job_work [gpu_sched]
+>>>>> ...
+>>>>>   [ ] Call Trace:
+>>>>>   [ ]  <TASK>
+>>>>> ...
+>>>>>   [ ]  ? check_flush_dependency+0xf5/0x110
+>>>>> ...
+>>>>>   [ ]  cancel_delayed_work_sync+0x6e/0x80
+>>>>>   [ ]  amdgpu_gfx_off_ctrl+0xab/0x140 [amdgpu]
+>>>>>   [ ]  amdgpu_ring_alloc+0x40/0x50 [amdgpu]
+>>>>>   [ ]  amdgpu_ib_schedule+0xf4/0x810 [amdgpu]
+>>>>>   [ ]  ? drm_sched_run_job_work+0x22c/0x430 [gpu_sched]
+>>>>>   [ ]  amdgpu_job_run+0xaa/0x1f0 [amdgpu]
+>>>>>   [ ]  drm_sched_run_job_work+0x257/0x430 [gpu_sched]
+>>>>>   [ ]  process_one_work+0x217/0x720
+>>>>> ...
+>>>>>   [ ]  </TASK>
+>>>>>
+>>>>> Fix this by creating a memory reclaim safe driver workqueue and 
+>>>>> make the
+>>>>> submission path use it.
+>>>>
+>>>> Oh well, that is a really good catch! I wasn't aware the workqueues 
+>>>> could be blocked by memory reclaim as well.
+>>>
+>>> Only credit I can take is for the habit that I often run with many 
+>>> kernel debugging aids enabled.
+>>
+>> Although this one actually isn't even under "Kernel hacking".
+>>
+>>>> Do we have system wide workqueues for that? It seems a bit overkill 
+>>>> that amdgpu has to allocate one on his own.
+>>>
+>>> I wondered the same but did not find any. Only ones I am aware of are 
+>>> system_wq&co created in workqueue_init_early().
+>>
+>> Gentle ping on this. I don't have any better ideas that creating a new 
+>> wq.
 > 
-> Another class of issues exist though where due to memory fragementation
-> there isn't a large enough contiguous space and swap isn't accessible.
+> It took me a moment to realize, but I now think this warning message is 
+> a false positive.
 > 
-> Add support for a suspend/hibernate notification callback that could
-> evict VRAM before tasks are frozen. This should allow paging out to swap
-> if necessary.
+> What happens is that the code calls cancel_delayed_work_sync().
 > 
-> Link: https://github.com/ROCm/ROCK-Kernel-Driver/issues/174
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/3476
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 36 ++++++++++++++++++++++
->  2 files changed, 37 insertions(+)
+> If the work item never run because of lack of memory then it can just be 
+> canceled.
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index a37e687acbbc5..e70ca85151046 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -885,6 +885,7 @@ struct amdgpu_device {
->  	bool				need_swiotlb;
->  	bool				accel_working;
->  	struct notifier_block		acpi_nb;
-> +	struct notifier_block		pm_nb;
->  	struct amdgpu_i2c_chan		*i2c_bus[AMDGPU_MAX_I2C_BUS];
->  	struct debugfs_blob_wrapper     debugfs_vbios_blob;
->  	struct debugfs_blob_wrapper     debugfs_discovery_blob;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index b3ca911e55d61..5a4e9c7daf895 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -190,6 +190,8 @@ void amdgpu_set_init_level(struct amdgpu_device *adev,
->  }
->  
->  static inline void amdgpu_device_stop_pending_resets(struct amdgpu_device *adev);
-> +static int amdgpu_device_pm_notifier(struct notifier_block *nb, unsigned long mode,
-> +				     void *data);
->  
->  /**
->   * DOC: pcie_replay_count
-> @@ -4582,6 +4584,11 @@ int amdgpu_device_init(struct amdgpu_device *adev,
->  
->  	amdgpu_device_check_iommu_direct_map(adev);
->  
-> +	adev->pm_nb.notifier_call = amdgpu_device_pm_notifier;
-> +	r = register_pm_notifier(&adev->pm_nb);
-> +	if (r)
-> +		goto failed;
-> +
->  	return 0;
->  
->  release_ras_con:
-> @@ -4646,6 +4653,8 @@ void amdgpu_device_fini_hw(struct amdgpu_device *adev)
->  		drain_workqueue(adev->mman.bdev.wq);
->  	adev->shutdown = true;
->  
-> +	unregister_pm_notifier(&adev->pm_nb);
-> +
->  	/* make sure IB test finished before entering exclusive mode
->  	 * to avoid preemption on IB test
->  	 */
-> @@ -4777,6 +4786,33 @@ static int amdgpu_device_evict_resources(struct amdgpu_device *adev)
->  /*
->   * Suspend & resume.
->   */
-> +/**
-> + * amdgpu_device_pm_notifier - Notification block for Suspend/Hibernate events
-> + * @nb: notifier block
-> + * @mode: suspend mode
-> + * @data: data
-> + *
-> + * This function is called when the system is about to suspend or hibernate.
-> + * It is used to evict resources from the device before the system goes to
-> + * sleep while there is still access to swap.
-> + *
-> + */
-> +static int amdgpu_device_pm_notifier(struct notifier_block *nb, unsigned long mode,
-> +				     void *data)
-> +{
-> +	struct amdgpu_device *adev = container_of(nb, struct amdgpu_device, pm_nb);
-> +
-> +	switch (mode) {
-> +	case PM_HIBERNATION_PREPARE:
-> +	case PM_SUSPEND_PREPARE:
-> +		if (amdgpu_device_evict_resources(adev))
+> If the work item is running then we will block for it to finish.
+> 
+> There is no need to use WQ_MEM_RECLAIM for the workqueue or do I miss 
+> something?
+> 
+> If I'm not completely mistaken you stumbled over a bug in the warning 
+> code instead :)
 
-This will result in an eviction call on APUs since the flags won't be
-set by this time. Is that intended?
+Hmm your thinking sounds convincing.
 
-https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c#L4739
+Adding Tejun if he has time to help brainstorm this.
 
-Thanks,
-Lijo
+Question is - does check_flush_dependency() need to skip the 
+!WQ_MEM_RECLAIM flushing WQ_MEM_RECLAIM warning *if* the work is already 
+running *and* it was called from cancel_delayed_work_sync()?
 
-> +			return NOTIFY_BAD;
-> +		break;
-> +	}
-> +
-> +	return NOTIFY_DONE;
-> +}
-> +
->  /**
->   * amdgpu_device_prepare - prepare for device suspend
->   *
+Regards,
 
+Tvrtko
+
+>>>> Apart from that looks good to me.
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>>
+>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>> References: 746ae46c1113 ("drm/sched: Mark scheduler work queues 
+>>>>> with WQ_MEM_RECLAIM")
+>>>>> Fixes: a6149f039369 ("drm/sched: Convert drm scheduler to use a 
+>>>>> work queue rather than kthread")
+>>>>> Cc: stable@vger.kernel.org
+>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>> Cc: Danilo Krummrich <dakr@kernel.org>
+>>>>> Cc: Philipp Stanner <pstanner@redhat.com>
+>>>>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  2 ++
+>>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 25 
+>>>>> +++++++++++++++++++++++++
+>>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c |  5 +++--
+>>>>>   3 files changed, 30 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h 
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>>>>> index 7645e498faa4..a6aad687537e 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+>>>>> @@ -268,6 +268,8 @@ extern int amdgpu_agp;
+>>>>>   extern int amdgpu_wbrf;
+>>>>> +extern struct workqueue_struct *amdgpu_reclaim_wq;
+>>>>> +
+>>>>>   #define AMDGPU_VM_MAX_NUM_CTX            4096
+>>>>>   #define AMDGPU_SG_THRESHOLD            (256*1024*1024)
+>>>>>   #define AMDGPU_WAIT_IDLE_TIMEOUT_IN_MS            3000
+>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c 
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>>>> index 38686203bea6..f5b7172e8042 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>>>> @@ -255,6 +255,8 @@ struct amdgpu_watchdog_timer 
+>>>>> amdgpu_watchdog_timer = {
+>>>>>       .period = 0x0, /* default to 0x0 (timeout disable) */
+>>>>>   };
+>>>>> +struct workqueue_struct *amdgpu_reclaim_wq;
+>>>>> +
+>>>>>   /**
+>>>>>    * DOC: vramlimit (int)
+>>>>>    * Restrict the total amount of VRAM in MiB for testing. The 
+>>>>> default is 0 (Use full VRAM).
+>>>>> @@ -2971,6 +2973,21 @@ static struct pci_driver 
+>>>>> amdgpu_kms_pci_driver = {
+>>>>>       .dev_groups = amdgpu_sysfs_groups,
+>>>>>   };
+>>>>> +static int amdgpu_wq_init(void)
+>>>>> +{
+>>>>> +    amdgpu_reclaim_wq =
+>>>>> +        alloc_workqueue("amdgpu-reclaim", WQ_MEM_RECLAIM, 0);
+>>>>> +    if (!amdgpu_reclaim_wq)
+>>>>> +        return -ENOMEM;
+>>>>> +
+>>>>> +    return 0;
+>>>>> +}
+>>>>> +
+>>>>> +static void amdgpu_wq_fini(void)
+>>>>> +{
+>>>>> +    destroy_workqueue(amdgpu_reclaim_wq);
+>>>>> +}
+>>>>> +
+>>>>>   static int __init amdgpu_init(void)
+>>>>>   {
+>>>>>       int r;
+>>>>> @@ -2978,6 +2995,10 @@ static int __init amdgpu_init(void)
+>>>>>       if (drm_firmware_drivers_only())
+>>>>>           return -EINVAL;
+>>>>> +    r = amdgpu_wq_init();
+>>>>> +    if (r)
+>>>>> +        goto error_wq;
+>>>>> +
+>>>>>       r = amdgpu_sync_init();
+>>>>>       if (r)
+>>>>>           goto error_sync;
+>>>>> @@ -3006,6 +3027,9 @@ static int __init amdgpu_init(void)
+>>>>>       amdgpu_sync_fini();
+>>>>>   error_sync:
+>>>>> +    amdgpu_wq_fini();
+>>>>> +
+>>>>> +error_wq:
+>>>>>       return r;
+>>>>>   }
+>>>>> @@ -3017,6 +3041,7 @@ static void __exit amdgpu_exit(void)
+>>>>>       amdgpu_acpi_release();
+>>>>>       amdgpu_sync_fini();
+>>>>>       amdgpu_fence_slab_fini();
+>>>>> +    amdgpu_wq_fini();
+>>>>>       mmu_notifier_synchronize();
+>>>>>       amdgpu_xcp_drv_release();
+>>>>>   }
+>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c 
+>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>>>>> index 2f3f09dfb1fd..f8fd71d9382f 100644
+>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>>>>> @@ -790,8 +790,9 @@ void amdgpu_gfx_off_ctrl(struct amdgpu_device 
+>>>>> *adev, bool enable)
+>>>>>                           AMD_IP_BLOCK_TYPE_GFX, true))
+>>>>>                       adev->gfx.gfx_off_state = true;
+>>>>>               } else {
+>>>>> - schedule_delayed_work(&adev->gfx.gfx_off_delay_work,
+>>>>> -                          delay);
+>>>>> +                queue_delayed_work(amdgpu_reclaim_wq,
+>>>>> + &adev->gfx.gfx_off_delay_work,
+>>>>> +                           delay);
+>>>>>               }
+>>>>>           }
+>>>>>       } else {
+>>>>
+> 
