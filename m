@@ -2,151 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93AC79D9743
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Nov 2024 13:26:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 896559DA45E
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Nov 2024 10:02:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37FC810E3F0;
-	Tue, 26 Nov 2024 12:26:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 341D810E07D;
+	Wed, 27 Nov 2024 09:02:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="tIS22Hv2";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=Usama.Anjum@collabora.com header.b="YXvTH1yh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2053.outbound.protection.outlook.com [40.107.237.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65B1B10E3F0
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Nov 2024 12:26:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kSP+Q7VsdwXvKB78HVOXHcadE+FeiKPNPfqR6kNjc+ueZRwF/2hCf9i3itVR6bOm5uWxn9cI9ka35Rp77eKV0n3EuerAEkJwyGwnKviSI3ty6VwStz//d3mrOuvNiy5svTG5CFRKSImjzQhZGGcIbTwY0qmYrWujCNQAIw0MieGsKxy9kV55o68tf81eWIePCdVXmosGWH1snV4EWohONzjqVDBe1a6d4dRq8QE6ibOVDljBiTaMw+awSB87A5F6FZjvA/E7PjYgTz+67W0WUu6XfIvXYRrAuIMaIt67lOXLmZT0f80YaYNzlkeBGOJKczf22wAeL5MziIRj+K5nhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=57rmnIOdarXLYyRX+PhjiYJi1voYlsTmZZ6ZPmcEIQg=;
- b=egxwhnPcWoOWMXfxM+A+rUmggh8+xx/UoXTPc/IY0rX8i1wUIK6pj5qVuwhWlRX+wvJ4i/RU6QNI0e33pL0FKx8jFDUyvCCzMXP+JP/ySdpAacRcJzZ5oad9D2P6CzkyvJSmOxdE0qqDAPh4WM5CQUtAp77glanZpPOCvoPDaSj+aBIixDGcfw4h+Tk+vjvGTyopcTFRXYZGEANGDwf9wMRVYAvNuiB6egXbljZomewX4fQMX/AFQZ1yvx2oKyhxStM8Mz1Sc93SPmM+SAduReeuK47Z+20bDuSDxY1GkwiWtniZs0mW1Ra1+HVe+Cv0bTjdrpBGt54nGVEHFo0LGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=57rmnIOdarXLYyRX+PhjiYJi1voYlsTmZZ6ZPmcEIQg=;
- b=tIS22Hv2Mm1tJg9X0hbjokfa1vWlKm97dTTyoeg8r/1Ct85damJVEAJ8WAsQLU+Skpmqnnl+YL2bYmxRqx0D7v4yTUAIszuGeBz4Yb6C5x2Us3d3mGs5sXqhUqyJ+NEQoTO48hfyUmU31RjZnyNb5hbjM2S6vrGbjlbE2Joz1sY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- SN7PR12MB8131.namprd12.prod.outlook.com (2603:10b6:806:32d::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.27; Tue, 26 Nov
- 2024 12:26:39 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290%7]) with mapi id 15.20.8182.018; Tue, 26 Nov 2024
- 12:26:39 +0000
-Message-ID: <0cce0ffc-2844-4fbb-9f8f-76d812d2936d@amd.com>
-Date: Tue, 26 Nov 2024 17:56:32 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] drm/amd: Add Suspend/Hibernate notification
- callback support
-To: Mario Limonciello <superm1@kernel.org>, amd-gfx@lists.freedesktop.org
-Cc: Mario Limonciello <mario.limonciello@amd.com>
-References: <20241124190001.2633591-1-superm1@kernel.org>
- <20241124190001.2633591-2-superm1@kernel.org>
- <2ab89895-64a3-45fa-b6a9-37407ef6e3ab@amd.com>
- <4c939f50-a1c0-4476-9a16-ced6e6102aa2@kernel.org>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <4c939f50-a1c0-4476-9a16-ced6e6102aa2@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN0PR01CA0026.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:4e::20) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2C6610E8C6;
+ Tue, 26 Nov 2024 14:16:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1732630586; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=cjmqaF/GIZj6aAUKbpn1mZEAsalC1q89ejEthPd74jo8R1iebUeg98jd0bTOMExrBnOMbzWzeXXRTQE35VDqCRCRssfjMrbuigal9yU1u6+WP61tWSxJx1zqA4j9bM6K1G1H22zSR++VqvQBa1Uuld0E7GPAqY7dlCbYlwSAQCU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1732630586;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=FDO7eDQHyNV+5Ifxde9MtWfXA0DBzyust/9vl90ohIY=; 
+ b=iZNYqAK6TlOeaX6gasgsysCoS1KoOYQUZ0qbNZB7vEC27KwDf5npR3Xr0vsp0YMDjx+01pE1cGYxkxV9Ti2CTs+1fQsmH2vH5T79IFHyMEU4ltGOT0D47oOwELaVygigs903+oNjlcqglEWbQ+jtlnhccfAjQ6D5y2aYSt2Jxfk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=Usama.Anjum@collabora.com;
+ dmarc=pass header.from=<Usama.Anjum@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1732630586; 
+ s=zohomail; d=collabora.com; i=Usama.Anjum@collabora.com;
+ h=Message-ID:Date:Date:MIME-Version:Cc:Cc:To:To:From:From:Subject:Subject:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=FDO7eDQHyNV+5Ifxde9MtWfXA0DBzyust/9vl90ohIY=;
+ b=YXvTH1yhgRYSkp9fDzujm/yuQ6cqmNb4PF/7tgtPFAS6/JEHx/s3u+1qUmr6rl46
+ 7x0hcoslnKQbJnOr8pacYpoprbOrVANoxp6AdXRW9vzUXpxb80KkDnk6mbNqBa6+Mun
+ NonstgqcmVsoV/TSrDvlX1uzDb3+h2rrIZcydzes=
+Received: by mx.zohomail.com with SMTPS id 1732630582504831.1595780791179;
+ Tue, 26 Nov 2024 06:16:22 -0800 (PST)
+Message-ID: <bd40847e-e277-4f0f-b158-87c581192cef@collabora.com>
+Date: Tue, 26 Nov 2024 19:16:19 +0500
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|SN7PR12MB8131:EE_
-X-MS-Office365-Filtering-Correlation-Id: f22cbb67-c690-490d-a031-08dd0e159378
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?U3NBMmFmdndLT0pMVFNUZkNabURPL1dTZGIwYVRNSlVXS1BNUHZDZDYzbURI?=
- =?utf-8?B?ZDZQTCs4V1htclNXcURadnpSYlVBRFp3anVqeE1lc1hrVEhxclBVVm50andv?=
- =?utf-8?B?MVo1Q0ZsWG1iOHlISVordjJzTnlWK1d5UjViaEtIUjRrUXBqdDkrOVhDeUxr?=
- =?utf-8?B?ZE1QZ0RCTmsrclY0OGp6MW94eXFhWmVIb2xqblNaakFVbC9iZW81cEFMOU5u?=
- =?utf-8?B?d250eGtyZnZ5WDByWmd4QXA0eG53MGF0d1ZQdzNiVVllVjlRS3NndmZMWFpC?=
- =?utf-8?B?TkRPMjgyY2Q3V3JSQWoxaTdlWlRPZVcrSmVPTHJhQ0Jsb3crdkVJUXNoT3h6?=
- =?utf-8?B?SlpmVkVFNmd1NFJwLzFoc2ZuczQ4V0hlRHFJYUcxMyt5ME1MN2oxcnBGRlhP?=
- =?utf-8?B?R1V3T2sxbGp0Yk5ZSVJMSngvMnNYeDVaZlJzUlAxLzZJSFFYWDl6VEs0VHE2?=
- =?utf-8?B?V2sxUDhZU1BLZktLMy9nV1ZFYnpCSm90SmJVdzJmVURxWmhOMU1Zd1N5UWhr?=
- =?utf-8?B?WFJwMlM5ZnJGU2ZWSGRIWWRGSmxTY0gvTVpjVkV5aDR3SzJ5LzdabEZvSTJN?=
- =?utf-8?B?QWpWbk5icy9FVkdJeFA1Zk9rc1hOSDNhdS9tK1c5NkpvL0RoVkpseEJQbUF0?=
- =?utf-8?B?dGRoZDJxUnpqNWtsS2E3UXBRNjlWQ3Awblp1WmxFZUU1NGlKQ05UR1VSM2hZ?=
- =?utf-8?B?a3pTVytITERjV0FzOXpqRk81YitMZnJQOUNaUE1wNDBiTlhtV0FpMHR5bWgw?=
- =?utf-8?B?dWJlU1ZENmk2M2tiRExIbWtOSnNocDBSVy8xZTZ4VDQ5a1RsU2dIRHdRL3R1?=
- =?utf-8?B?cTRZK3VsYStKL1p6Yjl6Nm5jNi84empGeVArZk1Kb1ErV0x4UTZZVFlVYitn?=
- =?utf-8?B?UXRoZ1FHY0xyNksxenNQZzZJRDVlSWFPL3Vyd05DQUIwVmFMRzJMVGZBMW5D?=
- =?utf-8?B?N0pOdmw4bEk3enBiTmtyZzRMUmlkSXY3N0xLY0FiRVlPMVlWU3NqVUdEa2Nw?=
- =?utf-8?B?YXFjU3Y0L3Avd3VlcUdPYW5PVUFwM0ZpemdDMHZGeFJIYXB1VEE2czVLMldJ?=
- =?utf-8?B?cDhVd0N1eGg4YlByNEZGU2dHYVppZ1R4aFN3WVFFa2lzc3VSd1BJSnd1ZDVM?=
- =?utf-8?B?WUJ2YTl4bmMvVjJYbWdQYW1XY2dMcVE3K2c1RUNRREFDakhidjNmQ1B1NjQx?=
- =?utf-8?B?WGRBVjR1RTd1N0k2N0NOQlNIcmpYc2xnU0VaL3lkdG5zMjVhY2d6UitFdkNQ?=
- =?utf-8?B?R0xkRnVOeFZFaTBBS25mcURwbUIyV1VWREpLNFRsUVhDdThKQUFLSWZxRWNF?=
- =?utf-8?B?QXJIMXM5YUpHekJwa0ZSdGNSWUpPNzVkUC9BbndCVStaWkd2VFBXMXNBQkxU?=
- =?utf-8?B?R1ZuaFM3dmV3VFVHNS9hTGVBUEFyMUlWdkErZEZKUjd0dzlKQ0dzZ0NpSTlU?=
- =?utf-8?B?S21XNzFEYlZ5cXRTWWpGQnZvLytaOU9naytiSUFTOGdXamxnZHdXUm10Snl6?=
- =?utf-8?B?S0tvU2IzTzIrM2RxK3hlQldzNWFkVkZ6RVc5MWJZSlhNdUZycUNwbmY3a1hE?=
- =?utf-8?B?aU9GTkxlMDhsakttYzNmY3dyVVdCaGJlMU5oZjBYdkJUYmpscUlLQUFrL1lV?=
- =?utf-8?B?NjZHUDB5czYrVE83bkpqK3JISkhyWE1jcUJXbE1CbmU4OVFkd25wdWZEaUVa?=
- =?utf-8?B?dGV4ZzZBa1Z4aFl3elFVZ1N1YlF5ZEtQSEJXS1RNallvQytpa0xud3NXaVN5?=
- =?utf-8?Q?A5Bhm4J7RYM4SJ3cbXapYkNmXF+SRbncMaiNWNq?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dDQwdVdUZUtSZXVXbVNHNHVYM3FtSjdYbUd1ZmJkNXgzM0ZYajkvSmJ3bTYz?=
- =?utf-8?B?YkpxajhTWEl1WnMrby9NMTFFck1SNTJpdlBUZjhKbzFnS3hYUVJpeHR5RTZs?=
- =?utf-8?B?Y2FQQ1FQSTJFS1F0ekZxQWxUUlZLVDBKUk5iMHEvaHRzQTlWYnEvREtISnZ4?=
- =?utf-8?B?NU9jaXkxa2Jac2FnU1hxNEw1clJoY0hPSE5CQXpRNmZhRzZwWjJWYnhKeXpW?=
- =?utf-8?B?N2o1UmM5OUJXaEVONEJpVmtGNmtFRm5FTGo5K0c0dGo3d0pIbzhSS0lVZzBF?=
- =?utf-8?B?NUVjOThidTZSSFdTaWYwZW9CMUUxdmFEbG1ZY252bUpuTFpDeUovVEtLdmNy?=
- =?utf-8?B?RjBPTWV2NDBwSW9KVTN3RmNVTExQandVd0xsZ3pub1ViYVE3VUVZdk4veGlN?=
- =?utf-8?B?Mk1EaHZlcSs1YVE1RDhjMkxGc1VMZzdNb2NsTVhGejJuaERHSjVWRzdpN2Iv?=
- =?utf-8?B?SGpvaHFpNVFkUkY2c3lVek9WOVJZZExjMXRSbHVYQm9lcmtrS0RlNTdadUV6?=
- =?utf-8?B?bXh0dVlLbElreFo4Vm44V3JMQWVUblNubDJ2MWYvbHBBYkk1Um5LQW9iNTJw?=
- =?utf-8?B?Z05yQ1M4RUE1d1NRRWdJcFlFSlNKcjErd1pBcHdrc3hTUFJ5SWpBVVZuT3JJ?=
- =?utf-8?B?SFlqTzRBeXBVRVVzY2R1Wi9SSzJza0hpZmVlV0NqK0tTWkw5Mk5KTVg0QjBq?=
- =?utf-8?B?dlNzZm13RFUzNFI2NHREb1BubXhWMUZKRjdKMGtQOEdQRGVYZkYyemFNd21v?=
- =?utf-8?B?S2IycWVJYXIyTStacFB3c0lsbTBvSEJEMTE0L1VxQXpodWJBNlBodlVIN2Z3?=
- =?utf-8?B?RENEdzB2UUpwQ1krQkgzOGJsaS91dTdiT2JIcjNzZERScTFhSXlJbkpnQTF4?=
- =?utf-8?B?UFBKWWh0ckJFQlUrclp6dFAyM2tLcnNmQkpSOWRtVFdqVitRZ0VHQjc3amxX?=
- =?utf-8?B?Z3JTYUxZb2RxL21MZkVhMU5aalVIcDJTYks2OXEwcVZzNzE4SGNUbXhEM2N0?=
- =?utf-8?B?bTRtNnpHQlZKZTNqRnRTdEsyYmxVb1VoVE5Ncy9qbXUvL2djQ2hBNkl5UUhX?=
- =?utf-8?B?QmpsRnJZSUVVV0RZZDBrd0VhMkcvbW9UZ2pRU2YxMCtpUUNpYW1UQ0g1cmt2?=
- =?utf-8?B?N2hBZHFWdUVjb1FrZ3RpcGsydnpMcEpZWFpWWjUxa2VLQWpDUEV4NzJBendB?=
- =?utf-8?B?cnJ2S3lhTTFEVVd4Nm1nL2RqWFpHbloxNnRNMllFelJYcWkyd3R3Nkc0Nldo?=
- =?utf-8?B?R0lKWnJlSVlLN3JtWGRQSk90ajJYVkV3L2wvV3UzWkl0YStUcFUzellJUGRN?=
- =?utf-8?B?bnVYSEFQWms3VEE2cUx3Q0NEWitrUXNmNmJpcEcyWUdGWUtWV3duWmJNZkRW?=
- =?utf-8?B?UGtFRElvOFJlMmdnNXNNRjZkWGNQRHhnc0NVeCtWb3IyaEpWZ3B3OEV5QURr?=
- =?utf-8?B?Y2I1MDhpTXVYeVMxYlhQSW16em9RQ2lXeFlGK29PTHlTNXZtTGFNMC8xcU14?=
- =?utf-8?B?YjlrbFVEN251M2daWEJKQU9VZzlwRVYwTHhWNXVydXY3Z01CT3FLOUVsUGtN?=
- =?utf-8?B?SDZPVWR5U1VUclpFbFY2MXBPSWg1NnliZzd3OVRCK1JyMTZSWGNoQ0RCWGZ6?=
- =?utf-8?B?a3NpUFFCUzI5bFpPSEFOMnhNN2JHamhEbllzQUUzeTVuSVBNRk92TGk4NTZG?=
- =?utf-8?B?V3NKeXFvRWRrV0ZLWVVoVHpjbWpsaVhEMUtLa1l6Zmtlb2UzWUduU285RkVY?=
- =?utf-8?B?d3Vvcnp4MkFsbXEyQldCV2dSOWkva1ExY1JmTTB2UGFMNmNBNytkMGRWRWhK?=
- =?utf-8?B?bFdkUGhIN0JtREtLcFF2M3owalkxNjdVUHYxSmRMcVZjTDQ2UGNtQ1RRM0pp?=
- =?utf-8?B?SWtPMWordkZnRWhjNlMzNXRsRVRxSFB5L20yb3FmTWZiRTVGTHNSRFZjTEc1?=
- =?utf-8?B?R2FsZjhQc3lQbGJCblB3dVJRdFdJSnk4ZGk1NU0xTk5aeHNidE5UTlVYazVT?=
- =?utf-8?B?cGsvL0I5eXhUenBDQTU4NEFkcmpwWWdYemFTcFdTN1NwNGoxa2ZxbGtuTUhU?=
- =?utf-8?B?d0QvcXA5ZGdGUGZGOXl2TzF6eGVsSWN1NVdKUklsVzFaWUtCZXc2ZVdSWWNU?=
- =?utf-8?Q?lIvu3CHak3qLlL3Oe4TOBF5NI?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f22cbb67-c690-490d-a031-08dd0e159378
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2024 12:26:39.2056 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V4LiMLwnHguxKiloOMMbHoeX+EhQIib+GukSRY9qb4YSUaZxCiPW1LvV0oVgMpAF
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8131
+User-Agent: Mozilla Thunderbird
+Cc: Usama.Anjum@collabora.com
+Content-Language: en-US
+To: LKML <linux-kernel@vger.kernel.org>, linux-next@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Sunil Khatri <sunil.khatri@amd.com>,
+ Ma Jun <Jun.Ma2@amd.com>, Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Jack Xiao <Jack.Xiao@amd.com>,
+ Friedrich Vock <friedrich.vock@gmx.de>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Muhammad Usama Anjum <Usama.Anjum@collabora.com>
+Subject: [Bug Report] Warning from __flush_work() on next-20241126
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
+X-Mailman-Approved-At: Wed, 27 Nov 2024 09:02:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,163 +72,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi, 
 
+We are getting this warning on x86_64 and i386 targets:
+[    8.677157] amdgpu 0000:03:00.0: [drm:amdgpu_ib_ring_tests] *ERROR* IB test failed on sdma0 (-110).
+[    8.698661] ------------[ cut here ]------------
+[    8.703310] WARNING: CPU: 1 PID: 49 at kernel/workqueue.c:4192 __flush_work+0xb8/0xd0
+[    8.711206] Modules linked in:
+[    8.714285] CPU: 1 UID: 0 PID: 49 Comm: kworker/1:1 Tainted: G        W          6.12.0-next-20241126 #1
+[    8.723790] Tainted: [W]=WARN
+[    8.726781] Hardware name: Google Shuboz/Shuboz, BIOS Google_Shuboz.13434.780.2022_10_13_1418 09/12/2022
+[    8.736273] Workqueue: events amdgpu_device_delayed_init_work_handler
+[    8.742768] EIP: __flush_work+0xb8/0xd0
+[    8.746632] Code: 00 00 f3 90 8d 45 c0 e8 92 1d 04 00 84 c0 74 f2 eb d2 8d b4 26 00 00 00 00 90 0f 0b c6 45 9b 00 eb c2 8d b4 26 00 00 00 00 90 <0f> 0b eb ee 8d 74 26 00 0f 0b eb a6 8d 74 26 00 e8 8f c4 8d 01 8d
+[    8.765410] EAX: 00000000 EBX: c272ee01 ECX: 00000001 EDX: 00000000
+[    8.771726] ESI: c272eea8 EDI: c194d77c EBP: c17bbd64 ESP: c17bbcfc
+[    8.778011] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 00010246
+[    8.784829] CR0: 80050033 CR2: 00000000 CR3: 1355b000 CR4: 003506d0
+[    8.791120] Call Trace:
+[    8.793591]  ? show_regs+0x51/0x58
+[    8.797028]  ? __flush_work+0xb8/0xd0
+[    8.800724]  ? __warn+0x8d/0x1b8
+[    8.804024]  ? __flush_work+0xb8/0xd0
+[    8.807710]  ? __flush_work+0xb8/0xd0
+[    8.811403]  ? report_bug+0x186/0x1b0
+[    8.815094]  ? __flush_work+0xb9/0xd0
+[    8.818785]  ? exc_overflow+0x50/0x50
+[    8.822474]  ? handle_bug+0x56/0x90
 
-On 11/25/2024 9:46 PM, Mario Limonciello wrote:
-> 
-> 
-> On 11/25/24 08:59, Lazar, Lijo wrote:
->>
->>
->> On 11/25/2024 12:30 AM, Mario Limonciello wrote:
->>> From: Mario Limonciello <mario.limonciello@amd.com>
->>>
->>> As part of the suspend sequence VRAM needs to be evicted on dGPUs.
->>> In order to make suspend/resume more reliable we moved this into
->>> the pmops prepare() callback so that the suspend sequence would fail
->>> but the system could remain operational under high memory usage suspend.
->>>
->>> Another class of issues exist though where due to memory fragementation
->>> there isn't a large enough contiguous space and swap isn't accessible.
->>>
->>> Add support for a suspend/hibernate notification callback that could
->>> evict VRAM before tasks are frozen. This should allow paging out to swap
->>> if necessary.
->>>
->>> Link: https://github.com/ROCm/ROCK-Kernel-Driver/issues/174
->>> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/3476
->>> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/2362
->>> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3781
->>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
->>> ---
->>> v4:
->>>   * Make non fatal, drop patch 3
->>> ---
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 45 ++++++++++++++++++++++
->>>   2 files changed, 46 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/
->>> amd/amdgpu/amdgpu.h
->>> index d8bc6da500161..79ec4ab8ecfc5 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
->>> @@ -879,6 +879,7 @@ struct amdgpu_device {
->>>       bool                need_swiotlb;
->>>       bool                accel_working;
->>>       struct notifier_block        acpi_nb;
->>> +    struct notifier_block        pm_nb;
->>>       struct amdgpu_i2c_chan        *i2c_bus[AMDGPU_MAX_I2C_BUS];
->>>       struct debugfs_blob_wrapper     debugfs_vbios_blob;
->>>       struct debugfs_blob_wrapper     debugfs_discovery_blob;
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/
->>> gpu/drm/amd/amdgpu/amdgpu_device.c
->>> index 996e9c78384dd..56510ab4b6650 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>> @@ -191,6 +191,8 @@ void amdgpu_set_init_level(struct amdgpu_device
->>> *adev,
->>>   }
->>>     static inline void amdgpu_device_stop_pending_resets(struct
->>> amdgpu_device *adev);
->>> +static int amdgpu_device_pm_notifier(struct notifier_block *nb,
->>> unsigned long mode,
->>> +                     void *data);
->>>     /**
->>>    * DOC: pcie_replay_count
->>> @@ -4553,6 +4555,11 @@ int amdgpu_device_init(struct amdgpu_device
->>> *adev,
->>>         amdgpu_device_check_iommu_direct_map(adev);
->>>   +    adev->pm_nb.notifier_call = amdgpu_device_pm_notifier;
->>> +    r = register_pm_notifier(&adev->pm_nb);
->>> +    if (r)
->>> +        goto failed;
->>> +
->>>       return 0;
->>>     release_ras_con:
->>> @@ -4617,6 +4624,8 @@ void amdgpu_device_fini_hw(struct amdgpu_device
->>> *adev)
->>>           drain_workqueue(adev->mman.bdev.wq);
->>>       adev->shutdown = true;
->>>   +    unregister_pm_notifier(&adev->pm_nb);
->>> +
->>>       /* make sure IB test finished before entering exclusive mode
->>>        * to avoid preemption on IB test
->>>        */
->>> @@ -4748,6 +4757,42 @@ static int
->>> amdgpu_device_evict_resources(struct amdgpu_device *adev)
->>>   /*
->>>    * Suspend & resume.
->>>    */
->>> +/**
->>> + * amdgpu_device_pm_notifier - Notification block for Suspend/
->>> Hibernate events
->>> + * @nb: notifier block
->>> + * @mode: suspend mode
->>> + * @data: data
->>> + *
->>> + * This function is called when the system is about to suspend or
->>> hibernate.
->>> + * It is used to evict resources from the device before the system
->>> goes to
->>> + * sleep while there is still access to swap.
->>> + */
->>> +static int amdgpu_device_pm_notifier(struct notifier_block *nb,
->>> unsigned long mode,
->>> +                     void *data)
->>> +{
->>> +    struct amdgpu_device *adev = container_of(nb, struct
->>> amdgpu_device, pm_nb);
->>> +    int r;
->>> +
->>> +    switch (mode) {
->>> +    case PM_HIBERNATION_PREPARE:
->>> +        adev->in_s4 = true;
->>> +        fallthrough;
->>
->> Based on https://gitlab.freedesktop.org/drm/amd/-/issues/3781
->>
->> What if this callback takes care only of suspend case and leaves the
->> hibernate case to dpm_prepare callback?
-> 
-> Then hibernate would fail under memory pressure.
-> 
-> My take is this failure with hibernate is a userspace problem (whether
-> userspace decides to freeze the tasks or not).  I think it's better that
-> we /try/ to do the eviction and notify them if userspace should be changed.
-> 
+For complete details:
+[1] https://kcidb.kernelci.org/d/test/test?orgId=1&var-datasource=default&var-build_architecture=i386&var-build_config_name=defconfig&var-id=maestro:67455b9a3be6da94b19fde77&from=now-100y&to=now&timezone=browser&var-origin=$__all&var-test_path=&var-issue_presence=$__all
+[2]https://kcidb.kernelci.org/d/test/test?orgId=1&var-datasource=default&var-build_architecture=x86_64&var-build_config_name=cros:%2F%2Fchromeos-6.6%2Fx86_64%2Fchromeos-amd-stoneyridge.flavour.config&var-id=maestro:67455b923be6da94b19fde4b&from=now-100y&to=now&timezone=browser&var-origin=$__all&var-test_path=&var-issue_presence=$__all
+[3]https://kcidb.kernelci.org/d/test/test?orgId=1&var-datasource=default&var-build_architecture=x86_64&var-build_config_name=cros:%2F%2Fchromeos-6.6%2Fx86_64%2Fchromeos-amd-stoneyridge.flavour.config&var-id=maestro:67455b923be6da94b19fde48&from=now-100y&to=now&timezone=browser&var-origin=$__all&var-test_path=&var-issue_presence=$__all
+[4]https://kcidb.kernelci.org/d/test/test?orgId=1&var-datasource=default&var-build_architecture=x86_64&var-build_config_name=cros:%2F%2Fchromeos-6.6%2Fx86_64%2Fchromeos-amd-stoneyridge.flavour.config&var-id=maestro:67455b8c3be6da94b19fde34&from=now-100y&to=now&timezone=browser&var-origin=$__all&var-test_path=&var-issue_presence=$__all
 
-Hmm, the logic is kind of inconsistent now.
-
-For dGPUs, evict is required for s0ix, s3, s4 and attempted twice.
-For APUs, evict is required for s4, but attempted only once.
-
-Thanks,
-Lijo
-
->>
->> Thanks,
->> Lijo
->>> +    case PM_SUSPEND_PREPARE:
->>> +        r = amdgpu_device_evict_resources(adev);
->>> +        adev->in_s4 = false;
->>> +        /*
->>> +         * This is considered non-fatal at thie time because
->>> +         * amdgpu_device_prepare() will also evict resources.
->>> +         * See https://gitlab.freedesktop.org/drm/amd/-/issues/3781
->>> +         */
->>> +        if (r)
->>> +            drm_warn(adev_to_drm(adev), "Failed to evict resources,
->>> freeze active processes if problems occur\n");
->>> +        break;
->>> +    }
->>> +
->>> +    return NOTIFY_DONE;
->>> +}
->>> +
->>>   /**
->>>    * amdgpu_device_prepare - prepare for device suspend
->>>    *
->>
-> 
-
+-- 
+BR,
+Muhammad Usama Anjum
