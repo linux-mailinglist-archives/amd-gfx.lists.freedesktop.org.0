@@ -2,147 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C3C9D917E
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Nov 2024 06:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D652D9D934E
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 Nov 2024 09:27:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 636B610E11A;
-	Tue, 26 Nov 2024 05:53:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86DB310E7EA;
+	Tue, 26 Nov 2024 08:27:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2yI8PK3W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CWhSCSKM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2066.outbound.protection.outlook.com [40.107.223.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72F2B10E11A
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Nov 2024 05:53:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wiX9MipDFJM48qCIDQk4HW4pchlOX7G9jmF+yYB6Zlvhz03tpsrhJgISNs5fRC06vLO/APBqQ2ByfVE32VPfnpLh+P8h3g4/AfAAcfzkwFYvZX+fOQvZ2VZtZv7sMUX/8zeR7zxXnfZX56AjjUvdAQ2D31FKASctef1al9IaMilv0Hn2pPR1bTKBko2+vA4tU+Sa7tx6D5K5zVJgk1lG2q2RdEhmmrBYBQD1uzIIxveCuqxFcwIUHRezmNOvCiepx+P/je1D1xesnIJit8N08K1KRaEOBjEfwwhdpxI1yYCzYvm5d84SeWvTxqK17kGLmZHszzcXLmo5Bvln8MRAlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FL3hY1XZpqn5Vc7qRa2/HydGLyGiwY/HzJXKLLiVOOc=;
- b=ET8Tkv1GLviyJ2jMucFbd7Et7mstUcnwnDGrx4SrD1XqvBnzVtD1EzQemSaT0eesU4GneEm0X/BEBs3t9MAt3KFJb2hQwYYZxP0o0jjWFGArzqb5TPh+frtxCNs1q7k/sUK0B51kl5s9/3+0L6/FepTx/Fqt17UANoct5pt/8N5k5h2U4AVi9ayJd9T841oUxlRRbgxoxxNvnQJP+5eKvcbcOX9/y5Np9He1kT15g/weiw7lO845rN5rIdSCu2gHsQkBhTeFnLyvOZft9iKbU46LeYCQjoXHUouVtH7fTVC8wWV6+KKz9uJkj9eviGR+yGuH+kdMR//ipxP9M83kTQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FL3hY1XZpqn5Vc7qRa2/HydGLyGiwY/HzJXKLLiVOOc=;
- b=2yI8PK3W13/6FIEGPvGFDhyibzvK6cm1/bfQBVovYKqyiB9g6g1VE1BQi+3is6SfJtaeZ42F8d06t8195RusaYtwI0rhB9TCySNdt/KdL78Lm78egoobaEpLjC6Vqt7I8Vt6ycCguAoUTQXlsF36kU1q9D3lZuRLZq/RlO4LCn8=
-Received: from SN7PR12MB6932.namprd12.prod.outlook.com (2603:10b6:806:260::14)
- by CH2PR12MB4167.namprd12.prod.outlook.com (2603:10b6:610:7a::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.21; Tue, 26 Nov
- 2024 05:53:16 +0000
-Received: from SN7PR12MB6932.namprd12.prod.outlook.com
- ([fe80::ec4:314a:d766:9783]) by SN7PR12MB6932.namprd12.prod.outlook.com
- ([fe80::ec4:314a:d766:9783%7]) with mapi id 15.20.8182.019; Tue, 26 Nov 2024
- 05:53:16 +0000
-From: "Min, Frank" <Frank.Min@amd.com>
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Belanger, David"
- <David.Belanger@amd.com>
-Subject: RE: [PATCH 5/5] drm/amdgpu/hdp7.0: do a posting read when flushing HDP
-Thread-Topic: [PATCH 5/5] drm/amdgpu/hdp7.0: do a posting read when flushing
- HDP
-Thread-Index: AQHbPPt0t4P4PgYypkunW0bHTc2/RbLJFJEA
-Date: Tue, 26 Nov 2024 05:53:16 +0000
-Message-ID: <SN7PR12MB6932BE08A7D0FAE860E4D8C1E92F2@SN7PR12MB6932.namprd12.prod.outlook.com>
-References: <20241122162657.1056489-1-alexander.deucher@amd.com>
- <20241122162657.1056489-5-alexander.deucher@amd.com>
-In-Reply-To: <20241122162657.1056489-5-alexander.deucher@amd.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=e5c6d5a5-fd4e-4a46-b8ba-c0f55b8f360d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-11-26T05:51:41Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR12MB6932:EE_|CH2PR12MB4167:EE_
-x-ms-office365-filtering-correlation-id: da6c916f-ad66-41ae-65fb-08dd0dde9f2f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?Gzy9mN/QO5j6msDlPHMguZxQof051KCRayVwCK95dVgeo7MkoW7R7pEtxTwG?=
- =?us-ascii?Q?f6FtXoCRZzw8XidfauOryx7G0+TEHPxtVT8qwgNO/mtlzUPdzTtIsRGbCjr1?=
- =?us-ascii?Q?6voTIsZnPE1iVMTwZU3MfYVHySvIagfFYDlB36pcJVbc0ILmjL7h3IBbhlBL?=
- =?us-ascii?Q?HQHKsOTpBmy5IlN+cqbxFyGJLb8+/q1Mnr1Iv+o5zFitGyGsq4unCycZhb66?=
- =?us-ascii?Q?9wctCZKV6zbnuPOfsoldKqUVhytd8X/hepxq0Yc9SWJAufpoO+d16Lyzy3OF?=
- =?us-ascii?Q?QRgGSEtqYGfvbJVHpiPENljL08y/pxIkeX8NlVEaEXxjoNcWu0c0W5HA9xYr?=
- =?us-ascii?Q?almr4F9T4ZRpmJbGyLvHC4dUXjm5/MIov8m23RgTCHOYb8KpcitMjwAS6Wd3?=
- =?us-ascii?Q?HHTtBqf4hIubUzOCTlgMXxBc1mZHuwsaZuI8/IxO860hObKc3Wx5MhAWXkan?=
- =?us-ascii?Q?8k4qVQ7OHjekx5vdEmcQzijuuYd7NkooolLPdN5/UThO8G3q9faCZeOyfDjL?=
- =?us-ascii?Q?JWaTIhfMpFBPJWklzhe2SMiBH1nh4WbnrfPXF5EaUPwkgFtsczydHrJTuMsG?=
- =?us-ascii?Q?OH30A5kBxVYMeId6mg3ey6e7d2Od/HVSvTSPnyPBe/+hditOQ3yVK9w7b1el?=
- =?us-ascii?Q?Y54dAtcA0UFsR39cSdLZObP48J2Y+nNSLIowJh0zh2JbaNuJTUeuLRUzZWBm?=
- =?us-ascii?Q?T2p/jXjQbXDWKo3/bQ5Uz+96s1sYwi82Bre6ZshuBOU+ZJds0ZmrUMyy5chp?=
- =?us-ascii?Q?QMxaWexvFFl48hMp6brHlifGrWG1hmz+ApC3PiHwe4u/T1IgD3n51ZpWneVN?=
- =?us-ascii?Q?nUNzYquHgoJD/qryO0AUOkwDpFTzKkOFmY1b6sAoHSTBU+8zGty4pwLylKzH?=
- =?us-ascii?Q?fnM7dZPnLhttYpcRCpXdQR9qxB7U6/xSpEanVQ4c9MsFoZPzdSA6TYwbP6bs?=
- =?us-ascii?Q?qQxJTMi3/HX3bN4CPpgWGjsIhDhVwcJe1CX9w8b6UhFUsWskD1TqYdt3m1PX?=
- =?us-ascii?Q?OgMHcXwb51sm3Jvom5csUmwWZPDD35DeOHEo8UZsb9dRe31OWYihBkwhDesP?=
- =?us-ascii?Q?+CnLaYgyoI/yem9LtIHSlzlQ4SrwkYwv4I+O9wI0UqzLLhCGFu9LMFX8PaNw?=
- =?us-ascii?Q?Nrb+vBRY66GjHJ2Vl8jR74khXSyTaUKMasekerNQ7oornYRzqWuZSHZOV0Yj?=
- =?us-ascii?Q?r1MkxGk0/8n/Y42A5q+ptPUQ8hGzGTR2u8Rc93EjoMULO/5COh01yeFRQCTA?=
- =?us-ascii?Q?Vew/x9bDa+2iBbQpdkp2z3YnY1aopsc/PlhQ5BCuoNYRgRMImX4Xq9aYW4Ht?=
- =?us-ascii?Q?+0BZbEccpvvQLrydGvQ9DNVcVAz2ErX6PRvToSep1MbeoLW/hfCN5kBhNSqS?=
- =?us-ascii?Q?r9p/E9N+whoZHqqndzUyv6CAKnL8GlEUBAooJ3QqS5OkQ/wQrQ=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR12MB6932.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dhPIVVCWSOM5KrPSDXMG3bwqPAYdYlf4sLJOrwSKsp+sKMd0XZ66tl6ldKl/?=
- =?us-ascii?Q?igXI/cxlFktEj7jv/pZnZyZGGDi46aiGhlppYI0Q/vuz1LJ+YVcJZIneA1VV?=
- =?us-ascii?Q?dJTA0ucF2bakRmzhjS+C5KfHU5HVZruifD7wC+3BmpIgtVf5BDvnMMPtLxZL?=
- =?us-ascii?Q?rUi1IvaqU1ldw/z8/KqVJnNa+Vrddk5udSG2Yj70XVyH5NFywuPmtuSOxbyn?=
- =?us-ascii?Q?l04YNZMAs76pSwIEaq38ddnLL5p1hhQBQG2VCb3kv/b7L0ok+Po/NAsxrwMk?=
- =?us-ascii?Q?LX8lVfmdbY3iwlopCUZl34wcPkFs0Qg6DoIi6qAKlUpbwIwPcFQ8UiPtcuwk?=
- =?us-ascii?Q?rMkuA0VzTL5YTDQXHI5xwDI6cYErR+TQ5haiYR0FUTq9Y7QSPel56ywO5kWO?=
- =?us-ascii?Q?bikEq69IsZyzAU9ykM2hUvKxs8hKI/iHLNznWkqNYwaPkNv9CJVznNtH67we?=
- =?us-ascii?Q?K+5KMmafHkT4RLxKwfWBIvp1WN/3AJjbfHGwBWJR9FChWCPny18AsnqDUh23?=
- =?us-ascii?Q?Uf+C37m5EcQbvz7UrTSM9fhs2FDvtajZLfpN0ppcVMi8Sao06yPUuxDj1AlU?=
- =?us-ascii?Q?HUhLZHloy2YOPatZudg98EiKmIahEwE6hLZjW8KbfQcM+/E84E1R2T49BYL/?=
- =?us-ascii?Q?UNffYEggq/Jf1995zM7RzHxWXxu8mM0MC+UI37ENZvOb3Xw6nFg9xy16Re2+?=
- =?us-ascii?Q?4k6O+8p09PakyuS/6OZ11ZJtS18o/xs3wEwvf5ptR8biXGkpX/yRSg5OSIa1?=
- =?us-ascii?Q?1zypcAGcbhHNBj/q4IcFQrkwKusD9jO4GpOCpqxeXzUTqP0dGSBOfUbiImh5?=
- =?us-ascii?Q?Tagva57ViKFmInGFe222oHvGzocwLjjRFvjlOT6LRznDDaSnXdweSwTo/k/8?=
- =?us-ascii?Q?F7KPQ289uKOVvSIOF+4V7vP+zVACIH09crBWMi94I57Q0y46C6xSXKyJJcVy?=
- =?us-ascii?Q?GKklpxz1qNQrphwA5PvqjSkdHNIhwyW+8MdEdKYIxK0Ek37xZHPr2V1RdSp7?=
- =?us-ascii?Q?11bGuDaCZ076prMUzJZ4mWwudrjl+aY/i3fMkImFlgEqDNKIr17djhlySVm+?=
- =?us-ascii?Q?z/bxmx7K3L+2tQdlZh518pelHug1xhlCLA2MU9fqDgcVMgUlQBeKP0GnR4zC?=
- =?us-ascii?Q?iNjEBmJP8F2X8Cvz6yLJ1hOUo2gYrO967zVlEQnvhbzkf86ntr2IUTqmEjOM?=
- =?us-ascii?Q?rWWeSzaZAjij7yazp7rjPpltXeO6E+seUF4tO30vyC1LZR48sxFktDSxcsfd?=
- =?us-ascii?Q?tLf5eNrEANvevfkwdMd/SG/ZvRBLkdCzT5nTMLWcL38FBOwty5dbFD5tzW58?=
- =?us-ascii?Q?1yArmvRpySdNSi9lYZds0YwohLp/QSe8IgAxF0KZ0Kj9wdC+mQR0aS9kusZN?=
- =?us-ascii?Q?1JTu844bALbQG8CBMP7GRIflCCWWC6izqgpSLXAk7paenjDeOA6PSPS8dD8X?=
- =?us-ascii?Q?Vih0Uqo1bSXWqbxj3+Zhnrzf3MHl+dV+Wdmee21SNFdP9Z92U8oSZeFGE58B?=
- =?us-ascii?Q?Gyv1B6hpbwjMO63r1LwKesO20sWjVr2qWHMVSbV++FBNX4o0CPvGqeBxj63L?=
- =?us-ascii?Q?h7nluFNeJLJxjLDftCw=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7619E10E7A6;
+ Tue, 26 Nov 2024 06:39:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732603147; x=1764139147;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=eurZl2qKDVhWbDHKbXKFHTQAbup43NtVInM08lSeDEw=;
+ b=CWhSCSKMb671UzZn4Kbb4cqAiTT8FVBz4lSJt03kPDOKaOkn7uQzf/HI
+ GkkCyhuw/KsqU5+T4dByYhy31YpOUvZbXGD9jcdldjAFT59am0IjqNfvD
+ A/yNcbtultjkZwetM/xSiqLk9huVZ+DPsVqIjHnm4pr/ypLcnpsUKDueR
+ 5v6+5Mewpf6gCGuJI9jEsx8nWG4VPNkgWxyevjxDyHRVgkkEyFJW3RX8c
+ G4gfZMeHPftfgew2759zCJJW8e5ATpA2L7wEFmk2YMoxPDljwaeCjmT7P
+ mo7ibz3WsieExSdcvsBGV+wPyKlDafw1CFmvSYCvGubV7uf8Uy4gYF7fp g==;
+X-CSE-ConnectionGUID: WPkn9g7TQOW6EbXdXz8N5g==
+X-CSE-MsgGUID: goP043HAQ9OSldbgke2jog==
+X-IronPort-AV: E=McAfee;i="6700,10204,11267"; a="32899875"
+X-IronPort-AV: E=Sophos;i="6.12,185,1728975600"; d="scan'208";a="32899875"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2024 22:39:07 -0800
+X-CSE-ConnectionGUID: GliIqcauRCmuGDNY2yVkvQ==
+X-CSE-MsgGUID: GHeiEYqiTpeqajbIDFiC1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,185,1728975600"; d="scan'208";a="91922218"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2024 22:39:03 -0800
+Date: Tue, 26 Nov 2024 08:38:59 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
+ airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, lina@asahilina.net,
+ michal.wajdeczko@intel.com, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
+Message-ID: <Z0VtA5o2cW_snZbf@black.fi.intel.com>
+References: <20241115050733.806934-1-raag.jadav@intel.com>
+ <20241115050733.806934-2-raag.jadav@intel.com>
+ <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
+ <Z0Atv3Zw1d0N8hvv@black.fi.intel.com>
+ <3644d364-6021-46fe-b3a2-689821551984@amd.com>
+ <Z0CrJ3C3wJqtySLp@black.fi.intel.com>
+ <1018930b-98cc-432a-a4fe-6898ffa51d29@amd.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB6932.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da6c916f-ad66-41ae-65fb-08dd0dde9f2f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Nov 2024 05:53:16.0911 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PTh+TiBr0nklOlHRf6GsKyKzvGj2Z8pRmIC47fGd90Grj1ihRlN8MJ45GRmvgyL+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4167
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1018930b-98cc-432a-a4fe-6898ffa51d29@amd.com>
+X-Mailman-Approved-At: Tue, 26 Nov 2024 08:27:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,56 +82,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+On Mon, Nov 25, 2024 at 10:32:42AM +0100, Christian König wrote:
+> Am 22.11.24 um 17:02 schrieb Raag Jadav:
+> > On Fri, Nov 22, 2024 at 11:09:32AM +0100, Christian König wrote:
+> > > Am 22.11.24 um 08:07 schrieb Raag Jadav:
+> > > > On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
+> > > > > On 15/11/24 10:37, Raag Jadav wrote:
+> > > > > > Introduce device wedged event, which notifies userspace of 'wedged'
+> > > > > > (hanged/unusable) state of the DRM device through a uevent. This is
+> > > > > > useful especially in cases where the device is no longer operating as
+> > > > > > expected and has become unrecoverable from driver context. Purpose of
+> > > > > > this implementation is to provide drivers a generic way to recover with
+> > > > > > the help of userspace intervention without taking any drastic measures
+> > > > > > in the driver.
+> > > > > > 
+> > > > > > A 'wedged' device is basically a dead device that needs attention. The
+> > > > > > uevent is the notification that is sent to userspace along with a hint
+> > > > > > about what could possibly be attempted to recover the device and bring
+> > > > > > it back to usable state. Different drivers may have different ideas of
+> > > > > > a 'wedged' device depending on their hardware implementation, and hence
+> > > > > > the vendor agnostic nature of the event. It is up to the drivers to
+> > > > > > decide when they see the need for recovery and how they want to recover
+> > > > > > from the available methods.
+> > > > > > 
+> > > > > > Prerequisites
+> > > > > > -------------
+> > > > > > 
+> > > > > > The driver, before opting for recovery, needs to make sure that the
+> > > > > > 'wedged' device doesn't harm the system as a whole by taking care of the
+> > > > > > prerequisites. Necessary actions must include disabling DMA to system
+> > > > > > memory as well as any communication channels with other devices. Further,
+> > > > > > the driver must ensure that all dma_fences are signalled and any device
+> > > > > > state that the core kernel might depend on are cleaned up. Once the event
+> > > > > > is sent, the device must be kept in 'wedged' state until the recovery is
+> > > > > > performed. New accesses to the device (IOCTLs) should be blocked,
+> > > > > > preferably with an error code that resembles the type of failure the
+> > > > > > device has encountered. This will signify the reason for wegeding which
+> > > > > > can be reported to the application if needed.
+> > > > > should we even drop the mmaps we created?
+> > > > Whatever is required for a clean recovery, yes.
+> > > > 
+> > > > Although how would this play out? Do we risk loosing display?
+> > > > Or any other possible side-effects?
+> > > Before sending a wedge event all DMA transfers of the device have to be
+> > > blocked.
+> > > 
+> > > So yes, all display, mmap() and file descriptor connections you had with the
+> > > device would need to be re-created.
+> > Does it mean we'd have to rely on userspace to unmap()?
+> 
+> Yes and no :)
+> 
+> The handling should be similar to how hotplug is handled. E.g. the device
+> becomes inaccessible by normal applications all mappings become invalid.
 
-Hi Alex,
-These serial patches look good to me.
+Isn't that just unbind (which is already part of recovery)?
 
-Reviewed-By: Frank.Min@amd.com
+> But we don't send a SIGBUS or similar on access, instead all mappings
+> redirected to a dummy page which basically shallows all writes and gives
+> undefined data on reads.
+> 
+> On IOCTLs the applications should get an error code and eventually restart
+> or at least unmap all their mappings.
 
-Best Regards,
-Frank
+Thanks for the detailed explanation.
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex Deu=
-cher
-Sent: Saturday, November 23, 2024 12:27 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Belanger, David <David.=
-Belanger@amd.com>
-Subject: [PATCH 5/5] drm/amdgpu/hdp7.0: do a posting read when flushing HDP
+Rethinking about this, the criteria set for prerequisites is to not do
+anything that could possibly harm the system. So I think the important
+question is,
 
-Need to read back to make sure the write goes through.
+with fences signalled and ioctls already blocked, is live mmap on a wedged
+device capable of producing harmful behaviour or unintended side-effects
+(atleast until the application has the opportunity to unmap() as part of
+recovery)?
 
-Cc: David Belanger <david.belanger@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c b/drivers/gpu/drm/amd/am=
-dgpu/hdp_v7_0.c
-index 1c99bb09e2a1..63820329f67e 100644
---- a/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
-@@ -31,10 +31,12 @@
- static void hdp_v7_0_flush_hdp(struct amdgpu_device *adev,
-                                struct amdgpu_ring *ring)
- {
--       if (!ring || !ring->funcs->emit_wreg)
-+       if (!ring || !ring->funcs->emit_wreg) {
-                WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_M=
-EM_FLUSH_CNTL) >> 2, 0);
--       else
-+               RREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_M=
-EM_FLUSH_CNTL) >> 2);
-+       } else {
-                amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset +=
- KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
-+       }
- }
-
- static void hdp_v7_0_update_clock_gating(struct amdgpu_device *adev,
---
-2.47.0
-
+Raag
