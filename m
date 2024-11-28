@@ -2,43 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D69A9DB1E4
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Nov 2024 04:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F355C9DB1E9
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Nov 2024 04:27:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3950E10E44E;
-	Thu, 28 Nov 2024 03:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D542810EC0D;
+	Thu, 28 Nov 2024 03:27:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XECOsdnI";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="uPIfYj1x";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB8310E44E
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Nov 2024 03:25:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5F0110E46F
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Nov 2024 03:27:07 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id ACF00A40471;
- Thu, 28 Nov 2024 03:23:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78907C4CECC;
- Thu, 28 Nov 2024 03:25:08 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 351A2A40471;
+ Thu, 28 Nov 2024 03:25:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4477BC4CECC;
+ Thu, 28 Nov 2024 03:27:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1732764309;
- bh=ZQ+mmZy7wN9T1VM98lQ76O17LVrc1NXFHB7fmFPwqcM=;
+ s=k20201202; t=1732764426;
+ bh=j700XncnWqwPhVKKIIvHw5fTsIhVOrR0PIIdWUkIzJE=;
  h=From:To:Cc:Subject:Date:From;
- b=XECOsdnIkibVIGSwVBosr5FdSJ7M+VipHfjVVYRWyYjjRmddg9zqfe+gPwzIPWQDL
- HYOk+QFY0pCT7WlfccptluX7XRD0Ax+gQmYSRl152CNhrEuezIxTH2Csvsrt5AsUa9
- D1yoXuCMvWFktQ037mSaoUx0r+Jm4rDAQs1vjJZ+Vhvu1W5P3Qt/jUdA5MFFtzm6op
- oJ23o2TxURE40k8pZ4OTez5gQVswkEWQx1Wr1trDSkJbLlEu1oxcPu7nk23SSJzCDg
- Vetf9ZZoU3cBKLuHOf8K0wJz/XGMQWvdbnFmAYwsQTeqH2yayFvjlN19fkM/hasByx
- upz5Lfy+td8oQ==
+ b=uPIfYj1x5O+8zrh7wyt/lypoYc1hLv9B+B+FCFg04BBez6IFJTIYo8buuNgIpmcRG
+ 7FAiio34cWlibzT7sXe7lki8qtR4/0CtHURVhp5QxbKbcYoZ4xw25zs4CQmMsPqkfq
+ l6bffw/EDC8phyP7+m0cdlYKBMq4XhcP8qagQ4MivJqaz1jC8sbGJxbW4VugpsuB4W
+ hyWbANG1K0Hk+KifUzXVPDmZ+e9tq8S9Mt0PAloHzegKuifequc1jx/tDOievAcBYh
+ 8QsZWDqXP466IwpqC4/w5/C9+4Vzpy3mhZK8l2OjSYuCuMrAeOPkKTF0N/NCwbUD7q
+ J9Y6rHfdeafKQ==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
-Cc: alex.hung@amd.com, regressions@lists.linux.dev,
- Mario Limonciello <mario.limonciello@amd.com>,
- Tobias Jakobi <tjakobi@math.uni-bielefeld.de>,
- Chris Bainbridge <chris.bainbridge@gmail.com>
-Subject: [PATCH] drm/amd: Sanity check the ACPI EDID
-Date: Wed, 27 Nov 2024 21:25:00 -0600
-Message-ID: <20241128032500.2088288-1-superm1@kernel.org>
+Cc: Mario Limonciello <mario.limonciello@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>
+Subject: [PATCH v5 1/2] drm/amd: Invert APU check for
+ amdgpu_device_evict_resources()
+Date: Wed, 27 Nov 2024 21:26:55 -0600
+Message-ID: <20241128032656.2090059-1-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -58,57 +57,35 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-An HP Pavilion Aero Laptop 13-be0xxx/8916 has an ACPI EDID, but using
-it is causing corruption. It's got illogical values of not specifying
-a digital interface. Sanity check the ACPI EDID to avoid tripping such
-problems.
+Resource eviction isn't needed for s3 or s2idle on APUs, but should
+be run for S4. As amdgpu_device_evict_resources() will be called
+by prepare notifier adjust logic so that APUs only cover S4.
 
-Suggested-by: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
-Reported-and-tested-by: Chris Bainbridge <chris.bainbridge@gmail.com>
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3782
-Fixes: c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if available for eDP")
+--
+v2:
+ * New patch
+
+Suggested-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c   | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index b0fea0856866d..6cbbb71d752be 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -907,14 +907,14 @@ dm_helpers_probe_acpi_edid(void *data, u8 *buf, unsigned int block, size_t len)
- 	struct drm_connector *connector = data;
- 	struct acpi_device *acpidev = ACPI_COMPANION(connector->dev->dev);
- 	unsigned char start = block * EDID_LENGTH;
--	void *edid;
-+	struct edid *edid;
- 	int r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 0171d240fcb05..996e9c78384dd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4735,8 +4735,8 @@ static int amdgpu_device_evict_resources(struct amdgpu_device *adev)
+ {
+ 	int ret;
  
- 	if (!acpidev)
- 		return -ENODEV;
+-	/* No need to evict vram on APUs for suspend to ram or s2idle */
+-	if ((adev->in_s3 || adev->in_s0ix) && (adev->flags & AMD_IS_APU))
++	/* No need to evict vram on APUs unless going to S4 */
++	if (!adev->in_s4 && (adev->flags & AMD_IS_APU))
+ 		return 0;
  
- 	/* fetch the entire edid from BIOS */
--	r = acpi_video_get_edid(acpidev, ACPI_VIDEO_DISPLAY_LCD, -1, &edid);
-+	r = acpi_video_get_edid(acpidev, ACPI_VIDEO_DISPLAY_LCD, -1, (void *)&edid);
- 	if (r < 0) {
- 		drm_dbg(connector->dev, "Failed to get EDID from ACPI: %d\n", r);
- 		return r;
-@@ -924,7 +924,14 @@ dm_helpers_probe_acpi_edid(void *data, u8 *buf, unsigned int block, size_t len)
- 		goto cleanup;
- 	}
- 
--	memcpy(buf, edid + start, len);
-+	/* sanity check */
-+	if (edid->revision < 4 || !(edid->input & DRM_EDID_INPUT_DIGITAL) ||
-+	    (edid->input & DRM_EDID_DIGITAL_TYPE_MASK) == DRM_EDID_DIGITAL_TYPE_UNDEF) {
-+		r = -EINVAL;
-+		goto cleanup;
-+	}
-+
-+	memcpy(buf, (void *)edid + start, len);
- 	r = 0;
- 
- cleanup:
+ 	ret = amdgpu_ttm_evict_resources(adev, TTM_PL_VRAM);
 -- 
 2.43.0
 
