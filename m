@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25A039DB9A3
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Nov 2024 15:30:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 898769DB9A5
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Nov 2024 15:30:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C06F910ECA2;
-	Thu, 28 Nov 2024 14:30:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98CEC10ECA0;
+	Thu, 28 Nov 2024 14:30:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TJ+6+27Y";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HnbEuq5v";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2055.outbound.protection.outlook.com [40.107.94.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA9110EC93
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2089.outbound.protection.outlook.com [40.107.244.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33E3D10ECAA
  for <amd-gfx@lists.freedesktop.org>; Thu, 28 Nov 2024 14:30:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xXQAEV81aUOfJC5TAlPNROKUt6HOCRoumWv67cOZdLOAzVzL86XnacK4Vbx0/cYcsEqz9Z2xfAcwKKuzJ9p0RNMt+bZ3PygZxPt/+4sy0/ACdz6toq6m5iXyIsFEtTDCQs3PmmZ9a4XPghBks2yx5hZwzQF6T97UZGJJxNjOmaM7vIAQHYGWvSgHrXv1reIJ9E4O+u24gXe1RkX3hUC8Hz1GaqlsBy0OE/q+wveoIdJFnN28nQsNNR24N4m8U53np3+oksX5f6SqL5343hbBvkyLzpToGs5dqmZUBmK6cxfDWj3L9H2D4Rxx5YCZV7d1dQjTc+N5m8hhSrFXYd/cUg==
+ b=P80V0Y/ZvF3AgXCCBUGxfW0/y3qno9kjbA3nbrN6reoG9CNEE66/iiqWnV7EuBfMnuy8qbn+cNx90O5Q9CHemq12WQdHSF6dPOkzNHf7yxdbntQTKDoUDtEEJDU6rvvq+VhWQVhZ4v2WuTVfhOyKIZ0UVcrXilUtLnRTbnGfK4dwuDCPSZ/wVHyneKvP0DS1s7QT1k1tzYG+mAer7na2No3rY0jiNmpQjsd16nlD7QkFQY0jRvt49vc4wqx8N1yp0+fzTj6YMpIotOmQOx71TQfpqDaHiKD6N6bOj7xVsPfLJLMkWqZeCIZBstwrdLbofkkZvI4MDoYX/CPIUlqeuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BpKcBYAf0UwdIHLwCDYji/i6KSVwd23pZR5vWF8Osvc=;
- b=zKDBrbpvQ3ycZT3dZfcHlYsOc3d/OlD7XTX8ACtZBiNRiWR9JiZbcBOjYtatNvX4jIwtQgmm71OGD0t40aODAfAqtXKh6cju/WOwF2ucsFNxh9hdrlYOtKE6Kb06BVzcjuNLe5QuqaRkSxato/nXVwO7+pgPArVl8vgfHVB1rOCtlje14wrlhlAEfkEot9c4BwyvfKrNe4ZHK8wBHo5kqGp5GD+1o+CLkW6xb5Hpd/Ra29oQYAjMmHy4mOfPF407ZztKNCkKtA0zk9PJgdVav7GuFFdWI5bCNS1YXNKTbkQ4o15pjwlHSfruCah4Go/9qUTJBS2tdFEBqi+HMDuSQw==
+ bh=7HzGKy62nQcwaJ46WZzhVHh1NGC8vSn0ZMgkftm4CLA=;
+ b=wfJama0YGH2Ni3r+f5o3pa1ENmKyoFGYKo2+0Eozy65ANwLRVrc2+0Y6EYMORMiQdCQjupiKcIGX1A7mOXY3/W4Bf+hziZZQe81m6x0kRZFD5UL2VD7mjr9ai1UAM01+mhux4BSmXnI81jLUkBGd+FdosHr00zSRggQ9pZf5SnBVouplkJ2ePAhxtwdtyj54TyrmX7bMankVuNj1D8cDnXhGfNdxnEbn1CdZnbEDkwjI2u0gDOy1SPHSe0anEKwb++howgfbB8yuBiM6Mo9qDp+J9p42b782Ns/vhYTyhDLKpcGtL1kVYgj+EusH5MgMOBPelvkO85AK64GqE7smXw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BpKcBYAf0UwdIHLwCDYji/i6KSVwd23pZR5vWF8Osvc=;
- b=TJ+6+27YkPYQH8V4TSjoJojhhL5/6aH6oYRiMJfOaPc8siqxf0+h2b2CprrQhZeLjPtfH6exAq0gadgcwyPmnA/OlBQZ/laOIptlmXROeytGLyTfZ/VQbBr1eL7WBzDM5fUFzNTyQgQNiXjB0JuF1DQBlSKe9bKgZ4SqZ9KqcBA=
-Received: from SN6PR05CA0035.namprd05.prod.outlook.com (2603:10b6:805:de::48)
- by CYYPR12MB8702.namprd12.prod.outlook.com (2603:10b6:930:c8::13)
+ bh=7HzGKy62nQcwaJ46WZzhVHh1NGC8vSn0ZMgkftm4CLA=;
+ b=HnbEuq5vpX55ws3Yyobyu0Cb1VOKSXY2PzJEnm9tM0wdiMl2IrRqg39mNgitB2HDaqC5waYX7x++TKjJknHLwRKOGdQQNYj/D8/WGP3EMyC3748D7Rd8kVzufShKr0/bm4U3lQQrM1x6lFWLBH3GzzUYMYelHejQxVjuT6rBcsw=
+Received: from SN6PR05CA0003.namprd05.prod.outlook.com (2603:10b6:805:de::16)
+ by LV3PR12MB9258.namprd12.prod.outlook.com (2603:10b6:408:1bb::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.14; Thu, 28 Nov
- 2024 14:30:18 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.18; Thu, 28 Nov
+ 2024 14:30:19 +0000
 Received: from SA2PEPF000015C8.namprd03.prod.outlook.com
- (2603:10b6:805:de:cafe::8f) by SN6PR05CA0035.outlook.office365.com
- (2603:10b6:805:de::48) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8230.4 via Frontend Transport; Thu,
- 28 Nov 2024 14:30:18 +0000
+ (2603:10b6:805:de:cafe::83) by SN6PR05CA0003.outlook.office365.com
+ (2603:10b6:805:de::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8207.13 via Frontend Transport; Thu,
+ 28 Nov 2024 14:30:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,14 +50,14 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  SA2PEPF000015C8.mail.protection.outlook.com (10.167.241.198) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8207.12 via Frontend Transport; Thu, 28 Nov 2024 14:30:17 +0000
+ 15.20.8207.12 via Frontend Transport; Thu, 28 Nov 2024 14:30:19 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 28 Nov
- 2024 08:30:17 -0600
+ 2024 08:30:18 -0600
 Received: from jzuo-linux.phub.net.cable.rogers.com (10.180.168.240) by
  SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Thu, 28 Nov 2024 08:30:16 -0600
+ via Frontend Transport; Thu, 28 Nov 2024 08:30:17 -0600
 From: Fangzhi Zuo <Jerry.Zuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -65,13 +65,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>, Wayne Lin
  <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Fangzhi Zuo
  <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, Solomon Chiu
- <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Charlene Liu
- <Charlene.Liu@amd.com>, Alvin Lee <alvin.lee2@amd.com>, Sung joon Kim
- <sungjoon.kim@amd.com>
-Subject: [PATCH 2/9] drm/amd/display: correct dcn351 dpm clk table based on
- pmfw_drv_if
-Date: Thu, 28 Nov 2024 09:26:24 -0500
-Message-ID: <20241128142958.28370-3-Jerry.Zuo@amd.com>
+ <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Ausef Yousof
+ <Ausef.Yousof@amd.com>, Charlene Liu <charlene.liu@amd.com>
+Subject: [PATCH 3/9] drm/amd/display: Populate chroma prefetch parameters,
+ DET buffer fix
+Date: Thu, 28 Nov 2024 09:26:25 -0500
+Message-ID: <20241128142958.28370-4-Jerry.Zuo@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241128142958.28370-1-Jerry.Zuo@amd.com>
 References: <20241128142958.28370-1-Jerry.Zuo@amd.com>
@@ -82,51 +81,51 @@ Received-SPF: None (SATLEXMB03.amd.com: Jerry.Zuo@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015C8:EE_|CYYPR12MB8702:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4f279b4e-158c-44a7-5924-08dd0fb92e62
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015C8:EE_|LV3PR12MB9258:EE_
+X-MS-Office365-Filtering-Correlation-Id: e6602fca-b5b2-411b-ed08-08dd0fb92f38
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ShzI8aLANgVZE6q+JUHO7QcxUsZC6mmzNHVlbNeKBeMU7LroLzmDlhIIDW/8?=
- =?us-ascii?Q?e5otsRYPmqJ7B9CsDtcSFFer1KMpBwBqze/LvgAaICYO78nAWhOlv7r2xClm?=
- =?us-ascii?Q?yUc/93gEtIwhQs/AwRGkCy+pxBc31dD9yzLtZuZ7VFgY7L9K61kyIYU2/Vao?=
- =?us-ascii?Q?dzcD6CWeK45YApM26egUNgaXngwmcm+UjOQOb2C7I6SDDaYbePVIeVjbZ+Lr?=
- =?us-ascii?Q?8ZXR7UleGRxc8L4M6+9TlWmAz/2ERGh7IWAmQqbHMIB2vJ5abhpdFlqy3f5i?=
- =?us-ascii?Q?JxFugCxQemjZ82iDD0xEwTklGKIBTsQ1CgP43J5rkE7K2F/6RWrYJ4UNjULl?=
- =?us-ascii?Q?s3qf6+LmVsderYYTQWasX2Wk9xqG1qpUI41KSMIzBsbbuDf/lYHhbkRzch+q?=
- =?us-ascii?Q?n0Q7m9oma2ptf+Esh3j1HCi6Si657lnoK7J+tJfaOgzrPlea+1vQFWTCBzFk?=
- =?us-ascii?Q?Cpfs9i0FnqyVlSXmT6ZXmwo/JegUoA3cwOMJ8+/Rx5cua7tTrtoMP4I/dU3t?=
- =?us-ascii?Q?LKLXT+gTOmmrhDBVZRQqSqc3oAIDDe0aKeAH9E2abyC3LBYh4SeYxKvHaQTd?=
- =?us-ascii?Q?iWIOBYj6qs3AjlUoG+pqoayfReYIQOjvtcUYCDYd79DkKmgEbi4vU7ivmw/T?=
- =?us-ascii?Q?OM/4u2IhoMGd3ocUS/hO6RRUH1lBdBDXM8iUriFGzwoGXLO2YM2SGNWP9ncK?=
- =?us-ascii?Q?mH0q0lzkTsG825C5E/UGlpD39nMy+vRxyyOJy/A1SM1VOHJz3LkUIqVF5YyQ?=
- =?us-ascii?Q?2gZHKiAEYegVSv/IeV7uietGWI/lQHD6d8MUlT3BQ/fcxIitFwxHflrapBfN?=
- =?us-ascii?Q?1/yZZuy/iXSKkytUmJ5e91NH52mi0ImbXUNeFcYG0K5UeAtfj1Dqdu6O2Pkm?=
- =?us-ascii?Q?qhJN800DzGELABl4dIMlG4BFwn9KrPKSAEJMnme3jtPhjN64veQUvLzqKy5K?=
- =?us-ascii?Q?4qxOYJQev5DLXcZRZUUTAQYDJgeN2sBrdpm02feBmxYH2qZ9OvuiBEU3+mOt?=
- =?us-ascii?Q?1LGHp1LZId3Eg5x0mrxwHaclh0fmx5CW6mp6395LXkjN/u+UMsvoFnWUnJZr?=
- =?us-ascii?Q?Ajp6QWGAfcTkk7uvEGaCIE65hvMCV5QBxgIOUevYdj2FvCqq2xUGmYWSabZl?=
- =?us-ascii?Q?ER3L+hl5ir2EoL8gGA9uXZkuYzloOgzhfHstq0WZx+xjbLvwPkk7leP0Y11l?=
- =?us-ascii?Q?xtwC3t9yXehbAe3j/UISCebT9JLJEuOpgZgItwaDdX0MOvTHx3GQLfJ7y3Ft?=
- =?us-ascii?Q?6lzJAIj1kAqXx6jGVbKoou/m5PM9vb3UAb9SBVVGI+aG+n/XJuY9my6tRcla?=
- =?us-ascii?Q?5wb+gkSED5yUeB4I9AFQ3f0zEhwbJ70ivSm7WhDt4wixgcKJkv2OZHTlaxVX?=
- =?us-ascii?Q?TDF81eScEp8N+sc8R3zFbgXAQwOeCU0I6We+x/+7bsqb1qtnsdE5YPTa8IBH?=
- =?us-ascii?Q?zdyEAdRXHrAovsLeAdLncKDOC7KeaQT7?=
+ ARA:13230040|376014|82310400026|36860700013|30052699003|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?epGLip5Q/ucrQYbrLWvN0p8suYtmjynwdKZNOI4If1k/BCHIfhc+z94y7hvw?=
+ =?us-ascii?Q?z1hUpxY5H2e9ZU/aVawnS4BkKUJsu8IyqQb8dhRRKRULBDba5fgpZZZrcpx2?=
+ =?us-ascii?Q?h0p1Q/nDU2CG1rGgtBR7f0TBHeQ/P85IiQDszkYeKrsetBEuRiQQUgm2Huma?=
+ =?us-ascii?Q?Q491YifffGIiyl+Rl0WyKs4xMFa61iKDw2cADYK2W9RvrlKMX4Tnh6/li4cA?=
+ =?us-ascii?Q?8TOx73TwRcBG6pWjAMt2N7Ju2h3PJ9TsvRymgI1z7qPnDucQIZFCTIgG9xso?=
+ =?us-ascii?Q?1mqZ/B+t6EPt9VOJRD87dQBm3tMTM1S6sZG4UXdlU5acGi+D2APqmus+gblg?=
+ =?us-ascii?Q?EPADj93LqhRJypXfFke7bsZzT809krqYiFwHp6dMowgz9p1rvu4MEajaC01L?=
+ =?us-ascii?Q?O8f9Oat/ecWPew6kwdcuaGuABMIrUwiRZl9itzhD4ZaUjH9kSY4UON9T28pf?=
+ =?us-ascii?Q?C6aKP3FZ8OFtFqQr3b3TD2Oj8lrK6q+/L4iQSmGD0/k/89lu/NSM5MbxIKmw?=
+ =?us-ascii?Q?J5uDaqvx6uxOFefgJdOFzUZs3k+RUjEUvDerLgmZvNec0WKy4pngcafr9IY6?=
+ =?us-ascii?Q?aiyxV5u41PmtX/zJKVZgMSnFgLqd8/yyViq2rn2uSgtS/IXPu3kBMHFK+93a?=
+ =?us-ascii?Q?kfdATIbSB5z9sa+2pjZ7YDnQLOYqubIXvngZMEeSzjlvWX42Yxh4rlYp0XeN?=
+ =?us-ascii?Q?TR8IGigMPrMGeqNN/KyIU9zoEgG5doen2uSBBPz6pRzMPU3xiopqXYvk3cXL?=
+ =?us-ascii?Q?Dk+EcA1b3g2rm5edGYg9HlZo0trMcTNJn+pMyBUccAAE4Io9hWolHH8IjloW?=
+ =?us-ascii?Q?f7VV5aEgU7S3VKdPeXE4nWCCWWrUhvZqSRuqUsGgBIIFciSneB8XCMjMDHbU?=
+ =?us-ascii?Q?OaeDprjN3aB39CiULlpffoXSi9GZaEOTKcn79c/mrcVQWbDTgj1AdkxyJoQc?=
+ =?us-ascii?Q?wDklAHTUbVucVkeH0wLyd2p3erkKJVQgQadCE+9u/8rIlLIkd0Hsobkx4B/r?=
+ =?us-ascii?Q?hIjxayoYIThkQJjGXVK9lufL008tZq+5KOLZLV22yxGGSu32MeJhA0ls/x7j?=
+ =?us-ascii?Q?N1dKdSeQQDBaTN2rU+AJpdZCTT9ctqJDQbVVFDSoJkHxbkzfEr5GP1ZzClL+?=
+ =?us-ascii?Q?ZOdxNW5ubhM62UFozl7hQ/259ISIe5pL7NZ5NkXRsXPXEvkZFMas83+k0qVA?=
+ =?us-ascii?Q?H+eENyADINlGGAIKYFe+L2KSflt88d7byr3PZHKVgJOmRT0wnZdR/1TlKmJq?=
+ =?us-ascii?Q?QFEWDxeItfI/Bgi6ckPgIsq2PSFngAaIDeWmtjgX9FbeJ2G+ueGCLmn6ADbi?=
+ =?us-ascii?Q?jjFBEz7a/RqWODUp46QhxjOqS02Iik/hyZyjxDCNDO2ox6jcQNtglQh1Vrvt?=
+ =?us-ascii?Q?UihP/yO1xkBALje94AeqgKfDLiu4AT6COVN/Ewqu9Ps+rW808iTcoNTFQN0p?=
+ =?us-ascii?Q?6FBPnvojvR7MF9LGzsWylqRrRa1q1JEq?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
- SFP:1101; 
+ SFS:(13230040)(376014)(82310400026)(36860700013)(30052699003)(1800799024);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2024 14:30:17.7260 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f279b4e-158c-44a7-5924-08dd0fb92e62
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2024 14:30:19.1323 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6602fca-b5b2-411b-ed08-08dd0fb92f38
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015C8.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8702
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9258
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,232 +140,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+From: Ausef Yousof <Ausef.Yousof@amd.com>
 
-[why]
-driver got wrong clock table due to miss match dtm_table headers.
-correct the dtn_clock table based on pmfw header.
+[WHY]
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
-Reviewed-by: Sung joon Kim <sungjoon.kim@amd.com>
-Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
+Soft hang/lag observed during 10bit playback + moving cursor, corruption
+observed in other tickets for same reason, also failing MPO.
+
+1. Currently, we are always running
+   calculate_lowest_supported_state_for_temp_read which is only
+   necessary on dGPU
+2. Fast validate path does not apply DET buffer allocation policy
+3. Prefetch UrgBFactor chroma parameter not populated in prefetch
+   calculation
+
+[HOW]
+1. Add a check to see if we are on APU, if so, skip the code
+2. Add det buffer alloc policy checks to fast validate path
+3. Populate UrgentBurstChroma param in call to calculate
+   UrgBChroma prefetch values
+
+-revision commits: small formatting/brackets/null check addition + remove test change + dGPU code
+
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+Signed-off-by: Ausef Yousof <Ausef.Yousof@amd.com>
 Signed-off-by: Fangzhi Zuo <jerry.zuo@amd.com>
 ---
- .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 93 ++++++++++++++++++-
- .../amd/display/dc/clk_mgr/dcn35/dcn35_smu.h  | 41 +++++---
- 2 files changed, 119 insertions(+), 15 deletions(-)
+ .../amd/display/dc/dml2/display_mode_core.c   |  5 ++-
+ .../drm/amd/display/dc/dml2/dml2_wrapper.c    | 35 +++++++++++++------
+ 2 files changed, 29 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-index b77333817f18..d6e68c0d9e42 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-@@ -632,6 +632,7 @@ static struct wm_table lpddr5_wm_table = {
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+index 8dabb1ac0b68..be87dc0f0779 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+@@ -6434,7 +6434,7 @@ static void dml_prefetch_check(struct display_mode_lib_st *mode_lib)
+ 							/* Output */
+ 							&mode_lib->ms.UrgentBurstFactorCursorPre[k],
+ 							&mode_lib->ms.UrgentBurstFactorLumaPre[k],
+-							&mode_lib->ms.UrgentBurstFactorChroma[k],
++							&mode_lib->ms.UrgentBurstFactorChromaPre[k],
+ 							&mode_lib->ms.NotUrgentLatencyHidingPre[k]);
  
- static DpmClocks_t_dcn35 dummy_clocks;
-+static DpmClocks_t_dcn351 dummy_clocks_dcn351;
+ 					mode_lib->ms.cursor_bw_pre[k] = mode_lib->ms.cache_display_cfg.plane.NumberOfCursors[k] * mode_lib->ms.cache_display_cfg.plane.CursorWidth[k] *
+@@ -9190,6 +9190,8 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 			&locals->FractionOfUrgentBandwidth,
+ 			&s->dummy_boolean[0]); // dml_bool_t *PrefetchBandwidthSupport
  
- static struct dcn35_watermarks dummy_wms = { 0 };
- 
-@@ -755,6 +756,22 @@ static void dcn35_get_dpm_table_from_smu(struct clk_mgr_internal *clk_mgr,
- 	dcn35_smu_transfer_dpm_table_smu_2_dram(clk_mgr);
- }
- 
-+static void dcn351_get_dpm_table_from_smu(struct clk_mgr_internal *clk_mgr,
-+		struct dcn351_smu_dpm_clks *smu_dpm_clks)
-+{
-+	DpmClocks_t_dcn351 *table = smu_dpm_clks->dpm_clks;
 +
-+	if (!clk_mgr->smu_ver)
-+		return;
-+	if (!table || smu_dpm_clks->mc_address.quad_part == 0)
-+		return;
-+	memset(table, 0, sizeof(*table));
-+	dcn35_smu_set_dram_addr_high(clk_mgr,
-+			smu_dpm_clks->mc_address.high_part);
-+	dcn35_smu_set_dram_addr_low(clk_mgr,
-+			smu_dpm_clks->mc_address.low_part);
-+	dcn35_smu_transfer_dpm_table_smu_2_dram(clk_mgr);
-+}
- static uint32_t find_max_clk_value(const uint32_t clocks[], uint32_t num_clocks)
++
+ 		if (s->VRatioPrefetchMoreThanMax != false || s->DestinationLineTimesForPrefetchLessThan2 != false) {
+ 			dml_print("DML::%s: VRatioPrefetchMoreThanMax                   = %u\n", __func__, s->VRatioPrefetchMoreThanMax);
+ 			dml_print("DML::%s: DestinationLineTimesForPrefetchLessThan2    = %u\n", __func__, s->DestinationLineTimesForPrefetchLessThan2);
+@@ -9204,6 +9206,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 			}
+ 		}
+ 
++
+ 		if (locals->PrefetchModeSupported == true && mode_lib->ms.support.ImmediateFlipSupport == true) {
+ 			locals->BandwidthAvailableForImmediateFlip = CalculateBandwidthAvailableForImmediateFlip(
+ 																	mode_lib->ms.num_active_planes,
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
+index 9190c1328d5b..340791d40ecb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
+@@ -531,14 +531,21 @@ static bool optimize_pstate_with_svp_and_drr(struct dml2_context *dml2, struct d
+ static bool call_dml_mode_support_and_programming(struct dc_state *context)
  {
- 	uint32_t max = 0;
-@@ -1093,6 +1110,57 @@ struct clk_mgr_funcs dcn35_fpga_funcs = {
- 	.get_dtb_ref_clk_frequency = dcn31_get_dtb_ref_freq_khz,
- };
+ 	unsigned int result = 0;
+-	unsigned int min_state;
++	unsigned int min_state = 0;
+ 	int min_state_for_g6_temp_read = 0;
++
++
++	if (!context)
++		return false;
++
+ 	struct dml2_context *dml2 = context->bw_ctx.dml2;
+ 	struct dml2_wrapper_scratch *s = &dml2->v20.scratch;
  
-+static void translate_to_DpmClocks_t_dcn35(struct dcn351_smu_dpm_clks *smu_dpm_clks_a,
-+		struct dcn35_smu_dpm_clks *smu_dpm_clks_b)
-+{
-+	/*translate two structures and only take need clock tables*/
-+	uint8_t i;
-+
-+	if (smu_dpm_clks_a == NULL || smu_dpm_clks_b == NULL ||
-+		smu_dpm_clks_a->dpm_clks == NULL || smu_dpm_clks_b->dpm_clks == NULL)
-+		return;
-+
-+	for (i = 0; i < NUM_DCFCLK_DPM_LEVELS; i++)
-+		smu_dpm_clks_b->dpm_clks->DcfClocks[i] = smu_dpm_clks_a->dpm_clks->DcfClocks[i];
-+
-+	for (i = 0; i < NUM_DISPCLK_DPM_LEVELS; i++)
-+		smu_dpm_clks_b->dpm_clks->DispClocks[i] = smu_dpm_clks_a->dpm_clks->DispClocks[i];
-+
-+	for (i = 0; i < NUM_DPPCLK_DPM_LEVELS; i++)
-+		smu_dpm_clks_b->dpm_clks->DppClocks[i] = smu_dpm_clks_a->dpm_clks->DppClocks[i];
-+
-+	for (i = 0; i < NUM_FCLK_DPM_LEVELS; i++) {
-+		smu_dpm_clks_b->dpm_clks->FclkClocks_Freq[i] = smu_dpm_clks_a->dpm_clks->FclkClocks_Freq[i];
-+		smu_dpm_clks_b->dpm_clks->FclkClocks_Voltage[i] = smu_dpm_clks_a->dpm_clks->FclkClocks_Voltage[i];
-+	}
-+	for (i = 0; i < NUM_MEM_PSTATE_LEVELS; i++) {
-+		smu_dpm_clks_b->dpm_clks->MemPstateTable[i].MemClk =
-+			smu_dpm_clks_a->dpm_clks->MemPstateTable[i].MemClk;
-+		smu_dpm_clks_b->dpm_clks->MemPstateTable[i].UClk =
-+			smu_dpm_clks_a->dpm_clks->MemPstateTable[i].UClk;
-+		smu_dpm_clks_b->dpm_clks->MemPstateTable[i].Voltage =
-+			smu_dpm_clks_a->dpm_clks->MemPstateTable[i].Voltage;
-+		smu_dpm_clks_b->dpm_clks->MemPstateTable[i].WckRatio =
-+			smu_dpm_clks_a->dpm_clks->MemPstateTable[i].WckRatio;
-+	}
-+	smu_dpm_clks_b->dpm_clks->MaxGfxClk = smu_dpm_clks_a->dpm_clks->MaxGfxClk;
-+	smu_dpm_clks_b->dpm_clks->MinGfxClk = smu_dpm_clks_a->dpm_clks->MinGfxClk;
-+	smu_dpm_clks_b->dpm_clks->NumDcfClkLevelsEnabled =
-+		smu_dpm_clks_a->dpm_clks->NumDcfClkLevelsEnabled;
-+	smu_dpm_clks_b->dpm_clks->NumDispClkLevelsEnabled =
-+		smu_dpm_clks_a->dpm_clks->NumDispClkLevelsEnabled;
-+	smu_dpm_clks_b->dpm_clks->NumFclkLevelsEnabled =
-+		smu_dpm_clks_a->dpm_clks->NumFclkLevelsEnabled;
-+	smu_dpm_clks_b->dpm_clks->NumMemPstatesEnabled =
-+		smu_dpm_clks_a->dpm_clks->NumMemPstatesEnabled;
-+	smu_dpm_clks_b->dpm_clks->NumSocClkLevelsEnabled =
-+		smu_dpm_clks_a->dpm_clks->NumSocClkLevelsEnabled;
-+
-+	for (i = 0; i < NUM_SOC_VOLTAGE_LEVELS; i++) {
-+		smu_dpm_clks_b->dpm_clks->SocClocks[i] = smu_dpm_clks_a->dpm_clks->SocClocks[i];
-+		smu_dpm_clks_b->dpm_clks->SocVoltage[i] = smu_dpm_clks_a->dpm_clks->SocVoltage[i];
-+	}
-+}
- void dcn35_clk_mgr_construct(
- 		struct dc_context *ctx,
- 		struct clk_mgr_dcn35 *clk_mgr,
-@@ -1100,6 +1168,7 @@ void dcn35_clk_mgr_construct(
- 		struct dccg *dccg)
- {
- 	struct dcn35_smu_dpm_clks smu_dpm_clks = { 0 };
-+	struct dcn351_smu_dpm_clks smu_dpm_clks_dcn351 = { 0 };
- 	clk_mgr->base.base.ctx = ctx;
- 	clk_mgr->base.base.funcs = &dcn35_funcs;
+-	min_state_for_g6_temp_read = calculate_lowest_supported_state_for_temp_read(dml2, context);
++	if (!context->streams[0]->sink->link->dc->caps.is_apu) {
++		min_state_for_g6_temp_read = calculate_lowest_supported_state_for_temp_read(dml2, context);
  
-@@ -1130,14 +1199,24 @@ void dcn35_clk_mgr_construct(
- 				DC_MEM_ALLOC_TYPE_GART,
- 				sizeof(DpmClocks_t_dcn35),
- 				&smu_dpm_clks.mc_address.quad_part);
+-	ASSERT(min_state_for_g6_temp_read >= 0);
++		ASSERT(min_state_for_g6_temp_read >= 0);
++	}
+ 
+ 	if (!dml2->config.use_native_pstate_optimization) {
+ 		result = optimize_pstate_with_svp_and_drr(dml2, context);
+@@ -549,14 +556,20 @@ static bool call_dml_mode_support_and_programming(struct dc_state *context)
+ 	/* Upon trying to sett certain frequencies in FRL, min_state_for_g6_temp_read is reported as -1. This leads to an invalid value of min_state causing crashes later on.
+ 	 * Use the default logic for min_state only when min_state_for_g6_temp_read is a valid value. In other cases, use the value calculated by the DML directly.
+ 	 */
+-	if (min_state_for_g6_temp_read >= 0)
+-		min_state = min_state_for_g6_temp_read > s->mode_support_params.out_lowest_state_idx ? min_state_for_g6_temp_read : s->mode_support_params.out_lowest_state_idx;
+-	else
+-		min_state = s->mode_support_params.out_lowest_state_idx;
 -
- 	if (smu_dpm_clks.dpm_clks == NULL) {
- 		smu_dpm_clks.dpm_clks = &dummy_clocks;
- 		smu_dpm_clks.mc_address.quad_part = 0;
- 	}
--
- 	ASSERT(smu_dpm_clks.dpm_clks);
+-	if (result)
+-		result = dml_mode_programming(&dml2->v20.dml_core_ctx, min_state, &s->cur_display_config, true);
++	if (!context->streams[0]->sink->link->dc->caps.is_apu) {
++		if (min_state_for_g6_temp_read >= 0)
++			min_state = min_state_for_g6_temp_read > s->mode_support_params.out_lowest_state_idx ? min_state_for_g6_temp_read : s->mode_support_params.out_lowest_state_idx;
++		else
++			min_state = s->mode_support_params.out_lowest_state_idx;
++	}
  
-+	if (ctx->dce_version == DCN_VERSION_3_51) {
-+		smu_dpm_clks_dcn351.dpm_clks = (DpmClocks_t_dcn351 *)dm_helpers_allocate_gpu_mem(
-+				clk_mgr->base.base.ctx,
-+				DC_MEM_ALLOC_TYPE_GART,
-+				sizeof(DpmClocks_t_dcn351),
-+				&smu_dpm_clks_dcn351.mc_address.quad_part);
-+		if (smu_dpm_clks_dcn351.dpm_clks == NULL) {
-+			smu_dpm_clks_dcn351.dpm_clks = &dummy_clocks_dcn351;
-+			smu_dpm_clks_dcn351.mc_address.quad_part = 0;
++	if (result) {
++		if (!context->streams[0]->sink->link->dc->caps.is_apu) {
++			result = dml_mode_programming(&dml2->v20.dml_core_ctx, min_state, &s->cur_display_config, true);
++		} else {
++			result = dml_mode_programming(&dml2->v20.dml_core_ctx, s->mode_support_params.out_lowest_state_idx, &s->cur_display_config, true);
 +		}
 +	}
-+
- 	clk_mgr->base.smu_ver = dcn35_smu_get_smu_version(&clk_mgr->base);
+ 	return result;
+ }
  
- 	if (clk_mgr->base.smu_ver)
-@@ -1166,7 +1245,11 @@ void dcn35_clk_mgr_construct(
+@@ -685,6 +698,8 @@ static bool dml2_validate_only(struct dc_state *context)
+ 	build_unoptimized_policy_settings(dml2->v20.dml_core_ctx.project, &dml2->v20.dml_core_ctx.policy);
  
- 	if (clk_mgr->base.base.ctx->dc->debug.pstate_enabled) {
- 		int i;
--		dcn35_get_dpm_table_from_smu(&clk_mgr->base, &smu_dpm_clks);
-+		if (ctx->dce_version == DCN_VERSION_3_51) {
-+			dcn351_get_dpm_table_from_smu(&clk_mgr->base, &smu_dpm_clks_dcn351);
-+			translate_to_DpmClocks_t_dcn35(&smu_dpm_clks_dcn351, &smu_dpm_clks);
-+		} else
-+			dcn35_get_dpm_table_from_smu(&clk_mgr->base, &smu_dpm_clks);
- 		DC_LOG_SMU("NumDcfClkLevelsEnabled: %d\n"
- 				   "NumDispClkLevelsEnabled: %d\n"
- 				   "NumSocClkLevelsEnabled: %d\n"
-@@ -1227,6 +1310,10 @@ void dcn35_clk_mgr_construct(
- 		dm_helpers_free_gpu_mem(clk_mgr->base.base.ctx, DC_MEM_ALLOC_TYPE_GART,
- 				smu_dpm_clks.dpm_clks);
+ 	map_dc_state_into_dml_display_cfg(dml2, context, &dml2->v20.scratch.cur_display_config);
++	 if (!dml2->config.skip_hw_state_mapping)
++		 dml2_apply_det_buffer_allocation_policy(dml2, &dml2->v20.scratch.cur_display_config);
  
-+	if (smu_dpm_clks_dcn351.dpm_clks && smu_dpm_clks_dcn351.mc_address.quad_part != 0)
-+		dm_helpers_free_gpu_mem(clk_mgr->base.base.ctx, DC_MEM_ALLOC_TYPE_GART,
-+				smu_dpm_clks_dcn351.dpm_clks);
-+
- 	if (ctx->dc->config.disable_ips != DMUB_IPS_DISABLE_ALL) {
- 		bool ips_support = false;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
-index 3fae13c73934..ab9d21ba0c43 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
-@@ -126,18 +126,31 @@ typedef struct {
-   uint32_t MaxGfxClk;
- } DpmClocks_t_dcn35;
- 
--
--// Throttler Status Bitmask
--
--
--
--
--
--
--
--
--
--
-+typedef struct {
-+	uint32_t DcfClocks[NUM_DCFCLK_DPM_LEVELS];
-+	uint32_t DispClocks[NUM_DISPCLK_DPM_LEVELS];
-+	uint32_t DppClocks[NUM_DPPCLK_DPM_LEVELS];
-+	uint32_t SocClocks[NUM_SOCCLK_DPM_LEVELS];
-+	uint32_t VClocks0[NUM_VCN_DPM_LEVELS];
-+	uint32_t VClocks1[NUM_VCN_DPM_LEVELS];
-+	uint32_t DClocks0[NUM_VCN_DPM_LEVELS];
-+	uint32_t DClocks1[NUM_VCN_DPM_LEVELS];
-+	uint32_t VPEClocks[NUM_VPE_DPM_LEVELS];
-+	uint32_t FclkClocks_Freq[NUM_FCLK_DPM_LEVELS];
-+	uint32_t FclkClocks_Voltage[NUM_FCLK_DPM_LEVELS];
-+	uint32_t SocVoltage[NUM_SOC_VOLTAGE_LEVELS];
-+	MemPstateTable_t MemPstateTable[NUM_MEM_PSTATE_LEVELS];
-+	uint8_t NumDcfClkLevelsEnabled;
-+	uint8_t NumDispClkLevelsEnabled; // Applies to both Dispclk and Dppclk
-+	uint8_t NumSocClkLevelsEnabled;
-+	uint8_t Vcn0ClkLevelsEnabled; // Applies to both Vclk0 and Dclk0
-+	uint8_t Vcn1ClkLevelsEnabled; // Applies to both Vclk1 and Dclk1
-+	uint8_t VpeClkLevelsEnabled;
-+	uint8_t NumMemPstatesEnabled;
-+	uint8_t NumFclkLevelsEnabled;
-+	uint32_t MinGfxClk;
-+	uint32_t MaxGfxClk;
-+} DpmClocks_t_dcn351;
- 
- #define TABLE_BIOS_IF            0 // Called by BIOS
- #define TABLE_WATERMARKS         1 // Called by DAL through VBIOS
-@@ -163,6 +176,10 @@ struct dcn35_smu_dpm_clks {
- 	union large_integer mc_address;
- };
- 
-+struct dcn351_smu_dpm_clks {
-+	DpmClocks_t_dcn351 *dpm_clks;
-+	union large_integer mc_address;
-+};
- /* TODO: taken from vgh, may not be correct */
- struct display_idle_optimization {
- 	unsigned int df_request_disabled : 1;
+ 	result = pack_and_call_dml_mode_support_ex(dml2,
+ 		&dml2->v20.scratch.cur_display_config,
 -- 
 2.43.0
 
