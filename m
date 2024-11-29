@@ -2,121 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D93899DFAD6
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Dec 2024 07:46:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6CE49DFC18
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Dec 2024 09:39:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1897010E1B8;
-	Mon,  2 Dec 2024 06:46:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD2110E657;
+	Mon,  2 Dec 2024 08:39:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YUDJfqcD";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Xy5OzWq5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2061.outbound.protection.outlook.com [40.107.93.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6D310E1B8
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Dec 2024 06:46:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=x0ioZ/Du2lanS6ASDL/NiPYaTXGI5OR76CBsFkTBXerY/X4fNV+LsOFIlWeNEmMhKX//J3KnnAq2Aygvg2Qvxdwq/a6eB8CTZrCuo0aHFJ5/Lkzmh1R0IfE2mbmKH61Kjz7wxv5MqZjww5ENXvN8/IEtubOFQD4vhiaPQ61Bi2fRCp5hHiBd0oMnlfm0GjEMUrsyauCq4rF2Yb+HtTJxLJ9dUhA342X18ND89Cgt8d3y0iYOvBK/OGarcb0fV+6m9toYGNRtf2f9tUpSBzPNOSwkUvsmvYNXgY01VqJF8vrT+klv7fZAjUUP7yW5VUlPVY9lrI7Rzn5MUnxx7UQg8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8nTrNvvfsO1KY4KZsh+wrZ/36cUY6ZEdpZ1aMBaoFVY=;
- b=d736WVvGJvmYtWK7ARcTPlFUu6X6WNUjduSq/dz5LUZFCw9KZrSvPryNpZyhyEeya3vWCKbWSvjFEiBeeDFFxe4mMuXPrA5jAd5BMJaO6IyOGZAxkz9MaJwvAutn8MFuuHonRgHC3XpuB+9USbnB/vnTyIvf45p4eU2NVenjmG/5aq7l/PcVgHJUoWF5ujLJi3LodUKvGh0E+L54u6Ja0mrJhJx/u9FfkyFNf4a0ZwFspL4cqRyRxO1MLlQ8v2lmaDmuDi93EwngKOJ17qAVrn66oT87pvyBUDndQ6mt+gO7E2y/ui+J3h03nnTIm3GaVcBeH65L5/KZ7uTObaOIBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8nTrNvvfsO1KY4KZsh+wrZ/36cUY6ZEdpZ1aMBaoFVY=;
- b=YUDJfqcDWcMXt1Y1q3PL9ck3gQj2zMIZJFSyxweBBeKgAiWWjVhNES+MUjikqCPesu8Fj3Hb/q+McFCgv1aQh0Sewb3SkpfTWKx+y+hyHFFaaDw8X+p7xEABkqq+Ni3AuMeAdIi3AUsBTVepPUxx9Prkv+vfm79zIeIV+0lz1Zs=
-Received: from CH0PR03CA0042.namprd03.prod.outlook.com (2603:10b6:610:b3::17)
- by SA0PR12MB4431.namprd12.prod.outlook.com (2603:10b6:806:95::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.15; Mon, 2 Dec
- 2024 06:46:28 +0000
-Received: from CH2PEPF0000013E.namprd02.prod.outlook.com
- (2603:10b6:610:b3:cafe::f8) by CH0PR03CA0042.outlook.office365.com
- (2603:10b6:610:b3::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8158.23 via Frontend Transport; Mon,
- 2 Dec 2024 06:46:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH2PEPF0000013E.mail.protection.outlook.com (10.167.244.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8230.7 via Frontend Transport; Mon, 2 Dec 2024 06:46:27 +0000
-Received: from prike-code-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 2 Dec
- 2024 00:46:24 -0600
-From: Prike Liang <Prike.Liang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>, Prike Liang
- <Prike.Liang@amd.com>
-Subject: [PATCH] drm/amdgpu: Avoid to release the FW twice in the validated
- error
-Date: Mon, 2 Dec 2024 14:46:15 +0800
-Message-ID: <20241202064615.516559-1-Prike.Liang@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C26710E0A9;
+ Fri, 29 Nov 2024 13:40:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=B9G+ISBCzGMu3zooxRuGQW3H7hCDwh/ifGOAFtaTYIo=; b=Xy5OzWq5/8D1y8X8LGfw59i+RE
+ VqOuuoQs00bDh0GnRa8a+AY4gbwWPpEO5ajvQyFN3UmvIEg4eGoSKSAW07VKTWNS+Gp5IMpf0TbJD
+ wfGGb0+sTPPDcb4hg19vYbCfIeifI2D55wrbuHBHqMG8xenSFBp38R8TEPYoryLJcn6FlpcqwaGFD
+ m4w2bt0ybvk2YA3+AN/Csf0U2Kfwtjk3uz9DCrkCZEqzjaUIs2aPoCK0n9L/oa+6opP3gAVxrHLsK
+ YsYq13Mb17gf7JQGwGmy5qxSHue91t821uY9vQEZzLJntDcg62v30MEAsOZL3ajZmcASDN4eKOvgQ
+ QcryfM5Q==;
+Received: from [179.118.187.88] (helo=[192.168.15.100])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tH1EL-00EMsm-4G; Fri, 29 Nov 2024 14:40:21 +0100
+Message-ID: <1d448e67-0c28-4e21-afdd-223495346921@igalia.com>
+Date: Fri, 29 Nov 2024 10:40:14 -0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000013E:EE_|SA0PR12MB4431:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1811c7d-54a3-42cd-5b9a-08dd129d0bd7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cnmSZniH8Cow0OeKA9g1l9cHPjJwpB4mqAocc3EAUJcj0hqv9m7KuO3ouTnp?=
- =?us-ascii?Q?S/8uES+CHXFI8YmMEeA5bWN/ldFKHIXE5uSLD1ehYE3CP+Lz1aJZ+745X8Rv?=
- =?us-ascii?Q?TbFSr4WRPp2zTNR1gDdYYsezUPU9DVn3gXV7p10q5EaYmib21RmjQYEp6cBT?=
- =?us-ascii?Q?Cb2AkCUWGjvnEKzyPuRI5YSzFfem+vF8nqtXQbxya8TgmiY3YTKS/vBANeBT?=
- =?us-ascii?Q?m023oNT8ZJrK7FjzmoKD4wpS8tCu0bAEZZiUtzPc6wGEmgra10NWMnNxtoim?=
- =?us-ascii?Q?9tDGy86HaV+LC3OMbX3aD6trMAV/tfL+x+J5+BSyeCo2KqG0T6gP68qOHW6x?=
- =?us-ascii?Q?R5d/D00PckDZkgshke6VRHjKm87YzR6epMnvAW//KWR0WkOXPLUg3Ks8Bvdl?=
- =?us-ascii?Q?DDgWfKSnp55WcbGkDVE7ZAxPU2HoJXNHcHsQJbZFOpnsnfssgzjHig54PvTH?=
- =?us-ascii?Q?ax3LE3ai5GU5D7TLqUXdyAQCX8s5IJTBnXJZvvfiw1GKYrn7TbdYLT4bPt5u?=
- =?us-ascii?Q?8ydK7mbJ99f3qg1FnV3pzZIBM0ZoEVeXuetqp0gAPWHVktHzSXEUKtcLLk81?=
- =?us-ascii?Q?Z5/BbD07ln/YuauZ4Yh6oc8P/L0teKnHJdDM/jQvIkbNKudieBNc1Ftz6RXP?=
- =?us-ascii?Q?jWoscclkSUMC1M4nl4YGkO+s6f6D2d4w6WXx8P+luGhJwggX6W0Li8748oIO?=
- =?us-ascii?Q?UrzbskJjeFu8Lw+0k9xditJXkRyEaGvjHRzEyWUl5yP8MsPTulzykCKAFiZt?=
- =?us-ascii?Q?b5QGRchbgIdZ18SVAimSkQQkZsDw0hzJyp9zkaZlcoDOqmGOn5CdMyWsBNZw?=
- =?us-ascii?Q?VgLCJNxW/8CKcC2wcqNCnIIr9fE3OyumHaUWpL6bomAIhCT9QRuhHx0CKbLE?=
- =?us-ascii?Q?KMippXoBJQ7pRD9Mb12jwun/4w4FZw4DEPfvPAAVgtrhReieEtPtMJ66dRtZ?=
- =?us-ascii?Q?KDncFme3y68VpkeCMuq89n9q0+dUC9JKZh1a+xtnNn+QaFIA201UmPkimFkT?=
- =?us-ascii?Q?vUVVdPk3aFtptQZamaH06BQYwnsHiv2RZ0UVHrpKBLplWxIsuTAMJVah//p3?=
- =?us-ascii?Q?9A2no67yuW2+ExHSY4Emzvk76Fy9rlfsd2T3jweVLODv5XjxPLXocfeu2Bn8?=
- =?us-ascii?Q?gPVoTVTwEUhbVuodck/61vqCn9DAHsBu/qtOtEjSLqZ8u6Ib0+FQUmOxY6X0?=
- =?us-ascii?Q?x/M7mAvrCfqntJ9iRMBzGLAt2z4NkfPND/bOTgTkHg55ceLmjyCTRc83XmIx?=
- =?us-ascii?Q?y9eBf9GSV1f65RHWo3xOE18xzVT+jDegUg9qJQGVfJ3RML4NZKgtuynb+iow?=
- =?us-ascii?Q?uoad+Ngs0nU3CyiESlD8rbRlElkKd5pjLYdBtyqMd3V5f511R+WiyJmWLFbB?=
- =?us-ascii?Q?i1dNWswwnlHaj1Sd/40VHE33PhTwjQBJB/U/PWB/qQ925I/donDmqQ2tGon4?=
- =?us-ascii?Q?8FiGgfVQkHs/lHOCNefMM+EKsHMz38Mn?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2024 06:46:27.3525 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1811c7d-54a3-42cd-5b9a-08dd129d0bd7
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013E.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4431
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, christian.koenig@amd.com,
+ rodrigo.vivi@intel.com, michal.wajdeczko@intel.com, lina@asahilina.net,
+ anshuman.gupta@intel.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com, airlied@gmail.com,
+ simona@ffwll.ch, lucas.demarchi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-2-raag.jadav@intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <20241128153707.1294347-2-raag.jadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 02 Dec 2024 08:39:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,32 +68,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There will to release the FW twice when the FW validated error.
-Even if the release_firmware() will further validate the FW whether
-is empty, but that will be redundant and inefficient.
+Hi Raag,
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Em 28/11/2024 12:37, Raag Jadav escreveu:
+> Introduce device wedged event, which notifies userspace of 'wedged'
+> (hanged/unusable) state of the DRM device through a uevent. This is
+> useful especially in cases where the device is no longer operating as
+> expected and has become unrecoverable from driver context. Purpose of
+> this implementation is to provide drivers a generic way to recover with
+> the help of userspace intervention without taking any drastic measures
+> in the driver.
+> 
+> A 'wedged' device is basically a dead device that needs attention. The
+> uevent is the notification that is sent to userspace along with a hint
+> about what could possibly be attempted to recover the device and bring
+> it back to usable state. Different drivers may have different ideas of
+> a 'wedged' device depending on their hardware implementation, and hence
+> the vendor agnostic nature of the event. It is up to the drivers to
+> decide when they see the need for device recovery and how they want to
+> recover from the available methods.
+> 
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-index 4c7b53648a50..e7f50415926c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-@@ -1461,11 +1461,8 @@ int amdgpu_ucode_request(struct amdgpu_device *adev, const struct firmware **fw,
- 		return -ENODEV;
- 
- 	r = amdgpu_ucode_validate(*fw);
--	if (r) {
-+	if (r)
- 		dev_dbg(adev->dev, "\"%s\" failed to validate\n", fname);
--		release_firmware(*fw);
--		*fw = NULL;
--	}
- 
- 	return r;
- }
--- 
-2.34.1
-
+Thank you for your work. Do you think you can add the optional PID 
+parameter, as the PID of the app that caused the reset? For SteamOS use 
+case it has been proved to be useful to kill the fault app as well. If 
+the reset was caused by a kthread, no PID can be provided hence it's an 
+optional parameter.
