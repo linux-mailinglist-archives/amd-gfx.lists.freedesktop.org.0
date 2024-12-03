@@ -2,122 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BD239E33C3
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Dec 2024 08:03:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FAB39E3517
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Dec 2024 09:16:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE76B10E11D;
-	Wed,  4 Dec 2024 07:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 569DE10EC45;
+	Wed,  4 Dec 2024 08:16:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pspx+vuk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fnULkyrF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2052.outbound.protection.outlook.com [40.107.237.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73F4510E11D
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Dec 2024 07:03:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NCLp8JLpOfV/Emb0tURkkCJB3xvvoaHfRukg2Mg1rCOXHJJQrEwD4tayK/oBp7BJQ/YW/MfJN9I4eNKNfcxMCFZJq8sfTEZoMQ/vqK0d+fkJZIg0ahNkrs84fYipGjlobW4pTyYHVa6hrqMs/rb7ihvAYIjMmgFpALc4kWhON6omNa9cfAwz1wujzsjKzKRFbDGMHu0DmYB59J6dtfvwJa2AyujaG4avTHLSXhgvblWdx3zGoQvoZTd3skwobvfph7vYylWO6vSayO3fWKXeG5dVWRHEIc30PsIYM8/dK+9QtZfweJMMlCAK9Uh3a33flCNCP89+B/ISCFQjNRqG3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mU0FQZpg7taYGmLmnZCHll8U9rKG9cVOyczvSpe6dJM=;
- b=Jxu7gk2FVXtZx6EyBOvK31jSowxIocngeGwrA1wFSUv6c15fyHKM3YrkQdqTN6GUer5+52/oEpDSDN39z1UN8UQG2kFspXWhUmXkmZtdbVYi7YFb8tMdkQPU7szo1Vuc80XQXYvHiW5rq8VRDr6zPKVFo3Ntpd+rtsbcl6WTHEy7TkMdatTKsQCZlBZj1xtfCno/M5hQQ1TDeuXplVOuO0rDL1OyigVEskxyd3kQb4DCk/KC4nUyLI27mt7+6mxD4Qaaj7jSwZlMwf+NFBq69Px4z5dX84sHGn78BluTrtKbB3oGFnA1Sz+8MjtuhbbeUmgsrZHLz+qR0EW6pGlvWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mU0FQZpg7taYGmLmnZCHll8U9rKG9cVOyczvSpe6dJM=;
- b=pspx+vuktomG0m3DJliVtQdz9E0ZhknpVTQ0cW1dQMv8YPIM7o6wpqONDVYkcITGnT3yx357HRr0pBN2XDpJM7trjoEfvW18iXw/sRzYRx9M1IccAUu3DnJLtXJNXA1E8PcTXBndLAymypGaj2UNTHn1ISBQUYdo6mVbNSIHvZQ=
-Received: from BY3PR05CA0039.namprd05.prod.outlook.com (2603:10b6:a03:39b::14)
- by SA3PR12MB8804.namprd12.prod.outlook.com (2603:10b6:806:31f::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.18; Wed, 4 Dec
- 2024 07:03:50 +0000
-Received: from SJ5PEPF000001CB.namprd05.prod.outlook.com
- (2603:10b6:a03:39b:cafe::4a) by BY3PR05CA0039.outlook.office365.com
- (2603:10b6:a03:39b::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8230.9 via Frontend Transport; Wed, 4
- Dec 2024 07:03:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SJ5PEPF000001CB.mail.protection.outlook.com (10.167.242.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8230.7 via Frontend Transport; Wed, 4 Dec 2024 07:03:49 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 4 Dec
- 2024 01:03:48 -0600
-Received: from kenneth-mlse-vm.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via
- Frontend Transport; Wed, 4 Dec 2024 01:03:47 -0600
-From: Kenneth Feng <kenneth.feng@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <kevinyang.wang@amd.com>, Kenneth Feng <kenneth.feng@amd.com>
-Subject: [PATCH] drm/amd/pm: set the default workload type to bootup type on
- smu v13.0.7
-Date: Wed, 4 Dec 2024 15:03:46 +0800
-Message-ID: <20241204070346.1295087-1-kenneth.feng@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D49C310EA20;
+ Tue,  3 Dec 2024 14:17:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=9os0pCp6DorfTCNWcBNM8Qdpy2bJqgk0SCVCWt6e3mY=; b=fnULkyrFxkORVB4CUb52H7x2IW
+ i7F5RY0P/VaWgYXpSSOs2j2Cy+3izMTgl5AjmG4h2hO1yphg8MnIzOGfsH57i+B/NutCZD+vJwHmW
+ kw3fyzwhLBFfayVC/BsNbcQWkXVVvlRwScFudOYA6x1eRs+fhr7c1IRu4tevufBqJwzk+1h0CQ6mO
+ ZBNaYGrbXuLtXn5w0aCqaWXwv1enmIMCKGeyggZ9lI0EsnnXsNIGnBEcy6A0F03o4vrDYYgWQQHQd
+ 71F5M9n5FFDy1un/fMw7/YiSZH4ZDssKp/XK0PY+y5xHwOfaUE6rBestbz48UCTbH5BnjEJNNul/v
+ Lo/5+ufg==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tITi0-00Fp9T-0B; Tue, 03 Dec 2024 15:17:00 +0100
+Message-ID: <db43b379-2100-40fa-ab32-5293779663ab@igalia.com>
+Date: Tue, 3 Dec 2024 14:16:59 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: kenneth.feng@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CB:EE_|SA3PR12MB8804:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d0e0621-ce64-4182-304a-08dd1431ce14
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?jFLSEtC9/a1v+DGHrA4VmVJQsOzohXiwrpQZ942Pvg2a24WeRRsGtP0ILxss?=
- =?us-ascii?Q?ZvkHaWV+6o9hUj8sqill7LxKDgC2qzEpfmKbgbXvSVpgXPErKz2+Y91JuTXy?=
- =?us-ascii?Q?8UQUjFQKC4DdfATLwCOFYaQYjZ0iWBZZnnrgWo1CBBtmxDB+f78Lort806oD?=
- =?us-ascii?Q?ckbGv2tG1xXJJZbxoVAFDGE3+W+SCSj74wbQqlx1j6DwUxDD7C8np4IoICnK?=
- =?us-ascii?Q?PET4d03AkQv3wah2qBFCZLq663iGbyrC0czPmnsvZ9R77zhKPW43XqRcYKtS?=
- =?us-ascii?Q?IWRMWwUKtXPqRDA09nw+F+SsEd/eQ+7k/evqVvge8z646HNR9lEt+DD6ao9F?=
- =?us-ascii?Q?cLsc5RTN4KU9vRE7Lu4uEJSfmVC/HI3WQ9ie/E/14hCwMt1SJ5/HNJQ9Tmly?=
- =?us-ascii?Q?twE2p3PbNlhvz08xM8eVgeS1UxARLrwslBbRpTnfVS9yf+ZS2sge+YvlSvfN?=
- =?us-ascii?Q?sT7zo56wmZ8AB3wcDxGoL5ZN16Ytp/6fRvClSvtreVyOfk4VUt5tJq0PKEyQ?=
- =?us-ascii?Q?NECvyTBwR9pFVpizC7mRUt02wa353CuDG2IX8LGUf2m/GCI/TdDCn+FH5fHN?=
- =?us-ascii?Q?hf/CpdQr3lRVCSJicpJm9XRj9aDtl1Wreb9FKYGSWBVwRIPYeDbLDI8jWmZD?=
- =?us-ascii?Q?NiM416jiguK671DG+BS7csn/jEo5H+DSmCL/4xiV510I4OpR6VzgkI2hKu9A?=
- =?us-ascii?Q?TKNw3svDAHtDINKprriXVSU170/8ICJoV8lin5fP58+qz5sJyc3MKbGBKqhj?=
- =?us-ascii?Q?WSU3/H/lYT6Z1N5dUKebdgNsiPUIehaM2BFRK2/bN1usEMStZvGzjobr4nA7?=
- =?us-ascii?Q?1+C/cIMwRMfRh8BQTOUOYHMQBli3N25pSFWHEKawH445eploOcFd/IILM11j?=
- =?us-ascii?Q?fH0vqCWZCqdeIL2WQvIzhmJ2PyizKwe6SMwTeLXvPPi4bkx8/PZy5WCYNM+J?=
- =?us-ascii?Q?GGvl6/iHPTrvRGiT+uX9G6lexL/XJKWhvu/ri7kLKjLz54EDrYc2VX6ldzUu?=
- =?us-ascii?Q?z8mtCyRNpwYsKD0n5kSiv2b+hEF/5MiXcNqwOQv5jysE5sT5ZwMAAu+5LhGC?=
- =?us-ascii?Q?HS2ceDeo6ozUiQBDE0+7cCwqv5CTsyLOdBVrw8s4BNjpHUsgzjrmxUXgpwHc?=
- =?us-ascii?Q?Pxc+/qgWPIITZb7S/vqpVzp4jY5uTkVzAXf/tIdb90LaNnslObeBpP6rx1IW?=
- =?us-ascii?Q?h6Byzi8n8yu70n1KuOZrINoFVdrbPSfnJEop5390YYV40ldooNM96n2W1P9M?=
- =?us-ascii?Q?MmPL6pDDYn0gn0BdTMW0L20zloZEMHx54LM3VNgdPeMUo1VFYQhQB+g9cATN?=
- =?us-ascii?Q?XiIaS9bz5RzrJdY4YPrlJYO14rpJbxAtgMZEXoyH+ofEIUML5l2BcZNj0KM0?=
- =?us-ascii?Q?hz5yVN/hPmHMknBIxUP3nk0LtwkiIMG1AkpjN954MqRBXQ8XTfDpm6HdBgbk?=
- =?us-ascii?Q?k7bw1bPtjoxsQYBcvcL+mRgJ/6zp9rQJ?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2024 07:03:49.8142 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d0e0621-ce64-4182-304a-08dd1431ce14
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CB.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8804
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 2/5] drm: make drm-active- stats optional
+To: Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com
+Cc: Alexander.Deucher@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20241128185404.2672-1-Yunxiang.Li@amd.com>
+ <20241128185404.2672-3-Yunxiang.Li@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20241128185404.2672-3-Yunxiang.Li@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 04 Dec 2024 08:16:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,34 +63,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Set the default workload type to bootup type on smu v13.0.7.
-This is because of the constraint on smu v13.0.7.
-Gfx activity has an even higher set point on 3D fullscreen
-mode than the one on bootup mode. This causes the 3D fullscreen
-mode's performance is worse than the bootup mode's performance
-for the lightweighted/medium workload. For the high workload,
-the performance is the same between 3D fullscreen mode and bootup
-mode.
 
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On 28/11/2024 18:54, Yunxiang Li wrote:
+> When memory stats is generated fresh everytime by going though all the
+> BOs, their active information is quite easy to get. But if the stats are
+> tracked with BO's state this becomes harder since the job scheduling
+> part doesn't really deal with individual buffers.
+> 
+> Make drm-active- optional to enable amdgpu to switch to the second
+> method.
+> 
+> Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
+> CC: dri-devel@lists.freedesktop.org
+> CC: intel-gfx@lists.freedesktop.org
+> CC: amd-gfx@lists.freedesktop.org
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  1 +
+>   drivers/gpu/drm/drm_file.c                 | 13 +++++++------
+>   drivers/gpu/drm/i915/i915_drm_client.c     |  1 +
+>   drivers/gpu/drm/xe/xe_drm_client.c         |  1 +
+>   include/drm/drm_gem.h                      | 14 ++++++++------
+>   5 files changed, 18 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+> index df2cf5c339255..7717e3e4f05b5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+> @@ -97,6 +97,7 @@ void amdgpu_show_fdinfo(struct drm_printer *p, struct drm_file *file)
+>   
+>   		drm_print_memory_stats(p,
+>   				       &stats[i].drm,
+> +				       DRM_GEM_OBJECT_ACTIVE |
+>   				       DRM_GEM_OBJECT_RESIDENT |
+>   				       DRM_GEM_OBJECT_PURGEABLE,
+>   				       pl_name[i]);
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index e285fcc28c59c..fd06671054723 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -884,7 +884,9 @@ void drm_print_memory_stats(struct drm_printer *p,
+>   {
+>   	print_size(p, "total", region, stats->private + stats->shared);
+>   	print_size(p, "shared", region, stats->shared);
+> -	print_size(p, "active", region, stats->active);
+> +
+> +	if (supported_status & DRM_GEM_OBJECT_ACTIVE)
+> +		print_size(p, "active", region, stats->active);
+>   
+>   	if (supported_status & DRM_GEM_OBJECT_RESIDENT)
+>   		print_size(p, "resident", region, stats->resident);
+> @@ -917,15 +919,13 @@ void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file)
+>   
+>   		if (obj->funcs && obj->funcs->status) {
+>   			s = obj->funcs->status(obj);
+> -			supported_status = DRM_GEM_OBJECT_RESIDENT |
+> -					DRM_GEM_OBJECT_PURGEABLE;
+> +			supported_status |= s;
+>   		}
+>   
+> -		if (drm_gem_object_is_shared_for_memory_stats(obj)) {
+> +		if (drm_gem_object_is_shared_for_memory_stats(obj))
+>   			status.shared += obj->size;
+> -		} else {
+> +		else
+>   			status.private += obj->size;
+> -		}
+>   
+>   		if (s & DRM_GEM_OBJECT_RESIDENT) {
+>   			status.resident += add_size;
+> @@ -938,6 +938,7 @@ void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file)
+>   
+>   		if (!dma_resv_test_signaled(obj->resv, dma_resv_usage_rw(true))) {
+>   			status.active += add_size;
+> +			supported_status |= DRM_GEM_OBJECT_ACTIVE;
+>   
+>   			/* If still active, don't count as purgeable: */
+>   			s &= ~DRM_GEM_OBJECT_PURGEABLE;
+> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+> index f586825054918..168d7375304bc 100644
+> --- a/drivers/gpu/drm/i915/i915_drm_client.c
+> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
+> @@ -102,6 +102,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+>   	for_each_memory_region(mr, i915, id)
+>   		drm_print_memory_stats(p,
+>   				       &stats[id],
+> +				       DRM_GEM_OBJECT_ACTIVE |
+>   				       DRM_GEM_OBJECT_RESIDENT |
+>   				       DRM_GEM_OBJECT_PURGEABLE,
+>   				       mr->uabi_name);
+> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+> index 6a26923fa10e0..54941b4e850c4 100644
+> --- a/drivers/gpu/drm/xe/xe_drm_client.c
+> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
+> @@ -229,6 +229,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+>   		if (man) {
+>   			drm_print_memory_stats(p,
+>   					       &stats[mem_type],
+> +					       DRM_GEM_OBJECT_ACTIVE |
+>   					       DRM_GEM_OBJECT_RESIDENT |
+>   					       (mem_type != XE_PL_SYSTEM ? 0 :
+>   					       DRM_GEM_OBJECT_PURGEABLE),
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index bae4865b2101a..da11c16e212aa 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -48,19 +48,21 @@ struct drm_gem_object;
+>    * enum drm_gem_object_status - bitmask of object state for fdinfo reporting
+>    * @DRM_GEM_OBJECT_RESIDENT: object is resident in memory (ie. not unpinned)
+>    * @DRM_GEM_OBJECT_PURGEABLE: object marked as purgeable by userspace
+> + * @DRM_GEM_OBJECT_ACTIVE: object is currently used by an active submission
+>    *
+>    * Bitmask of status used for fdinfo memory stats, see &drm_gem_object_funcs.status
+> - * and drm_show_fdinfo().  Note that an object can DRM_GEM_OBJECT_PURGEABLE if
+> - * it still active or not resident, in which case drm_show_fdinfo() will not
+> + * and drm_show_fdinfo().  Note that an object can report DRM_GEM_OBJECT_PURGEABLE
+> + * and be active or not resident, in which case drm_show_fdinfo() will not
+>    * account for it as purgeable.  So drivers do not need to check if the buffer
+> - * is idle and resident to return this bit.  (Ie. userspace can mark a buffer
+> - * as purgeable even while it is still busy on the GPU.. it does not _actually_
+> - * become puregeable until it becomes idle.  The status gem object func does
+> - * not need to consider this.)
+> + * is idle and resident to return this bit, i.e. userspace can mark a buffer as
+> + * purgeable even while it is still busy on the GPU. It will not get reported in
+> + * the puregeable stats until it becomes idle.  The status gem object func does
+> + * not need to consider this.
+>    */
+>   enum drm_gem_object_status {
+>   	DRM_GEM_OBJECT_RESIDENT  = BIT(0),
+>   	DRM_GEM_OBJECT_PURGEABLE = BIT(1),
+> +	DRM_GEM_OBJECT_ACTIVE    = BIT(2),
+>   };
+>   
+>   /**
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index d1bab508ade2..c8eecb54a16d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1280,7 +1280,8 @@ static int smu_sw_init(struct amdgpu_ip_block *ip_block)
- 	atomic_set(&smu->smu_power.power_gate.umsch_mm_gated, 1);
- 
- 	if (smu->is_apu ||
--	    !smu_is_workload_profile_available(smu, PP_SMC_POWER_PROFILE_FULLSCREEN3D))
-+	    !smu_is_workload_profile_available(smu, PP_SMC_POWER_PROFILE_FULLSCREEN3D) ||
-+		amdgpu_ip_version(adev, MP1_HWIP, 0) == IP_VERSION(13, 0, 7))
- 		smu->power_profile_mode = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
- 	else
- 		smu->power_profile_mode = PP_SMC_POWER_PROFILE_FULLSCREEN3D;
--- 
-2.34.1
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
+Regards,
+
+Tvrtko
