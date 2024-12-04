@@ -2,51 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9688C9E464C
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Dec 2024 22:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB1D9E48E6
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Dec 2024 00:28:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22A7F10E583;
-	Wed,  4 Dec 2024 21:09:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3BF910ED78;
+	Wed,  4 Dec 2024 23:28:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="l/M9ELVr";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hoNGQQ+m";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C3F310E582;
- Wed,  4 Dec 2024 21:09:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Drn6/IqBqAYOy6SlD2LsdxTegI8/JYTUoYO/+BzIFjg=; b=l/M9ELVrJfQ99PjwBWpOOAhvBU
- A5vTmw1y/i2pORKMddT909xMe/5SrldAoncFcMKXuIVGC/cCMP0wU0KjhxiFISxsiFRvFrRDxcK37
- 3wSTay7Z+PWBP3m16frS1v/I5V2NFNbIcPLqMUYM2RdPehEAB2kwg5es1teWVmBNAnQy7uvUr/jLO
- 9dJ8dpIhxc3IEzZ1ZdtAHwsk5nAGFILerxg1DT8/rdf6sGaK6zf/ksrEu7PGw5AazIpdTNpYH0Hng
- 1M4danbbXgbs5Uebm80lpcKiUCIpg+g2iayrz3q4VwAyHHicEsi8QV8C/Ss8tfiwtM9ZvV7HIe3AA
- wkpDd0kg==;
-Received: from [179.214.71.67] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tIwd4-00Ghe4-2f; Wed, 04 Dec 2024 22:09:50 +0100
-From: Melissa Wen <mwen@igalia.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch
-Cc: mario.limonciello@amd.com, zaeem.mohamed@amd.com, timur.kristof@gmail.com,
- victoria@system76.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: [RFC PATCH 2/2] drm/amd/display: increase MAX_SURFACES to the value
- supported by hw
-Date: Wed,  4 Dec 2024 17:44:00 -0300
-Message-ID: <20241204210929.1994522-3-mwen@igalia.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241204210929.1994522-1-mwen@igalia.com>
-References: <20241204210929.1994522-1-mwen@igalia.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F64D10ED69;
+ Wed,  4 Dec 2024 23:28:18 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 7609AA4136F;
+ Wed,  4 Dec 2024 23:26:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A2DC4CECD;
+ Wed,  4 Dec 2024 23:28:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733354897;
+ bh=+xvD9PxdjL4QXA4HRCcN/0klB+D9Qd6jLPiwD9S8Erg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=hoNGQQ+mw7lgO9mP4L1BbLH9+IpgxtO0w6GJvBPkarB3GZVE/vACQ9Xpv/nhHosTA
+ +iVdNHjPBfNAFcTnD1mGScrAzUti5NXo1vDbOL9PMi9SesNqWFG8FV5flxSQRmtGNO
+ G/cOL1KfYUGaXmq2QDvQyDdY65a5Wgvghq8pnHgjbmPXlZ8J4a43xVYGb9JQ41oa0U
+ w5ObFIRbxeI7xtGB43EESdPIdZhaqb5UpNN9ALeq+1svSrpE3ESVlNrFyOIerEm7Qa
+ 50gnpVwwqP7h+GqyaWdmea2hPRQGribDLc+TFfBM2aAuY3cc4o6QWIXgqvU/GUnw8D
+ ziOg65Kqx6jAw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Xiang Liu <xiang.liu@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Stanley . Yang" <Stanley.Yang@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ Xinhui.Pan@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ sunil.khatri@amd.com, lijo.lazar@amd.com, leo.liu@amd.com,
+ Jane.Jian@amd.com, David.Wu3@amd.com, sathishkumar.sundararaju@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.12 12/15] drm/amdgpu/vcn: reset fw_shared when VCPU
+ buffers corrupted on vcn v4.0.3
+Date: Wed,  4 Dec 2024 17:16:06 -0500
+Message-ID: <20241204221627.2247598-12-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241204221627.2247598-1-sashal@kernel.org>
+References: <20241204221627.2247598-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.12.1
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,31 +68,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As the hw supports up to 4 surfaces, increase the maximum number of
-surfaces to prevent the DC error when trying to use more than three
-planes.
+From: Xiang Liu <xiang.liu@amd.com>
 
-[drm:dc_state_add_plane [amdgpu]] *ERROR* Surface: can not attach plane_state 000000003e2cb82c! Maximum is: 3
+[ Upstream commit 928cd772e18ffbd7723cb2361db4a8ccf2222235 ]
 
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/3693
-Signed-off-by: Melissa Wen <mwen@igalia.com>
+It is not necessarily corrupted. When there is RAS fatal error, device
+memory access is blocked. Hence vcpu bo cannot be saved to system memory
+as in a regular suspend sequence before going for reset. In other full
+device reset cases, that gets saved and restored during resume.
+
+v2: Remove redundant code like vcn_v4_0 did
+v2: Refine commit message
+v3: Drop the volatile
+v3: Refine commit message
+
+Signed-off-by: Xiang Liu <xiang.liu@amd.com>
+Acked-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Stanley.Yang <Stanley.Yang@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 30 ++++++++++++++++++-------
+ 1 file changed, 22 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index d487f317ea34..8542607f919e 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -57,7 +57,7 @@ struct dmub_notification;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+index 0fda703363004..6fca2915ea8fd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+@@ -116,6 +116,20 @@ static int vcn_v4_0_3_early_init(void *handle)
+ 	return amdgpu_vcn_early_init(adev);
+ }
  
- #define DC_VER "3.2.312"
++static int vcn_v4_0_3_fw_shared_init(struct amdgpu_device *adev, int inst_idx)
++{
++	struct amdgpu_vcn4_fw_shared *fw_shared;
++
++	fw_shared = adev->vcn.inst[inst_idx].fw_shared.cpu_addr;
++	fw_shared->present_flag_0 = cpu_to_le32(AMDGPU_FW_SHARED_FLAG_0_UNIFIED_QUEUE);
++	fw_shared->sq.is_enabled = 1;
++
++	if (amdgpu_vcnfw_log)
++		amdgpu_vcn_fwlog_init(&adev->vcn.inst[inst_idx]);
++
++	return 0;
++}
++
+ /**
+  * vcn_v4_0_3_sw_init - sw init for VCN block
+  *
+@@ -148,8 +162,6 @@ static int vcn_v4_0_3_sw_init(void *handle)
+ 		return r;
  
--#define MAX_SURFACES 3
-+#define MAX_SURFACES 4
- #define MAX_PLANES 6
- #define MAX_STREAMS 6
- #define MIN_VIEWPORT_SIZE 12
+ 	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		volatile struct amdgpu_vcn4_fw_shared *fw_shared;
+-
+ 		vcn_inst = GET_INST(VCN, i);
+ 
+ 		ring = &adev->vcn.inst[i].ring_enc[0];
+@@ -172,12 +184,7 @@ static int vcn_v4_0_3_sw_init(void *handle)
+ 		if (r)
+ 			return r;
+ 
+-		fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
+-		fw_shared->present_flag_0 = cpu_to_le32(AMDGPU_FW_SHARED_FLAG_0_UNIFIED_QUEUE);
+-		fw_shared->sq.is_enabled = true;
+-
+-		if (amdgpu_vcnfw_log)
+-			amdgpu_vcn_fwlog_init(&adev->vcn.inst[i]);
++		vcn_v4_0_3_fw_shared_init(adev, i);
+ 	}
+ 
+ 	if (amdgpu_sriov_vf(adev)) {
+@@ -273,6 +280,8 @@ static int vcn_v4_0_3_hw_init(void *handle)
+ 		}
+ 	} else {
+ 		for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
++			struct amdgpu_vcn4_fw_shared *fw_shared;
++
+ 			vcn_inst = GET_INST(VCN, i);
+ 			ring = &adev->vcn.inst[i].ring_enc[0];
+ 
+@@ -296,6 +305,11 @@ static int vcn_v4_0_3_hw_init(void *handle)
+ 					regVCN_RB1_DB_CTRL);
+ 			}
+ 
++			/* Re-init fw_shared when RAS fatal error occurred */
++			fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
++			if (!fw_shared->sq.is_enabled)
++				vcn_v4_0_3_fw_shared_init(adev, i);
++
+ 			r = amdgpu_ring_test_helper(ring);
+ 			if (r)
+ 				return r;
 -- 
-2.45.2
+2.43.0
 
