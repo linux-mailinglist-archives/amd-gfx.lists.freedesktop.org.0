@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 729BE9E5D5D
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Dec 2024 18:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46D3A9E5D61
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Dec 2024 18:36:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E79A10E011;
-	Thu,  5 Dec 2024 17:36:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7A6710E3D2;
+	Thu,  5 Dec 2024 17:36:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="AwrHg3x6";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ez/rcPXJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2079.outbound.protection.outlook.com [40.107.244.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41F4210E011
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Dec 2024 17:36:28 +0000 (UTC)
+ (mail-mw2nam12on2081.outbound.protection.outlook.com [40.107.244.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 121C510E3CE
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Dec 2024 17:36:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O4yYXkGTBazNWeY/v5TvUQOjUeR7k7cipKWLVWR4gL0Z9y5ykqpf4XoMaBtp8xRKgIq+dLbMrIr7MWHKzV3zkmNtC1/Njy7wOg2jqrB+7CkAdpO5K5I+Q6FYLYIzaTfmYVL/TF1PHp3DLF4+BCW3XEPbg+zNsIgY1W8nKEoV1ZJvEJDOcxPEHlCtNG3i0qZelOb45PGnrx/GCqoocUOSbrBQhle377PHLRpZcH7IMPu5+Eh19rb6UZPRXExgvUbvO6/AaIqAMmR0E3tmooalnP+b+SQPvAYONiQtPn0kzn5oOSD6ADOF7R3yOX3P5liXm1kifenjoHEqZp+mpSw/HA==
+ b=tZV2LkXkOQqM7ueo15e3SKxO+sneMs5P77uBMcoQzMwtLRF2O3k3x+oJPS1mu+vPamFY3hY2mwVl0Ab6Q9ta8u/eSk4A289yqItxGdvXKAD93VFOXqUQkOQ8xUOvu9VuycC6vUuNFqUn7XJT3TH9tvkwi8ibr3hYnVBFQihmhUs7pkHsS00oAyg+2NaSVdVPDgHugL3L6WEzJIlVW8CbK+rOnuUrussADosY2A2Cvl7dK9BUzbSclEtO7fBqWFUuOThAtBpH34eX0vmNk7TpRK8QsEeOS8AhYY8jzHdg85GYp0FlXvr/90NMZtlZPca3rpHz2GZVr3C7MWPuWR8HJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Iw+98apAUYSafQgY4J1RoLCKFBc5mwCoSnJUn+3Nk08=;
- b=dD1fHidJ1l9pBX2d/X1FIt7y1OrT3MFPpdybC1Ga4AGzUW4buk5HZlUAXebycgE4hhTmVkWgN7/Km9o3Vch9TIvEXxdxt5DarDjTcmAkFnZKRW969iFPcXpy/gwcYIMEhx3S6NOhjFPywwB6fCGrYXSRoI9nA0AXs/0OMn+eVQ03UHOTdZxfGLt0EHyDmHuZp5C+xs6x7ooEwPPPi4AkbzhR9xXzRsaKyueocpR3pQc8dhL3XxS0Qax4NKTmmO+a6tQ7mY7yuk7PgVnXZtjjMHg296x7yMRRLAilFocfUxWm075H4i7+mSVMoRJlAwLlBnxSPCu/jFJALtwcj7hiXA==
+ bh=vDznns/hANmIAWmQKE3rI9wZBv3Vc4zro5fd+NFpR9g=;
+ b=eq12Hr5rKqu8FW1zYuaLhOPk3ri2oYb6e/LtNJuqfY3vIF/4P60/npVERYGzDB/WGDdehKsyQNHAMTiXhGgrmE8PnbW+ntwIrlt13zjM8jbYZ777yPslk4wIodIcXdZ3oCRtZRlsHc98xayc9bqHilEK1soG075SVs9STfWHumN/FeCJa9ekjPditH2+e+26faEkON35yOZJ/3fH2d7RVeFBqIneKn+wCMkn/wZh+q4OjrzKAdgODo+l4JiKbmVHN/LSrfUnrNMoCP51/efS1v/NLV2cw564FUFhx1jsTLpcBOo/aFOs3Po2mvMmD872OcNF7HZ5bKzx2jkDtIZaZw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Iw+98apAUYSafQgY4J1RoLCKFBc5mwCoSnJUn+3Nk08=;
- b=AwrHg3x6FQM173lPczlcNQGoVIGnHJo91vvNoa9RNjZ6o144iBM2pNzDWvWPkUHuFRzhDok7HDUldU8pPdgcoUiFg0HhiX9+qQfqvl2xHK5nRWyn01+3ZCUI6vG9D2dskykG8UyyPSS5+lDnsMOyHI6K1lU85vOGEPIcJpo+vAA=
-Received: from BN9PR03CA0455.namprd03.prod.outlook.com (2603:10b6:408:139::10)
- by IA0PR12MB7674.namprd12.prod.outlook.com (2603:10b6:208:434::21)
+ bh=vDznns/hANmIAWmQKE3rI9wZBv3Vc4zro5fd+NFpR9g=;
+ b=Ez/rcPXJFOq2uDOM1tThxKNLb0KGtz9Qrx3Kl8oPxJT8Gjgtd9mnaIQu0YfLGL5aqb/eNukE6SCSl4dyxfxvTNtU3ufMWBnis32uhIMMsf4D2wMSASmyoLofzvnDhy/F+IElv+uNkdF8KMV9iGMAsV3Ss7d2JZ0Jmy9kEkUJUWU=
+Received: from BN9PR03CA0464.namprd03.prod.outlook.com (2603:10b6:408:139::19)
+ by PH7PR12MB7139.namprd12.prod.outlook.com (2603:10b6:510:1ef::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.19; Thu, 5 Dec
- 2024 17:36:24 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.12; Thu, 5 Dec
+ 2024 17:36:25 +0000
 Received: from BL02EPF00021F6C.namprd02.prod.outlook.com
- (2603:10b6:408:139:cafe::62) by BN9PR03CA0455.outlook.office365.com
- (2603:10b6:408:139::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8230.11 via Frontend Transport; Thu,
- 5 Dec 2024 17:36:24 +0000
+ (2603:10b6:408:139:cafe::2a) by BN9PR03CA0464.outlook.office365.com
+ (2603:10b6:408:139::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8230.9 via Frontend Transport; Thu, 5
+ Dec 2024 17:36:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,20 +50,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL02EPF00021F6C.mail.protection.outlook.com (10.167.249.8) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8230.7 via Frontend Transport; Thu, 5 Dec 2024 17:36:24 +0000
+ 15.20.8230.7 via Frontend Transport; Thu, 5 Dec 2024 17:36:25 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 5 Dec
- 2024 11:36:23 -0600
+ 2024 11:36:24 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Sathishkumar S <sathishkumar.sundararaju@amd.com>, Leo Liu
- <leo.liu@amd.com>, Sonny Jiang <sonjiang@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>
-Subject: [PATCH 01/10] drm/amdgpu: add irq source ids for VCN5_0/JPEG5_0
-Date: Thu, 5 Dec 2024 12:36:01 -0500
-Message-ID: <20241205173610.334358-1-alexander.deucher@amd.com>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 02/10] drm/amdgpu: update irq sec header for jpeg 5.0.0
+Date: Thu, 5 Dec 2024 12:36:02 -0500
+Message-ID: <20241205173610.334358-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241205173610.334358-1-alexander.deucher@amd.com>
+References: <20241205173610.334358-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -72,51 +72,51 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00021F6C:EE_|IA0PR12MB7674:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1cba1015-200d-4cba-351b-08dd1553574a
+X-MS-TrafficTypeDiagnostic: BL02EPF00021F6C:EE_|PH7PR12MB7139:EE_
+X-MS-Office365-Filtering-Correlation-Id: 53063ef3-0e88-4002-a732-08dd1553579d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?coQ0C3wa1LRSK6vlcHUMsEXZ0kpi0j4WBjibBrFGIHHfEy15ZwUvsIqVFEOc?=
- =?us-ascii?Q?hkcfM99/zJQDaqZJcDtzvWhSb3+zvG28x8WGabw/SBb0H85XGi6Z+/3K0nUC?=
- =?us-ascii?Q?oIUKqlin4oNwG5C4jwNVOteJu1imN7yVy0kZ4Jy4ipbLXmI86WCH7hKb5XVL?=
- =?us-ascii?Q?/+XnnfkuLZxF95ViYGrzG3Aoxfjf88ZT+bZO2CcfRYWqyZi3+Ml/s+MPBMGl?=
- =?us-ascii?Q?aDXhxA/ZBECPyMDz8guD+baXcRJazMUOT4ezKS3KvjGMg5+BXSZr2fKDcTb6?=
- =?us-ascii?Q?q3wxelcvpSakew6BoMKGX+QWwaodjhhAzUDBO7EIpH065DJVudRY8MPd/B2Z?=
- =?us-ascii?Q?bqbp+yAY1wUAn/bbtxD3TzO/IFOFqg4zCZ/axKb0RmCm/nArESlNe0MsFGMl?=
- =?us-ascii?Q?y0JAWkk7+F5BG7l0KyX3ezSPpxpzqJ1jGbgHoBKFtcqHuU0K9oOQvsoeWPzK?=
- =?us-ascii?Q?J7qvOCV3XRZoLMGBQ5cEla3Laufhu5y+Xywv1Hqer1kfQIj/Pf/Hs/uj9hJC?=
- =?us-ascii?Q?85DD1mumWTD0lmnM5QX8mFmX0XigPKAFWkqpJxlEfXwNJp2Eqg1e+RE2BT9F?=
- =?us-ascii?Q?vGFWG8VsvdWCdN18OOQVMGFipzr8jV2D/R532VoPa/lxCKwRk/CWdW+xdsDn?=
- =?us-ascii?Q?hg3DKL5bktlFIQA6RW3YU5d9xtDxDLZ6Q9gSjcsf8cwvQZlDg7JCjQK8/rIj?=
- =?us-ascii?Q?cq2AsN9HefI15n3Pup53UHGoVWwyrnKU7Ukach2Z7C2JK3/9jmKYYzO2w6eX?=
- =?us-ascii?Q?/qED170nMErTP8MGeH3bAnqZt8+XkfOigC0dQ5r8br2V7wMYShCJk9wzpM69?=
- =?us-ascii?Q?aeWAZe5zaey3WNVs6zgVuIzCf1hrOaC5i5PT8TfhJ4mw7Hl+6FB55a4qTHcm?=
- =?us-ascii?Q?32O/ZVzk/MkX21LkudorcfSUd7NwFNCdYdr0FqHnuwrEMwoAB2Kv69IfQai4?=
- =?us-ascii?Q?crcPYLuO1rhfRkVr5M36ml3hNyIKuv3icr1I7sHwg6p7FJAfM+isR1f0GiEx?=
- =?us-ascii?Q?5M0ylRwBzUKIBWdOoJAgKtuFv7ojvQ5TQeJh23luA1VhVQ1z3TaJk4vbyQPh?=
- =?us-ascii?Q?rb3FkwrYC1kwqNn8oRP2xTjsikWBH6Re3voSviIUSyRLJUfYxhWNb4YSbaVk?=
- =?us-ascii?Q?b9H9E6blzWeCvmR/K5CsaSidfH7qpO0+O5eMh1/+wn6I06Ud6jMzLxfI2WvA?=
- =?us-ascii?Q?LkR6xtSdXGTFPAVsadhUjhIDEQgyE1HgZBjysne8d1Gbhx2tnyp1NihvDEqt?=
- =?us-ascii?Q?CWtg3/hMs0CmFRhPdWhGxsWl1ZpjcdRobTY8UzbNPEVEf/qSNrZLK4QAJgNc?=
- =?us-ascii?Q?e8PoCIpjajy2Ohfrf5kj4CE22O2FE4REyy2J/6DmdknwiI55cNlR3LVBmI3/?=
- =?us-ascii?Q?AoQn80saVjScdZVVPW1UVG1wCCFqLTRtMwj+Filk/RlCvUOZ5dwxWyx3jfik?=
- =?us-ascii?Q?WikThPfRvOWyRx/XmHynlSB9MCcgVGjE?=
+ ARA:13230040|36860700013|376014|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?sQErDqGUzeuLdBNb56ibslZDyL94BaxPxT6XU4H8FnFw2xIN8LDkZWDG8gI6?=
+ =?us-ascii?Q?/WZmLVDjYLec6SMDnwnT2CO9QqU4ASTTrgaUcoTXVg+kyJKwg3+0jTpS+DUq?=
+ =?us-ascii?Q?L3FujZzpQeLoLzb8XJG8ln+WecDreUZLd5p5UDdzEZA4GmdE2UELKssXtz//?=
+ =?us-ascii?Q?TuvW+lYT72ztz59uwHdny/wfArGrgQehUIXi8k5L6yOQVm0eq9M3rMVK/i/d?=
+ =?us-ascii?Q?xGLT7LAnBjkJOI/ukwnnLmqe92ydlFvXIl+9jHVnWeGC40j/PuF2Xo0qEOy2?=
+ =?us-ascii?Q?UfjenFA4RfUwz+/nhGpYvBRQUg+uJnEA65Z52bwdMPHa9G8Niq5gYPobDb9N?=
+ =?us-ascii?Q?kAOk0w/mm3447FBAcMvgWGsAL4pAnBrj5z0ILwDqQD9FXakrQfeYNfR/jE/H?=
+ =?us-ascii?Q?RJ65vyemsZgjdo801o4qGnbFvr6l7MsZ5kuczHlv+XHhRRDVtepaDJA58/Yu?=
+ =?us-ascii?Q?quvUNaSwNV61gVfQFGQUItlg+sSpc6N0ULA96ZS64oNZDFGAWbPVCUltkotC?=
+ =?us-ascii?Q?RXI46REAw5882nS5ilpyNDhqBFdjwzqTj5WEO7Z7DRw9H2vwKbjm66UBRHQu?=
+ =?us-ascii?Q?126tmKHztfkV2z88lYtWtL8pk/U5FRO2WrbOjJ3QIRT/+CjtrtXwuo+HaQe7?=
+ =?us-ascii?Q?EOGhJBr5zY0WumyyYJztsEddIfjVEbnFr4PGS/yYdkgLpz9pSmjkKOO2v3iI?=
+ =?us-ascii?Q?S3BzAOSfpHRNrkHr7SV5v7E2+yjtLeL5L3/kvTqGbhsEzpKuCNW5Q/ELQith?=
+ =?us-ascii?Q?x64gGtvmzXw9YDgcdSkD7N+XnvQJptHvjMWUimdY2zWt717crfhX4omVllSa?=
+ =?us-ascii?Q?Rerj3SN9Cyug030FVocDAWF2aTU7N9XcL5PcGK9PktGVHXt0yd44HvKChx4n?=
+ =?us-ascii?Q?0U3xesr64yDnzvoPTUUpmc8FJy9RYlzuqi3nK02Te1nzFCaL5R6b1joM855i?=
+ =?us-ascii?Q?IN0YXLPUOvtua7V6laU/NptMBqQVoJMkpnry1G+RzwUdUoyrtUK3CxioeIlH?=
+ =?us-ascii?Q?XfYxBK9a+EcL7YJTnV9SEq6tXxEo3a3kLb2VaP+Mlfnbz83zK6v0xqAFnQFi?=
+ =?us-ascii?Q?NRuvqaBVp1xPrOBtMIjQnkggPrGJQHeV+KQ5IuqWfBPyN6dZqJPkCRvdegZk?=
+ =?us-ascii?Q?v/iO55JVUHY1graIaLMIV226/cm/0RN8z5BKCQy3oVSWoji5ErcIQ/BznhL8?=
+ =?us-ascii?Q?zMLJ+/r5voMbPEsmqp0nS3u68HbcVyp3VrjO7l/u+vVT+9y3wD3H9Rny6uAK?=
+ =?us-ascii?Q?wb54rLrC+cvxEDea8jTOcRuDBKQBKDw7VNqV5bqIhnDaPAKsVW7qxRy+dQUo?=
+ =?us-ascii?Q?h3Zm3eL+m0g4zBMQcqjPbBp6e3/N+bCv9PUCpgbZ810FaK4oBq+WTlrgzcod?=
+ =?us-ascii?Q?9st34ycIqkfW3SqHoPuxcOsUdqAc2jNW/QoazJwJwfvt1nsrkz+OWkpyQkYX?=
+ =?us-ascii?Q?wkRQzPdhD8TUhpBLPtxqW3mDoa7Z64P7?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
+ SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2024 17:36:24.6803 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cba1015-200d-4cba-351b-08dd1553574a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2024 17:36:25.2272 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53063ef3-0e88-4002-a732-08dd1553579d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00021F6C.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7674
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7139
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,74 +131,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sathishkumar S <sathishkumar.sundararaju@amd.com>
+No functional change.
 
-Add interrupt source id macros for VCN5 and JPEG5
-
-V2: Update copyright year (Sonny)
-
-Signed-off-by: Sathishkumar S <sathishkumar.sundararaju@amd.com>
-Acked-by: Leo Liu <leo.liu@amd.com>
-Reviewed-by: Sonny Jiang <sonjiang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../amd/include/ivsrcid/vcn/irqsrcs_vcn_5_0.h | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/include/ivsrcid/vcn/irqsrcs_vcn_5_0.h
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/include/ivsrcid/vcn/irqsrcs_vcn_5_0.h b/drivers/gpu/drm/amd/include/ivsrcid/vcn/irqsrcs_vcn_5_0.h
-new file mode 100644
-index 0000000000000..64b553e7de1ae
---- /dev/null
-+++ b/drivers/gpu/drm/amd/include/ivsrcid/vcn/irqsrcs_vcn_5_0.h
-@@ -0,0 +1,47 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+/*
-+ * Copyright 2024 Advanced Micro Devices, Inc. All rights reserved.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+#ifndef __IRQSRCS_VCN_5_0_H__
-+#define __IRQSRCS_VCN_5_0_H__
-+
-+#define VCN_5_0__SRCID__UVD_TRAP                        114	// 0x72 UVD_TRAP
-+#define VCN_5_0__SRCID__UVD_ENC_GENERAL_PURPOSE         119	// 0x77 Encoder General Purpose
-+#define VCN_5_0__SRCID__UVD_ENC_LOW_LATENCY             120	// 0x78 Encoder Low Latency
-+#define VCN_5_0__SRCID__UVD_SYSTEM_MESSAGE_INTERRUPT    124	// 0x7c UVD system message interrupt
-+#define VCN_5_0__SRCID__JPEG_ENCODE                     151	// 0x97 JRBC Encode interrupt
-+#define VCN_5_0__SRCID__JPEG_DECODE                     153	// 0x99 JRBC Decode interrupt
-+#define VCN_5_0__SRCID__JPEG1_DECODE                    149	// 0x95 JRBC1 Decode interrupt
-+#define VCN_5_0__SRCID__JPEG2_DECODE                    151	// 0x97 JRBC2 Decode interrupt
-+#define VCN_5_0__SRCID__JPEG3_DECODE                    171	// 0xab JRBC3 Decode interrupt
-+#define VCN_5_0__SRCID__JPEG4_DECODE                    172	// 0xac JRBC4 Decode interrupt
-+#define VCN_5_0__SRCID__JPEG5_DECODE                    173	// 0xad JRBC5 Decode interrupt
-+#define VCN_5_0__SRCID__JPEG6_DECODE                    174	// 0xae JRBC6 Decode interrupt
-+#define VCN_5_0__SRCID__JPEG7_DECODE                    175	// 0xaf JRBC7 Decode interrupt
-+#define VCN_5_0__SRCID__JPEG8_DECODE                    177	// 0xb1 JRBC8 Decode interrupt
-+#define VCN_5_0__SRCID__JPEG9_DECODE                    178	// 0xb2 JRBC9 Decode interrupt
-+
-+#define VCN_5_0__SRCID_UVD_POISON                       160
-+#define VCN_5_0__SRCID_DJPEG0_POISON                    161
-+#define VCN_5_0__SRCID_EJPEG0_POISON                    162
-+#endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
+index 87b3f91440e2e..d5cf0f2799d44 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
+@@ -31,7 +31,7 @@
+ 
+ #include "vcn/vcn_5_0_0_offset.h"
+ #include "vcn/vcn_5_0_0_sh_mask.h"
+-#include "ivsrcid/vcn/irqsrcs_vcn_4_0.h"
++#include "ivsrcid/vcn/irqsrcs_vcn_5_0.h"
+ #include "jpeg_v5_0_0.h"
+ 
+ static void jpeg_v5_0_0_set_dec_ring_funcs(struct amdgpu_device *adev);
+@@ -74,7 +74,7 @@ static int jpeg_v5_0_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 
+ 	/* JPEG TRAP */
+ 	r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_VCN,
+-		VCN_4_0__SRCID__JPEG_DECODE, &adev->jpeg.inst->irq);
++		VCN_5_0__SRCID__JPEG_DECODE, &adev->jpeg.inst->irq);
+ 	if (r)
+ 		return r;
+ 
+@@ -612,7 +612,7 @@ static int jpeg_v5_0_0_process_interrupt(struct amdgpu_device *adev,
+ 	DRM_DEBUG("IH: JPEG TRAP\n");
+ 
+ 	switch (entry->src_id) {
+-	case VCN_4_0__SRCID__JPEG_DECODE:
++	case VCN_5_0__SRCID__JPEG_DECODE:
+ 		amdgpu_fence_process(adev->jpeg.inst->ring_dec);
+ 		break;
+ 	default:
 -- 
 2.47.0
 
