@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DF19EBE79
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2024 23:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 094BF9EBE81
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Dec 2024 23:54:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6ED10E9D4;
-	Tue, 10 Dec 2024 22:54:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C55DA10E9FE;
+	Tue, 10 Dec 2024 22:54:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pW4rCwDy";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iZq83dpq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2062.outbound.protection.outlook.com [40.107.92.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D210610E9F6
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 22:54:22 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2070.outbound.protection.outlook.com [40.107.96.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A94EC10E9D9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 22:54:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WEKJ+UQHQsFwZdBTtoQCCuIfW4WyLr8MS8Vic6pIR08PhFsxSEyDtIuOUfbhVnF/hGDiYO+l0dcXIHOFngN0YZPPPrPRJdezrhwngtX8ubxYrx82hffgPsakaHM4z8At7EChA+r0941ImZCQ1/Bq10IAjvVTL5vqajyacw+JcnkcaiMDfMReyPhFL4e09hI1Il6kQN5Wb1HhnLyiVl8w4WVVKA3okoQD0nqp6u53vGpRCGKtHrVkJtwyDvgwVS9yWF2X47w++lgwvy0uEWSRcmmoH54bLu/Wcpl35oaae3HwD8CmRZBnE5rnUOZ2rU17g36XpQ5OaWQnSPUi6uBMnQ==
+ b=B1ltZgVwaKbC3waZ46Kjgiu2Ouxme011DfgJMdIy79nyWu+g6TteTucvLynBts/7ai3Q2OgAsGAdFcEE9KdcMTCGOPOVKnqTz5fsoUP7RzrLna5jvDUYm62QhpCrz0BcVElgwCCQTClZL3e2qgYzffwIpx6gsMyoFk03R1Yzsi3T+K2BdFNJ/Vyo8Xpv6M7SzXWIB/5kTL5rWyhSlN12wMwqh3Gv0aidkhf4YeC7+bE7rTxuguX31W3R8pjV1sLdDdszMl+nGovsW/kH6E3B+Y0UyCILpKAZKrUxzPKEezALNqMmo8vsbY+/TzhMMDinFiWndAkZoMT7tyTkSryQHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a2XMt1i4z6UlPcAZa5c6zLIqaiZbEirFA2VlAhZdLOs=;
- b=lnQZ7RxCkyzknMLIFGo4YOMwdYba9nAIzj5+zDa45V9w+BftcSlnH0axTMoSqwx+hoxgJ17IdqievEj8U5io7LY6F0egEAOLP6TdBJTFGFc1KbzX9w/HYu64yTAG/41OjcAVvYAYnokfm/Mtvh4cAXeroKkXVNBCotsWdvHNpUUBSwwTh/RJM2MhY6wJLkJy5Eb5Wy87ln7pEJdwHMZHuylEZ5jmvI5ntcltZva/qFAsTgYP44K39feQtG0HnxrSCKN8hgx/sYhZYQXHsUHWkT3hn4/Zg8XDwtQRRlDiIuvPJuCidAj3UXnfo1heQrhZWcWTDmU7UCnSebNlPg05Gw==
+ bh=LPB3D+hwrB9K7wJUo9bqHED10EHlkg3WddegSmoXXxQ=;
+ b=y+QjznwYNxrAsqcS3OGzz9rE0PVOJU7SRAdrTC/ZfNAKZwCsTJSaYCm3Tk326TBPHZ+6WzozWz9PCkxNSsUy64a01irjnbW41nNHI4e5okA92NHq02yuxOB3+1ZGB41j/ymjmY7b8TfJTssA+oshxSx8QuSBFMK93jmoUBk0HZnwYGxDe9Jlw2w614abkulD7uEDDZkrrKJApeDURmEi7WtC5vWTDDITXs4Unav2q8CqseGJkJWpIc0FAHhgrequEG9eXLOGGt3eWRgtQ6V9gLI2kFL6uF0hj3kY8cGngRbs3qj/WLJSAbpUWz5IaWmoBG9BJRBeZLvoz1miAYUVGw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a2XMt1i4z6UlPcAZa5c6zLIqaiZbEirFA2VlAhZdLOs=;
- b=pW4rCwDyIqUeMuJoka4DWhvzYo+LmuwZ3TDoQnW5RCvwDDUMJUBCDtBizzEHvIRGgoSbK3CBRiWX81R8Ur3tvTBzTmQq7pttux1X6hfOCfDHI3zrX4mRhCFkCGVYthtWvBJ/OFqlcldgwocPbNk/lcVyhUErasKxLE3sKs2TfiE=
-Received: from MN2PR01CA0016.prod.exchangelabs.com (2603:10b6:208:10c::29) by
- MW4PR12MB7013.namprd12.prod.outlook.com (2603:10b6:303:218::19) with
+ bh=LPB3D+hwrB9K7wJUo9bqHED10EHlkg3WddegSmoXXxQ=;
+ b=iZq83dpqdYM12yK8gHgPJOWqy+GkVQPyV2QaQ2vGpSRGLLL5plMu4YK9tYRViLXyFyZ4VGXBiSfNYBo/IFBCwu4DbRT6DVN7AA2aR93pgxB8QU+slrjn5qA4ZAjWDmksHtj0B34Uv9883MFfBev9DUxro5Vj7bPEHK55NOzz6yg=
+Received: from MN2PR01CA0004.prod.exchangelabs.com (2603:10b6:208:10c::17) by
+ SJ2PR12MB8739.namprd12.prod.outlook.com (2603:10b6:a03:549::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.15; Tue, 10 Dec
- 2024 22:54:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.11; Tue, 10 Dec
+ 2024 22:54:20 +0000
 Received: from BN2PEPF000055E1.namprd21.prod.outlook.com
- (2603:10b6:208:10c:cafe::68) by MN2PR01CA0016.outlook.office365.com
- (2603:10b6:208:10c::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8230.14 via Frontend Transport; Tue,
- 10 Dec 2024 22:54:21 +0000
+ (2603:10b6:208:10c:cafe::22) by MN2PR01CA0004.outlook.office365.com
+ (2603:10b6:208:10c::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8207.19 via Frontend Transport; Tue,
+ 10 Dec 2024 22:54:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -58,9 +58,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 46/48] drm/amdgpu: use new helper to get num instances for UVD
-Date: Tue, 10 Dec 2024 17:53:35 -0500
-Message-ID: <20241210225337.75394-47-alexander.deucher@amd.com>
+Subject: [PATCH 47/48] drm/amdgpu: use new helper to get num instances for JPEG
+Date: Tue, 10 Dec 2024 17:53:36 -0500
+Message-ID: <20241210225337.75394-48-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20241210225337.75394-1-alexander.deucher@amd.com>
 References: <20241210225337.75394-1-alexander.deucher@amd.com>
@@ -72,50 +72,50 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055E1:EE_|MW4PR12MB7013:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45eb50c7-9511-4515-9887-08dd196d94c2
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055E1:EE_|SJ2PR12MB8739:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8fa0c4e8-f288-4a25-a861-08dd196d9513
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?sI0KQB1Uq2fAzjwZK6mFkLKSiY7p+PLay5s454fqlPnp+5KQczzzElckH/Ur?=
- =?us-ascii?Q?HpEyHW0NsB9rYLe/8Ro4ekuV/ILjhry6u/3eXW0H9AL5KWC3ry3/6NYhdSl7?=
- =?us-ascii?Q?XAjahJZYsoUXXgNTf8T1NyRs8kTdTj1EeRF2h9YDXt1a60qvBAV0kFr+b3GN?=
- =?us-ascii?Q?UdY3Ual9Js9OojPaElsjg0qUekMvmaki15cMWtGVfl5HZpzYbA47r+aDtkb+?=
- =?us-ascii?Q?wDLQgh6YAchKymRMOxUc2Er5vkNnTPU+/UVL0k2Yul9myCraFirwfGsTWjbI?=
- =?us-ascii?Q?unFVcLCBtQRcUWQ7GYzr7AO/7NtbXPI61mCB7hZj8WQBxXL4IbfHVNnJ5lL6?=
- =?us-ascii?Q?Q2370C1Q0rQ3svz6p7rf/1kNBZ3rUOqjYe1d3a+JnDkJjgk8yOQ3E8f7vT3V?=
- =?us-ascii?Q?ILJ4ciOidMFli+PGY1m78ZRcwkSThqOEiDmvwGbxPNh7X83Jjzdhzw4zSa6x?=
- =?us-ascii?Q?VJk+UQkxcNC2jT3y/LbrwD/KatJ4axJ2zkVNp37pO3+tmLH3M+weK9DiK8AX?=
- =?us-ascii?Q?YRu97tj1l4MJ85H6KrQcvCUYGGuORGqx7jeTowhszQIA7mEEFtu6igxVpYk4?=
- =?us-ascii?Q?/TRE9O0Nul8ALiFcJPo6h836zz5SSwEQOx7Whs6mgLsiFt3MHHZR1sizWZB4?=
- =?us-ascii?Q?8l1SOsDAUNHOTyN7dP4wHHoaUsmHqgfXcMVMWrOhOrPGs2KvVLVb7J3Lr58m?=
- =?us-ascii?Q?JNZYcu0pAoQIGWmGmdj/lyT+V/w2oEs/+ngHfr0d//0Ws2g/s3eQv8KKCei3?=
- =?us-ascii?Q?jsQKtNYAzFvomvtCjz8ARGzKEwm4boFN54DqKiTMLqTpTXyc51tXRiRQgkSK?=
- =?us-ascii?Q?5oBGe8xiVh9BqSzQetPUOetN0HqxSaKFHAzLt3lO/5Ss2YbIZvMRTDzW7jK0?=
- =?us-ascii?Q?L/FRgudFmMBfEqMyeqzkx+Upp19gd7uKulj9jiqTs5AH8ess2BztajSLKv04?=
- =?us-ascii?Q?iorF7wAo9xO5JSbmZP9HgV9UttHtPGpWIGBhvy7l/mdakc5o/GJYRssOMdJN?=
- =?us-ascii?Q?vr4yaRQ1p7EGoiuLUATiOQSHbG1AiBHgqITGBRzNtOzkYfgqJpHjc6rkU9uY?=
- =?us-ascii?Q?wWwvywhOUh5OXsvVMCQzMHj8a7JheWliNhj1JOIshFxRgzKRAttdw7vGZQHZ?=
- =?us-ascii?Q?dxSrpmn4iA99SRjxmN/iPnLG5amofDVcyc+D+sPWGwyaF1CdneVaj/jxlxga?=
- =?us-ascii?Q?BtSy+QmBHsSxO1RTzptg/2tf/naxjOYeXCKjzrQVP/su9X5/ADqv+NK+5oez?=
- =?us-ascii?Q?hsipFov5n8D9NbDQIC5GeasbFh7MZSsyzJDnN9Ac/PnfEvmlnKJXMsWx/LcJ?=
- =?us-ascii?Q?mgN63ptEuZc4VGpKhzgKpNvtr/6If4DJHrF4Mw9k4BXoENOFzZo91XcPgsCq?=
- =?us-ascii?Q?Oy+VFzQGjfNwWgLZESq1DcsbNbJL7OD5/oMQXNDGJJbOSWiv0A=3D=3D?=
+ ARA:13230040|36860700013|376014|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fU3JY5kXN6YtSuG/i90c65rbZ5wlGGnppiVNKyqFddkpHzbWAxINIGe7ds/h?=
+ =?us-ascii?Q?GnomZ34u4GeD10tS9aOH33N5EWJvjkQXVJHFDZCaLSfFyy9JYm22bCIJ29Hi?=
+ =?us-ascii?Q?Q6TkRzTyXW7bPk2PYwyy/Y36AsxK0nOP3MPbfuOoLMtPkV8Sqz3gY9r0QifS?=
+ =?us-ascii?Q?F1ITNExzVobvSx/+8QU1Xo5Nyil55kprsnuoP37+hLJXn9EbsVgXYqCg9ZNz?=
+ =?us-ascii?Q?Q38kioYB/D/orMuk8ZZiQAMqtzSTmXPrK9DNpqfXz4X6gwuND54oClBlWxkh?=
+ =?us-ascii?Q?u/V+ScvptQhxm+ZvGRj/sAh9xf0taLv4cMJGfUA3n0yo3H9+dBOd9y18cgVo?=
+ =?us-ascii?Q?DOvU6bcBAPAjXWbmw9SwaenZ8xEsfhj3FVjIcKTq4rlSqcubjK3biOef4HoU?=
+ =?us-ascii?Q?ILi+uxAjSXkVy2fZjwfDuCXFwTn/F87uUzTfR5f2O6OmhrTM3rZ0HlYnQnLY?=
+ =?us-ascii?Q?AfKjBPErP84/XPK0d9ADpv7dXZOn7cqtjVmluQkD+lQUjRjySjIX+5z3yfXQ?=
+ =?us-ascii?Q?xmOUuTPZPQfI5S1lz8AKJbJxzro6qM0uCfOG8+BHOpzf2+6Y6NvzP0bFUpZz?=
+ =?us-ascii?Q?a+ZEGebly1pSfS7Nv3raTWZkt4F7A7eRDYXN0aJWkL4PCrwbXhriOOhR25SN?=
+ =?us-ascii?Q?t+e9CPvzsd9GsSJVX0nNiZj+1KBvQouWT0xP/ZXtNejZEfrRodIxx5sM5Qxk?=
+ =?us-ascii?Q?FSSkoZSJoyPeJFs2WX95EVhFnkeIt5A9+IkqJYyttlmjp9IkGY0dSbtVrb0x?=
+ =?us-ascii?Q?gAM4vrqO5lMA7kN3dE8gOblgSrUaP4dLOH/iUWOptlC6+3x8i3hsi88vKPDe?=
+ =?us-ascii?Q?pPNtSwZghC4F6rH/qFbk6motC12xsEjQhuhZKJxHe/fT1R0cYooOlUGm1sOL?=
+ =?us-ascii?Q?Js1F9nnA8NrXUiWc2z4b43epWN9Qa+y+QXTifSX8UGzYdxIJdiHEyJtTftRi?=
+ =?us-ascii?Q?LwuOQUfiQsLusS3dO6M9x7kKM1l1zAi+Udb31Xy2fs73//tkTSyn7ZGRtIWK?=
+ =?us-ascii?Q?jpfYIlAs2Y1B+DNZGAieW8KJFm9DHwHvp6Q6/9RqBkXaGvb5SI37pvBoRLbr?=
+ =?us-ascii?Q?kQsmouTP3vQ1LsbEtOeYy7bXxK3+P8BqjiQffD2jgw6ROghnTMBvZEXUPGRB?=
+ =?us-ascii?Q?L05IMqO9WhbdeeXWAOJvkmSIJ8NBSgAvLVw6bQnfieWOQXPtYlHBxPVD2mZ9?=
+ =?us-ascii?Q?Y2lZumiAPy4n99OzEepKz0xDXeLA4y4QQFzXy5+oXhsZ1EMV5+xxys37CZ7l?=
+ =?us-ascii?Q?nkePyL2nuNFGzIksattk4r7y1Bwtifnvw2GlqJNpKiugWnOjmjBXqj8HuVPf?=
+ =?us-ascii?Q?8IHYg1CdPneuNT8fgJd7mxAwPxMHRoSwp/q0sbeduMp6xy5CTbuKTLgVp7ox?=
+ =?us-ascii?Q?VicVJzE8Ee7d1jBZ7viNCFWvPAq0gUtAnnKeE0f5E9gvu1r35A=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
+ SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2024 22:54:19.3764 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45eb50c7-9511-4515-9887-08dd196d94c2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2024 22:54:19.9076 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8fa0c4e8-f288-4a25-a861-08dd196d9513
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000055E1.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7013
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8739
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,47 +130,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use the helper for all non-UVD code which queries the number
-of UVD instances.
+Use the helper for all non-JPEG code which queries the number
+of SDMA instances.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c        | 6 ++++--
+ drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c     | 2 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c | 4 +++-
+ 3 files changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index e1e0f80b23606..4f6f617066955 100644
+index 4f6f617066955..330f5cfb79218 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -432,7 +432,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 		break;
- 	case AMDGPU_HW_IP_UVD:
- 		type = AMD_IP_BLOCK_TYPE_UVD;
--		for (i = 0; i < adev->uvd.num_uvd_inst; i++) {
-+		num_inst = amdgpu_device_ip_get_num_inst(adev, AMD_IP_BLOCK_TYPE_UVD);
+@@ -495,8 +495,9 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+ 	case AMDGPU_HW_IP_VCN_JPEG:
+ 		type = (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_JPEG)) ?
+ 			AMD_IP_BLOCK_TYPE_JPEG : AMD_IP_BLOCK_TYPE_VCN;
++		num_inst = amdgpu_device_ip_get_num_inst(adev, type);
+ 
+-		for (i = 0; i < adev->jpeg.num_jpeg_inst; i++) {
 +		for (i = 0; i < num_inst; i++) {
- 			if (adev->uvd.harvest_config & (1 << i))
+ 			if (adev->jpeg.harvest_config & (1 << i))
  				continue;
  
-@@ -452,7 +453,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 		break;
- 	case AMDGPU_HW_IP_UVD_ENC:
- 		type = AMD_IP_BLOCK_TYPE_UVD;
--		for (i = 0; i < adev->uvd.num_uvd_inst; i++) {
-+		num_inst = amdgpu_device_ip_get_num_inst(adev, AMD_IP_BLOCK_TYPE_UVD);
-+		for (i = 0; i < num_inst; i++) {
- 			if (adev->uvd.harvest_config & (1 << i))
- 				continue;
- 
-@@ -692,7 +694,7 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+@@ -688,7 +689,8 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 			count = adev->sdma.num_instances;
+ 			break;
+ 		case AMD_IP_BLOCK_TYPE_JPEG:
+-			count = adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings;
++			count = amdgpu_device_ip_get_num_inst(adev, AMD_IP_BLOCK_TYPE_JPEG) *
++				adev->jpeg.num_jpeg_rings;
+ 			break;
+ 		case AMD_IP_BLOCK_TYPE_VCN:
  			count = amdgpu_device_ip_get_num_inst(adev, AMD_IP_BLOCK_TYPE_VCN);
- 			break;
- 		case AMD_IP_BLOCK_TYPE_UVD:
--			count = adev->uvd.num_uvd_inst;
-+			count = amdgpu_device_ip_get_num_inst(adev, AMD_IP_BLOCK_TYPE_UVD);
- 			break;
- 		/* For all other IP block types not listed in the switch statement
- 		 * the ip status is valid here and the instance count is one.
+diff --git a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
+index ab7a2ba59a1bd..6d020e81ff945 100644
+--- a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
++++ b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
+@@ -465,7 +465,7 @@ static int aqua_vanjaram_get_xcp_res_info(struct amdgpu_xcp_mgr *xcp_mgr,
+ 	max_res[AMDGPU_XCP_RES_XCC] = NUM_XCC(adev->gfx.xcc_mask);
+ 	max_res[AMDGPU_XCP_RES_DMA] = adev->sdma.num_instances;
+ 	max_res[AMDGPU_XCP_RES_DEC] = amdgpu_device_ip_get_num_inst(adev, AMD_IP_BLOCK_TYPE_VCN);
+-	max_res[AMDGPU_XCP_RES_JPEG] = adev->jpeg.num_jpeg_inst;
++	max_res[AMDGPU_XCP_RES_JPEG] = amdgpu_device_ip_get_num_inst(adev, AMD_IP_BLOCK_TYPE_JPEG);
+ 
+ 	switch (mode) {
+ 	case AMDGPU_SPX_PARTITION_MODE:
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
+index e660f4a663781..921cad5ef5f4a 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
+@@ -1541,8 +1541,10 @@ int smu_v14_0_set_jpeg_enable(struct smu_context *smu,
+ {
+ 	struct amdgpu_device *adev = smu->adev;
+ 	int i, ret = 0;
++	int num_jpeg_inst = amdgpu_device_ip_get_num_inst(adev,
++							  AMD_IP_BLOCK_TYPE_JPEG);
+ 
+-	for (i = 0; i < adev->jpeg.num_jpeg_inst; i++) {
++	for (i = 0; i < num_jpeg_inst; i++) {
+ 		if (adev->jpeg.harvest_config & (1 << i))
+ 			continue;
+ 
 -- 
 2.47.1
 
