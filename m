@@ -2,59 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D19759ECF69
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B7F49ECF68
 	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2024 16:10:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4B610E3FF;
-	Wed, 11 Dec 2024 15:10:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lQkmEMCr";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CF1210EB80;
+	Wed, 11 Dec 2024 15:10:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B49910E14C;
- Wed, 11 Dec 2024 03:25:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329; h=Cc:To:In-Reply-To:References:Message-Id:
- Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=PrQgF4dnk3S2LprziJrI8Fd1ba1twX8nobVmzaXgmsA=; b=lQkmEMCrmc4ttoZgoAygYY8iks
- LKBWvNsjWW7Qwm6rhDMc8m9g9GATacLTr/5p9cQFoyvqqoe8JXJ2wapRw2aVeAkyF0WEqRKSSb8Ds
- K05xR8+IkqjJuDQs1+d/Vz1ORQxbOwXcYcrkG1qvvZI9/Twf4PmVrvD4hvRuxffVI4IXfdOQc8AYY
- yCcLYSn7CBSk8MnuMhjhNp4BVHg+BmDKWpa5MmLbEAOal8EwaNRFvUFuAs9zeWbEIzUMnkH27B1yp
- SDDJ6VCHtga8/cHmajuvBFJaOPBfmVaJ3AJoxLByuHa5+N1OqDcaQRPrOC4W3hadmPON7wpDvHuxn
- 26s7XL/A==;
-Received: from [179.118.189.35] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tLDM1-001lyu-3k; Wed, 11 Dec 2024 04:25:37 +0100
-From: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-Date: Wed, 11 Dec 2024 00:25:09 -0300
-Subject: [PATCH v10 2/2] drm/amdgpu: Enable async flip on overlay planes
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
+ [205.220.166.238])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 965E510EABC;
+ Wed, 11 Dec 2024 08:59:27 +0000 (UTC)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+ by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BB503KY007098;
+ Wed, 11 Dec 2024 00:58:56 -0800
+Received: from ala-exchng02.corp.ad.wrs.com (ala-exchng02.wrs.com
+ [147.11.82.254])
+ by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 43cwy1uymq-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+ Wed, 11 Dec 2024 00:58:55 -0800 (PST)
+Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
+ ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.43; Wed, 11 Dec 2024 00:58:54 -0800
+Received: from pek-lpg-core1.wrs.com (147.11.136.210) by
+ ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server id
+ 15.1.2507.43 via Frontend Transport; Wed, 11 Dec 2024 00:58:49 -0800
+From: <jianqi.ren.cn@windriver.com>
+To: <n.zhandarovich@fintech.ru>, <wayne.lin@amd.com>,
+ <gregkh@linuxfoundation.org>
+CC: <alexander.deucher@amd.com>, <stable@vger.kernel.org>,
+ <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
+ <Rodrigo.Siqueira@amd.com>, <christian.koenig@amd.com>,
+ <airlied@gmail.com>, <daniel@ffwll.ch>, <Jerry.Zuo@amd.com>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <sashal@kernel.org>,
+ <alex.hung@amd.com>, <mario.limonciello@amd.com>,
+ <chiahsuan.chung@amd.com>, <hersenxs.wu@amd.com>, <shenshih@amd.com>,
+ <Nicholas.Kazlauskas@amd.com>, <hanghong.ma@amd.com>
+Subject: [PATCH 6.1.y] drm/amd/display: fix NULL checks for adev->dm.dc in
+ amdgpu_dm_fini()
+Date: Wed, 11 Dec 2024 17:56:43 +0800
+Message-ID: <20241211095643.2069433-1-jianqi.ren.cn@windriver.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241211-tonyk-async_flip-v10-2-6b1ff04847c2@igalia.com>
-References: <20241211-tonyk-async_flip-v10-0-6b1ff04847c2@igalia.com>
-In-Reply-To: <20241211-tonyk-async_flip-v10-0-6b1ff04847c2@igalia.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, dmitry.baryshkov@linaro.org, 
- Simon Ser <contact@emersion.fr>, joshua@froggi.es, 
- Xaver Hugl <xaver.hugl@gmail.com>, Daniel Stone <daniel@fooishbar.org>, 
- ville.syrjala@linux.intel.com
-Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: l7CoBVKv9j074H_Xlx0dGT6SakvFIOLn
+X-Authority-Analysis: v=2.4 cv=eePHf6EH c=1 sm=1 tr=0 ts=6759544f cx=c_pps
+ a=K4BcnWQioVPsTJd46EJO2w==:117 a=K4BcnWQioVPsTJd46EJO2w==:17
+ a=RZcAm9yDv7YA:10 a=DFC7gQDcAAAA:8 a=HH5vDtPzAAAA:8 a=zd2uoN0lAAAA:8
+ a=t7CeM3EgAAAA:8 a=TusaAkCut-tyimdG5pgA:9
+ a=6mkBMmtgJpxIRZlSFNLW:22 a=QM_-zKB-Ew0MsOlNKMB5:22 a=FdTzh2GWekK77mhwV6Dw:22
+X-Proofpoint-GUID: l7CoBVKv9j074H_Xlx0dGT6SakvFIOLn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2024-12-11_08,2024-12-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=999 priorityscore=1501
+ spamscore=0 phishscore=0 malwarescore=0 mlxscore=0 adultscore=0
+ bulkscore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
+ engine=8.21.0-2411120000 definitions=main-2412110067
 X-Mailman-Approved-At: Wed, 11 Dec 2024 15:10:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,52 +79,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-amdgpu can handle async flips on overlay planes, so allow it for atomic
-async checks.
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
+[ Upstream commit 2a3cfb9a24a28da9cc13d2c525a76548865e182c ]
+
+Since 'adev->dm.dc' in amdgpu_dm_fini() might turn out to be NULL
+before the call to dc_enable_dmub_notifications(), check
+beforehand to ensure there will not be a possible NULL-ptr-deref
+there.
+
+Also, since commit 1e88eb1b2c25 ("drm/amd/display: Drop
+CONFIG_DRM_AMD_DC_HDCP") there are two separate checks for NULL in
+'adev->dm.dc' before dc_deinit_callbacks() and dc_dmub_srv_destroy().
+Clean up by combining them all under one 'if'.
+
+Found by Linux Verification Center (linuxtesting.org) with static
+analysis tool SVACE.
+
+Fixes: 81927e2808be ("drm/amd/display: Support for DMUB AUX")
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Jianqi Ren <jianqi.ren.cn@windriver.com>
 ---
-Changes from v8:
-- Use new parameter 'flip'
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 495e3cd70426db0182cb2811bc6d5d09f52f8a4b..2792d393157beec12d6e96843c43158c03f16027 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -1260,22 +1260,25 @@ static int amdgpu_dm_plane_atomic_check(struct drm_plane *plane,
- }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 8dc0f70df24f..7b4d44dcb343 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -1882,14 +1882,14 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
+ 		dc_deinit_callbacks(adev->dm.dc);
+ #endif
  
- static int amdgpu_dm_plane_atomic_async_check(struct drm_plane *plane,
--					      struct drm_atomic_state *state)
-+					      struct drm_atomic_state *state, bool flip)
- {
- 	struct drm_crtc_state *new_crtc_state;
- 	struct drm_plane_state *new_plane_state;
- 	struct dm_crtc_state *dm_new_crtc_state;
+-	if (adev->dm.dc)
++	if (adev->dm.dc) {
+ 		dc_dmub_srv_destroy(&adev->dm.dc->ctx->dmub_srv);
+-
+-	if (dc_enable_dmub_notifications(adev->dm.dc)) {
+-		kfree(adev->dm.dmub_notify);
+-		adev->dm.dmub_notify = NULL;
+-		destroy_workqueue(adev->dm.delayed_hpd_wq);
+-		adev->dm.delayed_hpd_wq = NULL;
++		if (dc_enable_dmub_notifications(adev->dm.dc)) {
++			kfree(adev->dm.dmub_notify);
++			adev->dm.dmub_notify = NULL;
++			destroy_workqueue(adev->dm.delayed_hpd_wq);
++			adev->dm.delayed_hpd_wq = NULL;
++		}
+ 	}
  
--	/* Only support async updates on cursor planes. */
--	if (plane->type != DRM_PLANE_TYPE_CURSOR)
-+	if (flip) {
-+		if (plane->type != DRM_PLANE_TYPE_OVERLAY)
-+			return -EINVAL;
-+	} else if (plane->type != DRM_PLANE_TYPE_CURSOR)
- 		return -EINVAL;
- 
- 	new_plane_state = drm_atomic_get_new_plane_state(state, plane);
- 	new_crtc_state = drm_atomic_get_new_crtc_state(state, new_plane_state->crtc);
- 	dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
- 	/* Reject overlay cursors for now*/
--	if (dm_new_crtc_state->cursor_mode == DM_CURSOR_OVERLAY_MODE)
-+	if (!flip && dm_new_crtc_state->cursor_mode == DM_CURSOR_OVERLAY_MODE) {
- 		return -EINVAL;
-+	}
- 
- 	return 0;
- }
-
+ 	if (adev->dm.dmub_bo)
 -- 
-2.47.1
+2.25.1
 
