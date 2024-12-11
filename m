@@ -2,79 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC919ECF6C
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2024 16:10:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 235219ECF64
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2024 16:10:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7AE910EB87;
-	Wed, 11 Dec 2024 15:10:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69A8910E3EF;
+	Wed, 11 Dec 2024 15:10:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FA3V3zFa";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="IuQZbhcY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
- [209.85.210.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39E4F10E183
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 03:17:58 +0000 (UTC)
-Received: by mail-pf1-f182.google.com with SMTP id
- d2e1a72fcca58-725ecc42d43so2329778b3a.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 19:17:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1733887077; x=1734491877; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=MkB64RFwpW9AUQt2wKyq1Yb5kYMbSZj/H+ENOEOo5+A=;
- b=FA3V3zFaOOrm93Dl2RxxQi+OfA9Id/RHd3hMB1qb6YE9MyFbAxvhlDgfI/q5qDB2HP
- bBmIauWZBOmbWCNGjQGa5MZAWB9A0eFw5cRP9gGpSEjuJFK29mk9aRW3LFpsK7SG62K6
- 55WkcThllmCfj5uTA790zLVtn8Ej3aFYlCEgf0ayZHYgFHJ87iMp5MbnDSc2O2WSNQU9
- Hf09yIuyc+5ooN1J0l6Fqt5nYNKfTUQQzG05khNdbIV82YHjVBKRHA7McKw134KCa9DI
- ps2Fe1/O8iwhUf0U6fk7W+OmOxG2nJN3WQ0revihb0XRzruzeuhCX9BtvrLcE+junBmk
- Vvew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733887077; x=1734491877;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=MkB64RFwpW9AUQt2wKyq1Yb5kYMbSZj/H+ENOEOo5+A=;
- b=Vg9b1LYlYjwMVHFD082/4oR+wOBoCX3QDz5onB12rGHTVB22mpNk6TKZEGBimtxSsE
- IH11PqJF209YMiz19gwLuZ82ysDCBo7mp0STBRbzkq89GRoYDuyrPRFDv+lcunYIwSPW
- XGkL1SD7xNf6ifJYdjkOwmaEmOHsDx5ooW6k00XT1Aysb9Hl9YZ1Lk+Fdmcfk19T8/ZP
- YeRlDaRWEX08DLr5ApUL+fz/sqMtXM08prKuag/1y9C2zwg8ttaohiBDM2Dva63MLgUu
- jYIYlFdtD3pRwKWwzlpViNszIdiAZuEMk9475eHzjjkNOkbS8LUGPmhFoiTNZszpBx+v
- Ilug==
-X-Gm-Message-State: AOJu0YyMjgIDpPP4H0LppHEpr6XidPmod7Mbjru5KYh4YmHfUwJRwbti
- tbmaNxdiNTseQuFm50ySRnlCOmleyD0wpNwe7oszcQRZLc+4Hh5PDmZNVg==
-X-Gm-Gg: ASbGncvMZP+eUy1NSpBLIekFyHrffYTUdg/a/KF04miDsL7VPTnRInnBimSrzgioBRG
- Gx7GZ9kCKxffPvGrrvSMVqhtbc7O6SS4r3tGYKRwVrvLHgzNb0iXcA1AAjROcNSMXhomya7Tc0q
- C3NS0i0u1hyKnLWqTp1CX4liDBkn//WVyUWzax4dMRP1gVlEoh/iiKgNLV69QTn97YnSmM23ToH
- eC11Utg6hI77d9d2KHdni31aaQZnsZVLaEvKsfAx8Tpg9/9nmT7ODyPQmIi0u0ADnA=
-X-Google-Smtp-Source: AGHT+IG7zOYLXKIClvUY2/43cDFsOI7npDSa9Oy+0ygdPM2bqkUlxmwDQ+/Geu7s7eCtenoMWn99Ug==
-X-Received: by 2002:a05:6a20:d50c:b0:1e0:be48:177d with SMTP id
- adf61e73a8af0-1e1c12ab50emr2530724637.3.1733887076867; 
- Tue, 10 Dec 2024 19:17:56 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-725ceb7c02dsm6803657b3a.136.2024.12.10.19.17.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Dec 2024 19:17:56 -0800 (PST)
-Date: Tue, 10 Dec 2024 19:17:53 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Alex Hung <alex.hung@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Harry.Wentland@amd.com,
- Sunpeng.Li@amd.com, Rodrigo.Siqueira@amd.com,
- Aurabindo.Pillai@amd.com, roman.li@amd.com, wayne.lin@amd.com,
- agustin.gutierrez@amd.com, chiahsuan.chung@amd.com,
- hersenxs.wu@amd.com, jerry.zuo@amd.com,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Duncan Ma <duncan.ma@amd.com>
-Subject: Re: [PATCH 10/34] drm/amd/display: Add debug prints for IPS testing
-Message-ID: <abe64cad-4ac4-4372-9d46-5e77618b3836@roeck-us.net>
-References: <20240228183940.1883742-1-alex.hung@amd.com>
- <20240228183940.1883742-11-alex.hung@amd.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD6C810EA4F;
+ Wed, 11 Dec 2024 03:25:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=+f1nfrUYcs1wSQhhCmsy52L607zRZwkgSeCEyoxcG8Q=; b=IuQZbhcY43mPZuHRZgEmA67lN5
+ MjELu5RzmKigWNbWZApCcxPGdw6+D719bPVZ6fHk5y968JkEly+FI+0xEdrrzz+OIZ4d1FgDAuRyF
+ vJf14zLsN/yglbIffz3qmVxDxxYtoc4XEOMFhEZ2PWZpzL+R5qFalD+M8dV1iMldg+kCepeAmYBXl
+ OeZG23rhZAmm3bNW4z6Vz1KBrA4FsCA+W3VYjNPQCdvtCGeMxSDGfrJ4qo2/P7n0HqsVqL+MPoAXY
+ 212fOI+qbYO8AW4BxJT+wMe0Vm0AjdoWpd56IKjsyIsvGp9thM0HkkaGrLP09JOtNXLTwrBIzgrVd
+ A5F1gVOA==;
+Received: from [179.118.189.35] (helo=[192.168.15.100])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tLDLq-001lyu-7z; Wed, 11 Dec 2024 04:25:26 +0100
+From: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v10 0/2] drm/atomic: Ease async flip restrictions
+Date: Wed, 11 Dec 2024 00:25:07 -0300
+Message-Id: <20241211-tonyk-async_flip-v10-0-6b1ff04847c2@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240228183940.1883742-11-alex.hung@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABMGWWcC/3WNsQ7CIBiEX6VhFgO0WnDSuDg6uJnGAEL7xwoNN
+ I1N03cXO7l0vO/y3U0omgAmokM2oWAGiOBdCpRsMqQb6WqD4ZkAYoQVlBCGe+/GF5ZxdPphW+g
+ wZ1xbI7TNtURJ64Kx8Fk27+h6up0vqEq4gdj7MC5Pg1jK9c1BYIKLXa6o4qIs1fMItWxBbrV//
+ z4WkxK6Yu455bQwVlll/s1qnucvQLo8EPMAAAA=
+X-Change-ID: 20241002-tonyk-async_flip-828cfe9cf3ca
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui Pan <Xinhui.Pan@amd.com>, dmitry.baryshkov@linaro.org, 
+ Simon Ser <contact@emersion.fr>, joshua@froggi.es, 
+ Xaver Hugl <xaver.hugl@gmail.com>, Daniel Stone <daniel@fooishbar.org>, 
+ ville.syrjala@linux.intel.com
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+X-Mailer: b4 0.14.2
 X-Mailman-Approved-At: Wed, 11 Dec 2024 15:10:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,42 +76,49 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
-On Wed, Feb 28, 2024 at 11:39:16AM -0700, Alex Hung wrote:
-> From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-> 
-> [WHY]
-> To log commit states and when we transition in/out of allow and idle
-> states and the caller.
-> 
-> [HOW]
-> Add a new logging helper and wrap idle optimization calls to receive
-> the caller.
-> 
-> Reviewed-by: Duncan Ma <duncan.ma@amd.com>
-> Acked-by: Alex Hung <alex.hung@amd.com>
-> Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-> ---
-...
->  
-> +	DC_LOG_ERROR("%s: DMCUB error - collecting diagnostic data\n", __func__);
-> +
+The goal of this work is to find a nice way to allow amdgpu to perform
+async page flips in the overlay plane as well, not only on the primary
+one. Currently, when using the atomic uAPI, this is the only type of
+plane allowed to do async flips, and every driver accepts it.
 
-This patch generates _lots_ of logging noise.
+This patchset re-uses the per-plane function atomic_async_check() to
+this purpose, so drivers can allow different plane types. There's a
+`bool flip` parameter so the atomic_async_check() can do different
+decisions if it's a complete page flip or a plane update.
 
-[689208.336969] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689219.628141] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689221.098993] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689222.645994] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689225.341470] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689226.467388] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689226.716755] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689231.507746] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689247.287990] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
-[689252.441150] amdgpu 0000:03:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
+igt test: https://lore.kernel.org/igt-dev/20241211031820.115844-1-andrealmeid@igalia.com/
 
-I disabled it in my private kernel build, so no problem for me. However,
-searching for the string on the web shows lots of complaints. Not my call
-to make, but claiming that this patch adds "debug prints for IPS testing"
-seems to be a bit misleading.
+Changelog
+ v9: https://lore.kernel.org/r/20241101-tonyk-async_flip-v9-0-681814efbfbe@igalia.com
+ - Add a 'flip' flag to indicate where the atomic_async_check() is being called from.
 
-Guenter
+ v8: https://lore.kernel.org/lkml/20240806135300.114469-1-andrealmeid@igalia.com/
+ - Rebased on top of 6.12-rc1 (drm/drm-next)
+
+ v7: https://lore.kernel.org/dri-devel/20240618030024.500532-1-andrealmeid@igalia.com/
+ - Complete rewrite
+
+---
+André Almeida (2):
+      drm/atomic: Let drivers decide which planes to async flip
+      drm/amdgpu: Enable async flip on overlay planes
+
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    | 11 ++++---
+ drivers/gpu/drm/drm_atomic_helper.c                |  2 +-
+ drivers/gpu/drm/drm_atomic_uapi.c                  | 37 ++++++++++++++++------
+ drivers/gpu/drm/loongson/lsdc_plane.c              |  3 +-
+ drivers/gpu/drm/mediatek/mtk_plane.c               |  2 +-
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c         |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |  2 +-
+ drivers/gpu/drm/tegra/dc.c                         |  3 +-
+ drivers/gpu/drm/vc4/vc4_plane.c                    |  2 +-
+ include/drm/drm_modeset_helper_vtables.h           |  7 +++-
+ 10 files changed, 49 insertions(+), 22 deletions(-)
+---
+base-commit: c40c32cf71b90d85386fcc066c19feb23eb42804
+change-id: 20241002-tonyk-async_flip-828cfe9cf3ca
+
+Best regards,
+-- 
+André Almeida <andrealmeid@igalia.com>
+
