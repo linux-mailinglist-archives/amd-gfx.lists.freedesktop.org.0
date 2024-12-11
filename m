@@ -2,122 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B7349ED322
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2024 18:13:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2854F9ED32D
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2024 18:14:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F02D10EBC0;
-	Wed, 11 Dec 2024 17:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 332CF10EBCF;
+	Wed, 11 Dec 2024 17:14:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1xT3MRze";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UL2eZk8z";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2071.outbound.protection.outlook.com [40.107.92.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C931A10EBC0
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 17:13:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SJr/1ZfNaxt54NL+J/IiFzqRf10a7lYTVVHms3ooE6pkxQ6HwAcRQLl3Tu2Wpx5L3vMUN+kK8vwylvtM4Y9t2cT9M31S3/rG0JIOQakRg5+sMg08qJrMBoWwHT58nhpbBpKfU1euC2VrE6EBkMySgIdnamHIxn5F3JlA/HeBln8RpVHcdak9N53xqIuDl7iGJetoO0bQKM2jswl2DeYVe6zFjCeGM4Y85ONRP1XT4QSAqKZAm2GQ6LzDicMe/B5belwiHG9m1/O7TqMkEn/ZZMBkiRiFHUpVXDNbq4A53IcQIOdTzVZWsFhbKi2s9cHPBFWDktdXlxZ0LijSwSDiFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jzzYFjapxPN3s9BCB2/n8L7JojpTqCfQsO9mXT8OjC0=;
- b=OW7ftyJKJ0rMOuzcQSdqB95DH2w6jOUS8x4bo1iWx2+AD2HgJfpnerQrz68OzvsyrEQzie8Ve2fgZZ7nI81ZNrj72GkfqJ/C5K/3LtzyfAen4P8cxtT4OPty/NECZiMcDgMN3M9rVQHZwiVm8JJve4pAM9hkEhBXcvG4TXJUhoVAEZ2KtvMX0jjdmW7aS25YPNL/UVBOckOfkuCPRIGufavtlXe+qHNRBChNhI8FhS8wNdbOEovlKwL4kxSqVuWzjTcn2c00wqiKY/NjnGiPbjiFz5t4aLgfoSZvVL86ogAlo5ZTvq4XPACujK0vq7oGUIhaNz3jGpCwbhGOGpL4Xw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jzzYFjapxPN3s9BCB2/n8L7JojpTqCfQsO9mXT8OjC0=;
- b=1xT3MRzeNID+c6/M7l5+ji+hZMBAx0a6JI8XLrXQ5f22wmISwUvKVWwbqq8Qw2lHQvihnaQ2a/HcqLF7tn+ENidpcDlzK5LBFM7KdEislSWhH8zCktqS7TxbOjppD99ZscGwaVeEkhIYvGhExWYu+/AYxbbpLHqgPvShM78aONA=
-Received: from SJ0PR13CA0091.namprd13.prod.outlook.com (2603:10b6:a03:2c5::6)
- by SJ0PR12MB6736.namprd12.prod.outlook.com (2603:10b6:a03:47a::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.15; Wed, 11 Dec
- 2024 17:13:04 +0000
-Received: from SJ1PEPF0000231B.namprd03.prod.outlook.com
- (2603:10b6:a03:2c5:cafe::c1) by SJ0PR13CA0091.outlook.office365.com
- (2603:10b6:a03:2c5::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8251.15 via Frontend Transport; Wed,
- 11 Dec 2024 17:13:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF0000231B.mail.protection.outlook.com (10.167.242.232) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8251.15 via Frontend Transport; Wed, 11 Dec 2024 17:13:04 +0000
-Received: from patedamande.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Dec
- 2024 11:12:58 -0600
-From: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-To: <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
- <amd-gfx@lists.freedesktop.org>
-CC: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-Subject: [PATCH 3/3] drm/amdgpu: remove useless init from amdgpu_job_alloc
-Date: Wed, 11 Dec 2024 18:10:50 +0100
-Message-ID: <20241211171238.805137-3-pierre-eric.pelloux-prayer@amd.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241211171238.805137-1-pierre-eric.pelloux-prayer@amd.com>
-References: <20241211171238.805137-1-pierre-eric.pelloux-prayer@amd.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD5210EBC8;
+ Wed, 11 Dec 2024 17:14:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id ADD89A411C2;
+ Wed, 11 Dec 2024 17:12:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F528C4CED2;
+ Wed, 11 Dec 2024 17:14:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733937260;
+ bh=eMXI49kfztrFRzLeMuIYb0vDUZemoUQLGGBNn+CfXXg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=UL2eZk8zY/frmxj6sMII0jPTlEd5JmQaXghEjyn0+CqmE8LHcph+sGATaWEQvbQze
+ ATqD4t/RqOZ7OaEn8axEyxi7oT4KKFiNdIyD7bTA2ml+DybPZlulgfMEh/2vllBLz5
+ xKzLUMnx/MayZB0pACYxykRCXRPdUX/vEI0hhOWsGjKUjLQ0d7s1A1Hfn9L7Bnoatx
+ xxGhvd9edsGypt6JG74yPRMV2Dtdj5aD+Dvfp/E1fA4dDV0QSQJMeC9f/EbUhQkGWu
+ VKT7WxnbS70eRGQXPul7k3kq7YGdcyqaO8tbiNsl8fjM0BrUD2LLyEcloKb3lxVQzm
+ jzgnq4XIpZ//A==
+Date: Wed, 11 Dec 2024 18:14:12 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
+ =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
+ aravind.iddamsetty@linux.intel.com, rodrigo.vivi@intel.com,
+ michal.wajdeczko@intel.com, 
+ lina@asahilina.net, anshuman.gupta@intel.com, alexander.deucher@amd.com, 
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com, airlied@gmail.com,
+ simona@ffwll.ch, lucas.demarchi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com
+Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
+Message-ID: <m6ysmkxnit6kqeilkcaa3hoyfzyznymsa3eybzsl66jsn2ku67@jl3ajhxgqmvy>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-2-raag.jadav@intel.com>
+ <1d448e67-0c28-4e21-afdd-223495346921@igalia.com>
+ <Z01q1-7OF7jgANEM@black.fi.intel.com>
+ <Z06QUpm3o_izNjoV@black.fi.intel.com>
+ <7d0660f8-ce78-4458-a084-b65ab71e8243@amd.com>
+ <Z1A6PYFCUNL9edv6@black.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF0000231B:EE_|SJ0PR12MB6736:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6a6bcdc8-30f8-4282-3c03-08dd1a07130c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2XJbLec1z5psaHe08/b1nyDHSzAXgjptC7C2yBDh6Hi+6G3aeHY3S00fBFNF?=
- =?us-ascii?Q?3T07qXE739aAn1KcpabpEdFjPfcHCbDhatDb78lg27P8dUqFhEIVsz3CsK8J?=
- =?us-ascii?Q?MvloeUEtTkHEMdILNl9rM+iZjJFwNbebU0Ea7QUsV9lF5B4gmlsCt1uk2T1C?=
- =?us-ascii?Q?I9i0tzOFfdZ42f+NzIRiywSTL/Fsr6gvesV566TsoltOTlV3zKVvpU1C4WhF?=
- =?us-ascii?Q?b0BRBhR+57F9k03fczwqYWJR7Esh4b4TJN8aKte+Fzu/lL+TaDI+fJseYnTA?=
- =?us-ascii?Q?v9CKYMd62GxvYZRz2OaWA5uClqnlNw6GKZ2GovORfw8XrEry3suOWtz7WB0o?=
- =?us-ascii?Q?8UiJs/RQmx8KWeG8at0onpJdV99MQB/UAtfnuQhqW8mcA0r3gQsgeZHl9lbg?=
- =?us-ascii?Q?nUUQrAWUlhboosOZ3CsnqHILEOrxjjgJ6JSNlC8iVh+B7Huo2G2Uk1RcHLU+?=
- =?us-ascii?Q?0obtWb6aP9wj5u9ndqBWJY/1eiYb4h30GHiHfGeVfBFAF16RPDedJul9mMj9?=
- =?us-ascii?Q?tXuoGdcXxd/CTo3xkg1hRd96wqN/AkvrSNo9ldlrH9qR3a1HQ7kQAgs2lI41?=
- =?us-ascii?Q?UOZn4CfpdmRHsPxWDd9GsmRQ1QChYZk1oUBY3eSZxzYANWWxrRCNyGn+NYsB?=
- =?us-ascii?Q?V7z3Cc2vLB5fSzzwyiKoXQT/vuGnoFIq97KE1b7dvZ5DgXbjsLsB9hlxBW0z?=
- =?us-ascii?Q?6cUO0fOkM0q1kdq+z+RE2pH/2NDRkljLjkGrb77noG+stics6mqtHNHstkLE?=
- =?us-ascii?Q?BJ+OAkH2ypjiF8j1ctM2ArIQZG0zEPVR5nYdvQtFRVLv3w5IHO1H/gHuNxTb?=
- =?us-ascii?Q?OO7C2QXU2moLKHOFo2+bFQPMTpLhU2jQ38YqLWLcR4jifosdmMPSVfh7jq0y?=
- =?us-ascii?Q?waxs2fo6FlZshkXR5LCXaCtO+l8F+Sq9g7QOufvjr9MuLHDyCuJPJLnBqs+h?=
- =?us-ascii?Q?0GVMKHaNYATwENnYJ9jwcMDPNbcVM6zx7I/nbdW/9M63/iKC4DtKOr+15S3u?=
- =?us-ascii?Q?WoY0WwrJgoDzQdSd16VmVswtpYniiWrgQGErakhe5du2tBF4NETzfevfj3dM?=
- =?us-ascii?Q?YNTBkGfEuIVJDgar8BGdabf8OKPvovGv0Cw0VSkUyCusI3b1/3xB7ptqiPRQ?=
- =?us-ascii?Q?nQFnxU3NsqTHaOLfTjLTfrqvJjzQz8fU0l/zQliCiPJPHoj+N+V9asem2AhE?=
- =?us-ascii?Q?Hz1xyi5Kk9LsjmAaAyNs+v65bUl8q1NnmqvCtiNawEdXiLPY07GjUSN3JpSi?=
- =?us-ascii?Q?H/5KBSFnazkpt6oq4fvtZKSka5SaRkBiAJXRuB/oWe9V490fES+Pu1JhQPk7?=
- =?us-ascii?Q?GDdpgXpkW6EDwGClmMz0/9MLWMmgi+quNzGquRHNbOgOzA/97eJhnNwXV6I6?=
- =?us-ascii?Q?VwmDVJ1esjdDKMZxdT6uDz/5x3fF6KTlakt+PG36rIO6MexyPvQvxLp/YJYz?=
- =?us-ascii?Q?oFxqW2NFuYjd1EgSDNUEIkNudXq2N8Qw?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2024 17:13:04.1578 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a6bcdc8-30f8-4282-3c03-08dd1a07130c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF0000231B.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6736
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="uubsanflwdakzxeu"
+Content-Disposition: inline
+In-Reply-To: <Z1A6PYFCUNL9edv6@black.fi.intel.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,30 +72,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This init is useless because base.sched will be cleared to 0 in drm_sched_job_init
-because of 2320c9e6a768 ("drm/sched: memset() 'job' in drm_sched_job_init()").
 
-Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 5 -----
- 1 file changed, 5 deletions(-)
+--uubsanflwdakzxeu
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
+MIME-Version: 1.0
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index e9e2e107ed45..72973568cd1f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -198,11 +198,6 @@ int amdgpu_job_alloc(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	if (!*job)
- 		return -ENOMEM;
- 
--	/*
--	 * Initialize the scheduler to at least some ring so that we always
--	 * have a pointer to adev.
--	 */
--	(*job)->base.sched = &adev->rings[0]->sched;
- 	(*job)->vm = vm;
- 
- 	amdgpu_sync_create(&(*job)->explicit_sync);
--- 
-2.43.0
+On Wed, Dec 04, 2024 at 01:17:17PM +0200, Raag Jadav wrote:
+> + misc maintainers
+>=20
+> On Tue, Dec 03, 2024 at 11:18:00AM +0100, Christian K=F6nig wrote:
+> > Am 03.12.24 um 06:00 schrieb Raag Jadav:
+> > > On Mon, Dec 02, 2024 at 10:07:59AM +0200, Raag Jadav wrote:
+> > > > On Fri, Nov 29, 2024 at 10:40:14AM -0300, Andr=E9 Almeida wrote:
+> > > > > Hi Raag,
+> > > > >=20
+> > > > > Em 28/11/2024 12:37, Raag Jadav escreveu:
+> > > > > > Introduce device wedged event, which notifies userspace of 'wed=
+ged'
+> > > > > > (hanged/unusable) state of the DRM device through a uevent. Thi=
+s is
+> > > > > > useful especially in cases where the device is no longer operat=
+ing as
+> > > > > > expected and has become unrecoverable from driver context. Purp=
+ose of
+> > > > > > this implementation is to provide drivers a generic way to reco=
+ver with
+> > > > > > the help of userspace intervention without taking any drastic m=
+easures
+> > > > > > in the driver.
+> > > > > >=20
+> > > > > > A 'wedged' device is basically a dead device that needs attenti=
+on. The
+> > > > > > uevent is the notification that is sent to userspace along with=
+ a hint
+> > > > > > about what could possibly be attempted to recover the device an=
+d bring
+> > > > > > it back to usable state. Different drivers may have different i=
+deas of
+> > > > > > a 'wedged' device depending on their hardware implementation, a=
+nd hence
+> > > > > > the vendor agnostic nature of the event. It is up to the driver=
+s to
+> > > > > > decide when they see the need for device recovery and how they =
+want to
+> > > > > > recover from the available methods.
+> > > > > >=20
+> > > > > Thank you for your work. Do you think you can add the optional PID
+> > > > > parameter, as the PID of the app that caused the reset? For Steam=
+OS use case
+> > > > > it has been proved to be useful to kill the fault app as well. If=
+ the reset
+> > > > > was caused by a kthread, no PID can be provided hence it's an opt=
+ional
+> > > > > parameter.
+> > > > Hmm, I'm not sure if it really fits here since it doesn't seem like
+> > > > a generic usecase.
+> > > >=20
+> > > > I'd still be open for it if found useful by the drivers but perhaps
+> > > > as an extended feature in a separate series.
+> > > What do you think Chris, are we good to go with v10?
+> >=20
+> > I agree with Andre that the PID and maybe the new DRM client name would=
+ be
+> > really nice to have here.
+> >=20
+> > We do have that in the device core dump we create, but if an applicatio=
+n is
+> > supervised by daemon for example then that would be really useful.
+> >=20
+> > On the other hand I think we should merge the documentation and code as=
+ is
+> > and then add the PID/name later on. That is essentially a separate
+> > discussion.
+>=20
+> So how do we proceed, perhaps through misc tree?
 
+Provided it follows the usual rules (ie, Reviewed-by, open source
+userspace tools using it if it's a new uAPI, etc.) then yeah, we can
+merge it through drm-misc.
+
+Maxime
+
+--uubsanflwdakzxeu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ1nIYwAKCRAnX84Zoj2+
+dtXAAYDY+OeW7gIj/MATHWWNiy3bA+yJgme6x0/ugH5VhUyQyMix4Ykr12192d8C
+0/5OqdABewWd2jNf2wLwTrpyyrNilUrrujUWDjZdtfQrL7Q/0vd/oWf6fM1lhQ6z
++5cacRsHlg==
+=iS2U
+-----END PGP SIGNATURE-----
+
+--uubsanflwdakzxeu--
