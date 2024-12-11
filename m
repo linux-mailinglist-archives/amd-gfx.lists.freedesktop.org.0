@@ -2,65 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20A89ECF65
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2024 16:10:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 815749ECF81
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Dec 2024 16:18:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E096010EB7D;
-	Wed, 11 Dec 2024 15:10:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F11FB10E1C8;
+	Wed, 11 Dec 2024 15:18:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NrbPUB4/";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
- [205.220.166.238])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1955110E184;
- Wed, 11 Dec 2024 09:18:14 +0000 (UTC)
-Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
- by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BB6HiI0020977;
- Wed, 11 Dec 2024 01:18:09 -0800
-Received: from ala-exchng02.corp.ad.wrs.com (ala-exchng02.wrs.com
- [147.11.82.254])
- by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 43cx1u408w-14
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Wed, 11 Dec 2024 01:18:09 -0800 (PST)
-Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.43; Wed, 11 Dec 2024 01:18:00 -0800
-Received: from pek-lpg-core1.wrs.com (147.11.136.210) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server id
- 15.1.2507.43 via Frontend Transport; Wed, 11 Dec 2024 01:17:51 -0800
-From: <jianqi.ren.cn@windriver.com>
-To: <wayne.lin@amd.com>, <gregkh@linuxfoundation.org>
-CC: <patches@lists.linux.dev>, <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>,
- <daniel.wheeler@amd.com>, <alexander.deucher@amd.com>,
- <stable@vger.kernel.org>, <harry.wentland@amd.com>,
- <sunpeng.li@amd.com>, <Rodrigo.Siqueira@amd.com>,
- <christian.koenig@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
- <Jerry.Zuo@amd.com>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 6.1.y] drm/amd/display: Don't refer to dc_sink in
- is_dsc_need_re_compute
-Date: Wed, 11 Dec 2024 18:15:44 +0800
-Message-ID: <20241211101544.2121147-1-jianqi.ren.cn@windriver.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
+ [209.85.216.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65CDA10E1C8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 15:18:20 +0000 (UTC)
+Received: by mail-pj1-f54.google.com with SMTP id
+ 98e67ed59e1d1-2ee9b1a2116so776930a91.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 07:18:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1733930300; x=1734535100; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nsdsMPWLUBRLXc06zYL/XnwU/J64Ct6Gz68b1tQ8zzg=;
+ b=NrbPUB4/0aIrLmuTFqXOln+ZXrUM8nzGSluOqbqzKt9rSFPJhFDpe+r+vW2LdYRevo
+ xBjvaF/rCnT5d4lrWHQ8c68f3rMFLoWhioXkpQku0bA2Iussbi6X1sKNb/cB+CwHvr50
+ wI6pdSOZAkeaTMPzit5242oxjlAA1L7d0JZEoMRVXZYHkF9E2X0eUf2Q4r2qRqw6r5Ad
+ C2cPag3P3/lsj7vUse5dLDgqWGLOSM5GYULcu8GNuY5Ci6kWp2C5NfpNzSEMrrFA4lFY
+ ekUn4wySSjviQE5ELunb1Jtxxh+XRf4SzAAUIOOqDDeY2D4RsmjVQA83RckCGDh11zVV
+ 23zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733930300; x=1734535100;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=nsdsMPWLUBRLXc06zYL/XnwU/J64Ct6Gz68b1tQ8zzg=;
+ b=n6xDeHZKENHTR4SWSY7BJaRh8wnOrK6aL8v45nX5Ty83opoXWqoa97tadIoXpc1nm7
+ Oeaqrm3sKZUMR3p0volZHAAfXLeDpKx+6LFZm8doTdQ14leVE3wxRGbIOKZX9sA56RUC
+ OulMnpq+8wtLiaBlwejq2EHbKqBYntBLySSRGIotrie5dXd9QDkXOztG2RhxnKDrKwcR
+ gE39wTqVfFeAO0vRm+rLhihpjJWajE2PxqMzoPPcDI5kbednYktrDFiqzJSY2DBrQ8j+
+ kDjI2RFOZrhxR8vPEiR+6IiEuSibjq2l7j5Bn6BTYpsfGHtFNqDeGuF86RGjif5G2OVY
+ JRKQ==
+X-Gm-Message-State: AOJu0Yx+lRiNEA9aMKPv2TVLagYzdaFFNpRt5WREUFBTTVEjNd7JDdw6
+ Qf0O3G3gvHR+LdMFP46bOnPLddAjtDI2zAqI+lmBJXHk85yEzdcrC8RUthWpMKslzK2LmiQfPTI
+ Zcv73THnd2PUebIBF0ZyMRUhGv5I=
+X-Gm-Gg: ASbGncuydzaFoJU3iTCf7RJMsTRxM4/76QJWxQ2dQaaE3oa6BL/QPCHc+o/viotoplQ
+ NTS9kmGw6/o5dMsbd9TjHYRh8E6VxCVgRbmY=
+X-Google-Smtp-Source: AGHT+IGD46Uk4h7j1ZW3T3MgxIkmvZ/aStz53l1QpSuNz5lehnjBN+5lso5IWYQCSt2E/WadlhGrYpLwaiHUyVo5Cig=
+X-Received: by 2002:a17:90b:1a92:b0:2ee:acea:9ec4 with SMTP id
+ 98e67ed59e1d1-2f127fc732dmr1901185a91.3.1733930299354; Wed, 11 Dec 2024
+ 07:18:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Authority-Analysis: v=2.4 cv=H/shw/Yi c=1 sm=1 tr=0 ts=675958d1 cx=c_pps
- a=K4BcnWQioVPsTJd46EJO2w==:117 a=K4BcnWQioVPsTJd46EJO2w==:17
- a=RZcAm9yDv7YA:10 a=zd2uoN0lAAAA:8 a=t7CeM3EgAAAA:8 a=3MRwYbaJRXBt91PjEZAA:9
- a=FdTzh2GWekK77mhwV6Dw:22
-X-Proofpoint-ORIG-GUID: BqRGn_kBcQNrOVXL49cJWXPOS2PPyEzQ
-X-Proofpoint-GUID: BqRGn_kBcQNrOVXL49cJWXPOS2PPyEzQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2024-12-11_09,2024-12-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0
- phishscore=0 mlxlogscore=999 suspectscore=0 spamscore=0 clxscore=1015
- impostorscore=0 adultscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
- mlxscore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
- engine=8.21.0-2411120000 definitions=main-2412110070
-X-Mailman-Approved-At: Wed, 11 Dec 2024 15:10:09 +0000
+References: <20241211024414.7840-1-mario.limonciello@amd.com>
+In-Reply-To: <20241211024414.7840-1-mario.limonciello@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 11 Dec 2024 10:18:07 -0500
+Message-ID: <CADnq5_OT1zfcs3t5OZy9Ohb-1nOoaHe3dzPC57pH-B8JKiTebQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd: Update strapping for NBIO 2.5.0
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Vijendar Mukunda <Vijendar.Mukunda@amd.com>,
+ ionut_n2001@yahoo.com, Gabriel Marcano <gabemarcano@yahoo.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,53 +78,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wayne Lin <wayne.lin@amd.com>
+On Tue, Dec 10, 2024 at 9:45=E2=80=AFPM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+> This helps to avoid a spurious PME event on hotplug to Azalia.
+>
+> Cc: Vijendar Mukunda <Vijendar.Mukunda@amd.com>
+> Reported-by: ionut_n2001@yahoo.com
+> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=3D215884
+> Tested-by: Gabriel Marcano <gabemarcano@yahoo.com>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 
-[ Upstream commit fcf6a49d79923a234844b8efe830a61f3f0584e4 ]
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-[Why]
-When unplug one of monitors connected after mst hub, encounter null pointer dereference.
-
-It's due to dc_sink get released immediately in early_unregister() or detect_ctx(). When
-commit new state which directly referring to info stored in dc_sink will cause null pointer
-dereference.
-
-[how]
-Remove redundant checking condition. Relevant condition should already be covered by checking
-if dsc_aux is null or not. Also reset dsc_aux to NULL when the connector is disconnected.
-
-Reviewed-by: Jerry Zuo <jerry.zuo@amd.com>
-Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Wayne Lin <wayne.lin@amd.com>
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Jianqi Ren <jianqi.ren.cn@windriver.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 1acef5f3838f..a1619f4569cf 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -183,6 +183,8 @@ amdgpu_dm_mst_connector_early_unregister(struct drm_connector *connector)
- 		dc_sink_release(dc_sink);
- 		aconnector->dc_sink = NULL;
- 		aconnector->edid = NULL;
-+		aconnector->dsc_aux = NULL;
-+		port->passthrough_aux = NULL;
- 	}
- 
- 	aconnector->mst_status = MST_STATUS_DEFAULT;
-@@ -487,6 +489,8 @@ dm_dp_mst_detect(struct drm_connector *connector,
- 		dc_sink_release(aconnector->dc_sink);
- 		aconnector->dc_sink = NULL;
- 		aconnector->edid = NULL;
-+		aconnector->dsc_aux = NULL;
-+		port->passthrough_aux = NULL;
- 
- 		amdgpu_dm_set_mst_status(&aconnector->mst_status,
- 			MST_REMOTE_EDID | MST_ALLOCATE_NEW_PAYLOAD | MST_CLEAR_ALLOCATED_PAYLOAD,
--- 
-2.25.1
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c b/drivers/gpu/drm/amd=
+/amdgpu/nbio_v7_0.c
+> index b1b57dcc5a73..616b290c9381 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
+> @@ -271,8 +271,20 @@ const struct nbio_hdp_flush_reg nbio_v7_0_hdp_flush_=
+reg =3D {
+>         .ref_and_mask_sdma1 =3D GPU_HDP_FLUSH_DONE__SDMA1_MASK,
+>  };
+>
+> +#define regRCC_DEV0_EPF6_STRAP4                                         =
+                                0xd304
+> +#define regRCC_DEV0_EPF6_STRAP4_BASE_IDX                                =
+                                5
+> +
+>  static void nbio_v7_0_init_registers(struct amdgpu_device *adev)
+>  {
+> +       uint32_t data;
+> +
+> +       switch (adev->ip_versions[NBIO_HWIP][0]) {
+> +       case IP_VERSION(2, 5, 0):
+> +               data =3D RREG32_SOC15(NBIO, 0, regRCC_DEV0_EPF6_STRAP4) &=
+ ~BIT(23);
+> +               WREG32_SOC15(NBIO, 0, regRCC_DEV0_EPF6_STRAP4, data);
+> +               break;
+> +       }
+> +
+>  }
+>
+>  #define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)
+> --
+> 2.34.1
+>
