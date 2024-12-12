@@ -1,61 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF29E9EE845
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Dec 2024 15:04:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA2F9EE848
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Dec 2024 15:04:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6998310EDE5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 050AF10EDE1;
 	Thu, 12 Dec 2024 14:04:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="AotVFeh7";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="xoo8EGfM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 020AB10E08C;
- Wed, 11 Dec 2024 22:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=0Z5EkRMXSAAd6VugPHXUkDoDDuWALwNmWHDkbsYItPc=; b=AotVFeh7Uqefi7l5uxK5YZHyxa
- LJqoG7294B3siZZpD5zpe1Trm8d4i4ZBxNwapkO6TuelRgWreIJkHj6Lc8G6hHTJIJ+jFzokKg9kE
- XLBjBZGlZwbBSVh9C5pSBXyjDlUcwKETMbMrkap0J2DlitMy2g9Rg2oKDJ+O7GGxSVYFMzcHQ9Lk2
- yrHvPIhqhkAXpdFHM6rmE/w6TCqQ5v2KvCtvoN1iwA8mPl4LREPlr99zmhDCPe4M5mh5G46FDrT2w
- gfTjqDi+YwTDPNOM+o1bGL0gYOfAR/8D6y4WznmkH2KPVettO1IUwoh63VZBF5F4VmO9fLvRnH/ga
- smdqt0Sg==;
-Received: from [179.118.189.35] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tLVJ1-0025cH-AI; Wed, 11 Dec 2024 23:35:43 +0100
-Message-ID: <6221fc3d-0b1a-4e91-9e34-a32f3c77b63f@igalia.com>
-Date: Wed, 11 Dec 2024 19:35:36 -0300
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Thu, 12 Dec 2024 01:52:34 UTC
+Received: from out30-111.freemail.mail.aliyun.com
+ (out30-111.freemail.mail.aliyun.com [115.124.30.111])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B8DC10E2E4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 01:52:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux.alibaba.com; s=default;
+ t=1733968352; h=From:To:Subject:Date:Message-Id:MIME-Version;
+ bh=Kqj9qK6jIh62y524FbW8f6U5KVgY1gRKxB0ZmR0iD0E=;
+ b=xoo8EGfM86PBxcY9X6o/uRo6pgf9mb9LJcS7u2bQndOaBqc4Xcpo1suHnKMdsfV8faOdk2+Ag0SaIa/+EprD49aaO/6fwtKMxquaYU6SPeBE8rfgdCh5Bo77qWd20B5dQoilkENQaGsq6pqtMRbW0zpJbhqKC5KBrsjFC9D3K88=
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0WLJtAS3_1733968038 cluster:ay36) by smtp.aliyun-inc.com;
+ Thu, 12 Dec 2024 09:47:27 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Abaci Robot <abaci@linux.alibaba.com>
+Subject: [PATCH -next] drm/amd/display: use swap() in update_phy_id_mapping()
+Date: Thu, 12 Dec 2024 09:47:17 +0800
+Message-Id: <20241212014717.14286-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.32.0.3.g01195cf9f
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 0/2] drm/atomic: Ease async flip restrictions
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, Simon Ser <contact@emersion.fr>,
- joshua@froggi.es, Xaver Hugl <xaver.hugl@gmail.com>,
- Daniel Stone <daniel@fooishbar.org>, ville.syrjala@linux.intel.com,
- kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
-References: <20241211-tonyk-async_flip-v10-0-6b1ff04847c2@igalia.com>
- <ouyulceg7zrnjirg2yf4qbgp5pfovz4y6hq5v6e573yx7ih5qe@uqqne6yq27wl>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <ouyulceg7zrnjirg2yf4qbgp5pfovz4y6hq5v6e573yx7ih5qe@uqqne6yq27wl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 12 Dec 2024 14:04:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -72,34 +55,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dmitry,
+Use existing swap() function rather than duplicating its implementation.
 
-Em 11/12/2024 16:35, Dmitry Baryshkov escreveu:
-> On Wed, Dec 11, 2024 at 12:25:07AM -0300, André Almeida wrote:
->> Hi,
->>
->> The goal of this work is to find a nice way to allow amdgpu to perform
->> async page flips in the overlay plane as well, not only on the primary
->> one. Currently, when using the atomic uAPI, this is the only type of
->> plane allowed to do async flips, and every driver accepts it.
->>
->> This patchset re-uses the per-plane function atomic_async_check() to
->> this purpose, so drivers can allow different plane types. There's a
->> `bool flip` parameter so the atomic_async_check() can do different
->> decisions if it's a complete page flip or a plane update.
->>
->> igt test: https://lore.kernel.org/igt-dev/20241211031820.115844-1-andrealmeid@igalia.com/
->>
->> Changelog
->>   v9: https://lore.kernel.org/r/20241101-tonyk-async_flip-v9-0-681814efbfbe@igalia.com
->>   - Add a 'flip' flag to indicate where the atomic_async_check() is being called from.
-> 
-> I think something went wrong. There is no changelog for v10 and also no
-> tags that you've got for v9.
-> 
+./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c:185:47-48: WARNING opportunity for swap().
+./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c:125:53-54: WARNING opportunity for swap().
 
-I have type the numbers wrongly, this is the changelog for v10, but I 
-forgot the tags, I will send a v11 with the correct changelog and tags.
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=12335
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c  | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
-Thanks!
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
+index 309c7999faa6..6fdc306a4a86 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
+@@ -120,11 +120,8 @@ static void update_phy_id_mapping(struct amdgpu_device *adev)
+ 	for (idx = connector_cnt; idx > 1 ; idx--) {
+ 		for (idx_2 = 0; idx_2 < (idx - 1); idx_2++) {
+ 			if (sort_connector[idx_2]->dc_link->link_enc_hw_inst >
+-				sort_connector[idx_2 + 1]->dc_link->link_enc_hw_inst) {
+-				aconnector = sort_connector[idx_2];
+-				sort_connector[idx_2] = sort_connector[idx_2 + 1];
+-				sort_connector[idx_2 + 1] = aconnector;
+-			}
++			    sort_connector[idx_2 + 1]->dc_link->link_enc_hw_inst)
++				swap(sort_connector[idx_2], sort_connector[idx_2 + 1]);
+ 		}
+ 	}
+ 
+@@ -180,11 +177,8 @@ static void update_phy_id_mapping(struct amdgpu_device *adev)
+ 						}
+ 					}
+ 
+-					if (swap) {
+-						aconnector = sort_connector[j];
+-						sort_connector[j] = sort_connector[j + 1];
+-						sort_connector[j + 1] = aconnector;
+-					}
++					if (swap)
++						swap(sort_connector[j], sort_connector[j + 1]);
+ 				}
+ 			}
+ 
+-- 
+2.32.0.3.g01195cf9f
 
