@@ -1,80 +1,78 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D379EE844
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Dec 2024 15:04:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 577E49EE847
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Dec 2024 15:04:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 023FE10EDDE;
-	Thu, 12 Dec 2024 14:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37CC310EDDC;
+	Thu, 12 Dec 2024 14:04:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="lwNMXUqY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="H2k36yM4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
- [IPv6:2a00:1450:4864:20::335])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FAE210ED5B
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 10:55:21 +0000 (UTC)
-Received: by mail-wm1-x335.google.com with SMTP id
- 5b1f17b1804b1-4361ecebc4dso3058935e9.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 02:55:21 -0800 (PST)
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
+ [IPv6:2607:f8b0:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CB8510ED60;
+ Thu, 12 Dec 2024 10:56:30 +0000 (UTC)
+Received: by mail-pg1-x52b.google.com with SMTP id
+ 41be03b00d2f7-7e6d04f74faso310007a12.1; 
+ Thu, 12 Dec 2024 02:56:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1734000920; x=1734605720; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=bZnf4ZipnpgPUFHUd7Gh4OjDQEIq+meMk9mxYUbMAdE=;
- b=lwNMXUqYOymjKIu9SAy0FBS8ZXBriVHSFAALwDMUeSrNo2ci3KQvVpxWmCLw9ehOzo
- 7GQWZTj984K/36QUO+gX0AH7vzp0DtVs1esPxqtjOcqm+BA6Mj0qatdie7mtcOTAPYAB
- ZpoqoC8eH9xY1Kwa8rUTlO0jEnygLIZnvKFfM8PGxYQAVcNND/ypD5XTqep9cLuEyg8D
- JlwIYFdeegr9Nwh8GdZ7QG4aFraFj3UULsfSg6uGptQvsR3ViVfk1QLrInMerKZTcPOn
- nJsydN6egxTJ/VjdtZgKYxNnGEZcMwaJZIjgv6Lh+Dy3iRN0LQOk056IPG6JtsUnYZbb
- nHnA==
+ d=gmail.com; s=20230601; t=1734000989; x=1734605789; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=TVIQo8NqWQ6SELkLfckK1F5HTaemJ2gPgY9CRh8/kkQ=;
+ b=H2k36yM4tFav2zo8wyHyKp03YMAsa37TD57hh4fcyH5WFtYsCIHGzhceU6po1qN8I8
+ //d+GXE5LKAaQJgUmznobGNXE+1VyTMPVdomlSgpmOrXvPjMDuaWc5sys1g2ZFJTbGQJ
+ 0Mvob+db3wlB0AdeaP0JDfMO0EaMVWMl4ii7IRRzWCBr5Un0T06xhKeeC0bpVaLLUVvB
+ lKihbBB7189HPBlSVyIfUW+qcMdmq2Cf7xoM2hWHtdtSyINaVtG3Ssf86wok/oARWqHq
+ Z07gbXaWESbK/QQ730iBQEgcZOF/1tG8CE0d+3xTjr2axHXM3S0k3c/tLzfeVxC1fuZt
+ bkXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734000920; x=1734605720;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=bZnf4ZipnpgPUFHUd7Gh4OjDQEIq+meMk9mxYUbMAdE=;
- b=N7Lqf0BLmGlKCzn9+BCoCmhHVfFGGFvva8b1xP/y2RJN21uv50AHiFMWlCZQg+rUYA
- CwHw9GBnKrTY9OZ9bpwGPgQUHTUc99HQPzSHNFDwMxQkoSvbLLzcsyJZBBX0GcDB2phv
- 3cbel2CnsXaGN6/A5n2ZtTehjmhqycE9Tp/4ZRqNSHR/5ONaZPPUK/aGasHoR3Dhbs2b
- e+9lyIQT5ywElbGp3n3tYtNdh9qRH44YYBi59mRXZgoCwyMDh4qnS3fco8fOTZpRE3V5
- xdPrgJYA1YBc+v05P1LcB70V8qzDFsDzZThKLMfDkI9/NoJnJ0hJlRNDld6ZgUZ/BdBO
- WZpA==
+ d=1e100.net; s=20230601; t=1734000989; x=1734605789;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=TVIQo8NqWQ6SELkLfckK1F5HTaemJ2gPgY9CRh8/kkQ=;
+ b=JlEOFRGltMPcGkM7wFapPoidPVusdb2nPQEYXARYAYgOiqrZADupNhKX7jdBc5kO72
+ FyVI6Dsyyga+I1h1Jou9y2Vi7kZ6/3MvbHD6TYt1Ps1uPAVlzicg6aNR6MgLCR7qd/0z
+ wgJq6CcR8Qmx5Qk6oTdFbib7S/gYh5pkaUxNSyOui5brY6PKNa3hnFRuC1OJC+dfRRjG
+ 6D2oBNEP7R5S/KYtGFHq2mCNSxg1XWNZMiDIwUOFRdgGbq0o6EqtUngF78jZOuXFjHnd
+ z43mCCePcdnW+rxWbM15nQ/ziPJpVtdxH08U6LAUT3aPbplnxvYOjXw6jCQLOTUxsIa1
+ jXwA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWPc7V9Z4qG2MrDaAYFRgBf8qZBDPKiPzgQG5wfjeNUtlbmSKXaw8U75BSHh4eia+XXWDpetL8m@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywbwv/mZM+tBRomsMrD9YcIo0v+6IutsyP7tMHqWLq63oZGveHF
- VREltqvgvV2fUkTwKxuh3bgQelPGXxUQ2rGJ8d9XYEkzZiwErWaowNxV20VjGhk=
-X-Gm-Gg: ASbGncu4kVIlzfu/95RxuN4kIHGshgF3RaBA+o7Vo9Z9nWvc20Ui5VCbACP0VCUw/zr
- RZIyaN8HUUni/9o7m0Ft5U4ra8BbAC60SPvIYpGYayPbqw3wqSCU2et6R8NO4l7SJvodKB02KHH
- 5jDwSb6ohMlQ6TnRQvXkK01tQpyuE5642ptdaJAeHN/u69rottLcLWrt9ZbElMJCG0WXRBoesNI
- 6iNVfpjz522GKCPYpZy+fv7Pzw3kP0pLXqFW6as6gbuaGSdvp/5JraCpauNpw==
-X-Google-Smtp-Source: AGHT+IEhp1L7hN1GJCYWH+659nSCBIHDDUD49txpHpiXVuxw4EtnhWkP25MBbsMq3UQQ7msuMGo/zw==
-X-Received: by 2002:a05:600c:1e0b:b0:42f:7e87:3438 with SMTP id
- 5b1f17b1804b1-4362256dc73mr26327345e9.0.1734000920123; 
- Thu, 12 Dec 2024 02:55:20 -0800 (PST)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43625706c5fsm12811415e9.31.2024.12.12.02.55.19
+ AJvYcCWsUOrBVUsOROejKJcZ8TnVS2bkSPZH/UJbuNIzewXWYjIuI5PihBDm7u6tlxODzVOoKDq3QmWggRNM@lists.freedesktop.org,
+ AJvYcCXjr7gWOBvgIpkgsmrbsJoPYljzQZ6Osm/lvMyxuQlR+Fg9arFmMk1FosYZpzKGbJ9kgC8Nt7NK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwyV4v+pEaZqHeqK+0UjdvvkmD8+T8AovGNN2vPHWrMEaZ2TZXR
+ N3fse/p6cZRlbHYaMO9Iys2JC7swYHbzIMV2Gd5N93i7v9es2vj1tsBPUw==
+X-Gm-Gg: ASbGncsm4Uz992/xqbJ62r286SKC45j1ge+c0GjWom39FzjRIgv+9bQ0BBWAfpUNM7p
+ 5hlhN91uaW8qqpXBDmbYY7zv2ndpuQx8i2nK1U2eRAGf7GEGhoS2kMWO/ovBU+5CGDdvcER6jtf
+ NMVDMy02zuhZINjHhknixUIbEMH/I+UdKUugeqbCW0QG7Q9v4PagxyKNJOClWKp6Aq1dtb+Is+o
+ H4pxW4wuMIi0TnsrhgjUQ5mnidw6ZHZ0PtwzVLLPJKoQ4/7zbh2fBZtnaxRsg==
+X-Google-Smtp-Source: AGHT+IHR9YBy2fc9hy1FcQ+uJJ1iUSaXLspeZXS2ea9QTPKDUsicXHM39fumSQB2wALvNjSDERvIpg==
+X-Received: by 2002:a05:6a20:4321:b0:1d9:a94:feec with SMTP id
+ adf61e73a8af0-1e1ceefcfb6mr4960965637.2.1734000989398; 
+ Thu, 12 Dec 2024 02:56:29 -0800 (PST)
+Received: from HOME-PC ([223.185.132.235]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-725cf9f681esm9223571b3a.98.2024.12.12.02.56.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Dec 2024 02:55:19 -0800 (PST)
-Date: Thu, 12 Dec 2024 13:55:11 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- amd-gfx@lists.freedesktop.org, Leo Li <sunpeng.li@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>, Roman Li <roman.li@amd.com>,
- Alex Hung <alex.hung@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>
-Subject: Re: [PATCH] drm/amd/display: Fix NULL pointer dereference in
- dmub_tracebuffer_show
-Message-ID: <da48e9ef-b0c2-4852-9d13-20f0480d7bd6@stanley.mountain>
-References: <20241212093758.916895-1-srinivasan.shanmugam@amd.com>
+ Thu, 12 Dec 2024 02:56:29 -0800 (PST)
+From: Dheeraj Reddy Jonnalagadda <dheeraj.linuxdev@gmail.com>
+To: airlied@gmail.com,
+	simona@ffwll.ch,
+	amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Dheeraj Reddy Jonnalagadda <dheeraj.linuxdev@gmail.com>
+Subject: [PATCH drm-next] drm/amdgpu: simplify return statement in
+ amdgpu_ras_eeprom_init
+Date: Thu, 12 Dec 2024 16:26:24 +0530
+Message-Id: <20241212105624.35877-1-dheeraj.linuxdev@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241212093758.916895-1-srinivasan.shanmugam@amd.com>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 12 Dec 2024 14:04:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,37 +88,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2024 at 03:07:58PM +0530, Srinivasan Shanmugam wrote:
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> index 11a7ac54f91c..0092d4a1e59d 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> @@ -902,7 +902,7 @@ static int dmub_tracebuffer_show(struct seq_file *m, void *data)
->  {
->  	struct amdgpu_device *adev = m->private;
->  	struct dmub_srv_fb_info *fb_info = adev->dm.dmub_fb_info;
-> -	struct dmub_fw_meta_info *fw_meta_info = &adev->dm.dmub_srv->meta_info;
-> +	struct dmub_fw_meta_info *fw_meta_info;
+Remove the logically dead code in the last return statement of
+amdgpu_ras_eeprom_init. The condition res < 0 is redundant since
+res is already checked for a negative value earlier. Replace
+return res < 0 ? res : 0; with return 0 to improve clarity.
 
-This needs to be initialized to NULL.
+Fixes: 63d4c081a556 ("drm/amdgpu: Optimize EEPROM RAS table I/O")
+Closes: https://scan7.scan.coverity.com/#/project-view/52337/11354?selectedIssue=1602413
+Signed-off-by: Dheeraj Reddy Jonnalagadda <dheeraj.linuxdev@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-	struct dmub_fw_meta_info *fw_meta_info = NULL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index 0d824f016916..52c16bfeccaa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -1390,7 +1390,7 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control)
+ 	}
+ 	control->ras_fri = RAS_OFFSET_TO_INDEX(control, hdr->first_rec_offset);
+ 
+-	return res < 0 ? res : 0;
++	return 0;
+ }
+ 
+ int amdgpu_ras_eeprom_check(struct amdgpu_ras_eeprom_control *control)
+-- 
+2.34.1
 
-otherwise it's uninitialized later.
-
->  	struct dmub_debugfs_trace_entry *entries;
->  	uint8_t *tbuf_base;
->  	uint32_t tbuf_size, max_entries, num_entries, first_entry, i;
-> @@ -914,6 +914,9 @@ static int dmub_tracebuffer_show(struct seq_file *m, void *data)
->  	if (!tbuf_base)
->  		return 0;
->  
-> +	if (adev->dm.dmub_srv)
-> +		fw_meta_info = &adev->dm.dmub_srv->meta_info;
-> +
->  	tbuf_size = fw_meta_info ? fw_meta_info->trace_buffer_size :
->  				   DMUB_TRACE_BUFFER_SIZE;
->  	max_entries = (tbuf_size - sizeof(struct dmub_debugfs_trace_header)) /
-
-regards,
-dan carpenter
