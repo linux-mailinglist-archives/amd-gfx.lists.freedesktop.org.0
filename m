@@ -2,55 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F549F064A
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2024 09:24:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3449F0651
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2024 09:24:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 665BC10EF3F;
-	Fri, 13 Dec 2024 08:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA7A10EF4C;
+	Fri, 13 Dec 2024 08:24:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Zw9E7hsA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="F+hrtu0O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B48FE10E647;
- Thu, 12 Dec 2024 19:09:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3870210E301;
+ Thu, 12 Dec 2024 19:20:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=VpELTsB7bIQQvBcg9aNtXqozy4PQPmxVaPVIZ5jVbMI=; b=Zw9E7hsAcTVnooq7GHNVoK0DSN
- CxL/2FR6+MV/XAgkO6WXNqjTXFHbfaTDcUJ+X7EmZn0WO7wWZ7KKKCu3gKMJAB0Ghx6SUJxCmLjJ7
- X/MoNdQK0NM2B4kMfrbsxeEUGUemzwoDZEnMHl1eRNcR2KdREHrcu20SZVTGPXgdPjYP5IuBttxFf
- bAg+1UTxj2klK5Vw/YwfpJLlui5dxz0JX9PafQqeRArwKYk8aTPziwV1mP0VP4O4DZI+Xl2eIIS8S
- FXGweGXMM+V6WVaXnYRWb3X1ogpb+F3j6UMQqwdYMuc8xbPA/YRvw5kho92DFNrKCiemrUlihLjKo
- e9TGG7sw==;
-Received: from [179.193.1.214] (helo=localhost.localdomain)
+ bh=ThDleRXc8ca+wLmuV0H//xGtHzIz1jauUjmXogggRF4=; b=F+hrtu0O8hFchKWLt6bVBRE/MH
+ Yi71z+Z20Da584RzdvE+QIxGBhw7Uxw7tOio3kWsqSaYV0YUwTSuj8tbtdQAe+PhanOsjjbh7IHif
+ CP6Bm4JalavO6NjF9eFH1Y4bxvPKafq6ybgU0PD2g2MBB+YlQmoCgxkW5VuGi7oHK+Zhly27D4+Ql
+ UucG4IM5P3FnSkfw6d82Ya5lPgvRjKNd21M2aTsPh4yfKWIDrddfoAYCVvsobzL9+YSVx1X2QDxJI
+ ynGRa2gortA2HxySB4M8UhFnnx4hVYYUWmENyN/yY9PVKSRWb8uh7LwIhvxyU14bVBYdy8MxJZ62y
+ hyRfy3jA==;
+Received: from [179.193.1.214] (helo=[192.168.15.100])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tLoYt-002MeQ-Bd; Thu, 12 Dec 2024 20:09:23 +0100
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- andrealmeid@igalia.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-Subject: [PATCH 1/1] drm/amdgpu: Use device wedged event
-Date: Thu, 12 Dec 2024 16:09:09 -0300
-Message-ID: <20241212190909.28559-2-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241212190909.28559-1-andrealmeid@igalia.com>
-References: <20241212190909.28559-1-andrealmeid@igalia.com>
+ id 1tLojI-002MsO-I3; Thu, 12 Dec 2024 20:20:08 +0100
+From: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v11 0/2] drm/atomic: Ease async flip restrictions
+Date: Thu, 12 Dec 2024 16:19:32 -0300
+Message-Id: <20241212-tonyk-async_flip-v11-0-14379434be70@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAEQ3W2cC/3WOsQ6CMBRFf4V0tqavVClOGhdHBzdjTFtaeBGBU
+ EIkhH8XWNRExndvzrmvJ97WaD3ZBT2pbYsey2I8AFYBMZkqUksxGQPCGRfAGKdNWXQPqnxXmLv
+ LsaKSS+NsbFxoFBmxqrYOX7PzSs6Hy/FEbmOcoW/KupuX2ngul51tTBkVm1CDlnEU6WSPqcpRr
+ U35nDZmEhgskFsJEoR12mn7TU5/tMA+4xz+KYBNDg3OMSFFZPiPYxiGN+0g6us3AQAA
+X-Change-ID: 20241002-tonyk-async_flip-828cfe9cf3ca
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui Pan <Xinhui.Pan@amd.com>, dmitry.baryshkov@linaro.org, 
+ Simon Ser <contact@emersion.fr>, joshua@froggi.es, 
+ Xaver Hugl <xaver.hugl@gmail.com>, Daniel Stone <daniel@fooishbar.org>, 
+ ville.syrjala@linux.intel.com
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>, 
+ Christopher Snowhill <chris@kode54.net>
+X-Mailer: b4 0.14.2
 X-Mailman-Approved-At: Fri, 13 Dec 2024 08:24:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,29 +75,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use DRM's device wedged event to notify userspace that a reset had
-happened. For now, only use `none` method meant for telemetry
-capture.
+Hi,
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
+The goal of this work is to find a nice way to allow amdgpu to perform
+async page flips in the overlay plane as well, not only on the primary
+one. Currently, when using the atomic uAPI, this is the only type of
+plane allowed to do async flips, and every driver accepts it.
+
+This patchset re-uses the per-plane function atomic_async_check() to
+this purpose, so drivers can allow different plane types. There's a
+`bool flip` parameter so the atomic_async_check() can do different
+decisions if it's a complete page flip or a plane update.
+
+igt test: https://lore.kernel.org/igt-dev/20241211031820.115844-1-andrealmeid@igalia.com/
+
+Changelog
+ v11:
+  - Fix changelog
+  - Add R-b and T-b tags
+
+ v10: https://lore.kernel.org/all/20241211-tonyk-async_flip-v10-0-6b1ff04847c2@igalia.com/
+ - Add a 'flip' flag to indicate where the atomic_async_check() is being called from.
+
+ v9: https://lore.kernel.org/all/20241101-tonyk-async_flip-v9-0-681814efbfbe@igalia.com/
+ - Rebased on top of 6.12-rc1 (drm/drm-next)
+
+ v8: https://lore.kernel.org/lkml/20240806135300.114469-1-andrealmeid@igalia.com/
+ - Complete rewrite
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
- 1 file changed, 3 insertions(+)
+André Almeida (2):
+      drm/atomic: Let drivers decide which planes to async flip
+      drm/amdgpu: Enable async flip on overlay planes
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 96316111300a..19e1a5493778 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6057,6 +6057,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
- 
- 	atomic_set(&adev->reset_domain->reset_res, r);
-+
-+	drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-+
- 	return r;
- }
- 
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    | 11 ++++---
+ drivers/gpu/drm/drm_atomic_helper.c                |  2 +-
+ drivers/gpu/drm/drm_atomic_uapi.c                  | 37 ++++++++++++++++------
+ drivers/gpu/drm/loongson/lsdc_plane.c              |  3 +-
+ drivers/gpu/drm/mediatek/mtk_plane.c               |  2 +-
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c         |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |  2 +-
+ drivers/gpu/drm/tegra/dc.c                         |  3 +-
+ drivers/gpu/drm/vc4/vc4_plane.c                    |  2 +-
+ include/drm/drm_modeset_helper_vtables.h           |  7 +++-
+ 10 files changed, 49 insertions(+), 22 deletions(-)
+---
+base-commit: c40c32cf71b90d85386fcc066c19feb23eb42804
+change-id: 20241002-tonyk-async_flip-828cfe9cf3ca
+
+Best regards,
 -- 
-2.47.1
+André Almeida <andrealmeid@igalia.com>
 
