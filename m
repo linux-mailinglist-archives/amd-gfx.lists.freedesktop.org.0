@@ -2,79 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 628AB9EE841
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Dec 2024 15:04:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C11B9EE83C
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Dec 2024 15:04:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21F1810EDCA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1F810EDC6;
 	Thu, 12 Dec 2024 14:04:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="A4YaT6y8";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="frbRjRAE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64F7A10E21B
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 11:15:26 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- 5b1f17b1804b1-436281c8a38so315415e9.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 03:15:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1734002125; x=1734606925; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=g/QnWL633DATk/D0Ttai9VtCMe1kqYKn1pLuJll4508=;
- b=A4YaT6y8MElPomdMlks/fIKVWpGlJi4Xz1tQMIXL/rIqy++ieCVuVo6jG80mJjyCuz
- QVe4aNRa6S4WRjzBn9ZYvqlRbsKfRU21XXmSfaZm6Vp24u6mwTl+pRY9GLbDNRAcvBo8
- CfvRie6W3FzF4DAw8CZ04qpv0FbpUcip+MjZho07+gMISotvOESshmP6o+4qyHBI9aTZ
- laNmfScIOvKInufJ2QvWl46vtFuB80xvvD5CFCrYrs8NwxAhD9+Tc2ZeqKvfjL+YChJz
- rW8ZdvJchi5QcZSDJJ7NSppXpJxyHzehJX8KQyvEBEMmgmoV7f5+nC8mVi5n4XCpUbIU
- TleA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734002125; x=1734606925;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=g/QnWL633DATk/D0Ttai9VtCMe1kqYKn1pLuJll4508=;
- b=pJJ4AfFB4yQZ8lK9u7Np1opr55Gj1pThWa8W7eNWk0QcfSNE90yoPAOmV5V6kjGzCK
- L2/ElNwrar7RU8W3VO+5irMt3hh6MOAsxh+sEYVKKsHFm6ArPGc9EeafG9QtCi5kznOL
- H04YUO0053gCIM2lSSGxZCUIbY3XPXUt/VBdWKxGXdroPfWgMcpUvrPMVmvm0YRQexfn
- A9pS1FfkMWboKICmPzyvD5QePL7dRRIa8Mlfd1DzPNPX7m1JxMvkHIX5ru6oYn8rInXa
- HB6Ez11F+EDckiuS73CdnGhfDbWNf+xVLqSp84kmHkr4jjhWBijUDqweU9h5t2+afGh0
- BhWw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVyKn2OD1+y3pnVo2dxvXSmKsDUgd2bZa/U0bI/2RbGOlSe5f3YPKlKIj/bZJBnrDhJdojKxJE4@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwviXtjIyC9K6XepyQx+ugq82kY0joyD0fjZTQ1XAOqNCulpq0o
- YKckdVPGkhKOjDQLRo06pVlkETvXRkiUtM4JVHpxotmmBPJUmA6kA7l07+pa/DU=
-X-Gm-Gg: ASbGncvHtlIwC30yKTEGc8WZmwqDdsJ4EwapVL1m0Ro6xNCgiCg3GCq48/CT5oVhQJ/
- 8Pc/iVypyXZ8HCInrPhRjp13zSaYfvF7zZlyJtBftfgvpRexPRnJFaoLYOGJPtL81D8AI4xaUCE
- MOnKA0Jl04Li7kCLp/Y4SvYzPllbWBjwNdZrArzNLYX78hutAlC2EeNof6T7zGY3KsSK8lQB5FV
- Pd72zqy2d46S6U6Aols5fv4gE0LdNImGcrslERSz/vEY00FJMaGwXmwNuJzgg==
-X-Google-Smtp-Source: AGHT+IFp55pQ2gUsjE25dxRL/twFqRaMvKuj65DF74GVH4rT9f29RNfPP5f0avwzyCra7X1h4hezTA==
-X-Received: by 2002:a05:6000:471d:b0:374:c4e2:3ca7 with SMTP id
- ffacd0b85a97d-38787685b4amr2282393f8f.5.1734002124981; 
- Thu, 12 Dec 2024 03:15:24 -0800 (PST)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-436256e05f1sm13238445e9.40.2024.12.12.03.15.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Dec 2024 03:15:24 -0800 (PST)
-Date: Thu, 12 Dec 2024 14:15:21 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- amd-gfx@lists.freedesktop.org, Leo Li <sunpeng.li@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>, Roman Li <roman.li@amd.com>,
- Alex Hung <alex.hung@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>
-Subject: Re: [PATCH v2] drm/amd/display: Fix NULL pointer dereference in
- dmub_tracebuffer_show
-Message-ID: <e53e8832-e05d-4d76-839b-ed5ff3b9e999@stanley.mountain>
-References: <20241212110808.956179-1-srinivasan.shanmugam@amd.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1F3B10E40D;
+ Thu, 12 Dec 2024 12:11:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 1D719A42145;
+ Thu, 12 Dec 2024 12:09:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59249C4CECE;
+ Thu, 12 Dec 2024 12:11:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1734005484;
+ bh=z4IR5aQ9BHMU6pLPaRemCvtw3/mCLG8VNTuWpfCN/AU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=frbRjRAEc9YR6sD/8xPGdYfwG5V+e0P74CnQSqB7cvBGcKUMyPUOSg4HkYVm7xqmt
+ u6p81YPyIkCsQfMFMibxy+ccs4tYjrYQCaNUPullQU8pFFnuB6W5LHOy5WIDhBPL6E
+ J1ghkjfTUTGJI8+DxbJCskR1eBruPGkIDwh0ccd4=
+Date: Thu, 12 Dec 2024 13:11:20 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: jianqi.ren.cn@windriver.com
+Cc: wayne.lin@amd.com, patches@lists.linux.dev, jerry.zuo@amd.com,
+ zaeem.mohamed@amd.com, daniel.wheeler@amd.com,
+ alexander.deucher@amd.com, stable@vger.kernel.org,
+ harry.wentland@amd.com, sunpeng.li@amd.com,
+ Rodrigo.Siqueira@amd.com, christian.koenig@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6.1.y] drm/amd/display: Don't refer to dc_sink in
+ is_dsc_need_re_compute
+Message-ID: <2024121206-shelve-contusion-6db0@gregkh>
+References: <20241211101544.2121147-1-jianqi.ren.cn@windriver.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241212110808.956179-1-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20241211101544.2121147-1-jianqi.ren.cn@windriver.com>
 X-Mailman-Approved-At: Thu, 12 Dec 2024 14:04:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,8 +60,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thanks!
+On Wed, Dec 11, 2024 at 06:15:44PM +0800, jianqi.ren.cn@windriver.com wrote:
+> From: Wayne Lin <wayne.lin@amd.com>
+> 
+> [ Upstream commit fcf6a49d79923a234844b8efe830a61f3f0584e4 ]
+> 
+> [Why]
+> When unplug one of monitors connected after mst hub, encounter null pointer dereference.
+> 
+> It's due to dc_sink get released immediately in early_unregister() or detect_ctx(). When
+> commit new state which directly referring to info stored in dc_sink will cause null pointer
+> dereference.
+> 
+> [how]
+> Remove redundant checking condition. Relevant condition should already be covered by checking
+> if dsc_aux is null or not. Also reset dsc_aux to NULL when the connector is disconnected.
+> 
+> Reviewed-by: Jerry Zuo <jerry.zuo@amd.com>
+> Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
+> Signed-off-by: Wayne Lin <wayne.lin@amd.com>
+> Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Jianqi Ren <jianqi.ren.cn@windriver.com>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-regards,
-dan carpenter
+You sent this 3 times, all different, so I have no idea what to do.
 
+Ok, I give up.  I'm deleting ALL of your pending stable patches from my
+review queue now due to all of the problems that these have had.
+
+Please work with a more experienced kernel developer at your company to
+get these backports correct, and complete, and send them as a patch
+series with the correct information and documentation as to what is
+going on, so that we have a chance to get this right.
+
+thanks,
+
+greg k-h
