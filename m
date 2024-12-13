@@ -2,67 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0626D9F2BEE
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Dec 2024 09:33:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F65C9F2BF3
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Dec 2024 09:33:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C74B10E52E;
-	Mon, 16 Dec 2024 08:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01AEB10E53C;
+	Mon, 16 Dec 2024 08:33:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ro/AlE0r";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fizE5Mk9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CF6510E193;
- Fri, 13 Dec 2024 13:51:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734097909; x=1765633909;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dXTJiavmLa+FSgZqxsR2eLyZWYaFgFIvOUc9tJ9Y6FM=;
- b=Ro/AlE0rJTs87cXoUT0Dd7UouYj5SEOSLjnd2vlZ4yZoIRoXW3KxQcZ5
- 0AY8Z4VFHiIsfUSOV7xo6hCuInsZKqU3iKrz8vg1f675/yrNmOx2Dnue1
- 6PbAYg2RyH0i4G0GC3E9nUYHs1RIbvrD8TnwfP19CK9RtKCYd3iIUDRSa
- RWZHQzvGdix142pBqj/Nivwhgy6/Rc7kxGT66tEMPjhlI5N4qF1RUr/lF
- StzMZkKBibALau2iGDLmEF71p0k+wRXSEZ9GmSEgzMb6EErcyQjj1IgwT
- IWeUGGeAVa5QDa10HDUq0/HTizWrJoz9B40oXoZ8i6Uh8SA9Oa5uQKlvM A==;
-X-CSE-ConnectionGUID: nxrCxq5eSzyQr1vUxUdE/w==
-X-CSE-MsgGUID: 5RWGmR87QTStEr8s3jHlZQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34462849"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34462849"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 05:51:49 -0800
-X-CSE-ConnectionGUID: zym8lQjpSa2IP97Y9QWR7w==
-X-CSE-MsgGUID: CH4VQP7ITuG0Rzp495xfuA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="96311171"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 05:51:44 -0800
-Date: Fri, 13 Dec 2024 15:51:41 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, christian.koenig@amd.com,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
-Message-ID: <Z1w77fAac2vOaIEd@black.fi.intel.com>
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
- <20241128153707.1294347-2-raag.jadav@intel.com>
- <9557db3c-0837-4dfb-ba69-84dbaf13f082@igalia.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D0E310E1B6;
+ Fri, 13 Dec 2024 14:15:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=587hDqcnKGq/bywvORxhW/qrnyvDDPlNgcMgllHItw4=; b=fizE5Mk9MPAJ77lbIvT/XXy3s4
+ +6dEhX43NYQHMpkr4d4naK7v5ufVEg512QX0on5IqJwUmlIpyVRBNwO+6X27PqcMIsog2AShcsUlG
+ XgWgDI9hG2wYicxbDv+Dfv0Vgw9i4O1PGKDhHwo9v0UC9W0pfWstUGyfmt3N/kpVcVBGPYGGKbxiF
+ sk0AHheO/nHgk6dvnTQi854TSMqHu6kdhZsa0bhUV7A8D3NiaHssPccPWWy//h8QDggio1uvSdrln
+ 0W1ktme8f8t9/L6xf7xu8v0PhBKaM2tjcmjVeHbA51e7hToaFJd+JJfs7fIpIvyTmy4sbc7++QU26
+ o569INLw==;
+Received: from [179.193.1.214] (helo=[192.168.15.100])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tM6SA-002g5A-2u; Fri, 13 Dec 2024 15:15:38 +0100
+Message-ID: <c7c498f0-2ee3-42f5-9b45-c87e52ffc3e4@igalia.com>
+Date: Fri, 13 Dec 2024 11:15:31 -0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/amdgpu: Use device wedged event
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, michal.wajdeczko@intel.com,
+ "Sharma, Shashank" <Shashank.Sharma@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+References: <20241212190909.28559-1-andrealmeid@igalia.com>
+ <20241212190909.28559-2-andrealmeid@igalia.com>
+ <d9f2583d-da79-4532-90fc-85028e977ceb@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <d9f2583d-da79-4532-90fc-85028e977ceb@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9557db3c-0837-4dfb-ba69-84dbaf13f082@igalia.com>
 X-Mailman-Approved-At: Mon, 16 Dec 2024 08:33:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,61 +70,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2024 at 03:31:01PM -0300, Andr� Almeida wrote:
-> Hi Raag,
-> 
-> Thank you for your patch.
-> 
-> Em 28/11/2024 12:37, Raag Jadav escreveu:
-> 
-> [...]
-> 
-> > +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
-> > +{
-> > +	const char *recovery = NULL;
-> > +	unsigned int len, opt;
-> > +	/* Event string length up to 28+ characters with available methods */
-> > +	char event_string[32];
-> > +	char *envp[] = { event_string, NULL };
-> > +
-> > +	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
-> > +
-> > +	for_each_set_bit(opt, &method, BITS_PER_TYPE(method)) {
-> > +		recovery = drm_get_wedge_recovery(opt);
-> > +		if (drm_WARN(dev, !recovery, "device wedged, invalid recovery method %u\n", opt))
-> > +			break;
-> > +
-> > +		len += scnprintf(event_string + len, sizeof(event_string), "%s,", recovery);
-> > +	}
-> > +
-> > +	if (recovery)
-> > +		/* Get rid of trailing comma */
-> > +		event_string[len - 1] = '\0';
-> > +	else
-> > +		/* Caller is unsure about recovery, do the best we can at this point. */
-> > +		snprintf(event_string, sizeof(event_string), "%s", "WEDGED=unknown");
-> > +
-> > +	drm_info(dev, "device wedged, needs recovery\n");
-> 
-> As documented in the commit message "No explicit device recovery is expected
-> from the consumer in this case", I think this should be like this:
-> 
-> if (method != DRM_WEDGE_RECOVERY_NONE)
->     drm_info(dev, "device wedged, needs recovery\n");
-> 
-> and maybe a note like this:
-> 
-> else
->     drm_info(dev, "device reseted, but managed to recover\n");
+Hi Christian,
 
-Or perhaps
-
-	drm_info(dev, "device wedged, but recovered through reset\n");
-
-> Either way, this patch is:
+Em 13/12/2024 04:34, Christian König escreveu:
+> Am 12.12.24 um 20:09 schrieb André Almeida:
+>> Use DRM's device wedged event to notify userspace that a reset had
+>> happened. For now, only use `none` method meant for telemetry
+>> capture.
+>>
+>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/ 
+>> drm/amd/amdgpu/amdgpu_device.c
+>> index 96316111300a..19e1a5493778 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> @@ -6057,6 +6057,9 @@ int amdgpu_device_gpu_recover(struct 
+>> amdgpu_device *adev,
+>>           dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
+>>       atomic_set(&adev->reset_domain->reset_res, r);
+>> +
+>> +    drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
 > 
-> Reviewed-by: Andr� Almeida <andrealmeid@igalia.com>
+> That looks really good in general. I would just make the 
+> DRM_WEDGE_RECOVERY_NONE depend on the value of "r".
+> 
 
-Thanks for the review.
-
-Raag
+Why depend or `r`? A reset was triggered anyway, regardless of the 
+success of it, shouldn't we tell userspace?
