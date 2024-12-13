@@ -1,162 +1,72 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5BB9F0593
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2024 08:34:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFC39F0650
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2024 09:24:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB6B110E430;
-	Fri, 13 Dec 2024 07:34:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4193610EF48;
+	Fri, 13 Dec 2024 08:24:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ef9p/08D";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="rJZTFsYU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2062b.outbound.protection.outlook.com
- [IPv6:2a01:111:f403:240a::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E091B10E430;
- Fri, 13 Dec 2024 07:34:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mU1a1pnyXyDRM0HrYhHIghntZ+9sfddyreZH/8/PLEZBZnlVSe1EX7cgwHPsVpoANX5yCXbUMSqIx3ixyW27RHOcU+zXGP32Utn5pO/cxt08MGnW3LyEfquoz23xZeprtTyTyqfUbLgwzvYpYFo6jaFL6D6nibttJfwiI0WWxvgBCMTePW4y4P617Pz6JnjIo1aeFllCsbAjANEidabnF+G2F6gb9wfHLmuLK5r6yp3Vn9ITTjP/Ehi/zMHPkF32gohdvGCiHGUGLPN+PPndxiob6o+czKEJZy2ut9ErfnQ9DJWIEfWGZKcIVMUXmtv+owlklRLJVsplV0zwH2XlBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SAua9IytjDfcuu3Fv1+Ne0umCKUZxqwYYkhbvqLmyew=;
- b=eAihYOPrjxYtsAZS4bzR2gpvcqshg1BSvdutscJRbr2dqxKoOF7+TrU/LfNIJDLRRVJTKKVJ5SBTUErDiP4vGHVFvPMXsYvhmF5K5JO6rxl4ag62a+jcjOWnEtyYLB0adnjl9vrR5pyWDdonGYdguAjwSXxvZ2hACuwVithnxYY7prAFLjo+rPPz3XVyXiAwZcD+7YBMnwuCBjEj/9ooPQf65Lyl5UmoGcd3lifomXWxaaTaj1FLsoYbCHI5AW9JVE4NJjyGArqbWrSUS8i32NMwSLRglbQM9eYTIf6olWDEWQPLnzupUcLZXwYrK5guroRO+mlVANsmIeWI2c09lQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SAua9IytjDfcuu3Fv1+Ne0umCKUZxqwYYkhbvqLmyew=;
- b=ef9p/08DYvmTmCQedWBr6IArUY8Wth/8l41L6CvpcL9NyC+A41DNm35uEi9i1ufkaziVB8JVQ98+/EAgsJdlfUsZ3lMgPp/c7N60d+0l/XkrNpi7hgdwBII5dqz78d+bcsyWs89KvzCOPgmOayErCTcIcUgpGGeY9BtyLt6wwmk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA1PR12MB7687.namprd12.prod.outlook.com (2603:10b6:208:421::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.15; Fri, 13 Dec
- 2024 07:34:27 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8251.015; Fri, 13 Dec 2024
- 07:34:27 +0000
-Message-ID: <d9f2583d-da79-4532-90fc-85028e977ceb@amd.com>
-Date: Fri, 13 Dec 2024 08:34:18 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/amdgpu: Use device wedged event
-To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
- Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, michal.wajdeczko@intel.com,
- "Sharma, Shashank" <Shashank.Sharma@amd.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20241212190909.28559-1-andrealmeid@igalia.com>
- <20241212190909.28559-2-andrealmeid@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20241212190909.28559-2-andrealmeid@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0033.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c7::16) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
+ [IPv6:2a00:1450:4864:20::531])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BC1010EF11
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2024 07:41:20 +0000 (UTC)
+Received: by mail-ed1-x531.google.com with SMTP id
+ 4fb4d7f45d1cf-5d3bdccba49so2525861a12.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 23:41:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1734075679; x=1734680479; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=ECAswhSjbBa0l5WXOE2XiUyA0/uxnQ2bbT4EuE3Nw5M=;
+ b=rJZTFsYUqCCzhjHe91QFmrtQevoU0XsWy9yv6Kdw9FQjz0kvWa3dOxEqMi8THa+5kA
+ IXYMPxF9pjcv6gngEdZEvz284XQUBnMC8x4R/1wj/SNmeahpD/BW2KKPUcBtmPZpx+65
+ prXO/OSteAXbrdMDum/3PkSOYDIg9QRuCP1R8eMeRcF9rrWjZ0Cdp5XR3JoOLVd3CfA9
+ azrUB2hrl7PS2FLlAJDucn2c++ejiSpfMWxLY3jxKjcpL+HsN7B7Co2XObKHs5+b9cgp
+ 7ISYuaZeY6j2E0YfSGWcPskAlDRhhonRuKktAOfy3BCeMc9z17exC0R4Jwscf7oQ8sqL
+ +W7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734075679; x=1734680479;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=ECAswhSjbBa0l5WXOE2XiUyA0/uxnQ2bbT4EuE3Nw5M=;
+ b=KIQtUzI1KL2NXIo77Ai09/NmFPpcvCJzhA+4JOAMe8ezCTSA8cDvFnqoXGJO/qSEu6
+ d1H28vKSH6glg3B7EjG/uUNpYt9MxijcpSbuXB9fhqW6j/GgnpjeNIgTqebW9GDA5skS
+ WCraUkW/jeNOL7HYyJDNR6J0jBDcWSN17VIm8Ft7CpY+JO2UY8otEHWovay7JAUIFFUt
+ OT6YpG9ai87spp2mJbwlHNk/dkFbxuVW/nHEDmmuSku1aWJvo36eG/Nc5MnHQjXJV8ys
+ fWEn4XSEi0l+RqtVzLIvGSvbsMqhygn1mc73VoYxMFtducw/DUDnanvsYVHe3SyvtQ+/
+ JtTg==
+X-Gm-Message-State: AOJu0Yxy3puxIgve32I25f9kNBjSBK18J/c/gs4znHd78JA3iih5tB1y
+ oWzCZlNE8aL5z3j3Mb92TbuVX3Vqop/5PytPkobYJew2TkDUarYyFtCuAnBMzW4=
+X-Gm-Gg: ASbGnctlXDZnoyZ/8zTz7ADges6tjlluvchCAFq9h2gH3/vsuOp9UyM2ah8rAsPLopw
+ T7BtVLdayZcpqs3jxI5Q2ZYwFYtAlU17GG+G5HjBpdH70mxSoGuFNI0sO0c7R6u7TMK9Zp4uFpS
+ bUz6jRjaz3E3+H8cTAKTGBG7j5wfQxr04eC6cqBsOvQ3R0u5t76GQ77ZKy2/9HwIM1svUIlIkVk
+ CZtopWGuf9QOMvlHOffTNRRAamAR4sMi/YhbUEJK4NvNbOLRSRch3og9YY0Ng==
+X-Google-Smtp-Source: AGHT+IHL6HVnn3gzbK7xOsJgeBTtrEHedemU+ZK48cGZknGZbGVAOSfA9w6GbYiTVe1HKURCAKHqRA==
+X-Received: by 2002:a05:6402:4582:b0:5cf:e71c:ff88 with SMTP id
+ 4fb4d7f45d1cf-5d63c2e9de7mr1256322a12.4.1734075678714; 
+ Thu, 12 Dec 2024 23:41:18 -0800 (PST)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-5d42a754cb0sm4025883a12.88.2024.12.12.23.41.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Dec 2024 23:41:18 -0800 (PST)
+Date: Fri, 13 Dec 2024 10:41:14 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Tao Zhou <tao.zhou1@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amdgpu: parse legacy RAS bad page mixed with new
+ data in various NPS modes
+Message-ID: <f647df3b-42da-4e61-8eee-239408ed4556@stanley.mountain>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB7687:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6811002b-8ee1-437f-289c-08dd1b489299
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|7416014|376014|7053199007|921020; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Mmp0YjNTMzFKMTNOemVFWUJSK1BPVllxNUxRcFNQZ1NKQzVaSFVxSnJsNnNI?=
- =?utf-8?B?c2JzTHRkajVldXNpVTZpK1pSMkRpaEtzZkxxL2RmeWRpOFcwK3dpUG1VTmY4?=
- =?utf-8?B?a0cvTXJhU3FvY0xlZ1pBazlXeldRc0NHRHFNQmtDZDhtbkpXNjVIbzFIQUNY?=
- =?utf-8?B?T3BlSWF3S0JDVUI5cjdIZG16YzBoRUxsZFUyWTM5OTRGMnVRa1NNNCtUaFRO?=
- =?utf-8?B?bHplWVBRTlZJaTVrNi9vRE1QTDBtMk94MEM0ZHdaOVplek9pWnJHOWRSVyt5?=
- =?utf-8?B?OGs0SHZpaldTN2xLN2NOcnhPUUdpblY5TDRPMlRzQk9GU1VvclB3ZkJ2NHlV?=
- =?utf-8?B?SnRVb25LSnk5Rk1IaXF2cG9hYUFyL3VRc2M3ZERncU9YWUNYUnAvZ0dkeDVq?=
- =?utf-8?B?ZGxhRjdnL1VJYkQ4U2QrRjVNaERQSElqUEdvUXhFWE5Wd1BDWEo3YldMWU5r?=
- =?utf-8?B?UGs1aUJ2RURXNFptQ1duWEJQanhxZnpyL2tORnBNQVlHSUtha25PdVdtTTM4?=
- =?utf-8?B?dFI5TzhkMXVXaGVxYmJXQ3ptMFFIeHN5WVpTMEUvMWRZRGUyalFPTnJEaUtO?=
- =?utf-8?B?RVNkQW9JbVMzMGxyTjZQVVlUNDJOaUpPazhhMkREWlRnMWcza2U2WFlXOXlG?=
- =?utf-8?B?bkVTMzk2QXJ5aXJudy9WanVWSlR0alA5OHpsdHBzdlVMT1E5SjVaZkh0KzZy?=
- =?utf-8?B?OFlPbWVOWGZkZlhVTGUxclJDeWZOc256VmRCRk5LZktTYldscnoyckI1ckxH?=
- =?utf-8?B?R1Z5WUpjTlZEMzhFbTVNeUt4ZnRGZ1ZOdXFyRFpLZks3cFZwNXZyaUc0K0Jz?=
- =?utf-8?B?MW9VNnJ3RFBVemNHaW56aGtvd21MYTdzUmRRckllbVIxS2Nwb2V3UldPa1Zi?=
- =?utf-8?B?ZVZlaVZFN2RDVzBUM1JXZjhVbFZJYXlNMDVDNDlvUjIrcWdLMmkzdzRWYWRv?=
- =?utf-8?B?b0lwMGRsbjFTR3YvNUE0dm1vN2d6UDZjb0YzZDIyRFlTNmpiM0d0QnBzdFlS?=
- =?utf-8?B?SnhNejJtZDZOdjNnanUwUThDdDgxaGgxN1NyZDVXclJVVEFia0hzVFZTeVVR?=
- =?utf-8?B?K0lnSHg4eUxGOEhYMTRFU1RNRXZ5djl1TU1Md3NxY2Q1Wnh6NGdNQnBuWVly?=
- =?utf-8?B?S2lYOUFpM1Y3Wi9tTlltZHNrMkNjcHQ2T3hoVVI5VDg4ODhUWkRxa0tCZXRm?=
- =?utf-8?B?ZDhheE9oK1JZQzFaWDRHY2RiQUgvSHQrOUxRejM1VUJqdGt0NzRGNHh6Q2hH?=
- =?utf-8?B?NUZYOXFNYzBqUGw4Nnd0M0dlcG9vZklnSFpRMmFVRC9zTEFkR0g2M2N6ejIw?=
- =?utf-8?B?b2hPSHJnUVJsNm96VTNZQXpneEhBMlltbERPVzZxWDQ5NFdrNjZnUTBBM2Ix?=
- =?utf-8?B?YXo4bmdZS0doc3E5RnljZFhmVlo3dmRyZ0tZNXQyNmRzSk4zMktSSHdnZTZh?=
- =?utf-8?B?bVZsK1ZCMlhpcUdhMVh0d0ZFN0x6Rnl3ZXNGVG84KytqanNLNGQwRi9mOXoz?=
- =?utf-8?B?Zkx3MGREYlZwcUFuSXpKcVk3TzZ3V2REaENhbFI5dG96dXR2c1RURnlhVURN?=
- =?utf-8?B?VGxSNk9nKzdWblNPYmtjZktTV1o5SFBOTk9GVkVpYXliNUhsN3lyelBURGFR?=
- =?utf-8?B?dm5zM3FXQlZGdXBRY0c5R0l2aFFwS3dXTkg1U1pISEQweE51S1R3MkJieHlT?=
- =?utf-8?B?dXVsdzdKRVMyaHE2ZTNyUkJYVnJZd2dNRFIzMThGOThpbGJkYzVxNnZWSFdR?=
- =?utf-8?B?UGNpSGJPdjM5Z3d3aUlWOGtZaEdsQ1UyMmcvWHF6MmlzZVUreUlubTJ2ckQ2?=
- =?utf-8?B?VGhMSzU5SUhYWFlvN0YzL2QxN1RWMkFrTmdkUm9TRS9FdUQ5MHdwb1RFS0NU?=
- =?utf-8?Q?wY5CpyJvjUPCC?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(7416014)(376014)(7053199007)(921020);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cWw1SEVSbHg1b3Y5SVpFOE5wenNkUWJreTMxZ0wxYzBGSTBXRkVNU3FGdGJN?=
- =?utf-8?B?YjU0QnNxNTNKT09UV25QdUhRRGJXLzk5Q29kUUYzKzcvWVh4ZVJERzQ0OUQx?=
- =?utf-8?B?anZ5cDFZSVcySkE2UGd4dmhveG92RWxpVTlBclJnQXpTRHAzU0xDNlc5SHBx?=
- =?utf-8?B?NzZsOC9kdUU3dnhnancyVjZZMUNNZ1VsRHBPd3VrVFpsS3B0cmRLNUJmWFEy?=
- =?utf-8?B?ajkycVRWb05hTnBOVUJEbUZNZHlIZkhGTUx3RFRXRzNadmtKMEJEb2t3SWRL?=
- =?utf-8?B?V1RFY05ZU1Rhc1kwVnlFNXEzdndZM1ZVU0pKVmlFcU5MdjZndytUS21wMG50?=
- =?utf-8?B?bnMvczFqMEIyUHNFMk9haFJXSW1OdWZLQXFPTDN6ZHkrekFLbEpKcGY5Mk5h?=
- =?utf-8?B?NGc0NzgvcysxdVJ3a3BlWW8wQTBUM0NzQko4c05BN0RON1VDZXdwUEdVRDEx?=
- =?utf-8?B?a1lvQ3g0TVNsd2ROWE9jK25HYVJPQitKS0ZGdlowL3d4RFBkeVlJMkhpTmRT?=
- =?utf-8?B?QXd5cktYQ3dOMWVCTGorT2t6QkQvYXdJZGJ4ZGFGaElwWkVoTTZ3Nm1tSWox?=
- =?utf-8?B?TEdUZ25lNm9PMHFXMjREdU16WVZ5anljaTJXS2Q0ZHVtekZGRENrTnNlV2Fy?=
- =?utf-8?B?b3daSzk3NTNaQWwrQ3NlbzlPNnJhUytzR0NraE1sR3dWQnBNR2tHSXFpYTZX?=
- =?utf-8?B?K1VyNFJPWVE5aW5xZjI4YU9sYW9IbHFlUG4xNWJjd3dsN0ZJc1hEQXBhUFBP?=
- =?utf-8?B?YWlJUFZRSWJOVERwQitLb0wrZndPd2EyeWk5ZEJLOEx3MFZqV2pRdWZFZ0dH?=
- =?utf-8?B?bi9NNGtsWEh1UDRrNzA5MElIam5vbk1rbGVtSFpLdUpPV2VQUGRkUGs5ZnFn?=
- =?utf-8?B?Zm96SVFEbXVNVnk3SjhOdFNoSVliejdLRzJzN1VqNDU4MEpBcUtDb3FrMVNX?=
- =?utf-8?B?SExUM2FmUk5ZU2xvWHFUUmR1ZVY4NEtkeUVZdVpESFlXODhBOURreTl6TW4x?=
- =?utf-8?B?dHNxWFJLL3BDSW9PMDhXWFNBbVdEVVMyQ05jY0ZOc1YzaHRuWXFpZFJnOWdr?=
- =?utf-8?B?dW8zbVBrc1ladXozYnB0c0YxaHZnY1BWTE8rY3dzTi9NV1N6TTk5ZDN4VEVO?=
- =?utf-8?B?OFRUVU0rOUZoaU50K3BSTlptdmZDblg1dkxlR1dPZDVWRjRNT1ZWeGd5YlZu?=
- =?utf-8?B?dDI1TmJHeWpOQThZRHNMamUvVnpWbVJqMTBrR2phZGZ1QTY0eXFLS3prMEZK?=
- =?utf-8?B?UWkxekM5L0JMeis5RzM1NHVqSnZYaFFRaXh2a08zaGN1YzVBZzBKMUYxTUNY?=
- =?utf-8?B?Ni90R0VqWkhZd0MrdzkrL0pua2ZqdlpKWEM4RVlWUUhpbWszMmY3dGE2eGNa?=
- =?utf-8?B?ZEY3dDdxcy90NjV6dmtxT0lzQ1E3aVdqRmZQc09vd0h1VEhUOWVuZHc3Mjlj?=
- =?utf-8?B?c0hMcndlSkFPelFNOEN2UkQ4NjhSNDRYeVIyeC9ieWFVbGJjSkh4Nkx4SHNF?=
- =?utf-8?B?alRQeWdUMisrRGIxZVErTkdLN1NPQ05KVGFBVyt1RWZXQ3pFRFo2N0J0V00r?=
- =?utf-8?B?VDRrZnU4Mk9TOHc1VDM5TlBBcXZsSkJkL2tQSTh4SzBZcU9WZUdnWld2aE1P?=
- =?utf-8?B?TWdJbEpJWEIyNkVYemRWUERRMWFRdDZkUE9Pa0hORmdkNFRTYUEzWTRpQ2t0?=
- =?utf-8?B?ZHZrU0pSenJXQktwMFM0UlIzMEN1ME5iZ095dUFYNEdpZGNZbERJUDVRTytP?=
- =?utf-8?B?NlJYUHdNWVZ5VEVwa05WbVVkanRqODNQbmV0T2dQQ0RSRzk4S0JKKzUyUGZU?=
- =?utf-8?B?dTY4RzFMa3FnOUR0ZExmRS9ESUg1dVJZS3VLTEpuNXdaczVtbFhmQ1ltSmFw?=
- =?utf-8?B?ZDlaeXpKY0tuK3Z1QnJPSnl1TWMzYklLQmdJWEdkelNHYW8zV3IwSHNjQnNS?=
- =?utf-8?B?M1llZkRlOE9PdVRNYWVGWjBaSUJsRThJdUhkSERPaWdtbVM2YzlrSWhINGxv?=
- =?utf-8?B?bWx1TTNQR25oSlplZ0lDWHRVNG9LSkpZTktET1Z3d1g5UkNaYWlqdldiK09p?=
- =?utf-8?B?cXNiY0hwNitDQThTNnc4d1dabkprb0dWV1dub05CZ3d3VWJyT09JV1dDQksr?=
- =?utf-8?Q?hRpM=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6811002b-8ee1-437f-289c-08dd1b489299
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2024 07:34:27.0638 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wtGGtn0ZYOBqp+OakjVWy6nhfod31kmrsnvwOFaaDlzLaYs86VeXtgmbn3wTTtkl
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7687
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 13 Dec 2024 08:24:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,38 +81,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 12.12.24 um 20:09 schrieb André Almeida:
-> Use DRM's device wedged event to notify userspace that a reset had
-> happened. For now, only use `none` method meant for telemetry
-> capture.
->
-> Signed-off-by: André Almeida <andrealmeid@igalia.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
->   1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 96316111300a..19e1a5493778 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -6057,6 +6057,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->   		dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
->   
->   	atomic_set(&adev->reset_domain->reset_res, r);
-> +
-> +	drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
+Hello Tao Zhou,
 
-That looks really good in general. I would just make the 
-DRM_WEDGE_RECOVERY_NONE depend on the value of "r".
+Commit a8d133e625ce ("drm/amdgpu: parse legacy RAS bad page mixed
+with new data in various NPS modes") from Oct 31, 2024 (linux-next),
+leads to the following Smatch static checker warning:
 
-@Shashank any objections? IIRC you have worked on the AMD specific event 
-we never upstreamed.
+drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c:2849 amdgpu_ras_add_bad_pages() warn: missing error code here? 'amdgpu_umc_pages_in_a_row()' failed.
+drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c:2884 amdgpu_ras_add_bad_pages() warn: missing error code here? 'amdgpu_ras_mca2pa()' failed.
 
-Regards,
-Christian.
+drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+    2800 int amdgpu_ras_add_bad_pages(struct amdgpu_device *adev,
+    2801                 struct eeprom_table_record *bps, int pages, bool from_rom)
+    2802 {
+    2803         struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+    2804         struct ras_err_handler_data *data;
+    2805         struct ras_err_data err_data;
+    2806         struct eeprom_table_record *err_rec;
+    2807         struct amdgpu_ras_eeprom_control *control =
+    2808                         &adev->psp.ras_context.ras->eeprom_control;
+    2809         enum amdgpu_memory_partition nps = AMDGPU_NPS1_PARTITION_MODE;
+    2810         int ret = 0;
+    2811         uint32_t i, j, loop_cnt = 1;
+    2812         bool find_pages_per_pa = false;
+    2813 
+    2814         if (!con || !con->eh_data || !bps || pages <= 0)
+    2815                 return 0;
+    2816 
+    2817         if (from_rom) {
+    2818                 err_data.err_addr =
+    2819                         kcalloc(adev->umc.retire_unit,
+    2820                                 sizeof(struct eeprom_table_record), GFP_KERNEL);
+    2821                 if (!err_data.err_addr) {
+    2822                         dev_warn(adev->dev, "Failed to alloc UMC error address record in mca2pa conversion!\n");
+    2823                         ret = -ENOMEM;
+    2824                         goto out;
+    2825                 }
+    2826 
+    2827                 err_rec = err_data.err_addr;
+    2828                 loop_cnt = adev->umc.retire_unit;
+    2829                 if (adev->gmc.gmc_funcs->query_mem_partition_mode)
+    2830                         nps = adev->gmc.gmc_funcs->query_mem_partition_mode(adev);
+    2831         }
+    2832 
+    2833         mutex_lock(&con->recovery_lock);
+    2834         data = con->eh_data;
+    2835         if (!data)
+    2836                 goto free;
 
-> +
->   	return r;
->   }
->   
+I guess this is intentionally success?
 
+    2837 
+    2838         for (i = 0; i < pages; i++) {
+    2839                 if (from_rom &&
+    2840                     control->rec_type == AMDGPU_RAS_EEPROM_REC_MCA) {
+    2841                         if (!find_pages_per_pa) {
+    2842                                 if (amdgpu_ras_mca2pa_by_idx(adev, &bps[i], &err_data)) {
+    2843                                         if (!i && nps == AMDGPU_NPS1_PARTITION_MODE) {
+    2844                                                 /* may use old RAS TA, use PA to find pages in
+    2845                                                  * one row
+    2846                                                  */
+    2847                                                 if (amdgpu_umc_pages_in_a_row(adev, &err_data,
+    2848                                                                 bps[i].retired_page << AMDGPU_GPU_PAGE_SHIFT))
+    2849                                                         goto free;
+
+This should be an error code.
+
+    2850                                                 else
+    2851                                                         find_pages_per_pa = true;
+    2852                                         } else {
+    2853                                                 /* unsupported cases */
+    2854                                                 goto free;
+
+Error code.
+
+    2855                                         }
+    2856                                 }
+    2857                         } else {
+    2858                                 if (amdgpu_umc_pages_in_a_row(adev, &err_data,
+    2859                                                 bps[i].retired_page << AMDGPU_GPU_PAGE_SHIFT))
+    2860                                         goto free;
+
+Error code.
+
+    2861                         }
+    2862                 } else {
+    2863                         if (from_rom && !find_pages_per_pa) {
+    2864                                 if (bps[i].retired_page & UMC_CHANNEL_IDX_V2) {
+    2865                                         /* bad page in any NPS mode in eeprom */
+    2866                                         if (amdgpu_ras_mca2pa_by_idx(adev, &bps[i], &err_data))
+    2867                                                 goto free;
+
+Error code.
+
+    2868                                 } else {
+    2869                                         /* legacy bad page in eeprom, generated only in
+    2870                                          * NPS1 mode
+    2871                                          */
+    2872                                         if (amdgpu_ras_mca2pa(adev, &bps[i], &err_data)) {
+    2873                                                 /* old RAS TA or ASICs which don't support to
+    2874                                                  * convert addrss via mca address
+    2875                                                  */
+    2876                                                 if (!i && nps == AMDGPU_NPS1_PARTITION_MODE) {
+    2877                                                         find_pages_per_pa = true;
+    2878                                                         err_rec = &bps[i];
+    2879                                                         loop_cnt = 1;
+    2880                                                 } else {
+    2881                                                         /* non-nps1 mode, old RAS TA
+    2882                                                          * can't support it
+    2883                                                          */
+--> 2884                                                         goto free;
+
+Error code.
+
+    2885                                                 }
+    2886                                         }
+    2887                                 }
+    2888 
+    2889                                 if (!find_pages_per_pa)
+    2890                                         i += (adev->umc.retire_unit - 1);
+    2891                         } else {
+    2892                                 err_rec = &bps[i];
+    2893                         }
+    2894                 }
+    2895 
+    2896                 for (j = 0; j < loop_cnt; j++) {
+    2897                         if (amdgpu_ras_check_bad_page_unlock(con,
+    2898                                 err_rec[j].retired_page << AMDGPU_GPU_PAGE_SHIFT))
+    2899                                 continue;
+    2900 
+    2901                         if (!data->space_left &&
+    2902                             amdgpu_ras_realloc_eh_data_space(adev, data, 256)) {
+    2903                                 ret = -ENOMEM;
+    2904                                 goto free;
+    2905                         }
+    2906 
+    2907                         amdgpu_ras_reserve_page(adev, err_rec[j].retired_page);
+    2908 
+    2909                         memcpy(&data->bps[data->count], &(err_rec[j]),
+    2910                                         sizeof(struct eeprom_table_record));
+    2911                         data->count++;
+    2912                         data->space_left--;
+    2913                 }
+    2914         }
+    2915 
+    2916 free:
+    2917         if (from_rom)
+    2918                 kfree(err_data.err_addr);
+    2919 out:
+    2920         mutex_unlock(&con->recovery_lock);
+    2921 
+    2922         return ret;
+    2923 }
+
+regards,
+dan carpenter
