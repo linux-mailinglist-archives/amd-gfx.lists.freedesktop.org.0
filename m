@@ -2,59 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65A139F064C
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2024 09:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8CD19F0649
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Dec 2024 09:24:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F5CE10E44E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5104010E695;
 	Fri, 13 Dec 2024 08:24:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Mk3VbTqk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lzXjkT0s";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7299B10EE83;
- Thu, 12 Dec 2024 19:20:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329; h=Cc:To:In-Reply-To:References:Message-Id:
- Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=z2ipejCRyWSKv27ShitN4KY4MHhmTPh5W2J+LTJowRg=; b=Mk3VbTqksrdXuSWlApUZxWrQ84
- emq5DahrVJA8WVYeNFS5rlee5JvOMKSr7Zx1Bbzl5vEqGMxlKe2eTI5DSSgkOgzE3XC/61ehur+Yb
- q+iPttpGsVraPNhXISNtDiSdV7bFdHzgdsdJra0rUWOiwD5NBRcT32JseKjpftfBqkb/pYhECpb3e
- 5qqWuKzlmGwcVLLBJvP2kTS+0rgXXsevzHEL7d2shc4uUMchDvmHfqi+q9IFz+9TyiHDEKrLotsY5
- RLcsmTWmSdZSfB39K1sicw9z1H5mWinMBIqzynlXYuyTm5liQF8a46AFWxZVDz/vOAqJ0aV5GpgIm
- gYw0rRAw==;
-Received: from [179.193.1.214] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tLojT-002MsO-O1; Thu, 12 Dec 2024 20:20:19 +0100
-From: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-Date: Thu, 12 Dec 2024 16:19:34 -0300
-Subject: [PATCH v11 2/2] drm/amdgpu: Enable async flip on overlay planes
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
+ [IPv6:2607:f8b0:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 904B710E314
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Dec 2024 04:07:15 +0000 (UTC)
+Received: by mail-pl1-x634.google.com with SMTP id
+ d9443c01a7336-215770613dbso9220925ad.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 20:07:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734062835; x=1734667635; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:autocrypt:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=kiHYNsetQzoVeIG7Or2ocnrsNfqUINILWof+n9mH9SM=;
+ b=lzXjkT0s3IFlqNFFUSY4BqEpkudORYf+2QnXl0vr6zHXK2HeWKvr+nOtULAVLEGwiY
+ RwCVjndQaAuRtSMDyK/LQ+dcnvxlory3pA5m4KoSPHNf8TvkoKOpq9hUsmV0ayRG60N4
+ D6CRhqaBYto8mhPfE56vIUKD6MWn28xqOp9AOyW/TXtplTLyMZf+/fmA+0g64abix8cB
+ 8Nw/uvWjLyr/sdcOh+fD3rgcvBxy/0cVdNCq+WFgEzHh4jZy6kJQGwJShuL9wl1uJl8D
+ qzUBPsQXAJ+v+WoZfBoEKqFXLBlRnXLPnLOuy3+cJHMtRsh61mmH7SBFGwPomxPIJDhL
+ DzRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734062835; x=1734667635;
+ h=content-transfer-encoding:in-reply-to:autocrypt:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=kiHYNsetQzoVeIG7Or2ocnrsNfqUINILWof+n9mH9SM=;
+ b=twNvjpwuzDPhRNaXt8i+dbDD6f1jXAILjuhiAmShOnOcHgWN+fHkXRJseooWpj3Y9k
+ hmuIeqHe7vFzuUWFSwvKWj84hWpZCUNXvu1WAVVnVbQifjoWdHrv5brZVnEBTopfLmH1
+ HnkexbpIcUSGBshvjQaWiLmUfFnwOgqPJyDMt7y0EXcH8ZFBL9t95Fq4jogq9wDLQ0KP
+ Z7BK0KINxEz7LtBUB4GH+FGYV03K/XztgMmeBSSERU1sTyeL8qeg/Y2CENdJStc8Qjyh
+ ZLF5J9Qe2Myo9PKVlQQKVvmmyWzrUfJ/hUNC1eUSwAfM3e78c8SA4JcgRWOA213vAMR8
+ gxqA==
+X-Gm-Message-State: AOJu0Yxesu2F1xm+oBRPs6pa7PXvbZrNJUFdNFS9mpQsUW6TToT6sUMA
+ U091hEstsgqpUeOWrn81lpl6P8iUcxekj/HXsEQkmlBj3+C2uazu
+X-Gm-Gg: ASbGncskJ8D9WTAr96b+aJ82EvMUR4FNYQB+EqwNuMETkIL8BeJfkovPR5OAzuK7LGp
+ CMhJ5ieiIC0vp1LNlfD5lUdHoxMmXwFN37sDaVaI7Y3Xtm8+LWHWTMpuQRo4tlJIHjoIsZAaNAs
+ NZ4b0bvt+VAC3MPRfNoVBUSI5O9mqe/2U7KN4hhCPDea4niJMKSbf1x/WK5aQGtrLJV39f77pge
+ a6vZ0V4zY08sOHTW770E8txOv/6UVtLPj3GD+FUY/LQwq710fXTA8snqZ90o8tGyT5BTANs4c8G
+ aAsgJkqWQaIdB5O3nM6W4uOEydiGfg==
+X-Google-Smtp-Source: AGHT+IExCfjT8JybNTAmJaeIbvRXBMXdNyhxwqffT8vtHGpK6k/rJii9U+TDz20PKdKtYMs0cMCHIw==
+X-Received: by 2002:a17:902:ecd2:b0:216:6fbc:3904 with SMTP id
+ d9443c01a7336-218929a17demr17433205ad.13.1734062834996; 
+ Thu, 12 Dec 2024 20:07:14 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5?
+ ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-215f8f63772sm127993325ad.281.2024.12.12.20.07.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 12 Dec 2024 20:07:14 -0800 (PST)
+Message-ID: <6f8621fd-b73a-4edf-b596-8b1da3df11ea@roeck-us.net>
+Date: Thu, 12 Dec 2024 20:07:12 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/34] drm/amd/display: Add debug prints for IPS testing
+To: "Hung, Alex" <Alex.Hung@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Wentland, Harry" <Harry.Wentland@amd.com>,
+ "Li, Sun peng (Leo)" <Sunpeng.Li@amd.com>,
+ "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
+ "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>, "Li, Roman"
+ <Roman.Li@amd.com>, "Lin, Wayne" <Wayne.Lin@amd.com>,
+ "Chung, ChiaHsuan (Tom)" <ChiaHsuan.Chung@amd.com>,
+ "hersenxs.wu@amd.com" <hersenxs.wu@amd.com>, "Zuo, Jerry"
+ <Jerry.Zuo@amd.com>, "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>,
+ "Ma, Duncan" <Duncan.Ma@amd.com>
+References: <20240228183940.1883742-1-alex.hung@amd.com>
+ <20240228183940.1883742-11-alex.hung@amd.com>
+ <abe64cad-4ac4-4372-9d46-5e77618b3836@roeck-us.net>
+ <DM4PR12MB8476E86FE65DEE9CA8DC7895F73E2@DM4PR12MB8476.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
+ nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
+ hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
+ c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
+ 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
+ GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
+ sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
+ Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
+ HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
+ BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
+ l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
+ J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
+ cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
+ wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
+ hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
+ nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
+ QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
+ trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
+ WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
+ HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <DM4PR12MB8476E86FE65DEE9CA8DC7895F73E2@DM4PR12MB8476.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241212-tonyk-async_flip-v11-2-14379434be70@igalia.com>
-References: <20241212-tonyk-async_flip-v11-0-14379434be70@igalia.com>
-In-Reply-To: <20241212-tonyk-async_flip-v11-0-14379434be70@igalia.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, dmitry.baryshkov@linaro.org, 
- Simon Ser <contact@emersion.fr>, joshua@froggi.es, 
- Xaver Hugl <xaver.hugl@gmail.com>, Daniel Stone <daniel@fooishbar.org>, 
- ville.syrjala@linux.intel.com
-Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-X-Mailer: b4 0.14.2
 X-Mailman-Approved-At: Fri, 13 Dec 2024 08:24:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,49 +144,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-amdgpu can handle async flips on overlay planes, so allow it for atomic
-async checks.
+On 12/11/24 08:18, Hung, Alex wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
+> 
+> 
+> Hi Guenter,
+> 
+> Thanks for the updates.
+> 
+> This may be a real issue. Please file a bug at https://gitlab.freedesktop.org/drm/amd/-/issues <https://gitlab.freedesktop.org/drm/amd/-/issues> and share your setup. This helps us investigate further.
+> 
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+Opened https://gitlab.freedesktop.org/drm/amd/-/issues/3824. My apologies if it doesn't meet
+reporting requirements.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 495e3cd70426db0182cb2811bc6d5d09f52f8a4b..2792d393157beec12d6e96843c43158c03f16027 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -1260,22 +1260,25 @@ static int amdgpu_dm_plane_atomic_check(struct drm_plane *plane,
- }
- 
- static int amdgpu_dm_plane_atomic_async_check(struct drm_plane *plane,
--					      struct drm_atomic_state *state)
-+					      struct drm_atomic_state *state, bool flip)
- {
- 	struct drm_crtc_state *new_crtc_state;
- 	struct drm_plane_state *new_plane_state;
- 	struct dm_crtc_state *dm_new_crtc_state;
- 
--	/* Only support async updates on cursor planes. */
--	if (plane->type != DRM_PLANE_TYPE_CURSOR)
-+	if (flip) {
-+		if (plane->type != DRM_PLANE_TYPE_OVERLAY)
-+			return -EINVAL;
-+	} else if (plane->type != DRM_PLANE_TYPE_CURSOR)
- 		return -EINVAL;
- 
- 	new_plane_state = drm_atomic_get_new_plane_state(state, plane);
- 	new_crtc_state = drm_atomic_get_new_crtc_state(state, new_plane_state->crtc);
- 	dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
- 	/* Reject overlay cursors for now*/
--	if (dm_new_crtc_state->cursor_mode == DM_CURSOR_OVERLAY_MODE)
-+	if (!flip && dm_new_crtc_state->cursor_mode == DM_CURSOR_OVERLAY_MODE) {
- 		return -EINVAL;
-+	}
- 
- 	return 0;
- }
-
--- 
-2.47.1
+Guenter
 
