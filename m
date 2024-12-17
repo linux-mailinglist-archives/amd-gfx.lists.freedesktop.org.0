@@ -1,151 +1,85 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7609F58AC
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2024 22:22:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BBD89F6056
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Dec 2024 09:44:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37BA710E062;
-	Tue, 17 Dec 2024 21:22:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78A3E89A94;
+	Wed, 18 Dec 2024 08:44:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="F3S17BWN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SXhkv3At";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2060.outbound.protection.outlook.com [40.107.93.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9792D10E062
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2024 21:22:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SHp992QmoGdeVdhgB69TBcqmt+lqDtzF08hn6zqk7X6/GKOuF2y5XUJIRd6rTx26TiE9PFhwbkHCUA5//uECMNBP7IsGyJQxa/8Hp7Up7ZQ5nDRXCb8+oxbIZLBYcF0m4SaIVUVSJ36U0+2z4cwWC24HKKujtS1kThmKfU/XpHGW2S74ZHnkb9GLAyWq6VYEpKJKnCKUIC7BASAMB6o2tyVBLjeBAzV05EQyR6KvR4wYZMxEkjjEUGgym391ykZmvcv3Lj0GtChOOD6tONnSY85vZDEt3tePHdO6SyAOsKMnDgApCjasvwp3OxSWAqEPsuhBBZfcMz3HmWpJGnibwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=btolaeftaBqDwQXyWKFWaSVtI2pmNU7Bdm5TZCQUjNw=;
- b=je6NhPBmwdUucVERDVtda33mHgHZOjhajOBpGz1bKEjZShPQhz+YEld0GeiJJtjf26x+rxDrzD6LD5eo4V8XhamDSPwmAWlBo+szhN9ri9U0d5X14X2ottsctMZms22iqC0guhqz3zb19Re2p0i2z7mLGXqEhyxtGFdiyUSh77hVJtanUSy1FdoseNbS5suEV8im2/ALnUFWVuONfA1VWsp236pKLHNcwuJCbOwsSB4sTNJipLkl1mK7Qz6n+MM69zQs+txJ2rtq+WBH/kwKbvQV7EZFBM97aD4x8Md/+w9tAJS7r6ZuiHcmL4YRZ2HV1t4y49j/+EPxA4Xz9E4yKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=btolaeftaBqDwQXyWKFWaSVtI2pmNU7Bdm5TZCQUjNw=;
- b=F3S17BWNzC8nWsbfzPpf6psRNak5PmWSSXS6kkg/DG1ImC4PY5spJhaKpO4/imkLphR8qI+NgwfnoxpzMHJ0ztbpKXVyisst3RoU8TmFizL65dPNEaoSwUyITXUdhskj+XRmyJU3YgvH4kgbWqi/9p4QVzUtyiqs1WVQyFoPaII=
-Received: from CY8PR12MB8193.namprd12.prod.outlook.com (2603:10b6:930:71::22)
- by CH2PR12MB4183.namprd12.prod.outlook.com (2603:10b6:610:7a::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Tue, 17 Dec
- 2024 21:22:33 +0000
-Received: from CY8PR12MB8193.namprd12.prod.outlook.com
- ([fe80::9edb:7f9f:29f8:7123]) by CY8PR12MB8193.namprd12.prod.outlook.com
- ([fe80::9edb:7f9f:29f8:7123%5]) with mapi id 15.20.8251.015; Tue, 17 Dec 2024
- 21:22:33 +0000
-From: "Li, Roman" <Roman.Li@amd.com>
-To: "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>, "Siqueira,
- Rodrigo" <Rodrigo.Siqueira@amd.com>, "Pillai, Aurabindo"
- <Aurabindo.Pillai@amd.com>
-CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Li, Sun
- peng (Leo)" <Sunpeng.Li@amd.com>, "Chung, ChiaHsuan (Tom)"
- <ChiaHsuan.Chung@amd.com>, "Hung, Alex" <Alex.Hung@amd.com>, "Wentland,
- Harry" <Harry.Wentland@amd.com>, Dan Carpenter <dan.carpenter@linaro.org>
-Subject: RE: [PATCH v2] drm/amd/display: Fix NULL pointer dereference in
- dmub_tracebuffer_show
-Thread-Topic: [PATCH v2] drm/amd/display: Fix NULL pointer dereference in
- dmub_tracebuffer_show
-Thread-Index: AQHbTIYtI3rmrEmtl027HY21QI1eULLq+c0g
-Date: Tue, 17 Dec 2024 21:22:32 +0000
-Message-ID: <CY8PR12MB8193BA9C783152B8FFA9D05E89042@CY8PR12MB8193.namprd12.prod.outlook.com>
-References: <20241212110808.956179-1-srinivasan.shanmugam@amd.com>
-In-Reply-To: <20241212110808.956179-1-srinivasan.shanmugam@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ActionId=42032737-c72f-4837-9701-5df9541329b5;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=0;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=true;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open Source;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2024-12-17T21:20:09Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR12MB8193:EE_|CH2PR12MB4183:EE_
-x-ms-office365-filtering-correlation-id: 01c6904c-568f-4a10-3a26-08dd1ee0eb7f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?z+86pRh1Pl5Q8kQyjsYKkSQgrwSjJ8l1ncpr8gk9ARum2R24nqVqwC/Kf3oP?=
- =?us-ascii?Q?ocLgyYcpD3Yiy9z4FcvEPOrCsPm29WC4edwZpAxwIAEXubZnHYeAjGrTLK5Y?=
- =?us-ascii?Q?gaH1a76cGW47Wj0FRLqvJk27GHPT/lp9nbKd8/qMs6WjU9NocZvt6IuxYxOG?=
- =?us-ascii?Q?RBKlIXI2RL5EqoXbOcygh2T20OehEzoQkqIwEy6/1saTcQLDbFYIsfd6WGDG?=
- =?us-ascii?Q?lsXq57910/jDiGLTScLHIs0x2d0BA0wr2fEeWZFsXtJ4YASyJ6+BcrOgAqwh?=
- =?us-ascii?Q?+hKhfmjk+3StAJpN7PlTTVfbAC/nx6KsKWEkqaYCGNqHPl4dfCLvhlE+SSyc?=
- =?us-ascii?Q?NTskpnfm19xjOkHe2SBAyp7xRj1mrkuiRdzFGKjSj8B77YyreWIE4wEfIP6y?=
- =?us-ascii?Q?wIYd/7mha21c8nZiL2a6LW7U3j1papGmSYb3p27XfhxFBRW9wh/1vv6pHgaF?=
- =?us-ascii?Q?ToC4fLZLXHUTrQn8nsWAUemqlDjL6hCbwtREzp3J37WuaLjYBLzpqyBUWfOT?=
- =?us-ascii?Q?NCs1f0BR5mOPI0V/nJKG5KM+qfcRTGLDHgq9gXgNLtCuVUO5ZgIp4NXksKPw?=
- =?us-ascii?Q?NCytF8H4l/qv+9elye9BJAKwc0SCPPg69cE4dONVLkwa/BA5dwrXQjKGtAiI?=
- =?us-ascii?Q?NNEq/We1lFQ73WZNBwJZnWwmZ7BPdDtAaNEN33AD39AkYbjE7z9j4MeFXDZT?=
- =?us-ascii?Q?QRABxaH75pQ6juwPHdpFDiMGsb4w6JRch8ouCsZydac5cfZXySj5gByrVdcz?=
- =?us-ascii?Q?iNTfrXhhmIIiDfFWkWh7Xz5S2eQeQtonRX9md7bMbP2mAjr9PfnVlby+vsLP?=
- =?us-ascii?Q?rEeK4MQBGfPgLOjlSayMkN9Uh2lyhMGO8BUsvNbQjbYy7bdT4FpEF2or20FD?=
- =?us-ascii?Q?5sRhkPv250Sd/7vNzxz0ZTqwvjjz2uHy90VvygSq5RHEot8NcmsiwKgQ7Jxg?=
- =?us-ascii?Q?BUsu6jnnFc3I23XhASygDYdRku1rbnunRCRX3csKz2Gluf65nIL8Dxqc6sEI?=
- =?us-ascii?Q?YUhDB/RylauN8Hkyg5EkzH2a8NBFRwx+1mrmUlYWLTcRc94RHmk5FIW87Olf?=
- =?us-ascii?Q?pAwwMd+DpjU8B6xPPr8ssoZgKvCeAgAvXrLtJhkgQdvC9ty0HR6ANfXzacfC?=
- =?us-ascii?Q?8zc9fF1XIU/DfBCPl2D03oKO6+gMa/Mf+S8ZXi+Wh4Ewkt8l3tu/yCnTRqL6?=
- =?us-ascii?Q?FhWxppYIhQZmwyVMeclI+i6Acjb92yJexAUJSNdbIeKNDFZJEBfkzZwjbs+t?=
- =?us-ascii?Q?Rc4Nzg0JP6E5lggr7sd7iN6NmSi1/EVrHT/RXg3lULKhCYFJhCVM5usYwKFm?=
- =?us-ascii?Q?kcNi9oR0zUmhJ5b5ahWU5qU7JeugFBOMNuJagKTo4iWsbiP9GmTTXlN4BxQW?=
- =?us-ascii?Q?wtpykb375YDV7IjwJiRhvtHj+QZrcwMjnONNejAKPYZxn2ojS63iKrLRBSFb?=
- =?us-ascii?Q?dp+DeWd+mMZSWZ9n0ZDS9zig/S5Djmkm?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR12MB8193.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GJDvNBEtkSQSu6lemrE2XjV8paWD9U5YJJZ2aT4UDSKzDVmskhKFwJcGrRDs?=
- =?us-ascii?Q?KAdKGsnbouwoveymHTdV4daCLu5fLGeiBbGBNtUA/WUky8MrAdFwMt4k30yU?=
- =?us-ascii?Q?QmyiXVU0IC/L0n7bWr7sXZ5vFl1PGpSrJIOD/7CGQCMyXR+0dvWVGjVcColj?=
- =?us-ascii?Q?UTwsVkjNzOUCVHIpnx/urwdJQfUW0RC13aSAGrfs7ISufDgMuuC+zW3QU8OO?=
- =?us-ascii?Q?DU/bqvjBRNSgrARheaEegyrCFGyE46UEp/T0MGfRDteuyoquktMa7rmAURsT?=
- =?us-ascii?Q?94uSEhJ6m2L/lIviX0qCs5rxWdVwtNoovJpGiOfFcBfKDsX8Y/B8HiJ4Khuz?=
- =?us-ascii?Q?SMkxFDYug6F2OtOSllaHSqIekigI8q2Wd7NYN89ZhhET8+MGv4PRb4ViVXCk?=
- =?us-ascii?Q?DgWz5z27lv12Qr8o4YllonWx5xf+xb51m4QK/2ki419OegYAIRcOtOgzT6ac?=
- =?us-ascii?Q?FQa5rBxtdftBmbq+wiOqxmkkjpFnvNHy6gilFeBJBnrhzAIkDytHR9PSvEcd?=
- =?us-ascii?Q?OCaRhoSd4n0S4CXkNBpd2PItRTxbB7IXFJpQnzn+0FOtihO7xSeYr4keZnBo?=
- =?us-ascii?Q?XylhcIiM//OCsQbEc3hhX8huqPohTfNiCq1QS5JaEnQhoLgZ3+tNqWwxEn1u?=
- =?us-ascii?Q?Yda2EvxaboUyLHOxEJdl7t1fV/ZfPygHscXCZTCuxB2KdTLUjahNkUioa0CJ?=
- =?us-ascii?Q?kQ3B1xU+zvpGdmNObN7YqS/Cux/JZCDFNUpAU06eDRxXq7cNxt+z1QpjFeAO?=
- =?us-ascii?Q?k4c1Lb/YfcGiTKJuxPyAON7yS8BN9SMxkLPzdta013CVNrep4t45i7TZ0QYy?=
- =?us-ascii?Q?onyAdDCPXfEtfUTckQmLHb9NBFeufqecC2fcm3sjJViKh3lRCjDi5qy/2F0D?=
- =?us-ascii?Q?93sbVw9e0Hp5aCLkLv2bfb+zNfQaFM3Bg7jbMtrWFHOGeB4TaKr1TBW++5fu?=
- =?us-ascii?Q?AT4gnfuireDwhEaqfoxdbrcey96QPLhxXRANOLQTuKNyqeLvXTmss55l6R+Z?=
- =?us-ascii?Q?yF6fpwXxu+3UetcMoosVk2Dgnl92ejzjr+Lc1W3gWF0IRJEH2jUBNp3dpGXu?=
- =?us-ascii?Q?ZtFkwk1zexClT2hA6RoGl73L49ZiG4hXIxuJVFg6AMkncvnOvNNOOHHPhoh6?=
- =?us-ascii?Q?HcTRx4HhC7yMx/lwgxlB3ETW+23dOs7Fhfddy/hvUo3G7jRVeuNmfnZpeobj?=
- =?us-ascii?Q?sB3CbFdqWYyIKjOuGhzHHalfU9AiYsocEqTgjr3cApDFxsSmaeQrRlENah+Z?=
- =?us-ascii?Q?PtqXydP1sQobOGV3JlWQ0hnVUOjivPNySn6tWByWfM3lTIGCq5t9N3xffsDZ?=
- =?us-ascii?Q?B25vMEbYZQNF7z03jaj9jlNgbtr6QOWRd+mudU1hp7hkb0D3QnUzTTesGOVF?=
- =?us-ascii?Q?pYJluetBgbK5fMfowKbgfEGEzgGwQc9X6Rf2LwLUACaxYNhWugpP63ekvA88?=
- =?us-ascii?Q?2ams/nb9iTbTUloDZIjg360MUV1S3CBIssjxUXQ30IHJuRUdRa8HBP76SGKR?=
- =?us-ascii?Q?qe6Ffsd0ukUVm52J/HSobJ0fybuzyf2S+nATF6KcfXVcOM4dP/0Wl0yMJntR?=
- =?us-ascii?Q?S6m35F95tu3hQ85woDg=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
+ [IPv6:2a00:1450:4864:20::52f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E80D10E305;
+ Tue, 17 Dec 2024 23:00:18 +0000 (UTC)
+Received: by mail-ed1-x52f.google.com with SMTP id
+ 4fb4d7f45d1cf-5d4e2aa7ea9so3326700a12.2; 
+ Tue, 17 Dec 2024 15:00:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734476417; x=1735081217; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=MFHlrKsNj2nTROqoaF03zdCs62Jx2PNpLmDst7mEkDA=;
+ b=SXhkv3AtD8VsRt93UR40e+s81l1p16glyUpc/S7Cz6DzKmzv1A+wXOyzzkkv+l7I0M
+ ec7m/aExjCScDpJ81P6J2uAjOzQp8ADHe4hZjpUaKgWTA90bjBSRWkr0ZNog6wi1hwBl
+ e7CnGT9wn9j610vTsOgfwftq7e95lDxaL7SEN1O7PddqBCONRHa58bhX8JvyF2cWnUfP
+ J3y5cRFxjm3Sxq3glnQnW69ZAwZBoB9VIXHfjT+BGBWhXhcnE3VX4AMczwAuuDdIQCc+
+ iuwHIs06vs4MhOqEPeOxmiqPhmsYMvmbZmzFzNF7RSirdM5QPa7zLieI1he2BFEr++GX
+ tDMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734476417; x=1735081217;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=MFHlrKsNj2nTROqoaF03zdCs62Jx2PNpLmDst7mEkDA=;
+ b=v1twpg9VXhO/bDMR3qXCaOgpfHDdx+vd/g25w6uulQEHX2kneRTCD1SeGWdKdDFMxX
+ vyt5b2OAJLZisPTOSCkrL3FQMe/rW3T1RoqZ/kyXVd9Uf2FUSBfkERlri7UzAYuhBUav
+ QS55sr7wHOeS+3QPonxNra6MKb/cRvYXJIB/qdLVmzvuIvN8D2nKQ/4H84oY6KqlNdil
+ RuexRlnaeyM0c5/1+/Zwekyd5hpuzeGDBhAY3K7iX5MFiUgreLPAzCEhtvcbxLIEG8nq
+ Zonrgd6W+HJFZbi7ihQA6lTQxnYeKSj6CRyOP2eyjacRgkEUskbybNStujmTWIEwah1z
+ PG5A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVZxqadqMGt8uuoT/UmP8EWzkaG3bL9gMu312XNvfeRQRTEtDLecwAJr1I6nUwytxqhBrpwpbBrmqzv@lists.freedesktop.org,
+ AJvYcCXcF2pt1EwCk3ci/9E+li+QLbm0wK/NzReDIOHT3sAuFRLv9DHpp5Pn3mIBoNRzpC9E7f0oiZpW@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyKr0HKvk8Kk0dZvIBOnu9pavOEuqqsDGXYJpZn3jJUsn3XTdtK
+ YsiVYlzKnXxxJe72hJ7Npu60FwsDJSdGDTMHlOJS80nMtLe+i3sxHkZOmQ==
+X-Gm-Gg: ASbGncuZlPKQsXzIKOWxLFc4RKr75Sq4652TfMUAAAFEp4D+eE9oy7iM99dpA/yEd0j
+ KdgUfSmFy+cuUCsAtTZOSsGkD6yIrU8ZCuHdLxUqpWB4nBaddTxMVCLT3OCNsZlXUDhaBBL0oZR
+ 7jNs+HVhwI4D0TEVvGV28sgWSyRWFUXFSZJFeGwqpMHe9ikomPmzzRgqXpb8igrqZH2jMza8a3R
+ 9xKWTpkz5+nvVfEkg/zlYQ5bmCk5lNEXVkGJ4AsIdHfWqbWOGlzlFvDMpW6zV9NeeEoxupb
+X-Google-Smtp-Source: AGHT+IGseKPOWt+FNZcwAVW2rCKFGixSzJ+XFmlitmEI87kClR53LP1fPFfQ91j/1mJmiGx0AiKAxg==
+X-Received: by 2002:a17:906:30cb:b0:aa6:7c36:3423 with SMTP id
+ a640c23a62f3a-aabf46fc8fbmr37360166b.1.1734476416434; 
+ Tue, 17 Dec 2024 15:00:16 -0800 (PST)
+Received: from localhost (dh207-43-57.xnet.hr. [88.207.43.57])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-aab9606b3a0sm487066666b.81.2024.12.17.15.00.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Dec 2024 15:00:15 -0800 (PST)
+From: Mirsad Todorovac <mtodorovac69@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Victor Skvortsov <victor.skvortsov@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Mirsad Todorovac <mtodorovac69@gmail.com>,
+ Zhigang Luo <Zhigang.Luo@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>,
+ Jack Xiao <Jack.Xiao@amd.com>, Vignesh Chander <Vignesh.Chander@amd.com>,
+ Danijel Slivka <danijel.slivka@amd.com>
+Subject: [PATCH v1 1/3] drm/admgpu: replace kmalloc() and memcpy() with
+ kmemdup()
+Date: Tue, 17 Dec 2024 23:58:10 +0100
+Message-ID: <20241217225811.2437150-2-mtodorovac69@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8193.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01c6904c-568f-4a10-3a26-08dd1ee0eb7f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2024 21:22:32.8492 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: l5w9IkCS3mKEDpmi23VaMg3bxshAWs7Zzp/BjcRyMWlkWyahbY4RGYXf783Hl/M0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4183
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 18 Dec 2024 08:44:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,122 +94,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+The static analyser tool gave the following advice:
 
-Reviewed-by: Roman Li <roman.li@amd.com>
+./drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c:1266:7-14: WARNING opportunity for kmemdup
 
-> -----Original Message-----
-> From: SHANMUGAM, SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>
-> Sent: Thursday, December 12, 2024 6:08 AM
-> To: Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com>; Pillai, Aurabindo
-> <Aurabindo.Pillai@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org; SHANMUGAM, SRINIVASAN
-> <SRINIVASAN.SHANMUGAM@amd.com>; Li, Sun peng (Leo)
-> <Sunpeng.Li@amd.com>; Chung, ChiaHsuan (Tom)
-> <ChiaHsuan.Chung@amd.com>; Li, Roman <Roman.Li@amd.com>; Hung, Alex
-> <Alex.Hung@amd.com>; Wentland, Harry <Harry.Wentland@amd.com>; Hamza
-> Mahfooz <hamza.mahfooz@amd.com>; Dan Carpenter
-> <dan.carpenter@linaro.org>
-> Subject: [PATCH v2] drm/amd/display: Fix NULL pointer dereference in
-> dmub_tracebuffer_show
->
-> It corrects the issue by checking if 'adev->dm.dmub_srv' is NULL before a=
-ccessing
-> its 'meta_info' member. This ensures that we do not dereference a NULL po=
-inter.
->
-> Fixes the below:
->       drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c
-> :917 dmub_tracebuffer_show()
->       warn: address of 'adev->dm.dmub_srv->meta_info' is non-NULL
->
-> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.c
->     901 static int dmub_tracebuffer_show(struct seq_file *m, void *data)
->     902 {
->     903         struct amdgpu_device *adev =3D m->private;
->     904         struct dmub_srv_fb_info *fb_info =3D adev->dm.dmub_fb_inf=
-o;
->     905         struct dmub_fw_meta_info *fw_meta_info =3D &adev->dm.dmub=
-_srv-
-> >meta_info;
->                                                          ^^^^^^^^^^^^^^^^=
-^^^^^^^^^^^^^ Even if adev-
-> >dm.dmub_srv is NULL, the address of ->meta_info can't be NULL
->
->     906         struct dmub_debugfs_trace_entry *entries;
->     907         uint8_t *tbuf_base;
->     908         uint32_t tbuf_size, max_entries, num_entries, first_entry=
-, i;
->     909
->     910         if (!fb_info)
->     911                 return 0;
->     912
->     913         tbuf_base =3D (uint8_t *)fb_info-
-> >fb[DMUB_WINDOW_5_TRACEBUFF].cpu_addr;
->     914         if (!tbuf_base)
->     915                 return 0;
->     916
-> --> 917         tbuf_size =3D fw_meta_info ? fw_meta_info->trace_buffer_s=
-ize :
->                             ^^^^^^^^^^^^ Always non-NULL
->
->     918                                    DMUB_TRACE_BUFFER_SIZE;
->     919         max_entries =3D (tbuf_size - sizeof(struct dmub_debugfs_t=
-race_header)) /
->     920                       sizeof(struct dmub_debugfs_trace_entry);
->     921
->     922         num_entries =3D
->
-> Fixes: c506f6e03b18 ("drm/amd/display: Make DMCUB tracebuffer debugfs
-> chronological")
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: Tom Chung <chiahsuan.chung@amd.com>
-> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> Cc: Roman Li <roman.li@amd.com>
-> Cc: Alex Hung <alex.hung@amd.com>
-> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
-> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> ---
-> v2:
->  - initially initialize struct dmub_fw_meta_info *fw_meta_info to NULL (D=
-an
->    Carpenter)
->
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> index 11a7ac54f91c..2d31836ecb98 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> @@ -902,7 +902,7 @@ static int dmub_tracebuffer_show(struct seq_file *m, =
-void
-> *data)  {
->       struct amdgpu_device *adev =3D m->private;
->       struct dmub_srv_fb_info *fb_info =3D adev->dm.dmub_fb_info;
-> -     struct dmub_fw_meta_info *fw_meta_info =3D &adev->dm.dmub_srv-
-> >meta_info;
-> +     struct dmub_fw_meta_info *fw_meta_info =3D NULL;
->       struct dmub_debugfs_trace_entry *entries;
->       uint8_t *tbuf_base;
->       uint32_t tbuf_size, max_entries, num_entries, first_entry, i; @@ -9=
-14,6
-> +914,9 @@ static int dmub_tracebuffer_show(struct seq_file *m, void *data=
-)
->       if (!tbuf_base)
->               return 0;
->
-> +     if (adev->dm.dmub_srv)
-> +             fw_meta_info =3D &adev->dm.dmub_srv->meta_info;
-> +
->       tbuf_size =3D fw_meta_info ? fw_meta_info->trace_buffer_size :
->                                  DMUB_TRACE_BUFFER_SIZE;
->       max_entries =3D (tbuf_size - sizeof(struct dmub_debugfs_trace_heade=
-r)) /
-> --
-> 2.34.1
+ → 1266         tmp = kmalloc(used_size, GFP_KERNEL);
+   1267         if (!tmp)
+   1268                 return -ENOMEM;
+   1269
+ → 1270         memcpy(tmp, &host_telemetry->body.error_count, used_size);
+
+Replacing kmalloc() + memcpy() with kmemdump() doesn't change semantics.
+Original code works without fault, so this is not a bug fix but proposed improvement.
+
+Link: https://lwn.net/Articles/198928/
+Fixes: 84a2947ecc85c ("drm/amdgpu: Implement virt req_ras_err_count")
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: Xinhui Pan <Xinhui.Pan@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Zhigang Luo <Zhigang.Luo@amd.com>
+Cc: Victor Skvortsov <victor.skvortsov@amd.com>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Lijo Lazar <lijo.lazar@amd.com>
+Cc: Yunxiang Li <Yunxiang.Li@amd.com>
+Cc: Jack Xiao <Jack.Xiao@amd.com>
+Cc: Vignesh Chander <Vignesh.Chander@amd.com>
+Cc: Danijel Slivka <danijel.slivka@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Mirsad Todorovac <mtodorovac69@gmail.com>
+---
+ v1:
+	initial version.
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+index c704e9803e11..0af469ec6fcc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+@@ -1263,12 +1263,10 @@ static int amdgpu_virt_cache_host_error_counts(struct amdgpu_device *adev,
+ 	if (used_size > (AMD_SRIOV_RAS_TELEMETRY_SIZE_KB << 10))
+ 		return 0;
+ 
+-	tmp = kmalloc(used_size, GFP_KERNEL);
++	tmp = kmemdup(&host_telemetry->body.error_count, used_size, GFP_KERNEL);
+ 	if (!tmp)
+ 		return -ENOMEM;
+ 
+-	memcpy(tmp, &host_telemetry->body.error_count, used_size);
+-
+ 	if (checksum != amd_sriov_msg_checksum(tmp, used_size, 0, 0))
+ 		goto out;
+ 
+-- 
+2.43.0
 
