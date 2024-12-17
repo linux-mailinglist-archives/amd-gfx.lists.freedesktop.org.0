@@ -1,54 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C61C9F49D6
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2024 12:26:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D9D9F49D0
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Dec 2024 12:26:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8B2910E934;
-	Tue, 17 Dec 2024 11:26:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC19E10E928;
+	Tue, 17 Dec 2024 11:26:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3CDF410E634
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2024 01:17:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2937910E832
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Dec 2024 01:50:11 +0000 (UTC)
 Received: from loongson.cn (unknown [113.200.148.30])
- by gateway (Coremail) with SMTP id _____8DxmeA_z2BnSJdXAA--.40564S3;
- Tue, 17 Dec 2024 09:09:19 +0800 (CST)
+ by gateway (Coremail) with SMTP id _____8AxquDQ2GBnrJxXAA--.40540S3;
+ Tue, 17 Dec 2024 09:50:08 +0800 (CST)
 Received: from linux.localdomain (unknown [113.200.148.30])
- by front1 (Coremail) with SMTP id qMiowMDxPEcyz2BnXNeFAA--.16436S10;
- Tue, 17 Dec 2024 09:09:18 +0800 (CST)
+ by front1 (Coremail) with SMTP id qMiowMCxbUfO2GBn8+KFAA--.16146S2;
+ Tue, 17 Dec 2024 09:50:07 +0800 (CST)
 From: Tiezhu Yang <yangtiezhu@loongson.cn>
 To: Huacai Chen <chenhuacai@kernel.org>, Josh Poimboeuf <jpoimboe@kernel.org>,
  Peter Zijlstra <peterz@infradead.org>
 Cc: loongarch@lists.linux.dev, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v6 8/9] LoongArch: Convert unreachable() to BUG()
-Date: Tue, 17 Dec 2024 09:09:04 +0800
-Message-ID: <20241217010905.13054-9-yangtiezhu@loongson.cn>
+Subject: [PATCH v6 9/9] drm/amd/display: Mark dc_fixpt_from_fraction() noinline
+Date: Tue, 17 Dec 2024 09:50:06 +0800
+Message-ID: <20241217015006.30305-1-yangtiezhu@loongson.cn>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20241217010905.13054-1-yangtiezhu@loongson.cn>
 References: <20241217010905.13054-1-yangtiezhu@loongson.cn>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qMiowMDxPEcyz2BnXNeFAA--.16436S10
+X-CM-TRANSID: qMiowMCxbUfO2GBn8+KFAA--.16146S2
 X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj9xXoWrZr4rZFW3JF13tryfWryrKrX_yoWkCwcEyr
- yxJw1UGrWrZFZrAw1Utr4rWryFq3WrKFWY9wn7Zay5A3W5t348t3y5tas8Ar1ktFWkGrZ5
- t39YvFZYkw1xKosvyTuYvTs0mTUanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvT
- s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
- cSsGvfJTRUUUb7AYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
- vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
- w2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
- WxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
- 6r4j6r4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc
- 02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWrXVW3AwAv7VC2z280aVAF
- wI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxAIw28IcxkI7V
- AKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCj
- r7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCIc40Y0x0EwIxGrwCI42IY6x
- IIjxv20xvE14v26F1j6w1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAI
- w20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x
- 0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0lPfDUUUUU==
+X-Coremail-Antispam: 1Uk129KBj93XoW7ZF17KFWruF4DAw1DtrWDGFX_yoW8JFW3pF
+ 43JFy5Wa1kJF1xKFZxJa45uFW3Ca95XrW0gr1UAws5Aa47A3WvgFZxt3WDGFW2kF4Yyr4I
+ vF4DKay7KFn2yrcCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUk2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27w
+ Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE
+ 14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41l42xK82IYc2
+ Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s02
+ 6x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r126r1DMIIYrxkI7VAKI48JMIIF0x
+ vE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE
+ 42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6x
+ kF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUzku4UUUUU
 X-Mailman-Approved-At: Tue, 17 Dec 2024 11:26:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,40 +64,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When compiling on LoongArch, there exists the following objtool
-warning in arch/loongarch/kernel/machine_kexec.o:
+When compiling with Clang on LoongArch, there exists the following objtool
+warning in drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.o:
 
-  kexec_reboot() falls through to next function crash_shutdown_secondary()
+  dc_fixpt_recip() falls through to next function dc_fixpt_sinc()
 
-Avoid unreachable() as it can (and will in the absence of UBSAN)
-generate fallthrough code. Use BUG() so we get a "break	BRK_BUG"
-trap (with unreachable annotation).
+This is because dc_fixpt_from_fraction() is inlined in dc_fixpt_recip()
+by Clang, given dc_fixpt_from_fraction() is not a simple function, just
+mark it noinline to avoid the above issue.
 
 Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
 ---
- arch/loongarch/kernel/machine_kexec.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/loongarch/kernel/machine_kexec.c b/arch/loongarch/kernel/machine_kexec.c
-index 8ae641dc53bb..f9381800e291 100644
---- a/arch/loongarch/kernel/machine_kexec.c
-+++ b/arch/loongarch/kernel/machine_kexec.c
-@@ -126,14 +126,14 @@ void kexec_reboot(void)
- 	/* All secondary cpus go to kexec_smp_wait */
- 	if (smp_processor_id() > 0) {
- 		relocated_kexec_smp_wait(NULL);
--		unreachable();
-+		BUG();
- 	}
- #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c b/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
+index 88d3f9d7dd55..b40c6a21460d 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
++++ b/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
+@@ -68,7 +68,7 @@ static inline unsigned long long complete_integer_division_u64(
+ #define GET_FRACTIONAL_PART(x) \
+ 	(FRACTIONAL_PART_MASK & (x))
  
- 	do_kexec = (void *)reboot_code_buffer;
- 	do_kexec(efi_boot, cmdline_ptr, systable_ptr, start_addr, first_ind_entry);
- 
--	unreachable();
-+	BUG();
- }
- 
+-struct fixed31_32 dc_fixpt_from_fraction(long long numerator, long long denominator)
++noinline struct fixed31_32 dc_fixpt_from_fraction(long long numerator, long long denominator)
+ {
+ 	struct fixed31_32 res;
  
 -- 
 2.42.0
