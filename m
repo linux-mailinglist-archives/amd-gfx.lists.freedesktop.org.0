@@ -2,56 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4773E9F7ADB
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Dec 2024 13:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2EA9F7CF2
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Dec 2024 15:17:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9A5F10ECE3;
-	Thu, 19 Dec 2024 12:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB26210ED16;
+	Thu, 19 Dec 2024 14:17:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VTXlrd9m";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=schwarzvogel.de header.i=@schwarzvogel.de header.b="u4WDCzNx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D336710E491;
- Thu, 19 Dec 2024 12:01:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 38E345C60F2;
- Thu, 19 Dec 2024 12:01:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9884AC4CECE;
- Thu, 19 Dec 2024 12:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1734609718;
- bh=mmSG5jmvIG2IQz8h4oPfiL+yfIQ6E1uV4JAbWmJ+e1A=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=VTXlrd9mX2AtoGsMuWQEnYN+Leb0Ph2/db+NrKfLeO70FAXMd7qSLKGyn8zdIpWlI
- cMF5nLg3ZEiMJZqoxU1oHiyyF6hO7cYPniY4EAN9pDP+57OBp/874axiYg4NHkULDN
- ptYPqQ6Jk4GYS/dpgJdM/8hwlEbZHE+GABY6vSGzsBo4PQtoSd8LWF94CJl+7ORetY
- P2nLCIxXSVOhV3/dp83pMQJYZ03jEpdYxxgb2mcdhYXBVJS0lpZsLaXtjF0t+Jmdi8
- oo8w1Ndg+xfSYueLd+CZI248gXOnzlmmw7oOHU44V4aElZPrmZF8QBHzjrI8ywYV+Y
- T3U6iuq8pu0rg==
-Date: Thu, 19 Dec 2024 13:01:55 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>, linux-kernel@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Tejun Heo <tj@kernel.org>, 
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>, 
- Andrew Morton <akpm@linux-foundation.org>,
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org, 
- linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v2 5/7] drm/amdgpu: Add cgroups implementation
-Message-ID: <20241219-bright-oarfish-of-vitality-a8efba@houat>
-References: <20241204134410.1161769-1-dev@lankhorst.se>
- <20241204134410.1161769-6-dev@lankhorst.se>
+X-Greylist: delayed 1358 seconds by postgrey-1.36 at gabe;
+ Wed, 18 Dec 2024 16:16:24 UTC
+Received: from mail.schwarzvogel.de (mail.schwarzvogel.de
+ [IPv6:2a01:4f8:252:1806::25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5C4D10EBFE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Dec 2024 16:16:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=schwarzvogel.de; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
+ From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=c9LVfo+PTMXEjOCXwQLiW/jNbCg2tISUpfnhPWb1fxE=; b=u4WDCzNxIAS3N/sg7VLrMEnMD6
+ HDBl1ALemaR0LtGjBDeBgDcjaG1m5NL8alVqez13Jsc02xASICVAdoWaW2BJvZfIcruB5d87h3VEj
+ VsEXgj2YfMo/sE/9gCZsyBZ5mulbNbWwrfVSVLCT9xpCfT8aHttNMthZsT12+lFJ4Rv5LOFgnV3zW
+ 77i63LBCBLFsNtBJUjaRcFCxVXP4jETVB/g3tfGpwI5J8XwHNkoE14O35SoTwo1Da7FOCxwelFjj4
+ 5vbHvYPBoG31Jcwo1inOVS7vECWBUrsPqQOUoWD28V7FT2K2qgGlqs84jCrGOfY48gZEOHwQ9DwOw
+ 1Xob6lkA==;
+Received: from klausman by mail.schwarzvogel.de with local (Exim 4.98)
+ (envelope-from <klausman@schwarzvogel.de>)
+ id 1tNwMp-000000001KY-1TFB; Wed, 18 Dec 2024 16:53:43 +0100
+Date: Wed, 18 Dec 2024 16:53:43 +0100
+From: Tobias Klausmann <klausman@schwarzvogel.de>
+To: amd-gfx@lists.freedesktop.org
+Cc: Jesse Zhang <jesse.zhang@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>
+Subject: [Bug report] Regression with kernel v6.13-rc2
+Message-ID: <3d61f927-9beb-4ce1-b627-1740ac948c41@skade.local>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="ggsfrfgw7sj3junq"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241204134410.1161769-6-dev@lankhorst.se>
+X-Mailman-Approved-At: Thu, 19 Dec 2024 14:17:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,70 +57,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi!
 
---ggsfrfgw7sj3junq
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 5/7] drm/amdgpu: Add cgroups implementation
-MIME-Version: 1.0
+I have been hitting kernel messages from AMDGPU since v6.13-rc2, for
+example:
 
-Hi Alex, Christian, Xinhui,
+[Wed Dec 18 15:56:24 2024] gmc_v11_0_process_interrupt: 10 callbacks suppressed
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00040B52
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          Faulty UTCL2 client ID: CPC (0x5)
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          MORE_FAULTS: 0x0
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          WALKER_ERROR: 0x1
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          PERMISSION_FAULTS: 0x5
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          MAPPING_ERROR: 0x1
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          RW: 0x1
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          Faulty UTCL2 client ID: CPC (0x5)
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          MORE_FAULTS: 0x1
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          WALKER_ERROR: 0x1
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          PERMISSION_FAULTS: 0x3
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          MAPPING_ERROR: 0x1
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:          RW: 0x0
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+[Wed Dec 18 15:56:24 2024] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
 
-We forgot to Cc you on that series, sorry. Could you have a look at the fol=
-lowing patch?
+This happens when loading nontrivial (~6g) models using PyTorch. There
+is no immediate crash, but if exercise the model for a few minutes,
+evetually, the GPU crashes (sometimes the whole machine).
 
-Thanks!
-Maxime
+I bisected this betwee -rc1 (which works fine) and -rc2, and I landed on
+this commit:
 
-On Wed, Dec 04, 2024 at 02:44:05PM +0100, Maarten Lankhorst wrote:
-> Similar to xe, enable some simple management of VRAM only.
->=20
-> Co-developed-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_vram_mgr.c
-> index 7d26a962f811c..f1703a746cadd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -24,6 +24,7 @@
-> =20
->  #include <linux/dma-mapping.h>
->  #include <drm/ttm/ttm_range_manager.h>
-> +#include <drm/drm_drv.h>
-> =20
->  #include "amdgpu.h"
->  #include "amdgpu_vm.h"
-> @@ -908,6 +909,9 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
->  	struct ttm_resource_manager *man =3D &mgr->manager;
->  	int err;
-> =20
-> +	man->cg =3D drmm_cgroup_register_region(adev_to_drm(adev), "vram", adev=
-->gmc.real_vram_size);
-> +	if (IS_ERR(man->cg))
-> +		return PTR_ERR(man->cg);
->  	ttm_resource_manager_init(man, &adev->mman.bdev,
->  				  adev->gmc.real_vram_size);
-> =20
-> --=20
-> 2.43.0
->=20
+commit 438b39ac74e2a9dc0a5c9d653b7d8066877e86b1
+Author: Jesse.zhang@amd.com <Jesse.zhang@amd.com>
+Date:   Thu Dec 5 17:41:26 2024 +0800
 
---ggsfrfgw7sj3junq
-Content-Type: application/pgp-signature; name="signature.asc"
+    drm/amdkfd: pause autosuspend when creating pdd
 
------BEGIN PGP SIGNATURE-----
+    When using MES creating a pdd will require talking to the GPU to
+    setup the relevant context. The code here forgot to wake up the GPU
+    in case it was in suspend, this causes KVM to EFAULT for passthrough
+    GPU for example. This issue can be masked if the GPU was woken up by
+    other things (e.g. opening the KMS node) first and have not yet gone to sleep.
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2QLLgAKCRAnX84Zoj2+
-drsmAYDbmxPhzez3f9e9kFd347WH3ntcM31sY9m9CBi5u9GgRqZ4KPX7cVSDDNzI
-2hYAxVgBgP4Y/7904CdByUIhUSux6420o/rh0nJMdvs2pNkYOdk+GWJ+Cl1zPHfA
-FOcqatwDfg==
-=eaig
------END PGP SIGNATURE-----
+    v4: do the allocation of proc_ctx_bo in a lazy fashion
+    when the first queue is created in a process (Felix)
 
---ggsfrfgw7sj3junq--
+    Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+    Reviewed-by: Yunxiang Li <Yunxiang.Li@amd.com>
+    Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+    Cc: stable@vger.kernel.org
+
+ .../gpu/drm/amd/amdkfd/kfd_device_queue_manager.c  | 15 ++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c           | 23 ++--------------------
+ 2 files changed, 17 insertions(+), 21 deletions(-)
+
+I am not sure what the causal relation ship between the commit and the
+messages I get is, but I thought this report might be useful.
+
+Since I am not subscribed to the list, please CC me on replies. Thank
+you!
+
+Best,
+Tobias
