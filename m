@@ -2,69 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D8F79FC9DA
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Dec 2024 10:00:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D819FC9DB
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Dec 2024 10:00:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBDEC10E056;
-	Thu, 26 Dec 2024 09:00:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01C2310E7E1;
+	Thu, 26 Dec 2024 09:00:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SZ4ipnVS";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7284610E10A
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Dec 2024 09:44:03 +0000 (UTC)
-Received: from loongson.cn (unknown [113.200.148.30])
- by gateway (Coremail) with SMTP id _____8DxmeDb02tnTFFaAA--.46919S3;
- Wed, 25 Dec 2024 17:43:55 +0800 (CST)
-Received: from [10.130.0.149] (unknown [113.200.148.30])
- by front1 (Coremail) with SMTP id qMiowMBxzsXa02tn5bcIAA--.37718S3;
- Wed, 25 Dec 2024 17:43:54 +0800 (CST)
-Subject: Re: [PATCH v6 9/9] drm/amd/display: Mark dc_fixpt_from_fraction()
- noinline
-To: Nathan Chancellor <nathan@kernel.org>
-References: <20241217010905.13054-1-yangtiezhu@loongson.cn>
- <20241217015006.30305-1-yangtiezhu@loongson.cn>
- <CAAhV-H4WpcWjrQdkm3Sx4DVbp=2oW9nNGAbNqR4BEmiryrptNQ@mail.gmail.com>
- <20241218190558.g2hykmjgbny4n5i3@jpoimboe>
- <CADnq5_PFcHzob4poLa86_K4yP5gUT7Ei4Rz5vSUofvZTmB48-g@mail.gmail.com>
- <4bace457-cc26-13a3-bc90-ad6ad12bc2ed@loongson.cn>
- <20241220103100.GB17537@noisy.programming.kicks-ass.net>
- <20241220223403.GA2605890@ax162>
- <05cdb3b4c9bddf25f7b839229b635d2dec5140a4.camel@xry111.site>
- <bc35fddc-498a-cc58-b6a1-f5234a4f6d0d@loongson.cn>
- <20241223214645.GB1188382@ax162>
-Cc: Xi Ruoyao <xry111@xry111.site>, Peter Zijlstra <peterz@infradead.org>,
- Alex Deucher <alexdeucher@gmail.com>, Josh Poimboeuf <jpoimboe@kernel.org>,
- Huacai Chen <chenhuacai@kernel.org>, loongarch@lists.linux.dev,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Nick Desaulniers <ndesaulniers@google.com>, llvm@lists.linux.dev
-From: Tiezhu Yang <yangtiezhu@loongson.cn>
-Message-ID: <73c297f1-05a7-e786-557c-b267b125b6d5@loongson.cn>
-Date: Wed, 25 Dec 2024 17:43:54 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
- Thunderbird/45.4.0
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
+ [IPv6:2a00:1450:4864:20::531])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC06510E5E7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Dec 2024 23:09:55 +0000 (UTC)
+Received: by mail-ed1-x531.google.com with SMTP id
+ 4fb4d7f45d1cf-5d3ea065b79so8930200a12.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Dec 2024 15:09:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1735168194; x=1735772994; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=c9v+px78eG66InOEEBnkMK4cXXwgTr2T0JPbH4BNA8E=;
+ b=SZ4ipnVSiI8zDR2iKOuUEQItLNSpUdMl4WuAESUVsnfUum+6E1vVfEV8DRlnKAuTMT
+ xlgHUHSZG5UZGZkjyPFvDaiz61b3zpNqIsCb9ATvejGfCdb0rSoJkHKJWepKwWJu5n7c
+ MxFkdm2fTDFIXXUiNswWs+CnmbSvca40NGiF1JYeUPM6DkzytShG8/6Xl355fh2/LfSm
+ 8/QGJeBdOqfSJsoo3b8CfdgdE2HQPV62mMsUzlxrpz4XEJ20T4krLzRs87x5R7V556of
+ HSQomOiJHEMceLMkyYd4qjMF68+xvWqAu6g4+NZL/ziOkUf4eLee8NcFql2QLOHyIV71
+ i7hQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1735168194; x=1735772994;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=c9v+px78eG66InOEEBnkMK4cXXwgTr2T0JPbH4BNA8E=;
+ b=Z+q0tIExXG2PenT0laTlAB8zuqRuzUze4c9xaZDm8Re0C83Ea3Ypqj8uuWTIkl85ti
+ VFJ9hXtrvmkjTamHucFAwlYIH/pO3JafAXnOSzr6dgKGf/kPUypZa7fD/NBgv3PDRjMO
+ M8WIPQujH154BRiSiYUCLQk8VcRQxYxiRsmg5SDaMqdRfWXiTIN6N5peF0BzEM426XcG
+ oDD+cb31K2ZdXy6Og7gNGDsU6Oa+FfWAA/rLS9Lo3eyKLh3mNa3/UrSuZXy8lKA7NLiA
+ +BftiwHesKz8OTnTBWQ0q44xaHnO+DkzcAd4WvcNjPPNSWdueY7Y0BVvYMbEHca10C9E
+ LIcw==
+X-Gm-Message-State: AOJu0Yy5/gftalZ4o1ZumxkavKTCADX9gOzEjnz0sbyUlCi/7nQ99pNQ
+ aPHzCvl/KXmb8cpgOguhTTWJFNrXLq+10EOXsYUmJdlyMbioxidO
+X-Gm-Gg: ASbGncsMDfR1p2iJcmtWZRyZExS347kgNaPYR6JwlFHHwB+l1lBlxB28SUMIf12LhBX
+ z4O8B4RiGnzwaRO9//OkkFVxClKFA6OcMeuZxGomIg/V8hk8qDPBhOpPnj/w7Nt3UQfoLMQNh9T
+ WMJZVBgJhHOcZJ2TMkOVB+KFTJk1Ce3PRqpKXpeM1HmJAKTTApFhpQuobceId+/8/UzSIJguTzr
+ 5vyWwDq0iKR9MXz1vyJeyeD6i1zbQjcZGBJK7FCn1av5yg5H7eBWZ3O1TszpzA=
+X-Google-Smtp-Source: AGHT+IFmA+25Ix88Cs6aGxcufnGYvRlbbn3zhK/hJN7bbVC8PbiIb0lazhzgSE8YiH5F8BHuqE5i5g==
+X-Received: by 2002:a05:6402:50d0:b0:5d1:1f1:a283 with SMTP id
+ 4fb4d7f45d1cf-5d81dd849efmr17082749a12.4.1735168193836; 
+ Wed, 25 Dec 2024 15:09:53 -0800 (PST)
+Received: from debian.local ([31.94.62.22]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-5d80678c8dbsm8065745a12.40.2024.12.25.15.09.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 25 Dec 2024 15:09:52 -0800 (PST)
+Date: Wed, 25 Dec 2024 23:09:49 +0000
+From: Chris Bainbridge <chris.bainbridge@gmail.com>
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
+ regressions@lists.linux.dev, tjakobi@math.uni-bielefeld.de,
+ rafael@kernel.org, lenb@kernel.org, linux-acpi@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amd: Fix random crashes due to bad kfree
+Message-ID: <Z2yQvTyg_MWwrlj3@debian.local>
 MIME-Version: 1.0
-In-Reply-To: <20241223214645.GB1188382@ax162>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: qMiowMBxzsXa02tn5bcIAA--.37718S3
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj93XoW7Ww4UJF4DZw1fZFy5ZF47Awc_yoW5JF45pa
- yfKF98Zr1DAF4xtasrGw18WFW3Aa4fGF40gF15C395u347AFn8urWfJF1kGrW3Gry7AF4a
- qF4DKrWUJF1qyFXCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
- xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
- 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv
- 67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
- AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
- F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
- ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
- xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
- 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8zw
- Z7UUUUU==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Thu, 26 Dec 2024 09:00:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,74 +82,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 12/24/2024 05:46 AM, Nathan Chancellor wrote:
-> On Sun, Dec 22, 2024 at 12:27:47PM +0800, Tiezhu Yang wrote:
+Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
+available for eDP") added function dm_helpers_probe_acpi_edid, which
+fetches the EDID from the BIOS by calling acpi_video_get_edid.
+acpi_video_get_edid returns a pointer to the EDID, but this pointer does
+not originate from kmalloc - it is actually the internal "pointer" field
+from an acpi_buffer struct (which did come from kmalloc).
+dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
+resulting in memory corruption which leads to random, intermittent
+crashes (e.g. 4% of boots will fail with some Oops).
 
-...
+Fix this by allocating a new array (which can be safely freed) for the
+EDID data in acpi_video_get_edid, and correctly freeing the acpi_buffer.
 
->> With the above changes, there is no "falls through" objtool warning
->> compiled with both clang 19 and the latest mainline clang 20.
->
-> I am somewhat surprised that changes anything because the ASSERT is not
-> stopping control flow so I would expect the same problem as before. I
-> guess it does not happen perhaps due to inlining differences? I looked
+The only other caller of acpi_video_get_edid is nouveau_acpi_edid:
+remove the extraneous kmemdup here as the EDID data is now copied in
+acpi_video_get_edid.
 
-It is weird and I think it is not the correct way.
+Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
+Fixes: c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if available for eDP")
+---
+ drivers/acpi/acpi_video.c              | 3 ++-
+ drivers/gpu/drm/nouveau/nouveau_acpi.c | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-> at this code briefly when I sent my initial message and I was not sure
-> where such a check should exist. It does not look like these functions
-> really do any sort of error handling.
->
->> If you are OK with it, I will send a separate formal patch to handle
->> this issue after doing some more testing.
->
-> It may still be worth doing this to get some initial thoughts from the
-> AMD DRM folks.
-
-I think the correct way is:
-
-Keep the current ASSERT for the aim of debugging, just add BUG() to
-stop control flow if the divisor is zero.
-
---- >8 ---
-
-diff --git a/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c 
-b/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
-index 88d3f9d7dd55..e15391e36b40 100644
---- a/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
-@@ -52,6 +52,7 @@ static inline unsigned long long 
-complete_integer_division_u64(
-         unsigned long long result;
-
-         ASSERT(divisor);
-+       BUG_ON(!divisor);
-
-         result = div64_u64_rem(dividend, divisor, remainder);
-
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c 
-b/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-index 131f1e3949d3..ce2036950808 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-@@ -30,6 +30,7 @@ static inline unsigned long long 
-spl_complete_integer_division_u64(
-         unsigned long long result;
-
-         SPL_ASSERT(divisor);
-+       BUG_ON(!divisor);
-
-         result = spl_div64_u64_rem(dividend, divisor, remainder);
-
-It looks reasonable and works well both on x86 and LoongArch, there are
-no the following objtool warnings:
-
-   dc_fixpt_recip() falls through to next function dc_fixpt_sinc()
-   spl_fixpt_recip() falls through to next function spl_fixpt_sinc()
-
-If no more comments, I will send a separate formal patch for your
-review in the next week.
-
-Thanks,
-Tiezhu
+diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+index 8274a17872ed..151d1d534264 100644
+--- a/drivers/acpi/acpi_video.c
++++ b/drivers/acpi/acpi_video.c
+@@ -1485,7 +1485,8 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
+ 		if (!length)
+ 			continue;
+ 
+-		*edid = buffer->buffer.pointer;
++		*edid = kmemdup(buffer->buffer.pointer, length, GFP_KERNEL);
++		kfree(buffer);
+ 		return length;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+index 8f0c69aad248..21b56cc7605c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+@@ -384,7 +384,7 @@ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
+ 	if (ret < 0)
+ 		return NULL;
+ 
+-	return kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
++	return edid;
+ }
+ 
+ bool nouveau_acpi_video_backlight_use_native(void)
+-- 
+2.39.5
 
