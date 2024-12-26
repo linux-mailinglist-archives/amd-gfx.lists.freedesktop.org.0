@@ -2,78 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE9169FC9D9
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Dec 2024 10:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A6129FC9CB
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Dec 2024 09:33:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9F8A10E7BD;
-	Thu, 26 Dec 2024 09:00:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48E0210E7CD;
+	Thu, 26 Dec 2024 08:33:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NcGZrvQH";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wZPhPMEn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29ACC10E653
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Dec 2024 01:27:31 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id
- ffacd0b85a97d-385ddcfc97bso5230327f8f.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Dec 2024 17:27:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1735176449; x=1735781249; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=w+1gJ6KVd4d91QuBEx/cbFE3H0/ijnRtOxNNQIBNOxI=;
- b=NcGZrvQHj14+w3DqqHzQaXhlBBJa+J6nHr1nLwJrxYklhydKRZktkM2QtZXGgsfLzi
- 6t1sXXHc6xs/xOAj5N/SqAor+m+422Wqm3oopPMkuirrArP29vnlO53gShiYHi5NdbN2
- unF9y07dF6pX9XnJWvGwZ6TjR4evdRZLZTJgYdUuNOvV01eFEJuDmyiRv6EDcV/syosG
- IDfRa61kTMl37q+DPFRYiXi96lMTHHmnNTTiT0xSqBSQt0oSVkz70t5D19/Y8zMV1Hwa
- 9scy9UfFJL4fHjcgb/E5IxuGjrA1xuZTyB3+l8r8JK3eKwXzALwHvzKqpP8UtR9Olrvy
- JEKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1735176449; x=1735781249;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=w+1gJ6KVd4d91QuBEx/cbFE3H0/ijnRtOxNNQIBNOxI=;
- b=xGAlCJxNb145ZlaUnMYj8g5NaYbJ7wzdV1olqM03jmtSqps0T5xckKykHL7s8rWtS0
- 8QvLIISrRFNbkduKLRmxgo6K9jJgYmoVks1qnAyXmvXaKNcT3msmXVp8rdi4Av66SUDo
- i4woqFS2S8LybSHUwZCNvUFOa4yf15kn4+Rmo6vEQIM0zNJo6nGFhAuBrLBZBc8bDJHr
- Pia6IIOmDeprL7PQd/TufZZIqjmlQ3SyBLEt4VLk2aRvzjri0/eNw3t2JflqajcYdLPG
- RNmrFc765wmQVv4a1pKD0FVCD4M8CwaIJS8U0zsEemX2msKd8AtXgleSR2tl0sZa4Nju
- Yu9A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUKB7xTWvK380u+H63eg/MJkGw1Hj8iHQhhsGT0WeMBNDZ1aFG3diDssjgWoQcczbwmnO7VnwD8@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxGWdbrC13SV0qaYCANLnDs1Sw3uWgXGprGdDthq1INz5sVc9G2
- vwsYYODtKt68vopVV7/f6lB6euKcmAQMy7q6u+z4QU9HeNkM0UhS
-X-Gm-Gg: ASbGncsBgvMm+wcCzck/s4nWAMMZOZMhqt0PtYjVPe6Rg7JEgup2+lxtbhdCwX3VfEv
- s+tzglEzDsQiqaXKCLsVPC/ihAeKNrcq0aKIeAY5lCWZR4eA0pAK9IjaLa+S/pv3pTdjSkhjRzo
- wwMUd8iHupr3JupAp+jpEXBVj1wHSRYVRWsme9fPKV5v69LjqAYeSr5pwiNMcbBwS+gFbmq9pr+
- VzA/ws93q18Z7vUXuwFvEmQ8R7wdMew0CKlM7x2nJ7sATi+YHlqORIzrvny4mA=
-X-Google-Smtp-Source: AGHT+IEhKxgf4hIQTI+Klr0apBS3ueanh/tTSMf0cm7MR8jqtmgAC2JCW+Dv1tvv1AYLHnhwnZnAgg==
-X-Received: by 2002:a5d:47c3:0:b0:385:e35e:9da8 with SMTP id
- ffacd0b85a97d-38a221f69e0mr18547954f8f.18.1735176449451; 
- Wed, 25 Dec 2024 17:27:29 -0800 (PST)
-Received: from debian.local ([31.94.62.22]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43661219611sm218332885e9.23.2024.12.25.17.27.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Dec 2024 17:27:29 -0800 (PST)
-Date: Thu, 26 Dec 2024 01:27:25 +0000
-From: Chris Bainbridge <chris.bainbridge@gmail.com>
-To: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
-Cc: Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
- regressions@lists.linux.dev, rafael@kernel.org, lenb@kernel.org,
- linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/amd: Fix random crashes due to bad kfree
-Message-ID: <Z2yw_eJwR5ih1Npr@debian.local>
-References: <Z2yQvTyg_MWwrlj3@debian.local>
- <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2047.outbound.protection.outlook.com [40.107.236.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9A8A10E7CD
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Dec 2024 08:33:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IQlIjm0QP/lc5+3wc39IMT+n/UxcAVAXyemGb3/rZ/ayLTwGXq5MR7s/nHP0q4jAUdcNSEeBoJ7etezOyvb//1GdUBesjDDNN7HZFFdDirTh3Bs12noKJgdRG5tT+ArsVd79Y5TFb7INyBX/G4KQJ0aHiGlSZtKf0q/Fglx6DmxUlX/qkJX+QN4vjcr5MhHVKhH8ujkljrxL1NFpvmGJvPALTU0/ahF1fzUnjuAud757wbWrZQHo8Axd5f2lwhmfbue9HWOVPIqhamdchUtR7b+NtTdOoH2PHcjHazBgM2JtDRvCzFogE4od2k8bBqOmh/0g2baousSTLmsSKVQLYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QUErobHl0+US96cJWuQbs44Hv6mGf+Zx6PhBESB331Y=;
+ b=YL7fSlnrusOKQwIi/YDq2sbf98pHpdKM1I+aglPtCyYGSJlfS51n/O3hHUJmlVBdbqhvXM0t+daw/iAb4He92p2B295robaGMz9PPiepM1AGgMys23uGgpkjOwsZwcZ9/OinoHCwUw124ym8YjPyipGiHRKRhsji/CBx2iofyioLi2Zw7zjIDYLxFDfCN3bxmNgSVP3c9NlJxl+uU0H0/AgI5KXHJXNhGBPfcF6L1CqbNi/TUtLTLJ7UuBv3mmif0C8+fAMwWta2xzc7JnlfO2+bZjH7O12lGVu0XK4BdX0MBB4+EL8JAg2oKphtPsBC7Rq08vHkWibP2tAvHAZOUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QUErobHl0+US96cJWuQbs44Hv6mGf+Zx6PhBESB331Y=;
+ b=wZPhPMEnJ1o7O40JQGoHeWv3HJY9htQAYMGDaLKtSxU0SAENBZEmdQu6UW57z1YOg7En5a5yKITILDkIHfjnX8E39NGeFMkPh6buOItqbXdLV9ayODodN16RzthUhhbUxNal9Magv+nzG9LtR02Elb+AnQ4AjnrIGLuLgU9I8X4=
+Received: from SJ0PR03CA0225.namprd03.prod.outlook.com (2603:10b6:a03:39f::20)
+ by CH0PR12MB8579.namprd12.prod.outlook.com (2603:10b6:610:182::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.15; Thu, 26 Dec
+ 2024 08:33:16 +0000
+Received: from SJ5PEPF000001D7.namprd05.prod.outlook.com
+ (2603:10b6:a03:39f:cafe::d0) by SJ0PR03CA0225.outlook.office365.com
+ (2603:10b6:a03:39f::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8293.14 via Frontend Transport; Thu,
+ 26 Dec 2024 08:33:16 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ5PEPF000001D7.mail.protection.outlook.com (10.167.242.59) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8293.12 via Frontend Transport; Thu, 26 Dec 2024 08:33:15 +0000
+Received: from asad-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 26 Dec
+ 2024 02:33:12 -0600
+From: Asad Kamal <asad.kamal@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <lijo.lazar@amd.com>
+CC: <le.ma@amd.com>, <hawking.zhang@amd.com>, <shiwu.zhang@amd.com>,
+ <Asad.Kamal@amd.com>, <charis.poag@amd.com>, <donald.cheung@amd.com>,
+ <sepehr.khatir@amd.com>, <daniel.oliveira@amd.com>
+Subject: [PATCH v3 1/2] drm/amd/pm: Update SMUv13.0.6 PMFW headers
+Date: Thu, 26 Dec 2024 16:32:58 +0800
+Message-ID: <20241226083259.2670687-1-asad.kamal@amd.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
-X-Mailman-Approved-At: Thu, 26 Dec 2024 09:00:11 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D7:EE_|CH0PR12MB8579:EE_
+X-MS-Office365-Filtering-Correlation-Id: 22983b6a-7f7c-4d73-2bc3-08dd2587f171
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|376014|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3JEdbTlKjfQ+AYJTNulW6rGlFcahIZWqlUm2KUVQbgz7m8OjShLhPZZRsJHt?=
+ =?us-ascii?Q?uKe/MwrDpOZAf0+0/bgfg7szbp88glznFkMq/MbGjGA+vAS6T5vipQfRCB/V?=
+ =?us-ascii?Q?PMIUbJ8nvSY0PEj0Ux79lf5tYIP3KRDgPoYYUOUW7c58eTXmeqVnfuxrj272?=
+ =?us-ascii?Q?awCmdq0CFGN/CmrU4D1aXD7ToPBNgRSJ8oN3AyqDvJ58LV/xYfD6PkRYCv6q?=
+ =?us-ascii?Q?/frkpiFAEuXK2AmmZjBhUUF7LZyojUHTcyw7bz3F9dSNeYZFfKNMVP4LJ4Sv?=
+ =?us-ascii?Q?MJdRWC4K+uXZ/sheBYMO5swxWAy8doD7iXZ9L1JNIRPkGZx5Mz2N1LndLsYv?=
+ =?us-ascii?Q?BPQ0sCv1+STEhbIBgBWmxs/e1a//s2NXCl3+Rg0lcDm7/vIzaU8bkgL97tj7?=
+ =?us-ascii?Q?KuKf2eTJjAkyHScVOCiv9U6UYrbStoUFeo8oYWIDVfZI5EO6llQQGQHCbmmd?=
+ =?us-ascii?Q?TYfoJO7DjUTGn1L+Pjuyloizg7FbZ4KviGGpHZ7Ibe6kK2J3j3pKv/js4eQU?=
+ =?us-ascii?Q?OlDW5J0CbKNPDIF4M2E/COTb7/HpXc+8v0YXS8+eyUxhD7uFM7vz7BQ7sbKB?=
+ =?us-ascii?Q?BegYXtnwfXOfuVJM4CYmQQdyEoWpCvjbb8SAQSxHAm8dkLq5NfU27FsIKTHc?=
+ =?us-ascii?Q?byFN0ghfqpPnULQ6pycRXk3C10nyVCX0TkKIARvR9n97z2295S8S9TsSof0m?=
+ =?us-ascii?Q?t+c2KYePJ3BWB/HnDmsawok3Sb2WH79IikRvHvrarLqvFDrMM9UioJItJKmf?=
+ =?us-ascii?Q?oU2IJY7xmw4b/gQ/X/NNcWP5BEs/HW27weEL023hWGj85poDhBJu2gPDiY0e?=
+ =?us-ascii?Q?LtEZWXf1dbe+JUdtX7G1uE3sI+djCOSXoLOsj+wIfTwkEbdLjvuvgi1yZj+0?=
+ =?us-ascii?Q?BNku4cKfo3NYBKHBUXU2xLWv7vEai/aZtrA4QmiYI/TdUZQ96LI9rDHgG0Cg?=
+ =?us-ascii?Q?XoTzs08ZkqhNC8jvFAIEAzHbHZwhMOuGMhgdWwAn8R6j5sr5n/TK9RTaWEIP?=
+ =?us-ascii?Q?8Xm/5zij4YGPQTghxcp54wDCWOSRqEjWaYwmgX1K1lCkUxGmwu0AloomS/qr?=
+ =?us-ascii?Q?ZosyAlMmUUbJi/AGJRrbLMRryWYO3Q1ZKrZZMTkbzJH2Rz+8jzSmoGd8FaTs?=
+ =?us-ascii?Q?om8vLIESHBIF0twjrNrVuumapCJqraZiVirfi26ThXUjPmy2gbS/lZSpf0qx?=
+ =?us-ascii?Q?oU7v0Sc7TrjVddCIGKPEtMjjzq3ZqotFzi++9yhsQMslz8VjL+Ou06+jAX82?=
+ =?us-ascii?Q?ecGtdG1QdFxmAxZzilwr5y+TYwsdu5GUl7vcHZfc2M0RM09QJ8ch3FGjQxLv?=
+ =?us-ascii?Q?Un8lJDSuP/oj97H2xwjZj/UL933ETQK2B5jgNAHN7gs/CRKqb+730rAS2XZs?=
+ =?us-ascii?Q?rYpbLy0Abgp5HBdzVzWws2hIry1tOFt1bI0Zrwmx5WS5OkWewdmhprCfw9Sa?=
+ =?us-ascii?Q?QqudM7hKYbixrNDpHXechhs1Y+BJ0twSzPbs4e/s7MdRDhI/fCDifzX1hL9i?=
+ =?us-ascii?Q?EUtCyewOO5kJd+o=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Dec 2024 08:33:15.6454 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22983b6a-7f7c-4d73-2bc3-08dd2587f171
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001D7.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB8579
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,46 +132,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 26, 2024 at 12:19:02AM +0100, Tobias Jakobi wrote:
-> Hi Chris!
-> 
-> On 12/26/24 00:09, Chris Bainbridge wrote:
-> 
-> > Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
-> > available for eDP") added function dm_helpers_probe_acpi_edid, which
-> > fetches the EDID from the BIOS by calling acpi_video_get_edid.
-> > acpi_video_get_edid returns a pointer to the EDID, but this pointer does
-> > not originate from kmalloc - it is actually the internal "pointer" field
-> > from an acpi_buffer struct (which did come from kmalloc).
-> > dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
-> > resulting in memory corruption which leads to random, intermittent
-> > crashes (e.g. 4% of boots will fail with some Oops).
-> > 
-> > Fix this by allocating a new array (which can be safely freed) for the
-> > EDID data in acpi_video_get_edid, and correctly freeing the acpi_buffer.
-> 
-> Hmm, maybe I'm missing something here. But shouldn't it suffice to just
-> remove the kfree call in dm_helpers_probe_acpi_edid()?
+Update pmfw headers for smuv13.0.6 to pmfw version 85.121
 
-Yes, that would work to fix the bad kfree, but there would be a small
-memory leak of the acpi_buffer struct. It's not a huge problem since
-this code is rarely run, and the Nouveau code has never tried to free
-the edid buffer and apparently nobody noticed, but it would be better to
-do the correct thing.
+Signed-off-by: Asad Kamal <asad.kamal@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+---
+ .../amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h    | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-One other curiosity is this comment in the code that allocates the
-memory:
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h
+index 0f96b8c59a0e..274b3e1cc4fb 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_pmfw.h
+@@ -34,6 +34,8 @@
+ #define NUM_PCIE_BITRATES     4
+ #define NUM_XGMI_BITRATES     4
+ #define NUM_XGMI_WIDTHS       3
++#define NUM_SOC_P2S_TABLES    3
++#define NUM_TDP_GROUPS        4
+ 
+ typedef enum {
+ /*0*/   FEATURE_DATA_CALCULATION            = 0,
+@@ -80,8 +82,10 @@ typedef enum {
+ /*41*/  FEATURE_CXL_QOS                     = 41,
+ /*42*/  FEATURE_SOC_DC_RTC                  = 42,
+ /*43*/  FEATURE_GFX_DC_RTC                  = 43,
++/*44*/  FEATURE_DVM_MIN_PSM                 = 44,
++/*45*/  FEATURE_PRC                         = 45,
+ 
+-/*44*/  NUM_FEATURES                        = 44
++/*46*/  NUM_FEATURES                        = 46
+ } FEATURE_LIST_e;
+ 
+ //enum for MPIO PCIe gen speed msgs
+@@ -123,7 +127,7 @@ typedef enum {
+   VOLTAGE_GUARDBAND_COUNT
+ } GFX_GUARDBAND_e;
+ 
+-#define SMU_METRICS_TABLE_VERSION 0xE
++#define SMU_METRICS_TABLE_VERSION 0xF
+ 
+ typedef struct __attribute__((packed, aligned(4))) {
+   uint32_t AccumulationCounter;
+@@ -234,6 +238,9 @@ typedef struct __attribute__((packed, aligned(4))) {
+ 
+   //PCIE BW Data and error count
+   uint32_t PCIeOtherEndRecoveryAcc;       // The Pcie counter itself is accumulated
++
++  //Total App Clock Counter
++  uint64_t GfxclkBelowHostLimitAcc[8];
+ } MetricsTableX_t;
+ 
+ typedef struct __attribute__((packed, aligned(4))) {
+@@ -328,13 +335,14 @@ typedef struct __attribute__((packed, aligned(4))) {
+   uint32_t JpegBusy[32];
+ } MetricsTableA_t;
+ 
+-#define SMU_VF_METRICS_TABLE_VERSION 0x3
++#define SMU_VF_METRICS_TABLE_VERSION 0x5
+ 
+ typedef struct __attribute__((packed, aligned(4))) {
+   uint32_t AccumulationCounter;
+   uint32_t InstGfxclk_TargFreq;
+   uint64_t AccGfxclk_TargFreq;
+   uint64_t AccGfxRsmuDpm_Busy;
++  uint64_t AccGfxclkBelowHostLimit;
+ } VfMetricsTable_t;
+ 
+ #endif
+-- 
+2.46.0
 
-case ACPI_ALLOCATE_BUFFER:
-	/*
-	 * Allocate a new buffer. We directectly call acpi_os_allocate here to
-	 * purposefully bypass the (optionally enabled) internal allocation
-	 * tracking mechanism since we only want to track internal
-	 * allocations. Note: The caller should use acpi_os_free to free this
-	 * buffer created via ACPI_ALLOCATE_BUFFER.
-	 */
-
-Which makes me wonder if all the calls to kfree on acpi_buffer structs
-with ACPI_ALLOCATE_BUFFER in acpi_video.c should actually be calls to
-acpi_os_free instead? I used kfree just for consistency with the
-existing code.
