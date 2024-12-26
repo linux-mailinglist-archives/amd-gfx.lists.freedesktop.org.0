@@ -2,95 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9F29FC9DC
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Dec 2024 10:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE9169FC9D9
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Dec 2024 10:00:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF49A10E7E0;
-	Thu, 26 Dec 2024 09:00:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9F8A10E7BD;
+	Thu, 26 Dec 2024 09:00:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NcGZrvQH";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 404 seconds by postgrey-1.36 at gabe;
- Wed, 25 Dec 2024 23:25:52 UTC
-Received: from smtp1.math.uni-bielefeld.de (smtp1.math.uni-bielefeld.de
- [129.70.45.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDBB110E5F8
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Dec 2024 23:25:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=math.uni-bielefeld.de; s=default; t=1735168746;
- bh=6T5iIgsuxbgf3BujVDmKCzyPpBxDE863nJwEayyFNU0=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=uuvyGtnAWVpb9RpC5Ab6AjWWOpkZ4mvQEH4CSLuqIcksl/lVB6+lVMuNC13vOTes1
- Fm9N2c2DrWhUKneBjRtMOhBiU8QXH7mWSG/W7Tpki7jnf4IdWYGhpgoafWszmmWkPs
- feA/FxPcgMB3uIDV4ey91RcathqO3vDcYCBj5sxgmERWHunBzOwKVGzjpjDQiZlKDf
- Edc1I1DojJVPLYr5Z0BfguoCedAUOIE+h5HJnAI6KYFw6rKC8RPQ59Zhq1glAnINst
- r02ENVBAXAAyjvliw3fFfdoXktJqAxr2A2Gch1HyI4JYcAP/m0+ab1FGdjAUmH19C5
- wPuR4cw4G7Vng==
-Received: from [192.168.2.10] (58-32-133-N4.customer.vsm.sh [170.133.32.58])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by smtp1.math.uni-bielefeld.de (Postfix) with ESMTPSA id 23B41206CD;
- Thu, 26 Dec 2024 00:19:06 +0100 (CET)
-Message-ID: <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
-Date: Thu, 26 Dec 2024 00:19:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd: Fix random crashes due to bad kfree
-To: Chris Bainbridge <chris.bainbridge@gmail.com>,
- Mario Limonciello <mario.limonciello@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29ACC10E653
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Dec 2024 01:27:31 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id
+ ffacd0b85a97d-385ddcfc97bso5230327f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Dec 2024 17:27:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1735176449; x=1735781249; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=w+1gJ6KVd4d91QuBEx/cbFE3H0/ijnRtOxNNQIBNOxI=;
+ b=NcGZrvQHj14+w3DqqHzQaXhlBBJa+J6nHr1nLwJrxYklhydKRZktkM2QtZXGgsfLzi
+ 6t1sXXHc6xs/xOAj5N/SqAor+m+422Wqm3oopPMkuirrArP29vnlO53gShiYHi5NdbN2
+ unF9y07dF6pX9XnJWvGwZ6TjR4evdRZLZTJgYdUuNOvV01eFEJuDmyiRv6EDcV/syosG
+ IDfRa61kTMl37q+DPFRYiXi96lMTHHmnNTTiT0xSqBSQt0oSVkz70t5D19/Y8zMV1Hwa
+ 9scy9UfFJL4fHjcgb/E5IxuGjrA1xuZTyB3+l8r8JK3eKwXzALwHvzKqpP8UtR9Olrvy
+ JEKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1735176449; x=1735781249;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=w+1gJ6KVd4d91QuBEx/cbFE3H0/ijnRtOxNNQIBNOxI=;
+ b=xGAlCJxNb145ZlaUnMYj8g5NaYbJ7wzdV1olqM03jmtSqps0T5xckKykHL7s8rWtS0
+ 8QvLIISrRFNbkduKLRmxgo6K9jJgYmoVks1qnAyXmvXaKNcT3msmXVp8rdi4Av66SUDo
+ i4woqFS2S8LybSHUwZCNvUFOa4yf15kn4+Rmo6vEQIM0zNJo6nGFhAuBrLBZBc8bDJHr
+ Pia6IIOmDeprL7PQd/TufZZIqjmlQ3SyBLEt4VLk2aRvzjri0/eNw3t2JflqajcYdLPG
+ RNmrFc765wmQVv4a1pKD0FVCD4M8CwaIJS8U0zsEemX2msKd8AtXgleSR2tl0sZa4Nju
+ Yu9A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUKB7xTWvK380u+H63eg/MJkGw1Hj8iHQhhsGT0WeMBNDZ1aFG3diDssjgWoQcczbwmnO7VnwD8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxGWdbrC13SV0qaYCANLnDs1Sw3uWgXGprGdDthq1INz5sVc9G2
+ vwsYYODtKt68vopVV7/f6lB6euKcmAQMy7q6u+z4QU9HeNkM0UhS
+X-Gm-Gg: ASbGncsBgvMm+wcCzck/s4nWAMMZOZMhqt0PtYjVPe6Rg7JEgup2+lxtbhdCwX3VfEv
+ s+tzglEzDsQiqaXKCLsVPC/ihAeKNrcq0aKIeAY5lCWZR4eA0pAK9IjaLa+S/pv3pTdjSkhjRzo
+ wwMUd8iHupr3JupAp+jpEXBVj1wHSRYVRWsme9fPKV5v69LjqAYeSr5pwiNMcbBwS+gFbmq9pr+
+ VzA/ws93q18Z7vUXuwFvEmQ8R7wdMew0CKlM7x2nJ7sATi+YHlqORIzrvny4mA=
+X-Google-Smtp-Source: AGHT+IEhKxgf4hIQTI+Klr0apBS3ueanh/tTSMf0cm7MR8jqtmgAC2JCW+Dv1tvv1AYLHnhwnZnAgg==
+X-Received: by 2002:a5d:47c3:0:b0:385:e35e:9da8 with SMTP id
+ ffacd0b85a97d-38a221f69e0mr18547954f8f.18.1735176449451; 
+ Wed, 25 Dec 2024 17:27:29 -0800 (PST)
+Received: from debian.local ([31.94.62.22]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43661219611sm218332885e9.23.2024.12.25.17.27.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 25 Dec 2024 17:27:29 -0800 (PST)
+Date: Thu, 26 Dec 2024 01:27:25 +0000
+From: Chris Bainbridge <chris.bainbridge@gmail.com>
+To: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
+Cc: Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
  regressions@lists.linux.dev, rafael@kernel.org, lenb@kernel.org,
  linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/amd: Fix random crashes due to bad kfree
+Message-ID: <Z2yw_eJwR5ih1Npr@debian.local>
 References: <Z2yQvTyg_MWwrlj3@debian.local>
-Content-Language: en-US
-From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
-Autocrypt: addr=tjakobi@math.uni-bielefeld.de; keydata=
- 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
- JRHWPGCL3BhOxQ==
-In-Reply-To: <Z2yQvTyg_MWwrlj3@debian.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
 X-Mailman-Approved-At: Thu, 26 Dec 2024 09:00:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -106,65 +88,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris!
+On Thu, Dec 26, 2024 at 12:19:02AM +0100, Tobias Jakobi wrote:
+> Hi Chris!
+> 
+> On 12/26/24 00:09, Chris Bainbridge wrote:
+> 
+> > Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
+> > available for eDP") added function dm_helpers_probe_acpi_edid, which
+> > fetches the EDID from the BIOS by calling acpi_video_get_edid.
+> > acpi_video_get_edid returns a pointer to the EDID, but this pointer does
+> > not originate from kmalloc - it is actually the internal "pointer" field
+> > from an acpi_buffer struct (which did come from kmalloc).
+> > dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
+> > resulting in memory corruption which leads to random, intermittent
+> > crashes (e.g. 4% of boots will fail with some Oops).
+> > 
+> > Fix this by allocating a new array (which can be safely freed) for the
+> > EDID data in acpi_video_get_edid, and correctly freeing the acpi_buffer.
+> 
+> Hmm, maybe I'm missing something here. But shouldn't it suffice to just
+> remove the kfree call in dm_helpers_probe_acpi_edid()?
 
-On 12/26/24 00:09, Chris Bainbridge wrote:
+Yes, that would work to fix the bad kfree, but there would be a small
+memory leak of the acpi_buffer struct. It's not a huge problem since
+this code is rarely run, and the Nouveau code has never tried to free
+the edid buffer and apparently nobody noticed, but it would be better to
+do the correct thing.
 
-> Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
-> available for eDP") added function dm_helpers_probe_acpi_edid, which
-> fetches the EDID from the BIOS by calling acpi_video_get_edid.
-> acpi_video_get_edid returns a pointer to the EDID, but this pointer does
-> not originate from kmalloc - it is actually the internal "pointer" field
-> from an acpi_buffer struct (which did come from kmalloc).
-> dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
-> resulting in memory corruption which leads to random, intermittent
-> crashes (e.g. 4% of boots will fail with some Oops).
->
-> Fix this by allocating a new array (which can be safely freed) for the
-> EDID data in acpi_video_get_edid, and correctly freeing the acpi_buffer.
+One other curiosity is this comment in the code that allocates the
+memory:
 
-Hmm, maybe I'm missing something here. But shouldn't it suffice to just 
-remove the kfree call in dm_helpers_probe_acpi_edid()?
+case ACPI_ALLOCATE_BUFFER:
+	/*
+	 * Allocate a new buffer. We directectly call acpi_os_allocate here to
+	 * purposefully bypass the (optionally enabled) internal allocation
+	 * tracking mechanism since we only want to track internal
+	 * allocations. Note: The caller should use acpi_os_free to free this
+	 * buffer created via ACPI_ALLOCATE_BUFFER.
+	 */
 
-With best wishes,
-Tobias
-
->
-> The only other caller of acpi_video_get_edid is nouveau_acpi_edid:
-> remove the extraneous kmemdup here as the EDID data is now copied in
-> acpi_video_get_edid.
->
-> Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
-> Fixes: c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if available for eDP")
-> ---
->   drivers/acpi/acpi_video.c              | 3 ++-
->   drivers/gpu/drm/nouveau/nouveau_acpi.c | 2 +-
->   2 files changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
-> index 8274a17872ed..151d1d534264 100644
-> --- a/drivers/acpi/acpi_video.c
-> +++ b/drivers/acpi/acpi_video.c
-> @@ -1485,7 +1485,8 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
->   		if (!length)
->   			continue;
->   
-> -		*edid = buffer->buffer.pointer;
-> +		*edid = kmemdup(buffer->buffer.pointer, length, GFP_KERNEL);
-> +		kfree(buffer);
->   		return length;
->   	}
->   
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-> index 8f0c69aad248..21b56cc7605c 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-> @@ -384,7 +384,7 @@ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
->   	if (ret < 0)
->   		return NULL;
->   
-> -	return kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
-> +	return edid;
->   }
->   
->   bool nouveau_acpi_video_backlight_use_native(void)
+Which makes me wonder if all the calls to kfree on acpi_buffer structs
+with ACPI_ALLOCATE_BUFFER in acpi_video.c should actually be calls to
+acpi_os_free instead? I used kfree just for consistency with the
+existing code.
