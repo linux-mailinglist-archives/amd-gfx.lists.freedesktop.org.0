@@ -2,96 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB779FD17E
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Dec 2024 08:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A504C9FD3C6
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Dec 2024 12:19:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9186D10E186;
-	Fri, 27 Dec 2024 07:41:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278AA10E3A1;
+	Fri, 27 Dec 2024 11:19:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cL+i+cTx";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp1.math.uni-bielefeld.de (smtp1.math.uni-bielefeld.de
- [129.70.45.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E6A010E00C
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Dec 2024 12:29:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=math.uni-bielefeld.de; s=default; t=1735216155;
- bh=HgPTb3LOTRkHnpcTm/hPvSnOhZx/f+9kcrrTOI1ni20=;
- h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
- b=fdjEFYpxCIe6/bpy3Wr6m2faS/mi5snJ2rWO8nUJulcEch5K5TBCYRJ0g5vmhMS7U
- AxN/KMVKuQ6KBQtpxyqoktOac4CUN3gx/OXqejYtBVF9PGBPbwpFqvk/4ooANeunOn
- 6YDgJYb+WXFJlDVdmQ7s9+5ameh7DhfpJymHeo43ihHdSNck/qSdv7yKBZeqNYCFDE
- t2UKveihHIBEdzKBqKhYLbzuR5UXTHJZy1BTkgCtWLirT44T5MEYrzsALA4Ba7pQ1+
- S1zdEGer9BVVHr2ffWlpgEjI+nMFDDU5bhc94Wjn5EtdLCsh4Qq+2DPDkHXGaAwvfM
- aU3IWk5arDd9w==
-Received: from [192.168.2.10] (58-32-133-N4.customer.vsm.sh [170.133.32.58])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by smtp1.math.uni-bielefeld.de (Postfix) with ESMTPSA id 8C772206CD;
- Thu, 26 Dec 2024 13:29:15 +0100 (CET)
-Message-ID: <319c2913-78fa-4b35-828e-7d4d1d691a93@math.uni-bielefeld.de>
-Date: Thu, 26 Dec 2024 13:29:15 +0100
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3A2610E07E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 11:19:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=TNrfvEcKHxqvVPDZ4J12Bos315z1TUXnIUZt5UIvT0Q=; b=cL+i+cTxV5G4SYdkbwrWss9uuz
+ LncUF8/cAc6zSV78656nZN0pZh/z3Pl78r6nEDmrbXV3bd3MY1xy48LvbfvRgig2CjjWeTn5BuLQC
+ k7nK6MFh1F9s/v3rz5rDxafLfnWHMZO+UaZuUvL/NgOtbrgh1+nTfsCaz0ikkntlS99kjK2cB/nAi
+ UPbUJDy/vUqSTIOGZnLAopNG30cYgAlkZjMVT1zXQg9Epg2nk6J8bED4ev0mVj3Q0DdYj8IriCmrt
+ sSQESVZFienvWY98f/DGMPHZzLOy6iBC33B3vHoCNY2RGbOG4j13PSrGQJ8qI/+VsQWSbGQEVT2ED
+ Jw1Kp4JA==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tR8Nh-008EG4-O6; Fri, 27 Dec 2024 12:19:49 +0100
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Sunil Khatri <sunil.khatri@amd.com>
+Subject: [RFC v4 00/12] Ring padding micro-optimisation etc
+Date: Fri, 27 Dec 2024 11:19:26 +0000
+Message-ID: <20241227111938.22974-1-tursulin@igalia.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
-Subject: Re: [PATCH] drm/amd: Fix random crashes due to bad kfree
-To: Chris Bainbridge <chris.bainbridge@gmail.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
- regressions@lists.linux.dev, rafael@kernel.org, lenb@kernel.org,
- linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <Z2yQvTyg_MWwrlj3@debian.local>
- <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
- <Z2yw_eJwR5ih1Npr@debian.local>
-Content-Language: en-US
-Autocrypt: addr=tjakobi@math.uni-bielefeld.de; keydata=
- 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
- JRHWPGCL3BhOxQ==
-In-Reply-To: <Z2yw_eJwR5ih1Npr@debian.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 27 Dec 2024 07:41:13 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,59 +58,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 12/26/24 02:27, Chris Bainbridge wrote:
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-> On Thu, Dec 26, 2024 at 12:19:02AM +0100, Tobias Jakobi wrote:
->> Hi Chris!
->>
->> On 12/26/24 00:09, Chris Bainbridge wrote:
->>
->>> Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
->>> available for eDP") added function dm_helpers_probe_acpi_edid, which
->>> fetches the EDID from the BIOS by calling acpi_video_get_edid.
->>> acpi_video_get_edid returns a pointer to the EDID, but this pointer does
->>> not originate from kmalloc - it is actually the internal "pointer" field
->>> from an acpi_buffer struct (which did come from kmalloc).
->>> dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
->>> resulting in memory corruption which leads to random, intermittent
->>> crashes (e.g. 4% of boots will fail with some Oops).
->>>
->>> Fix this by allocating a new array (which can be safely freed) for the
->>> EDID data in acpi_video_get_edid, and correctly freeing the acpi_buffer.
->> Hmm, maybe I'm missing something here. But shouldn't it suffice to just
->> remove the kfree call in dm_helpers_probe_acpi_edid()?
-> Yes, that would work to fix the bad kfree, but there would be a small
-> memory leak of the acpi_buffer struct. It's not a huge problem since
-> this code is rarely run, and the Nouveau code has never tried to free
-> the edid buffer and apparently nobody noticed, but it would be better to
-> do the correct thing.
+[Re-send after fdo mailman got recovered out of the -ENOSPC state.]
 
-OK, thanks for explaining. I didn't immediately understand that 
-something was leaking memory. Only that we were freeing something that 
-we are not supposed to free.
+There is a few ideas in this series and not all might stick.
 
-> One other curiosity is this comment in the code that allocates the
-> memory:
->
-> case ACPI_ALLOCATE_BUFFER:
-> 	/*
-> 	 * Allocate a new buffer. We directectly call acpi_os_allocate here to
-> 	 * purposefully bypass the (optionally enabled) internal allocation
-> 	 * tracking mechanism since we only want to track internal
-> 	 * allocations. Note: The caller should use acpi_os_free to free this
-> 	 * buffer created via ACPI_ALLOCATE_BUFFER.
-> 	 */
->
-> Which makes me wonder if all the calls to kfree on acpi_buffer structs
-> with ACPI_ALLOCATE_BUFFER in acpi_video.c should actually be calls to
-> acpi_os_free instead? I used kfree just for consistency with the
-> existing code.
+Trivial stuff aside, the two main things to higlight are:
 
-Wouldn't it make more sense to do the memdup handling in 
-acpi_video_device_EDID()? This way you have both alloc and free in the 
-same function. But I'm no expert when it comes to the ACPI kernel code. 
-Just my two cents :-D
+1) Ther departure from the existing state of "duplicate everything" by
+consolidating some SDMA insert nop vfuncs.
 
-With best wishes,
-Tobias
+2) Conversion of amdgpu_ring_write() to variadic to allow for more compact
+compiled code.
+
+For the latter I have only included VCE, GFX v10.0 and SDMA v5.2 as examples.
+(But note the code shrink is already noticable with even only those three.)
+
+But it is churny and looks different so people may not like it. TBD.
+
+Other than those two, the remaining general idea of the series is to consolidate
+the padding approach to memset32, especially on rings with 64 or 256 dword
+alignment.
+
+Binary size comparison:
+
+    text    data     bss     dec     hex filename
+ 10439777   542501  188232 11170510   aa72ce amdgpu.ko.before
+ 10412793   542609  188232 11143634   aa09d2 amdgpu.ko.after
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Sunil Khatri <sunil.khatri@amd.com>
+
+Tvrtko Ursulin (12):
+  drm/amdgpu: Use memset32 for IB padding
+  drm/amdgpu: Use memset32 for ring clearing
+  drm/amdgpu: Cache SDMA instance and index in the ring
+  drm/amdgpu: Consolidate a bunch of similar sdma insert nop vfuncs
+  drm/amdgpu: Use memset32 for sdma insert nops
+  drm/amdgpu: Use amdgpu_ring_fill() for VPE padding
+  drm/amdgpu: Convert JPEG, VCE and UVD to more efficient ring padding
+  drm/amdgpu: Cache some values in ring emission helpers
+  drm/amdgpu: Optimise amdgpu_ring_write()
+  drm/amdgpu: Convert VCE to variadic amdgpu_ring_write()
+  drm/amdgpu: Convert GFX v10.0 to variadic amdgpu_ring_write()
+  drm/amdgpu: Convert SDMA v5.2 to variadic amdgpu_ring_write()
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c |  32 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 321 +++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c |  43 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c  |  22 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c  |  13 +-
+ drivers/gpu/drm/amd/amdgpu/cik_sdma.c    |   4 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   | 399 ++++++++++++-----------
+ drivers/gpu/drm/amd/amdgpu/jpeg_v1_0.c   |   8 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c   |   8 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c |   8 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c   |  24 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c   |  24 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c   |  31 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c |  31 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   |  28 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   | 182 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   |  31 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   |  31 +-
+ drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c    |   7 +-
+ drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c    |   7 +-
+ drivers/gpu/drm/amd/amdgpu/uvd_v5_0.c    |   7 +-
+ drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c    |   7 +-
+ drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c    |   9 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c    |   8 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c    |   7 +-
+ 26 files changed, 745 insertions(+), 551 deletions(-)
+
+-- 
+2.47.1
 
