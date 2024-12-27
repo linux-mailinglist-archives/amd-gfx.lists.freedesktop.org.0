@@ -2,18 +2,18 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09C39FD3C9
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Dec 2024 12:20:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5682A9FD3C4
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Dec 2024 12:19:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42A5A10E3A4;
-	Fri, 27 Dec 2024 11:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5D5610E39E;
+	Fri, 27 Dec 2024 11:19:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NV8Xbr3R";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bBHHnLj7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C92610E39E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E237710E3A1
  for <amd-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 11:19:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=vcH+ndroMtYJVt6CvbMAvd9xIeUa52V0d7yfVcC2w3w=; b=NV8Xbr3R7o+yTmszPOlq+YI2iu
- gNAN/sf0A8jtiaFPJhDQDP68hv4A12wNKr7iyIHKGxMi/Zx42HLdAy1OiflYZyDUQbysVgy9lFGgP
- CDLd8YdGovOvQMRTykddG9ML1msbGbjYgvx0foerjNTU77n8Mn07fpxxV2Mvxzr5p+lYU2xWt0/04
- i9NPABbKqyQzs70GiI8hijg0KPDSZTWe+02cs9qM7NWHlUzXrjPltiHLmqY/x8+/hS1aiW+yNxfsO
- 446qDoCtqP0SwjJWuChJpduu2hc5K5LokVUFJTJgCNiinOrwrcU+LsGGHSuS0U9m3n3na0VKpc0+E
- aAJMe5cw==;
+ bh=mdDmNZjBzxz4iAJUSSeAlfnbig3yygdx6eELhAfypBo=; b=bBHHnLj71I4mZHy9yqp3qIFVmg
+ COkndOHjSyXb9HCOs88fhOlCCCUzUfBi5rpCH9ye9PDtlPEsy0Lp17Bo3WqqlwKkmarV9zgxqRGS5
+ A+bfe22L1C0dWOlwP5uNVWzd5RjrQFdoVb4LgA9tEsIOyQr0YBWRch5rr4sO7MRSfJCJg40XrA+Ja
+ F548QGwEi5075i2G66HsIsnqam3bVzcqD6B7JfFbSx0yjcGzLkkFIjehmS7RSEJUgUGhp1ms+DEGT
+ 7ouIYHv/FkWc8NERd9Hld5wNnKt4JxRztSdDnuCWqF9NudmOKN+LtLjDGz8nfAAWP4yoLG1DLLvvK
+ CnReUj5g==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tR8Ni-008EG7-EK; Fri, 27 Dec 2024 12:19:50 +0100
+ id 1tR8Nj-008EGG-4G; Fri, 27 Dec 2024 12:19:51 +0100
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH 01/12] drm/amdgpu: Use memset32 for IB padding
-Date: Fri, 27 Dec 2024 11:19:27 +0000
-Message-ID: <20241227111938.22974-2-tursulin@igalia.com>
+Subject: [PATCH 02/12] drm/amdgpu: Use memset32 for ring clearing
+Date: Fri, 27 Dec 2024 11:19:28 +0000
+Message-ID: <20241227111938.22974-3-tursulin@igalia.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20241227111938.22974-1-tursulin@igalia.com>
 References: <20241227111938.22974-1-tursulin@igalia.com>
@@ -63,38 +63,31 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
 Use memset32 instead of open coding it, just because it is
-that bit nicer.
+a tiny bit nicer.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index a6e28fe3f8d6..a27e32f48f99 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -136,8 +136,16 @@ void amdgpu_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
-  */
- void amdgpu_ring_generic_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index dee5a1b4e572..96bfc0c23413 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -369,10 +369,7 @@ static inline void amdgpu_ring_set_preempt_cond_exec(struct amdgpu_ring *ring,
+ 
+ static inline void amdgpu_ring_clear_ring(struct amdgpu_ring *ring)
  {
--	while (ib->length_dw & ring->funcs->align_mask)
--		ib->ptr[ib->length_dw++] = ring->funcs->nop;
-+	u32 align_mask = ring->funcs->align_mask;
-+	u32 count = ib->length_dw & align_mask;
-+
-+	if (count) {
-+		count = align_mask + 1 - count;
-+
-+		memset32(&ib->ptr[ib->length_dw], ring->funcs->nop, count);
-+
-+		ib->length_dw += count;
-+	}
+-	int i = 0;
+-	while (i <= ring->buf_mask)
+-		ring->ring[i++] = ring->funcs->nop;
+-
++	memset32(ring->ring, ring->funcs->nop, ring->buf_mask + 1);
  }
  
- /**
+ static inline void amdgpu_ring_write(struct amdgpu_ring *ring, uint32_t v)
 -- 
 2.47.1
 
