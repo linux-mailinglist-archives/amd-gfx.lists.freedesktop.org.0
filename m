@@ -2,51 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3247C9FD3CD
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Dec 2024 12:20:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA8089FD6BD
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Dec 2024 18:44:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4C9610E3AC;
-	Fri, 27 Dec 2024 11:20:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6FB10E3FB;
+	Fri, 27 Dec 2024 17:44:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Ra39C8gl";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="C7RG7Qt5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C662810E3AC
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 11:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Q24ZaGCgpoUtCqnmSLgx7Lh8+ezEmfaIWKIV8V4Dyd4=; b=Ra39C8glHgwcyJZORjfW/ROlna
- qAEU3Y97Dn8r9W9xLWyQgvklp41uVE/loSe6xAYbca4p8tZiidnl97X/D+ZJ0UYkFUdUfqv6KRe8o
- sBtnF4+RZ913Ih5LjUdO43YktJEknqpc3kUyXoVjVnJF9TOnSaf2yMnPzFsYVzerrd8YwHhxw+0Tn
- mLNyMDCa+1rkbI+pkWEBwkVie6BeyNLtRVoa16F/o1WEM2JFpSZTED275Ij4HY9lNj9kUoX4MhWIT
- +n8GfoDgm8Wnrxjxkql2azzCMY/s14RdbTkELZcsJlMEcOYcZBToQ2bxmL2D9+4wJTP7fs1uGQVMM
- Z5Bz2h+Q==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tR8Nq-008EHc-2J; Fri, 27 Dec 2024 12:19:58 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH 12/12] drm/amdgpu: Convert SDMA v5.2 to variadic
- amdgpu_ring_write()
-Date: Fri, 27 Dec 2024 11:19:38 +0000
-Message-ID: <20241227111938.22974-13-tursulin@igalia.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241227111938.22974-1-tursulin@igalia.com>
-References: <20241227111938.22974-1-tursulin@igalia.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2060.outbound.protection.outlook.com [40.107.237.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A40E810E3FD
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 17:44:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WO5zlUb1keCfFZI7mrnpqBeCmjj8P8fW2BTZ+kDWNNCHTGxZmeqHuzVZJ+Eu6V6+27DOrLoltw/+2OsGDyYvHtRsN6UXlSI/IPdfui1+RpIgSsSnsbOdhEE2aN4hVEslQwnLXTnycWisMUBk4RiZFv+E9rX9vcqqcJGLMDvAsEK5ZBzZ/BCcj146pG4S4E4F4HsBU4g6qjfklcvn6YGmLUVByFTqUoeia26TCYwVj4ExHZj+AhMVO5Myeursc19zvQJNs8hyzNDp5bQwSguFrbQLXHMvLsP8gzUO463sRRhTcm+nhhAoWXoI47v+VC4R2MfPN+b8KNXxLWL4M2BtFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p3X0rJKwneGFbifqOcyQmxkEizvUrHpkYfe4Zgj9VyA=;
+ b=ycsbge0hBhkr5Y1XfuRP1lZOt8F/sxeiV5rLn68rxy8Ete7X9D1vEZx5NJXYHEDabY+k3BT8qwNL/l8wxQfRobMdY39+SDbmMOB0erfasBjbDxPE30Prv1pMDPhcwD6BLwC1wuAx3Go/XCZQf+ZFPX/bnuKdq8NR4n8mCiVBB83Edu0k5YsEAd+Gch8/Y8vbT1U0ANQ72K5z8uwPEvzPeQmBcRSXxDP5HWN1Dzp56M5phRaHZ0ECANCZvkdpcCXZ8ZmfGz0/L6iz+Dem7jgPSD+ZRNeXqujCykxnQ+5MMnCeJj7lbXJCryV/WH0npD/Bedy/Il326o/EhXgqPpRbgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p3X0rJKwneGFbifqOcyQmxkEizvUrHpkYfe4Zgj9VyA=;
+ b=C7RG7Qt5qPAAU0hTPWOojWPhkGWkLDsQ4Hyg9pW44P6fsZKl9sOvOj5vNiF0rNy/LhGcG90PQhmmIFycsdhZ/Ne++LV2aADUned+BnVPxcWrem9nT//rT58oYRiEDh++6ZiDevbqYkRiA/DP+VN2mEpFACAVXfvuclBLvAuda9I=
+Received: from CH0PR03CA0295.namprd03.prod.outlook.com (2603:10b6:610:e6::30)
+ by IA1PR12MB6185.namprd12.prod.outlook.com (2603:10b6:208:3e7::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.15; Fri, 27 Dec
+ 2024 17:44:23 +0000
+Received: from CH1PEPF0000AD81.namprd04.prod.outlook.com
+ (2603:10b6:610:e6:cafe::ac) by CH0PR03CA0295.outlook.office365.com
+ (2603:10b6:610:e6::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8293.15 via Frontend Transport; Fri,
+ 27 Dec 2024 17:44:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD81.mail.protection.outlook.com (10.167.244.89) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8293.12 via Frontend Transport; Fri, 27 Dec 2024 17:44:23 +0000
+Received: from mkm-d10-yfeng11.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 27 Dec
+ 2024 11:44:22 -0600
+From: Yuan Feng <yfeng1@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: yfeng1 <yfeng1@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix for MEC SJT FW Load Fail on VF
+Date: Fri, 27 Dec 2024 12:44:10 -0500
+Message-ID: <20241227174410.5405-1-yfeng1@amd.com>
+X-Mailer: git-send-email 2.39.1.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD81:EE_|IA1PR12MB6185:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2312e049-6551-438a-1075-08dd269e19a8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?iRo9vB9NOt17Jfdl8sH/0FKGZQUveXIuPh0kj4RC8tBfTmyRYZzZYsz54zbx?=
+ =?us-ascii?Q?naqxLTJotLJE7C13DIdWc6kTIGTNYKAiDq+JcGv9kSGyAfbtXmK5tqiIvxsP?=
+ =?us-ascii?Q?cu8t72+nv483PPLng/jE1A4FFnER5sYhgaW3+qtb75DOg1LU+bOGPmPqy0Sp?=
+ =?us-ascii?Q?6/xNiSJbBaSyDc8Tud0g5da3x1svc1px8yE82jYVGffIjfJ+05ZwNk+oKipS?=
+ =?us-ascii?Q?zp366n2d1V+m9BoN7WU61owAy3p0AFpj2HqpSOHoDg4JQwpo8YLBHrSYUlUq?=
+ =?us-ascii?Q?RLQ0q0FjDlj9aymze50tbqKlT8XnPi6nvmVj0SoYCv9ltZ0DS+aSBtTVkFqq?=
+ =?us-ascii?Q?m99QPU/WKXnsXI0huYZTCrpOwgiYcE8wFSa5HAv5lD0lh6ZXLx0Cv4DP7eQj?=
+ =?us-ascii?Q?/7sb8LgAA2He6A2t1sW1DgpFxl/OVxhtwu3m97U+LobmlrfoZJ0VW0r+YZUn?=
+ =?us-ascii?Q?VjsihpPwbg2Ju0mk4+TYvO029HPkJ/kQilG++al4v8nQrRijczV+qXzkV9Lv?=
+ =?us-ascii?Q?c7KkGqSTMI8vbH+C4xPX0mJ8/3FdcwVkrJwSMZ/kkWFYESuSipOlgZWCQz+i?=
+ =?us-ascii?Q?geQFr/vCLDOzEej7aEuoB+YfXiHL7YYwPWwWCCI0hnOoiaKpdXTK0I7t/utv?=
+ =?us-ascii?Q?OaOA+81AlV/ZfG2bzcHHc4HmfVhkud3DJE8XfWJCgrcN9iQs7XQofPil4NwL?=
+ =?us-ascii?Q?8+UcI7djO2lYFRCjn94N0xlX6MBbQvUXzkS3vsPGVm61zJbCXKU4phENXSko?=
+ =?us-ascii?Q?NKtKht8Kx2rBd55EkVQyDEChyHmAyF+lei3xZp5bEJdOU4lfC4KZZ97FWGGP?=
+ =?us-ascii?Q?nF9ROEL6S+mYc0JvqyOfQhJRaWk+0r43djkDo9grKcPuEs+jm42KAo8dQ5Eb?=
+ =?us-ascii?Q?mfULJrPP/wjrSDb3E5WCJotyfQ6kt3P4gmbmDtd8uwEFTLVmm8J31yFR7R4j?=
+ =?us-ascii?Q?ZRkM/IX4hxzJE2iRoSaKUVivMlFrZ0MjgpiaPzIZ4AhFy2YDL2Dci3PMxJIM?=
+ =?us-ascii?Q?b86IZ+NHSA5s0WnxLuN7PeiylZdR2Vsl9P6tXbFcuMb26LlbhpLNdRjUIyDY?=
+ =?us-ascii?Q?fxqzqsG8aF5Y7opOv5KhDMCUK2oilScKMqAsE99hFKx0dsMhjgbvVtD1WJVB?=
+ =?us-ascii?Q?Ac5hOBtpqjsbj/n/TNyzKfb5Z9uKvStflbX5Sonkeoo5l5Rt3kvHk7mdzyG5?=
+ =?us-ascii?Q?Qggzu/KWBMOSNoMkRvEOGpq1/IfqrzeIQnXxApXlu0j6vLnzFM+HQ5r4Xq4F?=
+ =?us-ascii?Q?5jMp78asmFFHTWcEWcRrJD59/niCKNr8k9Hw/DiuJ4yjufe8PriR0qmQg7z0?=
+ =?us-ascii?Q?1Ukkxgb3Xu3/ieCB8kpvIsqN5XbVltbV/1+zq2AS/++cJM+/UVZvkQ2NUS28?=
+ =?us-ascii?Q?A/fBKinJqWdT8qwCHl5oYBpR1TbvGHKgp0eGGyuCxWGoCcOSuwXZEI7+gTU7?=
+ =?us-ascii?Q?LF0YXKfUbHFbhyodpg7Odot2PY7b0x6EsYUTIY4MVXqhvkN6W4IjUbLK7roe?=
+ =?us-ascii?Q?Btw9kTRewmAJS3A=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Dec 2024 17:44:23.2673 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2312e049-6551-438a-1075-08dd269e19a8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD81.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6185
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,256 +130,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+From: yfeng1 <yfeng1@amd.com>
 
-Converting the SDMA v5.2 ring helpers to use the variadic
-amdgpu_ring_write().
+Users might switch to ROCM build does not include MEC SJT FW and driver
+needs to consider this case.w
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Sunil Khatri <sunil.khatri@amd.com>
+Signed-off-by: yfeng1 <yfeng1@amd.com>
+Change-Id: I6803818450bcfcc9d912c80ad351824be7a9694c
 ---
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 151 +++++++++++++------------
- 1 file changed, 80 insertions(+), 71 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index 69b88db32117..55c1cc0e03b5 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -143,10 +143,11 @@ static unsigned sdma_v5_2_ring_init_cond_exec(struct amdgpu_ring *ring,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index a5bdcaf7a081..2ba185875baa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -579,11 +579,16 @@ static int gfx_v9_4_3_init_cp_compute_microcode(struct amdgpu_device *adev,
  {
- 	unsigned ret;
+ 	int err;
  
--	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_COND_EXE));
--	amdgpu_ring_write(ring, lower_32_bits(addr));
--	amdgpu_ring_write(ring, upper_32_bits(addr));
--	amdgpu_ring_write(ring, 1);
-+	amdgpu_ring_write(ring,
-+			  SDMA_PKT_HEADER_OP(SDMA_OP_COND_EXE),
-+			  lower_32_bits(addr),
-+			  upper_32_bits(addr),
-+			  1);
- 	/* this is the offset we need patch later */
- 	ret = ring->wptr & ring->buf_mask;
- 	/* insert dummy here and patch it later */
-@@ -278,14 +279,15 @@ static void sdma_v5_2_ring_emit_ib(struct amdgpu_ring *ring,
- 	 */
- 	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
--	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
--			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
--	/* base must be 32 byte aligned */
--	amdgpu_ring_write(ring, lower_32_bits(ib->gpu_addr) & 0xffffffe0);
--	amdgpu_ring_write(ring, upper_32_bits(ib->gpu_addr));
--	amdgpu_ring_write(ring, ib->length_dw);
--	amdgpu_ring_write(ring, lower_32_bits(csa_mc_addr));
--	amdgpu_ring_write(ring, upper_32_bits(csa_mc_addr));
-+	amdgpu_ring_write(ring,
-+			  SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
-+			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf),
-+			  /* base must be 32 byte aligned */
-+			  lower_32_bits(ib->gpu_addr) & 0xffffffe0,
-+			  upper_32_bits(ib->gpu_addr),
-+			  ib->length_dw,
-+			  lower_32_bits(csa_mc_addr),
-+			  upper_32_bits(csa_mc_addr));
- }
- 
- /**
-@@ -303,14 +305,15 @@ static void sdma_v5_2_ring_emit_mem_sync(struct amdgpu_ring *ring)
- 			    SDMA_GCR_GLI_INV(1);
- 
- 	/* flush entire cache L0/L1/L2, this can be optimized by performance requirement */
--	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_GCR_REQ));
--	amdgpu_ring_write(ring, SDMA_PKT_GCR_REQ_PAYLOAD1_BASE_VA_31_7(0));
--	amdgpu_ring_write(ring, SDMA_PKT_GCR_REQ_PAYLOAD2_GCR_CONTROL_15_0(gcr_cntl) |
--			SDMA_PKT_GCR_REQ_PAYLOAD2_BASE_VA_47_32(0));
--	amdgpu_ring_write(ring, SDMA_PKT_GCR_REQ_PAYLOAD3_LIMIT_VA_31_7(0) |
--			SDMA_PKT_GCR_REQ_PAYLOAD3_GCR_CONTROL_18_16(gcr_cntl >> 16));
--	amdgpu_ring_write(ring, SDMA_PKT_GCR_REQ_PAYLOAD4_LIMIT_VA_47_32(0) |
--			SDMA_PKT_GCR_REQ_PAYLOAD4_VMID(0));
-+	amdgpu_ring_write(ring,
-+			  SDMA_PKT_HEADER_OP(SDMA_OP_GCR_REQ),
-+			  SDMA_PKT_GCR_REQ_PAYLOAD1_BASE_VA_31_7(0),
-+			  SDMA_PKT_GCR_REQ_PAYLOAD2_GCR_CONTROL_15_0(gcr_cntl) |
-+			  SDMA_PKT_GCR_REQ_PAYLOAD2_BASE_VA_47_32(0),
-+			  SDMA_PKT_GCR_REQ_PAYLOAD3_LIMIT_VA_31_7(0) |
-+			  SDMA_PKT_GCR_REQ_PAYLOAD3_GCR_CONTROL_18_16(gcr_cntl >> 16),
-+			  SDMA_PKT_GCR_REQ_PAYLOAD4_LIMIT_VA_47_32(0) |
-+			  SDMA_PKT_GCR_REQ_PAYLOAD4_VMID(0));
- }
- 
- /**
-@@ -331,14 +334,15 @@ static void sdma_v5_2_ring_emit_hdp_flush(struct amdgpu_ring *ring)
- 	} else {
- 		ref_and_mask = nbio_hf_reg->ref_and_mask_sdma0 << ring->me;
- 
--		amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_POLL_REGMEM) |
-+		amdgpu_ring_write(ring,
-+				  SDMA_PKT_HEADER_OP(SDMA_OP_POLL_REGMEM) |
- 				  SDMA_PKT_POLL_REGMEM_HEADER_HDP_FLUSH(1) |
--				  SDMA_PKT_POLL_REGMEM_HEADER_FUNC(3)); /* == */
--		amdgpu_ring_write(ring, (adev->nbio.funcs->get_hdp_flush_done_offset(adev)) << 2);
--		amdgpu_ring_write(ring, (adev->nbio.funcs->get_hdp_flush_req_offset(adev)) << 2);
--		amdgpu_ring_write(ring, ref_and_mask); /* reference */
--		amdgpu_ring_write(ring, ref_and_mask); /* mask */
--		amdgpu_ring_write(ring, SDMA_PKT_POLL_REGMEM_DW5_RETRY_COUNT(0xfff) |
-+				  SDMA_PKT_POLL_REGMEM_HEADER_FUNC(3), /* == */
-+				  adev->nbio.funcs->get_hdp_flush_done_offset(adev) << 2,
-+				  adev->nbio.funcs->get_hdp_flush_req_offset(adev) << 2,
-+				  ref_and_mask, /* reference */
-+				  ref_and_mask, /* mask */
-+				  SDMA_PKT_POLL_REGMEM_DW5_RETRY_COUNT(0xfff) |
- 				  SDMA_PKT_POLL_REGMEM_DW5_INTERVAL(10)); /* retry count, poll interval */
- 	}
- }
-@@ -359,33 +363,35 @@ static void sdma_v5_2_ring_emit_fence(struct amdgpu_ring *ring, u64 addr, u64 se
- 				      unsigned flags)
- {
- 	bool write64bit = flags & AMDGPU_FENCE_FLAG_64BIT;
--	/* write the fence */
--	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_FENCE) |
--			  SDMA_PKT_FENCE_HEADER_MTYPE(0x3)); /* Ucached(UC) */
--	/* zero in first two bits */
+-	if (amdgpu_sriov_vf(adev))
++	if (amdgpu_sriov_vf(adev)) {
+ 		err = amdgpu_ucode_request(adev, &adev->gfx.mec_fw,
+ 					   AMDGPU_UCODE_REQUIRED,
+ 					   "amdgpu/%s_sjt_mec.bin", chip_name);
+-	else
 +
- 	BUG_ON(addr & 0x3);
--	amdgpu_ring_write(ring, lower_32_bits(addr));
--	amdgpu_ring_write(ring, upper_32_bits(addr));
--	amdgpu_ring_write(ring, lower_32_bits(seq));
-+
-+	/* write the fence */
-+	amdgpu_ring_write(ring,
-+			  SDMA_PKT_HEADER_OP(SDMA_OP_FENCE) |
-+			  SDMA_PKT_FENCE_HEADER_MTYPE(0x3), /* Ucached(UC) */
-+			  lower_32_bits(addr),
-+			  upper_32_bits(addr),
-+			  lower_32_bits(seq));
- 
- 	/* optionally write high bits as well */
- 	if (write64bit) {
- 		addr += 4;
--		amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_FENCE) |
--				  SDMA_PKT_FENCE_HEADER_MTYPE(0x3));
--		/* zero in first two bits */
--		BUG_ON(addr & 0x3);
--		amdgpu_ring_write(ring, lower_32_bits(addr));
--		amdgpu_ring_write(ring, upper_32_bits(addr));
--		amdgpu_ring_write(ring, upper_32_bits(seq));
-+		amdgpu_ring_write(ring,
-+				  SDMA_PKT_HEADER_OP(SDMA_OP_FENCE) |
-+				  SDMA_PKT_FENCE_HEADER_MTYPE(0x3),
-+				  lower_32_bits(addr),
-+				  upper_32_bits(addr),
-+				  upper_32_bits(seq));
- 	}
- 
- 	if ((flags & AMDGPU_FENCE_FLAG_INT)) {
- 		uint32_t ctx = ring->is_mes_queue ?
- 			(ring->hw_queue_id | AMDGPU_FENCE_MES_QUEUE_FLAG) : 0;
- 		/* generate an interrupt */
--		amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_TRAP));
--		amdgpu_ring_write(ring, SDMA_PKT_TRAP_INT_CONTEXT_INT_CONTEXT(ctx));
-+		amdgpu_ring_write(ring,
-+				  SDMA_PKT_HEADER_OP(SDMA_OP_TRAP),
-+				  SDMA_PKT_TRAP_INT_CONTEXT_INT_CONTEXT(ctx));
- 	}
- }
- 
-@@ -920,12 +926,13 @@ static int sdma_v5_2_ring_test_ring(struct amdgpu_ring *ring)
- 		return r;
- 	}
- 
--	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_WRITE) |
--			  SDMA_PKT_HEADER_SUB_OP(SDMA_SUBOP_WRITE_LINEAR));
--	amdgpu_ring_write(ring, lower_32_bits(gpu_addr));
--	amdgpu_ring_write(ring, upper_32_bits(gpu_addr));
--	amdgpu_ring_write(ring, SDMA_PKT_WRITE_UNTILED_DW_3_COUNT(0));
--	amdgpu_ring_write(ring, 0xDEADBEEF);
-+	amdgpu_ring_write(ring,
-+			  SDMA_PKT_HEADER_OP(SDMA_OP_WRITE) |
-+			  SDMA_PKT_HEADER_SUB_OP(SDMA_SUBOP_WRITE_LINEAR),
-+			  lower_32_bits(gpu_addr),
-+			  upper_32_bits(gpu_addr),
-+			  SDMA_PKT_WRITE_UNTILED_DW_3_COUNT(0),
-+			  0xDEADBEEF);
- 	amdgpu_ring_commit(ring);
- 
- 	for (i = 0; i < adev->usec_timeout; i++) {
-@@ -1171,15 +1178,16 @@ static void sdma_v5_2_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
- 	uint64_t addr = ring->fence_drv.gpu_addr;
- 
- 	/* wait for idle */
--	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_POLL_REGMEM) |
-+	amdgpu_ring_write(ring,
-+			  SDMA_PKT_HEADER_OP(SDMA_OP_POLL_REGMEM) |
- 			  SDMA_PKT_POLL_REGMEM_HEADER_HDP_FLUSH(0) |
- 			  SDMA_PKT_POLL_REGMEM_HEADER_FUNC(3) | /* equal */
--			  SDMA_PKT_POLL_REGMEM_HEADER_MEM_POLL(1));
--	amdgpu_ring_write(ring, addr & 0xfffffffc);
--	amdgpu_ring_write(ring, upper_32_bits(addr) & 0xffffffff);
--	amdgpu_ring_write(ring, seq); /* reference */
--	amdgpu_ring_write(ring, 0xffffffff); /* mask */
--	amdgpu_ring_write(ring, SDMA_PKT_POLL_REGMEM_DW5_RETRY_COUNT(0xfff) |
-+			  SDMA_PKT_POLL_REGMEM_HEADER_MEM_POLL(1),
-+			  addr & 0xfffffffc,
-+			  upper_32_bits(addr) & 0xffffffff,
-+			  seq, /* reference */
-+			  0xffffffff, /* mask */
-+			  SDMA_PKT_POLL_REGMEM_DW5_RETRY_COUNT(0xfff) |
- 			  SDMA_PKT_POLL_REGMEM_DW5_INTERVAL(4)); /* retry count, poll interval */
- }
- 
-@@ -1213,10 +1221,9 @@ static void sdma_v5_2_ring_emit_vm_flush(struct amdgpu_ring *ring,
- 			  SDMA_PKT_VM_INVALIDATION_HEADER_OP(SDMA_OP_POLL_REGMEM) |
- 			  SDMA_PKT_VM_INVALIDATION_HEADER_SUB_OP(SDMA_SUBOP_VM_INVALIDATION) |
- 			  SDMA_PKT_VM_INVALIDATION_HEADER_GFX_ENG_ID(ring->vm_inv_eng) |
--			  SDMA_PKT_VM_INVALIDATION_HEADER_MM_ENG_ID(0x1f));
--	amdgpu_ring_write(ring, req);
--	amdgpu_ring_write(ring, 0xFFFFFFFF);
--	amdgpu_ring_write(ring,
-+			  SDMA_PKT_VM_INVALIDATION_HEADER_MM_ENG_ID(0x1f),
-+			  req,
-+			  0xFFFFFFFF,
- 			  SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_INVALIDATEACK(1 << vmid) |
- 			  SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_ADDRESSRANGEHI(0x1F));
- }
-@@ -1224,23 +1231,25 @@ static void sdma_v5_2_ring_emit_vm_flush(struct amdgpu_ring *ring,
- static void sdma_v5_2_ring_emit_wreg(struct amdgpu_ring *ring,
- 				     uint32_t reg, uint32_t val)
- {
--	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_SRBM_WRITE) |
--			  SDMA_PKT_SRBM_WRITE_HEADER_BYTE_EN(0xf));
--	amdgpu_ring_write(ring, reg);
--	amdgpu_ring_write(ring, val);
-+	amdgpu_ring_write(ring,
-+			  SDMA_PKT_HEADER_OP(SDMA_OP_SRBM_WRITE) |
-+			  SDMA_PKT_SRBM_WRITE_HEADER_BYTE_EN(0xf),
-+			  reg,
-+			  val);
- }
- 
- static void sdma_v5_2_ring_emit_reg_wait(struct amdgpu_ring *ring, uint32_t reg,
- 					 uint32_t val, uint32_t mask)
- {
--	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_POLL_REGMEM) |
-+	amdgpu_ring_write(ring,
-+			  SDMA_PKT_HEADER_OP(SDMA_OP_POLL_REGMEM) |
- 			  SDMA_PKT_POLL_REGMEM_HEADER_HDP_FLUSH(0) |
--			  SDMA_PKT_POLL_REGMEM_HEADER_FUNC(3)); /* equal */
--	amdgpu_ring_write(ring, reg << 2);
--	amdgpu_ring_write(ring, 0);
--	amdgpu_ring_write(ring, val); /* reference */
--	amdgpu_ring_write(ring, mask); /* mask */
--	amdgpu_ring_write(ring, SDMA_PKT_POLL_REGMEM_DW5_RETRY_COUNT(0xfff) |
-+			  SDMA_PKT_POLL_REGMEM_HEADER_FUNC(3), /* equal */
-+			  reg << 2,
-+			  0,
-+			  val, /* reference */
-+			  mask, /* mask */
-+			  SDMA_PKT_POLL_REGMEM_DW5_RETRY_COUNT(0xfff) |
- 			  SDMA_PKT_POLL_REGMEM_DW5_INTERVAL(10));
- }
- 
++		if (err)
++			err = amdgpu_ucode_request(adev, &adev->gfx.mec_fw,
++							AMDGPU_UCODE_REQUIRED,
++							"amdgpu/%s_mec.bin", chip_name);
++	} else
+ 		err = amdgpu_ucode_request(adev, &adev->gfx.mec_fw,
+ 					   AMDGPU_UCODE_REQUIRED,
+ 					   "amdgpu/%s_mec.bin", chip_name);
 -- 
-2.47.1
+2.34.1
 
