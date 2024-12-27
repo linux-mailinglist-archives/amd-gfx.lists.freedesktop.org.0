@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301C89FD3CA
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Dec 2024 12:20:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC3709FD3C5
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Dec 2024 12:19:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47F3210E3A6;
-	Fri, 27 Dec 2024 11:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01FDC10E07E;
+	Fri, 27 Dec 2024 11:19:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="gablIPeR";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="BViRdYYo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5649D10E3A4
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 11:19:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10DCF10E07E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 11:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,25 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=DUBBPvyJaGGi8SbMpJCC7SRGQVImHFAuCAKMQ8ffLRI=; b=gablIPeRwEMA+WoeySQ7whqAxG
- J+zmCAOb12lpIoj7WJJVUVU7NYPlRwAdvEtBK9A+DkodZbCXh8oSBYePNEa1KRkf+2Us/Wr7lqt64
- oxoW12RmJlq45LHG1qG/kjUVQFhAf6AxRGL7u+zQEpccMK1GbFy3nH6IsCrAba5pVnzoy45NmkF2o
- 6to9rsxlAMEu40CAMTpbFe+A0/sOTYcioz5Pw+UFUWEJ6/MHRnOtOfisrnbDoN79RIUFCoO3I8POm
- 3tV8aWbzG3zS8kmPAAi6jRK55y5r3QF0uyfSCYuEV14vxRq4TQv8XDBb/iLza+8uogXFLqaB9CKXl
- d9Qx1E3Q==;
+ bh=lak4yLeKB8+zbxTRvRT0MN8nnd3ESzzSi1BtKeldVpo=; b=BViRdYYooGNK3n8++64+X+NrUb
+ R/hnM7E4e0M8FmyEufShnaK5F5Ol+x4o9nPq7MEUYzgCx5JtRa5newkEk8ceh5qgv9paecR/ljdVh
+ huQqCCmvtIwZrp99x+K2wGizdB7WSYVtAyJOqsOYYebjQrQFlJFfPubBoRHCP2xTdUbKnMf9gRL54
+ ut43kcdwR9R7emwUPcLocSIMh/zsYOyvwOaxgBVCg0WapSHsTCnZRyuJMKor0QUSaEwzuL73xOc8h
+ RbqFerIDga9EYOiTa/t6a5+PeBlMGNvYm6zA76Ii9rVi52FVtaK5D564SX9GhcV/D3x3Oe/8fcxOw
+ jUL+L0oQ==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tR8Nk-008EGW-HV; Fri, 27 Dec 2024 12:19:52 +0100
+ id 1tR8Nl-008EGe-7i; Fri, 27 Dec 2024 12:19:53 +0100
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH 04/12] drm/amdgpu: Consolidate a bunch of similar sdma insert
- nop vfuncs
-Date: Fri, 27 Dec 2024 11:19:30 +0000
-Message-ID: <20241227111938.22974-5-tursulin@igalia.com>
+Subject: [PATCH 05/12] drm/amdgpu: Use memset32 for sdma insert nops
+Date: Fri, 27 Dec 2024 11:19:31 +0000
+Message-ID: <20241227111938.22974-6-tursulin@igalia.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20241227111938.22974-1-tursulin@igalia.com>
 References: <20241227111938.22974-1-tursulin@igalia.com>
@@ -63,533 +62,110 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-A lot of the hardware generations apparently uses the same nop insertion
-logic, just with different masks and shifts.
+Instead of open coding it via the inefficient amdgpu_ring_write() helper
+which the compiler is not able to optimise much, we can use the new
+amdgpu_ring_fill() helper which pads using memset32.
 
-We can consolidate if we store those shifts and mask in the ring and
-shrink both the source and binary.
-
-Though it appears a bit of a departure from the existing "duplicate
-everything" state so we will see how this is received.
+With SDMA this should have much less benefit than what was measured with
+GFX (only SDMA v4.0 uses the 256 byte ring padding while the rest use 16),
+but on the other hand it should not harm and is at least more consistent.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  5 +++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 18 ++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h |  1 +
- drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c   | 19 ++++---------------
- drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c   | 19 ++++---------------
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c   | 23 +++++++----------------
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 23 +++++++----------------
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   | 19 ++++---------------
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   | 19 ++++---------------
- drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   | 19 ++++---------------
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   | 19 ++++---------------
- 11 files changed, 62 insertions(+), 122 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 17 +---------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 26 ++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c |  4 +---
+ 3 files changed, 28 insertions(+), 19 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 8e4e9ec68262..a4ae09fed5c3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -108,22 +108,7 @@ int amdgpu_ring_alloc(struct amdgpu_ring *ring, unsigned int ndw)
+  */
+ void amdgpu_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
+ {
+-	uint32_t occupied, chunk1, chunk2;
+-
+-	occupied = ring->wptr & ring->buf_mask;
+-	chunk1 = ring->buf_mask + 1 - occupied;
+-	chunk1 = (chunk1 >= count) ? count : chunk1;
+-	chunk2 = count - chunk1;
+-
+-	if (chunk1)
+-		memset32(&ring->ring[occupied], ring->funcs->nop, chunk1);
+-
+-	if (chunk2)
+-		memset32(ring->ring, ring->funcs->nop, chunk2);
+-
+-	ring->wptr += count;
+-	ring->wptr &= ring->ptr_mask;
+-	ring->count_dw -= count;
++	amdgpu_ring_fill(ring, ring->funcs->nop, count);
+ }
+ 
+ /**
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index 429c77db920f..4c0861ebc77a 100644
+index 4c0861ebc77a..0a59738fa1d4 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -303,6 +303,11 @@ struct amdgpu_ring {
- 	struct {
- 		struct amdgpu_sdma_instance *instance;
- 		int			     index;
-+
-+		struct {
-+			u32		mask;
-+			unsigned int	shift;
-+		} nop_pkt;
- 	} sdma;
+@@ -415,6 +415,32 @@ static inline void amdgpu_ring_write_multiple(struct amdgpu_ring *ring,
+ 	ring->count_dw -= count_dw;
+ }
  
- 	/* used for mes */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-index d43dfec82624..148413f01875 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-@@ -34,6 +34,24 @@
-  * GPU SDMA IP block helpers function.
-  */
- 
-+void amdgpu_sdma_ring_insert_nop(struct amdgpu_ring *ring, u32 count)
++static inline void amdgpu_ring_fill(struct amdgpu_ring *ring,
++				    u32 val, u32 count)
 +{
-+	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
-+	const u32 nop = ring->funcs->nop;
-+	u32 i;
++	const u32 buf_mask = ring->buf_mask;
++	u32 occupied, chunk1, chunk2;
++	u64 wptr = ring->wptr;
 +
-+	if (!count)
++	if (count == 0)
 +		return;
 +
-+	if (sdma && sdma->burst_nop)
-+		amdgpu_ring_write(ring, nop |
-+					(--count & ring->sdma.nop_pkt.mask) <<
-+					ring->sdma.nop_pkt.shift);
++	occupied = wptr & buf_mask;
++	chunk1 = buf_mask + 1 - occupied;
++	chunk1 = (chunk1 >= count) ? count : chunk1;
++	chunk2 = count - chunk1;
 +
-+	for (i = 0; i < count; i++)
-+		amdgpu_ring_write(ring, nop);
++	if (chunk1)
++		memset32(&ring->ring[occupied], val, chunk1);
++
++	if (chunk2)
++		memset32(ring->ring, val, chunk2);
++
++	wptr += count;
++	ring->wptr = wptr & ring->ptr_mask;
++	ring->count_dw -= count;
 +}
 +
- uint64_t amdgpu_sdma_get_csa_mc_addr(struct amdgpu_ring *ring,
- 				     unsigned int vmid)
+ /**
+  * amdgpu_ring_patch_cond_exec - patch dw count of conditional execute
+  * @ring: amdgpu_ring structure
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+index 148413f01875..2d07fcbd21b7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+@@ -38,7 +38,6 @@ void amdgpu_sdma_ring_insert_nop(struct amdgpu_ring *ring, u32 count)
  {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-index 7debf3ed0b46..d2642a9113ae 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-@@ -159,6 +159,7 @@ struct amdgpu_buffer_funcs {
- #define amdgpu_emit_copy_buffer(adev, ib, s, d, b, t) (adev)->mman.buffer_funcs->emit_copy_buffer((ib),  (s), (d), (b), (t))
- #define amdgpu_emit_fill_buffer(adev, ib, s, d, b) (adev)->mman.buffer_funcs->emit_fill_buffer((ib), (s), (d), (b))
+ 	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
+ 	const u32 nop = ring->funcs->nop;
+-	u32 i;
  
-+void amdgpu_sdma_ring_insert_nop(struct amdgpu_ring *ring, u32 count);
- uint64_t amdgpu_sdma_get_csa_mc_addr(struct amdgpu_ring *ring, unsigned vmid);
- int amdgpu_sdma_ras_late_init(struct amdgpu_device *adev,
- 			      struct ras_common_if *ras_block);
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-index 2e844dba4ad5..e0ed65eca431 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
-@@ -221,19 +221,6 @@ static void sdma_v2_4_ring_set_wptr(struct amdgpu_ring *ring)
- 	WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[ring->me], ring->wptr << 2);
+ 	if (!count)
+ 		return;
+@@ -48,8 +47,7 @@ void amdgpu_sdma_ring_insert_nop(struct amdgpu_ring *ring, u32 count)
+ 					(--count & ring->sdma.nop_pkt.mask) <<
+ 					ring->sdma.nop_pkt.shift);
+ 
+-	for (i = 0; i < count; i++)
+-		amdgpu_ring_write(ring, nop);
++	amdgpu_ring_fill(ring, nop, count);
  }
  
--static void sdma_v2_4_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
--{
--	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
--	int i;
--
--	for (i = 0; i < count; i++)
--		if (sdma && sdma->burst_nop && (i == 0))
--			amdgpu_ring_write(ring, ring->funcs->nop |
--				SDMA_PKT_NOP_HEADER_COUNT(count - 1));
--		else
--			amdgpu_ring_write(ring, ring->funcs->nop);
--}
--
- /**
-  * sdma_v2_4_ring_emit_ib - Schedule an IB on the DMA engine
-  *
-@@ -252,7 +239,7 @@ static void sdma_v2_4_ring_emit_ib(struct amdgpu_ring *ring,
- 	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
- 
- 	/* IB packet must end on a 8 DW boundary */
--	sdma_v2_4_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
-+	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
- 	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
- 			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-@@ -866,6 +853,8 @@ static int sdma_v2_4_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 		ring->sdma.instance = &adev->sdma.instance[i];
- 		ring->sdma.index = i;
-+		ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+		ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 	}
- 
- 	return r;
-@@ -1137,7 +1126,7 @@ static const struct amdgpu_ring_funcs sdma_v2_4_ring_funcs = {
- 	.emit_hdp_flush = sdma_v2_4_ring_emit_hdp_flush,
- 	.test_ring = sdma_v2_4_ring_test_ring,
- 	.test_ib = sdma_v2_4_ring_test_ib,
--	.insert_nop = sdma_v2_4_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v2_4_ring_pad_ib,
- 	.emit_wreg = sdma_v2_4_ring_emit_wreg,
- };
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-index 104fd1214c4c..8a644ea28589 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-@@ -397,19 +397,6 @@ static void sdma_v3_0_ring_set_wptr(struct amdgpu_ring *ring)
- 	}
- }
- 
--static void sdma_v3_0_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
--{
--	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
--	int i;
--
--	for (i = 0; i < count; i++)
--		if (sdma && sdma->burst_nop && (i == 0))
--			amdgpu_ring_write(ring, ring->funcs->nop |
--				SDMA_PKT_NOP_HEADER_COUNT(count - 1));
--		else
--			amdgpu_ring_write(ring, ring->funcs->nop);
--}
--
- /**
-  * sdma_v3_0_ring_emit_ib - Schedule an IB on the DMA engine
-  *
-@@ -428,7 +415,7 @@ static void sdma_v3_0_ring_emit_ib(struct amdgpu_ring *ring,
- 	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
- 
- 	/* IB packet must end on a 8 DW boundary */
--	sdma_v3_0_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
-+	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
- 	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
- 			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-@@ -1152,6 +1139,8 @@ static int sdma_v3_0_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 		ring->sdma.instance = &adev->sdma.instance[i];
- 		ring->sdma.index = i;
-+		ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+		ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 	}
- 
- 	return r;
-@@ -1579,7 +1568,7 @@ static const struct amdgpu_ring_funcs sdma_v3_0_ring_funcs = {
- 	.emit_hdp_flush = sdma_v3_0_ring_emit_hdp_flush,
- 	.test_ring = sdma_v3_0_ring_test_ring,
- 	.test_ib = sdma_v3_0_ring_test_ib,
--	.insert_nop = sdma_v3_0_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v3_0_ring_pad_ib,
- 	.emit_wreg = sdma_v3_0_ring_emit_wreg,
- };
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index c91d05a4593e..0f0f05a03cd4 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -781,19 +781,6 @@ static void sdma_v4_0_page_ring_set_wptr(struct amdgpu_ring *ring)
- 	}
- }
- 
--static void sdma_v4_0_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
--{
--	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
--	int i;
--
--	for (i = 0; i < count; i++)
--		if (sdma && sdma->burst_nop && (i == 0))
--			amdgpu_ring_write(ring, ring->funcs->nop |
--				SDMA_PKT_NOP_HEADER_COUNT(count - 1));
--		else
--			amdgpu_ring_write(ring, ring->funcs->nop);
--}
--
- /**
-  * sdma_v4_0_ring_emit_ib - Schedule an IB on the DMA engine
-  *
-@@ -812,7 +799,7 @@ static void sdma_v4_0_ring_emit_ib(struct amdgpu_ring *ring,
- 	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
- 
- 	/* IB packet must end on a 8 DW boundary */
--	sdma_v4_0_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
-+	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
- 	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
- 			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-@@ -1876,6 +1863,8 @@ static int sdma_v4_0_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 		ring->sdma.instance = &adev->sdma.instance[i];
- 		ring->sdma.index = i;
-+		ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+		ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 
- 		if (adev->sdma.has_page_queue) {
- 			ring = &adev->sdma.instance[i].page;
-@@ -1917,6 +1906,8 @@ static int sdma_v4_0_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 			ring->sdma.instance = &adev->sdma.instance[i];
- 			ring->sdma.index = i;
-+			ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+			ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 		}
- 	}
- 
-@@ -2443,7 +2434,7 @@ static const struct amdgpu_ring_funcs sdma_v4_0_ring_funcs = {
- 	.emit_hdp_flush = sdma_v4_0_ring_emit_hdp_flush,
- 	.test_ring = sdma_v4_0_ring_test_ring,
- 	.test_ib = sdma_v4_0_ring_test_ib,
--	.insert_nop = sdma_v4_0_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v4_0_ring_pad_ib,
- 	.emit_wreg = sdma_v4_0_ring_emit_wreg,
- 	.emit_reg_wait = sdma_v4_0_ring_emit_reg_wait,
-@@ -2475,7 +2466,7 @@ static const struct amdgpu_ring_funcs sdma_v4_0_page_ring_funcs = {
- 	.emit_hdp_flush = sdma_v4_0_ring_emit_hdp_flush,
- 	.test_ring = sdma_v4_0_ring_test_ring,
- 	.test_ib = sdma_v4_0_ring_test_ib,
--	.insert_nop = sdma_v4_0_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v4_0_ring_pad_ib,
- 	.emit_wreg = sdma_v4_0_ring_emit_wreg,
- 	.emit_reg_wait = sdma_v4_0_ring_emit_reg_wait,
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index d1d21a3951f8..f68b7f2e0a40 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -341,19 +341,6 @@ static void sdma_v4_4_2_page_ring_set_wptr(struct amdgpu_ring *ring)
- 	}
- }
- 
--static void sdma_v4_4_2_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
--{
--	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
--	int i;
--
--	for (i = 0; i < count; i++)
--		if (sdma && sdma->burst_nop && (i == 0))
--			amdgpu_ring_write(ring, ring->funcs->nop |
--				SDMA_PKT_NOP_HEADER_COUNT(count - 1));
--		else
--			amdgpu_ring_write(ring, ring->funcs->nop);
--}
--
- /**
-  * sdma_v4_4_2_ring_emit_ib - Schedule an IB on the DMA engine
-  *
-@@ -372,7 +359,7 @@ static void sdma_v4_4_2_ring_emit_ib(struct amdgpu_ring *ring,
- 	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
- 
- 	/* IB packet must end on a 8 DW boundary */
--	sdma_v4_4_2_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
-+	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
- 	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
- 			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-@@ -1431,6 +1418,8 @@ static int sdma_v4_4_2_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 		ring->sdma.instance = &adev->sdma.instance[i];
- 		ring->sdma.index = i;
-+		ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+		ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 
- 		if (adev->sdma.has_page_queue) {
- 			ring = &adev->sdma.instance[i].page;
-@@ -1455,6 +1444,8 @@ static int sdma_v4_4_2_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 			ring->sdma.instance = &adev->sdma.instance[i];
- 			ring->sdma.index = i;
-+			ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+			ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 		}
- 	}
- 
-@@ -2013,7 +2004,7 @@ static const struct amdgpu_ring_funcs sdma_v4_4_2_ring_funcs = {
- 	.emit_hdp_flush = sdma_v4_4_2_ring_emit_hdp_flush,
- 	.test_ring = sdma_v4_4_2_ring_test_ring,
- 	.test_ib = sdma_v4_4_2_ring_test_ib,
--	.insert_nop = sdma_v4_4_2_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v4_4_2_ring_pad_ib,
- 	.emit_wreg = sdma_v4_4_2_ring_emit_wreg,
- 	.emit_reg_wait = sdma_v4_4_2_ring_emit_reg_wait,
-@@ -2045,7 +2036,7 @@ static const struct amdgpu_ring_funcs sdma_v4_4_2_page_ring_funcs = {
- 	.emit_hdp_flush = sdma_v4_4_2_ring_emit_hdp_flush,
- 	.test_ring = sdma_v4_4_2_ring_test_ring,
- 	.test_ib = sdma_v4_4_2_ring_test_ib,
--	.insert_nop = sdma_v4_4_2_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v4_4_2_ring_pad_ib,
- 	.emit_wreg = sdma_v4_4_2_ring_emit_wreg,
- 	.emit_reg_wait = sdma_v4_4_2_ring_emit_reg_wait,
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-index 97536f82dfcd..bbf60bfa4b1b 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-@@ -433,19 +433,6 @@ static void sdma_v5_0_ring_set_wptr(struct amdgpu_ring *ring)
- 	}
- }
- 
--static void sdma_v5_0_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
--{
--	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
--	int i;
--
--	for (i = 0; i < count; i++)
--		if (sdma && sdma->burst_nop && (i == 0))
--			amdgpu_ring_write(ring, ring->funcs->nop |
--				SDMA_PKT_NOP_HEADER_COUNT(count - 1));
--		else
--			amdgpu_ring_write(ring, ring->funcs->nop);
--}
--
- /**
-  * sdma_v5_0_ring_emit_ib - Schedule an IB on the DMA engine
-  *
-@@ -472,7 +459,7 @@ static void sdma_v5_0_ring_emit_ib(struct amdgpu_ring *ring,
- 	 * (wptr + 6 + x) % 8 = 0.
- 	 * The expression below, is a solution of x.
- 	 */
--	sdma_v5_0_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
-+	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
- 	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
- 			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-@@ -1453,6 +1440,8 @@ static int sdma_v5_0_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 		ring->sdma.instance = &adev->sdma.instance[i];
- 		ring->sdma.index = i;
-+		ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+		ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 	}
- 
- 	adev->sdma.supported_reset =
-@@ -1991,7 +1980,7 @@ static const struct amdgpu_ring_funcs sdma_v5_0_ring_funcs = {
- 	.emit_hdp_flush = sdma_v5_0_ring_emit_hdp_flush,
- 	.test_ring = sdma_v5_0_ring_test_ring,
- 	.test_ib = sdma_v5_0_ring_test_ib,
--	.insert_nop = sdma_v5_0_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v5_0_ring_pad_ib,
- 	.emit_wreg = sdma_v5_0_ring_emit_wreg,
- 	.emit_reg_wait = sdma_v5_0_ring_emit_reg_wait,
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index 8eaddee1d97d..69b88db32117 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -250,19 +250,6 @@ static void sdma_v5_2_ring_set_wptr(struct amdgpu_ring *ring)
- 	}
- }
- 
--static void sdma_v5_2_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
--{
--	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
--	int i;
--
--	for (i = 0; i < count; i++)
--		if (sdma && sdma->burst_nop && (i == 0))
--			amdgpu_ring_write(ring, ring->funcs->nop |
--				SDMA_PKT_NOP_HEADER_COUNT(count - 1));
--		else
--			amdgpu_ring_write(ring, ring->funcs->nop);
--}
--
- /**
-  * sdma_v5_2_ring_emit_ib - Schedule an IB on the DMA engine
-  *
-@@ -289,7 +276,7 @@ static void sdma_v5_2_ring_emit_ib(struct amdgpu_ring *ring,
- 	 * (wptr + 6 + x) % 8 = 0.
- 	 * The expression below, is a solution of x.
- 	 */
--	sdma_v5_2_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
-+	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
- 	amdgpu_ring_write(ring, SDMA_PKT_HEADER_OP(SDMA_OP_INDIRECT) |
- 			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-@@ -1358,6 +1345,8 @@ static int sdma_v5_2_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 		ring->sdma.instance = &adev->sdma.instance[i];
- 		ring->sdma.index = i;
-+		ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+		ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 	}
- 
- 	adev->sdma.supported_reset =
-@@ -1986,7 +1975,7 @@ static const struct amdgpu_ring_funcs sdma_v5_2_ring_funcs = {
- 	.emit_hdp_flush = sdma_v5_2_ring_emit_hdp_flush,
- 	.test_ring = sdma_v5_2_ring_test_ring,
- 	.test_ib = sdma_v5_2_ring_test_ib,
--	.insert_nop = sdma_v5_2_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v5_2_ring_pad_ib,
- 	.begin_use = sdma_v5_2_ring_begin_use,
- 	.end_use = sdma_v5_2_ring_end_use,
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-index 3ead269eccdc..aa3992fd5313 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-@@ -235,19 +235,6 @@ static void sdma_v6_0_ring_set_wptr(struct amdgpu_ring *ring)
- 	}
- }
- 
--static void sdma_v6_0_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
--{
--	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
--	int i;
--
--	for (i = 0; i < count; i++)
--		if (sdma && sdma->burst_nop && (i == 0))
--			amdgpu_ring_write(ring, ring->funcs->nop |
--				SDMA_PKT_NOP_HEADER_COUNT(count - 1));
--		else
--			amdgpu_ring_write(ring, ring->funcs->nop);
--}
--
- /*
-  * sdma_v6_0_ring_emit_ib - Schedule an IB on the DMA engine
-  *
-@@ -274,7 +261,7 @@ static void sdma_v6_0_ring_emit_ib(struct amdgpu_ring *ring,
- 	 * (wptr + 6 + x) % 8 = 0.
- 	 * The expression below, is a solution of x.
- 	 */
--	sdma_v6_0_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
-+	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
- 	amdgpu_ring_write(ring, SDMA_PKT_COPY_LINEAR_HEADER_OP(SDMA_OP_INDIRECT) |
- 			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-@@ -1351,6 +1338,8 @@ static int sdma_v6_0_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 		ring->sdma.instance = &adev->sdma.instance[i];
- 		ring->sdma.index = i;
-+		ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+		ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 	}
- 
- 	adev->sdma.supported_reset =
-@@ -1707,7 +1696,7 @@ static const struct amdgpu_ring_funcs sdma_v6_0_ring_funcs = {
- 	.emit_hdp_flush = sdma_v6_0_ring_emit_hdp_flush,
- 	.test_ring = sdma_v6_0_ring_test_ring,
- 	.test_ib = sdma_v6_0_ring_test_ib,
--	.insert_nop = sdma_v6_0_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v6_0_ring_pad_ib,
- 	.emit_wreg = sdma_v6_0_ring_emit_wreg,
- 	.emit_reg_wait = sdma_v6_0_ring_emit_reg_wait,
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-index 5fadaf35a03a..4ccc00248a09 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-@@ -267,19 +267,6 @@ static void sdma_v7_0_ring_set_wptr(struct amdgpu_ring *ring)
- 	}
- }
- 
--static void sdma_v7_0_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
--{
--	struct amdgpu_sdma_instance *sdma = ring->sdma.instance;
--	int i;
--
--	for (i = 0; i < count; i++)
--		if (sdma && sdma->burst_nop && (i == 0))
--			amdgpu_ring_write(ring, ring->funcs->nop |
--				SDMA_PKT_NOP_HEADER_COUNT(count - 1));
--		else
--			amdgpu_ring_write(ring, ring->funcs->nop);
--}
--
- /**
-  * sdma_v7_0_ring_emit_ib - Schedule an IB on the DMA engine
-  *
-@@ -306,7 +293,7 @@ static void sdma_v7_0_ring_emit_ib(struct amdgpu_ring *ring,
- 	 * (wptr + 6 + x) % 8 = 0.
- 	 * The expression below, is a solution of x.
- 	 */
--	sdma_v7_0_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
-+	amdgpu_sdma_ring_insert_nop(ring, (2 - lower_32_bits(ring->wptr)) & 7);
- 
- 	amdgpu_ring_write(ring, SDMA_PKT_COPY_LINEAR_HEADER_OP(SDMA_OP_INDIRECT) |
- 			  SDMA_PKT_INDIRECT_HEADER_VMID(vmid & 0xf));
-@@ -1365,6 +1352,8 @@ static int sdma_v7_0_sw_init(struct amdgpu_ip_block *ip_block)
- 
- 		ring->sdma.instance = &adev->sdma.instance[i];
- 		ring->sdma.index = i;
-+		ring->sdma.nop_pkt.mask = SDMA_PKT_NOP_HEADER_count_mask;
-+		ring->sdma.nop_pkt.shift = SDMA_PKT_NOP_HEADER_count_shift;
- 	}
- 
- 	adev->sdma.supported_reset =
-@@ -1687,7 +1676,7 @@ static const struct amdgpu_ring_funcs sdma_v7_0_ring_funcs = {
- 	.emit_hdp_flush = sdma_v7_0_ring_emit_hdp_flush,
- 	.test_ring = sdma_v7_0_ring_test_ring,
- 	.test_ib = sdma_v7_0_ring_test_ib,
--	.insert_nop = sdma_v7_0_ring_insert_nop,
-+	.insert_nop = amdgpu_sdma_ring_insert_nop,
- 	.pad_ib = sdma_v7_0_ring_pad_ib,
- 	.emit_wreg = sdma_v7_0_ring_emit_wreg,
- 	.emit_reg_wait = sdma_v7_0_ring_emit_reg_wait,
+ uint64_t amdgpu_sdma_get_csa_mc_addr(struct amdgpu_ring *ring,
 -- 
 2.47.1
 
