@@ -2,63 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 814D79FE747
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Dec 2024 15:51:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 994B99FE749
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Dec 2024 15:51:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B776910E500;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A18A910E4FA;
 	Mon, 30 Dec 2024 14:51:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="bI0HTPaM";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 902 seconds by postgrey-1.36 at gabe;
- Fri, 27 Dec 2024 22:28:28 UTC
-Received: from sender-of-o51.zoho.eu (sender-of-o51.zoho.eu [136.143.169.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D906110E2F5
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 22:28:28 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1735337592; cv=none; d=zohomail.eu; s=zohoarc; 
- b=FAJyWnQkW3J6gCkDS3wv80v/NWq2U7j1SFQSlfIIexJsBqFNtdjdguENydNjfizgiNBFDqWB/8AMt7HUIcfSPjVdbqmcaIb4USjjl2uD6zWn5HfuZGPISZzl4+a8UR4W5Mj1aixaqCIz4gSigolxFH1QnHOsX2ir3UmTlNLDoPw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu;
- s=zohoarc; t=1735337592;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=ZAKQbwWFK/eaUYts22hNPdnUOqBUiP8ihdLJhjDQp30=; 
- b=jhYEIAoF+9y2KCDXYBIta8+sZ2mjjjOg6AEuMaJ3bef3AUCVxtMhwQmKdL0TNFgijEq4gZWp0sEi9tgyq1isztmI8mBp1ElmwvkcOKitqQagK4xS2EYXX/hCszxbwq6LNG9Gcs9trJyW8Aw73fUUrfJTwPIM/llxsQzSH9pgZhc=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
- spf=pass  smtp.mailfrom=carl@uvos.xyz;
- dmarc=pass header.from=<carl@uvos.xyz>
-Received: by mx.zoho.eu with SMTPS id 1735337588735460.58844910928804;
- Fri, 27 Dec 2024 23:13:08 +0100 (CET)
-Message-ID: <d77edb9a57236c0ee4a8b0e0c303504250f1ea3a.camel@uvos.xyz>
-Subject: smu11 Uclk behavior on arcturus
-From: Carl Klemm <carl@uvos.xyz>
-To: evan.quan@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Date: Fri, 27 Dec 2024 23:13:07 +0100
-Autocrypt: addr=carl@uvos.xyz; prefer-encrypt=mutual;
- keydata=mQINBGVOCIUBEADDPZFKPwxxb8Bmp/dhm0XBGds917diVc0s7lLNJfu1RMviwbxhaJg/L
- RUOBohrnx60nkvsP1y/CG30n/shrnSjWQaBfQVEjWv/dB85IzDXNdCDooBEyrTkbvCfk+cYUf79I9
- GVUwV6eVttfrYyp7PZ6QyQ9DL1QG5chAd2VwHbPl35kwr5AROW0yDpnPzqpx+reDKoeHLWRzU//t3
- NQTvXQUWzJEPY2Uzz3r8eXkGDEquy7DzZ9WHv7jhpQ6iZGyZniRxXY/cypnOFS4cEd/kwPAXRRKC2
- OHNoTJaiu3sGaVjqTGRaVpbTkMghvnZsi6fuHsdrVgfq6iVulgxtK7BzPG51dRkYvocmLtGZ/b1jB
- uzi2nry2FIsgvOe0m6bxsEzFEaet745PKqkkigLABOeWM5IRj8PSN+kS5PK/gV+hqUXRSV/hFWl0T
- DVVa2i2bHZX7aIUX2dCHOjpRBMhtBbyRxBs4EC/MvseN6+btUyjxbtcnpQ55cIQwCdhLtap4ebzYV
- AikEpAfne7qdYbeUXQKlYqY4RjYaXIRqcdejcjZZ/FuynNgVVK2milxES+ttSw+FoHeH/3sXKJNAS
- Y8W28kew+nAL9qSYHlqt+V7iKCTui7MZm0ybIbwa0QzIJCkh9WmpnMvavUml8MfH8mx+wHDLy+5lc
- HjmmQP9abE4pQARAQABtCJDYXJsIFBoaWxpcHAgS2xlbW0gPGNhcmxAdXZvcy54eXo+iQJOBBMBCA
- A4FiEE0QDoF9wkv7l1UjjCNriuqhoLCrIFAmVOCIUCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4A
- ACgkQNriuqhoLCrJjmg/8DVY3iKA8I+sB0Bo5EZ0tT1+6NtFaBGe5NBuGGvuGxtlppGwTXHv1Bbzj
- Z2Rp3N1/w6IjSnD5wk5q/dCVNqprSYo21kP1OChtB4WcKMrKK12eOKvqwxpckFB7LfaCnef5meYS0
- +s5h4fmv9xGtUvn6y9liHof25/AtyBiDZeC/mHlcnuepz1wb0XCOpKIaA7Wqetv7zsRvq7GAk/x3B
- IasLKxmDDG9w/Yg0n4sMpF2dS1r9nRlJmSbsFyqQ1TnEthFNvifB6/0U6XXDipMCDjciJ9L19LWyu
- Fry8gcXuHOIXZkQXLYUjfrN0xalANK/woCivhI9jvs5IJe4CXhrXSZSazqBJMh2lUzdrrQUT8cYYj
- +b8haNrmS+kQw2AslqfG8coOf0zJ/542rn8VR/O4o/0zu/l3i8ZvEESmyROuBgv0Pq2gBHTCP1+Em
- pMf87BBA1cgdM8EDJ2Yn8dWc4Z6F8DwCPl3j39G2HHHgG4uZEfkZZ3NHK9TZjaiO7Zq3nWwFM5o7Y
- LgY+9k200k6EOAh+pl4DtNA/MW0CLpAfrWIgYdb0onvRugeAbbmNxlFQc0ta91NrwjLTMGx6Eczjn
- EhizGHwuV7neNCMf4vADep5jNGmw+wCDsK7JZtghCnISglPMz7zURqzW791l5at54XnIi1YVp2ab0
- jTPn2xLgvJU=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Sat, 28 Dec 2024 06:37:52 UTC
+Received: from out30-132.freemail.mail.aliyun.com
+ (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F286210E0BA;
+ Sat, 28 Dec 2024 06:37:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux.alibaba.com; s=default;
+ t=1735367871; h=From:To:Subject:Date:Message-ID:MIME-Version;
+ bh=MGGvG2Fzj1nmQzeJtG/D+iwRccsq+ANs4YuzTX7jMpU=;
+ b=bI0HTPaMwR6Qd3MW/2vcvVbet7QZg3ocUjHgxhjq5UvvLskf9P9ytREKbC5BjbyKjU0fpm1TPK9U3s6Hebz4ZmAq1lL/kyLj4VNLUJCMVm2bGVT+44oq/Y1pL29OCArRucS8/M5JpeQHPw57RxTbYi/b9HiEcZKsy9SuN7clZVE=
+Received: from localhost.localdomain(mailfrom:xueshuai@linux.alibaba.com
+ fp:SMTPD_---0WMN3RGm_1735367565 cluster:ay36) by smtp.aliyun-inc.com;
+ Sat, 28 Dec 2024 14:32:47 +0800
+From: Shuai Xue <xueshuai@linux.alibaba.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, simona@ffwll.ch, lijo.lazar@amd.com, le.ma@amd.com,
+ hamza.mahfooz@amd.com, tzimmermann@suse.de, shaoyun.liu@amd.com,
+ Jun.Ma2@amd.com
+Cc: xueshuai@linux.alibaba.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: Enable runtime modification of gpu_recovery
+ parameter with validation
+Date: Sat, 28 Dec 2024 14:32:45 +0800
+Message-ID: <20241228063245.61874-1-xueshuai@linux.alibaba.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 30 Dec 2024 14:51:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,31 +55,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+It's observed that most GPU jobs utilize less than one server, typically
+with each GPU being used by an independent job. If a job consumed poisoned
+data, a SIGBUS signal will be sent to terminate it. Meanwhile, the
+gpu_recovery parameter is set to -1 by default, the amdgpu driver resets
+all GPUs on the server. As a result, all jobs are terminated. Setting
+gpu_recovery to 0 provides an opportunity to preemptively evacuate other
+jobs and subsequently manually reset all GPUs. However, this parameter is
+read-only, necessitating correct settings at driver load. And reloading the
+GPU driver in a production environment can be challenging due to reference
+counts maintained by various monitoring services.
 
-i noticed in drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c that
-arcturus never reclocks its memory, allways keeping it at the boot up
-default of 1200 Mhz regardless of load.
+Set the gpu_recovery parameter with read-write permission to enable runtime
+modification. It will enables users to dynamically manage GPU recovery
+mechanisms based on real-time requirements or conditions.
 
-This is despite teh fact the vbios on my m100 devices contain other
-uclk states too:
-  FreqTableUclk:
-    FreqTableUclk 0: 600
-    FreqTableUclk 1: 800
-    FreqTableUclk 2: 1000
-    FreqTableUclk 3: 1200
+Signed-off-by: Shuai Xue <xueshuai@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 26 ++++++++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
 
-I would like to inquire why this is so, it seams that amdgpu is
-needlesy buring a tonne of power whenever the mi100's are idle for no
-particular reason. In difference to some other amd devices that lock
-their memory clocks to a high level in some cirumstances mi100 dosent
-have to contend with the timeing requirements of scanout buffers,
-makeing it all the more puzzeling why the driver is desinged to behave
-like this.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 38686203bea6..03dd902e1cec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -563,12 +563,36 @@ module_param_named(lbpw, amdgpu_lbpw, int, 0444);
+ MODULE_PARM_DESC(compute_multipipe, "Force compute queues to be spread across pipes (1 = enable, 0 = disable, -1 = auto)");
+ module_param_named(compute_multipipe, amdgpu_compute_multipipe, int, 0444);
+ 
++static int amdgpu_set_gpu_recovery(const char *buf,
++				   const struct kernel_param *kp)
++{
++	unsigned long val;
++	int ret;
++
++	ret = kstrtol(buf, 10, &val);
++	if (ret < 0)
++		return ret;
++
++	if (val != 1 && val != 0 && val != -1) {
++		pr_err("Invalid value for gpu_recovery: %ld, excepted 0,1,-1\n",
++		       val);
++		return -EINVAL;
++	}
++
++	return param_set_int(buf, kp);
++}
++
++static const struct kernel_param_ops amdgpu_gpu_recovery_ops = {
++	.set = amdgpu_set_gpu_recovery,
++	.get = param_get_int,
++};
++
+ /**
+  * DOC: gpu_recovery (int)
+  * Set to enable GPU recovery mechanism (1 = enable, 0 = disable). The default is -1 (auto, disabled except SRIOV).
+  */
+ MODULE_PARM_DESC(gpu_recovery, "Enable GPU recovery mechanism, (1 = enable, 0 = disable, -1 = auto)");
+-module_param_named(gpu_recovery, amdgpu_gpu_recovery, int, 0444);
++module_param_cb(gpu_recovery, &amdgpu_gpu_recovery_ops, &amdgpu_gpu_recovery, 0644);
+ 
+ /**
+  * DOC: emu_mode (int)
+-- 
+2.39.3
 
-Is there some errata in arcturus hardware preventing the reclocking of
-the memory? Is this an oversight?
-
-With regards,
-
-Carl Philipp Klemm=20
