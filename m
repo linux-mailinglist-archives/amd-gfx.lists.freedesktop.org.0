@@ -2,47 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B13E89FE748
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Dec 2024 15:51:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 627CC9FE770
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Dec 2024 16:07:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89E5010E010;
-	Mon, 30 Dec 2024 14:51:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0170610E504;
+	Mon, 30 Dec 2024 15:07:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="YBncg1BH";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="5cnEAu+h";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-97.freemail.mail.aliyun.com
- (out30-97.freemail.mail.aliyun.com [115.124.30.97])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B1610E296;
- Mon, 30 Dec 2024 08:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1735548624; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
- bh=PccYO85rsZ4rdgiMx0mZC/d5kRnlpqB0eoGg1MbewiE=;
- b=YBncg1BHZE++ldN5HM5U76xhQzn0gi3izKjmn679CirvLqhlpcaOqKp49tz8UKYj+9I6x5S1VvGnxadM5ZnDTY1LNbwyrCKfJ7SGQucyzQCgz+2dQeTBCZ1vvuK+OWXcP+BsqlZw/14wG7gJ0lYLBL4Ji/1igA/LZDwh7YoKBAY=
-Received: from 30.246.161.240(mailfrom:xueshuai@linux.alibaba.com
- fp:SMTPD_---0WMVdGax_1735548621 cluster:ay36) by smtp.aliyun-inc.com;
- Mon, 30 Dec 2024 16:50:23 +0800
-Message-ID: <63938ba2-dcb5-456f-bf82-bd8c893549c0@linux.alibaba.com>
-Date: Mon, 30 Dec 2024 16:50:21 +0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2074.outbound.protection.outlook.com [40.107.244.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AA0C10E504
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Dec 2024 15:07:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BruSCvKi+fi48rJQI/AHKvjprakbmDXEp2hKLgwC8PXrOpHvg0RuUtjAUBh2UAIObYpQuuOVXnqK0+R8r+gLJRGXG9PmhaMaRPfSbuioNrYK9iuRBRIwQqcmOG6vC7xgpukVN+qgIXJt+X9XygzHACruZtFdtIRMXPY1NKEWXP89SqE1ZqKPBgvHJ1tf0hiuycjkIEiysRHNsTjpzh6n5QudN0FXUGa2TrVzWg1kRyq3Eby/o8QxDXPpel/foImk3RQaeLk2lh79aphqUAe6+ebgZPR+a6wo0YOj1LZtjSFfBXT0HBboieywn2M8uuAYyyZ7Pk+iEKiwDIBRE8V8AA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fGXyqFYOKtGWr7TUQ9FyTPNOAAlOEJx2L/S7sD/keDg=;
+ b=TcTTdPaC5YxeSYqJ1FXihDKNfUDf2KDFcXhICxJaUkMp1/uWO08/Neo9I2A9OFnchVkqzOyRuQH2+7n4u06gXjfbsWZIXaK4ALAv3PufA1wAy3hQV80HlgjJOJK7ImM0tkwKVERQs4smf+MOZAWC4qI3V1X+WVqtE4FslERqbtCsR/z+OPHVCj49OIEdWklmiUUWogiDwHFXIfhf1IRSNAZbdn/nHITNtmustjRNBaeheaufD3aEc4w1X9DOeV8P+RB58AjPUa21DJoL6uBOa+d4fGbiTZbmS+esecZNddoPJh7byw9WPGYjwMUdgWZHKOhun8cwDAcnGBsSwor/Sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fGXyqFYOKtGWr7TUQ9FyTPNOAAlOEJx2L/S7sD/keDg=;
+ b=5cnEAu+h9q+JTHBDPnGHaE97JzVNJ9bdzV9yDdmnyy6PvdfwJYQnOmzxIyFrC0rJybeN9l7Zw5NcRd7KA65pIMYAtYDzXMwMXPnxbuAlfpTrNTgIRDDEddVeoqNKIFCmMKg0hSvbTZFJjQyaq4FUoPI8ZvbMGw7b2PhrAnR5q6o=
+Received: from DM6PR12CA0005.namprd12.prod.outlook.com (2603:10b6:5:1c0::18)
+ by PH7PR12MB5735.namprd12.prod.outlook.com (2603:10b6:510:1e2::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.16; Mon, 30 Dec
+ 2024 14:53:10 +0000
+Received: from DS1PEPF00017092.namprd03.prod.outlook.com
+ (2603:10b6:5:1c0:cafe::4f) by DM6PR12CA0005.outlook.office365.com
+ (2603:10b6:5:1c0::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8293.19 via Frontend Transport; Mon,
+ 30 Dec 2024 14:53:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF00017092.mail.protection.outlook.com (10.167.17.135) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8314.11 via Frontend Transport; Mon, 30 Dec 2024 14:53:09 +0000
+Received: from amartin-dev-ubuntu.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 30 Dec 2024 08:53:09 -0600
+From: Andrew Martin <Andrew.Martin@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <felix.kuehling@amd.com>, <kent.russell@amd.com>, Andrew Martin
+ <Andrew.Martin@amd.com>
+Subject: [PATCH] drm/amdkfd: Ignored various return code
+Date: Mon, 30 Dec 2024 09:52:55 -0500
+Message-ID: <20241230145255.251661-1-Andrew.Martin@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Enable runtime modification of gpu_recovery
- parameter with validation
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- simona@ffwll.ch, lijo.lazar@amd.com, le.ma@amd.com, hamza.mahfooz@amd.com,
- tzimmermann@suse.de, shaoyun.liu@amd.com, Jun.Ma2@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, tianruidong@linux.alibaba.com
-References: <20241228063245.61874-1-xueshuai@linux.alibaba.com>
- <563b1797-5524-44c5-89b0-754f245e6b8f@amd.com>
-From: Shuai Xue <xueshuai@linux.alibaba.com>
-In-Reply-To: <563b1797-5524-44c5-89b0-754f245e6b8f@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 30 Dec 2024 14:51:53 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017092:EE_|PH7PR12MB5735:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6ecad2b-dc15-4f48-cb58-08dd28e1ad85
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?0RQvsYorIYgA96D5ejUQ8WmT/QlPLc3sTyOtsnluMaaCLOgvTRdhVAIcUzMs?=
+ =?us-ascii?Q?Vf57JbKcKv3HKmLRZ47so86cmTYS6aazL7nTgYnjdmSZXVmEEe6YJD8OJYZW?=
+ =?us-ascii?Q?RF4PR6GLSze6uEyfk1agj+ycUDq9qw1V5y1P01gMbHTUcD5uuA0yyilWDok+?=
+ =?us-ascii?Q?u1XBYxjOUHG2NX9TgEv9N1FviW2/i7ez3Lms9Sd/8VeMnBUBcX0JpKoT/Atv?=
+ =?us-ascii?Q?GtVeZZTHtLTjKMi2vEWYwYaMSrhbI0vSPkmDqAnM05FNfAyvnBWHRjgNjKZ+?=
+ =?us-ascii?Q?sBmAwqKY7m7ZvB5ucz2LHeTc5L/p8gUKutQNLTlu815Bt5Ou5vweIP/YONE5?=
+ =?us-ascii?Q?v/0CJBiEfC15MQo2h8VKSk62q/77/hNlzeia36WFwrbh5F0sBCyD9tWlFJFO?=
+ =?us-ascii?Q?tCuUlzVilScDkJnQrddugWbzozIah6DyQMvkzeYN7SSARGUo3r+Ogi4KGXt2?=
+ =?us-ascii?Q?a9xSSgYtzbeDztXX1IWfL1a9A/eqSL6awGVT+4qm+GfFpEFSj8hsaR0PevyQ?=
+ =?us-ascii?Q?us0ieHklQZ3VMvzPCNpqHEj88Y6gpvwmwhve0N9vAHf791wOj6tXFja4Bnmj?=
+ =?us-ascii?Q?2XqOxn7ZXi0uKUj2wkz0Cu3EYEbmerQVHmLf2DMIKJrkvBSmrBSyrG9bOkAt?=
+ =?us-ascii?Q?sKqZ3N+aqpP9duVZPOHuAzJDOjLJoNwUekMGolld2oVNSUXFEHmas2+vsCON?=
+ =?us-ascii?Q?ATQ7oY67hAri6fhJY+pfRe0KEYc2KbET3ADct9mBOYdNER8Cu6caRU5G7l2M?=
+ =?us-ascii?Q?OhMVh/R4LnDuwTBEUoefgVhAwBuJxz7pwaAJXi5XGGV/hgYI7Vk37lAQToLB?=
+ =?us-ascii?Q?MJN8NSQWEqg3MlNLGdxszNOs7KaYeCbdKpCUbDHlOD3Xmxe/HV/u9uie8zva?=
+ =?us-ascii?Q?+chIuNswljnXzqmud2lxKoaLYn1BR+Meh0ZSIuzUdRPOjXbEbZLFiHkkfoHT?=
+ =?us-ascii?Q?Hwub0IfF+vKhOqvECTd/ktIlVPGoqaCTcnwT6lPbPeo0ImZNi/Z9KKeP1hI9?=
+ =?us-ascii?Q?VE/xNB6TRwbQNwRF5J/EkYWrOKQk3StxMxLWKNZr626pZZeEbrBN3T90VedG?=
+ =?us-ascii?Q?fuOwXu+b87XWeOMmMp+abs3pOJwQOHrM5IDOO3Dy2j+QjHisAOEJ7i/9y8h4?=
+ =?us-ascii?Q?pWFR2O+KjMioWxI2fN8jhTgzILB3ejINt2HoD2/2aSyWI9Z3f9XeTaY3fHdm?=
+ =?us-ascii?Q?G15Ch4abfnLfuqGkdeglKY7NoU1N2mXE9fWJhXUUZubHppLNAYBAxbO1q+vZ?=
+ =?us-ascii?Q?Ol7aQKxjugr28bpoyvildqRkrZXYzpUQLy+VGW3R7VfmcvhcY/Jae820yrKp?=
+ =?us-ascii?Q?qJUf402RADslDflY8NluHEaS+wcFii+fMVGka1unCIH5a/1yy8NijOznQre7?=
+ =?us-ascii?Q?QD5vhu9LYrJSym4gFDfX8ITOzMf8q5vjCaNhO94g9z7Qw9IdjYU7oR0AaakX?=
+ =?us-ascii?Q?FBgw8mF3EUGQafdglK4jpluTVDNa9HULf0HAtZNpGfm+TVBV+Z+g6lNah0bu?=
+ =?us-ascii?Q?FaWo3V1aF09TRM0=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2024 14:53:09.9207 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6ecad2b-dc15-4f48-cb58-08dd28e1ad85
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017092.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5735
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,152 +131,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This patch checks and handles the return code of the called function.
 
+Signed-off-by: Andrew Martin <Andrew.Martin@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c         |  2 ++
+ drivers/gpu/drm/amd/amdkfd/kfd_debug.c        | 19 ++++++++++++++-----
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c | 11 ++++++-----
+ 3 files changed, 22 insertions(+), 10 deletions(-)
 
-在 2024/12/30 04:11, Christian König 写道:
-> Am 28.12.24 um 07:32 schrieb Shuai Xue:
->> It's observed that most GPU jobs utilize less than one server, typically
->> with each GPU being used by an independent job. If a job consumed poisoned
->> data, a SIGBUS signal will be sent to terminate it. Meanwhile, the
->> gpu_recovery parameter is set to -1 by default, the amdgpu driver resets
->> all GPUs on the server. As a result, all jobs are terminated. Setting
->> gpu_recovery to 0 provides an opportunity to preemptively evacuate other
->> jobs and subsequently manually reset all GPUs.
-> 
-> *BIG* NAK to this whole approach!
-> 
-> Setting gpu_recovery to 0 in a production environment is *NOT* supported at all and should never be done.
-> 
-> This is a pure debugging feature for JTAG debugging and can result in random crashes and/or compromised data.
-> 
-> Please don't tell me that you tried to use this in a production environment.
-> 
-> Regards,
-> Christian.
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index 693469c18c60..f335ed9e0b3a 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -2351,6 +2351,8 @@ static int kfd_create_vcrat_image_gpu(void *pcrat_image,
+ 	if (kdev->kfd->hive_id) {
+ 		for (nid = 0; nid < proximity_domain; ++nid) {
+ 			peer_dev = kfd_topology_device_by_proximity_domain_no_lock(nid);
++			if (!peer_dev)
++				return -ENODEV;
+ 			if (!peer_dev->gpu)
+ 				continue;
+ 			if (peer_dev->gpu->kfd->hive_id != kdev->kfd->hive_id)
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+index a8abc3091801..b4db409d90a1 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+@@ -518,6 +518,9 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
+ 	for (i = 0; i < target->n_pdds; i++) {
+ 		struct kfd_topology_device *topo_dev =
+ 				kfd_topology_device_by_id(target->pdds[i]->dev->id);
++		if (!topo_dev)
++			return -EINVAL;
++
+ 		uint32_t caps = topo_dev->node_props.capability;
+ 
+ 		if (!(caps & HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED) &&
+@@ -565,9 +568,9 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
+ 				continue;
+ 
+ 			if (!pdd->dev->kfd->shared_resources.enable_mes)
+-				debug_refresh_runlist(pdd->dev->dqm);
++				(void)debug_refresh_runlist(pdd->dev->dqm);
+ 			else
+-				kfd_dbg_set_mes_debug_mode(pdd, true);
++				(void)kfd_dbg_set_mes_debug_mode(pdd, true);
+ 		}
+ 	}
+ 
+@@ -584,8 +587,8 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
+  */
+ void kfd_dbg_trap_deactivate(struct kfd_process *target, bool unwind, int unwind_count)
+ {
+-	int i;
+ 
++	int i, r = 0;
+ 	if (!unwind) {
+ 		uint32_t flags = 0;
+ 		int resume_count = resume_queues(target, 0, NULL);
+@@ -627,9 +630,11 @@ void kfd_dbg_trap_deactivate(struct kfd_process *target, bool unwind, int unwind
+ 			pr_err("Failed to release debug vmid on [%i]\n", pdd->dev->id);
+ 
+ 		if (!pdd->dev->kfd->shared_resources.enable_mes)
+-			debug_refresh_runlist(pdd->dev->dqm);
++			r = debug_refresh_runlist(pdd->dev->dqm);
+ 		else
+-			kfd_dbg_set_mes_debug_mode(pdd, !kfd_dbg_has_cwsr_workaround(pdd->dev));
++			r = kfd_dbg_set_mes_debug_mode(pdd, !kfd_dbg_has_cwsr_workaround(pdd->dev));
++		if (r)
++			break;
+ 	}
+ 
+ 	kfd_dbg_set_workaround(target, false);
+@@ -1071,6 +1076,10 @@ int kfd_dbg_trap_device_snapshot(struct kfd_process *target,
+ 	for (i = 0; i < tmp_num_devices; i++) {
+ 		struct kfd_process_device *pdd = target->pdds[i];
+ 		struct kfd_topology_device *topo_dev = kfd_topology_device_by_id(pdd->dev->id);
++		if (!topo_dev) {
++			r = EINVAL;
++			break;
++		}
+ 
+ 		device_info.gpu_id = pdd->dev->id;
+ 		device_info.exception_status = pdd->exception_status;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 1405e8affd48..250aa43a39c8 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -1907,16 +1907,18 @@ static int start_cpsch(struct device_queue_manager *dqm)
+ 
+ static int stop_cpsch(struct device_queue_manager *dqm)
+ {
++	int ret = 0;
+ 	dqm_lock(dqm);
+ 	if (!dqm->sched_running) {
+ 		dqm_unlock(dqm);
+-		return 0;
++		return ret;
+ 	}
+ 
+ 	if (!dqm->dev->kfd->shared_resources.enable_mes)
+-		unmap_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES, 0, USE_DEFAULT_GRACE_PERIOD, false);
++		ret = unmap_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES,
++					 0, USE_DEFAULT_GRACE_PERIOD, false);
+ 	else
+-		remove_all_kfd_queues_mes(dqm);
++		ret = remove_all_kfd_queues_mes(dqm);
+ 
+ 	dqm->sched_running = false;
+ 
+@@ -1930,7 +1932,7 @@ static int stop_cpsch(struct device_queue_manager *dqm)
+ 	dqm->detect_hang_info = NULL;
+ 	dqm_unlock(dqm);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static int create_kernel_queue_cpsch(struct device_queue_manager *dqm,
+@@ -3439,7 +3441,6 @@ int suspend_queues(struct kfd_process *p,
+ 					else
+ 						per_device_suspended++;
+ 				} else if (err != -EBUSY) {
+-					r = err;
+ 					queue_ids[q_idx] |= KFD_DBG_QUEUE_ERROR_MASK;
+ 					break;
+ 				}
+-- 
+2.43.0
 
-Hi, Christian,
-
-Thank you for your quick reply.
-
-When an application encounters uncorrected error, it will be terminate by a
-SIGBUS signal. The related bad pages are retired. I did not figure why
-gpu_recovery=0 can result in random crashes and/or compromised data.
-
-I test with error injection in my dev enviroment:
-
-1. load driver with gpu_recovery=0
-#cat /sys/bus/pci/drivers/amdgpu/module/parameters/gpu_recovery
-0
-
-2. inject a Uncorrectable ECC error to UMC
-#sudo amdgpuras -d 0 -b 2 -t 8
-Poison inject, logical addr:0x7f2b495f9000 physical addr:0x27f5d4b000 vmid:5
-Bus error
-
-3. GPU 0000:0a:00.0 reports error address with PA
-#dmesg | grep 27f5
-[424443.174154] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5d43080 Row:0x1fd7 Col:0x0  Bank:0xa Channel:0x30
-[424443.174156] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5d4b080 Row:0x1fd7 Col:0x4  Bank:0xa Channel:0x30
-[424443.174158] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5d53080 Row:0x1fd7 Col:0x8  Bank:0xa Channel:0x30
-[424443.174160] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5d5b080 Row:0x1fd7 Col:0xc  Bank:0xa Channel:0x30
-[424443.174162] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5f43080 Row:0x1fd7 Col:0x10 Bank:0xa Channel:0x30
-[424443.174169] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5f4b080 Row:0x1fd7 Col:0x14 Bank:0xa Channel:0x30
-[424443.174172] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5f53080 Row:0x1fd7 Col:0x18 Bank:0xa Channel:0x30
-[424443.174174] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5f5b080 Row:0x1fd7 Col:0x1c Bank:0xa Channel:0x30
-  
-4. All the related bad pages are AMDGPU_RAS_RETIRE_PAGE_RESERVED.
-#cat /sys/devices/pci0000:05/0000:05:01.0/0000:06:00.0/0000:07:00.0/0000:08:00.0/0000:09:00.0/0000:0a:00.0/ras/gpu_vram_bad_pages | grep 27f5
-0x027f5d43 : 0x00001000 : R
-0x027f5d4b : 0x00001000 : R
-0x027f5d53 : 0x00001000 : R
-0x027f5d5b : 0x00001000 : R
-0x027f5f43 : 0x00001000 : R
-0x027f5f4b : 0x00001000 : R
-0x027f5f53 : 0x00001000 : R
-0x027f5f5b : 0x00001000 : R
-
-AFAIK, the reserved bad pages will not be used any more.  Please correct me if
-I missed anything.
-
-DRAM ECC issues are the most common problems. When it occurs, the kernel will
-attempt to hard-offline the page, by trying to unmap the page or killing any
-owner, or triggering IO errors if needed.
-
-ECC error is also common for HBM and error isolation from each user's job is a
-basic requirement in public cloud. For NVIDIA GPU, a ECC error could be
-contained to a process.
-
-> XID 94: Contained ECC error
-> XID 95: UnContained ECC error
-> 
-> For Xid 94, these errors are contained to one application, and the application
-> that encountered this error must be restarted. All other applications running
-> at the time of the Xid are unaffected. It is recommended to reset the GPU when
-> convenient. Applications can continue to be run until the reset can be
-> performed.
-> 
-> For Xid 95, these errors affect multiple applications, and the affected GPU
-> must be reset before applications can restart.
->
-> https://docs.nvidia.com/deploy/xid-errors/
-
-Does AMD GPU provide a similar way to achieve error isolation requirement?
-
-Best Regards,
-Shuai
-
-> 
->>   However, this parameter is
->> read-only, necessitating correct settings at driver load. And reloading the
->> GPU driver in a production environment can be challenging due to reference
->> counts maintained by various monitoring services.
->>
->> Set the gpu_recovery parameter with read-write permission to enable runtime
->> modification. It will enables users to dynamically manage GPU recovery
->> mechanisms based on real-time requirements or conditions.
->>
->> Signed-off-by: Shuai Xue <xueshuai@linux.alibaba.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 26 ++++++++++++++++++++++++-
->>   1 file changed, 25 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> index 38686203bea6..03dd902e1cec 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> @@ -563,12 +563,36 @@ module_param_named(lbpw, amdgpu_lbpw, int, 0444);
->>   MODULE_PARM_DESC(compute_multipipe, "Force compute queues to be spread across pipes (1 = enable, 0 = disable, -1 = auto)");
->>   module_param_named(compute_multipipe, amdgpu_compute_multipipe, int, 0444);
->> +static int amdgpu_set_gpu_recovery(const char *buf,
->> +                   const struct kernel_param *kp)
->> +{
->> +    unsigned long val;
->> +    int ret;
->> +
->> +    ret = kstrtol(buf, 10, &val);
->> +    if (ret < 0)
->> +        return ret;
->> +
->> +    if (val != 1 && val != 0 && val != -1) {
->> +        pr_err("Invalid value for gpu_recovery: %ld, excepted 0,1,-1\n",
->> +               val);
->> +        return -EINVAL;
->> +    }
->> +
->> +    return param_set_int(buf, kp);
->> +}
->> +
->> +static const struct kernel_param_ops amdgpu_gpu_recovery_ops = {
->> +    .set = amdgpu_set_gpu_recovery,
->> +    .get = param_get_int,
->> +};
->> +
->>   /**
->>    * DOC: gpu_recovery (int)
->>    * Set to enable GPU recovery mechanism (1 = enable, 0 = disable). The default is -1 (auto, disabled except SRIOV).
->>    */
->>   MODULE_PARM_DESC(gpu_recovery, "Enable GPU recovery mechanism, (1 = enable, 0 = disable, -1 = auto)");
->> -module_param_named(gpu_recovery, amdgpu_gpu_recovery, int, 0444);
->> +module_param_cb(gpu_recovery, &amdgpu_gpu_recovery_ops, &amdgpu_gpu_recovery, 0644);
->>   /**
->>    * DOC: emu_mode (int)
