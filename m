@@ -2,38 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C223F9FFB87
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jan 2025 17:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77BAF9FFB81
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jan 2025 17:24:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02FD110E750;
-	Thu,  2 Jan 2025 16:24:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E136310E10F;
+	Thu,  2 Jan 2025 16:24:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="T+bQPkjP";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="gTST7Koq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
- Thu, 02 Jan 2025 05:42:16 UTC
-Received: from out30-130.freemail.mail.aliyun.com
- (out30-130.freemail.mail.aliyun.com [115.124.30.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3268310E2DD
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jan 2025 05:42:15 +0000 (UTC)
+Received: from out30-110.freemail.mail.aliyun.com
+ (out30-110.freemail.mail.aliyun.com [115.124.30.110])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91BA410E2DD
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jan 2025 05:42:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
- t=1735796534; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=qw6U61fhzfsYl/KEI9vDBbeRo6AHJNgbwn2mvdvL8w0=;
- b=T+bQPkjPRbpVYgQprgrCw78FP1kKD4S8sA/F5aIvgqPRLZw9zHppYBzbBtgNrRkyfjQOQKSbrsJWfzVQaBm42r9PmIVYGOCAkHDjMxtDpYpHe4haO51YY4DHRZNMVgkaH1Z0isIJzuYe93ZRhpSqvsbMwDDaqji7KahwgxRHmDw=
+ t=1735796538; h=From:To:Subject:Date:Message-ID:MIME-Version;
+ bh=eRvFo58UkwSgSFpiYCOkBZvqNEXvkigSKipPVhqJXIA=;
+ b=gTST7Koq6pTh/foT2khvqkOXS6viemJJRVCWK1tvgnrV0/+vJ+RgLc8RtMT3yjfhKlVfCxnZolqyHatKGHgdl/L6QeyNzUB7DzhhTsc/mQJ5t09Zrb45Z5hhRiKzD01KuZzfQUx7oehacXN+hQy8kKTVmLOk2kSvBI7IYnMeru4=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WMk35nX_1735796228 cluster:ay36) by smtp.aliyun-inc.com;
- Thu, 02 Jan 2025 13:37:08 +0800
+ fp:SMTPD_---0WMk35o2_1735796229 cluster:ay36) by smtp.aliyun-inc.com;
+ Thu, 02 Jan 2025 13:37:15 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: amd-gfx@lists.freedesktop.org, kent.russell@amd.com,
  shuox.liu@linux.alibaba.com
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [PATCH 0/6] Fix several bugs in error handling during device
-Date: Thu,  2 Jan 2025 13:36:51 +0800
-Message-ID: <cover.1735795671.git.gerry@linux.alibaba.com>
+Subject: [PATCH 1/6] amdgpu: add flags to track sysfs initialization status
+Date: Thu,  2 Jan 2025 13:36:52 +0800
+Message-ID: <737a46d7273d625ef8a1146925296bbdf57f2274.1735795671.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
+In-Reply-To: <cover.1735795671.git.gerry@linux.alibaba.com>
+References: <cover.1735795671.git.gerry@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 02 Jan 2025 16:24:05 +0000
@@ -51,29 +51,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patchset tries to fix several memory leakages/invalid memory
-accesses on error handling path during GPU driver loading/unloading.
-They applies to:
-https://github.com/ROCm/ROCK-Kernel-Driver/tree/master/drivers
+Add flags to track sysfs initialization status, so we can correctly
+clean them up on error recover paths.
 
-Jiang Liu (6):
-  amdgpu: add flags to track sysfs initialization status
-  amdgpu: fix invalid memory access in kfd_cleanup_nodes()
-  amdgpu: clear adev->in_suspend flag when fails to suspend
-  amdgpu: fix use after free bug related to amdgpu_driver_release_kms()
-  amdgpu: fix invalid memory access in amdgpu_fence_driver_sw_fini()
-  amdgpu: get rid of false warnings caused by amdgpu_irq_put()
-
+Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
+---
  drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  3 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 47 +++++++++++++++++-----
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c  |  9 ++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    |  4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c    |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_device.c    |  7 +++-
- drivers/gpu/drm/scheduler/sched_main.c     |  3 ++
- 8 files changed, 60 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 34 +++++++++++++++++-----
+ 2 files changed, 30 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 22c7e9669162..e4b13e729770 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1157,6 +1157,9 @@ struct amdgpu_device {
+ 	bool                            in_runpm;
+ 	bool                            has_pr3;
+ 
++	bool				sysfs_en;
++	bool				fru_sysfs_en;
++	bool				reg_state_sysfs_en;
+ 	bool                            ucode_sysfs_en;
+ 
+ 	struct amdgpu_fru_info		*fru_info;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index d1bb9e85b6d7..3244966b0c39 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4533,8 +4533,13 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 		adev->ucode_sysfs_en = true;
+ 
+ 	r = sysfs_create_files(&adev->dev->kobj, amdgpu_dev_attributes);
+-	if (r)
++	if (r) {
+ 		dev_err(adev->dev, "Could not create amdgpu device attr\n");
++		adev->sysfs_en = false;
++	} else {
++		adev->sysfs_en = true;
++	}
++
+ #ifdef HAVE_PCI_DRIVER_DEV_GROUPS
+ 	r = devm_device_add_group(adev->dev, &amdgpu_board_attrs_group);
+ 	if (r)
+@@ -4542,8 +4547,21 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 			"Could not create amdgpu board attributes\n");
+ #endif
+ 
+-	amdgpu_fru_sysfs_init(adev);
+-	amdgpu_reg_state_sysfs_init(adev);
++	r = amdgpu_fru_sysfs_init(adev);
++	if (r) {
++		dev_err(adev->dev, "Could not create amdgpu fru attr\n");
++		adev->fru_sysfs_en = false;
++	} else {
++		adev->fru_sysfs_en = true;
++	}
++
++	r = amdgpu_reg_state_sysfs_init(adev);
++	if (r) {
++		dev_err(adev->dev, "Could not create amdgpu reg state attr\n");
++		adev->reg_state_sysfs_en = false;
++	} else {
++		adev->reg_state_sysfs_en = true;
++	}
+ 
+ 	if (IS_ENABLED(CONFIG_PERF_EVENTS))
+ 		r = amdgpu_pmu_init(adev);
+@@ -4666,10 +4684,12 @@ void amdgpu_device_fini_hw(struct amdgpu_device *adev)
+ 		amdgpu_pm_sysfs_fini(adev);
+ 	if (adev->ucode_sysfs_en)
+ 		amdgpu_ucode_sysfs_fini(adev);
+-	sysfs_remove_files(&adev->dev->kobj, amdgpu_dev_attributes);
+-	amdgpu_fru_sysfs_fini(adev);
+-
+-	amdgpu_reg_state_sysfs_fini(adev);
++	if (adev->sysfs_en)
++		sysfs_remove_files(&adev->dev->kobj, amdgpu_dev_attributes);
++	if (adev->fru_sysfs_en)
++		amdgpu_fru_sysfs_fini(adev);
++	if (adev->reg_state_sysfs_en)
++		amdgpu_reg_state_sysfs_fini(adev);
+ 
+ 	/* disable ras feature must before hw fini */
+ 	amdgpu_ras_pre_fini(adev);
 -- 
 2.43.5
 
