@@ -2,36 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CDC2A01AA2
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Jan 2025 17:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A800A01AA0
+	for <lists+amd-gfx@lfdr.de>; Sun,  5 Jan 2025 17:40:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83AE610E0EF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37B5610E0DA;
 	Sun,  5 Jan 2025 16:40:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="Nr1wzQ1l";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="abVM5a29";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-99.freemail.mail.aliyun.com
- (out30-99.freemail.mail.aliyun.com [115.124.30.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFB510E4CA
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Jan 2025 02:45:40 +0000 (UTC)
+Received: from out30-132.freemail.mail.aliyun.com
+ (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6A5310E4D1
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Jan 2025 02:45:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
- t=1736045138; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=EVL2kvUij9EsCRcziFKIxYk6qMRDFdWP5zGkJtoHIrc=;
- b=Nr1wzQ1ltpi7gWL6ZIwgnXpLRa6InQlRFv8eqnE6BJfT0dqHu2EFuzFKgGN/T7vFa+X7RrZadJZfDJVo7vvn1pxV3PAI1Ag5rI0HUP5nOb0gF8Z0Nh9Yk/Fx80qGJkeS/hEcmYKljsT6jXPltMpDBSqd5LhtqzdwHBsUdo0tvoc=
+ t=1736045139; h=From:To:Subject:Date:Message-ID:MIME-Version;
+ bh=wOAbSjeiS7mzO1YA1rDb44AgmHyvgbz7tjwGZFa2qEo=;
+ b=abVM5a29MAUcu9l1CWT3HOznDFZiUV10qe5d8tblVKwJuZyku6ue7pxK4sskzwjn6FnAD+ECIFWiUyCUquMHYqQ7p7J7TqdIE/qBm4/3dGjeNRJSihSNacxT5qjKU+AEJlOwh2xNjD3rFOZKdMuW5ww22Lu4UqOQaAOTK4GMlaw=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WMx9YB._1736045137 cluster:ay36) by smtp.aliyun-inc.com;
+ fp:SMTPD_---0WMx9YBC_1736045138 cluster:ay36) by smtp.aliyun-inc.com;
  Sun, 05 Jan 2025 10:45:38 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: amd-gfx@lists.freedesktop.org, xiaogang.chen@amd.com, lijo.lazar@amd.com,
  Kent.Russell@amd.com, shuox.liu@linux.alibaba.com
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [PATCH v2 0/6] Fix several bugs in error handling during device probe
-Date: Sun,  5 Jan 2025 10:45:28 +0800
-Message-ID: <cover.1736044362.git.gerry@linux.alibaba.com>
+Subject: [PATCH v2 1/6] amdgpu: fix possible resource leakage in
+ kfd_cleanup_nodes()
+Date: Sun,  5 Jan 2025 10:45:29 +0800
+Message-ID: <70f5963233c8a34354ec8a9efebc3a7b4c7940d4.1736044362.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
+In-Reply-To: <cover.1736044362.git.gerry@linux.alibaba.com>
+References: <cover.1736044362.git.gerry@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 05 Jan 2025 16:40:26 +0000
@@ -49,38 +52,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patchset tries to fix several memory leakages/invalid memory
-accesses on error handling path during GPU driver loading/unloading.
-They applies to:
-https://gitlab.freedesktop.org/agd5f/linux.git amd-staging-drm-next
+Fix possible resource leakage on error recovery path in function
+kgd2kfd_device_init().
 
-v2:
-1) rebased to https://gitlab.freedesktop.org/agd5f/linux.git branch
-   amd-staging-drm-next.
-2) removed the first patch, which is unnecessary.
-3) add amdgpu_xcp_drm_dev_free() in patch 0003 to enhance amdxcp
-   driver to better support device remove and error handling.
-4) reworked patch 0005 to fix it in amdgpu instead of drm core.
+Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-Jiang Liu (6):
-  amdgpu: fix invalid memory access in kfd_cleanup_nodes()
-  amdgpu: clear adev->in_suspend flag when fails to suspend
-  drm/amdxcp: introduce new API amdgpu_xcp_drm_dev_free()
-  amdgpu: fix use after free bug related to amdgpu_driver_release_kms()
-  amdgpu: fix invalid memory access in amdgpu_fence_driver_sw_fini()
-  amdgpu: get rid of false warnings caused by amdgpu_irq_put()
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  | 14 +++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c   | 13 +++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h    |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c     | 11 +++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h     |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_device.c     |  9 +--
- drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c | 70 +++++++++++++++++----
- drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h |  1 +
- 9 files changed, 99 insertions(+), 25 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index a29374c86405..fa5054940486 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -898,15 +898,15 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
+ 		if (kfd->adev->xcp_mgr)
+ 			kfd_setup_interrupt_bitmap(node, i);
+ 
++		spin_lock_init(&node->watch_points_lock);
++
++		kfd->nodes[i] = node;
++
+ 		/* Initialize the KFD node */
+ 		if (kfd_init_node(node)) {
+ 			dev_err(kfd_device, "Error initializing KFD node\n");
+ 			goto node_init_error;
+ 		}
+-
+-		spin_lock_init(&node->watch_points_lock);
+-
+-		kfd->nodes[i] = node;
+ 	}
+ 
+ 	svm_range_set_max_pages(kfd->adev);
+@@ -921,6 +921,7 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
+ 	goto out;
+ 
+ node_init_error:
++	i++;
+ node_alloc_error:
+ 	kfd_cleanup_nodes(kfd, i);
+ 	kfd_doorbell_fini(kfd);
 -- 
 2.43.5
 
