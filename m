@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED111A03193
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 21:49:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68700A03175
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 21:33:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE2310EA06;
-	Mon,  6 Jan 2025 20:49:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B8C10EA01;
+	Mon,  6 Jan 2025 20:33:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NkLGiZR2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XBzMMemG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2048.outbound.protection.outlook.com [40.107.100.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2EE10EA06
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 20:49:17 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2041.outbound.protection.outlook.com [40.107.220.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59B6010EA02
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 20:33:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ML1TDWyNbBQv7a58MB3B52mTGtLSCOi6Zf/sPx/jU0p5smERfVcxO0iucIqWqquMLDrlWW8OXMNFIfQ3XooDPc92Dd2C+WYFAuoPy/bWh62T2aNrH9TIvzWgvk0SvGwjahmUXxWR19xc2hGa5Rs+tKaDZHQWX82XDsz2auVcCf4jsXhl1l2028FU4vhrIprjpN2S2TNt37B7IZJ5N1/y57EibToAAh1lXLn5OT1NvPnHZU3zcZGKwO9w1cx0vjzORC5jQNoWSmNvzXJJ5/pMkHE6IOkhhj1XUfeE1xXHjLTV9e2Oa76VZVyIte1YbYLLqOZCBsuxQ8bL+Y6d/10WTA==
+ b=vt4YvFqc1DoHTYj/2g+QYw4Qb7d2ql+XGfNYcBnVDqSSn1eR7KNDYhgH8MbS9JKjeqQ/hjqVybBZAmyWNzQ0zmOtLXZBrmfFm27muv8xXhLBv32uN/JMdsRuW5T/HlwolYY3kaPj5d9eS1BBAvdcKjHLFF9bxd7s/UfRaljJRMKAm/I4Dn6YQlkM4WQ9o3U7i0nZOPznT6UXMoU/+7BjMUzbftaV4Xm4to83CVJ9alfCqMssbXQdg11F3PcPnAzU5n0x/ucHmg3kbsDoz9dGoHGHK4mSt1aXmquUK5of2Cl1/vFQOPCSbv3DklRfontaD46K0BWEVLL9N4pFT9dpOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Pt9zuRQ0m19waCPFD5el7NcnBjZbATOznSODOVwWl14=;
- b=jWzi0YgBJGWVfyCDCeubpVAMrcqESkfCzMVJ5vHdO7NB5C90wAqd0F7Pzm/+CQT5T7qMBkupBxnk5D6AVTB8k695INAzxINPKzGLkqso3UBurWa8hLdj8KaX3QC5ZCXyzrY+0f0cCNd6Fa9Y5aES/YfpRl5ONgSLVfL1eGi0NbIP/Ufhr4gN/rRXaX/iH4VrcJYLrHLy6eA4FprEteMWlZ4c57+TFgRY7vbzvwLw6EaoITCFeSlcdFWTrplj4QAcfXLlWLJYX4uGP07qzvE+4tTGiRk6UH+Q557ZKU1mxLZiaX0/tp1kkaWcdNlTyFkBfoGJJG2gMY6mKm1Ju8jKVQ==
+ bh=X1J+NgNFqx5mdm3lTUVMDq2+Hd5SGve8N51UjIRApSY=;
+ b=IHPZNJh3NFktgUJmjrng9WyhYNl8gNXBiYABKm/c8FFIES0626b7rkhVhjsSnbjScRgKRpk8yOPygEiWbHRS3G83N7ji/OuUSS3RzEM5cpiCH+G1k320ByqkHKnQypKjaT0d9V4daH3uB6betLJP5J2UJ/i/+6xPmv7ZMPZSMF32rU9Y6rBv4w1NUTXNAjENtbRGTtiW1Yvza29BeDZXJ0ouRARaNAy4od4KLq8Vkm6APkt3PrsgdBMkqzF9PjQmJqGA+UyUiiGh+Qc6/FJTLFxJ2haCoOwiUnYPTj1ern7INOmOF2jvbgsC1Nj5fCUPqNSjEQmfhbtZqfWUf6xrdw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pt9zuRQ0m19waCPFD5el7NcnBjZbATOznSODOVwWl14=;
- b=NkLGiZR2/oCxf+vXTSo8mvtaHtE5fRfkIJT+rfUQKXperYiYvH2cDfx1qPPtjQ9BfWqnINX3SEqbngLtG/s4lfsbICkXkyPSESDuRYo3XmdTzcwLTICwdZ9rvJZylwt0GsxdTtZ6OhkSAPGpTE70pdVTOx49xW/WDLPqxU7OUjY=
-Received: from CH0PR08CA0014.namprd08.prod.outlook.com (2603:10b6:610:33::19)
- by SJ0PR12MB7081.namprd12.prod.outlook.com (2603:10b6:a03:4ae::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Mon, 6 Jan
+ bh=X1J+NgNFqx5mdm3lTUVMDq2+Hd5SGve8N51UjIRApSY=;
+ b=XBzMMemG/D1RDc7OLgwMvrIrt7lTV9FuYkSbdduTyGm/flRnW6dgkqgPtjDBFJ6QyZMOiZjpWgaPqTiGyGK0Fep2YFNTSzmrjqgUH8iZtCYtgI9e4FOqRW85g4Q9FgrPMk6eEk9lXCNIv8kwIC46FQPVcUUpvtzRmk575yL/FkA=
+Received: from CH0PR08CA0022.namprd08.prod.outlook.com (2603:10b6:610:33::27)
+ by DS7PR12MB6239.namprd12.prod.outlook.com (2603:10b6:8:95::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.16; Mon, 6 Jan
  2025 20:33:32 +0000
 Received: from CH3PEPF0000000F.namprd04.prod.outlook.com
- (2603:10b6:610:33:cafe::78) by CH0PR08CA0014.outlook.office365.com
- (2603:10b6:610:33::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8314.17 via Frontend Transport; Mon,
- 6 Jan 2025 20:33:31 +0000
+ (2603:10b6:610:33:cafe::fa) by CH0PR08CA0022.outlook.office365.com
+ (2603:10b6:610:33::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8314.18 via Frontend Transport; Mon,
+ 6 Jan 2025 20:33:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,17 +50,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CH3PEPF0000000F.mail.protection.outlook.com (10.167.244.40) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8335.7 via Frontend Transport; Mon, 6 Jan 2025 20:33:30 +0000
+ 15.20.8335.7 via Frontend Transport; Mon, 6 Jan 2025 20:33:32 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 6 Jan
- 2025 14:33:29 -0600
+ 2025 14:33:30 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 08/10] drm/amdgpu/atombios: drop empty function
-Date: Mon, 6 Jan 2025 15:33:08 -0500
-Message-ID: <20250106203310.3349585-9-alexander.deucher@amd.com>
+Subject: [PATCH 09/10] drm/amdgpu: rework i2c init and fini
+Date: Mon, 6 Jan 2025 15:33:09 -0500
+Message-ID: <20250106203310.3349585-10-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250106203310.3349585-1-alexander.deucher@amd.com>
 References: <20250106203310.3349585-1-alexander.deucher@amd.com>
@@ -72,51 +72,52 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF0000000F:EE_|SJ0PR12MB7081:EE_
-X-MS-Office365-Filtering-Correlation-Id: 62b53cfd-d62b-4fd5-428a-08dd2e91623e
+X-MS-TrafficTypeDiagnostic: CH3PEPF0000000F:EE_|DS7PR12MB6239:EE_
+X-MS-Office365-Filtering-Correlation-Id: e6acd077-b67d-4793-2402-08dd2e916323
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ebV90l0yQOrog16ICXIT7zcdGDtWO3zHUd9JhcKSO7vsstfkR+MKK9YOG/Cc?=
- =?us-ascii?Q?SvkbbMY38kMfy8l/rMeKfK2Mka2YkWOxxKAm8wli8UX82ZM7wSDY7A0ieZMo?=
- =?us-ascii?Q?D/OM6+Oj56y/CDiyTX8OMwoIpbtTd00qyAtK9DdGQdDwBGX2AaDl+n6maxYA?=
- =?us-ascii?Q?4ZncYfYkIpkwZuVepy7Al4WdgEDdJ5HwO60j6t1vaHXCujW9yhuMBbi/XbcE?=
- =?us-ascii?Q?l49YkZpHNFvFd3Jt8lrusXAsD+CxCIJbjPuuPPVdjwmCxQGQnPT6NZyf3ljU?=
- =?us-ascii?Q?dJqg+PQzeaeabO+5YG7OfJcw/l1GvVk1rwwW6hgMGOdM9G/L1zJkRYt3VRov?=
- =?us-ascii?Q?1IYSx2NftH+PvUTTMfepMTsrzgEacKhR8P6drluRh3nsYy6cLlyORryCxPRT?=
- =?us-ascii?Q?EiPSmbF6BHc7IOYglbuptpW8dwcCIP14l8WyRs2RwDMDW9UuIHAh6NZdfWXM?=
- =?us-ascii?Q?sSF84nzXGGcsozCH9zOP4lI22t3WIKsUC09TPWVeGAk/hPRuUNUpcNfjSax/?=
- =?us-ascii?Q?nfV+tohp7cK0Z5F8l3JwNDsSH7sLmL2YmAiYChQ2PbaaLZKdLS97wImQaH7s?=
- =?us-ascii?Q?Z1TyLa+APNE+tg8FzEB7mXd1PREQhHGMsTpFFW3Htx0kfi5yOYroVNWSjky3?=
- =?us-ascii?Q?HP5LpjsX8cJ2bOLDH1gSWyuPb6i9NAgIZervJwQYrTZaT4lFV3DwNWRRJpwz?=
- =?us-ascii?Q?xA0EArkV6a9qdmT0mn/fje1LfN//nbuGr89L3yAMEe6UzFW9KWWHR/kyo3aB?=
- =?us-ascii?Q?khL0SnfSdfaSQBidrDsJ/cFlI9uS9O1cpfohjni0p4VsehRqevlE1XTQILMA?=
- =?us-ascii?Q?eyxDCIkGtmSqj0s/4Q0nM3fbK6s4qDL4UmJmiAYayzoz0QVcy407M4Dv3Dwk?=
- =?us-ascii?Q?Qu39Xh4+r8Pws1DBT2Y1F1Y8PZOO2p/K//XWzG/KoAr7Ucy8Vdf16SfV8Gt7?=
- =?us-ascii?Q?tTvjGrjherLcfkNmWBLn7ZoVextdE5k4q4ex/BQAfDUzkMadNG4QHEpIGoo+?=
- =?us-ascii?Q?s6IrC6+aVU/11Elj4MV2FJ788L63sUT8g6cWZevyPJ/ep4/rD3Kli9wYLCRa?=
- =?us-ascii?Q?/IqfH/G/Xuf8NfeQnOfoNFuFvQTnjiJzVkBmBMWcWY81YyT2+QOpEUbFdqrI?=
- =?us-ascii?Q?3hd15FefHHv1gfZINpo4jb1QwTYjNRMf32XyOxGMsV2n1LX1QES9LIIvMWP4?=
- =?us-ascii?Q?xDkt5x83vIX3J+QXfjwvvNI6jDpgewOLsvR+cqCKA5Pf8WEpnb6nNo10WZVj?=
- =?us-ascii?Q?ZdZVJkDkGzUVV6j8HlGn28v0kqO6od9np+g3Gn8kyKbmOHazGFvEKaC1YJ04?=
- =?us-ascii?Q?n3X/zuPhdhSRbKvFURoyKTHe27gvw81jjhgi0l97BXLu5L4Zo8c0ugakrfQ4?=
- =?us-ascii?Q?6FdgqlJ3Bk+h4K+IMJu5bP8HZ2+BtqttQ86AQ9U1dLRVUGHdnqP4ylbJA4tt?=
- =?us-ascii?Q?MLoWR1AIL4Vb7rQ2OuYY2dvNcSY0BVCkC1ggTFv1OLn/9KvRgpn/ZQ=3D=3D?=
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?g6iJa6GhbYRj5Si+6aBIFn7IDWDRyUXazQJJdwjbW2JBfspZ5G25VXRwW8Uh?=
+ =?us-ascii?Q?NESxPTgaU3IGhyDS0eqftN/YG9BAc2rlBFeL9h9Kihy00BTUItqQVnCC4X6m?=
+ =?us-ascii?Q?bL+TWf2ifJgr+4bqvyrPWpVJNk6iGLE31kkxGE4bPYay41ZFyAzGxd7iWapi?=
+ =?us-ascii?Q?vmxXvw6HbeUogJsPB06j8pWYFvonK3emzKpLpGZEGGJv4lcUKPvPSTCeJm6+?=
+ =?us-ascii?Q?+i+AyH12AdITp3fr7wPuGkO+UKRx62JQM4If5BI2zaeQgRKwvVkdV94zprkx?=
+ =?us-ascii?Q?HDP4lEJn3qopFfrDBQ5yAnCi4CP+tKttq9BwRq0oJXnprp1oBXej6bkxESiO?=
+ =?us-ascii?Q?1gAjYCWN9S8u+Ws5hYtT4yRJS5kGMttWBMWRnHbx9l/MJTOYBmjBUYqAdt30?=
+ =?us-ascii?Q?+4UTHUZ53EdU9/X606r9u+MeoKPdC+QftYSVyiNgNGsmzNXXV5Vanbj/k6cA?=
+ =?us-ascii?Q?bk8yNC/rF0NpuXDfljVBrHd0pD6vzjICL9R82L+qqcRPDRTqiDSCvTgPCQjp?=
+ =?us-ascii?Q?lT7ORmKujKiaRUoDNWm4spXMDLsoxsDVD5OnmdxUoqH0y5l841pJHhXfyhSz?=
+ =?us-ascii?Q?mNNGJ7F41Tvd6SqUvdcrthps+hJY4W4cU87TIyU/xjLlk7Rmnbtl1NdGETZV?=
+ =?us-ascii?Q?vHPG8Nt7uUeCYKG6inh/jfbZrok8zocpvxNESOVTR+B/UpBfS/QNuwy7pTvV?=
+ =?us-ascii?Q?B7asxpHy+OIvImpCdCpIC/ylZCCqmYTm509XQ0MDpv/DbqO8K46VsythQR4M?=
+ =?us-ascii?Q?U5UoVaYs6OYC+VWjOOcIHxi8rC+93Vz1HhmZO9OpgCNJ2NdSZyvCOZq5yDjA?=
+ =?us-ascii?Q?PTpMkTOAi1gtnvwNc8l1P3XBbunkKKkw7uWGOa6kkte0y9OIw17AJsRa1wrz?=
+ =?us-ascii?Q?Ae7LwBGGzb6EekxCEwcvJpUJs4E4aGFkHe/R3y9ZjNkpLOjS6xPZVzQ2z4po?=
+ =?us-ascii?Q?QG3k2QF6HGqVXw2ul/ouNSILg7iD5Z+8L4TrNYTUSzLhITDyMLDLnB4Sj7Hd?=
+ =?us-ascii?Q?SY3pYd1SiWKMmNnH1Xn5R8YOd1+CvLbGbKS7jawpwyH62vtzFHcrabuagbaB?=
+ =?us-ascii?Q?y5jcHuH/IRH2uckB9t06uwch07ZriABbJlDmk0JxfgvQZkvHvt1OoVd0sHE3?=
+ =?us-ascii?Q?yHVAlS0R50qqiTgAwFxGBscpIg/kmacB7tSyDO2Sph/IGtPnrhR42HCSzXoa?=
+ =?us-ascii?Q?TiDxxhVQySM9gR0Nd56G16YuYFm60gxcA/2IFGCAYzIZjAsdlARjVjG6I82d?=
+ =?us-ascii?Q?qnCXSndMzTDA7zRZSddtaTRfq2bGunVT+TJRs7ZP5bTEQaLh3hbv0VgTz64M?=
+ =?us-ascii?Q?KjSF66tpD9HOoIvcWlroDs4aeDAWeWFIZyFzZowVYvRAwpOw1ThGL018HlQ+?=
+ =?us-ascii?Q?KgiIFUkFBxX8sPt24FIoqmIywNRVHZn2T0832prDk30y1qE+cJiE38GMhLIx?=
+ =?us-ascii?Q?LUFSnFaVxxPQIUcBeaf4JbbrP3Q8Hvu/l+on47A/ckY2f0GMinhgrWr0rTKb?=
+ =?us-ascii?Q?2VCJZHcW4OMhr7c=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2025 20:33:30.9080 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62b53cfd-d62b-4fd5-428a-08dd2e91623e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2025 20:33:32.4080 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6acd077-b67d-4793-2402-08dd2e916323
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF0000000F.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7081
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6239
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,51 +132,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This was leftover from when amdgpu was forked from radeon.
-The function is empty so drop it.
+No functional change.  Rework the code to allow for
+adding some additional i2c buses in conjunction with DC
+in the future.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 12 ------------
- 1 file changed, 12 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 ++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c    | 8 ++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.h    | 1 +
+ 3 files changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-index 093141ad6ed01..263242bd7c10c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-@@ -36,13 +36,6 @@
- #include "atombios_encoders.h"
- #include "bif/bif_4_1_d.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 0a121aab5c745..d6b473217c8b5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4467,8 +4467,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 				goto failed;
+ 			}
+ 			/* init i2c buses */
+-			if (!amdgpu_device_has_dc_support(adev))
+-				amdgpu_atombios_i2c_init(adev);
++			amdgpu_i2c_init(adev);
+ 		}
+ 	}
  
--static void amdgpu_atombios_lookup_i2c_gpio_quirks(struct amdgpu_device *adev,
--					  ATOM_GPIO_I2C_ASSIGMENT *gpio,
--					  u8 index)
--{
--
--}
--
- static struct amdgpu_i2c_bus_rec amdgpu_atombios_get_bus_rec_for_i2c_gpio(ATOM_GPIO_I2C_ASSIGMENT *gpio)
+@@ -4737,8 +4736,7 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
+ 	amdgpu_reset_fini(adev);
+ 
+ 	/* free i2c buses */
+-	if (!amdgpu_device_has_dc_support(adev))
+-		amdgpu_i2c_fini(adev);
++	amdgpu_i2c_fini(adev);
+ 
+ 	if (amdgpu_emu_mode != 1)
+ 		amdgpu_atombios_fini(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
+index f0765ccde6680..72f73a186dd94 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
+@@ -225,6 +225,14 @@ void amdgpu_i2c_destroy(struct amdgpu_i2c_chan *i2c)
+ 	kfree(i2c);
+ }
+ 
++void amdgpu_i2c_init(struct amdgpu_device *adev)
++{
++	if (!adev->is_atom_fw) {
++		if (!amdgpu_device_has_dc_support(adev))
++			amdgpu_atombios_i2c_init(adev);
++	}
++}
++
+ /* remove all the buses */
+ void amdgpu_i2c_fini(struct amdgpu_device *adev)
  {
- 	struct amdgpu_i2c_bus_rec i2c;
-@@ -108,9 +101,6 @@ struct amdgpu_i2c_bus_rec amdgpu_atombios_lookup_i2c_gpio(struct amdgpu_device *
- 
- 		gpio = &i2c_info->asGPIO_Info[0];
- 		for (i = 0; i < num_indices; i++) {
--
--			amdgpu_atombios_lookup_i2c_gpio_quirks(adev, gpio, i);
--
- 			if (gpio->sucI2cId.ucAccess == id) {
- 				i2c = amdgpu_atombios_get_bus_rec_for_i2c_gpio(gpio);
- 				break;
-@@ -142,8 +132,6 @@ void amdgpu_atombios_i2c_init(struct amdgpu_device *adev)
- 
- 		gpio = &i2c_info->asGPIO_Info[0];
- 		for (i = 0; i < num_indices; i++) {
--			amdgpu_atombios_lookup_i2c_gpio_quirks(adev, gpio, i);
--
- 			i2c = amdgpu_atombios_get_bus_rec_for_i2c_gpio(gpio);
- 
- 			if (i2c.valid) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.h
+index 21e3d1dad0a12..1d3d3806e0ddb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.h
+@@ -28,6 +28,7 @@ struct amdgpu_i2c_chan *amdgpu_i2c_create(struct drm_device *dev,
+ 					  const struct amdgpu_i2c_bus_rec *rec,
+ 					  const char *name);
+ void amdgpu_i2c_destroy(struct amdgpu_i2c_chan *i2c);
++void amdgpu_i2c_init(struct amdgpu_device *adev);
+ void amdgpu_i2c_fini(struct amdgpu_device *adev);
+ struct amdgpu_i2c_chan *
+ amdgpu_i2c_lookup(struct amdgpu_device *adev,
 -- 
 2.47.1
 
