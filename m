@@ -2,69 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6903CA02DB6
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 17:25:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59C3EA02E7D
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 18:01:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A79A10E2DA;
-	Mon,  6 Jan 2025 16:25:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 109D310E2D0;
+	Mon,  6 Jan 2025 17:01:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iwA2Kl+z";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="v+WyPuS0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
- [209.85.214.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D05310E2DA
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 16:25:54 +0000 (UTC)
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-2166db59927so21012765ad.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 06 Jan 2025 08:25:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1736180694; x=1736785494; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=zzbDCOPXK/Fejq0FLR46gartHPGvBjgRbfcVoMEzj8E=;
- b=iwA2Kl+ziQ1iSeNJv9jVNn2mVu+84MD8JZen7Q9bA+9hbGwJdACUp5qwh2+seb0zOo
- vmSHmzRiozNQGfL0zC/R5JIiOWlghxI5LUyxSxviuvHp4evMSJD71dLOFXGwFJiM43Uc
- hLNSuav+WlBss4cyqX3OwcrVQ+QUtzQWSvvDqBxwNq//A+2SBULksAeI4DQzy4x8gCdP
- 9kMeSn6YlS+XdCVWw7qrgwTqRlEnqc8lvIsJqCXVK4ab47fxPC0kggHwzxriWhcTgrXd
- ztDl/RLBeiA3lAHxeRQsrQpvdsWCw8UXzQ6XH5LMgp0cl3uB41hgWp+TE+p7jvXAsi97
- ifnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736180694; x=1736785494;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=zzbDCOPXK/Fejq0FLR46gartHPGvBjgRbfcVoMEzj8E=;
- b=qCpa/BWuI5Qc70+i2HEvFpjUtbfJEYwngs4lTVut6bwLN5lZBbv5418BZIxiRVcqu+
- k5vKwT8Q2NyvSll5FlWI/Rnf5rtcQDsIKDx4MVbZks2YWiOnTtrnH68DGlo/29jcIhTV
- CWzkI1RcKyXgM/NQMSggD4yUHRcuqMIv7gEH7FX2e3M5J2AztpioJOqMlMqSIXN6D5K5
- Ak4SiJogLBEeaOoOSbawVvLAzi8PTORyyV4y7mFRGcGn2t9a+onpFx9BsHFfGNNw7kLf
- iez2CGt8dn3fYUJBpj7lMBNTYf/sPej1okK+gb00hwn2YohWmj7ue81tVFO5hOEK3wUj
- fkiQ==
-X-Gm-Message-State: AOJu0Yz2a4cHsa5bhiGjnn4ItuFBTqrU6yvHFr9Fk90JLcbigDC9+rZf
- CU/JgNHIktAnRQ5QPd6OVFZPRhSoRyEqTKgfBYpyjrAbrbbKkD5BNE68AwAoc3x+NpG+43BYYSk
- a3Na6T7Sxd57Mi3Z64UrpKCJlmrhvAOPd
-X-Gm-Gg: ASbGncuvdZWb77GexdXqYW1qa8+B27mKJd3ecg93nauHuVqcQwOE3R5vATLt0tCY21p
- tuid25okvhV3FJeXbrGKwv5/No05ueer7T2pdjA==
-X-Google-Smtp-Source: AGHT+IHldyuJPzDS4agnHe2j4bBYBPfaEdvxshBepTxEQeVdZgPB4Q72/OAiP3hbaxWRh4f1N26uai/rC3idghaNoB8=
-X-Received: by 2002:a17:90b:5488:b0:2ee:acea:9ec4 with SMTP id
- 98e67ed59e1d1-2f452dff7b8mr34343154a91.3.1736179126542; Mon, 06 Jan 2025
- 07:58:46 -0800 (PST)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2060.outbound.protection.outlook.com [40.107.236.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A610A10E2D0
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 17:00:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=S+y0hOL/kQUaVhVFtKcO4tkVar3Q9F9ETzcuMWKOeGoEYz+SoxJbx0PXqz2hvMuN78hYxvYRe9N1gtd3wXitXngP+JmhryEfj/pOwgsEfQdSTOKgIkAenNVQWf0qZmMcVIeEHYvBjacyPzfzEPiHPo6iRDfu6n74JpniYBmaHjNxU2cVWbx/graoDtuwPQhYPPLG/f1njdu84HXnb7O68egWFcx8XQjQB0tdwtUZTKKkwmCodwagEfR7iqpciaQFayFquMpHb7Eodew7dcWNXw5eG7D9Cw1+o82u9c9NwuYcewGaw7mfOYgeLTOmb0GTUuSrJyOL577K37izkl6oBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xR7GKtoOvV2Y3yNuhBHw8dHev2UsQsAU5dA50/hIs/A=;
+ b=BerxPY/pplUcVlzNRPNZeN2t8YxAC/kFKuCSFEcW1vXH5Akf2KmGYOfO5oUeMq/vDNBH8FS1fHdv63bR5WXIWLl2XIeylsNKDZDnqP5t1eUROpHga6K/ZuoMA4XINacJ2NbKzf+M6P2ZxilYqyi/EG/COT2dLHDlIbxxRxXS7Oj48pIl/TT1Er8vUMDGvp0P9aGFp4zEWSsTMdULQ0U6CjCPwJ1Kx/BjSBdE9MjuFcn91jagfhZAzhYro8SPubX0cWoXR/onbOTk131XgSfiMEIiY71Bq7nfYKeKXgPnyoShmX/K427lR7/iFjUuOpyUavp0JHFr6urcgbV70sNBeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xR7GKtoOvV2Y3yNuhBHw8dHev2UsQsAU5dA50/hIs/A=;
+ b=v+WyPuS0spBFq0yi9vfMWJj6skYR6ZrsiBzo8orU/7rRXTNS5UlyGIPkSNygIU7c+ZNw3oYcu4EZzZGjMcP/3X6W24zHjbIfesxoduh8yDK8yVPyZe9nhwnpGjfV2aJ5jM8V0Z8PNFdm8uIsmgiZ+CENIIxGYtdRiSyEmG4WvwM=
+Received: from CH0PR04CA0015.namprd04.prod.outlook.com (2603:10b6:610:76::20)
+ by CY8PR12MB7636.namprd12.prod.outlook.com (2603:10b6:930:9f::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.16; Mon, 6 Jan
+ 2025 16:46:18 +0000
+Received: from CH2PEPF0000009D.namprd02.prod.outlook.com
+ (2603:10b6:610:76:cafe::58) by CH0PR04CA0015.outlook.office365.com
+ (2603:10b6:610:76::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8314.17 via Frontend Transport; Mon,
+ 6 Jan 2025 16:46:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH2PEPF0000009D.mail.protection.outlook.com (10.167.244.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8335.7 via Frontend Transport; Mon, 6 Jan 2025 16:46:18 +0000
+Received: from saleem-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 6 Jan
+ 2025 10:46:15 -0600
+From: Saleemkhan Jamadar <saleemkhan.jamadar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <saleemkhan.jamadar@amd.com>,
+ <shashank.sharma@amd.com>, <veerabadhran.gopalakrishnan@amd.com>
+CC: <alexander.deucher@amd.com>, <leo.liu@amd.com>, <christian.koenig@amd.com>
+Subject: [PATCH 0/3] Allocate and map doorbell based on requests
+Date: Mon, 6 Jan 2025 22:15:27 +0530
+Message-ID: <20250106164530.763188-1-saleemkhan.jamadar@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20241225080814.1692482-1-kenneth.feng@amd.com>
-In-Reply-To: <20241225080814.1692482-1-kenneth.feng@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 6 Jan 2025 10:58:35 -0500
-Message-ID: <CADnq5_NT7mC--R=pSo62riPD05cVwzmXwKzakWWKnaU=sgduBw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/amd/pm: add the interface to set and save the
- bootup workload type
-To: Kenneth Feng <kenneth.feng@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, aurabindo.pillai@amd.com, 
- alexander.deucher@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000009D:EE_|CY8PR12MB7636:EE_
+X-MS-Office365-Filtering-Correlation-Id: d15aeb5e-6d15-4143-ae94-08dd2e71a483
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pEdCrvSxweN/RmPVvbM88FHQ+err2TjzSFc9omsVO00lDGjyHcpQDRU8Rjlw?=
+ =?us-ascii?Q?X6SKfU9xNK6/Qb3AcYiRgfAaM9VuEsIFmcxONouzjwdEfXfLK2c3oDzI+NpX?=
+ =?us-ascii?Q?kbNsIOWQdTa53jxoAR9lVgu1Uh7Z9EKtBo9bLCUsGu8z8JHTzxMFuONnGi/q?=
+ =?us-ascii?Q?Jri6PZXX8HCyXogwoqr1PEgzUfvu/YiXd7SqFqd+ncvsKfMEv2/pCPDjUjKL?=
+ =?us-ascii?Q?nkSg/NjctwWeXIpn9vZ8Uvgn+wsFsmoYrPtPr552vpz6dHgEnB+/9n5xBQkX?=
+ =?us-ascii?Q?AuLxAc/d4YtLSr43cuV7TcGsE4AuYNRAsLvaADUvzK2Clo8p39egrjOhh64m?=
+ =?us-ascii?Q?5hsVsLVv5FtHO3eNg5tQCgAVOPbYNhUN/TSjfUaL1qrGNcRz2sc7QtmJZh0n?=
+ =?us-ascii?Q?g8j6ffTM6rrHsmS/XhFy92NjqtyGfcvYeXIQPLlQ78g9ljE/5FN+1/uOln1v?=
+ =?us-ascii?Q?tv+EWSvoIoeW3mMj9dPbPO24apn8YjqA5UHniz+gPHL5K4FDfcxfxM7zH1SG?=
+ =?us-ascii?Q?4i9DqQJi225h2svp9tkWjYmvHpzV3bh6ThMCq+0dg1/EAhTGgzMjiv/tmLUd?=
+ =?us-ascii?Q?yaPsWe6GCBxT6d+JH6Hfwojls/5fAnZAMOO2PLN6RnxEXAqzrfHcnfJGnkUZ?=
+ =?us-ascii?Q?UmZUa9Cg0yGr6k07nS/QkaNDzX3hXvlbL+LmHfCpzRUu93r8SfIsDYS+SJ6u?=
+ =?us-ascii?Q?9w2NMmPJs+eO7MpDNSE4CI68/1DeFFiuKtFwD/p8+X1SsMUSV2eeu0hmm8w4?=
+ =?us-ascii?Q?bBxgI+3L0j4rLREo7S1iaW7pTMxrbPsU+pD6WLbxDvcL2luBssZ8wMTEwNih?=
+ =?us-ascii?Q?Obx0DUMeOKBfjkyHgSE4d4OcxzuedPCaTUIyMwW1gfEQJ+2k7a9giJkyliq3?=
+ =?us-ascii?Q?RcoqTMEN89r61Dwknwbhd8+HSC5xnUy/+qmEhtt6Z8rJZfSzRuz9q5cLtK5H?=
+ =?us-ascii?Q?G51b+6qNItLMYWyXGRXRdvv2t2Q/LxLdMVg11/BzVxRUuNpLd0bq2HeLOovG?=
+ =?us-ascii?Q?eAV562nmwikiniyB602d/fMR/2p1j4iXUUc7AWCZ4skCJ8Mf61YiE2BG3Ame?=
+ =?us-ascii?Q?G3PU2RxJFpJkwXbzXvs69Xti5Tq95VHj74xhzMqfnch2ZM8dlpERwuYaN+Xp?=
+ =?us-ascii?Q?mJpP8xnOaoXPGh0e26taCNPyWaiSwPYxHAoCH+7X2wk15a25ArF4tN8YX+Kt?=
+ =?us-ascii?Q?wMTi7mZ08viuko653l38GK6yh3iUiTFXBwsW7FG5r4GyPE27EPa5HFXqG5vn?=
+ =?us-ascii?Q?oF7IPamgY9Y047VVFCmTQBmihnIyoAUW94mqYyDHTIqXEFSTT6YJrBEyDUB+?=
+ =?us-ascii?Q?Cf/Njn/xzJ1k5hJqfvjNEBn1EFpH26AO34cbbB8UJXqhZgleCOc7eybIYfna?=
+ =?us-ascii?Q?fQXNpEC4KhrHTAdzpvPitEKwJ9XuXG2u1qPGHTDNwVNVg4fTyjXSODoQSLTt?=
+ =?us-ascii?Q?OZv0caOhwhYK1fomkiUq/kiV9UacWi3XvX2NOmnsGbkZpOxz8QzNe2Fj72HL?=
+ =?us-ascii?Q?OIJx9PY4BSmdPRQ=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2025 16:46:18.1972 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d15aeb5e-6d15-4143-ae94-08dd2e71a483
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000009D.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7636
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,120 +131,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 25, 2024 at 3:08=E2=80=AFAM Kenneth Feng <kenneth.feng@amd.com>=
- wrote:
->
-> add the interface to set and save the bootup workload type
->
-> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
-> ---
->  drivers/gpu/drm/amd/pm/amdgpu_dpm.c           | 27 +++++++++++++++++++
->  drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h       |  3 +++
->  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     |  1 +
->  drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  1 +
->  4 files changed, 32 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm=
-/amdgpu_dpm.c
-> index 6a9e26905edf..92fa19cac32a 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-> @@ -349,6 +349,33 @@ int amdgpu_dpm_switch_power_profile(struct amdgpu_de=
-vice *adev,
->         return ret;
->  }
->
-> +int amdgpu_dpm_set_and_save_bootup_power_profile(struct amdgpu_device *a=
-dev,
-> +                                               bool en)
-> +{
-> +       struct smu_context *smu =3D (struct smu_context*)(adev->powerplay=
-.pp_handle);
+Hi,
 
-You need to check if is_support_sw_smu() before accessing the smu context.
+Why:
+The current implementation of doorbell mapping does not handle the
+IP specific doorbell size and offset range. Multiple doorbell
+allocation when requested cannot be allocated due hard use of
+"struct amdgpu_usermode_queue" parameters. But these parameters vary
+for each request of doorbell mapping. For example VCN needs to allocate
+AGDB(Aggregate doorbell) and per instance doorbell. Parameters db_handle
+buffer allocated in userspace)and db_offset vary with respect to VCN AGDB
+and per instance doorbell. When compared to GFX apart from above two
+parameters db_size is also different.
 
-> +       int current_profile_mode =3D smu->power_profile_mode;
-> +       int saved_profile_mode =3D smu->saved_power_profile_mode;
-> +       int ret =3D 0;
-> +
-> +       if (en && current_profile_mode =3D=3D PP_SMC_POWER_PROFILE_BOOTUP=
-_DEFAULT)
-> +               return 0;
-> +
-> +       if (!en && current_profile_mode !=3D PP_SMC_POWER_PROFILE_BOOTUP_=
-DEFAULT)
-> +               return 0;
-> +
-> +       if (en) {
-> +               ret =3D amdgpu_dpm_switch_power_profile(adev, current_pro=
-file_mode, !en);
-> +               smu->saved_power_profile_mode =3D current_profile_mode;
-> +               smu->power_profile_mode =3D PP_SMC_POWER_PROFILE_BOOTUP_D=
-EFAULT;
+How:
+Introduce another structure to locally populate the varying parameters.
+Modify the the door mapping api to use these structure parameters to
+get db_size and offset range based on the queue type.
 
-Should take the pm.mutex when you mess with the smu context.
+Regards,
+Saleem
 
-> +       } else {
-> +               ret =3D amdgpu_dpm_switch_power_profile(adev, saved_profi=
-le_mode, !en);
-> +               smu->power_profile_mode =3D saved_profile_mode;
-> +               smu->saved_power_profile_mode =3D PP_SMC_POWER_PROFILE_BO=
-OTUP_DEFAULT;
+Saleemkhan Jamadar (3):
+  drm/amdgpu: add stucture to populate dorrbell info
+  drm/amdgpu: map doorbell for the requested userq
+  drm/amdgpu: add doorbell size and offset range for VCN and VPE
 
-Same here.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c | 42 ++++++++++++++-----
+ .../gpu/drm/amd/include/amdgpu_userqueue.h    | 12 ++++++
+ 2 files changed, 43 insertions(+), 11 deletions(-)
 
-> +       }
-> +
-> +       return ret;
-> +}
-> +
->  int amdgpu_dpm_set_xgmi_pstate(struct amdgpu_device *adev,
->                                uint32_t pstate)
->  {
-> diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/am=
-d/pm/inc/amdgpu_dpm.h
-> index 1f5ac7e0230d..5fe404bbb033 100644
-> --- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-> +++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-> @@ -410,6 +410,9 @@ int amdgpu_dpm_switch_power_profile(struct amdgpu_dev=
-ice *adev,
->                                     enum PP_SMC_POWER_PROFILE type,
->                                     bool en);
->
-> +int amdgpu_dpm_set_and_save_bootup_power_profile(struct amdgpu_device *a=
-dev,
-> +                                   bool en);
-> +
->  int amdgpu_dpm_baco_reset(struct amdgpu_device *adev);
->
->  int amdgpu_dpm_mode2_reset(struct amdgpu_device *adev);
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/=
-amd/pm/swsmu/amdgpu_smu.c
-> index 8ca793c222ff..a6f748361198 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> @@ -1272,6 +1272,7 @@ static void smu_init_power_profile(struct smu_conte=
-xt *smu)
->                                 PP_SMC_POWER_PROFILE_FULLSCREEN3D;
->         }
->         smu_power_profile_mode_get(smu, smu->power_profile_mode);
-> +       smu->saved_power_profile_mode =3D smu->power_profile_mode;
->  }
->
->  static int smu_sw_init(struct amdgpu_ip_block *ip_block)
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/=
-drm/amd/pm/swsmu/inc/amdgpu_smu.h
-> index 3630593bce61..c58fc31fb1d7 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-> @@ -560,6 +560,7 @@ struct smu_context {
->         uint32_t workload_mask;
->         /* default/user workload preference */
->         uint32_t power_profile_mode;
-> +       uint32_t saved_power_profile_mode;
->         uint32_t workload_refcount[PP_SMC_POWER_PROFILE_COUNT];
->         /* backend specific custom workload settings */
->         long *custom_profile_params;
-> --
-> 2.34.1
->
+-- 
+2.34.1
+
