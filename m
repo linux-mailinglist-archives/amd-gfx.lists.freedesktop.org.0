@@ -2,49 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA42A02100
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 09:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AD5A02102
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 09:41:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8683710E5B9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9FAC10E5BC;
 	Mon,  6 Jan 2025 08:41:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=panix.com header.i=@panix.com header.b="Fi2UU51g";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=panix.com header.i=@panix.com header.b="XDL/7ttT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 711 seconds by postgrey-1.36 at gabe;
- Mon, 06 Jan 2025 04:31:34 UTC
 Received: from mailbackend.panix.com (mailbackend.panix.com [166.84.1.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E1C710E1E1
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 04:31:34 +0000 (UTC)
-Received: from panix2.panix.com (panix2.panix.com [166.84.1.2])
- by mailbackend.panix.com (Postfix) with ESMTP id 4YRLq93lF6z45Hg;
- Sun,  5 Jan 2025 23:31:33 -0500 (EST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11B8B10E577
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 04:56:49 +0000 (UTC)
+Received: from mail.panix.com (mailbackend.panix.com [166.84.1.89])
+ by mailbackend.panix.com (Postfix) with ESMTPA id 4YRMNJ0xCcz4608;
+ Sun,  5 Jan 2025 23:56:48 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=panix.com; s=panix;
- t=1736137893; bh=6qHr8IEARPNhqSU1wZBWFqlZVqZ63jCI8dv0qaCgp3c=;
- h=Date:To:Cc:Subject:References:In-Reply-To:From;
- b=Fi2UU51g5Rf4hWPRSEi2OcfjSIJJ9bIAyiL9QpQoJiVrrlnCzaAqE5TRGYkn4R8Zg
- yf08mo2eTtmmTbzFyDSI/KOcY/5rz5KnLo3SqtAj7WZa26+Z8jkjlgsIjCalGr2FP+
- bWHBbFdwT5Tcs3EiJdpG0PMuIaeshIXSsjeF1jdE=
-Received: by panix2.panix.com (Postfix, from userid 19171)
- id 4YRLq93qSpz1ZSy; Sun,  5 Jan 2025 23:31:33 -0500 (EST)
-Date: Mon, 06 Jan 2025 04:31:33 +0000
+ t=1736139408; bh=uc7tqqF6YIVC0BpiNeb4gNwFWkk7DvylEEbXIu3HrHE=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References;
+ b=XDL/7ttTX9QJ4wj/BobiaCwW1cjGwASHb5vp/lrVSQJ3OivqPq84rWobxoAaEHaG6
+ +y26i/Jm4d9YqVQonJL5GQfRNZJON7nkV66jFA/57wn3cXu2Ngwz4+7ZId9fX+QVPW
+ vA5yG5u4yxs+B6SXeehG6Z8GE9blhoB2Hr98HNzg=
+MIME-Version: 1.0
+Date: Sun, 05 Jan 2025 23:56:48 -0500
+From: Pierre Asselin <pa@panix.com>
 To: me@svmhdvn.name, alexdeucher@gmail.com
-Cc: pa@panix.com, Xinhui.Pan@amd.com, stable@vger.kernel.org,
- regressions@lists.linux.dev, linux-kernel@vger.kernel.org,
- christian.koenig@amd.com, amd-gfx@lists.freedesktop.org,
- alexander.deucher@amd.com
+Cc: Xinhui.Pan@amd.com, stable@vger.kernel.org, regressions@lists.linux.dev,
+ linux-kernel@vger.kernel.org, christian.koenig@amd.com,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
 Subject: Re: [REGRESSION] amdgpu: thinkpad e495 backlight brightness resets
  after suspend
+In-Reply-To: <4YRLq93qSpz1ZSy@panix2.panix.com>
 References: <D6HQK0PSRVBC.XEUGZC9N1O5K@svmhdvn.name>
  <CADnq5_M-aPD6tNppQ3_6dC8dgt7zeLXZPE5CdCjQEuEDxS=mWA@mail.gmail.com>
-In-Reply-To: <CADnq5_M-aPD6tNppQ3_6dC8dgt7zeLXZPE5CdCjQEuEDxS=mWA@mail.gmail.com>
-User-Agent: nail 11.25 7/29/05
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Message-Id: <4YRLq93qSpz1ZSy@panix2.panix.com>
-From: Pierre Asselin <pa@panix.com>
+ <4YRLq93qSpz1ZSy@panix2.panix.com>
+Message-ID: <20d7e3ef9645b4440adfdbd83b0f33a1@panix.com>
+X-Sender: pa@panix.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 06 Jan 2025 08:41:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,59 +57,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Alex Deucher <alexdeucher@gmail.com> wrote:
+On 2025-01-05 23:31, Pierre Asselin wrote:
+> Alex Deucher <alexdeucher@gmail.com> wrote:
+>> Please file a ticket here:
+>> https://gitlab.freedesktop.org/drm/amd/-/issues
+>> and attach your full dmesg output and we'll take a look.
 
-> On Mon, Dec 23, 2024 at 4:08 AM Siva Mahadevan <me@svmhdvn.name> wrote:
-> >
-> > #regzbot introduced: 99a02eab8
-> >
-> > Observed behaviour:
-> > linux-stable v6.12.5 has a regression on my thinkpad e495 where
-> > suspend/resume of the laptop results in my backlight brightness settings
-> > to be reset to some very high value. After resume, I'm able to increase
-> > brightness further until max brightness, but I'm not able to decrease it
-> > anymore.
-> >
-> > Behaviour prior to regression:
-> > linux-stable v6.12.4 correctly maintains the same brightness setting on
-> > the backlight that was set prior to suspend/resume.
-> >
-> > Notes:
-> > I bisected this issue between v6.12.4 and v6.12.5 to commit 99a02eab8
-> > titled "drm/amdgpu: rework resume handling for display (v2)".
->
-> Odd.  That commit shouldn't affect the backlight per se.
->
-> >
-> > Hardware:
-> > * lenovo thinkpad e495
-> > * AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx
-> > * VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
-> >   Picasso/Raven 2 [Radeon Vega Series / Radeon Vega Mobile Series]
-> >   (rev c2)
->
-> Please file a ticket here:
-> https://gitlab.freedesktop.org/drm/amd/-/issues
-> and attach your full dmesg output and we'll take a look.
->
-> Thanks,
->
-> Alex
+See https://gitlab.freedesktop.org/drm/amd/-/issues/3879 .
 
-Alex, Siva: I see the same thing on 6.6.69 .
-Hardware:
-  HP EliteBook 745 G6
-  VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
-  Picasso/Raven 2 [Radeon Vega Series / Radeon Vega Mobile Series] (rev d1)
-
-It bisects to 2daba7d857e48035d71cdd95964350b6d0d51545 .
-Upstream commit is 73dae652dcac776296890da215ee7dec357a1032 ,
-same as in Siva's case.
-
-I'll see if I can create an account at gitlab and file an issue.
-
-I can test patches, preferably off a mainline kernel.
-Otherwise, I'll need hand holding with git.
-
---Pierre Asselin <pa@panix.com>
-
+Sorry for the stray email earlier.
+--PA
