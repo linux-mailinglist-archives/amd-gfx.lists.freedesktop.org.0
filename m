@@ -2,130 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D388A0260D
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 13:58:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ABF5A0278F
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 15:13:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C88E10E66A;
-	Mon,  6 Jan 2025 12:58:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QzCES/5b";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F1C410E681;
+	Mon,  6 Jan 2025 14:12:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2077.outbound.protection.outlook.com [40.107.92.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A73B10E66A
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 12:58:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OEp5U43Yi6yTIyhNirTvJgw7Jt5SMBOc6NKXv3af/6hKcb+3yzPjrEbcxLeKOvzoEdwNFNyT/BDvmxAOijw0QwbqEZA19S2NegRY444mbfZ4Yw/NuY4wdjZifyJD3iXVtwduITXBtPAW60rmVXQJEoXR4c6MfGLPrj9E5rfP84V/qTPq9YS87vWAOxvWFzqM0Dzs63a25L/gze5E1d0wJAA0W3wzur7ttU9eWKBks3fkN1nQMvahA9YPTbI6YffxvnzAeM6SPX3vOhVeqn0IyXrVuB5jj03d46URNjCGV85W1/RuJYY2HokF+DppZ2egt992RMPUg6tcAPZrUlvxfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yrvODDOgSNoXLj3Mf6jTFUU7ws1b9NrQuWqTuYmFqkU=;
- b=kA4Y/8h+G3drez+OkaB98IbCKbF9xatoMkH33pOAsHkeelx47xTQ8dSvf/7bIi53CtQoyiH2VtoTs0jB3vND9uGKTNIVA9bo4J/xL9+lUMQK/iUbiGqqcDjR5lP5Pozk1SWFaUPNqaI1Yn/83uUlIj8MQpf9/v3JUH7pdu1UTraZ5EmuqUaxx/chCVxM264QkN0acpQPRCVpjPLEwhZNAYta4C2vdUF1PnkV0eN8gsRtahx7uSspVXAPtoWQGI9EvSiM7zBWqi4Fm73IYZvghjuj0yIyewfySExbhDNIsY8BJIvp2fXNYB6+LFeHle7aZLm7oDV8VYFeUL25NrLtzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yrvODDOgSNoXLj3Mf6jTFUU7ws1b9NrQuWqTuYmFqkU=;
- b=QzCES/5btM6Rilvn7ixTOrEmLkVMAlOj1p7y1rU3HaxUt4P9G65Lv4tj405HIMVhOccNJ7VlUp2HelrZK5lkXeMW2C100SSE2MGEWeWbhqLGTfSWjddXawuvPF21dkj5QqygmJVIPEvabzQLSyWfIuT7vZ5AsISQVGdp7DmV/1k=
-Received: from CH2PR20CA0013.namprd20.prod.outlook.com (2603:10b6:610:58::23)
- by SJ2PR12MB9191.namprd12.prod.outlook.com (2603:10b6:a03:55a::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Mon, 6 Jan
- 2025 12:43:54 +0000
-Received: from CH3PEPF00000009.namprd04.prod.outlook.com
- (2603:10b6:610:58:cafe::77) by CH2PR20CA0013.outlook.office365.com
- (2603:10b6:610:58::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8314.17 via Frontend Transport; Mon,
- 6 Jan 2025 12:43:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH3PEPF00000009.mail.protection.outlook.com (10.167.244.36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8335.7 via Frontend Transport; Mon, 6 Jan 2025 12:43:54 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 6 Jan 2025 06:43:51 -0600
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>
-Subject: [PATCH] drm/amdgpu: Added Debug Logging for Process Isolation
-Date: Mon, 6 Jan 2025 18:13:30 +0530
-Message-ID: <20250106124330.328941-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A47A810E5C0
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 08:58:07 +0000 (UTC)
+Received: from loongson.cn (unknown [113.200.148.30])
+ by gateway (Coremail) with SMTP id _____8CxG6wbm3tnZI5eAA--.538S3;
+ Mon, 06 Jan 2025 16:58:03 +0800 (CST)
+Received: from linux.localdomain (unknown [113.200.148.30])
+ by front1 (Coremail) with SMTP id qMiowMBx38cUm3tnFUgWAA--.30775S2;
+ Mon, 06 Jan 2025 16:57:57 +0800 (CST)
+From: Tiezhu Yang <yangtiezhu@loongson.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Nathan Chancellor <nathan@kernel.org>,
+ Josh Poimboeuf <jpoimboe@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, loongarch@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] drm/amd/display: Stop control flow if the divisior is
+ zero
+Date: Mon,  6 Jan 2025 16:57:55 +0800
+Message-ID: <20250106085755.3268-1-yangtiezhu@loongson.cn>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000009:EE_|SJ2PR12MB9191:EE_
-X-MS-Office365-Filtering-Correlation-Id: f538b13a-9ae3-49bc-5287-08dd2e4fc785
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|30052699003|36860700013|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S2tQbmVWNlJLdXBmOHN1di85UThTSnZrQ1BPbHlITTZHcS9jdWZwWkM2bkZX?=
- =?utf-8?B?aUdITzB5cDFjWWE1OHNvZXE5cXdsRU5iL3dHVG1IYnN2cmw4K2d6MFBLeE1w?=
- =?utf-8?B?aW9GQ2JpbFNVSzhGNmE5VVRXTDBZbVZnR2VZRm9adCt0WmhieUJOOHBCekxB?=
- =?utf-8?B?SVI0YVhSZVB0RlhZZDJrRlVzeDI2VkNUMWFKU1pPMG4xOFRSN0c3YXFLT2VR?=
- =?utf-8?B?MHEwM21LZ0gyeHAyWjl2dHplUy9GTHVveHYxSTdZcDJYcHozaG1nM0loUHVo?=
- =?utf-8?B?cytac3Rva3M3SW1KWmFBUCtPVEZ5bU44S1BSYlRDWC9VSVhkWXdaK1U2dm9u?=
- =?utf-8?B?VGFtL21IL2prTTRYbDJ0SWE2amZnNkNxL1g0SnkyMEJEUksrTUMrZWplTXNZ?=
- =?utf-8?B?ZWtQUkVyMTgxNTdHV2p4U1pvdnBHSEtCcnRXb09QUndEOCtQL3dxSkx1SVdU?=
- =?utf-8?B?dDFsMWpZYUhaK3JpTzNtWlFvZTE5ZG1kdURiZzZweTBOdWF1Zmw0aGVLdnFn?=
- =?utf-8?B?dTVEVStIV3NDcnNPVXJJRzdKTGpBRVlwNndmN2hEelN2NnZ0a0pRSjdzeHNY?=
- =?utf-8?B?ckpBNStrMlNOZ1J2K29rbG5IZU0wMUhySnpoQmVCNkhtMFJ2UlB2dW5ZcVYr?=
- =?utf-8?B?OVAvcjBETVJzd2NTWXZUWnlLTDhOSDEyREVKdEludFlpejlyVmR3U1hWWURw?=
- =?utf-8?B?bnJPVy9KKzV3cHRpSGtmMkpaZzd5KzdoV0FwdkJPMDJJUnhWSmN4aklVamtz?=
- =?utf-8?B?cmlPNVIvbUM4YmR2MXpNbm5rTE9rUHN5bDY5THU4UGxrUDR1Sy9iZUpSOG56?=
- =?utf-8?B?R1FERTV5NnM4RGFEVEFRVDlGQ2dieEU5NU1KcnlOUVFoYUlUSEhoZ1JRMkZo?=
- =?utf-8?B?ZlZxaUE1N3NRRlFyVjZtTTlrMXpMMVJSbzMzdzBOcEI2M2lRZjFGRVNKcGFa?=
- =?utf-8?B?cklZUGszaEREN0VqTGlKMUd1bnJuOXh5Y1BVK0UyL1JReFdPTDZhazFyWEta?=
- =?utf-8?B?OTBNMk16eWhxcFYxclAzTEdPMXNBRGpGanRxSUpKc3BWVTVaZlpYdTVEV3Ba?=
- =?utf-8?B?d01CTmErTU5ubFNjT1NtOUJYcVNVeWkvVk8zNUtCeTVTV3VHaXRPTnVadERy?=
- =?utf-8?B?L1pIUHpKV3l3YXN3S2NMdTl0bTRlTVV3UTFieGQ4dG5QV3NCZGZNdUV1cEVH?=
- =?utf-8?B?NUtBR01tUkx6WW5YWVhDWTNjY29MUzRlYzkwNE9jWWhCYnV2anhBOUV4ZWwy?=
- =?utf-8?B?S0lpWXROZTRRL0JYTXIyc0VVMTN2RjkvbytZK2RVZFNYdVlSU21WSGx6ZVQw?=
- =?utf-8?B?dE9VNTdoTjluWHdqaGFMZC9pdjdiZ3NQK0pXVkhHR3VjQVJwUjRTUnpSNnR2?=
- =?utf-8?B?bkFBcUFGZ0RiTkhtREJ0VkxCYURJd01Gd09xOVU0cGFrWW5weXdldVFUbmJi?=
- =?utf-8?B?YzltVkxXQXZXNHkwdGhaZEtWaGgwenVmb25aWWFQdnpHSWZranNqb21QdC81?=
- =?utf-8?B?Y0s1cElEa2xaeUtmRmpaOE1DVzFFU0xjb2hBNGpGT0xHLzFKY29YeWJKSFpB?=
- =?utf-8?B?elptajJTNm1Ic2dQU3RDSGdRNWdjelI5LzFaSFgraUQ1NGFRNUU2dGFMMUF4?=
- =?utf-8?B?eDMrckp1ekIrVkpnbjNVSzBNRUlQeHRFK3NBWStGUU9qeENFZnY3NVdSTDlM?=
- =?utf-8?B?QXJLblJYdm83aDhwdEEwNlVJYzBhZEdyQ1h4MzArSFdCcVB6dkVTdHdmYUVC?=
- =?utf-8?B?VmZ1VlRCaXFSdSt5bFd6a040SlRDVkFCRTYyTjNhb3FPTWI2TEtXeFhRMGF3?=
- =?utf-8?B?WnE1cWtFRUxRam5NTmYyMFBRbDgrUmJyVzdEVklaVHNzK09rREtSQTBPa0Ex?=
- =?utf-8?B?WDkybThLVDVuVUhBTEJySDlSK2FCSGVScG1JdWV3bCtiREV2U1JiMHNrQmdB?=
- =?utf-8?B?WkQxK0tScXRvYi9KN3dFM2NML0paMTYxNW5vZlAzZnRTWmMzSk1Ka1NYR1ZF?=
- =?utf-8?Q?LAUzZbFVheosj7L4KIWiEPD62VVju4=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(30052699003)(36860700013)(1800799024)(376014);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2025 12:43:54.0238 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f538b13a-9ae3-49bc-5287-08dd2e4fc785
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF00000009.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9191
+X-CM-TRANSID: qMiowMBx38cUm3tnFUgWAA--.30775S2
+X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBj9fXoW3tFWrCw15Cw4xCryxWw4fCrX_yoW8JF4DCo
+ Z7Cr43WryDJ343Casrur17JrWfKr13KrZ7u3W0qF1qq3ZrXF18JF1Fgr48KF4vyr43JFn7
+ uF17XrZ5Jry7K3Wrl-sFpf9Il3svdjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8wcxFpf
+ 9Il3svdxBIdaVrn0xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3
+ UjIYCTnIWjp_UUUYI7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI
+ 8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xG
+ Y2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14
+ v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
+ wI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI
+ 0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280
+ aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4
+ kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E
+ 5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtV
+ W8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY
+ 1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI
+ 0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxU
+ 2BT5DUUUU
+X-Mailman-Approved-At: Mon, 06 Jan 2025 14:12:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,151 +69,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Added debug logging to provide insights into KGD/KFD scheduling, cleaner
-shader emission, and isolation processes.
+As far as I can tell, with the current existing macro definitions, there
+is no better way to do the minimal and proper changes to stop the control
+flow if the divisior is zero.
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 30 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  |  5 ++++-
- 2 files changed, 34 insertions(+), 1 deletion(-)
+In order to keep the current ability for the aim of debugging and avoid
+printing the warning message twice, it is better to only use ASSERT_BUG()
+and SPL_ASSERT_BUG() directly after doing the following four steps:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 89f7c89d1392..ef985a7bda1a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -1912,16 +1912,19 @@ static void amdgpu_gfx_kfd_sch_ctrl(struct amdgpu_device *adev, u32 idx,
- 
- 		adev->gfx.kfd_sch_req_count[idx]--;
- 
-+		dev_dbg(adev->dev, "%s: Enabling KFD scheduler for idx: %u\n", __func__, idx);
- 		if (adev->gfx.kfd_sch_req_count[idx] == 0 &&
- 		    adev->gfx.kfd_sch_inactive[idx]) {
- 			schedule_delayed_work(&adev->gfx.enforce_isolation[idx].work,
- 					      msecs_to_jiffies(adev->gfx.enforce_isolation_time[idx]));
- 		}
- 	} else {
-+		dev_dbg(adev->dev, "%s: Disabling KFD scheduler for idx: %u\n", __func__, idx);
- 		if (adev->gfx.kfd_sch_req_count[idx] == 0) {
- 			cancel_delayed_work_sync(&adev->gfx.enforce_isolation[idx].work);
- 			if (!adev->gfx.kfd_sch_inactive[idx]) {
- 				amdgpu_amdkfd_stop_sched(adev, idx);
-+				dev_dbg(adev->dev, "%s: KFD stopped\n", __func__);
- 				adev->gfx.kfd_sch_inactive[idx] = true;
- 			}
- 		}
-@@ -1960,7 +1963,12 @@ void amdgpu_gfx_enforce_isolation_handler(struct work_struct *work)
- 	if (idx >= MAX_XCP)
- 		return;
- 
-+	dev_dbg(adev->dev, "%s: Starting enforce isolation handler for idx: %u\n",
-+		__func__, idx);
-+
- 	mutex_lock(&adev->enforce_isolation_mutex);
-+	dev_dbg(adev->dev, "%s: Processing fences for idx: %u. Checking GFX and Compute rings.\n",
-+		__func__, idx);
- 	for (i = 0; i < AMDGPU_MAX_GFX_RINGS; ++i) {
- 		if (isolation_work->xcp_id == adev->gfx.gfx_ring[i].xcp_id)
- 			fences += amdgpu_fence_count_emitted(&adev->gfx.gfx_ring[i]);
-@@ -1969,16 +1977,23 @@ void amdgpu_gfx_enforce_isolation_handler(struct work_struct *work)
- 		if (isolation_work->xcp_id == adev->gfx.compute_ring[i].xcp_id)
- 			fences += amdgpu_fence_count_emitted(&adev->gfx.compute_ring[i]);
- 	}
-+	dev_dbg(adev->dev, "%s: Total fences processed for idx: %u: %u\n",
-+		__func__, idx, fences);
- 	if (fences) {
-+		dev_dbg(adev->dev, "%s: Fences detected for idx: %u, scheduling delayed work\n",
-+			__func__, idx);
- 		/* we've already had our timeslice, so let's wrap this up */
- 		schedule_delayed_work(&adev->gfx.enforce_isolation[idx].work,
- 				      msecs_to_jiffies(1));
- 	} else {
-+		dev_dbg(adev->dev, "%s: No fences detected for idx: %u, no delayed work scheduled\n",
-+			__func__, idx);
- 		/* Tell KFD to resume the runqueue */
- 		if (adev->kfd.init_complete) {
- 			WARN_ON_ONCE(!adev->gfx.kfd_sch_inactive[idx]);
- 			WARN_ON_ONCE(adev->gfx.kfd_sch_req_count[idx]);
- 				amdgpu_amdkfd_start_sched(adev, idx);
-+				dev_dbg(adev->dev, "%s: KFD started\n", __func__);
- 				adev->gfx.kfd_sch_inactive[idx] = false;
- 		}
- 	}
-@@ -2009,6 +2024,8 @@ amdgpu_gfx_enforce_isolation_wait_for_kfd(struct amdgpu_device *adev,
- 		if (!adev->gfx.enforce_isolation_jiffies[idx]) {
- 			adev->gfx.enforce_isolation_jiffies[idx] = jiffies;
- 			adev->gfx.enforce_isolation_time[idx] =	GFX_SLICE_PERIOD_MS;
-+			dev_dbg(adev->dev, "%s: Initializing time slice for idx: %u. Setting start time and duration for fair GPU access between KGD and KFD. Initial jiffies: %lu, Time slice: %u ms\n",
-+				__func__, idx, jiffies, GFX_SLICE_PERIOD_MS);
- 		}
- 		/* Make sure KFD gets a chance to run */
- 		if (amdgpu_amdkfd_compute_active(adev, idx)) {
-@@ -2020,19 +2037,28 @@ amdgpu_gfx_enforce_isolation_wait_for_kfd(struct amdgpu_device *adev,
- 					wait = true;
- 					/* reset the timer period */
- 					adev->gfx.enforce_isolation_time[idx] =	GFX_SLICE_PERIOD_MS;
-+					dev_dbg(adev->dev, "%s: Time slice expired for idx: %u. Allowing KGD to finish its work before KFD resumes. Resetting time slice to %u ms\n",
-+						__func__, idx, GFX_SLICE_PERIOD_MS);
- 				} else {
- 					/* set the timer period to what's left in our time slice */
- 					adev->gfx.enforce_isolation_time[idx] =
- 						GFX_SLICE_PERIOD_MS - jiffies_to_msecs(cjiffies);
-+					dev_dbg(adev->dev, "%s: Adjusting remaining time slice for idx: %u. KFD can use the GPU for %lu more ms\n",
-+						__func__, idx,
-+						adev->gfx.enforce_isolation_time[idx]);
- 				}
- 			} else {
- 				/* if jiffies wrap around we will just wait a little longer */
- 				adev->gfx.enforce_isolation_jiffies[idx] = jiffies;
-+				dev_dbg(adev->dev, "%s: Jiffies reset for idx: %u. Starting new time slice to ensure fair GPU access between KGD and KFD. New jiffies: %lu\n",
-+					__func__, idx, jiffies);
- 			}
- 		} else {
- 			/* if there is no KFD work, then set the full slice period */
- 			adev->gfx.enforce_isolation_jiffies[idx] = jiffies;
- 			adev->gfx.enforce_isolation_time[idx] = GFX_SLICE_PERIOD_MS;
-+			dev_dbg(adev->dev, "%s: No KFD work for idx: %u. Setting full slice period to %u ms\n",
-+				__func__, idx, GFX_SLICE_PERIOD_MS);
- 		}
- 	}
- 	mutex_unlock(&adev->enforce_isolation_mutex);
-@@ -2055,6 +2081,8 @@ void amdgpu_gfx_enforce_isolation_ring_begin_use(struct amdgpu_ring *ring)
- 	struct amdgpu_device *adev = ring->adev;
- 	u32 idx;
- 
-+	dev_dbg(adev->dev, "%s: begin_use\n", __func__);
-+
- 	if (!adev->gfx.enable_cleaner_shader)
- 		return;
- 
-@@ -2089,6 +2117,8 @@ void amdgpu_gfx_enforce_isolation_ring_end_use(struct amdgpu_ring *ring)
- 	struct amdgpu_device *adev = ring->adev;
- 	u32 idx;
- 
-+	dev_dbg(adev->dev, "%s: end_use\n", __func__);
-+
- 	if (!adev->gfx.enable_cleaner_shader)
- 		return;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index c9c48b782ec1..06b527388402 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -688,8 +688,11 @@ int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
- 
- 	if (adev->gfx.enable_cleaner_shader &&
- 	    ring->funcs->emit_cleaner_shader &&
--	    job->enforce_isolation)
-+	    job->enforce_isolation) {
-+		dev_dbg(ring->adev->dev, "%s: Emitting cleaner shader for ring: %s\n",
-+			__func__, ring->name);
- 		ring->funcs->emit_cleaner_shader(ring);
-+	}
- 
- 	if (vm_flush_needed) {
- 		trace_amdgpu_vm_flush(ring, job->vmid, job->vm_pd_addr);
+(1) Replace ASSERT() with ASSERT_WARN()
+(2) Replace SPL_ASSERT() with SPL_ASSERT_WARN()
+(3) Add ASSERT_BUG() macro definition
+(4) Add SPL_ASSERT_BUG() macro definition
+
+This version is based on 6.13-rc6, tested on x86 and LoongArch.
+
+Tiezhu Yang (5):
+  drm/amd/display: Replace ASSERT() with ASSERT_WARN()
+  drm/amd/display: Replace SPL_ASSERT() with SPL_ASSERT_WARN()
+  drm/amd/display: Add ASSERT_BUG() macro definition
+  drm/amd/display: Add SPL_ASSERT_BUG() macro definition
+  drm/amd/display: Harden callers of division functions
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  8 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  2 +-
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    |  2 +-
+ .../gpu/drm/amd/display/dc/basics/bw_fixed.c  | 18 ++---
+ .../gpu/drm/amd/display/dc/basics/dce_calcs.c |  2 +-
+ .../drm/amd/display/dc/basics/fixpt31_32.c    | 28 +++----
+ .../drm/amd/display/dc/bios/bios_parser2.c    |  6 +-
+ .../amd/display/dc/bios/bios_parser_common.c  |  2 +-
+ .../gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c  |  2 +-
+ .../display/dc/clk_mgr/dce100/dce_clk_mgr.c   |  4 +-
+ .../dc/clk_mgr/dce110/dce110_clk_mgr.c        |  4 +-
+ .../display/dc/clk_mgr/dcn10/rv1_clk_mgr.c    |  2 +-
+ .../dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.c  |  2 +-
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |  8 +-
+ .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c   |  6 +-
+ .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  |  2 +-
+ .../display/dc/clk_mgr/dcn301/dcn301_smu.c    |  2 +-
+ .../display/dc/clk_mgr/dcn301/vg_clk_mgr.c    | 10 +--
+ .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  | 12 +--
+ .../amd/display/dc/clk_mgr/dcn31/dcn31_smu.c  |  4 +-
+ .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        | 14 ++--
+ .../display/dc/clk_mgr/dcn314/dcn314_smu.c    |  4 +-
+ .../dc/clk_mgr/dcn315/dcn315_clk_mgr.c        | 14 ++--
+ .../display/dc/clk_mgr/dcn315/dcn315_smu.c    |  2 +-
+ .../dc/clk_mgr/dcn316/dcn316_clk_mgr.c        | 12 +--
+ .../display/dc/clk_mgr/dcn316/dcn316_smu.c    |  2 +-
+ .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  |  2 +-
+ .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 18 ++---
+ .../amd/display/dc/clk_mgr/dcn35/dcn35_smu.c  |  6 +-
+ .../dc/clk_mgr/dcn401/dcn401_clk_mgr.c        | 10 +--
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 24 +++---
+ .../drm/amd/display/dc/core/dc_hw_sequencer.c |  4 +-
+ .../drm/amd/display/dc/core/dc_link_enc_cfg.c | 12 +--
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 62 ++++++++--------
+ drivers/gpu/drm/amd/display/dc/core/dc_stat.c |  4 +-
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |  2 +-
+ .../gpu/drm/amd/display/dc/core/dc_surface.c  |  2 +-
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  6 +-
+ drivers/gpu/drm/amd/display/dc/dc_helper.c    |  8 +-
+ .../amd/display/dc/dccg/dcn20/dcn20_dccg.c    |  2 +-
+ .../amd/display/dc/dccg/dcn31/dcn31_dccg.c    |  2 +-
+ .../amd/display/dc/dccg/dcn35/dcn35_dccg.c    |  4 +-
+ .../amd/display/dc/dccg/dcn401/dcn401_dccg.c  |  2 +-
+ .../gpu/drm/amd/display/dc/dce/dce_audio.c    |  6 +-
+ .../gpu/drm/amd/display/dc/dce/dce_clk_mgr.c  |  8 +-
+ .../drm/amd/display/dc/dce/dce_clock_source.c |  2 +-
+ drivers/gpu/drm/amd/display/dc/dce/dce_dmcu.c |  2 +-
+ .../gpu/drm/amd/display/dc/dce/dce_i2c_sw.c   |  2 +-
+ drivers/gpu/drm/amd/display/dc/dce/dce_ipp.c  |  4 +-
+ .../drm/amd/display/dc/dce/dce_link_encoder.c |  8 +-
+ .../drm/amd/display/dc/dce/dce_mem_input.c    |  6 +-
+ .../amd/display/dc/dce/dce_stream_encoder.c   | 10 +--
+ .../drm/amd/display/dc/dce/dce_transform.c    |  8 +-
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c |  4 +-
+ .../gpu/drm/amd/display/dc/dce/dmub_replay.c  |  4 +-
+ .../dc/dce110/dce110_timing_generator.c       |  2 +-
+ .../amd/display/dc/dce60/dce60_hw_sequencer.c |  2 +-
+ .../drm/amd/display/dc/dce60/dce60_resource.c |  2 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_vmid.c |  2 +-
+ .../amd/display/dc/dcn21/dcn21_link_encoder.c |  4 +-
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_afmt.c |  2 +-
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_vpg.c  |  2 +-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_apg.c  |  2 +-
+ .../amd/display/dc/dcn31/dcn31_panel_cntl.c   |  2 +-
+ .../display/dc/dio/dcn10/dcn10_link_encoder.c |  4 +-
+ .../dc/dio/dcn10/dcn10_stream_encoder.c       |  8 +-
+ .../dc/dio/dcn20/dcn20_stream_encoder.c       |  4 +-
+ .../dc/dio/dcn30/dcn30_dio_stream_encoder.c   | 16 ++--
+ .../dc/dio/dcn314/dcn314_dio_stream_encoder.c |  6 +-
+ .../dc/dio/dcn32/dcn32_dio_stream_encoder.c   |  6 +-
+ .../dc/dio/dcn35/dcn35_dio_stream_encoder.c   |  8 +-
+ .../dc/dio/dcn401/dcn401_dio_stream_encoder.c |  8 +-
+ drivers/gpu/drm/amd/display/dc/dm_services.h  |  2 +-
+ .../amd/display/dc/dml/calcs/dcn_calc_math.c  |  6 +-
+ .../drm/amd/display/dc/dml/calcs/dcn_calcs.c  | 18 ++---
+ .../drm/amd/display/dc/dml/dcn10/dcn10_fpu.c  |  2 +-
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  | 14 ++--
+ .../dc/dml/dcn20/display_mode_vba_20.c        |  2 +-
+ .../dc/dml/dcn20/display_mode_vba_20v2.c      |  2 +-
+ .../dc/dml/dcn20/display_rq_dlg_calc_20.c     | 54 +++++++-------
+ .../dc/dml/dcn20/display_rq_dlg_calc_20v2.c   | 54 +++++++-------
+ .../dc/dml/dcn21/display_mode_vba_21.c        |  2 +-
+ .../dc/dml/dcn21/display_rq_dlg_calc_21.c     | 54 +++++++-------
+ .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.c  |  4 +-
+ .../dc/dml/dcn30/display_mode_vba_30.c        |  4 +-
+ .../dc/dml/dcn30/display_rq_dlg_calc_30.c     | 56 +++++++-------
+ .../amd/display/dc/dml/dcn301/dcn301_fpu.c    |  6 +-
+ .../amd/display/dc/dml/dcn302/dcn302_fpu.c    |  2 +-
+ .../amd/display/dc/dml/dcn303/dcn303_fpu.c    |  2 +-
+ .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.c  |  6 +-
+ .../dc/dml/dcn31/display_mode_vba_31.c        |  4 +-
+ .../dc/dml/dcn31/display_rq_dlg_calc_31.c     | 50 ++++++-------
+ .../amd/display/dc/dml/dcn314/dcn314_fpu.c    |  6 +-
+ .../dc/dml/dcn314/display_mode_vba_314.c      |  4 +-
+ .../dc/dml/dcn314/display_rq_dlg_calc_314.c   | 50 ++++++-------
+ .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  | 32 ++++----
+ .../dc/dml/dcn32/display_rq_dlg_calc_32.c     | 58 +++++++--------
+ .../amd/display/dc/dml/dcn321/dcn321_fpu.c    |  2 +-
+ .../drm/amd/display/dc/dml/dcn35/dcn35_fpu.c  |  4 +-
+ .../amd/display/dc/dml/dcn351/dcn351_fpu.c    |  4 +-
+ .../drm/amd/display/dc/dml/display_mode_vba.c | 12 +--
+ .../display/dc/dml/dml1_display_rq_dlg_calc.c | 74 +++++++++----------
+ .../amd/display/dc/dml2/display_mode_core.c   | 14 ++--
+ .../amd/display/dc/dml2/display_mode_util.c   | 12 +--
+ .../dc/dml2/dml21/dml21_translation_helper.c  | 10 +--
+ .../amd/display/dc/dml2/dml21/dml21_utils.c   |  8 +-
+ .../amd/display/dc/dml2/dml21/dml21_wrapper.c |  8 +-
+ .../lib_float_math.c                          |  4 +-
+ .../dc/dml2/dml21/src/inc/dml2_debug.c        |  2 +-
+ .../display/dc/dml2/dml2_dc_resource_mgmt.c   | 50 ++++++-------
+ .../gpu/drm/amd/display/dc/dml2/dml2_policy.c |  2 +-
+ .../display/dc/dml2/dml2_translation_helper.c | 10 +--
+ .../gpu/drm/amd/display/dc/dml2/dml2_utils.c  |  6 +-
+ .../drm/amd/display/dc/dml2/dml2_wrapper.c    | 10 +--
+ .../display/dc/dml2/dml_display_rq_dlg_calc.c | 62 ++++++++--------
+ .../amd/display/dc/dpp/dcn10/dcn10_dpp_dscl.c |  4 +-
+ .../drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c  |  8 +-
+ .../display/dc/dpp/dcn401/dcn401_dpp_dscl.c   |  4 +-
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c   |  4 +-
+ .../drm/amd/display/dc/dsc/dcn20/dcn20_dsc.c  | 24 +++---
+ .../drm/amd/display/dc/dsc/dcn35/dcn35_dsc.c  |  2 +-
+ .../amd/display/dc/dsc/dcn401/dcn401_dsc.c    |  4 +-
+ drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c |  2 +-
+ .../dc/hpo/dcn31/dcn31_hpo_dp_link_encoder.c  |  6 +-
+ .../hpo/dcn31/dcn31_hpo_dp_stream_encoder.c   |  4 +-
+ .../dc/hpo/dcn32/dcn32_hpo_dp_link_encoder.c  |  2 +-
+ .../display/dc/hubbub/dcn10/dcn10_hubbub.c    |  4 +-
+ .../display/dc/hubbub/dcn20/dcn20_hubbub.c    |  6 +-
+ .../display/dc/hubbub/dcn31/dcn31_hubbub.c    |  8 +-
+ .../display/dc/hubbub/dcn32/dcn32_hubbub.c    |  8 +-
+ .../display/dc/hubbub/dcn35/dcn35_hubbub.c    |  8 +-
+ .../display/dc/hubbub/dcn401/dcn401_hubbub.c  | 10 +--
+ .../amd/display/dc/hubp/dcn10/dcn10_hubp.c    |  4 +-
+ .../amd/display/dc/hubp/dcn20/dcn20_hubp.c    |  4 +-
+ .../amd/display/dc/hubp/dcn401/dcn401_hubp.c  |  8 +-
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  8 +-
+ .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   |  8 +-
+ .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   | 22 +++---
+ .../amd/display/dc/hwss/dcn201/dcn201_hwseq.c |  4 +-
+ .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   | 24 +++---
+ .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |  4 +-
+ .../amd/display/dc/hwss/dcn314/dcn314_hwseq.c | 10 +--
+ .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   | 18 ++---
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   | 10 +--
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |  6 +-
+ .../gpu/drm/amd/display/dc/irq/irq_service.c  |  4 +-
+ .../display/dc/link/accessories/link_dp_cts.c |  4 +-
+ .../amd/display/dc/link/hwss/link_hwss_dio.c  |  2 +-
+ .../amd/display/dc/link/hwss/link_hwss_dpia.c |  2 +-
+ .../drm/amd/display/dc/link/link_detection.c  |  4 +-
+ .../gpu/drm/amd/display/dc/link/link_dpms.c   | 26 +++----
+ .../dc/link/protocols/link_dp_capability.c    | 12 +--
+ .../display/dc/link/protocols/link_dp_phy.c   |  4 +-
+ .../dc/link/protocols/link_dp_training.c      | 14 ++--
+ .../link/protocols/link_dp_training_8b_10b.c  |  2 +-
+ .../dc/link/protocols/link_dp_training_dpia.c |  4 +-
+ .../link_dp_training_fixed_vs_pe_retimer.c    |  4 +-
+ .../amd/display/dc/link/protocols/link_dpcd.c |  2 +-
+ .../link/protocols/link_edp_panel_control.c   |  6 +-
+ .../amd/display/dc/link/protocols/link_hpd.c  |  2 +-
+ .../drm/amd/display/dc/mpc/dcn10/dcn10_mpc.c  | 16 ++--
+ .../drm/amd/display/dc/mpc/dcn20/dcn20_mpc.c  | 14 ++--
+ .../drm/amd/display/dc/opp/dcn20/dcn20_opp.c  |  2 +-
+ .../amd/display/dc/optc/dcn10/dcn10_optc.c    |  2 +-
+ .../amd/display/dc/optc/dcn20/dcn20_optc.c    |  2 +-
+ .../amd/display/dc/optc/dcn201/dcn201_optc.c  |  2 +-
+ .../amd/display/dc/optc/dcn30/dcn30_optc.c    |  2 +-
+ .../amd/display/dc/optc/dcn31/dcn31_optc.c    |  2 +-
+ .../amd/display/dc/optc/dcn35/dcn35_optc.c    |  2 +-
+ .../amd/display/dc/optc/dcn401/dcn401_optc.c  |  4 +-
+ drivers/gpu/drm/amd/display/dc/os_types.h     |  7 +-
+ .../dc/resource/dce100/dce100_resource.c      |  2 +-
+ .../dc/resource/dce110/dce110_resource.c      |  2 +-
+ .../dc/resource/dce112/dce112_resource.c      |  2 +-
+ .../dc/resource/dce120/dce120_resource.c      |  2 +-
+ .../dc/resource/dce80/dce80_resource.c        |  2 +-
+ .../dc/resource/dcn10/dcn10_resource.c        |  4 +-
+ .../dc/resource/dcn20/dcn20_resource.c        | 30 ++++----
+ .../dc/resource/dcn201/dcn201_resource.c      |  2 +-
+ .../dc/resource/dcn21/dcn21_resource.c        | 12 +--
+ .../dc/resource/dcn30/dcn30_resource.c        | 26 +++----
+ .../dc/resource/dcn31/dcn31_resource.c        |  4 +-
+ .../dc/resource/dcn314/dcn314_resource.c      |  2 +-
+ .../dc/resource/dcn315/dcn315_resource.c      |  4 +-
+ .../dc/resource/dcn316/dcn316_resource.c      |  6 +-
+ .../dc/resource/dcn32/dcn32_resource.c        | 20 ++---
+ .../dc/resource/dcn321/dcn321_resource.c      |  6 +-
+ .../dc/resource/dcn35/dcn35_resource.c        |  2 +-
+ .../dc/resource/dcn351/dcn351_resource.c      |  2 +-
+ .../dc/resource/dcn401/dcn401_resource.c      |  6 +-
+ drivers/gpu/drm/amd/display/dc/spl/dc_spl.c   | 12 +--
+ .../gpu/drm/amd/display/dc/spl/spl_debug.h    | 15 +++-
+ .../drm/amd/display/dc/spl/spl_fixpt31_32.c   | 32 ++++----
+ .../drm/amd/display/dc/spl/spl_fixpt31_32.h   | 12 +--
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  4 +-
+ .../gpu/drm/amd/display/include/fixed31_32.h  | 12 +--
+ .../amd/display/modules/color/color_gamma.c   |  2 +-
+ .../amd/display/modules/freesync/freesync.c   |  4 +-
+ .../amd/display/modules/power/power_helpers.c |  8 +-
+ .../gpu/drm/amd/display/modules/vmid/vmid.c   |  2 +-
+ 203 files changed, 961 insertions(+), 947 deletions(-)
+
 -- 
-2.34.1
+2.42.0
 
