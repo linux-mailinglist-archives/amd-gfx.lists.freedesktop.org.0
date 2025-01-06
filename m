@@ -2,106 +2,153 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC28EA024D6
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 13:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EDDEA02600
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Jan 2025 13:52:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65E2610E645;
-	Mon,  6 Jan 2025 12:10:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 464CA10E667;
+	Mon,  6 Jan 2025 12:52:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="aitFdeDr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uJ5/iCvc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFEA10E645
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 12:10:46 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-385e06af753so7154273f8f.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 06 Jan 2025 04:10:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1736165385; x=1736770185; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=/wpblTXM+tkte1zkV+yC99FV1/1wc5XXhRN5oQXKjy0=;
- b=aitFdeDr7c76DnZPztNqtWHm43Mxz/Gz2PkcjQmD9h9d5ghwmZx+qBKF66tMOVsOfY
- qX5gr0SioatoI15LOsctq+E9t+5ZpkZG/zLcYYIg7OA0z8wI0DyxSy1VVFzjvHwvzv+2
- ang+nLWtlwvLBWNF5VZ7DpmtnUtvMQ9zyNTqo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736165385; x=1736770185;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:mail-followup-to:message-id:subject:cc:to
- :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=/wpblTXM+tkte1zkV+yC99FV1/1wc5XXhRN5oQXKjy0=;
- b=HTzk0DEsnU3y6OmvEZdyeYer4QvR49h1oJpZ/NhtT7cyQ2jdNgQVDv2SJSnEsyLc90
- WZO054PPkUhKgnfQRSBwLWehDl10tv7baUr1Az/k2wiGAA4oZlpH9brqAL4iRNWm3Oda
- oacJz9cQLEOYuCSy8ywTVEfulys24OqsxtM4bcFfi6SjN0BT22OiSNNDR7Nf+sHUJS78
- BGBj17tO1zkTdTKFwMRQh/QYrJHFFo20q4GRVd8btRalobwGTjOfy1U4H70VwGG3zjfN
- qZgyvvfnZ6ubwUyBH7s6IdaxrWTdp0p9u6bzmdl9bdUeUmoQj6ZLmpj2x7I9vAcbMoZk
- MqwQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVQ1SNDJrVuHHikmEinOQam5olI+jQHLigRsUVClp7wZD7rnXTikcoeKsJ4caF6TN8SlDAnreRH@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyQOhvaEGkOKL81BiIYE25EoDTSi+OJyTxCf/tvHN2147PZDHGb
- Y5CkSrD5wbZ+Eh1mQ6UH2p88cqALDg7QuZDpBsfh68fOMQqPnvRkHSJ067H/RiQ=
-X-Gm-Gg: ASbGnctiS3sxzkNtHVdo/htMBA/z+ZOD6womK9L0jzqIds22xP4Un1LcCAfpSY7+iBD
- VKxtiKUA/KXazjtvD9iwdydIbbp0w/VA9Vo7AAAEu6WfZwtxaeFJlcPmoUhjwsZFETKa5Ii7t/q
- U0G/4r/QR+WM+jVMzqk62ap3PoaxkK9YVwW/VtJmE++n0edV3WFoG3ii7IX29I2/Il5HF9XWAj6
- vESsCWPcFp0R4UHbCOxgACkGdNZfWXDrPDGbvpypflmjkTWPQ8pPuTHNUZ0nGWwnLrO
-X-Google-Smtp-Source: AGHT+IHbxiWaimlaGPVmajrYmxLsmCTkaY9zAv/stIix6Ypl8w8OF0YwwBb0jDTrhNOIK65LSAyLbg==
-X-Received: by 2002:a5d:59ab:0:b0:385:ed20:3be2 with SMTP id
- ffacd0b85a97d-38a223fd422mr52329235f8f.48.1736165384648; 
- Mon, 06 Jan 2025 04:09:44 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38a1c8ace0esm47017974f8f.106.2025.01.06.04.09.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Jan 2025 04:09:44 -0800 (PST)
-Date: Mon, 6 Jan 2025 13:09:42 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>
-Cc: Shuai Xue <xueshuai@linux.alibaba.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "Lazar, Lijo" <Lijo.Lazar@amd.com>, "Ma, Le" <Le.Ma@amd.com>,
- "hamza.mahfooz@amd.com" <hamza.mahfooz@amd.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "Liu, Shaoyun" <Shaoyun.Liu@amd.com>, "Jun.Ma2@amd.com" <Jun.Ma2@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "tianruidong@linux.alibaba.com" <tianruidong@linux.alibaba.com>
-Subject: Re: AW: [PATCH] drm/amdgpu: Enable runtime modification of
- gpu_recovery parameter with validation
-Message-ID: <Z3vIBq1eTxJcDOyc@phenom.ffwll.local>
-Mail-Followup-To: "Koenig, Christian" <Christian.Koenig@amd.com>,
- Shuai Xue <xueshuai@linux.alibaba.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "Lazar, Lijo" <Lijo.Lazar@amd.com>, "Ma, Le" <Le.Ma@amd.com>,
- "hamza.mahfooz@amd.com" <hamza.mahfooz@amd.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "Liu, Shaoyun" <Shaoyun.Liu@amd.com>,
- "Jun.Ma2@amd.com" <Jun.Ma2@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "tianruidong@linux.alibaba.com" <tianruidong@linux.alibaba.com>
-References: <20241228063245.61874-1-xueshuai@linux.alibaba.com>
- <563b1797-5524-44c5-89b0-754f245e6b8f@amd.com>
- <63938ba2-dcb5-456f-bf82-bd8c893549c0@linux.alibaba.com>
- <PH7PR12MB5685C307737F826039EEE48583152@PH7PR12MB5685.namprd12.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2061.outbound.protection.outlook.com [40.107.223.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0B8910E667;
+ Mon,  6 Jan 2025 12:52:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EK1lNOGf/mnEORH83hhMWiJ1BqDbjPdaeiz2GaVOu+fMmtUkdDxAmZ1U4/gzUqNv66KhBLutzpWORJS9Q9H3TtAQ7FUkXCPOh8ZDJOmpqn7dFXKZSUyspZNKr0CBaGm8HmVWx8znGZY3corXsBF0YrfNB1TKJEkHH0wPlrXktVenHi1vsgj350X43VG/0R1uAK+LiTcj62zSHfBq1DzhhMZgyMaA3qnobhAPYTR1YZjwbLQF6FpFT3tCCsw/zwAKjO/DzE/CZroDniD/yTz3xoD8HO3XsLNYVnNSfhy0oFFfsLuHciFXcU4rZXt8ViWdgLa1nGt7UbEpEBDwVfAvmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6ALJ4fdRj/W+CIt0MB+kQTjY/0mBYX6tze0JpQUYYwo=;
+ b=oCIQmYlyO9FtGr9NGEGRLpzpImAxAC7im5RFUOqoC06U0PDCI+R2IAXpB+ynUTAAV6QNrRWJiXRHVvhd47raqx241AL4dXZQQ3tfS7+yyuu16CYXnMHJ47tR/uzNv2lbHuSxyNA3lIjzYr6XaGWquDYEb0GRh2fNY5LNHnqLKHobl5WXuhJOWWvkbs38Zq/C7k/h9Tvt6hUbP8ntiHJFFo+mNhy42UgasJhNmEKHYfEsuv+a15Rr0tT99vZXq6NGFQtnxRbYcv9N/3BXLwYYiu/FnqmyAHv36QtnwI7SOM6Eq1tJgdb4ZMHKChzIAGp3rzIFm0KrBpRF7XvK9IiMeg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6ALJ4fdRj/W+CIt0MB+kQTjY/0mBYX6tze0JpQUYYwo=;
+ b=uJ5/iCvcJ7uM109cOyhpgoHQYL84wYhqG+YXph8VCOqYS27CHsskI63B+skXOcxirorbnP8FnOgJpyZmDuj7H7R3x40QcO1Kptp2+EdmYKyU/ss+RqEb7X7qvdaY4iHz05yHLpVkzbhE5J8nhFPDP52cSQlaRWuU+Rmj9xoSZZw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
+ by SA1PR12MB6870.namprd12.prod.outlook.com (2603:10b6:806:25e::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.14; Mon, 6 Jan
+ 2025 12:37:18 +0000
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::a929:e8eb:ef22:6350]) by PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::a929:e8eb:ef22:6350%7]) with mapi id 15.20.8314.015; Mon, 6 Jan 2025
+ 12:37:17 +0000
+Message-ID: <1d22b16a-8d8c-433d-a916-d6bec849f9f8@amd.com>
+Date: Mon, 6 Jan 2025 18:07:11 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/buddy: Add a testcase to verify the multiroot
+ fini
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com
+Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
+ "Lin . Cao" <lincao12@amd.com>
+References: <20241226070116.309290-1-Arunpravin.PaneerSelvam@amd.com>
+ <20241226070116.309290-2-Arunpravin.PaneerSelvam@amd.com>
+Content-Language: en-US
+From: "Paneer Selvam, Arunpravin" <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <20241226070116.309290-2-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <PH7PR12MB5685C307737F826039EEE48583152@PH7PR12MB5685.namprd12.prod.outlook.com>
-X-Operating-System: Linux phenom 6.12.3-amd64 
+X-ClientProxiedBy: PN3PR01CA0141.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:bf::21) To PH8PR12MB7301.namprd12.prod.outlook.com
+ (2603:10b6:510:222::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|SA1PR12MB6870:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0bbb0f9c-32e8-4ba4-b6b4-08dd2e4edb15
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZjRUN3dScjhpelBoeVdzbHZ6M2dPVXdQclE1c080Snk0VS9xd1ZJZlRoOE0z?=
+ =?utf-8?B?bStrWERUczZZTldBUWI5MTBsbkRoREpCMEhCSk1rTURvWXdldFU4YldOZnk2?=
+ =?utf-8?B?N1VOYVRQcXZCSjJtN3plNEd0RTQ3c21ZdHVrTjJxQ3dCL0QvNzNOU296MzB1?=
+ =?utf-8?B?dmNyWm9ENDdvOFg1Zk9tS2xzYnBSV085a3FRcGdkVnpjVU1GWWJESVZXV2oy?=
+ =?utf-8?B?TlZBRlNpY1RtcXQrYmtCaE1SMDJlUWhtTnp5K2krdTVUcmZaTnJpdEZXNHMv?=
+ =?utf-8?B?NW0wR1dleXdiTzJMZURLWVlEQUltNUhKRzVsVHczNVU1eXNFa0ZwbjZXdXJG?=
+ =?utf-8?B?TGhCYjNKNDNTU2h4R2djZjdCcnhjK00xclltVDdtVlNWQ0xZMlNwZlFlL0Fr?=
+ =?utf-8?B?Yy9GRUhiNW80MkUzdEN4TmZxYUFjbjRTU3FUa1hOUXdCVjIvS1RoV08xeFk1?=
+ =?utf-8?B?YW5xT0JUdUVkODJtYTBzczdlVzNtTUNGdmhFNytDMVRTM1pidzBIZkNvN2x6?=
+ =?utf-8?B?MWdNQ1hsS0lkeVF4cC8wNHdieGxwQ09jRjJVSDBiK3JUS29jZHBIV0VaeFAy?=
+ =?utf-8?B?TUpFaHUrNTZaMW12QXJNZUVJWmdueVdGbDh4czdsUnVFRUM3Z2lwOTZnV0lt?=
+ =?utf-8?B?MWJIeVVnVll3WmtFYXRXdFIzbVJtREh6TWJ0Y0xiVThDb1pWWkpxa1pvcFI2?=
+ =?utf-8?B?a3I1WTlMdHBENXNXYlhLNGRZckRZM1lIUG5LV2NLRVpxQlJCVXpwemtPL1hD?=
+ =?utf-8?B?WlFQY0dMclNpSGVFeThaQ1pTWG1NRExlUjVBaUpUL1RmNkM4ZjlaSVJQQmpC?=
+ =?utf-8?B?Tk9GNm1YcnVKVVVoZW8rZGxJaVJreUJieTR5YkdXM21pYzlKblhJbTNFSjRP?=
+ =?utf-8?B?clprUnRydlA0Umt5WHl6YlpiZG9nRHU4TmhmcUJnWGZMMzBpNForNUl4aSs0?=
+ =?utf-8?B?KzRIWTE5NTM3WElTYnlzUjBtckMyR2RqbjdTNEQ3MlZEQ3lrOXpscitpdnlS?=
+ =?utf-8?B?TGE2eDdVUmJpc3NKbmpOa0trSGZ3blZKVDdKZFB4WEh0N1BsbE1LU29RVCtM?=
+ =?utf-8?B?dUFXWE52a1l3Z0VNQkRNamxESWpIVUduK0tnMUlOWlNtN2NPMDhPc1RobWIw?=
+ =?utf-8?B?akgzOEFnWGgrbDlJaHlqZmNtbDZycllqWU11T0FWMXBoeStmM2Z6a3AvcFMv?=
+ =?utf-8?B?Tkt1a29FaFpPWG9IaEVQV09kcUtMY2l0VGI1MFgzMmtvNDJYZFVFMFBOQ1Vk?=
+ =?utf-8?B?VXVwQUc1T0Y5TUNRc1UvN1NkWkVsc0YyZC9vaE1iR0NMMXU4OUhTMzNvcUto?=
+ =?utf-8?B?R0w1ODd3SHFlaU9wNzR5UWxJdlVGcUt4U0NWQVdrTjBITFRwbWw3Ny9PdjEz?=
+ =?utf-8?B?eGdaU0QwOG0rVkhidktoT3p5SXBUdURoN25BdkMrL2ZldjA0R0Zsb2pkcHJG?=
+ =?utf-8?B?ZUpzNkJCNkErUDB2d1YyZDhOcEMxUEgxYVJzQTFJamF5VWQwc1BpWHNBdWVj?=
+ =?utf-8?B?VGJHMVo4US9QTlpHa2MvY2FSeEZwZ0RwaGdubE9Dd0dmZWtrUnNidXZ0K3k5?=
+ =?utf-8?B?ZCsvRmU0clErU1VzVDdUdUNKTFcxVlBVdUVWZHdLSjhNVEQ5aGk1eVp4Vldr?=
+ =?utf-8?B?Q25jZVp2WUpBSkk2WGFwOUl5dVRuMGtZSzhZNitMMXdVRWhUUlExR2ZTMzdi?=
+ =?utf-8?B?clhHdldEaXFHZ2xWYUEvaHlFWkgrODd5dnRMWEtCZEtmZ3lTd25ibUp0TnEr?=
+ =?utf-8?B?R2loK24wcGQzcm04NldlZC9kZmwzRXNtZENkbjZJSXFYOWxlaUhLUS9vMFlt?=
+ =?utf-8?B?WXBhY0h3WnRPb3hWTTV6aGZ0SEpnZmFqdUZOWTdqc21YdUFQanh5a1VhOTh0?=
+ =?utf-8?Q?DRYSVFK7Fslvd?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cCtzUElDVW52M0xObE9HUzdseHRaV2Ewd2NvWWRBemxvREs0RmpRdTFBbXlL?=
+ =?utf-8?B?NnpLeFhOakZHeXZNM29rcXV6djNRVTN4cjlXbzVxYitWSkRLZnU4Y3dEa1J3?=
+ =?utf-8?B?bzNrcnhrMVZ4S1g0Q3FuNit4U1JVZDJid1dWVGpRQ2d6ZVo4UHdvZllaaHV2?=
+ =?utf-8?B?ZVp4b0RKZ2libXEvYTlYLzNFYUpzR3k3WGpUemo2ODNCT09FMWtQNWlGSXR0?=
+ =?utf-8?B?ajF5YU5nSWVGajRNeUJweTBycDBkWGc3aGFWNG1LRXJwWUlsekVjTGdpMmZS?=
+ =?utf-8?B?VkVkMmNvdXBjdkEzM0laSTAvVnFFb2ZKWWVzWkxHdGZnTHRzMmNLcjZqWHFX?=
+ =?utf-8?B?SGRFYVgvTnh6MG1wZXA3ZTRYWlhhRzlSVHVZRXBSQW42cUhEMElQUVFLbGkx?=
+ =?utf-8?B?aVlVMnc1dnF0d1l6NjljbVlyVnNyejYvSGpxL0k2ZitzRE5zT2tWNHRVcW1l?=
+ =?utf-8?B?NERLR2xFcGJXcVoyOVFmVm9nNjEzOFR6SzRaUU1hYTRYSEl0VUVuOHRVVWV2?=
+ =?utf-8?B?ME54cW1pZ0hYc2lKQmkxNFIvbk1aQk8vYjFsZjdWaWI2VFk2aWZFNDVVends?=
+ =?utf-8?B?eG9VaVJYb2ZUZWdHclQ1N1VpbG00RzRHTm92OWJ0OXA5YjFRYkVTdEhHckRu?=
+ =?utf-8?B?WWxrS29PcHRaaVJKc28xOHRFLzE3Mk1RSFdxT21SdjFDbit2Rk82WVR2Rjdk?=
+ =?utf-8?B?M2VjSWtXZ2p6YjQ2ZzBDMkxyYjlKQmVVamQ0eVZMRXoyY1VnT3BSWGRnSkdG?=
+ =?utf-8?B?OUNDdmEzME9WeXJCTCttY1M2WExPK2NKM09ZSUhuRVZrK1RnRFV2RjlJZnZW?=
+ =?utf-8?B?a0Z3L1hDY2tjdGx4bUJ4TEp1dUwvUHBLbnhiTjhBU2hUd2JiWFltRVRrWEcw?=
+ =?utf-8?B?NWtQaThOME9hNDJMZS9PN00zTzdSL1ptVU9NbFNsYUxJTXVVQTJhVlB1RFF3?=
+ =?utf-8?B?K0ZlK3hub3o3bU5FWHZ4aGxOTEVCZjZ1V0VzL0VVcHJpbGRiWWE2T0VDMmds?=
+ =?utf-8?B?bWJ5ZDg4RnRCaXl1SzRSaXk4TUkxUzhyVnZJamtHV2pMT3ZXNFVmdVhQODI0?=
+ =?utf-8?B?Zk8vcDVIL1FCT1RJbFVNYkpjNmliUm5IL2pxMHV3eEFEQ2UwNUZWWDJ5d0Vm?=
+ =?utf-8?B?V0xXMWJ6UnpCZWxFd2ZVaytPaXc3UUFNQWpsV0ZyVDgwRFBXMjZENU5VVTFW?=
+ =?utf-8?B?cVdFRFFGOVNtNmVvdkU0L1JQTjE1dWtKZ1p0NjFDUDdOd0pDTXBKU0RkM3l6?=
+ =?utf-8?B?VnBKUUdUR3pOcWkvR01uRG9oOCtsdE9oNnpCUmltbDA1aGJ6K00yYTJ5Ykhw?=
+ =?utf-8?B?RlhwUmluYitNVkxjdngvQkI3Tzh0RDdxaVhqY2hRZmdlRkQrMXhqS0Y2dDN2?=
+ =?utf-8?B?bndoWWJ4MCt4blUwQ2t0VCtjSGVFNDJNSGxtNTVWOVdXcFBTd1FMVFpHTExJ?=
+ =?utf-8?B?YWpEVFZRQmlJeU9sbkN2ZThreUpyOTlielZHTXQwdGQ3TEhTelpPajVnZWE5?=
+ =?utf-8?B?QnJaT1F5K2RaZGxHY0N1eFRuc3BHbTBTNnU3MTFoWk5KN2MxMjk2RjlEUHVV?=
+ =?utf-8?B?czlmb0hPdFZRNDBxWU80UkFqeSt6QWZMQ0doeFpLazd3Ty9WS3MybTRycUls?=
+ =?utf-8?B?RDR4TjV4eHI1Vyt6Tk9WNFlMOW5QOVQyNlIvNG9leC91WjAxNjg3dWFTSFdk?=
+ =?utf-8?B?NXdnT1c0dUo0RkVHMmFZN1Y2OVoyS3V5NjNQWElxalBoak1QQzQ5MVViUkRE?=
+ =?utf-8?B?NmdlWGJXcEtJQStjVWo3ZFJVVlNYN1dVVjFZRDJxejhzcTlaMmtGT0NYSVhS?=
+ =?utf-8?B?VEFKMXp2QXRuMnVZTkljWnZKRUhGVm9ONFJ5UGR6WjVhMWZWNjAySG4vcnFQ?=
+ =?utf-8?B?ejA1REVUa2hiZm1jbnZpZW80SUhaY2k4T1RDY01xZEFoNWZnRWptMmNlTlNx?=
+ =?utf-8?B?RjdXN1pmVWRSRGdOU3JGQVdQeGtOQW9SY05jc1R4bUp3alB5N1FkMEtJbFZ4?=
+ =?utf-8?B?cXNjZHhtcjFsUjdZT2FmamFjZHNvckhqTHJ5UnJVcEVyTHB6SCttMDNhUm1J?=
+ =?utf-8?B?WjRRNmkwZGhjR1JGNnNDYXpFZThzeE5CU0NQby9QVDRnZERYWWpsRUk1T21h?=
+ =?utf-8?Q?R1OM6XywD10eNk3hukrrdMbox?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0bbb0f9c-32e8-4ba4-b6b4-08dd2e4edb15
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2025 12:37:17.7961 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: u6igtAih7sHwyyMcQlxs3UtoGpc1VQBGhPeSo+XAh0DHkkVg8QHabFFZIY3ZZ+4EgV2nDP9YuD9OpAvNNxocOg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6870
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,194 +163,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 03, 2025 at 08:21:43AM +0000, Koenig, Christian wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-> 
-> Hi Shuai,
-> 
-> setting gpu_recovery=0 is not even remotely related to RAS. If that
-> option affects RAS behavior in any way then that is a bug.
-> 
-> The purpose of setting gpu_recovery=0 is to disable resets after a
-> submission timeout most likely caused by an unrecoverable HW error.
-> 
-> This is necessary for JTAG debugging in our labs during HW bringup and
-> should *NEVER* be used on any production system.
-> 
-> We already discussed with upstream maintainers that we should probably
-> mark the kernel as tainted to indicate that it might be in an unreliable
-> HW state. I will push for this now since there seems to be a big
-> misunderstanding what this option does.
+Hi Matthew,
 
-module_param_unsafe and friends really should be the default for module
-options really, since generally they're just for debugging and other
-hacks. With multiple gpus you can't control options per-device with module
-options in a reasonable way, so that's all no-go. So might want to go
-large-scale relabelling module options while you're at it.
--Sima
+Ping?
 
-> 
-> Regards,
-> Christian.
-> 
-> ________________________________________
-> Von: Shuai Xue <xueshuai@linux.alibaba.com>
-> Gesendet: Montag, 30. Dezember 2024 09:50
-> An: Koenig, Christian; Deucher, Alexander; Pan, Xinhui; airlied@gmail.com; simona@ffwll.ch; Lazar, Lijo; Ma, Le; hamza.mahfooz@amd.com; tzimmermann@suse.de; Liu, Shaoyun; Jun.Ma2@amd.com
-> Cc: amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org; tianruidong@linux.alibaba.com
-> Betreff: Re: [PATCH] drm/amdgpu: Enable runtime modification of gpu_recovery parameter with validation
-> 
-> 
-> 
-> 在 2024/12/30 04:11, Christian König 写道:
-> > Am 28.12.24 um 07:32 schrieb Shuai Xue:
-> >> It's observed that most GPU jobs utilize less than one server, typically
-> >> with each GPU being used by an independent job. If a job consumed poisoned
-> >> data, a SIGBUS signal will be sent to terminate it. Meanwhile, the
-> >> gpu_recovery parameter is set to -1 by default, the amdgpu driver resets
-> >> all GPUs on the server. As a result, all jobs are terminated. Setting
-> >> gpu_recovery to 0 provides an opportunity to preemptively evacuate other
-> >> jobs and subsequently manually reset all GPUs.
-> >
-> > *BIG* NAK to this whole approach!
-> >
-> > Setting gpu_recovery to 0 in a production environment is *NOT* supported at all and should never be done.
-> >
-> > This is a pure debugging feature for JTAG debugging and can result in random crashes and/or compromised data.
-> >
-> > Please don't tell me that you tried to use this in a production environment.
-> >
-> > Regards,
-> > Christian.
-> 
-> Hi, Christian,
-> 
-> Thank you for your quick reply.
-> 
-> When an application encounters uncorrected error, it will be terminate by a
-> SIGBUS signal. The related bad pages are retired. I did not figure why
-> gpu_recovery=0 can result in random crashes and/or compromised data.
-> 
-> I test with error injection in my dev enviroment:
-> 
-> 1. load driver with gpu_recovery=0
-> #cat /sys/bus/pci/drivers/amdgpu/module/parameters/gpu_recovery
-> 0
-> 
-> 2. inject a Uncorrectable ECC error to UMC
-> #sudo amdgpuras -d 0 -b 2 -t 8
-> Poison inject, logical addr:0x7f2b495f9000 physical addr:0x27f5d4b000 vmid:5
-> Bus error
-> 
-> 3. GPU 0000:0a:00.0 reports error address with PA
-> #dmesg | grep 27f5
-> [424443.174154] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5d43080 Row:0x1fd7 Col:0x0  Bank:0xa Channel:0x30
-> [424443.174156] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5d4b080 Row:0x1fd7 Col:0x4  Bank:0xa Channel:0x30
-> [424443.174158] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5d53080 Row:0x1fd7 Col:0x8  Bank:0xa Channel:0x30
-> [424443.174160] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5d5b080 Row:0x1fd7 Col:0xc  Bank:0xa Channel:0x30
-> [424443.174162] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5f43080 Row:0x1fd7 Col:0x10 Bank:0xa Channel:0x30
-> [424443.174169] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5f4b080 Row:0x1fd7 Col:0x14 Bank:0xa Channel:0x30
-> [424443.174172] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5f53080 Row:0x1fd7 Col:0x18 Bank:0xa Channel:0x30
-> [424443.174174] amdgpu 0000:0a:00.0: amdgpu: Error Address(PA):0x27f5f5b080 Row:0x1fd7 Col:0x1c Bank:0xa Channel:0x30
-> 
-> 4. All the related bad pages are AMDGPU_RAS_RETIRE_PAGE_RESERVED.
-> #cat /sys/devices/pci0000:05/0000:05:01.0/0000:06:00.0/0000:07:00.0/0000:08:00.0/0000:09:00.0/0000:0a:00.0/ras/gpu_vram_bad_pages | grep 27f5
-> 0x027f5d43 : 0x00001000 : R
-> 0x027f5d4b : 0x00001000 : R
-> 0x027f5d53 : 0x00001000 : R
-> 0x027f5d5b : 0x00001000 : R
-> 0x027f5f43 : 0x00001000 : R
-> 0x027f5f4b : 0x00001000 : R
-> 0x027f5f53 : 0x00001000 : R
-> 0x027f5f5b : 0x00001000 : R
-> 
-> AFAIK, the reserved bad pages will not be used any more.  Please correct me if
-> I missed anything.
-> 
-> DRAM ECC issues are the most common problems. When it occurs, the kernel will
-> attempt to hard-offline the page, by trying to unmap the page or killing any
-> owner, or triggering IO errors if needed.
-> 
-> ECC error is also common for HBM and error isolation from each user's job is a
-> basic requirement in public cloud. For NVIDIA GPU, a ECC error could be
-> contained to a process.
-> 
-> > XID 94: Contained ECC error
-> > XID 95: UnContained ECC error
-> >
-> > For Xid 94, these errors are contained to one application, and the application
-> > that encountered this error must be restarted. All other applications running
-> > at the time of the Xid are unaffected. It is recommended to reset the GPU when
-> > convenient. Applications can continue to be run until the reset can be
-> > performed.
-> >
-> > For Xid 95, these errors affect multiple applications, and the affected GPU
-> > must be reset before applications can restart.
-> >
-> > https://docs.nvidia.com/deploy/xid-errors/
-> 
-> Does AMD GPU provide a similar way to achieve error isolation requirement?
-> 
-> Best Regards,
-> Shuai
-> 
-> >
-> >>   However, this parameter is
-> >> read-only, necessitating correct settings at driver load. And reloading the
-> >> GPU driver in a production environment can be challenging due to reference
-> >> counts maintained by various monitoring services.
-> >>
-> >> Set the gpu_recovery parameter with read-write permission to enable runtime
-> >> modification. It will enables users to dynamically manage GPU recovery
-> >> mechanisms based on real-time requirements or conditions.
-> >>
-> >> Signed-off-by: Shuai Xue <xueshuai@linux.alibaba.com>
-> >> ---
-> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 26 ++++++++++++++++++++++++-
-> >>   1 file changed, 25 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >> index 38686203bea6..03dd902e1cec 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >> @@ -563,12 +563,36 @@ module_param_named(lbpw, amdgpu_lbpw, int, 0444);
-> >>   MODULE_PARM_DESC(compute_multipipe, "Force compute queues to be spread across pipes (1 = enable, 0 = disable, -1 = auto)");
-> >>   module_param_named(compute_multipipe, amdgpu_compute_multipipe, int, 0444);
-> >> +static int amdgpu_set_gpu_recovery(const char *buf,
-> >> +                   const struct kernel_param *kp)
-> >> +{
-> >> +    unsigned long val;
-> >> +    int ret;
-> >> +
-> >> +    ret = kstrtol(buf, 10, &val);
-> >> +    if (ret < 0)
-> >> +        return ret;
-> >> +
-> >> +    if (val != 1 && val != 0 && val != -1) {
-> >> +        pr_err("Invalid value for gpu_recovery: %ld, excepted 0,1,-1\n",
-> >> +               val);
-> >> +        return -EINVAL;
-> >> +    }
-> >> +
-> >> +    return param_set_int(buf, kp);
-> >> +}
-> >> +
-> >> +static const struct kernel_param_ops amdgpu_gpu_recovery_ops = {
-> >> +    .set = amdgpu_set_gpu_recovery,
-> >> +    .get = param_get_int,
-> >> +};
-> >> +
-> >>   /**
-> >>    * DOC: gpu_recovery (int)
-> >>    * Set to enable GPU recovery mechanism (1 = enable, 0 = disable). The default is -1 (auto, disabled except SRIOV).
-> >>    */
-> >>   MODULE_PARM_DESC(gpu_recovery, "Enable GPU recovery mechanism, (1 = enable, 0 = disable, -1 = auto)");
-> >> -module_param_named(gpu_recovery, amdgpu_gpu_recovery, int, 0444);
-> >> +module_param_cb(gpu_recovery, &amdgpu_gpu_recovery_ops, &amdgpu_gpu_recovery, 0644);
-> >>   /**
-> >>    * DOC: emu_mode (int)
+Regards,
+Arun.
 
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+On 12/26/2024 12:31 PM, Arunpravin Paneer Selvam wrote:
+> - Added a testcase to verify the multiroot force merge fini.
+> - Added a new field in_use to track the mm freed status.
+>
+> v2:(Matthew)
+>    - Add kunit_fail_current_test() when WARN_ON is true.
+>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Signed-off-by: Lin.Cao <lincao12@amd.com>
+> ---
+>   drivers/gpu/drm/drm_buddy.c            |  6 +++++-
+>   drivers/gpu/drm/tests/drm_buddy_test.c | 29 ++++++++++++++++++--------
+>   2 files changed, 25 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index ca42e6081d27..241c855f891f 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -3,6 +3,8 @@
+>    * Copyright © 2021 Intel Corporation
+>    */
+>   
+> +#include <kunit/test-bug.h>
+> +
+>   #include <linux/kmemleak.h>
+>   #include <linux/module.h>
+>   #include <linux/sizes.h>
+> @@ -335,7 +337,9 @@ void drm_buddy_fini(struct drm_buddy *mm)
+>   		start = drm_buddy_block_offset(mm->roots[i]);
+>   		__force_merge(mm, start, start + size, order);
+>   
+> -		WARN_ON(!drm_buddy_block_is_free(mm->roots[i]));
+> +		if (WARN_ON(!drm_buddy_block_is_free(mm->roots[i])))
+> +			kunit_fail_current_test("buddy_fini() root");
+> +
+>   		drm_block_free(mm, mm->roots[i]);
+>   
+>   		root_size = mm->chunk_size << order;
+> diff --git a/drivers/gpu/drm/tests/drm_buddy_test.c b/drivers/gpu/drm/tests/drm_buddy_test.c
+> index 9662c949d0e3..4b5818f9f2a9 100644
+> --- a/drivers/gpu/drm/tests/drm_buddy_test.c
+> +++ b/drivers/gpu/drm/tests/drm_buddy_test.c
+> @@ -385,17 +385,28 @@ static void drm_test_buddy_alloc_clear(struct kunit *test)
+>   	drm_buddy_fini(&mm);
+>   
+>   	/*
+> -	 * Create a new mm with a non power-of-two size. Allocate a random size, free as
+> -	 * cleared and then call fini. This will ensure the multi-root force merge during
+> -	 * fini.
+> +	 * Create a new mm with a non power-of-two size. Allocate a random size from each
+> +	 * root, free as cleared and then call fini. This will ensure the multi-root
+> +	 * force merge during fini.
+>   	 */
+> -	mm_size = 12 * SZ_4K;
+> -	size = max(round_up(prandom_u32_state(&prng) % mm_size, ps), ps);
+> +	mm_size = (SZ_4K << max_order) + (SZ_4K << (max_order - 2));
+> +
+>   	KUNIT_EXPECT_FALSE(test, drm_buddy_init(&mm, mm_size, ps));
+> -	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, mm_size,
+> -							    size, ps, &allocated,
+> -							    DRM_BUDDY_TOPDOWN_ALLOCATION),
+> -				"buddy_alloc hit an error size=%u\n", size);
+> +	KUNIT_EXPECT_EQ(test, mm.max_order, max_order);
+> +	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, SZ_4K << max_order,
+> +							    4 * ps, ps, &allocated,
+> +							    DRM_BUDDY_RANGE_ALLOCATION),
+> +				"buddy_alloc hit an error size=%lu\n", 4 * ps);
+> +	drm_buddy_free_list(&mm, &allocated, DRM_BUDDY_CLEARED);
+> +	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, SZ_4K << max_order,
+> +							    2 * ps, ps, &allocated,
+> +							    DRM_BUDDY_CLEAR_ALLOCATION),
+> +				"buddy_alloc hit an error size=%lu\n", 2 * ps);
+> +	drm_buddy_free_list(&mm, &allocated, DRM_BUDDY_CLEARED);
+> +	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, SZ_4K << max_order, mm_size,
+> +							    ps, ps, &allocated,
+> +							    DRM_BUDDY_RANGE_ALLOCATION),
+> +				"buddy_alloc hit an error size=%lu\n", ps);
+>   	drm_buddy_free_list(&mm, &allocated, DRM_BUDDY_CLEARED);
+>   	drm_buddy_fini(&mm);
+>   }
+
