@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6564A0448B
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jan 2025 16:31:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B720A04480
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jan 2025 16:30:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6F910EB16;
-	Tue,  7 Jan 2025 15:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C40710EB11;
+	Tue,  7 Jan 2025 15:30:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YbozHHpE";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4yJSVXre";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2064.outbound.protection.outlook.com [40.107.220.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 599A510EB16
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 15:31:51 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2076.outbound.protection.outlook.com [40.107.95.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 065C810EB0F
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 15:30:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hnOWwJ8LCSEfkKkCovHR7gnlqz57qkoNo/KjZbUdpk05ku0C9BjHWVf64jLxa8qt8HkAUpFMtl6we7h0f7VoBGkURl8TE02J46REeVkajFKIuV9H7/nZ9M+V6SdRcDtxWzodFoDvgIS+JWXsXPFUaXcINxm5DDrw7p3bjAW8HlR4B/HAAuhzyPFWIR7pg8O72ZspSjqQ3jslJMf8YbBkXwkDnJS9hrpyvlHfP9PAq/TNoEf0jB94mXXi4y5nzKtmzeEBZseaYvkb08ksOVChznJb/otp+LAOCwJqyyGRyz0EMbLOLmTJXAWyCqyCaQlFTa0MeEi4rUmS8G15CCTBRw==
+ b=DW9jeaOujJr4B3ZHTWl3PNu2fLPw1XvX8qBN1SKjDmY9lxzTN5/Ta7tzZyrU7yUKkZj7xKSo+jYH70wLv8E70IKXNlI82ryo8u9GsfuSvDuDRmx7Eo+iVtT/xJU27XB2kGYGnnraNAuGwet9ArZ+KlbWMFNQIhzBgP+qtK1y9WxkdSNWdbVQGEVjO8eTmN47IuqkEIPBsP3SMBPj0NdGPln6e2COfKWjO14ReNfJ2kWqcyi2taAfjoIeyU5mZv4RC5dLGBfNl3Mu7HTZiSFfG2S47zR5lhet9I6MqEkCIy8y2g3Jc/kgjTEr3Y4n9kE0MADKr+2WWfXm6lBlUrwMbA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C3ytHd8KI+OOotEZwkS7S8bPDZS95ZnA/K0T7Gq7pwk=;
- b=Z96MCIWRpqxFsiiol8aDa3VgDLasW+xIW25RjX94hJBjrkDQvldGR5wke1oQX2zjbg4Tmsc7d0BpggkU0jTfbY/sI9T7RhWKUOh2ZixCaIRtW5jre/t04DywfR4YKjLPpitw1MHkMxBO49ixoVOn9Qz5hL58rlXfOb1DazMilWNMZri4+XzYh1wVemXS571lGcgzHPTq0P1iVvNR8B3VlYBAT+qaPENcK0f8EewtZww1QBJ4GWk1Tv7Hlh9wTWvJfPV+YOkjHlXgZOhPoRIuxFRW8JqhHf8jCQ13gkYGUMQQgNpcSnTsXMeVW9Z+NJ4NEtw+5vGVlJ6ByhWOTBxYrQ==
+ bh=j4lyzG9WvSzmYv9VOYXqCbKB4mfXuC/1XF26gyyskVg=;
+ b=d0ynOKkWItFthAVWqU6sNAJPF3sSSddlWKvoFQzq4W31ywLMIUcUIsA5XTQEn/sCMnZvhkCyf4i8gwt3sWgIdca1iOzTAl1OkHQUGwJmoFP7WENObEIkAR1mCqrPG9Oo8Gzmo5j1nhfWPMqIlbLM57GTb4Lk20ePYM0jMUjFMrv5wRr4gfEMerkcFq+yaWVU/LcU30Sx6OK7R8+jOqM8e5kTC4ZUvs0VSYpTrord8E+5Gfy61365s2OaOxplNWr8gc6YbfCdGvTRHr4Qa+SRB+0QtqCNqSCoDGRPR8WO9GlLG1yOGOW9NKO5IZf2NKHq64OMvD4xfaT1xcY+iIJv2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C3ytHd8KI+OOotEZwkS7S8bPDZS95ZnA/K0T7Gq7pwk=;
- b=YbozHHpEL3sZPKQB2UpKKOt8JKtnR9ox0KaVF2a+uurLgJw/prOcQLfUtkEGHdMi4l6YvvmYTNllfU7otH1t2+DXPk7lHjhm4ZclQAsjZ/3SvydE+SEih8+ly4uiCHyca74Pa+D/5CTtbVr55V0D/kahsLc3xaXGC2ALWLdgmqI=
-Received: from MN0P220CA0024.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:52e::18)
- by SN7PR12MB7226.namprd12.prod.outlook.com (2603:10b6:806:2a9::18)
+ bh=j4lyzG9WvSzmYv9VOYXqCbKB4mfXuC/1XF26gyyskVg=;
+ b=4yJSVXreJESL98P+rWTODu94IjOtrM6JDAXn8Vm17b5b/WymSIL8I9qONSkd4wy1/aRn9TPYdSrF5A7mxxHjRTT0qKZRR0TwPpp+SPN3wWg3TlTkT9wTxxuVSIP5K7ZA0CQfcf6R6RRLrWe17yw/AkIBrmeCDNadV8wHfCKwR7U=
+Received: from MN2PR03CA0029.namprd03.prod.outlook.com (2603:10b6:208:23a::34)
+ by SJ1PR12MB6097.namprd12.prod.outlook.com (2603:10b6:a03:488::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.16; Tue, 7 Jan
- 2025 15:31:29 +0000
-Received: from BN2PEPF000044A7.namprd04.prod.outlook.com
- (2603:10b6:208:52e:cafe::c8) by MN0P220CA0024.outlook.office365.com
- (2603:10b6:208:52e::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8335.10 via Frontend Transport; Tue,
- 7 Jan 2025 15:30:26 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.19; Tue, 7 Jan
+ 2025 15:30:30 +0000
+Received: from BL02EPF00021F6B.namprd02.prod.outlook.com
+ (2603:10b6:208:23a:cafe::9) by MN2PR03CA0029.outlook.office365.com
+ (2603:10b6:208:23a::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8314.18 via Frontend Transport; Tue,
+ 7 Jan 2025 15:30:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN2PEPF000044A7.mail.protection.outlook.com (10.167.243.101) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF00021F6B.mail.protection.outlook.com (10.167.249.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8335.7 via Frontend Transport; Tue, 7 Jan 2025 15:30:25 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.8335.7 via Frontend Transport; Tue, 7 Jan 2025 15:30:29 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 7 Jan
- 2025 09:30:25 -0600
+ 2025 09:30:29 -0600
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 7 Jan
- 2025 09:30:24 -0600
+ 2025 09:30:28 -0600
 Received: from tom-r5.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Tue, 7 Jan 2025 09:30:22 -0600
+ Transport; Tue, 7 Jan 2025 09:30:25 -0600
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -69,11 +69,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>, Wayne Lin
  <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Fangzhi Zuo
  <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, Solomon Chiu
- <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>
-Subject: [PATCH 16/24] drm/amd/display: Do not elevate mem_type change to full
- update
-Date: Tue, 7 Jan 2025 23:28:47 +0800
-Message-ID: <20250107152855.2953302-17-chiahsuan.chung@amd.com>
+ <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, "Karthi
+ Kandasamy" <karthi.kandasamy@amd.com>, Martin Leung <martin.leung@amd.com>
+Subject: [PATCH 17/24] drm/amd/display: Remove unused read_ono_state function
+ from Hwss module
+Date: Tue, 7 Jan 2025 23:28:48 +0800
+Message-ID: <20250107152855.2953302-18-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250107152855.2953302-1-chiahsuan.chung@amd.com>
 References: <20250107152855.2953302-1-chiahsuan.chung@amd.com>
@@ -82,52 +83,52 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044A7:EE_|SN7PR12MB7226:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3db95a92-24e0-43d6-fb2e-08dd2f30358c
+X-MS-TrafficTypeDiagnostic: BL02EPF00021F6B:EE_|SJ1PR12MB6097:EE_
+X-MS-Office365-Filtering-Correlation-Id: c66a4789-cb6f-4a2e-8bd7-08dd2f3037d8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?VdLqHCXVeY8lPlAGgMhzyfVuUkudWmytho2vu4DM8R2kLxsG/OsmfS6nxn5T?=
- =?us-ascii?Q?dcRwz2J7lNeRKakqIVDnnTyoD79JG7btvY8DqysA3aoDH3yN0JP7+QNl0UOU?=
- =?us-ascii?Q?oSc09TFxzNFDYEyinqiiHRFqqwxeR2mQENta3oud9VnpdLCoxtSV5pVZzMYk?=
- =?us-ascii?Q?hWcFlm3Pauksto287GUZFo9QenFQwV5JVxf4XND0K5tHu2MsLZwk6HMRXEMx?=
- =?us-ascii?Q?QG7HTkA6Bfr0T6DR7Bxm9XRdixy3t362abUgxwNZg1oLkQbSWdIIwB3cdJkO?=
- =?us-ascii?Q?z1O/jYD5IDNo2IkocrfUljPVzjzL8kwrLUJZUh+wpY5Eg9hc3aWTyL44Ie6R?=
- =?us-ascii?Q?EOtiZp6CkSMI/X/ob6Vz3D6/dgUiz9b5mkcXiBweUHjkSIgFWgRMg4AJrBDj?=
- =?us-ascii?Q?AmWGEQPjb6ypP8ybC6HrRoah7Kx94j9qD5KQaGmMjr9K+ChBDM6py/MWRPu0?=
- =?us-ascii?Q?C+7Pm8u3X6f9B4NHbHjIsX0VsBTE0mv9j2JUPH0ZfQ6joZjw77YMGj3p2g2r?=
- =?us-ascii?Q?7RmP/z2i7uMS7y5EWwD8CU5ujEUljooHDR90wFqKv9kVoAVA2AiwLMiRHpqq?=
- =?us-ascii?Q?STuzB8q9nC0T2UU21ZTiFo3/joLBA9e/+Sh95dPjrosfVQDgwSUI4gZkoeD8?=
- =?us-ascii?Q?15+AvjS+m/KYlqExLBjUBTDf/I/rrc1W9PRNgxLhmTlgC0v6Jip7CLUXUY17?=
- =?us-ascii?Q?ejIYzFmjjr2IzKjYZqqBagg6tnvxQy1w367Sdh1PXDOaDSOT8EaBIDUXjl0f?=
- =?us-ascii?Q?hnb7DpUj7az/B2BGcjklc46RZs/7djbb14XzOxTV9hN6BvNYVIT6gfJ70WD9?=
- =?us-ascii?Q?zg0dj4eDYMjqGldghlobzPVtCHkqC1w+lCDqE4n01J1JeT3riLQAmGomOoIy?=
- =?us-ascii?Q?8zNTlBg2CHxRw5woEVlUCb8SsNUTFnMJp/zu0/PiqdwVOU19REf2X/H2MX8k?=
- =?us-ascii?Q?Y7fm4uDqJiufGp3CSAxzfvh9u6Y1QFoG+hAQKb7NMDX+HqiJtlC3aj8E+vbk?=
- =?us-ascii?Q?n0k9c5Er6zFf8BBEVaq9f+lRSrgUCbT/qQVz8EHfL2cwcY+Y51Sh2hEJ2gbn?=
- =?us-ascii?Q?66wbTztHKdKOsOx2zl4d4lxuWvWbeCGVIz2BbxigNaEmOzLPaPIa5cv/OT/D?=
- =?us-ascii?Q?4xwCY5ZWMCtLJc5kFJ++kiqJBMymKxGEd3qvdUQiZBgDCt+HNpq/4nlU9Tr8?=
- =?us-ascii?Q?tpAoqWLRKX9xJetctm5lM/odNfXoBqodQ3RG2W3J0oeIQNeBLNh0BubUf3en?=
- =?us-ascii?Q?Zsc6IDaoojKlZvdIaOUtPuPaDwLj49oJ6YuA7nhGObmV7ahQv1L8Qvfw6O5R?=
- =?us-ascii?Q?NVnhLrozq27Qf3qzUA+9i2l5mR8WV1PVcUFzT/2BS5NJMYWP3KCPV4eISp+R?=
- =?us-ascii?Q?B9Tlk3p4sqWrMHZRRHAAefZlptGeY4QdYplBeM6OVSsFRYKfBOzMo9g8A5O5?=
- =?us-ascii?Q?riXT+1YWgT/ricj+REqAw2xbo2RsDTXiKs3YMXoFZQo3HEyOgtzSxYfiiaNO?=
- =?us-ascii?Q?9ffVMxW/rsOs67M=3D?=
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?95QTamhTZdLHJNm/Q6+4eNITCrIFuzIye2H4K1arT3cxFpv/bPflCDZ/fJ8C?=
+ =?us-ascii?Q?LTWgAIB6IgMYW9MldJ0KpnZhSiFuPqkeurSrWvlQVISc39ZRJeErCUhZCRPH?=
+ =?us-ascii?Q?6CsITalWcVl83IWP/ZKvnL+0oTgVSixjClNId4C/uId3T3jiqZ2SfjYI0ARC?=
+ =?us-ascii?Q?S57SK1SltHVYxnx2+RK5K8GQB4bah8w1PRXfEj2fEZRq6DUNYnVY7+fzOlvg?=
+ =?us-ascii?Q?RWazmjZMs/x1WntjxRvEl6wR2x8JufIaFNyVCEmFwJowS6yXjD2KzRAGUc+7?=
+ =?us-ascii?Q?Sz5k1TPIgxV+Q1ojyA5pFoTKKeFvyu0QNA59HupKVSbPpDS+jBVIozYSh2x0?=
+ =?us-ascii?Q?HAzMNfpjj2I0KxNsUUxBALkcqKbwUvwWw//AEYs73gAvJGGylQZUMMiqwSDb?=
+ =?us-ascii?Q?gO05zWXe54qcV/D0d7mH8fmtwZDw4BU2NLp3MgSIID4ta16TnWAfZXcwyFqR?=
+ =?us-ascii?Q?faDHvjUxD4bLD2Y8tK+E//si4vqjpkOWTM3bJlqSWV8upxR1mDizHBmMLm9v?=
+ =?us-ascii?Q?h3LzbhQg4R2NbdRjvR05ijzI3VEPD0MeD1idfwq9gjZgygwRNpjnF5oSx17r?=
+ =?us-ascii?Q?ej0Hq1rqzDC+/0383YNNGgduOxLk8O4CaMC/LjoIqIM5WTAE/ySlgAVIOWNT?=
+ =?us-ascii?Q?4LXs139AyR+mBCjLq+9HbSG+ycDewTGG3DuiG2BRLaEKP5a1lo7cCEhSCWIa?=
+ =?us-ascii?Q?xHHESWpBfuQrQKCyYBz0rmE3wKcNrNNRtSk+TZJqF/7p9L4ir1+RmE4dy7ZA?=
+ =?us-ascii?Q?dxZSMUoV7fn175KqHkfPCYV0ICot0J3LF4Lta2lAb26KhwsgSiYQuQrLURTo?=
+ =?us-ascii?Q?jsnMGpd6PgRGaH7GBt3bfTqxRloJ1cxAyxZJqpo3z3RzVkUisU1cOPq41e4X?=
+ =?us-ascii?Q?hZQ/df7BSLAhibbi9reThCPrabAdUE4W7qmHmR9BaTE4vNQLOgdV0Fr1Utkj?=
+ =?us-ascii?Q?skoSeZJhRY6vLaOkXGNf22t8CQNLntCXypr7W5T+6sxWN54sPuwyQ0SoBKMA?=
+ =?us-ascii?Q?bll+1G32E+Cz48sjAnJy7odZbM0Eqy5fGnH31COdZbsrpAE3iGUNRPSuzXsQ?=
+ =?us-ascii?Q?Tj8TmhbpTs2O+0loX/9gjeGZAjM3IOa4wku/B9w3IWbqHbAeDRtLvrJ2b/zk?=
+ =?us-ascii?Q?UXJJOcTBstJgcqQYB/ySXX74RKzNgQZz1EsKR161W34OXy+k7dY2zSB1+//b?=
+ =?us-ascii?Q?1C5qLnf38Bm/Atv1NbO/jDTTcb3kqVz06vbcsgQHSLgAFbhh1Z0ihih8nrwj?=
+ =?us-ascii?Q?mqnsgtYKqoqdY1QKsCHCiDwTRbegYjzPPsuYKfaV/PZm6BlKPEdq3Eb0PgDR?=
+ =?us-ascii?Q?bXK1d6iJICX6AIr6/D6+e7SfjorPYgCr5XFRtappuAhKmUALv4BNo5CyVxJE?=
+ =?us-ascii?Q?etU1jDII38eWPrzPExcCrr3vAuCMfy/zlYqi6JPrGqgbhFzIXhFUTx4YZ0Nr?=
+ =?us-ascii?Q?asJbe09gw9g9sNGqq5Dtayz92F+j2XsXlZIv9VKQ0V9r4J2EHDDA9qnP/Qz1?=
+ =?us-ascii?Q?pQ+wagw4B2MdX8s=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 15:30:25.8283 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3db95a92-24e0-43d6-fb2e-08dd2f30358c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 15:30:29.7571 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c66a4789-cb6f-4a2e-8bd7-08dd2f3037d8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044A7.namprd04.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00021F6B.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7226
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6097
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,88 +143,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Leo Li <sunpeng.li@amd.com>
+From: Karthi Kandasamy <karthi.kandasamy@amd.com>
 
 [Why]
-
-There should not be any need to revalidate bandwidth on memory placement
-change, since the fb is expected to be pinned to DCN-accessable memory
-before scanout. For APU it's DRAM, and DGPU, it's VRAM. However, async
-flips + memory type change needs to be rejected.
+The functions read_ono_state are no longer in use and have been identified
+as redundant.
+Removing them helps streamline the codebase and improve maintainability by
+eliminating unnecessary code.
 
 [How]
+These unused functions were removed from Hwss module, ensuring that no
+functionality is affected, and the code is simplified.
 
-Do not set lock_and_validation_needed on mem_type change. Instead,
-reject an async_flip request if the crtc's buffer(s) changed mem_type.
-
-This may fix stuttering/corruption experienced with PSR SU and PSR1
-panels, if the compositor allocates fbs in both VRAM carveout and GTT
-and flips between them.
-
-Fixes: a7c0cad0dc06 ("drm/amd/display: ensure async flips are only accepted for fast updates")
-
-Reviewed-by: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Leo Li <sunpeng.li@amd.com>
+Reviewed-by: Martin Leung <martin.leung@amd.com>
+Signed-off-by: Karthi Kandasamy <karthi.kandasamy@amd.com>
 Signed-off-by: Tom Chung <chiahsuan.chung@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 29 +++++++++++++++----
- 1 file changed, 23 insertions(+), 6 deletions(-)
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 85 -------------------
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.h |  2 -
+ 2 files changed, 87 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 6bc3a1d5e85d..ceb8ca19e3d6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -11388,6 +11388,25 @@ static int dm_crtc_get_cursor_mode(struct amdgpu_device *adev,
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
+index d5bbd3531c61..555a9f590cd7 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
+@@ -127,91 +127,6 @@ void dcn401_program_gamut_remap(struct pipe_ctx *pipe_ctx)
+ 	mpc->funcs->set_gamut_remap(mpc, mpcc_id, &mpc_adjust);
  }
  
-+static bool amdgpu_dm_crtc_mem_type_changed(struct drm_device *dev,
-+					    struct drm_atomic_state *state,
-+					    struct drm_crtc_state *crtc_state)
-+{
-+	struct drm_plane *plane;
-+	struct drm_plane_state *new_plane_state, *old_plane_state;
-+
-+	drm_for_each_plane_mask(plane, dev, crtc_state->plane_mask) {
-+		new_plane_state = drm_atomic_get_plane_state(state, plane);
-+		old_plane_state = drm_atomic_get_plane_state(state, plane);
-+
-+		if (old_plane_state->fb && new_plane_state->fb &&
-+		    get_mem_type(old_plane_state->fb) != get_mem_type(new_plane_state->fb))
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
- /**
-  * amdgpu_dm_atomic_check() - Atomic check implementation for AMDgpu DM.
-  *
-@@ -11585,10 +11604,6 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+-struct ips_ono_region_state dcn401_read_ono_state(struct dc *dc, uint8_t region)
+-{
+-	struct dce_hwseq *hws = dc->hwseq;
+-	struct ips_ono_region_state state = {0, 0};
+-
+-	switch (region) {
+-	case 0:
+-		/* dccg, dio, dcio */
+-		REG_GET_2(DOMAIN22_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 1:
+-		/* dchubbub, dchvm, dchubbubmem */
+-		REG_GET_2(DOMAIN23_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 2:
+-		/* mpc, opp, optc, dwb */
+-		REG_GET_2(DOMAIN24_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 3:
+-		/* hpo */
+-		REG_GET_2(DOMAIN25_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 4:
+-		/* dchubp0, dpp0 */
+-		REG_GET_2(DOMAIN0_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 5:
+-		/* dsc0 */
+-		REG_GET_2(DOMAIN16_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 6:
+-		/* dchubp1, dpp1 */
+-		REG_GET_2(DOMAIN1_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 7:
+-		/* dsc1 */
+-		REG_GET_2(DOMAIN17_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 8:
+-		/* dchubp2, dpp2 */
+-		REG_GET_2(DOMAIN2_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 9:
+-		/* dsc2 */
+-		REG_GET_2(DOMAIN18_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 10:
+-		/* dchubp3, dpp3 */
+-		REG_GET_2(DOMAIN3_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	case 11:
+-		/* dsc3 */
+-		REG_GET_2(DOMAIN19_PG_STATUS,
+-			DOMAIN_DESIRED_PWR_STATE, &state.desire_pwr_state,
+-			DOMAIN_PGFSM_PWR_STATUS, &state.current_pwr_state);
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return state;
+-}
+-
+ void dcn401_init_hw(struct dc *dc)
+ {
+ 	struct abm **abms = dc->res_pool->multiple_abms;
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
+index 17a06f299b68..17cea748789e 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
+@@ -63,8 +63,6 @@ void dcn401_set_cursor_position(struct pipe_ctx *pipe_ctx);
  
- 	/* Remove exiting planes if they are modified */
- 	for_each_oldnew_plane_in_descending_zpos(state, plane, old_plane_state, new_plane_state) {
--		if (old_plane_state->fb && new_plane_state->fb &&
--		    get_mem_type(old_plane_state->fb) !=
--		    get_mem_type(new_plane_state->fb))
--			lock_and_validation_needed = true;
+ bool dcn401_apply_idle_power_optimizations(struct dc *dc, bool enable);
  
- 		ret = dm_update_plane_state(dc, state, plane,
- 					    old_plane_state,
-@@ -11883,9 +11898,11 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+-struct ips_ono_region_state dcn401_read_ono_state(struct dc *dc,
+-						  uint8_t region);
+ void dcn401_wait_for_dcc_meta_propagation(const struct dc *dc,
+ 		const struct pipe_ctx *top_pipe_to_program);
  
- 		/*
- 		 * Only allow async flips for fast updates that don't change
--		 * the FB pitch, the DCC state, rotation, etc.
-+		 * the FB pitch, the DCC state, rotation, mem_type, etc.
- 		 */
--		if (new_crtc_state->async_flip && lock_and_validation_needed) {
-+		if (new_crtc_state->async_flip &&
-+		    (lock_and_validation_needed ||
-+		     amdgpu_dm_crtc_mem_type_changed(dev, state, new_crtc_state))) {
- 			drm_dbg_atomic(crtc->dev,
- 				       "[CRTC:%d:%s] async flips are only supported for fast updates\n",
- 				       crtc->base.id, crtc->name);
 -- 
 2.34.1
 
