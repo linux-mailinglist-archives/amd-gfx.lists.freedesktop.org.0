@@ -2,135 +2,152 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7233FA04963
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jan 2025 19:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03AE8A047E8
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jan 2025 18:15:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DAF710E193;
-	Tue,  7 Jan 2025 18:40:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D84B510E743;
+	Tue,  7 Jan 2025 17:15:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="bIu6YMUg";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zeoyJ4xv";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
- [209.85.221.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16E9B10E193
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 18:40:07 +0000 (UTC)
-Received: by mail-wr1-f54.google.com with SMTP id
- ffacd0b85a97d-3863c36a731so12185631f8f.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jan 2025 10:40:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1736275145; x=1736879945; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=G3N5s5fdL2YNf7soMuvHTeYgJ8vy52pHoEfk/tcGSD8=;
- b=bIu6YMUgfcVAqpBFz1+PzXsgALCSw+tx4/DSfyZ2G3fsMu0sP5I5x2i8pP7o1ogAIG
- JTRNcjezr2jgBYtS+xWvhLTPOIxdSbdrKbq3XEAWbAttuCfhKP2FQw8Ti7NsVuitSJLJ
- YM3m+skliMLqTZcqy6JClJAKn0jJxaJCbSJq4Y15WfajiE8XvMAQZ0HNl1AoxVwsXDLU
- hziTqEPB6EWmRQGeCSfS1RoCvLwferrXeoCiF1oBPQR3sSLzlcVYbg/FpgV14Cmm9G6Y
- BLpWGlNUifuv+GG2tJfdXyvhKYa7k32/G0vMh9pRIdWEknQF2ywe69k6KkXjzAGYNVfi
- p/bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736275146; x=1736879946;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=G3N5s5fdL2YNf7soMuvHTeYgJ8vy52pHoEfk/tcGSD8=;
- b=vmELPjNk1ev+I7Sw8hvbDzkwxY/SFziuNUdMOXIxQE+ImLcJ54Og1uRzUdYjA54Npp
- A+O8D06rGZ45iApN4GbvTuHff/uUnmyfWKtDW9GD63VEYAS1P1ITtFF+6K3rucO1sShf
- 1CRPN/MUMPa5Q5Q4A5t71g6XFNq3HdjI8QvIh/OBOiALOdP+tPVe5Mje2Qd7VgCknfiO
- s7y/1tjj9MBaFKATkS6JRcfishz8V/dkA7mXfC8dR+rAfliuurDFTh80Bm8OLzxxZ9b4
- NhcgwjcolIL5BOiOXsheTsusq1SCdvo6FQmcyPpcYg4AddmPutFKZv8r3Sa9yiylYcid
- VnJA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVdm9b4F5YzeJsGe9zNl07+T/ZbC1KzcOQqk7yh75Nb2bik8V8ubvjvmvQHu97QFiU6aFhd8ZTy@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwrAaXLtakqIF4hL2TGEJVwLfZGAGv4TeoRY5V6vsCmCqaP8qAK
- TIqx+RYFvv1G7MJlO1QWSpGQacxtbeBtpRR9TIVIq/gZsaOQ5ofSXS9olerWEJyMH2k66e4o6fn
- t/Sw=
-X-Gm-Gg: ASbGnctjA7OfhlMdG7Y7WzAqXOPobBSeKDOkGE5vDWIjf1UkaSqVZ7N97paks1+k6/3
- lW0xt+ERnN1k3oML571rDsz+lQeVVfUuyqEg/8RsqyaK4rzrVOeWFeEpC35dLtLqToUxeV8QZTm
- hIYjdyFNkPbc2K6hOLdi4QI+vuYnFCA5elf8Zu9NXrsFS0t0VLHwhQ4HorNpCF3FG6ttze9+5JB
- KdGAo+c0Htih1jirtsKLr36UvwkQdFlg2XXwT/qUfUOhsHnI4oujzsnwBHhJiNb/aV8Psbfmq6Z
- ju2HVv28CDI3o92RCXeHQ5C8
-X-Google-Smtp-Source: AGHT+IENf5iIM0eyUUKKI+rIQnGA5rELVSy2jGiVzJtZlwGnyitqzrPGGRO+n/bqFHmHqnjQEDg7ZA==
-X-Received: by 2002:ac2:4c4c:0:b0:542:7217:361a with SMTP id
- 2adb3069b0e04-54272173890mr3514721e87.10.1736249493006; 
- Tue, 07 Jan 2025 03:31:33 -0800 (PST)
-Received: from eriador.lan (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00::b8c]) by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-542235f658csm5169219e87.44.2025.01.07.03.31.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Jan 2025 03:31:31 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Peter Senna Tschudin <peter.senna@gmail.com>, Ian Ray <ian.ray@ge.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>,
- Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Stefan Agner <stefan@agner.ch>,
- Alison Wang <alison.wang@nxp.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v2 0/5] drm/connector: make mode_valid() callback accept
- const mode pointer
-Date: Tue,  7 Jan 2025 13:31:28 +0200
-Message-ID: <173624946815.1500596.321177900833598022.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241214-drm-connector-mode-valid-const-v2-0-4f9498a4c822@linaro.org>
-References: <20241214-drm-connector-mode-valid-const-v2-0-4f9498a4c822@linaro.org>
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2057.outbound.protection.outlook.com [40.107.100.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFEA710E743
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 17:15:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Th2BsHXjgUHg2xOC7eLHiYmdC/xRAP86W6bXwC+VowVmFG+TylQs6L16pyyX9B/EsCqrw8WMRBnehFj66+1p1MQyoV0drYdUj9z3H8qPS8smmu+GS/nHQzl/gOe4FP3HC5yxg348l6euf4YwbcnRI6zwu4dvH+ExNFFsOuJgeXUrLbD6ehWwFVzRLNWa9FChDaC0QbdsKN1AfZX9ZLUPVsdYTAPGDCBEjFDUbv6yquCk7t/wytW9V+x3ixcBHzEFuaqy4qjv04n5LWM3CqVhoOdH7fHhp1ews2dExvcmMeMSrJ98JFKJzscbjamO4P0HgVlzcSFUNNa++1KhucsLTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h0oeLKFOSMvzPVCR6PKO85rhYJ1r3OXpjfpwbCva/I0=;
+ b=AxGWiVcWRvBGDHNmHuqyljX6ESoGmweGkwf8BkfgkaeKH/htDBXUTpM8/rGTL4BMOjm8tRFQan5tlkvXRCgQP/gioZD6GoTGBUkd13zsKIEhfv+SORJGI8oAl6tNuVX4L2w52SgLk6M9XM3irx3kSVhRg3zHTeRfu1y0oGradsn4uiY/et2HjbgogOYRzC8T4WJRILwpyyajS3IURVsiIZDaRp4QWpOZcQlKxkk0iTwgkL+/I6VGkQlTdDTYD3MV8/2Io/vaZrByDrcyqYR9j7dkfjhP8XBgXO2gHNoW4QPY/+gyjeaPOzqV1O8X7YgujFiWOfYV1bVZq1BEFW16sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h0oeLKFOSMvzPVCR6PKO85rhYJ1r3OXpjfpwbCva/I0=;
+ b=zeoyJ4xv8mkJ8V3hzZBmHUCtAgnx/9x4AobBNRH5PnIsWfreAoFffGKprBcQm0fuFjiaKNcqGKvzfKupha6VzcYCbZGuJS3skzbx172CQjtviz83R9gWP9yIvwt2cZnEHE+laGRvWyWLY2V7gFkRB9t4Lp8xsnjGcF6SKobAUic=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CY5PR12MB6108.namprd12.prod.outlook.com (2603:10b6:930:27::15)
+ by PH7PR12MB7114.namprd12.prod.outlook.com (2603:10b6:510:1ed::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.15; Tue, 7 Jan
+ 2025 16:59:56 +0000
+Received: from CY5PR12MB6108.namprd12.prod.outlook.com
+ ([fe80::46e5:5b51:72c3:3754]) by CY5PR12MB6108.namprd12.prod.outlook.com
+ ([fe80::46e5:5b51:72c3:3754%6]) with mapi id 15.20.8293.000; Tue, 7 Jan 2025
+ 16:59:56 +0000
+Message-ID: <b9b8ea58-1e06-4743-9b6c-7b29eeaff0d2@amd.com>
+Date: Tue, 7 Jan 2025 10:59:54 -0600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd: Fix random crashes due to bad kfree
+To: Chris Bainbridge <chris.bainbridge@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
+ regressions@lists.linux.dev, tjakobi@math.uni-bielefeld.de, lenb@kernel.org,
+ linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "Rafael J. Wysocki" <rafael@kernel.org>
+References: <Z2yQvTyg_MWwrlj3@debian.local>
+Content-Language: en-US
+From: "Limonciello, Mario" <mario.limonciello@amd.com>
+In-Reply-To: <Z2yQvTyg_MWwrlj3@debian.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SA9PR13CA0174.namprd13.prod.outlook.com
+ (2603:10b6:806:28::29) To CY5PR12MB6108.namprd12.prod.outlook.com
+ (2603:10b6:930:27::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6108:EE_|PH7PR12MB7114:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd7b27b6-be44-477e-cac6-08dd2f3cb65a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SmIrQStsVkZiM3FzenFGQlFMZWZ2WnRsb1Y3QVVKdGI5Qng5bGlQUmJLR3RH?=
+ =?utf-8?B?VlB4dUg2NGN0bWhuWlJuSWVuRzlaZFhwWmhFWHVBNDdobTYzMXJmaUh3djJt?=
+ =?utf-8?B?WjBMT1p6QlRIV29OWTh3dU5uOGI1Wmo1Vk9zeFltTWpud2ZsRFlLSGxPcFY3?=
+ =?utf-8?B?ZFRnUHVYZmNqOXh4SmNhamZTR3BCd0ZUYm1NallqemFVbUQzOWQrT2xqK3Q4?=
+ =?utf-8?B?b1B6L0JZUlZXTDE1bFpWUHFHcStjUmVTZUFEMDRnY0dCN2l6WktLZUlJZStO?=
+ =?utf-8?B?ZXV5SExpYUZ6Z08yVFNoUWYyemtIRW5zdkhNN3JUdEhtVXlBaTRuVHBDUys0?=
+ =?utf-8?B?TGEwM1N4ZmRFUU1GRHYzcjV1SWRZZThYcHhkQ0ovZVlheWQvd2grNitUSjRw?=
+ =?utf-8?B?d2tKRUZwTnhlVjIzRTIxQ1JwMXFTWDdWL3ZyTENQT2ZlTlRNQ2liYXd4OURP?=
+ =?utf-8?B?SnFwVG9qSlhhZ25NVTVzY3piSXhDMWNVd0s1Z1pnOGRhQ2dtQytxajBRTTJp?=
+ =?utf-8?B?OGFZVVJkc0N1OS9aOVBIN3dNa05HOS9pNXZKc0t2OGE3MTBLQWlDL2ZoaHdY?=
+ =?utf-8?B?UjgxSHp3Ym5mUkNJNHJGQzFjNEQwbWFaQjRnUGFiVFpkajRXOC9oRG5TVFFL?=
+ =?utf-8?B?YWgxU2xQM2VoQWwrUVZjWDJOQ3hoT2h3dTdmL0ptS0JqRTJmNS9GNnEyWXNi?=
+ =?utf-8?B?VVJ6ZUQ2UlVUZXhIWTR0VVlrcGNUZG42OWMzbkVaSHFVa0draTlnMXdBMGJi?=
+ =?utf-8?B?ZDJ4bWV1SW1WaXFrUDJ2SG1RQXFsNTFFY3hMSFJteDJHOHVlQmhpczcwVUlM?=
+ =?utf-8?B?bHF3UXQrbmUrUkU3Z2YwUlIwMWo0cTExbnVqbDRyNXFGVEg4eisvYjFWdlll?=
+ =?utf-8?B?V0UvanFnS011cnREVmx3b1cybUZWOGwvWmlMTU5iTkFwT2srRy84ODQ5bVVj?=
+ =?utf-8?B?VlNVTGlYdUZ1endva0JiU0gvSDRPR25BUm5ld3MyLzRJNDNFOFhuMmkwN2tM?=
+ =?utf-8?B?YjJIenRhbnhvNHk0Z2lUL050c01pb096azIyOUtYWURhOUpnRm1BblRvTzYv?=
+ =?utf-8?B?NVJuZHcvbVViOEtqc2pUQm9UV1pkT1M0ZGI4UTZYU0xZS0JFNDVIWC9kR2xy?=
+ =?utf-8?B?blBRREZRUS9QbVE5ajQ4Ni9CWUM2dmk1Q3k1bXg3Z25uaVVINVpOVTRzQnpW?=
+ =?utf-8?B?NGk5QU40V3hZaVBrekpmTU5TNFVGV0F3Nkt0WUhNaW1wMmlkUVBFUGVLRDRi?=
+ =?utf-8?B?b3paNDZGMEpUL1UxZ3pXUWUxSDl3c2o0Q3lzdGlXRUpIWDhUbnc5ZUJweHdq?=
+ =?utf-8?B?OFc3di9obXVJNjJObkgyMnB6TVpsd0s1R2FFR1NHV29mVkJGUngxZ1lhZGpR?=
+ =?utf-8?B?cFR1b0JUc0YzMDNPTWN3Z1FmdVlacXJ5ZjA1MGFJdVBMZEFaRnY2MHYvdVBY?=
+ =?utf-8?B?WUJzdFdrdEt4S2c4T2hyTE12S3hsdnhFdUYyd1YyOXcxL0Nwc3BuSSs2eVln?=
+ =?utf-8?B?a0s4OVlBak01MFlRaFU2aWJtUHdINlFTOUUrZ1hqcmZsa054R0ZLR0dUWDc1?=
+ =?utf-8?B?Y2JnUDBaaGdsWVpkMEFXQW02Yitwd25vbE5zeTRxdjlkUGFBbVFXY0lFZ1da?=
+ =?utf-8?B?V0MzL3hYUi9TRzhuWHBCVFVVMTB6WlJGbTd6UGwrY1E4T3liY1NNYzFDWUE0?=
+ =?utf-8?B?Y055REIzMGQ1UkpNVVM2TXZlbm5HVVA4WmY4Y3JwWDV2bHNqakFaT3ZVWUVS?=
+ =?utf-8?B?a0YrcUlNdTNic3lUMHp1eitISkdjT1pqcnFtWVN4MUxQZDVEWFgwUm55UFpZ?=
+ =?utf-8?B?L0FzSUFTQXJWZ1Nzb2NlMWFCb0NldFc3OGtWcXFlRFlXVGxFZnF2bWE2ME56?=
+ =?utf-8?Q?S0LsGl1N44mO2?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR12MB6108.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QnEwdUlDVjQvOUZlS0VPc2tHRTBJMTdTZytzcFM1MmRUWG9tN1dhSkpFZVpi?=
+ =?utf-8?B?UzEydlovcGhUa2tWS2xwaG5kc0FUVWdwdUpRYU9EM0RUQlN0UlR4UXB3Tmdh?=
+ =?utf-8?B?aUtkV2N6ak1xMzhmZVZkK25ybS9KNDJhd0s5WXdrODcvQllZUDBpdWlVSjR1?=
+ =?utf-8?B?TFFSamR3cStNdVdveEh0Q3ZJamtyNk9jbEpSUkwzek9lZjloNlR6S2lWT3Ni?=
+ =?utf-8?B?VEUwWE40aUlqWGlXTmo1eVMvYUR1cHJYN1R6ekNRem95NVBXNi9OZEtGdE9q?=
+ =?utf-8?B?b3hkUUduUGVqOUN6ZFpHTkpFTjFGaFg1MGZjemg1UnZHeWFrL1ZQenJQUkJa?=
+ =?utf-8?B?ZFZGZGhQRTBTRFNKMjlOSnpDb0pDRzZvS0JrMnkweUFQUVhmMENLL2sycGJL?=
+ =?utf-8?B?dG5oejFZcDB5bW1EaDZud2NrNDBpTk5jZXlhM1k5RkU1R2FiaHR2NmxlYmxD?=
+ =?utf-8?B?eEcva2RjQ1k3S0pIT0UxR0xidTErQnBKSUtHRE1TaEtDdGNTM2F0cUJFY2Qy?=
+ =?utf-8?B?RWsxaXhJUm1DRHByTFNRdTBHaTBJOGhITHUwQU9YVWJvbHBOTzI0aTRRbjhV?=
+ =?utf-8?B?RWplS2h1cEFPTkpuRGdndnkzQWdlaUlJVk5rMUtZS3FueEdrR0daZlBXbytr?=
+ =?utf-8?B?bmcxekNoVVBVdncvS0NKY0FWWGhYUmpGTUprYTBjbkMzdDVRQVhIZnR1Tk9j?=
+ =?utf-8?B?aTNSejhzc1h5bk1rSHVLeUNjczNBUVYvZDhKMklVWitJd3d4MW5WYlhPQ0dq?=
+ =?utf-8?B?eUtOcWVRY2FSR0ZHWTc2NXhrdGd5L0pQajEwdjVKYWIxcFA0VHFjeEt4emV2?=
+ =?utf-8?B?ckhzbUowSldybjRmL3V4Nk8ycHM2OXlrQWtweVZyTjJzY2dYYUUzVHRKODlS?=
+ =?utf-8?B?T1NWcnNCYW90Ni9xRVZkeUNOUDZ3OEFTekM3TzhtMUVRclNWc250RGxwNUQ4?=
+ =?utf-8?B?Z3gwL3d3WkVmeGxVWnBqeithN0o1VktWV1pwYUNObENkNWQ3MmQvU29zY0pi?=
+ =?utf-8?B?M2NYSjFCVzR1Tmt5SVkxRmJBNzNWY0JtSFFFZE1oNmJTSnN3NVRaQ0czOENo?=
+ =?utf-8?B?eUlqbHVZa1VtaEMzc25nNHZlSUpWNW0rYTVha1o1ejhsTDI5VmdKMTVJblNo?=
+ =?utf-8?B?clk1cTBWcmxPYlNKcUFYVjhzZU5wMnhFb0FJb2NLb1dhR1NLdHAvbGk4cDRX?=
+ =?utf-8?B?dTNTd3FaWW9mSHV2TjdiVGQ5TVlJbElCemxkQkR6cEFwZHZ6cGNCaXAwNUc5?=
+ =?utf-8?B?OHAwTE5pZVlJbWFwVkh2Z1ZlaXRhbXlSVmlUUmVuSnhPYkt6WDkzTUoyTGFt?=
+ =?utf-8?B?U1Q3MjR2Zy9mRHY0NDJqejZhUzVYTFFvN1FiT29rbUtGY0xxQlVrMy9mRFZj?=
+ =?utf-8?B?MU1ZYU5UNFB2UW0rU1BDakRablZuaE5VVkl4YnJKSnJteERCZkFxTmtsRTZR?=
+ =?utf-8?B?dFBVc3JOTzZ6cFkrY2F1YWwzZEFoekNERkJGdHYrWDY5dVRpN0crK3N5TDYx?=
+ =?utf-8?B?eU1uc2s3KzhmUDcySlhrenI0cUl2S2FpeWxsSUJUTHhlQ1phMHl1ejdZRk5L?=
+ =?utf-8?B?eStJUnYvaUZJOEVLbVdMbHMrVTZRVTRLaE1zaVM3MFFYVTRJY3lrSDlLb01w?=
+ =?utf-8?B?RGoxRFI5UU9JejhMWjFzUE0weUJKbTJqV2JWNG9DVURaeVNFVWd3UjlKdDg4?=
+ =?utf-8?B?Yk1hbzlMaDFrSkVncDJOWGlmR3ZqVjdFc1Rwdi9wbzNyNE9POEJqUThOQXJL?=
+ =?utf-8?B?OXJCMmxHb1M0cXZJdk9URG45RE93SWhnYXgxUWlaRWVGYVNYd2Nhc2d0TE9s?=
+ =?utf-8?B?Z3pGSUc5QllPNzJnR3VOUFNMWFhYTVF4U3MwemdjMUxybHRZeVAyQkFOUnJF?=
+ =?utf-8?B?N2dqLzEzUDBjR01FYSt5VUFOV1ROSm5zS2lySkRnMW5rZHhDWmRRRkxsOTNI?=
+ =?utf-8?B?UkdaQ1dtTjZwU0pWYW8ycTZLOC9veGhFb2hQY0VXb05abllydVhuc2YvajRa?=
+ =?utf-8?B?bUliNXdHd2d5OG91VGNOVS8rTkYrUEF0c0U5clZuS0M0cWZUOG1wb1V1R1ZE?=
+ =?utf-8?B?YmVJa3BqaE9QbGdvbjhmVGJicnd0VUxRRVFuZU5WODNjZjdQZmMrTWg5RFk5?=
+ =?utf-8?Q?9+5PTuXjh+0iF++S1Fx4Xmjh+?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd7b27b6-be44-477e-cac6-08dd2f3cb65a
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6108.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 16:59:56.1556 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0UZBB9zkMr/Buu4aWl+8OXD2va07RUgaXQMXJk6INCyHdJjliRfecd8FhZJOl0NJ72xkcSjQgIzyY1KGueex1A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7114
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,32 +162,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 14 Dec 2024 15:37:04 +0200, Dmitry Baryshkov wrote:
-> While working on the generic mode_valid() implementation for the HDMI
-> Connector framework I noticed that unlike other DRM objects
-> drm_connector accepts non-const pointer to struct drm_display_mode,
-> while obviously mode_valid() isn't expected to modify the argument.
+
+
+On 12/25/2024 5:09 PM, Chris Bainbridge wrote:
+> Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
+> available for eDP") added function dm_helpers_probe_acpi_edid, which
+> fetches the EDID from the BIOS by calling acpi_video_get_edid.
+> acpi_video_get_edid returns a pointer to the EDID, but this pointer does
+> not originate from kmalloc - it is actually the internal "pointer" field
+> from an acpi_buffer struct (which did come from kmalloc).
+> dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
+> resulting in memory corruption which leads to random, intermittent
+> crashes (e.g. 4% of boots will fail with some Oops).
 > 
-> Mass-change the DRM framework code to pass const argument to that
-> callback.
+> Fix this by allocating a new array (which can be safely freed) for the
+> EDID data in acpi_video_get_edid, and correctly freeing the acpi_buffer.
 > 
-> [...]
+> The only other caller of acpi_video_get_edid is nouveau_acpi_edid:
+> remove the extraneous kmemdup here as the EDID data is now copied in
+> acpi_video_get_edid.
+> 
+> Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
+> Fixes: c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if available for eDP")
 
-Applied to drm-misc-next, thanks!
+Thanks, I agree this is a better solution for this issue than 
+duplicating in the AMD driver code.
 
-[1/5] drm/encoder_slave: make mode_valid accept const struct drm_display_mode
-      commit: 7a5cd45fab0a2671aa4ea6d8fb80cea268387176
-[2/5] drm/amdgpu: don't change mode in amdgpu_dm_connector_mode_valid()
-      commit: b255ce4388e09f14311e7912d0ccd45a14a08d66
-[3/5] drm/sti: hda: pass const struct drm_display_mode* to hda_get_mode_idx()
-      commit: 5f011b442006ccb29044263df10843de80fc0b14
-[4/5] drm/connector: make mode_valid_ctx take a const struct drm_display_mode
-      commit: 66df9debcb29d14802912ed79a9cf9ba721b51a4
-[5/5] drm/connector: make mode_valid take a const struct drm_display_mode
-      commit: 26d6fd81916e62d2b0568d9756e5f9c33f0f9b7a
+However, the subject seems wrong given where it lands.  This is 
+primarily a patch to ACPI video, so it should be prefixed with "ACPI: 
+video" like other commits to acpi_video.c.
 
-Best regards,
--- 
-With best wishes
-Dmitry
+With that subject fixed:
+
+Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+
+> ---
+>   drivers/acpi/acpi_video.c              | 3 ++-
+>   drivers/gpu/drm/nouveau/nouveau_acpi.c | 2 +-
+>   2 files changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+> index 8274a17872ed..151d1d534264 100644
+> --- a/drivers/acpi/acpi_video.c
+> +++ b/drivers/acpi/acpi_video.c
+> @@ -1485,7 +1485,8 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
+>   		if (!length)
+>   			continue;
+>   
+> -		*edid = buffer->buffer.pointer;
+> +		*edid = kmemdup(buffer->buffer.pointer, length, GFP_KERNEL);
+> +		kfree(buffer);
+>   		return length;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> index 8f0c69aad248..21b56cc7605c 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> @@ -384,7 +384,7 @@ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
+>   	if (ret < 0)
+>   		return NULL;
+>   
+> -	return kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
+> +	return edid;
+>   }
+>   
+>   bool nouveau_acpi_video_backlight_use_native(void)
 
