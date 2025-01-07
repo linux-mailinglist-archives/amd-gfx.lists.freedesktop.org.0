@@ -2,73 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6C0A04558
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jan 2025 17:01:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4EA3A0459C
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jan 2025 17:10:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4062E10E1C5;
-	Tue,  7 Jan 2025 16:01:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0C8510E315;
+	Tue,  7 Jan 2025 16:10:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="aEyKgtVT";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WtDSXlmh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
- [209.85.221.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9777810E1C5
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 16:01:07 +0000 (UTC)
-Received: by mail-wr1-f49.google.com with SMTP id
- ffacd0b85a97d-385e27c75f4so11330924f8f.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jan 2025 08:01:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1736265606; x=1736870406; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=gcKT0I3SsLedH2TQveBeJBFIRBqbzWijWm5hO+Gmv2Y=;
- b=aEyKgtVTsO4N3urocv3trm7cITc1eqvwWFa/tHimkaDLxfspRtor6n9gYQ9POFGj2T
- 65JEwY2c4jwwTZ8MZdVtPRMvRdZ/S0VO1H1tX8NPldDsSSWq+hg6rBSEaYL9jxS3OjGJ
- mI9EEdc77oP3oKdBsx8ajytXhPKsk2iUDXYBs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736265606; x=1736870406;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=gcKT0I3SsLedH2TQveBeJBFIRBqbzWijWm5hO+Gmv2Y=;
- b=kLMbnfGaFfZdwvvDi08u6eFL+wJDYb4wFauQHEF+5tFlSgDDRfqpHfh1ow9Y2PfPZu
- d2FaUXdVSzKGNWj/ulpw8Ir5MUAoTOufy2e+blj1gTR3EKK81BrLx/wMfxBsqtoFiB6e
- IcQv4xehWf6Za6Dp2xlnqalDJtXQC7KR4Iq+th773NNN2IyM/5HpL4XbWS3zLuGknA2F
- YegIGgwTToRKfeV7NOw3+hVFezpS8pkskgh0MKb760CCmqLzJbTqjag7VFjGIuZyU6Bt
- khQCiujttwXYeO9jpoGWJGfJao3Dd/5EUuApgPAYpnV6lNE8i0hwQEonR/j86CXvqQhR
- KD4w==
-X-Gm-Message-State: AOJu0YzizMkY1neKBF3rowJQbU9pw0aI6UbXt3FRMcDSaQLUaOjDinFW
- ofUYb6vhV7gEdkc9qF3ZTr5qMFoLYdsLMqzqal6cobGZWh30iPvDJ37eTRTqOpFvquRQ+kal2D/
- kOTA=
-X-Gm-Gg: ASbGncuhHyGifwvb6R/g/NoVkEWKCDZ4TSgGks7Tk6ZHxXgz9qphrGrWQtCdRjKOvq8
- sK70Hgb0LJtHrrRfsVFmG0q/WguM6GibhRok/ZgA/I4wed9T+zcqksJVq/jI+HJvEt0mXKjIjga
- GIVwU+i7Tm6iA/skfoMMFG/dhWx5XgLwr5nMmHSOwI48oQ+ZaIdG8kLWMTJVgJgXOGAXZY9+xis
- GusB61/m5UhebJWJ5YG4TCI4Yw1iPTyHdcorq3qPIfvEdsAkMNldCEybkPvEv8wiQVY
-X-Google-Smtp-Source: AGHT+IHw7U5bwEb+PQTF6+p7uboI+4w+j8uiTOK7Dp0r/5Q9NFHpqsveVMy6jTYyW7nKvgqot6ci0A==
-X-Received: by 2002:a5d:584f:0:b0:386:399a:7f17 with SMTP id
- ffacd0b85a97d-38a221f2ed2mr41855508f8f.24.1736265605951; 
- Tue, 07 Jan 2025 08:00:05 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43656b3b2afsm648717595e9.35.2025.01.07.08.00.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Jan 2025 08:00:05 -0800 (PST)
-Date: Tue, 7 Jan 2025 17:00:02 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, sima@ffwll.ch
-Subject: Re: [PATCH] drm/amdgpu: mark a bunch of module parameters unsafe
-Message-ID: <Z31PgleArdPbhGAw@phenom.ffwll.local>
-References: <20250107145308.53467-1-christian.koenig@amd.com>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2081.outbound.protection.outlook.com [40.107.93.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBE5E10E315
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 16:10:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KC9dc1V/C/GzkbWL37eLbVI17hksNuqMKX38YW5Wuj9wL2oZm8U4Gh5lwPzP4gtLGH0ZfLlYjiYVDCw/tsvL6AD/0QHsoz8ruU2uVy8ud67BOywoGlkyySG6pfgOETTBh66QPbcZpBKJ+SrZuZHvn+y378GDvc1MrU3fmIPV+vKs28FkvntZTi+IQFMUn5+S0aSka6V1YtY5XZOB/za9wANxZCNrwj/BzknkD2Kx4JF9n/wpBU6VuqEgY5HOZMUjtCFwMrgjGjp9Q48fT0Wr8/k9wdNLM6+K+2QL3QEtW/MavumlqkX0xWUH41zCFyyURV9+CAG0tgjbaD7rPJKVtg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ECGr1Gq3BaGUzV/w6I+xYTGW0iVQzhsowj2dqwDA5io=;
+ b=kaVhr1YuAF6r6qsITwuIRuhT1Gkxdc9TxwGOy6/NAQueKypzndVtAQGT8fw42WYhseiWHi4EAPy+RQC8ox0EapHxLIu6s8D64O8h6N/UBatWe9eVAEARz87i93n9n9g5ZmaO7bUtVkX92Lq8F4WtvykmRkThHjQHtGSaGvaTlEGuxzsmHPdi4HjVzgSSuuBSV0O/GycjKwEGv0Z050LUCx9bexMZ7uD+sYV49OwrZXpD6AbFbl8Y9IkKK2yLKRUGCHSY0GWKpqN4bMcR8edrwzmx4H9aQvX+AP2PrxZrrP4x5Z2QYwufMdE55qb6IgyxrGOywqgmW3pvQlof4FPQYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ECGr1Gq3BaGUzV/w6I+xYTGW0iVQzhsowj2dqwDA5io=;
+ b=WtDSXlmh814+c9aabw+C4/SRb70snKDznfBfUkTdjahDfmmLEeXdO8UsCOf4d/Us/jEjEBCf0KtIew+jYE0b7Gu6So4BqBnGQOkzRps2/rnXQMwesnFJpcdtX59iULX6ml0xU0/lOtJYfIkNqvF275OOWiz7DuBXbGnCxCv2Wm4=
+Received: from CH0PR03CA0286.namprd03.prod.outlook.com (2603:10b6:610:e6::21)
+ by BL1PR12MB5778.namprd12.prod.outlook.com (2603:10b6:208:391::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.16; Tue, 7 Jan
+ 2025 16:10:41 +0000
+Received: from CH2PEPF00000142.namprd02.prod.outlook.com
+ (2603:10b6:610:e6:cafe::f2) by CH0PR03CA0286.outlook.office365.com
+ (2603:10b6:610:e6::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8314.18 via Frontend Transport; Tue,
+ 7 Jan 2025 16:10:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH2PEPF00000142.mail.protection.outlook.com (10.167.244.75) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8335.7 via Frontend Transport; Tue, 7 Jan 2025 16:10:41 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 7 Jan
+ 2025 10:10:40 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: cache gpu pcie link width
+Date: Tue, 7 Jan 2025 11:10:22 -0500
+Message-ID: <20250107161024.73371-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250107145308.53467-1-christian.koenig@amd.com>
-X-Operating-System: Linux phenom 6.12.3-amd64 
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000142:EE_|BL1PR12MB5778:EE_
+X-MS-Office365-Filtering-Correlation-Id: 88f614c9-5b2d-4e8b-ba80-08dd2f35d53c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bPc2vGBgV7CcXTZYJ/YU7wj0V1rSQ0s27iWiq+KEGR5t+RvYjTVaV5QCcMzt?=
+ =?us-ascii?Q?kgfhPM7Vixi85aSTKqgj7YYl7ETTu4gHL6TgqJsqTxSxu7qHBqrFI5TJAf7v?=
+ =?us-ascii?Q?XV5t+ZLnHzqTBG/oEpZrPJUAU+Apjuz5eIbT1CmEPF28FGVb2gGmKwcJQCbp?=
+ =?us-ascii?Q?8HRYUau6blDeUip4GU/dhpMMhpzKGbubi7G4tpl/eS/s+cUZjNNCuqDIMXE7?=
+ =?us-ascii?Q?aNMbxDVXACoS9WF0NF4BcqXpFPz8YuYbmhHd3esST3NyXbtX2joBABL7Pduq?=
+ =?us-ascii?Q?YHWRIJeV0dnSv5Fifl7mVF6qU5cSOhYNnlCqRSI35EBg9OWyZZXFq3geg9s5?=
+ =?us-ascii?Q?5rZUah4IMSpzgrS1rl+U+3RwOlVPt3G6cEpL2r6GJO8hL/HX1/r9q0EIlgjM?=
+ =?us-ascii?Q?PnC2NAaj//BwTzUO8ddu2QdRNmm9D43DzVTXDuDmu28pUFRS0jHQCRhUnKi1?=
+ =?us-ascii?Q?NFimrqQnnBDsdKyv8w+qGCFUwnKrR88UVvKPuv7F1XL4Kp1DEVos/SkNfWxa?=
+ =?us-ascii?Q?9j83b7DCEEKR7DEtkU1Gy5S3I3jCssBeAOKJUOo3qhPkDp7l5f7ypTyG5b8s?=
+ =?us-ascii?Q?HkevX+pNY/ooTS7HmywFkuo/J8uxrK98NYfemmTve1+a3iFzeRB/X3b8VhSS?=
+ =?us-ascii?Q?eWw6SQjI9KWhoGH/I15udBIHqA0Ya4FinP+zw2suExRAiwCXIX4j5XH72TNf?=
+ =?us-ascii?Q?o5+Z4zvYJp3tfDrXzi975IFwEJPehXxT1Yk6bs7FN17YnrabFVt11pEdWlge?=
+ =?us-ascii?Q?lD6+TrA6W6IlS3iLUCx+yl5Lp7HgJ5xrCLAe2YyePLRmC84tu2gAj/jpApsi?=
+ =?us-ascii?Q?bt3b77VzGKgz85fNe/JnjGy0L4O7mnqUcXDCd8BDLF7lFTBE1S7m7pCo58s2?=
+ =?us-ascii?Q?gvgoX7p8+Zb7u6UMBMHssRjnpGUcIK9BlvhDqWCPRSAVx3HfuXQQlZSYzehF?=
+ =?us-ascii?Q?TwowplUHAG9yzbSTrohHMCLg/KmR7T8x2hQGoWiaoxy3BGm9cOnWtW7AQliV?=
+ =?us-ascii?Q?n9tVsYoxJqnu9xxXPYShYSIV4GwbTlmY2Xav7qy+Vir4MAN+r7WEiuQoEakq?=
+ =?us-ascii?Q?VupqncWarXd/CyTierEBDunMxBz+rj6XvdkiJQJzaMMexJhbcvhWoBylXg96?=
+ =?us-ascii?Q?Gnq41Z2aXDPw2uPCZDYEsbjFSSZkHsf1RJ020pN2YGXqsz8my/jM5LBs5fzD?=
+ =?us-ascii?Q?ph02lqmha2cbsHqCGw6W0FhS6uKslDp42w0FKZQQfeDPDlFuKNKVaCreB21O?=
+ =?us-ascii?Q?hnsrhStDVErEQfIvJxXZG3x18MIlB0rHbNirjj/i2z4NNH484bOz33CbFYvn?=
+ =?us-ascii?Q?Dn5rkSzKar0RjG4Cp+anGTjX2zqtK9WeIHckhtdKGrXUFuX11XQPUIpHG0yI?=
+ =?us-ascii?Q?A+SihdDHUP5uafvWBPw04gnn+0xHESNjpwrjOO8/y/tT27Lp4x1SMRJI9BMr?=
+ =?us-ascii?Q?EO+vbeLs+FI=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 16:10:41.2840 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88f614c9-5b2d-4e8b-ba80-08dd2f35d53c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000142.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5778
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,92 +129,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 07, 2025 at 03:53:08PM +0100, Christian König wrote:
-> We sometimes have people trying to use debugging options in production
-> environments.
-> 
-> Mark options only meant to be used for debugging as unsafe so that the
-> kernel is tainted when they are used.
-> 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
+Get the PCIe link with of the device itself (or it's
+integrated upstream bridge) and cache that.
 
-Acked-by: Simona Vetter <simona.vetter@ffwll.ch>
+v2: fix typo
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index acb9dc3705ac..9ddfdb02a6a2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -401,7 +401,7 @@ module_param_named(runpm, amdgpu_runtime_pm, int, 0444);
->   * the kernel log for the list of IPs on the asic. The default is 0xffffffff (enable all blocks on a device).
->   */
->  MODULE_PARM_DESC(ip_block_mask, "IP Block Mask (all blocks enabled (default))");
-> -module_param_named(ip_block_mask, amdgpu_ip_block_mask, uint, 0444);
-> +module_param_named_unsafe(ip_block_mask, amdgpu_ip_block_mask, uint, 0444);
->  
->  /**
->   * DOC: bapm (int)
-> @@ -459,7 +459,7 @@ module_param_named(vm_update_mode, amdgpu_vm_update_mode, int, 0444);
->   * Enable experimental hw support (1 = enable). The default is 0 (disabled).
->   */
->  MODULE_PARM_DESC(exp_hw_support, "experimental hw support (1 = enable, 0 = disable (default))");
-> -module_param_named(exp_hw_support, amdgpu_exp_hw_support, int, 0444);
-> +module_param_named_unsafe(exp_hw_support, amdgpu_exp_hw_support, int, 0444);
->  
->  /**
->   * DOC: dc (int)
-> @@ -570,14 +570,14 @@ module_param_named(compute_multipipe, amdgpu_compute_multipipe, int, 0444);
->   * Set to enable GPU recovery mechanism (1 = enable, 0 = disable). The default is -1 (auto, disabled except SRIOV).
->   */
->  MODULE_PARM_DESC(gpu_recovery, "Enable GPU recovery mechanism, (1 = enable, 0 = disable, -1 = auto)");
-> -module_param_named(gpu_recovery, amdgpu_gpu_recovery, int, 0444);
-> +module_param_named_unsafe(gpu_recovery, amdgpu_gpu_recovery, int, 0444);
->  
->  /**
->   * DOC: emu_mode (int)
->   * Set value 1 to enable emulation mode. This is only needed when running on an emulator. The default is 0 (disabled).
->   */
->  MODULE_PARM_DESC(emu_mode, "Emulation mode, (1 = enable, 0 = disable)");
-> -module_param_named(emu_mode, amdgpu_emu_mode, int, 0444);
-> +module_param_named_unsafe(emu_mode, amdgpu_emu_mode, int, 0444);
->  
->  /**
->   * DOC: ras_enable (int)
-> @@ -732,7 +732,7 @@ module_param_named(noretry, amdgpu_noretry, int, 0644);
->   */
->  MODULE_PARM_DESC(force_asic_type,
->  	"A non negative value used to specify the asic type for all supported GPUs");
-> -module_param_named(force_asic_type, amdgpu_force_asic_type, int, 0444);
-> +module_param_named_unsafe(force_asic_type, amdgpu_force_asic_type, int, 0444);
->  
->  /**
->   * DOC: use_xgmi_p2p (int)
-> @@ -955,7 +955,7 @@ module_param_named(freesync_video, amdgpu_freesync_vid_mode, uint, 0444);
->   * GPU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco)
->   */
->  MODULE_PARM_DESC(reset_method, "GPU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco/bamaco)");
-> -module_param_named(reset_method, amdgpu_reset_method, int, 0644);
-> +module_param_named_unsafe(reset_method, amdgpu_reset_method, int, 0644);
->  
->  /**
->   * DOC: bad_page_threshold (int) Bad page threshold is specifies the
-> @@ -1051,7 +1051,7 @@ module_param_named(seamless, amdgpu_seamless, int, 0444);
->   * - 0x4: Disable GPU soft recovery, always do a full reset
->   */
->  MODULE_PARM_DESC(debug_mask, "debug options for amdgpu, disabled by default");
-> -module_param_named(debug_mask, amdgpu_debug_mask, uint, 0444);
-> +module_param_named_unsafe(debug_mask, amdgpu_debug_mask, uint, 0444);
->  
->  /**
->   * DOC: agp (int)
-> -- 
-> 2.34.1
-> 
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/3820
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 152 ++++++++++++++++-----
+ drivers/gpu/drm/amd/include/amd_pcie.h     |  18 +++
+ 2 files changed, 138 insertions(+), 32 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 90eb92c4c2800..72aff70464ed7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -6162,6 +6162,44 @@ static void amdgpu_device_partner_bandwidth(struct amdgpu_device *adev,
+ 	}
+ }
+ 
++/**
++ * amdgpu_device_gpu_bandwidth - find the bandwidth of the GPU
++ *
++ * @adev: amdgpu_device pointer
++ * @speed: pointer to the speed of the link
++ * @width: pointer to the width of the link
++ *
++ * Evaluate the hierarchy to find the speed and bandwidth capabilities of the
++ * AMD dGPU which may be a virtual upstream bridge.
++ */
++static void amdgpu_device_gpu_bandwidth(struct amdgpu_device *adev,
++					enum pci_bus_speed *speed,
++					enum pcie_link_width *width)
++{
++	struct pci_dev *parent = adev->pdev;
++
++	if (!speed || !width)
++		return;
++
++	parent = pci_upstream_bridge(parent);
++	if (parent && parent->vendor == PCI_VENDOR_ID_ATI) {
++		/* use the upstream/downstream switches internal to dGPU */
++		*speed = pcie_get_speed_cap(parent);
++		*width = pcie_get_width_cap(parent);
++		while ((parent = pci_upstream_bridge(parent))) {
++			if (parent->vendor == PCI_VENDOR_ID_ATI) {
++				/* use the upstream/downstream switches internal to dGPU */
++				*speed = pcie_get_speed_cap(parent);
++				*width = pcie_get_width_cap(parent);
++			}
++		}
++	} else {
++		/* use the device itself */
++		*speed = pcie_get_speed_cap(parent);
++		*width = pcie_get_width_cap(parent);
++	}
++}
++
+ /**
+  * amdgpu_device_get_pcie_info - fence pcie info about the PCIE slot
+  *
+@@ -6173,9 +6211,8 @@ static void amdgpu_device_partner_bandwidth(struct amdgpu_device *adev,
+  */
+ static void amdgpu_device_get_pcie_info(struct amdgpu_device *adev)
+ {
+-	struct pci_dev *pdev;
+ 	enum pci_bus_speed speed_cap, platform_speed_cap;
+-	enum pcie_link_width platform_link_width;
++	enum pcie_link_width platform_link_width, link_width;
+ 
+ 	if (amdgpu_pcie_gen_cap)
+ 		adev->pm.pcie_gen_mask = amdgpu_pcie_gen_cap;
+@@ -6197,11 +6234,10 @@ static void amdgpu_device_get_pcie_info(struct amdgpu_device *adev)
+ 
+ 	amdgpu_device_partner_bandwidth(adev, &platform_speed_cap,
+ 					&platform_link_width);
++	amdgpu_device_gpu_bandwidth(adev, &speed_cap, &link_width);
+ 
+ 	if (adev->pm.pcie_gen_mask == 0) {
+ 		/* asic caps */
+-		pdev = adev->pdev;
+-		speed_cap = pcie_get_speed_cap(pdev);
+ 		if (speed_cap == PCI_SPEED_UNKNOWN) {
+ 			adev->pm.pcie_gen_mask |= (CAIL_ASIC_PCIE_LINK_SPEED_SUPPORT_GEN1 |
+ 						  CAIL_ASIC_PCIE_LINK_SPEED_SUPPORT_GEN2 |
+@@ -6257,51 +6293,103 @@ static void amdgpu_device_get_pcie_info(struct amdgpu_device *adev)
+ 		}
+ 	}
+ 	if (adev->pm.pcie_mlw_mask == 0) {
++		/* asic caps */
++		if (link_width == PCIE_LNK_WIDTH_UNKNOWN) {
++			adev->pm.pcie_mlw_mask |= AMDGPU_DEFAULT_ASIC_PCIE_MLW_MASK;
++		} else {
++			switch (link_width) {
++			case PCIE_LNK_X32:
++				adev->pm.pcie_mlw_mask |= (CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X32 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X16 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X12 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X8 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1);
++				break;
++			case PCIE_LNK_X16:
++				adev->pm.pcie_mlw_mask |= (CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X16 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X12 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X8 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1);
++				break;
++			case PCIE_LNK_X12:
++				adev->pm.pcie_mlw_mask |= (CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X12 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X8 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1);
++				break;
++			case PCIE_LNK_X8:
++				adev->pm.pcie_mlw_mask |= (CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X8 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1);
++				break;
++			case PCIE_LNK_X4:
++				adev->pm.pcie_mlw_mask |= (CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1);
++				break;
++			case PCIE_LNK_X2:
++				adev->pm.pcie_mlw_mask |= (CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1);
++				break;
++			case PCIE_LNK_X1:
++				adev->pm.pcie_mlw_mask |= CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1;
++				break;
++			default:
++				break;
++			}
++		}
++		/* platform caps */
+ 		if (platform_link_width == PCIE_LNK_WIDTH_UNKNOWN) {
+ 			adev->pm.pcie_mlw_mask |= AMDGPU_DEFAULT_PCIE_MLW_MASK;
+ 		} else {
+ 			switch (platform_link_width) {
+ 			case PCIE_LNK_X32:
+-				adev->pm.pcie_mlw_mask = (CAIL_PCIE_LINK_WIDTH_SUPPORT_X32 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X16 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X12 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
++				adev->pm.pcie_mlw_mask |= (CAIL_PCIE_LINK_WIDTH_SUPPORT_X32 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X16 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X12 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
+ 				break;
+ 			case PCIE_LNK_X16:
+-				adev->pm.pcie_mlw_mask = (CAIL_PCIE_LINK_WIDTH_SUPPORT_X16 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X12 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
++				adev->pm.pcie_mlw_mask |= (CAIL_PCIE_LINK_WIDTH_SUPPORT_X16 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X12 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
+ 				break;
+ 			case PCIE_LNK_X12:
+-				adev->pm.pcie_mlw_mask = (CAIL_PCIE_LINK_WIDTH_SUPPORT_X12 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
++				adev->pm.pcie_mlw_mask |= (CAIL_PCIE_LINK_WIDTH_SUPPORT_X12 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
+ 				break;
+ 			case PCIE_LNK_X8:
+-				adev->pm.pcie_mlw_mask = (CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
++				adev->pm.pcie_mlw_mask |= (CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
+ 				break;
+ 			case PCIE_LNK_X4:
+-				adev->pm.pcie_mlw_mask = (CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
++				adev->pm.pcie_mlw_mask |= (CAIL_PCIE_LINK_WIDTH_SUPPORT_X4 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
+ 				break;
+ 			case PCIE_LNK_X2:
+-				adev->pm.pcie_mlw_mask = (CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
+-							  CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
++				adev->pm.pcie_mlw_mask |= (CAIL_PCIE_LINK_WIDTH_SUPPORT_X2 |
++							   CAIL_PCIE_LINK_WIDTH_SUPPORT_X1);
+ 				break;
+ 			case PCIE_LNK_X1:
+-				adev->pm.pcie_mlw_mask = CAIL_PCIE_LINK_WIDTH_SUPPORT_X1;
++				adev->pm.pcie_mlw_mask |= CAIL_PCIE_LINK_WIDTH_SUPPORT_X1;
+ 				break;
+ 			default:
+ 				break;
+diff --git a/drivers/gpu/drm/amd/include/amd_pcie.h b/drivers/gpu/drm/amd/include/amd_pcie.h
+index a1ece3eecdf5e..a08611cb80411 100644
+--- a/drivers/gpu/drm/amd/include/amd_pcie.h
++++ b/drivers/gpu/drm/amd/include/amd_pcie.h
+@@ -49,6 +49,17 @@
+ 				      | CAIL_ASIC_PCIE_LINK_SPEED_SUPPORT_GEN3)
+ 
+ /* Following flags shows PCIe lane width switch supported in driver which are decided by chipset and ASIC */
++
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1          0x00000001
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2          0x00000002
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X4          0x00000004
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X8          0x00000008
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X12         0x00000010
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X16         0x00000020
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X32         0x00000040
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_MASK        0x0000FFFF
++#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_SHIFT       0
++
+ #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X1          0x00010000
+ #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X2          0x00020000
+ #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X4          0x00040000
+@@ -56,6 +67,7 @@
+ #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X12         0x00100000
+ #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X16         0x00200000
+ #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X32         0x00400000
++#define CAIL_PCIE_LINK_WIDTH_SUPPORT_MASK        0xFFFF0000
+ #define CAIL_PCIE_LINK_WIDTH_SUPPORT_SHIFT       16
+ 
+ /* 1/2/4/8/16 lanes */
+@@ -65,4 +77,10 @@
+ 				      | CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 \
+ 				      | CAIL_PCIE_LINK_WIDTH_SUPPORT_X16)
+ 
++#define AMDGPU_DEFAULT_ASIC_PCIE_MLW_MASK (CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1 \
++					   | CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2 \
++					   | CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X4 \
++					   | CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X8 \
++					   | CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X16)
++
+ #endif
 -- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.47.1
+
