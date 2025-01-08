@@ -2,28 +2,28 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D48A05DC5
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2025 15:00:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 702C1A05DC7
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2025 15:00:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66EDC10E8A4;
-	Wed,  8 Jan 2025 14:00:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53F5210E8AF;
+	Wed,  8 Jan 2025 14:00:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="pWcYoVGg";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="mGlxaGUB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-132.freemail.mail.aliyun.com
- (out30-132.freemail.mail.aliyun.com [115.124.30.132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9276210E8A4
+Received: from out30-124.freemail.mail.aliyun.com
+ (out30-124.freemail.mail.aliyun.com [115.124.30.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8993510E2A3
  for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 14:00:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
  t=1736344811; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=R8AO7eaKJ16u+gsYlUZ+LnPWX2kerK611y107FP34fk=;
- b=pWcYoVGgfzeEPiVgXIKhj5zQjUNZT884PBwZFFppKcdOWRTDVj7fvFbN7GuW/otQS+3H1W/7CsWwy8cC/RaGGccQ7lUYRm1QDi9jwOmuyw2Hlw6Ol0QyJPNPu6UBRE7MeFYAJqaoNHhCfAsXve97vILP9NmXn4F/kn7tv0n304A=
+ bh=W3XC5tMww79TtHZoEdwZQxKo021sSBilmh6yYa0Xitk=;
+ b=mGlxaGUBMUOL1ATmN/MxprsdHHN7JYxG9MbokZbeod7uAMCPIsuFZMOMkZYBaMQe0MogW9/VVNz5n9Ba0tGcsy69qqpUmVGmcAj5XZwql4U1vYxSJ9QsAKuLJy64OXjP0Tm9EMOLRV5q3i/WTOIknlkiqsF5S/Uol0e7cK9SrTk=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNEHXCe_1736344808 cluster:ay36) by smtp.aliyun-inc.com;
- Wed, 08 Jan 2025 22:00:09 +0800
+ fp:SMTPD_---0WNEHXDB_1736344810 cluster:ay36) by smtp.aliyun-inc.com;
+ Wed, 08 Jan 2025 22:00:10 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  airlied@gmail.com, simona@ffwll.ch, sunil.khatri@amd.com,
@@ -31,10 +31,12 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  Jun.Ma2@amd.com, xiaogang.chen@amd.com, Kent.Russell@amd.com,
  shuox.liu@linux.alibaba.com, amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: 
-Date: Wed,  8 Jan 2025 21:59:52 +0800
-Message-ID: <cover.1736344725.git.gerry@linux.alibaba.com>
+Subject: [RFC PATCH 01/13] amdgpu: wrong array index to get ip block for PSP
+Date: Wed,  8 Jan 2025 21:59:53 +0800
+Message-ID: <8571f3280f13a562be5f845c274524560b4bee1d.1736344725.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
+In-Reply-To: <cover.1736344725.git.gerry@linux.alibaba.com>
+References: <cover.1736344725.git.gerry@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -51,181 +53,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Subject: [RFC PATCH 00/13] Enhance device state machine to better support suspend/resume
+The adev->ip_blocks array is not indexed by AMD_IP_BLOCK_TYPE_xxx,
+instead we should call amdgpu_device_ip_get_ip_block() to get the
+corresponding IP block oject.
 
-Recently we were testing suspend/resume functionality with AMD GPUs,
-we have encountered several resource tracking related bugs, such as
-double buffer free, use after free and unbalanced irq reference count.
+Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-We have tried to solve these issues case by case, but found that may
-not be the right way. Especially about the unbalanced irq reference
-count, there will be new issues appear once we fixed the current known
-issues. After analyzing related source code, we found that there may be
-some fundamental implementaion flaws behind these resource tracking
-issues.
-
-The amdgpu driver has two major state machines to driver the device
-management flow, one is for ip blocks, the other is for ras blocks.
-The hook points defined in struct amd_ip_funcs for device setup/teardown
-are symmetric, but the implementation is asymmetric, sometime even
-ambiguous. The most obvious two issues we noticed are:
-1) amdgpu_irq_get() are called from .late_init() but amdgpu_irq_put()
-   are called from .hw_fini() instead of .early_fini().
-2) the way to reset ip_bloc.status.valid/sw/hw/late_initialized doesn't
-   match the way to set those flags.
-
-When taking device suspend/resume into account, in addition to device
-probe/remove, things get much more complex. Some issues arise because
-many suspend/resume implementations directly reuse .hw_init/.hw_fini/
-.late_init hook points.
-
-So we try to fix those issues by two enhancements/refinements to current
-device management state machines.
-
-The first change is to make the ip block state machine and associated
-status flags work in stack-like way as below:
-Callback        Status Flags
-early_init:     valid = true
-sw_init:        sw = true
-hw_init:        hw = true
-late_init:      late_initialized = true
-early_fini:     late_initialized = false
-hw_fini:        hw = false
-sw_fini:        sw = false
-late_fini:      valid = false
-
-Also do the same thing for ras block state machine, though it's much
-more simpler.
-
-The second change is fine tune the overall device management work
-flow as below:
-1. amdgpu_driver_load_kms()
-	amdgpu_device_init()
-		amdgpu_device_ip_early_init()
-			ip_blocks[i].early_init()
-			ip_blocks[i].status.valid = true
-		amdgpu_device_ip_init()
-			amdgpu_ras_init()
-			ip_blocks[i].sw_init()
-			ip_blocks[i].status.sw = true
-			ip_blocks[i].hw_init()
-			ip_blocks[i].status.hw = true
-		amdgpu_device_ip_late_init()
-			ip_blocks[i].late_init()
-			ip_blocks[i].status.late_initialized = true
-			amdgpu_ras_late_init()
-				ras_blocks[i].ras_late_init()
-					amdgpu_ras_feature_enable_on_boot()
-
-2. amdgpu_pmops_suspend()/amdgpu_pmops_freeze()/amdgpu_pmops_poweroff()
-	amdgpu_device_suspend()
-		amdgpu_ras_early_fini()
-			ras_blocks[i].ras_early_fini()
-				amdgpu_ras_feature_disable()
-		amdgpu_ras_suspend()
-			amdgpu_ras_disable_all_features()
-+++		ip_blocks[i].early_fini()
-+++		ip_blocks[i].status.late_initialized = false
-		ip_blocks[i].suspend()
-
-3. amdgpu_pmops_resume()/amdgpu_pmops_thaw()/amdgpu_pmops_restore()
-	amdgpu_device_resume()
-		amdgpu_device_ip_resume()
-			ip_blocks[i].resume()
-		amdgpu_device_ip_late_init()
-			ip_blocks[i].late_init()
-			ip_blocks[i].status.late_initialized = true
-			amdgpu_ras_late_init()
-				ras_blocks[i].ras_late_init()
-					amdgpu_ras_feature_enable_on_boot()
-		amdgpu_ras_resume()
-			amdgpu_ras_enable_all_features()
-
-4. amdgpu_driver_unload_kms()
-	amdgpu_device_fini_hw()
-		amdgpu_ras_early_fini()
-			ras_blocks[i].ras_early_fini()
-+++		ip_blocks[i].early_fini()
-+++		ip_blocks[i].status.late_initialized = false
-		ip_blocks[i].hw_fini()
-		ip_blocks[i].status.hw = false
-
-5. amdgpu_driver_release_kms()
-	amdgpu_device_fini_sw()
-		amdgpu_device_ip_fini()
-			ip_blocks[i].sw_fini()
-			ip_blocks[i].status.sw = false
----			ip_blocks[i].status.valid = false
-+++			amdgpu_ras_fini()
-			ip_blocks[i].late_fini()
-+++			ip_blocks[i].status.valid = false
----			ip_blocks[i].status.late_initialized = false
----			amdgpu_ras_fini()
-
-The main changes include:
-1) invoke ip_blocks[i].early_fini in amdgpu_pmops_suspend().
-   Currently there's only one ip block which provides `early_fini`
-   callback. We have add a check of `in_s3` to keep current behavior in
-   function amdgpu_dm_early_fini(). So there should be no functional
-   changes.
-2) set ip_blocks[i].status.late_initialized to false after calling
-   callback `early_fini`. We have auditted all usages of the
-   late_initialized flag and no functional changes found.
-3) only set ip_blocks[i].status.valid = false after calling the
-   `late_fini` callback.
-4) call amdgpu_ras_fini() before invoking ip_blocks[i].late_fini.
-
-Then we try to refine each subsystem, such as nbio, asic, gfx, gmc,
-ras etc, to follow the new design. Currently we have only taken the
-nbio and asic as examples to show the proposed changes. Once we have
-confirmed that's the right way to go, we will handle the lefting
-subsystems.
-
-This is in early stage and requesting for comments, any comments and
-suggestions are welcomed!
-Jiang Liu (13):
-  amdgpu: wrong array index to get ip block for PSP
-  drm/admgpu: add helper functions to track status for ras manager
-  drm/amdgpu: add a flag to track ras debugfs creation status
-  drm/amdgpu: free all resources on error recovery path of
-    amdgpu_ras_init()
-  drm/amdgpu: introduce a flag to track refcount held for features
-  drm/amdgpu: enhance amdgpu_ras_block_late_fini()
-  drm/amdgpu: enhance amdgpu_ras_pre_fini() to better support SR
-  drm/admgpu: rename amdgpu_ras_pre_fini() to amdgpu_ras_early_fini()
-  drm/amdgpu: make IP block state machine works in stack like way
-  drm/admgpu: make device state machine work in stack like way
-  drm/amdgpu/sdma: improve the way to manage irq reference count
-  drm/amdgpu/nbio: improve the way to manage irq reference count
-  drm/amdgpu/asic: make ip block operations symmetric by .early_fini()
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  40 +++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  37 ++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c       |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c      |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c      |  16 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h      |   1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c       |   8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       | 144 +++++++++++++-----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h       |  16 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c      |  26 +++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h      |   2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c       |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c       |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c      |   2 +-
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c       |   2 +-
- drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c       |   2 +-
- drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c        |   1 +
- drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c        |   1 +
- drivers/gpu/drm/amd/amdgpu/nv.c               |  14 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c        |   8 -
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c      |  23 +--
- drivers/gpu/drm/amd/amdgpu/soc15.c            |  38 ++---
- drivers/gpu/drm/amd/amdgpu/soc21.c            |  35 +++--
- drivers/gpu/drm/amd/amdgpu/soc24.c            |  17 ++-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   3 +
- 25 files changed, 326 insertions(+), 118 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 0b1e280ee228..25c06c6c8a2a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -3830,10 +3830,12 @@ static ssize_t psp_usbc_pd_fw_sysfs_read(struct device *dev,
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
++	struct amdgpu_ip_block *ip_block;
+ 	uint32_t fw_ver;
+ 	int ret;
+ 
+-	if (!adev->ip_blocks[AMD_IP_BLOCK_TYPE_PSP].status.late_initialized) {
++	ip_block = amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_PSP);
++	if (ip_block == NULL || !ip_block->status.late_initialized) {
+ 		dev_info(adev->dev, "PSP block is not ready yet\n.");
+ 		return -EBUSY;
+ 	}
+@@ -3862,8 +3864,10 @@ static ssize_t psp_usbc_pd_fw_sysfs_write(struct device *dev,
+ 	struct amdgpu_bo *fw_buf_bo = NULL;
+ 	uint64_t fw_pri_mc_addr;
+ 	void *fw_pri_cpu_addr;
++	struct amdgpu_ip_block *ip_block;
+ 
+-	if (!adev->ip_blocks[AMD_IP_BLOCK_TYPE_PSP].status.late_initialized) {
++	ip_block = amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_PSP);
++	if (ip_block == NULL || !ip_block->status.late_initialized) {
+ 		dev_err(adev->dev, "PSP block is not ready yet.");
+ 		return -EBUSY;
+ 	}
 -- 
 2.43.5
 
