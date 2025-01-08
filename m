@@ -2,28 +2,28 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A71D6A05DC6
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2025 15:00:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37BADA05DC8
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2025 15:00:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3986D10E8A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8338610E8B0;
 	Wed,  8 Jan 2025 14:00:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="lC5D/vb0";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="xGe4s/cI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-132.freemail.mail.aliyun.com
- (out30-132.freemail.mail.aliyun.com [115.124.30.132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9B0810E8A6
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 14:00:13 +0000 (UTC)
+Received: from out30-112.freemail.mail.aliyun.com
+ (out30-112.freemail.mail.aliyun.com [115.124.30.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F27210E8A7
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 14:00:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
- t=1736344811; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=McATYrg/2jHbGCoXf2U65QMaAWSi3FfG+kX8OW2Uul8=;
- b=lC5D/vb0wwuEBgIFIwHqUW+1WKEZguEH+JkFj9O7ywtHqYivT83YY+BnoL49PWxixb0gRab7u3J0w6K56k+NmqAVQbQltHjK4NfOlRUg5yPnOODEDwCmzuw3SlIPhX1OKILQMxoHwj/jOszkUgJuOUTMLDj1PKSkT0UyJRNWDoI=
+ t=1736344812; h=From:To:Subject:Date:Message-ID:MIME-Version;
+ bh=heKzskz1Ds8ReUo+/tta+jLMNtX7BSE1yAGFRnme11Q=;
+ b=xGe4s/cISphq3QEZY0W88Uy2RjD6uFY5wcv770kiPDyJMUiy8ooaeXxgylYCNb/iPLT3HGTcTD8BZtLhVyqSqlF4oi7DgB9q56DkqvdwJI+zVPZ4re/lIvxz2TjfiXV47j0YTrc7JL9hisHTFhSyyeUoMIOdf7fVmQSWGa1wfkg=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNEHXDJ_1736344810 cluster:ay36) by smtp.aliyun-inc.com;
- Wed, 08 Jan 2025 22:00:10 +0800
+ fp:SMTPD_---0WNEHXDd_1736344811 cluster:ay36) by smtp.aliyun-inc.com;
+ Wed, 08 Jan 2025 22:00:11 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  airlied@gmail.com, simona@ffwll.ch, sunil.khatri@amd.com,
@@ -31,10 +31,10 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  Jun.Ma2@amd.com, xiaogang.chen@amd.com, Kent.Russell@amd.com,
  shuox.liu@linux.alibaba.com, amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [RFC PATCH 02/13] drm/admgpu: add helper functions to track status
- for ras manager
-Date: Wed,  8 Jan 2025 21:59:54 +0800
-Message-ID: <d0c71b35557b276a42ad5cbab3c6e82815580ba6.1736344725.git.gerry@linux.alibaba.com>
+Subject: [RFC PATCH 03/13] drm/amdgpu: add a flag to track ras debugfs
+ creation status
+Date: Wed,  8 Jan 2025 21:59:55 +0800
+Message-ID: <014a704e91787b123203d568256861000a7fe558.1736344725.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1736344725.git.gerry@linux.alibaba.com>
 References: <cover.1736344725.git.gerry@linux.alibaba.com>
@@ -54,149 +54,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add helper functions to track status for ras manager and ip blocks.
+Add a flag to track ras debugfs creation status, to avoid possible
+incorrect reference count management for ras block object  in function
+amdgpu_ras_aca_is_supported().
 
 Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 38 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 38 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h | 10 +++++++
- 3 files changed, 86 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 9 +++++++--
+ 2 files changed, 8 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index e4b13e729770..32941f29507c 100644
+index 32941f29507c..2ef7d3102be3 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -367,12 +367,29 @@ bool amdgpu_device_ip_is_valid(struct amdgpu_device *adev,
- 
- #define AMDGPU_MAX_IP_NUM 16
- 
-+enum amdgpu_marker {
-+	// shared by ip blocks and ras blocks
-+	AMDGPU_MARKER_IRQ0		= 0,
-+	AMDGPU_MARKER_IRQ1		= 1,
-+	AMDGPU_MARKER_IRQ2		= 2,
-+	AMDGPU_MARKER_IRQ3		= 3,
-+	AMDGPU_MARKER_IRQ4		= 4,
-+	AMDGPU_MARKER_IRQ5		= 5,
-+	AMDGPU_MARKER_IRQ6		= 6,
-+	AMDGPU_MARKER_IRQ7		= 7,
-+	AMDGPU_MARKER_IRQ_MAX		= 47,
-+	AMDGPU_MARKER_DEBUGFS		= 63,
-+};
-+
-+#define AMDGPU_MARKER_INDEX_IRQ(idx)		(AMDGPU_MARKER_INDEX_IRQ0 + (idx))
-+
- struct amdgpu_ip_block_status {
- 	bool valid;
- 	bool sw;
- 	bool hw;
- 	bool late_initialized;
- 	bool hang;
-+	uint64_t markers;
+@@ -378,7 +378,7 @@ enum amdgpu_marker {
+ 	AMDGPU_MARKER_IRQ6		= 6,
+ 	AMDGPU_MARKER_IRQ7		= 7,
+ 	AMDGPU_MARKER_IRQ_MAX		= 47,
+-	AMDGPU_MARKER_DEBUGFS		= 63,
++	AMDGPU_MARKER_RAS_DEBUGFS	= 63,
  };
  
- struct amdgpu_ip_block_version {
-@@ -400,6 +417,27 @@ amdgpu_device_ip_get_ip_block(struct amdgpu_device *adev,
- int amdgpu_device_ip_block_add(struct amdgpu_device *adev,
- 			       const struct amdgpu_ip_block_version *ip_block_version);
- 
-+static inline void amdgpu_ip_block_set_marker(struct amdgpu_ip_block *ip_block,
-+					      enum amdgpu_marker marker)
-+{
-+	WARN_ON(ip_block->status.markers & (0x1ull << marker));
-+	ip_block->status.markers |= 0x1ull << (int)marker;
-+}
-+
-+static inline bool amdgpu_ip_block_test_and_clear_marker(struct amdgpu_ip_block *ip_block,
-+							 enum amdgpu_marker marker)
-+{
-+	bool set = false;
-+	uint64_t value = 0x1ull << (int)marker;
-+
-+	if ((ip_block->status.markers & value) != 0 ) {
-+		ip_block->status.markers &= ~value;
-+		set = true;
-+	}
-+
-+	return set;
-+}
-+
- /*
-  * BIOS.
-  */
+ #define AMDGPU_MARKER_INDEX_IRQ(idx)		(AMDGPU_MARKER_INDEX_IRQ0 + (idx))
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 71e8eafbbfbc..6d52e22691f7 100644
+index 6d52e22691f7..efd72b07a185 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -5007,3 +5007,41 @@ bool amdgpu_ras_is_rma(struct amdgpu_device *adev)
+@@ -1996,7 +1996,8 @@ static void amdgpu_ras_debugfs_create(struct amdgpu_device *adev,
+ {
+ 	struct ras_manager *obj = amdgpu_ras_find_obj(adev, &head->head);
  
- 	return con->is_rma;
+-	if (!obj || !dir)
++	if (!obj || !dir ||
++	    amdgpu_ras_test_marker(adev, &head->head, AMDGPU_MARKER_RAS_DEBUGFS))
+ 		return;
+ 
+ 	get_obj(obj);
+@@ -2007,6 +2008,8 @@ static void amdgpu_ras_debugfs_create(struct amdgpu_device *adev,
+ 
+ 	debugfs_create_file(obj->fs_data.debugfs_name, S_IWUGO | S_IRUGO, dir,
+ 			    obj, &amdgpu_ras_debugfs_ops);
++
++	amdgpu_ras_set_marker(adev, &head->head, AMDGPU_MARKER_RAS_DEBUGFS);
  }
-+
-+bool amdgpu_ras_test_marker(struct amdgpu_device *adev,
-+			    struct ras_common_if *head, int marker)
-+{
-+	struct ras_manager *obj = amdgpu_ras_find_obj(adev, head);
-+
-+	if (obj && obj->markers & (0x1ull << marker)) {
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
-+void amdgpu_ras_set_marker(struct amdgpu_device *adev,
-+			   struct ras_common_if *head, int marker)
-+{
-+	struct ras_manager *obj = amdgpu_ras_find_obj(adev, head);
-+
-+	WARN_ON(obj->markers & (0x1ull << marker));
-+	if (obj) {
-+		obj->markers |= 0x1ull << marker;
-+	}
-+}
-+
-+bool amdgpu_ras_test_and_clear_marker(struct amdgpu_device *adev,
-+				      struct ras_common_if *head, int marker)
-+{
-+	bool set = false;
-+	uint64_t value = 0x1ull << marker;
-+	struct ras_manager *obj = amdgpu_ras_find_obj(adev, head);
-+
-+	if (obj && (obj->markers & value) != 0 ) {
-+		obj->markers &= ~value;
-+		set = true;
-+	}
-+
-+	return set;
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-index b13debcf48ee..bc7377eaf819 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -632,6 +632,8 @@ struct ras_manager {
- 	struct ras_common_if head;
- 	/* reference count */
- 	int use;
-+	/* Flags for status tracking */
-+	uint64_t markers;
- 	/* ras block link */
- 	struct list_head node;
- 	/* the device */
-@@ -975,4 +977,12 @@ void amdgpu_ras_event_log_print(struct amdgpu_device *adev, u64 event_id,
- 				const char *fmt, ...);
  
- bool amdgpu_ras_is_rma(struct amdgpu_device *adev);
-+
-+bool amdgpu_ras_test_marker(struct amdgpu_device *adev,
-+			    struct ras_common_if *head, int marker);
-+void amdgpu_ras_set_marker(struct amdgpu_device *adev,
-+			   struct ras_common_if *head, int marker);
-+bool amdgpu_ras_test_and_clear_marker(struct amdgpu_device *adev,
-+				      struct ras_common_if *head,
-+				      int marker);
- #endif
+ static bool amdgpu_ras_aca_is_supported(struct amdgpu_device *adev)
+@@ -2134,7 +2137,9 @@ static int amdgpu_ras_fs_fini(struct amdgpu_device *adev)
+ 	if (IS_ENABLED(CONFIG_DEBUG_FS)) {
+ 		list_for_each_entry_safe(con_obj, tmp, &con->head, node) {
+ 			ip_obj = amdgpu_ras_find_obj(adev, &con_obj->head);
+-			if (ip_obj)
++			if (ip_obj &&
++			    amdgpu_ras_test_and_clear_marker(adev, &ip_obj->head,
++			    				     AMDGPU_MARKER_RAS_DEBUGFS))
+ 				put_obj(ip_obj);
+ 		}
+ 	}
 -- 
 2.43.5
 
