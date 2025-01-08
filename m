@@ -2,45 +2,156 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C033DA0563B
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2025 10:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47C89A0562A
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2025 10:06:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 705FC10E81D;
-	Wed,  8 Jan 2025 09:07:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 287DB10E0AA;
+	Wed,  8 Jan 2025 09:06:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="pd/zbeDj";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bGsQSkH0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-131.freemail.mail.aliyun.com
- (out30-131.freemail.mail.aliyun.com [115.124.30.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4AEC10E7E8
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 03:34:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1736307294; h=From:Message-Id:Content-Type:Mime-Version:Subject:Date:To;
- bh=tdZYreF4V8ZsFSnJakQ0zG9syBnAyk/6ul0hGbpqgNA=;
- b=pd/zbeDjCODz9nlWlk6CyVaR1hAQGsIuKlNnHOJ8mv/m/K0Jp31zsnczq6sX+sk7qyFcgQuiwiFFW5JF4gNhIcpJTQVsh6mSy+5MCexuSVwHjZnhoTTnw47eje4CQIkITLn/CDEx1Wd7A+GByL1vikKCn3IJ5w1Q7H0Ciu2SxeM=
-Received: from smtpclient.apple(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNCP8JL_1736307290 cluster:ay36) by smtp.aliyun-inc.com;
- Wed, 08 Jan 2025 11:34:52 +0800
-From: Gerry Liu <gerry@linux.alibaba.com>
-Message-Id: <A13BE326-3978-4434-AAEF-2B6613C05A79@linux.alibaba.com>
-Content-Type: multipart/alternative;
- boundary="Apple-Mail=_B777BF54-AC9C-491B-ABD1-4DC379CBF2E5"
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [PATCH v2 4/6] amdgpu: fix use after free bug related to
- amdgpu_driver_release_kms()
-Date: Wed, 8 Jan 2025 11:34:44 +0800
-In-Reply-To: <9e73447e-520f-4caf-bedf-a8be36105bad@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, lijo.lazar@amd.com, Kent.Russell@amd.com,
- shuox.liu@linux.alibaba.com
-To: "Chen, Xiaogang" <xiaogang.chen@amd.com>
-References: <cover.1736044362.git.gerry@linux.alibaba.com>
- <d097f02c25ff44fced59b10ac72587f304a6637f.1736044362.git.gerry@linux.alibaba.com>
- <9e73447e-520f-4caf-bedf-a8be36105bad@amd.com>
-X-Mailer: Apple Mail (2.3696.120.41.1.1)
-X-Mailman-Approved-At: Wed, 08 Jan 2025 09:07:10 +0000
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2053.outbound.protection.outlook.com [40.107.236.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A86B210E0AA
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 09:06:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=r8lDscoaMqDkGbpx1q1TOr1G0HLr39MRkqkT/8x45RV9ysTKuDyymg27t0CgN1WIiMym9YMAMAYGcsEncN28LVhXC1TcGcd82M+heHv9Fy71YYmfTCWcn58ozGPvzDCaN7+Safpho+HOD60MD6LdGTdVGUQYQKkl9ZrtFmaBk/nQUeVUSy9h45U/mD4bL7TxzBpTCJ7JNnmB1XxT3oWblk+iPJDDkfhXBlT8rirgm+dQHSUMD3rRHXl37alD1GH6bnkz6pWPPA/0gN/Qp+RC7r9/MhQ0EmvUx6egJYkztIX8rX6oxuZfF6AaFNTTadsDn/S/yYEL7bL2El2uJFUv0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hWECW42MtnzFLxsO25yw32YSBqFaCeSD1g5DUAPxdDo=;
+ b=HyZATmYY1wsUCKmMA4kOPKJ+rBsSL6JOJWAlni72GWUkbhT4gsmNf/nxkf2lyzq3ykkpeizQo4E3Gwco9DNAVq0nQypYdNYpwAKownSLwYEp2nYSqIsT5phIhJO4CNgcNH/zV4U+TXfvhsMqMJJ3WYarJdLvKGPt2KNAW7uY2El5WxFQXAKgUnq5qiJrbFwqI60XEMlfXnzuIdWB4UL8o6VyLhVCALUUSMekNATt8wkl9wsNI64p6vDkM5JG1hXEj67/3k7TZCD5btmFcqMiUKal0N9aSO4beRKuY7j+G51og+dtcupzs1new3JSPTuErjhC2MLgCZyFOy9DGFVezQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hWECW42MtnzFLxsO25yw32YSBqFaCeSD1g5DUAPxdDo=;
+ b=bGsQSkH0zIbx1inhcaXDHnWCM6hQoSQrJsa6TtHg7bvtgO4+30kww4VqbFoxNw94eGxHWzF968XXnl+YewXJMHPz3mLAEn0vL3tFvQoWVShPVPNgsi+5OopW3r+IhYfa3te1ObWuT4v3SkmREXDhsUplUlH3uDExiGTVCw+P9GU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by PH0PR12MB8098.namprd12.prod.outlook.com (2603:10b6:510:29a::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.18; Wed, 8 Jan
+ 2025 09:06:13 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8335.010; Wed, 8 Jan 2025
+ 09:06:13 +0000
+Message-ID: <41ad6823-3ec6-4b6a-9c5d-f85c368577a8@amd.com>
+Date: Wed, 8 Jan 2025 10:05:57 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v3 6/6] drm/amdgpu: get rid of false warnings caused by
+ amdgpu_irq_put()
+To: Jiang Liu <gerry@linux.alibaba.com>, alexander.deucher@amd.com,
+ Xinhui.Pan@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ sunil.khatri@amd.com, lijo.lazar@amd.com, Hawking.Zhang@amd.com,
+ mario.limonciello@amd.com, Jun.Ma2@amd.com, xiaogang.chen@amd.com,
+ Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
+ amd-gfx@lists.freedesktop.org
+References: <cover.1736325561.git.gerry@linux.alibaba.com>
+ <55f6e8e3d14c639d869a76adae932075b443685e.1736325561.git.gerry@linux.alibaba.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <55f6e8e3d14c639d869a76adae932075b443685e.1736325561.git.gerry@linux.alibaba.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR2P281CA0066.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:93::10) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH0PR12MB8098:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7576d723-25e6-4a05-01c0-08dd2fc3b2d7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|921020;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Zzd5RU0wd2hZZzJ2M2pPN3JPbGNDVkg1WDVWMFRMeTJVbGF2VkpmRXNDZDdP?=
+ =?utf-8?B?RzZWSmV4cms0UnpFN0hlUmxCT2UzYWRReWQxaitGNEVHaCtQZHAxNjhpQTlu?=
+ =?utf-8?B?R0ZuZHRTMUV4RkFLYXZTRlJPUVBsQjUydHhwRnh0SDF3a0FKUmorVlpOa3k1?=
+ =?utf-8?B?bjhqZ2RtU0RlZ2h3c2Z0VklYNzRhNCtrdzM2NnIyblQwZVg1UXh5T3Y0RjBG?=
+ =?utf-8?B?NldiSXdtRmhIclgzL0xpNHpSckZmcWZlb05PZzVDOWNDbHN5Yll4YitQeWsy?=
+ =?utf-8?B?T0FjRWkyWGNSOFdMdzZDNW94ejBHaEdCb2RtRVBBUTVDZDByc2Z0Zm5ZTUNO?=
+ =?utf-8?B?VmQ5T2pZV1V4YmRVOTV5b3IrRDFOMElHM0tBUzRiK0lRWUdGcGRpS3ZNWTQ5?=
+ =?utf-8?B?dXlQdnZuWENhM1R1L05GRFF0MWNpWElFVW9UT250UHpvUm1JamlPY285ZDdv?=
+ =?utf-8?B?QlpzVDlOSmw0Qnc4SlFlMGdwTmZNbEduUCtidEpla2J5MUVNMWpJQXFIN21R?=
+ =?utf-8?B?b3Z3MS9SWmNhR3J5RmJZS1NUUnhxamlJY0l4UnpMRi8yS2N5S1RueUpxcEJy?=
+ =?utf-8?B?Yk9IK292L25nS1BGdlBoV3F0WTZ1anNDVmt3SXp1N3psTEtFVTM3d00vQXVa?=
+ =?utf-8?B?ait5T05NN2o3VHNJZEVoUEZzenZ1TjV5ajhzcWJMTzlneisvYUlldlFqVmZh?=
+ =?utf-8?B?cE0wZmc4dGUraDVZOUcvL3A5ZWV2N1dQRmsxZW0rTE50ZVpDQ0dHZnMyWTIw?=
+ =?utf-8?B?VjVuWEtsUjVSc05rMGViNlRraytRR20xUFVlUDZaeFNvbjBkblBWY3lvQTJq?=
+ =?utf-8?B?aW1Sb0E1RTVlUUY4cUE4YkdSUE5rS2x4NHdWcnRvMmlmOThDSE8wbzMrendW?=
+ =?utf-8?B?Ty9UakhONjZ6Sm96QmdjdHVBaTlSTEVsSkRsWWN2akFLV3hCZ1dVZTEyRUMr?=
+ =?utf-8?B?WXk0VzRlQ1UxSDVXd0hJYWVFZnRuc3I3b3haL1pOcm5NeXlrMEJQa3NiVzQv?=
+ =?utf-8?B?QTVTK2NBbFhPN0NaVTd4ZWpsY3dBcCtWMkZxTldPbDV6ZjhOV05TWlNFYUYz?=
+ =?utf-8?B?blZEN2k1Y3VxMy9uMHRZbHJoOHdMZGpqeGNLQVp4Vk54eUE3UzVqcUxaU1Jr?=
+ =?utf-8?B?WnVjaUxJMFVyejhMdVdCL2d5eHIySE1nUFdxd2VIZ1JoR0puRzdlZVVhTC9K?=
+ =?utf-8?B?cjQyb2RuV1UyUGxXc25QdFkzT3NwRzNncmgxaVNuOHdKREpOMnF3WktEZnBy?=
+ =?utf-8?B?WnpzRFBUSERQaWNENlFBL3NqT1RZSzF6eGZ6Z3dQWHRBZnRvRVVlUGV6V3R4?=
+ =?utf-8?B?V3Y4NlU0eHc5Rk0wYVlsTHF2cnFqcHArcjRxREViOGpJRHdXOTMwWlFwSVZG?=
+ =?utf-8?B?VGkxN2VHZ0hySjFMZlpURVBNNFp3RlNnNDJpNUZVSGxONTRwalI0bDdSSXNm?=
+ =?utf-8?B?aTBUb2JSS0g3UUhDY0lQejV6K1JrRVdRZ3V4cUVMOHFQK3JxVmk2akhvVEs4?=
+ =?utf-8?B?RUhGbWNVcXZWaUpaU1ZBTERYVUY1VHNxc0lMSmUrSFdmekYzUWdBU2VlYU9J?=
+ =?utf-8?B?VVFGMUl6VVFud0pyN1JPQ214bHhWeVFiWDNmcnRXb2tlcEpxM0VDNHRORWlo?=
+ =?utf-8?B?dTNYeHhKLzMxWUdqdUZYajhYRitHWFoxUE9QRjlwT0xpV3lXR3dkZVNjL21O?=
+ =?utf-8?B?Ynl2RzhLeG9USHlYdmVlYWtJM2NKZmZsa0RUbmVJRklpcmhjRGgvT0pyaXB2?=
+ =?utf-8?B?V2ZTdnh1SmRyOG9Bc0NuWE16ZlFtZmQrT2Y1aHE4dXVoMHhRQmVWRDhJNDlH?=
+ =?utf-8?B?ZzJQUE05OGsxT1BPWE05SVNvZDUrd3hDc2RYVVdtY24zRGJVMzRGdnNGWmFS?=
+ =?utf-8?B?bU05dWVGVUpyWGhIWkVJNy9TN0ZFV2FiUXN2UU9ZMkZhT1ZuZzhIdUpiZjFx?=
+ =?utf-8?Q?0DxIho3wbak=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(921020); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OFR0bE9GQ2ZWYTNyMm5WdTRTbUlUWGt1eXQ1WlRwdlVPanZiMmpuKzRyZmZU?=
+ =?utf-8?B?K0lnUzBHMW1WK1FlbHZBaTN2VmNmTm9WN0dvbEtJWU53NG5QMHBFTWVEZU05?=
+ =?utf-8?B?ejRsb1ZFNTdraWsxUXdZdWU1Y0xLc3FkTXRNREQyY3RRdTBVOG1mRzd6VEZq?=
+ =?utf-8?B?TlJlMUtYS3JCejIwT0ZreEN4aGJCcFdpUDNwa1ltbWVkbWhVbVJMOUFRK3Rr?=
+ =?utf-8?B?SkMxUjBkRURxNVlQdG9QL01KU2ZaVVBiUElTT0pQQitHb3hwQVNua1doclht?=
+ =?utf-8?B?aXUxa0FsS2QxZWpwTWQzeEVoY3RTaUMwZU5HTnpHdlZwaVhMZnQ5VjhVUHdB?=
+ =?utf-8?B?aTFuRVBmVjE0dTdIYjM0TkZMRWluNHBGY0RCNmpodGxKQ0p2VlNhRlVHQ0Jm?=
+ =?utf-8?B?ZEdxbUM0NjFZcTBtdnU5SU4rUlpwbzRhcDR6Mis2Uk9qWW93Z3ZlNzQ1N1Mv?=
+ =?utf-8?B?cEh5VGd0N3IvRGFiVHNPeUVveVFEZWpmc2hNQmdBN1h3L3NkaVhvS1MzOXVp?=
+ =?utf-8?B?VEp4MUw1bC85S21VY0pMUm1xeUZPdzBjc0wrT3NBeXJlMFk2QUhXY3B1OUtO?=
+ =?utf-8?B?a3dlRXR6UVg3WnhqbkZPYTJ4L3I2dmorNFoxK3VtbHhyUUorMWFZc0dKRmxo?=
+ =?utf-8?B?WmcvQkNXdlgzOVpCck8vSXA0ZmxwbUM1OVlMV2E2b1d2WE1UTTJnQTY0TVN0?=
+ =?utf-8?B?RXMrRnpYM2FGbFBPTWxBZGFCOTVudFlNeCt4SEY1SUwxbmFZY3crcjJGaFhH?=
+ =?utf-8?B?S3ZoY3JRMVFJTkN1bmhVNmIzdTVXbW9NNnpGeUlML1lZRGpzajBBT1dhd0kx?=
+ =?utf-8?B?MFRiQ0V5bzFROVA3TGI5VVNlTVNSK2tnUnNhZHd5TjNBNlBIaUJ6VDlkT1pR?=
+ =?utf-8?B?NHpydEtlcDhhU0U5TTRMaWJ2UnppdUJWaFlneUVsSEtnY0t5aFJTejVYSkF5?=
+ =?utf-8?B?d0wyeXlDWW5oNTBnUUFUL2Iydk4vQ0pOcFdNSDJ3OU1DVjZXaGtwUHpFWE9V?=
+ =?utf-8?B?T3NvMmtESmdHaWFHemNNVFBuTmNjT2dUdSsxb0NNdG1mazczY1ZZTlZ2c1hk?=
+ =?utf-8?B?b0d2N1c4MjVoS3NzRExVbnVJRFJqTkxwSWNGU0ZKaTlMenRJS2pHNnpSUjlW?=
+ =?utf-8?B?bmExL2k0ZTRodTdkTVNSWFVRNkozaVoyZXljc2lFQlMxRm9MSGQyOWN2WWJT?=
+ =?utf-8?B?djNwVVJ3ZVdMNWJnTW1vYWlBeGNmYzBPSC9oTXpOWFNDV3JoaGFRY1YraDBh?=
+ =?utf-8?B?QTFmUnptVmlDaFR4cG5NTHlOUmxuU1dmeGt2NXVNay9uNEJsclZ0cWtkaTFD?=
+ =?utf-8?B?VjlJZDVTTUt0NXV4WVZGM3dNQWxhZWNuSWM2dDVnRDlrVWxHNWYvK1JROWZr?=
+ =?utf-8?B?L3lTb2ExTXVHOUFPYklIa0dYN0lHMzJYOHJuK2JrL0RkY041SjcwaVVMQlAw?=
+ =?utf-8?B?eUJnMjZhNEtIT0krTFFyQy9MUmwvc3Z5S290WEF2OHYzeDh2SFNCWnlVeExH?=
+ =?utf-8?B?aDEwaGlMNEFLL0xobXkxVGIrcVZmRldBdHhEYUY3bXB3VGRMT2ZvNThTeiti?=
+ =?utf-8?B?dGZlbWFWeXU2Sk04SlJiK01OQ2dnS0RPQ1lTcUVzRzF0TnRCbUhZcFNnQUUv?=
+ =?utf-8?B?SERkOVZ3U01UbUJ4ZFdYdC9JakpzSVZsSEU4Smw2UDk5ZUpOUytTTVA2UFFx?=
+ =?utf-8?B?U1dsSWI4ejJsY2FGaHA0YWtYeXQyRlJ2NUhBbkFiYWtvRGlGTXB0cllHVzhz?=
+ =?utf-8?B?VDBreElaQkE4cGp4algwTzhxMUxrVTNDNk1EODRqYmJiYWx0UHI4N2lTcElS?=
+ =?utf-8?B?Y0w1bGNtN1k2RHlCUENKSGg4U1FUMFlRYjRQUSsyNHVDVVZDWXErNGppNjc3?=
+ =?utf-8?B?R1lnUXRsUGxVZmdXVXJHL0h3Q1Z3SDNtNnBUTURnR2JvUit3TE40dkNNWkpv?=
+ =?utf-8?B?ZHdDWHlJMmp0UHRWdXRtVnlocUtYd05sV3hkWjlpNEVYWkdMM0dFd0d5RTlO?=
+ =?utf-8?B?eXZvdEdrVFNGRzdSVzNTUjk2S3VudFBGcG9hKzB6OFcvTlBHQStNR29GaWlw?=
+ =?utf-8?B?R1g1ZnM3SkFndnVtWEM5QWgzM3RTYmtULzdPSnk3bGtKSXBoSVVSTmVTQjMy?=
+ =?utf-8?Q?Sivlme9MO10hFbMz3ddY1KdLd?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7576d723-25e6-4a05-01c0-08dd2fc3b2d7
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2025 09:06:13.7614 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FfV9ts2OG8HoZ9pCRJnn1K5GAjdOg+1hy7wVyYE3AHknxKTfrcYT6VBRKUZxVc9Y
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8098
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,286 +166,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
---Apple-Mail=_B777BF54-AC9C-491B-ABD1-4DC379CBF2E5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-
-
-> 2025=E5=B9=B41=E6=9C=888=E6=97=A5 06:55=EF=BC=8CChen, Xiaogang =
-<xiaogang.chen@amd.com> =E5=86=99=E9=81=93=EF=BC=9A
->=20
->=20
->=20
-> On 1/4/2025 8:45 PM, Jiang Liu wrote:
->> If some GPU device failed to probe, `rmmod amdgpu` will trigger a use
->> after free bug related to amdgpu_driver_release_kms() as:
->> 2024-12-26 16:17:45 [16002.085540] BUG: kernel NULL pointer =
-dereference, address: 0000000000000000
->> 2024-12-26 16:17:45 [16002.093792] #PF: supervisor read access in =
-kernel mode
->> 2024-12-26 16:17:45 [16002.099993] #PF: error_code(0x0000) - =
-not-present page
->> 2024-12-26 16:17:45 [16002.106188] PGD 0 P4D 0
->> 2024-12-26 16:17:45 [16002.109464] Oops: Oops: 0000 [#1] PREEMPT SMP =
-NOPTI
->> 2024-12-26 16:17:45 [16002.115372] CPU: 2 PID: 14375 Comm: rmmod =
-Kdump: loaded Tainted: G        W   E      6.10.0+ #2
->> 2024-12-26 16:17:45 [16002.125577] Hardware name: Alibaba Alibaba =
-Cloud ECS/Alibaba Cloud ECS, BIOS 3.0.ES.AL.P.087.05 04/07/2024
->> 2024-12-26 16:17:45 [16002.136858] RIP: 0010:drm_sched_fini+0x3f/0xe0 =
-[gpu_sched]
->> 2024-12-26 16:17:45 [16002.143463] Code: 60 c6 87 be 00 00 00 01 e8 =
-ce e0 90 d8 48 8d bb 80 00 00 00 e8 c2 e0 90 d8 8b 43 20 85 c0 74 51 45 =
-31 e4 48 8b
->> 43 28 4d 63 ec <4a> 8b 2c e8 48 89 ef e8 f5 0e 59 d9 48 8b 45 10 48 =
-8d 55 10 48 39
->> 2024-12-26 16:17:45 [16002.164992] RSP: 0018:ffffb570dbbb7da8 EFLAGS: =
-00010246
->> 2024-12-26 16:17:45 [16002.171316] RAX: 0000000000000000 RBX: =
-ffff96b0fdadc878 RCX: 0000000000000000
->> 2024-12-26 16:17:46 [16002.179784] RDX: 000fffffffe00000 RSI: =
-0000000000000000 RDI: ffff96b0fdadc8f8
->> 2024-12-26 16:17:46 [16002.188252] RBP: ffff96b0fdadc800 R08: =
-ffff97abbd035040 R09: ffffffff9ac52540
->> 2024-12-26 16:17:46 [16002.196722] R10: 0000000000000000 R11: =
-0000000000000000 R12: 0000000000000000
->> 2024-12-26 16:17:46 [16002.205179] R13: 0000000000000000 R14: =
-ffff96b0fdadfc00 R15: 0000000000000000
->> 2024-12-26 16:17:46 [16002.213648] FS:  00007f2737000740(0000) =
-GS:ffff97abbd100000(0000) knlGS:0000000000000000
->> 2024-12-26 16:17:46 [16002.223189] CS:  0010 DS: 0000 ES: 0000 CR0: =
-0000000080050033
->> 2024-12-26 16:17:46 [16002.230103] CR2: 0000000000000000 CR3: =
-000000011be3a005 CR4: 0000000000f70ef0
->> 2024-12-26 16:17:46 [16002.238581] DR0: 0000000000000000 DR1: =
-0000000000000000 DR2: 0000000000000000
->> 2024-12-26 16:17:46 [16002.247053] DR3: 0000000000000000 DR6: =
-00000000fffe07f0 DR7: 0000000000000400
->> e024se+0x3c/0x90 [amdxcp]
->> 2024-12-26 16:17:46 [16002.337645]  =
-__do_sys_delete_module.constprop.0+0x176/0x310
->> 2024-12-26 16:17:46 [16002.344324]  do_syscall_64+0x5d/0x170
->> 2024-12-26 16:17:46 [16002.348858]  =
-entry_SYSCALL_64_after_hwframe+0x76/0x7e
->> 2024-12-26 16:17:46 [16002.354956] RIP: 0033:0x7f2736a620cb-12-26
->>=20
->> Fix it by unplugging xcp drm devices when failed to probe GPU =
-devices.
->>=20
->> Signed-off-by: Jiang Liu <gerry@linux.alibaba.com> =
-<mailto:gerry@linux.alibaba.com>
->> Tested-by: Shuo Liu <shuox.liu@linux.alibaba.com> =
-<mailto:shuox.liu@linux.alibaba.com>
->> Reviewed-by: Lijo Lazar <lijo.lazar@amd.com> =
-<mailto:lijo.lazar@amd.com>
->> ---
->>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 4 +++-
->>  1 file changed, 3 insertions(+), 1 deletion(-)
->>=20
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> index d2a046736edd..9ebc0d47d1cb 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> @@ -165,8 +165,10 @@ int amdgpu_driver_load_kms(struct amdgpu_device =
-*adev, unsigned long flags)
->>  		DRM_WARN("smart shift update failed\n");
->> =20
->>  out:
->> -	if (r)
->> +	if (r) {
->> +		amdgpu_xcp_dev_unplug(adev);
-> You have made amdgpu_xcp_drm_dev_free, why still use =
-amdgpu_xcp_dev_unplug here? I think you want undo =
-amdgpu_xcp_drm_dev_alloc in error path. Why involve adev device unplug? =
-It is a different scenario.
->=20
-Hi xiaogang,
-     I didn=E2=80=99t get your point yet. Current work flow is:
-amdgpu_pci_probe()
-	-> amdgpu_driver_load_kms()
-		-> amdgpu_device_init()
-			->amdgpu_discovery_set_ip_blocks()
-				-> amdgpu_xcp_mgr_init()
-					-> amdgpu_xcp_alloc_dev()
-	-> amdgpu_xcp_dev_register()
-And amdgpu_xcp_dev_unplug() undos work done by amdgpu_xcp_dev_register() =
-and part of amdgpu_xcp_mgr_ini().
-How about splitting amdgpu_xcp_dev_unplug() into =
-amdgpuxcp_dev_deregister() and amdgpu_xcp_mgr_fini(), then things should =
-get much clear.
-And it seems the xcp_mgr object is leaked current, and there are =
-resource leakage on error handling path of amdgpu_pci_probe.=20
-Above proposal may also help to fix those resource leakages.
-Thanks,
-Gerry
-> Regards
->=20
-> Xiaogang
->=20
->>  		amdgpu_driver_unload_kms(dev);
->> +	}
->> =20
->>  	return r;
->>  }
-
-
---Apple-Mail=_B777BF54-AC9C-491B-ABD1-4DC379CBF2E5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
-class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">2025=E5=B9=B41=E6=9C=888=E6=97=A5 06:55=EF=BC=8CChen, =
-Xiaogang &lt;<a href=3D"mailto:xiaogang.chen@amd.com" =
-class=3D"">xiaogang.chen@amd.com</a>&gt; =E5=86=99=E9=81=93=EF=BC=9A</div>=
-<br class=3D"Apple-interchange-newline"><div class=3D"">
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
-class=3D"">
- =20
-  <div class=3D""><p class=3D""><br class=3D"">
-    </p>
-    <div class=3D"moz-cite-prefix">On 1/4/2025 8:45 PM, Jiang Liu =
-wrote:<br class=3D"">
-    </div>
-    <blockquote type=3D"cite" =
-cite=3D"mid:d097f02c25ff44fced59b10ac72587f304a6637f.1736044362.git.gerry@=
-linux.alibaba.com" class=3D"">
-      <pre wrap=3D"" class=3D"moz-quote-pre">If some GPU device failed =
-to probe, `rmmod amdgpu` will trigger a use
-after free bug related to amdgpu_driver_release_kms() as:
-2024-12-26 16:17:45 [16002.085540] BUG: kernel NULL pointer dereference, =
-address: 0000000000000000
-2024-12-26 16:17:45 [16002.093792] #PF: supervisor read access in kernel =
-mode
-2024-12-26 16:17:45 [16002.099993] #PF: error_code(0x0000) - not-present =
-page
-2024-12-26 16:17:45 [16002.106188] PGD 0 P4D 0
-2024-12-26 16:17:45 [16002.109464] Oops: Oops: 0000 [#1] PREEMPT SMP =
-NOPTI
-2024-12-26 16:17:45 [16002.115372] CPU: 2 PID: 14375 Comm: rmmod Kdump: =
-loaded Tainted: G        W   E      6.10.0+ #2
-2024-12-26 16:17:45 [16002.125577] Hardware name: Alibaba Alibaba Cloud =
-ECS/Alibaba Cloud ECS, BIOS 3.0.ES.AL.P.087.05 04/07/2024
-2024-12-26 16:17:45 [16002.136858] RIP: 0010:drm_sched_fini+0x3f/0xe0 =
-[gpu_sched]
-2024-12-26 16:17:45 [16002.143463] Code: 60 c6 87 be 00 00 00 01 e8 ce =
-e0 90 d8 48 8d bb 80 00 00 00 e8 c2 e0 90 d8 8b 43 20 85 c0 74 51 45 31 =
-e4 48 8b
-43 28 4d 63 ec &lt;4a&gt; 8b 2c e8 48 89 ef e8 f5 0e 59 d9 48 8b 45 10 =
-48 8d 55 10 48 39
-2024-12-26 16:17:45 [16002.164992] RSP: 0018:ffffb570dbbb7da8 EFLAGS: =
-00010246
-2024-12-26 16:17:45 [16002.171316] RAX: 0000000000000000 RBX: =
-ffff96b0fdadc878 RCX: 0000000000000000
-2024-12-26 16:17:46 [16002.179784] RDX: 000fffffffe00000 RSI: =
-0000000000000000 RDI: ffff96b0fdadc8f8
-2024-12-26 16:17:46 [16002.188252] RBP: ffff96b0fdadc800 R08: =
-ffff97abbd035040 R09: ffffffff9ac52540
-2024-12-26 16:17:46 [16002.196722] R10: 0000000000000000 R11: =
-0000000000000000 R12: 0000000000000000
-2024-12-26 16:17:46 [16002.205179] R13: 0000000000000000 R14: =
-ffff96b0fdadfc00 R15: 0000000000000000
-2024-12-26 16:17:46 [16002.213648] FS:  00007f2737000740(0000) =
-GS:ffff97abbd100000(0000) knlGS:0000000000000000
-2024-12-26 16:17:46 [16002.223189] CS:  0010 DS: 0000 ES: 0000 CR0: =
-0000000080050033
-2024-12-26 16:17:46 [16002.230103] CR2: 0000000000000000 CR3: =
-000000011be3a005 CR4: 0000000000f70ef0
-2024-12-26 16:17:46 [16002.238581] DR0: 0000000000000000 DR1: =
-0000000000000000 DR2: 0000000000000000
-2024-12-26 16:17:46 [16002.247053] DR3: 0000000000000000 DR6: =
-00000000fffe07f0 DR7: 0000000000000400
-e024se+0x3c/0x90 [amdxcp]
-2024-12-26 16:17:46 [16002.337645]  =
-__do_sys_delete_module.constprop.0+0x176/0x310
-2024-12-26 16:17:46 [16002.344324]  do_syscall_64+0x5d/0x170
-2024-12-26 16:17:46 [16002.348858]  =
-entry_SYSCALL_64_after_hwframe+0x76/0x7e
-2024-12-26 16:17:46 [16002.354956] RIP: 0033:0x7f2736a620cb-12-26
-
-Fix it by unplugging xcp drm devices when failed to probe GPU devices.
-
-Signed-off-by: Jiang Liu <a class=3D"moz-txt-link-rfc2396E" =
-href=3D"mailto:gerry@linux.alibaba.com">&lt;gerry@linux.alibaba.com&gt;</a=
+Am 08.01.25 um 09:56 schrieb Jiang Liu:
+> If error happens before amdgpu_fence_driver_hw_init() gets called during
+> device probe, it will trigger a false warning in amdgpu_irq_put() as
+> below:
+> [ 1209.300996] ------------[ cut here ]------------
+> [ 1209.301061] WARNING: CPU: 48 PID: 293 at /tmp/amd.Rc9jFrl7/amd/amdgpu/amdgpu_irq.c:633 amdgpu_irq_put+0x45/0x70 [amdgpu]
+> [ 1209.301062] Modules linked in: ...
+> [ 1209.301093] CPU: 48 PID: 293 Comm: kworker/48:1 Kdump: loaded Tainted: G        W  OE     5.10.134-17.2.al8.x86_64 #1
+> [ 1209.301094] Hardware name: Alibaba Alibaba Cloud ECS/Alibaba Cloud ECS, BIOS 3.0.ES.AL.P.087.05 04/07/2024
+> [ 1209.301095] Workqueue: events work_for_cpu_fn
+> [ 1209.301159] RIP: 0010:amdgpu_irq_put+0x45/0x70 [amdgpu]
+> [ 1209.301160] Code: 48 8b 4e 10 48 83 39 00 74 2c 89 d1 48 8d 04 88 8b 08 85 c9 74 14 f0 ff 08 b8 00 00 00 00 74 05 c3 cc cc cc cc e9 8b fd ff ff <0f> 0b b8 ea ff ff ff c3 cc cc cc cc b8 ea ff ff ff c3 cc cc cc cc
+> [ 1209.301162] RSP: 0018:ffffb08a99c8fd88 EFLAGS: 00010246
+> [ 1209.301162] RAX: ffff9efe1bcbf500 RBX: ffff9efe1cc3e400 RCX: 0000000000000000
+> [ 1209.301163] RDX: 0000000000000000 RSI: ffff9efe1cc3b108 RDI: ffff9efe1cc00000
+> [ 1209.301163] RBP: ffff9efe1cc10818 R08: 0000000000000001 R09: 000000000000000d
+> [ 1209.301164] R10: ffffb08a99c8fb48 R11: ffffffffa2068018 R12: ffff9efe1cc109d0
+> [ 1209.301164] R13: ffff9efe1cc00010 R14: ffff9efe1cc00000 R15: ffff9efe1cc3b108
+> [ 1209.301165] FS:  0000000000000000(0000) GS:ffff9ff9fce00000(0000) knlGS:0000000000000000
+> [ 1209.301165] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 1209.301165] CR2: 00007fd0f6e860d0 CR3: 0000010092baa003 CR4: 0000000002770ee0
+> [ 1209.301166] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+> [ 1209.301166] DR3: 0000000000000000 DR6: 00000000fffe07f0 DR7: 0000000000000400
+> [ 1209.301167] PKRU: 55555554
+> [ 1209.301167] Call Trace:
+> [ 1209.301225]  amdgpu_fence_driver_hw_fini+0xda/0x110 [amdgpu]
+> [ 1209.301284]  amdgpu_device_fini_hw+0xaf/0x200 [amdgpu]
+> [ 1209.301342]  amdgpu_driver_load_kms+0x7f/0xc0 [amdgpu]
+> [ 1209.301400]  amdgpu_pci_probe+0x1cd/0x4a0 [amdgpu]
+> [ 1209.301401]  local_pci_probe+0x40/0xa0
+> [ 1209.301402]  work_for_cpu_fn+0x13/0x20
+> [ 1209.301403]  process_one_work+0x1ad/0x380
+> [ 1209.301404]  worker_thread+0x1c8/0x310
+> [ 1209.301405]  ? process_one_work+0x380/0x380
+> [ 1209.301406]  kthread+0x118/0x140
+> [ 1209.301407]  ? __kthread_bind_mask+0x60/0x60
+> [ 1209.301408]  ret_from_fork+0x1f/0x30
+> [ 1209.301410] ---[ end trace 733f120fe2ab13e5 ]---
+> [ 1209.301418] ------------[ cut here ]------------
 >
-Tested-by: Shuo Liu <a class=3D"moz-txt-link-rfc2396E" =
-href=3D"mailto:shuox.liu@linux.alibaba.com">&lt;shuox.liu@linux.alibaba.co=
-m&gt;</a>
-Reviewed-by: Lijo Lazar <a class=3D"moz-txt-link-rfc2396E" =
-href=3D"mailto:lijo.lazar@amd.com">&lt;lijo.lazar@amd.com&gt;</a>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+> Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 9 +++++++--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h  | 1 +
+>   2 files changed, 8 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> index b5e87b515139..0e41a535e05f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> @@ -614,9 +614,11 @@ void amdgpu_fence_driver_hw_fini(struct amdgpu_device *adev)
+>   
+>   		if (!drm_dev_is_unplugged(adev_to_drm(adev)) &&
+>   		    ring->fence_drv.irq_src &&
+> -		    amdgpu_fence_need_ring_interrupt_restore(ring))
+> +		    ring->fence_drv.irq_enabled) {
+>   			amdgpu_irq_put(adev, ring->fence_drv.irq_src,
+>   				       ring->fence_drv.irq_type);
+> +		        ring->fence_drv.irq_enabled = false;
+> +		}
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index d2a046736edd..9ebc0d47d1cb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -165,8 +165,10 @@ int amdgpu_driver_load_kms(struct amdgpu_device =
-*adev, unsigned long flags)
- 		DRM_WARN("smart shift update failed\n");
-=20
- out:
--	if (r)
-+	if (r) {
-+		amdgpu_xcp_dev_unplug(adev);</pre>
-    </blockquote><p class=3D"">You have made <span style=3D"white-space: =
-pre-wrap" class=3D"">amdgpu_xcp_drm_dev_free, why still use </span><span =
-style=3D"white-space: pre-wrap" class=3D"">amdgpu_xcp_dev_unplug</span> =
-here? I
-      think you want undo <span style=3D"white-space: pre-wrap" =
-class=3D"">amdgpu_xcp_drm_dev_alloc in error path. Why involve adev =
-device unplug? It is a different =
-scenario.</span></p></div></div></blockquote>Hi =
-xiaogang,</div><div>&nbsp; &nbsp; &nbsp;I didn=E2=80=99t get your point =
-yet. Current work flow is:</div><div>amdgpu_pci_probe()</div><div><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>-&gt; =
-amdgpu_driver_load_kms()</div><div><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">		</span>-&gt; =
-amdgpu_device_init()</div><div><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">			=
-</span>-&gt;amdgpu_discovery_set_ip_blocks()</div><div><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">				=
-</span>-&gt; amdgpu_xcp_mgr_init()</div><div><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">				=
-	</span>-&gt; amdgpu_xcp_alloc_dev()</div><div><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>-&gt; =
-amdgpu_xcp_dev_register()</div><div>And amdgpu_xcp_dev_unplug() undos =
-work done by amdgpu_xcp_dev_register() and part of =
-amdgpu_xcp_mgr_ini().</div><div>How about splitting =
-amdgpu_xcp_dev_unplug() into amdgpuxcp_dev_deregister() and =
-amdgpu_xcp_mgr_fini(), then things should get much clear.</div><div>And =
-it seems the xcp_mgr object is leaked current, and there are resource =
-leakage on error handling path of =
-amdgpu_pci_probe.&nbsp;</div><div>Above proposal may also help to fix =
-those resource =
-leakages.</div><div>Thanks,</div><div>Gerry</div><div><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div class=3D""><p =
-class=3D""><span style=3D"white-space: pre-wrap" =
-class=3D"">Regards</span></p><p class=3D""><span style=3D"white-space: =
-pre-wrap" class=3D"">Xiaogang
-</span></p>
-    <blockquote type=3D"cite" =
-cite=3D"mid:d097f02c25ff44fced59b10ac72587f304a6637f.1736044362.git.gerry@=
-linux.alibaba.com" class=3D"">
-      <pre wrap=3D"" class=3D"moz-quote-pre"> 		=
-amdgpu_driver_unload_kms(dev);
-+	}
-=20
- 	return r;
- }
-</pre>
-    </blockquote>
-  </div>
+Clearly a NAK, that is exactly what the warning is supposed to warn about.
 
-</div></blockquote></div><br class=3D""></body></html>=
+Regards,
+Christian.
 
---Apple-Mail=_B777BF54-AC9C-491B-ABD1-4DC379CBF2E5--
+>   
+>   		del_timer_sync(&ring->fence_drv.fallback_timer);
+>   	}
+> @@ -693,9 +695,12 @@ void amdgpu_fence_driver_hw_init(struct amdgpu_device *adev)
+>   
+>   		/* enable the interrupt */
+>   		if (ring->fence_drv.irq_src &&
+> -		    amdgpu_fence_need_ring_interrupt_restore(ring))
+> +		    !ring->fence_drv.irq_enabled &&
+> +		    amdgpu_fence_need_ring_interrupt_restore(ring)) {
+>   			amdgpu_irq_get(adev, ring->fence_drv.irq_src,
+>   				       ring->fence_drv.irq_type);
+> +		        ring->fence_drv.irq_enabled = true;
+> +		}
+>   	}
+>   }
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> index dee5a1b4e572..959d474a0516 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> @@ -118,6 +118,7 @@ struct amdgpu_fence_driver {
+>   	uint32_t			sync_seq;
+>   	atomic_t			last_seq;
+>   	bool				initialized;
+> +	bool				irq_enabled;
+>   	struct amdgpu_irq_src		*irq_src;
+>   	unsigned			irq_type;
+>   	struct timer_list		fallback_timer;
+
