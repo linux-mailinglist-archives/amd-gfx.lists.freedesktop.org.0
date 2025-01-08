@@ -2,74 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D967A05638
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2025 10:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB628A0563A
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jan 2025 10:07:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DAE810E293;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFEFE10E815;
 	Wed,  8 Jan 2025 09:07:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Epb8UfU1";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="of8Dwzuj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
- [209.85.167.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8930A10E261
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 16:57:15 +0000 (UTC)
-Received: by mail-lf1-f50.google.com with SMTP id
- 2adb3069b0e04-54024ecc33dso2020483e87.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jan 2025 08:57:15 -0800 (PST)
+Received: from out30-99.freemail.mail.aliyun.com
+ (out30-99.freemail.mail.aliyun.com [115.124.30.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A414B10E7EA
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 02:29:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1736268974; x=1736873774; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=lMfX1ukmt9zKlMQvTs4rDaldX9Ypcnm+9H1/Ac3eikQ=;
- b=Epb8UfU1PFApMReWKvDaRql/AZ8X7PRG9YPLNh5cTbhhxr6aXMORS1DFXeLmBv0j40
- xHCEsRkuO6ORRkR8t+FNlShrPcr4qUDs1xphOBoKAYLLX20dTTutPgM5syfwGHixgW9x
- Gi0wcr78N0xSa2bisnQVvBdWJHG02COIqj/AEOBTdW69Dr+6Ke18TOIpCc8KtSM14vmZ
- fXT72+E8Ay0eBsLFdifYHjBqL24nSQqRZybzNdFDmjh0MFRem+pbrmQk7N+N5oUbN5FH
- XqNH1UHHUu2cvia3XKudKV8mci6KlCOssZ70HDC5fBawgTSELEt3aboRLmbdU3I5cXX4
- 368Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736268974; x=1736873774;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=lMfX1ukmt9zKlMQvTs4rDaldX9Ypcnm+9H1/Ac3eikQ=;
- b=N6c3dpgvpYpi/+NMZjBE3bslgoxpZDZBD/9yRT8O0ysfQwfzgVMw+EGd8Lfb5CbKjq
- RYsAiQSX+khph9N1IGCa9ZpIF9UXmPPH2ayWJbHgYDHVysjyLCUcA/6HORXxtE1WhuOs
- QznFl4m573b2bbY+eiAV43VcadoNf4WfdDkkJKSXyOuj08PQyEhPyxKnO+Trt8zzJNqF
- K2yoDziAq0szO1QvCPT8rkUWDsIuv1Wawn3uViWcX1/2tjmVR7UIq207L7mbgwceuQD8
- wHUcPHarCOBliUMUyFJaPwSQknEQ40i9p+aK3qE/oq+kHc4LTQCSyC+UDPWhe1kZh/Zq
- pfrQ==
-X-Gm-Message-State: AOJu0YxozclCQ7jmtIXJ9iDy3kHU7Lbu0vVgiM6/lZALy2zX5eCCaHae
- O7Vrb9jW7jEFod9jmbt8pNxd4DB81w3GsbRUncTm8GPbSy0evGUSdFoB+yOX
-X-Gm-Gg: ASbGncsnS4vvzupzD1XviORT9rLAbkGLt/OW0Fzk4BncYKvTj2ug/P8hDzvTE2paQ22
- qaZoOi32e68kmwpDLsq/R9YXB699c4/Lx09X1+OeSGwBbsmiZWyWfiNI71GCsLoztHg0MNMaW7i
- GmuG1tP/Ckrnyj82ukHdPP5hSyvws9ZelB46UVxjvr9SrrmMd8K+KJuM5wVatOW9+LlT8qV+tNA
- BWdpcREEZ3X6c9HTXMle8XxoivUufiq1dcbixd0NHRMQovetVeFztvLil2KOfqWJA==
-X-Google-Smtp-Source: AGHT+IHhld3Aj2eOg6OSq3UrWdclip0tuLg3hj6E39Paamh0zg+IMdpn2D4qS8+BRnfMsIcynzBSBg==
-X-Received: by 2002:a05:6000:4012:b0:386:3272:ee68 with SMTP id
- ffacd0b85a97d-38a221f9fd4mr57615402f8f.28.1736268650005; 
- Tue, 07 Jan 2025 08:50:50 -0800 (PST)
-Received: from debian.local ([84.66.149.209]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38a1c832e8asm50137086f8f.37.2025.01.07.08.50.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Jan 2025 08:50:49 -0800 (PST)
-Date: Tue, 7 Jan 2025 16:50:47 +0000
-From: Chris Bainbridge <chris.bainbridge@gmail.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
- regressions@lists.linux.dev, tjakobi@math.uni-bielefeld.de,
- rafael@kernel.org, lenb@kernel.org, linux-acpi@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/amd: Fix random crashes due to bad kfree
-Message-ID: <Z31bZzkjySUgoOkM@debian.local>
-References: <Z2yQvTyg_MWwrlj3@debian.local>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z2yQvTyg_MWwrlj3@debian.local>
+ d=linux.alibaba.com; s=default;
+ t=1736303390; h=From:Message-Id:Content-Type:Mime-Version:Subject:Date:To;
+ bh=jCMykoSeOuGnmTHCOf+yIfJQFvKbYAqoGT67O1lYGws=;
+ b=of8DwzujoJHR7OaQzWE7/58wxLujZ3A35VR25eFvbxNbWCox6CkDxbfaJutEtosQKBWVNdukX8KHixRAnt1MInYcZ5C1Nvtf2xWoeWQ/If768OMDfqVGjFGyPZG4a7B74oqOS2gdp0BXSFheYKFLYfCDwoFRDsC+oxd5IUlAK/g=
+Received: from smtpclient.apple(mailfrom:gerry@linux.alibaba.com
+ fp:SMTPD_---0WNCAHYt_1736303389 cluster:ay36) by smtp.aliyun-inc.com;
+ Wed, 08 Jan 2025 10:29:50 +0800
+From: Gerry Liu <gerry@linux.alibaba.com>
+Message-Id: <444D37B3-4AB5-4700-BE89-CE9AE942865D@linux.alibaba.com>
+Content-Type: multipart/alternative;
+ boundary="Apple-Mail=_2D98976B-2A47-46E7-B598-3A60C4F1B21B"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [PATCH v2 1/6] amdgpu: fix possible resource leakage in
+ kfd_cleanup_nodes()
+Date: Wed, 8 Jan 2025 10:29:48 +0800
+In-Reply-To: <995bdc6c-2051-400f-b717-38cbb645aa8b@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, lijo.lazar@amd.com, Kent.Russell@amd.com,
+ shuox.liu@linux.alibaba.com
+To: "Chen, Xiaogang" <xiaogang.chen@amd.com>
+References: <cover.1736044362.git.gerry@linux.alibaba.com>
+ <70f5963233c8a34354ec8a9efebc3a7b4c7940d4.1736044362.git.gerry@linux.alibaba.com>
+ <995bdc6c-2051-400f-b717-38cbb645aa8b@amd.com>
+X-Mailer: Apple Mail (2.3696.120.41.1.1)
 X-Mailman-Approved-At: Wed, 08 Jan 2025 09:07:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,4 +55,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-#regzbot introduced: c6a837088bed ^
+
+--Apple-Mail=_2D98976B-2A47-46E7-B598-3A60C4F1B21B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+
+> 2025=E5=B9=B41=E6=9C=888=E6=97=A5 06:53=EF=BC=8CChen, Xiaogang =
+<xiaogang.chen@amd.com> =E5=86=99=E9=81=93=EF=BC=9A
+>=20
+>=20
+>=20
+> On 1/4/2025 8:45 PM, Jiang Liu wrote:
+>> Fix possible resource leakage on error recovery path in function
+>> kgd2kfd_device_init().
+>>=20
+>> Signed-off-by: Jiang Liu <gerry@linux.alibaba.com> =
+<mailto:gerry@linux.alibaba.com>
+>> ---
+>>  drivers/gpu/drm/amd/amdkfd/kfd_device.c | 9 +++++----
+>>  1 file changed, 5 insertions(+), 4 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c =
+b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+>> index a29374c86405..fa5054940486 100644
+>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+>> @@ -898,15 +898,15 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
+>>  		if (kfd->adev->xcp_mgr)
+>>  			kfd_setup_interrupt_bitmap(node, i);
+>> =20
+>> +		spin_lock_init(&node->watch_points_lock);
+>> +
+>> +		kfd->nodes[i] =3D node;
+>> +
+>>  		/* Initialize the KFD node */
+>>  		if (kfd_init_node(node)) {
+>>  			dev_err(kfd_device, "Error initializing KFD =
+node\n");
+>>  			goto node_init_error;
+>>  		}
+>> -
+>> -		spin_lock_init(&node->watch_points_lock);
+>> -
+>> -		kfd->nodes[i] =3D node;
+>>  	}
+>> =20
+>>  	svm_range_set_max_pages(kfd->adev);
+>> @@ -921,6 +921,7 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
+>>  	goto out;
+>> =20
+>>  node_init_error:
+>> +	i++;
+>>  node_alloc_error:
+>>  	kfd_cleanup_nodes(kfd, i);
+>>  	kfd_doorbell_fini(kfd);
+> I think this change is not right: if kfd_init_node fail it does clean =
+up for the kfd_node that it is initializing internally. =
+kfd_cleanup_nodes does not need to clean up the kfd node i which failed =
+to init, just clean up the kfd_nodes that were initialized previously.
+>=20
+Yes, I made a mistake here and will drop this patch in next version.
+
+Thanks,
+Gerry
+> Regard
+>=20
+> Xiaogang
+>=20
+
+
+--Apple-Mail=_2D98976B-2A47-46E7-B598-3A60C4F1B21B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
+class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">2025=E5=B9=B41=E6=9C=888=E6=97=A5 06:53=EF=BC=8CChen, =
+Xiaogang &lt;<a href=3D"mailto:xiaogang.chen@amd.com" =
+class=3D"">xiaogang.chen@amd.com</a>&gt; =E5=86=99=E9=81=93=EF=BC=9A</div>=
+<br class=3D"Apple-interchange-newline"><div class=3D"">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
+class=3D"">
+ =20
+  <div class=3D""><p class=3D""><br class=3D"">
+    </p>
+    <div class=3D"moz-cite-prefix">On 1/4/2025 8:45 PM, Jiang Liu =
+wrote:<br class=3D"">
+    </div>
+    <blockquote type=3D"cite" =
+cite=3D"mid:70f5963233c8a34354ec8a9efebc3a7b4c7940d4.1736044362.git.gerry@=
+linux.alibaba.com" class=3D"">
+      <pre wrap=3D"" class=3D"moz-quote-pre">Fix possible resource =
+leakage on error recovery path in function
+kgd2kfd_device_init().
+
+Signed-off-by: Jiang Liu <a class=3D"moz-txt-link-rfc2396E" =
+href=3D"mailto:gerry@linux.alibaba.com">&lt;gerry@linux.alibaba.com&gt;</a=
+>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c =
+b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index a29374c86405..fa5054940486 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -898,15 +898,15 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
+ 		if (kfd-&gt;adev-&gt;xcp_mgr)
+ 			kfd_setup_interrupt_bitmap(node, i);
+=20
++		spin_lock_init(&amp;node-&gt;watch_points_lock);
++
++		kfd-&gt;nodes[i] =3D node;
++
+ 		/* Initialize the KFD node */
+ 		if (kfd_init_node(node)) {
+ 			dev_err(kfd_device, "Error initializing KFD =
+node\n");
+ 			goto node_init_error;
+ 		}
+-
+-		spin_lock_init(&amp;node-&gt;watch_points_lock);
+-
+-		kfd-&gt;nodes[i] =3D node;
+ 	}
+=20
+ 	svm_range_set_max_pages(kfd-&gt;adev);
+@@ -921,6 +921,7 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
+ 	goto out;
+=20
+ node_init_error:
++	i++;
+ node_alloc_error:
+ 	kfd_cleanup_nodes(kfd, i);
+ 	kfd_doorbell_fini(kfd);</pre>
+    </blockquote><p class=3D"">I think this change is not right: if =
+<span style=3D"white-space: pre-wrap" class=3D"">kfd_init_node</span> =
+fail it does
+      clean up for the kfd_node that it is initializing internally. =
+<span style=3D"white-space: pre-wrap" class=3D"">kfd_cleanup_nodes</span> =
+does not
+      need to clean up the kfd node i which failed to init, just clean
+      up the kfd_nodes that were initialized =
+previously.</p></div></div></blockquote>Yes, I made a mistake here and =
+will drop this patch in next version.</div><div><br =
+class=3D""></div><div>Thanks,</div><div>Gerry<br class=3D""><blockquote =
+type=3D"cite" class=3D""><div class=3D""><div class=3D""><p =
+class=3D"">Regard</p><p class=3D"">Xiaogang<br class=3D"">
+    </p>
+    <blockquote type=3D"cite" =
+cite=3D"mid:70f5963233c8a34354ec8a9efebc3a7b4c7940d4.1736044362.git.gerry@=
+linux.alibaba.com" class=3D"">
+      <pre wrap=3D"" class=3D"moz-quote-pre"></pre>
+    </blockquote>
+  </div>
+
+</div></blockquote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_2D98976B-2A47-46E7-B598-3A60C4F1B21B--
