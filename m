@@ -2,69 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9207CA07911
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Jan 2025 15:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E364A079DA
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Jan 2025 15:57:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B3CC10EDF9;
-	Thu,  9 Jan 2025 14:24:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A4D110E45F;
+	Thu,  9 Jan 2025 14:57:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kIqUT4IW";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="fO878uUb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com
- [IPv6:2607:f8b0:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AD0310EDF9
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 14:24:07 +0000 (UTC)
-Received: by mail-pl1-x635.google.com with SMTP id
- d9443c01a7336-2162b5d2e1fso2016575ad.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Jan 2025 06:24:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1736432646; x=1737037446; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=73vv7BpgYnHFQ5+Q01T/6AmEduoNnrjhfDADF1mYKkw=;
- b=kIqUT4IWBzsE9FVdr9Ks7o9e5R9a7QhZs+M4htEWvFf3QZ+ndbEekiqlg37SjGqT4v
- A6CdQsgXEgQyXSjBZbcVimWkjOawZ4ok3LwVp6xMJqFLN9zp+vfRvIYtvBGxfWDNhLx6
- /caI1TYDQ4cO3Lh+0MSbc7faUcYx9Fx3TctVOD39YeO2dwbTLbZhz7Q8TF4Y0TzCpDke
- KJZCzl52xfan2r390rq4D74/+/T1GhRzttBRZ8vJvPBlfgt+xwWf/IEoubpZgfQI2OcN
- d0QN1iopmUx/K+7auN/xl3M5gsUejJYtXISOWQw1yVi+mcCyoxqdvOXtS0LOAo03JIqU
- gX4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736432646; x=1737037446;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=73vv7BpgYnHFQ5+Q01T/6AmEduoNnrjhfDADF1mYKkw=;
- b=ezyu9uOQyPbtXzzpG/bbGWQPKooJiTdqH4JGPyLjfCG7FaVa/v6erqsb2tdcds7cEC
- aDvo70Z5rKa9ESJ/Zb1t6IPOSK6chWRxFQyPfeDK40Aue3GJDiycIJ+EBHXDovLZ7Xvi
- 4n1sXqXXEIiUx5kMivdKnZm9erPIdkuRxCfMp6ZwJcLLjReztqyFGy/XJxHhWEtXYH6J
- mwYlwhLkhsaOvQoBBu7TlxlRNl18DxtptRFTuaIacucIMVWEGs1peUmFHD1e1YhnAeL1
- 6E3APMcPZLytVB5iGNKOgXYF68zcBMGbCfr2WqqOO5RoIO4Jbrh/pFsEAJdQOtYNDS4Q
- L2Kg==
-X-Gm-Message-State: AOJu0Ywp92ZB6Kro29TQ1XnX7xH4K4wQxkd7gK+XEBvN6VX6+O15vLPt
- zIbTQcrGS+PwqgDS6WV1wFqWfct060MzHl+nHjDpsPJiSNchFYnt3GejjT6wJ8karx/TT1+FRue
- SKh/2V/c1JQZ5DKMFHBkGEI60QXePsQ==
-X-Gm-Gg: ASbGncvap4mW5EO29tCcwLlNJwXjZEsj7qF0Psf8ok56UwwnPqZeq7/Seleejc4UhlG
- y0ThzcQ4YR+1TcVLAPZXwK5WDpapHF1vN1wIh7A==
-X-Google-Smtp-Source: AGHT+IFDyZRD3ji5RKlg/8j4kc48ElKuSukNqBfwtXMGRrHR/YXUQNTziQ0HjUbJ3XRTEH/X1JsVdhq3TCIuMotailE=
-X-Received: by 2002:a17:902:c945:b0:215:2bfb:3cd7 with SMTP id
- d9443c01a7336-21a83fad103mr39763765ad.10.1736432645065; Thu, 09 Jan 2025
- 06:24:05 -0800 (PST)
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32A8110E45F
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 14:57:54 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4YTSYm5CWBz9t12;
+ Thu,  9 Jan 2025 15:57:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1736434636;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=+PIcf94QpdY4vCtUlne7B4MNOeArydMMKo6iwMMk+Eg=;
+ b=fO878uUbCoCdeKfyMJM/P/H8ESgCLhxica4T70sPqMzo02ZUC64kIP5/DDZFyBy6uGvroS
+ qj4+E+UfFKF1HlSTrksPLBUIaRjfe2FZfitY4UaND+4VL1d4+WAYDkUYqX0kYvTcl8TyYh
+ pqzf3tOtnLtuzsGjINUAqJyLVaI+inaMRTqGj31E0aagPPuFwQMRuyy/a64fVwqDJ/sKo8
+ lBBgYX6mCCC8C3QOLeBpYcDhtFAQ7roSTMDpXelKiya4KHNLKiN4rdNbvaKTIBnk86tPIB
+ Op1pTFuFHf9EiuVwSbrdQPkzaH0EAmRKu8jdGw9NfHd4Io+4q66DOiJT+jv9xQ==
+Message-ID: <7893ceda-5260-46f2-8a87-ffb7734fa99b@mailbox.org>
+Date: Thu, 9 Jan 2025 15:57:15 +0100
 MIME-Version: 1.0
-References: <20250109082524.11102-1-kenneth.feng@amd.com>
-In-Reply-To: <20250109082524.11102-1-kenneth.feng@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 9 Jan 2025 09:23:53 -0500
-X-Gm-Features: AbW1kva7UZn95in3JqMBZD5RRreo5UYlXC46QWqRl5QXyAjFVF12tZagTWfki5k
-Message-ID: <CADnq5_MZoby8nOPJGXmST2f9=YkbscOwGVR5w0vaXp9oxKLCug@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: disable gfxoff with the compute workload on
- gfx12
-To: Kenneth Feng <kenneth.feng@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, kevinyang.wang@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: amdgpu 4k@120Hz / HDMI 2.1
+To: Mischa Baars <mjbaars1977.backup@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ platform-driver-x86@vger.kernel.org
+References: <CA+b5WFEXPJ==vruf-6DHrhS7j3pnTaj_EQE08BimxqyaNvktQQ@mail.gmail.com>
+ <d1028755-6a7a-4db4-bd4b-e5a2d682af61@amd.com>
+ <CA+b5WFFa4hMeGnN0J2xd=FpU2Cxe_AjapWBpTFjfNhzUSOUAzA@mail.gmail.com>
+ <0281e6f7-4ccd-4369-9182-d1580c9e6bc5@amd.com>
+ <CA+b5WFEv1Qj3NYcwXaZz1EYW9omj7FmB8FdSKZnixsMNoi1+DQ@mail.gmail.com>
+ <ddd7bf09-31aa-4e4a-93ea-b1336ced8578@amd.com>
+ <CA+b5WFGDstoJTjgaT+hm4r-78zup1pLa2Ada7PqbTY=wCutSbA@mail.gmail.com>
+ <98b3392f-2860-4a32-a769-b4dcd3f5dbbe@amd.com>
+ <CA+b5WFGkDJhpRRywQLx2okttXGasBu6K8ScLZyakKrk1+FZWAw@mail.gmail.com>
+ <5321c9af-6df7-4bf0-98b2-d6c4b2861374@mailbox.org>
+ <CA+b5WFEjG1DE1+_gG0qwmEf4nQZFg=9O+rHDJZmiADL5Hi7fbA@mail.gmail.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <CA+b5WFEjG1DE1+_gG0qwmEf4nQZFg=9O+rHDJZmiADL5Hi7fbA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: d8e73b97bab921b69da
+X-MBO-RS-META: e3bycfzjg6t1xar7phm19hhzjn63i3ng
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,54 +73,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 9, 2025 at 3:58=E2=80=AFAM Kenneth Feng <kenneth.feng@amd.com> =
-wrote:
->
-> Disable gfxoff with the compute workload on gfx12. This is a
-> workaround for the opencl test failure.
->
-> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_amdkfd.c
-> index 2e5732dfd425..e4cf25c47509 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-> @@ -715,8 +715,10 @@ int amdgpu_amdkfd_submit_ib(struct amdgpu_device *ad=
-ev,
->  void amdgpu_amdkfd_set_compute_idle(struct amdgpu_device *adev, bool idl=
-e)
->  {
->         enum amd_powergating_state state =3D idle ? AMD_PG_STATE_GATE : A=
-MD_PG_STATE_UNGATE;
-> -       if (IP_VERSION_MAJ(amdgpu_ip_version(adev, GC_HWIP, 0)) =3D=3D 11=
- &&
-> -           ((adev->mes.kiq_version & AMDGPU_MES_VERSION_MASK) <=3D 64)) =
-{
-> +       if ((IP_VERSION_MAJ(amdgpu_ip_version(adev, GC_HWIP, 0)) =3D=3D 1=
-1 &&
-> +           ((adev->mes.kiq_version & AMDGPU_MES_VERSION_MASK) <=3D 64)) =
-||
-> +               (IP_VERSION_MAJ(amdgpu_ip_version(adev, GC_HWIP, 0)) =3D=
-=3D 12 &&
-> +           ((adev->mes.kiq_version & AMDGPU_MES_VERSION_MASK) > 0x6C))) =
-{
+On 2025-01-09 12:00, Mischa Baars wrote:
+> On Mon, Jan 6, 2025 at 4:41 PM Michel Dänzer
+> <michel.daenzer@mailbox.org <mailto:michel.daenzer@mailbox.org>>
+> wrote:
+> 
+>> I'm sort of a fan of Michael Abrash, as he inspired me to learn
+>> programming assembly language a long time ago, but in his Graphics
+>> Programming Black Book, Chapter 23 <https://www.phatcode.net/
+>> res/224/files/html/ch23/23-03.html#Heading6> he shows how the CRTC
+>> Index Register is used to change what is shown on the screen by
+>> alternating between two memory pages at PAGE0_OFFSET and
+>> PAGE1_OFFSET.
 
-If this is just a specific FW version that is problematic, we should
-just check the particular version.  If this is a general problem, just
-check the IP version until the issue is fixed and then we can update
-the check for a specific fw version, etc.
+That's much lower level than OpenGL. OpenGL implementations can and do internally use page flipping under the right circumstances, it cannot be enforced via OpenGL / GLX / EGL APIs though, it's an implementation detail.
 
-Alex
 
->                 pr_debug("GFXOFF is %s\n", idle ? "enabled" : "disabled")=
-;
->                 amdgpu_gfx_off_ctrl(adev, idle);
->         } else if ((IP_VERSION_MAJ(amdgpu_ip_version(adev, GC_HWIP, 0)) =
-=3D=3D 9) &&
-> --
-> 2.34.1
->
+> The glDrawBuffer() <https://registry.khronos.org/OpenGL-Refpages/gl4/
+> html/glDrawBuffer.xhtml> reference page however does speak of
+> initial values for double buffered contexts and the use of both
+> front and back buffers.
+
+The OpenGL app can use single-buffered drawing to GL_FRONT if it doesn't care about the artifacts possible without double buffering.
+
+
+> Can you explain to me why we are only drawing in GL_BACK and how
+> that relates to what portion of memory is shown on the screen?
+
+A big point of GL_BACK (and double buffering in general) is that it's not what's currently visible on screen, so there can be no artifacts due to visible unfinished frame contents.
+
+
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
