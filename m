@@ -2,55 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE7AA0704D
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Jan 2025 09:49:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1D0BA072A9
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Jan 2025 11:18:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F41C10E0EC;
-	Thu,  9 Jan 2025 08:49:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F8310ED41;
+	Thu,  9 Jan 2025 10:18:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kF3DRMo3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z40Pv8DD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD29710ED2D;
- Thu,  9 Jan 2025 08:49:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 70E955C59C6;
- Thu,  9 Jan 2025 08:49:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC8D2C4CED2;
- Thu,  9 Jan 2025 08:49:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1736412588;
- bh=LUMEQs7/oj8Rerkd59KYQ/bnSrqBgW2zdpEAd2kdomU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=kF3DRMo31jcM+XtiN+aNs1UkHRX97hWl+Wq3aNXeY33MBjooNR6hx///t4gQT60UB
- f0umTag5Tn/fY1UhoFaeQbq3q70KTr0Mg5bxs7iDTRP46vtCN22Gcq0tECApX2G5mb
- JnJaj+0ufdbiibh+9vVzJH4KjRJtsG5Mu3NeDxKlnbZ1XCDADGtB2HCsTPJKH9+Vqt
- 63ZiDwKtK/bKZ88cy1QIeYs3KKrOKLbu9FBbwg2eQ2c4t2gRMA24DbNi+ymS10wrPw
- u5+etT+xDrCStOAfEN1R9j06B56c8I6jipGzvtarjwRe7DdqkgAw81GgNHz2ViZJo3
- mm/W9DU5WWhJw==
-Date: Thu, 9 Jan 2025 09:49:39 +0100
-From: Carlos Maiolino <cem@kernel.org>
-To: Mirsad Todorovac <mtodorovac69@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- Victor Skvortsov <victor.skvortsov@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, "Darrick J. Wong" <djwong@kernel.org>, 
- Chandan Babu R <chandanbabu@kernel.org>, Dave Chinner <dchinner@redhat.com>,
- linux-xfs@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] xfs/libxfs: replace kmalloc() and memcpy() with
- kmemdup()
-Message-ID: <mcf4scwistourkahjcnqg5p3c6hagowihuuawah4yo5mwp23t7@fe2kzzucxdgw>
-References: <20241217225811.2437150-2-mtodorovac69@gmail.com>
- <20241217225811.2437150-4-mtodorovac69@gmail.com>
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
+ [209.85.208.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5909910ED41
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 10:18:54 +0000 (UTC)
+Received: by mail-lj1-f173.google.com with SMTP id
+ 38308e7fff4ca-3003c0c43c0so6476001fa.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Jan 2025 02:18:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1736417872; x=1737022672; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=76gKxHI9JJUP3Qx1H3eml37ViHNe4SXC3moDZ54oDcI=;
+ b=Z40Pv8DDfDCFKljIgdd4HQksP94WGgUg32KXmg2nV96aRBiCNkNEaL3Vd0Lu44FKYp
+ WCRDsp82BIBg6s4hKdhIgQUnulrExYfZjBaZXVVWoWDWkdX2JjB2pHv0kE+K3RatouYr
+ MJQ+gWZut1CjNq2IXb+ciY9TWq07iXx4rLzc+ip/M5i8AYNEdhLNx0HPdFQakRlrXkFO
+ Y4ufwaLDTc9XO560I9X5aNPg2xvZtLV7EKF96TXeKDKRqmnL+xgfo/IJS+FqyNFXWvY5
+ bcb+ZPGO6QfizzPakQl7ivLP/QQn2kXezOcv6xkiOPGBmlo93xRrLOrV5iyLoKDKlP1S
+ RIAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736417872; x=1737022672;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=76gKxHI9JJUP3Qx1H3eml37ViHNe4SXC3moDZ54oDcI=;
+ b=e0KJZI3oC0Lr2Ae9KoZEGoTV3fp7u9+YWZoy6x6Kr5QTofmEFXgbodmYCamMAYUYhj
+ ngAue3xVOwnmdgyXLjAghPRyScYoXJFjmgHWTddhRRhp12+e4ZE6fVsWyZDzjStXsjoH
+ AWJ7SU/MnTacYO4ftIE7kK3JcSSqQlQjkLUXegs7yVzrRrGvgXkwv6gSKkAeAQ/0jzTS
+ YxfstWXinmjKsRKUJy9O+ydTi3clwjrFwjWUfjmASRBeVKFLuVwvG17R3BCi3iai+Q0y
+ RfIBe4FWZJpdldIcw8jpSi4oC6WMPzwbIDkoi2Dn+PJfIV1KgfyDvNq+jCHdYVKT2htr
+ RDpg==
+X-Gm-Message-State: AOJu0YwVKn4Bs+cZG8HdwhZ5ErgYcL9VWJ6wkHduXiFgmW8dPopaUqLx
+ R0OH08G9dFtXKH4pqRTWbC32IhkJEF8tAMGhLagYv21QlGKMBThwUMYhPvhzBrsAzs/bp0vBOXu
+ R37ecVJS108lh3W0sYWfkk/PuIe20+VWExRw=
+X-Gm-Gg: ASbGncvdm1U1sqKCoSWoK+/kHNdADZt9sDk1V04V6dLvE0XNemrg+VCEcSiJ+POm6Bo
+ OqFn+EhmEXsCQMQgSevMoLk/ebEaDHpnox9gQ2TU=
+X-Google-Smtp-Source: AGHT+IFCYXYcm4dlkX6v8QO8Ci/WzRDS/DvKT7D/2shMuQfSja0g90LpmCEzKVe0TXLxY5SR3lTdZ3s5fhQyW9B4w6c=
+X-Received: by 2002:a05:600c:6c0b:b0:434:ff25:199f with SMTP id
+ 5b1f17b1804b1-436e2707f07mr46234465e9.26.1736414394922; Thu, 09 Jan 2025
+ 01:19:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241217225811.2437150-4-mtodorovac69@gmail.com>
+References: <CA+b5WFEXPJ==vruf-6DHrhS7j3pnTaj_EQE08BimxqyaNvktQQ@mail.gmail.com>
+ <d1028755-6a7a-4db4-bd4b-e5a2d682af61@amd.com>
+ <CA+b5WFFa4hMeGnN0J2xd=FpU2Cxe_AjapWBpTFjfNhzUSOUAzA@mail.gmail.com>
+ <0281e6f7-4ccd-4369-9182-d1580c9e6bc5@amd.com>
+ <CA+b5WFEv1Qj3NYcwXaZz1EYW9omj7FmB8FdSKZnixsMNoi1+DQ@mail.gmail.com>
+ <ddd7bf09-31aa-4e4a-93ea-b1336ced8578@amd.com>
+ <CA+b5WFGDstoJTjgaT+hm4r-78zup1pLa2Ada7PqbTY=wCutSbA@mail.gmail.com>
+ <98b3392f-2860-4a32-a769-b4dcd3f5dbbe@amd.com>
+ <CA+b5WFGkDJhpRRywQLx2okttXGasBu6K8ScLZyakKrk1+FZWAw@mail.gmail.com>
+ <5321c9af-6df7-4bf0-98b2-d6c4b2861374@mailbox.org>
+In-Reply-To: <5321c9af-6df7-4bf0-98b2-d6c4b2861374@mailbox.org>
+From: Mischa Baars <mjbaars1977.backup@gmail.com>
+Date: Thu, 9 Jan 2025 10:19:44 +0100
+X-Gm-Features: AbW1kvY5ih317HV1EysU9odFq3nUNHLJ3-uHcKau6uWQLPNehm_B17IbdKyOVMY
+Message-ID: <CA+b5WFFkhQUcFO_45_6xmC4fk_GEFqbASt9rhGqBBYsothsHxQ@mail.gmail.com>
+Subject: Re: amdgpu 4k@120Hz / HDMI 2.1
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, 
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>, 
+ platform-driver-x86@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,67 +89,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Mirsad.
+On Mon, Jan 6, 2025 at 4:30=E2=80=AFAM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
 
-Did you send only this patch, or did I miss patch 1 and 3 of the series? I can't
-find them anywhere.
+> When new specifications are made available it's not like the old one
+> suddenly becomes "open", so I don't see any reason that a new
+> specification would change anything.
 
-Carlos
+I paid about =E2=82=AC3000 for my new PC, including =E2=82=AC300 for the gr=
+aphics card
+with HDMI 2.1 output and about =E2=82=AC2000 for my new Samsung OLED TV wit=
+h 4
+HDMI 2.1 inputs, and now you are telling me that I will not be able to
+utilize them fully because the cable specification has not been made
+publicly available?
 
-On Tue, Dec 17, 2024 at 11:58:12PM +0100, Mirsad Todorovac wrote:
-> The source static analysis tool gave the following advice:
-> 
-> ./fs/xfs/libxfs/xfs_dir2.c:382:15-22: WARNING opportunity for kmemdup
-> 
->  → 382         args->value = kmalloc(len,
->    383                          GFP_KERNEL | __GFP_NOLOCKDEP | __GFP_RETRY_MAYFAIL);
->    384         if (!args->value)
->    385                 return -ENOMEM;
->    386
->  → 387         memcpy(args->value, name, len);
->    388         args->valuelen = len;
->    389         return -EEXIST;
-> 
-> Replacing kmalloc() + memcpy() with kmemdump() doesn't change semantics.
-> Original code works without fault, so this is not a bug fix but proposed improvement.
-> 
-> Link: https://lwn.net/Articles/198928/
-> Fixes: 94a69db2367ef ("xfs: use __GFP_NOLOCKDEP instead of GFP_NOFS")
-> Fixes: 384f3ced07efd ("[XFS] Return case-insensitive match for dentry cache")
-> Fixes: 2451337dd0439 ("xfs: global error sign conversion")
-> Cc: Carlos Maiolino <cem@kernel.org>
-> Cc: "Darrick J. Wong" <djwong@kernel.org>
-> Cc: Chandan Babu R <chandanbabu@kernel.org>
-> Cc: Dave Chinner <dchinner@redhat.com>
-> Cc: linux-xfs@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Mirsad Todorovac <mtodorovac69@gmail.com>
-> ---
->  v1:
-> 	initial version.
-> 
->  fs/xfs/libxfs/xfs_dir2.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/fs/xfs/libxfs/xfs_dir2.c b/fs/xfs/libxfs/xfs_dir2.c
-> index 202468223bf9..24251e42bdeb 100644
-> --- a/fs/xfs/libxfs/xfs_dir2.c
-> +++ b/fs/xfs/libxfs/xfs_dir2.c
-> @@ -379,12 +379,11 @@ xfs_dir_cilookup_result(
->  					!(args->op_flags & XFS_DA_OP_CILOOKUP))
->  		return -EEXIST;
->  
-> -	args->value = kmalloc(len,
-> +	args->value = kmemdup(name, len,
->  			GFP_KERNEL | __GFP_NOLOCKDEP | __GFP_RETRY_MAYFAIL);
->  	if (!args->value)
->  		return -ENOMEM;
->  
-> -	memcpy(args->value, name, len);
->  	args->valuelen = len;
->  	return -EEXIST;
->  }
-> -- 
-> 2.43.0
-> 
-> 
+Did someone forget to pay the people that design the cables? Because
+that is what it sounds like. Why does Linux stay behind?
+
+On Mon, Jan 6, 2025 at 4:41=E2=80=AFPM Michel D=C3=A4nzer <michel.daenzer@m=
+ailbox.org> wrote:
+>
+> On 2024-12-31 13:42, Mischa Baars wrote:
+> >
+> > In the meantime I also checked the framerate synchronization through
+> > glxgears at different resolutions and framerates. This does function
+> > as expected. Although I haven't yet inspected the glxgears source
+> > codes in detail, the OpenGL double buffering must be functional up to
+> > some level. This means that the problem must be confined to GTK and
+> > the GtkGLArea widget. Using GDK_BACKEND=3Dx11 I do get a double buffere=
+d
+> > context, but the default buffer does not alternate between GL_FRONT
+> > and GL_BACK.
+>
+> Yeah, that's not how double-buffering works in GL. The draw buffer is alw=
+ays GL_BACK, SwapBuffers doesn't affect that (it just may internally change=
+ which actual buffer GL_BACK refers to).
+>
+> I don't see more context about the issue you're investigating, any pointe=
+rs?
+>
+>
+> --
+> Earthling Michel D=C3=A4nzer       \        GNOME / Xwayland / Mesa devel=
+oper
+> https://redhat.com             \               Libre software enthusiast
