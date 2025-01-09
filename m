@@ -2,47 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF63A06BBF
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Jan 2025 04:00:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78D33A06BCA
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Jan 2025 04:04:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0C2F10E0B5;
-	Thu,  9 Jan 2025 03:00:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FAA010E97F;
+	Thu,  9 Jan 2025 03:04:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="QaO86siS";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YA8CuCWv";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-99.freemail.mail.aliyun.com
- (out30-99.freemail.mail.aliyun.com [115.124.30.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E375C10E0B5
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 03:00:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1736391626; h=From:Message-Id:Content-Type:Mime-Version:Subject:Date:To;
- bh=a639xYk6Q5sQE2rBgwR4WJbfZLnqQuqqNtSllcFs/FY=;
- b=QaO86siSBhEUkqYLxzHTYseTIJj9AclrQsk3peOyCIjtKAWXmAvYhfkaAIEKXpN6ibLv+j3NR4cU6pl9a5oCJ5cRsnqpV0W/WsswvU9e3vDIqEI6VKPJJSshjeX72amV0gaY2nY7bDL2jr8S7uLysx4OblYh+j88IaqjWycTNBw=
-Received: from smtpclient.apple(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNFnDte_1736391623 cluster:ay36) by smtp.aliyun-inc.com;
- Thu, 09 Jan 2025 11:00:25 +0800
-From: Gerry Liu <gerry@linux.alibaba.com>
-Message-Id: <F8DB9377-1714-4A9A-BA10-932EE238A8CE@linux.alibaba.com>
-Content-Type: multipart/alternative;
- boundary="Apple-Mail=_2CAB3493-9B0D-44F5-9052-52A0C731BE92"
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [v3 3/6] drm/amdgpu: fix use after free bug related to
- amdgpu_driver_release_kms()
-Date: Thu, 9 Jan 2025 11:00:23 +0800
-In-Reply-To: <51b9f2ea-40ee-40f4-b3a8-33c06e0e866e@amd.com>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch, sunil.khatri@amd.com,
- Hawking.Zhang@amd.com, mario.limonciello@amd.com, Jun.Ma2@amd.com,
- xiaogang.chen@amd.com, Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
- amd-gfx@lists.freedesktop.org
-To: "Lazar, Lijo" <lijo.lazar@amd.com>
-References: <cover.1736325561.git.gerry@linux.alibaba.com>
- <5c662d197e0d483b551365fcb98f55c33c66d281.1736325561.git.gerry@linux.alibaba.com>
- <51b9f2ea-40ee-40f4-b3a8-33c06e0e866e@amd.com>
-X-Mailer: Apple Mail (2.3696.120.41.1.1)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2045.outbound.protection.outlook.com [40.107.237.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AAAF10E981
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 03:04:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pVJAYvHufYH/9K9I/ybandQG1RAFkp+nSCmYAwypXmI/4BXviUPuzbEj92e1bnNTepMy5OW0oQeSZW4CJMfxfz0VGhqtofhkv9Vf42VgidxoJ6s3Ox7gmtNViYWq7HGWdkDEJelpEomc/QBIV/UJed1UqW1huFZ4iLMF+p0r37VfDRw8UJiPTdu7wx8iZU0mL68upO3BdsppmrIWXeI01O/rl5yCOjyc2VewRXE+SLU70nVfUbVkF6BYy0HNztx9WK4V2Cj38s655JZRLL0XO46zXAjhGX3TNa+kybgHHRM/2DYSgNjaultd3BVM+OCSwx/ktfqnq8Zc3vw1H0SCjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CD2IVibMowOPogrRQC/ru029kHUgu48ESbiAbFC9X5k=;
+ b=E2JPAr61h5j8smbtnq81VGV5p6NVTu556F0rddZD563zOqhppZcP4FahOHrZ5yjaIeEV9dn8SWsAu6wr98eEiKDYxbYzi5XsxjG+kMoVIt4FA2w4v2DOFIu9dCeAH5X9jGrfw0Twlwz3CXvxZdzCi03xb3Gm3kv2KkFm8sq65LpQ+hs0/OuSCN0nuArk5GMIFKsPuFw71LXHEhlCyY1sRlkjsRsFn4Pl1FWlE9YgoPeyE08NCdgRhuHqOvNJ2j5tQOR8pjFrhj371UQmDrHCEV+5oNrNmbx9GAr3VpCEfrAStSVn7443vtpEZtBudInDqkxcLJHkFgv0aF2RJ+b2Vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CD2IVibMowOPogrRQC/ru029kHUgu48ESbiAbFC9X5k=;
+ b=YA8CuCWv5ezh809RvGtSXyWl6TeatNdiI6X/lE8s7qPmgHRip7vi1xO4CuwsJ8kyul0LlFoBBV5flA1VI6625nYAEdGI0xBPXrWaWkxcu8FnbGhM9Ku7/ecqpxEd0lkFRPWmJdrmbhadarKLtB18n29qznvVwc8oBqlaCqcYNVA=
+Received: from BL0PR0102CA0048.prod.exchangelabs.com (2603:10b6:208:25::25) by
+ PH7PR12MB8425.namprd12.prod.outlook.com (2603:10b6:510:240::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.10; Thu, 9 Jan
+ 2025 03:04:06 +0000
+Received: from BL6PEPF00022572.namprd02.prod.outlook.com
+ (2603:10b6:208:25:cafe::e5) by BL0PR0102CA0048.outlook.office365.com
+ (2603:10b6:208:25::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8335.11 via Frontend Transport; Thu,
+ 9 Jan 2025 03:04:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF00022572.mail.protection.outlook.com (10.167.249.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8335.7 via Frontend Transport; Thu, 9 Jan 2025 03:04:05 +0000
+Received: from ldev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 8 Jan
+ 2025 21:02:58 -0600
+From: Tim Huang <tim.huang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, <Yifan1.zhang@amd.com>,
+ <Xiaojian.Du@amd.com>, Tim Huang <tim.huang@amd.com>, Yifan Zhang
+ <yifan1.zhang@amd.com>
+Subject: [PATCH 1/7] drm/amdgpu: add support for GC IP version 11.5.3
+Date: Thu, 9 Jan 2025 11:01:27 +0800
+Message-ID: <20250109030133.3887086-1-tim.huang@amd.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00022572:EE_|PH7PR12MB8425:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6bfd2930-bf09-46f4-eeba-08dd305a4752
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?59/Co91+enh44cZItKijatPSfCCsZ7colfBlzIvWrYa+lGdcfTKXfJEp3YuP?=
+ =?us-ascii?Q?KfKVj0TjIX2k2lXZpLac+9QPijTLl9ZfpIXgTD0kFiJ6Ihj2zv1WAyO5NTrB?=
+ =?us-ascii?Q?88KqOX8CtfrMMATamveTd83NmkW6JuaSPmbNU+Bl0HUHf6egTinlrMYKNdG0?=
+ =?us-ascii?Q?MYtsrL9Dr/aJlRdr6NHwS+jKkT0cf1T9HGj1vmyoAdsG2N6DdyQ+zlJEpPdo?=
+ =?us-ascii?Q?qZOJEKq17B1bCN9IKG7XYcD1FVbtBqdnYOcIfMJUAPUB/rYrjHUcB0hD6gMZ?=
+ =?us-ascii?Q?LKZN7AGpzMD2agDhhVyoG1653cqMmB6/BCMdh4GcAhDJY/Tferi3eg2lzEXM?=
+ =?us-ascii?Q?0sfah/d8WwUUMM3IXdUUUpUmPBeDL5LSkqSPZGflNGv2veplB0RBVQDl42na?=
+ =?us-ascii?Q?d7HQZ0owp+TSKNJ+J5aK0R9yONK/ASn1iK2ujVIcHefrtTUt8kXFC7syqzMO?=
+ =?us-ascii?Q?HtSkRJBImgzSvj79Q2EK01ajCI+NsUaqVy2fg4WKFJ4+MqbAf8ZN+V8Csxcv?=
+ =?us-ascii?Q?irzNp0WWVA6+xALBK5YxOMl0pNe2/mi7rdXy8WnxK8opkpFMEhDh3ovP3Re/?=
+ =?us-ascii?Q?CJe6Lurvy38oXb5XGqG3IOBRLpq25sJKleXI1Ot88vKTOWr5oj9vwmwicTKu?=
+ =?us-ascii?Q?tSM+9rbUYR9fAtZZdj72u3zR4o2RTiH9xpuDXuAgDMqWTHR8ijszplyoNFAv?=
+ =?us-ascii?Q?E1/TtQsF2LvKqTakmdS89q3hk48pP3VRLSbE6RpAI1qAUKl76iQOK053hasm?=
+ =?us-ascii?Q?k+Nf2ueKgpuLAgbjdrWnr3/WCQHbESYUccRMCwM1T4H45ifkJP6a4xsxZyYu?=
+ =?us-ascii?Q?e9i23SvtaX/+7HoKAzOd1nOzRyZxqghQwfKyZM3NYXUr069h+4lZOou5wHBZ?=
+ =?us-ascii?Q?mUiTOq2OY6DOOmdPYoJuZMnaZNhBWkSOtNAgwRsyhM1gK+2ygR38Dp/TSX7T?=
+ =?us-ascii?Q?Os4dD+Tk/c39EwEwrdt5WQaPIerWMKg1IB+VNrSJqDCWL1UCn6sva3Z3pAIg?=
+ =?us-ascii?Q?XgH3u0c4TpX8NKYH9AP+fOi6i3R6lZHJ0BHw6Fk0Y0QONn5BkwfHxXSeEnQS?=
+ =?us-ascii?Q?pSzmJzLkVVGnBJ18lhQZPR3cRNcYqsMtcbSak4olZoaDx73ho9qFNf01Lt9v?=
+ =?us-ascii?Q?A/0u2RNIzbyiLyChZSciYnEnpM5D7PHXDPXI5q3D/e+GwT4nBcJINZYjuLDv?=
+ =?us-ascii?Q?hS7BaNr1obfj9Au97etytf5nwfWaQrGFXQ4joVZLB38GQ+rzmm3LRqhWc4Fl?=
+ =?us-ascii?Q?bo0K9QwohsdeqKPcazvD5dF700zET/IcZ3gbB0FExGFW1+onvx6aHoyAjVEe?=
+ =?us-ascii?Q?JEgXVPqi7kLeR+l//cOE4obvStyXU0IFnkXm6z/SN3VPKtiCsk1ZrOmVoHy0?=
+ =?us-ascii?Q?A0vMShCRZc+BvwK2P5BBxAi0P5pEO0nOaBITqkJEEzRe3g6OJ/WQmhRc+Aa6?=
+ =?us-ascii?Q?YGO5hWWz7yzh1yJpmd3PWMXjK75b8TMdvwAKkHh83wzwmj3MlhVAoPimjDHR?=
+ =?us-ascii?Q?DZZd44sqiffKSCQ=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2025 03:04:05.7504 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6bfd2930-bf09-46f4-eeba-08dd305a4752
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022572.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8425
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,794 +132,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This initializes GC IP version 11.5.3.
 
---Apple-Mail=_2CAB3493-9B0D-44F5-9052-52A0C731BE92
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+Signed-off-by: Tim Huang <tim.huang@amd.com>
+Reviewed-by: Yifan Zhang <yifan1.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  6 +++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c       |  1 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 12 +++++++++-
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c        |  2 ++
+ drivers/gpu/drm/amd/amdgpu/imu_v11_0.c        |  1 +
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c        |  2 ++
+ drivers/gpu/drm/amd/amdgpu/soc21.c            | 22 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c         |  1 +
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c       |  5 +++++
+ 9 files changed, 51 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 949d74eff294..ea31418a479b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -1864,6 +1864,7 @@ static int amdgpu_discovery_set_common_ip_blocks(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		amdgpu_device_ip_block_add(adev, &soc21_common_ip_block);
+ 		break;
+ 	case IP_VERSION(12, 0, 0):
+@@ -1919,6 +1920,7 @@ static int amdgpu_discovery_set_gmc_ip_blocks(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		amdgpu_device_ip_block_add(adev, &gmc_v11_0_ip_block);
+ 		break;
+ 	case IP_VERSION(12, 0, 0):
+@@ -2215,6 +2217,7 @@ static int amdgpu_discovery_set_gc_ip_blocks(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		amdgpu_device_ip_block_add(adev, &gfx_v11_0_ip_block);
+ 		break;
+ 	case IP_VERSION(12, 0, 0):
+@@ -2393,6 +2396,7 @@ static int amdgpu_discovery_set_mes_ip_blocks(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		amdgpu_device_ip_block_add(adev, &mes_v11_0_ip_block);
+ 		adev->enable_mes = true;
+ 		adev->enable_mes_kiq = true;
+@@ -2708,6 +2712,7 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		adev->family = AMDGPU_FAMILY_GC_11_5_0;
+ 		break;
+ 	case IP_VERSION(12, 0, 0):
+@@ -2733,6 +2738,7 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		adev->flags |= AMD_IS_APU;
+ 		break;
+ 	default:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index 1c19a65e6553..2667a183e9c5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -851,6 +851,7 @@ void amdgpu_gmc_tmz_set(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		/* Don't enable it by default yet.
+ 		 */
+ 		if (amdgpu_tmz < 1) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index 990203b15ec5..25641677cae2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -100,6 +100,10 @@ MODULE_FIRMWARE("amdgpu/gc_11_5_2_pfp.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_2_me.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_2_mec.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_2_rlc.bin");
++MODULE_FIRMWARE("amdgpu/gc_11_5_3_pfp.bin");
++MODULE_FIRMWARE("amdgpu/gc_11_5_3_me.bin");
++MODULE_FIRMWARE("amdgpu/gc_11_5_3_mec.bin");
++MODULE_FIRMWARE("amdgpu/gc_11_5_3_rlc.bin");
+ 
+ static const struct amdgpu_hwip_reg_entry gc_reg_list_11_0[] = {
+ 	SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS),
+@@ -1096,6 +1100,7 @@ static int gfx_v11_0_gpu_early_init(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		adev->gfx.config.max_hw_contexts = 8;
+ 		adev->gfx.config.sc_prim_fifo_size_frontend = 0x20;
+ 		adev->gfx.config.sc_prim_fifo_size_backend = 0x100;
+@@ -1581,6 +1586,7 @@ static int gfx_v11_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		adev->gfx.me.num_me = 1;
+ 		adev->gfx.me.num_pipe_per_me = 1;
+ 		adev->gfx.me.num_queue_per_pipe = 1;
+@@ -2943,7 +2949,8 @@ static int gfx_v11_0_wait_for_rlc_autoload_complete(struct amdgpu_device *adev)
+ 			    IP_VERSION(11, 0, 4) ||
+ 		    amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(11, 5, 0) ||
+ 		    amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(11, 5, 1) ||
+-		    amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(11, 5, 2))
++		    amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(11, 5, 2) ||
++		    amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(11, 5, 3))
+ 			bootload_status = RREG32_SOC15(GC, 0,
+ 					regRLC_RLCS_BOOTLOAD_STATUS_gc_11_0_1);
+ 		else
+@@ -5479,6 +5486,7 @@ static void gfx_v11_cntl_power_gating(struct amdgpu_device *adev, bool enable)
+ 		case IP_VERSION(11, 5, 0):
+ 		case IP_VERSION(11, 5, 1):
+ 		case IP_VERSION(11, 5, 2):
++		case IP_VERSION(11, 5, 3):
+ 			WREG32_SOC15(GC, 0, regRLC_PG_DELAY_3, RLC_PG_DELAY_3_DEFAULT_GC_11_0_1);
+ 			break;
+ 		default:
+@@ -5516,6 +5524,7 @@ static int gfx_v11_0_set_powergating_state(struct amdgpu_ip_block *ip_block,
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		if (!enable)
+ 			amdgpu_gfx_off_ctrl(adev, false);
+ 
+@@ -5549,6 +5558,7 @@ static int gfx_v11_0_set_clockgating_state(struct amdgpu_ip_block *ip_block,
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 	        gfx_v11_0_update_gfx_clock_gating(adev,
+ 	                        state ==  AMD_CG_STATE_GATE);
+ 	        break;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+index 72751ab4c766..5047b80ab60c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+@@ -596,6 +596,7 @@ static void gmc_v11_0_set_gfxhub_funcs(struct amdgpu_device *adev)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		adev->gfxhub.funcs = &gfxhub_v11_5_0_funcs;
+ 		break;
+ 	default:
+@@ -759,6 +760,7 @@ static int gmc_v11_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		set_bit(AMDGPU_GFXHUB(0), adev->vmhubs_mask);
+ 		set_bit(AMDGPU_MMHUB0(0), adev->vmhubs_mask);
+ 		/*
+diff --git a/drivers/gpu/drm/amd/amdgpu/imu_v11_0.c b/drivers/gpu/drm/amd/amdgpu/imu_v11_0.c
+index aeca5c08ea2f..cfa91d709d49 100644
+--- a/drivers/gpu/drm/amd/amdgpu/imu_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/imu_v11_0.c
+@@ -39,6 +39,7 @@ MODULE_FIRMWARE("amdgpu/gc_11_0_4_imu.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_0_imu.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_1_imu.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_2_imu.bin");
++MODULE_FIRMWARE("amdgpu/gc_11_5_3_imu.bin");
+ 
+ static int imu_v11_0_init_microcode(struct amdgpu_device *adev)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+index bb57ca8d24f1..bf51f3dcc130 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -54,6 +54,8 @@ MODULE_FIRMWARE("amdgpu/gc_11_5_1_mes_2.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_1_mes1.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_2_mes_2.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_2_mes1.bin");
++MODULE_FIRMWARE("amdgpu/gc_11_5_3_mes_2.bin");
++MODULE_FIRMWARE("amdgpu/gc_11_5_3_mes1.bin");
+ 
+ static int mes_v11_0_hw_init(struct amdgpu_ip_block *ip_block);
+ static int mes_v11_0_hw_fini(struct amdgpu_ip_block *ip_block);
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
+index 62ad67d0b598..ba889a85cdc5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc21.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
+@@ -781,6 +781,28 @@ static int soc21_common_early_init(struct amdgpu_ip_block *ip_block)
+ 			AMD_PG_SUPPORT_GFX_PG;
+ 		adev->external_rev_id = adev->rev_id + 0x40;
+ 		break;
++	case IP_VERSION(11, 5, 3):
++		adev->cg_flags = AMD_CG_SUPPORT_GFX_CGCG |
++			AMD_CG_SUPPORT_GFX_CGLS |
++			AMD_CG_SUPPORT_GFX_MGCG |
++			AMD_CG_SUPPORT_GFX_FGCG |
++			AMD_CG_SUPPORT_REPEATER_FGCG |
++			AMD_CG_SUPPORT_GFX_PERF_CLK |
++			AMD_CG_SUPPORT_GFX_3D_CGCG |
++			AMD_CG_SUPPORT_GFX_3D_CGLS |
++			AMD_CG_SUPPORT_MC_MGCG |
++			AMD_CG_SUPPORT_MC_LS |
++			AMD_CG_SUPPORT_HDP_LS |
++			AMD_CG_SUPPORT_HDP_DS |
++			AMD_CG_SUPPORT_HDP_SD |
++			AMD_CG_SUPPORT_ATHUB_MGCG |
++			AMD_CG_SUPPORT_ATHUB_LS |
++			AMD_CG_SUPPORT_IH_CG |
++			AMD_CG_SUPPORT_BIF_MGCG |
++			AMD_CG_SUPPORT_BIF_LS;
++		adev->pg_flags = AMD_PG_SUPPORT_GFX_PG;
++		adev->external_rev_id = adev->rev_id + 0x50;
++		break;
+ 	default:
+ 		/* FIXME: not supported yet */
+ 		return -EINVAL;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index 693469c18c60..70b3ae0b74fe 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1704,6 +1704,7 @@ int kfd_get_gpu_cache_info(struct kfd_node *kdev, struct kfd_gpu_cache_info **pc
+ 		case IP_VERSION(11, 5, 0):
+ 		case IP_VERSION(11, 5, 1):
+ 		case IP_VERSION(11, 5, 2):
++		case IP_VERSION(11, 5, 3):
+ 			/* Cacheline size not available in IP discovery for gc11.
+ 			 * kfd_fill_gpu_cache_info_from_gfx_config to hard code it
+ 			 */
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index a29374c86405..b5d70d803289 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -180,6 +180,7 @@ static void kfd_device_info_set_event_interrupt_class(struct kfd_dev *kfd)
+ 	case IP_VERSION(11, 5, 0):
+ 	case IP_VERSION(11, 5, 1):
+ 	case IP_VERSION(11, 5, 2):
++	case IP_VERSION(11, 5, 3):
+ 		kfd->device_info.event_interrupt_class = &event_interrupt_class_v11;
+ 		break;
+ 	case IP_VERSION(12, 0, 0):
+@@ -454,6 +455,10 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
+ 			gfx_target_version = 110502;
+ 			f2g = &gfx_v11_kfd2kgd;
+ 			break;
++		case IP_VERSION(11, 5, 3):
++			gfx_target_version = 110503;
++			f2g = &gfx_v11_kfd2kgd;
++			break;
+ 		case IP_VERSION(12, 0, 0):
+ 			gfx_target_version = 120000;
+ 			f2g = &gfx_v12_kfd2kgd;
+-- 
+2.43.0
 
-
-> 2025=E5=B9=B41=E6=9C=888=E6=97=A5 17:54=EF=BC=8CLazar, Lijo =
-<lijo.lazar@amd.com> =E5=86=99=E9=81=93=EF=BC=9A
->=20
->=20
->=20
-> On 1/8/2025 2:26 PM, Jiang Liu wrote:
->> If some GPU device failed to probe, `rmmod amdgpu` will trigger a use
->> after free bug related to amdgpu_driver_release_kms() as:
->> 2024-12-26 16:17:45 [16002.085540] BUG: kernel NULL pointer =
-dereference, address: 0000000000000000
->> 2024-12-26 16:17:45 [16002.093792] #PF: supervisor read access in =
-kernel mode
->> 2024-12-26 16:17:45 [16002.099993] #PF: error_code(0x0000) - =
-not-present page
->> 2024-12-26 16:17:45 [16002.106188] PGD 0 P4D 0
->> 2024-12-26 16:17:45 [16002.109464] Oops: Oops: 0000 [#1] PREEMPT SMP =
-NOPTI
->> 2024-12-26 16:17:45 [16002.115372] CPU: 2 PID: 14375 Comm: rmmod =
-Kdump: loaded Tainted: G        W   E      6.10.0+ #2
->> 2024-12-26 16:17:45 [16002.125577] Hardware name: Alibaba Alibaba =
-Cloud ECS/Alibaba Cloud ECS, BIOS 3.0.ES.AL.P.087.05 04/07/2024
->> 2024-12-26 16:17:45 [16002.136858] RIP: 0010:drm_sched_fini+0x3f/0xe0 =
-[gpu_sched]
->> 2024-12-26 16:17:45 [16002.143463] Code: 60 c6 87 be 00 00 00 01 e8 =
-ce e0 90 d8 48 8d bb 80 00 00 00 e8 c2 e0 90 d8 8b 43 20 85 c0 74 51 45 =
-31 e4 48 8b
->> 43 28 4d 63 ec <4a> 8b 2c e8 48 89 ef e8 f5 0e 59 d9 48 8b 45 10 48 =
-8d 55 10 48 39
->> 2024-12-26 16:17:45 [16002.164992] RSP: 0018:ffffb570dbbb7da8 EFLAGS: =
-00010246
->> 2024-12-26 16:17:45 [16002.171316] RAX: 0000000000000000 RBX: =
-ffff96b0fdadc878 RCX: 0000000000000000
->> 2024-12-26 16:17:46 [16002.179784] RDX: 000fffffffe00000 RSI: =
-0000000000000000 RDI: ffff96b0fdadc8f8
->> 2024-12-26 16:17:46 [16002.188252] RBP: ffff96b0fdadc800 R08: =
-ffff97abbd035040 R09: ffffffff9ac52540
->> 2024-12-26 16:17:46 [16002.196722] R10: 0000000000000000 R11: =
-0000000000000000 R12: 0000000000000000
->> 2024-12-26 16:17:46 [16002.205179] R13: 0000000000000000 R14: =
-ffff96b0fdadfc00 R15: 0000000000000000
->> 2024-12-26 16:17:46 [16002.213648] FS:  00007f2737000740(0000) =
-GS:ffff97abbd100000(0000) knlGS:0000000000000000
->> 2024-12-26 16:17:46 [16002.223189] CS:  0010 DS: 0000 ES: 0000 CR0: =
-0000000080050033
->> 2024-12-26 16:17:46 [16002.230103] CR2: 0000000000000000 CR3: =
-000000011be3a005 CR4: 0000000000f70ef0
->> 2024-12-26 16:17:46 [16002.238581] DR0: 0000000000000000 DR1: =
-0000000000000000 DR2: 0000000000000000
->> 2024-12-26 16:17:46 [16002.247053] DR3: 0000000000000000 DR6: =
-00000000fffe07f0 DR7: 0000000000000400
->> e024se+0x3c/0x90 [amdxcp]
->> 2024-12-26 16:17:46 [16002.337645]  =
-__do_sys_delete_module.constprop.0+0x176/0x310
->> 2024-12-26 16:17:46 [16002.344324]  do_syscall_64+0x5d/0x170
->> 2024-12-26 16:17:46 [16002.348858]  =
-entry_SYSCALL_64_after_hwframe+0x76/0x7e
->> 2024-12-26 16:17:46 [16002.354956] RIP: 0033:0x7f2736a620cb-12-26
->>=20
->> Fix it by removing xcp drm devices when failed to probe GPU devices.
->>=20
->> Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
->> Tested-by: Shuo Liu <shuox.liu@linux.alibaba.com>
->> Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
->> ---
->> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
->> drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  2 +-
->> drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    |  1 +
->> drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c    | 47 =
-+++++++++++++++++++---
->> drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h    |  4 +-
->> 5 files changed, 47 insertions(+), 9 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> index 5ff53a3b9851..510074a9074e 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> @@ -6682,7 +6682,7 @@ void amdgpu_device_halt(struct amdgpu_device =
-*adev)
->> 	struct pci_dev *pdev =3D adev->pdev;
->> 	struct drm_device *ddev =3D adev_to_drm(adev);
->>=20
->> -	amdgpu_xcp_dev_unplug(adev);
->> +	amdgpu_xcp_dev_deregister(adev);
->> 	drm_dev_unplug(ddev);
->>=20
->> 	amdgpu_irq_disable_all(adev);
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> index 62de668e9ff8..41d1b06be600 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->> @@ -2435,7 +2435,7 @@ amdgpu_pci_remove(struct pci_dev *pdev)
->> 	struct drm_device *dev =3D pci_get_drvdata(pdev);
->> 	struct amdgpu_device *adev =3D drm_to_adev(dev);
->>=20
->> -	amdgpu_xcp_dev_unplug(adev);
->> +	amdgpu_xcp_dev_deregister(adev);
->> 	amdgpu_gmc_prepare_nps_mode_change(adev);
->> 	drm_dev_unplug(dev);
->>=20
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> index d2a046736edd..be9147eb8308 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> @@ -1508,6 +1508,7 @@ void amdgpu_driver_release_kms(struct =
-drm_device *dev)
->> 	struct amdgpu_device *adev =3D drm_to_adev(dev);
->>=20
->> 	amdgpu_device_fini_sw(adev);
->> +	amdgpu_xcp_mgr_fini(adev);
->=20
-> Suggest to move this inside fini_sw()
->=20
->> 	pci_set_drvdata(adev->pdev, NULL);
->> }
->>=20
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
->> index e209b5e101df..62dd5287808b 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
->> @@ -283,6 +283,33 @@ static int amdgpu_xcp_dev_alloc(struct =
-amdgpu_device *adev)
->> 	return 0;
->> }
->>=20
->> +static void amdgpu_xcp_dev_free(struct amdgpu_device *adev)
->> +{
->> +	struct drm_device *p_ddev;
->> +	int i;
->> +
->> +	if (!adev->xcp_mgr)
->> +		return;
->> +
->> +	for (i =3D 1; i < MAX_XCP; i++) {
->> +		if (!adev->xcp_mgr->xcp[i].ddev)
->> +			break;
->> +
->> +		// Restore and free the original drm_device.
->> +		p_ddev =3D adev->xcp_mgr->xcp[i].ddev;
->> +		p_ddev->render->dev =3D adev->xcp_mgr->xcp[i].rdev;
->> +		p_ddev->primary->dev =3D adev->xcp_mgr->xcp[i].pdev;
->> +		p_ddev->driver =3D  adev->xcp_mgr->xcp[i].driver;
->> +		p_ddev->vma_offset_manager =3D =
-adev->xcp_mgr->xcp[i].vma_offset_manager;
->=20
-> Now that there are more calls, this doesn't make sense here. What =
-about
-> moving the redirection along with register() (I guess it matters from
-> that point onwards) and undoing it (restore back saved values) along
-> with deregister()? With that, there won't be a need to have registered
-> flag. You may only need to check if xcp rdev/pdev is not NULL.
-Good point, this makes code more clear.
-
-
->=20
->> +		amdgpu_xcp_drm_dev_free(p_ddev);
->> +
->> +		adev->xcp_mgr->xcp[i].ddev =3D NULL;
->> +	}
->> +
->> +	adev->xcp_mgr->xcp->ddev =3D NULL;
->> +}
->> +
->> +
->> int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int init_mode,
->> 			int init_num_xcps,
->> 			struct amdgpu_xcp_mgr_funcs *xcp_funcs)
->> @@ -310,6 +337,13 @@ int amdgpu_xcp_mgr_init(struct amdgpu_device =
-*adev, int init_mode,
->> 	return amdgpu_xcp_dev_alloc(adev);
->> }
->>=20
->> +void amdgpu_xcp_mgr_fini(struct amdgpu_device *adev)
->> +{
->> +	amdgpu_xcp_dev_free(adev);
->> +	kfree(adev->xcp_mgr);
->> +	adev->xcp_mgr =3D NULL;
->=20
-> Thanks for adding this.
->=20
-> Thanks,
-> Lijo
->=20
->> +}
->> +
->> int amdgpu_xcp_get_partition(struct amdgpu_xcp_mgr *xcp_mgr,
->> 			     enum AMDGPU_XCP_IP_BLOCK ip, int instance)
->> {
->> @@ -359,12 +393,14 @@ int amdgpu_xcp_dev_register(struct =
-amdgpu_device *adev,
->> 		ret =3D drm_dev_register(adev->xcp_mgr->xcp[i].ddev, =
-ent->driver_data);
->> 		if (ret)
->> 			return ret;
->> +
->> +		adev->xcp_mgr->xcp[i].registered =3D true;
->> 	}
->>=20
->> 	return 0;
->> }
->>=20
->> -void amdgpu_xcp_dev_unplug(struct amdgpu_device *adev)
->> +void amdgpu_xcp_dev_deregister(struct amdgpu_device *adev)
->> {
->> 	struct drm_device *p_ddev;
->> 	int i;
->> @@ -377,11 +413,10 @@ void amdgpu_xcp_dev_unplug(struct amdgpu_device =
-*adev)
->> 			break;
->>=20
->> 		p_ddev =3D adev->xcp_mgr->xcp[i].ddev;
->> -		drm_dev_unplug(p_ddev);
->> -		p_ddev->render->dev =3D adev->xcp_mgr->xcp[i].rdev;
->> -		p_ddev->primary->dev =3D adev->xcp_mgr->xcp[i].pdev;
->> -		p_ddev->driver =3D  adev->xcp_mgr->xcp[i].driver;
->> -		p_ddev->vma_offset_manager =3D =
-adev->xcp_mgr->xcp[i].vma_offset_manager;
->> +		if (adev->xcp_mgr->xcp[i].registered) {
->> +			drm_dev_unplug(p_ddev);
->> +			adev->xcp_mgr->xcp[i].registered =3D false;
->> +		}
->> 	}
->> }
->>=20
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
->> index b63f53242c57..be22d4398463 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
->> @@ -101,6 +101,7 @@ struct amdgpu_xcp {
->> 	uint8_t id;
->> 	uint8_t mem_id;
->> 	bool valid;
->> +	bool registered;
->> 	atomic_t	ref_cnt;
->> 	struct drm_device *ddev;
->> 	struct drm_device *rdev;
->> @@ -155,6 +156,7 @@ int amdgpu_xcp_resume(struct amdgpu_xcp_mgr =
-*xcp_mgr, int xcp_id);
->>=20
->> int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int init_mode,
->> 			int init_xcps, struct amdgpu_xcp_mgr_funcs =
-*xcp_funcs);
->> +void amdgpu_xcp_mgr_fini(struct amdgpu_device *adev);
->> int amdgpu_xcp_init(struct amdgpu_xcp_mgr *xcp_mgr, int num_xcps, int =
-mode);
->> int amdgpu_xcp_query_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr, =
-u32 flags);
->> int amdgpu_xcp_switch_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr, =
-int mode);
->> @@ -168,7 +170,7 @@ int amdgpu_xcp_get_inst_details(struct amdgpu_xcp =
-*xcp,
->>=20
->> int amdgpu_xcp_dev_register(struct amdgpu_device *adev,
->> 				const struct pci_device_id *ent);
->> -void amdgpu_xcp_dev_unplug(struct amdgpu_device *adev);
->> +void amdgpu_xcp_dev_deregister(struct amdgpu_device *adev);
->> int amdgpu_xcp_open_device(struct amdgpu_device *adev,
->> 			   struct amdgpu_fpriv *fpriv,
->> 			   struct drm_file *file_priv);
-
-
---Apple-Mail=_2CAB3493-9B0D-44F5-9052-52A0C731BE92
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
-class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">2025=E5=B9=B41=E6=9C=888=E6=97=A5 17:54=EF=BC=8CLazar, Lijo =
-&lt;<a href=3D"mailto:lijo.lazar@amd.com" =
-class=3D"">lijo.lazar@amd.com</a>&gt; =E5=86=99=E9=81=93=EF=BC=9A</div><br=
- class=3D"Apple-interchange-newline"><div class=3D""><meta =
-charset=3D"UTF-8" class=3D""><br style=3D"caret-color: rgb(0, 0, 0); =
-font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><br style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><span style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">On 1/8/2025 2:26 PM, Jiang Liu wrote:</span><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-18px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" =
-class=3D""><blockquote type=3D"cite" style=3D"font-family: Helvetica; =
-font-size: 18px; font-style: normal; font-variant-caps: normal; =
-font-weight: 400; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; text-decoration: none;" class=3D"">If =
-some GPU device failed to probe, `rmmod amdgpu` will trigger a use<br =
-class=3D"">after free bug related to amdgpu_driver_release_kms() as:<br =
-class=3D"">2024-12-26 16:17:45 [16002.085540] BUG: kernel NULL pointer =
-dereference, address: 0000000000000000<br class=3D"">2024-12-26 16:17:45 =
-[16002.093792] #PF: supervisor read access in kernel mode<br =
-class=3D"">2024-12-26 16:17:45 [16002.099993] #PF: error_code(0x0000) - =
-not-present page<br class=3D"">2024-12-26 16:17:45 [16002.106188] PGD 0 =
-P4D 0<br class=3D"">2024-12-26 16:17:45 [16002.109464] Oops: Oops: 0000 =
-[#1] PREEMPT SMP NOPTI<br class=3D"">2024-12-26 16:17:45 [16002.115372] =
-CPU: 2 PID: 14375 Comm: rmmod Kdump: loaded Tainted: G =
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W &nbsp;&nbsp;E =
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.10.0+ #2<br class=3D"">2024-12-26 =
-16:17:45 [16002.125577] Hardware name: Alibaba Alibaba Cloud ECS/Alibaba =
-Cloud ECS, BIOS 3.0.ES.AL.P.087.05 04/07/2024<br class=3D"">2024-12-26 =
-16:17:45 [16002.136858] RIP: 0010:drm_sched_fini+0x3f/0xe0 =
-[gpu_sched]<br class=3D"">2024-12-26 16:17:45 [16002.143463] Code: 60 c6 =
-87 be 00 00 00 01 e8 ce e0 90 d8 48 8d bb 80 00 00 00 e8 c2 e0 90 d8 8b =
-43 20 85 c0 74 51 45 31 e4 48 8b<br class=3D"">43 28 4d 63 ec &lt;4a&gt; =
-8b 2c e8 48 89 ef e8 f5 0e 59 d9 48 8b 45 10 48 8d 55 10 48 39<br =
-class=3D"">2024-12-26 16:17:45 [16002.164992] RSP: 0018:ffffb570dbbb7da8 =
-EFLAGS: 00010246<br class=3D"">2024-12-26 16:17:45 [16002.171316] RAX: =
-0000000000000000 RBX: ffff96b0fdadc878 RCX: 0000000000000000<br =
-class=3D"">2024-12-26 16:17:46 [16002.179784] RDX: 000fffffffe00000 RSI: =
-0000000000000000 RDI: ffff96b0fdadc8f8<br class=3D"">2024-12-26 16:17:46 =
-[16002.188252] RBP: ffff96b0fdadc800 R08: ffff97abbd035040 R09: =
-ffffffff9ac52540<br class=3D"">2024-12-26 16:17:46 [16002.196722] R10: =
-0000000000000000 R11: 0000000000000000 R12: 0000000000000000<br =
-class=3D"">2024-12-26 16:17:46 [16002.205179] R13: 0000000000000000 R14: =
-ffff96b0fdadfc00 R15: 0000000000000000<br class=3D"">2024-12-26 16:17:46 =
-[16002.213648] FS: &nbsp;00007f2737000740(0000) =
-GS:ffff97abbd100000(0000) knlGS:0000000000000000<br class=3D"">2024-12-26 =
-16:17:46 [16002.223189] CS: &nbsp;0010 DS: 0000 ES: 0000 CR0: =
-0000000080050033<br class=3D"">2024-12-26 16:17:46 [16002.230103] CR2: =
-0000000000000000 CR3: 000000011be3a005 CR4: 0000000000f70ef0<br =
-class=3D"">2024-12-26 16:17:46 [16002.238581] DR0: 0000000000000000 DR1: =
-0000000000000000 DR2: 0000000000000000<br class=3D"">2024-12-26 16:17:46 =
-[16002.247053] DR3: 0000000000000000 DR6: 00000000fffe07f0 DR7: =
-0000000000000400<br class=3D"">e024se+0x3c/0x90 [amdxcp]<br =
-class=3D"">2024-12-26 16:17:46 [16002.337645] =
-&nbsp;__do_sys_delete_module.constprop.0+0x176/0x310<br =
-class=3D"">2024-12-26 16:17:46 [16002.344324] =
-&nbsp;do_syscall_64+0x5d/0x170<br class=3D"">2024-12-26 16:17:46 =
-[16002.348858] &nbsp;entry_SYSCALL_64_after_hwframe+0x76/0x7e<br =
-class=3D"">2024-12-26 16:17:46 [16002.354956] RIP: =
-0033:0x7f2736a620cb-12-26<br class=3D""><br class=3D"">Fix it by =
-removing xcp drm devices when failed to probe GPU devices.<br =
-class=3D""><br class=3D"">Signed-off-by: Jiang Liu &lt;<a =
-href=3D"mailto:gerry@linux.alibaba.com" =
-class=3D"">gerry@linux.alibaba.com</a>&gt;<br class=3D"">Tested-by: Shuo =
-Liu &lt;<a href=3D"mailto:shuox.liu@linux.alibaba.com" =
-class=3D"">shuox.liu@linux.alibaba.com</a>&gt;<br class=3D"">Reviewed-by: =
-Lijo Lazar &lt;<a href=3D"mailto:lijo.lazar@amd.com" =
-class=3D"">lijo.lazar@amd.com</a>&gt;<br class=3D"">---<br =
-class=3D"">drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | &nbsp;2 +-<br =
-class=3D"">drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c &nbsp;&nbsp;&nbsp;| =
-&nbsp;2 +-<br class=3D"">drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c =
-&nbsp;&nbsp;&nbsp;| &nbsp;1 +<br =
-class=3D"">drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c &nbsp;&nbsp;&nbsp;| =
-47 +++++++++++++++++++---<br =
-class=3D"">drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h &nbsp;&nbsp;&nbsp;| =
-&nbsp;4 +-<br class=3D"">5 files changed, 47 insertions(+), 9 =
-deletions(-)<br class=3D""><br class=3D"">diff --git =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br class=3D"">index =
-5ff53a3b9851..510074a9074e 100644<br class=3D"">--- =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br class=3D"">+++ =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br class=3D"">@@ -6682,7 =
-+6682,7 @@ void amdgpu_device_halt(struct amdgpu_device *adev)<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>struct pci_dev *pdev =3D adev-&gt;pdev;<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>struct =
-drm_device *ddev =3D adev_to_drm(adev);<br class=3D""><br =
-class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>amdgpu_xcp_dev_unplug(adev);<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>amdgpu_xcp_dev_deregister(adev);<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>drm_dev_unplug(ddev);<br class=3D""><br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>amdgpu_irq_disable_all(adev);<br class=3D"">diff --git =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c<br class=3D"">index =
-62de668e9ff8..41d1b06be600 100644<br class=3D"">--- =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c<br class=3D"">+++ =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c<br class=3D"">@@ -2435,7 =
-+2435,7 @@ amdgpu_pci_remove(struct pci_dev *pdev)<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>struct =
-drm_device *dev =3D pci_get_drvdata(pdev);<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>struct =
-amdgpu_device *adev =3D drm_to_adev(dev);<br class=3D""><br =
-class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>amdgpu_xcp_dev_unplug(adev);<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>amdgpu_xcp_dev_deregister(adev);<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>amdgpu_gmc_prepare_nps_mode_change(adev);<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>drm_dev_unplug(dev);<br class=3D""><br class=3D"">diff --git =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br class=3D"">index =
-d2a046736edd..be9147eb8308 100644<br class=3D"">--- =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br class=3D"">+++ =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br class=3D"">@@ -1508,6 =
-+1508,7 @@ void amdgpu_driver_release_kms(struct drm_device *dev)<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>struct amdgpu_device *adev =3D drm_to_adev(dev);<br class=3D""><br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>amdgpu_device_fini_sw(adev);<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>amdgpu_xcp_mgr_fini(adev);<br class=3D""></blockquote><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-18px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" class=3D""><span =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-18px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; float: none; =
-display: inline !important;" class=3D"">Suggest to move this inside =
-fini_sw()</span><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><blockquote type=3D"cite" style=3D"font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; text-decoration: none;" class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>pci_set_drvdata(adev-&gt;pdev, NULL);<br class=3D"">}<br =
-class=3D""><br class=3D"">diff --git =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c<br class=3D"">index =
-e209b5e101df..62dd5287808b 100644<br class=3D"">--- =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c<br class=3D"">+++ =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c<br class=3D"">@@ -283,6 =
-+283,33 @@ static int amdgpu_xcp_dev_alloc(struct amdgpu_device =
-*adev)<br class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: =
-pre;">	</span>return 0;<br class=3D"">}<br class=3D""><br =
-class=3D"">+static void amdgpu_xcp_dev_free(struct amdgpu_device =
-*adev)<br class=3D"">+{<br class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>struct drm_device *p_ddev;<br =
-class=3D"">+<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>int i;<br class=3D"">+<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>if =
-(!adev-&gt;xcp_mgr)<br class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>return;<br class=3D"">+<br =
-class=3D"">+<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>for (i =3D 1; i &lt; MAX_XCP; i++) {<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>if =
-(!adev-&gt;xcp_mgr-&gt;xcp[i].ddev)<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>break;<br =
-class=3D"">+<br class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>// Restore and free the original =
-drm_device.<br class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>p_ddev =3D =
-adev-&gt;xcp_mgr-&gt;xcp[i].ddev;<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev-&gt;render-&gt;dev =3D =
-adev-&gt;xcp_mgr-&gt;xcp[i].rdev;<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev-&gt;primary-&gt;dev =3D =
-adev-&gt;xcp_mgr-&gt;xcp[i].pdev;<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev-&gt;driver =3D =
-&nbsp;adev-&gt;xcp_mgr-&gt;xcp[i].driver;<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev-&gt;vma_offset_manager =3D =
-adev-&gt;xcp_mgr-&gt;xcp[i].vma_offset_manager;<br =
-class=3D""></blockquote><br style=3D"caret-color: rgb(0, 0, 0); =
-font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><span style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">Now that there are more calls, this doesn't make sense here. =
-What about</span><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" class=3D"">moving the =
-redirection along with register() (I guess it matters from</span><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-18px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" class=3D""><span =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-18px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; float: none; =
-display: inline !important;" class=3D"">that point onwards) and undoing =
-it (restore back saved values) along</span><br style=3D"caret-color: =
-rgb(0, 0, 0); font-family: Helvetica; font-size: 18px; font-style: =
-normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
-normal; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><span style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">with deregister()? With that, there won't be a need to have =
-registered</span><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" class=3D"">flag. You may =
-only need to check if xcp rdev/pdev is not NULL.</span><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-18px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" =
-class=3D""></div></blockquote><div>Good point, this makes code more =
-clear.</div><div><br class=3D""></div><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D""><br style=3D"caret-color: =
-rgb(0, 0, 0); font-family: Helvetica; font-size: 18px; font-style: =
-normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
-normal; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><blockquote type=3D"cite" =
-style=3D"font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	=
-</span>amdgpu_xcp_drm_dev_free(p_ddev);<br class=3D"">+<br =
-class=3D"">+<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>adev-&gt;xcp_mgr-&gt;xcp[i].ddev =3D NULL;<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>}<br =
-class=3D"">+<br class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>adev-&gt;xcp_mgr-&gt;xcp-&gt;ddev =
-=3D NULL;<br class=3D"">+}<br class=3D"">+<br class=3D"">+<br =
-class=3D"">int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int =
-init_mode,<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>int init_num_xcps,<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>struct amdgpu_xcp_mgr_funcs *xcp_funcs)<br class=3D"">@@ -310,6 =
-+337,13 @@ int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int =
-init_mode,<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>return =
-amdgpu_xcp_dev_alloc(adev);<br class=3D"">}<br class=3D""><br =
-class=3D"">+void amdgpu_xcp_mgr_fini(struct amdgpu_device *adev)<br =
-class=3D"">+{<br class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>amdgpu_xcp_dev_free(adev);<br =
-class=3D"">+<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>kfree(adev-&gt;xcp_mgr);<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>adev-&gt;xcp_mgr =3D NULL;<br class=3D""></blockquote><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-18px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" class=3D""><span =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-18px; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; float: none; =
-display: inline !important;" class=3D"">Thanks for adding =
-this.</span><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 18px; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" =
-class=3D"">Thanks,</span><br style=3D"caret-color: rgb(0, 0, 0); =
-font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><span style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">Lijo</span><br style=3D"caret-color: rgb(0, 0, 0); =
-font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><br style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><blockquote type=3D"cite" =
-style=3D"font-family: Helvetica; font-size: 18px; font-style: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D"">+}<br class=3D"">+<br class=3D"">int =
-amdgpu_xcp_get_partition(struct amdgpu_xcp_mgr *xcp_mgr,<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span =
-class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;enum =
-AMDGPU_XCP_IP_BLOCK ip, int instance)<br class=3D"">{<br class=3D"">@@ =
--359,12 +393,14 @@ int amdgpu_xcp_dev_register(struct amdgpu_device =
-*adev,<br class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: =
-pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
-pre;">	</span>ret =3D =
-drm_dev_register(adev-&gt;xcp_mgr-&gt;xcp[i].ddev, =
-ent-&gt;driver_data);<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>if (ret)<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>return =
-ret;<br class=3D"">+<br class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	=
-</span>adev-&gt;xcp_mgr-&gt;xcp[i].registered =3D true;<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>}<br class=3D""><br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>return 0;<br class=3D"">}<br =
-class=3D""><br class=3D"">-void amdgpu_xcp_dev_unplug(struct =
-amdgpu_device *adev)<br class=3D"">+void =
-amdgpu_xcp_dev_deregister(struct amdgpu_device *adev)<br class=3D"">{<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>struct drm_device *p_ddev;<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>int i;<br =
-class=3D"">@@ -377,11 +413,10 @@ void amdgpu_xcp_dev_unplug(struct =
-amdgpu_device *adev)<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>break;<br class=3D""><br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev =3D adev-&gt;xcp_mgr-&gt;xcp[i].ddev;<br class=3D"">-<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>drm_dev_unplug(p_ddev);<br class=3D"">-<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev-&gt;render-&gt;dev =3D =
-adev-&gt;xcp_mgr-&gt;xcp[i].rdev;<br class=3D"">-<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev-&gt;primary-&gt;dev =3D =
-adev-&gt;xcp_mgr-&gt;xcp[i].pdev;<br class=3D"">-<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev-&gt;driver =3D =
-&nbsp;adev-&gt;xcp_mgr-&gt;xcp[i].driver;<br class=3D"">-<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>p_ddev-&gt;vma_offset_manager =3D =
-adev-&gt;xcp_mgr-&gt;xcp[i].vma_offset_manager;<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>if =
-(adev-&gt;xcp_mgr-&gt;xcp[i].registered) {<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>drm_dev_unplug(p_ddev);<br class=3D"">+<span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>adev-&gt;xcp_mgr-&gt;xcp[i].registered =3D false;<br =
-class=3D"">+<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>}<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>}<br class=3D"">}<br class=3D""><br=
- class=3D"">diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h<br class=3D"">index =
-b63f53242c57..be22d4398463 100644<br class=3D"">--- =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h<br class=3D"">+++ =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h<br class=3D"">@@ -101,6 +101,7 =
-@@ struct amdgpu_xcp {<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>uint8_t id;<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>uint8_t =
-mem_id;<br class=3D""><span class=3D"Apple-tab-span" style=3D"white-space:=
- pre;">	</span>bool valid;<br class=3D"">+<span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>bool registered;<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>atomic_t<span class=3D"Apple-tab-span" style=3D"white-space: =
-pre;">	</span>ref_cnt;<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>struct drm_device *ddev;<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>struct drm_device *rdev;<br class=3D"">@@ -155,6 +156,7 @@ int =
-amdgpu_xcp_resume(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);<br =
-class=3D""><br class=3D"">int amdgpu_xcp_mgr_init(struct amdgpu_device =
-*adev, int init_mode,<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span>int init_xcps, struct =
-amdgpu_xcp_mgr_funcs *xcp_funcs);<br class=3D"">+void =
-amdgpu_xcp_mgr_fini(struct amdgpu_device *adev);<br class=3D"">int =
-amdgpu_xcp_init(struct amdgpu_xcp_mgr *xcp_mgr, int num_xcps, int =
-mode);<br class=3D"">int amdgpu_xcp_query_partition_mode(struct =
-amdgpu_xcp_mgr *xcp_mgr, u32 flags);<br class=3D"">int =
-amdgpu_xcp_switch_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr, int =
-mode);<br class=3D"">@@ -168,7 +170,7 @@ int =
-amdgpu_xcp_get_inst_details(struct amdgpu_xcp *xcp,<br class=3D""><br =
-class=3D"">int amdgpu_xcp_dev_register(struct amdgpu_device *adev,<br =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
-</span>const struct pci_device_id *ent);<br class=3D"">-void =
-amdgpu_xcp_dev_unplug(struct amdgpu_device *adev);<br class=3D"">+void =
-amdgpu_xcp_dev_deregister(struct amdgpu_device *adev);<br class=3D"">int =
-amdgpu_xcp_open_device(struct amdgpu_device *adev,<br class=3D""><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;struct =
-amdgpu_fpriv *fpriv,<br class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space: pre;">	</span><span =
-class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;struct drm_file =
-*file_priv);</blockquote></div></blockquote></div><br =
-class=3D""></body></html>=
-
---Apple-Mail=_2CAB3493-9B0D-44F5-9052-52A0C731BE92--
