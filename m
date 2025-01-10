@@ -2,27 +2,27 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB87A08525
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2025 03:08:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C282A08527
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2025 03:09:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D46E10E4C5;
-	Fri, 10 Jan 2025 02:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05B5F10EF6D;
+	Fri, 10 Jan 2025 02:08:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="jD4W3Om8";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="qpNruZIx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-97.freemail.mail.aliyun.com
- (out30-97.freemail.mail.aliyun.com [115.124.30.97])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77FC910EF65
+Received: from out30-132.freemail.mail.aliyun.com
+ (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB2610E4BB
  for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2025 02:08:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
  t=1736474932; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=phBsxFG4ruvg7vzKjxQama6irk3aOMNOnQZCDS5Co5w=;
- b=jD4W3Om8AlDz4XOCRDgqkKCR12mIXY5ZyyDPoTFVRrNtDlZKHGZAjUxSpmh1N/9LTR4YL5qvGw0wuBucDgyxIvJxqhAbAtrhMy4tapwiCSRkFTCnZ16rPgTOpxGPIMga/BoWPNumWO305xPfilpEAIb5xBwVD8JAKe5HycZpYvU=
+ bh=JntDHZGT9CJQuSKKlD14+dGlTtQLs3ygEeS3bEh1nDo=;
+ b=qpNruZIx9ePtqMZNLb8uZhB8/HnOu46wm8m4FI5eyGwNaP0d2DkdKMgxU6lq05f2jAwoj17uxvCo5FkTNrZQ9rYusAb5bCj30pRukHXIfUKlFhF9am+04AtkF39LpvyhjxbITHpxDU4lGVXhKPoKOIbJsH2Lsx5eyF+PQ0H7JKA=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNJ5WA8_1736474931 cluster:ay36) by smtp.aliyun-inc.com;
+ fp:SMTPD_---0WNJ5WAT_1736474931 cluster:ay36) by smtp.aliyun-inc.com;
  Fri, 10 Jan 2025 10:08:51 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
@@ -31,9 +31,10 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  xiaogang.chen@amd.com, Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [v4 2/5] drm/amdxcp: introduce new API amdgpu_xcp_drm_dev_free()
-Date: Fri, 10 Jan 2025 10:08:44 +0800
-Message-ID: <79267ddb1b1b8d83e2ec170f4b0b578c705de4dd.1736474822.git.gerry@linux.alibaba.com>
+Subject: [v4 3/5] drm/amdgpu: fix use after free bug related to
+ amdgpu_driver_release_kms()
+Date: Fri, 10 Jan 2025 10:08:45 +0800
+Message-ID: <3b84aafd838898a1de248f57359e3d23d2a64fe4.1736474822.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1736474822.git.gerry@linux.alibaba.com>
 References: <cover.1736474822.git.gerry@linux.alibaba.com>
@@ -53,131 +54,241 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Introduce new interface amdgpu_xcp_drm_dev_free() to free a specific
-drm_device crreated by amdgpu_xcp_drm_dev_alloc(), which will be used
-to do error recovery.
+If some GPU device failed to probe, `rmmod amdgpu` will trigger a use
+after free bug related to amdgpu_driver_release_kms() as:
+[16002.085540] BUG: kernel NULL pointer dereference, address: 0000000000000000
+[16002.093792] #PF: supervisor read access in kernel mode
+[16002.099993] #PF: error_code(0x0000) - not-present page
+[16002.106188] PGD 0 P4D 0
+[16002.109464] Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
+[16002.115372] CPU: 2 PID: 14375 Comm: rmmod Kdump: loaded Tainted: G        W   E      6.10.0+ #2
+[16002.125577] Hardware name: Alibaba Alibaba Cloud ECS/Alibaba Cloud ECS, BIOS 3.0.ES.AL.P.087.05 04/07/2024
+[16002.136858] RIP: 0010:drm_sched_fini+0x3f/0xe0 [gpu_sched]
+[16002.143463] Code: 60 c6 87 be 00 00 00 01 e8 ce e0 90 d8 48 8d bb 80 00 00 00 e8 c2 e0 90 d8 8b 43 20 85 c0 74 51 45 31 e4 48 8b
+8b 2c e8 48 89 ef e8 f5 0e 59 d9 48 8b 45 10 48 8d 55 10 48 39
+[16002.164992] RSP: 0018:ffffb570dbbb7da8 EFLAGS: 00010246
+[16002.171316] RAX: 0000000000000000 RBX: ffff96b0fdadc878 RCX: 0000000000000000
+[16002.179784] RDX: 000fffffffe00000 RSI: 0000000000000000 RDI: ffff96b0fdadc8f8
+[16002.188252] RBP: ffff96b0fdadc800 R08: ffff97abbd035040 R09: ffffffff9ac52540
+[16002.196722] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+[16002.205179] R13: 0000000000000000 R14: ffff96b0fdadfc00 R15: 0000000000000000
+[16002.213648] FS:  00007f2737000740(0000) GS:ffff97abbd100000(0000) knlGS:0000000000000000
+[16002.223189] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[16002.230103] CR2: 0000000000000000 CR3: 000000011be3a005 CR4: 0000000000f70ef0
+[16002.238581] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[16002.247053] DR3: 0000000000000000 DR6: 00000000fffe07f0 DR7: 0000000000000400
+dxcp]
+[16002.337645]  __do_sys_delete_module.constprop.0+0x176/0x310
+[16002.344324]  do_syscall_64+0x5d/0x170
+[16002.348858]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[16002.354956] RIP: 0033:0x7f2736a620cb-12-26
+
+Fix it by removing xcp drm devices when failed to probe GPU devices.
 
 Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
+Tested-by: Shuo Liu <shuox.liu@linux.alibaba.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c | 65 +++++++++++++++++----
- drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h |  1 +
- 2 files changed, 56 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c    | 70 ++++++++++++++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h    |  4 +-
+ 4 files changed, 64 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c b/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c
-index faed84172dd4..0473fe0479d9 100644
---- a/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c
-+++ b/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c
-@@ -45,18 +45,26 @@ static const struct drm_driver amdgpu_xcp_driver = {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 5ff53a3b9851..f29a4ad3c6d0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4777,6 +4777,8 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
+ 	amdgpu_reset_put_reset_domain(adev->reset_domain);
+ 	adev->reset_domain = NULL;
  
- static int8_t pdev_num;
- static struct xcp_device *xcp_dev[MAX_XCP_PLATFORM_DEVICE];
-+static DEFINE_MUTEX(xcp_mutex);
- 
- int amdgpu_xcp_drm_dev_alloc(struct drm_device **ddev)
- {
- 	struct platform_device *pdev;
- 	struct xcp_device *pxcp_dev;
- 	char dev_name[20];
--	int ret;
-+	int ret, index;
++	amdgpu_xcp_mgr_fini(adev);
 +
-+	guard(mutex)(&xcp_mutex);
+ 	kfree(adev->pci_state);
  
- 	if (pdev_num >= MAX_XCP_PLATFORM_DEVICE)
- 		return -ENODEV;
+ }
+@@ -6682,7 +6684,7 @@ void amdgpu_device_halt(struct amdgpu_device *adev)
+ 	struct pci_dev *pdev = adev->pdev;
+ 	struct drm_device *ddev = adev_to_drm(adev);
  
--	snprintf(dev_name, sizeof(dev_name), "amdgpu_xcp_%d", pdev_num);
-+	for (index = 0; index < MAX_XCP_PLATFORM_DEVICE; index++) {
-+		if (!xcp_dev[index])
-+			break;
-+	}
-+
-+	snprintf(dev_name, sizeof(dev_name), "amdgpu_xcp_%d", index);
- 	pdev = platform_device_register_simple(dev_name, -1, NULL, 0);
- 	if (IS_ERR(pdev))
- 		return PTR_ERR(pdev);
-@@ -72,8 +80,8 @@ int amdgpu_xcp_drm_dev_alloc(struct drm_device **ddev)
- 		goto out_devres;
+-	amdgpu_xcp_dev_unplug(adev);
++	amdgpu_xcp_dev_deregister(adev);
+ 	drm_dev_unplug(ddev);
+ 
+ 	amdgpu_irq_disable_all(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 62de668e9ff8..41d1b06be600 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -2435,7 +2435,7 @@ amdgpu_pci_remove(struct pci_dev *pdev)
+ 	struct drm_device *dev = pci_get_drvdata(pdev);
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
+ 
+-	amdgpu_xcp_dev_unplug(adev);
++	amdgpu_xcp_dev_deregister(adev);
+ 	amdgpu_gmc_prepare_nps_mode_change(adev);
+ 	drm_dev_unplug(dev);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+index e209b5e101df..21993aff0dbc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+@@ -268,21 +268,34 @@ static int amdgpu_xcp_dev_alloc(struct amdgpu_device *adev)
+ 			return ret;
+ 		}
+ 
+-		/* Redirect all IOCTLs to the primary device */
+-		adev->xcp_mgr->xcp[i].rdev = p_ddev->render->dev;
+-		adev->xcp_mgr->xcp[i].pdev = p_ddev->primary->dev;
+-		adev->xcp_mgr->xcp[i].driver = (struct drm_driver *)p_ddev->driver;
+-		adev->xcp_mgr->xcp[i].vma_offset_manager = p_ddev->vma_offset_manager;
+-		p_ddev->render->dev = ddev;
+-		p_ddev->primary->dev = ddev;
+-		p_ddev->vma_offset_manager = ddev->vma_offset_manager;
+-		p_ddev->driver = &amdgpu_partition_driver;
+ 		adev->xcp_mgr->xcp[i].ddev = p_ddev;
  	}
  
--	xcp_dev[pdev_num] = pxcp_dev;
--	xcp_dev[pdev_num]->pdev = pdev;
-+	xcp_dev[index] = pxcp_dev;
-+	xcp_dev[index]->pdev = pdev;
- 	*ddev = &pxcp_dev->drm;
- 	pdev_num++;
- 
-@@ -88,16 +96,53 @@ int amdgpu_xcp_drm_dev_alloc(struct drm_device **ddev)
+ 	return 0;
  }
- EXPORT_SYMBOL(amdgpu_xcp_drm_dev_alloc);
  
-+static void __amdgpu_xcp_drm_dev_free(int index)
++static void amdgpu_xcp_dev_free(struct amdgpu_device *adev)
 +{
-+	struct platform_device *pdev;
++	struct drm_device *p_ddev;
++	int i;
 +
-+	pdev = xcp_dev[index]->pdev;
-+	devres_release_group(&pdev->dev, NULL);
-+	platform_device_unregister(pdev);
-+	xcp_dev[index] = NULL;
-+	pdev_num--;
-+}
-+
-+void amdgpu_xcp_drm_dev_free(struct drm_device *ddev)
-+{
-+	int index;
-+	struct xcp_device *pxcp_dev;
-+
-+	if (ddev == NULL)
++	if (!adev->xcp_mgr)
 +		return;
 +
-+	guard(mutex)(&xcp_mutex);
-+	WARN_ON(!pdev_num);
-+
-+	pxcp_dev = container_of(ddev, struct xcp_device, drm);
-+	for (index = 0; index < MAX_XCP_PLATFORM_DEVICE; index++) {
-+		if (xcp_dev[index] == pxcp_dev) {
-+			__amdgpu_xcp_drm_dev_free(index);
++	for (i = 1; i < MAX_XCP; i++) {
++		if (!adev->xcp_mgr->xcp[i].ddev)
 +			break;
-+		}
++
++		p_ddev = adev->xcp_mgr->xcp[i].ddev;
++		adev->xcp_mgr->xcp[i].ddev = NULL;
++
++		amdgpu_xcp_drm_dev_free(p_ddev);
 +	}
++
++	adev->xcp_mgr->xcp->ddev = NULL;
 +}
-+EXPORT_SYMBOL(amdgpu_xcp_drm_dev_free);
 +
- void amdgpu_xcp_drv_release(void)
- {
--	for (--pdev_num; pdev_num >= 0; --pdev_num) {
--		struct platform_device *pdev = xcp_dev[pdev_num]->pdev;
-+	int index;
++
+ int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int init_mode,
+ 			int init_num_xcps,
+ 			struct amdgpu_xcp_mgr_funcs *xcp_funcs)
+@@ -310,6 +323,13 @@ int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int init_mode,
+ 	return amdgpu_xcp_dev_alloc(adev);
+ }
  
--		devres_release_group(&pdev->dev, NULL);
--		platform_device_unregister(pdev);
--		xcp_dev[pdev_num] = NULL;
-+	guard(mutex)(&xcp_mutex);
++void amdgpu_xcp_mgr_fini(struct amdgpu_device *adev)
++{
++	amdgpu_xcp_dev_free(adev);
++	kfree(adev->xcp_mgr);
++	adev->xcp_mgr = NULL;
++}
 +
-+	for (index = 0; index < MAX_XCP_PLATFORM_DEVICE; index++) {
-+		if (xcp_dev[index]) {
-+			__amdgpu_xcp_drm_dev_free(index);
-+			if (!pdev_num)
-+				break;
+ int amdgpu_xcp_get_partition(struct amdgpu_xcp_mgr *xcp_mgr,
+ 			     enum AMDGPU_XCP_IP_BLOCK ip, int instance)
+ {
+@@ -348,23 +368,44 @@ int amdgpu_xcp_dev_register(struct amdgpu_device *adev,
+ 			const struct pci_device_id *ent)
+ {
+ 	int i, ret;
++	struct drm_device *p_ddev;
++	struct drm_device *ddev;
+ 
+ 	if (!adev->xcp_mgr)
+ 		return 0;
+ 
++	ddev = adev_to_drm(adev);
++
+ 	for (i = 1; i < MAX_XCP; i++) {
+-		if (!adev->xcp_mgr->xcp[i].ddev)
++		if (!adev->xcp_mgr->xcp[i].ddev || adev->xcp_mgr->xcp[i].driver)
+ 			break;
+ 
++		/* Redirect all IOCTLs to the primary device */
++		p_ddev = adev->xcp_mgr->xcp[i].ddev;
++		adev->xcp_mgr->xcp[i].rdev = p_ddev->render->dev;
++		adev->xcp_mgr->xcp[i].pdev = p_ddev->primary->dev;
++		adev->xcp_mgr->xcp[i].driver = (struct drm_driver *)p_ddev->driver;
++		adev->xcp_mgr->xcp[i].vma_offset_manager = p_ddev->vma_offset_manager;
++		p_ddev->render->dev = ddev;
++		p_ddev->primary->dev = ddev;
++		p_ddev->driver = &amdgpu_partition_driver;
++		p_ddev->vma_offset_manager = ddev->vma_offset_manager;
++
+ 		ret = drm_dev_register(adev->xcp_mgr->xcp[i].ddev, ent->driver_data);
+-		if (ret)
++		if (ret) {
++			p_ddev->render->dev = adev->xcp_mgr->xcp[i].rdev;
++			p_ddev->primary->dev = adev->xcp_mgr->xcp[i].pdev;
++			p_ddev->driver =  adev->xcp_mgr->xcp[i].driver;
++			p_ddev->vma_offset_manager = adev->xcp_mgr->xcp[i].vma_offset_manager;
++			adev->xcp_mgr->xcp[i].driver = NULL;
+ 			return ret;
 +		}
  	}
--	pdev_num = 0;
-+
-+	WARN_ON(pdev_num != 0);
+ 
+ 	return 0;
  }
- EXPORT_SYMBOL(amdgpu_xcp_drv_release);
  
-diff --git a/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h b/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h
-index c1c4b679bf95..580a1602c8e3 100644
---- a/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h
-+++ b/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h
-@@ -25,5 +25,6 @@
- #define _AMDGPU_XCP_DRV_H_
+-void amdgpu_xcp_dev_unplug(struct amdgpu_device *adev)
++void amdgpu_xcp_dev_deregister(struct amdgpu_device *adev)
+ {
+ 	struct drm_device *p_ddev;
+ 	int i;
+@@ -373,15 +414,18 @@ void amdgpu_xcp_dev_unplug(struct amdgpu_device *adev)
+ 		return;
  
- int amdgpu_xcp_drm_dev_alloc(struct drm_device **ddev);
-+void amdgpu_xcp_drm_dev_free(struct drm_device *ddev);
- void amdgpu_xcp_drv_release(void);
- #endif /* _AMDGPU_XCP_DRV_H_ */
+ 	for (i = 1; i < MAX_XCP; i++) {
+-		if (!adev->xcp_mgr->xcp[i].ddev)
++		if (!adev->xcp_mgr->xcp[i].ddev || !adev->xcp_mgr->xcp[i].driver)
+ 			break;
+ 
++		// Restore and free the original drm_device.
+ 		p_ddev = adev->xcp_mgr->xcp[i].ddev;
+ 		drm_dev_unplug(p_ddev);
++
+ 		p_ddev->render->dev = adev->xcp_mgr->xcp[i].rdev;
+ 		p_ddev->primary->dev = adev->xcp_mgr->xcp[i].pdev;
+ 		p_ddev->driver =  adev->xcp_mgr->xcp[i].driver;
+ 		p_ddev->vma_offset_manager = adev->xcp_mgr->xcp[i].vma_offset_manager;
++		adev->xcp_mgr->xcp[i].driver = NULL;
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
+index b63f53242c57..be22d4398463 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
+@@ -101,6 +101,7 @@ struct amdgpu_xcp {
+ 	uint8_t id;
+ 	uint8_t mem_id;
+ 	bool valid;
++	bool registered;
+ 	atomic_t	ref_cnt;
+ 	struct drm_device *ddev;
+ 	struct drm_device *rdev;
+@@ -155,6 +156,7 @@ int amdgpu_xcp_resume(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
+ 
+ int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int init_mode,
+ 			int init_xcps, struct amdgpu_xcp_mgr_funcs *xcp_funcs);
++void amdgpu_xcp_mgr_fini(struct amdgpu_device *adev);
+ int amdgpu_xcp_init(struct amdgpu_xcp_mgr *xcp_mgr, int num_xcps, int mode);
+ int amdgpu_xcp_query_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr, u32 flags);
+ int amdgpu_xcp_switch_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr, int mode);
+@@ -168,7 +170,7 @@ int amdgpu_xcp_get_inst_details(struct amdgpu_xcp *xcp,
+ 
+ int amdgpu_xcp_dev_register(struct amdgpu_device *adev,
+ 				const struct pci_device_id *ent);
+-void amdgpu_xcp_dev_unplug(struct amdgpu_device *adev);
++void amdgpu_xcp_dev_deregister(struct amdgpu_device *adev);
+ int amdgpu_xcp_open_device(struct amdgpu_device *adev,
+ 			   struct amdgpu_fpriv *fpriv,
+ 			   struct drm_file *file_priv);
 -- 
 2.43.5
 
