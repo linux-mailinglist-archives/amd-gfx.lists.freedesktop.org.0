@@ -2,27 +2,27 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84BB1A08526
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2025 03:09:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AF4BA08529
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jan 2025 03:09:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC13010EF65;
-	Fri, 10 Jan 2025 02:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B58E10EF74;
+	Fri, 10 Jan 2025 02:08:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="xBPhfyBt";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="xHqLDr+p";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-111.freemail.mail.aliyun.com
- (out30-111.freemail.mail.aliyun.com [115.124.30.111])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1ABD10EF6D
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2025 02:08:54 +0000 (UTC)
+Received: from out30-119.freemail.mail.aliyun.com
+ (out30-119.freemail.mail.aliyun.com [115.124.30.119])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8431B10E4BB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jan 2025 02:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
  t=1736474933; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=MXbDW9MAa3uhDjx5zx5HxEPL34V26LxJQj8V2w43Tho=;
- b=xBPhfyBt8P3OboZyOoKKuqbCoA9aP/TK1Oww7jSt7rnQO230lWO6Y3McpLZclRMZBJFpGvO9YscST53HUTgubNutHzyX3zWbkUiF+rorwkPISdChGQ3PjcETCQvsagWtc10LWZ7RuR9vlbb0EIG59VU9i8FPBnjK8t399GFvDus=
+ bh=qQRr9WLw4pGx4FAg2snuWQFxgz+e5RD7z8bqxmMnxQY=;
+ b=xHqLDr+p1uk7ypZH6336agTES8wJDbtKlw6ykM8TqahtTshYpc6dZ4sy4L9AW6mCWDMqmLctB5eIiyXbjb0ocVjU9FbS50YdBLLPqDsjb1Om52oWzItNTDPd+mcRZ4HfFHy8yp9k1rqoi7K82YRdYbztIYzy1kL5cy6KcirEBd8=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNJ5WAq_1736474931 cluster:ay36) by smtp.aliyun-inc.com;
+ fp:SMTPD_---0WNJ5WB-_1736474932 cluster:ay36) by smtp.aliyun-inc.com;
  Fri, 10 Jan 2025 10:08:52 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
@@ -31,10 +31,10 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  xiaogang.chen@amd.com, Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [v4 4/5] drm/amdgpu: enhance error handling in function
- amdgpu_pci_probe()
-Date: Fri, 10 Jan 2025 10:08:46 +0800
-Message-ID: <ae5fe482d1310c5006384a6ec55438f6d31acadc.1736474822.git.gerry@linux.alibaba.com>
+Subject: [v4 5/5] drm/amdgpu: fix invalid memory access in
+ amdgpu_fence_driver_sw_fini()
+Date: Fri, 10 Jan 2025 10:08:47 +0800
+Message-ID: <b824d12a9636ac43066d731c514de8abbf1d115e.1736474822.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1736474822.git.gerry@linux.alibaba.com>
 References: <cover.1736474822.git.gerry@linux.alibaba.com>
@@ -54,51 +54,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enhance error handling in function amdgpu_pci_probe() to avoid
-possible resource leakage.
+Function detects initialization status by checking sched->ops, so set
+sched->ops to non-NULL just before return in function
+amdgpu_fence_driver_sw_fini() and amdgpu_device_init_schedulers()
+to avoid possible invalid memory access on error recover path.
 
 Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c  | 4 +++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 41d1b06be600..f8deca2f2696 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2346,16 +2346,16 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 		msleep(5000);
- 		goto retry_init;
- 	} else if (ret) {
--		goto err_pci;
-+		goto unload_kms;
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index f29a4ad3c6d0..3688e9eb949b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2857,6 +2857,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+ 		if (r) {
+ 			DRM_ERROR("Failed to create scheduler on ring %s.\n",
+ 				  ring->name);
++			ring->sched.ops = NULL;
+ 			return r;
+ 		}
+ 		r = amdgpu_uvd_entity_init(adev, ring);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 2f24a6aa13bf..b5e87b515139 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -656,8 +656,10 @@ void amdgpu_fence_driver_sw_fini(struct amdgpu_device *adev)
+ 		 * The natural check would be sched.ready, which is
+ 		 * set as drm_sched_init() finishes...
+ 		 */
+-		if (ring->sched.ops)
++		if (ring->sched.ops) {
+ 			drm_sched_fini(&ring->sched);
++			ring->sched.ops = NULL;
++		}
  
- 	ret = amdgpu_xcp_dev_register(adev, ent);
- 	if (ret)
--		goto err_pci;
-+		goto unplug_drm;
- 
- 	ret = amdgpu_amdkfd_drm_client_create(adev);
- 	if (ret)
--		goto err_pci;
-+		goto deregister_xcp;
- 
- 	/*
- 	 * 1. don't init fbdev on hw without DCE
-@@ -2424,6 +2424,12 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 
- 	return 0;
- 
-+deregister_xcp:
-+	amdgpu_xcp_dev_deregister(adev);
-+unplug_drm:
-+	drm_dev_unplug(ddev);
-+unload_kms:
-+	amdgpu_driver_unload_kms(ddev);
- err_pci:
- 	pci_disable_device(pdev);
- 	return ret;
+ 		for (j = 0; j <= ring->fence_drv.num_fences_mask; ++j)
+ 			dma_fence_put(ring->fence_drv.fences[j]);
 -- 
 2.43.5
 
