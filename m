@@ -2,156 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 736B1A0AE7A
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 05:40:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CABD4A0B13F
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 09:36:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14AEB10E08E;
-	Mon, 13 Jan 2025 04:40:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5C610E5BD;
+	Mon, 13 Jan 2025 08:36:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mGQDH6cH";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="j/sEBwOd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2050.outbound.protection.outlook.com [40.107.92.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96D0F10E08E
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 04:40:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XVb2sv+JpAdsDtOElv8yHuOlsHdyo1ULN6f0zC73C2o0TxbVtwr+Unh08BcoZMt6W7Vdo+LEhxCD8QWxW4fYoorbrVgyePKVXqsKOHR2A5eHNFiF73GGgQjJAZhPtCf78e8ZW40Cm70s7lZ4MbBe7ZhfzGnBu8Oh1YX2KzUfvzx+OmDWeFHN6fBDc/AFmkAJgWXFMYMaYGAaPidY4i1WTv1GGEa4bWdn4BZGu99m9W0Cpkk8LmOSa+tuQjgvW7jQQ07QgD+uFbhtleaguksT4O5JCxfFitQ5LdrWpea70cAxGfqOvmWzApit9o7fFEedUvDdND8RLJd4KzFb++qEJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Aomy1vkKhrJwENLTPBrLfr3t9FAdMzZw5SKdk+Z6xe4=;
- b=aQXiLdX69QFIUam/bch9YU31IqA0pb8PmQFzPDUQcWR8zZvY1hYUkfO2FcshjCREAWa7lrAqGgtfZhvefojbl7cIedHGtQ8rB8OxI2c7oN8wR20x01VwIiqQXhiIGdUGOa/i+IAL+5q8/NRrHbwv95p9O9gKSJh7vUaWt6yzbbd6+dKIaZsS7HOWrS7i9RSSSw/2UdzZzJNVFlXaR/N0WlrEcW8WHJkFg7LeHnNsMnIb5zHj5KmcqDQfp0g574jm/pwl9jEvNN5cBa3qVFtk1xitEqlQo+aW2amgwdGoytyGY85wgFDtScRMifkurWc9i8a0RDvKJOOx82sA2S5kfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Aomy1vkKhrJwENLTPBrLfr3t9FAdMzZw5SKdk+Z6xe4=;
- b=mGQDH6cHAjWlpiZD+DAoqaf0WvUkbGGkB+U5EAz/DPtPw3VT5WTPzJ9+Xe1YQQgSHAAkKm5WlTjmZkJxS4mV/s5lcbNswfNQUvctaZcEdY7kFSZ7CbiQzQn5kimznAxriyhp8Um9dGrp0+mvRr+AZhwlHgXjS3FkxUcKLnaTOmo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- CY8PR12MB7612.namprd12.prod.outlook.com (2603:10b6:930:9c::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8335.13; Mon, 13 Jan 2025 04:40:28 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290%7]) with mapi id 15.20.8335.017; Mon, 13 Jan 2025
- 04:40:28 +0000
-Message-ID: <ef255fe6-98ce-4656-94a4-aa259b7e6a51@amd.com>
-Date: Mon, 13 Jan 2025 10:10:17 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v4 2/5] drm/amdxcp: introduce new API amdgpu_xcp_drm_dev_free()
-To: Jiang Liu <gerry@linux.alibaba.com>, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- simona@ffwll.ch, sunil.khatri@amd.com, Hawking.Zhang@amd.com,
- mario.limonciello@amd.com, xiaogang.chen@amd.com, Kent.Russell@amd.com,
- shuox.liu@linux.alibaba.com, amd-gfx@lists.freedesktop.org
-References: <cover.1736474822.git.gerry@linux.alibaba.com>
- <79267ddb1b1b8d83e2ec170f4b0b578c705de4dd.1736474822.git.gerry@linux.alibaba.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <79267ddb1b1b8d83e2ec170f4b0b578c705de4dd.1736474822.git.gerry@linux.alibaba.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PNYP287CA0055.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:23e::33) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7314410E02B
+ for <amd-gfx@lists.freedesktop.org>; Sat, 11 Jan 2025 18:59:49 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id
+ 5b1f17b1804b1-4364a37a1d7so32882565e9.3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 11 Jan 2025 10:59:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1736621988; x=1737226788; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=L3DgohbenACHXn6wOW4eU9gM7Gu7Z7kDdY29V2QFR8Y=;
+ b=j/sEBwOd/4JUWpelyO7vLJ4z+FK8e+Od4TVukhJtyqz7HjqYF8DipuIZqI2pxlVEt4
+ pEgiyxTs4cbzESkvPriF2rsCMJp98oOjrGmDx2t1AqhSgL3IxAjfCYuMMW3KSmRja/nA
+ bt7QcnZTCTjFWNYy5EG9ZoEEjSs0GI4ThTdzuDZCvWqxf4Lb8x9BNU0myJ7AG/xbYgZL
+ qKQD+c9USqG7+BZ2TSwIRon7tF3Q6/HO9v3pRaOoQjmAj+bzRPuEvkEvKaP+sZOCXTBx
+ J46+DQZPZgjAmB2XRzSSgGwmOptCmsEzqqYajkXgJx9IH5y60cTg8AlS2/NJmdqVqIBE
+ Z/cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736621988; x=1737226788;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=L3DgohbenACHXn6wOW4eU9gM7Gu7Z7kDdY29V2QFR8Y=;
+ b=L56+WGi5udU5GCEINxFhVPqgQZcpnPYP3iM2zRmKxMWzZqAwdBAo0M5FlgToOIY0NB
+ Qb6DMvP2ka8kspy5ReEslUlBSOGAoRO605dfXlQJcHh95cK9k6wpjy4HsI1LRRV5W+sb
+ /8IR/K4lveEYkXH65a2ZgWweL8g5ctJurPXOnjuDckgfdtcdL4fLcCBGtxaogqOp0WL1
+ 8P+RbtA8pNiZY3fIQdZFixTTpFzqx9bt80D/ml7DYHGCQ9BI/krd8TKchALworzEpGRA
+ /yoxxAf2KHmr/cMWM979GXYYKHi98BR/eYMvTTerKsB9fPDUen3LqG5xNSTJkSbDwOcS
+ AyjA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVifKZZ6KGGpcPoV6j6DrDAusCseoF6GENGHE+vOvGxYmZpbwcvywyS2nkUUKRVz/Ef9P+jGecb@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxoAgUDSMcqWvMsg0bytGZlCqTqsHKg57b9j6owfKIozOtCh6VU
+ wRX0FK2JtKZ7MmpHPlKhwKneI8m9q8ZPmFJDIfQTuXKz6AAkX+WX
+X-Gm-Gg: ASbGnct5dD+nPv4ASg6x4BOY1wwtxZKHoswUJRPhj+8E1nZuW/8/bG+GzJlwU6KPDer
+ 5v8VdZQTMh5q8ojLmsEyAMq8ATlwIlBzYk2Y78n1dwHH25tPENXiCd9jxiPS5/6c3WTBWkH1Uxp
+ UxBSeODwBqR649Z3UG9y1jDXMj0JuLx1gescR08BzNRBRCyExsckjU/wYqiO0As5IrrgFR2S3yS
+ rgV4V5863bV3kh/bCtaSDLj62wedU3XoQ1jKjk7Pxtsmt6Xo1Uy8xSJqZcZTswySA==
+X-Google-Smtp-Source: AGHT+IEPA1ZIEy2BVvJIreSvtc7pK5EpKKeAI+bCNXKQkeEEBtMKu5+tlqaQ1Ywp2IM9xt0CHUsflQ==
+X-Received: by 2002:a05:600c:348c:b0:436:ed33:1535 with SMTP id
+ 5b1f17b1804b1-436ed3316a4mr93947005e9.12.1736621987670; 
+ Sat, 11 Jan 2025 10:59:47 -0800 (PST)
+Received: from debian.local ([83.105.230.12]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-436e9e6263fsm92372725e9.39.2025.01.11.10.59.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 11 Jan 2025 10:59:47 -0800 (PST)
+Date: Sat, 11 Jan 2025 18:59:45 +0000
+From: Chris Bainbridge <chris.bainbridge@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
+ regressions@lists.linux.dev, lenb@kernel.org,
+ linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Hans de Goede <hdegoede@redhat.com>
+Subject: [PATCH v2] ACPI: video: Fix random crashes due to bad kfree
+Message-ID: <Z4K_oQL7eA9Owkbs@debian.local>
+References: <Z2yQvTyg_MWwrlj3@debian.local>
+ <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
+ <Z2yw_eJwR5ih1Npr@debian.local>
+ <CAJZ5v0i=ap+w4QZ8f2DsaHY6D=XUEuSNjyQ-2_=DGOLfZjdn+w@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|CY8PR12MB7612:EE_
-X-MS-Office365-Filtering-Correlation-Id: 536e44be-bcd3-48cb-dc37-08dd338c6746
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|921020|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dkpuajBWTEJuYU0xZk1OMDdiUkpwYTdxelVLbjRKNjUrOUk5N2ZwVzgrUnZE?=
- =?utf-8?B?OHlHMVJxa2VRSU5YT09wbVFoRXN0eXNCelBxSVhLS0FEQ0JhSXhpbUc0VGRt?=
- =?utf-8?B?T25mb3ArYjFqNUhaRnZxSVI1NmM5WG5yQ2U2cDVZR2ltS3BZNXJVdlZ4emJW?=
- =?utf-8?B?VnBLdm9SSUxzbm1wYXhpR3NjTVFDWDNqdUlzWC8rbzJLRFRGM3Y1UzBoUmxx?=
- =?utf-8?B?TUFMenRvb2NRN0VIOUh0ZHZGMnF1V0ZNc0cyVys1OVkzaFIvR2krWHIyZjlh?=
- =?utf-8?B?WUVHbndjVnJqeTdxVS9mWFpQTTR2a05hbnR6dVhxZ2dqUmlXSmFUbEFuN2Z6?=
- =?utf-8?B?WVpHTGMyd01hZk4zQUI1TVNKcGlLVWk0bVhYV0ZwVnlxVlRWNnhrNmVvL0sv?=
- =?utf-8?B?Mk52d0ZNSXNXM21WLytMQTcrSytaNk5GSXN0ZzFCWS9TWVhKQWU2aGlUUVBW?=
- =?utf-8?B?UmplSkVpamRWdFFDWVdQd1daaFFLdzkxejFNL3h3S3h6L1hJT0x0RThRb25N?=
- =?utf-8?B?bnVtRXJ3TVMvSUtwSDdQcHZpT2M0L05sUk5FbUQrMnVQSWdLUCtlS01IOUZN?=
- =?utf-8?B?NmNHQVh6V3NiV25NUjVOVkdqNStSZ3QvMGEzdmZCb0tkV2kzTnoyZTQxanVi?=
- =?utf-8?B?UUFYcERuYW9FSkxGSnpNRHBySXJiSzA0amgvOHNJOWM5UWdqV2lEbFFtaGZJ?=
- =?utf-8?B?SmFwNEZsektUOEQ5QnRHbGFVdjkzb1AvOXNmenNuWTFwRFFWQTRsSWxkZUpP?=
- =?utf-8?B?SHB6T1kyMDBVQTdYM2MxYjg4cFBjNDBWb2FkM2FQVTlXS2dlSGxLT3YvcFRF?=
- =?utf-8?B?R01qYWloU05OSmNtZnBzaGRDTm96RlEyV3pOVWI3SStuN0RWQldnaVBTb0xL?=
- =?utf-8?B?VFY1VnNzM29NeG13RTR1WGo2Vkh4RnYyTGJVcUlmMlE1OWhYcTZrdWZodE54?=
- =?utf-8?B?VEg2VzloRjRRdDRSQnIzUlhJY0pWaGlNaUVCNHVtMUFyZEY5WjJZOE1NamlX?=
- =?utf-8?B?djdlUnU3M3ZpN09BRUNRY3cvcmdya25UUHdSMjFGV0o2dmx4MGhKajVJMXBB?=
- =?utf-8?B?T0dsOFRyaG9xR3FVTWs4MGtlaUxwdWZHNm9FcGRWYUNDMDZaUjBmQTJET2Fk?=
- =?utf-8?B?VFcwS2ZjNUNOdWtrelpDTDRSRFg2RWZ4UzU3bUdIVnRLejBrR04wVWQydnE5?=
- =?utf-8?B?ZVhoemp0K1VwbkljM005eUN4STJLM0R0cVpOeUJ1djZDTklrMkMyanhzbFRG?=
- =?utf-8?B?SnluNW4xeHNodHpUa0pzdlFLT2RMcUlKcG8rMjRDM3ZyY0xsTmlveG5nQkFt?=
- =?utf-8?B?bVlBekNMZ05iWVF6TEVJRkhXdnZBN0lKbUk5c0p6ZGQ5SHpYSkVWUVhCMS8w?=
- =?utf-8?B?T0tiN1dFRnRjQzJnbWNuTTFtaHlKdlJkaXNYbnBDTWdjS2hQV0lJZGRuRCth?=
- =?utf-8?B?UXJodmVLaTJOWFMyUTB3TUtqaU54SUdYS1NVRGhtNDVwbVVES05USEVjTEhn?=
- =?utf-8?B?OU8vR1I3YTl5eFJqUDFVdlByVFNKL1k0VTE4ekxYOS9FaEJTT3lpdnlqT0V6?=
- =?utf-8?B?eDdoMUFHRmJNZjRYL04rOC9vb1FrcHRyZ3VFS3E1TUJUZmdOQTlqMW9tVVda?=
- =?utf-8?B?R1htdkRibHduL3pULzNzN1lvaTBwRTEzZkJWbGp3TE50bkJlZEszTklPR1Vj?=
- =?utf-8?B?NmppNS9Nd1dlQXhSeUswdWNPeWVsUWYyUWlRbXZLa1F4ck9hUERkL1M2eXpI?=
- =?utf-8?B?QnRZV21USnVWZFhkV0loWURxdFhia25RZDU3d0tmd2lxOTJ2Y1BBVVcwbEI2?=
- =?utf-8?B?WHZBcDZFRzFkVExIN0VERloxb3U2OHc5dGdkdWZZNzRuUWFLeXNrdityQkt0?=
- =?utf-8?B?QW9DRHE4Yk1NdXlTRnhhdXlHclN3TVFBQWhXYVpad0V1TkRUNko1TG9lcHVF?=
- =?utf-8?Q?JvpnoLCpw4E=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(921020)(7053199007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dFlrcDlubEJqbVQydE9SMDFRTWt3dWNITHhRbjJIQ3pMZUE5bVo4cTNZNjd4?=
- =?utf-8?B?eWZ0QVNTRDNPL0VYSFFaM2RUVjBNYlFJS1d0R3dzVXZMNjhTNDdHWmE0V2Nh?=
- =?utf-8?B?eHhON01ockhrM1ppR2htVVNnTDNvRlNEaVRSY0hNVmplL2QwV1ZVVldOcklT?=
- =?utf-8?B?Tm5OaGdkTWpSZW15dlVHZ05raGFSR0o5aHN1VHJ6aGVhSnFMaFc0R2pObTNQ?=
- =?utf-8?B?WmpYKy9VWWhRaXJaTm1BNHVIZktoNmFCQyt5KzlHS1Rpb1N5cExhTER4NWps?=
- =?utf-8?B?SVlvWDlFeVIra3d6WUJ6akNML3MrYTJYMkkrSlhKNTNEOUwzek5YV0V3N1A0?=
- =?utf-8?B?dVNpeTZEdmwvZWFQLzhuaHBtN0cxNVhObjc3MDRudkdZOTJuL01RUDN6Mis3?=
- =?utf-8?B?TlZrcXVjb1J5NnJYTWdRdkpQL1ZSbHgyYi94KzJWZFFpQ1lsVklURGxYWDYr?=
- =?utf-8?B?TTFnN3hKL1N5QlJML0FsWG5RSGVvY05WNHh0UlBMRC9VRk9BZWhsS1k1MWNp?=
- =?utf-8?B?U0hwenRwenhXVDYxa3JMSEpZZUh4TGNGcEdwRzJ6blVFTzhUMDdDUDduY0pL?=
- =?utf-8?B?Q0FMa01venJXWFZQTmplOWRPOTA1WDhKU0x3U2dvS3NvN2wxdUpBZHMrS3FN?=
- =?utf-8?B?YmFQRytGSE9adU5jdnNMQzMwbjB0QXYzY1F1bGpNOE1wQ3lCMHVJa21idFdq?=
- =?utf-8?B?c1VmTzR2TGRjSllVNFE2RUF1UjlHY0FEYkZDNDF2T3BYSE9UaHVxaWtsQ2R3?=
- =?utf-8?B?L3ZITGd0bklHTkxQUmdxaHZKRzZ4OS9vZ1IwS01UbS8rRDBSYTJnS294cm0r?=
- =?utf-8?B?aVdycEpXRHlVcTZmd0l1TXJWb0RKOE5mUDUraCtlNnc5ZkxxK3FRU2FiR3Zq?=
- =?utf-8?B?L1cwSnQ4UWNlbTl1aEhsck5wY0RTT0hDSmh4RnVUOXl2Lyt1Tlo0bVVQejAv?=
- =?utf-8?B?bmhGZCtjVEs3MW1RNnI3L2x5U2w5ZzZESWVQOElFMlhFYW94aTF6b1pKK3FP?=
- =?utf-8?B?M2cyYVc2TzNseGYxYVhDRkVXS3VYV1puN3VrT3JMVE1PbndBTU9jbUtNMG5P?=
- =?utf-8?B?b1JObGdmSndZMnJFb2Mva1pGQ0VOT0VXTjdwMzVGQ1BETUt0blNBVG5CSmNh?=
- =?utf-8?B?UHpid2pWTXRqMGkzU2NoSVEvZzBhR280a1N6S3BzTzB1aDFHeC9IYi9WNDFq?=
- =?utf-8?B?alRhN3RnRkt0dFA2L2twcVNXczF5RE00R2VNOS9sYkRSdE5PaktMeWplU2NW?=
- =?utf-8?B?NXR4WTZzU1VvemM2T3ZVZ1RHZ3pIRkJoQUJjaUE5V0ZrTXVTbytNaWhweGJL?=
- =?utf-8?B?UDRpM0l6K2xWOTF4SHlURTl4QkVjaFZLMXBNTkdJUUFWREp2ZTROek0xSWd5?=
- =?utf-8?B?ejhwRWtQdlplMjRZS0l0Q1UrektVdnhIWDBBNVd4WERKWXZrMmU0MTNkQ3Zn?=
- =?utf-8?B?WDVvVzlWelMvTGJ1QTNNWVU2S3MzbDYwa0ZmVmRTUHBqYjVMQnlJaXVCNEZY?=
- =?utf-8?B?T0NxWFpGVkM4TGRwcFlqdXFOSGlicXlFTSszOHdOdVFPQkFjajM3UmFNcC9u?=
- =?utf-8?B?eGNzUkgvNVVZQkFPWW5RYXgvbTMrTUloUE5KUDdGa081d2Z5R3FCMS9FTDRt?=
- =?utf-8?B?d0VjS0NrZWFNZU5tTXpRWmFXc285QmNjeWQ4S1dkK2hHTkU3QlZ4dzYwaVc2?=
- =?utf-8?B?UnFiaUdtU0lzblRGbkZUZTVaQ0dTUCtsbStuaHRieXhkNmRvWHlHSFRLQjNz?=
- =?utf-8?B?aGoyTE9YbS9rRU1OaXdMK0plT1k4Z2cxaWxWSG54OEIvSUtNZmMzaWhYaU9k?=
- =?utf-8?B?UzZDSlllcDBhenp2L2FxUUs4ZnhSY1Rka0dMZ096aWVsZjlsVThsZm5DYngy?=
- =?utf-8?B?cDBsVkdxUWhJTjBubk9vSzNldEhEZWxOemhiS04yTHMvamlCMFV5OXRsaVBX?=
- =?utf-8?B?aVRqMWEvTEEvTjZNRUZZenlUSDUvQjdkRHh4aHB6ZXVyakxRL0k5bnFZTjBq?=
- =?utf-8?B?cHA0NkNHQ1J1cmNrb0xKK3NrL0ZqOHY1NHFOeHdyRGIwdmVOMVhRSUkxRmtj?=
- =?utf-8?B?RlpjN0tubWdXUFVLdGxtZ2VWRnBqOEtuS1R4SGNuQ0FvWDd3NFZtYVdOWksz?=
- =?utf-8?Q?CicIdiOAlN+jgdjfl3o6hwHBq?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 536e44be-bcd3-48cb-dc37-08dd338c6746
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2025 04:40:28.1082 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fYXE5IEj7ErKRkkDAhEzcIVqgIswA/XctkrYoaFPCJ/wvzC7wbYIdjzJuXD074JZ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7612
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJZ5v0i=ap+w4QZ8f2DsaHY6D=XUEuSNjyQ-2_=DGOLfZjdn+w@mail.gmail.com>
+X-Mailman-Approved-At: Mon, 13 Jan 2025 08:36:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,140 +92,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
+available for eDP") added function dm_helpers_probe_acpi_edid, which
+fetches the EDID from the BIOS by calling acpi_video_get_edid.
+acpi_video_get_edid returns a pointer to the EDID, but this pointer does
+not originate from kmalloc - it is actually the internal "pointer" field
+from an acpi_buffer struct (which did come from kmalloc).
+dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
+resulting in memory corruption which leads to random, intermittent
+crashes (e.g. 4% of boots will fail with some Oops).
 
+Fix this by allocating a new array (which can be safely freed) for the
+EDID data, and correctly freeing the acpi_buffer pointer.
 
-On 1/10/2025 7:38 AM, Jiang Liu wrote:
-> Introduce new interface amdgpu_xcp_drm_dev_free() to free a specific
-> drm_device crreated by amdgpu_xcp_drm_dev_alloc(), which will be used
-> to do error recovery.
-> 
-> Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
-> ---
->  drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c | 65 +++++++++++++++++----
->  drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h |  1 +
->  2 files changed, 56 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c b/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c
-> index faed84172dd4..0473fe0479d9 100644
-> --- a/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c
-> +++ b/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.c
-> @@ -45,18 +45,26 @@ static const struct drm_driver amdgpu_xcp_driver = {
->  
->  static int8_t pdev_num;
->  static struct xcp_device *xcp_dev[MAX_XCP_PLATFORM_DEVICE];
-> +static DEFINE_MUTEX(xcp_mutex);
->  
->  int amdgpu_xcp_drm_dev_alloc(struct drm_device **ddev)
->  {
->  	struct platform_device *pdev;
->  	struct xcp_device *pxcp_dev;
->  	char dev_name[20];
-> -	int ret;
-> +	int ret, index;
-> +
-> +	guard(mutex)(&xcp_mutex);
->  
->  	if (pdev_num >= MAX_XCP_PLATFORM_DEVICE)
->  		return -ENODEV;
->  
-> -	snprintf(dev_name, sizeof(dev_name), "amdgpu_xcp_%d", pdev_num);
-> +	for (index = 0; index < MAX_XCP_PLATFORM_DEVICE; index++) {
-> +		if (!xcp_dev[index])
-> +			break;
-> +	}
-> +
-> +	snprintf(dev_name, sizeof(dev_name), "amdgpu_xcp_%d", index);
->  	pdev = platform_device_register_simple(dev_name, -1, NULL, 0);
->  	if (IS_ERR(pdev))
->  		return PTR_ERR(pdev);
-> @@ -72,8 +80,8 @@ int amdgpu_xcp_drm_dev_alloc(struct drm_device **ddev)
->  		goto out_devres;
->  	}
->  
-> -	xcp_dev[pdev_num] = pxcp_dev;
-> -	xcp_dev[pdev_num]->pdev = pdev;
-> +	xcp_dev[index] = pxcp_dev;
-> +	xcp_dev[index]->pdev = pdev;
->  	*ddev = &pxcp_dev->drm;
->  	pdev_num++;
->  
-> @@ -88,16 +96,53 @@ int amdgpu_xcp_drm_dev_alloc(struct drm_device **ddev)
->  }
->  EXPORT_SYMBOL(amdgpu_xcp_drm_dev_alloc);
->  
-> +static void __amdgpu_xcp_drm_dev_free(int index)
-> +{
-> +	struct platform_device *pdev;
-> +
-> +	pdev = xcp_dev[index]->pdev;
-> +	devres_release_group(&pdev->dev, NULL);
-> +	platform_device_unregister(pdev);
-> +	xcp_dev[index] = NULL;
-> +	pdev_num--;
-> +}
-> +
-> +void amdgpu_xcp_drm_dev_free(struct drm_device *ddev)
-> +{
-> +	int index;
-> +	struct xcp_device *pxcp_dev;
-> +
-> +	if (ddev == NULL)
-> +		return;
-> +
-> +	guard(mutex)(&xcp_mutex);
-> +	WARN_ON(!pdev_num);
-> +
-> +	pxcp_dev = container_of(ddev, struct xcp_device, drm);
-> +	for (index = 0; index < MAX_XCP_PLATFORM_DEVICE; index++) {
-> +		if (xcp_dev[index] == pxcp_dev) {
-> +			__amdgpu_xcp_drm_dev_free(index);
-> +			break;
-> +		}
-> +	}
-> +}
-> +EXPORT_SYMBOL(amdgpu_xcp_drm_dev_free);
-> +
->  void amdgpu_xcp_drv_release(void)
->  {
-> -	for (--pdev_num; pdev_num >= 0; --pdev_num) {
-> -		struct platform_device *pdev = xcp_dev[pdev_num]->pdev;
-> +	int index;
->  
-> -		devres_release_group(&pdev->dev, NULL);
-> -		platform_device_unregister(pdev);
-> -		xcp_dev[pdev_num] = NULL;
-> +	guard(mutex)(&xcp_mutex);
-> +
-> +	for (index = 0; index < MAX_XCP_PLATFORM_DEVICE; index++) {
+The only other caller of acpi_video_get_edid is nouveau_acpi_edid:
+remove the extraneous kmemdup here as the EDID data is now copied in
+acpi_video_device_EDID.
 
-May be this - before entering or as first check.
+Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
+Fixes: c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if available for eDP")
+---
+Changes in v2:
+	- check kmemdup() return value
+	- move buffer management into acpi_video_device_EDID()
+	- return actual length value of buffer
+---
+ drivers/acpi/acpi_video.c              | 50 ++++++++++++++------------
+ drivers/gpu/drm/nouveau/nouveau_acpi.c |  2 +-
+ 2 files changed, 29 insertions(+), 23 deletions(-)
 
-	for (index = 0; pdev_num && index < MAX_XCP_PLATFORM_DEVICE; index++)
-
-Thanks,
-Lijo
-
-> +		if (xcp_dev[index]) {
-> +			__amdgpu_xcp_drm_dev_free(index);
-> +			if (!pdev_num)
-> +				break;
-> +		}
->  	}
-> -	pdev_num = 0;
-> +
-> +	WARN_ON(pdev_num != 0);
->  }
->  EXPORT_SYMBOL(amdgpu_xcp_drv_release);
->  
-> diff --git a/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h b/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h
-> index c1c4b679bf95..580a1602c8e3 100644
-> --- a/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h
-> +++ b/drivers/gpu/drm/amd/amdxcp/amdgpu_xcp_drv.h
-> @@ -25,5 +25,6 @@
->  #define _AMDGPU_XCP_DRV_H_
->  
->  int amdgpu_xcp_drm_dev_alloc(struct drm_device **ddev);
-> +void amdgpu_xcp_drm_dev_free(struct drm_device *ddev);
->  void amdgpu_xcp_drv_release(void);
->  #endif /* _AMDGPU_XCP_DRV_H_ */
+diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+index 8274a17872ed..3c627bdf2d1b 100644
+--- a/drivers/acpi/acpi_video.c
++++ b/drivers/acpi/acpi_video.c
+@@ -610,16 +610,29 @@ acpi_video_device_lcd_get_level_current(struct acpi_video_device *device,
+ 	return 0;
+ }
+ 
++/*
++ *  Arg:
++ *	device	: video output device (LCD, CRT, ..)
++ *	edid    : address for returned EDID pointer
++ *	length  : _DDC length to request (must be a multiple of 128)
++ *
++ *  Return Value:
++ *	Length of EDID (positive value) or error (negative value)
++ *
++ *  Get EDID from ACPI _DDC. On success, a pointer to the EDID data is written
++ *  to the edid address, and the length of the EDID is returned. The caller is
++ *  responsible for freeing the edid pointer.
++ */
++
+ static int
+-acpi_video_device_EDID(struct acpi_video_device *device,
+-		       union acpi_object **edid, int length)
++acpi_video_device_EDID(struct acpi_video_device *device, void **edid, int length)
+ {
+-	int status;
++	acpi_status status;
+ 	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
+ 	union acpi_object *obj;
+ 	union acpi_object arg0 = { ACPI_TYPE_INTEGER };
+ 	struct acpi_object_list args = { 1, &arg0 };
+-
++	int ret;
+ 
+ 	*edid = NULL;
+ 
+@@ -636,16 +649,17 @@ acpi_video_device_EDID(struct acpi_video_device *device,
+ 
+ 	obj = buffer.pointer;
+ 
+-	if (obj && obj->type == ACPI_TYPE_BUFFER)
+-		*edid = obj;
+-	else {
++	if (obj && obj->type == ACPI_TYPE_BUFFER) {
++		*edid = kmemdup(obj->buffer.pointer, obj->buffer.length, GFP_KERNEL);
++		ret = *edid ? obj->buffer.length : -ENOMEM;
++	} else {
+ 		acpi_handle_debug(device->dev->handle,
+ 				 "Invalid _DDC data for length %d\n", length);
+-		status = -EFAULT;
+-		kfree(obj);
++		ret = -EFAULT;
+ 	}
+ 
+-	return status;
++	kfree(obj);
++	return ret;
+ }
+ 
+ /* bus */
+@@ -1435,9 +1449,7 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
+ {
+ 	struct acpi_video_bus *video;
+ 	struct acpi_video_device *video_device;
+-	union acpi_object *buffer = NULL;
+-	acpi_status status;
+-	int i, length;
++	int i, length, ret;
+ 
+ 	if (!device || !acpi_driver_data(device))
+ 		return -EINVAL;
+@@ -1477,16 +1489,10 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
+ 		}
+ 
+ 		for (length = 512; length > 0; length -= 128) {
+-			status = acpi_video_device_EDID(video_device, &buffer,
+-							length);
+-			if (ACPI_SUCCESS(status))
+-				break;
++			ret = acpi_video_device_EDID(video_device, edid, length);
++			if (ret > 0)
++				return ret;
+ 		}
+-		if (!length)
+-			continue;
+-
+-		*edid = buffer->buffer.pointer;
+-		return length;
+ 	}
+ 
+ 	return -ENODEV;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+index 8f0c69aad248..21b56cc7605c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+@@ -384,7 +384,7 @@ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
+ 	if (ret < 0)
+ 		return NULL;
+ 
+-	return kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
++	return edid;
+ }
+ 
+ bool nouveau_acpi_video_backlight_use_native(void)
+-- 
+2.39.5
 
