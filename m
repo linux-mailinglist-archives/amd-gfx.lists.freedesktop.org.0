@@ -2,64 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AC0CA0A40D
-	for <lists+amd-gfx@lfdr.de>; Sat, 11 Jan 2025 15:09:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 800A7A0A40B
+	for <lists+amd-gfx@lfdr.de>; Sat, 11 Jan 2025 15:09:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70FA010E59C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CFE010E24A;
 	Sat, 11 Jan 2025 14:09:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="F2KAB2pX";
-	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F146F10E50C;
- Fri, 10 Jan 2025 17:53:12 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 5CA4140E0277; 
- Fri, 10 Jan 2025 17:53:11 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
- header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
- by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id UgdFvW0kh09k; Fri, 10 Jan 2025 17:53:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
- t=1736531587; bh=hWQNssuWD66YKuLujLHgbp4MStYpf0nY+KZT+LDratA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=F2KAB2pXegz//kxjxJ7Ddy0mVXHvSd3Z8jqm8luMh60AZiQKOq15d7sxfSGHUvlKo
- mse7Q09Uw09qDr/v0aA7/ZYUEK4MXP2QNj7KOqS4MaJmRbtT+qNeJIG8XHyGonFL7s
- Aifuq30U0cZWWagtBYlw3jpb5C35JOM93N3LerPNusF2eti+7dUlOmuEyzR5iLnsEr
- 3SdEnZn13eorX+YbLrbVl3OMZJULAO+6cWFSBL4mRc70ajmqavTX6xMOdU+y8MISI7
- YAezNaiLs3GJ33qNN/D67PY+u8DzPlDImbAQUbw+iRvcn85MaXqBMO2Au+5zpU+6iB
- zr/foFa2/keLQr2wx031C3xQ4ttLWnPw0L7WzVl+za+S9s5YzTxy1JS141fwTJ1ZNb
- 1F1k7+qIX73Fg4OxXYFYwvLqN8tKdzuvILuR/DrvZ/pvSI6d5oqxtZGuS6LIfXOGpd
- HyBbWaMStOUaCz3yM5wDD8bPtIJlv/HKY64KKPuBVVkNbvB3UDNms827c7NKICcAoy
- tgKbepsmqpLkjy1wa/XZbHGYcQ64fEUS+om3eZSngcRsdIzopAYG51kqBMAtXITRhn
- KfeVFh/zy3fPU5gvVMKtQU92I7EzbXpZZSBV/QMszPM2EQvUTyVvm6/dKN4Hndcl3K
- aAT4CkQ6B9XS2ScrypgiafpY=
-Received: from zn.tnic (p200300ea971f9337329c23fffea6a903.dip0.t-ipconnect.de
- [IPv6:2003:ea:971f:9337:329c:23ff:fea6:a903])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
- SHA256) (No client certificate requested)
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 29FF140E02C1;
- Fri, 10 Jan 2025 17:53:00 +0000 (UTC)
-Date: Fri, 10 Jan 2025 18:52:52 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: kmemleak: Found object by alias at 0xffff888107b65918
-Message-ID: <20250110175252.GBZ4FedNKqmBRaY4T3@fat_crate.local>
-References: <20250109201740.GEZ4Au5ESOtQd4o1R3@fat_crate.local>
- <CADnq5_OfmegA2XzeCuUNq5PmvbQrX6cdn8vPOUMf4x4BQGb5fQ@mail.gmail.com>
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AE8F910E059
+ for <amd-gfx@lists.freedesktop.org>; Sat, 11 Jan 2025 06:57:48 +0000 (UTC)
+Received: from loongson.cn (unknown [113.200.148.30])
+ by gateway (Coremail) with SMTP id _____8Bx33NoFoJndYFhAA--.6116S3;
+ Sat, 11 Jan 2025 14:57:44 +0800 (CST)
+Received: from [10.130.0.149] (unknown [113.200.148.30])
+ by front1 (Coremail) with SMTP id qMiowMBx38dmFoJnWWIdAA--.54495S3;
+ Sat, 11 Jan 2025 14:57:43 +0800 (CST)
+Subject: Re: [PATCH v6 0/9] Add jump table support for objtool on LoongArch
+To: Huacai Chen <chenhuacai@kernel.org>, Josh Poimboeuf
+ <jpoimboe@kernel.org>, Peter Zijlstra <peterz@infradead.org>
+References: <20241217010905.13054-1-yangtiezhu@loongson.cn>
+Cc: loongarch@lists.linux.dev, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+From: Tiezhu Yang <yangtiezhu@loongson.cn>
+Message-ID: <ef1e3e7c-0117-175c-5a85-091382696748@loongson.cn>
+Date: Sat, 11 Jan 2025 14:57:42 +0800
+User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CADnq5_OfmegA2XzeCuUNq5PmvbQrX6cdn8vPOUMf4x4BQGb5fQ@mail.gmail.com>
+In-Reply-To: <20241217010905.13054-1-yangtiezhu@loongson.cn>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: qMiowMBx38dmFoJnWWIdAA--.54495S3
+X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBj9xXoW7Jw48AF48Zw1ftFy5Kr4xZrc_yoWftwbE9F
+ y8WFn5AF45Ww4Yvr42qFn5uFyrKFs8JFW5Kry8Xry2kwn8tr1DGFWakrWDurn5G3s5ZFsF
+ kF4vvrn7Cw17uosvyTuYvTs0mTUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUj1kv1TuYvT
+ s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+ cSsGvfJTRUUUbx8YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+ vaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+ w2x7M28EF7xvwVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+ WUJVW8JwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0
+ oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F4
+ 0EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_
+ Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbI
+ xvr21l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AK
+ xVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r126r1DMIIYrx
+ kI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v2
+ 6r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8Jw
+ CI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07UE-erUUUUU
+ =
 X-Mailman-Approved-At: Sat, 11 Jan 2025 14:09:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,23 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 09, 2025 at 03:40:59PM -0500, Alex Deucher wrote:
-> Possibly fixed by this patch?
-> https://lore.kernel.org/lkml/CAJZ5v0i=ap+w4QZ8f2DsaHY6D=XUEuSNjyQ-2_=DGOLfZjdn+w@mail.gmail.com/T/
+Hi Josh and Peter,
 
-Yap, it does.
+On 12/17/2024 09:08 AM, Tiezhu Yang wrote:
+> This version is based on tip/tip.git objtool/core branch [1], add some weak
+> and arch-specific functions to make the generic code more readable, tested
+> with the latest upstream mainline Binutils, GCC and Clang.
 
-You can add
+...
 
-Reported-by: Borislav Petkov (AMD) <bp@alien8.de>
-Tested-by: Borislav Petkov (AMD) <bp@alien8.de>
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/log/?h=objtool/core
+>
+> Tiezhu Yang (9):
+>   objtool: Handle various symbol types of rodata
+>   objtool: Handle different entry size of rodata
+>   objtool: Handle PC relative relocation type
+>   objtool: Handle unreachable entry of rodata
+>   objtool/LoongArch: Add support for switch table
+>   objtool/LoongArch: Add support for goto table
+>   LoongArch: Enable jump table for objtool
+>   LoongArch: Convert unreachable() to BUG()
+>   drm/amd/display: Mark dc_fixpt_from_fraction() noinline
 
-if you want to.
+Are you OK with the first 8 patches?
+What's the merge plan for this series?
 
-Thx.
+Thanks,
+Tiezhu
 
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
