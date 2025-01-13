@@ -2,157 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813D3A0B946
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 15:19:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BE75A0BC92
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 16:49:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA85D10E69A;
-	Mon, 13 Jan 2025 14:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D448810E6F1;
+	Mon, 13 Jan 2025 15:49:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rZnPaGKX";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WNVsjbnN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2081.outbound.protection.outlook.com [40.107.92.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A23A10E42B
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 14:19:55 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UqleJPghdV1CJRj/L3kjwW1QXnFdgWg4X9pVVzTeHtRpXE0GbGf2++lfZH+OtqiIQFXFpI+0UJ40iYa49c9xW0Qvr2WWHq24q1J5cuyZUxa092KM42vQjc1flWhSWPjCjgme+u046gbrRJuQTZS15OTRmSCTb77sJZVQQpW9xBMKxlgThLrxuSZuonIG5ieCkts+9wm4C+cxfs+hhbVDXNH3HMtrKd9j70QRhd4hy3EVMVvLin7rLGMIC2NbBj6Zu3P6H67d+6GGTsUyPV/fdf4WgXfyoVnfNaUJKwzyx2hMdBGZ/fKn0ndsqU7ekq2lKHEe/bEKmrdwcfWPksvDIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=77JDE0LYPx01sP5WqcK/LOu56dFi2UbjJGrydu2sgsk=;
- b=nwhSYjkFJxZtTpXkKDwiq8VFwO8UABMi8aj8irMweh94+X+8F/4bedLeZPyHyUa1UeLdoGh7iuL9XO9j+Yaz45aO5nEeBcti4Dzm31HZFVr0zHwFx0+1ERootRq+cVs16cKVd+chnRcP6AaBO2bQMLOftZ9LaVTmgzPrgjhJVbcIir59u+esI57W4GhMPdNnikwF1/cjnbVhLJWXFXJtTcfmdGTTuu0ktBhUc2nGqzIuBdLl/W701WZWRaeyty4xK6emc3BZfEQq2JqwsVbfGRT9rF8mb52xFE1cBKO80hAK+J+EviwO2D7HRGuEVt3V6s2UyePimfuZKWxl6GGUFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=77JDE0LYPx01sP5WqcK/LOu56dFi2UbjJGrydu2sgsk=;
- b=rZnPaGKXa4bCQo7VFYLLuIBRsVEPBcxuUvYs7WXs+OMPWZ3jgAhMlsWOp0yJ2Lfs7mQQPQb5H2Mdog1it6pWVXfVM3ecF33T8P7QEcOY+UaAp8GEgcQpB6M2LLl2CaBY48wxrngU1vh5Ym57v/7RmFSt1KdGJ08IENLb6juny4g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by MN0PR12MB6246.namprd12.prod.outlook.com (2603:10b6:208:3c2::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.12; Mon, 13 Jan
- 2025 14:19:37 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::37ee:a763:6d04:81ca]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::37ee:a763:6d04:81ca%4]) with mapi id 15.20.8335.017; Mon, 13 Jan 2025
- 14:19:37 +0000
-Message-ID: <c6e622b2-64e4-41cf-acfb-31ae493571d2@amd.com>
-Date: Mon, 13 Jan 2025 08:19:34 -0600
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D130D10E5DD
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 09:25:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1736760353;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Anfkmk5eIXHRBtHcAoLzGmn+FA7n8XKUaOMpxGXT8us=;
+ b=WNVsjbnNFe49d26YdXLkcTiczGm2VmRM5HLl67nUh2Bo3v1VOaXdNB497pnE36aYlSva8O
+ 2YlB4QAUlacFk2ZaTteEltmXuAskkn8S0LF+l4dBaHuOc6XpvcCeZIlgiA7jeVF54GQPH1
+ /r5MAdK0jHTOSTb4+lHPtK8zF86D/5g=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-693-sWkjfQHnNAee7OtxF23ssg-1; Mon, 13 Jan 2025 04:25:51 -0500
+X-MC-Unique: sWkjfQHnNAee7OtxF23ssg-1
+X-Mimecast-MFC-AGG-ID: sWkjfQHnNAee7OtxF23ssg
+Received: by mail-ed1-f71.google.com with SMTP id
+ 4fb4d7f45d1cf-5d3f4cbbbbcso3939744a12.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 01:25:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736760350; x=1737365150;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Anfkmk5eIXHRBtHcAoLzGmn+FA7n8XKUaOMpxGXT8us=;
+ b=D9iF7v9irFA0y3wgpoWYlywU+xu0z4KDAnFqRWN7XKBuPXpLee5RyQ6G8lUTjvQpXz
+ 267XL4PfuJc2bfteqVXAmuE89BEQIBKPwackYYUHkuEaT/b7GglNockYK/Zyk8kDw+Ff
+ WzjO/Ar7AMnpXn2XDGrx41pCYeE3VQkbVne3F2V7yEFVGjgzk0/fdgVNnGTgJNkChkjz
+ JltUvoHA+hqkrp7V8bzyr4qz36KehS8xwrhD/qB8V1vR2qOuGuZd/HZjYVUtBJGR9Q5z
+ vIysnBDOJWygwoGHkd/ZveMEQT036GVWssENaxIi/64KbkHeuWHpmIpfQwzhuNWTL3dN
+ Kt4w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWXH3NBMkcUAbNvBVOLLpaQJoBpgprGuCpF8ygFSMgLVfeCXQE2o9m3UOQTqS63djZH5wimqo0H@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz9p7VzSPwSbqE95OdRKR2DGJpGok+3TeU14VaA1cOVnTBu2lfn
+ ashkjrGVb/4mIPNzwtWRDZBA+/b3H6iS8O7kTcXcMAVAAMFsNqZwXKiH52Si/B5Buu4OQ/4/Gc0
+ xVWPSvzdNva9n3qPRykJ4OfK6DzcJfzf8ChmcJGcUOWayCSG+nZL6ubVaJSaGe28=
+X-Gm-Gg: ASbGncttW8iCuNG/KPJhah3/YHUmrMmBdeejPzfxI7Z1B8bEk8CiaRr6RGRMwKMtIGB
+ MP272fWyH9j3KsPB0QeNHBuX7Hx7uw1KXBsGbru2g+ZZzuU++WceaYIxLg06Ezx30IOZUh36s+H
+ NtHi+hNmgpnxZRjT64KFYyztfKSiT9sJRShSTixYXKlcWXVQ6ViHRagmJ2RMfqSV+pKZLAHoPZy
+ 8ZMhlX/TglDz1FfLhgU/+wPJDbOJwf7ntGAikeKD8j9eowHK/iBEgU2HdWt
+X-Received: by 2002:a05:6402:360c:b0:5d0:e826:f0da with SMTP id
+ 4fb4d7f45d1cf-5d972e1683fmr19533139a12.16.1736760350249; 
+ Mon, 13 Jan 2025 01:25:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG78H0pXhzhxaOz7jwatHbOLLwf8gzKXFnmuzkS+oexEXq4wWGsB1QoLdJwllz3q9jZAAjDsQ==
+X-Received: by 2002:a05:6402:360c:b0:5d0:e826:f0da with SMTP id
+ 4fb4d7f45d1cf-5d972e1683fmr19533112a12.16.1736760349793; 
+ Mon, 13 Jan 2025 01:25:49 -0800 (PST)
+Received: from [10.40.98.179] ([78.108.130.194])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-5d990469ee8sm4720711a12.70.2025.01.13.01.25.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 13 Jan 2025 01:25:49 -0800 (PST)
+Message-ID: <809d617e-b0e5-4322-a6fe-00923babe5f3@redhat.com>
+Date: Mon, 13 Jan 2025 10:25:47 +0100
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2] ACPI: video: Fix random crashes due to bad kfree
 To: Chris Bainbridge <chris.bainbridge@gmail.com>,
  "Rafael J. Wysocki" <rafael@kernel.org>
 Cc: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>,
+ Mario Limonciello <mario.limonciello@amd.com>,
  amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
  regressions@lists.linux.dev, lenb@kernel.org, linux-acpi@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>
+ linux-kernel@vger.kernel.org
 References: <Z2yQvTyg_MWwrlj3@debian.local>
  <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
  <Z2yw_eJwR5ih1Npr@debian.local>
  <CAJZ5v0i=ap+w4QZ8f2DsaHY6D=XUEuSNjyQ-2_=DGOLfZjdn+w@mail.gmail.com>
  <Z4K_oQL7eA9Owkbs@debian.local>
-Content-Language: en-US
-From: Mario Limonciello <mario.limonciello@amd.com>
+From: Hans de Goede <hdegoede@redhat.com>
 In-Reply-To: <Z4K_oQL7eA9Owkbs@debian.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: uxImqMLK4ZSwnjWavi7ryRpGBZ9aGDf1_JXs7WRMhl8_1736760350
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN7PR04CA0058.namprd04.prod.outlook.com
- (2603:10b6:806:120::33) To MN0PR12MB6101.namprd12.prod.outlook.com
- (2603:10b6:208:3cb::10)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|MN0PR12MB6246:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5248a6a7-b0d3-4343-ff6e-08dd33dd4fab
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YTRkd280eDhJY2c0TU9rYlpZQmZ3QmUrNHJuVEtyMERuT0NZSDR6R0REVEJ4?=
- =?utf-8?B?bnlZampoL01GK3FEeHMvQlgxUVNEVlJYSXhiSnZWS1dwVk45ZCtPUVJ1MUdS?=
- =?utf-8?B?Nkl5QXpYeEhHNnVqUkhoTHJ6N0VpeWJmNkVpZGdrMGhDcC9PM2N2V09tVW5C?=
- =?utf-8?B?R0xBRERpc3VMK05nZCtMVmFUZVN4STlxRDVOOWRkZzhmenQ0MW9ZNVRLd0RB?=
- =?utf-8?B?U1loUHgwZStSWVRHQTZhOWxaZ0NJM0NqN1RCd1RDck9STERTNUZUUEVtWUdi?=
- =?utf-8?B?ZWU1NGpsSHZlMFBJckNwOGwvMXlFRDUzUmFiV3JTbUhhbytONkQwMXpIeDBn?=
- =?utf-8?B?VkN2QUt5d0FUTGQwUlBjUlltYzhkaFlNOS8yaGdnZnlzS2ZUL29yOTRmRDFy?=
- =?utf-8?B?SUtoN3d6bnlEZjNSY0RwbElodkJMM0ZlY0pGVVZXeHRBWHAzZldCMjhkdzk3?=
- =?utf-8?B?U2xPZHlQWkYzMm0vY25CTGcxV21iektRbW1HdysyY1JKZjZNRFkwaDFBT0Er?=
- =?utf-8?B?Qk83Y3pKZnQrNEhoeXNFNVdoaHBsMFBvVVFPZVZvYUkwL0k2NnI1QzVkMVNM?=
- =?utf-8?B?T2Y4bkowUkdGSlFKYUJsdVNNVXNnUmFPTjhoWDB4T3RqeTl2UmY4b3J0Nmxh?=
- =?utf-8?B?KytpUkd4TE1qc0lGUEVCQjdLMG1aRXdGSUNOVnI5SjZCcmdkZ2hlRGltL3RZ?=
- =?utf-8?B?UnZEdmlVTklVdjl5TDFhZm9LSVRSSEl2bUpIVStsYVcyRzNqcFY0S004UTc1?=
- =?utf-8?B?ZVRscFIrenNncllWcWNZdmFDQzdWQTVZL0h5QTAyYlpzUFBQZTZDMUV0a0N1?=
- =?utf-8?B?czlYSDdheUpjU0I5eEVqa3hvWXhIa3BLTlBqTWJ4ZXQ4czVoSXo1UEh0Rkk0?=
- =?utf-8?B?aGZudzZHUEtaTUZNZW8ySzMvRERSQlljNU9ldVBaZDhSWjljZ0ZXMTdnNUZ6?=
- =?utf-8?B?WVV1VCs1MTBYa1dkK0VwaGNXampnN2xPYmdsUTVWdUtGWmp4QUhzZDlibzcx?=
- =?utf-8?B?VlJ2RmRUK2l1RGJMQlFoVXkwUnQ2QmpMZ25vOENoWGFBV09jck5WMjhIT1ZB?=
- =?utf-8?B?OEdNUFlzZWE4aE16WXR5RDhvejVjRms4cVVFMC9EYnJSL0J0bXJRekdURmFw?=
- =?utf-8?B?VXJ1WkhkbUthTkV2SDNzYktBc2c2M3YrblU3Y2RhVDI2MEJjZmdwcmw2TExN?=
- =?utf-8?B?WlR1U3RNaDJ3SkJJU3dZZFFtc2w4ejQrQ2h2ZmpRUExSa3oxMTZtTWdaT3l2?=
- =?utf-8?B?V3NsOXJ3cWhzUi9Va0hrb2xmVGhMQm11ZEQ1b1hhYXNLYlo5U3pBbG1FMFIz?=
- =?utf-8?B?ZXA3UnNVQU1rallqSU03c21qU0ppL1hNS05ZQ0lRMkx1OUJqVExYcXp5YUxs?=
- =?utf-8?B?eVpkZEp0RkZMUm1RRmpkTXQ4eU1nRkpjM2tWM01VM1l1MnJnWUk5dGh1QzdG?=
- =?utf-8?B?c2RZUWhtbVo1dEV2Rit0eGhMTUlETUphazR3SEV4TXM2dWZZU25MQUQycVVT?=
- =?utf-8?B?dG1RLzgwR0psU2x3clAySHBySE9LZHFuVVJ6WklodEdxeVdhcER0cERTRTY0?=
- =?utf-8?B?UGZkQzkwN1hMVDlrdDQ1T2pJY214cUlTQ3JMNnB2bkpRWXVMSGlkRW5TdnZ4?=
- =?utf-8?B?MmRKVnRvRXRVTmFNZmtoSUlKekVqOXp3OHlXQ3hWTEJ0dHRzVStoc0pLNjlu?=
- =?utf-8?B?THhrMUQ1WTVrbDJzbVZ0VnY1U1BCM1hOK0ZlckJnWDZod21zZ1h0NmRPamNm?=
- =?utf-8?B?akVGMkd3OTh5WnA3bUI3M2JNdEsrYkdubjhxaXNYZnhJVFpGTVpBWlgrL083?=
- =?utf-8?B?R1R5ekUvSjJaNVZBdUNDVVMyb242R2FET2F3R084ckVDQjMxS3FVb252T2ZM?=
- =?utf-8?Q?dU3cKz1ROWWCK?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WTlla3ZMUTZCOEI2eWpyMzlzODRnRXNBeS9LS3E3emQ3KzY4UVZzL25vU2Ez?=
- =?utf-8?B?eUl6T3NJOVgrOSsyWG5HdXNsZnZmcGtIUWxoM0tyL3VncEFvTERoM0ZHaFFC?=
- =?utf-8?B?M3dNdFlJaForYzhxcDk4Y2xyVkVReTNqWlloSjJFUDlBZWxFVm9JQnY1a2pr?=
- =?utf-8?B?NVRjeFdNSE1RSGs2L2thd3drTW1EREIwdWJGNUowY2F6N1lEenVnSG5jQlJi?=
- =?utf-8?B?NEdmc0ZYK0taOCtKRkl0SUlTMlh6Z0J5bnFHTG1TYmpYdDU5dU1zcHNIcmMy?=
- =?utf-8?B?TDMrQlFSY1NTdDFZbU9xeDhBME1HdFVudnNJSDVzME1hWWVCT2FCVUJVUWxS?=
- =?utf-8?B?b2VaMmhSd1ltYVI2d1o3R1BQUFJabEFoczdUMnArVlVyd3FWbFQ5YWprc3F2?=
- =?utf-8?B?R1FYVHNXT0RtbTRYTWlubEp1a2piejV6Ni9LUjU1K0FBT042N2RWV0Nvemdk?=
- =?utf-8?B?NG10d0UvbStNUXJtdDhaY0hxOGIwdUpTVmMySHF1WjZubWhMS04xKzgrb09F?=
- =?utf-8?B?Y0EydWpvOVA1aktyTEgydVE2WFduWGF4Z0o2djNIV3ZoWWF5N3E2VXZGRS9P?=
- =?utf-8?B?Si8xZU1adFVET1RBbFZ4aHdIODV1MlNzU2tuSTRNTk40eVZidDdvbHdWMU1C?=
- =?utf-8?B?ZW5BN3MwZ0ljL2svb0Y0M1F6QXZxYWZKUVJ4KzFsNzhHTzN4L0NrbFVtZENi?=
- =?utf-8?B?Z2FJUkltMkcyalZmZUx2ZFdGZzNTNU9yT3p4ZllMMTlaei93NWUrN0wvWVIw?=
- =?utf-8?B?djdHS3QzdzUwMnMwYjdRS1M3S2ZXY3YzdkVYTllncktETktCNzlyRTY0VHZt?=
- =?utf-8?B?TkVQQnE2ZlFNRjJvc3NEd2xtUkw3MERBRVNUcFA0TWF1V0RjVzI5ZU5vRytK?=
- =?utf-8?B?ZWszQVZBbExSajVlQzJnSUx4bW5nTC9nNXU5RzBjcUswL3BJdkRmOGg4ZnAx?=
- =?utf-8?B?QjZTSzJOTWhzdHoyMlJyTnpVL1FCU09iL3MyYm5LcTU1NW5ERURTazhTMFVI?=
- =?utf-8?B?akpwNzlyZDN0QThTRnA1bThPYXNCRVZWMitvck1EWGhkNmFCcUJYTURjamxY?=
- =?utf-8?B?c1VmYWZLbGlURFMvYjFnVW5rc25XZ0F0ME93RVVrcVQwZDF6QldncEQ4T3dR?=
- =?utf-8?B?OHpFS2QzUU1FNGFrcUd0dzlteElKK09QOGlnclo3bDdaUnBDWkxlNUFtam1w?=
- =?utf-8?B?ZURCRmdFcHZhK3JnNFB4b2Y1dFhvWXRhL0NUUWVXTW9IWms5aGJ5aDRpc2xR?=
- =?utf-8?B?UHVYR2pBWHMzZ2dIemREU2IveDNIdGhKeXFHclo3TlYvc3NLR0s3eG9LZ2ZS?=
- =?utf-8?B?RXNJL2U3bzBQaE5CM29aZlc1ZDU2dXdhRFc3U0FSU1YrL3RJM1E1YU44N2NJ?=
- =?utf-8?B?UURJNDRrNE0zQVBWdVpUT3RtajFKcDhRakJ3My8rVVJaenplY3U0YnQxbDJz?=
- =?utf-8?B?cTZBclB3bGNkaXQ5dW1IMW5XZUFvNmNOWHVpNllLcHlVRkM4WGFPaG9UaStm?=
- =?utf-8?B?VTBpRU5qMUNiekZ0b3hnK243YjE4Q1RFb1kzeUlTV1gwc0NuYUxrYzJxTHE1?=
- =?utf-8?B?REhwdXVadFlJNjRVcnJFdnFQblNuY2s0N0JsNGY0VTVwUnFGMjhEQ2pwUzNT?=
- =?utf-8?B?TzFkZ3dzZ3VST3M2T1hOTzF5MzM3ZS9jdzdmMFVsMFRlM0RiUURGNk92RzJJ?=
- =?utf-8?B?d2RMWjBZem9jakNZUU11QjhHQmYvYkFKWWl3KzFtYXY5WTRkUUk4cTluTDFV?=
- =?utf-8?B?QzMzOXBzSW0veFBZZm85MWhKUm5zd1p0V2M2S0tCdzZCWHVtcUtxSkJyOU1U?=
- =?utf-8?B?c3ZVMnhFeUx4eCtQSnVtZlk1T1lxcDE0REloT0RlcmtjM2FLTVFkWjJGbnY5?=
- =?utf-8?B?RG5yRDhDSzNyOUdmL0Q1QXpRZUFuc2JDeUNiRFZkeXpNYnJaUGNZVDMvcHJ3?=
- =?utf-8?B?Y01ISWhnWTQ3YmlVTmlpd293UmluVFRCN2ZEZzFERjdyRUxvamxiU2M3OWla?=
- =?utf-8?B?ZmlvejRRbFpMZGV3Tnk3S2tSL0l5TzYyWitoTUdlcmVSUEZiR000K1h0a0Ro?=
- =?utf-8?B?cjJKTmtMTGViVXlnTmc1RFIvSEM5MWpKVjJUaW1zZU9TaFZMZkM0NjdydlJz?=
- =?utf-8?Q?m5g2ceYOz2gh8ZQzSkzjHgCwd?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5248a6a7-b0d3-4343-ff6e-08dd33dd4fab
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2025 14:19:37.5668 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 29B7LH1ZMSviPry8fITDV4RWUB8kcSGntJeNsDiowqFybxxd53DOiZkrkBAvJol5bylsMIjgbZyG46aT3MrXjg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6246
+X-Mailman-Approved-At: Mon, 13 Jan 2025 15:49:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,7 +108,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 1/11/2025 12:59, Chris Bainbridge wrote:
+Hi,
+
+On 11-Jan-25 7:59 PM, Chris Bainbridge wrote:
 > Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
 > available for eDP") added function dm_helpers_probe_acpi_edid, which
 > fetches the EDID from the BIOS by calling acpi_video_get_edid.
@@ -187,36 +130,36 @@ On 1/11/2025 12:59, Chris Bainbridge wrote:
 > 
 > Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
 > Fixes: c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if available for eDP")
-
-Two minor documentation related comments to consider, otherwise I think 
-the code change looks good.  Feel free to include:
-
-Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
-
-> ---
-> Changes in v2:
+> ---> Changes in v2:
 > 	- check kmemdup() return value
 > 	- move buffer management into acpi_video_device_EDID()
 > 	- return actual length value of buffer
+
+Thanks, patch looks good to me:
+
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+
+Regards,
+
+Hans
+
+
+
 > ---
->   drivers/acpi/acpi_video.c              | 50 ++++++++++++++------------
->   drivers/gpu/drm/nouveau/nouveau_acpi.c |  2 +-
->   2 files changed, 29 insertions(+), 23 deletions(-)
+>  drivers/acpi/acpi_video.c              | 50 ++++++++++++++------------
+>  drivers/gpu/drm/nouveau/nouveau_acpi.c |  2 +-
+>  2 files changed, 29 insertions(+), 23 deletions(-)
 > 
 > diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
 > index 8274a17872ed..3c627bdf2d1b 100644
 > --- a/drivers/acpi/acpi_video.c
 > +++ b/drivers/acpi/acpi_video.c
 > @@ -610,16 +610,29 @@ acpi_video_device_lcd_get_level_current(struct acpi_video_device *device,
->   	return 0;
->   }
->   
+>  	return 0;
+>  }
+>  
 > +/*
 > + *  Arg:
-
-As you've pretty much written kernel doc, us it better to just make this 
-proper kerneldoc (IE use /**)?
-
 > + *	device	: video output device (LCD, CRT, ..)
 > + *	edid    : address for returned EDID pointer
 > + *	length  : _DDC length to request (must be a multiple of 128)
@@ -226,34 +169,29 @@ proper kerneldoc (IE use /**)?
 > + *
 > + *  Get EDID from ACPI _DDC. On success, a pointer to the EDID data is written
 > + *  to the edid address, and the length of the EDID is returned. The caller is
-
-Since 'EDID' and 'edid' mean different things in the context of this 
-description for the purpose of clarity I think it would be better to say 
-"the edid pointer address".
-
 > + *  responsible for freeing the edid pointer.
 > + */
 > +
->   static int
+>  static int
 > -acpi_video_device_EDID(struct acpi_video_device *device,
 > -		       union acpi_object **edid, int length)
 > +acpi_video_device_EDID(struct acpi_video_device *device, void **edid, int length)
->   {
+>  {
 > -	int status;
 > +	acpi_status status;
->   	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
->   	union acpi_object *obj;
->   	union acpi_object arg0 = { ACPI_TYPE_INTEGER };
->   	struct acpi_object_list args = { 1, &arg0 };
+>  	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
+>  	union acpi_object *obj;
+>  	union acpi_object arg0 = { ACPI_TYPE_INTEGER };
+>  	struct acpi_object_list args = { 1, &arg0 };
 > -
 > +	int ret;
->   
->   	*edid = NULL;
->   
+>  
+>  	*edid = NULL;
+>  
 > @@ -636,16 +649,17 @@ acpi_video_device_EDID(struct acpi_video_device *device,
->   
->   	obj = buffer.pointer;
->   
+>  
+>  	obj = buffer.pointer;
+>  
 > -	if (obj && obj->type == ACPI_TYPE_BUFFER)
 > -		*edid = obj;
 > -	else {
@@ -261,34 +199,34 @@ description for the purpose of clarity I think it would be better to say
 > +		*edid = kmemdup(obj->buffer.pointer, obj->buffer.length, GFP_KERNEL);
 > +		ret = *edid ? obj->buffer.length : -ENOMEM;
 > +	} else {
->   		acpi_handle_debug(device->dev->handle,
->   				 "Invalid _DDC data for length %d\n", length);
+>  		acpi_handle_debug(device->dev->handle,
+>  				 "Invalid _DDC data for length %d\n", length);
 > -		status = -EFAULT;
 > -		kfree(obj);
 > +		ret = -EFAULT;
->   	}
->   
+>  	}
+>  
 > -	return status;
 > +	kfree(obj);
 > +	return ret;
->   }
->   
->   /* bus */
+>  }
+>  
+>  /* bus */
 > @@ -1435,9 +1449,7 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
->   {
->   	struct acpi_video_bus *video;
->   	struct acpi_video_device *video_device;
+>  {
+>  	struct acpi_video_bus *video;
+>  	struct acpi_video_device *video_device;
 > -	union acpi_object *buffer = NULL;
 > -	acpi_status status;
 > -	int i, length;
 > +	int i, length, ret;
->   
->   	if (!device || !acpi_driver_data(device))
->   		return -EINVAL;
+>  
+>  	if (!device || !acpi_driver_data(device))
+>  		return -EINVAL;
 > @@ -1477,16 +1489,10 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
->   		}
->   
->   		for (length = 512; length > 0; length -= 128) {
+>  		}
+>  
+>  		for (length = 512; length > 0; length -= 128) {
 > -			status = acpi_video_device_EDID(video_device, &buffer,
 > -							length);
 > -			if (ACPI_SUCCESS(status))
@@ -296,26 +234,26 @@ description for the purpose of clarity I think it would be better to say
 > +			ret = acpi_video_device_EDID(video_device, edid, length);
 > +			if (ret > 0)
 > +				return ret;
->   		}
+>  		}
 > -		if (!length)
 > -			continue;
 > -
 > -		*edid = buffer->buffer.pointer;
 > -		return length;
->   	}
->   
->   	return -ENODEV;
+>  	}
+>  
+>  	return -ENODEV;
 > diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
 > index 8f0c69aad248..21b56cc7605c 100644
 > --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
 > +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
 > @@ -384,7 +384,7 @@ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
->   	if (ret < 0)
->   		return NULL;
->   
+>  	if (ret < 0)
+>  		return NULL;
+>  
 > -	return kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
 > +	return edid;
->   }
->   
->   bool nouveau_acpi_video_backlight_use_native(void)
+>  }
+>  
+>  bool nouveau_acpi_video_backlight_use_native(void)
 
