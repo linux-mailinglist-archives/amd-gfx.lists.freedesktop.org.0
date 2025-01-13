@@ -2,49 +2,157 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931CDA0B0D8
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 09:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 813D3A0B946
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 15:19:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 647AC10E432;
-	Mon, 13 Jan 2025 08:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA85D10E69A;
+	Mon, 13 Jan 2025 14:19:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=emersion.fr header.i=@emersion.fr header.b="W77KwlgA";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rZnPaGKX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 801 seconds by postgrey-1.36 at gabe;
- Mon, 13 Jan 2025 08:18:53 UTC
-Received: from mail-10624.protonmail.ch (mail-10624.protonmail.ch
- [79.135.106.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F140A10E428;
- Mon, 13 Jan 2025 08:18:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail; t=1736756332; x=1737015532;
- bh=tq0GsELHY1a4zUoLUNWdm6oz/LAOiZIefjdH5kB0eLM=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
- b=W77KwlgAn/NP5A8HvNJT2q5b4wPCny2DdKH077nVmb+Yl3cf16is0CHj8BvKildo3
- n/PGY68OhCcu8BSEhrsL35CFycLq6WqsMHTXgJ9UIDqmZy741g3nZ/A88GvUG6uRIt
- +KvsOi5aUXp2n/XYN8qmE/z5dMDIoPRVFitGSWac/o/yIPv9445x0yy7FAaDxBDcYI
- aJhLP1uLu32r9GNqhVtrd+SIhUjcrDES6Jme5phXMElle0KKYVuWQforcjA9LTpOgC
- pzmVx389eNJ1+oDI/PLkiSgFHHf6GOpHzOJ4htgP2Bje91mLcoMxiDOR5hZ2PrMUMi
- FhJUHgXHC5IAA==
-Date: Mon, 13 Jan 2025 08:18:45 +0000
-To: Alex Hung <alex.hung@amd.com>
-From: Simon Ser <contact@emersion.fr>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- wayland-devel@lists.freedesktop.org, harry.wentland@amd.com
-Subject: Re: [V7 08/45] Documentation/gpu: document drm_colorop
-Message-ID: <eDrRzjuU_q4z4Jvq-DYxUnw2a-VUts65NbWMZbhrvqYoKbcW_jUawJ_ZirFIFQzrtMG4asLn6f9WP24o-k4DnP_oYf5R94PYoMIejFqdTZM=@emersion.fr>
-In-Reply-To: <20241220043410.416867-9-alex.hung@amd.com>
-References: <20241220043410.416867-1-alex.hung@amd.com>
- <20241220043410.416867-9-alex.hung@amd.com>
-Feedback-ID: 1358184:user:proton
-X-Pm-Message-ID: 7fb6c75bfdd91eef14442e82b2eae395ef272f1e
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2081.outbound.protection.outlook.com [40.107.92.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A23A10E42B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 14:19:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UqleJPghdV1CJRj/L3kjwW1QXnFdgWg4X9pVVzTeHtRpXE0GbGf2++lfZH+OtqiIQFXFpI+0UJ40iYa49c9xW0Qvr2WWHq24q1J5cuyZUxa092KM42vQjc1flWhSWPjCjgme+u046gbrRJuQTZS15OTRmSCTb77sJZVQQpW9xBMKxlgThLrxuSZuonIG5ieCkts+9wm4C+cxfs+hhbVDXNH3HMtrKd9j70QRhd4hy3EVMVvLin7rLGMIC2NbBj6Zu3P6H67d+6GGTsUyPV/fdf4WgXfyoVnfNaUJKwzyx2hMdBGZ/fKn0ndsqU7ekq2lKHEe/bEKmrdwcfWPksvDIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=77JDE0LYPx01sP5WqcK/LOu56dFi2UbjJGrydu2sgsk=;
+ b=nwhSYjkFJxZtTpXkKDwiq8VFwO8UABMi8aj8irMweh94+X+8F/4bedLeZPyHyUa1UeLdoGh7iuL9XO9j+Yaz45aO5nEeBcti4Dzm31HZFVr0zHwFx0+1ERootRq+cVs16cKVd+chnRcP6AaBO2bQMLOftZ9LaVTmgzPrgjhJVbcIir59u+esI57W4GhMPdNnikwF1/cjnbVhLJWXFXJtTcfmdGTTuu0ktBhUc2nGqzIuBdLl/W701WZWRaeyty4xK6emc3BZfEQq2JqwsVbfGRT9rF8mb52xFE1cBKO80hAK+J+EviwO2D7HRGuEVt3V6s2UyePimfuZKWxl6GGUFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=77JDE0LYPx01sP5WqcK/LOu56dFi2UbjJGrydu2sgsk=;
+ b=rZnPaGKXa4bCQo7VFYLLuIBRsVEPBcxuUvYs7WXs+OMPWZ3jgAhMlsWOp0yJ2Lfs7mQQPQb5H2Mdog1it6pWVXfVM3ecF33T8P7QEcOY+UaAp8GEgcQpB6M2LLl2CaBY48wxrngU1vh5Ym57v/7RmFSt1KdGJ08IENLb6juny4g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
+ by MN0PR12MB6246.namprd12.prod.outlook.com (2603:10b6:208:3c2::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.12; Mon, 13 Jan
+ 2025 14:19:37 +0000
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::37ee:a763:6d04:81ca]) by MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::37ee:a763:6d04:81ca%4]) with mapi id 15.20.8335.017; Mon, 13 Jan 2025
+ 14:19:37 +0000
+Message-ID: <c6e622b2-64e4-41cf-acfb-31ae493571d2@amd.com>
+Date: Mon, 13 Jan 2025 08:19:34 -0600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ACPI: video: Fix random crashes due to bad kfree
+To: Chris Bainbridge <chris.bainbridge@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>,
+ amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
+ regressions@lists.linux.dev, lenb@kernel.org, linux-acpi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>
+References: <Z2yQvTyg_MWwrlj3@debian.local>
+ <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
+ <Z2yw_eJwR5ih1Npr@debian.local>
+ <CAJZ5v0i=ap+w4QZ8f2DsaHY6D=XUEuSNjyQ-2_=DGOLfZjdn+w@mail.gmail.com>
+ <Z4K_oQL7eA9Owkbs@debian.local>
+Content-Language: en-US
+From: Mario Limonciello <mario.limonciello@amd.com>
+In-Reply-To: <Z4K_oQL7eA9Owkbs@debian.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SN7PR04CA0058.namprd04.prod.outlook.com
+ (2603:10b6:806:120::33) To MN0PR12MB6101.namprd12.prod.outlook.com
+ (2603:10b6:208:3cb::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|MN0PR12MB6246:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5248a6a7-b0d3-4343-ff6e-08dd33dd4fab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?YTRkd280eDhJY2c0TU9rYlpZQmZ3QmUrNHJuVEtyMERuT0NZSDR6R0REVEJ4?=
+ =?utf-8?B?bnlZampoL01GK3FEeHMvQlgxUVNEVlJYSXhiSnZWS1dwVk45ZCtPUVJ1MUdS?=
+ =?utf-8?B?Nkl5QXpYeEhHNnVqUkhoTHJ6N0VpeWJmNkVpZGdrMGhDcC9PM2N2V09tVW5C?=
+ =?utf-8?B?R0xBRERpc3VMK05nZCtMVmFUZVN4STlxRDVOOWRkZzhmenQ0MW9ZNVRLd0RB?=
+ =?utf-8?B?U1loUHgwZStSWVRHQTZhOWxaZ0NJM0NqN1RCd1RDck9STERTNUZUUEVtWUdi?=
+ =?utf-8?B?ZWU1NGpsSHZlMFBJckNwOGwvMXlFRDUzUmFiV3JTbUhhbytONkQwMXpIeDBn?=
+ =?utf-8?B?VkN2QUt5d0FUTGQwUlBjUlltYzhkaFlNOS8yaGdnZnlzS2ZUL29yOTRmRDFy?=
+ =?utf-8?B?SUtoN3d6bnlEZjNSY0RwbElodkJMM0ZlY0pGVVZXeHRBWHAzZldCMjhkdzk3?=
+ =?utf-8?B?U2xPZHlQWkYzMm0vY25CTGcxV21iektRbW1HdysyY1JKZjZNRFkwaDFBT0Er?=
+ =?utf-8?B?Qk83Y3pKZnQrNEhoeXNFNVdoaHBsMFBvVVFPZVZvYUkwL0k2NnI1QzVkMVNM?=
+ =?utf-8?B?T2Y4bkowUkdGSlFKYUJsdVNNVXNnUmFPTjhoWDB4T3RqeTl2UmY4b3J0Nmxh?=
+ =?utf-8?B?KytpUkd4TE1qc0lGUEVCQjdLMG1aRXdGSUNOVnI5SjZCcmdkZ2hlRGltL3RZ?=
+ =?utf-8?B?UnZEdmlVTklVdjl5TDFhZm9LSVRSSEl2bUpIVStsYVcyRzNqcFY0S004UTc1?=
+ =?utf-8?B?ZVRscFIrenNncllWcWNZdmFDQzdWQTVZL0h5QTAyYlpzUFBQZTZDMUV0a0N1?=
+ =?utf-8?B?czlYSDdheUpjU0I5eEVqa3hvWXhIa3BLTlBqTWJ4ZXQ4czVoSXo1UEh0Rkk0?=
+ =?utf-8?B?aGZudzZHUEtaTUZNZW8ySzMvRERSQlljNU9ldVBaZDhSWjljZ0ZXMTdnNUZ6?=
+ =?utf-8?B?WVV1VCs1MTBYa1dkK0VwaGNXampnN2xPYmdsUTVWdUtGWmp4QUhzZDlibzcx?=
+ =?utf-8?B?VlJ2RmRUK2l1RGJMQlFoVXkwUnQ2QmpMZ25vOENoWGFBV09jck5WMjhIT1ZB?=
+ =?utf-8?B?OEdNUFlzZWE4aE16WXR5RDhvejVjRms4cVVFMC9EYnJSL0J0bXJRekdURmFw?=
+ =?utf-8?B?VXJ1WkhkbUthTkV2SDNzYktBc2c2M3YrblU3Y2RhVDI2MEJjZmdwcmw2TExN?=
+ =?utf-8?B?WlR1U3RNaDJ3SkJJU3dZZFFtc2w4ejQrQ2h2ZmpRUExSa3oxMTZtTWdaT3l2?=
+ =?utf-8?B?V3NsOXJ3cWhzUi9Va0hrb2xmVGhMQm11ZEQ1b1hhYXNLYlo5U3pBbG1FMFIz?=
+ =?utf-8?B?ZXA3UnNVQU1rallqSU03c21qU0ppL1hNS05ZQ0lRMkx1OUJqVExYcXp5YUxs?=
+ =?utf-8?B?eVpkZEp0RkZMUm1RRmpkTXQ4eU1nRkpjM2tWM01VM1l1MnJnWUk5dGh1QzdG?=
+ =?utf-8?B?c2RZUWhtbVo1dEV2Rit0eGhMTUlETUphazR3SEV4TXM2dWZZU25MQUQycVVT?=
+ =?utf-8?B?dG1RLzgwR0psU2x3clAySHBySE9LZHFuVVJ6WklodEdxeVdhcER0cERTRTY0?=
+ =?utf-8?B?UGZkQzkwN1hMVDlrdDQ1T2pJY214cUlTQ3JMNnB2bkpRWXVMSGlkRW5TdnZ4?=
+ =?utf-8?B?MmRKVnRvRXRVTmFNZmtoSUlKekVqOXp3OHlXQ3hWTEJ0dHRzVStoc0pLNjlu?=
+ =?utf-8?B?THhrMUQ1WTVrbDJzbVZ0VnY1U1BCM1hOK0ZlckJnWDZod21zZ1h0NmRPamNm?=
+ =?utf-8?B?akVGMkd3OTh5WnA3bUI3M2JNdEsrYkdubjhxaXNYZnhJVFpGTVpBWlgrL083?=
+ =?utf-8?B?R1R5ekUvSjJaNVZBdUNDVVMyb242R2FET2F3R084ckVDQjMxS3FVb252T2ZM?=
+ =?utf-8?Q?dU3cKz1ROWWCK?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WTlla3ZMUTZCOEI2eWpyMzlzODRnRXNBeS9LS3E3emQ3KzY4UVZzL25vU2Ez?=
+ =?utf-8?B?eUl6T3NJOVgrOSsyWG5HdXNsZnZmcGtIUWxoM0tyL3VncEFvTERoM0ZHaFFC?=
+ =?utf-8?B?M3dNdFlJaForYzhxcDk4Y2xyVkVReTNqWlloSjJFUDlBZWxFVm9JQnY1a2pr?=
+ =?utf-8?B?NVRjeFdNSE1RSGs2L2thd3drTW1EREIwdWJGNUowY2F6N1lEenVnSG5jQlJi?=
+ =?utf-8?B?NEdmc0ZYK0taOCtKRkl0SUlTMlh6Z0J5bnFHTG1TYmpYdDU5dU1zcHNIcmMy?=
+ =?utf-8?B?TDMrQlFSY1NTdDFZbU9xeDhBME1HdFVudnNJSDVzME1hWWVCT2FCVUJVUWxS?=
+ =?utf-8?B?b2VaMmhSd1ltYVI2d1o3R1BQUFJabEFoczdUMnArVlVyd3FWbFQ5YWprc3F2?=
+ =?utf-8?B?R1FYVHNXT0RtbTRYTWlubEp1a2piejV6Ni9LUjU1K0FBT042N2RWV0Nvemdk?=
+ =?utf-8?B?NG10d0UvbStNUXJtdDhaY0hxOGIwdUpTVmMySHF1WjZubWhMS04xKzgrb09F?=
+ =?utf-8?B?Y0EydWpvOVA1aktyTEgydVE2WFduWGF4Z0o2djNIV3ZoWWF5N3E2VXZGRS9P?=
+ =?utf-8?B?Si8xZU1adFVET1RBbFZ4aHdIODV1MlNzU2tuSTRNTk40eVZidDdvbHdWMU1C?=
+ =?utf-8?B?ZW5BN3MwZ0ljL2svb0Y0M1F6QXZxYWZKUVJ4KzFsNzhHTzN4L0NrbFVtZENi?=
+ =?utf-8?B?Z2FJUkltMkcyalZmZUx2ZFdGZzNTNU9yT3p4ZllMMTlaei93NWUrN0wvWVIw?=
+ =?utf-8?B?djdHS3QzdzUwMnMwYjdRS1M3S2ZXY3YzdkVYTllncktETktCNzlyRTY0VHZt?=
+ =?utf-8?B?TkVQQnE2ZlFNRjJvc3NEd2xtUkw3MERBRVNUcFA0TWF1V0RjVzI5ZU5vRytK?=
+ =?utf-8?B?ZWszQVZBbExSajVlQzJnSUx4bW5nTC9nNXU5RzBjcUswL3BJdkRmOGg4ZnAx?=
+ =?utf-8?B?QjZTSzJOTWhzdHoyMlJyTnpVL1FCU09iL3MyYm5LcTU1NW5ERURTazhTMFVI?=
+ =?utf-8?B?akpwNzlyZDN0QThTRnA1bThPYXNCRVZWMitvck1EWGhkNmFCcUJYTURjamxY?=
+ =?utf-8?B?c1VmYWZLbGlURFMvYjFnVW5rc25XZ0F0ME93RVVrcVQwZDF6QldncEQ4T3dR?=
+ =?utf-8?B?OHpFS2QzUU1FNGFrcUd0dzlteElKK09QOGlnclo3bDdaUnBDWkxlNUFtam1w?=
+ =?utf-8?B?ZURCRmdFcHZhK3JnNFB4b2Y1dFhvWXRhL0NUUWVXTW9IWms5aGJ5aDRpc2xR?=
+ =?utf-8?B?UHVYR2pBWHMzZ2dIemREU2IveDNIdGhKeXFHclo3TlYvc3NLR0s3eG9LZ2ZS?=
+ =?utf-8?B?RXNJL2U3bzBQaE5CM29aZlc1ZDU2dXdhRFc3U0FSU1YrL3RJM1E1YU44N2NJ?=
+ =?utf-8?B?UURJNDRrNE0zQVBWdVpUT3RtajFKcDhRakJ3My8rVVJaenplY3U0YnQxbDJz?=
+ =?utf-8?B?cTZBclB3bGNkaXQ5dW1IMW5XZUFvNmNOWHVpNllLcHlVRkM4WGFPaG9UaStm?=
+ =?utf-8?B?VTBpRU5qMUNiekZ0b3hnK243YjE4Q1RFb1kzeUlTV1gwc0NuYUxrYzJxTHE1?=
+ =?utf-8?B?REhwdXVadFlJNjRVcnJFdnFQblNuY2s0N0JsNGY0VTVwUnFGMjhEQ2pwUzNT?=
+ =?utf-8?B?TzFkZ3dzZ3VST3M2T1hOTzF5MzM3ZS9jdzdmMFVsMFRlM0RiUURGNk92RzJJ?=
+ =?utf-8?B?d2RMWjBZem9jakNZUU11QjhHQmYvYkFKWWl3KzFtYXY5WTRkUUk4cTluTDFV?=
+ =?utf-8?B?QzMzOXBzSW0veFBZZm85MWhKUm5zd1p0V2M2S0tCdzZCWHVtcUtxSkJyOU1U?=
+ =?utf-8?B?c3ZVMnhFeUx4eCtQSnVtZlk1T1lxcDE0REloT0RlcmtjM2FLTVFkWjJGbnY5?=
+ =?utf-8?B?RG5yRDhDSzNyOUdmL0Q1QXpRZUFuc2JDeUNiRFZkeXpNYnJaUGNZVDMvcHJ3?=
+ =?utf-8?B?Y01ISWhnWTQ3YmlVTmlpd293UmluVFRCN2ZEZzFERjdyRUxvamxiU2M3OWla?=
+ =?utf-8?B?ZmlvejRRbFpMZGV3Tnk3S2tSL0l5TzYyWitoTUdlcmVSUEZiR000K1h0a0Ro?=
+ =?utf-8?B?cjJKTmtMTGViVXlnTmc1RFIvSEM5MWpKVjJUaW1zZU9TaFZMZkM0NjdydlJz?=
+ =?utf-8?Q?m5g2ceYOz2gh8ZQzSkzjHgCwd?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5248a6a7-b0d3-4343-ff6e-08dd33dd4fab
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2025 14:19:37.5668 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 29B7LH1ZMSviPry8fITDV4RWUB8kcSGntJeNsDiowqFybxxd53DOiZkrkBAvJol5bylsMIjgbZyG46aT3MrXjg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6246
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,59 +167,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch should probably come after all patches introducing the
-properties referenced in the docs, e.g. NEXT and COLOR_PIPELINE.
-Probably after "[13/45] drm/colorop: Introduce
-DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE"?
+On 1/11/2025 12:59, Chris Bainbridge wrote:
+> Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
+> available for eDP") added function dm_helpers_probe_acpi_edid, which
+> fetches the EDID from the BIOS by calling acpi_video_get_edid.
+> acpi_video_get_edid returns a pointer to the EDID, but this pointer does
+> not originate from kmalloc - it is actually the internal "pointer" field
+> from an acpi_buffer struct (which did come from kmalloc).
+> dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
+> resulting in memory corruption which leads to random, intermittent
+> crashes (e.g. 4% of boots will fail with some Oops).
+> 
+> Fix this by allocating a new array (which can be safely freed) for the
+> EDID data, and correctly freeing the acpi_buffer pointer.
+> 
+> The only other caller of acpi_video_get_edid is nouveau_acpi_edid:
+> remove the extraneous kmemdup here as the EDID data is now copied in
+> acpi_video_device_EDID.
+> 
+> Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
+> Fixes: c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if available for eDP")
 
-> +/**
-> + * DOC: overview
+Two minor documentation related comments to consider, otherwise I think 
+the code change looks good.  Feel free to include:
+
+Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+
+> ---
+> Changes in v2:
+> 	- check kmemdup() return value
+> 	- move buffer management into acpi_video_device_EDID()
+> 	- return actual length value of buffer
+> ---
+>   drivers/acpi/acpi_video.c              | 50 ++++++++++++++------------
+>   drivers/gpu/drm/nouveau/nouveau_acpi.c |  2 +-
+>   2 files changed, 29 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+> index 8274a17872ed..3c627bdf2d1b 100644
+> --- a/drivers/acpi/acpi_video.c
+> +++ b/drivers/acpi/acpi_video.c
+> @@ -610,16 +610,29 @@ acpi_video_device_lcd_get_level_current(struct acpi_video_device *device,
+>   	return 0;
+>   }
+>   
+> +/*
+> + *  Arg:
+
+As you've pretty much written kernel doc, us it better to just make this 
+proper kerneldoc (IE use /**)?
+
+> + *	device	: video output device (LCD, CRT, ..)
+> + *	edid    : address for returned EDID pointer
+> + *	length  : _DDC length to request (must be a multiple of 128)
 > + *
-> + * A colorop represents a single color operation. Colorops are chained
-> + * via the NEXT property and make up color pipelines. Color pipelines
-> + * are advertised and selected via the COLOR_PIPELINE &drm_plane
-> + * property.
+> + *  Return Value:
+> + *	Length of EDID (positive value) or error (negative value)
 > + *
-> + * A colorop will be of a certain type, advertised by the read-only TYPE
-> + * property. Each type of colorop will advertise a different set of
-> + * properties and is programmed in a different manner. Types can be
-> + * enumerated 1D curves, 1D LUTs, 3D LUTs, matrices, etc. See the
-> + * &drm_colorop_type documentation for information on each type.
+> + *  Get EDID from ACPI _DDC. On success, a pointer to the EDID data is written
+> + *  to the edid address, and the length of the EDID is returned. The caller is
 
-It's not super nice to refer to internal kernel docs here, because AFAIU
-this section is mostly written towards user-space developers. User-space
-developers have no idea how internal kernel structs work.
+Since 'EDID' and 'edid' mean different things in the context of this 
+description for the purpose of clarity I think it would be better to say 
+"the edid pointer address".
 
-It would be nicer to have a list of colorop types here, without referring
-to kernel internals. For instance, we have a list of=20
+> + *  responsible for freeing the edid pointer.
+> + */
+> +
+>   static int
+> -acpi_video_device_EDID(struct acpi_video_device *device,
+> -		       union acpi_object **edid, int length)
+> +acpi_video_device_EDID(struct acpi_video_device *device, void **edid, int length)
+>   {
+> -	int status;
+> +	acpi_status status;
+>   	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
+>   	union acpi_object *obj;
+>   	union acpi_object arg0 = { ACPI_TYPE_INTEGER };
+>   	struct acpi_object_list args = { 1, &arg0 };
+> -
+> +	int ret;
+>   
+>   	*edid = NULL;
+>   
+> @@ -636,16 +649,17 @@ acpi_video_device_EDID(struct acpi_video_device *device,
+>   
+>   	obj = buffer.pointer;
+>   
+> -	if (obj && obj->type == ACPI_TYPE_BUFFER)
+> -		*edid = obj;
+> -	else {
+> +	if (obj && obj->type == ACPI_TYPE_BUFFER) {
+> +		*edid = kmemdup(obj->buffer.pointer, obj->buffer.length, GFP_KERNEL);
+> +		ret = *edid ? obj->buffer.length : -ENOMEM;
+> +	} else {
+>   		acpi_handle_debug(device->dev->handle,
+>   				 "Invalid _DDC data for length %d\n", length);
+> -		status = -EFAULT;
+> -		kfree(obj);
+> +		ret = -EFAULT;
+>   	}
+>   
+> -	return status;
+> +	kfree(obj);
+> +	return ret;
+>   }
+>   
+>   /* bus */
+> @@ -1435,9 +1449,7 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
+>   {
+>   	struct acpi_video_bus *video;
+>   	struct acpi_video_device *video_device;
+> -	union acpi_object *buffer = NULL;
+> -	acpi_status status;
+> -	int i, length;
+> +	int i, length, ret;
+>   
+>   	if (!device || !acpi_driver_data(device))
+>   		return -EINVAL;
+> @@ -1477,16 +1489,10 @@ int acpi_video_get_edid(struct acpi_device *device, int type, int device_id,
+>   		}
+>   
+>   		for (length = 512; length > 0; length -= 128) {
+> -			status = acpi_video_device_EDID(video_device, &buffer,
+> -							length);
+> -			if (ACPI_SUCCESS(status))
+> -				break;
+> +			ret = acpi_video_device_EDID(video_device, edid, length);
+> +			if (ret > 0)
+> +				return ret;
+>   		}
+> -		if (!length)
+> -			continue;
+> -
+> -		*edid = buffer->buffer.pointer;
+> -		return length;
+>   	}
+>   
+>   	return -ENODEV;
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> index 8f0c69aad248..21b56cc7605c 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> @@ -384,7 +384,7 @@ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
+>   	if (ret < 0)
+>   		return NULL;
+>   
+> -	return kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
+> +	return edid;
+>   }
+>   
+>   bool nouveau_acpi_video_backlight_use_native(void)
 
-> + * If a colorop advertises the BYPASS property it can be bypassed.
-> + *
-> + * Since colorops cannot stand-alone and are used to describe colorop
-> + * operations on a plane they don't have their own locking mechanism but
-> + * are locked and programmed along with their associated &drm_plane.
-
-This sounds a bit too internal for overview docs - maybe should be in
-the struct drm_colorop docs instead?
-
-> + * Colorops are only advertised and valid for atomic drivers and atomic
-> + * userspace that signals the DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE client
-
-Nit: this cap can be linkified with a "&".
-
-> + * cap. When a driver advertises the COLOR_PIPELINE property on a
-> + * &drm_plane and userspace signals the
-> + * DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE the driver shall ignore all other
-> + * plane color properties, such as COLOR_ENCODING and COLOR_RANGE.
-
-Perhaps this should appear first in the doc? Start with instructions to
-enable, then describe how it works?
-
-> + * More information about colorops and color pipelines can be found at
-> + * rfc/color_pipeline.rst.
-
-Perhaps we should note that this document contains information about
-design/architectural decisions? The "reference" should be this section, the
-RFC doc is just about the motivation I believe. That is, if the API evolves=
-,
-the RFC is unliekly to get updated, but this document will.
