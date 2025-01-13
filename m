@@ -2,160 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2093A0BCBA
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 16:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9774BA0BDD9
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 17:45:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2B1410E702;
-	Mon, 13 Jan 2025 15:59:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38C8B10E72A;
+	Mon, 13 Jan 2025 16:45:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nWaTlSgA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OlB/wQFW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2051.outbound.protection.outlook.com [40.107.244.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F292910E6F2
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 15:59:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I51kA+qBLArP1p0hO9RLqU9mT4gkMRat87KwdXgfr+I8XVaOReh/GQaenBYV1IsRe3LXmXUtxc4FuW1zdizFokL0i4Ad00U9ciwcLVp1aaF9Ro7QotlrGLN8C/lZi8gQ+JEFiPL3iLbKOcd5JGowxqRHnqyBGCsttNPaferuIHFJtPpW2XIPzyL/Xow2kEG/xe84+1743VGc86Ogj+IoaCR23h1ODDILbELfzD24ZxmVIn0w1LNqKr6KR8DfyHyLgoGcSPtSGbA8KPdcbXOFvrAX6xzIIuB3zOOwxkEVHdlsL3gHiKlgP1dvkdCmFUeOVKAmc3IY7S+vqDg3iozCfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+ABqzL03q5IJFHO8JGpUvjQacJcDqjFg8RF6X+swTOw=;
- b=HIbVUktUIv0gtf09hhxD7C6nRJJUzlvtcx5xvaQmvuMKrkGxBKHueCmujMchOYCYyT9gU0+niWkp2fpoVRg8KCrJgQpfigEgU5vpopeHMg8TNKoEem/YK0AWwk3e/JP/7Z6HftfTVJQqIUT0J/9V0CaNfJZASqVbmcYLh8X+XNktzxW2wUb5iqOTHZMh9qAsse1SYMajp20DMyC50J90OGrqFkudzS8FLPZYsN+4GdMezD7Kfbo/oB+vGVfRI8rs6Bg3WRb9YPmx3Wf1u7n43pl2d7LN8MBuffkZcUotgnPv8cw/p6p/qq8gw5oeXxCkfG8pRLjZ8AWKgWH1Z2DZyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+ABqzL03q5IJFHO8JGpUvjQacJcDqjFg8RF6X+swTOw=;
- b=nWaTlSgAhUCzJ6/SHdq9js98WC+3vJ8y65KUeKbi7b5KHinxKK2iFFGS0+dlMm9ho/paw91glByWebSbK8WFgSAJL9hyps4+onW7ji0av7Wr/uYPvGofHkB/zbovGdtSUVUmJU3h0ZauVMDR6qYulRZUQgfXOT1fvxCQgikyOGs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by SN7PR12MB8819.namprd12.prod.outlook.com (2603:10b6:806:32a::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.17; Mon, 13 Jan
- 2025 15:59:24 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::37ee:a763:6d04:81ca]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::37ee:a763:6d04:81ca%4]) with mapi id 15.20.8335.017; Mon, 13 Jan 2025
- 15:59:24 +0000
-Message-ID: <ed72f369-bc74-44d8-9cce-34aa125176fa@amd.com>
-Date: Mon, 13 Jan 2025 09:59:22 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ACPI: video: Fix random crashes due to bad kfree
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: Chris Bainbridge <chris.bainbridge@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>,
- amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
- regressions@lists.linux.dev, lenb@kernel.org, linux-acpi@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
- Borislav Petkov <bp@alien8.de>
-References: <Z2yQvTyg_MWwrlj3@debian.local>
- <b98f2fa5-fbe8-4958-bf20-fa5d28c5a38b@math.uni-bielefeld.de>
- <Z2yw_eJwR5ih1Npr@debian.local>
- <CAJZ5v0i=ap+w4QZ8f2DsaHY6D=XUEuSNjyQ-2_=DGOLfZjdn+w@mail.gmail.com>
- <Z4K_oQL7eA9Owkbs@debian.local>
- <c6e622b2-64e4-41cf-acfb-31ae493571d2@amd.com>
-Content-Language: en-US
-In-Reply-To: <c6e622b2-64e4-41cf-acfb-31ae493571d2@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SA0PR11CA0090.namprd11.prod.outlook.com
- (2603:10b6:806:d2::35) To MN0PR12MB6101.namprd12.prod.outlook.com
- (2603:10b6:208:3cb::10)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5277710E72A;
+ Mon, 13 Jan 2025 16:45:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736786709; x=1768322709;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=D/FEDvK/MGCzHnDd2wgr5sAsfkdhqlM2Z38rEqyK2tI=;
+ b=OlB/wQFWj3PM0bH+OmqemAfKherlaHWAhutS43lA/IT+MEIol8GKy7+N
+ rLL8CxvodduN9iRclDarqqfYzdGBXfJQDY9F7eHGhOY7o9qEbQj3PsBMt
+ ahg4Utyim2TmI0U2jA6f3JK8UIZ+bdb0QK3/Ub/1SrYwvsdf829pdewp6
+ onXklCYcAq+2FLzDbSSG+u3YKzQr0TC0wNvzil4E111wUwUT8bwh80T8K
+ pHCRqU4tDNpBmqwY9Rc0zxT9BipSOdINzXQA9V4igJSNKXWl6j9s4E3bQ
+ rmcD+aF6fOpfaBepT1r6WaBDW7Nltl2h2FkAb+q3mQPhWaf+s3f/yd8Oz A==;
+X-CSE-ConnectionGUID: R3ZQhY4JQySodE7hsv94lQ==
+X-CSE-MsgGUID: UsyBR3U2SoaZxCNBiSvVQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37086429"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37086429"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2025 08:45:09 -0800
+X-CSE-ConnectionGUID: DEnqptPxRgS8rJl2kdAGdQ==
+X-CSE-MsgGUID: wC4RiyGhQ2amzwMrqF5xaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="104313841"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.145])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2025 08:45:07 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Emil J Tywoniak <emil@tywoniak.eu>, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: Re: oops in xe_bo_evict on 6.12.8
+In-Reply-To: <1686df0ae8f7caf0d97369a685c810e09afdbca1@tywoniak.eu>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <1686df0ae8f7caf0d97369a685c810e09afdbca1@tywoniak.eu>
+Date: Mon, 13 Jan 2025 18:45:04 +0200
+Message-ID: <87a5buirxr.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|SN7PR12MB8819:EE_
-X-MS-Office365-Filtering-Correlation-Id: f6c35e29-4c76-4573-badb-08dd33eb3ffb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|7416014|376014|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SFR6eFpQRFlySjdxcmRmZU9QTnVpNWJiWkh5SWRzKzNKY2FJQnJ6WGlkS1E3?=
- =?utf-8?B?WDIvRkxadjhwSEJsbDF4QlMxR3hERzZrUU9hbXU1UVFRMHBtR3dabUU2Z2ZE?=
- =?utf-8?B?K1R6OE1ONzl2WlNTbmJ6WExqYlkxTmRyWUhEbnBieGM3WUhwQ2ZoYkVaeHh0?=
- =?utf-8?B?YkdiYkUwa3Fyb1hyN3o1aGxCeHFDbVBOcmppd3ozTE0vc1FnTTU3aVdIYTEw?=
- =?utf-8?B?Z3h2cSs0MFhvbkVIYnd6TXF4RklyRFNYWmZobkRRQ1hpU2h5STM4alV6eFNa?=
- =?utf-8?B?Tkc4eEp5SU9WYWQxS0QyU2ozcVZhQ0dLMUV3L1ZYd3dITUNsUGs3NVgySWxN?=
- =?utf-8?B?bzl3OFV4QUN1NVV6d2o4K2t1UDJ1NjBuZkVQVlNoZUxmLzRMSFExUjdXV2V4?=
- =?utf-8?B?Zkg4YzN4ZzkwTFRqYmw2cUVpdnprMkFRTFlaeWl2Sm9FQkZxODhVZnhIZjlr?=
- =?utf-8?B?Yjl4MXR5eWtlcGFGaDhuZUp3bTVIQ21Ba3dxRkoxd3k5MDM5NmR1N0FXRGJP?=
- =?utf-8?B?aHd6dGFVQTF2RXE3QzZiNFJvL0x1V1VIR1ZJbEtLTy9KTkZMRUt3UVhBaytB?=
- =?utf-8?B?TFR0QzE3enRFeWhOdnZpWGpuYk5zRHhrUEtMWnd4RENhdXVVZHFVSWoydVo5?=
- =?utf-8?B?d3N5bnJKL3IzNHMwRnEvTk4xSXplMWw0QlFtYmlHejh5eE5zWlYxeWVibEkw?=
- =?utf-8?B?cldUMUZPTHAzR2theFdCUHRGRE1vVUYwS25wMk1reG13QWRvaVRFYzVMTktC?=
- =?utf-8?B?R1JPMjgvTUlsa2NrblJvN0VHM01LV3k0TXVUM3ZTMlVWTUNNTnZxM2Z2MWlU?=
- =?utf-8?B?RTRZK1YwSFhQWHhMUStXK0l1U2FOOHdRNTk3Uk9aRHM1Ym1UWXhIMzRydXNM?=
- =?utf-8?B?cmFMNWNYTEpQcWlKNTQ3RFErVnFiTHJZWFNEdzR2NW9HclQyZG96VVhCc3NV?=
- =?utf-8?B?UnhSTDRjbUIvb2huVEgrTlVBRXFQQm91enB0R2ZPT1ErY21XaG16TVIycENh?=
- =?utf-8?B?WDhDdGVVeGZjQnZmY1I5dnZPN3ZFZndLTFhvSlE5NVVqRkt2eEoybDZsRVJs?=
- =?utf-8?B?K2VTWm5mMDArdHBjS3plSjh6UitGWkVTdjVTVndBYzZ3RlRZbndYNXpWUEJJ?=
- =?utf-8?B?SUNyME8rbVZZWkpFUGQ3dTNMTDBxUmI5b1lSdFNCSjZMS3hGSThxYVJtbWF1?=
- =?utf-8?B?Z2tKMFZZV1FuL09JSEJrSVVvYWFTODBKM3ZJaUJyeUNmN2I5RjZoRG5CbCtr?=
- =?utf-8?B?VnBkNEdwV2lnRHpJTEVwKzRERkFrOGNpSXZUUUlWVVI5Y3lCbXplbzhCaDQr?=
- =?utf-8?B?MkJnaDNzRTJRQXA0ajlmUVJudmFiLzI3dkowVE80akoxNGYwWmpROGVPWm9T?=
- =?utf-8?B?MVBJcDd2RU9PVUJ0RjQvY00ycXFaSDhYNVVSa2VCUkNjUVpIQ2hjK0ZKbFA0?=
- =?utf-8?B?cTJRTzVUYTVBT1hIN2xSMG16ZFpBRkVNODVyZ3A1YURKZ3BrNGdpNUZUKytJ?=
- =?utf-8?B?bXhUMk1ZRVNOaDdaNysvUXlTdXFQZUtpeFZibkI4Y1dXb0F1SG5kVjZwa2FR?=
- =?utf-8?B?VU1DeDRDM1RuWkpzUVhqa3B2aTRJZVV6L1NScXJYc212ZFk3TDBucG9XdHo2?=
- =?utf-8?B?NWN5MGJ6d2NobE5FbklJQXVpRDE4bzBVbm1qV1dpL0pMVmwvZ1BZb3ZIU0do?=
- =?utf-8?B?aExEQkFvUkZQaTJTT1RrSVBlVFJkUEFvVXBUTGg2d3RodjhiRzhhQTdzM1ha?=
- =?utf-8?B?NkNpYmN1cnNwWDd4Ykg0bVVGeEhvVCtLNjh2MEdJSHdzRWo2Z2w0OHFVRFVy?=
- =?utf-8?B?VGIray90N3ZmOCtvbzJXUT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014)(7053199007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjJ2YVNpN3VOTVZiU3VJTkhMdnBtM0t1Y1JnZmh6WCtVaVMzVmlrYit4RytN?=
- =?utf-8?B?SmZ3LzhiS25uREEwSExhY1VsQ3RLUmNpcnNWUllsWGVRSnFuOGh2YXEzaWZq?=
- =?utf-8?B?dHNhOFVqTmZ5bmtFd2F3cmNKeGJQUzVBbEZLY1pKMFdaVm1xaHN6eHZrMzky?=
- =?utf-8?B?cTdNQlI3Z2JyaDhXNTVFRjdjTHlUdzV3ZXBOV09oUlo0YThZaXhFeUcwNk9K?=
- =?utf-8?B?VytQOGZGNzYxUUtGTkNrdWhKK0Q5U2FUS0h0cDJabWNHbVhhMGtQTS9aU3Vq?=
- =?utf-8?B?Rm1xOHJCcG1lQXJlVUEyUGRBbEZudFY4cC9sN1lWOEZrVCtES21US0FuVVps?=
- =?utf-8?B?VW1sL29VaG1selRvd2RObENpUVhuL3h5MGlsdEp6eEUxS21zMFJDeU1RL0tY?=
- =?utf-8?B?L3c2cFNHaGZpaktvS3dRZ2NqenlhaE41VFdPY3h6UERYTDNMKzJzS2toeEJO?=
- =?utf-8?B?RStFVlJFRWFvc2NYdTFyUDJlelVXVVZWcllZcDBzL1ZSTyt0SkpBM2Z0cXFT?=
- =?utf-8?B?K090K2RQT3VaRFVZMEsvME0wekhwaHZ6V3pVNitCSENmZnIrcDFlcWZQemhK?=
- =?utf-8?B?M1ZHUldKNk8yL1JYWFBBVGlpTnVxOGJnemZSOTB6cDF5L2EzMGlPb1lzTE16?=
- =?utf-8?B?d2VvZE1zTUZjdVZXY0txYWlsL0hRNmt1QW5aTUE0V0lQdEUzbVV3NVk2ZDZx?=
- =?utf-8?B?bGpsV3JneHdXYWp2d1lDZG5wd3ExZGNVK3dxV3MwQXg1czJEcHE0YndWNmZj?=
- =?utf-8?B?Tlh6REM0Z3R2U1RYVVFLSmRBS0twa3ZiSjd3NUkycFRFTGU5RmlpbUViQnM5?=
- =?utf-8?B?bVAzOWxaMVdrWkdQRmNJdklIK3YwdVBwcFdodGF6Ty9Obk5ia2M5NnFmQThJ?=
- =?utf-8?B?eFdrczRsd2tjcEV2ZnpWQ0FTNzRaWmk3VGYyZGNKc2pHRXhqZ3BUTzlDMGtn?=
- =?utf-8?B?anRhZzNvUm9GdCsxajRRaTQ2eEdBU3RZQXA4Sjk4b01iUUxrVkQ2eGxqQ3hz?=
- =?utf-8?B?bUw4SzNKMjFlbmVIR3ZTOWM4MWw2c0M3VlVyNDQ4LzRBandiNGlCdEJyK3k2?=
- =?utf-8?B?bTIzNGdyOEtOdDVYOEFWNFZFUk9sMk9wMmtzTXU1WlhiQ002WkdmVVVVb0N0?=
- =?utf-8?B?UlB6QWc3RmlNcVpxL0p3alBNb3RaUHB1ckRwT3Flb0tTTUlBM2Zvd3VKaERh?=
- =?utf-8?B?SWhmWi82YVJHRE1RRkx1Q2FUbHdLUjVuOCtXM1FZaXJOdW5tZmZadUZqSFBx?=
- =?utf-8?B?QTdsZUJUY1QyOVl6VWJ0UnU5amlPdUVNL2p5V1h4aTFpQ0c0VDdUZmNWY0FE?=
- =?utf-8?B?bUFWa2RLajVxbGkwemlUTTB6bEs4WHIxKzNsUWUxQnh4V3dGamxvUjJMblVV?=
- =?utf-8?B?Qzg0eGhOZ2l4bDRIejFVWHBnc2ZwZ2FUV3JGaGhiREttYlhkSjhha3h3WHph?=
- =?utf-8?B?dUU1Qzdmc3BMUWNoV2xOSUEvMk1kSU5KYWdtbUVKTDBibHd1S2dRM3ArUDh5?=
- =?utf-8?B?RWRZUWkrSmk2WXVmRlZWS0RhQjR2Vm05ckxKeFA4OEdZb0xLVWQ3Q01GeGxZ?=
- =?utf-8?B?ZjFFa2dtOVcvWjBLREZMWmgzUUtjeVVweTB1cFBSSlh4cEJqWXpya1RLSHpx?=
- =?utf-8?B?S0E0czB1cGRvRDg1YllpQTdpRXBRWk13Rkx6WHdvVDBZa3A0WEw5TUY1N21v?=
- =?utf-8?B?UXI4aVVNcU9XSzRnaFdXTG9hRXY2aytKNERuWXovUnVSODN4Qjg4QTZiMk5v?=
- =?utf-8?B?bVI4NmJXdkhOOUxLSDVUV09sem51WU83YzZwY0xmT2hDZTdlSHlYMkphZ05l?=
- =?utf-8?B?N2w5RjdrVWR4R2xhSGU3VjVoblZ6NkRWWWJOdU1nQm9NZ0FveVRxa2RQUUdD?=
- =?utf-8?B?VnhOZU1lSjBTQ094aGxOdnNpaGpOVjc3NEtRU2xVQW5TbEpRT2xMd1hwNG1K?=
- =?utf-8?B?SkJKKzExakRjZVAyZERSVHkxRTFUUzNIVDBERkI0RTdNTEpkaStpVmpWb0tY?=
- =?utf-8?B?RWd2RCtoRTJ5Uk9jTm5NQ2x4WTF6VHZGWHQyOHJleHc0eVQ4amhZM2NvQThq?=
- =?utf-8?B?a0hUOGNOcGxJYmhPS3Z0d0dlVnJJV3pYOHNGeS8vSnB0Z3IrSEVKSWl4ZlVR?=
- =?utf-8?Q?/Tvzx8bphES4feZhbyb3zTGt8?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f6c35e29-4c76-4573-badb-08dd33eb3ffb
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2025 15:59:24.1765 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VxiufaHczsxeiJH9cQnuf0ul1qSs2tiWUhkqzDpdILKGSZ9aJWhALbJxinjQG8LvS2Gt+AForNMb0mmgnEhI1g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8819
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,164 +68,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 1/13/2025 08:19, Mario Limonciello wrote:
-> On 1/11/2025 12:59, Chris Bainbridge wrote:
->> Commit c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if
->> available for eDP") added function dm_helpers_probe_acpi_edid, which
->> fetches the EDID from the BIOS by calling acpi_video_get_edid.
->> acpi_video_get_edid returns a pointer to the EDID, but this pointer does
->> not originate from kmalloc - it is actually the internal "pointer" field
->> from an acpi_buffer struct (which did come from kmalloc).
->> dm_helpers_probe_acpi_edid then attempts to kfree the EDID pointer,
->> resulting in memory corruption which leads to random, intermittent
->> crashes (e.g. 4% of boots will fail with some Oops).
->>
->> Fix this by allocating a new array (which can be safely freed) for the
->> EDID data, and correctly freeing the acpi_buffer pointer.
->>
->> The only other caller of acpi_video_get_edid is nouveau_acpi_edid:
->> remove the extraneous kmemdup here as the EDID data is now copied in
->> acpi_video_device_EDID.
->>
->> Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
->> Fixes: c6a837088bed ("drm/amd/display: Fetch the EDID from _DDC if 
->> available for eDP")
-> 
-> Two minor documentation related comments to consider, otherwise I think 
-> the code change looks good.  Feel free to include:
-> 
-> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+On Fri, 10 Jan 2025, "Emil J Tywoniak" <emil@tywoniak.eu> wrote:
+> What's up gamers,
+>
+> hope this is the right place to report this oops which possibly is due
+> to amdgpu interaction. The community guidelines link for this list
+> (https://01.org/linuxgraphics/community) doesn't work. Feel free to
+> redirect me if not, even to /dev/null. The Video(DRI - Intel) section
+> on kernel bugzilla doesn't seem to get much life.
 
-A few more tags to collate from another thread:
+For the longest time, the fdo gitlab has been the place to report i915
+[1] (and lately xe [2]) driver bugs, with a bug filing guide at [3].
 
-Reported-by: Borislav Petkov (AMD) <bp@alien8.de>
-Closes: 
-https://lore.kernel.org/amd-gfx/20250110175252.GBZ4FedNKqmBRaY4T3@fat_crate.local/T/#m324a23eb4c4c32fa7e89e31f8ba96c781e496fb1
-Tested-by: Borislav Petkov (AMD) <bp@alien8.de>
+However, the backtrace is all amdgpu? You only mention xe_bo_evict in
+the subject.
 
-> 
->> ---
->> Changes in v2:
->>     - check kmemdup() return value
->>     - move buffer management into acpi_video_device_EDID()
->>     - return actual length value of buffer
->> ---
->>   drivers/acpi/acpi_video.c              | 50 ++++++++++++++------------
->>   drivers/gpu/drm/nouveau/nouveau_acpi.c |  2 +-
->>   2 files changed, 29 insertions(+), 23 deletions(-)
->>
->> diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
->> index 8274a17872ed..3c627bdf2d1b 100644
->> --- a/drivers/acpi/acpi_video.c
->> +++ b/drivers/acpi/acpi_video.c
->> @@ -610,16 +610,29 @@ acpi_video_device_lcd_get_level_current(struct 
->> acpi_video_device *device,
->>       return 0;
->>   }
->> +/*
->> + *  Arg:
-> 
-> As you've pretty much written kernel doc, us it better to just make this 
-> proper kerneldoc (IE use /**)?
-> 
->> + *    device    : video output device (LCD, CRT, ..)
->> + *    edid    : address for returned EDID pointer
->> + *    length  : _DDC length to request (must be a multiple of 128)
->> + *
->> + *  Return Value:
->> + *    Length of EDID (positive value) or error (negative value)
->> + *
->> + *  Get EDID from ACPI _DDC. On success, a pointer to the EDID data 
->> is written
->> + *  to the edid address, and the length of the EDID is returned. The 
->> caller is
-> 
-> Since 'EDID' and 'edid' mean different things in the context of this 
-> description for the purpose of clarity I think it would be better to say 
-> "the edid pointer address".
-> 
->> + *  responsible for freeing the edid pointer.
->> + */
->> +
->>   static int
->> -acpi_video_device_EDID(struct acpi_video_device *device,
->> -               union acpi_object **edid, int length)
->> +acpi_video_device_EDID(struct acpi_video_device *device, void **edid, 
->> int length)
->>   {
->> -    int status;
->> +    acpi_status status;
->>       struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
->>       union acpi_object *obj;
->>       union acpi_object arg0 = { ACPI_TYPE_INTEGER };
->>       struct acpi_object_list args = { 1, &arg0 };
->> -
->> +    int ret;
->>       *edid = NULL;
->> @@ -636,16 +649,17 @@ acpi_video_device_EDID(struct acpi_video_device 
->> *device,
->>       obj = buffer.pointer;
->> -    if (obj && obj->type == ACPI_TYPE_BUFFER)
->> -        *edid = obj;
->> -    else {
->> +    if (obj && obj->type == ACPI_TYPE_BUFFER) {
->> +        *edid = kmemdup(obj->buffer.pointer, obj->buffer.length, 
->> GFP_KERNEL);
->> +        ret = *edid ? obj->buffer.length : -ENOMEM;
->> +    } else {
->>           acpi_handle_debug(device->dev->handle,
->>                    "Invalid _DDC data for length %d\n", length);
->> -        status = -EFAULT;
->> -        kfree(obj);
->> +        ret = -EFAULT;
->>       }
->> -    return status;
->> +    kfree(obj);
->> +    return ret;
->>   }
->>   /* bus */
->> @@ -1435,9 +1449,7 @@ int acpi_video_get_edid(struct acpi_device 
->> *device, int type, int device_id,
->>   {
->>       struct acpi_video_bus *video;
->>       struct acpi_video_device *video_device;
->> -    union acpi_object *buffer = NULL;
->> -    acpi_status status;
->> -    int i, length;
->> +    int i, length, ret;
->>       if (!device || !acpi_driver_data(device))
->>           return -EINVAL;
->> @@ -1477,16 +1489,10 @@ int acpi_video_get_edid(struct acpi_device 
->> *device, int type, int device_id,
->>           }
->>           for (length = 512; length > 0; length -= 128) {
->> -            status = acpi_video_device_EDID(video_device, &buffer,
->> -                            length);
->> -            if (ACPI_SUCCESS(status))
->> -                break;
->> +            ret = acpi_video_device_EDID(video_device, edid, length);
->> +            if (ret > 0)
->> +                return ret;
->>           }
->> -        if (!length)
->> -            continue;
->> -
->> -        *edid = buffer->buffer.pointer;
->> -        return length;
->>       }
->>       return -ENODEV;
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/ 
->> nouveau/nouveau_acpi.c
->> index 8f0c69aad248..21b56cc7605c 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
->> @@ -384,7 +384,7 @@ nouveau_acpi_edid(struct drm_device *dev, struct 
->> drm_connector *connector)
->>       if (ret < 0)
->>           return NULL;
->> -    return kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
->> +    return edid;
->>   }
->>   bool nouveau_acpi_video_backlight_use_native(void)
-> 
+Cc: amd-gfx@lists.freedesktop.org
 
+
+BR,
+Jani.
+
+
+
+[1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/
+[2] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/
+[3] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+
+
+>
+> I see there have been recent changes to things around bo eviction on
+> xe and today I caught the following oops when spawning a second VS
+> Code window in sway with the New Window command (Ctrl+Shift+N). VS
+> Code was not running on XWayland. So far I haven't been able to
+> reproduce this. I have amdgpu loaded as a fall back for my ryzen 7900X
+> builtin graphics since I installed the funny GPU (Intel Arc B580 / BMG
+> G21). I'm on Mesa 24.3.3.
+>
+> ------------[ cut here ]------------
+> workqueue: WQ_MEM_RECLAIM sdma0:drm_sched_run_job_work [gpu_sched] is flu=
+shing !WQ_MEM_RECLAIM events:amdgpu_device_delay_enable_gfx_off [amdgpu]
+> WARNING: CPU: 5 PID: 29199 at kernel/workqueue.c:3704 check_flush_depende=
+ncy+0x10f/0x130
+> Modules linked in: rfcomm snd_seq_dummy snd_hrtimer snd_seq cmac algif_ha=
+sh algif_skcipher af_alg nft_chain_nat xt_MASQUERADE nf_conntrack_netlink x=
+frm_user xfrm_algo xt_addrtype overlay af_packet bnep btusb btrtl btintel b=
+tbcm btmtk bluetooth mousedev cdc_acm joydev nls_iso8859_1 nls_cp437 vfat f=
+at mei_gsc_proxy mei_gsc mei_me mei xt_conntrack ip6t_rpfilter mt7921e ipt_=
+rpfilter mt7921_common mt792x_lib snd_hda_codec_hdmi mt76_connac_lib edac_m=
+ce_amd edac_core mt76 snd_hda_intel amd_atl intel_rapl_msr snd_intel_dspcfg=
+ xt_pkttype intel_rapl_common snd_intel_sdw_acpi crct10dif_pclmul xt_LOG ma=
+c80211 snd_usb_audio uvcvideo nf_log_syslog snd_usbmidi_lib crc32_pclmul sn=
+d_hda_codec xt_tcpudp polyval_clmulni videobuf2_vmalloc xe snd_ump polyval_=
+generic uvc snd_hda_core ghash_clmulni_intel cfg80211 nft_compat snd_rawmid=
+i sha512_ssse3 videobuf2_memops spd5118 sha256_ssse3 snd_seq_device videobu=
+f2_v4l2 snd_hwdep r8169 sha1_ssse3 battery sp5100_tco videobuf2_common aesn=
+i_intel snd_pcm watchdog realtek gf128mul
+>  crypto_simd mdio_devres videodev snd_timer cryptd libphy rfkill snd i2c_=
+piix4 drm_gpuvm wmi_bmof rapl libarc4 led_class mc nf_tables i2c_smbus k10t=
+emp soundcore sch_fq_codel tpm_crb rtc_cmos evdev mac_hid tpm_tis gpio_amdp=
+t tiny_power_button tpm_tis_core gpio_generic button uinput hid_xpadneo(O) =
+ff_memless atkbd libps2 serio vivaldi_fmap loop xt_nat nf_nat nf_conntrack =
+nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c br_netfilter veth tun tap macvlan b=
+ridge stp llc kvm_amd ccp kvm fuse efi_pstore configfs nfnetlink efivarfs t=
+pm libaescfb ecdh_generic ecc rng_core dmi_sysfs ip_tables x_tables autofs4=
+ ext4 crc32c_generic mbcache jbd2 hid_generic usbhid hid ahci libahci xhci_=
+pci libata nvme xhci_hcd scsi_mod nvme_core crc32c_intel scsi_common nvme_a=
+uth dm_mod dax amdgpu video wmi amdxcp i2c_algo_bit drm_ttm_helper ttm drm_=
+exec gpu_sched drm_suballoc_helper drm_buddy drm_display_helper cec crc16
+> CPU: 5 UID: 0 PID: 29199 Comm: kworker/u96:0 Tainted: G        W  O      =
+ 6.12.8 #1-NixOS
+> Tainted: [W]=3DWARN, [O]=3DOOT_MODULE
+> Hardware name: Micro-Star International Co., Ltd. MS-7D75/MAG B650 TOMAHA=
+WK WIFI (MS-7D75), BIOS 1.60 05/30/2023
+> Workqueue: sdma0 drm_sched_run_job_work [gpu_sched]
+> RIP: 0010:check_flush_dependency+0x10f/0x130
+> Code: c0 f3 01 01 90 49 8b 45 18 48 8d b2 c0 00 00 00 48 8d 8b c0 00 00 0=
+0 49 89 e8 48 c7 c7 a0 c7 df b4 48 89 c2 e8 82 7e fd ff 90 <0f> 0b 90 90 e9=
+ 0a ff ff ff 80 3d 99 c0 f3 01 00 75 8f e9 42 ff ff
+> RSP: 0018:ffff95dd9ef97c60 EFLAGS: 00010046
+> RAX: 0000000000000000 RBX: ffff9265c01b8e00 RCX: 0000000000000000
+> RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+> RBP: ffffffffc0438c00 R08: 0000000000000000 R09: 0000000000000000
+> R10: 0000000000000000 R11: 0000000000000000 R12: ffff92681a13b200
+> R13: ffff9265c94338c0 R14: 0000000000000001 R15: ffff9265c01bce00
+> FS:  0000000000000000(0000) GS:ffff926cb7e80000(0000) knlGS:0000000000000=
+000
+> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> CR2: 000000000050d6d0 CR3: 00000002a38d6000 CR4: 0000000000f50ef0
+> PKRU: 55555554
+> Call Trace:
+>  <TASK>
+>  ? check_flush_dependency+0x10f/0x130
+>  ? __warn.cold+0x93/0xf6
+>  ? check_flush_dependency+0x10f/0x130
+>  ? report_bug+0x10d/0x150
+>  ? srso_alias_return_thunk+0x5/0xfbef5
+>  ? handle_bug+0x61/0xb0
+>  ? exc_invalid_op+0x17/0x80
+>  ? asm_exc_invalid_op+0x1a/0x20
+>  ? __pfx_amdgpu_device_delay_enable_gfx_off+0x10/0x10 [amdgpu]
+>  ? check_flush_dependency+0x10f/0x130
+>  __flush_work+0x10c/0x320
+>  cancel_delayed_work_sync+0x62/0x80
+>  amdgpu_gfx_off_ctrl+0xb7/0x150 [amdgpu]
+>  amdgpu_ring_alloc+0x40/0x70 [amdgpu]
+>  amdgpu_ib_schedule+0xf0/0x750 [amdgpu]
+>  amdgpu_job_run+0x8e/0x200 [amdgpu]
+>  drm_sched_run_job_work+0x283/0x420 [gpu_sched]
+>  process_one_work+0x18a/0x350
+>  worker_thread+0x235/0x370
+>  ? __pfx_worker_thread+0x10/0x10
+>  ? __pfx_worker_thread+0x10/0x10
+>  kthread+0xcd/0x100
+>  ? __pfx_kthread+0x10/0x10
+>  ret_from_fork+0x31/0x50
+>  ? __pfx_kthread+0x10/0x10
+>  ret_from_fork_asm+0x1a/0x30
+>  </TASK>
+> ---[ end trace 0000000000000000 ]---
+>
+> I hope this tells you something. I'm willing to switch to some cutting
+> edge kernel commit and report back if I get an oops again, so feel
+> free which remote and commit I should go get, or any other
+> troubleshooting steps I could follow.
+>
+> Thanks for all your hard work,
+>
+> Emil J. Tywoniak (widlarizer)
+
+--=20
+Jani Nikula, Intel
