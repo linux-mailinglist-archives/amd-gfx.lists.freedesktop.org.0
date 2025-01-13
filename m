@@ -2,28 +2,28 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76161A0AD26
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 02:42:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3A80A0AD23
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 02:42:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5535C10E34E;
-	Mon, 13 Jan 2025 01:42:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0D710E350;
+	Mon, 13 Jan 2025 01:42:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="vDUQUn9x";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="aytjDK64";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-131.freemail.mail.aliyun.com
- (out30-131.freemail.mail.aliyun.com [115.124.30.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC1B710E332
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 01:42:30 +0000 (UTC)
+Received: from out30-130.freemail.mail.aliyun.com
+ (out30-130.freemail.mail.aliyun.com [115.124.30.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FD6D10E337
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 01:42:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
  t=1736732549; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=S4rK4MeDwCnElP2tC5+lM6Xw1/eEyLwhl/3ReA/55Jw=;
- b=vDUQUn9xguRsLRTV7lvsfovpL9aQPU0HrI6jipah5NI1cTlAFEwreYITGOKP7PQQjiwvMnCqyaFN088Wv5RSMb3Lec1mjfMysLTYObmLI7x4S/wVDklNZgejS8C2ZDwhGlrw+Q/lVkms/nrqWAYzJfXFvaAoRMCnKT8YItZvY4o=
+ bh=MhQefoMeh2rt7wDwL7dWpzd+rfCAaphZa2p2/Lzj7FY=;
+ b=aytjDK6419ZeaPNebTT+yz7GwlPFj1L+92mFpOeSIycmOrYeUQILGXitMwPjBHlTGGXNmjMss5MWq+d2iEvrBPV4EPYx4BdJ8VkGbL61cb/HiROD9pu0E9bamDDjruxDhFcRdKiGzxIsL7cXD5/Sfq+9tttUVq8FymlzdcElt4E=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNS0NFl_1736732547 cluster:ay36) by smtp.aliyun-inc.com;
- Mon, 13 Jan 2025 09:42:27 +0800
+ fp:SMTPD_---0WNS0NFv_1736732548 cluster:ay36) by smtp.aliyun-inc.com;
+ Mon, 13 Jan 2025 09:42:28 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  airlied@gmail.com, simona@ffwll.ch, sunil.khatri@amd.com,
@@ -31,10 +31,10 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  xiaogang.chen@amd.com, Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [RFC v2 08/15] drm/amdgpu: make IP block state machine works in stack
- like way
-Date: Mon, 13 Jan 2025 09:42:13 +0800
-Message-ID: <4f627f06fab99e7534f590dfa16f1db13b16f7ea.1736732062.git.gerry@linux.alibaba.com>
+Subject: [RFC v2 09/15] drm/amdgpu_dm: enhance amdgpu_dm_early_fini() for PM
+ ops
+Date: Mon, 13 Jan 2025 09:42:14 +0800
+Message-ID: <d84286e5f7c01a35afdb4affba2141d8ea0281d7.1736732062.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1736732062.git.gerry@linux.alibaba.com>
 References: <cover.1736732062.git.gerry@linux.alibaba.com>
@@ -54,56 +54,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There are some mismatches between IP block state machine and its
-associated status flags, especially about the meaning of
-`status.late_initialized`. So let's make the state machine and
-associated status flas work in stack-like way as below:
-Callback	Status
-early_init:	valid = true
-sw_init: 	sw = true
-hw_init:	hw = true
-late_init:	late_initialized = true
-early_fini:	late_initialized = false
-hw_fini:	hw = false
-sw_fini:	sw = false
-late_fini:	valid = false
+Enhance amdgpu_dm_early_fini() so it can be called in power
+management operations.
 
 Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 6cbd19ad0fa5..6b503fb7e366 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3376,6 +3376,8 @@ static int amdgpu_device_ip_fini_early(struct amdgpu_device *adev)
- 			DRM_DEBUG("early_fini of IP block <%s> failed %d\n",
- 				  adev->ip_blocks[i].version->funcs->name, r);
- 		}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 9121abe0e5ef..7b900b293c0d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2175,6 +2175,9 @@ static int amdgpu_dm_early_fini(struct amdgpu_ip_block *ip_block)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 
++	if (adev->in_s0ix || adev->in_s3 || adev->in_s4 || adev->in_suspend)
++		return 0;
 +
-+		adev->ip_blocks[i].status.late_initialized = false;
- 	}
+ 	amdgpu_dm_audio_fini(adev);
  
- 	amdgpu_device_set_pg_state(adev, AMD_PG_STATE_UNGATE);
-@@ -3445,15 +3447,14 @@ static int amdgpu_device_ip_fini(struct amdgpu_device *adev)
- 			}
- 		}
- 		adev->ip_blocks[i].status.sw = false;
--		adev->ip_blocks[i].status.valid = false;
- 	}
- 
- 	for (i = adev->num_ip_blocks - 1; i >= 0; i--) {
--		if (!adev->ip_blocks[i].status.late_initialized)
-+		if (!adev->ip_blocks[i].status.valid)
- 			continue;
- 		if (adev->ip_blocks[i].version->funcs->late_fini)
- 			adev->ip_blocks[i].version->funcs->late_fini(&adev->ip_blocks[i]);
--		adev->ip_blocks[i].status.late_initialized = false;
-+		adev->ip_blocks[i].status.valid = false;
- 	}
- 
- 	amdgpu_ras_fini(adev);
+ 	return 0;
 -- 
 2.43.5
 
