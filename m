@@ -2,27 +2,27 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2255BA0AD1F
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 02:42:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9ABA0AD22
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 02:42:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC3AF10E334;
-	Mon, 13 Jan 2025 01:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA19510E343;
+	Mon, 13 Jan 2025 01:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="q5FN894C";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="EFJJiQTm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-110.freemail.mail.aliyun.com
- (out30-110.freemail.mail.aliyun.com [115.124.30.110])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34F9610E32C
+Received: from out30-131.freemail.mail.aliyun.com
+ (out30-131.freemail.mail.aliyun.com [115.124.30.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3842E10E332
  for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 01:42:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
  t=1736732545; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=vwVXDF+Kb25BwEpfwq8w1ctI+68jczR0c+Fbh05TiXc=;
- b=q5FN894CkIrRXGBlZyh+8/d61DblttumFoldA/c8sGt+GkLSAbNM3+gsu2A1ycIWqeFb4eWcYvy/8Syw5Cc9q9iMohDN5yyTRVVV8WW735BTsWXFQgx3QRGuXke+XWi0mUQieSjqufG9kd2wPM2a8+2BXnf9+hU49Kq6awbsNqw=
+ bh=IRbdPbdLkBB3QRRy+TekxMk+oiH2AdzJNTvqZ56c54I=;
+ b=EFJJiQTmBYQHwdop6q6Qej1t7pmCmuFu/rsvienGyDSxpFHuN7gKIJXkU8CbmBegQByRnC+QTfmykmgRwAvBXzyVonaE0kJ0DhqNiQu7Kgpzq9lcbjh+ku6wbYJtJTMTsxVPCqEOABpo9rsEkjUgpBRFo6xCRGCSqNkZlUlEstw=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNS0NER_1736732543 cluster:ay36) by smtp.aliyun-inc.com;
+ fp:SMTPD_---0WNS0NEg_1736732544 cluster:ay36) by smtp.aliyun-inc.com;
  Mon, 13 Jan 2025 09:42:24 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
@@ -31,10 +31,10 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  xiaogang.chen@amd.com, Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [RFC v2 02/15] drm/amdgpu: add a flag to track ras debugfs creation
- status
-Date: Mon, 13 Jan 2025 09:42:07 +0800
-Message-ID: <f79c15b3eb9c560ba7942c3e7f51dae7d6051fa7.1736732062.git.gerry@linux.alibaba.com>
+Subject: [RFC v2 03/15] drm/amdgpu: free all resources on error recovery path
+ of amdgpu_ras_init()
+Date: Mon, 13 Jan 2025 09:42:08 +0800
+Message-ID: <fe7c662f67cb5f079cef7688d033bf93539db277.1736732062.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1736732062.git.gerry@linux.alibaba.com>
 References: <cover.1736732062.git.gerry@linux.alibaba.com>
@@ -54,63 +54,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add a flag to track ras debugfs creation status, to avoid possible
-incorrect reference count management for ras block object  in function
-amdgpu_ras_aca_is_supported().
+Free all allocated resources on error recovery path in function
+amdgpu_ras_init().
 
 Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 9 +++++++--
- 2 files changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index f0f773659faf..09b63a622728 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -378,6 +378,8 @@ int amdgpu_ip_block_resume(struct amdgpu_ip_block *ip_block);
- #define AMDGPU_MAX_IP_NUM 16
- 
- enum amdgpu_marker {
-+	// Markers for ras blocks.
-+	AMDGPU_MARKER_RAS_DEBUGFS,
- 	// Markers for IRQs, used for both ip blocks and ras blocks.
- 	AMDGPU_MARKER_IRQ0 = 32,
- 	AMDGPU_MARKER_IRQ1,
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 5e19d820ab34..c10ea3fd3e16 100644
+index c10ea3fd3e16..6b508a9b1abe 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1997,7 +1997,8 @@ static void amdgpu_ras_debugfs_create(struct amdgpu_device *adev,
+@@ -3864,6 +3864,7 @@ static void amdgpu_ras_init_reserved_vram_size(struct amdgpu_device *adev)
+ int amdgpu_ras_init(struct amdgpu_device *adev)
  {
- 	struct ras_manager *obj = amdgpu_ras_find_obj(adev, &head->head);
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
++	struct amdgpu_ras_block_list *ras_node, *tmp;
+ 	int r;
  
--	if (!obj || !dir)
-+	if (!obj || !dir ||
-+	    amdgpu_ras_test_marker(adev, &head->head, AMDGPU_MARKER_RAS_DEBUGFS))
- 		return;
+ 	if (con)
+@@ -3953,20 +3954,20 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
+ 	 * to handle fatal error */
+ 	r = amdgpu_nbio_ras_sw_init(adev);
+ 	if (r)
+-		return r;
++		goto release_con;
  
- 	get_obj(obj);
-@@ -2008,6 +2009,8 @@ static void amdgpu_ras_debugfs_create(struct amdgpu_device *adev,
- 
- 	debugfs_create_file(obj->fs_data.debugfs_name, S_IWUGO | S_IRUGO, dir,
- 			    obj, &amdgpu_ras_debugfs_ops);
-+
-+	amdgpu_ras_set_marker(adev, &head->head, AMDGPU_MARKER_RAS_DEBUGFS);
- }
- 
- static bool amdgpu_ras_aca_is_supported(struct amdgpu_device *adev)
-@@ -2136,7 +2139,9 @@ static int amdgpu_ras_fs_fini(struct amdgpu_device *adev)
- 	if (IS_ENABLED(CONFIG_DEBUG_FS)) {
- 		list_for_each_entry_safe(con_obj, tmp, &con->head, node) {
- 			ip_obj = amdgpu_ras_find_obj(adev, &con_obj->head);
--			if (ip_obj)
-+			if (ip_obj &&
-+			    amdgpu_ras_test_and_clear_marker(adev, &ip_obj->head,
-+							     AMDGPU_MARKER_RAS_DEBUGFS))
- 				put_obj(ip_obj);
- 		}
+ 	if (adev->nbio.ras &&
+ 	    adev->nbio.ras->init_ras_controller_interrupt) {
+ 		r = adev->nbio.ras->init_ras_controller_interrupt(adev);
+ 		if (r)
+-			goto release_con;
++			goto free_blocks;
  	}
+ 
+ 	if (adev->nbio.ras &&
+ 	    adev->nbio.ras->init_ras_err_event_athub_interrupt) {
+ 		r = adev->nbio.ras->init_ras_err_event_athub_interrupt(adev);
+ 		if (r)
+-			goto release_con;
++			goto free_blocks;
+ 	}
+ 
+ 	/* Packed socket_id to ras feature mask bits[31:29] */
+@@ -3982,7 +3983,7 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
+ 
+ 	if (amdgpu_ras_fs_init(adev)) {
+ 		r = -EINVAL;
+-		goto release_con;
++		goto free_blocks;
+ 	}
+ 
+ 	if (amdgpu_ras_aca_is_supported(adev)) {
+@@ -3991,7 +3992,7 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
+ 		else
+ 			r = amdgpu_mca_init(adev);
+ 		if (r)
+-			goto release_con;
++			goto clear_ras_fs;
+ 	}
+ 
+ 	dev_info(adev->dev, "RAS INFO: ras initialized successfully, "
+@@ -3999,6 +4000,14 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
+ 		 adev->ras_hw_enabled, adev->ras_enabled);
+ 
+ 	return 0;
++
++clear_ras_fs:
++	amdgpu_ras_fs_fini(adev);
++free_blocks:
++	list_for_each_entry_safe(ras_node, tmp, &adev->ras_list, node) {
++		list_del(&ras_node->node);
++		kfree(ras_node);
++	}
+ release_con:
+ 	amdgpu_ras_set_context(adev, NULL);
+ 	kfree(con);
 -- 
 2.43.5
 
