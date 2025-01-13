@@ -2,72 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF98A0BE31
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 18:00:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64526A0BE55
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 18:09:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B86F310E733;
-	Mon, 13 Jan 2025 17:00:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59CB510E742;
+	Mon, 13 Jan 2025 17:09:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AhGl0lSL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TitMXIAM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
- [IPv6:2607:f8b0:4864:20::1029])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 393CC10E733;
- Mon, 13 Jan 2025 17:00:30 +0000 (UTC)
-Received: by mail-pj1-x1029.google.com with SMTP id
- 98e67ed59e1d1-2ee94a2d8d0so950284a91.2; 
- Mon, 13 Jan 2025 09:00:30 -0800 (PST)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B07B10E741
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 17:09:02 +0000 (UTC)
+Received: by mail-pj1-f52.google.com with SMTP id
+ 98e67ed59e1d1-2ef79243680so985501a91.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 09:09:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1736787630; x=1737392430; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1736788082; x=1737392882; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=PbCZdzZQB8fOgM5lm3EVuRvwh/5DKW/szxC/ujNMdug=;
- b=AhGl0lSLYIs1K5pQvegQ/ggmbHVX1SAd1FbeLPgFQndefxeGbAicp4Yd+k3q6Z3+u0
- GG6RbzxErzjrY7g54U00Alx9drZY9/tgth/KC6plmfJu9myau72ICKrZcX8PDqsmu/uF
- kraZjNiptgEVhwqRduZgRZRg5Bz82X19nzWg3iKskYgAddHedY+VLuwCw0GU5jcis+ht
- DfBvhDGPE0XBNxnb2T9QM7AmbhC+u/AvgxcjB/WB3sb9dBxdyVYNEWIoIQFsaEHUZ7BO
- fGsf10rfZdQI8gN7BcQSmb59lQAYg7Qm6Y4BNCPpYbu+lGUmSpA4vp+xHeJlavMAC9kk
- eoiA==
+ bh=CWbBG38R5hg2u35jm5hSUDPehqhS7bkNOqpSOUcyiRI=;
+ b=TitMXIAMLR2kb7ip3wflGaqf254ojguYHH84SKzvSJK71KdIWoDpe+Fh8atAJwz9zO
+ F4omIoS0Eyeh1Q+ruJG6CHZdVvD7Mc68W3yAC9z5pAC7ZWaNptlEskwikTQfZ74l1mN6
+ Asil4/kIfREbVBU2k8XtF+Bdwf7XuQB6N/W3LqyE0dG/J2RJqevdA21lE6qWiMZmmIho
+ yqon0jHcoVicGt3IBVlEq256qYxmT4leNWAKZ9bxHVEEuN8rmu2d1oZVTVwqCg8jDmVV
+ Nogn7bk7ENGipGQJ68KPnD/bAAA0gEneNKplIM6WxmfxOJidvMz0Lhsc4vzLoKHyXqbo
+ aiHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736787630; x=1737392430;
+ d=1e100.net; s=20230601; t=1736788082; x=1737392882;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=PbCZdzZQB8fOgM5lm3EVuRvwh/5DKW/szxC/ujNMdug=;
- b=MkFvoG3oo7lLLGcnkb+G41QOTaoLM0m9B8ne5bw3nEWm8qLbpdZhP1NbvT0Bi/nV41
- iwMrvqUgewP4WJ49QAXmtLvkyxrTkZCF/oS4iFNlHMMn7uoMGtYN+qdnV385OhDS1pRV
- LExyTTrCyDkMyXeAnmiGxVgPIkj69D33K9n0XHpaM4HCvY2yBgdnGXy6fvxFTFIaGrYX
- MCj/tqzCKZjFA0/tGi0RligifQSauU6DrfOY/y0mFuixLFU2LXiuBmkTiDkZjc8q6HoL
- 9nYsPQ8zEtiBTOYwta00vxTcbr43E7qSf/DjaK1+MrCV4r5CD/PFnhP9fRVO28wQbfyx
- KY6w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVRV4eyw98DvARfTRnovFFUT1FmUv56oB/SO18wWm49RON0z0bBaIm6JGo5eOf+7TU60jcQypXn@lists.freedesktop.org,
- AJvYcCWr5bvjQLj2Ipi+5dEva9XDkJkVyFK/ugw8XHoSu3xoPWiE4telWeGqbYifrHXGTxwIUrYYBm5+bfOE@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzvT0Ae+UJrrIX98JLYJXUegk55klIAydmMBetuUo/TLG7HCHOH
- kqFk1xA56vTaBSDaOXtBIv19yvYT9Qt3YgPDY2JSPgL/0jLocuLKoswCjUhgpMGh/N3Adbgmjvj
- 8sDaeNVvF8hgeASgWpIJf2333K+lvHw==
-X-Gm-Gg: ASbGnctVuYaHzaprrKjx7/LAoPsdvD4SWnEXvhQ9A6eySBEcrAuka2GVHZQmg4yMZt+
- hC8MLpqIdzA5mIuVXX3Dpdn8Un6fCMR/csz2guw==
-X-Google-Smtp-Source: AGHT+IFBfOrslAMlo9J6W9grm47b3hcHW7H2w5I5rWuqurqPDRwmUKCccmufyMFPYfJDVTLs5Y3aOGMChBuGCtU9CIE=
-X-Received: by 2002:a17:90a:d645:b0:2f4:f7f8:f70b with SMTP id
- 98e67ed59e1d1-2f5490fafb1mr12280361a91.5.1736787629456; Mon, 13 Jan 2025
- 09:00:29 -0800 (PST)
+ bh=CWbBG38R5hg2u35jm5hSUDPehqhS7bkNOqpSOUcyiRI=;
+ b=dDy17dJAR5G1LLR6sACy503PHhp5+Mzq4M30FC+T5njl/DvQh8xF01y8O3Jp+F4al3
+ GXMCWdqKgYNV6IB3pT1/eu5MNPcGjvicioX/bA66pmCIBrd4mhdYu6eh629DWZld6gbU
+ EhlRSetwq/TuS8fU/BIkD3BKlUylEHOFURfqThMUz+ZtcoOk5yrpRU4wRahwYTdJr0Em
+ YPpwfkpqv5fW9AZ9Unp4k58ed2Bl+08yNIBJ+mNqOLkAbmBFaciqC5gqqNfHOIlL1UjH
+ O7sUhQv5QiduXe9dbRXP9tRXnIT6XTNXySbNSPAijurWKUnhFELalYUGf4IWbv/QF/IQ
+ IFRg==
+X-Gm-Message-State: AOJu0Ywy7z+N7uobyCIrcbAWfCfaRhjgevSJASrusN2zPoTe3YUAlnPZ
+ uPDZZ1iAok4yvbEoq4a/ORXleVpfPX+5VtU7pA5vRValt10vifELtmGqF1UpTnKIEU1wRK/YFk1
+ 9I3+daRzpRIG3wOyQ/GNev0Ht9GE=
+X-Gm-Gg: ASbGnctJV8plMwM6nVnEFsBFkJPorWVgPZPUSzDE9Zb/dUbhT08yygNTY83FqGghEoT
+ dFFcJGPpfyG4NgRQp1SacWausgQB/w7j1DWLyQA==
+X-Google-Smtp-Source: AGHT+IHM/4iCgjTfRtMsPzyH0hiqU22pmvbWNp6kH2PvGwRhzfSRYvoQ/3nzdvd3JT+zmZEoMuE+Qor4YqPShs5/Gjg=
+X-Received: by 2002:a17:90b:270d:b0:2ee:d4ed:13a7 with SMTP id
+ 98e67ed59e1d1-2f5490de540mr11421330a91.7.1736788081634; Mon, 13 Jan 2025
+ 09:08:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20250112134103.72081-1-linux@treblig.org>
-In-Reply-To: <20250112134103.72081-1-linux@treblig.org>
+References: <20250107161024.73371-1-alexander.deucher@amd.com>
+In-Reply-To: <20250107161024.73371-1-alexander.deucher@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 13 Jan 2025 12:00:18 -0500
-X-Gm-Features: AbW1kvZufvjWWQRieZ02twwrQaygQOkpqrBifoPH_-7W1kFXo627zREr6GxyUZ0
-Message-ID: <CADnq5_PBFGnTwfCqMQRTa+uD+mrXmSrAjC_5Gp9VLbwr8tkuzg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: Remove unused functions
-To: linux@treblig.org
-Cc: Felix.Kuehling@amd.com, alexander.deucher@amd.com, 
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com, 
- simona@ffwll.ch, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Mon, 13 Jan 2025 12:07:49 -0500
+X-Gm-Features: AbW1kvZvjLKseptOJdY_XnINucwB6rLBUL1gG_5Lq8SSfSPU8yIXIJQ0UfBPblI
+Message-ID: <CADnq5_OO=vUVNfDoQdMCJC1+MXNOv+X1RUtRyv57orhDQ0GJ_Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: cache gpu pcie link width
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -84,121 +78,375 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
+Ping on this series?
 
 Alex
 
-On Sun, Jan 12, 2025 at 9:39=E2=80=AFAM <linux@treblig.org> wrote:
+On Tue, Jan 7, 2025 at 11:17=E2=80=AFAM Alex Deucher <alexander.deucher@amd=
+.com> wrote:
 >
-> From: "Dr. David Alan Gilbert" <linux@treblig.org>
+> Get the PCIe link with of the device itself (or it's
+> integrated upstream bridge) and cache that.
 >
-> kfd_device_by_pci_dev(), kfd_get_pasid_limit() and kfd_set_pasid_limit()
-> have been unused since 2023's
-> commit c99a2e7ae291 ("drm/amdkfd: drop IOMMUv2 support")
+> v2: fix typo
 >
-> Remove them.
->
-> Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
+> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/3820
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdkfd/kfd_pasid.c    | 24 -----------------------
->  drivers/gpu/drm/amd/amdkfd/kfd_priv.h     |  3 ---
->  drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 18 -----------------
->  3 files changed, 45 deletions(-)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 152 ++++++++++++++++-----
+>  drivers/gpu/drm/amd/include/amd_pcie.h     |  18 +++
+>  2 files changed, 138 insertions(+), 32 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pasid.c b/drivers/gpu/drm/amd=
-/amdkfd/kfd_pasid.c
-> index e3b250918f39..8896426e0556 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_pasid.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_pasid.c
-> @@ -28,30 +28,6 @@
->  static unsigned int pasid_bits =3D 16;
->  static bool pasids_allocated; /* =3D false */
->
-> -bool kfd_set_pasid_limit(unsigned int new_limit)
-> -{
-> -       if (new_limit < 2)
-> -               return false;
-> -
-> -       if (new_limit < (1U << pasid_bits)) {
-> -               if (pasids_allocated)
-> -                       /* We've already allocated user PASIDs, too late =
-to
-> -                        * change the limit
-> -                        */
-> -                       return false;
-> -
-> -               while (new_limit < (1U << pasid_bits))
-> -                       pasid_bits--;
-> -       }
-> -
-> -       return true;
-> -}
-> -
-> -unsigned int kfd_get_pasid_limit(void)
-> -{
-> -       return 1U << pasid_bits;
-> -}
-> -
->  u32 kfd_pasid_alloc(void)
->  {
->         int r =3D amdgpu_pasid_alloc(pasid_bits);
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/=
-amdkfd/kfd_priv.h
-> index 9e5ca0b93b2a..0b5979b29bbc 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> @@ -1086,8 +1086,6 @@ struct kfd_process *kfd_lookup_process_by_pid(struc=
-t pid *pid);
->  /* PASIDs */
->  int kfd_pasid_init(void);
->  void kfd_pasid_exit(void);
-> -bool kfd_set_pasid_limit(unsigned int new_limit);
-> -unsigned int kfd_get_pasid_limit(void);
->  u32 kfd_pasid_alloc(void);
->  void kfd_pasid_free(u32 pasid);
->
-> @@ -1137,7 +1135,6 @@ struct kfd_topology_device *kfd_topology_device_by_=
-proximity_domain_no_lock(
->                                                 uint32_t proximity_domain=
-);
->  struct kfd_topology_device *kfd_topology_device_by_id(uint32_t gpu_id);
->  struct kfd_node *kfd_device_by_id(uint32_t gpu_id);
-> -struct kfd_node *kfd_device_by_pci_dev(const struct pci_dev *pdev);
->  static inline bool kfd_irq_is_from_node(struct kfd_node *node, uint32_t =
-node_id,
->                                         uint32_t vmid)
->  {
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/=
-amd/amdkfd/kfd_topology.c
-> index 9476e30d6baa..a9bc9ab7e31d 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> @@ -108,24 +108,6 @@ struct kfd_node *kfd_device_by_id(uint32_t gpu_id)
->         return top_dev->gpu;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_device.c
+> index 90eb92c4c2800..72aff70464ed7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -6162,6 +6162,44 @@ static void amdgpu_device_partner_bandwidth(struct=
+ amdgpu_device *adev,
+>         }
 >  }
 >
-> -struct kfd_node *kfd_device_by_pci_dev(const struct pci_dev *pdev)
-> -{
-> -       struct kfd_topology_device *top_dev;
-> -       struct kfd_node *device =3D NULL;
-> -
-> -       down_read(&topology_lock);
-> -
-> -       list_for_each_entry(top_dev, &topology_device_list, list)
-> -               if (top_dev->gpu && top_dev->gpu->adev->pdev =3D=3D pdev)=
- {
-> -                       device =3D top_dev->gpu;
-> -                       break;
-> -               }
-> -
-> -       up_read(&topology_lock);
-> -
-> -       return device;
-> -}
-> -
->  /* Called with write topology_lock acquired */
->  static void kfd_release_topology_device(struct kfd_topology_device *dev)
+> +/**
+> + * amdgpu_device_gpu_bandwidth - find the bandwidth of the GPU
+> + *
+> + * @adev: amdgpu_device pointer
+> + * @speed: pointer to the speed of the link
+> + * @width: pointer to the width of the link
+> + *
+> + * Evaluate the hierarchy to find the speed and bandwidth capabilities o=
+f the
+> + * AMD dGPU which may be a virtual upstream bridge.
+> + */
+> +static void amdgpu_device_gpu_bandwidth(struct amdgpu_device *adev,
+> +                                       enum pci_bus_speed *speed,
+> +                                       enum pcie_link_width *width)
+> +{
+> +       struct pci_dev *parent =3D adev->pdev;
+> +
+> +       if (!speed || !width)
+> +               return;
+> +
+> +       parent =3D pci_upstream_bridge(parent);
+> +       if (parent && parent->vendor =3D=3D PCI_VENDOR_ID_ATI) {
+> +               /* use the upstream/downstream switches internal to dGPU =
+*/
+> +               *speed =3D pcie_get_speed_cap(parent);
+> +               *width =3D pcie_get_width_cap(parent);
+> +               while ((parent =3D pci_upstream_bridge(parent))) {
+> +                       if (parent->vendor =3D=3D PCI_VENDOR_ID_ATI) {
+> +                               /* use the upstream/downstream switches i=
+nternal to dGPU */
+> +                               *speed =3D pcie_get_speed_cap(parent);
+> +                               *width =3D pcie_get_width_cap(parent);
+> +                       }
+> +               }
+> +       } else {
+> +               /* use the device itself */
+> +               *speed =3D pcie_get_speed_cap(parent);
+> +               *width =3D pcie_get_width_cap(parent);
+> +       }
+> +}
+> +
+>  /**
+>   * amdgpu_device_get_pcie_info - fence pcie info about the PCIE slot
+>   *
+> @@ -6173,9 +6211,8 @@ static void amdgpu_device_partner_bandwidth(struct =
+amdgpu_device *adev,
+>   */
+>  static void amdgpu_device_get_pcie_info(struct amdgpu_device *adev)
 >  {
+> -       struct pci_dev *pdev;
+>         enum pci_bus_speed speed_cap, platform_speed_cap;
+> -       enum pcie_link_width platform_link_width;
+> +       enum pcie_link_width platform_link_width, link_width;
+>
+>         if (amdgpu_pcie_gen_cap)
+>                 adev->pm.pcie_gen_mask =3D amdgpu_pcie_gen_cap;
+> @@ -6197,11 +6234,10 @@ static void amdgpu_device_get_pcie_info(struct am=
+dgpu_device *adev)
+>
+>         amdgpu_device_partner_bandwidth(adev, &platform_speed_cap,
+>                                         &platform_link_width);
+> +       amdgpu_device_gpu_bandwidth(adev, &speed_cap, &link_width);
+>
+>         if (adev->pm.pcie_gen_mask =3D=3D 0) {
+>                 /* asic caps */
+> -               pdev =3D adev->pdev;
+> -               speed_cap =3D pcie_get_speed_cap(pdev);
+>                 if (speed_cap =3D=3D PCI_SPEED_UNKNOWN) {
+>                         adev->pm.pcie_gen_mask |=3D (CAIL_ASIC_PCIE_LINK_=
+SPEED_SUPPORT_GEN1 |
+>                                                   CAIL_ASIC_PCIE_LINK_SPE=
+ED_SUPPORT_GEN2 |
+> @@ -6257,51 +6293,103 @@ static void amdgpu_device_get_pcie_info(struct a=
+mdgpu_device *adev)
+>                 }
+>         }
+>         if (adev->pm.pcie_mlw_mask =3D=3D 0) {
+> +               /* asic caps */
+> +               if (link_width =3D=3D PCIE_LNK_WIDTH_UNKNOWN) {
+> +                       adev->pm.pcie_mlw_mask |=3D AMDGPU_DEFAULT_ASIC_P=
+CIE_MLW_MASK;
+> +               } else {
+> +                       switch (link_width) {
+> +                       case PCIE_LNK_X32:
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_ASIC_PC=
+IE_LINK_WIDTH_SUPPORT_X32 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X16 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X12 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X8 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X1);
+> +                               break;
+> +                       case PCIE_LNK_X16:
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_ASIC_PC=
+IE_LINK_WIDTH_SUPPORT_X16 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X12 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X8 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X1);
+> +                               break;
+> +                       case PCIE_LNK_X12:
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_ASIC_PC=
+IE_LINK_WIDTH_SUPPORT_X12 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X8 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X1);
+> +                               break;
+> +                       case PCIE_LNK_X8:
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_ASIC_PC=
+IE_LINK_WIDTH_SUPPORT_X8 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X1);
+> +                               break;
+> +                       case PCIE_LNK_X4:
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_ASIC_PC=
+IE_LINK_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X1);
+> +                               break;
+> +                       case PCIE_LNK_X2:
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_ASIC_PC=
+IE_LINK_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_ASIC_PCIE=
+_LINK_WIDTH_SUPPORT_X1);
+> +                               break;
+> +                       case PCIE_LNK_X1:
+> +                               adev->pm.pcie_mlw_mask |=3D CAIL_ASIC_PCI=
+E_LINK_WIDTH_SUPPORT_X1;
+> +                               break;
+> +                       default:
+> +                               break;
+> +                       }
+> +               }
+> +               /* platform caps */
+>                 if (platform_link_width =3D=3D PCIE_LNK_WIDTH_UNKNOWN) {
+>                         adev->pm.pcie_mlw_mask |=3D AMDGPU_DEFAULT_PCIE_M=
+LW_MASK;
+>                 } else {
+>                         switch (platform_link_width) {
+>                         case PCIE_LNK_X32:
+> -                               adev->pm.pcie_mlw_mask =3D (CAIL_PCIE_LIN=
+K_WIDTH_SUPPORT_X32 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X16 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X12 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X8 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X4 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X2 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X1);
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_PCIE_LI=
+NK_WIDTH_SUPPORT_X32 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X16 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X12 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X8 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X1);
+>                                 break;
+>                         case PCIE_LNK_X16:
+> -                               adev->pm.pcie_mlw_mask =3D (CAIL_PCIE_LIN=
+K_WIDTH_SUPPORT_X16 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X12 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X8 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X4 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X2 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X1);
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_PCIE_LI=
+NK_WIDTH_SUPPORT_X16 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X12 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X8 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X1);
+>                                 break;
+>                         case PCIE_LNK_X12:
+> -                               adev->pm.pcie_mlw_mask =3D (CAIL_PCIE_LIN=
+K_WIDTH_SUPPORT_X12 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X8 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X4 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X2 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X1);
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_PCIE_LI=
+NK_WIDTH_SUPPORT_X12 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X8 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X1);
+>                                 break;
+>                         case PCIE_LNK_X8:
+> -                               adev->pm.pcie_mlw_mask =3D (CAIL_PCIE_LIN=
+K_WIDTH_SUPPORT_X8 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X4 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X2 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X1);
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_PCIE_LI=
+NK_WIDTH_SUPPORT_X8 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X1);
+>                                 break;
+>                         case PCIE_LNK_X4:
+> -                               adev->pm.pcie_mlw_mask =3D (CAIL_PCIE_LIN=
+K_WIDTH_SUPPORT_X4 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X2 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X1);
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_PCIE_LI=
+NK_WIDTH_SUPPORT_X4 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X1);
+>                                 break;
+>                         case PCIE_LNK_X2:
+> -                               adev->pm.pcie_mlw_mask =3D (CAIL_PCIE_LIN=
+K_WIDTH_SUPPORT_X2 |
+> -                                                         CAIL_PCIE_LINK_=
+WIDTH_SUPPORT_X1);
+> +                               adev->pm.pcie_mlw_mask |=3D (CAIL_PCIE_LI=
+NK_WIDTH_SUPPORT_X2 |
+> +                                                          CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X1);
+>                                 break;
+>                         case PCIE_LNK_X1:
+> -                               adev->pm.pcie_mlw_mask =3D CAIL_PCIE_LINK=
+_WIDTH_SUPPORT_X1;
+> +                               adev->pm.pcie_mlw_mask |=3D CAIL_PCIE_LIN=
+K_WIDTH_SUPPORT_X1;
+>                                 break;
+>                         default:
+>                                 break;
+> diff --git a/drivers/gpu/drm/amd/include/amd_pcie.h b/drivers/gpu/drm/amd=
+/include/amd_pcie.h
+> index a1ece3eecdf5e..a08611cb80411 100644
+> --- a/drivers/gpu/drm/amd/include/amd_pcie.h
+> +++ b/drivers/gpu/drm/amd/include/amd_pcie.h
+> @@ -49,6 +49,17 @@
+>                                       | CAIL_ASIC_PCIE_LINK_SPEED_SUPPORT=
+_GEN3)
+>
+>  /* Following flags shows PCIe lane width switch supported in driver whic=
+h are decided by chipset and ASIC */
+> +
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X1          0x00000001
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X2          0x00000002
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X4          0x00000004
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X8          0x00000008
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X12         0x00000010
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X16         0x00000020
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_X32         0x00000040
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_MASK        0x0000FFFF
+> +#define CAIL_ASIC_PCIE_LINK_WIDTH_SUPPORT_SHIFT       0
+> +
+>  #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X1          0x00010000
+>  #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X2          0x00020000
+>  #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X4          0x00040000
+> @@ -56,6 +67,7 @@
+>  #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X12         0x00100000
+>  #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X16         0x00200000
+>  #define CAIL_PCIE_LINK_WIDTH_SUPPORT_X32         0x00400000
+> +#define CAIL_PCIE_LINK_WIDTH_SUPPORT_MASK        0xFFFF0000
+>  #define CAIL_PCIE_LINK_WIDTH_SUPPORT_SHIFT       16
+>
+>  /* 1/2/4/8/16 lanes */
+> @@ -65,4 +77,10 @@
+>                                       | CAIL_PCIE_LINK_WIDTH_SUPPORT_X8 \
+>                                       | CAIL_PCIE_LINK_WIDTH_SUPPORT_X16)
+>
+> +#define AMDGPU_DEFAULT_ASIC_PCIE_MLW_MASK (CAIL_ASIC_PCIE_LINK_WIDTH_SUP=
+PORT_X1 \
+> +                                          | CAIL_ASIC_PCIE_LINK_WIDTH_SU=
+PPORT_X2 \
+> +                                          | CAIL_ASIC_PCIE_LINK_WIDTH_SU=
+PPORT_X4 \
+> +                                          | CAIL_ASIC_PCIE_LINK_WIDTH_SU=
+PPORT_X8 \
+> +                                          | CAIL_ASIC_PCIE_LINK_WIDTH_SU=
+PPORT_X16)
+> +
+>  #endif
 > --
 > 2.47.1
 >
