@@ -2,28 +2,28 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96ED8A0AD21
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 02:42:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBBBCA0AD25
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jan 2025 02:42:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1D3010E338;
-	Mon, 13 Jan 2025 01:42:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE9810E337;
+	Mon, 13 Jan 2025 01:42:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="GZGv7D3L";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="m9v6RIlQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-97.freemail.mail.aliyun.com
- (out30-97.freemail.mail.aliyun.com [115.124.30.97])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49BA410E332
+Received: from out30-119.freemail.mail.aliyun.com
+ (out30-119.freemail.mail.aliyun.com [115.124.30.119])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF82B10E332
  for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 01:42:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
- t=1736732547; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=jZcfMtTheWJYGQdckpvxDxUGz4MGECb86Ti8yx6O/nY=;
- b=GZGv7D3L3PWieKYZUTllEa/qLvAMwC7twFrcRlT+YHuL6Ic43Hrz+C1oY8Snn4CdyWp5Bd3my4dBba0A9XpySyQ+NLoycFy1czEBB96EPMTXvhy3QDh85B0IFJybyJG2m6Ycq7VOwU+DnZ+h05C7W7LFTkFzqJ8/j+K9ICHmWAY=
+ t=1736732548; h=From:To:Subject:Date:Message-ID:MIME-Version;
+ bh=Nqhmzv1tbgyX4V0mKLzn5YGqHPs2t1+HgUDj7Hcl4Rg=;
+ b=m9v6RIlQXaWBtKxQ+KmP0uLwx4yyOOOL5NANbBO8vEVJSEKQs3N7bWxJtQS4EDaoXaW6hxGTAYWwThkEiNgjoLG8WHRM4VOiEUnlg3XVKJv/dYg8QmJGFwdxA8Ln/T4+x+PLyFc1oLPLC2k1hgfkEy9C4gbkiWt7G5fy5/6+EtE=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WNS0NFP_1736732546 cluster:ay36) by smtp.aliyun-inc.com;
- Mon, 13 Jan 2025 09:42:26 +0800
+ fp:SMTPD_---0WNS0NFe_1736732546 cluster:ay36) by smtp.aliyun-inc.com;
+ Mon, 13 Jan 2025 09:42:27 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  airlied@gmail.com, simona@ffwll.ch, sunil.khatri@amd.com,
@@ -31,10 +31,10 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  xiaogang.chen@amd.com, Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [RFC v2 06/15] drm/amdgpu: enhance amdgpu_ras_pre_fini() to better
- support SR
-Date: Mon, 13 Jan 2025 09:42:11 +0800
-Message-ID: <d07f0c4ed71a8f4b3e6194881f7cc00826240951.1736732062.git.gerry@linux.alibaba.com>
+Subject: [RFC v2 07/15] drm/admgpu: rename amdgpu_ras_pre_fini() to
+ amdgpu_ras_early_fini()
+Date: Mon, 13 Jan 2025 09:42:12 +0800
+Message-ID: <0e66fc11d40fc0f9c8ea4e2bd3ac70b7b8933ee5.1736732062.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1736732062.git.gerry@linux.alibaba.com>
 References: <cover.1736732062.git.gerry@linux.alibaba.com>
@@ -54,137 +54,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enhance amdgpu_ras_pre_fini() to better support suspend/resume by:
-1) fix possible resource leakage. amdgpu_release_ras_context() only
-   kfree(con) but doesn't release resources associated with the con
-   object.
-2) call amdgpu_ras_pre_fini() in amdgpu_device_suspend() to undo what
-   has been done by amdgpu_ras_late_init(), because amdgpu_device_resume()
-   will invoke amdgpu_ras_late_init() on resume.
-3) move amdgpu_ras_recovery_fini() from amdgpu_ras_pre_fini() to
-   amdgpu_ras_fini()
-4) move calling of `obj->ras_fini()` from amdgpu_ras_fini() to
-   amdgpu_ras_pre_fini().
+Rename amdgpu_ras_pre_fini() to amdgpu_ras_early_fini(), to keep same
+style with other code.
 
 Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  6 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c    | 44 +++++++++++++---------
- 2 files changed, 31 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  6 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c    |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c    | 16 ++++++++--------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h    |  6 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c    |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c    |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c    |  2 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c    |  2 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c    |  2 +-
+ 14 files changed, 25 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 0a121aab5c74..2bfe113e17c7 100644
+index 2bfe113e17c7..6cbd19ad0fa5 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -4613,6 +4613,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+@@ -4613,7 +4613,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
  	return 0;
  
  release_ras_con:
-+	amdgpu_ras_pre_fini(adev);
-+	amdgpu_ras_fini(adev);
+-	amdgpu_ras_pre_fini(adev);
++	amdgpu_ras_early_fini(adev);
+ 	amdgpu_ras_fini(adev);
  	if (amdgpu_sriov_vf(adev))
  		amdgpu_virt_release_full_gpu(adev, true);
+@@ -4705,7 +4705,7 @@ void amdgpu_device_fini_hw(struct amdgpu_device *adev)
+ 	amdgpu_xcp_cfg_sysfs_fini(adev);
  
-@@ -4627,8 +4629,6 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 		adev->virt.ops = NULL;
- 		r = -EAGAIN;
- 	}
--	amdgpu_release_ras_context(adev);
--
- failed:
- 	amdgpu_vf_error_trans_all(adev);
+ 	/* disable ras feature must before hw fini */
+-	amdgpu_ras_pre_fini(adev);
++	amdgpu_ras_early_fini(adev);
  
-@@ -4921,6 +4921,8 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
+ 	amdgpu_ttm_set_buffer_funcs_status(adev, false);
  
+@@ -4922,7 +4922,7 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
  	cancel_delayed_work_sync(&adev->delayed_init_work);
  
-+	/* disable ras feature must before hw fini */
-+	amdgpu_ras_pre_fini(adev);
+ 	/* disable ras feature must before hw fini */
+-	amdgpu_ras_pre_fini(adev);
++	amdgpu_ras_early_fini(adev);
  	amdgpu_ras_suspend(adev);
  
  	amdgpu_device_ip_suspend_phase1(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 7bbab7297c97..5ac63f9cffda 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -4270,42 +4270,49 @@ int amdgpu_ras_late_init(struct amdgpu_device *adev)
- int amdgpu_ras_pre_fini(struct amdgpu_device *adev)
- {
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
-+	struct amdgpu_ras_block_list *node, *tmp;
-+	struct amdgpu_ras_block_object *obj;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index 6d5d81f0dc4e..2e7c09530ec1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -918,7 +918,7 @@ int amdgpu_gfx_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *r
  
--	if (!adev->ras_enabled || !con)
--		return 0;
-+	if (amdgpu_sriov_vf(adev) && !amdgpu_sriov_ras_telemetry_en(adev))
-+		goto disable;
- 
-+	list_for_each_entry_safe(node, tmp, &adev->ras_list, node) {
-+		obj = node->ras_obj;
-+		if (!obj)
-+			continue;
-+
-+		if (!amdgpu_ras_is_supported(adev, obj->ras_comm.block))
-+			continue;
-+
-+		if (obj->ras_fini)
-+			obj->ras_fini(adev, &obj->ras_comm);
-+		else
-+			amdgpu_ras_block_late_fini_default(adev, &obj->ras_comm);
-+	}
- 
-+disable:
- 	/* Need disable ras on all IPs here before ip [hw/sw]fini */
--	if (AMDGPU_RAS_GET_FEATURES(con->features))
-+	if (con && AMDGPU_RAS_GET_FEATURES(con->features))
- 		amdgpu_ras_disable_all_features(adev, 0);
--	amdgpu_ras_recovery_fini(adev);
-+
  	return 0;
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 	return r;
  }
  
- int amdgpu_ras_fini(struct amdgpu_device *adev)
- {
- 	struct amdgpu_ras_block_list *ras_node, *tmp;
--	struct amdgpu_ras_block_object *obj = NULL;
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
+index b6d2eb049f54..80248930082c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
+@@ -300,7 +300,7 @@ int amdgpu_jpeg_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *
+ 	return 0;
  
- 	if (!adev->ras_enabled || !con)
--		return 0;
-+		goto out_free_context;
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 	return r;
+ }
  
- 	list_for_each_entry_safe(ras_node, tmp, &adev->ras_list, node) {
--		if (ras_node->ras_obj) {
--			obj = ras_node->ras_obj;
--			if (amdgpu_ras_is_supported(adev, obj->ras_comm.block) &&
--			    obj->ras_fini)
--				obj->ras_fini(adev, &obj->ras_comm);
--			else
--				amdgpu_ras_block_late_fini_default(adev, &obj->ras_comm);
--		}
--
- 		/* Clear ras blocks from ras_list and free ras block list node */
- 		list_del(&ras_node->node);
- 		kfree(ras_node);
- 	}
- 
-+	amdgpu_ras_recovery_fini(adev);
- 	amdgpu_ras_fs_fini(adev);
- 	amdgpu_ras_interrupt_remove_all(adev);
- 
-@@ -4323,8 +4330,11 @@ int amdgpu_ras_fini(struct amdgpu_device *adev)
- 
- 	cancel_delayed_work_sync(&con->ras_counte_delay_work);
- 
--	amdgpu_ras_set_context(adev, NULL);
--	kfree(con);
-+out_free_context:
-+	if (con) {
-+		amdgpu_ras_set_context(adev, NULL);
-+		kfree(con);
-+	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c
+index d085687a47ea..c75ce91f94ab 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c
+@@ -71,6 +71,6 @@ int amdgpu_nbio_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *
  
  	return 0;
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 	return r;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 5ac63f9cffda..b11e3eb2b100 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -4124,7 +4124,7 @@ int amdgpu_ras_block_late_init(struct amdgpu_device *adev,
+ 	return 0;
+ 
+ cleanup:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 	return r;
+ }
+ 
+@@ -4135,7 +4135,7 @@ static int amdgpu_ras_block_late_init_default(struct amdgpu_device *adev,
+ }
+ 
+ /* helper function to remove ras fs node and interrupt handler */
+-void amdgpu_ras_block_late_fini(struct amdgpu_device *adev,
++void amdgpu_ras_block_early_fini(struct amdgpu_device *adev,
+ 			  struct ras_common_if *ras_block)
+ {
+ 	struct amdgpu_ras_block_object *ras_obj;
+@@ -4156,10 +4156,10 @@ void amdgpu_ras_block_late_fini(struct amdgpu_device *adev,
+ 		amdgpu_ras_interrupt_remove_handler(adev, ras_block);
+ }
+ 
+-static void amdgpu_ras_block_late_fini_default(struct amdgpu_device *adev,
++static void amdgpu_ras_block_early_fini_default(struct amdgpu_device *adev,
+ 			  struct ras_common_if *ras_block)
+ {
+-	return amdgpu_ras_block_late_fini(adev, ras_block);
++	return amdgpu_ras_block_early_fini(adev, ras_block);
+ }
+ 
+ /* do some init work after IP late init as dependence.
+@@ -4267,7 +4267,7 @@ int amdgpu_ras_late_init(struct amdgpu_device *adev)
+ }
+ 
+ /* do some fini work before IP fini as dependence */
+-int amdgpu_ras_pre_fini(struct amdgpu_device *adev)
++int amdgpu_ras_early_fini(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+ 	struct amdgpu_ras_block_list *node, *tmp;
+@@ -4284,10 +4284,10 @@ int amdgpu_ras_pre_fini(struct amdgpu_device *adev)
+ 		if (!amdgpu_ras_is_supported(adev, obj->ras_comm.block))
+ 			continue;
+ 
+-		if (obj->ras_fini)
+-			obj->ras_fini(adev, &obj->ras_comm);
++		if (obj->ras_early_fini)
++			obj->ras_early_fini(adev, &obj->ras_comm);
+ 		else
+-			amdgpu_ras_block_late_fini_default(adev, &obj->ras_comm);
++			amdgpu_ras_block_early_fini_default(adev, &obj->ras_comm);
+ 	}
+ 
+ disable:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+index 35881087b17b..3a6f70b75e47 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+@@ -711,7 +711,7 @@ struct amdgpu_ras_block_object {
+ 	int (*ras_block_match)(struct amdgpu_ras_block_object *block_obj,
+ 				enum amdgpu_ras_block block, uint32_t sub_block_index);
+ 	int (*ras_late_init)(struct amdgpu_device *adev, struct ras_common_if *ras_block);
+-	void (*ras_fini)(struct amdgpu_device *adev, struct ras_common_if *ras_block);
++	void (*ras_early_fini)(struct amdgpu_device *adev, struct ras_common_if *ras_block);
+ 	ras_ih_cb ras_cb;
+ 	const struct amdgpu_ras_block_hw_ops *hw_ops;
+ };
+@@ -825,13 +825,13 @@ amdgpu_ras_error_to_ta(enum amdgpu_ras_error_type error) {
+ /* called in ip_init and ip_fini */
+ int amdgpu_ras_init(struct amdgpu_device *adev);
+ int amdgpu_ras_late_init(struct amdgpu_device *adev);
++int amdgpu_ras_early_fini(struct amdgpu_device *adev);
+ int amdgpu_ras_fini(struct amdgpu_device *adev);
+-int amdgpu_ras_pre_fini(struct amdgpu_device *adev);
+ 
+ int amdgpu_ras_block_late_init(struct amdgpu_device *adev,
+ 			struct ras_common_if *ras_block);
+ 
+-void amdgpu_ras_block_late_fini(struct amdgpu_device *adev,
++void amdgpu_ras_block_early_fini(struct amdgpu_device *adev,
+ 			  struct ras_common_if *ras_block);
+ 
+ int amdgpu_ras_feature_enable(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+index 174badca27e7..1a1834e47b50 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+@@ -116,7 +116,7 @@ int amdgpu_sdma_ras_late_init(struct amdgpu_device *adev,
+ 	return 0;
+ 
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 	return r;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
+index eafe20d8fe0b..dd787f5f2f23 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
+@@ -336,7 +336,7 @@ int amdgpu_umc_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *r
+ 	return 0;
+ 
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 	return r;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+index 83faf6e6788a..3ab80399d2ba 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+@@ -1248,7 +1248,7 @@ int amdgpu_vcn_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *r
+ 	return 0;
+ 
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 	return r;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 74b4349e345a..825c331f48f0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -1174,7 +1174,7 @@ static int amdgpu_xgmi_ras_late_init(struct amdgpu_device *adev, struct ras_comm
+ 	return 0;
+ 
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 
+ 	return r;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index 2ba185875baa..ce70acfbf22c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -5080,7 +5080,7 @@ static int gfx_v9_4_3_ras_late_init(struct amdgpu_device *adev, struct ras_commo
+ 	return 0;
+ 
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 
+ 	return r;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
+index 88f9771c1686..28bc2f946e91 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
+@@ -1311,7 +1311,7 @@ static int jpeg_v4_0_3_ras_late_init(struct amdgpu_device *adev, struct ras_comm
+ 	return 0;
+ 
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 
+ 	return r;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
+index e646e5cef0a2..467283165a3a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
+@@ -789,7 +789,7 @@ static int mmhub_v1_8_ras_late_init(struct amdgpu_device *adev, struct ras_commo
+ 	return 0;
+ 
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 
+ 	return r;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+index ecdc027f8220..063b3bafd134 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+@@ -1996,7 +1996,7 @@ static int vcn_v4_0_3_ras_late_init(struct amdgpu_device *adev, struct ras_commo
+ 	return 0;
+ 
+ late_fini:
+-	amdgpu_ras_block_late_fini(adev, ras_block);
++	amdgpu_ras_block_early_fini(adev, ras_block);
+ 
+ 	return r;
  }
 -- 
 2.43.5
