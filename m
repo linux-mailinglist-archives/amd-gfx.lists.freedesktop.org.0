@@ -2,43 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C42A10878
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jan 2025 15:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3286FA10873
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jan 2025 15:05:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EE3D10E320;
-	Tue, 14 Jan 2025 14:05:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="h7j3+xyn";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE5E710E31B;
+	Tue, 14 Jan 2025 14:05:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-41103.protonmail.ch (mail-41103.protonmail.ch
- [185.70.41.103])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5D0B10E270
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 12:27:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1736857638; x=1737116838;
- bh=89nLY5/YLpIAnsPf7Xi39uC+cwWlc9rhJv4yAfyvK9I=;
- h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
- Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector:
- List-Unsubscribe:List-Unsubscribe-Post;
- b=h7j3+xynb/ZT9SCLmYOwTfivS9v+ZSBZErIWQy6m2S+t/uGrY4/ZY8AyVVC5xINnL
- OoPCqXlOYD0H7q7F38qvmeDVQxLqRZ1Kpx1K1lIoJOY1SYTjchrdW66PunlSuVTRXi
- VSWd1ZDgfcZCU/Okx6OkK8EoWhUXw7ql548e3/opg2RXlD16EIqdu5ppJQ65aKK6C2
- /ZstZpycY7xR517XrrNHcNwFQ+SGKqkuvcxZP8hzOAd/O3kkVBquuaOwvyLgYAW53N
- 7D97tibhGl4IKWFh/wU7T/6K57SU5fwe+kEOGqn4PCnd+tjJQcQ5SKinc6jxGvsLCV
- ghJbtWgpTiKVw==
-Date: Tue, 14 Jan 2025 12:27:12 +0000
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-From: SyntheticBird <syntheticbirdxmr@protonmail.com>
-Subject: drm/amdgpu: AMDGPU unusable since 6.12.1 and it looks like no one
- cares.
-Message-ID: <o93Aruut7VI05oqVX7Se1udr5FAyqfyP_TGDutW0p2fXBSkRv7QkhpLmAT-buTpdWIwn8PnC8B2DNSMtaTp5kk00ZtK653PDLuK14uoUI4k=@protonmail.com>
-Feedback-ID: 130782727:user:proton
-X-Pm-Message-ID: f5e884eba7f134e1ac73d2cd590630965e5dde9a
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9D00E10E2B2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 13:29:00 +0000 (UTC)
+Received: from loongson.cn (unknown [113.200.148.30])
+ by gateway (Coremail) with SMTP id _____8CxC+KaZoZnbjxjAA--.63161S3;
+ Tue, 14 Jan 2025 21:28:58 +0800 (CST)
+Received: from linux.localdomain (unknown [113.200.148.30])
+ by front1 (Coremail) with SMTP id qMiowMCxncWZZoZncSUiAA--.3105S2;
+ Tue, 14 Jan 2025 21:28:57 +0800 (CST)
+From: Tiezhu Yang <yangtiezhu@loongson.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Nathan Chancellor <nathan@kernel.org>,
+ Josh Poimboeuf <jpoimboe@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, loongarch@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/3] drm/amd/display: Stop control flow if the divisior is
+ zero
+Date: Tue, 14 Jan 2025 21:28:56 +0800
+Message-ID: <20250114132856.19463-1-yangtiezhu@loongson.cn>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="b1=_ViVqgM5ZdfYW6XtX0K2SO6R3pge1xBhx33kcxOHLM"
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qMiowMCxncWZZoZncSUiAA--.3105S2
+X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBj9xXoWrZrW5WF1xJFyfJr45tF17CFX_yoWDtrc_Kr
+ W8XF93tw1Uta9IvFW2yF4fuFyYg3yUAr4ftFy8K3yvvFyfGw4UWa4UGrWkAr18Z3W2kFZ8
+ uryUKF1rAwsrGosvyTuYvTs0mTUanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvT
+ s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+ cSsGvfJTRUUUb78YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+ vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+ w2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+ W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0
+ oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F4
+ 0EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_
+ Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxAIw28IcxkI7VAKI4
+ 8JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xv
+ wVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjx
+ v20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20E
+ Y4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267
+ AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8vApUUUUUU==
 X-Mailman-Approved-At: Tue, 14 Jan 2025 14:05:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,94 +68,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---b1=_ViVqgM5ZdfYW6XtX0K2SO6R3pge1xBhx33kcxOHLM
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+As far as I can tell, with the current existing macro definitions, there
+is no better way to do the minimal and proper changes to stop the control
+flow if the divisior is zero.
 
-SGVsbG8gYW5kIGhhcHB5IG5ldyB5ZWFyIHRvIGFsbCBtZW1iZXJzIG9mIHRoaXMgbGlzdC4KCkkg
-a25vdyB0aGF0IG1haWxpbmcgbGlzdHMgYXJlbid0IG1lYW50IGZvciBiZWdnaW5nIGZvciBzdXBw
-b3J0LCBidXQgYWZ0ZXIgZGlzY3Vzc2luZyB0aGlzIGluIGFub3RoZXIgZGlzdHJpYnV0aW9uIGNo
-YW5uZWwsIGl0IHNlZW1zIHRvIG1lIGxpa2UgaXQgaXMgdGhlIG9ubHkgd2F5IGZvciBtZSBhbmQg
-b3RoZXIgdXNlcnMgdG8gZ3JhYiB0aGUgYXR0ZW50aW9uIG9mIGEgbWFpbnRhaW5lci4KClNpbmNl
-IDYuMTIuMSwgc2V2ZXJhbCB1c2VycyBoYXZlIHJlcG9ydGVkIGEga2VybmVsIGZyZWV6ZSBpc3N1
-ZSB3aXRoIEFNREdQVSwgaW5jbHVkaW5nIGEgY29tcGxldGUgc3RhY2sgdHJhY2UuIEl0IGNvcnJl
-c3BvbmRzIHRvIHRoZSBmb2xsb3dpbmcgaXNzdWVzIG9uIEdpdExhYjoKCmh0dHBzOi8vZ2l0bGFi
-LmZyZWVkZXNrdG9wLm9yZy9kcm0vYW1kLy0vaXNzdWVzLzM3ODdodHRwczovL2dpdGxhYi5mcmVl
-ZGVza3RvcC5vcmcvZHJtL2FtZC8tL2lzc3Vlcy8zODY2CgpJIGFsc28gc3VzcGVjdCB0aGlzIGlz
-c3VlIG1heSBoYXZlIGhhcHBlbmVkIHRvIG9uZSB1c2VyIG9uIHRoZSBMZXZlbDFUZWNoIGZvcnVt
-OiBodHRwczovL2ZvcnVtLmxldmVsMXRlY2hzLmNvbS90L2hlbHAtd2l0aC10cm91Ymxlc2hvb3Rp
-bmctZnJlZXppbmctd2l0aC1saW51eC1rZXJuZWwtNi0xMi1vbi1hcmNoLzIyMTM0MC8yMgoKVHdv
-IG1vbnRocyBoYXZlIHBhc3NlZCBzaW5jZSB0aGUgZmlyc3QgcmVwb3J0IG9mIHRoaXMgYnVnLCBh
-bmQgbm8gb25lIGluIGVpdGhlciBvZiB0aGUgdHdvIGlzc3VlcyBoYXMgZXZlciByZWFjaGVkIG91
-dCB0byB1cy4gSSd2ZSBjaGVja2VkIHRoZSBtYWlsaW5nIGxpc3QgYXJjaGl2ZSwgYW5kIGl0IHNl
-ZW1zIGxpa2Ugbm8gbWFpbnRhaW5lciBoYXMgZXZlciBkaXNjdXNzZWQgaXQuIFdlJ3JlIHNpbXBs
-eSBsZWZ0IGFsb25lIHdpdGggb25seSBob3BlLgoKSSBwZXJmZWN0bHkgdW5kZXJzdGFuZCB0aGF0
-IG1haW50YWluZXJzIGFyZSBidXN5LCBhbmQgSSBkbyBub3QgYmxhbWUgdGhlbSwgYnV0IHdlIGFz
-IHVzZXJzIGFuZCBvd25lcnMgb2YgQU1ER1BVIGhhdmUgbm8gb3RoZXIgY2hvaWNlIGJ1dCB0byB0
-cnkgcmVhY2hpbmcgb3V0IHRvIHlvdSwgdG8gYXQgbGVhc3QgYmUgc3VyZSB0aGF0IHRoaXMgaXNz
-dWUgaGFzbid0IGJlZW4gaWdub3JlZCBpbiB0aGUgZGVwdGhzIG9mIHRoZSBHaXRMYWIgaXNzdWUg
-bGlzdC4KClRoaXMgaXNzdWUgaXMgaW1wYWN0aW5nIHZlcnNpb25zIDYuMTIuMSB0byB0aGUgbGF0
-ZXN0IDYuMTMgcmMuIFNldmVyYWwgdXNlcnMgYXJlIHN0aWxsIHN0dWNrIG9uIGVpdGhlciA2LjYg
-TFRTIG9yIDYuMTEuOS0xMC4gRm9yIHVzZXJzIHJlbHlpbmcgb24gZmVhdHVyZXMgdGhhdCBoYXZl
-IGJlZW4gaW50cm9kdWNlZCBiZXR3ZWVuIDYuNiBhbmQgNi4xMiwgdGhleSBjYW5ub3QgZG93bmdy
-YWRlIHRvIDYuNiBhbmQgYWxzbyBjYW5ub3QgdXBncmFkZSB0byA2LjEyLCBsZWF2aW5nIHRoZW0g
-d2l0aG91dCB2dWxuZXJhYmlsaXRpZXMgYmVpbmcgcGF0Y2hlZCBvbiBtYWlubGluZSBhbmQgTFRT
-LgoKQnkgdGhpcyBlbWFpbCwgSSdtIHJlcXVlc3RpbmcgdGhhdCBhdCBsZWFzdCBhIG1haW50YWlu
-ZXIgb3IgY29udHJpYnV0b3IgaGVscCB1cyBvdXQsIG9yIGF0IGxlYXN0IGFzc2VzcyB0aGUgaXNz
-dWUgYW5kIG5vdCBsZXQgaXQgcm90LgoKU2luY2VyZWx5LCBTeW50aGV0aWNCaXJk
+In order to keep the current ability for the aim of debugging and avoid
+printing the warning message twice, it is better to only use ASSERT_BUG()
+and SPL_ASSERT_BUG() directly after doing the following two steps:
 
---b1=_ViVqgM5ZdfYW6XtX0K2SO6R3pge1xBhx33kcxOHLM
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+(1) Add ASSERT_BUG() macro definition
+(2) Add SPL_ASSERT_BUG() macro definition
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
-cHg7Ij48L2Rpdj48cD5IZWxsbyBhbmQgaGFwcHkgbmV3IHllYXIgdG8gYWxsIG1lbWJlcnMgb2Yg
-dGhpcyBsaXN0LjwvcD48cD5JIGtub3cgdGhhdCBtYWlsaW5nIGxpc3RzIGFyZW4ndCBtZWFudCBm
-b3IgYmVnZ2luZyBmb3Igc3VwcG9ydCwgYnV0IGFmdGVyIGRpc2N1c3NpbmcgdGhpcyBpbiBhbm90
-aGVyIGRpc3RyaWJ1dGlvbiBjaGFubmVsLCBpdCBzZWVtcyB0byBtZSBsaWtlIGl0IGlzIHRoZSBv
-bmx5IHdheSBmb3IgbWUgYW5kIG90aGVyIHVzZXJzIHRvIGdyYWIgdGhlIGF0dGVudGlvbiBvZiBh
-IG1haW50YWluZXIuPC9wPjxwPlNpbmNlIDYuMTIuMSwgc2V2ZXJhbCB1c2VycyBoYXZlIHJlcG9y
-dGVkIGEga2VybmVsIGZyZWV6ZSBpc3N1ZSB3aXRoIEFNREdQVSwgaW5jbHVkaW5nIGEgY29tcGxl
-dGUgc3RhY2sgdHJhY2UuIEl0IGNvcnJlc3BvbmRzIHRvIHRoZSBmb2xsb3dpbmcgaXNzdWVzIG9u
-IEdpdExhYjo8L3A+PHA+PGEgcmVsPSJub29wZW5lciIgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0
-dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vYW1kLy0vaXNzdWVzLzM3ODciPmh0dHBz
-Oi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vYW1kLy0vaXNzdWVzLzM3ODc8L2E+PGEgcmVs
-PSJub29wZW5lciIgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNr
-dG9wLm9yZy9kcm0vYW1kLy0vaXNzdWVzLzM4NjYiPmh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9w
-Lm9yZy9kcm0vYW1kLy0vaXNzdWVzLzM4NjY8L2E+PC9wPjxwPkkgYWxzbyBzdXNwZWN0IHRoaXMg
-aXNzdWUgbWF5IGhhdmUgaGFwcGVuZWQgdG8gb25lIHVzZXIgb24gdGhlIExldmVsMVRlY2ggZm9y
-dW06IDxhIHJlbD0ibm9vcGVuZXIiIHRhcmdldD0iX2JsYW5rIiBocmVmPSJodHRwczovL2ZvcnVt
-LmxldmVsMXRlY2hzLmNvbS90L2hlbHAtd2l0aC10cm91Ymxlc2hvb3RpbmctZnJlZXppbmctd2l0
-aC1saW51eC1rZXJuZWwtNi0xMi1vbi1hcmNoLzIyMTM0MC8yMiI+aHR0cHM6Ly9mb3J1bS5sZXZl
-bDF0ZWNocy5jb20vdC9oZWxwLXdpdGgtdHJvdWJsZXNob290aW5nLWZyZWV6aW5nLXdpdGgtbGlu
-dXgta2VybmVsLTYtMTItb24tYXJjaC8yMjEzNDAvMjI8L2E+PC9wPjxwPlR3byBtb250aHMgaGF2
-ZSBwYXNzZWQgc2luY2UgdGhlIGZpcnN0IHJlcG9ydCBvZiB0aGlzIGJ1ZywgYW5kIG5vIG9uZSBp
-biBlaXRoZXIgb2YgdGhlIHR3byBpc3N1ZXMgaGFzIGV2ZXIgcmVhY2hlZCBvdXQgdG8gdXMuIEkn
-dmUgY2hlY2tlZCB0aGUgbWFpbGluZyBsaXN0IGFyY2hpdmUsIGFuZCBpdCBzZWVtcyBsaWtlIG5v
-IG1haW50YWluZXIgaGFzIGV2ZXIgZGlzY3Vzc2VkIGl0LiBXZSdyZSBzaW1wbHkgbGVmdCBhbG9u
-ZSB3aXRoIG9ubHkgaG9wZS48L3A+PHA+SSBwZXJmZWN0bHkgdW5kZXJzdGFuZCB0aGF0IG1haW50
-YWluZXJzIGFyZSBidXN5LCBhbmQgSSBkbyBub3QgYmxhbWUgdGhlbSwgYnV0IHdlIGFzIHVzZXJz
-IGFuZCBvd25lcnMgb2YgQU1ER1BVIGhhdmUgbm8gb3RoZXIgY2hvaWNlIGJ1dCB0byB0cnkgcmVh
-Y2hpbmcgb3V0IHRvIHlvdSwgdG8gYXQgbGVhc3QgYmUgc3VyZSB0aGF0IHRoaXMgaXNzdWUgaGFz
-bid0IGJlZW4gaWdub3JlZCBpbiB0aGUgZGVwdGhzIG9mIHRoZSBHaXRMYWIgaXNzdWUgbGlzdC48
-L3A+PHA+VGhpcyBpc3N1ZSBpcyBpbXBhY3RpbmcgdmVyc2lvbnMgNi4xMi4xIHRvIHRoZSBsYXRl
-c3QgNi4xMyByYy4NClNldmVyYWwgdXNlcnMgYXJlIHN0aWxsIHN0dWNrIG9uIGVpdGhlciA2LjYg
-TFRTIG9yIDYuMTEuOS0xMC4gRm9yIHVzZXJzIHJlbHlpbmcgb24gZmVhdHVyZXMgdGhhdCBoYXZl
-IGJlZW4gaW50cm9kdWNlZCBiZXR3ZWVuIDYuNiBhbmQgNi4xMiwgdGhleSBjYW5ub3QgZG93bmdy
-YWRlIHRvIDYuNiBhbmQgYWxzbyBjYW5ub3QgdXBncmFkZSB0byA2LjEyLCBsZWF2aW5nIHRoZW0g
-d2l0aG91dCB2dWxuZXJhYmlsaXRpZXMgYmVpbmcgcGF0Y2hlZCBvbiBtYWlubGluZSBhbmQgTFRT
-LjwvcD48cD5CeSB0aGlzIGVtYWlsLCBJJ20gcmVxdWVzdGluZyB0aGF0IGF0IGxlYXN0IGEgbWFp
-bnRhaW5lciBvciBjb250cmlidXRvciBoZWxwIHVzIG91dCwgb3IgYXQgbGVhc3QgYXNzZXNzIHRo
-ZSBpc3N1ZSBhbmQgbm90IGxldCBpdCByb3QuPC9wPjxwPlNpbmNlcmVseSwNClN5bnRoZXRpY0Jp
-cmQ8L3A+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNp
-emU6IDE0cHg7Ij48YnI+PC9kaXY+DQo8ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9i
-bG9jayBwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1lbXB0eSIgc3R5bGU9ImZvbnQtZmFtaWx5
-OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+DQogICAgPGRpdiBjbGFzcz0i
-cHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2stdXNlciBwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9j
-ay1lbXB0eSI+PC9kaXY+DQogICAgDQogICAgICAgICAgICA8ZGl2IGNsYXNzPSJwcm90b25tYWls
-X3NpZ25hdHVyZV9ibG9jay1wcm90b24gcHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2stZW1wdHki
-Pg0KICAgICAgICANCiAgICAgICAgICAgIDwvZGl2Pg0KPC9kaXY+DQo=
+This version is based on 6.13-rc7, tested on x86 and LoongArch.
 
+Tiezhu Yang (3):
+  drm/amd/display: Add ASSERT_BUG() macro definition
+  drm/amd/display: Add SPL_ASSERT_BUG() macro definition
+  drm/amd/display: Harden callers of division functions
 
---b1=_ViVqgM5ZdfYW6XtX0K2SO6R3pge1xBhx33kcxOHLM--
+ drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c  |  2 +-
+ drivers/gpu/drm/amd/display/dc/os_types.h           |  7 +++++++
+ drivers/gpu/drm/amd/display/dc/spl/spl_debug.h      | 11 +++++++++++
+ drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c |  2 +-
+ 4 files changed, 20 insertions(+), 2 deletions(-)
+
+-- 
+2.42.0
 
