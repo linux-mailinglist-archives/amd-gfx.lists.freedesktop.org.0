@@ -2,125 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A374A11A1D
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jan 2025 07:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8C19A11BAC
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jan 2025 09:17:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 465D710E057;
-	Wed, 15 Jan 2025 06:52:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E44710E560;
+	Wed, 15 Jan 2025 08:17:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0oE0fkKF";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Qls2/d4r";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on20600.outbound.protection.outlook.com
- [IPv6:2a01:111:f403:2408::600])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A87E10E057
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jan 2025 06:52:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kIWUHfiO18btHfL3KW5e4qFJ/4H29k8sazZHzSGJg4fcvVYHjltZg2JFqKbaPEuc3FxmRZiPLImbG9vbOXW0lhxturEMVM+W0kCX0fSkSp5ayO9fXflDQXfPr7rF+/byy2uGW3VFr8bU83UFsm3ia42nEPCqJ9SH22YI5+OYlI3gaqCDNu0MHiyAcJNrkSzEfX4RnGr/GgQckC5ti7q/5Ins12u9NFvjFS2LaoSmQe//gjwhVYbml7t6cnnWg5X5oeVxpU07DEn74FLt3i8J06JtmLwGtAwZsARNKrrgaQzfpJ4H2Z0SrRnbEJaHkGmUr0SK8G/O7GEPbDz0VnzDMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GVSs0fklEKEwxtWYSKZ77KRUyfUEO0mQrchdg/3Ej2E=;
- b=YQQAybd9tS76ln1fR22zDb2YbQD4yKpdnqtPb6xEnamLXkt9i6epoo72+ylkz+humu9bWVj5yoWbgMZ3vk2aBkCYpHOdqrGwsXT8vqdFWyjvSQBfPuBEsR5n6Lq0TCDlHBn4SgR6CjMCF++XX9K+pkBqYL2jH+rRra0iNFOELvo52qn+tJH5jpZEAVTaIfHywhuoRhfqd6+y5xfHEFO69fTRZZsgs5DGeJxuV2qM6+Mn4NvdvvSSwxuGM3pq0RHK8oim3xt7zEnLZjgEywYxWwfAKEWaOA259IGBhBSs9+/GK6YNpDBLPRFUETDnemtemFmdJSutK36fqKiDbk+34Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GVSs0fklEKEwxtWYSKZ77KRUyfUEO0mQrchdg/3Ej2E=;
- b=0oE0fkKFwJVI5yJunAPrS2ZyeAAoGyCbQ0QPjzqzOeDwvR7yfoI6Dp6ObuZllbj6bqA1bDQSrQkq2uDZS1W9aQI+HKF6In0mJB29oU4t0+ZBnfsFssv79B1XIlFUu9n2ODirgeFRHBNx9ZH2YiifcqFnyPmuk0KIwcfiX0y7qXA=
-Received: from BL0PR0102CA0055.prod.exchangelabs.com (2603:10b6:208:25::32) by
- CH2PR12MB4149.namprd12.prod.outlook.com (2603:10b6:610:7c::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8356.13; Wed, 15 Jan 2025 06:52:27 +0000
-Received: from BN3PEPF0000B077.namprd04.prod.outlook.com
- (2603:10b6:208:25:cafe::9f) by BL0PR0102CA0055.outlook.office365.com
- (2603:10b6:208:25::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.13 via Frontend Transport; Wed,
- 15 Jan 2025 06:52:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN3PEPF0000B077.mail.protection.outlook.com (10.167.243.122) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8356.11 via Frontend Transport; Wed, 15 Jan 2025 06:52:26 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 15 Jan
- 2025 00:52:16 -0600
-Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Wed, 15 Jan 2025 00:52:14 -0600
-From: "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- <Tim.Huang@amd.com>, Vitaly Prosyak <vitaly.prosyak@amd.com>,
- "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: Use -ENODATA for GPU job timeout queue recovery
-Date: Wed, 15 Jan 2025 14:52:14 +0800
-Message-ID: <20250115065214.3698126-1-jesse.zhang@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
+ [209.85.218.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3520510E4DC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jan 2025 06:54:33 +0000 (UTC)
+Received: by mail-ej1-f54.google.com with SMTP id
+ a640c23a62f3a-aaeec07b705so1001590966b.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 22:54:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1736924012; x=1737528812; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=EA7HdHRqUXuUUEtaW6EKO6Gp/g4PXTHpnEsneGiTxxQ=;
+ b=Qls2/d4rY/3ggCdkqIplPhT4/tWh03bqlew6bv59A8dUBho3GHMb9R3owk5amBHLly
+ j1M4LR42dlU1uj9IJYI5ntFAXeA6ODKL4wA75luzeRCxMNS3qz2LZr7opT056ofCIvD2
+ EGU47tDaGm/BE0L/bb0/tOr7cSW0QDvzFMEteOkrHMlYsipY65y1TeWIhrD1Z5JjSnUV
+ nPOGDY7Tj5PBB5inRc1gPfW6t6N6vRxC/TGubwnSpUOSN3BV68TrIOGKkthzg76+mrWR
+ 4fNVJVb3rvkKjfwH/dLqlnR4p54dXwuwlQ7LiXl6nfoGH7esh45T1IsqOf1AKavpGrNl
+ 9CKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736924012; x=1737528812;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=EA7HdHRqUXuUUEtaW6EKO6Gp/g4PXTHpnEsneGiTxxQ=;
+ b=BVmEBFPjd/qq4S6unfAhGucrY86pI5MSAH5TXn1WZDLOAdH4/mNK0J5T1DKJ01catV
+ hkTNdiM9sRXyxNULHPcJrb8xNM+qjBbBJ686UAli8RLHb/A612Byzh61GVLVFEHNa6Md
+ GoCbfQcb43i1wyXR8ExbGaMC7QKTKcJ36n9hAbA+cnzivlrxXQh+cwErF4jG8wrQ8ILq
+ qwIAwoSZUtlJ/Nlf2j4GIKuE7lGoWYHMPNXseyw+MTYpPe5fPI3EBez7SXSjw+WaJ78h
+ p0oFVpB3Z9FgIiIYlOUAL3a/DmWNux7iVSB+ljx+lirmw4svsC3zO+8G+Dtr0reAKLa7
+ RzLQ==
+X-Gm-Message-State: AOJu0YyRBr5lmdrsUtJCJJet/UVnSy1ebJlZix9p/UClwusaR54Mq2yw
+ iuk193gpucgu+ucKerkNgLxYPyjumdb3pBnWUE57omT5xdcht0vkRHGqeR2elY0=
+X-Gm-Gg: ASbGncuhuHdDKKOSmUGyzjAtkqRo5C7BSaeQIXfO2sYKtCkt3+9PrahMgWHD071KtRQ
+ nf1fAN7fgUk/JuJr+WCC8+0HXEGMEhYoapn3rfhRZEFtAjzQXxlbG73hh3rhdnsY0Ycz4TezoFu
+ 7Pi24+IOtPMszc6N2mywKCNUwFQSINTdV0spNbqegSyLiOP5Lcgj6Nes4AQc5avuLQuzRKZtGLy
+ BWirvRiJeK+cWhJKFWnXA6dBbr+OiKlf3a8r+Pyj/fnsxPg1OO6Y6LnSlVW5A==
+X-Google-Smtp-Source: AGHT+IE1V+t2WuS0JApm7aNjVsXtvbfQ/Rfao5YG2bf/nZrp8pEhXMFYjYeepBBXWDQDtnwYeg2Xxg==
+X-Received: by 2002:a17:907:3f95:b0:aa6:9b02:7fd0 with SMTP id
+ a640c23a62f3a-ab2aad3f4a6mr2745950966b.0.1736924011641; 
+ Tue, 14 Jan 2025 22:53:31 -0800 (PST)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-ab2c913605csm712635066b.82.2025.01.14.22.53.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Jan 2025 22:53:31 -0800 (PST)
+Date: Wed, 15 Jan 2025 09:53:24 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Leo Li <sunpeng.li@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amd/display: Do not elevate mem_type change to full
+ update
+Message-ID: <609cd410-3bff-42a6-ba4e-a4366059bfbf@stanley.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: jesse.zhang@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B077:EE_|CH2PR12MB4149:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5bf7f9b5-21bb-42f5-5469-08dd35312c4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?NrHliEOgXUR0yu4l3fdvnRiIYUypo+UjDK5in4EJGzFV5udmKIPQYt1o8iy3?=
- =?us-ascii?Q?lwkISdYYScRciYUjF8+Q8TTOgaZNRWix4EJMXzmkVcAu7o4mRcorz7Angpya?=
- =?us-ascii?Q?jX5xxog+Kxu/G13zEbQBswIS+kmQMcIVMOOjtohuZcHfM3T2i9uUcWIrhf6F?=
- =?us-ascii?Q?DI0sZvlVQ3wfTB8gU3/6YxZubqwMPk2yCOehYdv5uGxmc8m5A0di2oVe7KyA?=
- =?us-ascii?Q?4L/J3Va4qXzbTNAv5YY1H72w7e8giOU/0GGWTOuPTC6Zl2URweLkOBhsb2YO?=
- =?us-ascii?Q?1lAJfznL341wSRm/z5ie2RIoM1usgJbwbZSglKYeAfWzHXc/D4ngazG7HWbl?=
- =?us-ascii?Q?A4xjXcNomuq9XFAC4PZ79rECcdh84Z2mT7rrVyXD9FNJJYxFWiK1KJK2h+C/?=
- =?us-ascii?Q?LaCP/zGyo6TfouNdZoygsXtoIf4n9BHgrILzm2BAciBvlSqbpzVFDPRbxgIm?=
- =?us-ascii?Q?vQ6e6BZv8u3rB3hDZS0bYqWucrpHlfd9hHUi5LktYu4J2SGaCs3BeZiKcJwV?=
- =?us-ascii?Q?f/DkWzGKXUiKvy/QgvuWsh8LQ3NzqMpqjo4qaFmrEEPbEiPAT8NK4+wvhejX?=
- =?us-ascii?Q?AkSIXZWhpOxNF5lbM2yoEq93cT3JhwexsFOxy/24iCP9h9YVIGlMqN1tu3WD?=
- =?us-ascii?Q?T7UN5b/716/3N0a8HFSy2r6s7/BT3bEzjhqtHQvlqGbDxuBURnXnfmfcsP2K?=
- =?us-ascii?Q?rNuAAyCkLLcsZX2f5ELYDARAw2nhjlddnionsDH0pJky6VTyuTxpMVu1J1vU?=
- =?us-ascii?Q?wuAdXU2AAFWMaiFMSsjqe6A/UYFsnZkA9ecocZ9pshRJk1sYahfETsrxT+lE?=
- =?us-ascii?Q?rgL/CGDuxyR685SmO+wScjmpUACObWl6+MstlRIKd/FZTWVlvRUPP29VVxWg?=
- =?us-ascii?Q?9tg9Wna60IyFYXNUK47vhXrSuesmN4apDROxiVHBYE4aiHVAz4UR2OqjDb2q?=
- =?us-ascii?Q?nxxM8RaGUW2fMoVCXASF86dhmTNF+z3DZHxDk/mdwJHmjQHvYM9/gjlO1TJj?=
- =?us-ascii?Q?j7XuFSYVIygc/BYnVhRean6X/AyK/9lOVKx/mcFahUEQsKNNBK1VNg4qVIsc?=
- =?us-ascii?Q?rDyadLFLTLLaGUjWHXKBGVDj/L4/EwtZ4W6sfRjy8bxdua96QV2djBJsolt9?=
- =?us-ascii?Q?Sp2nJw7MNESz1B9PvI8M2a6romPO5bm052VtWAdYIjA3+2rZNDua8VXNdBye?=
- =?us-ascii?Q?odRh5SlLUNlKXibTx8ZrQylie3RThoU2D+zmA5AWzILnE7ydGoo1oH/Y2emU?=
- =?us-ascii?Q?7R6IfdLQxI77E5hLFUrGPcoVKe00G4cgFyxbaBCPfGKK4P1YWYnbK8yR/O9+?=
- =?us-ascii?Q?SAQOf8ws6mDxPH/wizRwDGUmnLkm2+nV3PTfa3294ob3UgE6zROuLK6ykGst?=
- =?us-ascii?Q?W2on5BkMKSqKVfvDvLAoweb3q2lnpVfLNhNkNGooSjsN83NrsHg7/J0xbwEc?=
- =?us-ascii?Q?lbP9k3Qqy9TfimRHdwLxxPCTq0mxn1h56fBMKKnoGFGb+JExzvonPjEOv3kU?=
- =?us-ascii?Q?Tux+EEfr7xVj/sc=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2025 06:52:26.8763 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bf7f9b5-21bb-42f5-5469-08dd35312c4f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B077.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4149
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Wed, 15 Jan 2025 08:17:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,41 +81,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When a GPU job times out, the driver attempts to recover by restarting
-the scheduler. Previously, the scheduler was restarted with an error
-code of 0, which does not distinguish between a full GPU reset and a
-queue reset. This patch changes the error code to -ENODATA for queue
-resets, while -ECANCELED or -ETIME is used for full GPU resets.
+Hello Leo Li,
 
-This change improves error handling by:
-1. Clearly differentiating between queue resets and full GPU resets.
-2. Providing more specific error codes for better debugging and recovery.
-3. Aligning with kernel best practices for error reporting.
+Commit 4caacd1671b7 ("drm/amd/display: Do not elevate mem_type change
+to full update") from Dec 11, 2024 (linux-next), leads to the
+following Smatch static checker warning:
 
-The related commit "b2ef808786d93df3658" (drm/sched: add optional errno
-to drm_sched_start())
-introduced support for passing an error code to
-drm_sched_start(), enabling this improvement.
+	drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:11486 amdgpu_dm_crtc_mem_type_changed()
+	error: 'new_plane_state' dereferencing possible ERR_PTR()
 
-Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
+    11475 static bool amdgpu_dm_crtc_mem_type_changed(struct drm_device *dev,
+    11476                                             struct drm_atomic_state *state,
+    11477                                             struct drm_crtc_state *crtc_state)
+    11478 {
+    11479         struct drm_plane *plane;
+    11480         struct drm_plane_state *new_plane_state, *old_plane_state;
+    11481 
+    11482         drm_for_each_plane_mask(plane, dev, crtc_state->plane_mask) {
+    11483                 new_plane_state = drm_atomic_get_plane_state(state, plane);
+    11484                 old_plane_state = drm_atomic_get_plane_state(state, plane);
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+These functions can fail.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index 100f04475943..b18b316872a0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -148,7 +148,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 			atomic_inc(&ring->adev->gpu_reset_counter);
- 			amdgpu_fence_driver_force_completion(ring);
- 			if (amdgpu_ring_sched_ready(ring))
--				drm_sched_start(&ring->sched, 0);
-+				drm_sched_start(&ring->sched, -ENODATA);
- 			goto exit;
- 		}
- 		dev_err(adev->dev, "Ring %s reset failure\n", ring->sched.name);
--- 
-2.25.1
+    11485 
+--> 11486                 if (old_plane_state->fb && new_plane_state->fb &&
+    11487                     get_mem_type(old_plane_state->fb) != get_mem_type(new_plane_state->fb))
+    11488                         return true;
+    11489         }
+    11490 
+    11491         return false;
+    11492 }
 
+regards,
+dan carpenter
