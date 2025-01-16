@@ -2,62 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF850A135FE
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2025 10:01:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3F5CA1368D
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jan 2025 10:25:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47D3910E56D;
-	Thu, 16 Jan 2025 09:01:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E506610E911;
+	Thu, 16 Jan 2025 09:25:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="er1ESIUB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="D/0PMgwS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10EAD10E771;
- Wed, 15 Jan 2025 14:50:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=v9AOha7q2BJbDk7BeY+078h2l+NwyfesTO2SoUQ4E04=; b=er1ESIUBCLVWJwp0oQt77R0Nj2
- C8cxMCFU+t15t9Z7VdYGNbw/RIKptNBhFQve9yTYl+Q28Wb4kOm8Ad6qRL3Fe6PumS4c5/0pWRpaZ
- EIWVng6jt0PrScSnFdknYzigLptwcJfPLhJiAmIYnSDuh70G+Hb6rEaGJ+pY1SKdyyX0kbb5MOuUq
- FTy2epzwjWOxU8HyBR5iDo1iyq1blYb48xnlHDUTYcL2pYdRU9pcrSyElMXOBL2a8jdiR6nVVY0QE
- XnMA3WyJR4QBN5lzqWBqe2GEBtEjqN37nr5PS9Go8HdWqiVY/BFSYUjdhLJBs1E0EXLITHmqe+vO+
- XHMZWS4Q==;
-Received: from [177.139.21.57] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tY4iS-00G7VC-UT; Wed, 15 Jan 2025 15:49:57 +0100
-Message-ID: <7676d80e-2310-47db-86fd-5711f7f19b89@igalia.com>
-Date: Wed, 15 Jan 2025 11:49:50 -0300
+X-Greylist: delayed 1722 seconds by postgrey-1.36 at gabe;
+ Thu, 16 Jan 2025 09:25:39 UTC
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48BAF10E90D;
+ Thu, 16 Jan 2025 09:25:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=hcSBGQUuwLRsQmfD0tmlwNle5S75KZC7hJN7wq6KXnI=; b=D/0PMgwSMtDGChoMr4j+tpoIxU
+ Zh20HwMed32AyYBRakasiZHnF0ri1L9BuC4DRgqMhHIebYCH7l23XfCxKKbyhY+1dmm3/hW1zRNOr
+ uxq7gc4s4hjby2xnOj68hi61E8tEZOzQ0Paofbe/QPtCD7hzAqqpoBEVueNSFAOBaChGiIXE/vXVU
+ 7N6tpjUYmmv65FmO1C3BNa/E/jHEHPcVsHQj2fjWp550kflXjrZ/r6g2ATyA8wZIdLwBZHLxYZvez
+ rVgsW3i83uB+/Jm49pENdRjuPgpEjNUCgxi3RtEmy+UfZRGJV/9utzyuMcKbYLJmu4V7D4IY2Nh8w
+ Oi5OK/Zw==;
+Received: from [91.154.21.62] (port=60309 helo=tisha)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
+ (envelope-from <pekka.paalanen@haloniitty.fi>) id 1tYLgO-0003Q1-0O;
+ Thu, 16 Jan 2025 10:56:56 +0200
+Date: Thu, 16 Jan 2025 10:56:22 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: Alex Hung <alex.hung@amd.com>, <harry.wentland@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <wayland-devel@lists.freedesktop.org>
+Subject: Re: [V7 31/45] drm/colorop: add BT2020/BT709 OETF and Inverse OETF
+Message-ID: <20250116105622.577533fc@tisha>
+In-Reply-To: <20241220043410.416867-32-alex.hung@amd.com>
+References: <20241220043410.416867-1-alex.hung@amd.com>
+ <20241220043410.416867-32-alex.hung@amd.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 2/2] drm/amdgpu: Enable async flip on overlay planes
-To: Harry Wentland <harry.wentland@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: kernel-dev@igalia.com, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Simona Vetter <simona@ffwll.ch>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Simon Ser
- <contact@emersion.fr>, dmitry.baryshkov@linaro.org,
- Xinhui Pan <Xinhui.Pan@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Xaver Hugl <xaver.hugl@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Stone <daniel@fooishbar.org>, dri-devel@lists.freedesktop.org,
- joshua@froggi.es, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Leo Li <sunpeng.li@amd.com>, ville.syrjala@linux.intel.com
-References: <20241212-tonyk-async_flip-v11-0-14379434be70@igalia.com>
- <20241212-tonyk-async_flip-v11-2-14379434be70@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <20241212-tonyk-async_flip-v11-2-14379434be70@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 16 Jan 2025 09:01:17 +0000
+Content-Type: multipart/signed; boundary="Sig_/NPZAZe5HHyM6nT/FUNNbYUh";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,52 +74,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hey Harry,
+--Sig_/NPZAZe5HHyM6nT/FUNNbYUh
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Gentle ping on this one :)
+On Thu, 19 Dec 2024 21:33:37 -0700
+Alex Hung <alex.hung@amd.com> wrote:
 
-Em 12/12/2024 16:19, André Almeida escreveu:
-> amdgpu can handle async flips on overlay planes, so allow it for atomic
-> async checks.
-> 
-> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+> From: Harry Wentland <harry.wentland@amd.com>
+>=20
+> The BT.709 and BT.2020 OETFs are the same, the only difference
+> being that the BT.2020 variant is defined with more precision
+> for 10 and 12-bit per color encodings.
+>=20
+> Both are used as encoding functions for video content, and are
+> therefore defined as OETF (opto-electronic transfer function)
+> instead of as EOTF (electro-optical transfer function).
+>=20
+> Signed-off-by: Alex Hung <alex.hung@amd.com>
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+
+Hi,
+
+why would a display system ever use BT.2020 or BT.709 OETF or its
+inverse?
+
+
+Thanks,
+pq
+
+
 > ---
->   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 11 +++++++----
->   1 file changed, 7 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> index 495e3cd70426db0182cb2811bc6d5d09f52f8a4b..2792d393157beec12d6e96843c43158c03f16027 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> @@ -1260,22 +1260,25 @@ static int amdgpu_dm_plane_atomic_check(struct drm_plane *plane,
->   }
->   
->   static int amdgpu_dm_plane_atomic_async_check(struct drm_plane *plane,
-> -					      struct drm_atomic_state *state)
-> +					      struct drm_atomic_state *state, bool flip)
->   {
->   	struct drm_crtc_state *new_crtc_state;
->   	struct drm_plane_state *new_plane_state;
->   	struct dm_crtc_state *dm_new_crtc_state;
->   
-> -	/* Only support async updates on cursor planes. */
-> -	if (plane->type != DRM_PLANE_TYPE_CURSOR)
-> +	if (flip) {
-> +		if (plane->type != DRM_PLANE_TYPE_OVERLAY)
-> +			return -EINVAL;
-> +	} else if (plane->type != DRM_PLANE_TYPE_CURSOR)
->   		return -EINVAL;
->   
->   	new_plane_state = drm_atomic_get_new_plane_state(state, plane);
->   	new_crtc_state = drm_atomic_get_new_crtc_state(state, new_plane_state->crtc);
->   	dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
->   	/* Reject overlay cursors for now*/
-> -	if (dm_new_crtc_state->cursor_mode == DM_CURSOR_OVERLAY_MODE)
-> +	if (!flip && dm_new_crtc_state->cursor_mode == DM_CURSOR_OVERLAY_MODE) {
->   		return -EINVAL;
-> +	}
->   
->   	return 0;
->   }
-> 
+>  drivers/gpu/drm/drm_colorop.c |  2 ++
+>  include/drm/drm_colorop.h     | 19 +++++++++++++++++++
+>  2 files changed, 21 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+> index f3391602a577..665b23900cc0 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -70,6 +70,8 @@ static const struct drm_prop_enum_list drm_colorop_type=
+_enum_list[] =3D {
+>  static const char * const colorop_curve_1d_type_names[] =3D {
+>  	[DRM_COLOROP_1D_CURVE_SRGB_EOTF] =3D "sRGB EOTF",
+>  	[DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF] =3D "sRGB Inverse EOTF",
+> +	[DRM_COLOROP_1D_CURVE_BT2020_INV_OETF] =3D "BT.2020 Inverse OETF",
+> +	[DRM_COLOROP_1D_CURVE_BT2020_OETF] =3D "BT.2020 OETF",
+>  	[DRM_COLOROP_1D_CURVE_PQ_125_EOTF] =3D "PQ 125 EOTF",
+>  	[DRM_COLOROP_1D_CURVE_PQ_125_INV_EOTF] =3D "PQ 125 Inverse EOTF",
+>  };
+> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+> index 4084a7438032..83a6bd64d48a 100644
+> --- a/include/drm/drm_colorop.h
+> +++ b/include/drm/drm_colorop.h
+> @@ -55,6 +55,25 @@ enum drm_colorop_curve_1d_type {
+>  	 */
+>  	DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF,
+> =20
+> +	/**
+> +	 * @DRM_COLOROP_1D_CURVE_BT2020_INV_OETF:
+> +	 *
+> +	 * The inverse of &DRM_COLOROP_1D_CURVE_BT2020_OETF
+> +	 */
+> +	DRM_COLOROP_1D_CURVE_BT2020_INV_OETF,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_1D_CURVE_BT2020_OETF:
+> +	 *
+> +	 * The BT.2020/BT.709 transfer function. The BT.709 and BT.2020
+> +	 * transfer functions are the same, the only difference is that
+> +	 * BT.2020 is defined with more precision for 10 and 12-bit
+> +	 * encodings.
+> +	 *
+> +	 *
+> +	 */
+> +	DRM_COLOROP_1D_CURVE_BT2020_OETF,
+> +
+>  	/**
+>  	 * @DRM_COLOROP_1D_CURVE_PQ_125_EOTF:
+>  	 *
+> --=20
+> 2.43.0
+>=20
 
+--Sig_/NPZAZe5HHyM6nT/FUNNbYUh
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmeIybYACgkQI1/ltBGq
+qqfnfw//W9q/8g6DryKRpFkKwGBtFMQwmBtoA6knJ4opEDmuDUdT2ChyvmV++jq5
+VcElNW/z/YLUQQulYplwDFwGIBOWXyUBLUSUcC0c8erL/ULovTzHdwEiMoeIc375
+jAel2+FG+17nlYS2dzrN0FO8Xpi/d3qNDPMUX0sAk3oRMvmd4SiLgtj+n45rp3W/
+gBJdXbh85GX+0+Ums0FFV7WcmPawSMU7lsp2/VhAJr1JuFqnb23qUUmbTkqOwMZg
+b7kVsaNJLzemUxAF8GSH1uJ1AtbzY0aCzw3fA8ZzpY3WTF1HYrIf/liruaCvuuBT
+qwBBgRmXBB9qWeiQtBS3HrjHQzN+sC9H6IwOfO4WVYFBG2mZJlYkGt11KyXUeGyO
+gQ74k68AJLAGcpSdRPBbWLySxznmEmIank5alPMNMoictiekTxcRFwG5tYUmcOvT
+U4Ls3GsBQSDknZbI+9DFZt0Uu8rIQK9pqA4nW9qu/uIwlOnD+h1Vq4+GBgF01b6L
+WCh7EEbWjSHncYf3LQ/8TEL8/1fiX4bfnPe8UhILtKpxqdYwgE+Pi4kMJGm9Q9du
+6LVznAfvsUqaDcrb9gQmvaRaoZ6TQ2Ha6Qr5n5z0QpscC6UpHN91vL8AQlNnZ9QU
+pb4sWVYxtPNYn9cWQhmrLpSkLj8x/gXw/faluIjxnjkWGt4haU8=
+=S8zm
+-----END PGP SIGNATURE-----
+
+--Sig_/NPZAZe5HHyM6nT/FUNNbYUh--
