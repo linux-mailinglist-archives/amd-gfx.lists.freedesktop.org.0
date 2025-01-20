@@ -2,154 +2,154 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F052DA167CA
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jan 2025 08:58:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34184A1688A
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jan 2025 09:59:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E687810E362;
-	Mon, 20 Jan 2025 07:58:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D25F010E374;
+	Mon, 20 Jan 2025 08:59:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="pDyznBWq";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9niHqFSd";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="pDyznBWq";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9niHqFSd";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YhwlVMQU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B043810E356;
- Mon, 20 Jan 2025 07:58:23 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id ADB521F79F;
- Mon, 20 Jan 2025 07:58:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1737359900; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=9NkoZJk2FXErj69xLFgw3HCJyuWx0aNFkntqUIqR1Ww=;
- b=pDyznBWqmJDHovX7lCRWcbqiXqg8HRo4Hv8Rtpt+D1FjlqFqCudMOkGn6v778Axguq6h4x
- vHLVahuGokKhKuAJY0IpoLTktscQ29njLUfBpVmWa0z5fODgmW7qFKEICJ5Dxg+wx9WKMs
- 9qumQvhjyqYxMRPMQ20vrsiTLn9krhY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1737359900;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=9NkoZJk2FXErj69xLFgw3HCJyuWx0aNFkntqUIqR1Ww=;
- b=9niHqFSdAN0eSFbePvFfUYmF7OrTPVZAHYNLZ7S0kjTSgFVqkhpIT36aSrlXqKieMp0TzA
- RhVE/lObVmcTR5CQ==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=pDyznBWq;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=9niHqFSd
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1737359900; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=9NkoZJk2FXErj69xLFgw3HCJyuWx0aNFkntqUIqR1Ww=;
- b=pDyznBWqmJDHovX7lCRWcbqiXqg8HRo4Hv8Rtpt+D1FjlqFqCudMOkGn6v778Axguq6h4x
- vHLVahuGokKhKuAJY0IpoLTktscQ29njLUfBpVmWa0z5fODgmW7qFKEICJ5Dxg+wx9WKMs
- 9qumQvhjyqYxMRPMQ20vrsiTLn9krhY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1737359900;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=9NkoZJk2FXErj69xLFgw3HCJyuWx0aNFkntqUIqR1Ww=;
- b=9niHqFSdAN0eSFbePvFfUYmF7OrTPVZAHYNLZ7S0kjTSgFVqkhpIT36aSrlXqKieMp0TzA
- RhVE/lObVmcTR5CQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 65642139CB;
- Mon, 20 Jan 2025 07:58:20 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 4KduFxwCjmdHEgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 20 Jan 2025 07:58:20 +0000
-Message-ID: <0e9aee49-aa69-4fb6-bab8-4624143f5267@suse.de>
-Date: Mon, 20 Jan 2025 08:58:20 +0100
-MIME-Version: 1.0
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2089.outbound.protection.outlook.com [40.107.93.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A957D10E374
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 08:59:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ae4TDU56Bl3/gdVauIpEA5MBMj6t5PkzHniPilWZhNQUZdbcKZn4hpzWHvfF8f5zrr4WqfuCNBcZcy21gYUtO7nDnx38uCFfsInVlHjedk/Kd4y0+FF/C5KM6Xh5PwST3irWuT+5Oo6/DgrcVzS59ano6+vKPQpwYx4mYiP8DKvfP3unO6OTbTclPuOXzYecV+o4F/Jlm/Mf47j9YuC7y5nB3L9ej3jZej6sCpxOvrRLbGky/f92gaFjOEPiyPdnuCdH3y5pmh4D/WcOHNpj94uc75dlrhOSe6cMCmgTb/ohay/NpUdl/+yHOoDTXSYNyzYrJ9wfFUJVni5io6+6vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n7nZpWJWzlMBuPy9sQcHElwsG8GRPqWlV7mpbVLry+A=;
+ b=EmXA15BDS9aNv9hKJvS51eDA7spey29nFFdaLFQu+xZJ5V7sePf0YPamf+k37i49cVfGOytRRU4t2L8z/q76ywXkX8xYAi6nRmKrPFnXgzdrZ5s+0Ia1ew6EEo/uHhUbvQACMnd2is8u7RtRUElZo+QMYdlXvvXlgBj5v2lTxy9eSupSZotbXUBsaiVwwld+FzGdPU3tLLek7+6hGqeXsyI9nT6y1sqz/zaWVITWt75dHFwiCpmdUqhpKeKteWuUSSxvrVaAjJo5Q79rtWl1pvVWbz4AZ+QzAzZclJoApHXDnKlYvpROevswm4fb6Ky8qKEnflEBKJPccIPzp2Tm/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n7nZpWJWzlMBuPy9sQcHElwsG8GRPqWlV7mpbVLry+A=;
+ b=YhwlVMQUReoGImyflc3JykQlcyokp1k/u9qE15ax9fp3R9RvEwHMZ8xHZM7Q8pP+M+NAhQOpNP44lVYkUx64PiI4x0GoFAsTZ4/N5Jyyc1D8Tz4OfHRXjyjpGkZJRZiUBP6LKiCKPWEwXtzdwu952t0yT3rNBdq7ChXcPTXY66o=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SN7PR12MB7021.namprd12.prod.outlook.com (2603:10b6:806:262::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.20; Mon, 20 Jan
+ 2025 08:59:14 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8356.014; Mon, 20 Jan 2025
+ 08:59:13 +0000
+Message-ID: <fa7d0cd2-8a38-4dbf-b603-b922f853836b@amd.com>
+Date: Mon, 20 Jan 2025 09:59:07 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/fourcc: add LINEAR modifiers with an exact pitch
- alignment
-To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
- Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Daniel Stone <daniel@fooishbar.org>, James Jones <jajones@nvidia.com>,
- Brian Starkey <brian.starkey@arm.com>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- ML Mesa-dev <mesa-dev@lists.freedesktop.org>, nd@arm.com,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-References: <8dae97c9-9286-451a-8122-b309eb21b2f4@mailbox.org>
- <Z2Ki-lQH4Fbch6RO@phenom.ffwll.local>
- <q45c43j5kwwvemec7mcs4kqzt54pa3nz3jlhkcky2v63s2vfie@him4q253uw4p>
- <CAPj87rMFJ0JRvsKqZUsw_EGrFWr1VLO4Ne2w_bZ5cH+gs_d=og@mail.gmail.com>
- <Z2Rf7mpSuzZ0ObmT@phenom.ffwll.local>
- <07d08a42-c44a-477e-8057-721b270310cf@nvidia.com>
- <CAAxE2A6N0xtgZmzTR9FXMN79xxy3T8zfhh1sz73h1h8=0ycJ2g@mail.gmail.com>
- <CAPj87rP4r4q-wBx1dHsEkZ7=S2c2XsbA1Pz4Skw1ETt_2yD2Ag@mail.gmail.com>
- <CAAxE2A6ghBK2VTLkNXgk1c61UG1ZQAzWQ4q=wO-OShAUC9eRmQ@mail.gmail.com>
- <CAPj87rNFy7GLAjjxDYGLN-f8M0F7yMX6PED94O4kBJ=pwtPVyA@mail.gmail.com>
- <Z4pmnTy1NYD3rLwS@phenom.ffwll.local>
- <CAAxE2A6iDsN=YKW2F7WyyZxn4Sw4Dr5CxZminQGwf8awBivovQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: fix ring timeout issue in gfx10 sr-iov
+ environment
+To: "cao, lin" <lin.cao@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Chang, HaiJun" <HaiJun.Chang@amd.com>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>
+References: <20250114100603.20997-1-lincao12@amd.com>
+ <PH0PR12MB549789733ACA53285FEF9696F51B2@PH0PR12MB5497.namprd12.prod.outlook.com>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <CAAxE2A6iDsN=YKW2F7WyyZxn4Sw4Dr5CxZminQGwf8awBivovQ@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <PH0PR12MB549789733ACA53285FEF9696F51B2@PH0PR12MB5497.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: ADB521F79F
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
- RCPT_COUNT_SEVEN(0.00)[11];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; TO_DN_SOME(0.00)[];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- FUZZY_BLOCKED(0.00)[rspamd.com]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -4.51
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR5P281CA0055.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f0::17) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SN7PR12MB7021:EE_
+X-MS-Office365-Filtering-Correlation-Id: 37c1e59b-0f08-48c8-024c-08dd3930b63b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UWJVWVVha2t1MWRCS3AxZ2dMRjRzbHpMV1FnbU1nYXJVaVp4M3ZlNTlLVDZs?=
+ =?utf-8?B?RmZQd2hDdTVmSk9iVEtUdXVXZnpFVDJjeStiQ2R2UlIwVlBDOXBvZzUyekRt?=
+ =?utf-8?B?RGpBOXBrdkJvNDVibGRmUHdKMWtSVHErc1Baempxdmk4eTJpR2JPc1Jybmx1?=
+ =?utf-8?B?Y2V4azJIcHhwREd5WHFwMUUrWEtFK1B5ak56QlUwNTRPZU82V2dpYzd6OGJX?=
+ =?utf-8?B?bGhDT05NNEJVYTVIY0plVU1YUjI2VUt0U2RKL0VTN2s2clhiRHJoNGZ2VW9Z?=
+ =?utf-8?B?OVBGRlBqNmFYRDZXMTh0Tk82V0s0dWxYSElqbExwNjdEdkJxZGZOa3BOZ2NQ?=
+ =?utf-8?B?L0ZMZHlTaVl2WUJ5SFBIb2lqVkpmRFhuTHJWYmtaZGNIN05xSGRSSVYwaWNz?=
+ =?utf-8?B?TTloVGZwTEdEMU9qTjducjM5UVRWTXdybXhOR3lvN0o0SmI4dW5QL09GU0Jq?=
+ =?utf-8?B?OTlnbmFQVi9vTUhYN1E2WHhUV25rNnVCWEFFeS9EWkhBcGpsc0lxOGxWNzJW?=
+ =?utf-8?B?ZGtPaDVBZlpPYlY0dE5obW5aUkNIZElFZUNhOUFXSGw3eHo4TXlXYSs2Yzhj?=
+ =?utf-8?B?WkN6SmJ4OEU4a1d5V25WZHM3YkdlYXpVVmE2enArUGJZcGVNa08wUFNLaFlF?=
+ =?utf-8?B?WmpLOEIyWnpoYXpTN3ZiaVNSbG0rRlN2WU03VGlGZlF0VGU1Z29SRmpYc1V5?=
+ =?utf-8?B?d3JsUzhGVSs3em1ZMjQxd3JkSDlnMFZTRzZuZTd4UktLQTNyN3FlVW5ZMkNJ?=
+ =?utf-8?B?M3VwTTdBcFJFVUpjU0FGK05sNFZGNFhhRWZUV0FTOWFXRjZQeERkVXI1MFJD?=
+ =?utf-8?B?cjA2dUpvSjU0UUl6R1ZBTnhyZkZ6MFk0cHYvdlE2Mm5hRGF3b3gybmk0bE83?=
+ =?utf-8?B?ZVNOMWlBczZ1amUwYXZGODJvOEtQbWg1amdRSGppNTNMcW53UjdUN3JTNzNw?=
+ =?utf-8?B?VlpkVCtCNGhDMkhsQUtIdWx6bmNLRHI1VGhGd3NkekJqcWUyTWhFWVUvUTls?=
+ =?utf-8?B?dnQyQzlubzBlZTVTZkNFcGdmRmVjMFJJaThsd3NrenNzZC9jS05GYnN1STdE?=
+ =?utf-8?B?Z2k0c1FYdGUzTUpIU3JHMHF1NVJYNVY2MkRTZXZienFEVnFvYkVhSmNuY2Zs?=
+ =?utf-8?B?cUNoalUwZjFTTFRRaHUvSzBBcVNPT3BIOEh1cW44T3pBZ1NZQ2lwZDIxNFF6?=
+ =?utf-8?B?bXRiNE5lWVUrK01rTXpZbFlSY0xPblhxdUJ2dFlMa2ZJVGh4SGRYZG1YVGdv?=
+ =?utf-8?B?NENZTE5za0FhMHZ0VmpEVWc3VFExWkcvNFRiS1FxUWZoZWJEbmR2SmxHOHFu?=
+ =?utf-8?B?b2N4UzE4d1QyL0Znb01pTGlBVWI0alhveEFGSHZla0tCdG16d2xkYXdRWmhK?=
+ =?utf-8?B?Q3NydDhBNnJPNEdWZ3ZDZ1FrTXJ4c09VcVh4TkhiNVl2b0xWdGtWMFFFcGhu?=
+ =?utf-8?B?b3FhK0NoZ1hycFloc3dOYmVYU3NFUG56OFRTNWpnOGNlc3dEUVNXQUlmZlRp?=
+ =?utf-8?B?SmhNRVlEOVN0eDVEd0VuMTFNY0tacFoyb25mdVFCbnFLQU9jR1QybUVJM215?=
+ =?utf-8?B?MVM2czRqSnMyNDgrR3VpbjNlOG4xb2VZdTJGbHFQYmEvRTVmNFFjZDNCWjZn?=
+ =?utf-8?B?TkhVRkhPRnFnSmkrMjZyQi9ZWkhaYVhXWmdzdEtFTXlvRElhUm04cnZTWjdy?=
+ =?utf-8?B?dy9tdzNYdmtnRFpzL0l5SnlhVmFYbUhHUlY4UGMyb25ta09rNnhCNWpEdE9I?=
+ =?utf-8?B?L1dJL2Rob3pYK1NLMStDYTZJR09BRStRcVBMdjV0MVVkdS8yWVNUYnpIN2xN?=
+ =?utf-8?B?VTVWQUd1dE9VKzZHVmtrUDREQ2VlMm5JTFhjS0poUTZHdlMxTm5Oc01DZVda?=
+ =?utf-8?Q?eNjGLEanvw7NF?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RUdWeFhwUnBVQVVXdm5sdVVKOW5EbzIvTmRmRFBwV1E5TTk3UDBBV1ppL1A1?=
+ =?utf-8?B?di9tenVNSmpFREs1QVZVMTZIN3ZSYU1Sb0pFbGlqY2FPM0oyTkQxamZkaDhP?=
+ =?utf-8?B?cnJXUVNqeFRycGJaV2ppeU9hRm1lbGZZWCtCV1ZOVVJuLy9TMkdDM2g3Y1hy?=
+ =?utf-8?B?elhYWVRONGVhWTlxVzZmZVdESit3WVV6dzZlM2hJVmIrVmpnNzZkdzlLUVNs?=
+ =?utf-8?B?MVZrakFSL09JTXRRRVREamY2dVF5YklOSDBVRFRDQzU1RzA5Q0JLVWw1U01Z?=
+ =?utf-8?B?T0tWYWl6cmdxMmo1UFduaXlXTWVDeXdhQzRHMFJSbGZaWCtuTjkyaE9JL2xK?=
+ =?utf-8?B?SXc5aGp3bFFkemg2NVlaY0VRNEdrMS91RVJZWXc4QTYzKzBzZUNxOWd3STlN?=
+ =?utf-8?B?K1JWSnJUZUt1U3hHdXpzS0ZURTBUNWJFNTdpTW9KYTd6eVFZN1VJUWdIb3VI?=
+ =?utf-8?B?ZVJPNWJwQjdxeFZTTHYxbTgrdkZXdjFmUjk1S2ZRcVVyM3BuUU03RGY1YmU1?=
+ =?utf-8?B?YytGdmI5YUhxczhvaVNyRDdSSXN4ZzUzZ1lSZnh2QnB6QmRGY2lsMXFwaUx2?=
+ =?utf-8?B?UmZ3QlBsVFpNUy93YnhQNkJZV2dCUG0yNnZ3TlREb3hWUkp6dk9xcnlTNnhD?=
+ =?utf-8?B?eGRkS2JSR1VUU3d3Tzk2aWkvS3FUWW9RZnpOM2svKzUrelIrVitQS3pZZ2c0?=
+ =?utf-8?B?cUQwZ3l6Q3ZRRmJOQTFTbUs2TVZ5eVBiVCttTzJ6eEg4TE03UXJkSERyWG1z?=
+ =?utf-8?B?RktLME1wVkcrZHdWOG5Vcmd2ZG9WVDdLNWdwUllSVFZlWHVMWTE2YWszbWcw?=
+ =?utf-8?B?TUVBNjBSbW1VRDhZSm1qWHkzNWtyWWhianZ4Z2xFTTRHRDFDMUJDRDdXK3ky?=
+ =?utf-8?B?WXJPTVNNcjQyR1VISEtHTnl2ZndyV0dER2RCeDFqUkVwWnVRaS80N1V5bXM5?=
+ =?utf-8?B?YzloRHgrU3lkenpySFhLMEhncXhRSmpHVUdDUmtOQXF0T052bGR3OW8rcEpw?=
+ =?utf-8?B?Zk1US09pVmpnNFoxTkNYeU5SMisxYkZkUUxQYnBUdGNmVUN5KzVvMUtHUHJ1?=
+ =?utf-8?B?QTI2TDVxWVVhQk0zTVNMYlVXVDVEUHcxdTZmb2Z4Z0RWdzlqWVFtQ3lGNkEx?=
+ =?utf-8?B?bWtuY0tmUk8vckpCL1JkeGpVTy94RVIwQ3dCMFJSVlBGcGtDcEsrcytnZTd1?=
+ =?utf-8?B?MWoxR2RoMDc1VVBoMkZ3U2o1S09GZDdRMEE3SWlFdnNBOVRDK2doQXNsL0ll?=
+ =?utf-8?B?ckVEVGkvZmpSejQycm5FbXI0c1dyNTdpRFNCWGkrUll5MU5Tc3FjZDNmNGJQ?=
+ =?utf-8?B?QXUxUkFuSVJ1am9PVURTUVJxZE5yRXE2KzlZbEt5Y0ZPN2UzOHhCWnE4K2Uw?=
+ =?utf-8?B?dEtVcTdndzhrL3AwdnVyTzlFekxNNUZ3c1RBdDBPK1JOVkNSTk9NZzRXbm10?=
+ =?utf-8?B?M0V3N3NRNkJtYnlWMHBtMnBvcUV2R091bmNhMmhtVzEwZG5EOW9ZUm9VVTBl?=
+ =?utf-8?B?UEVyclVOcFNwSVVxUEl2elJldS85ZG1CRXk0OHRpdzZHUGxJY0F5cHJCemlJ?=
+ =?utf-8?B?U2JlTTIrcEJHb0ZqczhiZjRZSE1ITG03K1ZmZFh2NmhadG1XY1JyK0FiS0Zq?=
+ =?utf-8?B?S1NsbTNGKzd1WnUxaVc3S3IwdWdXWHhtb1ZxRG4weUZJdWtUb3BhYUJYSjdi?=
+ =?utf-8?B?L2hZQnByYUM2SUlzVWtuQlQvMkF0cVY1dkMvYjE3MUhQaGxzNFkvanR1akZx?=
+ =?utf-8?B?SHdYdnpGWEFxY3Vtbjg2TTN1S1hFOVJTT2hKZWV3OXRsOW1HODdGdS9Zekx2?=
+ =?utf-8?B?d1BLSHZLc0FhS1h5ZWlNdW1HMTZSRHNXYjRNZjg2UDVvdnU4d28reHpPT0NH?=
+ =?utf-8?B?OFFTN21vVFNpM0p1c2VtUldidDdGeEs4MG1pVi9rMHVTSHlPK3VISTIwOEds?=
+ =?utf-8?B?bDJhZkxidDVpdlEzNXJ6OVB0cEwwdko1b25nRmNhT09kVi9QQjBPRGFLMFhs?=
+ =?utf-8?B?ZGxaaEEvTTN1c2FjR3hqdzJ6d3Bjc0pjd0l5YldCemg3Z2c5R1dIUk5ZYWJM?=
+ =?utf-8?B?WmtTVFNocVZ0Snh1RjROazV6bW5UbFhIWTQ2aWpudFNTVjBOWGpEaTRQOWRt?=
+ =?utf-8?Q?Sqzg=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37c1e59b-0f08-48c8-024c-08dd3930b63b
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2025 08:59:13.7477 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zabdGzfLqd+cMXr5np8Pu4Zc+df5Vq3PlwmJFojMdUYOt4vt3G7zOyvR9RMSWQJX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7021
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,197 +164,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi
-
-
-Am 18.01.25 um 03:37 schrieb Marek Olšák:
-[...]
+Am 17.01.25 um 07:05 schrieb cao, lin:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 >
-> 3) Implementing DRM_FORMAT_MOD_LINEAR as having 256B pitch and offset 
-> alignment. This is what we do today. Even if Intel and some AMD chips 
-> can do 64B or 128B alignment, they overalign to 256B. With so many 
-> AMD+NV laptops out there, NV is probably next, unless they already do 
-> this in the closed source driver.
+> -----Original Message-----
+> From: Lin.Cao <lincao12@amd.com>
+> Sent: Tuesday, January 14, 2025 6:06 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Koenig, Christian <Christian.Koenig@amd.com>; Deucher, Alexander <Alexander.Deucher@amd.com>; cao, lin <lin.cao@amd.com>
+> Subject: [PATCH] drm/amdgpu: fix ring timeout issue in gfx10 sr-iov environment
+>
+> 'commit 6e66dc05b54f ("drm/amdgpu: set the VM pointer to NULL in amdgpu_job_prepare")' set job->vm as NULL if there is no fence. It will cause emit switch buffer be skippen if job->vm set as NULL.
+>
+> Check job rather than vm could solve this problem.
 
-The dumb-buffer series currently being discussed on dri-devel also 
-touches handling of scanline pitches. THe actual value varies with each 
-driver.  Should dumb buffers use a default pitch alignment of 256 on al 
-hardware?
-
-Best regards
-Thomas
+Good catch.
 
 >
-> Marek
+> Signed-off-by: Lin.Cao <lincao12@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> On Fri, Jan 17, 2025 at 9:18 AM Simona Vetter <simona.vetter@ffwll.ch> 
-> wrote:
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> index e0bc37557d2c..2ea98ec60220 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> @@ -297,7 +297,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
+>          amdgpu_ring_patch_cond_exec(ring, cond_exec);
 >
->     On Wed, Jan 15, 2025 at 12:20:07PM +0000, Daniel Stone wrote:
->     > On Wed, 15 Jan 2025 at 04:05, Marek Olšák <maraeo@gmail.com> wrote:
->     > > On Tue, Jan 14, 2025 at 12:58 PM Daniel Stone
->     <daniel@fooishbar.org> wrote:
->     > >> AMD hardware is the only hardware I know of which doesn't support
->     > >> overaligning. Say (not hypothetically) we have a GPU and a
->     display
->     > >> controller which have a minimum pitch alignment of 32 bytes, no
->     > >> minimum height alignment, minimum 32-byte offset alignment,
->     minimum
->     > >> pitch of 32 bytes, and minimum image size of 32 bytes.
->     > >>
->     > >> To be maximally compatible, we'd have to expose 28 (pitch
->     align) * 32
->     > >> (height align) * 28 (offset align) * 28 (min pitch) * 28 (min
->     size) ==
->     > >> 19668992 individual modifiers when queried, which is 150MB
->     per format
->     > >> just to store the list of modifiers.
->     > >
->     > > Maximum compatibility is not required nor expected.
->     > >
->     > > In your case, only 1 linear modifier would be added for that
->     driver, which is: [5 / 0 / 5 / 5 / 5]
->     > >
->     > > Then if, and only if, compatibility with other devices is
->     desired, the driver developer could look at drivers of those other
->     devices and determine which other linear modifiers to add. Ideally
->     it would be just 1, so there would be a total of 2.
->     >
->     > Mali (actually two DRM drivers and sort of three Mesa drivers)
->     can be
->     > paired with any one of 11 KMS drivers (really 12 given that one is a
->     > very independent subdriver), and something like 20 different codecs
->     > (at least 12 different vendors; I didn't bother counting the actual
->     > subdrivers which are all quite different). The VeriSilicon Hantro G2
->     > codec driver is shipped by five (that we know of) vendors who
->     all have
->     > their own KMS drivers. One of those is in the Rockchip RK3588, which
->     > (don't ask me why) ships six different codec blocks, with three
->     > different drivers, from two different vendors - that's before
->     you even
->     > get to things like the ISP and NPU which really need to be sharing
->     > buffers properly without copies.
->     >
->     > So yeah, working widely without having to encode specific knowledge
->     > everywhere isn't a nice-to-have, it's a hard baseline requirement.
->     >
->     > >> > DRM_FORMAT_MOD_LINEAR needs to go because it prevents apps
->     from detecting whether 2 devices have 0 compatible memory layouts,
->     which is a useful thing to know.
->     > >>
->     > >> I get the point, but again, we have the exact same problem
->     today with
->     > >> placement, i.e. some devices require buffers to be in or not
->     be in
->     > >> VRAM or GTT or sysram for some uses, and some devices require
->     physical
->     > >> contiguity. Solving that problem would require an additional
->     4 bits,
->     > >> which brings us to 2.3GB of modifiers per format with the current
->     > >> scheme. Not super viable.
->     > >
->     > > Userspace doesn't determine placement. The kernel memory
->     management can move buffers between heaps to accommodate sharing
->     between devices as needed. This is a problem in which userspace
->     has no say.
->     >
->     > It really does though!
->     >
->     > None of these devices use TTM with placement moves, and doing that
->     > isn't a fix either. Embedded systems have so low memory
->     bandwidth that
->     > the difference between choosing the wrong placement and moving it
->     > later vs. having the right placement to begin with is the difference
->     > between 'this does not work' and 'great, I can ship this'. Which is
->     > great if you're a consultancy trying to get paid, but tbh I'd rather
->     > work on more interesting things.
->     >
->     > So yeah, userspace does very much choose the placement. On most
->     > drivers, this is either by 'knowing' which device to allocate
->     from, or
->     > passing a flag to your allocation ioctl. For newer drivers though,
->     > there's the dma-heap allocation mechanism which is now upstream and
->     > the blessed path, for which userspace needs to explicitly know the
->     > desired placement (and must, because fixing it up later is a
->     > non-starter).
->     >
->     > Given that we need to keep LINEAR ~forever for ABI reasons, and
->     > because there's no reasonably workable alternative, let's
->     abandon the
->     > idea of abandoning LINEAR, and try to work with out-of-band
->     signalling
->     > instead.
->     >
->     > One idea is to actually pursue the allocator idea and express this
->     > properly through constraints. I'd be super in favour of this,
->     > unsurprisingly, because it allows us to solve a whole pile of other
->     > problems, rather than the extremely narrow AMD/Intel interop case.
->     >
->     > Another idea for the out-of-band signalling would be to add
->     > information-only modifiers, like
->     > DRM_FORMAT_MOD_LINEAR_PITCH_ALIGN_EQ(256), or
->     > DRM_FORMAT_MOD_LINEAR_PITCH_ALIGN_GE(32). But then that doesn't
->     really
->     > work at all with how people actually use modifiers: as the doc
->     > describes, userspace takes and intersects the declared modifier
->     lists
->     > and passes the result through. The intersection of LINEAR+EQ256 and
->     > LINEAR+GE32 is LINEAR, so a userspace that follows the rules
->     will just
->     > drop the hints on the floor and pick whatever linear allocation it
->     > feels like.
->
->     Yeah I think latest when we also take into account logical image
->     size (not
->     just pitch) with stuff like it needs to be aligned to 2 pixels in both
->     directions just using modifiers falls apart.
->
->     And the problem with linear, unlike device modifiers is that we
->     can't just
->     throw up our hands and enumerate the handful of formats in actual
->     use for
->     interop. There's so many produces and consumers of linera buffers
->     (Daniel's list above missed camera/image processors) that save
->     assumption
->     is that anything really can happen.
->
->     > I think I've just talked myself into the position that passing
->     > allocator constraints together with modifiers is the only way to
->     > actually solve this problem, at least without creating the sort of
->     > technical debt that meant we spent years fixing up implicit/explicit
->     > modifier interactions when it really should've just been adding a
->     > !)@*(#$ u64 next to the u32.
->
->     Yeah probably.
->
->     Otoh I know inertia, so I am tempted to go with the oddball
->     LINEAR_VEDNOR_A_VENDOR_B_INTEROP thing and stretch the runway for
->     a bit.
->     And we just assign those as we go as a very special thing, and the
->     drivers
->     that support it would prefer it above just LINEAR if there's no other
->     common format left.
->
->     Also makes it really obvious what all userspace/kernel driver enabling
->     would be needed to justify such a modifier.
->     -Sima
->
->     >
->     > Cheers,
->     > Daniel
->
->     -- 
->     Simona Vetter
->     Software Engineer, Intel Corporation
->     http://blog.ffwll.ch
->
+>          ring->current_ctx = fence_ctx;
+> -       if (vm && ring->funcs->emit_switch_buffer)
+> +       if (job && ring->funcs->emit_switch_buffer)
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Maybe better to use "job && job->vmid &&"... here.
+
+You should also remove the vm variable and see if there is anything else 
+using it.
+
+Regards,
+Christian.
+
+>                  amdgpu_ring_emit_switch_buffer(ring);
+>
+>          if (ring->funcs->emit_wave_limit &&
+> --
+> 2.46.1
+>
 
