@@ -2,60 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF333A1733C
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jan 2025 20:46:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61BABA17348
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jan 2025 20:49:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1AA10E47C;
-	Mon, 20 Jan 2025 19:46:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10D2A10E47F;
+	Mon, 20 Jan 2025 19:49:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=dorfdsl.de header.i=@dorfdsl.de header.b="W6jOnhjf";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IWoa6qEX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from srv1.dorfdsl.de (srv1.dorfdsl.de [82.139.196.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1DDB10E47C
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 19:46:33 +0000 (UTC)
-Authentication-Results: srv1; none (SPF check N/A for local connections 
- -  client-ip=2a01:170:118f:2:ff15:8f86:7746:f11f; 
- helo=[IPv6:2a01:170:118f:2:ff15:8f86:7746:f11f]; 
- envelope-from=mm@dorfdsl.de; receiver=<UNKNOWN>)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dorfdsl.de;
- s=default; t=1737402269;
- bh=6TNgDDCy/A2623UolwrGUpUzGQSPZZ46Upg47tOkp6Y=;
- h=Date:From:To:Subject:In-Reply-To:References:From;
- b=W6jOnhjfoklbotG3+FnxlYgwUpfKyv1SUZI5OD3BqZxFhJtQM5ijhHGGS2K4yDVqx
- yAUFDKs+r/na8ztQWmVkvmY+GXdsnJsMF0U8ORi15/MguBXOjh8zgDaJLA1Kr8VVnK
- hZz6ajUGJAQIJ9V301+ykNJXzYxKYdm1WsGXrSQJhNId1nxb+84HFPFnI8mOE3RCpl
- SzBS6bIyIP3K16vAyZuFHeJqvbND3a5onD3zwnB4MuaY7OiVjZc2kt8H5W3nFCKiiK
- gPM/a51v/HROcLHZudIH8fthc/95tHrFY7ROtmCzACqIQb+Tc9Oro7AFNU72uUCjJU
- cDSRvP8TmjDZw==
-Received: from ryz.dorfdsl.de ([IPv6:2a01:170:118f:2:ff15:8f86:7746:f11f])
- (authenticated bits=0)
- by srv1.dorfdsl.de (8.18.1/8.18.1/Debian-6~bpo12+1) with ESMTPSA id
- 50KJiScp295898
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 20:44:29 +0100
-Date: Mon, 20 Jan 2025 20:44:28 +0100
-From: Marco Moock <mm@dorfdsl.de>
-To: amd-gfx@lists.freedesktop.org
-Subject: Re: amdgpu 100% CPU usage causing freeze 1002:15d8
-Message-ID: <20250120204428.2bc7b3e6@ryz.dorfdsl.de>
-In-Reply-To: <CADnq5_O_WcZJ7yoDKEJpktSqffbP8RENhChmkD8Es7NHRYhCAg@mail.gmail.com>
-References: <20250114213157.19de9009@ryz.dorfdsl.de>
- <CADnq5_MFq-OWn7dwTTPPcBbFKQmBHvD6qCi8ngiVumk2V1U40g@mail.gmail.com>
- <20250115160834.033e8aad@ryz.dorfdsl.de>
- <20250115211039.09e6e69e@zbook>
- <CADnq5_MY+cN0dPTis582HY0a80rNiO86kz9Ha=e=HS2Toim=4w@mail.gmail.com>
- <20250115213511.2feaa331@zbook>
- <CADnq5_MbeTRb642qwb0Q7JbL=2UsnK6RnLm6NWTeVLZOEuyn4A@mail.gmail.com>
- <20250116172916.0dba9ff6@ryz.dorfdsl.de>
- <CADnq5_NU-stpay1uFHXD9fVemg4snyE-eZZ4rfyg2Mc3x2OLyg@mail.gmail.com>
- <20250116173734.256704ca@ryz.dorfdsl.de>
- <CADnq5_O_WcZJ7yoDKEJpktSqffbP8RENhChmkD8Es7NHRYhCAg@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23A4310E47F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 19:49:23 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 55164A40077;
+ Mon, 20 Jan 2025 19:47:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 433ACC4CEDD;
+ Mon, 20 Jan 2025 19:49:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1737402561;
+ bh=qA99Y+YVFc4aLPmNowW+qfsgFGRsZCaCgY9NkDuikrs=;
+ h=From:To:Cc:Subject:Date:From;
+ b=IWoa6qEX0vF8r1t1M6vmlAlyTxQ02thrs5TpXI14P7W5tIkhTuq7B4VSp9IJeJ7Yw
+ tM9JR8+05sn1Wad9JV3pR/kTvGpEcT9LvGeeCc5eKioYCdg2wYe4kErGQMXMu5GoTo
+ 2QeqseVQ4zHJknPtZgsWO8dGuGmvMRSKilKRoYscrTxonm2avT5M0fn6St646y09kf
+ kNGYFoY2O2x6NDI34IOadY9cfzeDwB/3V9nyEo27K8Z6CrKITpXkkQ/6Ojj/XVfjha
+ ft5NZZaar+QRI9V9O5HSsyIOrDdACg/HyARvhu3q2MsXLgEzKZ1SC7d053nih7hB3U
+ kQJ5355/Pk4Iw==
+From: Mario Limonciello <superm1@kernel.org>
+To: Harry Wentland <Harry.Wentland@amd.com>,
+ "amd-gfx @ lists . freedesktop . org" <amd-gfx@lists.freedesktop.org>
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Subject: [PATCH 1/4] drm/amd/display: Add debug messages for
+ dc_validate_boot_timing()
+Date: Mon, 20 Jan 2025 13:49:00 -0600
+Message-ID: <20250120194903.1048811-1-superm1@kernel.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,26 +55,231 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 20.01.2025 um 11:35:07 Uhr schrieb Alex Deucher:
+From: Mario Limonciello <mario.limonciello@amd.com>
 
-> On Thu, Jan 16, 2025 at 11:57=E2=80=AFAM Marco Moock <mm@dorfdsl.de> wrot=
-e:
-> >
-> > Am 16.01.2025 um 11:32:42 Uhr schrieb Alex Deucher:
-> >
-> > > I'd like to see the driver messages leading up to that.
-> >
-> > I've now attached the entire dmesg without the firewall stuff.
->=20
-> Does the attached test patch help?
+dc_validate_boot_timing() runs through an exhaustive list of checks to
+determine whether a boot stream can be marked as seamless. When the
+checks fail, a user will be left guessing what the reason was
 
-Is there a simple way to compile just the module and install it in a
-"safe" way?
-I haven't compiled kernels yet and don't know how far that could
-destroy my installed system.
+Add debug statements that will be helpful to validate the specific
+reason.
 
-If that is too risky, I will set up another on a second disk.
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 114 +++++++++++++++++------
+ 1 file changed, 86 insertions(+), 28 deletions(-)
 
---=20
-Gru=C3=9F
-Marco
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 2723558049d65..0df1d7b94eba6 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -1650,17 +1650,23 @@ bool dc_validate_boot_timing(const struct dc *dc,
+ 		return false;
+ 	}
+ 
+-	if (dc->debug.force_odm_combine)
++	if (dc->debug.force_odm_combine) {
++		DC_LOG_DEBUG("boot timing validation failed due to force_odm_combine\n");
+ 		return false;
++	}
+ 
+ 	/* Check for enabled DIG to identify enabled display */
+-	if (!link->link_enc->funcs->is_dig_enabled(link->link_enc))
++	if (!link->link_enc->funcs->is_dig_enabled(link->link_enc)) {
++		DC_LOG_DEBUG("boot timing validation failed due to disabled DIG\n");
+ 		return false;
++	}
+ 
+ 	enc_inst = link->link_enc->funcs->get_dig_frontend(link->link_enc);
+ 
+-	if (enc_inst == ENGINE_ID_UNKNOWN)
++	if (enc_inst == ENGINE_ID_UNKNOWN) {
++		DC_LOG_DEBUG("boot timing validation failed due to unknown DIG engine ID\n");
+ 		return false;
++	}
+ 
+ 	for (i = 0; i < dc->res_pool->stream_enc_count; i++) {
+ 		if (dc->res_pool->stream_enc[i]->id == enc_inst) {
+@@ -1674,62 +1680,98 @@ bool dc_validate_boot_timing(const struct dc *dc,
+ 	}
+ 
+ 	// tg_inst not found
+-	if (i == dc->res_pool->stream_enc_count)
++	if (i == dc->res_pool->stream_enc_count) {
++		DC_LOG_DEBUG("boot timing validation failed due to timing generator instance not found\n");
+ 		return false;
++	}
+ 
+-	if (tg_inst >= dc->res_pool->timing_generator_count)
++	if (tg_inst >= dc->res_pool->timing_generator_count) {
++		DC_LOG_DEBUG("boot timing validation failed due to invalid timing generator count\n");
+ 		return false;
++	}
+ 
+-	if (tg_inst != link->link_enc->preferred_engine)
++	if (tg_inst != link->link_enc->preferred_engine) {
++		DC_LOG_DEBUG("boot timing validation failed due to non-preferred timing generator\n");
+ 		return false;
++	}
+ 
+ 	tg = dc->res_pool->timing_generators[tg_inst];
+ 
+-	if (!tg->funcs->get_hw_timing)
++	if (!tg->funcs->get_hw_timing) {
++		DC_LOG_DEBUG("boot timing validation failed due to missing get_hw_timing callback\n");
+ 		return false;
++	}
+ 
+-	if (!tg->funcs->get_hw_timing(tg, &hw_crtc_timing))
++	if (!tg->funcs->get_hw_timing(tg, &hw_crtc_timing)) {
++		DC_LOG_DEBUG("boot timing validation failed due to failed get_hw_timing return\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->h_total != hw_crtc_timing.h_total)
++	if (crtc_timing->h_total != hw_crtc_timing.h_total) {
++		DC_LOG_DEBUG("boot timing validation failed due to h_total mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->h_border_left != hw_crtc_timing.h_border_left)
++	if (crtc_timing->h_border_left != hw_crtc_timing.h_border_left) {
++		DC_LOG_DEBUG("boot timing validation failed due to h_border_left mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->h_addressable != hw_crtc_timing.h_addressable)
++	if (crtc_timing->h_addressable != hw_crtc_timing.h_addressable) {
++		DC_LOG_DEBUG("boot timing validation failed due to h_addressable mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->h_border_right != hw_crtc_timing.h_border_right)
++	if (crtc_timing->h_border_right != hw_crtc_timing.h_border_right) {
++		DC_LOG_DEBUG("boot timing validation failed due to h_border_right mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->h_front_porch != hw_crtc_timing.h_front_porch)
++	if (crtc_timing->h_front_porch != hw_crtc_timing.h_front_porch) {
++		DC_LOG_DEBUG("boot timing validation failed due to h_front_porch mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->h_sync_width != hw_crtc_timing.h_sync_width)
++	if (crtc_timing->h_sync_width != hw_crtc_timing.h_sync_width) {
++		DC_LOG_DEBUG("boot timing validation failed due to h_sync_width mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->v_total != hw_crtc_timing.v_total)
++	if (crtc_timing->v_total != hw_crtc_timing.v_total) {
++		DC_LOG_DEBUG("boot timing validation failed due to v_total mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->v_border_top != hw_crtc_timing.v_border_top)
++	if (crtc_timing->v_border_top != hw_crtc_timing.v_border_top) {
++		DC_LOG_DEBUG("boot timing validation failed due to v_border_top mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->v_addressable != hw_crtc_timing.v_addressable)
++	if (crtc_timing->v_addressable != hw_crtc_timing.v_addressable) {
++		DC_LOG_DEBUG("boot timing validation failed due to v_addressable mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->v_border_bottom != hw_crtc_timing.v_border_bottom)
++	if (crtc_timing->v_border_bottom != hw_crtc_timing.v_border_bottom) {
++		DC_LOG_DEBUG("boot timing validation failed due to v_border_bottom mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->v_front_porch != hw_crtc_timing.v_front_porch)
++	if (crtc_timing->v_front_porch != hw_crtc_timing.v_front_porch) {
++		DC_LOG_DEBUG("boot timing validation failed due to v_front_porch mismatch\n");
+ 		return false;
++	}
+ 
+-	if (crtc_timing->v_sync_width != hw_crtc_timing.v_sync_width)
++	if (crtc_timing->v_sync_width != hw_crtc_timing.v_sync_width) {
++		DC_LOG_DEBUG("boot timing validation failed due to v_sync_width mismatch\n");
+ 		return false;
++	}
+ 
+ 	/* block DSC for now, as VBIOS does not currently support DSC timings */
+-	if (crtc_timing->flags.DSC)
++	if (crtc_timing->flags.DSC) {
++		DC_LOG_DEBUG("boot timing validation failed due to DSC\n");
+ 		return false;
++	}
+ 
+ 	if (dc_is_dp_signal(link->connector_signal)) {
+ 		unsigned int pix_clk_100hz = 0;
+@@ -1751,39 +1793,55 @@ bool dc_validate_boot_timing(const struct dc *dc,
+ 		} else if (se && se->funcs->get_pixels_per_cycle) {
+ 			uint32_t pixels_per_cycle = se->funcs->get_pixels_per_cycle(se);
+ 
+-			if (pixels_per_cycle != 1 && !dc->debug.enable_dp_dig_pixel_rate_div_policy)
++			if (pixels_per_cycle != 1 && !dc->debug.enable_dp_dig_pixel_rate_div_policy) {
++				pr_info("boot timing validation failed due to pixels_per_cycle\n");
+ 				return false;
++			}
+ 
+ 			pix_clk_100hz *= pixels_per_cycle;
+ 		}
+ 
+ 		// Note: In rare cases, HW pixclk may differ from crtc's pixclk
+ 		// slightly due to rounding issues in 10 kHz units.
+-		if (crtc_timing->pix_clk_100hz != pix_clk_100hz)
++		if (crtc_timing->pix_clk_100hz != pix_clk_100hz) {
++			DC_LOG_DEBUG("boot timing validation failed due to pix_clk_100hz mismatch\n");
+ 			return false;
++		}
+ 
+-		if (!se || !se->funcs->dp_get_pixel_format)
++		if (!se || !se->funcs->dp_get_pixel_format) {
++			DC_LOG_DEBUG("boot timing validation failed due to missing dp_get_pixel_format\n");
+ 			return false;
++		}
+ 
+ 		if (!se->funcs->dp_get_pixel_format(
+ 			se,
+ 			&hw_crtc_timing.pixel_encoding,
+-			&hw_crtc_timing.display_color_depth))
++			&hw_crtc_timing.display_color_depth)) {
++			DC_LOG_DEBUG("boot timing validation failed due to dp_get_pixel_format failure\n");
+ 			return false;
++		}
+ 
+-		if (hw_crtc_timing.display_color_depth != crtc_timing->display_color_depth)
++		if (hw_crtc_timing.display_color_depth != crtc_timing->display_color_depth) {
++			DC_LOG_DEBUG("boot timing validation failed due to display_color_depth mismatch\n");
+ 			return false;
++		}
+ 
+-		if (hw_crtc_timing.pixel_encoding != crtc_timing->pixel_encoding)
++		if (hw_crtc_timing.pixel_encoding != crtc_timing->pixel_encoding) {
++			DC_LOG_DEBUG("boot timing validation failed due to pixel_encoding mismatch\n");
+ 			return false;
++		}
+ 	}
+ 
++
+ 	if (link->dpcd_caps.dprx_feature.bits.VSC_SDP_COLORIMETRY_SUPPORTED) {
++		DC_LOG_DEBUG("boot timing validation failed due to VSC SDP colorimetry\n");
+ 		return false;
+ 	}
+ 
+-	if (link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED)
++	if (link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED) {
++		DC_LOG_DEBUG("boot timing validation failed due to DP 128b/132b\n");
+ 		return false;
++	}
+ 
+ 	if (dc->link_srv->edp_is_ilr_optimization_required(link, crtc_timing)) {
+ 		DC_LOG_EVENT_LINK_TRAINING("Seamless boot disabled to optimize eDP link rate\n");
+-- 
+2.43.0
+
