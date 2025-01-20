@@ -2,67 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C8FA179D2
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jan 2025 10:05:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 811AEA179F6
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jan 2025 10:14:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 361F610E501;
-	Tue, 21 Jan 2025 09:05:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1A3E10E51C;
+	Tue, 21 Jan 2025 09:14:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="AsJ5hGvk";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from metis.whiteo.stw.pengutronix.de
- (metis.whiteo.stw.pengutronix.de [185.203.201.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEA1C10E503
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jan 2025 09:05:09 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.whiteo.stw.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <p.zabel@pengutronix.de>)
- id 1taA9j-0007aq-08; Tue, 21 Jan 2025 10:02:43 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e]
- helo=lupine)
- by drehscheibe.grey.stw.pengutronix.de with esmtps (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
- (envelope-from <p.zabel@pengutronix.de>) id 1taA9h-0014vV-0u;
- Tue, 21 Jan 2025 10:02:41 +0100
-Received: from pza by lupine with local (Exim 4.96)
- (envelope-from <p.zabel@pengutronix.de>) id 1taA9h-0002UQ-0d;
- Tue, 21 Jan 2025 10:02:41 +0100
-Message-ID: <4549479c7066c44943ffaae011e54c546b50df74.camel@pengutronix.de>
-Subject: Re: [PATCH] drm/fourcc: add LINEAR modifiers with an exact pitch
- alignment
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Marek =?UTF-8?Q?Ol=C5=A1=C3=A1k?=
- <maraeo@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Daniel Stone <daniel@fooishbar.org>, James Jones <jajones@nvidia.com>, 
- Brian Starkey <brian.starkey@arm.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <michel.daenzer@mailbox.org>,  dri-devel <dri-devel@lists.freedesktop.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,  ML Mesa-dev
- <mesa-dev@lists.freedesktop.org>, nd@arm.com, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>
-Date: Tue, 21 Jan 2025 10:02:41 +0100
-In-Reply-To: <0e9aee49-aa69-4fb6-bab8-4624143f5267@suse.de>
-References: <8dae97c9-9286-451a-8122-b309eb21b2f4@mailbox.org>
- <Z2Ki-lQH4Fbch6RO@phenom.ffwll.local>
- <q45c43j5kwwvemec7mcs4kqzt54pa3nz3jlhkcky2v63s2vfie@him4q253uw4p>
- <CAPj87rMFJ0JRvsKqZUsw_EGrFWr1VLO4Ne2w_bZ5cH+gs_d=og@mail.gmail.com>
- <Z2Rf7mpSuzZ0ObmT@phenom.ffwll.local>
- <07d08a42-c44a-477e-8057-721b270310cf@nvidia.com>
- <CAAxE2A6N0xtgZmzTR9FXMN79xxy3T8zfhh1sz73h1h8=0ycJ2g@mail.gmail.com>
- <CAPj87rP4r4q-wBx1dHsEkZ7=S2c2XsbA1Pz4Skw1ETt_2yD2Ag@mail.gmail.com>
- <CAAxE2A6ghBK2VTLkNXgk1c61UG1ZQAzWQ4q=wO-OShAUC9eRmQ@mail.gmail.com>
- <CAPj87rNFy7GLAjjxDYGLN-f8M0F7yMX6PED94O4kBJ=pwtPVyA@mail.gmail.com>
- <Z4pmnTy1NYD3rLwS@phenom.ffwll.local>
- <CAAxE2A6iDsN=YKW2F7WyyZxn4Sw4Dr5CxZminQGwf8awBivovQ@mail.gmail.com>
- <0e9aee49-aa69-4fb6-bab8-4624143f5267@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BD1A10E44A;
+ Mon, 20 Jan 2025 16:52:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=7H4QuAlO5JKO5RCWS7k3G/YRJZbKlVzlI/O/Cw6qPb4=; b=AsJ5hGvkcinD//mMnDQNnNE0/i
+ 6yWqTk4onOJ2lSzqub9ypVYHKE6OwOShXQKgjHg1phAqLFjUGy3BKtm2CgjMc1JhZWquCghTja2Gn
+ BLWR/yWtKhdHvuvTmTElzyEv4+Jbhd3wsXDsq3txKOBG0kpHUJsEmT+LtSiaW1cCZneiJAadI2QKg
+ GZQV/i3D/A2DOD/nVF0Uq6hY+iJ3P10J0pfOA+Ys4jbdSvmisW+nZ+jLpIG9yEj5w8qX59f6XaDlL
+ EXnQjAYDWiDbuqhuyQA1L3HegvM0NT8XYCzSGSjQwqgpzfxP7cH2Iiixg/przBX48cgg99BjjnL8Y
+ XhhHNVxg==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tZv12-000v9P-Pp; Mon, 20 Jan 2025 17:52:44 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>
+Subject: [PATCH 0/4] A bit of struct drm_sched_job cleanup
+Date: Mon, 20 Jan 2025 16:52:36 +0000
+Message-ID: <20250120165240.9105-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 21 Jan 2025 09:14:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,32 +62,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+At one point I thought I wanted to add a member to struct drm_sched_job. As I
+noticed there is a hole in the struct, I went to re-order some members to get
+rid of it (the hole), at which point I was greeted by a subtle bug cause by the
+frequent pattern of:
 
-On Mo, 2025-01-20 at 08:58 +0100, Thomas Zimmermann wrote:
-> Hi
->=20
->=20
-> Am 18.01.25 um 03:37 schrieb Marek Ol=C5=A1=C3=A1k:
-> [...]
-> >=20
-> > 3) Implementing DRM_FORMAT_MOD_LINEAR as having 256B pitch and offset=
-=20
-> > alignment. This is what we do today. Even if Intel and some AMD chips=
-=20
-> > can do 64B or 128B alignment, they overalign to 256B. With so many=20
-> > AMD+NV laptops out there, NV is probably next, unless they already do=
-=20
-> > this in the closed source driver.
->=20
-> The dumb-buffer series currently being discussed on dri-devel also=20
-> touches handling of scanline pitches. THe actual value varies with each=
-=20
-> driver.=C2=A0 Should dumb buffers use a default pitch alignment of 256 on=
- al=20
-> hardware?
+ job = to_drm_sched_job(spsc_queue_peek|pop(...))
 
-Not all, mxsfb for example doesn't support pitch alignment.
+Because to_drm_sched_job is a container of, it implies a lot of the scheduler
+(and amdgpu) assumes job->queue_node is the first struct element. Dare to change
+that, code will compile but weird things will happen at runtime.
 
-regards
-Philipp
+So I thought lets clean that up and remove that hardcoded sneaky assumption and
+that is what this series does.
+
+1) Adds a helper so amdgpu can touch the scheduler internals a little bit less.
+2) Removes the assumption job->queue_node must be the first element.
+3) And finally removes the hole from struct drm_sched_job, fixing one instance
+   of type confusion in passing too.
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+
+Tvrtko Ursulin (4):
+  drm/sched: Add job popping API
+  drm/amdgpu: Use the new low level job popping helper
+  drm/sched: Remove to_drm_sched_job internal helper
+  drm/sched: Make the type of drm_sched_job->last_dependency consistent
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  |  5 +-
+ drivers/gpu/drm/scheduler/sched_entity.c | 20 ++++----
+ drivers/gpu/drm/scheduler/sched_main.c   | 10 ++--
+ include/drm/gpu_scheduler.h              | 59 ++++++++++++++++--------
+ 4 files changed, 57 insertions(+), 37 deletions(-)
+
+-- 
+2.47.1
+
