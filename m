@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FBFEA185B4
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jan 2025 20:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A78A185BF
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Jan 2025 20:40:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 673F910E62B;
-	Tue, 21 Jan 2025 19:40:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61A5610E626;
+	Tue, 21 Jan 2025 19:40:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gujJmlBQ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vCyCoECc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2085.outbound.protection.outlook.com [40.107.92.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67B3510E62B
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jan 2025 19:40:02 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2042.outbound.protection.outlook.com [40.107.243.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F3C10E636
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Jan 2025 19:40:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KzxJWDptWYXihfe7uDlMOBmGkc12H7rG+p91AOArhlQ+1Mrn1rpgw+Ezh/6XK2cZEEEm6v1wG3aYBrpR4KqD7NTr862pmcWhYWoeo/yH/DN7+4yRobVwMfLlQpBwtOos5bsl/TktEf9VY+60FEQVk7LJM+Uodu1EFyt3xo59odVvW62zAj/KD3Bp6sykk0r1CeC4pb0zLv4EhODcFkb4qjrf5gyH70FCnHwrkuCuqR6m7eNC/M3JLq+J91MPMJ7KtcB0DuQjtQhTaG0GGxTv3MnrzG9jgdtUQ6pJcQJ8CE+m4kWSFOt4wpSClfYlrvNzxgoaruQ7YwDGs+x9TtGzMw==
+ b=FOLwVmSZC5GGRCHOsTDJMWXNsHPhNKcYey+ODuVxShP9jl1CNr/Qvy98DF/f8+h9+Th9jfNMUGynMjRM++r/9E/oViNe8ReBbMcKWXCILr5WvdLCsfLlfYHvADu5RF4d1kSK6YmSWW8c42BDqsjHIo74NpGMiDWs/bsPeCaItP8Iql96xjrrd3aI28Pk4s4o00H+frJWVfblrlz1dt4x/HqFRcELYEGiJ9sNqFSdkBOfEy4Zh2ff3b+H2d5hnw2bBcMjERpKm+8q3ctqX1jQJngkfn6The5JFhMpAzFjvcIye2oDi4U9DH/xErGErM4ke2krYIKhKjf1aPrlqTeW+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZVtEghRUEUKeN+CgUxiNXlMQcuKyERz/Q4tWOVTPkaY=;
- b=BpmmzDgmlMh354hDlK8vvPCBcy/TeN9zojXZn2NF4t4Eo6rvdFGNtKgE825T9fJVvIFKhFLdVo7xWszPIHcPIKq+1Lf6Pg+lkzqKsBSLoFLkxo60BOVjm9i+xasx8BXwgEVNwk4qIc+D4+dEju9+GICvTR80ZQsKegor0dzTuCHipYL2X7KrKZ7iKLoLGe1N07hF9RPNBmYdQp1lt1VsJg3oe8EhhtSkahs3FfDPcd46jwp2qGsu1imECKzh58sbKQI+pUpZJ7a1BR9+it4GGWq5lvOgwNenzMzuVV68Jz+m4XcIEF7Wa/GJQttDKskopU696Tg+dxfB0eul7op8OQ==
+ bh=aMKMXJNMytVwazyXivDvcbbSBZlHtJwyqHYmsyQmupE=;
+ b=cFG061YRgSbc8AKiLXvTd8Ov7fYd19Nudr3r+D+kD/j+w/LwfoX1kF8Jg2lidVMaCfakv+nmNhOnMVpymOB8c+68wA7SyNq5fxS+izlae4aEfvtcCKaNR0SAZfJeY4bhb89sgEr87F8WLBuSfBxR2/1wpDRMESwzy+g4dMbVKcfzfeersDxzU4UnsoEA/xCkllq6vS9HJZV10yTn+HzKJVKY2HPN4+B+TILf7Lw5xIy1S8KUo9phCVnluSDVcNTAcrg8U3I98ZnUfPPFh4JY/3cFe3VDHwJu3zumcikbtZu9TqtLdpATKW/PaBwdLNgzRCymehszZW3YzEFiny44Yw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZVtEghRUEUKeN+CgUxiNXlMQcuKyERz/Q4tWOVTPkaY=;
- b=gujJmlBQtkp8Lo8SZoTU7r+2KnQb/M6XTW761aGlWyTkcJJcbLjKabIo7PuK4zzvftMvU4/KKcN+94AaI5jyC1vtM/QSC/OTX8nJL7panGhI3nZK7krsEMMZrOggvAC3wAP+63tBMENIHijH2PI7u2qdwGYO8VcBSW59agC9fSU=
-Received: from MN2PR14CA0016.namprd14.prod.outlook.com (2603:10b6:208:23e::21)
- by SA3PR12MB8761.namprd12.prod.outlook.com (2603:10b6:806:312::15)
+ bh=aMKMXJNMytVwazyXivDvcbbSBZlHtJwyqHYmsyQmupE=;
+ b=vCyCoECc3JoolmjE3RSJw7nW2DZCq5bAp8Ri/Rv6G39lacc3u7Ip325h+/NOfjQtQYkG62p37Xavb42QZj78EHBe4usr8VFV9FgvNjED2akx/IHsHP4Iczpt8LqEguIdJbaD3g1GPTbLjPTH8dn9DYrFchpePhIG1Q5uzjILUL4=
+Received: from MN2PR22CA0028.namprd22.prod.outlook.com (2603:10b6:208:238::33)
+ by BL1PR12MB5921.namprd12.prod.outlook.com (2603:10b6:208:398::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.20; Tue, 21 Jan
- 2025 19:39:58 +0000
-Received: from BN2PEPF000044A7.namprd04.prod.outlook.com
- (2603:10b6:208:23e:cafe::2c) by MN2PR14CA0016.outlook.office365.com
- (2603:10b6:208:23e::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.22 via Frontend Transport; Tue,
- 21 Jan 2025 19:39:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.22; Tue, 21 Jan
+ 2025 19:40:01 +0000
+Received: from BN2PEPF000044AA.namprd04.prod.outlook.com
+ (2603:10b6:208:238:cafe::54) by MN2PR22CA0028.outlook.office365.com
+ (2603:10b6:208:238::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.21 via Frontend Transport; Tue,
+ 21 Jan 2025 19:40:01 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,13 +48,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN2PEPF000044A7.mail.protection.outlook.com (10.167.243.101) with Microsoft
+ BN2PEPF000044AA.mail.protection.outlook.com (10.167.243.105) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8377.8 via Frontend Transport; Tue, 21 Jan 2025 19:39:58 +0000
+ 15.20.8377.8 via Frontend Transport; Tue, 21 Jan 2025 19:40:00 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 21 Jan
- 2025 13:39:56 -0600
+ 2025 13:39:58 -0600
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -62,12 +62,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>, Wayne Lin
  <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Fangzhi Zuo
  <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, Solomon Chiu
- <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Zhikai Zhai
- <zhikai.zhai@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 03/14] drm/amd/display: Update Cursor request mode to the
- beginning prefetch always
-Date: Tue, 21 Jan 2025 14:39:08 -0500
-Message-ID: <20250121193919.3342348-4-zaeem.mohamed@amd.com>
+ <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Charlene Liu
+ <Charlene.Liu@amd.com>, Natanel Roizenman <natanel.roizenman@amd.com>
+Subject: [PATCH 04/14] drm/amd/display: pass calculated dram_speed_mts to dml2
+Date: Tue, 21 Jan 2025 14:39:09 -0500
+Message-ID: <20250121193919.3342348-5-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250121193919.3342348-1-zaeem.mohamed@amd.com>
 References: <20250121193919.3342348-1-zaeem.mohamed@amd.com>
@@ -79,52 +78,52 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044A7:EE_|SA3PR12MB8761:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e532e95-14c7-41ca-2a94-08dd3a5363c6
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044AA:EE_|BL1PR12MB5921:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4e562975-a796-4bef-7bc5-08dd3a536520
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?BsGSJW0BGAjUEayAwYGEireRw4WZ5q29DN/1fmt89Hud14bYfq62+FI7SnnF?=
- =?us-ascii?Q?2M3BVB1CVZXrBY5D2Gm+tujuVaxifIDb7VLzuQrun5EBjrQZuMImydnO84jr?=
- =?us-ascii?Q?AnI5Wywm7js9ss3giaXLqosgjaFxp2bFc3Ihe5mSm11pjuO8ZfCkBPo0yUmQ?=
- =?us-ascii?Q?n01rvSh4vSYrqvSKBRG9ytGGZd2uMpdPY/8nZHLKqIot4JwLoGX0DULVoVhS?=
- =?us-ascii?Q?paxkWS7ZxzaZkSK49hl+OWMhNzthjv8zvLIAdp5XG+zIlVacbGFNyZ9tfZoA?=
- =?us-ascii?Q?kB9P0RYE36JileeZtM7NpDz1Ksm0ihuQNc2k5ytR9YJL9QVuM23ili6tSTDr?=
- =?us-ascii?Q?0DkYhOfB8qOMNqfCKZPssg0tKHjfDkVCuN8YsiELjIdYhIaG0JLIgP7iuWFm?=
- =?us-ascii?Q?Udc+jBxF7gZWngSC/l5jra6+GRRCVzpYNIFsz4Lz+xnnz751ZeG5Ukdg2iTN?=
- =?us-ascii?Q?bq4b0xrjk4Eb38si5yYNFgE5taqtv8zefgJnTEPyTboZGB2pdOQ1W5T+WWJn?=
- =?us-ascii?Q?eTRr618ETZA27jt0KFQ5+0eulr33qMJdBCZAp2yYImt8ftg3TeWS1G4nKca2?=
- =?us-ascii?Q?hEPLkfLWzefAg9Xl83oVlZwzyfrWHJBp8RYwYemyJuBY1mspObDA5+MGnS0H?=
- =?us-ascii?Q?Swj/LWzNLGF9dtKJzbJcGxMA7VE84UVZszvk98c7rEntIkdA8xYPQlgywd+L?=
- =?us-ascii?Q?QAusellVPojnNBmuXJKmZEdViq5rZsJb9/7Jl6aH8hc6Xgo75ycMSuma/ihC?=
- =?us-ascii?Q?LB63KQJurgF+cnLOpDabPwSsjIjgYEKiZoP7o4RcWmnTvA1T1RGZT5At5iFa?=
- =?us-ascii?Q?Gl9QQsGBXFLC/5QPIdwrTFsxJEoCumM63QnOIKrAsqoDfV4aZYlhaz+qFnaF?=
- =?us-ascii?Q?mIrozvOgxEILkkyUJgu1HYY/fM7blb9LLLLtJ8sXK9//VsNeFsXuzOxoJeZk?=
- =?us-ascii?Q?FbOP/QZ1fU7QZr7967kyMkso6OnnVOBpIk3qsk0Je1v5N/DYIh5LXuadR+yu?=
- =?us-ascii?Q?Pj7HJFSFWLtta2duFo9bH1SCkyEIJLAIIPTCtUlb9clfPymrEhdMKtrfrFJ8?=
- =?us-ascii?Q?tKqypVuwdb9ajfUf8qYrhXfWXSaxTbKox46GZvP2wC95bn7j3cDSbPIQmXPF?=
- =?us-ascii?Q?ZHay38rMf0Zzm71N9lpM6lPGtu2eFGiW2/uNbemm9VgXXK36RmSZ0ZYeWs9z?=
- =?us-ascii?Q?upI+ohDOf0uZlMbty1PFTIUPgk786fsfgVz2QGQ+L8bvkzmuEXVwSY5shsSX?=
- =?us-ascii?Q?FXmQMl4sx/0Sk6HxgPu9rHi3xKgdNNMOzEb/Y1a7oMAI3L+VQ/W13ThjMWt/?=
- =?us-ascii?Q?7Nz50dm8ToixoWzHB5CYnho7Dt9Uvo68QHE/7v158SQmQJir9N12zPr8mjXA?=
- =?us-ascii?Q?D63/e+gLZvcGLfgKWRrhcKSJXXGobcgnCwFcLIvWXrU917U1RqjJS3zhkbTf?=
- =?us-ascii?Q?IgWa1SBKeKTew5zhldPkU+4dz+C+UaJ4AOqk9a1O8ink148DVaOB23Z88RDf?=
- =?us-ascii?Q?y4/x2LmK35xnSVM=3D?=
+ ARA:13230040|82310400026|36860700013|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?NX5tSyatFUR8IGbfz4THk3mu12LA6v6pRPktQpNiOiLi1juXKOO2MmjJ97wH?=
+ =?us-ascii?Q?33wZmZ/XY3rbtZl61u39nsUkGafhY1hcpuWrDBVr9aMActmXR6R+4elnc0tZ?=
+ =?us-ascii?Q?83pLvhnm/gJOjrYUAddSyoLELj3jUDgni639wGJ1Wc7HhGRSmXg5MzR0aMFe?=
+ =?us-ascii?Q?PhdrpSw+5D4rueHlT3oeicxMAhRLbxrQJ5AWFBhor7mes9QJNWHNSOf0TnWj?=
+ =?us-ascii?Q?F12347LExlVeHL4gIjl1dcsAR4ImIxaOJGj3Qi9yzhcnMG3OJRS0cvXwdgoE?=
+ =?us-ascii?Q?OA/f+bTTOTzsEM9TzUoZ4MybHII0Sj3CE/KQp9JllMz3uCYq1iOMQGGC7ZYk?=
+ =?us-ascii?Q?dE0yhg8yZhdTs6lh21Xm7cz+DYS1NBurAbKQWygbu4u6GLNeIqaWLB10dhk0?=
+ =?us-ascii?Q?XIJLnT4XBB0+UN5kBhkYWtTUhnu8lKV9qInwHI6YxRlBHmrQxgiWz9DMoGfn?=
+ =?us-ascii?Q?XPIJyLwG9VH5us9MoJ85B0wyY/GwgGtbbVRepkNRBn8BQGRdMR4CO627ayvy?=
+ =?us-ascii?Q?/OUX/JDRhjh+Oq3/fQBy8sZ8WT2lnNWdzC8kYgJA8eQGfpEqiR8hWLq5oARJ?=
+ =?us-ascii?Q?dq7l/+wIqGUEPTjjTixY5ZHERJWt+WkcOzICf9oTWrEJaxy9U3dP1LRWmwdZ?=
+ =?us-ascii?Q?vGgLOFMTL8h9LfJ8SuEUa5AlRZ4cp0ZPSJu4EhDKOt25hIaQe8DyZCB3QZrV?=
+ =?us-ascii?Q?JI+Eg1Tqj7k3093aEcn/v2ppzUuOedez0DlqmopI1ampv3YWkv+jLJ66r6v1?=
+ =?us-ascii?Q?P1kdszU6bfKUe/UoHzhbnb+beRYtfGfEZdQ4+a7AyMjEjxQ0nxO//gvrLdSD?=
+ =?us-ascii?Q?37lQQtlq4TnFjBB2+SVzZ0rzlYCo3TKc4668kH3Nh++VXhB5xfa9f3xpHwBP?=
+ =?us-ascii?Q?24bC0KiARnprAQ6zHXJl3wQIi2auLmQUM0KxmO1iAUmIDbEi1JPmYH46G5e+?=
+ =?us-ascii?Q?9ujLzU99Z0wNNTEjS1wWsVAYKGOdJ+1c0jL/CWEMgcMXo7RRE1NUjA2krSqK?=
+ =?us-ascii?Q?rjQe/TlFmNB3J6sdeHCcOWpgIKVOTcQbSd6HFvnL3Z0reFHqPyqnImKQue3B?=
+ =?us-ascii?Q?Xw6e/DFD//YNNYCgB1EWNY0Dz5/i4FeSgzsh5iwy/zhKRQkDLUdyUUZZwjPW?=
+ =?us-ascii?Q?c4cQhseccjSxs5kh00T8gnmuiIAL9jpHKJ0/oZHZH+Fw5gtaBpSh2Pjw7eHn?=
+ =?us-ascii?Q?xlQW/Mq2Hmq86yZ8hOqrfr+coreiUpjzJbVc/GF6Fkr8gZJUPMnm3ofc/CEY?=
+ =?us-ascii?Q?ZHx2QQL4DegYJKZp6ycsNSijj5YxTbEL6Ew5xJB5uu7/CFQH3RO+VhifFUUC?=
+ =?us-ascii?Q?+RVasYxDxZS3liX+uLUJaNgcItWUSXFmoz0E65/ZSJIRq7hOWpJZTnVEctp2?=
+ =?us-ascii?Q?kOsA+RpajxqogGdf3NcV+nLK+oG1HZRfVMs/i+DkoOswpXrjBvwmPMp8iwDp?=
+ =?us-ascii?Q?btH1WSiYo9pp7v1a+itiPgN32c2V1adFJLe5rvSt7PEYKU/bEyWDh6hy+5RK?=
+ =?us-ascii?Q?9kSH1mZDX+yNTzI=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2025 19:39:58.6481 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e532e95-14c7-41ca-2a94-08dd3a5363c6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2025 19:40:00.9021 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e562975-a796-4bef-7bc5-08dd3a536520
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044A7.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044AA.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8761
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5921
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,88 +138,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Zhikai Zhai <zhikai.zhai@amd.com>
+From: Charlene Liu <Charlene.Liu@amd.com>
 
-[Why]
-The double buffer cursor registers is updated by the cursor
-vupdate event. There is a gap between vupdate and cursor data
-fetch if cursor fetch data reletive to cursor position.
-Cursor corruption will happen if we update the cursor surface
-in this gap.
+[why]
+currently dml2 is using a hard coded 16 to convert memclk to dram_speed_mts.
+for apu, this depends on wck_ratio.
 
-[How]
-Modify the cursor request mode to the beginning prefetch always
-and avoid wraparound calculation issues.
+change to pass the already calculated dram_speed_mts from fpu to dml2.
 
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Zhikai Zhai <zhikai.zhai@amd.com>
+Reviewed-by: Natanel Roizenman <natanel.roizenman@amd.com>
+Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
 Signed-off-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
 ---
- .../amd/display/dc/hubp/dcn31/dcn31_hubp.c    |  2 +-
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   | 22 ++++++++-----------
- 2 files changed, 10 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c     | 2 ++
+ drivers/gpu/drm/amd/display/dc/dml/dcn351/dcn351_fpu.c   | 1 +
+ .../drm/amd/display/dc/dml2/dml2_translation_helper.c    | 9 ++++++---
+ drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h       | 1 +
+ 4 files changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn31/dcn31_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn31/dcn31_hubp.c
-index c2900c79a2d3..7fd582a8a4ba 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn31/dcn31_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn31/dcn31_hubp.c
-@@ -44,7 +44,7 @@ void hubp31_set_unbounded_requesting(struct hubp *hubp, bool enable)
- 	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
- 
- 	REG_UPDATE(DCHUBP_CNTL, HUBP_UNBOUNDED_REQ_MODE, enable);
--	REG_UPDATE(CURSOR_CONTROL, CURSOR_REQ_MODE, enable);
-+	REG_UPDATE(CURSOR_CONTROL, CURSOR_REQ_MODE, 1);
- }
- 
- void hubp31_soft_reset(struct hubp *hubp, bool reset)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-index 906934128912..35c0d101d7c8 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-@@ -1993,20 +1993,11 @@ static void delay_cursor_until_vupdate(struct dc *dc, struct pipe_ctx *pipe_ctx)
- 	dc->hwss.get_position(&pipe_ctx, 1, &position);
- 	vpos = position.vertical_count;
- 
--	/* Avoid wraparound calculation issues */
--	vupdate_start += stream->timing.v_total;
--	vupdate_end += stream->timing.v_total;
--	vpos += stream->timing.v_total;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c
+index 47d785204f29..e8efffcc69a1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c
+@@ -367,6 +367,8 @@ void dcn35_update_bw_bounding_box_fpu(struct dc *dc,
+ 				clock_limits[i].socclk_mhz;
+ 			dc->dml2_options.bbox_overrides.clks_table.clk_entries[i].memclk_mhz =
+ 				clk_table->entries[i].memclk_mhz * clk_table->entries[i].wck_ratio;
++
++			dc->dml2_options.bbox_overrides.clks_table.clk_entries[i].dram_speed_mts = clock_limits[i].dram_speed_mts;
+ 			dc->dml2_options.bbox_overrides.clks_table.clk_entries[i].dtbclk_mhz =
+ 				clock_limits[i].dtbclk_mhz;
+ 			dc->dml2_options.bbox_overrides.clks_table.num_entries_per_clk.num_dcfclk_levels =
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn351/dcn351_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn351/dcn351_fpu.c
+index d9e63c4fdd95..17d0b4923b0c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn351/dcn351_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn351/dcn351_fpu.c
+@@ -401,6 +401,7 @@ void dcn351_update_bw_bounding_box_fpu(struct dc *dc,
+ 				clock_limits[i].socclk_mhz;
+ 			dc->dml2_options.bbox_overrides.clks_table.clk_entries[i].memclk_mhz =
+ 				clk_table->entries[i].memclk_mhz * clk_table->entries[i].wck_ratio;
++			dc->dml2_options.bbox_overrides.clks_table.clk_entries[i].dram_speed_mts = clock_limits[i].dram_speed_mts;
+ 			dc->dml2_options.bbox_overrides.clks_table.clk_entries[i].dtbclk_mhz =
+ 				clock_limits[i].dtbclk_mhz;
+ 			dc->dml2_options.bbox_overrides.clks_table.num_entries_per_clk.num_dcfclk_levels =
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
+index b416320873e1..220b2bb910c6 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
+@@ -528,10 +528,13 @@ void dml2_init_soc_states(struct dml2_context *dml2, const struct dc *in_dc,
+ 			p->in_states->state_array[i].fabricclk_mhz =
+ 				dml2->config.bbox_overrides.clks_table.clk_entries[i].fclk_mhz;
+ 		}
 -
- 	if (vpos <= vupdate_start) {
- 		/* VPOS is in VACTIVE or back porch. */
- 		lines_to_vupdate = vupdate_start - vpos;
--	} else if (vpos > vupdate_end) {
--		/* VPOS is in the front porch. */
--		return;
- 	} else {
--		/* VPOS is in VUPDATE. */
--		lines_to_vupdate = 0;
-+		lines_to_vupdate = stream->timing.v_total - vpos + vupdate_start;
- 	}
+ 		for (i = 0; i < dml2->config.bbox_overrides.clks_table.num_entries_per_clk.num_memclk_levels; i++) {
+-			p->in_states->state_array[i].dram_speed_mts =
+-				dml2->config.bbox_overrides.clks_table.clk_entries[i].memclk_mhz * transactions_per_mem_clock;
++			if (dml2->config.bbox_overrides.clks_table.clk_entries[i].dram_speed_mts)
++				p->in_states->state_array[i].dram_speed_mts =
++					dml2->config.bbox_overrides.clks_table.clk_entries[i].dram_speed_mts;
++			else
++				p->in_states->state_array[i].dram_speed_mts =
++					dml2->config.bbox_overrides.clks_table.clk_entries[i].memclk_mhz * transactions_per_mem_clock;
+ 		}
  
- 	/* Calculate time until VUPDATE in microseconds. */
-@@ -2014,13 +2005,18 @@ static void delay_cursor_until_vupdate(struct dc *dc, struct pipe_ctx *pipe_ctx)
- 		stream->timing.h_total * 10000u / stream->timing.pix_clk_100hz;
- 	us_to_vupdate = lines_to_vupdate * us_per_line;
+ 		for (i = 0; i < dml2->config.bbox_overrides.clks_table.num_entries_per_clk.num_socclk_levels; i++) {
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
+index 0f944fcfd5a5..785226945699 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
+@@ -159,6 +159,7 @@ struct dml2_clks_table_entry {
+ 	unsigned int dtbclk_mhz;
+ 	unsigned int dispclk_mhz;
+ 	unsigned int dppclk_mhz;
++	unsigned int dram_speed_mts; /*which is based on wck_ratio*/
+ };
  
-+	/* Stall out until the cursor update completes. */
-+	if (vupdate_end < vupdate_start)
-+		vupdate_end += stream->timing.v_total;
-+
-+	/* Position is in the range of vupdate start and end*/
-+	if (lines_to_vupdate > stream->timing.v_total - vupdate_end + vupdate_start)
-+		us_to_vupdate = 0;
-+
- 	/* 70 us is a conservative estimate of cursor update time*/
- 	if (us_to_vupdate > 70)
- 		return;
- 
--	/* Stall out until the cursor update completes. */
--	if (vupdate_end < vupdate_start)
--		vupdate_end += stream->timing.v_total;
- 	us_vupdate = (vupdate_end - vupdate_start + 1) * us_per_line;
- 	udelay(us_to_vupdate + us_vupdate);
- }
+ struct dml2_clks_num_entries {
 -- 
 2.34.1
 
