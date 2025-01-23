@@ -2,66 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA8EA1A29D
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jan 2025 12:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B49A1A2A2
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jan 2025 12:10:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A375610E7D1;
-	Thu, 23 Jan 2025 11:10:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 066B010E7D6;
+	Thu, 23 Jan 2025 11:10:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M8FZeqCe";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="lyW10yfs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFDB810E1D8;
- Wed, 22 Jan 2025 05:22:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737523353; x=1769059353;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=bGb3uSuBaIf/MAnGLEfUH4EYMoGQe75OanvumQWUoUE=;
- b=M8FZeqCeTBBpjKlnTFYEjKD0PPQrY2iixSC7hhqsJpYKRu+ujX/wjVpK
- zQT1kaSDOTheYe8ivS8rW7W9yGBD53cJ0jYAolS7ShXCHndffJC2ZSl4X
- UTBDm/Og/s1uotrGtYPT3Qdt+JhRVmRm1ecoCysKE5tnHWUgMj3pDazTk
- I6+ViRtcaCy9bpA3n47K+lVGXlm0v/TxQbog+IsTBdGMY478X+tDRQGQw
- HynUX68zZnx0IY1aoKYhAexB3sXUY0PaE6RAAQ+wSrL6p/j8dX1mTxS1r
- O64YyYLk3faDYm97Txq869nJv5p4tdGxDt0x6NcOHiJJpkM6FyxUe57ho Q==;
-X-CSE-ConnectionGUID: KVDxAFc3Slm5mpf8LJZ+BQ==
-X-CSE-MsgGUID: R3BIyjePSW22if0eCW+h6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="37995042"
-X-IronPort-AV: E=Sophos;i="6.13,224,1732608000"; d="scan'208";a="37995042"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 21:22:33 -0800
-X-CSE-ConnectionGUID: 3wX4WW/XS4ycm8dlpM1JCw==
-X-CSE-MsgGUID: MBkDZ6oBT36a7o+Q4DRzVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,224,1732608000"; d="scan'208";a="112023364"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 21:22:29 -0800
-Date: Wed, 22 Jan 2025 07:22:25 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Xaver Hugl <xaver.hugl@kde.org>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, christian.koenig@amd.com,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, andrealmeid@igalia.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
-Message-ID: <Z5CAkXSOpNiiFbv4@black.fi.intel.com>
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
- <20241128153707.1294347-3-raag.jadav@intel.com>
- <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
+X-Greylist: delayed 598 seconds by postgrey-1.36 at gabe;
+ Thu, 23 Jan 2025 07:43:14 UTC
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5067110E780;
+ Thu, 23 Jan 2025 07:43:14 +0000 (UTC)
+Received: from smtp1.mailbox.org (unknown [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Ydt2x1QV9z9sWp;
+ Thu, 23 Jan 2025 08:33:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1737617593; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=pafGZP171TKVXmmTNtfdIkH/JLfRofR6L9YfhmD45jE=;
+ b=lyW10yfsdoKC9khVw9jNmQQjpXd/IpvM0GENMUQG4ShV8XOOqjm/LPE0R7H2th4muEIaww
+ WjWGoh0BAWCFJX9B1qk8du3Kt58QKRUC0Ge1iJGXX7tDbaRkH3zzd1MyOqNFUNE4LWtTnA
+ ZHxS83eGnU7TcUn45ektfe2nG2rLtuoSRq3Z3UwhPFP4g9edzj2p7EtYo96EGGNiALZVWP
+ c9S2JgPiw/mfMODTFYK5JEz9pj8xFBlTNA+rQvHuuNZjMKghxgF7TAx8WQAiasC8dCWHJE
+ a5A29twSa5ZfOqnphJ+ERRMcVAtkimJEY1P1GJC5V+sjGzEqGq0UxhYyBuaG5Q==
+Message-ID: <af5aac800f7d2153aa3c315584f70c55378c1b2b.camel@mailbox.org>
+Subject: Re: [PATCH] drm/sched: Use struct for drm_sched_init() params
+From: Philipp Stanner <phasta@mailbox.org>
+To: Boris Brezillon <boris.brezillon@collabora.com>, Philipp Stanner
+ <phasta@kernel.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Xinhui Pan
+ <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>, Russell King
+ <linux+etnaviv@armlinux.org.uk>,  Christian Gmeiner
+ <christian.gmeiner@gmail.com>, Frank Binns <frank.binns@imgtec.com>, Matt
+ Coster <matt.coster@imgtec.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu <yuq825@gmail.com>,  Rob
+ Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Konrad Dybcio
+ <konradybcio@kernel.org>,  Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Karol Herbst <kherbst@redhat.com>, Lyude
+ Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, Rob Herring
+ <robh@kernel.org>, Steven Price <steven.price@arm.com>, Liviu Dudau
+ <liviu.dudau@arm.com>, Luben Tuikov <ltuikov89@gmail.com>, Matthew Brost
+ <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>, 
+ =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sunil Khatri <sunil.khatri@amd.com>,  Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
+ Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org,
+ etnaviv@lists.freedesktop.org,  lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org,  freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org,  intel-xe@lists.freedesktop.org
+Date: Thu, 23 Jan 2025 08:33:01 +0100
+In-Reply-To: <20250122181227.491b7881@collabora.com>
+References: <20250122140818.45172-3-phasta@kernel.org>
+ <20250122181227.491b7881@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
+X-MBO-RS-ID: 8a70febfe27100aa303
+X-MBO-RS-META: sw7fmubqh1x18f97mnek9yippijrrm9p
 X-Mailman-Approved-At: Thu, 23 Jan 2025 11:10:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,38 +89,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 21, 2025 at 02:14:56AM +0100, Xaver Hugl wrote:
-> > +It is the responsibility of the consumer to make sure that the device or
-> > +its resources are not in use by any process before attempting recovery.
-> I'm not convinced this is actually doable in practice, outside of
-> killing all apps that aren't the one trying to recover the GPU.
-> Is this just about not crashing those processes if they don't handle
-> GPU hotunplugs well, about leaks, or something else?
+On Wed, 2025-01-22 at 18:16 +0100, Boris Brezillon wrote:
+> On Wed, 22 Jan 2025 15:08:20 +0100
+> Philipp Stanner <phasta@kernel.org> wrote:
+>=20
+> > =C2=A0int drm_sched_init(struct drm_gpu_scheduler *sched,
+> > - =C2=A0=C2=A0 const struct drm_sched_backend_ops *ops,
+> > - =C2=A0=C2=A0 struct workqueue_struct *submit_wq,
+> > - =C2=A0=C2=A0 u32 num_rqs, u32 credit_limit, unsigned int hang_limit,
+> > - =C2=A0=C2=A0 long timeout, struct workqueue_struct *timeout_wq,
+> > - =C2=A0=C2=A0 atomic_t *score, const char *name, struct device *dev);
+> > + const struct drm_sched_init_params *params);
+>=20
+>=20
+> Another nit: indenting is messed up here.
 
-Correct, all of it. And since the compositor is in charge of device resources,
-this way it atleast has the opportunity to recover the device and recreate
-context without all the userspace violence.
+That was done on purpose.
 
-I'm not entirely aware of its feasibility though, perhaps something for the
-consumers to experiment.
-
-> > +With IOCTLs blocked and device already 'wedged', all device memory should
-> > +be unmapped and file descriptors should be closed to prevent leaks.
-> Afaiu from a userspace POV, a rebind is just like a GPU hotunplug +
-> hotplug with matching "remove" and "add" udev events. As long as the
-> application cleans up resources related to the device when it receives
-> the event, there should be no leaks with a normal hotunplug... Is this
-> different enough that we can't have the same expectations?
-
-The thing about "remove" event is that it is generated *after* we opt for an
-unbind, and at that point it might be already too late if userspace doesn't
-get enough time to clean things up while the device is removed with a live
-client resulting in unknown consequences.
-
-The idea here is to clean things up *before* we opt for an unbind leaving
-no room for side effects.
-
-Raag
+I never got why so many like to intend to the opening brackets,
+because:
+   1. The kernel coding guide line does not demand it
+   2. It mixes tabs with spaces
+   3. It doesn't create an identical level of intendation
+   4. It wastes huge amount of space and does not solve the problem of
+      long names, but might even make it worse:
+      https://elixir.bootlin.com/linux/v6.13-
+      rc3/source/drivers/gpu/drm/scheduler/sched_main.c#L1296
