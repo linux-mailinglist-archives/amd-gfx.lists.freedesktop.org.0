@@ -2,82 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2E2A1B2B0
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jan 2025 10:34:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F400A1B2AD
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Jan 2025 10:34:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08BE210E92F;
-	Fri, 24 Jan 2025 09:34:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B33B110E933;
+	Fri, 24 Jan 2025 09:34:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="T7sGEjIG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THC8E3V4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
- [209.85.216.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15C4910E220;
- Fri, 24 Jan 2025 04:08:48 +0000 (UTC)
-Received: by mail-pj1-f53.google.com with SMTP id
- 98e67ed59e1d1-2ee76befe58so3060480a91.2; 
- Thu, 23 Jan 2025 20:08:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737691727; x=1738296527; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=D6e6R/iD1t4ReAa9KfZ1qSPqX0t3TQNshzKeYKkD9yY=;
- b=T7sGEjIGhF2uQVyVyilN8b2cSvd6im2obRj7geVlvH3UYHslJ7GyjGaoP6bID2vibE
- +FEfC0cRDz3DexT4O+jnQJNnXNCUajpuKC3yc1Jf7W9omgnoei/XavrsRvkTkJc186xe
- FOibf3tyS1weQGC4T5v1LyagzD1GDfd9LKUgrd5C4QEuF5tbRB5vjsetiyuspHUaDjbJ
- cZo4YRW2UZcolzOKDHE5kYuxhUkl+G6ijecMn8dRmU2TlMD6FHx7gJbDhTSXeCIocZ8D
- zyLy1JWRsCNt8W0bxa4zGFWXeUx+TYrnhUTgcfY9+im64u423A/GKcc/wyOdV1dJXATx
- rEPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737691727; x=1738296527;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=D6e6R/iD1t4ReAa9KfZ1qSPqX0t3TQNshzKeYKkD9yY=;
- b=D1NlCoEvoMdiBjJKJhU9EEwVCIdzoRGrk+uKMDJo5TLNnSl2bo+MEhSnbifykJxbD+
- dHwHHx1yTacs8Pf0HowjjCA1pmeDHpbjcCnMAy3lqz+OXgqdQmHULF4Otzvo/xTAhw0C
- YDs+D8GB/Gk0IuK4GiXA62frzVh4i4ufDN+GbsI/b/UDCMQI8me/r5QpsJpKbfAdvCix
- EAWxWR/7xlrQT7MhhmwT2bQNY0nHZ/0e3KI2JBYiq0oCfIEalWgsDO2yxrsF7s9azb7O
- G9rlpXudAbcVoChB2Gp0W6G2gofKZSc2BUIrqyRvJB/7l+fa7QsbGc5HNiHA7Waqvr/w
- zQdQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVERHqS8FEhgfYU5I8Nvh83xrUSQ2mUy1/Bb/Azh0p0lKA+f4HV7ZSsLtPQJYkl6zfeJu/a778XFLMY@lists.freedesktop.org,
- AJvYcCVT2wyqZ/rLRj39ZuYbhZHWxuIeJqm/e98jFwAvDSw8GFqKr4LyF7G7NCHowsOUf39cR7Uw9nEw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwcNJuKunRfjWdY/A5U9jBEhR/16ho3XRptrx0unufoVkc61PZ+
- 0/G0gMYwtvuOeXuWAyh3JlzSDw75ckm+vasnZ9Hijh/EiIVoQSzN
-X-Gm-Gg: ASbGncswSHvlADefllCLgQtQbvfIi0iBBIOnYSWIlele/3uZj1NbvljGR25oiRHxCll
- K8tI3hc4NW6O6Aqpak6IS09cOfEbdnQd4csE/SjLME7uFdL9/HW1Odmso/tu2QtmP/PSAuZUSL7
- ny0PJyFxk6Y42r02HlOwECk2u70i3S24VW32URLApIkAZzzwoNIxx1iB26LjxxjOZU6Rnt8ZxNo
- lX8DdVzXgio7GYBZDHvaqQz4hISPPY8iM/y8PJIA9v6c1JVPMgPRcsoPZXpshqu5LIW7RGXNmN9
- ptfOOi8rDdLSu5IV3XiWfVuSrW2sBACodK8hmAt+
-X-Google-Smtp-Source: AGHT+IGKwqK3FeAP7M3pDG/EPu8XOfZtrxx0RtjPTD4kt8b1n6567njef2h1tCvlNFusMRPQtdbLkw==
-X-Received: by 2002:a17:90b:2808:b0:2ee:d433:7c54 with SMTP id
- 98e67ed59e1d1-2f782cb61bemr40425091a91.19.1737691727590; 
- Thu, 23 Jan 2025 20:08:47 -0800 (PST)
-Received: from jren-d3.localdomain ([221.222.59.195])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2f7ffa455c0sm562670a91.3.2025.01.23.20.08.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Jan 2025 20:08:47 -0800 (PST)
-From: Imkanmod Khan <imkanmodkhan@gmail.com>
-To: stable@vger.kernel.org
-Cc: patches@lists.linux.dev, alexander.deucher@amd.com, daniel.wheeler@amd.com,
- mario.limonciello@amd.com, josip.pavic@amd.com, aurabindo.pillai@amd.com,
- sohaib.nadeem@amd.com, gregkh@linuxfoundation.org, harry.wentland@amd.com,
- sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, airlied@gmail.com, daniel@ffwll.ch, wayne.lin@amd.com,
- sashal@kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, charlene.liu@amd.com, gabe.teeger@amd.com,
- amd-gfx@lists.freedesktop.org, Nicholas.Kazlauskas@amd.com,
- Imkanmod Khan <imkanmodkhan@gmail.com>
-Subject: [PATCH 6.1.y] drm/amd/display: fixed integer types and null check
- locations
-Date: Fri, 24 Jan 2025 12:08:36 +0800
-Message-ID: <20250124040836.7603-1-imkanmodkhan@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15DCF10E297;
+ Fri, 24 Jan 2025 05:52:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737697976; x=1769233976;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1aAhLPBxVqQUfqvDc33T4FDKF2jbZ43wVpm4/0R/Aq4=;
+ b=THC8E3V44W9Kt/icmxD9iU2Ct8CjGEm77CX8JbsHZRSWTz58+KYFqvV4
+ O9KyMTBXf+BW6JYWQn/3JSZf8OOEQd7D9k8V0qA8cygHBTDfx3D41k0ml
+ z2UoCsIgSIPgXQ69ZMjyJC7FQTkPNoWeiEYei58knH6gvSatt5mW+aAdi
+ BsJPnLC/tCglZuo/1bULbcTTcsGWUcHZ6PgAhAsO/I5/ZQjOY1xORkmBZ
+ PGoOwBtKn/itZxCxyomscr2jSJZuyGUwRmpgVVAr9e4nRBux79Qmks5Fk
+ nBx+5uITicw/u9j5UhiTGr+lozaBW5gESYPF35I/gLZ94jOjq6owULE/J g==;
+X-CSE-ConnectionGUID: k37zekdfQwenzcNfUR/FqA==
+X-CSE-MsgGUID: jwG/CA+jSpGSbXNmNmaz3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="60689136"
+X-IronPort-AV: E=Sophos;i="6.13,230,1732608000"; d="scan'208";a="60689136"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 21:52:56 -0800
+X-CSE-ConnectionGUID: 1GFe2SzGTMWyJLoNggfQaA==
+X-CSE-MsgGUID: 2nUXefpORP6plQIDxN+u0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,230,1732608000"; d="scan'208";a="108218631"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa010.fm.intel.com with ESMTP; 23 Jan 2025 21:52:49 -0800
+From: Raag Jadav <raag.jadav@intel.com>
+To: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, michal.wajdeczko@intel.com,
+ christian.koenig@amd.com, xaver.hugl@kde.org
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ lina@asahilina.net, alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v11 0/5] Introduce DRM device wedged event
+Date: Fri, 24 Jan 2025 11:22:55 +0530
+Message-Id: <20250124055300.1111274-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 24 Jan 2025 09:34:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -94,98 +73,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sohaib Nadeem <sohaib.nadeem@amd.com>
+This series introduces device wedged event in DRM subsystem and uses it
+in xe, i915 and amdgpu drivers. Detailed description in commit message.
 
-[ Upstream commit 0484e05d048b66d01d1f3c1d2306010bb57d8738 ]
+This was earlier attempted as xe specific uevent in v1 and v2 on [1].
+Similar work by André Almeida on [2].
+Wedged event support for amdgpu by André Almeida on [3].
+Consumer implementation by Xaver Hugl on [4].
 
-[why]:
-issues fixed:
-- comparison with wider integer type in loop condition which can cause
-infinite loops
-- pointer dereference before null check
+ [1] https://patchwork.freedesktop.org/series/136909/
+ [2] https://lore.kernel.org/dri-devel/20221125175203.52481-1-andrealmeid@igalia.com/
+ [3] https://lore.kernel.org/dri-devel/20241216162104.58241-1-andrealmeid@igalia.com/
+ [4] https://invent.kde.org/plasma/kwin/-/merge_requests/7027
 
-Cc: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: stable@vger.kernel.org
-Reviewed-by: Josip Pavic <josip.pavic@amd.com>
-Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Sohaib Nadeem <sohaib.nadeem@amd.com>
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Imkanmod Khan <imkanmodkhan@gmail.com>
----
- .../gpu/drm/amd/display/dc/bios/bios_parser2.c   | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ v2: Change authorship to Himal (Aravind)
+     Add uevent for all device wedged cases (Aravind)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-index 4d2590964a20..75e44d8a7b40 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-@@ -1862,19 +1862,21 @@ static enum bp_result get_firmware_info_v3_2(
- 		/* Vega12 */
- 		smu_info_v3_2 = GET_IMAGE(struct atom_smu_info_v3_2,
- 							DATA_TABLES(smu_info));
--		DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_2->gpuclk_ss_percentage);
- 		if (!smu_info_v3_2)
- 			return BP_RESULT_BADBIOSTABLE;
- 
-+		DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_2->gpuclk_ss_percentage);
-+
- 		info->default_engine_clk = smu_info_v3_2->bootup_dcefclk_10khz * 10;
- 	} else if (revision.minor == 3) {
- 		/* Vega20 */
- 		smu_info_v3_3 = GET_IMAGE(struct atom_smu_info_v3_3,
- 							DATA_TABLES(smu_info));
--		DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_3->gpuclk_ss_percentage);
- 		if (!smu_info_v3_3)
- 			return BP_RESULT_BADBIOSTABLE;
- 
-+		DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_3->gpuclk_ss_percentage);
-+
- 		info->default_engine_clk = smu_info_v3_3->bootup_dcefclk_10khz * 10;
- 	}
- 
-@@ -2439,10 +2441,11 @@ static enum bp_result get_integrated_info_v11(
- 	info_v11 = GET_IMAGE(struct atom_integrated_system_info_v1_11,
- 					DATA_TABLES(integratedsysteminfo));
- 
--	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v11->gpuclk_ss_percentage);
- 	if (info_v11 == NULL)
- 		return BP_RESULT_BADBIOSTABLE;
- 
-+	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v11->gpuclk_ss_percentage);
-+
- 	info->gpu_cap_info =
- 	le32_to_cpu(info_v11->gpucapinfo);
- 	/*
-@@ -2654,11 +2657,12 @@ static enum bp_result get_integrated_info_v2_1(
- 
- 	info_v2_1 = GET_IMAGE(struct atom_integrated_system_info_v2_1,
- 					DATA_TABLES(integratedsysteminfo));
--	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v2_1->gpuclk_ss_percentage);
- 
- 	if (info_v2_1 == NULL)
- 		return BP_RESULT_BADBIOSTABLE;
- 
-+	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v2_1->gpuclk_ss_percentage);
-+
- 	info->gpu_cap_info =
- 	le32_to_cpu(info_v2_1->gpucapinfo);
- 	/*
-@@ -2816,11 +2820,11 @@ static enum bp_result get_integrated_info_v2_2(
- 	info_v2_2 = GET_IMAGE(struct atom_integrated_system_info_v2_2,
- 					DATA_TABLES(integratedsysteminfo));
- 
--	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v2_2->gpuclk_ss_percentage);
--
- 	if (info_v2_2 == NULL)
- 		return BP_RESULT_BADBIOSTABLE;
- 
-+	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v2_2->gpuclk_ss_percentage);
-+
- 	info->gpu_cap_info =
- 	le32_to_cpu(info_v2_2->gpucapinfo);
- 	/*
+ v3: Generic implementation in DRM subsystem (Lucas)
+
+ v4: s/drm_dev_wedged/drm_dev_wedged_event
+     Use drm_info() (Jani)
+     Kernel doc adjustment (Aravind)
+     Change authorship to Raag (Aravind)
+
+ v5: Send recovery method with uevent (Lina)
+     Expose supported recovery methods via sysfs (Lucas)
+
+ v6: Access wedge_recovery_opts[] using helper function (Jani)
+     Use snprintf() (Jani)
+
+ v7: Convert recovery helpers into regular functions (Andy, Jani)
+     Aesthetic adjustments (Andy)
+     Handle invalid method cases
+     Add documentation to drm-uapi.rst (Sima)
+
+ v8: Drop sysfs and allow sending multiple methods with uevent (Lucas, Michal)
+     Improve documentation (Christian, Rodrigo)
+     static_assert() globally (Andy)
+
+ v9: Document prerequisites section (Christian)
+     Provide 'none' method for device reset (Christian)
+     Provide recovery opts using switch cases
+
+v10: Clarify mmap cleanup and consumer prerequisites (Christian, Aravind)
+
+v11: Log device reset (André)
+     Reference wedged event in device reset section (André)
+     Wedged event support for amdgpu (André)
+
+André Almeida (1):
+  drm/amdgpu: Use device wedged event
+
+Raag Jadav (4):
+  drm: Introduce device wedged event
+  drm/doc: Document device wedged event
+  drm/xe: Use device wedged event
+  drm/i915: Use device wedged event
+
+ Documentation/gpu/drm-uapi.rst             | 112 ++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   4 +
+ drivers/gpu/drm/drm_drv.c                  |  68 +++++++++++++
+ drivers/gpu/drm/i915/gt/intel_reset.c      |   3 +
+ drivers/gpu/drm/xe/xe_device.c             |   7 +-
+ include/drm/drm_device.h                   |   8 ++
+ include/drm/drm_drv.h                      |   1 +
+ 7 files changed, 199 insertions(+), 4 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
