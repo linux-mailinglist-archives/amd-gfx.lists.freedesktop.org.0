@@ -2,122 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19C2DA20471
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jan 2025 07:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B15FCA205B0
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jan 2025 09:10:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC3810E3E1;
-	Tue, 28 Jan 2025 06:31:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F208010E5EF;
+	Tue, 28 Jan 2025 08:10:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="u0B5hY7g";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OkLqru/C";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9BA10E3E1
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jan 2025 06:31:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yA1glqio9zkdjgddOEFTtt2x+42Ck3kl5xsZuicTLFqQ+Z5QFRty1+nWZ2+y3nIwI0iA8vg4kyX30dATeqsf04fSws29kKJDur7WU9MHGXTzUPQpAXR0QOGM9NrSq//oGWT6DyAFMpmbCwoV53wETYXq1tXf8cHimo5OWiUpwXbwIKTj8t/V528TDTIoIcz7hU//U5s44ZJr8m0pevh2fsa7OMg39MDbN3R4k2+b8xbYcr30MNuXzKVHg+TB6mDrVy/poZeKR9C76j9zaQi583qmxbYgPy/9BIuE272Nl0yOIUrx1QntiH+z2RUseffcOJghIdLrtpVAF50E3O0JbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ijhm6vzAdik59TdPElnhDo6BQyKVCLDZRts+kHhKQMU=;
- b=k+r5TncliiNs5lifa443sah6ZdPw2Ah5FUC55uDzPZ35MS2kqXwLx8GVl/A1jVCBi91wCPhqL3TEdYYqPGUQkr1YCCEmS/05r89LDRYE8Poq/KsYBxJpX/MROOvPyTjJoW7V7KY3l1VdKKFVIymh/AalT9Xpf2OKl057hhI8Oo6Yl/5PQcGMNV64cloiDhhnawc1gSKyLNjqIOUQY+tjXKgJ6OZgUi99CMflBAe176yixqCDjPL6ffdSX3CTsZwrJVsx0X290BOQevLme8Sm8zOlYKkV6CwSpFAuGorORSHkBJDWLMO1LFjatcuJ8wSK3i2mFtF8tkAGi8105FsLYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ijhm6vzAdik59TdPElnhDo6BQyKVCLDZRts+kHhKQMU=;
- b=u0B5hY7g3ujJn1dCIABKs4B2fW5NbZYm30JYhoR9cyA1XPlQQyoHHFriNgQujdePeEo9M9rcQ/wHa4SqrHPFS5nWDMmtw9Z7pcGEEWEdHKds9US31s8MTPqr9qdtSL2tDM/JII9zaXS85rfW78hF4LB0T89ebd3RBgXvcYb0ehA=
-Received: from SN7PR04CA0213.namprd04.prod.outlook.com (2603:10b6:806:127::8)
- by DM4PR12MB7744.namprd12.prod.outlook.com (2603:10b6:8:100::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.22; Tue, 28 Jan
- 2025 06:31:35 +0000
-Received: from SN1PEPF00026367.namprd02.prod.outlook.com
- (2603:10b6:806:127:cafe::eb) by SN7PR04CA0213.outlook.office365.com
- (2603:10b6:806:127::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8377.23 via Frontend Transport; Tue,
- 28 Jan 2025 06:31:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF00026367.mail.protection.outlook.com (10.167.241.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8398.14 via Frontend Transport; Tue, 28 Jan 2025 06:31:34 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 28 Jan
- 2025 00:31:32 -0600
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
- <Asad.Kamal@amd.com>, <Le.Ma@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: Use version to figure out harvest info
-Date: Tue, 28 Jan 2025 12:01:15 +0530
-Message-ID: <20250128063115.1690375-2-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250128063115.1690375-1-lijo.lazar@amd.com>
-References: <20250128063115.1690375-1-lijo.lazar@amd.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C20510E5B0;
+ Mon, 27 Jan 2025 20:00:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=SIv9eitYtKk6DglAMuyDvKB0qt2bNETkXx7WCK99Xg4=; b=OkLqru/COSce1kpBZFPE4a7bVq
+ mLJ/c3LcViOJ3iI95sCu6cepCQbTeKjsZL0KvDgVt+vjq/PlNWZbaJek85fc7OByvwPLrdo+3DneR
+ GoYFzAxRfxUzDhlcAQn0WdERIN7F8bRxmvJdYQeUkqJIce/QUY/exrXCy0dzdeIfCOqFop0QWtvha
+ beKy4IpGgFhHk56ACD8l+C822LZYL2aEd6tMOEAJiIswWp8ZyoMwsSpp8e2QqwgXP+XQoEYYvvbQr
+ ROAUL61MTIBc52Fmd6mFsQz1Z04EjaFbIElbCYRSoSX/cR5BUYmnCIU/og75zfZg3RZn9uOZFP9Bs
+ Y2BuJEVQ==;
+Received: from 189-68-33-219.dsl.telesp.net.br ([189.68.33.219]
+ helo=[192.168.15.100]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tcVHA-003NsK-S4; Mon, 27 Jan 2025 21:00:04 +0100
+From: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v12 0/2] drm/atomic: Ease async flip restrictions
+Date: Mon, 27 Jan 2025 16:59:38 -0300
+Message-Id: <20250127-tonyk-async_flip-v12-0-0f7f8a8610d3@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00026367:EE_|DM4PR12MB7744:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1f476cb-f4ef-487d-b2fe-08dd3f656971
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KHssgcKbmLVxdtshlcaKht7UjmRodRIVuASDy9O3gBUMPcqMfTL8vx5bSWPo?=
- =?us-ascii?Q?WFTuHjm0rnRrLMZH4QXveltYInA/yC52QUBtc0BlG7t4ngZ1vtNjINUwxhx/?=
- =?us-ascii?Q?esUiwx/wxAiq6Gt/iw3RHktQmhgwbjx3q549crLlpOFfLmYy+3X0GrYka9+X?=
- =?us-ascii?Q?GqNkOXXJ4C3dSc98mOLqOqx33WPUoW5/pG3VIJaqtAnwxi2dTQNtF2nKY4EO?=
- =?us-ascii?Q?6Avb3AIoLI580+DOk2AkWKmjVgxv1j2YjkJZSWm8zgqU+ntGqo8+TI/7/i2b?=
- =?us-ascii?Q?kDOHQQ8Zw/HFUkcmQXQGxe2c1N9H2DRh3kCuHRpinc+qUYX8IWYSurlXCA9r?=
- =?us-ascii?Q?e08SbFQFn7UOryvVFRjHoX42ilVgvnEwxJ0plcpQZCd26ruOhqw4PJ3+Elqc?=
- =?us-ascii?Q?YmczRzN0fFg92o3sDy//SizWuu3d4S2JAQOPR+NF5CVLQzeSxBwsh+gXuixF?=
- =?us-ascii?Q?NjxwMPbGfVBezTnrszENgWnWu7J7D2Yyp8TCrPqoylRG1UUqMaRF8mFB2gKN?=
- =?us-ascii?Q?WPviIyTCdl1EQukaWWB8m5+C0p0rGy44Y/b5+xFe1Bve5PaJCts6MkJTrjmR?=
- =?us-ascii?Q?tc6LaNXmiIURSBOvSKwzOKl6BQQ8sURdgkyVLqzMGA0lq/Ra2tU/hmGXyUKb?=
- =?us-ascii?Q?J7ccA5lAWdn2pa1Wkd28L3U8fUg8H3fZLCEpU1hsEFQDWhMIEAG+LLtdV+LO?=
- =?us-ascii?Q?hW93BWdbo8soBJ2OnO50H29/5RuQa+O64ifYNptIK1cBhJjA1k/R18R1oUqW?=
- =?us-ascii?Q?kUQcNt4jHCOvM64rHpg0YQtiPiIqmr+YxMq+E8kBzebJMZEBBhGSVrsGq9AB?=
- =?us-ascii?Q?zC1IUnFT7ZkzPUeb3OxzFO1woIDPz6Rk+w8P7HXNLPxDZDnbaMwj+Ytv47Rb?=
- =?us-ascii?Q?MJ3wgyxvMsEieKsjsUm5k5hYZQw30V1H43BBBQbN8+PeP0jvzKjhAWLm9735?=
- =?us-ascii?Q?C2sJOJmhOhDeZxQkEjJpMO+45g2LiBW84TjI/kSuomXEie4CQj5KpQbiYMLN?=
- =?us-ascii?Q?iJNGB1tuIFhbUporhOAUC/nhNOK3rS9U/Vpv8LMhC37cbkIRkUsmYGJNQsZe?=
- =?us-ascii?Q?HJBwk1kwS9wPSz4qJC7HC1KIGg9M1EAlfOyqNH0155JdyH3Ta/8txkylT2dB?=
- =?us-ascii?Q?2YEWNjzp/RwZ+qMNkJtCqUHw9QMESogbgUiO5dL9PwaLv56pK+/UpGXNvsor?=
- =?us-ascii?Q?xs7QS7y9pI5XSKOCJpJQnzZmDgEt1KZXv/J/EiFB8NuE18MEjpPs4Ux+427Y?=
- =?us-ascii?Q?ui7mOnYtR/e76mRpZMhJdtP07/5nHaz58FtCxd2wXYXRHB67trQnTHOtwWz0?=
- =?us-ascii?Q?JTOoKXDJPKVXE0npbqcEA5hRrZP7sPo2Z5/oXtcGyjZYYNPFuPotQMKf/EK7?=
- =?us-ascii?Q?JZ19ZJQj3XMOEA+eTZFn7nB0s9xSZEZfTSIfQlfMz47fmXWmXvD4ypZlLQiG?=
- =?us-ascii?Q?gsr2juc6+rmCAKD0c4RR/Sprlm2ZxJLNpGCegj+yF6KCFrxuyFaJog=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2025 06:31:34.8846 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1f476cb-f4ef-487d-b2fe-08dd3f656971
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00026367.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7744
+X-B4-Tracking: v=1; b=H4sIAKrll2cC/3WPwW7CMAyGXwXlvEx2mi0JJxAXjhx2m6YpCQ5YQ
+ IsaVFGhvvvSXsY0OPq3vu+3byJTy5TFfHYTLXWcuanLgOplJuLe1zuSvC2BUKA0Aih5aer+IH3
+ u6/idjnyWVtmYyMVURS8Kdm4p8XVyforN8mO1Fl8l3nO+NG0/NXVuWj53dk6C1G9VwGCdMWG74
+ J0/sn+NzWnsmEgEfEK+W7SoKYUU6J4c7+gQfssVPlIgjI6AKYG22kT134H3jkcPFDFI1JVxutK
+ BDPxxDMPwAw5Z2957AQAA
+X-Change-ID: 20241002-tonyk-async_flip-828cfe9cf3ca
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui Pan <Xinhui.Pan@amd.com>, dmitry.baryshkov@linaro.org, 
+ Simon Ser <contact@emersion.fr>, joshua@froggi.es, 
+ Xaver Hugl <xaver.hugl@gmail.com>, Daniel Stone <daniel@fooishbar.org>, 
+ ville.syrjala@linux.intel.com
+Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>, 
+ Christopher Snowhill <chris@kode54.net>
+X-Mailer: b4 0.14.2
+X-Mailman-Approved-At: Tue, 28 Jan 2025 08:10:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,87 +76,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-IP tables with version <=2 may use harvest bit. For version 3 and above,
-harvest bit is not applicable, instead uses harvest table. Fix the
-logic accordingly.
+Hi,
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+The goal of this work is to find a nice way to allow amdgpu to perform
+async page flips in the overlay plane as well, not only on the primary
+one. Currently, when using the atomic uAPI, this is the only type of
+plane allowed to do async flips, and every driver accepts it.
+
+This patchset re-uses the per-plane function atomic_async_check() to
+this purpose, so drivers can allow different plane types. There's a
+`bool flip` parameter so the atomic_async_check() can do different
+decisions if it's a complete page flip or a plane update.
+
+igt test: https://lore.kernel.org/igt-dev/20241216202427.76168-1-andrealmeid@igalia.com/
+
+Changelog
+ v12:
+  - Rebased on top of drm-next (for 6.14)
+
+ v11: https://lore.kernel.org/r/20241212-tonyk-async_flip-v11-0-14379434be70@igalia.com
+  - Fix changelog
+  - Add R-b and T-b tags
+
+ v10: https://lore.kernel.org/all/20241211-tonyk-async_flip-v10-0-6b1ff04847c2@igalia.com/
+ - Add a 'flip' flag to indicate where the atomic_async_check() is being called from.
+
+ v9: https://lore.kernel.org/all/20241101-tonyk-async_flip-v9-0-681814efbfbe@igalia.com/
+ - Rebased on top of 6.12-rc1 (drm/drm-next)
+
+ v8: https://lore.kernel.org/lkml/20240806135300.114469-1-andrealmeid@igalia.com/
+ - Complete rewrite
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 27 +++++++++++--------
- 1 file changed, 16 insertions(+), 11 deletions(-)
+André Almeida (2):
+      drm/atomic: Let drivers decide which planes to async flip
+      drm/amdgpu: Enable async flip on overlay planes
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index d34b97a081d8..e3afdf933dc8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -612,7 +612,7 @@ static void amdgpu_discovery_read_harvest_bit_per_ip(struct amdgpu_device *adev,
- 	struct binary_header *bhdr;
- 	struct ip_discovery_header *ihdr;
- 	struct die_header *dhdr;
--	struct ip_v4 *ip;
-+	struct ip *ip;
- 	uint16_t die_offset, ip_offset, num_dies, num_ips;
- 	uint16_t hw_id;
- 	uint8_t inst;
-@@ -631,13 +631,14 @@ static void amdgpu_discovery_read_harvest_bit_per_ip(struct amdgpu_device *adev,
- 		ip_offset = die_offset + sizeof(*dhdr);
- 
- 		for (j = 0; j < num_ips; j++) {
--			ip = (struct ip_v4 *)(adev->mman.discovery_bin + ip_offset);
--			inst = ip->instance_number;
-+			ip = (struct ip *)(adev->mman.discovery_bin +
-+					   ip_offset);
-+			inst = ip->number_instance;
- 			hw_id = le16_to_cpu(ip->hw_id);
- 			if (amdgpu_discovery_validate_ip(adev, inst, hw_id))
- 				goto next_ip;
- 
--			if (le16_to_cpu(ip->variant) == 1) {
-+			if (le16_to_cpu(ip->harvest) == 1) {
- 				switch (hw_id) {
- 				case VCN_HWID:
- 					(*vcn_harvest_count)++;
-@@ -663,10 +664,8 @@ static void amdgpu_discovery_read_harvest_bit_per_ip(struct amdgpu_device *adev,
- 				}
- 			}
- next_ip:
--			if (ihdr->base_addr_64_bit)
--				ip_offset += struct_size(ip, base_address_64, ip->num_base_address);
--			else
--				ip_offset += struct_size(ip, base_address, ip->num_base_address);
-+			ip_offset += struct_size(ip, base_address,
-+						 ip->num_base_address);
- 		}
- 	}
- }
-@@ -1474,18 +1473,24 @@ static int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
- 
- static void amdgpu_discovery_harvest_ip(struct amdgpu_device *adev)
- {
-+	struct ip_discovery_header *ihdr;
-+	struct binary_header *bhdr;
- 	int vcn_harvest_count = 0;
- 	int umc_harvest_count = 0;
-+	uint16_t offset, ihdr_ver;
- 
-+	bhdr = (struct binary_header *)adev->mman.discovery_bin;
-+	offset = le16_to_cpu(bhdr->table_list[IP_DISCOVERY].offset);
-+	ihdr = (struct ip_discovery_header *)(adev->mman.discovery_bin +
-+					      offset);
-+	ihdr_ver = le16_to_cpu(ihdr->version);
- 	/*
- 	 * Harvest table does not fit Navi1x and legacy GPUs,
- 	 * so read harvest bit per IP data structure to set
- 	 * harvest configuration.
- 	 */
- 	if (amdgpu_ip_version(adev, GC_HWIP, 0) < IP_VERSION(10, 2, 0) &&
--	    amdgpu_ip_version(adev, GC_HWIP, 0) != IP_VERSION(9, 4, 3) &&
--	    amdgpu_ip_version(adev, GC_HWIP, 0) != IP_VERSION(9, 4, 4) &&
--	    amdgpu_ip_version(adev, GC_HWIP, 0) != IP_VERSION(9, 5, 0)) {
-+	    ihdr_ver <= 2) {
- 		if ((adev->pdev->device == 0x731E &&
- 			(adev->pdev->revision == 0xC6 ||
- 			 adev->pdev->revision == 0xC7)) ||
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    | 10 +++---
+ drivers/gpu/drm/drm_atomic_helper.c                |  2 +-
+ drivers/gpu/drm/drm_atomic_uapi.c                  | 37 ++++++++++++++++------
+ drivers/gpu/drm/loongson/lsdc_plane.c              |  3 +-
+ drivers/gpu/drm/mediatek/mtk_plane.c               |  2 +-
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c         |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |  2 +-
+ drivers/gpu/drm/tegra/dc.c                         |  3 +-
+ drivers/gpu/drm/vc4/vc4_plane.c                    |  2 +-
+ include/drm/drm_modeset_helper_vtables.h           |  7 +++-
+ 10 files changed, 48 insertions(+), 22 deletions(-)
+---
+base-commit: 64179a1416e1420a34226ab3beb5f84710953d16
+change-id: 20241002-tonyk-async_flip-828cfe9cf3ca
+
+Best regards,
 -- 
-2.25.1
+André Almeida <andrealmeid@igalia.com>
 
