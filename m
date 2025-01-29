@@ -2,106 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44EA6A2190D
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jan 2025 09:29:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3F1A2193C
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jan 2025 09:47:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C00810E2C2;
-	Wed, 29 Jan 2025 08:29:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6970D10E756;
+	Wed, 29 Jan 2025 08:47:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ebq8u23T";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ewe8EadN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
- [209.85.216.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E50E10E2BA;
- Wed, 29 Jan 2025 08:09:25 +0000 (UTC)
-Received: by mail-pj1-f52.google.com with SMTP id
- 98e67ed59e1d1-2ee51f8c47dso9129353a91.1; 
- Wed, 29 Jan 2025 00:09:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1738138165; x=1738742965; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ye4JntaIkIF7a+w6DTbO0kIk9MLJPFfMjPP4/iHk7/A=;
- b=ebq8u23TuRkn8CC6IhZNDLrV58lsc1q+MetDloLDjsmHUezseSQC7k76j08PvP4/6k
- HLq3uZG4KheMDwm0ru7tQDM+WOZyTQSUlhBPHO2gtrFfM64fxcfZ4jbwdvcKs3cttxUw
- dg7Uh6YbmK0ecJPhzNw3fBPapwtP2kE7O7RgemB93CCxr+Cfba736KOC/1WIwbVWtTng
- 8HxygpDqHw1KjRCG0hxEq3CQdYvOk5uF8dVzY9UvO2+YsCj33WS1QJONJ61D6JTGQWXe
- ppfTncsHH9jW4m1JMjXCsbtWtBns6MUvk8bM65jJLZ40WdvsTPnljIa8Qpuwuu5PbM/w
- +m6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738138165; x=1738742965;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ye4JntaIkIF7a+w6DTbO0kIk9MLJPFfMjPP4/iHk7/A=;
- b=QPqlf4E7KN5zsGJcjNjgVdlxeK/tsuIH1217F9mH9skW6NH0CdMY+bKD8RnNvtF/aB
- qMYNErz35MiawQ11Hqo+j4b0jFIrb8O1Nlzf7Czb/VjZUJIu17Xcak+ZXu4/nE7hXFM1
- pCFF1AqM2nFoZ/3KYoqXV1qjyfGJxS1St+seTnqv0qwBu1EflSYfPymbRkq8YY2G4i2B
- sM4kk1GdhFkskU+1CMTyBYhGnEFkpSRDnXd1jLGEchEdJxO4AcuQ0Jg+PBiLzHcB2Qlq
- rYvxKGHe3zbKOO4eD2HRtZzsa8TNaGmuOFnESo9rNT4pr4fp3laMQkhwyqSF1ljNPs6K
- m7XA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU2lTvc4KujnjwuknReOVr96i1YdP/YihbcfT5MYFSgwL262GUinil/rBgfTbL66vaZC0okbU6J/pF2@lists.freedesktop.org,
- AJvYcCUI7UiMIGjOjGAstU5ctaIg1CbbKTpVecS1aHx0006hRoyG4eIeqZ2J1onIf8uDEeC4rLXIitCUSg==@lists.freedesktop.org,
- AJvYcCUjQ+0KxP7O/qvapaNotZgbXcCCHhJVrle6w/3YFOaCEXnbp/AiQd00J+BNcO9cHYf1wy9SiyZr3QU=@lists.freedesktop.org,
- AJvYcCVdEwTnA4hp1bdBfdBASLes3BnIcJsiZljp4VGbEyieGMkS67F1cvd9S2Dg45x1VlBgf/goOg==@lists.freedesktop.org,
- AJvYcCVeR2Okr1zThxSGF4hw0o+atgBf6T7UP7C3u4khCi1E9X43eysQ7fAPA2Ooy3dodbqRX6TcI2npcGkm@lists.freedesktop.org,
- AJvYcCXCj2m0TaxdK+Sm20gX5w3Za9fai63COrEn3n6dJdn2E1elNnleRDujCBrzxSATofvCDsxVlXgx@lists.freedesktop.org,
- AJvYcCXV21nCc16JefuhhkcodwNi6204d/JbEwMqvDFYWw7cP+pl5nUYn0zbbORIy9RgLl5NoChHV89wOQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YziNfHVOPWzBJ/tOAJvzc2gUo5oda9KOtoKOHKaaQCMfKgwFgzQ
- 58OAe4JuVirEe6oWD9tkcDsrykPG3oqv6AHuN+TLm/qvCGC/jarmsMFYyYamdDDDO1iZJX/PPYt
- bUueWczw6C6zd7VJRitZSm6AvrdU=
-X-Gm-Gg: ASbGnct6zFfDgA5VfVDCWKevonTnwC2DJj1lAeO7tAyhP2yKDw5TWZEASWdHE28PeHx
- /T32c8GBbEwuhFopG8nXLZnhQug6+z+pU5FjmbjbwIisvFf22aCA+folYlt2+bZiXyrvLXkk=
-X-Google-Smtp-Source: AGHT+IFL/+Ix8PJzhRPGezz0BS/aPmM+Mu6yVPfAQpJZPpemGpHRcd0USeaMTeXX7cwj2kNE9lfyVb+Qeot2NIY7ikQ=
-X-Received: by 2002:a62:f20c:0:b0:72f:d7ce:5003 with SMTP id
- d2e1a72fcca58-72fd7ce50abmr734741b3a.22.1738138164688; Wed, 29 Jan 2025
- 00:09:24 -0800 (PST)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2080.outbound.protection.outlook.com [40.107.93.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59D6310E756
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jan 2025 08:47:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nUoumkyzkp6bT3PYz+/7CDG9YnFB7VIHRF4+tBQaWITuDp+kL4oxOZcuhWgWwP/3pUt4BdDEBSgZYlCEFT9g93iQT9IN6FJRIdTg+SkVee905gbgRvTYky17HV1xjb9BWgt42HcDZ+0gB4xfCQHf2e6bFNl/MgMIYOMq/36gyRn0Ebk7BvO7IS6L+7Hfm3t8qAZRgq/SYkeVbULYPSBV2vo+uskpwz3Q6Mp2lCS06hm71Zw5qzgOEH4O/BYGxz2hxxP0W34XDfGyM8lexJIXvNewJBeYJ0IgWdje/Kn+GIQtef2n2g0F0gn337AUKAoHvhPpQSFi1lKbcm0nlCm47w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bVP47ZYen4tkLfP/LhovRWp9iEem/r5639FSjcNFNDQ=;
+ b=Gj1N4v0LfqJ+g74RhXxVRGmksr5CB7BoigPiVI6O3l5sG5heg/qL3UmUZ4u5F7i/MJ5RSX6s6iqGIkp1QGD/lNHhS0zQxvS4SGrkCmo/32FoS5xKFxVzZ5wDDc6LD0zERM3ja8jWCVG6MOKmW3wQd04BBOjW0x7GaqpzduHm+Z2wOckMdtTRH4v/c9kZnFKnKHN7q2xXzIiX5gb1yEzUErnWKUHeGTGbXBL0c5XRr5SxATWPm5TrNBMtkGy8/QzekEQZzrMR8QOPk3+5pCDd2f/9zl7N+wj7oU2wHrwrAz+4KHcSStOlmiNNa8xnf/SxgnsUhe8kg1AF1Em2bDDzpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bVP47ZYen4tkLfP/LhovRWp9iEem/r5639FSjcNFNDQ=;
+ b=Ewe8EadNrZfRKHdhTX/vwCROC1Ofr8+GI0Xom9vTQqu/9zc/saNtwfEn8oJJFhwDH3ofIGnbu837N1cdbuMRjEhdp1PUSWc6AJXD5vhf4lNBluaywI1GkFgnLdnyrCxswmopufFf5fuWYOA3Bx1J7fsnNM38U9wb/S6SzIC2BJU=
+Received: from CH2PR10CA0014.namprd10.prod.outlook.com (2603:10b6:610:4c::24)
+ by SN7PR12MB8132.namprd12.prod.outlook.com (2603:10b6:806:321::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.17; Wed, 29 Jan
+ 2025 08:46:58 +0000
+Received: from DS3PEPF000099D9.namprd04.prod.outlook.com
+ (2603:10b6:610:4c:cafe::e3) by CH2PR10CA0014.outlook.office365.com
+ (2603:10b6:610:4c::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.22 via Frontend Transport; Wed,
+ 29 Jan 2025 08:46:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS3PEPF000099D9.mail.protection.outlook.com (10.167.17.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8398.14 via Frontend Transport; Wed, 29 Jan 2025 08:46:57 +0000
+Received: from sathish-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 29 Jan 2025 02:46:55 -0600
+From: Sathishkumar S <sathishkumar.sundararaju@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Leo Liu <Leo.Liu@amd.com>, Lazar Lijo <Lijo.Lazar@amd.com>, Sathishkumar S
+ <sathishkumar.sundararaju@amd.com>
+Subject: [PATCH v2 0/9] drm/amdgpu: Add jpeg devcoredump support
+Date: Wed, 29 Jan 2025 14:16:34 +0530
+Message-ID: <20250129084643.507727-1-sathishkumar.sundararaju@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20250128142927.103290-2-phasta@kernel.org>
-In-Reply-To: <20250128142927.103290-2-phasta@kernel.org>
-From: Christian Gmeiner <christian.gmeiner@gmail.com>
-Date: Wed, 29 Jan 2025 09:09:12 +0100
-X-Gm-Features: AWEUYZk3uXItrn_mY6Y0468bmDyISJSZEOiGbSbsZd4jSdwj-_i30tdpr-sVXDQ
-Message-ID: <CAH9NwWcokvvJSRQ_kbV+jiH+ag-SA+Y87n6Bw34s8GP3vop4og@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/sched: Use struct for drm_sched_init() params
-To: Philipp Stanner <phasta@kernel.org>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>, 
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu <yuq825@gmail.com>,
- Rob Clark <robdclark@gmail.com>, 
- Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Karol Herbst <kherbst@redhat.com>, 
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>, 
- Boris Brezillon <boris.brezillon@collabora.com>, Rob Herring <robh@kernel.org>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
- Matthew Brost <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>, 
- =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sunil Khatri <sunil.khatri@amd.com>, 
- Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, 
- Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
- Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- etnaviv@lists.freedesktop.org, lima@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 29 Jan 2025 08:29:25 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D9:EE_|SN7PR12MB8132:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ce57cc8-2885-47e9-4ec9-08dd40417d7a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dVZRL3k5aDZ5Zmhwak5tWXVMSkQwcXcvM1hzR3RzMEttRFpxL3JYT3MydXYr?=
+ =?utf-8?B?blV6dHJQQXg2WVA5ZXpSdVlJNGVNY09zbGQ0VURTVUdRNUdYMGlacVZnZDlI?=
+ =?utf-8?B?aldKUEwreEFjTldlRXREeVhIbnJQc3JBcjNnbFY2bW4xMlFkdGY0NTVpS0hX?=
+ =?utf-8?B?TSs5SzBmMGdHKzQxaXZrNTBuaGlldnlOcDFocFRNZzFxQUVhOFNOZm9oYU5B?=
+ =?utf-8?B?QXQzZUJnQUlLOWpuNXNoWUhRS05KekwzRkpnaHhoZnZ3RmNST3RJUm9YYVVO?=
+ =?utf-8?B?TUw1TWxNTnI5YVJUZHdHaGZsRjZTOEQvZmVnUnNIU2Y2aWJ0bTJHOUlMdG1Z?=
+ =?utf-8?B?RjREcXpwOGFLS3RpRGlHdDVsbEtzMmpCQWx6OVd2TjRWU1FCRmlzODdKbEhP?=
+ =?utf-8?B?MnZrcHlJaFFERFZzL2Y2eGVKbGQ5bGczaGZMQmY5R1I1WHNlZkRHbTJCeUto?=
+ =?utf-8?B?ZkwrTkN6YkVlR0dsZnZacEpBWEVXdVM2dkJYaS8rNDNTWlAzZjMvQ3BIWm1a?=
+ =?utf-8?B?UmtJUS9IaUxyN0ZMQ0NnMWxBZjVsNHl1SFV0ZUlzNGZEZ0t3S0tpRUtMWmgz?=
+ =?utf-8?B?Qndlakdka2s3NEg1Z0NBNnBXQWM4ZUZVa2M1eStxa3NGaDVTUHl0Ykg3MGRo?=
+ =?utf-8?B?NUhIa05xOUMwS0tHcFBUQnpTd3JUSWszR2gyMGJjMG9PdGlwTDJBZExXZm5l?=
+ =?utf-8?B?N2MxMmRjNlJ3bmp4UlA5bEdXcE82UlRTT0EyelRzQVN3TmlyL2ZjaUcvVjY2?=
+ =?utf-8?B?QlV4Rlp4TXVmUTF3K0JoZHdBT2EzdTJzekY2QXgyNHdMYXFmenFTVE4ySkd5?=
+ =?utf-8?B?dDdwMDBqKzNqcUR6d2RaWmFWR0lQOU80eDRETlVTN2FRRmIyVWtWWjNPZzNp?=
+ =?utf-8?B?Nk56emFCeGNxa3VZNjZVcnp2U2JPbWFVbTdyWFZlMEtHRFBuOHR6ZStHTmFT?=
+ =?utf-8?B?RzdQOUtHZ2FmVEJ0TEZCdUxCZlIrV1hKWXBqbGpKV1NJYlFHWGR5ZkxQb2sv?=
+ =?utf-8?B?UmpIclJ0WWgvbWhjZkZSYTVMUkhwUW1UaUxGejk5VnY1SGsrdzZDRXk4MDc5?=
+ =?utf-8?B?L3pZNXArNTEvY29wWDZyY2lKTFhPZ2g4QmlYUVErMVBPWVZmeUVHQ2JIQUsv?=
+ =?utf-8?B?NVNObC9NdFFMaUZPU2xJcDlJaXZ0OWdWSnlTOGRHUFNmamZLUnc3N2NxaUE1?=
+ =?utf-8?B?d3ZmQTJxNTl1SWNQYTJuTGRNbFp3eCsyWDFxcFZLaTdYRFVKb1h1TFFaQWEv?=
+ =?utf-8?B?UjdvZUNHYUhuT2RZamovMVFVdFdYNW8zdk03WWFVWnptMHg1Q2FCMjQ1MnNp?=
+ =?utf-8?B?UFU3eGxjNWFFcGM3ZXJVVjVSR2JwWkVFT1FJY3c0NzY2YUV6WnZ4cFlhSnR3?=
+ =?utf-8?B?ZDBKWnFtVG1HVXlwbkJlbEVyamJnM1Z2V29QMmpsOXJxYVhvZmx1SkpKL2tZ?=
+ =?utf-8?B?a1YxNSsvSkVUdnVReWZFM0tOZzVzRzNKWjhBQysveG9jZWpsL2FEamh4OFlU?=
+ =?utf-8?B?cTBzRTA3OXEvVHpacDZxVHlSekpRWUcrYVg1T05lbmFrUDd5aEFJOWQzbkY5?=
+ =?utf-8?B?aHpQQlNlWHZwcUxLWFVRMFNZR05WcWQ2R3lheVhqZklTVGFlaVQrSnhaa2dz?=
+ =?utf-8?B?aXlFQnpDcVkvNGsxeDdYeVNTK0h3N1RzNFRrTzBZTXYxTlRnZHJjMVR1T3dV?=
+ =?utf-8?B?ZitTL0F5Sk5oVXE2WEpUUklwOHFXdmt6bW54SDJ6OHk1UENzemtwODV3a1Vq?=
+ =?utf-8?B?Z2pJV2FHcGtRMzFtaldmOUN0YTVmVTR4UjBMbytkTzJqUGhUay9uSTZSM040?=
+ =?utf-8?B?ZEJCSW5XTC91R29zRU1wMy9GQUdtWUFLQU9UZElLZ3hRVmR6blJMSUV3RS9y?=
+ =?utf-8?B?aTJEbTJWNXptUFRaMHYxVVpaZDBWSFVLTndQN0hhbS8vSm9KS1pyUDRFZkJE?=
+ =?utf-8?B?d3doYmxyQjcycmJmM2xjakM0TFZwVnhqY3lmem95QU82MnRPcmhZVEMzVFJB?=
+ =?utf-8?Q?RRNfeEqOHKelOMVZQfB1TRjwqNGJbk=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2025 08:46:57.7604 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ce57cc8-2885-47e9-4ec9-08dd40417d7a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D9.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8132
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,51 +139,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
->
-> drm_sched_init() has a great many parameters and upcoming new
-> functionality for the scheduler might add even more. Generally, the
-> great number of parameters reduces readability and has already caused
-> one missnaming in:
->
-> commit 6f1cacf4eba7 ("drm/nouveau: Improve variable name in nouveau_sched=
-_init()").
->
-> Introduce a new struct for the scheduler init parameters and port all
-> users.
->
-> Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> ---
-> Changes in v2:
->   - Point out that the hang-limit is deprecated. (Christian)
->   - Initialize the structs to 0 at declaration. (Planet Earth)
->   - Don't set stuff explicitly to 0 / NULL. (Tvrtko)
->   - Make the structs const where possible. (Boris)
->   - v3d: Use just 1, universal, function for sched-init. (Ma=C3=ADra)
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 18 ++++--
->  drivers/gpu/drm/etnaviv/etnaviv_sched.c    | 20 +++----
->  drivers/gpu/drm/imagination/pvr_queue.c    | 18 ++++--
->  drivers/gpu/drm/lima/lima_sched.c          | 16 +++--
->  drivers/gpu/drm/msm/msm_ringbuffer.c       | 17 +++---
->  drivers/gpu/drm/nouveau/nouveau_sched.c    | 15 +++--
->  drivers/gpu/drm/panfrost/panfrost_job.c    | 20 ++++---
->  drivers/gpu/drm/panthor/panthor_mmu.c      | 16 +++--
->  drivers/gpu/drm/panthor/panthor_sched.c    | 29 +++++----
->  drivers/gpu/drm/scheduler/sched_main.c     | 50 ++++++----------
->  drivers/gpu/drm/v3d/v3d_sched.c            | 68 +++++++++-------------
->  drivers/gpu/drm/xe/xe_execlist.c           | 16 +++--
->  drivers/gpu/drm/xe/xe_gpu_scheduler.c      | 17 +++++-
->  include/drm/gpu_scheduler.h                | 37 ++++++++++--
->  14 files changed, 206 insertions(+), 151 deletions(-)
->
+This patch-series enables jpeg devcoredump support
 
-etnaviv changes are
+V2: (Lijo)
+ - add amdgpu_jpeg_reg_dump_init() for memory allocation and reg_list ref
+ - use reg_list and reg_count from init() to dump and print registers
+ - add amdgpu_jpeg_reg_dump_fini() to free memory and clear reg_list ref
 
-Reviewed-by: Christian Gmeiner <cgmeiner@igalia.com>
+Sathishkumar S (9):
+  drm/amdgpu: Add a func for core specific reg offset
+  drm/amdgpu: Add helper funcs for jpeg devcoredump
+  drm/amdgpu: Enable devcoredump for JPEG4_0_3
+  drm/amdgpu: Enable devcoredump for JPEG5_0_1
+  drm/amdgpu: Enable devcoredump for JPEG4_0_0
+  drm/amdgpu: Enable devcoredump for JPEG4_0_5
+  drm/amdgpu: Enable devcoredump for JPEG3_0_0
+  drm/amdgpu: Enable devcoredump for JPEG2_0_0
+  drm/amdgpu: Enable devcoredump for JPEG2_5_0
 
---=20
-greets
---
-Christian Gmeiner, MSc
+ drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 80 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h | 10 +++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c   | 24 ++++++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c   | 26 +++++++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c   | 24 ++++++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c   | 26 ++++++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c | 98 ++++++++++++++++--------
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c | 27 ++++++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c | 51 +++++++++++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h | 61 +++++++++++++++
+ 10 files changed, 393 insertions(+), 34 deletions(-)
 
-https://christian-gmeiner.info/privacypolicy
+-- 
+2.25.1
+
