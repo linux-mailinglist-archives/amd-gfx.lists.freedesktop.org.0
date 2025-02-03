@@ -2,45 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 540E9A25757
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Feb 2025 11:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9938A258BE
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Feb 2025 12:58:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3E9010E476;
-	Mon,  3 Feb 2025 10:51:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D1E10E495;
+	Mon,  3 Feb 2025 11:58:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="QvpqXNz0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NZUXGOc6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8404710E32B
- for <amd-gfx@lists.freedesktop.org>; Sun,  2 Feb 2025 22:07:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
- ; s=bytemarkmx;
- h=Content-Type:MIME-Version:Message-ID:Subject:From:Date:From
- :Subject; bh=h8D2rr22gOJ1tOKVrss/WOcI0m3aUBmqqa5JhhAL93Q=; b=QvpqXNz0HbyxCRmU
- kOdLa/7LCj1Z0Droe2a5yrxXp0n7QFKXHr03kleZCZPpFJYLWldVzO9RSCoYXhe2Gw4KbhlrEf+Ct
- D9tYwR85HU24p7+OJA6ocwCAwtXEAIxpqow8S4lkbaRX1FupzkBfY6jAwhwMEY1TF2fjFPmr1dSAr
- pscIlNxvpCFRfC1pSvhNycYB0Az6sMpZKIBxgNbLBeijm4wjdg+Fy3uiq345S8gXnvaV1doOs4bzm
- BuWTSm8pV+b+LZq8GpzWjkNUoIE+bqdSHZhVu08H/0LLTgQCCF+XCmcppjHI4PmIZWj+u+b4AOJeO
- aAN7azeEkWKYMcjFgw==;
-Received: from dg by mx.treblig.org with local (Exim 4.96)
- (envelope-from <dg@treblig.org>) id 1tei7s-00D9U2-0t;
- Sun, 02 Feb 2025 22:07:36 +0000
-Date: Sun, 2 Feb 2025 22:07:36 +0000
-From: "Dr. David Alan Gilbert" <dave@treblig.org>
-To: Charlene.Liu@amd.com, alexander.deucher@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Subject: hubbub/hubp, Missing struct assignments???
-Message-ID: <Z5_sqHaGBPIqvWk1@gallifrey>
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D251E10E495
+ for <amd-gfx@lists.freedesktop.org>; Mon,  3 Feb 2025 11:58:49 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-435f8f29f8aso31653895e9.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 03 Feb 2025 03:58:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1738583928; x=1739188728; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=4uhajgKuIKNXhznhjeXP+/fqZXJW6Pdme/EXXkFG0+c=;
+ b=NZUXGOc600pCjylbq7gWJfeiqVd9RSjbL7DmxIYvi8jeUo0lxpHh7qNgXsjbQOnhYd
+ tGSmeW7qIiaBT2QgL9ARXfyreep7dGbRPBsPKAfXe5+uexWsc8pYABHUoHyHln8PgKHD
+ 6+ICAZU6mIl/1521oQq9kAC+uq1TyFNUIehxGLeNZLJC9BJ2OWVrA1yKvn4vUxieGuP2
+ oFhDMjiTgEodERQe8dt3y7q1JKQs12Z3SXzjrDb5BUUtwhcYsE7+hlPBSGyMaalY/Ues
+ 1ktQ4LsJTYFhVKi+ojLiU8qKjkC1/6nBrGo6J3D9pLEHYabfCD7VGyuamkgiDzAFw3Im
+ LIAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738583928; x=1739188728;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=4uhajgKuIKNXhznhjeXP+/fqZXJW6Pdme/EXXkFG0+c=;
+ b=nECXMcjs3leiuszrQQ0ruphkIrN2mlxR2Pi7uxybRBKSvqVzk81teWl8pcusD88g2L
+ nMMpJ1qnUKo8DeuOj62PNZ7SYt3/KobWFL7uWuvrygj2SZrda4EzVevOMVXx1kA+Vt1k
+ KnRpVJAXJhRXjR3y0jMTjc/iMDrId1oerz8T8tuRAFOmU76WSldo72a0S4RWYazw2MTs
+ MYY+cdUPx0qk7Zb0ijgyVLpyyRSNHKo/Pd4lFB/wBkASuiFsaixvHJ19TYfaU0zD2uTI
+ 2lUZPn+rlo4YexfyNQPvK1RIISP6d58nz+pWqysuuR67AzKeBbWdbHBMYJsSXRwVy9+y
+ G/gw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXRKDfyypCvs6F35rqP2hfxJkj2dwgepl/xjyPbkOgkoifVCFu++ionrwk1Ut5TvucRHdP2jtnE@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywfc0hfkQlZVOau5jAvqX7JnEVKO+7+oYw+neByrTNts5NKICuo
+ 0D04QJbCfCvJh/6CWD+AehHzrwYo6Hd1XdFQeKFc+OyqKDulgOJM
+X-Gm-Gg: ASbGnctyV4KsWDNDP7Fi0L6PwGIwmWFz+hsc4G4mudLLegHBfNocEoPWAAT++wuyfRe
+ iLP0VUlzMJ/STnGHWiHlrZzWq5VNCKXav6g9skfZ4QIS5UQgEBcmsA+55qGU4miEoBjUVCrVuO2
+ 57NcER/gH+w1aVJwRdTzokm1YzCnM9+Bc9LGj2N22oiW72RuryNbr2fGMaTZaMzbeJFBzQOPn39
+ bCrltbCGe/8s292VG3Y7bligRVngx+eSoYEt/N0HZ7xbEgOhufogjlSVHsXP3RALB2wG1YD95nG
+ R3z9bRTWGJwuLlhxwQyMrL4ntJE=
+X-Google-Smtp-Source: AGHT+IFeeCcOOqIfZYZMe0Np02zNrQ13D11CTcJhcAATAx0znv05m/LDYdQV+DZ2spVOUk4/Ozudag==
+X-Received: by 2002:a05:600c:1c99:b0:431:5044:e388 with SMTP id
+ 5b1f17b1804b1-438dc40be3dmr168206465e9.22.1738583927987; 
+ Mon, 03 Feb 2025 03:58:47 -0800 (PST)
+Received: from able.fritz.box ([2a00:e180:15c2:700:903a:ba89:5ce0:8312])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-38c5c1017besm12298928f8f.26.2025.02.03.03.58.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 Feb 2025 03:58:47 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: srinivasan.shanmugam@amd.com,
+	amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+Subject: [PATCH 1/6] drm/amdgpu: grab an additional reference on the gang fence
+Date: Mon,  3 Feb 2025 12:58:41 +0100
+Message-Id: <20250203115846.13142-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-X-Chocolate: 70 percent or better cocoa solids preferably
-X-Operating-System: Linux/6.1.0-21-amd64 (x86_64)
-X-Uptime: 22:02:32 up 270 days,  9:16,  1 user,  load average: 0.02, 0.06, 0.02
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Mailman-Approved-At: Mon, 03 Feb 2025 10:51:05 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,19 +87,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Charlene, Alex,
-  My scripts spotted that all 3 functions added by the commit
-  dbc2309cac2a ("drm/amd/display: add hubbub_init related")
-are uncalled, and instead of deadcoding them, I wondered if it's
-actually a simple bug and they should be assigned somewhere.
+We keep the gang submission fence around in adev, make sure that it
+stays alive.
 
-That patch also added a member dchubbub_init to struct hubbub_funcs
-so perhaps 2 of them should go there, and hmm there's dcn32_hubp_funcs
-for the other one???
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Dave
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index d6b473217c8b..aaa8f9f7b6b2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -6753,6 +6753,7 @@ struct dma_fence *amdgpu_device_switch_gang(struct amdgpu_device *adev,
+ {
+ 	struct dma_fence *old = NULL;
+ 
++	dma_fence_get(gang);
+ 	do {
+ 		dma_fence_put(old);
+ 		old = amdgpu_device_get_gang(adev);
+@@ -6765,6 +6766,7 @@ struct dma_fence *amdgpu_device_switch_gang(struct amdgpu_device *adev,
+ 	} while (cmpxchg((struct dma_fence __force **)&adev->gang_submit,
+ 			 old, gang) != old);
+ 
++	dma_fence_put(old);
+ 	dma_fence_put(old);
+ 	return NULL;
+ }
 -- 
- -----Open up your eyes, open up your mind, open up your code -------   
-/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
-\        dave @ treblig.org |                               | In Hex /
- \ _________________________|_____ http://www.treblig.org   |_______/
+2.34.1
+
