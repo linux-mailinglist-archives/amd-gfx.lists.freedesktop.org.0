@@ -2,120 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29962A29951
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Feb 2025 19:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 212A4A299E3
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Feb 2025 20:13:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31FC210E3C4;
-	Wed,  5 Feb 2025 18:41:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 730A210E1DA;
+	Wed,  5 Feb 2025 19:13:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="M/3xRfkt";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PQUwFacZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2060.outbound.protection.outlook.com [40.107.93.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 063C310E387
- for <amd-gfx@lists.freedesktop.org>; Wed,  5 Feb 2025 18:41:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ic7FuXcPmbdNGG/ij5rFNu4ViuIOlyesCVokOiKwjN6MlZaIz3MK6MlhI0gb3/xGGrR/RdYZnIzLNWhZxTwY4+QvWBhUreL3Ha6R0aOlwIbkjpYEOoQYzpJMfGc7100FEI6NJmk///656f3ETfSMphIeA6GBn4chwZ7z0zw+YqGZkZ2zlvcQvx8VreOkLf/xajC49t1RqUZ0Tms5ScX5Fi6yTnH4IGQhUnlPG7Y/EQUC1d2Tj6k9hAtM7t76UosMDYzsOKGEvvKmI2V5RDJ9wWY2oYz6ENav/e8Z8U1lM0U/QoY2bXhS6ss63VEJVQhZXN09cV5dUBGSWijRqSg5Iw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ftx9QTIvUIQqXPSehnq6/M3/noMmzN4L1324zP9ter4=;
- b=r9n+ptTVTx8iiecnsF3f/++2Vor6nmRGZhoeAysjA7b7fCmqUtf72AM27FU6xEOV/sf8OlKHXRGnr2mNj070e3CA3mfXFH/CZPyoBo1SxUvSRi467a5lUo7noQ+1fcvaPJaii1yDHx/stSTeRbHCQrk3wDCwibp0FSu3HpNOZ0IW/b+3plYItKd7DIxdFerZclXs16Vc56mmsxhY1AOJDCVK3f4BN8/ju6n5Uupd7ixwfDiapawXn6sGERqt4omupWjJtBjbuzxCamLW+bNsD4EnKcwJlZHR9ZOs3FGlGjV8O4V74YmOuZryv/SHGW1KKJpGz7dxXtHCJPnOKub/tA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ftx9QTIvUIQqXPSehnq6/M3/noMmzN4L1324zP9ter4=;
- b=M/3xRfktnlKQJQzwsNR1jans3bCZJPr4qD56cUReeAmiYqFJ5Hsg/wz+uDs9UZiExVlkaKKQDVGJ3sPtHBNLJtxpX/k8R/vyWaDqJcP2Aw6aKe9+5W/uOi8qVU+IjqzmBcS3r4W1Qumtc66DmlP3aCAK/ca5gu2sRXl4sg+wDsw=
-Received: from MW2PR16CA0052.namprd16.prod.outlook.com (2603:10b6:907:1::29)
- by CY5PR12MB6382.namprd12.prod.outlook.com (2603:10b6:930:3e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.23; Wed, 5 Feb
- 2025 18:41:10 +0000
-Received: from SJ1PEPF00001CDE.namprd05.prod.outlook.com
- (2603:10b6:907:1:cafe::a0) by MW2PR16CA0052.outlook.office365.com
- (2603:10b6:907:1::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8114.30 via Frontend Transport; Wed,
- 5 Feb 2025 18:41:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF00001CDE.mail.protection.outlook.com (10.167.242.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8398.14 via Frontend Transport; Wed, 5 Feb 2025 18:41:09 +0000
-Received: from shaoyunl-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 5 Feb
- 2025 12:41:08 -0600
-From: Shaoyun Liu <shaoyun.liu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Shaoyun Liu <shaoyun.liu@amd.com>
-Subject: [PATCH] drm/amd/include : Update MES v12 API for fence update
-Date: Wed, 5 Feb 2025 13:40:55 -0500
-Message-ID: <20250205184055.104040-1-shaoyun.liu@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
+ [209.85.214.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA51310E1DA
+ for <amd-gfx@lists.freedesktop.org>; Wed,  5 Feb 2025 19:13:50 +0000 (UTC)
+Received: by mail-pl1-f177.google.com with SMTP id
+ d9443c01a7336-21bb2c2a74dso434715ad.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 05 Feb 2025 11:13:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1738782830; x=1739387630; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4HrUYCovtZ7DPFvqjP/ux7vAwyc1nNJz8Gk1KCgxCwg=;
+ b=PQUwFacZcelPxC42Nncanm5Y6zhxOsRJiU1QQqDzbhmGgs4/SSu8iKmWqRxfLeqNwN
+ PFKmq9kA1a0Gt06Wah52NzvYvF4iJOK329/H+UhDRSVCR+GbkAZQmQemHy+ypjitiE9B
+ g5DjIoWDHZzpQPt+g6CCuIu3bDGrYwMuGboWGl0ciPna8omgyCfIzJO0TPQLdFCjVZWE
+ Lfw+LG6bJRbMMmd+yLTb3WzbL/mAtCz0vCgeN0lPWRC1tQUnF4mx78wdW4rfQ3vmeLZE
+ 0dX2ArP8qLSpWg+lNr6NJ9GfoPu2dRoEzrqpI1qHwXapjuVKwVpEJTvkOBCQPtuQxw1x
+ sR1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738782830; x=1739387630;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=4HrUYCovtZ7DPFvqjP/ux7vAwyc1nNJz8Gk1KCgxCwg=;
+ b=qxBWkOXOhTvgYzkltV0Z50Ia9kGNpOzpLd5WQsw1BVQxM1YBoM7uEAaqytC27QOs8c
+ 0SdymNPzRYY1nC4bY6XBH0s/iaoZJZCYgC+8Scsym5i8jOlSLZwbFhHXoiGUdvrvh6Ge
+ L8CAMJjrltvkFOW/fJjZlUAZMVFRJpVs1c+yN2Hvz1ZtHcv1OvKPTak8ve3RiXw+DW6F
+ h8QiO30hlx5697F/s25NbX8lhxb/sXzQ1jCtDULagjp+7Uos+6rayT3mX6qgxvdry7jN
+ McoBMD7OBzSN9TCdEXoAbARB/Yjt+zNbTgkW6ykw8kyYAxEcjaBg3jvzE9FQzvGjIKCj
+ aisQ==
+X-Gm-Message-State: AOJu0YybkHIPrQEF6zG2p4xF7qYCQP2d5a2SMXa5RAjeVl+FL3ZJRivK
+ 5Swap6Q2gzJvfxn88/kv8HWauX/nDSANQK+ol0T94O58p4vYnSt84KLBM0tqtyGJXX61GDBDKh7
+ 0WmlKLjNy4fniFFHG5wCQcatktnk=
+X-Gm-Gg: ASbGncsZVfHu9MyMdSPyQyBfqSnQWokZ3TONwumALBvXVzkhtn85y2CwzQNaeTGQN9V
+ 86yHTUfgkSay72g/D9ijMuRN/lkJ1R9IV9r/tZdepJjN7vGPZ3uIAWdtOO1CualRPrg4iTRN8
+X-Google-Smtp-Source: AGHT+IHS62c2sjG+AlScxRxCh1W9ojKBbfmE59zx+wKpyYugwB0bIKrpwnpT+9UOBsG1lg0g4a0fipSv0Dn5yF8hx38=
+X-Received: by 2002:a17:902:ce03:b0:20b:9b07:777a with SMTP id
+ d9443c01a7336-21f17ebe96bmr25888045ad.10.1738782830299; Wed, 05 Feb 2025
+ 11:13:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDE:EE_|CY5PR12MB6382:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7553c78c-cd74-43a2-0ced-08dd4614a890
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WTx0LU4aookT6yk0zL7K0FTL4/Iiklr9eMks4R53OizDco0u/Vzyaypf5r0A?=
- =?us-ascii?Q?GhFvWfUXpERhpqRiogQ9T61q5FsvgTDMqZLuoCNteWQ1GHOKWwaONPVV+n0a?=
- =?us-ascii?Q?jzTQbZbhb7OQynYAI7jYMKZpL/fR+DASpL1ZlNAnHs4n+m5fXjYzQmkeeDG0?=
- =?us-ascii?Q?RNEmuAhb7yi3A+ND6BaUb3XcixVIfLo/qWMTn5z3TouIx32gVOSCFibSanrx?=
- =?us-ascii?Q?Ep/Lufth9w0HPvafkNgPUbVQGpJBK5mZtItTr34HHVrop6iapob4xFCxiY3u?=
- =?us-ascii?Q?IdzWYWiONxN15VyTdMtGBP4VE9yRJ5a8CW1pb2SYfaNAKlbonutuA8BmqgSc?=
- =?us-ascii?Q?Ilt9wP2NMzcVg7VkZVYKOOG6dCRJNt/n7YtiAY2+ZF4MyJH1oGm9/c6wP63Z?=
- =?us-ascii?Q?aMxIspGzbJJqon/Hg8Xcja9sD2YFbUyeTVEUasFXicd7no5WF7zUEIa1lOmC?=
- =?us-ascii?Q?shcYqILgjoVIlACY6VLWQPZCxESYpR0mqib+9vOFAMcXmdS4dIT9Gp8s5Ihx?=
- =?us-ascii?Q?bj0dAW7UjTYKcip1aLMkF4uPQXqkK85QgXu1yp5lxI64GRoRnJJPtp8mUH1j?=
- =?us-ascii?Q?3HwlH62MXRXxqLW2zbqmodS37b4Upm0RC4vCLt8TIe4E7ufbPYAiJEDHJYHB?=
- =?us-ascii?Q?2l+2gGa9KAsZsjWtOf4bsvZaSUJnehErg36l37ZseMBCfYlnJcsNEYRDqXVG?=
- =?us-ascii?Q?X6pci8j0XMNoHXAK4ekiLyP5SGWJW+zJ+SXzVMWEUhYNFAFziBBQBnsZDZJT?=
- =?us-ascii?Q?0RUwYPhmjQ/xLYNIH2RSKZuaAQNk+lCleTeobxjwNxIEeMcTlxbUoKK3Xe/y?=
- =?us-ascii?Q?eknI0bZaE2TUJ+XvMg9UDeAjxiApJcMYfHkzz9OG5rgwrRjwySfK9smvU/Z3?=
- =?us-ascii?Q?fAewtAwS5FhnjbMbhMPbuoefgiRRy5JAZ3CcSi9Fi/NjAmiHA5MSXvt+qnO0?=
- =?us-ascii?Q?yAql4i/Duul7tflmhto+WgbMStQicQVerU2AeFoROF/HfeRJCa3Xd2NcvSqO?=
- =?us-ascii?Q?wh1otnlH0x5sNUNXfyv09d2D2omiWX+9DlkVBCc2adzROwFO2OA4gxpqfQw3?=
- =?us-ascii?Q?uSqk4DEU7l2QwWIstuRGsmtNgyXgrMeYjy1eaKR0foD+5MYZFfzuMQU0lWxU?=
- =?us-ascii?Q?NmKk/RNCGB3wp3hHourOlstmIlqL6Snd4eQFmGK2CEJouJFjp+qKuXlJjsC+?=
- =?us-ascii?Q?DLK47IXvayxTC21sIIxgoYXLSuw6nR7Qu2dbig+mu1WkKly6JfXMIBU1p+sj?=
- =?us-ascii?Q?Za8B+ftwMgiURRWBQ3W63hy9cdTS7QT21aAIp8eotj3mibgSHKFWa/BGy2cV?=
- =?us-ascii?Q?+Mk3uzzcbEGFm1k6f2ZBLn6F1mPKz2HgY8ZY2YUhb4g+M+vQXAvbYpmmJh2T?=
- =?us-ascii?Q?ixsCLQnqWyZoBN5mH7g9Q3MbUasHLqWyV7tqPhbY3hO790YyxdQe1eEV18fQ?=
- =?us-ascii?Q?ppyqn9YFPkiOJMHfRRLPWS3ma5OlTKaBP/lQtoDxAkoiATbRHw3Da8XYelbN?=
- =?us-ascii?Q?bzTBb4NK+nIf+Sc=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2025 18:41:09.6219 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7553c78c-cd74-43a2-0ced-08dd4614a890
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDE.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6382
+References: <20250205183738.103990-1-shaoyun.liu@amd.com>
+In-Reply-To: <20250205183738.103990-1-shaoyun.liu@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 5 Feb 2025 14:13:38 -0500
+X-Gm-Features: AWEUYZnNTm9MyInMU21qh6_4WvEyy95_G803GgO786q6lD5Ey9-XwnaZMG7NNtE
+Message-ID: <CADnq5_OXOegZQ=iHJanfAi6K7ZhpdzccLe3eNcP-ceBTzKCNFA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/include : MES v11 and v12 API header update
+To: Shaoyun Liu <shaoyun.liu@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,74 +78,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-MES fence_value will be updated in fence_addr if API success,
-otherwise upper 32 bit will be used to indicate error code.
-In any case, MES will trigger an EOP interrupt with 0xb1 as
-context id in the interrupt cookie
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Signed-off-by: Shaoyun Liu <shaoyun.liu@amd.com>
----
- drivers/gpu/drm/amd/include/mes_v12_api_def.h | 40 ++++++++++++++++++-
- 1 file changed, 39 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/include/mes_v12_api_def.h b/drivers/gpu/drm/amd/include/mes_v12_api_def.h
-index 1938150a1943..fb918668ddae 100644
---- a/drivers/gpu/drm/amd/include/mes_v12_api_def.h
-+++ b/drivers/gpu/drm/amd/include/mes_v12_api_def.h
-@@ -105,6 +105,43 @@ struct MES_API_STATUS {
- 	uint64_t api_completion_fence_value;
- };
- 
-+/*
-+ * MES will set api_completion_fence_value in api_completion_fence_addr
-+ * when it can successflly process the API. MES will also trigger
-+ * following interrupt when it finish process the API no matter success
-+ * or failed.
-+ *     Interrupt source id 181 (EOP) with context ID (DW 6 in the int
-+ *     cookie) set to 0xb1 and context type set to 8. Driver side need
-+ *     to enable TIME_STAMP_INT_ENABLE in CPC_INT_CNTL for MES pipe to
-+ *     catch this interrupt.
-+ *     Driver side also need to set enable_mes_fence_int = 1 in
-+ *     set_HW_resource package to enable this fence interrupt.
-+ * when the API process failed.
-+ *     lowre 32 bits set to 0.
-+ *     higher 32 bits set as follows (bit shift within high 32)
-+ *         bit 0  -  7    API specific error code.
-+ *         bit 8  - 15    API OPCODE.
-+ *         bit 16 - 23    MISC OPCODE if any
-+ *         bit 24 - 30    ERROR category (API_ERROR_XXX)
-+ *         bit 31         Set to 1 to indicate error status
-+ *
-+ */
-+enum { MES_SCH_ERROR_CODE_HEADER_SHIFT_12 = 8 };
-+enum { MES_SCH_ERROR_CODE_MISC_OP_SHIFT_12 = 16 };
-+enum { MES_ERROR_CATEGORY_SHIFT_12 = 24 };
-+enum { MES_API_STATUS_ERROR_SHIFT_12 = 31 };
-+
-+enum MES_ERROR_CATEGORY_CODE_12 {
-+	MES_ERROR_API                = 1,
-+	MES_ERROR_SCHEDULING         = 2,
-+	MES_ERROR_UNKNOWN            = 3,
-+};
-+
-+#define MES_ERR_CODE(api_err, opcode, misc_op, category) \
-+			((uint64) (api_err | opcode << MES_SCH_ERROR_CODE_HEADER_SHIFT_12 | \
-+			misc_op << MES_SCH_ERROR_CODE_MISC_OP_SHIFT_12 | \
-+			category << MES_ERROR_CATEGORY_SHIFT_12 | \
-+			1 << MES_API_STATUS_ERROR_SHIFT_12) << 32)
- 
- enum { MAX_COMPUTE_PIPES = 8 };
- enum { MAX_GFX_PIPES	 = 2 };
-@@ -248,7 +285,8 @@ union MESAPI_SET_HW_RESOURCES {
- 				uint32_t enable_mes_sch_stb_log : 1;
- 				uint32_t limit_single_process : 1;
- 				uint32_t unmapped_doorbell_handling: 2;
--				uint32_t reserved : 11;
-+				uint32_t enable_mes_fence_int: 1;
-+				uint32_t reserved : 10;
- 			};
- 			uint32_t uint32_all;
- 		};
--- 
-2.34.1
-
+On Wed, Feb 5, 2025 at 1:57=E2=80=AFPM Shaoyun Liu <shaoyun.liu@amd.com> wr=
+ote:
+>
+> MES requires driver set cleaner_shader_fence_mc_addr
+> for cleaner shader support.
+>
+> Signed-off-by: Shaoyun Liu <shaoyun.liu@amd.com>
+> ---
+>  drivers/gpu/drm/amd/include/mes_v11_api_def.h | 3 ++-
+>  drivers/gpu/drm/amd/include/mes_v12_api_def.h | 2 ++
+>  2 files changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/include/mes_v11_api_def.h b/drivers/gpu/=
+drm/amd/include/mes_v11_api_def.h
+> index eb46cb10c24d..6b5cd347dfb5 100644
+> --- a/drivers/gpu/drm/amd/include/mes_v11_api_def.h
+> +++ b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
+> @@ -266,7 +266,8 @@ union MESAPI_SET_HW_RESOURCES_1 {
+>                 };
+>                 uint64_t                                                 =
+       mes_info_ctx_mc_addr;
+>                 uint32_t                                                 =
+       mes_info_ctx_size;
+> -               uint32_t                                                 =
+       mes_kiq_unmap_timeout; // unit is 100ms
+> +               uint64_t                                                 =
+       reserved;
+> +               uint64_t                                                 =
+       cleaner_shader_fence_mc_addr;
+>         };
+>
+>         uint32_t max_dwords_in_api[API_FRAME_SIZE_IN_DWORDS];
+> diff --git a/drivers/gpu/drm/amd/include/mes_v12_api_def.h b/drivers/gpu/=
+drm/amd/include/mes_v12_api_def.h
+> index c9b2ca5cf75f..1938150a1943 100644
+> --- a/drivers/gpu/drm/amd/include/mes_v12_api_def.h
+> +++ b/drivers/gpu/drm/amd/include/mes_v12_api_def.h
+> @@ -278,6 +278,8 @@ union MESAPI_SET_HW_RESOURCES_1 {
+>                 uint32_t                            mes_debug_ctx_size;
+>                 /* unit is 100ms */
+>                 uint32_t                            mes_kiq_unmap_timeout=
+;
+> +               uint64_t                            reserved;
+> +               uint64_t                            cleaner_shader_fence_=
+mc_addr;
+>         };
+>
+>         uint32_t max_dwords_in_api[API_FRAME_SIZE_IN_DWORDS];
+> --
+> 2.34.1
+>
