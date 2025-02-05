@@ -2,36 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A373A29CBE
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Feb 2025 23:38:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52CD1A29CBF
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Feb 2025 23:38:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0448A10E211;
-	Wed,  5 Feb 2025 22:38:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F414210E40B;
+	Wed,  5 Feb 2025 22:38:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="rVq6VX/0";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QL30nR8P";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A8AE10E7DC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A86A10E386
  for <amd-gfx@lists.freedesktop.org>; Wed,  5 Feb 2025 15:33:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=P38JkCfYW07hHqVurUpAE64KJhaN6iMeZYO+sgT/6UE=; b=rVq6VX/0Q6Mpc1vjvOhem8wZrx
- CPnxjJ9JnyC7bSfvuEL5qPEai+aP8bh3hfUlWiXnLOKXZkmkYAE09As5VkvwRhv/mw4jcSq9bTMGI
- BRangLJ72K8kQYjuKftHT/6UOpZ5eOlX/Z9jE98xxNl8IY+GYqs4tLJiwl+5kuI8v+ksiKDdTYp3V
- uOKpgMOBcor+BEh0ldMLbPufT/ma2OQkDIyZKstwsl7Csgt3V8zOrhAW17oFk0dV4Y3DTeuCPheT0
- 3TnV2feTBwEd9MuIoXL6j+CRfLoRZ3jUcd6AhDTvhRNJ72zQnnSTeOCxQ1JEX0/qhlnakBBUFnWtA
- XzAjxtSA==;
+ bh=oa8kNF73PlkaJTngbTfwdPn9ARNh3UqWONQ1URzbPbM=; b=QL30nR8PN1UWl4EqyTeJ/pHRrj
+ FiOTO5nsnaRKb5/yxfj6IH/7Ijc4jK8E287Z5MWzssbrAftuJkC26qaRKBU0PaIv0mC9QL03okOmP
+ ubJJOmsoB3ZyyCfNxVJOyUKLbkLk4G8keDamwyydfpVzVxSag4qBoJMIyLj3uBXUv6pAL4WBBwW+/
+ ozZqDqEW9bF0RJhM8UnNqO+pvPaPuc9euW7J+5Id/+21QuDWEqi0Vw/6XiAvhaoEyy6uphnCQAcYq
+ c3WT9G3+E1VeCzXVA4DmAvH9UkMIDtL2g/H86VwhbGK+Zb720Ou2f08KgSa9FoCs6Yv+IY1l0t50z
+ 7F1zi9Bw==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tfhP6-0041OS-Vy; Wed, 05 Feb 2025 16:33:34 +0100
+ id 1tfhP7-0041OV-MU; Wed, 05 Feb 2025 16:33:35 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
@@ -39,10 +39,12 @@ Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Danilo Krummrich <dakr@kernel.org>,
  Matthew Brost <matthew.brost@intel.com>,
  Philipp Stanner <phasta@kernel.org>
-Subject: [PATCH v2 0/4] Decouple amdgpu from the scheduler, a bit
-Date: Wed,  5 Feb 2025 15:33:28 +0000
-Message-ID: <20250205153332.14852-1-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 1/4] drm/scheduler: Add drm_sched_cancel_all_jobs helper
+Date: Wed,  5 Feb 2025 15:33:29 +0000
+Message-ID: <20250205153332.14852-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250205153332.14852-1-tvrtko.ursulin@igalia.com>
+References: <20250205153332.14852-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -61,48 +63,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-General idea is to try and access scheduler data structures less from the
-drivers so the series basically adds some helpers to move closer towards that
-goal.
+The helper copies code from the existing amdgpu_job_stop_all_jobs_on_sched
+with the purpose of reducing the amount of driver code which directly
+touch scheduler internals.
 
-Three copies of the same to_drm_sched_job macro get removed and by the end of
-the series, as a bonus, we can now re-order members of struct drm_sched_job and
-eliminate a hole.
+If or when amdgpu manages to change the approach for handling the
+permanently wedged state this helper can be removed.
 
-I did not here from folks on which direction we want to take this after v1 so
-I went ahead and sketched up a different flavour in v2. The
-drm_sched_cancel_all_jobs() helper can be removed if (or when) amdgpu can change
-the approach of implementing its permanently wedged state. But until then I see
-no harm to clean up that, and even more so the to_drm_sched_job and its hidden
-dependency on queue_node being the first element.
-
-v2:
- * Add header file for internal scheduler API.
- * Add helper for peeking too. (Danilo)
- * Add (temporary?) drm_sched_cancel_all_jobs() helper to replace amdgpu
-   amdgpu_job_stop_all_jobs_on_sched().
-
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Danilo Krummrich <dakr@kernel.org>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Philipp Stanner <phasta@kernel.org>
+---
+ drivers/gpu/drm/scheduler/sched_main.c | 44 ++++++++++++++++++++++++++
+ include/drm/gpu_scheduler.h            |  1 +
+ 2 files changed, 45 insertions(+)
 
-Tvrtko Ursulin (4):
-  drm/scheduler: Add drm_sched_cancel_all_jobs helper
-  drm/amdgpu: Use drm_sched_cancel_all_jobs helper
-  drm/sched: Add internal job peek/pop API
-  drm/sched: Make the type of drm_sched_job->last_dependency consistent
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    | 34 ---------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.h    |  2 -
- drivers/gpu/drm/scheduler/sched_entity.c   | 11 +++--
- drivers/gpu/drm/scheduler/sched_internal.h | 43 ++++++++++++++++++
- drivers/gpu/drm/scheduler/sched_main.c     | 51 ++++++++++++++++++++--
- include/drm/gpu_scheduler.h                | 39 +++++++++--------
- 7 files changed, 118 insertions(+), 65 deletions(-)
- create mode 100644 drivers/gpu/drm/scheduler/sched_internal.h
-
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index a48be16ab84f..0363655db22d 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -703,6 +703,50 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, int errno)
+ }
+ EXPORT_SYMBOL(drm_sched_start);
+ 
++/**
++ * drm_sched_cancel_all_jobs - Cancel all queued and scheduled jobs
++ *
++ * @sched: scheduler instance
++ * @errno: error value to set on signaled fences
++ *
++ * Signal all queued and scheduled jobs and set them to error state.
++ *
++ * Scheduler must be stopped before calling this.
++ */
++void drm_sched_cancel_all_jobs(struct drm_gpu_scheduler *sched, int errno)
++{
++	struct drm_sched_entity *entity;
++	struct drm_sched_fence *s_fence;
++	struct drm_sched_job *job;
++	enum drm_sched_priority p;
++
++	drm_WARN_ON_ONCE(sched, !sched->pause_submit);
++
++	/* Signal all jobs not yet scheduled */
++	for (p = DRM_SCHED_PRIORITY_KERNEL; p < sched->num_rqs; p++) {
++		struct drm_sched_rq *rq = sched->sched_rq[p];
++
++		spin_lock(&rq->lock);
++		list_for_each_entry(entity, &rq->entities, list) {
++			while ((job = to_drm_sched_job(spsc_queue_pop(&entity->job_queue)))) {
++				s_fence = job->s_fence;
++				dma_fence_signal(&s_fence->scheduled);
++				dma_fence_set_error(&s_fence->finished, errno);
++				dma_fence_signal(&s_fence->finished);
++			}
++		}
++		spin_unlock(&rq->lock);
++	}
++
++	/* Signal all jobs already scheduled to HW */
++	list_for_each_entry(job, &sched->pending_list, list) {
++		s_fence = job->s_fence;
++		dma_fence_set_error(&s_fence->finished, errno);
++		dma_fence_signal(&s_fence->finished);
++	}
++}
++EXPORT_SYMBOL(drm_sched_cancel_all_jobs);
++
+ /**
+  * drm_sched_resubmit_jobs - Deprecated, don't use in new code!
+  *
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index a0ff08123f07..298513f8c327 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -579,6 +579,7 @@ void drm_sched_wqueue_stop(struct drm_gpu_scheduler *sched);
+ void drm_sched_wqueue_start(struct drm_gpu_scheduler *sched);
+ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
+ void drm_sched_start(struct drm_gpu_scheduler *sched, int errno);
++void drm_sched_cancel_all_jobs(struct drm_gpu_scheduler *sched, int errno);
+ void drm_sched_resubmit_jobs(struct drm_gpu_scheduler *sched);
+ void drm_sched_increase_karma(struct drm_sched_job *bad);
+ void drm_sched_reset_karma(struct drm_sched_job *bad);
 -- 
 2.48.0
 
