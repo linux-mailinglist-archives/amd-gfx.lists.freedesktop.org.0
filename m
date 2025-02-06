@@ -2,60 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD8A7A2ADB9
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Feb 2025 17:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B3CA2AC45
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Feb 2025 16:17:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 933AB10E301;
-	Thu,  6 Feb 2025 16:29:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F94A10E899;
+	Thu,  6 Feb 2025 15:17:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="SOjkiPOj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VriEqu6w";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B9510E2F9
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Feb 2025 14:00:22 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4Ypdz65MgMz9tJ2;
- Thu,  6 Feb 2025 15:00:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1738850418; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=scOaibsDOiF746t0YrRrhPKUIzyEqPfjDOV1i7kYTjU=;
- b=SOjkiPOj7cij22MwJshDTQjjZT9azfsRs1jo0Q+mLrU9DW4AKXwcZoONgm/JFe7HMUN5Z3
- PdELkOSkFd9CZXFl4WinrewfTVambH4ivUXHKTD53d553NEoFdSTjJuDLUXFgssGGlNwIp
- 1IAlFFar/KU6/nqYC5bNBLvSe4OHzRPhyAtUJPk/PqGuLDwuxCpJNIg+ZvbwllQuNFwlo7
- GUlZtm+rszEdQm6b+UGi+dg7TcFdsHhotAnSAqk5CWmMzZW8LZQ3KSF/xVFRYPqk1brDIE
- jasu7ITmDqqQyXss+SrXYO70AnWEzZN5IQkg0Vnr7pnBv3nMdSXV2fA9IIKBoQ==
-Message-ID: <eb8e5966f7f1518b62fe3b88e857572747e5fd28.camel@mailbox.org>
-Subject: Re: [PATCH 1/4] drm/scheduler: Add drm_sched_cancel_all_jobs helper
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, phasta@kernel.org,
- amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Danilo Krummrich <dakr@kernel.org>, Matthew Brost
- <matthew.brost@intel.com>
-Date: Thu, 06 Feb 2025 15:00:16 +0100
-In-Reply-To: <37b0eef7-684e-4616-8d3d-d5e8932b8004@igalia.com>
-References: <20250205153332.14852-1-tvrtko.ursulin@igalia.com>
- <20250205153332.14852-2-tvrtko.ursulin@igalia.com>
- <67d2ebf31e78c7819fee6f8de917829957091a0d.camel@mailbox.org>
- <744abfb3-9edf-4ebb-b657-b811ef156001@amd.com>
- <37b0eef7-684e-4616-8d3d-d5e8932b8004@igalia.com>
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
+ [209.85.216.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4C0210E892
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Feb 2025 15:04:02 +0000 (UTC)
+Received: by mail-pj1-f53.google.com with SMTP id
+ 98e67ed59e1d1-2fa0f70bfecso131598a91.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 06 Feb 2025 07:04:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1738854242; x=1739459042; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=W/HuRIzzfdmsj87tlNNL7V66HKGSebxhgSNXU3UP0hc=;
+ b=VriEqu6wju7ZCrctxGT/7su5xGVYSrT1LfIjaE9ZWTlpw4ro+KhiwE7x4dZriGf3fv
+ RzhXEs4lJQmYu65jisoBnDtELv8zqM735Ksz4wcDGVROlWLKlA9TdRf5CtxCvf4L6g+0
+ ZrATgYrJQjk2zq0OBRxlyx4UuqXS9MY5SjcKj6r7VxNkcpk7SDvxV1gr8S+bWXWr5jhO
+ 74NGuvBI8nHfDsngyqSZXHvt9bkkzvBDj7rB5p57eRdNdET+LePo2tghpGwanmdc5Nji
+ jwJh0WxlhafjaJ85ZPXH75JSk6/eDx+ad+xpcyntn07LxwoMxZVM4ycizoR+oEI7C7oN
+ amig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738854242; x=1739459042;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=W/HuRIzzfdmsj87tlNNL7V66HKGSebxhgSNXU3UP0hc=;
+ b=idrhLRSCFgjyrChrkUBqZ0CUCZpiFCTdW97xXIz9Z9ZeIgScu7BR2X4cKYnbCX2/2z
+ ukHiANBltzvzWqOS/t3EdTgYMf1JAIS13KuSSG5Qm3FE7euEyKAWHCCpvDLL6wz+bvvS
+ xcXpcgmkFfK8MGSkJ3yA9Jd2xLE54bBm1GjhNoAJQebmoVjcgCUPjnz8RSlWxRRdaFAg
+ KwEW/vB/InWaeHU8fdIuG/iMymsicgeJSd2LsSYEzXRCzdOoImSWxO/cLLAenbvJ6fhy
+ 0vLNy5sZ3FMZKOnlS4/TX/5tuD3RPaBnQA0/mSMV72bwqM3hgfn+C+DHAR9A2xmzdrKE
+ /NJQ==
+X-Gm-Message-State: AOJu0YylBnnH38U3jj56Z2od3Dw55RQkIJ/VzhTIdh0LjXSDQFjJsklx
+ HxJfSQ9PIymKPDBdqg/lFOs8Aa9iXtzUaITrzesuK5+SQo1Mi69koQsCPqJDfDb7RR72kE8WJMe
+ ku5E+kLbn7JabrCCZprC7WuuWgT4=
+X-Gm-Gg: ASbGnctSON1jFTP8QMZSqo8r/H4hxhIMkJB3IjVJB7oRJ3fw7WoyNBM5iuoS+Aa6k7e
+ sL//5/LXpSE8HKeE7206LmwRF1kCOBeYZFwjt5poYp3KYC/F/Omj6U4TGxkpE+dB7Xq85+Sr/
+X-Google-Smtp-Source: AGHT+IHD2yaAwXHvOleAwadIpNrtZdoYB6Yvy1tRNn7g44rMx7NhLgt3vvJwBJHJXkHuvgHeM4okycOm25TyNDNO7f4=
+X-Received: by 2002:a17:90b:4a8b:b0:2ea:956b:deab with SMTP id
+ 98e67ed59e1d1-2f9e0825dbdmr4691461a91.4.1738854242243; Thu, 06 Feb 2025
+ 07:04:02 -0800 (PST)
+MIME-Version: 1.0
+References: <20250129152029.32275-1-jinhuieric.huang@amd.com>
+In-Reply-To: <20250129152029.32275-1-jinhuieric.huang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 6 Feb 2025 10:03:50 -0500
+X-Gm-Features: AWEUYZnbGvthNTE6G2nkEmwYQ5s2wdwX90mNdXXLUGEXmROxHO2oNSx0WqQ9m6Y
+Message-ID: <CADnq5_Ob+aVNtwcxrH3BaYSC4FwkHLWcpvRi2ceqL+JiV3Ugjw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdkfd: fix missing L2 cache info in topology
+To: Eric Huang <jinhuieric.huang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-MBO-RS-ID: 627d62d39c375f0ad59
-X-MBO-RS-META: hm9pt7qaiqrayoa1iaqpzpr5hphes744
-X-Mailman-Approved-At: Thu, 06 Feb 2025 16:29:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,217 +75,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-02-06 at 13:53 +0000, Tvrtko Ursulin wrote:
->=20
-> On 06/02/2025 13:46, Christian K=C3=B6nig wrote:
-> > Am 06.02.25 um 14:35 schrieb Philipp Stanner:
-> > > On Wed, 2025-02-05 at 15:33 +0000, Tvrtko Ursulin wrote:
-> > > > The helper copies code from the existing
-> > > > amdgpu_job_stop_all_jobs_on_sched
-> > > > with the purpose of reducing the amount of driver code which
-> > > > directly
-> > > > touch scheduler internals.
-> > > >=20
-> > > > If or when amdgpu manages to change the approach for handling
-> > > > the
-> > > > permanently wedged state this helper can be removed.
-> > > Have you checked how many other drivers might need such a helper?
-> > >=20
-> > > I have a bit mixed feelings about this, because, AFAICT, in the
-> > > past
-> > > helpers have been added for just 1 driver, such as
-> > > drm_sched_wqueue_ready(), and then they have stayed for almost a
-> > > decade.
-> > >=20
-> > > AFAIU this is just code move, and only really "decouples" amdgpu
-> > > in the
-> > > sense of having an official scheduler function that does what
-> > > amdgpu
-> > > used to do.
-> > >=20
-> > > So my tendency here would be to continue "allowing" amdgpu to
-> > > touch the
-> > > scheduler internals until amdgpu fixes this "permanently wedged
-> > > state".=C2=A0And if that's too difficult, couldn't the helper reside
-> > > in a
-> > > amdgpu/sched_helpers.c or similar?
-> > >=20
-> > > I think that's better than adding 1 helper for just 1 driver and
-> > > then
-> > > supposedly removing it again in the future.
-> >=20
-> > Yeah, agree to that general approach.
-> >=20
-> > What amdgpu does here is kind of nasty and looks unnecessary, but=20
-> > changing it means we need time from Hawkings and his people
-> > involved on=20
-> > RAS for amdgpu.
-> >=20
-> > When we move the code to the scheduler we make it official
-> > scheduler=20
-> > interface to others to replicate and that is exactly what we should
-> > try=20
-> > to avoid.
-> >=20
-> > So my suggestion is to add a /* TODO: This is nasty and should be=20
-> > avoided */ to the amdgpu code instead.
->=20
-> So I got a no go to export a low level queue pop helper
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-The spsc_queue helper in patch 3 is totally alright. Patch 3 only
-depends on patch 1 in the sense of it adding the new helper to the
-cancel_all function of patch 1, or am I missing something obvious?
-
-> , no go to move=20
-> the whole dodgy code to common (reasonable). Any third way to break
-> the=20
-> status quo? What if I respin with just a change local to amdgpu which
-> would, instead of duplicating the to_drm_sched_job macro, duplicate=20
-> __drm_sched_entity_queue_pop from 3/4 of this series?
-
-I'm willing to take patch 3 if it's independent. That would then mean
-that to_drm_sched_job() is only necessary anmyore in amdgpu, wouldn't
-it?
-
-That's independent from the cancel_all() function as far as the
-scheduler is concerned.
-
-
-P.
-
-
->=20
-> Regards,
->=20
-> Tvrtko
->=20
-> >=20
-> > Regards,
-> > Christian.
-> >=20
-> > >=20
-> > > P.
-> > >=20
-> > > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> > > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > > Cc: Danilo Krummrich <dakr@kernel.org>
-> > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > Cc: Philipp Stanner <phasta@kernel.org>
-> > > > ---
-> > > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_main.c | 44
-> > > > ++++++++++++++++++++++++++
-> > > > =C2=A0=C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
-> > > > =C2=A0=C2=A02 files changed, 45 insertions(+)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > index a48be16ab84f..0363655db22d 100644
-> > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > @@ -703,6 +703,50 @@ void drm_sched_start(struct
-> > > > drm_gpu_scheduler
-> > > > *sched, int errno)
-> > > > =C2=A0=C2=A0}
-> > > > =C2=A0=C2=A0EXPORT_SYMBOL(drm_sched_start);
-> > > > +/**
-> > > > + * drm_sched_cancel_all_jobs - Cancel all queued and scheduled
-> > > > jobs
-> > > > + *
-> > > > + * @sched: scheduler instance
-> > > > + * @errno: error value to set on signaled fences
-> > > > + *
-> > > > + * Signal all queued and scheduled jobs and set them to error
-> > > > state.
-> > > > + *
-> > > > + * Scheduler must be stopped before calling this.
-> > > > + */
-> > > > +void drm_sched_cancel_all_jobs(struct drm_gpu_scheduler
-> > > > *sched, int
-> > > > errno)
-> > > > +{
-> > > > +=C2=A0=C2=A0=C2=A0 struct drm_sched_entity *entity;
-> > > > +=C2=A0=C2=A0=C2=A0 struct drm_sched_fence *s_fence;
-> > > > +=C2=A0=C2=A0=C2=A0 struct drm_sched_job *job;
-> > > > +=C2=A0=C2=A0=C2=A0 enum drm_sched_priority p;
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0 drm_WARN_ON_ONCE(sched, !sched->pause_submit);
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0 /* Signal all jobs not yet scheduled */
-> > > > +=C2=A0=C2=A0=C2=A0 for (p =3D DRM_SCHED_PRIORITY_KERNEL; p < sched=
-->num_rqs;
-> > > > p++)
-> > > > {
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_rq *rq=
- =3D sched->sched_rq[p];
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 spin_lock(&rq->lock);
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 list_for_each_entry(ent=
-ity, &rq->entities, list) {
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- while ((job =3D
-> > > > to_drm_sched_job(spsc_queue_pop(&entity->job_queue)))) {
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 s_fence =3D job->s_fence;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 dma_fence_signal(&s_fence-
-> > > > > scheduled);
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 dma_fence_set_error(&s_fence-
-> > > > > finished, errno);
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 dma_fence_signal(&s_fence-
-> > > > > finished);
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- }
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 spin_unlock(&rq->lock);
-> > > > +=C2=A0=C2=A0=C2=A0 }
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0 /* Signal all jobs already scheduled to HW */
-> > > > +=C2=A0=C2=A0=C2=A0 list_for_each_entry(job, &sched->pending_list, =
-list) {
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 s_fence =3D job->s_fenc=
-e;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_fence_set_error(&s_=
-fence->finished, errno);
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_fence_signal(&s_fen=
-ce->finished);
-> > > > +=C2=A0=C2=A0=C2=A0 }
-> > > > +}
-> > > > +EXPORT_SYMBOL(drm_sched_cancel_all_jobs);
-> > > > +
-> > > > =C2=A0=C2=A0/**
-> > > > =C2=A0=C2=A0 * drm_sched_resubmit_jobs - Deprecated, don't use in n=
-ew
-> > > > code!
-> > > > =C2=A0=C2=A0 *
-> > > > diff --git a/include/drm/gpu_scheduler.h
-> > > > b/include/drm/gpu_scheduler.h
-> > > > index a0ff08123f07..298513f8c327 100644
-> > > > --- a/include/drm/gpu_scheduler.h
-> > > > +++ b/include/drm/gpu_scheduler.h
-> > > > @@ -579,6 +579,7 @@ void drm_sched_wqueue_stop(struct
-> > > > drm_gpu_scheduler *sched);
-> > > > =C2=A0=C2=A0void drm_sched_wqueue_start(struct drm_gpu_scheduler *s=
-ched);
-> > > > =C2=A0=C2=A0void drm_sched_stop(struct drm_gpu_scheduler *sched, st=
-ruct
-> > > > drm_sched_job *bad);
-> > > > =C2=A0=C2=A0void drm_sched_start(struct drm_gpu_scheduler *sched, i=
-nt
-> > > > errno);
-> > > > +void drm_sched_cancel_all_jobs(struct drm_gpu_scheduler
-> > > > *sched, int
-> > > > errno);
-> > > > =C2=A0=C2=A0void drm_sched_resubmit_jobs(struct drm_gpu_scheduler
-> > > > *sched);
-> > > > =C2=A0=C2=A0void drm_sched_increase_karma(struct drm_sched_job *bad=
-);
-> > > > =C2=A0=C2=A0void drm_sched_reset_karma(struct drm_sched_job *bad);
-> >=20
-
+On Wed, Jan 29, 2025 at 10:37=E2=80=AFAM Eric Huang <jinhuieric.huang@amd.c=
+om> wrote:
+>
+> In some ASICs L2 cache info may miss in kfd topology,
+> because the first bitmap may be empty, that means
+> the first cu may be inactive, so to find the first
+> active cu will solve the issue.
+>
+> Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/=
+amd/amdkfd/kfd_topology.c
+> index 4936697e6fc2..73d95041a388 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+> @@ -1665,17 +1665,31 @@ static int fill_in_l2_l3_pcache(struct kfd_cache_=
+properties **props_ext,
+>                                 int cache_type, unsigned int cu_processor=
+_id,
+>                                 struct kfd_node *knode)
+>  {
+> -       unsigned int cu_sibling_map_mask;
+> +       unsigned int cu_sibling_map_mask =3D 0;
+>         int first_active_cu;
+>         int i, j, k, xcc, start, end;
+>         int num_xcc =3D NUM_XCC(knode->xcc_mask);
+>         struct kfd_cache_properties *pcache =3D NULL;
+>         enum amdgpu_memory_partition mode;
+>         struct amdgpu_device *adev =3D knode->adev;
+> +       bool found =3D false;
+>
+>         start =3D ffs(knode->xcc_mask) - 1;
+>         end =3D start + num_xcc;
+> -       cu_sibling_map_mask =3D cu_info->bitmap[start][0][0];
+> +
+> +       /* To find the bitmap in the first active cu */
+> +       for (xcc =3D start; xcc < end && !found; xcc++) {
+> +               for (i =3D 0; i < gfx_info->max_shader_engines && !found;=
+ i++) {
+> +                       for (j =3D 0; j < gfx_info->max_sh_per_se && !fou=
+nd; j++) {
+> +                               if (cu_info->bitmap[xcc][i % 4][j % 4]) {
+> +                                       cu_sibling_map_mask =3D
+> +                                               cu_info->bitmap[xcc][i % =
+4][j % 4];
+> +                                       found =3D true;
+> +                               }
+> +                       }
+> +               }
+> +       }
+> +
+>         cu_sibling_map_mask &=3D
+>                 ((1 << pcache_info[cache_type].num_cu_shared) - 1);
+>         first_active_cu =3D ffs(cu_sibling_map_mask);
+> --
+> 2.34.1
+>
