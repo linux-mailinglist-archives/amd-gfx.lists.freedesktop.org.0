@@ -2,27 +2,27 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EDFCA2BB60
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2025 07:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB61A2BB85
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2025 07:34:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C776710EA28;
-	Fri,  7 Feb 2025 06:29:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 612ED10EA2C;
+	Fri,  7 Feb 2025 06:34:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="fSyQ6qkT";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="uj318fi/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-118.freemail.mail.aliyun.com
- (out30-118.freemail.mail.aliyun.com [115.124.30.118])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 965F010EA27
+Received: from out30-110.freemail.mail.aliyun.com
+ (out30-110.freemail.mail.aliyun.com [115.124.30.110])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD08710EA28
  for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2025 06:28:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
  t=1738909736; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=bRwE2xb2Ev7VUPiYcag21bpsgQbhUmxWVgiXzXq8JM0=;
- b=fSyQ6qkTpHLiGyGuhfJMbuW/OJJG/5K+ckwYOJnXuAs/ior2GUEhwfozkwv+INYwT7j/fDGvr3oD1pUnMUYIKTzJXzNO6GVWpqRTtbtsCsfpSCGbNOv6LTel1cMqJ8B8lPw0zQnkUtrZiB56sB8jcW4AUX0OyvBp+pfUOgJtIXs=
+ bh=eMKVbmgx2adfKWtF/bEAWVVQUvwjZGSRA/U2tvq1z24=;
+ b=uj318fi/GGmv8XcXe5mR8Pw2DlDYew5EA2oazNpQ9h1HTPT5drSD6dIdTP3UlfbwhFRPTfzFsKs5v2b9KaIWyykZMgd1sHbxfqRYRYG26MaBTuOdIuqUM8JdiDP32T2zJSJDt7Ixv2Ye0kHlh22xa6ZOkx9dzzJ6ujTnd72fLj4=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WOyT2o._1738909734 cluster:ay36) by smtp.aliyun-inc.com;
+ fp:SMTPD_---0WOyT2oa_1738909735 cluster:ay36) by smtp.aliyun-inc.com;
  Fri, 07 Feb 2025 14:28:55 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
@@ -31,10 +31,12 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  xiaogang.chen@amd.com, Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [v1 0/4] Bugfixes and minor improvements to drm/amdgpu/psp
-Date: Fri,  7 Feb 2025 14:28:48 +0800
-Message-ID: <cover.1738909308.git.gerry@linux.alibaba.com>
+Subject: [v1 1/4] drm/amdgpu: reset psp->cmd to NULL after releasing the buffer
+Date: Fri,  7 Feb 2025 14:28:49 +0800
+Message-ID: <6bc04a402ec50c6b9d95c160d9bd74bb3b419e70.1738909308.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
+In-Reply-To: <cover.1738909308.git.gerry@linux.alibaba.com>
+References: <cover.1738909308.git.gerry@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -51,21 +53,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix some bugs in error handling path in psp subsystem:
-1) fix possible bugs in error handling path in psp_sw_init()
-2) fix a bug in error handling path in psp_init_cap_microcode()
-3) reduce duplicated code related to psp_ta_init_shared_buf()
+Reset psp->cmd to NULL after releasing the buffer in function psp_sw_fini().
 
-Jiang Liu (4):
-  drm/amdgpu: reset psp->cmd to NULL after releasing the buffer
-  drm/amdgpu: enhance error handling of psp_sw_init()
-  drm/amdgpu: bail out when failed to load fw in
-    psp_init_cap_microcode()
-  drm/amdgpu: simplify invoke of psp_ta_init_shared_buf()
+Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 147 +++++++++++++-----------
- 1 file changed, 81 insertions(+), 66 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index babe94ade247..4e9766a1d421 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -533,7 +533,6 @@ static int psp_sw_fini(struct amdgpu_ip_block *ip_block)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	struct psp_context *psp = &adev->psp;
+-	struct psp_gfx_cmd_resp *cmd = psp->cmd;
+ 
+ 	psp_memory_training_fini(psp);
+ 
+@@ -543,8 +542,8 @@ static int psp_sw_fini(struct amdgpu_ip_block *ip_block)
+ 	amdgpu_ucode_release(&psp->cap_fw);
+ 	amdgpu_ucode_release(&psp->toc_fw);
+ 
+-	kfree(cmd);
+-	cmd = NULL;
++	kfree(psp->cmd);
++	psp->cmd = NULL;
+ 
+ 	psp_free_shared_bufs(psp);
+ 
 -- 
 2.43.5
 
