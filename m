@@ -2,27 +2,27 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EAC5A2BBDD
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2025 07:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78F8CA2BBCB
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2025 07:49:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 444B810EA32;
-	Fri,  7 Feb 2025 06:54:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B925110EA2D;
+	Fri,  7 Feb 2025 06:49:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="bpj54gYr";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="YUTRbXIs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-130.freemail.mail.aliyun.com
- (out30-130.freemail.mail.aliyun.com [115.124.30.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D144910EA2E
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2025 06:44:23 +0000 (UTC)
+Received: from out30-97.freemail.mail.aliyun.com
+ (out30-97.freemail.mail.aliyun.com [115.124.30.97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD69810EA2D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2025 06:44:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
- t=1738910661; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=op/efRNKk9vNHc3Q66ryUGhxRGQqOOZAoUOpOdV/wC0=;
- b=bpj54gYryAKqUse7EWQawbzr6Hb6kpRdVd/mDBRYSqzRSmUb0HzXevxS/6NCtVJ3xXSi4oKLslbPP3wwBnqYJEwlOF4z2P6z8Z5n947c3tYoNuwfEZfBhAqOk/s/a7KvMzA24469QkXSdIMdfJEAsLQtFDGfyqD/q3rpP3YeAsA=
+ t=1738910663; h=From:To:Subject:Date:Message-ID:MIME-Version;
+ bh=C4EBYfccoT+oVJEjV6TvncZgE/3Y6lfWLPRxbsmTLMA=;
+ b=YUTRbXIsj3Q6q19BBC1efh8mFacU+CTTAKgos5iaMZGVIImfx8xrQ9iyWCkBvrs7m1JgFytrQSrU2agIJcHDu/WnP7CHVyIgCgz7578CDUZur8G+Dl/4u+sJpN72WeMNG4xfnBxpnt0Mf9jRJaQqeFpahPUUlQr+Ju0DwCBsoYQ=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WOyQdzX_1738910660 cluster:ay36) by smtp.aliyun-inc.com;
+ fp:SMTPD_---0WOyQe-6_1738910661 cluster:ay36) by smtp.aliyun-inc.com;
  Fri, 07 Feb 2025 14:44:21 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
@@ -31,10 +31,9 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
  Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [v1 3/4] drm/amdgpu: treat VCN as enabled if either VCN or JPEC is
- enabled
-Date: Fri,  7 Feb 2025 14:44:16 +0800
-Message-ID: <aaa3ce4700cea30d3ed1f3aa2920fee5aae65fea.1738910203.git.gerry@linux.alibaba.com>
+Subject: [v1 4/4] drm/amdgpu: minor code style enhancement for smu
+Date: Fri,  7 Feb 2025 14:44:17 +0800
+Message-ID: <751aa892683cad234865404eccafacbbb73cdf6d.1738910203.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1738910203.git.gerry@linux.alibaba.com>
 References: <cover.1738910203.git.gerry@linux.alibaba.com>
@@ -54,34 +53,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Function is_vcn_enabled() returns false if either the VCN or JPEG ip
-block is disabled, which sounds unreasonable. It should returns true
-when either VCN and JPEG is enabled.
+Minor code style enhancement for smu.
 
 Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c            | 2 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 70a5ab649e5f..08b42c7a4ad1 100644
+index 08b42c7a4ad1..51e7bd4d3444 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -230,11 +230,11 @@ static bool is_vcn_enabled(struct amdgpu_device *adev)
- 	for (i = 0; i < adev->num_ip_blocks; i++) {
- 		if ((adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_VCN ||
- 			adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_JPEG) &&
--			!adev->ip_blocks[i].status.valid)
--			return false;
-+			adev->ip_blocks[i].status.valid)
-+			return true;
- 	}
+@@ -2153,7 +2153,7 @@ static int smu_resume(struct amdgpu_ip_block *ip_block)
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	struct smu_context *smu = adev->powerplay.pp_handle;
  
--	return true;
-+	return false;
- }
+-	if (amdgpu_sriov_vf(adev)&& !amdgpu_sriov_is_pp_one_vf(adev))
++	if (amdgpu_sriov_vf(adev) && !amdgpu_sriov_is_pp_one_vf(adev))
+ 		return 0;
  
- static int smu_dpm_set_vcn_enable(struct smu_context *smu,
+ 	if (!smu->pm_enabled)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+index da7bd9227afe..da55d66099fb 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+@@ -3524,8 +3524,8 @@ static const struct pptable_funcs smu_v13_0_6_ppt_funcs = {
+ 	.init_power = smu_v13_0_init_power,
+ 	.fini_power = smu_v13_0_fini_power,
+ 	.check_fw_status = smu_v13_0_6_check_fw_status,
+-	/* pptable related */
+ 	.check_fw_version = smu_v13_0_6_check_fw_version,
++	/* pptable related */
+ 	.set_driver_table_location = smu_v13_0_set_driver_table_location,
+ 	.set_tool_table_location = smu_v13_0_set_tool_table_location,
+ 	.notify_memory_pool_location = smu_v13_0_notify_memory_pool_location,
 -- 
 2.43.5
 
