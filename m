@@ -2,28 +2,28 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE189A2BBCC
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2025 07:49:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3E84A2BBDC
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2025 07:53:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63F2610EA2E;
-	Fri,  7 Feb 2025 06:49:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 916ED10EA31;
+	Fri,  7 Feb 2025 06:53:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="Axuczs29";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="rPzGRGlA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-112.freemail.mail.aliyun.com
- (out30-112.freemail.mail.aliyun.com [115.124.30.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E63910EA2D
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2025 06:44:21 +0000 (UTC)
+Received: from out30-99.freemail.mail.aliyun.com
+ (out30-99.freemail.mail.aliyun.com [115.124.30.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A73810EA2D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2025 06:44:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
  t=1738910660; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=dqs0IiLbo81Z41jcnB37Q8hZo6bO1Fp2XUWzCUpP3ys=;
- b=Axuczs29DoB/+gC5K9uo6u9H9nbWY8YM+JKm5sfiUhHxSMJEv1A5OMPXAp6ur9ETbaCTVW2tuX2pLn675gDTSh1dGOZAry/FRdUWrTnS7jZUZ0GreykeLTAmN1lHjHR62qM+/7SFWysQk1WsX1yEqryRxMm+miFe9fEIK9sg6LM=
+ bh=SvZyG7ZzV65xnCgajzwe3c1zsE0uBeCjrBEE6ctE6eQ=;
+ b=rPzGRGlA8zMPSwXNDWjdgEgYCkH1CHbl/zEVtpYVgkorJELKAbNs56d76IRzjku0MgD/ALMM5idK8n/0y5yPevEyK/Ar1ISXgV9c/A0ZcOqARAM3dY1pD4wdrIjA2HhTxMOqWGv4yUjcUED2iM6PNCYFD2x4GBE7pTRYtSOnznY=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WOyQdyL_1738910658 cluster:ay36) by smtp.aliyun-inc.com;
- Fri, 07 Feb 2025 14:44:19 +0800
+ fp:SMTPD_---0WOyQdyl_1738910659 cluster:ay36) by smtp.aliyun-inc.com;
+ Fri, 07 Feb 2025 14:44:20 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
  simona@ffwll.ch, sunil.khatri@amd.com, lijo.lazar@amd.com,
@@ -31,10 +31,13 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
  Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [v1 0/4] Fix a buffer overflow in drm/amdgpu/smu
-Date: Fri,  7 Feb 2025 14:44:13 +0800
-Message-ID: <cover.1738910203.git.gerry@linux.alibaba.com>
+Subject: [v1 1/4] drm/amdgpu: avoid buffer overflow attach in
+ smu_sys_set_pp_table()
+Date: Fri,  7 Feb 2025 14:44:14 +0800
+Message-ID: <5d77360ce88ec08ceb6cd9e9347001dc427dc1af.1738910203.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
+In-Reply-To: <cover.1738910203.git.gerry@linux.alibaba.com>
+References: <cover.1738910203.git.gerry@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -51,21 +54,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix several bugs in smu subsystem:
-1) a buffer overflow bug in function smu_sys_set_pp_table()
-2) tune logic of is_vcn_enabled()
-3) enhance handling of gfx_off_entrycount in function smu_suspend()
+It malicious user provides a small pptable through sysfs and then
+a bigger pptable, it may cause buffer overflow attack in function
+smu_sys_set_pp_table().
 
-Jiang Liu (4):
-  drm/amdgpu: avoid buffer overflow attach in smu_sys_set_pp_table()
-  drm/amdgpu: accumulate gfx_off_entrycount in smu_suspend()
-  drm/amdgpu: treat VCN as enabled if either VCN or JPEC is enabled
-  drm/amdgpu: minor code style enhancement for smu
+Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c       | 17 +++++++++--------
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c    |  2 +-
- 2 files changed, 10 insertions(+), 9 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 8ca793c222ff..ed9dac00ebfb 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -612,7 +612,8 @@ static int smu_sys_set_pp_table(void *handle,
+ 		return -EIO;
+ 	}
+ 
+-	if (!smu_table->hardcode_pptable) {
++	if (!smu_table->hardcode_pptable || smu_table->power_play_table_size < size) {
++		kfree(smu_table->hardcode_pptable);
+ 		smu_table->hardcode_pptable = kzalloc(size, GFP_KERNEL);
+ 		if (!smu_table->hardcode_pptable)
+ 			return -ENOMEM;
 -- 
 2.43.5
 
