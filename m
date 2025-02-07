@@ -2,41 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0A1A2BB5F
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2025 07:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE189A2BBCC
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Feb 2025 07:49:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C76E810EA27;
-	Fri,  7 Feb 2025 06:29:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63F2610EA2E;
+	Fri,  7 Feb 2025 06:49:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="xz8/neLZ";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="Axuczs29";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-131.freemail.mail.aliyun.com
- (out30-131.freemail.mail.aliyun.com [115.124.30.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B85410EA28
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2025 06:29:00 +0000 (UTC)
+Received: from out30-112.freemail.mail.aliyun.com
+ (out30-112.freemail.mail.aliyun.com [115.124.30.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E63910EA2D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 Feb 2025 06:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
- t=1738909738; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=GP1GMqDlEqibJfwlDq712Wzo9GNWosRF9EXjeP1u3Tg=;
- b=xz8/neLZMm05FgmPz0g9D5/Q4+Pkjkeu67+LHF0cuZZvhZSyokUDLXpzDDFkXmN8Qq+jjpk8kY7jHD1bmUQVm5uKTRV1V449bqtY4QFIFqCorN03/5gu+tlHGUUuk/Nb372Pj2xSFyf63lmc6AY5CXJy5UNPoVl9J5nQEGtmvBs=
+ t=1738910660; h=From:To:Subject:Date:Message-ID:MIME-Version;
+ bh=dqs0IiLbo81Z41jcnB37Q8hZo6bO1Fp2XUWzCUpP3ys=;
+ b=Axuczs29DoB/+gC5K9uo6u9H9nbWY8YM+JKm5sfiUhHxSMJEv1A5OMPXAp6ur9ETbaCTVW2tuX2pLn675gDTSh1dGOZAry/FRdUWrTnS7jZUZ0GreykeLTAmN1lHjHR62qM+/7SFWysQk1WsX1yEqryRxMm+miFe9fEIK9sg6LM=
 Received: from i32d02263.sqa.eu95.tbsite.net(mailfrom:gerry@linux.alibaba.com
- fp:SMTPD_---0WOyT2pu_1738909737 cluster:ay36) by smtp.aliyun-inc.com;
- Fri, 07 Feb 2025 14:28:57 +0800
+ fp:SMTPD_---0WOyQdyL_1738910658 cluster:ay36) by smtp.aliyun-inc.com;
+ Fri, 07 Feb 2025 14:44:19 +0800
 From: Jiang Liu <gerry@linux.alibaba.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch, sunil.khatri@amd.com,
- lijo.lazar@amd.com, Hawking.Zhang@amd.com, mario.limonciello@amd.com,
- xiaogang.chen@amd.com, Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, sunil.khatri@amd.com, lijo.lazar@amd.com,
+ Hawking.Zhang@amd.com, mario.limonciello@amd.com, xiaogang.chen@amd.com,
+ Kent.Russell@amd.com, shuox.liu@linux.alibaba.com,
  amd-gfx@lists.freedesktop.org
 Cc: Jiang Liu <gerry@linux.alibaba.com>
-Subject: [v1 4/4] drm/amdgpu: simplify invoke of psp_ta_init_shared_buf()
-Date: Fri,  7 Feb 2025 14:28:52 +0800
-Message-ID: <7b5e51cf56db79071e53a0ae178651fcaeb8d9f6.1738909308.git.gerry@linux.alibaba.com>
+Subject: [v1 0/4] Fix a buffer overflow in drm/amdgpu/smu
+Date: Fri,  7 Feb 2025 14:44:13 +0800
+Message-ID: <cover.1738910203.git.gerry@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.5
-In-Reply-To: <cover.1738909308.git.gerry@linux.alibaba.com>
-References: <cover.1738909308.git.gerry@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -53,121 +51,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enhance psp_ta_init_shared_buf() to check whether the shared buffer has
-already been allocated, and return success if it's allocated. So caller
-doesn't need to check the initialized flag.
+Fix several bugs in smu subsystem:
+1) a buffer overflow bug in function smu_sys_set_pp_table()
+2) tune logic of is_vcn_enabled()
+3) enhance handling of gfx_off_entrycount in function smu_suspend()
 
-Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 53 ++++++++++---------------
- 1 file changed, 22 insertions(+), 31 deletions(-)
+Jiang Liu (4):
+  drm/amdgpu: avoid buffer overflow attach in smu_sys_set_pp_table()
+  drm/amdgpu: accumulate gfx_off_entrycount in smu_suspend()
+  drm/amdgpu: treat VCN as enabled if either VCN or JPEC is enabled
+  drm/amdgpu: minor code style enhancement for smu
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 952da6c7943d..407f4a3bb3e6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -1232,6 +1232,10 @@ static void psp_prep_ta_load_cmd_buf(struct psp_gfx_cmd_resp *cmd,
- int psp_ta_init_shared_buf(struct psp_context *psp,
- 				  struct ta_mem_context *mem_ctx)
- {
-+	if (mem_ctx->shared_bo) {
-+		return 0;
-+	}
-+
- 	/*
- 	 * Allocate 16k memory aligned to 4k from Frame Buffer (local
- 	 * physical) for ta to host memory
-@@ -1339,11 +1343,9 @@ int psp_xgmi_initialize(struct psp_context *psp, bool set_extended_data, bool lo
- 	psp->xgmi_context.context.mem_context.shared_mem_size = PSP_XGMI_SHARED_MEM_SIZE;
- 	psp->xgmi_context.context.ta_load_type = GFX_CMD_ID_LOAD_TA;
- 
--	if (!psp->xgmi_context.context.mem_context.shared_buf) {
--		ret = psp_ta_init_shared_buf(psp, &psp->xgmi_context.context.mem_context);
--		if (ret)
--			return ret;
--	}
-+	ret = psp_ta_init_shared_buf(psp, &psp->xgmi_context.context.mem_context);
-+	if (ret)
-+		return ret;
- 
- 	/* Load XGMI TA */
- 	ret = psp_ta_load(psp, &psp->xgmi_context.context);
-@@ -1844,11 +1846,9 @@ int psp_ras_initialize(struct psp_context *psp)
- 	psp->ras_context.context.mem_context.shared_mem_size = PSP_RAS_SHARED_MEM_SIZE;
- 	psp->ras_context.context.ta_load_type = GFX_CMD_ID_LOAD_TA;
- 
--	if (!psp->ras_context.context.mem_context.shared_buf) {
--		ret = psp_ta_init_shared_buf(psp, &psp->ras_context.context.mem_context);
--		if (ret)
--			return ret;
--	}
-+	ret = psp_ta_init_shared_buf(psp, &psp->ras_context.context.mem_context);
-+	if (ret)
-+		return ret;
- 
- 	ras_cmd = (struct ta_ras_shared_memory *)psp->ras_context.context.mem_context.shared_buf;
- 	memset(ras_cmd, 0, sizeof(struct ta_ras_shared_memory));
-@@ -1972,11 +1972,9 @@ static int psp_hdcp_initialize(struct psp_context *psp)
- 	psp->hdcp_context.context.mem_context.shared_mem_size = PSP_HDCP_SHARED_MEM_SIZE;
- 	psp->hdcp_context.context.ta_load_type = GFX_CMD_ID_LOAD_TA;
- 
--	if (!psp->hdcp_context.context.mem_context.shared_buf) {
--		ret = psp_ta_init_shared_buf(psp, &psp->hdcp_context.context.mem_context);
--		if (ret)
--			return ret;
--	}
-+	ret = psp_ta_init_shared_buf(psp, &psp->hdcp_context.context.mem_context);
-+	if (ret)
-+		return ret;
- 
- 	ret = psp_ta_load(psp, &psp->hdcp_context.context);
- 	if (!ret) {
-@@ -2046,11 +2044,9 @@ static int psp_dtm_initialize(struct psp_context *psp)
- 	psp->dtm_context.context.mem_context.shared_mem_size = PSP_DTM_SHARED_MEM_SIZE;
- 	psp->dtm_context.context.ta_load_type = GFX_CMD_ID_LOAD_TA;
- 
--	if (!psp->dtm_context.context.mem_context.shared_buf) {
--		ret = psp_ta_init_shared_buf(psp, &psp->dtm_context.context.mem_context);
--		if (ret)
--			return ret;
--	}
-+	ret = psp_ta_init_shared_buf(psp, &psp->dtm_context.context.mem_context);
-+	if (ret)
-+		return ret;
- 
- 	ret = psp_ta_load(psp, &psp->dtm_context.context);
- 	if (!ret) {
-@@ -2117,11 +2113,9 @@ static int psp_rap_initialize(struct psp_context *psp)
- 	psp->rap_context.context.mem_context.shared_mem_size = PSP_RAP_SHARED_MEM_SIZE;
- 	psp->rap_context.context.ta_load_type = GFX_CMD_ID_LOAD_TA;
- 
--	if (!psp->rap_context.context.mem_context.shared_buf) {
--		ret = psp_ta_init_shared_buf(psp, &psp->rap_context.context.mem_context);
--		if (ret)
--			return ret;
--	}
-+	ret = psp_ta_init_shared_buf(psp, &psp->rap_context.context.mem_context);
-+	if (ret)
-+		return ret;
- 
- 	ret = psp_ta_load(psp, &psp->rap_context.context);
- 	if (!ret) {
-@@ -2220,12 +2214,9 @@ static int psp_securedisplay_initialize(struct psp_context *psp)
- 		PSP_SECUREDISPLAY_SHARED_MEM_SIZE;
- 	psp->securedisplay_context.context.ta_load_type = GFX_CMD_ID_LOAD_TA;
- 
--	if (!psp->securedisplay_context.context.initialized) {
--		ret = psp_ta_init_shared_buf(psp,
--					     &psp->securedisplay_context.context.mem_context);
--		if (ret)
--			return ret;
--	}
-+	ret = psp_ta_init_shared_buf(psp, &psp->securedisplay_context.context.mem_context);
-+	if (ret)
-+		return ret;
- 
- 	ret = psp_ta_load(psp, &psp->securedisplay_context.context);
- 	if (!ret) {
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c       | 17 +++++++++--------
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c    |  2 +-
+ 2 files changed, 10 insertions(+), 9 deletions(-)
+
 -- 
 2.43.5
 
