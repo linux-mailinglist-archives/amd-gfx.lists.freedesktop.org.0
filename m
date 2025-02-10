@@ -2,123 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163A4A2E4D5
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Feb 2025 08:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C9EAA2E707
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Feb 2025 09:53:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCBEF10E4B1;
-	Mon, 10 Feb 2025 07:01:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="5E47tcnT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A79D310E08C;
+	Mon, 10 Feb 2025 08:53:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2053.outbound.protection.outlook.com [40.107.100.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6CC810E4B1
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 07:01:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QPMgX+4JsGTMnV6b/9Oy2FYmbcX6IhL/FueYla2ukcQd1xhXUQLx2/70qJJwkZtNsldoVoW0KNzPOQPX+8P4Kcx8mULRovsId9Y3KCBcSseujsriQV/SXQwlZ5cvz++8+WzoY7TNLKzLK6ykg6n6iWnQoCoGctMR8nJC3P35cC6IkfN8Gmij/YygTDJE3MPNWs0ju9QCVQH5TxnKs8xQXWpXzYjY69KFoWUDjy7QoSh1N/5lxQtDR8OixjdJBcucUOwU5BcdN9cDi90mTsq2J+mMN+TDQU6hFdRKwE/5FQZn17IH2hA4lKRNMTBAYKGcSDvUnxDOraYTSxdToBLE9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m3GWMW5e4QjiHumFJ9ZRjuhued15XjW3OFq++Dmti+s=;
- b=SoZyF+taRVDW+tYNE66/8P+XTrPGaljHR7FK7ai+mT3lo3HJXnl3RoFUhWY25l77+GGoSMRTbto++wTnYPvlZ11zVjAN2gw4OY3eO8ZTLbi7a4v/5rhKJOgobgvtrSyhWOR7kvybKCpVAyAp2KPRJMHB/r/Vw3gpAqqnclDMyI8g+DDTjBh5w5C2qyeVlyq4cJGv6f69nK04vT6X2hV5wQRNUOu6bgWlW3gf4chFVXQjhsoIM34eu+1IplhGhouv2sGiE/zapDvaNhTk+SHw6PXiq1TVwGAk0rlI14lw92pKb/3EIS8YDxzqwrHbxfeuXR/qfxMPywo11Jt6A0wmjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m3GWMW5e4QjiHumFJ9ZRjuhued15XjW3OFq++Dmti+s=;
- b=5E47tcnT/GUqFN752f3jIM0wxVwzRYFyFj258DPeVAJzsZsrgcisuUl9M9m31o4bgJ4Ic+vXuveoDXuZhwEo3FLH2grC7Q4M9fqiJs8+C/7EJAXe1Yhs93w/JGAwBcawCIjVvNO1RqFjOny/MA6JYVUxAW77FgVcE5wSRuSQ8lw=
-Received: from BL1PR13CA0078.namprd13.prod.outlook.com (2603:10b6:208:2b8::23)
- by IA1PR12MB6482.namprd12.prod.outlook.com (2603:10b6:208:3a9::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.16; Mon, 10 Feb
- 2025 07:00:57 +0000
-Received: from BL6PEPF0001AB52.namprd02.prod.outlook.com
- (2603:10b6:208:2b8:cafe::e1) by BL1PR13CA0078.outlook.office365.com
- (2603:10b6:208:2b8::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.10 via Frontend Transport; Mon,
- 10 Feb 2025 07:00:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB52.mail.protection.outlook.com (10.167.241.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8445.10 via Frontend Transport; Mon, 10 Feb 2025 07:00:57 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 10 Feb
- 2025 01:00:55 -0600
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
- <Jonathan.Kim@amd.com>
-Subject: [PATCH v2 4/4] drm/amdgpu: Use xgmi APIs for init and bandwidth
-Date: Mon, 10 Feb 2025 12:30:34 +0530
-Message-ID: <20250210070034.1998011-4-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250210070034.1998011-1-lijo.lazar@amd.com>
-References: <20250210070034.1998011-1-lijo.lazar@amd.com>
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B530910E173
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 06:07:48 +0000 (UTC)
+Received: from loongson.cn (unknown [113.200.148.30])
+ by gateway (Coremail) with SMTP id _____8AxbeKxl6ln2_lwAA--.27283S3;
+ Mon, 10 Feb 2025 14:07:45 +0800 (CST)
+Received: from [10.130.0.149] (unknown [113.200.148.30])
+ by front1 (Coremail) with SMTP id qMiowMCxPsevl6lnzsAJAA--.38660S3;
+ Mon, 10 Feb 2025 14:07:44 +0800 (CST)
+Subject: Re: [PATCH v6 0/9] Add jump table support for objtool on LoongArch
+To: Josh Poimboeuf <jpoimboe@kernel.org>
+References: <20241217010905.13054-1-yangtiezhu@loongson.cn>
+ <ef1e3e7c-0117-175c-5a85-091382696748@loongson.cn>
+ <20250115013444.anzoct6gvs56m225@jpoimboe>
+Cc: Huacai Chen <chenhuacai@kernel.org>, Peter Zijlstra
+ <peterz@infradead.org>, loongarch@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Tiezhu Yang <yangtiezhu@loongson.cn>
+Message-ID: <4612bfd8-442e-fecb-240f-46e735b48540@loongson.cn>
+Date: Mon, 10 Feb 2025 14:07:43 +0800
+User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB52:EE_|IA1PR12MB6482:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3793b7ba-b252-4a03-1b93-08dd49a0ab2e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KRNPX+1J8kTZ8USis33mTTpUdKXAl0pxK6dtO/0TYxEQj7Bnv1J20yPcloo1?=
- =?us-ascii?Q?rp+VTIchkaoHu0s3oZ1oD4QsAsH2yF6YozthmLPl/UB5Ki9teDS/bjd1PjSB?=
- =?us-ascii?Q?reo0Fd9K75j2wwMP9HW5rV1s1ctz+X6Q9Kp1THm559YgEliCEfIQL/GFpss0?=
- =?us-ascii?Q?kMGGZXSa9fZZwEJtbJ8Rz4OAUd17/EraKyubsT8EidonK/ji6nC+0Wk2g/BZ?=
- =?us-ascii?Q?uilY/WfaLddEgz0ls2ycBP5ihDAAVq+0UsuM+3poTuQOD1PiUaak9aHXKn/e?=
- =?us-ascii?Q?QuyljCWzB5m8Ri+3NBb81i6ObH/eFCS5kyyttsWJ98V/J2gQDAqjOU3t1GWD?=
- =?us-ascii?Q?TcSGXxNBOGt9IuDQA2rxyjXpB7YtvCy7uY+KD4T6ZYZOOCtRf4b82gpOKKOT?=
- =?us-ascii?Q?ATdw3vdc0NjeYRKtUbapJdOCYjymPbZhMHYfMYEx8v/bAtgY3LYoheE8rfff?=
- =?us-ascii?Q?Gf6EX9maUZU1McwfZ7oJWhj2MrQXol+slFZLRYsJF/j+5tcw5A57M2DBT3Q6?=
- =?us-ascii?Q?k4qk+ue6zGH/cIqHvXiKjCOWvrOW+zOs7NE/+/Vc7aIS9JWXDrgCXSPW9Pfk?=
- =?us-ascii?Q?cmUM0vu4DAv9X5HQG2WbBTeJa63OKA0wYQR9isgYiP7Nbv67BBNfR6v8Ph4j?=
- =?us-ascii?Q?7l3sGNddThAQWrfGxz/y9SkVI7Z34IWK7YUdZPCFZy7k1ZlBHwydgbEXRNWD?=
- =?us-ascii?Q?JfuUZgqzDpbF8VKWrUoV2rEyDbK96T2QU055I5egg0wZiYvvFA3L7EjaejaO?=
- =?us-ascii?Q?MS/XgpQ7HyeoqOVoEvcP9oW5vHTPMpqI2/tTVhgzZPTauWSfNMNo2cAc/nc8?=
- =?us-ascii?Q?lbydMoRm4CYpn3p82DPtyijSf4udHeIZy0mbwHtvpPpPYZPDrpjPnJOyWZrA?=
- =?us-ascii?Q?Tmuxv1aGJ92ahTaq2FYH0XHOT8684jqqlSy/ZM+XQyfKb1f9H6mYsBi85f0O?=
- =?us-ascii?Q?EQklQMsCueVAnEyF6XSxr3kHWtk35Pdk3lheZdRH9yyWRk8Zg8oEo8ECJSYU?=
- =?us-ascii?Q?gkd3XRDDt3ZNzq9fTltjVC/dYMuR0BPuSdpGvsGUSeC5HhpO1BRog7Ku6iJW?=
- =?us-ascii?Q?yVPMEHt/UdOCkrig5L6WlbvOrlztV6ba3AIx9VkPkIVoaQqWyNpybGnaXc7P?=
- =?us-ascii?Q?MPjXNHhma3AQfjCU5fgf4EnIBHL46tvivTgF9duzpKnyUTRHowNf9RWmqRIv?=
- =?us-ascii?Q?8a3k9OividXTO+hPlyv65DiH8pMd+td9BvU+F0oi1z1ERm7UN7xQd2BbdkE4?=
- =?us-ascii?Q?+97EtNxTKfkPqvCQM+Utg751EJyKwBF2SqHkXRjhEmKm95Z9IElr9kSS02r7?=
- =?us-ascii?Q?jIcyZQSgaKbrK0PORdU4FYD/HysEb96fCURsEFw/7o1z0LSbRqz++kLjMrtS?=
- =?us-ascii?Q?rEifuHPCfL+5neEjR41gLhGaYBq41VlDfpOtRycV/HxCPEyljPIi2q+7dzSL?=
- =?us-ascii?Q?JJIT+VdINLBB6GqWpCzBavnxBKluIdNH0VPwkm+wIEVLeT4oCKUJsEOmkt1s?=
- =?us-ascii?Q?AnibtFkmIuBmn3M=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2025 07:00:57.1374 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3793b7ba-b252-4a03-1b93-08dd49a0ab2e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB52.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6482
+In-Reply-To: <20250115013444.anzoct6gvs56m225@jpoimboe>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: qMiowMCxPsevl6lnzsAJAA--.38660S3
+X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBj93XoW7ur4Uur45Zw4ktrW5uF4rZwc_yoW8GrykpF
+ W5GFW29F4kJrWUX3WkKw1agFySqw4ftr1xXr45WrW5Aa1qq3W5tr4fZw4YgFWqgr4YvFyI
+ ya1fJa4q9F4DArXCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+ 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv
+ 67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
+ AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
+ F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw
+ 1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
+ xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
+ 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8j-
+ e5UUUUU==
+X-Mailman-Approved-At: Mon, 10 Feb 2025 08:53:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,56 +69,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Initialize xgmi related static information during early_init. Use xgmi
-API to get max bandwidth details.
+On 01/15/2025 09:34 AM, Josh Poimboeuf wrote:
+> On Sat, Jan 11, 2025 at 02:57:42PM +0800, Tiezhu Yang wrote:
+>> Hi Josh and Peter,
+>>
+>> On 12/17/2024 09:08 AM, Tiezhu Yang wrote:
+>>> This version is based on tip/tip.git objtool/core branch [1], add some weak
+>>> and arch-specific functions to make the generic code more readable, tested
+>>> with the latest upstream mainline Binutils, GCC and Clang.
+>>
+>> ...
+>>
+>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/log/?h=objtool/core
+>>>
+>>> Tiezhu Yang (9):
+>>>   objtool: Handle various symbol types of rodata
+>>>   objtool: Handle different entry size of rodata
+>>>   objtool: Handle PC relative relocation type
+>>>   objtool: Handle unreachable entry of rodata
+>>>   objtool/LoongArch: Add support for switch table
+>>>   objtool/LoongArch: Add support for goto table
+>>>   LoongArch: Enable jump table for objtool
+>>>   LoongArch: Convert unreachable() to BUG()
+>>>   drm/amd/display: Mark dc_fixpt_from_fraction() noinline
+>>
+>> Are you OK with the first 8 patches?
+>> What's the merge plan for this series?
+>
+> Sorry, my inbox is still reeling from the holidays.  I will review this
+> soon.
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
----
-v2:
-	Move XGMI info init to early init phase (Jon)
+What are the status of the first 8 patches?
+What is the next step? Is there anything else to be done here?
+I would really appreciate any advice on how to get this merged.
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 6 ++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
- 2 files changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-index 2c1b38c5cfc6..e6bc70fb1eb6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-@@ -576,6 +576,7 @@ int amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(struct amdgpu_device *dst,
- 					    bool is_min)
- {
- 	struct amdgpu_device *adev = dst, *peer_adev;
-+	uint32_t link_max_bandwidth;
- 	int num_links;
- 
- 	if (amdgpu_ip_version(adev, GC_HWIP, 0) < IP_VERSION(9, 4, 2))
-@@ -593,8 +594,9 @@ int amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(struct amdgpu_device *dst,
- 		num_links = 0;
- 	}
- 
--	/* Aldebaran xGMI DPM is defeatured so assume x16 x 25Gbps for bandwidth. */
--	return (num_links * 16 * 25000)/BITS_PER_BYTE;
-+	link_max_bandwidth = amdgpu_xgmi_get_max_bandwidth(adev);
-+
-+	return (num_links * link_max_bandwidth)/BITS_PER_BYTE;
- }
- 
- int amdgpu_amdkfd_get_pcie_bandwidth_mbytes(struct amdgpu_device *adev, bool is_min)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 315ab2d6717a..09aac4542ed7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2749,6 +2749,9 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
- 	if (!total)
- 		return -ENODEV;
- 
-+	if (adev->gmc.xgmi.supported)
-+		amdgpu_xgmi_early_init(adev);
-+
- 	ip_block = amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_GFX);
- 	if (ip_block->status.valid != false)
- 		amdgpu_amdkfd_device_probe(adev);
--- 
-2.25.1
+Thanks,
+Tiezhu
 
