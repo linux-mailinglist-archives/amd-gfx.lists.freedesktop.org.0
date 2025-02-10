@@ -2,59 +2,126 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C9EAA2E707
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Feb 2025 09:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD579A2E574
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Feb 2025 08:32:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A79D310E08C;
-	Mon, 10 Feb 2025 08:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57ABF10E4BB;
+	Mon, 10 Feb 2025 07:32:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QOwStA8a";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id B530910E173
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 06:07:48 +0000 (UTC)
-Received: from loongson.cn (unknown [113.200.148.30])
- by gateway (Coremail) with SMTP id _____8AxbeKxl6ln2_lwAA--.27283S3;
- Mon, 10 Feb 2025 14:07:45 +0800 (CST)
-Received: from [10.130.0.149] (unknown [113.200.148.30])
- by front1 (Coremail) with SMTP id qMiowMCxPsevl6lnzsAJAA--.38660S3;
- Mon, 10 Feb 2025 14:07:44 +0800 (CST)
-Subject: Re: [PATCH v6 0/9] Add jump table support for objtool on LoongArch
-To: Josh Poimboeuf <jpoimboe@kernel.org>
-References: <20241217010905.13054-1-yangtiezhu@loongson.cn>
- <ef1e3e7c-0117-175c-5a85-091382696748@loongson.cn>
- <20250115013444.anzoct6gvs56m225@jpoimboe>
-Cc: Huacai Chen <chenhuacai@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, loongarch@lists.linux.dev,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-From: Tiezhu Yang <yangtiezhu@loongson.cn>
-Message-ID: <4612bfd8-442e-fecb-240f-46e735b48540@loongson.cn>
-Date: Mon, 10 Feb 2025 14:07:43 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
- Thunderbird/45.4.0
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2050.outbound.protection.outlook.com [40.107.244.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C591710E4BB
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 07:32:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=y/0ERMt/zNV2oKxhKp9lscrMYqiKljrHRb7CW1ZNOwmQVvkA0j9u3r+s20Y3VZyjFbZZS4UGAL8QPiVbWDkTFLC9mOsME6o+/dIdGuO3nCUhwxIJteKuEKvWFDA+3i9/EIxsz8ZmSWpYqPksltXSxzfzOLo1SA1+zJDIdtNlro+QpBoumlfGFfMnTtvcckp8Cogl1yqo9XkbgleW5rlcuBWJ1l4hgWphkd4RT2X9kFWNRigSWKwRwD17OSWQYyp0LvvYwWN9ANXX6whMr3Bq6QimpTRhXwopesXltlwIJPALK5YRVmuKwDMdowoKQyxsZJUsafvXGci13uttSNjKrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z+n1WmhwLyf4wRDDAz1+MQkAilGXoULXQX+NJKlExXg=;
+ b=yuQQveymbeL/tUFVzRxZRfQ3bafLY9fdBPNr1yE8SEn8q7hhXv2vFgXBLgVV0nIvhucVwanWAQ4rcAV9GR2B/jb/vgbmLH+dKygo5i0FjUG0aoXtmDIebbRfNG0p29o6FubmOVsy8fZT7YuGRfT1lZbNkTkG2+wt+v4Hm5NQF4t9pgTVTsJnqFd9mYBWVBh2YzUOzPweOM7oPMsrf7drLvlOdWD8EEGZD11X4X2X38X9oCePHwAkvW6ACHnO7xEadwCSvl/kAQoXzbVOTAHrQSLTvO57jOgw5oMYLkpLqtgKC8tmoyK0M7vfXeaz1L0PPHKS838gwYyR060HvFCiTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z+n1WmhwLyf4wRDDAz1+MQkAilGXoULXQX+NJKlExXg=;
+ b=QOwStA8aiNDOr0do2xgiDlgPBq5WD5p0wHLA4OqKzrfza1SGe4XypHHJmXsR0lEXGLnyUMwjJOz7+WHH9Ttc2HpXYjAIGNOEuTAV8j402VG9+9o95njlH1hQ0E4BwPuDyKRkl1qtp0AL/3b9J5riNtWYburhagaqduyCBCxK8a4=
+Received: from SJ0PR03CA0198.namprd03.prod.outlook.com (2603:10b6:a03:2ef::23)
+ by SN7PR12MB7297.namprd12.prod.outlook.com (2603:10b6:806:2ad::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Mon, 10 Feb
+ 2025 07:31:59 +0000
+Received: from SJ1PEPF00002326.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef:cafe::4) by SJ0PR03CA0198.outlook.office365.com
+ (2603:10b6:a03:2ef::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.31 via Frontend Transport; Mon,
+ 10 Feb 2025 07:31:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SJ1PEPF00002326.mail.protection.outlook.com (10.167.242.89) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8445.10 via Frontend Transport; Mon, 10 Feb 2025 07:31:58 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 10 Feb
+ 2025 01:31:57 -0600
+Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
+ SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39
+ via Frontend Transport; Mon, 10 Feb 2025 01:31:46 -0600
+From: "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, <felix.kuehling@amd.com>, Jonathan Kim
+ <Jonathan.Kim@amd.com>, Jiadong Zhu <Jiadong.Zhu@amd.com>,
+ "Jesse.zhang@amd.com" <Jesse.zhang@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Jesse Zhang <jesse.zhang@amd.com>
+Subject: [PATCH 1/4] drm/amdgpu/kfd: Add shared SDMA reset functionality with
+ callback support
+Date: Mon, 10 Feb 2025 15:31:42 +0800
+Message-ID: <20250210073145.2681082-1-jesse.zhang@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20250115013444.anzoct6gvs56m225@jpoimboe>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: qMiowMCxPsevl6lnzsAJAA--.38660S3
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj93XoW7ur4Uur45Zw4ktrW5uF4rZwc_yoW8GrykpF
- W5GFW29F4kJrWUX3WkKw1agFySqw4ftr1xXr45WrW5Aa1qq3W5tr4fZw4YgFWqgr4YvFyI
- ya1fJa4q9F4DArXCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
- xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
- 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv
- 67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
- AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
- F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw
- 1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
- xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
- 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8j-
- e5UUUUU==
-X-Mailman-Approved-At: Mon, 10 Feb 2025 08:53:47 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: jesse.zhang@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002326:EE_|SN7PR12MB7297:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67980b66-a199-42f3-b6d4-08dd49a500f2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700013|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?YWno8E+Z3xHSuhRkpkAmcQVFHMNmAub2qIlvOkT76VKqz17YlkyR42WKL8zR?=
+ =?us-ascii?Q?jbWuz8vKgmuSSFXLR/QQcDDQXBCOrR+xZ0FGrbugOl4/YPulM4v3ljxKm6rq?=
+ =?us-ascii?Q?JpxllHeCTHJytT9KXMsYI/F16Cb9dGfVR7Q5Xb/R4G9PgjunQKLBYlUfTibw?=
+ =?us-ascii?Q?4EtsV0P74nTIeMNic8EgCArrCD/ScD4UNcob1dkoqCVjgTvk4llt6K4hVYWm?=
+ =?us-ascii?Q?9ZqwowJuw3Z1gcTCNcIOV+AFaZUWt+/OPAxLY13VY2SqdOVwl2Q+izWZTKdm?=
+ =?us-ascii?Q?O+5EJTDS5mZojmTks8a4e9wR38THiVjMtHjq29pTzYvFyyoYdluVZ19SxwYU?=
+ =?us-ascii?Q?Sor0h5U8t2JtDMtS1TJn6cm+enUT2w7bdpzt8QlE+aTg8LIdTkIGGdMiJJiZ?=
+ =?us-ascii?Q?GTDBKabz+JVFILZfu/2H61Rj7Z/8HdDstJ/wP+WGPh1Drwbr0IWKVpf/JH8V?=
+ =?us-ascii?Q?9nGLNCMUEl/O4WxUFJnpUBVIOzXhpJo6jzBmOX0R0TJbAV19ntSokpQZ6kCN?=
+ =?us-ascii?Q?yFayQCYsRjXJgfHaWwPW53O0fVtkrAgPvFF4AYsJzt7yBowgkxdQUhcVpVWU?=
+ =?us-ascii?Q?TSG9D6lr1fJh6eFVm6YXvaVXEyelrv7o4xuzNJ+eWnuIpDpvKMC0hurA1NKk?=
+ =?us-ascii?Q?+KlD7TfQYtruZ4Xycvyvg75ncANHYluwJXoAQl7T3a5HG1deZ3IqrPfwfkr2?=
+ =?us-ascii?Q?iPOvx6Lx+mEGkifwllqx2FVpTCaarMYNVkwDHNDZB0zFqJRd0TXW3XSngMty?=
+ =?us-ascii?Q?iSP8fwVkMLZtgIgF+8Ffv3La6poKtBn0/YOPM3cetnI7os8+OpVDTQWiKtQ0?=
+ =?us-ascii?Q?2QZXgQ/K3/m8iAMzIO8mkKNmgc6exC7uGbCadSkPRKkBd9QQoMG/vecbCOO4?=
+ =?us-ascii?Q?ufKYRXHuR3cXjZJRBPu+2U0qlm3QT7au7r+sGO6TiQM8yFPyhddyQVDeZ5zz?=
+ =?us-ascii?Q?eWdaUh009s6o44EoWdSPwrG+fUnMsB2jawXeyEWyPY19r3yilQyrUXtSLv58?=
+ =?us-ascii?Q?vKYmmIT1fMB0L8VN171A3tXhNVXhcypENSopw00caBk+M3ntj6Ee5C4VH9Ig?=
+ =?us-ascii?Q?yg5zwXECHnwdphPwaqLkImwDTAgnEd0jP1HZ/ihThro2kokcu7S9/Q5EQn3C?=
+ =?us-ascii?Q?gZ+a8PLEwhpG3WfIun4MC79wMqsWRr2L0G1n1/llo+afTktGf4fbOScu1fuI?=
+ =?us-ascii?Q?nuuUDJBFNpkCNZgqDYvq1oATl6bDTPdSbszE9waE9WkH1oJNzmlRlr89eZlF?=
+ =?us-ascii?Q?9cD6GEGy+Kv1w0I/2YA6KbeVIdmCZq3IbtmTJkT7SNHDndQLCHPKg8bgnQBH?=
+ =?us-ascii?Q?hz6wOwM66etCUdu+Jyk3PqdvYNbh58T7S435kBBP4aBBSr5Gay/kMyNe11AW?=
+ =?us-ascii?Q?3uV9g4BADTBjhCbmUNN0G1DwmhnV8G5XCif1Bzx2ZY9PdQ/VwfkHFPTcYDAp?=
+ =?us-ascii?Q?qy86tdQ3Bv5T/M6JJvfcK33gtPXIL5OlTlKk1IP0cTFTYhhTg/v1/ajzK4NM?=
+ =?us-ascii?Q?ckYt6wTwp1JfiIs=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2025 07:31:58.9410 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67980b66-a199-42f3-b6d4-08dd49a500f2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002326.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7297
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,40 +136,169 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 01/15/2025 09:34 AM, Josh Poimboeuf wrote:
-> On Sat, Jan 11, 2025 at 02:57:42PM +0800, Tiezhu Yang wrote:
->> Hi Josh and Peter,
->>
->> On 12/17/2024 09:08 AM, Tiezhu Yang wrote:
->>> This version is based on tip/tip.git objtool/core branch [1], add some weak
->>> and arch-specific functions to make the generic code more readable, tested
->>> with the latest upstream mainline Binutils, GCC and Clang.
->>
->> ...
->>
->>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/log/?h=objtool/core
->>>
->>> Tiezhu Yang (9):
->>>   objtool: Handle various symbol types of rodata
->>>   objtool: Handle different entry size of rodata
->>>   objtool: Handle PC relative relocation type
->>>   objtool: Handle unreachable entry of rodata
->>>   objtool/LoongArch: Add support for switch table
->>>   objtool/LoongArch: Add support for goto table
->>>   LoongArch: Enable jump table for objtool
->>>   LoongArch: Convert unreachable() to BUG()
->>>   drm/amd/display: Mark dc_fixpt_from_fraction() noinline
->>
->> Are you OK with the first 8 patches?
->> What's the merge plan for this series?
->
-> Sorry, my inbox is still reeling from the holidays.  I will review this
-> soon.
+From: "Jesse.zhang@amd.com" <Jesse.zhang@amd.com>
 
-What are the status of the first 8 patches?
-What is the next step? Is there anything else to be done here?
-I would really appreciate any advice on how to get this merged.
+This patch introduces shared SDMA reset functionality between AMDGPU and KFD.
+The implementation includes the following key changes:
 
-Thanks,
-Tiezhu
+1. Added `amdgpu_sdma_reset_queue`:
+   - Resets a specific SDMA queue by instance ID.
+   - Invokes registered pre-reset and post-reset callbacks to allow KFD and AMDGPU
+     to save/restore their state during the reset process.
+
+2. Added `amdgpu_set_on_reset_callbacks`:
+   - Allows KFD and AMDGPU to register callback functions for pre-reset and
+     post-reset operations.
+   - Callbacks are stored in a global linked list and invoked in the correct order
+     during SDMA reset.
+
+This patch ensures that both AMDGPU and KFD can handle SDMA reset events
+gracefully, with proper state saving and restoration. It also provides a flexible
+callback mechanism for future extensions.
+
+v2: fix CamelCase and put the SDMA helper into amdgpu_sdma.c (Alex)
+v3: rename the `amdgpu_register_on_reset_callbacks` function to
+      `amdgpu_sdma_register_on_reset_callbacks`
+    move global reset_callback_list to struct amdgpu_sdma (Alex)
+
+Suggested-by: Alex Deucher <alexander.deucher@amd.com>
+Suggested-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
+Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 72 ++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h | 11 ++++
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c |  2 +-
+ 3 files changed, 84 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+index 174badca27e7..19c8be7d72e2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+@@ -460,3 +460,75 @@ void amdgpu_sdma_sysfs_reset_mask_fini(struct amdgpu_device *adev)
+ 			device_remove_file(adev->dev, &dev_attr_sdma_reset_mask);
+ 	}
+ }
++
++/**
++ * amdgpu_sdma_register_on_reset_callbacks - Register SDMA reset callbacks
++ * @funcs: Pointer to the callback structure containing pre_reset and post_reset functions
++ *
++ * This function allows KFD and AMDGPU to register their own callbacks for handling
++ * pre-reset and post-reset operations. The callbacks are added to a global list.
++ */
++void amdgpu_sdma_register_on_reset_callbacks(struct amdgpu_device *adev, struct sdma_on_reset_funcs *funcs)
++{
++	if (!funcs)
++		return;
++
++	/* Initialize the list node in the callback structure */
++	INIT_LIST_HEAD(&funcs->list);
++
++	/* Add the callback structure to the global list */
++	list_add_tail(&funcs->list, &adev->sdma.reset_callback_list);
++}
++
++/**
++ * amdgpu_sdma_reset_instance - Reset a specific SDMA instance
++ * @adev: Pointer to the AMDGPU device
++ * @instance_id: ID of the SDMA engine instance to reset
++ *
++ * This function performs the following steps:
++ * 1. Calls all registered pre_reset callbacks to allow KFD and AMDGPU to save their state.
++ * 2. Resets the specified SDMA engine instance.
++ * 3. Calls all registered post_reset callbacks to allow KFD and AMDGPU to restore their state.
++ *
++ * Returns: 0 on success, or a negative error code on failure.
++ */
++int amdgpu_sdma_reset_instance(struct amdgpu_device *adev, uint32_t instance_id)
++{
++	struct sdma_on_reset_funcs *funcs;
++	int ret;
++
++	/* Invoke all registered pre_reset callbacks */
++	list_for_each_entry(funcs, &adev->sdma.reset_callback_list, list) {
++		if (funcs->pre_reset) {
++			ret = funcs->pre_reset(adev, instance_id);
++			if (ret) {
++				dev_err(adev->dev,
++				"beforeReset callback failed for instance %u: %d\n",
++					instance_id, ret);
++				return ret;
++			}
++		}
++	}
++
++	/* Perform the SDMA reset for the specified instance */
++	ret = amdgpu_dpm_reset_sdma(adev, 1 << instance_id);
++	if (ret) {
++		dev_err(adev->dev, "Failed to reset SDMA instance %u\n", instance_id);
++		return ret;
++	}
++
++	/* Invoke all registered post_reset callbacks */
++	list_for_each_entry(funcs, &adev->sdma.reset_callback_list, list) {
++		if (funcs->post_reset) {
++			ret = funcs->post_reset(adev, instance_id);
++			if (ret) {
++				dev_err(adev->dev,
++				"afterReset callback failed for instance %u: %d\n",
++					instance_id, ret);
++				return ret;
++			}
++		}
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+index 5f60736051d1..fbb8b04ef2cb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+@@ -98,6 +98,13 @@ struct amdgpu_sdma_ras {
+ 	struct amdgpu_ras_block_object ras_block;
+ };
+ 
++struct sdma_on_reset_funcs {
++	int (*pre_reset)(struct amdgpu_device *adev, uint32_t instance_id);
++	int (*post_reset)(struct amdgpu_device *adev, uint32_t instance_id);
++	/* Linked list node to store this structure in a list; */
++	struct list_head list;
++};
++
+ struct amdgpu_sdma {
+ 	struct amdgpu_sdma_instance instance[AMDGPU_MAX_SDMA_INSTANCES];
+ 	struct amdgpu_irq_src	trap_irq;
+@@ -118,6 +125,7 @@ struct amdgpu_sdma {
+ 	struct amdgpu_sdma_ras	*ras;
+ 	uint32_t		*ip_dump;
+ 	uint32_t 		supported_reset;
++	struct list_head	reset_callback_list;
+ };
+ 
+ /*
+@@ -157,6 +165,9 @@ struct amdgpu_buffer_funcs {
+ 				 uint32_t byte_count);
+ };
+ 
++void amdgpu_sdma_register_on_reset_callbacks(struct amdgpu_device *adev, struct sdma_on_reset_funcs *funcs);
++int amdgpu_sdma_reset_instance(struct amdgpu_device *adev, uint32_t instance_id);
++
+ #define amdgpu_emit_copy_buffer(adev, ib, s, d, b, t) (adev)->mman.buffer_funcs->emit_copy_buffer((ib),  (s), (d), (b), (t))
+ #define amdgpu_emit_fill_buffer(adev, ib, s, d, b) (adev)->mman.buffer_funcs->emit_fill_buffer((ib), (s), (d), (b))
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+index 5e0066cd6c51..64c163dd708f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+@@ -1477,7 +1477,7 @@ static int sdma_v4_4_2_sw_init(struct amdgpu_ip_block *ip_block)
+ 	r = amdgpu_sdma_sysfs_reset_mask_init(adev);
+ 	if (r)
+ 		return r;
+-
++	INIT_LIST_HEAD(&adev->sdma.reset_callback_list);
+ 	return r;
+ }
+ 
+-- 
+2.25.1
 
