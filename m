@@ -2,57 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A261A31237
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Feb 2025 17:58:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A297A30FD8
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Feb 2025 16:32:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F26B10E718;
-	Tue, 11 Feb 2025 16:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5CE10E2FC;
+	Tue, 11 Feb 2025 15:32:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="wvMQQo7f";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Ra4fURoG";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9Yy0eZub";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Ra4fURoG";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9Yy0eZub";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9178B10E11C
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 10:08:11 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D03FD10E6EB;
+ Tue, 11 Feb 2025 15:32:00 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4YscZw1Jg4z9t4R;
- Tue, 11 Feb 2025 11:08:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1739268488; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=s96W1H3gANGId9X5PxBXgCRqKW5houTGbV847ZPN/2g=;
- b=wvMQQo7fZ/dKC7v/b780frr73KE6qgq9JkNQQv3mnPYbl7eaGbAP1b19i/6hUqNUWm5tQQ
- 3/XiKJk8nmM8JC4L6oMBaOJPal4pNF8PaEbTPyJcqQ9eEl/cpcSU99VPfPQDoryKYkv+5t
- dS+WLLVrKwE9eZ5tp1K2LJPe5B/4Hh2p8/Uvrn7cSDcdlvZS4KGdNlEZEhKQNYpyZ38lVr
- tSnL5kGiVCBZrkRCrC6FHETGsujqjBpT9y/EAR8AuO3NsygvAZYSN11NVkacz5mFbpbgTL
- seBAU2hUr1EKMxlPCsA1vABeLWzmhLIpIsraMx2lhi4BRr8SjAaPZO3nT1NImA==
-Message-ID: <3f6de080ac75fc0988d371e71072cba5d60e269e.camel@mailbox.org>
-Subject: Re: [PATCH 2/3] drm/amdgpu: Pop jobs from the queue more robustly
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Tvrtko
- Ursulin <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Danilo Krummrich <dakr@kernel.org>, Matthew Brost
- <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>
-Date: Tue, 11 Feb 2025 11:08:05 +0100
-In-Reply-To: <949a5a2f-dbf3-497e-a50a-92adb48aa31f@amd.com>
-References: <20250206164031.43413-1-tvrtko.ursulin@igalia.com>
- <20250206164031.43413-3-tvrtko.ursulin@igalia.com>
- <949a5a2f-dbf3-497e-a50a-92adb48aa31f@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ by smtp-out2.suse.de (Postfix) with ESMTPS id B70565C44A;
+ Tue, 11 Feb 2025 10:08:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1739268530; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=3s2MHc3chpf4YmzucLQAgde8O86lj1K8eKaB4Rm+fac=;
+ b=Ra4fURoGuAhKdETVrmii++K+5Hi7vd+oSsoT5AV5Np3oTbE0gFHG0sj+aiw9YzvPjmR02M
+ 3l9tk48JAqieulwGZifx+AbKQ+JpVSLH8a4nx5mzkC+RTwydgxwIa2ork4ZORuDpqI1BqH
+ Q88xkD6M24Ev+q3mDuXjRlICGxzhfi8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1739268530;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=3s2MHc3chpf4YmzucLQAgde8O86lj1K8eKaB4Rm+fac=;
+ b=9Yy0eZubkbeKyqzMoLK0UVTSRYlVO97UMmoNvJs8fZV0STNwTn5agvDlHzb9RoFM9XKscF
+ oTfV5GbvBNPjPRBg==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Ra4fURoG;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=9Yy0eZub
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1739268530; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=3s2MHc3chpf4YmzucLQAgde8O86lj1K8eKaB4Rm+fac=;
+ b=Ra4fURoGuAhKdETVrmii++K+5Hi7vd+oSsoT5AV5Np3oTbE0gFHG0sj+aiw9YzvPjmR02M
+ 3l9tk48JAqieulwGZifx+AbKQ+JpVSLH8a4nx5mzkC+RTwydgxwIa2ork4ZORuDpqI1BqH
+ Q88xkD6M24Ev+q3mDuXjRlICGxzhfi8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1739268530;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=3s2MHc3chpf4YmzucLQAgde8O86lj1K8eKaB4Rm+fac=;
+ b=9Yy0eZubkbeKyqzMoLK0UVTSRYlVO97UMmoNvJs8fZV0STNwTn5agvDlHzb9RoFM9XKscF
+ oTfV5GbvBNPjPRBg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 71C6713715;
+ Tue, 11 Feb 2025 10:08:50 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id F1eQGrIhq2fHcgAAD6G6ig
+ (envelope-from <tiwai@suse.de>); Tue, 11 Feb 2025 10:08:50 +0000
+From: Takashi Iwai <tiwai@suse.de>
+To: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>
+Subject: [PATCH] drm/amd/display: Add sanity checks for drm_edid_raw()
+Date: Tue, 11 Feb 2025 11:08:46 +0100
+Message-ID: <20250211100847.12937-1-tiwai@suse.de>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MBO-RS-META: y7awscpmpwecm7841jhdwn87pmrg6eh7
-X-MBO-RS-ID: ef1702cea21a21b6772
-X-Mailman-Approved-At: Tue, 11 Feb 2025 16:57:59 +0000
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: B70565C44A
+X-Spam-Level: 
+X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_MISSING_CHARSET(0.50)[];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; RCPT_COUNT_SEVEN(0.00)[9];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email, suse.de:dkim, suse.de:mid,
+ imap1.dmz-prg2.suse.org:helo, imap1.dmz-prg2.suse.org:rdns, suse.com:url]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -3.01
+X-Spam-Flag: NO
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,106 +111,57 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2025-02-11 at 09:22 +0100, Christian K=C3=B6nig wrote:
-> Am 06.02.25 um 17:40 schrieb Tvrtko Ursulin:
-> > Replace a copy of DRM scheduler's to_drm_sched_job with a copy of a
-> > newly
-> > added __drm_sched_entity_queue_pop.
-> >=20
-> > This allows breaking the hidden dependency that queue_node has to
-> > be the
-> > first element in struct drm_sched_job.
-> >=20
-> > A comment is also added with a reference to the mailing list
-> > discussion
-> > explaining the copied helper will be removed when the whole broken
-> > amdgpu_job_stop_all_jobs_on_sched is removed.
-> >=20
-> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > Cc: Danilo Krummrich <dakr@kernel.org>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Philipp Stanner <phasta@kernel.org>
-> > Cc: "Zhang, Hawking" <Hawking.Zhang@amd.com>
->=20
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+When EDID is retrieved via drm_edid_raw(), it doesn't guarantee to
+return proper EDID bytes the caller wants: it may be either NULL (that
+leads to an Oops) or with too long bytes over the fixed size raw_edid
+array (that may lead to memory corruption).  The latter was reported
+actually when connected with a bad adapter.
 
-I think this v3 has been supplanted by a v4 by now.
+Add sanity checks for drm_edid_raw() to address the above corner
+cases, and return EDID_BAD_INPUT accordingly.
 
-@Tvrtko: btw, do you create patches with
-git format-patch -v4 ?
+Fixes: 48edb2a4256e ("drm/amd/display: switch amdgpu_dm_connector to use struct drm_edid")
+Link: https://bugzilla.suse.com/show_bug.cgi?id=1236415
+Signed-off-by: Takashi Iwai <tiwai@suse.de>
+---
 
-That way the v4 label will be included in all patch titles, too, not
-just the cover letter. That makes searching etc. easier in large
-inboxes
+BTW, I'm not sure why memmove() is used instead of memcpy().
+I left as is for now.
 
-P.
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c  | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
->=20
-> > ---
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 22 +++++++++++++++++++=
--
-> > --
-> > =C2=A0 1 file changed, 19 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> > index 100f04475943..22cb48bab24d 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> > @@ -411,8 +411,24 @@ static struct dma_fence *amdgpu_job_run(struct
-> > drm_sched_job *sched_job)
-> > =C2=A0=C2=A0	return fence;
-> > =C2=A0 }
-> > =C2=A0=20
-> > -#define to_drm_sched_job(sched_job)		\
-> > -		container_of((sched_job), struct drm_sched_job,
-> > queue_node)
-> > +/*
-> > + * This is a duplicate function from DRM scheduler
-> > sched_internal.h.
-> > + * Plan is to remove it when amdgpu_job_stop_all_jobs_on_sched is
-> > removed, due
-> > + * latter being incorrect and racy.
-> > + *
-> > + * See
-> > https://lore.kernel.org/amd-gfx/44edde63-7181-44fb-a4f7-94e50514f539@am=
-d.com/
-> > + */
-> > +static struct drm_sched_job *
-> > +__drm_sched_entity_queue_pop(struct drm_sched_entity *entity)
-> > +{
-> > +	struct spsc_node *node;
-> > +
-> > +	node =3D spsc_queue_pop(&entity->job_queue);
-> > +	if (!node)
-> > +		return NULL;
-> > +
-> > +	return container_of(node, struct drm_sched_job,
-> > queue_node);
-> > +}
-> > =C2=A0=20
-> > =C2=A0 void amdgpu_job_stop_all_jobs_on_sched(struct drm_gpu_scheduler
-> > *sched)
-> > =C2=A0 {
-> > @@ -425,7 +441,7 @@ void amdgpu_job_stop_all_jobs_on_sched(struct
-> > drm_gpu_scheduler *sched)
-> > =C2=A0=C2=A0		struct drm_sched_rq *rq =3D sched->sched_rq[i];
-> > =C2=A0=C2=A0		spin_lock(&rq->lock);
-> > =C2=A0=C2=A0		list_for_each_entry(s_entity, &rq->entities, list)
-> > {
-> > -			while ((s_job =3D
-> > to_drm_sched_job(spsc_queue_pop(&s_entity->job_queue)))) {
-> > +			while ((s_job =3D
-> > __drm_sched_entity_queue_pop(s_entity))) {
-> > =C2=A0=C2=A0				struct drm_sched_fence *s_fence =3D
-> > s_job->s_fence;
-> > =C2=A0=20
-> > =C2=A0=C2=A0				dma_fence_signal(&s_fence-
-> > >scheduled);
->=20
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index fbd80d8545a8..a92bc12a095e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -980,6 +980,7 @@ enum dc_edid_status dm_helpers_read_local_edid(
+ 	enum dc_edid_status edid_status;
+ 	const struct drm_edid *drm_edid;
+ 	const struct edid *edid;
++	size_t edid_len;
+ 
+ 	if (link->aux_mode)
+ 		ddc = &aconnector->dm_dp_aux.aux.ddc;
+@@ -1010,8 +1011,13 @@ enum dc_edid_status dm_helpers_read_local_edid(
+ 			return EDID_NO_RESPONSE;
+ 
+ 		edid = drm_edid_raw(drm_edid); // FIXME: Get rid of drm_edid_raw()
+-		sink->dc_edid.length = EDID_LENGTH * (edid->extensions + 1);
+-		memmove(sink->dc_edid.raw_edid, (uint8_t *)edid, sink->dc_edid.length);
++		if (!edid)
++			return EDID_BAD_INPUT;
++		edid_len = EDID_LENGTH * (edid->extensions + 1);
++		if (edid_len > sizeof(sink->dc_edid.raw_edid))
++			return EDID_BAD_INPUT;
++		sink->dc_edid.length = edid_len;
++		memmove(sink->dc_edid.raw_edid, (uint8_t *)edid, edid_len);
+ 
+ 		/* We don't need the original edid anymore */
+ 		drm_edid_free(drm_edid);
+-- 
+2.43.0
 
