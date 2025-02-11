@@ -2,56 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0463A31239
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Feb 2025 17:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6758FA31236
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Feb 2025 17:58:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BFD810E71A;
-	Tue, 11 Feb 2025 16:58:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16E5910E715;
+	Tue, 11 Feb 2025 16:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="hLS8st5j";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="e/gML5h+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C595510E21D
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 10:36:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=UtV379SyHBLioD2I4aaOOfWgfvE7CJqQun8AZHLNibY=; b=hLS8st5jGFZfxCjpGEpPaQ0QD5
- 1DXsji9kNF0K/dsmYNJYHGqKGoeh+k4dD6ank7DvbUQhSAYX2bND6u7D8z7HKN3IoeBzsIGQiukGS
- SqdZqlIK1HMDUja/j+JLmoXhw8xkP7SkHWoBPcv5As3gNzOA+9UhHlGXXNnzh5zAxbcScdRpeC3IT
- HJhO9z8K4Fcm85uC4teLwt2F41ywKhcqO6TO3rXzuyjGzuq1MbtTfXvoDlpzC1IUQfyQCDfdERsWv
- DshlzLc917FyvUewut4ExfSKnTY+4QjFCZEJJwNtdixE2yPXvA7dJ0yL9BNGnKVcBzh4hY08VI6ck
- /otQdRWQ==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1thncR-007gQx-2s; Tue, 11 Feb 2025 11:36:00 +0100
-Message-ID: <fbdb3020-8270-405e-a2ca-71e7687dfba1@igalia.com>
-Date: Tue, 11 Feb 2025 10:35:59 +0000
+X-Greylist: delayed 392 seconds by postgrey-1.36 at gabe;
+ Tue, 11 Feb 2025 14:34:19 UTC
+Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com
+ [51.81.35.219])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BAE710E6D0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 14:34:19 +0000 (UTC)
+Received: from relay5.mymailcheap.com (relay5.mymailcheap.com
+ [159.100.248.207])
+ by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 33DF1205D5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 14:27:46 +0000 (UTC)
+Received: from relay4.mymailcheap.com (relay4.mymailcheap.com [137.74.80.155])
+ by relay5.mymailcheap.com (Postfix) with ESMTPS id 4D7A7260EB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 14:27:43 +0000 (UTC)
+Received: from nf1.mymailcheap.com (nf1.mymailcheap.com [51.75.14.91])
+ by relay4.mymailcheap.com (Postfix) with ESMTPS id 12A6E20319;
+ Tue, 11 Feb 2025 14:27:40 +0000 (UTC)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+ by nf1.mymailcheap.com (Postfix) with ESMTPSA id A3F544023E;
+ Tue, 11 Feb 2025 14:27:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+ t=1739284059; bh=ykaLlg8HghwqKHvMRIYVlPnOo3Hdw86rjso/x8RKXFM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=e/gML5h+N4T5zFb+89aGoEeB/kIkhHUwClhA3fowiCFNwMwkWZpegyDva+y/A5YtS
+ xsnvAzxxLoF+9PncyXNOsdEOxUdZVvbemNQKpiNT9T/tkbZMIZ1LklvXGqX4Is2ROr
+ lANBFZsaWBqOIwuL5e1aR0edV2QwiWKWu8tf/TDo=
+Received: from localhost.localdomain (unknown [58.32.42.120])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail20.mymailcheap.com (Postfix) with ESMTPSA id A4F99406D3;
+ Tue, 11 Feb 2025 14:27:36 +0000 (UTC)
+From: Kexy Biscuit <kexybiscuit@aosc.io>
+To: yangtiezhu@loongson.cn
+Cc: amd-gfx@lists.freedesktop.org, chenhuacai@kernel.org, jpoimboe@kernel.org,
+ linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+ peterz@infradead.org, Kexy Biscuit <kexybiscuit@aosc.io>
+Subject: [PATCH] objtool: remove duplicate case value R_PPC64_REL32
+Date: Tue, 11 Feb 2025 22:19:57 +0800
+Message-ID: <20250211141956.553850-2-kexybiscuit@aosc.io>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20241217010905.13054-3-yangtiezhu@loongson.cn>
+References: <20241217010905.13054-3-yangtiezhu@loongson.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/amdgpu: Pop jobs from the queue more robustly
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- phasta@kernel.org, amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- "Zhang, Hawking" <Hawking.Zhang@amd.com>
-References: <20250206164031.43413-1-tvrtko.ursulin@igalia.com>
- <20250206164031.43413-3-tvrtko.ursulin@igalia.com>
- <949a5a2f-dbf3-497e-a50a-92adb48aa31f@amd.com>
- <3f6de080ac75fc0988d371e71072cba5d60e269e.camel@mailbox.org>
- <e0a3e8de-2e90-420d-86c1-844f86ebe319@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <e0a3e8de-2e90-420d-86c1-844f86ebe319@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Server: nf1.mymailcheap.com
+X-Rspamd-Queue-Id: A3F544023E
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [0.90 / 10.00]; MID_CONTAINS_FROM(1.00)[];
+ MIME_GOOD(-0.10)[text/plain]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ RCVD_COUNT_ONE(0.00)[1];
+ ASN(0.00)[asn:16276, ipnet:51.83.0.0/16, country:FR];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; RCPT_COUNT_SEVEN(0.00)[8];
+ SPFBL_URIBL_EMAIL_FAIL(0.00)[kexybiscuit.aosc.io:server fail];
+ FROM_HAS_DN(0.00)[]; MIME_TRACE(0.00)[0:+];
+ FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_SOME(0.00)[];
+ TO_DN_SOME(0.00)[]
 X-Mailman-Approved-At: Tue, 11 Feb 2025 16:57:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,110 +85,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+In arch/powerpc/include/uapi/asm/elf.h, R_PPC64_REL32 is defined as a
+macro to R_PPC_REL32, makes the case value here being duplicate and
+creates the following error...
 
-On 11/02/2025 10:21, Christian König wrote:
-> Am 11.02.25 um 11:08 schrieb Philipp Stanner:
->> On Tue, 2025-02-11 at 09:22 +0100, Christian König wrote:
->>> Am 06.02.25 um 17:40 schrieb Tvrtko Ursulin:
->>>> Replace a copy of DRM scheduler's to_drm_sched_job with a copy of a
->>>> newly
->>>> added __drm_sched_entity_queue_pop.
->>>>
->>>> This allows breaking the hidden dependency that queue_node has to
->>>> be the
->>>> first element in struct drm_sched_job.
->>>>
->>>> A comment is also added with a reference to the mailing list
->>>> discussion
->>>> explaining the copied helper will be removed when the whole broken
->>>> amdgpu_job_stop_all_jobs_on_sched is removed.
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> Cc: Christian König <christian.koenig@amd.com>
->>>> Cc: Danilo Krummrich <dakr@kernel.org>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Philipp Stanner <phasta@kernel.org>
->>>> Cc: "Zhang, Hawking" <Hawking.Zhang@amd.com>
->>> Reviewed-by: Christian König <christian.koenig@amd.com>
->> I think this v3 has been supplanted by a v4 by now.
-> 
-> I've seen the larger v4 series as well, but at least that patch here 
-> looks identical on first glance. So my rb still counts.
+arch/powerpc/decode.c: In function ‘arch_reloc_size’:
+arch/powerpc/decode.c:114:9: error: duplicate case value
+  114 |         case R_PPC64_REL32:
+      |         ^~~~
+arch/powerpc/decode.c:113:9: note: previously used here
+  113 |         case R_PPC_REL32:
+      |         ^~~~
 
-Effectively identical - I only removed the double underscore in v4 on a 
-(good) suggestion from Danilo.
+Remove the duplicate case value to fix the error.
 
->> @Tvrtko: btw, do you create patches with
->> git format-patch -v4 ?
->>
->> That way the v4 label will be included in all patch titles, too, not
->> just the cover letter. That makes searching etc. easier in large
->> inboxes
+Fixes: "FROMLIST: objtool: Handle different entry size of rodata"
+Signed-off-by: Kexy Biscuit <kexybiscuit@aosc.io>
+---
+This patch is required for this series to build on powerpc, however I'm
+not sure if it's the preferred way... Please advise.
 
-I don't typically use -vN for the whole series since not all patches in 
-the series change equally and I assume people use threaded views so vN 
-in the root is sufficient.
+ tools/objtool/arch/powerpc/decode.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-Regards,
-
-Tvrtko
-
->>>> ---
->>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 22 +++++++++++++++++++-
->>>> -- 
->>>>    1 file changed, 19 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
->>>> index 100f04475943..22cb48bab24d 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
->>>> @@ -411,8 +411,24 @@ static struct dma_fence *amdgpu_job_run(struct
->>>> drm_sched_job *sched_job)
->>>>        return fence;
->>>>    }
->>>> -#define to_drm_sched_job(sched_job)        \
->>>> -        container_of((sched_job), struct drm_sched_job,
->>>> queue_node)
->>>> +/*
->>>> + * This is a duplicate function from DRM scheduler
->>>> sched_internal.h.
->>>> + * Plan is to remove it when amdgpu_job_stop_all_jobs_on_sched is
->>>> removed, due
->>>> + * latter being incorrect and racy.
->>>> + *
->>>> + * See
->>>> https://lore.kernel.org/amd-gfx/44edde63-7181-44fb- 
->>>> a4f7-94e50514f539@amd.com/
->>>> + */
->>>> +static struct drm_sched_job *
->>>> +__drm_sched_entity_queue_pop(struct drm_sched_entity *entity)
->>>> +{
->>>> +    struct spsc_node *node;
->>>> +
->>>> +    node = spsc_queue_pop(&entity->job_queue);
->>>> +    if (!node)
->>>> +        return NULL;
->>>> +
->>>> +    return container_of(node, struct drm_sched_job,
->>>> queue_node);
->>>> +}
->>>>    void amdgpu_job_stop_all_jobs_on_sched(struct drm_gpu_scheduler
->>>> *sched)
->>>>    {
->>>> @@ -425,7 +441,7 @@ void amdgpu_job_stop_all_jobs_on_sched(struct
->>>> drm_gpu_scheduler *sched)
->>>>            struct drm_sched_rq *rq = sched->sched_rq[i];
->>>>            spin_lock(&rq->lock);
->>>>            list_for_each_entry(s_entity, &rq->entities, list)
->>>> {
->>>> -            while ((s_job =
->>>> to_drm_sched_job(spsc_queue_pop(&s_entity->job_queue)))) {
->>>> +            while ((s_job =
->>>> __drm_sched_entity_queue_pop(s_entity))) {
->>>>                    struct drm_sched_fence *s_fence =
->>>> s_job->s_fence;
->>>>                    dma_fence_signal(&s_fence-
->>>>> scheduled);
-> 
+diff --git a/tools/objtool/arch/powerpc/decode.c b/tools/objtool/arch/powerpc/decode.c
+index 3c95dd74fca0..7c0bf2429067 100644
+--- a/tools/objtool/arch/powerpc/decode.c
++++ b/tools/objtool/arch/powerpc/decode.c
+@@ -111,7 +111,6 @@ unsigned int arch_reloc_size(struct reloc *reloc)
+ {
+ 	switch (reloc_type(reloc)) {
+ 	case R_PPC_REL32:
+-	case R_PPC64_REL32:
+ 	case R_PPC_ADDR32:
+ 	case R_PPC_UADDR32:
+ 	case R_PPC_PLT32:
+-- 
+2.48.1
 
