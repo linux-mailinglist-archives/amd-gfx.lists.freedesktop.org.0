@@ -2,121 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C6A0A324EE
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Feb 2025 12:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE078A32800
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Feb 2025 15:08:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4836E10E863;
-	Wed, 12 Feb 2025 11:30:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F228B10E372;
+	Wed, 12 Feb 2025 14:08:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="se1g3DIJ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="osJm8Hxs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2043.outbound.protection.outlook.com [40.107.243.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 463B910E863
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Feb 2025 11:30:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M8oxIJbSSrT5saUuuYAkhcT2OgXNacFZtgmTwMwcBW4Wt8tXz/MNeHrep+3OcGl7nD1JZhA72geK0xuwz+IrgECUhwqSdO/229gl6JYZt/GxyRgFEPpgNZXfifMj4T2+Z/GLKY7x711czkzDB86uXSURKHBgScwPtJsBB38rMBIlf9PHQeKs0v2K+TSKtOgIth76EUXgPYIQbsZGKaL6DIm1X2Cwi0Xbig1TjXZeIMA29kbvBqgAsQvqLI2DKGpfKriuDBXW3ZOTcO41QShmoDu4FwdVYkI5y/AJQS6AlYjeFifO6y0EPnFI+i9CNr9WEs+XjAOUvmjJbn5dxSvoGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Uu+6FrSYoDKzuCPkAW7briAi4pfTJKlTDLcXZaAD7Aw=;
- b=ZmHtK0SBd475+7sH2JXVHh2MxAi0lo9AXnVlHIfMSV18/W6FfVTcyEiJ8rZMdsDXdQ3CV/8uml7t3D84U21Uc2XHgNeXUxhIpxr/N0CWvpfLcL5z3oySPZTXL1J4BbtK53pLAIpJE6f/3DAPWrmL2e0aLhVZLGzK2sCtHRYeJ3cpBvHXVwjbsCcAHREOcL0J2Xt5K1qJEcGNiImoPCyKTCAyTwXhGLWHjM9As//aYp4bplxOEU/42gsffz2AXWeUKH2WXhXXPSAsvbruaXMsaebNZy4R9haiISZTnav1I6/f7iYqIsipwlgTNWKV23bVh4od8wyk51vjrQFix6WQyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uu+6FrSYoDKzuCPkAW7briAi4pfTJKlTDLcXZaAD7Aw=;
- b=se1g3DIJBB4PkRB7gtF7K+o1AAhzw6Ey3o+YxvSAYYIUCjQxSzwPWytIcLk9elrSke+OP5VEFT0izcfQIPu4DAs4V0DrpTolGiRR6BWZ4Q3d4/oyMJwy1uBnvGPDbWv+UfoCQtvm93Bo2HN2z9Inh3KBF82a00YEGVj1u163zy8=
-Received: from CH0PR13CA0007.namprd13.prod.outlook.com (2603:10b6:610:b1::12)
- by SA1PR12MB8987.namprd12.prod.outlook.com (2603:10b6:806:386::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.18; Wed, 12 Feb
- 2025 11:30:13 +0000
-Received: from CH2PEPF0000009D.namprd02.prod.outlook.com
- (2603:10b6:610:b1:cafe::70) by CH0PR13CA0007.outlook.office365.com
- (2603:10b6:610:b1::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8377.7 via Frontend Transport; Wed,
- 12 Feb 2025 11:30:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH2PEPF0000009D.mail.protection.outlook.com (10.167.244.25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8445.10 via Frontend Transport; Wed, 12 Feb 2025 11:30:13 +0000
-Received: from lm-srdc-pc1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 12 Feb
- 2025 05:30:11 -0600
-From: Le Ma <le.ma@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <hawking.zhang@amd.com>, <lijo.lazar@amd.com>, <christian.koenig@amd.com>, 
- Le Ma <le.ma@amd.com>
-Subject: [PATCH 1/1] drm/amdgpu: fix the memleak caused by fence not released
-Date: Wed, 12 Feb 2025 19:30:01 +0800
-Message-ID: <20250212113001.2286084-1-le.ma@amd.com>
-X-Mailer: git-send-email 2.43.2
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1567010E1D3;
+ Wed, 12 Feb 2025 12:30:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=+bHpORab0cpD2gSIkz9+/Rf8s/pD3BFO3UOsPtRwoag=; b=osJm8Hxsfghf1zhC+UEmjFKUwh
+ BsI8OQ1/IjE97+94i/YLuf58hwAhI7+Oov5/ePySSXq+IH0p6qkfGwGZ9AWRIwXd3QuljWk8MxxtD
+ ExgDE5GyIM/GtYcZRv/tl9xjyttdvcwtWxXpW473jleeZkZxcmMNRTceEOsTsU9oW1larUZfeMLiN
+ wukShsORafdxcoxi2F+PGovHxG4qcgaYNz4UHI6k2OG1dJsHQUdPZOrB3WIp0UT1XoN9AxZJgZocr
+ nNUT5YxFu1NbzFbaoWMnpB+HVjMMzEjh0fwLKpWDRGjR5NCMGh5Emae6XqAq20lbOPs3mb9OfwFKI
+ u9ji6PSw==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tiBsR-008EtL-N0; Wed, 12 Feb 2025 13:30:09 +0100
+Message-ID: <54da7c5c-a66c-4410-880c-2efebbb66214@igalia.com>
+Date: Wed, 12 Feb 2025 12:30:08 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/sched: Add internal job peek/pop API
+To: phasta@kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20250207145104.60455-1-tvrtko.ursulin@igalia.com>
+ <20250207145104.60455-2-tvrtko.ursulin@igalia.com>
+ <73ffd26bdd66ec25c01f820366a63f9ceedad2c8.camel@mailbox.org>
+ <8ce06914-f8ec-4b28-9cc2-6ff9d9fe47db@igalia.com>
+ <30be58cb90e95af0d9404082ea5c63eb8f7e9dad.camel@mailbox.org>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <30be58cb90e95af0d9404082ea5c63eb8f7e9dad.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000009D:EE_|SA1PR12MB8987:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7098f83-084c-495a-90d2-08dd4b589daf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?se9yUBcCNgrbgoyvMrhmS4QsMqX4j22gwmlfAKR73m+o9jbz6aICsq9qdTkB?=
- =?us-ascii?Q?KFyKAy3Wmlhn+DNKTK28UZ81vednUrQCEScTU6SbHmDASDsQdZyuqf2hPx67?=
- =?us-ascii?Q?IMxFzBfHm5BDtI2pJ9DLefI3ERnYohSvselbCNTq7i76+pOxO1VqbuX5jVVJ?=
- =?us-ascii?Q?FXG8N+lA9FX89OPLkggI0bRqVQ4AKZ9NlVJ9/xzypZ7RD9LOoWJG13o3ZThb?=
- =?us-ascii?Q?EA6bjuiBwXWfOwp9Fmi9AQk3SY+Jy6MOwHHFhwUB+tzDKcq1pu/x2B2qQo76?=
- =?us-ascii?Q?7t96qFZ8oVcrmkq90VqJeijfaF8RGuI3GbCcPNc2Z8h/kZSwUguPXNitmT2k?=
- =?us-ascii?Q?WHJbcEQg7Y9mQzB+wfQlDDw5rxyxS2tdKDtcWKuVIdhxjX2T9kDLA5lMLCaz?=
- =?us-ascii?Q?bmLNh6JGyJjJUK8oDox5NSzeOYTi8DCiZoTv9ivIRjur6AMrKgWJuJxzPR3r?=
- =?us-ascii?Q?uXro/7Yo74GtxSitnPawrUNlppkNzgPHNbVYqafsubnrNbkyvOUVeRPdoIqd?=
- =?us-ascii?Q?/kDj3B68Ld5Ke693FLmQVSvQURCH2wuoawbduF3X2WY0DsfuqSZ6KlCzdwXi?=
- =?us-ascii?Q?SIWhl7+D/5wqBJdkORkd9JTpPOBuj1w9JAM8HM+AN5niID0k87cLAFW3Rd1F?=
- =?us-ascii?Q?UFuGzw8eQeTHt34r8XLF3rqhej3jMAXwEBp+1f8sqkVme7I0V73t/vFtbIYc?=
- =?us-ascii?Q?u4jCua7b3F0bg6uRBYpmyLxJ9nQExSQ9oxrMGSDIY6AUsm7rsO7nK+FhSuCa?=
- =?us-ascii?Q?hczd7jJi0U0TtuUSJgviNWdDxlLCvnvLVNomvTcPIl8nWgdiZKY92vxO/0Ie?=
- =?us-ascii?Q?iBJGfPlK9mgzW1hgYRrMHX3w7+MtKCQOmWiM7RNMCk7B+Uxz0YkHfP8WMI9L?=
- =?us-ascii?Q?NX2WgYst4GWIsXOqk3zU28WbzAnJJBP2E79oxNV/l7OshthwvcXaF/yPr0mK?=
- =?us-ascii?Q?lT01kbv5AvmS3LTdEYtR8DXL1TUzc9GZwhL/gDmXDgYf2utCGVMT5ZFqP7Ub?=
- =?us-ascii?Q?yAUAvSf40xTIUiVXr7Ax81j0gw71g1OzoaY5GFO85jJo8tPzsyMf1nMZ14Q3?=
- =?us-ascii?Q?y6EvbcfzADDMV52zlzcHWwZcMNz6rSPyRB7FjUmk6XKd0H4oN2tlw6gaDW0N?=
- =?us-ascii?Q?tLyP1+wI2H7mIWM15+4Di/TSp/qw8LNurszCtEFvQb+PQEvF5fd74N2FaYfN?=
- =?us-ascii?Q?EOWbk0hQgH+cyuS3ma7Wf+oAuPKI2rqvEPp5W3613J0diSpETXSI3AixX7Fo?=
- =?us-ascii?Q?D/xOggoAAVWuUW60Gd4QWhb5qVJrHtBMrijmBcZz/cnODZSBKpcg9oso69gO?=
- =?us-ascii?Q?A2wv26TqKmTb8iX9rTokc/jzhFi+AwezEVeZl1Cu1+VT1N0J0yVwUQM9yWcE?=
- =?us-ascii?Q?88XsnWFkujbgp/J9I9puRs3IFHkkYkRLZx8KOeUW9W7Ra/YGkCNYI4Yh+qL4?=
- =?us-ascii?Q?/Y4EAUvhRhe+ndlbL4yhgE0Q5vBsAtMOvEaML1rd7xgdWIDYo/P53J9kDyqg?=
- =?us-ascii?Q?D5+FZ8jZ0dCois8=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2025 11:30:13.0431 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7098f83-084c-495a-90d2-08dd4b589daf
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000009D.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8987
+X-Mailman-Approved-At: Wed, 12 Feb 2025 14:08:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,48 +67,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On systems with CONFIG_SLUB_DEBUG enabled, the memleak like below
-will show up explicitly during driver unloading if created bo without
-drm_timeline object before.
 
-    BUG drm_sched_fence (Tainted: G           OE     ): Objects remaining in drm_sched_fence on __kmem_cache_shutdown()
-    -----------------------------------------------------------------------------
-    Call Trace:
-    <TASK>
-    dump_stack_lvl+0x4c/0x70
-    dump_stack+0x14/0x20
-    slab_err+0xb0/0xf0
-    ? srso_alias_return_thunk+0x5/0xfbef5
-    ? flush_work+0x12/0x20
-    ? srso_alias_return_thunk+0x5/0xfbef5
-    __kmem_cache_shutdown+0x163/0x2e0
-    kmem_cache_destroy+0x61/0x170
-    drm_sched_fence_slab_fini+0x19/0x900
+On 12/02/2025 10:40, Philipp Stanner wrote:
+> On Wed, 2025-02-12 at 09:32 +0000, Tvrtko Ursulin wrote:
+>>
+>> On 12/02/2025 09:02, Philipp Stanner wrote:
+>>> On Fri, 2025-02-07 at 14:50 +0000, Tvrtko Ursulin wrote:
+>>>> Idea is to add helpers for peeking and popping jobs from entities
+>>>> with
+>>>> the goal of decoupling the hidden assumption in the code that
+>>>> queue_node
+>>>> is the first element in struct drm_sched_job.
+>>>>
+>>>> That assumption usually comes in the form of:
+>>>>
+>>>>     while ((job = to_drm_sched_job(spsc_queue_pop(&entity-
+>>>>> job_queue))))
+>>>>
+>>>> Which breaks if the queue_node is re-positioned due
+>>>> to_drm_sched_job
+>>>> being implemented with a container_of.
+>>>>
+>>>> This also allows us to remove duplicate definitions of
+>>>> to_drm_sched_job.
+>>>>
+>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>> Cc: Danilo Krummrich <dakr@kernel.org>
+>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>> Cc: Philipp Stanner <phasta@kernel.org>
+>>>> ---
+>>>>    drivers/gpu/drm/scheduler/sched_entity.c   | 11 +++---
+>>>>    drivers/gpu/drm/scheduler/sched_internal.h | 46
+>>>> ++++++++++++++++++++++
+>>>>    drivers/gpu/drm/scheduler/sched_main.c     |  7 ++--
+>>>>    3 files changed, 54 insertions(+), 10 deletions(-)
+>>>>    create mode 100644 drivers/gpu/drm/scheduler/sched_internal.h
+>>>>
+>>>> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
+>>>> b/drivers/gpu/drm/scheduler/sched_entity.c
+>>>> index 69bcf0e99d57..a171f05ad761 100644
+>>>> --- a/drivers/gpu/drm/scheduler/sched_entity.c
+>>>> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+>>>> @@ -28,11 +28,10 @@
+>>>>    #include <drm/drm_print.h>
+>>>>    #include <drm/gpu_scheduler.h>
+>>>>    
+>>>> +#include "sched_internal.h"
+>>>> +
+>>>>    #include "gpu_scheduler_trace.h"
+>>>>    
+>>>> -#define to_drm_sched_job(sched_job)		\
+>>>> -		container_of((sched_job), struct drm_sched_job,
+>>>> queue_node)
+>>>> -
+>>>>    /**
+>>>>     * drm_sched_entity_init - Init a context entity used by
+>>>> scheduler
+>>>> when
+>>>>     * submit to HW ring.
+>>>> @@ -255,7 +254,7 @@ static void drm_sched_entity_kill(struct
+>>>> drm_sched_entity *entity)
+>>>>    	/* The entity is guaranteed to not be used by the
+>>>> scheduler
+>>>> */
+>>>>    	prev = rcu_dereference_check(entity->last_scheduled,
+>>>> true);
+>>>>    	dma_fence_get(prev);
+>>>> -	while ((job = to_drm_sched_job(spsc_queue_pop(&entity-
+>>>>> job_queue)))) {
+>>>> +	while ((job = drm_sched_entity_queue_pop(entity))) {
+>>>>    		struct drm_sched_fence *s_fence = job->s_fence;
+>>>>    
+>>>>    		dma_fence_get(&s_fence->finished);
+>>>> @@ -477,7 +476,7 @@ struct drm_sched_job
+>>>> *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+>>>>    {
+>>>>    	struct drm_sched_job *sched_job;
+>>>>    
+>>>> -	sched_job = to_drm_sched_job(spsc_queue_peek(&entity-
+>>>>> job_queue));
+>>>> +	sched_job = drm_sched_entity_queue_peek(entity);
+>>>>    	if (!sched_job)
+>>>>    		return NULL;
+>>>>    
+>>>> @@ -513,7 +512,7 @@ struct drm_sched_job
+>>>> *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+>>>>    	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO) {
+>>>>    		struct drm_sched_job *next;
+>>>>    
+>>>> -		next = to_drm_sched_job(spsc_queue_peek(&entity-
+>>>>> job_queue));
+>>>> +		next = drm_sched_entity_queue_peek(entity);
+>>>>    		if (next) {
+>>>>    			struct drm_sched_rq *rq;
+>>>>    
+>>>> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h
+>>>> b/drivers/gpu/drm/scheduler/sched_internal.h
+>>>> new file mode 100644
+>>>> index 000000000000..25ac62ac2bf3
+>>>> --- /dev/null
+>>>> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
+>>>> @@ -0,0 +1,46 @@
+>>>> +#ifndef _DRM_GPU_SCHEDULER_INTERNAL_H_
+>>>> +#define _DRM_GPU_SCHEDULER_INTERNAL_H_
+>>>> +
+>>>> +/**
+>>>> + * drm_sched_entity_queue_pop - Low level helper for popping
+>>>> queued
+>>>> jobs
+>>>> + *
+>>>> + * @entity: scheduler entity
+>>>> + *
+>>>> + * Low level helper for popping queued jobs.
+>>>> + *
+>>>> + * Returns the job dequeued or NULL.
+>>>> + */
+>>>> +static inline struct drm_sched_job *
+>>>> +drm_sched_entity_queue_pop(struct drm_sched_entity *entity)
+>>>> +{
+>>>> +	struct spsc_node *node;
+>>>> +
+>>>> +	node = spsc_queue_pop(&entity->job_queue);
+>>>> +	if (!node)
+>>>> +		return NULL;
+>>>> +
+>>>> +	return container_of(node, struct drm_sched_job,
+>>>> queue_node);
+>>>> +}
+>>>> +
+>>>> +/**
+>>>> + * drm_sched_entity_queue_peek - Low level helper for peeking at
+>>>> the
+>>>> job queue
+>>>> + *
+>>>> + * @entity: scheduler entity
+>>>> + *
+>>>> + * Low level helper for peeking at the job queue
+>>>> + *
+>>>> + * Returns the job at the head of the queue or NULL.
+>>>
+>>> I would like to (slowly) work towards a unified style regarding the
+>>> docstrings. They're currently relatively inconsistent in drm/sched.
+>>>
+>>> I think we should do it that way:
+>>>
+>>> ""
+>>> @entity: scheduler entity
+>>>
+>>> Returns: the job at the head of the queue or NULL.
+>>>
+>>> Low level helper for peeking at the the job queue.
+>>> ""
+>>
+>> Returns before the description would be yet another new style, no?
+>> I's
+>> say that if we are churning lets follow
+>> Documentation/doc-guide/kernel-doc.rst.
+> 
+> Oh yes, you are right – official guideline demands "Return:" at the
+> end. So let's go for that for contributions.
 
-Thus call dma_fence_put properly to avoid the memleak.
+So you want me to respin or are you okay with doing all scheduler kernel 
+doc in one patch afterwards?
 
-Signed-off-by: Le Ma <le.ma@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 8b67aae6c2fe..ad3c5fdf6970 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -125,8 +125,11 @@ amdgpu_gem_update_bo_mapping(struct drm_file *filp,
- 	struct amdgpu_vm *vm = &fpriv->vm;
- 	struct dma_fence *last_update;
- 
--	if (!syncobj)
-+	if (!syncobj) {
-+		dma_fence_wait(fence, false);
-+		dma_fence_put(fence);
- 		return;
-+	}
- 
- 	/* Find the last update fence */
- 	switch (operation) {
--- 
-2.43.2
+Tvrtko
+
+>>   Or even consider sending a patch
+>> which churns everything at once.
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>> + */
+>>>> +static inline struct drm_sched_job *
+>>>> +drm_sched_entity_queue_peek(struct drm_sched_entity *entity)
+>>>> +{
+>>>> +	struct spsc_node *node;
+>>>> +
+>>>> +	node = spsc_queue_peek(&entity->job_queue);
+>>>> +	if (!node)
+>>>> +		return NULL;
+>>>> +
+>>>> +	return container_of(node, struct drm_sched_job,
+>>>> queue_node);
+>>>> +}
+>>>> +
+>>>> +#endif
+>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+>>>> b/drivers/gpu/drm/scheduler/sched_main.c
+>>>> index a48be16ab84f..9f614a775c49 100644
+>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>>> @@ -78,6 +78,8 @@
+>>>>    #include <drm/gpu_scheduler.h>
+>>>>    #include <drm/spsc_queue.h>
+>>>>    
+>>>> +#include "sched_internal.h"
+>>>> +
+>>>>    #define CREATE_TRACE_POINTS
+>>>>    #include "gpu_scheduler_trace.h"
+>>>>    
+>>>> @@ -87,9 +89,6 @@ static struct lockdep_map drm_sched_lockdep_map
+>>>> = {
+>>>>    };
+>>>>    #endif
+>>>>    
+>>>> -#define to_drm_sched_job(sched_job)		\
+>>>> -		container_of((sched_job), struct drm_sched_job,
+>>>> queue_node)
+>>>> -
+>>>>    int drm_sched_policy = DRM_SCHED_POLICY_FIFO;
+>>>>    
+>>>>    /**
+>>>> @@ -123,7 +122,7 @@ static bool drm_sched_can_queue(struct
+>>>> drm_gpu_scheduler *sched,
+>>>>    {
+>>>>    	struct drm_sched_job *s_job;
+>>>>    
+>>>> -	s_job = to_drm_sched_job(spsc_queue_peek(&entity-
+>>>>> job_queue));
+>>>> +	s_job = drm_sched_entity_queue_peek(entity);
+>>>>    	if (!s_job)
+>>>>    		return false;
+>>>>    
+>>>
+>>
+> 
 
