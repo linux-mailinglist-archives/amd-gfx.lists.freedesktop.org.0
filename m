@@ -2,145 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2CDAA36674
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2025 20:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1505EA37CAB
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Feb 2025 09:02:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C46810E02D;
-	Fri, 14 Feb 2025 19:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10B2F10E394;
+	Mon, 17 Feb 2025 08:02:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hGFP4z1W";
+	dkim=pass (2048-bit key; secure) header.d=posteo.de header.i=@posteo.de header.b="pZvJP2Qb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2055.outbound.protection.outlook.com [40.107.243.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A045E10E02D
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 19:49:18 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=By4MSa7rrml+af9Pf/W10USd2qSrPhlOAU6MGNJ9FMp672a6CZRwl+tQ0a5EAy8hc87Na4v25nx93arCiLdibUyUP+IfnSkpo3kq61nHxfVAlSwZYTDd39AHnTlpHQN0Binp1OX3ipsknTbs/i7WHjm833B71TQ9dWXT+tlhV0BNIXU1Jw5f7FkUtcZMozHUFEhfsjeWCKFAzIoyfb6I8EWboUf808mPoX2bUGKEUPmwFPPAgerTmWkIan0w2P69T4gKMQ6fI/GCqPfNJi4QIB5eBme28uqNH9SySyirQLC4S0XexHT2iDk9soZMO14CmJ4U/lK2Rnwy/tq7u/ytuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JTN9mpIjTtglGLLDqu+vgZixs90dhOU2Y8trYS+jc4U=;
- b=ozqAvqZzZttbP5QJMwWy2Sq9+x7L9dWPulwb6iUonJx0trs3z+9DTSM1XozSIpmZo/E4pbHU8nJEEPNzRaInKITkf+8GSz/C3st9awIbktvHIJF4TAaeud5PDbwb96jh3CqEDbLbOJRcu/YKXxqz9BPAfpKjZlDXIV7ZP7GG47gKrCeNx582408F5V1MUIfw1wlUxYGiCrOfJXXbxc/homhVTLTxgohIsBtW+2JUMhMNsfXp1wyOkf1ExHMEdc/AqZunTw0hYV+kTtY5yHHy2mRq/mb/nPufu85UEw1deQzq9EA+nHgItOU/5U2K6munBDFUp9u2AATGYH4qrXlTCQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JTN9mpIjTtglGLLDqu+vgZixs90dhOU2Y8trYS+jc4U=;
- b=hGFP4z1W6eSk1ED8kBGS68PYYxnXy13jGOatciaAIiKs3s6OJ5+nNUaqOe8cvJxhng8oemr6+s4VFsx9XAgy9xMG5gd6n8BHxjEAAmOnSGdz2BkXQzir/S6XENxlMWsWdsZt7jboVQ77HA1nWSShW+mxCJBh4Fdhg6SUQoGlSFQ=
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
- by MW6PR12MB8663.namprd12.prod.outlook.com (2603:10b6:303:240::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.16; Fri, 14 Feb
- 2025 19:49:16 +0000
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::491a:cce3:e531:3c42]) by BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::491a:cce3:e531:3c42%4]) with mapi id 15.20.8445.016; Fri, 14 Feb 2025
- 19:49:15 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Lu, Victor Cheng Chi (Victor)" <VictorChengChi.Lu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "hoarce.chen@amd.com" <hoarce.chen@amd.com>
-Subject: Re: [PATCH 1/3] drm/amdgpu: Do not program AGP BAR regs under SRIOV
-Thread-Topic: [PATCH 1/3] drm/amdgpu: Do not program AGP BAR regs under SRIOV
-Thread-Index: AQHbfnViShCdPDhRAkORE9RT8PlIq7NHNe2W
-Date: Fri, 14 Feb 2025 19:49:15 +0000
-Message-ID: <BL1PR12MB51448FD52B07D849949660C1F7FE2@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <20250214001348.4767-1-victorchengchi.lu@amd.com>
-In-Reply-To: <20250214001348.4767-1-victorchengchi.lu@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-02-14T19:49:15.537Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=0;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged; 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|MW6PR12MB8663:EE_
-x-ms-office365-filtering-correlation-id: a5e7e348-69bc-42df-37a6-08dd4d30a9d2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|8096899003|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?3E6x4yMj1cKU5HFPK+yCPHmtyxt2SZwE9lwnQYNZFJp7akvHPAhkDLevkL?=
- =?iso-8859-1?Q?He0kyMarKfvA7w6Yr0JC1008pv69lMkwlWQFS5JW75NeETgr5E2uxW6Fb4?=
- =?iso-8859-1?Q?Sflj6WigNngP+7z7TVBEI4v1QgZ98KgAE11vraauMRndO36Ge1wQEWDOWP?=
- =?iso-8859-1?Q?kUu3SfKpcbwq49OWu+V0RFTHSGazsEUco6MITkLC0OrX7oZGEg2M9SUORx?=
- =?iso-8859-1?Q?vmGka9+uY0h9ST3wJE61pnHcaZY/duT5xhQ0D/oC7aBv2oEJAhIoZoJzqU?=
- =?iso-8859-1?Q?lWYKEOEBRN7l2vR2VlrF0oNC+7RoxXBgK60lssgFRD8SOPK2TYX2+fY95u?=
- =?iso-8859-1?Q?ulttCD3QyvILVvTuFyHC2EjGcw9JtYEdaprW7KAi/g3ahZbjnA3Bdg9y4K?=
- =?iso-8859-1?Q?+8UskyyWOvWHjCSofL5jvBOZTdXHfu0IwzVh2MgREK7+Vcq9a9xI/Fwavc?=
- =?iso-8859-1?Q?K6oZf/lhuSpDhp8Tc8EXfEQ4rfgnkTy3LUSb9b9y+x1pCykKirWgzxLwsY?=
- =?iso-8859-1?Q?frKUOBz5zkNtzBYk7YLrFw+udHKInXVp/NLwiENZf+Jb8IQVcCA4shHU/q?=
- =?iso-8859-1?Q?wKJR9hhySUa3mCl/67AzMFnjTaAdikWOufgrgEtdd0fsFSyS0NbK2ZEdPQ?=
- =?iso-8859-1?Q?Bc8K8+w+a7mpcSYVC6tHwFbsGhs5+rKaoyvbU3qSkOuRHm57GjPMKlLJDH?=
- =?iso-8859-1?Q?0uO6SKmrkVT/KZBhTWMt/i3tMl1Tx+596rUVMIrPg1/rgc74McAEgCtKoV?=
- =?iso-8859-1?Q?NEnultpCbc4t+SeE/15J/8aJklQeDSPcRYtkFmwhvpF8EvyYfM8LSsaAax?=
- =?iso-8859-1?Q?FvE3VhtbWnOgIT1Ln00+jqmYSgGEPIzCKVE6NKUVZOF4VKQ2mycVi+RXG+?=
- =?iso-8859-1?Q?pIHxBaS3Pyophkatpp8B+NUh7fUbgMIcPQenvEwQ0/fWuiZSNepqAtBfkx?=
- =?iso-8859-1?Q?FlJfAIfvnrGgi1BmynfqTSNjZAKbMjvt//+eOR4LnBmacqd1I0Ta9pwJXx?=
- =?iso-8859-1?Q?JRtQ+52A1TeEBR5bZBChJwyjZdXnKDchX+rlAeilpGkEhsaVec7kjabQIo?=
- =?iso-8859-1?Q?ek7o5SJii47xZTjG2txpYWKRqVO5GbW9sCVE7BkDP/1j26BTRpEq7qT21m?=
- =?iso-8859-1?Q?b2Bk20VJWxrwmtVzAg/ZqpGomJphaz7+v4OvAWGtYSb/KulkfIUQKn8QKO?=
- =?iso-8859-1?Q?jbwTb/QifsTMljG5oa/lM/HMqusDPAa6Z6St9Ly4B97qTYkSVNoOPPpZRf?=
- =?iso-8859-1?Q?Ywxvydsc6XhmSSG2pJhQOKUS/qTwAjl4S9SeItHoqngVAYJ1EU5l7A5Vb1?=
- =?iso-8859-1?Q?qK17b0lfccR3uBGZuM3f+3CtBuvIs5Jrj8zMkkcbk6/5skMmOeoInERr7W?=
- =?iso-8859-1?Q?l3bqdsj/IpuBFvJzRhwYq+z9G/FdwK4WQBOTzbxHVNy+f9tNFzYmhv1euE?=
- =?iso-8859-1?Q?gr6TM1OijQces/ZvS2eW2cxqwUpFm9pftJ33lZ2j7GZi7Xk8/K6ZJ8gNbZ?=
- =?iso-8859-1?Q?btMUAa08Ec6pyCS/UYaqqQ?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(8096899003)(7053199007)(38070700018);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?xVL28seTieJ0IhwCTGca4/NqMKz4Eygw3uulpE9gihgszvz8drk1MwMGcc?=
- =?iso-8859-1?Q?pLYhe7ew/DVF4xv0uTIgRBCw4Snr3enKmtVtFQ1U56l2SNH6FbZGDrpbYN?=
- =?iso-8859-1?Q?CsBxtQLxTV+2h1MnxUiOYGNjZd2ScSMfvmd6lkm9Z9DGCAV9RgcKlTEcTy?=
- =?iso-8859-1?Q?frIe51OHXRY21GLG2GpdkgQAwynyiwSvvhz6YJT2bPZA8aW20Gk2Qzb1rh?=
- =?iso-8859-1?Q?2qAynTKu1yp0qKqm3T5uvE/8xc3rj3WwNOsdtdCsvvsB6CI8vCF8jPCStM?=
- =?iso-8859-1?Q?tlKr6yc4SLiMENSy6niLC2FIjePKBJJ7/dZLgSuj5E0VdbvleXW23DApoi?=
- =?iso-8859-1?Q?frwFYnbdXjYd833mh/iVKzJwGJcWr0Q0HxuC65wh5gtErjYHuAAAMUc6is?=
- =?iso-8859-1?Q?RYU7ste3eT+qnWukrVLv/D4Zolo4cYlhIJQGKGt4cfrH8GTKOTqaqjuOxE?=
- =?iso-8859-1?Q?PQ8/dwiqbr8FApnCpXD0FlLCyvWYszIPWkwM9PajYZCtOKfNmz2TH8DoNe?=
- =?iso-8859-1?Q?fpxHHevk99QmfdI+44DW8CNt7rDtHcUrrVW5UICskqc5UifJh92XTc8lkX?=
- =?iso-8859-1?Q?z3C6U2L/kVSX7FpGNfshI5oW8p/Thnr5gAcX4/DC+OjQ/D5vOMyWBbmvHX?=
- =?iso-8859-1?Q?JlimL5IqkF1ynZXfNzLE9GHXne4w4axdBiAAiC+9i7qwjkd0iycT7Gggco?=
- =?iso-8859-1?Q?lZfGHR8VWBTGcC5gNG4Kz3ezUdireUM9acRwsWL8rY+HCFNRsOI/KO9e9K?=
- =?iso-8859-1?Q?ZzyvD8QL8QpMHEYj25WY/IkMbqmv4Vk2wEQczVuY5EZQKKS0rC0lVSXCHD?=
- =?iso-8859-1?Q?08a9oA7QSaBHEQ3AyJ+3c4UCDbgwMupspWfL2P1khiTA1T5Esp3GhFp809?=
- =?iso-8859-1?Q?oyLBHhH9NLRjkotzEHN/qd5yyhW60BUfD6Z9Dxy9NhVaMoz/wzxIAV0adv?=
- =?iso-8859-1?Q?W1UVJmYLgUmmI2licrKSzqwctPsrYCTja6A7UhRQZDsxOv1mqh+Rs+/c9l?=
- =?iso-8859-1?Q?3TRDy9S6BIsxj0Yd8TAcJNcFqKzPzrfpWu/O5YhUMe1CPUJxrb75B7k9Sk?=
- =?iso-8859-1?Q?WR565MRKixFbp/kRcZ912SyXVzDuohGJpoUpjxMlpyGMRGsemfrl3Z8c41?=
- =?iso-8859-1?Q?fYV3kU3p/wdxS5v6tmtKvX39fcGUi+pcLnTwkCcIQ1sVkt0B8FfFs0Cn0m?=
- =?iso-8859-1?Q?tFIGMOMeM5PpARPGPiad2li6qCqoAv761Ig4NTyG+JdHvz6im6GZ1ZuaKc?=
- =?iso-8859-1?Q?k7Yf4b6sqIpV6hrIZrzJxJxJAMkM/KCAN+R9MYt0A9J4PpfpieinW7460d?=
- =?iso-8859-1?Q?/gnghWPTPPQuY+YHpBxlud8zreVgUFeTD9AbE+3Vxd1wYe2S9+5O7eCKoe?=
- =?iso-8859-1?Q?eQBKTxkY2WY2V67Gv7TX8kyeECIO86wtLEmGXQIPlynBKG43Sv0CYSokE2?=
- =?iso-8859-1?Q?z3vWu2XoRy5kfppY7WEcDThxvhGqiWjtkwivYHV8ZU6SMMC307NaaaJBhP?=
- =?iso-8859-1?Q?cPJYzI++uNnscEc4Qfpbvv5KcIFTd4jtX/AMg8LDJILUBiW+gXr8Zxuz+X?=
- =?iso-8859-1?Q?sH8yN6ndQfic323PvOwY66Y6fn74KRx/HmoXLR/Yy8HhjlRirwfr80Lo64?=
- =?iso-8859-1?Q?uJ4g8ONphWY8Y=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_BL1PR12MB51448FD52B07D849949660C1F7FE2BL1PR12MB5144namp_"
+X-Greylist: delayed 333 seconds by postgrey-1.36 at gabe;
+ Fri, 14 Feb 2025 21:20:46 UTC
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 947C210E08A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 21:20:46 +0000 (UTC)
+Received: from submission (posteo.de [185.67.36.169]) 
+ by mout01.posteo.de (Postfix) with ESMTPS id BD988240027
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 22:15:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+ t=1739567711; bh=fB11n5wO9tlUqyYIDC5H0rUx5EE3fZ7xtNTxlKauKn4=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
+ Content-Transfer-Encoding:From;
+ b=pZvJP2QbKM7i4ws6csGOZjXa+uwTEWOWDAhejy+YQ8lIOnYGqUfxiqvY5nfpHU/ks
+ 41Wu9QTjAKs5ZCK9Fg4hFLvhnsK+Z7L9zbnmxBn58Oe3EG7L5SaL02RBXjKFn8IKrg
+ YdombZvuxCq9VR6md3reVLZ5nvj7KtbvF7/lxCg1JfJXjL1MY5jJwyYN61niLdl4ST
+ ckj2xfKLE4XhMycHj7u+9DTWmOu0bhQhJcWw9Dx7fYLEfSTuEcgoJ7L9Mrg/OFUypl
+ 2Z5vGXD10a4KokKVT+z7+4aeqcZDiQ9NBpdbvbdnfoK4h8Pl+1tFyTd40BTHrbRYMY
+ w/uf2yjWf3UkQ==
+Received: from customer (localhost [127.0.0.1])
+ by submission (posteo.de) with ESMTPSA id 4YvlFB6T5Mz9rxB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 22:15:10 +0100 (CET)
+Message-ID: <416da75f-8de9-48bd-bc4e-50b586c23426@posteo.de>
+Date: Fri, 14 Feb 2025 21:15:10 +0000
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5e7e348-69bc-42df-37a6-08dd4d30a9d2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2025 19:49:15.8785 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 76n9LeigXYoEHfBN8KQ3NBLAvDxy2JSfutMzqnO0BMvJxpqVyxFrJhWVPQHILt/k8+pZ3VDXfpusDjLZjInP1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8663
+Subject: Re: [PATCH 12/16] drm/amd/display: Support BT2020 YCbCr fullrange
+To: amd-gfx@lists.freedesktop.org
+References: <20250214150033.767978-1-Roman.Li@amd.com>
+ <20250214150033.767978-13-Roman.Li@amd.com>
+Content-Language: en-US
+From: Robert Mader <robert.mader@posteo.de>
+In-Reply-To: <20250214150033.767978-13-Roman.Li@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 17 Feb 2025 08:02:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,172 +60,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_BL1PR12MB51448FD52B07D849949660C1F7FE2BL1PR12MB5144namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Thanks a lot for the patch!
 
-[Public]
+Small commit title nit, sorry for spotting this earlier: this commit 
+adds BT2020 *limited* range - full range was already supported, see the 
+changes in amdgpu_dm.c and dpp.h.
 
-Are there any cases where the asic_type check would cause this register to =
-fail to get programmed?
-
-Alex
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Victor L=
-u <victorchengchi.lu@amd.com>
-Sent: Thursday, February 13, 2025 7:13 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Lu, Victor Cheng Chi (Victor) <VictorChengChi.Lu@amd.com>; hoarce.chen@=
-amd.com <hoarce.chen@amd.com>
-Subject: [PATCH 1/3] drm/amdgpu: Do not program AGP BAR regs under SRIOV
-
-SRIOV VF does not have write access to AGP BAR regs.
-Skip the writes to avoid a dmesg warning.
-
-Signed-off-by: Victor Lu <victorchengchi.lu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfxhub_v1_0.c
-index 0e3ddea7b8e0..a7bfc9f41d0e 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
-@@ -92,12 +92,12 @@ static void gfxhub_v1_0_init_system_aperture_regs(struc=
-t amdgpu_device *adev)
- {
-         uint64_t value;
-
--       /* Program the AGP BAR */
--       WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_BASE, 0);
--       WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_BOT, adev->gmc.agp_start >> 24)=
-;
--       WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_TOP, adev->gmc.agp_end >> 24);
--
-         if (!amdgpu_sriov_vf(adev) || adev->asic_type <=3D CHIP_VEGA10) {
-+               /* Program the AGP BAR */
-+               WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_BASE, 0);
-+               WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_BOT, adev->gmc.agp_star=
-t >> 24);
-+               WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_TOP, adev->gmc.agp_end =
->> 24);
-+
-                 /* Program the system aperture low logical page number. */
-                 WREG32_SOC15_RLC(GC, 0, mmMC_VM_SYSTEM_APERTURE_LOW_ADDR,
-                         min(adev->gmc.fb_start, adev->gmc.agp_start) >> 18=
-);
---
-2.34.1
-
-
---_000_BL1PR12MB51448FD52B07D849949660C1F7FE2BL1PR12MB5144namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Calibri;font-size:10pt;color:#008000;margin:5pt;fon=
-t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
-[Public]<br>
-</p>
-<br>
-<div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Are there any cases where the asic_type check would cause this register to =
-fail to get programmed?</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Alex</div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<hr style=3D"display: inline-block; width: 98%;">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><span style=3D"font-family: Calibri, =
-sans-serif; font-size: 11pt; color: rgb(0, 0, 0);"><b>From:</b>&nbsp;amd-gf=
-x &lt;amd-gfx-bounces@lists.freedesktop.org&gt; on behalf of Victor Lu &lt;=
-victorchengchi.lu@amd.com&gt;<br>
-<b>Sent:</b>&nbsp;Thursday, February 13, 2025 7:13 PM<br>
-<b>To:</b>&nbsp;amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop=
-.org&gt;<br>
-<b>Cc:</b>&nbsp;Lu, Victor Cheng Chi (Victor) &lt;VictorChengChi.Lu@amd.com=
-&gt;; hoarce.chen@amd.com &lt;hoarce.chen@amd.com&gt;<br>
-<b>Subject:</b>&nbsp;[PATCH 1/3] drm/amdgpu: Do not program AGP BAR regs un=
-der SRIOV</span>
-<div>&nbsp;</div>
-</div>
-<div style=3D"font-size: 11pt;">SRIOV VF does not have write access to AGP =
-BAR regs.<br>
-Skip the writes to avoid a dmesg warning.<br>
-<br>
-Signed-off-by: Victor Lu &lt;victorchengchi.lu@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c | 10 +++++-----<br>
-&nbsp;1 file changed, 5 insertions(+), 5 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfxhub_v1_0.c<br>
-index 0e3ddea7b8e0..a7bfc9f41d0e 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c<br>
-@@ -92,12 +92,12 @@ static void gfxhub_v1_0_init_system_aperture_regs(struc=
-t amdgpu_device *adev)<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t value;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Program the AGP BAR */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_B=
-ASE, 0);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_B=
-OT, adev-&gt;gmc.agp_start &gt;&gt; 24);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_T=
-OP, adev-&gt;gmc.agp_end &gt;&gt; 24);<br>
--<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!amdgpu_sriov_vf(adev)=
- || adev-&gt;asic_type &lt;=3D CHIP_VEGA10) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; /* Program the AGP BAR */<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_BASE, 0);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_BOT, adev-&gt;gmc.agp_start =
-&gt;&gt; 24);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; WREG32_SOC15_RLC(GC, 0, mmMC_VM_AGP_TOP, adev-&gt;gmc.agp_end &g=
-t;&gt; 24);<br>
-+<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; /* Program the system aperture low logical page numbe=
-r. */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; WREG32_SOC15_RLC(GC, 0, mmMC_VM_SYSTEM_APERTURE_LOW_A=
-DDR,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min(a=
-dev-&gt;gmc.fb_start, adev-&gt;gmc.agp_start) &gt;&gt; 18);<br>
---<br>
-2.34.1<br>
-<br>
-</div>
-</div>
-</body>
-</html>
-
---_000_BL1PR12MB51448FD52B07D849949660C1F7FE2BL1PR12MB5144namp_--
+On 14.02.25 16:00, Roman.Li@amd.com wrote:
+> From: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
+>
+> [Why/How]
+> Need to add support for full-range quantization for YCbCr in BT2020
+> color space.
+>
+> Reviewed-by: Krunoslav Kovac <krunoslav.kovac@amd.com>
+> Signed-off-by: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
+> Signed-off-by: Roman Li <roman.li@amd.com>
+> Tested-by: Robert Mader <robert.mader@collabora.com>
+> ---
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c           | 6 +++---
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c   | 2 +-
+>   drivers/gpu/drm/amd/display/dc/basics/dc_common.c           | 3 ++-
+>   drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c       | 5 +++--
+>   drivers/gpu/drm/amd/display/dc/core/dc_resource.c           | 4 ++--
+>   drivers/gpu/drm/amd/display/dc/dc_hw_types.h                | 4 +++-
+>   drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c     | 3 ++-
+>   .../gpu/drm/amd/display/dc/dio/dcn10/dcn10_stream_encoder.c | 3 ++-
+>   .../amd/display/dc/dio/dcn401/dcn401_dio_stream_encoder.c   | 3 ++-
+>   .../amd/display/dc/hpo/dcn31/dcn31_hpo_dp_stream_encoder.c  | 3 ++-
+>   drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h                 | 6 +++++-
+>   .../gpu/drm/amd/display/modules/info_packet/info_packet.c   | 4 ++--
+>   12 files changed, 29 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index b1b5f352b9aa..4ae54b3573ba 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -5616,9 +5616,9 @@ fill_plane_color_attributes(const struct drm_plane_state *plane_state,
+>   
+>   	case DRM_COLOR_YCBCR_BT2020:
+>   		if (full_range)
+> -			*color_space = COLOR_SPACE_2020_YCBCR;
+> +			*color_space = COLOR_SPACE_2020_YCBCR_FULL;
+>   		else
+> -			return -EINVAL;
+> +			*color_space = COLOR_SPACE_2020_YCBCR_LIMITED;
+>   		break;
+>   
+>   	default:
+> @@ -6114,7 +6114,7 @@ get_output_color_space(const struct dc_crtc_timing *dc_crtc_timing,
+>   		if (dc_crtc_timing->pixel_encoding == PIXEL_ENCODING_RGB)
+>   			color_space = COLOR_SPACE_2020_RGB_FULLRANGE;
+>   		else
+> -			color_space = COLOR_SPACE_2020_YCBCR;
+> +			color_space = COLOR_SPACE_2020_YCBCR_LIMITED;
+>   		break;
+>   	case DRM_MODE_COLORIMETRY_DEFAULT: // ITU601
+>   	default:
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> index 049046c60462..c7d13e743e6c 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> @@ -1169,7 +1169,7 @@ static int amdgpu_current_colorspace_show(struct seq_file *m, void *data)
+>   	case COLOR_SPACE_2020_RGB_FULLRANGE:
+>   		seq_puts(m, "BT2020_RGB");
+>   		break;
+> -	case COLOR_SPACE_2020_YCBCR:
+> +	case COLOR_SPACE_2020_YCBCR_LIMITED:
+>   		seq_puts(m, "BT2020_YCC");
+>   		break;
+>   	default:
+> diff --git a/drivers/gpu/drm/amd/display/dc/basics/dc_common.c b/drivers/gpu/drm/amd/display/dc/basics/dc_common.c
+> index b2fc4f8e6482..a51c2701da24 100644
+> --- a/drivers/gpu/drm/amd/display/dc/basics/dc_common.c
+> +++ b/drivers/gpu/drm/amd/display/dc/basics/dc_common.c
+> @@ -40,7 +40,8 @@ bool is_rgb_cspace(enum dc_color_space output_color_space)
+>   	case COLOR_SPACE_YCBCR709:
+>   	case COLOR_SPACE_YCBCR601_LIMITED:
+>   	case COLOR_SPACE_YCBCR709_LIMITED:
+> -	case COLOR_SPACE_2020_YCBCR:
+> +	case COLOR_SPACE_2020_YCBCR_LIMITED:
+> +	case COLOR_SPACE_2020_YCBCR_FULL:
+>   		return false;
+>   	default:
+>   		/* Add a case to switch */
+> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
+> index 6eb9bae3af91..6b514fd03f16 100644
+> --- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
+> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
+> @@ -176,7 +176,7 @@ static bool is_ycbcr2020_type(
+>   {
+>   	bool ret = false;
+>   
+> -	if (color_space == COLOR_SPACE_2020_YCBCR)
+> +	if (color_space == COLOR_SPACE_2020_YCBCR_LIMITED || color_space == COLOR_SPACE_2020_YCBCR_FULL)
+>   		ret = true;
+>   	return ret;
+>   }
+> @@ -247,7 +247,8 @@ void color_space_to_black_color(
+>   	case COLOR_SPACE_YCBCR709_BLACK:
+>   	case COLOR_SPACE_YCBCR601_LIMITED:
+>   	case COLOR_SPACE_YCBCR709_LIMITED:
+> -	case COLOR_SPACE_2020_YCBCR:
+> +	case COLOR_SPACE_2020_YCBCR_LIMITED:
+> +	case COLOR_SPACE_2020_YCBCR_FULL:
+>   		*black_color = black_color_format[BLACK_COLOR_FORMAT_YUV_CV];
+>   		break;
+>   
+> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+> index e6bc479497e8..7eb91612b60d 100644
+> --- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+> @@ -4488,7 +4488,7 @@ static void set_avi_info_frame(
+>   		break;
+>   	case COLOR_SPACE_2020_RGB_FULLRANGE:
+>   	case COLOR_SPACE_2020_RGB_LIMITEDRANGE:
+> -	case COLOR_SPACE_2020_YCBCR:
+> +	case COLOR_SPACE_2020_YCBCR_LIMITED:
+>   		hdmi_info.bits.EC0_EC2 = COLORIMETRYEX_BT2020RGBYCBCR;
+>   		hdmi_info.bits.C0_C1   = COLORIMETRY_EXTENDED;
+>   		break;
+> @@ -4502,7 +4502,7 @@ static void set_avi_info_frame(
+>   		break;
+>   	}
+>   
+> -	if (pixel_encoding && color_space == COLOR_SPACE_2020_YCBCR &&
+> +	if (pixel_encoding && color_space == COLOR_SPACE_2020_YCBCR_LIMITED &&
+>   			stream->out_transfer_func.tf == TRANSFER_FUNCTION_GAMMA22) {
+>   		hdmi_info.bits.EC0_EC2 = 0;
+>   		hdmi_info.bits.C0_C1 = COLORIMETRY_ITU709;
+> diff --git a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
+> index 5ac55601a6da..9f3dd8824ed5 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
+> @@ -653,7 +653,8 @@ enum dc_color_space {
+>   	COLOR_SPACE_YCBCR709_LIMITED,
+>   	COLOR_SPACE_2020_RGB_FULLRANGE,
+>   	COLOR_SPACE_2020_RGB_LIMITEDRANGE,
+> -	COLOR_SPACE_2020_YCBCR,
+> +	COLOR_SPACE_2020_YCBCR_LIMITED,
+> +	COLOR_SPACE_2020_YCBCR_FULL,
+>   	COLOR_SPACE_ADOBERGB,
+>   	COLOR_SPACE_DCIP3,
+>   	COLOR_SPACE_DISPLAYNATIVE,
+> @@ -661,6 +662,7 @@ enum dc_color_space {
+>   	COLOR_SPACE_APPCTRL,
+>   	COLOR_SPACE_CUSTOMPOINTS,
+>   	COLOR_SPACE_YCBCR709_BLACK,
+> +	COLOR_SPACE_2020_YCBCR = COLOR_SPACE_2020_YCBCR_LIMITED,
+>   };
+>   
+>   enum dc_dither_option {
+> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+> index d199e4ed2e59..1130d7619b26 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+> @@ -418,7 +418,7 @@ static void dce110_stream_encoder_dp_set_stream_attribute(
+>   			dynamic_range_rgb = 1; /*limited range*/
+>   			break;
+>   		case COLOR_SPACE_2020_RGB_FULLRANGE:
+> -		case COLOR_SPACE_2020_YCBCR:
+> +		case COLOR_SPACE_2020_YCBCR_LIMITED:
+>   		case COLOR_SPACE_XR_RGB:
+>   		case COLOR_SPACE_MSREF_SCRGB:
+>   		case COLOR_SPACE_ADOBERGB:
+> @@ -430,6 +430,7 @@ static void dce110_stream_encoder_dp_set_stream_attribute(
+>   		case COLOR_SPACE_APPCTRL:
+>   		case COLOR_SPACE_CUSTOMPOINTS:
+>   		case COLOR_SPACE_UNKNOWN:
+> +		default:
+>   			/* do nothing */
+>   			break;
+>   		}
+> diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_stream_encoder.c
+> index d01a8b8f9595..22e66b375a7f 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_stream_encoder.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_stream_encoder.c
+> @@ -391,7 +391,7 @@ void enc1_stream_encoder_dp_set_stream_attribute(
+>   		break;
+>   	case COLOR_SPACE_2020_RGB_LIMITEDRANGE:
+>   	case COLOR_SPACE_2020_RGB_FULLRANGE:
+> -	case COLOR_SPACE_2020_YCBCR:
+> +	case COLOR_SPACE_2020_YCBCR_LIMITED:
+>   	case COLOR_SPACE_XR_RGB:
+>   	case COLOR_SPACE_MSREF_SCRGB:
+>   	case COLOR_SPACE_ADOBERGB:
+> @@ -404,6 +404,7 @@ void enc1_stream_encoder_dp_set_stream_attribute(
+>   	case COLOR_SPACE_CUSTOMPOINTS:
+>   	case COLOR_SPACE_UNKNOWN:
+>   	case COLOR_SPACE_YCBCR709_BLACK:
+> +	default:
+>   		/* do nothing */
+>   		break;
+>   	}
+> diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn401/dcn401_dio_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn401/dcn401_dio_stream_encoder.c
+> index 334fb5e2c003..4bab180e1938 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dio/dcn401/dcn401_dio_stream_encoder.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dio/dcn401/dcn401_dio_stream_encoder.c
+> @@ -632,7 +632,7 @@ void enc401_stream_encoder_dp_set_stream_attribute(
+>   		break;
+>   	case COLOR_SPACE_2020_RGB_LIMITEDRANGE:
+>   	case COLOR_SPACE_2020_RGB_FULLRANGE:
+> -	case COLOR_SPACE_2020_YCBCR:
+> +	case COLOR_SPACE_2020_YCBCR_LIMITED:
+>   	case COLOR_SPACE_XR_RGB:
+>   	case COLOR_SPACE_MSREF_SCRGB:
+>   	case COLOR_SPACE_ADOBERGB:
+> @@ -645,6 +645,7 @@ void enc401_stream_encoder_dp_set_stream_attribute(
+>   	case COLOR_SPACE_CUSTOMPOINTS:
+>   	case COLOR_SPACE_UNKNOWN:
+>   	case COLOR_SPACE_YCBCR709_BLACK:
+> +	default:
+>   		/* do nothing */
+>   		break;
+>   	}
+> diff --git a/drivers/gpu/drm/amd/display/dc/hpo/dcn31/dcn31_hpo_dp_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/hpo/dcn31/dcn31_hpo_dp_stream_encoder.c
+> index 678db949cfe3..759b453385c4 100644
+> --- a/drivers/gpu/drm/amd/display/dc/hpo/dcn31/dcn31_hpo_dp_stream_encoder.c
+> +++ b/drivers/gpu/drm/amd/display/dc/hpo/dcn31/dcn31_hpo_dp_stream_encoder.c
+> @@ -323,7 +323,7 @@ static void dcn31_hpo_dp_stream_enc_set_stream_attribute(
+>   		break;
+>   	case COLOR_SPACE_2020_RGB_LIMITEDRANGE:
+>   	case COLOR_SPACE_2020_RGB_FULLRANGE:
+> -	case COLOR_SPACE_2020_YCBCR:
+> +	case COLOR_SPACE_2020_YCBCR_LIMITED:
+>   	case COLOR_SPACE_XR_RGB:
+>   	case COLOR_SPACE_MSREF_SCRGB:
+>   	case COLOR_SPACE_ADOBERGB:
+> @@ -336,6 +336,7 @@ static void dcn31_hpo_dp_stream_enc_set_stream_attribute(
+>   	case COLOR_SPACE_CUSTOMPOINTS:
+>   	case COLOR_SPACE_UNKNOWN:
+>   	case COLOR_SPACE_YCBCR709_BLACK:
+> +	default:
+>   		/* do nothing */
+>   		break;
+>   	}
+> diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h
+> index 0150f2581ee4..0c5675d1c593 100644
+> --- a/drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h
+> +++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h
+> @@ -119,10 +119,14 @@ static const struct dpp_input_csc_matrix __maybe_unused dpp_input_csc_matrix[] =
+>   		{ 0x39a6, 0x2568, 0,      0xe0d6,
+>   		  0xeedd, 0x2568, 0xf925, 0x9a8,
+>   		  0,      0x2568, 0x43ee, 0xdbb2 } },
+> -	{ COLOR_SPACE_2020_YCBCR,
+> +	{ COLOR_SPACE_2020_YCBCR_FULL,
+>   		{ 0x2F30, 0x2000, 0,      0xE869,
+>   		  0xEDB7, 0x2000, 0xFABC, 0xBC6,
+>   		  0,      0x2000, 0x3C34, 0xE1E6 } },
+> +	{ COLOR_SPACE_2020_YCBCR_LIMITED,
+> +		{ 0x35B9, 0x2543, 0,      0xE2B2,
+> +		  0xEB2F, 0x2543, 0xFA01, 0x0B1F,
+> +		  0,      0x2543, 0x4489, 0xDB42 } },
+>   	{ COLOR_SPACE_2020_RGB_LIMITEDRANGE,
+>   		{ 0x35E0, 0x255F, 0,      0xE2B3,
+>   		  0xEB20, 0x255F, 0xF9FD, 0xB1E,
+> diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+> index a344e2e49b0e..b3d55cac3569 100644
+> --- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+> +++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+> @@ -383,10 +383,10 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
+>   				colorimetryFormat = ColorimetryYCC_DP_ITU709;
+>   			else if (cs == COLOR_SPACE_ADOBERGB)
+>   				colorimetryFormat = ColorimetryYCC_DP_AdobeYCC;
+> -			else if (cs == COLOR_SPACE_2020_YCBCR)
+> +			else if (cs == COLOR_SPACE_2020_YCBCR_LIMITED)
+>   				colorimetryFormat = ColorimetryYCC_DP_ITU2020YCbCr;
+>   
+> -			if (cs == COLOR_SPACE_2020_YCBCR && tf == TRANSFER_FUNC_GAMMA_22)
+> +			if (cs == COLOR_SPACE_2020_YCBCR_LIMITED && tf == TRANSFER_FUNC_GAMMA_22)
+>   				colorimetryFormat = ColorimetryYCC_DP_ITU709;
+>   			break;
+>   
