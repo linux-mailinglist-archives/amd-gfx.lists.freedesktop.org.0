@@ -2,46 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1505EA37CAB
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Feb 2025 09:02:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BF37A37CA8
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Feb 2025 09:02:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10B2F10E394;
-	Mon, 17 Feb 2025 08:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56E4910E25C;
+	Mon, 17 Feb 2025 08:02:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=posteo.de header.i=@posteo.de header.b="pZvJP2Qb";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=robert.mader@collabora.com header.b="PLV390jS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 333 seconds by postgrey-1.36 at gabe;
- Fri, 14 Feb 2025 21:20:46 UTC
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 947C210E08A
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 21:20:46 +0000 (UTC)
-Received: from submission (posteo.de [185.67.36.169]) 
- by mout01.posteo.de (Postfix) with ESMTPS id BD988240027
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 22:15:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
- t=1739567711; bh=fB11n5wO9tlUqyYIDC5H0rUx5EE3fZ7xtNTxlKauKn4=;
- h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
- Content-Transfer-Encoding:From;
- b=pZvJP2QbKM7i4ws6csGOZjXa+uwTEWOWDAhejy+YQ8lIOnYGqUfxiqvY5nfpHU/ks
- 41Wu9QTjAKs5ZCK9Fg4hFLvhnsK+Z7L9zbnmxBn58Oe3EG7L5SaL02RBXjKFn8IKrg
- YdombZvuxCq9VR6md3reVLZ5nvj7KtbvF7/lxCg1JfJXjL1MY5jJwyYN61niLdl4ST
- ckj2xfKLE4XhMycHj7u+9DTWmOu0bhQhJcWw9Dx7fYLEfSTuEcgoJ7L9Mrg/OFUypl
- 2Z5vGXD10a4KokKVT+z7+4aeqcZDiQ9NBpdbvbdnfoK4h8Pl+1tFyTd40BTHrbRYMY
- w/uf2yjWf3UkQ==
-Received: from customer (localhost [127.0.0.1])
- by submission (posteo.de) with ESMTPSA id 4YvlFB6T5Mz9rxB
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 22:15:10 +0100 (CET)
-Message-ID: <416da75f-8de9-48bd-bc4e-50b586c23426@posteo.de>
-Date: Fri, 14 Feb 2025 21:15:10 +0000
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
+ [136.143.188.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFB4E10E08A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 21:24:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1739568276; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=KT++kCplmBVFcqus95044QOdFV8RYboOOa4+sgyGVsyXOt83Arqc2iEc7UUsg2nYo5592bL59YXX6b0R4xnFDscOQlB6WJNoNVt3w+OJtD4gWrejTPqs9DtI9+WnuDoUyU01YKyMKcdf/x6mok+N0klGF0h82BDEedwrmjyTiFw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1739568276;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=252fEwyYJYBwuWtBbR1Ra14nMK2jHjIZZWMYdUYCGw4=; 
+ b=P96jwcfS054Xf0fTHT/cesDt682php6uNuGzI4bKjzaA6qLnaw8XKL9UcWbVNLhvr2AQDZONYtmIqi9zN8yDPxfEmOX5X79z2aHUlZHZWnnvhTmREDcO+piYVipfwhp51o0Od7Cf/QfrD8/KPE4bdp+Wv1YViQM5lJm09KqCXls=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=robert.mader@collabora.com;
+ dmarc=pass header.from=<robert.mader@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1739568276; 
+ s=zohomail; d=collabora.com; i=robert.mader@collabora.com;
+ h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=252fEwyYJYBwuWtBbR1Ra14nMK2jHjIZZWMYdUYCGw4=;
+ b=PLV390jS6HSJL8LPO0o+HMkxLbjVbs0fKwO7ZIrEhGq041CZ4N1owel4wuAPphxg
+ seF/rseZf8aKLpuouRBopDKeVTchYhESQN1sJkdQQybuU7AghU7AvzjQHO3I4y2F91F
+ D3qbLHsVSSHz0TmvIw3lH/eTirKl30knQKNhlr4Q=
+Received: by mx.zohomail.com with SMTPS id 1739568274662417.7762530673797;
+ Fri, 14 Feb 2025 13:24:34 -0800 (PST)
+Message-ID: <20e7b972-ea51-470d-bbb0-0eb7405548df@collabora.com>
+Date: Fri, 14 Feb 2025 22:24:25 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 12/16] drm/amd/display: Support BT2020 YCbCr fullrange
-To: amd-gfx@lists.freedesktop.org
+To: Roman.Li@amd.com, amd-gfx@lists.freedesktop.org
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Wayne Lin <wayne.lin@amd.com>,
+ Tom Chung <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>,
+ Zaeem Mohamed <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>,
+ Ilya Bakoulin <Ilya.Bakoulin@amd.com>,
+ Krunoslav Kovac <krunoslav.kovac@amd.com>,
+ Robert Mader <robert.mader@collabora.com>
 References: <20250214150033.767978-1-Roman.Li@amd.com>
  <20250214150033.767978-13-Roman.Li@amd.com>
 Content-Language: en-US
-From: Robert Mader <robert.mader@posteo.de>
+From: Robert Mader <robert.mader@collabora.com>
 In-Reply-To: <20250214150033.767978-13-Roman.Li@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
