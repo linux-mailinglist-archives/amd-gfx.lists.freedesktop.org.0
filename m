@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E94A3587C
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2025 09:08:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F6CBA35879
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2025 09:08:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4342D10EBF2;
-	Fri, 14 Feb 2025 08:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB6A810EBED;
+	Fri, 14 Feb 2025 08:08:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1NlzGw6N";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2hjR8dB9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2088.outbound.protection.outlook.com [40.107.243.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2981910EBF1
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 08:08:05 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2085.outbound.protection.outlook.com [40.107.220.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 388A010EBF0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 08:08:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oarbzbakpdL9pgelxmi8DMNKWNi0OSA1ZQmyu65VJj1+8DSJ7CJqB6pM3drRJaTjD+RKN71PRGDzlGmrFrfgwgFO4oRvf/farECLoJR0L38TG+/deOkUWzHRUS0/5QZejusTKttlFZDs//prmJRooXSAVWUVX1IJGdshMVqzwC3dGx7BPyIiJjRPhvNnAgTGklt48Kl2Gz+UlomuQj/+1T9lj2fJqhVsJdXIivwKzrVWraegYnM6sFdkQ7acaAV8JWXUlPjskPt6ddxZ6UOlxEW3j4BQFQIsK+QN4d9t7jYOZ6FsRfcEYOBvxyw58myq5iWsJ3kprXFSjySYqkdBtQ==
+ b=IRq6ExoBTeR+aSL95gKxZLWHqTl+ImjwmND66UTSugE14Ma3gNG7h0ce6qMImzDQYCdv+hMEdp57saAQ6ao2/RaP0bGJxJRlyMfNL1frqUeZtR4srHAO9omsjbZXZ4zl0RZyE8fQUauCyNMEAUG1V8pZ+oLn0WUzGv18ap2md6EhDXCQKVkOa2GVC+l1ly2/yE3A0xYbXPyEf3oyikD8TS6hrata5X17jF5Y5sEPmpYtsR9txJBBuf7dJmOPdVumSOPIG0MLVeFlNM2FWrc4qTPt8O3c+QE0lrpuw1jVi0VIbBZ3EjTn5ePoPQuWl30PYQ6NEr9yzFJpifvc7S5yBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZkU634z6//f3s2Aq6c9C8Jd9cO1UouvykdPBzh+qPtk=;
- b=D+Brk1ko8sPoTIfvWdpE7TR5oJruUxKN7oovJvUyBrLo6hy1nig2ZPGpQUcjDpr7EWzOM1iCsEnewHuVlkXV0cXQO/zhsFv+BRKnVR+n+AflTgo03DuQ7xtqb0mmYWovX1hr6Wll2Z0heJxB08jMKiFDdZSugQcUN/Nrr37C5X3WrrKO0Nn2MZXKMtYA0wz6ThGT/uilZJWZQmjc9mBgCMGo74R+pg7z2FGN0JIEYg4kFi5WKwFv0jiUV+S2/KMz301vXeW2Jj1NIRA5qaiakEoLKHBJam969yi8gKVcppvCrzV4mNmD0E3KDFEbIi+BxeWt+jI02sih/AVb9B2fZw==
+ bh=DsDdQz4oxWkR1OTOo7bpFVzIUPVAFEeuTKzviTUj4bY=;
+ b=pY4roFnkK/TRjQGVjm3mMTYqpWFFu+APLHzERF8wpE2U2UElfXZi9OIkuy/jl/1RYwpDJr68G3w67uxbASnrdRpwqIl8omjlZNzk+m7kPeuU76IuFkKha0FIg7Al9fOeci/XytGNWgsugk/9MO6z3L/+XKm8zE+WQBgNEK3NWBIjVuqxez7WEFjIYqOMRX/KXuxuSwTlIowWCOB1XyapIMGDymF/KcTjyZ41AV9GCHWeg4lImcihgkK90DhfX8nkuajcXwZCmn43HWXmvGkMk+UWw6hQTy0MCMrf7YYmDDfnF8EEb34spyZyBMDbH4S0HKLPAKlA6RVe4Z9rqy7r5Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZkU634z6//f3s2Aq6c9C8Jd9cO1UouvykdPBzh+qPtk=;
- b=1NlzGw6Nh+moVEk9q3jV/SVhitwil9XWrZFdKEvYw7C5YQW30OqZ6EAA9ETpBFzFKrOkaSvNr5FAxXQ8w30YQNQL+tapubVG73tCzDMODE+2zFW3zeVuTz+BkDocxQevdp06m3Vz4xlLtScHFluPR0niM+hrquQoIdNoxeqP0O0=
-Received: from BN1PR14CA0007.namprd14.prod.outlook.com (2603:10b6:408:e3::12)
- by PH8PR12MB7183.namprd12.prod.outlook.com (2603:10b6:510:228::20)
+ bh=DsDdQz4oxWkR1OTOo7bpFVzIUPVAFEeuTKzviTUj4bY=;
+ b=2hjR8dB95GMbUEhNIpy1OKUQwy616P/XNo87xbF4Z+fl3BXRpHj8r8LTbtUzGe97gHQtqCr3+Elouxv/r2V7o3SXwl0tI1Et+U8lyhm+nXgGlx367cIUxdXBPzFPRSJXY5wqXqBmyrKdebXjw5lA6hJipC35bPd+DXXMoI6jbbs=
+Received: from BN1PR14CA0025.namprd14.prod.outlook.com (2603:10b6:408:e3::30)
+ by CH3PR12MB9148.namprd12.prod.outlook.com (2603:10b6:610:19d::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.15; Fri, 14 Feb
- 2025 08:07:57 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.14; Fri, 14 Feb
+ 2025 08:07:59 +0000
 Received: from BN2PEPF000055DE.namprd21.prod.outlook.com
- (2603:10b6:408:e3:cafe::aa) by BN1PR14CA0007.outlook.office365.com
- (2603:10b6:408:e3::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.13 via Frontend Transport; Fri,
- 14 Feb 2025 08:07:57 +0000
+ (2603:10b6:408:e3:cafe::d5) by BN1PR14CA0025.outlook.office365.com
+ (2603:10b6:408:e3::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.15 via Frontend Transport; Fri,
+ 14 Feb 2025 08:07:58 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,18 +50,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN2PEPF000055DE.mail.protection.outlook.com (10.167.245.8) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8466.0 via Frontend Transport; Fri, 14 Feb 2025 08:07:57 +0000
+ 15.20.8466.0 via Frontend Transport; Fri, 14 Feb 2025 08:07:58 +0000
 Received: from liuxiang-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 14 Feb
- 2025 02:07:55 -0600
+ 2025 02:07:57 -0600
 From: Xiang Liu <xiang.liu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <tao.zhou1@amd.com>, Yang Wang
- <keivnyang.wang@amd.com>
-Subject: [PATCH v2 05/12] drm/amdgpu: Generate cper records
-Date: Fri, 14 Feb 2025 16:07:12 +0800
-Message-ID: <1041cc7f576992060a96b02c9f3dd5b41bc7a3f9.1739519672.git.xiang.liu@amd.com>
+CC: <Hawking.Zhang@amd.com>, <tao.zhou1@amd.com>
+Subject: [PATCH v2 06/12] drm/amdgpu: add RAS CPER ring buffer
+Date: Fri, 14 Feb 2025 16:07:13 +0800
+Message-ID: <df6f2d02df550e4fbcc3229295707eee9177574e.1739519672.git.xiang.liu@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1739519672.git.xiang.liu@amd.com>
 References: <cover.1739519672.git.xiang.liu@amd.com>
@@ -73,52 +72,52 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055DE:EE_|PH8PR12MB7183:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1f77d63-f93e-4a6a-0de8-08dd4cceb10b
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055DE:EE_|CH3PR12MB9148:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7689d6c-54a1-4604-16eb-08dd4cceb1f7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|376014|36860700013|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hoquRHbImTDWnb/pXGsmp37KENFMiwC5Jq6enq1Y/KjSrNtOtyclm1ERfLT5?=
- =?us-ascii?Q?QLgBOMH2MiOMylE3QOeawK3S0k2OznsJZEw7xusNV07vJR4y3Ovtn/i37QSs?=
- =?us-ascii?Q?1t2CPl6tfMFPs4Y1LQGf0IGJVFenW7ioG1wlzUtpU22OmUHzVnu/sxRJiwBx?=
- =?us-ascii?Q?NzNhXbLWzt/i6ISNX3Hxw7HItKGWZ3++b0YqvirWO3Ga4ByQmaGUvw70feon?=
- =?us-ascii?Q?1ETcjslnS7/R54hH3Aa/aWSiItw2sIzDLw7eV33TNrmgzKlqzHM/ysHhuuSc?=
- =?us-ascii?Q?pa5hEiVxS6ulfuAq1f7uCZz2zmLvXHBvePRnn9D/npPtdYS5TRPGAiQzA6ef?=
- =?us-ascii?Q?wrqnMP0/zK5xkrA+0HGIXyU4f0l9jk/UqnoLcJy1wXPWJVQ1EOCMxi+Mrs3R?=
- =?us-ascii?Q?4oEJGFhZr/bK1uHhkk4js/smm5Doa3q3I2olClxBGwAyXX21f0WhOnH3IuxK?=
- =?us-ascii?Q?T9/KutwBw0REeQlvNNOm/s8VL++QAYKjUBd0Vhp2Mv3elftNc48HtHaSVV+D?=
- =?us-ascii?Q?nnDeNRDiRY08ArKsMZECE8Xk0+lYhwbLJezlbCUGFtI81EfO5Zh8dAXmUsdi?=
- =?us-ascii?Q?AoIxnSzSRfnGqMCRrcRB+rPc1xo/xpBWr4h8npugRBBnMckfGE9R4MLnfdSv?=
- =?us-ascii?Q?Q6f4wW4OtuDJD0xoEjWqBOzkcYyH5v54rV7mEE+esTOnYQ+wf34qUYX51dnP?=
- =?us-ascii?Q?SxpCQLQZ0vHc/HZheWOO93U29fgaIUbzLMNCghCXMEQ0yg+1KJld7lp5uNA9?=
- =?us-ascii?Q?TsB/0DIfU8an2h784AI5vNpieEAkFsCvs1j7cy+rTaJlKy48kNO9O6kgEgeu?=
- =?us-ascii?Q?6Pd7nN8IyfdvLysMSOnBgn5rukuCvcR/E2jN9BkCP+L5ufAEjKvqmQG1FfPR?=
- =?us-ascii?Q?5cP25Hkxo2/IczcKWPwa8094x2Lt3Xvt1Lxuz5dHqncI3lNgZqzVzjJdf7Yc?=
- =?us-ascii?Q?galLGM21m7GH+yUHYkOGPjVapKkbvOrH7CmTSx6mZMkIjOarWR4XIELQ64qB?=
- =?us-ascii?Q?O39s3lpNy+AQQnP2sBJ7kw0hHbYUIGQVT6s61cI4fhYGzjXYg4CVaOq7FLlt?=
- =?us-ascii?Q?kLPcc9j/IzCky7rwD8fadHrc+JM0ANTwmjQ77G2o1fEGojh9MOW2h6aYpX/c?=
- =?us-ascii?Q?SzTOpLZUgCtYJyo58VWlAGEV8sRo5z1ruJMhpGjU72wvnb2d5/Xp6w8m1o2O?=
- =?us-ascii?Q?Pteb3FTCiNs49Dgo2RQe1YmWHiEhW98j1quooIPF0z/lOfO/dDEp5WYEwsAV?=
- =?us-ascii?Q?lNVIZ4Fjtau7Che9Ox8gzHg0APWJB1VX5AsmRJFBmWTpvHUvxg7MVc9dUVk9?=
- =?us-ascii?Q?Dwhp/y3lb63X7EdU3SspqoRMM8a6DcnE5kGePlIDh734Ttt8EZOkDIzs4Po5?=
- =?us-ascii?Q?ssGO+iNlfo9nPxjpQJzCnuEVxRQQGRe05JATwcHmNSrYV+LgGM+ehIGv2UaF?=
- =?us-ascii?Q?6eJIac22G1I6X5s6U1ybeSwLZpEw9oIDkpS7k8/VwU2FmKLk9nTYkx+jqBvD?=
- =?us-ascii?Q?m7I8Yc/UBucmolQ=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?shvdw18Uh+zRhb+oY2i5e37zJn9/8ZXil6RiqXV2XHGS/M2VuEDvU1hVkmMG?=
+ =?us-ascii?Q?umDEDwoOFhaMueVLapPZogBCRmhsKhtI5qa7Xrjy/n+OJRTH9rVVLUuzAAAe?=
+ =?us-ascii?Q?HAQsaReYLgRWdWpyu6n63fDnyWCVWmR6jSI6gS5osfvVNnhfdnUcUbof1Yg1?=
+ =?us-ascii?Q?jEHKVSSjKDWOWtc4mADo0bCNARNd5+1z5C57BtCAt1SGjjegyDt06GemlU9a?=
+ =?us-ascii?Q?PLuVUz3GdKk2yycBrxb0FIqQz+5K+IMbc7cXdJDIP+aN+P+C2nf7EiqXIKzW?=
+ =?us-ascii?Q?GSyoioDjPZdVMBrbb/15Hh7NiEe3OsQTYJiZw5HHqLHqk05hZCWFaUHlU/nf?=
+ =?us-ascii?Q?Ta3UNOb7nZeLi6Qb92n6SQcDi5GEIssjE78w1KvBXRblJ0AdSeKpnlwNZbkm?=
+ =?us-ascii?Q?b3RxQSYuVSwMmkLZUN43ezOSvbfnK9KbH2oxvfhTzG9qAHhFcbv4g2CByvfn?=
+ =?us-ascii?Q?TBDaYtJuiJKdoQuBQPU8Tr+zSv7AMNyfPsiWKVb3yrx4Ou+2jOz1LECVIXfg?=
+ =?us-ascii?Q?BRP6Q7bhVvm4tuO3pdlrj5XnmYHTo1pMh4tpxRD0lbpx0z2o+Cd2Hm5smw30?=
+ =?us-ascii?Q?5yApSHDw+KAfPuVruxRxJE7BkjcfY5vZfsldjtIsfSPH05/ZXK2xsxFQAsgf?=
+ =?us-ascii?Q?aMaeCNGUPEzJ3iftMPVh5fgVvSCBQQ7EnTOqAcI5IWqsfjBViLaQ4T+Pzq4X?=
+ =?us-ascii?Q?xQXIMk6fSoer5RlUzI7VhxmBiQ567paIkVKWqrhZvmgQeAQlxiHhA8zahRbV?=
+ =?us-ascii?Q?QK89s27HddPN7HSPL83XwVAaMQPgUFMvE+TBqai/cH9v85mIReAyXhbPix6K?=
+ =?us-ascii?Q?gYe5K/u38FltYCNQC5Nk+6Rd/4AviD9ne9VqVa6iq4SfuCoXwxmNwBfvYVE5?=
+ =?us-ascii?Q?1Eq+eDgnZgmvOePQvpLjAQqigUCQj0KuxBiU2/hfdJ/eeCmVu6KtWtPa8Ak8?=
+ =?us-ascii?Q?+D+2PVK5r1R3SfxCEyFR5ZlXPNB4YZslwOJ0ZuFih7wWoYhmg9rmdtjaCvbp?=
+ =?us-ascii?Q?iVM8UNHpvwHBRNb0vxtNbciFKJPx2ScgagNan7GXuNnQW0dLwiGo4o/yaSPi?=
+ =?us-ascii?Q?asqqsbteAzic4zSbcSqc+akPe+CyC7xw/9xgpoV0XIdRHsUgzOLpULoFLEoL?=
+ =?us-ascii?Q?4j6d1oZZNUIRYv9arbORr68MrCUb67Es7KbC09Y3NezSjzMJbpr1QgV0OE+X?=
+ =?us-ascii?Q?xpjN2g+Ryx6x+7UkoJdx/ArIjpX+rmxbrEhNQEPubPoQV7DEGcKzqqAyTTi6?=
+ =?us-ascii?Q?l/VqzSPirLDHI180YgePMcxuBcKQYdKs03FATbU4e9+bA6Ue7UgGNOKjS2KC?=
+ =?us-ascii?Q?pkYxPClPrJWy60mmXb+yxzpGcdgroLsQzcyDnh+aS2nK1Vgbgronj2+PZnPX?=
+ =?us-ascii?Q?BpYEP+RWxZ3emA2kV5TJKs96eDuAFjfPUpdDAWclRoCbkEeLYVR3GlKPDWMM?=
+ =?us-ascii?Q?o1maZPQMow32E/jiV04ytvjmsI2wZNipVv+zy956K9IUK7Vupyd9xwzoNKCi?=
+ =?us-ascii?Q?W8tpUD9SXTfaotI=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2025 08:07:57.3119 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1f77d63-f93e-4a6a-0de8-08dd4cceb10b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2025 08:07:58.8587 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7689d6c-54a1-4604-16eb-08dd4cceb1f7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000055DE.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7183
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9148
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,68 +132,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hawking Zhang <Hawking.Zhang@amd.com>
+From: Tao Zhou <tao.zhou1@amd.com>
 
-Encode the error information in CPER format and commit
-to the cper ring
+And initialize it, this is a pure software ring to store RAS CPER data.
 
-Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Reviewed-by: Yang Wang <keivnyang.wang@amd.com>
-Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
+v2: update the initialization of count_dw of cper ring, it's dword
+variable.
+
+Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c | 32 +++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c   | 39 +++++++++++++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h   |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c   | 29 ++++++++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |  1 +
+ drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c |  3 +-
+ 5 files changed, 57 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
-index ed1c20bd8114..c0da9096a7fa 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
-@@ -384,6 +384,36 @@ static bool aca_bank_should_update(struct amdgpu_device *adev, enum aca_smu_type
- 	return ret;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
+index f82aa12a88f4..cef7c1ec0d7c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
+@@ -365,6 +365,39 @@ int amdgpu_cper_generate_ce_records(struct amdgpu_device *adev,
+ 	return 0;
  }
  
-+static void aca_banks_generate_cper(struct amdgpu_device *adev,
-+				    enum aca_smu_type type,
-+				    struct aca_banks *banks,
-+				    int count)
++static u64 amdgpu_cper_ring_get_rptr(struct amdgpu_ring *ring)
 +{
-+	struct aca_bank_node *node;
-+	struct aca_bank *bank;
-+
-+	if (!adev || !banks || !count) {
-+		dev_warn(adev->dev, "fail to generate cper records\n");
-+		return;
-+	}
-+
-+	/* UEs must be encoded into separate CPER entries */
-+	if (type == ACA_SMU_TYPE_UE) {
-+		list_for_each_entry(node, &banks->list, node) {
-+			bank = &node->bank;
-+			if (amdgpu_cper_generate_ue_record(adev, bank))
-+				dev_warn(adev->dev, "fail to generate ue cper records\n");
-+		}
-+	} else {
-+		/*
-+		 * SMU_TYPE_CE banks are combined into 1 CPER entries,
-+		 * they could be CEs or DEs or both
-+		 */
-+		if (amdgpu_cper_generate_ce_records(adev, banks, count))
-+			dev_warn(adev->dev, "fail to generate ce cper records\n");
-+	}
++	return *(ring->rptr_cpu_addr);
 +}
 +
- static int aca_banks_update(struct amdgpu_device *adev, enum aca_smu_type type,
- 			    bank_handler_t handler, struct ras_query_context *qctx, void *data)
- {
-@@ -421,6 +451,8 @@ static int aca_banks_update(struct amdgpu_device *adev, enum aca_smu_type type,
- 	if (ret)
- 		goto err_release_banks;
- 
-+	aca_banks_generate_cper(adev, type, &banks, count);
++static u64 amdgpu_cper_ring_get_wptr(struct amdgpu_ring *ring)
++{
++	return ring->wptr;
++}
 +
- err_release_banks:
- 	aca_banks_release(&banks);
++static const struct amdgpu_ring_funcs cper_ring_funcs = {
++	.type = AMDGPU_RING_TYPE_CPER,
++	.align_mask = 0xff,
++	.support_64bit_ptrs = false,
++	.get_rptr = amdgpu_cper_ring_get_rptr,
++	.get_wptr = amdgpu_cper_ring_get_wptr,
++};
++
++static int amdgpu_cper_ring_init(struct amdgpu_device *adev)
++{
++	struct amdgpu_ring *ring = &(adev->cper.ring_buf);
++
++	ring->adev = NULL;
++	ring->ring_obj = NULL;
++	ring->use_doorbell = false;
++	ring->no_scheduler = true;
++	ring->funcs = &cper_ring_funcs;
++
++	sprintf(ring->name, "cper");
++	return amdgpu_ring_init(adev, ring, PAGE_SIZE, NULL, 0,
++				AMDGPU_RING_PRIO_DEFAULT, NULL);
++}
++
+ int amdgpu_cper_init(struct amdgpu_device *adev)
+ {
+ 	mutex_init(&adev->cper.cper_lock);
+@@ -372,16 +405,14 @@ int amdgpu_cper_init(struct amdgpu_device *adev)
+ 	adev->cper.enabled = true;
+ 	adev->cper.max_count = CPER_MAX_ALLOWED_COUNT;
  
+-	/*TODO: initialize cper ring*/
+-
+-	return 0;
++	return amdgpu_cper_ring_init(adev);
+ }
+ 
+ int amdgpu_cper_fini(struct amdgpu_device *adev)
+ {
+ 	adev->cper.enabled = false;
+ 
+-	/*TODO: free cper ring */
++	amdgpu_ring_fini(&(adev->cper.ring_buf));
+ 	adev->cper.count = 0;
+ 	adev->cper.wptr = 0;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h
+index 6860a809f2f5..80c8571cff9d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h
+@@ -62,6 +62,7 @@ struct amdgpu_cper {
+ 	uint32_t wptr;
+ 
+ 	void *ring[CPER_MAX_ALLOWED_COUNT];
++	struct amdgpu_ring ring_buf;
+ };
+ 
+ void amdgpu_cper_entry_fill_hdr(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index cfbc18c12113..005cdaee9987 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -324,20 +324,27 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
+ 	/* always set cond_exec_polling to CONTINUE */
+ 	*ring->cond_exe_cpu_addr = 1;
+ 
+-	r = amdgpu_fence_driver_start_ring(ring, irq_src, irq_type);
+-	if (r) {
+-		dev_err(adev->dev, "failed initializing fences (%d).\n", r);
+-		return r;
+-	}
++	if (ring->funcs->type != AMDGPU_RING_TYPE_CPER) {
++		r = amdgpu_fence_driver_start_ring(ring, irq_src, irq_type);
++		if (r) {
++			dev_err(adev->dev, "failed initializing fences (%d).\n", r);
++			return r;
++		}
+ 
+-	max_ibs_dw = ring->funcs->emit_frame_size +
+-		     amdgpu_ring_max_ibs(ring->funcs->type) * ring->funcs->emit_ib_size;
+-	max_ibs_dw = (max_ibs_dw + ring->funcs->align_mask) & ~ring->funcs->align_mask;
++		max_ibs_dw = ring->funcs->emit_frame_size +
++			     amdgpu_ring_max_ibs(ring->funcs->type) * ring->funcs->emit_ib_size;
++		max_ibs_dw = (max_ibs_dw + ring->funcs->align_mask) & ~ring->funcs->align_mask;
+ 
+-	if (WARN_ON(max_ibs_dw > max_dw))
+-		max_dw = max_ibs_dw;
++		if (WARN_ON(max_ibs_dw > max_dw))
++			max_dw = max_ibs_dw;
+ 
+-	ring->ring_size = roundup_pow_of_two(max_dw * 4 * sched_hw_submission);
++		ring->ring_size = roundup_pow_of_two(max_dw * 4 * sched_hw_submission);
++	} else {
++		ring->ring_size = roundup_pow_of_two(max_dw * 4);
++		ring->count_dw = (ring->ring_size - 4) >> 2;
++		/* ring buffer is empty now */
++		ring->wptr = *ring->rptr_cpu_addr = 0;
++	}
+ 
+ 	ring->buf_mask = (ring->ring_size / 4) - 1;
+ 	ring->ptr_mask = ring->funcs->support_64bit_ptrs ?
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 04af26536f97..7372e4aed6b0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -82,6 +82,7 @@ enum amdgpu_ring_type {
+ 	AMDGPU_RING_TYPE_KIQ,
+ 	AMDGPU_RING_TYPE_MES,
+ 	AMDGPU_RING_TYPE_UMSCH_MM,
++	AMDGPU_RING_TYPE_CPER,
+ };
+ 
+ enum amdgpu_ib_pool_type {
+diff --git a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
+index 16d924acb788..83a07309a538 100644
+--- a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
++++ b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
+@@ -77,7 +77,8 @@ static void aqua_vanjaram_set_xcp_id(struct amdgpu_device *adev,
+ 	ring->xcp_id = AMDGPU_XCP_NO_PARTITION;
+ 	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE)
+ 		adev->gfx.enforce_isolation[0].xcp_id = ring->xcp_id;
+-	if (adev->xcp_mgr->mode == AMDGPU_XCP_MODE_NONE)
++	if ((adev->xcp_mgr->mode == AMDGPU_XCP_MODE_NONE) ||
++	    (ring->funcs->type == AMDGPU_RING_TYPE_CPER))
+ 		return;
+ 
+ 	inst_mask = 1 << inst_idx;
 -- 
 2.34.1
 
