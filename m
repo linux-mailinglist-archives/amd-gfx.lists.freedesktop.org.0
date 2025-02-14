@@ -2,66 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 485DBA360E8
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2025 16:01:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A81B2A360EC
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Feb 2025 16:01:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45D8C10ECBA;
-	Fri, 14 Feb 2025 15:01:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF6F10ECCB;
+	Fri, 14 Feb 2025 15:01:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pPU0j67C";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ccg2AN5U";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2069.outbound.protection.outlook.com [40.107.93.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD9D510ECC2
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 15:01:44 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2074.outbound.protection.outlook.com [40.107.94.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5CBF10ECBA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 15:01:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uEgS9CONfzE6SlRvNjXiJRwefZ/kjPXhnTvFK5G22G5DrVw/AA3vrb/0jWKDzj/S2tP9CC7Y0euDoDXWcZpjoyzDOlaySlCSuGCLznu2iwYDxtPBKeK7PjiCXJr2DZZ7sUpkgXQvcp1l71wPAqPEQ9fpJzBVOjnEVc4KQOGS0Tp94aAvcoeAUjRH1yHvUYPCygKTS9sSrDTWVm3hjcPY7yQyUEGb0WKVpwgAb7JnrjyIyuCoeAXs8kE89+JlgCbjnf1ye9yH9waU1CViFM5KEZpgmQChpKh4RBDERoSlG7lBYgfgadNfNwnh6UpZfIBvY9hBZJEGXMyvuNGQJ0MUew==
+ b=SVPARDKmaVZHJpnqMPGVYplwaeozXLYI08yEdlgK+nmMSp4M7DBL7HBG739Beb0pR89Ddw9J2+g4gblcamVRWhKNOyBHmkHLAn9jwpib7/nqo+6VHtV9+qLXluUQRNolt5HrLDlqvegAh93iZXogM8ldc2uM/KpJOO3JjvvmfDSo4+UwnioAFk8/+XLQJ5wM2VxN0CiSEhigbhWuWEX/PPR4rdcrszSAYJAYeQmAsF5Y0BBTty7pfDOLvzYeNb0okw9O4ObQNZktZ99LAD8j5d/2MHkmEr/OTb/lTbCXRuaR2THZCp+OHmmBZ/9TtgqzK7G4eGJUkwaPKARUmZm8Bg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OPMr6XWwCkVrjGoFwHGc27gFaFlIfsjXNXle/VVlFjM=;
- b=C1GPFGpgXKyiWCxocM8RdEb/2Ymbv/2olCQ7sruP7XPXY+9tBqoE+LUjcnirGhHTjnwBC4W8PcVbZffDAdpNWT84TlXAkwzXyGpqhk4skN4H1jIxSr2Q3xmQ8mBIvsn07dny549K4LcaxmD9wN03Fji9BCD4KTsbIifl4OlzBo5VNnKEneAhtkQRdL0J5Arh27pGeJ5UN7YnzZP76tLSCDUCGCG0PgUuCgNLokWWzymTMgSnd2QwAS06A9d5docPAWlKqGkU/bC/GPlt7qaGSpxblenzlPw3YeTw9KbxVkIqXptLwcmw7jXt0xirJlD4KAbQ4T2KYPJ99EvqRxV28w==
+ bh=/inZCg3WaUhNdu5TzryluzPqE6qACEDFLwKYeqeL6/U=;
+ b=WN399bskxoNXlWiR2ZPeC64keOfPq6Xo8PZALzrGqD1OTOx5JC9vAHqfuMFToi2UE9m4uHMPT2weDW8xKecjPA7+If0/t9pLnyK/2xb/LaFUABebMt/g0BP0QPiUpQIsi0lX29Vo4IP61JsyNfwaL+2yyoBzWy/WQFGD0j08WEA96EdSOGOnMAvqeuLz7xxlvt5tM6puQupuspHm4TB3HowfLG60rjAKBHvI8xx1eA1YE1b1czKSOCLULZ1RK8VbZ/p3oRqDPQEIswCx+5Xl5Xy4Do0+XVLOWYAX6J6P7BKROw3oWcBszYPJ1UXLynTokpCucCEBsiXGRDejTbFNDw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OPMr6XWwCkVrjGoFwHGc27gFaFlIfsjXNXle/VVlFjM=;
- b=pPU0j67CM2zdnKvEdtQKqPzZaTH+lULNJn9WQTpX8GgmhWG+/nHWeZTiUPIWE1h7i9Nv+yfCRD7v0A2XKEgvdrUvGvpbesKoohm1qXq7eD/bh38/pmxXWG2pvE0x5jbaK31/f6Y16ePB5eTkl17aHkcq11qjVBoPdDQvjFXxzC8=
-Received: from CH2PR17CA0001.namprd17.prod.outlook.com (2603:10b6:610:53::11)
- by DM4PR12MB6592.namprd12.prod.outlook.com (2603:10b6:8:8a::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8445.18; Fri, 14 Feb 2025 15:01:37 +0000
-Received: from CH1PEPF0000A34C.namprd04.prod.outlook.com
- (2603:10b6:610:53:cafe::34) by CH2PR17CA0001.outlook.office365.com
- (2603:10b6:610:53::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.14 via Frontend Transport; Fri,
- 14 Feb 2025 15:01:37 +0000
+ bh=/inZCg3WaUhNdu5TzryluzPqE6qACEDFLwKYeqeL6/U=;
+ b=Ccg2AN5UIOgGgoVemLB0lVtIumVvfNHaONO6g1kFqIWzHAqGLufloRX9f/RMpqkeO5yRu3vIsVtmxWXH9cI3Fv98a4YGAzi8cD8lP3iW0A5LxdQNsng2uv41jKu0/GfoWw+CZxZyKYYpaub4QpSrDIRohYce1fXbm3YJoQp9Ay0=
+Received: from SA1P222CA0195.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:3c4::8)
+ by PH7PR12MB7138.namprd12.prod.outlook.com (2603:10b6:510:1ee::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.14; Fri, 14 Feb
+ 2025 15:01:35 +0000
+Received: from SN1PEPF000252A0.namprd05.prod.outlook.com
+ (2603:10b6:806:3c4:cafe::85) by SA1P222CA0195.outlook.office365.com
+ (2603:10b6:806:3c4::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8445.16 via Frontend Transport; Fri,
+ 14 Feb 2025 15:01:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH1PEPF0000A34C.mail.protection.outlook.com (10.167.244.6) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF000252A0.mail.protection.outlook.com (10.167.242.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8445.10 via Frontend Transport; Fri, 14 Feb 2025 15:01:37 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.8445.10 via Frontend Transport; Fri, 14 Feb 2025 15:01:35 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 14 Feb
- 2025 09:01:34 -0600
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 14 Feb
- 2025 09:01:34 -0600
+ 2025 09:01:35 -0600
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Fri, 14 Feb 2025 09:01:33 -0600
+ Transport; Fri, 14 Feb 2025 09:01:34 -0600
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -70,65 +66,66 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, Solomon Chiu
  <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, "Rodrigo
  Siqueira" <Rodrigo.Siqueira@amd.com>, Alvin Lee <alvin.lee2@amd.com>
-Subject: [PATCH 05/16] drm/amd/display: Rename panic function
-Date: Fri, 14 Feb 2025 10:00:22 -0500
-Message-ID: <20250214150033.767978-6-Roman.Li@amd.com>
+Subject: [PATCH 06/16] drm/amd/display: Add clear DCC and Tiling callback for
+ DCN
+Date: Fri, 14 Feb 2025 10:00:23 -0500
+Message-ID: <20250214150033.767978-7-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250214150033.767978-1-Roman.Li@amd.com>
 References: <20250214150033.767978-1-Roman.Li@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: Roman.Li@amd.com does not designate
+Received-SPF: None (SATLEXMB03.amd.com: Roman.Li@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A34C:EE_|DM4PR12MB6592:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8fa8db1-81be-41b9-6bc1-08dd4d087b10
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A0:EE_|PH7PR12MB7138:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31e3c8e0-a11e-4ce6-e73c-08dd4d087a07
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wKwYxzWtentO6fIx1iXcE7KNDWGaXj+Q9LI57D9xUWGss3c1By+onA+rmFZC?=
- =?us-ascii?Q?a0rWCujw+bbeP4j2bQ5JZdqomeYB7obKaKmjUDU1hzkdUGezomoukEICJuUA?=
- =?us-ascii?Q?E8rd3rUlC6JwVZRLaZye35BU6VTNzojXTYz/wKcCKVI/gK7sp9Vs+TkwYE/Y?=
- =?us-ascii?Q?BnnOKMkuKuDMxxrKNsrNXWSc3pjV3a64HHbD6ucK2Cj3EJMNZOsocGM5uobf?=
- =?us-ascii?Q?db2QmfIrwcYLdn06y6XF9bE/gXdsQ2bEM7G4yo/yHooeo5xGc4d14erx3QpK?=
- =?us-ascii?Q?cDXFBtAPbftOJraimDrqtBjCKnKwSklYhnuMQ+VQ22vnuHsnxGaVgSxJpKsO?=
- =?us-ascii?Q?6akmz5LHZB8+pG69uurwzw0YK063MwjpnAiPW01djEmV3NGhiobFLREpwvnY?=
- =?us-ascii?Q?ZMjOdtG9Zq/0T8YO1WUQoKQB/dQK06XOGJnHvHiTdMNoOnvJz71CluxaLgcn?=
- =?us-ascii?Q?WnjMt6Vi9N4PnVTY4GjFkdGL1cWN8kmhxHCEyscdjG0lxiMF3Tq+zALTDNHu?=
- =?us-ascii?Q?/lxZO36pVMTLbPNe2jCvNlQO0IYZYZhw7uX314ji8DylaBUgirZpWyAPYVh2?=
- =?us-ascii?Q?J292AeeydeCUgdkvpRiJ4rRD2eMgbI7bhqkxYZy+YavB/V9nITrHwOA83IML?=
- =?us-ascii?Q?qaoKqQCPsyhYjImeIU3zbiQr/c1ngGn2GokDDTse63vm+F+PfXgD1T0p0dlJ?=
- =?us-ascii?Q?yE6S08URuvhg5UZSDk8owLKi/HFtj8mQoug3JMER89QlA+9jv2+c58QQPmqf?=
- =?us-ascii?Q?F2LYeZwmVCfplrGT3bbVOuKolR9uQXvgdJBh8ZdidBwtHKyC+JtHQQeoPkcV?=
- =?us-ascii?Q?+/jzNaiiBkR5JI7uKAzsZ7w8QZGtZjQoGGVDNldfm+7F6X8KocoeNJkXNUrd?=
- =?us-ascii?Q?ShOlgJELLE2O5oFudxxakxy4ZdSNlu8W/6uQbp34Q9LXCEx0/W8wYR2vj5mH?=
- =?us-ascii?Q?IDZF6KhcC8jfF9wMCplfFWGhiK62KVghthtj3qAe0XPvvmrIbvVRrYW494IO?=
- =?us-ascii?Q?UXZi28F95vlWviZR4oaoS+RLLF5FkWQcPybwqUsCQNV5ShEaRxMCfOeWYz7B?=
- =?us-ascii?Q?PqlqPyYW7tzhOfVH7TJthq6opdST0PRCbUP+1KMiYT5Zf40+/zeWWtTVDcwP?=
- =?us-ascii?Q?nZM/4CYb9KVGVcvx3EuVA4U4NA5MGzdE12vcEsLFiYzPzdM4LnM1qIJViF/H?=
- =?us-ascii?Q?t4xvamyKiD46EpK5UndPdDIAsSPYBZusMnAm5AA4qjx2Lc6+2Z7Ji/YByIa5?=
- =?us-ascii?Q?AocWcNNielrpWhJ8RJkwnsJoPvz40t6xPzh3tStk32sQcQ3C+pfSnc93p+Fc?=
- =?us-ascii?Q?+ZCO6zqL9NeUTILsEgp7rbkqybx6Kwt0Bn4pgiv2W1XA8Wlsk2ELynJO550g?=
- =?us-ascii?Q?4DkUbDKP1YKbB9TDG4VIvxMDzvDVRFA8YhbcFakrXO8ow4zqnJ15B7eT3g1Q?=
- =?us-ascii?Q?BXRVH7QQvSe6cPDkVeQSyQ6vQtzqIijpMN5l0htoMxy5AZuD/lt/KXYhsQIA?=
- =?us-ascii?Q?n58+b5HUEP4Or0E=3D?=
+ ARA:13230040|1800799024|376014|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?v1Zh5Fiw7ItlaRiWyKH15gLXwFcdJxQD8a1stiQ0wAT+Qr4cd1XUH9wZPaV4?=
+ =?us-ascii?Q?VaXk7lNHhIZQ128ndMGcO0NDK+g26kXhW4WO0hsmVbrth5CNtWueRzb4G+nz?=
+ =?us-ascii?Q?nOeOzQSR7j/2PhwvWVB/1TRXRqPqVVpyqDJc//G1SLKt/d1C7EYonuoW+M0M?=
+ =?us-ascii?Q?sDS35yGdpeFEAkdrj5fz/iJOmgBRL7xcMHwhigMN9yF4U8CFmFCtOLFg9aDN?=
+ =?us-ascii?Q?vmdtwkQHjNC5HmB5aUJavUZBXrS/XyVzoRfoR9uyyeUBcPWMuXt+oPuGmAs2?=
+ =?us-ascii?Q?wIuMjw+LrPXzfOmvHL4H0ak+4dygYKA2UsewsqkMNPSCPYoopYYaaI8hvret?=
+ =?us-ascii?Q?RFaYIqXnOlUH6FcRI9e88/rR0v+yEnb1wmDXudzPAf3SJ0QWU90YD6PwCaZY?=
+ =?us-ascii?Q?g1pZMp7n8YbTLQSdVM5XgW3bzI4/hnL3nnI6zx78DklqO0arK2vn9qzHH9m5?=
+ =?us-ascii?Q?t6KR03m1uReCefVOx63UeR0K3vQhtdQHNu6hra7oq4D/fcs/dNu8CINth1m3?=
+ =?us-ascii?Q?uZl7CAjm1f2u61CUPn9FyOsxD3Dl54n7BTGmdb1NOtKqcVXIv3l7HF7qejuc?=
+ =?us-ascii?Q?hxjGn9EPFmHHDzfd3JG5gXt4HnDW64hF6YLDYb32sEgOasNTkuPDujXEihbV?=
+ =?us-ascii?Q?cZyrgwoKUbczhmVmQaasnpN1baU78b6CZuu1KEgFd+q9yZq50Yljc+E3Nad1?=
+ =?us-ascii?Q?dGIqgMW01I4Ov0HqFl6RF5QDg19KM+pmBWWd4rsWL+PCdHldYWeKNE3sr4k2?=
+ =?us-ascii?Q?Y3+bbp6ikqrMlEH6rjgBGdZ1yDencVlsieycapBJCSHIacNuS5eZsOO+QULX?=
+ =?us-ascii?Q?OP4a16HZpq08F64IsHcRirZwzzbMq488bqUfyn68fANIBQPRW0O8LkjwKBkk?=
+ =?us-ascii?Q?L/lhlmHqUdtv29dL03PuG9kIpfud1/5LR9puw+p7rCdHjAj2Z61lRcuVOtW0?=
+ =?us-ascii?Q?ccwNUbcg6D2FfZMi089koNdG4yIfk8vkVWUex1XnX2w5UPqiDa9D1GAn+RUs?=
+ =?us-ascii?Q?ux79LHDvRh7z1PRKuQDdty0AgKG+SPTLQCPr2PBQLZpRcnwGVywfsjd0vH8B?=
+ =?us-ascii?Q?nt7E0ayAr5d2CP2CbcYy72SPXLIjPuuKs4HR4ykWqu8QO4tFNdVa9PeS5RVK?=
+ =?us-ascii?Q?WQjnXorlIlvyhZ/eIrGnOUKpgm7key3Otfzje1ZKFseQe8EG4ihgkxoutOvx?=
+ =?us-ascii?Q?JcWINTuziq2EwxkvezN0IksAOXbyBEtFLJVmroukIKNE5ptp81vFC1MAVCkL?=
+ =?us-ascii?Q?+hU1yVg9ZSy4YKQNmG064vXI1XvvyVaswSCWrLT8xVKANFYrKo21Fgl3nlBP?=
+ =?us-ascii?Q?zznEYe88FUI0/InigWWnXl3kXzIBt2FkggiFgJMA+zTwTQDyZ18fDS9zU9JC?=
+ =?us-ascii?Q?96Dy+mpVnPsCC4y56E7fdAWTQ09aTb68y0jHVJlUc4GQ8C31JtsM7bWbx3GH?=
+ =?us-ascii?Q?jnmYeTRqBTNQPkp5CRFz/eTUyfLfQyAC25moiTvRMk/CYxcpLhdHHhd/+ZOz?=
+ =?us-ascii?Q?P9nCF2OHz9WlkD8=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2025 15:01:37.5135 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8fa8db1-81be-41b9-6bc1-08dd4d087b10
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2025 15:01:35.7956 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31e3c8e0-a11e-4ce6-e73c-08dd4d087a07
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A34C.namprd04.prod.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A0.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6592
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7138
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,62 +142,209 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-Rename dc_plane_force_update_for_panic to
-dc_plane_force_dcc_and_tiling_disable to describe the function operation
-in the name. Also, this function might be used in other contexts, and a
-more generic name can be helpful for this purpose.
+Introduce the DCC and Tiling reset callback to all DCN versions that can
+call it.
 
 Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Signed-off-by: Roman Li <roman.li@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 2 +-
- drivers/gpu/drm/amd/display/dc/core/dc_surface.c        | 4 ++--
- drivers/gpu/drm/amd/display/dc/dc_plane.h               | 4 ++--
- 3 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_surface.c    | 13 ++-----------
+ .../gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c  |  1 +
+ .../gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c  |  1 +
+ .../drm/amd/display/dc/hwss/dcn201/dcn201_init.c    |  1 +
+ .../gpu/drm/amd/display/dc/hwss/dcn21/dcn21_init.c  |  1 +
+ .../gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c  |  1 +
+ .../drm/amd/display/dc/hwss/dcn301/dcn301_init.c    |  1 +
+ .../gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c  |  1 +
+ .../drm/amd/display/dc/hwss/dcn314/dcn314_init.c    |  1 +
+ .../gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c  |  1 +
+ .../gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c  |  1 +
+ .../drm/amd/display/dc/hwss/dcn351/dcn351_init.c    |  1 +
+ .../drm/amd/display/dc/hwss/dcn401/dcn401_init.c    |  1 +
+ drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h  |  1 +
+ 14 files changed, 15 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 774cc3f4f3fd..dcf2b98566ea 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -1430,7 +1430,7 @@ static void amdgpu_dm_plane_panic_flush(struct drm_plane *plane)
- 
- 	dc_plane_state = dm_plane_state->dc_state;
- 
--	dc_plane_force_update_for_panic(dc_plane_state, fb->modifier ? true : false);
-+	dc_plane_force_dcc_and_tiling_disable(dc_plane_state, fb->modifier ? true : false);
- }
- 
- static const struct drm_plane_helper_funcs dm_plane_helper_funcs = {
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_surface.c b/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
-index f3471d45b312..aa4184dd0e53 100644
+index aa4184dd0e53..691b4a68d8ac 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
-@@ -270,8 +270,8 @@ void dc_3dlut_func_retain(struct dc_3dlut *lut)
- 	kref_get(&lut->refcount);
- }
+@@ -291,17 +291,8 @@ void dc_plane_force_dcc_and_tiling_disable(struct dc_plane_state *plane_state,
+ 			continue;
  
--void dc_plane_force_update_for_panic(struct dc_plane_state *plane_state,
--				     bool clear_tiling)
-+void dc_plane_force_dcc_and_tiling_disable(struct dc_plane_state *plane_state,
-+					   bool clear_tiling)
- {
- 	struct dc *dc;
- 	int i;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_plane.h b/drivers/gpu/drm/amd/display/dc/dc_plane.h
-index fabcefeda288..e9413685ed4f 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_plane.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_plane.h
-@@ -34,7 +34,7 @@ const struct dc_plane_status *dc_plane_get_status(
- void dc_plane_state_retain(struct dc_plane_state *plane_state);
- void dc_plane_state_release(struct dc_plane_state *plane_state);
+ 		if (dc->ctx->dce_version >= DCE_VERSION_MAX) {
+-			struct hubp *hubp = pipe_ctx->plane_res.hubp;
+-			if (!hubp)
+-				continue;
+-			/* if framebuffer is tiled, disable tiling */
+-			if (clear_tiling && hubp->funcs->hubp_clear_tiling)
+-				hubp->funcs->hubp_clear_tiling(hubp);
+-
+-			/* force page flip to see the new content of the framebuffer */
+-			hubp->funcs->hubp_program_surface_flip_and_addr(hubp,
+-									&plane_state->address,
+-									true);
++			if (dc->hwss.clear_surface_dcc_and_tiling)
++				dc->hwss.clear_surface_dcc_and_tiling(pipe_ctx, plane_state, clear_tiling);
+ 		} else {
+ 			struct mem_input *mi = pipe_ctx->plane_res.mi;
+ 			if (!mi)
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c
+index 5e51e1761707..079c226c1097 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c
+@@ -40,6 +40,7 @@ static const struct hw_sequencer_funcs dcn10_funcs = {
+ 	.update_plane_addr = dcn10_update_plane_addr,
+ 	.update_dchub = dcn10_update_dchub,
+ 	.update_pending_status = dcn10_update_pending_status,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.program_output_csc = dcn10_program_output_csc,
+ 	.enable_accelerated_mode = dce110_enable_accelerated_mode,
+ 	.enable_timing_synchronization = dcn10_enable_timing_synchronization,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c
+index 32707b344f0b..ad253c586ea1 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c
+@@ -36,6 +36,7 @@ static const struct hw_sequencer_funcs dcn20_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_init.c
+index 78351408e864..dec57fb4c05c 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn201/dcn201_init.c
+@@ -36,6 +36,7 @@ static const struct hw_sequencer_funcs dcn201_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn10_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn201_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_init.c
+index e044e9e0a3a1..c7701a8b574a 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn21/dcn21_init.c
+@@ -37,6 +37,7 @@ static const struct hw_sequencer_funcs dcn21_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
+index c32764aef884..2ac5d54d1626 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
+@@ -37,6 +37,7 @@ static const struct hw_sequencer_funcs dcn30_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
+index dcb27cdbce73..8d7ceb7b32b8 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
+@@ -39,6 +39,7 @@ static const struct hw_sequencer_funcs dcn301_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
+index fb2ffb637931..556f4fe57eda 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
+@@ -40,6 +40,7 @@ static const struct hw_sequencer_funcs dcn31_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
+index 21ef03a76229..f5112742edf9 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
+@@ -42,6 +42,7 @@ static const struct hw_sequencer_funcs dcn314_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
+index e4d149eff10f..b971356d30b1 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
+@@ -39,6 +39,7 @@ static const struct hw_sequencer_funcs dcn32_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
+index c7acaf97974c..6a82a865209c 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
+@@ -44,6 +44,7 @@ static const struct hw_sequencer_funcs dcn35_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
+index 4f73e7f551ac..902a96940a01 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
+@@ -43,6 +43,7 @@ static const struct hw_sequencer_funcs dcn351_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn20_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn20_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
+index a4e3501fadbb..fe7aceb2f510 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
+@@ -18,6 +18,7 @@ static const struct hw_sequencer_funcs dcn401_funcs = {
+ 	.apply_ctx_to_hw = dce110_apply_ctx_to_hw,
+ 	.apply_ctx_for_surface = NULL,
+ 	.program_front_end_for_ctx = dcn401_program_front_end_for_ctx,
++	.clear_surface_dcc_and_tiling = dcn10_reset_surface_dcc_and_tiling,
+ 	.wait_for_pending_cleared = dcn10_wait_for_pending_cleared,
+ 	.post_unlock_program_front_end = dcn401_post_unlock_program_front_end,
+ 	.update_plane_addr = dcn20_update_plane_addr,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
+index a7d66cfd93c9..599fa41fd75f 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
+@@ -240,6 +240,7 @@ struct hw_sequencer_funcs {
+ 		struct pipe_ctx *pipe_ctx, bool enableTripleBuffer);
+ 	void (*update_pending_status)(struct pipe_ctx *pipe_ctx);
+ 	void (*update_dsc_pg)(struct dc *dc, struct dc_state *context, bool safe_to_disable);
++	void (*clear_surface_dcc_and_tiling)(struct pipe_ctx *pipe_ctx, struct dc_plane_state *plane_state, bool clear_tiling);
  
--void dc_plane_force_update_for_panic(struct dc_plane_state *plane_state,
--				     bool clear_tiling);
-+void dc_plane_force_dcc_and_tiling_disable(struct dc_plane_state *plane_state,
-+					   bool clear_tiling);
- 
- #endif /* _DC_PLANE_H_ */
+ 	/* Pipe Lock Related */
+ 	void (*pipe_control_lock)(struct dc *dc,
 -- 
 2.34.1
 
