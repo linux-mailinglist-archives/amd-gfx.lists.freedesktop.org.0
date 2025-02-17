@@ -2,73 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADFB0A37CA9
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Feb 2025 09:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A7F8A37A06
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Feb 2025 04:13:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C04E10E38D;
-	Mon, 17 Feb 2025 08:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8AFE10E081;
+	Mon, 17 Feb 2025 03:13:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="hUTP///4";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bcsmt+1D";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18CB810E0A0
- for <amd-gfx@lists.freedesktop.org>; Sun, 16 Feb 2025 21:28:09 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-ab744d5e567so699438766b.1
- for <amd-gfx@lists.freedesktop.org>; Sun, 16 Feb 2025 13:28:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1739741288; x=1740346088; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=OQvlM9mZvjqkw9EX7b5cV55HQP8W3N2z2QPsswnWMhQ=;
- b=hUTP///4qe3RohgPdAOVviYqS3d+oOzsqZLz5W5Bsoym0DR7WgNQAitXNJUWiCov2h
- eG+OKDGWLt0nGmY6TIfIrhsfWpAqfa6NtklhJzAaQb+mUXq0bCwxsLz/guxOYizxzgHV
- hvb96auYv00gj0YexheanNJzAc8JAFOdNbQdQWMQpgGuQsOjxszeNxyCXR6/Hz1LareE
- ggOXcnSo3CAWdCQAoDoennUXx8E7LFY0CusU+kbR6ytM7hTdM9PhTAHZqKwSzw3IfNgd
- xdEgZHOIIJ5G9Z2cYMvqxBBhW5YW0zUP0hVO5K4WD049TYRvfB9tPkRD10jGSh32L/nz
- Kkvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739741288; x=1740346088;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=OQvlM9mZvjqkw9EX7b5cV55HQP8W3N2z2QPsswnWMhQ=;
- b=mb0lMb1PUSvW/7Rwf5pKlB53DCgqj43FLfUN17BJR11Qp8EhatSfnSlzYq0I5lNLMm
- r11kpfdmBRxBvgmZt0Vs+i4k6SKRFcXoFj3Mnzjwp7VmJAlaFUryumy/GqzX4aVNLu8R
- Bv43Rv9dOT8P3ur7D1WctAkJcv1fqUQzTImtp30d7FatwH7u+n6lj3qiGfGiOfVcc5eH
- r8xDqEAcgjb1Ashab95tIVXCi5C8Pu+1GFlxNQbP73P4BgqRkQS49odElf8GOrs6/FLe
- 5UztnuQN2tho2CrNF9wgWY9ZvAWT/sFxWgdnySdwFalh/yDnKcdFmvtjGylu0oFledIq
- hBJw==
-X-Gm-Message-State: AOJu0YyVBBJ06uRAFApD+b8uy8QMJ7OklOvpMbWq/V39ZbmtfOuYrdqo
- P/R6VSCD6LJUmKqA90DiHUQkx3M5pNbaBiwg1UaTbb8q+LpfKMfZgK2I67eMqcs=
-X-Gm-Gg: ASbGnctFFj6JuIv+I+bBdkIZuSSzy8eMm1xPfXYVrdFUs6BcjLh+4oTq4QrDFoegP4v
- S3F9Gz9JvhNfb7oLQfz6qp8065OknpC/Zbd8+Z6pP4bZyrPixOV61w1MLdWnrTiSf49FhPowLfc
- eUL8HiQj50WzwU7QMeiVhxHaj9wpTCRc5TcGBcTwbXmJY8qxz9HOhww+2vBJW/dopMTaYw1WwS4
- tuZEykbTMto5yiOoW0oG6nbs5AOBuOQeZCUMpEiJnCsxdQrB9LdOgpCwLhZJ+o+juv6yioWgZy0
- FcD/bbCfH8tIj6V+0Unp
-X-Google-Smtp-Source: AGHT+IEpQbjG3zn7EDFcNLYdTTWVfr87nLloEwaZhJ/Pai0WFFONLLMpJjs4jcMAtnse59G3UkK1VQ==
-X-Received: by 2002:a17:907:2d88:b0:ab7:b896:b80c with SMTP id
- a640c23a62f3a-aba50fa0b94mr1280523866b.9.1739741288455; 
- Sun, 16 Feb 2025 13:28:08 -0800 (PST)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- a640c23a62f3a-aba5323225fsm763183466b.24.2025.02.16.13.28.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 16 Feb 2025 13:28:07 -0800 (PST)
-Date: Mon, 17 Feb 2025 00:28:03 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Xiaogang Chen <xiaogang.chen@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amdkfd: Have kfd driver use same PASID values from
- graphic driver
-Message-ID: <e9fafe58-6748-405f-a4e2-a2a60515367f@stanley.mountain>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D14F10E081
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Feb 2025 03:13:56 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 38B035C59D9
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Feb 2025 03:13:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD74C4CEE4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Feb 2025 03:13:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1739762035;
+ bh=pAyuXlE9n0iPIhV0i94vEhmyYjpu9Z6Gs9XjgJKObMU=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=bcsmt+1D2s7i/BD/AKkNAhMn9l6KLBp9fffzVlbTZqvRhi0texFb6Kg2y/Ar48Wch
+ 9PJDine34K28X4ZoZVYZzVbVV9ZqEwcE+ggmcjya1Qc9ztCdrZS6Zc9i5j+jsGmWQg
+ d0t18Ki33P/1uNuv9G/VJaQyrgAahvrn+ka+GDk/euWOSINkZ8chE0B+S7u7oawq2r
+ 0qQmnCAmCOI9IFTZ4Kmk5sK92tGvF807tJ16nufNe0TIKAO+1kzfMCeESLzmgDIqN8
+ dC5ID6OeeBBJQmRG9UDhUv7T+KuE4CxgLDpqCow3DZJvrsNigBtzDclhPcV/ONGPXS
+ PqRFOmE4BtmAw==
+Received: by mail-ej1-f54.google.com with SMTP id
+ a640c23a62f3a-ab78e6edb99so580981866b.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 16 Feb 2025 19:13:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCURDqrimEBiXqXo02Cl7HKWi19Jaf1nnEwzzW0pMmj71xHMIxHq8jUwenDUZTFlBcrXvueI+rh8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwADsMLm6n/Gl33fF37FuxJTt0CvvzE+vYI3YEuTP3v4mVVN0dA
+ 9mSfDfgnxvMvzAndizA+m/rVKRtBxp6y4I7iLkaPStJkhljljPVeXDnyqpUW/Hpd/m9qnZCV9cB
+ d4hZDsXT3ng6j33oamEpMKZtv+sg=
+X-Google-Smtp-Source: AGHT+IE+lCxd/VN0cFWcgSvPgk7Nu3WrmBw9zHE0Olw6SOhdkJGmzxd7XkXEOYSYzwMWE4/pbWbtUHzEsFxBtaHqNSs=
+X-Received: by 2002:a17:907:7854:b0:ab7:c1d5:14f9 with SMTP id
+ a640c23a62f3a-abb70931a60mr796940066b.10.1739762033809; Sun, 16 Feb 2025
+ 19:13:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Mon, 17 Feb 2025 08:02:00 +0000
+References: <20241217010905.13054-1-yangtiezhu@loongson.cn>
+ <ef1e3e7c-0117-175c-5a85-091382696748@loongson.cn>
+ <20250115013444.anzoct6gvs56m225@jpoimboe>
+ <4612bfd8-442e-fecb-240f-46e735b48540@loongson.cn>
+ <20250210212653.oidcl4aqyrcu3yzi@jpoimboe>
+ <CAAhV-H7MVDj0CbXfwveb7GDn+D=O4N6oUT6rpGrbGmYPLPpRPg@mail.gmail.com>
+ <20250211233056.q47mp5askk7qrxcp@jpoimboe>
+ <CAAhV-H563HcK2bck2k+VLTvrf0C7=cEMr8BJpQhFdJNc+dFOUw@mail.gmail.com>
+ <20250213025108.svqgj5nzseqs6qox@jpoimboe>
+In-Reply-To: <20250213025108.svqgj5nzseqs6qox@jpoimboe>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Mon, 17 Feb 2025 11:13:43 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H5mYGnxHPxAeXkHo2XBvi-RtPjDQRBnDiDyKVtFv-ZBBQ@mail.gmail.com>
+X-Gm-Features: AWEUYZnerjRjGiFDoG8vssKUp_r7uyi3vq83RlWmu1DWGBTmDSKGJJGP4uNTOm4
+Message-ID: <CAAhV-H5mYGnxHPxAeXkHo2XBvi-RtPjDQRBnDiDyKVtFv-ZBBQ@mail.gmail.com>
+Subject: Re: [PATCH v6 0/9] Add jump table support for objtool on LoongArch
+To: Josh Poimboeuf <jpoimboe@kernel.org>
+Cc: Tiezhu Yang <yangtiezhu@loongson.cn>, Peter Zijlstra <peterz@infradead.org>,
+ loongarch@lists.linux.dev, amd-gfx@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,84 +79,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Xiaogang Chen,
+On Thu, Feb 13, 2025 at 10:51=E2=80=AFAM Josh Poimboeuf <jpoimboe@kernel.or=
+g> wrote:
+>
+> On Wed, Feb 12, 2025 at 03:22:45PM +0800, Huacai Chen wrote:
+> > > The new series now has 7 patches:
+> > >
+> > > Tiezhu Yang (7):
+> > >   objtool: Handle various symbol types of rodata
+> > >   objtool: Handle different entry size of rodata
+> > >   objtool: Handle PC relative relocation type
+> > >   objtool/LoongArch: Add support for switch table
+> > >   objtool/LoongArch: Add support for goto table
+> > >   LoongArch: Enable jump table for objtool
+> > >   LoongArch: Convert unreachable() to BUG()
+> > >
+> > > I was planning on queueing all 7.
+> > >
+> > > In particular, patch 6 should stay with the objtool patches since
+> > > they're directly related.
+> > >
+> > > But I was also just going to grab 7 as well.
+> > >
+> > > Please let me know if you disagree.
+> > What about you merge the first 5 patches, and then I merge the last 2
+> > to the loongarch tree? (I prefer to merge the whole series to the
+> > loongarch tree with your acked-by, but that may be inconvenient to
+> > you).
+>
+> I want the first 5 patches to go through the -tip tree because we'll
+> have other patches depending on them.
+>
+> I'll go ahead and take the first 5.
+>
+> If you take in patches 6 & 7 separately, that might introduce a lot of
+> warnings.  But it's up to you.
+>
+> For patches 6 & 7:
+>
+> Acked-by: Josh Poimboeuf <jpoimboe@kernel.org>
+OK, please take the first 5 patches, I will merge your objtool/core to
+the loongarch tree and then apply the last 2 to avoid build warnings.
 
-Commit 8544374c0f82 ("drm/amdkfd: Have kfd driver use same PASID
-values from graphic driver") from Jan 13, 2025 (linux-next), leads to
-the following Smatch static checker warning:
+Huacai
 
-	drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.c:1694 kfd_process_device_init_vm()
-	warn: missing error code 'ret'
-
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.c
-    1647 int kfd_process_device_init_vm(struct kfd_process_device *pdd,
-    1648                                struct file *drm_file)
-    1649 {
-    1650         struct amdgpu_fpriv *drv_priv;
-    1651         struct amdgpu_vm *avm;
-    1652         struct kfd_process *p;
-    1653         struct dma_fence *ef;
-    1654         struct kfd_node *dev;
-    1655         int ret;
-    1656 
-    1657         if (!drm_file)
-    1658                 return -EINVAL;
-    1659 
-    1660         if (pdd->drm_priv)
-    1661                 return -EBUSY;
-    1662 
-    1663         ret = amdgpu_file_to_fpriv(drm_file, &drv_priv);
-    1664         if (ret)
-    1665                 return ret;
-    1666         avm = &drv_priv->vm;
-    1667 
-    1668         p = pdd->process;
-    1669         dev = pdd->dev;
-    1670 
-    1671         ret = amdgpu_amdkfd_gpuvm_acquire_process_vm(dev->adev, avm,
-    1672                                                      &p->kgd_process_info,
-    1673                                                      p->ef ? NULL : &ef);
-    1674         if (ret) {
-    1675                 dev_err(dev->adev->dev, "Failed to create process VM object\n");
-    1676                 return ret;
-    1677         }
-    1678 
-    1679         if (!p->ef)
-    1680                 RCU_INIT_POINTER(p->ef, ef);
-    1681 
-    1682         pdd->drm_priv = drm_file->private_data;
-    1683 
-    1684         ret = kfd_process_device_reserve_ib_mem(pdd);
-    1685         if (ret)
-    1686                 goto err_reserve_ib_mem;
-    1687         ret = kfd_process_device_init_cwsr_dgpu(pdd);
-    1688         if (ret)
-    1689                 goto err_init_cwsr;
-    1690 
-    1691         if (unlikely(!avm->pasid)) {
-    1692                 dev_warn(pdd->dev->adev->dev, "WARN: vm %p has no pasid associated",
-    1693                                  avm);
---> 1694                 goto err_get_pasid;
-
-ret = -EINVAL?
-
-    1695         }
-    1696 
-    1697         pdd->pasid = avm->pasid;
-    1698         pdd->drm_file = drm_file;
-    1699 
-    1700         return 0;
-    1701 
-    1702 err_get_pasid:
-    1703         kfd_process_device_destroy_cwsr_dgpu(pdd);
-    1704 err_init_cwsr:
-    1705         kfd_process_device_destroy_ib_mem(pdd);
-    1706 err_reserve_ib_mem:
-    1707         pdd->drm_priv = NULL;
-    1708         amdgpu_amdkfd_gpuvm_destroy_cb(dev->adev, avm);
-    1709 
-    1710         return ret;
-    1711 }
-
-regards,
-dan carpenter
+>
+> --
+> Josh
