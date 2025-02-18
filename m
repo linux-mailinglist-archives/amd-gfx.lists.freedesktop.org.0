@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EA75A39237
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEF92A39235
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDBE10E607;
-	Tue, 18 Feb 2025 04:59:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A5AC10E1B2;
+	Tue, 18 Feb 2025 04:58:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SnEfoA2u";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Oo/137yW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9813010E1B2
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46E9310E1B2
  for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:58:58 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 7BDF5A41D03;
- Tue, 18 Feb 2025 04:57:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60C9BC4CEE6;
+ by dfw.source.kernel.org (Postfix) with ESMTP id 6DEE15C4C3D;
+ Tue, 18 Feb 2025 04:58:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01CACC4CEE8;
  Tue, 18 Feb 2025 04:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1739854736;
- bh=QISbIKn3wJePvygzivdGs1R7GxEMB7D1AYeA5UVo99s=;
+ s=k20201202; t=1739854737;
+ bh=YEQuIabpH2RrdzWGDeDe7cJYul7Ir9UDk5LhQxZDffI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SnEfoA2uRsI/vfa+m6AfrbpEwTS4o+sLaKazbF0cQ/QjmYeLgj2VwXU3IxoRM68sF
- VYNgo9NYdJ0WVNJFJ5vuwpr3x43MZPxNj/3m+2xzFl23xn3ls2VOunN4NipvgwlYeh
- Av8PeKPBeThgTE50TKlQOURdTVfkQju/1F4tK3jRbNdNS9AW+yAvIzOAUPUW0K1vYU
- WD22S/3DmF8VI+KZGuKBcy77JSrDVFvVqFiwwxsZytDJNebALzkcgDuetvUdCBQ9ss
- a3+oeoEANr/ON0Kg9tKihCQYzstczyv+LkNmJHc4rRVktSR/7j323CvvVKQWIBlpYP
- UKINW/bZrAifg==
+ b=Oo/137yWyX68ssIbBFiMACL0bZaoDoDgxjXXD0IVgeLrnwupY09OCHyMOMmPsgo7G
+ S4auoUPaRj3Hx5kb9fWvDJID4RcoB7OxhhGs/Crh61sTQPXgY73FJTF2bGLV119eMl
+ vkAvJSqZnVUP7VtStRi2AlyGaqT8stZQ61KqBp4NXYAplcg/fnQmCfwiNW+LSdUtG0
+ g7oYXI/4Sb/hNxcl8KcnQqZqjSyHotLZiTiiOXo4abb4fqEMxDrZchN+oUrcMGV4wQ
+ md1cDc0kJ25Xw3qyASebo4Ia7ewgnkl0sMOJ5pAOWITuHuKcB3Y003vdHA7gWh7H3r
+ bdPk1CVAHSI4g==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: harry.wentland@amd.com,
 	Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH 01/13] drm/amd/display: Change amdgpu_dm_irq_suspend() to void
-Date: Mon, 17 Feb 2025 22:58:28 -0600
-Message-ID: <20250218045840.2469890-2-superm1@kernel.org>
+Subject: [PATCH 02/13] drm/amd/display: Drop `ret` variable from dm_suspend()
+Date: Mon, 17 Feb 2025 22:58:29 -0600
+Message-ID: <20250218045840.2469890-3-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250218045840.2469890-1-superm1@kernel.org>
 References: <20250218045840.2469890-1-superm1@kernel.org>
@@ -58,51 +58,35 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-amdgpu_dm_irq_suspend() doesn't have any error flows and always
-returns zero.
-
-Change the function to void.
+The `ret` variable in dm_suspend() doesn't get set and is just used
+to return 0.  Drop the needless declaration.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c | 3 +--
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h | 2 +-
- 2 files changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-index 3390f0d8420a0..058a94345245f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-@@ -473,7 +473,7 @@ void amdgpu_dm_irq_fini(struct amdgpu_device *adev)
- 	unregister_all_irq_handlers(adev);
- }
- 
--int amdgpu_dm_irq_suspend(struct amdgpu_device *adev)
-+void amdgpu_dm_irq_suspend(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index b26ae1dd1fd78..0d78cabeece70 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3087,7 +3087,6 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
  {
- 	int src;
- 	struct list_head *hnd_list_h;
-@@ -511,7 +511,6 @@ int amdgpu_dm_irq_suspend(struct amdgpu_device *adev)
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	struct amdgpu_display_manager *dm = &adev->dm;
+-	int ret = 0;
+ 
+ 	if (amdgpu_in_reset(adev)) {
+ 		mutex_lock(&dm->dc_lock);
+@@ -3105,7 +3104,7 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
+ 
+ 		hpd_rx_irq_work_suspend(dm);
+ 
+-		return ret;
++		return 0;
  	}
  
- 	DM_IRQ_TABLE_UNLOCK(adev, irq_table_flags);
--	return 0;
- }
- 
- int amdgpu_dm_irq_resume_early(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
-index 2349238a626b1..c37bcd631e104 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
-@@ -90,7 +90,7 @@ void amdgpu_dm_hpd_fini(struct amdgpu_device *adev);
-  * amdgpu_dm_irq_suspend - disable ASIC interrupt during suspend.
-  *
-  */
--int amdgpu_dm_irq_suspend(struct amdgpu_device *adev);
-+void amdgpu_dm_irq_suspend(struct amdgpu_device *adev);
- 
- /**
-  * amdgpu_dm_irq_resume_early - enable HPDRX ASIC interrupts during resume.
+ 	WARN_ON(adev->dm.cached_state);
 -- 
 2.43.0
 
