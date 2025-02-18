@@ -2,127 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D25A3B5FC
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Feb 2025 10:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B625FA3B6E8
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Feb 2025 10:11:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D50A510E24C;
-	Wed, 19 Feb 2025 09:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A610910E4AA;
+	Wed, 19 Feb 2025 09:11:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wtqujUYN";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XJJXxF0T";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2045.outbound.protection.outlook.com [40.107.220.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9248210E24C
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Feb 2025 09:03:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=arPk0SOtnjzekq3QDK5isbjsxjVyz8eei0sNhpWR8IAZjAYUf1ECfXam9Zii+A2PN9L5meWvntvlLu+8GL/zFjnr160ol3HxqVL8DRV7tCy5farMYO9CqOknoT/y71ubM6MiYM3Snn55bdenN9WGeY0JVGOXkE6XYSEfgfuEICKVqsI2uJJ0WmtfVEBjHQiqOGiDm5xPfuElVjcOe3MNT0j7D8+C+6pRqGu4x3HZRLhhTpgPYtOwYuYLP8n6Fuo1zIF+p2eUpD/o7p9Uq4WCi7x7EI8T20mjsN1KU/ogIoKPM30K+Wcq21/OdapzuYbxvo5q+i5HjjcgmI2FKaZAIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=42QWLPq70Rp2vUwXfUiXmTSfUtQt8hXowm7a+9OC/68=;
- b=izFGsT1e6EnsCy/FzzSStqDlCxlNPULulUv+m1f8CafgeQi4ImffvxQjb7YENanfq83tqE57qJfxvgVB/doGwd4etQ6qtSWMRu9DhzsEL/L/FEOze5RZuuG9Qcf9dG6IbQeM8QJc6nkyM6jLbX45qdRkqC00SEnQjD7voKEaXdO0T/PKU2Z8xvLq0fnUhGfUBGjhxZRsIwV0DpZ47HcS2alzPTqnyJkQfcaf9mFeUNaKEAcCY19rxn4nq/Pk/7V6hUFpBe4u34Ykdgq+G7xnxqDPzT7LldlHwYHeuf2DDDidD3uhzZU9vFFohF5dk7Jxxy2mxC1kkjBdgQcnRNZ9Tg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=42QWLPq70Rp2vUwXfUiXmTSfUtQt8hXowm7a+9OC/68=;
- b=wtqujUYN0r09XBa+nZdUfjyG8CGAm9D0TmCXYvCjNSM2q4Ypy1mKTkCaaXVAGAamOtLmRGK+kQ37y2MqHzg3AU197kU7Tnhr5dsd8qVbEOCgRfZVUwh0bgo+yq3elg61kV8Rmm3Q0mUIw/VO0UucGhOV4GJiIR1c6+UuFCipHbk=
-Received: from MW4PR04CA0310.namprd04.prod.outlook.com (2603:10b6:303:82::15)
- by SA1PR12MB7344.namprd12.prod.outlook.com (2603:10b6:806:2b7::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.20; Wed, 19 Feb
- 2025 09:03:54 +0000
-Received: from BY1PEPF0001AE1D.namprd04.prod.outlook.com
- (2603:10b6:303:82:cafe::c3) by MW4PR04CA0310.outlook.office365.com
- (2603:10b6:303:82::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.14 via Frontend Transport; Wed,
- 19 Feb 2025 09:03:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BY1PEPF0001AE1D.mail.protection.outlook.com (10.167.242.106) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8466.11 via Frontend Transport; Wed, 19 Feb 2025 09:03:54 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 19 Feb
- 2025 03:03:53 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 19 Feb
- 2025 03:03:53 -0600
-Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
- SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Wed, 19 Feb 2025 03:03:51 -0600
-From: <jesse.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- Jiadong Zhu <Jiadong.Zhu@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
-Subject: [PATCH v3 1/2] drm/amd/amdgpu: Increase max rings to enable SDMA page
- ring
-Date: Wed, 19 Feb 2025 17:03:50 +0800
-Message-ID: <20250219090350.3558953-1-jesse.zhang@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19DBB10E06F;
+ Tue, 18 Feb 2025 18:26:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=g+1NgTbwn2htB4xn3prNdmhnAxKUnWU+b53bAFxjIjw=; b=XJJXxF0ThQEFXVO9K0hXTXWz44
+ 80bQr7/TgyrC19v8tTsmbfCZ132Zg3bbeJidrcPnZFAB5B9FaiNpZkwQkWAyqkJIdjuvgW1GhwVpn
+ urBIz0zLz9sBW2RsB1KHOft2VixEW7hd4TNgFC3vc8NtCs4bbKak3siy6D24vTpJogxssFxwUe/n6
+ YhtffuT8fXIbCU9ptAs/NlB342KHA4UDHyAztlxxQ5/knywkyBdCXFDUWNu8zkyv8tZA2G67y4ZyU
+ A01/aeWwFONjjPl4mLQnYLqieQzD93s3oZ+GdVQBYAPElO7TmAvBHnBOV9pLMRBr0DdCA2iBdRQ8Q
+ q2o3TT4Q==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tkSIM-00BQu4-TF; Tue, 18 Feb 2025 19:26:16 +0100
+Message-ID: <0ecf7583-8e7a-45c7-bc4e-5935681effc3@igalia.com>
+Date: Tue, 18 Feb 2025 18:26:15 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/6] drm/sched: Add internal job peek/pop API
+To: phasta@kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>
+References: <20250214101944.19390-1-tvrtko.ursulin@igalia.com>
+ <20250214101944.19390-2-tvrtko.ursulin@igalia.com>
+ <7244eaa81cfeb6ce959c591c11a97f52f25b5a5d.camel@mailbox.org>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <7244eaa81cfeb6ce959c591c11a97f52f25b5a5d.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1D:EE_|SA1PR12MB7344:EE_
-X-MS-Office365-Filtering-Correlation-Id: a275fbff-1eb2-43ae-b48e-08dd50c455e8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vWhkdSJXZc4k4g9xw2F4i9C6lza2JEEmpVc/QVloPtJyf7Ku3wFAqoUIV+S2?=
- =?us-ascii?Q?VCyfWGqdmVfDt7xgkgixV7poj2l7LidW+ZjmK7sivnBlfPU9MRfj8Foc0KhG?=
- =?us-ascii?Q?v26Wj476ItxViUMP2gPkQZOqxMp1LLgYOB2tD8QSF+5zcqjdWMLOuDaGBDbv?=
- =?us-ascii?Q?wQXvEHvTPB1NJgaDQZj79qxsNolGDBNlmP4XSYHGHIM7gJX+ygOiSCz6yxwP?=
- =?us-ascii?Q?Rq8qVp/YbFRnet3/n4NScJSdt8mehQ8LrB3cbdfArKpjj+gA/GVlWMtGIPX8?=
- =?us-ascii?Q?1+ia6ZnU7T+OMbZ9iy7uPOTUVWj45Gz89DyYBdEDyta+ZCb0UYWbspbPGUsr?=
- =?us-ascii?Q?nzOTGIFWDNbptuxs0mPI/yP4kCpu78Bt+eD2JQVg2Vn7K95xAGgSjNdtJSGz?=
- =?us-ascii?Q?ws0ROzMqi8e2uloJpJf0U5Cn04siJc8Om+/8NlgR3JSVcuPUtuzuvjjvXfzb?=
- =?us-ascii?Q?4Rfyldw81W7pUbK69gj6Px2ZWbuD4r+j16CewFFQCq6vu+YL9H9MGtYOqOhZ?=
- =?us-ascii?Q?mNdI7FLnXOfeUG3XQ32YFkDZLYFuOnUbEeF7TziKxDP13d4gRgRVlgq7TUgU?=
- =?us-ascii?Q?9nDAMMetlAPmEe5O9Tr62RReUa7kEkzZN08g6zUZqUYtm8eNkEAQi4aDGPyy?=
- =?us-ascii?Q?YzDT6Em8gkGseNHZgOjTywDy9SNXT3zhBKaeGnK8hMpbwVTK6nf9eWk7KXl5?=
- =?us-ascii?Q?+RgAiySS4ZE1hBzUJcEcUYC+XyPaurmxSdLiI3FKr2JQpGTXB3fIMQiPLlit?=
- =?us-ascii?Q?16niWkuYdlyi7fx17rS+UZemy23Ypb9IMtbL+PRQ0hSyVhLjqecc437S7xFV?=
- =?us-ascii?Q?XCQbSzDJiAMmEM/9NondSQSqaRdlFgzIGIl1lUxSEPMDlP2sh906rRUrYaFX?=
- =?us-ascii?Q?8NXfbJ1tpxuphd+me3NpTfAYqVVwuCMY3hOEipu/HnwKNsQYtnWmBOq7CFtb?=
- =?us-ascii?Q?sPKNPEuCO8JQCmszSWpSOFwKFKaRWDJeLXOJ36NanP3/Ta+plr5uOdzYcKZg?=
- =?us-ascii?Q?nYF6xGggw5Bc2M44gbrh5z52JYrNojX3Tr+0mS3hE6T7hL6Jlzs3Oq/kxGIX?=
- =?us-ascii?Q?Yskv3hWWblgdjVrob5IfEdN9GwgsUIufgbMfKW0aX24Ht93q5NdhLA3UBaet?=
- =?us-ascii?Q?3OHdRXjeMmoedFU3/Aicek0NzZhBOpqN7KkkJHZA1JUM/TOLws0SkLpgdBlx?=
- =?us-ascii?Q?KUjTh4/LfZdwrnoJ9Egb9QajTySH63QT7TxQ2iSDVVih0jfTZuIKNEYjV3eU?=
- =?us-ascii?Q?UhXpwrujbBbcPIRxUNxzo/DHU8DTq6kvmlUCoXD0wZ0f2kHC/tRUrqHtGD8Z?=
- =?us-ascii?Q?CX59n24f/QTFX5vjt4Et7Hu5bTud7JxMM4kxzfqjXKumVOXTt0RcWgsKsP4Y?=
- =?us-ascii?Q?I0rNw4VDE9Tnou6rrkKoE06vvV7eeqvYURaQpapa1GJUxbgleB214Yegx5Mt?=
- =?us-ascii?Q?GVLMjcRWQ1iS8jRNbX1slELK7WxMP+GZYRcyfxwKB8CUbpihagMrcUGbXMqd?=
- =?us-ascii?Q?Rxk447wx2ZSmDac=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2025 09:03:54.0041 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a275fbff-1eb2-43ae-b48e-08dd50c455e8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0001AE1D.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7344
+X-Mailman-Approved-At: Wed, 19 Feb 2025 09:11:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,29 +65,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
 
-Increase the maximum number of rings supported by the AMDGPU driver from 132 to 148.
-This change is necessary to enable support for the SDMA page ring.
+On 18/02/2025 12:26, Philipp Stanner wrote:
+> Thx for the updated version. Overlooked it, I was out on Friday. See
+> below
+> 
+> On Fri, 2025-02-14 at 10:19 +0000, Tvrtko Ursulin wrote:
+>> Idea is to add helpers for peeking and popping jobs from entities
+>> with
+>> the goal of decoupling the hidden assumption in the code that
+>> queue_node
+>> is the first element in struct drm_sched_job.
+>>
+>> That assumption usually comes in the form of:
+>>
+>>    while ((job = to_drm_sched_job(spsc_queue_pop(&entity-
+>>> job_queue))))
+>>
+>> Which breaks if the queue_node is re-positioned due to_drm_sched_job
+>> being implemented with a container_of.
+>>
+>> This also allows us to remove duplicate definitions of
+>> to_drm_sched_job.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Danilo Krummrich <dakr@kernel.org>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Philipp Stanner <phasta@kernel.org>
+>> ---
+>>   drivers/gpu/drm/scheduler/sched_entity.c   | 11 +++---
+>>   drivers/gpu/drm/scheduler/sched_internal.h | 46
+>> ++++++++++++++++++++++
+>>   drivers/gpu/drm/scheduler/sched_main.c     |  7 ++--
+>>   3 files changed, 54 insertions(+), 10 deletions(-)
+>>   create mode 100644 drivers/gpu/drm/scheduler/sched_internal.h
+>>
+>> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
+>> b/drivers/gpu/drm/scheduler/sched_entity.c
+>> index 69bcf0e99d57..a171f05ad761 100644
+>> --- a/drivers/gpu/drm/scheduler/sched_entity.c
+>> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+>> @@ -28,11 +28,10 @@
+>>   #include <drm/drm_print.h>
+>>   #include <drm/gpu_scheduler.h>
+>>   
+>> +#include "sched_internal.h"
+>> +
+>>   #include "gpu_scheduler_trace.h"
+>>   
+>> -#define to_drm_sched_job(sched_job)		\
+>> -		container_of((sched_job), struct drm_sched_job,
+>> queue_node)
+>> -
+>>   /**
+>>    * drm_sched_entity_init - Init a context entity used by scheduler
+>> when
+>>    * submit to HW ring.
+>> @@ -255,7 +254,7 @@ static void drm_sched_entity_kill(struct
+>> drm_sched_entity *entity)
+>>   	/* The entity is guaranteed to not be used by the scheduler
+>> */
+>>   	prev = rcu_dereference_check(entity->last_scheduled, true);
+>>   	dma_fence_get(prev);
+>> -	while ((job = to_drm_sched_job(spsc_queue_pop(&entity-
+>>> job_queue)))) {
+>> +	while ((job = drm_sched_entity_queue_pop(entity))) {
+>>   		struct drm_sched_fence *s_fence = job->s_fence;
+>>   
+>>   		dma_fence_get(&s_fence->finished);
+>> @@ -477,7 +476,7 @@ struct drm_sched_job
+>> *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+>>   {
+>>   	struct drm_sched_job *sched_job;
+>>   
+>> -	sched_job = to_drm_sched_job(spsc_queue_peek(&entity-
+>>> job_queue));
+>> +	sched_job = drm_sched_entity_queue_peek(entity);
+>>   	if (!sched_job)
+>>   		return NULL;
+>>   
+>> @@ -513,7 +512,7 @@ struct drm_sched_job
+>> *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+>>   	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO) {
+>>   		struct drm_sched_job *next;
+>>   
+>> -		next = to_drm_sched_job(spsc_queue_peek(&entity-
+>>> job_queue));
+>> +		next = drm_sched_entity_queue_peek(entity);
+>>   		if (next) {
+>>   			struct drm_sched_rq *rq;
+>>   
+>> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h
+>> b/drivers/gpu/drm/scheduler/sched_internal.h
+>> new file mode 100644
+>> index 000000000000..815d384845a3
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
+>> @@ -0,0 +1,46 @@
+>> +#ifndef _DRM_GPU_SCHEDULER_INTERNAL_H_
+>> +#define _DRM_GPU_SCHEDULER_INTERNAL_H_
+> 
+> DRM maintainer tools complain about a potentially missing license
+> identifier:
+> 
+> -:80: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+> #80: FILE: drivers/gpu/drm/scheduler/sched_internal.h:1:
+> 
+> The other scheduler files don't have one, either. Still, it might be
+> good to add one for new files. So, shall we make it GPL?
 
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ha, good question. And it is actually good I forgot to do this for this 
+series (I was doing for unit tests last week, I mean adding SPDX lines) 
+because, as sched_internal.h will take parts of gpu_scheduler.h which is 
+not explicitly GPL, nor the other scheduler source files, apart from 
+MODULE_LICENSE which is "GPL and additional rights", question indeed is 
+what copyright blurb to put there. IANAL so not sure. Surely there is 
+some established practice for cases like this one just I don't know what 
+it is.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index 182aa535d395..ae1dd7d16048 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -37,7 +37,7 @@ struct amdgpu_job;
- struct amdgpu_vm;
- 
- /* max number of rings */
--#define AMDGPU_MAX_RINGS		132
-+#define AMDGPU_MAX_RINGS		148
- #define AMDGPU_MAX_HWIP_RINGS		64
- #define AMDGPU_MAX_GFX_RINGS		2
- #define AMDGPU_MAX_SW_GFX_RINGS         2
--- 
-2.25.1
+Regards,
+
+Tvrtko
+
+> Rest of the series looks good.
+> 
+> P.
+> 
+>> +
+>> +/**
+>> + * drm_sched_entity_queue_pop - Low level helper for popping queued
+>> jobs
+>> + *
+>> + * @entity: scheduler entity
+>> + *
+>> + * Low level helper for popping queued jobs.
+>> + *
+>> + * Returns: The job dequeued or NULL.
+>> + */
+>> +static inline struct drm_sched_job *
+>> +drm_sched_entity_queue_pop(struct drm_sched_entity *entity)
+>> +{
+>> +	struct spsc_node *node;
+>> +
+>> +	node = spsc_queue_pop(&entity->job_queue);
+>> +	if (!node)
+>> +		return NULL;
+>> +
+>> +	return container_of(node, struct drm_sched_job, queue_node);
+>> +}
+>> +
+>> +/**
+>> + * drm_sched_entity_queue_peek - Low level helper for peeking at the
+>> job queue
+>> + *
+>> + * @entity: scheduler entity
+>> + *
+>> + * Low level helper for peeking at the job queue
+>> + *
+>> + * Returns: The job at the head of the queue or NULL.
+>> + */
+>> +static inline struct drm_sched_job *
+>> +drm_sched_entity_queue_peek(struct drm_sched_entity *entity)
+>> +{
+>> +	struct spsc_node *node;
+>> +
+>> +	node = spsc_queue_peek(&entity->job_queue);
+>> +	if (!node)
+>> +		return NULL;
+>> +
+>> +	return container_of(node, struct drm_sched_job, queue_node);
+>> +}
+>> +
+>> +#endif
+>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+>> b/drivers/gpu/drm/scheduler/sched_main.c
+>> index 8c36a59afb72..c634993f1346 100644
+>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>> @@ -78,6 +78,8 @@
+>>   #include <drm/gpu_scheduler.h>
+>>   #include <drm/spsc_queue.h>
+>>   
+>> +#include "sched_internal.h"
+>> +
+>>   #define CREATE_TRACE_POINTS
+>>   #include "gpu_scheduler_trace.h"
+>>   
+>> @@ -87,9 +89,6 @@ static struct lockdep_map drm_sched_lockdep_map = {
+>>   };
+>>   #endif
+>>   
+>> -#define to_drm_sched_job(sched_job)		\
+>> -		container_of((sched_job), struct drm_sched_job,
+>> queue_node)
+>> -
+>>   int drm_sched_policy = DRM_SCHED_POLICY_FIFO;
+>>   
+>>   /**
+>> @@ -123,7 +122,7 @@ static bool drm_sched_can_queue(struct
+>> drm_gpu_scheduler *sched,
+>>   {
+>>   	struct drm_sched_job *s_job;
+>>   
+>> -	s_job = to_drm_sched_job(spsc_queue_peek(&entity-
+>>> job_queue));
+>> +	s_job = drm_sched_entity_queue_peek(entity);
+>>   	if (!s_job)
+>>   		return false;
+>>   
+> 
 
