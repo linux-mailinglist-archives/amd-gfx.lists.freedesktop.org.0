@@ -2,41 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 188D2A39239
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1362DA3923B
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFC210E609;
-	Tue, 18 Feb 2025 04:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B04F910E60E;
+	Tue, 18 Feb 2025 04:59:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XtY2QZ4Q";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="q0oS+W2p";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B610310E605
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:59:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AAFF10E605
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:59:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id D91585C5A9F;
- Tue, 18 Feb 2025 04:58:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76EAEC4CEE6;
- Tue, 18 Feb 2025 04:58:59 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 7BF475C5AAC;
+ Tue, 18 Feb 2025 04:58:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18D32C4CEE2;
+ Tue, 18 Feb 2025 04:59:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1739854739;
- bh=1tMq3vd5FtWWtbi/6tPE48WALaUva5BlZVNDbJobdO0=;
+ s=k20201202; t=1739854740;
+ bh=PrWwiDUHS73NCV5kW7RzneUjnY5FxhY8SB4LnH9eOgk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XtY2QZ4QA6HBh/5ZcX5IQayG+VU/LJQL49u0+DD+qWHDolBkdo8Fe3WowGiHhq+Xt
- goQEN+qEH04k8IvkZFq+4n9gfBCvAtD4XhL+YpGYXBsCTslbcuhNUGF0BKAw5oRdiH
- I61FDAAGLH2WIK+F1oGGABawh5kOs/gsa2yF7M/UZSA8KK/6mKbUWOg1WQ6s4ReHPk
- zV3M1rzJmSPNRGUUGxWcJX2wwtrgCVV6rAz/eYtKm530C4tMybXR88ALcBc5+KCxS2
- eC16sfBpMfy03TAb5NHKyQd4Nw9DuHkKPJwSk3rIl9O3YrXKPP1n+16wEp1Q1fqcxt
- K91yYLwiupyjw==
+ b=q0oS+W2pVefOdUaM2wXG91lNUPmgqCLiJh6qpEg2Jc5MQuAMu2DAxWrkNlt5bCUJ6
+ kMYlYoV3HWT7VJQOKTrrgUT9R9h+hDi5Fipgte0HKWxiDvOYlG2OcZb4+Q5EQuQ8Z6
+ g6x2Fd77OJCReN+WTfbe63ETscy+CRk1aKmDq4G23EbH6M4eXIOmqcohohHhy5pMLm
+ kSRNVc3qZTatHuL/V6Xmholr5qte5Vlw0MYyBBltmWSygoq8+5o0tALfAPsTQLMb+w
+ M1lMuRAUaFChZeklgezbN0UCfCHJDXGnTyn2rcSJjw7k74ACIdrLRZJ4MxGn471Tr2
+ 6WZf9K01hl2ug==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: harry.wentland@amd.com,
 	Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH 06/13] drm/amd/display: Use scoped guard for dm_resume()
-Date: Mon, 17 Feb 2025 22:58:33 -0600
-Message-ID: <20250218045840.2469890-7-superm1@kernel.org>
+Subject: [PATCH 07/13] drm/amd/display: Change amdgpu_dm_irq_resume_*() to use
+ drm_dbg()
+Date: Mon, 17 Feb 2025 22:58:34 -0600
+Message-ID: <20250218045840.2469890-8-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250218045840.2469890-1-superm1@kernel.org>
 References: <20250218045840.2469890-1-superm1@kernel.org>
@@ -58,46 +59,36 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Scoped guards will release the mutex when they go out of scope.
-Adjust the code to use these instead.
+drm_dbg() is helpful to show which device had the debug statement.
+Adjust to using this instead for debug messages.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 96091a9889747..e7a9e60a6405c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3412,17 +3412,16 @@ static int dm_resume(struct amdgpu_ip_block *ip_block)
- 		if (aconnector->mst_root)
- 			continue;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
+index 058a94345245f..3224eae295eb4 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
+@@ -521,7 +521,7 @@ int amdgpu_dm_irq_resume_early(struct amdgpu_device *adev)
  
--		mutex_lock(&aconnector->hpd_lock);
-+		guard(mutex)(&aconnector->hpd_lock);
- 		if (!dc_link_detect_connection_type(aconnector->dc_link, &new_connection_type))
- 			drm_err(adev_to_drm(adev), "KMS: Failed to detect connector\n");
+ 	DM_IRQ_TABLE_LOCK(adev, irq_table_flags);
  
- 		if (aconnector->base.force && new_connection_type == dc_connection_none) {
- 			emulated_link_detect(aconnector->dc_link);
- 		} else {
--			mutex_lock(&dm->dc_lock);
-+			guard(mutex)(&dm->dc_lock);
- 			dc_exit_ips_for_hw_access(dm->dc);
- 			dc_link_detect(aconnector->dc_link, DETECT_REASON_RESUMEFROMS3S4);
--			mutex_unlock(&dm->dc_lock);
- 		}
+-	DRM_DEBUG_KMS("DM_IRQ: early resume\n");
++	drm_dbg(adev_to_drm(adev), "DM_IRQ: early resume\n");
  
- 		if (aconnector->fake_enable && aconnector->dc_link->local_sink)
-@@ -3432,7 +3431,6 @@ static int dm_resume(struct amdgpu_ip_block *ip_block)
- 			dc_sink_release(aconnector->dc_sink);
- 		aconnector->dc_sink = NULL;
- 		amdgpu_dm_update_connector_after_detect(aconnector);
--		mutex_unlock(&aconnector->hpd_lock);
- 	}
- 	drm_connector_list_iter_end(&iter);
+ 	/* re-enable short pulse interrupts HW interrupt */
+ 	for (src = DC_IRQ_SOURCE_HPD1RX; src <= DC_IRQ_SOURCE_HPD6RX; src++) {
+@@ -544,7 +544,7 @@ int amdgpu_dm_irq_resume_late(struct amdgpu_device *adev)
  
+ 	DM_IRQ_TABLE_LOCK(adev, irq_table_flags);
+ 
+-	DRM_DEBUG_KMS("DM_IRQ: resume\n");
++	drm_dbg(adev_to_drm(adev), "DM_IRQ: resume\n");
+ 
+ 	/**
+ 	 * Renable HW interrupt  for HPD and only since FLIP and VBLANK
 -- 
 2.43.0
 
