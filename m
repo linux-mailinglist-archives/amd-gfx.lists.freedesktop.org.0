@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52832A3923C
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C919AA39241
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9A1F10E60C;
-	Tue, 18 Feb 2025 04:59:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A31410E612;
+	Tue, 18 Feb 2025 04:59:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BE4CJSSu";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UEHjSIp+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8E2E10E60C
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:59:03 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5C8110E60C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:59:04 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id F404A5C5AAC;
- Tue, 18 Feb 2025 04:58:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 954B4C4CEE6;
- Tue, 18 Feb 2025 04:59:02 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 02BA3A41D03;
+ Tue, 18 Feb 2025 04:57:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34B9AC4CEE2;
+ Tue, 18 Feb 2025 04:59:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1739854743;
- bh=Ry8imehsB62tExGRXNbN1GCa4QqXRXKZCz3w+rB4dkA=;
+ bh=5pLxyiY1ZySGawFdXBMP4ixBcuNQElaLR8is3CxnG7k=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=BE4CJSSucOT2EKOzLyyc3BsnVxHcsLb/MBigEBba6EXU1jvm62y14LzmcCPPmVajS
- Bo1eufRcDKg/6JJPIvP3PmmTC1RfmgPq+LTE34BgFWMIHgLkIRj7djI0ktlRlzKxMR
- UcSMAKuOU2uPYsWGjyZxywtNCBePiV9aDuKoi21TvR31gl0yhAwTY12UwxYG4iw5j6
- TJorM6IRaQKGdxaqdIwqcUNcuYXE+KOqlZr0ncYIUVAdWKv6iCxWDk9aC7iVmYvk8N
- AdfOAVUuYX0D8Ke0Nz92YvMjvDMX4GQUlpCzu8WMBR7nvIUYrycNy4PgFVUonD4kmk
- eRF7IJ1TdYYaw==
+ b=UEHjSIp+GwxutSMbjfmGpXgUUofDLI5Y3cumBsHrIx3SLNHTQQYHuN1MONi02rjr6
+ hh+9FwExrkQNimelrvFn95/hyPYXTetvJo6zbFSI+XefUv7v6uZ7Rn+RHw1sqEYi9O
+ LfmxXiKM0YM5jJY91sAMD1v+doGw/DLINWMHhNAPzGN+8WL1TJh00SzMByRbw2Xj6+
+ 1S+mY60wtqm2Qfgz4ioEWYC7W+t7XHTyhTqzFM9qYjxRjMWS+dNWLzOARhUuLhPiTb
+ DrB6XWLoSRV5gZ2DhtigZphokkLcx1Fbipb0MsPtvriQ14Ed8AaTvndIDL15T3G0xp
+ 2mWjom/n2+aQg==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: harry.wentland@amd.com,
 	Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH 11/13] drm/amd/display: Use _free() macro fro releasing sink
- in amdgpu_dm_update_connector_after_detect()
-Date: Mon, 17 Feb 2025 22:58:38 -0600
-Message-ID: <20250218045840.2469890-12-superm1@kernel.org>
+Subject: [PATCH 12/13] drm/amd/display: Use scoped guards for
+ handle_hpd_irq_helper()
+Date: Mon, 17 Feb 2025 22:58:39 -0600
+Message-ID: <20250218045840.2469890-13-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250218045840.2469890-1-superm1@kernel.org>
 References: <20250218045840.2469890-1-superm1@kernel.org>
@@ -59,74 +59,50 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-By using a _free() macro multiple duplicated snippets of code to free
-the sink can be dropped. The sink will be released when leaving scope.
+Scoped guards will release the mutex when they go out of scope.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 15 ++++-----------
- 1 file changed, 4 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 08b05fd1cdb91..fa5be13f8dd75 100644
+index fa5be13f8dd75..a469b5fd43a7a 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3591,12 +3591,14 @@ static void update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
- 	}
- }
- 
-+DEFINE_FREE(sink_release, struct dc_sink *, if (_T) dc_sink_release(_T))
-+
- void amdgpu_dm_update_connector_after_detect(
- 		struct amdgpu_dm_connector *aconnector)
- {
- 	struct drm_connector *connector = &aconnector->base;
-+	struct dc_sink *sink __free(sink_release) = NULL;
- 	struct drm_device *dev = connector->dev;
--	struct dc_sink *sink;
- 
- 	/* MST handled by drm_mst framework */
- 	if (aconnector->mst_mgr.mst_state == true)
-@@ -3643,8 +3645,6 @@ void amdgpu_dm_update_connector_after_detect(
- 			}
- 		}
- 
--		if (sink)
--			dc_sink_release(sink);
- 		return;
- 	}
- 
-@@ -3652,10 +3652,8 @@ void amdgpu_dm_update_connector_after_detect(
- 	 * TODO: temporary guard to look for proper fix
- 	 * if this sink is MST sink, we should not do anything
+@@ -3750,7 +3750,7 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
+ 	 * In case of failure or MST no need to update connector status or notify the OS
+ 	 * since (for MST case) MST does this in its own context.
  	 */
--	if (sink && sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT_MST) {
--		dc_sink_release(sink);
-+	if (sink && sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
- 		return;
--	}
+-	mutex_lock(&aconnector->hpd_lock);
++	guard(mutex)(&aconnector->hpd_lock);
  
- 	if (aconnector->dc_sink == sink) {
- 		/*
-@@ -3664,8 +3662,6 @@ void amdgpu_dm_update_connector_after_detect(
- 		 */
- 		drm_dbg_kms(dev, "DCHPD: connector_id=%d: dc_sink didn't change.\n",
- 				 aconnector->connector_id);
--		if (sink)
--			dc_sink_release(sink);
- 		return;
+ 	if (adev->dm.hdcp_workqueue) {
+ 		hdcp_reset_display(adev->dm.hdcp_workqueue, aconnector->dc_link->link_index);
+@@ -3774,10 +3774,10 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
+ 		if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
+ 			drm_kms_helper_connector_hotplug_event(connector);
+ 	} else {
+-		mutex_lock(&adev->dm.dc_lock);
+-		dc_exit_ips_for_hw_access(dc);
+-		ret = dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD);
+-		mutex_unlock(&adev->dm.dc_lock);
++		scoped_guard(mutex, &adev->dm.dc_lock) {
++			dc_exit_ips_for_hw_access(dc);
++			ret = dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD);	
++		}
+ 		if (ret) {
+ 			amdgpu_dm_update_connector_after_detect(aconnector);
+ 
+@@ -3789,8 +3789,6 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
+ 				drm_kms_helper_connector_hotplug_event(connector);
+ 		}
  	}
- 
-@@ -3735,9 +3731,6 @@ void amdgpu_dm_update_connector_after_detect(
- 	}
- 
- 	update_subconnector_property(aconnector);
+-	mutex_unlock(&aconnector->hpd_lock);
 -
--	if (sink)
--		dc_sink_release(sink);
  }
  
- static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
+ static void handle_hpd_irq(void *param)
 -- 
 2.43.0
 
