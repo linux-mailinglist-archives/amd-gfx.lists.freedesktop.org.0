@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C919AA39241
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2F1A3923E
 	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A31410E612;
-	Tue, 18 Feb 2025 04:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6C7D10E608;
+	Tue, 18 Feb 2025 04:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UEHjSIp+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dYk6si+n";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5C8110E60C
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:59:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4580510E60F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:59:05 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 02BA3A41D03;
+ by nyc.source.kernel.org (Postfix) with ESMTP id 92E68A41C0F;
  Tue, 18 Feb 2025 04:57:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34B9AC4CEE2;
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CADE0C4CEE6;
  Tue, 18 Feb 2025 04:59:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1739854743;
- bh=5pLxyiY1ZySGawFdXBMP4ixBcuNQElaLR8is3CxnG7k=;
+ s=k20201202; t=1739854744;
+ bh=zm3LIve414rOCtCuHMkze1TAB48BPIpLjh2V2gY9NYI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=UEHjSIp+GwxutSMbjfmGpXgUUofDLI5Y3cumBsHrIx3SLNHTQQYHuN1MONi02rjr6
- hh+9FwExrkQNimelrvFn95/hyPYXTetvJo6zbFSI+XefUv7v6uZ7Rn+RHw1sqEYi9O
- LfmxXiKM0YM5jJY91sAMD1v+doGw/DLINWMHhNAPzGN+8WL1TJh00SzMByRbw2Xj6+
- 1S+mY60wtqm2Qfgz4ioEWYC7W+t7XHTyhTqzFM9qYjxRjMWS+dNWLzOARhUuLhPiTb
- DrB6XWLoSRV5gZ2DhtigZphokkLcx1Fbipb0MsPtvriQ14Ed8AaTvndIDL15T3G0xp
- 2mWjom/n2+aQg==
+ b=dYk6si+nLIKU1YLR/te4TrIov5zvxPpasjTmoT+zwG0jOeTxiUUXh0rMs3YAFrRw5
+ 9wpexYKbh2OOoFkYz7U7hN5211Mij76RJIsMBySPBjFzSmDBi512iEfaXv3iSUz9m5
+ +F4hRWBfZQOqmzDs8ChP4bv4HxwNTpsNBSXvA3sL5lnu3bEA9hu8fA3HM+kGLxv65f
+ GXG6bKkvQ3eqa5rJ0LtMpO+i+u4wTovte3+ZK421U1FRU+kQIw6Lt9rHCGMZUdBrE0
+ d4jGTAY73JTAf9Chpqh8PfPQRMkhovFSA7e5enlcd9MptF+iqfQckG9Ii3SJXhmysV
+ UCP4PfgQPRAxg==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: harry.wentland@amd.com,
 	Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH 12/13] drm/amd/display: Use scoped guards for
+Subject: [PATCH 13/13] drm/amd/display: Use drm_err() for
  handle_hpd_irq_helper()
-Date: Mon, 17 Feb 2025 22:58:39 -0600
-Message-ID: <20250218045840.2469890-13-superm1@kernel.org>
+Date: Mon, 17 Feb 2025 22:58:40 -0600
+Message-ID: <20250218045840.2469890-14-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250218045840.2469890-1-superm1@kernel.org>
 References: <20250218045840.2469890-1-superm1@kernel.org>
@@ -59,50 +59,26 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Scoped guards will release the mutex when they go out of scope.
+drm_err() will show which device has the error.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index fa5be13f8dd75..a469b5fd43a7a 100644
+index a469b5fd43a7a..84c8673421f6d 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3750,7 +3750,7 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
- 	 * In case of failure or MST no need to update connector status or notify the OS
- 	 * since (for MST case) MST does this in its own context.
- 	 */
--	mutex_lock(&aconnector->hpd_lock);
-+	guard(mutex)(&aconnector->hpd_lock);
+@@ -3762,7 +3762,7 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
+ 	aconnector->timing_changed = false;
  
- 	if (adev->dm.hdcp_workqueue) {
- 		hdcp_reset_display(adev->dm.hdcp_workqueue, aconnector->dc_link->link_index);
-@@ -3774,10 +3774,10 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
- 		if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
- 			drm_kms_helper_connector_hotplug_event(connector);
- 	} else {
--		mutex_lock(&adev->dm.dc_lock);
--		dc_exit_ips_for_hw_access(dc);
--		ret = dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD);
--		mutex_unlock(&adev->dm.dc_lock);
-+		scoped_guard(mutex, &adev->dm.dc_lock) {
-+			dc_exit_ips_for_hw_access(dc);
-+			ret = dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD);	
-+		}
- 		if (ret) {
- 			amdgpu_dm_update_connector_after_detect(aconnector);
+ 	if (!dc_link_detect_connection_type(aconnector->dc_link, &new_connection_type))
+-		DRM_ERROR("KMS: Failed to detect connector\n");
++		drm_err(adev_to_drm(adev), "KMS: Failed to detect connector\n");
  
-@@ -3789,8 +3789,6 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
- 				drm_kms_helper_connector_hotplug_event(connector);
- 		}
- 	}
--	mutex_unlock(&aconnector->hpd_lock);
--
- }
- 
- static void handle_hpd_irq(void *param)
+ 	if (aconnector->base.force && new_connection_type == dc_connection_none) {
+ 		emulated_link_detect(aconnector->dc_link);
 -- 
 2.43.0
 
