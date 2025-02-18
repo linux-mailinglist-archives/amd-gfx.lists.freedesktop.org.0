@@ -2,41 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47472A3923F
+	by mail.lfdr.de (Postfix) with ESMTPS id 71228A39240
 	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0B9910E60F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED7A710E611;
 	Tue, 18 Feb 2025 04:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="smlhSLj8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="uJg0WQPh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 357FF10E608
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98D0C10E60C
  for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:59:02 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 7F575A41D03;
- Tue, 18 Feb 2025 04:57:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B28A1C4CEE8;
- Tue, 18 Feb 2025 04:59:00 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id BED265C4C3D;
+ Tue, 18 Feb 2025 04:58:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 587BEC4CEE2;
+ Tue, 18 Feb 2025 04:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1739854741;
- bh=7qWYM1wNznh6IJeNqQ7uOKi6LbSRXiAAL1rgnqtxpBs=;
+ bh=zk8H4/bbYYI7JxAtzD01dM2ULQw1tUAqmMPNz7jNToc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=smlhSLj81Ia6btthwpbO8LjIx92CjUFmEIrRnz8NggrBMWeDA8HBxiYvwtpSlb53q
- BaXrJ5Tt4Mk3IIBUO+ccI9FpZ2RgjcHag2dMVfejDEcSyX+mk7dJO4FRRBgiVqznWl
- iumtmQ2i5iwibgKlZxCuOsir9tWQZPpihfC7Tk764IYi8Go2vLUVDCmDpa5Ey2o2Fo
- GDjohu6K1DjeYdnXi2VQMNDfEM0mtD3qcNsqiRmXRi5rlbPQLtRbrd4irvSyqEv3Sx
- Rr7CfSXi4Yn16ElZMhwbqDCnPCJPsJ6Cg0r253Ce0tSOBSmY5/vY7YQwdAVi5B+tbr
- 3kOBAUoYciWTA==
+ b=uJg0WQPh43DheThmWgMGT78Q0CbaVpNfZcNElt67XIbHxhSNaCKYvvR09CD3GdWjn
+ XiaE6l7xq8uE7As/pjbxJDuL7rC6n6llEVLRjPd/cT0ZfYr77CF/JZhTHwQr0FKJYS
+ y3vkGB0LBS/IZxlgIPaeSyf/rMYGIGiAoplzvbGeXjd0fjitcVAu2wGtTn4Z9H9Q+d
+ TSoa7d5ltYl2huqjzezY01vM+G3QRIPlLQ+ZKQ0CwfUJjQUzQrduOMxxUv3ObM6KmU
+ F/Lt000foeIRynqWwqo/9mwumzU4l1QWptFXoWDlRW+kh5C1a2bLlTRxytWDLHOm4G
+ WvD2U2zkdl3bA==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: harry.wentland@amd.com,
 	Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH 08/13] drm/amd/display: Change amdgpu_dm_irq_resume_*() to void
-Date: Mon, 17 Feb 2025 22:58:35 -0600
-Message-ID: <20250218045840.2469890-9-superm1@kernel.org>
+Subject: [PATCH 09/13] drm/amd/display: Use _free(kfree) for
+ dm_gpureset_commit_state()
+Date: Mon, 17 Feb 2025 22:58:36 -0600
+Message-ID: <20250218045840.2469890-10-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250218045840.2469890-1-superm1@kernel.org>
 References: <20250218045840.2469890-1-superm1@kernel.org>
@@ -58,63 +59,45 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-amdgpu_dm_irq_resume_early() and amdgpu_dm_irq_resume_late() don't
-have any error flows. Change the return type from integer to void.
+Using a _free(kfree) macro drops the need for a goto statement
+as it will be freed when it goes out of scope.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c | 7 ++-----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h | 4 ++--
- 2 files changed, 4 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-index 3224eae295eb4..2fec00e5d7491 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-@@ -513,7 +513,7 @@ void amdgpu_dm_irq_suspend(struct amdgpu_device *adev)
- 	DM_IRQ_TABLE_UNLOCK(adev, irq_table_flags);
- }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index e7a9e60a6405c..33bed74c5b4c0 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3243,14 +3243,14 @@ static void dm_gpureset_commit_state(struct dc_state *dc_state,
+ 		struct dc_scaling_info scaling_infos[MAX_SURFACES];
+ 		struct dc_flip_addrs flip_addrs[MAX_SURFACES];
+ 		struct dc_stream_update stream_update;
+-	} *bundle;
++	} *bundle __free(kfree);
+ 	int k, m;
  
--int amdgpu_dm_irq_resume_early(struct amdgpu_device *adev)
-+void amdgpu_dm_irq_resume_early(struct amdgpu_device *adev)
- {
- 	int src;
- 	struct list_head *hnd_list_h, *hnd_list_l;
-@@ -532,11 +532,9 @@ int amdgpu_dm_irq_resume_early(struct amdgpu_device *adev)
+ 	bundle = kzalloc(sizeof(*bundle), GFP_KERNEL);
+ 
+ 	if (!bundle) {
+ 		drm_err(dm->ddev, "Failed to allocate update bundle\n");
+-		goto cleanup;
++		return;
  	}
  
- 	DM_IRQ_TABLE_UNLOCK(adev, irq_table_flags);
+ 	for (k = 0; k < dc_state->stream_count; k++) {
+@@ -3270,9 +3270,6 @@ static void dm_gpureset_commit_state(struct dc_state *dc_state,
+ 					 &bundle->stream_update,
+ 					 bundle->surface_updates);
+ 	}
 -
--	return 0;
+-cleanup:
+-	kfree(bundle);
  }
  
--int amdgpu_dm_irq_resume_late(struct amdgpu_device *adev)
-+void amdgpu_dm_irq_resume_late(struct amdgpu_device *adev)
- {
- 	int src;
- 	struct list_head *hnd_list_h, *hnd_list_l;
-@@ -558,7 +556,6 @@ int amdgpu_dm_irq_resume_late(struct amdgpu_device *adev)
- 	}
- 
- 	DM_IRQ_TABLE_UNLOCK(adev, irq_table_flags);
--	return 0;
- }
- 
- /*
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
-index c37bcd631e104..ba17c23b27064 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
-@@ -97,7 +97,7 @@ void amdgpu_dm_irq_suspend(struct amdgpu_device *adev);
-  * amdgpu_dm_irq_resume - enable ASIC interrupt during resume.
-  *
-  */
--int amdgpu_dm_irq_resume_early(struct amdgpu_device *adev);
--int amdgpu_dm_irq_resume_late(struct amdgpu_device *adev);
-+void amdgpu_dm_irq_resume_early(struct amdgpu_device *adev);
-+void amdgpu_dm_irq_resume_late(struct amdgpu_device *adev);
- 
- #endif /* __AMDGPU_DM_IRQ_H__ */
+ static int dm_resume(struct amdgpu_ip_block *ip_block)
 -- 
 2.43.0
 
