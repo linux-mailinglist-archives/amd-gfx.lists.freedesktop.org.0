@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23749A3922E
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE3AA39234
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Feb 2025 05:59:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4F1E10E2C6;
-	Tue, 18 Feb 2025 04:52:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1252E10E08D;
+	Tue, 18 Feb 2025 04:58:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LOkIjecr";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="H9sFLGUs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19E8710E605
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:52:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16D9B10E08D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 04:58:57 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id F2BA25C55C0;
- Tue, 18 Feb 2025 04:52:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 931CDC4CEE6;
- Tue, 18 Feb 2025 04:52:55 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 31EA95C4C3D;
+ Tue, 18 Feb 2025 04:58:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C048FC4CEE2;
+ Tue, 18 Feb 2025 04:58:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1739854375;
- bh=CGq1m5+ia0syy2YjVEoTOkb2iFoSAd5DTKt5xBSRyYc=;
+ s=k20201202; t=1739854736;
+ bh=mtzY8RI9U9lcDytEfGqFJNSYea06NxAEtZ9r925NCWc=;
  h=From:To:Cc:Subject:Date:From;
- b=LOkIjecr0XwoEszSUD7SRCIElIGnKZZm1Mm3tDVHGJliwctkKmhEHQ4hKCKUn1YOg
- 5XcoxpdrRqjAQSr6X/jK0MImkWUTKmp47Oyo3NNYv2S5UyeQMqlXYp6ABv4IhBq+Wm
- QooD+6oOhDZzaU9T+q1fl1omEFegD0whRcI448A6oFW7E2TW7fEAT+adcLrjAzHtN/
- Z3WSGqU7ph0acCTOwx2y3nPyXEA6TS2rB5phQEBJEZFDpX8Z3TS0WBL14StirSvkRV
- qMo6ktVMM1KTfH3nn6LWaqBiZ1JHAjvwm+Hrq5dh95qYu32NguHmTzRKC+2YY/BVx+
- IbTCzO9wi2Ezw==
+ b=H9sFLGUsBZymUKQehz2QR9wItawJGya4mBq60fUpLsJnnrBIdbBP6VUb+vUzElSZr
+ mH8VerNIafuSA4CRyjcDdraGV8MC35J2aP7d9iZQ2A0bmI51Qu9iufLrDZf6lOqBe2
+ 4kRooON3+b2JBvf0Prsg6GypurO8rXlI7mbm3sodpsxdigmFFjF6D0+/LNA8PUCvgW
+ mcZjgC+l/j89sOZ98m37b2Kdw1g0V1PW8lbfE113Lfnyd3BCMkHkKzYEtNuljYdZF2
+ E+QSHGEV2dTkroSgNV+tZdGt9qNEdwoLNrL5jByGj/RcQMA7i5janSBsAGML4k7baU
+ /L45TuMHuctCg==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: harry.wentland@amd.com,
 	Mario Limonciello <mario.limonciello@amd.com>
-Subject: [RFC] drm/amd/display: Add and use new dm_prepare_suspend() callback
-Date: Mon, 17 Feb 2025 22:52:43 -0600
-Message-ID: <20250218045244.2455390-1-superm1@kernel.org>
+Subject: [PATCH 00/13] drm/amd/display: Various cleanups to amdgpu_dm
+Date: Mon, 17 Feb 2025 22:58:27 -0600
+Message-ID: <20250218045840.2469890-1-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -56,63 +56,32 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-The displays currently don't get turned off until after other IP blocks
-have been suspended.  However turning off the displays first gives a
-visible response that the system is on it's way down.
+I was looking at amdgpu_dm for some issues and just noticed some cases
+that could use cleanups for scoped cleanups and error messaging.
 
-Turn off displays in a prepare_suspend() callback instead.
+Mario Limonciello (13):
+  drm/amd/display: Change amdgpu_dm_irq_suspend() to void
+  drm/amd/display: Drop `ret` variable from dm_suspend()
+  drm/amd/display: Catch failures for amdgpu_dm_commit_zero_streams()
+  drm/amd/display: Use a _free() macro for
+    amdgpu_dm_commit_zero_streams()
+  drm/amd/display: Use drm_err() instead of DRM_ERROR in dm_resume()
+  drm/amd/display: Use scoped guard for dm_resume()
+  drm/amd/display: Change amdgpu_dm_irq_resume_*() to use drm_dbg()
+  drm/amd/display: Change amdgpu_dm_irq_resume_*() to void
+  drm/amd/display: Use _free(kfree) for dm_gpureset_commit_state()
+  drm/amd/display: Use scoped guard for
+    amdgpu_dm_update_connector_after_detect()
+  drm/amd/display: Use _free() macro fro releasing sink in
+    amdgpu_dm_update_connector_after_detect()
+  drm/amd/display: Use scoped guards for handle_hpd_irq_helper()
+  drm/amd/display: Use drm_err() for handle_hpd_irq_helper()
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 21 ++++++++++++++-----
- 1 file changed, 16 insertions(+), 5 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 89 ++++++++-----------
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c | 14 ++-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h |  6 +-
+ 3 files changed, 44 insertions(+), 65 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 70594e9179e8c..320b3ba74baea 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3037,6 +3037,21 @@ static void hpd_rx_irq_work_suspend(struct amdgpu_display_manager *dm)
- 	}
- }
- 
-+static int dm_prepare_suspend(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+
-+	if (amdgpu_in_reset(adev))
-+		return 0;
-+
-+	WARN_ON(adev->dm.cached_state);
-+	adev->dm.cached_state = drm_atomic_helper_suspend(adev_to_drm(adev));
-+	if (IS_ERR(adev->dm.cached_state))
-+		return PTR_ERR(adev->dm.cached_state);
-+
-+	return 0;
-+}
-+
- static int dm_suspend(struct amdgpu_ip_block *ip_block)
- {
- 	struct amdgpu_device *adev = ip_block->adev;
-@@ -3067,11 +3082,6 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
- 		return 0;
- 	}
- 
--	WARN_ON(adev->dm.cached_state);
--	adev->dm.cached_state = drm_atomic_helper_suspend(adev_to_drm(adev));
--	if (IS_ERR(adev->dm.cached_state))
--		return PTR_ERR(adev->dm.cached_state);
--
- 	s3_handle_hdmi_cec(adev_to_drm(adev), true);
- 
- 	s3_handle_mst(adev_to_drm(adev), true);
-@@ -3468,6 +3478,7 @@ static const struct amd_ip_funcs amdgpu_dm_funcs = {
- 	.early_fini = amdgpu_dm_early_fini,
- 	.hw_init = dm_hw_init,
- 	.hw_fini = dm_hw_fini,
-+	.prepare_suspend = dm_prepare_suspend,
- 	.suspend = dm_suspend,
- 	.resume = dm_resume,
- 	.is_idle = dm_is_idle,
 -- 
 2.43.0
 
