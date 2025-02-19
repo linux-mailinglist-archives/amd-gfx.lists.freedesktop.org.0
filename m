@@ -2,45 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA6C1A3C7DA
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Feb 2025 19:47:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAC47A3C7D9
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Feb 2025 19:47:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A5E810E873;
-	Wed, 19 Feb 2025 18:47:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 748CF10E36A;
+	Wed, 19 Feb 2025 18:47:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lPdPzJqW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cHBolhbF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6AC410E36A
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Feb 2025 18:47:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15EE010E4AD
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Feb 2025 18:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=akHLByESjhAZIdirUO+hq68gdgMh4KX2vVVmGox+LUA=; b=lPdPzJqWh9ItaRTXq608inXMoI
- /qML2dL16PX7Q9qIr5hMjpVDKmdyHjoKhA+xJMCcR+xvNlDG68IHHS0zmU0Akp5q8CqUTVeIRN/VV
- H2b5KEBjni7cQQpluquYCgn3Wg4Zp4urVz2EepDu0XsL/kSSnkg82+gja6603wcwXuWAIeW97YzkA
- x5HCTUjbiibPBRhwkFVdlQMkjuR8Rs818dHCBkDCGGh8YoZ99dFTv0my7cXFmDuMmOB7WdyO0werJ
- P+5Ulu/dKy4m1X2++XQfh3Z+srGzzXoeC6cMr0OIDcaPzcJZ4idfEC2UERixtw0MxTzAO6WM3GHxS
- ib1cKO/A==;
+ bh=2pSe7Qe4/i9BOa9RVZfFghHp+mZzc1kq2e9gbulZZME=; b=cHBolhbFoTP+UyloEjGW41mC4P
+ McBtXgBNa6gF8b6RnBXynfN4SdraHT7cBct9WXHWO63VNztgnREpXS04GyyAv/QtCCVThei0sCYpt
+ YXCrU5jiRo3jZ9wGxtRtDxMHD8lAU26J5gSe3UoZ62Fyt4AeyNyT2qiQxki5xCk73wv8LwIwnXMer
+ Ph2B/xTV7L8a1bieTkcIZs1i0PGMmMIABaVHoF+Qrk5zT9SQpx1++WurJhxWrkOKs/+I8g1kbBVOz
+ KpRsv9p4boaVHcfy91iYC7ksGjQWQW+L8uWyeoJgxpSUHiO+j+1bd9QV1AOif3bzYVrwZMklBxM1a
+ Enj4yNaA==;
 Received: from d162-157-58-14.abhsia.telus.net ([162.157.58.14]
  helo=maloca.localdomain) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tkp6M-00EwF0-DV; Wed, 19 Feb 2025 19:47:24 +0100
+ id 1tkp6O-00EwF0-6g; Wed, 19 Feb 2025 19:47:26 +0100
 From: Rodrigo Siqueira <siqueira@igalia.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
  linux-kernel@vger.kernel.org, Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH 0/2] Add myself as a Reviewer of AMD display and update mailmap
-Date: Wed, 19 Feb 2025 11:46:18 -0700
-Message-ID: <20250219184702.242924-1-siqueira@igalia.com>
+Subject: [PATCH 1/2] MAINTAINERS: Change my role from Maintainer to Reviewer
+Date: Wed, 19 Feb 2025 11:46:19 -0700
+Message-ID: <20250219184702.242924-2-siqueira@igalia.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250219184702.242924-1-siqueira@igalia.com>
+References: <20250219184702.242924-1-siqueira@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -57,20 +59,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patchset changes my status from a Maintainer of the display code to
-a reviewer, and it also adds an entry to my name in the mailmap file.
-
-Thanks
-Siqueira
-
-Rodrigo Siqueira (2):
-  MAINTAINERS: Change my role from Maintainer to Reviewer
-  mailmap: Add entry for Rodrigo Siqueira
-
- .mailmap    | 2 ++
+Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
+---
  MAINTAINERS | 2 +-
- 2 files changed, 3 insertions(+), 1 deletion(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c8b35ca294a0..a94abf72e117 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1024,7 +1024,7 @@ F:	drivers/crypto/ccp/hsti.*
+ AMD DISPLAY CORE
+ M:	Harry Wentland <harry.wentland@amd.com>
+ M:	Leo Li <sunpeng.li@amd.com>
+-M:	Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
++R:	Rodrigo Siqueira <siqueira@igalia.com>
+ L:	amd-gfx@lists.freedesktop.org
+ S:	Supported
+ T:	git https://gitlab.freedesktop.org/agd5f/linux.git
 -- 
 2.48.1
 
