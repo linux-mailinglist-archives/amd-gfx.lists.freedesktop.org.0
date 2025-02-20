@@ -2,52 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E50A3D424
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Feb 2025 10:04:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B75A3D420
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Feb 2025 10:04:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA6310E8EB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E27A10E8ED;
 	Thu, 20 Feb 2025 09:04:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="rIr77q9B";
-	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AB0C10E89E;
- Wed, 19 Feb 2025 21:35:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=aMp0X/kKH/xLP0BxZclKAhaRvsa7RWoi/0q4q55kxFc=; b=rIr77q9B5LxPxJh7jMvZAl/XZX
- UviseiwzgTaV41nYBP7AVP7cQ7PeQiAm1ocoZmibLfvV+/wWgKmKKvQq/pHx3jkKTWePT8XLAPA5y
- QU2b5+tKsqEAdJiI0ZOCsBCuUpV+pczr6EpuWQzJOcMtuuy+RUUI+K6DR2MK/2nixKtA2KFVmwlCB
- HzkbdiOCoK/lEQmTZrQb0vmtkSYJjqw3kZnhJnpEvQNcYEqQn8sL8Nko37X3HX2CPLwIbRl7CiQhw
- Mx3L38qYYFWgKQyACSB3MUjkNowrxUhXNxgdRHQN3x6kg9uUurOzehZu86LI1cigsFnrKFscTGxeX
- WSdL6PEQ==;
-Received: from [191.204.194.148] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tkrj9-00F1SN-HI; Wed, 19 Feb 2025 22:35:37 +0100
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, siqueira@igalia.com
-Cc: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH 3/3] drm/amdgpu: Trigger a wedged event for every type of reset
-Date: Wed, 19 Feb 2025 18:35:17 -0300
-Message-ID: <20250219213517.281556-4-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250219213517.281556-1-andrealmeid@igalia.com>
-References: <20250219213517.281556-1-andrealmeid@igalia.com>
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37EB110E8D5;
+ Thu, 20 Feb 2025 06:41:15 +0000 (UTC)
+Received: from localhost.localdomain (unknown [124.16.141.245])
+ by APP-03 (Coremail) with SMTP id rQCowABXPTCCzrZnmmLTDg--.47725S2;
+ Thu, 20 Feb 2025 14:41:10 +0800 (CST)
+From: Wentao Liang <vulab@iscas.ac.cn>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, simona@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
+ stable@vger.kernel.org
+Subject: [PATCH] drm/radeon: Add error handlings for r420 cp errata initiation
+Date: Thu, 20 Feb 2025 14:40:49 +0800
+Message-ID: <20250220064050.686-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.42.0.windows.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: rQCowABXPTCCzrZnmmLTDg--.47725S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxJrW3KrWUKFyktryUWFW5Awb_yoW5Jr45pa
+ 1kKa90yrZrKayIyr9rGay7J3W5Cw48Ka17Wry7Gw1Fkw1rJFs8JFyfGryUGrykGrZ2k3Wj
+ yryvk3ykuw4vv3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUP214x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+ CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+ 2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ec7CjxVAajcxG14v26r1j6r4UMcIj6I8E87Iv67AKxV
+ WUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS
+ 5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxkIec
+ xEwVAFwVW8AwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
+ F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
+ ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
+ xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
+ 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7VUjOJ
+ 57UUUUU==
+X-Originating-IP: [124.16.141.245]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCRATA2e2jPzMJgAAsC
 X-Mailman-Approved-At: Thu, 20 Feb 2025 09:04:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,79 +62,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of only triggering a wedged event for complete GPU resets,
-trigger for all types, like soft resets and ring resets. Regardless of
-the reset, it's useful for userspace to know that it happened because
-the kernel will reject further submissions from that app.
+In r420_cp_errata_init(), the RESYNC information is stored even
+when the Scratch register is not correctly allocated.
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
+Change the return type of r420_cp_errata_init() from void to int
+to propagate errors to the caller. Add error checking after
+radeon_scratch_get() to ensure RESYNC information is stored
+to an allocated address. Log an error message and return the
+error code immediately when radeon_scratch_get() fails.
+Additionally, handle the return value of r420_cp_errata_init() in
+r420_startup() to log an appropriate error message and propagate
+the error if initialization fails.
+
+Fixes: 62cdc0c20663 ("drm/radeon/kms: Workaround RV410/R420 CP errata (V3)")
+Cc: stable@vger.kernel.org # 2.6.33+
+Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  3 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    | 16 +++++++++-------
- 2 files changed, 9 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/radeon/r420.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 24ba52d76045..36738c1a5b59 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6123,9 +6123,6 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 
- 	atomic_set(&adev->reset_domain->reset_res, r);
- 
--	if (!r)
--		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
--
- 	return r;
+diff --git a/drivers/gpu/drm/radeon/r420.c b/drivers/gpu/drm/radeon/r420.c
+index 9a31cdec6415..67c55153cba8 100644
+--- a/drivers/gpu/drm/radeon/r420.c
++++ b/drivers/gpu/drm/radeon/r420.c
+@@ -204,7 +204,7 @@ static void r420_clock_resume(struct radeon_device *rdev)
+ 	WREG32_PLL(R_00000D_SCLK_CNTL, sclk_cntl);
  }
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index 698e5799e542..1082b957e7b1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -91,8 +91,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 	struct amdgpu_job *job = to_amdgpu_job(s_job);
- 	struct amdgpu_task_info *ti;
- 	struct amdgpu_device *adev = ring->adev;
--	int idx;
--	int r;
-+	int idx, ret = 0;
- 
- 	if (!drm_dev_enter(adev_to_drm(adev), &idx)) {
- 		dev_info(adev->dev, "%s - device unplugged skipping recovery on scheduler:%s",
-@@ -141,8 +140,8 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 		 * we'll fall back to full GPU reset.
- 		 */
- 		drm_sched_wqueue_stop(&ring->sched);
--		r = amdgpu_ring_reset(ring, job->vmid);
--		if (!r) {
-+		ret = amdgpu_ring_reset(ring, job->vmid);
-+		if (!ret) {
- 			if (amdgpu_ring_sched_ready(ring))
- 				drm_sched_stop(&ring->sched, s_job);
- 			atomic_inc(&ring->adev->gpu_reset_counter);
-@@ -170,9 +169,9 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 		 */
- 		set_bit(AMDGPU_SKIP_COREDUMP, &reset_context.flags);
- 
--		r = amdgpu_device_gpu_recover(ring->adev, job, &reset_context);
--		if (r)
--			dev_err(adev->dev, "GPU Recovery Failed: %d\n", r);
-+		ret = amdgpu_device_gpu_recover(ring->adev, job, &reset_context);
-+		if (ret)
-+			dev_err(adev->dev, "GPU Recovery Failed: %d\n", ret);
- 	} else {
- 		drm_sched_suspend_timeout(&ring->sched);
- 		if (amdgpu_sriov_vf(adev))
-@@ -180,6 +179,9 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+-static void r420_cp_errata_init(struct radeon_device *rdev)
++static int r420_cp_errata_init(struct radeon_device *rdev)
+ {
+ 	int r;
+ 	struct radeon_ring *ring = &rdev->ring[RADEON_RING_TYPE_GFX_INDEX];
+@@ -215,7 +215,11 @@ static void r420_cp_errata_init(struct radeon_device *rdev)
+ 	 * The proper workaround is to queue a RESYNC at the beginning
+ 	 * of the CP init, apparently.
+ 	 */
+-	radeon_scratch_get(rdev, &rdev->config.r300.resync_scratch);
++	r = radeon_scratch_get(rdev, &rdev->config.r300.resync_scratch);
++	if (r) {
++		DRM_ERROR("failed to get scratch reg (%d).\n", r);
++		return r;
++	}
+ 	r = radeon_ring_lock(rdev, ring, 8);
+ 	WARN_ON(r);
+ 	radeon_ring_write(ring, PACKET0(R300_CP_RESYNC_ADDR, 1));
+@@ -290,8 +294,11 @@ static int r420_startup(struct radeon_device *rdev)
+ 		dev_err(rdev->dev, "failed initializing CP (%d).\n", r);
+ 		return r;
  	}
- 
- exit:
-+	if (!ret)
-+		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-+
- 	drm_dev_exit(idx);
- 	return DRM_GPU_SCHED_STAT_NOMINAL;
- }
+-	r420_cp_errata_init(rdev);
+-
++	r = r420_cp_errata_init(rdev);
++	if (r) {
++		dev_err(rdev->dev, "failed initializing CP errata workaround (%d).\n", r);
++		return r;
++	}
+ 	r = radeon_ib_pool_init(rdev);
+ 	if (r) {
+ 		dev_err(rdev->dev, "IB initialization failed (%d).\n", r);
 -- 
-2.48.1
+2.42.0.windows.2
 
