@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19ADBA3F9E0
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2025 17:02:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC076A3F9E3
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2025 17:02:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C586E10EADC;
-	Fri, 21 Feb 2025 16:02:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98F3810EAE9;
+	Fri, 21 Feb 2025 16:02:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZpZQ5mjQ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="EhCxl4EW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2055.outbound.protection.outlook.com [40.107.223.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C80FA10EAE3
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 16:02:33 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2043.outbound.protection.outlook.com [40.107.212.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8746110EAE9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 16:02:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tHFK3hYf+ZPUKVxfEJ57BZHLmabd3y1S6xUWYg3O/tPymzMnoQaH5eIEdhVG7xoikmNfebRtI6eJZkZUXrR+Q7+rVAzekbKfs3wv5Ba8vMTq1WJFJpVBX4ttulAZbi7GLP6M2zBORBNv7yJ42KhYbWAM8IhQCZwchZOmWLJByN9QK6VAmWRbcMHI9PbyCOAiqHjhG4R08JzCiC2NUbUw7oO7D0ob7duwmexhj1MuMkzOyvtlkFyBu2mkjKB5xmJ4Yda8AghGz6X/IeyLSAxyuWFbcGmdazY4Uk9qXasrbrHrOhczzF6GmMr/jZraa5pfNRijUoNI3mopXiWdhV5aSg==
+ b=MzK+wzT1YZZX9hnytEcFymADHqjjmRP9dyTPDOogFWa1GABh+UrqRjlX1P6cuoD/tJojqWQioH8HGxSX/L6CFEaijgcnvDG62KXEC+XrzF1GnoLtZCS8VJrDZGosIU5i4wXRsiW/b2AnkeXT9tuvixEE0Ks9Em3RK7nBbXijxF/ZE4WCOZso8qS91SrNI3bEUpR09hZ8Useki77AjPL/or+TV/Yp4SOcuoEnJdJ5rkuptoRM+gsYFEZuHgXzBHvoxe/MK9t7A3TCPcvCJpi45OZLsjF8JJ/UU3GRujL802075CGppW/XxYtvINIkO1gm5xnDObhJ6nqqbu/nksLbEw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h09KjrrNPs/+n9ePvEGfIRN0Ms8QRSVD5An1PpLmP/I=;
- b=FUnj/VjNyLz/XXEHus4vH1xxlh1dmWf+Iat9NsvyrFt52rBqiJaYGSwHtMbmiTpl1hOsvLP4xHZRFyujpJwMW5SrLcOLR4xZS5uaz+iU3qz7BNudOhXxqHlXNLd/KHKfw/eyCFV1qvQjS3IbaYPtZ4d6ALoasXdnw9H8KxIK+aUB4nZPIt7FsBCfLBowSWFInCcv/S3Ffz3yATgHbhlKDy1LHOKRQyojfZkbtU6qQu7i9kMun4H3nazP/P07xk+dNbtt/mLYj2/hZ+9wAfGdC4X/B535K9c/nIkmtI7bCEYssxUs9m3Mof+0yrxLn0Qm1sVdzdhc4EgSiXO6lmORHQ==
+ bh=vNww3H8gQg9huoGTt2sXgFrcz4MGQ7QYuLGdA2H3yxs=;
+ b=cBEu0eL93ePa4THlOIGCX94B7key9rSoANjRO/ToQ4XpQtO7F7AKn6xv31nBCAa+JoEZ7iMIoVrEZu4W531jBoUfa95kUyxU1+bjCpCzgZkfwQ0nQkTtWS1OYrws3qdylHzy0CYu+mLBqNcIsc30jUURSdibQ5ubJVerHV9BewVbU744mI+1pDHqx9Nqq2b6LIHBjq9fRVrvl0AIvqSri1HQdy4gKRS08BohHV1eCnCMVntVOq4yZN8yB1ktMphDC2CVQAeUUJyPk8W74wbrWvvmqzm53CMyWEzGcbErguYFnvDHtqCjyDskWMR27HbCNc9vE9+YAgSHJ8mCV08IPw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h09KjrrNPs/+n9ePvEGfIRN0Ms8QRSVD5An1PpLmP/I=;
- b=ZpZQ5mjQXs0oZj9ZnjY43H0ZYJXO5+DlNDCD6nuClG/UyY5j5n6uCIWfATSQtiQTrap41lfK4Lz9PpZ2hHEc1SR5PV0cKU6Mh0+1sQ8GLCY7F9XoTIg2pNyWBrRb3Ktm3yQzKdPnziNscClE+Uv5rOxRx6mfyuUul2j4L1Sigko=
-Received: from PH7P220CA0050.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32b::28)
- by DS0PR12MB7945.namprd12.prod.outlook.com (2603:10b6:8:153::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.16; Fri, 21 Feb
- 2025 16:02:28 +0000
-Received: from CY4PEPF0000FCBF.namprd03.prod.outlook.com
- (2603:10b6:510:32b:cafe::87) by PH7P220CA0050.outlook.office365.com
- (2603:10b6:510:32b::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.16 via Frontend Transport; Fri,
- 21 Feb 2025 16:02:28 +0000
+ bh=vNww3H8gQg9huoGTt2sXgFrcz4MGQ7QYuLGdA2H3yxs=;
+ b=EhCxl4EWHfD0zGM9MMrgghc9I2NHSTnEcaqhnuPBfQYseBxUWgosvg9jLhwE56Ger0jYgrS22pV1JOy0nZNc2lOfbyqcLoPXZhFEHBg4t377t24DFEWjYxkBhiBKwtsqYuLLE5EW3V7P4ZnG3de9kL/rKailPTCPf+lSp/8qnjU=
+Received: from PH7PR17CA0060.namprd17.prod.outlook.com (2603:10b6:510:325::24)
+ by SA3PR12MB8437.namprd12.prod.outlook.com (2603:10b6:806:2f5::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.16; Fri, 21 Feb
+ 2025 16:02:30 +0000
+Received: from CY4PEPF0000FCC3.namprd03.prod.outlook.com
+ (2603:10b6:510:325:cafe::e8) by PH7PR17CA0060.outlook.office365.com
+ (2603:10b6:510:325::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.15 via Frontend Transport; Fri,
+ 21 Feb 2025 16:02:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,13 +48,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000FCBF.mail.protection.outlook.com (10.167.242.101) with Microsoft
+ CY4PEPF0000FCC3.mail.protection.outlook.com (10.167.242.105) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8466.11 via Frontend Transport; Fri, 21 Feb 2025 16:02:28 +0000
+ 15.20.8466.11 via Frontend Transport; Fri, 21 Feb 2025 16:02:30 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 21 Feb
- 2025 10:02:19 -0600
+ 2025 10:02:20 -0600
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -62,11 +62,10 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, Solomon Chiu
  <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Alex Hung
- <alex.hung@amd.com>, "Ostrowski, Rafal" <rostrows@amd.com>, Alvin Lee
- <alvin.lee2@amd.com>
-Subject: [PATCH 14/24] drm/amd/display: ACPI Re-timer Programming
-Date: Fri, 21 Feb 2025 11:01:35 -0500
-Message-ID: <20250221160145.1730752-15-zaeem.mohamed@amd.com>
+ <alex.hung@amd.com>
+Subject: [PATCH 15/24] drm/amd/display: Temporarily disable hostvm on DCN31
+Date: Fri, 21 Feb 2025 11:01:36 -0500
+Message-ID: <20250221160145.1730752-16-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250221160145.1730752-1-zaeem.mohamed@amd.com>
 References: <20250221160145.1730752-1-zaeem.mohamed@amd.com>
@@ -78,52 +77,52 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBF:EE_|DS0PR12MB7945:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f69f3c9-4535-42b8-4103-08dd529123f5
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC3:EE_|SA3PR12MB8437:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9eab627-c832-4761-6c3c-08dd5291254a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mLuW4TTkpQQsKZdnIqj6zYQ0O8tr8grX4w0xW5WDTnjkbuWpuKFprR/2v75X?=
- =?us-ascii?Q?Eo2iGlkE/hD/7uJdD3YcIOyU3/WYl6JdXMFUIn3jkysEAK+IyFtKvPwBcZG+?=
- =?us-ascii?Q?7692yR1vtjBdoU04oVTVPGJvQ7yLx+dNaFaqE2r9bv85cTSbp+ZHTRa08/qA?=
- =?us-ascii?Q?sOhHdHZi25zkS13oACs0fCZEfJYKcggV4RdwhRuuQlSKaDBt6PxYSWoCsZ+9?=
- =?us-ascii?Q?/LONsk2pC6sxh0wN1edHKV3NSudYIG8JQ+e6jhOJZOc/uCDKHVQLb57BSb+2?=
- =?us-ascii?Q?vLqoemMg7uClWI5FYEE2Wl9rQJ0TI9Nt/6KJBO0kZ+RON8j/O5rJZfDkzMzv?=
- =?us-ascii?Q?TZ9Aft5y6kdxxR+03udmNfbGPM2e0m7RXe6t5vVQLN9IYG4iJTp/yFzNB8Oa?=
- =?us-ascii?Q?0Nax6T1rWputVkUaNAIs06qzcXlvuGbtc9prjlVt+2XIl8a60pHKTcl8xLS4?=
- =?us-ascii?Q?9YyNYqyUOGvKMMiNykUFJlcWcQsZAqswzYck0r0YVN7fEVs7mNgQ+Dl8wFc+?=
- =?us-ascii?Q?wMuw/Yd7OZa9NLX+ryijBEyChrCl2x0s1JyyiENl3dAk+gxxS61FMwJXgn7Z?=
- =?us-ascii?Q?n4M20sJCWi9l8s+mDKaA+26P77tN+g7gXbnr7FlMeQF0YbqOZ4cykb7t+TBI?=
- =?us-ascii?Q?+yuziVl6SUX5uNZQRPrFWEl4g6yHRgfswZ0sm5YMSk6KpbXayMXwnCTR6aC2?=
- =?us-ascii?Q?g5SLyO5NAF4Z8Z8pjF1z9mqgHhvUutziKTL6ENFF3yHm2jgMkhlopus0XgO8?=
- =?us-ascii?Q?H/+zFgSwnZ4oC3y6ud5gAmsiu00ccwH3aYag471tq8mmkjI9qZePFTE5MBqR?=
- =?us-ascii?Q?GZQ+1CddNyhY8PEF+vcmnMVP4yJZeWSaFgHOvUhDIUYCLOKMM/v8lSNYkuGM?=
- =?us-ascii?Q?KPZZYPvgbUCfrfo0fQxJMOtMA4x+b4aUoZSZc3/16kCvuKYgxdnupJwXr56f?=
- =?us-ascii?Q?Ud3USE/QP6fRiYolIgr6kRVToFnZKSRXVoFjnj1H3usSbvae6CbnFLa9MDcM?=
- =?us-ascii?Q?ul5EyCosXXRnoemEikV01wNUojrNzSthZqscw7qNyMBHq/KTWqRP8jSnHjBt?=
- =?us-ascii?Q?F/UcYqtWJwwjutPsJ/HRvYN89MztyUUlodOz31SqA2zc3JS4iNSy8dEDjPk5?=
- =?us-ascii?Q?o4MUu3RilGpXN2+3Q0ZQ4gha+NxZnO/++xsw8aIEVpUYIVVWYyOcbToxlaxS?=
- =?us-ascii?Q?GiPvDsUJygLufOEQFqoGP1ZayBQaEeEMCG736aEEr0UkHir+R/TLMpdoPz81?=
- =?us-ascii?Q?Nc/7hVFf80EchLnSDdOxbK0chZ8Gy9DeUx3HA6gXVLjm8WKiK+XtD6v9RDIC?=
- =?us-ascii?Q?d30j/btiaQgq3RjJQrniBAIiLqyiSdmobiY1t/17rZClUtHNIU7sNUpMPfVZ?=
- =?us-ascii?Q?YnW1PTCm/nWCXxKBtsg/OXgNJ15QzZBu+X8Xw1qs0Dqn+f32LR8tfYXzdA/i?=
- =?us-ascii?Q?79ZMka7GmNIwCfVQbzM1J4bEoWJxkqDEGK/zKJvT8UZkYv+nK4GUZQk3WezU?=
- =?us-ascii?Q?JahPqf7u+NbtjE0=3D?=
+ ARA:13230040|82310400026|1800799024|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ecO2aTIfHsx8krzd8ecPy/f7nN4Gq+e1ZQMIHZIfHOtzTf/7BZcF9kATMGxb?=
+ =?us-ascii?Q?qYCwD7kk36A2IQRgYOXF8lZw6o1VYPmlUGEONB9B8oXLHMjoMSmOrXDfTy0p?=
+ =?us-ascii?Q?km4qB5koE8nf+JWwqAKUmzkxdEB7lWW3SDt+u225qVVcCCQFpuAc//qhI3eb?=
+ =?us-ascii?Q?z53aRiPZgGOw3OA7Rzv/zO3+BS0bw9PXW8mHK21cCsQelsa3B5GFvynGKiSH?=
+ =?us-ascii?Q?ng4/aaRWSqBWnld39Z98PasXpnygWQmi+WtKWvfBbLKpqBUlWwIs/4h2Nhv1?=
+ =?us-ascii?Q?kQ1tF93L18OOMJeLJRbec9Dmn8CKALkNLo84kPbbcR9WfTj4kExqOhzEJNxR?=
+ =?us-ascii?Q?zxmg7jRzGVGT1Lbl4KOLB6Wm4ggi9hZxcLu9nk29rTNU87/myObHCzRQmGKm?=
+ =?us-ascii?Q?wd7P3LLdizg4vcueLsJu12WcGFThgIBHIhvUgOuEqet2CzMpIFfNThJ1NhiS?=
+ =?us-ascii?Q?R77D01nVp3PW3x+FVqiqh9cE0b4pO5u37qEdL4HEtSvLeQ4q99uMbx+5xsnk?=
+ =?us-ascii?Q?A2rboSLcQfnVKRWL/S5Vc+cwmr4lgThNiQEqp6feXr0DUrXtd0uVEoJT38c5?=
+ =?us-ascii?Q?1IOsc4F+f8OJLAM6qGBENsx0YXR/6aVh2MxALWCyEW07nDJY0w4X0s5OVK4/?=
+ =?us-ascii?Q?Fokk9sKQRS/mZBJslbyhxhf3YyJkXgMzCRfXF00+uMBMak1TzInBdNRdAFrQ?=
+ =?us-ascii?Q?MHIvG9zGqm9rUIrE70KiTdf4hIKgfcG+mMri+Hb6vQWavyar0FP5L3CNUZUn?=
+ =?us-ascii?Q?OowvJgFfO9cHA5psXcjiIS1h/UoRKiK/FptMikL0R06mZYqfOIZEHyOpJ4/k?=
+ =?us-ascii?Q?Ge2NUdirn+YBnz7OtNNi6j/hY30htbAO1WHcbbX0ydtQxV4CfDwE7WNRK4wB?=
+ =?us-ascii?Q?wJYRTYgQDTI1/DvkIzzAHO7tuWZsRcWBQyxi6O5abXpELXqe1ixrOXGyunnq?=
+ =?us-ascii?Q?xyrb/D3jV5N209TkEEyHModF7jZra3IBTAVw3xTCkMeO3yAc6y3m2dxnPner?=
+ =?us-ascii?Q?wM52kf3tDJP5IAfkhOESADeCJH5Lr7q6xV/idFSJyVMqpKEWGNmAHMZuCO/p?=
+ =?us-ascii?Q?lLT3Zjsuis3UfYxSq1FZgp8pgL6HooeTWJTjGpQ+Rj2v1fScQEJCm+J98MFD?=
+ =?us-ascii?Q?+GbiQ8U4h+CD2O8rgu3LNCq29gsdn6KidmPvDtfwhbIB/g0npRpOpx9CfKi+?=
+ =?us-ascii?Q?hsqdXLJnNlRK+ohLVVIcl6XjmtzCMs0YiCRMgCGmNibtx+6fVTI/QTed9GLV?=
+ =?us-ascii?Q?mJ+NYXxYNKwwkxR93Kskjku2r7+U3kU5xlqhLX3VWNQIeccaF74AKBHxbUU8?=
+ =?us-ascii?Q?RCUg6s2O5AUK4Ipf+eVC7ZBcAsSAyj2i26yNIAIDzomN+OE9igPyHuG0jHp+?=
+ =?us-ascii?Q?Q+6YSWkqY8Vrju7DbGus447qWrAXwG/hjLQFgNOreNdjNawvQFs1OIKPekni?=
+ =?us-ascii?Q?YPe63L20QkOs06CJGEwBhP2r2mN4JfoBCGyV8c3ACNRCN4IzmTTgnzejVJUf?=
+ =?us-ascii?Q?EWOZIb1LDHq+yVg=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 16:02:28.1614 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f69f3c9-4535-42b8-4103-08dd529123f5
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 16:02:30.4285 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9eab627-c832-4761-6c3c-08dd5291254a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCBF.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC3.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7945
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8437
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,203 +137,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Ostrowski, Rafal" <rostrows@amd.com>
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
-[Why]
-We must implement an ACPI re-timer programming interface and notify
-ACPI driver whenever a PHY transition is about to take place.
+With HostVM enabled, DCN31 fails to pass validation for 3x4k60. Some Linux
+userspace does not downgrade one of the monitors to 4k30, and the result
+is that the monitor does not light up. Disable it until the bandwidth
+calculation failure is resolved.
 
-Because some trace lengths on certain platforms are very long,
-then a re-timer may need to be programmed whenever a PHY transition
-takes place. The implementation of this re-timer programming interface
-will notify ACPI driver that PHY transition is taking place and it
-will trigger the re-timer as needed.
-
-First we need to gather retimer information from ACPI interface.
-
-Then, in the PRE case, the re-timer interface needs to be called before we call
-transmitter ENABLE.
-In the POST case, it has to be called after we call transmitter DISABLE.
-
-[How]
-Implemented ACPI retimer programming interface.
-
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
-Signed-off-by: Rafal Ostrowski <rostrows@amd.com>
+Reviewed-by: Sun peng Li <sunpeng.li@amd.com>
+Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  7 +++
- .../drm/amd/display/dc/bios/command_table2.c  | 47 +++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dc.h           |  2 +
- drivers/gpu/drm/amd/display/dc/dm_services.h  |  7 +++
- .../drm/amd/display/dc/dm_services_types.h    | 26 ++++++++++
- 5 files changed, 89 insertions(+)
+ drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 9f53d88ad7ca..bb8ba30994b6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -12696,3 +12696,10 @@ bool dm_execute_dmub_cmd_list(const struct dc_context *ctx, unsigned int count,
- {
- 	return dc_dmub_srv_cmd_run_list(ctx->dmub_srv, count, cmd, wait_type);
- }
-+
-+void dm_acpi_process_phy_transition_interlock(
-+	const struct dc_context *ctx,
-+	struct dm_process_phy_transition_init_params process_phy_transition_init_params)
-+{
-+	// Not yet implemented
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/command_table2.c b/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
-index 7d18f372ce7a..2c96a5e64567 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
-@@ -210,6 +210,7 @@ static enum bp_result encoder_control_fallback(
-  ******************************************************************************
-  *****************************************************************************/
- 
-+
- static enum bp_result transmitter_control_v1_6(
- 	struct bios_parser *bp,
- 	struct bp_transmitter_control *cntl);
-@@ -325,6 +326,21 @@ static void transmitter_control_dmcub_v1_7(
- 	dc_wake_and_execute_dmub_cmd(dmcub->ctx, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
- }
- 
-+static struct dc_link *get_link_by_phy_id(struct dc *p_dc, uint32_t phy_id)
-+{
-+	struct dc_link *link = NULL;
-+
-+	// Get Transition Bitmask from dc_link structure associated with PHY
-+	for (uint8_t link_id = 0; link_id < MAX_LINKS; link_id++) {
-+		if (phy_id == p_dc->links[link_id]->link_enc->transmitter) {
-+			link = p_dc->links[link_id];
-+			break;
-+		}
-+	}
-+
-+	return link;
-+}
-+
- static enum bp_result transmitter_control_v1_7(
- 	struct bios_parser *bp,
- 	struct bp_transmitter_control *cntl)
-@@ -363,7 +379,37 @@ static enum bp_result transmitter_control_v1_7(
- 
- 	if (bp->base.ctx->dc->ctx->dmub_srv &&
- 		bp->base.ctx->dc->debug.dmub_command_table) {
-+		struct dm_process_phy_transition_init_params process_phy_transition_init_params = {0};
-+		struct dc_link *link = get_link_by_phy_id(bp->base.ctx->dc, dig_v1_7.phyid);
-+		bool is_phy_transition_interlock_allowed = false;
-+		uint8_t action = dig_v1_7.action;
-+
-+		if (link) {
-+			if (link->phy_transition_bitmask &&
-+				(action == TRANSMITTER_CONTROL_ENABLE || action == TRANSMITTER_CONTROL_DISABLE)) {
-+				is_phy_transition_interlock_allowed = true;
-+
-+				// Prepare input parameters for processing ACPI retimers
-+				process_phy_transition_init_params.action                   = action;
-+				process_phy_transition_init_params.display_port_lanes_count = cntl->lanes_number;
-+				process_phy_transition_init_params.phy_id                   = dig_v1_7.phyid;
-+				process_phy_transition_init_params.signal                   = cntl->signal;
-+				process_phy_transition_init_params.sym_clock_10khz          = dig_v1_7.symclk_units.symclk_10khz;
-+				process_phy_transition_init_params.display_port_link_rate   = link->cur_link_settings.link_rate;
-+				process_phy_transition_init_params.transition_bitmask       = link->phy_transition_bitmask;
-+			}
-+		}
-+
-+		// Handle PRE_OFF_TO_ON: Process ACPI PHY Transition Interlock
-+		if (is_phy_transition_interlock_allowed && action == TRANSMITTER_CONTROL_ENABLE)
-+			dm_acpi_process_phy_transition_interlock(bp->base.ctx, process_phy_transition_init_params);
-+
- 		transmitter_control_dmcub_v1_7(bp->base.ctx->dmub_srv, &dig_v1_7);
-+
-+		// Handle POST_ON_TO_OFF: Process ACPI PHY Transition Interlock
-+		if (is_phy_transition_interlock_allowed && action == TRANSMITTER_CONTROL_DISABLE)
-+			dm_acpi_process_phy_transition_interlock(bp->base.ctx, process_phy_transition_init_params);
-+
- 		return BP_RESULT_OK;
- 	}
- 
-@@ -1046,3 +1092,4 @@ void dal_firmware_parser_init_cmd_tbl(struct bios_parser *bp)
- 
- 	init_enable_lvtma_control(bp);
- }
-+
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 5e96913bcab1..f76884fe86e3 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1083,6 +1083,7 @@ struct dc_debug_options {
- 	unsigned int enable_oled_edp_power_up_opt;
- 	bool enable_hblank_borrow;
- 	bool force_subvp_df_throttle;
-+	uint32_t acpi_transition_bitmasks[MAX_PIPES];
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
+index 911bd60d4fbc..3c42ba8566cf 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
+@@ -890,7 +890,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 	.disable_z10 = true,
+ 	.enable_legacy_fast_update = true,
+ 	.enable_z9_disable_interface = true, /* Allow support for the PMFW interface for disable Z9*/
+-	.dml_hostvm_override = DML_HOSTVM_NO_OVERRIDE,
++	.dml_hostvm_override = DML_HOSTVM_OVERRIDE_FALSE,
+ 	.using_dml2 = false,
  };
  
- 
-@@ -1806,6 +1807,7 @@ struct dc_link {
- 
- 	struct dc_panel_config panel_config;
- 	struct phy_state phy_state;
-+	uint32_t phy_transition_bitmask;
- 	// BW ALLOCATON USB4 ONLY
- 	struct dc_dpia_bw_alloc dpia_bw_alloc_config;
- 	bool skip_implict_edp_power_control;
-diff --git a/drivers/gpu/drm/amd/display/dc/dm_services.h b/drivers/gpu/drm/amd/display/dc/dm_services.h
-index f81e5a4e1d6d..7b9c22c45453 100644
---- a/drivers/gpu/drm/amd/display/dc/dm_services.h
-+++ b/drivers/gpu/drm/amd/display/dc/dm_services.h
-@@ -290,6 +290,13 @@ void dm_trace_smu_delay(uint32_t delay, struct dc_context *ctx);
- bool dm_execute_dmub_cmd(const struct dc_context *ctx, union dmub_rb_cmd *cmd, enum dm_dmub_wait_type wait_type);
- bool dm_execute_dmub_cmd_list(const struct dc_context *ctx, unsigned int count, union dmub_rb_cmd *cmd, enum dm_dmub_wait_type wait_type);
- 
-+/*
-+ * ACPI Interfaces
-+ */
-+void dm_acpi_process_phy_transition_interlock(
-+	const struct dc_context *ctx,
-+	struct dm_process_phy_transition_init_params process_phy_transition_init_params);
-+
- /*
-  * Debug and verification hooks
-  */
-diff --git a/drivers/gpu/drm/amd/display/dc/dm_services_types.h b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-index facf269c4326..bf63da266a18 100644
---- a/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-@@ -275,4 +275,30 @@ enum dm_dmub_wait_type {
- 	DM_DMUB_WAIT_TYPE_WAIT_WITH_REPLY,
- };
- 
-+enum dm_acpi_transition_link_type {
-+	hdmi_tmds,
-+	hdmi_frl,
-+	dp_8b_10b,
-+	dp_128b_132b,
-+	none
-+};
-+
-+struct dm_process_phy_transition_init_params {
-+	uint32_t phy_id;
-+	uint8_t action;
-+	uint32_t sym_clock_10khz;
-+	enum signal_type signal;
-+	enum dc_lane_count display_port_lanes_count;
-+	enum dc_link_rate display_port_link_rate;
-+	uint32_t transition_bitmask;
-+	uint8_t hdmi_frl_num_lanes;
-+};
-+
-+struct dm_process_phy_transition_input_params {
-+	uint32_t phy_id;
-+	uint32_t transition_id;
-+	uint32_t phy_configuration;
-+	uint32_t data_rate;
-+};
-+
- #endif
 -- 
 2.34.1
 
