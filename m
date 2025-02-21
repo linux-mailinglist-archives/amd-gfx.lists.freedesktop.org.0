@@ -2,122 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 630ABA3F4C5
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2025 14:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EED0A3F66D
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2025 14:52:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1302810E82E;
-	Fri, 21 Feb 2025 13:00:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1091D10EA6F;
+	Fri, 21 Feb 2025 13:52:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UoqrIZv3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pxoxVBCV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2040.outbound.protection.outlook.com [40.107.237.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 448EF10EA63
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 13:00:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=G6kL7vgCeQkVx3kdlqTBKXjAUkh153pUVuIqqa10cwPhQuCepd55Y3b9557Vv0LFoqrhcgIPOKTlSAHbtWi8HGmSNeal6R8vOZzv2V9YBIJSJ/1LIhxC7PiG/GrYs0ziSmwfY8f61HI1ieY740p7rVmdv6OQql5EgYBWEpgVCVbWlGeSE4dsT8QzO52D49NPV5HmVztPemPGc8hbEpMO4I69fDx4/WNQrDsKe9uAIklcKDFjComFPJj1VpN++/Lfmy7X0IE8z0U+e1rkxniQftaWyIqkG2lkENp9+7X978zo/rU0SDCsidnrwzyC78gW495p/FWz0wO4g4YtXAGh4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6VJOH+uOzarD0yCDiacWYED9Ta9knE6EorDphGvYDHs=;
- b=cr8TKRXpkiSLCBhjXMq+qoA5fERRkXOmQaw/FkbwqgvCWv0q5l3IT7LXZXZluPL9KJ2xm2pfUWHwacaLnjQBDL/WrBdqAN0GNbbVMaV0pd2cRYz89UwFgPEWasdsvnThDLpCBulo0A7IHeOvnuePVUKdQpNa/FrqibTntfW2j4ZjNncabsaBJm/MzghfzvbIbSnNnnm1pwyfgVGzaTi9Waeo4DDBXSq10Yz8sMjzLAoJATbB+m7agHGmCiBNtOYIfYZDM3Q65UDzL9bf/4laVsf3ZbiX49a6JtFw/l8aLWHppOPlQeQLitiL4nK3X3nukOtw5Z1OhHDzlsQaxhSBlA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6VJOH+uOzarD0yCDiacWYED9Ta9knE6EorDphGvYDHs=;
- b=UoqrIZv35iBfaZ86rOhzFiGMip8psoewrwj+wMwEpPIbf25gtFRn+sXSucn2Rez4s5iZyUgLHWf9grcrzQDMa9sWMOzT4E1ZCkxxmrWfX99/bJGJJHsN+TjF/sJMh4m3VX8hPq14n3PgPpkrsHoVZp5GCFAGaaFhvGUVE8Zt7Wo=
-Received: from PH0P220CA0006.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::15)
- by PH7PR12MB8825.namprd12.prod.outlook.com (2603:10b6:510:26a::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.18; Fri, 21 Feb
- 2025 13:00:47 +0000
-Received: from CY4PEPF0000EDD5.namprd03.prod.outlook.com
- (2603:10b6:510:d3:cafe::b) by PH0P220CA0006.outlook.office365.com
- (2603:10b6:510:d3::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.16 via Frontend Transport; Fri,
- 21 Feb 2025 13:00:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000EDD5.mail.protection.outlook.com (10.167.241.201) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8466.11 via Frontend Transport; Fri, 21 Feb 2025 13:00:47 +0000
-Received: from prike-code-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 21 Feb
- 2025 07:00:44 -0600
-From: Prike Liang <Prike.Liang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Prike Liang <Prike.Liang@amd.com>
-Subject: [PATCH v2 4/4] drm/amdgpu/gfx12: Implement the GFX12 KCQ pipe reset
-Date: Fri, 21 Feb 2025 21:00:30 +0800
-Message-ID: <20250221130030.3703750-4-Prike.Liang@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250221130030.3703750-1-Prike.Liang@amd.com>
-References: <20250221130030.3703750-1-Prike.Liang@amd.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D87510E24A;
+ Fri, 21 Feb 2025 10:50:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=kEQ28sdBzLgsDKUH8AhRUDPdFZQcLwSAMN859Zgt+Oo=; b=pxoxVBCVd4H2lsmalaAQfRjoY6
+ Y3HoG5+PXVWdGKhi4GA5jK4vnFgVQhtn6XlmxQHJRAjpKAin3uK6ZdfrUwCyFHj6pKDJGBjT/kKYY
+ cTxnHynLkhNUGlSRdmvQshKMtt7qKDBr0ImfnohAHkRvI1oJHRvLMhxvx0okMZ/vZS/Gh56JHRYNA
+ Wf8PqgcxI/uWIemUHKJqhumGgYnxxNgWXx0E3IZ1VAWe4cdh8ZVtCpinNySdEuRprtU8O9QzXTHPi
+ P28E96dsajVeSFuSgucYcGdoLbBOyEBUx1RMn2cclPb5CCCJ5PyRFjeYNdGcGR/SBJ3dxqXDE+TM9
+ 3y/m22zA==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tlQc8-00G3SE-8B; Fri, 21 Feb 2025 11:50:42 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>
+Subject: [PATCH v6 0/6] drm/sched: Job queue peek/pop helpers and struct job
+ re-order
+Date: Fri, 21 Feb 2025 10:50:32 +0000
+Message-ID: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD5:EE_|PH7PR12MB8825:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d947940-178e-49d4-f1d2-08dd5277c260
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OwTEWa2+YKL37HpOYMlglVvT9jdRztsR5EESlLJU0nL0lQHVTgalKDf8hLjK?=
- =?us-ascii?Q?vobkWBeCZh8Ns2B9W0S61/GxJkf/7KZHQVTpJM4PD6ALpn0D2HhNUv8wM4Pw?=
- =?us-ascii?Q?3SfTBt5geHKLkX+8rQEumYNMm9XLsui3agzn7vA9aQueAprRwviYG+bWE9v6?=
- =?us-ascii?Q?eKO0reqBlzQxHlxCbM8IbXO03HYMukSOiGD7WuYPuyDzfTeu0QnFGwjmdyur?=
- =?us-ascii?Q?KCLA3TscofCRefX6c4H7Hd4ulion2NYqzWXVEQBN+fpfbqGLKpMkRJUdDBLj?=
- =?us-ascii?Q?CbodwVioH/xBygh7JS/HcLb2/iQ63Sg3njNZ7pKkyqVSsONz4k5Y1WijAA8T?=
- =?us-ascii?Q?9Hsfj8jXvEmuEHEE5YPnYvmSYU5EejGuC3WW6XLxILAtc5goFxJPyjNfqzLq?=
- =?us-ascii?Q?IPeiMurAwJ6wfTOGqAOBlDoH1YMCVZtMU5AN10M0jn8r0yjrGqLTcmKVOc7R?=
- =?us-ascii?Q?M9R/yK5LpDo6fN2bjkrWJx6OXKni1CbxrucHhqZm4d9ctmExHrEmlaTkTWlT?=
- =?us-ascii?Q?5up2hT8i1TtsAaPrJxnuvoxMENmvYyR7uku9ESeDsaVgXFan3bhKs6zPOiMj?=
- =?us-ascii?Q?EA5dqQ11PaQv3WnXr7y3NuLmPxLVh9rVZ7KIIL1rxkXj3m/sxFgci5T+zxDg?=
- =?us-ascii?Q?r2NrtWcja0oHLTytN6KvWpwn4ahFmjEhuIC9+GImvsE/Yt8+FQhYvWQwGWtJ?=
- =?us-ascii?Q?Dqo8YWVwaTe9L4DVGxPZ7COJEQt9JzF4komoM19K9pkdxgIqiQWlz2DKc91M?=
- =?us-ascii?Q?J5pnRwzrAjD5/XegcMpXf5b4LEhCFL/89+jhIR74fsw/4JrUDNLLyjU+4awE?=
- =?us-ascii?Q?YjtRpEhYOFgTFxC3z1uXM8SCyTwmR2HIHDmEemTCJaq399srbArVc1FtY1I+?=
- =?us-ascii?Q?eg/OIu5DTaQO+bCNEKeR4+gXaKqt/9tv3uEXL9G9qfk+sMXPQI27dOCaZwp+?=
- =?us-ascii?Q?AXRAxxVnpCbmppjPpxyTROeDtLtJAL1DC1cMcgKxXpwZS9dw6vFYA4hwRz8Z?=
- =?us-ascii?Q?f3hvd/CD/9j4zy6c7gPr1H6EWdQV2fpL4tH2bxwJmRvRCJIx9c2DFAK0saww?=
- =?us-ascii?Q?9qh3W+11irW6WdaJl7mh/OuyIrCHxj9uUb1yLC1QxF9GxVSYErP3p4DV+CIX?=
- =?us-ascii?Q?Fb7qj6bxHt+DIoyb9mgxO7qw+eSWTdQQBoW/ONXmxzg/srVHwM53UNKYvIK5?=
- =?us-ascii?Q?Xy78dun0FGP4kbWg0FrSbaygjGs2B/amZCI44bhAvn+mN4IpUDYxV3N1kOvN?=
- =?us-ascii?Q?SxnOlDgxSnJSdm/v3bN0Rm8GcwzeSS/cpDsrjsWbsFXsvaqJ4s5lkByYQoep?=
- =?us-ascii?Q?SHaeROJuukn64Imt2UYhuL1HFMfDGHA2nhA+Zj+FmCZBVdeOywosor4thba9?=
- =?us-ascii?Q?oNBUUF8OFsGC49w3K3bEMw2gkdj8h7qNimbOR4sW6agmGpHfVl47FRppr3M+?=
- =?us-ascii?Q?a3m1Knln5TRI08MYW+OCC+yBhFcaHsJXVizptC6TGieOd++kx+Qi99Lsu4t3?=
- =?us-ascii?Q?DLmGAe/AvRcUAx8=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 13:00:47.0478 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d947940-178e-49d4-f1d2-08dd5277c260
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD5.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8825
+X-Mailman-Approved-At: Fri, 21 Feb 2025 13:52:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,122 +64,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Implement the GFX12 KCQ pipe reset, and disable the GFX12
-kernel compute queue until the CPFW fully supports it.
+Lets add some helpers for peeking and popping from the job queue which allows us
+to re-order the fields in struct drm_sched_job and remove one hole.
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 90 +++++++++++++++++++++++++-
- 1 file changed, 88 insertions(+), 2 deletions(-)
+As in the process we have added a header file for scheduler internal prototypes,
+lets also use it more and cleanup the "exported" header a bit.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 79ae7d538844..103298938d22 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -5352,6 +5352,90 @@ static int gfx_v12_0_reset_kgq(struct amdgpu_ring *ring, unsigned int vmid)
- 	return amdgpu_ring_test_ring(ring);
- }
- 
-+static int gfx_v12_0_reset_compute_pipe(struct amdgpu_ring *ring)
-+{
-+
-+	struct amdgpu_device *adev = ring->adev;
-+	uint32_t reset_pipe = 0, clean_pipe = 0;
-+	int r;
-+
-+	if (!gfx_v12_pipe_reset_support(adev))
-+		return -EOPNOTSUPP;
-+
-+	gfx_v12_0_set_safe_mode(adev, 0);
-+	mutex_lock(&adev->srbm_mutex);
-+	soc24_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0);
-+
-+	reset_pipe = RREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL);
-+	clean_pipe = reset_pipe;
-+
-+	if (adev->gfx.rs64_enable) {
-+
-+		switch (ring->pipe) {
-+		case 0:
-+			reset_pipe = REG_SET_FIELD(reset_pipe, CP_MEC_RS64_CNTL,
-+						   MEC_PIPE0_RESET, 1);
-+			clean_pipe = REG_SET_FIELD(clean_pipe, CP_MEC_RS64_CNTL,
-+						   MEC_PIPE0_RESET, 0);
-+			break;
-+		case 1:
-+			reset_pipe = REG_SET_FIELD(reset_pipe, CP_MEC_RS64_CNTL,
-+						   MEC_PIPE1_RESET, 1);
-+			clean_pipe = REG_SET_FIELD(clean_pipe, CP_MEC_RS64_CNTL,
-+						   MEC_PIPE1_RESET, 0);
-+			break;
-+		case 2:
-+			reset_pipe = REG_SET_FIELD(reset_pipe, CP_MEC_RS64_CNTL,
-+						   MEC_PIPE2_RESET, 1);
-+			clean_pipe = REG_SET_FIELD(clean_pipe, CP_MEC_RS64_CNTL,
-+						   MEC_PIPE2_RESET, 0);
-+			break;
-+		case 3:
-+			reset_pipe = REG_SET_FIELD(reset_pipe, CP_MEC_RS64_CNTL,
-+						   MEC_PIPE3_RESET, 1);
-+			clean_pipe = REG_SET_FIELD(clean_pipe, CP_MEC_RS64_CNTL,
-+						   MEC_PIPE3_RESET, 0);
-+			break;
-+		default:
-+			break;
-+		}
-+		WREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL, reset_pipe);
-+		WREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL, clean_pipe);
-+		r = (RREG32_SOC15(GC, 0, regCP_MEC_RS64_INSTR_PNTR) << 2) - RS64_FW_UC_START_ADDR_LO;
-+	} else {
-+		switch (ring->pipe) {
-+		case 0:
-+			reset_pipe = REG_SET_FIELD(reset_pipe, CP_MEC_CNTL,
-+							   MEC_ME1_PIPE0_RESET, 1);
-+			clean_pipe = REG_SET_FIELD(clean_pipe, CP_MEC_CNTL,
-+							   MEC_ME1_PIPE0_RESET, 0);
-+			break;
-+		case 1:
-+			reset_pipe = REG_SET_FIELD(reset_pipe, CP_MEC_CNTL,
-+							   MEC_ME1_PIPE1_RESET, 1);
-+			clean_pipe = REG_SET_FIELD(clean_pipe, CP_MEC_CNTL,
-+							   MEC_ME1_PIPE1_RESET, 0);
-+			break;
-+		default:
-+		break;
-+		}
-+		WREG32_SOC15(GC, 0, regCP_MEC_CNTL, reset_pipe);
-+		WREG32_SOC15(GC, 0, regCP_MEC_CNTL, clean_pipe);
-+		/* Doesn't find the F32 MEC instruction pointer register, and suppose
-+		 * the driver won't run into the F32 mode.
-+		 */
-+	}
-+
-+	soc24_grbm_select(adev, 0, 0, 0, 0);
-+	mutex_unlock(&adev->srbm_mutex);
-+	gfx_v12_0_unset_safe_mode(adev, 0);
-+
-+	dev_info(adev->dev,"The ring %s pipe resets: %s\n", ring->name,
-+			r == 0 ? "successfully" : "failed");
-+	/* Need the ring test to verify the pipe reset result.*/
-+	return 0;
-+
-+}
- static int gfx_v12_0_reset_kcq(struct amdgpu_ring *ring, unsigned int vmid)
- {
- 	struct amdgpu_device *adev = ring->adev;
-@@ -5362,8 +5446,10 @@ static int gfx_v12_0_reset_kcq(struct amdgpu_ring *ring, unsigned int vmid)
- 
- 	r = amdgpu_mes_reset_legacy_queue(ring->adev, ring, vmid, true);
- 	if (r) {
--		dev_err(adev->dev, "reset via MMIO failed %d\n", r);
--		return r;
-+		dev_warn(adev->dev,"fail(%d) to reset kcq  and try pipe reset\n", r);
-+		r = gfx_v12_0_reset_compute_pipe(ring);
-+		if (r)
-+			return r;
- 	}
- 
- 	r = amdgpu_bo_reserve(ring->mqd_obj, false);
+v2:
+ * Add header file for internal scheduler API.
+ * Add helper for peeking too. (Danilo)
+ * Add (temporary?) drm_sched_cancel_all_jobs() helper to replace amdgpu
+   amdgpu_job_stop_all_jobs_on_sched().
+
+v3:
+ * Settle for a copy of __drm_sched_entity_queue_pop in amdgpu for now.
+
+v4:
+ * Expand the series with some more header file cleanup.
+
+v5:
+ * Rebase for drm_sched_init changes.
+ * Tweak kerneldoc format.
+
+v6:
+ * Added SPDX to the new header file.
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+
+Tvrtko Ursulin (6):
+  drm/sched: Add internal job peek/pop API
+  drm/amdgpu: Pop jobs from the queue more robustly
+  drm/sched: Remove a hole from struct drm_sched_job
+  drm/sched: Move drm_sched_entity_is_ready to internal header
+  drm/sched: Move internal prototypes to internal header
+  drm/sched: Group exported prototypes by object type
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  22 +++-
+ drivers/gpu/drm/scheduler/sched_entity.c   |  23 +---
+ drivers/gpu/drm/scheduler/sched_fence.c    |   2 +
+ drivers/gpu/drm/scheduler/sched_internal.h |  91 +++++++++++++++
+ drivers/gpu/drm/scheduler/sched_main.c     |   7 +-
+ include/drm/gpu_scheduler.h                | 122 +++++++++------------
+ 6 files changed, 171 insertions(+), 96 deletions(-)
+ create mode 100644 drivers/gpu/drm/scheduler/sched_internal.h
+
 -- 
-2.34.1
+2.48.0
 
