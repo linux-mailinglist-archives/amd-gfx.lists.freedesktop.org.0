@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC0A7A3F9DC
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2025 17:02:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DAEFA3F9DA
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2025 17:02:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1081710EAE0;
-	Fri, 21 Feb 2025 16:02:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE95810EADD;
+	Fri, 21 Feb 2025 16:02:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="dyZ/L98R";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="m/cL9HMQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2055.outbound.protection.outlook.com [40.107.94.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A60310EADD
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 16:02:25 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2061.outbound.protection.outlook.com [40.107.212.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2F7210EADB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 16:02:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TXv+hwESf++ux++8kQKGAqofQZ1v7+Vl6SnEmdQEpVOUittfoRohPeeVI4WxSAyxWTzlacqwXrtcfDrcpgEFZZAWXsDpdl4SplSKXl4f/up2oKseVU9sFeJi+is+rsTQFJtUEM1liSHjx7KSJ8wWZ0SnrIQ8Yqiesml7yWyxNMwg2q/q8U/6o20F57pnfKCB6uujyYCyzSLLpbSOiZYjx/4n2VDp/klqLDLkppfM04kn9/H1PEYt1ujq1A+upZyaEfil9jrMvirbgr3so/h1Tv05RjVICW6N2iBkQZdAi3x4NOcuDHtM1IHZQYlR7k8HAcuLjiWPXTxVQJjuEkFQTQ==
+ b=snHJ6YYtT7nZVAxInrqj4ma0MNodBXf+S8V2nL4KL3AUSHjmoMlUYL38NM9QwCE/mzNjruNk43lN3x//3Vg8SSsFJk/8r1Ka/LefPgX+ODtJSEQmhbiu0OBDOd8Qxi9J690oPc9ANMxw77fM210HSQrW/o/diK68PwUbgQ1YQzifxq8FTQYzfk/QfesjdHH7Vb44cApPzcP8vADmgMrX1bc+bMiLMZDu9RXfjSdo66phTwzIYwmVXN28N9Zf2M8Ji4lf7rpm+o884+NS5yYAMUjiikdJNTzqh4hcl+PhwDD+krEc6UvfZ12bIfBt2sCBPODF779yY03W7WcXwIjQCw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GjB9yZVEv7VcvpAIR7uRIINFsKrr9P+sYKLwuV8tkEY=;
- b=pVArnsauKg61bhovVsz/G7NkQl42DPjs1OZLl/GiQhhxJZN8E2lZUndpUYOA+87fhXHsDjBxolDFVyfJCgA6wIhRAH1YKKY8xXpx6ylu6Zs02gmSp8Y5Nl2Eg12Nz6E1QchDyKWj5a9BFOQYUmVsQISzWw7RDFmx1xNzfPC8e7XEV6zkDLJAkpXqr5yEhHQwcUIpKGPX5RZ6oYo5FR+F07MkHd7lOycQsYNN5Xk2Av2dhnHR7C++PM6wErqxYxkUD3e0tW/0PxlRf7ZVOVu8uUoUHrPFvAYZXCfpb836ab60SfjIzeVmjAEel9ptibV6Unwd/ju2H58OFG1K9KZ4Yw==
+ bh=R081jv5q5ZnRdjnlvuRbkOPLqptYpuS5ij+Y4wn93yE=;
+ b=qLvGAowSEXOA0yZD6s+tabcJN5h6wBg2aMJxHHG94h03NkrtXjUoCQXu5z43HcfQcBGvpeGmHBR20rGXev5EaSb5pwLGkprKgzw+vLmN1cYS1y3b4+A1R4/DrA0lkbe6uTJXkfFh2AZFD3iZLo8RBVzhkiwNJARer/jVtLZsSgHCDnvly0fAwBJ32AtNQGWokD+dSsafPkoqqE2iOsLJ0S9sLdtOyM7Y0FBwgopwr2+xpoqIdISSiZxzFLT8jHprCFBf5NVqml1CYQpad/qw+y9SElD5RYuLN0ppJtx6tWakR/chdwsMQzfxWr5izkC0WRr3Q+x97JZ3eQr4GFTuDA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GjB9yZVEv7VcvpAIR7uRIINFsKrr9P+sYKLwuV8tkEY=;
- b=dyZ/L98RtFpwkOXqDzho3P1hhg5KOyOPiZRqGS5CmnVaX28dkqVLBdAwEMkQxZYAxd+7Vgu1prbWk5KSrsHwc+FHJ0qvER8b94/oBr8p4yEtmXAHpeLTKXCqwZDO8yM9Ju2BfnOS5o3QZReiPr0QEcYWNtKPFDVyDNdalSY3GT0=
-Received: from PH7P220CA0060.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32b::29)
- by SA1PR12MB7128.namprd12.prod.outlook.com (2603:10b6:806:29c::6)
+ bh=R081jv5q5ZnRdjnlvuRbkOPLqptYpuS5ij+Y4wn93yE=;
+ b=m/cL9HMQO+Z9k6KwMUIm+pugASdKpzJsYlqIurb8p5OE41gdofO1n589p9YiNY69fA7ddsdQxFb91NUEvNGHYsEd9AfV1J4xzsnA78hhYpuf+4W2DY8L7VxDEvPbj7lf6+97kY+7RNeb0SDLyBaIVr1TqVEZt7ksi6ZcjUNZwIU=
+Received: from PH7P220CA0057.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32b::20)
+ by MW4PR12MB7360.namprd12.prod.outlook.com (2603:10b6:303:21a::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.15; Fri, 21 Feb
- 2025 16:02:21 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.14; Fri, 21 Feb
+ 2025 16:02:22 +0000
 Received: from CY4PEPF0000FCBF.namprd03.prod.outlook.com
- (2603:10b6:510:32b:cafe::c9) by PH7P220CA0060.outlook.office365.com
- (2603:10b6:510:32b::29) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:510:32b:cafe::49) by PH7P220CA0057.outlook.office365.com
+ (2603:10b6:510:32b::20) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.16 via Frontend Transport; Fri,
- 21 Feb 2025 16:02:20 +0000
+ 21 Feb 2025 16:02:21 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000FCBF.mail.protection.outlook.com (10.167.242.101) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8466.11 via Frontend Transport; Fri, 21 Feb 2025 16:02:20 +0000
+ 15.20.8466.11 via Frontend Transport; Fri, 21 Feb 2025 16:02:21 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 21 Feb
- 2025 10:02:10 -0600
+ 2025 10:02:12 -0600
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -62,11 +62,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, Solomon Chiu
  <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Alex Hung
- <alex.hung@amd.com>, Samson Tam <Samson.Tam@amd.com>, Jun Lei
- <jun.lei@amd.com>
-Subject: [PATCH 08/24] drm/amd/display: fix check for identity ratio
-Date: Fri, 21 Feb 2025 11:01:29 -0500
-Message-ID: <20250221160145.1730752-9-zaeem.mohamed@amd.com>
+ <alex.hung@amd.com>, Samson Tam <Samson.Tam@amd.com>, Alvin Lee
+ <alvin.lee2@amd.com>
+Subject: [PATCH 09/24] drm/amd/display: Fix unit test failure
+Date: Fri, 21 Feb 2025 11:01:30 -0500
+Message-ID: <20250221160145.1730752-10-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250221160145.1730752-1-zaeem.mohamed@amd.com>
 References: <20250221160145.1730752-1-zaeem.mohamed@amd.com>
@@ -78,52 +78,52 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBF:EE_|SA1PR12MB7128:EE_
-X-MS-Office365-Filtering-Correlation-Id: cf92893e-f09b-40bd-ff37-08dd52911f83
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBF:EE_|MW4PR12MB7360:EE_
+X-MS-Office365-Filtering-Correlation-Id: d156fc91-f479-40d2-3369-08dd5291201a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9nkig3T/2hp4uX3SCciZz48Lgg2F+R8b4V495VjXR1JWwIWfzKkpzWSyEkfW?=
- =?us-ascii?Q?FfsInbGvKmWQtmrZVCR7wFGXUi08s0FFUM3l3PFslLEZ0IO6gsPXrZFduME1?=
- =?us-ascii?Q?PRllfz1y8Jr3BvsmXzKS3f3XH4foBt7aNQ9tFiAouOeaSEneviNdtUBvNhfr?=
- =?us-ascii?Q?zOZBSoE//Lm9FcyHMKKHMgp7Cv90JxdkKsT/RPi4tfgB3vEBDpe9joOAYE/p?=
- =?us-ascii?Q?PoCA6XO+k3rSIW4zMOSe+CJ+vDFAPLe+Br13/MwajqJ9hPsOim1I/H8R29OT?=
- =?us-ascii?Q?6wOyPADV7+VbbMnNfbxbg9jUAe1aol3zG2PZii+2a2XWQmtbXqZ5Osm6MMqa?=
- =?us-ascii?Q?cgTXJRuftRX88BKX0ZK/FkJX+SHS5NI/fgNTMw6FoC6dbC6GAotH3EOSbPG/?=
- =?us-ascii?Q?7xNjjyiVklji2Bv0A0lb1QcJ626bTTxLs42TStCEH8VFrKEV8+nTYqafWHJR?=
- =?us-ascii?Q?HUkkyZAfz9ObMlegvC7hZgxiSSKg2Way/JdvKwvOGOOFi7ZWEX/NO8wT/BZT?=
- =?us-ascii?Q?w2VdWxLq0FmOND12pXWeQrT4r7TthZJsviEFzeCsX8MNFT/AZ+CQLF1mMGpC?=
- =?us-ascii?Q?FQ6deMIGwJSWS6rpqWwiPh38+ZJ4XC2UKev1XKVWGpTRuBoh/NrhDfhBccY2?=
- =?us-ascii?Q?LoDgaxSvFHtBpLMdUt0aw+GgPcCb+QQIEN8OSsa12V5dzsfARGiFjkFFlKL9?=
- =?us-ascii?Q?XVA/vmrqLr1wsITT66rGL27+6boBbBGrvpRwXa2O2K6x+ho/DlOvHu54q+qV?=
- =?us-ascii?Q?UoMc59ubv/imfBFCTG+zpugjmtsKBfQNm3iCK9aJQl+Wllta/CaD+wqeMG6A?=
- =?us-ascii?Q?I9HlAUNUwJxrCIzAb8pMw+PU+KqQUnZDjJ4ZP4ENwWsWLVXbX2aCgM6lQLEb?=
- =?us-ascii?Q?CSLA1YSTKx5kq3xJ8/J4PnTd5rlg2nVNEqcYqCYtbAyuCRjP0RgabaggPMeb?=
- =?us-ascii?Q?LDEnQQRkC7wfebUr6syklmh1t5IzQ91PuMnYt+IOjl2pQvTE0KSJK3OLR1pO?=
- =?us-ascii?Q?XULZZKB40lGdpHzyVU3ys+IXkeJYX6ExOX2J1aqBij/zTAC3gzEl5TmWJSFv?=
- =?us-ascii?Q?ghb9jo/Pa3Dv5NRL+MCl1V7ExHDnSnAstLyciIe1fJ6pmcV6KrjFi7OD9Eaw?=
- =?us-ascii?Q?2fASowt2EcZsC5a3/zUW5htxORxZbhFxk9EwHvfORm/G+mlOkhonRUC6a4HE?=
- =?us-ascii?Q?2b1ovyg3dpPoGzyYxwbakr+kZPef38YO+nqG/rnroYPQxEv78qdKbkSrDwGM?=
- =?us-ascii?Q?190Ftd+U7lWpJTYT89oGYiMZep3x3rqjICcaMe1I/oUiscH1ASmiTFLkGLVf?=
- =?us-ascii?Q?Xt5vHqfHsQwXCSTOmCM2S+YQiLD7Jikdj8u98nXd2qzHDXdlIMFSrBgIsAak?=
- =?us-ascii?Q?RiV5V+AxEA7G+8tPIZXdmianKycWBbXPvbAWckOIMmKGTs1jFwero1ExSaO7?=
- =?us-ascii?Q?SVots9Ju0Gtu54geWAJi++NjOWUvslg5FoUgds02BQShzFrutAx6Jk7BDR4I?=
- =?us-ascii?Q?3JK0mz3m3AsQggg=3D?=
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?6/urNT2/cGv/odflmNALEVYRBTMZVl96SI4BBm9F4lHNPpnvUH38R3r0z9U1?=
+ =?us-ascii?Q?oqAbNewYChxhlgWWfZbDcEJujPDhYbNDrjx1wsWXWPSNt9VQBl1KSQ7taK6B?=
+ =?us-ascii?Q?3GNpj0S51uxua2VarP53kYnKsZHFezsXnrpejt1iNLpz9rSiJMn0RYVGgVm4?=
+ =?us-ascii?Q?J+sWfCg8yNwvPofYSg05ERbx+jhdzxJ86IBfNSCjTqfwD9xVuuVy1/H5aOD9?=
+ =?us-ascii?Q?9hyIEIzvojlR6fNDEGDm6pTRlZI1/5jNt2T8zPCtE1YZ+G2QYYBBrw1JNUws?=
+ =?us-ascii?Q?Xle10bnDP5V4k/aaNLZgDpzk6NmOBcfN7v3ZcxEdE/5+dgRSHd0Bz2G1dV6p?=
+ =?us-ascii?Q?o1HRT5GJxL4ceYCOMLZNT2HENB6+tUSGctllGjWg5yVXwuV9BAvZ0GzojCLn?=
+ =?us-ascii?Q?Ju58GwwTNC8ammEUCiTWEkqdFd0Bs7ntVj18jUwNG5m8rLw+mpUzE2mJx/pq?=
+ =?us-ascii?Q?X4lf0zauezG3KKAOuIDkvAMwPmQdoOYazYJQngYsHTXlzig8tisjqa/aOD9Y?=
+ =?us-ascii?Q?4ZFUIWcr5eMVH9amU6io8aYNB6LG6sNjmVlEdU62J6AtKhK2E5KB3r36TjiW?=
+ =?us-ascii?Q?4kXBmttLeXFyugIKVyjOLoBClwNo+iL0uzNE7bKDdMtnmQzUkNv2wiGJrrC7?=
+ =?us-ascii?Q?7h0THbiec/M4UnZh29nvuJt8ICKyM31JjNDVjb5xbw9CBmacAbL9M+9GWxRc?=
+ =?us-ascii?Q?v9XzDvbxfGIZqHzzEAmB5AqkU3xx5KCcwpDlkqe0qoSRW4e8IKaPAPEICTDM?=
+ =?us-ascii?Q?Vt7h+XJxI4slw0yWZy/+shEl/rTytbrsDSH6l5IR3FwENuzQ/8AqbSot9cSj?=
+ =?us-ascii?Q?qCTUqMcAWDv30mHviytdyRGlZyMpU/n2V/IF17xc48vXthg1hiSqEEuO6f8L?=
+ =?us-ascii?Q?VTn6Wo+RjWXdphrQGZYQ+6zCesxz8E4ZoLydASXj18QrMdX24eAemHulQNNN?=
+ =?us-ascii?Q?yYPmEtvDiISGKw1eYOBSxj9ZZ6LHr3Ljx6Heies5hFZveTFELanBuM/8d7Ms?=
+ =?us-ascii?Q?OAMSI4Jzj/acSXOo+slcmMNlh3J0OWnxdyv+hRr8E9z24NXVA6/uYsc0j/BZ?=
+ =?us-ascii?Q?edcWv5nIC2NE+Yyi/2GIP0SelG+62PLwrOMek3cUrfryIQUoWvrDsxT+muOp?=
+ =?us-ascii?Q?R5dB9zryJnWtKAbRiQ7YFXyPw7jg7qzv0qV2RnfS/5p+S/95JKZ8fbb56YQe?=
+ =?us-ascii?Q?XCebs4j9aSKV+sS9MaTAoiKCUkVsAnYf7oMDhNXhhkY+1Eb6pNeTktT/bc6W?=
+ =?us-ascii?Q?3i8gMPTxEN03CPgtURAd19ghTIgSFuphGUUBCEDAtBGy0Z/Pv88V4dCXPvtj?=
+ =?us-ascii?Q?o+JfQ8jcZg5LtOMgKOp24EkrAYJmkr9n3wy1wq0IiQNjcLP0ojtqAOchzndg?=
+ =?us-ascii?Q?nzxbc3F4siJVx4Gmctk7SLGOuGqvmYdD57SESWBz9INlWHtF4tIv09XwCELJ?=
+ =?us-ascii?Q?SlwC1igjEM4MPoA662hlBzb4ehIBTK9Me7c0DXz56MvIdA7IwS/nopOUg5Oi?=
+ =?us-ascii?Q?5PnADo8Sa2B5Ovs=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 16:02:20.7395 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf92893e-f09b-40bd-ff37-08dd52911f83
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 16:02:21.7239 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d156fc91-f479-40d2-3369-08dd5291201a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCBF.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7128
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7360
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,66 +141,48 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Samson Tam <Samson.Tam@amd.com>
 
 [Why]
-IDENTITY_RATIO check uses 2 bits for integer, which only allows
- checking downscale ratios up to 3.  But we support up to 6x
- downscale
+Some of unit tests use large scaling ratio such that when we
+ calculate optimal number of taps, max_taps is negative.
+ Then in recent change, we changed max_taps to uint instead
+ of int so now max_taps wraps and is positive.  This change
+ changed the behaviour from returning back false to return
+ true and breaks unit test check
 
 [How]
-Update IDENTITY_RATIO to check 3 bits for integer
-Add ASSERT to catch if we downscale more than 6x
+Add check to prevent max_taps from wrapping and set to 0
+ instead
 
 Signed-off-by: Samson Tam <Samson.Tam@amd.com>
-Reviewed-by: Jun Lei <jun.lei@amd.com>
+Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/sspl/dc_spl.c | 21 +++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/sspl/dc_spl.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/sspl/dc_spl.c b/drivers/gpu/drm/amd/display/dc/sspl/dc_spl.c
-index 3d85732cc0f5..047f05ab0181 100644
+index 047f05ab0181..ad77cef57ac7 100644
 --- a/drivers/gpu/drm/amd/display/dc/sspl/dc_spl.c
 +++ b/drivers/gpu/drm/amd/display/dc/sspl/dc_spl.c
-@@ -8,7 +8,7 @@
- #include "dc_spl_isharp_filters.h"
- #include "spl_debug.h"
- 
--#define IDENTITY_RATIO(ratio) (spl_fixpt_u2d19(ratio) == (1 << 19))
-+#define IDENTITY_RATIO(ratio) (spl_fixpt_u3d19(ratio) == (1 << 19))
- #define MIN_VIEWPORT_SIZE 12
- 
- static bool spl_is_yuv420(enum spl_pixel_format format)
-@@ -887,6 +887,8 @@ static bool spl_get_isharp_en(struct spl_in *spl_in,
- static void spl_get_taps_non_adaptive_scaler(
- 	  struct spl_scratch *spl_scratch, const struct spl_taps *in_taps)
- {
-+	bool check_max_downscale = false;
-+
- 	if (in_taps->h_taps == 0) {
- 		if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.horz) > 1)
- 			spl_scratch->scl_data.taps.h_taps = spl_min(2 * spl_fixpt_ceil(
-@@ -926,6 +928,23 @@ static void spl_get_taps_non_adaptive_scaler(
+@@ -1026,12 +1026,18 @@ static bool spl_get_optimal_number_of_taps(
+ 			lb_config, &num_part_y, &num_part_c);
+ 	/* MAX_V_TAPS = MIN (NUM_LINES - MAX(CEILING(V_RATIO,1)-2, 0), 8) */
+ 	if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert) > 2)
+-		max_taps_y = num_part_y - (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert) - 2);
++		if ((spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert) - 2) > num_part_y)
++			max_taps_y = 0;
++		else
++			max_taps_y = num_part_y - (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert) - 2);
  	else
- 		spl_scratch->scl_data.taps.h_taps_c = in_taps->h_taps_c;
+ 		max_taps_y = num_part_y;
  
-+
-+	/*
-+	 * Max downscale supported is 6.0x.  Add ASSERT to catch if go beyond that
-+	 */
-+	check_max_downscale = spl_fixpt_le(spl_scratch->scl_data.ratios.horz,
-+		spl_fixpt_from_fraction(6, 1));
-+	SPL_ASSERT(check_max_downscale);
-+	check_max_downscale = spl_fixpt_le(spl_scratch->scl_data.ratios.vert,
-+		spl_fixpt_from_fraction(6, 1));
-+	SPL_ASSERT(check_max_downscale);
-+	check_max_downscale = spl_fixpt_le(spl_scratch->scl_data.ratios.horz_c,
-+		spl_fixpt_from_fraction(6, 1));
-+	SPL_ASSERT(check_max_downscale);
-+	check_max_downscale = spl_fixpt_le(spl_scratch->scl_data.ratios.vert_c,
-+		spl_fixpt_from_fraction(6, 1));
-+	SPL_ASSERT(check_max_downscale);
-+
- 	if (IDENTITY_RATIO(spl_scratch->scl_data.ratios.horz))
- 		spl_scratch->scl_data.taps.h_taps = 1;
- 	if (IDENTITY_RATIO(spl_scratch->scl_data.ratios.vert))
+ 	if (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert_c) > 2)
+-		max_taps_c = num_part_c - (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert_c) - 2);
++		if ((spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert_c) - 2) > num_part_c)
++			max_taps_c = 0;
++		else
++			max_taps_c = num_part_c - (spl_fixpt_ceil(spl_scratch->scl_data.ratios.vert_c) - 2);
+ 	else
+ 		max_taps_c = num_part_c;
+ 
 -- 
 2.34.1
 
