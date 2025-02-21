@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60ED4A3F931
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2025 16:43:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C10B8A3F92F
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Feb 2025 16:43:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6CC410EAAF;
-	Fri, 21 Feb 2025 15:43:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 700E610EAA3;
+	Fri, 21 Feb 2025 15:43:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uHvrWdaW";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1nsw+OZS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2050.outbound.protection.outlook.com [40.107.237.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D64910EAA3
+ (mail-bn8nam12on2080.outbound.protection.outlook.com [40.107.237.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E94D10EAA6
  for <amd-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 15:43:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pTILMQZgkXnoMTwUK8M/uaIsvPjkmKVQkPGiEn9FlZnWk7JSRwHJyweH21VbtwpL0RhYV0ehujkx6ULS5qYMSH8DqRdjgzvir3ogRFgULNPpv5DFdY4XEITdT2Wg7e1nQ9hMN1XZLHCFBjGwchT4O/0T2d3cJaEh44CPPA4DYn1OJ/g/fbwo0J9SYMWcA4sAVIkfU6Dnvuinv8ND/BpmgHgAZEbeewVyf9PS+03eP8DWqXgxp9B4wtHPEgfXtaOrXF6YwQKaMUTTSyhpwQ65u/aKoSb2VndhQc+43NS13a2gTnG6d/cp33VHpaucqt5g+daYMkWeMj2HiqVck4fdZQ==
+ b=JaLZhR5z8qCXinNfLKBLluMJC2NryeShGKM+FlopGv/UGhtWuIov6XS4oubx0uAzMGaJ9G2SVoxxXhrG2HJE7TVPyk3GjCs1QvM3YWgoe3Cq+1fO/dSdnbdbrzxcCJILbQGasK7WznDxAJ+XGcDihM0SjZiQglFJMIWBrog9SZjQyqvRX3NOu0iHLg+AmM7xrFUu2hLeRv4iuGXLZeqsFzvpM2SFaMmVIh4e0Cl9sWtHtKleVfLNUklwot8ROz8SIXkgTc8igrLYOVWQO7eFYOPbuOffQVRWI6uYJgKY7Sb6oWQ/PYFFG9LZgNCu0cr6wHb64y14FWG6X35Mn9p34w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OLQmiF+hmbPkSH4EoA+yDOhruXL0MrZYurVJlRGAZpw=;
- b=w0KPuMbTpAXXY0pUwmzEQq6PjVjLFe8A/t+P4ZDYSF3ZAglhykNl35afm9b5g6rlV/bZPAz8ato98W0nvaVddWE+HuwbxT3jdfARX/eWSRPgkkPpqGiDC0GTQHiU5hof1uzuTsY+Ji1Zg9seARHI82oEmcP1pw7VxzMStxLG1oNS32GjLkJsCUM0bV2hgODthJyoH2mWcNZssG+Rdq9YxsmQ3ChzJ2gDNhdzN8sZv9DqCupZqj+Lt4WrqaOkdgU0SseR6ngGhUpmdU3a7XNy/VxaksKtDI8ohXSsCuoZVq2UwgBCRl/XSNVoAgagjjdaUeI5wkQlsb807OCAbWoRzQ==
+ bh=0zkva3OIzTY6VaYUVsGElxy7oQ5Lu+lbw5SIPfLbhE0=;
+ b=Ar72jZt//Q+IJaF41MyvcwEmnNsXCmX7qOGE7BzMb6APZQiCSLrhPcy6xkdhsRn021jthyyxx4iYeGkp+3YxmOUd3Zrrw41rDo7Grk31GyNnf/pbh61+kBzmPSXmK2bZs+AfI6/7DFRFvOmpMMXu/BG85EmKhK+ZJLV1DcVCqvzJ6ABGAPWv6JVQau2HNNAE2QAyIIm+0TfnPzwwGtv6RE9pOMVlki69ckpKi2ogyf4ja/0bymJvNMGpnStv0+ZJhp7u0h94PZmlaLN598jiRaSomtUfntoNrvwb1Ngdip0YMcmheQk4QaNRVZdsRUuB3OlJjLDqUrki+vc3papLUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OLQmiF+hmbPkSH4EoA+yDOhruXL0MrZYurVJlRGAZpw=;
- b=uHvrWdaWS5qXYmUIU8ibajdK+UM0rZorsQhBmrxpIreiaxMvHk4J4nb0MGnub9PRpDJWpeKG5jUncEU91/stDk8D8Jq388ogXyjAQ1B47GTz3831WSIiegjAOFkiryRlPzR9HLmiWC1E2yjdTAUxOLo2CfuGYe3/kSD4ns0THfA=
-Received: from SJ0PR05CA0141.namprd05.prod.outlook.com (2603:10b6:a03:33d::26)
- by PH0PR12MB8821.namprd12.prod.outlook.com (2603:10b6:510:28d::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.16; Fri, 21 Feb
- 2025 15:43:34 +0000
+ bh=0zkva3OIzTY6VaYUVsGElxy7oQ5Lu+lbw5SIPfLbhE0=;
+ b=1nsw+OZSEdzLyjUJmJ8Div2CMGdhXGGfyDAv8HXw3AowAdJLm0d6SS/JZufe6nXBoPN3FQu0KEyuRxId+sWpvVoucWfRvFDRYMBDao9xQSAes0f8LdLYP+U/pvirupa3zH7MgY22oDJ18PbsGQiULJwjJaRRDffxjwJ8M6BKU6M=
+Received: from SJ0PR05CA0139.namprd05.prod.outlook.com (2603:10b6:a03:33d::24)
+ by DS0PR12MB9423.namprd12.prod.outlook.com (2603:10b6:8:192::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.17; Fri, 21 Feb
+ 2025 15:43:35 +0000
 Received: from CO1PEPF000066EB.namprd05.prod.outlook.com
- (2603:10b6:a03:33d:cafe::11) by SJ0PR05CA0141.outlook.office365.com
- (2603:10b6:a03:33d::26) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:a03:33d:cafe::c5) by SJ0PR05CA0139.outlook.office365.com
+ (2603:10b6:a03:33d::24) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.15 via Frontend Transport; Fri,
- 21 Feb 2025 15:43:34 +0000
+ 21 Feb 2025 15:43:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1PEPF000066EB.mail.protection.outlook.com (10.167.249.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8466.11 via Frontend Transport; Fri, 21 Feb 2025 15:43:33 +0000
+ 15.20.8466.11 via Frontend Transport; Fri, 21 Feb 2025 15:43:35 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 21 Feb
- 2025 09:43:31 -0600
+ 2025 09:43:32 -0600
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -63,10 +63,13 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, Solomon Chiu
  <solomon.chiu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Alex Hung
  <alex.hung@amd.com>
-Subject: [PATCH 00/24] DC Patches FEBRUARY 18, 2025
-Date: Fri, 21 Feb 2025 10:42:48 -0500
-Message-ID: <20250221154312.1720736-1-zaeem.mohamed@amd.com>
+Subject: [PATCH 01/24] drm/amd/display: Revert "Disable PSR-SU on some OLED
+ panel"
+Date: Fri, 21 Feb 2025 10:42:49 -0500
+Message-ID: <20250221154312.1720736-2-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250221154312.1720736-1-zaeem.mohamed@amd.com>
+References: <20250221154312.1720736-1-zaeem.mohamed@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -75,52 +78,52 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066EB:EE_|PH0PR12MB8821:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45dc08b8-7114-4292-255d-08dd528e7fdc
+X-MS-TrafficTypeDiagnostic: CO1PEPF000066EB:EE_|DS0PR12MB9423:EE_
+X-MS-Office365-Filtering-Correlation-Id: bea21d3d-8720-4667-920f-08dd528e80ab
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Hfy96BGF9SFXQpsFE6Cr9WAfcv38SP0fbnz5SMI8xYU3W5h6FGxPFkaIEA6q?=
- =?us-ascii?Q?Qx8ArQ/djtUNzR/XsN79plICyWI9ldYCkPYrLUnN/PPtJ5KnKruDdBhtmN0I?=
- =?us-ascii?Q?q1/arFEEoOQwTmB7gOAXrRaNvA114xfTIYfsYOwyaf5sjjfAasW0QImA7fen?=
- =?us-ascii?Q?TBAHGvdSYzSeOanb+gLUJ/P0RPAdet/0RFoy0eQgty+wcZbuhAVxQUTQG1Ty?=
- =?us-ascii?Q?92mKjA+yNLY2MPY2yB1QL7MGD1Aq2Gn0EX3mFUjgQIpszPLHgf4GkP5I1lHK?=
- =?us-ascii?Q?eWkNpJlpqd1vqMH9qNLyOaSqxpCXUvT6fJ52DoJGPfPRaLrhsbaRKhQwlSU6?=
- =?us-ascii?Q?LupauVM84RZXcGW+hBP2ywdhomx7Ls5gvmnyiKyuNsvOV5C/qrLBwQeH1MCv?=
- =?us-ascii?Q?3qK6SBcLxoghDBmuGLia4SBMFg/0jT0PZdBMMVfn9rL2bH7BcP9JYqe5q2EW?=
- =?us-ascii?Q?NsmAZN2myk289EgAIgg+7hhXL/c+Cy0fphUGoHl1a4CkiEzUmM9VYK8fvw0y?=
- =?us-ascii?Q?9r0uSYbF13B3IIyBqRThKXMWQQulKaYTcDpMUDprDtb6MmoAVYfegVdgFJqc?=
- =?us-ascii?Q?2hriHe3YrYjshXLcaKHmqlY6CazEkcNGpL941xPfSMqY8iALfCOgUCzjCkhA?=
- =?us-ascii?Q?EpkCcqPKDssY/BP0f2IN7gk78KHifNMHMVtXxrThWPbAn59KNyakucu6NeI9?=
- =?us-ascii?Q?eYjnFpzKXUgB9PBWfXEuZLRLWR3G7RSDRwugMI7wXVve2KmGcPZjPibZYbgi?=
- =?us-ascii?Q?C/UkzK3uY+PIzVq9LB4Ob0Q6GYiIyEIBaYTIgEH8ggLx5iBJHLqrnHkgQVLL?=
- =?us-ascii?Q?eRn8jZG1RJSAVV2u/Si7Z4QTVcej2oRZZg+hFC9R3WfTG9jP6T8nKUwTrqe1?=
- =?us-ascii?Q?n0GrvkKW4xs/BPLYmy37cqozeH0P/7m7IHvzs4pqkJYIE24EajJJ9LJ5Xma9?=
- =?us-ascii?Q?ern+LqVFwsB/xK2m7z7BvPXNHUOLOhtrnlgfDcdCrtNrqq0eptcEk3sYTLZu?=
- =?us-ascii?Q?8fCGl9kRLftwIO4rXpULpKZQRP88g/OEJJ9w9VwLJ/G/Srd+hvtQPwpEzC0m?=
- =?us-ascii?Q?FjwZfAFitpoVGrNBNGeM0Qf1jO9KI5Icqs79L43YytkyVhasXlcoltSd/Vn+?=
- =?us-ascii?Q?9yuB6z7lzx1ZAdTGEmDoAyNH5lITd3rqr49+mXkKaaBiHTsYYFC6eSau4QvS?=
- =?us-ascii?Q?6MaGYdUmUXen1OCDZgCE62QJAVyB4qKHQCpKsp/I+7pE7OVYXE0K1Oytd2r9?=
- =?us-ascii?Q?JW3gqfaWRT2/htYZy3eOT3pNfr9NURPIWqK536Iub2BLbX92unBkUtb7tPQN?=
- =?us-ascii?Q?lOEMUrn3R3803TTL+Vn/0kBdiyzS8PgqkRJ9W/TIFy26j8skA18xOzMWDZ/a?=
- =?us-ascii?Q?Kt02qzQ9IIbQ+dZTDbHLLcrJg+g9DZHQARrxViXKDpqy7Guw5pwG1X5aF4Rq?=
- =?us-ascii?Q?MQ17a2blAfMdZr1FT+6SVW1CN9TzG8KPrKWaDo0vxbw0M8iKU4s6HnKLf+sh?=
- =?us-ascii?Q?DxH+1OGD4JlvyCQ=3D?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8t4z9WqkkgjN6uNSiMbFIv0ivtnN034hEfjibciKV03aXaKs9YTTk0NvQhq7?=
+ =?us-ascii?Q?7U4YI7qxx5gUNZbebUp++10DbShVlBb0oLuSOPWG/sQD8MXwkvwJ80RBTPik?=
+ =?us-ascii?Q?Zo59Xtg7ipqngndxdjKhvCVlqnWLsr8oKG7GdoYQ63eJ5HHfSb2yVBfrAbdD?=
+ =?us-ascii?Q?skO2lOrQA4oGwV2y59x2Vbg09UrbWQ+PC91wW7i9CtDsjTWnkXDziex4Ef4y?=
+ =?us-ascii?Q?S264HKQqU8kKt3jH38chEJth8pkm0ZmRazR/JqS7wDmj+ln9/tsVTOkEJYFK?=
+ =?us-ascii?Q?F/WmBef1JrYuWteM9oB0R03t5wOSsnHY/yi1s0J9URZ72ENha2apP+SYXsCY?=
+ =?us-ascii?Q?icVrG/Zo/B/HU/QpLlOZYkyW68iCWsVn8EXWMjlT2h4K002ARryunlkjKT6/?=
+ =?us-ascii?Q?NoeBmUkjI4aRIs4RwaEbbAHbUYN1aTf8aLdw6wohiRavwzSd4ZSGR7P9WTSx?=
+ =?us-ascii?Q?6cg61r3gkN4xxa+W8hmQHGM+30oJ53l8Rmgi95nDYD0/O6ssquOdDlNPgQ3o?=
+ =?us-ascii?Q?3bUkX/3WxJh//NQWUc0IpWbR7ej4nsIUQJyD/n1qwlOg6zGpWgFw7J5mYZYe?=
+ =?us-ascii?Q?4yQpLwWE7D+PimizLTDfwl47A6SGkImB1vxUtdquyePzM0AwHCuR93Q+FE8F?=
+ =?us-ascii?Q?T2FhN0tNneGHjNUsEMlLqRuAt1NIyZY/e/yxMgLjW3jiOa/8uAh+K+U6fJKo?=
+ =?us-ascii?Q?0xfQLidx17xZmhC+MyPdyqcO60Lpg8/Si7vA0Pot6GrI6qP5O2FOFhML3NS6?=
+ =?us-ascii?Q?KYBfRvAE6jkXsYg8wRPYtVmnmt1ixCDW80O0+gqBao/tKaTBAFrL6f+yti6q?=
+ =?us-ascii?Q?eO+5NMekwyNzYyl8MQuCEAtZuUfgzLLnF+fNcyQ0vJPVDgRHoqypYpuCLJkK?=
+ =?us-ascii?Q?IebAqHNm2lgk09A++iP6xv3dKFzoEmsLYa4YbTGlGatTbWzBx17q3hBN9/BF?=
+ =?us-ascii?Q?rPzlDcu4rOmDRui261CneXoWfW47WMFSEr2gT1eJeucYwE4qlUJQ3kVZYESr?=
+ =?us-ascii?Q?lm5jSAYPi7wqr7KLl0h5hV/CAJGi91p0UqELlCiM+v90hfit9GPDxVbAbZpJ?=
+ =?us-ascii?Q?XCdnTXd2V+QyD6bOjPOCJ9QUIE3Lqm5E99KggKj/Y14TO4KvSmg16Kb1IX/7?=
+ =?us-ascii?Q?XS1pgfbHO2EA3ZtcQTbfrVlLT6TaLfUs+izRs6pZ8haZmLeuPoDHLV2RmCPQ?=
+ =?us-ascii?Q?T2eZ1Uuowr+i4HpJDlk9lv80F52vHSvbPO5/MmyzqlU5RIwY8Cn94AKaTtEr?=
+ =?us-ascii?Q?qzEmNHrIUDRcc4o0KlECrG/ilaC4FqKx2EMg3rdUMhFzE0WguhiSkkqDN32/?=
+ =?us-ascii?Q?5W6XP4oIYVgMCr0+We5iV59jlwT1wxsD9FckwP7yPKRuIkuKy+HNMKxE1FqE?=
+ =?us-ascii?Q?g5oXa44/b8v7hhfO13oc8EXH2uZVHw9pwIHi7NPBgPlHYKArtI//p1tkXucR?=
+ =?us-ascii?Q?6OM7IM1vIFhOQBMsTqG2xmRe7d9eQ8lnYe0V0/aFeq/b2pzQtujTn7+M5ND3?=
+ =?us-ascii?Q?Bq8JJzBQzIW5VrA=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 15:43:33.8883 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45dc08b8-7114-4292-255d-08dd528e7fdc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2025 15:43:35.2477 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bea21d3d-8720-4667-920f-08dd528e80ab
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000066EB.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8821
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9423
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,137 +138,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings iprovements in multiple areas. In summary, we have:
+From: Tom Chung <chiahsuan.chung@amd.com>
+
+This reverts commit 9b908d788090911d339a217c015e0022e8020b75.
+
+We planning to disable the PSR-SU and fallback to PSR1 for
+all eDP panels not only for specific eDP panel temporarily.
+
+Reviewed-by: Sun peng Li <sunpeng.li@amd.com>
+Signed-off-by: Tom Chung <chiahsuan.chung@amd.com>
+Signed-off-by: Roman Li <roman.li@amd.com>
+---
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c | 20 -------------------
+ 1 file changed, 20 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
+index 104f03868266..45858bf1523d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
+@@ -30,23 +30,6 @@
+ #include "amdgpu_dm.h"
+ #include "modules/power/power_helpers.h"
  
-- Disable PSR-SU on eDP panels
-- Fix HPD after GPU reset
-- Fixes on dcn4x init, DML2 state policy on DCN36
-- Various minor logic fixes
-  
+-static bool is_specific_oled_panel(struct dc_link *link)
+-{
+-	if (!link->dpcd_sink_ext_caps.bits.oled)
+-		return false;
+-
+-	/* Disable PSR-SU for some OLED panels to avoid glitches */
+-	if (link->dpcd_caps.sink_dev_id == 0xBA4159) {
+-		uint8_t sink_dev_id_str1[] = {'4', '0', 'C', 'U', '1'};
+-
+-		if (!memcmp(link->dpcd_caps.sink_dev_id_str, sink_dev_id_str1,
+-		    sizeof(sink_dev_id_str1)))
+-			return true;
+-	}
+-
+-	return false;
+-}
+-
+ static bool link_supports_psrsu(struct dc_link *link)
+ {
+ 	struct dc *dc = link->ctx->dc;
+@@ -57,9 +40,6 @@ static bool link_supports_psrsu(struct dc_link *link)
+ 	if (dc->ctx->dce_version < DCN_VERSION_3_1)
+ 		return false;
  
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
-
-Alex Hung (1):
-  drm/amd/display: update incorrect cursor buffer size
-
-Assadian, Navid (1):
-  drm/amd/display: Fix mismatch type comparison
-
-Aurabindo Pillai (1):
-  drm/amd/display: Temporarily disable hostvm on DCN31
-
-Charlene Liu (1):
-  drm/amd/display: fix dcn4x init failed
-
-Krunoslav Kovac (1):
-  drm/amd/display: Remove unused header
-
-Michael Strauss (1):
-  drm/amd/display: Update FIXED_VS Link Rate Toggle Workaround Usage
-
-Mike Katsnelson (1):
-  drm/amd/display: stop DML2 from removing pipes based on planes
-
-Navid Assadian (2):
-  drm/amd/display: Add opp recout adjustment
-  drm/amd/display: Add SPL namespace
-
-Nicholas Kazlauskas (2):
-  drm/amd/display: Apply DCN35 DML2 state policy for DCN36 too
-  drm/amd/display: Increase halt timeout for DMCUB to 1s
-
-Ostrowski, Rafal (1):
-  drm/amd/display: ACPI Re-timer Programming
-
-Patel, Swapnil (1):
-  Refactor DCN4x and related code
-
-Peichen Huang (1):
-  drm/amd/display: replace dio encoder access
-
-Roman Li (1):
-  drm/amd/display: Fix HPD after gpu reset
-
-Samson Tam (3):
-  drm/amd/display: Fix mismatch type comparison in custom_float
-  drm/amd/display: fix check for identity ratio
-  drm/amd/display: Fix unit test failure
-
-Taimur Hassan (2):
-  drm/amd/display: [FW Promotion] Release 0.0.255.0
-  drm/amd/display: Promote DAL to 3.2.322
-
-Tom Chung (2):
-  drm/amd/display: Revert "Disable PSR-SU on some OLED panel"
-  drm/amd/display: Disable PSR-SU on eDP panels
-
-Yihan Zhu (1):
-  drm/amd/display: handle max_downscale_src_width fail check
-
-Yilin Chen (1):
-  drm/amd/display: add a quirk to enable eDP0 on DP1
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  76 +++++-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c |  14 ++
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c |  23 +-
- .../drm/amd/display/dc/bios/command_table2.c  |  56 ++++-
- .../display/dc/bios/command_table_helper2.c   |   3 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |   2 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |   4 +-
- drivers/gpu/drm/amd/display/dc/dc_dp_types.h  |   8 +
- .../amd/display/dc/dccg/dcn20/dcn20_dccg.h    |  94 ++++----
- .../amd/display/dc/dccg/dcn401/dcn401_dccg.c  |   2 +-
- .../amd/display/dc/dccg/dcn401/dcn401_dccg.h  |   5 +-
- .../dc/dio/dcn401/dcn401_dio_stream_encoder.c |   2 +-
- .../dc/dio/dcn401/dcn401_dio_stream_encoder.h |   5 +
- drivers/gpu/drm/amd/display/dc/dm_services.h  |   7 +
- .../drm/amd/display/dc/dm_services_types.h    |  26 +++
- .../dml2/dml21/src/dml2_core/dml2_core_dcn4.c |   2 +-
- .../display/dc/dml2/dml2_dc_resource_mgmt.c   |  26 ---
- .../display/dc/dml2/dml2_translation_helper.c |   1 +
- .../drm/amd/display/dc/dml2/dml2_wrapper.c    |   3 +-
- .../drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c  |  11 +-
- .../amd/display/dc/dpp/dcn401/dcn401_dpp.h    | 148 ++++++------
- .../dc/hpo/dcn31/dcn31_hpo_dp_link_encoder.c  |  10 +-
- .../dc/hpo/dcn31/dcn31_hpo_dp_link_encoder.h  |   6 +
- .../dc/hpo/dcn32/dcn32_hpo_dp_link_encoder.h  |   3 +
- .../drm/amd/display/dc/hwss/dce/dce_hwseq.h   |   1 +
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c |   5 +-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |   5 +-
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |   5 +-
- drivers/gpu/drm/amd/display/dc/inc/resource.h |   5 +
- .../amd/display/dc/link/hwss/link_hwss_dio.c  |  66 +++++-
- .../hwss/link_hwss_dio_fixed_vs_pe_retimer.c  |   5 +-
- .../amd/display/dc/link/hwss/link_hwss_dpia.c |  20 +-
- .../gpu/drm/amd/display/dc/link/link_dpms.c   |  15 +-
- .../dc/link/protocols/link_dp_capability.c    |  33 ++-
- .../dc/link/protocols/link_dp_capability.h    |   1 +
- .../display/dc/link/protocols/link_dp_phy.c   |  16 +-
- .../display/dc/link/protocols/link_dp_phy.h   |   3 +-
- .../dc/link/protocols/link_dp_training.c      |  20 +-
- .../dc/link/protocols/link_dp_training.h      |   2 +
- .../protocols/link_dp_training_128b_132b.c    |   4 +-
- .../protocols/link_dp_training_128b_132b.h    |   1 +
- .../link/protocols/link_dp_training_8b_10b.c  |   5 +-
- .../link/protocols/link_dp_training_8b_10b.h  |   3 +-
- .../link/protocols/link_dp_training_auxless.c |   1 +
- .../dc/link/protocols/link_dp_training_dpia.c |   1 +
- .../link_dp_training_fixed_vs_pe_retimer.c    |   3 +-
- .../amd/display/dc/mpc/dcn401/dcn401_mpc.h    |  31 ++-
- .../amd/display/dc/optc/dcn10/dcn10_optc.h    | 221 +++++++++---------
- .../dc/resource/dcn20/dcn20_resource.c        |   5 +-
- .../dc/resource/dcn31/dcn31_resource.c        |   2 +-
- .../dc/resource/dcn401/dcn401_resource.c      |   5 +-
- drivers/gpu/drm/amd/display/dc/sspl/dc_spl.c  |  71 ++++--
- drivers/gpu/drm/amd/display/dc/sspl/dc_spl.h  |  16 +-
- .../drm/amd/display/dc/sspl/dc_spl_types.h    |  12 +-
- .../drm/amd/display/dc/sspl/spl_fixpt31_32.c  |   2 +-
- .../drm/amd/display/dc/sspl/spl_fixpt31_32.h  |   4 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  76 ++++++
- .../gpu/drm/amd/display/dmub/src/dmub_dcn31.c |  15 +-
- .../gpu/drm/amd/display/dmub/src/dmub_dcn35.c |   2 +-
- 59 files changed, 813 insertions(+), 406 deletions(-)
-
+-	if (is_specific_oled_panel(link))
+-		return false;
+-
+ 	if (!is_psr_su_specific_panel(link))
+ 		return false;
+ 
 -- 
 2.34.1
 
