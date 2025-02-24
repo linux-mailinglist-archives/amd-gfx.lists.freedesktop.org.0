@@ -2,58 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FA5AA420C1
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2025 14:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B11DA421E8
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2025 14:51:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACBC310E383;
-	Mon, 24 Feb 2025 13:35:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28E5910E3B2;
+	Mon, 24 Feb 2025 13:51:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="m/GsV69S";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 398 seconds by postgrey-1.36 at gabe;
- Mon, 24 Feb 2025 06:39:12 UTC
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0999110E14D;
- Mon, 24 Feb 2025 06:39:11 +0000 (UTC)
-Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
- by APP-01 (Coremail) with SMTP id qwCowAC3vVV0ErxnL6j0Dw--.49149S2;
- Mon, 24 Feb 2025 14:32:29 +0800 (CST)
-From: Ma Ke <make24@iscas.ac.cn>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch, wenjing.liu@amd.com, alex.hung@amd.com,
- dillon.varone@amd.com, Samson.Tam@amd.com, yi-lchen@amd.com,
- chris.park@amd.com, aurabindo.pillai@amd.com, george.shen@amd.com,
- gabe.teeger@amd.com, Yihan.Zhu@amd.com, Tony.Cheng@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ma Ke <make24@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Fix null check for pipe_ctx->plane_state in
- resource_build_scaling_params
-Date: Mon, 24 Feb 2025 14:32:18 +0800
-Message-Id: <20250224063218.2953217-1-make24@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABF1E10E13B;
+ Mon, 24 Feb 2025 09:24:37 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Z1b0f2mGpz9t7b;
+ Mon, 24 Feb 2025 10:24:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1740389074; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=v+wd6PCEHlLx+eHYqGrwFyvoAFA7r97pOl/4RtvgfrU=;
+ b=m/GsV69SJ013QcS9h3uDFy8n3n3ZzybbgVHEjPSX7O0kVHBoNVM4cQPp9FvqFeNbOu6fKI
+ CPF8MH73GZbZX1FOK5nuOe2D5hRkLUGQRihNcw8Nh+eV4Vr8KEk5v7vv4bIkLB3UA0S+eZ
+ 6cJwxdmYba9m7vtYGrSTKIxH5yCFiU+3/XEwm6jculmXOzglnVkkyB01EMZ7Emw1CXX7v+
+ 1pm1+qldo94lsFb8d44GYo9vI/imtP/e2Qza8kabQ9YP9IxhjKAAvvLUBaH9epsYLFfnMv
+ mBuHL0HGZpMLs5E53++1kVPuLhRR9MqdG+p6icSIzvzUP4SUwRzhWU3r2dThNw==
+Message-ID: <639b986bd819a9ba50183b89f4687dc38450ee83.camel@mailbox.org>
+Subject: Re: [PATCH v6 0/6] drm/sched: Job queue peek/pop helpers and struct
+ job re-order
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ amd-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo Krummrich
+ <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
+ <phasta@kernel.org>
+Date: Mon, 24 Feb 2025 10:24:30 +0100
+In-Reply-To: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
+References: <20250221105038.79665-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowAC3vVV0ErxnL6j0Dw--.49149S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrZr45GrW5XF1rZr4UJr47urg_yoWDKrg_KF
- 48urn3tr1fAanF9F10vw4fuFyF9rZ5urZaqFW2yFWYyry7WrWkX34xXr1rWryxZFsrKF98
- A3Wqkr15ZwnFgjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUbSxFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
- 6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1lnxkEFVAIw20F6cxK64vIFxWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
- F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r
- 4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I
- 648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2
- Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s02
- 6x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0x
- vE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE
- 42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6x
- kF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRKCJmDUUUU
-X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
-X-Mailman-Approved-At: Mon, 24 Feb 2025 13:35:11 +0000
+X-MBO-RS-META: x5cog6dmnzkfden71u9febn8676s8jwb
+X-MBO-RS-ID: 066b92eec6641381c60
+X-Mailman-Approved-At: Mon, 24 Feb 2025 13:51:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,36 +64,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Null pointer dereference issue could occur when pipe_ctx->plane_state
-is null. The fix adds a check to ensure 'pipe_ctx->plane_state' is not
-null before accessing. This prevents a null pointer dereference.
+On Fri, 2025-02-21 at 10:50 +0000, Tvrtko Ursulin wrote:
+> Lets add some helpers for peeking and popping from the job queue
+> which allows us
+> to re-order the fields in struct drm_sched_job and remove one hole.
+>=20
+> As in the process we have added a header file for scheduler internal
+> prototypes,
+> lets also use it more and cleanup the "exported" header a bit.
+>=20
+> v2:
+> =C2=A0* Add header file for internal scheduler API.
+> =C2=A0* Add helper for peeking too. (Danilo)
+> =C2=A0* Add (temporary?) drm_sched_cancel_all_jobs() helper to replace
+> amdgpu
+> =C2=A0=C2=A0 amdgpu_job_stop_all_jobs_on_sched().
+>=20
+> v3:
+> =C2=A0* Settle for a copy of __drm_sched_entity_queue_pop in amdgpu for
+> now.
+>=20
+> v4:
+> =C2=A0* Expand the series with some more header file cleanup.
+>=20
+> v5:
+> =C2=A0* Rebase for drm_sched_init changes.
+> =C2=A0* Tweak kerneldoc format.
+>=20
+> v6:
+> =C2=A0* Added SPDX to the new header file.
+>=20
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+>=20
+> Tvrtko Ursulin (6):
+> =C2=A0 drm/sched: Add internal job peek/pop API
+> =C2=A0 drm/amdgpu: Pop jobs from the queue more robustly
+> =C2=A0 drm/sched: Remove a hole from struct drm_sched_job
+> =C2=A0 drm/sched: Move drm_sched_entity_is_ready to internal header
+> =C2=A0 drm/sched: Move internal prototypes to internal header
+> =C2=A0 drm/sched: Group exported prototypes by object type
+>=20
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0=C2=A0=C2=A0 |=C2=A0 2=
+2 +++-
+> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0 |=C2=A0 23 +--=
+-
+> =C2=A0drivers/gpu/drm/scheduler/sched_fence.c=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 2 +
+> =C2=A0drivers/gpu/drm/scheduler/sched_internal.h |=C2=A0 91 +++++++++++++=
+++
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 7 +-
+> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 122 +++++++++--------=
+--
+> --
+> =C2=A06 files changed, 171 insertions(+), 96 deletions(-)
+> =C2=A0create mode 100644 drivers/gpu/drm/scheduler/sched_internal.h
+>=20
 
-Found by code review.
+Applied to drm-misc-next.
 
-Cc: stable@vger.kernel.org
-Fixes: 3be5262e353b ("drm/amd/display: Rename more dc_surface stuff to plane_state")
-Signed-off-by: Ma Ke <make24@iscas.ac.cn>
----
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 520a34a42827..88e8ae63a07f 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -1452,6 +1452,9 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
- 	struct scaling_taps temp = {0};
- 	bool res = false;
- 
-+	if (!plane_state)
-+		return false;
-+
- 	DC_LOGGER_INIT(pipe_ctx->stream->ctx->logger);
- 
- 	/* Invalid input */
--- 
-2.25.1
-
+Thanks, Tvrtko
