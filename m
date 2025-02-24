@@ -2,49 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC31FA420BB
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2025 14:35:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C8BA42026
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2025 14:15:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58D9110E2C4;
-	Mon, 24 Feb 2025 13:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B93A710E057;
+	Mon, 24 Feb 2025 13:15:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="EeoIbI4F";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="D5HCUbDl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9392A10E372
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Feb 2025 12:07:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=nGrxB+8lsviFl6u4uxkHMfrYcC9UNkNTn3sjGYxryjg=; b=EeoIbI4FcWqz2gPWvZM9zwD6ev
- gcZH1zqBsWnW+UrMe7td7IZwNqIRLY8XRpjIZJw/ngieXN9N9mLEQMDOHV+v2Eb/eiBbHkf2bA1y/
- KEH5hWNZgfkvOLPrWoEM+kcigFIt19XGH+tFzvmQdqRxlTYblBsokmz9zGAsKPQoWWTSCGDJFNjsA
- vM2cbllRTO4vrqzZQ5/y5QuwZ0rP2CZyvbX1pN2rBKPRHxj96xjDRDcnNx+0CHBpyvvP/ZLSDGguo
- tbBCZ6ibpj65dgefgOLOUd8JlV7VtfBZ5tedkWt7mlIso+F5xNXVUSQ2jjJ7SoDPD5SDhkBuZZ4dP
- KDPKY6HQ==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tmXEh-00HTAo-0U; Mon, 24 Feb 2025 13:07:04 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com,
-	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH 2/2] drm/amdgpu: Reduce holes in struct amdgpu_job
-Date: Mon, 24 Feb 2025 12:06:44 +0000
-Message-ID: <20250224120644.40148-3-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250224120644.40148-1-tvrtko.ursulin@igalia.com>
-References: <20250224120644.40148-1-tvrtko.ursulin@igalia.com>
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2069.outbound.protection.outlook.com [40.107.223.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2ACC10E057
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Feb 2025 13:15:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rnrGPq/7ev6IhMqlp2CFaq8p0//EK1VDOVk4LwNZ6ZiDTMJI+ST04IkQr7Bn5VgyPl9XtvCovYv8gggC9aic/cLTY7BPra3a7cbE2YNJlnCYgGNbWADjW+gZhTrQw894fpopQCsvNH98JXe2WpKgP1hgvGknDiz3hmtf+v5fE3UGPScmZjdDPM78ZVjnBqeAYB9eJmed24e6+xI/O4y4juVYELCv+4CW6ofRTVwlifCzdaN6MkAk+TSs3z19nHX3G9WSus94+6rN9aNT5LOo0mmr+X0RQ7w/Qv1/R9yHzHnx0joO8He9T4DjHO0jmGRNPpB+3Wb2tLOFLedHkC86GQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q2r8Ji/PP2sYVGfOhTaln5BCNGhxFjieFCovZNVQi4Q=;
+ b=b9DlZpKxvKkgGJbZukmFi6+GyHYzPynAof4sYyBrs385SsNf0Q8/YXp+cGwBq4FWfrOzU344CzJLtLglo1QFtU9I9b4gfmVDjEOOCFvHYBcvyLJSR/ZC8T8oCEJWv23PRpW82qKetJrXicQ/sk/IZbXiC0UBNFGiTElfJwgeML2Z7XdKY9y7KsWpIA3C6V6NOOCq3ej9Jqfp3EjfhEEI8yOk+/LPsjFVWErOnWBK9zYH1/DGJWmLncwEKYp2anQCjBiTTh1d8kylIW/fcCJP6o2PGQV4feytPabTDa/73s6krTi87KjgZ8bfW1mElaYpy4zI9nP6WPPj5KYTBn6siw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q2r8Ji/PP2sYVGfOhTaln5BCNGhxFjieFCovZNVQi4Q=;
+ b=D5HCUbDl1DMLJtGJX40Wo0/BG34egk6SLAhwTRBI45EwU0EsqkgG8HT52lDWSUw2M1/0s591UXqj2+e2zVm2tLH4dzaCzjxz6rUtkNQC+Mf/FHf8i3X5r3pjLTX5WpSKaFTaGKFOnPW9Bj+q0DM0Y+Sk4291OdsWZeN7qehv0ok=
+Received: from CH5P222CA0023.NAMP222.PROD.OUTLOOK.COM (2603:10b6:610:1ee::11)
+ by IA0PR12MB7602.namprd12.prod.outlook.com (2603:10b6:208:43a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Mon, 24 Feb
+ 2025 13:15:10 +0000
+Received: from CH3PEPF0000000F.namprd04.prod.outlook.com
+ (2603:10b6:610:1ee:cafe::45) by CH5P222CA0023.outlook.office365.com
+ (2603:10b6:610:1ee::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.21 via Frontend Transport; Mon,
+ 24 Feb 2025 13:15:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH3PEPF0000000F.mail.protection.outlook.com (10.167.244.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8489.16 via Frontend Transport; Mon, 24 Feb 2025 13:15:10 +0000
+Received: from liuxiang-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 24 Feb
+ 2025 07:14:53 -0600
+From: Xiang Liu <xiang.liu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <tao.zhou1@amd.com>, <andy.dong@amd.com>, "Xiang
+ Liu" <xiang.liu@amd.com>
+Subject: [PATCH] drm/amdgpu: Check if CPER enabled when generating CPER
+Date: Mon, 24 Feb 2025 21:14:09 +0800
+Message-ID: <20250224131409.26433-1-xiang.liu@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 24 Feb 2025 13:35:11 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF0000000F:EE_|IA0PR12MB7602:EE_
+X-MS-Office365-Filtering-Correlation-Id: f3e73980-31f3-4b3c-136b-08dd54d54442
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Ux+Vst7OLi6QXsH6EmjY/tdN4nkXb/kNR+pOADMHM1pdXwuRXQQGcfSu4gEm?=
+ =?us-ascii?Q?PNyJgox9t+DFtUAfwIE2ACECSp5a4+3J7ujUsRbQSjds7tBcPYR8DCB7zg/d?=
+ =?us-ascii?Q?pHx5tk59VV7RwiV5PJYuWiTgwPx7PFXNA9BW7lbRrH+41m9gE3FyqdM2Nw1h?=
+ =?us-ascii?Q?9k3EugTmNOQ5Vz07RFWAuuf52GQx4VUDf6GrLIkPOw7ZbMqJq5uNydaAgPfq?=
+ =?us-ascii?Q?s6pGCxSzpORCMIbmNjQzmpKQ6pYjxfhKEKDSdQNp/HOFjEnLdC4G1QXq7aCF?=
+ =?us-ascii?Q?U2w2HBJP+rjpFtNry6X1RxUzT7Zi8+PZNv1J86TqiaHce06l1HjjJGKV2H/j?=
+ =?us-ascii?Q?4C/r1iO1bId8LxUabKqpUYLXzDk9fuYSD/IFWCJcFmp3fvB2YHslY66eMkB3?=
+ =?us-ascii?Q?yLy+V75hjDG/1Nd5DLsAoyjl8smYDjBUKkf5vU6y2HIjYr6XDUwOdRkS6uXw?=
+ =?us-ascii?Q?r+oH66QIwEbz5i6t17IZzE6u4PSn8cHrFESfoiOhYNlWOTQirg8IlqJFaON8?=
+ =?us-ascii?Q?sDvQswS2GcNPy0RVs9KJCbvC1h7EpULdjsW8gZj8xy5TN9jL60Z6OFItwzqv?=
+ =?us-ascii?Q?+Ewpap+p2cCEN7va1XNxtc4BUjIg/JyctUuXLJdhVRx1Fa7gjvasJQtVQ5EY?=
+ =?us-ascii?Q?XsTlNs/MBLV/lL5iMlUns9Zblbbvnm5pFRqZqoITPpu+5BMR1yX74597Rf8j?=
+ =?us-ascii?Q?MxSSdslNlUMHZ/b77IwdbVqKu6lCw38a62EW7PYbN1fyzfWXF5fcREPA/dFW?=
+ =?us-ascii?Q?x6/Ie03hOcAR0fQq7QTLdqlZLcK6eslMEQMcq3OhVWUAweI2H2bX/hqHz96O?=
+ =?us-ascii?Q?SpULG3+LRz+Jr6Vdcnqe3hAO8O7zTExztZ0OSXKpI3IInTgmewbN1ZeNzYSE?=
+ =?us-ascii?Q?2hb5ikMKo0r2zQkpNUs6QljQ3PXjqe3CB6LOsGZ6AOD6t/oCsmwe49jwJ5ky?=
+ =?us-ascii?Q?upKtFd9W32W2Dd286MTe540mCcNX3c2B/Gz/0hQwdKCrTebJNAxtZ+gyx5Ag?=
+ =?us-ascii?Q?1byfyxqK43j7dJXK4W6RzUkMZQvLz8Kbf0adSMrLJVylWo9Jdo21zalTpw25?=
+ =?us-ascii?Q?uvADStOWKmyPyWojCdpv/+wL8YuDq+sCXQUenBNkxQ9Fm1qI/tYKrnNQoDME?=
+ =?us-ascii?Q?JZCLbH5i+iu8qzrk5ZsS5b+pJ5sQtdYITQ22ktOEKK+UdrNKcBLctghXTrZY?=
+ =?us-ascii?Q?0WCq9SDaehfcBsnCm1kLSzVHF/MvD+gXzFIX7euAsDXP5Zez9cLIpiyHaFx/?=
+ =?us-ascii?Q?4CsdfzkQR9eM1kQTj0kp4iRM5XbKYP55ylbw4/MFny9g6teGdMedH07bOsNN?=
+ =?us-ascii?Q?7kKP0OZmZ74g8Vqytta4z705cJZU04hISdIpoanY72Z0w0PzZmkYIcV1omZk?=
+ =?us-ascii?Q?zf6OFoy4criw8c6Q/TzJjETLpUCnvPclk4beVqzbbf7xyP6xtOnf94Bt8IXD?=
+ =?us-ascii?Q?8q1q/ghhx2wJiv2FfRORyvz4SYmoEjzIoXoMJfAH0L/X6qZ92vd2sQ=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2025 13:15:10.5645 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3e73980-31f3-4b3c-136b-08dd54d54442
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF0000000F.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7602
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,74 +130,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Lets group same width types closer together to reduce the number and size
-of the holes in the struct.
+In the case of CPER disabled, generating CPER will cause kernel NULL
+pointer dereference without checking.
 
-Before:
-
-        /* size: 480, cachelines: 8, members: 30 */
-        /* sum members: 469, holes: 3, sum holes: 11 */
-        /* forced alignments: 1 */
-        /* last cacheline: 32 bytes */
-
-After:
-
-        /* size: 472, cachelines: 8, members: 30 */
-        /* sum members: 469, holes: 1, sum holes: 3 */
-        /* forced alignments: 1 */
-        /* last cacheline: 24 bytes */
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Signed-off-by: Xiang Liu <xiang.liu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.h | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c | 3 +++
+ drivers/gpu/drm/amd/pm/amdgpu_dpm.c     | 5 +++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-index ce6b9ba967ff..7e5fe3d73a06 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-@@ -50,17 +50,22 @@ struct amdgpu_job {
- 	struct amdgpu_sync	explicit_sync;
- 	struct dma_fence	hw_fence;
- 	struct dma_fence	*gang_submit;
--	uint32_t		preamble_status;
--	uint32_t                preemption_status;
- 	bool                    vm_needs_flush;
- 	bool			gds_switch_needed;
- 	bool			spm_update_needed;
--	uint64_t		vm_pd_addr;
-+	bool			enforce_isolation;
-+	bool			init_shadow;
- 	unsigned		vmid;
- 	unsigned		pasid;
-+	uint32_t		num_ibs;
-+	uint32_t		preamble_status;
-+	uint32_t                preemption_status;
- 	uint32_t		gds_base, gds_size;
- 	uint32_t		gws_base, gws_size;
- 	uint32_t		oa_base, oa_size;
-+	/* job_run_counter >= 1 means a resubmit job */
-+	uint32_t		job_run_counter;
-+	uint64_t		vm_pd_addr;
- 	uint64_t		generation;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
+index d11593cd1922..ffd4c64e123c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
+@@ -392,6 +392,9 @@ static void aca_banks_generate_cper(struct amdgpu_device *adev,
+ 	struct aca_bank_node *node;
+ 	struct aca_bank *bank;
  
- 	/* user fence handling */
-@@ -71,15 +76,7 @@ struct amdgpu_job {
- 	uint64_t		shadow_va;
- 	uint64_t		csa_va;
- 	uint64_t		gds_va;
--	bool			init_shadow;
++	if (!adev->cper.enabled)
++		return;
++
+ 	if (!banks || !count) {
+ 		dev_warn(adev->dev, "fail to generate cper records\n");
+ 		return;
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+index 7c4ff12269d9..81e9b443ca0a 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+@@ -716,8 +716,9 @@ int amdgpu_dpm_send_rma_reason(struct amdgpu_device *adev)
+ 	ret = smu_send_rma_reason(smu);
+ 	mutex_unlock(&adev->pm.mutex);
  
--	/* job_run_counter >= 1 means a resubmit job */
--	uint32_t		job_run_counter;
--
--	/* enforce isolation */
--	bool			enforce_isolation;
--
--	uint32_t		num_ibs;
- 	struct amdgpu_ib	ibs[];
- };
+-	if (amdgpu_cper_generate_bp_threshold_record(adev))
+-		dev_warn(adev->dev, "fail to generate bad page threshold cper records\n");
++	if (adev->cper.enabled)
++		if (amdgpu_cper_generate_bp_threshold_record(adev))
++			dev_warn(adev->dev, "fail to generate bad page threshold cper records\n");
  
+ 	return ret;
+ }
 -- 
-2.48.0
+2.34.1
 
