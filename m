@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E024A420C2
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2025 14:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC31FA420BB
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2025 14:35:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF74110E38B;
-	Mon, 24 Feb 2025 13:35:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58D9110E2C4;
+	Mon, 24 Feb 2025 13:35:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="W4aN5Zi6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="EeoIbI4F";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D781D10E363
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Feb 2025 12:07:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9392A10E372
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Feb 2025 12:07:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=A756kZ2ToYPgqBzIF36klkoIMA6/Y4skU/xfX6i8lW8=; b=W4aN5Zi69V18GlH+x/n2sZ8V68
- mmRxojvApv38QfvRI2EKwd8Mm7u73FI9lGqOjmbPX5n0HIWJzCfceQTIKFnl40B8ddx0WKG7ntwg0
- jmwfrpurqHMW668tYIUyZF2rR5v8XmCJXAbDhy94VG55gusrSE4ussV8D4zGaCXNadn0PxP2jYrOt
- qQhAOD0QlqgIvzXaHX4ydW3I69APF64HtLe1TfjxEwMiOPvooGVFikukDiTFLwv4oNUR4/u0xp0Ii
- +EMZXYDfenZ6MRioRnfYIc7HyHLnC00fqYr08oRl8M20+SP37WedB0L2sYYVgmd2VhBhK1haPIBgY
- SKGcZsfg==;
+ bh=nGrxB+8lsviFl6u4uxkHMfrYcC9UNkNTn3sjGYxryjg=; b=EeoIbI4FcWqz2gPWvZM9zwD6ev
+ gcZH1zqBsWnW+UrMe7td7IZwNqIRLY8XRpjIZJw/ngieXN9N9mLEQMDOHV+v2Eb/eiBbHkf2bA1y/
+ KEH5hWNZgfkvOLPrWoEM+kcigFIt19XGH+tFzvmQdqRxlTYblBsokmz9zGAsKPQoWWTSCGDJFNjsA
+ vM2cbllRTO4vrqzZQ5/y5QuwZ0rP2CZyvbX1pN2rBKPRHxj96xjDRDcnNx+0CHBpyvvP/ZLSDGguo
+ tbBCZ6ibpj65dgefgOLOUd8JlV7VtfBZ5tedkWt7mlIso+F5xNXVUSQ2jjJ7SoDPD5SDhkBuZZ4dP
+ KDPKY6HQ==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tmXEg-00HTAj-9E; Mon, 24 Feb 2025 13:07:04 +0100
+ id 1tmXEh-00HTAo-0U; Mon, 24 Feb 2025 13:07:04 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH 1/2] drm/amdgpu: Remove hole from struct amdgpu_ib
-Date: Mon, 24 Feb 2025 12:06:43 +0000
-Message-ID: <20250224120644.40148-2-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 2/2] drm/amdgpu: Reduce holes in struct amdgpu_job
+Date: Mon, 24 Feb 2025 12:06:44 +0000
+Message-ID: <20250224120644.40148-3-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250224120644.40148-1-tvrtko.ursulin@igalia.com>
 References: <20250224120644.40148-1-tvrtko.ursulin@igalia.com>
@@ -59,38 +59,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Group the 32- vs 64- members together to remove hole from the struct.
+Lets group same width types closer together to reduce the number and size
+of the holes in the struct.
 
 Before:
 
-        /* size: 40, cachelines: 1, members: 5 */
-        /* sum members: 32, holes: 1, sum holes: 4 */
-        /* padding: 4 */
-        /* last cacheline: 40 bytes */
+        /* size: 480, cachelines: 8, members: 30 */
+        /* sum members: 469, holes: 3, sum holes: 11 */
+        /* forced alignments: 1 */
+        /* last cacheline: 32 bytes */
 
 After:
-        /* size: 32, cachelines: 1, members: 5 */
-        /* last cacheline: 32 bytes */
+
+        /* size: 472, cachelines: 8, members: 30 */
+        /* sum members: 469, holes: 1, sum holes: 3 */
+        /* forced alignments: 1 */
+        /* last cacheline: 24 bytes */
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index e13407cbb040..9a7ffbc53363 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -97,9 +97,9 @@ enum amdgpu_ib_pool_type {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+index ce6b9ba967ff..7e5fe3d73a06 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+@@ -50,17 +50,22 @@ struct amdgpu_job {
+ 	struct amdgpu_sync	explicit_sync;
+ 	struct dma_fence	hw_fence;
+ 	struct dma_fence	*gang_submit;
+-	uint32_t		preamble_status;
+-	uint32_t                preemption_status;
+ 	bool                    vm_needs_flush;
+ 	bool			gds_switch_needed;
+ 	bool			spm_update_needed;
+-	uint64_t		vm_pd_addr;
++	bool			enforce_isolation;
++	bool			init_shadow;
+ 	unsigned		vmid;
+ 	unsigned		pasid;
++	uint32_t		num_ibs;
++	uint32_t		preamble_status;
++	uint32_t                preemption_status;
+ 	uint32_t		gds_base, gds_size;
+ 	uint32_t		gws_base, gws_size;
+ 	uint32_t		oa_base, oa_size;
++	/* job_run_counter >= 1 means a resubmit job */
++	uint32_t		job_run_counter;
++	uint64_t		vm_pd_addr;
+ 	uint64_t		generation;
  
- struct amdgpu_ib {
- 	struct drm_suballoc		*sa_bo;
--	uint32_t			length_dw;
--	uint64_t			gpu_addr;
- 	uint32_t			*ptr;
-+	uint64_t			gpu_addr;
-+	uint32_t			length_dw;
- 	uint32_t			flags;
+ 	/* user fence handling */
+@@ -71,15 +76,7 @@ struct amdgpu_job {
+ 	uint64_t		shadow_va;
+ 	uint64_t		csa_va;
+ 	uint64_t		gds_va;
+-	bool			init_shadow;
+ 
+-	/* job_run_counter >= 1 means a resubmit job */
+-	uint32_t		job_run_counter;
+-
+-	/* enforce isolation */
+-	bool			enforce_isolation;
+-
+-	uint32_t		num_ibs;
+ 	struct amdgpu_ib	ibs[];
  };
  
 -- 
