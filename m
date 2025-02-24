@@ -2,124 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A37AA42111
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2025 14:42:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92C58A421EB
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Feb 2025 14:51:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39B9E10E39E;
-	Mon, 24 Feb 2025 13:41:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C22B10E3A9;
+	Mon, 24 Feb 2025 13:51:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lgQtD3Q5";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=tteles.dev header.i=@tteles.dev header.b="KWhUHEwM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2041.outbound.protection.outlook.com [40.107.100.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8126310E11D
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Feb 2025 02:46:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=m7PezxKKBpM3jLoqEz30i8VVLvWtbYxqWUgkPzOtk3gYLc7uKADqfwKrdsBMhiCPWPD0vNl3kq8AttlZGAJ+BZDV7q/lV8psYtLYCJVBYd4JvN//V46DPUp76LW6CYkmiCEAQvWYeV2lXaaRDOBMJw5SLuQaVt9qkQzcSuRkPLksFsDTPjP7KyBNtJZMby5pqmkmMDfwYmv5CNrOV9c/pC3EHRHOH0M2yeTCZatC/c/eCl53/VI/V6CNmu0ZWylKF7ZEDUYEvOMCQ15wyrX0n6SxwUyz7pnpelpAPnywLBrnhednm3VssCwg5wdyGUISj9920pjntUcOsCe3QZxp+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e+VPME39vSSycu/5CtBbe+CVkmIcVZt88wLiIZ867kE=;
- b=ckACs1Rh1PVvJx/Zeb4ENsmErfNEbltfX3vzj6QFIGTlt50KW4VFzLsdacSDkRzSnFFye2Fg9BN2WYNeM1j4lpD10DTk6CMPxQaKMnZTb922x+Ze7WmscAIOqEGGJwC27CO7eICO8UQlF/pSwHkfdeZdCVHRPobQM1RIf+m7193TzV7dkhySykrGq0Tw+mQTY1VrVoKQoJ0cMAiQ7ywGCQeGdL8v7EMlxWhZuOoXRjfmKN+aNK0BfnlDlO4KEX1tXuRhKZID2DrXEb4g3sispBSYkCYeY7f6ioZao1BiXqAO/6aMdCl0fdUEHaUg69K+EZh+vwr0pCzMlYCeLLAxfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e+VPME39vSSycu/5CtBbe+CVkmIcVZt88wLiIZ867kE=;
- b=lgQtD3Q5kLhh4ATwSKZqH4fxJf6dLFhJB2+WlZGCikmZ2Yw8yTgwhk0i6A74IxSe4Qe1XsL5cmDRsSzkeaDonhVIFpARjTWIZh8L3/4996exgotrQy88U6HpnCRd0ZWXrMUwBAX6izPadnJy7NSyBO3vNz0tikKZxVV8E4e6tiM=
-Received: from MW4PR04CA0062.namprd04.prod.outlook.com (2603:10b6:303:6b::7)
- by MN0PR12MB6079.namprd12.prod.outlook.com (2603:10b6:208:3c9::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Mon, 24 Feb
- 2025 02:46:44 +0000
-Received: from CO1PEPF000042A8.namprd03.prod.outlook.com
- (2603:10b6:303:6b:cafe::86) by MW4PR04CA0062.outlook.office365.com
- (2603:10b6:303:6b::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.19 via Frontend Transport; Mon,
- 24 Feb 2025 02:46:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000042A8.mail.protection.outlook.com (10.167.243.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8466.11 via Frontend Transport; Mon, 24 Feb 2025 02:46:43 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 23 Feb
- 2025 20:46:42 -0600
-Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
- SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Sun, 23 Feb 2025 20:46:35 -0600
-From: <jesse.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, Jiadong Zhu
- <Jiadong.Zhu@amd.com>, Tim Huang <tim.huang@amd.com>, "Jesse.zhang@amd.com"
- <Jesse.zhang@amd.com>, Jonathan Kim <Jonathan.Kim@amd.com>, Vitaly Prosyak
- <vitaly.prosyak@amd.com>, Jesse Zhang <jesse.zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: update SDMA sysfs reset mask in late_init
-Date: Mon, 24 Feb 2025 10:46:35 +0800
-Message-ID: <20250224024635.4101253-1-jesse.zhang@amd.com>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 614 seconds by postgrey-1.36 at gabe;
+ Mon, 24 Feb 2025 03:07:10 UTC
+Received: from mail.w14.tutanota.de (mail.w14.tutanota.de [185.205.69.214])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD96D10E122;
+ Mon, 24 Feb 2025 03:07:10 +0000 (UTC)
+Received: from tutadb.w10.tutanota.de (w10.api.tuta.com [IPv6:fd:ac::d:10])
+ by mail.w14.tutanota.de (Postfix) with ESMTP id 3A18463FF342;
+ Mon, 24 Feb 2025 03:56:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1740365814; 
+ s=s1; d=tteles.dev;
+ h=From:From:To:To:Subject:Subject:Content-Description:Content-ID:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Cc:Cc:Date:Date:In-Reply-To:In-Reply-To:MIME-Version:MIME-Version:Message-ID:Message-ID:Reply-To:References:References:Sender;
+ bh=wzUKVUkOHIzDyVJlm1rH9UeIF+LuRtjapviN0QSZFyQ=;
+ b=KWhUHEwM44VEvhrE6vB+ZBqV8Hp4DmWyDnc0qz0SVgYD5QktLpqIgE46C5T8dEvz
+ c+EDs/necnTdztpB08PC9q64v1HvLDPW+ht+ykZVKozNLzqjxY80uQGKIhuupAijNjM
+ Xo9ertfiW46x+M7gGU0sGLGs16pSrBt2R9ynbZaeJs2i/LB1OgdyLvcxsrU3SxmPxDv
+ voPsnZ1YobRaPSKsa5J6u4eHxt+Hr6RasaylG1aXJwrdU6HpDhjUT493FR7RwdM4ZG/
+ nzO7d8UjZWzF7DcMuq/vQ6JSFzWZfEm+Wy4BG9b14ldWFlAEJXsMXdUjTWagvBITZwX
+ zraggt+WSw==
+Date: Mon, 24 Feb 2025 03:56:54 +0100 (CET)
+From: mail@tteles.dev
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: "Li, Sun peng (Leo)" <Sunpeng.Li@amd.com>,
+ Alexander Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Xinhui Pan <xinhui.pan@amd.com>, Airlied <airlied@gmail.com>,
+ Simona <simona@ffwll.ch>, Lijo Lazar <lijo.lazar@amd.com>,
+ Tzimmermann <tzimmermann@suse.de>,
+ Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
+ Ahmad Rehman <ahmad.rehman@amd.com>, Shaoyun Liu <shaoyun.liu@amd.com>,
+ Ramesh Errabolu <ramesh.errabolu@amd.com>, Jun Ma2 <jun.ma2@amd.com>,
+ Daniel <daniel@makrotopia.org>, Linux Firmware <linux-firmware@kernel.org>,
+ Dri Devel <dri-devel@lists.freedesktop.org>,
+ Amd Gfx <amd-gfx@lists.freedesktop.org>, Stable <stable@vger.kernel.org>
+Message-ID: <OJpqNWx--F-9@tteles.dev>
+In-Reply-To: <eabde17b-b5e5-456f-a499-cff132f1bf8a@amd.com>
+References: <OJnZDtd----9@tteles.dev>
+ <eabde17b-b5e5-456f-a499-cff132f1bf8a@amd.com>
+Subject: Re: REGRESSION amdgpu 20241108 firmware breaks screen updating
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: jesse.zhang@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042A8:EE_|MN0PR12MB6079:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0a84fc8-02d5-46b2-de36-08dd547d7906
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?X6OTBMB5iTQY+jDAVQAbDDsKsV8AnMjYbUxAKEm7mzt4pmaeT3WjSbV9PWyN?=
- =?us-ascii?Q?Bhg7Itc1pghFicJ+fb45z077RrDLhQq5Z0vw7wGNkoOZIdf+kB05T3y+k0BE?=
- =?us-ascii?Q?N4DqTUPzOwHr8uJD37n+w8r1MZ5sWN70CewHUC+XEPPEjqBM/BAjbhoEHtMF?=
- =?us-ascii?Q?0ULM+7O8eEe0cEUNCa6JyzeXXmfMrShZtZ5tKggwENYljEOJX4Hs6YTQv9H6?=
- =?us-ascii?Q?GfLLgIx1ma+60veHaYQiAEo0rDYy8xEZFvpkIkTAryy6D1JqlBfn3eCzLucS?=
- =?us-ascii?Q?f9JNvwiBzNhOksTCpR8KFP247WLQBdrViyME9dOMkacHG9J7NbAxovocIglp?=
- =?us-ascii?Q?u/PP2W2Iwa8QrW5efpm/dQKKkxPw9/hKs+hYveRXbNUWpIqlDPIof8V/Tk+z?=
- =?us-ascii?Q?O7cumuj5BqGk4/fWcIFGd0WejV5UbdyHQ2RF1onym5VMDY/dpAZPEFCggK43?=
- =?us-ascii?Q?LiYAk36L+T6PGMJzIL9JOYX+RNS3PrZwVjS7UODF1clKqRg6lH/6RsOcNzQ0?=
- =?us-ascii?Q?iYtdsQD1KH9HkotXcjpkStofSUgEkttYPHZ8Vdp5/JMsycrPtbsGsrppiIvk?=
- =?us-ascii?Q?AV7QQ2IP2GBdWGrVfnHzZexFvUTA7zWroQAZmTskXCgzcuWaheU2RD9f+5V7?=
- =?us-ascii?Q?wX3Fh9cskk6n7uDlLWaykpGa9mOiHIdf44xQkeuDgNdJft7vJKkFPgUaFCue?=
- =?us-ascii?Q?wk0+IorKyiqMI/DB/qrJbxNpXRLvTBw6n6gqmaatRMQGF1apznjmJPVLr7RQ?=
- =?us-ascii?Q?TpFo2BvwSp77koFV/VBXBbOZE1gL98cpToLOyZfLhwA2eHM2rEP2VrA3un3Y?=
- =?us-ascii?Q?eUYyTOae6fZ032FPJyC2oe/IMoR8VX2vgrwESPA65lkx0HxIGmQHoBlWtRAh?=
- =?us-ascii?Q?A0vEmB2wpAONm3iywJJRZXZK+OrraMEH5uUEKVegGM0k0Vy42fRZUuKHDqOE?=
- =?us-ascii?Q?cIJIKBTfSDh1WqpMF3WN9hOruO7UxaKGl4PYAG2rl8gdQSdoYRbYKHUkAebB?=
- =?us-ascii?Q?cu27XjoYYfnSALbPQnBEhdvDoIZi8+uWQw+0YsLTfeo5zz5wm+beKU07uadm?=
- =?us-ascii?Q?AiQ0w/j/oy3OuciuIedMM4vLWXJYD8Rz2fAs88KTFhVEPREbT9E6S4J/AtDb?=
- =?us-ascii?Q?+GL3bJ6Qfjng6qT9fxqn8AcPwCoexbyc9GwbMMdOI16otIH5tuN4W3oS50uv?=
- =?us-ascii?Q?9kkn1uGWRo3lgB02/ynKQJcePSz3hGeQi5EGy38g8qbRE2SNc+ffM/gXuFIW?=
- =?us-ascii?Q?szQ7z+X6XDgwW4APVLGmiIVlm743vok6UJZLqm2iO4f4Qbb7OzltUtKbxVHz?=
- =?us-ascii?Q?rWpB4Cm1Et3rT9BqEELMXJUusWBexi0PvkC2aVAGCcqpzYu4OirhCDBsVnTF?=
- =?us-ascii?Q?O1IhhRVQFPafLtw5PDPdI5W7jFWS0bSn8j+IhXemp7v7y3iTXvLFIoRnOcLz?=
- =?us-ascii?Q?B1iiEkd7itLcX898/XroFTnVsArPLyljZmQoNptLdF1Bn0TJEQQy2g=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2025 02:46:43.3054 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0a84fc8-02d5-46b2-de36-08dd547d7906
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042A8.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6079
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 24 Feb 2025 13:51:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,94 +68,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Jesse.zhang@amd.com" <Jesse.zhang@amd.com>
 
-- Added `sdma_v4_4_2_update_reset_mask` function to update the reset mask.
-- update the sysfs reset mask to the `late_init` stage to ensure that the SMU  initialization
-     and capability setup are completed before checking the SDMA reset capability.
-- For IP versions 9.4.3 and 9.4.4, enable per-queue reset if the MEC firmware version is at least 0xb0 and PMFW supports queue reset.
-- Add a TODO comment for future support of per-queue reset for IP version 9.5.0.
+I can confirm=C2=A0amdgpu.dcdebugmask=3D0x200 fixes it, no more stutters.
 
-This change ensures that per-queue reset is only enabled when the MEC and PMFW support it.
+It would be very beneficial to include the patch making this behavior defau=
+lt (https://lore.kernel.org/amd-gfx/20250221160145.1730752-3-zaeem.mohamed@=
+amd.com/T/#u)=C2=A0in the relevant linux-stable trees, as this is a major i=
+ssue for affected systems.=C2=A0
 
-v2: fix ip version (9.5.4 -> 9.5.0)(Lijo)
+I CC'd=C2=A0stable@vger.kernel.org=C2=A0and ask for the patch to be include=
+d in linux-stable, even though it does not have a "Fixes:" tag, if the main=
+tainers are okay with it.
 
-Suggested-by: Jonathan Kim <Jonathan.Kim@amd.com>
-Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 37 +++++++++++++++++++++++-
- 1 file changed, 36 insertions(+), 1 deletion(-)
+Thank you for the quick response!
+Tiago
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index 4fa688e00f5e..ba43c8f46f45 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -107,6 +107,7 @@ static void sdma_v4_4_2_set_vm_pte_funcs(struct amdgpu_device *adev);
- static void sdma_v4_4_2_set_irq_funcs(struct amdgpu_device *adev);
- static void sdma_v4_4_2_set_ras_funcs(struct amdgpu_device *adev);
- static void sdma_v4_4_2_set_engine_reset_funcs(struct amdgpu_device *adev);
-+static void sdma_v4_4_2_update_reset_mask(struct amdgpu_device *adev);
- 
- static u32 sdma_v4_4_2_get_reg_offset(struct amdgpu_device *adev,
- 		u32 instance, u32 offset)
-@@ -1374,6 +1375,12 @@ static int sdma_v4_4_2_late_init(struct amdgpu_ip_block *ip_block)
- 	if (!amdgpu_persistent_edc_harvesting_supported(adev))
- 		amdgpu_ras_reset_error_count(adev, AMDGPU_RAS_BLOCK__SDMA);
- 
-+	/* The initialization is done in the late_init stage to ensure that the SMU
-+	 * initialization and capability setup are completed before we check the SDMA
-+	 * reset capability
-+	 */
-+	sdma_v4_4_2_update_reset_mask(adev);
-+
- 	return 0;
- }
- 
-@@ -1481,7 +1488,6 @@ static int sdma_v4_4_2_sw_init(struct amdgpu_ip_block *ip_block)
- 		}
- 	}
- 
--	/* TODO: Add queue reset mask when FW fully supports it */
- 	adev->sdma.supported_reset =
- 		amdgpu_get_soft_full_reset_mask(&adev->sdma.instance[0].ring);
- 
-@@ -2328,6 +2334,35 @@ static void sdma_v4_4_2_set_vm_pte_funcs(struct amdgpu_device *adev)
- 	adev->vm_manager.vm_pte_num_scheds = adev->sdma.num_instances;
- }
- 
-+/**
-+ * sdma_v4_4_2_update_reset_mask - update  reset mask for SDMA
-+ * @adev: Pointer to the AMDGPU device structure
-+ *
-+ * This function update reset mask for SDMA and sets the supported
-+ * reset types based on the IP version and firmware versions.
-+ *
-+ */
-+static void sdma_v4_4_2_update_reset_mask(struct amdgpu_device *adev)
-+{
-+
-+	/*
-+	 * the user queue relies on MEC fw and pmfw when the sdma queue do reset.
-+	 * it needs to check both of them at here to skip old mec and pmfw.
-+	 */
-+	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
-+	case IP_VERSION(9, 4, 3):
-+	case IP_VERSION(9, 4, 4):
-+		if ((adev->gfx.mec_fw_version >= 0xb0) && amdgpu_dpm_reset_sdma_is_supported(adev))
-+			adev->sdma.supported_reset |= AMDGPU_RESET_TYPE_PER_QUEUE;
-+		break;
-+	case IP_VERSION(9, 5, 0):
-+		/*TODO: enable the queue reset flag until fw supported */
-+	default:
-+		break;
-+	}
-+
-+}
-+
- const struct amdgpu_ip_block_version sdma_v4_4_2_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_SDMA,
- 	.major = 4,
--- 
-2.25.1
+Feb 23, 2025, 17:26 by mario.limonciello@amd.com:
+
+> Hello,
+>
+> This sounds like to me a problem with PSR-SU.  There have been a variety =
+of these being reported the past few months.  Enough so that the policy to =
+enable it by default is being rolled back for now.
+>
+> https://lore.kernel.org/amd-gfx/20250221160145.1730752-3-zaeem.mohamed@am=
+d.com/T/#u
+>
+> To confirm that's the root cause you can disable it with amdgpu.dcdebugma=
+sk=3D0x200.
+>
+> Thanks,
+>
+> On 2/23/2025 10:08, mail@tteles.dev wrote:
+>
+>> Greetings,
+>>
+>> I wish to report a regression in amdgpu firmware introduced in commit c9=
+9eeb4d0e13f5831ae77f7ec521162594385d5f, the problem persists until git HEAD=
+, and reverting to the previous commit fixes the issues with no further cha=
+nges to the environment.
+>>
+>> The issue appears on a Lenovo IdeaPad Pro 5, with a Ryzen 8845HS process=
+or, using the 780M iGPU (1002:1900 I believe). The screen on this laptop is=
+ 120Hz 2800x1800, supporting HDR.
+>> This was tested on Archlinux 6.13.3.arch1-1, with amdgpu drivers, on bot=
+h Wayland (Gnome and Hyprland) and Xorg (i3wm). I'm using amd-pstate-epp sc=
+aling driver, tested with both performance and powersave governers, to the =
+same effect.
+>>
+>> I will list the symptoms and attempt to guess at what the issue may be.
+>>
+>> - The screen stops updating if no mouse input is given while watching lo=
+w resolution video (wherever it is, Brave and mpv, regardless of software o=
+r hw decoding).
+>> =C2=A0 Low resolution matters here, I can play 4k video fine, 1080p with=
+ mild stutters, but lower becomes very bad.
+>> =C2=A0 Here is an example using mpv with 360p sample video, recorded on =
+my phone as to not disturb the environment its running in. (https://youtu.b=
+e/kYHqBjPxM2s You can tell it is very choppy, the original video https://ww=
+w.youtube.com/watch?v=3D1HrXwe6s4W8 is not choppy)
+>> =C2=A0 mpv did not report any dropped frames despite there obviously bei=
+ng a huge amount.
+>>
+>> - In some programs, text does not get displayed instantly from when typi=
+ng it, having to type 5 or 6 characters for the previous to finally show.
+>> =C2=A0 All these new characters show up at the same time. This was extre=
+mely noticeable with gnome's default "Console", it also happened in Brave B=
+rowser's search bar, and Signal, it does not seem to happen with Ghostty.
+>>
+>> Constantly waving my cursor fixes all these issues. Connecting a seconda=
+ry display seems to fix the issue on all displays.
+>>
+>> From my limited knowledge this seems like a bug in damage detection for =
+eDP + power management, where low enough power levels don't trigger redraws=
+.
+>>
+>> I am confident the issue was introduced in that commit since I bisected =
+linux-firmware commits affecting amdgpu until the issue was no longer found=
+.
+>>
+>>
+>> Extra info:
+>> # dmesg | grep amd
+>> [=C2=A0=C2=A0=C2=A0 0.414396] perf/amd_iommu: Detected AMD IOMMU #0 (2 b=
+anks, 4 counters/bank).
+>> [=C2=A0=C2=A0=C2=A0 1.875492] [drm] amdgpu kernel modesetting enabled.
+>> [=C2=A0=C2=A0=C2=A0 1.878563] amdgpu: Virtual CRAT table created for CPU
+>> [=C2=A0=C2=A0=C2=A0 1.878573] amdgpu: Topology: Add CPU node
+>> [=C2=A0=C2=A0=C2=A0 1.882607] amdgpu 0000:63:00.0: amdgpu: Fetched VBIOS=
+ from VFCT
+>> [=C2=A0=C2=A0=C2=A0 1.882610] amdgpu: ATOM BIOS: 113-PHXGENERIC-001
+>> [=C2=A0=C2=A0=C2=A0 1.909536] amdgpu 0000:63:00.0: vgaarb: deactivate vg=
+a console
+>> [=C2=A0=C2=A0=C2=A0 1.909542] amdgpu 0000:63:00.0: amdgpu: Trusted Memor=
+y Zone (TMZ) feature enabled
+>> [=C2=A0=C2=A0=C2=A0 1.909612] amdgpu 0000:63:00.0: amdgpu: VRAM: 4096M 0=
+x0000008000000000 - 0x00000080FFFFFFFF (4096M used)
+>> [=C2=A0=C2=A0=C2=A0 1.909614] amdgpu 0000:63:00.0: amdgpu: GART: 512M 0x=
+00007FFF00000000 - 0x00007FFF1FFFFFFF
+>> [=C2=A0=C2=A0=C2=A0 1.909829] [drm] amdgpu: 4096M of VRAM memory ready
+>> [=C2=A0=C2=A0=C2=A0 1.909832] [drm] amdgpu: 13932M of GTT memory ready.
+>> [=C2=A0=C2=A0=C2=A0 1.935030] amdgpu 0000:63:00.0: amdgpu: reserve 0x400=
+0000 from 0x80f8000000 for PSP TMR
+>> [=C2=A0=C2=A0=C2=A0 2.482626] amdgpu 0000:63:00.0: amdgpu: RAS: optional=
+ ras ta ucode is not available
+>> [=C2=A0=C2=A0=C2=A0 2.491068] amdgpu 0000:63:00.0: amdgpu: RAP: optional=
+ rap ta ucode is not available
+>> [=C2=A0=C2=A0=C2=A0 2.491071] amdgpu 0000:63:00.0: amdgpu: SECUREDISPLAY=
+: securedisplay ta ucode is not available
+>> [=C2=A0=C2=A0=C2=A0 2.521960] amdgpu 0000:63:00.0: amdgpu: SMU is initia=
+lized successfully!
+>> [=C2=A0=C2=A0=C2=A0 2.601611] kfd kfd: amdgpu: Allocated 3969056 bytes o=
+n gart
+>> [=C2=A0=C2=A0=C2=A0 2.601628] kfd kfd: amdgpu: Total number of KFD nodes=
+ to be created: 1
+>> [=C2=A0=C2=A0=C2=A0 2.602048] amdgpu: Virtual CRAT table created for GPU
+>> [=C2=A0=C2=A0=C2=A0 2.602191] amdgpu: Topology: Add dGPU node [0x1900:0x=
+1002]
+>> [=C2=A0=C2=A0=C2=A0 2.602193] kfd kfd: amdgpu: added device 1002:1900
+>> [=C2=A0=C2=A0=C2=A0 2.602206] amdgpu 0000:63:00.0: amdgpu: SE 1, SH per =
+SE 2, CU per SH 6, active_cu_number 12
+>> [=C2=A0=C2=A0=C2=A0 2.602212] amdgpu 0000:63:00.0: amdgpu: ring gfx_0.0.=
+0 uses VM inv eng 0 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602215] amdgpu 0000:63:00.0: amdgpu: ring comp_1.0=
+.0 uses VM inv eng 1 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602216] amdgpu 0000:63:00.0: amdgpu: ring comp_1.1=
+.0 uses VM inv eng 4 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602217] amdgpu 0000:63:00.0: amdgpu: ring comp_1.2=
+.0 uses VM inv eng 6 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602219] amdgpu 0000:63:00.0: amdgpu: ring comp_1.3=
+.0 uses VM inv eng 7 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602220] amdgpu 0000:63:00.0: amdgpu: ring comp_1.0=
+.1 uses VM inv eng 8 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602221] amdgpu 0000:63:00.0: amdgpu: ring comp_1.1=
+.1 uses VM inv eng 9 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602222] amdgpu 0000:63:00.0: amdgpu: ring comp_1.2=
+.1 uses VM inv eng 10 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602223] amdgpu 0000:63:00.0: amdgpu: ring comp_1.3=
+.1 uses VM inv eng 11 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602224] amdgpu 0000:63:00.0: amdgpu: ring sdma0 us=
+es VM inv eng 12 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.602225] amdgpu 0000:63:00.0: amdgpu: ring vcn_unif=
+ied_0 uses VM inv eng 0 on hub 8
+>> [=C2=A0=C2=A0=C2=A0 2.602226] amdgpu 0000:63:00.0: amdgpu: ring jpeg_dec=
+ uses VM inv eng 1 on hub 8
+>> [=C2=A0=C2=A0=C2=A0 2.602227] amdgpu 0000:63:00.0: amdgpu: ring mes_kiq_=
+3.1.0 uses VM inv eng 13 on hub 0
+>> [=C2=A0=C2=A0=C2=A0 2.609481] amdgpu 0000:63:00.0: amdgpu: Runtime PM no=
+t available
+>> [=C2=A0=C2=A0=C2=A0 2.610787] [drm] Initialized amdgpu 3.60.0 for 0000:6=
+3:00.0 on minor 1
+>> [=C2=A0=C2=A0=C2=A0 2.617618] fbcon: amdgpudrmfb (fb0) is primary device
+>> [=C2=A0=C2=A0=C2=A0 3.788332] amdgpu 0000:63:00.0: [drm] fb0: amdgpudrmf=
+b frame buffer device
+>> [=C2=A0=C2=A0=C2=A0 5.120419] kvm_amd: TSC scaling supported
+>> [=C2=A0=C2=A0=C2=A0 5.120426] kvm_amd: Nested Virtualization enabled
+>> [=C2=A0=C2=A0=C2=A0 5.120428] kvm_amd: Nested Paging enabled
+>> [=C2=A0=C2=A0=C2=A0 5.120430] kvm_amd: LBR virtualization supported
+>> [=C2=A0=C2=A0=C2=A0 5.120443] kvm_amd: Virtual GIF supported
+>> [=C2=A0=C2=A0=C2=A0 5.120444] kvm_amd: Virtual NMI enabled
+>> [=C2=A0=C2=A0=C2=A0 5.170720] snd_hda_intel 0000:63:00.1: bound 0000:63:=
+00.0 (ops amdgpu_dm_audio_component_bind_ops [amdgpu])
+>> [=C2=A0=C2=A0=C2=A0 5.191443] amd_atl: AMD Address Translation Library i=
+nitialized
+>>
+>>
+>> Thank you for your time,
+>> Tiago Teles
+>>
 
