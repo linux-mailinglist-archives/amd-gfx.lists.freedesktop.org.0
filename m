@@ -2,55 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B53A43D4E
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Feb 2025 12:20:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C90A43D58
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Feb 2025 12:21:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 463A910E62B;
-	Tue, 25 Feb 2025 11:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8CD10E635;
+	Tue, 25 Feb 2025 11:21:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="aUvpOggY";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="yecP+AF3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
- [217.70.183.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16F0E10E62B;
- Tue, 25 Feb 2025 11:20:25 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 92A0243281;
- Tue, 25 Feb 2025 11:20:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1740482424;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=1yCLQU7203S+dlX3r5E0Pu9UF2aDsYxXkLvJUPcYkFU=;
- b=aUvpOggY5uBgdbm5giLxk3A+vMegdMySve38IohQgjdLcUdLcO6wAjdw27ShjwgZaLbvrZ
- aEnMLNbzy5+PCckyk24xSuwtWUs+J/WeT11/nTDues2OX/Vhe/sPzWr6NeATjmnPgV/jPu
- jdNoXRGsqeq09uNJJIDuDe8WeObP+vjlgnWedXSO497lyI6883QIbQRAy8QS/s2w50GboM
- 5tQkANIq3VVamG17vmSKxF5kgtzyf7uYdJZhCQiBOXERXnPgAOZCEjB4p4G+cNENknoiui
- NfTKikevau0Ck5tO62TCcrHhR3VBhJxkbAlzQa8tftLItVX4Nz9hsBfKI1QHdQ==
-Date: Tue, 25 Feb 2025 12:20:23 +0100
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: wayland-devel@lists.freedesktop.org, harry.wentland@amd.com
-Subject: Re: [V7 16/45] drm/colorop: Add 3x4 CTM type
-Message-ID: <ca23393c-5785-4545-8d46-82a9a52c8070@bootlin.com>
-References: <20241220043410.416867-1-alex.hung@amd.com>
- <20241220043410.416867-17-alex.hung@amd.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2064.outbound.protection.outlook.com [40.107.243.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D307110E639
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Feb 2025 11:21:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TOqPUqRqUmqvGo0rU3EGzVMhH8t7CJiklHBbdCkNY8gJM9z4m5thgxqA5m79kDIQyTJnHd6IIjmR32HDtr4rKO/hvPj/PBT7BMv+7xNeHJyCD/AL7TKMOEWtH2GvOfVbvtBxqXTUVt1ASF3sWHOf4fZoUeHszM7MZOH2D6/0H6dKO4r/ZZI+3Pqq5kqKLauykb7r5ludnBmocpWJZd6B33D1J3tTVUcowmVUEiQQFif5FD8EhRdtJLZxk+Sf8ByhW4da8KBpiYAXka8hI2L3nOQ4R5ulLLWrUXJL8PYNI6lShFh/lDeUUR6fUtVcUCAMWW8pT0ffyjz0UdU8eg6w1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Q4BdUHES5wWuHJIgEIW+DFVGuKEdZI35EjFzsTGk8Ik=;
+ b=frKc3aPXAse/74uA/mok+jMYFxadvsIWxW/wyaY7Sp6XaYESh4H9PPWKtu1WDGWW+wZWnHBeumxzlnffWs3IX/oraMHppZxlsGagJJXuPBw/mr3AuvwlBE5HnprMotov7mh84VtyxXzVA6T65MLqKJMoIXcA7q87Bi7oXAVJjE6M4Ixz+5MpgsRzbOPWlGbNMOtHufqDcBFLs9obRygcL/rAVEn0X7S1NwAW6ayIAJRQEpBoCGm2vu0l9vHmo17Ch8XcEH983CfbkLKaxq3C/BaMgqwZMvYDKzJusK8huD1LBz08QigW533HYmRmctxl08sT495F6bBD9lQbmHYYcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Q4BdUHES5wWuHJIgEIW+DFVGuKEdZI35EjFzsTGk8Ik=;
+ b=yecP+AF30orUM474QQl3l4yEMY3Dh45Ro1wZe53R4wdNXIdzRiYb+C/ilJAayIDc7+/4JLyTf07Xx8mHTaL6vHYXF7QQ0/mubx2MlvQIzpS9lg15NUeDnJG4KXDN76bdan6oSixfAoYkX2KalsTrxT9fU3O14Te4R8HXnfuYcZs=
+Received: from DM6PR03CA0086.namprd03.prod.outlook.com (2603:10b6:5:333::19)
+ by MN0PR12MB5930.namprd12.prod.outlook.com (2603:10b6:208:37d::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Tue, 25 Feb
+ 2025 11:21:05 +0000
+Received: from CH3PEPF00000018.namprd21.prod.outlook.com
+ (2603:10b6:5:333:cafe::a9) by DM6PR03CA0086.outlook.office365.com
+ (2603:10b6:5:333::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.18 via Frontend Transport; Tue,
+ 25 Feb 2025 11:21:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH3PEPF00000018.mail.protection.outlook.com (10.167.244.123) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8511.0 via Frontend Transport; Tue, 25 Feb 2025 11:21:05 +0000
+Received: from tao-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
+ 2025 05:21:03 -0600
+From: Tao Zhou <tao.zhou1@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Tao Zhou <tao.zhou1@amd.com>
+Subject: [PATCH] drm/amdgpu: increase AMDGPU_MAX_RINGS
+Date: Tue, 25 Feb 2025 19:20:55 +0800
+Message-ID: <20250225112055.253865-1-tao.zhou1@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241220043410.416867-17-alex.hung@amd.com>
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekudehjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjfgesthekredttddvudenucfhrhhomhepnfhouhhishcuvehhrghuvhgvthcuoehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehhfeiieetkeffgfetudefveeufeetieeiuddvkeegvdfhkefhtdelfeduhfefveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhouhhishdqtghhrghuvhgvthdqlhgrphhtohhppdhmrghilhhfrhhomheplhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohephedprhgtphhtthhopegrlhgvgidrhhhunhhgsegrmhgurdgtohhmpdhrtghpthhtohepughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtohepfigrhihlrghnugdquggvv
- hgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopehhrghrrhihrdifvghnthhlrghnugesrghmugdrtghomh
-X-GND-Sasl: louis.chauvet@bootlin.com
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF00000018:EE_|MN0PR12MB5930:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec1ff816-643f-4ded-cc98-08dd558e7e64
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CLL/mPydqFGgzjeZqxTcjSJaUK/ajs2z65v3qwSrlzZAv+sCajxIf3LjMcX7?=
+ =?us-ascii?Q?UzsA/X5BzXoiKO/mmXzLU+yFzY6y9xnTJyI5S7K3Ag4RE3DTSwRbnrqsNcHi?=
+ =?us-ascii?Q?609CBBKER1qECqjhpyaFmsoh/sfE2BpSZS8l5lztQMIqpGwGQYczNKXv13pJ?=
+ =?us-ascii?Q?B4Tx/TnsxumXvP1NFlxeCQTMfpmym4Aaw1HwBrg9Avv9fOXJ7nu1iVgkeg8D?=
+ =?us-ascii?Q?xwvcZqD1mh45D7qHe+re52838Wu8vS8Wa8AfQvM8vol0jQuxMppSiwgyHbrg?=
+ =?us-ascii?Q?4Xu9MvU95GPFA4kh/Hi30elpXDALrBBh1viPrt5EiMQmDUoqX9U+nwuiA2bR?=
+ =?us-ascii?Q?z8L1pqkt5Qp1hBlk5ZIrMcvE0bDYu9nl+XD3E4bmeB7N7Je/dbinzaiA4YwA?=
+ =?us-ascii?Q?RYjrfKDkOs6hP1fL6SBs4Zshkc8/7r/jdtAgSiIRzfP36j2fhnW+EovK/vrd?=
+ =?us-ascii?Q?6n8T8V5kliQRqbBrHBN2REGGD914XiBQjt+k0QnsLxXUkyPM3Pe/eidYz1yV?=
+ =?us-ascii?Q?5hdYPFuqKCB93tvVejZG3BC19WJJmMnL0ef9HIwC2cLSrgky6U74z3SJo8hl?=
+ =?us-ascii?Q?J6fQMbOfmhyA5zgcm6nL8BxdGu+wKPpeAg+mGwdoCCfGrxUQR4AWgXgZmxDR?=
+ =?us-ascii?Q?t+AU1Rmsj5HRCeTfiRKWQbN2ruFAADTSNs8q5QldRVpKZF+2N2plYaw74sal?=
+ =?us-ascii?Q?v/e9GlaWTVgBhlpPEGmRNXZwL7Hf0EfRfwx+gJ+ZQ8K3C+R8Lb+WwytgxsHi?=
+ =?us-ascii?Q?eRwYlRqqM08awDBvinoPuMfg/ORPuMSPAdfP6TU8kyKqdOeanlI+ktMM2lZt?=
+ =?us-ascii?Q?fDwFsVQr1IMyVPH+WE2aBC7xcoAggga4L1IZ0JSDwvGRH4FEwWgoPwI/3Z7A?=
+ =?us-ascii?Q?qnjj6ALYohD6XcbGNC157cuJGGsRJ+pIdqw/7MJYpGcWKYVRN8bUJEye8yi6?=
+ =?us-ascii?Q?n3lXFhLlL09RP4qluNw82zNsmeiayZ+D8i6r3suovpp5CwjNq32EcKpWLNAW?=
+ =?us-ascii?Q?AdhTjsr+XI3ZIas/LdqMyqqG/AXr5cSmtP8lPlImoWacxQ6TNUoV3OR7KsOS?=
+ =?us-ascii?Q?fTZZBQjIoyOeDeVFjGDRF+QamEcgw04zhcpBzu61z91baA1z/M93GsNkls6q?=
+ =?us-ascii?Q?r32xhoRb9BjFUaShJCgP3SAiHisjbdLBpbCtMfuyQRDMd0QV4YvUmw+lp2Oq?=
+ =?us-ascii?Q?ZlGR5gKMaiNeMoBcvhZrKHkfc35ihgvXV/N2pq4KJEwInJtda+no80XfTNgm?=
+ =?us-ascii?Q?kCyrC6vgLRgKOhCyORNp5OjWpfCHEEV85qX5kVSDt4EwhUd//Dfa9n0mn/dX?=
+ =?us-ascii?Q?TzqCxTqO8R02Ic8yLw7sDpR93rFAiHlcZeqP0TPTJtxSeG8Z9PsbNcEqpRHJ?=
+ =?us-ascii?Q?0SKez0+Vy4Ei9ywwDYdFTRebylX1QaplAocKW5b1OXUOzVvSsZTxy9du2wFf?=
+ =?us-ascii?Q?ZduAytxZMEijVWkyFDFXgElTSO3FQ/RuTuF2zr00YcWdSUUZ4f+MkMUPhmt8?=
+ =?us-ascii?Q?Md051K4xPJEJiho=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2025 11:21:05.0105 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec1ff816-643f-4ded-cc98-08dd558e7e64
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF00000018.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5930
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,322 +130,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Increase it since a cper ring is introduced.
 
+Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Le 20/12/2024 à 05:33, Alex Hung a écrit :
-> From: Harry Wentland <harry.wentland@amd.com>
-> 
-> This type is used to support a 3x4 matrix in colorops. A 3x4
-> matrix uses the last column as a "bias" column. Some HW exposes
-> support for 3x4. The calculation looks like:
-> 
->   out   matrix    in
->   |R|   |0  1  2  3 |   | R |
->   |G| = |4  5  6  7 | x | G |
->   |B|   |8  9  10 11|   | B |
->                         |1.0|
-> 
-> This is also the first colorop where we need a blob property to
-> program the property. For that we'll introduce a new DATA
-> property that can be used by all colorop TYPEs requiring a
-> blob. The way a DATA blob is read depends on the TYPE of
-> the colorop.
-> 
-> We only create the DATA property for property types that
-> need it.
-> 
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
-> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
-> ---
-> 
-> v6:
->   - take ref for DATA blob in duplicate_state func (Xaver Hugl)
-> 
-> v5:
->   - Add function signature for init (Sebastian)
->   - Fix kernel-doc
-> 
-> v4:
->   - Create helper function for creating 3x4 CTM colorop
->   - Fix CTM indexes in comment (Pekka)
-> 
->   drivers/gpu/drm/drm_atomic.c      | 14 ++++++++++-
->   drivers/gpu/drm/drm_atomic_uapi.c | 29 +++++++++++++++++++++
->   drivers/gpu/drm/drm_colorop.c     | 42 +++++++++++++++++++++++++++++++
->   include/drm/drm_colorop.h         | 21 ++++++++++++++++
->   include/uapi/drm/amdgpu_drm.h     |  9 -------
->   include/uapi/drm/drm_mode.h       | 24 +++++++++++++++++-
->   6 files changed, 128 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 35136987d5e8..c58663327e6b 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -787,7 +787,19 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
->   	drm_printf(p, "colorop[%u]:\n", colorop->base.id);
->   	drm_printf(p, "\ttype=%s\n", drm_get_colorop_type_name(colorop->type));
->   	drm_printf(p, "\tbypass=%u\n", state->bypass);
-> -	drm_printf(p, "\tcurve_1d_type=%s\n", drm_get_colorop_curve_1d_type_name(state->curve_1d_type));
-> +
-> +	switch (colorop->type) {
-> +	case DRM_COLOROP_1D_CURVE:
-> +		drm_printf(p, "\tcurve_1d_type=%s\n",
-> +			   drm_get_colorop_curve_1d_type_name(state->curve_1d_type));
-> +		break;
-> +	case DRM_COLOROP_CTM_3X4:
-> +		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-
-As suggested by Simon, you could add this switch in a previous patch, so 
-you could avoid editing the same line twice.
-
-With or without this change:
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-
->   	drm_printf(p, "\tnext=%d\n", colorop->next ? colorop->next->base.id : 0);
->   }
->   
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-> index f0c22abcc28f..7bc4978e5441 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -692,6 +692,30 @@ drm_atomic_plane_get_property(struct drm_plane *plane,
->   	return 0;
->   }
->   
-> +static int drm_atomic_color_set_data_property(struct drm_colorop *colorop,
-> +		struct drm_colorop_state *state,
-> +		struct drm_property *property, uint64_t val)
-> +{
-> +	ssize_t elem_size = -1;
-> +	ssize_t size = -1;
-> +	bool replaced = false;
-> +
-> +	switch (colorop->type) {
-> +	case DRM_COLOROP_CTM_3X4:
-> +		size = sizeof(struct drm_color_ctm_3x4);
-> +		break;
-> +	default:
-> +		/* should never get here */
-> +		return -EINVAL;
-> +	}
-> +
-> +	return drm_property_replace_blob_from_id(colorop->dev,
-> +					&state->data,
-> +					val,
-> +					size,
-> +					elem_size,
-> +					&replaced);
-> +}
->   
->   static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
->   		struct drm_colorop_state *state, struct drm_file *file_priv,
-> @@ -701,6 +725,9 @@ static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
->   		state->bypass = val;
->   	} else if (property == colorop->curve_1d_type_property) {
->   		state->curve_1d_type = val;
-> +	} else if (property == colorop->data_property) {
-> +		return drm_atomic_color_set_data_property(colorop,
-> +					state, property, val);
->   	} else {
->   		drm_dbg_atomic(colorop->dev,
->   			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]]\n",
-> @@ -723,6 +750,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
->   		*val = state->bypass;
->   	} else if (property == colorop->curve_1d_type_property) {
->   		*val = state->curve_1d_type;
-> +	} else if (property == colorop->data_property) {
-> +		*val = (state->data) ? state->data->base.id : 0;
->   	} else {
->   		return -EINVAL;
->   	}
-> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
-> index 954acd09673a..7d4b29c0a0cc 100644
-> --- a/drivers/gpu/drm/drm_colorop.c
-> +++ b/drivers/gpu/drm/drm_colorop.c
-> @@ -64,6 +64,7 @@
->   
->   static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
->   	{ DRM_COLOROP_1D_CURVE, "1D Curve" },
-> +	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"}
->   };
->   
->   static const char * const colorop_curve_1d_type_names[] = {
-> @@ -202,11 +203,51 @@ int drm_colorop_curve_1d_init(struct drm_device *dev, struct drm_colorop *coloro
->   }
->   EXPORT_SYMBOL(drm_colorop_curve_1d_init);
->   
-> +static int drm_colorop_create_data_prop(struct drm_device *dev, struct drm_colorop *colorop)
-> +{
-> +	struct drm_property *prop;
-> +
-> +	/* data */
-> +	prop = drm_property_create(dev, DRM_MODE_PROP_ATOMIC | DRM_MODE_PROP_BLOB,
-> +					"DATA", 0);
-> +	if (!prop)
-> +		return -ENOMEM;
-> +
-> +	colorop->data_property = prop;
-> +	drm_object_attach_property(&colorop->base,
-> +					colorop->data_property,
-> +					0);
-> +
-> +	return 0;
-> +}
-> +
-> +int drm_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop *colorop,
-> +			     struct drm_plane *plane)
-> +{
-> +	int ret;
-> +
-> +	ret = drm_colorop_init(dev, colorop, plane, DRM_COLOROP_CTM_3X4);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = drm_colorop_create_data_prop(dev, colorop);
-> +	if (ret)
-> +		return ret;
-> +
-> +	drm_colorop_reset(colorop);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_colorop_ctm_3x4_init);
-> +
->   static void __drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop,
->   							struct drm_colorop_state *state)
->   {
->   	memcpy(state, colorop->state, sizeof(*state));
->   
-> +	if (state->data)
-> +		drm_property_blob_get(state->data);
-> +
->   	state->bypass = true;
->   }
->   
-> @@ -288,6 +329,7 @@ void drm_colorop_reset(struct drm_colorop *colorop)
->   
->   static const char * const colorop_type_name[] = {
->   	[DRM_COLOROP_1D_CURVE] = "1D Curve",
-> +	[DRM_COLOROP_CTM_3X4] = "3x4 Matrix"
->   };
->   
->   const char *drm_get_colorop_type_name(enum drm_colorop_type type)
-> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
-> index 2f0572be37bb..e9f5c1adc2fe 100644
-> --- a/include/drm/drm_colorop.h
-> +++ b/include/drm/drm_colorop.h
-> @@ -96,6 +96,14 @@ struct drm_colorop_state {
->   	 */
->   	enum drm_colorop_curve_1d_type curve_1d_type;
->   
-> +	/**
-> +	 * @data:
-> +	 *
-> +	 * Data blob for any TYPE that requires such a blob. The
-> +	 * interpretation of the blob is TYPE-specific.
-> +	 */
-> +	struct drm_property_blob *data;
-> +
->   	/** @state: backpointer to global drm_atomic_state */
->   	struct drm_atomic_state *state;
->   };
-> @@ -200,6 +208,17 @@ struct drm_colorop {
->   	 */
->   	struct drm_property *curve_1d_type_property;
->   
-> +	/**
-> +	 * @data_property:
-> +	 *
-> +	 * blob property for any TYPE that requires a blob of data,
-> +	 * such as 1DLUT, CTM, 3DLUT, etc.
-> +	 *
-> +	 * The way this blob is interpreted depends on the TYPE of
-> +	 * this
-> +	 */
-> +	struct drm_property *data_property;
-> +
->   	/**
->   	 * @next_property:
->   	 *
-> @@ -236,6 +255,8 @@ static inline struct drm_colorop *drm_colorop_find(struct drm_device *dev,
->   
->   int drm_colorop_curve_1d_init(struct drm_device *dev, struct drm_colorop *colorop,
->   			      struct drm_plane *plane, u64 supported_tfs);
-> +int drm_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop *colorop,
-> +			     struct drm_plane *plane);
->   
->   struct drm_colorop_state *
->   drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop);
-> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> index efe5de6ce208..e44362e74fa1 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -1283,15 +1283,6 @@ struct drm_amdgpu_info_gpuvm_fault {
->   #define AMDGPU_FAMILY_GC_11_5_0			150 /* GC 11.5.0 */
->   #define AMDGPU_FAMILY_GC_12_0_0			152 /* GC 12.0.0 */
->   
-> -/* FIXME wrong namespace! */
-> -struct drm_color_ctm_3x4 {
-> -	/*
-> -	 * Conversion matrix with 3x4 dimensions in S31.32 sign-magnitude
-> -	 * (not two's complement!) format.
-> -	 */
-> -	__u64 matrix[12];
-> -};
-> -
->   #if defined(__cplusplus)
->   }
->   #endif
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index 53985d2b7eea..6fc1ce24800a 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -847,6 +847,20 @@ struct drm_color_ctm {
->   	__u64 matrix[9];
->   };
->   
-> +struct drm_color_ctm_3x4 {
-> +	/*
-> +	 * Conversion matrix with 3x4 dimensions in S31.32 sign-magnitude
-> +	 * (not two's complement!) format.
-> +	 *
-> +	 * out   matrix          in
-> +	 * |R|   |0  1  2  3 |   | R |
-> +	 * |G| = |4  5  6  7 | x | G |
-> +	 * |B|   |8  9  10 11|   | B |
-> +	 *                       |1.0|
-> +	 */
-> +	__u64 matrix[12];
-> +};
-> +
->   struct drm_color_lut {
->   	/*
->   	 * Values are mapped linearly to 0.0 - 1.0 range, with 0x0 == 0.0 and
-> @@ -872,7 +886,15 @@ enum drm_colorop_type {
->   	 * A 1D curve that is being applied to all color channels. The
->   	 * curve is specified via the CURVE_1D_TYPE colorop property.
->   	 */
-> -	DRM_COLOROP_1D_CURVE
-> +	DRM_COLOROP_1D_CURVE,
-> +
-> +	/**
-> +	 * @DRM_COLOROP_CTM_3X4:
-> +	 *
-> +	 * A 3x4 matrix. Its values are specified via the
-> +	 * &drm_color_ctm_3x4 struct provided via the DATA property.
-> +	 */
-> +	DRM_COLOROP_CTM_3X4,
->   };
->   
->   /**
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 52f7a9a79e7b..b4fd1e17205e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -37,7 +37,7 @@ struct amdgpu_job;
+ struct amdgpu_vm;
+ 
+ /* max number of rings */
+-#define AMDGPU_MAX_RINGS		132
++#define AMDGPU_MAX_RINGS		133
+ #define AMDGPU_MAX_HWIP_RINGS		64
+ #define AMDGPU_MAX_GFX_RINGS		2
+ #define AMDGPU_MAX_SW_GFX_RINGS         2
 -- 
-Louis Chauvet, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
 
