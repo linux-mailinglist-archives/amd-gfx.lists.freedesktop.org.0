@@ -2,48 +2,126 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0ADA43854
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Feb 2025 09:56:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89A2DA437E0
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Feb 2025 09:43:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F28CD10E5CB;
-	Tue, 25 Feb 2025 08:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C896910E5B5;
+	Tue, 25 Feb 2025 08:43:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=tkos.co.il header.i=@tkos.co.il header.b="rT7+IIND";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="E7aocM2k";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.tkos.co.il (guitar.tkos.co.il [84.110.109.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB8B510E130
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Feb 2025 06:18:10 +0000 (UTC)
-Received: from localhost (unknown [10.0.8.3])
- by mail.tkos.co.il (Postfix) with ESMTP id 94EAC440A74;
- Tue, 25 Feb 2025 08:12:28 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
- s=default; t=1740463948;
- bh=jIe8X1sJXTn9/E7XQ6cGdpiMKttyh7BAXk83u44A2X8=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=rT7+IINDB+iE5MhybnJax6ofQ5UNu4hDSiPmdPM+ThmUEDMf/rW30y664YmBR+Rqa
- VOS8SuoHEMpHLHwLOTA53mUImT/9yDTLkdpYAUcIww1T/xxzib1BxHeQsHMSAZSZZ8
- tBL77tEzrllrQ13qHnKmz7zow1PnAkXdwdgNGfNV0NsS/5zHZscTPRLlKSsw4izkqD
- 0WkrdLMhY6LAx9hXp/O+beY1Cj2RqqjgfXvBshuhkZrwvL6IhG4SbmsWZv4LYPCKkv
- CBP647JW2wvAtjis3xz4CDy8jx27a3Axd0H+U5DBsWNzdaqxVgCboVupF1otTFczgF
- p59jK7wOzjmxQ==
-From: Baruch Siach <baruch@tkos.co.il>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org
-Subject: Re: [drm:amdgpu_ring_test_helper] *ERROR* ring kiq_0.2.1.0 test
- failed (-110)
-In-Reply-To: <CADnq5_P+_iGePpp9c1Sr85-z7fgWxq1iejpHxuyVO_G5nW8kYw@mail.gmail.com>
- (Alex Deucher's message of "Mon, 24 Feb 2025 09:05:56 -0500")
-References: <87seo3ga1t.fsf@tarshish>
- <CADnq5_P+_iGePpp9c1Sr85-z7fgWxq1iejpHxuyVO_G5nW8kYw@mail.gmail.com>
-User-Agent: mu4e 1.12.8; emacs 29.4
-Date: Tue, 25 Feb 2025 08:18:03 +0200
-Message-ID: <875xkyfsys.fsf@tarshish>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2066.outbound.protection.outlook.com [40.107.243.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 454F910E5B5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Feb 2025 08:43:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VJ/s6t9fYmSJq9FrpOKvKEdviJdbSP1QwPxgB2Xq0E9lO99/NBjnK88UT+dU2mMty/5nwSVLTCAuqgFzKXLh7PnoT26M4sf5uPI7RfV10tD6Ia0pGMlcXi33JK1f+zMJVsKNAHwt8HSB50y5U67E/fMVZqwh30IBpH93399Ow/+o4bndrNy8VyPAnp2k2hnwiUQQpG2hCzP/MX6TeZna9On4/XR++CP8Xz4ukdjf2TMlS63hSoZDhP11s4CrwPJ5bm9ufyQYhUHm0R0tKH30QF+9lJr7wPjKyTkBfaOzshAVad7nL9pDSra4KZyijA45EV5ZFfVwtsNZEmxq1PfgsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fY91cJsiZje1ShTuLqgKCWSWgKs3bXPujc2kRm3Hi34=;
+ b=TKGDKwL+WcJPZFYuzouQIiXG7cO6jDShiz6rTqU0SbAtu8EGOtrxe4ByDUYMAhN4Yp5OY9hju4NgvKRf1nfsg2cDJH2vYNxkDxh+bBM+yDmEvmXUN6ioGHduSObdj4v3uzfTfW+VXtmKao9ZmXn1O+hnpq/agLBi8BWvYzV7/gQDWH3N0t81XYUDX3od7XBJl8i4R1SXpcHSuwO/vQmqOJj1nrTRBKLnKoF42IPt/URrk2mVlSxcF0e/lKQc/SQbNKG0wahzFJ7+RtCO4BU8Ly39vMrhmNmRubz54+gdEt+SrwHw2kTkul1WrL1I/qJKKleQIhFFvmJcvE1VI66uwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fY91cJsiZje1ShTuLqgKCWSWgKs3bXPujc2kRm3Hi34=;
+ b=E7aocM2kl+cRfvOomenwgtrnKfDNKl6KCUNvqQFB99oOTLJ0CTyM4PkxACs27WqnGH1RKSmymmh0g/3pEFmbeQN4tdHvEyd3xnPPf9UWLR0h/2GmMK9/jAzmO0gXwuJHo/bIEgzPyHivnRh22/uFJptQav1YnehAUVFX5XtIFIA=
+Received: from CH0PR03CA0250.namprd03.prod.outlook.com (2603:10b6:610:e5::15)
+ by SA1PR12MB8164.namprd12.prod.outlook.com (2603:10b6:806:338::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Tue, 25 Feb
+ 2025 08:43:24 +0000
+Received: from CH1PEPF0000AD7A.namprd04.prod.outlook.com
+ (2603:10b6:610:e5:cafe::a2) by CH0PR03CA0250.outlook.office365.com
+ (2603:10b6:610:e5::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.20 via Frontend Transport; Tue,
+ 25 Feb 2025 08:43:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD7A.mail.protection.outlook.com (10.167.244.59) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8489.16 via Frontend Transport; Tue, 25 Feb 2025 08:43:23 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Feb
+ 2025 02:43:22 -0600
+Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
+ via Frontend Transport; Tue, 25 Feb 2025 02:43:16 -0600
+From: "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
+ Lijo Lazar <lijo.lazar@amd.com>, Jiadong Zhu <Jiadong.Zhu@amd.com>,
+ "Jesse.zhang@amd.com" <Jesse.zhang@amd.com>, Jesse Zhang
+ <jesse.zhang@amd.com>
+Subject: [PATCH v4 1/3] drm/amd/amdgpu: Increase max rings to enable SDMA page
+ ring
+Date: Tue, 25 Feb 2025 16:43:13 +0800
+Message-ID: <20250225084315.40087-1-jesse.zhang@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 25 Feb 2025 08:56:44 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: jesse.zhang@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7A:EE_|SA1PR12MB8164:EE_
+X-MS-Office365-Filtering-Correlation-Id: 29a59627-09fd-4333-d690-08dd557876ee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9JQswAvgydI+R1EF35+hokaJmfTpBszkBX6o+3zaWHRm1HKah1/C1b7IhvK6?=
+ =?us-ascii?Q?h9MhWKukwad7P+BuF69b4PzglvLyfe+o7Vdex6PnOzLNQvUFbyXdrxJZi2rI?=
+ =?us-ascii?Q?IXkxe8R/O4Gbb9PoDv5znt+4q6PmAbMtvTwyxVqxuUoZqns+IaQBaf3L/48M?=
+ =?us-ascii?Q?eHMqYVzlXPROIRPIE9oXAEKD5VdDNoh0rp7m5I5u2kmtv1/DRLjS6ug0Z809?=
+ =?us-ascii?Q?fWhTaxdy95uFlOmHdN/vtAQyjaEcZIU1KJFLFeh05gZauvgW0/eB81C9fZoq?=
+ =?us-ascii?Q?TdXsSTG7R70QsnNmkMWRCOmY3uYnspa73YWh7JZQwzOu1pzkBtt/k+HfQy0W?=
+ =?us-ascii?Q?Dj2aY7IDfGV+yXRE28dD2e19rM4kd+O5J70Nw3txWF+qS7pAQ+22AOqXWyWA?=
+ =?us-ascii?Q?VyYMWh4RQHpqkL833tdxQN7Q+Flce+gFrwRiIrRzvs30JKYjJmi8uWHvoExJ?=
+ =?us-ascii?Q?YJqWRdmHGIZtWnpSwJeI+8yKK+wuL+3EK7t49vevzHDhP19GuWOQHb5LI5FX?=
+ =?us-ascii?Q?GLodXGwjN8uuXzxDzJy5Ita0cHJnbwISfbfAyiLiMk4KTL0IXNUNEDJIXxoj?=
+ =?us-ascii?Q?ntwZNauG6yhuBQ1mSqc/Nxb85sExTamT9vqSNJQ4ZffxGREXAbpnJvULnfzN?=
+ =?us-ascii?Q?pMF8B9zx4+nX9Fnoi6QQbV8RnmjRBpVU/naUEgHVsD/Awpow57Z8fK2Srxu2?=
+ =?us-ascii?Q?cJCutoh5+3c19x2wXda6xt3stu6IhpSEo7DLb6Jfw++30GYaLPCrdPJGkcZc?=
+ =?us-ascii?Q?Jk+vPBfF8zKU6kuTx7iok4lDBxYYlQwmbm/IAd+t4vNS4w81IJns+jB5p8XW?=
+ =?us-ascii?Q?5MTSz5Y65iBBjferQAlxeQ1iRM+d7DJy1PCO2pZYwRLmnJoup/1g0ZOmbtTj?=
+ =?us-ascii?Q?AuNLusAflEiLF4vM1PVj2R6Ddpti2EEuiLQev1/onNYNabFIeLCGQx2Jja++?=
+ =?us-ascii?Q?uScL649EtUyP2+T8RINjXqs78AFcwOrqfy0v1Kz1sz9DbsuGTAwkxOwG2FTW?=
+ =?us-ascii?Q?O4TWDdwUhFZVJW/NbABR7rMgyaJCcjaUidFJznrnmssZo2nHYml5cQOg/xCf?=
+ =?us-ascii?Q?49j1kEq0B32gtmaSRJDBWLKIWL2nDaGhc0tLTQ6FLP5HXbVQ6VYmd+jcXxyD?=
+ =?us-ascii?Q?KPxlkWJEshVQ/epHcHH0VWGgkRk5pZby2yzHBKutlkZ97mT/zY+tSONnZUJX?=
+ =?us-ascii?Q?G6yIQdYhn5saK5k1YvmLxSyL7nhB6XSk+X/ZJ9sbS+fltoY+x30w7f6INZog?=
+ =?us-ascii?Q?ZQ11/cOpWzWCASo7tG2bpjv6KYqzRJKTTdKsAwUgBWzJ6WW5rJV2aE0K+WRG?=
+ =?us-ascii?Q?Svd8t2sGGsFirXyRFeOYftaYknJ+4H2sM2F3a7hYKwHAr6KptJ8FaRHLmfTm?=
+ =?us-ascii?Q?G7Dy6vsltUz8OSkSx7Hlqn1X9e6XQN3ZHFUVnFxfqxgVgRzvBh9JQmw7cnxw?=
+ =?us-ascii?Q?LxNznruqRGB8CQoznuTyrdAXflISht+ldDu5EjIx/ckE06drGF31agtJ5fcE?=
+ =?us-ascii?Q?Pze36qQbKirel8k=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2025 08:43:23.5652 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29a59627-09fd-4333-d690-08dd557876ee
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD7A.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8164
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,160 +136,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Alex,
+From: "Jesse.zhang@amd.com" <Jesse.zhang@amd.com>
 
-Thanks for your prompt response.
+Increase the maximum number of rings supported by the AMDGPU driver from 132 to 148.
+This change is necessary to enable support for the SDMA page ring.
 
-On Mon, Feb 24 2025, Alex Deucher wrote:
-> On Mon, Feb 24, 2025 at 8:51=E2=80=AFAM Baruch Siach <baruch@tkos.co.il> =
-wrote:
->> I see this failure on probe when trying to bring up amdgpu on a new arm64
->> platform.  Kernel is v6.14-rc4, and aldebaran firmware is latest
->> (linux-firmware commit 4f47e84d06f9).
->>
->> Tested with these kernel command line parameters:
->>
->> amdgpu.vm_size=3D1 amdgpu.msi=3D1 amdgpu.gartsize=3D32 amdgpu.vramlimit=
-=3D32 amdgpu.gttsize=3D32
->
-> Why are you setting those?  Does the driver load ok if you do not
-> specify those driver options?
+Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Driver probe fails the same way with or without these options. These
-options were meant to fit the driver into limited address space.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 52f7a9a79e7b..4224f8fa1614 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -37,7 +37,7 @@ struct amdgpu_job;
+ struct amdgpu_vm;
+ 
+ /* max number of rings */
+-#define AMDGPU_MAX_RINGS		132
++#define AMDGPU_MAX_RINGS		148
+ #define AMDGPU_MAX_HWIP_RINGS		64
+ #define AMDGPU_MAX_GFX_RINGS		2
+ #define AMDGPU_MAX_SW_GFX_RINGS         2
+-- 
+2.25.1
 
->> I guess the "CP firmware version" warning is bogus. IP version for GC_HW=
-IP is
->> 9.4.2.
->>
->> Any idea?
->
-> Potentially the driver parameters combination is causing a problem, or
-> your ARM SoC may not be PCIe compliant.  A lot of small SoC's just
-> throw a PCIe bridge on the SoC without proper coherency in place
-> between the CPU and the PCIe bus.  PCIe requires cohorency with the
-> CPU (i.e., the device can snoop the CPU's cache).
-
-I'll take a look into PCIe coherency in this SoC.
-
-Thanks for the hint.
-
-baruch
-
->> Relevant log snippets follows:
->>
->> [    1.792949] pci 0000:05:00.0: [1002:740f] type 00 class 0x038000 PCIe=
- Endpoint
->> [    1.800652] pci 0000:05:00.0: BAR 0 [mem 0x00000000-0xfffffffff 64bit=
- pref]
->> [    1.807629] pci 0000:05:00.0: BAR 2 [mem 0x00000000-0x001fffff 64bit =
-pref]
->> [    1.814506] pci 0000:05:00.0: BAR 4 [io  0x0000-0x00ff]
->> [    1.819729] pci 0000:05:00.0: BAR 5 [mem 0x00000000-0x0007ffff]
->> [    1.825647] pci 0000:05:00.0: ROM [mem 0x00000000-0x0001ffff pref]
->> [    1.833297] pci 0000:05:00.0: PME# supported from D1 D2 D3hot D3cold
->> [    1.840118] pci 0000:05:00.0: 126.024 Gb/s available PCIe bandwidth, =
-limited by 16.0 GT/s PCIe x8 link at 0000:02:00.0 (capable of 252.048 Gb/s =
-with 16.0 GT/s PCIe x16 link)
->> [    1.857150] pci_bus 0000:05: busn_res: [bus 05-ff] end is updated to =
-05
->> ...
->> [    2.615336] pci 0000:05:00.0: BAR 0 [mem 0x1000000000-0x1fffffffff 64=
-bit pref]: assigned
->> [    2.623529] pci 0000:05:00.0: BAR 2 [mem 0x2000000000-0x20001fffff 64=
-bit pref]: assigned
->> [    2.631720] pci 0000:05:00.0: BAR 5 [mem 0x5d000000-0x5d07ffff]: assi=
-gned
->> [    2.638544] pci 0000:05:00.0: ROM [mem 0x5d080000-0x5d09ffff pref]: a=
-ssigned
->> [    2.645583] pci 0000:05:00.0: BAR 4 [io  size 0x0100]: can't assign; =
-no space
->> [    2.652707] pci 0000:05:00.0: BAR 4 [io  size 0x0100]: failed to assi=
-gn
->> ...
->> [    3.153154] amdgpu 0000:05:00.0: enabling device (0000 -> 0002)
->> [    3.159112] [drm] initializing kernel modesetting (ALDEBARAN 0x1002:0=
-x740F 0x1002:0x0C34 0x02).
->> [    3.167817] [drm] register mmio base: 0x5D000000
->> [    3.172425] [drm] register mmio size: 524288
->> [    3.176775] amdgpu 0000:05:00.0: amdgpu: detected ip block number 0 <=
-soc15_common>
->> [    3.184341] amdgpu 0000:05:00.0: amdgpu: detected ip block number 1 <=
-gmc_v9_0>
->> [    3.191558] amdgpu 0000:05:00.0: amdgpu: detected ip block number 2 <=
-vega20_ih>
->> [    3.198858] amdgpu 0000:05:00.0: amdgpu: detected ip block number 3 <=
-psp>
->> [    3.205639] amdgpu 0000:05:00.0: amdgpu: detected ip block number 4 <=
-smu>
->> [    3.212421] amdgpu 0000:05:00.0: amdgpu: detected ip block number 5 <=
-gfx_v9_0>
->> [    3.219635] amdgpu 0000:05:00.0: amdgpu: detected ip block number 6 <=
-sdma_v4_0>
->> [    3.226935] amdgpu 0000:05:00.0: amdgpu: detected ip block number 7 <=
-vcn_v2_6>
->> [    3.234149] amdgpu 0000:05:00.0: amdgpu: detected ip block number 8 <=
-jpeg_v2_6>
->> [    3.247351] amdgpu 0000:05:00.0: amdgpu: Fetched VBIOS from ROM BAR
->> [    3.253626] amdgpu: ATOM BIOS: 113-D67301V-073
->> [    3.259731] [drm] CP firmware version too old, please update!
->> [    3.260400] amdgpu 0000:05:00.0: amdgpu: Trusted Memory Zone (TMZ) fe=
-ature not supported
->> [    3.274294] amdgpu 0000:05:00.0: amdgpu: PCIE atomic ops is not suppo=
-rted
->> [    3.281115] amdgpu 0000:05:00.0: amdgpu: MEM ECC is active.
->> [    3.286679] amdgpu 0000:05:00.0: amdgpu: SRAM ECC is active.
->> [    3.292351] amdgpu 0000:05:00.0: amdgpu: RAS INFO: ras initialized su=
-ccessfully, hardware ability[7ff7f] ras_mask[7ff7f]
->> [    3.303232] [drm] vm size is 1 GB, 2 levels, block size is 9-bit, fra=
-gment size is 9-bit
->> [    3.311338] amdgpu 0000:05:00.0: amdgpu: VRAM: 65520M 0x0000020000000=
-000 - 0x0000020FFEFFFFFF (32M used)
->> [    3.320811] amdgpu 0000:05:00.0: amdgpu: GART: 32M 0x0000000000000000=
- - 0x0000000001FFFFFF
->> [    3.329070] [drm] Detected VRAM RAM=3D65520M, BAR=3D65536M
->> [    3.334199] [drm] RAM width 4096bits HBM
->> [    3.338251] [drm] amdgpu: 32M of VRAM memory ready
->> [    3.343039] [drm] amdgpu: 32M of GTT memory ready.
->> [    3.347861] [drm] GART: num cpu pages 8192, num gpu pages 8192
->> [    3.353779] [drm] PCIE GART of 32M enabled.
->> [    3.357955] [drm] PTB located at 0x0000020001FF0000
->> [    3.365901] [drm] Found VCN firmware Version ENC: 1.1 DEC: 1 VEP: 0 R=
-evision: 28
->> [    3.432199] amdgpu 0000:05:00.0: amdgpu: reserve 0x800000 from 0x2000=
-1000000 for PSP TMR
->> [    3.504497] amdgpu 0000:05:00.0: amdgpu: smu driver if version =3D 0x=
-00000008, smu fw if version =3D 0x00000009, smu fw program =3D 0, smu fw ve=
-rsion =3D 0x00443f00 (68.63.0)
->> [    3.519356] amdgpu 0000:05:00.0: amdgpu: SMU driver if version not ma=
-tched
->> [    3.526265] amdgpu 0000:05:00.0: amdgpu: use vbios provided pptable
->> [    3.532523] amdgpu 0000:05:00.0: amdgpu: smc_dpm_info table revision(=
-format.content): 4.10
->> [    3.560964] amdgpu 0000:05:00.0: amdgpu: SMU is initialized successfu=
-lly!
->> [    3.568167] [drm] kiq ring mec 2 pipe 1 q 0
->> [    3.785160] amdgpu 0000:05:00.0: [drm:amdgpu_ring_test_helper] *ERROR=
-* ring kiq_0.2.1.0 test failed (-110)
->> [    3.794825] [drm:amdgpu_gfx_enable_kcq] *ERROR* KCQ enable failed
->> [    3.800929] [drm:amdgpu_device_init] *ERROR* hw_init of IP block <gfx=
-_v9_0> failed -110
->> [    3.808929] amdgpu 0000:05:00.0: amdgpu: amdgpu_device_ip_init failed
->> [    3.815361] amdgpu 0000:05:00.0: amdgpu: Fatal error during GPU init
->> [    3.821705] amdgpu 0000:05:00.0: amdgpu: amdgpu: finishing device.
->>
->> Thanks,
->> baruch
->>
->> --
->>                                                      ~. .~   Tk Open Sys=
-tems
->> =3D}------------------------------------------------ooO--U--Ooo---------=
----{=3D
->>    - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
-
---=20
-                                                     ~. .~   Tk Open Systems
-=3D}------------------------------------------------ooO--U--Ooo------------=
-{=3D
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
