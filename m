@@ -2,68 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3503A47503
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Feb 2025 06:06:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D1BA47505
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Feb 2025 06:06:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62C8A10E1CD;
-	Thu, 27 Feb 2025 05:06:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98EDA10EA38;
+	Thu, 27 Feb 2025 05:06:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IbKIrq6L";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fd4Yt1/s";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
- [209.85.222.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59D7D10E1CD
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
+ [209.85.219.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9AED10E1CD
  for <amd-gfx@lists.freedesktop.org>; Thu, 27 Feb 2025 05:06:15 +0000 (UTC)
-Received: by mail-qk1-f169.google.com with SMTP id
- af79cd13be357-7c07b65efeeso49844485a.2
+Received: by mail-qv1-f54.google.com with SMTP id
+ 6a1803df08f44-6dd1962a75bso4775036d6.3
  for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2025 21:06:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1740632774; x=1741237574; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:from:to:cc:subject:date:message-id:reply-to;
- bh=mezg0s1ePURZfXLWtXyY33wczui4LdpBNxmdwm8UHi8=;
- b=IbKIrq6LNhq7J/vRoSruYIt3v6WJT7ERkNDgjylGHOJ9mVzDaUvuM3CZeJy/2HFKSW
- 2QgMxo+oOTqLfAeRmBiN+AWTylPd0sjKnV6JWVweTif7+si7RBtgPV16kjONCDHCruWt
- mP5doe7QEw8ijVnm8UYBAeF/YkyZDlth28DbuDaTUttjJoW1z/R1sHdXlp4MlyTnNtFf
- wDlbV5SG3xZoZOdFkZJZT6g3hQ+kzilewjsNIAihtPflAgalfBuZiHzuE/aPv0tbvyzQ
- dn+zawzCzjW52Ehx2czbcr8ptAfGGMLx49vNyMzLgtYLL6fcQQvBCZB9uynhYBjePvix
- vN8Q==
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=E6NWwRzxwXTQXzOrIh7dG1VtiJQWUD4FDfWrI47c4oI=;
+ b=Fd4Yt1/sMMmo5qPAsVu0TugEu7hwjcTah71Gv+FP7JgsX8eccCznSE+l4ZFL/vAEmb
+ WuiVznvY58u5ykN467eK8cQFqzSzJeaTUkmDuDqNjtNnU1tNKR9EMIAJegazGNm00Eps
+ Z8rTZr3gqVZbNE2ENf2nZv9z6OxudYxPt9LPqnn4iaQYrReQ3UKtPAlNvL81rf1l/cSV
+ X8K88sfVFTSql4ueWU/4A5l+0R/drW+CMpmgrWTghpWsauAhyuhFailkisUOX42MC3vS
+ K8tFP4dg5FNXj0gQxc8pncC6Ao4QNkQHlNb7wjlEwE6OSeaLeDzppvWO6PCy8UWv6V8r
+ 2w/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1740632774; x=1741237574;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=mezg0s1ePURZfXLWtXyY33wczui4LdpBNxmdwm8UHi8=;
- b=PZWjmANE0mfb2NGxHYMgONSiTrgeLU3dISGZ1fXo6q0OrPTCYMJy467L8l+2c4w6GY
- K6ik7JBLoRVhe3OL6UBWs0PXWiPhv7NBY0P+jNq/IgjOK1MeAFcx5uskA1uIceRB7sX3
- S4I1QBRJnFlRnp9sxK+WW9W1RuPYfaKVZS5BrucohgNQ6ZRlq2n2cFgpFdmYfzFJwJmQ
- BvfqjV81htCFRHGVH3269M3dvhyRshnHtRe4rwa4MdH9zbGx2qz2qg3pfvGHqaYd0KOP
- p0Se8TJ+lB8G04XFE/3fk8D2Wry1JQYBIjej640tbz8RM8PVYYpUHvtZthBwX+fqL2bQ
- oCPQ==
-X-Gm-Message-State: AOJu0YxLpzvgYQvqJ+XUUtRev/7iNABnCLTrKkJsIPzVcJPsfvTnf3kS
- wjUWZFVh5KBPZdH/wPnV7SKN14q7fqsD7TVCdwy4OeCaL0E9wYPchWJxIg==
-X-Gm-Gg: ASbGnctnekEMeT0SQ0UsWuhGMNPQtzPS/4dQJUHv4IykVLkNURI3zWi4Wq/8RqA/JED
- JsxnnDCJPu52trcswHIy3SSmF5afV3XyLnkMv6n5gPT6RYOUibqTcax8BfiWzm7ewPofyTXUvxU
- Olzis0vrL0EE0PolshjbPD9U6dEIuZoS8TFhkd9M+0oCsJhq77SgrZV2mrS84s79RELqMeL08Nx
- HjaM1XIetnP5qk/1JK3JwzsWn/RUJ0cuqV2+9PvL/mDZkGSdDuNT0Y9ajz7JazgEjLwEUnf8V3A
- 7TYizCE15fnqM24xFefzXxQoXU5lZEbgii7In4Vj1XjHAlFH
-X-Google-Smtp-Source: AGHT+IEmfWAh3LFgRG/+BK4SX6cCvGkBj9lUZ8Y6JO6uatLlM15zG6dQT1XE+17JKw7Qswuh6zKL9w==
-X-Received: by 2002:a05:6214:d6f:b0:6d8:6a74:ae68 with SMTP id
- 6a1803df08f44-6e6ae96734dmr279042766d6.29.1740632773670; 
- Wed, 26 Feb 2025 21:06:13 -0800 (PST)
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=E6NWwRzxwXTQXzOrIh7dG1VtiJQWUD4FDfWrI47c4oI=;
+ b=ADAZsUVQqUB7AdmDNGXRgmNe2VSrC1scfTCHxCOQ4YCNAoBAAqo/TYTvDvVQ/fW9cN
+ 3bEvpL7vka70HP3ibG6uhAAmzrZ6NnvT6AQ8GV58qK4FIYQ7cFf2sCLUgy48hjPkWgNt
+ bZ8FnTZ2lxc56B5NZkL77WjkQYfh+s7RoxMGShgXW4ysnCXs5jDcmylsQeT4wpGmCUPq
+ X+5hkleLvgl3e0d8qvmVnBF4tddWGHG+h1TpBiTz6b+jBbdog/YOhPEKc29Ci0XlUe8i
+ K8CP8OHB1LnflgmTpH3Qk35Yg5rBXuFPt7a+B4QSw4ZbkGkt7Parj8xottez0zrz7ACj
+ NzQg==
+X-Gm-Message-State: AOJu0YwvuNP5gwdRCgJlES4hNBHjb/jOdLTaBs/LDQa2Z6cEO6xKi+ql
+ ZeBNmmowvA8MNW1DdURp4krIrsoB5kNhZxhW24h1Y+VIfXT8XbYhYPo3hg==
+X-Gm-Gg: ASbGncuG5+DvsCQifLUnnzaEhxRT9yguFnsJ/k7DkWVTQLACH3dMCAd2eht5+wR8qfw
+ sSwoj162s56oP2177FwyfUcS0VGuB52tmV+kMAi28sMCLRzGsZLCuIbv9eiCAXodYWxA2B0jzGM
+ E8Fsy6UboCn3stMBD13X96IkEDfvedblYALkutCqantdC38+R6PGckKrnvfU2IIolOzb0FLJBrM
+ rsirSs/nHR+xewePGGhpl7tcHbyhoeeUcDcszCS/AQoTmueTDVJ96rPcqE7OOMKhZry0Evld2Mc
+ kefn2yCwSTqPbKWa4Yryea++enN4bVM13GJITh3tHNZzbk/v
+X-Google-Smtp-Source: AGHT+IE1aGlqZF5kznWQ//bJvu0zaU+T+oPOrKjegZOsZ3WSF0Olmsu9zjKg//ktfLwJGY9kvMupfQ==
+X-Received: by 2002:a05:6214:b67:b0:6e8:9378:94cf with SMTP id
+ 6a1803df08f44-6e8937897bcmr49280786d6.21.1740632774437; 
+ Wed, 26 Feb 2025 21:06:14 -0800 (PST)
 Received: from localhost.localdomain ([38.74.25.248])
  by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-6e8976cca63sm6066906d6.89.2025.02.26.21.06.12
+ 6a1803df08f44-6e8976cca63sm6066906d6.89.2025.02.26.21.06.13
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2025 21:06:13 -0800 (PST)
+ Wed, 26 Feb 2025 21:06:14 -0800 (PST)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/amdgpu: fix typos
-Date: Thu, 27 Feb 2025 00:05:04 -0500
-Message-ID: <20250227050506.167299-1-alexandre.f.demers@gmail.com>
+Subject: [PATCH 2/3] drm/radeon: fix typos
+Date: Thu, 27 Feb 2025 00:05:05 -0500
+Message-ID: <20250227050506.167299-2-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250227050506.167299-1-alexandre.f.demers@gmail.com>
+References: <20250227050506.167299-1-alexandre.f.demers@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -80,94 +83,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Found some typos while exploring amdgpu code.
+Found some typos while exploring radeon code.
 
 Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c   | 6 +++---
- drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c   | 3 ++-
- drivers/gpu/drm/amd/amdgpu/vce_v2_0.c   | 2 +-
- 4 files changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/radeon/radeon_device.c | 6 +++---
+ drivers/gpu/drm/radeon/radeon_fence.c  | 2 +-
+ drivers/gpu/drm/radeon/si.c            | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 1c19a65e6553..c05e7dbac784 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -269,7 +269,7 @@ void amdgpu_gmc_sysvm_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc
-  * @mc: memory controller structure holding memory information
-  * @gart_placement: GART placement policy with respect to VRAM
+diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+index 6f071e61f764..40b49bd4a10b 100644
+--- a/drivers/gpu/drm/radeon/radeon_device.c
++++ b/drivers/gpu/drm/radeon/radeon_device.c
+@@ -530,7 +530,7 @@ int radeon_wb_init(struct radeon_device *rdev)
+  * @mc: memory controller structure holding memory informations
+  * @base: base address at which to put VRAM
   *
-- * Function will place try to place GART before or after VRAM.
-+ * Function will try to place GART before or after VRAM.
-  * If GART size is bigger than space left then we ajust GART size.
+- * Function will place try to place VRAM at base address provided
++ * Function will try to place VRAM at base address provided
+  * as parameter (which is so far either PCI aperture address or
+  * for IGP TOM base address).
+  *
+@@ -557,7 +557,7 @@ int radeon_wb_init(struct radeon_device *rdev)
+  *
+  * Note 3: when limiting vram it's safe to overwritte real_vram_size because
+  * we are not in case where real_vram_size is inferior to mc_vram_size (ie
+- * note afected by bogus hw of Novell bug 204882 + along with lots of ubuntu
++ * note affected by bogus hw of Novell bug 204882 + along with lots of ubuntu
+  * ones)
+  *
+  * Note 4: IGP TOM addr should be the same as the aperture addr, we don't
+@@ -594,7 +594,7 @@ void radeon_vram_location(struct radeon_device *rdev, struct radeon_mc *mc, u64
+  * @rdev: radeon device structure holding all necessary informations
+  * @mc: memory controller structure holding memory informations
+  *
+- * Function will place try to place GTT before or after VRAM.
++ * Function will try to place GTT before or after VRAM.
+  *
+  * If GTT size is bigger than space left then we ajust GTT size.
   * Thus function will never fails.
-  */
-diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
-index bdbca25d80c4..0cc820a557d1 100644
---- a/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
-@@ -98,7 +98,7 @@ static void uvd_v3_1_ring_emit_ib(struct amdgpu_ring *ring,
- }
- 
- /**
-- * uvd_v3_1_ring_emit_fence - emit an fence & trap command
-+ * uvd_v3_1_ring_emit_fence - emit a fence & trap command
-  *
-  * @ring: amdgpu_ring pointer
-  * @addr: address
-@@ -242,7 +242,7 @@ static void uvd_v3_1_mc_resume(struct amdgpu_device *adev)
- 	uint64_t addr;
- 	uint32_t size;
- 
--	/* programm the VCPU memory controller bits 0-27 */
-+	/* program the VCPU memory controller bits 0-27 */
- 	addr = (adev->uvd.inst->gpu_addr + AMDGPU_UVD_FIRMWARE_OFFSET) >> 3;
- 	size = AMDGPU_UVD_FIRMWARE_SIZE(adev) >> 3;
- 	WREG32(mmUVD_VCPU_CACHE_OFFSET0, addr);
-@@ -416,7 +416,7 @@ static int uvd_v3_1_start(struct amdgpu_device *adev)
- 	/* Set the write pointer delay */
- 	WREG32(mmUVD_RBC_RB_WPTR_CNTL, 0);
- 
--	/* programm the 4GB memory segment for rptr and ring buffer */
-+	/* Program the 4GB memory segment for rptr and ring buffer */
- 	WREG32(mmUVD_LMI_EXT40_ADDR, upper_32_bits(ring->gpu_addr) |
- 		   (0x7 << 16) | (0x1 << 31));
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c b/drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c
-index a836dc9cfcad..f3d5e15b5b0d 100644
---- a/drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c
-@@ -302,7 +302,7 @@ static int uvd_v4_2_start(struct amdgpu_device *adev)
- 	/* enable VCPU clock */
- 	WREG32(mmUVD_VCPU_CNTL,  1 << 9);
- 
--	/* disable interupt */
-+	/* disable interrupt */
- 	WREG32_P(mmUVD_MASTINT_EN, 0, ~(1 << 1));
- 
- #ifdef __BIG_ENDIAN
-@@ -312,6 +312,7 @@ static int uvd_v4_2_start(struct amdgpu_device *adev)
- #endif
- 	WREG32(mmUVD_LMI_SWAP_CNTL, lmi_swap_cntl);
- 	WREG32(mmUVD_MP_SWAP_CNTL, mp_swap_cntl);
-+
- 	/* initialize UVD memory controller */
- 	WREG32(mmUVD_LMI_CTRL, 0x203108);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-index c1ed91b39415..e12f82219310 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-@@ -280,7 +280,7 @@ static int vce_v2_0_stop(struct amdgpu_device *adev)
- 
- 
- 	if (vce_v2_0_lmi_clean(adev)) {
--		DRM_INFO("vce is not idle \n");
-+		DRM_INFO("VCE is not idle \n");
- 		return 0;
+diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
+index daff61586be5..8ff4f18b51a9 100644
+--- a/drivers/gpu/drm/radeon/radeon_fence.c
++++ b/drivers/gpu/drm/radeon/radeon_fence.c
+@@ -840,7 +840,7 @@ int radeon_fence_driver_start_ring(struct radeon_device *rdev, int ring)
  	}
+ 	radeon_fence_write(rdev, atomic64_read(&rdev->fence_drv[ring].last_seq), ring);
+ 	rdev->fence_drv[ring].initialized = true;
+-	dev_info(rdev->dev, "fence driver on ring %d use gpu addr 0x%016llx\n",
++	dev_info(rdev->dev, "fence driver on ring %d uses gpu addr 0x%016llx\n",
+ 		 ring, rdev->fence_drv[ring].gpu_addr);
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
+index 6c95575ce109..789f3b2fdf5c 100644
+--- a/drivers/gpu/drm/radeon/si.c
++++ b/drivers/gpu/drm/radeon/si.c
+@@ -6198,7 +6198,7 @@ static inline u32 si_get_ih_wptr(struct radeon_device *rdev)
  
+ 	if (wptr & RB_OVERFLOW) {
+ 		wptr &= ~RB_OVERFLOW;
+-		/* When a ring buffer overflow happen start parsing interrupt
++		/* When a ring buffer overflow happens, start parsing interrupt
+ 		 * from the last not overwritten vector (wptr + 16). Hopefully
+ 		 * this should allow us to catchup.
+ 		 */
 -- 
 2.48.1
 
