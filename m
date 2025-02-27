@@ -2,73 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0639FA47529
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Feb 2025 06:23:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B67B8A47A49
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Feb 2025 11:27:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDB0C10EA40;
-	Thu, 27 Feb 2025 05:23:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lU03ITGC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E8FE10EA73;
+	Thu, 27 Feb 2025 10:27:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
- [209.85.222.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E17C510EA32
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Feb 2025 05:23:02 +0000 (UTC)
-Received: by mail-qk1-f171.google.com with SMTP id
- af79cd13be357-7c0a3d6a6e4so50866885a.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Feb 2025 21:23:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1740633782; x=1741238582; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=Hx2v0ctrkqHf0wbfgH45MPnh1wqjGKTxlbAeUbASJlY=;
- b=lU03ITGCuCkSEuvFNyxOgag4P4Y11L0CRo2yXtRDA4p1fWPGSWUQp7kC4kawVUoJQ8
- JskNKST8PuhQvNJin/zkYsV5IgMtFoCgNI2v5m41Nfur0/mDiGX+AoMB5K1i3aY0kpe7
- 8l60vHfc6egGMz19djzS/b9qHgth4PuHG90ZL1nyiVm4cU96Tsl9MyiyEi227K2Gnr4r
- ZrKSnMx4imeQwpXtA2RLBeK9JBAlN2USZWxET0EnksadQOT3JW4oUQaTpcjGi1rKnEJE
- c0S/x0WHL/5wZKlT2kFnuavVbTVIb84Pthrvb95InP601Urn/Dy60uGdhaKY4aR4Fzwn
- ieuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1740633782; x=1741238582;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Hx2v0ctrkqHf0wbfgH45MPnh1wqjGKTxlbAeUbASJlY=;
- b=jQpVmUG0unJExCpA3iE1pK9J5ACNtejEDMCltCbgy/2QYh0xNgTWeOPgpZ6mH9SnEv
- MJmJNHbueNvmIT2MC4vPu7uEA2HP1R2KgrLqE5jypG1paBBfXTuLjQqRDbnCQFxZ+n/g
- QJt09dnGEoi6PMwVPpOI9mN773VSBtuUBZHnH+Fyl+dRWE05ftgovIokzKV0YElzNKFY
- ZkipNQ3W9Ygq/CBJFf8URXHfq9caEkfWiAFg4oAAi4GBkJkmFsk0x7OlvyAbZGKVwyPl
- jdI5a0qeHpcguEWu5wnAoGOZWkKomNFy+BQp0HiYlTzobecWOAmUV+Ssdu0lAW+hjUaW
- /WeQ==
-X-Gm-Message-State: AOJu0YxCVWixExs9lBNG4DH+E06d3aGGxu7H/1Qj3dt216D62n5fgKQY
- 957GjNPGl/wWKFhCDjuJkto/CvfS+fQRfiimuACCzyxrHtTMFcaZ9LFb9g==
-X-Gm-Gg: ASbGnctj51MwRGJbn7gKa+JvBlvYGpWYvUCDceW9Utjl/+zU1ornDxJVK852TKGfrgm
- LGv6xMGWXmZUyZj7yy3t9tKQa+ClO+qHWvS3aieNWV1eBPIrzT9KwQd7CNDUsZ6i4f1Me+9g60j
- NvAvZycv/u3iMOqpPN5YWccAovf87n9Cy4xEtAcnGKBvWg4Jf9jUYNEu+dcwvDs5UJXiiOLKHps
- APWCIbWxiGDdwcwXv8rwKrW830Ut8wXSeS0N7OOd8faedEO0du9TY4ha29PW7rBlDkASbX9dBHa
- rKXikfjsgsXn3cgrFMX2zSKgri+djpq0VW2JD/TTuEwpB+a3
-X-Google-Smtp-Source: AGHT+IHwfWSotnI6wcWLMDCFcJmbWTM4Xsua2JmbYA/LHbvlGGtkL29UTsKfVFpY+QuXQjAcDNQguA==
-X-Received: by 2002:a05:620a:3187:b0:7c0:b76a:51e0 with SMTP id
- af79cd13be357-7c0cef48528mr3679212985a.37.1740633781854; 
- Wed, 26 Feb 2025 21:23:01 -0800 (PST)
-Received: from localhost.localdomain ([38.74.25.248])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7c378dab64asm65670085a.100.2025.02.26.21.23.01
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2025 21:23:01 -0800 (PST)
-From: Alexandre Demers <alexandre.f.demers@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/amdgpu: add defines for pin_offsets in DCE8
-Date: Thu, 27 Feb 2025 00:22:41 -0500
-Message-ID: <20250227052241.171102-7-alexandre.f.demers@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250227052241.171102-1-alexandre.f.demers@gmail.com>
-References: <20250227052241.171102-1-alexandre.f.demers@gmail.com>
+X-Greylist: delayed 2344 seconds by postgrey-1.36 at gabe;
+ Thu, 27 Feb 2025 04:05:54 UTC
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
+ [205.220.166.238])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F65410EA23;
+ Thu, 27 Feb 2025 04:05:54 +0000 (UTC)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+ by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51R3L8oi015977;
+ Wed, 26 Feb 2025 19:26:40 -0800
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.wrs.com
+ [147.11.82.252])
+ by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 451ptmhmej-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+ Wed, 26 Feb 2025 19:26:40 -0800 (PST)
+Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.43; Wed, 26 Feb 2025 19:26:39 -0800
+Received: from pek-lpg-core1.wrs.com (147.11.136.210) by
+ ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server id
+ 15.1.2507.43 via Frontend Transport; Wed, 26 Feb 2025 19:26:34 -0800
+From: <jianqi.ren.cn@windriver.com>
+To: <stable@vger.kernel.org>
+CC: <patches@lists.linux.dev>, <alexander.deucher@amd.com>,
+ <daniel.wheeler@amd.com>, <mario.limonciello@amd.com>,
+ <josip.pavic@amd.com>, <aurabindo.pillai@amd.com>,
+ <sohaib.nadeem@amd.com>, <gregkh@linuxfoundation.org>,
+ <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
+ <Rodrigo.Siqueira@amd.com>, <christian.koenig@amd.com>,
+ <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+ <wayne.lin@amd.com>, <sashal@kernel.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <charlene.liu@amd.com>, <gabe.teeger@amd.com>,
+ <amd-gfx@lists.freedesktop.org>, <Nicholas.Kazlauskas@amd.com>
+Subject: [PATCH 6.1.y] drm/amd/display: fixed integer types and null check
+ locations
+Date: Thu, 27 Feb 2025 11:26:33 +0800
+Message-ID: <20250227032633.4176866-1-jianqi.ren.cn@windriver.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: aMIR4xxGOCX5NeqdwxXpYEWFVpqL_Trx
+X-Authority-Analysis: v=2.4 cv=TuEchCXh c=1 sm=1 tr=0 ts=67bfdb70 cx=c_pps
+ a=/ZJR302f846pc/tyiSlYyQ==:117 a=/ZJR302f846pc/tyiSlYyQ==:17
+ a=T2h4t0Lz3GQA:10 a=zd2uoN0lAAAA:8 a=VwQbUJbxAAAA:8 a=t7CeM3EgAAAA:8
+ a=fmNT8XcYnNex_eyvA98A:9 a=FdTzh2GWekK77mhwV6Dw:22
+X-Proofpoint-ORIG-GUID: aMIR4xxGOCX5NeqdwxXpYEWFVpqL_Trx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-02-27_01,2025-02-26_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0
+ adultscore=0 phishscore=0 spamscore=0 mlxlogscore=999 priorityscore=1501
+ clxscore=1011 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.21.0-2502100000
+ definitions=main-2502270025
+X-Mailman-Approved-At: Thu, 27 Feb 2025 10:27:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,59 +82,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Define pin_offsets values in the same way it is done in DCE8
+From: Sohaib Nadeem <sohaib.nadeem@amd.com>
 
-Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
+[ Upstream commit 0484e05d048b66d01d1f3c1d2306010bb57d8738 ]
+
+[why]:
+issues fixed:
+- comparison with wider integer type in loop condition which can cause
+infinite loops
+- pointer dereference before null check
+
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: stable@vger.kernel.org
+Reviewed-by: Josip Pavic <josip.pavic@amd.com>
+Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Signed-off-by: Sohaib Nadeem <sohaib.nadeem@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+[ To fix CVE-2024-26767, delete changes made in drivers/gpu/drm/amd/display/dc/link/link_validation.c
+ for this file is deleted in linux-6.1 ]
+Signed-off-by: Jianqi Ren <jianqi.ren.cn@windriver.com>
+Signed-off-by: He Zhe <zhe.he@windriver.com>
 ---
- drivers/gpu/drm/amd/amdgpu/cikd.h     |  9 +++++++++
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c | 14 +++++++-------
- 2 files changed, 16 insertions(+), 7 deletions(-)
+Verified the build test.
+---
+ .../gpu/drm/amd/display/dc/bios/bios_parser2.c   | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/cikd.h b/drivers/gpu/drm/amd/amdgpu/cikd.h
-index 06088d52d81c..279288365940 100644
---- a/drivers/gpu/drm/amd/amdgpu/cikd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/cikd.h
-@@ -51,6 +51,15 @@
- #define HPD4_REGISTER_OFFSET                 (0x1813 - 0x1807)
- #define HPD5_REGISTER_OFFSET                 (0x1816 - 0x1807)
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index 4d2590964a20..75e44d8a7b40 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -1862,19 +1862,21 @@ static enum bp_result get_firmware_info_v3_2(
+ 		/* Vega12 */
+ 		smu_info_v3_2 = GET_IMAGE(struct atom_smu_info_v3_2,
+ 							DATA_TABLES(smu_info));
+-		DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_2->gpuclk_ss_percentage);
+ 		if (!smu_info_v3_2)
+ 			return BP_RESULT_BADBIOSTABLE;
  
-+/* audio endpt instance offsets */
-+#define AUD0_REGISTER_OFFSET                 (0x1780 - 0x1780)
-+#define AUD1_REGISTER_OFFSET                 (0x1786 - 0x1780)
-+#define AUD2_REGISTER_OFFSET                 (0x178c - 0x1780)
-+#define AUD3_REGISTER_OFFSET                 (0x1792 - 0x1780)
-+#define AUD4_REGISTER_OFFSET                 (0x1798 - 0x1780)
-+#define AUD5_REGISTER_OFFSET                 (0x179d - 0x1780)
-+#define AUD6_REGISTER_OFFSET                 (0x17a4 - 0x1780)
++		DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_2->gpuclk_ss_percentage);
 +
- #define BONAIRE_GB_ADDR_CONFIG_GOLDEN        0x12010001
- #define HAWAII_GB_ADDR_CONFIG_GOLDEN         0x12011003
+ 		info->default_engine_clk = smu_info_v3_2->bootup_dcefclk_10khz * 10;
+ 	} else if (revision.minor == 3) {
+ 		/* Vega20 */
+ 		smu_info_v3_3 = GET_IMAGE(struct atom_smu_info_v3_3,
+ 							DATA_TABLES(smu_info));
+-		DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_3->gpuclk_ss_percentage);
+ 		if (!smu_info_v3_3)
+ 			return BP_RESULT_BADBIOSTABLE;
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index 04b79ff87f75..5e657b43a159 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -1395,13 +1395,13 @@ static void dce_v8_0_audio_enable(struct amdgpu_device *adev,
- }
++		DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_3->gpuclk_ss_percentage);
++
+ 		info->default_engine_clk = smu_info_v3_3->bootup_dcefclk_10khz * 10;
+ 	}
  
- static const u32 pin_offsets[7] = {
--	(0x1780 - 0x1780),
--	(0x1786 - 0x1780),
--	(0x178c - 0x1780),
--	(0x1792 - 0x1780),
--	(0x1798 - 0x1780),
--	(0x179d - 0x1780),
--	(0x17a4 - 0x1780),
-+	AUD0_REGISTER_OFFSET,
-+	AUD1_REGISTER_OFFSET,
-+	AUD2_REGISTER_OFFSET,
-+	AUD3_REGISTER_OFFSET,
-+	AUD4_REGISTER_OFFSET,
-+	AUD5_REGISTER_OFFSET,
-+	AUD6_REGISTER_OFFSET,
- };
+@@ -2439,10 +2441,11 @@ static enum bp_result get_integrated_info_v11(
+ 	info_v11 = GET_IMAGE(struct atom_integrated_system_info_v1_11,
+ 					DATA_TABLES(integratedsysteminfo));
  
- static int dce_v8_0_audio_init(struct amdgpu_device *adev)
+-	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v11->gpuclk_ss_percentage);
+ 	if (info_v11 == NULL)
+ 		return BP_RESULT_BADBIOSTABLE;
+ 
++	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v11->gpuclk_ss_percentage);
++
+ 	info->gpu_cap_info =
+ 	le32_to_cpu(info_v11->gpucapinfo);
+ 	/*
+@@ -2654,11 +2657,12 @@ static enum bp_result get_integrated_info_v2_1(
+ 
+ 	info_v2_1 = GET_IMAGE(struct atom_integrated_system_info_v2_1,
+ 					DATA_TABLES(integratedsysteminfo));
+-	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v2_1->gpuclk_ss_percentage);
+ 
+ 	if (info_v2_1 == NULL)
+ 		return BP_RESULT_BADBIOSTABLE;
+ 
++	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v2_1->gpuclk_ss_percentage);
++
+ 	info->gpu_cap_info =
+ 	le32_to_cpu(info_v2_1->gpucapinfo);
+ 	/*
+@@ -2816,11 +2820,11 @@ static enum bp_result get_integrated_info_v2_2(
+ 	info_v2_2 = GET_IMAGE(struct atom_integrated_system_info_v2_2,
+ 					DATA_TABLES(integratedsysteminfo));
+ 
+-	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v2_2->gpuclk_ss_percentage);
+-
+ 	if (info_v2_2 == NULL)
+ 		return BP_RESULT_BADBIOSTABLE;
+ 
++	DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", info_v2_2->gpuclk_ss_percentage);
++
+ 	info->gpu_cap_info =
+ 	le32_to_cpu(info_v2_2->gpucapinfo);
+ 	/*
 -- 
-2.48.1
+2.25.1
 
