@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8794A4A22D
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2025 19:52:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 581C8A4A22E
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2025 19:52:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3301E10E345;
-	Fri, 28 Feb 2025 18:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D3EB10ED22;
+	Fri, 28 Feb 2025 18:52:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="U5yqXzzS";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jkJUcJQG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95E5D10E334
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 18:52:05 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2080.outbound.protection.outlook.com [40.107.220.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28AE810E337
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 18:52:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ol0AYTmCM4WWKWqe9OzuYUGX4wpxVDUEz581C8+J4AOWVYN8aeZK6wvJrISGsCLJKE6Ca7IBY3xqwzwUzSVEVK3vbxOPGbk2kydxpPESPzvVJYQlOAnMitIh5Woa3uXqKuorEgwCqqpe0v6hPp9qFMVP/O1jURxBKzCQyrD0jxaLdIR84c14x/IEQo34ZPpHqwRas/YFOVXuj23pP62KDOoAWyZ4ChvdugnXWAkjlIu1YcGA5vdNOkSMUQfhbgowvlQoEFfkWVXtgkMGXya0tyAZuWuL/hwAb1/5xgY1hyC7QCEh5MO99yujId4bIpvDJ9jYQ+ovZ75PUrYw9EvmcQ==
+ b=Hfx89g0reFRweCHt+QeLOXzKE3hQQrT/Lp5Lr/80RIZVdPrATf8Vzs2U781XsC9wAYLmPpGFdHHELc1KYpodFzHkvp3kgpc8kutcIvpfqWqtJimKXPMHEx99zQWkdAnixefA39v1f02igw0ckUDOpUDchA0eVAX9NkVC9Wz5R+GB45Q6ZVslkViIp8T9lXv9q/z3XafbK20SPUZG9xzOqBa/8evJbTCMnS4ggfSpPLhCZdrSobIn4JT9AbX09C+liQ4fS67RQU13wtWnYhvuboQlAdZKvzk4/S6wh2U5nTxs8DFxOEj0YhXx3CIy3yng2CEqTeHSI9dMWtvcgzvmMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DeVR3RIV7u+Tmez1ZWV1cXtkepUB0YpxX5lMwosjOm4=;
- b=r+eGNiGwY65+LPP/yopbLLuVunY8UzZ8ksgdPH4Dh8uQK5LxNQC++rRGx/RhqMjBDC/DX04ge4ns/Upvm8F1WH2wBh/e77STcoEt/gZe9HJ1CtYiabI6xuOPV9XyT3VJ1Zp1NGSSdDGYqvnHfe/ZX+4GkL6YpMzn5d3TZ02Vxk2knamxV+Htw6ZAv+9FRBTSvlB5jeOp94aSJONUK+1DKhx8ournCbRLtIhS7i21LPcNPaQkiDjW6ia00pV6V8vEB8zg+9/Xp2DVkv2Y3R4NdbhMf/+I3ZT5bzkxjrWYfsVju1hBBBtTWwT4JxcNzrUcF5qPGU7oVV/ewbDo+ulUYw==
+ bh=Bswf2BiFxzbkr1eWwwKfiUGZF+dkxwCBTED675vRKwM=;
+ b=Yoel6MVusuYOGY3clc9J2rOIgzGKgVB748UWiUPh7ROpKbBdULmdllKRTpBSHt8ff0pjG7iU4QtjrudGzHgBo624O1wjDqfBe1QJaKEAGSUSxW1bSfs4ahP/pHzV/aLPS3/QJ6WINkc1xGshhhyTSn417OKL3GfDaXbmvEmeT0JLy0XNf0ZBNY8igWOqN6sK9KM3gKrKrn7RbPFe/7NtO/9LWX/hD/AhrDzh1d84vZj6Who9AN+g8zwNpQ+ofMwulJO5TqfV/kGXperHRCLhzPkzmG+gLM+edrvhPb/30TYEGs+7tQTtYOmqu/tCl6l4jjqTQNLIXQCEwwz60WbFzw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DeVR3RIV7u+Tmez1ZWV1cXtkepUB0YpxX5lMwosjOm4=;
- b=U5yqXzzSf4mGSRi2wXsNylmWr3OlQpfXkA/k8cgnIDMk/jzz0xdoyleNA0ahwrBqckSG+32rYwvISw0nrsWSXOWPDZfLB24Yljmyeegirzg1j28x9gh5lEPYQ5N1+O0S3vbYilijNNY0J2Bk18v+UAnivu1YqMxVvfl176lbjFQ=
-Received: from BN9P222CA0023.NAMP222.PROD.OUTLOOK.COM (2603:10b6:408:10c::28)
- by DS0PR12MB8413.namprd12.prod.outlook.com (2603:10b6:8:f9::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8489.22; Fri, 28 Feb 2025 18:52:02 +0000
-Received: from BN1PEPF0000468E.namprd05.prod.outlook.com
- (2603:10b6:408:10c:cafe::4d) by BN9P222CA0023.outlook.office365.com
- (2603:10b6:408:10c::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.21 via Frontend Transport; Fri,
- 28 Feb 2025 18:52:02 +0000
+ bh=Bswf2BiFxzbkr1eWwwKfiUGZF+dkxwCBTED675vRKwM=;
+ b=jkJUcJQGdWzCJLb/UvUfMLDJKKQxFYCTrsUTts5/5osUbpyBobFYVNOWWERyWbqkbQKwK6HARCbl1K/K1rdpQCJPlU2QIfIJirUOUdpuSPcwVIQZr4TxqC264wlp5nybO4hHAEjaGyhyPIf9TdK0VJuVrxU0/ZDQUZUO8TDYwgE=
+Received: from BN9PR03CA0846.namprd03.prod.outlook.com (2603:10b6:408:13d::11)
+ by SJ0PR12MB5611.namprd12.prod.outlook.com (2603:10b6:a03:426::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.23; Fri, 28 Feb
+ 2025 18:52:03 +0000
+Received: from BN1PEPF0000468C.namprd05.prod.outlook.com
+ (2603:10b6:408:13d:cafe::6b) by BN9PR03CA0846.outlook.office365.com
+ (2603:10b6:408:13d::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.24 via Frontend Transport; Fri,
+ 28 Feb 2025 18:52:03 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,9 +48,9 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN1PEPF0000468E.mail.protection.outlook.com (10.167.243.139) with Microsoft
+ BN1PEPF0000468C.mail.protection.outlook.com (10.167.243.137) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8489.16 via Frontend Transport; Fri, 28 Feb 2025 18:52:02 +0000
+ 15.20.8489.16 via Frontend Transport; Fri, 28 Feb 2025 18:52:03 +0000
 Received: from AUS-S16-AI-13.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 28 Feb
@@ -58,10 +58,10 @@ Received: from AUS-S16-AI-13.amd.com (10.180.168.240) by SATLEXMB04.amd.com
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <alex.hung@amd.com>, Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH v2 4/5] drm/amd/display: Add support for custom brightness
- curve
-Date: Fri, 28 Feb 2025 12:51:44 -0600
-Message-ID: <20250228185145.186319-5-mario.limonciello@amd.com>
+Subject: [PATCH v2 5/5] drm/amd/display: Add a new dcdebugmask to allow
+ turning off brightness curve
+Date: Fri, 28 Feb 2025 12:51:45 -0600
+Message-ID: <20250228185145.186319-6-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250228185145.186319-1-mario.limonciello@amd.com>
 References: <20250228185145.186319-1-mario.limonciello@amd.com>
@@ -73,52 +73,52 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF0000468E:EE_|DS0PR12MB8413:EE_
-X-MS-Office365-Filtering-Correlation-Id: f0fc599f-4b6e-4ad7-c67f-08dd5828fd3f
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000468C:EE_|SJ0PR12MB5611:EE_
+X-MS-Office365-Filtering-Correlation-Id: 136c593d-eb6b-4b53-e862-08dd5828fda3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?aOwzdrbxTZtgBhwugNCKA2l3E9ba29i7UVFRTKP9RawxnLh9MCaOpUcqhQT4?=
- =?us-ascii?Q?NH/gO/7WlvVc6HBunRYpgsQk1zn6ed7/m1NDwKRxhnKwVsnj5hlMZrZrd3HG?=
- =?us-ascii?Q?YP8iZISOOREtrdulFfej/oe0sEFSjO1XggWTQYPSzuLa34fU8TlQAU59Cv2u?=
- =?us-ascii?Q?FjOzvnrLf45YTWW4QRLNAHmaUwk0hJNieIa/xt5BMWPNWxWWIRxMqrbQVZP4?=
- =?us-ascii?Q?oyhxKswvZUZbIJs13fPR+9rSUa50bR7zAnE5UbHRnEafeYE5dq857LJJESph?=
- =?us-ascii?Q?IQOYcfiQutcyFBA/vNqVP3CXcq/O+RSmn171gaTX6uNP1qZoKB9ru5EoBstF?=
- =?us-ascii?Q?Id6V83pdfsqxkGV+2sO9Rd/TTNWsdoTl/QeMh5kwARzhTZdT0iKqIX3cWrQy?=
- =?us-ascii?Q?IMWwlgqWE4FFroF4gcinwfuJ0kcBFDNtH+m8NUPjb/zXbn20pPhW8exh5j9Y?=
- =?us-ascii?Q?wKpLCW3TFB66mok7OC7ojstUDQmsAunHXI4hzrKnvZZwRhAdax2+OnCpUJra?=
- =?us-ascii?Q?rU70FeYdzZ+E+jsD09BGzmCgC7qwaV63poRw5Z0FtMKiBTRx2swEYXAD7obA?=
- =?us-ascii?Q?GQh6DF0fosRbcFZnZ5dEQoYDF3OoytVIinoRvgk3mBt4y51gNblZjmvmyS1v?=
- =?us-ascii?Q?MFrVDIuNUCzHVpgRjXI9UFUpOHgo+3wKeMiHqLiM9QUWFm+UStCTQqeoTHTC?=
- =?us-ascii?Q?o7HYBZXy204LUARFc95M21NBf+0Bz2hURnhvmVjrWTTzE/SjrMdUE9Id+w8n?=
- =?us-ascii?Q?/uReWIl5rhmg6HWpj8tu67pmw7mqCRyJ9t8eEcZM6UR6ZSGQbSTHhbPmuFWY?=
- =?us-ascii?Q?dDECw8YrVoZtQuuuKUW89+CuSchN5+GItpJ85jzRX1s2n5xrTDgKTG2Ddse7?=
- =?us-ascii?Q?Ea15T1d0xu24Xz2zT4T3CYl436fsu5Ex62JAM2UfRGRUj6rhMFTfnEJD9VHp?=
- =?us-ascii?Q?tOTmnyfw72CU/qiKeSHenuvANcDnprJQAaZnOHw0rRq8rzcJ//c0bZHQUIWU?=
- =?us-ascii?Q?N1VdmkO8LHGbAFG/n8KbKmTMDBtDk6vv/VUfRO8vouW3N+VKn8EwCJF/fb0F?=
- =?us-ascii?Q?8tkm/MLu3Q8O5E+P5AcxJTe5qS+DPYjhPI9ZJ5AheB3M91xiQEW6GgDb9R2x?=
- =?us-ascii?Q?T4BwMhr0AdzW0hZchJrxQ67mAPnO8a9WFb1NeoZg1rC/Zamwmx5RaqfU/0lV?=
- =?us-ascii?Q?d4f395qrCMsz40O91ZFdmAosz8k8gv/x9GdCKnXXkmckdadmwAwEeqcbq8z+?=
- =?us-ascii?Q?8QaKfWj7v7jIcg/UGQw/tUazd+FOWQ88fgvUmL4phwbKkCnNLYltd/LaZ/91?=
- =?us-ascii?Q?4bc65Cucsp8mToYn2FSwfdXBqfXZQxaKFXtbqD6f3vQ5HJicynS04q9pT8Hp?=
- =?us-ascii?Q?Jnj1nlaW8Dzc9/ECv1VTQ0qxs5y/FAEYkL9Bwy9eX6zjDEVutzExRQ2bgPKs?=
- =?us-ascii?Q?7tm4nvvMIKTUJerM066BWQnQXyJc8r6Fnn3/xMAXZWXLrRgyS0FePsYedU3h?=
- =?us-ascii?Q?vRvSyasz88MlQOY=3D?=
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xk/joEakeNqjV3cImGPKPczI4/QG+8/9sj30wyrhrrbuRstLeCeMsg6Gyv8G?=
+ =?us-ascii?Q?SmKHuxnMRD5rqw+7ZJ9T+9C3dya+Hxiw1MXbzyI1+AkpXkZH/76cwmTUZ7Cv?=
+ =?us-ascii?Q?F37jV/wsYzzIsURhEdZhYJ29R4c1VVQHeHwpT4Joby/OlsyhSg7H2g5vcLZK?=
+ =?us-ascii?Q?ncAEjTW9ipd+eAEg+sIA4LRvjh/1TSVlE9FuCS42whSj+cJT+/eoa6Ce2PJF?=
+ =?us-ascii?Q?NhhAzsxJkxKXWgjdiX5IPjJih/p+NDJ1M8TCkncQPohBocPFYkVSxVVeGnwb?=
+ =?us-ascii?Q?4SZlgo3gLtCfCLaOfdgE0yNFLXnFq0y+TgM+A5FmoGcd2FyWHGgVeACsnPQ+?=
+ =?us-ascii?Q?1reX8YgVnNE7qx/ZGhTdKLfuRIFzzbgMIlIYGGhA+RZPH1GTMbuFablU1yQC?=
+ =?us-ascii?Q?g0uPIshVQleuHYv608tfAf8+sLAcEuWK6LGmR8dp3aHwbvJKs0aNGCVBT0Vk?=
+ =?us-ascii?Q?gHkA58bteXmmNMKNXXZKJGhHF7yYng60jpqxOobGBct8B83L4JRb82m1sVDY?=
+ =?us-ascii?Q?bI2wsBUT4jnzaZhcYSFsTLJsVhv52Ru4sm5v0WnqXpNV8VJ+viMu7GMHTBLf?=
+ =?us-ascii?Q?CI692ZP+1zAQS5Q5HiuffSjTl/C6Yv34mTklRl5B91HcvpnG8o2JKMxzDWYJ?=
+ =?us-ascii?Q?bNbIk0EtZ96YECUvGABVnMCWkHvu+Pa/TSHd1Bzl/E5wBuj0+RfCYBPwO3FI?=
+ =?us-ascii?Q?upNPNEQJCoJR8lWkk/K8ewRILi9gVR5dhs07rSm1CR4D6mfOYzgMpDazNTZn?=
+ =?us-ascii?Q?Tfgb6EgYp8mHQS2nhzeOpbfuTiMWfs0nbEw4j26gIXV+RksnOSwRIGCDMMjJ?=
+ =?us-ascii?Q?3CxwlQya4bNsuPfa7guhtqtf48xgBnr1mT/68ONIAdr4vO4/zbwxaKZ9ab1Q?=
+ =?us-ascii?Q?LfFtpKdwnXFHc5B/sR+GjCrGh8XCrMw21682lzLUyFYqu9Vte/ldIPzPDaYH?=
+ =?us-ascii?Q?Ujxfi5rgCunT+a5SsUXyQ2yQkTh7pcjovYkqu43a7a9bpDZ7/9GCu5Q2tpVi?=
+ =?us-ascii?Q?lxwMuezwr8Jc2SjrrCRgcya0QgzKyDXsQXCqaI5ayMK/Ug96b1csI1QBAoDa?=
+ =?us-ascii?Q?EQG5/hEvLpfJB18uKDKkkZ0nwXpGw+SsdLHNwXlOcXv7w4NiyWdRSKk6bmxn?=
+ =?us-ascii?Q?KY8eiDCoWvFEhYAGXlQbnyAm+uINnr4GQVcodQelwf5IWhNnIpwzf/V8G4F+?=
+ =?us-ascii?Q?6Qe04IEWJNsiQMSKAH6QKDf8A9FjOj3dSELMYYZ0jip94B18akt5Vr+OT9pH?=
+ =?us-ascii?Q?8Mj3RX4ohcVcysK0nLmpy7toG3KMZiUR1OiOUnti89pcXJK0pLRspt0StEBI?=
+ =?us-ascii?Q?QKJvWzPzpCehFN9vur2HcD0QRglOjuzj7AneKW7hzQcsDPIQYbzK1uS/+D4m?=
+ =?us-ascii?Q?SJcaEs0quOLhPA+KKWfJfjjqdpYakDsYYCW++qGG05NQeT8I+iYSiTJMUNWs?=
+ =?us-ascii?Q?7mkeILyWBn/MeZMsGLmO8AaowCpyz+GHJ41ScvCXf9hVgdD0udzqe6yI0oU7?=
+ =?us-ascii?Q?1BJk1H+t5O+iaAE=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014); DIR:OUT;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2025 18:52:02.6761 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0fc599f-4b6e-4ad7-c67f-08dd5828fd3f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2025 18:52:03.2542 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 136c593d-eb6b-4b53-e862-08dd5828fda3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468E.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468C.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8413
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5611
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,58 +133,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Some systems specify in the firmware a brightness curve that better
-reflects the characteristics of the panel used. This is done in the
-form of data points and matching luminance percentage.
+Upgrading the kernel may cause some systems that were previously not using
+a firmware specified brightness curve to use one.
 
-When converting a userspace requested brightness value use that curve
-to convert to a firmware intended brightness value.
+In the event of problems with this curve (for example an interpolation
+error) add a new dcdebugmask value that can be used to turn it off.  Also
+add an info message to show that custom brightness curves are currently in
+use.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 +++++
+ drivers/gpu/drm/amd/include/amd_shared.h          | 4 ++++
+ 2 files changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 61d626914590..b252c67f2bc4 100644
+index b252c67f2bc4..63b66e2c9ab9 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4759,10 +4759,35 @@ static u32 convert_brightness_from_user(const struct amdgpu_dm_backlight_caps *c
- 					uint32_t brightness)
- {
- 	unsigned int min, max;
-+	u8 prev_signal = 0, prev_lum = 0;
+@@ -4767,6 +4767,9 @@ static u32 convert_brightness_from_user(const struct amdgpu_dm_backlight_caps *c
+ 	for (int i = 0; i < caps->data_points; i++) {
+ 		u8 signal, lum;
  
- 	if (!get_brightness_range(caps, &min, &max))
- 		return brightness;
++		if (amdgpu_dc_debug_mask & DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE)
++			break;
++
+ 		signal = caps->luminance_data[i].input_signal;
+ 		lum = caps->luminance_data[i].luminance;
  
-+	for (int i = 0; i < caps->data_points; i++) {
-+		u8 signal, lum;
-+
-+		signal = caps->luminance_data[i].input_signal;
-+		lum = caps->luminance_data[i].luminance;
-+
-+		/*
-+		 * brightness == signal: luminance is percent numerator
-+		 * brightness < signal: interpolate between previous and current luminance numerator
-+		 * brightness > signal: find next data point
-+		 */
-+		if (brightness < signal)
-+			lum = prev_lum + DIV_ROUND_CLOSEST((lum - prev_lum) *
-+							   (brightness - prev_signal),
-+							   signal - prev_signal);
-+		else if (brightness > signal) {
-+			prev_signal = signal;
-+			prev_lum = lum;
-+			continue;
-+		}
-+		brightness = DIV_ROUND_CLOSEST(lum * brightness, 101);
-+		break;
-+	}
-+
- 	// Rescale 0..255 to min..max
- 	return min + DIV_ROUND_CLOSEST((max - min) * brightness,
- 				       AMDGPU_MAX_BL_LEVEL);
+@@ -4951,6 +4954,8 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
+ 	} else
+ 		props.brightness = AMDGPU_MAX_BL_LEVEL;
+ 
++	if (caps.data_points && !(amdgpu_dc_debug_mask & DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE))
++		drm_info(drm, "Using custom brightness curve\n");
+ 	props.max_brightness = AMDGPU_MAX_BL_LEVEL;
+ 	props.type = BACKLIGHT_RAW;
+ 
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
+index c0538763ec1a..485b713cfad0 100644
+--- a/drivers/gpu/drm/amd/include/amd_shared.h
++++ b/drivers/gpu/drm/amd/include/amd_shared.h
+@@ -354,6 +354,10 @@ enum DC_DEBUG_MASK {
+ 	 * @DC_DISABLE_SUBVP: If set, disable DCN Sub-Viewport feature in amdgpu driver.
+ 	 */
+ 	DC_DISABLE_SUBVP = 0x20000,
++	/**
++	 * @DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE: If set, disable support for custom brightness curves
++	 */
++	DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE = 0x40000,
+ };
+ 
+ enum amd_dpm_forced_level;
 -- 
 2.48.1
 
