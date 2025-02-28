@@ -2,64 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE89A4C293
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Mar 2025 14:58:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07821A4C297
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Mar 2025 14:58:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 601B910E425;
-	Mon,  3 Mar 2025 13:58:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5v/WYO3";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E8910E42C;
+	Mon,  3 Mar 2025 13:58:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3028C10ECC2;
- Fri, 28 Feb 2025 14:58:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740754691; x=1772290691;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=P3/dKWCrXg9xbyVMzNavco2Gioz53PLfKQWPNVBdltI=;
- b=O5v/WYO3o++cCaQIQCWjnMo9FT5Ms+ZyutoXCg7UlJQwrFXXsa/flFJN
- UtuY73gkQHPZFq149do6NeUCMV+Ch/Hjyf6K/49Ztn3XwxZf4axpSJucU
- dHCL21lK18YMyRAFEc7Zk7P8WcYzhx2Edo3mxuM8mV/WQ2iXxygX78siF
- mi351q84/g21AN9XeRXm7u1tz0JSY4RlwRFwnB8PLJCzokeqUXpMjJA6k
- j26aCVyBzLYPtJOWsK3rzcLG1TgGIV0JVE6+AIs2/ZnGysD/+RQpsjN/Q
- DeM5orz4W3NM/nQ40kyzYZvThttzo2GLb8b6xts8LEY3whySWlpoTz8cD w==;
-X-CSE-ConnectionGUID: DPD4wmCEQmWk6VWl3yWhAg==
-X-CSE-MsgGUID: DDyRQ60xTOKNxkfklC2SNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="45335793"
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="45335793"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 06:58:11 -0800
-X-CSE-ConnectionGUID: 0I400npkTeaPtmZdVlAu4g==
-X-CSE-MsgGUID: wON0cZZsTLqP4Z8vtGSuaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="122308263"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 06:58:06 -0800
-Date: Fri, 28 Feb 2025 16:58:02 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- 'Christian =?iso-8859-1?Q?K=F6nig'?= <christian.koenig@amd.com>,
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com
-Subject: Re: [PATCH 2/2] drm/amdgpu: Make use of drm_wedge_app_info
-Message-ID: <Z8HO-s_otb2u44V7@black.fi.intel.com>
-References: <20250228121353.1442591-1-andrealmeid@igalia.com>
- <20250228121353.1442591-3-andrealmeid@igalia.com>
+X-Greylist: delayed 811 seconds by postgrey-1.36 at gabe;
+ Fri, 28 Feb 2025 15:59:34 UTC
+Received: from mout.web.de (mout.web.de [212.227.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5389D10ECE9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 15:59:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1740758371; x=1741363171; i=markus.elfring@web.de;
+ bh=GcdKCf558++2vu5m7gIvfuqBTLz7S1RpSdIWX3ae9fw=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
+ Subject:Content-Type:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=bSqbBUylKthcEwHdN8Snx6/afY8TR9cAcGF8T2AfLezl3tJcWn3o/zlyCWdsqqSx
+ yF/90Y+/e47qL1+9WioMD3Lku/WrsrYMqOEtonfWen6JGSDr+XRA3gMlvbHCfCcmP
+ 0JBX+SCkK7OXTtWRfd4Jr1a7fJXn+P3tud3841OygAtzDZCeSdoRo53t62svSIppl
+ yMOkXgUxgtdkIV8AiyJMa0rdm//6rXJmZe5k1Cbf66Uj46uo4YnekJGT4EAFW+suL
+ 8lnvdOlb7MYEa9a89aQyElidl2kkC0U1dxPYDFv8Bep0eBrE30mLVaJX2mw10zK3h
+ 4YiNolOBFUn0iLNBDQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.93.27]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MS17h-1thfiL4BYZ-00Umnj; Fri, 28
+ Feb 2025 16:45:55 +0100
+Message-ID: <9574279b-6e02-467c-8e0f-28a037e061d9@web.de>
+Date: Fri, 28 Feb 2025 16:45:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250228121353.1442591-3-andrealmeid@igalia.com>
+User-Agent: Mozilla Thunderbird
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>, Boyuan Zhang
+ <boyuan.zhang@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>,
+ Ma Jun <Jun.Ma2@amd.com>, Simona Vetter <simona@ffwll.ch>,
+ Sunil Khatri <sunil.khatri@amd.com>
+Content-Language: en-GB
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+ Qasim Ijaz <qasdev00@gmail.com>
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: [PATCH] drm/amdgpu: Simplify maximum determination in
+ si_calc_upll_dividers()
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:6tzxbNamT2aPgHgoiVfifWqE5cSnMfgN/z4TiYhCFMyrRahLu1+
+ q1i3Zv9l20qaiEfl5hKVEsg41xdcfWn2gpa1qMuyaE9kc8GlSzbmTnWeLflPgmUBNei33vn
+ YUb0xv7PyLuJlxYeIcRKtOi2iRIgPxqAtCgCxCM3c+mRJmAr+W/Hf4nNuA1hv97DM9t6a0o
+ eFHJegx6AhnsXQ9OilIhA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:tyzpg2d/ym8=;3wANVc6ZkILcAj+X+P8hIdgSSCq
+ EU+Ir+ZcehT4TircFzddcj1sZtqs/m08AC/gYZU1FLWvX2WET+8lDxdcvHiUFEF2mbLzGC+Vu
+ hzzYSFoKCM3ZnULAea6tHkYeywfKnwUaNopuAAS7WKI848Y9OCf7YGTYgJvybEgTj+SoFuaQJ
+ ct3Az7Zdex9Dapj1cHgXvOM06qRRXGj/VY873wiDw9llzDeaHPwaSUX5et6yuvXnafLTWM6YN
+ zJwJkDYPABK1tszRaSHngowBLKIgkrm9z501FM0clrWzxxwLIAjxA8g3Mx9/zro3rdyTToIcZ
+ ghsysNB7GoDWDg9YaWssA2jIr4qBVV3G3x+k8+uEwuzgBjQhR+2Ah52n24d2MRg6lzoHQn7t1
+ 18R6kmO8ovz6pC89mwYzubwNrikb0NoghR35EKyC/8ZILuTY7tlMPfXNvG5rarPqEymS0B5iJ
+ 7CUud169OkgIhrOL9AORutzYGMS9UKeN6b9DjkmGVNINS3BGYHoyXVJqbZMz8S982xwuxrg09
+ c/TeXQ4/CLAPhky3DYDk66YSndn+VbuwKqPvnJlSNsiqV/ja8GHTo2nfs6bfcmQq60t6t+/Ss
+ YYxJidk04K3UfBPq8O6kBQh7e3tx+pv0tyS0wPnTs7q4DGL7OWbhUNojVfyh3qvfDy6w/JgcC
+ x6YbsbPU8fviMwpWlxD8iUEwjNOVhg6vsqwhXbdqJuk5uOi2edMcSSYLlAC+JW/qCr2m5lY3R
+ bEFzsLk4lV3mXGSjEF78iDe5bA035lCKfxCKoW8SR9TId03M0uZ8gTYOS3rGZUzqrPDmqBrzv
+ Lbrr9zyfn5ddwYktRiFfS6Nw7EgiTO7XFEU/49wDMmEis3XF6gUjuwCk25/XDBcW/PF6VfdKY
+ alKpj+qaahtKdjE2h8aYzkh2fT0Gl523Y7F8cRMe0R5R9Vcy0A360H7cBZe9osxSiTmaeDud8
+ Fas9OEuYNYjXBQMo//DgPnhi03EYTnWXtr3PF5rxJmu4BjoXVIFXWhgYxwtz5vHHkaauSHR3s
+ mMmDGZm8sofdVXhSoaA7uLVX0sH7iEG1QqP95X/zSTNE/2vVbY8QVxfYVBVNflZ2bLsL6cWZ5
+ n046U0os28EmDTD3F162FoLigqt2et9DydZ9f12+oKsy+ntqWB3cblPH5mIa+5daW3HCEzXDu
+ NdVg0aHuNpXVTlh5MHxLNsaZUjTuxvCRFDd0NTVPj+rUmIpinpFmD27B8G6ZFBfa3s1mlWmEw
+ +8e+SD8X/YHo24b6RV1VCeYBL4uo+Uy6FBMbrxv0+WK9yGPN6cVIFmuYcDVrb9e4457SXEh5j
+ 91tXt6qBOrzRqD5wKTP/+l3MX+UhHwq3zL8VNwMEnvQcW6hXnSKZqVuBpX6iL0MzdAPEtKmCP
+ v7adPZkelzNq550ey/j3XBnbQq9bbRbjUByLA/EWWiPnaQ01FdimHFU9brJJAtTdbmAWalawU
+ QL+pmIg==
 X-Mailman-Approved-At: Mon, 03 Mar 2025 13:58:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,42 +91,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2025 at 09:13:53AM -0300, André Almeida wrote:
-> To notify userspace about which app (if any) made the device get in a
-> wedge state, make use of drm_wedge_app_info parameter, filling it with
-> the app PID and name.
-> 
-> Signed-off-by: André Almeida <andrealmeid@igalia.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
->  2 files changed, 22 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 00b9b87dafd8..e06adf6f34fd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -6123,8 +6123,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->  
->  	atomic_set(&adev->reset_domain->reset_res, r);
->  
-> -	if (!r)
-> -		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-> +	if (!r) {
-> +		struct drm_wedge_app_info aux, *info = NULL;
-> +
-> +		if (job) {
-> +			struct amdgpu_task_info *ti;
-> +
-> +			ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
-> +			if (ti) {
-> +				aux.pid = ti->pid;
-> +				aux.comm = ti->process_name;
-> +				info = &aux;
-> +				amdgpu_vm_put_task_info(ti);
-> +			}
-> +		}
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Fri, 28 Feb 2025 16:37:00 +0100
 
-Is this guaranteed to be guilty app and not some scheduled worker?
+Replace nested max() calls by single max3() call in this
+function implementation.
 
-Raag
+This issue was transformed by using the Coccinelle software.
+
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/gpu/drm/amd/amdgpu/si.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/=
+si.c
+index 026e8376e2c0..2a255fb15768 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/si.c
++++ b/drivers/gpu/drm/amd/amdgpu/si.c
+@@ -1726,7 +1726,7 @@ static int si_calc_upll_dividers(struct amdgpu_devic=
+e *adev,
+ 	unsigned optimal_score =3D ~0;
+
+ 	/* Loop through vco from low to high */
+-	vco_min =3D max(max(vco_min, vclk), dclk);
++	vco_min =3D max3(vco_min, vclk, dclk);
+ 	for (vco_freq =3D vco_min; vco_freq <=3D vco_max; vco_freq +=3D 100) {
+ 		uint64_t fb_div =3D (uint64_t)vco_freq * fb_factor;
+ 		unsigned vclk_div, dclk_div, score;
+=2D-
+2.48.1
+
