@@ -2,76 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C5B2A4C299
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Mar 2025 14:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4FC0A4C28F
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Mar 2025 14:58:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE78210E42D;
-	Mon,  3 Mar 2025 13:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BC0410E423;
+	Mon,  3 Mar 2025 13:58:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=natalie.vock@gmx.de header.b="gzCsLIq5";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.17.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3F1F10ECFA;
- Fri, 28 Feb 2025 16:36:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1740760611; x=1741365411; i=markus.elfring@web.de;
- bh=P3aAi1K30diMwcSyotdSLBi8iQUEl+hDB2tmHvN4WgM=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
- Subject:Content-Type:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=crjVsU99nW/CZBMET6nlxo5P5Ve71G2x3ctFqiGmxnvi7FsxwgfQXyv5sn6OWVsb
- x4qIMcrgrPve+oNy2UrDX5r6tSg0n1lSWr+zn5uco0QIgDtF+27/LMp+dXSoSRyS2
- 5CMin+pvn3H63SnHPS1vPtrLOaEIURSr+hsFC5kieFfAA0rPDZpeH+tb67yq+02AJ
- SLaehROwWbAceE2iVSDbnQ/l6015TwXCK9FmDiRiYd7eQsnK2PUIcHEMlfCfZN7uk
- 5MQQwEL21T+XVl81aMuZRHZZK8OcXMkSw42rTjlB9PBChlON+Ylqkpj/KEjiVzmt6
- D946/tidGDGJjMRPYQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.93.27]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MSZHv-1th5Lf3hO5-00Hx7y; Fri, 28
- Feb 2025 17:36:50 +0100
-Message-ID: <225be170-472d-40c1-95ed-71b452740ae7@web.de>
-Date: Fri, 28 Feb 2025 17:36:49 +0100
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD7510ECB9;
+ Fri, 28 Feb 2025 17:49:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1740764953; x=1741369753; i=natalie.vock@gmx.de;
+ bh=TysCmGGP5Rt/4MMj9mBlLj3WIXNFtvvwb0fijWQQBEs=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+ References:From:In-Reply-To:Content-Type:
+ Content-Transfer-Encoding:cc:content-transfer-encoding:
+ content-type:date:from:message-id:mime-version:reply-to:subject:
+ to;
+ b=gzCsLIq5mLpcIiVtJIo9uJa0WDhblgB+5wiIy3xTh/0vsJ3I/RSt+zyaYn/++IUU
+ VqzIYI0e6nkqtioBiHP4Svt4TDsr6AJXhZaAr0JgjSEt6IZ2fB0aXvrByS8HYcFeo
+ bDo/i8NKbsYhEr+E8cfj0O+uYmjL1iNxHgVIQvG347P01zXaeyny003e+nHjNBpF/
+ krEE6HcwQSD4zsExoJ0J8ZE7Qj/GgHo0xNnlrmCl7K1K/EyxmloMu42eo1m49iHlb
+ Zvz2cEarSE4/smBnOp67Oy84YBNZZc17FVle5EqXqhEGPL/a4z/hA3QmlZkcZ4esW
+ JQYnGiHF0mw+KkrH9A==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.0.3] ([109.91.201.165]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MRTRH-1tbbdU07oT-00U8Ps; Fri, 28
+ Feb 2025 18:49:13 +0100
+Message-ID: <642022b6-ba71-407c-99d0-fffb58df2be7@gmx.de>
+Date: Fri, 28 Feb 2025 18:49:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
+Subject: Re: [PATCH] drm/radeon: Simplify maximum determination in
+ radeon_uvd_calc_upll_dividers()
+To: Markus Elfring <Markus.Elfring@web.de>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Content-Language: en-GB
 Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
  Qasim Ijaz <qasdev00@gmail.com>
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: [PATCH] drm/radeon: Simplify maximum determination in
- radeon_uvd_calc_upll_dividers()
-Content-Type: text/plain; charset=UTF-8
+References: <225be170-472d-40c1-95ed-71b452740ae7@web.de>
+Content-Language: en-US
+From: Natalie Vock <natalie.vock@gmx.de>
+In-Reply-To: <225be170-472d-40c1-95ed-71b452740ae7@web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:pQnRLfx8v4G9J+knpTzjK8SoUNS8MlolvSv3lkROWsw5FtuoZvC
- jejqbXK5eiAEUA/Wy3nz448SRf7fWzTID2DWCqDZk4gpGPTOppr9sNw80VIGYfnyk/hBve/
- MNEtXyvm5MDb4NTUi0brMno2VkKUjZLkPkSn3SG1mbtIUZ6Zc5zQUgAJJVWUt6893KWyP0h
- fhxSENApa2wuLnjbLweRA==
+X-Provags-ID: V03:K1:pfjZqJ9EAd9/+f5S1bPNi20hb76HzRttQuCU8sST9HqzSn3C5EQ
+ YEs7SXMxt0jTQWTKzWgcvwRstllrbmjOkBTRP9r0411JXNu3ZiQDzbMwLFF1Ztaibu0bNh7
+ CvIOpWCvo9N/Ac7iGI1c1ITI6zHbPGQLoLE8hizfh2Xd3/zqizzTeXD8CIxbkwvUU0gIepP
+ nvS8WyRp4QRl+dup8enkA==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:IoqzqYMsVKE=;8IMPCWVo7UO+jbp8zxoV4K9CIxH
- WUT5+Lqmgwmg9nmcLw7B62FBoZSApUZoLbTAR08MqOnYrR8NIPjp9H3hVMDqGbXcF1aZWmfh4
- 9DJRGCpInmZXDQmzmF0QLWtBhjeD7nZcwTabq/nthTdMszLW7jtGpixi9g+/UIradL1uPk+Un
- 8CKHNaCau95MOeD2QdI31+1Xu4OopBONfv5QhYKzH4qRYuBxuIAdhKzAtrRmgS6uVIatXLvy1
- zFN0nJHP/Xf8ouS4JzlVspTzNCQjen8K7495sn52gU4Q8xdZ+35q+Qk8/8tFxvW0hB849yGHs
- nPyZd0yxVJl9X3u9gdxtXibEeVrth5sUHVCRspdBF9JVAwuafg+Tjm0/6afVMYgvZx3ifCir1
- i11NcSYwA1Do044NNc0slPpIenXy9SOClbe+MzyyhZhRJRURrsXs+cPbzilwO6g1z0y2mFroS
- g8RTkPjpNf0+bjVyjtZPNNrMzRQmdmxGtL4LAeMRGksCAW6z1DlglCcGLGGSrXC84QabDukpQ
- vLcbn/izySG8Em5eBzNFfD5eRctBnH5fjY0Rq1BJHpSO9kv9hUr2o/tvTR94rXGsC0qpdA0y0
- IXNMY7vDiW3TCoOFiSAaQiXVagS3lEyW9af+Vm5LtntRizcm/Bi0/r0U3yomEQpOrHTP1N82V
- Dwzdht/SZUWDz85cvDj9AbGj9UZAnMkuD0SPaJY4KlreyIqDM4Dgjd8g7OAKKNZ3Vex3oMpM5
- OTunsUnTg4uj7+QG5wlcPmn3AZQ4Ui5dpMWdUdCO9NYHoSi9+VCL60J4VoCqGWdP1/dV+H771
- a7+wyQSedToNCdNfc3/VuWxVdqcXEvxMKmvD3Y50JONzJyV7cdnZ3R4swNo4qA2bp/MMdixZC
- 1xz2af6rOp4rtK/wUT5mfbk2Re1wpccXrZXl42RPI+T+S8o01DuUcZ4sqOfc2cwB8xQlzL2Fd
- +OxUKL0u1lap4P71NQ9Ff2MnMgLtCoT408b4/7nTl8KF0evcN3GZsn5T/N7WL9Dg8dvrUj7va
- vBEivYCkNtF23WB2PttWtQZMS0LwiDZ4DyyWdpGsGPg1tNRsvPBxoAb5L4zFJ93IQ2PcYMdsq
- rXrKccO9wGsLZI47/FUf0ClRHNfUpVJO5yRJ/G26YdvBXb2Dxg9aFnGA6bOrEOdN1VRWlfa/6
- QXg87qVTASNpsvb1iuSXUadOGUDMl0/rUumy6IWUTffs5ySH9FBAwMyx01meX2y2gcBQLE2GC
- LxpIO/8N5+ammdtWZLxtb1+xzFZ82eusr4uMbyOFatsQZbX//2IEWCJU/u85y4YCqrb/StABr
- NUGd5KblsU8y+nFupKcH72vo+HijS5+6PV5Mwc0lVH49vg2HHA006eDF7X0fxqqFkLG27+Y2a
- vnvANt8zRWDhTpU8NZO0aY2CyJCoS6Xhqg1r5qDMgmjS4bU0lzcdsPndYTV4ifzBIXZH2hY0b
- 3x+GMY8rBnsiXlSRihqzpU2pUyUs=
+UI-OutboundReport: notjunk:1;M01:P0:Uc1rwjwZJ8A=;tsNj3Qj3va+BSO8M3orHrkhF7lM
+ 0gQ4cbk7A6tp5MK6F8nZFkC5ilAnJgcuIcEetDyHMKbQKSZyMFRYy7CU0lA+0Q65TlR8PtbLF
+ 84QHor1XOL27bglb1DoJDSPKqKSnj1fcMjsqbS7cAZv3W6oXbgX1DobiCTc4jc1Oha0vv1yxs
+ 9fPgqUy5UBxge7s//45E9BabSCMMq1y3w33g9fCm/uTfAxdKkxCUvIGP16IL0INy8mE12V/8h
+ TumUxqf3B6xt6ICw+8SFMZxvcNlas6PaF3CnjU1Rr3TfyVdkGSc+pngGEfOjFgagaSiLbU8wz
+ Nzq3aJwk3tVaxEfqyK7C3TUA6nwSrzlfuaAuat8Z5sEkGMtrCaEiYz6Ft4PyCUqK3l4fFiBIO
+ 2cmaOl45duPyx73r1caEFe45cZBJXweQ1N0cqoetP/TpwST3oKi4bXOTqfX0QAXFAgJACvfru
+ GcAXR/Vn03+JybR0Ie08aDIiJ+2SutWtOnqY0Rc1WmOi4IqzzwbKsMMmRwc1ctHMd5p+fycc9
+ nT5LAvzyy12iTydnS5O3FE3NIiwTPU6TM4Gv8yiYRwdFEGmxW6KX2xdVRu+qVln6mF14jctOt
+ Q+LOLHHSqqZhLHFSCnMkP/lGTG+8b5qYZKarKgpDhXIjr6xwLj1bSOkz8qCpkAV5TNCjhhVBK
+ kyFHsGW7xzLsKtiMKf8C+KexbXWP9PZ4XPSq2ycJ89K51xbRnse7bmnC5QkZmzljZcZIJIVXh
+ aFZwwDsJ7Z6zegPWJdEJUUU8jLFnvHKCReQ6QjGHORUzFSIrdhcSJk6DlK6JFQYJ8Am0KLAo7
+ x5/dSdyvMS1NY0pV+/cjPPd6ggWHUw3IU3CHkmZ9ywimEA6ediLmnkZ18e//zkpR9eQgbxiBC
+ AEtyTCoVnZeyXVRqMl/cHRTy2jnvTexBYhrvlcZY7/9SuIv9IeL14SvdQ4o+4xvG0iGQwFWag
+ 949zE1NzkhDwIxA8xmRVjM/gxVmM/u0QdOTwDa96kSnOE5m9wY5g0EkCF50JFChHqbcWdF5GB
+ aoKv8EtHS9J4IYzKRJ2SNgg5YDP4Arn4TSU5vV0VaL7e4Ojtt5FVAcaXjawiE14DmfzXZ6BOU
+ ASOm4hGix7foCrQh+lSs28PWLsqtNDRG73kxc6tPPDjX4DhFSik3Xmhp13nhpn8c1WiyYKOAJ
+ Iay3QoS9vkCUdfyKkz+RmdzOScAscclgyGAGociNcsjA4zvOJZziitlPOL7fuik8Z+DVnGntY
+ Y0WxNre7gb5KOLJdFbic7jRTI4t0Hh3vhPjyuisEFsa5Qc/iM89Zs24T1cuE/mRO5h3gZufot
+ 2UhKTL7FxnaWbTJBPOaSMKzI3wQEoH0KfYRNXYJ/uPB7YUtKXeu4pktrBl2Uk6WvUJOvRrq89
+ Xi9MQN1czbTSKqSXpLfAra/i1SWrTyqxtI8ba1LELYBKlEk9kgd5ONsLWp
 X-Mailman-Approved-At: Mon, 03 Mar 2025 13:58:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,34 +92,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Fri, 28 Feb 2025 17:32:45 +0100
+On 28.02.25 17:36, Markus Elfring wrote:
+> From: Markus Elfring <elfring@users.sourceforge.net>
+> Date: Fri, 28 Feb 2025 17:32:45 +0100
+>
+> Replace nested max() calls by single max3() call in this
+> function implementation.
+>
+> This issue was transformed by using the Coccinelle software.
 
-Replace nested max() calls by single max3() call in this
-function implementation.
+How about something like "this change was made" or "this code was
+transformed"? Coccinelle didn't transform the issue, it transformed the
+code to solve the issue.
 
-This issue was transformed by using the Coccinelle software.
+Cheers,
+Natalie
 
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-=2D--
- drivers/gpu/drm/radeon/radeon_uvd.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/radeon/radeon_uvd.c b/drivers/gpu/drm/radeon/=
-radeon_uvd.c
-index 058a1c8451b2..ded5747a58d1 100644
-=2D-- a/drivers/gpu/drm/radeon/radeon_uvd.c
-+++ b/drivers/gpu/drm/radeon/radeon_uvd.c
-@@ -961,7 +961,7 @@ int radeon_uvd_calc_upll_dividers(struct radeon_device=
- *rdev,
- 	unsigned optimal_score =3D ~0;
-
- 	/* loop through vco from low to high */
--	vco_min =3D max(max(vco_min, vclk), dclk);
-+	vco_min =3D max3(vco_min, vclk, dclk);
- 	for (vco_freq =3D vco_min; vco_freq <=3D vco_max; vco_freq +=3D 100) {
-
- 		uint64_t fb_div =3D (uint64_t)vco_freq * fb_factor;
-=2D-
-2.48.1
+>
+> Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+> ---
+>   drivers/gpu/drm/radeon/radeon_uvd.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_uvd.c b/drivers/gpu/drm/radeo=
+n/radeon_uvd.c
+> index 058a1c8451b2..ded5747a58d1 100644
+> --- a/drivers/gpu/drm/radeon/radeon_uvd.c
+> +++ b/drivers/gpu/drm/radeon/radeon_uvd.c
+> @@ -961,7 +961,7 @@ int radeon_uvd_calc_upll_dividers(struct radeon_devi=
+ce *rdev,
+>   	unsigned optimal_score =3D ~0;
+>
+>   	/* loop through vco from low to high */
+> -	vco_min =3D max(max(vco_min, vclk), dclk);
+> +	vco_min =3D max3(vco_min, vclk, dclk);
+>   	for (vco_freq =3D vco_min; vco_freq <=3D vco_max; vco_freq +=3D 100) =
+{
+>
+>   		uint64_t fb_div =3D (uint64_t)vco_freq * fb_factor;
+> --
+> 2.48.1
+>
 
