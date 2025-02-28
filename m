@@ -2,64 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D63A498AB
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2025 13:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19842A49B35
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Feb 2025 15:03:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F30610EC82;
-	Fri, 28 Feb 2025 12:00:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3347610ECCB;
+	Fri, 28 Feb 2025 14:03:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PyqvFv/7";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE82C10EBB5
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Feb 2025 23:26:29 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4Z3nKg0cKkz9t9M;
- Fri, 28 Feb 2025 00:16:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ethancedwards.com;
- s=MBO0001; t=1740698215;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=FBDZiW19X5cn3cuHGveHbiMlwS0ltwOdMSwNVeMLsVU=;
- b=A5LMf7DHg2J3Jqs6X+r3H3RrTVzijiBxOWa/Sb7yVRo3duj4dObBr9F+BVxg8agsOn030D
- /mqVCxZUkv8QhPj3m17QvSsAFiAEX7uLPBVfABHYxOxr4dNXn/R9La0NQI1CbaCYcM8wAW
- Bx/0Z5wmyS/TU72iT9DDBAjI6epQ+KJhLyqzo2p8b3iNEhjn5GsLL1OC3CWofozBp/l44o
- CCQqU9C01Kv7gFtXthRK8hhFyGdOrUiTgKzOhrE28fWtVeSsqsRKc3x3C4LMhAZ50tFlwx
- cZZ4K/2s6Z534/Yrn9lXspUE5mcLcF3XKPtIoiIWRiSp0uTnuTW25TR5QvvaTQ==
-From: Ethan Carter Edwards <ethan@ethancedwards.com>
-Date: Thu, 27 Feb 2025 18:16:24 -0500
-Subject: [PATCH 4/4] drm/amd/display: change kzalloc to kcalloc in
- dml1_validate()
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E46489CF6;
+ Fri, 28 Feb 2025 12:14:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=J65RRpxzb2SHooTTNoAw0STRLJLE33DZng+YcfjggC0=; b=PyqvFv/7LJyyQCRfrOsTrOvuTw
+ 0zqciE9e4QXUpSMMj0/0um9CPDkP/q8Kd8lwRL5nkEFyD2ej1eRM7ZJ4RFHKJVSBoC0WSekqGy1fi
+ 82Hb8cl0l/5PkEddxCUjqFzH9NFgJJpsNzuBhVlmcWb4iHyRv+ZV0qn8PvL4HOoabd+A0rLXp08vv
+ yvsP4vQSNe+tfUb4SGOon1kQjYDgTLNWLpovaOcP9MqEVk1qcjVttxnFpp2Cc/rc7IPt48lvkFL3X
+ 7J8DQetkl+diifwr4IUIQF7KszskN7DiAj0INiZUFY9GaBVQa6n3qkqeZRlGAczXjK9ku3TKzzKLs
+ UtWq1opg==;
+Received: from [191.204.194.148] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tnzFb-0021Hz-LL; Fri, 28 Feb 2025 13:14:01 +0100
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ Raag Jadav <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH 0/2] drm: Create an app info option for wedge events
+Date: Fri, 28 Feb 2025 09:13:51 -0300
+Message-ID: <20250228121353.1442591-1-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250227-amd-display-v1-4-52a060a78d08@ethancedwards.com>
-References: <20250227-amd-display-v1-0-52a060a78d08@ethancedwards.com>
-In-Reply-To: <20250227-amd-display-v1-0-52a060a78d08@ethancedwards.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
- Ethan Carter Edwards <ethan@ethancedwards.com>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1378;
- i=ethan@ethancedwards.com; h=from:subject:message-id;
- bh=24YShaBC0pMX9hWdPx8iIgoaysi2N4zb0byElG8tKlw=;
- b=LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgpvd0o0bkp2QXk4ekFKWGJEOXFoNThlVGp6e
- GhQcXlVeHBCLzRGSlQ1SWVuUytaSnpxOFBUT3laM3Jab2g2RlZVCkVCT1k5L0REd2VXdjcwV3Z2
- cit5bzVTRlFZeUxRVlpNa2VWL2puTGFRODBaQ2p2L3VqVEJ6R0ZsQWhuQ3dNVXAKQUJOWjZjWHd
- UKzJ4VUgvVDJZUVpKUm5sdlh2NDcyaElIWHpGZVV2bm5VL0t5Z1kzNTJzNlVZd01mU2UyUE5xNg
- o4K1F6Z2RDdkMyZk0wakQ3L01oUzZpNkx3M0YrZjJVOXhiZXJ1QUNXTmxFSgo9ZXlXZQotLS0tL
- UVORCBQR1AgTUVTU0FHRS0tLS0tCg==
-X-Developer-Key: i=ethan@ethancedwards.com; a=openpgp;
- fpr=2E51F61839D1FA947A7300C234C04305D581DBFE
-X-Mailman-Approved-At: Fri, 28 Feb 2025 12:00:25 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 28 Feb 2025 14:03:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,30 +64,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We are trying to get rid of all multiplications from allocation
-functions to prevent integer overflows. Here the multiplication is
-probably safe, but using kcalloc() is more appropriate and improves
-readability. This patch has no effect on runtime behavior.
+This patchset implements a request made by Xaver Hugl about wedge events:
 
-Signed-off-by: Ethan Carter Edwards <ethan@ethancedwards.com>
----
- drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+"I'd really like to have the PID of the client that triggered the GPU
+reset, so that we can kill it if multiple resets are triggered in a
+row (or switch to software rendering if it's KWin itself) and show a
+user-friendly notification about why their app(s) crashed, but that
+can be added later."
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-index 664302876019072a77b9330229f7fe8545787396..2a59cc61ed8c918a4b5beb1d90bf3a8f77fcdeb9 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-@@ -1749,7 +1749,8 @@ static bool dml1_validate(struct dc *dc, struct dc_state *context, bool fast_val
- 
- 	int vlevel = 0;
- 	int pipe_cnt = 0;
--	display_e2e_pipe_params_st *pipes = kzalloc(dc->res_pool->pipe_count * sizeof(display_e2e_pipe_params_st), GFP_KERNEL);
-+	display_e2e_pipe_params_st *pipes = kcalloc(dc->res_pool->pipe_count,
-+			sizeof(display_e2e_pipe_params_st), GFP_KERNEL);
- 
- 	/* To handle Freesync properly, setting FreeSync DML parameters
- 	 * to its default state for the first stage of validation
+From https://lore.kernel.org/dri-devel/CAFZQkGwJ4qgHV8WTp2=svJ_VXhb-+Y8_VNtKB=jLsk6DqMYp9w@mail.gmail.com/
+
+This patchset depends on https://lore.kernel.org/dri-devel/20250225010221.537059-1-andrealmeid@igalia.com/
+
+For testing, I've used amdgpu's debug_mask options debug_disable_soft_recovery
+and debug_disable_gpu_ring_reset to test both wedge event paths in the driver.
+To trigger a ring timeout, I used this app:
+https://gitlab.freedesktop.org/andrealmeid/gpu-timeout
+
+Thanks!
+
+André Almeida (2):
+  drm: Create an app info option for wedge events
+  drm/amdgpu: Make use of drm_wedge_app_info
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  4 ++++
+ drivers/gpu/drm/drm_drv.c                  | 16 +++++++++++++---
+ drivers/gpu/drm/i915/gt/intel_reset.c      |  3 ++-
+ drivers/gpu/drm/xe/xe_device.c             |  3 ++-
+ include/drm/drm_device.h                   |  8 ++++++++
+ include/drm/drm_drv.h                      |  3 ++-
+ 7 files changed, 48 insertions(+), 8 deletions(-)
 
 -- 
 2.48.1
