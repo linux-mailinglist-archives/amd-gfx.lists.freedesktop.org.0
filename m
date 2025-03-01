@@ -2,68 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4168CA4A870
-	for <lists+amd-gfx@lfdr.de>; Sat,  1 Mar 2025 05:11:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC77DA4A872
+	for <lists+amd-gfx@lfdr.de>; Sat,  1 Mar 2025 05:11:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF7EB10E100;
-	Sat,  1 Mar 2025 04:11:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0C8910E11D;
+	Sat,  1 Mar 2025 04:11:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kPepcCN8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JUdA/iPx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
- [209.85.219.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A3DF10E117
- for <amd-gfx@lists.freedesktop.org>; Sat,  1 Mar 2025 04:11:39 +0000 (UTC)
-Received: by mail-qv1-f45.google.com with SMTP id
- 6a1803df08f44-6e894b81678so14322216d6.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 20:11:39 -0800 (PST)
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
+ [209.85.222.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DD0410E100
+ for <amd-gfx@lists.freedesktop.org>; Sat,  1 Mar 2025 04:11:40 +0000 (UTC)
+Received: by mail-qk1-f182.google.com with SMTP id
+ af79cd13be357-7c0a3d6a6e4so257846985a.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 20:11:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1740802298; x=1741407098; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1740802299; x=1741407099; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=YnR1c/5GyGtBa1Hb7CDFoa51kxLYBIQeZNM4u6R90eI=;
- b=kPepcCN8aZn9oLc0X2vXgk4jxrAp8O7g9rfrgyn0gH6ebx6NTk4jtolviNP+lu7Sig
- HSmOxiZ/lNLtG3pMGS3g/OyX6kQXdN2w14fZkq7nFDROEZqvhSp8tl1D4nao2Dc08pPl
- vI9KCm8louffKsCFSL8l7i/4X5yCGq4lZYouNFhnqghBS8/JioenlUuFVq/pNJ/s7OIv
- EwAgXPvDEcU90Nkn+ZqSJd/nL09r9mZ0z3aFN8C6/jeKyM9QTm/ECgW7AhLdUV1sq8DC
- MZ4c3deheaw58lb0TUeaoEhhF+yjWPwSbOEOX7eClU28c+GCTpNIGbex8XmESP2DFgOv
- ez1g==
+ :reply-to; bh=1wY0mHhBmAKRs6odGi4S8/JAa2ikLRSW1NS8BlolIIQ=;
+ b=JUdA/iPxVW2P1ZtW+/EG4D7diiugpUnug+OE0sFFgg1fFNLjak/a4Y4KEWg6oneJhK
+ gdvyUtJ8FrGTVerIleJrjKnrRU9Yr+N6PcqwU2Y8umIiff820WpXR+k7ZybhBoMC5IVd
+ BSv8CpZ9yOyWhVpPew3PcF6mQWBUIqVZr7X2zgiNNtoj5C+i6/+mEpSwikqORGfV+yTS
+ SnNC5bH4PdqNmUsVgx2mKDa8u4AP3TeEG8qd2Fx9BCnaDnBZwh6ylmzzi26XKRqqroZp
+ FNvbP7YHEplfFkFKbfHkImF+IRkKjzdek8N+zelBDrNRTI2p/Tuwy3VBQqyeFyG3/wiN
+ Hh9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1740802298; x=1741407098;
+ d=1e100.net; s=20230601; t=1740802299; x=1741407099;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=YnR1c/5GyGtBa1Hb7CDFoa51kxLYBIQeZNM4u6R90eI=;
- b=ubujYq5Ne5Tqnk1Q7sLQsGQAiXtErk4rIiLfmT3nnC4BWFHDK/Dbgo/MgqWKfbpaUZ
- aI47jTuLGBRx2sa4ptCgxgAVwveg7rCm4458BBKaz5afCsvDmIX1K8YFYn+c6JxNxuXp
- BDLqjGaFU0PUp+RR257orRVznq5LryliPwgvTTWRLpbPMAxnV8Toy0wFIAKcmEMyyfym
- EPGvYGD6yJZibTUTYbr83oMaaXrwbGcpMM8RrA68xhGgQJ9510gsSrZ/ERWv1sIoYLE0
- ouFeQFHSZ16cEvm/M0qYFAPRcJNsuR7lmKNvmrwkCCwLi1k8IY+rS7az5DGd4iSbcdM7
- StVg==
-X-Gm-Message-State: AOJu0YzcXg+sdhaE56TOXonJIhkzQ0uU9UKpYN1jHpqoiNGDKiqJrfGb
- VgRX/CrJPHA6y0+nVk1Q2DvLr1uD6SX8tiCcPE1uW6mz43IbytTLTreikQ==
-X-Gm-Gg: ASbGncuYYEdRTma8sUwHHbObY8wFgm7mtMgn8aKicHJ2QljIUAYJpbeRDEHsGm2DuhV
- fbSG0zfTJXWVLHFn4wh8VidfxxL2cvNTdFp9oYP41fGf6SfkfGJEZndy+XOxyfJhVkKxpLuifiH
- UFLd3ZudGbf2753EP77Pt+BHVi9pJotrOM7eKet0D6DYHX3e1Ecz0wRwWMiCKmWEDR2GLPvQMrE
- mjURqrw05jZVSNPfSbXwqtsgCT0ASucbAVdITwKP6iYOQazca7IH/jtKyhyHyRGTmo2lHy3ZQRZ
- WjhD1VvSq9NBm6qkwXDO/eE0YJablXNdBC8uBVoV6Sa3yPI09vTyAW2tf6uRBqXN/n4=
-X-Google-Smtp-Source: AGHT+IHXqPvpI5L04lLkSlNFK+//EV4YVFHokn2dEk6FfoKpD3W14X3jbTWpTPruzI2QVkLCKKx44g==
-X-Received: by 2002:ad4:4eeb:0:b0:6d8:8a60:ef2c with SMTP id
- 6a1803df08f44-6e8a0cce81amr94160866d6.2.1740802298428; 
- Fri, 28 Feb 2025 20:11:38 -0800 (PST)
+ bh=1wY0mHhBmAKRs6odGi4S8/JAa2ikLRSW1NS8BlolIIQ=;
+ b=LhJ6j+uaILC0+DX8RJ24sG64fSFcrFaxCMGeVunNBPYpoyXFNKbPPwcrm1ZPY7JIGe
+ 1WAG9GN8bd1uvSTgIo6ps+6DIHbn4NmJL3hcwCapL9em2pBs83f7kt8a18IirVnmFkJl
+ /nen5X1hcVeOYuTYik14sMo/h1lQeF7+d9SA0Ogo2SxMQX/ryko925SoqVAZz7TWYrHR
+ bd+YqldrfWoW0WwzMxV4PfRg2AccLm67gkgAVhmE30WVHB/kvUs6TC8UdPzhDQK9hoPa
+ cGXHhXJzNcfwIOeI9vKjktqafteI3IPax0UzAA3NFeHZyD+uzG+2HgSi8CCvH47vMUKD
+ tnfw==
+X-Gm-Message-State: AOJu0YwhSw+C/ntAuaw+VG+mWFFQNcczSo3VADmOAYKNAbeBCsin324g
+ tt1Enr8QHNsB67ug9azibOBD0RqRSCdR+POug8NkK38FXg2m33wXcLh0Kg==
+X-Gm-Gg: ASbGncvxj8g5i9NWKTKZXlbZF+tdZi94DZkmYEK+jFIA9TMLlEOasaErv8BuWEc74C8
+ V4/vNOGTuVkNBsS5vC80FcTq5Cf1/ETCccvPHzguRh91qvqsV1eWyrldaulD58gE84UfmzAPhm1
+ 6kq4zak+DJiHFQxRBS1n0uXhIURnc1baJiGr60w72x5C+YpDCjbluP3xII5TXB93ylPAeYWs1Kx
+ lfj/zwwuZ7TIUBjXirsJwIQvhwtIfUOnFbqAniFquftZQ9PtI7HampwyDoHXeROcgjWIEvBd37K
+ 5JtGSNQDE307eFWu5oj5ITRBBH425XVqao16/3KxkSomG19Yb8e1Ic7REL0ujgm7zss=
+X-Google-Smtp-Source: AGHT+IFwt2ov4R6mPizUnFEcfE12X0RGcgHHTVFYFNezLnX8UC3ZxB9NFk+NVl9X6bTKmPYogSPtGw==
+X-Received: by 2002:a05:620a:c44:b0:7c0:b2ab:2693 with SMTP id
+ af79cd13be357-7c39c677674mr877800085a.49.1740802299169; 
+ Fri, 28 Feb 2025 20:11:39 -0800 (PST)
 Received: from localhost.localdomain ([38.74.25.248])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7c36ff0f386sm327973085a.60.2025.02.28.20.11.37
+ af79cd13be357-7c36ff0f386sm327973085a.60.2025.02.28.20.11.38
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Fri, 28 Feb 2025 20:11:38 -0800 (PST)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 1/2] drm/amdgpu: add dce_v6_0_soft_reset() to DCE6
-Date: Fri, 28 Feb 2025 23:11:20 -0500
-Message-ID: <20250301041121.9661-2-alexandre.f.demers@gmail.com>
+Subject: [PATCH v2 2/2] drm/amdgpu: complete
+ dce_v6_0_set_crtc_vline_interrupt_state() in DCE6
+Date: Fri, 28 Feb 2025 23:11:21 -0500
+Message-ID: <20250301041121.9661-3-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250301041121.9661-1-alexandre.f.demers@gmail.com>
 References: <20250301041121.9661-1-alexandre.f.demers@gmail.com>
@@ -83,91 +84,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-DCE6 was missing soft reset, but it was easily identifiable under radeon.
-This should be it, pretty much as it is done under DCE8 and DCE10.
+dce_v6_0_set_crtc_vline_interrupt_state() was empty without any info to
+inform the user.
+
+Based on DCE8 and DCE10 code.
 
 Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 53 ++++++++++++++++++++++++++-
- 1 file changed, 51 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 44 +++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index 185401d66961..2ccb450b35a6 100644
+index 2ccb450b35a6..f8a743aade52 100644
 --- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -372,13 +372,41 @@ static u32 dce_v6_0_hpd_get_gpio_reg(struct amdgpu_device *adev)
- 	return mmDC_GPIO_HPD_A;
- }
- 
-+static bool dce_v6_0_is_display_hung(struct amdgpu_device *adev)
-+{
-+	u32 crtc_hung = 0;
-+	u32 crtc_status[6];
-+	u32 i, j, tmp;
-+
-+	for (i = 0; i < adev->mode_info.num_crtc; i++) {
-+		if (RREG32(mmCRTC_CONTROL + crtc_offsets[i]) & CRTC_CONTROL__CRTC_MASTER_EN_MASK) {
-+			crtc_status[i] = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
-+			crtc_hung |= (1 << i);
-+		}
-+	}
-+
-+	for (j = 0; j < 10; j++) {
-+		for (i = 0; i < adev->mode_info.num_crtc; i++) {
-+			if (crtc_hung & (1 << i)) {
-+				tmp = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
-+				if (tmp != crtc_status[i])
-+					crtc_hung &= ~(1 << i);
-+			}
-+		}
-+		if (crtc_hung == 0)
-+			return false;
-+		udelay(100);
-+	}
-+
-+	return true;
-+}
-+
- static void dce_v6_0_set_vga_render_state(struct amdgpu_device *adev,
- 					  bool render)
+@@ -2968,7 +2968,51 @@ static void dce_v6_0_set_crtc_vline_interrupt_state(struct amdgpu_device *adev,
+ 						    int crtc,
+ 						    enum amdgpu_interrupt_state state)
  {
- 	if (!render)
- 		WREG32(mmVGA_RENDER_CONTROL,
- 			RREG32(mmVGA_RENDER_CONTROL) & VGA_VSTATUS_CNTL);
--
- }
++	u32 reg_block, lb_interrupt_mask;
  
- static int dce_v6_0_get_num_crtc(struct amdgpu_device *adev)
-@@ -2860,7 +2888,28 @@ static bool dce_v6_0_is_idle(void *handle)
- 
- static int dce_v6_0_soft_reset(struct amdgpu_ip_block *ip_block)
- {
--	DRM_INFO("xxxx: dce_v6_0_soft_reset --- no impl!!\n");
-+	u32 srbm_soft_reset = 0, tmp;
-+	struct amdgpu_device *adev = ip_block->adev;
-+
-+	if (dce_v6_0_is_display_hung(adev))
-+		srbm_soft_reset |= SRBM_SOFT_RESET__SOFT_RESET_DC_MASK;
-+
-+	if (srbm_soft_reset) {
-+		tmp = RREG32(mmSRBM_SOFT_RESET);
-+		tmp |= srbm_soft_reset;
-+		dev_info(adev->dev, "SRBM_SOFT_RESET=0x%08X\n", tmp);
-+		WREG32(mmSRBM_SOFT_RESET, tmp);
-+		tmp = RREG32(mmSRBM_SOFT_RESET);
-+
-+		udelay(50);
-+
-+		tmp &= ~srbm_soft_reset;
-+		WREG32(mmSRBM_SOFT_RESET, tmp);
-+		tmp = RREG32(mmSRBM_SOFT_RESET);
-+
-+		/* Wait a little for things to settle down */
-+		udelay(50);
++	if (crtc >= adev->mode_info.num_crtc) {
++		DRM_DEBUG("invalid crtc %d\n", crtc);
++		return;
 +	}
- 	return 0;
++
++	switch (crtc) {
++	case 0:
++		reg_block = CRTC0_REGISTER_OFFSET;
++		break;
++	case 1:
++		reg_block = CRTC1_REGISTER_OFFSET;
++		break;
++	case 2:
++		reg_block = CRTC2_REGISTER_OFFSET;
++		break;
++	case 3:
++		reg_block = CRTC3_REGISTER_OFFSET;
++		break;
++	case 4:
++		reg_block = CRTC4_REGISTER_OFFSET;
++		break;
++	case 5:
++		reg_block = CRTC5_REGISTER_OFFSET;
++		break;
++	default:
++		DRM_DEBUG("invalid crtc %d\n", crtc);
++		return;
++	}
++
++	switch (state) {
++	case AMDGPU_IRQ_STATE_DISABLE:
++		lb_interrupt_mask = RREG32(mmINT_MASK + reg_block);
++		lb_interrupt_mask &= ~VLINE_INT_MASK;
++		WREG32(mmINT_MASK + reg_block, lb_interrupt_mask);
++		break;
++	case AMDGPU_IRQ_STATE_ENABLE:
++		lb_interrupt_mask = RREG32(mmINT_MASK + reg_block);
++		lb_interrupt_mask |= VLINE_INT_MASK;
++		WREG32(mmINT_MASK + reg_block, lb_interrupt_mask);
++		break;
++	default:
++		break;
++	}
  }
  
+ static int dce_v6_0_set_hpd_interrupt_state(struct amdgpu_device *adev,
 -- 
 2.48.1
 
