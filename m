@@ -2,71 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC331A4A81D
-	for <lists+amd-gfx@lfdr.de>; Sat,  1 Mar 2025 03:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B295A4A871
+	for <lists+amd-gfx@lfdr.de>; Sat,  1 Mar 2025 05:11:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35E2F10E0FD;
-	Sat,  1 Mar 2025 02:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 074AA10E117;
+	Sat,  1 Mar 2025 04:11:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jr7dkD57";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EE9JYe/x";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com
- [209.85.222.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0162410E0D8
- for <amd-gfx@lists.freedesktop.org>; Sat,  1 Mar 2025 02:31:33 +0000 (UTC)
-Received: by mail-qk1-f176.google.com with SMTP id
- af79cd13be357-7c0155af484so406463685a.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 18:31:33 -0800 (PST)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
+ [209.85.222.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2EFC10E100
+ for <amd-gfx@lists.freedesktop.org>; Sat,  1 Mar 2025 04:11:38 +0000 (UTC)
+Received: by mail-qk1-f169.google.com with SMTP id
+ af79cd13be357-7c0848d475cso372081685a.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 20:11:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1740796293; x=1741401093; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=Hx2v0ctrkqHf0wbfgH45MPnh1wqjGKTxlbAeUbASJlY=;
- b=jr7dkD570ZdNdxwN3507oboGMkmqMTtSC5fLc9LAukaIAdydUj3JLl7/AbYcjs/XQw
- tBh5H7YH4KERomhIY/n5RK30Vx77R3Zere1D35AP0H9xWtV4ox1As62keqfm+pk/Cjce
- 68re/6tKYV+/7c3NxFoBwBhGef723V1IrgDpVr5mvhCT4zfq3RO1l2pkbCaLLDaqRMWF
- cu8oES855FbwhEWxQ1l+GfQ7WpiE7ysED7zmy5kUrg71zzuXO4Z7xfli2URRxGy2DLHG
- 31X9VmC2bVHaxSLDNFMYt85yO9TMIkedEOdhVROapKWYXHirzZGHD1mjOgdyyRPmXB+A
- 2bDQ==
+ d=gmail.com; s=20230601; t=1740802298; x=1741407098; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=seUwH40WaRbj6iz+8R54vZN9nY7fJP0/pRwiCMysjMU=;
+ b=EE9JYe/x7vx6tKX1noateCbjHGYzoraY8Q8yQpld4jSQZ/Ybftt/iQjOkbF/y0YU3w
+ itXVGPL+hAeppkxmJF1fkBuvWvTWz/cY7cv9snLn2vRiO0Z5czkivxLxIQ8DlMOc6+BG
+ DINGapmLY4AMp8ExlidR2Jc9rJOHZQbJ65JCLLCJ0lf3Ak+TAFS9n1e+OHQxdlmI0Qjx
+ BiFG0TfId70K6lwY6VyIgM4r+diXfVV4vaUUDjPNa2oHmzpprPI5CQRU29MV9OZk6Aqy
+ D5zYbeWdyUE1ze8h6bYhkgMgckmOK0zyF+B/8cqsnoswbYAGhT7SxK31PswdxUTEjEF0
+ LH/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1740796293; x=1741401093;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Hx2v0ctrkqHf0wbfgH45MPnh1wqjGKTxlbAeUbASJlY=;
- b=VG3gzQbOa06qj8Pb4gvi83zLcPSXQQXAhbGJyCMWRlxAbLq98isDTtJ/6II2GDHtcp
- +vkAdNYF7jZejv0itLmimYXcA4xxEF0Ef6FacXk96/R9XUWquubfFHnbdfvCLZYy2DMJ
- aqVLgvO3Wl2+N/uLzGh7dTL+JhZsNF+1YU6KsFx0hJuJHbLFXc+WrwjcY5ViflWXMAHJ
- h9oc+dyJj5zi4WJgrbGtrA2lnmy/cIWjrvDbMDETfsyc2Ibb3bUxpIhVvn5pOWbvuAo7
- +8hBQPmd1ZpdPD1i6PnVThmbgZEM6MY6YzPtslcKC4FeMfWgiqNPtni0wX1z/F/52kfp
- rjlA==
-X-Gm-Message-State: AOJu0YwuoYzg8PsZtxHa8WeZ7Tp7hkzID1jORFJa6a3vrhUuCX2Zsrr7
- vQ+y9l8T/pkm6VGTNUUTLD6eE1qXnl9gSedfvd6wWGDXrmame6Tb58bQZQ==
-X-Gm-Gg: ASbGncsx6+nEe+zZECix2k427tJpUlTNW62EQhz/f7DGqicF/n3vJ2Zu1ExbrKIry8c
- p7OkejO9oL4s7MeiL6wyBeRRcdWzJTYxcVpzZEGfavyEOGe7lIFqx9JdYxE8sR760yEs4NX3G/s
- mAuiZFKdBwyYUYupjKN90y662WYkfOJYEuCUXSuPhH5OPXR8qyVqGf8d9UVj8EVxKOcOGvWQEj/
- TAgMiTbi7rllgZP5nWjB7PUC2pyzoopoX5gXS+5WrNoRITkGTZIpVnJFz70lPZ7KD+9/t+8nR6G
- jFSHaNn3qJcf9c9qm/YKI76BWhE1wrppYQjvghTh3xS8pqBJQjwsWcxVB5rvbr4EPUA=
-X-Google-Smtp-Source: AGHT+IE4Ix+7YsdDI9S46ePhgSv5hAWDbG+tf5h1bIPQmGf5jikJUxMpnChRokwenywFVuBkLhddMw==
-X-Received: by 2002:a05:620a:5641:b0:7c3:9d35:2c91 with SMTP id
- af79cd13be357-7c39d353655mr573982985a.5.1740796292899; 
- Fri, 28 Feb 2025 18:31:32 -0800 (PST)
+ d=1e100.net; s=20230601; t=1740802298; x=1741407098;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=seUwH40WaRbj6iz+8R54vZN9nY7fJP0/pRwiCMysjMU=;
+ b=KucRtpVhGeW6sZMEPYtHLFIwQc/5wiwp3nEEG2ooShUijjTJvHVBw8ujVX/Kw88VB2
+ sN0LMXIni22y7Lvvc/M4PJFeUuz22A475mYW1TQeHTF0jXSeTMJXhvXeSVIakiSzhJ8v
+ JtS9KiY0sKJxSQ74zrv4rWAhtfQg0uitDTvmV3rCL+aYWRbhDzjxja4NsKdy34ehicVh
+ p3U8fJ2RyshqF06IWm1Yb8a1mhtTMt2rFwUxEKe7f1djcxuDWh0SIF5C0B7qj0xdNQh5
+ PpqBOkqC11ti4sYwb0CNlpi08fyBSuQrEnrRBm6TwtyH9K/Kp9dh+tqgl1Ecu48o8xxY
+ YE4Q==
+X-Gm-Message-State: AOJu0YydVqwOtM63j1NMaGetvMnBT+0tYwqlf/QCxScl1JWj5WaWamHF
+ kVJ5Cp0KALaePUrs7uwirN4SV02x7oR6Se94NaLTAU9pwe8QJSXjXGrcLQ==
+X-Gm-Gg: ASbGncsTyva6XdEnzLwzsX3S86pzUiLnEdhpg5Zw26KkkGNJ/FAgObBiDRlP/QD+5uT
+ bcy0U5eV62JghRiipv7s2yH4QKMObBpSG0i7UZ2c52R4rcOBXtftml21qKw4Cvhq+zNk431s4Cv
+ Qej4mkbiPMAhNLSTgAWJlmh0ltaSgMl8uAtlZoK/FapAyr90/9l49G0C3Tk/cAFsAxA8xMP7LAK
+ Cb+l+deqHjPsEndd7gKywyQx3IvwwWbvZlrEabadEaVjVEbrV0MUCijKAhbmy7EGIie9iErTHj6
+ kAMBf6JpKnQHAkc5Ybve6kSxlEfHnp+R+qtRZ2KuwwUJhG7TOQCGGvObvUlKiiz60xQ=
+X-Google-Smtp-Source: AGHT+IH7JQxKkV1IJdFX+nroaTyo+Vyz6sWDl5c5GwCMSkmV+ZvVHdxyd/6X2s9aVD3Dp1LjYFTfYQ==
+X-Received: by 2002:a05:620a:1a1c:b0:7c0:a89a:2171 with SMTP id
+ af79cd13be357-7c39c4d16e6mr749845085a.34.1740802297617; 
+ Fri, 28 Feb 2025 20:11:37 -0800 (PST)
 Received: from localhost.localdomain ([38.74.25.248])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7c36fef5beesm322857085a.32.2025.02.28.18.31.32
+ af79cd13be357-7c36ff0f386sm327973085a.60.2025.02.28.20.11.36
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Feb 2025 18:31:32 -0800 (PST)
+ Fri, 28 Feb 2025 20:11:37 -0800 (PST)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 2/2] drm/amdgpu: add defines for pin_offsets in DCE8
-Date: Fri, 28 Feb 2025 21:31:30 -0500
-Message-ID: <20250301023130.31277-3-alexandre.f.demers@gmail.com>
+Subject: [PATCH v2 0/2] drm/amdgpu: add empty functions
+Date: Fri, 28 Feb 2025 23:11:19 -0500
+Message-ID: <20250301041121.9661-1-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250301023130.31277-1-alexandre.f.demers@gmail.com>
-References: <20250301023130.31277-1-alexandre.f.demers@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -83,59 +80,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Define pin_offsets values in the same way it is done in DCE8
+Third set of split patchset.
+Add to DCE6
+dce_v6_0_soft_reset() 
+dce_v6_0_set_crtc_vline_interrupt_state() to DCE6
 
-Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/cikd.h     |  9 +++++++++
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c | 14 +++++++-------
- 2 files changed, 16 insertions(+), 7 deletions(-)
+Alexandre Demers (2):
+  drm/amdgpu: add dce_v6_0_soft_reset() to DCE6
+  drm/amdgpu: complete dce_v6_0_set_crtc_vline_interrupt_state() in DCE6
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/cikd.h b/drivers/gpu/drm/amd/amdgpu/cikd.h
-index 06088d52d81c..279288365940 100644
---- a/drivers/gpu/drm/amd/amdgpu/cikd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/cikd.h
-@@ -51,6 +51,15 @@
- #define HPD4_REGISTER_OFFSET                 (0x1813 - 0x1807)
- #define HPD5_REGISTER_OFFSET                 (0x1816 - 0x1807)
- 
-+/* audio endpt instance offsets */
-+#define AUD0_REGISTER_OFFSET                 (0x1780 - 0x1780)
-+#define AUD1_REGISTER_OFFSET                 (0x1786 - 0x1780)
-+#define AUD2_REGISTER_OFFSET                 (0x178c - 0x1780)
-+#define AUD3_REGISTER_OFFSET                 (0x1792 - 0x1780)
-+#define AUD4_REGISTER_OFFSET                 (0x1798 - 0x1780)
-+#define AUD5_REGISTER_OFFSET                 (0x179d - 0x1780)
-+#define AUD6_REGISTER_OFFSET                 (0x17a4 - 0x1780)
-+
- #define BONAIRE_GB_ADDR_CONFIG_GOLDEN        0x12010001
- #define HAWAII_GB_ADDR_CONFIG_GOLDEN         0x12011003
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index 04b79ff87f75..5e657b43a159 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -1395,13 +1395,13 @@ static void dce_v8_0_audio_enable(struct amdgpu_device *adev,
- }
- 
- static const u32 pin_offsets[7] = {
--	(0x1780 - 0x1780),
--	(0x1786 - 0x1780),
--	(0x178c - 0x1780),
--	(0x1792 - 0x1780),
--	(0x1798 - 0x1780),
--	(0x179d - 0x1780),
--	(0x17a4 - 0x1780),
-+	AUD0_REGISTER_OFFSET,
-+	AUD1_REGISTER_OFFSET,
-+	AUD2_REGISTER_OFFSET,
-+	AUD3_REGISTER_OFFSET,
-+	AUD4_REGISTER_OFFSET,
-+	AUD5_REGISTER_OFFSET,
-+	AUD6_REGISTER_OFFSET,
- };
- 
- static int dce_v8_0_audio_init(struct amdgpu_device *adev)
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 97 ++++++++++++++++++++++++++-
+ 1 file changed, 95 insertions(+), 2 deletions(-)
+
 -- 
 2.48.1
 
