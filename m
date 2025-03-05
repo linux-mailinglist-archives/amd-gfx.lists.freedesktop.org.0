@@ -2,146 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB8CAA542C4
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Mar 2025 07:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D496A544B2
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Mar 2025 09:23:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A818010E8EC;
-	Thu,  6 Mar 2025 06:27:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B9F510E91B;
+	Thu,  6 Mar 2025 08:23:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WrzZHs0U";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Kn8DGA2H";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2085.outbound.protection.outlook.com [40.107.223.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A85B310E8EC
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Mar 2025 06:27:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TJ4XPC+4cX+38EtoDq1S9W5VJ9m9z0WkjqV2ycAHLlB7/AMQOWng1Qs51vZzY97jmyPuDwuZgaa8V1qFMHbOPRQIo8usTXq3K7Uh2pIlJabXSwPAN2cEiifBQ7DLIr0qf+ogR8xs0DOM/icvltozeT2cI1KXWg+m1Aa9CE+77MD5r/S++q3zohwb3esGookKKOMJcmgSMgBibQDrep4DdM3KliNPWuL2sY/WGXWK9u8RoOQNhe8YleTHblXlfREd4mG9MWR7YTI9o/I27zT6E5uAsZj9M+0syJps13bmKgbtfmANnRjs88/CgrqaGQVdWujoJNgUpziDLduotRKb0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+tpur16u8DDqN0gnEYBEequq0At0ZF7wrO1U75zC3s4=;
- b=t7sJWk94ub40dH2iZDFbfu/gaRRZ4pGxT3JiCNTcSY8jp/fal6jS7tA6+NGhZz6UECdJux5H0OCGztoCqS2xUPf56BiAQwlbEVoiOE8lXrz/sSrNtYPI1FGX1zeyECrCXoNZMvHFaZ4vTtswrK7yE/Ww7749RcEfPpyFawG19ZOWA0vy7ZecbK4hD6XhlN9lOojn1H1GubVtEae3pMHcHpk2qI5XdHaFtkVE6nX6slJyOEJMVSAtumOL/xE0X5bZJDS1ccYXHmEAJQSYJrAtLq7V2yyWVlMk4LBcJlcIbklwXGCZcLrnPDHMBSeB4CuFWuxF4Aodsk/AmWvjgCPUSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+tpur16u8DDqN0gnEYBEequq0At0ZF7wrO1U75zC3s4=;
- b=WrzZHs0UMcgkyFzkZ13VKMqlUdoP7dmOg4zDYTWs2c2eT/mrEihd8O5fXH4XiWaT2rXbc9pCFnvmif18WQWMbWamZ5/pKCNTFHUa8nnOCh/CCPy1MiSxDTZGHeeJEg22TUd11NHS9qKetbicfCZwuRefMcjaiqfP3CFq2sclYZw=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by IA1PR12MB6604.namprd12.prod.outlook.com (2603:10b6:208:3a0::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.25; Thu, 6 Mar
- 2025 06:27:18 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::c593:f43d:c798:e009]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::c593:f43d:c798:e009%7]) with mapi id 15.20.8511.017; Thu, 6 Mar 2025
- 06:27:18 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: increase RAS bad page threshold
-Thread-Topic: [PATCH] drm/amdgpu: increase RAS bad page threshold
-Thread-Index: AQHbjl6kA5RbE2jjX0acOLhU0OHlHLNlpMew
-Date: Thu, 6 Mar 2025 06:27:18 +0000
-Message-ID: <BN9PR12MB525733B13D24E210D9E4A0DCFCCA2@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20250306061111.270701-1-tao.zhou1@amd.com>
-In-Reply-To: <20250306061111.270701-1-tao.zhou1@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=8e10ef1c-5b7d-4ab5-bf4c-90f4ba0be47c;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-03-06T06:26:56Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10, 3, 0, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|IA1PR12MB6604:EE_
-x-ms-office365-filtering-correlation-id: 62211c78-e76c-411b-c6e5-08dd5c77f1f7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?2nS6lJFtOd5AJ6EOoGiyQPwi+ksYvYcO7EkyYNnluZYYY74zxtdCOJTuMylC?=
- =?us-ascii?Q?V89xLf2HN5Hm42XSVZA8NYlRM71oPWFKSY+QtWhsjGg+gi1tnVUpufvEuLqf?=
- =?us-ascii?Q?TN09M8RRGI8T3xuaO3F0prTEDJ0Go3bC7VoHWTA33Og7zwx7m95L6dFcHj0N?=
- =?us-ascii?Q?alJKnq3dfbtXAblThR5Dk3dLe8VR0UiTXTTM99oq1whXBHQhSgVz/BobLreq?=
- =?us-ascii?Q?xr+dI01t97k9SdeFYmN36YDQHR5aHVR5bhy+G6c23ZjPOCN+2Ujbg8UUFFcE?=
- =?us-ascii?Q?yqZzN+NDRPsY6E6se3s8aK1Hi+KYmp6Tzj7dspgOhdt8dGzqMYEr6kkWKZJl?=
- =?us-ascii?Q?h2VLsLT0nStKyUnuthOv9J1otWC17u4UiVRTpYK08nj4ZLIOeee6GVdgd+dP?=
- =?us-ascii?Q?jjpXNyr8bNk9hh0m/imr/mWObWEjHfsBbXj5/IYuy/DGCBWonz1mQ16kKTuX?=
- =?us-ascii?Q?GjM/4BgSpuxRC1LwT9fxm5Jbd4Ki2wgXmJol5g/0pCh4RVBrtwNVgYqIDH73?=
- =?us-ascii?Q?fLf2j+GFG1ZoG/phrkYj6qhca6jUEH22eEO8R0Je8cgY9+rXXZ9c+0+KnEHW?=
- =?us-ascii?Q?sJF17vUaFmewQhHsKXRZ9LTEQBMPOd2xj0u6uCKXfGc9j4K0JXmLmyYOIuDr?=
- =?us-ascii?Q?x7T7hUsq6//6diX02Fxor7/Tzv1RCV4Nn0o0e8w/jyHudnxjfZ1IgS0aaha2?=
- =?us-ascii?Q?4Nhe8IRJlp9i5ptpN/ZebpDubau4EvIO/hGoy8lkTxELZi3K6LnBWwILz/fm?=
- =?us-ascii?Q?OjJ01pYhT2WcIzxd+U9szv0V5oPQ2fI375BzugQQcypBI2QTUpZzMhtOv6q3?=
- =?us-ascii?Q?K+O6//zIm2NO+7CCdDznnKQvO2lu81zkoFy9NB3OB9eNhBnnk3VeieXcCJJv?=
- =?us-ascii?Q?ScZ4RJWnaI78AKGItHa4J+ISD2xMI55S3uFdotT1gq+DRGFOlr2SNpNoE5fV?=
- =?us-ascii?Q?b34lCQLpep85JY86k3But8uZHso5rVXkUi4b2+dcRpL2GbRISxt4JIZ1ppra?=
- =?us-ascii?Q?8dFzGvp1Su2maabmoozS+daMfRqnjZs06xYl8CTuy0Wep9cTfGaCIKfLz/zf?=
- =?us-ascii?Q?NHCqGSs6dGbMK1AV0I452VjRhPPCptb+r7BviUbRM0ktihptZKNNb0DDvz+0?=
- =?us-ascii?Q?nEPphfruEJadCFXKWR6mfvbvUoC3FE5F/qpXaKZNI6Gy8N2yzcAyZx2NJHv6?=
- =?us-ascii?Q?BP3v1PesOVI1VlKWxST92z/WUuIaUsOdQi6VMN252b3eZkUuVpU5H4+d+8at?=
- =?us-ascii?Q?1iX4IzRfROVL+O+KAOrD9emhMKoegjVqFCdWlinoGhp9KvRr8jsS/5A6HSpK?=
- =?us-ascii?Q?evtpeN8RU7XMpfprkZXXIcWJoUXQRPOkezuUS9UPYiTocDhUmUKZbv9fKuqL?=
- =?us-ascii?Q?g8VZgljayuM+aw7li7Jd6n7sEikKqVYRLjoCNa4SnE1MDbhmNSP/t1kF8Mg8?=
- =?us-ascii?Q?wySSIc2aWT2z0MVEW3pYUYO+jfQ1dPsG?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Hg9i0qVeQDW4/F5axIfHJe7TWXwWJHQQbeSoeDG/+5yg0yu9cTLUe62xSt2i?=
- =?us-ascii?Q?6JdXCV5MEtW/GUiTSS/68sltdolMAvA7NB4bEyfke3GY1WWjc+ZWEucPQ0/l?=
- =?us-ascii?Q?6Cs0q4nFhEEIvxiIfIR1+oTAXGQ11FB/OTm4wBa1OAjcvvAqLYFHbrSf8QDb?=
- =?us-ascii?Q?AIBfIZ90mzKJXTYGPOtR4z63Z9qvpM0l898AOs6+tZ0/ZD0PfFeKawfTohvX?=
- =?us-ascii?Q?/8a3h4b6U+EewhrRLecadnO/8jAaxuYXjSoZuApKrRPlOYe/LaYxSBPA4/lj?=
- =?us-ascii?Q?d9G2/WfdGZhbZv4BMOnU90z/A9zLHsjNnFOci4nl6w+2QsEDEkXKDQhyYjaM?=
- =?us-ascii?Q?UUVP6tWQXruLqCTESZtlqRsjDYQYFXXs2J5Bch+RBno2/FR6VhnG6FEVUJ+P?=
- =?us-ascii?Q?S25IIHbc8aCq5fEA+h7tP+ZzvCwrO8cvwi9o/TUfVF37U5XQmqO2L596TplL?=
- =?us-ascii?Q?ml+hCBe+oRhidEX7n7PKAy6eQ7d40xydtnVDGqTQhP3NJBEuaW40T+KQktZU?=
- =?us-ascii?Q?rhFVkbWW15fIvWnbqKFj+Ighlj++KdL6RCovFMGAETVkxzJU+/wJco3xwRh7?=
- =?us-ascii?Q?pQ2qP5+gJxtYkgMah1IUh7Clc3CmOyrJTgFt/+aRYogOBMm+u4pseHkry/Bv?=
- =?us-ascii?Q?TXlF79v+vtK/tHTodFvPyha71d/TEnvSYV5OC72qOT31suTfE+Vir6WjnhcI?=
- =?us-ascii?Q?81oYcRPJLXRy+7E7cEzHtBE7KTw9JlFLH0mZRhn6wqGqDW2dCQYee/JqQHGx?=
- =?us-ascii?Q?DM+2+zWG/paVbvDgk40TnzNWYAa1oTdFAEVgEJdDddS0bszzlrdbcFLUfFl/?=
- =?us-ascii?Q?cDE8Ddi9ActpiLgLlwuVacuNS9RGJCxa/NdKuvrPgGAS4zgsVy7pp0Azd45o?=
- =?us-ascii?Q?FSJtTN+2lTJQ1HrWerTBNexVC6qMnenpRSD1FsTzOVcCOBzjmIPNXP1w0HvC?=
- =?us-ascii?Q?KF3gsNx2avo6HdriMhCJC1ymltzi2zZjNsunasPTlW7ydmYlhHUaHDeYDbLu?=
- =?us-ascii?Q?YsbWUYlEgGQcEr0uIbk/Si9++KeXquK4Gc/RGK8iVkHj4hThPJf3Fceod7aK?=
- =?us-ascii?Q?WEcFtOr1vQGf8On9//Z88RtSKnFDam2o9oQyxBlAOmbAuXsoZ2jmvq92mkgO?=
- =?us-ascii?Q?KWA6GnCvNX6MVIMx85Lyl/HfI9PzSOLlzorDx0Gd51iM04VWdzya47PK4imO?=
- =?us-ascii?Q?POg3W3ng9QMopCWd1zne0wU416kCyGcRg4L8H/wg6ZA34XBV2llPleHWihGm?=
- =?us-ascii?Q?Zvywa0rxEO4KC3qLon2GOnrL/4gBqtdV95KR54lONLuUZnIGYW4wf4xuz6va?=
- =?us-ascii?Q?QZ/sZ4LQIuDsJ0gn6POy5MAQ9wPvr2d7JU3OjaZXL0Pclz4BRFBUNT7Q6h/e?=
- =?us-ascii?Q?MH7i7sanSu4rFV4qbraQgM4+yTJV4KFoDamEBZICvqFGDMYpJhEwDuqmf0b9?=
- =?us-ascii?Q?rDTJo+BJZwx0dKeBVWeCYQNV6ygJtdMU0zMrkEnkML6xMxOVlISwTZDbN9x4?=
- =?us-ascii?Q?mgOrFuGIJQzz06xbCMinopKMgz3R5cfwcAr5NxFEnjiLJHd9+wfFJVFSAnrA?=
- =?us-ascii?Q?uNRMmpCKcAxk/8LRNmI=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
+ [209.85.218.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 978C310E7FE;
+ Wed,  5 Mar 2025 21:23:54 +0000 (UTC)
+Received: by mail-ej1-f49.google.com with SMTP id
+ a640c23a62f3a-aaee2c5ee6eso1064307566b.1; 
+ Wed, 05 Mar 2025 13:23:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1741209833; x=1741814633; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=k8Dkf2Am7BkCc6xwiEJIkFESnAy6N6xXMin3A5PDXG4=;
+ b=Kn8DGA2HOLiWU9iPAK28yIdt61LeFoh54Fqq/+/uAAJPFY2aJc4+XxZPr548++QeJW
+ yL70cK2bVsuQ3nS8EjydiZ4hpS5zhIk9x35zpZ4iNrHriujyECG3i1Uv7/fpfltkMp3x
+ JuWeR8ZQHXsBFfX6JZv9xThdlc1rQX+e1XGPtinZJAj4KsCXtK8jFXog2Tzq0szDRJN2
+ tsZkAF23CXkzX2fD2afMXZ+UQTaIgFRKnzDGs7Z0DY+Re5n1LY9lDsGgncOooZa4ozpY
+ 8efR3yoOpSQ5wCkssFKm1/qFMroqWl+xo1YzWQFFm2W0/OPT2WFr+8hiqdVaGNUT56C3
+ YHnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741209833; x=1741814633;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=k8Dkf2Am7BkCc6xwiEJIkFESnAy6N6xXMin3A5PDXG4=;
+ b=u8vcBBQSSyli0/h3VhrQnqkUJ7iYptgfBwiDYSnoacMGDz8PlcbTJfq251yH2akdQo
+ SyVPdgMOhcnesp7FW2XL8hdOp79LjF51VxzceMb/tmASKLAbkuvEQmQ4TR3FIzzibCmu
+ 7jSuY4ycTejJ/dlVqf08Qolc4+hR4GPqGMMysNNrfo0xydZWwtBUk7MhKaKJSdjjgor0
+ XItt3aZqHIYO4Ovy2cH8imtQVIO+XkRFY+nc2CbfvkD4Ui9ykrKRwkRyCtFxjtK0a+sv
+ UHRF0lSpA5Lp07sqsX8ukScLtIJ0yEs4zHcMsJtb3ptvPPJ2UMj8WYkYEPuGQRGGD9kF
+ lr/g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWYnRvgE9TD98lJmcFMXptZhd9alr+jIW7hW6TNNVPH9KTN53vzpdV7Mwmh2NbkTDU+bsxsY2PX@lists.freedesktop.org,
+ AJvYcCXJEWUhH8ry7WPt3cYMQgg95DRS431RbeaRTgYqKABN2u1yj2TqqjXnQd4jUIdcgm+9+DMFwNFaMQPk@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy+vsI11dw8gAvefNuJ1ATjAYnVHXBldzrKFMVaDXSDvhJFC1fK
+ ADgLlEpa4XOUie8wVgEno23Ke+7eLWie5NPdXDUCdJvhByJHcaRn
+X-Gm-Gg: ASbGncvvVLPPwgRdX8lbPMrn0cRXGxCU6yfMFYzn8IoEo8A4g2Z0tHaXuqa5aJw9SNE
+ oKnkTzYL2MJ224Gqaco8PX2QpcGQNDEgWUbNmu36K9/26kvY/BIKTVsk11oQhXq8zf6opR4tPpD
+ zdsKv6XrPw3LX83SMZ3qdIc4ygAkXxExyEtpL+nCjOgIFQu7dOaCBrPFXxXAqlEL989aIoOao9v
+ 0f27T0rbcpd+uX9ttHyv01GLCCf/174qxK7Q0zUl1v9c3QjUO713vayX6YdHT1/qdwwudZ1mU/m
+ 1+zcayq8WQnBOKZJC/HuNErEsYB5bCrkK9csPateDtrtnPNg58LqxLMi5bNA
+X-Google-Smtp-Source: AGHT+IHCUgJSczMALJRUQsNQJij5yTp/ZhVwBJWdsbeRmE1+G/jwWDZcuvPQrej8azlFaVtQAjkeOQ==
+X-Received: by 2002:a17:907:c018:b0:abf:7964:f9e5 with SMTP id
+ a640c23a62f3a-ac20e03b1d0mr507213766b.56.1741209832560; 
+ Wed, 05 Mar 2025 13:23:52 -0800 (PST)
+Received: from localhost.localdomain ([196.235.231.34])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-ac1ea7dd823sm404025866b.109.2025.03.05.13.23.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Mar 2025 13:23:52 -0800 (PST)
+From: Salah Triki <salah.triki@gmail.com>
+To: Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Salah Triki <salah.triki@gmail.com>
+Subject: [PATCH] drm: amdkfd: Replace (un)register_chrdev() by
+ (unregister/alloc)_chrdev_region()
+Date: Wed,  5 Mar 2025 22:08:09 +0100
+Message-Id: <20250305210809.218138-1-salah.triki@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62211c78-e76c-411b-c6e5-08dd5c77f1f7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2025 06:27:18.6349 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ABKbsAmFl+qdYDIItImFhViVtC28C3X6GIx62kH9MjT4i1KkiZpuw46HmmIr1EElbaReSzSB9Nj5uPe1DdULpA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6604
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 06 Mar 2025 08:23:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,70 +91,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+Replace (un)register_chrdev() by (unregister/alloc)_chrdev_region() as
+they are deprecated since kernel 2.6. alloc_chrdev_region() generates a
+dev_t value, so replace the kfd_char_dev_major int variable by the
+kfd_char_dev_id dev_t variable and drop the MKDEV() call. Initialize a
+cdev structure and add it to the device driver model as register_chrdev()
+used to do and since alloc_chrdev_region() does not do it. Drop the
+iminor() call since alloc_chrdev_region() allocates only one minor number.
+On error and in the module exit function, remove the cdev structure from
+the device driver model as unregister_chrdev() used to do.
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-
-Regards,
-Hawking
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Tao Zhou
-Sent: Thursday, March 6, 2025 14:11
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhou1, Tao <Tao.Zhou1@amd.com>
-Subject: [PATCH] drm/amdgpu: increase RAS bad page threshold
-
-For default policy, driver will issue an RMA event when the number of bad p=
-ages is greater than 8 physical rows, rather than reaches 8 physical rows, =
-don't rely on threshold configurable parameters in default mode.
-
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+Signed-off-by: Salah Triki <salah.triki@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 35 ++++++++++++++++--------
+ 1 file changed, 23 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_ras_eeprom.c
-index ab27cecb5519..09a6f8bc1a5a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-@@ -747,7 +747,7 @@ amdgpu_ras_eeprom_update_header(struct amdgpu_ras_eepro=
-m_control *control)
-        /* Modify the header if it exceeds.
-         */
-        if (amdgpu_bad_page_threshold !=3D 0 &&
--           control->ras_num_bad_pages >=3D ras->bad_page_cnt_threshold) {
-+           control->ras_num_bad_pages > ras->bad_page_cnt_threshold) {
-                dev_warn(adev->dev,
-                        "Saved bad pages %d reaches threshold value %d\n",
-                        control->ras_num_bad_pages, ras->bad_page_cnt_thres=
-hold); @@ -806,7 +806,7 @@ amdgpu_ras_eeprom_update_header(struct amdgpu_ra=
-s_eeprom_control *control)
-         */
-        if (amdgpu_bad_page_threshold !=3D 0 &&
-            control->tbl_hdr.version =3D=3D RAS_TABLE_VER_V2_1 &&
--           control->ras_num_bad_pages < ras->bad_page_cnt_threshold)
-+           control->ras_num_bad_pages <=3D ras->bad_page_cnt_threshold)
-                control->tbl_rai.health_percent =3D ((ras->bad_page_cnt_thr=
-eshold -
-                                                   control->ras_num_bad_pag=
-es) * 100) /
-                                                   ras->bad_page_cnt_thresh=
-old;
-@@ -1456,7 +1456,7 @@ int amdgpu_ras_eeprom_check(struct amdgpu_ras_eeprom_=
-control *control)
-                                res);
-                        return -EINVAL;
-                }
--               if (ras->bad_page_cnt_threshold > control->ras_num_bad_page=
-s) {
-+               if (ras->bad_page_cnt_threshold >=3D control->ras_num_bad_p=
-ages) {
-                        /* This means that, the threshold was increased sin=
-ce
-                         * the last time the system was booted, and now,
-                         * ras->bad_page_cnt_threshold - control->num_recs =
-> 0,
---
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index 065d87841459..55c74466d2c5 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -37,6 +37,8 @@
+ #include <linux/ptrace.h>
+ #include <linux/dma-buf.h>
+ #include <linux/processor.h>
++#include <linux/cdev.h>
++
+ #include "kfd_priv.h"
+ #include "kfd_device_queue_manager.h"
+ #include "kfd_svm.h"
+@@ -61,12 +63,14 @@ static const struct file_operations kfd_fops = {
+ 	.mmap = kfd_mmap,
+ };
+ 
+-static int kfd_char_dev_major = -1;
++static dev_t kfd_char_dev_id;
+ struct device *kfd_device;
+ static const struct class kfd_class = {
+ 	.name = kfd_dev_name,
+ };
+ 
++static struct cdev kfd_cdev;
++
+ static inline struct kfd_process_device *kfd_lock_pdd_by_id(struct kfd_process *p, __u32 gpu_id)
+ {
+ 	struct kfd_process_device *pdd;
+@@ -90,17 +94,24 @@ int kfd_chardev_init(void)
+ {
+ 	int err = 0;
+ 
+-	kfd_char_dev_major = register_chrdev(0, kfd_dev_name, &kfd_fops);
+-	err = kfd_char_dev_major;
++	err = alloc_chrdev_region(&kfd_char_dev_id, 0, 1, kfd_dev_name);
++
+ 	if (err < 0)
+-		goto err_register_chrdev;
++		goto err_alloc_chrdev_region;
++
++	cdev_init(&kfd_cdev, &kfd_fops);
++	kfd_cdev.owner = THIS_MODULE;
++
++	err = cdev_add(&kfd_cdev, kfd_char_dev_id, 1);
++	if (err)
++		goto err_cdev_add;
+ 
+ 	err = class_register(&kfd_class);
+ 	if (err)
+ 		goto err_class_create;
+ 
+ 	kfd_device = device_create(&kfd_class, NULL,
+-				   MKDEV(kfd_char_dev_major, 0),
++				   kfd_char_dev_id,
+ 				   NULL, kfd_dev_name);
+ 	err = PTR_ERR(kfd_device);
+ 	if (IS_ERR(kfd_device))
+@@ -111,16 +122,19 @@ int kfd_chardev_init(void)
+ err_device_create:
+ 	class_unregister(&kfd_class);
+ err_class_create:
+-	unregister_chrdev(kfd_char_dev_major, kfd_dev_name);
+-err_register_chrdev:
++	cdev_del(&kfd_cdev);
++err_cdev_add:
++	unregister_chrdev_region(kfd_char_dev_id, 1);
++err_alloc_chrdev_region:
+ 	return err;
+ }
+ 
+ void kfd_chardev_exit(void)
+ {
+-	device_destroy(&kfd_class, MKDEV(kfd_char_dev_major, 0));
++	device_destroy(&kfd_class, kfd_char_dev_id);
+ 	class_unregister(&kfd_class);
+-	unregister_chrdev(kfd_char_dev_major, kfd_dev_name);
++	cdev_del(&kfd_cdev);
++	unregister_chrdev_region(kfd_char_dev_id, 1);
+ 	kfd_device = NULL;
+ }
+ 
+@@ -130,9 +144,6 @@ static int kfd_open(struct inode *inode, struct file *filep)
+ 	struct kfd_process *process;
+ 	bool is_32bit_user_mode;
+ 
+-	if (iminor(inode) != 0)
+-		return -ENODEV;
+-
+ 	is_32bit_user_mode = in_compat_syscall();
+ 
+ 	if (is_32bit_user_mode) {
+-- 
 2.34.1
 
