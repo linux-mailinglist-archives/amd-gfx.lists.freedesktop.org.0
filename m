@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B7FA50CBB
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Mar 2025 21:47:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFA7A50CC2
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Mar 2025 21:47:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCAC10E002;
-	Wed,  5 Mar 2025 20:47:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE30F10E338;
+	Wed,  5 Mar 2025 20:47:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZrJ3TEuo";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ntg4U3Ih";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2056.outbound.protection.outlook.com [40.107.243.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A94610E328
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2066.outbound.protection.outlook.com [40.107.92.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08C8510E002
  for <amd-gfx@lists.freedesktop.org>; Wed,  5 Mar 2025 20:47:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bW4AvHwwM8mTFIOcqmQ3sCSA1jUseR4qcYwtiPiu4YzpzEyaGGrukWBFe3ef54XYddpqwTPzTM1kRA7dcWwAR83GiIBYyDDlkzT3GrTQlYBk8oxcB+35fe1ez6bfTIcR4VBzhdGZW3vkTNrNg1dYM+sWJ7aCwprq7a8hKL+Kx3evOGHbxvH9x/JLRJGTWWvgRHXRX3CLHCUQx/KIpAKBnqWB9tHLDj7U+3Hy2QN4Su7YjzIF90mx/MJICQgqBolYsaUjLLpaEXQYG7cuoHXpB5ugNevmH4xTmxfyFIezb5Pp8P1HrdsVQOzS55m5TMwK+XbDrawrSlSOBr67I5weMQ==
+ b=BuTaIGUsAn3q8rQZ8bBQsPYwQfL1piLqFqznb42k+rLF6WkYi5kDTTFSUsY2hvppY+jSCPMbsAKa1swJ/fLMt8A6rIDBmNf8LHIAKBwsqDbjo4N6HcpAQ7pl+S6ULmIT+RczeMeXLuVYXQfzv1mxGqPTW8CcsiljwvmlcGmvdix5vVpM/UDHHwfqgQagh9MkOiCJutZMkXkCq4Qg+s9TMwucdzdgu6tbq8F8Sb8N82N+izN2PlHOGoa6btDS+powLW5u51Mcjc0uT0gSDMfxaIu/a2JIbyEguna0K+yuwhZyl7rKlv5DQb19Cwn5y0hZnEOo0m7RLat9+IY6to97SQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5pEAdS17UvgPcn7uZrUuTdz4d6nVdIPH8G44H5SHGhQ=;
- b=DqJtY1TUrQtCgnVEPiizClRNd8wwRvS9meh3buSyR1Ili1Uu65dByU4Ekz2GqimFc7JrMTlovJWGbNdn/qN0hkULoPo1dDyoxQ1pMtiaDpyDj49pl6toGG+UsRoyrNSrgXy6i5vD5KwhWEHYts82NgJ3+2cLD5aXEoik9u/AGc7oWHSd9xYcOkYOgBmzx3vQFPstoU6eLCXr+UUpg49OPIpxofyhUxyLyiBS4q9CdFgefLzE4uy9GFAg+s0OL1md3Abn+5ZxmjDFl0p9wE3d/1x8B3s80mEJ6/voTZq5kjkC4yjbYvs+Ny26ghuDha0Cr0Vj7DPv6YnxZUTyR7+wqQ==
+ bh=ttFzJ78AcDO0tljiunaJC6z7XfK5gOOIKBuySQFHgSs=;
+ b=XTDp+asY8R2W4XXCuJaTmpH3G4eXa6owMzui9c1XqsLZqqQpQLHYxcVgDHSLOafauB0UP2Ed6mMq8BznfxPYu3ktllUntniBK4ux9kgHQ05dv5BOUoX9WqFHj5yXeD/S9/3BcPP/lzkV5nJnMqtC+ArhdYNDMdHy05HAEkJjW0RrA8DB3Si7RoKxd4VyWYxUsBrCGZe8TzMt9ZnbmvCifCxV5n0njaBJBDPn2Rej5V0bvZ2ruP20R1ztw9+/Z8+eeANn2Vz3XHzLuMuKr8WGzZi1TnIZyKXw1Y0G83iyiD8PoQGwcuTRQa+lhAfKK6b7KsuYezbmzAE096b7KgJ8wQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5pEAdS17UvgPcn7uZrUuTdz4d6nVdIPH8G44H5SHGhQ=;
- b=ZrJ3TEuoh6wFKYUI70NbIQ2JX/fBL9fc+BKydKPYr/LdXdf6sZSO5GY9wYOGdGbKgA/jVLImffCF/zMmxcqrWQGFQGDKc1UNQ8/GZAlXX8X8n15+m3YF3mtBL5igrffSPCXZryVcl+w5Kb2iuPOMnWlVlmnOIV1Os7MMYBtTy4Q=
-Received: from BY3PR04CA0026.namprd04.prod.outlook.com (2603:10b6:a03:217::31)
- by DS7PR12MB8250.namprd12.prod.outlook.com (2603:10b6:8:db::12) with
+ bh=ttFzJ78AcDO0tljiunaJC6z7XfK5gOOIKBuySQFHgSs=;
+ b=Ntg4U3Ihf+UAmmdyFL5k7xUCsDWpzwNq15IUbBzKs2XAkZQ9cV9TFy/ziafM5VgF8cKzqdsT1XlowXCo1Cd7phrgiOqhUTI2YO5MOIvROfPxsjXxwQtUI67Cyo5HMlA3cvD/6xycCgMp0T//qFWwwOnV4cenFeLdsh6pp8/PFDg=
+Received: from DM6PR17CA0017.namprd17.prod.outlook.com (2603:10b6:5:1b3::30)
+ by SJ2PR12MB9087.namprd12.prod.outlook.com (2603:10b6:a03:562::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.18; Wed, 5 Mar
- 2025 20:47:38 +0000
-Received: from CY4PEPF0000E9DA.namprd05.prod.outlook.com
- (2603:10b6:a03:217:cafe::c1) by BY3PR04CA0026.outlook.office365.com
- (2603:10b6:a03:217::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8511.16 via Frontend Transport; Wed,
- 5 Mar 2025 20:47:38 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Wed, 5 Mar
+ 2025 20:47:40 +0000
+Received: from CY4PEPF0000E9DC.namprd05.prod.outlook.com
+ (2603:10b6:5:1b3:cafe::18) by DM6PR17CA0017.outlook.office365.com
+ (2603:10b6:5:1b3::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.28 via Frontend Transport; Wed,
+ 5 Mar 2025 20:47:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,19 +48,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9DA.mail.protection.outlook.com (10.167.241.73) with Microsoft
+ CY4PEPF0000E9DC.mail.protection.outlook.com (10.167.241.75) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8511.15 via Frontend Transport; Wed, 5 Mar 2025 20:47:38 +0000
+ 15.20.8511.15 via Frontend Transport; Wed, 5 Mar 2025 20:47:39 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 5 Mar
- 2025 14:47:34 -0600
+ 2025 14:47:35 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 02/11] drm/amdgpu: add ring flag for no user submissions
-Date: Wed, 5 Mar 2025 15:47:12 -0500
-Message-ID: <20250305204721.1213836-3-alexander.deucher@amd.com>
+Subject: [PATCH 03/11] drm/amdgpu/gfx: add generic handling for disable_kq
+Date: Wed, 5 Mar 2025 15:47:13 -0500
+Message-ID: <20250305204721.1213836-4-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250305204721.1213836-1-alexander.deucher@amd.com>
 References: <20250305204721.1213836-1-alexander.deucher@amd.com>
@@ -72,52 +72,51 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DA:EE_|DS7PR12MB8250:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4261da4e-e471-4e6d-2e95-08dd5c26f749
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DC:EE_|SJ2PR12MB9087:EE_
+X-MS-Office365-Filtering-Correlation-Id: cc914def-07a9-4ed1-24f5-08dd5c26f82a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Y2ZelrdmN8LQfrDy7Vz2fpuh6xvUGJLy2jVrgfqv2LOSfhfXau9/zt+Ei012?=
- =?us-ascii?Q?IER5bc/LPvijvOqpXSnjdZr/s2IBjkbNLFv8sgFWbVFF8WK/Z3iKHpYBX4SG?=
- =?us-ascii?Q?Yd4sZB6sBcHtnB+6/22y2Lws6qwegTRK//tLBxSUIJxef8bZGAHIBMpXQCwC?=
- =?us-ascii?Q?q8qkZeF4F+GrsdcbgBJaV8FA3WgPZdoN1yX0DJD48BLMrVrTkcSckFS41mqC?=
- =?us-ascii?Q?Rqzd8yAz69mLL2U8Cbeu+Wnc3SWzqPaRi2ybtQ+CwTBw+PmozYf7CfLXgChL?=
- =?us-ascii?Q?U+4iL+Eluj7+275f9cSQrh45RdcesR9fnMF9hMW8LxX6UDQyyzbZtYfMP2xh?=
- =?us-ascii?Q?mrQd6b7VFNBKY85nFJ1kF2AxdlN0887oY9AstlFaOfURFQNw5ecDidT9biGI?=
- =?us-ascii?Q?sVRygOYopFFloAeESIpXOFxzVnSdL2c8JhetTTuHoU7LV3oAFhx6K3I1Pvv8?=
- =?us-ascii?Q?PiGOLzV16UKXgQ0G8sUf0J/Ql7eQliNWB1huAE8DO2waxMCMZkx4AC0uDbcZ?=
- =?us-ascii?Q?AFExI1TfzBPR2Ta0LQ1GUxCXZz/SpE74esAn/9mczBspY+JwzcztiNVsgcc7?=
- =?us-ascii?Q?Z0LCTep/IonZvr30P8yYxZBcBTfpWqUanBewPF7PRdeIbR45W89P8Jv2+NQy?=
- =?us-ascii?Q?3+/ZoMNIeGtrWhCt4oZSunF89+mlFpi9gUTIYaK1SB83hYkbMzPHthTFuIok?=
- =?us-ascii?Q?o2xoGpFN4PIK0aGzHl0qoapw1BHDjoNg1ajmf3okVAz6BUaj0PDsGwOQ5MSe?=
- =?us-ascii?Q?vLSVQ5X5u+7bLPH5ayVr6j47MgxF6HBxnRb7WicH0+q3nzmQtmJZbIbsN0iN?=
- =?us-ascii?Q?kLln8sLrpgQQ0Dpce4Q+CWhM50fFc+BHHD3kdtyU0FoHiRx0yfFtHinx/G1m?=
- =?us-ascii?Q?ZucBlkLmOfSZF+Td3MLraGzMDosuqiLUbJVfypcTfLhJThvwTJj3RKehFkOU?=
- =?us-ascii?Q?jeaNV1Ej7BFYj6ENKdox6fpkuc1xRPnPzRAa8QkMqImHA5z/StZ1dl4PvEHv?=
- =?us-ascii?Q?zaGnJpfYshvbM1Irxf5LwWNePcj1vtYklqsl2q7v56PVTx11qzqDM5zLPl7j?=
- =?us-ascii?Q?AQIYB1CMo7aSvutsEPhq5+OrsLomm3//EleZnbUp0+ctcNzndKhSxsEhaFnr?=
- =?us-ascii?Q?lk0PhDXIl0G0q8YZLEcjpFv6yZ99x23GzaAE8RD7l8Dby5qjMhYuHud/by+/?=
- =?us-ascii?Q?1SJpYA3z4plYBLZckpKsVv1XDMP1KrPDtVc6JCcsdhj6qBM+QCv8e46G5F2+?=
- =?us-ascii?Q?9kDVRf9kdjU55vnO0HT0a3/EZitQWO4CwW0JCrb60hd3RzMNG5OxDFRNB5qX?=
- =?us-ascii?Q?WTuvgSgkpwN5F6dfOnVH2Q8FxfTswSeSOA8hh7eGsufVzzM9T37TB+C75DlS?=
- =?us-ascii?Q?U8CaKBtygkH3lOGjmkOtv6vWzK0ywOr9Wej7gVAh9PhgJCf1jNV0uyeVGVrC?=
- =?us-ascii?Q?em3oHeQ7dn9Wm9Boav9u7rFBnfQqPP+kJIvzVbQIeiEVUZQyzWwnbfldlx9Y?=
- =?us-ascii?Q?dfq0kZBhGkCOnxc=3D?=
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Wr2yCc35OTTsMVQr6wK+FAZAEJWbvOIDGPE+knL++ZsmxvipVkZvDQ1nAOUY?=
+ =?us-ascii?Q?lwvFFYFkh9vmfuuChHKDt2oAuH7bWXxPR04r4MBRtGPq8gY9SyCWtmjDUNtS?=
+ =?us-ascii?Q?tSxeelAm5JKpH3GThTEv4bNv+IZqeWSkGWd2NueSJ7RwzXNwAvwuULvVnTmE?=
+ =?us-ascii?Q?nGLyedO6yBxvw/IMnjQfxhqF9SyinaAFkaZ4ha6DcglnVPkXIhsZOgsBS8Jh?=
+ =?us-ascii?Q?gbAgHE1G08bo+NpRPE45/PwIaYdzbihN9poY/H4HjI33GRf239iJl9+YnT4C?=
+ =?us-ascii?Q?Iz12EU8ug6phAFrU5jiERU2KNrxFebb43yhRb4MIlbdB7uYf2L44H37QNvb+?=
+ =?us-ascii?Q?FZH0j5G7/dL9Qg4qSDRGiiyyXFVcO4uvjVAR/6Z0151HL9KghyBw8V1IbluZ?=
+ =?us-ascii?Q?BIWGZOeZ4min0yFpVf+PB8vN0jZK8GoGMN4gzi8qjrIaeszdhYsX27ZhaQtg?=
+ =?us-ascii?Q?MODfa7CGn4ol9kU9qJUHfj4dIWFNyEAqZ2dL/0whoJ2BoxaveepdEnnHyn09?=
+ =?us-ascii?Q?ketzB5GvZgCKzveyTdZBcVum6kQHnVeS/hB+lpJkWJ/N90ra5eGrHYi2eUpk?=
+ =?us-ascii?Q?zSMrTzcuZotGqcebFOKyxN0b/G2ySzrLMoBqYGp2B3sBdPLu+UpM+AXHHitw?=
+ =?us-ascii?Q?e03glWEqoMi4pCzLBzw6LUWm/cVIDyXEMho+aUv0egrLGt2U3AErQa07J+P5?=
+ =?us-ascii?Q?opnA1R7mn+WstBk5e7zuQvyiEmpfpwVj6BJoEMEv0ocK0JOu5se0KcRF7OZ2?=
+ =?us-ascii?Q?bxm9yIyn+xM0JBw5ujsLFCtP4hPkarAJpvX+0Y/0h9sOP7sKTOi7tr8Y4XwS?=
+ =?us-ascii?Q?MJ8Z6dgB2LgQllaNWjEwrAmg95zEYcIZ30sOD0T1d217zqgQp8krY7h56Sxe?=
+ =?us-ascii?Q?gcaVXsWYvy1F06FYHvUu3RQFugw9KqdosAw8tDzS6Hyzp92je2E+g1PIIaCp?=
+ =?us-ascii?Q?rY6Hd4vMVhjY+8aZ0BXOX3VqyvyoLP5mCsnGsQFWGvAwvpqXZFyfP5kk8Mvk?=
+ =?us-ascii?Q?EImx1+6lhW4Hs8oUfALjAkoB5jta19nC9nqn1/gk/8ELcRUEW49CSWYQGbQe?=
+ =?us-ascii?Q?KXKRcPXz+DC0MBGbu6I/YRwqi7ITyClcl0+rxL85YJ17t6+AhvO35OIJcRy0?=
+ =?us-ascii?Q?57n6nMRjDaHGDgRYocK2IifoMCoONyrFSAZZovs1fyuisPub3inHqR8bV3mH?=
+ =?us-ascii?Q?5gssUKupgMbsXJV1oF4koOOMiV3CtxLikEhZ8DDWtnDlWtnnM29X9MD7ULV2?=
+ =?us-ascii?Q?8tlSMR61DYdqLATt68p5RAI2JhZgLtxnoBIzHGhiGOZ4nMlBE9NrkmEFqGJs?=
+ =?us-ascii?Q?vEZoCmw9TpSmyFd8Axo53EUUoW7I1PvfUiLGE5jif8fzMWbvfzA3WMV5mfyH?=
+ =?us-ascii?Q?lsbkvyxNyAbuO0t6CZQ1ZK62rCDkml4WfroLIt2zFzQLtC8eM4d8R89vpkIB?=
+ =?us-ascii?Q?LPSUxCJmBj21ynUqWzIpb+XneJUopMFEDBkGQL4C3D3X63VPunUU6A=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 20:47:38.1884 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4261da4e-e471-4e6d-2e95-08dd5c26f749
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 20:47:39.6783 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc914def-07a9-4ed1-24f5-08dd5c26f82a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9DA.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9DC.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8250
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9087
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,157 +131,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This would be set by IPs which only accept submissions
-from the kernel, not userspace, such as when kernel
-queues are disabled. Don't expose the rings to userspace
-and reject any submissions in the CS IOCTL.
+Add proper checks for disable_kq functionality in
+gfx helper functions.  Add special logic for families
+that require the clear state setup.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c   |  4 ++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c  | 30 ++++++++++++++++--------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  2 +-
- 3 files changed, 25 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 92 +++++++++++++++++--------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 +
+ 2 files changed, 67 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 5df21529b3b13..5cc18034b75df 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -349,6 +349,10 @@ static int amdgpu_cs_p2_ib(struct amdgpu_cs_parser *p,
- 	ring = amdgpu_job_ring(job);
- 	ib = &job->ibs[job->num_ibs++];
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index a194bf3347cbc..af3f8b62f6fd5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -371,6 +371,18 @@ int amdgpu_gfx_kiq_init(struct amdgpu_device *adev,
+ 	return 0;
+ }
  
-+	/* submissions to kernel queus are disabled */
-+	if (ring->no_user_submission)
-+		return -EINVAL;
++static bool amdgpu_gfx_disable_gfx_kq(struct amdgpu_device *adev)
++{
++	if (adev->gfx.disable_kq) {
++		/* GFX11 needs the GFX ring for clear buffer */
++		if (amdgpu_ip_version(adev, GC_HWIP, 0) <= IP_VERSION(12, 0, 0))
++			return false;
++		else
++			return true;
++	}
++	return false;
++}
 +
- 	/* MM engine doesn't support user fences */
- 	if (p->uf_bo && ring->funcs->no_user_fence)
+ /* create MQD for each compute/gfx queue */
+ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
+ 			   unsigned int mqd_size, int xcc_id)
+@@ -379,6 +391,7 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+ 	struct amdgpu_ring *ring = &kiq->ring;
+ 	u32 domain = AMDGPU_GEM_DOMAIN_GTT;
++	bool disable_kq_gfx = amdgpu_gfx_disable_gfx_kq(adev);
+ 
+ #if !defined(CONFIG_ARM) && !defined(CONFIG_ARM64)
+ 	/* Only enable on gfx10 and 11 for now to avoid changing behavior on older chips */
+@@ -413,7 +426,8 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
+ 		}
+ 	}
+ 
+-	if (adev->asic_type >= CHIP_NAVI10 && amdgpu_async_gfx_ring) {
++	if (adev->asic_type >= CHIP_NAVI10 && amdgpu_async_gfx_ring &&
++	    !disable_kq_gfx) {
+ 		/* create MQD for each KGQ */
+ 		for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+ 			ring = &adev->gfx.gfx_ring[i];
+@@ -437,25 +451,28 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
+ 		}
+ 	}
+ 
+-	/* create MQD for each KCQ */
+-	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-		j = i + xcc_id * adev->gfx.num_compute_rings;
+-		ring = &adev->gfx.compute_ring[j];
+-		if (!ring->mqd_obj) {
+-			r = amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
+-						    domain, &ring->mqd_obj,
+-						    &ring->mqd_gpu_addr, &ring->mqd_ptr);
+-			if (r) {
+-				dev_warn(adev->dev, "failed to create ring mqd bo (%d)", r);
+-				return r;
+-			}
++	if (!adev->gfx.disable_kq) {
++		/* create MQD for each KCQ */
++		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
++			j = i + xcc_id * adev->gfx.num_compute_rings;
++			ring = &adev->gfx.compute_ring[j];
++			if (!ring->mqd_obj) {
++				r = amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
++							    domain, &ring->mqd_obj,
++							    &ring->mqd_gpu_addr, &ring->mqd_ptr);
++				if (r) {
++					dev_warn(adev->dev, "failed to create ring mqd bo (%d)", r);
++					return r;
++				}
+ 
+-			ring->mqd_size = mqd_size;
+-			/* prepare MQD backup */
+-			adev->gfx.mec.mqd_backup[j] = kzalloc(mqd_size, GFP_KERNEL);
+-			if (!adev->gfx.mec.mqd_backup[j]) {
+-				dev_warn(adev->dev, "no memory to create MQD backup for ring %s\n", ring->name);
+-				return -ENOMEM;
++				ring->mqd_size = mqd_size;
++				/* prepare MQD backup */
++				adev->gfx.mec.mqd_backup[j] = kzalloc(mqd_size, GFP_KERNEL);
++				if (!adev->gfx.mec.mqd_backup[j]) {
++					dev_warn(adev->dev, "no memory to create MQD backup for ring %s\n",
++						 ring->name);
++					return -ENOMEM;
++				}
+ 			}
+ 		}
+ 	}
+@@ -468,8 +485,10 @@ void amdgpu_gfx_mqd_sw_fini(struct amdgpu_device *adev, int xcc_id)
+ 	struct amdgpu_ring *ring = NULL;
+ 	int i, j;
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
++	bool disable_kq_gfx = amdgpu_gfx_disable_gfx_kq(adev);
+ 
+-	if (adev->asic_type >= CHIP_NAVI10 && amdgpu_async_gfx_ring) {
++	if (adev->asic_type >= CHIP_NAVI10 && amdgpu_async_gfx_ring &&
++	    !disable_kq_gfx) {
+ 		for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+ 			ring = &adev->gfx.gfx_ring[i];
+ 			kfree(adev->gfx.me.mqd_backup[i]);
+@@ -479,13 +498,15 @@ void amdgpu_gfx_mqd_sw_fini(struct amdgpu_device *adev, int xcc_id)
+ 		}
+ 	}
+ 
+-	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-		j = i + xcc_id * adev->gfx.num_compute_rings;
+-		ring = &adev->gfx.compute_ring[j];
+-		kfree(adev->gfx.mec.mqd_backup[j]);
+-		amdgpu_bo_free_kernel(&ring->mqd_obj,
+-				      &ring->mqd_gpu_addr,
+-				      &ring->mqd_ptr);
++	if (!adev->gfx.disable_kq) {
++		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
++			j = i + xcc_id * adev->gfx.num_compute_rings;
++			ring = &adev->gfx.compute_ring[j];
++			kfree(adev->gfx.mec.mqd_backup[j]);
++			amdgpu_bo_free_kernel(&ring->mqd_obj,
++					      &ring->mqd_gpu_addr,
++					      &ring->mqd_ptr);
++		}
+ 	}
+ 
+ 	ring = &kiq->ring;
+@@ -502,6 +523,9 @@ int amdgpu_gfx_disable_kcq(struct amdgpu_device *adev, int xcc_id)
+ 	int i, r = 0;
+ 	int j;
+ 
++	if (adev->gfx.disable_kq)
++		return 0;
++
+ 	if (adev->enable_mes) {
+ 		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+ 			j = i + xcc_id * adev->gfx.num_compute_rings;
+@@ -547,11 +571,15 @@ int amdgpu_gfx_disable_kcq(struct amdgpu_device *adev, int xcc_id)
+ 
+ int amdgpu_gfx_disable_kgq(struct amdgpu_device *adev, int xcc_id)
+ {
++	bool disable_kq_gfx = amdgpu_gfx_disable_gfx_kq(adev);
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+ 	struct amdgpu_ring *kiq_ring = &kiq->ring;
+ 	int i, r = 0;
+ 	int j;
+ 
++	if (disable_kq_gfx)
++		return 0;
++
+ 	if (adev->enable_mes) {
+ 		if (amdgpu_gfx_is_master_xcc(adev, xcc_id)) {
+ 			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+@@ -657,6 +685,9 @@ int amdgpu_gfx_enable_kcq(struct amdgpu_device *adev, int xcc_id)
+ 	uint64_t queue_mask = 0;
+ 	int r, i, j;
+ 
++	if (adev->gfx.disable_kq)
++		return 0;
++
+ 	if (adev->mes.enable_legacy_queue_map)
+ 		return amdgpu_gfx_mes_enable_kcq(adev, xcc_id);
+ 
+@@ -716,10 +747,14 @@ int amdgpu_gfx_enable_kcq(struct amdgpu_device *adev, int xcc_id)
+ 
+ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev, int xcc_id)
+ {
++	bool disable_kq_gfx = amdgpu_gfx_disable_gfx_kq(adev);
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+ 	struct amdgpu_ring *kiq_ring = &kiq->ring;
+ 	int r, i, j;
+ 
++	if (disable_kq_gfx)
++		return 0;
++
+ 	if (!kiq->pmf || !kiq->pmf->kiq_map_queues)
  		return -EINVAL;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index cd6eb7a3bc58a..3b7dfd56ccd0e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -408,7 +408,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 	case AMDGPU_HW_IP_GFX:
- 		type = AMD_IP_BLOCK_TYPE_GFX;
- 		for (i = 0; i < adev->gfx.num_gfx_rings; i++)
--			if (adev->gfx.gfx_ring[i].sched.ready)
-+			if (adev->gfx.gfx_ring[i].sched.ready &&
-+			    !adev->gfx.gfx_ring[i].no_user_submission)
- 				++num_rings;
- 		ib_start_alignment = 32;
- 		ib_size_alignment = 32;
-@@ -416,7 +417,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 	case AMDGPU_HW_IP_COMPUTE:
- 		type = AMD_IP_BLOCK_TYPE_GFX;
- 		for (i = 0; i < adev->gfx.num_compute_rings; i++)
--			if (adev->gfx.compute_ring[i].sched.ready)
-+			if (adev->gfx.compute_ring[i].sched.ready &&
-+			    !adev->gfx.compute_ring[i].no_user_submission)
- 				++num_rings;
- 		ib_start_alignment = 32;
- 		ib_size_alignment = 32;
-@@ -424,7 +426,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 	case AMDGPU_HW_IP_DMA:
- 		type = AMD_IP_BLOCK_TYPE_SDMA;
- 		for (i = 0; i < adev->sdma.num_instances; i++)
--			if (adev->sdma.instance[i].ring.sched.ready)
-+			if (adev->sdma.instance[i].ring.sched.ready &&
-+			    !adev->gfx.gfx_ring[i].no_user_submission)
- 				++num_rings;
- 		ib_start_alignment = 256;
- 		ib_size_alignment = 4;
-@@ -435,7 +438,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 			if (adev->uvd.harvest_config & (1 << i))
- 				continue;
  
--			if (adev->uvd.inst[i].ring.sched.ready)
-+			if (adev->uvd.inst[i].ring.sched.ready &&
-+			    !adev->uvd.inst[i].ring.no_user_submission)
- 				++num_rings;
- 		}
- 		ib_start_alignment = 256;
-@@ -444,7 +448,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 	case AMDGPU_HW_IP_VCE:
- 		type = AMD_IP_BLOCK_TYPE_VCE;
- 		for (i = 0; i < adev->vce.num_rings; i++)
--			if (adev->vce.ring[i].sched.ready)
-+			if (adev->vce.ring[i].sched.ready &&
-+			    !adev->vce.ring[i].no_user_submission)
- 				++num_rings;
- 		ib_start_alignment = 256;
- 		ib_size_alignment = 4;
-@@ -456,7 +461,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 				continue;
+@@ -1544,6 +1579,9 @@ static ssize_t amdgpu_gfx_set_run_cleaner_shader(struct device *dev,
+ 	if (adev->in_suspend && !adev->in_runpm)
+ 		return -EPERM;
  
- 			for (j = 0; j < adev->uvd.num_enc_rings; j++)
--				if (adev->uvd.inst[i].ring_enc[j].sched.ready)
-+				if (adev->uvd.inst[i].ring_enc[j].sched.ready &&
-+				    !adev->uvd.inst[i].ring_enc[j].no_user_submission)
- 					++num_rings;
- 		}
- 		ib_start_alignment = 256;
-@@ -468,7 +474,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 			if (adev->vcn.harvest_config & (1 << i))
- 				continue;
++	if (adev->gfx.disable_kq)
++		return -ENOTSUPP;
++
+ 	ret = kstrtol(buf, 0, &value);
  
--			if (adev->vcn.inst[i].ring_dec.sched.ready)
-+			if (adev->vcn.inst[i].ring_dec.sched.ready &&
-+			    !adev->vcn.inst[i].ring_dec.no_user_submission)
- 				++num_rings;
- 		}
- 		ib_start_alignment = 256;
-@@ -481,7 +488,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 				continue;
+ 	if (ret)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index ddf4533614bac..8fa68a4ac34f1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -483,6 +483,8 @@ struct amdgpu_gfx {
  
- 			for (j = 0; j < adev->vcn.inst[i].num_enc_rings; j++)
--				if (adev->vcn.inst[i].ring_enc[j].sched.ready)
-+				if (adev->vcn.inst[i].ring_enc[j].sched.ready &&
-+				    !adev->vcn.inst[i].ring_enc[j].no_user_submission)
- 					++num_rings;
- 		}
- 		ib_start_alignment = 256;
-@@ -496,7 +504,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 				continue;
- 
- 			for (j = 0; j < adev->jpeg.num_jpeg_rings; j++)
--				if (adev->jpeg.inst[i].ring_dec[j].sched.ready)
-+				if (adev->jpeg.inst[i].ring_dec[j].sched.ready &&
-+				    !adev->jpeg.inst[i].ring_dec[j].no_user_submission)
- 					++num_rings;
- 		}
- 		ib_start_alignment = 256;
-@@ -504,7 +513,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
- 		break;
- 	case AMDGPU_HW_IP_VPE:
- 		type = AMD_IP_BLOCK_TYPE_VPE;
--		if (adev->vpe.ring.sched.ready)
-+		if (adev->vpe.ring.sched.ready &&
-+		    !adev->vpe.ring.no_user_submission)
- 			++num_rings;
- 		ib_start_alignment = 256;
- 		ib_size_alignment = 4;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index b4fd1e17205e9..4a97afcb38b78 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -297,6 +297,7 @@ struct amdgpu_ring {
- 	struct dma_fence	*vmid_wait;
- 	bool			has_compute_vm_bug;
- 	bool			no_scheduler;
-+	bool			no_user_submission;
- 	int			hw_prio;
- 	unsigned 		num_hw_submission;
- 	atomic_t		*sched_score;
-@@ -310,7 +311,6 @@ struct amdgpu_ring {
- 	unsigned int    entry_index;
- 	/* store the cached rptr to restore after reset */
- 	uint64_t cached_rptr;
--
+ 	atomic_t			total_submission_cnt;
+ 	struct delayed_work		idle_work;
++
++	bool				disable_kq;
  };
  
- #define amdgpu_ring_parse_cs(r, p, job, ib) ((r)->funcs->parse_cs((p), (job), (ib)))
+ struct amdgpu_gfx_ras_reg_entry {
 -- 
 2.48.1
 
