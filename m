@@ -2,72 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A89A56956
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Mar 2025 14:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56065A56958
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Mar 2025 14:48:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2033B10EB65;
-	Fri,  7 Mar 2025 13:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 224EA10EB69;
+	Fri,  7 Mar 2025 13:48:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c3aO9W+y";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PQmR0WGw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4D710EB62
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Mar 2025 13:48:22 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-3910e101d0fso1037497f8f.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 07 Mar 2025 05:48:22 -0800 (PST)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3667510EB66
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 Mar 2025 13:48:23 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-43bdc607c16so14599355e9.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 07 Mar 2025 05:48:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1741355301; x=1741960101; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1741355302; x=1741960102; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=QdwwAAdMd2Ol4HlOmPtjB8wS2mXSUPeXNMrnQBh8Pzg=;
- b=c3aO9W+yxn5j7xfkW1wsF6rNRsEdLqZUk1eF3eF1ZGrdG+iXqqm+wGdGnzDYC7+9CS
- 1DoDo8VD7LJx5remYNac5SCbQv/2X1mucEop/cygC/+MaPsAm3DMFjKbWCBU1NokWx5F
- Hx2v+gZvorWXV+jIqPM4MNafGerbseeqlTYUSCVLalmFNfEAEWzWHk5Eg+NcUmL+FBHq
- gWsDgnGvQ7z1Ukaj/p8NQ+m0zQXTToqMGrC1u/hzRAZdLUNGlrXPWZcZq7G/j5l79Ocy
- HqsPDZP9SiOoLRE5Wa0yVKGFxjP7U6+oxDkAOSc76VpnJoPdr8yR+UASGEOrvrMIi3DC
- tR4g==
+ :reply-to; bh=Zg7lu3sDkoafamX16TS4I5A95+RcajYB0S2JekUNWNo=;
+ b=PQmR0WGwQnaZNmkWW7xwwqzL+syxy9aGfCGosnjIfG7I18PSt3JyvNNXlD4s7cklXZ
+ F6DUegeEmF+R+5mka5vYpGmINt/9sslY3cizBECT5e75b27wZL8fkd3YhoCORHVcu0xH
+ VATVQuvgtMbbMAKwxiSdFQAk/coX/QwZyFoHAyOBD6tvYIppVvlQ2/5l1VtylwMAem+U
+ XGnmyQXunZ+lDohCX3fU/3dnpS4JyLyOsuEGyBleBTXCSM5E7nkilyAuaSzzm881ed8x
+ 6ok/8nniSOA09aucQa8pbfOteWgyIrD9Gg+Gd/NvQWbAg/R3nrLcPxcOZH8xfG/7Wdba
+ ucnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741355301; x=1741960101;
+ d=1e100.net; s=20230601; t=1741355302; x=1741960102;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=QdwwAAdMd2Ol4HlOmPtjB8wS2mXSUPeXNMrnQBh8Pzg=;
- b=mvxx25688dNWWKc3pv5DEaalrdPwRah27+NxmmWJZSU++t26s9jXCsw+aBB6+WZgKC
- lAfUuaCuGsfYDkcTxb09ULTFGPRsOjR8YTy8PGdu2C48NnXVYgSt6wlbEOXAcwqR9ejg
- I6/4xufqMM2IUmqUphkoXib+qWKIUci1JBrdk7GayKTHiGzvfO0cxURazVb791tF1sFk
- 7i+gAso04coT5KoB+6AGlUfLhh8k3kitAEuRH5gmFwRPLZn91cUaHufGX+fgR2t4NvRm
- mPL37i1NQqacFdHhWGP0cduglNAyvRZ7vz2iqBiM9abFQo6XTgafyNyw01Jnt14+3gX8
- 2bCQ==
+ bh=Zg7lu3sDkoafamX16TS4I5A95+RcajYB0S2JekUNWNo=;
+ b=Hrm56oyTyQUxR2OSDtkCW3a1+/jWdRWOuOTQsJ9aAV3UPHv/REy9FeqQmul7i3SB4o
+ pELDQ4NDuWozXXm5uHDG+mAmjAMLdVPoTK+2QldGUd1c7mVd9qnawe6UbByqtUWj+vmb
+ 3of1awdq8ffKWwG5J54n8ZU15I83xSSPS00pSONasUvvZ8kkcpHwXKAqVWSdy3MmN3Cr
+ LQEZM9XKJDriiJi3xSZpvppNs/fR/kM1A6l89xEWY6zyHJ63jX0v8TB8tyesfspxwy+T
+ oyzQ6AaLAtudSnxFJUUsCX+NEav8AT678AI+1/L7BYFjHz+BkPd4weo/Y2rk6Z4J0fuv
+ X6zQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV2IhvopSR05xhjtcigMOk/ootdN9omRWLVAPSQZwfD41L2hzTFOhA2rXoakMGCTeRUq6nJb6W8@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxLUfa3Zxq9ECGMxQwb5iQH7ewZjWMVl3Hk74jes2uBR6tAnLz0
- sRtSf60iNV3AmXAkghdaHIOxdtONyzZZ42nnEvc6oyKMN9kQkWi1e2MxSqXorQc=
-X-Gm-Gg: ASbGncuKwUzlz2PfGO0WZKnrAJkB1MW4+AoClfesH2agwRUnbs6QlcVE5GVfdN3vM+9
- Gf6OiQoOW5rQT7ogynQMxeJj3rfco7OUig3JSFwx7K4iKtm76R5xGnaXWeOsarI4U15B2iBJh9L
- M9s5DkbXnLao1RyP+f55gNRpsBoZw4xWzcjf2eYLuNUKsgV7gMdXupMzVhgjXfj5Vl8Ruw8xwSA
- VbH+g7ZPycu74VLmDmLtpZmZHMTTofO5Eq9/Ry/maJTAv4H6j5AVvMgmZJjzcPE3LFPaArFzfBI
- g2wOsxX+1fZtvSpmQ1hDoz6UBjkMkt/ujFV8KzK0jjkvZvN1aUAXMKRKcA==
-X-Google-Smtp-Source: AGHT+IHbgSKqGDs5bsMN32xo9MPw2hc5c/VAlMDrsOXkOx3zvli6D3v79J0veFQZnX1cM910/1RE8g==
-X-Received: by 2002:a05:6000:402b:b0:38d:e401:fd61 with SMTP id
- ffacd0b85a97d-39132db746amr2021131f8f.49.1741355301032; 
+ AJvYcCVDBoPEVXy7o5Uls6bkmLYnTAKNNE0/dtvOtvs/MEtKpDpFub6zka3uUF2TEJGIMu4jwA215YJr@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxY6KvFM2UuH+ZideQwc42RFzzaYe+rwhMWSmqwhS4IOVKdiFhK
+ fuiiR3f3Bnft/QceOnV7aICispky/HZSdCVwUoNpWMePv8nkwswp
+X-Gm-Gg: ASbGncs2zWS/3yKhIKook7hoHiiFxW2jR3yeFAc7W0yGOu0qPZ/osaEV2QyzNFN7VqU
+ 0XZSdy8z9BRKVVTqjn5MnWIPQulqUuierF2j2nJWO0cTKpurEzY+kZSZVMWAy70istRn7b22CbN
+ lOY+F543q47dlt7B1NxceZMT+iZlTsHE7ibKEvDfRBexkBpFzT3/+q6jHBmc5U7/iDffCFgTjfD
+ Lm8QHmG1UL/7LShVs2PugJIM+/gCFLRsl/VLFdpzvCZiWV5sSufXRvVMe9HizNv242G3KyR6GMW
+ 2ixS/D8n4tUwrJuafmgFiycHBifWhYsb6x2g0unnlmvLIChDSITuE5XyGw==
+X-Google-Smtp-Source: AGHT+IGm4qgTk9PE/katCHJjFK/MZA7g0JRPykH2gXwP0NATWvZ+l6MJx+Q2hIE+tCg4djmDKl78NA==
+X-Received: by 2002:a05:600c:154e:b0:43b:d1ac:13 with SMTP id
+ 5b1f17b1804b1-43c5ce45da2mr28064405e9.30.1741355301591; 
  Fri, 07 Mar 2025 05:48:21 -0800 (PST)
 Received: from able.fritz.box ([2a00:e180:14d3:5e00:ab55:e6a0:3a3d:9571])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43bd91338cesm70613345e9.7.2025.03.07.05.48.20
+ 5b1f17b1804b1-43bd91338cesm70613345e9.7.2025.03.07.05.48.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Mar 2025 05:48:20 -0800 (PST)
+ Fri, 07 Mar 2025 05:48:21 -0800 (PST)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: srinivasan.shanmugam@amd.com, amd-gfx@lists.freedesktop.org,
  alexander.deucher@amd.com
-Subject: [PATCH 7/8] drm/amdgpu: add isolation trace point
-Date: Fri,  7 Mar 2025 14:48:15 +0100
-Message-Id: <20250307134816.1422-7-christian.koenig@amd.com>
+Subject: [PATCH 8/8] drm/amdgpu: add cleaner shader trace point
+Date: Fri,  7 Mar 2025 14:48:16 +0100
+Message-Id: <20250307134816.1422-8-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250307134816.1422-1-christian.koenig@amd.com>
 References: <20250307134816.1422-1-christian.koenig@amd.com>
@@ -88,54 +88,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Note when we switch from one isolation owner to another.
+Note when the cleaner shader is executed.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h  | 17 +++++++++++++++++
- 2 files changed, 18 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h | 15 +++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    |  1 +
+ 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 3fa7788b4e12..c1e2ba96509f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6988,6 +6988,7 @@ struct dma_fence *amdgpu_device_enforce_isolation(struct amdgpu_device *adev,
- 		dma_fence_put(isolation->spearhead);
- 		isolation->spearhead = dma_fence_get(&f->scheduled);
- 		amdgpu_sync_move(&isolation->active, &isolation->prev);
-+		trace_amdgpu_isolation(isolation->owner, owner);
- 		isolation->owner = owner;
- 	}
- 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-index 383fce40d4dd..e8147d9a54fc 100644
+index e8147d9a54fc..11dd2e0f7979 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-@@ -457,6 +457,23 @@ DEFINE_EVENT(amdgpu_pasid, amdgpu_pasid_freed,
- 	    TP_ARGS(pasid)
+@@ -474,6 +474,21 @@ TRACE_EVENT(amdgpu_isolation,
+ 		      __entry->next)
  );
  
-+TRACE_EVENT(amdgpu_isolation,
-+	    TP_PROTO(void *prev, void *next),
-+	    TP_ARGS(prev, next),
++TRACE_EVENT(amdgpu_cleaner_shader,
++	    TP_PROTO(struct amdgpu_ring *ring, struct dma_fence *fence),
++	    TP_ARGS(ring, fence),
 +	    TP_STRUCT__entry(
-+			     __field(void *, prev)
-+			     __field(void *, next)
++			     __string(ring, ring->name)
++			     __field(u64, seqno)
 +			     ),
 +
 +	    TP_fast_assign(
-+			   __entry->prev = prev;
-+			   __entry->next = next;
++			   __assign_str(ring);
++			   __entry->seqno = fence->seqno;
 +			   ),
-+	    TP_printk("prev=%p, next=%p",
-+		      __entry->prev,
-+		      __entry->next)
++	    TP_printk("ring=%s, seqno=%Lu", __get_str(ring), __entry->seqno)
 +);
 +
  TRACE_EVENT(amdgpu_bo_list_set,
  	    TP_PROTO(struct amdgpu_bo_list *list, struct amdgpu_bo *bo),
  	    TP_ARGS(list, bo),
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index dc10bea836db..73c1c97c9b28 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -742,6 +742,7 @@ int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 	 * finish before we push them to the HW.
+ 	 */
+ 	if (cleaner_shader_needed) {
++		trace_amdgpu_cleaner_shader(ring, fence);
+ 		mutex_lock(&adev->enforce_isolation_mutex);
+ 		dma_fence_put(isolation->spearhead);
+ 		isolation->spearhead = dma_fence_get(fence);
 -- 
 2.34.1
 
