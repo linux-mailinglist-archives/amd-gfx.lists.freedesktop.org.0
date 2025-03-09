@@ -2,69 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75969A585E1
-	for <lists+amd-gfx@lfdr.de>; Sun,  9 Mar 2025 17:47:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E30E2A585E7
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 Mar 2025 17:49:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE0C10E05E;
-	Sun,  9 Mar 2025 16:47:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6497110E318;
+	Sun,  9 Mar 2025 16:49:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VMDy5p1a";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A2m7Nlp8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
- [209.85.216.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D21B310E05E
- for <amd-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 16:47:34 +0000 (UTC)
-Received: by mail-pj1-f42.google.com with SMTP id
- 98e67ed59e1d1-2ff7255b8c6so861834a91.0
- for <amd-gfx@lists.freedesktop.org>; Sun, 09 Mar 2025 09:47:34 -0700 (PDT)
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
+ [209.85.222.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9D1310E278
+ for <amd-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 16:49:11 +0000 (UTC)
+Received: by mail-qk1-f171.google.com with SMTP id
+ af79cd13be357-7c0848d475cso437695085a.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 09 Mar 2025 09:49:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1741538854; x=1742143654; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=z0sCHblpocVvo8OZfMNYeGvMjld+YXIbdWNe7fULp3A=;
- b=VMDy5p1afAqf24cxoPMz6w+j/XQuufmwctlCBoO5gqmxjPS21XzFVq/6WsjoxmD2YG
- LqpMugqJtb700jiE0W3XJzlbi/bdRNGdn4hKA7AXQHdjolTeU/85rRfz5+ogk5GXuzrZ
- qvH38bnsMpacaQGicDM5d+8UFlOvV1BpJDatHvABDoAb3aYAFxt6xMeoOoMyALqNDhEM
- 0p3ofJ0aKUWXjS6i/D52646i4nMCab3mPcturdfLeeTIbtL7hm7rEVsu8jWsv2TvuFT+
- rnwdzmUlkMeqqWlF8LP7xsESgx0i0ZAwrOe9vB0mjLYVeFOTH1EoSauq2CX/81mZR+2c
- +iDw==
+ d=gmail.com; s=20230601; t=1741538950; x=1742143750; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=CjZJh4N2f/YdMDVNEYTaNvmTANsJ57QyiYoShKJ6UM8=;
+ b=A2m7Nlp82BuNnVke6QJZKHohjcOs3vEs/N0D/COtQd+znxdbs2xrX/7Y5KtbXDuOE5
+ 8AHkMrvFnlokdHPmEGdD+fRrttRsEYCTsK4yIzhDIyiFgSfCBAHK6zGTGnlvyv0IsdqV
+ BfopsDRt8LqQttaXeJPKIYi88EriwZHQNr50Mx9bfI0Gh/RcKMwRFl1cO+BG6yH1dRA7
+ DBYHpbvSVFKs/5oygwPDD09vz5SRWKjpkrNfKZp7oXpjxttnohB5crJRlQApaZ48quVy
+ VtoNBMt2NHhm9yhSZJ2I4PpX+3Ex05+LTp3mB3DI4KD6vRWAXk1b78VsWpMRgicLaaTB
+ deQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741538854; x=1742143654;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=z0sCHblpocVvo8OZfMNYeGvMjld+YXIbdWNe7fULp3A=;
- b=fPaAV2gtxcMx3tlnlyMWouqvGGgyIN8Y3qwBgaujYaF+lFrEV6wBWx7Kr0UPwv1yig
- JuYSbCdV4O03wzq5RqZNmPnFMlm5OSgD5YJHZs6h8wAoI7cMz1XcZGeTUfO0yb7ulmh/
- IfsEMePXhZZkFZTFNoaKpjqUwmGyLPj0ifA+j5kgHWxMsu0qNn7eIaMNXl3dpWYg043r
- iNVjeKmAWZ8uAQ/AvmulAIlSTaWMeGXZh63Nnl1PWhLpFRmip30jZUoOUdlBlNcsczzU
- 4yoGyW9oeOH/tje5iIj0kgnE4Up0clI/8bFRnWtW7VUOBKezxO4eMy2Ro8M8P+aSc5V7
- WkRg==
-X-Gm-Message-State: AOJu0YzAJNXygE7f73TYJP8mwROzpEUmeOH28fA18C4qpB6rluALe6Tk
- kmDMse2FmzM4cIKNnDE3BCe+uGqTWzw0mVWEeGljGty2vR+R2mX0soFmfTKYE5z4Ap1kzL9g98o
- p8plNrAFFr/yvsUkAS6TGcRsllXE=
-X-Gm-Gg: ASbGncuReJfsjByP97jFjy3ejPGvA8kQuuNTXrdl4UuZUPG+dnycaRHI23oyYO2eqKM
- 88pkHlwsyiE8TXnFjc5Z3yLoHasmSrJE2RikQAgEU7QxPdSzEpqXxBXsRqA8lQprrFquCjRzfYw
- SD1v9foSFK8yO1YGxKBESvhXKQ5Q==
-X-Google-Smtp-Source: AGHT+IFcrKD886nAD6O40EBQtyFf4IvRQ9ZmwWzv1t39iY2ARQVpgf/VVQPM0J3TAvU+dNkwLg8I1ffhNRfjpdoKSq0=
-X-Received: by 2002:a17:902:cec5:b0:215:435d:b41a with SMTP id
- d9443c01a7336-22541ea9eb1mr35267485ad.1.1741538854211; Sun, 09 Mar 2025
- 09:47:34 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1741538950; x=1742143750;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=CjZJh4N2f/YdMDVNEYTaNvmTANsJ57QyiYoShKJ6UM8=;
+ b=DqpvOGuPECbg/sBPAZqGcpTIZ9suipkPV7JhXG3xJxhK1E7nKk7+AwoMFKcQcgX29i
+ 239o9i2nzaNqZRHg8B9RlgzfCp05fX7ILO2rTB7kVXwdAubBlMg8UOTEUhl49jD+F58s
+ ukpe+sliX05BXHiiVKpwDjeAmO25mwmghJYhEzrxnawG8cR7F8J19q0ZAeUmz07FA1Yc
+ sw95Q/f5EtEpvwywJ48Bf20znG2UiAgbJQN7NY1xM9xSBQBsxqJivz8XhtmQIW1UpQeC
+ nE16GbfEe0zrQGNUHp0/GWweZsqLsorvG/8uoGNal0P/zjENN4Zf60iu+ewTbJ9GoYsJ
+ kVXg==
+X-Gm-Message-State: AOJu0YyzviFNDAUliZBk844MNSfuiWsQSgHodo6ImQ3TpgVIAOznAF7Y
+ AHRxSFtJ0feMMItnlav39kWWP8Yjyix9uan+nk1yPz6ihxoGSkbV82MVnw==
+X-Gm-Gg: ASbGncvgwVGQSt9leZlhVhcWL1Ek7EMeE4lyjmK3Mod+lcFqx07mI0nwIs7ATqyOeDJ
+ 3bUaNYRRaMGyb+4fODCXZTqtJ+1pfmz0Ca0UcfyXW2UfQ98Xtio917DiMxR3U2DXFGTZFBTsaHH
+ sBoDWs7saRmGM5MC0qVFFxEFu/9VRBhFv2RY60kjEc9uHWYKNOyqyImdL+h5tascPymknpyTSLW
+ WhekyNwwtHd1S5rlt3nBzTo+HNEQzQBnPYW2HM6JWvlAyRr/5RePh7f1l3U4iDn5s1USPTKaPlq
+ KcqEupxQLSLNBlnUdmVSI+7H+gIURJJtvP/zVG75Avgwf/BlbBfldPbq6xdDO2o8Jig=
+X-Google-Smtp-Source: AGHT+IF99pTWnZjT6cnorpHnJM3MYqD/dhz4HfyYi6UXOqkGihzHZYKxK4/Gvrh7YpZaTYt5G1azjQ==
+X-Received: by 2002:a05:620a:618f:b0:7c3:d3c1:a8f4 with SMTP id
+ af79cd13be357-7c4e1678b92mr1896953985a.8.1741538949729; 
+ Sun, 09 Mar 2025 09:49:09 -0700 (PDT)
+Received: from localhost.localdomain ([38.74.25.248])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7c53e2ff59bsm236996385a.1.2025.03.09.09.49.09
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 09 Mar 2025 09:49:09 -0700 (PDT)
+From: Alexandre Demers <alexandre.f.demers@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH v4 0/3] Uniformize defines between DCE6, DCE8 and DCE10
+Date: Sun,  9 Mar 2025 12:48:49 -0400
+Message-ID: <20250309164852.3936628-1-alexandre.f.demers@gmail.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-References: <CAPEhTTEfGK031+RiifE2RYMphms4dNMiXEJ49KkL3azq10UvDw@mail.gmail.com>
-In-Reply-To: <CAPEhTTEfGK031+RiifE2RYMphms4dNMiXEJ49KkL3azq10UvDw@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Sun, 9 Mar 2025 12:47:22 -0400
-X-Gm-Features: AQ5f1Jr1GvF-FjdCRy6QCxp01JraQ1eeLyBOygmrfIXrBtzCmCeoC6b3bjcpWh0
-Message-ID: <CADnq5_P35qyN1Po4Ofaop3K6rGxP71evXiPBDPaRbKjGQSg6ag@mail.gmail.com>
-Subject: Re: SI DMA: clarification on naming convention
-To: Alexandre Demers <alexandre.f.demers@gmail.com>
-Cc: Freedesktop - AMD-gfx <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,27 +80,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Mar 8, 2025 at 3:39=E2=80=AFAM Alexandre Demers
-<alexandre.f.demers@gmail.com> wrote:
->
-> Hi,
->
-> While working on cleaning up sid.h, si_enums.h and some other SI
-> related files, I've been scratching my head about why SI DMA files and
-> variables were named "DMA" compared to CIK and over where "SDMA" is
-> used.
->
-> While I understand that a new system DMA was introduced with CIK,
-> isn't SI DMA also a "system DMA"? Could we use the same naming
-> convention and talk about sDMA, name defines values, shifts and masks?
-> Could si_dma.c/.h be renamed to si_sdma.c/.h? Was the naming
-> difference introduced to CIK so different that the naming covention
-> needed to be modified?
+Keep a uniform way of where and how variables are defined between
+DCE6, DCE8 and DCE10. It is easier to understand the code, their
+similarities and their modifications.
 
-The SDMA IP was first added on CIK.  SI used the older paging DMA IP
-that first appeared on r6xx parts.  While they are conceptually
-similar (general purpose DMA copy/fill engines), the underlying
-hardware and firmware was much different.  I'm not sure what the
-advantage would be to renaming it at this point other than code churn.
+Since sid.h is being wired up in dce_v6_0.c, duplicated defines need to be
+cleaned up in sid.h and si_enums.h.
 
-Alex
+V4:
+* Reorder patches so each one compiles properly.
+* Remove drm-amdgpu-add-defines-for-pin_offsets-in-DCE8.patch since it was 
+already approved and applied.
+
+A bigger round of cleanup is coming to remove more of the duplicated and
+unused defines found in sid.h and si_enums.h and continue the uniformization.
+
+Alexandre Demers (3):
+  drm/amdgpu: fix warning and errors caused by duplicated defines in
+    sid.h
+  drm/amdgpu: move and fix X_GB_ADDR_CONFIG_GOLDEN values
+  drm/amdgpu: add or move defines for DCE6 in sid.h
+
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c |  73 ++---
+ drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c |  15 +-
+ drivers/gpu/drm/amd/amdgpu/si.c       |  68 ++---
+ drivers/gpu/drm/amd/amdgpu/si_enums.h |  12 -
+ drivers/gpu/drm/amd/amdgpu/sid.h      | 369 ++------------------------
+ 5 files changed, 111 insertions(+), 426 deletions(-)
+
+-- 
+2.48.1
+
