@@ -2,69 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03349A585E6
-	for <lists+amd-gfx@lfdr.de>; Sun,  9 Mar 2025 17:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BCBA585E4
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 Mar 2025 17:49:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59F3D10E30E;
-	Sun,  9 Mar 2025 16:49:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6534710E1CD;
+	Sun,  9 Mar 2025 16:49:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jKMZQVjN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="O4517fS3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com
- [209.85.222.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B1110E1CD
- for <amd-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 16:49:17 +0000 (UTC)
-Received: by mail-qk1-f176.google.com with SMTP id
- af79cd13be357-7c3c9f7b1a6so337661885a.1
- for <amd-gfx@lists.freedesktop.org>; Sun, 09 Mar 2025 09:49:17 -0700 (PDT)
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
+ [209.85.222.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F4F210E1CD
+ for <amd-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 16:49:15 +0000 (UTC)
+Received: by mail-qk1-f178.google.com with SMTP id
+ af79cd13be357-7c07cd527e4so328531185a.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 09 Mar 2025 09:49:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1741538951; x=1742143751; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1741538952; x=1742143752; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=BzKbzUppSFeWD+t+TgU++OCc0tQcvjYsP7HXfKZir9c=;
- b=jKMZQVjNhWWCmUv9Uhma/RxhrDhRc7rFWOTIYS8rgh8rosR6/hpXz4KgpFUINbXjth
- rGnTWf75kW1/V5wXHUDM4p2pO7gW/gYBDEiDm6JGwUUEeaAHtOsDl4xzqPeyw9nJE/qj
- rvJkzJyYprOFpk/xXh5ZJyBrbJZWd2MxuMm4iuqDX6YIGjYxCEmaZIgswBHSHo2+6qZd
- Bl/EwVOvOnUns3ZhFnHkv6s0upxeNy4oNz9xI6ob1iMESUl/MpY5IUGP66qk9R8JPerc
- dn0Yo63Q+KT+uCmvTszshiI2KxivgaEPrmQEjiCs4KjkA48z1htXO6bQxkInRTqHbK15
- Pduw==
+ :reply-to; bh=gMaJ6ChlHnQorEfuqNypCmnZA4OXiWvzZWPlW4f8qsw=;
+ b=O4517fS3HSXc3iDXjSXFkxo5aQ9M1T21V/IUjprJ7cMN/MPA9TFRjRynR2fccLcVI2
+ 7KDioPFuzKG/Vkhra5U6A6XYIbypKqN9QjfnnSrqATmHvSB/8aFsM0LCtMjjJHTKLK0U
+ HkW1aJhgllIFnCwtRfRMvFQBlJk56Uth1jgB/fc/TVcZy3Ad0vraon/oh+ZyxBnLjgHO
+ G7Sx2l9+2+/x70LFAsRvRBPQGhkJPg3f2MiIf8FuWEtHElHMl5ZxbZHJTsxfD82inYt1
+ mlTnm8RaG2Pf+L9WEIPtsuS05qzCWOyoUGvOfhJX1S0egf+cf22rONNq2dyKoZHWm38g
+ aDcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741538951; x=1742143751;
+ d=1e100.net; s=20230601; t=1741538952; x=1742143752;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=BzKbzUppSFeWD+t+TgU++OCc0tQcvjYsP7HXfKZir9c=;
- b=MFu5luj/RQ8X0leVCrfoiHGpuYtFoFldVXffQZe2Z47GHh13f3QNmPEKJELM/8Jw8Y
- FGKkjAJ6AhoGEr2GYHAzhj25ylrlfNRdNMoQlJEMw1uJX47/XYIL0JDDi7uSgw6zPxY6
- +OAsHqWBxxITQ5vQAs4ZPoLV77sFAXfMGuu6l8oR+jwQYL/dgwfHKEEiICqBJvAZmvYS
- sEGwaNONBABPBdtrkcOUKGryiDI6pfgHf3S2NhpLzR1Pi3sdrOtb1z3Ci5wsGVAaNcyr
- kMNfNwZFvKIQLTJ/Z5xU+Pk2JSbZ50xR/CJ/6JGTGaFVB9Od8MyPPBsNc2Em6BivP3PX
- Jevg==
-X-Gm-Message-State: AOJu0Yw4YdVAchI7RA2lqMR+W+1Lpq2KRL4w7Hu3ddNbUrxqmn/OgJUV
- aQ2jcl7/F1U6UBHsVsjzW5tBnil+CzBOspRr5Pr5aRUrgifEzkvMQSsYsA==
-X-Gm-Gg: ASbGncsnM7WpU1YgS8OhHIGWW9lupENVckwzhkY/qiphe8atMeTgIYU+Q/Pi+9giAJX
- yKkw8fkAoFO6QKecarzH03gIo4C3GqkZ9i8Mf+59EsEEKZxpg7YIhyFRO9uzhfaCGpjX5tvh1jq
- uICIQBb7mXbe6gSHh3lVUEwdZTjnmBmcdCBs3y8QXBYJt8P2bhcnKU1rOTWaqvEoIpuXj+S0RRh
- 7piZNAmw9RnmIXYbJ3rxQeYzM8HtkGSkHFBLwhcvlGvgWmEEHnJQDFq5h0uWW/zt2Ms0cPz9hCy
- 6ZLxd8tRPufVuteJYLaNf8ktKCREBma/az1fJ7cMYYUqoNsvTYa0hQH4jCvEHsBNiJo=
-X-Google-Smtp-Source: AGHT+IHQ542Ho+uMGNkfQ6gygerh37hWDuuSzvTA9pZ6Kty1JeMa9d5CQWYEiHs2XtZ6Ac6fLBRm7Q==
-X-Received: by 2002:a05:620a:24c9:b0:7c0:a1c8:1db3 with SMTP id
- af79cd13be357-7c53c875b38mr1058407885a.11.1741538951246; 
- Sun, 09 Mar 2025 09:49:11 -0700 (PDT)
+ bh=gMaJ6ChlHnQorEfuqNypCmnZA4OXiWvzZWPlW4f8qsw=;
+ b=UqqAhXhOUutrXNQ0CdICGW68GovyxDhJkcD8mhqEPd+dE5GDQiCND+acYQ38xui2d4
+ d+BPWnyZXgAvxp/Y2bVbstqaA0vgrvtN9mASwTXEFAcc8LUmZ2zDyKGwnWvkscb4okqq
+ j+eafD4rtwQSzWa8KOJ8fWQkZIOMIDPpxUNpIWF9628PwvRkoa9vPbHag4WPU3Pb3H2v
+ vgP5RHy48nmC1Pw5/1/uHyL+kPfv+gmsWpuIWwMzmnkWWmpMiC9jn4zES+BrSgMbi6K4
+ lHN5LhamG7hzp/K0+XfElMLiBK5hZae7jwN+NKkVogEv9FoUPnHAm8ySkfbjzqqku4WE
+ jIhw==
+X-Gm-Message-State: AOJu0Yzk15cjF7wOejZomBZMOtD2+QJPmczLSTdt9Us4UVS6ohSI3/w1
+ /6eav3EQZ4ubRgjXhQKNAcHRuYowBC3JyS5thwxAcJDz+QzMcwDbdfabUA==
+X-Gm-Gg: ASbGncvtCcK/9EUd7OWkiqUPs5IvNCBYKQ29IGboYKq0LE3eNgRP4A7owk00v/+5++X
+ VbngVBVDHjm6udZVUORms2n3O6RDr/MEnkf3nBDtaTB/0ulH/rsQj/F6BGvi7+XYBE/oKg8YaTt
+ odztV/6bFqX6IQqhl84w1XBtYgbiwXOQWfBOKgsmvPpbr/vv6tR54+/akroF9nsaGc+xY9eoZo8
+ qPNzqnQjEHvbE9FjuoFiidIPKg3S9yGQp4BCnlAJMw2UEaICUucqGwAxBrIyOoVBxGzrGHW2lSd
+ lZeh/3aFSxKOoZafIoypxD9wSmoNkLDl0NyvHFqS/lL9G09jb9ikSF6vMy9zwsD0W0g=
+X-Google-Smtp-Source: AGHT+IFvk7tVz8o2Y4mAEcowIpc9iyS5WTgsxKHRwhn0pH+4/y51yDXQdJwd9RZ3boChU1hewdf0vQ==
+X-Received: by 2002:a05:620a:2625:b0:7c3:cd78:df38 with SMTP id
+ af79cd13be357-7c4e1679bd7mr1340052285a.10.1741538952041; 
+ Sun, 09 Mar 2025 09:49:12 -0700 (PDT)
 Received: from localhost.localdomain ([38.74.25.248])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7c53e2ff59bsm236996385a.1.2025.03.09.09.49.10
+ af79cd13be357-7c53e2ff59bsm236996385a.1.2025.03.09.09.49.11
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 09 Mar 2025 09:49:10 -0700 (PDT)
+ Sun, 09 Mar 2025 09:49:11 -0700 (PDT)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v4 2/3] drm/amdgpu: fix SI's GB_ADDR_CONFIG_GOLDEN values and
- wire up sid.h in GFX6
-Date: Sun,  9 Mar 2025 12:48:51 -0400
-Message-ID: <20250309164852.3936628-3-alexandre.f.demers@gmail.com>
+Subject: [PATCH v4 3/3] drm/amdgpu: finish wiring up sid.h in DCE6
+Date: Sun,  9 Mar 2025 12:48:52 -0400
+Message-ID: <20250309164852.3936628-4-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250309164852.3936628-1-alexandre.f.demers@gmail.com>
 References: <20250309164852.3936628-1-alexandre.f.demers@gmail.com>
@@ -84,96 +83,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-By wiring up sid.h in GFX6, we end up with a few duplicated defines such as
-the golden registers. Let's clean this up.
-
-[TAHITI,VERDE, HAINAN]_GB_ADDR_CONFIG_GOLDEN were defined both in sid.h
-and under si_enums.h, with different values. Keep the values used under radeon
-and move them under gfx_v6_0.c where they are used (as it is done under cik)
+For coherence with DCE8 et DCE10, add or move some values under sid.h
+and remove duplicated from si_enums.h.
 
 Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c | 15 +++++++++++++--
- drivers/gpu/drm/amd/amdgpu/si_enums.h |  6 ------
- drivers/gpu/drm/amd/amdgpu/sid.h      |  4 ----
- 3 files changed, 13 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 63 ++++++++++++++-------------
+ drivers/gpu/drm/amd/amdgpu/si_enums.h |  6 ---
+ drivers/gpu/drm/amd/amdgpu/sid.h      | 29 +++++++++---
+ 3 files changed, 55 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-index 41f50bf380c4..4476fb816659 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-@@ -28,19 +28,30 @@
- #include "amdgpu_gfx.h"
- #include "amdgpu_ucode.h"
- #include "clearstate_si.h"
-+#include "si.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+index 47b0e4848a56..e1b0779e835f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+@@ -41,6 +41,7 @@
+ #include "amdgpu_display.h"
+ 
+ #include "dce_v6_0.h"
 +#include "sid.h"
-+
+ 
  #include "bif/bif_3_0_d.h"
  #include "bif/bif_3_0_sh_mask.h"
-+
- #include "oss/oss_1_0_d.h"
- #include "oss/oss_1_0_sh_mask.h"
-+
- #include "gca/gfx_6_0_d.h"
- #include "gca/gfx_6_0_sh_mask.h"
-+#include "gca/gfx_7_2_enum.h"
-+
- #include "gmc/gmc_6_0_d.h"
- #include "gmc/gmc_6_0_sh_mask.h"
-+
- #include "dce/dce_6_0_d.h"
- #include "dce/dce_6_0_sh_mask.h"
--#include "gca/gfx_7_2_enum.h"
-+
- #include "si_enums.h"
--#include "si.h"
-+
-+#define TAHITI_GB_ADDR_CONFIG_GOLDEN        0x12011003
-+#define VERDE_GB_ADDR_CONFIG_GOLDEN         0x12010002
-+#define HAINAN_GB_ADDR_CONFIG_GOLDEN        0x02010001
+@@ -65,31 +66,31 @@ static void dce_v6_0_set_irq_funcs(struct amdgpu_device *adev);
  
- static void gfx_v6_0_set_ring_funcs(struct amdgpu_device *adev);
- static void gfx_v6_0_set_irq_funcs(struct amdgpu_device *adev);
+ static const u32 crtc_offsets[6] =
+ {
+-	SI_CRTC0_REGISTER_OFFSET,
+-	SI_CRTC1_REGISTER_OFFSET,
+-	SI_CRTC2_REGISTER_OFFSET,
+-	SI_CRTC3_REGISTER_OFFSET,
+-	SI_CRTC4_REGISTER_OFFSET,
+-	SI_CRTC5_REGISTER_OFFSET
++	CRTC0_REGISTER_OFFSET,
++	CRTC1_REGISTER_OFFSET,
++	CRTC2_REGISTER_OFFSET,
++	CRTC3_REGISTER_OFFSET,
++	CRTC4_REGISTER_OFFSET,
++	CRTC5_REGISTER_OFFSET
+ };
+ 
+ static const u32 hpd_offsets[] =
+ {
+-	mmDC_HPD1_INT_STATUS - mmDC_HPD1_INT_STATUS,
+-	mmDC_HPD2_INT_STATUS - mmDC_HPD1_INT_STATUS,
+-	mmDC_HPD3_INT_STATUS - mmDC_HPD1_INT_STATUS,
+-	mmDC_HPD4_INT_STATUS - mmDC_HPD1_INT_STATUS,
+-	mmDC_HPD5_INT_STATUS - mmDC_HPD1_INT_STATUS,
+-	mmDC_HPD6_INT_STATUS - mmDC_HPD1_INT_STATUS,
++	HPD0_REGISTER_OFFSET,
++	HPD1_REGISTER_OFFSET,
++	HPD2_REGISTER_OFFSET,
++	HPD3_REGISTER_OFFSET,
++	HPD4_REGISTER_OFFSET,
++	HPD5_REGISTER_OFFSET
+ };
+ 
+ static const uint32_t dig_offsets[] = {
+-	SI_CRTC0_REGISTER_OFFSET,
+-	SI_CRTC1_REGISTER_OFFSET,
+-	SI_CRTC2_REGISTER_OFFSET,
+-	SI_CRTC3_REGISTER_OFFSET,
+-	SI_CRTC4_REGISTER_OFFSET,
+-	SI_CRTC5_REGISTER_OFFSET,
++	CRTC0_REGISTER_OFFSET,
++	CRTC1_REGISTER_OFFSET,
++	CRTC2_REGISTER_OFFSET,
++	CRTC3_REGISTER_OFFSET,
++	CRTC4_REGISTER_OFFSET,
++	CRTC5_REGISTER_OFFSET,
+ 	(0x13830 - 0x7030) >> 2,
+ };
+ 
+@@ -1365,13 +1366,13 @@ static void dce_v6_0_audio_enable(struct amdgpu_device *adev,
+ 
+ static const u32 pin_offsets[7] =
+ {
+-	(0x1780 - 0x1780),
+-	(0x1786 - 0x1780),
+-	(0x178c - 0x1780),
+-	(0x1792 - 0x1780),
+-	(0x1798 - 0x1780),
+-	(0x179d - 0x1780),
+-	(0x17a4 - 0x1780),
++	AUD0_REGISTER_OFFSET,
++	AUD1_REGISTER_OFFSET,
++	AUD2_REGISTER_OFFSET,
++	AUD3_REGISTER_OFFSET,
++	AUD4_REGISTER_OFFSET,
++	AUD5_REGISTER_OFFSET,
++	AUD6_REGISTER_OFFSET,
+ };
+ 
+ static int dce_v6_0_audio_init(struct amdgpu_device *adev)
+@@ -2882,22 +2883,22 @@ static void dce_v6_0_set_crtc_vblank_interrupt_state(struct amdgpu_device *adev,
+ 
+ 	switch (crtc) {
+ 	case 0:
+-		reg_block = SI_CRTC0_REGISTER_OFFSET;
++		reg_block = CRTC0_REGISTER_OFFSET;
+ 		break;
+ 	case 1:
+-		reg_block = SI_CRTC1_REGISTER_OFFSET;
++		reg_block = CRTC1_REGISTER_OFFSET;
+ 		break;
+ 	case 2:
+-		reg_block = SI_CRTC2_REGISTER_OFFSET;
++		reg_block = CRTC2_REGISTER_OFFSET;
+ 		break;
+ 	case 3:
+-		reg_block = SI_CRTC3_REGISTER_OFFSET;
++		reg_block = CRTC3_REGISTER_OFFSET;
+ 		break;
+ 	case 4:
+-		reg_block = SI_CRTC4_REGISTER_OFFSET;
++		reg_block = CRTC4_REGISTER_OFFSET;
+ 		break;
+ 	case 5:
+-		reg_block = SI_CRTC5_REGISTER_OFFSET;
++		reg_block = CRTC5_REGISTER_OFFSET;
+ 		break;
+ 	default:
+ 		DRM_DEBUG("invalid crtc %d\n", crtc);
 diff --git a/drivers/gpu/drm/amd/amdgpu/si_enums.h b/drivers/gpu/drm/amd/amdgpu/si_enums.h
-index 4e935baa7b91..cd9b0a654991 100644
+index cd9b0a654991..d656ef1fa6e1 100644
 --- a/drivers/gpu/drm/amd/amdgpu/si_enums.h
 +++ b/drivers/gpu/drm/amd/amdgpu/si_enums.h
-@@ -128,8 +128,6 @@
- #define SI_CRTC4_REGISTER_OFFSET                0x2c00
- #define SI_CRTC5_REGISTER_OFFSET                0x2f00
+@@ -121,12 +121,6 @@
+ #define CURSOR_UPDATE_LOCK             (1 << 16)
+ #define CURSOR_DISABLE_MULTIPLE_UPDATE (1 << 24)
  
--#define DMA0_REGISTER_OFFSET 0x000
--#define DMA1_REGISTER_OFFSET 0x200
+-#define SI_CRTC0_REGISTER_OFFSET                0
+-#define SI_CRTC1_REGISTER_OFFSET                0x300
+-#define SI_CRTC2_REGISTER_OFFSET                0x2600
+-#define SI_CRTC3_REGISTER_OFFSET                0x2900
+-#define SI_CRTC4_REGISTER_OFFSET                0x2c00
+-#define SI_CRTC5_REGISTER_OFFSET                0x2f00
+ 
  #define ES_AND_GS_AUTO       3
  #define RADEON_PACKET_TYPE3  3
- #define CE_PARTITION_BASE    3
-@@ -161,10 +159,6 @@
- #define RLC_SAVE_AND_RESTORE_STARTING_OFFSET 0x90
- #define RLC_CLEAR_STATE_DESCRIPTOR_OFFSET    0x3D
- 
--#define TAHITI_GB_ADDR_CONFIG_GOLDEN        0x12011003
--#define VERDE_GB_ADDR_CONFIG_GOLDEN         0x02010002
--#define HAINAN_GB_ADDR_CONFIG_GOLDEN        0x02011003
--
- #define PACKET3(op, n)  ((RADEON_PACKET_TYPE3 << 30) |                  \
-                          (((op) & 0xFF) << 8) |                         \
-                          ((n) & 0x3FFF) << 16)
 diff --git a/drivers/gpu/drm/amd/amdgpu/sid.h b/drivers/gpu/drm/amd/amdgpu/sid.h
-index 2218fd99ee83..bf228a1dedff 100644
+index bf228a1dedff..cbf232f5235b 100644
 --- a/drivers/gpu/drm/amd/amdgpu/sid.h
 +++ b/drivers/gpu/drm/amd/amdgpu/sid.h
-@@ -26,10 +26,6 @@
+@@ -1700,12 +1700,29 @@
  
- #define TAHITI_RB_BITMAP_WIDTH_PER_SH  2
+ //#dce stupp
+ /* display controller offsets used for crtc/cur/lut/grph/viewport/etc. */
+-#define SI_CRTC0_REGISTER_OFFSET                0 //(0x6df0 - 0x6df0)/4
+-#define SI_CRTC1_REGISTER_OFFSET                0x300 //(0x79f0 - 0x6df0)/4
+-#define SI_CRTC2_REGISTER_OFFSET                0x2600 //(0x105f0 - 0x6df0)/4
+-#define SI_CRTC3_REGISTER_OFFSET                0x2900 //(0x111f0 - 0x6df0)/4
+-#define SI_CRTC4_REGISTER_OFFSET                0x2c00 //(0x11df0 - 0x6df0)/4
+-#define SI_CRTC5_REGISTER_OFFSET                0x2f00 //(0x129f0 - 0x6df0)/4
++#define CRTC0_REGISTER_OFFSET                 (0x1b7c - 0x1b7c) //(0x6df0 - 0x6df0)/4
++#define CRTC1_REGISTER_OFFSET                 (0x1e7c - 0x1b7c) //(0x79f0 - 0x6df0)/4
++#define CRTC2_REGISTER_OFFSET                 (0x417c - 0x1b7c) //(0x105f0 - 0x6df0)/4
++#define CRTC3_REGISTER_OFFSET                 (0x447c - 0x1b7c) //(0x111f0 - 0x6df0)/4
++#define CRTC4_REGISTER_OFFSET                 (0x477c - 0x1b7c) //(0x11df0 - 0x6df0)/4
++#define CRTC5_REGISTER_OFFSET                 (0x4a7c - 0x1b7c) //(0x129f0 - 0x6df0)/4
++
++/* hpd instance offsets */
++#define HPD0_REGISTER_OFFSET                 (0x1807 - 0x1807)
++#define HPD1_REGISTER_OFFSET                 (0x180a - 0x1807)
++#define HPD2_REGISTER_OFFSET                 (0x180d - 0x1807)
++#define HPD3_REGISTER_OFFSET                 (0x1810 - 0x1807)
++#define HPD4_REGISTER_OFFSET                 (0x1813 - 0x1807)
++#define HPD5_REGISTER_OFFSET                 (0x1816 - 0x1807)
++
++/* audio endpt instance offsets */
++#define AUD0_REGISTER_OFFSET                 (0x1780 - 0x1780)
++#define AUD1_REGISTER_OFFSET                 (0x1786 - 0x1780)
++#define AUD2_REGISTER_OFFSET                 (0x178c - 0x1780)
++#define AUD3_REGISTER_OFFSET                 (0x1792 - 0x1780)
++#define AUD4_REGISTER_OFFSET                 (0x1798 - 0x1780)
++#define AUD5_REGISTER_OFFSET                 (0x179d - 0x1780)
++#define AUD6_REGISTER_OFFSET                 (0x17a4 - 0x1780)
  
--#define TAHITI_GB_ADDR_CONFIG_GOLDEN        0x12011003
--#define VERDE_GB_ADDR_CONFIG_GOLDEN         0x12010002
--#define HAINAN_GB_ADDR_CONFIG_GOLDEN        0x02010001
--
- #define SI_MAX_SH_GPRS		 	256
- #define SI_MAX_TEMP_GPRS         	16
- #define SI_MAX_SH_THREADS        	256
+ #define CURSOR_WIDTH 64
+ #define CURSOR_HEIGHT 64
 -- 
 2.48.1
 
