@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DE1FA5BC6E
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Mar 2025 10:36:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6680DA5BC6B
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Mar 2025 10:36:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04D0610E54C;
-	Tue, 11 Mar 2025 09:36:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 025DF10E547;
+	Tue, 11 Mar 2025 09:36:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="LlnBkGWx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="BNt2026T";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB9910E328;
- Mon, 10 Mar 2025 21:28:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD2D10E09E;
+ Mon, 10 Mar 2025 21:53:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -22,21 +22,21 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=FahhrGFnxsHK71HoADExrTx+Kq0ZC+lhv0xf5Xsw7i8=; b=LlnBkGWxMA55UU1xzyyCQp3qZq
- C3SYJRCJzHL3z+Yb08fwmmb+M1ssvs0PBHBQVloBuRkwWGZ5kC9GyH/NdVLq8/H5Hpy6gufEo+IMD
- YYZqgEujrFI0inibds5S7vmg/ScQ/fntMsWFIeCTJ0kP4NCBML+nxCRfdffYzVuixZPZV4q+Me+Xg
- SSsUUJNO363P9AZhV7Dcrb7GQ0pZDIuKCzhdUseQxTqb4cQw/8MfZo41JC+DJChq9XpJl4AuVL9vc
- 6TJ8DDugh1EUORIHJeYIuFs9LD0AQnZmzV4tyNT53KZZmyiIjJTenRvIs1ZdYIV7HSCDJ3IqgvMAS
- S8NCgsVw==;
+ bh=AJil93IzUDgCjnkwb1ftr6Wb6/uv7Kl9IDbIsPwiTyU=; b=BNt2026TUEPDGLMNJ0ytDE063W
+ jUcm3LkUModbev+EpoXWlRy6WQA6CCzT80zjXe01ImWJMO49AaOoGNdjlH1JxbRGo4fBFzV6enNkP
+ Wvd+wQbK0lllmR4M4D9mnyP1kN9HMVokIQ3w9ItKnfagr+e5ZbDWWmSMIR7S0nF2iF59mmPEroyzT
+ IqKgkwtYgBwGV9l1poACmlYFDh1RaMFLJLe+FLbjgt1ZJ2unZ4kQqF4jqpjspYLzFDyBT84RlTSNT
+ d9QL16BB2w2QWhSVJ9486VCBaQ9p4CHaUmB699JECD2CPV9/ARHHvkDtjYwh6rbDp+LPziVKQexoI
+ iXBcdkxQ==;
 Received: from [191.204.194.148] (helo=[192.168.15.100])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1trkfG-006fFj-El; Mon, 10 Mar 2025 22:28:04 +0100
-Message-ID: <db27ee44-f480-475b-be7e-710bd30eb7a5@igalia.com>
-Date: Mon, 10 Mar 2025 18:27:53 -0300
+ id 1trl4F-006fjl-HO; Mon, 10 Mar 2025 22:53:53 +0100
+Message-ID: <73602c9b-74f6-4b4a-82c6-918292b13cf7@igalia.com>
+Date: Mon, 10 Mar 2025 18:53:48 -0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm: Create an app info option for wedge events
+Subject: Re: [PATCH 2/2] drm/amdgpu: Make use of drm_wedge_app_info
 To: Raag Jadav <raag.jadav@intel.com>
 Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
@@ -45,15 +45,15 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  =?UTF-8?B?J0NocmlzdGlhbiBLw7ZuaWcn?= <christian.koenig@amd.com>,
  siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
  rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- lucas.demarchi@intel.com, Xaver Hugl <xaver.hugl@kde.org>
+ Xaver Hugl <xaver.hugl@kde.org>
 References: <20250228121353.1442591-1-andrealmeid@igalia.com>
- <20250228121353.1442591-2-andrealmeid@igalia.com>
- <Z8HGFRGOYvyCCWWu@black.fi.intel.com>
- <58763d8e-46a1-4753-9401-987fb3dac50b@igalia.com>
- <Z8KgwswQQyGxhsR1@black.fi.intel.com>
+ <20250228121353.1442591-3-andrealmeid@igalia.com>
+ <Z8HO-s_otb2u44V7@black.fi.intel.com>
+ <38b9cc8b-2a55-4815-a19f-f5bdf0f7687c@igalia.com>
+ <Z8KjZfLYjH6ehYwy@black.fi.intel.com>
 Content-Language: en-US
 From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <Z8KgwswQQyGxhsR1@black.fi.intel.com>
+In-Reply-To: <Z8KjZfLYjH6ehYwy@black.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 11 Mar 2025 09:36:43 +0000
@@ -71,59 +71,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Em 01/03/2025 02:53, Raag Jadav escreveu:
-> On Fri, Feb 28, 2025 at 06:54:12PM -0300, André Almeida wrote:
+Em 01/03/2025 03:04, Raag Jadav escreveu:
+> On Fri, Feb 28, 2025 at 06:49:43PM -0300, André Almeida wrote:
 >> Hi Raag,
 >>
->> On 2/28/25 11:20, Raag Jadav wrote:
->>> Cc: Lucas
->>>
->>> On Fri, Feb 28, 2025 at 09:13:52AM -0300, André Almeida wrote:
->>>> When a device get wedged, it might be caused by a guilty application.
->>>> For userspace, knowing which app was the cause can be useful for some
->>>> situations, like for implementing a policy, logs or for giving a chance
->>>> for the compositor to let the user know what app caused the problem.
->>>> This is an optional argument, when `PID=-1` there's no information about
->>>> the app caused the problem, or if any app was involved during the hang.
->>>>
->>>> Sometimes just the PID isn't enough giving that the app might be already
->>>> dead by the time userspace will try to check what was this PID's name,
->>>> so to make the life easier also notify what's the app's name in the user
->>>> event.
+>> On 2/28/25 11:58, Raag Jadav wrote:
+>>> On Fri, Feb 28, 2025 at 09:13:53AM -0300, André Almeida wrote:
+>>>> To notify userspace about which app (if any) made the device get in a
+>>>> wedge state, make use of drm_wedge_app_info parameter, filling it with
+>>>> the app PID and name.
 >>>>
 >>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
-
-[...]
-
->>>>    	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
->>>> @@ -562,6 +564,14 @@ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
->>>>    	drm_info(dev, "device wedged, %s\n", method == DRM_WEDGE_RECOVERY_NONE ?
->>>>    		 "but recovered through reset" : "needs recovery");
->>>> +	if (info) {
->>>> +		snprintf(pid_string, sizeof(pid_string), "PID=%u", info->pid);
->>>> +		snprintf(comm_string, sizeof(comm_string), "APP=%s", info->comm);
->>>> +	} else {
->>>> +		snprintf(pid_string, sizeof(pid_string), "%s", "PID=-1");
->>>> +		snprintf(comm_string, sizeof(comm_string), "%s", "APP=none");
->>>> +	}
->>> This is not much use for wedge cases that needs recovery, since at that point
->>> the userspace will need to clean house anyway.
->>>
->>> Which leaves us with only 'none' case and perhaps the need for standardization
->>> of "optional telemetry collection".
->>>
->>> Thoughts?
+>>>> ---
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
+>>>>    2 files changed, 22 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>> index 00b9b87dafd8..e06adf6f34fd 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>> @@ -6123,8 +6123,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+>>>>    	atomic_set(&adev->reset_domain->reset_res, r);
+>>>> -	if (!r)
+>>>> -		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
+>>>> +	if (!r) {
+>>>> +		struct drm_wedge_app_info aux, *info = NULL;
+>>>> +
+>>>> +		if (job) {
+>>>> +			struct amdgpu_task_info *ti;
+>>>> +
+>>>> +			ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
+>>>> +			if (ti) {
+>>>> +				aux.pid = ti->pid;
+>>>> +				aux.comm = ti->process_name;
+>>>> +				info = &aux;
+>>>> +				amdgpu_vm_put_task_info(ti);
+>>>> +			}
+>>>> +		}
+>>> Is this guaranteed to be guilty app and not some scheduled worker?
 >>
->> I had the feeling that 'none' was already meant to be used for that. Do you
->> think we should move to another naming? Given that we didn't reach the merge
->> window yet we could potentially change that name without much damage.
+>> This is how amdgpu decides which app is the guilty one earlier in the code
+>> as in the print:
+>>
+>>      ti = amdgpu_vm_get_task_info_pasid(ring->adev, job->pasid);
+>>
+>>      "Process information: process %s pid %d thread %s pid %d\n"
+>>
+>> So I think it's consistent with what the driver thinks it's the guilty
+>> process.
 > 
-> No, I meant thoughts on possible telemetry data that the drivers might
-> think is useful for userspace (along with PID) and can be presented in
-> a vendor agnostic manner (just like wedged event).
+> Sure, but with something like app_info we're kind of hinting to userspace
+> that an application was _indeed_ involved with reset. Is that also guaranteed?
+> 
+> Is it possible that an application needlessly suffers from a false positive
+> scenario (reset due to other factors)?
+> 
 
-I'm not if I agree that this will only be used for telemetry and for the 
-`none` use case. As stated by Xaver, there's use case to know which app 
-caused the device to get wedged (like switching to software rendering) 
-and to display something for the user after the recovery is done (e.g. 
-"The game <app name> stopped working and Plasma has reset").
+I asked Alex Deucher in IRC about that and yes, there's a chance that 
+this is a false positive. However, for the majority of cases this is the 
+right app that caused the hang. This is what amdgpu is doing for GL 
+robustness as well and devcoredump, so it's very consistent with how 
+amdgpu deals with this scenario even if the mechanism is still not perfect.
