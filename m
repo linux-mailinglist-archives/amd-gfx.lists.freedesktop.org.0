@@ -2,74 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C31AA5A19E
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Mar 2025 19:05:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9156EA5A19C
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Mar 2025 19:05:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DE7510E4B1;
-	Mon, 10 Mar 2025 18:05:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 365C910E4AF;
+	Mon, 10 Mar 2025 18:05:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=natalie.vock@gmx.de header.b="RJT1vggF";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=natalie.vock@gmx.de header.b="IrpTGvsG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 308 seconds by postgrey-1.36 at gabe;
- Mon, 10 Mar 2025 17:14:00 UTC
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB21289854
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 Mar 2025 17:14:00 +0000 (UTC)
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8029F10E4A2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Mar 2025 17:30:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1741626839; x=1742231639; i=natalie.vock@gmx.de;
- bh=NLdUb3J3hUdjeoKHQenx8Vv2g2Jqhn3G5DlBASNBmEU=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
- MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=RJT1vggFnFZ9tA6fWM4qtCdANJ8Sx5eIfAYh52iGfEEHNmXIOn8TdkLGEaeuUmlq
- mNlC/nSMFsrJrF+qK4UM5zuYUdwtLJoDDrURRWF6OohYn6wbZPhBwC+Av0B8SEupg
- U8fsZVf0Kr0SU3RYlVEOxXFfBKajEL4wZZp0hpsimz5tQwKPCd4EkVVdVYbeJgYEE
- mxW1Pacism5m477GMltkc6s9ep8XMDQefcp5FtaeAXiPL6UGZT/CkOdWtOwwSJTVy
- VoljY9dwO553CPSotHq6wDtwDmc4ZLiXcMGZun5ql0/eLp5Qh8+wfj8YKgXtEPQY6
- yJZxJmYLTBC4gGpUyw==
+ s=s31663417; t=1741627800; x=1742232600; i=natalie.vock@gmx.de;
+ bh=FhNFxFo2nhgc2jfvyISFM4BS0OZs1Ox8tnLWpoS92gY=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+ References:From:In-Reply-To:Content-Type:
+ Content-Transfer-Encoding:cc:content-transfer-encoding:
+ content-type:date:from:message-id:mime-version:reply-to:subject:
+ to;
+ b=IrpTGvsGxlKqvnkPwTOaaBEmBAy14qR7uNEIsPptjF5pQBv9Fniu9xd7ircLZEXN
+ dbweaqg3TsCDbqLW2D+CqvC7x0g8xb6lLOWDdkKBp4I8II1J3PRKMhzDtaiGdhinL
+ iRQOn/FEmW/VQWSPD7PR2/hwo8dvG29GgIPPgOpZJ5VnOaeQe/4b73AoiQ6Fp787b
+ X4Ud5Wg2V9FbRqfGuT2tYGDeg5X7rlXHBMwqFAsssYKLOp7Jt1QbWPDZSN+wXK5xZ
+ 8UheZeiRvq2/bgrnOwjk6kcTV/qDk+9qD8sWXb39gtsRTQZ415zyM6u2Ew4a3VBQ/
+ T6sk1gSTiLZH4wg36A==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from localhost.localdomain ([109.91.201.165]) by mail.gmx.net
- (mrgmx105 [212.227.17.168]) with ESMTPSA (Nemesis) id
- 1MlNp7-1tNsBR0fOv-00hCKq; Mon, 10 Mar 2025 18:08:40 +0100
-From: Natalie Vock <natalie.vock@gmx.de>
-To: amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com
-Subject: [PATCH] drm/amdgpu: NULL-check BO's backing store when determining
- GFX12 PTE flags
-Date: Mon, 10 Mar 2025 18:08:05 +0100
-Message-ID: <20250310170805.37536-1-natalie.vock@gmx.de>
-X-Mailer: git-send-email 2.48.1
+Received: from [192.168.0.3] ([109.91.201.165]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MiaYJ-1tL8192XsF-00jxM8; Mon, 10
+ Mar 2025 18:30:00 +0100
+Message-ID: <ae4084f2-a34e-44db-936f-be4f8204e7ea@gmx.de>
+Date: Mon, 10 Mar 2025 18:29:59 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Allow buffers that don't fit GTT into VRAM
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Cc: Ivan Avdeev <1@provod.gl>
+References: <20250306170118.40238-1-natalie.vock@gmx.de>
+ <43becf25-ad3b-4aae-9919-a74feede06a3@amd.com>
+Content-Language: en-US
+From: Natalie Vock <natalie.vock@gmx.de>
+In-Reply-To: <43becf25-ad3b-4aae-9919-a74feede06a3@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:RQ2FeHjj5xCFAy4SwxljmQNAnCsDEELlQiXVxXDzjAN3MaI2BIB
- Qa1P1QWSu/DTzai61n/+sMBuIJxB8e05IL8ZEV0ktQtw8yFrY5gDMTffU3py2zmA331MyNF
- 9dNiK3+SmdOqyXkUoHHAlyBe95bE4woo/0rufL1j2PR/jF3jZHsI17TLjvq6O/FcgoQ3A/e
- XxevBehOK/3XLwgEA9MEQ==
+X-Provags-ID: V03:K1:Xb9GDpJ9M/uzXmHyVlJeRAp+JktY20o0WoZKr7mcUmJOUNzdwLv
+ XPJdWaWm7JrlOSc6tHN7qVNGipUDFUBypSgvzo364QFFhPUrrmE4x8+GRCHhOQEzAkCtmLP
+ p0gHTDl1phZBFwrhz1r1pD4R6k5UCmGMCjJy9M8a9aVkFmS+gsH0aNcR3V8kpXNxQuK2TVC
+ ihfVMNWF40ZwLN4ACa8ZQ==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:zK9Dhi7YI7I=;MiCFA1xJfDK2+G5E+YX561rKVrx
- GozGAsrtgltGNFta8Jog14CNRMvdsMxO/lKo/v1z237KaJHZ8m1b5YBPPy7nIblXTLKvpKLH+
- g+MNEZ1mscxc7sgd1CH78K+MAKiY/BNXbVBa/LjBYbrOwwsBp9Jvj3I3hCaM7eLr0yTtdSGFo
- aUpS1v4d4PgLnEbf+iRA1CCLCBTR8YmeMMCiRn9+RhQMl0htSGeD5YvqZpSfjrT5EkJXI1h3c
- Vm0P/umMNZtv3p59VGuor+7T9UWRXkEgbPLRjvryJ16BKKHQW6y9l6iiFDZS8RghI4rekRSSu
- T53sAhUBgRDTnHg6VHR9hAQuKjTIsnvPdh6XUh08azKET37OmQbZEV7M8UzCOiMkul7fdCaB2
- qcnfrjm4DvDWGrP0M4/T7d6J12TFqnCSnKQeNBkIyGubffLQn32FnwVEdwMEWRSB72/W5q3eN
- RJJkWGP5MWUQnctq4g3wYqvAy2bmKpO6e6GUyQQWJZmoHMldqVn9hmr4fyqeyzfD68/B9UZc3
- hld83Bxc1BW3D5jp9dQhqXMSBS3Ecd6YgLFhQ55otmvnO/ip7G7LZmCTgz36RsgKMtCM2cgDF
- 9m9eGV4vmt9nhjf8HAyUvY14IHVetL+1YHlgL2xVQMjod1HHufyfv3NFFrnYNoceXI2YTOmHC
- 7m2FF6Uz0vl82r8YP0+mLAeXLOfaLJsD7JMb5mDkh2U9CDKxCjib4CiaGpb2H7joIN94r05AI
- 0cekmsZ0OPlZe7Nsg7lFoLHTHowDAZ0PQLa/VctT3GoaqbgIh3dYHfrnMe3I5KY3fxicO9iA+
- mldwOR0pe/YPSwmFKIK/s8EF3yl/NGeTKWRtk60fUKUsCnvnqJZOOuiW+HFfUIo+ZCU1c9TpU
- LLTAk/TZaIMsirlf9f2yyie8/MNdE3x6gh1/sFisQrrXwg2Bhvgmnx+AKu+I7k/TkRWkCosnA
- W7ThF1JFNNmM36HlEzeJC4PBVgZaDhbepg7NwGygvB1MDxP8L+qACWWnnKFcKVsLs2UhJsR2K
- /FQmPxUuP6sTI+M5aIcZUXb/LqM9o3OP+NEsbjxUVyKVbarq6khzyf+ZeweIvXrfi2JTdiRkH
- 9DYbHVG3q/d6fzCCoxlHTWbe7g3Vl7Ij7wFyYDZHPc74vp4TX2sGomcZ5rl8EgT25zCyPQu5J
- mSS2tASb5L12284KkwzbuikEZYKHi4SW7FoS9TAMOs7FAVlgHTtnMGt/UUrpU8uvOOmCU+EEw
- mp/s+eY49mCT0O6a3q3itls27oGDeENhLPVmxWmYs7qycsGolvpO6J3OD4Wi7ONyp2Ar9miKj
- Ur7OdAjbUTTk5k4JVMzWywRRPDo8HbIeUG6GIxJzhvt4v+F4ZTrP41Rmuozdj2NeQ3QXfP2cA
- 3EzaQFBobavxVOLszu4PDoS/H87VMIZIeoffVQN1JnPdPKbVEjMzic3j2S
+UI-OutboundReport: notjunk:1;M01:P0:hsy/B2Lz+CU=;UGZKjOL1VyQfPjNd9MVxlkQCf7q
+ MfR8H/KUEQR6jAuaYkQvoaihJnPw85c+Fqyuv5EfOp1x21fmE5I62DrkvqflCzOCYo9ZOiEKo
+ tq2mqam2tyuCcKtPtLgp/1v/qgwTfEi01HfHRzLVMZJQSYunc0st7RM7g7QujxJ3UbSxT/8Ev
+ JCpuLKw/ICJzznA32gVxpR9EXVrw4w58zepEbJbTN0+AH1mXEBt3JesaFGmy/+7ijZ/xsnOjt
+ zCLzKylwU8V5WqY1V7xE8bBYpLp+xEcgA22kivmFs/AWsRgX1hx6JoZbtjZtDBt2LBxQ1QwDw
+ ecxQDM6orscSQx3pM+bf+TOSohu+Z1c3jyfXYDzMYlH97Sq5HzcKbWXFc78rDwbJwCUQDHbKE
+ J0qgngeCiV6puf7bQfy1Q2SoMB1oEmSyzIIY0gBfl6IkEWWLeIDlva3iajb9B64j89k7i9zgK
+ za2mb5K2piHUYqWCQdQEKc3LUSC2RmhugaJSMQGZA/1A0yvRYaE3W9vPOVXSwaLfm3mjhc6lM
+ cfGTYVltdDVgyyshuTax+zeOqlEP4XkdpiUEDPlmnXd8uLOdg4R96y114tXyep9ZuUO+jJr0b
+ cQlyMUE6e2Dwn0MUXlDUejeNmw2gZc2sZwswkO5M8Ah9z4qy9N1AVL8EmvN5qrCF9nMRFKUcr
+ MN5rgxoatLIrY9pdXKMnPwHt/NjKe5sHDV7NrZvwKWjjpJYaqr/Hbbt5uYJ04OsUM8Z5p7Yor
+ WlLvFjw3oP+zomRdCF5jJ7SumP2O5plRVS+j5JpCsucjzCG7JddoA8Y1OSjyokCCvj8oy4l7A
+ pHqWp9N8rv3mciYiuDJM29n0iWcJBiJh3xbzSDeawb+epENd4oDiIf+TnGQeoOH3UlKcs7r9S
+ R5WZZ/fUNE7sL7TzN3tEfwKOpLUfhwPQLc3ncB6nPc8EbTkeuRUNprsjBYSWIwy+2de3HAjcy
+ Ip22uF+iOYQncwdcDaNNz+Wo88Jn3YPEE9XCchPPqfgmVj0j1ASF3zUGBrchu5TVgnKPVy2nb
+ P9otCpHj9o8PxaxbcTVAaFaOEW+Lsvxcsub+vyp2h0TegmJMriPdBLrWxwowu2t9JmqRyutjm
+ kDzgwoaEwMn+XmqYDf2QP2ms7/vkJi9O+jbLhIedNBo++/X4wt2Y/ZqqO3+YXkGNgF78R20Y4
+ u7ZDnUQLS1auEuQLY/j4X8vjwy/sud/WtqbJuG8sEiSmWZ/fHp+Rn7PtKBZV+YUlNVH5uJ/Nc
+ MK33LsBJDNqR/Otr81wiRXpdFN4yHmJ4dIrGA6o8GSiFKdh38lRhVYtW1B4SEnvAYlqAemdq9
+ Y+UQf7dywOzdtYuVQzVeo17GbeYc/6AizNmJXYjCmK8KCTl0jgv7oXxlQbrVbYBmOO3iFr3MF
+ 0um5Mq8AVQ/XuMGlFdObm0MHR8R7w6EvlvuZ4S1qjFGG64BfMZKDf6uLk2
 X-Mailman-Approved-At: Mon, 10 Mar 2025 18:05:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,34 +89,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PRT BOs may not have any backing store, so bo->tbo.resource will be
-NULL. Check for that before dereferencing.
+On 07.03.25 09:39, Christian K=C3=B6nig wrote:
+> Am 06.03.25 um 18:01 schrieb Natalie Vock:
+>> When userspace requests buffers to be placed into GTT | VRAM, it is
+>> requesting the buffer to be placed into either of these domains. If the
+>> buffer fits into VRAM but does not fit into GTT, then let the buffer
+>> reside in VRAM instead of failing allocation entirely.
+>
+> That will completely break suspend/resume on laptops.
+>
+> we essentially need to always check if a BO can fit into GTT.
 
-Fixes: 0cce5f285d9ae8 ("drm/amdkfd: Check correct memory types for is_syst=
-em variable")
-Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-=2D--
- drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Good point, I forgot about suspend. But as you say, we always need to do
+this, even for VRAM-only BOs. I'll send a v2 for that in a minute.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/=
-amdgpu/gmc_v12_0.c
-index ea7c32d8380ba..bf8d01da88154 100644
-=2D-- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-@@ -528,8 +528,9 @@ static void gmc_v12_0_get_vm_pte(struct amdgpu_device =
-*adev,
+Thanks, Natalie
 
- 	bo_adev =3D amdgpu_ttm_adev(bo->tbo.bdev);
- 	coherent =3D bo->flags & AMDGPU_GEM_CREATE_COHERENT;
--	is_system =3D (bo->tbo.resource->mem_type =3D=3D TTM_PL_TT) ||
--		(bo->tbo.resource->mem_type =3D=3D AMDGPU_PL_PREEMPT);
-+	is_system =3D bo->tbo.resource &&
-+		(bo->tbo.resource->mem_type =3D=3D TTM_PL_TT ||
-+		 bo->tbo.resource->mem_type =3D=3D AMDGPU_PL_PREEMPT);
-
- 	if (bo && bo->flags & AMDGPU_GEM_CREATE_GFX12_DCC)
- 		*flags |=3D AMDGPU_PTE_DCC;
-=2D-
-2.48.1
+>
+>>
+>> Reported-by: Ivan Avdeev <1@provod.gl>
+>> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+>> ---
+>> This originally came up in https://gitlab.freedesktop.org/mesa/mesa/-/i=
+ssues/12713:
+>> The crux of the issue is that some applications expect they can allocat=
+e
+>> buffers up to the size of VRAM - however, some setups have a
+>> smaller-than-VRAM GTT region. RADV always sets VRAM | GTT for all buffe=
+r
+>> allocations, so this causes amdgpu to reject the allocation entirely
+>> because it cannot fit into GTT, even though it could fit into VRAM.
+>>
+>> In my opinion, this check doesn't make sense: It is completely valid
+>> behavior for the kernel to always keep a VRAM | GTT buffer in VRAM.
+>
+> No it isn't. On suspend the power to VRAM is turned off and so we always=
+ need to be able to evacuate buffers into GTT.
+>
+> Regards,
+> Christian.
+>
+>> The only case where buffers larger than the GTT size are special is tha=
+t
+>> they cannot be evicted to GTT (or swapped out), but the kernel already
+>> allows VRAM-only buffers to be larger than GTT, and those cannot be
+>> swapped out either. With the check removed, VRAM | GTT buffers larger
+>> than GTT behave exactly like VRAM-only buffers larger than GTT.
+>>
+>> The patch adding this check seems to have added it in a v2 - however I
+>> was unable to find any public discussion around the patch with reasonin=
+g
+>> in favor of this check.
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 30 ++++++++++-----------=
+-
+>>   1 file changed, 14 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_object.c
+>> index d09db052e282d..b5e5fea091bf1 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+>> @@ -555,27 +555,25 @@ static bool amdgpu_bo_validate_size(struct amdgpu=
+_device *adev,
+>>   {
+>>   	struct ttm_resource_manager *man =3D NULL;
+>>
+>> -	/*
+>> -	 * If GTT is part of requested domains the check must succeed to
+>> -	 * allow fall back to GTT.
+>> -	 */
+>> -	if (domain & AMDGPU_GEM_DOMAIN_GTT)
+>> -		man =3D ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
+>> -	else if (domain & AMDGPU_GEM_DOMAIN_VRAM)
+>> -		man =3D ttm_manager_type(&adev->mman.bdev, TTM_PL_VRAM);
+>> -	else
+>> +	/* TODO add more domains checks, such as AMDGPU_GEM_DOMAIN_CPU, _DOMA=
+IN_DOORBELL */
+>> +	if (!(domain & (AMDGPU_GEM_DOMAIN_GTT | AMDGPU_GEM_DOMAIN_VRAM)))
+>>   		return true;
+>>
+>> -	if (!man) {
+>> -		if (domain & AMDGPU_GEM_DOMAIN_GTT)
+>> +	if (domain & AMDGPU_GEM_DOMAIN_VRAM) {
+>> +		man =3D ttm_manager_type(&adev->mman.bdev, TTM_PL_VRAM);
+>> +		if (size < man->size)
+>> +			return true;
+>> +	}
+>> +	if (domain & AMDGPU_GEM_DOMAIN_GTT) {
+>> +		man =3D ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
+>> +		if (!man) {
+>>   			WARN_ON_ONCE("GTT domain requested but GTT mem manager uninitializ=
+ed");
+>> -		return false;
+>> +			return false;
+>> +		}
+>> +		if (size < man->size)
+>> +			return true;
+>>   	}
+>>
+>> -	/* TODO add more domains checks, such as AMDGPU_GEM_DOMAIN_CPU, _DOMA=
+IN_DOORBELL */
+>> -	if (size < man->size)
+>> -		return true;
+>> -
+>>   	DRM_DEBUG("BO size %lu > total memory in domain: %llu\n", size, man-=
+>size);
+>>   	return false;
+>>   }
+>> --
+>> 2.48.1
+>>
+>
 
