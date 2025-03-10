@@ -2,126 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D365AA5BB38
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Mar 2025 09:54:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B59FA5BC6D
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Mar 2025 10:36:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E48710E535;
-	Tue, 11 Mar 2025 08:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D426010E54A;
+	Tue, 11 Mar 2025 09:36:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Nxp67WEc";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="GJLL1WRN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2061.outbound.protection.outlook.com [40.107.220.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4499410E537
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Mar 2025 08:54:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EWafa3ae9SBs6CVSzgDRFR1u+/kce62EddhyxVHOq5v6jtr40iO8p1JMQhv7IP1OB3lb9H6ee8SncIxQmKPqjz4cMb764tkJ6PRDsS1a4xVfsVLg4boUImTmvxi+UetuRe+WxnPyxHalLaakoGbU9roDsNjrMevMcCsrKBXeDwNe8jc9ibr6CUaQ9m3CKptqMhMByJ7LG/YZbUPTwuSQdSQ+POfA+mGfz0TbcVyHGYTb3VGLaIpzBe1WOytEz5xCrg69fln6dib8mBecFnxA3njAheOqK/q+G2Mz1xxG9WQ2e/TjFaf9TZrqCJ7w2fbPeONKrgGGowPWJRrXoAQiCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=88f1F/jJrIb/hGSGjpRKly+di+R7WOH0imq0jOp8pYk=;
- b=aOpl1FQjNWkY/Y8cC45uURlMr2xQpcT0nh+PrKwxyVafT6E9WCLqUATCVPeeCpmUYnDEjOuyt7EzuBGC0wOgekKk9sBLRPMEnFzdEpdq5zjPmexmr9Mn/5+CjJ24KPNxdO/YANVmV1Im8I1Ce99d8hEHZtFOal8Q38fHNplbLjQ8Wks42tWIg4QwZv2ibujsI6fyucdqCbmzf/go/fMhLECPndO0xjXmUwBuLevl/k1zMkSVwy4qpiscu6lcaFU7F0Uw6IYPEWdZyMiTf+PrPwRuQ7RLK49bjY+a2iENERSHmdYHY1i2qzohEBK/RoYPAsb2do52uPzp5CCAasjCvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
- is 165.204.84.17)
- smtp.rcpttodomain=lists.freedesktop.org
- smtp.mailfrom=amd.com; dmarc=temperror action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=88f1F/jJrIb/hGSGjpRKly+di+R7WOH0imq0jOp8pYk=;
- b=Nxp67WEc+ScbBHWwv1/qXICTOUCO/nLAGv5HpXSXUskx/+9ylKWfpSceeAUwe2t82qaKqPW1FIPNptPtIAL6Yk6ZupOFaDzzRiARJcKdMRmvtDbR9eSPEanPLboFBlEk1wTbrFU7e5KLqMqWuoSLXGd05hL+gTZ54RlfkotJKZ0=
-Received: from MN0P221CA0015.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:52a::31)
- by IA1PR12MB8405.namprd12.prod.outlook.com (2603:10b6:208:3d8::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Tue, 11 Mar
- 2025 08:54:53 +0000
-Received: from BL02EPF00029929.namprd02.prod.outlook.com
- (2603:10b6:208:52a:cafe::7d) by MN0P221CA0015.outlook.office365.com
- (2603:10b6:208:52a::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8511.26 via Frontend Transport; Tue,
- 11 Mar 2025 08:54:53 +0000
-X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
- 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=temperror action=none header.from=amd.com;
-Received-SPF: TempError (protection.outlook.com: error in processing during
- lookup of amd.com: DNS Timeout)
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL02EPF00029929.mail.protection.outlook.com (10.167.249.54) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8534.20 via Frontend Transport; Tue, 11 Mar 2025 08:54:51 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 11 Mar
- 2025 03:54:50 -0500
-Received: from kenneth-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via
- Frontend Transport; Tue, 11 Mar 2025 03:54:49 -0500
-From: Kenneth Feng <kenneth.feng@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <kevinyang.wang@amd.com>, <alexander.deucher@amd.com>, Kenneth Feng
- <kenneth.feng@amd.com>
-Subject: [PATCH 2/2] drm/amd/pm: prevent skipping the workload setting back to
- bootup default
-Date: Tue, 11 Mar 2025 16:54:36 +0800
-Message-ID: <20250311085436.628620-2-kenneth.feng@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250311085436.628620-1-kenneth.feng@amd.com>
-References: <20250311085436.628620-1-kenneth.feng@amd.com>
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D574910E2B6
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Mar 2025 19:49:14 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-3912c09be7dso2530082f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Mar 2025 12:49:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1741636153; x=1742240953; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=BCAuazpPMbYWsaNkUKxyhzQyMn4S8VMIE7QgIdLar98=;
+ b=GJLL1WRNar37VbOHMMmnTFUjISyW6KTa8i9wdGo2se3H+EhVOqOt5EE5l508X8CRPJ
+ 6DbFpAWLijJ9XPFMs1MKL7HUBu7rvtwH138yBIHCnOKs26AryBv7mDGMObPBCvFQjNtd
+ DWd9ELhLp8DbeK8bEfGmLrnw66XXR+tAuFmLq6vOV4vpIZxVGS2748obsFTAoscuAuGq
+ IuWvcLjs3BDvv6OYNbtB5pHxEZWzrEMC8myH9LMIEK4fshUSRn5HXXU9jFoS/SvjQFKD
+ DIC3+tV3w5BdlCp3e8InI7M7UY4bhjBAMutEaL9FBloBOohG/c6ESpO+ZA3L/elQykPf
+ a+RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741636153; x=1742240953;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=BCAuazpPMbYWsaNkUKxyhzQyMn4S8VMIE7QgIdLar98=;
+ b=B/omKQ44TiykMwkGh/y+WsvUJiHjxH+l4vR/Zp3DXaHlOI1I1Ehay1D8pBb2FRyWFj
+ rb3R3OZ3452Mb74Bl0F5YVKzyvB68KM3kFVSgNYxrOSTzgig1vPuEUKqHO3Yey27wOju
+ 8wjilR2Jh7xShgx1ipB7ruSQ4DPNTeBRzCVjPnFG0Uf9nHwMOzcTfBWv2XX4YM4itBKZ
+ +ggLR4I4TL8v3NxSj+u+9fuFAFfjmKDRIWDFqy28XVCZWFR52gUqXmcqqb6zyRVdgpGC
+ RmggtK9TA7DbMOI5Dj24dicbXB7J18O/nS/QRBqJryIcBnu+IFuylUQfL3cZUZIkXcYg
+ 2bHw==
+X-Gm-Message-State: AOJu0YyNb/6IPaeh2AZRiX+QjHONbEflN9YlIndxV6GCkmTldB5SYRt2
+ YQqzte5mw9rOP8cbDd/Y/AprQm83O9kjQs0QoJB1PBZ4WonpfSXCBJf87Pn4fqVollWe2Oc0Zfc
+ y
+X-Gm-Gg: ASbGncsC5zn9K1jtW0961OazuyESLXFtrMQj6ckHp5mzALevdHMOu33Mlq25T9bGEjg
+ Gc8Ps8ZVRrxIz7M58MgeMNVNSdewnWl9uRe90Vcz5jt/Jt3n1cfw/9BKfrKSo5fFE1QB5+sHful
+ hEsrKDsG38kRWHxJ2+06MieUZcYgfEaIBNWZljvwBsazsa0U8i1N7R9CoDPbUAuEDZOISLov/36
+ 4xxjwe/IFpXmWNFMv8EqAJqq6wDXe1yomFCbvehDpCrIeqE1ybkfQglxwlvjg7HsueHfYoetAdL
+ Z2oBZfElb1MGmV5UYgtHJgJOnSCTU2yCL0aTLBKOL0q1MX4uCw==
+X-Google-Smtp-Source: AGHT+IEka8J41h3IXsy09ddM3TVwMT5BCHjvV2dLC/LpY9IwOCe2fUttv6vpZ6EbGm/a8MCFZFEpMg==
+X-Received: by 2002:a5d:59ae:0:b0:390:f5e3:e833 with SMTP id
+ ffacd0b85a97d-39132d379e9mr9565860f8f.23.1741636153416; 
+ Mon, 10 Mar 2025 12:49:13 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 5b1f17b1804b1-43ce8a493d0sm94262705e9.1.2025.03.10.12.49.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 10 Mar 2025 12:49:13 -0700 (PDT)
+Date: Mon, 10 Mar 2025 22:49:09 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amd/display: Expose HDR output metadata for
+ supported connectors
+Message-ID: <d6cf4541-37bb-4588-ab94-057c00231415@stanley.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: kenneth.feng@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00029929:EE_|IA1PR12MB8405:EE_
-X-MS-Office365-Filtering-Correlation-Id: bc19af92-01b1-42fc-0b18-08dd607a6302
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7KzalhzKtYyKgAQgzFtdqZYa41p+h/SNoNUWhaU2UbpoT6ROrgrvLj2JEoAT?=
- =?us-ascii?Q?2elHUCLYow6zLj7jN6zU123JYVC9sS/PZ6c1UkRdbg7T8kxr8Y+7cijsMpRu?=
- =?us-ascii?Q?nlbbnQc9hlutFmfcqt5Er59x+tegVt8JaCdn4mF4NWHoB3N+HvFK0BlbFrYb?=
- =?us-ascii?Q?YVVy+hlYtXwSGc8iyqSlz38eIYi8RMXWQY0/DMtvg1Nl72Ro/zuiwlEHlXfd?=
- =?us-ascii?Q?MkD6r1pC6PrIeVRdUxn4uldRRarFKflDdWSSP/XNStIei/cQ2u+lRkIUmors?=
- =?us-ascii?Q?wCyJzDmXccfz12Ijtvlc0JP6JQTc2yUjHLykICpICoTIXiMCG7AA2IXEJ56n?=
- =?us-ascii?Q?pY94blQ1WM/rs6Y1GmtKhqJsKcawuEGgHsPe097ukvP8GkWQu9d2PlxOy8gu?=
- =?us-ascii?Q?PROurFaCsGwFyASivNM5SgxEoQmB/a1scFwvs8AX3x8WYeXrBHVi1ccP6jxd?=
- =?us-ascii?Q?vZNtfJhxp0OxvAMnTEtdKzxf+VFmSV/nemg2rqMy4L5iE+eQsj9umAu7VH8T?=
- =?us-ascii?Q?ThU2ID/YmXaDyfDA8FCOkuwlHpw750SSblJXvDIEjX6hNJsGoooNONjz/Xqg?=
- =?us-ascii?Q?3eQ0o0hb7e2bF2XhbX37YPaAJf+ENkRzVApHjoh9rypBplFYHiYFL9tm+T0P?=
- =?us-ascii?Q?YetqFR8oNehRm8tsyjYAWcFoOq02y2e63p2nCnR9wn5CDe87vLOGxEXUEpQA?=
- =?us-ascii?Q?G7+KsO5I5mRJlcy9iEYCvbWtSmZvn5jSvjiVy9lAP0iup7q7eZcUoD1gmCSy?=
- =?us-ascii?Q?vW+8a/khry6sKJroU6ZFQovYpubAllbOMgiInip/WfZeV/3fEoQTXKy3snpy?=
- =?us-ascii?Q?jL8gA/Pz501m8iZv/BTVzh2mvRlCNFTruG+H69ErNoKQrAoxoyZew716pMAB?=
- =?us-ascii?Q?0QGWjbmqXgX1AVt0IRZtUU00a1wYj5scqqVviRqxh5IVYAACLLesx3IKtL7p?=
- =?us-ascii?Q?tMIBnVwG8yO35JmWxYPzxKEzILRYB4+phlcVc10iqiGP9GuliV9zfD6qXWC5?=
- =?us-ascii?Q?gav8oIWkk8fle76Vo0+FtD0xnruG24MNrG4JLa55XuasskjGTyYz7LF0FGyz?=
- =?us-ascii?Q?YtRFbODgSsgOcKWJO2IPysdkXhObkS2MS2HSjmLBrVCKdo2SRIyY+BI9lbHl?=
- =?us-ascii?Q?i6KUkBxz8ZvbxBgQkv501YLfoDWBgA04qgWcVjEYPm441jiDn49GsZj7LJSZ?=
- =?us-ascii?Q?k62ubyV5rweKkux/HbcAXCI9atnfFlZwcTzw0gx3a889txi35gNtCAZD85N8?=
- =?us-ascii?Q?Zdh1h5EezKolhvNBs/1HYiC7Vr24ypji9sNoJl2MqQ4mJA1Wuxzy+DBp0D22?=
- =?us-ascii?Q?PVF0GxHGZe+wNM4J2tecdqBtI/6Lq51OHTzy2JzlzXn5qcGLI6uJpmA0B9o7?=
- =?us-ascii?Q?rUmUsIYqMUjoHORW0ZpJ7kvxQraYWUs04R//Dt2XUlwOg+xY5HzwLDOvhVNH?=
- =?us-ascii?Q?raz8U+Z/rKGSdieVb5dCj1J/obFRIydiwIxEqEBUEu4eJgLFZVIm9CVgrr57?=
- =?us-ascii?Q?wPIfj0yfOum2Lk4=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2025 08:54:51.9364 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc19af92-01b1-42fc-0b18-08dd607a6302
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00029929.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8405
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 11 Mar 2025 09:36:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,29 +84,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a bug fix. The scenario is that the same client can add the certain
-workload type refcount multiple times. Then the same client can not remove
-this setting when it wants to get back to the default bootup workload.
+Hello Nicholas Kazlauskas,
 
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Commit 88694af9e4d1 ("drm/amd/display: Expose HDR output metadata for
+supported connectors") from May 28, 2019 (linux-next), leads to the
+following Smatch static checker warning:
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 8cfb07549f54..592bf54015c6 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -2273,7 +2273,8 @@ static int smu_bump_power_profile_mode(struct smu_context *smu,
- static void smu_power_profile_mode_get(struct smu_context *smu,
- 				       enum PP_SMC_POWER_PROFILE profile_mode)
- {
--	smu->workload_refcount[profile_mode]++;
-+	if (!smu->workload_refcount[profile_mode])
-+		smu->workload_refcount[profile_mode]++;
- }
- 
- static void smu_power_profile_mode_put(struct smu_context *smu,
--- 
-2.34.1
+	drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:10751 dm_update_crtc_state()
+	warn: 'drm_new_conn_state' can also be NULL
 
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
+    10672 static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
+    10673                          struct drm_atomic_state *state,
+    10674                          struct drm_crtc *crtc,
+    10675                          struct drm_crtc_state *old_crtc_state,
+    10676                          struct drm_crtc_state *new_crtc_state,
+    10677                          bool enable,
+    10678                          bool *lock_and_validation_needed)
+    10679 {
+    10680         struct dm_atomic_state *dm_state = NULL;
+    10681         struct dm_crtc_state *dm_old_crtc_state, *dm_new_crtc_state;
+    10682         struct dc_stream_state *new_stream;
+    10683         int ret = 0;
+    10684 
+    10685         /*
+    10686          * TODO Move this code into dm_crtc_atomic_check once we get rid of dc_validation_set
+    10687          * update changed items
+    10688          */
+    10689         struct amdgpu_crtc *acrtc = NULL;
+    10690         struct drm_connector *connector = NULL;
+    10691         struct amdgpu_dm_connector *aconnector = NULL;
+    10692         struct drm_connector_state *drm_new_conn_state = NULL, *drm_old_conn_state = NULL;
+    10693         struct dm_connector_state *dm_new_conn_state = NULL, *dm_old_conn_state = NULL;
+    10694 
+    10695         new_stream = NULL;
+    10696 
+    10697         dm_old_crtc_state = to_dm_crtc_state(old_crtc_state);
+    10698         dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
+    10699         acrtc = to_amdgpu_crtc(crtc);
+    10700         connector = amdgpu_dm_find_first_crtc_matching_connector(state, crtc);
+    10701         if (connector)
+    10702                 aconnector = to_amdgpu_dm_connector(connector);
+    10703 
+    10704         /* TODO This hack should go away */
+    10705         if (connector && enable) {
+    10706                 /* Make sure fake sink is created in plug-in scenario */
+    10707                 drm_new_conn_state = drm_atomic_get_new_connector_state(state,
+    10708                                                                         connector);
+
+drm_atomic_get_new_connector_state() can't return error pointers, only
+NULL.
+
+    10709                 drm_old_conn_state = drm_atomic_get_old_connector_state(state,
+    10710                                                                         connector);
+    10711 
+    10712                 if (IS_ERR(drm_new_conn_state)) {
+                                     ^^^^^^^^^^^^^^^^^^
+
+    10713                         ret = PTR_ERR_OR_ZERO(drm_new_conn_state);
+
+Calling PTR_ERR_OR_ZERO() doesn't make sense.  It can't be success.
+
+    10714                         goto fail;
+    10715                 }
+    10716 
+    10717                 dm_new_conn_state = to_dm_connector_state(drm_new_conn_state);
+    10718                 dm_old_conn_state = to_dm_connector_state(drm_old_conn_state);
+    10719 
+    10720                 if (!drm_atomic_crtc_needs_modeset(new_crtc_state))
+    10721                         goto skip_modeset;
+    10722 
+    10723                 new_stream = create_validate_stream_for_sink(connector,
+    10724                                                              &new_crtc_state->mode,
+    10725                                                              dm_new_conn_state,
+    10726                                                              dm_old_crtc_state->stream);
+    10727 
+    10728                 /*
+    10729                  * we can have no stream on ACTION_SET if a display
+    10730                  * was disconnected during S3, in this case it is not an
+    10731                  * error, the OS will be updated after detection, and
+    10732                  * will do the right thing on next atomic commit
+    10733                  */
+    10734 
+    10735                 if (!new_stream) {
+    10736                         DRM_DEBUG_DRIVER("%s: Failed to create new stream for crtc %d\n",
+    10737                                         __func__, acrtc->base.base.id);
+    10738                         ret = -ENOMEM;
+    10739                         goto fail;
+    10740                 }
+    10741 
+    10742                 /*
+    10743                  * TODO: Check VSDB bits to decide whether this should
+    10744                  * be enabled or not.
+    10745                  */
+    10746                 new_stream->triggered_crtc_reset.enabled =
+    10747                         dm->force_timing_sync;
+    10748 
+    10749                 dm_new_crtc_state->abm_level = dm_new_conn_state->abm_level;
+    10750 
+--> 10751                 ret = fill_hdr_info_packet(drm_new_conn_state,
+                                                     ^^^^^^^^^^^^^^^^^^
+Unchecked dereference
+
+    10752                                            &new_stream->hdr_static_metadata);
+    10753                 if (ret)
+    10754                         goto fail;
+    10755 
+
+regards,
+dan carpenter
