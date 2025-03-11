@@ -2,89 +2,172 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A64A5BC6C
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Mar 2025 10:36:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BD54A5BC0B
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Mar 2025 10:24:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0341610E54B;
-	Tue, 11 Mar 2025 09:36:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4C5E10E53A;
+	Tue, 11 Mar 2025 09:24:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=embeddedor.com header.i=@embeddedor.com header.b="pThZM7nP";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="20WQMQmM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Tue, 11 Mar 2025 08:18:28 UTC
-Received: from omta38.uswest2.a.cloudfilter.net
- (omta38.uswest2.a.cloudfilter.net [35.89.44.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E024D10E525
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Mar 2025 08:18:28 +0000 (UTC)
-Received: from eig-obgw-6006a.ext.cloudfilter.net ([10.0.30.182])
- by cmsmtp with ESMTPS
- id rnyWt66qlAfjwruhmtNg4F; Tue, 11 Mar 2025 08:11:14 +0000
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTPS
- id ruhktvXVmUTWAruhltMFHG; Tue, 11 Mar 2025 08:11:13 +0000
-X-Authority-Analysis: v=2.4 cv=TZ6QtwQh c=1 sm=1 tr=0 ts=67cff021
- a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=6Vi/Wpy7sgpXGMLew8oZcg==:17
- a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=7T7KSl7uo7wA:10 a=VwQbUJbxAAAA:8
- a=OXdeduLSBdMSo9eDwqgA:9 a=QEXdDO2ut3YA:10 a=Xt_RvD8W3m28Mn_h3AK8:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=R/lmvIUe4lNj3XZkokRwvbtDuIId69U724e5krgi9KE=; b=pThZM7nPgN1l69lZs5n4FvJSgN
- cctP7X0ETqCTUmN41PgQLiXR2Zhk/9C/NgrZtNyZugh7IieJnDDl9f9uH434A6bL0w2+4JPlDVrNP
- IrF88Kpj7xT8yos1vAk2qMZSYRh2YtaODtzLqsp/u0OwhbmVD9kD0Akbr64zp4Wbld97we2O7ouz9
- c3vi6OWNcrB0HDtW5WB7g5KuTnXV8ZfrzWrrj/RJULJvvPdBJalRiTvN2BhPwl6pfmN9tQrlrdEvx
- 8PjhqO3/F/I21q+gncexY3AsIYJd3ztoJ4yKeNZGP2KS3+nZ7+/k/qO8ilZ6DwjHnZV51vyL3p66s
- megrRwng==;
-Received: from [45.124.203.140] (port=53616 helo=[192.168.0.158])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.98.1)
- (envelope-from <gustavo@embeddedor.com>) id 1truhj-00000003Tls-1Sv0;
- Tue, 11 Mar 2025 03:11:12 -0500
-Message-ID: <864c7dd5-0deb-4adb-a1cf-c8a809514d7e@embeddedor.com>
-Date: Tue, 11 Mar 2025 18:40:56 +1030
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH][next] drm/amd/pm: Avoid multiple
- -Wflex-array-member-not-at-end warnings
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Kenneth Feng <kenneth.feng@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <Z678TNhCbTk363Tw@kspp>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2076.outbound.protection.outlook.com [40.107.93.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C9FF10E53A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Mar 2025 09:24:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GNC9fgK5kjCIpoJe/Ak71xfHphmPoMUHfCA5SPEX9QXIqAvvwrnAdu1i6dgYZtr/Sf0gbiGCK9mVuHFje9r0zF6q5AlHrppVrkmXL+Qb1YOCqy8jRryEJgQVkAAaIBDqTyWpni45z83TIeOGBXbbak4GZ9f+g2aTAxf094cMZInajTJQbzFgiCp49Uu9dDrQyOVMQONs7DYyizCIEfO6hfqsloeTXYJIwfik2nli7mN3gmBI84qWSzrbneV3MmLvaGSbraABmd882qsERZ1GrXJO8D1F4zooQats34L1hF05gcz81GUi43hcQVd8hRHJ9mNFysoKs110ZvCZ5lmpGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+fqnPOWxAZQ+VdSHw+7kCajcWAD9bDrcsJWDgQXS9Vk=;
+ b=VQWjWOGw19yY4pE/ZKG/2pjfll+Bel8467uOI6gfJZgThybnWPr1Rkc7p05eBqZTKOGx/hOgpfUzt/AFnIrJr3Q4bLhShtWhdw5Qe0WNEzpS3Jn7cSthbkUZ7Li2yEo6x3yB31T2yENHXTs6s30W+xsXn6iE7Vl4mEXmP16Oad3CWIDvy6es0G+XBCBtHcCVzMX8qH3vZBzSNGssaklN2oQZxLeohhihrD6Xs4SxytGf7eYEq5PiKl+s03FtAjgUxWh6aKAb5wvUHXs0QnuTaKweoM1dwbfEaHjnk1S0CvALQ/hD4yeJBJRCE02HwylajwnT5iKISFWr1k3FYUG9Pw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+fqnPOWxAZQ+VdSHw+7kCajcWAD9bDrcsJWDgQXS9Vk=;
+ b=20WQMQmMqYCq1fGaFC+vUaG0JCKX+Q5oWJX5DJUUNs1M4mh9tT/+uMIcLFsKbBYvt4l5cdZZMqRIWgTdmD8pS7nAJZLPAgBBxDVA5xRT+BvxQkLydGGRHkuvOxX9VzniWFG6gJYNgDtC1Zt6EGs5xWsslcn4rAjozVvc/LUtx64=
+Received: from PH7PR12MB5997.namprd12.prod.outlook.com (2603:10b6:510:1d9::21)
+ by DS0PR12MB8767.namprd12.prod.outlook.com (2603:10b6:8:14f::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Tue, 11 Mar
+ 2025 09:24:32 +0000
+Received: from PH7PR12MB5997.namprd12.prod.outlook.com
+ ([fe80::c5da:9b53:9d77:c708]) by PH7PR12MB5997.namprd12.prod.outlook.com
+ ([fe80::c5da:9b53:9d77:c708%6]) with mapi id 15.20.8511.026; Tue, 11 Mar 2025
+ 09:24:32 +0000
+From: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
+To: "Feng, Kenneth" <Kenneth.Feng@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Feng, Kenneth"
+ <Kenneth.Feng@amd.com>
+Subject: RE: [PATCH 2/2] drm/amd/pm: prevent skipping the workload setting
+ back to bootup default
+Thread-Topic: [PATCH 2/2] drm/amd/pm: prevent skipping the workload setting
+ back to bootup default
+Thread-Index: AQHbkmNC0esJbgZ/DEyLIaRibYU8/bNtqYpA
+Date: Tue, 11 Mar 2025 09:24:32 +0000
+Message-ID: <PH7PR12MB5997ACDDB289D2F03D0D832282D12@PH7PR12MB5997.namprd12.prod.outlook.com>
+References: <20250311085436.628620-1-kenneth.feng@amd.com>
+ <20250311085436.628620-2-kenneth.feng@amd.com>
+In-Reply-To: <20250311085436.628620-2-kenneth.feng@amd.com>
+Accept-Language: en-US, zh-CN
 Content-Language: en-US
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <Z678TNhCbTk363Tw@kspp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 45.124.203.140
-X-Source-L: No
-X-Exim-ID: 1truhj-00000003Tls-1Sv0
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.0.158]) [45.124.203.140]:53616
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 4
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfC4u94Ga6BzDHIhknDJzPlAjKYhdCTpAIdvhMs8h4Rqs5vLHOZ6zjLfALzv2Ael3ThLyU1z22XUcELbsNywGFTDSD7sw2JObfXLllYiQeN9ao2Arh45c
- IAwiCx30ltz/wIq7+XO7qK4vyWGHEPg70RCRkq92XziWrO21lx5ujIShQjHluCRu2FHTj69HT0vFVJlMb57f4hxFYa275BTc+DVfUrNJGN21fG+CRnQKdiTe
-X-Mailman-Approved-At: Tue, 11 Mar 2025 09:36:43 +0000
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=278efaf6-c1c8-4c66-bda0-c8de14198e42;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution Only;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-03-11T09:22:49Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10, 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR12MB5997:EE_|DS0PR12MB8767:EE_
+x-ms-office365-filtering-correlation-id: 46c097c2-6f22-4b9b-70b5-08dd607e8811
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|38070700018|7053199007; 
+x-microsoft-antispam-message-info: =?iso-2022-jp?B?WlNRbG5aRnlDWTVQcWpLaGc2YkhUdU5uWms5Q0tneWZzMXRJdzYyNzg4?=
+ =?iso-2022-jp?B?T0Q3bWViNUxrTFQvMXcvYTZxdlVkN1hJY3VTS1Z5NU1BSWxtdm9vdGc0?=
+ =?iso-2022-jp?B?dWpZU1JZcW5vK1N6SXlrRytiVWVkbmZIVTY0RzYzVyt3OUo5NFRjU3h2?=
+ =?iso-2022-jp?B?MzlPSGg0cFhrTFM0UmhjT3FENk5PRHdVN0xtcnpDVlV3cUgyN2NySFhV?=
+ =?iso-2022-jp?B?SElPaURESnNObzVoVlJidnh6ZWhDd055cGpTSGVsN3RFWTdIQWJPNS9n?=
+ =?iso-2022-jp?B?UUt4Z1pkZ0poeEVOSGtWdXI2N2cxd0xieTh6OGVPTm52WVFVYXlNbGlv?=
+ =?iso-2022-jp?B?d2srblkxNisyZWVxbEM0cVM5c2FNK2MweVRnMjNSTGFqNm1NbHZiazRo?=
+ =?iso-2022-jp?B?ZDY4ZU5nSWF3ak9ucmJGa1NFY0x3ZCtlUjVzTDIyTGY2NDZuVE1DVG45?=
+ =?iso-2022-jp?B?MysyNk0wdXhGMFc4RkxyOWZFLy9oczBWUys3elV0NmxMbXFwbFRHZGdU?=
+ =?iso-2022-jp?B?czE1dzF6VzZzNTAyeWdwY2ZuaXJhc1U5bkV1WlBHejNlaktSbE9OU0ZB?=
+ =?iso-2022-jp?B?eW53dWdSVnJHYkNZWlcza2p2LzlacG9td1VPaHF2aTlBYzRQajRjbE5a?=
+ =?iso-2022-jp?B?SWtFMkt0Vnl1S2h6K2tOM2NwTEJhLzRwUzBUR0ZHUFZqZ0lpTFR6NDgx?=
+ =?iso-2022-jp?B?VjNzc2d2M2xsc0JQSncvekt0YzlFY0tlQ0oxZ01kaDdXU3g4VGxCNzlS?=
+ =?iso-2022-jp?B?VmhsRVM2bEdzZ0IxcHB1eXRsdlA0bHVOV0VKVElML3ZOdHIwVHNZNmZa?=
+ =?iso-2022-jp?B?dVhOSEg3RGVDUnVzWnFNWXVRM3lQeEo2MHFxeXFyVXNUbk1jWW5nNUhG?=
+ =?iso-2022-jp?B?aE15TnBLYXFuZGZReXBTR3NDMUFjRHRvTCtkdWtDeWtLTDRROUp2d2NX?=
+ =?iso-2022-jp?B?cFg1VVNRQ3N1bFNXOEN5SEZsMDVwNWo5TXBIQmFmNlpEWGptNGwwZmJR?=
+ =?iso-2022-jp?B?SWtRUUVWdUZLL0diVk1SYUJSdnZYNXFITVFmZ2tDOXd0VFgwbGJwbzAv?=
+ =?iso-2022-jp?B?ZUlNNnFJdTRVUU1oNW1zYjRrc0VsY2RCdGZNQW9wYUdJU3cvMTJuQlRa?=
+ =?iso-2022-jp?B?MHZCeEdSTFNSK1ZGK2xsd1dpL3BiTmgvS3ljVUhBeVdPY205dTgxWGJL?=
+ =?iso-2022-jp?B?cHVsTFBQRlJhbm5sN0pBN0RlUU4zMTNzbXZBT0FqUGJXRlhYa0gvTk1q?=
+ =?iso-2022-jp?B?Z1RDRzBGeGV1K0tYZVJHYTV6TFVQalFRUTMyZVRPSDJYeDJnOWZuV3Ft?=
+ =?iso-2022-jp?B?Q3dJYzcvcWdjRzB0Znc2MU55dnE4MHMxcFc4RUhRM0paOWtWc1B0N3hY?=
+ =?iso-2022-jp?B?c1JxRDVaOHp0QmEzczNtNWNiQXZ1bjBITm03aXkwK0pFRmxORjFWMnFX?=
+ =?iso-2022-jp?B?dDBZMXorbnN3WXpyTE9FbVh3R3VGWjFSR3k1a2lWOElLOU5PKzRJSkx0?=
+ =?iso-2022-jp?B?eDRkMnJBdVVabHhJemlFOFJLZ1NEcWVjYTdRYVBWVVYwR1NScE9ZOVNz?=
+ =?iso-2022-jp?B?K3lNZEZFR2hSSDVKUzhKZUd5MldvdkxmYkpUKzV3YTJIU1dHekJSNERO?=
+ =?iso-2022-jp?B?Zmc3RDNuN1lIT2NxM25zSmpqSGl4TWpQUFFYR0hwZzd1ODBCV1ZpcFEv?=
+ =?iso-2022-jp?B?cCtQY3NkaVNvY3g3cGFhRkhIQ3Yxb25GRmdwMUszMCtNYWRQZHE1NXZh?=
+ =?iso-2022-jp?B?N21RM3VWcTMyZDlMZElKd1N0TkQ5WGMrZHEyekVrdG0zbERwcUpxQzVp?=
+ =?iso-2022-jp?B?OHJKbEFzeC9MbHpialE1b2ZQQmRmTDU4UWY0QS9iWEJXSVNvWlFFOGNB?=
+ =?iso-2022-jp?B?VWRjMzEyQTJueWR1MDFDbnZwakx5aXVlZ3JtdkpuRjl2d0hvMDVldmpY?=
+ =?iso-2022-jp?B?YTQ3Q3A5Wk42dW96Y21qNXhNNHhEU1VSSklCbFpSMC8rdXd2cE5Eclk3?=
+ =?iso-2022-jp?B?SDkzTkgwNThORm9zcW14NVpqdlV1bVgzam5Demw0NnlnYkhRc3UrMkdx?=
+ =?iso-2022-jp?B?MkdFTTN2YUlxeG9SUVBJR2s4RXFZcGp0Ri8wWWdQSzNKRCtXSlNNMFVB?=
+ =?iso-2022-jp?B?NHM=?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:ja; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5997.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-2022-jp?B?Q3BwclNMTXhvR0VjdUc3a3VWM3RxTHo4a2dOeEJhWnpFN0hOQWFoUnc2?=
+ =?iso-2022-jp?B?Y3U4Vi8vYnVLTFpZN0U2Q1dVNHVOd3hTRFhjcnkxV2hyOWwxVmhkQVA2?=
+ =?iso-2022-jp?B?ZWZaSW9LK0lqUzVPaVczWkQ3YWJjVFZIM0xSUCtKbloyLytnNDNYSFZn?=
+ =?iso-2022-jp?B?ZVBPRnNCZHpVV0NoZ1hUZTFkQWZLWXAxVkgwYXMyajBiMFduWG9GSlgz?=
+ =?iso-2022-jp?B?Z3ZlZ3VBZ0dzWVM3U1dSb0psM0EzZ096ZkFQYlpObFBiSXNOa2E0TEZt?=
+ =?iso-2022-jp?B?RzRBVG1FNXRlbGtHam1CSUkxWG5xQjRFMnZpdXFRdjk2Q3dXd2lOUXZo?=
+ =?iso-2022-jp?B?WTJEdEZ1QzBtTlYwQVRVOWJoaEpiaU5xekxaQTZrcmNtalVlY3BnTDJj?=
+ =?iso-2022-jp?B?citrQkM5cU1WTkhFMm14VzFEQm9lZ3pTOUhxR24wWWtaNVkySTZWMWJ6?=
+ =?iso-2022-jp?B?WTVob0VreStMT2J5N0U4N0FmZ0Q1RlZLYnpRS0w4QnRFZE1qU1loYnRy?=
+ =?iso-2022-jp?B?c3NncWpuNGxTNENieWtGeVB5R1I4akIwcy9VdExHR1I1SlJaQUNoc25t?=
+ =?iso-2022-jp?B?Mll4V2dyTWprZVdqK2xpQkZGMDJKYWRYU1JXWXVJOTFiZWZGc0Z2T2FE?=
+ =?iso-2022-jp?B?SEhIUkRwTitrN0NGYUpzVW9uMVdjSnByL3cvc05OaGZxUTBnd3hHNjJF?=
+ =?iso-2022-jp?B?ZnBhdHlDZUJwMExvbUdiKzMxVmFmR1JkOUtESDZQRXRVeG5Mb1VJem1V?=
+ =?iso-2022-jp?B?Z1VpUHNvRzJaVE1lUHlBQ3UzcjkxaHI1aDN0N1FXY3VHSFlZVEVIbkdt?=
+ =?iso-2022-jp?B?NGhaZEVLcHo0NTBKbkg3TC9ROFBsWEduTmlvYXpoV210eW5pQVVra2h3?=
+ =?iso-2022-jp?B?S3NXbHdOZTFMWHNPR3UvajM0Q0FYellVV0Z0R1V6SUZtOS8xTnhrY2Jo?=
+ =?iso-2022-jp?B?NzdFV0hSQTBYdTZHSnExc285SnQzVE11OFdJTFprQmJWNnJkb282Y1Y0?=
+ =?iso-2022-jp?B?WG1qRUpReUhPMkw2YXJodjBJUTFnRUd4aFZlQTEvaUd6a0pPdTNKai96?=
+ =?iso-2022-jp?B?VS9tTVJPaURUUFZ6aTYwejBUNkEzRXZWSzlsby9OdXhoNHdRWC9mL0hW?=
+ =?iso-2022-jp?B?SlNYQ01IbXFRY2JWRndlOTFCdU9ER1VHT2dYcmsyTjJQL0hvNk85azdP?=
+ =?iso-2022-jp?B?R3hJdGdqN0N0dlgzSWR3RW1MQlo3UlIrVGdZZXVyS1ZDaWdPS01sWWFS?=
+ =?iso-2022-jp?B?L3kwaGFYcjdnMTVmVk9xRmhaTkZpajlnalVxOWJjRmxuVVJrRExjaVgr?=
+ =?iso-2022-jp?B?TDNQUnZqVkZVM2xxdVk0M2VmUFFZSUkzcDhmeWJTWFhGYXFaMkMwR25L?=
+ =?iso-2022-jp?B?UDNmbTgxbGFTK1VCdGhxMitiN1hMaG5RWm5ubXRsT2hWaFZuY25QKytq?=
+ =?iso-2022-jp?B?aEU3ZWhvZGkzdjdEbTFFeTR4T0dHcTFrU1VKRkhrYkorNWpLV3pHUDlU?=
+ =?iso-2022-jp?B?QStlMzRZNGpxMkpBeVhLRjBXT3J1eFNZVU5ZdDU2Q0JueE5TekRuZHVn?=
+ =?iso-2022-jp?B?OTBOdnRwUGNwMXhwQmZ2ci9DbWJ5YndtRVA3MzhyYmZ4VG1WUThwTlVY?=
+ =?iso-2022-jp?B?dGJhRXBxRmRsOU5haWVITW5mbytmSHUzS0h0WXdueWZ4dGdnOVdnTnMz?=
+ =?iso-2022-jp?B?Y1VkNytvY3JxSXpjYnZlUmREMGJSNXViSXJmdWhIczRlWlU4OTRnNUo3?=
+ =?iso-2022-jp?B?UUVWSXdBTko5bTVPUHR3eGNjUVp1di9LcGJRaHBZeStaeUQzMSs1dHY2?=
+ =?iso-2022-jp?B?SWpiOWlyeUNlUmpqYXFpditHSFRmMUxqSmtwdndLZnIxME5NbTlWUHBU?=
+ =?iso-2022-jp?B?YWhmVVVHdGMvdzlYcXh6TFBUU1pEUXMrOXM1V1hKejdEZm1RamcyRVVM?=
+ =?iso-2022-jp?B?Q0RwR2tqS0h5UWpNWVNPZS9aem9hRXZDWlZTZllTaE9jek1BYlN2NXNW?=
+ =?iso-2022-jp?B?VHlpR3Y5bngrdm9ORXNXNXdaQ3VGQ2o3NWZ0SzlzMTZwcmhKaUVjU2Vi?=
+ =?iso-2022-jp?B?cUtGTWpEUStWVWxTRjBOZmhUcjNhazJNa2dFSUdTRU5YZGtkSlNXN2JU?=
+ =?iso-2022-jp?B?ai83U29CdWFOeXVVeG5Dc09zeVdBMjY4S21VdEJJNHpyZGJuZm9PdFBz?=
+ =?iso-2022-jp?B?dmxwVWdLY3dZd29BT2pSNmwrQyswdVFKN1h1V2NtMWwxWWtPeWpyczVE?=
+ =?iso-2022-jp?B?bVBkOFo4QVpQemFmL2RlRzN6a2xSWmk1az0=?=
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5997.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46c097c2-6f22-4b9b-70b5-08dd607e8811
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2025 09:24:32.1003 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xH9LnJWzI3ZZjlCcOmJBLXLxzQhD+ZMIQp29Z9EnCvV/fBnjzjBFRPyhJ6VOSvH1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8767
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,162 +182,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Friendly ping: who can take this, please? :)
+Please add following information into commit message.
 
-Thanks!
+Fixes: bd3c9d1cde0c  ("drm/amd/pm: fix and simplify workload handling=1B$B!=
+I!K=1B(B
+
+Series is
+
+Reviewed-by: Yang Wang <kevinyang.wang@amd.com>
+
+Best Regards,
+Kevin
+-----Original Message-----
+From: Kenneth Feng <kenneth.feng@amd.com>
+Sent: Tuesday, March 11, 2025 16:55
+To: amd-gfx@lists.freedesktop.org
+Cc: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; Deucher, Alexander <Alexand=
+er.Deucher@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+Subject: [PATCH 2/2] drm/amd/pm: prevent skipping the workload setting back=
+ to bootup default
+
+This is a bug fix. The scenario is that the same client can add the certain=
+ workload type refcount multiple times. Then the same client can not remove=
+ this setting when it wants to get back to the default bootup workload.
+
+Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+---
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/am=
+d/pm/swsmu/amdgpu_smu.c
+index 8cfb07549f54..592bf54015c6 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -2273,7 +2273,8 @@ static int smu_bump_power_profile_mode(struct smu_con=
+text *smu,  static void smu_power_profile_mode_get(struct smu_context *smu,
+                                       enum PP_SMC_POWER_PROFILE profile_mo=
+de)  {
+-       smu->workload_refcount[profile_mode]++;
++       if (!smu->workload_refcount[profile_mode])
++               smu->workload_refcount[profile_mode]++;
+ }
+
+ static void smu_power_profile_mode_put(struct smu_context *smu,
 --
-Gustavo
-
-On 14/02/25 18:48, Gustavo A. R. Silva wrote:
-> -Wflex-array-member-not-at-end was introduced in GCC-14, and we are
-> getting ready to enable it, globally.
-> 
-> So, in order to avoid ending up with a flexible-array member in the
-> middle of other structs, we use the `struct_group_tagged()` helper
-> to create a new tagged `struct NISLANDS_SMC_SWSTATE_HDR` (and `struct
-> SISLANDS_SMC_SWSTATE_HDR`). This structures group together all the
-> members of the flexible `struct NISLANDS_SMC_SWSTATE` (and `struct
-> SISLANDS_SMC_SWSTATE`) except the flexible array.
-> 
-> As a result, the array is effectively separated from the rest of the
-> members without modifying the memory layout of the flexible structure.
-> We then change the type of the middle struct members currently causing
-> trouble from `struct NISLANDS_SMC_SWSTATE` to `struct
-> NISLANDS_SMC_SWSTATE_HDR` (and from `struct SISLANDS_SMC_SWSTATE` to
-> `struct SISLANDS_SMC_SWSTATE_HDR`).
-> 
-> We also want to ensure that when new members need to be added to the
-> flexible structure, they are always included within the newly created
-> tagged struct. For this, we use `static_assert()`. This ensures that
-> the memory layout for both the flexible structure and the new tagged
-> struct is the same after any changes.
-> 
-> This approach avoids having to implement `struct NISLANDS_SMC_SWSTATE_HDR`
-> (and `struct SISLANDS_SMC_SWSTATE_HDR`) as a completely separate structure,
-> thus preventing having to maintain two independent but basically identical
-> structures, closing the door to potential bugs in the future.
-> 
-> We also use `container_of()` whenever we need to retrieve a pointer to
-> the flexible structure, through which we can access the flexible-array
-> member, if necessary.
-> 
-> So, with this changes, fix the following warnings:
-> 
-> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/sislands_smc.h:218:49: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
-> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.h:819:41: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
-> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.h:818:41: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
-> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.h:817:41: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
-> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.h:816:41: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
-> 
-> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
-> ---
->   drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c    |  7 ++++--
->   drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h    | 23 +++++++++++--------
->   .../gpu/drm/amd/pm/legacy-dpm/sislands_smc.h  | 15 ++++++++----
->   3 files changed, 29 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-> index a87dcf0974bc..2c9d473d122f 100644
-> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-> @@ -5234,7 +5234,8 @@ static int si_init_smc_table(struct amdgpu_device *adev)
->   
->   	table->driverState.flags = table->initialState.flags;
->   	table->driverState.levelCount = table->initialState.levelCount;
-> -	table->driverState.levels[0] = table->initialState.level;
-> +	container_of(&table->driverState, SISLANDS_SMC_SWSTATE, __hdr)->levels[0] =
-> +								table->initialState.level;
->   
->   	ret = si_do_program_memory_timing_parameters(adev, amdgpu_boot_state,
->   						     SISLANDS_INITIAL_STATE_ARB_INDEX);
-> @@ -5755,7 +5756,9 @@ static int si_upload_sw_state(struct amdgpu_device *adev,
->   	int ret;
->   	u32 address = si_pi->state_table_start +
->   		offsetof(SISLANDS_SMC_STATETABLE, driverState);
-> -	SISLANDS_SMC_SWSTATE *smc_state = &si_pi->smc_statetable.driverState;
-> +	SISLANDS_SMC_SWSTATE *smc_state =
-> +		container_of(&si_pi->smc_statetable.driverState,
-> +			     SISLANDS_SMC_SWSTATE, __hdr);
->   	size_t state_size = struct_size(smc_state, levels,
->   					new_state->performance_level_count);
->   	memset(smc_state, 0, state_size);
-> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
-> index 11cb7874a6bb..62530f89ebdf 100644
-> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
-> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
-> @@ -784,12 +784,17 @@ typedef struct NISLANDS_SMC_HW_PERFORMANCE_LEVEL NISLANDS_SMC_HW_PERFORMANCE_LEV
->   
->   struct NISLANDS_SMC_SWSTATE
->   {
-> -    uint8_t                             flags;
-> -    uint8_t                             levelCount;
-> -    uint8_t                             padding2;
-> -    uint8_t                             padding3;
-> -    NISLANDS_SMC_HW_PERFORMANCE_LEVEL   levels[];
-> +	/* New members MUST be added within the struct_group() macro below. */
-> +	struct_group_tagged(NISLANDS_SMC_SWSTATE_HDR, __hdr,
-> +		uint8_t                             flags;
-> +		uint8_t                             levelCount;
-> +		uint8_t                             padding2;
-> +		uint8_t                             padding3;
-> +	);
-> +	NISLANDS_SMC_HW_PERFORMANCE_LEVEL   levels[];
->   };
-> +static_assert(offsetof(struct NISLANDS_SMC_SWSTATE, levels) == sizeof(struct NISLANDS_SMC_SWSTATE_HDR),
-> +	      "struct member likely outside of struct_group_tagged()");
->   
->   typedef struct NISLANDS_SMC_SWSTATE NISLANDS_SMC_SWSTATE;
->   
-> @@ -813,10 +818,10 @@ struct NISLANDS_SMC_STATETABLE
->       uint32_t                            lowSMIO[NISLANDS_MAX_NO_VREG_STEPS];
->       NISLANDS_SMC_VOLTAGEMASKTABLE       voltageMaskTable;
->       PP_NIslands_DPM2Parameters          dpm2Params;
-> -    NISLANDS_SMC_SWSTATE                initialState;
-> -    NISLANDS_SMC_SWSTATE                ACPIState;
-> -    NISLANDS_SMC_SWSTATE                ULVState;
-> -    NISLANDS_SMC_SWSTATE                driverState;
-> +    struct NISLANDS_SMC_SWSTATE_HDR		initialState;
-> +    struct NISLANDS_SMC_SWSTATE_HDR		ACPIState;
-> +    struct NISLANDS_SMC_SWSTATE_HDR		ULVState;
-> +    struct NISLANDS_SMC_SWSTATE_HDR		driverState;
->       NISLANDS_SMC_HW_PERFORMANCE_LEVEL   dpmLevels[NISLANDS_MAX_SMC_PERFORMANCE_LEVELS_PER_SWSTATE - 1];
->   };
->   
-> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/sislands_smc.h b/drivers/gpu/drm/amd/pm/legacy-dpm/sislands_smc.h
-> index 90ec411c5029..1711e3e35e80 100644
-> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/sislands_smc.h
-> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/sislands_smc.h
-> @@ -172,12 +172,17 @@ struct SISLANDS_SMC_HW_PERFORMANCE_LEVEL {
->   typedef struct SISLANDS_SMC_HW_PERFORMANCE_LEVEL SISLANDS_SMC_HW_PERFORMANCE_LEVEL;
->   
->   struct SISLANDS_SMC_SWSTATE {
-> -	uint8_t                             flags;
-> -	uint8_t                             levelCount;
-> -	uint8_t                             padding2;
-> -	uint8_t                             padding3;
-> +	/* New members MUST be added within the struct_group() macro below. */
-> +	struct_group_tagged(SISLANDS_SMC_SWSTATE_HDR, __hdr,
-> +		uint8_t                             flags;
-> +		uint8_t                             levelCount;
-> +		uint8_t                             padding2;
-> +		uint8_t                             padding3;
-> +	);
->   	SISLANDS_SMC_HW_PERFORMANCE_LEVEL   levels[];
->   };
-> +static_assert(offsetof(struct SISLANDS_SMC_SWSTATE, levels) == sizeof(struct SISLANDS_SMC_SWSTATE_HDR),
-> +	      "struct member likely outside of struct_group_tagged()");
->   
->   typedef struct SISLANDS_SMC_SWSTATE SISLANDS_SMC_SWSTATE;
->   
-> @@ -215,7 +220,7 @@ struct SISLANDS_SMC_STATETABLE {
->   	struct SISLANDS_SMC_SWSTATE_SINGLE	initialState;
->   	struct SISLANDS_SMC_SWSTATE_SINGLE	ACPIState;
->   	struct SISLANDS_SMC_SWSTATE_SINGLE	ULVState;
-> -	SISLANDS_SMC_SWSTATE			driverState;
-> +	struct SISLANDS_SMC_SWSTATE_HDR		driverState;
->   	SISLANDS_SMC_HW_PERFORMANCE_LEVEL	dpmLevels[SISLANDS_MAX_SMC_PERFORMANCE_LEVELS_PER_SWSTATE];
->   };
->   
+2.34.1
 
