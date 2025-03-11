@@ -2,69 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 194BFA5DA2D
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Mar 2025 11:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 401F1A5DA2A
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Mar 2025 11:09:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 991A810E756;
-	Wed, 12 Mar 2025 10:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB26510E747;
+	Wed, 12 Mar 2025 10:09:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UqD3PbXd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fcfFIT1r";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0733510E62B;
- Tue, 11 Mar 2025 17:11:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9E6010E2BF;
+ Tue, 11 Mar 2025 17:13:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741713067; x=1773249067;
+ t=1741713203; x=1773249203;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=QA4pFW1oxdkWwb6tOCXzPFVdqvzGDBgMwXg9IWYanfI=;
- b=UqD3PbXdB3yg1M6skBnqGWrftJyGZRdAKzEb8DhtjlQSC3dgQ9AGFmKT
- /aCErLB8kol6YF4RttbLuYHnrNFZoM1QkumD6eUv+SjsvmjwgPjjRzQwT
- PkHuf9D9HWMIXjzAWyNRWasghdEhDpq7jF2MQm2rLJoDnWN3IEPg1eudB
- qQvLv/NMCDh6mGeTf+QXuShhWYMpP9UOtZzDy42zaYOfAIAlJ3LT2L0vd
- 6jN195hWKBPHjQpKJbYP8FAL7WEK1X79DMWsq+lOk/DkZsGqlx5Y5DyP0
- jmALt8sEaZePdLc19AD9gUIgqsBj770EFWbunTOvaMlO0VbRwWq3/yOmA Q==;
-X-CSE-ConnectionGUID: S+4UmAFZRJeKnL0nQaYzQA==
-X-CSE-MsgGUID: wHtnMbbnSSmBW2Hj24vdpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42676076"
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="42676076"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 10:10:49 -0700
-X-CSE-ConnectionGUID: fNbKLCRzRoyzfzsju+JhNg==
-X-CSE-MsgGUID: qhOq77r8RHqgvWz9Guzl+w==
+ bh=24+5qJIcAfCH8EBR18YUzgbstW0szGfuyAGdr6wElAA=;
+ b=fcfFIT1rK/64E491BKGHG6sHIX/Ew74gkwiko06d8blqS91MDQLD/tS+
+ 6h3ULk+Z8GJizlMblohXclvJ3UJOMRpSKs9aUaBW8zaWIAb+qr7shruj5
+ vEyluNP2jPf6EXv0tcR64v1ryW+vgKUq9mGmUOnLsVVR3BwA99J2a5bsR
+ e5SBO5npEE3eRv9bgLAoINURb2uRVVvHb2A17HQcWDr8QkJB3LSk0Li+v
+ g3+sr6+tDDKJgbR22cA1QK6w2vQW6sDgzeoqFpkSIVYetpH4BUYZXG37q
+ jH8v9SE01PJFl9LW6j119G0RTEdCo1rngvBZxkQ9t3a+rXGBRZRFtQlhn Q==;
+X-CSE-ConnectionGUID: Vl6ZSD3cRLSaOeap2qmVXg==
+X-CSE-MsgGUID: IZgCsrD8SX253GBZhawPAQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="60312353"
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="60312353"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2025 10:13:22 -0700
+X-CSE-ConnectionGUID: Sd44fNiVQvS0KlFxHSngYQ==
+X-CSE-MsgGUID: YYdp9I3OToyuGLScQZb5UA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="120407156"
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="120326006"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 10:09:42 -0700
-Date: Tue, 11 Mar 2025 19:09:39 +0200
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2025 10:13:18 -0700
+Date: Tue, 11 Mar 2025 19:13:15 +0200
 From: Raag Jadav <raag.jadav@intel.com>
-To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Alex Deucher <alexander.deucher@amd.com>,
- 'Christian =?iso-8859-1?Q?K=F6nig'?= <christian.koenig@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
  rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- lucas.demarchi@intel.com, Xaver Hugl <xaver.hugl@kde.org>
-Subject: Re: [PATCH 1/2] drm: Create an app info option for wedge events
-Message-ID: <Z9BuU3RzMkEE_FL1@black.fi.intel.com>
+ Xaver Hugl <xaver.hugl@kde.org>
+Subject: Re: [PATCH 2/2] drm/amdgpu: Make use of drm_wedge_app_info
+Message-ID: <Z9BvK55_Nim54eOu@black.fi.intel.com>
 References: <20250228121353.1442591-1-andrealmeid@igalia.com>
- <20250228121353.1442591-2-andrealmeid@igalia.com>
- <Z8HGFRGOYvyCCWWu@black.fi.intel.com>
- <58763d8e-46a1-4753-9401-987fb3dac50b@igalia.com>
- <Z8KgwswQQyGxhsR1@black.fi.intel.com>
- <db27ee44-f480-475b-be7e-710bd30eb7a5@igalia.com>
+ <20250228121353.1442591-3-andrealmeid@igalia.com>
+ <Z8HO-s_otb2u44V7@black.fi.intel.com>
+ <38b9cc8b-2a55-4815-a19f-f5bdf0f7687c@igalia.com>
+ <Z8KjZfLYjH6ehYwy@black.fi.intel.com>
+ <73602c9b-74f6-4b4a-82c6-918292b13cf7@igalia.com>
+ <CADnq5_PbZUoyxyqweqa=kUNsSXanjY=5mUJrn03aY3je6rER+w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <db27ee44-f480-475b-be7e-710bd30eb7a5@igalia.com>
+In-Reply-To: <CADnq5_PbZUoyxyqweqa=kUNsSXanjY=5mUJrn03aY3je6rER+w@mail.gmail.com>
 X-Mailman-Approved-At: Wed, 12 Mar 2025 10:09:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,70 +82,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 10, 2025 at 06:27:53PM -0300, André Almeida wrote:
-> Em 01/03/2025 02:53, Raag Jadav escreveu:
-> > On Fri, Feb 28, 2025 at 06:54:12PM -0300, André Almeida wrote:
-> > > Hi Raag,
-> > > 
-> > > On 2/28/25 11:20, Raag Jadav wrote:
-> > > > Cc: Lucas
-> > > > 
-> > > > On Fri, Feb 28, 2025 at 09:13:52AM -0300, André Almeida wrote:
-> > > > > When a device get wedged, it might be caused by a guilty application.
-> > > > > For userspace, knowing which app was the cause can be useful for some
-> > > > > situations, like for implementing a policy, logs or for giving a chance
-> > > > > for the compositor to let the user know what app caused the problem.
-> > > > > This is an optional argument, when `PID=-1` there's no information about
-> > > > > the app caused the problem, or if any app was involved during the hang.
-> > > > > 
-> > > > > Sometimes just the PID isn't enough giving that the app might be already
-> > > > > dead by the time userspace will try to check what was this PID's name,
-> > > > > so to make the life easier also notify what's the app's name in the user
-> > > > > event.
-> > > > > 
-> > > > > Signed-off-by: André Almeida <andrealmeid@igalia.com>
+On Mon, Mar 10, 2025 at 06:03:27PM -0400, Alex Deucher wrote:
+> On Mon, Mar 10, 2025 at 5:54â€¯PM AndrÃ© Almeida <andrealmeid@igalia.com> wrote:
+> >
+> > Em 01/03/2025 03:04, Raag Jadav escreveu:
+> > > On Fri, Feb 28, 2025 at 06:49:43PM -0300, AndrÃ© Almeida wrote:
+> > >> Hi Raag,
+> > >>
+> > >> On 2/28/25 11:58, Raag Jadav wrote:
+> > >>> On Fri, Feb 28, 2025 at 09:13:53AM -0300, AndrÃ© Almeida wrote:
+> > >>>> To notify userspace about which app (if any) made the device get in a
+> > >>>> wedge state, make use of drm_wedge_app_info parameter, filling it with
+> > >>>> the app PID and name.
+> > >>>>
+> > >>>> Signed-off-by: AndrÃ© Almeida <andrealmeid@igalia.com>
+> > >>>> ---
+> > >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
+> > >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
+> > >>>>    2 files changed, 22 insertions(+), 3 deletions(-)
+> > >>>>
+> > >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > >>>> index 00b9b87dafd8..e06adf6f34fd 100644
+> > >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > >>>> @@ -6123,8 +6123,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+> > >>>>            atomic_set(&adev->reset_domain->reset_res, r);
+> > >>>> -  if (!r)
+> > >>>> -          drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
+> > >>>> +  if (!r) {
+> > >>>> +          struct drm_wedge_app_info aux, *info = NULL;
+> > >>>> +
+> > >>>> +          if (job) {
+> > >>>> +                  struct amdgpu_task_info *ti;
+> > >>>> +
+> > >>>> +                  ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
+> > >>>> +                  if (ti) {
+> > >>>> +                          aux.pid = ti->pid;
+> > >>>> +                          aux.comm = ti->process_name;
+> > >>>> +                          info = &aux;
+> > >>>> +                          amdgpu_vm_put_task_info(ti);
+> > >>>> +                  }
+> > >>>> +          }
+> > >>> Is this guaranteed to be guilty app and not some scheduled worker?
+> > >>
+> > >> This is how amdgpu decides which app is the guilty one earlier in the code
+> > >> as in the print:
+> > >>
+> > >>      ti = amdgpu_vm_get_task_info_pasid(ring->adev, job->pasid);
+> > >>
+> > >>      "Process information: process %s pid %d thread %s pid %d\n"
+> > >>
+> > >> So I think it's consistent with what the driver thinks it's the guilty
+> > >> process.
+> > >
+> > > Sure, but with something like app_info we're kind of hinting to userspace
+> > > that an application was _indeed_ involved with reset. Is that also guaranteed?
+> > >
+> > > Is it possible that an application needlessly suffers from a false positive
+> > > scenario (reset due to other factors)?
+> > >
+> >
+> > I asked Alex Deucher in IRC about that and yes, there's a chance that
+> > this is a false positive. However, for the majority of cases this is the
+> > right app that caused the hang. This is what amdgpu is doing for GL
+> > robustness as well and devcoredump, so it's very consistent with how
+> > amdgpu deals with this scenario even if the mechanism is still not perfect.
 > 
-> [...]
-> 
-> > > > >    	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
-> > > > > @@ -562,6 +564,14 @@ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
-> > > > >    	drm_info(dev, "device wedged, %s\n", method == DRM_WEDGE_RECOVERY_NONE ?
-> > > > >    		 "but recovered through reset" : "needs recovery");
-> > > > > +	if (info) {
-> > > > > +		snprintf(pid_string, sizeof(pid_string), "PID=%u", info->pid);
-> > > > > +		snprintf(comm_string, sizeof(comm_string), "APP=%s", info->comm);
-> > > > > +	} else {
-> > > > > +		snprintf(pid_string, sizeof(pid_string), "%s", "PID=-1");
-> > > > > +		snprintf(comm_string, sizeof(comm_string), "%s", "APP=none");
-> > > > > +	}
-> > > > This is not much use for wedge cases that needs recovery, since at that point
-> > > > the userspace will need to clean house anyway.
-> > > > 
-> > > > Which leaves us with only 'none' case and perhaps the need for standardization
-> > > > of "optional telemetry collection".
-> > > > 
-> > > > Thoughts?
-> > > 
-> > > I had the feeling that 'none' was already meant to be used for that. Do you
-> > > think we should move to another naming? Given that we didn't reach the merge
-> > > window yet we could potentially change that name without much damage.
-> > 
-> > No, I meant thoughts on possible telemetry data that the drivers might
-> > think is useful for userspace (along with PID) and can be presented in
-> > a vendor agnostic manner (just like wedged event).
-> 
-> I'm not if I agree that this will only be used for telemetry and for the
-> `none` use case. As stated by Xaver, there's use case to know which app
-> caused the device to get wedged (like switching to software rendering) and
-> to display something for the user after the recovery is done (e.g. "The game
-> <app name> stopped working and Plasma has reset").
+> It's usually the guilty one, but it's not guaranteed.  For example,
+> say you have a ROCm user queue and a gfx job submitted to a kernel
+> queue.  The actual guilty job may be the ROCm user queue, but the
+> driver may not detect that the ROCm queue was hung until some other
+> event (e.g., memory pressure).  However, the timer for the gfx job may
+> timeout before that happens on the ROCm queue so in that case the gfx
+> job would be incorrectly considered guilty.
 
-Sure, but since this information is already available in coredump, I was
-hoping to have something like a standardized DRM level coredump with both
-vendor specific and agnostic sections, which the drivers can (and hopefully
-transition to) use in conjunction with wedged event to provide wider
-telemetry and is useful for all wedge cases.
+So it boils down to what are the chances of that happening and whether
+it's significant enough to open the door for API abuse.
 
-Would that serve the usecase here?
+Considering this is amd specific accuracy, it's still an open question
+how other drivers are/will be managing it.
 
 Raag
