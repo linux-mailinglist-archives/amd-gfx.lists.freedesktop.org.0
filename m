@@ -2,71 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401F1A5DA2A
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Mar 2025 11:09:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AD4AA5DA2C
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Mar 2025 11:09:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB26510E747;
-	Wed, 12 Mar 2025 10:09:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F4E610E753;
+	Wed, 12 Mar 2025 10:09:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fcfFIT1r";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nZmdyaxc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9E6010E2BF;
- Tue, 11 Mar 2025 17:13:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741713203; x=1773249203;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=24+5qJIcAfCH8EBR18YUzgbstW0szGfuyAGdr6wElAA=;
- b=fcfFIT1rK/64E491BKGHG6sHIX/Ew74gkwiko06d8blqS91MDQLD/tS+
- 6h3ULk+Z8GJizlMblohXclvJ3UJOMRpSKs9aUaBW8zaWIAb+qr7shruj5
- vEyluNP2jPf6EXv0tcR64v1ryW+vgKUq9mGmUOnLsVVR3BwA99J2a5bsR
- e5SBO5npEE3eRv9bgLAoINURb2uRVVvHb2A17HQcWDr8QkJB3LSk0Li+v
- g3+sr6+tDDKJgbR22cA1QK6w2vQW6sDgzeoqFpkSIVYetpH4BUYZXG37q
- jH8v9SE01PJFl9LW6j119G0RTEdCo1rngvBZxkQ9t3a+rXGBRZRFtQlhn Q==;
-X-CSE-ConnectionGUID: Vl6ZSD3cRLSaOeap2qmVXg==
-X-CSE-MsgGUID: IZgCsrD8SX253GBZhawPAQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="60312353"
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="60312353"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 10:13:22 -0700
-X-CSE-ConnectionGUID: Sd44fNiVQvS0KlFxHSngYQ==
-X-CSE-MsgGUID: YYdp9I3OToyuGLScQZb5UA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="120326006"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 10:13:18 -0700
-Date: Tue, 11 Mar 2025 19:13:15 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- Xaver Hugl <xaver.hugl@kde.org>
-Subject: Re: [PATCH 2/2] drm/amdgpu: Make use of drm_wedge_app_info
-Message-ID: <Z9BvK55_Nim54eOu@black.fi.intel.com>
-References: <20250228121353.1442591-1-andrealmeid@igalia.com>
- <20250228121353.1442591-3-andrealmeid@igalia.com>
- <Z8HO-s_otb2u44V7@black.fi.intel.com>
- <38b9cc8b-2a55-4815-a19f-f5bdf0f7687c@igalia.com>
- <Z8KjZfLYjH6ehYwy@black.fi.intel.com>
- <73602c9b-74f6-4b4a-82c6-918292b13cf7@igalia.com>
- <CADnq5_PbZUoyxyqweqa=kUNsSXanjY=5mUJrn03aY3je6rER+w@mail.gmail.com>
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+ [209.85.167.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE53D10E2B7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Mar 2025 21:38:38 +0000 (UTC)
+Received: by mail-lf1-f53.google.com with SMTP id
+ 2adb3069b0e04-5494fe13a6eso867251e87.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Mar 2025 14:38:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1741729116; x=1742333916; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=IMyV2yXTxsI+rGs2k9HMmgY1nvHk/Y/nZ9Y0zucHg7M=;
+ b=nZmdyaxc24C99JdIwn888QF+8Xml35+q4bTOrN7rvRR7ckhve5ZW4Nt+VjpKZp+2kT
+ 7/CbLt4fL8OCCyF2v9+5NIjN7hkyNJOpu0a6TNVDs3Fbdulrtw4Kmk+TTUYdu1tMSC7M
+ +wNf6vAKc52tlzWPt5MWN3xaXgYF4uF3LJMZe2sGtCQwgU4SGL5AxYGauDOlTjd1h0Km
+ PL27X5gCRCSYgXe4DyX+q4R/K1bg6zzVUvswRPCbTAVFjOSrB7LgdZ6IMb8fmz784jh2
+ IDLC7mpr2bKhNXbEoQGx2mzLFrt8aCpVEVTSqgd19DhgPYmmtyyVm15ZTNfPPIpxT8XJ
+ kX0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741729116; x=1742333916;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=IMyV2yXTxsI+rGs2k9HMmgY1nvHk/Y/nZ9Y0zucHg7M=;
+ b=oYHYCmuG24bSnU8Q4ZBJ2+HlVTWyB8IiDWI2JKifFR72w6UcY8/qQ+Zdz8X50u9QFK
+ AcD0/i5d3m0X+wYpSlWe62GZHJifhMdgZ7OhQZfs5o1tT5PpWybbE+K+aZE5Q1jLvK1I
+ oEZjpslGpo/bq1zO3xszddXl4+GT8k56pCuwHSJOetddBS69Q/ytnDZtjwor1T9E4sjs
+ YkPiGCnc8yNF01q8KOn+YXPoMXPmnV2oOg/fFobPYMKGikKIJv1C85hPbQCzwfVDqrPw
+ YIzpIm2aUwuhGUlftvcYtcWnfRH+FkSkQk1xWvDBuRvgyIP3mh8+m/N3kV7CrqE92M5U
+ iZ/Q==
+X-Gm-Message-State: AOJu0YwO2TdTOfW/KnwJF1Z2o0g2xydgVRTK/FBy20YBwLYypn6jz6gG
+ jPJoISdmrZUMFSHZ4W4zKbBVHMfFglFYuBHdyxqW4xZy+2sKSxG0eQ5Xi8eJ
+X-Gm-Gg: ASbGncsE+GW8fpmHK6vjDET3UZ3FTTzI9XdPE1c3VJoQ0uvX3m6iTPKhweSTB7LUEXs
+ b2l2GlA9LNQueEdA0naZWGtfoQd8pyIzopxk+qNXZSz4dHbylDnaCcwnpEkyU/3MC0yS7GKii7b
+ ae7jg0S5xtJGj587biNeSR0YGauPH/4nQicxaAy3CbQ0rbyFxYzL2S+4E552UeM6S8Zk6QMtxSU
+ 0FRrsTTZV4fBTE3QVe0anZIIT2zJF7GFNLWAoIZ2mIecxmRdMqyajqRRmzUuw0o7Z7awSI1WeMt
+ Yja9iNlRW78zFSZIZplZ30J76PVwte1/TecdZsnX+y5tM3KZ23NEfQwat1gMEJFqUiuBWjLB3HF
+ mLl/9j5hjNQN8E+k=
+X-Google-Smtp-Source: AGHT+IFZuC8bTyJAg5AQp4URZ4OlGll75AC5Lv88p8HcFZmgrgkgo5iBklVc1oeK+qBEYOU5bYkbcQ==
+X-Received: by 2002:a05:651c:543:b0:308:e803:119b with SMTP id
+ 38308e7fff4ca-30c2067cbecmr8432421fa.1.1741729116025; 
+ Tue, 11 Mar 2025 14:38:36 -0700 (PDT)
+Received: from laptok.lan (89-64-31-140.dynamic.chello.pl. [89.64.31.140])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-30bef40f9cdsm20644711fa.48.2025.03.11.14.38.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Mar 2025 14:38:35 -0700 (PDT)
+From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu/pm: Handle SCLK offset correctly in overdrive for
+ smu 14.0.2
+Date: Tue, 11 Mar 2025 22:38:33 +0100
+Message-ID: <20250311213833.870840-1-tomasz.pakula.oficjalny@gmail.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CADnq5_PbZUoyxyqweqa=kUNsSXanjY=5mUJrn03aY3je6rER+w@mail.gmail.com>
 X-Mailman-Approved-At: Wed, 12 Mar 2025 10:09:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,84 +85,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 10, 2025 at 06:03:27PM -0400, Alex Deucher wrote:
-> On Mon, Mar 10, 2025 at 5:54 PM André Almeida <andrealmeid@igalia.com> wrote:
-> >
-> > Em 01/03/2025 03:04, Raag Jadav escreveu:
-> > > On Fri, Feb 28, 2025 at 06:49:43PM -0300, André Almeida wrote:
-> > >> Hi Raag,
-> > >>
-> > >> On 2/28/25 11:58, Raag Jadav wrote:
-> > >>> On Fri, Feb 28, 2025 at 09:13:53AM -0300, André Almeida wrote:
-> > >>>> To notify userspace about which app (if any) made the device get in a
-> > >>>> wedge state, make use of drm_wedge_app_info parameter, filling it with
-> > >>>> the app PID and name.
-> > >>>>
-> > >>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
-> > >>>> ---
-> > >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
-> > >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
-> > >>>>    2 files changed, 22 insertions(+), 3 deletions(-)
-> > >>>>
-> > >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > >>>> index 00b9b87dafd8..e06adf6f34fd 100644
-> > >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > >>>> @@ -6123,8 +6123,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
-> > >>>>            atomic_set(&adev->reset_domain->reset_res, r);
-> > >>>> -  if (!r)
-> > >>>> -          drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-> > >>>> +  if (!r) {
-> > >>>> +          struct drm_wedge_app_info aux, *info = NULL;
-> > >>>> +
-> > >>>> +          if (job) {
-> > >>>> +                  struct amdgpu_task_info *ti;
-> > >>>> +
-> > >>>> +                  ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
-> > >>>> +                  if (ti) {
-> > >>>> +                          aux.pid = ti->pid;
-> > >>>> +                          aux.comm = ti->process_name;
-> > >>>> +                          info = &aux;
-> > >>>> +                          amdgpu_vm_put_task_info(ti);
-> > >>>> +                  }
-> > >>>> +          }
-> > >>> Is this guaranteed to be guilty app and not some scheduled worker?
-> > >>
-> > >> This is how amdgpu decides which app is the guilty one earlier in the code
-> > >> as in the print:
-> > >>
-> > >>      ti = amdgpu_vm_get_task_info_pasid(ring->adev, job->pasid);
-> > >>
-> > >>      "Process information: process %s pid %d thread %s pid %d\n"
-> > >>
-> > >> So I think it's consistent with what the driver thinks it's the guilty
-> > >> process.
-> > >
-> > > Sure, but with something like app_info we're kind of hinting to userspace
-> > > that an application was _indeed_ involved with reset. Is that also guaranteed?
-> > >
-> > > Is it possible that an application needlessly suffers from a false positive
-> > > scenario (reset due to other factors)?
-> > >
-> >
-> > I asked Alex Deucher in IRC about that and yes, there's a chance that
-> > this is a false positive. However, for the majority of cases this is the
-> > right app that caused the hang. This is what amdgpu is doing for GL
-> > robustness as well and devcoredump, so it's very consistent with how
-> > amdgpu deals with this scenario even if the mechanism is still not perfect.
-> 
-> It's usually the guilty one, but it's not guaranteed.  For example,
-> say you have a ROCm user queue and a gfx job submitted to a kernel
-> queue.  The actual guilty job may be the ROCm user queue, but the
-> driver may not detect that the ROCm queue was hung until some other
-> event (e.g., memory pressure).  However, the timer for the gfx job may
-> timeout before that happens on the ROCm queue so in that case the gfx
-> job would be incorrectly considered guilty.
+Currently, it seems like the code was carried over from RDNA3 because
+it assumes two possible values to set. RDNA4, instead of having:
+0: min SCLK
+1: max SCLK
+only has
+0: SCLK offset
 
-So it boils down to what are the chances of that happening and whether
-it's significant enough to open the door for API abuse.
+This change makes it so it only reports current offset value instead of
+showing possible min/max values and their indices. Moreover, it now only
+accepts the offset as a value, without the indice index.
 
-Considering this is amd specific accuracy, it's still an open question
-how other drivers are/will be managing it.
+Additionally, the lower bound was printed as %u by mistake.
 
-Raag
+Old:
+OD_SCLK_OFFSET:
+0: -500Mhz
+1: 1000Mhz
+OD_MCLK:
+0: 97Mhz
+1: 1259MHz
+OD_VDDGFX_OFFSET:
+0mV
+OD_RANGE:
+SCLK_OFFSET:    -500Mhz       1000Mhz
+MCLK:      97Mhz       1500Mhz
+VDDGFX_OFFSET:    -200mv          0mv
+
+New:
+OD_SCLK_OFFSET:
+0Mhz
+OD_MCLK:
+0: 97Mhz
+1: 1259MHz
+OD_VDDGFX_OFFSET:
+0mV
+OD_RANGE:
+SCLK_OFFSET:    -500Mhz       1000Mhz
+MCLK:      97Mhz       1500Mhz
+VDDGFX_OFFSET:    -200mv          0mv
+
+Setting this offset:
+Old: "s 1 <offset>"
+New: "s <offset>"
+
+Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
+---
+ .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 59 ++++++-------------
+ 1 file changed, 18 insertions(+), 41 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+index 5cad09c5f2ff..62bd9647541a 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+@@ -1193,16 +1193,9 @@ static int smu_v14_0_2_print_clk_levels(struct smu_context *smu,
+ 							 PP_OD_FEATURE_GFXCLK_BIT))
+ 			break;
+ 
+-		PPTable_t *pptable = smu->smu_table.driver_pptable;
+-		const OverDriveLimits_t * const overdrive_upperlimits =
+-					&pptable->SkuTable.OverDriveLimitsBasicMax;
+-		const OverDriveLimits_t * const overdrive_lowerlimits =
+-					&pptable->SkuTable.OverDriveLimitsBasicMin;
+-
+ 		size += sysfs_emit_at(buf, size, "OD_SCLK_OFFSET:\n");
+-		size += sysfs_emit_at(buf, size, "0: %dMhz\n1: %uMhz\n",
+-					overdrive_lowerlimits->GfxclkFoffset,
+-					overdrive_upperlimits->GfxclkFoffset);
++		size += sysfs_emit_at(buf, size, "%dMhz\n",
++					od_table->OverDriveTable.GfxclkFoffset);
+ 		break;
+ 
+ 	case SMU_OD_MCLK:
+@@ -1336,13 +1329,9 @@ static int smu_v14_0_2_print_clk_levels(struct smu_context *smu,
+ 		size += sysfs_emit_at(buf, size, "%s:\n", "OD_RANGE");
+ 
+ 		if (smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_GFXCLK_BIT)) {
+-			smu_v14_0_2_get_od_setting_limits(smu,
+-							  PP_OD_FEATURE_GFXCLK_FMIN,
+-							  &min_value,
+-							  NULL);
+ 			smu_v14_0_2_get_od_setting_limits(smu,
+ 							  PP_OD_FEATURE_GFXCLK_FMAX,
+-							  NULL,
++							  &min_value,
+ 							  &max_value);
+ 			size += sysfs_emit_at(buf, size, "SCLK_OFFSET: %7dMhz %10uMhz\n",
+ 					      min_value, max_value);
+@@ -2417,36 +2406,24 @@ static int smu_v14_0_2_od_edit_dpm_table(struct smu_context *smu,
+ 			return -ENOTSUPP;
+ 		}
+ 
+-		for (i = 0; i < size; i += 2) {
+-			if (i + 2 > size) {
+-				dev_info(adev->dev, "invalid number of input parameters %d\n", size);
+-				return -EINVAL;
+-			}
+-
+-			switch (input[i]) {
+-			case 1:
+-				smu_v14_0_2_get_od_setting_limits(smu,
+-								  PP_OD_FEATURE_GFXCLK_FMAX,
+-								  &minimum,
+-								  &maximum);
+-				if (input[i + 1] < minimum ||
+-				    input[i + 1] > maximum) {
+-					dev_info(adev->dev, "GfxclkFmax (%ld) must be within [%u, %u]!\n",
+-						input[i + 1], minimum, maximum);
+-					return -EINVAL;
+-				}
+-
+-				od_table->OverDriveTable.GfxclkFoffset = input[i + 1];
+-				od_table->OverDriveTable.FeatureCtrlMask |= 1U << PP_OD_FEATURE_GFXCLK_BIT;
+-				break;
++		if (size != 1) {
++			dev_info(adev->dev, "invalid number of input parameters %d\n", size);
++			return -EINVAL;
++		}
+ 
+-			default:
+-				dev_info(adev->dev, "Invalid SCLK_VDDC_TABLE index: %ld\n", input[i]);
+-				dev_info(adev->dev, "Supported indices: [0:min,1:max]\n");
+-				return -EINVAL;
+-			}
++		smu_v14_0_2_get_od_setting_limits(smu,
++						  PP_OD_FEATURE_GFXCLK_FMAX,
++						  &minimum,
++						  &maximum);
++		if (input[0] < minimum ||
++		    input[0] > maximum) {
++			dev_info(adev->dev, "GfxclkFoffset must be within [%d, %u]!\n",
++				 minimum, maximum);
++			return -EINVAL;
+ 		}
+ 
++		od_table->OverDriveTable.GfxclkFoffset = input[0];
++		od_table->OverDriveTable.FeatureCtrlMask |= 1U << PP_OD_FEATURE_GFXCLK_BIT;
+ 		break;
+ 
+ 	case PP_OD_EDIT_MCLK_VDDC_TABLE:
+-- 
+2.48.1
+
