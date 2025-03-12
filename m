@@ -2,127 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6020EA5D7B8
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Mar 2025 09:01:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12968A5D7CA
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Mar 2025 09:06:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04BBB10E739;
-	Wed, 12 Mar 2025 08:01:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94EA410E726;
+	Wed, 12 Mar 2025 08:06:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vPZqCzpk";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="aTbsej21";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2058.outbound.protection.outlook.com [40.107.101.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2682E10E738
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Mar 2025 08:01:12 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2066.outbound.protection.outlook.com [40.107.93.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 498A210E726
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Mar 2025 08:06:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N68+LcdtOoTdVgmKw2HqZCdOupgS4U3ohIDmhBd3hiNs+XB10BzQLZi3NdC89y33ms/S1twwj6isK7cJ58r9L/TizE3xGFAGIMSxA+pDwz1cYwWMUE9QUf5dSs9hxc+EMqXRWcp8DkLyn8ONqy6X5LMvpsVWegexeZtaFAg/L2BAYM2/fSHsAKqkAuSFrnsEZZbNqIw+B3A5Rn/kbqChlbZgjUH1WTe1YUBPvIWQlf8m4efB17B4+nGUbgNsg0B839rSoLdEA2qYJPH5kIpAOgRNzpG7SxZCzfJDFoKQPSYx/doQ2axBCRM9oshspN+E5vM7zdza/bJnf8Xzs9L1/A==
+ b=sCuvsGoKR+TcLKzz83NtgzuZezPKkdp2JLPy6M0+k9YgOoFMuh4AkUPTJQHdjnzkL2shpGJ3GU6ejYXO/8ij3A9MXnTSYzdZVhnhdkcHn1CLqkgW9oMsjEgrgxFrqcZ/XVuHmOLz7Lz8yaCGgRtlkiQ0JBRXiTIboAU2y9qN5rc/f6SW0iILWf/FfAc7aZ3fsZ5p4wtiBYDaSlinrMJboTNmJvxCSFXeoUCRdxRvumn/IVnEBQnRIvkBUomutgrqrVflBpdGddSv7fUDbsU0Pi6eKrHEwBdVydhFkUGSKABlUQBBKfSweq22lFcZwYtZ8X9bnoY4Ql6kEP+/k2HyZA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r+qm3PyvHNZzl6cyyu5scPYbqpQV9Cpftt8ygu8CXHM=;
- b=VSgNtsZaCbIA2IeVLRSbahgXwn1cdTqS3TftDaDoKENAIS+L1PODnpOgDG/bQ4nCR4Y7G4QdmkYb/RvRWIttTRvUEzVVOL84gOtM/iXHOKLLcJhti97jaWahXzJo8sdLh3tHhqRx4lI8u6Z8B+efwIIxhq4huMn+2CtAt006qupxXxq+7NZfFHUqpeo80LrA9xO8vo53B7daRM2pLuZD9Gm3XLU1nLKfGCATak2jzxdVqSI742jErPbZ8I9xBAcmtEyLYZ/qt90178h4x3shvpH3W6RWu01hVJnQl3uV1qesgVviMIJ34DCe5OGxprHs7RXXsqPSBS7IDnsf2jO8HA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=N3mJ+V2jfdgUtA4QryR2XicRxjPpBSqELvb7Sj/PncM=;
+ b=jZGBdolJH8e6p8AowldYd3dMArSplMng9AsGTRh5YK4TZdGjTNjvVDtxrj2VYh/HwcH6CCpTg7jOw9jFer48Ce1m2i9Ue1ngmEPv8FmO1EldnhIACpMYbqZfWTz4UVrcJgy90bkXlegWEcqpJmrKRPJKvV0tJChpshX5ZX1tBINnIddep1+anb0lTAwBfzmRcKZRm0IYgiH7/CiWDsUwI+Gn8whXId2sGUIQ8Gx23g4ILdCrn42rQEQjiFQUfDQMcR1cwwSsRYnkBICci9FkitQPx+EwbYazW09FdNBPNT1pOD0Lnr7l49qggFlGSCTNGOytbRLzEYDi+RMbAbGezg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r+qm3PyvHNZzl6cyyu5scPYbqpQV9Cpftt8ygu8CXHM=;
- b=vPZqCzpkHf54E0p/hrvBD7h48QjCWttap+221Ib6lFBzvOZIVuXDC39euhD2gxc4pCvWXhb86WCckVJs6jm2zPeOlUinyAm9H83jeRIxJFVWqu8Fd6naNsZwRw3VJBkoJH8VgL4Cx/3qHjU8GZFikC7jTZzWW0BbrdQUW9JzCYg=
-Received: from DS7PR05CA0054.namprd05.prod.outlook.com (2603:10b6:8:2f::28) by
- IA0PR12MB8301.namprd12.prod.outlook.com (2603:10b6:208:40b::13) with
+ bh=N3mJ+V2jfdgUtA4QryR2XicRxjPpBSqELvb7Sj/PncM=;
+ b=aTbsej21BgeYDOIMaAeo3INR+bddnuKBUg+l5AFvmeAs2VfMQtGCpWmDEFUq7vxiD3Rxe3F3EQQZyPnx1P1GUybxEoOYLvfL78QnRqKnu8SLFvWLmG3wVgIiJBb4CI5LCXfFifxroXWA24QaTzxCyqokA/lnSVHYIMUnReIqfKk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DM4PR12MB6134.namprd12.prod.outlook.com (2603:10b6:8:ad::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.28; Wed, 12 Mar
- 2025 08:01:06 +0000
-Received: from CY4PEPF0000EE3E.namprd03.prod.outlook.com
- (2603:10b6:8:2f:cafe::e) by DS7PR05CA0054.outlook.office365.com
- (2603:10b6:8:2f::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.20 via Frontend Transport; Wed,
- 12 Mar 2025 08:01:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000EE3E.mail.protection.outlook.com (10.167.242.16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8534.20 via Frontend Transport; Wed, 12 Mar 2025 08:01:05 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 12 Mar
- 2025 03:01:04 -0500
-Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Wed, 12 Mar 2025 03:00:57 -0500
-From: "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- <jonathan.kim@amd.com>, <jiadong.zhu@amd.com>, "Jesse.zhang@amd.com"
- <Jesse.zhang@amd.com>, Jesse Zhang <jesse.zhang@amd.com>
-Subject: [PATCH 7/7] drm/amd/amdgpu: Remove deprecated SDMA reset callback
- mechanism
-Date: Wed, 12 Mar 2025 16:00:03 +0800
-Message-ID: <20250312080003.3224976-7-jesse.zhang@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250312080003.3224976-1-jesse.zhang@amd.com>
+ 2025 08:06:38 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8511.026; Wed, 12 Mar 2025
+ 08:06:38 +0000
+Message-ID: <0bc3ca8d-8a65-472d-ae63-ef570d08d1ca@amd.com>
+Date: Wed, 12 Mar 2025 09:06:32 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] drm/amd/amdgpu: Simplify SDMA reset mechanism by
+ removing dynamic callbacks
+To: "Jesse.zhang@amd.com" <jesse.zhang@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alexander.Deucher@amd.com, jonathan.kim@amd.com, jiadong.zhu@amd.com
 References: <20250312080003.3224976-1-jesse.zhang@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20250312080003.3224976-1-jesse.zhang@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0176.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a0::11) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: jesse.zhang@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3E:EE_|IA0PR12MB8301:EE_
-X-MS-Office365-Filtering-Correlation-Id: ce0a9249-6d3b-4ce3-23bc-08dd613c0a70
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM4PR12MB6134:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9694a0a7-e2ef-4cfd-139a-08dd613cd046
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oxH198ahEtsNCKcTAUfLFggLQFl7YiArYYqBNMe6z06Ft9N+w10FxeEUXTkq?=
- =?us-ascii?Q?3vY84Qb4u+O4ayKzRECRVAt8nAy7Sz+TfLGqc5MZqdthJK/lcEdKRGT5TlUK?=
- =?us-ascii?Q?oep8WSS5lK+N+febsZV7l9vOHsh9GXCTlkeKflIukv2WEKSJlhlUEvtQ2lQn?=
- =?us-ascii?Q?PK++SoKgVWsBEl4L5tErBg5ff5cRv4GrX7ezxn20kQlTZp+lrnUdBVUrfHg6?=
- =?us-ascii?Q?ZOZ2FVsJduPFSllXAf6n+Q1AHvSUKD89f0DgVvRS9wKlKpjF08UY6P21U8Xj?=
- =?us-ascii?Q?LgzRjTaG5YC2q6itTWivCXjb7Y23lhvQx+0Ca+3aRq+Icf8sz8JICWyaqNe5?=
- =?us-ascii?Q?cModTaHtKglE6H12iWrv7cOcGZM2wkNq8+AUthGcGtdPbaU4rz8CrCY7YKKO?=
- =?us-ascii?Q?Gcxwd5xDoPNEiSXsVtpyKAE9xEgE9EHoHAUZc1r/o4Lpd2InQU4FCftEwQYt?=
- =?us-ascii?Q?FkhcTCGeHwruxri3zbBEUpckfsdyVaTHc2oDlW8ZIDIcMlwph8hjeBiqlyGi?=
- =?us-ascii?Q?Po7n5Vxd8cB2f0jtvjHFsfpU8lXNJFxtRg5WstGVmJeBCg/el9nRGSt0DwSP?=
- =?us-ascii?Q?qtHNixOCh2HjHAtTNPRnV5le3Dc1Oos2BECdPrhFHZa07wa/lIlFbLHdyg1O?=
- =?us-ascii?Q?Z+GBkslZzmyxLrmB8NixI1Coa5F4fTszGmYQ7YA1chU+MLSivLNpNN7gA+TO?=
- =?us-ascii?Q?Cm7trudyCiR5nFZ3u3DaNzdYculwDWsBL7fBQez/AxTghHzdI6Ph5ar1RUbO?=
- =?us-ascii?Q?iw9rDgmQiTK3TPV9ZD+n+y4TvIp061RYZqGrh3asn7laPehEVMLindoHnGbV?=
- =?us-ascii?Q?85tN/M7vIKRtiDIv1NzDMl73YuXKOr5cCkph8sgkyC7GCtd5uZsROppnNvm/?=
- =?us-ascii?Q?O6elrRr6PuPz7R56P/LqidT9zBcX2z9G4rMvEq2MWcMVCaIUCoT+YdmgjwQ2?=
- =?us-ascii?Q?QmjxmkMddUU+1GOWiNAzNHd+R996cYSKx2pW4wrePqmNUlHno/OyHz8i6ZrQ?=
- =?us-ascii?Q?Sos5bOpVFMyNINMUrDMQskWkS6EkZsKRO8BYX3dhnOq5+oFiqcLBUX5ys8M7?=
- =?us-ascii?Q?CsudZMbPQQYbkbFHh36pA8Tf8ODwyHxabBn7F37H7eb9A6V6xI95PK2O0/H+?=
- =?us-ascii?Q?zih0bzZrTiqG0UOEEVEpbY9PuevuHtuZZZ28vTxExVO1pdR+8ZwlPT2PayRj?=
- =?us-ascii?Q?N5mWrfGRbjdhM80VMNByJor1XLEm7rA0Pn9sRB9qpH4muOmDIeZ+huKzPSLP?=
- =?us-ascii?Q?s90svaCKhTP4RQil6gDTUv6/6I8oAc9bp2wvk9P+47xzth2GVP2zj2q2CqZa?=
- =?us-ascii?Q?EmVSipUNI5M/8Gu9O3WFI7I0YDKqX9EJrefSdL7EBePznJFykokZWAUhc6LK?=
- =?us-ascii?Q?3Z/u9cVKA4lhNAB/5Pr+QcS8jDhkR2YwLVpcxiJBlJc19KBzCVXNzONbkRSs?=
- =?us-ascii?Q?r4yes89wYw+1S6ik61jHVZ0nnkK/NM+gDA7K/QlVdNAV+d7GeLFmhsegvJl1?=
- =?us-ascii?Q?jvsSTaKBfZmBTr0=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aTFkNkpoWjVEajJIMEtyZkJPUitjajh4V1hWM2E1ODFvUjlWSkk0ZWw0VVYw?=
+ =?utf-8?B?NUpwNC9xTU94NnB1c3V6dzhXSEpZMi8vZE50cmlIVER1U2tXL2lCN25JNUNl?=
+ =?utf-8?B?M0FuelFCS0xjQW5NV0JZTU40dk01RVRTYUhWakF1R1NlRGxMM2FKS1J0RC9x?=
+ =?utf-8?B?RkthcEtXN0pvVGwvNTNCMENCVkJWL3ErcXoyRmk0TjFmTGl6OHErRzhiY01F?=
+ =?utf-8?B?TmlQSVZucTFyRE9FSWllTm1RZ2FLLzRsbTcvK21INUh1cFkvZDM0cVgzcjN1?=
+ =?utf-8?B?MWoydXZxb0s4VUxhYlEwaHR0WkZuNVNJTEdkRjhSTm1PY0twekwrbEVEMFVB?=
+ =?utf-8?B?VEVCejYweUpoelg4Z3UrUy9VZmhDODFWcWpERTJWTVFBdVJMNTQ1YlZraDBO?=
+ =?utf-8?B?N0NxN1kzamhJOWpNbkczMVNDS2hqd25MMzQ4RE9zUlg3S1RzTWwvcnpyMHNk?=
+ =?utf-8?B?ZzVMUzZmL3VsNkRLQXFFRE9qSmY3MzBBK2h2WkVhZHl1WmVzV3crTnB3NzA1?=
+ =?utf-8?B?TkdKTU5qZWc5RnpiMmFkT3NITGRxLzljNWRjUmQ0RTZGb25BNDNuWkhYcjR5?=
+ =?utf-8?B?dHg1UW1rUjJtNkNzUWNVcGpsY01xZW1VWGVIZ092YjZyVVJwRXJITlBRa2tH?=
+ =?utf-8?B?aDJDSWkrRmR3ZkRtVTU3VDRUUzIzNmNnU0lrUUJJazd0TFpmaHZEdTNWaVI4?=
+ =?utf-8?B?ZGRsREYyb0Ntb0E4QjZleU5TejJvZWEvdm1RN295NVpaMXYyaEhLUE5HaEdU?=
+ =?utf-8?B?Q1VYTkoyZUNNZ1o5NlBVNnBxZ0UzTkp5ZHdxa01JMmVMUWdieVoxZHN1UTBy?=
+ =?utf-8?B?dXB2bHRVYWVjMFRDbWs0UFJtV2ZNSSt5bGNjNnNtTXo2VXN1bUYvekRoR21X?=
+ =?utf-8?B?VmR1RFk4bitUbFJHNWhzYWNhWjRzaXZWVDdMTXRTSE1udWN5R052N0lMQUlr?=
+ =?utf-8?B?ZzA2T09VRDFlbWJtNGFTVjFFdnNLalI0cTgvQUNnQUVmRGpXNm53bGx1TWpw?=
+ =?utf-8?B?RHkxR0hLbU1ER3BzTmVqREhXeWdoQlY2OXYzQ2dqaTdqOW1obmxydngzU1BD?=
+ =?utf-8?B?S0ZvTHZzSUZiTGVOV250RE5kL2JaSlY2QUhsb1hGQTVVVjgvMy8xYkNUVmtx?=
+ =?utf-8?B?OGZiZDdid2xKanZSbXdvd01oaVM4R24zL1FnR2Q1cVl6MGlqK0ljTE1yOUwx?=
+ =?utf-8?B?aHRLRWFVUUo3REJYb3dZZm9wWWd2UDBsb1cyNitSSlNBcHdmMFpKOHdoZTho?=
+ =?utf-8?B?U25raFlFQ2ZCekFQV3Y1cVZORWJXb29JTXowM1ljaktYditVeU95a0VEZE5D?=
+ =?utf-8?B?VzJQVEhPd21meDM1NkY1RFVZanZtLzBQWDI5Sno5R1Q1VUw4M0h2K2RyWWgy?=
+ =?utf-8?B?aXRFdXNlR1hwbkUvNi9rR0pmRGlSMGlCeDNnUGFwYTdPZlgyMnRQZVluMEhS?=
+ =?utf-8?B?L2dtMHFjNGUxN3dQUjcvT2dNQm1zNjdMYzhsc0xCalhjWnlGQnRrbk5yM2VM?=
+ =?utf-8?B?TXhKaUk2SWJoN05IcHl3MEJ0M0hHUEtzYlZ0eGNRRDRhcS9EbTZjcWpGUlJG?=
+ =?utf-8?B?SGNXSmZDWkoxQWFRVk5aa0MwTzM5SEVFYW5qR0l2Rm1VMkZxVVN1SjlTOC9Q?=
+ =?utf-8?B?SzVzRWZXRWFURUhybDlYQThJd2gxYnRjbHJuQVJtNHlMVTIyNFZKM25heFhO?=
+ =?utf-8?B?OFBwVWd4azJha2U2SjJ3MjJzWkNqQm1Ma1VOdGNZVXRIT3pKM3I5b1BkeDVq?=
+ =?utf-8?B?ZmJpZ0QwbXkyM2FoL0tiMEt5ay9TMmlQcVRSMWNYR2ttUnRPYmV1ZW1sYVlp?=
+ =?utf-8?B?MjVod2dlbE4yKy9hUjZUNS9GWjJEcjhsYk5OOS9KQUtJSUNYNmNsSnd3VjJ3?=
+ =?utf-8?Q?5BfM36hRAeAOx?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RFBVR0Nmeng1ZnJZM3MwbU8vS3NYZXN6b3gzUDF6VngxOW15aFRMSGk1bUcw?=
+ =?utf-8?B?Q2FmSU5kSzB6RExjLzJpTVhLUWw2NVdicDNOa0hjN1ZXQzZqei93NjF2ZDhh?=
+ =?utf-8?B?eTk0ZmxlbDFKK2orcGk3a0RMeU1obzVBT2ZxVFZZS3ZxRUcxSTFwdXJQQW9w?=
+ =?utf-8?B?dHROcVdvQ0dnUXUvMkpHUHNiUThkbXJTU1RrUUN6QVE4bHo5SzVmMVY0dzRs?=
+ =?utf-8?B?cU40QWluVVlXVm9jRnptdm1vWlFMVG5wUk1wVXBQWUFSMHJLRjRUTC9VYUl1?=
+ =?utf-8?B?bTE5M29UaEFwdndibUhKTVJMN0kxSWpUSnB6Y1U1emtJVnEyK0VLTERTRkpO?=
+ =?utf-8?B?UGVoWFI5V0RZME84bHdicHFSQzZIWWREQ1F3aGJBQ3gwRy9nbStUUWlKVGhv?=
+ =?utf-8?B?WFZjTjJia3AvOE1hRVg4ZEt3Qkl3NU01NVlvRHRnWjVlSUtHMHBrQ1dGTVZn?=
+ =?utf-8?B?dFg4cU1mL3h6OXdpdFc0Vmd2VnFDcTZZc0dTNGF2R2RxbE15SVhkTmFIeGFl?=
+ =?utf-8?B?U1E1QTVlRHUyMGxTTEN3cktMWHFtcEpRRlpKSWdKeUZjZEQ5Y21DT3JHL25F?=
+ =?utf-8?B?OEllV0ZXVjJORkYzZnBGdkhaNWp5YVBZYno1OEpITlZSMW4yb0hqKzB4dEZ2?=
+ =?utf-8?B?SWZ4dWxCM0JqM2E4Z0d2V25aRFVQRTVTNy96NjRwZ2RYYnlVa2V2S3ZodXhH?=
+ =?utf-8?B?YVB0cXI4K3ZhcWtpblpmR0JXdFdJcHR2akVkc0htSDlDYXM3NmVReTJCclAx?=
+ =?utf-8?B?NlpjUUYrL0hhYlJJY2czMElmTFZHS0tHbENDWmNndmhDazBMSm1CSCt1N2Z3?=
+ =?utf-8?B?T3VhMzNFcU1SZE5CdERudmErWG83Mm1yRW84cEFGeWxYQ1AyT1BNUE91aEtI?=
+ =?utf-8?B?ckhiOHB5ODZYZzk3bGxtSDhlRkZSczlSUjhZcTRibTF0a25oVGFrd2pZdk5M?=
+ =?utf-8?B?RzQ0NFZhN3ZXK0g5WTY5cyt3WHJYWDN0a3J1Sk5wK0pTWGZiWXdibjE0L1Jn?=
+ =?utf-8?B?Z0RBZ1pGdy9nOGoybURuM1Y3UVVObjhzZmdYNUcvRWsyU2tBRml3UFlQdGx4?=
+ =?utf-8?B?bGFLNEhSV0Y0NExSbWIyUTljUkhuRjNKWG1YdDlPSkFHaDBQcjBGRkZlVkY1?=
+ =?utf-8?B?M1N0TXgyclUzV2JhdmVJZzhhVHpCWUZaa0pFejVvazh2V29XbkZIUU5OajBr?=
+ =?utf-8?B?Uk1aQ3dDa1V5V2JBMWVBQy9kQllqWnpwM0xrdUlFR3E2SGJ0SzMvQVFBb2I2?=
+ =?utf-8?B?bnFNenkzRlB1eGZUdkJqWm5lbFNNanRZQ2lPdHJlNHJpV0YzeFlWSE9WRHpF?=
+ =?utf-8?B?WXl1T3k5TFhNQkpESzJRaU5rWlhkeXBCa3NKc29KbjgwRFE4VnlDck80WEli?=
+ =?utf-8?B?VjAwMlhIaTRZOUhQTzN0TGFycmpLUVJQKzZUeGlqeU5JUCtxZ0loMmFWTFRy?=
+ =?utf-8?B?NW0wNDNvWHZLdktlK2lST1gvWlRJSE4wR0JrZlVLYTEyZzBBTTRrbU1CWWdW?=
+ =?utf-8?B?ZkFIa3ZIM3M0YnJpYzA2STNXZytpcnEzQjZxRjFhWDVkdlorbU9DdU5ZY3dI?=
+ =?utf-8?B?cjQrdjlEVzFHMmtYNE9EZjU3NSs3dnlKTlN4d3NzNVFFWVpobHhpMTU2MDNr?=
+ =?utf-8?B?OG5MS0kzRjE3WFV5endmME5tLzhRRHYrdVhGUCtQejdyMEZ0ZFdENEdUUDVl?=
+ =?utf-8?B?YkZGSXQyaDJIbCtnZXVMWTBDS3ZaakoydmhZbHEvVjZZcXFQQWQrVnUxNGgr?=
+ =?utf-8?B?RkF3Qit3anZROUJwMWJ4OWxEcExyNWoxZFZqbWFpaEs3VytBUmVnYXc1Z1Av?=
+ =?utf-8?B?Z1N3RG1WT29lZWxiS3N1U1FIS2IvRUk5OTJCSE41Sk1YZEhyUlhjSWNkLzhH?=
+ =?utf-8?B?Ti90Z1lpb2VaVWVnUlFlYjZ3aXVpYk5HL2o0NnF6SzJnTTBwTkdpZGRSdHEx?=
+ =?utf-8?B?WXRsd3dlUU05ZTVKbFE5eTQ3cDVDUG85U3lKcXBsWWJERjV4TlRteGNibWR4?=
+ =?utf-8?B?VGptUkxWdnl1c0MwczVZeWE4bEpzaEhUVk9tNzFnamhqTGpKTXh0a0tlWnh0?=
+ =?utf-8?B?VUdGMEdLWjgzNUptSUFmSFM4eVg2OHg4OW1ZY1RZQkFmcmVZc2VucFpMblhC?=
+ =?utf-8?Q?U1Upa/oGljq+IKQS7yy6r6a50?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2025 08:01:05.5813 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce0a9249-6d3b-4ce3-23bc-08dd613c0a70
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9694a0a7-e2ef-4cfd-139a-08dd613cd046
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2025 08:06:37.9220 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3E.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8301
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RTn40IUyuCbuMZNif2dWu8LLLNS9MoPY1BmHp22tHuhuM2vOj9ZKs6wvhe+kjx+l
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6134
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,127 +160,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Jesse.zhang@amd.com" <Jesse.zhang@amd.com>
+Am 12.03.25 um 08:59 schrieb Jesse.zhang@amd.com:
+> From: "Jesse.zhang@amd.com" <Jesse.zhang@amd.com>
+>
+> Since KFD no longer registers its own callbacks for SDMA resets, and only KGD uses the reset mechanism,
+> we can simplify the SDMA reset flow by directly calling the ring's `stop_queue` and `start_queue` functions.
+> This patch removes the dynamic callback mechanism and prepares for its eventual deprecation.
+>
+> The current SDMA reset mechanism uses a dynamic callback registration system to allow both KFD and KGD to register pre-reset and post-reset functions.
+> However, KFD no longer registers its callbacks, and the reset logic is now entirely handled by KGD.
+> This makes the dynamic callback mechanism unnecessary and adds complexity to the code.
+>
+> 1. **Remove Dynamic Callbacks**:
+>    - The `pre_reset` and `post_reset` callback invocations in `amdgpu_sdma_reset_engine` are removed.
+>    - Instead, the ring's `stop_queue` and `start_queue` functions are called directly during the reset process.
+>
+> 2. **Add `stop_queue` and `start_queue` to Ring Functions**:
+>    - The `amdgpu_ring_funcs` structure is extended to include `stop_queue` and `start_queue` functions.
+>    - These functions are implemented in the SDMA version-specific code (e.g., `sdma_v4_4_2_stop_queue` and `sdma_v4_4_2_restore_queue`).
+>
+> 3. **Prepare for Deprecation of Dynamic Mechanism**:
+>    - By removing the callback invocations, this patch prepares the codebase for the eventual removal of the dynamic callback registration mechanism.
+>
+> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 33 ++----------------------
+>  drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c |  2 ++
+>  3 files changed, 6 insertions(+), 31 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> index b4fd1e17205e..1c52ff92ea26 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> @@ -237,6 +237,8 @@ struct amdgpu_ring_funcs {
+>  	void (*patch_ce)(struct amdgpu_ring *ring, unsigned offset);
+>  	void (*patch_de)(struct amdgpu_ring *ring, unsigned offset);
+>  	int (*reset)(struct amdgpu_ring *ring, unsigned int vmid);
+> +	int (*stop_queue)(struct amdgpu_device *adev, uint32_t instance_id);
+> +	int (*start_queue)(struct amdgpu_device *adev, uint32_t instance_id);
+>  	void (*emit_cleaner_shader)(struct amdgpu_ring *ring);
+>  	bool (*is_guilty)(struct amdgpu_ring *ring);
+>  };
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> index 39669f8788a7..b1f4a11ad0c9 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> @@ -534,16 +534,10 @@ void amdgpu_sdma_register_on_reset_callbacks(struct amdgpu_device *adev, struct
+>   * @instance_id: ID of the SDMA engine instance to reset
+>   * @suspend_user_queues: check if suspend user queue.
+>   *
+> - * This function performs the following steps:
+> - * 1. Calls all registered pre_reset callbacks to allow KFD and AMDGPU to save their state.
+> - * 2. Resets the specified SDMA engine instance.
+> - * 3. Calls all registered post_reset callbacks to allow KFD and AMDGPU to restore their state.
+> - *
+>   * Returns: 0 on success, or a negative error code on failure.
+>   */
+>  int amdgpu_sdma_reset_engine(struct amdgpu_device *adev, uint32_t instance_id, bool suspend_user_queues)
+>  {
+> -	struct sdma_on_reset_funcs *funcs;
+>  	int ret = 0;
+>  	struct amdgpu_sdma_instance *sdma_instance = &adev->sdma.instance[instance_id];;
+>  	struct amdgpu_ring *gfx_ring = &sdma_instance->ring;
+> @@ -571,19 +565,7 @@ int amdgpu_sdma_reset_engine(struct amdgpu_device *adev, uint32_t instance_id, b
+>  		page_sched_stopped = true;
+>  	}
+>  
+> -	/* Invoke all registered pre_reset callbacks */
+> -	list_for_each_entry(funcs, &adev->sdma.reset_callback_list, list) {
+> -		if (funcs->pre_reset) {
+> -			ret = funcs->pre_reset(adev, instance_id);
+> -			if (ret) {
+> -				dev_err(adev->dev,
+> -				"beforeReset callback failed for instance %u: %d\n",
+> -					instance_id, ret);
+> -				goto exit;
+> -			}
+> -		}
+> -	}
+> -
+> +	gfx_ring->funcs->stop_queue(adev, instance_id);
 
-This patch removes the deprecated SDMA reset callback mechanism, which was previously used to register pre-reset and post-reset callbacks for SDMA engine resets.
- The callback mechanism has been replaced with a more direct and efficient approach using `stop_queue` and `start_queue` functions in the ring's function table.
+Yeah that starts to look good. Question here is who is calling amdgpu_sdma_reset_engine()?
 
-The SDMA reset callback mechanism allowed KFD and AMDGPU to register pre-reset and post-reset functions for handling SDMA engine resets.
-However, this approach added unnecessary complexity and was no longer needed after the introduction of the `stop_queue` and `start_queue` functions in the ring's function table.
+If this call comes from engine specific code we might not need the start/stop_queue callbacks all together.
 
-1. **Remove Callback Mechanism**:
-   - Removed the `amdgpu_sdma_register_on_reset_callbacks` function and its associated data structures (`sdma_on_reset_funcs`).
-   - Removed the callback registration logic from the SDMA v4.4.2 initialization code.
+Regards,
+Christian.
 
-2. **Clean Up Related Code**:
-   - Removed the `sdma_v4_4_2_set_engine_reset_funcs` function, which was used to register the callbacks.
-   - Removed the `sdma_v4_4_2_engine_reset_funcs` structure, which contained the pre-reset and post-reset callback functions.
-
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 24 ------------------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h |  8 --------
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 12 ------------
- 3 files changed, 44 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-index c01154313a92..e88fa0f84bb8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-@@ -506,30 +506,6 @@ void amdgpu_sdma_sysfs_reset_mask_fini(struct amdgpu_device *adev)
- 	}
- }
- 
--/**
-- * amdgpu_sdma_register_on_reset_callbacks - Register SDMA reset callbacks
-- * @funcs: Pointer to the callback structure containing pre_reset and post_reset functions
-- *
-- * This function allows KFD and AMDGPU to register their own callbacks for handling
-- * pre-reset and post-reset operations for engine reset. These are needed because engine
-- * reset will stop all queues on that engine.
-- */
--void amdgpu_sdma_register_on_reset_callbacks(struct amdgpu_device *adev, struct sdma_on_reset_funcs *funcs)
--{
--	if (!funcs)
--		return;
--
--	/* Ensure the reset_callback_list is initialized */
--	if (!adev->sdma.reset_callback_list.next) {
--		INIT_LIST_HEAD(&adev->sdma.reset_callback_list);
--	}
--	/* Initialize the list node in the callback structure */
--	INIT_LIST_HEAD(&funcs->list);
--
--	/* Add the callback structure to the global list */
--	list_add_tail(&funcs->list, &adev->sdma.reset_callback_list);
--}
--
- static int amdgpu_sdma_soft_reset(struct amdgpu_device *adev, u32 instance_id)
- {
- 	u32 soft_reset;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-index 965169320065..1b6d304c6074 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
-@@ -98,13 +98,6 @@ struct amdgpu_sdma_ras {
- 	struct amdgpu_ras_block_object ras_block;
- };
- 
--struct sdma_on_reset_funcs {
--	int (*pre_reset)(struct amdgpu_device *adev, uint32_t instance_id);
--	int (*post_reset)(struct amdgpu_device *adev, uint32_t instance_id);
--	/* Linked list node to store this structure in a list; */
--	struct list_head list;
--};
--
- struct amdgpu_sdma {
- 	struct amdgpu_sdma_instance instance[AMDGPU_MAX_SDMA_INSTANCES];
- 	struct amdgpu_irq_src	trap_irq;
-@@ -168,7 +161,6 @@ struct amdgpu_buffer_funcs {
- 				 uint32_t byte_count);
- };
- 
--void amdgpu_sdma_register_on_reset_callbacks(struct amdgpu_device *adev, struct sdma_on_reset_funcs *funcs);
- int amdgpu_sdma_reset_engine(struct amdgpu_device *adev, uint32_t instance_id, bool suspend_user_queues);
- 
- #define amdgpu_emit_copy_buffer(adev, ib, s, d, b, t) (adev)->mman.buffer_funcs->emit_copy_buffer((ib),  (s), (d), (b), (t))
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index c1f7ccff9c4e..cb3148324e90 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -106,7 +106,6 @@ static void sdma_v4_4_2_set_buffer_funcs(struct amdgpu_device *adev);
- static void sdma_v4_4_2_set_vm_pte_funcs(struct amdgpu_device *adev);
- static void sdma_v4_4_2_set_irq_funcs(struct amdgpu_device *adev);
- static void sdma_v4_4_2_set_ras_funcs(struct amdgpu_device *adev);
--static void sdma_v4_4_2_set_engine_reset_funcs(struct amdgpu_device *adev);
- static void sdma_v4_4_2_update_reset_mask(struct amdgpu_device *adev);
- 
- static u32 sdma_v4_4_2_get_reg_offset(struct amdgpu_device *adev,
-@@ -1353,7 +1352,6 @@ static int sdma_v4_4_2_early_init(struct amdgpu_ip_block *ip_block)
- 	sdma_v4_4_2_set_vm_pte_funcs(adev);
- 	sdma_v4_4_2_set_irq_funcs(adev);
- 	sdma_v4_4_2_set_ras_funcs(adev);
--	sdma_v4_4_2_set_engine_reset_funcs(adev);
- 
- 	return 0;
- }
-@@ -1728,16 +1726,6 @@ static int sdma_v4_4_2_restore_queue(struct amdgpu_device *adev, uint32_t instan
- 	return sdma_v4_4_2_inst_start(adev, inst_mask, true);
- }
- 
--static struct sdma_on_reset_funcs sdma_v4_4_2_engine_reset_funcs = {
--	.pre_reset = sdma_v4_4_2_stop_queue,
--	.post_reset = sdma_v4_4_2_restore_queue,
--};
--
--static void sdma_v4_4_2_set_engine_reset_funcs(struct amdgpu_device *adev)
--{
--	amdgpu_sdma_register_on_reset_callbacks(adev, &sdma_v4_4_2_engine_reset_funcs);
--}
--
- static int sdma_v4_4_2_set_trap_irq_state(struct amdgpu_device *adev,
- 					struct amdgpu_irq_src *source,
- 					unsigned type,
--- 
-2.25.1
+>  	/* Perform the SDMA reset for the specified instance */
+>  	ret = amdgpu_dpm_reset_sdma(adev, 1 << instance_id);
+>  	if (ret) {
+> @@ -591,18 +573,7 @@ int amdgpu_sdma_reset_engine(struct amdgpu_device *adev, uint32_t instance_id, b
+>  		goto exit;
+>  	}
+>  
+> -	/* Invoke all registered post_reset callbacks */
+> -	list_for_each_entry(funcs, &adev->sdma.reset_callback_list, list) {
+> -		if (funcs->post_reset) {
+> -			ret = funcs->post_reset(adev, instance_id);
+> -			if (ret) {
+> -				dev_err(adev->dev,
+> -				"afterReset callback failed for instance %u: %d\n",
+> -					instance_id, ret);
+> -				goto exit;
+> -			}
+> -		}
+> -	}
+> +	gfx_ring->funcs->start_queue(adev, instance_id);
+>  
+>  exit:
+>  	/* Restart the scheduler's work queue for the GFX and page rings
+> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+> index fd34dc138081..c1f7ccff9c4e 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+> @@ -2132,6 +2132,8 @@ static const struct amdgpu_ring_funcs sdma_v4_4_2_ring_funcs = {
+>  	.emit_reg_wait = sdma_v4_4_2_ring_emit_reg_wait,
+>  	.emit_reg_write_reg_wait = amdgpu_ring_emit_reg_write_reg_wait_helper,
+>  	.reset = sdma_v4_4_2_reset_queue,
+> +	.stop_queue = sdma_v4_4_2_stop_queue,
+> +	.start_queue = sdma_v4_4_2_restore_queue,
+>  	.is_guilty = sdma_v4_4_2_ring_is_guilty,
+>  };
+>  
 
