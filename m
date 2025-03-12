@@ -2,83 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A82A5EE84
+	by mail.lfdr.de (Postfix) with ESMTPS id B329AA5EE83
 	for <lists+amd-gfx@lfdr.de>; Thu, 13 Mar 2025 09:52:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC0CD10E80B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFCBD10E80A;
 	Thu, 13 Mar 2025 08:52:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BLf2X4K/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="itoovOte";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com
- [209.85.128.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA8B10E044;
- Wed, 12 Mar 2025 16:26:58 +0000 (UTC)
-Received: by mail-yw1-f181.google.com with SMTP id
- 00721157ae682-6fecfae554bso44225157b3.0; 
- Wed, 12 Mar 2025 09:26:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1741796817; x=1742401617; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=KtbMoxoY+0r+dGRFaJbObtRqRCRzGoMTxZlGjKoABT8=;
- b=BLf2X4K/JPn7y4ChfYtcQOn9P0w/vYmxGQESwHcvqEGlnWK3x4GYM/RaurQgSAs3rS
- T3JiK+OWLfRmuO/QNdZ3dQdlYfkQ7KaIBHKEGJY1xznikhyAHF2XdPbSuKMZZ3jL9/QP
- y1VZRwkTJZCOQNnXhXrAFAPFrPskAD2IRJKMHXPvnnu/s/AAQl34JGvGgnHZmd06uGiW
- HttbELr2r2bPCa0baFEQCIvo0leRLef/CtVp8zEqLIJrZxG1eKLX98shZusVtq2rwSq3
- s95yuD8twht6O6AHmcV4KcB8FlFkkVK81vbb0V0OLBkDlmV+nRxLtx00f7BTLJahdZpT
- MrqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741796817; x=1742401617;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=KtbMoxoY+0r+dGRFaJbObtRqRCRzGoMTxZlGjKoABT8=;
- b=NC5iXDKygDREJa+FPBNckPBkrZHEqznX9Az/tZTb4kDgN99vHN+BwDsvTQjz/cBvcJ
- nTFhlco+KjdJhLotpPKbsAO1rT4PkbyFiuGeha3pbUenlJxzj6m3OzueyIcx8Eu0BhW6
- c3niIfVEeUHJ3+zL7M67Nm4i1FsGUjYUqmb7hO8x/oDsLBZslqZ/kKtBgwHFC+UJxak+
- ZBBiFAxxXnaBS2XXjiLugTV9mA8C105Yga8wXal8LiD2XnGEaZ9aKX68pVZcTTkT1xtM
- YLcz1MSgcRxnoOz2nGwy1iE/PWf90Fko0Hs4lWS4Cs2GpJL1DOtdXTsM5bPOgLOC6Hc6
- O65A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUE17NOI656Gw04Iw/4lUczc93V28l2AYVSIWNQurQz3+w3Gpyz7B73xkyNKCdFMgSSmc/zVxyLzk7Q@lists.freedesktop.org,
- AJvYcCUO6lfh6Nqy4x92mrWidKk4oUPzfllcRaScysE7wl6eQWt7CkDPXT0OGMacKHsRW6tSPjoT1Sp2@lists.freedesktop.org,
- AJvYcCW532afzTqPexFfq89H3Wyrxz733O1oUj5xdv4IfDDwqhcRmMp7H/lT4tD70+3zjZEforREt6K4M8ClpzfDV98E0g==@lists.freedesktop.org,
- AJvYcCWs0biqzup7sdLtvMeSwEF30T6YtWrv6fdBCLGHXqYuJDsceW3sB54+usJhwwDinXtGOFl6dz5+xfBOW4mpQA==@lists.freedesktop.org,
- AJvYcCXMeB1MNSXNF4SXMwvOlGbBcee5taSvj0Irx4aR+eyWPuNEqygCZTxRNKbmLXXHDLrAb0hY+fMudL+o@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy2vzHTRCjvTvpZoJWF3iGECTFU0wrUlYqU0x7/GpHHIP4G3dJx
- O9Vm5ET2pcm+UnzKSa/IP8cywQvAPm38VQ6CfLaZ8cvcpRf0k+vVhdFHSx37e2oprlHXIvPbMfU
- HJR9K/LNtXURqRhEmBECtFJRUOf0=
-X-Gm-Gg: ASbGncsdyaKh81FAfqhSOpS6X0xnFpdgkzNcHAS03Ctj9E1TaEJVmTZvlx28pN5v24n
- ZO/13AlvCX0bSxJhZhRpjG1U+Qk5HOZoS+bMSoj//Zo9JMA3FwTaJVzpZJrpBsichsBlcRFuBvJ
- CuMujUjMyr+gtLQTYeQKPMIefn
-X-Google-Smtp-Source: AGHT+IGwIilqLIs/47ywUA0mPYyex6iczz3P9omqm4iVSKnzzFj5OIFe77lwOuSPi2ImR4Qb3aQ4cT3QgKXQHZMGiKI=
-X-Received: by 2002:a05:690c:3708:b0:6f9:b0a6:6a15 with SMTP id
- 00721157ae682-6ff09293b84mr115686997b3.38.1741796816745; Wed, 12 Mar 2025
- 09:26:56 -0700 (PDT)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC42B10E01F;
+ Wed, 12 Mar 2025 21:59:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=A4+dae+3XRFxt7BM6x0GYCiu6QUc2mn4pIrP/UI5HVM=; b=itoovOtej8S0qr3N3mADZ9xGap
+ KbZrqsyHO0qQUGDS3jPjMyxlFSfnmgXAsBLMMaS9nvIVfRTYba3Y/7SV0plu0sp1hemmFQGoLdi5t
+ hsSbeU9f2xMaF7VSEupjRjdHwyCxTL0kpTXl3kUrfJMRl6nDmKVJTCgtQdv/X4vjOfbSd8zROvHYw
+ 81dCvdv0iIMSuy9i1R8GfiZggj+4wZ8E3LfAbJ1P7mMh51hixTm0fNGp2Kx3BZtROP8lcC9YgqbqW
+ lOWlgdtMmILD2KSFTdvFBYT+TAyeTH9IeoQsjWO+naUTO86kUiZVkOEgirRUY0iNQ1Xr6qGZLnHB/
+ OxhgTgYw==;
+Received: from [179.98.221.3] (helo=[192.168.15.100])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tsU6v-007o7i-7Q; Wed, 12 Mar 2025 22:59:39 +0100
+Message-ID: <ef926ea5-ac0e-4f95-b260-84c4102c93ad@igalia.com>
+Date: Wed, 12 Mar 2025 18:59:33 -0300
 MIME-Version: 1.0
-References: <20250125064619.8305-1-jim.cromie@gmail.com>
- <2025022012-viscous-cringing-bf88@gregkh>
- <Z7b50rGRA4RuybgC@phenom.ffwll.local>
- <caba927a-b71b-40bf-96b6-d15418ed705a@bootlin.com>
-In-Reply-To: <caba927a-b71b-40bf-96b6-d15418ed705a@bootlin.com>
-From: jim.cromie@gmail.com
-Date: Wed, 12 Mar 2025 10:26:30 -0600
-X-Gm-Features: AQ5f1JqGa1v3EYAxZlTMvkfJud0RHhUAoGaupEFx5s7t6c1Ynr_sb_DXNN9AMWQ
-Message-ID: <CAJfuBxwmFETyYZ4_sy92TtZr2a+CbjhGKidGU91uL5XiJy5cOQ@mail.gmail.com>
-Subject: Re: [PATCH 00/63] Fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
-To: Louis Chauvet <louis.chauvet@bootlin.com>
-Cc: Greg KH <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org, 
- jbaron@akamai.com, ukaszb@chromium.org, 
- intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com, 
- jani.nikula@intel.com, ville.syrjala@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm: Create an app info option for wedge events
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?B?J0NocmlzdGlhbiBLw7ZuaWcn?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ lucas.demarchi@intel.com, Xaver Hugl <xaver.hugl@kde.org>,
+ Pierre-Loup Griffais <pgriffais@valvesoftware.com>
+References: <20250228121353.1442591-1-andrealmeid@igalia.com>
+ <20250228121353.1442591-2-andrealmeid@igalia.com>
+ <Z8HGFRGOYvyCCWWu@black.fi.intel.com>
+ <58763d8e-46a1-4753-9401-987fb3dac50b@igalia.com>
+ <Z8KgwswQQyGxhsR1@black.fi.intel.com>
+ <db27ee44-f480-475b-be7e-710bd30eb7a5@igalia.com>
+ <Z9BuU3RzMkEE_FL1@black.fi.intel.com> <Z9FcmDzSmBbVAsqD@black.fi.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <Z9FcmDzSmBbVAsqD@black.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 13 Mar 2025 08:52:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,157 +74,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-hello everyone,
+Em 12/03/2025 07:06, Raag Jadav escreveu:
+> On Tue, Mar 11, 2025 at 07:09:45PM +0200, Raag Jadav wrote:
+>> On Mon, Mar 10, 2025 at 06:27:53PM -0300, André Almeida wrote:
+>>> Em 01/03/2025 02:53, Raag Jadav escreveu:
+>>>> On Fri, Feb 28, 2025 at 06:54:12PM -0300, André Almeida wrote:
+>>>>> Hi Raag,
+>>>>>
+>>>>> On 2/28/25 11:20, Raag Jadav wrote:
+>>>>>> Cc: Lucas
+>>>>>>
+>>>>>> On Fri, Feb 28, 2025 at 09:13:52AM -0300, André Almeida wrote:
+>>>>>>> When a device get wedged, it might be caused by a guilty application.
+>>>>>>> For userspace, knowing which app was the cause can be useful for some
+>>>>>>> situations, like for implementing a policy, logs or for giving a chance
+>>>>>>> for the compositor to let the user know what app caused the problem.
+>>>>>>> This is an optional argument, when `PID=-1` there's no information about
+>>>>>>> the app caused the problem, or if any app was involved during the hang.
+>>>>>>>
+>>>>>>> Sometimes just the PID isn't enough giving that the app might be already
+>>>>>>> dead by the time userspace will try to check what was this PID's name,
+>>>>>>> so to make the life easier also notify what's the app's name in the user
+>>>>>>> event.
+>>>>>>>
+>>>>>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+>>>
+>>> [...]
+>>>
+>>>>>>>     	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
+>>>>>>> @@ -562,6 +564,14 @@ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
+>>>>>>>     	drm_info(dev, "device wedged, %s\n", method == DRM_WEDGE_RECOVERY_NONE ?
+>>>>>>>     		 "but recovered through reset" : "needs recovery");
+>>>>>>> +	if (info) {
+>>>>>>> +		snprintf(pid_string, sizeof(pid_string), "PID=%u", info->pid);
+>>>>>>> +		snprintf(comm_string, sizeof(comm_string), "APP=%s", info->comm);
+>>>>>>> +	} else {
+>>>>>>> +		snprintf(pid_string, sizeof(pid_string), "%s", "PID=-1");
+>>>>>>> +		snprintf(comm_string, sizeof(comm_string), "%s", "APP=none");
+>>>>>>> +	}
+>>>>>> This is not much use for wedge cases that needs recovery, since at that point
+>>>>>> the userspace will need to clean house anyway.
+>>>>>>
+>>>>>> Which leaves us with only 'none' case and perhaps the need for standardization
+>>>>>> of "optional telemetry collection".
+>>>>>>
+>>>>>> Thoughts?
+>>>>>
+>>>>> I had the feeling that 'none' was already meant to be used for that. Do you
+>>>>> think we should move to another naming? Given that we didn't reach the merge
+>>>>> window yet we could potentially change that name without much damage.
+>>>>
+>>>> No, I meant thoughts on possible telemetry data that the drivers might
+>>>> think is useful for userspace (along with PID) and can be presented in
+>>>> a vendor agnostic manner (just like wedged event).
+>>>
+>>> I'm not if I agree that this will only be used for telemetry and for the
+>>> `none` use case. As stated by Xaver, there's use case to know which app
+>>> caused the device to get wedged (like switching to software rendering) and
+>>> to display something for the user after the recovery is done (e.g. "The game
+>>> <app name> stopped working and Plasma has reset").
+>>
+>> Sure, but since this information is already available in coredump, I was
+>> hoping to have something like a standardized DRM level coredump with both
+>> vendor specific and agnostic sections, which the drivers can (and hopefully
+>> transition to) use in conjunction with wedged event to provide wider
+>> telemetry and is useful for all wedge cases.
+> 
+> This is more useful because,
+> 
+> 1. It gives drivers an opportunity to present the telemetry that they are
+>     interested in without needing to add a new event string (like PID or APP)
+>     for their case.
+> 
+> 2. When we consider wedging as a usecase, there's a lot more that goes
+>     into it than an application that might be behaving strangely. So a wider
+>     telemetry is what I would hope to look at in such a scenario.
+> 
 
-sorry for the late reply.  I have a cleaner version cooking now.
-less inter-commit churn, by bringing more cleanups forward.
+I agree that coredump is the way to go for telemetry, we already have 
+the name and PID of the guilty app there, along with more information 
+about the GPU state. But I don't think it should be consumed like an 
+uAPI. Even if we wire up some common DRM code for that, I don't think we 
+can guarantee the stability of it as we can do for an uevent. coredump 
+can be disabled and by default is only accessible by root.
 
-I'll send a -v2 soon.  (lets forget all the meandering crap versions I sent=
-)
-
-Louis, thanks for testing !!!!!
-
-I wrote the test script and submod.ko so the lib/* parts would stand
-by themselves.
-And this time, I left the old DECLARE_ macro, so DRM doesnt get a
-flag-day breakage :-)
-
-But for ease of testing, I'll keep the DRM parts in the series.
-Taking 1st N commits is normal workflow ?
-
-On Fri, Feb 28, 2025 at 9:24=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
-n.com> wrote:
->
->
->
-> Le 20/02/2025 =C3=A0 10:45, Simona Vetter a =C3=A9crit :
-> > On Thu, Feb 20, 2025 at 09:31:41AM +0100, Greg KH wrote:
-> >> On Fri, Jan 24, 2025 at 11:45:14PM -0700, Jim Cromie wrote:
-> >>> This series fixes dynamic-debug's support for DRM debug-categories.
-> >>> Classmaps-v1 evaded full review, and got committed in 2 chunks:
-> >>>
-> >>>    b7b4eebdba7b..6ea3bf466ac6       # core dyndbg changes
-> >>>    0406faf25fb1..ee7d633f2dfb       # drm adoption
-> >>>
-> >>> DRM-CI found a regression during init with drm.debug=3D<initval>; the
-> >>> static-keys under the drm-dbgs in drm.ko got enabled, but those in
-> >>> drivers & helpers did not.
-> >>>
-> >>> Root Problem:
-> >>>
-> >>> DECLARE_DYNDBG_CLASSMAP violated a K&R rule "define once, refer
-> >>> afterwards".  Replace it with DYNDBG_CLASSMAP_DEFINE (invoked once in
-> >>> drm-core) and DYNDBG_CLASSMAP_USE (invoked repeatedly, in drivers &
-> >>> helpers).
-> >>>
-> >>> _DEFINE exports the classmap it creates (in drm.ko), other modules
-> >>> _USE the classmap.  The _USE adds a record ref'g the _DEFINEd (&
-> >>> exported) classmap, in a 2nd __dyndbg_class_users section.
-> >>>
-> >>> So now at modprobe, dyndbg scans the new section after the 1st
-> >>> __dyndbg_class_maps section, follows the linkage to the _DEFINEr
-> >>> module, finds the (optional) kernel-param controlling the classmap,
-> >>> examines its drm.debug=3D<initval>, and applies it to the module bein=
-g
-> >>> initialized.
-> >>>
-> >>> To recapitulate the multi-module problem wo DRM involvement, Add:
-> >>>
-> >>> A. tools/testing/selftests/dynamic_debug/*
-> >>>
-> >>> This alters pr_debugs in the test-modules, counts the results and
-> >>> checks them against expectations.  It uses this formula to test most
-> >>> of the control grammar, including the new class keyword.
-> >>>
-> >>> B. test_dynamic_debug_submod.ko
-> >>>
-> >>> This alters the test-module to build both parent & _submod ko's, with
-> >>> _DEFINE and _USE inside #if/#else blocks.  This recap's DRM's 2 modul=
-e
-> >>> failure scenario, allowing A to exersize several cases.
-> >>>
-> >>> The #if/#else puts the 2 macro uses together for clarity, and gives
-> >>> the 2 modules identical sets of debugs.
-> >>>
-> >>> Recent DRM-CI tests are here:
-> >>>    https://patchwork.freedesktop.org/series/139147/
-> >>>
-> >>> Previous rev:
-> >>>    https://lore.kernel.org/lkml/20240716185806.1572048-1-jim.cromie@g=
-mail.com/
-> >>>
-> >>> Noteworthy Additions:
-> >>>
-> >>> 1- drop class "protection" special case, per JBaron's preference.
-> >>>     only current use is marked BROKEN so nobody to affect.
-> >>>     now framed as policy-choice:
-> >>>     #define ddebug_client_module_protects_classes() false
-> >>>     subsystems wanting protection can change this.
-> >>>
-> >>> 2- compile-time arg-tests in DYNDBG_CLASSMAP_DEFINE
-> >>>     implement several required constraints, and fail obviously.
-> >>>
-> >>> 3- modprobe time check of conflicting class-id reservations
-> >>>     only affects 2+classmaps users.
-> >>>     compile-time solution not apparent.
-> >>>
-> >>> 4- dyndbg can now cause modprobe to fail.
-> >>>     needed to catch 3.
-> >>>     maybe some loose ends here on failure.
-> >>>
-> >>> 5- refactor & rename ddebug_attach_*module_classes
-> >>>     reduce repetetive boilerplate on 2 types: maps, users.
-> >>>     rework mostly brought forward in patchset to reduce churn
-> >>>     TBD: maybe squash more.
-> >>>
-> >>> Several recent trybot submissions (against drm-tip) have been passing
-> >>> CI.BAT, and failing one or few CI.IGT tests randomly; re-tests do not
-> >>> reliably repeat the failures.
-> >>>
-> >>> its also at github.com:jimc/linux.git
-> >>>    dd-fix-9[st]-ontip  &  dd-fix-9-13
-> >>>
-> >>> Ive been running it on my desktop w/o issues.
-> >>>
-> >>> The drivers/gpu/drm patches are RFC, I think there might be a single
-> >>> place to call DRM_CLASSMAP_USE(drm_dedbug_classes) to replace the
-> >>> sprinkling of _USEs in drivers and helpers.  IIRC, I tried adding a
-> >>> _DEFINE into drm_drv.c, that didn't do it, so I punted for now.
-> >>>
-> >>> I think the dyndbg core additions are ready for review and merging
-> >>> into a (next-next) test/integration tree.
-> >>
-> >> So whose tree should this go through?
-> >
-> > I'm trying to get some drm folks to review/test this, but thus far not
-> > much success :-/ I think it's good stuff, but I'm somewhat hesitant if =
-no
->
-> I tested the VKMS driver with this, and it works!
->
-> Tested-by: Louis Chauvet <louis.chauvet@bootlin.com>
->
-> > one else agrees that it's useful for CI or in-field crash-recording or
-> > whatever ...
-> >
-> > I guess worst case we can land it and hope it attracts more folks?
-> >
-> > Wrt tree I don't care, but I guess we should then also land the drm sid=
-e
-> > too.
-> > -Sima
-> >
-> >> And I think the last patch in this series isn't correct, it looks like=
- a
-> >> 000 email somehow.
-> >>
-> >> thanks,
-> >>
-> >> greg k-h
-> >
->
-> --
-> Louis Chauvet, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
+So I think that coredump is really good after the fact and if the user 
+is willing to go ahead and report a bug somewhere. But for the goal of 
+notifying the compositor, the same uevent that the compositor is already 
+listening to will have everything they need to deal with this reset.
