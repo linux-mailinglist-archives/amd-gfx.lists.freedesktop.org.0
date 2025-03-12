@@ -2,53 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55246A5DA2E
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Mar 2025 11:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 210EFA5DA2B
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Mar 2025 11:09:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEAC510E757;
-	Wed, 12 Mar 2025 10:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E25E910E754;
+	Wed, 12 Mar 2025 10:09:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="RyOnamZF";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (unknown [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 925148953E;
- Wed, 12 Mar 2025 06:31:35 +0000 (UTC)
-Received: from localhost.localdomain (unknown [124.16.141.245])
- by APP-01 (Coremail) with SMTP id qwCowABXhPs6KtFneEl5FA--.37073S2;
- Wed, 12 Mar 2025 14:31:23 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch
-Cc: Hawking.Zhang@amd.com, Likun.Gao@amd.com, sunil.khatri@amd.com,
- kenneth.feng@amd.com, Jack.Xiao@amd.com, marek.olsak@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/amdgpu/gfx12: correct cleanup of 'me' field with
- gfx_v12_0_me_fini()
-Date: Wed, 12 Mar 2025 14:31:06 +0800
-Message-ID: <20250312063106.772-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.42.0.windows.2
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7448B10E25E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Mar 2025 08:59:44 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-43cfecdd8b2so21471875e9.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Mar 2025 01:59:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1741769983; x=1742374783; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=j1lFF3dYoWzDhMcWgfyr3uKMuZdCc759+dudlwbUwJc=;
+ b=RyOnamZFHs5g086uZuTl1X0/wzDbOzeZbPlyCwdqxBZA0Ms1yFHGToZYyT0uQzrzOv
+ Vo/ARunlVGQv94ON+/cpPAftuk4SOGfnlv1xkLPYbEerMWsvT4QGvAJeifK9ef0uh6OA
+ SFaN/jt5BO5dYvzJjEEQqprpY91aSizbE9EW+IM6cGdwcBvjpwRMWg/yqJmGPV4YO2o+
+ spKQEc3d++0+ZpMQoIN6HCThAv+W0DFXQO6yGr2IFj44mKWZ7bNL8yJ43t3GA0FRUBmG
+ ktqYXNt/sQCwTbS9eEGLEJdD8bl+B9Un463jMl1j0Ql2aOhDBoJo0QlnIfgGdYv5YKH9
+ me+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741769983; x=1742374783;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=j1lFF3dYoWzDhMcWgfyr3uKMuZdCc759+dudlwbUwJc=;
+ b=PAytuCp84+5+SW633f2unyWpkz5wXo+aXXZ0yMx5iJv8hIUyJP8q6WuNdhoQJuIjuC
+ cPu+QN9jimfxA8uf8ikYusKvdAsOa71Bu/PjpaIO/BV6zlGylid5usVN/OaSCIbRIrLF
+ 3Q+HnaTl1JhVG8ND/Pm5C0N5Ha0RTOHN14u5kROxh0KxN0DojDfkB+fvO4wcq7UaTn3Q
+ unbxkeevbK3HyDwoRlaazpc8fLdiWYQgqQ5aK/Gj8fJyQm/fB6lfoYhgIbgLIjsjA5qv
+ IQElWlSjh4m/Ee0spSGUGKQr0U4sPitekx23KocYLEooQPG1pOulJuv7vBg+3j/O0vF1
+ 4O5g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVvBiHYrZJzRucc3XDUNcZOR2iJUZdLgtbf45j5V8aTvgi5zdAJAAWnQRt82YvtK1TRPjZ5xut9@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyMbPxo4Kb90smfKItxu1R3TTvaxs0mCfcfUPSW1jWWNzTTC1HL
+ 7FPawkXoc53hjpPrHtraRLJ4qEqZrwW35OWvlcBEtDqlhvmFGUG0eRqYzLOBVLI=
+X-Gm-Gg: ASbGncsUe7BDy1dtyfuL+zZiUR6Fq6VGS9Ix203XRXV2q9Rn6wLftKYIbcXkc2hfYg8
+ chCGh7Ezzz2M+EdTfeOXTb3dh5983//qhluVokpELzDiM2T97BJFmWr9Yt7ecFXnpRj4cfqkSjN
+ qLBJyYIYkdN6TonTzx10JDkD/4uBP178vFgLaGYjoRqodiIpRj/9FzHbf2sXrb3Ai75t7zNLC6B
+ Bj4Z7kuY3VGLBeTpsAKe2/aCwcY6H3fb1ZiXk3l5D8ZbLwhV8Xquqr46ytmLJE114DEzkp1udsb
+ KA9l4HNRGAXTlYFwTzO+FWZFGAOJgmEok+eVLM+Zvx9ov0cKig==
+X-Google-Smtp-Source: AGHT+IFRYyblJBug3nUydxwK8LKnL+dcpVCv067IXIe4xGqOt0RBaN55ofRlH/pzDjdJEy/xTq29pQ==
+X-Received: by 2002:a05:600c:4fd5:b0:43c:fb5b:84d8 with SMTP id
+ 5b1f17b1804b1-43cfb5b8569mr109455305e9.16.1741769982898; 
+ Wed, 12 Mar 2025 01:59:42 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 5b1f17b1804b1-43d0a75b324sm14465335e9.24.2025.03.12.01.59.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 12 Mar 2025 01:59:42 -0700 (PDT)
+Date: Wed, 12 Mar 2025 11:59:39 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: "Chung, ChiaHsuan (Tom)" <chiahsuan.chung@amd.com>
+Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Roman Li <roman.li@amd.com>, Alex Hung <alex.hung@amd.com>
+Subject: Re: [PATCH] drm/amd/display: Fix NULL pointer dereferences in
+ dm_update_crtc_state()
+Message-ID: <7f6541bb-93e9-4ab5-9079-8cdea38019ea@stanley.mountain>
+References: <20250312023409.2687233-1-srinivasan.shanmugam@amd.com>
+ <22e95ef0-4b07-41a6-b1c9-a5cd123a49e2@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowABXhPs6KtFneEl5FA--.37073S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrtw17Aw17Kw4xtw4UZFyfCrg_yoWkGFX_CF
- 4UJr93Wr4UCF1qqw1xZr1YvasFkF15ZF48Ka1aqas5GrZ8Z343Kry8Kr95WF4fuan3C3Wk
- XFyUWF1ftasxWjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUbf8FF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_
- Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr
- 0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
- W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
- Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFylc2xSY4AK67AK6r47MxAIw28IcxkI7VAKI4
- 8JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xv
- wVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjx
- v20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20E
- Y4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267
- AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUb7Ks5UUUUU==
-X-Originating-IP: [124.16.141.245]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwsTA2fQ4meNigABso
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <22e95ef0-4b07-41a6-b1c9-a5cd123a49e2@amd.com>
 X-Mailman-Approved-At: Wed, 12 Mar 2025 10:09:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,31 +93,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In gfx_v12_0_cp_gfx_load_me_microcode_rs64(), gfx_v12_0_pfp_fini() is
-incorrectly used to free 'me' field of 'gfx', since gfx_v12_0_pfp_fini()
-can only release 'pfp' field of 'gfx'. The release function of 'me' field
-should be gfx_v12_0_me_fini().
+On Wed, Mar 12, 2025 at 03:39:41PM +0800, Chung, ChiaHsuan (Tom) wrote:
+> The original code will check the drm_new_conn_state if it's valid in here
+> 
+> 10712                 if (IS_ERR(drm_new_conn_state)) {
+> 
 
-Fixes: 52cb80c12e8a ("drm/amdgpu: Add gfx v12_0 ip block support (v6)")
-Cc: stable@vger.kernel.org # 6.11+
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That's checking for error pointers.  It's irrelevant.  The warning is
+about NULL pointers.  It should probably be a NULL check.  I have
+written a blog that might be related?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index da327ab48a57..02bc2eddf0c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -2413,7 +2413,7 @@ static int gfx_v12_0_cp_gfx_load_me_microcode_rs64(struct amdgpu_device *adev)
- 				      (void **)&adev->gfx.me.me_fw_data_ptr);
- 	if (r) {
- 		dev_err(adev->dev, "(%d) failed to create me data bo\n", r);
--		gfx_v12_0_pfp_fini(adev);
-+		gfx_v12_0_me_fini(adev);
- 		return r;
- 	}
- 
--- 
-2.42.0.windows.2
+https://staticthinking.wordpress.com/2022/08/01/mixing-error-pointers-and-null/
 
+> After that the drm_new_conn_state does not touch by anyone before call the
+> 
+> --> 10751                 ret = fill_hdr_info_packet(drm_new_conn_state,
+> 
+> I think it should be no issue in this case.
+> 
+> We call the PTR_ERR_OR_ZERO() just because we need to get the error code and
+> return to the caller.
+> 
+>  10713                         ret = PTR_ERR_OR_ZERO(drm_new_conn_state);
+> 
+> Maybe it's just a false warning?
+
+Calling PTR_ERR_OR_ZERO() doesn't make sense when we know that
+drm_new_conn_state is an error pointer.
+
+regards,
+dan carpenter
+
+> 
+> Tom
+> 
+> On 3/12/2025 10:34 AM, Srinivasan Shanmugam wrote:
+> > Added checks for NULL values after retrieving drm_new_conn_state and
+> > drm_old_conn_state to prevent dereferencing NULL pointers.
+> > 
+> > Fixes the below:
+> > drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:10751 dm_update_crtc_state()
+> > 	warn: 'drm_new_conn_state' can also be NULL
+> > 
+> > drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
+> >      10672 static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
+> >      10673                          struct drm_atomic_state *state,
+> >      10674                          struct drm_crtc *crtc,
+> >      10675                          struct drm_crtc_state *old_crtc_state,
+> >      10676                          struct drm_crtc_state *new_crtc_state,
+> >      10677                          bool enable,
+> >      10678                          bool *lock_and_validation_needed)
+> >      10679 {
+> >      10680         struct dm_atomic_state *dm_state = NULL;
+> >      10681         struct dm_crtc_state *dm_old_crtc_state, *dm_new_crtc_state;
+> >      10682         struct dc_stream_state *new_stream;
+> >      10683         int ret = 0;
+> >      10684
+> >      ...
+> >      10703
+> >      10704         /* TODO This hack should go away */
+> >      10705         if (connector && enable) {
+> >      10706                 /* Make sure fake sink is created in plug-in scenario */
+> >      10707                 drm_new_conn_state = drm_atomic_get_new_connector_state(state,
+> >      10708                                                                         connector);
+> > 
+> > drm_atomic_get_new_connector_state() can't return error pointers, only NULL.
+> > 
+> >      10709                 drm_old_conn_state = drm_atomic_get_old_connector_state(state,
+> >      10710                                                                         connector);
+> >      10711
+> >      10712                 if (IS_ERR(drm_new_conn_state)) {
+> >                                       ^^^^^^^^^^^^^^^^^^
+> > 
+> >      10713                         ret = PTR_ERR_OR_ZERO(drm_new_conn_state);
+> > 
+> > Calling PTR_ERR_OR_ZERO() doesn't make sense.  It can't be success.
+> > 
+> >      10714                         goto fail;
+> >      10715                 }
+> >      10716
+> >      ...
+> >      10748
+> >      10749                 dm_new_crtc_state->abm_level = dm_new_conn_state->abm_level;
+> >      10750
+> > --> 10751                 ret = fill_hdr_info_packet(drm_new_conn_state,
+> >                                                       ^^^^^^^^^^^^^^^^^^ Unchecked dereference
+> > 
+> >      10752                                            &new_stream->hdr_static_metadata);
+> >      10753                 if (ret)
+> >      10754                         goto fail;
+> >      10755
+> > 
+> > Cc: Harry Wentland<harry.wentland@amd.com>
+> > Cc: Nicholas Kazlauskas<nicholas.kazlauskas@amd.com>
+> > Cc: Tom Chung<chiahsuan.chung@amd.com>
+> > Cc: Rodrigo Siqueira<Rodrigo.Siqueira@amd.com>
+> > Cc: Roman Li<roman.li@amd.com>
+> > Cc: Alex Hung<alex.hung@amd.com>
+> > Cc: Aurabindo Pillai<aurabindo.pillai@amd.com>
+> > Reported-by: Dan Carpenter<dan.carpenter@linaro.org>
+> > Signed-off-by: Srinivasan Shanmugam<srinivasan.shanmugam@amd.com>
+> > ---
+> >   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 20 +++++++++++--------
+> >   1 file changed, 12 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > index 1b92930119cc..e3df11662fff 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > @@ -10727,11 +10727,20 @@ static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
+> >   		drm_old_conn_state = drm_atomic_get_old_connector_state(state,
+> >   									connector);
+> > -		if (IS_ERR(drm_new_conn_state)) {
+> > -			ret = PTR_ERR_OR_ZERO(drm_new_conn_state);
+> > -			goto fail;
+> > +		/* Check if drm_new_conn_state is valid */
+> > +		if (drm_new_conn_state) {
+> > +			dm_new_conn_state = to_dm_connector_state(drm_new_conn_state);
+> > +
+> > +			/* Attempt to fill HDR info packet */
+> > +			ret = fill_hdr_info_packet(drm_new_conn_state,
+> > +						   &new_stream->hdr_static_metadata);
+> > +			if (ret)
+> > +				goto fail;
+> >   		}
+> > +		if (drm_old_conn_state)
+> > +			dm_old_conn_state = to_dm_connector_state(drm_old_conn_state);
+> > +
+> >   		dm_new_conn_state = to_dm_connector_state(drm_new_conn_state);
+> >   		dm_old_conn_state = to_dm_connector_state(drm_old_conn_state);
+> > @@ -10766,11 +10775,6 @@ static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
+> >   		dm_new_crtc_state->abm_level = dm_new_conn_state->abm_level;
+> > -		ret = fill_hdr_info_packet(drm_new_conn_state,
+> > -					   &new_stream->hdr_static_metadata);
+> > -		if (ret)
+> > -			goto fail;
+> > -
+> >   		/*
+> >   		 * If we already removed the old stream from the context
+> >   		 * (and set the new stream to NULL) then we can't reuse
