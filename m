@@ -2,55 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4956FA60C6F
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Mar 2025 09:59:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD6AA60CD9
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Mar 2025 10:11:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D711610E9AB;
-	Fri, 14 Mar 2025 08:59:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97DA010E21C;
+	Fri, 14 Mar 2025 09:11:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="owLJ1WJu";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="iq8kjZZ8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57AC310E9AB;
- Fri, 14 Mar 2025 08:59:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1741942766;
- bh=dO2g62Nlwp+u8LGId8NUD6lLWl2ArcKsTpjA88vbPVo=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=owLJ1WJu0YKFv0vCeABK86Cs/4CF+m+pf5V2jGXI5Th+cqcCaysIujd1olFmyZou5
- BCH9bEIqNTJqx1LnT4yxIuzQofiE/ZmInPnWe0LdLTgbdS4E7MnSSROdWsAZmRNFIz
- E57s7m+GwOo0FVvu/yTb63il4pNmhvdRSvBNyYx0AUBBgppteciBMEnkMP1bigrN9n
- FE8PjZ1TMZLHsZNg5OX+KHgCP8hcGn5LKLQMbGVlb+NrziOiD1kfWAbgOtjjughYo2
- oPCPP/nflkUJDGUVQesX6PZE5MxUzbvkSpbLSsda6Fn2xQHqxvinFdcXt3g7WPcH2z
- UW8sjJvbCRGrw==
-Received: from debian.. (unknown [103.163.65.90])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id CA66717E0ABD;
- Fri, 14 Mar 2025 09:59:21 +0100 (CET)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com, helen.fornazier@gmail.com, airlied@gmail.com,
- simona.vetter@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com,
- lumag@kernel.org, quic_abhinavk@quicinc.com, mripard@kernel.org,
- jani.nikula@linux.intel.com, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/3] drm/ci: arm64.config: mediatek: enable PHY drivers
-Date: Fri, 14 Mar 2025 14:28:52 +0530
-Message-ID: <20250314085858.39328-4-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250314085858.39328-1-vignesh.raman@collabora.com>
-References: <20250314085858.39328-1-vignesh.raman@collabora.com>
+Received: from mout.web.de (mout.web.de [212.227.15.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBAA210E1BC;
+ Thu, 13 Mar 2025 15:25:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1741879518; x=1742484318; i=markus.elfring@web.de;
+ bh=sErwnx8pcuQQ1tldCxoUyU7bZmGR2ORwpdFakspaE5k=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+ Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+ cc:content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=iq8kjZZ8ZTlUv5GhCL+PN2vHTPl714hme9UJfTKqYPCCjJzgKKQeopr3wQPykwrf
+ 0yKVj/Trzg7NevDx4VBNdF9i217UFiMBnzkR4aOeWux7Ubp5W54hGclfg8P8zA5BX
+ 4ryogbU++dMHGT/KsPxWgf8w39tAR9EjD8txIUKRp3dSZKujd1CxnAJOsLlWjE4Vv
+ E5I2fZ2ygoQiLwUSjh5oY+s2an+Qw9CDww2+fsyiOMSQAjNFUehwVi2VBnv4qbMU0
+ Snt2Pt1t/DVo9ExgcD0KBnIyyluvLox/g8FVcks91uaTyAqQ2PcDt5jhDiIcMX0UG
+ OPqXAvRLptfoYbz/Lg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.93.2]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N6sBv-1t97GT28Wl-015YRH; Thu, 13
+ Mar 2025 16:25:18 +0100
+Message-ID: <484f85e6-4650-4301-907d-6ba08dfd4e1b@web.de>
+Date: Thu, 13 Mar 2025 16:25:13 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+To: vulab@iscas.ac.cn, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Jack Xiao <Jack.Xiao@amd.com>, Kenneth Feng <kenneth.feng@amd.com>,
+ Likun Gao <Likun.Gao@amd.com>, =?UTF-8?B?TWFyZWsgT2zFocOhaw==?=
+ <marek.olsak@amd.com>, Simona Vetter <simona@ffwll.ch>,
+ Sunil Khatri <sunil.khatri@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>
+References: <20250312063106.772-1-vulab@iscas.ac.cn>
+Subject: Re: [PATCH] drm/amdgpu/gfx12: correct cleanup of 'me' field with
+ gfx_v12_0_me_fini()
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20250312063106.772-1-vulab@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Fwl6wYppUeZIESJ07QfG7R+RHS+ivvTGz91GRCqjvA9QR2nYSaz
+ /276/2ni6oKiwwvhaJE+6C6O4AeztAJTEzhau6+vmGZW/5u6EmkjPtUkOKQTJ77xtIFU59C
+ +dnOP2SEa8uRBDiqSff4vu1Psxnv4RnCcZLVR3lbD/M2epv4Ei7hgaIE+ybcXH1RjxI9wRU
+ 0UlKR4agNoPVi54Os4A6A==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:PqiBbeSmioQ=;QfebTrW7ygkj+TSSpvMgnbRpo6s
+ 08hCEpGEBzMWciTp7Ediy/EfNxNJ+WCvi37FaDUSykSIXTBQR27ybZh8L4jCHqGQqQ/ujDGJN
+ ZlUzAzb1lvlTOtQ/y/y1WwBHTSJi75jPT90oVe4YsOVGAVAmpYF8nmaBWuW7IO9q1pxQXGRCv
+ 0Zszpn07z07jwePHZ66d5c9or5bz+rJKy7a0nmgREpUjNm8WT8rmi4qBvo/m33TuISwpKVYbO
+ 8sj/lktMvrqVXQRJ9PD2xwmkWBWDO8Y3UYHlzw2nwCjiFo98L1K7cBxP+FutrR1yPfiNQHc4y
+ Hdqf6LLmMw8hwgNl7DjIaWpZgswQnyNt6oPf9T+kJaep6PKV5/8LR6Fe0NoWP22KAlanj7XEy
+ Xy7+hdelz2opzPnimSfsPikABze4Xhpk1Ind7U29tWfxSW1kMmYWANDFltq6Jn6fmHM8MY06b
+ tZ5pC//nQd4i+GNvkL4KeLqvoPXVf3OJRuxMCCeD1z09oXwFOgtDbhH+8D9u3exWMqo0reGCZ
+ sV+uaNTXZorUOHfkVJehtYevFyl7qTpvfnew10maKpEtDcjU5Lxmzz37OdCs4KelKQ7Yg+ARI
+ /FmYcjt0rZaOLesD1uddU+Ek7xtMGXp6d+xJqBtLgMWjFCrbNNWdY8tLwU2wNW6L4anzkSzuD
+ U/XXC4FUtmseFWwv/fCsgwXO/tcarZb3wznrqkvnlTV+GPDTGBZ0KkGskRI/Lwf4PwB6WepHL
+ MlKcDCZ/MUuib+WgNx5WLB0eOI+euIyisJ6jXpv3awGW7QgE4Efs7s5HOJX6xOFsC+p1B7/ua
+ dZs93pnG0kqsz0W5pCucPu1pfa78seRSpahs8UwUBr4+fp8qZuDuVaT+za1MJiWueOqXTYqcM
+ jzxe7L1Uspyd++YzyBWzR3YV0SWVkXE3E8gvjnpaaNBMJYPo4YJxy3Ze6vd26XHEXX1k7MTrD
+ Buab5bKidyDKFCqJ3WwXXPE+yoXP5Xj+3HF5PPTtFDVgOoSuFlSyw+o0Cbs+pwosqjbYyVKNe
+ kxMF3O1OdNj721mKBur0+8eP8qXS33j1/4K2lcnnyV1vPgYs1T77BM65DwW+mzXIptBSLoOEh
+ 8rKkbX5dPt6kqDCOSevjr1NXJqui/mRwQU87uH530Eb5gaeapFcUkhHsO0WEwoP1ZNYYtgd+o
+ tLgujMk6/WMaNczDwOf6T4GEyFwNYFrBI4GIfxo6jq1Wg5PIjsnJ0HG8Z5kFlS7XD5AbfxCyW
+ lYtuNSHTkNbr6SrIkRZXvsMi80IazpnzV+aoBiLKcdanuEZGJKbDr9jcGWKeOAdOCY0V+ws+z
+ JykisRMjj8kY8hh/khhjRu4fONeBnJ4E9FIJf1l159wiAxVNp8yMN7EJrVBCJtabbv/wdJnbo
+ a4trkTqrDf5MvhTZkih97VQFD6ZshD5S6zbcgMigJBtZVo+dAogjMIKesL4UZQCaY324qlofw
+ 2FphBIrwBN46kw527VD/chFzQHw2ycSOB1iap4sw9SO1CqpBW
+X-Mailman-Approved-At: Fri, 14 Mar 2025 09:11:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,32 +96,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The mediatek display driver fails to probe on mt8173-elm-hana and
-mt8183-kukui-jacuzzi-juniper-sku16 in v6.14-rc4 due to missing PHY
-configurations.
+=E2=80=A6
+> can only release 'pfp' field of 'gfx'. The release function of 'me' fiel=
+d
+> should be gfx_v12_0_me_fini().
 
-Enable the following PHY drivers for MediaTek platforms:
-- CONFIG_PHY_MTK_HDMI=y for HDMI display
-- CONFIG_PHY_MTK_MIPI_DSI=y for DSI display
+Do you care for an imperative wording in such a change description?
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/Documentation/process/submitting-patches.rst?h=3Dv6.14-rc6#n94
 
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
- drivers/gpu/drm/ci/arm64.config | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/ci/arm64.config b/drivers/gpu/drm/ci/arm64.config
-index a8fca079921b..fddfbd4d2493 100644
---- a/drivers/gpu/drm/ci/arm64.config
-+++ b/drivers/gpu/drm/ci/arm64.config
-@@ -193,6 +193,8 @@ CONFIG_PWM_MTK_DISP=y
- CONFIG_MTK_CMDQ=y
- CONFIG_REGULATOR_DA9211=y
- CONFIG_DRM_ANALOGIX_ANX7625=y
-+CONFIG_PHY_MTK_HDMI=y
-+CONFIG_PHY_MTK_MIPI_DSI=y
- 
- # For nouveau.  Note that DRM must be a module so that it's loaded after NFS is up to provide the firmware.
- CONFIG_ARCH_TEGRA=y
--- 
-2.47.2
-
+Regards,
+Markus
