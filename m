@@ -2,85 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DD6AA60CD9
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E199A60CD8
 	for <lists+amd-gfx@lfdr.de>; Fri, 14 Mar 2025 10:11:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97DA010E21C;
-	Fri, 14 Mar 2025 09:11:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0DC10E9B2;
+	Fri, 14 Mar 2025 09:11:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="iq8kjZZ8";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="e9WBZZnI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.15.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBAA210E1BC;
- Thu, 13 Mar 2025 15:25:40 +0000 (UTC)
+X-Greylist: delayed 499 seconds by postgrey-1.36 at gabe;
+ Thu, 13 Mar 2025 22:36:25 UTC
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ABE810E0C6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 Mar 2025 22:36:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1741879518; x=1742484318; i=markus.elfring@web.de;
- bh=sErwnx8pcuQQ1tldCxoUyU7bZmGR2ORwpdFakspaE5k=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
- Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- cc:content-transfer-encoding:content-type:date:from:message-id:
+ s=s29768273; t=1741905383; x=1742510183; i=spasswolf@web.de;
+ bh=UZHfDSu598HqL1JYZaRqo0hyksFnTWQ90LTcyrIig0s=;
+ h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+ References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
  mime-version:reply-to:subject:to;
- b=iq8kjZZ8ZTlUv5GhCL+PN2vHTPl714hme9UJfTKqYPCCjJzgKKQeopr3wQPykwrf
- 0yKVj/Trzg7NevDx4VBNdF9i217UFiMBnzkR4aOeWux7Ubp5W54hGclfg8P8zA5BX
- 4ryogbU++dMHGT/KsPxWgf8w39tAR9EjD8txIUKRp3dSZKujd1CxnAJOsLlWjE4Vv
- E5I2fZ2ygoQiLwUSjh5oY+s2an+Qw9CDww2+fsyiOMSQAjNFUehwVi2VBnv4qbMU0
- Snt2Pt1t/DVo9ExgcD0KBnIyyluvLox/g8FVcks91uaTyAqQ2PcDt5jhDiIcMX0UG
- OPqXAvRLptfoYbz/Lg==
+ b=e9WBZZnI6rpGVPZPeSN69PvINGVR+uKdFKR9ezxrmufoLefxy9jIzXg9zcRvv5Y8
+ gQjjGKc7eioKseXKWNz8FIYRI3QJsyvYy87zme+bFlblZxE7uFvt7LS21wFPPVGdq
+ a8KSxlcgs3ea/6CDOeWWjufua9OqAb8V+kjx4gDqA9uG1jdnU7oAtoUm3aOoGvJVY
+ 0XfBwTV9OwE5VvdeXaRCLNOd4stPQhY4bPNFIR+2tEwQyXNM1ssmSxiEjNwCyxbqu
+ pXvi3F4DgkmaF56NmmcZmqMH4sNICLoEnEjC7H0u2Ho8I1ulmne2GdIKTy0MQNrMg
+ 6lM9LrsxMJEPspveCw==
 X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.93.2]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1N6sBv-1t97GT28Wl-015YRH; Thu, 13
- Mar 2025 16:25:18 +0100
-Message-ID: <484f85e6-4650-4301-907d-6ba08dfd4e1b@web.de>
-Date: Thu, 13 Mar 2025 16:25:13 +0100
+Received: from [192.168.0.101] ([95.223.134.88]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1M4sc1-1tt8Bc3Si7-00G8ss; Thu, 13
+ Mar 2025 23:22:07 +0100
+Message-ID: <fa8d5e76694918bdaae9faee9648776f298f78ca.camel@web.de>
+Subject: Re: commit 7ffb791423c7 breaks steam game
+From: Bert Karwatzki <spasswolf@web.de>
+To: Balbir Singh <balbirs@nvidia.com>
+Cc: Ingo Molnar <mingo@kernel.org>, Kees Cook <kees@kernel.org>, Bjorn
+ Helgaas	 <bhelgaas@google.com>, Linus Torvalds
+ <torvalds@linux-foundation.org>, Peter Zijlstra <peterz@infradead.org>,
+ Andy Lutomirski <luto@kernel.org>, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, spasswolf@web.de
+Date: Thu, 13 Mar 2025 23:22:06 +0100
+In-Reply-To: <b63b1de8-7eec-4235-b61e-e654e78543ba@nvidia.com>
+References: <20250310112206.4168-1-spasswolf@web.de>
+ <951f9d13-72e4-41c3-9ace-8639e2a9485d@nvidia.com>
+ <ce940e2a-632d-41be-9f13-e5b11d49b0db@nvidia.com>
+ <09131c563332c892284ec7fb4ce706996131db8c.camel@web.de>
+ <9a5df5627d3d72b2a97f501dfb7d944cc1e9920f.camel@web.de>
+ <fdea59fe-f570-489f-bf88-1ffd47119cac@nvidia.com>
+ <414f4deb8c7670a159854006b0c410ce05a6049e.camel@web.de>
+ <12d950ee-4152-4ad6-b93e-7c5b75804b1a@nvidia.com>
+ <705e95cec3dc5181ca2aa73722e6b84f63f3e91d.camel@web.de>
+ <20b5823e-247a-456a-bb55-d50f212a9f5a@nvidia.com>
+ <a34a1ae0b1d226b1bac7d73daa24da8e5899cb3e.camel@web.de>
+ <c7bb0bd1-529d-466d-9cce-abbac4b480ab@nvidia.com>
+ <146277bb0ecbb392d490683c424b8ae0dfa82838.camel@web.de>
+ <b63b1de8-7eec-4235-b61e-e654e78543ba@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.55.3-1 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: vulab@iscas.ac.cn, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Jack Xiao <Jack.Xiao@amd.com>, Kenneth Feng <kenneth.feng@amd.com>,
- Likun Gao <Likun.Gao@amd.com>, =?UTF-8?B?TWFyZWsgT2zFocOhaw==?=
- <marek.olsak@amd.com>, Simona Vetter <simona@ffwll.ch>,
- Sunil Khatri <sunil.khatri@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>
-References: <20250312063106.772-1-vulab@iscas.ac.cn>
-Subject: Re: [PATCH] drm/amdgpu/gfx12: correct cleanup of 'me' field with
- gfx_v12_0_me_fini()
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20250312063106.772-1-vulab@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Fwl6wYppUeZIESJ07QfG7R+RHS+ivvTGz91GRCqjvA9QR2nYSaz
- /276/2ni6oKiwwvhaJE+6C6O4AeztAJTEzhau6+vmGZW/5u6EmkjPtUkOKQTJ77xtIFU59C
- +dnOP2SEa8uRBDiqSff4vu1Psxnv4RnCcZLVR3lbD/M2epv4Ei7hgaIE+ybcXH1RjxI9wRU
- 0UlKR4agNoPVi54Os4A6A==
+X-Provags-ID: V03:K1:rj5ELexmLntZ+I/BKImxJ2NUsGXQQm8Hq6gR1qO/SPDNeJg8NQ9
+ sHM7ffS84LkVEazHXNw2DXtrNrE/Jc/dDttLUOzVz16AToVD8PIJCDZKv7QsOfCpPM4mntg
+ cy1yODf++W8vlKldAEhrdFtb0St5LQ+gbKqFJ5Gr9LZ0ZQ+MviyhOznAH8rrgHy1iB7qvlT
+ h0/KwB6q8qzqv41j7F4/A==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:PqiBbeSmioQ=;QfebTrW7ygkj+TSSpvMgnbRpo6s
- 08hCEpGEBzMWciTp7Ediy/EfNxNJ+WCvi37FaDUSykSIXTBQR27ybZh8L4jCHqGQqQ/ujDGJN
- ZlUzAzb1lvlTOtQ/y/y1WwBHTSJi75jPT90oVe4YsOVGAVAmpYF8nmaBWuW7IO9q1pxQXGRCv
- 0Zszpn07z07jwePHZ66d5c9or5bz+rJKy7a0nmgREpUjNm8WT8rmi4qBvo/m33TuISwpKVYbO
- 8sj/lktMvrqVXQRJ9PD2xwmkWBWDO8Y3UYHlzw2nwCjiFo98L1K7cBxP+FutrR1yPfiNQHc4y
- Hdqf6LLmMw8hwgNl7DjIaWpZgswQnyNt6oPf9T+kJaep6PKV5/8LR6Fe0NoWP22KAlanj7XEy
- Xy7+hdelz2opzPnimSfsPikABze4Xhpk1Ind7U29tWfxSW1kMmYWANDFltq6Jn6fmHM8MY06b
- tZ5pC//nQd4i+GNvkL4KeLqvoPXVf3OJRuxMCCeD1z09oXwFOgtDbhH+8D9u3exWMqo0reGCZ
- sV+uaNTXZorUOHfkVJehtYevFyl7qTpvfnew10maKpEtDcjU5Lxmzz37OdCs4KelKQ7Yg+ARI
- /FmYcjt0rZaOLesD1uddU+Ek7xtMGXp6d+xJqBtLgMWjFCrbNNWdY8tLwU2wNW6L4anzkSzuD
- U/XXC4FUtmseFWwv/fCsgwXO/tcarZb3wznrqkvnlTV+GPDTGBZ0KkGskRI/Lwf4PwB6WepHL
- MlKcDCZ/MUuib+WgNx5WLB0eOI+euIyisJ6jXpv3awGW7QgE4Efs7s5HOJX6xOFsC+p1B7/ua
- dZs93pnG0kqsz0W5pCucPu1pfa78seRSpahs8UwUBr4+fp8qZuDuVaT+za1MJiWueOqXTYqcM
- jzxe7L1Uspyd++YzyBWzR3YV0SWVkXE3E8gvjnpaaNBMJYPo4YJxy3Ze6vd26XHEXX1k7MTrD
- Buab5bKidyDKFCqJ3WwXXPE+yoXP5Xj+3HF5PPTtFDVgOoSuFlSyw+o0Cbs+pwosqjbYyVKNe
- kxMF3O1OdNj721mKBur0+8eP8qXS33j1/4K2lcnnyV1vPgYs1T77BM65DwW+mzXIptBSLoOEh
- 8rKkbX5dPt6kqDCOSevjr1NXJqui/mRwQU87uH530Eb5gaeapFcUkhHsO0WEwoP1ZNYYtgd+o
- tLgujMk6/WMaNczDwOf6T4GEyFwNYFrBI4GIfxo6jq1Wg5PIjsnJ0HG8Z5kFlS7XD5AbfxCyW
- lYtuNSHTkNbr6SrIkRZXvsMi80IazpnzV+aoBiLKcdanuEZGJKbDr9jcGWKeOAdOCY0V+ws+z
- JykisRMjj8kY8hh/khhjRu4fONeBnJ4E9FIJf1l159wiAxVNp8yMN7EJrVBCJtabbv/wdJnbo
- a4trkTqrDf5MvhTZkih97VQFD6ZshD5S6zbcgMigJBtZVo+dAogjMIKesL4UZQCaY324qlofw
- 2FphBIrwBN46kw527VD/chFzQHw2ycSOB1iap4sw9SO1CqpBW
+UI-OutboundReport: notjunk:1;M01:P0:Z23ouQldg8s=;hmr5Ar5ClU3swGNASpm8U5kOWVi
+ ttMn/G+SFtvUr3kJ+yce3VfP7haAXuLF2AtF+1o3Ik28K88DnNYz+Y2MPXxDJf252gVaXzJsM
+ 95nwOs23wD1aAoBJ5Ru3zHHCQsLKRQcXw9zzla6GV5PYRr6b5uJ/dbIMl+g4XE59GCYr5/Kyh
+ BoXA23wYFrBbi41KQIeiCu7HIwy/GOvBhHFEroRUyXlK4vXhPDKWgORXBinDsfgmFM+tFYMgY
+ s96mtWnKYOqBwLAe15s0Vq3RVNU/ZXmbfbqjO/w1PyXOBTjOXH53lfnHJnYOqUV9zZ2oa+HH1
+ 6pupF5MFdfAZNVL6f4SUbThl/qQrwcr3Z4rvF9pSxfuGvwbIFaMVQ++xvNqY9sMt8DuoFBfaJ
+ WwpxviPhahUAWWO5pawvyK7F4k7P2CfMh4MqEW6lEdJXgRZr5112Z/x77oFJpg7mu/AhbilMa
+ B43LWEkoD0t+7w4U4Dn1MPVY3JESadsSjYQ4TPTojNUYByKYeOmfZ3C2wsWiDElW699gCr8iP
+ Gh2+2N9P5UG9BKqABMfb4R/iT5y+xJFp1UZmqO3leqZ2YJqyx4+RGVVNYlguxG/YgSsWihqkW
+ h+yvmgeuDHKH34u+Y3+Co0fsDnrW6hJZGbTYiSycRXQOG9jdoCEAoW3MeQffV31J6bnsfK0+p
+ fOYPdjgL0PUIN2Hga2I0DdMJykt+4S8+2Kl18QO8zAU0QuT99H9xV4ZJZHGSQNwscLOwFRrb9
+ hSM13W8iJFFEQouTXSp1QNNjFhQ089dHuLqDfP0r29icZbNtCdL24EBfswsAwLrJwhKVpIQpV
+ nq6F/cjM/oE9eua7tvXGlzwIbXRxTMbWYIAgr8ZpnUR2LsXQDGWfMG7B+xEtuFxpkW4tCRs1L
+ 4IDUdrNYO3hzjjACSzaKAUXUN9YYTRkLghoUvymYagYABvrB7bta2+hFY2JiJgcVc601c+vn1
+ p0MEWg3iAihA0JH8gBufZzzrF3CBGPaamNJ3jsByW1ypHnKEqQX8/4Oru/H+wp0n5asRifxDf
+ ZmvO/Ag4RYeFTExh1CRZvx+QZSTwmPJ7HFKuon0IFeL56ZgsBOQ3UnfpV3+F1b8JAXm6v/C8c
+ IHI15qedWGz4sk5ZTBlD7tLUVYfCkld2vaMl510bH5RNaSOP3P0du202H84MBCroWsMMghcty
+ 4rozdXrGi4/WQGWIYqob8KURut0cYyTb+bIxXO5Gc8Alrlef3BMCQfQF6nrzwhUVg8LT0u88F
+ H4PpaeMuZIYPtyMIy+G0cnz3gONkBQP+rXZxHWgaCWG73KX4QC9+WdbVZmScGNlWls2ZIHilf
+ Qfw0O1fGCPtDYXkTyUZTPFDcLlkevZJ35LwY3ZXLT+NUj7TB6rCT5fVJEZRTsPpnq2Tg8p5Bw
+ 2dDPTTGxtx1DerxG6lMvM94nzTbxuClhCA/GuEXbpFOJpHvMsARZqAoYbNO2iq+YsqSTQ1T89
+ cGSpH0Z76FsXtsRRbJ9UocGZHqzU=
 X-Mailman-Approved-At: Fri, 14 Mar 2025 09:11:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,14 +105,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-=E2=80=A6
-> can only release 'pfp' field of 'gfx'. The release function of 'me' fiel=
-d
-> should be gfx_v12_0_me_fini().
+Am Freitag, dem 14.03.2025 um 08:54 +1100 schrieb Balbir Singh:
+> On 3/14/25 05:12, Bert Karwatzki wrote:
+> > Am Donnerstag, dem 13.03.2025 um 22:47 +1100 schrieb Balbir Singh:
+> > >
+> > >
+> > > Anyway, I think the nokaslr result is interesting, it seems like wit=
+h nokaslr
+> > > even the older kernels have problems with the game
+> > >
+> > > Could you confirm if with nokaslr
+> > >
+> > Now I've tested kernel 6.8.12 with nokaslr
+> >
+> > > 1. Only one single game stellaris is not working?
+> > > 2. The entire laptop does not work?
+> > > 3. Laptop works and other games work? Just one game is not working a=
+s
+> > expected?
+> >
+> >
+> > Stellaris is showing the input lag and the entire graphical user inter=
+face shows
+> > the same input lag as long as stellaris is running.
+> > Civilization 6 shows the same input lag as stellaris, probably even wo=
+rse.
+> > Magic the Gathering: Arena (with wine) works normally.
+> > Valheim also works normally.
+> > Crusader Kings 2 works normally
+> > Rogue Heroes: Ruins of Tasos (a Zelda lookalike) works normally.
+> > Baldur's Gate I & II and Icewind Dale work normally.
+> >
+> > Also the input lag is only in the GUI, if I switch to a text console (=
+ctrl + alt
+> > + Fn), input works normally even while the affected games are running.
+> >
+> > Games aside everything else (e.g. compiling kernels) seems to work wit=
+h nokaslr.
+> >
+>
+> Would it be fair to assume that anything Xorg/Wayland is working fine
+> when the game is not running, even with nokaslr?
+>
+Yes, Xorg (I'm normally using xfce4 as desktop) works fine. I also tested =
+with
+gnome using Xwayland, here the buggy behaviour also exists, with the addti=
+on
+that mouse position is off, i.e. to click a button in the game you have to=
+ click
+somewhat above it.
 
-Do you care for an imperative wording in such a change description?
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
-e/Documentation/process/submitting-patches.rst?h=3Dv6.14-rc6#n94
+> +amd-gfx@lists.freedesktop.org to see if there are known issues with
+> nokaslr and the games you mentioned.
+>
+>
+> Balbir Singh
+>
+> PS: I came across an interesting link
+> https://www.alex-ionescu.com/behind-windows-x64s-44-bit-memory-addressin=
+g-limit/
+>
+> I think SLIST_HEADER is used by wine as well for user space and I am not=
+ sure
+> if in this situation the game is hitting this scenario, but surprisingly=
+ the other
+> games are not. This is assuming the game uses wine. I am not sure it's r=
+elated,
+> but the 44 bits caught my attention.
 
-Regards,
-Markus
+Stellaris is a native linux game (x86_64), the one game (MTGA) I tested wi=
+th
+wine worked fine.
+
+By the way, the warning
+[ T8562] WARNING: CPU: 14 PID: 8562 at mm/slub.c:5028
+__kvmalloc_node_noprof+0x2fd/0x360
+that appeared in the dmesg I sent you is caused by the upgrade of mesa fro=
+m
+25.0.0 to 25.0.1. (I'm still bisecting ...)
+
+Bert Karwatzki
