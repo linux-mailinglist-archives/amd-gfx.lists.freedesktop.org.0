@@ -2,64 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B329AA5EE83
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 Mar 2025 09:52:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED54FA5ECA3
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 Mar 2025 08:17:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFCBD10E80A;
-	Thu, 13 Mar 2025 08:52:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0442910E1D1;
+	Thu, 13 Mar 2025 07:17:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="itoovOte";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LSiv00G9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC42B10E01F;
- Wed, 12 Mar 2025 21:59:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=A4+dae+3XRFxt7BM6x0GYCiu6QUc2mn4pIrP/UI5HVM=; b=itoovOtej8S0qr3N3mADZ9xGap
- KbZrqsyHO0qQUGDS3jPjMyxlFSfnmgXAsBLMMaS9nvIVfRTYba3Y/7SV0plu0sp1hemmFQGoLdi5t
- hsSbeU9f2xMaF7VSEupjRjdHwyCxTL0kpTXl3kUrfJMRl6nDmKVJTCgtQdv/X4vjOfbSd8zROvHYw
- 81dCvdv0iIMSuy9i1R8GfiZggj+4wZ8E3LfAbJ1P7mMh51hixTm0fNGp2Kx3BZtROP8lcC9YgqbqW
- lOWlgdtMmILD2KSFTdvFBYT+TAyeTH9IeoQsjWO+naUTO86kUiZVkOEgirRUY0iNQ1Xr6qGZLnHB/
- OxhgTgYw==;
-Received: from [179.98.221.3] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tsU6v-007o7i-7Q; Wed, 12 Mar 2025 22:59:39 +0100
-Message-ID: <ef926ea5-ac0e-4f95-b260-84c4102c93ad@igalia.com>
-Date: Wed, 12 Mar 2025 18:59:33 -0300
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2073.outbound.protection.outlook.com [40.107.95.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 021F710E1D1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 Mar 2025 07:17:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iC+Jzzldu7xN/oTZQXWPqXavcglaOjvviGH6HEg9DZaRRwGvXz0yDII58t5FfXwDp1uE/LrKxB4rbn57Ysrx82FO2gB3Hl7jbjc/nbwc9GA46jpipDeKvjZlc2KQJgMG1eBAgKp0CUHy6maIgn9RFgUmag3VYr4fPxGVADOlsqI15CmFup1DBxcsOUxMRUJIxlcHekJEOGwbtD1LmTFYZjcron5CHOPwRY0Rg0W6pVhk/z8tg21H9AByEQJlbQN7ScfIYlNPr70NqglNEqyc/7S2fqKXCavCopOiVaOv6J1qWEMbBJo80QPMxuCeKIGawhTFEgY8lgK3FTtv1saEpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VQDeiNKYHIIdvV18mb+LsHPLE0YiO3906Fv+bcnhETU=;
+ b=Y13SUjO0/GhHApIU0ziLQo9yXJtMDmH2EWKBy4FSVb9UU59wEkQrE4cDmOILTzQ33xjqrb2f5l5TgClBFrU73eQ2tDKvm5inEu5TNXWfmJ1u+m9P5L5FeYc5pC8yGsW5phPlJqmuaxbqcjLMOo1vRvN73S8e496hAJ1KDG0NHcl8HOyUc0CJ95WyiagSLaBrQYBR3M2rfEouzFIYP1Cbi5xQQsw0rEQROpDWejqbDqubzLVp3PK6sm9NiRXk5J95xKf1WtE1X5BNWGENjUbYNuTLffnt1ymPCUm+IlFOFU0jAQx2P6LzBq9uVuTz2YgZ1Lmexx1rWVAWFxPv6qOmmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VQDeiNKYHIIdvV18mb+LsHPLE0YiO3906Fv+bcnhETU=;
+ b=LSiv00G9UIsU7ZPHZobQ/LOYSmZG/S2OKpN7KjTe5zEKZP7FN/Mrjpsu9+ICDu8D5XjF1UxPprNZS1nq8dMpMSOFmCBX6pG6ssBe/g5Nx6bU9FfKpWySRM+PDnta2flC4exor5tQotrWmM4MY2ixu1NKLW53RLpKHWur1+hsv7c=
+Received: from SA0PR11CA0040.namprd11.prod.outlook.com (2603:10b6:806:d0::15)
+ by SN7PR12MB8103.namprd12.prod.outlook.com (2603:10b6:806:355::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Thu, 13 Mar
+ 2025 07:17:17 +0000
+Received: from SA2PEPF00003F68.namprd04.prod.outlook.com
+ (2603:10b6:806:d0:cafe::48) by SA0PR11CA0040.outlook.office365.com
+ (2603:10b6:806:d0::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.24 via Frontend Transport; Thu,
+ 13 Mar 2025 07:17:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF00003F68.mail.protection.outlook.com (10.167.248.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8534.20 via Frontend Transport; Thu, 13 Mar 2025 07:17:16 +0000
+Received: from liuxiang-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 13 Mar
+ 2025 02:17:10 -0500
+From: Xiang Liu <xiang.liu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <tao.zhou1@amd.com>, Xiang Liu <xiang.liu@amd.com>
+Subject: [PATCH] drm/amdgpu: Enable ACA by default for psp v13_0_6/v13_0_14
+Date: Thu, 13 Mar 2025 15:16:52 +0800
+Message-ID: <20250313071652.466718-1-xiang.liu@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm: Create an app info option for wedge events
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?B?J0NocmlzdGlhbiBLw7ZuaWcn?= <christian.koenig@amd.com>,
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- lucas.demarchi@intel.com, Xaver Hugl <xaver.hugl@kde.org>,
- Pierre-Loup Griffais <pgriffais@valvesoftware.com>
-References: <20250228121353.1442591-1-andrealmeid@igalia.com>
- <20250228121353.1442591-2-andrealmeid@igalia.com>
- <Z8HGFRGOYvyCCWWu@black.fi.intel.com>
- <58763d8e-46a1-4753-9401-987fb3dac50b@igalia.com>
- <Z8KgwswQQyGxhsR1@black.fi.intel.com>
- <db27ee44-f480-475b-be7e-710bd30eb7a5@igalia.com>
- <Z9BuU3RzMkEE_FL1@black.fi.intel.com> <Z9FcmDzSmBbVAsqD@black.fi.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <Z9FcmDzSmBbVAsqD@black.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 13 Mar 2025 08:52:39 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F68:EE_|SN7PR12MB8103:EE_
+X-MS-Office365-Filtering-Correlation-Id: e5355ae7-76ef-4e69-d669-08dd61ff15e7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xBSQ2bLTkQvQZWqCQG2BlgrV8gxI82vtgoAX/jR5zQ8oLs9kSfl84fk7al+7?=
+ =?us-ascii?Q?E/MLYxKC0dtLNsc+MV5ntQqYpzuIBUhEg5VbrNFmD1DOx8HaMYckDVmCxo0n?=
+ =?us-ascii?Q?tb7VVUKO69RoQd5iwPTdaDz6hhhMJHeOMS9XY8twVMINK/B/whnp/AKtHlRr?=
+ =?us-ascii?Q?+z8gpg2gDSad4J1+k+WNdxLWPRSrZzCs7oY13GjiB3oMY5k8MTvEzux1yhUM?=
+ =?us-ascii?Q?isQ75TJKhyM3gxq01n4uf7G/ZkD20mneY+Kyaoo/pB0JiQZ6Xj8G+IJbQYG4?=
+ =?us-ascii?Q?d+gyG9rdsVlVEKyD/JX3t/dDLKrkaBynrixoCrzQPI3A5BhmpexHEcR8FaFj?=
+ =?us-ascii?Q?3hXD9viFlxS/lF3hlVo9OFkqg0kZ+UgHFcpUG2eIZYAt8ydOKG/osNS5p99d?=
+ =?us-ascii?Q?llqkSTXu8ijjZzQOPBvHn4RUIEWy+W3jSbJwBwlqQCUV8p9siHye22W02DOI?=
+ =?us-ascii?Q?+0Gwnla+YAdhprsZG1Izb8EySw7T1mGCVUtLGweXi/4kdqpuQ11Oml3rtlLi?=
+ =?us-ascii?Q?i2PipiqE354sdo9P7viKK43/nWcc1l2TNFiTAl57M5hwyrWq8JWyIb9Bf6if?=
+ =?us-ascii?Q?Wb2yzOPuw8m7OItE2jux9QPpwJM87CncTjbznSSP7gwXmTk4BKO/pFyD8JUf?=
+ =?us-ascii?Q?KalXwYyewqtlpIWqBS7Li1mkdXURI1fKty2uem6G4uqisp8u5hILx5PNbqKJ?=
+ =?us-ascii?Q?uQ+6RLuQ3c5fp9HqmnlGXuZxVq6dKucXKBZ5FsRZzEjtXVav0cakC0vSGOhO?=
+ =?us-ascii?Q?NsAuhwFPc01NLvDvySNObfTVok3Eb+uIqy9NILFKZxmWTYAKDDXLzvcSHiQC?=
+ =?us-ascii?Q?rBg1rNSHnqPy4K0zSVEP+TZtLb17DBWXq74c0Qq/zWb/c+ofobOAv0zkeuuW?=
+ =?us-ascii?Q?qBWXWr3eRM+CeW8JGq5sqxgi1ZLN0968lgntbl9CwxCzqSyUhiC+lSioBAgI?=
+ =?us-ascii?Q?goi9OOIbVCb6cHvkCIHen37Vwkc4WYimipGuGRbc9yBHFhBD5qB7BJJTaSqE?=
+ =?us-ascii?Q?aLpevP6MvBOXaFJ7+OliBAJAANWAWQbYBwm6D2YivE7McTBjc7qXgBTwpci5?=
+ =?us-ascii?Q?UDVKwuI+jTAFcOKMAIep0u+yrsNTsw4/438GLtabbA8mzxPxoZ1AQv0rRFpf?=
+ =?us-ascii?Q?Z8Is5SF8bwzr4Kc/EGCCUbwCdROlFhRNLIDcgrBcdZluwPVPg0m0suGZf1nv?=
+ =?us-ascii?Q?DhiNvY7vFY8qKIUlJHwLQ27T2YSk9LZlGxgjq/STL8oWYi35l2A0Ww/+zdso?=
+ =?us-ascii?Q?NMLFjPEH9HVxbpIlDfUPxPSyd1WlMyC0xw9DdzmkX+h5vZND/0itHgkBXIDg?=
+ =?us-ascii?Q?ewbfRWxWzssYqd/xtHUVI/hxR80VabNvQFWW1olGUFEN3vt2oa2+aO086G6Q?=
+ =?us-ascii?Q?kp9jEGdniWzRVR9WtK9wRy1gLb2jsfDCv9ErGuEcD0BXadZ7Rb1K6RuWkFoK?=
+ =?us-ascii?Q?YiTub4Wfj8kJED0f0qlpy21uTK3U5qa+6blKpHh9dHSuap0GkWyd6g=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2025 07:17:16.7923 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5355ae7-76ef-4e69-d669-08dd61ff15e7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F68.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8103
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,91 +129,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Em 12/03/2025 07:06, Raag Jadav escreveu:
-> On Tue, Mar 11, 2025 at 07:09:45PM +0200, Raag Jadav wrote:
->> On Mon, Mar 10, 2025 at 06:27:53PM -0300, André Almeida wrote:
->>> Em 01/03/2025 02:53, Raag Jadav escreveu:
->>>> On Fri, Feb 28, 2025 at 06:54:12PM -0300, André Almeida wrote:
->>>>> Hi Raag,
->>>>>
->>>>> On 2/28/25 11:20, Raag Jadav wrote:
->>>>>> Cc: Lucas
->>>>>>
->>>>>> On Fri, Feb 28, 2025 at 09:13:52AM -0300, André Almeida wrote:
->>>>>>> When a device get wedged, it might be caused by a guilty application.
->>>>>>> For userspace, knowing which app was the cause can be useful for some
->>>>>>> situations, like for implementing a policy, logs or for giving a chance
->>>>>>> for the compositor to let the user know what app caused the problem.
->>>>>>> This is an optional argument, when `PID=-1` there's no information about
->>>>>>> the app caused the problem, or if any app was involved during the hang.
->>>>>>>
->>>>>>> Sometimes just the PID isn't enough giving that the app might be already
->>>>>>> dead by the time userspace will try to check what was this PID's name,
->>>>>>> so to make the life easier also notify what's the app's name in the user
->>>>>>> event.
->>>>>>>
->>>>>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
->>>
->>> [...]
->>>
->>>>>>>     	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
->>>>>>> @@ -562,6 +564,14 @@ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
->>>>>>>     	drm_info(dev, "device wedged, %s\n", method == DRM_WEDGE_RECOVERY_NONE ?
->>>>>>>     		 "but recovered through reset" : "needs recovery");
->>>>>>> +	if (info) {
->>>>>>> +		snprintf(pid_string, sizeof(pid_string), "PID=%u", info->pid);
->>>>>>> +		snprintf(comm_string, sizeof(comm_string), "APP=%s", info->comm);
->>>>>>> +	} else {
->>>>>>> +		snprintf(pid_string, sizeof(pid_string), "%s", "PID=-1");
->>>>>>> +		snprintf(comm_string, sizeof(comm_string), "%s", "APP=none");
->>>>>>> +	}
->>>>>> This is not much use for wedge cases that needs recovery, since at that point
->>>>>> the userspace will need to clean house anyway.
->>>>>>
->>>>>> Which leaves us with only 'none' case and perhaps the need for standardization
->>>>>> of "optional telemetry collection".
->>>>>>
->>>>>> Thoughts?
->>>>>
->>>>> I had the feeling that 'none' was already meant to be used for that. Do you
->>>>> think we should move to another naming? Given that we didn't reach the merge
->>>>> window yet we could potentially change that name without much damage.
->>>>
->>>> No, I meant thoughts on possible telemetry data that the drivers might
->>>> think is useful for userspace (along with PID) and can be presented in
->>>> a vendor agnostic manner (just like wedged event).
->>>
->>> I'm not if I agree that this will only be used for telemetry and for the
->>> `none` use case. As stated by Xaver, there's use case to know which app
->>> caused the device to get wedged (like switching to software rendering) and
->>> to display something for the user after the recovery is done (e.g. "The game
->>> <app name> stopped working and Plasma has reset").
->>
->> Sure, but since this information is already available in coredump, I was
->> hoping to have something like a standardized DRM level coredump with both
->> vendor specific and agnostic sections, which the drivers can (and hopefully
->> transition to) use in conjunction with wedged event to provide wider
->> telemetry and is useful for all wedge cases.
-> 
-> This is more useful because,
-> 
-> 1. It gives drivers an opportunity to present the telemetry that they are
->     interested in without needing to add a new event string (like PID or APP)
->     for their case.
-> 
-> 2. When we consider wedging as a usecase, there's a lot more that goes
->     into it than an application that might be behaving strangely. So a wider
->     telemetry is what I would hope to look at in such a scenario.
-> 
+Enable ACA by default for psp v13_0_6/v13_0_14.
 
-I agree that coredump is the way to go for telemetry, we already have 
-the name and PID of the guilty app there, along with more information 
-about the GPU state. But I don't think it should be consumed like an 
-uAPI. Even if we wire up some common DRM code for that, I don't think we 
-can guarantee the stability of it as we can do for an uevent. coredump 
-can be disabled and by default is only accessible by root.
+Signed-off-by: Xiang Liu <xiang.liu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-So I think that coredump is really good after the fact and if the user 
-is willing to go ahead and report a bug somewhere. But for the goal of 
-notifying the compositor, the same uevent that the compositor is already 
-listening to will have everything they need to deal with this reset.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 7cf8a3036828..cfec29835634 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -3785,9 +3785,11 @@ static void amdgpu_ras_check_supported(struct amdgpu_device *adev)
+ 	adev->ras_enabled = amdgpu_ras_enable == 0 ? 0 :
+ 		adev->ras_hw_enabled & amdgpu_ras_mask;
+ 
+-	/* aca is disabled by default except for psp v13_0_12 */
++	/* aca is disabled by default except for psp v13_0_6/v13_0_12/v13_0_14 */
+ 	adev->aca.is_enabled =
+-		(amdgpu_ip_version(adev, MP0_HWIP, 0) == IP_VERSION(13, 0, 12));
++		(amdgpu_ip_version(adev, MP0_HWIP, 0) == IP_VERSION(13, 0, 6) ||
++		 amdgpu_ip_version(adev, MP0_HWIP, 0) == IP_VERSION(13, 0, 12) ||
++		 amdgpu_ip_version(adev, MP0_HWIP, 0) == IP_VERSION(13, 0, 14));
+ 
+ 	/* bad page feature is not applicable to specific app platform */
+ 	if (adev->gmc.is_app_apu &&
+-- 
+2.34.1
+
