@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF77A619C1
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Mar 2025 19:46:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD884A61C6B
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Mar 2025 21:22:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD2E10E30A;
-	Fri, 14 Mar 2025 18:46:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1399410E240;
+	Fri, 14 Mar 2025 20:22:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PBtuKbWn";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KDJrDZs1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2072.outbound.protection.outlook.com [40.107.236.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BCA310E30A
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Mar 2025 18:46:27 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2051.outbound.protection.outlook.com [40.107.220.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B26A410E240
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Mar 2025 20:22:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=skY92l1Boh6DXtAJ/o0CYdNbI9osiLF9/3xDd1k+1dThM3BIZldHThQHsflxJnQAmaBtRvnmBYf87axmMSXtKZcwLb+xIsBuLi4UvgNRQnvG7GW7fdGyrtMhaj4Z4UI43fUSSuFViEpm/8UaMSHKWsLCxc2eQuokwNKx6OEFIpxHYllb9MTG0bK29F637gB1/MrPiTsdYu7Zl9ooOFTUuLm7Jg7e2E5p/1tJQ7OVgHRZz2wgrOF4aShGHaLJ0OuKxb23Af3LCZB5aFQzRgMifNYa8x0DnvzkOLLjhOoaYvbRKuSGKfJ1F5Vp43OWUZzSR1PU0SHfKNVDjxnQ/KelAw==
+ b=vsZIDxx8HKsBVBPMpB6QZzmgSYoQwt3lXDFzVsxwcd040e4IDza+UZ34doYPAnL//CC44h5kwmAYT4xYArls4pJEr+8NCQoob8J4pYXnJMm3gtrCZjZD/4xfbWQC2zEykAvmr+Th0Ginx//qWvvMzCV8qxhEyM/IIXVQMt0Px3hCe5Z5Hm0QNhpZM3Qx5AtqQhWeLOA+z3t8ASW5i0iWXsmtyz5EgbQ1DRL/yK618TDjMvY5S1WJ2jO3zk/jzJLECKQOMo36KRoCXJLWAz/Jw3/lRL4Ebk+BSi9YbrJw8prHkJRLswvULGc7/qMjLWUDk4PrkI1eLhpTRSP4xsxgtg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DVD2FPE/zj9aGNukWbp4zjExGLLEoTxPDEyXCvNx4Fg=;
- b=pqkf2Ar2s5StWxmKI3LgT3PjyEOFo92AxILeDUnyh19FVlTJsj3erKSBBVDPu7y7k8unlSE1dLpqy3DVM2uO6UHb3nu7Gk9+D1RQspHAlCVTCBFlc9S7RYz356U22Uf9CJhv+2HCKt2sOefHhChnuJqMwYkAdQlYA/BESwycnJAEC7dq1O+mEbfed8vphE/xCPAYWxN3Mwjd2pB+SSPNn/33r3NuwrU3hLOD7LYcPRGkuRjibhsH2RLvQ/N4V2Sb24Sv/GlzD0XBAByAUW6lluqPyPaAOh6bRDwkc06W44fv/THy8b24tumYdNJg7TZmNgVYHrvZF9jcCOzSavgQvw==
+ bh=mSNb7sEElB7MbwYmv6DtiwELdfdOyRY1fCwwdpc94w4=;
+ b=gp1suFXuhKA1C0pZ4lK0llR4NuAqqy1hgUuMVZKcPc0Iq5CSKi9ibhli3iHc6faHnM1ur/+GJxgRCwB8xjTOXJlI/bBvIyol9Grg590fPGfaDvHAcLbSlO7Mkjd/QfVjo87QdIpDUbx/cOnhEgAUkGk5brbPubEK4EB3oaqKJV9Bos/7qS5oHfo4aDK1wNqIDZB7kuTfjpKQVhHcVA3wNdFCQC+grv1lI/ykgizRzY+5H2BtqBEc5ybSXFKxzBTDq4T9iPDykIINJWkgXgJEX2J16W4JaDZCSD4jXbsxV6Afr7zf8raN9CkSMd3eo3SIyiHtweiRRArnftXxrCgiPQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DVD2FPE/zj9aGNukWbp4zjExGLLEoTxPDEyXCvNx4Fg=;
- b=PBtuKbWnQzKhJvEjs3AzbaC6+vfUWyMM/f8l3TLmKJQXVo6nHNT1uF6+DChdZ5uL1FjtfUkinKX3675Ik/nFfodPQGCf1JeJSNd65tyM65ZoYVo+q2l4n3XLGDYmZmi4u++WYdmtNPnikKkOE1VKqvXglbuwq7BeeYw37fItaRw=
-Received: from CH0P221CA0032.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::11)
- by SA1PR12MB7248.namprd12.prod.outlook.com (2603:10b6:806:2be::12)
+ bh=mSNb7sEElB7MbwYmv6DtiwELdfdOyRY1fCwwdpc94w4=;
+ b=KDJrDZs1K5M4KIZi4Xmuvh3iLB1YlbhC9fCoYudYIUWB5vj7JU+qQ6jADMAxN7SQayYyTOrcyix2tugtxNF/FY11tPUCY6V9ZdWLZjNd4aGPv7I98l8SyEOVBWmxJa8H6uPzTW6Xgd+nqaA4bX6bgf6cPJR18QyfEP1kjX1jlz8=
+Received: from SJ0PR05CA0006.namprd05.prod.outlook.com (2603:10b6:a03:33b::11)
+ by PH7PR12MB7987.namprd12.prod.outlook.com (2603:10b6:510:27c::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.28; Fri, 14 Mar
- 2025 18:46:20 +0000
-Received: from CH2PEPF000000A0.namprd02.prod.outlook.com
- (2603:10b6:610:11d:cafe::ef) by CH0P221CA0032.outlook.office365.com
- (2603:10b6:610:11d::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.28 via Frontend Transport; Fri,
- 14 Mar 2025 18:46:20 +0000
+ 2025 20:22:34 +0000
+Received: from SJ5PEPF000001F0.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b:cafe::d9) by SJ0PR05CA0006.outlook.office365.com
+ (2603:10b6:a03:33b::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.24 via Frontend Transport; Fri,
+ 14 Mar 2025 20:22:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,22 +48,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH2PEPF000000A0.mail.protection.outlook.com (10.167.244.26) with Microsoft
+ SJ5PEPF000001F0.mail.protection.outlook.com (10.167.242.68) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8534.20 via Frontend Transport; Fri, 14 Mar 2025 18:46:20 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 14 Mar
- 2025 13:46:18 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
+ 15.20.8534.20 via Frontend Transport; Fri, 14 Mar 2025 20:22:33 +0000
+Received: from harish-base-compute.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 14 Mar 2025 15:22:33 -0500
+From: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu/vcn: adjust workload profile handling
-Date: Fri, 14 Mar 2025 14:45:59 -0400
-Message-ID: <20250314184559.3607419-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250314184559.3607419-1-alexander.deucher@amd.com>
-References: <20250314184559.3607419-1-alexander.deucher@amd.com>
+CC: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+Subject: [PATCH v2] drm/amdkfd: Update return value of
+ config_dequeue_wait_counts
+Date: Fri, 14 Mar 2025 16:22:11 -0400
+Message-ID: <20250314202211.251641-1-Harish.Kasiviswanathan@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -72,51 +71,52 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF000000A0:EE_|SA1PR12MB7248:EE_
-X-MS-Office365-Filtering-Correlation-Id: 471806a1-20b4-4956-6f84-08dd632882d0
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F0:EE_|PH7PR12MB7987:EE_
+X-MS-Office365-Filtering-Correlation-Id: c8282fed-b92a-485c-5173-08dd6335f45a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Jhf3+mECN76KDkSg893BkMdBO4Srje+K4FA/T5IzBJZmlIOKH0FAaggbh8p0?=
- =?us-ascii?Q?ufMAIBV6upRLdMIzXFeKfU6y/LqScThbCvEWZkYBcBas0OvN9XgKe8kmEjfF?=
- =?us-ascii?Q?6TVKZpGCj98imXGpJPlvE1ZDXLvqckAcrRwuGaNAi6cYC9X382dWnLqN2cGa?=
- =?us-ascii?Q?eBwqXTxwRMjHqDcDIV9eZQj0pqH30ksqO7bNT130ER7VSkOc9bnWudfp5mg7?=
- =?us-ascii?Q?djMJow6hS7W2yddc8aICADJXbAsukpczg0x8Y6S8QUXcOk9hnpnrQBC6duKs?=
- =?us-ascii?Q?JqZFwtanP2Q6sku8HngK4Sup1eQYOO99ki01RiAYLqd4og5Tpz15mgHB48Uz?=
- =?us-ascii?Q?vmII0BzXTCgDuyI+ljn7CwG5EuCQoe3KdRdMgcbbyJ/aRxOlXhFAljYFAIBf?=
- =?us-ascii?Q?FS3qL/omjwP4z1+VMMcBvIFW219p9/59GJoZknaEwfZTWdLbiYV1d/VHIiEY?=
- =?us-ascii?Q?l8Gk3ASU8bul0Y7OltiGazlSBFI5162q0p9EmyqG/7J+loNgnuBnZI1+vliK?=
- =?us-ascii?Q?R+pJGXgvqL6IWPfhMGJSl/FgTtLccsijnQO9oE3duvKm3qdfm9HliftY7IpG?=
- =?us-ascii?Q?SPHjT6p/LIIJU/gE27OWE0jIDnFb6e9Lxyypo/9wcMpvM7E/3y6Zgae8FSz4?=
- =?us-ascii?Q?nWN8Jzcq2m9/zmbapLI67GO3TbpIseKGAeLcBAYC+ozK8J/wHd2Bn/qwQ8RJ?=
- =?us-ascii?Q?/ik01sI8Fcq2MuRRGQp4jaPoARkTUvhOjAkjTv/1j/trib+7ZXEEpcZMlMc7?=
- =?us-ascii?Q?iDe8vDHrHz6lgZtCSebYgJQNgEIOlXMyPkcYDYBMr0mpmt7kCn4mmYdhtnfb?=
- =?us-ascii?Q?qYqoGXFG8XnR6hVEQXzhRumWsfVdJoqp+ORYbayunDP5pC/AblraKOQHbmOL?=
- =?us-ascii?Q?+0w9dGsTVfnc+JdMl5wmElfiGKXy/UyxtMa0Swni7KiTG0pT8MjTM9583/OA?=
- =?us-ascii?Q?KoAs2BTso0a6pPAevCeWr69pat4NoD6EFHjcq2hUkxxz63VDE3VZAdtd0gdv?=
- =?us-ascii?Q?TIF15F+R3pfjGcJ67roOSOWIfJiaM22wZ1s9ioSu8cHprR8iZyVcwB+1VrGH?=
- =?us-ascii?Q?dzYy4aHI2RJtQ0LNowDJ+MISKlVsJF2GwaoHGMcdV4zvyC5LPYfOADucGmtd?=
- =?us-ascii?Q?1X1pawFhE3ujahOYnBFzmx8oVtGdYuvtyapMvZ/nsW7HkDV/VtgAKRi0mXNv?=
- =?us-ascii?Q?zxZ8r8dN5zH8oXOYyTbKpQWoqgEX94GY3pQLCN1RGCtWrLGyzrRoD2BmRXTV?=
- =?us-ascii?Q?bxoF4DddGMTpMADf7bVlULYH92uuuQolKOZeFvE7/5e4sXSGXAMsvW/NaFyq?=
- =?us-ascii?Q?mtWxyZ20skfYEFQVBJJWXo7GI1+9cBjA6h3Ke4UdYdcZYmCnn+gBw62iXdxQ?=
- =?us-ascii?Q?rFQnBVO6EHV2SO3kTxyfuqcEqc+r3Qg2n6xaiStsTcQLb9m4Ko+kH0mju4aZ?=
- =?us-ascii?Q?+tcoMdNjJTjxyAZA5oM0ZXfznhQms7ROGWXKG2r6gqaZedQil0ovPg=3D=3D?=
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?j4uMBvz+RIIb8fR7BjWjyGpBlB3+KA0PxlBZgLSNgtaSLLGg8tT67BJMLnqF?=
+ =?us-ascii?Q?z/gjnt9xU0baIwFQJivIl4r+toYmuyJ2GisOhcNIBrzA188fL/GyEDc1g5Yr?=
+ =?us-ascii?Q?wxlDS+tQMo5OcVCsAW9syRUzqC61xEuVwQHLIzgk+SgVjM8JghXIxD9PtIZQ?=
+ =?us-ascii?Q?6SC3KNJL4P7P0AEj/wLUQfPwfqFW5eL0fCkbrSU31NODnTSB/oNis6j92Lz0?=
+ =?us-ascii?Q?J9eddmQGp4o+gQlaHyaorxLY0lVLyKugpq7+qxUpv583kOgLzTR/AEsoQLWo?=
+ =?us-ascii?Q?hy0XgVKLWqzJ8ITIxZMMv2SxETzwwVKSuVui1V3792o7QSXiTtXq1JDUK0K6?=
+ =?us-ascii?Q?lUplY4fKHSQU42aYaLNjAuIzlNKfeHM5B66pLoR3lXUhEj0IJakbx6mQ1asI?=
+ =?us-ascii?Q?0Kcfy4loEjjdVMzDKDJtDdxmKb55sDv/BIYVhIDpC9TwbLx5UPPWNtFduXmo?=
+ =?us-ascii?Q?ZTM+2UyHHsWu3F/nyTF7qSbBcstmjlXvjbn/2qKM+oRja0uWewt56KedMIrR?=
+ =?us-ascii?Q?82ew9LRSRhMiOKwsd5J7poNG62yrDPj2pSSB+dRDWb787GuWiYBFhMP86AAd?=
+ =?us-ascii?Q?p7meJl27kzyebdYACpjdv7ohVWAeq/d/Qkg9yMH0JY9PY34H3prgaKI3edby?=
+ =?us-ascii?Q?HLlkxzJJuvEjTCdzHboMvw2LYuMhCchED21UXmGt2ZlPHVtfHK23Le9xTMjH?=
+ =?us-ascii?Q?OAqOnd5ne5wtKNzgMSPEx8WjEFjwTmHXwHAy1kcTLHcK4XVZTehCpTI/iJF7?=
+ =?us-ascii?Q?cWpmASHf86adOpulV6jWewKPVc9lp4cF6a+9ehZazS6rUcK9/G+rXsrl0Tmc?=
+ =?us-ascii?Q?LrcHtE2x9mwKm7iAf4/8Ir/PUnqp07y5yQBsMKS1WgthPFza7ZWd2qMAKqQ9?=
+ =?us-ascii?Q?OKp0RvYREOf8o8vQ9Txst7+KcQ9DZSsyFvgymuD2n22A91JNnyxgsK859ITB?=
+ =?us-ascii?Q?9pR9ItJx8mGOh8ee3/+7jP9ARktlA/86NYfFcvolF5MpCjpn6zMnKHa/beA7?=
+ =?us-ascii?Q?HbPEIN7GVAJHseDHwUcLt81OsgkfafSe4hYoptkJ6IJIFjm7VvfroJ5AVSus?=
+ =?us-ascii?Q?n6f0F2gRFZ3rkvR0WVE3SVX1egQvGMiRE31JypMsTBVRCUARjtz30AULXvnt?=
+ =?us-ascii?Q?fFhIkfDIcu4SfTwGA7eIA2hjnbzyJAu9jJ9UoRcZqaO8fLG4YZikjkpG9P3o?=
+ =?us-ascii?Q?42NgsclCpUrCFMXArKh+PlD6LaPJlx+euQo9oud3+4YVFmys0C6FEYIrS5dU?=
+ =?us-ascii?Q?zC4veuhackKcspeE2xdQfYcKVAzTgAawwsExrTc7VuNy9lvkmgQZm7CWlyWJ?=
+ =?us-ascii?Q?HlEWVC37ZVz5anUOsGTHGQxdJvNHzun4Jkg7Gj7gKchELdZw1ByU+G9HQzvj?=
+ =?us-ascii?Q?vEwzjWIshrkfpxdcJyX6V7r/ttPuI+nkc1E0atMo/AAAu1H2mJtLlub7hRoo?=
+ =?us-ascii?Q?ZRAFvxQOI089iCPcs0q7IOveqyoSIW3hsInVpDxMe7Q9cwVQjYFBz4esC4Iv?=
+ =?us-ascii?Q?1fIVXRQwOp54/l0=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2025 18:46:20.0393 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 471806a1-20b4-4956-6f84-08dd632882d0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2025 20:22:33.9048 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8282fed-b92a-485c-5173-08dd6335f45a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF000000A0.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F0.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7248
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7987
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,86 +131,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-No need to make the workload profile setup dependent
-on the results of cancelling the delayed work thread.
-We have all of the necessary checking in place for the
-workload profile reference counting, so separate the
-two.  As it is now, we can theoretically end up with
-the call from begin_use happening while the worker
-thread is executing which would result in the profile
-not getting set for that submission.  It should not
-affect the reference counting.
+.config_dequeue_wait_counts returns a nop case. Modify return parameter
+to reflect that since the caller also needs to ignore this condition.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+v2: Removed redudant code.
+    Tidy up code based on review comments
+
+Fixes: <98a5af8103f> ("drm/amdkfd: Add pm_config_dequeue_wait_counts API")
+
+Signed-off-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 20 ++++++++++----------
- drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   | 20 ++++++++++----------
- 2 files changed, 20 insertions(+), 20 deletions(-)
+ .../gpu/drm/amd/amdkfd/kfd_packet_manager.c   | 14 ++++----
+ .../drm/amd/amdkfd/kfd_packet_manager_v9.c    | 36 +++++++++++--------
+ 2 files changed, 29 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index 6b410e601bb65..0ab74b46bcb0a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -460,17 +460,17 @@ void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring)
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
+index 3f574d82b5fc..502b89639a9f 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
+@@ -436,19 +436,19 @@ int pm_config_dequeue_wait_counts(struct packet_manager *pm,
  
- 	atomic_inc(&vcn_inst->total_submission_cnt);
- 
--	if (!cancel_delayed_work_sync(&vcn_inst->idle_work)) {
--		mutex_lock(&adev->vcn.workload_profile_mutex);
--		if (!adev->vcn.workload_profile_active) {
--			r = amdgpu_dpm_switch_power_profile(adev, PP_SMC_POWER_PROFILE_VIDEO,
--							    true);
--			if (r)
--				dev_warn(adev->dev, "(%d) failed to switch to video power profile mode\n", r);
--			adev->vcn.workload_profile_active = true;
--		}
--		mutex_unlock(&adev->vcn.workload_profile_mutex);
-+	cancel_delayed_work_sync(&vcn_inst->idle_work);
+ 		retval = pm->pmf->config_dequeue_wait_counts(pm, buffer,
+ 							     cmd, value);
+-		if (!retval)
++		if (retval > 0) {
+ 			retval = kq_submit_packet(pm->priv_queue);
 +
-+	mutex_lock(&adev->vcn.workload_profile_mutex);
-+	if (!adev->vcn.workload_profile_active) {
-+		r = amdgpu_dpm_switch_power_profile(adev, PP_SMC_POWER_PROFILE_VIDEO,
-+						    true);
-+		if (r)
-+			dev_warn(adev->dev, "(%d) failed to switch to video power profile mode\n", r);
-+		adev->vcn.workload_profile_active = true;
++			/* If default value is modified, cache that in dqm->wait_times */
++			if (!retval && cmd == KFD_DEQUEUE_WAIT_INIT)
++				update_dqm_wait_times(pm->dqm);
++		}
+ 		else
+ 			kq_rollback_packet(pm->priv_queue);
  	}
-+	mutex_unlock(&adev->vcn.workload_profile_mutex);
+-
+-	/* If default value is modified, cache that value in dqm->wait_times */
+-	if (!retval && cmd == KFD_DEQUEUE_WAIT_INIT)
+-		update_dqm_wait_times(pm->dqm);
+-
+ out:
+ 	mutex_unlock(&pm->lock);
+-	return retval;
++	return retval < 0 ? retval : 0;
+ }
  
- 	mutex_lock(&vcn_inst->vcn_pg_lock);
- 	vcn_inst->set_pg_state(vcn_inst, AMD_PG_STATE_UNGATE);
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-index b4b8091980ad5..8c7c50f34fce0 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-@@ -169,17 +169,17 @@ static void vcn_v2_5_ring_begin_use(struct amdgpu_ring *ring)
+ int pm_send_unmap_queue(struct packet_manager *pm,
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
+index d440df602393..3c6134d61b2b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
+@@ -310,6 +310,13 @@ static inline void pm_build_dequeue_wait_counts_packet_info(struct packet_manage
+ 		reg_data);
+ }
  
- 	atomic_inc(&adev->vcn.inst[0].total_submission_cnt);
++/* pm_config_dequeue_wait_counts_v9: Builds WRITE_DATA packet with
++ *    register/value for configuring dequeue wait counts
++ *
++ * @return: -ve for failure, 0 for nop and +ve for success and buffer is
++ *  filled in with packet
++ *
++ **/
+ static int pm_config_dequeue_wait_counts_v9(struct packet_manager *pm,
+ 		uint32_t *buffer,
+ 		enum kfd_config_dequeue_wait_counts_cmd cmd,
+@@ -321,24 +328,25 @@ static int pm_config_dequeue_wait_counts_v9(struct packet_manager *pm,
  
--	if (!cancel_delayed_work_sync(&adev->vcn.inst[0].idle_work)) {
--		mutex_lock(&adev->vcn.workload_profile_mutex);
--		if (!adev->vcn.workload_profile_active) {
--			r = amdgpu_dpm_switch_power_profile(adev, PP_SMC_POWER_PROFILE_VIDEO,
--							    true);
--			if (r)
--				dev_warn(adev->dev, "(%d) failed to switch to video power profile mode\n", r);
--			adev->vcn.workload_profile_active = true;
--		}
--		mutex_unlock(&adev->vcn.workload_profile_mutex);
-+	cancel_delayed_work_sync(&adev->vcn.inst[0].idle_work);
+ 	switch (cmd) {
+ 	case KFD_DEQUEUE_WAIT_INIT: {
+-		uint32_t sch_wave = 0, que_sleep = 0;
+-		/* Reduce CP_IQ_WAIT_TIME2.QUE_SLEEP to 0x1 from default 0x40.
++		uint32_t sch_wave = 0, que_sleep = 1;
 +
-+	mutex_lock(&adev->vcn.workload_profile_mutex);
-+	if (!adev->vcn.workload_profile_active) {
-+		r = amdgpu_dpm_switch_power_profile(adev, PP_SMC_POWER_PROFILE_VIDEO,
-+						    true);
-+		if (r)
-+			dev_warn(adev->dev, "(%d) failed to switch to video power profile mode\n", r);
-+		adev->vcn.workload_profile_active = true;
- 	}
-+	mutex_unlock(&adev->vcn.workload_profile_mutex);
++		if (KFD_GC_VERSION(pm->dqm->dev) < IP_VERSION(9, 4, 1) ||
++		    KFD_GC_VERSION(pm->dqm->dev) > IP_VERSION(10, 0, 0))
++			return 0;
++
++		/* For all other gfx9 ASICs,
++		 * Reduce CP_IQ_WAIT_TIME2.QUE_SLEEP to 0x1 from default 0x40.
+ 		 * On a 1GHz machine this is roughly 1 microsecond, which is
+ 		 * about how long it takes to load data out of memory during
+ 		 * queue connect
+ 		 * QUE_SLEEP: Wait Count for Dequeue Retry.
++		 *
++		 * Set CWSR grace period to 1x1000 cycle for GFX9.4.3 APU
+ 		 */
+-		if (KFD_GC_VERSION(pm->dqm->dev) >= IP_VERSION(9, 4, 1) &&
+-		    KFD_GC_VERSION(pm->dqm->dev) < IP_VERSION(10, 0, 0)) {
+-			que_sleep = 1;
+-
+-			/* Set CWSR grace period to 1x1000 cycle for GFX9.4.3 APU */
+-			if (amdgpu_emu_mode == 0 && pm->dqm->dev->adev->gmc.is_app_apu &&
+-			(KFD_GC_VERSION(pm->dqm->dev) == IP_VERSION(9, 4, 3)))
+-				sch_wave = 1;
+-		} else {
+-			return 0;
+-		}
++		if (amdgpu_emu_mode == 0 && pm->dqm->dev->adev->gmc.is_app_apu &&
++		    (KFD_GC_VERSION(pm->dqm->dev) == IP_VERSION(9, 4, 3)))
++			sch_wave = 1;
++
+ 		pm_build_dequeue_wait_counts_packet_info(pm, sch_wave, que_sleep,
+ 			&reg_offset, &reg_data);
  
- 	mutex_lock(&adev->vcn.inst[0].vcn_pg_lock);
- 	amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCN,
+@@ -377,7 +385,7 @@ static int pm_config_dequeue_wait_counts_v9(struct packet_manager *pm,
+ 
+ 	packet->data = reg_data;
+ 
+-	return 0;
++	return sizeof(struct pm4_mec_write_data_mmio);
+ }
+ 
+ static int pm_unmap_queues_v9(struct packet_manager *pm, uint32_t *buffer,
 -- 
-2.48.1
+2.34.1
 
