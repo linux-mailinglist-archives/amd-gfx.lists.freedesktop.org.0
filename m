@@ -2,149 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F21A6103B
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Mar 2025 12:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C12FA611E0
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Mar 2025 14:00:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 405F110E987;
-	Fri, 14 Mar 2025 11:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB40610E980;
+	Fri, 14 Mar 2025 13:00:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2ummN/6U";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aoGsZWEp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2040.outbound.protection.outlook.com [40.107.243.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1242810E981
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Mar 2025 11:43:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A5qxHzAb1nNfW0A0/I3cJr9ZVYL5CiBwOJbQJ5HwlOWZ4sps5VhQtLq+f7gHwhS77U5ZSbWmJJD5EWjdBblTpifaMuOClElfw0GAVTVM/dBKzkjVEK+q8jeeut0llYpVCWWSnRralMF3CgFa2qcYYDshBFDvXz+Wqn61TF10Pz+LBK24pXvOWln8PYZ/BwHVx5Lnz6tfr44nYGztDJEKpffwLH04lP0ZWXuM0PKkXI4LrpwOxsxXUDkXJotXFn6ApNqafkLwnASqfkktWX95DXFAlmfy+RCrnT0LlMojICiTPBFWVEr9rhnij1brtnvGCH1oU1iI5ozhQfULUL3hrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A9gSC9h7zpSZUsScY1bi29KRxB8CD6iMtb1gYJNZPw0=;
- b=rpqPENBjTPQVEzliYnWF1VjDLV2jDhgEmFuZM5Ymaj1wVrVzADgS4G8+07zHFttgLanoKsnh4IyrUO3qx2tDwoZyIH13vY13dZv3YQY9Jo7AFgkIj6pPU7BnSmyrfRy2I7q9dWplsEOXcp/CFEHi9ge2sIBr363t9JIslB3NWd1S3fOUwBmyYyIZneaUvuion1FgyBgDN2I4C8Kc4oaXTGo5HrBVSt/je/OBDoQ5QPkZGHr2hawftKBW3sHMsmE3ktB+VDXygJncSmoC2oKbubCCS9WMu8mKmULwXdSye0nyzOwmPhVR3yDvmYVamjv/a8gH7WVoUNvChZLqpLOSQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A9gSC9h7zpSZUsScY1bi29KRxB8CD6iMtb1gYJNZPw0=;
- b=2ummN/6UL8jJgwBOQ6bNDVViVz/Nkipn8n+5EUXyXSTdI+6aeWn35+AM6Vw7CJ+BEu3bxEh9c+4saOmeYNFEgqdhtQ1D3sRPU36ACK7SYpAMUqAXzdYaXq0yyC84UqTBUlgA14BUOmckVBCtzUYeHHhiJTCBaFSPIYP6Y3zbl7w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5753.namprd12.prod.outlook.com (2603:10b6:208:390::15)
- by DS7PR12MB5862.namprd12.prod.outlook.com (2603:10b6:8:79::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8511.27; Fri, 14 Mar 2025 11:43:19 +0000
-Received: from BL1PR12MB5753.namprd12.prod.outlook.com
- ([fe80::2b0e:7fc3:1d21:5d2e]) by BL1PR12MB5753.namprd12.prod.outlook.com
- ([fe80::2b0e:7fc3:1d21:5d2e%7]) with mapi id 15.20.8534.027; Fri, 14 Mar 2025
- 11:43:19 +0000
-Message-ID: <04a4c7cc-1961-48cb-bad6-b073a04bbb68@amd.com>
-Date: Fri, 14 Mar 2025 17:13:14 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/11] drm/amdgpu/gfx12: add support for disable_kq
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20250313144136.1117072-1-alexander.deucher@amd.com>
- <20250313144136.1117072-9-alexander.deucher@amd.com>
-Content-Language: en-US
-From: "Khatri, Sunil" <sukhatri@amd.com>
-In-Reply-To: <20250313144136.1117072-9-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0101.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9b::7) To BL1PR12MB5753.namprd12.prod.outlook.com
- (2603:10b6:208:390::15)
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
+ [209.85.214.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EDA010E980
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Mar 2025 13:00:26 +0000 (UTC)
+Received: by mail-pl1-f177.google.com with SMTP id
+ d9443c01a7336-2241c95619eso5297495ad.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Mar 2025 06:00:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1741957224; x=1742562024; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nl49pb5YkM4fQ6ztEAajhR6ESmbBVwTbcnrAyoXYeqw=;
+ b=aoGsZWEpcCmOKsU2fueIUllj7+aZjVqzIHPMEJt4+wSJHDaAPyDCQgz9k+J7qTzvDG
+ S0ycfKuVqiXf9atTJnaHiRdCic4hW3VXeJpAjSYjI8aSJnupTHGfwjUoPg1SmMRZSk1R
+ 5yRDK0PoClB81u6i3sxwoNaAeRB1mgiZWEx09uTvTPnqzFX+Hz2F4VenP07GXgKiE28+
+ EQQKhG4vFEPdWzthHApztB8Uq8bEodgt/THdFthO6LlNFuACU/+bthCPhxi7x6Es63FR
+ K6Y4Fq4Ay04NsxDrsMve8k5d7GfwK2tsNpjn/Eeq5W/Nhr9Rn57x+V76XLfLLksG43nT
+ 4rlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741957224; x=1742562024;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=nl49pb5YkM4fQ6ztEAajhR6ESmbBVwTbcnrAyoXYeqw=;
+ b=w3RN0l2rEWU2OWL8d0mX2iEj49qFF2pa8ePxYxWxkwU9fUUTT1XCzNDhBtd5E7y4zt
+ Y8EVi1UGUNmcA2SIHhq6jFAqXFjQTRaCvQq44AvtQ6+/QgTDn209TyWhVLid5IfwJwfK
+ p8entKnEPTMh+VESTO4f1SkmqmsINCSJ7PDIHQT+Jg7KZnZUJkNi9YVHjqG6wi7B/P0L
+ NSr7MZ+3OCENzhhOykW+RYeTmXIYdh+O7sDTDGEhBz4PWcen3dISfidLzY6Ht5zn2SCN
+ GW2f2bqoOEQvRcMRwwfekyGM84Ip017GcHihoohtXTReQjFk1zM07Q66dt82B8n0335t
+ XgVw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVrWyxNR8zOZssfyWHi0UIGZWySiST4i8wRXWGTbTayTQJJ3NC7MX/ri3kwc03e5Z0b5OpFc2Uk@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyD/aHQ5lvq2kdu/tCfBWMXPHJxZJY2cSGDgHeSIIohZIrmCj9v
+ 8M3hOSnnMWfgh5tnPXO174KxRlkRF8BGkeV9WDobSbCzeeerxiYndTGjrn5Cb2yM4bYxN9dz4Y/
+ +iNHzU8bEPPa5KFFaueeKvMjvVC5+pg==
+X-Gm-Gg: ASbGncsOwQTJTmifF/eypT1m6vOP92BuKKnj6VnXRHtypLz+7kIM37S8CzSdXes/Kdm
+ QfgH6n2s5oY5Gs/nXvRlo+eNluFEFWEaucy9gLWY2SplgYfdwNfPpO1l/j40Pu0ffSM/72mxy4w
+ 5DRaN0pXTpvdvJMa6R199vs5n25vJR3M+AVKw7
+X-Google-Smtp-Source: AGHT+IGPNBsITSew1p++gwJSM7EnBJ2MKJabfJgJ6dLmfsI94a8uCnVNRo7fbwCQv9n0yDKYu6O7+/oKpfR0Qug4pNE=
+X-Received: by 2002:a17:903:f86:b0:224:18fd:6e09 with SMTP id
+ d9443c01a7336-225e08602a8mr12554705ad.0.1741957223977; Fri, 14 Mar 2025
+ 06:00:23 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5753:EE_|DS7PR12MB5862:EE_
-X-MS-Office365-Filtering-Correlation-Id: aa454b4e-8cfb-4620-4e85-08dd62ed6a78
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bmJ1czFVaTZEZjQvVkkvcnh4bm9xQll6MnhGaGVCZ0pzTWZMMURqczRXRmdx?=
- =?utf-8?B?N0lXendPZjdjUUtndFEzZ3NSaFdPdHFwc3BDbVVpN1UxZGpuMmFMT2NvZ0hZ?=
- =?utf-8?B?dW1qV2JiL0ZpY1F5d0FMNlRaYXNHQkdqQzFNZkxLQWZCa1Y0UE1zU1NpaEto?=
- =?utf-8?B?SkNNU1c1ZitHV2llV3gwRXIzNjdJQnpEYVNwR3IwQTlxczNOYngzQzM2VGpX?=
- =?utf-8?B?V0s3ZGJPcmFVVzZ3SGhtMzdKKzN2UVU0QVp0WlNWeXVScTBRVDJBaDNlTUV6?=
- =?utf-8?B?RjJQVnl5b0UzT2RDR2pZV09rVklkbXRHWStieWFBOVVCRnArbWYvcmtIOHRO?=
- =?utf-8?B?QnBOd3U5UlJtZ0tGTEdSRTBhYWtJVDVFRzhYdlZNaFp3S3pvZW9xazFsVXY4?=
- =?utf-8?B?TVRPbk5BVHFqbzBocUhsVDZLblNxS3VWeGtrY0hxeDB4SXlDU3JkUjYzQkkr?=
- =?utf-8?B?ZGh6d0ZLZTRNT1BDWlArVktCWGpwMFZlMmFaMWlSM3dwUWxhVklZMERPelJB?=
- =?utf-8?B?U01rMjM5MXRWS1dOQ1YyZzBkb0dVMXVXTG9CanEzMTlFbVZQTElnM1Z3cVp0?=
- =?utf-8?B?SFBIM3ZOREx6WFBDdFFzRG5DK1VLak5vY3haUmNVMTcvTXI4YXo2eTFualFw?=
- =?utf-8?B?TU94aElMSGVSdDd6Ty9NK3hkR1RuZjBwUXlZS0VTQ0hCR3dZK0p2QXFoVVZC?=
- =?utf-8?B?MXp4UHl1WW0rcEErL1RnR0JqeGtuTU9pK1psWTd6a1FhejFjbnBiWXhUdlpF?=
- =?utf-8?B?eTZtWWFsbnBSRFJGRm9KcGFlc3Vpdkp3U1l6Y0dEYnZBc0t1ZzhmTkFTaVZ4?=
- =?utf-8?B?VzkwVmFsUzBOZHlEV1pDWjk0elpWQnZ3Z0VJSjhxeUFtK2x3MUZzdEVnVytO?=
- =?utf-8?B?cHZ4TjZRZ284V2ZDS3J0Zkx3VWc2azQ4NVpjVFdhak1uaUFaVFFIUmh4K3hx?=
- =?utf-8?B?b05nbUFGV1dTR0doeVYvRXhFZzdRcjA0UWdlUkNEYnZXYkdmMzh4Q3BzWUZx?=
- =?utf-8?B?TXVaNnBEQjNPcnFYYUVXdTIvTlRPT1c5L1Blak1BNm16ZmF6NGxWck1KVDdt?=
- =?utf-8?B?MGxUOGRPcCtrRGZKVWJ6MVhFSkdSMXlOZ015OVZPMzJCdzk3c2pDSkMrWE1P?=
- =?utf-8?B?VFNhNXJvK29nTWp0MjA4Zjl6VENoNkpHQXFlQXFLTXdjbjBKYXJXaU5IUzdU?=
- =?utf-8?B?RnMrSk9oV2MyQlhhbzZUeFFuZXFoYVozc0duNTNnTkw3YzdDRmtOeG9HV0d3?=
- =?utf-8?B?clMrR0FvRktOdDFEc3VxcHhXWFBRNnhxWFp2dm1lNzRyL01VOWl3MWhRSUVx?=
- =?utf-8?B?Y0MrSy9aQjFwRkxXZ1p6bjRlRnJaaGVjR0lOSWhvaTlaZWRVZ1FhVVVkOXlx?=
- =?utf-8?B?N1I4dHNCem13aXNvM3YzQXFxZ0lyeUpOS0hkZWVBOEw1UDJyaEkzVmsxMXVR?=
- =?utf-8?B?K2Fwc3JmTDdPRFZHTXhlTmdqTWpTc3FYT3QrTzFVdlc5SHJzQkFWVkZGSlpO?=
- =?utf-8?B?TGIzNWxidEZjMGVmSHdQZnpoU0pqdlpERHdtOUVSOUtqUXFnWmhnNU5vbHQr?=
- =?utf-8?B?eFdBODh6b0M3YVNkZGZ0V1pHaSt3cVZrYzd2alEvWlNIeU5mOVRubmdVY1NX?=
- =?utf-8?B?Y3JtaDhVS0pXS0JRY25Qam9mUFNUWFZaVlh3cHgzaHZqWkVnMWVxZDRLTXgz?=
- =?utf-8?B?djVoYUN2eVphSDFWcDhxNnBGbXVwSCtPUHdNUmZsRElWRnNmeHVvQURxeUor?=
- =?utf-8?B?bDZrZkNZYUdPQmMra1JHZ2Fsa2U5b3lCMjF2cHdFNHJYUXA4dUdKSkdzN0ky?=
- =?utf-8?B?RW54T2Z6cnQ3MzlMZkNnM3M4RWYrY3M2UzR3eUZQUjV3dy9Ia2pja3AwWDRi?=
- =?utf-8?Q?YOSMwdi3K7AcF?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5753.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vnd1OVY2SDk4M0Y4c3JSOGVMMnU5OGhmMm1DUzU1UmV2THJ6K3c3MEVCN1Fs?=
- =?utf-8?B?dmFBVURuK0QwbEtwcitlZjJ0T244OWtRM2lUenBxd2lxK3FmM1JDbjRVSzRa?=
- =?utf-8?B?aUh0NktYRHpiY2Z3ZGoyNGN1U2pxSlZ1K0N0SiszUHVFRi9BTDNrQVl6ZjZl?=
- =?utf-8?B?bzJETEdseUp5cUtUTDVuL1Q3RWY5YTFPSzhsbjFYZ1BMSlR3S2QrdEttdmxP?=
- =?utf-8?B?amhXbi9lSnRrUmxsdVFoZjhaWTBncksrWFJXOGNobVdJa3Q3THFHU25idkNz?=
- =?utf-8?B?UXVRM1llb3hjTkI0QzFNYmV4K0s2RVRYV3JJZzhnTUozdWRqc0xDQXlOcFoz?=
- =?utf-8?B?dFF3UnFzTnQ0OVZBN3Y0QkQvL0NUWmQxUFhjcXg1OVFmVk15QWpCejhydmZm?=
- =?utf-8?B?Tjh3OFNxdzBVWWJHeWliUjVhdzJCRk41WHZRUUFOQ3VEK2FSdWN4RWFRZTZT?=
- =?utf-8?B?MDEzK1htK0JVK2ZhK0J5ZFFFcUFuWlFLWDFFZkNiaURrUUNnczNDaDlmYXJR?=
- =?utf-8?B?bi9QOHNlc1dWN2xhU0piWWZqTVQyUjBkaVVaUjQveEx5Uy9Na1lRN2ZSYlZa?=
- =?utf-8?B?djkzbDZKdU92OFYxR3E1Q1FBUEQ5ek9pVEZCQWErYVhFYmNWNXFENEpJTjRm?=
- =?utf-8?B?RDFIN3laTkRCQTRZY3hyZHJ1Qnk2ME01REhhbVhzOTFYWGc5VHdhbmZyT0hE?=
- =?utf-8?B?eWd3UFVheTdLaTZyQ3RzTTlxNzNBY0dySnMvOXFuUGJaUWVTcXhxbkhLQTRo?=
- =?utf-8?B?dnRqeU1FR09tS0V4TWtCUVRrSE9XU1RMVk9zQ2xvSFlsNUNYNnpXOEtJU3Fz?=
- =?utf-8?B?YmNJVE5lQWJaZFFMTjJBYWxmbEFabkNUU09jdVN1NWFiREhyVUJTNncvNito?=
- =?utf-8?B?T0dsbCtPZTBIbm9yd25xYTRLK253Y1ZIb0pGVC9FV3VPeFVUeXU3c3NpM3Jj?=
- =?utf-8?B?K3phTUJrM2ZIclhFdWhDMXVZRW90a2FBNnhjNzFVV2ZBU3dweTZaNTRGU2d5?=
- =?utf-8?B?dzVPbU5NRlRrS3lxMXM0ZWhqNkpWUlhRU2NVbEQrNmlvUE84amFjaG1SZmpx?=
- =?utf-8?B?R0RBUU1CM2VpWWNVd3ZKRmFVUzMvK2svb0JrQTBNbWtJUFE5RDlGc0Jka3g1?=
- =?utf-8?B?Y3RTZ0VkZjB1UGUyR2hURVQ1RmNYMzU5RllDNTNHNGxjMVpnQ3ZNWmNaZGtv?=
- =?utf-8?B?ZzRoK1hHM3pkaVZDZEZGbStjM3A5UEVSRDdhK01NdnQ1U0krU2d1QTZmLzNQ?=
- =?utf-8?B?WFlkRmp4RnF1QVBWcmo1YnZqWWxORFBIM0pFRGk2Ky9QcW9LZTJ3Z0hhaC8x?=
- =?utf-8?B?WnhnS0svT1cvZ3RSL201MjFuc2o2a0FGc0VaMW9WS2RGWnFlMFE1eE43ZFFv?=
- =?utf-8?B?VWxYUERUN29WWVBJUW9QencvUEQrRVoxWnc5TWtnQkZKQmpWMUZlRzNFVDJX?=
- =?utf-8?B?bUJBemVYK2hFaTJENGpRTW5UdG5LaWNvdmhKMnZacmxjT3Ewd2Q0eDBnZkEw?=
- =?utf-8?B?WVNWVy9xbmIwai9hT1Y2N2dtbEFQUUxiVmdvc0Z2L204aGwxZVpUMTllZ0FV?=
- =?utf-8?B?ZWpCWmhqbm1GRVduT0lwMWpvZVdqMTEvTzBCWVNZdFhZbDdoRlpoRVluK0lB?=
- =?utf-8?B?bVV3UUJMM2V4MzJTSy9EVURtalgxcGlKdG9OTXNnYnJLaTFGUGNCMkloYkFL?=
- =?utf-8?B?Z2pycWJKVndoL1R4THBoS211cTVVZ0hWV1lZTEI4V0dPKy9KS1k3NGdKQUo4?=
- =?utf-8?B?Nkgza1dFQlpFd0dUbXZlNlZCVTNNQzU3VVQ5RHdIT0d4c2VoWU9WMHZ1cDVi?=
- =?utf-8?B?azR0dS9LczVaYlZMRWtwb1NuNmxCSWRjbGVSQko5NDJlWndYSEJKZ1UrNTJa?=
- =?utf-8?B?M2h2VnVWNG5SaGlYa3JrbUtxUUR4YlluR241ZnFEZU8zdmE0R3NPTDVBYTY1?=
- =?utf-8?B?bW5qM0l0UGQvQS9uZkdmOXRNTytBM0w4OG5FQUV3MW9tcnNVeGtUYkE4MDRJ?=
- =?utf-8?B?ZHg3bUJnbHY3YzFjcTZpRlFPY3RHTXI4c0RDcWVsTEFnWGxZajBjNUhUNzB5?=
- =?utf-8?B?VG5PSVJQR21wT0JQNldnQ0pKbFZjSlBiNWVLL1BRRDdKamtxQjVaWm11UDZU?=
- =?utf-8?Q?euJ1ALankVSutgdDNPWEHyDgn?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa454b4e-8cfb-4620-4e85-08dd62ed6a78
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5753.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2025 11:43:19.2052 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /bqD448MSpucztiJF3Ui+bGGjW3wSKKzL5ZuVOXwacgh8Vk1NXije/p+cGbumhyhKI5yZYauxb8YAc5CG0vjWQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5862
+References: <20250312141912.10994-1-alexander.deucher@amd.com>
+ <d15f3b87-f6c5-4c5a-b7e0-e5570691d3ff@amd.com>
+In-Reply-To: <d15f3b87-f6c5-4c5a-b7e0-e5570691d3ff@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 14 Mar 2025 09:00:12 -0400
+X-Gm-Features: AQ5f1Jp2W8IcGhhb5OigfujSZKntotElVtGXAtEWwGtHkjhW6eTBXNUqVra3RKw
+Message-ID: <CADnq5_NZ+YY2LR=5e7sgtxK+4ohxYZ1bd8FvNpn_QAqVp7u5uw@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] drm/amdgpu/gfx: fix ref counting for ring based
+ profile handling
+To: "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Yang Wang <kevinyang.wang@amd.com>, Kenneth Feng <kenneth.feng@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,270 +84,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Sunil Khatri <sunil.khatri@amd.com>
+On Fri, Mar 14, 2025 at 6:31=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com> wr=
+ote:
+>
+>
+>
+> On 3/12/2025 7:49 PM, Alex Deucher wrote:
+> > We need to make sure the workload profile ref counts are
+> > balanced.  This isn't currently the case because we can
+> > increment the count on submissions, but the decrement may
+> > be delayed as work comes in.  Track when we enable the
+> > workload profile so the references are balanced.
+> >
+> > v2: switch to a mutex and active flag
+> >
+> > Fixes: 8fdb3958e396 ("drm/amdgpu/gfx: add ring helpers for setting work=
+load profile")
+> > Cc: Yang Wang <kevinyang.wang@amd.com>
+> > Cc: Kenneth Feng <kenneth.feng@amd.com>
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 30 ++++++++++++++++---------
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 ++
+> >  2 files changed, 22 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_gfx.c
+> > index 984e6ff6e4632..099329d15b9ff 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> > @@ -2160,11 +2160,16 @@ void amdgpu_gfx_profile_idle_work_handler(struc=
+t work_struct *work)
+> >       for (i =3D 0; i < (AMDGPU_MAX_COMPUTE_RINGS * AMDGPU_MAX_GC_INSTA=
+NCES); ++i)
+> >               fences +=3D amdgpu_fence_count_emitted(&adev->gfx.compute=
+_ring[i]);
+> >       if (!fences && !atomic_read(&adev->gfx.total_submission_cnt)) {
+> > -             r =3D amdgpu_dpm_switch_power_profile(adev, profile, fals=
+e);
+> > -             if (r)
+> > -                     dev_warn(adev->dev, "(%d) failed to disable %s po=
+wer profile mode\n", r,
+> > -                              profile =3D=3D PP_SMC_POWER_PROFILE_FULL=
+SCREEN3D ?
+> > -                              "fullscreen 3D" : "compute");
+> > +             mutex_lock(&adev->gfx.workload_profile_mutex);
+> > +             if (adev->gfx.workload_profile_active) {
+> > +                     r =3D amdgpu_dpm_switch_power_profile(adev, profi=
+le, false);
+> > +                     if (r)
+> > +                             dev_warn(adev->dev, "(%d) failed to disab=
+le %s power profile mode\n", r,
+> > +                                      profile =3D=3D PP_SMC_POWER_PROF=
+ILE_FULLSCREEN3D ?
+> > +                                      "fullscreen 3D" : "compute");
+> > +                     adev->gfx.workload_profile_active =3D false;
+> > +             }
+> > +             mutex_unlock(&adev->gfx.workload_profile_mutex);
+> >       } else {
+> >               schedule_delayed_work(&adev->gfx.idle_work, GFX_PROFILE_I=
+DLE_TIMEOUT);
+> >       }
+> > @@ -2184,11 +2189,16 @@ void amdgpu_gfx_profile_ring_begin_use(struct a=
+mdgpu_ring *ring)
+> >       atomic_inc(&adev->gfx.total_submission_cnt);
+> >
+> >       if (!cancel_delayed_work_sync(&adev->gfx.idle_work)) {
+>
+> I guess this has the same problem as mentioned in the earlier patch.
+> AFAIU, this will switch profile only if no idle work is scheduled. If a
+> begin_use call comes when idle_work is being executed, there is a chance
+> that idle_work completes amdgpu_dpm_switch_power_profile(adev, profile,
+> false). Then this would skip changing the profile.
 
-On 3/13/2025 8:11 PM, Alex Deucher wrote:
-> Plumb in support for disabling kernel queues.
+I think that problem exists already independent of the ref counting.
+I suppose there isn't actually a need to make the workload change
+dependent on the cancelling of the delayed work.  I'll send out some
+patches to address this.
+
+Alex
+
 >
-> v2: use ring counts per Felix' suggestion
-> v3: fix stream fault handler, enable EOP interrupts
-> v4: fix MEC interrupt offset (Sunil)
+> Thanks,
+> Lijo
 >
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 183 +++++++++++++++++--------
->   1 file changed, 125 insertions(+), 58 deletions(-)
+> > -             r =3D amdgpu_dpm_switch_power_profile(adev, profile, true=
+);
+> > -             if (r)
+> > -                     dev_warn(adev->dev, "(%d) failed to disable %s po=
+wer profile mode\n", r,
+> > -                              profile =3D=3D PP_SMC_POWER_PROFILE_FULL=
+SCREEN3D ?
+> > -                              "fullscreen 3D" : "compute");
+> > +             mutex_lock(&adev->gfx.workload_profile_mutex);
+> > +             if (!adev->gfx.workload_profile_active) {
+> > +                     r =3D amdgpu_dpm_switch_power_profile(adev, profi=
+le, true);
+> > +                     if (r)
+> > +                             dev_warn(adev->dev, "(%d) failed to disab=
+le %s power profile mode\n", r,
+> > +                                      profile =3D=3D PP_SMC_POWER_PROF=
+ILE_FULLSCREEN3D ?
+> > +                                      "fullscreen 3D" : "compute");
+> > +                     adev->gfx.workload_profile_active =3D true;
+> > +             }
+> > +             mutex_unlock(&adev->gfx.workload_profile_mutex);
+> >       }
+> >  }
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_gfx.h
+> > index ddf4533614bac..75af4f25a133b 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+> > @@ -483,6 +483,8 @@ struct amdgpu_gfx {
+> >
+> >       atomic_t                        total_submission_cnt;
+> >       struct delayed_work             idle_work;
+> > +     bool                            workload_profile_active;
+> > +     struct mutex                    workload_profile_mutex;
+> >  };
+> >
+> >  struct amdgpu_gfx_ras_reg_entry {
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> index 34cf187e72d9f..a99507e4fdb27 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> @@ -1421,11 +1421,13 @@ static int gfx_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
->   		break;
->   	}
->   
-> -	/* recalculate compute rings to use based on hardware configuration */
-> -	num_compute_rings = (adev->gfx.mec.num_pipe_per_mec *
-> -			     adev->gfx.mec.num_queue_per_pipe) / 2;
-> -	adev->gfx.num_compute_rings = min(adev->gfx.num_compute_rings,
-> -					  num_compute_rings);
-> +	if (adev->gfx.num_compute_rings) {
-> +		/* recalculate compute rings to use based on hardware configuration */
-> +		num_compute_rings = (adev->gfx.mec.num_pipe_per_mec *
-> +				     adev->gfx.mec.num_queue_per_pipe) / 2;
-> +		adev->gfx.num_compute_rings = min(adev->gfx.num_compute_rings,
-> +						  num_compute_rings);
-> +	}
->   
->   	/* EOP Event */
->   	r = amdgpu_irq_add_id(adev, SOC21_IH_CLIENTID_GRBM_CP,
-> @@ -1471,37 +1473,41 @@ static int gfx_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
->   		return r;
->   	}
->   
-> -	/* set up the gfx ring */
-> -	for (i = 0; i < adev->gfx.me.num_me; i++) {
-> -		for (j = 0; j < adev->gfx.me.num_queue_per_pipe; j++) {
-> -			for (k = 0; k < adev->gfx.me.num_pipe_per_me; k++) {
-> -				if (!amdgpu_gfx_is_me_queue_enabled(adev, i, k, j))
-> -					continue;
-> -
-> -				r = gfx_v12_0_gfx_ring_init(adev, ring_id,
-> -							    i, k, j);
-> -				if (r)
-> -					return r;
-> -				ring_id++;
-> +	if (adev->gfx.num_gfx_rings) {
-> +		/* set up the gfx ring */
-> +		for (i = 0; i < adev->gfx.me.num_me; i++) {
-> +			for (j = 0; j < adev->gfx.me.num_queue_per_pipe; j++) {
-> +				for (k = 0; k < adev->gfx.me.num_pipe_per_me; k++) {
-> +					if (!amdgpu_gfx_is_me_queue_enabled(adev, i, k, j))
-> +						continue;
-> +
-> +					r = gfx_v12_0_gfx_ring_init(adev, ring_id,
-> +								    i, k, j);
-> +					if (r)
-> +						return r;
-> +					ring_id++;
-> +				}
->   			}
->   		}
->   	}
->   
-> -	ring_id = 0;
-> -	/* set up the compute queues - allocate horizontally across pipes */
-> -	for (i = 0; i < adev->gfx.mec.num_mec; ++i) {
-> -		for (j = 0; j < adev->gfx.mec.num_queue_per_pipe; j++) {
-> -			for (k = 0; k < adev->gfx.mec.num_pipe_per_mec; k++) {
-> -				if (!amdgpu_gfx_is_mec_queue_enabled(adev,
-> -								0, i, k, j))
-> -					continue;
-> +	if (adev->gfx.num_compute_rings) {
-> +		ring_id = 0;
-> +		/* set up the compute queues - allocate horizontally across pipes */
-> +		for (i = 0; i < adev->gfx.mec.num_mec; ++i) {
-> +			for (j = 0; j < adev->gfx.mec.num_queue_per_pipe; j++) {
-> +				for (k = 0; k < adev->gfx.mec.num_pipe_per_mec; k++) {
-> +					if (!amdgpu_gfx_is_mec_queue_enabled(adev,
-> +									     0, i, k, j))
-> +						continue;
->   
-> -				r = gfx_v12_0_compute_ring_init(adev, ring_id,
-> -								i, k, j);
-> -				if (r)
-> -					return r;
-> +					r = gfx_v12_0_compute_ring_init(adev, ring_id,
-> +									i, k, j);
-> +					if (r)
-> +						return r;
->   
-> -				ring_id++;
-> +					ring_id++;
-> +				}
->   			}
->   		}
->   	}
-> @@ -3495,12 +3501,18 @@ static int gfx_v12_0_cp_resume(struct amdgpu_device *adev)
->   	if (r)
->   		return r;
->   
-> -	if (!amdgpu_async_gfx_ring) {
-> -		r = gfx_v12_0_cp_gfx_resume(adev);
-> -		if (r)
-> -			return r;
-> +	if (adev->gfx.num_gfx_rings) {
-> +		if (!amdgpu_async_gfx_ring) {
-> +			r = gfx_v12_0_cp_gfx_resume(adev);
-> +			if (r)
-> +				return r;
-> +		} else {
-> +			r = gfx_v12_0_cp_async_gfx_ring_resume(adev);
-> +			if (r)
-> +				return r;
-> +		}
->   	} else {
-> -		r = gfx_v12_0_cp_async_gfx_ring_resume(adev);
-> +		r = gfx_v12_0_cp_gfx_start(adev);
->   		if (r)
->   			return r;
->   	}
-> @@ -3711,6 +3723,46 @@ static int gfx_v12_0_hw_init(struct amdgpu_ip_block *ip_block)
->   	return r;
->   }
->   
-> +static int gfx_v12_0_set_userq_eop_interrupts(struct amdgpu_device *adev,
-> +					      bool enable)
-> +{
-> +	if (adev->gfx.disable_kq) {
-> +		unsigned int irq_type;
-> +		int m, p, r;
-> +
-> +		for (m = 0; m < adev->gfx.me.num_me; m++) {
-> +			for (p = 0; p < adev->gfx.me.num_pipe_per_me; p++) {
-> +				irq_type = AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP + p;
-> +				if (enable)
-> +					r = amdgpu_irq_get(adev, &adev->gfx.eop_irq,
-> +							   irq_type);
-> +				else
-> +					r = amdgpu_irq_put(adev, &adev->gfx.eop_irq,
-> +							   irq_type);
-> +				if (r)
-> +					return r;
-> +			}
-> +		}
-> +
-> +		for (m = 0; m < adev->gfx.mec.num_mec; ++m) {
-> +			for (p = 0; p < adev->gfx.mec.num_pipe_per_mec; p++) {
-> +				irq_type = AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-> +					+ (m * adev->gfx.mec.num_pipe_per_mec)
-> +					+ p;
-> +				if (enable)
-> +					r = amdgpu_irq_get(adev, &adev->gfx.eop_irq,
-> +							   irq_type);
-> +				else
-> +					r = amdgpu_irq_put(adev, &adev->gfx.eop_irq,
-> +							   irq_type);
-> +				if (r)
-> +					return r;
-> +			}
-> +		}
-> +	}
-> +	return 0;
-> +}
-> +
->   static int gfx_v12_0_hw_fini(struct amdgpu_ip_block *ip_block)
->   {
->   	struct amdgpu_device *adev = ip_block->adev;
-> @@ -3721,6 +3773,7 @@ static int gfx_v12_0_hw_fini(struct amdgpu_ip_block *ip_block)
->   	amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->   	amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
->   	amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +	gfx_v12_0_set_userq_eop_interrupts(adev, false);
->   
->   	if (!adev->no_hw_access) {
->   		if (amdgpu_async_gfx_ring) {
-> @@ -3809,11 +3862,19 @@ static int gfx_v12_0_early_init(struct amdgpu_ip_block *ip_block)
->   {
->   	struct amdgpu_device *adev = ip_block->adev;
->   
-> +	if (amdgpu_disable_kq == 1)
-> +		adev->gfx.disable_kq = true;
-> +
->   	adev->gfx.funcs = &gfx_v12_0_gfx_funcs;
->   
-> -	adev->gfx.num_gfx_rings = GFX12_NUM_GFX_RINGS;
-> -	adev->gfx.num_compute_rings = min(amdgpu_gfx_get_num_kcq(adev),
-> -					  AMDGPU_MAX_COMPUTE_RINGS);
-> +	if (adev->gfx.disable_kq) {
-> +		adev->gfx.num_gfx_rings = 0;
-> +		adev->gfx.num_compute_rings = 0;
-> +	} else {
-> +		adev->gfx.num_gfx_rings = GFX12_NUM_GFX_RINGS;
-> +		adev->gfx.num_compute_rings = min(amdgpu_gfx_get_num_kcq(adev),
-> +						  AMDGPU_MAX_COMPUTE_RINGS);
-> +	}
->   
->   	gfx_v12_0_set_kiq_pm4_funcs(adev);
->   	gfx_v12_0_set_ring_funcs(adev);
-> @@ -3844,6 +3905,10 @@ static int gfx_v12_0_late_init(struct amdgpu_ip_block *ip_block)
->   	if (r)
->   		return r;
->   
-> +	r = gfx_v12_0_set_userq_eop_interrupts(adev, true);
-> +	if (r)
-> +		return r;
-> +
->   	return 0;
->   }
->   
-> @@ -5043,27 +5108,29 @@ static void gfx_v12_0_handle_priv_fault(struct amdgpu_device *adev,
->   	pipe_id = (entry->ring_id & 0x03) >> 0;
->   	queue_id = (entry->ring_id & 0x70) >> 4;
->   
-> -	switch (me_id) {
-> -	case 0:
-> -		for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
-> -			ring = &adev->gfx.gfx_ring[i];
-> -			if (ring->me == me_id && ring->pipe == pipe_id &&
-> -			    ring->queue == queue_id)
-> -				drm_sched_fault(&ring->sched);
-> -		}
-> -		break;
-> -	case 1:
-> -	case 2:
-> -		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-> -			ring = &adev->gfx.compute_ring[i];
-> -			if (ring->me == me_id && ring->pipe == pipe_id &&
-> -			    ring->queue == queue_id)
-> -				drm_sched_fault(&ring->sched);
-> +	if (!adev->gfx.disable_kq) {
-> +		switch (me_id) {
-> +		case 0:
-> +			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
-> +				ring = &adev->gfx.gfx_ring[i];
-> +				if (ring->me == me_id && ring->pipe == pipe_id &&
-> +				    ring->queue == queue_id)
-> +					drm_sched_fault(&ring->sched);
-> +			}
-> +			break;
-> +		case 1:
-> +		case 2:
-> +			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-> +				ring = &adev->gfx.compute_ring[i];
-> +				if (ring->me == me_id && ring->pipe == pipe_id &&
-> +				    ring->queue == queue_id)
-> +					drm_sched_fault(&ring->sched);
-> +			}
-> +			break;
-> +		default:
-> +			BUG();
-> +			break;
->   		}
-> -		break;
-> -	default:
-> -		BUG();
-> -		break;
->   	}
->   }
->   
