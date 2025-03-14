@@ -2,144 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58146A62580
-	for <lists+amd-gfx@lfdr.de>; Sat, 15 Mar 2025 04:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C19C6A630B9
+	for <lists+amd-gfx@lfdr.de>; Sat, 15 Mar 2025 18:26:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CAD210E0E4;
-	Sat, 15 Mar 2025 03:41:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D69010E290;
+	Sat, 15 Mar 2025 17:26:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fSrxqI5c";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="Pv90pe6j";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2082.outbound.protection.outlook.com [40.107.243.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B95A510E0E4
- for <amd-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 03:41:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Rfwv8C0omvAJPt2n5EDOUtexsoxEPKE0JZkUrCl4wHBcBBIncbaF1ci1PDO5u6Sl62bq9qAVY0kdMolSYKLG0OSYz+SQ2rKWiFttXFjxdaLlFMzKHBvfSZuZtiVTnfLsdubW7yFZL4qiPICYsQ4fQX3yArjY4UTn/mLz6PSpGoO2xnBMn2MIOnvno+SdrG+FRH20329fa1515FehkhEthgraFpodqm5vHcoXdfrX5m8SrBmy9GSDr05JQaq+ci8i/6b0f9jpFG60FkGwWlCM4nSvW/Lvcu5dstaykafwBnjKNbqWulPQY/50R8BSUJsyyO0de/CnifS1bytk5K25nw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bYh7zwN4mj8Xw5LYysUrAKyfXa3qCAD9/SGxTWww4xw=;
- b=HaIxpU6ALCxttM6S/Ypkz2ebldditbLDiNV+3KCZNVpI9JVuWgqUVuqlNFHhSJwu/1DSpE2JBT7FBGzZ8RYRh7uNPZ/6bOVbp98j+ZVFkbcNTRVPTF8Q7Z+iCpJ4l2RHWOIIb42CIfEWxxyTwoZ80aILDFaSnK+JEoYYgOC8jy2GMgDRUQ5gBXiYWhIccakEbvcOZTwNvEv9l4CTNHSn9F26WoUW04vbYJV8f7jWrW9NNjLcyWLafTFXyRAMIzqwUCwuLSxgCmUNe1hd6HBL73FJm1E4kr9ZydaIQ/NYfh9JiMz+vjdzicIluR7DdUQCwB95mBUlk3ZOSwXWGnvc/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bYh7zwN4mj8Xw5LYysUrAKyfXa3qCAD9/SGxTWww4xw=;
- b=fSrxqI5cuoqnPdig0QKruPCh7V+zbVVkPBBZjMpW+qpIgazN3lmYq1HGihutS5b1Cmo5yHcKAAMy4v8d5weRurPtYbpYy9aTjD4Xe0CGTRQmUntZSeuAtYfsyfjtgCec7yiK+38qCUzIxNQuA52SWobx98kclSnPwO3Kx3cy8cw=
-Received: from CY8PR12MB7435.namprd12.prod.outlook.com (2603:10b6:930:51::6)
- by DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.28; Sat, 15 Mar 2025 03:41:39 +0000
-Received: from CY8PR12MB7435.namprd12.prod.outlook.com
- ([fe80::817c:781e:25f1:8210]) by CY8PR12MB7435.namprd12.prod.outlook.com
- ([fe80::817c:781e:25f1:8210%6]) with mapi id 15.20.8511.026; Sat, 15 Mar 2025
- 03:41:38 +0000
-From: "Kim, Jonathan" <Jonathan.Kim@amd.com>
-To: "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>
-Subject: RE: [PATCH v3] drm/amdkfd: Fix bug in config_dequeue_wait_counts
-Thread-Topic: [PATCH v3] drm/amdkfd: Fix bug in config_dequeue_wait_counts
-Thread-Index: AQHblUN5C5Uox/OMtU2mE9eg+6JvEbNziNbQ
-Date: Sat, 15 Mar 2025 03:41:38 +0000
-Message-ID: <CY8PR12MB7435587500A56EF9B19DB33C85DD2@CY8PR12MB7435.namprd12.prod.outlook.com>
-References: <20250315004427.259694-1-Harish.Kasiviswanathan@amd.com>
-In-Reply-To: <20250315004427.259694-1-Harish.Kasiviswanathan@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ActionId=35bcb7b4-2e89-4b9a-b3fa-93a2e0843532;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=0;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=true;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open Source;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-03-15T03:36:26Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Tag=10, 0, 1, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR12MB7435:EE_|DM3PR12MB9416:EE_
-x-ms-office365-filtering-correlation-id: cb88d57b-ed84-4a05-df48-08dd63734b20
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?GrLfcVSqyfNfF2pRoMCFJ3yeLovHdIuzneNWAyAiLHyIzEILQdMcHlCizMcu?=
- =?us-ascii?Q?jBAqXtSz112EZtc39DRxW1o8wv7AGe1BgIrbxHdzLyb/plRhxe0TCZtRsrdU?=
- =?us-ascii?Q?7ufy0A5X/KvsMwZJXc6hYY/CFcNXoSP0jzkZsvkZNtiBgrbRsn+c9TSuCzf3?=
- =?us-ascii?Q?rl4IP7GD9PDswoUatFjOk9nI1a9+sK0/Q4PM+XCITQ9rV+9+HSBP7X3JRofq?=
- =?us-ascii?Q?0u7U7t7+AQHBIaz7YTXudOOp5lA7ytTIWNCCk9m0Id42niXg9lIn7Z5plTYL?=
- =?us-ascii?Q?S0/o6zMVmZdOJ4GjxTY7lQuIlMflRwd6NnMFMqedDlbk1ZPP11MQiYdb0Ytk?=
- =?us-ascii?Q?1whJGFk3e8v6szc3JYZnhtuTg3qA0bDLILX+QSTylXeKGfSM5rDigBQgTf36?=
- =?us-ascii?Q?A4Bp05NG8BDnrtYTbMN+C4Zat37cKioa0rUz+PJ7FvcHuRvUB5EV3sKFQoSg?=
- =?us-ascii?Q?oDaoOPIXDpf8KtdmlQd+s0oh+oeaddLhRRYpVTlbnMZ7EF/xu7I2cQ8K8FKi?=
- =?us-ascii?Q?gKd0IyjZGx9wnoF9VKv1BPcQSp9VlRuIIqkpowc5W9eFvkHcjhdaAuKtWNj7?=
- =?us-ascii?Q?SG6UoxaBQUpH6qnDiTj/po6D5o/WmhnhYk5yEb7JX9VJhzAkmi0zYZwUgXix?=
- =?us-ascii?Q?pgC7MxJrv6nBt1d2AU5veQbjZ6XtGyAYOcLCNGSpQL9Cx0NFRL3xgxnBp6iI?=
- =?us-ascii?Q?+HK47hUnxKdfeXKJdm1StS+Ofur16NiV3CJYMoZ5o3jz/fYI7PP18nw5S7FW?=
- =?us-ascii?Q?FdgOMr/rrH7iE600ovi+oyHVugaf2Zu1JoMeq/XU37tNaODHp/dq7XfwJo8T?=
- =?us-ascii?Q?dU7qNSBlttq5wgYHXnShdbfS71dS2YyrXOccwOoEktPSE2u8XQBsaQesuXjX?=
- =?us-ascii?Q?U6YBNGiIOdbfjGdySHy9sZRKArvIx7WvN6jnd1sysMJEUF6h+bCw2DHJ2Tkn?=
- =?us-ascii?Q?EBwiFlMPwPx79BckRg+PUSSnVkRvsawVHoQy6iVlzYY/A9Ul0Px0bcJZxNN7?=
- =?us-ascii?Q?9UGreZak9EEu90cvSJdZKIGvoSvxMn3fIlpct72513Juy5rvFpetQw7swfxV?=
- =?us-ascii?Q?O8O7Uo0i7WYquQg+F4bbwFtzc6WPWOclYn+gjdnCwS6JbfFdYTS+as50O9U+?=
- =?us-ascii?Q?/l3ynO75TZovnmXuDiwKb7symVbbgErQabzjqEMirUg3KIWolU1AHDY+xxjs?=
- =?us-ascii?Q?oVjykotHoJApt7PR8bxhpVIo72ICl9g23Q6l2Ri7Un+Sb48+pWUk04D7Wk93?=
- =?us-ascii?Q?jsj83qGFDEysvenusf/4EYvTvlnOPc9In8RSPRB71fshk6hiBERVY64GMu36?=
- =?us-ascii?Q?ud3qCg27YWEwa7A8BzCRMt8sMrb8mmTkPTLfCWAjgFGpv5t+xHzwUta/JGp1?=
- =?us-ascii?Q?8qlPdglL3OOOARjlq7Xiqa2IlxhYR5EmDyjDK6K1rCXpG3S+OJkEL0VJxMEm?=
- =?us-ascii?Q?i746a0+1JGQqSI7MCi8xoagsosAgLCxF?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR12MB7435.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hqV9Oa29D3ucT+YWH7kf/0srW0zZHzArCcqueNLs/knfpYbnTT+U8JhHrSH3?=
- =?us-ascii?Q?mHTGwYMVvzMwW21wuw9uX4T11/6Eo8Rx1ewJJ3huQYmFudQRpxhQsrsr2iU0?=
- =?us-ascii?Q?RhZEEMYgl+kVCNPVPu/xfpwqgAOiXWGQOltQ2q8zfCdBquE0BlWetENZJyXX?=
- =?us-ascii?Q?XV4vqcBUXbaT2uNZ28uYN/VDrAmsH52EBGZLPTaS9Ul5lq3uPIAFawAlcoEy?=
- =?us-ascii?Q?FDUKGk+FAu/MxrfDYAqYPrtnSAimTCeWb6CyD++VWHaWcX44S1XYUVqDHL9u?=
- =?us-ascii?Q?F83zUdZZxiMCZDoJPFw0ytt8vxMjlFBExg5bQRe0VrXGwwvsdy3eKkKzjcSU?=
- =?us-ascii?Q?dtVzeuqHeKYlbRZm4JUBdVWDeBhwuOCU2H1VsUvsXzNsfkTmXnp/+i1bdku5?=
- =?us-ascii?Q?RoTds/M7H/FrsoNOryCENQhJlahytVVqCuoM0fIY5axvYjizA8l7KaSu8vGD?=
- =?us-ascii?Q?ZNJgPXAJKJ/MVw7sC5EPKgAV62/0bMo56+QGEcNCOuUyN69khVDs3Nqr/aip?=
- =?us-ascii?Q?v9zt3xY2al6ypFeD1HMyVWafDbZcZimaaznev59X2L2+RhQHgY1bywQWZVU8?=
- =?us-ascii?Q?cK4Y3RHVOBMYKtPVyWfkVyFXWbV28nUAdTx3mFyHKoS3V4BfUFZ/3lL9MTwK?=
- =?us-ascii?Q?Vjgl3AbxIiIcUEqgCssXXt9V0BZVNeN9kju6J5V8vxYV//qQ1TEmyYepVV0k?=
- =?us-ascii?Q?7Ikb+eb9ee308WNmUshkh5gjYt9f89T6oBNnXeJ7MCszzyLyR5avsb0Zgr8v?=
- =?us-ascii?Q?ebT25s5jIjpofS3APF1tZsR/NiAIsBB1PvfwwRKWtXmDsFd0xWnseldQVURJ?=
- =?us-ascii?Q?oBtVAkIcQUhRkLykgZNWMgu4ALoP7HfYFXnwJ0pHhx8h3V7gZocL+1wDLwrX?=
- =?us-ascii?Q?lGrPPyQ924cfqJ3V1YMfnM3hGFMhMrOX+v5Adi+NpiUscm92oh9AP1r4bYbe?=
- =?us-ascii?Q?bkFazMg4qOJdZlVVOBSV/7YFwEijCXJ3JVlxVhgvTWb1oC4HMNVsmM02lZkC?=
- =?us-ascii?Q?zJ6Vo/Gu4svzS2VJg9G1D20WToIyo6KklpzkSfZws69PFh5wX7Ibk/pqk9oR?=
- =?us-ascii?Q?Nb7CFwzLwjfQurrXRPfiflaxFvLeTe/32gn76cESM5hJLkFrNhHAfY0L9A2N?=
- =?us-ascii?Q?MHzyUp0goGvmZlqy5W4FUkbroyUuIgJbqCelbM/2tmz+DXKLGMBOOQ6UmwmF?=
- =?us-ascii?Q?7dusfLGrvOP3FdoEXm2ZhMi7nj2RXqmkOeLpqlsd0Co3XO7/J1nMidHJoW9e?=
- =?us-ascii?Q?Wt0bgSu6d8YoEpsY763ZGAITFDu0AfyhD3bPaPRAXuUCmhpEj2VJ9JWo3UYD?=
- =?us-ascii?Q?86lIUf1zRaykDipW0XabHBjH3QiNsxgMd5Q3Q3LUZrXv8vZxmnbAqw7iW2cj?=
- =?us-ascii?Q?4kPyRE2dNxT9xUACoQA7rMgrDiUmG74NVPB63BBM5aTV7hIEN07CcWy6OG+X?=
- =?us-ascii?Q?dLbrJ1U8d5fEPgJnI0NH37SCHt4Ox2MqwCJeuEOF72H7Z5GQ1WVw+aQ2hohc?=
- =?us-ascii?Q?pgszzU/oeMg/Sx3ZmfsSW6oAMg42Wq2wFrBAq7l5maazhFxbXAutkwCKn5hB?=
- =?us-ascii?Q?vlUxSO/2uhTusFy+XQ4=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E79CD10E30F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Mar 2025 14:19:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1741961921; x=1742566721; i=spasswolf@web.de;
+ bh=MMXCvzVSsnXJfTFfmo8AAWVj0LU8f9pVtacOtgvnnyc=;
+ h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+ References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=Pv90pe6jWhTcZpGIAaJ57aXgcQhWM+htgS2yzQO1jcfrQUpSvvwS3rCxKalZ78Nd
+ kQI1PxFIo8gP4rwl66+s9cuVbxNq5KOsUOw/bP9brifVshsWRVM8SGCchs+ywHFnF
+ Utxa+zpFzh+8iTQV8hu+41Rlbc2BnymNywFTysyMvJ6rplnYQ1MZGvTgnDF3PZKB9
+ VV6mlSrIVd2ctDRHFJCt331DePV8s9cuse3UsWPvLFTCmyU0T+2j66SnsTk5/IOYn
+ kLZbfG/Qv7dWj8cknaLS2hkrbsdX05ExnvwLgvlFM2aGCIufrGuaSLJ0d85zd1OpM
+ jn/dQvn8jo9RtvTuQA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.0.101] ([95.223.134.88]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1N1d3a-1tDSWG3sLI-00wfdT; Fri, 14
+ Mar 2025 15:18:40 +0100
+Message-ID: <5d34bfc5109b8d104fd4f8550dd17945344f9d07.camel@web.de>
+Subject: Re: commit 7ffb791423c7 breaks steam game
+From: Bert Karwatzki <spasswolf@web.de>
+To: Balbir Singh <balbirs@nvidia.com>
+Cc: Ingo Molnar <mingo@kernel.org>, Kees Cook <kees@kernel.org>, Bjorn
+ Helgaas	 <bhelgaas@google.com>, Linus Torvalds
+ <torvalds@linux-foundation.org>, Peter Zijlstra <peterz@infradead.org>,
+ Andy Lutomirski <luto@kernel.org>, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, spasswolf@web.de
+Date: Fri, 14 Mar 2025 15:18:40 +0100
+In-Reply-To: <a168e78b-ae27-4675-8821-0b1a2499b2b2@nvidia.com>
+References: <20250310112206.4168-1-spasswolf@web.de>
+ <951f9d13-72e4-41c3-9ace-8639e2a9485d@nvidia.com>
+ <ce940e2a-632d-41be-9f13-e5b11d49b0db@nvidia.com>
+ <09131c563332c892284ec7fb4ce706996131db8c.camel@web.de>
+ <9a5df5627d3d72b2a97f501dfb7d944cc1e9920f.camel@web.de>
+ <fdea59fe-f570-489f-bf88-1ffd47119cac@nvidia.com>
+ <414f4deb8c7670a159854006b0c410ce05a6049e.camel@web.de>
+ <12d950ee-4152-4ad6-b93e-7c5b75804b1a@nvidia.com>
+ <705e95cec3dc5181ca2aa73722e6b84f63f3e91d.camel@web.de>
+ <20b5823e-247a-456a-bb55-d50f212a9f5a@nvidia.com>
+ <a34a1ae0b1d226b1bac7d73daa24da8e5899cb3e.camel@web.de>
+ <c7bb0bd1-529d-466d-9cce-abbac4b480ab@nvidia.com>
+ <146277bb0ecbb392d490683c424b8ae0dfa82838.camel@web.de>
+ <b63b1de8-7eec-4235-b61e-e654e78543ba@nvidia.com>
+ <fa8d5e76694918bdaae9faee9648776f298f78ca.camel@web.de>
+ <7866593f-0322-4fb3-9729-82366940fc85@nvidia.com>
+ <a168e78b-ae27-4675-8821-0b1a2499b2b2@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.55.3-1 
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7435.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb88d57b-ed84-4a05-df48-08dd63734b20
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Mar 2025 03:41:38.8856 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: W6HTEGk9gKuSHr4OmtgfSUAArzkjYzBROl6fqKURjTRUDVIkWA6Iafs8YcBWiEk8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR12MB9416
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:ebrQGhTuB5IaK/ZPSDR+AZZWCXBtE+KEaS2jLlq4gXD7D9YZ5d8
+ Rc+k+6v3Dj5Nkn7wmB3hEzdHWHdSmyb3En2YkkRZsduKLIdAmZXmAuDP7cgq0tXWjEsLSH+
+ 3LMFqWw8VhOkDLxcoLKebN6lw9pjN0j8UHaSk73wg39qZsq7Sj05dCPmNsYlSLDa6Vc72+F
+ 6/ZmiRcfqnKBsUKHBHAqw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:kgV/IjQ466o=;sLMUl1q9J5W54DlH1qiMPCd0+Kx
+ Qc+iSgx/iwe8MZDQM5FC5P0rK9Zw+AtE//eGjMyVkcxWAyBwbsHch8z/brUpLPVS0zAtZEGX8
+ LSFYs4yUXAv6fCo7wQJmpz5hjgNeM+qghk/Zjxi1aRa5TdsHXHGX3dIObVdkglt/11zStvhKa
+ 4IyNbLP2J70BqvF6IUOScuHIcu5/YKgVwacVvfBPMLjP2IFOYQ10+Q3+KSZ6M4d6zttTVAKOD
+ O4tb76bAEdEX//iI54rHPVQJhSnm8nc/jXb+phu3A8SJrrxbuNbfeqgT6fXQ/oUpHMdyJXu4A
+ gkjKgWfc/5JtDCQ8gEAZTcU0YsHZBW3iLB2571EKPU4ZBYRP3JWJWJmz9alG3TD334PwfoPpm
+ vNgHyn+9kDgvBpvpm9pihhvO41TH5muTTuzkVqiwzXB3DNp4Zme4VgbbRsBVnUJcxq6orZg+i
+ YTYgGLfruIO6lO4Ob9+iGHZVRghLhOCK1WfwxKin/LoDAZoQpu9iNjPaanLq1+zk2y0G6ATsI
+ j4qN/7HnhRnpbgps0AykqJdXsgR9I8y94R7oV4md1GSe4pL63hm5cTJHYAg5oZRRgsB5WTtyJ
+ guzjN7DySg069D53EIROk4QY5D7DAyxWJcPa91h6wGvWWpHQel1ohKsiUs142hS0wNfKfNGEN
+ Gxb9+ZUr5N4CDO8J/HY3oNTSHK00bixxWFDJgGUkkBkG8lSMtXiMD6qkeA84GopEAyvpTi/+m
+ IXxYxv0u/pmImUAs+zWUkxrHg3zIkBGkobvFJqr+smXlQlmRvkLTzYT4BIumCiVTT2TrjCvmw
+ BB9Wpag6euO0NGA3xVJY7A26XF/5dvAXdc7hEEmEseZ0uvrE39rERAq5ne9uvQJn28FhPWnuC
+ 6yBWkbCwW+TMm5bc0w946ML0ByxIgW0kRD3WCwCaoocUrFKNcJ+WryxclyFF7i+k+I/rdW9C3
+ pIDb0gMdxX1e08ibl4QDx9Jzs25i+VZqQqui1KqLE14zhdiC+JKuyikUo3dRqsK1T6AdcrlBc
+ FIqzczRKrjOumBloO2X37ifiDzepDxsyRd9ckF9EEQ7+F5ZcQm/+Lf7GGbcwkzvk4EoP7Hg0T
+ cECZvcnZom8RcuY/43/t3PHaTxC8Azx7KQ3riDSw6kIZZiZ1cLzFrxHPLov+IMhvevlsrhaxv
+ jzjh9kawZznh8NlX29wu6yMCeLvnW7K/ziosAWdqrofb6N9XpWk6fWYo2BeUOS3565j8RyFoX
+ uccbR43DayzZNBT07pgaMcuER/x7cPQg93V13Ljvj+vpXh9rK+ZJJw6RWOMUxBQZhvAbfqxrj
+ i3NGR9xHP6EX/feRfmEGwh2pjwJosve56toWn1Zy2nue9NKpl1OYYK7Z8zANwN2v/zQIMjM0Y
+ tQ46I7G1Pb63+0psxIGUkaPfmYvrsLOIIUfBjXqxASQYwEF9EvsLxyj4oDgevE1daxzXtZ7w8
+ a+pVMOIXw0NoN9VFnGY5+p+STYLk=
+X-Mailman-Approved-At: Sat, 15 Mar 2025 17:26:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,171 +106,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+Am Samstag, dem 15.03.2025 um 00:34 +1100 schrieb Balbir Singh:
+> On 3/14/25 17:14, Balbir Singh wrote:
+> > On 3/14/25 09:22, Bert Karwatzki wrote:
+> > > Am Freitag, dem 14.03.2025 um 08:54 +1100 schrieb Balbir Singh:
+> > > > On 3/14/25 05:12, Bert Karwatzki wrote:
+> > > > > Am Donnerstag, dem 13.03.2025 um 22:47 +1100 schrieb Balbir Sing=
+h:
+> > > > > >
+> > > > > >
+> > > > > > Anyway, I think the nokaslr result is interesting, it seems li=
+ke with nokaslr
+> > > > > > even the older kernels have problems with the game
+> > > > > >
+> > > > > > Could you confirm if with nokaslr
+> > > > > >
+> > > > > Now I've tested kernel 6.8.12 with nokaslr
+> > > > >
+> > > > > > 1. Only one single game stellaris is not working?
+> > > > > > 2. The entire laptop does not work?
+> > > > > > 3. Laptop works and other games work? Just one game is not wor=
+king as
+> > > > > expected?
+> > > > >
+> > > > >
+> > > > > Stellaris is showing the input lag and the entire graphical user=
+ interface shows
+> > > > > the same input lag as long as stellaris is running.
+> > > > > Civilization 6 shows the same input lag as stellaris, probably e=
+ven worse.
+> > > > > Magic the Gathering: Arena (with wine) works normally.
+> > > > > Valheim also works normally.
+> > > > > Crusader Kings 2 works normally
+> > > > > Rogue Heroes: Ruins of Tasos (a Zelda lookalike) works normally.
+> > > > > Baldur's Gate I & II and Icewind Dale work normally.
+> > > > >
+> > > > > Also the input lag is only in the GUI, if I switch to a text con=
+sole (ctrl + alt
+> > > > > + Fn), input works normally even while the affected games are ru=
+nning.
+> > > > >
+> > > > > Games aside everything else (e.g. compiling kernels) seems to wo=
+rk with nokaslr.
+> > > > >
+> > > >
+> > > > Would it be fair to assume that anything Xorg/Wayland is working f=
+ine
+> > > > when the game is not running, even with nokaslr?
+> > > >
+> > > Yes, Xorg (I'm normally using xfce4 as desktop) works fine. I also t=
+ested with
+> > > gnome using Xwayland, here the buggy behaviour also exists, with the=
+ addtion
+> > > that mouse position is off, i.e. to click a button in the game you h=
+ave to click
+> > > somewhat above it.
+> >
+> > So the issue is narrowed down to just the games you've mentioned with =
+nokaslr/patch?
+> >
+> > >
+> > > > +amd-gfx@lists.freedesktop.org to see if there are known issues wi=
+th
+> > > > nokaslr and the games you mentioned.
+> > > >
+> > > >
+> > > > Balbir Singh
+> > > >
+> > > > PS: I came across an interesting link
+> > > > https://www.alex-ionescu.com/behind-windows-x64s-44-bit-memory-add=
+ressing-limit/
+> > > >
+> > > > I think SLIST_HEADER is used by wine as well for user space and I =
+am not sure
+> > > > if in this situation the game is hitting this scenario, but surpri=
+singly the other
+> > > > games are not. This is assuming the game uses wine. I am not sure =
+it's related,
+> > > > but the 44 bits caught my attention.
+> > >
+> > > Stellaris is a native linux game (x86_64), the one game (MTGA) I tes=
+ted with
+> > > wine worked fine.
+> > >
+> >
+> > Thanks for the update! I wonder if there are any game logs. If you can=
+ look for any
+> > warnings/errors it might be interesting to see where the difference is=
+ coming from?
+> >
+>
+> In addition to the above, does radeontop give you any info about what mi=
+ght be
+> going on? I am also curious if
 
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Harish
-> Kasiviswanathan
-> Sent: Friday, March 14, 2025 8:44 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Kasiviswanathan, Harish <Harish.Kasiviswanathan@amd.com>
-> Subject: [PATCH v3] drm/amdkfd: Fix bug in config_dequeue_wait_counts
->
-> For certain ASICs where dequeue_wait_count don't need to be initialized,
-> pm_config_dequeue_wait_counts_v9 return without filling in the packet
-> information. However, the calling function interprets this as a success
-> and sends the uninitialized packet to firmware causing hang.
->
-> Fix the above bug by not calling pm_config_dequeue_wait_counts_v9 for
-> ASICs that don't need the value to be initialized.
->
-> v2: Removed redudant code.
->     Tidy up code based on review comments
-> v3: Don't call pm_config_dequeue_wait_counts_v9 for certain ASICs
->
-> Fixes: <98a5af8103f> ("drm/amdkfd: Add pm_config_dequeue_wait_counts API"=
-)
->
-> Signed-off-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+This got me to test stellaris and Civ6 using the discrete Graphics card:
+03:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi 23
+[Radeon RX 6600/6600 XT/6600M] (rev c3)
+ (with DRI_PRIME=3D1) and here the problems do not occur.
 
-Nit-picks below.
-With those addressed and as long as this has been tested on optimized and u=
-noptimized HW:
-Reviewed-by: Jonathan Kim <jonathan.kim@amd.com>
+This is the CPU-builtin GPU, which I normally use to play stellaris as gra=
+phics
+aren't very demanding, here the problems occur when using nokaslr
+08:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
+Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev c5)
 
-> ---
->  .../gpu/drm/amd/amdkfd/kfd_packet_manager.c   | 16 ++++++----
->  .../drm/amd/amdkfd/kfd_packet_manager_v9.c    | 30 +++++++++++--------
->  2 files changed, 27 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-> b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-> index 3f574d82b5fc..8a47b7259a10 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-> @@ -418,6 +418,10 @@ int pm_config_dequeue_wait_counts(struct
-> packet_manager *pm,
->           !pm->pmf->config_dequeue_wait_counts_size)
->               return 0;
->
-> +     if (cmd =3D=3D KFD_DEQUEUE_WAIT_INIT && (KFD_GC_VERSION(pm->dqm-
-> >dev) < IP_VERSION(9, 4, 1) ||
-> +        KFD_GC_VERSION(pm->dqm->dev) >=3D IP_VERSION(10, 0, 0)))
-> +             return 0;
-> +
->       size =3D pm->pmf->config_dequeue_wait_counts_size;
->
->       mutex_lock(&pm->lock);
-> @@ -436,16 +440,16 @@ int pm_config_dequeue_wait_counts(struct
-> packet_manager *pm,
->
->               retval =3D pm->pmf->config_dequeue_wait_counts(pm, buffer,
->                                                            cmd, value);
-> -             if (!retval)
-> +             if (!retval) {
->                       retval =3D kq_submit_packet(pm->priv_queue);
-> +
-> +                     /* If default value is modified, cache that in dqm-=
->wait_times
-> */
-> +                     if (!retval && cmd =3D=3D KFD_DEQUEUE_WAIT_INIT)
-> +                             update_dqm_wait_times(pm->dqm);
-> +             }
->               else
->                       kq_rollback_packet(pm->priv_queue);
+> nokaslr and pci=3Dnocrs works for you?
 
-Put else statement next to brace in line above and put braces after else st=
-atement to balance the if statement braces.
+pci=3Dnocrs does not change the situation.
 
->       }
-> -
-> -     /* If default value is modified, cache that value in dqm->wait_time=
-s */
-> -     if (!retval && cmd =3D=3D KFD_DEQUEUE_WAIT_INIT)
-> -             update_dqm_wait_times(pm->dqm);
-> -
->  out:
->       mutex_unlock(&pm->lock);
->       return retval;
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
-> b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
-> index d440df602393..f059041902bc 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
-> @@ -310,6 +310,13 @@ static inline void
-> pm_build_dequeue_wait_counts_packet_info(struct packet_manage
->               reg_data);
->  }
->
-> +/* pm_config_dequeue_wait_counts_v9: Builds WRITE_DATA packet with
-> + *    register/value for configuring dequeue wait counts
-> + *
-> + * @return: -ve for failure and 0 for success and buffer is
-> + *  filled in with packet
-> + *
-> + **/
->  static int pm_config_dequeue_wait_counts_v9(struct packet_manager *pm,
->               uint32_t *buffer,
->               enum kfd_config_dequeue_wait_counts_cmd cmd,
-> @@ -321,24 +328,21 @@ static int pm_config_dequeue_wait_counts_v9(struct
-> packet_manager *pm,
->
->       switch (cmd) {
->       case KFD_DEQUEUE_WAIT_INIT: {
-> -             uint32_t sch_wave =3D 0, que_sleep =3D 0;
-> -             /* Reduce CP_IQ_WAIT_TIME2.QUE_SLEEP to 0x1 from default
-> 0x40.
-> +             uint32_t sch_wave =3D 0, que_sleep =3D 1;
+> Balbir
 
-Do the following here (start of case WAIT_INIT) for safety to explicitly st=
-ate certain devices are not permitted to do WAIT_INIT since you're uncondit=
-ionally setting que_sleep to 1:
-    if (KFD_GC_VERSION(pm->dqm->dev) < IP_VERSION(9, 4, 1) ||
-        KFD_GC_VERSION(pm->dqm->dev) >=3D IP_VERSION(10, 0, 0))
-            return -EPERM;
-
-Jon
-
-> +
-> +             /* For all gfx9 ASICs > gfx941,
-> +              * Reduce CP_IQ_WAIT_TIME2.QUE_SLEEP to 0x1 from default
-> 0x40.
->                * On a 1GHz machine this is roughly 1 microsecond, which i=
-s
->                * about how long it takes to load data out of memory durin=
-g
->                * queue connect
->                * QUE_SLEEP: Wait Count for Dequeue Retry.
-> +              *
-> +              * Set CWSR grace period to 1x1000 cycle for GFX9.4.3 APU
->                */
-> -             if (KFD_GC_VERSION(pm->dqm->dev) >=3D IP_VERSION(9, 4, 1) &=
-&
-> -                 KFD_GC_VERSION(pm->dqm->dev) < IP_VERSION(10, 0, 0)) {
-> -                     que_sleep =3D 1;
-> -
-> -                     /* Set CWSR grace period to 1x1000 cycle for GFX9.4=
-.3 APU
-> */
-> -                     if (amdgpu_emu_mode =3D=3D 0 && pm->dqm->dev->adev-
-> >gmc.is_app_apu &&
-> -                     (KFD_GC_VERSION(pm->dqm->dev) =3D=3D IP_VERSION(9, =
-4,
-> 3)))
-> -                             sch_wave =3D 1;
-> -             } else {
-> -                     return 0;
-> -             }
-> +             if (amdgpu_emu_mode =3D=3D 0 && pm->dqm->dev->adev-
-> >gmc.is_app_apu &&
-> +                 (KFD_GC_VERSION(pm->dqm->dev) =3D=3D IP_VERSION(9, 4, 3=
-)))
-> +                     sch_wave =3D 1;
-> +
->               pm_build_dequeue_wait_counts_packet_info(pm, sch_wave,
-> que_sleep,
->                       &reg_offset, &reg_data);
->
-> --
-> 2.34.1
-
+Bert Karwatzki
