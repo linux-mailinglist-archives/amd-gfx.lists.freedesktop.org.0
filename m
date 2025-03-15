@@ -2,72 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA36A64AFD
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 11:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB0EA64B04
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 11:53:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38A7810E3E1;
-	Mon, 17 Mar 2025 10:53:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53F7C10E3EB;
+	Mon, 17 Mar 2025 10:53:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="W6qcpVkQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ByEMsZLn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
- [209.85.208.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA71E10E291
- for <amd-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 20:16:04 +0000 (UTC)
-Received: by mail-ed1-f48.google.com with SMTP id
- 4fb4d7f45d1cf-5dbe706f94fso621213a12.2
- for <amd-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 13:16:04 -0700 (PDT)
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
+ [209.85.218.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFD510E291
+ for <amd-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 20:16:06 +0000 (UTC)
+Received: by mail-ej1-f50.google.com with SMTP id
+ a640c23a62f3a-ac3123c0ef9so40370566b.2
+ for <amd-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 13:16:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742069763; x=1742674563; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1742069765; x=1742674565; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=DQbs55148QdS4RAoyP0E2UQn6gpvgVBPMPfAuPEPEck=;
- b=W6qcpVkQeBGud1GazHPW6qFao0xwfT80aeY6CVIFQeRjwSmAzbGhaBgi2lpMaq1RMs
- Akwo1LeQe0jd0ovdiFj7c36TZ2AiltE4QKBvc7Al4OqCNrRgWf71xRd+KdZfInMlvgIW
- shVOU3+vmqzivMSyleCMwSD1TiVjTRAzRcIcFLoSKcSBRdxx/1t+OS8Cv5J974akougK
- prAWWFRTFRaY2Y597PZg3xXUJmIbJWbG/fW1iKnwj2K+9Rr7nGtCUZaSmv4Ixm1ItMOa
- P3FwLEEHbedp/vfOeO2UTUZ2xhIiQQwsRAW19iPjBidknwpbXRv7CmVyVtVAYqKcBAHh
- 3LFA==
+ bh=CM8iKDl/0GDYbg2/8UjmQb+Vutt2B5xcuVwMZo2f/xc=;
+ b=ByEMsZLnw57GE4pX5BVbFLvNZW8kYt2JBwXPN3h+zp4dRTuowJkUkL5T7zK4E375oj
+ zHpgO5HPmpTAMUYFaX3CIeMwIiAu2G8wr3qAgirirb7qYOdDAXGwgGc+2ljx9pW09dyI
+ Pp1lsQfM6jRH1vY0aqmk/3TD7LAMAmrZme6ea3u49FZsoBEn9sJGMcKERcMNMZn2+Htq
+ tH60tVOTPhfoy82kpf4j9QYBdsaBW3s/JdR0zHixbWVgadYDRqAqi5xkq/djviDmBgSF
+ a7nQRt0tFt1KbwJhInWwFdMNfhFnqNstz1pVbM7GQZagcY0iYKdUp5C+Kkn78rub4F4e
+ hsTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742069763; x=1742674563;
+ d=1e100.net; s=20230601; t=1742069765; x=1742674565;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=DQbs55148QdS4RAoyP0E2UQn6gpvgVBPMPfAuPEPEck=;
- b=JKehCFTE+2SnV6hVZJ+RXgZDDMkwpCywvPYzLY/R1EpQVw+HSmHXUUEc+DUBxESMp1
- YmgJY++Ojj24pAh+G3iQdOuvMSlrsLZdeiSAqS8TEJYnNSs5fnuZngkz64Z/sMLmVHTO
- tszk/ZW0mPLZtuiPHzIzsgIB2OuvatCFNMXZkYu4THhM5zjrgUvmhXpDLE5yozoX9r1o
- V1I71ee53uuA9CBPQm71QxZBG+ooyDgx48nC+pOAU30dnWxoOCNdFMpRwISp88dJPcD7
- VZGrqYzwAZvlDvOOVCjICcNY1BRKuGDmbwCoaddJjqZbyTTIaj8h/URbJu1afDSIgif+
- SRjQ==
-X-Gm-Message-State: AOJu0YzgHkWxZAgk9VEW4zafLznjdaVyZvkbqVESbQZ/yCokUUbI6WDE
- i2eGAhRqGssi3qi4o3vlpbDKEDzlVbRoXHe4Lt/s6EnWJyElFq+P
-X-Gm-Gg: ASbGncuzQyeLvUv2nhlUBVKbB9Zfb3f71zXh3MfoAVHvhRJucPokk0z1QFx+DDuB8ZQ
- D7m2UxvTA3heSS4kwZGU667NZtJ30Qk+epljEIQlxtzE5gPaptkv9b63U3aabHHYASSfkTxvcgb
- /dSIs1XtwucJQ0LUFPQYPsLby1+XRV29Y8TWLjO9MzXS+y0Ew4bwZ3eF1Z6gxYh0hTt7sAtbAaF
- 5U9L6JNOkNFjE4jpG1Tbw6uX1xxpEti8EH+AW3MSL2IJ9BwytGpfAIuXspwefZI6vsg0OOE3oqt
- aO+1DTyqwC0h4PkFZV8RSeBdpfAusSFMLjd+rxySwlwi+gjHoi0VELGf/HKJh/YbAjOAjYPI012
- 7MGUc029EkcaEKzE=
-X-Google-Smtp-Source: AGHT+IHxRow/9QpNn+nOSgljIbiRhU7oNeWS0r8k/yGH5SFNENw6SOT3uzfI1FpRDWXTE/ZmmcNegw==
-X-Received: by 2002:a17:907:9813:b0:abf:6c88:df53 with SMTP id
- a640c23a62f3a-ac330274090mr305284466b.4.1742069763029; 
- Sat, 15 Mar 2025 13:16:03 -0700 (PDT)
+ bh=CM8iKDl/0GDYbg2/8UjmQb+Vutt2B5xcuVwMZo2f/xc=;
+ b=HyusQUdoh8dOz+NsA3BlbsonY2q07jr1RANc3kNPEkQmztabVlGFWk5jKQ833npXYO
+ ToKl04cMT0QTsqiLEoaLAwzoNRkOWtXD7E5DCyVBF9wYr3s5cOBmLBlVPS9c1iigy8+X
+ qauHZlTXJfbTk/5jp6lsKX4N9uLiszSwBSOPnInfKmNdwwWPVgpJe6ICzfiPjbLnRfCR
+ 7fC2vgZ4+lKqEgmmsPPbMxZlvje6jAe9SJZvZUalZhC0dkP9TELYOiS+Op1LXn0l4xyc
+ SOD4ymgOm0vDVH/FwlmQPEkYGqUUNCmF6BDxyBDW/ShNERPtJC5SwXEwAQ95QeeXFGlg
+ 6RyA==
+X-Gm-Message-State: AOJu0Yz9jT6N+akP6DPWPyAxRgwBd5+1HpCwSIxQcZqPqvlrdW43DlIz
+ fohF+Ww3BQLoWnzybtKmEs1ZJkjjfWDXSt7oIh0hYBWmHOnc+PnY
+X-Gm-Gg: ASbGncvXcdDCre88ojrMkltOMY5PHe/MsQwrYj1KhUff3JsPazATDG2XUMGuq1EKZT+
+ bLh5CSAEFKtf2YaabX0TcabwPO19gklgVfUL4Ne2w+Z//u6CGKL0yvd2WCKsltRkpxEW/UU2eXg
+ y2tP6csHQxJAhaOQexWheaLUdtrruabURwgg7hFQIMNi4BQzMv8C33GEQpWO3Y/IIwaD7OXIeaB
+ c/7wBBU6inBpXBzkV7QPR+/jUgo9XlbuYWeMhuZdJwxo8mTNQYpaLM6DMphe7lcH9Ym7NSd7lyx
+ WvYSn6dwXBy1sgjhXqnBZVGnpoJHchdtnHbQZzwH87yP7P23vWcTNBWopAWWdBEDdDifP6FeKlM
+ rjrGlSGhfJcBoRh8=
+X-Google-Smtp-Source: AGHT+IHPCGeO5GkCGw8ZKVf/5XyOELv5ihjS4Cm7AlLHIHFCvIJzRSq2xpzHNkOcJoucsmnxMhaa6A==
+X-Received: by 2002:a17:907:1c89:b0:ac2:1d34:44ff with SMTP id
+ a640c23a62f3a-ac3301a4ee8mr294587766b.4.1742069764604; 
+ Sat, 15 Mar 2025 13:16:04 -0700 (PDT)
 Received: from laptok.lan (89-64-31-121.dynamic.chello.pl. [89.64.31.121])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ac314aa5a7csm416922766b.179.2025.03.15.13.16.02
+ a640c23a62f3a-ac314aa5a7csm416922766b.179.2025.03.15.13.16.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 15 Mar 2025 13:16:02 -0700 (PDT)
+ Sat, 15 Mar 2025 13:16:03 -0700 (PDT)
 From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
 To: alexander.deucher@amd.com,
 	kenneth.feng@amd.com,
 	KevinYang.Wang@amd.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/amd/pm: add zero RPM OD setting support for SMU 14.0.2
-Date: Sat, 15 Mar 2025 21:15:57 +0100
-Message-ID: <20250315201558.339913-2-tomasz.pakula.oficjalny@gmail.com>
+Subject: [PATCH 2/2] drm/amd/pm: add zero RPM stop temp OD setting support for
+ SMU 14.0.2
+Date: Sat, 15 Mar 2025 21:15:58 +0100
+Message-ID: <20250315201558.339913-3-tomasz.pakula.oficjalny@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250315201558.339913-1-tomasz.pakula.oficjalny@gmail.com>
 References: <20250315201558.339913-1-tomasz.pakula.oficjalny@gmail.com>
@@ -89,116 +90,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hook up zero RPM enable for 9070 and 9070 XT based on RDNA3
+Hook up zero RPM stop temperature for 9070 and 9070 XT based on RDNA3
 (smu 13.0.0 and 13.0.7) code.
 
 Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
 ---
- .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 55 ++++++++++++++++++-
- 1 file changed, 54 insertions(+), 1 deletion(-)
+ .../swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h |  3 +-
+ .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 50 ++++++++++++++++++-
+ 2 files changed, 51 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
+index c2fd0a4a13e5..a5eba7b91e2f 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
+@@ -846,9 +846,10 @@ typedef struct {
+   uint16_t               FanTargetTemperature; // Degree Celcius
+   //zero fan
+   uint8_t                FanZeroRpmEnable;
++  uint8_t                FanZeroRpmStopTemp;
+   //temperature
+   uint8_t                MaxOpTemp;
+-  uint8_t                Padding1[2];
++  uint8_t                Padding1;
+ 
+   //Full Ctrl
+   uint16_t               GfxVoltageFullCtrlMode;
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-index 21d1b34ada05..fedf0c8c4741 100644
+index fedf0c8c4741..4e7eed0cc41c 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-@@ -79,6 +79,7 @@
- #define PP_OD_FEATURE_FAN_ACOUSTIC_TARGET		8
+@@ -80,6 +80,7 @@
  #define PP_OD_FEATURE_FAN_TARGET_TEMPERATURE		9
  #define PP_OD_FEATURE_FAN_MINIMUM_PWM			10
-+#define PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE		11
+ #define PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE		11
++#define PP_OD_FEATURE_FAN_ZERO_RPM_STOP_TEMP		12
  
  static struct cmn2asic_msg_mapping smu_v14_0_2_message_map[SMU_MSG_MAX_COUNT] = {
  	MSG_MAP(TestMessage,			PPSMC_MSG_TestMessage,                 1),
-@@ -1052,6 +1053,10 @@ static void smu_v14_0_2_get_od_setting_limits(struct smu_context *smu,
- 		od_min_setting = overdrive_lowerlimits->FanMinimumPwm;
- 		od_max_setting = overdrive_upperlimits->FanMinimumPwm;
+@@ -1057,6 +1058,10 @@ static void smu_v14_0_2_get_od_setting_limits(struct smu_context *smu,
+ 		od_min_setting = overdrive_lowerlimits->FanZeroRpmEnable;
+ 		od_max_setting = overdrive_upperlimits->FanZeroRpmEnable;
  		break;
-+	case PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE:
-+		od_min_setting = overdrive_lowerlimits->FanZeroRpmEnable;
-+		od_max_setting = overdrive_upperlimits->FanZeroRpmEnable;
++	case PP_OD_FEATURE_FAN_ZERO_RPM_STOP_TEMP:
++		od_min_setting = overdrive_lowerlimits->FanZeroRpmStopTemp;
++		od_max_setting = overdrive_upperlimits->FanZeroRpmStopTemp;
 +		break;
  	default:
  		od_min_setting = od_max_setting = INT_MAX;
  		break;
-@@ -1337,6 +1342,24 @@ static int smu_v14_0_2_print_clk_levels(struct smu_context *smu,
+@@ -1360,6 +1365,24 @@ static int smu_v14_0_2_print_clk_levels(struct smu_context *smu,
  				      min_value, max_value);
  		break;
  
-+	case SMU_OD_FAN_ZERO_RPM_ENABLE:
++	case SMU_OD_FAN_ZERO_RPM_STOP_TEMP:
 +		if (!smu_v14_0_2_is_od_feature_supported(smu,
 +							 PP_OD_FEATURE_ZERO_FAN_BIT))
 +			break;
 +
-+		size += sysfs_emit_at(buf, size, "FAN_ZERO_RPM_ENABLE:\n");
++		size += sysfs_emit_at(buf, size, "FAN_ZERO_RPM_STOP_TEMPERATURE:\n");
 +		size += sysfs_emit_at(buf, size, "%d\n",
-+				(int)od_table->OverDriveTable.FanZeroRpmEnable);
++					(int)od_table->OverDriveTable.FanZeroRpmStopTemp);
 +
 +		size += sysfs_emit_at(buf, size, "%s:\n", "OD_RANGE");
 +		smu_v14_0_2_get_od_setting_limits(smu,
-+						  PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE,
++						  PP_OD_FEATURE_FAN_ZERO_RPM_STOP_TEMP,
 +						  &min_value,
 +						  &max_value);
-+		size += sysfs_emit_at(buf, size, "ZERO_RPM_ENABLE: %u %u\n",
++		size += sysfs_emit_at(buf, size, "ZERO_RPM_STOP_TEMPERATURE: %u %u\n",
 +				      min_value, max_value);
 +		break;
 +
  	case SMU_OD_RANGE:
  		if (!smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_GFXCLK_BIT) &&
  		    !smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_UCLK_BIT) &&
-@@ -2281,7 +2304,9 @@ static void smu_v14_0_2_set_supported_od_feature_mask(struct smu_context *smu)
- 					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_RETRIEVE |
- 					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_SET |
+@@ -2306,7 +2329,9 @@ static void smu_v14_0_2_set_supported_od_feature_mask(struct smu_context *smu)
  					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_RETRIEVE |
--					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET;
-+					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET |
-+					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_RETRIEVE |
-+					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_SET;
+ 					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET |
+ 					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_RETRIEVE |
+-					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_SET;
++					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_SET |
++					    OD_OPS_SUPPORT_FAN_ZERO_RPM_STOP_TEMP_RETRIEVE |
++					    OD_OPS_SUPPORT_FAN_ZERO_RPM_STOP_TEMP_SET;
  }
  
  static int smu_v14_0_2_get_overdrive_table(struct smu_context *smu,
-@@ -2360,6 +2385,8 @@ static int smu_v14_0_2_set_default_od_settings(struct smu_context *smu)
- 			user_od_table_bak.OverDriveTable.FanTargetTemperature;
- 		user_od_table->OverDriveTable.FanMinimumPwm =
+@@ -2387,6 +2412,8 @@ static int smu_v14_0_2_set_default_od_settings(struct smu_context *smu)
  			user_od_table_bak.OverDriveTable.FanMinimumPwm;
-+		user_od_table->OverDriveTable.FanZeroRpmEnable =
-+			user_od_table_bak.OverDriveTable.FanZeroRpmEnable;
+ 		user_od_table->OverDriveTable.FanZeroRpmEnable =
+ 			user_od_table_bak.OverDriveTable.FanZeroRpmEnable;
++		user_od_table->OverDriveTable.FanZeroRpmStopTemp =
++			user_od_table_bak.OverDriveTable.FanZeroRpmStopTemp;
  	}
  
  	smu_v14_0_2_set_supported_od_feature_mask(smu);
-@@ -2407,6 +2434,11 @@ static int smu_v14_0_2_od_restore_table_single(struct smu_context *smu, long inp
- 		od_table->OverDriveTable.FanMode = FAN_MODE_AUTO;
- 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
- 		break;
-+	case PP_OD_EDIT_FAN_ZERO_RPM_ENABLE:
-+		od_table->OverDriveTable.FanZeroRpmEnable =
-+					boot_overdrive_table->OverDriveTable.FanZeroRpmEnable;
-+		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
-+		break;
- 	case PP_OD_EDIT_ACOUSTIC_LIMIT:
- 		od_table->OverDriveTable.AcousticLimitRpmThreshold =
- 					boot_overdrive_table->OverDriveTable.AcousticLimitRpmThreshold;
-@@ -2701,6 +2733,27 @@ static int smu_v14_0_2_od_edit_dpm_table(struct smu_context *smu,
- 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
+@@ -2754,6 +2781,27 @@ static int smu_v14_0_2_od_edit_dpm_table(struct smu_context *smu,
+ 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
  		break;
  
-+	case PP_OD_EDIT_FAN_ZERO_RPM_ENABLE:
++	case PP_OD_EDIT_FAN_ZERO_RPM_STOP_TEMP:
 +		if (!smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_ZERO_FAN_BIT)) {
 +			dev_warn(adev->dev, "Zero RPM setting not supported!\n");
 +			return -ENOTSUPP;
 +		}
 +
 +		smu_v14_0_2_get_od_setting_limits(smu,
-+						  PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE,
++						  PP_OD_FEATURE_FAN_ZERO_RPM_STOP_TEMP,
 +						  &minimum,
 +						  &maximum);
 +		if (input[0] < minimum ||
 +		    input[0] > maximum) {
-+			dev_info(adev->dev, "zero RPM enable setting(%ld) must be within [%d, %d]!\n",
++			dev_info(adev->dev, "zero RPM stop temperature setting(%ld) must be within [%d, %d]!\n",
 +				 input[0], minimum, maximum);
 +			return -EINVAL;
 +		}
 +
-+		od_table->OverDriveTable.FanZeroRpmEnable = input[0];
++		od_table->OverDriveTable.FanZeroRpmStopTemp = input[0];
 +		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
 +		break;
 +
