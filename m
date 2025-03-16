@@ -2,98 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80ACFA64B0A
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 11:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFE50A64B00
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 11:53:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 309EF10E3E0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 174F610E340;
 	Mon, 17 Mar 2025 10:53:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="cQH9KEvi";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FbLBusAJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (unknown [212.227.17.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8622D10E13D
- for <amd-gfx@lists.freedesktop.org>; Sun, 16 Mar 2025 13:09:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1742130569; x=1742735369; i=spasswolf@web.de;
- bh=lSe4wSQ+lMQWbvhKXpf0Z+jC1oqAJywc3aUScK7L7rk=;
- h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
- References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=cQH9KEviBnLqvQKvN1GBSlN0VTOH3Tf5r3DzqFlZe6ktkXC/sT0FCo+epJ8PLXYT
- 24w/ukkkH63DOx0pJr7oA0ME8tAEL279DR+43xIzwAG7bDy7dGqBakdiWtGenC6X3
- 66xD9i4iAtDbVnW+f5FwXKxfjZNmQYcStIlAstCyrKbK/RDlVEBxcql+pg9rpzjxj
- MfqwGwW0Jxuc5+/MM9ma9739izHvs+16b+qIGNrt3gbUCGmRjDsVPFQOzJLHAU15q
- N4/wqVOjlemw25rE1fPmHyXKtJ+iJ9j4NZzN6zrORqj3Gvzsrqfa8NscsKhtHfgir
- Rr1zFLlD7SiXkkRIIQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.0.101] ([95.223.134.88]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MWi9q-1timDQ3A1g-00XM9B; Sun, 16
- Mar 2025 14:09:28 +0100
-Message-ID: <9be36dfab79b17e108f71d51a6ebf39073e110c6.camel@web.de>
-Subject: Re: commit 7ffb791423c7 breaks steam game
-From: Bert Karwatzki <spasswolf@web.de>
-To: Alex Deucher <alexdeucher@gmail.com>, Balbir Singh <balbirs@nvidia.com>
-Cc: Ingo Molnar <mingo@kernel.org>, Kees Cook <kees@kernel.org>, Bjorn
- Helgaas	 <bhelgaas@google.com>, Linus Torvalds
- <torvalds@linux-foundation.org>, Peter Zijlstra <peterz@infradead.org>,
- Andy Lutomirski <luto@kernel.org>, linux-kernel@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, spasswolf@web.de
-Date: Sun, 16 Mar 2025 14:09:26 +0100
-In-Reply-To: <CADnq5_Pvmxa10dJWYjajwxG-0Y_oxhL6wS6NsG2F0dmcJS6o8A@mail.gmail.com>
-References: <20250310112206.4168-1-spasswolf@web.de>
- <951f9d13-72e4-41c3-9ace-8639e2a9485d@nvidia.com>
- <ce940e2a-632d-41be-9f13-e5b11d49b0db@nvidia.com>
- <09131c563332c892284ec7fb4ce706996131db8c.camel@web.de>
- <9a5df5627d3d72b2a97f501dfb7d944cc1e9920f.camel@web.de>
- <fdea59fe-f570-489f-bf88-1ffd47119cac@nvidia.com>
- <414f4deb8c7670a159854006b0c410ce05a6049e.camel@web.de>
- <12d950ee-4152-4ad6-b93e-7c5b75804b1a@nvidia.com>
- <705e95cec3dc5181ca2aa73722e6b84f63f3e91d.camel@web.de>
- <20b5823e-247a-456a-bb55-d50f212a9f5a@nvidia.com>
- <a34a1ae0b1d226b1bac7d73daa24da8e5899cb3e.camel@web.de>
- <c7bb0bd1-529d-466d-9cce-abbac4b480ab@nvidia.com>
- <146277bb0ecbb392d490683c424b8ae0dfa82838.camel@web.de>
- <b63b1de8-7eec-4235-b61e-e654e78543ba@nvidia.com>
- <fa8d5e76694918bdaae9faee9648776f298f78ca.camel@web.de>
- <7866593f-0322-4fb3-9729-82366940fc85@nvidia.com>
- <a168e78b-ae27-4675-8821-0b1a2499b2b2@nvidia.com>
- <5d34bfc5109b8d104fd4f8550dd17945344f9d07.camel@web.de>
- <551b9797-20d6-4bfe-b54c-84dd7aae7794@nvidia.com>
- <CADnq5_Pvmxa10dJWYjajwxG-0Y_oxhL6wS6NsG2F0dmcJS6o8A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.55.3-1 
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com
+ [209.85.128.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 035CA10E00D;
+ Sun, 16 Mar 2025 13:50:34 +0000 (UTC)
+Received: by mail-yw1-f182.google.com with SMTP id
+ 00721157ae682-6f666c94285so33325147b3.3; 
+ Sun, 16 Mar 2025 06:50:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742133033; x=1742737833; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rLX3l2pfBMyB+u0niGdIBmArIeV1vUvKJ+QVc4dPLqk=;
+ b=FbLBusAJ98fmLw/+Pm6w2ZOUWpYZfbhbzk59BSCAkbsNi8827DuQyVXt4qD6Q160iJ
+ /ELNU4gzJTr8oHZ2AXHH1MeLx/g4ZfuzrpDQoPTxdovTj7Q1B4bFD9Pn1Q5W5y4jNDaZ
+ PZ/R652MkKza9+tOTJ4m5v7ZdElTz5QKy305SWzKUsHCpxeArBvxLYxWZ6uzDgWeDmYw
+ OwbfC8+ehfEgtLAN4RPBKun+wpA4gxV4LGfC+ZJVmejfGrN6UsjncTTAOFPYa6rrnec/
+ lo0iK9xEJ/hsDD5RGSCFgsuDkpAlCIvbgOe320VBdXlD2IadAImNtbaCe4VHBUCAM2Db
+ oFJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742133033; x=1742737833;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rLX3l2pfBMyB+u0niGdIBmArIeV1vUvKJ+QVc4dPLqk=;
+ b=g/LjG+QoamMI/RV5ECutTmPJ7gYSaDrVjEMbSyY1OAyPrqP8bAAyAded8NF0kNJW4l
+ gabZD35KthMsn1KpSMMrVWMweTpLt/aRSbvnYNqeTSYVF0I7wiWSel3nHvxAwip4WNhp
+ FT10RmAWY7vicw1GZXoijYrYu0fn73IM595DpZcfSpEOA83/H94UFeZmoWNoJDn1hi21
+ De+iTa1DYU0S8YIKyQFuEIjAA7SDe1L1NKCn+OTUPXkh/fdsgMCmO8+HPrDB/YqT6avA
+ bheAa5o7hRi1U+0P3vuY0jt4441k2v5DtpeS7LOBN+pJXlz+dSKVOAJFikv8IBOdm90X
+ IHJA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVF4etVY3gZ45Je9D6ah2JIeKDh8QwMscMciCbRDDVeW2WvHjZFLLPKQZGhxdPtW/dIHuY/VdaVh7/n@lists.freedesktop.org,
+ AJvYcCVqo9hLmEbqExVycD6OliOfxw9UjCGrM5L3fUPCKWOW5TalH4v9Rs6OsyQf94TbsZd74y+0+Qt3e/ZJ@lists.freedesktop.org,
+ AJvYcCWmDeVBI9xIwnfmjANBka+/NodIfI28eE1EGCTNS9UK6ARKhMuZrN+MAy+wDoYFgY50sTGGg52CtbkbpVTMpg==@lists.freedesktop.org,
+ AJvYcCWoBID9+vyQNwIvED7nuQoDKJ5ekWrq0m0hCWMb2H+WImI229VpSuDyJVHxfjLalyN0btT8qyd62cOmXEpAy9xY4A==@lists.freedesktop.org,
+ AJvYcCWp02KqQtuMZK/qUGzn2l6PCVwAWkxQuZ3kdntd045/O0DSgnkYNvxhW5iQGXy+QD6MAkVtNgIy@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzrBeIF0nFwAfaZw/aog+d6ILBg6bgLLtcEB/OaTXQNsJlDhYth
+ SNr4WPmShBBVRmvmFJBes7uoY0CW69NiuehbrOGM769j6ekY7Sh1daeakmpOYNhVEjpmHHUOMHS
+ r1PIR9yTspFTH3AK3bWljgJnyz9c=
+X-Gm-Gg: ASbGncvg2e+LxWBT1cf6i8EH6gLYOEnNgUhAPWxtT039fULkFBQuGZr/giweUSD5O19
+ Hj/vajdaTmXXS3hfeXj7g674+LpHvJW2QJF/EBL11zNZkVuGXvIEHVIuYy4xOFnkSKQce6KIAK2
+ yWG+PxqOJoiEZJV0w0UgHfWYOj
+X-Google-Smtp-Source: AGHT+IFevfJ3v8Hv9LgKFZg+7cLf2qLswo+1gbITmoMoW03EnfIEs3SDlro7IWMIN2Oshbrp414T5CBo4CIGtbatwig=
+X-Received: by 2002:a05:690c:4b12:b0:6f9:b12b:8953 with SMTP id
+ 00721157ae682-6ff45fa5378mr119774397b3.20.1742133033646; Sun, 16 Mar 2025
+ 06:50:33 -0700 (PDT)
 MIME-Version: 1.0
+References: <20250125064619.8305-1-jim.cromie@gmail.com>
+ <20250125064619.8305-2-jim.cromie@gmail.com>
+ <3f5d7e90-0feb-48ef-8279-1644ce5f3d5b@bootlin.com>
+In-Reply-To: <3f5d7e90-0feb-48ef-8279-1644ce5f3d5b@bootlin.com>
+From: jim.cromie@gmail.com
+Date: Sun, 16 Mar 2025 07:50:06 -0600
+X-Gm-Features: AQ5f1Jq36108HgQS4XUlPlVF14KcwsKwPglARvXoSnSsnAYbHuikctesWZqFJ2k
+Message-ID: <CAJfuBxwu6TVM-uLU0Tpp4MN-wx8M2D0CJeRT0U3rNtVMMQyi=w@mail.gmail.com>
+Subject: Re: [PATCH 01/63] docs/dyndbg: update examples \012 to \n
+To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
+ jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org, 
+ intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch, 
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:1ziCuTaJLlr4/NNT3PlCqR0n3Z6k+RO4XmQJ9tGibHYEfS1WmQs
- Alsz8CYX0Jw/w3N/csNYOq9YTUaLDBnQAZeKQT3PBSRZz2QbfqKrbyGnGRIBWgQj71Lgdyh
- C9/jsYywMlniLJOyzLjyqg+Jl51vs4dxDHrXg0J/bgfnXTokYqiqxmEcEcqkWBZOmKWJafO
- 70xtHET54OH4ZCDOu4IuA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:vcRBeoKbmhg=;0ppaj85vFzT3WQfDA9cwKWGHHRY
- vq2S9rG3y3+HBNTo8SnKsc0PZ7VX12vX9hUKZ7FkqfC6TvAndZKKqsNpI93/+X8HXILh6aRkH
- 2aoDH+Uige0ZYw1n3lnZFZ5CPlWERGiZtPUZUWrDJMmTI/UIDFGFnC7DvVNIpqq2ttlGR+Yku
- Wf1u+Y7S8lc0bieIPqhkqgbJwtD/PVR2V8l14d4h/vbckIbRJ+X04+4yBdAkwS+yrt+qi/Uof
- Tas0VqLni3mL3x3w7Wnq7/iMbqPeXhFOg1XRegn7N4ddiK6THDWd4z9voDWE6/xEoZtKfakN+
- TTIoXjUpzozfZiB9mGo7jfW7wAobbgGlra1n5KYCEmuJcmL42C638yPzHn8teodGjh3g8HZ2r
- jjyRnnES5lW5GbAI/q/YhkBRMjWPRO4nftJgsbJ/s1aBeWWIB0LrsonKPd31KjwEWbeWWhmJE
- qJ+7qgA8mxZGHNHNJGQdOGzVtFlGEjMb1airIU3TZGTcLY9AygZQsgr+TDvXBaSfa1n7hLYjz
- p68JHQXfT4je7rFl5VpIBU03bS6TXULe4W6qOXakUD6gpwjCKyqqYvzdO4VG98DSkGnpa6x2U
- U0Q+fu3aTYK0DRpNQoKHgywmHvrsCqIWGK+7cP3e2W0S+SCK2OTT69U50OBT8rwdAf+b+lVQD
- LEomU2bkOKzkDmj06coAtmXr4mpA9hY8fL6jl81EWEfbgRk7A2Xd3YOlmKo72d+iuIo+FO5b4
- xF35UFiSZa6YtUZr4J1tXYWFJG15HYNVhDAo3dcFVLqqxecwnGbQGyevdDNu3wIutMHZBCUq2
- XSTZN0foRj7F3z9qm+9k6FXfBGlIBTxJbm7IDivn6K9fuhDZdaGALBAQdwhACDt1RR9wTxia6
- NJPWwsKC52UUdS67gqjG171M26Rui9xJUcw+dc7pNPX1phnAujIGSs7Kdt4Yw2OQaUfe7mMMx
- UsezZW38nWUQnZ8D+E8+TdpJasyIBlX5AlFs3xBMMgprkxcV3piHamNP8X8Z2r+BywFPhNoWN
- fvW8RUerkeGnTkQJWMTQpS8MS71gbvMRBG6jyZr56o8O6TecQc3KG1koBGn6e76GuvHWQnkiY
- oRJYmnoBRMqhYSO8XBII8C0iRGfeQstuLhfPEVgp2efeFfsJT3eaTtBNl4dcsoaCixDrNpiMA
- xSY7UfE9Gon50zUKe0s58DYdmIiuT5wkRk6wGEScUjs4B8wCh1VInsKpULOCm1T+sP+BIlgBX
- Lr6qIiloMTGon2paHtPmh4mC1W4SFdE/SLBL8zQRKn6fUZ1nqeEv/+Ou5JNCEF+Ozv+DjLRbr
- v0b7WkLrgAfvzs1+sXQH9EyC/ijJyVQsci0+OJev3igGNwVES+AbIc5dzuMW/eOYKkqpr6SR5
- mFm49EeAIO1as4OZ1wgBttE7pVsEbRSbZgByDXTbv92O4EDEfRNaJvQht2myafjA9TSRgzAAy
- GjXD6fg==
 X-Mailman-Approved-At: Mon, 17 Mar 2025 10:53:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -109,35 +93,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is related to the admgpu.gttsize. My laptop has the maximum amount=C2=
-=A0
-of memory (64G) and usually gttsize is half of main memory size. I just=C2=
-=A0
-tested with cmdline=3D"nokaslr amdgpi.gttsize=3D2048" and the problem does=
-=C2=A0
-not occur. So I did some more testing with varying gttsize and got this
-for the built-in GPU
-
-08:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
-Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev c5)
-
-(nokaslr is always enabeld)
-gttssize   input behaviour
- 2048		GOOD
- 2064		GOOD
- 2080		SEMIBAD (i.e. noticeable input lag but not as bad as below)
- 3072		BAD
- 4096		BAD
- 8192		BAD
-16384		BAD
-
-As the build-in GPU has ~512 VRAM there seems to be problems when gttsize =
+On Tue, Feb 25, 2025 at 7:30=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
+n.com> wrote:
 >
-4*VRAM so I tested for the discrete GPU with 8G of VRAM
-gttsize   input behaviour
-49152		GOOD
-64000		GOOD
+>
+>
+> Le 25/01/2025 =C3=A0 07:45, Jim Cromie a =C3=A9crit :
+> > commit 47ea6f99d06e ("dyndbg: use ESCAPE_SPACE for cat control")
+> >
+> > changed the control-file to display format strings with "\n" rather
+> > than "\012".  Update the docs to match the new reality.
+> >
+> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+>
+> Hi Jim,
+>
+> I think this patch is incomplete, I just tested and the \012 in [1]
+> needs to be replaced too.
+>
 
-So for the discrete GPU increasing gttsize does no reproduce the bug.
-
-Bert Karwatzki
+fixed here, thanks.
