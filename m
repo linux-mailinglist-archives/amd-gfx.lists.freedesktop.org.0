@@ -2,101 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C60E9A64B0B
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 11:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D75E3A64B02
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 11:53:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55CDE10E3ED;
-	Mon, 17 Mar 2025 10:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 731C910E3E6;
+	Mon, 17 Mar 2025 10:53:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="jek7b5wP";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gqwZ0PaG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 328 seconds by postgrey-1.36 at gabe;
- Sun, 16 Mar 2025 20:12:06 UTC
-Received: from mout.web.de (mout.web.de [217.72.192.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74E9310E06F
- for <amd-gfx@lists.freedesktop.org>; Sun, 16 Mar 2025 20:12:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1742155922; x=1742760722; i=spasswolf@web.de;
- bh=8/Kj3I2BsLN/9FJ15gJzCZJpW8LAFDEU+8nDaf03+30=;
- h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
- References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=jek7b5wPRsAUKksrckyQgKodyP4n2/xMi4e7cg6xEm3w7hl17pi6KZkOsmD5q6ev
- QpmEIl8dtiRGUhWUFEEiFor7mxvnfh9Hj3TyDug1V0m0TlqB7iUfA8KgVz9e2lXbb
- CCV0alkP8CdZD7CJZpTnycvJG6Detqsbmn/jfqd6fMKehSM9MyQ4jszw7ILBfSZ8T
- DpWwa+65fYvngJRyOJDG6EyNvsrApEHgCHDiK718W15eIgFWS0NvnKi5s+6r3zIdl
- hQepNXO/FneZhWRYFCroKTB5hdL211jMpRCwWnXOKh69LZ32zv9/0igTFrwjB6Qo7
- 5qFu66al+LEid7qx8w==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.0.101] ([95.223.134.88]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MF2kU-1u0ToP2Ney-00FgaU; Sun, 16
- Mar 2025 21:06:09 +0100
-Message-ID: <6b0c9a4d840757ee54b141ed26f4e81c3e4eaacf.camel@web.de>
-Subject: Re: commit 7ffb791423c7 breaks steam game
-From: Bert Karwatzki <spasswolf@web.de>
-To: Alex Deucher <alexdeucher@gmail.com>, Balbir Singh <balbirs@nvidia.com>
-Cc: Ingo Molnar <mingo@kernel.org>, Kees Cook <kees@kernel.org>, Bjorn
- Helgaas	 <bhelgaas@google.com>, Linus Torvalds
- <torvalds@linux-foundation.org>, Peter Zijlstra <peterz@infradead.org>,
- Andy Lutomirski <luto@kernel.org>, linux-kernel@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, spasswolf@web.de
-Date: Sun, 16 Mar 2025 21:06:08 +0100
-In-Reply-To: <9be36dfab79b17e108f71d51a6ebf39073e110c6.camel@web.de>
-References: <20250310112206.4168-1-spasswolf@web.de>
- <951f9d13-72e4-41c3-9ace-8639e2a9485d@nvidia.com>
- <ce940e2a-632d-41be-9f13-e5b11d49b0db@nvidia.com>
- <09131c563332c892284ec7fb4ce706996131db8c.camel@web.de>
- <9a5df5627d3d72b2a97f501dfb7d944cc1e9920f.camel@web.de>
- <fdea59fe-f570-489f-bf88-1ffd47119cac@nvidia.com>
- <414f4deb8c7670a159854006b0c410ce05a6049e.camel@web.de>
- <12d950ee-4152-4ad6-b93e-7c5b75804b1a@nvidia.com>
- <705e95cec3dc5181ca2aa73722e6b84f63f3e91d.camel@web.de>
- <20b5823e-247a-456a-bb55-d50f212a9f5a@nvidia.com>
- <a34a1ae0b1d226b1bac7d73daa24da8e5899cb3e.camel@web.de>
- <c7bb0bd1-529d-466d-9cce-abbac4b480ab@nvidia.com>
- <146277bb0ecbb392d490683c424b8ae0dfa82838.camel@web.de>
- <b63b1de8-7eec-4235-b61e-e654e78543ba@nvidia.com>
- <fa8d5e76694918bdaae9faee9648776f298f78ca.camel@web.de>
- <7866593f-0322-4fb3-9729-82366940fc85@nvidia.com>
- <a168e78b-ae27-4675-8821-0b1a2499b2b2@nvidia.com>
- <5d34bfc5109b8d104fd4f8550dd17945344f9d07.camel@web.de>
- <551b9797-20d6-4bfe-b54c-84dd7aae7794@nvidia.com>
- <CADnq5_Pvmxa10dJWYjajwxG-0Y_oxhL6wS6NsG2F0dmcJS6o8A@mail.gmail.com>
- <9be36dfab79b17e108f71d51a6ebf39073e110c6.camel@web.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.55.3-1 
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com
+ [209.85.219.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA2A10E09C;
+ Sun, 16 Mar 2025 20:47:07 +0000 (UTC)
+Received: by mail-yb1-f177.google.com with SMTP id
+ 3f1490d57ef6-e5dc299deb4so3540678276.1; 
+ Sun, 16 Mar 2025 13:47:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742158021; x=1742762821; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=YpQUNmwVK5jHLQezc5R4Z6K7OjXDtGHykFpm0bMm/ps=;
+ b=gqwZ0PaGDCHDlhiFYAeB5s0a5iThjG8Ev9DC9pbqo6tYMhIGMx7Tn++0yFTLHUbpij
+ ss21HzpkTDeaY0Apgei2qFoVIiAQJtXKQYvae9z36UqS1r41KwKtnEh+lLIbxI/AnSTw
+ Dfw0HbqqD6ZBsDz8DoFKvW2Kh8IpM7aVJrmV18kpBageU6lV9rjfC8pb7MKPriR651Bn
+ 0OgLFVM85JhvbFeI/LYIyaSegg087iaa1NL8NpL3cHehnBrCKJqrWB01mE6HLdFwdj9M
+ 6t5S5pJrrNyX6H47cohGO5fGpX++pkh0HMLydI6mVsXBTZJ24PW37OyCYgRrQDJqWklk
+ WTlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742158021; x=1742762821;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=YpQUNmwVK5jHLQezc5R4Z6K7OjXDtGHykFpm0bMm/ps=;
+ b=jYZpIb1qTSWGPYaeK2jn9i92hOmF7mldV1lOn9Uu53ITef4lWl63ioXgHlPRinShFb
+ YtIWMN2lxckCe7mO36xd8yhyUxcmYcY2DCTMwW5e9Os/iw3KZmohzqz0wv34RhWDkmYK
+ rr9NPImZgqpvNbuxz1LUYy4gZQGyQdJW0xfKG7VqptMeDSFrXmj7TOmeZTU4B8OYsMGe
+ GlXlTyKImlHHdwWulXAxPLq7lofiD61z4lNX6xXP9BqwTcKLQbmBU0zfLBnhKzqV8diD
+ l+Dv7uQ6L7q9+2XWaazZoM09ENvNAazac8mCemcbMEvwlZZL5ROj0LyWarmokE10Z1dp
+ 3k/g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU6fW3znA+B1o+5hMXiY57vboCAvtusi8DrA8tt7TIVgJP2XysRQqaHQMLUS5fZldbrzr9tNWq7@lists.freedesktop.org,
+ AJvYcCV9mCpN9gdXGTa63Q5/w5s3k5GUAtIZJJ3oWOQFow3YMPNoSlpkBGRdm34aBvHemaLcExlM4g3tbkqFKTEfftOO1g==@lists.freedesktop.org,
+ AJvYcCVo2BdoC8MlTviRvXQiUNvXad89VRsgjvdJE0eHmxot9Y9pdyZJ6oYHXdMOZ645Ab7q+rBV37kD2yJs@lists.freedesktop.org,
+ AJvYcCXfZPGd5fR82iJIpWUwGKm4dfXcOUf2OgbeKAVWSVWWtSHwGiNGn9gwodFXD53Ake+2daYgkIjcUjdA@lists.freedesktop.org,
+ AJvYcCXuYPbL3V25L3eEwFTh9uDxsK3ZdoQDrTEonbKK9HaqpqUA+cc7uDyi1ef1luncWGvCQLTTGU1/TL+/pdgipQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywn6Q75DnFrHNtimZdkvFqLgqvmAHeIhEJx6TarMzrskOPabUaM
+ e0+9KfMk0Bta+iUwTP9oOJ/+wseQkIBQr7Vieuj7Rkmy8GNvYNGanEMZlgwalHkNpKIYIDBMDrT
+ SwpBqo328IvOtDoXuilXPOdCmjr4=
+X-Gm-Gg: ASbGncsHuIubRRRmxBivrLZSIiPANM6478OCTO1wvvFXBfuzSf3Y4wS9QA0wc6cGCR0
+ 5pTNOETF/EKGeLbl3hDiweAUMfiSrTwhFKaoUXR3tlIQ/BZUWduwAAenP+5H+20EMA+1/FpjYk7
+ udC04WzAyx2vT45iPvYBwPTmRE
+X-Google-Smtp-Source: AGHT+IGhYVBn7vR4Knu9i9p1S4VK8hyNoaUSgXFGJfzH1GI7bLCBQBjmUDNC8ud8qNAZI0CQlE/V8lGFiNOUrbF8nOs=
+X-Received: by 2002:a05:6902:490d:b0:e5d:c30f:22ec with SMTP id
+ 3f1490d57ef6-e63f64dcbf3mr14511779276.9.1742158020821; Sun, 16 Mar 2025
+ 13:47:00 -0700 (PDT)
 MIME-Version: 1.0
+References: <20250125064619.8305-1-jim.cromie@gmail.com>
+ <20250125064619.8305-18-jim.cromie@gmail.com>
+ <29ca1dc2-3a21-405f-a9b6-06bea7bd75ae@bootlin.com>
+In-Reply-To: <29ca1dc2-3a21-405f-a9b6-06bea7bd75ae@bootlin.com>
+From: jim.cromie@gmail.com
+Date: Sun, 16 Mar 2025 14:46:35 -0600
+X-Gm-Features: AQ5f1JprR-UJ_0VXd2VsB4dKW3nxrkYe1QDrUeDVJ6N3x3HhjWh_YqIyfWvWlNY
+Message-ID: <CAJfuBxwJ5SgEP15nPpYJbwXi4iDJqVRS9FL8hdkHCkDct=Abrw@mail.gmail.com>
+Subject: Re: [PATCH 17/63] dyndbg: check DYNDBG_CLASSMAP_DEFINE args at
+ compile-time
+To: Louis Chauvet <louis.chauvet@bootlin.com>,
+ Jim Cromie <jim.cromie@gmail.com>, 
+ linux-kernel@vger.kernel.org, jbaron@akamai.com, gregkh@linuxfoundation.org, 
+ ukaszb@chromium.org, intel-gfx-trybot@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:2WxrHgAC6bEVnLbwBH6tFrQmLNqoXQheJCWpa4ZuAV8+PHMjCek
- U5iuuKMB7muZ/40tSSLu4wT5kJrA1CJ6B8+bPXU44R3adxIzMDlj+CNNqGzFXN/gxuYyCai
- oHIzEHRhFYSD+wVghIdbkWxW+Aljua5M7AGHp/6pQGCyAg5JEB/izuuIjEWcOPA5333XyET
- cwDLYkks5VtXErG0jBFMw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:ycxGwPMauIo=;ExP72BVsC3lkDJRoaGA7YOYBehm
- nc9S39aAC6xKy7w10kt4fiF2HuobijsfmddjqgaoTd7rOZONX5Ygdf9zR8zj817f5KqToqURn
- AuG6QgDLvWARDI6BtU3i5wrv3k3248CtL1zebD3EprIs3T9Jso1jqWYTdlAGIdjEoFFqiJOfd
- 2KpIzTn+6xjexBDcSzlZvbF0jIVkoDlT8D8XkEuvqHKYZ4ThzOUMylbRUtW3uJjeH1ShdI5Lv
- YO3/jXcMJwF/kHr+2Ymx1F0IS2ScYglikimgZ9pkwJHG8JX9wAkehApAUPL3/ObZjlrwrI49C
- 5z/Z+s8J7BoYePnHQZDVYEt+ma98pKS0woLHfIMbp7mKETQ4HnR50dJiz9/ZArdS4oQegJ7hl
- XBbMCKcxrFSOr1UTPRJhn5q1HFRS4Uh14jpxXZfR+BDqM0g2+J+6aI7g/sS5oGr8+zjX5NqFk
- sB9H4ZxPrdAJQgrNz41t70ZfiF9YKFopqnhAscqqtxMY/3kNiodRwtGGGYCF8o/taGSZCoCZf
- 6M+5rT8mUd04ZmRXhJEmMgrL+ejWGMmhIPKi6GtI7bGSQaMM400PeFk/4f8rPmPGjrjiOeOV6
- 7FPyGAU5Z5XXlwJ2qP6BFDUVvifnPeffLQldZRSrRIgojxTiMTwb7aHnyiZhrXMahrF5Bpc4A
- PmGfQK3D5vy/01vkVCD4U/BaBt7gK/guf62TNZLYDmJgSZggvZsNkfON+jl8EzbmMTKzORh3M
- AK1+4WEZ1KZRv9pH8hyj728emFPVtRAG670Y5/dMVxoz12IDHGF7kY09WenwJPuA7Wr2Ts8fq
- 7hJk/2kyQ5cy01ubaXPvEXagsPXAGjw7MemXs1EfhgWW3BHio8N4FTbDG8IKudLnbhV/OPvEr
- wdiecIsI78CMQ5OoOtgpfXtVUs4gT+5uxGFUTi41G1pIiPe9GIZXvElY5K0+OaPNqe8UrzGec
- /EARd58LEWUWhRZOxKhYyztv4szRp54XQlu4FGU9yc2EU12Yad1a50KeLf7OMjsksr6xVkxY6
- 0GS6bpGeyAZyDw4GrDF+NR4LNRf90NEu4eLFjZvI9hOcqDDEX/SNfzfjhCosvAnOoCbO3rtuI
- Vdu7AN94MxvsDVyEafuXC1as4PeiODljiHjVAHKGCYlDSx/HhOZMCnF1K82kGNCAcj3pTwaEP
- NtPDjm+TSpoIIRGLQW2nHdJpa//0Eb7UFrf3ZWqH8z9WeO4yy5H434WZzunO40qYI5h5n1D5i
- 2T1SoirMcA6QXk0YBxwdRVqL4ZiQ7GmvK0l/rabL1K1nAg6BHIS8jhpeu8Ve0Pwrf5SGNq+fK
- aspAXry/MeHEC5OrpzrFXSw86Fjn2naGfFCsviKfcKeIfpZH3vPIi2cQteDlJCCGWQPBYdTm8
- LHcilIcoVYFZio9wwsqVx1lmsIzD9JpNEBGDy1UFJ84sy8aKOFGOnEM40Gd+Vcnm8JaCWsi+S
- 4eZ9yLQ==
 X-Mailman-Approved-At: Mon, 17 Mar 2025 10:53:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -112,57 +95,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am Sonntag, dem 16.03.2025 um 14:09 +0100 schrieb Bert Karwatzki:
-> This is related to the admgpu.gttsize. My laptop has the maximum amount=
-=C2=A0
-> of memory (64G) and usually gttsize is half of main memory size. I just=
-=C2=A0
-> tested with cmdline=3D"nokaslr amdgpi.gttsize=3D2048" and the problem do=
-es=C2=A0
-> not occur. So I did some more testing with varying gttsize and got this
-> for the built-in GPU
+On Tue, Feb 25, 2025 at 7:17=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
+n.com> wrote:
 >
-> 08:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI=
-]
-> Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev c5)
 >
-> (nokaslr is always enabeld)
-> gttssize   input behaviour
->  2048		GOOD
->  2064		GOOD
->  2080		SEMIBAD (i.e. noticeable input lag but not as bad as below)
->  3072		BAD
->  4096		BAD
->  8192		BAD
-> 16384		BAD
 >
-> As the build-in GPU has ~512 VRAM there seems to be problems when gttsiz=
-e >
-> 4*VRAM so I tested for the discrete GPU with 8G of VRAM
-> gttsize   input behaviour
-> 49152		GOOD
-> 64000		GOOD
+> Le 25/01/2025 =C3=A0 07:45, Jim Cromie a =C3=A9crit :
+> > Add __DYNDBG_CLASSMAP_CHECK to implement these arg-checks at compile:
+> >       0 <=3D _base < 63
+> >       class_names is not empty
+> >       class_names[0] is a string
+> >       (class_names.length + _base) < 63
+> >
+> > These compile-time checks will prevent several misuses; 4 such
+> > examples are added to test_dynamic_debug_submod.ko, and will fail
+> > compilation if -DDD_MACRO_ARGCHECK is added to cflags.
+> >
+> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> > ---
+> > - split static-asserts to __DYNDBG_CLASSMAP_CHECK
+> > - move __DYNDBG_CLASSMAP_CHECK above kdoc for DYNDBG_CLASSMAP_DEFINE
+> >    silences kernel-doc warnings
+> > ---
+> >   include/linux/dynamic_debug.h |  9 +++++++++
+> >   lib/test_dynamic_debug.c      | 11 +++++++++++
+> >   2 files changed, 20 insertions(+)
+> >
+> > diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debu=
+g.h
+> > index dc610a12b91c..2b0c943af330 100644
+> > --- a/include/linux/dynamic_debug.h
+> > +++ b/include/linux/dynamic_debug.h
+> > @@ -99,6 +99,14 @@ struct ddebug_class_map {
+> >       enum ddebug_class_map_type map_type;
+> >   };
+> >
+> > +#define __DYNDBG_CLASSMAP_CHECK(_clnames, _base)                     \
+> > +     static_assert(((_base) >=3D 0 && (_base) < _DPRINTK_CLASS_DFLT), =
+ \
+> > +                   "_base must be in 0..62");                        \
+> > +     static_assert(ARRAY_SIZE(_clnames) > 0,                         \
+> > +                   "classnames array size must be > 0");             \
+> > +     static_assert((ARRAY_SIZE(_clnames) + (_base)) < _DPRINTK_CLASS_D=
+FLT, \
+> > +                   "_base + classnames.length exceeds range")
+> > +
+> >   /**
+> >    * DYNDBG_CLASSMAP_DEFINE - define debug classes used by a module.
+> >    * @_var:   name of the classmap, exported for other modules coordina=
+ted use.
+> > @@ -112,6 +120,7 @@ struct ddebug_class_map {
+> >    */
+> >   #define DYNDBG_CLASSMAP_DEFINE(_var, _mapty, _base, ...)            \
+> >       static const char *_var##_classnames[] =3D { __VA_ARGS__ };      =
+ \
+> > +     __DYNDBG_CLASSMAP_CHECK(_var##_classnames, (_base));            \
+> >       extern struct ddebug_class_map _var;                            \
+> >       struct ddebug_class_map __aligned(8) __used                     \
+> >               __section("__dyndbg_classes") _var =3D {                 =
+ \
+> > diff --git a/lib/test_dynamic_debug.c b/lib/test_dynamic_debug.c
+> > index 1838f62738c4..b1555b0a2bb1 100644
+> > --- a/lib/test_dynamic_debug.c
+> > +++ b/lib/test_dynamic_debug.c
+> > @@ -123,8 +123,19 @@ DYNDBG_CLASSMAP_PARAM(level_num, p);
+> >   DYNDBG_CLASSMAP_USE(map_disjoint_bits);
+> >   DYNDBG_CLASSMAP_USE(map_level_num);
+> >
+> > +#if defined(DD_MACRO_ARGCHECK)
+> > +/*
+> > + * Exersize compile-time arg-checks in DYNDBG_CLASSMAP_DEFINE.
+> > + * These will break compilation.
+> > + */
+> > +DYNDBG_CLASSMAP_DEFINE(fail_base_neg, 0, -1, "NEGATIVE_BASE_ARG");
+> > +DYNDBG_CLASSMAP_DEFINE(fail_base_big, 0, 100, "TOOBIG_BASE_ARG");
+> > +DYNDBG_CLASSMAP_DEFINE(fail_str_type, 0, 0, 1 /* not a string */);
+> > +DYNDBG_CLASSMAP_DEFINE(fail_emptyclass, 0, 0 /* ,empty */);
 >
-> So for the discrete GPU increasing gttsize does no reproduce the bug.
+> Hi Jim,
 >
-> Bert Karwatzki
+> This test is nice, but can we move it in the *_submod.c directly? They
+> don't need anything from this file.
+>
 
-So I was thinking the reason the bug does not show on the discrete GPU is =
-that
-it has too much VRAM so the GTT memory is not used in this case.
-In order to test this I booted with amdgpu.vramlimit=3D512. Unfortunately
-initialisation fails in this case:
+Hi Louis,
 
-[  T291] [drm:amdgpu_device_init.cold [amdgpu]] *ERROR* sw_init of IP bloc=
-k
-<gmc_v10_0> failed -22
+Given my strong preference for continued / justified ifdeffery earlier,
+I will interpret this as move these corner-case tests into the
+submod-only branch.
 
-But using the parameter amdgpu.vramlimit fixes the problem for the built-i=
-n GPU,
-even when the value is larger than the VRAM of the builtin-GPU (i.e. nokas=
-lr
-amdgpu.vramlimit=3D4096 does not give the buggy behaviour)
+Im happy to do it, and I see the commit-msg says that specifically,
+but Im not sure what it will improve by moving it.
+I could fix the commit msg instead.
 
-Bert Karwatzki
+these compile-time tests will break the build,
+so I dont think theyre much good as a CONFIG_ option for example.
+
+So making the breakage submodule specific isnt
+much of a reduction in blast radius, and it only opens the why-submod-only =
+?
+
+Any views or options ?  (both welcomed)
 
 
+> Tested-by: Louis Chauvet <louis.chauvet@bootlin.com>
+
+ack!
+
+> Thanks,
+> Louis Chauvet
+>
+> >   #endif
+> >
+> > +#endif /* TEST_DYNAMIC_DEBUG_SUBMOD */
+> > +
+> >   /* stand-in for all pr_debug etc */
+> >   #define prdbg(SYM) __pr_debug_cls(SYM, #SYM " msg\n")
+> >
+>
+> --
+> Louis Chauvet, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+>
