@@ -2,79 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB0EA64B04
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 11:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80ACFA64B0A
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 11:53:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53F7C10E3EB;
-	Mon, 17 Mar 2025 10:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 309EF10E3E0;
+	Mon, 17 Mar 2025 10:53:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ByEMsZLn";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="cQH9KEvi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFD510E291
- for <amd-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 20:16:06 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-ac3123c0ef9so40370566b.2
- for <amd-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 13:16:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742069765; x=1742674565; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=CM8iKDl/0GDYbg2/8UjmQb+Vutt2B5xcuVwMZo2f/xc=;
- b=ByEMsZLnw57GE4pX5BVbFLvNZW8kYt2JBwXPN3h+zp4dRTuowJkUkL5T7zK4E375oj
- zHpgO5HPmpTAMUYFaX3CIeMwIiAu2G8wr3qAgirirb7qYOdDAXGwgGc+2ljx9pW09dyI
- Pp1lsQfM6jRH1vY0aqmk/3TD7LAMAmrZme6ea3u49FZsoBEn9sJGMcKERcMNMZn2+Htq
- tH60tVOTPhfoy82kpf4j9QYBdsaBW3s/JdR0zHixbWVgadYDRqAqi5xkq/djviDmBgSF
- a7nQRt0tFt1KbwJhInWwFdMNfhFnqNstz1pVbM7GQZagcY0iYKdUp5C+Kkn78rub4F4e
- hsTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742069765; x=1742674565;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=CM8iKDl/0GDYbg2/8UjmQb+Vutt2B5xcuVwMZo2f/xc=;
- b=HyusQUdoh8dOz+NsA3BlbsonY2q07jr1RANc3kNPEkQmztabVlGFWk5jKQ833npXYO
- ToKl04cMT0QTsqiLEoaLAwzoNRkOWtXD7E5DCyVBF9wYr3s5cOBmLBlVPS9c1iigy8+X
- qauHZlTXJfbTk/5jp6lsKX4N9uLiszSwBSOPnInfKmNdwwWPVgpJe6ICzfiPjbLnRfCR
- 7fC2vgZ4+lKqEgmmsPPbMxZlvje6jAe9SJZvZUalZhC0dkP9TELYOiS+Op1LXn0l4xyc
- SOD4ymgOm0vDVH/FwlmQPEkYGqUUNCmF6BDxyBDW/ShNERPtJC5SwXEwAQ95QeeXFGlg
- 6RyA==
-X-Gm-Message-State: AOJu0Yz9jT6N+akP6DPWPyAxRgwBd5+1HpCwSIxQcZqPqvlrdW43DlIz
- fohF+Ww3BQLoWnzybtKmEs1ZJkjjfWDXSt7oIh0hYBWmHOnc+PnY
-X-Gm-Gg: ASbGncvXcdDCre88ojrMkltOMY5PHe/MsQwrYj1KhUff3JsPazATDG2XUMGuq1EKZT+
- bLh5CSAEFKtf2YaabX0TcabwPO19gklgVfUL4Ne2w+Z//u6CGKL0yvd2WCKsltRkpxEW/UU2eXg
- y2tP6csHQxJAhaOQexWheaLUdtrruabURwgg7hFQIMNi4BQzMv8C33GEQpWO3Y/IIwaD7OXIeaB
- c/7wBBU6inBpXBzkV7QPR+/jUgo9XlbuYWeMhuZdJwxo8mTNQYpaLM6DMphe7lcH9Ym7NSd7lyx
- WvYSn6dwXBy1sgjhXqnBZVGnpoJHchdtnHbQZzwH87yP7P23vWcTNBWopAWWdBEDdDifP6FeKlM
- rjrGlSGhfJcBoRh8=
-X-Google-Smtp-Source: AGHT+IHPCGeO5GkCGw8ZKVf/5XyOELv5ihjS4Cm7AlLHIHFCvIJzRSq2xpzHNkOcJoucsmnxMhaa6A==
-X-Received: by 2002:a17:907:1c89:b0:ac2:1d34:44ff with SMTP id
- a640c23a62f3a-ac3301a4ee8mr294587766b.4.1742069764604; 
- Sat, 15 Mar 2025 13:16:04 -0700 (PDT)
-Received: from laptok.lan (89-64-31-121.dynamic.chello.pl. [89.64.31.121])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ac314aa5a7csm416922766b.179.2025.03.15.13.16.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 15 Mar 2025 13:16:03 -0700 (PDT)
-From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-To: alexander.deucher@amd.com,
-	kenneth.feng@amd.com,
-	KevinYang.Wang@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amd/pm: add zero RPM stop temp OD setting support for
- SMU 14.0.2
-Date: Sat, 15 Mar 2025 21:15:58 +0100
-Message-ID: <20250315201558.339913-3-tomasz.pakula.oficjalny@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250315201558.339913-1-tomasz.pakula.oficjalny@gmail.com>
-References: <20250315201558.339913-1-tomasz.pakula.oficjalny@gmail.com>
+Received: from mout.web.de (unknown [212.227.17.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8622D10E13D
+ for <amd-gfx@lists.freedesktop.org>; Sun, 16 Mar 2025 13:09:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1742130569; x=1742735369; i=spasswolf@web.de;
+ bh=lSe4wSQ+lMQWbvhKXpf0Z+jC1oqAJywc3aUScK7L7rk=;
+ h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+ References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=cQH9KEviBnLqvQKvN1GBSlN0VTOH3Tf5r3DzqFlZe6ktkXC/sT0FCo+epJ8PLXYT
+ 24w/ukkkH63DOx0pJr7oA0ME8tAEL279DR+43xIzwAG7bDy7dGqBakdiWtGenC6X3
+ 66xD9i4iAtDbVnW+f5FwXKxfjZNmQYcStIlAstCyrKbK/RDlVEBxcql+pg9rpzjxj
+ MfqwGwW0Jxuc5+/MM9ma9739izHvs+16b+qIGNrt3gbUCGmRjDsVPFQOzJLHAU15q
+ N4/wqVOjlemw25rE1fPmHyXKtJ+iJ9j4NZzN6zrORqj3Gvzsrqfa8NscsKhtHfgir
+ Rr1zFLlD7SiXkkRIIQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.0.101] ([95.223.134.88]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MWi9q-1timDQ3A1g-00XM9B; Sun, 16
+ Mar 2025 14:09:28 +0100
+Message-ID: <9be36dfab79b17e108f71d51a6ebf39073e110c6.camel@web.de>
+Subject: Re: commit 7ffb791423c7 breaks steam game
+From: Bert Karwatzki <spasswolf@web.de>
+To: Alex Deucher <alexdeucher@gmail.com>, Balbir Singh <balbirs@nvidia.com>
+Cc: Ingo Molnar <mingo@kernel.org>, Kees Cook <kees@kernel.org>, Bjorn
+ Helgaas	 <bhelgaas@google.com>, Linus Torvalds
+ <torvalds@linux-foundation.org>, Peter Zijlstra <peterz@infradead.org>,
+ Andy Lutomirski <luto@kernel.org>, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, spasswolf@web.de
+Date: Sun, 16 Mar 2025 14:09:26 +0100
+In-Reply-To: <CADnq5_Pvmxa10dJWYjajwxG-0Y_oxhL6wS6NsG2F0dmcJS6o8A@mail.gmail.com>
+References: <20250310112206.4168-1-spasswolf@web.de>
+ <951f9d13-72e4-41c3-9ace-8639e2a9485d@nvidia.com>
+ <ce940e2a-632d-41be-9f13-e5b11d49b0db@nvidia.com>
+ <09131c563332c892284ec7fb4ce706996131db8c.camel@web.de>
+ <9a5df5627d3d72b2a97f501dfb7d944cc1e9920f.camel@web.de>
+ <fdea59fe-f570-489f-bf88-1ffd47119cac@nvidia.com>
+ <414f4deb8c7670a159854006b0c410ce05a6049e.camel@web.de>
+ <12d950ee-4152-4ad6-b93e-7c5b75804b1a@nvidia.com>
+ <705e95cec3dc5181ca2aa73722e6b84f63f3e91d.camel@web.de>
+ <20b5823e-247a-456a-bb55-d50f212a9f5a@nvidia.com>
+ <a34a1ae0b1d226b1bac7d73daa24da8e5899cb3e.camel@web.de>
+ <c7bb0bd1-529d-466d-9cce-abbac4b480ab@nvidia.com>
+ <146277bb0ecbb392d490683c424b8ae0dfa82838.camel@web.de>
+ <b63b1de8-7eec-4235-b61e-e654e78543ba@nvidia.com>
+ <fa8d5e76694918bdaae9faee9648776f298f78ca.camel@web.de>
+ <7866593f-0322-4fb3-9729-82366940fc85@nvidia.com>
+ <a168e78b-ae27-4675-8821-0b1a2499b2b2@nvidia.com>
+ <5d34bfc5109b8d104fd4f8550dd17945344f9d07.camel@web.de>
+ <551b9797-20d6-4bfe-b54c-84dd7aae7794@nvidia.com>
+ <CADnq5_Pvmxa10dJWYjajwxG-0Y_oxhL6wS6NsG2F0dmcJS6o8A@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.55.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:1ziCuTaJLlr4/NNT3PlCqR0n3Z6k+RO4XmQJ9tGibHYEfS1WmQs
+ Alsz8CYX0Jw/w3N/csNYOq9YTUaLDBnQAZeKQT3PBSRZz2QbfqKrbyGnGRIBWgQj71Lgdyh
+ C9/jsYywMlniLJOyzLjyqg+Jl51vs4dxDHrXg0J/bgfnXTokYqiqxmEcEcqkWBZOmKWJafO
+ 70xtHET54OH4ZCDOu4IuA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:vcRBeoKbmhg=;0ppaj85vFzT3WQfDA9cwKWGHHRY
+ vq2S9rG3y3+HBNTo8SnKsc0PZ7VX12vX9hUKZ7FkqfC6TvAndZKKqsNpI93/+X8HXILh6aRkH
+ 2aoDH+Uige0ZYw1n3lnZFZ5CPlWERGiZtPUZUWrDJMmTI/UIDFGFnC7DvVNIpqq2ttlGR+Yku
+ Wf1u+Y7S8lc0bieIPqhkqgbJwtD/PVR2V8l14d4h/vbckIbRJ+X04+4yBdAkwS+yrt+qi/Uof
+ Tas0VqLni3mL3x3w7Wnq7/iMbqPeXhFOg1XRegn7N4ddiK6THDWd4z9voDWE6/xEoZtKfakN+
+ TTIoXjUpzozfZiB9mGo7jfW7wAobbgGlra1n5KYCEmuJcmL42C638yPzHn8teodGjh3g8HZ2r
+ jjyRnnES5lW5GbAI/q/YhkBRMjWPRO4nftJgsbJ/s1aBeWWIB0LrsonKPd31KjwEWbeWWhmJE
+ qJ+7qgA8mxZGHNHNJGQdOGzVtFlGEjMb1airIU3TZGTcLY9AygZQsgr+TDvXBaSfa1n7hLYjz
+ p68JHQXfT4je7rFl5VpIBU03bS6TXULe4W6qOXakUD6gpwjCKyqqYvzdO4VG98DSkGnpa6x2U
+ U0Q+fu3aTYK0DRpNQoKHgywmHvrsCqIWGK+7cP3e2W0S+SCK2OTT69U50OBT8rwdAf+b+lVQD
+ LEomU2bkOKzkDmj06coAtmXr4mpA9hY8fL6jl81EWEfbgRk7A2Xd3YOlmKo72d+iuIo+FO5b4
+ xF35UFiSZa6YtUZr4J1tXYWFJG15HYNVhDAo3dcFVLqqxecwnGbQGyevdDNu3wIutMHZBCUq2
+ XSTZN0foRj7F3z9qm+9k6FXfBGlIBTxJbm7IDivn6K9fuhDZdaGALBAQdwhACDt1RR9wTxia6
+ NJPWwsKC52UUdS67gqjG171M26Rui9xJUcw+dc7pNPX1phnAujIGSs7Kdt4Yw2OQaUfe7mMMx
+ UsezZW38nWUQnZ8D+E8+TdpJasyIBlX5AlFs3xBMMgprkxcV3piHamNP8X8Z2r+BywFPhNoWN
+ fvW8RUerkeGnTkQJWMTQpS8MS71gbvMRBG6jyZr56o8O6TecQc3KG1koBGn6e76GuvHWQnkiY
+ oRJYmnoBRMqhYSO8XBII8C0iRGfeQstuLhfPEVgp2efeFfsJT3eaTtBNl4dcsoaCixDrNpiMA
+ xSY7UfE9Gon50zUKe0s58DYdmIiuT5wkRk6wGEScUjs4B8wCh1VInsKpULOCm1T+sP+BIlgBX
+ Lr6qIiloMTGon2paHtPmh4mC1W4SFdE/SLBL8zQRKn6fUZ1nqeEv/+Ou5JNCEF+Ozv+DjLRbr
+ v0b7WkLrgAfvzs1+sXQH9EyC/ijJyVQsci0+OJev3igGNwVES+AbIc5dzuMW/eOYKkqpr6SR5
+ mFm49EeAIO1as4OZ1wgBttE7pVsEbRSbZgByDXTbv92O4EDEfRNaJvQht2myafjA9TSRgzAAy
+ GjXD6fg==
 X-Mailman-Approved-At: Mon, 17 Mar 2025 10:53:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,127 +109,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hook up zero RPM stop temperature for 9070 and 9070 XT based on RDNA3
-(smu 13.0.0 and 13.0.7) code.
+This is related to the admgpu.gttsize. My laptop has the maximum amount=C2=
+=A0
+of memory (64G) and usually gttsize is half of main memory size. I just=C2=
+=A0
+tested with cmdline=3D"nokaslr amdgpi.gttsize=3D2048" and the problem does=
+=C2=A0
+not occur. So I did some more testing with varying gttsize and got this
+for the built-in GPU
 
-Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
----
- .../swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h |  3 +-
- .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 50 ++++++++++++++++++-
- 2 files changed, 51 insertions(+), 2 deletions(-)
+08:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
+Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev c5)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
-index c2fd0a4a13e5..a5eba7b91e2f 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
-@@ -846,9 +846,10 @@ typedef struct {
-   uint16_t               FanTargetTemperature; // Degree Celcius
-   //zero fan
-   uint8_t                FanZeroRpmEnable;
-+  uint8_t                FanZeroRpmStopTemp;
-   //temperature
-   uint8_t                MaxOpTemp;
--  uint8_t                Padding1[2];
-+  uint8_t                Padding1;
- 
-   //Full Ctrl
-   uint16_t               GfxVoltageFullCtrlMode;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-index fedf0c8c4741..4e7eed0cc41c 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-@@ -80,6 +80,7 @@
- #define PP_OD_FEATURE_FAN_TARGET_TEMPERATURE		9
- #define PP_OD_FEATURE_FAN_MINIMUM_PWM			10
- #define PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE		11
-+#define PP_OD_FEATURE_FAN_ZERO_RPM_STOP_TEMP		12
- 
- static struct cmn2asic_msg_mapping smu_v14_0_2_message_map[SMU_MSG_MAX_COUNT] = {
- 	MSG_MAP(TestMessage,			PPSMC_MSG_TestMessage,                 1),
-@@ -1057,6 +1058,10 @@ static void smu_v14_0_2_get_od_setting_limits(struct smu_context *smu,
- 		od_min_setting = overdrive_lowerlimits->FanZeroRpmEnable;
- 		od_max_setting = overdrive_upperlimits->FanZeroRpmEnable;
- 		break;
-+	case PP_OD_FEATURE_FAN_ZERO_RPM_STOP_TEMP:
-+		od_min_setting = overdrive_lowerlimits->FanZeroRpmStopTemp;
-+		od_max_setting = overdrive_upperlimits->FanZeroRpmStopTemp;
-+		break;
- 	default:
- 		od_min_setting = od_max_setting = INT_MAX;
- 		break;
-@@ -1360,6 +1365,24 @@ static int smu_v14_0_2_print_clk_levels(struct smu_context *smu,
- 				      min_value, max_value);
- 		break;
- 
-+	case SMU_OD_FAN_ZERO_RPM_STOP_TEMP:
-+		if (!smu_v14_0_2_is_od_feature_supported(smu,
-+							 PP_OD_FEATURE_ZERO_FAN_BIT))
-+			break;
-+
-+		size += sysfs_emit_at(buf, size, "FAN_ZERO_RPM_STOP_TEMPERATURE:\n");
-+		size += sysfs_emit_at(buf, size, "%d\n",
-+					(int)od_table->OverDriveTable.FanZeroRpmStopTemp);
-+
-+		size += sysfs_emit_at(buf, size, "%s:\n", "OD_RANGE");
-+		smu_v14_0_2_get_od_setting_limits(smu,
-+						  PP_OD_FEATURE_FAN_ZERO_RPM_STOP_TEMP,
-+						  &min_value,
-+						  &max_value);
-+		size += sysfs_emit_at(buf, size, "ZERO_RPM_STOP_TEMPERATURE: %u %u\n",
-+				      min_value, max_value);
-+		break;
-+
- 	case SMU_OD_RANGE:
- 		if (!smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_GFXCLK_BIT) &&
- 		    !smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_UCLK_BIT) &&
-@@ -2306,7 +2329,9 @@ static void smu_v14_0_2_set_supported_od_feature_mask(struct smu_context *smu)
- 					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_RETRIEVE |
- 					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET |
- 					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_RETRIEVE |
--					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_SET;
-+					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_SET |
-+					    OD_OPS_SUPPORT_FAN_ZERO_RPM_STOP_TEMP_RETRIEVE |
-+					    OD_OPS_SUPPORT_FAN_ZERO_RPM_STOP_TEMP_SET;
- }
- 
- static int smu_v14_0_2_get_overdrive_table(struct smu_context *smu,
-@@ -2387,6 +2412,8 @@ static int smu_v14_0_2_set_default_od_settings(struct smu_context *smu)
- 			user_od_table_bak.OverDriveTable.FanMinimumPwm;
- 		user_od_table->OverDriveTable.FanZeroRpmEnable =
- 			user_od_table_bak.OverDriveTable.FanZeroRpmEnable;
-+		user_od_table->OverDriveTable.FanZeroRpmStopTemp =
-+			user_od_table_bak.OverDriveTable.FanZeroRpmStopTemp;
- 	}
- 
- 	smu_v14_0_2_set_supported_od_feature_mask(smu);
-@@ -2754,6 +2781,27 @@ static int smu_v14_0_2_od_edit_dpm_table(struct smu_context *smu,
- 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
- 		break;
- 
-+	case PP_OD_EDIT_FAN_ZERO_RPM_STOP_TEMP:
-+		if (!smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_ZERO_FAN_BIT)) {
-+			dev_warn(adev->dev, "Zero RPM setting not supported!\n");
-+			return -ENOTSUPP;
-+		}
-+
-+		smu_v14_0_2_get_od_setting_limits(smu,
-+						  PP_OD_FEATURE_FAN_ZERO_RPM_STOP_TEMP,
-+						  &minimum,
-+						  &maximum);
-+		if (input[0] < minimum ||
-+		    input[0] > maximum) {
-+			dev_info(adev->dev, "zero RPM stop temperature setting(%ld) must be within [%d, %d]!\n",
-+				 input[0], minimum, maximum);
-+			return -EINVAL;
-+		}
-+
-+		od_table->OverDriveTable.FanZeroRpmStopTemp = input[0];
-+		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
-+		break;
-+
- 	case PP_OD_RESTORE_DEFAULT_TABLE:
- 		if (size == 1) {
- 			ret = smu_v14_0_2_od_restore_table_single(smu, input[0]);
--- 
-2.48.1
+(nokaslr is always enabeld)
+gttssize   input behaviour
+ 2048		GOOD
+ 2064		GOOD
+ 2080		SEMIBAD (i.e. noticeable input lag but not as bad as below)
+ 3072		BAD
+ 4096		BAD
+ 8192		BAD
+16384		BAD
 
+As the build-in GPU has ~512 VRAM there seems to be problems when gttsize =
+>
+4*VRAM so I tested for the discrete GPU with 8G of VRAM
+gttsize   input behaviour
+49152		GOOD
+64000		GOOD
+
+So for the discrete GPU increasing gttsize does no reproduce the bug.
+
+Bert Karwatzki
