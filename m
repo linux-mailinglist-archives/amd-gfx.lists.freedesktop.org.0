@@ -2,38 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D821CA6705D
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Mar 2025 10:54:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF085A6705B
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Mar 2025 10:54:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B65B10E444;
-	Tue, 18 Mar 2025 09:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6912510E45A;
+	Tue, 18 Mar 2025 09:54:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="M+tt4caw";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55B5910E17F
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 19:37:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=kCP6P7yJ1EJoBeDBSv5lCGzst5JQBxOgm8I7ArCLzlg=; b=ZNmH1lkItLLY360TY75djLPMl2
- /UZ3iB+4CnNFCsMZPeKI09RjX0bavf5byHu7s1nz8KaB6uWZR16O4Z5Y3RLrz4Kmrmmvi9sTjv24G
- OnAULmm43gtrsu1Z2zLgUX/fCEjVRPoDrKM7W5DFJBG7JcEoMVvum6qVuruweP8rcZKQe12XnBPhz
- /4vDoxwfiREFOfenXWrjK0vUxAXC0dMWDHf+RnLU2i1lv1jng2t0UzIK7ljJXyi2k8RMst8DkCKOK
- 7O3aw95orufCZeNas+1N1dAHMBETxzrXUTr+9suNC2UFQAJ8Q1EGPXQINGKTYvfmBKeZGmDpZDT0Y
- CEE0L+Og==;
-Received: from willy by casper.infradead.org with local (Exim 4.98 #2 (Red Hat
- Linux)) id 1tuGGp-00000009RTO-1sAT; Mon, 17 Mar 2025 19:37:07 +0000
-Date: Mon, 17 Mar 2025 19:37:07 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Subject: Where do ttm->pages come from?
-Message-ID: <Z9h54wu2Nqbf4OqF@casper.infradead.org>
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
+ [209.85.208.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9980210E19D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 20:59:58 +0000 (UTC)
+Received: by mail-ed1-f49.google.com with SMTP id
+ 4fb4d7f45d1cf-5e8484bb895so972495a12.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 13:59:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742245197; x=1742849997; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=1XIrnxYjCRkD+EGtF20b+Yls675wkb9Xu7t7rdDzNEc=;
+ b=M+tt4cawNOYr9RnU1kPdvEDwamYOyLgnlEFGbglkek7m5Ark+CqCjQdGBBd2WXFkNY
+ 6JPYE1zumDHbBRA4+quTOmoI32tZDSGQzBb9RTpM8jK2adRnrvQzdcKiCN6bRGUzmsu7
+ B8YL7vzUu9IPeYVpet3aN7RZkLVYUwURPR+yfN6vHcKVEe9LVZtlIxmJu4RczjX6ByQh
+ piIyBfZb+7gAYW9N32kjIByImFM2Ryz9UoMmdFupW8+JXgLuLs+E9nqsXtW2Elf4wGiq
+ RgFjSCIWRzQ6uZz1TTrqYF3Kz0T2PDFhkZVwDql26ksWf032KMvxpsS7SIsz0PM5sPCZ
+ ktqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742245197; x=1742849997;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=1XIrnxYjCRkD+EGtF20b+Yls675wkb9Xu7t7rdDzNEc=;
+ b=wIw0NBpWCas2aKINiIWSQ+EPwSrrdeSR63F6VMjJ/UEdfjFBFzkqhzb+yA7Vwd0UzF
+ 4hpHKhiiv/Tlie0HPIREiAzmtPXFThlQulYmTvihttDmFDJGw7WtatYGikq84dcsvLrA
+ GPnN+xL7JHuWa0wo+WAHnnp24jpJT9s1Qqtr6O3AXtTGf7ZnTNjUbNbKx/F0WbcbG6uI
+ lv545NyanyWjgoxFgdsytYNWdSPaJjnazGgmmFjKfbUmNx+X+6Z1NBTlcVwyDGVGTaiX
+ znd8VN2ilx6HnZhyFD3XdE+dHg2soeBUwQw7z0LzRwuXKS3DoBOUcaS1glkAJgijUj5G
+ 37gQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWHyL7f+WF3/AwbArU/Ng5sv0aX8I6hOqIaJjwBcGpFGvAlqhD0KNjl+dNRdLvH6iY2VK/wMPiq@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxyLVj9CSchwhoOIU10iracq4fg8RZvRSB9WXsx//AtUUJd0Ghh
+ knoDf1Uwx9r1d382le28vOCcbJcbLmSK+a9SrNZ57gMQUn4In/ph8/OJhityO/9ftGB8s14peT3
+ oUjaTJ0l+vDNpggBel1li0UJbk0E=
+X-Gm-Gg: ASbGncvdHmxaNuIx9PiUOarV7/wlNcpqFkTbtiDCWKeRdZAZuUkHKHvyxR9TI1HAfO3
+ QnKhpgcx2/d++J2aWnn3nUu0GFDsgqDgtHU2e7mtsfDMsg8UUOSXO0cR8lQZpbSujyR8NZwnq0T
+ 3VtYPiS8CsSy0b+870f2ixEQGAf8/MX43gHiM=
+X-Google-Smtp-Source: AGHT+IFzOTPjc4s6aAkHNL+j9BmqIbLaA+HSnbzCPt3XkK0W1PaR3Se4TAVJS8FQ5Y9SUCvkQ5FuMj/ygQF0IqqM5Po=
+X-Received: by 2002:a50:d79e:0:b0:5e8:eac8:6177 with SMTP id
+ 4fb4d7f45d1cf-5e8eac862b8mr2513512a12.7.1742245196627; Mon, 17 Mar 2025
+ 13:59:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20250315201558.339913-1-tomasz.pakula.oficjalny@gmail.com>
+ <20250315201558.339913-3-tomasz.pakula.oficjalny@gmail.com>
+ <CADnq5_OdsHpqcJCo77ktjnu8nQRMmTz7wqRLL5qZC8Sc-AOVYQ@mail.gmail.com>
+ <CAFqprmxwRPVCNPge-wr_WLYG2DWdgCMXzQ3uCvYthqt8q1B-3Q@mail.gmail.com>
+In-Reply-To: <CAFqprmxwRPVCNPge-wr_WLYG2DWdgCMXzQ3uCvYthqt8q1B-3Q@mail.gmail.com>
+From: =?UTF-8?Q?Tomasz_Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+Date: Mon, 17 Mar 2025 21:59:44 +0100
+X-Gm-Features: AQ5f1JoFtMI1hQsEgs2auxyVjsgTVxUYNBqPie6eWSMm9R9bUbpZKl982khk-OA
+Message-ID: <CAFqprmxYczJ5n-O7ee8rSyVpNV2trPr9AeBjmEPiDvjUYmCNRQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amd/pm: add zero RPM stop temp OD setting support
+ for SMU 14.0.2
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: alexander.deucher@amd.com, kenneth.feng@amd.com, KevinYang.Wang@amd.com, 
+ amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 18 Mar 2025 09:54:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,22 +87,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We're close to removing page->mapping from the kernel, and I've run into
-amdgpu's use of page->mapping (setting it to ->dev_mapping and comparing
-it against ->dev_mapping).
+On Mon, 17 Mar 2025 at 16:11, Tomasz Paku=C5=82a
+<tomasz.pakula.oficjalny@gmail.com> wrote:
+>
+> tomek@komputr /sys/class/drm/card1/device/gpu_od/fan_ctrl $ cat
+> fan_zero_rpm_stop_temperature
+> FAN_ZERO_RPM_STOP_TEMPERATURE:
+> 50
+> OD_RANGE:
+> ZERO_RPM_STOP_TEMPERATURE: 50 110
+>
+> tomek@komputr /sys/class/drm/card1/device/gpu_od/fan_ctrl $ sudo tee
+> fan_target_temperature <<< "65"
+> 65
+>
+> tomek@komputr /sys/class/drm/card1/device/gpu_od/fan_ctrl $ sudo tee
+> fan_target_temperature <<< "c"
+> c
+>
+> tomek@komputr /sys/class/drm/card1/device/gpu_od/fan_ctrl $ cat
+> fan_zero_rpm_stop_temperature
+> FAN_ZERO_RPM_STOP_TEMPERATURE:
+> 50
+> OD_RANGE:
+> ZERO_RPM_STOP_TEMPERATURE: 50 110
 
-What I need to understand to know how to fix this properly is who
-allocates these pages for what purpose?  I've got this far:
+I'm sorry. I copied over the wrong lines here of course. After applying wit=
+h "c"
+the `fan_zero_rpm_stop_temperature` state is as follows (actually applies
+the custom setting):
 
-amdgpu_ttm_tt_set_user_pages() populates ttm->pages.
-That's called from amdgpu_cs_parser_bos() which got e->userpages from
-amdgpu_ttm_tt_get_user_pages().
-amdgpu_ttm_tt_get_user_pages() got them from
-amdgpu_hmm_range_get_pages()
-amdgpu_hmm_range_get_pages() gets them from calling hmm_pfn_to_page()
-which ... could get pages from anywhere?
+$ cat fan_zero_rpm_stop_temperature
+FAN_ZERO_RPM_STOP_TEMPERATURE:
+50
+OD_RANGE:
+ZERO_RPM_STOP_TEMPERATURE: 50 110
 
-But cleaarly they can't be _any_ pages because if they were anon or
-file pages, overwriting page->mapping would blow up horribly today.
-So they must be driver pages, but I can't see where they're allocated.
-Is it ttm_pool_alloc_page()?
+$ sudo tee fan_zero_rpm_stop_temperature <<< "65"
+65
+
+$ sudo tee fan_zero_rpm_stop_temperature <<< "c"
+c
+
+$ cat fan_zero_rpm_stop_temperature
+FAN_ZERO_RPM_STOP_TEMPERATURE:
+65
+OD_RANGE:
+ZERO_RPM_STOP_TEMPERATURE: 50 110
+
+Sorry for any confusion caused.
+Tomasz
