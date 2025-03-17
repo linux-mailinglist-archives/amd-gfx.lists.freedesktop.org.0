@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A12A4A640B3
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 07:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B87A640BA
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 07:07:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E144110E32B;
-	Mon, 17 Mar 2025 06:07:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C2C810E344;
+	Mon, 17 Mar 2025 06:07:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FV5vF6EE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c8C9lkKD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com
- [209.85.219.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6900F10E271
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 06:07:37 +0000 (UTC)
-Received: by mail-qv1-f51.google.com with SMTP id
- 6a1803df08f44-6e8fc176825so36224736d6.0
- for <amd-gfx@lists.freedesktop.org>; Sun, 16 Mar 2025 23:07:37 -0700 (PDT)
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
+ [209.85.160.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 172C110E332
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 06:07:38 +0000 (UTC)
+Received: by mail-qt1-f181.google.com with SMTP id
+ d75a77b69052e-476775df2f0so48521141cf.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 16 Mar 2025 23:07:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742191656; x=1742796456; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1742191657; x=1742796457; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=xYgpFnCENjyCx0ujr8tvfEFugsuUEEd552y0lAob0/M=;
- b=FV5vF6EET+0RcgfDXwbMwd80bYXknKhoP//qgmFJ3aq3d+e7eUA6pc8TwSqrSzyFLj
- xt283zcAQtFWJ2HP3BIYaiqMCXylkhDZQvjyOZckMYoe5uJPtD5Y6Gc0vN9v6nX5qUM5
- BzcBtixtS0XHQbekyxiYeVhqdI3qoC/pGcHIaasUnvafip1gyTWzVFYCiRLk8xbz7Fvo
- EtNcSndZAdROJtupcZ38SEPcnmyPzMytIQ5EqCQ7LRIxq4H8Jbdwp1gAzp7NbgRuayr4
- FpJUn7CxDpU5LEfmq/dr9PmZGib9onhMwO9TlN7WWPG5Vbjcb/XOB8BXZzqyVJuqjwga
- h6Tg==
+ :reply-to; bh=Z4EwwmYXoROmhu+pcVys60/rK6gwOcKv4lidiGWBQz8=;
+ b=c8C9lkKDJkyao1jLctTWpDvrndJ0LdUYHcpS4LFSCAl0y0rxrc9SALbZRYmfRXr9UV
+ lRfkOUKZTJOWbS9ZRbduR/DB7XbBgou5jtpYkLwX4xTJVHgWgwzBeIfQ5bLnQmFIF/3D
+ L8TMF991Br3FD69eeOK/IjopWHJ/zXZsUhfRLI5GpqrvRlsnfvIGKmYXK8NZ2dJ83LLm
+ yRoj6N8/T4wpdHKhOp+kR4X/kZTVISYliuxiGTDHJ/8t1iDOe8vzafOnO3qLXRIYaiIM
+ 007GyBqwB3PY/vBOloU0iIiQeb9Tki9svMsLXJQSNjEQDyKd0rAIl8chv5RohudI6xFu
+ CuOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742191656; x=1742796456;
+ d=1e100.net; s=20230601; t=1742191657; x=1742796457;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=xYgpFnCENjyCx0ujr8tvfEFugsuUEEd552y0lAob0/M=;
- b=cPEOtrMlI/MWEUFq/xe9DqLgM4xlKb0B0DWI4vxla6MjuVKMABUI7af++Dk44yd9TF
- 6QtfDprAG2WvkOckPIL2yP1790dfI8DTuM8V2juWtI/vy1FxMOVTZS3ndOMgqcE7vKmz
- SI2dxcBmipuZwcyByoyJnHL4ktbpfQ/U+SFypMcNrrTCTZ2Wat1fQaUlB4WtTJs33mKp
- LMJ8vE4eSFnIq8GltoSF//iJmYy9Xmlhp5QEtFdZWX9SRk7A7r3J603tiE4LZZ3Lwrbd
- 1cFA0lqyAov0iMCfvF3kS+f9n21rmk3jEpFTeMHgLwsk+JCXQHyGaus50fr0I8GxqNzf
- xd5A==
-X-Gm-Message-State: AOJu0Yz8uQiR8T7NdR01Pf2CXzH9Fk5f32KDIKbYR4pOXOilcii3Rb4z
- Q/42mF+g0ZTrKAPsC/Z+oZdB3i2Ag1kScp73uFtmVaVvto7NsDyM0SQdEg==
-X-Gm-Gg: ASbGncskqBEApQB6G0Dd+018QqBXEewu4Dkj6UgrViwndrrss9mv0ojrn0lAlS9fAiQ
- W55ARF2g65vtn5fIF5upT/aBa3w1Xm22ct25k7touQNXveNPOCwxKDqe+/zm9tVsw+quDjY3xfT
- chXD6F7k+CGRKsguJ9ltiAkvgcpApgKTuwjzYl4LJ12j0QRqR4a2znH3DtLcnMd4PPVBQBvl9MH
- gCQQw6KSASo+KO1v3M898qrmlTr0Umb1iVHBrNBnG9hyf9eLANbM10zwy0lHDFIUFuXIID5LjoJ
- +cuk10Nv4uHk7SnO0/vWujzBXbt/zwzKRWct/ZTxqx8IUYqM6aH05LnjmMqS2wxDqYs=
-X-Google-Smtp-Source: AGHT+IEMNBEcC0em1xn1zG/Id5py3IvfMb7YLZukIk2SwRcNtlBj+exqyt63yLNPPjPJXl2qH8wYuQ==
-X-Received: by 2002:a05:6214:d05:b0:6e4:4011:9dff with SMTP id
- 6a1803df08f44-6eaea9f402dmr131895246d6.1.1742191656304; 
- Sun, 16 Mar 2025 23:07:36 -0700 (PDT)
+ bh=Z4EwwmYXoROmhu+pcVys60/rK6gwOcKv4lidiGWBQz8=;
+ b=wNZvMIoP2p5qvXqdPL1/jVMmAmnvH2zpIbG8yMl1G9IcdBh9uZCwnY97vKWOB1EHB8
+ 2mLOxWt4ONSY4zufvAuSGbA1ikllnBgHrfpcJvcnU9mim/8Z+Hg8G6GTThItamZw0t46
+ uClsD3xSjsRl9Qj4vEEBHyVeunIll5CUN97wI02vL92/zGjjy1UCENyuWLYwrHl/je7P
+ MVsoCtraYNJeCCFhaaBbCuCWZO4tAWFzqq48vSlDs5KyB54zxdAec2IWFVJaaFT8aspT
+ f7wuOfPQaIAEhXmVoGHdbZv4iA903AL8Mu8l58rHHECEg1t+Yr6r+ufIMhqAUwuca97r
+ y0Ng==
+X-Gm-Message-State: AOJu0YxJJW9dzoqc5WbRCsy0nPAbjjJZhrqw6K8rOCAAuxDiq9fF2oFn
+ nCXtRg8LsrRJtDuj629IVIBn0RhSNGHK1CrfktP2Es3LNmc6P4sG3omfCg==
+X-Gm-Gg: ASbGncs79j0Nmynmv3SPiqSFUhJjy+ASS/fVYLqIFlnsyjw0P3zLnLvXS0K9mzLlfnc
+ doJIflalloQ0cmYSFACKNYYN7oU/1rdo6dhVBf1ZCe1cU4Jydqc+wDceumRG8iYznwzIC9Pm7E+
+ x6/Sso+NzxYOsLKmrU4nLKhwlsqJjxlRRwfeLwk20dxCBIMhCEEH3ctTZVUkCexl968mfgwnXVp
+ CGJFD54PSY9RErdRTTwrMHxG1cFeIyOCGtbyAFQMF/jV/katVT0YxnVrK+CkmQw2BjdLBzX6moT
+ SQHtcFmvL3uvUNWywmn35chsq/JDr6Z3Q+OF+LoWahCUfbtZCWfyg6PGcG5LtFDxcE0=
+X-Google-Smtp-Source: AGHT+IEfk+Ur0+6+pf2zKVqUT0/QzaUY/zL0V17j9Hyl3waVSg9WBbK25FcGwWCbMyK/14MDrDf2Gw==
+X-Received: by 2002:a05:622a:1116:b0:471:b544:e6fc with SMTP id
+ d75a77b69052e-476c9369b5cmr150554831cf.26.1742191657018; 
+ Sun, 16 Mar 2025 23:07:37 -0700 (PDT)
 Received: from localhost.localdomain ([38.74.25.248])
  by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-476bb7f4f08sm50605931cf.56.2025.03.16.23.07.35
+ d75a77b69052e-476bb7f4f08sm50605931cf.56.2025.03.16.23.07.36
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 16 Mar 2025 23:07:35 -0700 (PDT)
+ Sun, 16 Mar 2025 23:07:36 -0700 (PDT)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 17/18] drm/amdgpu: cleanup DCE6 a bit more
-Date: Mon, 17 Mar 2025 02:07:01 -0400
-Message-ID: <20250317060702.5297-18-alexandre.f.demers@gmail.com>
+Subject: [PATCH 18/18] drm/amdgpu: continue cleaning up sid.h and si_enums.h
+Date: Mon, 17 Mar 2025 02:07:02 -0400
+Message-ID: <20250317060702.5297-19-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250317060702.5297-1-alexandre.f.demers@gmail.com>
 References: <20250317060702.5297-1-alexandre.f.demers@gmail.com>
@@ -83,60 +83,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use shifts already available in DCE6's defines, masks and shifts.
+Remove more duplicated defines and move some in sid.h for coherence with
+CIK.
 
 Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 4 ++--
- drivers/gpu/drm/amd/amdgpu/sid.h      | 8 --------
- 2 files changed, 2 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/si_enums.h | 90 +--------------------------
+ drivers/gpu/drm/amd/amdgpu/sid.h      | 16 ++++-
+ 2 files changed, 14 insertions(+), 92 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index 19b267f1540b..761ba83385ac 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -1968,8 +1968,8 @@ static int dce_v6_0_crtc_do_set_base(struct drm_crtc *crtc,
- 	case DRM_FORMAT_ABGR8888:
- 		fb_format = ((GRPH_DEPTH_32BPP << GRPH_CONTROL__GRPH_DEPTH__SHIFT) |
- 			     (GRPH_FORMAT_ARGB8888 << GRPH_CONTROL__GRPH_FORMAT__SHIFT));
--		fb_swap = (GRPH_RED_CROSSBAR(GRPH_RED_SEL_B) |
--			   GRPH_BLUE_CROSSBAR(GRPH_BLUE_SEL_R));
-+		fb_swap = ((GRPH_RED_SEL_B << GRPH_SWAP_CNTL__GRPH_RED_CROSSBAR__SHIFT) |
-+			   (GRPH_BLUE_SEL_R << GRPH_SWAP_CNTL__GRPH_BLUE_CROSSBAR__SHIFT));
- #ifdef __BIG_ENDIAN
- 		fb_swap |= (GRPH_ENDIAN_8IN32 << GRPH_SWAP_CNTL__GRPH_ENDIAN_SWAP__SHIFT);
- #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/si_enums.h b/drivers/gpu/drm/amd/amdgpu/si_enums.h
+index aee3036be30e..6da65778292b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si_enums.h
++++ b/drivers/gpu/drm/amd/amdgpu/si_enums.h
+@@ -23,96 +23,15 @@
+ #ifndef SI_ENUMS_H
+ #define SI_ENUMS_H
+ 
+-#define VBLANK_ACK                     (1 << 4)
+-#define VLINE_ACK                      (1 << 4)
+-
+-#define CURSOR_WIDTH 64
+-#define CURSOR_HEIGHT 64
+-
+ #define PRIORITY_MARK_MASK             0x7fff
+ #define PRIORITY_OFF                   (1 << 16)
+ #define PRIORITY_ALWAYS_ON             (1 << 20)
+ 
+-#define GRPH_ENDIAN_NONE               0
+-#define GRPH_ENDIAN_8IN16              1
+-#define GRPH_ENDIAN_8IN32              2
+-#define GRPH_ENDIAN_8IN64              3
+-#define GRPH_RED_CROSSBAR(x)           (((x) & 0x3) << 4)
+-#define GRPH_RED_SEL_R                 0
+-#define GRPH_RED_SEL_G                 1
+-#define GRPH_RED_SEL_B                 2
+-#define GRPH_RED_SEL_A                 3
+-#define GRPH_GREEN_CROSSBAR(x)         (((x) & 0x3) << 6)
+-#define GRPH_GREEN_SEL_G               0
+-#define GRPH_GREEN_SEL_B               1
+-#define GRPH_GREEN_SEL_A               2
+-#define GRPH_GREEN_SEL_R               3
+-#define GRPH_BLUE_CROSSBAR(x)          (((x) & 0x3) << 8)
+-#define GRPH_BLUE_SEL_B                0
+-#define GRPH_BLUE_SEL_A                1
+-#define GRPH_BLUE_SEL_R                2
+-#define GRPH_BLUE_SEL_G                3
+-#define GRPH_ALPHA_CROSSBAR(x)         (((x) & 0x3) << 10)
+-#define GRPH_ALPHA_SEL_A               0
+-#define GRPH_ALPHA_SEL_R               1
+-#define GRPH_ALPHA_SEL_G               2
+-#define GRPH_ALPHA_SEL_B               3
+-
+-#define GRPH_DEPTH_8BPP                0
+-#define GRPH_DEPTH_16BPP               1
+-#define GRPH_DEPTH_32BPP               2
+-
+-#define GRPH_FORMAT_INDEXED            0
+-#define GRPH_FORMAT_ARGB1555           0
+-#define GRPH_FORMAT_ARGB565            1
+-#define GRPH_FORMAT_ARGB4444           2
+-#define GRPH_FORMAT_AI88               3
+-#define GRPH_FORMAT_MONO16             4
+-#define GRPH_FORMAT_BGRA5551           5
+-#define GRPH_FORMAT_ARGB8888           0
+-#define GRPH_FORMAT_ARGB2101010        1
+-#define GRPH_FORMAT_32BPP_DIG          2
+-#define GRPH_FORMAT_8B_ARGB2101010     3
+-#define GRPH_FORMAT_BGRA1010102        4
+-#define GRPH_FORMAT_8B_BGRA1010102     5
+-#define GRPH_FORMAT_RGB111110          6
+-#define GRPH_FORMAT_BGR101111          7
+-
+-#define GRPH_ARRAY_LINEAR_GENERAL      0
+-#define GRPH_ARRAY_LINEAR_ALIGNED      1
+-#define GRPH_ARRAY_1D_TILED_THIN1      2
+-#define GRPH_ARRAY_2D_TILED_THIN1      4
+-
+-#define CURSOR_EN                      (1 << 0)
+-#define CURSOR_MODE(x)                 (((x) & 0x3) << 8)
+-#define CURSOR_MONO                    0
+-#define CURSOR_24_1                    1
+-#define CURSOR_24_8_PRE_MULT           2
+-#define CURSOR_24_8_UNPRE_MULT         3
+-#define CURSOR_2X_MAGNIFY              (1 << 16)
+-#define CURSOR_FORCE_MC_ON             (1 << 20)
+-#define CURSOR_URGENT_CONTROL(x)       (((x) & 0x7) << 24)
+-#define CURSOR_URGENT_ALWAYS           0
+-#define CURSOR_URGENT_1_8              1
+-#define CURSOR_URGENT_1_4              2
+-#define CURSOR_URGENT_3_8              3
+-#define CURSOR_URGENT_1_2              4
+-#define CURSOR_UPDATE_PENDING          (1 << 0)
+-#define CURSOR_UPDATE_TAKEN            (1 << 1)
+-#define CURSOR_UPDATE_LOCK             (1 << 16)
+-#define CURSOR_DISABLE_MULTIPLE_UPDATE (1 << 24)
+-
+-
+-#define ES_AND_GS_AUTO       3
+-#define RADEON_PACKET_TYPE3  3
+-#define CE_PARTITION_BASE    3
+-#define BUF_SWAP_32BIT       (2 << 16)
+-
+ #define GFX_POWER_STATUS                           (1 << 1)
+ #define GFX_CLOCK_STATUS                           (1 << 2)
+ #define GFX_LS_STATUS                              (1 << 3)
+-#define RLC_BUSY_STATUS                            (1 << 0)
+ 
++#define RLC_BUSY_STATUS                            (1 << 0)
+ #define RLC_PUD(x)                               ((x) << 0)
+ #define RLC_PUD_MASK                             (0xff << 0)
+ #define RLC_PDD(x)                               ((x) << 8)
+@@ -121,13 +40,6 @@
+ #define RLC_TTPD_MASK                            (0xff << 16)
+ #define RLC_MSD(x)                               ((x) << 24)
+ #define RLC_MSD_MASK                             (0xff << 24)
+-#define WRITE_DATA_ENGINE_SEL(x) ((x) << 30)
+-#define WRITE_DATA_DST_SEL(x) ((x) << 8)
+-#define EVENT_TYPE(x) ((x) << 0)
+-#define EVENT_INDEX(x) ((x) << 8)
+-#define WAIT_REG_MEM_MEM_SPACE(x)               ((x) << 4)
+-#define WAIT_REG_MEM_FUNCTION(x)                ((x) << 0)
+-#define WAIT_REG_MEM_ENGINE(x)                  ((x) << 8)
+ 
+ #define RLC_SAVE_AND_RESTORE_STARTING_OFFSET 0x90
+ #define RLC_CLEAR_STATE_DESCRIPTOR_OFFSET    0x3D
 diff --git a/drivers/gpu/drm/amd/amdgpu/sid.h b/drivers/gpu/drm/amd/amdgpu/sid.h
-index b5d5ff639be4..6c6bf2154ce8 100644
+index 6c6bf2154ce8..494c8ca74e6f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/sid.h
 +++ b/drivers/gpu/drm/amd/amdgpu/sid.h
-@@ -708,26 +708,18 @@
- #define ES_AND_GS_AUTO       3
- #define BUF_SWAP_32BIT       (2 << 16)
+@@ -586,6 +586,7 @@
+ #define	DMA_PACKET_POLL_REG_MEM				  0xe
+ #define	DMA_PACKET_NOP					  0xf
  
++/* VCE */
+ #define VCE_STATUS					0x20004
+ #define VCE_VCPU_CNTL					0x20014
+ #define		VCE_CLK_EN				(1 << 0)
+@@ -705,9 +706,10 @@
+ #define GRPH_FORMAT_RGB111110          6
+ #define GRPH_FORMAT_BGR101111          7
+ 
+-#define ES_AND_GS_AUTO       3
+-#define BUF_SWAP_32BIT       (2 << 16)
 -
--#define GRPH_RED_CROSSBAR(x)           (((x) & 0x3) << 4)
++#define GRPH_ENDIAN_NONE               0
++#define GRPH_ENDIAN_8IN16              1
++#define GRPH_ENDIAN_8IN32              2
++#define GRPH_ENDIAN_8IN64              3
  #define GRPH_RED_SEL_R                 0
  #define GRPH_RED_SEL_G                 1
  #define GRPH_RED_SEL_B                 2
- #define GRPH_RED_SEL_A                 3
--
--#define GRPH_GREEN_CROSSBAR(x)         (((x) & 0x3) << 6)
- #define GRPH_GREEN_SEL_G               0
- #define GRPH_GREEN_SEL_B               1
- #define GRPH_GREEN_SEL_A               2
- #define GRPH_GREEN_SEL_R               3
--
--#define GRPH_BLUE_CROSSBAR(x)          (((x) & 0x3) << 8)
- #define GRPH_BLUE_SEL_B                0
- #define GRPH_BLUE_SEL_A                1
- #define GRPH_BLUE_SEL_R                2
- #define GRPH_BLUE_SEL_G                3
--
--#define GRPH_ALPHA_CROSSBAR(x)         (((x) & 0x3) << 10)
- #define GRPH_ALPHA_SEL_A               0
- #define GRPH_ALPHA_SEL_R               1
+@@ -725,6 +727,14 @@
  #define GRPH_ALPHA_SEL_G               2
+ #define GRPH_ALPHA_SEL_B               3
+ 
++#define GRPH_ARRAY_LINEAR_GENERAL      0
++#define GRPH_ARRAY_LINEAR_ALIGNED      1
++#define GRPH_ARRAY_1D_TILED_THIN1      2
++#define GRPH_ARRAY_2D_TILED_THIN1      4
++
++#define ES_AND_GS_AUTO       3
++#define BUF_SWAP_32BIT       (2 << 16)
++
+ /* CUR blocks at 0x6998, 0x7598, 0x10198, 0x10d98, 0x11998, 0x12598 */
+ 
+ // #define CUR_CONTROL                           0x1a66
 -- 
 2.48.1
 
