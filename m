@@ -2,68 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D0C6A640AA
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 07:07:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 730A7A640A9
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Mar 2025 07:07:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB11F10E2E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2E8510E2DF;
 	Mon, 17 Mar 2025 06:07:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fYDpwO8o";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ID3KO2lF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
- [209.85.160.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 253C410E2DF
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 06:07:29 +0000 (UTC)
-Received: by mail-qt1-f182.google.com with SMTP id
- d75a77b69052e-471fe5e0a80so37376411cf.1
- for <amd-gfx@lists.freedesktop.org>; Sun, 16 Mar 2025 23:07:29 -0700 (PDT)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
+ [209.85.160.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF59510E271
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 06:07:28 +0000 (UTC)
+Received: by mail-qt1-f178.google.com with SMTP id
+ d75a77b69052e-47690a4ec97so41609661cf.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 16 Mar 2025 23:07:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742191647; x=1742796447; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1742191648; x=1742796448; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=97a57FFucYk6i0P8dY0xsS4aMg003QyZQ+q8Q+4QQfA=;
- b=fYDpwO8oz4jSfdVi1a5kG6s5LLbYZ1/9CQVXOgqvKD7Z29+Lld28PFGEPMgyCAylxz
- TVy4QPU23yxQ8byDjI0UtM/IC2ZAQyBVBnV5T8Yz5panTKtMANpkJTPwimUDR0SyK0fE
- eBOut5MYND8Bo6RP/xhsuSPkSEh1YzCVogufpOOw6W5y8duq/iVu5hjGCqMxldfGzO16
- CiGJsiUIm3KoetGkkYb+TI/c8tUH9V8OQuPhTE93OO3wq+78iwJMjbuvDWBPcOPKrEQF
- Ark+E/ztulM3aEz+EhcfwhrUuRDteqzeh2UekppL9MFwGQR/JAz8ixi5iRW6IsT3AAl7
- R74A==
+ :reply-to; bh=PL1xSGy/8VbgRXiY5G9SN9Lab3J8WeumuX411JsDSTU=;
+ b=ID3KO2lFTzLjMp5+CacVqZySmpPe0yYg0jYJ9mhcNuPsIufwP1P3IOZ7e6nWIFlga6
+ 4n0sVIXX4w8el87VG61lhjm2CdNKK9bkjtFEDhSI7nkx7Ky6sL3z/uHE98L1RBUHJbwz
+ l2M7hYRoQHukobKL3Z6s7t2StaXs49CJZ+LDBJLKmyg1lBd4pWFAkiw7d3fQ52Qx3PGr
+ R1s4a3YdmSYj9C5AKev0Zyv7yTbz6cWvp9GHt5Pi9L/PLInTb/7nxSLRVz3DcUQfd+fF
+ Qh2vvROYuK+zu43OroNCdeARyncN6vYsjGadil7Ufre/gaiWAvJdbFtdgw58wufUByzc
+ ONVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742191647; x=1742796447;
+ d=1e100.net; s=20230601; t=1742191648; x=1742796448;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=97a57FFucYk6i0P8dY0xsS4aMg003QyZQ+q8Q+4QQfA=;
- b=rbukqzlCzPVDIQKXqHMEsMggoCO/poEvIqhfSGGpWtVc+aFTAXv/CFHxhaF3FwHs5I
- 5js6YSahroKgJgCcFcMwXGbOd7JSGoFuV7luQWCiv0k21qOPD6tTbuhEqnzDQz2+APl8
- ClmYckx7TKdPpqvKpFPJHlF+EafD0Gwi7Skgq9XnuS7zAib74Iczis1Wl1tf5WytYTEs
- 5g4oVkeIztqXtqSvfVbtg/a2iSNake4FeW1FohkaHVxDClD5aEQTT7xhnWh/NasDEPdK
- 2xpOC6UNMU700M9fhDJdQ5+iYymYoCKCNMiZI4LlKnGnUc6Bqr4zjzQ3NrIchdss0nlE
- KuGg==
-X-Gm-Message-State: AOJu0Yw6ZWuUmDq33u2dDfg3Xhf76HGUyxJ5PT3zNx0P7j5U63qDnyFQ
- 8Tydl8+FYSYHpJE78y0Klk4BiyBJJU/MZpW4Mz8el5Lf1aNQMfNHjXgyhQ==
-X-Gm-Gg: ASbGncsaxzI6DR2Md75PaeeCkZ9bou6dswQ/yTnu2+q7GrzbVcwAk+7FuAzDjNauImh
- glcjif3TOsWWmuY5PBErjEAacV9iptVoNrB26xqKYwpZetDgaIgw1dJlYDB+6JmBa5Fr/gWHvlD
- SLL0fEyAiBRtbO0icklqjoKovEIK2v2frakMeiEcskgdU7NIdtDfH5InMYaRcjkCyHgo3n/Jb8j
- J3hC3iOPsaWhN4rPkmTiasLPcASHpmJu2Kpq/tCcUVh92aWkc+i6/8kCDPqd3i1zJU7TraNbL9e
- bjAiSJSgiRAy/RYLG1PGJOD49IdCGjA1i2ZDNcRmi3JH/fEFUte6ssK+5xBD6pgDU80=
-X-Google-Smtp-Source: AGHT+IGj0C+8QZJxWlVpFlbO+vuga4HGshi84GGnSPYKtjVpCnRCvMR2VXa12IouYtkMy38fPJm1uA==
-X-Received: by 2002:ac8:7f11:0:b0:476:a967:b242 with SMTP id
- d75a77b69052e-476c815a099mr193429371cf.30.1742191647003; 
+ bh=PL1xSGy/8VbgRXiY5G9SN9Lab3J8WeumuX411JsDSTU=;
+ b=KzTM87jUYlEKbCnMo4Liap8U6v01d4UbLAU18ZEJoIBbYIlvYKaoFtq/NHyvLaJRxT
+ 9k22sWkwE2mejz5VyizSdpZTwtec5xGqiqGio6in7EewQgI2lqMY20DAQOJwzNE02RuT
+ j4eFPSAapWhuTi33frug5IosB3QJh0vsBC6h9kWl5oYv9KfOfh6iuTMURTuDMyFtQ2HX
+ Vh3SgyP7vLFf5lZsWeU3GKs84IvelBnkZpz79371IJhG7FWr4DmLEr1VK1Q8DU+xLhCw
+ ieU87mfNtrYnzYqgnkO1QhO8Axx7S8GPkFPcrpLpoyboiRatCI+CX9YwNhRSP3cWImtC
+ Q+RA==
+X-Gm-Message-State: AOJu0YytxHV3g8+WDUx3ITnfuqcAzks20XBHqPkEQHJGrLMSRHMq5tXa
+ BMdTKnn5a72LSAI8x0BivDAXFeuoG50+MWcZc2wWHIyN/ba+EKfqnTHw3A==
+X-Gm-Gg: ASbGncvhqT7GyVoNSkOH6lrFfJUu+7W2i4XXP6QwNqbp+hU+4yBeJ/6pHECSd6bzV/C
+ G853/RNOWfpgtu+GOaj/ZbGBnJNRehCwXUMJOCwWd0k01k5Poe8UBtojtJ83L/Uu35IDl5HF5J1
+ Cuu0MxF1wPoh3j7QCCNZKvpqQxdQBVhSTqastN2I0e/HMxoiiYHXXvKRB0qcOaLZ+DDHNIsFazQ
+ fvZTvthLrpnXC1SztKodi4BHcck5PbaiIuS0qCrss8sE6czEJIUFuEEHGsMIMD0vhnud2P3kvg0
+ EhlS34FDmXCZ7I6URLhqhmodGvXjo/wLek77hrKtVAmh1iPYRCjg2U0SRlOJNIijPDI=
+X-Google-Smtp-Source: AGHT+IFMcORuTEEi8kn/aLDoq9V5vULpD54YDsH+OrSAmJ5Mc+q4NGspQnopeYXT5rPc8nqVLI03XA==
+X-Received: by 2002:a05:622a:5b0b:b0:476:63e5:eb96 with SMTP id
+ d75a77b69052e-476c815e8f2mr174916621cf.28.1742191647688; 
  Sun, 16 Mar 2025 23:07:27 -0700 (PDT)
 Received: from localhost.localdomain ([38.74.25.248])
  by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-476bb7f4f08sm50605931cf.56.2025.03.16.23.07.26
+ d75a77b69052e-476bb7f4f08sm50605931cf.56.2025.03.16.23.07.27
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 16 Mar 2025 23:07:26 -0700 (PDT)
+ Sun, 16 Mar 2025 23:07:27 -0700 (PDT)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 05/18] drm/admgpu: move si_ih.c away from sid.h defines
-Date: Mon, 17 Mar 2025 02:06:49 -0400
-Message-ID: <20250317060702.5297-6-alexandre.f.demers@gmail.com>
+Subject: [PATCH 06/18] drm/amdgpu: use GRPH_SECONDARY_SURFACE_ADDRESS_MASK
+ with GRPH_SECONDARY_SURFACE_ADDRESS in DCE6
+Date: Mon, 17 Mar 2025 02:06:50 -0400
+Message-ID: <20250317060702.5297-7-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250317060702.5297-1-alexandre.f.demers@gmail.com>
 References: <20250317060702.5297-1-alexandre.f.demers@gmail.com>
@@ -83,57 +84,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-They are properly defined under oss_1_0_d.h
+It seems a copy-paste error: since we are working with
+mmGRPH_SECONDARY_SURFACE_ADDRESS, 
+GRPH_SECONDARY_SURFACE_ADDRESS__GRPH_SECONDARY_SURFACE_ADDRESS_MASK
+should be used.
 
 Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/si_ih.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/si_ih.c b/drivers/gpu/drm/amd/amdgpu/si_ih.c
-index 94468c87122a..234bb76d12f9 100644
---- a/drivers/gpu/drm/amd/amdgpu/si_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si_ih.c
-@@ -214,7 +214,7 @@ static int si_ih_resume(struct amdgpu_ip_block *ip_block)
- static bool si_ih_is_idle(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
--	u32 tmp = RREG32(SRBM_STATUS);
-+	u32 tmp = RREG32(mmSRBM_STATUS);
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+index a9a087a841ea..0ac66493ef40 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+@@ -2010,7 +2010,7 @@ static int dce_v6_0_crtc_do_set_base(struct drm_crtc *crtc,
+ 	WREG32(mmGRPH_PRIMARY_SURFACE_ADDRESS + amdgpu_crtc->crtc_offset,
+ 	       (u32)fb_location & GRPH_PRIMARY_SURFACE_ADDRESS__GRPH_PRIMARY_SURFACE_ADDRESS_MASK);
+ 	WREG32(mmGRPH_SECONDARY_SURFACE_ADDRESS + amdgpu_crtc->crtc_offset,
+-	       (u32) fb_location & GRPH_PRIMARY_SURFACE_ADDRESS__GRPH_PRIMARY_SURFACE_ADDRESS_MASK);
++	       (u32) fb_location & GRPH_SECONDARY_SURFACE_ADDRESS__GRPH_SECONDARY_SURFACE_ADDRESS_MASK);
+ 	WREG32(mmGRPH_CONTROL + amdgpu_crtc->crtc_offset, fb_format);
+ 	WREG32(mmGRPH_SWAP_CNTL + amdgpu_crtc->crtc_offset, fb_swap);
  
- 	if (tmp & SRBM_STATUS__IH_BUSY_MASK)
- 		return false;
-@@ -240,23 +240,23 @@ static int si_ih_soft_reset(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 
- 	u32 srbm_soft_reset = 0;
--	u32 tmp = RREG32(SRBM_STATUS);
-+	u32 tmp = RREG32(mmSRBM_STATUS);
- 
- 	if (tmp & SRBM_STATUS__IH_BUSY_MASK)
- 		srbm_soft_reset |= SRBM_SOFT_RESET__SOFT_RESET_IH_MASK;
- 
- 	if (srbm_soft_reset) {
--		tmp = RREG32(SRBM_SOFT_RESET);
-+		tmp = RREG32(mmSRBM_SOFT_RESET);
- 		tmp |= srbm_soft_reset;
--		dev_info(adev->dev, "SRBM_SOFT_RESET=0x%08X\n", tmp);
--		WREG32(SRBM_SOFT_RESET, tmp);
--		tmp = RREG32(SRBM_SOFT_RESET);
-+		dev_info(adev->dev, "mmSRBM_SOFT_RESET=0x%08X\n", tmp);
-+		WREG32(mmSRBM_SOFT_RESET, tmp);
-+		tmp = RREG32(mmSRBM_SOFT_RESET);
- 
- 		udelay(50);
- 
- 		tmp &= ~srbm_soft_reset;
--		WREG32(SRBM_SOFT_RESET, tmp);
--		tmp = RREG32(SRBM_SOFT_RESET);
-+		WREG32(mmSRBM_SOFT_RESET, tmp);
-+		tmp = RREG32(mmSRBM_SOFT_RESET);
- 
- 		udelay(50);
- 	}
 -- 
 2.48.1
 
