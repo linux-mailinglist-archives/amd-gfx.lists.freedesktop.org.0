@@ -2,77 +2,126 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D75EA68D23
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Mar 2025 13:46:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3687A68AE7
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Mar 2025 12:12:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8006610E353;
-	Wed, 19 Mar 2025 12:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29F6F10E21C;
+	Wed, 19 Mar 2025 11:12:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NbySL0WD";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kYeC1C6L";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
- [209.85.208.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48AED10E2FA
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Mar 2025 10:49:09 +0000 (UTC)
-Received: by mail-ed1-f41.google.com with SMTP id
- 4fb4d7f45d1cf-5e82396baaeso820942a12.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Mar 2025 03:49:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742381348; x=1742986148; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=bTgikse23GyGclN40fXjI2agaY8948pyCHv3GZdkAVo=;
- b=NbySL0WDylqb5oIZ46RzKp6LLCnrRdLYzxN8+IrP56PWinXfPVdCHNNyVTiMhhJtGh
- fplvOgZFObIPX0Z8eUdg1+PGkQCd2pvpLFOJE82/S8/Lv26iU7uTt8i7PW+jYwPFtshi
- dHMrN+KSFMQSEOHxJsc+8DAF4qtQ7gVpLBCtoFHKwbJN0WmYdjQbgLLtT0ZMbk9i1S04
- 6O+U6Jxg8geOHY+TEkWNP0M0b+lOrnGF/kcsBjK4PlhuhaleIdZB3ql5VoJqx8mCd9mb
- ie6Go4M0D6RUlnUpXpPCGnZHU8kYCHAhkIMwapklzcKPiEt31dxmtPdN3YUGjmF3Yrig
- y94A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742381348; x=1742986148;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=bTgikse23GyGclN40fXjI2agaY8948pyCHv3GZdkAVo=;
- b=tsZSaIeCjA1SKJSuvQryF3KIFDrRX0m2IOF66xuEhThM4ZhjtdpGo1gHzMXfEXpxIm
- dFmhIL+NoYctb3KOmOxB2Dpt0EAbn7dof+ZQoQq1J7xhj0DpntwYKLCu3CytnvoL9RnX
- 1Ib+rBGcYduPNN6Kh6hIGgxoZBIgdm8PlqzD7yUWczAigNEeGywrEvgmVNoYlaF1XdP/
- UqJoZF4315VvplmNhZMZvMX3S/m201g6o1lGbF3uiWqIupH4melBcqY11p22j9/zKqm1
- kR205CMwsL5ZMLqnb1c8NPWV6jyAzjEoIoxNHuupjWADZYtkTLS5wgPu+B2AZUqhpG97
- zO2g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXtFwuKrzmNHxMXtdTSEmRp63vJCy9HBl9JFxZq632LTuxEk28w+tupch61+VpTI9J4X+DVckMy@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzAw0Ugxifd0NS1gBucggr2AzMlmoKOKkvtgoxnCLJo8X99aoFa
- iJgi+ovxBbKi5O+e5Gy79hb/PegQJHbinTUlP+IyQ8qf/hAlZN5bhFTGqPMNofQJs2uhbN5b1KP
- 0C3TyefYd3X5eTSpKAqvc6aYXGck=
-X-Gm-Gg: ASbGncsSsobGGyWsUpJ3jZY7ByZPI1NHvdJgmjqsQzacVTgjfjMsohuh8ZeIri423oM
- dSCqs9SdI2V6rQmC2PC3hUNWq/dkO6dPW80zpE1rimLoVEesF7WK7LkRVrEsyz1UuOu9dKEuqW5
- YVKcsl6AgJRq1FQS2ULmCfk+MZeBQ7q3wSs4w=
-X-Google-Smtp-Source: AGHT+IHpN5xfuZTVQB/m0CRWe9Jw4VfJBkZIA1xGe63C4z3vPd5vaVyx7aI71r7Cju7F7Y7Vf0/ZQ4OXUpAkB8DEa/c=
-X-Received: by 2002:aa7:c982:0:b0:5e7:898b:249f with SMTP id
- 4fb4d7f45d1cf-5eb80f93874mr633888a12.8.1742381347375; Wed, 19 Mar 2025
- 03:49:07 -0700 (PDT)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAB8310E21C
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Mar 2025 11:12:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sl+/h0Q3bzE0CP/XeKqS3iOgaeE/ibIDgHyE/nz84tf/VelC/cNau4P2ttQJ19Haya9LscgfQ54od7w3q1vKbdL8fPL8iSif+HcW8/abKam/RXP0xQoXpKKHlNSFSKKMGIfM7rfitJXrzfC7PEy1jxIfR7/gJKq+VilJ1YGtIwRAcBSGdgw8BPboGwzauhAFM60JO/476yJsnWkSiJ/hXAQ28IU6sDpqy3ygiqDApJcF7GAh2wxfdLNEM76wuna8Qg4hmaTMxADZQsIBFrUZsuyqLYkZksADMwgL6jN9LfJ7UkQy6YpfPuF3tJt/oCO/oyl2MyZIS7QbNNsGHgSzWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=djJTdTRb1fv8zAJsBVb30x6bHmEt73bdboSoWlOwHKQ=;
+ b=ojAPX/DLPiZGyi8vq6zLu2JFgBWbEajyXeWUlJS2bugZy+KBxc2Pvr6xrz+xIAC16F8fvBXCt7vRqnygnx3F8+/3xYAVQPiv2YpllIYCwyjtK+XqomB7oITKzOae7YCos3LiuJiSybsXde7VdQPxvkjr9yUm4IQqBRz9kBkiRWGcAKnqeSIpFv6n7fC6ZTuy4Oa4wYZNcSVu0pRtYpMMf1cuXUp8bGuIz1du/5qNzHyInjtd7sXUFtUudk1UYiDLM7K/T4zBshHvXACw1JYGBjWwuMeqZYhUXEQqe8a920ZXS97t/XHGPrDxsFol+ac1Fvoj8TL3W8/B7Mn76wvDLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=djJTdTRb1fv8zAJsBVb30x6bHmEt73bdboSoWlOwHKQ=;
+ b=kYeC1C6LzPrCgb+XWLgw8jOrjaOZKai/oLbW558AXiaBwKRAZPbWagVmIRK33PWTwCoctlAlD6ikk9nPWlSjAzShXvmDPxSz24erbAhwpVzVWvFtyiO3jDh0yGtdEaF6CtdpzQ3C0coGpEhXydv1EzlAbIr5V6jVvu5FtG93c34=
+Received: from MW4PR03CA0063.namprd03.prod.outlook.com (2603:10b6:303:b6::8)
+ by MN2PR12MB4360.namprd12.prod.outlook.com (2603:10b6:208:266::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Wed, 19 Mar
+ 2025 11:12:45 +0000
+Received: from SJ5PEPF000001D5.namprd05.prod.outlook.com
+ (2603:10b6:303:b6:cafe::bf) by MW4PR03CA0063.outlook.office365.com
+ (2603:10b6:303:b6::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.33 via Frontend Transport; Wed,
+ 19 Mar 2025 11:12:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ5PEPF000001D5.mail.protection.outlook.com (10.167.242.57) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8534.20 via Frontend Transport; Wed, 19 Mar 2025 11:12:45 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 19 Mar
+ 2025 06:12:44 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 19 Mar
+ 2025 06:12:44 -0500
+Received: from POL-D1-DKASZEWS-WSL.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
+ via Frontend Transport; Wed, 19 Mar 2025 06:12:43 -0500
+From: Dominik Kaszewski <dominik.kaszewski@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <aurabindo.pillai@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix typo in DC_DEBUG_MASK kernel-doc
+Date: Wed, 19 Mar 2025 12:12:43 +0100
+Message-ID: <20250319111243.14206-1-dominik.kaszewski@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20250315201558.339913-1-tomasz.pakula.oficjalny@gmail.com>
- <20250315201558.339913-3-tomasz.pakula.oficjalny@gmail.com>
- <DM4PR12MB5165690B22C63D856BFFD7708ED92@DM4PR12MB5165.namprd12.prod.outlook.com>
-In-Reply-To: <DM4PR12MB5165690B22C63D856BFFD7708ED92@DM4PR12MB5165.namprd12.prod.outlook.com>
-From: =?UTF-8?Q?Tomasz_Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-Date: Wed, 19 Mar 2025 11:48:56 +0100
-X-Gm-Features: AQ5f1Jr4OKysNT1Aw9ZSku-L0GYX5JBmW1fSSiPu7ldN4nP3GjMGjovkbu5Ufj0
-Message-ID: <CAFqprmyv+WXmBWwOa3uPuOkmLtrkfc7jEXquXEyb-Bjuni_jBQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amd/pm: add zero RPM stop temp OD setting support
- for SMU 14.0.2
-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Wang,
- Yang(Kevin)" <KevinYang.Wang@amd.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 19 Mar 2025 12:46:31 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB05.amd.com: dominik.kaszewski@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D5:EE_|MN2PR12MB4360:EE_
+X-MS-Office365-Filtering-Correlation-Id: 877734ba-0293-49b0-3ba1-08dd66d6f992
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?EfpkCUj5f4sK+J4+6qAEc9geJh8c5uyB8PNRv+uyIi93XALqov7X8lTa8vtv?=
+ =?us-ascii?Q?bGqe0DfBtClZrtViTHyzdlEP9e54HxHuKUO/0i2SGgBmkx7yNaDKikPdni4A?=
+ =?us-ascii?Q?BQXjAIITSkaVSawfd2UQ2GuatN8mrbtvfxJWkHDe0Ow3sYoyLDC/b4lD+gku?=
+ =?us-ascii?Q?ZJ+68iRbqvlTfJiXG8SGykalQB0kaSU7QRaFR7bVk/GIABc4z628HzuQMeNV?=
+ =?us-ascii?Q?nQ3SjWkMmg8w87zLbo4foXTGVf9OS6C4ig7p+9896dgqtVLPt5uwGb/Q6p92?=
+ =?us-ascii?Q?JCxs6UPy1NxfQ6tC82h61kEScrxmh7Q4xDxvhEWODN8DaLWDG/va54Yp6ybV?=
+ =?us-ascii?Q?gPA6ocAMcWeIodugR+mJQZao5APCIZuMDCCv8rJnWiJSavFfIFmscd7HSSHf?=
+ =?us-ascii?Q?E/4bQIfr08e4rQWVgEO32ZUqYhc8UcwdkGI9x2RGrnR+JjPnmuXbaF/9AsYq?=
+ =?us-ascii?Q?DRbeA5m2FzGNQDkf9lpubMtyAhXyYpbFlsdxzcuCL/XtjXRfLgraJTaR+bUi?=
+ =?us-ascii?Q?+b+db6/SPReks1FNzVFN7E3ITJ2Rii4a59M+nMkARU04SqbbpKGkMlD4bZuT?=
+ =?us-ascii?Q?nx5kYvLQgwozcgtEDRVeEC4jqP26iEGaoZ6tSsGNXv2iSA6beq7cIyJUP4n+?=
+ =?us-ascii?Q?fuGiCqnRUJ1SIhyc9LeI/rM+p6XbHddyI3Ux/7oqH9zIrzfIwLoyXECy54mc?=
+ =?us-ascii?Q?bXm9MrfrlRL10o4aMpgkAnX2+3tUC14+jJy9o+vooktl4SxqLxUSDZjc04Dw?=
+ =?us-ascii?Q?NixvrXhTtT1LLV1SMvQ5i9TPIj6PMiKEbdXfPA7NDyEy/7l26dm9J2KNJVvL?=
+ =?us-ascii?Q?WH01wiRrAppoMwl+LmI6bgRiXlkNkcEBJbnHC4dfoEaL9PKpUoh4G6V8CdOi?=
+ =?us-ascii?Q?eMWQ7qEqa9G4bUwW+XZOsFAZHrt3+X1fuOgn/+lHRjzINFORayawGYKz9JHg?=
+ =?us-ascii?Q?MSilFTvOMxLKLU0mQv0W/XtYpxCCHaSABOl1GRiO3M9XtYcTBmG1512p6cFR?=
+ =?us-ascii?Q?Fe4iEIvV3lFJMlO/TPsa24tGVtAfZARSes1lJIAMlINVjrO7Br8CqJ8+Mba7?=
+ =?us-ascii?Q?UyIwIMg14Q+paxHT/5PcjzSNgt7qLINteRvzcWUfq9K3JAkXlYNO4C0bUs/0?=
+ =?us-ascii?Q?MICdrIL1WuKC4Xlzn7kxuhLpArkH0V14zRzR68jF4r3eHbK/P+pRxUMhF3E4?=
+ =?us-ascii?Q?te9d4+MObKsCtTueYANL86qhRZ7syGuzoK6ld99iJ3t0FVy9RLu0un3JJlaP?=
+ =?us-ascii?Q?Bl26BMuo4ygoLHCD0ZJ/3xQmz6wYEhJ2e2HyQb4ik1PbAhfpDL7K52v+w5y6?=
+ =?us-ascii?Q?sZ1mtWZZipMaaxvhiRaNIvVBwC1VptZTJIRirLWkvsFtOqmDCvUpJWxNSuIG?=
+ =?us-ascii?Q?0dZy9x9L+KL6+xG5gbAuF2GDVooBa2BG5WaM8yY5BnHPmbJIxupPwXQ9NkMT?=
+ =?us-ascii?Q?jXnegVM+xDtIvmFffBLutR+d5lrLUFpt2DODsFjzBMyCswCZdVPs85gBEcd3?=
+ =?us-ascii?Q?DD2pmki6Qod640c=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2025 11:12:45.1373 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 877734ba-0293-49b0-3ba1-08dd66d6f992
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001D5.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4360
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,55 +136,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Mar 2025 at 03:19, Feng, Kenneth <Kenneth.Feng@amd.com> wrote:
->
-> [AMD Official Use Only - AMD Internal Distribution Only]
->
-> -----Original Message-----
-> From: Tomasz Paku=C5=82a <tomasz.pakula.oficjalny@gmail.com>
-> Sent: Sunday, March 16, 2025 4:16 AM
-> To: Deucher, Alexander <Alexander.Deucher@amd.com>; Feng, Kenneth <Kennet=
-h.Feng@amd.com>; Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Subject: [PATCH 2/2] drm/amd/pm: add zero RPM stop temp OD setting suppor=
-t for SMU 14.0.2
->
-> Caution: This message originated from an External Source. Use proper caut=
-ion when opening attachments, clicking links, or responding.
->
->
-> Hook up zero RPM stop temperature for 9070 and 9070 XT based on RDNA3 (sm=
-u 13.0.0 and 13.0.7) code.
->
-> Signed-off-by: Tomasz Paku=C5=82a <tomasz.pakula.oficjalny@gmail.com>
-> ---
->  .../swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h |  3 +-  .../drm/amd/pm/sw=
-smu/smu14/smu_v14_0_2_ppt.c  | 50 ++++++++++++++++++-
->  2 files changed, 51 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14=
-_0.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
-> index c2fd0a4a13e5..a5eba7b91e2f 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu14_driver_if_v14_0.h
-> @@ -846,9 +846,10 @@ typedef struct {
->    uint16_t               FanTargetTemperature; // Degree Celcius
->    //zero fan
->    uint8_t                FanZeroRpmEnable;
-> +  uint8_t                FanZeroRpmStopTemp;
->    //temperature
->    uint8_t                MaxOpTemp;
-> -  uint8_t                Padding1[2];
-> +  uint8_t                Padding1;
-> [Kenneth] - This change on this file is not required. The latest version =
-on drm-next has the change.
-> Could you please confirm?
-> Thanks
+Add missing colon in kernel-doc for DC_DEBUG_MASK enum.
 
-I just (19-03-2025 10:48 UTC) checked against the current drm-next and
-this is still needed.
-The last change to smu14_driver_if_v14_0.h was made 5 months ago by
-Kenneth Feng.
-It's the same state against which I made this patch.
+Signed-off-by: Dominik Kaszewski <dominik.kaszewski@amd.com>
+---
+ drivers/gpu/drm/amd/include/amd_shared.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Tomasz
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
+index 4c95b885d1d0..c8eccee9b023 100644
+--- a/drivers/gpu/drm/amd/include/amd_shared.h
++++ b/drivers/gpu/drm/amd/include/amd_shared.h
+@@ -366,7 +366,7 @@ enum DC_DEBUG_MASK {
+ 	DC_HDCP_LC_FORCE_FW_ENABLE = 0x80000,
+ 
+ 	/**
+-	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK If set, upon HDCP Locality Check FW
++	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK: If set, upon HDCP Locality Check FW
+ 	 * path failure, retry using legacy SW path.
+ 	 */
+ 	DC_HDCP_LC_ENABLE_SW_FALLBACK = 0x100000,
+-- 
+2.43.0
+
