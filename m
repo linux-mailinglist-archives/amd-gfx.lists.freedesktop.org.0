@@ -2,150 +2,230 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0450A68A4B
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Mar 2025 11:59:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4A1EA68D24
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Mar 2025 13:46:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 372D910E012;
-	Wed, 19 Mar 2025 10:59:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF5610E346;
+	Wed, 19 Mar 2025 12:46:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kuaUVh8O";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NX5mwVHN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2061.outbound.protection.outlook.com [40.107.93.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAE1F10E012
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Mar 2025 10:59:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OeTLj/vJE3VVhbSJQ7VHN000ZuosbbGGsL39m2y3LlWpjXxK5LnBRI6DqI4BF+0v1LjsW2Lnm9pBhtsVr0KZ68Ck6Uv3VCmB/Aepc4Dsvw7CIbUcPrdWN9goXHEq7mN8aP8N132BQXONnxU9MQzbuW2UVSbrKo8SJM7wRbLgWN6o+Qv35h3ZNt01j0nyEcrV/d1U49jJWUV71dvoAYDBWl15wCiMN/AjEsipLkIe6U2ZBdkge7l9cdTEn1a1LbROM81hagkVzUVB35M0KAvq7cuCCp6mc3A+yh1rIOT1h8q6xM2AsFJjH5G2eer5zTewR2bz2+E4Mr/hn4irF1lP1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N5ogiPE9T12jRJRzDNSLXy6L2x3csjHBbWtxd0pHl7o=;
- b=sUSMON5U3Ho8d69nDDngxxfzYpnItYZ6BWBKptaPvqy2g9/wP4smo4OS7kUx5aWAWIKoAke6Nh6HM77vU6J8YQthnXOMUMyJQOB+r8SyZpxIHHwbaKdxloDPcdFOlY1f1gMSg9ZHIexwZH2WHY3//vdMbW+54iQ5mdeJ9VpZanA3rLZlQZZU4gFkl+izTB2MdxawHQgBbol0i1uCKGNIVXumMMnk/Rr22my4k3xp2r4P0g27fk7ttpcVh1CYB5H7ibuhxKS/xIRAJKqHE92wg0WmLXUpjKlXgGltzUptGOFsWPkytDAAFwGiQniVWLBbIhdw6DJWvTkpze+JNF0NyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N5ogiPE9T12jRJRzDNSLXy6L2x3csjHBbWtxd0pHl7o=;
- b=kuaUVh8O5i6e+AG7R06VlXVw4Zqp2qFifDcW++6enQ4lq5Gq2YPa5WTsjByLMeHM2mh4b/AnnGsCuN56UOf/7mkQDeA/lBVS6mluYkF5SU+KD2ofml4sgQHp7JMZATn9fnp2PKHr0qvJfj6wsyjl7db+J3BH2BALk0iuVT6Z8NA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CY8PR12MB7362.namprd12.prod.outlook.com (2603:10b6:930:52::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Wed, 19 Mar
- 2025 10:59:22 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8511.026; Wed, 19 Mar 2025
- 10:59:22 +0000
-Message-ID: <914a4afa-3580-4c4a-8c42-8a51f7ffcad4@amd.com>
-Date: Wed, 19 Mar 2025 11:59:17 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Fix display freezing issue when resizing apps
-To: Arvind Yadav <Arvind.Yadav@amd.com>, alexander.deucher@amd.com,
- sunil.khatri@amd.com, shashank.sharma@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-References: <20250318145431.28944-1-Arvind.Yadav@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20250318145431.28944-1-Arvind.Yadav@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0067.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9a::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA38210E115;
+ Wed, 19 Mar 2025 10:22:31 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-ac3b12e8518so165419966b.0; 
+ Wed, 19 Mar 2025 03:22:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742379750; x=1742984550; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=YAciZfuoMKuWSR7eQBgdr98ucgp4qUAEyHPTl4MU2Sc=;
+ b=NX5mwVHNKP1xHMw+P0UQfbS7AmMiikiGdHJiu53wH/vOjBGHYRP9nCqC/Qy788w2lW
+ l+f5iRnnmrBE5ImV/+ABr1b7JTGSJK9VKcaRiRsK7y+twv0FdFuvH2ojAovwZ73ZVoAF
+ twgf4Q8cC1otO0pmtdj0ImfKjvJvjwVGetIS2y09JC3ziMrmz2nyWhD6w9xWlGB7UIVM
+ QqrNh35vPEPUm+W77GTIpYzSBk9Yx2xRJIYs39uducz4wNvfZTpIs++l+jGgPEcKCDHv
+ lw8Yff+CF99Pe7EI2je+L9y2RN41l6IVqNeuk5Wz093vbQ0IaKyhMyDv1n+TshN2DlNX
+ gWFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742379750; x=1742984550;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=YAciZfuoMKuWSR7eQBgdr98ucgp4qUAEyHPTl4MU2Sc=;
+ b=ZYdw80PCYwSg+qFwLSx7xX6iLk3nR2ChQQi38aH1zaYLeTYco5S9bAoevdungmu+kf
+ pGhctKDe8B5HQSaAiKx6+6kFqyc2bBLckKtF3lfv2bzwPoUW9JJLNwa4kX82j7++zruS
+ CGB6dg7+2ZnPfsYkgzCIAvZbjbrkdHnN9p9zCzHTgv1TL5++wsAudsAa+NojeVn4TvZe
+ j68zgQep9auA2S2PcrT2rFIkDxlaf5peCsABo+Fu1PYCjnqTPoPod7dr9pYpCRnnCJYu
+ m/NrIqr6qMWPdxb/UOE755jCRU8ygsHx1L7Hy0bGR7TDo9/FFmPxCgWyspnPMnob4G14
+ 7PBA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWc6SQtdsWqytjOgCJA/d2i1sFxU/ti6EFKo6wd7+dhz7JdRiEXHL1ihJ4IFWu0QitUiQnCz5x2k5kE@lists.freedesktop.org,
+ AJvYcCWpeaWJNfaRez7FRvhMLPj9wvtOu5KUA7c8f/TU5cbhDUL3tL6T6w17R/7xNBvd0drMk/Juf6Tl@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzL/tSG7zWjgZ7uQ6r2R+e+yC+EGLm70IcckOejL2wsEIDzbsov
+ Z0sJUfdvaLV8QNb2SiDKfhseklyR0G+bcWH595Cid2qOIGiwcSb56DSilLr0HgDmyKhKM4a+APO
+ TH7S1dVAsSKO0okxRikt29jYkfJ8=
+X-Gm-Gg: ASbGnctZ3PTTCc8Nj5gDnH6QHTUP37mCSiGyFDyDpFudxXAzm39Wh5VfHHUxyVEbtQi
+ TUDhS2Bt7E43fh7T9GFSnnwtbmx5I6jMu0c1edLQRPp2hlnQt8lcsQ6toxjnibpxAUu3q0nJUrK
+ dzKK/gAeouvXpZY5jnJGdEQBTfBUIK
+X-Google-Smtp-Source: AGHT+IFUke584GUxH6BvQB3fX7lUAUv9QcZ9e9muiwjx2XhCfAyl6Rwt1VC/I5GgI047etAZIOOFi7pICkkhLIq8oi8=
+X-Received: by 2002:a17:906:f59f:b0:ac3:97f4:9c08 with SMTP id
+ a640c23a62f3a-ac3b7de1176mr194902266b.31.1742379749621; Wed, 19 Mar 2025
+ 03:22:29 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY8PR12MB7362:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0d231caa-59c0-4473-7ab3-08dd66d51b18
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VG5JRmEvSk5KSk9GNlE4Tkh6UTVHK3BGajhxY1dSNytXYkVmSE1nbXFDNUpw?=
- =?utf-8?B?V0t3TzlCQjcyRE9oVTJXUVozN2FNU0FOR3ZJbmZycXR0SFNHaUgveHdqRldr?=
- =?utf-8?B?eHZ2ZU1rZEpQcWRjUE5iU1ZOOXFBT0orRmRJTngrSFRESE1INlg5SFBWNDJz?=
- =?utf-8?B?aDFLeFFUOEJFTUNTaVlPOTcrWTdOazRYcmpzWWdTUDJKZlFhN2pMRXlhdkt0?=
- =?utf-8?B?UCtXYndFMW9rZlRnRjFkZmp2TXNyMTk5cUdMRW13KytCL1lwUWxjdGdZVndU?=
- =?utf-8?B?VjFDRjFDVm85aC9qMGpJN0hzUy9JU1QycnZsaHNEUHJkbFpybTA5b2phMnc4?=
- =?utf-8?B?ZUxRaHB3aCtvdE9yaU1Ocm1mN2xZd1dPYnVDUkRxYWQ4dkIwY0xJbHBwNWZ4?=
- =?utf-8?B?eHIvc0F6RW9adFNucWhpQkcrVk51SEZIaFNTQ1BXcUlzb3krZEorSDVodll2?=
- =?utf-8?B?ZzV6ZW94aDhaTGs2TWYvUkJZZXRZTlJkVXJrOWtvVFpQQWMwZzBiZlRlcUVq?=
- =?utf-8?B?b09KckJDdlNYSmNwZ0pSQlJsQ2FqV05UVWd5VllWM0pSYmdRcjgrNDdVU0lE?=
- =?utf-8?B?bU5iUUNOelg2cURseEg2SUNlSVB3Ry9rNVBqcHZpd3AydktoRFpBZGFLSzBx?=
- =?utf-8?B?LzZDbnJqYWU5VEN4N2Y5d20yVGQxZTlkZS9namtKRnhQdFJoWVNCa2k5bDdu?=
- =?utf-8?B?dDVNYlJQY0dRYWZDREt2UWowOXNhUVIrRXNhUWNDMDZ4ZlgwOExjZkg1TmFt?=
- =?utf-8?B?eTFibzAvTElrZEFUWUFFdzhRc3Z6dEpPMCsxSy9wY210NFN5NGxJMGJBa1o4?=
- =?utf-8?B?UWxYOGtKZngyZjZkV29uUEpRdHdFT2tzWGo3dWtNS3VYYUxRY0N5UEdqMW5i?=
- =?utf-8?B?R0FJaTh2NnFDWUNYdGIvdXZmTjkzMzVGRmtnQ20xUXVsaStpblNSem5ITFZ5?=
- =?utf-8?B?a010cUNmOEVMWFFsRjhScXpFa081N01oQ0xjV2srTjVmV3RESGVPa29sTll0?=
- =?utf-8?B?TXZ4YjlJVFdBM2thRmlIOG9Nbngzb2Fnd2ZkWjB2SVpteUZFQlZ1eFdOM0ZH?=
- =?utf-8?B?NUpITlQrb1NjdTU4eWtFNFUvNEVHYmtBMjVwazlXRW9ySWRKS0Ftd2xRS0lt?=
- =?utf-8?B?TkcrNCtwZGhHK04wSmFXdXAycXduUHZIM2RDUG1NOEdEQkZuM0pPSm5pdGpY?=
- =?utf-8?B?S0lVUDhSa1R1SUl0VXlkSnNVbmwxSlVudmRNbThLbGFJZWdwOXdxbzlHOU5N?=
- =?utf-8?B?TGFJWWZnMFV6OWwzbVRPUDZ3bE43bXdmQ0FpK1g3Y0VLS0Fod3ZSWEg1bW51?=
- =?utf-8?B?aDZmL1cwNGtPSUZVejJ4bHI2aEx0Q2dMRjZIdXRyOGlDcVpzdWliZzVWRlhs?=
- =?utf-8?B?SkwyS3JuUmpNRU1EbnVsMW50d3J2c0dPTGhzRHdlUmZGZC93Q3hDMmt4TEVu?=
- =?utf-8?B?cU5KQk1KWVlCS1NlK3RldGVrWEFPbmJkUTZUb0NlZ2NSWHY1UUtVU2cxd2pY?=
- =?utf-8?B?aGdwWEhJdTlKbldqWGlwbVIwV1VRQTFheW9oUXV1NGVTZFpZMm1CcUVZY1F2?=
- =?utf-8?B?YlRYYVJrSVZYdDBUZzFCN2hXWkRySEhDQVBSaWNKbmxJTVY2OWtVTTZNRXVB?=
- =?utf-8?B?TzVVUzJxOEk4SmRpL3V2bFJ1cHRsM2s2eDRITkVYZytVZmp1RHVMNCt1V3pT?=
- =?utf-8?B?TGpSVTJKbXpEVWQxcnFpdS9HM1JWTDZUTHd4MUl6V2licWhKY0lSNlR4WVpj?=
- =?utf-8?B?cmFOTVoxbExyVWRrNStrbW9ZK1MrOTdMY1lGUVRWckJWbm1jYkFzWit0bjdJ?=
- =?utf-8?B?Qno3WnoxZERHTHdQSmh5RzdiK2Qvc00vajZYS1FoRHd2QzAzcXNUTzJTaUpi?=
- =?utf-8?Q?XO6UwNkrNxk1B?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bi9BT2RiTEhYVnRTaWVibWZpK1hqMGtCUVplUHJhY3Y2NzVkMGV4by9KeGtB?=
- =?utf-8?B?MGZHajFlemJOeXFrOFlMWWNFekJxd2lwLzRSaUk4MEdFbkl1UFpBYXJYZVdJ?=
- =?utf-8?B?SWNuMWZqdHRCdituT0NDTWtSeG5qZGNDekViWWFmZTZOU0JpNFp0UlpoU1Q5?=
- =?utf-8?B?SUl4VVFIU001MERBaHhrelJ4S2tPVE1xWnFBTk81WmRXcEo5a2ZvQmhmOVd4?=
- =?utf-8?B?YTNOc2N3cTVLSGdzYXY4VGFGK3JyNzBHeUlTdzZzVmJwdm1xdmg5Yit6bE13?=
- =?utf-8?B?WmJRUHFlK0UrVFo5ekh0bTIrSnlScUd4Tmo2T3VmSEF5L2Z5WW1Bc2c2bVV0?=
- =?utf-8?B?enVpMjRMcFgzVGQ1SWJtc3YvYmJRS25SQUdBWkM0am0xdzkvR1A4Q01abkla?=
- =?utf-8?B?S1ZJMGtTMnpGZjJEbXhKaFRpbGhBc3hiTTYxaytUSXg5Y0gvWDBJQjJKSzVS?=
- =?utf-8?B?OWl1c1krTmZ4Q3VsMmRaZHZubU45R2FRY2lORUtxWHNZZWdPQkZlSUhyNUFM?=
- =?utf-8?B?TjhKS0FTalJibXFjRC9UUlB0UTBBcnp2aUFKWGpjNXNUKy8vOXYyYU1QcnNH?=
- =?utf-8?B?V2ZXWkZnMXNxM0xaWnNubWxET3ZEWVlBcDV4dkRvTlVZMzBYUFpmQkxHeGZN?=
- =?utf-8?B?K1ozdzdvRkhrTmhFbndLSzE4L3NydXNEbE1kTEtlTWxJeUhRRlh3bzBnWUR3?=
- =?utf-8?B?S1phZmY2c0x3TmUyOFNWQXN1cHR3emJpMytxaFpYNjRreElqMWZ2ODZwajBD?=
- =?utf-8?B?bjNlZ0REK3dMY0txcEtMRG5iS01ndm5zTWUyNEI5S2NWOFJRNHFmaFZHR09t?=
- =?utf-8?B?ZXpvYXF0N09vTGk5UDNvTUoyY2o2d050YXZiWVNTN0VmMWFLT3RkNHNTVnpV?=
- =?utf-8?B?UXpaSjhvdUZYZ0JKWWY5Q003ZWhjSkQ5bW83bG5OUFRLV0xHY2pndzBmaFh1?=
- =?utf-8?B?OFJaSFJmaWJKck0rSTFKMEJLZUlTQlhKdDNnb0hRbWRYQ0NQM2E1N2NscHFT?=
- =?utf-8?B?KzBOYldpZEJUNHI2OHRWd0hZMDJVSHBOSGFzS0hNcG5icTlIb0RPenlVNHN1?=
- =?utf-8?B?MGdhZ0RERmxYcnU5MVdIU0pOZmtaU05zdUNSODQzMW1JQmNqK0J0NkUyUzRl?=
- =?utf-8?B?UHAvaWRJb0MyNktSRnVLMnBhQWhWSERtYnVHbE5UYm41WC9LQ0dVV3lQMEVS?=
- =?utf-8?B?NmdjMWg0eCs3N09wMFgxV2k3Y0pjR0ROMUMwMmZtaCtqSjM0bFpFK3FyTTlo?=
- =?utf-8?B?M08xeSs4QUhIaDZ6L2tDa0VBNlJmamlrWnI2UFdMNlhMMWI5TE5veEpOUWNw?=
- =?utf-8?B?TDJQMlV2NTNQK0VpZ3l1RFBMQlFDeWlESUJwd1IvdHQ0SVM2TDJ1N1ZjNEZ5?=
- =?utf-8?B?SG1QNmRWbEM5akFXM0VPOEMyeTQ2SVJKMldWblo5M0dHWnZ5V0l1L0FMcStI?=
- =?utf-8?B?WlZaSk0wSktKR0YxMXFsZWpFeTZ4amZSTHVYaGsza2xjUUtWMW1wcUNueEt5?=
- =?utf-8?B?TWFtemZGOHJIS0N3T29YTEVwUS85Vk05Tnl2cEtTenlXayszRW9jTDJkTlZV?=
- =?utf-8?B?UnFvZDVkdFBVR2VIQTVKaE0vcDJyT1c5cy9TYnNHUURrc0xBUnpoa0lpdUxt?=
- =?utf-8?B?d2g5Rm8wTXBZV2J4QzdaS2FYMzUyd2QxbVk3N1VJaWVqWC9TcVVuR29YUmsz?=
- =?utf-8?B?dnNqWUZ2QVRzMVhQS1E3OEJhR1lKMU9QaHBOMi9LeE9PekYzZUZxVlRLVVky?=
- =?utf-8?B?bndmSjRWbEk0K2hPa05OMXVzUGpaRzEzMlAvTFU3QzNYV3FINlkyMTBFdm1O?=
- =?utf-8?B?LzFqZENKemxWOTRkZkkzZS85TGVhOThLYW4yNEZGU3dvamtJdENHSTlEZmlY?=
- =?utf-8?B?WkZFUWR6QUhLNXhjdWt4V0ZxSjY5KzRFUTZ0a0gxRXkwRlZjOVdBeUxFQmxu?=
- =?utf-8?B?bmtvNHdYKzJ5VkNQaXdhWHpTbUFseS9HUHpCRFBPWWxNZHpjZnBrTm1VL0pv?=
- =?utf-8?B?WUt0cnN5NXlseWc2cm9FSmlNK3YwMzNQTzFKamJjYkw5b1BTYzJuMVpLYjda?=
- =?utf-8?B?VXE0QkkrN3VWcWlwOG1VVmUwWjhJajZvUmtkcllmUzNIN1QwTXJnTzZwS1FG?=
- =?utf-8?Q?dYRX6wTbbQCc6J+SC9NGm/kxV?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d231caa-59c0-4473-7ab3-08dd66d51b18
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2025 10:59:22.6255 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8o6VPdzqiLQ3zjMQdnKpylI6EX7pU1kOxG0l+ikCsXo2W5I2libjXPRCTCE2/Xga
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7362
+References: <20250319092951.37667-1-jirislaby@kernel.org>
+In-Reply-To: <20250319092951.37667-1-jirislaby@kernel.org>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 19 Mar 2025 12:21:53 +0200
+X-Gm-Features: AQ5f1JplWeGobilHQOGjnSRx3FqTIg2f9LEWqzrz_L_kygQImpD-DssVqoDvovg
+Message-ID: <CAHp75VfJPgaGyERBaSxSGap+Daeuy8kOjyjg+QkCtzxUydzHiQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/57] irqdomain: Cleanups and Documentation
+To: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
+Cc: tglx@linutronix.de, maz@kernel.org, linux-kernel@vger.kernel.org, 
+ Aaro Koskinen <aaro.koskinen@iki.fi>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Alexandre Ghiti <alex@ghiti.fr>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, Alex Shi <alexs@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, amd-gfx@lists.freedesktop.org, 
+ Amit Kucheria <amitk@kernel.org>, Anatolij Gustschin <agust@denx.de>,
+ Andi Shyti <andi.shyti@kernel.org>, 
+ =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
+ Andreas Kemnade <andreas@kemnade.info>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Andrew Lunn <andrew@lunn.ch>, Andy Shevchenko <andy@kernel.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Antoine Tenart <atenart@kernel.org>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>, 
+ Anup Patel <anup@brainfault.org>, Arnd Bergmann <arnd@arndb.de>,
+ asahi@lists.linux.dev, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Baruch Siach <baruch@tkos.co.il>, 
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
+ Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
+ Bjorn Andersson <andersson@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Borislav Petkov <bp@alien8.de>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Corentin Chary <corentin.chary@gmail.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ Daniel Golle <daniel@makrotopia.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Daniel Mack <daniel@zonque.org>, 
+ Daniel Palmer <daniel@thingy.jp>, Dave Hansen <dave.hansen@linux.intel.com>, 
+ David Airlie <airlied@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
+ DENG Qingfang <dqfext@gmail.com>, Dinh Nguyen <dinguyen@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Dongliang Mu <dzm91@hust.edu.cn>, 
+ Doug Berger <opendmb@gmail.com>, dri-devel@lists.freedesktop.org, 
+ Eddie James <eajames@linux.ibm.com>, Eric Dumazet <edumazet@google.com>, 
+ Fabio Estevam <festevam@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Geoff Levand <geoff@infradead.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Gregory Clement <gregory.clement@bootlin.com>, Guo Ren <guoren@kernel.org>, 
+ Hans de Goede <hdegoede@redhat.com>, Haojian Zhuang <haojian.zhuang@gmail.com>,
+ Haojian Zhuang <haojian.zhuang@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Herve Codina <herve.codina@bootlin.com>, Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, 
+ "H. Peter Anvin" <hpa@zytor.com>, Huacai Chen <chenhuacai@kernel.org>, 
+ Changhuang Liang <changhuang.liang@starfivetech.com>,
+ Chen-Yu Tsai <wens@csie.org>, 
+ "Chester A. Unal" <chester.a.unal@arinc9.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>, Chris Zankel <chris@zankel.net>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Imre Kaloz <kaloz@openwrt.org>, Ingo Molnar <mingo@redhat.com>,
+ Jakub Kicinski <kuba@kernel.org>, 
+ James Morse <james.morse@arm.com>, Janne Grunau <j@jannau.net>, 
+ Janusz Krzysztofik <jmkrzyszt@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Jassi Brar <jassisinghbrar@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Jianjun Wang <jianjun.wang@mediatek.com>,
+ Jiawen Wu <jiawenwu@trustnetic.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+ Jim Quinlan <jim2101024@gmail.com>, Jingoo Han <jingoohan1@gmail.com>, 
+ Joel Stanley <joel@jms.id.au>, Johannes Berg <johannes@sipsolutions.net>, 
+ John Crispin <john@phrozen.org>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
+ Jonas Bonn <jonas@southpole.se>, Jonathan Cameron <jic23@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Jonathan Hunter <jonathanh@nvidia.com>,
+ =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Joyce Ooi <joyce.ooi@intel.com>,
+ Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>, 
+ Keerthy <j-keerthy@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
+ Lakshmi Sowjanya D <lakshmi.sowjanya.d@intel.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, Linus Walleij <linusw@kernel.org>, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, 
+ linux-edac@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-iio@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org, 
+ linux-omap@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, linux-remoteproc@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-sh@vger.kernel.org, linux-snps-arc@lists.infradead.org, 
+ linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-um@lists.infradead.org, linux-wireless@vger.kernel.org, 
+ loongarch@lists.linux.dev, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, 
+ "Luke D. Jones" <luke@ljones.dev>, Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, Mark Brown <broonie@kernel.org>,
+ Mark-PK Tsai <mark-pk.tsai@mediatek.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Max Filippov <jcmvbkbc@gmail.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Mengyuan Lou <mengyuanlou@net-swift.com>, 
+ Michael Buesch <m@bues.ch>, Michael Ellerman <mpe@ellerman.id.au>,
+ Michal Simek <michal.simek@amd.com>, 
+ Miodrag Dinic <miodrag.dinic@mips.com>, Naveen N Rao <naveen@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+ Nicholas Piggin <npiggin@gmail.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>, 
+ Nipun Gupta <nipun.gupta@amd.com>, Nishanth Menon <nm@ti.com>,
+ =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Paolo Abeni <pabeni@redhat.com>, 
+ Paul Cercueil <paul@crapouillou.net>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Peter Rosin <peda@axentia.se>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, 
+ platform-driver-x86@vger.kernel.org, 
+ Prasad Kumpatla <quic_pkumpatl@quicinc.com>, Qiang Zhao <qiang.zhao@nxp.com>, 
+ Qin Jian <qinjian@cqplus1.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, Ray Jui <rjui@broadcom.com>, 
+ Rengarajan Sundararajan <Rengarajan.S@microchip.com>,
+ Richard Cochran <richardcochran@gmail.com>, 
+ Richard Weinberger <richard@nod.at>, Rich Felker <dalias@libc.org>,
+ Rob Clark <robdclark@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, Robert Richter <rric@kernel.org>,
+ Rob Herring <robh@kernel.org>, 
+ Roger Quadros <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Ryan Chen <ryan_chen@aspeedtech.com>, Ryder Lee <ryder.lee@mediatek.com>, 
+ Samuel Holland <samuel@sholland.org>, Santosh Shilimkar <ssantosh@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Scott Branden <sbranden@broadcom.com>, 
+ Scott Wood <oss@buserror.net>, Sean Paul <sean@poorly.run>,
+ Sean Wang <sean.wang@kernel.org>, Sean Wang <sean.wang@mediatek.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>, 
+ Shawn Lin <shawn.lin@rock-chips.com>, Siddharth Vadapalli <s-vadapalli@ti.com>,
+ Simona Vetter <simona@ffwll.ch>, Stafford Horne <shorne@gmail.com>, 
+ Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+ Stephen Boyd <sboyd@kernel.org>, 
+ Sven Peter <sven@svenpeter.dev>, Takashi Iwai <tiwai@suse.com>,
+ Talel Shenhar <talel@amazon.com>, Tero Kristo <kristo@kernel.org>,
+ Thangaraj Samynathan <Thangaraj.S@microchip.com>, 
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Toan Le <toan@os.amperecomputing.com>, Tony Lindgren <tony@atomide.com>, 
+ Tony Luck <tony.luck@intel.com>, UNGLinuxDriver@microchip.com, 
+ =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Vineet Gupta <vgupta@kernel.org>,
+ Vladimir Oltean <olteanv@gmail.com>, 
+ Vladimir Zapolskiy <vz@mleia.com>, WANG Xuerui <kernel@xen0n.name>, 
+ Woojung Huh <woojung.huh@microchip.com>, x86@kernel.org, 
+ Yanteng Si <si.yanteng@linux.dev>, Yoshinori Sato <ysato@users.sourceforge.jp>,
+ Zhang Rui <rui.zhang@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 19 Mar 2025 12:46:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,52 +240,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 18.03.25 um 15:54 schrieb Arvind Yadav:
-> The display is freezing because the amdgpu_userq_wait_ioctl()
-> is waiting for a non-user queue fence(specifically, the PT update fence).
+On Wed, Mar 19, 2025 at 11:30=E2=80=AFAM Jiri Slaby (SUSE) <jirislaby@kerne=
+l.org> wrote:
 >
-> RootCause:
-> The resume_work is initiated by both amdgpu_userq_suspend and
-> amdgpu_userqueue_ensure_ev_fence at same time. The amdgpu_userq_suspend
-> signals a dma-fence and subsequently triggers the resume_work, which is
-> intended to replace the existing fence by creating new dma-fence. However,
-> following this, the amdgpu_userqueue_ensure_ev_fence schedules another
-> resume_work that generates a new dma-fence, thereby replacing the one
-> created by amdgpu_userq_suspend. Consequently, the original fence will
-> never be signaled.
+> Hi,
 >
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Shashank Sharma <shashank.sharma@amd.com>
-> Cc: Sunil Khatri <sunil.khatri@amd.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@amd.com>
-
-
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c | 3 +++
->  1 file changed, 3 insertions(+)
+> tl;dr if patches are agreed upon, I ask subsys maintainers to take the
+> respective ones via their trees (as they are split per subsys), so that
+> the IRQ tree can take only the rest. That would minimize churn/conflicts
+> during merges.
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-> index 167951aee502..0075469550b0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-> @@ -52,6 +52,9 @@ amdgpu_eviction_fence_replace_fence(struct amdgpu_eviction_fence_mgr *evf_mgr,
->  	unsigned long index;
->  	int ret;
->  
-> +	if (evf_mgr->ev_fence &&
-> +	    !dma_fence_is_signaled(&evf_mgr->ev_fence->base))
-> +		return 0;
+> =3D=3D=3D
+>
+> While I was reading through the irqdomain code and headers, I found some
+> naming and documentation hard to follow or incomplete. Especially the
+> naming of _add/_create/_instantiate functions.
+>
+> I tried to come up with a better state with this patchset:
+> * only irq _domain_ (not host),
+> * only irq_domain_create*() functions, all taking fwnode uniformly,
+>
+> Finally, all the irqdomain stuff is now plugged (and generated) into
+> Documentation. So that everyone can walk through it at
+> https://www.kernel.org/doc/ (once applied, of course).
 
-We might want to also have a flush_work(&evf_mgr->suspend_work) before that test as well to make sure an in flight signaling has finished as well.
+I am all to support the idea, but in some cases I would think of a bit
+more work to be done to get rid of the of_fwnode_handle(np) in favour
+of dev_fwnode(dev). Note, this is based on a brief look, I haven't any
+example at hand right now.
 
-With that done Reviewed-by: Christian König <christian.koenig@amd.com>.
-
-Thanks,
-Christian.
-
-
->  	/*
->  	 * Steps to replace eviction fence:
->  	 * * lock all objects in exec (caller)
-
+--=20
+With Best Regards,
+Andy Shevchenko
