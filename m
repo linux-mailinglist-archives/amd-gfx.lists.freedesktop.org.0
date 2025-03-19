@@ -2,164 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E3D6A6A158
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Mar 2025 09:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90171A6A301
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Mar 2025 10:51:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0E910E0BF;
-	Thu, 20 Mar 2025 08:29:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0D9B10E3A0;
+	Thu, 20 Mar 2025 09:51:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IP8+Gnpc";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ifsx6r8R";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2064.outbound.protection.outlook.com [40.107.236.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7627210E2CD
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Mar 2025 08:29:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=isfbpaY5dRI83DWSVHhVNnYi94xZ633VLmHSY41+c2KpZoN9P1WpTenE9F6EJwkaL0UXbevyhdXjMqVRjmHJZFZ6/IVPZEzGqj8vSs9dAsMzjSXyl0TvMiiGckzpsJeFlKYGDD3Eefco1S7e5j8/0G73JuIY3ySvDwz8E6STGeSYI1WXhR8TUjJqHkbtcGJr+byeaY/MrMhTUh+HEnxG4/tn4YuHLr9y73DVWdd5iy8jmD1S/qZn6yGf9YX5dDSWhyrXV/t+a9tdYBx4U0gQ8WedkYiWnUiPq2Z3+j+5gJcXA7X/32f2kDDXg3ZICaKsolkDqbaXQpiZI6+YULGdqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9JaZXwcJca38O9fNfJ/w7eoolym4P5qEQdsuBcQtQPY=;
- b=iB0VZkL7Aifs9HElq09mz5JK+jHstfYuaUNfOWTjIYGBOi+uZJnG0x0hAjZvPzfqfsRu6utUdPX+A/j1S2MrCTbkJc2ztzwBakk3FRlDbvQJ/a4Y5FPkgulk5CmNlLcNQcejdkB2TnWgWxFapXCQcMh4xdZWzMC4cPEJ3bjpTODVaBwOPtdCcMSg/emyhthThsh8uRtrXEYAqgHQrH7xXRMW44eVwtsu/OfqtmCrmQ/hB/2blY2oE0UuZam7grLMlfs9wh2sFYl2+Dv+aaD/v98R1T246pTgoLOmrm0LxDvuMKJQMU/n7XnzgQg1RhUu41M4r8bK7hU1TohlCCsTAw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9JaZXwcJca38O9fNfJ/w7eoolym4P5qEQdsuBcQtQPY=;
- b=IP8+GnpcnupplmWrSQfXCxzVreG5brbHaKs14EaSax4s/mNuhBNtArH9Dnhzq6zdwndD5R86zdyG40rbkhMgYf9I+v2VwXZZHBWUP91HlvNUNrcNdQy0ZX7tEu7J6oaL5/jIzSiYkEz+ux5q8El9g3UPG6D7NmwX0xZJZnE7OnM=
-Received: from BL1PR12MB5158.namprd12.prod.outlook.com (2603:10b6:208:31c::11)
- by MN0PR12MB6247.namprd12.prod.outlook.com (2603:10b6:208:3c1::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Thu, 20 Mar
- 2025 08:29:04 +0000
-Received: from BL1PR12MB5158.namprd12.prod.outlook.com
- ([fe80::b9ae:fa61:11ed:4e3b]) by BL1PR12MB5158.namprd12.prod.outlook.com
- ([fe80::b9ae:fa61:11ed:4e3b%3]) with mapi id 15.20.8534.034; Thu, 20 Mar 2025
- 08:29:04 +0000
-From: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Wang,
- Yang(Kevin)" <KevinYang.Wang@amd.com>
-Subject: RE: [PATCH] drm/amd/amdgpu: Revert "drm/amd/amdgpu: shorten the gfx
- idle worker timeout"
-Thread-Topic: [PATCH] drm/amd/amdgpu: Revert "drm/amd/amdgpu: shorten the gfx
- idle worker timeout"
-Thread-Index: AQHbmJmEHg6b4B7R2EG9Q6DQl1G/lLN6aqEAgAFEXhA=
-Date: Thu, 20 Mar 2025 08:29:03 +0000
-Message-ID: <BL1PR12MB51589B39082C439AAC8E19048ED82@BL1PR12MB5158.namprd12.prod.outlook.com>
-References: <20250319063811.680138-1-kenneth.feng@amd.com>
- <CADnq5_Nx2FGd66uwkmV6Hhrvdfc+VTO=OafZJDK=AVXhBKQM7Q@mail.gmail.com>
-In-Reply-To: <CADnq5_Nx2FGd66uwkmV6Hhrvdfc+VTO=OafZJDK=AVXhBKQM7Q@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=24eac3a0-c292-48e0-99f1-3fd809e7b014;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-03-20T08:14:27Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10, 3, 0, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5158:EE_|MN0PR12MB6247:EE_
-x-ms-office365-filtering-correlation-id: 5c07e850-984d-4b03-cc7b-08dd6789461a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?RTI0ellqWE5HUnRLR2w2cjV0bzhOcHJ6U2locS9Cc3VMMFJGMnljLzZTcDhk?=
- =?utf-8?B?WENkalhJcVUxaE83d1JqbEJIYk5LSFBmclM0UnQvcnFhSlRQd0YwYTZvMUVu?=
- =?utf-8?B?TGNQKzJsWlJscEE0M1NIQlEzeDZzZkxYTTBXcHMyb21OT0h5TTNHZHR4OFFm?=
- =?utf-8?B?Wm5qNDluL09WdnFJUWgvVnFPNVdMQUt2QUo2SllDcnZvcnNJcDVsRldwdVRw?=
- =?utf-8?B?UE53Tm5YOUx6c0J5RE9nTXVXdUYyZ21kZ0crTkI1QWRuYkRaL0dnTGErY25G?=
- =?utf-8?B?UWZ3NVJHUFpaTkQzR2cxQ2U5aEY4UnUvaXhKdXZUWVNCN2lFTWh3MFFZdnkv?=
- =?utf-8?B?YW05VlV6NG1oOHdtWHRHTjRQT3dNODdjTldpWlRaN0o2UzRvK25GeTdMN2dq?=
- =?utf-8?B?OGMvMzA4U0tsT2NrL2xPYVNaczNnZmJhVXNGRkM0bDk4YzI5ditDVWYrNkto?=
- =?utf-8?B?MXgyc05tK1N0MFZSWmJjRkhqRCsveGk1RXE3bFBseDNlYWM2K2gzaEZiKzF1?=
- =?utf-8?B?RU5zbWRvZFhmQ3RscUorQ25EVmJkdTVZNHRrcEY3eTRYQW1iTll4RnhxT1ho?=
- =?utf-8?B?SzQwZEx6WGlPeHR0NGVjYlVybEZadnNQYWgyK1lSSXFGRy8zZXI5L3dKUW1K?=
- =?utf-8?B?N29NNkVMMzN2UVBXVk14VG00WVZ6VWIrYWpRait5b2luWm15RFhHL1IrYTg2?=
- =?utf-8?B?dWxyYWk1QzEwVHdXQURnZWtLOElyT1d5a2tWMnhiVWhyaXBEQXdVcFQxa1I3?=
- =?utf-8?B?YUhaWUxyWU4ycnRBRmR5ZFA5bVN1ZmdaTi9TZk4vUUpUOEhVM2VrQlY0Q0FY?=
- =?utf-8?B?N1E3d1JZaHpkNjQ1Ukk0bm9UbGNVVDBIZlNqb0ZtbHNJU05OajV0N1VxcURK?=
- =?utf-8?B?TlAvV0hXMXYrbklGTkdCSVJzNTZKcFRzQ1BNb21HdXlJZHZwMTYxSU04K3Jx?=
- =?utf-8?B?ZjQyMDg0Y1lNVW5iVUtMaTl3akJlQzBVcWgyRllYMEJwNzFycTFEa3RnY0da?=
- =?utf-8?B?akZaTmRtbzBYeFNFVW1UWkhkdEVWazk2TzQ0ZUErNjgvNndZcjI5TkNpTkgr?=
- =?utf-8?B?VWVWRWJGRDlRdnozNld4RU9DRjBYK3ltUG5JSnpNNGtxNkVuSHNYNk1KOEw1?=
- =?utf-8?B?b1pZYTJrYW9BUndxY0FIWmtITHRGQVdra3M4eG5BNHRRWDVhRUJXUG9XelhC?=
- =?utf-8?B?U1dscVdhSEhZdHJpRkFuZi82OU5SN3NSWnp5ejhmWGNnVUpZM0ttR3RsejFE?=
- =?utf-8?B?K0x0QjNqeHI4YlUvNVlCblBUR2VsNXJmbG9YY0IwN0Rvb1JsMUpiM1RjSjl6?=
- =?utf-8?B?cXQ5YzhvamNHb1A3eVd5MTMwNkE3b0lDaG4zZm1HRThHR0tEL2t5dUdoWmFF?=
- =?utf-8?B?S3JKdEVBQUsyVWdMUFdOU1RURWJrUGpyQkNEOVJOcW9uRHEzZEtXR0NGdlpI?=
- =?utf-8?B?QmV4UytxOXcvTnBDU3k2MUlhWEtUK2k0aG1GSFVKN1pHMmUvb2xpeU5tM1ND?=
- =?utf-8?B?dHlaaWxDYm1ObnVvREFvV0sxckxQbCtXN1BEM1hEakVhM2oyZFpOM0hHcVg2?=
- =?utf-8?B?WGNtbm1kV0tGWDQ5eVF5SlV5ajVyZkJuU2hKT3E3Zm8zWXJ2QWJJREdzSC9V?=
- =?utf-8?B?UC9Ia3NsclI5TWsyVm5HS1lwcnp2MDdQV2RVQUNwYmcyOWRUbVg4amZWbzBq?=
- =?utf-8?B?OEViK2VzZFF5c1pEbTRIWEhaWjFIWEgwMWwvRFlmMEpMUU5YUjI4N21FM1hW?=
- =?utf-8?B?bnFXWmR6SUMvbitNdmR6MFdLMVJWc3NZTEFxd0ZGR0dsZko3bnZwbGkyV1N6?=
- =?utf-8?B?eUtNazdGWTFKVUo4ZWxlR2lRei83a2svUU05dUtyUDd1M3R5K2trdGhOLytP?=
- =?utf-8?B?K0xwNmR3aGhMc1lpTFZERHhnbkN4U2xtc3BxQXVOV2hoYlRaUHM1dWZiQjFz?=
- =?utf-8?Q?9sW8x/zf43KgYhe4Me/pJ8vvSE45TvAn?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5158.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y0tWM1hpWkIzTkZxUHY3bGsrOWlWL3M5anpZUzJ2ZHkyMVJCZ044dGJieVdQ?=
- =?utf-8?B?UTUwN2xvQU9GRkY3QXRrTm90cFVoKzZsMTVjMkZFQXc1bXpKdC9IT3k0RlRG?=
- =?utf-8?B?VEhNeW5wODM4RGgrN0tkdXk1NGgwVGcxaGkyREI0b2FrVTVxeDFZVm1DaE0r?=
- =?utf-8?B?bHJ5bHN5OXB2ZTF1VUExZVYyVmdVWENLd1IwdU9qci9wc242S3BwZE1VMzdm?=
- =?utf-8?B?MDh1MEd1amVXQnAyUTlqNjdpakxmdS91UXZKQVpBMUFkVnI4S1FiRkJrZWVk?=
- =?utf-8?B?ZDZhdWg0Yms0ckpZcmJML3FnNFBkNllWRmd6SVltSXJTRHRlMDZxc3F2RFV4?=
- =?utf-8?B?N0Zjak1xYU85MVhjU2o2TVVBS3U3RjlXek1wVkptVnprL3l5b3FEbysxT21J?=
- =?utf-8?B?bllUSTluTzBOcU9VM3U5OEkrTS90MFVNcUtPSWhvY2VkZ0F5UTFwNGRmOUxV?=
- =?utf-8?B?ZzFva2toU3NlN1lyKzZDSFVTRFFFQitiRThoRkt1VnRuNFZUaDE2SEJpRmxn?=
- =?utf-8?B?Y1lNdVo3U0dES0VjREVjQ0Q0TXg3UVovTk1hOHYwcWtabDhkdkF4L2pmUVlz?=
- =?utf-8?B?K2F2cHZpbjhoTEF1NFptWDFsMWUvK0x3aTh1aE51ZjhTV3JTc3JJUFdvZTZa?=
- =?utf-8?B?VWhDdWVLbVVwQkdzVG5NcFp0WW9yQTdaR0k5Z2MyTUU5dDN3bGp6dTNGeTBI?=
- =?utf-8?B?UjFoamlwS3AwK2psV1lVQWVwMmVOdnNlcDREdWtYYk1IZGxjSnZxY3d5TG9o?=
- =?utf-8?B?NVNGclY4Rlc3UG9HZDhnQUs4NTRBaW1VYndzeWVTemp3OWVMRS91SHl4Ryth?=
- =?utf-8?B?RGE1dEE1ejNNY0dSMGthUnZSNXZ0UjVqcFZFMjg5N0F4c1BQTVNJM3F3ck5L?=
- =?utf-8?B?eFQzdmVYQnZjTEhpcDRYN2trc3pmK0RFRVVtWDA3WUIzRmIxaVJObHcrejVP?=
- =?utf-8?B?RkQyY09EaUZ2d29ZZ2NlTllmdmR3RHpFUmVtZi9wVTh0SkhQeXl4YU9Kek4v?=
- =?utf-8?B?MFR5czVsa1RNOWxrbEE2MkJ3WkluQXBmNkt5eitIUTJFc08xNDJXWTc5S0Y5?=
- =?utf-8?B?QW5vTnZZS1Z4MnhTTWFzbEFpdUdBZ2hZZElodW41SDN0WWFCU3I5ak9ocEdF?=
- =?utf-8?B?d2ljeWd1VGV1UXpyeFJnOGtvMnlDajU3MmF4Wmpjc2ZGMDVobUgvdTVJaUdR?=
- =?utf-8?B?QkhMZ0x3SXB0QWQxaFNQdWFJYWIrcjg1b2MrOGpMc29lazFRTXM4dVIvcHhU?=
- =?utf-8?B?UFJMbkVCWDVKa3JRaTdYRlJrVHRsTHErRVJwZXNPM2F2cllXN3BOS3dhWGZK?=
- =?utf-8?B?SGJ5dXZCSE9ZbS8yek5iWWVBSGlTSTZmcUdLNEJmV2JoMmJ5RnJBSnRveno3?=
- =?utf-8?B?c1d5NzEyU1lWOGk2NXdXb0hYSE5GODRtbktJL0g3d0FYTUhDZzAxZk5pWkoy?=
- =?utf-8?B?Nlpwd0FIeUU5RHd0eU5SdnFFVzFXQ2FrT2FPRTJPb2Roc3lhU3NOWnBoWWx0?=
- =?utf-8?B?MVZZZWt4Tlp5K2NLdGNlSjFueExnV205ZjFTTXUwdlFwaUEwdHBHQVlPYVFC?=
- =?utf-8?B?UUhGSnhLb29WRjZiODh1U2trTzNrMTMwQnNRUWxYTlErYmtJU2IrQUFpa3hh?=
- =?utf-8?B?bDJaQzRabTVZVkF4YzhjRHllKytvRWl0MEE4ZEE1WkFILzFlRDdmN2VhVUxV?=
- =?utf-8?B?ZGd6dmRDTUREaDdMK2FFVnRqYVA5R0ZUR0lWRFV6cWQxbTN4Tm1QektteVlD?=
- =?utf-8?B?djdiOU8ydmhnUUdaT1U2L2NLS3dKWmZPQm1pMHltdWZhRHZTZGlaUUNzMm1u?=
- =?utf-8?B?b1owMGs1QUgrdWR4MHI5ZzRWOFptUkFlYm5WcWgxd3ljalQrUHVaalpCSWFa?=
- =?utf-8?B?MXVUaE1QSWFKcUxYaTZHd3NQWVYxTjBEbTVNc1lYWUhOcmhPc1A3bHJZQXlt?=
- =?utf-8?B?eXNIbWdPVzQwWFo5R092eWlJc1FPdk12ZUM3SW51M0F1b1NLZHphU0NsTm00?=
- =?utf-8?B?bStueUFuV05GZExlMDVCdFIyTFVMMGtadEZDb3RNUytPNDRVRGFublRjWkQv?=
- =?utf-8?B?aW95ZjMzQ3JBYmFWSklhcWxheG9OeWxvMWxUR2FjN2E1QUpmV1VkbjFob25w?=
- =?utf-8?Q?nX3w=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
+ [209.85.208.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA76910E560;
+ Wed, 19 Mar 2025 17:34:35 +0000 (UTC)
+Received: by mail-ed1-f53.google.com with SMTP id
+ 4fb4d7f45d1cf-5e66407963fso3684153a12.2; 
+ Wed, 19 Mar 2025 10:34:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742405674; x=1743010474; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HICfp25x6A8uBlCw5p5+rBvNZqOl807JCLoXLGdju5w=;
+ b=ifsx6r8RSaanyjHLVqM8fvnvS/w8BpQ14o6f/UMWmJMwWK8SkHuWyYVzCUds5bcb/6
+ EK7ipgDIjWNdat7MoGiBgmeZpSaltv0WMvgPrANUq8JwQ+epkx80FmpG3nujZKBHDs/7
+ rhxbULVWKvoOo2MbxRE6rkgkwFY0nb7Xg+t6jyOKGx1cpIKZ5H44fWcDx63YYjx9eRrr
+ /WP9IhyOxgyzlvvPPgRhSDCaW2WWJmpKRJBKLernfrhNejb78glbZ5ZPAsVsP4KXknW4
+ 6xYnd7ekAub4yBnkpfenUIPDHehxgP1kusL3wvYk5ccVZJFO1nKMYnlRHi4Bc2PV2nbt
+ Mn5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742405674; x=1743010474;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=HICfp25x6A8uBlCw5p5+rBvNZqOl807JCLoXLGdju5w=;
+ b=VvhAd4AumzorjZyREHNq9LWmwA7H5C0L5zmCTcWVToEPMlSoQ6vdvJEAk5yuiL7byA
+ RyeqeOPk5T9JS/MlIUmdaryDIwpr0h9d6ugIyq3Jo+loaZa18gfO6sJ7x5cJoK1dHDxE
+ cdoRfETPfS863zCJKWz2yOlfitZxhzEb6766ZghDMKv5oQjccimzGJMiSJtq2g7RMPh3
+ ykPx/a1LLYEwZ7+mprrjykLPeutXoniOZtHveR3Fwl91NzPinXSxMA500HE+RZmWnaiv
+ 41gzBnhXpeklWD6QrDOCpKPabk9cVTvWPvnmqiEOs5kQTAP9ZNpB1l3vxbAeAfcREyKM
+ 2n0w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCULHvhHzr2c1UjQ8VSmS3i4Nunz+L53qx+fH9F1ILmNN3Lxo8v35f9AzLypG9zdiSmQSCgU0I1lNhsQ@lists.freedesktop.org,
+ AJvYcCXbObCsRUJgfF/iH02LStCNYK2eZ5uvvzQ5SgLGHyq/QYy+oi+G2vS0sY8oZWfLVavzPyWivwq/@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyTFjsyXkMTq/ajFrlVszPIWRe1z+zRc0XfjnBS2ZBiqtEH3Srd
+ VLRr94QMYW8K5OjbKUNLHogHMrQXqRSwdW0ezE+pPj/K9GVlBp/g5PNQ1G76ht2zyaXlFj0AEI/
+ ERNr3u6cDJ02wltEmvNxXcusybdg=
+X-Gm-Gg: ASbGncuAOmNIfMQYMirJt5usUgHkUQepPJkknXTBkC5OymgmyeM9PR8DkloTQdsaOCE
+ 6MFDVZ5946Oqp9aq+pAbtwQrYlXCwxRvsQ0pfmXs/XWPeQkNixl8leVO7hzISoQxiONnxEkv05O
+ bsyCTvXLZl2EsP6yMi7iHlXYr0ckY=
+X-Google-Smtp-Source: AGHT+IHzu2e3XxsHC/7/u8CIt5MaZwZv1sD2yQijEy0cXRzLHdS5nTnlJJGE3hIhSh5QLgw2FNKxwlC7bngh5JrlEtw=
+X-Received: by 2002:a05:6402:270b:b0:5e7:b02b:381f with SMTP id
+ 4fb4d7f45d1cf-5eba02bbcd6mr112300a12.30.1742405673821; Wed, 19 Mar 2025
+ 10:34:33 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5158.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c07e850-984d-4b03-cc7b-08dd6789461a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2025 08:29:04.0345 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: j7Pje5KPLoqolfpvFfTXF6UbbcB13AGrKnMsY96ojVIf6BtDMssLQSKP9VEYa8FG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6247
+References: <20250314085858.39328-1-vignesh.raman@collabora.com>
+ <20250314085858.39328-2-vignesh.raman@collabora.com>
+ <CAPW4XYZ6+kc+Pj61_Kz8-CEy0Aed92XeXDnUiDAEGNBU+SPxAg@mail.gmail.com>
+ <38315386-9975-4bbb-91e8-34b872487c26@collabora.com>
+In-Reply-To: <38315386-9975-4bbb-91e8-34b872487c26@collabora.com>
+From: Helen Mae Koike Fornazier <helen.fornazier@gmail.com>
+Date: Wed, 19 Mar 2025 14:34:22 -0300
+X-Gm-Features: AQ5f1JoPUcAvMrjBsWoRX2_tKLW_5IVh6ZaI7nzG5lkIPL3lBFa4MqHpkPy7Ams
+Message-ID: <CAPW4XYY8=CbhN8G7NFe+w9udsTxC=whtTUCzK9-43mvSk0zdDg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] drm/ci: uprev mesa
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, airlied@gmail.com, 
+ simona.vetter@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, valentine.burley@collabora.com, 
+ lumag@kernel.org, quic_abhinavk@quicinc.com, mripard@kernel.org, 
+ jani.nikula@linux.intel.com, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 20 Mar 2025 09:51:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,110 +94,327 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5hbCBEaXN0cmlidXRpb24gT25seV0N
-Cg0KSGkgQWxleCwNClRoZSBjYWxsIHRyYWNlIGlzIGdlbmVyYXRlZCB3aGVuIHRoZSBnZG0gaXMg
-bGF1bmNoZWQsIGFzIGJlbG93Lg0KSSB0cmllZCBydW5uaW5nIG9uIGEgc3RhbmRhbG9uZSB3b3Jr
-cXVldWUgYnV0IHN0aWxsIHNlZSB0aGUgd29ya3F1ZXVlIGlzIGZsdXNoZWQuDQpUaGFua3MuDQoN
-ClsgICAyMS41NTg0MzldIC0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0tLQ0KWyAg
-IDIxLjU1ODQ0M10gd29ya3F1ZXVlOiBXUV9NRU1fUkVDTEFJTSBnZnhfMC4wLjA6ZHJtX3NjaGVk
-X3J1bl9qb2Jfd29yayBbYW1kX3NjaGVkXSBpcyBmbHVzaGluZyAhV1FfTUVNX1JFQ0xBSU0gZXZl
-bnRzOmFtZGdwdV9nZnhfcHJvZmlsZV9pZGxlX3dvcmtfaGFuZGxlciBbYW1kZ3B1XQ0KWyAgIDIx
-LjU1ODcxNl0gV0FSTklORzogQ1BVOiAwIFBJRDogMTE1IGF0IGtlcm5lbC93b3JrcXVldWUuYzoz
-NzA2IGNoZWNrX2ZsdXNoX2RlcGVuZGVuY3krMHgxNTEvMHgxODANClsgICAyMS41NTg3MjRdIE1v
-ZHVsZXMgbGlua2VkIGluOiBzbmRfc2VxX2R1bW15IHNuZF9ocnRpbWVyIHFydHIgc3VucnBjIGFt
-ZF9hdGwgaW50ZWxfcmFwbF9tc3IgaW50ZWxfcmFwbF9jb21tb24gc25kX2hkYV9jb2RlY19oZG1p
-IHNuZF9oZGFfaW50ZWwgc25kX2ludGVsX2RzcGNmZyBlZGFjX21jZV9hbWQgc25kX2ludGVsX3Nk
-d19hY3BpIHNuZF91c2JfYXVkaW8gc25kX2hkYV9jb2RlYyBrdm1fYW1kIHNuZF91c2JtaWRpX2xp
-YiBzbmRfaGRhX2NvcmUgc25kX3VtcCBtYyBzbmRfaHdkZXAgc25kX3BjbSBrdm0gc25kX3NlcV9t
-aWRpIHNuZF9zZXFfbWlkaV9ldmVudCBjcmN0MTBkaWZfcGNsbXVsIHNuZF9yYXdtaWRpIHBvbHl2
-YWxfY2xtdWxuaSBwb2x5dmFsX2dlbmVyaWMgZ2hhc2hfY2xtdWxuaV9pbnRlbCBzcGQ1MTE4IHNo
-YTI1Nl9zc3NlMyBzaGExX3Nzc2UzIHNuZF9zZXEgYWVzbmlfaW50ZWwgY3J5cHRvX3NpbWQgY3J5
-cHRkIHNuZF9zZXFfZGV2aWNlIHNuZF90aW1lciByYXBsIHdtaV9ibW9mIGNjcCBzbmQgaTJjX3Bp
-aXg0IGsxMHRlbXAgaTJjX3NtYnVzIHNvdW5kY29yZSBpbnB1dF9sZWRzIGpveWRldiBncGlvX2Ft
-ZHB0IG1hY19oaWQgYmluZm10X21pc2Mgc2NoX2ZxX2NvZGVsIG1zciBwYXJwb3J0X3BjIHBwZGV2
-IGxwIHBhcnBvcnQgZWZpX3BzdG9yZSBuZm5ldGxpbmsgZG1pX3N5c2ZzIGlwX3RhYmxlcyB4X3Rh
-YmxlcyBhdXRvZnM0IGhpZF9nZW5lcmljIHVzYmhpZCBoaWQgYW1kZ3B1KE9FKSBhbWRkcm1fdHRt
-X2hlbHBlcihPRSkgYW1kdHRtKE9FKSBhbWRkcm1fYnVkZHkoT0UpIGFtZHhjcChPRSkgZHJtX2V4
-ZWMgZHJtX3N1YmFsbG9jX2hlbHBlciBhbWRfc2NoZWQoT0UpIGFtZGtjbChPRSkgZHJtX2Rpc3Bs
-YXlfaGVscGVyIGNlYyByY19jb3JlIG52bWUgaTJjX2FsZ29fYml0IGRybV90dG1faGVscGVyIGNy
-YzMyX3BjbG11bCByODE2OSB4aGNpX3BjaSBudm1lX2NvcmUgYWhjaSB0dG0geGhjaV9wY2lfcmVu
-ZXNhcyBsaWJhaGNpIHJlYWx0ZWsgbnZtZV9hdXRoIHZpZGVvIHdtaQ0KWyAgIDIxLjU1ODgxN10g
-Q1BVOiAwIFVJRDogMCBQSUQ6IDExNSBDb21tOiBrd29ya2VyL3U2NDoxIFRhaW50ZWQ6IEcgICAg
-ICAgICAgIE9FICAgICAgNi4xMS4wLTE3LWdlbmVyaWMgIzE3fjI0LjA0LjItVWJ1bnR1DQpbICAg
-MjEuNTU4ODIyXSBUYWludGVkOiBbT109T09UX01PRFVMRSwgW0VdPVVOU0lHTkVEX01PRFVMRQ0K
-WyAgIDIxLjU1ODgyM10gSGFyZHdhcmUgbmFtZTogTWljcm8tU3RhciBJbnRlcm5hdGlvbmFsIENv
-LiwgTHRkLiBNUy03RDc2L01BRyBCNjUwTSBNT1JUQVIgV0lGSSAoTVMtN0Q3NiksIEJJT1MgQS5K
-MCAxMi8xNy8yMDI0DQpbICAgMjEuNTU4ODI1XSBXb3JrcXVldWU6IGdmeF8wLjAuMCBkcm1fc2No
-ZWRfcnVuX2pvYl93b3JrIFthbWRfc2NoZWRdDQpbICAgMjEuNTU4ODMwXSBSSVA6IDAwMTA6Y2hl
-Y2tfZmx1c2hfZGVwZW5kZW5jeSsweDE1MS8weDE4MA0KWyAgIDIxLjU1ODgzM10gQ29kZTogNTYg
-MTggNGQgODkgZTAgNDggOGQgOGIgYzAgMDAgMDAgMDAgNDggYzcgYzcgZTggODggMDkgYTEgYzYg
-MDUgZTggNGQgOGQgMDIgMDEgNDggOGIgNzAgMDggNDggODEgYzYgYzAgMDAgMDAgMDAgZTggNmYg
-NTQgZmQgZmYgPDBmPiAwYiBlOSBkMiBmZSBmZiBmZiA0NCAwZiBiNiAzZCBjYSA0ZCA4ZCAwMiA0
-MSA4MCBmZiAwMSA3NyAwZiA0MQ0KWyAgIDIxLjU1ODgzNl0gUlNQOiAwMDE4OmZmZmZhZTkzMDA1
-MWZiZTggRUZMQUdTOiAwMDAxMDA0Ng0KWyAgIDIxLjU1ODgzOF0gUkFYOiAwMDAwMDAwMDAwMDAw
-MDAwIFJCWDogZmZmZjlhYmY4MDIwMTQwMCBSQ1g6IDAwMDAwMDAwMDAwMDAwMDANClsgICAyMS41
-NTg4NDBdIFJEWDogMDAwMDAwMDAwMDAwMDAwMCBSU0k6IDAwMDAwMDAwMDAwMDAwMDAgUkRJOiAw
-MDAwMDAwMDAwMDAwMDAwDQpbICAgMjEuNTU4ODQyXSBSQlA6IGZmZmZhZTkzMDA1MWZjMTAgUjA4
-OiAwMDAwMDAwMDAwMDAwMDAwIFIwOTogMDAwMDAwMDAwMDAwMDAwMA0KWyAgIDIxLjU1ODg0M10g
-UjEwOiAwMDAwMDAwMDAwMDAwMDAwIFIxMTogMDAwMDAwMDAwMDAwMDAwMCBSMTI6IGZmZmZmZmZm
-YzA5OTJhZDANClsgICAyMS41NTg4NDRdIFIxMzogMDAwMDAwMDAwMDAwMDAwMCBSMTQ6IGZmZmY5
-YWJmODAzMGQ0NDAgUjE1OiBmZmZmYWU5MzAwNTFmYzQwDQpbICAgMjEuNTU4ODQ2XSBGUzogIDAw
-MDAwMDAwMDAwMDAwMDAoMDAwMCkgR1M6ZmZmZjlhY2U5ZDgwMDAwMCgwMDAwKSBrbmxHUzowMDAw
-MDAwMDAwMDAwMDAwDQpbICAgMjEuNTU4ODQ4XSBDUzogIDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAg
-Q1IwOiAwMDAwMDAwMDgwMDUwMDMzDQpbICAgMjEuNTU4ODUwXSBDUjI6IDAwMDAwNzNiZjJiNmMw
-MDAgQ1IzOiAwMDAwMDAwMDQ2MjNlMDAwIENSNDogMDAwMDAwMDAwMGY1MGVmMA0KWyAgIDIxLjU1
-ODg1Ml0gUEtSVTogNTU1NTU1NTQNClsgICAyMS41NTg4NTNdIENhbGwgVHJhY2U6DQpbICAgMjEu
-NTU4ODU1XSAgPFRBU0s+DQpbICAgMjEuNTU4ODU5XSAgPyBzaG93X3JlZ3MrMHg2Yy8weDgwDQpb
-ICAgMjEuNTU4ODY0XSAgPyBfX3dhcm4rMHg4OC8weDE0MA0KWyAgIDIxLjU1ODg2N10gID8gY2hl
-Y2tfZmx1c2hfZGVwZW5kZW5jeSsweDE1MS8weDE4MA0KWyAgIDIxLjU1ODg3MF0gID8gcmVwb3J0
-X2J1ZysweDE4Mi8weDFiMA0KWyAgIDIxLjU1ODg3NV0gID8gaGFuZGxlX2J1ZysweDZlLzB4YjAN
-ClsgICAyMS41NTg4ODBdICA/IGV4Y19pbnZhbGlkX29wKzB4MTgvMHg4MA0KWyAgIDIxLjU1ODg4
-M10gID8gYXNtX2V4Y19pbnZhbGlkX29wKzB4MWIvMHgyMA0KWyAgIDIxLjU1ODg4OF0gID8gX19w
-ZnhfYW1kZ3B1X2dmeF9wcm9maWxlX2lkbGVfd29ya19oYW5kbGVyKzB4MTAvMHgxMCBbYW1kZ3B1
-XQ0KWyAgIDIxLjU1OTExM10gID8gY2hlY2tfZmx1c2hfZGVwZW5kZW5jeSsweDE1MS8weDE4MA0K
-WyAgIDIxLjU1OTExNl0gID8gY2hlY2tfZmx1c2hfZGVwZW5kZW5jeSsweDE1MS8weDE4MA0KWyAg
-IDIxLjU1OTEyMF0gIF9fZmx1c2hfd29yaysweDIzOC8weDMxMA0KWyAgIDIxLjU1OTEyNF0gID8g
-X19tb2RfdGltZXIrMHgxMjIvMHgzNDANClsgICAyMS41NTkxMjldICBjYW5jZWxfZGVsYXllZF93
-b3JrX3N5bmMrMHg3Ni8weDgwDQpbICAgMjEuNTU5MTMzXSAgYW1kZ3B1X2dmeF9wcm9maWxlX3Jp
-bmdfYmVnaW5fdXNlKzB4MzQvMHhhMCBbYW1kZ3B1XQ0KWyAgIDIxLjU1OTM0MV0gIGdmeF92MTJf
-MF9yaW5nX2JlZ2luX3VzZSsweDEyLzB4MzAgW2FtZGdwdV0NClsgICAyMS41NTk1MzFdICBhbWRn
-cHVfcmluZ19hbGxvYysweDQwLzB4NzAgW2FtZGdwdV0NClsgICAyMS41NTk2NzVdICBhbWRncHVf
-aWJfc2NoZWR1bGUrMHgxNzIvMHg4MzAgW2FtZGdwdV0NClsgICAyMS41NTk4MjFdICBhbWRncHVf
-am9iX3J1bisweDhkLzB4MjAwIFthbWRncHVdDQpbICAgMjEuNTU5OTk0XSAgZHJtX3NjaGVkX3J1
-bl9qb2Jfd29yaysweDJiYi8weDQ1MCBbYW1kX3NjaGVkXQ0KWyAgIDIxLjU1OTk5N10gIHByb2Nl
-c3Nfb25lX3dvcmsrMHgxNzgvMHgzZDANClsgICAyMS41NjAwMDBdICB3b3JrZXJfdGhyZWFkKzB4
-MmRlLzB4NDEwDQpbICAgMjEuNTYwMDAyXSAgPyBfX3BmeF93b3JrZXJfdGhyZWFkKzB4MTAvMHgx
-MA0KWyAgIDIxLjU2MDAwNF0gIGt0aHJlYWQrMHhlMS8weDExMA0KWyAgIDIxLjU2MDAwNl0gID8g
-X19wZnhfa3RocmVhZCsweDEwLzB4MTANClsgICAyMS41NjAwMDhdICByZXRfZnJvbV9mb3JrKzB4
-NDQvMHg3MA0KWyAgIDIxLjU2MDAxMF0gID8gX19wZnhfa3RocmVhZCsweDEwLzB4MTANClsgICAy
-MS41NjAwMTJdICByZXRfZnJvbV9mb3JrX2FzbSsweDFhLzB4MzANClsgICAyMS41NjAwMTddICA8
-L1RBU0s+DQpbICAgMjEuNTYwMDE3XSAtLS1bIGVuZCB0cmFjZSAwMDAwMDAwMDAwMDAwMDAwIF0t
-LS0NCg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogQWxleCBEZXVjaGVyIDxh
-bGV4ZGV1Y2hlckBnbWFpbC5jb20+DQpTZW50OiBXZWRuZXNkYXksIE1hcmNoIDE5LCAyMDI1IDg6
-NTQgUE0NClRvOiBGZW5nLCBLZW5uZXRoIDxLZW5uZXRoLkZlbmdAYW1kLmNvbT4NCkNjOiBhbWQt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgV2FuZywgWWFuZyhLZXZpbikgPEtldmluWWFuZy5X
-YW5nQGFtZC5jb20+DQpTdWJqZWN0OiBSZTogW1BBVENIXSBkcm0vYW1kL2FtZGdwdTogUmV2ZXJ0
-ICJkcm0vYW1kL2FtZGdwdTogc2hvcnRlbiB0aGUgZ2Z4IGlkbGUgd29ya2VyIHRpbWVvdXQiDQoN
-CkNhdXRpb246IFRoaXMgbWVzc2FnZSBvcmlnaW5hdGVkIGZyb20gYW4gRXh0ZXJuYWwgU291cmNl
-LiBVc2UgcHJvcGVyIGNhdXRpb24gd2hlbiBvcGVuaW5nIGF0dGFjaG1lbnRzLCBjbGlja2luZyBs
-aW5rcywgb3IgcmVzcG9uZGluZy4NCg0KDQpPbiBXZWQsIE1hciAxOSwgMjAyNSBhdCAyOjM44oCv
-QU0gS2VubmV0aCBGZW5nIDxrZW5uZXRoLmZlbmdAYW1kLmNvbT4gd3JvdGU6DQo+DQo+IFRoaXMg
-cmV2ZXJ0cyBjb21taXQgYjAwZmI5NzY1ZWE0YjA1MTk4ZDY3MjU2MTE4NDQ1YzZmMTNmOWRkZi4N
-Cj4NCj4gUmVhc29uIGZvciByZXZlcnQ6IHRoaXMgY2F1c2VzIHNvbWUgdGVzdHMgZmFpbCB3aXRo
-IGNhbGwgdHJhY2UuDQoNCkRvIHlvdSBoYXZlIGEgY29weSBvZiB0aGUgY2FsbCB0cmFjZT8gIEkg
-Y2FuJ3Qgc2VlIGhvdyB0aGlzIHdvdWxkIGJlIGFuIGlzc3VlPw0KDQpBbGV4DQoNCj4NCj4gU2ln
-bmVkLW9mZi1ieTogS2VubmV0aCBGZW5nIDxrZW5uZXRoLmZlbmdAYW1kLmNvbT4NCj4gLS0tDQo+
-ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmggfCA0ICsrLS0NCj4gIDEg
-ZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+DQo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmgNCj4gYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmgNCj4gaW5kZXggYTZkM2E0NTU0Y2Fh
-Li43NWFmNGYyNWExMzMgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L2FtZGdwdV9nZnguaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-Z2Z4LmgNCj4gQEAgLTU3LDggKzU3LDggQEAgZW51bSBhbWRncHVfZ2Z4X3BpcGVfcHJpb3JpdHkg
-eyAgI2RlZmluZQ0KPiBBTURHUFVfR0ZYX1FVRVVFX1BSSU9SSVRZX01JTklNVU0gIDAgICNkZWZp
-bmUNCj4gQU1ER1BVX0dGWF9RVUVVRV9QUklPUklUWV9NQVhJTVVNICAxNQ0KPg0KPiAtLyogMTAg
-bWlsbGlzZWNvbmQgdGltZW91dCAqLw0KPiAtI2RlZmluZSBHRlhfUFJPRklMRV9JRExFX1RJTUVP
-VVQgICAgICAgbXNlY3NfdG9famlmZmllcygxMCkNCj4gKy8qIDEgc2Vjb25kIHRpbWVvdXQgKi8N
-Cj4gKyNkZWZpbmUgR0ZYX1BST0ZJTEVfSURMRV9USU1FT1VUICAgICAgIG1zZWNzX3RvX2ppZmZp
-ZXMoMTAwMCkNCj4NCj4gIGVudW0gYW1kZ3B1X2dmeF9wYXJ0aXRpb24gew0KPiAgICAgICAgIEFN
-REdQVV9TUFhfUEFSVElUSU9OX01PREUgPSAwLA0KPiAtLQ0KPiAyLjM0LjENCj4NCg==
+Em qua., 19 de mar. de 2025 =C3=A0s 10:24, Vignesh Raman
+<vignesh.raman@collabora.com> escreveu:
+>
+> Hi Helen,
+>
+> On 19/03/25 00:22, Helen Mae Koike Fornazier wrote:
+> > Em sex., 14 de mar. de 2025 =C3=A0s 05:59, Vignesh Raman
+> > <vignesh.raman@collabora.com> escreveu:
+> >>
+> >> LAVA was recently patched [1] with a fix on how parameters are parsed =
+in
+> >> `lava-test-case`, so we don't need to repeat quotes to send the
+> >> arguments properly to it. Uprev mesa to fix this issue.
+> >>
+> >> [1] https://gitlab.com/lava/lava/-/commit/18c9cf79
+> >>
+> >> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> >> ---
+> >>   drivers/gpu/drm/ci/build.sh       | 16 ++++++++--------
+> >>   drivers/gpu/drm/ci/build.yml      |  8 ++++++++
+> >>   drivers/gpu/drm/ci/container.yml  | 24 +++++++++++++++++++++++
+> >>   drivers/gpu/drm/ci/gitlab-ci.yml  | 32 +++++++++++++++++++++++++++++=
++-
+> >>   drivers/gpu/drm/ci/image-tags.yml |  4 +++-
+> >>   drivers/gpu/drm/ci/lava-submit.sh |  3 ++-
+> >>   drivers/gpu/drm/ci/test.yml       |  2 +-
+> >>   7 files changed, 77 insertions(+), 12 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
+> >> index 19fe01257ab9..284873e94d8d 100644
+> >> --- a/drivers/gpu/drm/ci/build.sh
+> >> +++ b/drivers/gpu/drm/ci/build.sh
+> >> @@ -98,14 +98,14 @@ done
+> >>
+> >>   make ${KERNEL_IMAGE_NAME}
+> >>
+> >> -mkdir -p /lava-files/
+> >> +mkdir -p /kernel/
+> >
+> > the folder is not lava specific, correct?
+>
+> It is not lava specific. Only the directory name where the kernel image
+> is copied is changed and the kernel image is uploaded to S3 for lava.
+>
+> This is based on,
+> https://gitlab.freedesktop.org/mesa/mesa/-/commit/5b65bbf72ce7024c5df2100=
+ce4b12d59e8f3dd26
+
+thanks for clarifying.
+
+>
+> >
+> >>   for image in ${KERNEL_IMAGE_NAME}; do
+> >> -    cp arch/${KERNEL_ARCH}/boot/${image} /lava-files/.
+> >> +    cp arch/${KERNEL_ARCH}/boot/${image} /kernel/.
+> >>   done
+> >>
+> >>   if [[ -n ${DEVICE_TREES} ]]; then
+> >>       make dtbs
+> >> -    cp ${DEVICE_TREES} /lava-files/.
+> >> +    cp ${DEVICE_TREES} /kernel/.
+> >>   fi
+> >>
+> >>   make modules
+> >> @@ -121,11 +121,11 @@ if [[ ${DEBIAN_ARCH} =3D "arm64" ]]; then
+> >>           -d arch/arm64/boot/Image.lzma \
+> >>           -C lzma\
+> >>           -b arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb \
+> >> -        /lava-files/cheza-kernel
+> >> +        /kernel/cheza-kernel
+> >>       KERNEL_IMAGE_NAME+=3D" cheza-kernel"
+> >>
+> >>       # Make a gzipped copy of the Image for db410c.
+> >> -    gzip -k /lava-files/Image
+> >> +    gzip -k /kernel/Image
+> >>       KERNEL_IMAGE_NAME+=3D" Image.gz"
+> >>   fi
+> >>
+> >> @@ -139,7 +139,7 @@ cp -rfv drivers/gpu/drm/ci/* install/.
+> >>   . .gitlab-ci/container/container_post_build.sh
+> >>
+> >>   if [[ "$UPLOAD_TO_MINIO" =3D "1" ]]; then
+> >> -    xz -7 -c -T${FDO_CI_CONCURRENT:-4} vmlinux > /lava-files/vmlinux.=
+xz
+> >> +    xz -7 -c -T${FDO_CI_CONCURRENT:-4} vmlinux > /kernel/vmlinux.xz
+> >>       FILES_TO_UPLOAD=3D"$KERNEL_IMAGE_NAME vmlinux.xz"
+> >>
+> >>       if [[ -n $DEVICE_TREES ]]; then
+> >> @@ -148,7 +148,7 @@ if [[ "$UPLOAD_TO_MINIO" =3D "1" ]]; then
+> >>
+> >>       ls -l "${S3_JWT_FILE}"
+> >>       for f in $FILES_TO_UPLOAD; do
+> >> -        ci-fairy s3cp --token-file "${S3_JWT_FILE}" /lava-files/$f \
+> >> +        ci-fairy s3cp --token-file "${S3_JWT_FILE}" /kernel/$f \
+> >>                   https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/$f
+> >>       done
+> >>
+> >> @@ -165,7 +165,7 @@ ln -s common artifacts/install/ci-common
+> >>   cp .config artifacts/${CI_JOB_NAME}_config
+> >>
+> >>   for image in ${KERNEL_IMAGE_NAME}; do
+> >> -    cp /lava-files/$image artifacts/install/.
+> >> +    cp /kernel/$image artifacts/install/.
+> >>   done
+> >>
+> >>   tar -C artifacts -cf artifacts/install.tar install
+> >> diff --git a/drivers/gpu/drm/ci/build.yml b/drivers/gpu/drm/ci/build.y=
+ml
+> >> index 6c0dc10b547c..8eb56ebcf4aa 100644
+> >> --- a/drivers/gpu/drm/ci/build.yml
+> >> +++ b/drivers/gpu/drm/ci/build.yml
+> >> @@ -143,6 +143,10 @@ debian-arm64-release:
+> >>     rules:
+> >>       - when: never
+> >>
+> >> +debian-arm64-ubsan:
+> >> +  rules:
+> >> +    - when: never
+> >> +
+> >>   debian-build-testing:
+> >>     rules:
+> >>       - when: never
+> >> @@ -183,6 +187,10 @@ debian-testing-msan:
+> >>     rules:
+> >>       - when: never
+> >>
+> >> +debian-testing-ubsan:
+> >> +  rules:
+> >> +    - when: never
+> >> +
+> >>   debian-vulkan:
+> >>     rules:
+> >>       - when: never
+> >> diff --git a/drivers/gpu/drm/ci/container.yml b/drivers/gpu/drm/ci/con=
+tainer.yml
+> >> index 07dc13ff865d..56c95c2f91ae 100644
+> >> --- a/drivers/gpu/drm/ci/container.yml
+> >> +++ b/drivers/gpu/drm/ci/container.yml
+> >> @@ -24,6 +24,18 @@ alpine/x86_64_build:
+> >>     rules:
+> >>       - when: never
+> >>
+> >> +debian/arm32_test-base:
+> >> +  rules:
+> >> +    - when: never
+> >> +
+> >> +debian/arm32_test-gl:
+> >> +  rules:
+> >> +    - when: never
+> >> +
+> >> +debian/arm32_test-vk:
+> >> +  rules:
+> >> +    - when: never
+> >> +
+> >>   debian/arm64_test-gl:
+> >>     rules:
+> >>       - when: never
+> >> @@ -32,6 +44,10 @@ debian/arm64_test-vk:
+> >>     rules:
+> >>       - when: never
+> >>
+> >> +debian/baremetal_arm32_test:
+> >> +  rules:
+> >> +    - when: never
+> >> +
+> >>   debian/ppc64el_build:
+> >>     rules:
+> >>       - when: never
+> >> @@ -40,6 +56,14 @@ debian/s390x_build:
+> >>     rules:
+> >>       - when: never
+> >>
+> >> +debian/x86_32_build:
+> >> +  rules:
+> >> +    - when: never
+> >> +
+> >> +debian/x86_64_test-android:
+> >> +  rules:
+> >> +    - when: never
+> >> +
+> >>   debian/x86_64_test-vk:
+> >>     rules:
+> >>       - when: never
+> >> diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/git=
+lab-ci.yml
+> >> index b06b9e7d3d09..55b540c4cf92 100644
+> >> --- a/drivers/gpu/drm/ci/gitlab-ci.yml
+> >> +++ b/drivers/gpu/drm/ci/gitlab-ci.yml
+> >> @@ -1,6 +1,6 @@
+> >>   variables:
+> >>     DRM_CI_PROJECT_PATH: &drm-ci-project-path mesa/mesa
+> >> -  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 7d3062470f3ccc6cb40540e772e90=
+2c7e2248024
+> >> +  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 82ab58f6c6f94fa80ca7e1615146f=
+08356e3ba69
+> >>
+> >>     UPSTREAM_REPO: https://gitlab.freedesktop.org/drm/kernel.git
+> >>     TARGET_BRANCH: drm-next
+> >> @@ -187,6 +187,36 @@ stages:
+> >>       - when: manual
+> >>
+> >>
+> >> +# Repeat of the above but with `when: on_success` replaced with
+> >> +# `when: delayed` + `start_in:`, for build-only jobs.
+> >> +# Note: make sure the branches in this list are the same as in
+> >> +# `.container+build-rules` above.
+> >> +.build-only-delayed-rules:
+> >> +  rules:
+> >> +    - !reference [.common-rules, rules]
+> >> +    # Run when re-enabling a disabled farm, but not when disabling it
+> >> +    - !reference [.disable-farm-mr-rules, rules]
+> >> +    # Never run immediately after merging, as we just ran everything
+> >> +    - !reference [.never-post-merge-rules, rules]
+> >> +    # Build everything in merge pipelines
+> >> +    - if: *is-merge-attempt
+> >> +      when: delayed
+> >> +      start_in: &build-delay 5 minutes
+> >> +    # Same as above, but for pre-merge pipelines
+> >> +    - if: *is-pre-merge
+> >> +      when: manual
+> >> +    # Build everything after someone bypassed the CI
+> >> +    - if: *is-direct-push
+> >> +      when: manual
+> >> +    # Build everything in scheduled pipelines
+> >> +    - if: *is-scheduled-pipeline
+> >> +      when: delayed
+> >> +      start_in: *build-delay
+> >> +    # Allow building everything in fork pipelines, but build nothing =
+unless
+> >> +    # manually triggered
+> >> +    - when: manual
+> >> +
+> >
+> > Do you think we could avoid repeating code by using anchor (&) and
+> > reference (*) ?
+> >
+> > https://docs.gitlab.com/ci/yaml/yaml_optimization/#yaml-anchors-for-scr=
+ipts
+>
+> We could create anchors for the repeated rules in .container+build-rules
+> and .build-only-delayed-rules, but I would prefer to first do this in
+> mesa and then adapt the same in drm-ci. Right now it is the same as
+> mesa, so maybe fix this in the next mesa uprev. What do you suggest?
+
+If we just herit from mesa, than sure, we can do this on mesa, but it
+seems this could be made here.
+But if you think it is better to fix there first than update here, I'm
+fine with this too.
+
+Acked-by: Helen Koike <helen.fornazier@gmail.com>
+
+Thanks
+Helen
+
+>
+> Regards,
+> Vignesh
+>
+> >
+> > Regards,
+> > Helen
+> >
+> >> +
+> >>   .ci-deqp-artifacts:
+> >>     artifacts:
+> >>       name: "${CI_PROJECT_NAME}_${CI_JOB_NAME}"
+> >> diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/im=
+age-tags.yml
+> >> index 20049f3626b2..c04ba0e69935 100644
+> >> --- a/drivers/gpu/drm/ci/image-tags.yml
+> >> +++ b/drivers/gpu/drm/ci/image-tags.yml
+> >> @@ -1,5 +1,5 @@
+> >>   variables:
+> >> -   CONTAINER_TAG: "20250204-mesa-uprev"
+> >> +   CONTAINER_TAG: "20250307-mesa-uprev"
+> >>      DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base"
+> >>      DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
+> >>
+> >> @@ -20,3 +20,5 @@ variables:
+> >>      DEBIAN_PYUTILS_TAG: "${CONTAINER_TAG}"
+> >>
+> >>      ALPINE_X86_64_LAVA_SSH_TAG: "${CONTAINER_TAG}"
+> >> +
+> >> +   CONDITIONAL_BUILD_ANGLE_TAG: fec96cc945650c5fe9f7188cabe80d8a
+> >> diff --git a/drivers/gpu/drm/ci/lava-submit.sh b/drivers/gpu/drm/ci/la=
+va-submit.sh
+> >> index 6e5ac51e8c0a..f22720359b33 100755
+> >> --- a/drivers/gpu/drm/ci/lava-submit.sh
+> >> +++ b/drivers/gpu/drm/ci/lava-submit.sh
+> >> @@ -48,7 +48,8 @@ ROOTFS_URL=3D"$(get_path_to_artifact lava-rootfs.tar=
+.zst)"
+> >>   rm -rf results
+> >>   mkdir -p results/job-rootfs-overlay/
+> >>
+> >> -artifacts/ci-common/generate-env.sh > results/job-rootfs-overlay/set-=
+job-env-vars.sh
+> >> +artifacts/ci-common/export-gitlab-job-env-for-dut.sh \
+> >> +    > results/job-rootfs-overlay/set-job-env-vars.sh
+> >>   cp artifacts/ci-common/init-*.sh results/job-rootfs-overlay/
+> >>   cp "$SCRIPTS_DIR"/setup-test-env.sh results/job-rootfs-overlay/
+> >>
+> >> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+> >> index dbc4ff50d8ff..84a25f0e783b 100644
+> >> --- a/drivers/gpu/drm/ci/test.yml
+> >> +++ b/drivers/gpu/drm/ci/test.yml
+> >> @@ -112,7 +112,7 @@
+> >>       - kvm
+> >>     script:
+> >>       - ln -sf $CI_PROJECT_DIR/install /install
+> >> -    - mv install/bzImage /lava-files/bzImage
+> >> +    - mv install/bzImage /kernel/bzImage
+> >>       - mkdir -p /lib/modules
+> >>       - install/crosvm-runner.sh install/igt_runner.sh
+> >>     needs:
+> >> --
+> >> 2.47.2
+> >>
+> >
+> >
+>
+
+
+--=20
+Helen Koike
