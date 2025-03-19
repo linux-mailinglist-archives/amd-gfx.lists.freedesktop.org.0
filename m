@@ -2,82 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C48EA68B58
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Mar 2025 12:24:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDBFBA68D39
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Mar 2025 13:53:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C50D210E2FE;
-	Wed, 19 Mar 2025 11:24:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DBD710E4F3;
+	Wed, 19 Mar 2025 12:53:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BUXMV0BP";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jg1JGjkD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76F8610E301;
- Wed, 19 Mar 2025 11:23:57 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-43d04ea9d9aso20576315e9.3; 
- Wed, 19 Mar 2025 04:23:57 -0700 (PDT)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
+ [209.85.216.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CB8010E4F3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Mar 2025 12:53:44 +0000 (UTC)
+Received: by mail-pj1-f49.google.com with SMTP id
+ 98e67ed59e1d1-2ff6ce72844so1240565a91.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Mar 2025 05:53:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742383436; x=1742988236; darn=lists.freedesktop.org;
- h=in-reply-to:from:content-language:references:to:subject:user-agent
- :mime-version:date:message-id:from:to:cc:subject:date:message-id
- :reply-to; bh=vA8o3ZLig4WOMxLPfsqVkYd14wxaodkHbkqzfdxOaAk=;
- b=BUXMV0BPlytngAmxSevCfplUvOYRelrS9E/sybJJ28d9Qd6ciG081Kv7erE4TwMnKt
- 0FuNXAndt6+MIxPETkkptY6fFlG6IdAzU7HOX9DV2KBAJXZWM6wiBmid6OZmxWaj/Nja
- uO1NSbNHxZGpRFet9yhA4wW/tnMEuzP/noi5r4zS0j0GqTgeE0d0lvDo9gES9m79fM+h
- 0byJRJKSwT3jYlOKagAASqBPYHWJzpxlJq3IT7FXDd3t2Zdv167nKTsnvIXwHgpJaBPw
- 5jADNLka1PSPOemN/Xk15RiFnw8Spju2ewy2JtYFHrDKUyXLnU5g2ODdFkiqhskJWIea
- zm6g==
+ d=gmail.com; s=20230601; t=1742388824; x=1742993624; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=R43In3jtKWhBcif9cevyDYJCDUjTbFZiZP/mbldFrtA=;
+ b=jg1JGjkDf9s8tfuquODYaLOmvJPFq5EKetNRL4Wd5HF/lPfA9zgT6IMX36YUH/kmyd
+ jy42J4n92YawQ28/v5Bi2uCH+IGdCvGoW4vN0cLoLZT+wtK3t+SXXAAInsHtpWWbAZ1X
+ gWeMQOMMwl6/nXRpQqNejaxd+L8u4MBI/2cwNecprrGKO0YTv5M6lZgSRzDHyzJRLi/J
+ /ZKuZRbf0uu7BtTTYhGtYxfquOk5wvt8ak+nm/CVgyuXUvgYJpKCeHNwnyDHIQ3vOxLP
+ V5MhIY/8PZ+PQtVoAP/ci4H7TENAeHEvB0x8wAgLAWGrt0HTS/+5rxOD5oxTpAoYaiAo
+ HVrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742383436; x=1742988236;
- h=in-reply-to:from:content-language:references:to:subject:user-agent
- :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=vA8o3ZLig4WOMxLPfsqVkYd14wxaodkHbkqzfdxOaAk=;
- b=ZtfWHjyh1zSaEVmGo6l1n72AJJHG145E/tH6YlGDoYbnEZYe2jD/FzBfcCemeJn7wA
- ii974sYar6MBOKgw0ejWuoJFpb+ZWaKV0JHSa5I+3M/l0Om3VWZ1x5LV7CZ3MTxMs9S6
- Llp3w6kwjuvsvlXWASvh90Q6eHXuONEMbXl6+oxZxyLU7oV3ln84QD+iOj2diRuoHs75
- 794km0plAmMMC2hmrXYV2rWADndnkPUVpHDR2mAJS0rzvM1GRni3DxIKqGpjce0GPe5T
- obL9src9fyGfuj6FL5trMgBMOMqo5OsAm7ENSOrg7sK/NAiRFfzuK3x6Nz5a3rdzYPZV
- z5QQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVXWdl9snqpZeSvxxA3Y+tRK5yGKKryAPQHWbfRZB+CIMivqs6AuqZqeneNw8T0IS6KpvCcKQ7cuo6G@lists.freedesktop.org,
- AJvYcCXBi7VRNw+eXm0afyaeNfIXpMqAMxFIPewU3XP4JimfALzVyf9OxZ+4oqL4qkoYnYZPRRVROXou@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxMbZCsUWjXs2S2TAMUxFW6rCuL6LD2uhgEEte0ZKwlWc5J9nMD
- QvrEdGfJ1JVEho+Nx6bF7vfBcdLwh9Wmipu80gMSRIOi2gi1BksQE1kDUqnR
-X-Gm-Gg: ASbGnctwu2/bP445D44qh1lYhzh429LKyZwg6bekKNdxCeKT5gd95ZliwQ7RcMLiHDB
- K8OvkHVfQ7ud5zRQLIfqzX+TnCiUvww5rbiwHnzPKTjweRPjWXRxQ8mwcra9WEduYTMas81f//G
- 8q94amhaD/HEPIQidW1ji/YThhXDM22ExeT2j7M1AvAkMdlMMhFZPQTnmVaYVj+YpAccHcnhnGX
- 7ca7rx5hXneWbeTbNaUQQJQAM+k8POChody5RyekGv0VESD/A/u8Wp2Srrx9ZOBF3J/dUsQc0XW
- OAIoTVt2koRCkPmF75jIOCHfIZMq0JIKvbXUXcmBe3tIJZ8OR1DgNCSp1H8+70EyzZD1VaIDUQ=
- =
-X-Google-Smtp-Source: AGHT+IF/pIGLRLLFxCz0BPL+ZnMOMwuPy3+45oV9Co/RUjar493GWh7fAGrTW8XmkTKkRYk/FlSupQ==
-X-Received: by 2002:a05:600c:5107:b0:43c:f597:d584 with SMTP id
- 5b1f17b1804b1-43d43899ffcmr21387435e9.29.1742383435778; 
- Wed, 19 Mar 2025 04:23:55 -0700 (PDT)
-Received: from [10.254.108.83] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43d43f556a4sm15924075e9.22.2025.03.19.04.23.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Mar 2025 04:23:55 -0700 (PDT)
-Content-Type: multipart/alternative;
- boundary="------------WFALB1e7gBmVlHU7xpbTHiQd"
-Message-ID: <48f07793-0fd4-4cdd-8568-3bd2ff63bb6a@gmail.com>
-Date: Wed, 19 Mar 2025 12:23:53 +0100
+ d=1e100.net; s=20230601; t=1742388824; x=1742993624;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=R43In3jtKWhBcif9cevyDYJCDUjTbFZiZP/mbldFrtA=;
+ b=xHEbPIkGYZFGSdLRpV2Tt1JTkBPWD20FOVGXcXMvfdEG1Ki8nm3qhG5a4soj0dsxBt
+ 0NQC9/uU+usV5KXLs967OERt9npcFJ8T4nxrUm/EzSyg84ZSqiPnIyr/LWhgEb/QVgun
+ VIv3UgYW1y+ZWwrIr+FrRZPSYr0MVoXTafUDmDZn4lXnuLtux5Pqr2q+oMmDDosCbmxE
+ Z/aebMXSiZ0aMEo/ltg1lAlemExtL4cYqItyAR5uu34jJQQ06obFI80a+bkpD6aHzk00
+ ojAyqVZXY+MSO3WymUlsqNq8+nXlLfOiF0hoJ2ZYgq8+ONu9GkOvSDFkXTk8zQ556q/Q
+ aKhg==
+X-Gm-Message-State: AOJu0Yz+IhP12RnrbZBMdZpiglvMoc+ej9Fjwkw+s0wxtknnZh0i1QYO
+ z/3vgxUPN0yBni5xqX9SPIPwt5PWu0k+z/ZqtA3G33YajXzrd+8+H501wvTPOwqbewiUWmwxVUP
+ at0Q3L+gkr9N1lh/HUuvgN04BaBIBlQ==
+X-Gm-Gg: ASbGncu1wl8SJdfqlwB6RYRKMIgXupNBmBCIKc/MsJA/Dg/IoKZXvscube2q0G7+tsj
+ fblFnMC5MnGeAbnUcxcMO8X0Q7JfLS179QrFguIdPPzImlI4BdWEurzJPVSH2Ev5ABNc8JXmPhA
+ QRsHnqoEDVd+PL3vDdJy5YY6JdHWRHTP9IkVvd
+X-Google-Smtp-Source: AGHT+IGFvspS62hF6L+BVI728Oi/BWO78V3x7FkZby3JdnmgAdebnl/35w/rYer2IZwvnUFAssqsmH+VEkJeI6tPzsg=
+X-Received: by 2002:a17:90b:33c4:b0:301:ba2b:3bc6 with SMTP id
+ 98e67ed59e1d1-301bfcadafemr1194248a91.7.1742388823764; Wed, 19 Mar 2025
+ 05:53:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/sched: add drm_sched_prealloc_dependency_slots
-To: phasta@kernel.org, tvrtko.ursulin@igalia.com,
- dri-devel@lists.freedesktop.org, dakr@kernel.org,
- amd-gfx@lists.freedesktop.org
-References: <20250318120313.19099-1-christian.koenig@amd.com>
- <20250318120313.19099-2-christian.koenig@amd.com>
- <769f6c5788eff9459414b8ce0b056989e29773af.camel@mailbox.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <769f6c5788eff9459414b8ce0b056989e29773af.camel@mailbox.org>
+References: <20250319063811.680138-1-kenneth.feng@amd.com>
+In-Reply-To: <20250319063811.680138-1-kenneth.feng@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 19 Mar 2025 08:53:30 -0400
+X-Gm-Features: AQ5f1JpTtgA0KT8JA9g0NCrJQ_6HBRU9ExLRDfNvS8ZnQGswLpnDCnTPvzB7moc
+Message-ID: <CADnq5_Nx2FGd66uwkmV6Hhrvdfc+VTO=OafZJDK=AVXhBKQM7Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/amdgpu: Revert "drm/amd/amdgpu: shorten the gfx
+ idle worker timeout"
+To: Kenneth Feng <kenneth.feng@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, kevinyang.wang@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,104 +80,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------WFALB1e7gBmVlHU7xpbTHiQd
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+On Wed, Mar 19, 2025 at 2:38=E2=80=AFAM Kenneth Feng <kenneth.feng@amd.com>=
+ wrote:
+>
+> This reverts commit b00fb9765ea4b05198d67256118445c6f13f9ddf.
+>
+> Reason for revert: this causes some tests fail with call trace.
 
->> + *
->> + * Return:
->> + * 0 on success, or an error on failing to expand the array.
->> + */
->> +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
->> *job,
->> +					    unsigned int num_deps)
->> +{
->> +	struct dma_fence *fence;
->> +	u32 id = 0;
->> +	int ret;
->> +
->> +	while (num_deps--) {
->> +		fence = dma_fence_get_stub();
->> +		ret = xa_alloc(&job->dependencies, &id, fence,
->> xa_limit_32b,
->> +			       GFP_KERNEL);
-> So this would fill the xarr with already signaled fences which then
-> later will be replaced with unsignaled fences?
+Do you have a copy of the call trace?  I can't see how this would be an iss=
+ue?
 
-Yes, exactly that's the idea.
+Alex
 
-> Help me out here: would it also work to add NULL instead of that stub-
-> fence?
-
-Good question, idk. That's an implementation detail of the xarray.
-
-Tvrtko also correctly pointed out that it is most likely a bad idea to use dma_fence_is_signaled() in the critical code path.
-
-I will try to dig through the xarray behavior up and update the patch if possible.
-
-Thanks,
-Christian.
-
---------------WFALB1e7gBmVlHU7xpbTHiQd
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <span style="white-space: pre-wrap">
-</span>
-    <blockquote type="cite"
-cite="mid:769f6c5788eff9459414b8ce0b056989e29773af.camel@mailbox.org">
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">+ *
-+ * Return:
-+ * 0 on success, or an error on failing to expand the array.
-+ */
-+int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
-*job,
-+					    unsigned int num_deps)
-+{
-+	struct dma_fence *fence;
-+	u32 id = 0;
-+	int ret;
-+
-+	while (num_deps--) {
-+		fence = dma_fence_get_stub();
-+		ret = xa_alloc(&amp;job-&gt;dependencies, &amp;id, fence,
-xa_limit_32b,
-+			       GFP_KERNEL);
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-So this would fill the xarr with already signaled fences which then
-later will be replaced with unsignaled fences?</pre>
-    </blockquote>
-    <br>
-    Yes, exactly that's the idea.<br>
-    <br>
-    <blockquote type="cite"
-cite="mid:769f6c5788eff9459414b8ce0b056989e29773af.camel@mailbox.org">
-      <pre class="moz-quote-pre" wrap="">Help me out here: would it also work to add NULL instead of that stub-
-fence?</pre>
-    </blockquote>
-    <br>
-    Good question, idk. That's an implementation detail of the xarray.<br>
-    <br>
-    Tvrtko also correctly pointed out that it is most likely a bad idea
-    to use dma_fence_is_signaled() in the critical code path.<br>
-    <br>
-    I will try to dig through the xarray behavior up and update the
-    patch if possible.<br>
-    <br>
-    Thanks,<br>
-    Christian.<br>
-    <br>
-  </body>
-</html>
-
---------------WFALB1e7gBmVlHU7xpbTHiQd--
+>
+> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_gfx.h
+> index a6d3a4554caa..75af4f25a133 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+> @@ -57,8 +57,8 @@ enum amdgpu_gfx_pipe_priority {
+>  #define AMDGPU_GFX_QUEUE_PRIORITY_MINIMUM  0
+>  #define AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM  15
+>
+> -/* 10 millisecond timeout */
+> -#define GFX_PROFILE_IDLE_TIMEOUT       msecs_to_jiffies(10)
+> +/* 1 second timeout */
+> +#define GFX_PROFILE_IDLE_TIMEOUT       msecs_to_jiffies(1000)
+>
+>  enum amdgpu_gfx_partition {
+>         AMDGPU_SPX_PARTITION_MODE =3D 0,
+> --
+> 2.34.1
+>
