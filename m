@@ -2,62 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29664A6A21B
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Mar 2025 10:08:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE96CA6A300
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Mar 2025 10:51:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F71810E039;
-	Thu, 20 Mar 2025 09:08:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9C2110E5AB;
+	Thu, 20 Mar 2025 09:51:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fc9AIbDz";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iJw6FPZr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 435 seconds by postgrey-1.36 at gabe;
- Thu, 20 Mar 2025 09:08:51 UTC
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C39EB10E039
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Mar 2025 09:08:51 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id B1ABF43BC1;
- Thu, 20 Mar 2025 09:01:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A702C4CEE8;
- Thu, 20 Mar 2025 09:01:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1742461286;
- bh=5l9jwMAcnsf1oLxy6ZmyjDg3hozK14Egdv9q6rSt7pk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=fc9AIbDzyhmJe5F843Vik1qG222uAdC5zlcrjHv/RASdem/9w5AuR2Fc2CYxVPLkk
- xILD6Dr72N6r9c0ay6SqY7zzwaWqvP1gX+R4a0yajJk/7lWDqW77WIBRYxRuZR9C05
- e+wn/tnrOe+kNjDh+fWenmHiOevyGSTOIol0T3pHB+ISaX0KLUZqzINEjhpERz8zkn
- aDPAKRkIVY0IQtvrFBosMxoT1Jcst+tA+rKebqj95HEi8AnAzknkBNC6SF/QF0zWC/
- sg4TiPEnMEzgRkT9KuE3XwlESIl8CzwuvQGxU+t2pk0MrdZj23sASvPjXGyKtI1W6i
- 57ZXEI3d7fm6g==
-Date: Thu, 20 Mar 2025 10:01:20 +0100
-From: Ingo Molnar <mingo@kernel.org>
-To: Balbir Singh <balbirs@nvidia.com>
-Cc: Bert Karwatzki <spasswolf@web.de>, Alex Deucher <alexdeucher@gmail.com>,
- Kees Cook <kees@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Andy Lutomirski <luto@kernel.org>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org
-Subject: Re: commit 7ffb791423c7 breaks steam game
-Message-ID: <Z9vZYIbXOz2wF59j@gmail.com>
-References: <146277bb0ecbb392d490683c424b8ae0dfa82838.camel@web.de>
- <b63b1de8-7eec-4235-b61e-e654e78543ba@nvidia.com>
- <fa8d5e76694918bdaae9faee9648776f298f78ca.camel@web.de>
- <7866593f-0322-4fb3-9729-82366940fc85@nvidia.com>
- <a168e78b-ae27-4675-8821-0b1a2499b2b2@nvidia.com>
- <5d34bfc5109b8d104fd4f8550dd17945344f9d07.camel@web.de>
- <551b9797-20d6-4bfe-b54c-84dd7aae7794@nvidia.com>
- <CADnq5_Pvmxa10dJWYjajwxG-0Y_oxhL6wS6NsG2F0dmcJS6o8A@mail.gmail.com>
- <9be36dfab79b17e108f71d51a6ebf39073e110c6.camel@web.de>
- <b5d80ef2-fd5a-41cc-9184-6c82226c330a@nvidia.com>
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEC7E10E158
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Mar 2025 09:30:13 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-5e5ea062471so81111a12.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Mar 2025 02:30:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742463012; x=1743067812; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=aob35BaB0ufxNThD8dz2Sgbm/IOHtRTWoitlf6uqNWw=;
+ b=iJw6FPZrYKLS0uqxY8NrBx5pMdzYpRuB4BB0h+zucfgtsTbsvEGWbRmMFys1OeVyn0
+ Bn1uWIPJ9mfkl4aVm0tmILBzTP8oV9OxIdCx3hIHXSVieEfrMaHo6INiWKZ7Kajoi0qG
+ 3NdZmfTlKdHjpWu8XRRhMby8fa8bo12xskYbgTvmxRkqU45K+wSXQ7IDeCaGKHpbEYPs
+ 2by7USV+3m4JKPW5kVC5X0W4FtgZib5iMsKKwsiTIhZHKUDEg1Ngbjs3ggNNOzgk6mY8
+ mMRhzhthvjBovkZGWRi2cUdbpfOAgGvR1/uOyKWaCt8W183RYOZggVIPtA8+96+ej4sV
+ CPqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742463012; x=1743067812;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=aob35BaB0ufxNThD8dz2Sgbm/IOHtRTWoitlf6uqNWw=;
+ b=CvEvNv96F9FTmRn6PoQ0/mkSX1j0Gs+PTPFcFznaJZ+Ni2x/wiqMHEg8XuOUZHwKsg
+ pZfDX2UfTnIXdBLlDagudDe1+v3OB2wlEbqIVvA9WW84YyTCC9OuZrcJNz8h/KHOVWPF
+ Y6WD2PYRehsnA54CFGbiRG1J46UHd7GWzVAnGS+CMaZLdPAbk16+u1ZUylAP1WSTQxO2
+ ySAL9riLCNLpX2Y7HidGizbZYg/KnHdJm/9D50mCksUSQuz1p4pgpceje5EhjINRULvY
+ dNrrEkKwyRTh4AByCIi2X9frYESSW7usfKLxoGUqfSdwOX+C0vBjyx3ABk3/NkG3k0ll
+ KHNw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVBYsURNl+fnOknWdtHl8I5igz3Svl7TXCkXdvvFGPNhiVpkhcEkpYxv2ekb5Z5iH8WKQzP6rpA@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzFRznmXfA4EEYxBgC1nEYWOYoYovJE7alSYebm40B8TP2tMRnW
+ wBncnqszo0TDNQlExhpfuoHz6Z5rI/IJGoPEp7p3nk2ejnnXlhJ7OnrdUlqOfoj1NPocdKhY1rO
+ uAPvL2ICOzlAPZKrNa0RPsG2b4oI=
+X-Gm-Gg: ASbGnctaL3nB2b2CFScSY+8MhBdY2M/MyEdv+4xv9HUrPIUAKTjEAnhReFiA1/pn47N
+ jsfiw5KxJxuRruVpXBYNd1zqs+OX9HAWpuNyZ5Y+HAW5VNvPvxUzDtZKCWQngbWl6iWph/q/LEj
+ uZIpq6qX9Ru+x/8nJbD6WG+ost
+X-Google-Smtp-Source: AGHT+IGDMoLqQKez1fF3Q8CkiWJClRJTfS8jbfolmDPdyfHjq+XUYJats6DrssZj8lj3nxh2QV7Z7cmjtbVSf6rjFZY=
+X-Received: by 2002:a05:6402:5193:b0:5e5:e17f:22fc with SMTP id
+ 4fb4d7f45d1cf-5eb80ca3ed0mr2437689a12.2.1742463012018; Thu, 20 Mar 2025
+ 02:30:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b5d80ef2-fd5a-41cc-9184-6c82226c330a@nvidia.com>
+References: <20250315201558.339913-1-tomasz.pakula.oficjalny@gmail.com>
+ <20250315201558.339913-3-tomasz.pakula.oficjalny@gmail.com>
+ <DM4PR12MB5165690B22C63D856BFFD7708ED92@DM4PR12MB5165.namprd12.prod.outlook.com>
+ <CAFqprmyv+WXmBWwOa3uPuOkmLtrkfc7jEXquXEyb-Bjuni_jBQ@mail.gmail.com>
+ <CADnq5_NV4hiQCHB7-YE=cN2NNS4AeHsnxntJfQ5a+iiYOaiYGA@mail.gmail.com>
+ <CADnq5_OxT2qfxdPAg5=w1PeOBhQdCL-He2rBJOireSidBz9DKw@mail.gmail.com>
+ <DM4PR12MB51657FD3B25C2F01340701B98ED82@DM4PR12MB5165.namprd12.prod.outlook.com>
+In-Reply-To: <DM4PR12MB51657FD3B25C2F01340701B98ED82@DM4PR12MB5165.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Tomasz_Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+Date: Thu, 20 Mar 2025 10:29:59 +0100
+X-Gm-Features: AQ5f1JpUb9YVYPg2SmzMJurY4ah8pVXm87X3HdORdt4ZVcNy2M9ah9pPVnYpogA
+Message-ID: <CAFqprmw1DMCqOUtK3=ptBWj+0Q1K1XvY32K3s=NG5mYzqm+dww@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amd/pm: add zero RPM stop temp OD setting support
+ for SMU 14.0.2
+To: "Feng, Kenneth" <Kenneth.Feng@amd.com>
+Cc: Alex Deucher <alexdeucher@gmail.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, 
+ "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Thu, 20 Mar 2025 09:51:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,56 +90,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 20 Mar 2025 at 03:38, Feng, Kenneth <Kenneth.Feng@amd.com> wrote:
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> Thanks Tomasz.
+> I confirmed that this change is not in the latest driver-if file.
+> However, this is a fw interface provided by firmware team, we can not change it.
+> That means the interface is different between the smu13 and smu14.
+> Let me check and get back to you.
 
-* Balbir Singh <balbirs@nvidia.com> wrote:
+Please do!
+I honestly find it a bit weird that the setting interface would be exposed but
+its limit is not. Especially given that it actually works after my change and I
+successfully get the stop temperature limits after asking for them. Just seems
+like something has been missed by mistake.
 
-> On 3/17/25 00:09, Bert Karwatzki wrote:
-> > This is related to the admgpu.gttsize. My laptop has the maximum amount 
-> > of memory (64G) and usually gttsize is half of main memory size. I just 
-> > tested with cmdline="nokaslr amdgpi.gttsize=2048" and the problem does 
-> > not occur. So I did some more testing with varying gttsize and got this
-> > for the built-in GPU
-> > 
-> > 08:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
-> > Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev c5)
-> > 
-> > (nokaslr is always enabeld)
-> > gttssize   input behaviour
-> >  2048		GOOD
-> >  2064		GOOD
-> >  2080		SEMIBAD (i.e. noticeable input lag but not as bad as below)
-> >  3072		BAD
-> >  4096		BAD
-> >  8192		BAD
-> > 16384		BAD
-> > 
-> > As the build-in GPU has ~512 VRAM there seems to be problems when gttsize >
-> > 4*VRAM so I tested for the discrete GPU with 8G of VRAM
-> > gttsize   input behaviour
-> > 49152		GOOD
-> > 64000		GOOD
-> > 
-> > So for the discrete GPU increasing gttsize does no reproduce the bug.
-> > 
-> 
-> Very interesting, I am not a GTT expert, but with these experiments do you
-> find anything interesting in
-> 
-> /sys/kernel/debug/x86/pat_memtype_list?
-> 
-> It's weird that you don't see any issues in Xorg (Xfce), just the games.
-> May be we should get help from the amd-gfx experts to further diagnose/debug
-> the interaction of nokaslr with the game.
+I'll be waiting for your info from the FW team with bated breath!
 
-So basically your commit:
-
-  7ffb791423c7 ("x86/kaslr: Reduce KASLR entropy on most x86 systems")
-
-inflicts part of the effects of a 'nokaslr' boot command line option, 
-and triggers the regression due to that?
-
-Or is there some other cause?
-
-Thanks,
-
-	Ingo
+Tomasz
