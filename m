@@ -2,53 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F161A6A2FE
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Mar 2025 10:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29664A6A21B
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Mar 2025 10:08:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A18410E5A8;
-	Thu, 20 Mar 2025 09:51:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F71810E039;
+	Thu, 20 Mar 2025 09:08:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fc9AIbDz";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB0F10E02F;
- Thu, 20 Mar 2025 03:28:15 +0000 (UTC)
-Received: from localhost.localdomain (unknown [124.16.141.245])
- by APP-03 (Coremail) with SMTP id rQCowAC3vQ1Ai9tniwnXFg--.12911S2;
- Thu, 20 Mar 2025 11:28:05 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Add dp_decide_lane_settings() to ensure
- compatibility
-Date: Thu, 20 Mar 2025 11:27:25 +0800
-Message-ID: <20250320032725.909-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.42.0.windows.2
+X-Greylist: delayed 435 seconds by postgrey-1.36 at gabe;
+ Thu, 20 Mar 2025 09:08:51 UTC
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C39EB10E039
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Mar 2025 09:08:51 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id B1ABF43BC1;
+ Thu, 20 Mar 2025 09:01:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A702C4CEE8;
+ Thu, 20 Mar 2025 09:01:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1742461286;
+ bh=5l9jwMAcnsf1oLxy6ZmyjDg3hozK14Egdv9q6rSt7pk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=fc9AIbDzyhmJe5F843Vik1qG222uAdC5zlcrjHv/RASdem/9w5AuR2Fc2CYxVPLkk
+ xILD6Dr72N6r9c0ay6SqY7zzwaWqvP1gX+R4a0yajJk/7lWDqW77WIBRYxRuZR9C05
+ e+wn/tnrOe+kNjDh+fWenmHiOevyGSTOIol0T3pHB+ISaX0KLUZqzINEjhpERz8zkn
+ aDPAKRkIVY0IQtvrFBosMxoT1Jcst+tA+rKebqj95HEi8AnAzknkBNC6SF/QF0zWC/
+ sg4TiPEnMEzgRkT9KuE3XwlESIl8CzwuvQGxU+t2pk0MrdZj23sASvPjXGyKtI1W6i
+ 57ZXEI3d7fm6g==
+Date: Thu, 20 Mar 2025 10:01:20 +0100
+From: Ingo Molnar <mingo@kernel.org>
+To: Balbir Singh <balbirs@nvidia.com>
+Cc: Bert Karwatzki <spasswolf@web.de>, Alex Deucher <alexdeucher@gmail.com>,
+ Kees Cook <kees@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Andy Lutomirski <luto@kernel.org>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org
+Subject: Re: commit 7ffb791423c7 breaks steam game
+Message-ID: <Z9vZYIbXOz2wF59j@gmail.com>
+References: <146277bb0ecbb392d490683c424b8ae0dfa82838.camel@web.de>
+ <b63b1de8-7eec-4235-b61e-e654e78543ba@nvidia.com>
+ <fa8d5e76694918bdaae9faee9648776f298f78ca.camel@web.de>
+ <7866593f-0322-4fb3-9729-82366940fc85@nvidia.com>
+ <a168e78b-ae27-4675-8821-0b1a2499b2b2@nvidia.com>
+ <5d34bfc5109b8d104fd4f8550dd17945344f9d07.camel@web.de>
+ <551b9797-20d6-4bfe-b54c-84dd7aae7794@nvidia.com>
+ <CADnq5_Pvmxa10dJWYjajwxG-0Y_oxhL6wS6NsG2F0dmcJS6o8A@mail.gmail.com>
+ <9be36dfab79b17e108f71d51a6ebf39073e110c6.camel@web.de>
+ <b5d80ef2-fd5a-41cc-9184-6c82226c330a@nvidia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: rQCowAC3vQ1Ai9tniwnXFg--.12911S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Kr4UGr1DuryxWr4UAr1xGrg_yoW8ur4Dpa
- 18KFyDJF1UtrW0qa98tF1I9rW5Wa18C3y7Ar9rGasYyry5AF1Ik3y5Cr9Fkr9rGFWkA3yY
- q3W8Ca1Duwn0kFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUBY14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
- JVWxJr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxV
- WxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2Wl
- Yx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbV
- WUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7Cj
- xVA2Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFylc2xSY4AK67AK6r48MxAIw28IcxkI7V
- AKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCj
- r7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6x
- IIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAI
- w20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x
- 0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUb7DG7UUUUU==
-X-Originating-IP: [124.16.141.245]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCQ4HA2fbeH5JuwAAsL
-X-Mailman-Approved-At: Thu, 20 Mar 2025 09:51:20 +0000
+In-Reply-To: <b5d80ef2-fd5a-41cc-9184-6c82226c330a@nvidia.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +72,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The dp_perform_128b_132b_channel_eq_done_sequence() calls
-dp_get_lane_status_and_lane_adjust() but lacks dp_decide_lane_settings().
-The dp_get_lane_status_and_lane_adjust() and dp_decide_lane_settings()
-functions are essential for DisplayPort link training in the Linux kernel,
-with the former retrieving lane status and adjustment needs, and the
-latter determining optimal lane configurations. This omission risks
-compatibility issues, particularly with lower-quality cables or displays,
-as the system cannot dynamically adjust to hardware limitations,
-potentially leading to failed connections. Add dp_decide_lane_settings()
-to enable adaptive lane configuration.
 
-Fixes: 630168a97314 ("drm/amd/display: move dp link training logic to link_dp_training")
-Cc: stable@vger.kernel.org # 6.3+
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- .../amd/display/dc/link/protocols/link_dp_training_128b_132b.c  | 2 ++
- 1 file changed, 2 insertions(+)
+* Balbir Singh <balbirs@nvidia.com> wrote:
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_128b_132b.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_128b_132b.c
-index db87cfe37b5c..99aae3e43106 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_128b_132b.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_128b_132b.c
-@@ -176,6 +176,8 @@ static enum link_training_result dp_perform_128b_132b_cds_done_sequence(
- 		wait_time += lt_settings->cds_pattern_time;
- 		status = dp_get_lane_status_and_lane_adjust(link, lt_settings, dpcd_lane_status,
- 						&dpcd_lane_status_updated, dpcd_lane_adjust, DPRX);
-+		dp_decide_lane_settings(lt_settings, dpcd_lane_adjust,
-+				lt_settings->hw_lane_settings, lt_settings->dpcd_lane_settings);
- 		if (status != DC_OK) {
- 			result = LINK_TRAINING_ABORT;
- 		} else if (dp_is_symbol_locked(lt_settings->link_settings.lane_count, dpcd_lane_status) &&
--- 
-2.42.0.windows.2
+> On 3/17/25 00:09, Bert Karwatzki wrote:
+> > This is related to the admgpu.gttsize. My laptop has the maximum amount 
+> > of memory (64G) and usually gttsize is half of main memory size. I just 
+> > tested with cmdline="nokaslr amdgpi.gttsize=2048" and the problem does 
+> > not occur. So I did some more testing with varying gttsize and got this
+> > for the built-in GPU
+> > 
+> > 08:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
+> > Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev c5)
+> > 
+> > (nokaslr is always enabeld)
+> > gttssize   input behaviour
+> >  2048		GOOD
+> >  2064		GOOD
+> >  2080		SEMIBAD (i.e. noticeable input lag but not as bad as below)
+> >  3072		BAD
+> >  4096		BAD
+> >  8192		BAD
+> > 16384		BAD
+> > 
+> > As the build-in GPU has ~512 VRAM there seems to be problems when gttsize >
+> > 4*VRAM so I tested for the discrete GPU with 8G of VRAM
+> > gttsize   input behaviour
+> > 49152		GOOD
+> > 64000		GOOD
+> > 
+> > So for the discrete GPU increasing gttsize does no reproduce the bug.
+> > 
+> 
+> Very interesting, I am not a GTT expert, but with these experiments do you
+> find anything interesting in
+> 
+> /sys/kernel/debug/x86/pat_memtype_list?
+> 
+> It's weird that you don't see any issues in Xorg (Xfce), just the games.
+> May be we should get help from the amd-gfx experts to further diagnose/debug
+> the interaction of nokaslr with the game.
 
+So basically your commit:
+
+  7ffb791423c7 ("x86/kaslr: Reduce KASLR entropy on most x86 systems")
+
+inflicts part of the effects of a 'nokaslr' boot command line option, 
+and triggers the regression due to that?
+
+Or is there some other cause?
+
+Thanks,
+
+	Ingo
