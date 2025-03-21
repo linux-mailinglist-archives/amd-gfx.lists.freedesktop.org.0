@@ -2,51 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9BEA6D658
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Mar 2025 09:38:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3159EA6D6E1
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Mar 2025 10:06:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C78310E24B;
-	Mon, 24 Mar 2025 08:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B854D10E28C;
+	Mon, 24 Mar 2025 09:06:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="C4Xsi1aY";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="oQjKCoI8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77B3310E241;
- Mon, 24 Mar 2025 08:38:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=S7URmGSlydRRr2eWwn4I5GzTwO2XmaOge2tvKsWWfr0=; b=C4Xsi1aYxsAAnxs+Toi3i1QIqp
- ppDPcvqXmD59D+Sz/b5zSSOltqjc4LP8XvVJxUVEHjMUzx3qEjoP8UKcW2I5NAHECFeTHcGpkXGne
- A6lABzj2YpcYq+CYEHjaWGy3uwpQjebWAYDvCmKbiaVLSa28wfdh9UYUdfMaxQk2hXhgfHgf7oe9M
- x6LnMnS6/Evhuu5fdt2nycNNKGoweV2c0t2ynGMH7FDO9XzjaXdbwGrMX1t1aAzx6kougyh85zC/i
- ZmUhAKGvVkDLW+VZv9cn7DCP4bND03+rKtWM1pH0Ty8myC6/Kxvx4jyknNycUkp6CJ13KkkB3VecY
- VEFxOKPA==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1twdJw-005d0g-Eu; Mon, 24 Mar 2025 09:38:08 +0100
-Message-ID: <e0c74c37-2ee5-4cb1-853e-d69f3ab2aee6@igalia.com>
-Date: Mon, 24 Mar 2025 08:38:07 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/amdgpu: fix gang submission error handling
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- phasta@mailbox.org, dakr@kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7907010E812;
+ Fri, 21 Mar 2025 18:05:33 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4ZK9N739Wjz9sp3;
+ Fri, 21 Mar 2025 19:05:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1742580327; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=UhjGm48vMwQTMI5P3SgQeCHevkL8b6DjBTSn9MX1c18=;
+ b=oQjKCoI8QzekHFBV2QngbP6Zcu59HUCM0ef6J5Ws/BvgqORuryxWSGOCiXFUefJOYfLc0+
+ 4mC3a2WqLfqFQ6M/zth3IUp7vNkgiu+q17PVe1QAw9sWfaepl5Ua9JBPKb2lUI7vE34NJD
+ vPf3PlJ1iNm1nsZjm/SRtfahwhdt06Pui6rIi8NU6w8XxZz7gk5J7H17PyKoAgBEe/QAuJ
+ BNlKkGfILpW/Z/9JB3u4Wm2yLHT6tAQI9KaXxtWoFo6Du+2qp1pqIDIrOWRWVEXdG/3aFf
+ 97Cxjv88TLGf9FteBFRR9ZDc3s1YYSMZigu6X+mwzLIyBfLgK8s5AFBqTV0AeQ==
+Message-ID: <e9db9144a38161982b9f310c4543e1effe7afe17.camel@mailbox.org>
+Subject: Re: [PATCH 1/2] drm/sched: add drm_sched_prealloc_dependency_slots v2
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ tvrtko.ursulin@igalia.com, dakr@kernel.org,
+ dri-devel@lists.freedesktop.org,  amd-gfx@lists.freedesktop.org
+Date: Fri, 21 Mar 2025 19:05:25 +0100
+In-Reply-To: <20250321155852.15162-1-christian.koenig@amd.com>
 References: <20250321155852.15162-1-christian.koenig@amd.com>
- <20250321155852.15162-2-christian.koenig@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250321155852.15162-2-christian.koenig@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MBO-RS-ID: 7a0497b0011efcb6586
+X-MBO-RS-META: sbiie5kuzx7xz7tkzpojwz8auao33gcr
+X-Mailman-Approved-At: Mon, 24 Mar 2025 09:06:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,109 +61,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 2025-03-21 at 16:58 +0100, Christian K=C3=B6nig wrote:
+> Sometimes drivers need to be able to submit multiple jobs which
+> depend on
+> each other to different schedulers at the same time, but using
+> drm_sched_job_add_dependency() can't fail any more after the first
+> job is
+> initialized.
+>=20
+> This function preallocate memory for dependency slots so that no
+> ENOMEM
+> can come later while adding dependencies.
+>=20
+> v2: rework implementation an documentation
 
-On 21/03/2025 15:58, Christian König wrote:
-> For the unlikely case that we ran into an ENOMEM while fixing up the gang
-> submission dependencies we can't clean up any more since the gang
-> members are already armed.
-> 
-> Fix this by using pre-allocated dependency slots and re-ordering the
-> code, also fix a double unref since the fence reference is also dropped
-> on error.
-> 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
+For drm/sched Danilo & I think that changelogs shouldn't be in the
+commit message anymore. The Link: applied by the DRM tools will be
+sufficient to find the history in the archives if necessary.
+
+>=20
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 57 +++++++++++++++-----------
->   1 file changed, 33 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> index 5cc5f59e3018..25e7f7d356d7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -1285,36 +1285,21 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
->   	uint64_t seq;
->   	int r;
->   
-> -	for (i = 0; i < p->gang_size; ++i)
-> -		drm_sched_job_arm(&p->jobs[i]->base);
-> -
-> -	for (i = 0; i < p->gang_size; ++i) {
-> -		struct dma_fence *fence;
-> -
-> -		if (p->jobs[i] == leader)
-> -			continue;
-> -
-> -		fence = &p->jobs[i]->base.s_fence->scheduled;
-> -		dma_fence_get(fence);
-> -		r = drm_sched_job_add_dependency(&leader->base, fence);
-> -		if (r) {
-> -			dma_fence_put(fence);
-> -			return r;
-> -		}
-> -	}
-> -
-> -	if (p->gang_size > 1) {
-> -		for (i = 0; i < p->gang_size; ++i)
-> -			amdgpu_job_set_gang_leader(p->jobs[i], leader);
-> -	}
-> +	/* Preallocate the memory for the gang dependencies */
-> +	r = drm_sched_job_prealloc_dependency_slots(&leader->base,
-> +						    p->gang_size - 1);
-> +	if (r)
-> +		return r;
->   
-> -	/* No memory allocation is allowed while holding the notifier lock.
-> +	/*
-> +	 * No memory allocation is allowed while holding the notifier lock.
->   	 * The lock is held until amdgpu_cs_submit is finished and fence is
->   	 * added to BOs.
->   	 */
->   	mutex_lock(&p->adev->notifier_lock);
->   
-> -	/* If userptr are invalidated after amdgpu_cs_parser_bos(), return
-> +	/*
-> +	 * If userptr are invalidated after amdgpu_cs_parser_bos(), return
->   	 * -EAGAIN, drmIoctl in libdrm will restart the amdgpu_cs_ioctl.
->   	 */
->   	r = 0;
-> @@ -1329,6 +1314,30 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
->   		return r;
->   	}
->   
-> +	for (i = 0; i < p->gang_size; ++i)
-> +		drm_sched_job_arm(&p->jobs[i]->base);
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 44
+> ++++++++++++++++++++++++--
+> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
+> =C2=A02 files changed, 43 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> b/drivers/gpu/drm/scheduler/sched_main.c
+> index 4d4219fbe49d..ee3701f346b2 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -852,6 +852,39 @@ void drm_sched_job_arm(struct drm_sched_job
+> *job)
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(drm_sched_job_arm);
+> =C2=A0
+> +/**
+> + * drm_sched_job_prealloc_dependency_slots - avoid ENOMEM on adding
+> dependencies
+> + * @job: scheduler job where dependencies will be added
+> + * @num_deps: number of dependencies to preallocate slots for
+> +=C2=A0 *
+> + * Sometimes drivers need to be able to submit multiple jobs which
+> depend on
+> + * each other to different schedulers at the same time, but using
+> + * drm_sched_job_add_dependency() can't fail any more after the
+> first job is
+> + * initialized.
+> + *
+> + * This function preallocate memory for dependency slots so that no
+> ENOMEM can
+> + * come later while adding dependencies.
+> + *
+> + * Return:
+> + * 0 on success, or an error on failing to expand the array.
+> + */
+> +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
+> *job,
+> +					=C2=A0=C2=A0=C2=A0 unsigned int num_deps)
+> +{
+> +	u32 id =3D 0;
+> +	int ret;
 > +
-> +	for (i = 0; i < p->gang_size; ++i) {
-> +		struct dma_fence *fence;
-> +
-> +		if (p->jobs[i] == leader)
-> +			continue;
-> +
-> +		fence = dma_fence_get(&p->jobs[i]->base.s_fence->scheduled);
-> +		r = drm_sched_job_add_dependency(&leader->base, fence);
-> +		/*
-> +		 * We can't abort here with an error any more, but we should
-> +		 * also never run into an error since the slots for the
-> +		 * dependency fences are preallocated.
-> +		 */
-> +		WARN_ON(r);
+> +	while (num_deps--) {
+> +		ret =3D xa_alloc(&job->dependencies, &id,
+> XA_ZERO_ENTRY,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xa_limit_32b, GFP_KERNEL);
+
+Fine by me, but out of curiousity about the xarray: you mentioned
+xa_reserve() might work, too?
+
+
+P.
+
+> +		if (ret !=3D 0)
+> +			return ret;
 > +	}
 > +
-> +	if (p->gang_size > 1) {
-> +		for (i = 0; i < p->gang_size; ++i)
-> +			amdgpu_job_set_gang_leader(p->jobs[i], leader);
-> +	}
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_sched_job_prealloc_dependency_slots);
 > +
->   	p->fence = dma_fence_get(&leader->base.s_fence->finished);
->   	drm_exec_for_each_locked_object(&p->exec, index, gobj) {
->   
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-
-Regards,
-
-Tvrtko
+> =C2=A0/**
+> =C2=A0 * drm_sched_job_add_dependency - adds the fence as a job dependenc=
+y
+> =C2=A0 * @job: scheduler job to add the dependencies to
+> @@ -878,10 +911,15 @@ int drm_sched_job_add_dependency(struct
+> drm_sched_job *job,
+> =C2=A0	 * engines involved, rather than the number of BOs.
+> =C2=A0	 */
+> =C2=A0	xa_for_each(&job->dependencies, index, entry) {
+> -		if (entry->context !=3D fence->context)
+> +		if (xa_is_zero(entry)) {
+> +			/*
+> +			 * Reserved entries must not alloc memory,
+> but let's
+> +			 * use GFP_ATOMIC just to be on the
+> defensive side.
+> +			*/
+> +			xa_store(&job->dependencies, index, fence,
+> GFP_ATOMIC);
+> +		} else if (entry->context !=3D fence->context) {
+> =C2=A0			continue;
+> -
+> -		if (dma_fence_is_later(fence, entry)) {
+> +		} else if (dma_fence_is_later(fence, entry)) {
+> =C2=A0			dma_fence_put(entry);
+> =C2=A0			xa_store(&job->dependencies, index, fence,
+> GFP_KERNEL);
+> =C2=A0		} else {
+> diff --git a/include/drm/gpu_scheduler.h
+> b/include/drm/gpu_scheduler.h
+> index 1a7e377d4cbb..916e820b27ff 100644
+> --- a/include/drm/gpu_scheduler.h
+> +++ b/include/drm/gpu_scheduler.h
+> @@ -632,6 +632,8 @@ int drm_sched_job_init(struct drm_sched_job *job,
+> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 credits, void *owner);
+> =C2=A0void drm_sched_job_arm(struct drm_sched_job *job);
+> =C2=A0void drm_sched_entity_push_job(struct drm_sched_job *sched_job);
+> +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
+> *job,
+> +					=C2=A0=C2=A0=C2=A0 unsigned int num_deps);
+> =C2=A0int drm_sched_job_add_dependency(struct drm_sched_job *job,
+> =C2=A0				 struct dma_fence *fence);
+> =C2=A0int drm_sched_job_add_syncobj_dependency(struct drm_sched_job *job,
 
