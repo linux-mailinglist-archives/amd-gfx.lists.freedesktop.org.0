@@ -2,58 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8192A6B709
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Mar 2025 10:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D04DBA6B8B3
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Mar 2025 11:24:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C66EB10E740;
-	Fri, 21 Mar 2025 09:20:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 531E610E77E;
+	Fri, 21 Mar 2025 10:24:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="lglERMLY";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="USwN9O5c";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E2C710E129;
- Fri, 21 Mar 2025 08:20:12 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4ZJwNl6NsPz9s01;
- Fri, 21 Mar 2025 09:20:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1742545207; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=oyYjdGGRzlCcQkWUZiH4uZGdGt1yFcspRATdfLaayM8=;
- b=lglERMLYka0HtJ01JR3ErNWMeqe9J8V484eBch6W/Z6Emdw0FCxhOSBlQCStb5jmW1Cb4P
- 9YL38hNzEzCS7eYSqiD28pm/bdYfsU6wa7W4Jx6rg2y7gLwMaoHMrfOPkX+t+rEmfyuD7W
- s1Mvouk1jCBbPbtmvF2J1oPSWldJ3u7E6YwwWyt0BDSmJpEX4BAyeoZ+S1gl8ZcBTsbKyD
- H0HGk341WdY+W/RXx62ejcOkD6VGOU3BPLkrYDx5aZ7OXl5jAs7+q9OZ1vLla06JWRlgA3
- I06m1y7+S+KAHs9iPOwET1xGyMvUEsIRyfuixAA6NVztMEmhNlCAQkuhqP2sww==
-Message-ID: <773a6105e1b448ecb2be8b2c80bb63c0e08f52d2.camel@mailbox.org>
-Subject: Re: [PATCH 1/2] drm/sched: add drm_sched_prealloc_dependency_slots
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- phasta@kernel.org, dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38FEC10E77E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 10:24:26 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id E7952A48D27;
+ Fri, 21 Mar 2025 10:18:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89B7AC4CEE3;
+ Fri, 21 Mar 2025 10:24:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1742552664;
+ bh=D24M1M8nS14Me4tboiVm1/oePTkar2wchrnm8pcbf1w=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=USwN9O5cfKZkLeODD9Fj649FR8pHBXVkQ9GUif6gjWjm7YOodBEL8Ont0MBX2s3cw
+ hY79l2YkV1/6s0687tUKEj0PkPt3UkMVlzo+QGUqj0yR4Uw0Hcntn+mIi0A8Mw7sTQ
+ zdIzG74IWaedYjxu4ggOmQ2l7p0CUrICogtmWlXD8qkB2WwiSqc74OO8md145mBYnz
+ TaLE/eYqnZmU7WMmooxMUBa9HR8fKSyrcsn85ikXutqqkH+GkiMf+TJexvKaw0AlaN
+ h8FBrhJxTadLSkn3aE6B531Pwq6mnb6gyxQwA5cwYHD5Zx/01KPCCIDAGzbGWQSRV+
+ aifNE7T4T0Ubw==
+Date: Fri, 21 Mar 2025 11:24:20 +0100
+From: Ingo Molnar <mingo@kernel.org>
+To: Balbir Singh <balbirs@nvidia.com>
+Cc: Bert Karwatzki <spasswolf@web.de>, Alex Deucher <alexdeucher@gmail.com>,
+ Kees Cook <kees@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Andy Lutomirski <luto@kernel.org>, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org
-Date: Fri, 21 Mar 2025 09:20:04 +0100
-In-Reply-To: <860fb3b6-0f18-49c4-b464-5c8c8995e6bd@igalia.com>
-References: <20250318120313.19099-1-christian.koenig@amd.com>
- <20250318120313.19099-2-christian.koenig@amd.com>
- <769f6c5788eff9459414b8ce0b056989e29773af.camel@mailbox.org>
- <48f07793-0fd4-4cdd-8568-3bd2ff63bb6a@gmail.com>
- <860fb3b6-0f18-49c4-b464-5c8c8995e6bd@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: commit 7ffb791423c7 breaks steam game
+Message-ID: <Z90-VOyC5oanCC8z@gmail.com>
+References: <fa8d5e76694918bdaae9faee9648776f298f78ca.camel@web.de>
+ <7866593f-0322-4fb3-9729-82366940fc85@nvidia.com>
+ <a168e78b-ae27-4675-8821-0b1a2499b2b2@nvidia.com>
+ <5d34bfc5109b8d104fd4f8550dd17945344f9d07.camel@web.de>
+ <551b9797-20d6-4bfe-b54c-84dd7aae7794@nvidia.com>
+ <CADnq5_Pvmxa10dJWYjajwxG-0Y_oxhL6wS6NsG2F0dmcJS6o8A@mail.gmail.com>
+ <9be36dfab79b17e108f71d51a6ebf39073e110c6.camel@web.de>
+ <b5d80ef2-fd5a-41cc-9184-6c82226c330a@nvidia.com>
+ <Z9vZYIbXOz2wF59j@gmail.com>
+ <2cafd3e1-9265-403a-9854-7200d84ca397@nvidia.com>
 MIME-Version: 1.0
-X-MBO-RS-META: qy7cap3s8zg1d9g8qy4kir1jf5gkubjs
-X-MBO-RS-ID: 5a39719af3035e82328
-X-Mailman-Approved-At: Fri, 21 Mar 2025 09:20:13 +0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2cafd3e1-9265-403a-9854-7200d84ca397@nvidia.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,75 +67,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-03-20 at 11:49 +0000, Tvrtko Ursulin wrote:
->=20
-> On 19/03/2025 11:23, Christian K=C3=B6nig wrote:
-> > > > + *
-> > > > + * Return:
-> > > > + * 0 on success, or an error on failing to expand the array.
-> > > > + */
-> > > > +int drm_sched_job_prealloc_dependency_slots(struct
-> > > > drm_sched_job
-> > > > *job,
-> > > > +					=C2=A0=C2=A0=C2=A0 unsigned int
-> > > > num_deps)
-> > > > +{
-> > > > +	struct dma_fence *fence;
-> > > > +	u32 id =3D 0;
-> > > > +	int ret;
-> > > > +
-> > > > +	while (num_deps--) {
-> > > > +		fence =3D dma_fence_get_stub();
-> > > > +		ret =3D xa_alloc(&job->dependencies, &id, fence,
-> > > > xa_limit_32b,
-> > > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 GFP_KERNEL);
-> > > So this would fill the xarr with already signaled fences which
-> > > then
-> > > later will be replaced with unsignaled fences?
-> >=20
-> > Yes, exactly that's the idea.
-> >=20
-> > > Help me out here: would it also work to add NULL instead of that
-> > > stub-
-> > > fence?
-> >=20
-> > Good question, idk. That's an implementation detail of the xarray.
-> >=20
-> > Tvrtko also correctly pointed out that it is most likely a bad idea
-> > to=20
-> > use dma_fence_is_signaled() in the critical code path.
-> >=20
-> > I will try to dig through the xarray behavior up and update the
-> > patch if=20
-> > possible.
->=20
-> I think NULL on its own is not possible, but the two low bits are=20
-> available for pointer tagging, or designating pointers vs integers,=20
-> which looks like it could work. Something like storing=20
-> xa_tag_pointer(NULL, 1) to reserved slots and at lookup time they
-> would=20
-> be detected with "xa_pointer_tag(fence) & 1".
 
-Almost!
+* Balbir Singh <balbirs@nvidia.com> wrote:
 
-they would be detected with a super-readable
+> On 3/20/25 20:01, Ingo Molnar wrote:
+> > 
+> > * Balbir Singh <balbirs@nvidia.com> wrote:
+> > 
+> >> On 3/17/25 00:09, Bert Karwatzki wrote:
+> >>> This is related to the admgpu.gttsize. My laptop has the maximum amount 
+> >>> of memory (64G) and usually gttsize is half of main memory size. I just 
+> >>> tested with cmdline="nokaslr amdgpi.gttsize=2048" and the problem does 
+> >>> not occur. So I did some more testing with varying gttsize and got this
+> >>> for the built-in GPU
+> >>>
+> >>> 08:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
+> >>> Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev c5)
+> >>>
+> >>> (nokaslr is always enabeld)
+> >>> gttssize   input behaviour
+> >>>  2048		GOOD
+> >>>  2064		GOOD
+> >>>  2080		SEMIBAD (i.e. noticeable input lag but not as bad as below)
+> >>>  3072		BAD
+> >>>  4096		BAD
+> >>>  8192		BAD
+> >>> 16384		BAD
+> >>>
+> >>> As the build-in GPU has ~512 VRAM there seems to be problems when gttsize >
+> >>> 4*VRAM so I tested for the discrete GPU with 8G of VRAM
+> >>> gttsize   input behaviour
+> >>> 49152		GOOD
+> >>> 64000		GOOD
+> >>>
+> >>> So for the discrete GPU increasing gttsize does no reproduce the bug.
+> >>>
+> >>
+> >> Very interesting, I am not a GTT expert, but with these experiments do you
+> >> find anything interesting in
+> >>
+> >> /sys/kernel/debug/x86/pat_memtype_list?
+> >>
+> >> It's weird that you don't see any issues in Xorg (Xfce), just the games.
+> >> May be we should get help from the amd-gfx experts to further diagnose/debug
+> >> the interaction of nokaslr with the game.
+> > 
+> > So basically your commit:
+> > 
+> >   7ffb791423c7 ("x86/kaslr: Reduce KASLR entropy on most x86 systems")
+> > 
+> > inflicts part of the effects of a 'nokaslr' boot command line option, 
+> > and triggers the regression due to that?
+> > 
+> > Or is there some other cause?
+> > 
+> 
+> You are right in your assessment of the root cause. Just to reiterate
+>
+> - nokaslr does not work with the iGPU, specifically for the games 
+>   mentioned
+>
+> - There is a workaround for the problem, which involves reducing the 
+>   amdgpu.gttsize
+>
+> - The patch exposes the system to nokaslr situation (effect) when 
+>   PCI_P2PDMA is enabled
 
-#define DRM_SCHED_XARR_TAG_RESERVED_ENTRY 1
+Note that every major x86 distro I checked enables CONFIG_PCI_P2PDMA=y 
+and also keeps KASLR enables, so the above qualifiers are immaterial in 
+terms of user impact: it's a 100% certainty that distro kernels on 
+these systems will regress under these games, right?
 
-or maybe =E2=80=A6UNUSED_ENTRY?
+What is the importance of the original fix? I should have insisted on a 
+fuller changelog, because it's rather thin on details:
 
-^_^
+  If the BAR address is beyond this limit, PCI peer to peer DMA
+  mappings fail.
 
-P.
+How frequently does this happen and what is the impact to users if this 
+happens?
 
+We might be forced to revert this change if it regresses other systems.
 
->=20
-> Regards,
->=20
-> Tvrtko
->=20
+Thanks,
 
+	Ingo
