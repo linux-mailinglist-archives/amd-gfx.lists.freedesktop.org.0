@@ -2,56 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3796A6B70A
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Mar 2025 10:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8192A6B709
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Mar 2025 10:20:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43A2710E746;
-	Fri, 21 Mar 2025 09:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C66EB10E740;
+	Fri, 21 Mar 2025 09:20:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="lglERMLY";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 535 seconds by postgrey-1.36 at gabe;
- Fri, 21 Mar 2025 03:24:11 UTC
-Received: from relay.hostedemail.com (smtprelay0014.hostedemail.com
- [216.40.44.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5169510E310;
- Fri, 21 Mar 2025 03:24:10 +0000 (UTC)
-Received: from omf15.hostedemail.com (a10.router.float.18 [10.200.18.1])
- by unirelay08.hostedemail.com (Postfix) with ESMTP id B4A64141BC9;
- Fri, 21 Mar 2025 03:15:02 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
- omf15.hostedemail.com (Postfix) with ESMTPA id 5C4CA1B; 
- Fri, 21 Mar 2025 03:14:57 +0000 (UTC)
-Message-ID: <cf0501d3245554150b4a19ced0401228fc58b335.camel@perches.com>
-Subject: Re: [PATCH v2 34/59] checkpatch: dont warn about unused macro arg
- on empty body
-From: Joe Perches <joe@perches.com>
-To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-gfx-trybot@lists.freedesktop.org, Andrew Morton
- <akpm@linux-foundation.org>
-Cc: jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org, 
- louis.chauvet@bootlin.com, daniel.vetter@ffwll.ch, 
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
- ville.syrjala@linux.intel.com, Andy Whitcroft <apw@canonical.com>,
- Dwaipayan Ray	 <dwaipayanray1@gmail.com>, Lukas Bulwahn
- <lukas.bulwahn@gmail.com>
-Date: Thu, 20 Mar 2025 20:14:54 -0700
-In-Reply-To: <20250320185238.447458-35-jim.cromie@gmail.com>
-References: <20250320185238.447458-1-jim.cromie@gmail.com>
- <20250320185238.447458-35-jim.cromie@gmail.com>
-Content-Type: text/plain; charset="ISO-8859-1"
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E2C710E129;
+ Fri, 21 Mar 2025 08:20:12 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4ZJwNl6NsPz9s01;
+ Fri, 21 Mar 2025 09:20:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1742545207; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=oyYjdGGRzlCcQkWUZiH4uZGdGt1yFcspRATdfLaayM8=;
+ b=lglERMLYka0HtJ01JR3ErNWMeqe9J8V484eBch6W/Z6Emdw0FCxhOSBlQCStb5jmW1Cb4P
+ 9YL38hNzEzCS7eYSqiD28pm/bdYfsU6wa7W4Jx6rg2y7gLwMaoHMrfOPkX+t+rEmfyuD7W
+ s1Mvouk1jCBbPbtmvF2J1oPSWldJ3u7E6YwwWyt0BDSmJpEX4BAyeoZ+S1gl8ZcBTsbKyD
+ H0HGk341WdY+W/RXx62ejcOkD6VGOU3BPLkrYDx5aZ7OXl5jAs7+q9OZ1vLla06JWRlgA3
+ I06m1y7+S+KAHs9iPOwET1xGyMvUEsIRyfuixAA6NVztMEmhNlCAQkuhqP2sww==
+Message-ID: <773a6105e1b448ecb2be8b2c80bb63c0e08f52d2.camel@mailbox.org>
+Subject: Re: [PATCH 1/2] drm/sched: add drm_sched_prealloc_dependency_slots
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ phasta@kernel.org, dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+ amd-gfx@lists.freedesktop.org
+Date: Fri, 21 Mar 2025 09:20:04 +0100
+In-Reply-To: <860fb3b6-0f18-49c4-b464-5c8c8995e6bd@igalia.com>
+References: <20250318120313.19099-1-christian.koenig@amd.com>
+ <20250318120313.19099-2-christian.koenig@amd.com>
+ <769f6c5788eff9459414b8ce0b056989e29773af.camel@mailbox.org>
+ <48f07793-0fd4-4cdd-8568-3bd2ff63bb6a@gmail.com>
+ <860fb3b6-0f18-49c4-b464-5c8c8995e6bd@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-X-Stat-Signature: iyw3o7jfnibfiwm8pf6ibncbdu7sr4cj
-X-Rspamd-Server: rspamout04
-X-Spam-Status: No, score=1.40
-X-Rspamd-Queue-Id: 5C4CA1B
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1/d9AFXY+OSiUh0DxEBRYtGbqh22M41r8M=
-X-HE-Tag: 1742526897-40709
-X-HE-Meta: U2FsdGVkX19v9u9NW6oOmjvrpY1bOxIWEW9ri8JTiu4krXIx0x4kkL3s61ycTUBVYqWZAIJ7C/Ffq/K4gn5g+x1GbdOrO8rxiB8vtXETDudv0bhAPVRTw1fTVd5XJOHb/T08AWWA/4+GAzz9gnI5j6EyCey42Mqds9Lh08qsIzFVVyEcE7VHsKRjN8+S78BB3IBAQZFf7JMHDzXKhyH+lKLH5xdY8wExVk1cTEYPnOiKtwrJVMU1Eqkzz5h/loNI06mGRiIU85CSc6y1/HEX6ycoLpVjDOfobMLd1AORzTdbRT7BLQ4pU6iK/RH+RU7sISAfSyV7gS1CHTH3IGEouccv2lGAGUKbzNYhnppxyhHx9lx4ATXEqmEqFJ7l5CDT4NwyArNrcE9vTgCIoAmzJvnzTrB72hFZaDZ5l3THts2SLb00BePyImuDplXttMbBt7RPNwhWyuDOnZqrhSwXMA==
+X-MBO-RS-META: qy7cap3s8zg1d9g8qy4kir1jf5gkubjs
+X-MBO-RS-ID: 5a39719af3035e82328
 X-Mailman-Approved-At: Fri, 21 Mar 2025 09:20:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,43 +65,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-03-20 at 12:52 -0600, Jim Cromie wrote:
-> we currently get:
->   WARNING: Argument 'name' is not used in function-like macro
-> on:
->   #define DRM_CLASSMAP_USE(name)  /* nothing here */
+On Thu, 2025-03-20 at 11:49 +0000, Tvrtko Ursulin wrote:
 >=20
-> Following this advice is wrong here, and shouldn't be fixed by
-> ignoring args altogether; the macro should properly fail if invoked
-> with 0 or 2+ args.
+> On 19/03/2025 11:23, Christian K=C3=B6nig wrote:
+> > > > + *
+> > > > + * Return:
+> > > > + * 0 on success, or an error on failing to expand the array.
+> > > > + */
+> > > > +int drm_sched_job_prealloc_dependency_slots(struct
+> > > > drm_sched_job
+> > > > *job,
+> > > > +					=C2=A0=C2=A0=C2=A0 unsigned int
+> > > > num_deps)
+> > > > +{
+> > > > +	struct dma_fence *fence;
+> > > > +	u32 id =3D 0;
+> > > > +	int ret;
+> > > > +
+> > > > +	while (num_deps--) {
+> > > > +		fence =3D dma_fence_get_stub();
+> > > > +		ret =3D xa_alloc(&job->dependencies, &id, fence,
+> > > > xa_limit_32b,
+> > > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 GFP_KERNEL);
+> > > So this would fill the xarr with already signaled fences which
+> > > then
+> > > later will be replaced with unsignaled fences?
+> >=20
+> > Yes, exactly that's the idea.
+> >=20
+> > > Help me out here: would it also work to add NULL instead of that
+> > > stub-
+> > > fence?
+> >=20
+> > Good question, idk. That's an implementation detail of the xarray.
+> >=20
+> > Tvrtko also correctly pointed out that it is most likely a bad idea
+> > to=20
+> > use dma_fence_is_signaled() in the critical code path.
+> >=20
+> > I will try to dig through the xarray behavior up and update the
+> > patch if=20
+> > possible.
 >=20
-> cc: Andy Whitcroft <apw@canonical.com>
-> cc: Joe Perches <joe@perches.com>
-> cc: Dwaipayan Ray <dwaipayanray1@gmail.com>
-> cc: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> I think NULL on its own is not possible, but the two low bits are=20
+> available for pointer tagging, or designating pointers vs integers,=20
+> which looks like it could work. Something like storing=20
+> xa_tag_pointer(NULL, 1) to reserved slots and at lookup time they
+> would=20
+> be detected with "xa_pointer_tag(fence) & 1".
 
-Completely sensible, thanks Jim.
+Almost!
 
-> ---
->  scripts/checkpatch.pl | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+they would be detected with a super-readable
+
+#define DRM_SCHED_XARR_TAG_RESERVED_ENTRY 1
+
+or maybe =E2=80=A6UNUSED_ENTRY?
+
+^_^
+
+P.
+
+
 >=20
-> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> index 7b28ad331742..0c4f578ea6e7 100755
-> --- a/scripts/checkpatch.pl
-> +++ b/scripts/checkpatch.pl
-> @@ -6037,7 +6037,7 @@ sub process {
->  				}
-> =20
->  # check if this is an unused argument
-> -				if ($define_stmt !~ /\b$arg\b/) {
-> +				if ($define_stmt !~ /\b$arg\b/ && $define_stmt) {
->  					WARN("MACRO_ARG_UNUSED",
->  					     "Argument '$arg' is not used in function-like macro\n" . "$her=
-ectx");
->  				}
+> Regards,
+>=20
+> Tvrtko
+>=20
 
