@@ -2,121 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C397A6BB53
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Mar 2025 13:59:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E807CA6BBAF
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Mar 2025 14:25:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C85C10E7C0;
-	Fri, 21 Mar 2025 12:59:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F1C710E7C9;
+	Fri, 21 Mar 2025 13:25:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NgVc7FtS";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UHXPyuSh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2059.outbound.protection.outlook.com [40.107.243.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 834C910E7C0
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 12:59:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ihT5ACJ14CG+/3c7geQ0SxoBkNWJW8YxL/D4lZMoOyhFN2gmZ4qaCRk7dbOBrbNHN5rhTbCp0mmK4MSZ90wzKiDodzyGUh4qikGNFUL9NLqQCwQRWmGxxl55T1ftCtRZ3FM5vZejkeBZ9ie1QlFtgvb9u8efLiG36z3XOOmq3C2zKDb2t11/w48flaYdB6XoBiK0WOaZQfL5oL9zah4z5Rq1YZ6dFLI4v7/KexLUgq6HT/fSz7brE4uimV54vzxJYYMeEs3dI9Ig1j0vM7gtjS64KLHwG8bH+kwmgzQOV1o6+N/25lvV2KkXnL9Ytiw85qjPJzLyfALhF4PsM3gquA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tKurjJKCm664qwOtLAE76Y1nkMvunY2SBIlWksWwIKU=;
- b=wpOVkJimAznJ1gHfbzzCWdWiV7KBg6Upk3pEy3xMul5xFe62mFS6gHG9STyeAbDi+TOVevl2vEHk3NTfZQtYxM2HSlCAJYRdZrisdlW8YN9wsRaCJ8+MWyCWN8vjJirKuShPjjJF2vP1CuyCa52uYm7IfaxAhFa/uyDW5IqZuvNWo+MjoPwUdKudU07v4SfjHz2eAt0gtUqUR0WANzjb2HqRfrhqp2LzFn8J47jpTtfgg1SxnCWlIkAYds23Q3OHXt2pW4AJt0BOytAq+RzxokFVrbduB68a26iXXNFNXmEACaFj9hs34oAIKuZdLaxAAr3bWeZ3VsYhOJlH9wiBtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tKurjJKCm664qwOtLAE76Y1nkMvunY2SBIlWksWwIKU=;
- b=NgVc7FtSP0plOHpwBUpF/FMzQmQdSiCbGFbCUsJenb6PDTyj/a4XCA+vfSiif0ZNivvjHnLHRHK83Z5W7ZlDsELajs0F5WH9Ryokd+rdhNADKZ5eYEYUxTMl1inSyws/cjyio4uMJkMadG/3+FdMWJxffVK1aupMS3WjcQQa6f0=
-Received: from PH0PR07CA0002.namprd07.prod.outlook.com (2603:10b6:510:5::7) by
- SJ2PR12MB8979.namprd12.prod.outlook.com (2603:10b6:a03:548::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.36; Fri, 21 Mar
- 2025 12:59:22 +0000
-Received: from SN1PEPF000397B0.namprd05.prod.outlook.com
- (2603:10b6:510:5:cafe::52) by PH0PR07CA0002.outlook.office365.com
- (2603:10b6:510:5::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.37 via Frontend Transport; Fri,
- 21 Mar 2025 12:59:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF000397B0.mail.protection.outlook.com (10.167.248.54) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8534.20 via Frontend Transport; Fri, 21 Mar 2025 12:59:21 +0000
-Received: from liuxiang-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 21 Mar
- 2025 07:59:19 -0500
-From: Xiang Liu <xiang.liu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <KevinYang.Wang@amd.com>, <Tao.Zhou1@amd.com>,
- <YiPeng.Chai@amd.com>, <Stanley.Yang@amd.com>, Xiang Liu <xiang.liu@amd.com>
-Subject: [PATCH] drm/amdgpu: Use correct gfx deferred error count
-Date: Fri, 21 Mar 2025 20:58:59 +0800
-Message-ID: <20250321125859.611759-1-xiang.liu@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30FA710E7C9;
+ Fri, 21 Mar 2025 13:25:08 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-43cfdc2c8c9so11742745e9.2; 
+ Fri, 21 Mar 2025 06:25:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742563507; x=1743168307; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=iRoO2HIVhJx7KXEKNQR5uppWvhdr6UHy9j0aDQciE08=;
+ b=UHXPyuShPxkuJfzd8VqcWy/RGPIT6rsQNIovb//ULyUaO8s93J9tbWpJ5yTGu/zn94
+ 8YMKosuPxN4LNA00zDjFuTqJ9de6dMjfDTV4CPJCwXAKxPDxhyhk2pDAx5DZbJn7S1Ye
+ bjw5jiYZIFRfhiVcGRy2mTWfm7aPQBRHicJnWXHyR/8MeIHvJnYSDB6NWxiTLI4tIMYZ
+ QlOwW/5SGjIXrjWlrZaCYGDPIE0LcMjqD1DbmgiF/Nt/JKoc75HlLyPD8Yy4KofgprVf
+ OrMMA3/2emYYN92ZH5MP+aShOXgY2c9kK3vUaPwMTnXTMEQ5yXwm6cf2hC1BT/jRWAun
+ N8RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742563507; x=1743168307;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=iRoO2HIVhJx7KXEKNQR5uppWvhdr6UHy9j0aDQciE08=;
+ b=Kanf8j8iLe19dk0bhTsXXCWjr6y27tps0w9erYv/pgQ1xIvszFvc+GcUwKXh8qDe2L
+ ITQ/OMO77hUujGau5i69CwF+HXc6SH6ekjJkF8Hbl6sfIOhS1JLI2949wjIG7q7ga0yo
+ KGVGwdorJOnj8tVuaVKha1+AbBIAak8ytJ+Lqo8dlfXAEa8WCsdq76ePq2G6OjhCfP76
+ LsxdDmVBfoNBKialINMaxo5BLYY2Y1uZHKvaHdeyvE9T1+UkmdCMpW3vp4wVb6KZJB0A
+ sbrEVYm2JhOq7SZg+2oouGVEaSa7ociR//0xl725GDeSjFjynN9oKroGdSyVJc9ooHsx
+ bb6A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUk/2mGsIjniK8qUUvxU8hRkkSerOnxSKQwEP4H3gKJ2Vs/q5afyIjqI/bM7EtmMvuqNimsAwIv@lists.freedesktop.org,
+ AJvYcCWmgpMB9CoD2s2SlNxYKh4Xb6dmEOlXaAVJ7yocsaXh8WAT/bX9UVT5cvmbEHD4yWec+czLdsJyzZh6@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzWva3xAryQYU59TkXhath+Cm9hrSqWGaxSkjVoEGL3+QNtldDa
+ tFxA3H+sbYkO0dILd2Oifw3S0X3CygSu45eYvq6Il+U/vh8DmDNP
+X-Gm-Gg: ASbGncuBXycQgU3BVPu+NXUoAMiG1QBXjqz0wAVaCi3dcP9h2twQnDRgd7WCqalkY6G
+ /M2YKWwkuWlXnHRHg3fPTtZaev1mcFD4FiwNyWTc/EPjW7SkEBR8yHWaWjsMQtjiJ/ZA9A4BLEv
+ xa4/QMLqFkRP+KS7khMmI701u8OXKgTQwmusxMP8ibKDTu0SD2pXqI/w43kdg5tzUFL8AXnTfWD
+ 8nTeXRLE8V9+2NeDif7exUmFDoJvbCNkxA/T1KW+45GG2dCw8s/pwHzS+CGTOjfUd2aE/r/3ehz
+ OW860cSMOylRYSyE1uA3LydM2ALSxAC730v9GggWrro2YQ/mIRwiV5Nzxmmomza7eRFXfCqMAw=
+ =
+X-Google-Smtp-Source: AGHT+IHtSfmXpUCU8d8KsXFKjS4cAhiQAbBnffdMuWJVTAXrNcdouH8lvBfz0eYaeyMAApUAeHdY8g==
+X-Received: by 2002:a05:600c:3584:b0:43c:e2dd:98ea with SMTP id
+ 5b1f17b1804b1-43d50a211f5mr24054765e9.22.1742563506232; 
+ Fri, 21 Mar 2025 06:25:06 -0700 (PDT)
+Received: from [10.254.108.83] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43d4fceafacsm27426145e9.6.2025.03.21.06.25.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 21 Mar 2025 06:25:05 -0700 (PDT)
+Message-ID: <09e28c34-657d-43c1-9f2e-e1870425b450@gmail.com>
+Date: Fri, 21 Mar 2025 14:25:03 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/sched: add drm_sched_prealloc_dependency_slots
+To: phasta@kernel.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ dri-devel@lists.freedesktop.org, dakr@kernel.org,
+ amd-gfx@lists.freedesktop.org
+References: <20250318120313.19099-1-christian.koenig@amd.com>
+ <20250318120313.19099-2-christian.koenig@amd.com>
+ <769f6c5788eff9459414b8ce0b056989e29773af.camel@mailbox.org>
+ <48f07793-0fd4-4cdd-8568-3bd2ff63bb6a@gmail.com>
+ <860fb3b6-0f18-49c4-b464-5c8c8995e6bd@igalia.com>
+ <773a6105e1b448ecb2be8b2c80bb63c0e08f52d2.camel@mailbox.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <773a6105e1b448ecb2be8b2c80bb63c0e08f52d2.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B0:EE_|SJ2PR12MB8979:EE_
-X-MS-Office365-Filtering-Correlation-Id: f7e10671-b84d-419b-7665-08dd687832dd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?aJT3YJW2zkVyuOWZpHT2or+18PRLYGLocwS9XspT0G1x9szoV6kblNciF8Si?=
- =?us-ascii?Q?LtI7j/MBfqk16R3x9m6KIYy+7cX6oqVMS56OewXik6LU998Qqb+Xo7cKJY2s?=
- =?us-ascii?Q?VkE0X4vGu3yC2nu7yP2DTT+Z/V1b/EJsk2TfTPv7V2XVamN87QAfGL0eHMdL?=
- =?us-ascii?Q?NOrQHxipk0CuLi/GcSvKTpURZH2Tz4TLFdbzq1mg+90nb34MlK/psxztj/9B?=
- =?us-ascii?Q?Hfp343QOClgK6/X5AtVNCU5JYn9c/Vu/X9URiIQscjqHjyUraIRam0jtTVlN?=
- =?us-ascii?Q?fsoxWtlCjJEgzpaa+b210sOX5XoGg5Z7Z52CCAUBCuK8NzarpuL01aNfaWLs?=
- =?us-ascii?Q?PDhxLgSCuLVKrbE81/Iz1CEUY334LCfLXPxLEKVeKbP5S1f4jV5UAYFTxwmc?=
- =?us-ascii?Q?51jeprg9lafYLe6qRCbp/3vf1ZEOZ6B2BfJNGi+ecdEprg+E5pxiEVFLpvIC?=
- =?us-ascii?Q?V5VNWekESwICUZKGKIqiYelugn/Eru+5SN/cDrkX2vtGXXQlpGhAO8XVL3ux?=
- =?us-ascii?Q?EQq/V3gi3yphjnQf6S4he1T/jCua/k6eZ9PAZ6T8ddr9yT3+ewVIv5cXY6+2?=
- =?us-ascii?Q?UYBLiCZHREQL5b9sY44i6rs8LVVM9vPSQ6FlLrEivs+xLDASG3B4tWzpi+cn?=
- =?us-ascii?Q?1qss2w8eyaOecQq88Dt5DO5kPucqYxvwi1J/y5wBcj9rUYILR926/j8LGAha?=
- =?us-ascii?Q?vliRpUdEYftmuf52/qe2Du6Js8Xuqpm/hWpabkv39Ayd+cQxVY4RRwXuNZv7?=
- =?us-ascii?Q?MtrzDMkwvbfhnB/Xne0PvwQu4RCGRPilHOPH26scLWg7u+ZQucIO7bSFjR/R?=
- =?us-ascii?Q?DHLbeCCVYisyb09Vsq+jhHfQKK75tK7Cq7BUDHMqdPNurLsKdTij9Z30fTQw?=
- =?us-ascii?Q?gL4uD8EO1+iKMdiNTg2ELmEXpVWOOgXWok2c7c1w2Viex+jvGaLg72nRHrlX?=
- =?us-ascii?Q?YOW6rvz/WWj3sSLU8LyOMBuDV4GCM3ylrFgIlobB04kVp76mYj56hf5VsXlN?=
- =?us-ascii?Q?XmAS/Td4rJajf7PvJskOUxYIrD3XMb6i8iD/ZSbINH751PRR8HAdUmtqktl8?=
- =?us-ascii?Q?US9b+XJvSzExyKZSml7FsCF44lGFRgRyqdAbrZkwe339SS2aN9KoZP334RsG?=
- =?us-ascii?Q?pYKssw+nUm2/cIuntQCZUuY7GL6+2oKXnlV3879G1L3qj4zzBQ5EEjSPqfGD?=
- =?us-ascii?Q?povKIp3O1dRUk8sxgRWePaO9Od2un7jL0Q87PwvzKEB799L5GspjkKai9vA/?=
- =?us-ascii?Q?uImTfQuVsZlRWq0Sv/qmFOoJCIyC7PDCOQ1kqqGtsTr4XQ0cqrBIJe0M2wzY?=
- =?us-ascii?Q?8bMsFxPqihQrPXBDHWtXME7hanJJPk7XYAJ6Cr1B2sDL0jtVXSQ6GsrW4bDd?=
- =?us-ascii?Q?zXzvL24/GqXR7DoW6nBkhqk6cqSD+scDaMGihlYXgHVYzrFgxkgxIqbyHE2W?=
- =?us-ascii?Q?FulC3lDHVN9CPR+dIwNcbeAgK8ZRDM+JuAaD2zvofjkKIjPFo3wGr33TgTo8?=
- =?us-ascii?Q?bBiwrYIOVyegv+U=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2025 12:59:21.4592 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7e10671-b84d-419b-7665-08dd687832dd
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B0.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8979
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,33 +96,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In the case of parsing GFX deferred error from SMU corrected error
-channel, the error count should be set to 1 instead of parsing from
-MISC0 register, which is 0.
+Am 21.03.25 um 09:20 schrieb Philipp Stanner:
+> On Thu, 2025-03-20 at 11:49 +0000, Tvrtko Ursulin wrote:
+>> On 19/03/2025 11:23, Christian König wrote:
+>>>>> + *
+>>>>> + * Return:
+>>>>> + * 0 on success, or an error on failing to expand the array.
+>>>>> + */
+>>>>> +int drm_sched_job_prealloc_dependency_slots(struct
+>>>>> drm_sched_job
+>>>>> *job,
+>>>>> +					    unsigned int
+>>>>> num_deps)
+>>>>> +{
+>>>>> +	struct dma_fence *fence;
+>>>>> +	u32 id = 0;
+>>>>> +	int ret;
+>>>>> +
+>>>>> +	while (num_deps--) {
+>>>>> +		fence = dma_fence_get_stub();
+>>>>> +		ret = xa_alloc(&job->dependencies, &id, fence,
+>>>>> xa_limit_32b,
+>>>>> +			       GFP_KERNEL);
+>>>> So this would fill the xarr with already signaled fences which
+>>>> then
+>>>> later will be replaced with unsignaled fences?
+>>> Yes, exactly that's the idea.
+>>>
+>>>> Help me out here: would it also work to add NULL instead of that
+>>>> stub-
+>>>> fence?
+>>> Good question, idk. That's an implementation detail of the xarray.
+>>>
+>>> Tvrtko also correctly pointed out that it is most likely a bad idea
+>>> to 
+>>> use dma_fence_is_signaled() in the critical code path.
+>>>
+>>> I will try to dig through the xarray behavior up and update the
+>>> patch if 
+>>> possible.
+>> I think NULL on its own is not possible, but the two low bits are 
+>> available for pointer tagging, or designating pointers vs integers, 
+>> which looks like it could work. Something like storing 
+>> xa_tag_pointer(NULL, 1) to reserved slots and at lookup time they
+>> would 
+>> be detected with "xa_pointer_tag(fence) & 1".
+> Almost!
+>
+> they would be detected with a super-readable
+>
+> #define DRM_SCHED_XARR_TAG_RESERVED_ENTRY 1
+>
+> or maybe …UNUSED_ENTRY?
 
-Signed-off-by: Xiang Liu <xiang.liu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+NULL doesn't work because xa_for_each() skips NULL entries, but it looks like somebody else stumbled over the same problem we have here as well.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index a58e2ce4deb5..e84238336fb6 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -898,9 +898,10 @@ static int gfx_v9_4_3_aca_bank_parser(struct aca_handle *handle,
- 		break;
- 	case ACA_SMU_TYPE_CE:
- 		bank->aca_err_type = ACA_BANK_ERR_CE_DE_DECODE(bank);
--		ret = aca_error_cache_log_bank_error(handle, &info,
--						     bank->aca_err_type,
--						     ACA_REG__MISC0__ERRCNT(misc0));
-+		ret = aca_error_cache_log_bank_error(handle, &info, bank->aca_err_type,
-+			(bank->aca_err_type == ACA_ERROR_TYPE_CE) ?
-+				ACA_REG__MISC0__ERRCNT(misc0) :
-+				1);
- 		break;
- 	default:
- 		return -EINVAL;
--- 
-2.34.1
+So there is already the solution to use XA_ZERO_ENTRY! That special value can then either be used with xa_alloc() or through xa_reserve().
+
+It's just that the xarray documentation is not explicitly pointing that out, so I had to dig around in the code a bit to figure out how everything works.
+
+Regards,
+Christian.
+
+>
+> ^_^
+>
+> P.
+>
+>
+>> Regards,
+>>
+>> Tvrtko
+>>
 
