@@ -2,53 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3159EA6D6E1
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Mar 2025 10:06:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0FEA6D6E0
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Mar 2025 10:06:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B854D10E28C;
-	Mon, 24 Mar 2025 09:06:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7CA010E232;
+	Mon, 24 Mar 2025 09:06:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="oQjKCoI8";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="XzX09J07";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7907010E812;
- Fri, 21 Mar 2025 18:05:33 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4ZK9N739Wjz9sp3;
- Fri, 21 Mar 2025 19:05:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1742580327; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=UhjGm48vMwQTMI5P3SgQeCHevkL8b6DjBTSn9MX1c18=;
- b=oQjKCoI8QzekHFBV2QngbP6Zcu59HUCM0ef6J5Ws/BvgqORuryxWSGOCiXFUefJOYfLc0+
- 4mC3a2WqLfqFQ6M/zth3IUp7vNkgiu+q17PVe1QAw9sWfaepl5Ua9JBPKb2lUI7vE34NJD
- vPf3PlJ1iNm1nsZjm/SRtfahwhdt06Pui6rIi8NU6w8XxZz7gk5J7H17PyKoAgBEe/QAuJ
- BNlKkGfILpW/Z/9JB3u4Wm2yLHT6tAQI9KaXxtWoFo6Du+2qp1pqIDIrOWRWVEXdG/3aFf
- 97Cxjv88TLGf9FteBFRR9ZDc3s1YYSMZigu6X+mwzLIyBfLgK8s5AFBqTV0AeQ==
-Message-ID: <e9db9144a38161982b9f310c4543e1effe7afe17.camel@mailbox.org>
-Subject: Re: [PATCH 1/2] drm/sched: add drm_sched_prealloc_dependency_slots v2
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- tvrtko.ursulin@igalia.com, dakr@kernel.org,
- dri-devel@lists.freedesktop.org,  amd-gfx@lists.freedesktop.org
-Date: Fri, 21 Mar 2025 19:05:25 +0100
-In-Reply-To: <20250321155852.15162-1-christian.koenig@amd.com>
-References: <20250321155852.15162-1-christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DB8F10E0C4
+ for <amd-gfx@lists.freedesktop.org>; Sat, 22 Mar 2025 12:24:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1742646236; x=1743251036; i=spasswolf@web.de;
+ bh=9ijOm03zH9pvCrE3DLbQdiRmGtSkUn8cIZSt9Jn3RYU=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=XzX09J07MtujBsFWdUpWUCuOkLt8CT20seIoMazZoiS1EnZqlBpTXMYjBrRE89Ob
+ NVNbBuPvBnyhqyGY6xEErxwckBaVhOBBTO0AMJrHszykACZ1yZPZGab3+SWLQfOPq
+ Pn80/XAl/Ex1+pK4mOZ05lngHnJ1NBQutsk+dND1n+tGK8xWfXEdAi4Y6bkYAAh1Z
+ kreSoTmYUs6dx/j0KNF9908+PvjXBV/Zp4pX00gmaUZeuctxQ5F5xJJWHwbSlKrwb
+ uaDSixj+Ldy8WtwH7p7WCZJUaBK0piPJ4CuEMpLKrg5XzHsoiP9sRk4eW4Eenf1eo
+ E+Lr/Q8mXP8GSHcbrw==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from localhost.localdomain ([95.223.134.88]) by smtp.web.de
+ (mrweb105 [213.165.67.124]) with ESMTPSA (Nemesis) id
+ 1MxHU2-1syVXg0UxM-0115V8; Sat, 22 Mar 2025 13:23:56 +0100
+From: Bert Karwatzki <spasswolf@web.de>
+To: Balbir Singh <balbirs@nvidia.com>
+Cc: Bert Karwatzki <spasswolf@web.de>, Ingo Molnar <mingo@kernel.org>,
+ Kees Cook <kees@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Peter Zijlstra <peterz@infradead.org>, Andy Lutomirski <luto@kernel.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org
+Subject: RE: commit 7ffb791423c7 breaks steam game
+Date: Sat, 22 Mar 2025 13:23:48 +0100
+Message-ID: <20250322122351.3268-1-spasswolf@web.de>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: c5e5b3a7-e8ab-42c8-a33c-ce2c0dd21344@nvidia.com
+References: 
 MIME-Version: 1.0
-X-MBO-RS-ID: 7a0497b0011efcb6586
-X-MBO-RS-META: sbiie5kuzx7xz7tkzpojwz8auao33gcr
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:hAJLFKPTY6o5LmMrec62vbRj/07P3N7vmOupj0k9rmY5Q712+CA
+ Mnb7oVQNPa6p29Cex9Le/HpfoY01c29xV68KqMNfj71p5qhsGUz43bu2FgMxlhJQPsTAOok
+ Rf1s5orfFVIl1RBCRzb6Ve4GPnyJgno5IfdtBQ4hARp0TVEpW1FKFw63LFZ/vvFCPBuSJEC
+ TrLlVuFWlCE1DDvPxIu0w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:Eg18juMOxcc=;nkxu0HFBMatDv853sg2R/F555pN
+ fhmgp6Vn5g7hFSdAixnHnFkJ+Jq4UkPosyeHvEvOLQC4D4d6CwJqG2Y3hBoNHpIN2UON8EKpN
+ zg/Z/r9ufRw1xZF9jxEaahslOAqYKkT1geuCnjWYD6CTePCUZKr+wAIzUTaMsAPOd5Tm+qaAK
+ nlPzh85d0RCF0gsCpz+MQxNst+oc9DLJe4By67YfvWw/tV+gcfhnWUfbLGrFGbV7IcIWm6oqR
+ y/MRlKCZzzDjRWYb5feuVEBM5GVshvQi/nMqZhbYh1X+YJxrvAQl8Xkm7m+/WD4B/MXTr8VBS
+ JjxNxCeNNsRbdexx9TRVi8KfQE4sqPEK/p4D5/RQCc1u1+iVlWTGHRZdlR9KAZsVJajOtlhQ2
+ d38C7NMG5W1YA4b10aT8v/5miNsaVyXuA1wimdaHOwDHoHOLWmF8D6qBQLk1kgSBEFHv3tcME
+ pX2xOoV2qJzp9nbYa15fl66B8GBzL/ReM1eLNWKI2nrdteIfkqaAY/5Mx6E0Sl8nIY+6MjK2R
+ ZkaPJnLhuaXtGNRmnpQT4JoZZpcDxn858LaRMAZIu5SlEsEwD52Nfl15PbEbD+s8D1epwGHYo
+ aonUwC+DV9faQ8LdqusR6NHexuoGH0BqOgBiUM1rYW67ny9e4KZdlSq8L+9YDnNxTX9jfl71f
+ t2qOMvrIOd8UVMeSKXGUJ/Ev75ojGhtPuhjQYrpnPpkWKx3U0E8lgo01478TRvdyj0C5xUCdM
+ RPcqjjg3S8WUKcpnvdrtk8thiPkdMXx5fpXyc0S0eaV9mUNxBS2zfuW/cpbWbWxqSnqPyGcQz
+ U0MKElkrBlbt89HpDv/bkZN2cxADfxt3Ewk9TceKP+sGKbJ5xUhJYA/PIaMzCXXxkySWqwFRD
+ JXNjSorgVDgTnjsQmTBUqMuBwkIxyh4V2zT6Y3w0Ej6V+NyCs+aydEQlI6OM6ypQbrRbaW0cU
+ uSB0dFJf7wyLXIV0TCDlfZS3C73QS/wG9KwoiBvnVGLftJQACSLDLZM4L6RTuB4ihVajDjcw5
+ ELArBwbgEo38VxKhgBQYx1Z+KTDvrIQH7fqDLsxgfwHBFmerYOAoG3cXKlkN0Lc+TIq0it7Wr
+ jh/fW1kh0FNRjxMUv3/RuuzC2p/Bx95lWrxG4ps0SgU6m2D15WKdgllBsL8LDSgmfjDIaH/Nb
+ D9YNe9r586ByuLfpy5F/k37G99cbgqv0wMNYmf8J8FEoArBuzS9bBUz7W7uXyOXWC+JH96maT
+ 2XgGX6o05bczvdnZzqeEbzUwXFG+McdR4oQHMDhwau2RIibpMa/PbYiiZIe5BkbNA8n8rUxIz
+ sr48q+Wyoc6iQCW8cySetc8Liufr9PimAZ7ep3875q7Ee8B9kxhFu7okjGnchGuejsaDczP38
+ +Lt7i2gSmXigKO6QTotMLubLtdh6h3lyGhzusJn6bxei6Jf7pkhs+h9vaQs5B1M9DqZEgK6v2
+ aq8sk9cT4qWdLH14ljTRvOrt6Y2s=
 X-Mailman-Approved-At: Mon, 24 Mar 2025 09:06:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,134 +88,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2025-03-21 at 16:58 +0100, Christian K=C3=B6nig wrote:
-> Sometimes drivers need to be able to submit multiple jobs which
-> depend on
-> each other to different schedulers at the same time, but using
-> drm_sched_job_add_dependency() can't fail any more after the first
-> job is
-> initialized.
->=20
-> This function preallocate memory for dependency slots so that no
-> ENOMEM
-> can come later while adding dependencies.
->=20
-> v2: rework implementation an documentation
+The problem occurs in this part of ttm_tt_populate(), in the nokaslr case
+the loop is entered and repeatedly run because ttm_dma32_pages allocated e=
+xceeds
+the ttm_dma32_pages_limit which leads to lots of calls to ttm_global_swapo=
+ut().
 
-For drm/sched Danilo & I think that changelogs shouldn't be in the
-commit message anymore. The Link: applied by the DRM tools will be
-sufficient to find the history in the archives if necessary.
+if (!strcmp(get_current()->comm, "stellaris"))
+	printk(KERN_INFO "%s: ttm_pages_allocated=3D0x%llx ttm_pages_limit=3D0x%l=
+x ttm_dma32_pages_allocated=3D0x%llx ttm_dma32_pages_limit=3D0x%lx\n",
+			__func__, ttm_pages_allocated.counter, ttm_pages_limit, ttm_dma32_pages=
+_allocated.counter, ttm_dma32_pages_limit);
+while (atomic_long_read(&ttm_pages_allocated) > ttm_pages_limit ||
+       atomic_long_read(&ttm_dma32_pages_allocated) >
+       ttm_dma32_pages_limit) {
 
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
-> =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 44
-> ++++++++++++++++++++++++--
-> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
-> =C2=A02 files changed, 43 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> b/drivers/gpu/drm/scheduler/sched_main.c
-> index 4d4219fbe49d..ee3701f346b2 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -852,6 +852,39 @@ void drm_sched_job_arm(struct drm_sched_job
-> *job)
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL(drm_sched_job_arm);
-> =C2=A0
-> +/**
-> + * drm_sched_job_prealloc_dependency_slots - avoid ENOMEM on adding
-> dependencies
-> + * @job: scheduler job where dependencies will be added
-> + * @num_deps: number of dependencies to preallocate slots for
-> +=C2=A0 *
-> + * Sometimes drivers need to be able to submit multiple jobs which
-> depend on
-> + * each other to different schedulers at the same time, but using
-> + * drm_sched_job_add_dependency() can't fail any more after the
-> first job is
-> + * initialized.
-> + *
-> + * This function preallocate memory for dependency slots so that no
-> ENOMEM can
-> + * come later while adding dependencies.
-> + *
-> + * Return:
-> + * 0 on success, or an error on failing to expand the array.
-> + */
-> +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
-> *job,
-> +					=C2=A0=C2=A0=C2=A0 unsigned int num_deps)
-> +{
-> +	u32 id =3D 0;
-> +	int ret;
-> +
-> +	while (num_deps--) {
-> +		ret =3D xa_alloc(&job->dependencies, &id,
-> XA_ZERO_ENTRY,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xa_limit_32b, GFP_KERNEL);
+	if (!strcmp(get_current()->comm, "stellaris"))
+	printk(KERN_INFO "%s: count=3D%d ttm_pages_allocated=3D0x%llx ttm_pages_l=
+imit=3D0x%lx ttm_dma32_pages_allocated=3D0x%llx ttm_dma32_pages_limit=3D0x=
+%lx\n",
+			__func__, count++, ttm_pages_allocated.counter, ttm_pages_limit, ttm_dm=
+a32_pages_allocated.counter, ttm_dma32_pages_limit);
+	ret =3D ttm_global_swapout(ctx, GFP_KERNEL);
+	if (ret =3D=3D 0)
+		break;
+	if (ret < 0)
+		goto error;
+}
 
-Fine by me, but out of curiousity about the xarray: you mentioned
-xa_reserve() might work, too?
+In the case without nokaslr on the number of ttm_dma32_pages_allocated is =
+0 because
+use_dma32 =3D=3D false in this case.
+
+So why is use_dma32 enabled with nokaslr? Some more printk()s give this re=
+sult:
+
+The GPUs:
+built-in:
+08:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] =
+Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev c5)
+discrete:
+03:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi 23=
+ [Radeon RX 6600/6600 XT/6600M] (rev c3)
+
+With nokaslr:
+[    1.266517] [    T328] dma_addressing_limited: mask =3D 0xfffffffffff b=
+us_dma_limit =3D 0x0 required_mask =3D 0xfffffffff
+[    1.266519] [    T328] dma_addressing_limited: ops =3D 0000000000000000=
+ use_dma_iommu(dev) =3D 0
+[    1.266520] [    T328] dma_direct_all_ram_mapped: returning true
+[    1.266521] [    T328] dma_addressing_limited: returning ret =3D 0
+[    1.266521] [    T328] amdgpu 0000:03:00.0: amdgpu: amdgpu_ttm_init: ca=
+lling ttm_device_init() with use_dma32 =3D 0
+[    1.266525] [    T328] entering ttm_device_init, use_dma32 =3D 0
+[    1.267115] [    T328] entering ttm_pool_init, use_dma32 =3D 0
+
+[    3.965669] [    T328] dma_addressing_limited: mask =3D 0xfffffffffff b=
+us_dma_limit =3D 0x0 required_mask =3D 0x3fffffffffff
+[    3.965671] [    T328] dma_addressing_limited: returning true
+[    3.965672] [    T328] amdgpu 0000:08:00.0: amdgpu: amdgpu_ttm_init: ca=
+lling ttm_device_init() with use_dma32 =3D 1
+[    3.965674] [    T328] entering ttm_device_init, use_dma32 =3D 1
+[    3.965747] [    T328] entering ttm_pool_init, use_dma32 =3D 1
+
+Without nokaslr:
+[    1.300907] [    T351] dma_addressing_limited: mask =3D 0xfffffffffff b=
+us_dma_limit =3D 0x0 required_mask =3D 0xfffffffff
+[    1.300909] [    T351] dma_addressing_limited: ops =3D 0000000000000000=
+ use_dma_iommu(dev) =3D 0
+[    1.300910] [    T351] dma_direct_all_ram_mapped: returning true
+[    1.300910] [    T351] dma_addressing_limited: returning ret =3D 0
+[    1.300911] [    T351] amdgpu 0000:03:00.0: amdgpu: amdgpu_ttm_init: ca=
+lling ttm_device_init() with use_dma32 =3D 0
+[    1.300915] [    T351] entering ttm_device_init, use_dma32 =3D 0
+[    1.301210] [    T351] entering ttm_pool_init, use_dma32 =3D 0
+
+[    4.000602] [    T351] dma_addressing_limited: mask =3D 0xfffffffffff b=
+us_dma_limit =3D 0x0 required_mask =3D 0xfffffffffff
+[    4.000603] [    T351] dma_addressing_limited: ops =3D 0000000000000000=
+ use_dma_iommu(dev) =3D 0
+[    4.000604] [    T351] dma_direct_all_ram_mapped: returning true
+[    4.000605] [    T351] dma_addressing_limited: returning ret =3D 0
+[    4.000606] [    T351] amdgpu 0000:08:00.0: amdgpu: amdgpu_ttm_init: ca=
+lling ttm_device_init() with use_dma32 =3D 0
+[    4.000610] [    T351] entering ttm_device_init, use_dma32 =3D 0
+[    4.000687] [    T351] entering ttm_pool_init, use_dma32 =3D 0
+
+So with nokaslr the reuqired mask for the built-in GPU changes from 0xffff=
+fffffff
+to 0x3fffffffffff which causes dma_addressing_limited to return true which=
+ causes
+the ttm_device init to be called with use_dma32 =3D true.
+ It also show that for the discreate GPU nothing changes so the bug does n=
+ot occur
+there.
+
+I also was able to work around the bug by calling ttm_device_init() with u=
+se_dma32=3Dfalse
+from amdgpu_ttm_init()  (drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c) but I'm =
+not sure if this
+has unwanted side effects.
+
+int amdgpu_ttm_init(struct amdgpu_device *adev)
+{
+	uint64_t gtt_size;
+	int r;
+
+	mutex_init(&adev->mman.gtt_window_lock);
+
+	dma_set_max_seg_size(adev->dev, UINT_MAX);
+	/* No others user of address space so set it to 0 */
+	dev_info(adev->dev, "%s: calling ttm_device_init() with use_dma32 =3D 0 i=
+gnoring %d\n", __func__, dma_addressing_limited(adev->dev));
+	r =3D ttm_device_init(&adev->mman.bdev, &amdgpu_bo_driver, adev->dev,
+			       adev_to_drm(adev)->anon_inode->i_mapping,
+			       adev_to_drm(adev)->vma_offset_manager,
+			       adev->need_swiotlb,
+			       false /* use_dma32 */);
+	if (r) {
+		DRM_ERROR("failed initializing buffer object driver(%d).\n", r);
+		return r;
+	}
 
 
-P.
-
-> +		if (ret !=3D 0)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_sched_job_prealloc_dependency_slots);
-> +
-> =C2=A0/**
-> =C2=A0 * drm_sched_job_add_dependency - adds the fence as a job dependenc=
-y
-> =C2=A0 * @job: scheduler job to add the dependencies to
-> @@ -878,10 +911,15 @@ int drm_sched_job_add_dependency(struct
-> drm_sched_job *job,
-> =C2=A0	 * engines involved, rather than the number of BOs.
-> =C2=A0	 */
-> =C2=A0	xa_for_each(&job->dependencies, index, entry) {
-> -		if (entry->context !=3D fence->context)
-> +		if (xa_is_zero(entry)) {
-> +			/*
-> +			 * Reserved entries must not alloc memory,
-> but let's
-> +			 * use GFP_ATOMIC just to be on the
-> defensive side.
-> +			*/
-> +			xa_store(&job->dependencies, index, fence,
-> GFP_ATOMIC);
-> +		} else if (entry->context !=3D fence->context) {
-> =C2=A0			continue;
-> -
-> -		if (dma_fence_is_later(fence, entry)) {
-> +		} else if (dma_fence_is_later(fence, entry)) {
-> =C2=A0			dma_fence_put(entry);
-> =C2=A0			xa_store(&job->dependencies, index, fence,
-> GFP_KERNEL);
-> =C2=A0		} else {
-> diff --git a/include/drm/gpu_scheduler.h
-> b/include/drm/gpu_scheduler.h
-> index 1a7e377d4cbb..916e820b27ff 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -632,6 +632,8 @@ int drm_sched_job_init(struct drm_sched_job *job,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 credits, void *owner);
-> =C2=A0void drm_sched_job_arm(struct drm_sched_job *job);
-> =C2=A0void drm_sched_entity_push_job(struct drm_sched_job *sched_job);
-> +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
-> *job,
-> +					=C2=A0=C2=A0=C2=A0 unsigned int num_deps);
-> =C2=A0int drm_sched_job_add_dependency(struct drm_sched_job *job,
-> =C2=A0				 struct dma_fence *fence);
-> =C2=A0int drm_sched_job_add_syncobj_dependency(struct drm_sched_job *job,
-
+Bert Karwatzki
