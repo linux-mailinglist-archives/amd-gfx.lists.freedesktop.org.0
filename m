@@ -2,79 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DBA8A6EB61
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Mar 2025 09:21:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AAF1A6EB66
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Mar 2025 09:21:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91CD010E505;
-	Tue, 25 Mar 2025 08:21:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A112310E50D;
+	Tue, 25 Mar 2025 08:21:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Y5RV/eGh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="E1q9ISb9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
- [209.85.208.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1C2610E305
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Mar 2025 21:09:44 +0000 (UTC)
-Received: by mail-ed1-f43.google.com with SMTP id
- 4fb4d7f45d1cf-5e83e38d15dso851537a12.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Mar 2025 14:09:43 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com
+ [209.85.128.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3900F89207;
+ Mon, 24 Mar 2025 22:34:14 +0000 (UTC)
+Received: by mail-yw1-f171.google.com with SMTP id
+ 00721157ae682-6fedefb1c9cso34704337b3.0; 
+ Mon, 24 Mar 2025 15:34:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742850582; x=1743455382; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=XuE4ka5+0QaFAwTie8mDkT0SV4bl2007kkc2u8mE388=;
- b=Y5RV/eGhqs7WZitil5UPt0B8ZxZpyC8iEZdBdHw5+0XGWQDxsrMawE3Kz0Vtp596Gg
- fjOIb1PTfT+27BY1NVpeDdv6HzdClC2f37FE2Ud/WE2cKymFr14pZ65PAWjTpD7RBjhE
- dLASqI9Smwahj/BUB2MO8P/IVwSPGn3I/MBbVWpJ8Vdg1tOWNWcXS1RJ8v6c+8JbGLF8
- GilhkZw5VNeTU+PvPn7qWNbvow4SPsezD/Zjm8MLmGiqSOHyK+aXngtyEkB6KmEwM1cp
- D1VCjilS3hIHfzPX/Ppxa2Huzi0f+yx6kfZU54xpO42ebMmG5yQeioH8x57HHXbNN/vN
- kG/g==
+ d=gmail.com; s=20230601; t=1742855653; x=1743460453; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=JXW9Ba0yg/9do6JW2lVD4twSPOAKnKfAxL8vF9iY1Ls=;
+ b=E1q9ISb9k7CL5dGgQTAba3Z4aM4PVihaCvGk9UG2JqJX9+s8wSg0+bxzu6J5rBjvCz
+ G5LWio1Iz7YC1366SXd73ORc9cYFUwdxJT9/vfc164voVqZDfun3onSnfXnSRahQZZFJ
+ b7surM4byy599P+bmrfJyC9rMTJcR91sPJrIvfFNhjGBgLwszPduhjF7XMuxFJvTejD3
+ scVfk4ibkFArhTLm0StHBH1X4laCYKD9qjFm3HUHIrc4vHT1VmkFSA5vGLxjBXU6R3AN
+ gQ9cnWXwPqXFcM0YkJGKsAK1OeipMtl0YA1+J/isdaBZcA3Njl7ta/79uWX0LEvHFWzE
+ r+Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742850582; x=1743455382;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=XuE4ka5+0QaFAwTie8mDkT0SV4bl2007kkc2u8mE388=;
- b=JgFNEza6yt68PCDbLiyvJ2ojcNTdyF9IH8xdzFsUyNyLz1e/QP2ZacdA2nQ8iUW0cN
- kFgJ+FsQVFka0GSlyBAtHdaleecAZDXG26e+dAhHmZ9MeWr70aXx004OIo0neopyhIE/
- uStt8kB1Ie7Fy8NKU3VYl+6ome+COjT9xI/VIka4073vAA3Ut87T4u17FdF9njX0ypuP
- gUiRrbI0zIJ1fpgp2kWFec0/ohiQUgQXOXWILVnh1T6IAdJ/bcLEQdU8gkTF4jJ/KebX
- q3KNWdeDw1SnvUptHQ5hFlZ+hCzPS8ugYNyW4ZU4zJ2Pb27ihRGfAQKf53O26Ilj0EFF
- FwJw==
+ d=1e100.net; s=20230601; t=1742855653; x=1743460453;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=JXW9Ba0yg/9do6JW2lVD4twSPOAKnKfAxL8vF9iY1Ls=;
+ b=FKCH/UjoY1y2st2LLUVuCVLK3nN7CZU9IeQphKijsT/2Z2iI/DOUW5vKTW9FnpsGqi
+ QuLgXKkbji7fwHAc3plHW4TbMqHAGK8ZewgMcmOEdOPG74b4PxiME7nG/G+MQmQhauXI
+ jVR64ECtHPM0WC7MpPRCok+XILR2v5H/LCeIlsVqGt1dEN2Z10NInP1koB8qjgZh/vuk
+ PfAA5618fj6R3QwyRd0ZDemFCxA4yXazDBgNWlOSL8MmZOVSqLQi5aUbroNsMjX63s32
+ vdG61lARwShopj3IG3e1j/EBvQ5+PvOII7EfanZbYuAl8pvE37klKV3pYUWLG8INPcXI
+ bUVA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVR/V0R46Ulqi/dGRnoPvb91d+45RvwTnKTA9kGkcKRx21ZybbLR9UXHHZMLAGTu3JjpMxHoj3X@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyKixXJbTksWP0qg9ZFJImn0hmw6g1nO6VZmF3fBGZS3gCPAXBP
- zcnxoIQGrZrh1e1HZIyNo1lZNRSlBy8U3f63NHvt/EOV+90vC3UJiV969+bnCFUGReExH6pi5oV
- YPPjsxInm8SUlKY/33a8IDXPjs12wNLkR
-X-Gm-Gg: ASbGnctgJ/aaUvhTZmaYPPZDEqCeed0vGstA4ijaUR1UywLoQp0HqjemKI9yfC0Trrd
- BcOnJCWhdlJOdEevyDBeJ8op2AL7N5Ioks8EsPbtEeetYux/Xf6zxZkwGjo+n9FoI0R8eQV7Xkq
- oRJR5ZhEYeOnwB4kHZxEPclAPI
-X-Google-Smtp-Source: AGHT+IHmmCdRvypGT/qMhamB0UooULQkA9afJagVAz1l3w+SaNIBhQcO4MuhWinikECgucdcoDIHiBOGxwrqo+5Ebqc=
-X-Received: by 2002:aa7:c2d8:0:b0:5eb:ce16:ddbf with SMTP id
- 4fb4d7f45d1cf-5ebce16df9emr3755338a12.0.1742850582298; Mon, 24 Mar 2025
- 14:09:42 -0700 (PDT)
+ AJvYcCU+zPrAjGyvOnG+tchqLfLvk0mLRC9lz0PkhqGUjmh3em7ouFzc1SuuT6QJHXnpRiYqE2gE8mBBc9sV@lists.freedesktop.org,
+ AJvYcCUbtI957PenI1OOKWD5kx+ROovg99RvJkEHQRlaJ1svqSevR+sfSw20oPrvz1SV60GqnsCHgyUKfda3@lists.freedesktop.org,
+ AJvYcCV57xYOPaIkE7zA4RMnLGqILl7vkT59NEY9thhNwkfih2+/0pG7rYC/LAX4dGgY90ouzxLyPje0@lists.freedesktop.org,
+ AJvYcCVz1F+ncZnKudjsFY45W876CISD4jL85+KxMIkL/+d3qlJqA0L2LF1g2uRXzxiD3hsUw+VAy5edC7i33c3skg==@lists.freedesktop.org,
+ AJvYcCXYOGqmwerVgGxitRa1ByQbgKOFfsiPejA5Y/TmOHv6JoOXNGzxnSppT6pF1xKFsGTRKOOqYlLViZUQjhxOAYrHQw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzT9f86YKZ2G5cxAM8mKyXWMJ8Ufx9VKIOVC9hUXO9MYCwviH/S
+ bVyVCnNPIqtt813KWqb6fL573xLQ9BPNE8UacvC8SqL7vOgtz7O+aE3qa9mtTWvLl6k4m7o21pM
+ bNU7mXc36AHWfnOqW4yKTU+RedCg=
+X-Gm-Gg: ASbGncu5f9er4XkSMI78O90AMqifdcblCbcYwzjZoTQdy7bJD0yWlIeqJe+lp/M+ErL
+ cZr+eCMh0mp9thMmz/yglUtBA1MZGPysw2zOLdVMlppyWq6G61X51chjP9X0XfgM6wi+aq75wPz
+ Q0Na+kdAYQPNNDhXypNgDZCOCm
+X-Google-Smtp-Source: AGHT+IEAuhP7vvdOzarCdW0VuBfIcbVdJSz9H/zF3pCHpb16IT3KDy1crvUqwy7lhsLsmzsfQLcR6jkkbkjhhuB8rXs=
+X-Received: by 2002:a05:690c:6d0c:b0:700:a6a0:1e2e with SMTP id
+ 00721157ae682-700ba9ba6camr198985667b3.0.1742855652804; Mon, 24 Mar 2025
+ 15:34:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250315201558.339913-1-tomasz.pakula.oficjalny@gmail.com>
- <20250315201558.339913-3-tomasz.pakula.oficjalny@gmail.com>
- <DM4PR12MB5165690B22C63D856BFFD7708ED92@DM4PR12MB5165.namprd12.prod.outlook.com>
- <CAFqprmyv+WXmBWwOa3uPuOkmLtrkfc7jEXquXEyb-Bjuni_jBQ@mail.gmail.com>
- <CADnq5_NV4hiQCHB7-YE=cN2NNS4AeHsnxntJfQ5a+iiYOaiYGA@mail.gmail.com>
- <CADnq5_OxT2qfxdPAg5=w1PeOBhQdCL-He2rBJOireSidBz9DKw@mail.gmail.com>
- <DM4PR12MB51657FD3B25C2F01340701B98ED82@DM4PR12MB5165.namprd12.prod.outlook.com>
-In-Reply-To: <DM4PR12MB51657FD3B25C2F01340701B98ED82@DM4PR12MB5165.namprd12.prod.outlook.com>
-From: =?UTF-8?Q?Tomasz_Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
-Date: Mon, 24 Mar 2025 22:09:29 +0100
-X-Gm-Features: AQ5f1JpoDCAOFB4hKSorbySjb8uXT5ZjpDZ7bbc9pfsyw_DWCrtznzesvNgkspg
-Message-ID: <CAFqprmxwYYRRzv28ETV_fVF2z=saUuSjaY0Z3aTiEefyq9BKYw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amd/pm: add zero RPM stop temp OD setting support
- for SMU 14.0.2
-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Cc: Alex Deucher <alexdeucher@gmail.com>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, 
- "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20250320185238.447458-1-jim.cromie@gmail.com>
+ <20250320185238.447458-11-jim.cromie@gmail.com>
+ <b1615fb9-4689-4121-a7d1-7e9c5d10282b@bootlin.com>
+In-Reply-To: <b1615fb9-4689-4121-a7d1-7e9c5d10282b@bootlin.com>
+From: jim.cromie@gmail.com
+Date: Mon, 24 Mar 2025 16:33:46 -0600
+X-Gm-Features: AQ5f1JqVlYB97GtfUO_TrCYVCq0ZeJs8JZLkz_f5qfP4oh5XPxHDfUpsv0ShhA8
+Message-ID: <CAJfuBxxRDpHSBY=AAbyT-gFSiaCkAbFtKap4NQ7MyQZ1CyR7EQ@mail.gmail.com>
+Subject: Re: [PATCH v2 10/59] dyndbg: replace classmap list with a vector
+To: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-gfx-trybot@lists.freedesktop.org, 
+ jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org, 
+ daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 25 Mar 2025 08:21:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,24 +93,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 20 Mar 2025 at 03:38, Feng, Kenneth <Kenneth.Feng@amd.com> wrote:
+On Mon, Mar 24, 2025 at 9:08=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
+n.com> wrote:
 >
-> [AMD Official Use Only - AMD Internal Distribution Only]
 >
-> Thanks Tohmasz.
-> I confirmed that this change is not in the latest driver-if file.
-> However, this is a fw interface provided by firmware team, we can not change it.
-> That means the interface is different between the smu13 and smu14.
-> Let me check and get back to you.
+>
+> Le 20/03/2025 =C3=A0 19:51, Jim Cromie a =C3=A9crit :
 
-Hi!
+> Thanks for your explanation of __outvar! It makes sense. I never seen
+> this pattern anywhere in the kernel, maybe a simple doc comment is
+> enough to carry the information:
 
-Just checking in if you had the time to follow up with firmware.
-Although it works without issues, if there's a need to wait a long
-time to get this confirmed
-maybe I should just split this into two separate patches and we could
-get at least the
-Zero RPM on/off setting merged?
 
-Thanks,
-Tomasz
+Im gonna pull it - Ive decided its misleading,
+since it looks like it does something that it cant do.
+
+a plain old comment would be enough, if its needed at all.
+__outvar was at least brief ;-)
+
+In fact I did, but in a later patch. cleaning now.
+
+
+
+>         /**
+>          * ddebug_find_valid_class - Find a valid class for a
+>          * given string
+>          * @dt: debug table to inspect
+>          * @class_string: string to match on
+>          * @class_id: output pointer for the class_id value
+>          *
+>          * Returns: Pointer to the ddebug_class_map instance, if found.
+>          * @class_id will be set to the id of this class. If no class
+>          * matching @class_string is found, returns NULL and class_id is
+>          * set to -ENOENT.
+>          */
+>
+> Or at maybe change the documentation of __outvar to be a bit more
+> explicit about how it works (I had difficulties to understand because a
+> lot of "magic macro" exist in the kernel and sometimes carry information
+> to the compiler, but this one is always empty):
+>
+>         /**
+>          * __outvar - Denotes that an argument is used as an output
+>          * value
+>          * This macro does nothing apart clarify  for the reader that
+>          * the parameter will be filled by the callee
+>          */
+>
+> With any of the modifications (feel free to reword them as you want):
+>
+> Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+>
+> >   {
+> >       struct ddebug_class_map *map;
+> > -     int idx;
+> > +     int i, idx;
+> >
+> > -     list_for_each_entry(map, &dt->maps, link) {
+> > +     for (map =3D dt->classes, i =3D 0; i < dt->num_classes; i++, map+=
++) {
+> >               idx =3D match_string(map->class_names, map->length, class=
+_string);
+> >               if (idx >=3D 0) {
+> >                       *class_id =3D idx + map->base;
+> > @@ -164,7 +167,6 @@ static struct ddebug_class_map *ddebug_find_valid_c=
+lass(struct ddebug_table cons
+> >       return NULL;
+> >   }
+> >
+> > -#define __outvar /* filled by callee */
+> >   /*
+> >    * Search the tables for _ddebug's which match the given `query' and
+> >    * apply the `flags' and `mask' to them.  Returns number of matching
+> > @@ -1122,9 +1124,10 @@ static void *ddebug_proc_next(struct seq_file *m=
+, void *p, loff_t *pos)
+> >
+> >   static const char *ddebug_class_name(struct ddebug_iter *iter, struct=
+ _ddebug *dp)
+> >   {
+> > -     struct ddebug_class_map *map;
+> > +     struct ddebug_class_map *map =3D iter->table->classes;
+> > +     int i, nc =3D iter->table->num_classes;
+> >
+> > -     list_for_each_entry(map, &iter->table->maps, link)
+> > +     for (i =3D 0; i < nc; i++, map++)
+> >               if (class_in_range(dp->class_id, map))
+> >                       return map->class_names[dp->class_id - map->base]=
+;
+> >
+> > @@ -1208,30 +1211,31 @@ static const struct proc_ops proc_fops =3D {
+> >       .proc_write =3D ddebug_proc_write
+> >   };
+> >
+> > -static void ddebug_attach_module_classes(struct ddebug_table *dt,
+> > -                                      struct ddebug_class_map *classes=
+,
+> > -                                      int num_classes)
+> > +static void ddebug_attach_module_classes(struct ddebug_table *dt, stru=
+ct _ddebug_info *di)
+> >   {
+> >       struct ddebug_class_map *cm;
+> > -     int i, j, ct =3D 0;
+> > +     int i, nc =3D 0;
+> >
+> > -     for (cm =3D classes, i =3D 0; i < num_classes; i++, cm++) {
+> > +     /*
+> > +      * Find this module's classmaps in a subrange/wholerange of
+> > +      * the builtin/modular classmap vector/section.  Save the start
+> > +      * and length of the subrange at its edges.
+> > +      */
+> > +     for (cm =3D di->classes, i =3D 0; i < di->num_classes; i++, cm++)=
+ {
+> >
+> >               if (!strcmp(cm->mod_name, dt->mod_name)) {
+> > -
+> > -                     v2pr_info("class[%d]: module:%s base:%d len:%d ty=
+:%d\n", i,
+> > -                               cm->mod_name, cm->base, cm->length, cm-=
+>map_type);
+> > -
+> > -                     for (j =3D 0; j < cm->length; j++)
+> > -                             v3pr_info(" %d: %d %s\n", j + cm->base, j=
+,
+> > -                                       cm->class_names[j]);
+> > -
+> > -                     list_add(&cm->link, &dt->maps);
+> > -                     ct++;
+> > +                     if (!nc) {
+> > +                             v2pr_info("start subrange, class[%d]: mod=
+ule:%s base:%d len:%d ty:%d\n",
+> > +                                       i, cm->mod_name, cm->base, cm->=
+length, cm->map_type);
+> > +                             dt->classes =3D cm;
+> > +                     }
+> > +                     nc++;
+> >               }
+> >       }
+> > -     if (ct)
+> > -             vpr_info("module:%s attached %d classes\n", dt->mod_name,=
+ ct);
+> > +     if (nc) {
+> > +             dt->num_classes =3D nc;
+> > +             vpr_info("module:%s attached %d classes\n", dt->mod_name,=
+ nc);
+> > +     }
+> >   }
+> >
+> >   /*
+> > @@ -1263,10 +1267,9 @@ static int ddebug_add_module(struct _ddebug_info=
+ *di, const char *modname)
+> >       dt->num_ddebugs =3D di->num_descs;
+> >
+> >       INIT_LIST_HEAD(&dt->link);
+> > -     INIT_LIST_HEAD(&dt->maps);
+> >
+> >       if (di->classes && di->num_classes)
+> > -             ddebug_attach_module_classes(dt, di->classes, di->num_cla=
+sses);
+> > +             ddebug_attach_module_classes(dt, di);
+> >
+> >       mutex_lock(&ddebug_lock);
+> >       list_add_tail(&dt->link, &ddebug_tables);
+> > @@ -1379,8 +1382,8 @@ static void ddebug_remove_all_tables(void)
+> >       mutex_lock(&ddebug_lock);
+> >       while (!list_empty(&ddebug_tables)) {
+> >               struct ddebug_table *dt =3D list_entry(ddebug_tables.next=
+,
+> > -                                                   struct ddebug_table=
+,
+> > -                                                   link);
+> > +                                                  struct ddebug_table,
+> > +                                                  link);
+> >               ddebug_table_free(dt);
+> >       }
+> >       mutex_unlock(&ddebug_lock);
+>
+> --
+> Louis Chauvet, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+>
+>
