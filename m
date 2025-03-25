@@ -2,73 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15440A712D5
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Mar 2025 09:40:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EED1A712D8
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Mar 2025 09:40:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FDFC10E674;
-	Wed, 26 Mar 2025 08:40:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0BE110E693;
+	Wed, 26 Mar 2025 08:40:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gSM0c41/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Pn5Calw9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
- [209.85.222.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8078110E00A;
- Tue, 25 Mar 2025 18:57:14 +0000 (UTC)
-Received: by mail-qk1-f170.google.com with SMTP id
- af79cd13be357-7c542ffec37so633327185a.2; 
- Tue, 25 Mar 2025 11:57:14 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com
+ [209.85.128.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98F0810E294;
+ Tue, 25 Mar 2025 19:35:16 +0000 (UTC)
+Received: by mail-yw1-f171.google.com with SMTP id
+ 00721157ae682-6f666c94285so57855247b3.3; 
+ Tue, 25 Mar 2025 12:35:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742929033; x=1743533833; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1742931316; x=1743536116; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Wc1b/KonmqQlWVjQyIDNx1PB8OnyCz3qh1Tew/uSRf8=;
- b=gSM0c41/gQS3DbtE+08PualIVWp9K+vaME9sEwID+CaVsWrNT9qRanZhBuw1ybkKva
- tOFUbmrCddmFBxHOdzMeNKlfc5lrCp80ET80a1amO02NenolvpKHArJA1gFL8KMhdwG/
- B5JNvTf+Phj39iIQU22OYgOL2+GB/WVdIoODLgBOa7bIDUEPOHob4JHXu5GPTL+vu89V
- dEC0OAUD/9cRgwrG93UCKeTpt5+8fdzw/+YibLQjBgMDW2PeOdhmeBOZyY5UyzxHQtuc
- 1d0No+pnHivDvJ3fZFi/hxt1pwSxeam4oMwJJo4elbbovSB9E2UUJ943eOpqY5h7bqKD
- oZAQ==
+ bh=42aHX7MDOHSOMSp6xeS+nFUOuh+iMMc1q+a6ux7j3PQ=;
+ b=Pn5Calw9gwbUVjjcfGzkdUwTxsmcBhY6XG8btdxLz2GlwW/7jP88MbuxRtSf2/qJyK
+ p5xoEs1E76nZ2DaU7/4O1OJH8BIyyvxFWL3RcvmWrns1xFIIgaJAJI31ScsmErHx3+in
+ m1OZeqcjPNl8QHIQxd8+CX8QGIa6eB7ejhDlLxdyxppf4R050h8A/Kc6VlXHSZQUXpF3
+ DF5nBSeaj4QRkTbQyU4SV+aRniGNxPsgmg0H2B7ohjhbLpLP03zBZ81XCLdOd9YK+J3/
+ 9YjuN8WCZPhS08d87TsCGt4IYzHNez70t9PV6qX5c6dkrN0d4o/CiSo5GTWaj0UmFvxb
+ Yf6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742929033; x=1743533833;
+ d=1e100.net; s=20230601; t=1742931316; x=1743536116;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Wc1b/KonmqQlWVjQyIDNx1PB8OnyCz3qh1Tew/uSRf8=;
- b=OeROdaA7TjFtqdrFXROneyRkEZgORwQh+zOn2+sK+xpS9axKIpzD/ScsVBM3lP+LFg
- lYfYwH+gY9Vwy3iBpyrpZhG3G0uaLZ0egysGIFCms1vTbc6b37OSBAiOkBKpi0I24VMN
- 8+4t0nym4oq3pAHDCa6F4dg/kDXCV5FkHz6mPARwtu0c7YC4m2Bpq/aKfaEJx6uV59/m
- UfKIWTAKTaOYXJJ9dDa4gkkRNhEvp6J86Q70sI/bxUc0ZCZkrrwo11g5rhLFkNnh/0hh
- NAqnc7Kwp9V7VKGkD2B5yxCYsny102jdIhyR5xr1VLtL2hO3dZHdx7pvWkmV4xgs5odQ
- MTkg==
+ bh=42aHX7MDOHSOMSp6xeS+nFUOuh+iMMc1q+a6ux7j3PQ=;
+ b=QQ5f7M/Q/0ABW9UFVcDFliyihTajBfrfGWq6T5vSbRIpjc9h8P4nMAMdOSWzh8WXqQ
+ e8+6n9faVZ+Yhza91hOQCoOCKy+bZ+djFOIGp1f290fFJX6Jhhzj8Nuh5LPC+jvrrYFw
+ +mXBLilF9SniTXGyuKtk+Acr3CUM1UjN2qSjQJUw4bFXMRH5fFWThhdSnTLmsSSVJqec
+ l1S9yvXZXWgAekYihU2Tfpq8wx/vLt5YsJexqJJo58lYz0ExQGpL66Z/t6LSyUV2QD9j
+ dGvO54hgRzKcU2kdQS/o+k2ZV19li7JjGTxEDC1ASqYHjL3vYV2ZcavB055PNhtG/TQh
+ jYLA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU8fE6SwTPP/PUHYhy0CTSsp00263oxGBkTjMvMdgXBUmItrtUusFWc1LSVo3gPKZJR0NHnV7RD@lists.freedesktop.org,
- AJvYcCUJMnzJx8vgLb9QjsnoMEFwP/LuC3UEbJp5NzIJpRibdHVvw4MYeMrLxSfQ26i/PMPSDB7nQR7/f+9XQqJGVmxU8w==@lists.freedesktop.org,
- AJvYcCVAsC3EOtTox3jG0U1PfuWWzEmtRAOl5Dj3j5vzbdFbX0LEnzIzhmQGHA1zrpasW5gWIE6IF3GgPxgH@lists.freedesktop.org,
- AJvYcCVhDCp7jgjIlIppA30a6JdB1H7q6lisPdcQUzcvWZyRkAJg3oEhJG5eN97aI32VG/OYQ85H7VbsEzdU@lists.freedesktop.org,
- AJvYcCW68nnnPPqf6gnoJ7lLHuDN/IECj6dSrGA5RfOYsbGmNME1W7oo6pz7NL0zDc95uB93YLwMRTNnEkoOzlyRpg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzUYjBcv2QL8ed/4eZNihXDD+Vkp+bVEW85qRKaQJKVrRkjHtY8
- Bt2CJOEsgZjKvFlDLQLCQ6KdgydGgUfdVCShv0P/SqVrSnL7ncCUmhEqT0SQzvS/sJX3Yk2eOBi
- KLSy5D5MTfhZLWJodeqSpgOoF/bmzksNp
-X-Gm-Gg: ASbGncsYpnUXqUiGWlznx9tKAcZX66IdlWUszhr8R7u4OPs9iemoECHR7OcHzShRLmE
- skSAydTc1t/6+BmT/H+m8th3fPMnGTQRxRfZXrx7Nts/svluE4ZVSxEVQAreIVfkMLdsir6LglR
- u2ngva66HzYxM1edA7rxxpEmBs
-X-Google-Smtp-Source: AGHT+IHZrxz76tlBAchwWlwvG1UO5HlgQQvC8bUrjtin9ky9DD1ICNaN0M4Dchd5qiDKedF02gvCDAitk2nLkn591/E=
-X-Received: by 2002:a05:6122:251b:b0:520:61ee:c7f9 with SMTP id
- 71dfb90a1353d-525a84c5e96mr14236045e0c.7.1742929022532; Tue, 25 Mar 2025
- 11:57:02 -0700 (PDT)
+ AJvYcCUQtFiJaGStI03w3MbUatAXq9BNlddO1MgSm44M7VC1kuhnFnAUaNsLUpF+zE/pZYmpNoedCyjUvPyqekBzHgmOjw==@lists.freedesktop.org,
+ AJvYcCV720I7nelzU0qh6Ibvg0DXKH6QgHm/ENDoX29guQxRT4HvF8ZMhrEkkFxIwI2uysLzUESb8eFnk8WsVUw4oQ==@lists.freedesktop.org,
+ AJvYcCW9SBzmoZZqATHuzT6KRA2ceyx6ohFXR0uAblaEcGytbnsuhbxVlu6mnvfpQ+YUIfCCEpo1MX4B@lists.freedesktop.org,
+ AJvYcCXkF6TsDbQn8ISGV/fuVW6QU2gYd0kIJ8yDJdMdO/+8UaoOiEnzGBgsED+ep1pDVb8gdwt5WOhYkb7z@lists.freedesktop.org,
+ AJvYcCXtV9Y96QZsdz8c6QTBvNvvFWbtPXmF62QhiYMP7BKiqS5i6opWPTE7vIebtIasJXoyfjgEA5x13GwL@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy8pWkVIGqXztPc85jec7eY5V04v0A7BcVGdYDlOgJU/i7MG96n
+ oExUF1Kv/DisMfFYHX3/YPf2z+FVKguVNGHWFugnpClPXP6feL1uWqjFprKMxbGaa4Y1Fb6UiYE
+ oyPRX59RoHEJ/U1DeoHi+u6ezixI=
+X-Gm-Gg: ASbGncsl1e6MrNJt3zUaeoHM49N27/yoX2wp476OKKVbn16yvsRtqutHQcoV6g7Xo3g
+ d9I0GRndvPtbwYsVjdfHSEAW2tu/YQAorjaptK/pjDhg/mesyLRYWZIuSox+zYcH5jcc2OtP8VW
+ s+QvAODIir/NF022/5iGBQnXan
+X-Google-Smtp-Source: AGHT+IHATNylw+gsEglZW+PXGiyYbRxUfbKIQGJtdl+fH3JTfXNCfGYjHvngrOpvTsOSzlZ94tSCZQ+ubU8QCVnzCek=
+X-Received: by 2002:a05:690c:7512:b0:6fd:4473:5184 with SMTP id
+ 00721157ae682-700bad025bcmr232347107b3.35.1742931315686; Tue, 25 Mar 2025
+ 12:35:15 -0700 (PDT)
 MIME-Version: 1.0
 References: <20250320185238.447458-1-jim.cromie@gmail.com>
- <20250320185238.447458-45-jim.cromie@gmail.com>
- <c3514758-5a22-4acb-8ff0-1f4ddade02f4@bootlin.com>
-In-Reply-To: <c3514758-5a22-4acb-8ff0-1f4ddade02f4@bootlin.com>
+ <20250320185238.447458-48-jim.cromie@gmail.com>
+ <bec1c938-aafa-49cb-b173-5b876f77779f@bootlin.com>
+In-Reply-To: <bec1c938-aafa-49cb-b173-5b876f77779f@bootlin.com>
 From: jim.cromie@gmail.com
-Date: Tue, 25 Mar 2025 12:56:36 -0600
-X-Gm-Features: AQ5f1JqwCZoNQkWvPRC6s-f7lWQaMvaFRZI7Bln1P_k3mQTyHi7JUmVlxPTmisg
-Message-ID: <CAJfuBxw_OixCp0KsoYu9nH6=hprKJpKt7dkPT0hL-32syCTJ7A@mail.gmail.com>
-Subject: Re: [PATCH v2 44/59] drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
+Date: Tue, 25 Mar 2025 13:34:49 -0600
+X-Gm-Features: AQ5f1Jqa1QuPUv1TyJbyyX5GCLsktpgCTY8YYNpeF7kzWCBGQI4AZHsFZX61b_g
+Message-ID: <CAJfuBxyR_x7tKUFZppXFA_dKFaXb9gTkGnZYfP5GGA7SnorScA@mail.gmail.com>
+Subject: Re: [PATCH v2 47/59] drm-dyndbg: add DRM_CLASSMAP_USE to bochs
 To: Louis Chauvet <louis.chauvet@bootlin.com>
 Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
@@ -93,48 +93,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 24, 2025 at 9:24=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
+On Mon, Mar 24, 2025 at 9:03=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
 n.com> wrote:
 >
 >
 >
 > Le 20/03/2025 =C3=A0 19:52, Jim Cromie a =C3=A9crit :
-> > Invoke DRM_CLASSMAP_USE from xe_drm_client.c.  When built with
-> > CONFIG_DRM_USE_DYNAMIC_DEBUG=3Dy, this tells dydnbg that Xe uses
-> > has drm.debug calls.
+> > tiny/bochs has 5 DRM_UT_* debugs, make them controllable when
+> > CONFIG_DRM_USE_DYNAMIC_DEBUG=3Dy by telling dyndbg that the module has
+> > class'd debugs.
 > >
 > > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+>
+> Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+>
 > > ---
-> >   drivers/gpu/drm/xe/xe_drm_client.c | 2 ++
+> >   drivers/gpu/drm/tiny/bochs.c | 2 ++
 > >   1 file changed, 2 insertions(+)
 > >
-> > diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe=
-_drm_client.c
-> > index 2d4874d2b922..756dba5c88f8 100644
-> > --- a/drivers/gpu/drm/xe/xe_drm_client.c
-> > +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-> > @@ -21,6 +21,8 @@
-> >   #include "xe_pm.h"
-> >   #include "xe_trace.h"
+> > diff --git a/drivers/gpu/drm/tiny/bochs.c b/drivers/gpu/drm/tiny/bochs.=
+c
+> > index 8706763af8fb..dbcc8ba70dfa 100644
+> > --- a/drivers/gpu/drm/tiny/bochs.c
+> > +++ b/drivers/gpu/drm/tiny/bochs.c
+> > @@ -59,6 +59,8 @@ static int bochs_modeset =3D -1;
+> >   static int defx =3D 1024;
+> >   static int defy =3D 768;
 > >
 > > +DRM_CLASSMAP_USE(drm_debug_classes);
-> > +
 >
-> Is xe_drm_client.c the best place to do it? I think the module entry
-> point is a bit better [1].
+> Do we need to add it for each driver that use drm_* print macros? Is it
+> reasonable to add this directly in drm_print.h, so there is no way to
+> miss this call if you use drm_* macros.
 >
 
-yes perhaps.  I was drawn by the _client in the file-name.
-Im not sure Im fully consistent, iirc the drivers get it near driver-iinit =
-ops.
+Yes, AFAIK.
+Ive tried to invoke declarators from a header,
+It never works out.
 
+59/59 was an attempt to do it for everyone, but it falls down...
 
-> [1]:https://elixir.bootlin.com/linux/v6.13.7/source/drivers/gpu/drm/xe/xe=
-_module.c
->
-> >   /**
-> >    * DOC: DRM Client usage stats
-> >    *
+> >   module_param_named(modeset, bochs_modeset, int, 0444);
+> >   MODULE_PARM_DESC(modeset, "enable/disable kernel modesetting");
+> >
 >
 > --
 > Louis Chauvet, Bootlin
