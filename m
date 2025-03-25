@@ -2,75 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 017FFA6EB6D
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Mar 2025 09:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F99BA6EB6B
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Mar 2025 09:21:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88A4F10E513;
-	Tue, 25 Mar 2025 08:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CF0D10E51A;
+	Tue, 25 Mar 2025 08:21:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vzf/nyeR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UzanieoL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com
- [209.85.219.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C8D10E1B4;
- Tue, 25 Mar 2025 00:07:41 +0000 (UTC)
-Received: by mail-yb1-f172.google.com with SMTP id
- 3f1490d57ef6-e643f0933afso4794276276.1; 
- Mon, 24 Mar 2025 17:07:41 -0700 (PDT)
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
+ [209.85.222.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6AEF10E009;
+ Tue, 25 Mar 2025 01:49:22 +0000 (UTC)
+Received: by mail-qk1-f173.google.com with SMTP id
+ af79cd13be357-7c54b651310so774729285a.0; 
+ Mon, 24 Mar 2025 18:49:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742861260; x=1743466060; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1742867361; x=1743472161; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ueS3sg0skiZ5B94RVJ8gfXnjlig17yFC1p5JvUHrHSQ=;
- b=Vzf/nyeRCQbFSfN8ixGpJN9kZq/x+tDq3Jb26uLX0rF6JtQGKnWwuTb0mWj1vJb42n
- oU0O9tzCovNRM4fah/9vWt4CQSbyt5M3HTx/IzTYwPkkINNBT7jvB0HerIE7QiavW9I4
- y8foZ87Rm9aqPyFR3uODCcGL8y4SPqOJ+9zEFJnlnourf9fcqEV4J18Ui6eHBBUVYn+u
- 2qu10YxrXCPvj5YePe44H3IjV5JDOibGJ2fa8HQZPMXj/MiZDAt+HJlezxkSMRo8tdY8
- 75GrAwEmqi75L4uzT+0JauhBpe9+N6s5uMgPmrReTWR45cAAe+MJdtJOhyY26vN1wDSy
- ZSLQ==
+ bh=LZary7lJCr9leLHUqm0+3bcbUqSzuAUJ+0Co/QGHNJw=;
+ b=UzanieoLxBASiXtweFL62CwlGURJ9bvp0cI/4gyFwtLru8WYSKJtsEskoEh27r0MIj
+ a5PaKQJXM+LweRpbOosllAk2KBdHHcm6TS584k2ULNU5v//Vn5SVY9NMXlxtV/Hv13Vh
+ uuGvhjzQxwjzAfg2Gva8/1bfhc+etsyEcD87akArtsDUbJl6vHidnZCnFNjizcP49nKW
+ x51J3GfjSdyDfJc32Id7TLxdGlCoyY7pID1toDX8EKpri83y+AddMoe9gYxUX8legKT2
+ i77kw6GcpHwNn413xvUxOePX0fvqINRI0Vd9JesBywciIbd+ivvGsi2bjH+hFfYGLf4Z
+ 0j2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742861260; x=1743466060;
+ d=1e100.net; s=20230601; t=1742867361; x=1743472161;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=ueS3sg0skiZ5B94RVJ8gfXnjlig17yFC1p5JvUHrHSQ=;
- b=YsitEP/qiAoThPBDasHPBB0UNLAeDKcr4MJghljfng3OX+K2ImoBih1g9AXYxc8H1X
- 0Rp9oJMcQmRxlpI189X1wa47RpD4rbAd0PEQeqmEUJFX1e3RpKsBYtXHPbcKeG+vIwHu
- 36g/jZ0mitX50uZrvbKXz/o/BED5qGdzoG0sU1OmJoYCi92Fpb0kMbxoMfQU9FdqK1+R
- +45UJRdo6s5scaXm1DL8b5VqQ/RownTLvm+PvByvvUZGL6apaLNqUvpSk06OjM5p8Gz8
- vqH5PPFZlWiTirOvLRBUPvgOkuLi0RuCHhxSca4vwZw6IH+tgXHQXEE6g5oiT/GYrA7M
- ljmA==
+ bh=LZary7lJCr9leLHUqm0+3bcbUqSzuAUJ+0Co/QGHNJw=;
+ b=btEVasJYtgh+H8i5MYHpcrE8C/1BLGt646j5cJUNRD62Eo4X4T/1gxAkrIpOaxfExl
+ eDOlRDnrpEF9eRe6VE0JQCArCSAN61KLOYnNLJiWKmFrAubqfEacOQhjyJuN4XurzVeu
+ 12sLsDzlLzzTfmM4PILfx5QxfKNGJhKT/Ula/aihFYo0gtysKKa7wSClRooh4edOll8G
+ Z2/+yaRnYI2oBP28p9GQLmoKrDzTpEje7e8NDwd8N09E7lnpWEd3W66uR9vYPFY53Wjb
+ Y5xwT734HynRqPZQlbuRFY99srcofQyrk5G9ljPOp/WWFOhvsQP8OAjYuSrnGdxhXNPn
+ oXLA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVwXi8kekSPQK7mWMAAuV/wVHeVr072LGgdz6M+VQ52Hsby0Sn+NOpG9JKIf7P7NODH3+kUQO3trG1m@lists.freedesktop.org,
- AJvYcCXzSMY2TGPkVvEBPSqE39BUSHpsr9Xctz7zRU14akFbEPTJdxNQXuU28DzqzInjNMfU02WKW+yF@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyFrLZ8DNZgEl8mKGH5VFpjyvaRAcr+Uxo756rtbNlMl0e/2+3k
- Ax+vdvdG1jeK0d5Y8Vk+Vc8kGSWvmGGiRykvcVokmbsu0IYuBdhr
-X-Gm-Gg: ASbGncu9WD8I7QDArJSka4aGi+nasdkKpW/pKrT0FZnBfz2sM9aX9ZalvOliYkcHTgo
- FdjgJWIYevZOzTB4Uot9Avtety6xanxQjs0bCVYJu9JngIezS90EeYj0H7S8Vo/job6cXEXxMm5
- Ahb5kUedf47drP36MqmFlIsvNTyEfjhQdrivAcL/i1w1XqMJKWFhvoJv1yQJ9VWKJ3N2Ow78q1D
- PMdqzifwZUvi5UywaswotL/MlZVgAGAhWMiWPfw8LZjjkvUBsx24P9wCIr4YvtoTOZeujj+0Egq
- HvoxKnJD/THF9jid4BD7zxTykqn/XvyeB6k0DQiG3NSkMw==
-X-Google-Smtp-Source: AGHT+IHNi/jAQcmpGL9LBE7dNmmgPZDCX+FC7T8JhHmV1cxK77RRmvhsjnVqb5X/bnsEaxoAKK3TXA==
-X-Received: by 2002:a05:6902:278a:b0:e60:8cb8:a8da with SMTP id
- 3f1490d57ef6-e6690dedd06mr26655181276.7.1742861260398; 
- Mon, 24 Mar 2025 17:07:40 -0700 (PDT)
-Received: from velo.. ([191.104.150.128]) by smtp.gmail.com with ESMTPSA id
- 3f1490d57ef6-e66a442e19esm1824519276.36.2025.03.24.17.07.36
+ AJvYcCUmIErvD2U/+w7pXxAJ1kNutnNQ+bDZ7NyHFv4XnPkNOi44SQddQVUIuDF02693VTbORVfDkzAVNZmF@lists.freedesktop.org,
+ AJvYcCUsEAf5AbVtbTgD5l4U0NI0S7/Lj0Fn5LBYTKTM9An31fzrELGU+KAeOImRRbFtDYINMG5syMP2@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz41LzafporAWni/1QYLcMgMcgCqSkN/PgA3GnFoyGhpt4j1NRd
+ Ebr1DQGwo34QrsMgAwFuVSKQHqr5zAw0TjkG0l1ORZ+unv8evw0F
+X-Gm-Gg: ASbGncuRY5AD5rMugn9e31IgaCkx6vcnNMk85EVZl4ATDJ+oKqmGHs/gC5X1oHlRXXr
+ WvXiAvmuzC/ZDBwez2MkgjusFHydWHMYfGhaHREudzntsTRqXtymSHRXCK8v/LGaBLyDM53Vc6/
+ WYVE0MbGi2+5ZapPXhI3ANjYnlpYjgeQ7HH4BC3YCaK04VfL5DISLoIEFi2zkx15ascE57ZUUSA
+ 1iXabhGZSblZGSsvwVMgL/R/giQ5oo7cKj4xVmvEvEin7PWrDq4NxiJShxg4Azfg/etovmaSXDC
+ AqRt3UHFoHsDMeyrxvbUotnl8C1AIqkpMThhfP389mYSTQsYL2LipyNP
+X-Google-Smtp-Source: AGHT+IHbDJw6pwBUtJBgbGPD+yF8WaYHrUpLpKHYBRK8TacmFZ8qNmPR4PIiaqNqGMSQA2IUpO0BYg==
+X-Received: by 2002:a05:620a:2a11:b0:7c5:55f9:4bc8 with SMTP id
+ af79cd13be357-7c5ba139e5amr2310475585a.8.1742867361400; 
+ Mon, 24 Mar 2025 18:49:21 -0700 (PDT)
+Received: from zerochan.hsd1.va.comcast.net ([2601:5cf:4180:270::68c4])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7c5b92d4e27sm581171985a.33.2025.03.24.18.49.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Mar 2025 17:07:40 -0700 (PDT)
-From: Andres Urian Florez <andres.emb.sys@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, mario.limonciello@amd.com, arnd@arndb.de,
- Tim.Huang@amd.com
-Cc: Andres Urian Florez <andres.emb.sys@gmail.com>, skhan@linuxfoundation.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: Replace deprecated function strcpy() with
- strscpy()
-Date: Mon, 24 Mar 2025 19:07:21 -0500
-Message-ID: <20250325000723.366365-1-andres.emb.sys@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ Mon, 24 Mar 2025 18:49:20 -0700 (PDT)
+From: AnantaSrikar <srikarananta01@gmail.com>
+To: alexander.deucher@amd.com
+Cc: christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ Jack.Xiao@amd.com, sunil.khatri@amd.com, Hawking.Zhang@amd.com,
+ shaoyun.liu@amd.com, Jiadong.Zhu@amd.com, chongli2@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ananta Srikar <srikarananta01@gmail.com>
+Subject: [PATCH] drm/amd/amdgpu: Fix typo
+Date: Mon, 24 Mar 2025 21:49:12 -0400
+Message-ID: <20250325014912.23911-1-srikarananta01@gmail.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Mar 2025 08:21:39 +0000
@@ -88,200 +89,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of using the strcpy() deprecated function to populate the
-fw_name, use the strscpy() function
+From: Ananta Srikar <srikarananta01@gmail.com>
 
-Link: https://www.kernel.org/doc/html/latest/process/deprecated.html#strcpy
+Fixes a typo in the word "version" in an error message.
 
-Signed-off-by: Andres Urian Florez <andres.emb.sys@gmail.com>
+Signed-off-by: Ananta Srikar <srikarananta01@gmail.com>
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c | 68 ++++++++++++-------------
- 1 file changed, 34 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c
-index 68bce6a6d09d..525e53c94f4f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c
-@@ -253,16 +253,16 @@ static int amdgpu_cgs_get_firmware_info(struct cgs_device *cgs_device,
- 		if (!adev->pm.fw) {
- 			switch (adev->asic_type) {
- 			case CHIP_TAHITI:
--				strcpy(fw_name, "radeon/tahiti_smc.bin");
-+				strscpy(fw_name, "radeon/tahiti_smc.bin");
- 				break;
- 			case CHIP_PITCAIRN:
- 				if ((adev->pdev->revision == 0x81) &&
- 				    ((adev->pdev->device == 0x6810) ||
- 				    (adev->pdev->device == 0x6811))) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "radeon/pitcairn_k_smc.bin");
-+					strscpy(fw_name, "radeon/pitcairn_k_smc.bin");
- 				} else {
--					strcpy(fw_name, "radeon/pitcairn_smc.bin");
-+					strscpy(fw_name, "radeon/pitcairn_smc.bin");
- 				}
- 				break;
- 			case CHIP_VERDE:
-@@ -276,9 +276,9 @@ static int amdgpu_cgs_get_firmware_info(struct cgs_device *cgs_device,
- 					((adev->pdev->device == 0x6823) ||
- 					(adev->pdev->device == 0x682b)))) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "radeon/verde_k_smc.bin");
-+					strscpy(fw_name, "radeon/verde_k_smc.bin");
- 				} else {
--					strcpy(fw_name, "radeon/verde_smc.bin");
-+					strscpy(fw_name, "radeon/verde_smc.bin");
- 				}
- 				break;
- 			case CHIP_OLAND:
-@@ -290,9 +290,9 @@ static int amdgpu_cgs_get_firmware_info(struct cgs_device *cgs_device,
- 				    ((adev->pdev->revision == 0x83) &&
- 					(adev->pdev->device == 0x6610))) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "radeon/oland_k_smc.bin");
-+					strscpy(fw_name, "radeon/oland_k_smc.bin");
- 				} else {
--					strcpy(fw_name, "radeon/oland_smc.bin");
-+					strscpy(fw_name, "radeon/oland_smc.bin");
- 				}
- 				break;
- 			case CHIP_HAINAN:
-@@ -304,13 +304,13 @@ static int amdgpu_cgs_get_firmware_info(struct cgs_device *cgs_device,
- 					(adev->pdev->device == 0x6665) ||
- 					 (adev->pdev->device == 0x6667)))) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "radeon/hainan_k_smc.bin");
-+					strscpy(fw_name, "radeon/hainan_k_smc.bin");
- 				} else if ((adev->pdev->revision == 0xc3) &&
- 					 (adev->pdev->device == 0x6665)) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "radeon/banks_k_2_smc.bin");
-+					strscpy(fw_name, "radeon/banks_k_2_smc.bin");
- 				} else {
--					strcpy(fw_name, "radeon/hainan_smc.bin");
-+					strscpy(fw_name, "radeon/hainan_smc.bin");
- 				}
- 				break;
- 			case CHIP_BONAIRE:
-@@ -318,17 +318,17 @@ static int amdgpu_cgs_get_firmware_info(struct cgs_device *cgs_device,
- 					(adev->pdev->revision == 0x81) ||
- 					(adev->pdev->device == 0x665f)) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "amdgpu/bonaire_k_smc.bin");
-+					strscpy(fw_name, "amdgpu/bonaire_k_smc.bin");
- 				} else {
--					strcpy(fw_name, "amdgpu/bonaire_smc.bin");
-+					strscpy(fw_name, "amdgpu/bonaire_smc.bin");
- 				}
- 				break;
- 			case CHIP_HAWAII:
- 				if (adev->pdev->revision == 0x80) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "amdgpu/hawaii_k_smc.bin");
-+					strscpy(fw_name, "amdgpu/hawaii_k_smc.bin");
- 				} else {
--					strcpy(fw_name, "amdgpu/hawaii_smc.bin");
-+					strscpy(fw_name, "amdgpu/hawaii_smc.bin");
- 				}
- 				break;
- 			case CHIP_TOPAZ:
-@@ -338,76 +338,76 @@ static int amdgpu_cgs_get_firmware_info(struct cgs_device *cgs_device,
- 				    ((adev->pdev->device == 0x6900) && (adev->pdev->revision == 0xD1)) ||
- 				    ((adev->pdev->device == 0x6900) && (adev->pdev->revision == 0xD3))) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "amdgpu/topaz_k_smc.bin");
-+					strscpy(fw_name, "amdgpu/topaz_k_smc.bin");
- 				} else
--					strcpy(fw_name, "amdgpu/topaz_smc.bin");
-+					strscpy(fw_name, "amdgpu/topaz_smc.bin");
- 				break;
- 			case CHIP_TONGA:
- 				if (((adev->pdev->device == 0x6939) && (adev->pdev->revision == 0xf1)) ||
- 				    ((adev->pdev->device == 0x6938) && (adev->pdev->revision == 0xf1))) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "amdgpu/tonga_k_smc.bin");
-+					strscpy(fw_name, "amdgpu/tonga_k_smc.bin");
- 				} else
--					strcpy(fw_name, "amdgpu/tonga_smc.bin");
-+					strscpy(fw_name, "amdgpu/tonga_smc.bin");
- 				break;
- 			case CHIP_FIJI:
--				strcpy(fw_name, "amdgpu/fiji_smc.bin");
-+				strscpy(fw_name, "amdgpu/fiji_smc.bin");
- 				break;
- 			case CHIP_POLARIS11:
- 				if (type == CGS_UCODE_ID_SMU) {
- 					if (ASICID_IS_P21(adev->pdev->device, adev->pdev->revision)) {
- 						info->is_kicker = true;
--						strcpy(fw_name, "amdgpu/polaris11_k_smc.bin");
-+						strscpy(fw_name, "amdgpu/polaris11_k_smc.bin");
- 					} else if (ASICID_IS_P31(adev->pdev->device, adev->pdev->revision)) {
- 						info->is_kicker = true;
--						strcpy(fw_name, "amdgpu/polaris11_k2_smc.bin");
-+						strscpy(fw_name, "amdgpu/polaris11_k2_smc.bin");
- 					} else {
--						strcpy(fw_name, "amdgpu/polaris11_smc.bin");
-+						strscpy(fw_name, "amdgpu/polaris11_smc.bin");
- 					}
- 				} else if (type == CGS_UCODE_ID_SMU_SK) {
--					strcpy(fw_name, "amdgpu/polaris11_smc_sk.bin");
-+					strscpy(fw_name, "amdgpu/polaris11_smc_sk.bin");
- 				}
- 				break;
- 			case CHIP_POLARIS10:
- 				if (type == CGS_UCODE_ID_SMU) {
- 					if (ASICID_IS_P20(adev->pdev->device, adev->pdev->revision)) {
- 						info->is_kicker = true;
--						strcpy(fw_name, "amdgpu/polaris10_k_smc.bin");
-+						strscpy(fw_name, "amdgpu/polaris10_k_smc.bin");
- 					} else if (ASICID_IS_P30(adev->pdev->device, adev->pdev->revision)) {
- 						info->is_kicker = true;
--						strcpy(fw_name, "amdgpu/polaris10_k2_smc.bin");
-+						strscpy(fw_name, "amdgpu/polaris10_k2_smc.bin");
- 					} else {
--						strcpy(fw_name, "amdgpu/polaris10_smc.bin");
-+						strscpy(fw_name, "amdgpu/polaris10_smc.bin");
- 					}
- 				} else if (type == CGS_UCODE_ID_SMU_SK) {
--					strcpy(fw_name, "amdgpu/polaris10_smc_sk.bin");
-+					strscpy(fw_name, "amdgpu/polaris10_smc_sk.bin");
- 				}
- 				break;
- 			case CHIP_POLARIS12:
- 				if (ASICID_IS_P23(adev->pdev->device, adev->pdev->revision)) {
- 					info->is_kicker = true;
--					strcpy(fw_name, "amdgpu/polaris12_k_smc.bin");
-+					strscpy(fw_name, "amdgpu/polaris12_k_smc.bin");
- 				} else {
--					strcpy(fw_name, "amdgpu/polaris12_smc.bin");
-+					strscpy(fw_name, "amdgpu/polaris12_smc.bin");
- 				}
- 				break;
- 			case CHIP_VEGAM:
--				strcpy(fw_name, "amdgpu/vegam_smc.bin");
-+				strscpy(fw_name, "amdgpu/vegam_smc.bin");
- 				break;
- 			case CHIP_VEGA10:
- 				if ((adev->pdev->device == 0x687f) &&
- 					((adev->pdev->revision == 0xc0) ||
- 					(adev->pdev->revision == 0xc1) ||
- 					(adev->pdev->revision == 0xc3)))
--					strcpy(fw_name, "amdgpu/vega10_acg_smc.bin");
-+					strscpy(fw_name, "amdgpu/vega10_acg_smc.bin");
- 				else
--					strcpy(fw_name, "amdgpu/vega10_smc.bin");
-+					strscpy(fw_name, "amdgpu/vega10_smc.bin");
- 				break;
- 			case CHIP_VEGA12:
--				strcpy(fw_name, "amdgpu/vega12_smc.bin");
-+				strscpy(fw_name, "amdgpu/vega12_smc.bin");
- 				break;
- 			case CHIP_VEGA20:
--				strcpy(fw_name, "amdgpu/vega20_smc.bin");
-+				strscpy(fw_name, "amdgpu/vega20_smc.bin");
- 				break;
- 			default:
- 				DRM_ERROR("SMC firmware not supported\n");
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+index f9a4d08eef92..fccf6e255b82 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -646,7 +646,7 @@ static int mes_v11_0_misc_op(struct amdgpu_mes *mes,
+ 		break;
+ 	case MES_MISC_OP_CHANGE_CONFIG:
+ 		if ((mes->adev->mes.sched_version & AMDGPU_MES_VERSION_MASK) < 0x63) {
+-			dev_err(mes->adev->dev, "MES FW versoin must be larger than 0x63 to support limit single process feature.\n");
++			dev_err(mes->adev->dev, "MES FW version must be larger than 0x63 to support limit single process feature.\n");
+ 			return -EINVAL;
+ 		}
+ 		misc_pkt.opcode = MESAPI_MISC__CHANGE_CONFIG;
 -- 
-2.43.0
+2.49.0
 
