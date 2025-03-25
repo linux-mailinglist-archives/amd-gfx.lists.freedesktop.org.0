@@ -2,77 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C999A6FD35
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Mar 2025 13:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0A5A6FD2E
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Mar 2025 13:42:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E8B210E56C;
-	Tue, 25 Mar 2025 12:42:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90FD710E566;
+	Tue, 25 Mar 2025 12:42:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EOzB6/aD";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A716E10E064
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 10:14:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1742897666; x=1743502466; i=spasswolf@web.de;
- bh=Kn4O1C1m+v3TNP8fqKbb9jrEsMA83fWOmk+rFaDwuPc=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=cF5eATILJVTjHeDfUYomZwTQyOXH75trm2neTwsGb+Ii2ftqe8whl2bdZJcJGzqW
- u8MMQTO+CoD4x9smEtvMPf6bzaX1AvpeAHhzh2aW0F9G7e9OnHb0kq0kdZnqW6zrq
- nHjhL5UxRmN7rV7BqA9NOSCDrSNRvwlhQoYg7WoHhGdMJqpLJDzKDGgKld418zQTi
- x0YY3BHzhAEveIG+uP9VUmDk9iwqdcfMuDjTonXrRWDThLuk2Z/C34Cpr7exazOtl
- 2govgLRM06lIffMN7C7/XcNfcck3pVNKmlajduNpcqko5+ba+N1p5l0XrXIFv5syR
- cK9llQ/TdZO0c+vgJA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from localhost.localdomain ([95.223.134.88]) by smtp.web.de
- (mrweb005 [213.165.67.108]) with ESMTPSA (Nemesis) id
- 1Mo6O7-1tLGmn1JpT-00koyo; Tue, 25 Mar 2025 11:14:26 +0100
-From: Bert Karwatzki <spasswolf@web.de>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Bert Karwatzki <spasswolf@web.de>, Balbir Singh <balbirs@nvidia.com>,
- Ingo Molnar <mingo@kernel.org>, Kees Cook <kees@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Peter Zijlstra <peterz@infradead.org>, Andy Lutomirski <luto@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org
-Subject: RE: commit 7ffb791423c7 breaks steam game
-Date: Tue, 25 Mar 2025 11:14:23 +0100
-Message-ID: <20250325101424.4478-1-spasswolf@web.de>
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
+ [209.85.167.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2536C10E064
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 10:26:58 +0000 (UTC)
+Received: by mail-lf1-f54.google.com with SMTP id
+ 2adb3069b0e04-5499c3cc6b3so321004e87.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 03:26:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742898416; x=1743503216; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=3Nqs1IC75lIOpzBjGnyb8c4V541LU3R6/5QAoqBnP8Q=;
+ b=EOzB6/aD96zXGr3JKqwneogmKM/RbjS0KUuYlCmIrEiK1H2idfoaNHUfiP/6oAhknz
+ HAuQXLGJNLvrFelZeRrp/VsTT5Vde0t3gDZ8rfkyxeQGZBUgiURQHAhC9tzYNyRL67wd
+ 6NDWLCqrKqzfaw8f3lysWny3a5PpUlfZjaaeJFAq2UfaTNnX/w+mnIBTxy+Q3i2dvNnB
+ Na8Z8lzWEFeX0jxL8fW28gw2hsCI8F02SC7Vk2giFNEw/ctw+wqIz+9o1KVBDVbujImt
+ zJauZ3Xhjo5IXGwlk06rn2XkQ8dv4DNPDqmHeIQqLZNRjwqnZobkUrsXfxi3xZlvD/Ai
+ ugpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742898416; x=1743503216;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=3Nqs1IC75lIOpzBjGnyb8c4V541LU3R6/5QAoqBnP8Q=;
+ b=WGt6iYLXa71/FWPRJ1kUjqZBG2WYyGn8+CepfA6VvhDq9qPgdtEZUStnP1EFV+Texe
+ V0/eF606vHsYk5bUI+r3GK9yAJrMqQR0LFUktSsR7vqNHHqc10t0uepSRFYaWRU1MqQN
+ /nXq7HHKlh5v4eqdgvvFjyxJegWPN3fuSRdIbFlELvgX3YvkM/AldkLU6rpk1J2bu2rB
+ A/cdarrMYefUzLXyzbkx5CveSbhe7HWlpGL1z23k7AVGh7OZaFEpbhFK3icd9AuNNFEX
+ UwFmbQQ2+Gm3Opl9Me42dFNfQ3M45MGb+E+aJPycZ1uMzBo55cZ6L/AmEuttw5kYJ0aQ
+ TGQw==
+X-Gm-Message-State: AOJu0YxXVjDZGCkdmK7h9eiWCtNeRLOD+9stIxuWiyPVvSuODTtIRU8d
+ +Q7cTA1T1ZF7QKhZ02M6s60V2BRZPWe3Z39dm9qAIUd+mLrbxYAXmu7J6g==
+X-Gm-Gg: ASbGncuCe0PNEsNzTW2TA+efRNN51f4csmuBGTK6KCUHGhhS+4pYgGau0xSp2fQJe+h
+ G+qzAyiqOT6TR/cc92DflhIE3yM2n+VEytw+1Vp6i8NrL1gxb4A49wOr1Kjhi2WWaxY4KWBC1/2
+ 3e7TvU2Y4YksDvFw7gsVxir/YfbwrOn/ZR8MIi4TutDJTcLv9/kVxRZX16m2fBw+PB6yUeekAx6
+ cgA3r/bJHaEOWoSEuq1SDKsaBnmS2gJP+c9f0pLoRkV5c27x0vxmwunNL/bL1VrTAihHv0B/2cI
+ YMGhSYM7VJuZ693mwam1GfPSX9F+1azTBzNX0pqYJVCnwVrROC1T8nebcwiNSIhoIpr76MNqGM1
+ RU3+I337pTuCoSb5cp7m/MVUu2w==
+X-Google-Smtp-Source: AGHT+IHatcWaqC9/4AxIUbkQw8PTM88q6dFexzrxpqyi2hOx6J0xBQLOr42rCoqlIOmxm0UyhcP1Ag==
+X-Received: by 2002:a05:6512:3f24:b0:549:8e41:20b9 with SMTP id
+ 2adb3069b0e04-54af5410ac6mr215706e87.8.1742898415940; 
+ Tue, 25 Mar 2025 03:26:55 -0700 (PDT)
+Received: from laptok.lan (89-64-31-184.dynamic.chello.pl. [89.64.31.184])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-54ad64fbaf4sm1489679e87.137.2025.03.25.03.26.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 25 Mar 2025 03:26:55 -0700 (PDT)
+From: =?UTF-8?q?Tomasz=20Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+To: alexander.deucher@amd.com,
+	kenneth.feng@amd.com,
+	KevinYang.Wang@amd.com
+Cc: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/pm: Add zero RPM enabled OD setting support for
+ SMU14.0.2
+Date: Tue, 25 Mar 2025 11:26:52 +0100
+Message-ID: <20250325102652.229756-1-tomasz.pakula.oficjalny@gmail.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: 634e77d7-4f3c-4d1a-8aa3-1978896f9bf2@amd.com
-References: 
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:SGxcBUha5iflKM8hzZwOrkwP0CO4z6rXyWXA0hg2dgGhN1A1yw6
- crz/7P/Pl/PK/774wZ8hqoYwIzu7OU++hQiLoOlEsDycXfuyfMBHzvPFJh/303dqFeELNR2
- 2fpDAEmHc0uU0FvgGaGPT5hUQIL3MNXnWfssESsJDFIJjW/EOUSdaZS0mxILEgpnxCAnZqb
- SOqvM3Pi2DT2x5Im1lI+A==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:SoAjOdVbYAA=;zblxxf0DeO9eZMftQS+pZIW+MWS
- fTgZ1Kv2lHgv8rhyLkfnW5xyhhtiO+lxhwMCTF7+ETk9mHZkg1SiSZAx2ZfUAsVMXu7iQ1RCB
- FicS7Sulz9RzQMu7TckNskWDlfqoTzcGFzernIiyN9sY6OTEJO7dZAijS6O5iOJeLrdyiZFtW
- 19yOEHQwM8/EH3/tRehtEAQh43u4FBumyiMzGKMDFKrRLnMyiUrODXybRFYdPM+hfRm9E6dWs
- J2VNQLpfHj5JiQH4ZdVtZcc0Zj8g148Bniuhcdzfn/7UEBlcctH9/SCg9G/owBw45aPQIi9NZ
- kAHVo0xYgGT/NDMw/pv3nQelKADK/YWeIf9sMWGjdqc2zYK7csgvpL8sLlBWZxtAY6oOGZFmq
- 6k7fZkj4EmSZM9k9pKLOiWSKUczEAequy9wpVAWNmONBKc0cDUQFd/Flu1olLiJpX9KnK50Rk
- x3+d0dsM+ObUr3JmMoveiVfATez+jtX+GO9GA44MJbqwBL5RYxqUUJxkDRkrIpEHp0mHq2QR7
- TyePji1FlAIXYvV3fFVRW5GSUAE+70VYvks+cowInx0CIdqc8phaIU3il25RFhK5y1qvjDu3O
- ktqXwiEPcQj7OY4SuvGEUlqkcddhtdPnxA2OFOSa+yTVfMRld2a4nwBJpPNSgZuS3FXMxY3up
- 2orl496eT3rtBCNeSvtVkJOrV2T9XbXBwzPLll2r7w6QjVcJfgZMCJd5F8wGoXHZORohVdPnS
- od3fExZWG0JTbXtKbuEytZFgUJuCKGY7t6UwS1OmfSmx4UKEbLHm8WpEUFssV9R9XajQN8Ee1
- j6BlJzZ2ePhMpMV/vzQu6wPEXynMcKzWSPW7BsXr9LJzmDgUiC6G3uYXP+ouY5cxf3Hi4JcG3
- cxYRzqOet71iFfqC1+F5j74l88X+ABtBMVCFY8kmxkocOwr1HWp3SSp+8teDcoZ+sb/5gCpqN
- wuNOknPN3H+WU2t9J8pcXw0Resa1GFNwh6Kr2vtJCqJ4+WLZppRw1j6GIfCY97M+B3n/RiHpA
- BdBEfvLPAY7KiNyHyOtfKiWb1pIJm00hdrOPmmhkkxgkEEy/N2G8/dzPoceTjxw2XTNNylyyo
- BidQ6Wby0I9g1gRGY//uSR298k0d4/przQFdYjFRJZeUrmHfHY1Tj7ZnH/5NtCAsSeq3Ul8nt
- 7TYTdatpGdqbMsAK5stlLAleyzXNPUAb3z2WCDsyrDxY7HM3aIpuvnbqixM9smkagp4LgRUNJ
- i34WNLd69pLUH6aVWZodEbMat86TemCmJJBeytlv2gwwS/5A213P0wp/3jFos5V5er3z5s7ng
- ZJdyA0MEHGrFGwN841KzJrh95e87p6aFPg/26fj3YDvvVEcREc5VklFSf6Vi1wlNSFTF9Sb+R
- Ff6F0Bzlh0RVtdOQqyBsIQ8ngj7DfbpA10dL7CqhB+Nfv21fMNrD+E1qnX4JSD+FTopd/PTsZ
- 127qOq0v9Yo/wNGIPlwHRrQyJQog=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Mar 2025 12:41:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,121 +87,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-My /proc/iomem  contans two memory areas of 8G size which are
-belonging to PCI 0000:03:00.0, one of the is the BAR reported by dmesg
-[ 0.312692] [ T1] pci 0000:03:00.0: BAR 0 [mem 0xfc00000000-0xfdffffffff 6=
-4bit pref]
-the other one is "afe00000000-affffffffff : 0000:03:00.0" (in the case wit=
-hout nokaslr) which shifts
-to "3ffe00000000-3fffffffffff : 0000:03:00.0" in the case with nokaslr.
+Hook up zero RPM enable for 9070 and 9070 XT based on RDNA3
+(smu 13.0.0 and 13.0.7) code.
 
-Here's /proc/iomem in the case without nokaslr:
-00000000-00000fff : Reserved
-00001000-0009ffff : System RAM
-000a0000-000fffff : Reserved
-  000a0000-000dffff : PCI Bus 0000:00
-  000f0000-000fffff : System ROM
-00100000-09bfefff : System RAM
-09bff000-0a000fff : Reserved
-0a001000-0a1fffff : System RAM
-0a200000-0a20efff : ACPI Non-volatile Storage
-0a20f000-e62edfff : System RAM
-e62ee000-e63e1fff : Reserved
-e63e2000-e87cafff : System RAM
-e87cb000-e87cbfff : Reserved
-e87cc000-e9e1ffff : System RAM
-e9e20000-eb33efff : Reserved
-  eb31e000-eb321fff : MSFT0101:00
-  eb322000-eb325fff : MSFT0101:00
-eb33f000-eb39efff : ACPI Tables
-eb39f000-eb556fff : ACPI Non-volatile Storage
-eb557000-ed1fefff : Reserved
-ed1ff000-edffffff : System RAM
-ee000000-efffffff : Reserved
-f0000000-fcffffff : PCI Bus 0000:00
-  f0000000-f7ffffff : PCI ECAM 0000 [bus 00-7f]
-    f0000000-f7ffffff : pnp 00:00
-  fc500000-fc9fffff : PCI Bus 0000:08
-    fc500000-fc5fffff : 0000:08:00.7
-      fc500000-fc5fffff : pcie_mp2_amd
-    fc600000-fc6fffff : 0000:08:00.4
-      fc600000-fc6fffff : xhci-hcd
-    fc700000-fc7fffff : 0000:08:00.3
-      fc700000-fc7fffff : xhci-hcd
-    fc800000-fc8fffff : 0000:08:00.2
-      fc800000-fc8fffff : ccp
-    fc900000-fc97ffff : 0000:08:00.0
-    fc980000-fc9bffff : 0000:08:00.5
-      fc980000-fc9bffff : AMD ACP3x audio
-        fc980000-fc990200 : acp_pdm_iomem
-    fc9c0000-fc9c7fff : 0000:08:00.6
-      fc9c0000-fc9c7fff : ICH HD audio
-    fc9c8000-fc9cbfff : 0000:08:00.1
-      fc9c8000-fc9cbfff : ICH HD audio
-    fc9cc000-fc9cdfff : 0000:08:00.7
-    fc9ce000-fc9cffff : 0000:08:00.2
-      fc9ce000-fc9cffff : ccp
-  fca00000-fccfffff : PCI Bus 0000:01
-    fca00000-fcbfffff : PCI Bus 0000:02
-      fca00000-fcbfffff : PCI Bus 0000:03
-        fca00000-fcafffff : 0000:03:00.0
-        fcb00000-fcb1ffff : 0000:03:00.0
-        fcb20000-fcb23fff : 0000:03:00.1
-          fcb20000-fcb23fff : ICH HD audio
-    fcc00000-fcc03fff : 0000:01:00.0
-  fcd00000-fcdfffff : PCI Bus 0000:07
-    fcd00000-fcd03fff : 0000:07:00.0
-      fcd00000-fcd03fff : nvme
-  fce00000-fcefffff : PCI Bus 0000:06
-    fce00000-fce03fff : 0000:06:00.0
-      fce00000-fce03fff : nvme
-  fcf00000-fcffffff : PCI Bus 0000:05
-    fcf00000-fcf03fff : 0000:05:00.0
-    fcf04000-fcf04fff : 0000:05:00.0
-      fcf04000-fcf04fff : r8169
-fd300000-fd37ffff : amd_iommu
-fec00000-fec003ff : IOAPIC 0
-fec01000-fec013ff : IOAPIC 1
-fec10000-fec10fff : Reserved
-  fec10000-fec10fff : pnp 00:04
-fed00000-fed00fff : Reserved
-  fed00000-fed003ff : HPET 0
-    fed00000-fed003ff : PNP0103:00
-fed40000-fed44fff : Reserved
-fed80000-fed8ffff : Reserved
-  fed81200-fed812ff : AMDI0030:00
-  fed81500-fed818ff : AMDI0030:00
-    fed81500-fed818ff : AMDI0030:00 AMDI0030:00
-fedc0000-fedc0fff : pnp 00:04
-fedc4000-fedc9fff : Reserved
-  fedc5000-fedc5fff : AMDI0010:03
-    fedc5000-fedc5fff : AMDI0010:03 AMDI0010:03
-fedcc000-fedcefff : Reserved
-fedd5000-fedd5fff : Reserved
-fee00000-fee00fff : pnp 00:04
-ff000000-ffffffff : pnp 00:04
-100000000-fee2fffff : System RAM
-  825600000-8261fa1b1 : Kernel code
-  826200000-82663dfff : Kernel rodata
-  826800000-82692ef3f : Kernel data
-  826eaf000-826ffffff : Kernel bss
-fee300000-100fffffff : Reserved
-1010000000-ffffffffff : PCI Bus 0000:00
-  fc00000000-fe0fffffff : PCI Bus 0000:01
-    fc00000000-fe0fffffff : PCI Bus 0000:02
-      fc00000000-fe0fffffff : PCI Bus 0000:03
-        fc00000000-fdffffffff : 0000:03:00.0 This is the usual BAR reporte=
-d by dmesg (and lspci -vv)
-        fe00000000-fe0fffffff : 0000:03:00.0
-  fe20000000-fe301fffff : PCI Bus 0000:08
-    fe20000000-fe2fffffff : 0000:08:00.0
-    fe30000000-fe301fffff : 0000:08:00.0
-  fe30300000-fe304fffff : PCI Bus 0000:04
-    fe30300000-fe303fffff : 0000:04:00.0
-      fe30300000-fe303fffff : 0000:04:00.0
-    fe30400000-fe30403fff : 0000:04:00.0
-    fe30404000-fe30404fff : 0000:04:00.0
-afe00000000-affffffffff : 0000:03:00.0 This is the memory which shifts wit=
-h nokaslr
+Tested on 9070 XT Hellhound
 
-Bert Karwatzki
+Signed-off-by: Tomasz Pakuła <tomasz.pakula.oficjalny@gmail.com>
+---
+ .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 55 ++++++++++++++++++-
+ 1 file changed, 54 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+index f7cfe1f35cae..82c2db972491 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+@@ -79,6 +79,7 @@
+ #define PP_OD_FEATURE_FAN_ACOUSTIC_TARGET		8
+ #define PP_OD_FEATURE_FAN_TARGET_TEMPERATURE		9
+ #define PP_OD_FEATURE_FAN_MINIMUM_PWM			10
++#define PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE		11
+ 
+ static struct cmn2asic_msg_mapping smu_v14_0_2_message_map[SMU_MSG_MAX_COUNT] = {
+ 	MSG_MAP(TestMessage,			PPSMC_MSG_TestMessage,                 1),
+@@ -1052,6 +1053,10 @@ static void smu_v14_0_2_get_od_setting_limits(struct smu_context *smu,
+ 		od_min_setting = overdrive_lowerlimits->FanMinimumPwm;
+ 		od_max_setting = overdrive_upperlimits->FanMinimumPwm;
+ 		break;
++	case PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE:
++		od_min_setting = overdrive_lowerlimits->FanZeroRpmEnable;
++		od_max_setting = overdrive_upperlimits->FanZeroRpmEnable;
++		break;
+ 	default:
+ 		od_min_setting = od_max_setting = INT_MAX;
+ 		break;
+@@ -1330,6 +1335,24 @@ static int smu_v14_0_2_print_clk_levels(struct smu_context *smu,
+ 				      min_value, max_value);
+ 		break;
+ 
++	case SMU_OD_FAN_ZERO_RPM_ENABLE:
++		if (!smu_v14_0_2_is_od_feature_supported(smu,
++							 PP_OD_FEATURE_ZERO_FAN_BIT))
++			break;
++
++		size += sysfs_emit_at(buf, size, "FAN_ZERO_RPM_ENABLE:\n");
++		size += sysfs_emit_at(buf, size, "%d\n",
++				(int)od_table->OverDriveTable.FanZeroRpmEnable);
++
++		size += sysfs_emit_at(buf, size, "%s:\n", "OD_RANGE");
++		smu_v14_0_2_get_od_setting_limits(smu,
++						  PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE,
++						  &min_value,
++						  &max_value);
++		size += sysfs_emit_at(buf, size, "ZERO_RPM_ENABLE: %u %u\n",
++				      min_value, max_value);
++		break;
++
+ 	case SMU_OD_RANGE:
+ 		if (!smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_GFXCLK_BIT) &&
+ 		    !smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_UCLK_BIT) &&
+@@ -2270,7 +2293,9 @@ static void smu_v14_0_2_set_supported_od_feature_mask(struct smu_context *smu)
+ 					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_RETRIEVE |
+ 					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_SET |
+ 					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_RETRIEVE |
+-					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET;
++					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET |
++					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_RETRIEVE |
++					    OD_OPS_SUPPORT_FAN_ZERO_RPM_ENABLE_SET;
+ }
+ 
+ static int smu_v14_0_2_get_overdrive_table(struct smu_context *smu,
+@@ -2349,6 +2374,8 @@ static int smu_v14_0_2_set_default_od_settings(struct smu_context *smu)
+ 			user_od_table_bak.OverDriveTable.FanTargetTemperature;
+ 		user_od_table->OverDriveTable.FanMinimumPwm =
+ 			user_od_table_bak.OverDriveTable.FanMinimumPwm;
++		user_od_table->OverDriveTable.FanZeroRpmEnable =
++			user_od_table_bak.OverDriveTable.FanZeroRpmEnable;
+ 	}
+ 
+ 	smu_v14_0_2_set_supported_od_feature_mask(smu);
+@@ -2396,6 +2423,11 @@ static int smu_v14_0_2_od_restore_table_single(struct smu_context *smu, long inp
+ 		od_table->OverDriveTable.FanMode = FAN_MODE_AUTO;
+ 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
+ 		break;
++	case PP_OD_EDIT_FAN_ZERO_RPM_ENABLE:
++		od_table->OverDriveTable.FanZeroRpmEnable =
++					boot_overdrive_table->OverDriveTable.FanZeroRpmEnable;
++		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
++		break;
+ 	case PP_OD_EDIT_ACOUSTIC_LIMIT:
+ 		od_table->OverDriveTable.AcousticLimitRpmThreshold =
+ 					boot_overdrive_table->OverDriveTable.AcousticLimitRpmThreshold;
+@@ -2678,6 +2710,27 @@ static int smu_v14_0_2_od_edit_dpm_table(struct smu_context *smu,
+ 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
+ 		break;
+ 
++	case PP_OD_EDIT_FAN_ZERO_RPM_ENABLE:
++		if (!smu_v14_0_2_is_od_feature_supported(smu, PP_OD_FEATURE_ZERO_FAN_BIT)) {
++			dev_warn(adev->dev, "Zero RPM setting not supported!\n");
++			return -ENOTSUPP;
++		}
++
++		smu_v14_0_2_get_od_setting_limits(smu,
++						  PP_OD_FEATURE_FAN_ZERO_RPM_ENABLE,
++						  &minimum,
++						  &maximum);
++		if (input[0] < minimum ||
++		    input[0] > maximum) {
++			dev_info(adev->dev, "zero RPM enable setting(%ld) must be within [%d, %d]!\n",
++				 input[0], minimum, maximum);
++			return -EINVAL;
++		}
++
++		od_table->OverDriveTable.FanZeroRpmEnable = input[0];
++		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_ZERO_FAN_BIT);
++		break;
++
+ 	case PP_OD_RESTORE_DEFAULT_TABLE:
+ 		if (size == 1) {
+ 			ret = smu_v14_0_2_od_restore_table_single(smu, input[0]);
+
+base-commit: 7547510d4a915f4f6d9b1262182d8db6763508f4
+-- 
+2.49.0
+
