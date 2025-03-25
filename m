@@ -2,120 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D809A71038
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Mar 2025 06:45:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62605A712CC
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Mar 2025 09:39:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6342E10E076;
-	Wed, 26 Mar 2025 05:44:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B92B10E65D;
+	Wed, 26 Mar 2025 08:39:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QfsXDQwC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gOhWXQzm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2041.outbound.protection.outlook.com [40.107.100.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A42710E076
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Mar 2025 05:44:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DNWgLAx0Vnb3h1+O0LgHjmPMZ6JHFIYzwmhiclFZcgywL14OpESu5ayxgYHDuG/9DlkVJfsOyd3VIab4DmG4WoRH61Ag/475TLat4PR8igMR0xvzr+QKK/QFb8i2GqMuyquVJSJblYmvdPwTmFd5PMrRmJGQwGypXNW01HlFzQGNPMBRj1XPz+XWaUYcSVTXGhHsVtyq6zrTFtjBQlbFQSgg6CmEh53Yiw20w2qaLW5/Yk7NnvkiiBbWzk3YDU9eJ4edo3C8VFUeF4lumKvRTK7iqoQ2h2alMmD/elHigQy0Qu3wpPjx8I+BgskCIqhGVnbiOW8bRoWr2cfv3+IzRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8yIaX0soIQzERuyk9jqjpCJ/3x2uVeKsueE8xrK2i+g=;
- b=PXQHJR+Gh5xO5ZsicNbSLXGdnEmgKJEGhyQf0hdykbobeAm849tfbT12e1Pw0nRHQIsEWog6MdXdT+eUogjjZ9mIm40FdLbeBRpu7Tgb8rEIz2Cdun4GBm3/Htga+cYLu6C4O7lYuPYLz16KRTrX88gf4TUZCTcnLrLddLoZP9EA1O3u1OUoQaLIkGuhqAjOCmB9fHzUqmX4zKmxi/Y0Mcd0CSk1D5kjp9ovgYmu3ATkh3GDV6RrmEN7AJDgs9vjSNHgJpJnKXFDwqk68FHhGcUQNa8DdySpkMKUF8U62LdEW6jfKwJGDyG433qMO/Ne/BYJ+B2/58g5aWl4SdzPDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8yIaX0soIQzERuyk9jqjpCJ/3x2uVeKsueE8xrK2i+g=;
- b=QfsXDQwC5fROaAbdTmDfgl0It7q2nk/+UJ4D/6tTt/JhDElXk8ezjNTb5jF8mX+UOlO3ES4BIaaJr9FhTD2rtYyJuX5NE+ah1Kp0KycDv/zGyQblp5/SzbXKjTiUTTGlYj0Mi4ICQMZoaya+MvRG0Hi2qfCLWUlMiiM61RxNMAg=
-Received: from BLAPR03CA0091.namprd03.prod.outlook.com (2603:10b6:208:32a::6)
- by CY3PR12MB9679.namprd12.prod.outlook.com (2603:10b6:930:100::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Wed, 26 Mar
- 2025 05:44:49 +0000
-Received: from BL6PEPF00020E60.namprd04.prod.outlook.com
- (2603:10b6:208:32a:cafe::a5) by BLAPR03CA0091.outlook.office365.com
- (2603:10b6:208:32a::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.42 via Frontend Transport; Wed,
- 26 Mar 2025 05:44:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF00020E60.mail.protection.outlook.com (10.167.249.21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8534.20 via Frontend Transport; Wed, 26 Mar 2025 05:44:49 +0000
-Received: from canli-build.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Mar
- 2025 00:44:47 -0500
-From: Candice Li <candice.li@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Candice Li <candice.li@amd.com>
-Subject: [PATCH] Remove unnecessary firmware version check for gc v9_4_2
-Date: Wed, 26 Mar 2025 13:44:25 +0800
-Message-ID: <20250326054425.796945-1-candice.li@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com
+ [209.85.128.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E08AA10E594;
+ Tue, 25 Mar 2025 16:04:24 +0000 (UTC)
+Received: by mail-yw1-f179.google.com with SMTP id
+ 00721157ae682-6fedf6aaed2so49130487b3.0; 
+ Tue, 25 Mar 2025 09:04:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742918664; x=1743523464; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=hsymUyAwd/7+saRMvKt7vls4TQ6B6dvAPD1as5mOOSw=;
+ b=gOhWXQzm0N/uMtapJLKqeWF17SbKKTZaTnu01K2zTqoOPuyGUYeWycolWxnadZYUDy
+ 5cwSpEDss3V3kLYgunGBjtqFngjwfJlwNUAcGFIKs4S1pxQ3bH4C6bE9mi3Z7lbY8TLE
+ qrcJOs4VstreUxCSmS2RfgeoXMb9YWpmHoB5j7zIVOVyaJZixqDhafkihn6+fcQC/ykL
+ wNyVEGkyG3md1ujPenbvcHZlms00ez8B8eq3h65407vSgoajQgQJXzxHuAbq0LX7XZac
+ xpTu2LryFyXmUB9vnOsVqSr4umsi+eAWXowFDWv5nasSiBbubHzojupqM3rRp4yZRCz1
+ rg5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742918664; x=1743523464;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=hsymUyAwd/7+saRMvKt7vls4TQ6B6dvAPD1as5mOOSw=;
+ b=hjK+kXyz3BA5gpuXsPkA+Kjtu4LDUOdSPV4YzzTbGNBFNBEaPL13iXzDmXR5vd/WVc
+ df0bFQuvuPUr8uri4jCxP0Qee6E4v1FalmEbfgwN2di6yPmwcrDAbTB+MSHkNlrJK4VD
+ yWYRb0YgUS8J0Ouwkj59QaJmIrD0l02eYnGBAfXaWPNZuRY1ebxLW2jUgnF8ZjBbwqZt
+ LHoOpmd4A+jA+mS+yY8hLxlUEK2gmJ52t/44wc6AbDFX4aFFmuL9e/3ZRNc5b2Y7CPLj
+ 2b1DdfbXOUa03dElXY0RYXrqSDxOSyc+pbmYcEr11XUqgGv1Lw5yTYpwpngX2+NYjdjm
+ 1sQw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU3C5gIv3JLTPdU4CJIsAhVvKDzVGxeKNcuWLa1j4O3UO9rVlnd2DCXw4hunDkapeh/RKhh52G7B5D4DvRAqg==@lists.freedesktop.org,
+ AJvYcCW9OOxt5QtmiKYDxOvEmkNLa1m30Nnde6qZ1IYv4IRrr0rLVWwHehQgJhB0lGRxDiBAFNPoCEEmZEtrV2OdRBKmng==@lists.freedesktop.org,
+ AJvYcCWBuL7BqCu5CslWk0WrQcbISOEjBe74QVHXh62nn1O87RC7GwrlV8RT5Qxlww8OjYrZH1qDDVR3iyFc@lists.freedesktop.org,
+ AJvYcCWwWnKJy5YAsCE2XDqavW16F3Msqh/8Or6fVKonOhMthe/+TD6Ph/Z7GRIUNLevh9Bk5VZ+CWak+pwu@lists.freedesktop.org,
+ AJvYcCX3N/VX7suUOU1U6RqUSdNsexUB79T2/dN2cmRaorSm581B2dhqAR7eaXwSvoSxg3cA/IPSIegy@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzbuhFjL34erdx1ejAWXKA9nQ8r8Fio//OUwsuUHpg2XQxBnsjU
+ Aoslt74ejNJ2k8KjWIgLCvBggoOFLGOZ6ujlfLJJfqPZ625L9MHE957EVTTacmV/bHvwH72PyhP
+ ZIhqI4/TlrmcuX944v54OoWL/1Fo=
+X-Gm-Gg: ASbGncsXR4Mz+qrnbOeW4a4J9bwnCnV8ttQoVX+ii49a8tKtTmJurYqUTzvpvXZhLho
+ xVAZkSqhEdI9OWV31RgD/PYl2CiNQdCVPJODZAJd/5h/UNr83U0Fiu0DWwKb0d+AQDnp+wczJwb
+ C5/kA0g4bMuiy6mp00SaHBh/nb
+X-Google-Smtp-Source: AGHT+IFuO7/KsoWda68hHwMp3dp3vTaBY41RtEIHi5DSJzf7/I8Ad1hcWmGz5xn7HPqn5/pt2dj+MfILAPOJgzT4I1k=
+X-Received: by 2002:a05:690c:8d02:b0:6fd:33a1:f4b with SMTP id
+ 00721157ae682-7020fd4fc2fmr5275767b3.4.1742918659083; Tue, 25 Mar 2025
+ 09:04:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E60:EE_|CY3PR12MB9679:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6ee86b8-3c97-4659-695f-08dd6c29529b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZwMFfVOADV9dTUtcFv6LkACqqP2/xBj+W3Z2+KdxdkNEJ5ZbmaUvNpD2YTsJ?=
- =?us-ascii?Q?rpvw9Q1PNO/UD7ADl57JnFuisU6tTuD/kb0GiQsoBABHZ1CUaPjD/9RwDmkV?=
- =?us-ascii?Q?URV+IrUuW65gPYe92SOgnHqzsQzT2yEtjACvFOw4+IcW9Ye78cbmSn0If3EN?=
- =?us-ascii?Q?bU7CSqSLAtr0NToSkDdaJuW7YrxVLj6oBxvOGJA8UFnSLo3XQsO1cikBfFTj?=
- =?us-ascii?Q?W3ClK6xuYltp6QgHeGShIwNUBDbFzPjEBjMZHEYMKJxfH6U6txmNmnJUj7Ti?=
- =?us-ascii?Q?k0D9CnArsg8wRsDvhheGwi4bG1duzELVsDR7L+ifXXO5H80a1eq8x9PSE8jT?=
- =?us-ascii?Q?QBVUW7gIlAzUKfgushZla3LppkMs++TqJDrwPrlnV06Atzu06wDR5OIuBuX8?=
- =?us-ascii?Q?o3myUYKwnhBBOAAGC3Y6gO8heEbEtnl8YRUPiTvijhEvEhD0VgLUep4gL2nE?=
- =?us-ascii?Q?9hnjgFZHWoUOoYYB2QtPMg/l7JsZS5inAhMxTS2Q9VGJW39zmIFPOSrDx1rp?=
- =?us-ascii?Q?KwYfcKwODE4nkDvVnA4NIF8vTQ6x0xnJzPtqY+bKMm3f9Yz3yfFKHjG7cX/3?=
- =?us-ascii?Q?YG65tcdDBRM+OLVbRSoOrt0C5tfY8UXRqsEhiosnMmui+2kkPMMSv0BXLpJC?=
- =?us-ascii?Q?7wdbxCaq0p5aVoebzCo0qN/XjrH/DRfOKnhHMDY8JqJhF9ttTfvFfEaa1KBG?=
- =?us-ascii?Q?C2QWwt3ZBqguY3paiaG2rwH4WdaA+t5EPpLJM//j/fMXvekebwN/RPKCQPPU?=
- =?us-ascii?Q?YhPFWWfui3nVJNcXeJdL5qfM9oe9LYcdFq5tgBawj45H9XBfIbOEv6IvGTjA?=
- =?us-ascii?Q?hViiAX0JB1ZubHGHYDBeY7KWIR9Xm4p98o30vJXCoKrmSENa7SFZeA6PvPc/?=
- =?us-ascii?Q?62XSj/O1ot8nBUR/zshN1BiMwwPYr/qYoDpVGZZ3IPwLcOewtNzdLmJOYBtp?=
- =?us-ascii?Q?lp4UKP8STp4oc/KVvnfLTRnGVIcXPBrvB8Kb1YMgfnAnaOyicfHNngJ9F6gQ?=
- =?us-ascii?Q?/iUxFHixC2Ev54rEwPaauqqz1cH5Bp62NQDZzV1CV+wZzS8eOrVp7Pt8R626?=
- =?us-ascii?Q?w3s5w2s5ZnSGEttwy6bPF3saKAgHTyF97X7N6IrD1T9EFce7ypVkyJukbTBd?=
- =?us-ascii?Q?hq6sfZJcnMbHkJUylo7OMKuIELN0oeh9F2wxG9Yvcdan6qhrZhnlyQnxc6Jn?=
- =?us-ascii?Q?4+61g5J76R4ZOrdcnbo227fX5F/sDN/6RdVwgVQBiC7Hm4ra2q+8MD/e1gdg?=
- =?us-ascii?Q?stGNaWORS8w3PEsWY9hZQ2669IV6kfXC2/TnfGObEvdyutsrL++5bLuHa7f9?=
- =?us-ascii?Q?jyHJTMo3UUx26I1LrumaoFgA1ptc51h27nKhLsmB3icX1F3GiolqJRsSy4sb?=
- =?us-ascii?Q?Jakn2haJEl4ojQzp2r7S1CChFR4DpNvXZabmtNQPgb/fuoxp/x4Y2vMEVA2N?=
- =?us-ascii?Q?jnam8j07z0YENDQPyGcXd4PmXmdadulM2Ni86GEHJ5bc14gU+2iF5lrmK76d?=
- =?us-ascii?Q?pxCfXQNv3h+LY7I=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2025 05:44:49.1385 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6ee86b8-3c97-4659-695f-08dd6c29529b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E60.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9679
+References: <20250125064619.8305-1-jim.cromie@gmail.com>
+ <20250125064619.8305-17-jim.cromie@gmail.com>
+ <b2d9acea-c2ad-45c7-9853-8fac0957c56f@bootlin.com>
+ <CAJfuBxwBZ0a630YH2gbwz971ehZWASH6yXfRrdVCWBNGqA=mMw@mail.gmail.com>
+ <a6824252-87be-458f-ba4a-b34bf86d67f4@bootlin.com>
+In-Reply-To: <a6824252-87be-458f-ba4a-b34bf86d67f4@bootlin.com>
+From: jim.cromie@gmail.com
+Date: Tue, 25 Mar 2025 10:03:53 -0600
+X-Gm-Features: AQ5f1JquBnQ-iGybb_4LD4MxqKJLiDkxofsnIfISZQzupn9eWPMArOPgVB9U_e4
+Message-ID: <CAJfuBxw4BuVDh5+xdp5vunQt1=P-5AeSQHtRW16rU4SJLFgK8g@mail.gmail.com>
+Subject: Re: [PATCH 16/63] dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
+To: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: linux-kernel@vger.kernel.org, jbaron@akamai.com, 
+ gregkh@linuxfoundation.org, ukaszb@chromium.org, 
+ intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch, 
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 26 Mar 2025 08:39:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,26 +96,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-GC v9_4_2 uses a new versioning scheme for CP firmware, making
-the warning ("CP firmware version too old, please update!") irrelevant."
+On Mon, Mar 24, 2025 at 9:07=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
+n.com> wrote:
+>
+trimming
 
-Signed-off-by: Candice Li <candice.li@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 1 +
- 1 file changed, 1 insertion(+)
+> >>> +     __section("__dyndbg_class_users") _uname =3D {                 =
+   \
+> >>> +             .mod_name =3D KBUILD_MODNAME,                          =
+   \
+> >>> +             .map =3D &(_var),                                      =
+   \
+> >>> +     }
+> >>> +
+> >>
+> >> I'm not sure I understand properly how __section works, but can we use
+> >> multiple DYNDBG_CLASSMAP_USE in one module? Can we also use
+> >> DYNDBG_CLASSMAP_DEFINE while also importing an other classmap
+> >> DYNDBG_CLASSMAP_USE?
+> >>
+> >
+> > Yes, its supposed to work that way.
+> >
+> > I havent tested that specific scenario (yet), but
+> > a _USEr module, like test-dynamic-debug-submod,
+> > could also _DEFINE its own, as long as it honors
+> > the class-id mapping it is using and therefore sharing.
+> > The on-modprobe conflict check should catch this condition.
+> >
+> > And __section (ISTM) accumulates entries, typically static struct var
+> > initializations.
+> > AFAICT, scanning the sections is how these { scoped statics } are
+> > often reachable.
+> >
+> > For example, dd's _METADATA_ builds a { static _ddebug } for every pr_d=
+ebug.
+> > They all go into the __dyndbg section (renamed with _descriptors suffix=
+ soon),
+> > in the order their respective definer objects are linked.
+> >
+> > include/asm-generic/vmlinux.lds.h  then places the __dyndbg_* sections
+> > into DATA, along with lots of other freight, for the various
+> > mechanisms they serve.
+> >
+> >
+> >
+> >
+> >> If not, does it make sense to allow it (for example MFD devices can
+> >> touch multiple subsystems)?
+> >
+> > We have another use case !
+> > Do you know your way around that case ?
+> >
+>
+> No, I don't have other use cases, I was just thinking about possible
+> scenarios of the "include multiple classmap".
+>
+> So, happy to konw it is not an issue with the section, but do I
+> understand properly the code (completly hypotetical example): if drm.ko
+> defines classes 0..10 and spi.ko defines classes 0..4, it means
+> driver.ko can't use both classmap? (I don't have such use-case, and
+> maybe this use-case does not exists!)
+>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 5bf9d27d1ead9a..1a072362855315 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -1269,6 +1269,7 @@ static void gfx_v9_0_check_fw_write_wait(struct amdgpu_device *adev)
- 	adev->gfx.mec_fw_write_wait = false;
- 
- 	if ((amdgpu_ip_version(adev, GC_HWIP, 0) != IP_VERSION(9, 4, 1)) &&
-+	    (amdgpu_ip_version(adev, GC_HWIP, 0) != IP_VERSION(9, 4, 2)) &&
- 	    ((adev->gfx.mec_fw_version < 0x000001a5) ||
- 	     (adev->gfx.mec_feature_version < 46) ||
- 	     (adev->gfx.pfp_fw_version < 0x000000b7) ||
--- 
-2.25.1
+It sounds realistic on the face of it, so lets break it down:
 
+1st off, drm drivers/helpers are full dependents on (core) drm.ko.
+they are the "subsystem" users I considered.
+
+This dependence is "+1" by _USE ref'g the exported DEFINE product.
+If that dependence doesn't suit a situation, it doesn't quite fit.
+The dependence dictates module-load order, amongst other things.
+
+So it follows that spi.ko would never be a dependent module on drm.ko,
+if there is a relationship, DRM would use spi, and whatever classes it defi=
+nes.
+
+Suppose spi.ko DEFINEd a classmap:  with ENDPOINT, TRANSPORT, BULK
+categories of pr_debugs,  those classes would need to map to different clas=
+s-ids
+than DRM_UT_<*>, cuz the callsites only have the classids, not the
+name-->id mapping.
+
+if both DRM_UT_CORE and ENPOINT had class-id =3D 0,
+then both these commands would alter the same set of pr-debugs
+
+  echo class DRM_UT_CORE +p > /proc/dynamic-debug/control
+  echo class SPI_ENDPOINT -p > /proc/dynamic-debug/control
+
+Thats not as troublesome as it might seem:
+
+DRM's DRM_UT_<*> vals are only exposed to userspace
+by the existence of : /sys/module/drm/parameter/debug,
+cuz it exposes the bit values in >debug input.
+
+and this already changed DRM_UT_<*> vals wo anybody caring.
+0406faf25fb1 drm_print: condense enum drm_debug_category
+
+DYNAMIC-DEBUG-CLASSMAP-DEFINE() has _base arg,
+which offsets the natural/obvious 0..N range to allow sharing of 0..62 rang=
+e.
+
+The outer edge of inconvenience in coordinating class-id reservations
+would be N providers and M consumers. ATM, N=3DM=3D1.
+
+Say DRM  used 2 modules defining classmaps:  spi (as discussed),
+and (pure wag) gpu_engine.
+Those 2 modules dont really have any other connection, but would have
+to coordinate
+(but maybe gpu_engine needs spi to control its cooling, and would want
+to anyway)
+
+DRM (or any classmap-definer/user) is also free to define a 2nd "category"
+enum to separate the user facing aspects of DRM_UT_*
+from its name->ID mapping (very internal)
+
+Also:  "classnames" are a public-namespace; theres nothing
+to stop a module from defining their own version of "DRM_UT_CORE",
+and getting their pr_debugs enabled/disabled along with all of DRMs callsit=
+es.
+
+Such a use-case would be obvious in review, and would want some justificati=
+on.
+
+WAG:  a _base arg to the _USE() macro could specify a local user offset.
+
+Theres a saying:  if youre explaining, youre losing.
+
+How'd I do ?
+
+> The only solution I see is to add more stuff in the _ddebug structure
+> (for example a "classmap identifier"). But for now, the current user
+> will be DRM, so we don't really need to fix this issue right now.
+>
+> I just found a possible user for dyndbg classes [1], it seems to
+> implement something similar.
+>
+> [1]:https://elixir.bootlin.com/linux/v6.13.7/source/drivers/block/drbd/dr=
+bd_polymorph_printk.h
+>
+
+thats a pretty impressive stack of macros.
+I like the componentry and assembly
+
+One thing that puts it out of scope is its use of KERN_EMERG, CRIT etc.
+dyndbg is just KERN_DEBUG
+
+Also those #undef *DYNAMIC_DEBUG*
+explicitly unwire  dyndbg apparatus, and plug into __dynamic_pr_debug direc=
+tly.
+Making it an interesting case.
+
+
+> > Note that DEFINEr  & USEr calls set up linkage dependencies,
+> > As long as these are consistent with other module deps,
+> > it should work.
+> >
+> >
+> >>
