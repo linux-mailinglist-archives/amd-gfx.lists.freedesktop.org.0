@@ -2,64 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D249A712CD
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Mar 2025 09:39:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB2B6A712CF
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Mar 2025 09:39:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 866A410E665;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C309310E66B;
 	Wed, 26 Mar 2025 08:39:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N5j0YAbi";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Awl3BWcL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
- [209.85.214.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 257C710E63D
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Mar 2025 01:55:37 +0000 (UTC)
-Received: by mail-pl1-f172.google.com with SMTP id
- d9443c01a7336-224341bbc1dso122815775ad.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 18:55:37 -0700 (PDT)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0B1E10E63D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Mar 2025 01:58:25 +0000 (UTC)
+Received: by mail-pj1-f47.google.com with SMTP id
+ 98e67ed59e1d1-301918a4e1bso8411876a91.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 18:58:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742954136; x=1743558936; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1742954305; x=1743559105; darn=lists.freedesktop.org;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=RhoGeUb32vm6SYpduUh6vVqWnZMsaqggCcYZ4Rk0eKo=;
- b=N5j0YAbiYNxsHqXsIj5F6pCyGy9c+pI/7LiUNwg/vqgs1lWAxOA6w599d280z4WXSv
- HY5ny8vRmdIeu0SE26+L0g7qD7O3kxfex/Zwo958ShEhMMrLfJoP9+ZT9mDCkAOYm1Uk
- Bpxxky3wJKGvznNENRSlYhvyF20X3oOs5muROBdRwbodCWNJ5ZBcVj673rcleo/mfXKX
- 2W7whIk61Pc3kZA8UGJtMDwQiRvnImdppz/azhtrZyKXbBOOq793qCFR/3EiKfEsDr23
- orCwOgcVJ5IJqzoQ8HCIrtXc0MdCCQBiCgq+hznZTx+fP7QKKPrXStRrhQLlhSUImrjE
- 4EoA==
+ bh=AeXFszc7HISwc/6qx4eotMeyW2rrTjB9ur7q0g6J/Ko=;
+ b=Awl3BWcLM1h7vqBq937I5GbvIcq6Si3qDE4sPaPT5K1wHAymERH4Ux24D4CRB863+b
+ yGr3LC47Sct7Az7NdG/u4xkTk+/OhvF8cRTViWjwk9V8u9eaNygduHbbgLkXDngqHB7G
+ rmolRejhjrW3creq0r8RjftWNMcO2jg2BKXdzkKBYDZbbrXsv2Yh+QlIPpCT91ob32da
+ Fs+5kGp4UbvBNP8OJvqsGtI7T0+l47Nn2n63xLcYlFbE9HfC4CQ5VpujNe24m3xTBCLx
+ QCELrKohsCsST9uJYVzcctwFxqudTmb43YN3wlQiw0zNMMwogj5uCk2Dqm/0TcwwC5pm
+ QUeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742954136; x=1743558936;
+ d=1e100.net; s=20230601; t=1742954305; x=1743559105;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=RhoGeUb32vm6SYpduUh6vVqWnZMsaqggCcYZ4Rk0eKo=;
- b=AWgK3UEHgE51lv3XB+deCx2cfLFa2PR3/rwkZaCVKIRQV4oyz3Nvu/Gmxda3MOMo6g
- 6vUNCEKzAtBXQdgPwWAy0KDdDyvQnWhzF0InWuM/JCEVJhKefOsUGEPjrbsBZ3Rxf9zw
- p9hgYnVbzskOFdVx4E2RKQbWKjMaMGrEC97D+ga0Sru5dW6fSK5kMmizhLBL0ivKZT02
- cEbK210Hz0OhjEY4uUfquB/JUmQ1zoHShdn++vdmLcYssK7benCClaPze4VMlY7CEpM/
- 3FD6RMVTcSmOwIuhmzyZgBzW62w6GfiyIrvykQ3P5ZrXcP7r1W1Y8nDwhPdEvPybmtZF
- by4w==
-X-Gm-Message-State: AOJu0YyRIGqQ7PG9NEIUPSrYvf+C/kzUctm8EbrGT6zGfbQdf6rNIzah
- DpFt3sh/l7yh8McqKTw43zT28q0kSEeztkledtMPpnXiU6t0zYz1
-X-Gm-Gg: ASbGncuKH5KNhjAW5tpAgqtb+Hwj/XO/awUhHGiuvKkJilBIWNLOreTK4m9lNFuOn7S
- 8uVRp99E9TaAvEFSV62+XcXJYCIpqGgTYT2n5qN4eRapAXg5UrIaeJCGPhUzHOCUXJfEfl+tK3l
- VWymmBBVM5Fi4lrNc7O3A8uu5uGVNQaPopGb6FTF2Xl7Kmztm26xLGFqa6af9z7KjCY5kNcoH+D
- s506YdWhEeMLUUczaLIAQgIEypm56drr2dbfhsYp3j37NMPI7v/dPTmj/sfPRa4xf+JM8deAi79
- W4AvFX1BOr89jaXlGzyUWMCwX7niCJi1nMhfy6hcwLBv
-X-Google-Smtp-Source: AGHT+IE7D2EDUvRYr7rRqAPgLAX7soipBYpCk8xJ8LrYa/wI8aAMYAdtBnkhSDtVNtp9+5WRjLi22w==
-X-Received: by 2002:a17:902:ce03:b0:21f:4c8b:c4de with SMTP id
- d9443c01a7336-22780e177edmr287235645ad.42.1742954136344; 
- Tue, 25 Mar 2025 18:55:36 -0700 (PDT)
+ bh=AeXFszc7HISwc/6qx4eotMeyW2rrTjB9ur7q0g6J/Ko=;
+ b=InBDnW0HKz7Zjye2q+3olUo04Vd35Ec1bmhehBYOV2oL1UE2RNdAazwuHNKF0dA4YC
+ O/5CmMDeab8Nn9Uycx7uhbi29PEVBkoupfVhVXT5twcWLDe2JaAI4c4YN59TFA7fvVej
+ ha3qQHRT3QeVLj6GSmR/KOFTdtaA0kZq0P6wFAgQsj5BQRKbNWSw1zZjEEjZoOIlhx7R
+ DS6GXOpOuo34fmB/b6g5zucK5V3igYdjT/uBmbxDuTEgyJlTC74WvGA5AwUWSJ8Coz2t
+ l+s0wm/iAuIW90SIoI6lJgHbC3nXf663flQ5Ou0r6ZcYj49DtQvP84MPgG1ul5knz/++
+ PusA==
+X-Gm-Message-State: AOJu0YwOYpVQh5OWn1JWT6veXypndc60VUxnxWdoUqM/qUNRQ30K+g35
+ bffT0AwkhPmBqo5VLhZRG1obaVveNnSx98ja6ENyJ4Z8zpuKBPNI
+X-Gm-Gg: ASbGncswglmf/luGP/x4Tl7bRa7gINOFK0f6Foa4qIqVyrYNTJBAASAsDdxZAOh473F
+ tRHfFBoq2ZobYI5+AnUZ0b0nU1kktf7I/GO6oNQBKxf7XWO7pay2H877q59x8Zg/wpoq320bT8n
+ ZnOYWHkpP/H1kN6Ett9Zzjf90srzCYTMvbudlspxe5PQ6UPf7D08i9IcUn97JvFOh5LgXhRmrRR
+ spQAxUKruSP93pRZcQ2F+DAxrkpF6yT8yVbMEZE9V5JiKNm7x4QLsJatzznjmZxvwzp9YK7n1um
+ BvJSHqJ5OkJSzReX74MK9SC0AJMgqpKdE/53EAiyKF6R
+X-Google-Smtp-Source: AGHT+IFQmS5IKC7gUJXuWGe/8tEO3Kw/TUAAHpJS3gqgq+OXBI+mLKukwUA6BCV1ZiMphA4EHjNxPQ==
+X-Received: by 2002:a17:90b:1c0d:b0:2ee:f076:20f1 with SMTP id
+ 98e67ed59e1d1-3030fb216b9mr36885227a91.0.1742954305071; 
+ Tue, 25 Mar 2025 18:58:25 -0700 (PDT)
 Received: from archie.me ([103.124.138.155]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-227811f33f6sm97643965ad.226.2025.03.25.18.55.35
+ 98e67ed59e1d1-3030f5b782esm11157741a91.2.2025.03.25.18.58.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 25 Mar 2025 18:55:35 -0700 (PDT)
+ Tue, 25 Mar 2025 18:58:24 -0700 (PDT)
 Received: by archie.me (Postfix, from userid 1000)
- id C5BF04230C05; Wed, 26 Mar 2025 08:55:33 +0700 (WIB)
-Date: Wed, 26 Mar 2025 08:55:33 +0700
+ id A04E54230C05; Wed, 26 Mar 2025 08:58:21 +0700 (WIB)
+Date: Wed, 26 Mar 2025 08:58:21 +0700
 From: Bagas Sanjaya <bagasdotme@gmail.com>
 To: Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
@@ -70,16 +70,15 @@ To: Rodrigo Siqueira <siqueira@igalia.com>,
  'Timur =?utf-8?B?S3Jpc3TDs2Yn?= <timur.kristof@gmail.com>
 Cc: amd-gfx@lists.freedesktop.org, linux-doc@vger.kernel.org,
  kernel-dev@igalia.com
-Subject: Re: [PATCH 5/6] Documentation/gpu: Create a GC entry in the amdgpu
- documentation
-Message-ID: <Z-NelWkIAtyAzoE1@archie.me>
+Subject: Re: [PATCH 6/6] Documentation/gpu: Add an intro about MES
+Message-ID: <Z-NfPeUP5g2TdWy5@archie.me>
 References: <20250325172623.225901-1-siqueira@igalia.com>
- <20250325172623.225901-6-siqueira@igalia.com>
+ <20250325172623.225901-7-siqueira@igalia.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="DIB49pRixYM85JwS"
+ protocol="application/pgp-signature"; boundary="T7r84Huw4Mg6PNRy"
 Content-Disposition: inline
-In-Reply-To: <20250325172623.225901-6-siqueira@igalia.com>
+In-Reply-To: <20250325172623.225901-7-siqueira@igalia.com>
 X-Mailman-Approved-At: Wed, 26 Mar 2025 08:39:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,48 +95,92 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
---DIB49pRixYM85JwS
+--T7r84Huw4Mg6PNRy
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 25, 2025 at 11:18:46AM -0600, Rodrigo Siqueira wrote:
-> +The component that acts as the front end between the CPU and the GPU is =
-called
-> +the Command Processor (CP). This component is responsible for providing =
-greater
-> +flexibility to the GC since CP makes it possible to program various aspe=
-cts of
-> +the GPU pipeline. CP also coordinates the communication between the CPU =
-and GPU
-> +via a mechanism named **Ring Buffers**, where the CPU appends informatio=
-n to
-> +the buffer while the GPU removes operations. It is relevant to highlight=
- that a
-> +CPU can add a pointer to the Ring Buffer that points to another region of
-> +memory outside the Ring Buffer, and CP can handle it; this mechanism is =
-called
-> +**Indirect Buffer (IB)**. CP receives and parses the Command Streams (CS=
-), and
-> +according to the parser result, the CP writes the request for operations=
- in the
-"depending on the parser result, ..."
-> +correct block.
+On Tue, Mar 25, 2025 at 11:18:47AM -0600, Rodrigo Siqueira wrote:
+> diff --git a/Documentation/gpu/amdgpu/gc/mes.rst b/Documentation/gpu/amdg=
+pu/gc/mes.rst
+> new file mode 100644
+> index 000000000000..b99eb211b179
+> --- /dev/null
+> +++ b/Documentation/gpu/amdgpu/gc/mes.rst
+> @@ -0,0 +1,38 @@
+> +.. _amdgpu-mes:
+> +
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> + MicroEngine Scheduler (MES)
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> +
+> +.. note::
+> +   Queue and ring buffer are used as a synonymous.
+> +
+> +.. note::
+> +   This section assumes that you are familiar with the concept of Pipes,=
+ Queues, and GC.
+> +   If not, check :ref:`GFX, Compute, and SDMA Overall Behavior<pipes-and=
+-queues-description>`
+> +   and :ref:`drm/amdgpu - Graphics and Compute (GC) <amdgpu-gc>`.
+> +
+> +Every GFX has a pipe component with one or more hardware queues. Pipes c=
+an
+> +switch between queues depending on certain conditions, and one of the
+> +components that can request a queue switch to a pipe is the MicroEngine
+> +Scheduler (MES). Whenever the driver is initialized, it creates one MQD =
+per
+> +hardware queue, and then the MQDs are handed to the MES firmware for map=
+ping
+> +to:
+> +
+> +1. Kernel Queues (legacy): This queue is statically mapped to HQDs and n=
+ever
+> +   preempted. Even though this is a legacy feature, it is the current de=
+fault, and
+> +   most existing hardware supports it. When an application submits work =
+to the
+> +   kernel driver, it submits all of the application command buffers to t=
+he kernel
+> +   queues. The CS IOCTL takes the command buffer from the applications a=
+nd
+> +   schedules them on the kernel queue.
+> +
+> +2. User Queues: These queues are dynamically mapped to the HQDs. Regardi=
+ng the
+> +   utilization of User Queues, the userspace application will create its=
+ user
+> +   queues and submit work directly to its user queues with no need to IO=
+CTL for
+> +   each submission and no need to share a single kernel queue.
+> +
+> +In terms of User Queues, MES can dynamically map them to the HQD. If the=
+re are
+> +more MQDs than HQDs, the MES firmware will preempt other user queues to =
+make
+> +sure each queues get a time slice; in other words, MES is a microcontrol=
+ler
+> +that handles the mapping and unmapping of MQDs into HQDs, as well as the
+> +priorities and oversubscription of MQDs.
 
-Thanks.
+The doc LGTM, thanks!
+
+Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
 
 --=20
 An old man doll... just what I always wanted! - Clara
 
---DIB49pRixYM85JwS
+--T7r84Huw4Mg6PNRy
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZ+NelQAKCRD2uYlJVVFO
-o8sIAQDkGjPRsJ2EtTpo2Ib2Qn/FWZ3h9QNmLPDpIX3hqMAYvQEAx55KZjJDXuQU
-ubIbfwJlEd+9PtWYkKY/lcKCQPahsAA=
-=b8uh
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZ+NfPQAKCRD2uYlJVVFO
+o6UAAP9lsXJ6l4cqF7vmeIBW9n4YJ2zC41NH/uOp6yO5dvxAzgD/WuufE/4Enb/F
+3EDZtK7z4NvrYU2wMCsKX+SSFoHxUAs=
+=xTf7
 -----END PGP SIGNATURE-----
 
---DIB49pRixYM85JwS--
+--T7r84Huw4Mg6PNRy--
