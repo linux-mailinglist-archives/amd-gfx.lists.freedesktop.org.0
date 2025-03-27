@@ -2,83 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52B9EA732E8
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Mar 2025 14:04:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C97A732C0
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Mar 2025 13:56:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99BEF10E8C8;
-	Thu, 27 Mar 2025 13:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94D2710E8BD;
+	Thu, 27 Mar 2025 12:56:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="ghDmfPG2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="l91Rd8CA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F231310E8AE
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 12:02:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1743076939; x=1743681739; i=spasswolf@web.de;
- bh=SM1POh9VV3k0zWrqccD5VWDOjF1RncipJvSoxJViC/g=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=ghDmfPG2X/yTzwS3cAxo1t9omIZslCGC6qRb9iOd/Na9V2c6etxsU46/anZL54rM
- fFYPqT+7kgnRo4g5YOpD2brWvtwwYQaZMyCVlSOWh9dhcPh04MAoiQ83DNZPIyG+7
- gNnf19MEvZbdqe/5/VgHnwsszuglGkSa6tCdg7Vo1BrM/Z+X/Oi6VYGaHjmI4/6u3
- Q3K0RDUD5/n5tlEmp/pB63XJ7Ih+VFyz4hYtz241kgXA36BodEJXvAF8IvzAunt+W
- PmQJLZjFv1YPz+sd+R3Mzn5+XyP9ZENFemLV0BPna670NPI6CYh4fLwwCAuJLpGSr
- ifZhUdH3FE7BohYBvQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from localhost.localdomain ([95.223.134.88]) by smtp.web.de
- (mrweb106 [213.165.67.124]) with ESMTPSA (Nemesis) id
- 1MSZHv-1tZKEt3IHR-00ShLe; Thu, 27 Mar 2025 13:02:18 +0100
-From: Bert Karwatzki <spasswolf@web.de>
-To: Ingo Molnar <mingo@kernel.org>
-Cc: Bert Karwatzki <spasswolf@web.de>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Balbir Singh <balbirs@nvidia.com>, Kees Cook <kees@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Peter Zijlstra <peterz@infradead.org>, Andy Lutomirski <luto@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org
-Subject: [PATCH v0] kernel: resource: add
- devm_request_free_mem_region_from_end()
-Date: Thu, 27 Mar 2025 13:02:15 +0100
-Message-ID: <20250327120216.14083-1-spasswolf@web.de>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: Z-UuHkUPy60e1GWM@gmail.com
-References: 
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 616DB10E8BD
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 12:56:46 +0000 (UTC)
+Received: by mail-pj1-f45.google.com with SMTP id
+ 98e67ed59e1d1-301001bc6a8so197823a91.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 05:56:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1743080206; x=1743685006; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=hjp9DxiepWWu9updNVck6BZezJY7SrbPiOL1udhXcjg=;
+ b=l91Rd8CAIr+goxx4/xkLxcc33KATEwNCRhFB3u/MznlpknipmvL4YTIvjBkU66is5x
+ O6q95u0CgyiGkNxFIav30ZsLzwk6O+tBQKVd4Ru4Di/aObr2NasMfob6S5PvjGj1Y1T2
+ e+vc23lRsWL+t6oXlw2jEr4chYBfIHItHIILIK3oohPJyKIWM/bP+fwUauU8pUwEJQYP
+ WwTnWmqolUVZXmM8RQ+akFkKDj9CJvV4F4yugP/K/v20/bCn+rCfVcxlHGtRgGVE/Kwu
+ +lh5jfcFXhHVC25ad+zJzddT/v44Ztwb2e9msRvYmmmXBsLY9gelsLT/QVUIFN4vmluL
+ 7T7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1743080206; x=1743685006;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=hjp9DxiepWWu9updNVck6BZezJY7SrbPiOL1udhXcjg=;
+ b=Ax9I1+BCVd59DLDqMGXtcDpR4wFJlN2mZ2VoImth4F8E+AvcmFZ+TqlLnS3GgELLHe
+ pOJPvBpL3DIcy0g38Gub8j8kSLGVXkUTOWulwGziXGoF/ARr0iH8z0ZAgJ7fcq1DbEDM
+ snkFM5cGF7hT+/1Lej6m72sa5AL/9wnDSM7WevMK8/xOU8Ye6TmwPXgO667fnrpYXezH
+ S1Gjpz5LlMCBlQmJf7ygk0CjKEFRJhS21FWdUsJRGB1FhPcC56J7yRW6zWjw+h+x/A4F
+ w9liiRNcd7y5ubhbIDGV8l5N88m4NTd6t8p39dJKBwX0id7OgEeiLJwszgV0+K/zi7cq
+ SkeA==
+X-Gm-Message-State: AOJu0Ywcgvv1U+fNuOegti2w5qgSqTutmv4h8GPBaBqeYCnfw4LrRajk
+ bkYV8T/6WaVMyS1LZcru98kAKirVM3uzUY/4COZOfzhSzdB1QVjd0i26arLd16KDeGFM9H0/R9h
+ QW/QLR1CJwrz82gXJRkp3Kd1ak4wd5w==
+X-Gm-Gg: ASbGncvkORai9xEsstRUv3s4OF4iSu3w6O7kLFvKbayyQPJTfcj7/SBo6yNElO9dPWE
+ Qv/xFqkiNS57zbrojhGyEuK2QTHG1sp/htbk0BJtCkJ+MGOFQ0K7dWCzi+2cyTWPwfcqACfN24T
+ W19kfk7AqTlT7ynRSVDFppORoy2LYgETq5wD2i
+X-Google-Smtp-Source: AGHT+IHJScOZd9NKRWF+mKdUTn/ofhyZU5xhm7F2mhkd6rJvNRovayYBwFleCxY1NVqWpHZeWUh8ERykuS3BXGfco/w=
+X-Received: by 2002:a17:90b:4d07:b0:2fe:b972:a2c3 with SMTP id
+ 98e67ed59e1d1-303b1dba5e1mr1606082a91.0.1743080205500; Thu, 27 Mar 2025
+ 05:56:45 -0700 (PDT)
 MIME-Version: 1.0
+References: <20250326121323.2451998-1-flora.cui@amd.com>
+In-Reply-To: <20250326121323.2451998-1-flora.cui@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 27 Mar 2025 08:56:33 -0400
+X-Gm-Features: AQ5f1Jr5CxDia-vp8eQSb87QcvZmpoJraGmnVPYZSel-1LfD23l8vxZ8-D5F600
+Message-ID: <CADnq5_P7P2isydN6wQVBjv6V49-26UUZTvPWYDXMa7qm6=VJAA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/ip_discovery: add missing ip_discovery fw
+To: Flora Cui <flora.cui@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:zUDI+gfzkTnaGlpjaw/Mi3OTj7Gliv+9usoAh1T1d3UUIYx0K53
- NxOTzwzE6QDKdfMpytVP+TqEqPFrU0n8kwx88EwhECN0A3vPCmsknvyDmUUU7zuHpJ/yk+j
- s5aP+CF1KAob+Q2mi2hvn7aOCpML5V6d9It/ItXJ9Os8GrDj40Ayt4JaMd8gPQDglaqzDpN
- eNPNYcupJ9auwgAjbhkPQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:U12YhXUhwvM=;GefW0zbxDptGhDwtcP8xpktjuKv
- /If+yDumaiZS5a1SiLZ103nNh9Fmde7WSW2XFr5/0ju/3iGCc0Lt0OmrRPpso2S3X04sz8gtz
- Yv7tBV/OYb+GShCCu0+LyeRLculBS+evmO2QXs7WKvz+Y6WEyUob2IX3SqPUdsexiiO2XhBWV
- CUENkTdx8bU7PU/B0cFewQMaEgbwf5EXS3tFcmEN65AMB1W1qmt0BYcOZ3ioqUW5pPPZMG/Au
- Ar8OXa7pDkm2xfPlKQBjfV6tGytEllKbqCd9lNtD0+U8AQkD/+oIzkfMo7izNq2AGyoqL7EWi
- +waQPelDKsW2wTrxu8dCyYY8alf/SisJEzyRdiqenBKhDo98LH4ZNTDAKzqHQ+qTS7KhfGhRA
- d2XgI/MR97AL0InkRGrfADNaz9JS0S5bZgFDmcYIqCoOW4bZ+vh9Tlz8V09+V4gtuVICkOgqb
- /iLULL5VzyTlz0y54onV8au5i198M7MGCfWRdyhc/K1rpWVmIpnD9c9bYFUCw31SuCOcloXA+
- o2qUmCMKJgcGLoqjSMg8lk4C7DQG1ZOuwt2uZogm8ExehqeWbJwFhuErZH0H1Jfup47VV5YQ0
- NuRD2a/5uEPVAFwaKrs7OClxKNv1tWPu5O4mNawcJJEgHIuMzb3U8IivcsoqkwQ7L+ryU7zKK
- pvPUTwyoqyZbTp6SzRrZf3OyI8WpXnC3Nwqn8iXLjqqTM7YACEGucjV3Hj1OrGdLT/ee8/dID
- GdzMI4AA80mzfZRGWvcmhrrvg+I3LCuC7HgEWAC/2LScEmav05xq2deWl6h0d85hxxDVxT/oc
- 47el1CxY1pkMKm1Who2LwAjTnMmFAive1jPMSkNPZBFE1rhauAYW0lM2F78khefz49jcjlsKS
- Nzyzs77CZi8kzRGjB97GcmuPO3Hnubz5cfsp0E7+/dxjXQCtZAFZ/M3TebtT6dUIOIN/MTruZ
- /eeCeA9g3ztcjevUk2nrk7etriUUHuTV0TDXwPhPof8fHvhYscTZGd8h74ObmcPzdBqCGormB
- XoiHYvpPWP7VFLW5LJfyFaVYfEFFKwXsB5iEGi7ZzdY336NfoZKNKwYcf0bROZBYHdszH23E3
- OPvydcWP0C+6oOhE/nds6FxCoyfysXBFLQkyMSu4C3A1Tj8iaCxUyvhoqunNnToHJCIUnnOj1
- I33MOCEoJwtr0dA814oym+8l7eOQLvdHss8LJQR1uqHEFICjyN2k7XnngBdgTXf6Jt5bB8FGy
- WMX4cgbRS31vcOuVKel4EJn6aao6tMiCviLkeBiIJRRwOQOCQOZ+1fzOHaIMcN8zJCvTk23/f
- eJ45Kgz7s9l3LNfZXEbmBmYfUq3J7Gckc0r2b44YUcAXFbGV97cTk4XQ/Uuht+6AFzmT8zFYU
- wmbC9IYVE2JGzgAgRrUrJiZIQkA9abBfQ8jbNbVCeIdSlz72PJwzMp0AM8m/ll549FDZfrMdK
- 28IESxEqkvfILUvW6LPUX7bKCI5s=
-X-Mailman-Approved-At: Thu, 27 Mar 2025 13:04:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,180 +79,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-devm_request_free_mem_region() places resources at the end of the
-physical address space, DIRECT_MAP_PHYSMEM_END. If the the dma mask
-of a pci device is smaller than DIRECT_MAP_PHSYMEM_END then this
-resource is not dma accessible by the device which can cause the
-device to fallback to using 32bit dma which can lead to severe
-performance impacts.
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-This adds the devm_request_free_mem_region_from_end() function which
-allows to select the endpoint from which to place the resource
-independently from DIRECT_MAP_PHYSMEM_END.
-
-Link: https://lore.kernel.org/all/20250322122351.3268-1-spasswolf@web.de/
-
-Signed-off-by: Bert Karwatzki <spasswolf@web.de>
-=2D--
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  3 ++-
- include/linux/ioport.h                   |  3 +++
- kernel/resource.c                        | 31 ++++++++++++++++++------
- 3 files changed, 28 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/am=
-d/amdkfd/kfd_migrate.c
-index d05d199b5e44..e1942fef3637 100644
-=2D-- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -1042,7 +1042,8 @@ int kgd2kfd_init_zone_device(struct amdgpu_device *a=
-dev)
- 		pgmap->range.end =3D adev->gmc.aper_base + adev->gmc.aper_size - 1;
- 		pgmap->type =3D MEMORY_DEVICE_COHERENT;
- 	} else {
--		res =3D devm_request_free_mem_region(adev->dev, &iomem_resource, size);
-+		res =3D devm_request_free_mem_region_from_end(adev->dev,
-+				&iomem_resource, size, dma_get_mask(adev->dev));
- 		if (IS_ERR(res))
- 			return PTR_ERR(res);
- 		pgmap->range.start =3D res->start;
-diff --git a/include/linux/ioport.h b/include/linux/ioport.h
-index 5385349f0b8a..a9a765721ab4 100644
-=2D-- a/include/linux/ioport.h
-+++ b/include/linux/ioport.h
-@@ -407,6 +407,9 @@ walk_iomem_res_desc(unsigned long desc, unsigned long =
-flags, u64 start, u64 end,
-
- struct resource *devm_request_free_mem_region(struct device *dev,
- 		struct resource *base, unsigned long size);
-+struct resource *devm_request_free_mem_region_from_end(struct device *dev=
-,
-+		struct resource *base, unsigned long size,
-+		resource_size_t seek_end);
- struct resource *request_free_mem_region(struct resource *base,
- 		unsigned long size, const char *name);
- struct resource *alloc_free_mem_region(struct resource *base,
-diff --git a/kernel/resource.c b/kernel/resource.c
-index 12004452d999..82f40407c02d 100644
-=2D-- a/kernel/resource.c
-+++ b/kernel/resource.c
-@@ -1875,12 +1875,14 @@ EXPORT_SYMBOL(resource_list_free);
- #endif
-
- static resource_size_t gfr_start(struct resource *base, resource_size_t s=
-ize,
--				 resource_size_t align, unsigned long flags)
-+				 resource_size_t align, resource_size_t seek_end,
-+				 unsigned long flags)
- {
- 	if (flags & GFR_DESCENDING) {
- 		resource_size_t end;
-
- 		end =3D min_t(resource_size_t, base->end, DIRECT_MAP_PHYSMEM_END);
-+		end =3D min_t(resource_size_t, end, seek_end);
- 		return end - size + 1;
- 	}
-
-@@ -1920,8 +1922,8 @@ static void remove_free_mem_region(void *_res)
- static struct resource *
- get_free_mem_region(struct device *dev, struct resource *base,
- 		    resource_size_t size, const unsigned long align,
--		    const char *name, const unsigned long desc,
--		    const unsigned long flags)
-+		    resource_size_t seek_end, const char *name,
-+		    const unsigned long desc, const unsigned long flags)
- {
- 	resource_size_t addr;
- 	struct resource *res;
-@@ -1946,7 +1948,7 @@ get_free_mem_region(struct device *dev, struct resou=
-rce *base,
- 	}
-
- 	write_lock(&resource_lock);
--	for (addr =3D gfr_start(base, size, align, flags);
-+	for (addr =3D gfr_start(base, size, align, seek_end, flags);
- 	     gfr_continue(base, addr, align, flags);
- 	     addr =3D gfr_next(addr, align, flags)) {
- 		if (__region_intersects(base, addr, size, 0, IORES_DESC_NONE) !=3D
-@@ -2021,17 +2023,30 @@ struct resource *devm_request_free_mem_region(stru=
-ct device *dev,
- 	unsigned long flags =3D GFR_DESCENDING | GFR_REQUEST_REGION;
-
- 	return get_free_mem_region(dev, base, size, GFR_DEFAULT_ALIGN,
--				   dev_name(dev),
-+				   DIRECT_MAP_PHYSMEM_END, dev_name(dev),
- 				   IORES_DESC_DEVICE_PRIVATE_MEMORY, flags);
- }
- EXPORT_SYMBOL_GPL(devm_request_free_mem_region);
-
-+struct resource *devm_request_free_mem_region_from_end(struct device *dev=
-,
-+		struct resource *base, unsigned long size,
-+		resource_size_t seek_end)
-+{
-+	unsigned long flags =3D GFR_DESCENDING | GFR_REQUEST_REGION;
-+
-+	return get_free_mem_region(dev, base, size, GFR_DEFAULT_ALIGN,
-+				   seek_end, dev_name(dev),
-+				   IORES_DESC_DEVICE_PRIVATE_MEMORY, flags);
-+}
-+EXPORT_SYMBOL_GPL(devm_request_free_mem_region_from_end);
-+
- struct resource *request_free_mem_region(struct resource *base,
- 		unsigned long size, const char *name)
- {
- 	unsigned long flags =3D GFR_DESCENDING | GFR_REQUEST_REGION;
-
--	return get_free_mem_region(NULL, base, size, GFR_DEFAULT_ALIGN, name,
-+	return get_free_mem_region(NULL, base, size, GFR_DEFAULT_ALIGN,
-+				   DIRECT_MAP_PHYSMEM_END, name,
- 				   IORES_DESC_DEVICE_PRIVATE_MEMORY, flags);
- }
- EXPORT_SYMBOL_GPL(request_free_mem_region);
-@@ -2055,8 +2070,8 @@ struct resource *alloc_free_mem_region(struct resour=
-ce *base,
- 	/* Default of ascending direction and insert resource */
- 	unsigned long flags =3D 0;
-
--	return get_free_mem_region(NULL, base, size, align, name,
--				   IORES_DESC_NONE, flags);
-+	return get_free_mem_region(NULL, base, size, align, DIRECT_MAP_PHYSMEM_E=
-ND,
-+				   name, IORES_DESC_NONE, flags);
- }
- EXPORT_SYMBOL_GPL(alloc_free_mem_region);
- #endif /* CONFIG_GET_FREE_REGION */
-=2D-
-2.49.0
-
-One of the problems (I'm sure there are more ...) with this patch is that
-it uses dma_get_mask(adev->dev) as the endpoint from which to place the
-memory, but dma_get_mask(adev->dev) returns the dma mask of the discrete
-GPU, but what actually is needed to avoid the bug would be the dma mask
-of the built-in GPU. In my case both are equal (44bits), but I'm not
-sure if they are equal in all cases.
-
-> So this patch does the trick for Bert, and I'm wondering what the best
-> fix here would be overall, because it's a tricky situation.
+On Wed, Mar 26, 2025 at 8:23=E2=80=AFAM Flora Cui <flora.cui@amd.com> wrote=
+:
 >
-> Am I correct in assuming that with enough physical memory this bug
-> would trigger, with and without nokaslr?
-
-I think the bug triggers as soon as DIRECT_MAP_PHYSMEM_END is bigger
-then the dma mask of the integrated GPU.
-
-> I *think* the best approach going forward would be to add the above
-> quirk the the x86 memory setup code, but also issue a kernel warning at
-> that point with all the relevant information included, so that the
-> driver's use_dma32 bug can at least be indicated?
+> Signed-off-by: Flora Cui <flora.cui@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 ++
+>  1 file changed, 2 insertions(+)
 >
-> That might also trigger for other systems, because if this scenario is
-> so spurious, I doubt it's the only affected driver ...
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/=
+drm/amd/amdgpu/amdgpu_discovery.c
+> index dc2713ec95a5..9e738fae2b74 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> @@ -120,6 +120,8 @@ MODULE_FIRMWARE("amdgpu/vega20_ip_discovery.bin");
+>  MODULE_FIRMWARE("amdgpu/raven_ip_discovery.bin");
+>  MODULE_FIRMWARE("amdgpu/raven2_ip_discovery.bin");
+>  MODULE_FIRMWARE("amdgpu/picasso_ip_discovery.bin");
+> +MODULE_FIRMWARE("amdgpu/arcturus_ip_discovery.bin");
+> +MODULE_FIRMWARE("amdgpu/aldebaran_ip_discovery.bin");
 >
-> Thanks,
+>  #define mmIP_DISCOVERY_VERSION  0x16A00
+>  #define mmRCC_CONFIG_MEMSIZE   0xde3
+> --
+> 2.43.0
 >
->	Ingo
-
-Or one could make the endpoint from which the memory resource will be
-placed selectable.
-
-Bert Karwatzki
