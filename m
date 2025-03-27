@@ -2,67 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11C97A732C0
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Mar 2025 13:56:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E89C4A73345
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Mar 2025 14:21:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D2710E8BD;
-	Thu, 27 Mar 2025 12:56:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 807A510E8D6;
+	Thu, 27 Mar 2025 13:21:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="l91Rd8CA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="M929m+fr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
- [209.85.216.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 616DB10E8BD
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 12:56:46 +0000 (UTC)
-Received: by mail-pj1-f45.google.com with SMTP id
- 98e67ed59e1d1-301001bc6a8so197823a91.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 05:56:46 -0700 (PDT)
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
+ [209.85.216.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8FD110E8D6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 13:21:23 +0000 (UTC)
+Received: by mail-pj1-f50.google.com with SMTP id
+ 98e67ed59e1d1-2ff67f44fcaso223963a91.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 06:21:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1743080206; x=1743685006; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1743081683; x=1743686483; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=hjp9DxiepWWu9updNVck6BZezJY7SrbPiOL1udhXcjg=;
- b=l91Rd8CAIr+goxx4/xkLxcc33KATEwNCRhFB3u/MznlpknipmvL4YTIvjBkU66is5x
- O6q95u0CgyiGkNxFIav30ZsLzwk6O+tBQKVd4Ru4Di/aObr2NasMfob6S5PvjGj1Y1T2
- e+vc23lRsWL+t6oXlw2jEr4chYBfIHItHIILIK3oohPJyKIWM/bP+fwUauU8pUwEJQYP
- WwTnWmqolUVZXmM8RQ+akFkKDj9CJvV4F4yugP/K/v20/bCn+rCfVcxlHGtRgGVE/Kwu
- +lh5jfcFXhHVC25ad+zJzddT/v44Ztwb2e9msRvYmmmXBsLY9gelsLT/QVUIFN4vmluL
- 7T7w==
+ bh=oXLmKhldHcaRU1ROzFC03QGx0qvGh6kIqGs5Rn/VVeA=;
+ b=M929m+frXpe1PWRs1G/ROfWxUQ3qQI/+es1K5f8ynm7oqhnsX7FUkQ79O3wtaM7Hd5
+ Hu+WO3VxjHm6lAGBmMtSkO6tbW27m4/NhGMYVfTXauDT8FDEA04M27VbayCsRMmLvd4e
+ J9J0A3htNCwwCV2PtJkEAzuHmvjzx/BNTOihvCaYQtTks5BvLuhziWrLV0pAlOqYVC78
+ uEOr2ut+7ds3mbi4Ic3nShR5zpMS4FGtTcAANUnNXGDCmEqld+NhIDRFfd01i3VfM14l
+ llmUdRnMwMCbcTkx37gdNYmg5YCAIRB/jwmgrd6xNdnyE4G2YL76S07TuU4PxWyZmvWN
+ EIDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1743080206; x=1743685006;
+ d=1e100.net; s=20230601; t=1743081683; x=1743686483;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hjp9DxiepWWu9updNVck6BZezJY7SrbPiOL1udhXcjg=;
- b=Ax9I1+BCVd59DLDqMGXtcDpR4wFJlN2mZ2VoImth4F8E+AvcmFZ+TqlLnS3GgELLHe
- pOJPvBpL3DIcy0g38Gub8j8kSLGVXkUTOWulwGziXGoF/ARr0iH8z0ZAgJ7fcq1DbEDM
- snkFM5cGF7hT+/1Lej6m72sa5AL/9wnDSM7WevMK8/xOU8Ye6TmwPXgO667fnrpYXezH
- S1Gjpz5LlMCBlQmJf7ygk0CjKEFRJhS21FWdUsJRGB1FhPcC56J7yRW6zWjw+h+x/A4F
- w9liiRNcd7y5ubhbIDGV8l5N88m4NTd6t8p39dJKBwX0id7OgEeiLJwszgV0+K/zi7cq
- SkeA==
-X-Gm-Message-State: AOJu0Ywcgvv1U+fNuOegti2w5qgSqTutmv4h8GPBaBqeYCnfw4LrRajk
- bkYV8T/6WaVMyS1LZcru98kAKirVM3uzUY/4COZOfzhSzdB1QVjd0i26arLd16KDeGFM9H0/R9h
- QW/QLR1CJwrz82gXJRkp3Kd1ak4wd5w==
-X-Gm-Gg: ASbGncvkORai9xEsstRUv3s4OF4iSu3w6O7kLFvKbayyQPJTfcj7/SBo6yNElO9dPWE
- Qv/xFqkiNS57zbrojhGyEuK2QTHG1sp/htbk0BJtCkJ+MGOFQ0K7dWCzi+2cyTWPwfcqACfN24T
- W19kfk7AqTlT7ynRSVDFppORoy2LYgETq5wD2i
-X-Google-Smtp-Source: AGHT+IHJScOZd9NKRWF+mKdUTn/ofhyZU5xhm7F2mhkd6rJvNRovayYBwFleCxY1NVqWpHZeWUh8ERykuS3BXGfco/w=
-X-Received: by 2002:a17:90b:4d07:b0:2fe:b972:a2c3 with SMTP id
- 98e67ed59e1d1-303b1dba5e1mr1606082a91.0.1743080205500; Thu, 27 Mar 2025
- 05:56:45 -0700 (PDT)
+ bh=oXLmKhldHcaRU1ROzFC03QGx0qvGh6kIqGs5Rn/VVeA=;
+ b=LF2VaGG3mGnlYOBXGhTbrlFMDvv2vs0KQ7/hK19sdMOhFT917XN7Q8mSujrqJ6hmMw
+ se7yhz6gy0w20fK6bLfDY2/6IjCkl5hvXAVmU4bHv6zgNxI3/kDwF013a4c0afmJcp8d
+ V6gfaBSERGKy43aehqyfsbCpi2GqCcyNQs/LnN7/wE7Q+qlCDqc9ob0BBAw6yX13/RyU
+ kRIFseG1PrvqNTOn2r+83qgf/v/mhKw5jDCsaPMQOhw+zOZT7LvaKbwpH5BO0KknsgaV
+ aR416TTLQxQuoMvMLb4bXE3xMOw6bYGZEfGzMbrsahwNAXSvn9xz0FOeAn28sVsr4IfX
+ 8aTA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWsZHEzRQd7oMSQ8kUe05DvMdCW87XsOAAgy11D6LN4IcS/Hkx7Jo+u7mQuxIhf3X4izPKHG0lC@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzkWk4F9cQWulJhr6XLJFKa8/r5ettNODHx6etDOP8dv8cPqtMo
+ Ml0Kj1jwQDNabnnkpdQyj5y8q5EJZVWVDAzFqeq9EHo4LoeFHyjNQE0GXKLicukOx0xN1CKZi40
+ EdWtbPl+VjSIlk32LlUH1yAhi2xP8Cg==
+X-Gm-Gg: ASbGncvS+TNy4+Kv2thMKovdhd7HfLsYLKfawKCftmkOHTFiqdpQ/EjsqKxVyNK4VCK
+ bkgP/168Aop6njN5i/8L1yEIicvKUCrDg4SmELR5ByA5eXka+hrvY8eAWjUbDDDARjZPTWy1bNd
+ l9LtdXz4vmrhWpSfQDVj3gMJvpfqRqj0rlBynD
+X-Google-Smtp-Source: AGHT+IFGjFI0h7gtabND5jTjOkupbQeUI2156tnZYTj32c8sPKbiIE72kfO/5KOI5WF1bqdTxsAxF4hfjKfTuRzj39M=
+X-Received: by 2002:a17:90b:1d04:b0:2fe:8fa0:e7a1 with SMTP id
+ 98e67ed59e1d1-303b211144dmr1603499a91.2.1743081682968; Thu, 27 Mar 2025
+ 06:21:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250326121323.2451998-1-flora.cui@amd.com>
-In-Reply-To: <20250326121323.2451998-1-flora.cui@amd.com>
+References: <20250325152407.2543116-1-srinivasan.shanmugam@amd.com>
+ <b30810ba-3e16-4f52-8b4a-070bda1bc129@amd.com>
+ <CADnq5_PcPDULfTjtkWGXRVpuJ3Wc770Be3QjrxkRDsw1E-VUeQ@mail.gmail.com>
+ <740940f4-055b-483b-88b7-072907539167@amd.com>
+ <fc461f19-44b8-4699-b3e6-c37e1b7dc76f@amd.com>
+ <5a04ac1b-6b83-40c4-b9f1-ca42bd53763c@amd.com>
+In-Reply-To: <5a04ac1b-6b83-40c4-b9f1-ca42bd53763c@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 27 Mar 2025 08:56:33 -0400
-X-Gm-Features: AQ5f1Jr5CxDia-vp8eQSb87QcvZmpoJraGmnVPYZSel-1LfD23l8vxZ8-D5F600
-Message-ID: <CADnq5_P7P2isydN6wQVBjv6V49-26UUZTvPWYDXMa7qm6=VJAA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/ip_discovery: add missing ip_discovery fw
-To: Flora Cui <flora.cui@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
+Date: Thu, 27 Mar 2025 09:21:10 -0400
+X-Gm-Features: AQ5f1JrSS_j-U6jHcVPniPU4buZimhR0Kqe5aDTD4brJ98ct6TmW8R0KAEsWg1E
+Message-ID: <CADnq5_M6BhcHyQ9o7zsNgZU+8A0hwYugtaBr0GPCXH=z7mkGkQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Fix Manual Execution of Cleaner Shader in
+ Gang Submissions
+To: SRINIVASAN SHANMUGAM <srinivasan.shanmugam@amd.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -79,30 +88,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+On Thu, Mar 27, 2025 at 5:37=E2=80=AFAM SRINIVASAN SHANMUGAM
+<srinivasan.shanmugam@amd.com> wrote:
+>
+>
+> On 3/27/2025 2:54 PM, Christian K=C3=B6nig wrote:
+>
+>
+> Over all this change doesn't seem to make much sense to me.
+>
+> Why exactly is isolation->spearhead not pointing to the dummy kernel job =
+we submit?
+>
+> Does the owner check or gang_submit check in
+> amdgpu_device_enforce_isolation() fail to set up the spearhead?
+>
+> I'm currently debugging exactly that.
+>
+> Good news is that I can reproduce the problem.
+>
+>
+> I have to take that back. I've tested the cleaner shader functionality a =
+bit this morning and as far as I can see this works exactly as intended.
+>
+> Srini, what exactly is your use case which doesn't work?
+>
+> Hi Christian, Good Morning!
+>
+> The usecase is to trigger the cleaner shader, using sysfs "run_cleaner_sh=
+ader" independent of  enabling "enforce_isolation", so that cleaner shader =
+packet gets submitted to COMP_1.0.0 ring by default, without prior enabling=
+ any enforce_isolation via sysfs,
 
-On Wed, Mar 26, 2025 at 8:23=E2=80=AFAM Flora Cui <flora.cui@amd.com> wrote=
-:
+Right.  We want to be able to manually run the cleaner shader via
+sysfs regardless of whether runtime enforce isolation is enabled or
+not.
+
+Alex
+
 >
-> Signed-off-by: Flora Cui <flora.cui@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 ++
->  1 file changed, 2 insertions(+)
+> AFAIK, this "isolation->spearhead" initialization is not being takencare =
+in this path "amdgpu_gfx_run_cleaner_shader -> amdgpu_gfx_run_cleaner_shade=
+r_job" (ie., when we trigger cleaner shader, using sysfs "run_cleaner_shade=
+r"), and this check "&job->base.s_fence->scheduled =3D=3D isolation->spearh=
+ead;"  is having the problem ie., "&job->base.s_fence->scheduled" address a=
+re is not matching with "isolation->spearhead" address, which results into =
+zero & thus fails to emit cleaner shader, when running using "run_cleaner_s=
+hader" sysfs entry, in "amdgpu_vm_flush()" function
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_discovery.c
-> index dc2713ec95a5..9e738fae2b74 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -120,6 +120,8 @@ MODULE_FIRMWARE("amdgpu/vega20_ip_discovery.bin");
->  MODULE_FIRMWARE("amdgpu/raven_ip_discovery.bin");
->  MODULE_FIRMWARE("amdgpu/raven2_ip_discovery.bin");
->  MODULE_FIRMWARE("amdgpu/picasso_ip_discovery.bin");
-> +MODULE_FIRMWARE("amdgpu/arcturus_ip_discovery.bin");
-> +MODULE_FIRMWARE("amdgpu/aldebaran_ip_discovery.bin");
+> Best regards,
 >
->  #define mmIP_DISCOVERY_VERSION  0x16A00
->  #define mmRCC_CONFIG_MEMSIZE   0xde3
-> --
-> 2.43.0
+> Srini
 >
+>
+> Regards,
+> Christian.
+>
+> Regards,
+> Christian.
