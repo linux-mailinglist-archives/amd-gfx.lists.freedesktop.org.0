@@ -2,92 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F549A72B44
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Mar 2025 09:19:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63FE3A72B48
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Mar 2025 09:19:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE5E610E2F1;
-	Thu, 27 Mar 2025 08:19:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E81DD10E879;
+	Thu, 27 Mar 2025 08:19:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="Uu4OMy2j";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="lzHFnayC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
- [209.85.208.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4400C10E122
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Mar 2025 22:59:15 +0000 (UTC)
-Received: by mail-ed1-f42.google.com with SMTP id
- 4fb4d7f45d1cf-5e8be1bdb7bso569558a12.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Mar 2025 15:59:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1743029953; x=1743634753;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=DdJT7/C6Mv3MtdVMV3c3vRmA5DIaye62FsYRt3g3T90=;
- b=Uu4OMy2jymf4A74bSftdPgsdiPJis6xcynF3YJK7ljQFEDDnseWfVpQK1uim3NoaLY
- EH+HEve5X4Tz8a7aKG70qlOzdfksAQpjXhQpKMzSTx5K8wcy1GrjzFef/lvMo1LOCmH3
- uSp/mWfsk7mSL5b0R1s8hwIbZH/0ybP0QqPZQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1743029953; x=1743634753;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=DdJT7/C6Mv3MtdVMV3c3vRmA5DIaye62FsYRt3g3T90=;
- b=ipNiPR8KC4XFYXok8bIauvs8ED6Pz5JQ12NoQw8qS67t5X/ZH+VOCekXc2TgvpC5CO
- 9KLCJd1B0RyKB0LjVGxuC7lzwtQctwxJjybu6JLer0rBqOcZI+b/uC4J0TUy2wRhvt9C
- CfmE41khndEJ8oQG9vkifIZHtj00DibQhJa2uT4TcC40nnB+KyvkZYaPzhgniPy3ndPP
- ARR3P79Ojpf1CWPe8IqTnnKD85vyNBzQ7UfwSUckwCf4v1W1vlRTJ3xQDTRv5C4AuytR
- fbsyYJb8RCQUBm/yaUoBZW75fnOSwEDCxVZSFLuMSDAsY9Jc00jQ1xR19ZLhM3C5meAz
- /qaw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUN7kMr2NU6AplxraV1aAr9+8GdcPwGeATcwSprceiqAN8XuH2FagY1p6rNNlrW8XvlOWALkhMS@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx4NHFtGNXAJtx/k8/WhLxUtYn5Tlq1fLJ0kf+VHglQ2/93Eejh
- +T/DV3LnZhI8GXFqVuvasOo5PrTVFBQYV2TkF4vD009ZSlrHCW4sUiSuWD/gWPaLxzbUMTvS+1u
- e1Ho=
-X-Gm-Gg: ASbGncvSxVSZ4J1ZGOkeyuVZhEPABHcBibFfCwurKl4yuBOlWXRrLnmAmQOoiUEXYCg
- 6KgMefUCUV28X6GSeKtf1A+lmZzapH+N79OJZbLU2jXpBZURcoXvXdcUht+YOxBVJBttnWhdsLa
- y2yI9mFzzeSCr0VGp2EiJ3WROR/HujrA8vExBVU7vg2cZaJfcUqD7cAQAybd/BUTC4ImtCSGaKv
- cnLirbUXjr8IvcffgpD4LxRVNr1bKiU3l6xKmsZ5/HcMx8fzSnBdbT3tDWNutXkB343XkqRZ9Jd
- reLGw8VXg2NpT/a37RYz4sog11M84FYFDt7WJi1omdFvDhkV17llmxBTbfJYVUGkras+tsyU+sK
- P10lbA/TlBP5ini9yEWo=
-X-Google-Smtp-Source: AGHT+IESD7MSkPmA83A2OssM2x4rmqvztf+8q6qDHs433bgwG+NQGwSOP/az0SCE4TCQQ0KFCAMDKw==
-X-Received: by 2002:a05:6402:26d0:b0:5e5:c637:b69 with SMTP id
- 4fb4d7f45d1cf-5ed8df6b334mr1212862a12.6.1743029953509; 
- Wed, 26 Mar 2025 15:59:13 -0700 (PDT)
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com.
- [209.85.218.51]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5ebccfb1271sm10527292a12.44.2025.03.26.15.59.11
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 26 Mar 2025 15:59:12 -0700 (PDT)
-Received: by mail-ej1-f51.google.com with SMTP id
- a640c23a62f3a-ac3fcf5ab0dso56047366b.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Mar 2025 15:59:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCW1RoHYlcJmlZEaH65+vCeebBRV1ludvZYa/JTGtO06XLiEZGPiMqcplV4aQr8ORR3vpYXfYf9P@lists.freedesktop.org
-X-Received: by 2002:a17:906:f587:b0:ac4:5f1:a129 with SMTP id
- a640c23a62f3a-ac6faed1862mr124221366b.15.1743029951610; Wed, 26 Mar 2025
- 15:59:11 -0700 (PDT)
-MIME-Version: 1.0
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18C2F10E834
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 00:58:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1743037095; x=1743641895; i=spasswolf@web.de;
+ bh=Zk++DGlvsIMP57VTwMLNt1Uxow2p23z/s6nbuuf4t0U=;
+ h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+ References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=lzHFnayCW/+dYmY3vozboRklybVPaKcSvNXyG4jCGqQU8iv5lV3GO+iLVSrxfJmh
+ uVQmqUlmKVhX24QE/onZCTaPrs3tGPFYeBxp+H55Jnuw19i7woZDl9VeT164OUqYg
+ aNjthklZBLDeKP0CERdMu4gQNmZxvXoXONbJe8hDP5leT+ua9K0eCstpBvnIBYJUa
+ n3XHV8jfTqgHcFqkx98Fpq1QbPtW0/bkjKfOS7Mp39GToHwIKNeiPGXSDdZRPd6j6
+ CbTARLBqW6rYQbe0+l/KXLt0M21hyu7cvNhEBF988ZmekBBMvYr2qgIaXmc4rcOWn
+ u/rNdukMymXJ8Xc5nQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.0.101] ([95.223.134.88]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MxHYA-1tDMgJ2C76-00xvKo; Thu, 27
+ Mar 2025 01:58:15 +0100
+Message-ID: <2d547eae6f031943101d7fb10b815bc128995125.camel@web.de>
+Subject: Re: commit 7ffb791423c7 breaks steam game
+From: Bert Karwatzki <spasswolf@web.de>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Balbir
+ Singh <balbirs@nvidia.com>, Ingo Molnar <mingo@kernel.org>, Kees Cook
+ <kees@kernel.org>,  Bjorn Helgaas <bhelgaas@google.com>, Peter Zijlstra
+ <peterz@infradead.org>, Andy Lutomirski <luto@kernel.org>,  Alex Deucher
+ <alexander.deucher@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 	spasswolf@web.de
+Date: Thu, 27 Mar 2025 01:58:14 +0100
+In-Reply-To: <CAHk-=wh5Suzp0z7AnK0NgSKfEAWQJw7Dgv5eku=rzBuM1ugQDg@mail.gmail.com>
 References: <20250325101424.4478-1-spasswolf@web.de>
  <64945196-f05f-478e-a2b5-f0bd58345136@amd.com>
  <c66e2c03648370d5e5c0745f32ebd58367bbe48b.camel@web.de>
-In-Reply-To: <c66e2c03648370d5e5c0745f32ebd58367bbe48b.camel@web.de>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 26 Mar 2025 15:58:54 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wh5Suzp0z7AnK0NgSKfEAWQJw7Dgv5eku=rzBuM1ugQDg@mail.gmail.com>
-X-Gm-Features: AQ5f1Joqj6knJlPGY12Qm5E3Ax3-nFRy20R2IbdTOZEIlJ4CJbxhEjPRL7oKvsE
-Message-ID: <CAHk-=wh5Suzp0z7AnK0NgSKfEAWQJw7Dgv5eku=rzBuM1ugQDg@mail.gmail.com>
-Subject: Re: commit 7ffb791423c7 breaks steam game
-To: Bert Karwatzki <spasswolf@web.de>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Balbir Singh <balbirs@nvidia.com>, Ingo Molnar <mingo@kernel.org>,
- Kees Cook <kees@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, Peter Zijlstra <peterz@infradead.org>, 
- Andy Lutomirski <luto@kernel.org>, Alex Deucher <alexander.deucher@amd.com>, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
+ <CAHk-=wh5Suzp0z7AnK0NgSKfEAWQJw7Dgv5eku=rzBuM1ugQDg@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.56.0-1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:IdsGvviBFPBn07EoxKeEUywDpVaJ7cSMqnaZ8GzaFg4zi0QMuU8
+ 5mPvahTOZ3wg1T3nkaOg6CuCs69UynONt7SrTrpbdcfgNDfEuwRXuv3Scn/PneftOngU4Qe
+ vgRMQKm/UiY68jmBsjD681lNj6juAauFPZ9MlkwQaQYddnhdIceu8LeiSG1ZzeHrL7OcQg2
+ 846TN+TMpWlh6hhCMjNLQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:KvWPCauSh8o=;Itr7GtNJAEKoVrJaZb+GIEkBhpQ
+ UoeIAI1RFsNO4A+IQ8KScpruBxDZ5piOvMbm7KrDgHR6ffInl8O9z4vsD2jdsJhl/+aSrJbeb
+ dc8Mn/4QrKPluF0ukbJq3rQNnDGt84RBEMHioMtg2vFRST9giTbkU2iJE5MykudM5I4InO8zU
+ 5nEqYi0EDDm1kuEm8ooqUI4LzdK8h3WN1o9gC6v7MdhwZHb2m20YDONi02Rd/uBjwLNkPY/B/
+ xCbb2+qeiGE5zqOC0kzcPMA9nMWkId//minoLsVZrd9xTYTkqWxSeOmwJhgJyHiMYsWKk8Ohf
+ TeTPgi8bhz5YehJNvAeVQK8NobTVdqG67IukZLso8qn4ddq0Iu751hqPkyQACidmhlwsdf0R9
+ quiVZw31wNo8WhjIWqWcMtQNdggD4d5e3gtbhTAW5bLmDVgsJlPLanuuEEjBtWQKAodlirT+D
+ seximDA2k/eVsq8hF8ZhErX0jdP3smXf/eJDglvF1RbD9BvPwF1gzuZKBxSvL3Cvj1XXn3WgU
+ lsNOt+Xf37QA3R/cJ7zdwVQo8wJkqoVmklrjS8nsUDk4K2CmGBinPqnEnklVKMsluMTxRcbev
+ 80QfNptXjBtJF6GJZdHh9N4V9t0h/avnemzRVRUYqGzDe2baz6uc9cmfOBXKxRj+xQ32UY0Z+
+ qKN0CwazUjhTe90TNXF4+CsYSfoYo3K8J8hgrh68zjOAvIcjEQ+NS2m/FKdt60YCXsOSRiYww
+ D8JbhWCT5smyn3N4w56EzJJWF6ll/xIVEbzcaS635GtCkiT5Mat/qQk29CYkN0Ve+6EVZb9Uu
+ RIk4j/7F6p/yZwth6Pa3GNE9UXcx13SwBNvM98immzgNY0uQtbUkrZ9g9k4+d4zSGqUVKaMjy
+ IEBTQmxNKyNV23l3FkAHbOi89sZ67N+xPOZjIrx224Ob0m502goIiVj3k/CuBrfGJatDsCHd7
+ anKbSuNhdPqqQiU1Tde4cmrzBdHqVo3nR4PU04OQ/keBRTGNfkESlTbfPFxWiof0Zs8nanZD2
+ Vzu+k27lsioMPGALthgrpgrsD4I6VVw4XX7eiYcksRrQoX95fhvpXyVeb0IumJPpIdU+mDr5O
+ ef5VXx4FP2YgYL2s+PSp7ehXO5IQjKlk+kpejoWDWoVEbXrQss0+7nNZcqguzW5czoWjUrQyb
+ PP5t/d6Rsb7jrvcXEyjE2wb6/BG3318KI7ORaYEjJq/XhSUXavzaN6EfOS7G5wtsL5V9mqdQJ
+ /mHxcHjTbmR+BtQZOZVwGtecvy0SG5py1FEAjRsNfyYfdEixB593TKBWmgRiyMZsUz1zf+N9F
+ JQ5KWQIJ0iOG1pa70TqZNgpGMKU4GMUFdaGmknVj9CvugnvX0IEMyJGg/LDvbMUSNuKKs9LdQ
+ K5Dd0CisndkvJDrO/qQUHzZy6oqoYDbYLxuKu1Kkz6VvG2KGZn0KD8OyoL5pmjRuljnk3XzIs
+ CUKV/eA==
 X-Mailman-Approved-At: Thu, 27 Mar 2025 08:19:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -103,43 +94,195 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 26 Mar 2025 at 15:00, Bert Karwatzki <spasswolf@web.de> wrote:
+Am Mittwoch, dem 26.03.2025 um 15:58 -0700 schrieb Linus Torvalds:
+> On Wed, 26 Mar 2025 at 15:00, Bert Karwatzki <spasswolf@web.de> wrote:
+> >
+> > As Balbir Singh found out this memory comes from amdkfd
+> > (kgd2kfd_init_zone_device()) with CONFIG_HSA_AMD_SVM=3Dy. The memory g=
+ets placed
+> > by devm_request_free_mem_region() which places the memory at the end o=
+f the
+> > physical address space (DIRECT_MAP_PHYSMEM_END). DIRECT_MAP_PHYSMEM_EN=
+D changes
+> > when using nokaslr and so the memory shifts.
 >
-> As Balbir Singh found out this memory comes from amdkfd
-> (kgd2kfd_init_zone_device()) with CONFIG_HSA_AMD_SVM=y. The memory gets placed
-> by devm_request_free_mem_region() which places the memory at the end of the
-> physical address space (DIRECT_MAP_PHYSMEM_END). DIRECT_MAP_PHYSMEM_END changes
-> when using nokaslr and so the memory shifts.
+> So I just want to say that having followed the thread as a spectator,
+> big kudos to everybody involved in this thing. Particularly to you,
+> Bart, for all your debugging and testing, and to Balbir for following
+> up and figuring it out.
+>
+> Because this was a strange one.
+>
+> >  One can work around this by removing the GFR_DESCENDING flag from
+> > devm_request_free_mem_region() so the memory gets placed right after t=
+he other
+> > resources:
+>
+> I worry that there might be other machines where that completely breaks =
+things.
+>
+> There are various historical reasons why we look for addresses in high
+> regions, ie on machines where there are various hidden IO regions that
+> aren't enumerated by e280 and aren't found by our usual PCI BAR
+> discovery because they are special hidden ones.
+>
+> So then users of [devm_]request_free_mem_region() might end up getting
+> allocated a region that has some magic system resource in it.
+>
+> And no, this shouldn't happen on any normal machine, but it has
+> definitely been a thing in the past.
+>
+> So I'm very happy that you guys figured out what ended up happening,
+> but I'm not convinced that the devm_request_free_mem_region()
+> workaround is tenable.
+>
+> So I think it needs to be more targeted to the HSA_AMD_SVM case than
+> touch the devm_request_free_mem_region() logic for everybody.
+>
+>            Linus
 
-So I just want to say that having followed the thread as a spectator,
-big kudos to everybody involved in this thing. Particularly to you,
-Bart, for all your debugging and testing, and to Balbir for following
-up and figuring it out.
+This patch adds another function devm_request_free_mem_region_from_end()
+with an additional argument which allows to choose the end address from
+which to place the resource.
+The problem here is this uses dma_get_mask(adev->dev) as end address which
+uses the dma mask for the discrete GPU while it should use the dma mask fo=
+r
+the built-in GPU (In my case both are equal (44bits), but I'm not sure if
+this is always the case)
 
-Because this was a strange one.
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+index d05d199b5e44..e1942fef3637 100644
+=2D-- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+@@ -1042,7 +1042,8 @@ int kgd2kfd_init_zone_device(struct amdgpu_device *a=
+dev)
+ 		pgmap->range.end =3D adev->gmc.aper_base + adev->gmc.aper_size -
+1;
+ 		pgmap->type =3D MEMORY_DEVICE_COHERENT;
+ 	} else {
+-		res =3D devm_request_free_mem_region(adev->dev, &iomem_resource,
+size);
++		res =3D devm_request_free_mem_region_from_end(adev->dev,
++				&iomem_resource, size, dma_get_mask(adev-
+>dev));
+ 		if (IS_ERR(res))
+ 			return PTR_ERR(res);
+ 		pgmap->range.start =3D res->start;
+diff --git a/include/linux/ioport.h b/include/linux/ioport.h
+index 5385349f0b8a..a9a765721ab4 100644
+=2D-- a/include/linux/ioport.h
++++ b/include/linux/ioport.h
+@@ -407,6 +407,9 @@ walk_iomem_res_desc(unsigned long desc, unsigned long =
+flags,
+u64 start, u64 end,
 
->  One can work around this by removing the GFR_DESCENDING flag from
-> devm_request_free_mem_region() so the memory gets placed right after the other
-> resources:
+ struct resource *devm_request_free_mem_region(struct device *dev,
+ 		struct resource *base, unsigned long size);
++struct resource *devm_request_free_mem_region_from_end(struct device *dev=
+,
++		struct resource *base, unsigned long size,
++		resource_size_t seek_end);
+ struct resource *request_free_mem_region(struct resource *base,
+ 		unsigned long size, const char *name);
+ struct resource *alloc_free_mem_region(struct resource *base,
+diff --git a/kernel/resource.c b/kernel/resource.c
+index 12004452d999..82f40407c02d 100644
+=2D-- a/kernel/resource.c
++++ b/kernel/resource.c
+@@ -1875,12 +1875,14 @@ EXPORT_SYMBOL(resource_list_free);
+ #endif
 
-I worry that there might be other machines where that completely breaks things.
+ static resource_size_t gfr_start(struct resource *base, resource_size_t s=
+ize,
+-				 resource_size_t align, unsigned long flags)
++				 resource_size_t align, resource_size_t
+seek_end,
++				 unsigned long flags)
+ {
+ 	if (flags & GFR_DESCENDING) {
+ 		resource_size_t end;
 
-There are various historical reasons why we look for addresses in high
-regions, ie on machines where there are various hidden IO regions that
-aren't enumerated by e280 and aren't found by our usual PCI BAR
-discovery because they are special hidden ones.
+ 		end =3D min_t(resource_size_t, base->end,
+DIRECT_MAP_PHYSMEM_END);
++		end =3D min_t(resource_size_t, end, seek_end);
+ 		return end - size + 1;
+ 	}
 
-So then users of [devm_]request_free_mem_region() might end up getting
-allocated a region that has some magic system resource in it.
+@@ -1920,8 +1922,8 @@ static void remove_free_mem_region(void *_res)
+ static struct resource *
+ get_free_mem_region(struct device *dev, struct resource *base,
+ 		    resource_size_t size, const unsigned long align,
+-		    const char *name, const unsigned long desc,
+-		    const unsigned long flags)
++		    resource_size_t seek_end, const char *name,
++		    const unsigned long desc, const unsigned long flags)
+ {
+ 	resource_size_t addr;
+ 	struct resource *res;
+@@ -1946,7 +1948,7 @@ get_free_mem_region(struct device *dev, struct resou=
+rce
+*base,
+ 	}
 
-And no, this shouldn't happen on any normal machine, but it has
-definitely been a thing in the past.
+ 	write_lock(&resource_lock);
+-	for (addr =3D gfr_start(base, size, align, flags);
++	for (addr =3D gfr_start(base, size, align, seek_end, flags);
+ 	     gfr_continue(base, addr, align, flags);
+ 	     addr =3D gfr_next(addr, align, flags)) {
+ 		if (__region_intersects(base, addr, size, 0, IORES_DESC_NONE)
+!=3D
+@@ -2021,17 +2023,30 @@ struct resource *devm_request_free_mem_region(stru=
+ct
+device *dev,
+ 	unsigned long flags =3D GFR_DESCENDING | GFR_REQUEST_REGION;
 
-So I'm very happy that you guys figured out what ended up happening,
-but I'm not convinced that the devm_request_free_mem_region()
-workaround is tenable.
+ 	return get_free_mem_region(dev, base, size, GFR_DEFAULT_ALIGN,
+-				   dev_name(dev),
++				   DIRECT_MAP_PHYSMEM_END, dev_name(dev),
+ 				   IORES_DESC_DEVICE_PRIVATE_MEMORY, flags);
+ }
+ EXPORT_SYMBOL_GPL(devm_request_free_mem_region);
 
-So I think it needs to be more targeted to the HSA_AMD_SVM case than
-touch the devm_request_free_mem_region() logic for everybody.
++struct resource *devm_request_free_mem_region_from_end(struct device *dev=
+,
++		struct resource *base, unsigned long size,
++		resource_size_t seek_end)
++{
++	unsigned long flags =3D GFR_DESCENDING | GFR_REQUEST_REGION;
++
++	return get_free_mem_region(dev, base, size, GFR_DEFAULT_ALIGN,
++				   seek_end, dev_name(dev),
++				   IORES_DESC_DEVICE_PRIVATE_MEMORY, flags);
++}
++EXPORT_SYMBOL_GPL(devm_request_free_mem_region_from_end);
++
+ struct resource *request_free_mem_region(struct resource *base,
+ 		unsigned long size, const char *name)
+ {
+ 	unsigned long flags =3D GFR_DESCENDING | GFR_REQUEST_REGION;
 
-           Linus
+-	return get_free_mem_region(NULL, base, size, GFR_DEFAULT_ALIGN, name,
++	return get_free_mem_region(NULL, base, size, GFR_DEFAULT_ALIGN,
++				   DIRECT_MAP_PHYSMEM_END, name,
+ 				   IORES_DESC_DEVICE_PRIVATE_MEMORY, flags);
+ }
+ EXPORT_SYMBOL_GPL(request_free_mem_region);
+@@ -2055,8 +2070,8 @@ struct resource *alloc_free_mem_region(struct resour=
+ce
+*base,
+ 	/* Default of ascending direction and insert resource */
+ 	unsigned long flags =3D 0;
+
+-	return get_free_mem_region(NULL, base, size, align, name,
+-				   IORES_DESC_NONE, flags);
++	return get_free_mem_region(NULL, base, size, align,
+DIRECT_MAP_PHYSMEM_END,
++				   name, IORES_DESC_NONE, flags);
+ }
+ EXPORT_SYMBOL_GPL(alloc_free_mem_region);
+ #endif /* CONFIG_GET_FREE_REGION */
+
+
+
+Bert Karwatzki
