@@ -2,41 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 630D4A73F6C
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Mar 2025 21:39:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0099BA73F6B
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Mar 2025 21:39:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36F4310E94C;
-	Thu, 27 Mar 2025 20:39:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4D3E10E94A;
+	Thu, 27 Mar 2025 20:39:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LxDF+qvF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MQVrB1RP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D708210E941
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6FD910E187
  for <amd-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 20:39:17 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id B61B6614BF;
- Thu, 27 Mar 2025 20:39:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F825C4CEDD;
+ by tor.source.kernel.org (Postfix) with ESMTP id 43E3B614C0;
+ Thu, 27 Mar 2025 20:39:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E483AC4CEEA;
  Thu, 27 Mar 2025 20:39:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1743107952;
- bh=q7qVmWgilCjoVG4z9xaMuIVDP3GuSV4ZIy2+8JG42lg=;
+ s=k20201202; t=1743107953;
+ bh=42OsuCB0/aEVtnyA+ySVPnPtQGy5gsyrK2acikwD670=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=LxDF+qvFpV+DJafURFY+Bbtxz+A97Rn1PdAIx6uKfjkfiku52A2dZwLokjbbkCSqu
- z1u5piKEy0iKhwrXe8gy/iRHPJlnxi7gZ94DTQFIzngkXRtGUuQuEepwiQgZDp8Swr
- bKrpcnOmlsWNl7Ykd+invefHd+MTiWGZzDoKuciwtQT3q3GyWVPcMiDuMuyTT/Oikl
- 3aiL7SfGhhpqheQ2y+umAL4gS16pAryXptIDLJGnvINcGxO8tXxZQiU64stWS/c23Z
- vQPSpYvNEyNiXnALPTdasz9flPr+mFUW8AsFPQFpKLZ9TXZJm6ovKS0bpy5Z5OUqxA
- r27COuWBe7qCw==
+ b=MQVrB1RPNQXhO0JI0P3vSObVH743rn6l5F1lY+pA98pxRvJAijsVHSoMZphNyVbXf
+ oTtqN5fwyyVZQRw7kotJX2YVDHaefyktlF7N1eeEsrk5iX0spQpsqDD5GJsA0nTOFU
+ ZGEZqP9d2/KNTMadcBKSTcXmGQNZuQglMz/Pbe8rIzXmG5fVXBmWVzhYwyOnYtXnhZ
+ IOpqpGqK2+v5IC8B/aq1O9iEEyyh+w591/4gfFM7B/BUacTsLhNUgZnOakM9aEMNVB
+ 7GeTanQTxmufPkF6tjfEYoX1iqOfYc9cXf+N9B4BJ0dK/45xpRo6pTygVyPWZhdqB3
+ I60eCUyyES0RQ==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH 07/14] drm/amd: Add a 'struct amdgpu_device' argument to all
- header printers
-Date: Thu, 27 Mar 2025 15:38:51 -0500
-Message-ID: <20250327203858.3796086-8-superm1@kernel.org>
+Subject: [PATCH 08/14] drm/amd: Use drm_*() macros for all amdgpu_ucode prints
+Date: Thu, 27 Mar 2025 15:38:52 -0500
+Message-ID: <20250327203858.3796086-9-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250327203858.3796086-1-superm1@kernel.org>
 References: <20250327203858.3796086-1-superm1@kernel.org>
@@ -58,649 +57,733 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-To allow header printing to reflect the correct GPU, pass the device
-into all functions.
+Messages emitted from amdgpu_ucode are currently with legacy DRM
+macros. These don't show which device they are using. To make messages
+clearer in multi-GPU systems adjust to drm_*() macros.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c       |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c       | 14 +++++------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c     | 24 ++++++++++++-------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h     | 21 ++++++++++------
- drivers/gpu/drm/amd/amdgpu/cik_sdma.c         |  2 +-
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        |  2 +-
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 14 +++++------
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c        |  6 ++---
- drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c         |  8 +++----
- drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c         | 10 ++++----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c         | 10 ++++----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c       |  4 ++--
- drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c         |  2 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c         |  2 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c         |  2 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c        |  2 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c        |  2 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c        |  2 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c        |  2 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c        |  2 +-
- drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c    |  2 +-
- .../gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c    |  2 +-
- .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    |  2 +-
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c  |  2 +-
- .../gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c    |  2 +-
- 27 files changed, 81 insertions(+), 66 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 456 ++++++++++++----------
+ 1 file changed, 245 insertions(+), 211 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c
-index 004a6a9d6b9fa..c9df887579545 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c
-@@ -373,7 +373,7 @@ static int amdgpu_cgs_get_firmware_info(struct cgs_device *cgs_device,
- 		}
- 
- 		hdr = (const struct smc_firmware_header_v1_0 *)	adev->pm.fw->data;
--		amdgpu_ucode_print_smc_hdr(&hdr->header);
-+		amdgpu_ucode_print_smc_hdr(adev, &hdr->header);
- 		adev->pm.fw_version = le32_to_cpu(hdr->header.ucode_version);
- 		ucode_size = le32_to_cpu(hdr->header.ucode_size_bytes);
- 		ucode_start_address = le32_to_cpu(hdr->ucode_start_addr);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index d4b01ef000256..68d00e8cdaaf3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2546,7 +2546,7 @@ static int amdgpu_device_parse_gpu_info_fw(struct amdgpu_device *adev)
- 	}
- 
- 	hdr = (const struct gpu_info_firmware_header_v1_0 *)adev->firmware.gpu_info_fw->data;
--	amdgpu_ucode_print_gpu_info_hdr(&hdr->header);
-+	amdgpu_ucode_print_gpu_info_hdr(adev, &hdr->header);
- 
- 	switch (hdr->version_major) {
- 	case 1:
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index dbc3313fc1419..6be3692561f6d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -2710,31 +2710,31 @@ static void psp_print_fw_hdr(struct psp_context *psp,
- 	case AMDGPU_UCODE_ID_SDMA7:
- 		hdr = (struct common_firmware_header *)
- 			adev->sdma.instance[ucode->ucode_id - AMDGPU_UCODE_ID_SDMA0].fw->data;
--		amdgpu_ucode_print_sdma_hdr(hdr);
-+		amdgpu_ucode_print_sdma_hdr(adev, hdr);
- 		break;
- 	case AMDGPU_UCODE_ID_CP_CE:
- 		hdr = (struct common_firmware_header *)adev->gfx.ce_fw->data;
--		amdgpu_ucode_print_gfx_hdr(hdr);
-+		amdgpu_ucode_print_gfx_hdr(adev, hdr);
- 		break;
- 	case AMDGPU_UCODE_ID_CP_PFP:
- 		hdr = (struct common_firmware_header *)adev->gfx.pfp_fw->data;
--		amdgpu_ucode_print_gfx_hdr(hdr);
-+		amdgpu_ucode_print_gfx_hdr(adev, hdr);
- 		break;
- 	case AMDGPU_UCODE_ID_CP_ME:
- 		hdr = (struct common_firmware_header *)adev->gfx.me_fw->data;
--		amdgpu_ucode_print_gfx_hdr(hdr);
-+		amdgpu_ucode_print_gfx_hdr(adev, hdr);
- 		break;
- 	case AMDGPU_UCODE_ID_CP_MEC1:
- 		hdr = (struct common_firmware_header *)adev->gfx.mec_fw->data;
--		amdgpu_ucode_print_gfx_hdr(hdr);
-+		amdgpu_ucode_print_gfx_hdr(adev, hdr);
- 		break;
- 	case AMDGPU_UCODE_ID_RLC_G:
- 		hdr = (struct common_firmware_header *)adev->gfx.rlc_fw->data;
--		amdgpu_ucode_print_rlc_hdr(hdr);
-+		amdgpu_ucode_print_rlc_hdr(adev, hdr);
- 		break;
- 	case AMDGPU_UCODE_ID_SMC:
- 		hdr = (struct common_firmware_header *)adev->pm.fw->data;
--		amdgpu_ucode_print_smc_hdr(hdr);
-+		amdgpu_ucode_print_smc_hdr(adev, hdr);
- 		break;
- 	default:
- 		break;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-index 3d9e9fdc10b47..a28cd5e962cce 100644
+index a28cd5e962cce..971f28d2c31f7 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-@@ -30,7 +30,8 @@
- 
- #define AMDGPU_UCODE_NAME_MAX		(128)
- 
--static void amdgpu_ucode_print_common_hdr(const struct common_firmware_header *hdr)
-+static void amdgpu_ucode_print_common_hdr(struct amdgpu_device *adev,
-+					  const struct common_firmware_header *hdr)
+@@ -33,17 +33,25 @@
+ static void amdgpu_ucode_print_common_hdr(struct amdgpu_device *adev,
+ 					  const struct common_firmware_header *hdr)
  {
- 	DRM_DEBUG("size_bytes: %u\n", le32_to_cpu(hdr->size_bytes));
- 	DRM_DEBUG("header_size_bytes: %u\n", le32_to_cpu(hdr->header_size_bytes));
-@@ -45,7 +46,8 @@ static void amdgpu_ucode_print_common_hdr(const struct common_firmware_header *h
- 	DRM_DEBUG("crc32: 0x%08x\n", le32_to_cpu(hdr->crc32));
+-	DRM_DEBUG("size_bytes: %u\n", le32_to_cpu(hdr->size_bytes));
+-	DRM_DEBUG("header_size_bytes: %u\n", le32_to_cpu(hdr->header_size_bytes));
+-	DRM_DEBUG("header_version_major: %u\n", le16_to_cpu(hdr->header_version_major));
+-	DRM_DEBUG("header_version_minor: %u\n", le16_to_cpu(hdr->header_version_minor));
+-	DRM_DEBUG("ip_version_major: %u\n", le16_to_cpu(hdr->ip_version_major));
+-	DRM_DEBUG("ip_version_minor: %u\n", le16_to_cpu(hdr->ip_version_minor));
+-	DRM_DEBUG("ucode_version: 0x%08x\n", le32_to_cpu(hdr->ucode_version));
+-	DRM_DEBUG("ucode_size_bytes: %u\n", le32_to_cpu(hdr->ucode_size_bytes));
+-	DRM_DEBUG("ucode_array_offset_bytes: %u\n",
+-		  le32_to_cpu(hdr->ucode_array_offset_bytes));
+-	DRM_DEBUG("crc32: 0x%08x\n", le32_to_cpu(hdr->crc32));
++	drm_dbg(adev_to_drm(adev),
++		"size_bytes: %u\n", le32_to_cpu(hdr->size_bytes));
++	drm_dbg(adev_to_drm(adev),
++		"header_size_bytes: %u\n", le32_to_cpu(hdr->header_size_bytes));
++	drm_dbg(adev_to_drm(adev),
++		"header_version_major: %u\n", le16_to_cpu(hdr->header_version_major));
++	drm_dbg(adev_to_drm(adev),
++		"header_version_minor: %u\n", le16_to_cpu(hdr->header_version_minor));
++	drm_dbg(adev_to_drm(adev),
++		"ip_version_major: %u\n", le16_to_cpu(hdr->ip_version_major));
++	drm_dbg(adev_to_drm(adev),
++		"ip_version_minor: %u\n", le16_to_cpu(hdr->ip_version_minor));
++	drm_dbg(adev_to_drm(adev),
++		"ucode_version: 0x%08x\n", le32_to_cpu(hdr->ucode_version));
++	drm_dbg(adev_to_drm(adev),
++		"ucode_size_bytes: %u\n", le32_to_cpu(hdr->ucode_size_bytes));
++	drm_dbg(adev_to_drm(adev),
++		"ucode_array_offset_bytes: %u\n", le32_to_cpu(hdr->ucode_array_offset_bytes));
++	drm_dbg(adev_to_drm(adev), "crc32: 0x%08x\n", le32_to_cpu(hdr->crc32));
  }
  
--void amdgpu_ucode_print_mc_hdr(const struct common_firmware_header *hdr)
-+void amdgpu_ucode_print_mc_hdr(struct amdgpu_device *adev,
-+			       const struct common_firmware_header *hdr)
- {
+ void amdgpu_ucode_print_mc_hdr(struct amdgpu_device *adev,
+@@ -52,19 +60,20 @@ void amdgpu_ucode_print_mc_hdr(struct amdgpu_device *adev,
  	uint16_t version_major = le16_to_cpu(hdr->header_version_major);
  	uint16_t version_minor = le16_to_cpu(hdr->header_version_minor);
-@@ -66,7 +68,8 @@ void amdgpu_ucode_print_mc_hdr(const struct common_firmware_header *hdr)
+ 
+-	DRM_DEBUG("MC\n");
+-	amdgpu_ucode_print_common_hdr(hdr);
++	drm_dbg(adev_to_drm(adev), "MC\n");
++	amdgpu_ucode_print_common_hdr(adev, hdr);
+ 
+ 	if (version_major == 1) {
+ 		const struct mc_firmware_header_v1_0 *mc_hdr =
+ 			container_of(hdr, struct mc_firmware_header_v1_0, header);
+ 
+-		DRM_DEBUG("io_debug_size_bytes: %u\n",
++		drm_dbg(adev_to_drm(adev), "io_debug_size_bytes: %u\n",
+ 			  le32_to_cpu(mc_hdr->io_debug_size_bytes));
+-		DRM_DEBUG("io_debug_array_offset_bytes: %u\n",
++		drm_dbg(adev_to_drm(adev), "io_debug_array_offset_bytes: %u\n",
+ 			  le32_to_cpu(mc_hdr->io_debug_array_offset_bytes));
+ 	} else {
+-		DRM_ERROR("Unknown MC ucode version: %u.%u\n", version_major, version_minor);
++		drm_err(adev_to_drm(adev),
++			"Unknown MC ucode version: %u.%u\n", version_major, version_minor);
  	}
  }
  
--void amdgpu_ucode_print_smc_hdr(const struct common_firmware_header *hdr)
-+void amdgpu_ucode_print_smc_hdr(struct amdgpu_device *adev,
-+				const struct common_firmware_header *hdr)
- {
- 	uint16_t version_major = le16_to_cpu(hdr->header_version_major);
- 	uint16_t version_minor = le16_to_cpu(hdr->header_version_minor);
-@@ -101,7 +104,8 @@ void amdgpu_ucode_print_smc_hdr(const struct common_firmware_header *hdr)
+@@ -77,30 +86,41 @@ void amdgpu_ucode_print_smc_hdr(struct amdgpu_device *adev,
+ 	const struct smc_firmware_header_v2_0 *v2_0_hdr;
+ 	const struct smc_firmware_header_v2_1 *v2_1_hdr;
+ 
+-	DRM_DEBUG("SMC\n");
+-	amdgpu_ucode_print_common_hdr(hdr);
++	drm_dbg(adev_to_drm(adev), "SMC\n");
++	amdgpu_ucode_print_common_hdr(adev, hdr);
+ 
+ 	if (version_major == 1) {
+ 		v1_0_hdr = container_of(hdr, struct smc_firmware_header_v1_0, header);
+-		DRM_DEBUG("ucode_start_addr: %u\n", le32_to_cpu(v1_0_hdr->ucode_start_addr));
++		drm_dbg(adev_to_drm(adev),
++			"ucode_start_addr: %u\n",
++			le32_to_cpu(v1_0_hdr->ucode_start_addr));
+ 	} else if (version_major == 2) {
+ 		switch (version_minor) {
+ 		case 0:
+ 			v2_0_hdr = container_of(hdr, struct smc_firmware_header_v2_0, v1_0.header);
+-			DRM_DEBUG("ppt_offset_bytes: %u\n", le32_to_cpu(v2_0_hdr->ppt_offset_bytes));
+-			DRM_DEBUG("ppt_size_bytes: %u\n", le32_to_cpu(v2_0_hdr->ppt_size_bytes));
++			drm_dbg(adev_to_drm(adev),
++				"ppt_offset_bytes: %u\n",
++				le32_to_cpu(v2_0_hdr->ppt_offset_bytes));
++			drm_dbg(adev_to_drm(adev),
++				"ppt_size_bytes: %u\n",
++				le32_to_cpu(v2_0_hdr->ppt_size_bytes));
+ 			break;
+ 		case 1:
+ 			v2_1_hdr = container_of(hdr, struct smc_firmware_header_v2_1, v1_0.header);
+-			DRM_DEBUG("pptable_count: %u\n", le32_to_cpu(v2_1_hdr->pptable_count));
+-			DRM_DEBUG("pptable_entry_offset: %u\n", le32_to_cpu(v2_1_hdr->pptable_entry_offset));
++			drm_dbg(adev_to_drm(adev),
++				"pptable_count: %u\n",
++				le32_to_cpu(v2_1_hdr->pptable_count));
++			drm_dbg(adev_to_drm(adev),
++				"pptable_entry_offset: %u\n",
++				le32_to_cpu(v2_1_hdr->pptable_entry_offset));
+ 			break;
+ 		default:
+ 			break;
+ 		}
+ 
+ 	} else {
+-		DRM_ERROR("Unknown SMC ucode version: %u.%u\n", version_major, version_minor);
++		drm_err(adev_to_drm(adev),
++			"Unknown SMC ucode version: %u.%u\n", version_major, version_minor);
  	}
  }
  
--void amdgpu_ucode_print_gfx_hdr(const struct common_firmware_header *hdr)
-+void amdgpu_ucode_print_gfx_hdr(struct amdgpu_device *adev,
-+				const struct common_firmware_header *hdr)
- {
+@@ -110,25 +130,26 @@ void amdgpu_ucode_print_gfx_hdr(struct amdgpu_device *adev,
  	uint16_t version_major = le16_to_cpu(hdr->header_version_major);
  	uint16_t version_minor = le16_to_cpu(hdr->header_version_minor);
-@@ -128,7 +132,8 @@ void amdgpu_ucode_print_gfx_hdr(const struct common_firmware_header *hdr)
+ 
+-	DRM_DEBUG("GFX\n");
+-	amdgpu_ucode_print_common_hdr(hdr);
++	drm_dbg(adev_to_drm(adev), "GFX\n");
++	amdgpu_ucode_print_common_hdr(adev, hdr);
+ 
+ 	if (version_major == 1) {
+ 		const struct gfx_firmware_header_v1_0 *gfx_hdr =
+ 			container_of(hdr, struct gfx_firmware_header_v1_0, header);
+ 
+-		DRM_DEBUG("ucode_feature_version: %u\n",
++		drm_dbg(adev_to_drm(adev), "ucode_feature_version: %u\n",
+ 			  le32_to_cpu(gfx_hdr->ucode_feature_version));
+-		DRM_DEBUG("jt_offset: %u\n", le32_to_cpu(gfx_hdr->jt_offset));
+-		DRM_DEBUG("jt_size: %u\n", le32_to_cpu(gfx_hdr->jt_size));
++		drm_dbg(adev_to_drm(adev), "jt_offset: %u\n", le32_to_cpu(gfx_hdr->jt_offset));
++		drm_dbg(adev_to_drm(adev), "jt_size: %u\n", le32_to_cpu(gfx_hdr->jt_size));
+ 	} else if (version_major == 2) {
+ 		const struct gfx_firmware_header_v2_0 *gfx_hdr =
+ 			container_of(hdr, struct gfx_firmware_header_v2_0, header);
+ 
+-		DRM_DEBUG("ucode_feature_version: %u\n",
+-			  le32_to_cpu(gfx_hdr->ucode_feature_version));
++		drm_dbg(adev_to_drm(adev),
++			"ucode_feature_version: %u\n", le32_to_cpu(gfx_hdr->ucode_feature_version));
+ 	} else {
+-		DRM_ERROR("Unknown GFX ucode version: %u.%u\n", version_major, version_minor);
++		drm_err(adev_to_drm(adev),
++			"Unknown GFX ucode version: %u.%u\n", version_major, version_minor);
  	}
  }
  
--void amdgpu_ucode_print_rlc_hdr(const struct common_firmware_header *hdr)
-+void amdgpu_ucode_print_rlc_hdr(struct amdgpu_device *adev,
-+				const struct common_firmware_header *hdr)
- {
+@@ -138,22 +159,22 @@ void amdgpu_ucode_print_rlc_hdr(struct amdgpu_device *adev,
  	uint16_t version_major = le16_to_cpu(hdr->header_version_major);
  	uint16_t version_minor = le16_to_cpu(hdr->header_version_minor);
-@@ -291,7 +296,8 @@ void amdgpu_ucode_print_rlc_hdr(const struct common_firmware_header *hdr)
+ 
+-	DRM_DEBUG("RLC\n");
+-	amdgpu_ucode_print_common_hdr(hdr);
++	drm_dbg(adev_to_drm(adev), "RLC\n");
++	amdgpu_ucode_print_common_hdr(adev, hdr);
+ 
+ 	if (version_major == 1) {
+ 		const struct rlc_firmware_header_v1_0 *rlc_hdr =
+ 			container_of(hdr, struct rlc_firmware_header_v1_0, header);
+ 
+-		DRM_DEBUG("ucode_feature_version: %u\n",
++		drm_dbg(adev_to_drm(adev), "ucode_feature_version: %u\n",
+ 			  le32_to_cpu(rlc_hdr->ucode_feature_version));
+-		DRM_DEBUG("save_and_restore_offset: %u\n",
++		drm_dbg(adev_to_drm(adev), "save_and_restore_offset: %u\n",
+ 			  le32_to_cpu(rlc_hdr->save_and_restore_offset));
+-		DRM_DEBUG("clear_state_descriptor_offset: %u\n",
++		drm_dbg(adev_to_drm(adev), "clear_state_descriptor_offset: %u\n",
+ 			  le32_to_cpu(rlc_hdr->clear_state_descriptor_offset));
+-		DRM_DEBUG("avail_scratch_ram_locations: %u\n",
++		drm_dbg(adev_to_drm(adev), "avail_scratch_ram_locations: %u\n",
+ 			  le32_to_cpu(rlc_hdr->avail_scratch_ram_locations));
+-		DRM_DEBUG("master_pkt_description_offset: %u\n",
++		drm_dbg(adev_to_drm(adev), "master_pkt_description_offset: %u\n",
+ 			  le32_to_cpu(rlc_hdr->master_pkt_description_offset));
+ 	} else if (version_major == 2) {
+ 		const struct rlc_firmware_header_v2_0 *rlc_hdr =
+@@ -170,129 +191,133 @@ void amdgpu_ucode_print_rlc_hdr(struct amdgpu_device *adev,
+ 		switch (version_minor) {
+ 		case 0:
+ 			/* rlc_hdr v2_0 */
+-			DRM_DEBUG("ucode_feature_version: %u\n",
++			drm_dbg(adev_to_drm(adev), "ucode_feature_version: %u\n",
+ 				  le32_to_cpu(rlc_hdr->ucode_feature_version));
+-			DRM_DEBUG("jt_offset: %u\n", le32_to_cpu(rlc_hdr->jt_offset));
+-			DRM_DEBUG("jt_size: %u\n", le32_to_cpu(rlc_hdr->jt_size));
+-			DRM_DEBUG("save_and_restore_offset: %u\n",
+-				  le32_to_cpu(rlc_hdr->save_and_restore_offset));
+-			DRM_DEBUG("clear_state_descriptor_offset: %u\n",
+-				  le32_to_cpu(rlc_hdr->clear_state_descriptor_offset));
+-			DRM_DEBUG("avail_scratch_ram_locations: %u\n",
+-				  le32_to_cpu(rlc_hdr->avail_scratch_ram_locations));
+-			DRM_DEBUG("reg_restore_list_size: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_restore_list_size));
+-			DRM_DEBUG("reg_list_format_start: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_format_start));
+-			DRM_DEBUG("reg_list_format_separate_start: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_format_separate_start));
+-			DRM_DEBUG("starting_offsets_start: %u\n",
+-				  le32_to_cpu(rlc_hdr->starting_offsets_start));
+-			DRM_DEBUG("reg_list_format_size_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_format_size_bytes));
+-			DRM_DEBUG("reg_list_format_array_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_format_array_offset_bytes));
+-			DRM_DEBUG("reg_list_size_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_size_bytes));
+-			DRM_DEBUG("reg_list_array_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_array_offset_bytes));
+-			DRM_DEBUG("reg_list_format_separate_size_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_format_separate_size_bytes));
+-			DRM_DEBUG("reg_list_format_separate_array_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_format_separate_array_offset_bytes));
+-			DRM_DEBUG("reg_list_separate_size_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_separate_size_bytes));
+-			DRM_DEBUG("reg_list_separate_array_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr->reg_list_separate_array_offset_bytes));
++			drm_dbg(adev_to_drm(adev),
++				"jt_offset: %u\n", le32_to_cpu(rlc_hdr->jt_offset));
++			drm_dbg(adev_to_drm(adev),
++				"jt_size: %u\n", le32_to_cpu(rlc_hdr->jt_size));
++			drm_dbg(adev_to_drm(adev),
++				"save_and_restore_offset: %u\n",
++				le32_to_cpu(rlc_hdr->save_and_restore_offset));
++			drm_dbg(adev_to_drm(adev), "clear_state_descriptor_offset: %u\n",
++				le32_to_cpu(rlc_hdr->clear_state_descriptor_offset));
++			drm_dbg(adev_to_drm(adev), "avail_scratch_ram_locations: %u\n",
++				le32_to_cpu(rlc_hdr->avail_scratch_ram_locations));
++			drm_dbg(adev_to_drm(adev), "reg_restore_list_size: %u\n",
++				le32_to_cpu(rlc_hdr->reg_restore_list_size));
++			drm_dbg(adev_to_drm(adev), "reg_list_format_start: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_format_start));
++			drm_dbg(adev_to_drm(adev), "reg_list_format_separate_start: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_format_separate_start));
++			drm_dbg(adev_to_drm(adev), "starting_offsets_start: %u\n",
++				le32_to_cpu(rlc_hdr->starting_offsets_start));
++			drm_dbg(adev_to_drm(adev), "reg_list_format_size_bytes: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_format_size_bytes));
++			drm_dbg(adev_to_drm(adev), "reg_list_format_array_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_format_array_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "reg_list_size_bytes: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_size_bytes));
++			drm_dbg(adev_to_drm(adev), "reg_list_array_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_array_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "reg_list_format_separate_size_bytes: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_format_separate_size_bytes));
++			drm_dbg(adev_to_drm(adev), "reg_list_format_separate_array_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_format_separate_array_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "reg_list_separate_size_bytes: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_separate_size_bytes));
++			drm_dbg(adev_to_drm(adev), "reg_list_separate_array_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr->reg_list_separate_array_offset_bytes));
+ 			break;
+ 		case 1:
+ 			/* rlc_hdr v2_1 */
+-			DRM_DEBUG("reg_list_format_direct_reg_list_length: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->reg_list_format_direct_reg_list_length));
+-			DRM_DEBUG("save_restore_list_cntl_ucode_ver: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_cntl_ucode_ver));
+-			DRM_DEBUG("save_restore_list_cntl_feature_ver: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_cntl_feature_ver));
+-			DRM_DEBUG("save_restore_list_cntl_size_bytes %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_cntl_size_bytes));
+-			DRM_DEBUG("save_restore_list_cntl_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_cntl_offset_bytes));
+-			DRM_DEBUG("save_restore_list_gpm_ucode_ver: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_gpm_ucode_ver));
+-			DRM_DEBUG("save_restore_list_gpm_feature_ver: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_gpm_feature_ver));
+-			DRM_DEBUG("save_restore_list_gpm_size_bytes %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_gpm_size_bytes));
+-			DRM_DEBUG("save_restore_list_gpm_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_gpm_offset_bytes));
+-			DRM_DEBUG("save_restore_list_srm_ucode_ver: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_srm_ucode_ver));
+-			DRM_DEBUG("save_restore_list_srm_feature_ver: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_srm_feature_ver));
+-			DRM_DEBUG("save_restore_list_srm_size_bytes %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_srm_size_bytes));
+-			DRM_DEBUG("save_restore_list_srm_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_1->save_restore_list_srm_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "reg_list_format_direct_reg_list_length: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->reg_list_format_direct_reg_list_length));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_cntl_ucode_ver: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_cntl_ucode_ver));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_cntl_feature_ver: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_cntl_feature_ver));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_cntl_size_bytes %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_cntl_size_bytes));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_cntl_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_cntl_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_gpm_ucode_ver: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_gpm_ucode_ver));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_gpm_feature_ver: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_gpm_feature_ver));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_gpm_size_bytes %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_gpm_size_bytes));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_gpm_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_gpm_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_srm_ucode_ver: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_srm_ucode_ver));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_srm_feature_ver: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_srm_feature_ver));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_srm_size_bytes %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_srm_size_bytes));
++			drm_dbg(adev_to_drm(adev), "save_restore_list_srm_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_1->save_restore_list_srm_offset_bytes));
+ 			break;
+ 		case 2:
+ 			/* rlc_hdr v2_2 */
+-			DRM_DEBUG("rlc_iram_ucode_size_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_2->rlc_iram_ucode_size_bytes));
+-			DRM_DEBUG("rlc_iram_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_2->rlc_iram_ucode_offset_bytes));
+-			DRM_DEBUG("rlc_dram_ucode_size_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_2->rlc_dram_ucode_size_bytes));
+-			DRM_DEBUG("rlc_dram_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_2->rlc_dram_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "rlc_iram_ucode_size_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_2->rlc_iram_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "rlc_iram_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_2->rlc_iram_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "rlc_dram_ucode_size_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_2->rlc_dram_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "rlc_dram_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_2->rlc_dram_ucode_offset_bytes));
+ 			break;
+ 		case 3:
+ 			/* rlc_hdr v2_3 */
+-			DRM_DEBUG("rlcp_ucode_version: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_3->rlcp_ucode_version));
+-			DRM_DEBUG("rlcp_ucode_feature_version: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_3->rlcp_ucode_feature_version));
+-			DRM_DEBUG("rlcp_ucode_size_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_3->rlcp_ucode_size_bytes));
+-			DRM_DEBUG("rlcp_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_3->rlcp_ucode_offset_bytes));
+-			DRM_DEBUG("rlcv_ucode_version: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_3->rlcv_ucode_version));
+-			DRM_DEBUG("rlcv_ucode_feature_version: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_3->rlcv_ucode_feature_version));
+-			DRM_DEBUG("rlcv_ucode_size_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_3->rlcv_ucode_size_bytes));
+-			DRM_DEBUG("rlcv_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_3->rlcv_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "rlcp_ucode_version: %u\n",
++				le32_to_cpu(rlc_hdr_v2_3->rlcp_ucode_version));
++			drm_dbg(adev_to_drm(adev), "rlcp_ucode_feature_version: %u\n",
++				le32_to_cpu(rlc_hdr_v2_3->rlcp_ucode_feature_version));
++			drm_dbg(adev_to_drm(adev), "rlcp_ucode_size_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_3->rlcp_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "rlcp_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_3->rlcp_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "rlcv_ucode_version: %u\n",
++				le32_to_cpu(rlc_hdr_v2_3->rlcv_ucode_version));
++			drm_dbg(adev_to_drm(adev), "rlcv_ucode_feature_version: %u\n",
++				le32_to_cpu(rlc_hdr_v2_3->rlcv_ucode_feature_version));
++			drm_dbg(adev_to_drm(adev), "rlcv_ucode_size_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_3->rlcv_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "rlcv_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_3->rlcv_ucode_offset_bytes));
+ 			break;
+ 		case 4:
+ 			/* rlc_hdr v2_4 */
+-			DRM_DEBUG("global_tap_delays_ucode_size_bytes :%u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->global_tap_delays_ucode_size_bytes));
+-			DRM_DEBUG("global_tap_delays_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->global_tap_delays_ucode_offset_bytes));
+-			DRM_DEBUG("se0_tap_delays_ucode_size_bytes :%u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->se0_tap_delays_ucode_size_bytes));
+-			DRM_DEBUG("se0_tap_delays_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->se0_tap_delays_ucode_offset_bytes));
+-			DRM_DEBUG("se1_tap_delays_ucode_size_bytes :%u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->se1_tap_delays_ucode_size_bytes));
+-			DRM_DEBUG("se1_tap_delays_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->se1_tap_delays_ucode_offset_bytes));
+-			DRM_DEBUG("se2_tap_delays_ucode_size_bytes :%u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->se2_tap_delays_ucode_size_bytes));
+-			DRM_DEBUG("se2_tap_delays_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->se2_tap_delays_ucode_offset_bytes));
+-			DRM_DEBUG("se3_tap_delays_ucode_size_bytes :%u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->se3_tap_delays_ucode_size_bytes));
+-			DRM_DEBUG("se3_tap_delays_ucode_offset_bytes: %u\n",
+-				  le32_to_cpu(rlc_hdr_v2_4->se3_tap_delays_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "global_tap_delays_ucode_size_bytes :%u\n",
++				le32_to_cpu(rlc_hdr_v2_4->global_tap_delays_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "global_tap_delays_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_4->global_tap_delays_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "se0_tap_delays_ucode_size_bytes :%u\n",
++				le32_to_cpu(rlc_hdr_v2_4->se0_tap_delays_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "se0_tap_delays_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_4->se0_tap_delays_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "se1_tap_delays_ucode_size_bytes :%u\n",
++				le32_to_cpu(rlc_hdr_v2_4->se1_tap_delays_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "se1_tap_delays_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_4->se1_tap_delays_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "se2_tap_delays_ucode_size_bytes :%u\n",
++				le32_to_cpu(rlc_hdr_v2_4->se2_tap_delays_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "se2_tap_delays_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_4->se2_tap_delays_ucode_offset_bytes));
++			drm_dbg(adev_to_drm(adev), "se3_tap_delays_ucode_size_bytes :%u\n",
++				le32_to_cpu(rlc_hdr_v2_4->se3_tap_delays_ucode_size_bytes));
++			drm_dbg(adev_to_drm(adev), "se3_tap_delays_ucode_offset_bytes: %u\n",
++				le32_to_cpu(rlc_hdr_v2_4->se3_tap_delays_ucode_offset_bytes));
+ 			break;
+ 		default:
+-			DRM_ERROR("Unknown RLC v2 ucode: v2.%u\n", version_minor);
++			drm_err(adev_to_drm(adev), "Unknown RLC v2 ucode: v2.%u\n", version_minor);
+ 			break;
+ 		}
+ 	} else {
+-		DRM_ERROR("Unknown RLC ucode version: %u.%u\n", version_major, version_minor);
++		drm_err(adev_to_drm(adev),
++			"Unknown RLC ucode version: %u.%u\n", version_major, version_minor);
  	}
  }
  
--void amdgpu_ucode_print_sdma_hdr(const struct common_firmware_header *hdr)
-+void amdgpu_ucode_print_sdma_hdr(struct amdgpu_device *adev,
-+				 const struct common_firmware_header *hdr)
- {
+@@ -302,43 +327,49 @@ void amdgpu_ucode_print_sdma_hdr(struct amdgpu_device *adev,
  	uint16_t version_major = le16_to_cpu(hdr->header_version_major);
  	uint16_t version_minor = le16_to_cpu(hdr->header_version_minor);
-@@ -337,7 +343,8 @@ void amdgpu_ucode_print_sdma_hdr(const struct common_firmware_header *hdr)
+ 
+-	DRM_DEBUG("SDMA\n");
+-	amdgpu_ucode_print_common_hdr(hdr);
++	drm_dbg(adev_to_drm(adev), "SDMA\n");
++	amdgpu_ucode_print_common_hdr(adev, hdr);
+ 
+ 	if (version_major == 1) {
+ 		const struct sdma_firmware_header_v1_0 *sdma_hdr =
+ 			container_of(hdr, struct sdma_firmware_header_v1_0, header);
+ 
+-		DRM_DEBUG("ucode_feature_version: %u\n",
++		drm_dbg(adev_to_drm(adev), "ucode_feature_version: %u\n",
+ 			  le32_to_cpu(sdma_hdr->ucode_feature_version));
+-		DRM_DEBUG("ucode_change_version: %u\n",
++		drm_dbg(adev_to_drm(adev), "ucode_change_version: %u\n",
+ 			  le32_to_cpu(sdma_hdr->ucode_change_version));
+-		DRM_DEBUG("jt_offset: %u\n", le32_to_cpu(sdma_hdr->jt_offset));
+-		DRM_DEBUG("jt_size: %u\n", le32_to_cpu(sdma_hdr->jt_size));
++		drm_dbg(adev_to_drm(adev), "jt_offset: %u\n", le32_to_cpu(sdma_hdr->jt_offset));
++		drm_dbg(adev_to_drm(adev), "jt_size: %u\n", le32_to_cpu(sdma_hdr->jt_size));
+ 		if (version_minor >= 1) {
+ 			const struct sdma_firmware_header_v1_1 *sdma_v1_1_hdr =
+ 				container_of(sdma_hdr, struct sdma_firmware_header_v1_1, v1_0);
+-			DRM_DEBUG("digest_size: %u\n", le32_to_cpu(sdma_v1_1_hdr->digest_size));
++			drm_dbg(adev_to_drm(adev),
++				"digest_size: %u\n", le32_to_cpu(sdma_v1_1_hdr->digest_size));
+ 		}
+ 	} else if (version_major == 2) {
+ 		const struct sdma_firmware_header_v2_0 *sdma_hdr =
+ 			container_of(hdr, struct sdma_firmware_header_v2_0, header);
+ 
+-		DRM_DEBUG("ucode_feature_version: %u\n",
++		drm_dbg(adev_to_drm(adev), "ucode_feature_version: %u\n",
+ 			  le32_to_cpu(sdma_hdr->ucode_feature_version));
+-		DRM_DEBUG("ctx_jt_offset: %u\n", le32_to_cpu(sdma_hdr->ctx_jt_offset));
+-		DRM_DEBUG("ctx_jt_size: %u\n", le32_to_cpu(sdma_hdr->ctx_jt_size));
+-		DRM_DEBUG("ctl_ucode_offset: %u\n", le32_to_cpu(sdma_hdr->ctl_ucode_offset));
+-		DRM_DEBUG("ctl_jt_offset: %u\n", le32_to_cpu(sdma_hdr->ctl_jt_offset));
+-		DRM_DEBUG("ctl_jt_size: %u\n", le32_to_cpu(sdma_hdr->ctl_jt_size));
++		drm_dbg(adev_to_drm(adev),
++			"ctx_jt_offset: %u\n", le32_to_cpu(sdma_hdr->ctx_jt_offset));
++		drm_dbg(adev_to_drm(adev),
++			"ctx_jt_size: %u\n", le32_to_cpu(sdma_hdr->ctx_jt_size));
++		drm_dbg(adev_to_drm(adev),
++			"ctl_ucode_offset: %u\n", le32_to_cpu(sdma_hdr->ctl_ucode_offset));
++		drm_dbg(adev_to_drm(adev),
++			"ctl_jt_offset: %u\n", le32_to_cpu(sdma_hdr->ctl_jt_offset));
++		drm_dbg(adev_to_drm(adev),
++			"ctl_jt_size: %u\n", le32_to_cpu(sdma_hdr->ctl_jt_size));
+ 	} else if (version_major == 3) {
+ 		const struct sdma_firmware_header_v3_0 *sdma_hdr =
+ 			container_of(hdr, struct sdma_firmware_header_v3_0, header);
+ 
+-		DRM_DEBUG("ucode_reversion: %u\n",
++		drm_dbg(adev_to_drm(adev), "ucode_reversion: %u\n",
+ 			  le32_to_cpu(sdma_hdr->ucode_feature_version));
+ 	} else {
+-		DRM_ERROR("Unknown SDMA ucode version: %u.%u\n",
++		drm_err(adev_to_drm(adev), "Unknown SDMA ucode version: %u.%u\n",
+ 			  version_major, version_minor);
+ 	}
+ }
+@@ -351,43 +382,43 @@ void amdgpu_ucode_print_psp_hdr(struct amdgpu_device *adev,
+ 	uint32_t fw_index;
+ 	const struct psp_fw_bin_desc *desc;
+ 
+-	DRM_DEBUG("PSP\n");
+-	amdgpu_ucode_print_common_hdr(hdr);
++	drm_dbg(adev_to_drm(adev), "PSP\n");
++	amdgpu_ucode_print_common_hdr(adev, hdr);
+ 
+ 	if (version_major == 1) {
+ 		const struct psp_firmware_header_v1_0 *psp_hdr =
+ 			container_of(hdr, struct psp_firmware_header_v1_0, header);
+ 
+-		DRM_DEBUG("ucode_feature_version: %u\n",
++		drm_dbg(adev_to_drm(adev), "ucode_feature_version: %u\n",
+ 			  le32_to_cpu(psp_hdr->sos.fw_version));
+-		DRM_DEBUG("sos_offset_bytes: %u\n",
++		drm_dbg(adev_to_drm(adev), "sos_offset_bytes: %u\n",
+ 			  le32_to_cpu(psp_hdr->sos.offset_bytes));
+-		DRM_DEBUG("sos_size_bytes: %u\n",
++		drm_dbg(adev_to_drm(adev), "sos_size_bytes: %u\n",
+ 			  le32_to_cpu(psp_hdr->sos.size_bytes));
+ 		if (version_minor == 1) {
+ 			const struct psp_firmware_header_v1_1 *psp_hdr_v1_1 =
+ 				container_of(psp_hdr, struct psp_firmware_header_v1_1, v1_0);
+-			DRM_DEBUG("toc_header_version: %u\n",
++			drm_dbg(adev_to_drm(adev), "toc_header_version: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_1->toc.fw_version));
+-			DRM_DEBUG("toc_offset_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "toc_offset_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_1->toc.offset_bytes));
+-			DRM_DEBUG("toc_size_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "toc_size_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_1->toc.size_bytes));
+-			DRM_DEBUG("kdb_header_version: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_header_version: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_1->kdb.fw_version));
+-			DRM_DEBUG("kdb_offset_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_offset_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_1->kdb.offset_bytes));
+-			DRM_DEBUG("kdb_size_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_size_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_1->kdb.size_bytes));
+ 		}
+ 		if (version_minor == 2) {
+ 			const struct psp_firmware_header_v1_2 *psp_hdr_v1_2 =
+ 				container_of(psp_hdr, struct psp_firmware_header_v1_2, v1_0);
+-			DRM_DEBUG("kdb_header_version: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_header_version: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_2->kdb.fw_version));
+-			DRM_DEBUG("kdb_offset_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_offset_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_2->kdb.offset_bytes));
+-			DRM_DEBUG("kdb_size_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_size_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_2->kdb.size_bytes));
+ 		}
+ 		if (version_minor == 3) {
+@@ -395,23 +426,23 @@ void amdgpu_ucode_print_psp_hdr(struct amdgpu_device *adev,
+ 				container_of(psp_hdr, struct psp_firmware_header_v1_1, v1_0);
+ 			const struct psp_firmware_header_v1_3 *psp_hdr_v1_3 =
+ 				container_of(psp_hdr_v1_1, struct psp_firmware_header_v1_3, v1_1);
+-			DRM_DEBUG("toc_header_version: %u\n",
++			drm_dbg(adev_to_drm(adev), "toc_header_version: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->v1_1.toc.fw_version));
+-			DRM_DEBUG("toc_offset_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "toc_offset_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->v1_1.toc.offset_bytes));
+-			DRM_DEBUG("toc_size_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "toc_size_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->v1_1.toc.size_bytes));
+-			DRM_DEBUG("kdb_header_version: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_header_version: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->v1_1.kdb.fw_version));
+-			DRM_DEBUG("kdb_offset_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_offset_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->v1_1.kdb.offset_bytes));
+-			DRM_DEBUG("kdb_size_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "kdb_size_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->v1_1.kdb.size_bytes));
+-			DRM_DEBUG("spl_header_version: %u\n",
++			drm_dbg(adev_to_drm(adev), "spl_header_version: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->spl.fw_version));
+-			DRM_DEBUG("spl_offset_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "spl_offset_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->spl.offset_bytes));
+-			DRM_DEBUG("spl_size_bytes: %u\n",
++			drm_dbg(adev_to_drm(adev), "spl_size_bytes: %u\n",
+ 				  le32_to_cpu(psp_hdr_v1_3->spl.size_bytes));
+ 		}
+ 	} else if (version_major == 2) {
+@@ -421,72 +452,73 @@ void amdgpu_ucode_print_psp_hdr(struct amdgpu_device *adev,
+ 			desc = &(psp_hdr_v2_0->psp_fw_bin[fw_index]);
+ 			switch (desc->fw_type) {
+ 			case PSP_FW_TYPE_PSP_SOS:
+-				DRM_DEBUG("psp_sos_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_sos_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_sos_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_sos_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_SYS_DRV:
+-				DRM_DEBUG("psp_sys_drv_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_sys_drv_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_sys_drv_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_sys_drv_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_KDB:
+-				DRM_DEBUG("psp_kdb_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_kdb_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_kdb_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_kdb_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_TOC:
+-				DRM_DEBUG("psp_toc_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_toc_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_toc_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_toc_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_SPL:
+-				DRM_DEBUG("psp_spl_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_spl_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_spl_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_spl_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_RL:
+-				DRM_DEBUG("psp_rl_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_rl_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_rl_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_rl_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_SOC_DRV:
+-				DRM_DEBUG("psp_soc_drv_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_soc_drv_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_soc_drv_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_soc_drv_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_INTF_DRV:
+-				DRM_DEBUG("psp_intf_drv_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_intf_drv_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_intf_drv_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_intf_drv_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_DBG_DRV:
+-				DRM_DEBUG("psp_dbg_drv_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_dbg_drv_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_dbg_drv_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_dbg_drv_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			case PSP_FW_TYPE_PSP_RAS_DRV:
+-				DRM_DEBUG("psp_ras_drv_version: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_ras_drv_version: %u\n",
+ 					  le32_to_cpu(desc->fw_version));
+-				DRM_DEBUG("psp_ras_drv_size_bytes: %u\n",
++				drm_dbg(adev_to_drm(adev), "psp_ras_drv_size_bytes: %u\n",
+ 					  le32_to_cpu(desc->size_bytes));
+ 				break;
+ 			default:
+-				DRM_DEBUG("Unsupported PSP fw type: %d\n", desc->fw_type);
++				drm_dbg(adev_to_drm(adev),
++					"Unsupported PSP fw type: %d\n", desc->fw_type);
+ 				break;
+ 			}
+ 		}
+ 	} else {
+-		DRM_ERROR("Unknown PSP ucode version: %u.%u\n",
++		drm_err(adev_to_drm(adev), "Unknown PSP ucode version: %u.%u\n",
+ 			  version_major, version_minor);
+ 	}
+ }
+@@ -497,19 +529,20 @@ void amdgpu_ucode_print_gpu_info_hdr(struct amdgpu_device *adev,
+ 	uint16_t version_major = le16_to_cpu(hdr->header_version_major);
+ 	uint16_t version_minor = le16_to_cpu(hdr->header_version_minor);
+ 
+-	DRM_DEBUG("GPU_INFO\n");
+-	amdgpu_ucode_print_common_hdr(hdr);
++	drm_dbg(adev_to_drm(adev), "GPU_INFO\n");
++	amdgpu_ucode_print_common_hdr(adev, hdr);
+ 
+ 	if (version_major == 1) {
+ 		const struct gpu_info_firmware_header_v1_0 *gpu_info_hdr =
+ 			container_of(hdr, struct gpu_info_firmware_header_v1_0, header);
+ 
+-		DRM_DEBUG("version_major: %u\n",
++		drm_dbg(adev_to_drm(adev), "version_major: %u\n",
+ 			  le16_to_cpu(gpu_info_hdr->version_major));
+-		DRM_DEBUG("version_minor: %u\n",
++		drm_dbg(adev_to_drm(adev), "version_minor: %u\n",
+ 			  le16_to_cpu(gpu_info_hdr->version_minor));
+ 	} else {
+-		DRM_ERROR("Unknown gpu_info ucode version: %u.%u\n", version_major, version_minor);
++		drm_err(adev_to_drm(adev),
++			"Unknown gpu_info ucode version: %u.%u\n", version_major, version_minor);
  	}
  }
  
--void amdgpu_ucode_print_psp_hdr(const struct common_firmware_header *hdr)
-+void amdgpu_ucode_print_psp_hdr(struct amdgpu_device *adev,
-+				const struct common_firmware_header *hdr)
- {
- 	uint16_t version_major = le16_to_cpu(hdr->header_version_major);
- 	uint16_t version_minor = le16_to_cpu(hdr->header_version_minor);
-@@ -484,7 +491,8 @@ void amdgpu_ucode_print_psp_hdr(const struct common_firmware_header *hdr)
+@@ -1122,7 +1155,8 @@ int amdgpu_ucode_create_bo(struct amdgpu_device *adev)
+ 			&adev->firmware.fw_buf_mc,
+ 			&adev->firmware.fw_buf_ptr);
+ 		if (!adev->firmware.fw_buf) {
+-			dev_err(adev->dev, "failed to create kernel buffer for firmware.fw_buf\n");
++			drm_err(adev_to_drm(adev),
++				"failed to create kernel buffer for firmware.fw_buf\n");
+ 			return -ENOMEM;
+ 		} else if (amdgpu_sriov_vf(adev)) {
+ 			memset(adev->firmware.fw_buf_ptr, 0, adev->firmware.fw_size);
+@@ -1462,7 +1496,7 @@ int amdgpu_ucode_request(struct amdgpu_device *adev, const struct firmware **fw,
+ 	r = vsnprintf(fname, sizeof(fname), fmt, ap);
+ 	va_end(ap);
+ 	if (r == sizeof(fname)) {
+-		dev_warn(adev->dev, "amdgpu firmware name buffer overflow\n");
++		drm_warn(adev_to_drm(adev), "amdgpu firmware name buffer overflow\n");
+ 		return -EOVERFLOW;
  	}
- }
  
--void amdgpu_ucode_print_gpu_info_hdr(const struct common_firmware_header *hdr)
-+void amdgpu_ucode_print_gpu_info_hdr(struct amdgpu_device *adev,
-+				     const struct common_firmware_header *hdr)
- {
- 	uint16_t version_major = le16_to_cpu(hdr->header_version_major);
- 	uint16_t version_minor = le16_to_cpu(hdr->header_version_minor);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
-index e7fe4fd25e601..bb3e534719c72 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
-@@ -602,13 +602,20 @@ struct amdgpu_firmware {
- 	uint64_t fw_buf_mc;
- };
- 
--void amdgpu_ucode_print_mc_hdr(const struct common_firmware_header *hdr);
--void amdgpu_ucode_print_smc_hdr(const struct common_firmware_header *hdr);
--void amdgpu_ucode_print_gfx_hdr(const struct common_firmware_header *hdr);
--void amdgpu_ucode_print_rlc_hdr(const struct common_firmware_header *hdr);
--void amdgpu_ucode_print_sdma_hdr(const struct common_firmware_header *hdr);
--void amdgpu_ucode_print_psp_hdr(const struct common_firmware_header *hdr);
--void amdgpu_ucode_print_gpu_info_hdr(const struct common_firmware_header *hdr);
-+void amdgpu_ucode_print_mc_hdr(struct amdgpu_device *adev,
-+			       const struct common_firmware_header *hdr);
-+void amdgpu_ucode_print_smc_hdr(struct amdgpu_device *adev,
-+			       const struct common_firmware_header *hdr);
-+void amdgpu_ucode_print_gfx_hdr(struct amdgpu_device *adev,
-+			       const struct common_firmware_header *hdr);
-+void amdgpu_ucode_print_rlc_hdr(struct amdgpu_device *adev,
-+			       const struct common_firmware_header *hdr);
-+void amdgpu_ucode_print_sdma_hdr(struct amdgpu_device *adev,
-+			       const struct common_firmware_header *hdr);
-+void amdgpu_ucode_print_psp_hdr(struct amdgpu_device *adev,
-+			       const struct common_firmware_header *hdr);
-+void amdgpu_ucode_print_gpu_info_hdr(struct amdgpu_device *adev,
-+			       const struct common_firmware_header *hdr);
- __printf(4, 5)
- int amdgpu_ucode_request(struct amdgpu_device *adev, const struct firmware **fw,
- 			 enum amdgpu_ucode_required required, const char *fmt, ...);
-diff --git a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-index 9e8715b4739da..327424d93b461 100644
---- a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-@@ -539,7 +539,7 @@ static int cik_sdma_load_microcode(struct amdgpu_device *adev)
- 		if (!adev->sdma.instance[i].fw)
- 			return -EINVAL;
- 		hdr = (const struct sdma_firmware_header_v1_0 *)adev->sdma.instance[i].fw->data;
--		amdgpu_ucode_print_sdma_hdr(&hdr->header);
-+		amdgpu_ucode_print_sdma_hdr(adev, &hdr->header);
- 		fw_size = le32_to_cpu(hdr->header.ucode_size_bytes) / 4;
- 		adev->sdma.instance[i].fw_version = le32_to_cpu(hdr->header.ucode_version);
- 		adev->sdma.instance[i].feature_version = le32_to_cpu(hdr->ucode_feature_version);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index a63ce747863f1..e93567e87fd93 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -5499,7 +5499,7 @@ static int gfx_v10_0_rlc_load_microcode(struct amdgpu_device *adev)
- 		return -EINVAL;
- 
- 	hdr = (const struct rlc_firmware_header_v2_0 *)adev->gfx.rlc_fw->data;
--	amdgpu_ucode_print_rlc_hdr(&hdr->header);
-+	amdgpu_ucode_print_rlc_hdr(adev, &hdr->header);
- 
- 	fw_data = (const __le32 *)(adev->gfx.rlc_fw->data +
- 			   le32_to_cpu(hdr->header.ucode_array_offset_bytes));
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 39c9ac74d5f8a..b0bad4e55ae26 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -2351,7 +2351,7 @@ static int gfx_v11_0_rlc_load_microcode(struct amdgpu_device *adev)
- 		return -EINVAL;
- 
- 	hdr = (const struct rlc_firmware_header_v2_0 *)adev->gfx.rlc_fw->data;
--	amdgpu_ucode_print_rlc_hdr(&hdr->header);
-+	amdgpu_ucode_print_rlc_hdr(adev, &hdr->header);
- 
- 	version_major = le16_to_cpu(hdr->header.header_version_major);
- 	version_minor = le16_to_cpu(hdr->header.header_version_minor);
-@@ -3065,7 +3065,7 @@ static int gfx_v11_0_cp_gfx_load_pfp_microcode(struct amdgpu_device *adev)
- 	pfp_hdr = (const struct gfx_firmware_header_v1_0 *)
- 		adev->gfx.pfp_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&pfp_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &pfp_hdr->header);
- 
- 	fw_data = (const __le32 *)(adev->gfx.pfp_fw->data +
- 		le32_to_cpu(pfp_hdr->header.ucode_array_offset_bytes));
-@@ -3112,7 +3112,7 @@ static int gfx_v11_0_cp_gfx_load_pfp_microcode_rs64(struct amdgpu_device *adev)
- 	pfp_hdr = (const struct gfx_firmware_header_v2_0 *)
- 		adev->gfx.pfp_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&pfp_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &pfp_hdr->header);
- 
- 	/* instruction */
- 	fw_ucode = (const __le32 *)(adev->gfx.pfp_fw->data +
-@@ -3283,7 +3283,7 @@ static int gfx_v11_0_cp_gfx_load_me_microcode(struct amdgpu_device *adev)
- 	me_hdr = (const struct gfx_firmware_header_v1_0 *)
- 		adev->gfx.me_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&me_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &me_hdr->header);
- 
- 	fw_data = (const __le32 *)(adev->gfx.me_fw->data +
- 		le32_to_cpu(me_hdr->header.ucode_array_offset_bytes));
-@@ -3330,7 +3330,7 @@ static int gfx_v11_0_cp_gfx_load_me_microcode_rs64(struct amdgpu_device *adev)
- 	me_hdr = (const struct gfx_firmware_header_v2_0 *)
- 		adev->gfx.me_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&me_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &me_hdr->header);
- 
- 	/* instruction */
- 	fw_ucode = (const __le32 *)(adev->gfx.me_fw->data +
-@@ -3793,7 +3793,7 @@ static int gfx_v11_0_cp_compute_load_microcode(struct amdgpu_device *adev)
- 	gfx_v11_0_cp_compute_enable(adev, false);
- 
- 	mec_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.mec_fw->data;
--	amdgpu_ucode_print_gfx_hdr(&mec_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &mec_hdr->header);
- 
- 	fw_data = (const __le32 *)
- 		(adev->gfx.mec_fw->data +
-@@ -3845,7 +3845,7 @@ static int gfx_v11_0_cp_compute_load_microcode_rs64(struct amdgpu_device *adev)
- 	gfx_v11_0_cp_compute_enable(adev, false);
- 
- 	mec_hdr = (const struct gfx_firmware_header_v2_0 *)adev->gfx.mec_fw->data;
--	amdgpu_ucode_print_gfx_hdr(&mec_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &mec_hdr->header);
- 
- 	fw_ucode = (const __le32 *) (adev->gfx.mec_fw->data +
- 				le32_to_cpu(mec_hdr->ucode_offset_bytes));
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 80a16cc13e80c..52af71147b0b1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -1990,7 +1990,7 @@ static int gfx_v12_0_rlc_load_microcode(struct amdgpu_device *adev)
- 		return -EINVAL;
- 
- 	hdr = (const struct rlc_firmware_header_v2_0 *)adev->gfx.rlc_fw->data;
--	amdgpu_ucode_print_rlc_hdr(&hdr->header);
-+	amdgpu_ucode_print_rlc_hdr(adev, &hdr->header);
- 
- 	version_major = le16_to_cpu(hdr->header.header_version_major);
- 	version_minor = le16_to_cpu(hdr->header.header_version_minor);
-@@ -2302,7 +2302,7 @@ static int gfx_v12_0_cp_gfx_load_pfp_microcode_rs64(struct amdgpu_device *adev)
- 	pfp_hdr = (const struct gfx_firmware_header_v2_0 *)
- 		adev->gfx.pfp_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&pfp_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &pfp_hdr->header);
- 
- 	/* instruction */
- 	fw_ucode = (const __le32 *)(adev->gfx.pfp_fw->data +
-@@ -2446,7 +2446,7 @@ static int gfx_v12_0_cp_gfx_load_me_microcode_rs64(struct amdgpu_device *adev)
- 	me_hdr = (const struct gfx_firmware_header_v2_0 *)
- 		adev->gfx.me_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&me_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &me_hdr->header);
- 
- 	/* instruction */
- 	fw_ucode = (const __le32 *)(adev->gfx.me_fw->data +
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-index 9c6453b458b00..b2bb8a33ab5df 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-@@ -1963,9 +1963,9 @@ static int gfx_v6_0_cp_gfx_load_microcode(struct amdgpu_device *adev)
- 	ce_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.ce_fw->data;
- 	me_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.me_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&pfp_hdr->header);
--	amdgpu_ucode_print_gfx_hdr(&ce_hdr->header);
--	amdgpu_ucode_print_gfx_hdr(&me_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &pfp_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &ce_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &me_hdr->header);
- 
- 	/* PFP */
- 	fw_data = (const __le32 *)
-@@ -2530,7 +2530,7 @@ static int gfx_v6_0_rlc_resume(struct amdgpu_device *adev)
- 	fw_data = (const __le32 *)
- 		(adev->gfx.rlc_fw->data + le32_to_cpu(hdr->header.ucode_array_offset_bytes));
- 
--	amdgpu_ucode_print_rlc_hdr(&hdr->header);
-+	amdgpu_ucode_print_rlc_hdr(adev, &hdr->header);
- 
- 	for (i = 0; i < fw_size; i++) {
- 		WREG32(mmRLC_UCODE_ADDR, i);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-index 6eb48ebd3f4ed..3292ed7442f84 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-@@ -2403,9 +2403,9 @@ static int gfx_v7_0_cp_gfx_load_microcode(struct amdgpu_device *adev)
- 	ce_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.ce_fw->data;
- 	me_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.me_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&pfp_hdr->header);
--	amdgpu_ucode_print_gfx_hdr(&ce_hdr->header);
--	amdgpu_ucode_print_gfx_hdr(&me_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &pfp_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &ce_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &me_hdr->header);
- 	adev->gfx.pfp_fw_version = le32_to_cpu(pfp_hdr->header.ucode_version);
- 	adev->gfx.ce_fw_version = le32_to_cpu(ce_hdr->header.ucode_version);
- 	adev->gfx.me_fw_version = le32_to_cpu(me_hdr->header.ucode_version);
-@@ -2663,7 +2663,7 @@ static int gfx_v7_0_cp_compute_load_microcode(struct amdgpu_device *adev)
- 		return -EINVAL;
- 
- 	mec_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.mec_fw->data;
--	amdgpu_ucode_print_gfx_hdr(&mec_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &mec_hdr->header);
- 	adev->gfx.mec_fw_version = le32_to_cpu(mec_hdr->header.ucode_version);
- 	adev->gfx.mec_feature_version = le32_to_cpu(
- 					mec_hdr->ucode_feature_version);
-@@ -3424,7 +3424,7 @@ static int gfx_v7_0_rlc_resume(struct amdgpu_device *adev)
- 		return -EINVAL;
- 
- 	hdr = (const struct rlc_firmware_header_v1_0 *)adev->gfx.rlc_fw->data;
--	amdgpu_ucode_print_rlc_hdr(&hdr->header);
-+	amdgpu_ucode_print_rlc_hdr(adev, &hdr->header);
- 	adev->gfx.rlc_fw_version = le32_to_cpu(hdr->header.ucode_version);
- 	adev->gfx.rlc_feature_version = le32_to_cpu(
- 					hdr->ucode_feature_version);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 283c14e42c450..a8d9875a46e1c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -3149,7 +3149,7 @@ static int gfx_v9_0_rlc_load_microcode(struct amdgpu_device *adev)
- 		return -EINVAL;
- 
- 	hdr = (const struct rlc_firmware_header_v2_0 *)adev->gfx.rlc_fw->data;
--	amdgpu_ucode_print_rlc_hdr(&hdr->header);
-+	amdgpu_ucode_print_rlc_hdr(adev, &hdr->header);
- 
- 	fw_data = (const __le32 *)(adev->gfx.rlc_fw->data +
- 			   le32_to_cpu(hdr->header.ucode_array_offset_bytes));
-@@ -3252,9 +3252,9 @@ static int gfx_v9_0_cp_gfx_load_microcode(struct amdgpu_device *adev)
- 	me_hdr = (const struct gfx_firmware_header_v1_0 *)
- 		adev->gfx.me_fw->data;
- 
--	amdgpu_ucode_print_gfx_hdr(&pfp_hdr->header);
--	amdgpu_ucode_print_gfx_hdr(&ce_hdr->header);
--	amdgpu_ucode_print_gfx_hdr(&me_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &pfp_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &ce_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &me_hdr->header);
- 
- 	gfx_v9_0_cp_gfx_enable(adev, false);
- 
-@@ -3463,7 +3463,7 @@ static int gfx_v9_0_cp_compute_load_microcode(struct amdgpu_device *adev)
- 	gfx_v9_0_cp_compute_enable(adev, false);
- 
- 	mec_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.mec_fw->data;
--	amdgpu_ucode_print_gfx_hdr(&mec_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &mec_hdr->header);
- 
- 	fw_data = (const __le32 *)
- 		(adev->gfx.mec_fw->data +
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index 53fbf6ca7cdb9..a26159d749aae 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -1559,7 +1559,7 @@ static int gfx_v9_4_3_xcc_rlc_load_microcode(struct amdgpu_device *adev,
- 		return -EINVAL;
- 
- 	hdr = (const struct rlc_firmware_header_v2_0 *)adev->gfx.rlc_fw->data;
--	amdgpu_ucode_print_rlc_hdr(&hdr->header);
-+	amdgpu_ucode_print_rlc_hdr(adev, &hdr->header);
- 
- 	fw_data = (const __le32 *)(adev->gfx.rlc_fw->data +
- 			   le32_to_cpu(hdr->header.ucode_array_offset_bytes));
-@@ -1716,7 +1716,7 @@ static int gfx_v9_4_3_xcc_cp_compute_load_microcode(struct amdgpu_device *adev,
- 	gfx_v9_4_3_xcc_cp_compute_enable(adev, false, xcc_id);
- 
- 	mec_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.mec_fw->data;
--	amdgpu_ucode_print_gfx_hdr(&mec_hdr->header);
-+	amdgpu_ucode_print_gfx_hdr(adev, &mec_hdr->header);
- 
- 	fw_data = (const __le32 *)
- 		(adev->gfx.mec_fw->data +
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-index b4567d619d098..19b93ee70fffc 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-@@ -155,7 +155,7 @@ static int gmc_v6_0_mc_load_microcode(struct amdgpu_device *adev)
- 
- 	hdr = (const struct mc_firmware_header_v1_0 *)adev->gmc.fw->data;
- 
--	amdgpu_ucode_print_mc_hdr(&hdr->header);
-+	amdgpu_ucode_print_mc_hdr(adev, &hdr->header);
- 
- 	adev->gmc.fw_version = le32_to_cpu(hdr->header.ucode_version);
- 	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) / (4 * 2);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-index a8d5795084fc9..18cac87b99fa8 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-@@ -186,7 +186,7 @@ static int gmc_v7_0_mc_load_microcode(struct amdgpu_device *adev)
- 		return -EINVAL;
- 
- 	hdr = (const struct mc_firmware_header_v1_0 *)adev->gmc.fw->data;
--	amdgpu_ucode_print_mc_hdr(&hdr->header);
-+	amdgpu_ucode_print_mc_hdr(adev, &hdr->header);
- 
- 	adev->gmc.fw_version = le32_to_cpu(hdr->header.ucode_version);
- 	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) / (4 * 2);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-index 99ca08e9bdb58..2594b19235015 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-@@ -296,7 +296,7 @@ static int gmc_v8_0_tonga_mc_load_microcode(struct amdgpu_device *adev)
- 		return -EINVAL;
- 
- 	hdr = (const struct mc_firmware_header_v1_0 *)adev->gmc.fw->data;
--	amdgpu_ucode_print_mc_hdr(&hdr->header);
-+	amdgpu_ucode_print_mc_hdr(adev, &hdr->header);
- 
- 	adev->gmc.fw_version = le32_to_cpu(hdr->header.ucode_version);
- 	regs_size = le32_to_cpu(hdr->io_debug_size_bytes) / (4 * 2);
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index 33ed2b158fcd5..e3888d7bdfeea 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -1351,7 +1351,7 @@ static int sdma_v4_0_load_microcode(struct amdgpu_device *adev)
- 			return -EINVAL;
- 
- 		hdr = (const struct sdma_firmware_header_v1_0 *)adev->sdma.instance[i].fw->data;
--		amdgpu_ucode_print_sdma_hdr(&hdr->header);
-+		amdgpu_ucode_print_sdma_hdr(adev, &hdr->header);
- 		fw_size = le32_to_cpu(hdr->header.ucode_size_bytes) / 4;
- 
- 		fw_data = (const __le32 *)
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index 688a720bbbbd8..0613f50715483 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -926,7 +926,7 @@ static int sdma_v4_4_2_inst_load_microcode(struct amdgpu_device *adev,
- 			return -EINVAL;
- 
- 		hdr = (const struct sdma_firmware_header_v1_0 *)adev->sdma.instance[i].fw->data;
--		amdgpu_ucode_print_sdma_hdr(&hdr->header);
-+		amdgpu_ucode_print_sdma_hdr(adev, &hdr->header);
- 		fw_size = le32_to_cpu(hdr->header.ucode_size_bytes) / 4;
- 
- 		fw_data = (const __le32 *)
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-index e1348b6d9c6a6..37f094df9518c 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-@@ -891,7 +891,7 @@ static int sdma_v5_0_load_microcode(struct amdgpu_device *adev)
- 			return -EINVAL;
- 
- 		hdr = (const struct sdma_firmware_header_v1_0 *)adev->sdma.instance[i].fw->data;
--		amdgpu_ucode_print_sdma_hdr(&hdr->header);
-+		amdgpu_ucode_print_sdma_hdr(adev, &hdr->header);
- 		fw_size = le32_to_cpu(hdr->header.ucode_size_bytes) / 4;
- 
- 		fw_data = (const __le32 *)
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index 964f12afac9e3..371eb640c9ff9 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -738,7 +738,7 @@ static int sdma_v5_2_load_microcode(struct amdgpu_device *adev)
- 			return -EINVAL;
- 
- 		hdr = (const struct sdma_firmware_header_v1_0 *)adev->sdma.instance[i].fw->data;
--		amdgpu_ucode_print_sdma_hdr(&hdr->header);
-+		amdgpu_ucode_print_sdma_hdr(adev, &hdr->header);
- 		fw_size = le32_to_cpu(hdr->header.ucode_size_bytes) / 4;
- 
- 		fw_data = (const __le32 *)
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-index 00dd7bfff01a2..95adacf386c87 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-@@ -716,7 +716,7 @@ static int sdma_v6_0_load_microcode(struct amdgpu_device *adev)
- 		for (i = 0; i < adev->sdma.num_instances; i++) {
- 			/* load Control Thread microcode */
- 			hdr = (const struct sdma_firmware_header_v2_0 *)adev->sdma.instance[0].fw->data;
--			amdgpu_ucode_print_sdma_hdr(&hdr->header);
-+			amdgpu_ucode_print_sdma_hdr(adev, &hdr->header);
- 			fw_size = le32_to_cpu(hdr->ctx_jt_offset + hdr->ctx_jt_size) / 4;
- 
- 			fw_data = (const __le32 *)
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-index 767d72d07b566..ba132e9ae014a 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-@@ -691,7 +691,7 @@ static int sdma_v7_0_load_microcode(struct amdgpu_device *adev)
- 
- 	hdr = (const struct sdma_firmware_header_v3_0 *)
- 		adev->sdma.instance[0].fw->data;
--	amdgpu_ucode_print_sdma_hdr(&hdr->header);
-+	amdgpu_ucode_print_sdma_hdr(adev, &hdr->header);
- 
- 	fw_data = (const __le32 *)(adev->sdma.instance[0].fw->data +
- 			le32_to_cpu(hdr->ucode_offset_bytes));
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c
-index c712899c44cac..3cfe01576607a 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c
-@@ -220,7 +220,7 @@ int amdgpu_si_load_smc_ucode(struct amdgpu_device *adev, u32 limit)
- 
- 	hdr = (const struct smc_firmware_header_v1_0 *)adev->pm.fw->data;
- 
--	amdgpu_ucode_print_smc_hdr(&hdr->header);
-+	amdgpu_ucode_print_smc_hdr(adev, &hdr->header);
- 
- 	adev->pm.fw_version = le32_to_cpu(hdr->header.ucode_version);
- 	ucode_start_address = le32_to_cpu(hdr->ucode_start_addr);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-index 78391d8f35a9c..1d100165ddf98 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-@@ -111,7 +111,7 @@ int smu_v11_0_init_microcode(struct smu_context *smu)
- 		goto out;
- 
- 	hdr = (const struct smc_firmware_header_v1_0 *) adev->pm.fw->data;
--	amdgpu_ucode_print_smc_hdr(&hdr->header);
-+	amdgpu_ucode_print_smc_hdr(adev, &hdr->header);
- 	adev->pm.fw_version = le32_to_cpu(hdr->header.ucode_version);
- 
- 	if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-index ba5a9012dbd5e..8c651b7ae0ab2 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-@@ -109,7 +109,7 @@ int smu_v13_0_init_microcode(struct smu_context *smu)
- 		goto out;
- 
- 	hdr = (const struct smc_firmware_header_v1_0 *) adev->pm.fw->data;
--	amdgpu_ucode_print_smc_hdr(&hdr->header);
-+	amdgpu_ucode_print_smc_hdr(adev, &hdr->header);
- 	adev->pm.fw_version = le32_to_cpu(hdr->header.ucode_version);
- 
- 	if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-index 9264dc33ee7e9..9aab77127d888 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-@@ -464,7 +464,7 @@ static int smu_v13_0_6_init_microcode(struct smu_context *smu)
- 		goto out;
- 
- 	hdr = (const struct common_firmware_header *)adev->pm.fw->data;
--	amdgpu_ucode_print_smc_hdr(hdr);
-+	amdgpu_ucode_print_smc_hdr(adev, hdr);
- 
- 	/* SMU v13.0.6 binary file doesn't carry pptables, instead the entries
- 	 * are used to carry p2s tables.
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-index 76c1adda83dbc..1271a207956b2 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-@@ -85,7 +85,7 @@ int smu_v14_0_init_microcode(struct smu_context *smu)
- 		goto out;
- 
- 	hdr = (const struct smc_firmware_header_v1_0 *) adev->pm.fw->data;
--	amdgpu_ucode_print_smc_hdr(&hdr->header);
-+	amdgpu_ucode_print_smc_hdr(adev, &hdr->header);
- 	adev->pm.fw_version = le32_to_cpu(hdr->header.ucode_version);
- 
- 	if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
 -- 
 2.43.0
 
