@@ -2,90 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08174A742CD
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Mar 2025 04:30:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D88A742E6
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Mar 2025 05:05:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8996610E1E4;
-	Fri, 28 Mar 2025 03:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC8F510E97B;
+	Fri, 28 Mar 2025 04:05:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=fastmail.com header.i=@fastmail.com header.b="sqeRiTMn";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="uife+W1O";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PtTXR/PZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fout-b6-smtp.messagingengine.com
- (fout-b6-smtp.messagingengine.com [202.12.124.149])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 208DF10E0E7;
- Fri, 28 Mar 2025 03:29:56 +0000 (UTC)
-Received: from phl-compute-08.internal (phl-compute-08.phl.internal
- [10.202.2.48])
- by mailfout.stl.internal (Postfix) with ESMTP id DBCA711401C0;
- Thu, 27 Mar 2025 23:29:54 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
- by phl-compute-08.internal (MEProxy); Thu, 27 Mar 2025 23:29:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.com; h=
- cc:cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:message-id:mime-version:reply-to:subject:subject:to
- :to; s=fm2; t=1743132594; x=1743218994; bh=Cp9lnvxnIv186+PcpNlli
- pcDG9HTXGIBE5DKPJ+XZwc=; b=sqeRiTMnXfM6jqq8DA3k13Z2gwVf98zn/H135
- GS8gXTnNMEJ3MKU/LYrcWreGIEKUUwFwcMiZni9IDYqCYZhiAj3ueNWOxAcNMmb7
- Ukl2I7cZ67Elzju84csRh4YA6sX1eVOYDKtbpT2NAk+B5YRJGx6n6VqqeHdN40dS
- HidgHMy3sQCRd63X0nK5MTmtriUq0yiors1t/3rUof5zEQSiRLm3nwKoZiacKt2d
- iLw0oQOErnrrA4rVzc6A+DPcbFxK8JxJdtMiMSuQgFf64ZkKuZXICOlQc4WhNVOy
- qriyZ4dCHLdSJIquBkhmbJl1hq9Ik+ipiZVHIOBpiAYeHu/ug==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:message-id:mime-version:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
- 1743132594; x=1743218994; bh=Cp9lnvxnIv186+PcpNllipcDG9HTXGIBE5D
- KPJ+XZwc=; b=uife+W1ONSbhjyAYkKtKCHueaVurosYX+/re1nHbnO2HBb/vuIn
- 1FTXGpknr2ycz3RCRjGVfAQWPMZ/srvTeCJsUgCArpalhAHbAfiAS8IOnGu0zTRo
- V9gFqgrt0+2hW6r3W5uKuARubbHjKmpNFYqERgNUPjeL63CdeJ/U4du9DpIDCdx4
- IJC7r8BATbq81tr7NYLrOXokyqPrsUEXXPPZHRczZ122mwkiSCfKwAL+ML7cZ+iq
- SsKvfSue5mzE/woQJG4C9wrSE4EbtJXY6fK28PhDperyE/etyN/bGMbTLKc8bkSz
- 1nDslQ+40Fyg1KFtLK3nBY9qfpT2o15rDUA==
-X-ME-Sender: <xms:shfmZ0ueZmte-UCiLj_sx71Sr2OicFTeql5p0qIqBCVMLU_0_1YoDA>
- <xme:shfmZxfkAizWkzupd75SCwrdIhPYL9H_qFEoR_wguSR-ayfvcaK9ny6xrVmJA5xj8
- eid39WO4WUuDqlsddw>
-X-ME-Received: <xmr:shfmZ_wfvIQvzMU-OzolW59hbrShzUKUYBO8Ixc8e6e_u3BA4Z16pxECoNALr0yqvIRWyEhuy1AK-MiRObQ9K1zAemtGImyIirLvbXcrBxnJUnrX>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddujedtvdduucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
- pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucenucfjughrpefhvf
- evufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeflrghmvghsucfhlhhofigvrhhs
- uceosgholhgurdiiohhnvgdvfeejfeesfhgrshhtmhgrihhlrdgtohhmqeenucggtffrrg
- htthgvrhhnpefhvefgkeeiuddtudfhgefgiedvuefhhedtffejtddtfeekieefieejveet
- hfegheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- gsohhlugdriihonhgvvdefjeefsehfrghsthhmrghilhdrtghomhdpnhgspghrtghpthht
- ohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehhrghrrhihrdifvghnth
- hlrghnugesrghmugdrtghomhdprhgtphhtthhopehsuhhnphgvnhhgrdhlihesrghmugdr
- tghomhdprhgtphhtthhopehsihhquhgvihhrrgesihhgrghlihgrrdgtohhmpdhrtghpth
- htoheprghlvgigrghnuggvrhdruggvuhgthhgvrhesrghmugdrtghomhdprhgtphhtthho
- pegthhhrihhsthhirghnrdhkohgvnhhighesrghmugdrtghomhdprhgtphhtthhopegrih
- hrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhimhhonhgrsehffhiflhhl
- rdgthhdprhgtphhtthhopehskhhhrghnsehlihhnuhigfhhouhhnuggrthhiohhnrdhorh
- hgpdhrtghpthhtohepsgholhgurdiiohhnvgdvfeejfeesfhgrshhtmhgrihhlrdgtohhm
-X-ME-Proxy: <xmx:shfmZ3NyCdJM4kDItLzQq4l4PaerQQJfU1PHSdIwvxJs2VqU3G9oIA>
- <xmx:shfmZ0_RIGPuBdhT93TbFw2L5RHMWtEYYUmC9fJ9flovfKCs4EVGXA>
- <xmx:shfmZ_W0wKi7BigvzbvCrGgrVa63VstqKsNXKWcPg6NMpLMzuXKMFA>
- <xmx:shfmZ9e7Grd1sw7Jvos6p3fhNA_7W76JBum0yIg3NekAXL_9jnYMTQ>
- <xmx:shfmZ-d0gZN4Dit82iKkYe5JQ1c7xde-YhBNjDy9ijbxehNfrdVZRCiw>
-Feedback-ID: ibd7e4881:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 27 Mar 2025 23:29:52 -0400 (EDT)
-From: James Flowers <bold.zone2373@fastmail.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, skhan@linuxfoundation.org
-Cc: James Flowers <bold.zone2373@fastmail.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-kernel-mentees@lists.linux.dev
-Subject: [PATCH] drm/amd/display: removed unused function
-Date: Thu, 27 Mar 2025 20:29:02 -0700
-Message-ID: <20250328032942.16264-1-bold.zone2373@fastmail.com>
-X-Mailer: git-send-email 2.49.0
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2084.outbound.protection.outlook.com [40.107.220.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80C2C10E97B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Mar 2025 04:05:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uHO+RYtQYzyMmgDVyO5IzTS+GAlXoZRGhcdoO0uhpmUvlwK4g4HkpjzPjuxZfGuilrfG+ACm3ztEUXgkTl3/OmhjlxP3Nfyq7CLvS+WPq1/NgaKS0rWuBLkjE2vvDBSSfGfA10B6HTV2XOi2iKE3RmLy5CNMdqXJ2nLjrAst5oVsu5wSDH4jhsCKs25LxMC3vlNwswvvaEOaDIxrAmURjxjvSzYypLK1hTz97hbzDmLfOb5UWrdiGrxAPcW14yeBBD4Y005/tMedw3oVPHEeN6P2psn0IuWtP+qbdk/SesRf5JExYsKzG7Jk5XQ0CZG4NEOq4p3JmoFJ6uuwuxYz0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WOdMTkOeIzCVyOgPcy/RGW6WCyvaALfUZY2yvS0iEik=;
+ b=mRfWJ6tGY8uCmFfbDZBKyj/3kqZrQmXNOTg1t726m3Mk40UpFgZdeBrnFWT7EsgmeCWtsMOU1erF2WCwi/PTU1TR+z61vBSwSVfZnTFu38STEZE5iBLIhOj4b7bUwH3iaFZ/+FoFHD2+ovCZlzfLV5/b8Wy34oOvPi2RZlqJx45Aowxfw+rO/ohm/qgv+Gb7t6Vk/2KJRVM6gfxX+wF5bNIHKxlgQ/8NrU/1MsrmXoQksXOs/DmwqxIkyqM1rtFBLcJ2/wOCdRVaA9rZJj2Ebldz2Jog48J8s2G9QWvQzdJx2yld+zAdGgSH4/OSAlqNe2QYXTc6Ga/B9Urp35DspA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WOdMTkOeIzCVyOgPcy/RGW6WCyvaALfUZY2yvS0iEik=;
+ b=PtTXR/PZWNWFT3/EIoNt1a7UCszhV16RuJAdCtPBg2sTiXz15Ec/+cEQYpokpvOft32GMb9unrUq0XIBc70jPIbBMShjQwVbfyrqSzBISvCxFPZ6CnLvmCGV3u0tLYMZkER4gef/SLDpGXs2FxTEsLOLPDXh6wkDFucb9aP+I2w=
+Received: from PH0PR07CA0112.namprd07.prod.outlook.com (2603:10b6:510:4::27)
+ by IA1PR12MB8539.namprd12.prod.outlook.com (2603:10b6:208:446::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Fri, 28 Mar
+ 2025 04:05:45 +0000
+Received: from SN1PEPF000252A1.namprd05.prod.outlook.com
+ (2603:10b6:510:4:cafe::f9) by PH0PR07CA0112.outlook.office365.com
+ (2603:10b6:510:4::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.43 via Frontend Transport; Fri,
+ 28 Mar 2025 04:05:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SN1PEPF000252A1.mail.protection.outlook.com (10.167.242.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8534.20 via Frontend Transport; Fri, 28 Mar 2025 04:05:44 +0000
+Received: from jc-d.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 27 Mar
+ 2025 23:05:43 -0500
+From: Jay Cornwall <jay.cornwall@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Jay Cornwall <jay.cornwall@amd.com>, Kent Russell <kent.russell@amd.com>
+Subject: [PATCH] Revert "drm/amdgpu: Increase KIQ invalidate_tlbs timeout"
+Date: Thu, 27 Mar 2025 23:05:25 -0500
+Message-ID: <20250328040525.3736064-1-jay.cornwall@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A1:EE_|IA1PR12MB8539:EE_
+X-MS-Office365-Filtering-Correlation-Id: a3657197-30a1-44d1-7dd0-08dd6dadd060
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+Um99AreB//FvmzZbcQiiD6CNYCTSXb65M53VeuKPQ6BeAhOPkUj7XHmXObZ?=
+ =?us-ascii?Q?Q4kv3PQ2brxb94yCyFeESU95GGp0UjM3lnflNHuvpYCpWKN5UzDQ1a/gdSH4?=
+ =?us-ascii?Q?K2o/J4vjNzfyVHFLyK1eu1Xh9XiSma7BKxdNxuvxrDT34vVbFunBnJwD/KAn?=
+ =?us-ascii?Q?oNwAL0ZMmrEkrj8clmnUuH9n3vBLDBVmQLxiL/5qhY7a1HbbCczTdNapywwa?=
+ =?us-ascii?Q?W0drVxUKO88KQBOAdQhbEXT7IcqazQI7V2zWFGUrz2sjUsnriJfB0wjQc1sT?=
+ =?us-ascii?Q?sOYH4SwIRoEErfGtRR6g2PSuBVVYwHAfryLmgweDra7/Y1CDw0hqNJrqGSv9?=
+ =?us-ascii?Q?dQaAJQUITDEBLH+YGJSO3y/ln7LQK3qob6gzku//FWkm+e4LvcxC0+KZuYZd?=
+ =?us-ascii?Q?3+2MSiwePEr8gfJB9roYRyaoErSNdPIBZjjrWOvrEpnYJOTNjuMu6cG+xZ3M?=
+ =?us-ascii?Q?nfA8gNN3kkd2jxfMKQgx6LpLZ1efGkbEkNyAJiiYOgTAwr+pVsGa1fLzgroM?=
+ =?us-ascii?Q?4urqhIkNTuWJg4LEwaDfAvk8n+Elyqfqp2Wnbdpa1jWgLOiQiwW+Hmpct+fx?=
+ =?us-ascii?Q?LtLcUHKUoStuwhJUjJ/qaDZ6c9sSL27quWGMDceSRALuGnKdqDwnmUqEj4EL?=
+ =?us-ascii?Q?FqNC9su6rLzZtsY2EWBMIrSDfrTzkMgc949XZba/9S5CMK+aQehiVmJKpAjc?=
+ =?us-ascii?Q?vlu/+UD/JfgW1cC3Yi6trTxupkCnZuIji3c0Zgh2E7c3jbkuCdm/yGNHvx+u?=
+ =?us-ascii?Q?8eRqgfes/Ox5ZuHz9+jub2r9ICS/X+8Hcycy+PTtWVrR9LcZuF8diUWr8vEJ?=
+ =?us-ascii?Q?PN5q6HoxJtGgmOyranI3EXs9GurxNvTxtgYh0zrntxq6N+SouQn9W34j2heN?=
+ =?us-ascii?Q?+OcGEiNPkLnFV5TJ2Xmx/2J0ykoL7rNdivy8N66UErxsl3gOqUm5J8fStRVW?=
+ =?us-ascii?Q?DIDkLfLUj3KDFBSoTrPSw0ZeZyCu2UevlRE8bJO42BqYW44TK1NP7omU9fAA?=
+ =?us-ascii?Q?O818WoWAqprodHA9XV7Bj92RsLCVFsifhAw5obwWepRpjiuGmeej9zq+BZ8r?=
+ =?us-ascii?Q?Ka61/qaCJwBIu3bIXEnJ+4gK6HKcjIMUS48s1YdXwi+hD2roW2+bIPJEr6mz?=
+ =?us-ascii?Q?UP8Toofp783t0PIsvsORtc00TSvi7wSB+3ohSFpWKcQTEuTcLh/uahctvbs/?=
+ =?us-ascii?Q?fiwQLqfTVD5urkI9yG+eC+hGEDJum4vV7DY7q+LmB12jIiX84HJ7AxPTkHFI?=
+ =?us-ascii?Q?3gXYcJ8pHWuGgawqXPVUzrO4nHzwvcF4b2HNjKn5Z7Wnr6Ho7y9kk+5wa/IH?=
+ =?us-ascii?Q?3Lek4Kx7XjYP6/DyFDDXHHTskH3cme9UJpJft6WbYxh21dXC6YdkhVL/8q9a?=
+ =?us-ascii?Q?AtYKNj3S49xrT2vVCoeFowW7PW0wfoNExBWgctGrmrCBzy0sHcDmMrMVVlWo?=
+ =?us-ascii?Q?7lapzR341Q8oPk+Ypxb+B+9SwZOEzgGt68BG+Z7DV9+ZRj138/n6/MT+QkPv?=
+ =?us-ascii?Q?bNLPeKLwfvs3Ox0=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2025 04:05:44.8607 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a3657197-30a1-44d1-7dd0-08dd6dadd060
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8539
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,100 +130,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Removed unused function mpc401_get_3dlut_fast_load_status.
+This reverts commit fdb90033846e2f23dfaaa01dc47fec7b94704d0e.
 
-Signed-off-by: James Flowers <bold.zone2373@fastmail.com>
+Reportedly causing unknown issue in memory management code:
+
+[  128.047288] amdgpu 0000:65:00.0: amdgpu: Failed to map peer:0000:46:00.0 mem_domain:2
+[...]
+[  137.815340] WARNING: CPU: 81 PID: 1006 at drivers/gpu/drm/ttm/ttm_bo.c:613 ttm_bo_unpin+0x7e/0x90 [ttm]
+
+Signed-off-by: Jay Cornwall <jay.cornwall@amd.com>
+Cc: Kent Russell <kent.russell@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h     | 17 -----------------
- .../drm/amd/display/dc/mpc/dcn401/dcn401_mpc.c  | 11 -----------
- .../drm/amd/display/dc/mpc/dcn401/dcn401_mpc.h  | 14 --------------
- 3 files changed, 42 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 16 ++++------------
+ 2 files changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-index 3a89cc0cffc1..eaef3899da7b 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-@@ -967,23 +967,6 @@ struct mpc_funcs {
- 	*/
- 
- 	void (*update_3dlut_fast_load_select)(struct mpc *mpc, int mpcc_id, int hubp_idx);
--	/**
--	* @get_3dlut_fast_load_status:
--	*
--	* Get 3D LUT fast load status and reference them with done, soft_underflow and hard_underflow pointers.
--	*
--	* Parameters:
--	* - [in/out] mpc - MPC context.
--	* - [in] mpcc_id
--	* - [in/out] done
--	* - [in/out] soft_underflow
--	* - [in/out] hard_underflow
--	*
--	* Return:
--	*
--	* void
--	*/
--	void (*get_3dlut_fast_load_status)(struct mpc *mpc, int mpcc_id, uint32_t *done, uint32_t *soft_underflow, uint32_t *hard_underflow);
- 
- 	/**
- 	* @populate_lut:
-diff --git a/drivers/gpu/drm/amd/display/dc/mpc/dcn401/dcn401_mpc.c b/drivers/gpu/drm/amd/display/dc/mpc/dcn401/dcn401_mpc.c
-index ad67197557ca..98cf0cbd59ba 100644
---- a/drivers/gpu/drm/amd/display/dc/mpc/dcn401/dcn401_mpc.c
-+++ b/drivers/gpu/drm/amd/display/dc/mpc/dcn401/dcn401_mpc.c
-@@ -47,16 +47,6 @@ void mpc401_update_3dlut_fast_load_select(struct mpc *mpc, int mpcc_id, int hubp
- 	REG_SET(MPCC_MCM_3DLUT_FAST_LOAD_SELECT[mpcc_id], 0, MPCC_MCM_3DLUT_FL_SEL, hubp_idx);
- }
- 
--void mpc401_get_3dlut_fast_load_status(struct mpc *mpc, int mpcc_id, uint32_t *done, uint32_t *soft_underflow, uint32_t *hard_underflow)
--{
--	struct dcn401_mpc *mpc401 = TO_DCN401_MPC(mpc);
--
--	REG_GET_3(MPCC_MCM_3DLUT_FAST_LOAD_STATUS[mpcc_id],
--			MPCC_MCM_3DLUT_FL_DONE, done,
--			MPCC_MCM_3DLUT_FL_SOFT_UNDERFLOW, soft_underflow,
--			MPCC_MCM_3DLUT_FL_HARD_UNDERFLOW, hard_underflow);
--}
--
- void mpc401_set_movable_cm_location(struct mpc *mpc, enum mpcc_movable_cm_location location, int mpcc_id)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 3cdb5f8325aa..ffca74a476da 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -356,6 +356,7 @@ enum amdgpu_kiq_irq {
+ 	AMDGPU_CP_KIQ_IRQ_DRIVER0 = 0,
+ 	AMDGPU_CP_KIQ_IRQ_LAST
+ };
++#define SRIOV_USEC_TIMEOUT  1200000 /* wait 12 * 100ms for SRIOV */
+ #define MAX_KIQ_REG_WAIT       5000 /* in usecs, 5ms */
+ #define MAX_KIQ_REG_BAILOUT_INTERVAL   5 /* in msecs, 5ms */
+ #define MAX_KIQ_REG_TRY 1000
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index c46e36a0cd9c..464625282872 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -699,10 +699,12 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
+ 				   uint32_t flush_type, bool all_hub,
+ 				   uint32_t inst)
  {
- 	struct dcn401_mpc *mpc401 = TO_DCN401_MPC(mpc);
-@@ -618,7 +608,6 @@ static const struct mpc_funcs dcn401_mpc_funcs = {
- 	.set_bg_color = mpc1_set_bg_color,
- 	.set_movable_cm_location = mpc401_set_movable_cm_location,
- 	.update_3dlut_fast_load_select = mpc401_update_3dlut_fast_load_select,
--	.get_3dlut_fast_load_status = mpc401_get_3dlut_fast_load_status,
- 	.populate_lut = mpc401_populate_lut,
- 	.program_lut_read_write_control = mpc401_program_lut_read_write_control,
- 	.program_lut_mode = mpc401_program_lut_mode,
-diff --git a/drivers/gpu/drm/amd/display/dc/mpc/dcn401/dcn401_mpc.h b/drivers/gpu/drm/amd/display/dc/mpc/dcn401/dcn401_mpc.h
-index ce6fbcf14d7a..8e35ebc603a9 100644
---- a/drivers/gpu/drm/amd/display/dc/mpc/dcn401/dcn401_mpc.h
-+++ b/drivers/gpu/drm/amd/display/dc/mpc/dcn401/dcn401_mpc.h
-@@ -241,23 +241,9 @@ void mpc401_update_3dlut_fast_load_select(
- 	int mpcc_id,
- 	int hubp_idx);
++	u32 usec_timeout = amdgpu_sriov_vf(adev) ? SRIOV_USEC_TIMEOUT :
++		adev->usec_timeout;
+ 	struct amdgpu_ring *ring = &adev->gfx.kiq[inst].ring;
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[inst];
+ 	unsigned int ndw;
+-	int r, cnt = 0;
++	int r;
+ 	uint32_t seq;
  
--void mpc401_get_3dlut_fast_load_status(
--	struct mpc *mpc,
--	int mpcc_id,
--	uint32_t *done,
--	uint32_t *soft_underflow,
--	uint32_t *hard_underflow);
--
- void mpc401_update_3dlut_fast_load_select(
- 	struct mpc *mpc,
- 	int mpcc_id,
- 	int hubp_idx);
+ 	/*
+@@ -759,17 +761,7 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
  
--void mpc401_get_3dlut_fast_load_status(
--	struct mpc *mpc,
--	int mpcc_id,
--	uint32_t *done,
--	uint32_t *soft_underflow,
--	uint32_t *hard_underflow);
+ 		amdgpu_ring_commit(ring);
+ 		spin_unlock(&adev->gfx.kiq[inst].ring_lock);
 -
- #endif
+-		r = amdgpu_fence_wait_polling(ring, seq, MAX_KIQ_REG_WAIT);
+-
+-		might_sleep();
+-		while (r < 1 && cnt++ < MAX_KIQ_REG_TRY &&
+-		       !amdgpu_reset_pending(adev->reset_domain)) {
+-			msleep(MAX_KIQ_REG_BAILOUT_INTERVAL);
+-			r = amdgpu_fence_wait_polling(ring, seq, MAX_KIQ_REG_WAIT);
+-		}
+-
+-		if (cnt > MAX_KIQ_REG_TRY) {
++		if (amdgpu_fence_wait_polling(ring, seq, usec_timeout) < 1) {
+ 			dev_err(adev->dev, "timeout waiting for kiq fence\n");
+ 			r = -ETIME;
+ 		}
 -- 
-2.49.0
+2.34.1
 
