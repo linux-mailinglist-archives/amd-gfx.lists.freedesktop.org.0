@@ -2,70 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A2FA77D58
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Apr 2025 16:10:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2667CA77D53
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Apr 2025 16:10:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9937210E5E1;
-	Tue,  1 Apr 2025 14:10:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB90C10E5D9;
+	Tue,  1 Apr 2025 14:10:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=crpt.ru header.i=@crpt.ru header.b="LiC1Hdl3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="C092Emt5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.crpt.ru (mail.crpt.ru [91.236.205.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87CCB10E3FD;
- Mon, 31 Mar 2025 13:18:53 +0000 (UTC)
-Received: from mail.crpt.ru ([192.168.60.4])
- by mail.crpt.ru  with ESMTP id 52VDIe9H015652-52VDIe9J015652
- (version=TLSv1.2 cipher=AES256-SHA256 bits=256 verify=OK);
- Mon, 31 Mar 2025 16:18:40 +0300
-Received: from EX2.crpt.local (192.168.60.4) by ex2.crpt.local (192.168.60.4)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Mon, 31 Mar
- 2025 16:18:40 +0300
-Received: from EX2.crpt.local ([192.168.60.4]) by EX2.crpt.local
- ([192.168.60.4]) with mapi id 15.01.2507.044; Mon, 31 Mar 2025 16:18:40 +0300
-From: =?utf-8?B?0JLQsNGC0L7RgNC+0L/QuNC9INCQ0L3QtNGA0LXQuQ==?=
- <a.vatoropin@crpt.ru>
-To: Felix Kuehling <Felix.Kuehling@amd.com>
-CC: =?utf-8?B?0JLQsNGC0L7RgNC+0L/QuNC9INCQ0L3QtNGA0LXQuQ==?=
- <a.vatoropin@crpt.ru>, Alex Deucher <alexander.deucher@amd.com>,
- =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lvc-project@linuxtesting.org" <lvc-project@linuxtesting.org>
-Subject: [PATCH v2] drm/amdkfd: Change svm_range_get_info return type
-Thread-Topic: [PATCH v2] drm/amdkfd: Change svm_range_get_info return type
-Thread-Index: AQHboj9r5RaSSHXkwUiCl2J/gxqZZA==
-Date: Mon, 31 Mar 2025 13:18:40 +0000
-Message-ID: <20250331131833.68281-1-a.vatoropin@crpt.ru>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.200.60.21]
-x-kse-serverinfo: EX2.crpt.local, 9
-x-kse-antivirus-interceptor-info: scan successful
-x-kse-antivirus-info: Clean, bases: 3/31/2025 10:37:00 AM
-x-kse-attachment-filter-triggered-rules: Clean
-x-kse-attachment-filter-triggered-filters: Clean
-x-kse-bulkmessagesfiltering-scan-result: protection disabled
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4E6710E414;
+ Mon, 31 Mar 2025 14:58:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=x2CQAuRRAYRwMlr3omFwD6fijeSiAzW0M3gV5PMmEAQ=; b=C092Emt5ERNe/qO651jZskXloE
+ 3D6dgtXYyqVSPFli/fs6K2kA2fFvXty4vnGuqCO1O2LdjRcJs7H3SDYRrWwGDEZbxS/g3ko6zpKni
+ IjTN9FUNmCzkRJnUiWERFjbO2z4xopt9QXOkRNGnuP85RnpTAaPGrR02ZWKuHDl06TqesQhLC+Nl/
+ UKcVbJL8RGnf74/RenAG+7JOM14Z4Z0NX3mHUWYzMXqrZTZedIgR+Muz1UoSlAmg7Z9yeTqErycNj
+ gAPJ+3fNWnhKyTSazHHiA0JZbWSw0r1mw5/khznEkw2WMqY162LpPRJLWxVh1JZsRjKIfl6BuZOal
+ fYv1knxQ==;
+Received: from [179.125.94.226] (helo=quatroqueijos.lan)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tzGah-009FbH-Vz; Mon, 31 Mar 2025 16:58:20 +0200
+From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+To: stable@vger.kernel.org
+Cc: Wayne Lin <Wayne.Lin@amd.com>, Jerry Zuo <jerry.zuo@amd.com>,
+ Zaeem Mohamed <zaeem.mohamed@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kernel-dev@igalia.com, cascardo@igalia.com
+Subject: [PATCH 6.12] drm/amd/display: Don't write DP_MSTM_CTRL after LT
+Date: Mon, 31 Mar 2025 11:58:19 -0300
+Message-ID: <20250331145819.682274-1-cascardo@igalia.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-X-FEAS-Client-IP: 192.168.60.4
-X-FE-Policy-ID: 2:4:0:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=crpt.ru; s=crpt.ru;
- c=relaxed/relaxed; 
- h=from:to:cc:subject:date:message-id:content-type:mime-version;
- bh=9lIdQkQX9NhVijtsyv+5cMKTdPnXRz7repYBlxwakX8=;
- b=LiC1Hdl3sEbAIU8+QDpAgP2xVY6l+ZTuywyeWuN4SfvZddDQyRoEUXv8H34ohMw2n3K9vdZTQlO6
- ZRW9oIwm9w1xqP85vFQ/9eeKU+htI2Awt9sZ3sIbbHHc9HHYrmGr1GCu6Rle8c4FHsS1t6JWEDF/
- RvaAN+zVM06KPAtHHKVUXF9qqBkVk81u58RH/u92KUpKYBKZEvqTk7oFEFvXMBkdZltT8yHHQQhQ
- dedUoSlQQ7G84w7skqTlbFm0DgTG1njR6qaqiwXpT+TjhoJ5b2F/hAMZ1x4Nnz9V6ZV/fTWURXTd
- jYeGTkHOBRQwKQbhAg5okbZra7dbJDp/3Yqe8Q==
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 01 Apr 2025 14:10:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,78 +60,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQW5kcmV5IFZhdG9yb3BpbiA8YS52YXRvcm9waW5AY3JwdC5ydT4NCg0KU3RhdGljIGFu
-YWx5c2lzIHNob3dzIHRoYXQgcG9pbnRlciAic3ZtcyIgY2Fubm90IGJlIE5VTEwgYmVjYXVzZSBp
-dCBwb2ludHMNCnRvIHRoZSBvYmplY3QgInN0cnVjdCBzdm1fcmFuZ2VfbGlzdCIuIFJlbW92ZSB0
-aGUgZXh0cmEgTlVMTCBjaGVjay4gSXQgaXMNCm1lYW5pbmdsZXNzIGFuZCBoYXJtcyB0aGUgcmVh
-ZGFiaWxpdHkgb2YgdGhlIGNvZGUuDQoNCkluIHRoZSBmdW5jdGlvbiBzdm1fcmFuZ2VfZ2V0X2lu
-Zm8oKSB0aGVyZSBpcyBubyBwb3NzaWJpbGl0eSBvZiBmYWlsdXJlLg0KVGhlcmVmb3JlLCB0aGUg
-Y2FsbGVyIG9mIHRoZSBmdW5jdGlvbiBzdm1fcmFuZ2VfZ2V0X2luZm8oKSBkb2VzIG5vdCBuZWVk
-DQphIHJldHVybiB2YWx1ZS4gQ2hhbmdlIHRoZSBmdW5jdGlvbiBzdm1fcmFuZ2VfZ2V0X2luZm8o
-KSByZXR1cm4gdHlwZSBmcm9tDQoiaW50IiB0byAidm9pZCIuIA0KDQpTaW5jZSB0aGUgZnVuY3Rp
-b24gc3ZtX3JhbmdlX2dldF9pbmZvKCkgaGFzIGEgcmV0dXJuIHR5cGUgb2YgInZvaWQiLiBUaGUN
-CmNhbGxlciBvZiB0aGUgZnVuY3Rpb24gc3ZtX3JhbmdlX2dldF9pbmZvKCkgZG9lcyBub3QgbmVl
-ZCBhIHJldHVybiB2YWx1ZS4NCkRlbGV0ZSBleHRyYSBjb2RlLg0KDQpGb3VuZCBieSBMaW51eCBW
-ZXJpZmljYXRpb24gQ2VudGVyIChsaW51eHRlc3Rpbmcub3JnKSB3aXRoIFNWQUNFLg0KDQpTaWdu
-ZWQtb2ZmLWJ5OiBBbmRyZXkgVmF0b3JvcGluIDxhLnZhdG9yb3BpbkBjcnB0LnJ1Pg0KLS0tDQp2
-MSAtPiB2MjogYWxzbyBjaGFuZ2UgcmV0dXJuIHR5cGUgb2Ygc3ZtX3JhbmdlX2dldF9pbmZvKCkg
-cGVyIEZlbGl4IEt1ZWhsaW5nIHN1Z2dlc3Rpb24NCg0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-a2ZkL2tmZF9jaGFyZGV2LmMgfCAgNCArLS0tDQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQv
-a2ZkX3N2bS5jICAgICB8ICA3ICsrLS0tLS0NCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9r
-ZmRfc3ZtLmggICAgIHwgMTEgKysrKystLS0tLS0NCiAzIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0
-aW9ucygrKSwgMTQgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGtmZC9rZmRfY2hhcmRldi5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2Zk
-X2NoYXJkZXYuYw0KaW5kZXggMWU5ZGQwMDYyMGJmLi5hMjE0OWFmYTU4MDMgMTAwNjQ0DQotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfY2hhcmRldi5jDQorKysgYi9kcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfY2hhcmRldi5jDQpAQCAtMjAzOSw5ICsyMDM5LDcgQEAg
-c3RhdGljIGludCBjcml1X2dldF9wcm9jZXNzX29iamVjdF9pbmZvKHN0cnVjdCBrZmRfcHJvY2Vz
-cyAqcCwNCiANCiAJbnVtX2V2ZW50cyA9IGtmZF9nZXRfbnVtX2V2ZW50cyhwKTsNCiANCi0JcmV0
-ID0gc3ZtX3JhbmdlX2dldF9pbmZvKHAsICZudW1fc3ZtX3JhbmdlcywgJnN2bV9wcml2X2RhdGFf
-c2l6ZSk7DQotCWlmIChyZXQpDQotCQlyZXR1cm4gcmV0Ow0KKwlzdm1fcmFuZ2VfZ2V0X2luZm8o
-cCwgJm51bV9zdm1fcmFuZ2VzLCAmc3ZtX3ByaXZfZGF0YV9zaXplKTsNCiANCiAJKm51bV9vYmpl
-Y3RzID0gbnVtX3F1ZXVlcyArIG51bV9ldmVudHMgKyBudW1fc3ZtX3JhbmdlczsNCiANCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmMNCmluZGV4IDEwMDcxN2E5OGVjMS4uMWI3ZDU3YTFi
-MjQ1IDEwMDY0NA0KLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX3N2bS5jDQor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmMNCkBAIC00MDc2LDggKzQw
-NzYsOCBAQCBpbnQga2ZkX2NyaXVfcmVzdG9yZV9zdm0oc3RydWN0IGtmZF9wcm9jZXNzICpwLA0K
-IAlyZXR1cm4gcmV0Ow0KIH0NCiANCi1pbnQgc3ZtX3JhbmdlX2dldF9pbmZvKHN0cnVjdCBrZmRf
-cHJvY2VzcyAqcCwgdWludDMyX3QgKm51bV9zdm1fcmFuZ2VzLA0KLQkJICAgICAgIHVpbnQ2NF90
-ICpzdm1fcHJpdl9kYXRhX3NpemUpDQordm9pZCBzdm1fcmFuZ2VfZ2V0X2luZm8oc3RydWN0IGtm
-ZF9wcm9jZXNzICpwLCB1aW50MzJfdCAqbnVtX3N2bV9yYW5nZXMsDQorCQkJdWludDY0X3QgKnN2
-bV9wcml2X2RhdGFfc2l6ZSkNCiB7DQogCXVpbnQ2NF90IHRvdGFsX3NpemUsIGFjY2Vzc2liaWxp
-dHlfc2l6ZSwgY29tbW9uX2F0dHJfc2l6ZTsNCiAJaW50IG5hdHRyX2NvbW1vbiA9IDQsIG5hdHRy
-X2FjY2Vzc2liaWxpdHkgPSAxOw0KQEAgLTQwODksOCArNDA4OSw2IEBAIGludCBzdm1fcmFuZ2Vf
-Z2V0X2luZm8oc3RydWN0IGtmZF9wcm9jZXNzICpwLCB1aW50MzJfdCAqbnVtX3N2bV9yYW5nZXMs
-DQogCSpzdm1fcHJpdl9kYXRhX3NpemUgPSAwOw0KIA0KIAlzdm1zID0gJnAtPnN2bXM7DQotCWlm
-ICghc3ZtcykNCi0JCXJldHVybiAtRUlOVkFMOw0KIA0KIAltdXRleF9sb2NrKCZzdm1zLT5sb2Nr
-KTsNCiAJbGlzdF9mb3JfZWFjaF9lbnRyeShwcmFuZ2UsICZzdm1zLT5saXN0LCBsaXN0KSB7DQpA
-QCAtNDEzMiw3ICs0MTMwLDYgQEAgaW50IHN2bV9yYW5nZV9nZXRfaW5mbyhzdHJ1Y3Qga2ZkX3By
-b2Nlc3MgKnAsIHVpbnQzMl90ICpudW1fc3ZtX3JhbmdlcywNCiANCiAJcHJfZGVidWcoIm51bV9z
-dm1fcmFuZ2VzICV1IHRvdGFsX3ByaXZfc2l6ZSAlbGx1XG4iLCAqbnVtX3N2bV9yYW5nZXMsDQog
-CQkgKnN2bV9wcml2X2RhdGFfc2l6ZSk7DQotCXJldHVybiAwOw0KIH0NCiANCiBpbnQga2ZkX2Ny
-aXVfY2hlY2twb2ludF9zdm0oc3RydWN0IGtmZF9wcm9jZXNzICpwLA0KZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9zdm0uaCBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1ka2ZkL2tmZF9zdm0uaA0KaW5kZXggNmVhMjNjNzgwMDljLi4wMWM3YTQ4Nzc5MDQgMTAwNjQ0
-DQotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmgNCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9zdm0uaA0KQEAgLTE4NCw4ICsxODQsOCBAQCB2b2lk
-IHNjaGVkdWxlX2RlZmVycmVkX2xpc3Rfd29yayhzdHJ1Y3Qgc3ZtX3JhbmdlX2xpc3QgKnN2bXMp
-Ow0KIHZvaWQgc3ZtX3JhbmdlX2RtYV91bm1hcF9kZXYoc3RydWN0IGRldmljZSAqZGV2LCBkbWFf
-YWRkcl90ICpkbWFfYWRkciwNCiAJCQkgdW5zaWduZWQgbG9uZyBvZmZzZXQsIHVuc2lnbmVkIGxv
-bmcgbnBhZ2VzKTsNCiB2b2lkIHN2bV9yYW5nZV9kbWFfdW5tYXAoc3RydWN0IHN2bV9yYW5nZSAq
-cHJhbmdlKTsNCi1pbnQgc3ZtX3JhbmdlX2dldF9pbmZvKHN0cnVjdCBrZmRfcHJvY2VzcyAqcCwg
-dWludDMyX3QgKm51bV9zdm1fcmFuZ2VzLA0KLQkJICAgICAgIHVpbnQ2NF90ICpzdm1fcHJpdl9k
-YXRhX3NpemUpOw0KK3ZvaWQgc3ZtX3JhbmdlX2dldF9pbmZvKHN0cnVjdCBrZmRfcHJvY2VzcyAq
-cCwgdWludDMyX3QgKm51bV9zdm1fcmFuZ2VzLA0KKwkJCXVpbnQ2NF90ICpzdm1fcHJpdl9kYXRh
-X3NpemUpOw0KIGludCBrZmRfY3JpdV9jaGVja3BvaW50X3N2bShzdHJ1Y3Qga2ZkX3Byb2Nlc3Mg
-KnAsDQogCQkJICAgIHVpbnQ4X3QgX191c2VyICp1c2VyX3ByaXZfZGF0YSwNCiAJCQkgICAgdWlu
-dDY0X3QgKnByaXZfb2Zmc2V0KTsNCkBAIC0yMzcsMTMgKzIzNywxMiBAQCBzdGF0aWMgaW5saW5l
-IGludCBzdm1fcmFuZ2Vfc2NoZWR1bGVfZXZpY3Rfc3ZtX2JvKA0KIAlyZXR1cm4gLUVJTlZBTDsN
-CiB9DQogDQotc3RhdGljIGlubGluZSBpbnQgc3ZtX3JhbmdlX2dldF9pbmZvKHN0cnVjdCBrZmRf
-cHJvY2VzcyAqcCwNCi0JCQkJICAgICB1aW50MzJfdCAqbnVtX3N2bV9yYW5nZXMsDQotCQkJCSAg
-ICAgdWludDY0X3QgKnN2bV9wcml2X2RhdGFfc2l6ZSkNCitzdGF0aWMgaW5saW5lIHZvaWQgc3Zt
-X3JhbmdlX2dldF9pbmZvKHN0cnVjdCBrZmRfcHJvY2VzcyAqcCwNCisJCQkJICAgICAgdWludDMy
-X3QgKm51bV9zdm1fcmFuZ2VzLA0KKwkJCQkgICAgICB1aW50NjRfdCAqc3ZtX3ByaXZfZGF0YV9z
-aXplKQ0KIHsNCiAJKm51bV9zdm1fcmFuZ2VzID0gMDsNCiAJKnN2bV9wcml2X2RhdGFfc2l6ZSA9
-IDA7DQotCXJldHVybiAwOw0KIH0NCiANCiBzdGF0aWMgaW5saW5lIGludCBrZmRfY3JpdV9jaGVj
-a3BvaW50X3N2bShzdHJ1Y3Qga2ZkX3Byb2Nlc3MgKnAsDQotLSANCjIuNDMuMA0K
+From: Wayne Lin <Wayne.Lin@amd.com>
+
+[ Upstream commit bc068194f548ef1f230d96c4398046bf59165992 ]
+
+[Why]
+Observe after suspend/resme, we can't light up mst monitors under specific
+mst hub. The reason is that driver still writes DPCD DP_MSTM_CTRL after LT.
+It's forbidden even we write the same value for that dpcd register.
+
+[How]
+We already resume the mst branch device dpcd settings during
+resume_mst_branch_status(). Leverage drm_dp_mst_topology_queue_probe() to
+only probe the topology, not calling drm_dp_mst_topology_mgr_resume() which
+will set DP_MSTM_CTRL as well.
+
+Reviewed-by: Jerry Zuo <jerry.zuo@amd.com>
+Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
+Signed-off-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    | 16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index d9a3917d207e..c4c6538eabae 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3231,8 +3231,7 @@ static int dm_resume(void *handle)
+ 	struct dm_atomic_state *dm_state = to_dm_atomic_state(dm->atomic_obj.state);
+ 	enum dc_connection_type new_connection_type = dc_connection_none;
+ 	struct dc_state *dc_state;
+-	int i, r, j, ret;
+-	bool need_hotplug = false;
++	int i, r, j;
+ 	struct dc_commit_streams_params commit_params = {};
+ 
+ 	if (dm->dc->caps.ips_support) {
+@@ -3427,23 +3426,16 @@ static int dm_resume(void *handle)
+ 		    aconnector->mst_root)
+ 			continue;
+ 
+-		ret = drm_dp_mst_topology_mgr_resume(&aconnector->mst_mgr, true);
+-
+-		if (ret < 0) {
+-			dm_helpers_dp_mst_stop_top_mgr(aconnector->dc_link->ctx,
+-					aconnector->dc_link);
+-			need_hotplug = true;
+-		}
++		drm_dp_mst_topology_queue_probe(&aconnector->mst_mgr);
+ 	}
+ 	drm_connector_list_iter_end(&iter);
+ 
+-	if (need_hotplug)
+-		drm_kms_helper_hotplug_event(ddev);
+-
+ 	amdgpu_dm_irq_resume_late(adev);
+ 
+ 	amdgpu_dm_smu_write_watermarks_table(adev);
+ 
++	drm_kms_helper_hotplug_event(ddev);
++
+ 	return 0;
+ }
+ 
+-- 
+2.47.2
+
