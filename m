@@ -2,48 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 267FBA77D4D
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Apr 2025 16:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5096A77D45
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Apr 2025 16:10:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F2FB10E5CD;
-	Tue,  1 Apr 2025 14:10:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC69D10E0A6;
+	Tue,  1 Apr 2025 14:10:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=cardosozeferino.com header.i=@cardosozeferino.com header.b="putsS8Ts";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LpAcPrSt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 756 seconds by postgrey-1.36 at gabe;
- Mon, 31 Mar 2025 18:52:47 UTC
-Received: from mail-4317.protonmail.ch (mail-4317.protonmail.ch [185.70.43.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B96AA10E030
- for <amd-gfx@lists.freedesktop.org>; Mon, 31 Mar 2025 18:52:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cardosozeferino.com;
- s=protonmail; t=1743447165; x=1743706365;
- bh=YpJ/l5PEOCB5cv5FlFtDLSWABAvqyqE8nyFvX4SF8E4=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
- b=putsS8TshpP3237zlq2+sazrkYBltcD5fg+SISwGlPy0Brjv5e+WP6/Iev9MZ18v+
- HMzBtsEyEqn49+gMoWPhp52PErhrYBIrR7S3ZXkEHtCfepd9Kw6MrKMDUStFyNW+p8
- E7NB1EobJZ3hacHUVf+4BA5e1Qsntshb0llFYsDcRd5BUGMxoB0D7YzLdbcM3yBtC5
- rl2X6A4Kr/V31ULp9Ia/fyk8PAyUKD2/Jd57zxtEVzx7Uge1BlII6w4VNKc7yc3Z+p
- /v14gMJEn4TDsh+30YiLwr4weaGfkJhhvGfHv8OS0GMKSI4yG/7hpCeyMV7M5bTZHD
- WKOTwI3itvPJA==
-Date: Mon, 31 Mar 2025 18:52:42 +0000
-To: "regressions@lists.linux.dev" <regressions@lists.linux.dev>
-From: Leo <leo.cod@cardosozeferino.com>
-Cc: "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Fw: regression bisected RX580 GPU crash chipset overheating (kernel
- 6.8 and later)
-Message-ID: <oSrvMpqcjQyRXhuYMJUBDZxjdZGRvZoJKzz7S9t679c-MacrTC0ByUoLJYZ9Dk0y9j8jcjYczkQChnuipFHjj_3SD1e2UYTjeW0quKkhrcA=@cardosozeferino.com>
-In-Reply-To: <aHeSm_VYiQumMlj0NrCwhY5Fq9C_B26HgIjZDf4Vvd9KuRae3sY3pYng-sr4gzhyf9Ioto7PzIVm6UbXwuGjyCusKT-ldRZREFpfEbKnPtk=@cardosozeferino.com>
-References: <aHeSm_VYiQumMlj0NrCwhY5Fq9C_B26HgIjZDf4Vvd9KuRae3sY3pYng-sr4gzhyf9Ioto7PzIVm6UbXwuGjyCusKT-ldRZREFpfEbKnPtk=@cardosozeferino.com>
-Feedback-ID: 79006605:user:proton
-X-Pm-Message-ID: 3f7014c18f54e414896c4aedf4a5737b957d199b
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
+ [209.85.218.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0987E10E162;
+ Mon, 31 Mar 2025 18:54:00 +0000 (UTC)
+Received: by mail-ej1-f44.google.com with SMTP id
+ a640c23a62f3a-ac298c8fa50so810200766b.1; 
+ Mon, 31 Mar 2025 11:53:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1743447238; x=1744052038; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=hn03dtZ2hFaiRTWE1ZhCFbL7wzHrnp2m66oE95vfEK4=;
+ b=LpAcPrStiLc4b63gburTjZ/6CQiGZXh2s4yObWh6PtMT0Csm9qGmd47glBLY2QdnW3
+ bXgwwUnQCYWMG4XsfReukdbwnqbCpLfs2wfWxPxBsFDhPkpak9r6R1cs2MEIWXaGUkgQ
+ E/Kb985NvnKOulitUyaivBFF8VPBfT9THNqq33LQn+xZcvqn8bTSnW0sY4hfi45CswKE
+ OximLTJHjqtOMc9sbf0+A+UhkoHNfrChfZUjyY7e/7n7gtpOfZmsXEP9zhFJNPpElAWz
+ fRLI8h0ktYJAAkE//wCPFyHHo4sxySrh+AE2AT0lSoUKiB96LXD/XUYLtjVxMHiiXPVs
+ TRYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1743447238; x=1744052038;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=hn03dtZ2hFaiRTWE1ZhCFbL7wzHrnp2m66oE95vfEK4=;
+ b=RVWI9DM4ix6yTj66PehrPHsttAjMcvty+EyW37tVo6e3HSjMJU2YsS7S9CU8BC8Ebw
+ jM0ep+LqNA453AXavp4UbZgl+ku6SD/7drYFFc2DbRGBErt/q7GrcydteufcIaFpm+C6
+ oiml2bklljZF6QN2UBRF/aGSVXEd2D0zxusLUctcIMTzuE3c1Ms/1TA4J/qnujI7Y/G4
+ MPDzBzIwI08eZQxa76qirzf7vziqJsE119OAUpcJUaytHvXr7L4UszS7tEZ2V77IvBzi
+ gU4nVmnWIS2HXSrDO0Atz1xYTc2IAjtLS8k+Yp2i5iuDaeuRIHeDJLsGn8CrCGQ3nrfj
+ 1Feg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUBd0iPydSK45QzCWOCmoYDfxJezZFqA9uqvIe394ikCRXidzGo6OcbwbKyqf5v5o0ZZT2MSsPp@lists.freedesktop.org,
+ AJvYcCWSvxjVuCFZwTHgV1C0C/9QNXiZztLOoC0m4u+WfpFDMVWdQngivzSYQ8RerYEclLSjtCacUYPmanS/@lists.freedesktop.org,
+ AJvYcCXswlUBTHSEELBEAdOBcG0aOSnEnlBcdCke2eHfeKD+AN3kV4LsxqHY18VR3n7zoD1hkSqNeaO9NfW5PEqIRg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz1zCQTHZzeWd879zf5vbshh+WIU5FOVnBrsBlWhsU9xC0l3h9N
+ D6u5OwWMcwr+RykiE3EbJPrlK8bUUbHNtyJ7CgkvEU+h5iYbk9jBprz7F5odfFsqhy25HY1Fmgx
+ nTjzX45sgdnfKyXY/LP02aLOfTCY=
+X-Gm-Gg: ASbGncsIaU0vsu58XeSxWCIGnsu7sdfVKDBdkEVKNODVwoMB9G+SS9mVBo+kWKn2nk+
+ Nf1GzeHl87r9Nfy2O0vQbk0YcBVxVxCfE+ptIt63aXH9KKF5XuMnC1xribzlVX9D67jZpVsHa++
+ oJNqP278IaY0Sj/MaDZxvL6XXndCqDacO968KaxdqG+r8vOlFE3yL67KCff7g/
+X-Google-Smtp-Source: AGHT+IGvAA1TT+qttz/pViHg6LEPKoECU+0Rsbyu0pwwhVUEEGF8X1rEM0CVCj5BLp/WcGyQsl9n8gOp6SPVOjCRDUM=
+X-Received: by 2002:a17:907:97c9:b0:ac1:de84:dec0 with SMTP id
+ a640c23a62f3a-ac738a16526mr1032207566b.26.1743447238298; Mon, 31 Mar 2025
+ 11:53:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="b1=_jTF5BhlPPxnPRstgXz2O5nAKhWBcO6Xr1F6r0U3QtY"
+References: <20250326234748.2982010-1-alex.hung@amd.com>
+ <20250326234748.2982010-25-alex.hung@amd.com>
+ <TYCPR01MB8437BA1D5FFC25AE63F731D198A22@TYCPR01MB8437.jpnprd01.prod.outlook.com>
+ <0add5ab1-0717-42a8-8994-a381b635040b@amd.com>
+ <TYCPR01MB8437ADBCD38143B223E9384A98AD2@TYCPR01MB8437.jpnprd01.prod.outlook.com>
+ <9984f8e4-3f24-49d0-a7be-4f746dfbb4cc@amd.com>
+ <TYCPR01MB8437D229F3DFFA7CA6CA02D198AD2@TYCPR01MB8437.jpnprd01.prod.outlook.com>
+ <a6489110-4e76-4977-a0d5-586e3b99ab0e@amd.com>
+ <TYCPR01MB843722301025CE5047BCFA2898AD2@TYCPR01MB8437.jpnprd01.prod.outlook.com>
+ <e6bac4d3-d445-48d6-8121-39895a09ccff@amd.com>
+ <TYCPR01MB84372C5EFC66F7CC9259FBBE98AD2@TYCPR01MB8437.jpnprd01.prod.outlook.com>
+ <TYCPR01MB843757F4E7BFF224712BD68F98AD2@TYCPR01MB8437.jpnprd01.prod.outlook.com>
+ <5eac0bab-60c2-4e94-9ab2-bad5f451c8c9@amd.com>
+In-Reply-To: <5eac0bab-60c2-4e94-9ab2-bad5f451c8c9@amd.com>
+From: Xaver Hugl <xaver.hugl@gmail.com>
+Date: Mon, 31 Mar 2025 20:53:47 +0200
+X-Gm-Features: AQ5f1JpS5wxwaOO8jnM3RgARSu3ZQHf3muSBh5FLgv2-Oy0xqQf0y01_DAReGVA
+Message-ID: <CAFZQkGyOvLyqVBRr5_mhApeEx2emoJ8KRp2_GDuF2rL-4zZ2bA@mail.gmail.com>
+Subject: Re: [PATCH V8 24/43] drm/amd/display: Skip color pipeline
+ initialization for cursor plane
+To: Alex Hung <alex.hung@amd.com>
+Cc: Shengyu Qu <wiagn233@outlook.com>, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, wayland-devel@lists.freedesktop.org, 
+ harry.wentland@amd.com, leo.liu@amd.com, ville.syrjala@linux.intel.com, 
+ pekka.paalanen@collabora.com, contact@emersion.fr, mwen@igalia.com, 
+ jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com, 
+ agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org, 
+ victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com, 
+ quic_naseer@quicinc.com, quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com, 
+ marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com, 
+ chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 01 Apr 2025 14:10:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,38 +104,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---b1=_jTF5BhlPPxnPRstgXz2O5nAKhWBcO6Xr1F6r0U3QtY
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+> Cursor plane has no color pipeline and thus it has no colorop either. It
+> inherits color processing from its parent plane.
 
-SGksCkZvciB3aGF0IEkgcmVhZCBvbiB0aGUgcmVwb3J0aW5nIGlzc3VlLCBJIHRoaW5rIHRoZSBp
-c3N1ZSBJIGFtIGZhY2luZyBxdWFsaWZ5IGZvciByZWdyZXNzaW9uLCBidXQgYXMgSSBhbSBhIG5v
-b2IgeWV0IEknbSBub3Qgc3VyZS4KSSByZXBvcnRlZCBpdCB0byBnaXRsYWIgbGluayBhcyBkZXNj
-cmliZWQgaW4gdGhlIG1haW50YWluZXJzIGxpc3QuIEJlbG93IGlzIHRoZSBpc3N1ZSByZXBvcnQg
-bGluay4KaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9hbWQvLS9pc3N1ZXMvNDA5
-OAoKU29ycnkgZm9yIG5vdCBiZWVuIGNvbmNpc2UgZW5vdWdoIG9uIHRoZSBpc3N1ZSByZXBvcnQu
-CgpSZWdhcmRzLExlYW5kcm8uCgpPQlM6IHJlc2VudCBkdWUgdG8gcmVmdXNlIGJ5IHJlZ3Jlc3Np
-b24gbGlzdCBmb3IgY29udGFpbmluZyBodG1sIGxpbmtzIHRoYXQgSSB0cmllZCB0byByZW1vdmUu
-
---b1=_jTF5BhlPPxnPRstgXz2O5nAKhWBcO6Xr1F6r0U3QtY
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
-cHg7Ij48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3F1b3RlIj48c3Bhbj5IaSw8L3NwYW4+PGRpdj5G
-b3INCiB3aGF0IEkgcmVhZCBvbiB0aGUgcmVwb3J0aW5nIGlzc3VlLCBJIHRoaW5rIHRoZSBpc3N1
-ZSBJIGFtIGZhY2luZyANCnF1YWxpZnkgZm9yIHJlZ3Jlc3Npb24sIGJ1dCBhcyBJIGFtIGEgbm9v
-YiB5ZXQgSSdtIG5vdCBzdXJlLjwvZGl2PjxkaXY+SSByZXBvcnRlZCBpdCB0byBnaXRsYWIgbGlu
-ayBhcyBkZXNjcmliZWQgaW4gdGhlIDxzcGFuPm1haW50YWluZXJzPC9zcGFuPiBsaXN0LiBCZWxv
-dyBpcyB0aGUgaXNzdWUgcmVwb3J0IGxpbmsuPC9kaXY+PGRpdj5odHRwczovL2dpdGxhYi5mcmVl
-ZGVza3RvcC5vcmcvZHJtL2FtZC8tL2lzc3Vlcy80MDk4PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRp
-dj5Tb3JyeSBmb3Igbm90IGJlZW4gY29uY2lzZSBlbm91Z2ggb24gdGhlIGlzc3VlIHJlcG9ydC48
-L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PlJlZ2FyZHMsPC9kaXY+PHNwYW4+TGVhbmRyby48L3Nw
-YW4+PC9kaXY+PGRpdiBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSI+PGJyPjwvZGl2PjxkaXYgY2xh
-c3M9InByb3Rvbm1haWxfcXVvdGUiPg0KICAgIDxiPk9CUzogcmVzZW50IGR1ZSB0byByZWZ1c2Ug
-YnkgcmVncmVzc2lvbiBsaXN0IGZvciBjb250YWluaW5nIGh0bWwgbGlua3MgdGhhdCBJIHRyaWVk
-IHRvIHJlbW92ZS48L2I+PC9kaXY+PC9kaXY+
-
-
---b1=_jTF5BhlPPxnPRstgXz2O5nAKhWBcO6Xr1F6r0U3QtY--
-
+Just to be sure: That means amdgpu will reject atomic commits that try
+to set a color pipeline on the primary plane while showing the cursor
+plane on top of it? Just like with scaling?
