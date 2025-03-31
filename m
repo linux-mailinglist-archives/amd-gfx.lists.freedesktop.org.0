@@ -2,158 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2821A76CD1
-	for <lists+amd-gfx@lfdr.de>; Mon, 31 Mar 2025 20:21:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EBD6A76EED
+	for <lists+amd-gfx@lfdr.de>; Mon, 31 Mar 2025 22:17:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B40F10E057;
-	Mon, 31 Mar 2025 18:21:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EDFA10E487;
+	Mon, 31 Mar 2025 20:17:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qWcNPf46";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="GxXXZqfl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2046.outbound.protection.outlook.com [40.107.244.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65D5A10E057;
- Mon, 31 Mar 2025 18:21:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=navrCSszctRGAqK3/SmKKnefQq/Lagch1hy/6cFmOf+95GnFMz66quOE4JsErbPO5eSIox7bzE7nCzu6QI49Kyp3mLJ2u84tkwab139pKGazGqk87EXK8n8viV9uoeOjWS4Guf8AUNlzRvSEDLVyrm903iCp1yA619goyWuM5Id9OWgE+zmIQIUocsCwcJdgiFdgJ2yR9t1tAfvewk4e4VVqQ5B53Q7qrG353LbNfc/eHK4HyWi2tmPToChQitODPQTBAMejdfwYoktnmnNFDOOuUZlJJR7rXx+QaqNmWy+h1ORTcww34v6HUBrmfMghSyNxGDqkmwaq3vIlZBJBuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1HXWYn57BxnPGCYJCdqO/OF2XjScQu04kGfJGcRbQQI=;
- b=hmdjMficw7MpAuL/8YN0GRLnX1LuDWeP3phII5EJT+0oVUPr8WJP5Seg647+F1xBA5GYBbwvHZTkUyQcQZot/22nx9b1j/IcjE63LZFc6A7gwb8aK3+pM1fEe+jcoL6DkVHWvmIedX3ie9QyaZlb0MG1buZnuVBwo2bW7/AUUSlL3BK4huMlVCHOD5EnohfzsjAtvmrWQZ/5YlZooM8mfndSjFR8GxneU5eJCqp4cxaQ2hj7ji7Pf2yrhzicDa3KDa7j6zJFLsX+WeZ1vIB6PqciP542WXLQd3YJter5o5NvNvfK7RM6MzhHcdL52XHdl5XhSRwaiWo+7PzA6joXZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1HXWYn57BxnPGCYJCdqO/OF2XjScQu04kGfJGcRbQQI=;
- b=qWcNPf46f+h+a9HLSKrgQ3T3d14DlEkk8xA3AStbG0ZrrGcOoXqpyHICqOhJEZWtB6VhcgS4m9IMBcMEB6M/ujqC2pFXZsaoeahiJZQVyfefKOKtgQsB4AuqkCnH/Fy1uL8ALCiMdvc4nqTJeOxYUN181U4YEVYk6aRufiq4RDg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by SJ2PR12MB8062.namprd12.prod.outlook.com (2603:10b6:a03:4c8::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Mon, 31 Mar
- 2025 18:20:59 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::1c2f:5c82:2d9c:6062]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::1c2f:5c82:2d9c:6062%5]) with mapi id 15.20.8534.043; Mon, 31 Mar 2025
- 18:20:59 +0000
-Message-ID: <81cac86c-dece-4f0d-abd7-efd888a08db0@amd.com>
-Date: Mon, 31 Mar 2025 14:20:53 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/display: replace use of msleep(<20) with
- usleep_range for better accuracy
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- James Flowers <bold.zone2373@fastmail.com>, sunpeng.li@amd.com,
- siqueira@igalia.com, alexander.deucher@amd.com, christian.koenig@amd.com,
- airlied@gmail.com, simona@ffwll.ch, aurabindo.pillai@amd.com,
- alex.hung@amd.com, skhan@linuxfoundation.org
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel-mentees@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20250326070054.68355-1-bold.zone2373@fastmail.com>
- <2a2e9a4c-b888-45e1-a191-847dd8e7cb9d@gmail.com>
-Content-Language: en-US
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <2a2e9a4c-b888-45e1-a191-847dd8e7cb9d@gmail.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F386A10E47B;
+ Mon, 31 Mar 2025 20:17:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=/iX81SdTcmtMmfM/HBv0WZeyU1RIA51a7XyXhqpulBc=; b=GxXXZqflhehXPyKTJY5ijnTJG2
+ rDE9DLJA5R/PXIb9Vul/+dBfpT+7c9A6GxhDgk8AZXN4Qwk2IrYYD/inST8tZGBkHHVvNozVjRS4g
+ zwsWtz6fHMCScdRBVjwjOy+RswlKwrpS0V5zPlcur1c438vu90aByxrp+LrIM5ElL5b4aoyQcYJZP
+ YyLbXm4U7t3bviAWTGadheFimYuasJFS4KhJaTpcSrdgBXwburl0u0JsZOKjfrFhb/JvZ2K/9lPPF
+ UBV7fWFwlTjUiwnDlxZAo4HRzQ9Y3sQOexILd4EJ2PLZCwpcAFz6SxsYadfyfBSkWm/WLzTCri0RW
+ pPqKK7GA==;
+Received: from [90.241.98.187] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1tzLZV-009M2i-SV; Mon, 31 Mar 2025 22:17:26 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <pstanner@redhat.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Subject: [RFC v3 00/14] Deadline DRM scheduler
+Date: Mon, 31 Mar 2025 21:16:51 +0100
+Message-ID: <20250331201705.60663-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT3PR01CA0023.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:86::28) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|SJ2PR12MB8062:EE_
-X-MS-Office365-Filtering-Correlation-Id: 986a1fa4-eb80-4b8b-1dc4-08dd7080c94d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|366016|921020; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RndIVG9XUlFMVjdIdDVrSmZydmhiZVZ3LzNJd3VJSkVtaHd2d1dpOHhudk9p?=
- =?utf-8?B?VzF6SjduQjhLY0ppdVlRTzFVTlFFRXFrUDVvZTVIbWQxbTZrR3Vma2JOQlRm?=
- =?utf-8?B?RVFnUENpTEJWMmY4WlZ0UUNhWUI0WWJnNFY2eE4rSDBnVTBQMlNQWHgyN0dM?=
- =?utf-8?B?a1M3VzJKNWxCUUdKbUt0bGdrZllWK0puaVZXM25LVzI5MnA2Q05rcGpqU3BL?=
- =?utf-8?B?b2pJUllpOEVucVdVZTIvczhOYWNpUFBDKzdBYm1pUFBQYmJ3bXpKbmdHR3ZM?=
- =?utf-8?B?V2tPRExhbHlLUWdTTkcxNXhiT2VNdEhiaWRxRDdqbTJPT3czVUZtVUF5LzFU?=
- =?utf-8?B?NjdEWTczMittN3ZFSnBrSklwZFF5MHBZUHE0c251Q1FPZjRMaFlPVTR3YWZP?=
- =?utf-8?B?V1BjcDhDL1hxZUVuNXIwY0ZURFpnYktXM2h6OXAyTWx0UUF0ZzRjN2pTWHYv?=
- =?utf-8?B?MmRFYllvN0RUdE92amF4UEU0bEJwVnN3MTBocUVzbFVmMG5ucXNjQjBNcGhp?=
- =?utf-8?B?UnVQNlBzd0JvMVowY2xPM21Kc1JDKzkxOGVaSmVWMjNQV0NtejJPa3h6ZndT?=
- =?utf-8?B?dHRlSkhpbFl1eE1DRXNKZVB5d1A0ZjBUTllaaW9Bd1JLWUFRd25xRzVROGp3?=
- =?utf-8?B?aFlPUzYyWkxzMU9Sd2JXNUNaVDJRcXVUYVFqK09JOEUxYlhOSDA1anlPaFNj?=
- =?utf-8?B?dVFxaHpYWE9zRTIxaDRTTWdIVEhOV00wbkZNOVNjbWdnSDIvamNEMllNN3lH?=
- =?utf-8?B?Q3JNbEVMODliQ3dHMzhhMFNXbHQwTXNSYUduaU52dHd5R0FydGtCVUtsNDlC?=
- =?utf-8?B?TFZJT096YkRCV1JpSldmVExwOGpkSWM4OW9ZT3plZnlBa0ZoOWtLVXJVd3dC?=
- =?utf-8?B?SGNMMVh2N3pzNjFOZGlMVEJnWjZYYkx2UjloSXEyTjN6NVlTaTdPekUzLzZk?=
- =?utf-8?B?YWJlNGFYZ1Y1SlJBWDZlSGNkL0dYQ0hBdG0wYlhtTExpc3VvdmhidWgwQ1VE?=
- =?utf-8?B?Z1RzT0wycGp5QzJYL3pSUER1S2xoU1NsQTdyeHpKMk1tQi9GdkE3eXM3UzU1?=
- =?utf-8?B?ZE9TNGtaLzFpNDY0dDlpc3pDS0l3K1dYbmUwVFkzWXYyaE1qR2ZLQVIyenFr?=
- =?utf-8?B?MTVNMmNQQkFEd29qaU0wczc2ZENXS1NicC9WZTJXZnlxVGh1WE4yazhibDZs?=
- =?utf-8?B?OThocFpkVFJVbkpFeDJSVmMrL2o0YTNvRUE2SnlZeFltQjEzcm81YWRpaVcw?=
- =?utf-8?B?Tm4rTjk2QW8rVXZJMzdpRzhobGlRbFd2Ymh1SVhoNHBZMXJHYStxekhYZGV6?=
- =?utf-8?B?NWZzcUpETDZXclFIUC9wR0w3UGRLQXpweTRHQ2pBUC9zSWRTNnpOUGhiSjZ4?=
- =?utf-8?B?N3o4eFFZYkZDMzZhYm82bE9WVldoNTRCbUdsNXZ2Mnh3ZmIzci85N1RueHd0?=
- =?utf-8?B?WS9nZGg0b3VOZjFOaFhiMXNOMkR2Y2NNUXlvdWpzNDdiSktVM09TMTAxUHZh?=
- =?utf-8?B?VytyczNPaTduRlM0eW5iNENob0JsRzJTVG94bE8vQlM0cDExcVRiaTc5QkJF?=
- =?utf-8?B?QlB0ZWxRSksxU2RHejZGbUlDanpLUjBaSlFPdjVRMnFibnFmdWNPMllNTFFB?=
- =?utf-8?B?bUVKYUpqOS9MRDNsYkVDRDkvUk91SzZna2ZWMU1SRWNBMmRUR3lUMS9DSTVC?=
- =?utf-8?B?anNuWHpyRUZpRU1NaXlJcEo0bks3dWZ5K3N1U2J3d1p3WjJiU3I1d0d6bUtv?=
- =?utf-8?B?a2kxWjNrWlZOeDBGaE02OHo1eWNUQm53V2RVdURTOEd3eU0yL1FQSG9WRTVO?=
- =?utf-8?B?ZXg0N2ZsYVc5RTRZZElhVUNkbUJ1NnFjSVBNYzJodWhFVjZTZ0hqd2szQ3Vi?=
- =?utf-8?B?VG5zWEhBVHBkSjREbWZRZTJFenRIYi92Tnl2ZGxsKy85bFpLS1owVE9OUUFS?=
- =?utf-8?Q?L2q8UpRBvjk=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016)(921020); DIR:OUT; SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QzZVTTh6ZzN0R1NaekxJbG1qSEN4Rnd0TUd2cCs5a2RjV0RCM1d0YmFhcTBX?=
- =?utf-8?B?eExrRFVycUxSbnRmTzR0UjlEOWpWbENNRTZxUS9Sa1FTN05ZTllHbEFWZFZY?=
- =?utf-8?B?R1N3V2xFdjJIMzlJQ1czOHVJVlkzZnRoUHFwYzdvMTFMSDRUU0JidXAzeUtL?=
- =?utf-8?B?MlgyVFJOMmptZnZpNmIyMWZEQ2FXQytmYVQ3MWMvTDdGbXNkZTVjZWJXaHk5?=
- =?utf-8?B?RWtRemZES2VSWmFSRFJWbWl3ZGJZbkkvSzU5bUJKOHllQU5KUi9lWVIrYklh?=
- =?utf-8?B?N3NsZWo0ZjlvdDNFVkk1aFdDN1NLYWg0QXJ2MGdMZVZPNFFyL2l5R3hSQXFj?=
- =?utf-8?B?VDJyZ3BIMnpXYng4MVBod09La1VMMFJOMkN4WG5ib2Z3RUYyTExpTFpURDNH?=
- =?utf-8?B?Z3IzUkY4WmhlK09xMVd1ekVsTlRKWWNtV1RRZk03ZGhLWjY1bGRwSlpleHdp?=
- =?utf-8?B?ampyR2VWc2F0SXFlRDhJZnpWTVc2TmtiMXpDZVRGTWo4NXB4RHhSU25uWVNG?=
- =?utf-8?B?QjFWdjU5YjZFMkorUWVkVlJsZG9NRHdlNzNjNG8weU1hU3krcksraXBHT2Fr?=
- =?utf-8?B?ZlR0RTlSK3hCZHFSYXg0RXpydTBmMWRSWVJFeXF1VVB1dXRYMUxsb1Q3azV4?=
- =?utf-8?B?UjdZVk9saytZUGhoY0VRVGRZZGs4WHVpYmlyL2tWS2pTYjgwN0M5azQzR2xi?=
- =?utf-8?B?bFQyNkdsQi9tNXBnanROQ2dxaW94dU9SM3FERHpVbzBwRS9CL2dpMUlBOS9r?=
- =?utf-8?B?YzJITUNSdDhBcTdvRFh6bGEyYm16VExTYmRIZjl2RmlQUTQ5bzBqMHpTUFln?=
- =?utf-8?B?VmJQRTJBRzRQM0cxak4wWnJ6UU1TdEoxZmJZSW42bXp1OVF3bVFRdlBobDV2?=
- =?utf-8?B?dmZnS1o1NkVBaU1QemI0SzEwQWlaWVMwUVhQLzh4WklzZkdqUDVHVGN6cm5E?=
- =?utf-8?B?OVc3dHErTUtxcU5SSTlPUURxMmNaLytiVnMvdXIrOElRSHkvUTBZTnlCUjg3?=
- =?utf-8?B?dmNWV2kydFZCMEV4Y2N4Q01aVFJFS3NXZ2lZN3VZeEUydkNudlpWZXF5ZGti?=
- =?utf-8?B?bVp4Nmp3T3BqVnE1d0pOTlJmVG92b00yRzhPNkM5RDRFTUhwVkJSNkQ5U0o5?=
- =?utf-8?B?MjRNMEtPS1R4OUZqbkMzM01STi9hOTdXbnZWTUlnNXZ4ZGJUUCs0dGlvdVRZ?=
- =?utf-8?B?LzZoOHJIRjFXanc3YnBnZDMvRFZURTYwM0padExSUlkzbVdBRWxqUlBHSW1O?=
- =?utf-8?B?WDVnUERtbjJ0MkZMWWU4T1IwdjgwUldiUVVES3hWd0orazFmMitPaFlJejBw?=
- =?utf-8?B?OGowWVpRbXNpZ3hBaEhCSjVJT2xKZ2wvNk9ZNjJMcDVrbFpOU3JDSEtldHRz?=
- =?utf-8?B?Wjgydm1TUUpybmhFZ0dhVTBLay82UlJGRU9LcmJBZlpabjB4UkhhdDBHU2hU?=
- =?utf-8?B?TzdFUkx5WHFFaWpvSzNHMFNtTnRXNk1pZ3NaN1U5QTRKcFpvakVPYVY5c2xZ?=
- =?utf-8?B?by9YUUNqeXpLVVloTC9MVGdMK1NCSlJkLytIU0UwNHQrb3lDTCtJVzJDdCtH?=
- =?utf-8?B?RnY4WGFqWXpKeDVwdkdKeDhXOXJndmZNNjlUQXhUUllZYmt1RHN5Z0twNzlL?=
- =?utf-8?B?ams0Uy9YNW4wNGN5U0VQSCt0a2lwbHVhSnoxRGpKUHlQUmpMbVdTOFBHVFZR?=
- =?utf-8?B?N1hFRk5lY0dCUk9URE4wdHgxR1JNL3VXMVZ0TFNCOE1WNmlxWFEwa1lVNzNE?=
- =?utf-8?B?ZDU3bVlvaEt0VjU3VHRwVmUyZm5GVW9PNXFXOW9ZeWh2RW04aWl6WjBtV1V6?=
- =?utf-8?B?dnlnMSt2WHVIeFFtc1ZqUnNndDczZGpsa3ZmcEtvOUcxc2Y1Q3NUNHl6Z2o1?=
- =?utf-8?B?c2tnQ0J3bkltWHBZM0EvY0tnTWt4cEpHNXRsZ3FKV21hSmRJOXRTMWNtbTVi?=
- =?utf-8?B?KzF3WVdpVkdraFB6akVHNTdycEhEMVhsOXFUcEtCNS9LQUR0VzRHRDljMFR4?=
- =?utf-8?B?T2plY3F3N2hjb3ZFVFAvZGV0a3R4SExwTFJhM0dkT3VCVGpMSmhOWVBKcXlW?=
- =?utf-8?B?UnlMTU92cDJjcFBnSjJFMDY2ZXJ1S1BqNkZzSWQ4RitPbzVqbXRrdks2U1E2?=
- =?utf-8?Q?AcGqN/sMfs4SkTYgHgGGyu1+x?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 986a1fa4-eb80-4b8b-1dc4-08dd7080c94d
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2025 18:20:59.4851 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jMf+5sueQ9ASrL1BFt2ugF+OIGnZ2MHbacgs98jrmEWtJvPZ0+CQWaJs488BbFpArzfhUNWyJc3sr9D0yv4Czg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8062
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,44 +63,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This is similar to v2 but I dropped some patches (for now) and added some new
+ones. Most notably deadline scaling based on queue depth appears to be able to
+add a little bit of fairness with spammy clients (deep submission queue).
 
+As such, on the high level main advantages of the series:
 
-On 2025-03-31 08:34, Christian König wrote:
-> Am 26.03.25 um 08:00 schrieb James Flowers:
->> msleep < 20ms will often sleep for ~20ms (according to Documentation/timers/timers-howto.rst).
-> 
-> Our display team has to decide but I don't think that this patch is justified.
-> 
-> The time given to msleep is just the minimum time necessary for some HW action to take place. Waiting longer than that is usually not harmful except when you want to optimize total operation time.
-> 
+ 1. Code simplification - no more multiple run queues.
+ 2. Scheduling quality - schedules better than FIFO.
+ 3. No more RR is even more code simplification but this one needs to be tested
+    and approved by someone who actually uses RR.
 
-Agreed. Little timing changes often have unintended effects.
-I have no desire to change working code unless it's required
-to fix a real-life issue.
+In the future futher simplifactions and improvements should be possible on top
+of this work. But for now I keep it simple.
 
-Harry
+First patch adds some unit tests which allow for easy evaluation of scheduling
+behaviour against different client submission patterns. From there onwards it is
+a hopefully natural progression of patches (or close) to the end result which is
+a slightly more fair scheduler than FIFO.
 
-> Regards,
-> Christian.
-> 
->>
->> Signed-off-by: James Flowers <bold.zone2373@fastmail.com>
->> ---
->>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
->> index 2cd35392e2da..2d225735602b 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
->> @@ -682,7 +682,7 @@ static bool execute_synaptics_rc_command(struct drm_dp_aux *aux,
->>  		if (rc_cmd == cmd)
->>  			// active is 0
->>  			break;
->> -		msleep(10);
->> +		usleep_range(10000, 10200);
->>  	}
->>  
->>  	// read rc result
-> 
+Regarding the submission patterns tested, it is always two parallel clients
+and they broadly cover these categories:
+
+ * Deep queue clients
+ * Hogs versus interactive
+ * Priority handling
+
+Lets look at the results:
+
+1. Two normal priority deep queue clients.
+
+These ones submit one second worth of 8ms jobs. As fast as they can, no
+dependencies etc. There is no difference in runtime between FIFO and qddl but
+the latter allows both clients to progress with work more evenly:
+
+https://people.igalia.com/tursulin/drm-sched-qddl/normal-normal.png
+
+(X axis is time, Y is submitted queue-depth, hence lowering of qd corresponds
+  with work progress for both clients, tested with both schedulers separately.)
+
+2. Same two clients but one is now low priority.
+
+https://people.igalia.com/tursulin/drm-sched-qddl/normal-low.png
+
+Normal priority client is a solid line, low priority dotted. We can see how FIFO
+completely starves the low priority client until the normal priority is fully
+done. Only then the low priority client gets any GPU time.
+
+In constrast, qddl allows some GPU time to the low priority client.
+
+3. Same clients but now high versus normal priority.
+
+Similar behaviour as in the previous one with normal a bit less de-prioritised
+relative to high, than low was against normal.
+
+https://people.igalia.com/tursulin/drm-sched-qddl/high-normal.png
+
+4. Heavy load vs interactive client.
+
+Heavy client emits a 75% GPU load in the format of 3x 2.5ms jobs followed by a
+2.5ms wait.
+
+Interactive client emites a 10% GPU load in the format of 1x 1ms job followed
+by a 9ms wait.
+
+This simulates an interactive graphical client used on top of a relatively heavy
+background load but no GPU oversubscription.
+
+Graphs show the interactive client only and from now on, instead of looking at
+the client's queue depth, we look at its "fps".
+
+https://people.igalia.com/tursulin/drm-sched-qddl/heavy-interactive.png
+
+We can see that qddl allows a slighty higher fps for the interactive client
+which is good.
+
+5. Low priority GPU hog versus heavy-interactive.
+
+Low priority client: 3x 2.5ms jobs client followed by a 0.5ms wait.
+Interactive client: 1x 0.5ms job followed by a 10ms wait.
+
+https://people.igalia.com/tursulin/drm-sched-qddl/lowhog-interactive.png
+
+No difference between the schedulers.
+
+6. Last set of test scenarios will have three subgroups.
+
+In all cases we have two interactive (synchronous, single job at a time) clients
+with a 50% "duty cycle" GPU time usage.
+
+Client 1: 1.5ms job + 1.5ms wait (aka short bursty)
+Client 2: 2.5ms job + 2.5ms wait (aka long bursty)
+
+a) Both normal priority.
+
+https://people.igalia.com/tursulin/drm-sched-qddl/5050-short.png
+https://people.igalia.com/tursulin/drm-sched-qddl/5050-long.png
+
+Both schedulers favour the higher frequency duty cycle with qddl giving it a
+little bit more which should be good for interactivity.
+
+b) Normal vs low priority.
+
+https://people.igalia.com/tursulin/drm-sched-qddl/5050-normal-low-normal.png
+https://people.igalia.com/tursulin/drm-sched-qddl/5050-normal-low-low.png
+
+Qddl gives a bit more to the normal than low.
+
+c) High vs normal priority.
+
+https://people.igalia.com/tursulin/drm-sched-qddl/5050-high-normal-high.png
+https://people.igalia.com/tursulin/drm-sched-qddl/5050-high-normal-normal.png
+
+Again, qddl gives a bit more share to the higher priority client.
+
+On the overall qddl looks like a potential improvement in terms of fairness,
+especially avoiding priority starvation. There do not appear to be any
+regressions with the tested workloads.
+
+As before, I am looking for feedback, ideas for what kind of submission
+scenarios to test. Testers on different GPUs would be very welcome too.
+
+And I should probably test round-robin at some point, to see if we are maybe
+okay to drop unconditionally, it or further work improving qddl would be needed.
+
+v2:
+ * Fixed many rebase errors.
+ * Added some new patches.
+ * Dropped single shot dependecy handling.
+
+v3:
+ * Added scheduling quality unit tests.
+ * Refined a tiny bit by adding some fairness.
+ * Dropped a few patches for now.
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@redhat.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <pstanner@redhat.com>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Cc: Michel Dänzer <michel.daenzer@mailbox.org>
+
+Tvrtko Ursulin (14):
+  drm/sched: Add some scheduling quality unit tests
+  drm/sched: Avoid double re-lock on the job free path
+  drm/sched: Consolidate drm_sched_job_timedout
+  drm/sched: Clarify locked section in drm_sched_rq_select_entity_fifo
+  drm/sched: Consolidate drm_sched_rq_select_entity_rr
+  drm/sched: Implement RR via FIFO
+  drm/sched: Consolidate entity run queue management
+  drm/sched: Move run queue related code into a separate file
+  drm/sched: Add deadline policy
+  drm/sched: Remove FIFO and RR and simplify to a single run queue
+  drm/sched: Queue all free credits in one worker invocation
+  drm/sched: Embed run queue singleton into the scheduler
+  drm/sched: De-clutter drm_sched_init
+  drm/sched: Scale deadlines depending on queue depth
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |  27 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h       |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c   |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c       |   8 +-
+ drivers/gpu/drm/scheduler/Makefile            |   2 +-
+ drivers/gpu/drm/scheduler/sched_entity.c      | 121 ++--
+ drivers/gpu/drm/scheduler/sched_fence.c       |   2 +-
+ drivers/gpu/drm/scheduler/sched_internal.h    |  17 +-
+ drivers/gpu/drm/scheduler/sched_main.c        | 581 ++++--------------
+ drivers/gpu/drm/scheduler/sched_rq.c          | 188 ++++++
+ drivers/gpu/drm/scheduler/tests/Makefile      |   3 +-
+ .../gpu/drm/scheduler/tests/tests_scheduler.c | 548 +++++++++++++++++
+ include/drm/gpu_scheduler.h                   |  17 +-
+ 15 files changed, 962 insertions(+), 579 deletions(-)
+ create mode 100644 drivers/gpu/drm/scheduler/sched_rq.c
+ create mode 100644 drivers/gpu/drm/scheduler/tests/tests_scheduler.c
+
+-- 
+2.48.0
 
