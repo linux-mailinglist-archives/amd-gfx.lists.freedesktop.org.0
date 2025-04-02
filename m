@@ -2,81 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8236FA788E4
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Apr 2025 09:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7249BA789C8
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Apr 2025 10:26:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1001010E6D3;
-	Wed,  2 Apr 2025 07:38:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BE8010E6E1;
+	Wed,  2 Apr 2025 08:26:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="P0i5J+CE";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kvYiNLxr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
- [209.85.221.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0CF810E6DD
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Apr 2025 07:38:50 +0000 (UTC)
-Received: by mail-wr1-f53.google.com with SMTP id
- ffacd0b85a97d-3913b539aabso3701385f8f.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 02 Apr 2025 00:38:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1743579529; x=1744184329; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=p2rBVXRTjNAH6IBDkeUjzc6hTz5FBO9ieKpFWRx/MyQ=;
- b=P0i5J+CE8RXd2OfLHawc5HV3d/9iAVb8RwdYuiXt/GNh/4KK5vhEfk2gRIfi6GnclD
- niffzQmkoJOElIA52jcvvBD2ycQHp4lxLmCwU2G1xbSujBXgNzwIfrROKOzryQXdu8jf
- m4Gndm5uoB83xbciiBGsJDNVpo3R7Vjjx3gS0kUlBE4D9GRF71bEBKVunkInIpAzfUaL
- tUtFikfmDaAIeXlh/jsWtdvEme4seHgJW08QRbyk66fnSrR62Ewd14KnbX5hgeTab7d7
- ENdSi5WApE6l8EMj5K3x9wpcAuiQxFFrCDR4Bfdh8tp4ZhCHGYQVpy3GzUeRS5I822gM
- AyMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1743579529; x=1744184329;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=p2rBVXRTjNAH6IBDkeUjzc6hTz5FBO9ieKpFWRx/MyQ=;
- b=YSQ7VytxrwoSzmco/xqvxTxey45Q1PeuKU0eE5JFQkKdO2Rh/ENXXWSFz2vcM8Cl+4
- LYN4kgIfCQVXxpAZhUpGNZirnz/17j8YcLL4Bd3dxy1Sf9NqJXuxZobILlO4BtxfhxEH
- cVGWWfiQuJNGe/8WO6iGy2y7mJB7AN4oGOr3ugJq0RnvNzdeFEJCbGtrrEkBF5dSBfvb
- 6gLT8ycba4bMP8zrABkRqyuOv0mjY0xUcrXp5WBae5YTgXnbQ/G51TvRn3pMrSjRX+Vh
- xqOnfAoMRehSVs79EWBuna3uMs3W+OWNCJfPF4kFD85itO+PRxlvLan5Y5XfJ5Z9m7kQ
- Yt8A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUx5E33YIITLPWxn6BGlbMtKtyRC2K4zA3FNXtNoWwjQITCg2ndT1jVBalG958H+DIFW4aF6as1@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyL1SotFl3aeoMSDUmNmsRAudrFTpiHnsTgd4Cz4CoTeSgt+IvY
- zxqBfz1cuEnr8AO0hEG4cSWsZthL7Bdh8VvbJPbxD0/n28nPiDpa
-X-Gm-Gg: ASbGncv6PtVGH84AHkJEpN9gB+CYxI8UnwKxNFytsxyVimDoc+/7tvoJje5ji6iOhbQ
- xIK1Ml4kYY34fyl8gok9XaDuqvLUAzDcBac7v8ui3X+ik6P2ipS0I50DIPOTJPII0Tt7SAPkaH7
- K9PtSzjNl3VEqxLEtszEogeSHjnjeNtnzi1xTY15R6b/xaBKf+lJFOSgnt+HFUNcRdOy187qeL1
- sM7wJ+/sNDV9TuNfmwcCHP9sCqJdCJn0rfomzr0XB5umH22OHI3o8Q8piVzpY65Oaeu4krF/K/o
- 95ZtIdbUh9gwRSPsTFQNJ4MQxlmULPGwYCurYRIsJhD+4HOMzw146mPzp3ktna3A5AnZXzacGg=
- =
-X-Google-Smtp-Source: AGHT+IFlk+QjGcFyLz08MsRfusZtCOZDsTpYKSa3EJfHp1RwAU4+YQCtKacM8K/WOegP5J/8ysSSuA==
-X-Received: by 2002:a5d:47c8:0:b0:391:1806:e23f with SMTP id
- ffacd0b85a97d-39c120daed9mr11340973f8f.17.1743579529169; 
- Wed, 02 Apr 2025 00:38:49 -0700 (PDT)
-Received: from [10.254.108.83] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-39c0b79e393sm16401906f8f.72.2025.04.02.00.38.48
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Apr 2025 00:38:48 -0700 (PDT)
-Message-ID: <c3101846-4c9a-4e8e-978a-979c73a363fa@gmail.com>
-Date: Wed, 2 Apr 2025 09:38:47 +0200
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4743510E6DE;
+ Wed,  2 Apr 2025 08:26:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=ZMxlYpiOVtonxMMMmaKVPwiI+dBlMT6YQhICanXIPAE=; b=kvYiNLxr0LnvTHb6WiPUFvWpCk
+ 5MTLg437/KSEmQQCZ+i+MYn6j1tHxurjSuq+Y0xRyOk3NkcVMm1fwDmISIeuuf2vpHLqWA2Q4XOSu
+ TR03jEloHB5+wnCfIX6g44uTpgl44HF99vPunCxHecjy6Ovop/rWTO0vbTH0g54HQkMmtnXAt1XUN
+ hcP+VbruFs6XMXWWgVPH5kRYhCho8204WmniKV/e8CpEM8BRY7ilwczXllOnN9MqWZ3LGI10CkLM4
+ hfdEaW4RkmJmLpk7g2qOtVvgiRDguoHL95ZhPfZUGudNqy0lytR+yH38gtodHE3ald2FdQXlo+BaQ
+ mfQq3s4A==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tztQV-00AHIY-Hn; Wed, 02 Apr 2025 10:26:23 +0200
+Message-ID: <df0a7e4e-9de1-40a3-9aa6-4b9051dbd624@igalia.com>
+Date: Wed, 2 Apr 2025 09:26:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7 V2] drm/amd/amdgpu: Simplify SDMA reset mechanism by
- removing dynamic callbacks
-To: jesse.zhang@amd.com, amd-gfx@lists.freedesktop.org
-Cc: Alexander.Deucher@amd.com, christian.koenig@amd.com,
- jonathan.kim@amd.com, jiadong.zhu@amd.com
-References: <20250402030215.1074975-1-jesse.zhang@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20250402030215.1074975-1-jesse.zhang@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [RFC v3 00/14] Deadline DRM scheduler
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Danilo Krummrich <dakr@redhat.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <pstanner@redhat.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ "Liu, Leo" <Leo.Liu@amd.com>
+References: <20250331201705.60663-1-tvrtko.ursulin@igalia.com>
+ <5d2a726c-bdf0-45e1-abfa-3ed8d1ffbed4@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <5d2a726c-bdf0-45e1-abfa-3ed8d1ffbed4@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,124 +66,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 02.04.25 um 05:02 schrieb jesse.zhang@amd.com:
-> From: "Jesse.zhang@amd.com" <jesse.zhang@amd.com>
->
-> Since KFD no longer registers its own callbacks for SDMA resets, and only KGD uses the reset mechanism,
-> we can simplify the SDMA reset flow by directly calling the ring's `stop_queue` and `start_queue` functions.
-> This patch removes the dynamic callback mechanism and prepares for its eventual deprecation.
->
-> 1. **Remove Dynamic Callbacks**:
->    - The `pre_reset` and `post_reset` callback invocations in `amdgpu_sdma_reset_engine` are removed.
->    - Instead, the ring's `stop_queue` and `start_queue` functions are called directly during the reset process.
->
-> 2. **Prepare for Deprecation of Dynamic Mechanism**:
->    - By removing the callback invocations, this patch prepares the codebase for the eventual removal of the dynamic callback registration mechanism.
->
-> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  2 ++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 34 +++---------------------
->  drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c |  2 ++
->  3 files changed, 8 insertions(+), 30 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> index 615c3d5c5a8d..1b66be2b49dc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> @@ -237,6 +237,8 @@ struct amdgpu_ring_funcs {
->  	void (*patch_ce)(struct amdgpu_ring *ring, unsigned offset);
->  	void (*patch_de)(struct amdgpu_ring *ring, unsigned offset);
->  	int (*reset)(struct amdgpu_ring *ring, unsigned int vmid);
-> +	int (*stop_queue)(struct amdgpu_device *adev, uint32_t instance_id);
-> +	int (*start_queue)(struct amdgpu_device *adev, uint32_t instance_id);
 
-The those parameters doesn't seem to make sense here.
+On 02/04/2025 07:49, Christian König wrote:
+> Adding Leo since that is especially interesting for our multimedia engines.
+> 
+> @Leo could you spare someone to test and maybe review this?
+> 
+> Am 31.03.25 um 22:16 schrieb Tvrtko Ursulin:
+>> This is similar to v2 but I dropped some patches (for now) and added some new
+>> ones. Most notably deadline scaling based on queue depth appears to be able to
+>> add a little bit of fairness with spammy clients (deep submission queue).
+>>
+>> As such, on the high level main advantages of the series:
+>>
+>>   1. Code simplification - no more multiple run queues.
+>>   2. Scheduling quality - schedules better than FIFO.
+>>   3. No more RR is even more code simplification but this one needs to be tested
+>>      and approved by someone who actually uses RR.
+>>
+>> In the future futher simplifactions and improvements should be possible on top
+>> of this work. But for now I keep it simple.
+>>
+>> First patch adds some unit tests which allow for easy evaluation of scheduling
+>> behaviour against different client submission patterns. From there onwards it is
+>> a hopefully natural progression of patches (or close) to the end result which is
+>> a slightly more fair scheduler than FIFO.
+>>
+>> Regarding the submission patterns tested, it is always two parallel clients
+>> and they broadly cover these categories:
+>>
+>>   * Deep queue clients
+>>   * Hogs versus interactive
+>>   * Priority handling
+> 
+> First of all, impressive piece of work.
 
-A specific ring is always associated with a certain instance and that here are the per ring operations.
+Thank you!
 
-Instead you should give the ring as parameters to the callback.
+I am not super happy though, since what would be much better is some 
+sort of a CFS. But to do that would require to crack the entity GPU time 
+tracking problem. That I tried two times so far and failed to find a 
+generic, elegant and not too intrusive solution.
+
+>> Lets look at the results:
+>>
+>> 1. Two normal priority deep queue clients.
+>>
+>> These ones submit one second worth of 8ms jobs. As fast as they can, no
+>> dependencies etc. There is no difference in runtime between FIFO and qddl but
+>> the latter allows both clients to progress with work more evenly:
+>>
+>> https://people.igalia.com/tursulin/drm-sched-qddl/normal-normal.png
+>>
+>> (X axis is time, Y is submitted queue-depth, hence lowering of qd corresponds
+>>    with work progress for both clients, tested with both schedulers separately.)
+> 
+> This was basically the killer argument why we implemented FIFO in the first place. RR completely sucked on fairness when you have many clients submitting many small jobs.
+> 
+> Looks like that the deadline scheduler is even better than FIFO in that regard, but I would also add a test with (for example) 100 clients doing submissions at the same time.
+
+I can try that. So 100 clients with very deep submission queues? How 
+deep? Fully async? Or some synchronicity and what kind?
+
+>> 2. Same two clients but one is now low priority.
+>>
+>> https://people.igalia.com/tursulin/drm-sched-qddl/normal-low.png
+>>
+>> Normal priority client is a solid line, low priority dotted. We can see how FIFO
+>> completely starves the low priority client until the normal priority is fully
+>> done. Only then the low priority client gets any GPU time.
+>>
+>> In constrast, qddl allows some GPU time to the low priority client.
+>>
+>> 3. Same clients but now high versus normal priority.
+>>
+>> Similar behaviour as in the previous one with normal a bit less de-prioritised
+>> relative to high, than low was against normal.
+>>
+>> https://people.igalia.com/tursulin/drm-sched-qddl/high-normal.png
+>>
+>> 4. Heavy load vs interactive client.
+>>
+>> Heavy client emits a 75% GPU load in the format of 3x 2.5ms jobs followed by a
+>> 2.5ms wait.
+>>
+>> Interactive client emites a 10% GPU load in the format of 1x 1ms job followed
+>> by a 9ms wait.
+>>
+>> This simulates an interactive graphical client used on top of a relatively heavy
+>> background load but no GPU oversubscription.
+>>
+>> Graphs show the interactive client only and from now on, instead of looking at
+>> the client's queue depth, we look at its "fps".
+>>
+>> https://people.igalia.com/tursulin/drm-sched-qddl/heavy-interactive.png
+>>
+>> We can see that qddl allows a slighty higher fps for the interactive client
+>> which is good.
+> 
+> The most interesting question for this is what is the maximum frame time?
+> 
+> E.g. how long needs the user to wait for a response from the interactive client at maximum?
+
+I did a quick measure of those metrics, for this workload only.
+
+Measured time from submit of the first job in the group (so frame), to 
+time last job in a group finished, and then subtracted the expected jobs 
+duration to get just the wait plus overheads latency.
+
+Five averaged runs:
+
+	min	avg	max 	[ms]
+FIFO	2.5	13.14	18.3
+qddl	3.2	9.9	16.6
+
+So it is a bit better in max, more so in max latencies. Question is how 
+representative is this synthetic workload of the real world.
 
 Regards,
-Christian.
 
->  	void (*emit_cleaner_shader)(struct amdgpu_ring *ring);
->  	bool (*is_guilty)(struct amdgpu_ring *ring);
->  };
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-> index 0a9893fee828..7d862c887a1a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-> @@ -558,16 +558,10 @@ void amdgpu_sdma_register_on_reset_callbacks(struct amdgpu_device *adev, struct
->   * @adev: Pointer to the AMDGPU device
->   * @instance_id: ID of the SDMA engine instance to reset
->   *
-> - * This function performs the following steps:
-> - * 1. Calls all registered pre_reset callbacks to allow KFD and AMDGPU to save their state.
-> - * 2. Resets the specified SDMA engine instance.
-> - * 3. Calls all registered post_reset callbacks to allow KFD and AMDGPU to restore their state.
-> - *
->   * Returns: 0 on success, or a negative error code on failure.
->   */
->  int amdgpu_sdma_reset_engine(struct amdgpu_device *adev, uint32_t instance_id)
->  {
-> -	struct sdma_on_reset_funcs *funcs;
->  	int ret = 0;
->  	struct amdgpu_sdma_instance *sdma_instance = &adev->sdma.instance[instance_id];
->  	struct amdgpu_ring *gfx_ring = &sdma_instance->ring;
-> @@ -589,18 +583,8 @@ int amdgpu_sdma_reset_engine(struct amdgpu_device *adev, uint32_t instance_id)
->  		page_sched_stopped = true;
->  	}
->  
-> -	/* Invoke all registered pre_reset callbacks */
-> -	list_for_each_entry(funcs, &adev->sdma.reset_callback_list, list) {
-> -		if (funcs->pre_reset) {
-> -			ret = funcs->pre_reset(adev, instance_id);
-> -			if (ret) {
-> -				dev_err(adev->dev,
-> -				"beforeReset callback failed for instance %u: %d\n",
-> -					instance_id, ret);
-> -				goto exit;
-> -			}
-> -		}
-> -	}
-> +	if (gfx_ring->funcs->stop_queue)
-> +		gfx_ring->funcs->stop_queue(adev, instance_id);
->  
->  	/* Perform the SDMA reset for the specified instance */
->  	ret = amdgpu_dpm_reset_sdma(adev, 1 << instance_id);
-> @@ -609,18 +593,8 @@ int amdgpu_sdma_reset_engine(struct amdgpu_device *adev, uint32_t instance_id)
->  		goto exit;
->  	}
->  
-> -	/* Invoke all registered post_reset callbacks */
-> -	list_for_each_entry(funcs, &adev->sdma.reset_callback_list, list) {
-> -		if (funcs->post_reset) {
-> -			ret = funcs->post_reset(adev, instance_id);
-> -			if (ret) {
-> -				dev_err(adev->dev,
-> -				"afterReset callback failed for instance %u: %d\n",
-> -					instance_id, ret);
-> -				goto exit;
-> -			}
-> -		}
-> -	}
-> +	if (gfx_ring->funcs->start_queue)
-> +		gfx_ring->funcs->start_queue(adev, instance_id);
->  
->  exit:
->  	/* Restart the scheduler's work queue for the GFX and page rings
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-> index 688a720bbbbd..df82a97a5388 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-> @@ -2143,6 +2143,8 @@ static const struct amdgpu_ring_funcs sdma_v4_4_2_ring_funcs = {
->  	.emit_reg_wait = sdma_v4_4_2_ring_emit_reg_wait,
->  	.emit_reg_write_reg_wait = amdgpu_ring_emit_reg_write_reg_wait_helper,
->  	.reset = sdma_v4_4_2_reset_queue,
-> +	.stop_queue = sdma_v4_4_2_stop_queue,
-> +	.start_queue = sdma_v4_4_2_restore_queue,
->  	.is_guilty = sdma_v4_4_2_ring_is_guilty,
->  };
->  
+Tvrtko
+
+>> 5. Low priority GPU hog versus heavy-interactive.
+>>
+>> Low priority client: 3x 2.5ms jobs client followed by a 0.5ms wait.
+>> Interactive client: 1x 0.5ms job followed by a 10ms wait.
+>>
+>> https://people.igalia.com/tursulin/drm-sched-qddl/lowhog-interactive.png
+>>
+>> No difference between the schedulers.
+>>
+>> 6. Last set of test scenarios will have three subgroups.
+>>
+>> In all cases we have two interactive (synchronous, single job at a time) clients
+>> with a 50% "duty cycle" GPU time usage.
+>>
+>> Client 1: 1.5ms job + 1.5ms wait (aka short bursty)
+>> Client 2: 2.5ms job + 2.5ms wait (aka long bursty)
+>>
+>> a) Both normal priority.
+>>
+>> https://people.igalia.com/tursulin/drm-sched-qddl/5050-short.png
+>> https://people.igalia.com/tursulin/drm-sched-qddl/5050-long.png
+>>
+>> Both schedulers favour the higher frequency duty cycle with qddl giving it a
+>> little bit more which should be good for interactivity.
+>>
+>> b) Normal vs low priority.
+>>
+>> https://people.igalia.com/tursulin/drm-sched-qddl/5050-normal-low-normal.png
+>> https://people.igalia.com/tursulin/drm-sched-qddl/5050-normal-low-low.png
+>>
+>> Qddl gives a bit more to the normal than low.
+>>
+>> c) High vs normal priority.
+>>
+>> https://people.igalia.com/tursulin/drm-sched-qddl/5050-high-normal-high.png
+>> https://people.igalia.com/tursulin/drm-sched-qddl/5050-high-normal-normal.png
+>>
+>> Again, qddl gives a bit more share to the higher priority client.
+>>
+>> On the overall qddl looks like a potential improvement in terms of fairness,
+>> especially avoiding priority starvation. There do not appear to be any
+>> regressions with the tested workloads.
+>>
+>> As before, I am looking for feedback, ideas for what kind of submission
+>> scenarios to test. Testers on different GPUs would be very welcome too.
+>>
+>> And I should probably test round-robin at some point, to see if we are maybe
+>> okay to drop unconditionally, it or further work improving qddl would be needed.
+>>
+>> v2:
+>>   * Fixed many rebase errors.
+>>   * Added some new patches.
+>>   * Dropped single shot dependecy handling.
+>>
+>> v3:
+>>   * Added scheduling quality unit tests.
+>>   * Refined a tiny bit by adding some fairness.
+>>   * Dropped a few patches for now.
+>>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Danilo Krummrich <dakr@redhat.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Philipp Stanner <pstanner@redhat.com>
+>> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+>> Cc: Michel Dänzer <michel.daenzer@mailbox.org>
+>>
+>> Tvrtko Ursulin (14):
+>>    drm/sched: Add some scheduling quality unit tests
+>>    drm/sched: Avoid double re-lock on the job free path
+>>    drm/sched: Consolidate drm_sched_job_timedout
+>>    drm/sched: Clarify locked section in drm_sched_rq_select_entity_fifo
+>>    drm/sched: Consolidate drm_sched_rq_select_entity_rr
+>>    drm/sched: Implement RR via FIFO
+>>    drm/sched: Consolidate entity run queue management
+>>    drm/sched: Move run queue related code into a separate file
+>>    drm/sched: Add deadline policy
+>>    drm/sched: Remove FIFO and RR and simplify to a single run queue
+>>    drm/sched: Queue all free credits in one worker invocation
+>>    drm/sched: Embed run queue singleton into the scheduler
+>>    drm/sched: De-clutter drm_sched_init
+>>    drm/sched: Scale deadlines depending on queue depth
+>>
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |   6 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |  27 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_job.h       |   5 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     |   8 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c   |   8 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c       |   8 +-
+>>   drivers/gpu/drm/scheduler/Makefile            |   2 +-
+>>   drivers/gpu/drm/scheduler/sched_entity.c      | 121 ++--
+>>   drivers/gpu/drm/scheduler/sched_fence.c       |   2 +-
+>>   drivers/gpu/drm/scheduler/sched_internal.h    |  17 +-
+>>   drivers/gpu/drm/scheduler/sched_main.c        | 581 ++++--------------
+>>   drivers/gpu/drm/scheduler/sched_rq.c          | 188 ++++++
+>>   drivers/gpu/drm/scheduler/tests/Makefile      |   3 +-
+>>   .../gpu/drm/scheduler/tests/tests_scheduler.c | 548 +++++++++++++++++
+>>   include/drm/gpu_scheduler.h                   |  17 +-
+>>   15 files changed, 962 insertions(+), 579 deletions(-)
+>>   create mode 100644 drivers/gpu/drm/scheduler/sched_rq.c
+>>   create mode 100644 drivers/gpu/drm/scheduler/tests/tests_scheduler.c
+>>
+> 
 
