@@ -2,75 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 447E3A79EC4
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Apr 2025 10:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABE21A79EC0
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Apr 2025 10:54:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4308110E970;
-	Thu,  3 Apr 2025 08:54:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=crpt.ru header.i=@crpt.ru header.b="Vl+QS9kZ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87AA710E96B;
+	Thu,  3 Apr 2025 08:54:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.crpt.ru (mail1.crpt.ru [91.236.205.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB4010E856;
- Wed,  2 Apr 2025 15:06:08 +0000 (UTC)
-Received: from mail.crpt.ru ([192.168.60.4])
- by mail.crpt.ru  with ESMTP id 532F5uq5011368-532F5uq7011368
- (version=TLSv1.2 cipher=AES256-SHA256 bits=256 verify=OK);
- Wed, 2 Apr 2025 18:05:56 +0300
-Received: from EX2.crpt.local (192.168.60.4) by ex2.crpt.local (192.168.60.4)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Wed, 2 Apr
- 2025 18:05:55 +0300
-Received: from EX2.crpt.local ([192.168.60.4]) by EX2.crpt.local
- ([192.168.60.4]) with mapi id 15.01.2507.044; Wed, 2 Apr 2025 18:05:55 +0300
-From: =?utf-8?B?0JLQsNGC0L7RgNC+0L/QuNC9INCQ0L3QtNGA0LXQuQ==?=
- <a.vatoropin@crpt.ru>
-To: Kenneth Feng <kenneth.feng@amd.com>
-CC: =?utf-8?B?0JLQsNGC0L7RgNC+0L/QuNC9INCQ0L3QtNGA0LXQuQ==?=
- <a.vatoropin@crpt.ru>, Alex Deucher <alexander.deucher@amd.com>,
- =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sunil Khatri
- <sunil.khatri@amd.com>, Jesse Zhang <jesse.zhang@amd.com>, Tim Huang
- <tim.huang@amd.com>, "chr[]" <chris@rudorff.com>, Boyuan Zhang
- <boyuan.zhang@amd.com>, Yang Wang <kevinyang.wang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lvc-patches@linuxtesting.org" <lvc-patches@linuxtesting.org>
-Subject: [PATCH] drm/amdgpu: Remove the redundant NULL check for the 'table'
- object
-Thread-Topic: [PATCH] drm/amdgpu: Remove the redundant NULL check for the
- 'table' object
-Thread-Index: AQHbo+C7eZhnXRFWGk6xqFGm4+h7bw==
-Date: Wed, 2 Apr 2025 15:05:55 +0000
-Message-ID: <20250402150551.388229-1-a.vatoropin@crpt.ru>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.200.60.21]
-x-kse-serverinfo: EX2.crpt.local, 9
-x-kse-antivirus-interceptor-info: scan successful
-x-kse-antivirus-info: Clean, bases: 4/2/2025 11:23:00 AM
-x-kse-attachment-filter-triggered-rules: Clean
-x-kse-attachment-filter-triggered-filters: Clean
-x-kse-bulkmessagesfiltering-scan-result: protection disabled
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-FEAS-Client-IP: 192.168.60.4
-X-FE-Policy-ID: 2:4:0:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=crpt.ru; s=crpt.ru;
- c=relaxed/relaxed; 
- h=from:to:cc:subject:date:message-id:content-type:mime-version;
- bh=CIvEwGy1ZRedZYHOxGiz3Jd0L6LjT1+0QPHuGHOebBU=;
- b=Vl+QS9kZo0yTmuHLtzBDicCq6h0rx5fF3rSZez5KSNnqN7p3TI2tFGEw0o1UwihByu1OmKLKkSFt
- B4mz54E+B0x7blnIFL2XR6c6birkAyWCgw10wJJ/zh1dWdN98pSsNEoIH2Y0GS3RVroTtZUh7/rk
- UcuGet99JYg3aHB06uyXBdyF92jK5I3pDTsw2mumStPFNIdp4WA0lpaSBp6eqDZhJ7FJxMfARDo2
- iptxg2PNJd2VakdmlsI/SV1QDdx2PwszirUxOHbs1QID9Pu+kkpH5kxgD4XFXzZpibK2JWQqBCeU
- M+UaHUaslXbIbpwZqTNGv34xwNCnXpEmvDKtcg==
+Received: from irl.hu (irl.hu [95.85.9.111])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BE3B10E7F2;
+ Wed,  2 Apr 2025 17:04:24 +0000 (UTC)
+Received: from fedori.lan (51b692a2.dsl.pool.telekom.hu
+ [::ffff:81.182.146.162]) (AUTH: CRAM-MD5 soyer@irl.hu, )
+ by irl.hu with ESMTPSA
+ id 0000000000080D7C.0000000067ED6E16.0008406E; Wed, 02 Apr 2025 19:04:21 +0200
+From: Gergo Koteles <soyer@irl.hu>
+To: Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Alex Hung <alex.hung@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Tom Chung <chiahsuan.chung@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Hersen Wu <hersenxs.wu@amd.com>, Melissa Wen <mwen@igalia.com>,
+ Maxime Ripard <mripard@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, regressions@lists.linux.dev,
+ Gergo Koteles <soyer@irl.hu>
+Subject: [PATCH] drm/amd/display: do not copy invalid CRTC timing info
+Date: Wed,  2 Apr 2025 19:03:31 +0200
+Message-ID: <24439c13a014e1cd200785db6f3dcf08f4773eb3.1743612701.git.soyer@irl.hu>
+X-Mailer: git-send-email 2.49.0
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mime-Autoconverted: from 8bit to 7bit by courier 1.0
 X-Mailman-Approved-At: Thu, 03 Apr 2025 08:54:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,20 +56,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQW5kcmV5IFZhdG9yb3BpbiA8YS52YXRvcm9waW5AY3JwdC5ydT4NCg0KU3RhdGljIGFu
-YWx5c2lzIHNob3dzIHRoYXQgcG9pbnRlciAidGFibGUiIGNhbm5vdCBiZSBOVUxMIGJlY2F1c2Ug
-aXQgDQpwb2ludHMgdG8gdGhlIG9iamVjdCAic3RydWN0IGFtZGdwdV9jYWNfbGVha2FnZV90YWJs
-ZSIuDQoNClJlbW92ZSB0aGUgZXh0cmEgTlVMTCBjaGVjay4gSXQgaXMgbWVhbmluZ2xlc3MgYW5k
-IGhhcm1zIHRoZSByZWFkYWJpbGl0eQ0Kb2YgdGhlIGNvZGUuDQoNCkZvdW5kIGJ5IExpbnV4IFZl
-cmlmaWNhdGlvbiBDZW50ZXIgKGxpbnV4dGVzdGluZy5vcmcpIHdpdGggU1ZBQ0UuDQoNClNpZ25l
-ZC1vZmYtYnk6IEFuZHJleSBWYXRvcm9waW4gPGEudmF0b3JvcGluQGNycHQucnU+DQotLS0NCiBk
-cml2ZXJzL2dwdS9kcm0vYW1kL3BtL2xlZ2FjeS1kcG0vc2lfZHBtLmMgfCAzIC0tLQ0KIDEgZmls
-ZSBjaGFuZ2VkLCAzIGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2FtZC9wbS9sZWdhY3ktZHBtL3NpX2RwbS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9sZWdh
-Y3ktZHBtL3NpX2RwbS5jDQppbmRleCAxYzI1ZjMwMjNlOTMuLmQ2YWI2ZDc3NzdmOSAxMDA2NDQN
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG0vbGVnYWN5LWRwbS9zaV9kcG0uYw0KKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9sZWdhY3ktZHBtL3NpX2RwbS5jDQpAQCAtMjYzMyw5ICsy
-NjMzLDYgQEAgc3RhdGljIGludCBzaV9nZXRfY2FjX3N0ZF92b2x0YWdlX21heF9taW4oc3RydWN0
-IGFtZGdwdV9kZXZpY2UgKmFkZXYsDQogCXUzMiBpOw0KIAl1MzIgdjBfbG9hZGxpbmU7DQogDQot
-CWlmICh0YWJsZSA9PSBOVUxMKQ0KLQkJcmV0dXJuIC1FSU5WQUw7DQotDQogCSptYXggPSAwOw0K
-IAkqbWluID0gMHhGRkZGOw0KIA0KLS0gDQoyLjQzLjANCg==
+Since b255ce4388e0, it is possible that the CRTC timing
+information for the preferred mode has not yet been
+calculated while amdgpu_dm_connector_mode_valid() is running.
+
+In this case use the CRTC timing information of the actual mode.
+
+Fixes: b255ce4388e0 ("drm/amdgpu: don't change mode in amdgpu_dm_connector_mode_valid()")
+Closes: https://lore.kernel.org/all/ed09edb167e74167a694f4854102a3de6d2f1433.camel@irl.hu/
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4085
+Signed-off-by: Gergo Koteles <soyer@irl.hu>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index bae83a129b5f..0eb25cdcb52f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6500,12 +6500,12 @@ decide_crtc_timing_for_drm_display_mode(struct drm_display_mode *drm_mode,
+ 					const struct drm_display_mode *native_mode,
+ 					bool scale_enabled)
+ {
+-	if (scale_enabled) {
+-		copy_crtc_timing_for_drm_display_mode(native_mode, drm_mode);
+-	} else if (native_mode->clock == drm_mode->clock &&
+-			native_mode->htotal == drm_mode->htotal &&
+-			native_mode->vtotal == drm_mode->vtotal) {
+-		copy_crtc_timing_for_drm_display_mode(native_mode, drm_mode);
++	if (scale_enabled || (
++	    native_mode->clock == drm_mode->clock &&
++	    native_mode->htotal == drm_mode->htotal &&
++	    native_mode->vtotal == drm_mode->vtotal)) {
++		if (native_mode->crtc_clock)
++			copy_crtc_timing_for_drm_display_mode(native_mode, drm_mode);
+ 	} else {
+ 		/* no scaling nor amdgpu inserted, no need to patch */
+ 	}
+-- 
+2.49.0
+
