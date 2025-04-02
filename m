@@ -2,129 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D7F4A792C5
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Apr 2025 18:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45E7BA792C8
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Apr 2025 18:13:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C28110E82A;
-	Wed,  2 Apr 2025 16:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 395B310E82C;
+	Wed,  2 Apr 2025 16:13:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hZ+oNrxx";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="S1Z0qgl2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2053.outbound.protection.outlook.com [40.107.94.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 332BD10E827
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Apr 2025 16:13:48 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2059.outbound.protection.outlook.com [40.107.244.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54B7710E201
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Apr 2025 16:13:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sDeT+KvZD5oEGLFwWcxlOujSS7f9NJ+iwn44j4DHO1ggd1/nV+y6OQVC7f4LO4wcIRQeAXqsCwRB1aYfxclUeormcRezu44XG7J7Tr3cXs6+ta4nM0cKQs7OEeWt2vwcQvIjO7/N7n4IfcvAzyVaDPVLhufziITqU4BSNmJEdg7pcVs056KF0b33oYq+hcGuPkOm2FsKhuVeYOduGRFiqRvkQvEu6ZLI9/eEX0Wt0uHHP/nET+6V6kKwu/Qm1EDxFbT0JCRSSx5Hphwfem4YS9M2SAuvXeOUSSbix/cPoTyhMR3Vp/tETi5McQGFxFaIFsC+JSMEYCeqCYykVaR2Tw==
+ b=wLXkfZdYKUxP7uzCmNC0NCZky3GbOjpP2uZmCgPHJmXo7z95aOUNadnUzb2enysIETC6YubkmMJAPFSghAg2za3bJ8mKFBurdBCauXsYJlVgZaVibw+j1RXoO5HMW1DLA/Hj9FdhEoLCvcfhLF7258+0epA+xuT5wS4lTsGmu43aqusyUfXf3UjzASdtqHfnvUlkuL7QYBan46pnG/cpGOdJzHkEgP9R25WHvS490itDbg/n/R7O3lLZMKoazQuDNnKcSUxdDqAhI/dB0WCn02HzUr9eukvOy/UgYRP69WQyXxkQS7ekzrG0Tbut4CPx5R2HKCdtBx4QwZxLwF3zKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=71NgiQt1VBT7O8QFjbXCGXVwSNVGFqmk2h3INJ/Mh5U=;
- b=A7PFYOSbPMUauD/hmVFmafR899QSHHOySCZlkoIpyBVL2I6ffKutFUmVAeSxwleFp4AuChLknlt47dTgmYnchBYhDXBfUuzlPHDo0QcPQm4rg0pqOECpsaDZa2B8Utu6LVvQfRvNNhPjEkCtn7UuinyccsGDCVlJEkugO7KhChcApKpcJBwWaJPGpMhuexgFhwSSOHdnrQN3NybiFAEVoYgfeMZvLfKXt26XGxxQlOEMZBYFAMce81/BcGiwp0dh97jfrjNnBeu/xrasL58xv9O1rq7n65Uk9CoD7NN1kJ19K/+cm4G/u6J3dOg2UcwQ+Q8t6yZRsh1oX02n1LsBjw==
+ bh=bVKLjTLkiTvM9xQH3IR7V777zYimqT8DoKADSL7BRms=;
+ b=MO0TiDjuB/RDxHFH3DH8oS3ARa9LARHs+OZuwOz+vW3Zkc4HZ9O5bwYksWOMPWvQzLLZiPa/jFJ+G8aRK3AsTRiaPJh0dgoF31NmsNwIOm/AKNtzoIAYCpnMuTrAisxc4l+4YawCmZIWyOFGADe0AirtY547RDlCYWOM4AZip+PvOy3B7im97OfdePfRC2mymRl5rjarYg8thTsme0A22CBbIYseZ1uDRKv2myVrPr5MMhnJhpJPtXJvn/RT6z5gr8k9f/tj285iXkTXOIZ/CsnZoZMDpOXuBhk5Xb7VXDMfnm8RprYFYu3nzyz/gNxZs0w/OZMq5N9vyO6wnsmz3Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=71NgiQt1VBT7O8QFjbXCGXVwSNVGFqmk2h3INJ/Mh5U=;
- b=hZ+oNrxxYhYBheMFNI2Z8cOCyPI4qT8XKDTtcT81WT2su/DtjT0njhDUbXyorNYPXUsMC/vdiVa0tWLGJITz83fJ8/Km1dfQpBPYmO7B2g2QEuKmJNkQVTmiL/C7uZMLw/V/X329xYPNSemDVMsLd4Vb4qjmz5yI9Ph0e5bG/4I=
-Received: from CH3P221CA0026.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:1e7::27)
- by DM6PR12MB4298.namprd12.prod.outlook.com (2603:10b6:5:21e::9) with
+ bh=bVKLjTLkiTvM9xQH3IR7V777zYimqT8DoKADSL7BRms=;
+ b=S1Z0qgl2CxlK1k+RSKoF4o2qvzJv9hEetGeQmPP2RKWIL9N/QFO6IGkdQjaydbYhO34ZoC6j+EJXm1Gq2jZB3GPrOVrdxGactuLWpjRhLxY3cwJWRPuBMQIFhQ4k69CP14BC4RXsGJkUX+dr1hd1HJQ5DBERHfBK4S0pZZACPn8=
+Received: from CH5PR03CA0008.namprd03.prod.outlook.com (2603:10b6:610:1f1::26)
+ by DM4PR12MB6207.namprd12.prod.outlook.com (2603:10b6:8:a6::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Wed, 2 Apr
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.47; Wed, 2 Apr
  2025 16:13:39 +0000
-Received: from CH2PEPF00000099.namprd02.prod.outlook.com
- (2603:10b6:610:1e7:cafe::a4) by CH3P221CA0026.outlook.office365.com
- (2603:10b6:610:1e7::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8606.24 via Frontend Transport; Wed,
+Received: from CH2PEPF000000A0.namprd02.prod.outlook.com
+ (2603:10b6:610:1f1:cafe::f5) by CH5PR03CA0008.outlook.office365.com
+ (2603:10b6:610:1f1::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.54 via Frontend Transport; Wed,
  2 Apr 2025 16:13:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH2PEPF00000099.mail.protection.outlook.com (10.167.244.20) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CH2PEPF000000A0.mail.protection.outlook.com (10.167.244.26) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.8606.22 via Frontend Transport; Wed, 2 Apr 2025 16:13:39 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 2 Apr
  2025 11:13:38 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 2 Apr 2025 11:13:37 -0500
+ Transport; Wed, 2 Apr 2025 11:13:38 -0500
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, "Daniel
- Wheeler" <daniel.wheeler@amd.com>, Mario Limonciello
- <mario.limonciello@amd.com>, Alex Hung <alex.hung@amd.com>
-Subject: [PATCH 01/16] drm/amd/display: Optimize custom brightness curve
-Date: Wed, 2 Apr 2025 12:13:05 -0400
-Message-ID: <20250402161320.983072-2-Roman.Li@amd.com>
+ Wheeler" <daniel.wheeler@amd.com>, Kevin Gao <kgao1003@amd.com>, Charlene Liu
+ <charlene.liu@amd.com>
+Subject: [PATCH 02/16] drm/amd/display: Correct SSC enable detection for DCN351
+Date: Wed, 2 Apr 2025 12:13:06 -0400
+Message-ID: <20250402161320.983072-3-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250402161320.983072-1-Roman.Li@amd.com>
 References: <20250402161320.983072-1-Roman.Li@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: Roman.Li@amd.com does not designate
+Received-SPF: None (SATLEXMB03.amd.com: Roman.Li@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000099:EE_|DM6PR12MB4298:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed4b9f8d-48a3-421f-27e4-08dd7201544b
+X-MS-TrafficTypeDiagnostic: CH2PEPF000000A0:EE_|DM4PR12MB6207:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f06ff34-ce59-44df-2792-08dd72015482
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wbXXDvYEa7krOmHid+f1i0ruRufOt1rnRmhBl3+3MP8W3kKX2bc0dTucSmjQ?=
- =?us-ascii?Q?YwGx+OF4Q0nM7BKBj4fP4AQ+qIjMbEwUiO0mW9EaesqsBXjcLstfcXKlWp7B?=
- =?us-ascii?Q?v+LR6BMFMBbeQCDILaKKwhRK7fSIfNrqGlCMTl08QpDqXx7Efafp0Zpvi1o0?=
- =?us-ascii?Q?4b9t6eXNbpK4p9FxKn07RWUUjw9RKYlnhKzadD2x7zN/PR8twkDEdw8SXg/B?=
- =?us-ascii?Q?Xm2zUZVixBUZqN07K58P7RBALind0vB5V8VgPXSk8z0rqz1d9imiyY3RFoQJ?=
- =?us-ascii?Q?ycN7cq66fdMFiAdg3GwErnn+94jOLnv+QXCedW6LhYoiVL8QYwqPSTl59/rx?=
- =?us-ascii?Q?lIdXk7gZiGTzWUHtl/uuzuQomxI69i6zVwVGElmvsZAIXlQn+u+7ROA25YhY?=
- =?us-ascii?Q?EqJIViulfDxag7lIIuakxWwl67qkQTz0UUlS6mPTKU2ZWDnrmLX371KEH/el?=
- =?us-ascii?Q?uK7kcf6XKwSYXVucXPWxLT2d/Vj94E+yyzkJ8aCrq76B46jELn60jGqLFv6n?=
- =?us-ascii?Q?0QVyUeeB2NIVZeZdqzH+Qr9eMQyyX4NXIh9yl6UdL7TgcA3MwNiUF4l34zxo?=
- =?us-ascii?Q?6+0EsGKcSr5UbZFdzY7ySrPPV8yojM9ImhktjidELfN9vyCAnjbgg2DtnVFQ?=
- =?us-ascii?Q?v0aHGWlQwvcu8QjmywKl3kCSwimwc0JxfiQrsCkOF6SBJCDVBCdKatco5SY4?=
- =?us-ascii?Q?eUCsQQSXp5+67bfJo7hsHSYjh5zUzkY5box13F6Zh55NeLajyGRrj7651ed9?=
- =?us-ascii?Q?0TCfNcxN3mm8GNCmp5wLIAoD7itUA1FTdFh3ejImdUELowcuY+nHz6e3xElF?=
- =?us-ascii?Q?hB2WZMKwEInz4KyaIGKBM126fVI30nB+GDnIngWvDYAOnYHKqf3gQjHaKQhD?=
- =?us-ascii?Q?QgEu/9MJcDnKePi5ZQwO+BG7cpXz3nqKmhZCCW+j2NWk/pNznV4XZYtwo66E?=
- =?us-ascii?Q?Fy660APKl+jNwm+lHIMrP0OCRJL/qDfqnYKy7HzwuPiSgXPX9FHnC5BM83ll?=
- =?us-ascii?Q?WRrH93D0u3Wa80GN3GTXa1MBlSBejynsI/fyu80hbPFb+4iU3MXygUWCJsaD?=
- =?us-ascii?Q?9Etzl+yY0NubZ4Qkp9GQIsRcOTwSQoB8yhHvDDvTt88aYU6A5UwlSBJm0NBD?=
- =?us-ascii?Q?4vlHBMBPl2Kf8Vvq4o6bmH/WMBSnkLurnryT9qa5Pp94pI2c/h8bAyInLVrf?=
- =?us-ascii?Q?8hQQQ1chjOfOCLH4Zwr5WqN2u/E4+GvFcX1LMwm5NFsXQzNc7YLcrJMC8MEx?=
- =?us-ascii?Q?E+ChoxfkRIWlv0IrfWQJJ5y9f7S39iRYmDNmz9s3spqpWxxvXCOmBqlPr++h?=
- =?us-ascii?Q?D+uRceKw56wrWvdf+8r2JrMay1oleM8xbCmVuZmrQQz5WZhCF722GmHv1HuQ?=
- =?us-ascii?Q?cJg+fP0vF7leEhTym09T2q8UuQQLAEuksAnxZEDjKf72qgHwBe5nlkIE42ee?=
- =?us-ascii?Q?6IL/bmN9eCfGDxQ8JJFnu6dpLDv+cu1NRgKWHsc9nqClL5Bkm8QP++EWjN1D?=
- =?us-ascii?Q?HjbXZbBtky/5xeg=3D?=
+ ARA:13230040|36860700013|82310400026|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cN0o+rpkv3QoOa9PwGNNyJHxYJiDqsZ4dxFXAkr5uLM2aF2jPJQjBXSvw2b3?=
+ =?us-ascii?Q?kdMnEJapXxjO8WScBskZafHSo0I5OuW12LiXfQZZz+RGPJpAhMA8R97GoMBv?=
+ =?us-ascii?Q?zniM+Vr3qWvlsPwOS1EXUFdLZo+IUeTy7VBhlHXHgkylSC4O1YO8RKnN/nHq?=
+ =?us-ascii?Q?Z0nH5YEAhbpLL6ZjQjmIiQrqRNkJrfn2z7Fgbzvwjvjq10ZoDVxWRlVcRQed?=
+ =?us-ascii?Q?0SE8p1ebKiRIK3uYy/pBXPgBZqFT8hCDNYgtczjfbSlYX52ikANO3NCC/USY?=
+ =?us-ascii?Q?35heBUshNC5CfylV0cd57/+8GeBgJCkp3CJ6TL1TaKJ2Gy0EItfGpMiRgLJp?=
+ =?us-ascii?Q?JkmvsYOdpYn8n8Lasi+vPGeNrhgk7oRfyvoIIbydKfJq2VsMb3f5Zh2OE83i?=
+ =?us-ascii?Q?65r19Fanl5Wq4/Atujk/fFxBsa5l5EED+IyPYCEEOzP2F6JCyvuyHx4AqI1R?=
+ =?us-ascii?Q?HGmbph/SZP4Gh9onnWQKvKD/JHgUjeBwIHmhWgD+FLBCnqLI/jv5U1ijulYY?=
+ =?us-ascii?Q?wnasfHuM5jYayyNkSGP8T9BrV1idGODvoNQmBZrofnHc9oic5q1sqARr5dvA?=
+ =?us-ascii?Q?bB3+w1tEYomu+3fxtOIPXlzhJOvgDKMdEfAy1UczGJ8+6/jFMsm6ghCGNS4o?=
+ =?us-ascii?Q?3SwyMKfhUo2J0mX12CKQct9CNMIsU3u5w98lkaQ9kLGppoobbH6Qgz06DcZk?=
+ =?us-ascii?Q?zczyELuL+gdnUD+0kvCbAtSIhSGPWRwf7q5kYuVhM+l6vW6C8iQkFeMRU5aW?=
+ =?us-ascii?Q?0xCPAs0MQl0EhzehrhoFKowyqgZtq5OAXYRyGfNBMWjeY8XVzpIDGDY7QawL?=
+ =?us-ascii?Q?gh64y+U4lUF5T7pwKdRQLz/Gk3yvEqzOhFK1/D3weXoYig/ToXkfdZokqLpW?=
+ =?us-ascii?Q?rQEdfPH+lhz959kqz6lJRjvlDHU3N93W70ZHUjJyd61Ht9XTgQ5+iLur6vlZ?=
+ =?us-ascii?Q?eyFJf1DsQ8aVxV+RRRLIogB8dPNyf9f9t+CYQdO1fj9v05bNifb5zKOL9DuK?=
+ =?us-ascii?Q?TY+v/Y1T5VP1ZodFazOLIQ7YQ6i2XT6oZwsNfjp1xfHGNUc5Af+jyOnyYSYt?=
+ =?us-ascii?Q?19pxRHvXyzdClCHb5ND84ybn9UPpzoG6C6OWtNeqSZKb4BvBCveaFKjGYrPC?=
+ =?us-ascii?Q?JcinIMfeAbe4+EDMTM/za9cirRKs7gCpPl32pl53rSJ5duwjld02yCroeOD7?=
+ =?us-ascii?Q?0QWq0Csu0Qvs4l+PIDCNtOMfL1VF1V03+ZfJWprB55q2kF0QMlMG30CfjYnb?=
+ =?us-ascii?Q?8O5FVsUftvQsG9QrtjH5j9THHKEY4jMlnqDzLc/AEMk3FFNHEfSZ6INEQfYT?=
+ =?us-ascii?Q?3I8rjvkuyf8HuB7/qkjP8+JdEHEDWnDhzV7bjoOuHuNaXz25qfbPY6sCZg19?=
+ =?us-ascii?Q?2ysoOgec6AW0Hwqgh/XHogUTwk/ZEQTeWLhpVg2eNqXHpQqEGbHzGVUoN0gw?=
+ =?us-ascii?Q?8fhF/mDCidKKhh8G8akest/cGWuQvs4RHaiEG1p9MLp6hbt/PK40LKImizvG?=
+ =?us-ascii?Q?Uq7Nf6iKpmQ0Aiw=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2025 16:13:39.0598 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed4b9f8d-48a3-421f-27e4-08dd7201544b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2025 16:13:39.4203 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f06ff34-ce59-44df-2792-08dd72015482
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000099.namprd02.prod.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF000000A0.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4298
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6207
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,106 +139,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Mario Limonciello <mario.limonciello@amd.com>
+From: Kevin Gao <kgao1003@amd.com>
 
 [Why]
-When BIOS includes a lot of custom brightness data points, walking
-the entire list can be time consuming.  This is most noticed when
-dragging a power slider.  The "higher" values are "slower" to drag
-around.
+Due to very small clock register delta between DCN35 and DCN351, clock
+spread is being checked on the wrong register for DCN351, causing the
+display driver to believe that DPREFCLK downspread to be disabled when
+in some stacks it is enabled. This causes the clock values for audio to
+be incorrect.
 
 [How]
-Move custom brightness calculation loop into a static function. Before
-starting the loop check the "half way" data point to see how it compares
-to the input.  If greater than the half way data point use that as the
-starting point instead.
+Both DCN351 and DCN35 use the same clk_mgr, so we modify the DCN35
+function that checks for SSC enable to read CLK6 instead of CLK5 when
+using DCN351. This allows us to read for DPREFCLK downspread correctly
+so the clock can properly compensate when setting values.
 
-Reviewed-by: Alex Hung <alex.hung@amd.com>
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+Signed-off-by: Kevin Gao <kgao1003@amd.com>
 Signed-off-by: Roman Li <roman.li@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 53 ++++++++++++-------
- 1 file changed, 33 insertions(+), 20 deletions(-)
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn351_clk_mgr.c | 1 +
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 8 +++++++-
+ drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h  | 3 ++-
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 867999cf49e5..5105d4b5e972 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4797,41 +4797,54 @@ static int get_brightness_range(const struct amdgpu_dm_backlight_caps *caps,
- 	return 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn351_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn351_clk_mgr.c
+index 6a6ae618650b..4607eff07253 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn351_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn351_clk_mgr.c
+@@ -65,6 +65,7 @@
+ #define mmCLK1_CLK5_ALLOW_DS 0x16EB1
+ 
+ #define mmCLK5_spll_field_8 0x1B04B
++#define mmCLK6_spll_field_8 0x1B24B
+ #define mmDENTIST_DISPCLK_CNTL 0x0124
+ #define regDENTIST_DISPCLK_CNTL 0x0064
+ #define regDENTIST_DISPCLK_CNTL_BASE_IDX 1
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+index 142de8938d7c..bb1ac12a2b09 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+@@ -90,6 +90,7 @@
+ #define mmCLK1_CLK5_ALLOW_DS 0x16EB1
+ 
+ #define mmCLK5_spll_field_8 0x1B24B
++#define mmCLK6_spll_field_8 0x1B24B
+ #define mmDENTIST_DISPCLK_CNTL 0x0124
+ #define regDENTIST_DISPCLK_CNTL 0x0064
+ #define regDENTIST_DISPCLK_CNTL_BASE_IDX 1
+@@ -116,6 +117,7 @@
+ #define DENTIST_DISPCLK_CNTL__DENTIST_DPPCLK_WDIVIDER_MASK 0x7F000000L
+ 
+ #define CLK5_spll_field_8__spll_ssc_en_MASK 0x00002000L
++#define CLK6_spll_field_8__spll_ssc_en_MASK 0x00002000L
+ 
+ #define SMU_VER_THRESHOLD 0x5D4A00 //93.74.0
+ #undef FN
+@@ -596,7 +598,11 @@ static bool dcn35_is_spll_ssc_enabled(struct clk_mgr *clk_mgr_base)
+ 
+ 	uint32_t ssc_enable;
+ 
+-	ssc_enable = REG_READ(CLK5_spll_field_8) & CLK5_spll_field_8__spll_ssc_en_MASK;
++	if (clk_mgr_base->ctx->dce_version == DCN_VERSION_3_51) {
++		ssc_enable = REG_READ(CLK6_spll_field_8) & CLK6_spll_field_8__spll_ssc_en_MASK;
++	} else {
++		ssc_enable = REG_READ(CLK5_spll_field_8) & CLK5_spll_field_8__spll_ssc_en_MASK;
++	}
+ 
+ 	return ssc_enable != 0;
  }
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+index 221645c023b5..bac8febad69a 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+@@ -199,6 +199,7 @@ enum dentist_divider_range {
+ 	CLK_SR_DCN35(CLK1_CLK4_ALLOW_DS), \
+ 	CLK_SR_DCN35(CLK1_CLK5_ALLOW_DS), \
+ 	CLK_SR_DCN35(CLK5_spll_field_8), \
++	CLK_SR_DCN35(CLK6_spll_field_8), \
+ 	SR(DENTIST_DISPCLK_CNTL), \
  
--static u32 convert_brightness_from_user(const struct amdgpu_dm_backlight_caps *caps,
--					uint32_t brightness)
-+static void convert_custom_brightness(const struct amdgpu_dm_backlight_caps *caps,
-+				      uint32_t *brightness)
- {
--	unsigned int min, max;
- 	u8 prev_signal = 0, prev_lum = 0;
-+	int i = 0;
- 
--	if (!get_brightness_range(caps, &min, &max))
--		return brightness;
+ #define CLK_COMMON_MASK_SH_LIST_DCN32(mask_sh) \
+@@ -307,7 +308,7 @@ struct clk_mgr_registers {
+ 	uint32_t CLK1_CLK4_ALLOW_DS;
+ 	uint32_t CLK1_CLK5_ALLOW_DS;
+ 	uint32_t CLK5_spll_field_8;
 -
--	for (int i = 0; i < caps->data_points; i++) {
--		u8 signal, lum;
-+	if (amdgpu_dc_debug_mask & DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE)
-+		return;
++	uint32_t CLK6_spll_field_8;
+ };
  
--		if (amdgpu_dc_debug_mask & DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE)
--			break;
-+	if (!caps->data_points)
-+		return;
- 
--		signal = caps->luminance_data[i].input_signal;
--		lum = caps->luminance_data[i].luminance;
-+	/* choose start to run less interpolation steps */
-+	if (caps->luminance_data[caps->data_points/2].input_signal > *brightness)
-+		i = caps->data_points/2;
-+	do {
-+		u8 signal = caps->luminance_data[i].input_signal;
-+		u8 lum = caps->luminance_data[i].luminance;
- 
- 		/*
- 		 * brightness == signal: luminance is percent numerator
- 		 * brightness < signal: interpolate between previous and current luminance numerator
- 		 * brightness > signal: find next data point
- 		 */
--		if (brightness < signal)
--			lum = prev_lum + DIV_ROUND_CLOSEST((lum - prev_lum) *
--							   (brightness - prev_signal),
--							   signal - prev_signal);
--		else if (brightness > signal) {
-+		if (*brightness > signal) {
- 			prev_signal = signal;
- 			prev_lum = lum;
-+			i++;
- 			continue;
- 		}
--		brightness = DIV_ROUND_CLOSEST(lum * brightness, 101);
--		break;
--	}
-+		if (*brightness < signal)
-+			lum = prev_lum + DIV_ROUND_CLOSEST((lum - prev_lum) *
-+							   (*brightness - prev_signal),
-+							   signal - prev_signal);
-+		*brightness = DIV_ROUND_CLOSEST(lum * *brightness, 101);
-+		return;
-+	} while (i < caps->data_points);
-+}
-+
-+static u32 convert_brightness_from_user(const struct amdgpu_dm_backlight_caps *caps,
-+					uint32_t brightness)
-+{
-+	unsigned int min, max;
-+
-+	if (!get_brightness_range(caps, &min, &max))
-+		return brightness;
-+
-+	convert_custom_brightness(caps, &brightness);
- 
- 	// Rescale 0..255 to min..max
- 	return min + DIV_ROUND_CLOSEST((max - min) * brightness,
+ struct clk_mgr_shift {
 -- 
 2.34.1
 
