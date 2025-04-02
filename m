@@ -2,33 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8117A79CFA
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Apr 2025 09:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71337A79EAF
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Apr 2025 10:54:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 632AE10E914;
-	Thu,  3 Apr 2025 07:29:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89A1010E95C;
+	Thu,  3 Apr 2025 08:54:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D85FE10E914
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Apr 2025 07:29:18 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 5337TBCM555333; Thu, 3 Apr 2025 12:59:11 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 5337TBe8555332;
- Thu, 3 Apr 2025 12:59:11 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH] drm/amdgpu: Fix the comment to avoid warning
-Date: Thu,  3 Apr 2025 12:59:10 +0530
-Message-Id: <20250403072910.555319-1-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from irl.hu (irl.hu [95.85.9.111])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AF8B10E742
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Apr 2025 10:40:57 +0000 (UTC)
+Received: from [192.168.2.19] (51b692a2.dsl.pool.telekom.hu
+ [::ffff:81.182.146.162]) (AUTH: CRAM-MD5 soyer@irl.hu, )
+ by irl.hu with ESMTPSA
+ id 0000000000080C4C.0000000067ED1436.00082B78; Wed, 02 Apr 2025 12:40:54 +0200
+Message-ID: <ed09edb167e74167a694f4854102a3de6d2f1433.camel@irl.hu>
+Subject: amdgpu_dm_connector_mode_valid regression
+From: Gergo Koteles <soyer@irl.hu>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Harry Wentland <harry.wentland@amd.com>
+Date: Wed, 02 Apr 2025 12:40:53 +0200
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 03 Apr 2025 08:54:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,28 +45,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix the below comment warning
-drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c:541:
-warning: Function parameter or struct member 'adev'
-not described in 'amdgpu_sdma_register_on_reset_callbacks'
+Hi,
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 1 +
- 1 file changed, 1 insertion(+)
+While playing with
+https://lore.kernel.org/all/61c3df83ab73aba0bc7a941a443cd7faf4cf7fb0.174319=
+5250.git.soyer@irl.hu/
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-index 0a9893fee828..c3c6f03190c8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
-@@ -531,6 +531,7 @@ bool amdgpu_sdma_is_shared_inv_eng(struct amdgpu_device *adev, struct amdgpu_rin
- 
- /**
-  * amdgpu_sdma_register_on_reset_callbacks - Register SDMA reset callbacks
-+ * @adev: Pointer to the AMDGPU device
-  * @funcs: Pointer to the callback structure containing pre_reset and post_reset functions
-  *
-  * This function allows KFD and AMDGPU to register their own callbacks for handling
--- 
-2.34.1
+I found a regression that prevented some EDID DTDs from being selected
+in some specific cases.
+
+This is the first bad commit:
+b255ce4 ("drm/amdgpu: don't change mode in
+amdgpu_dm_connector_mode_valid()")
+
+I think the problem is that decide_crtc_timing_for_drm_display_mode()
+function tries to copy the crtc information from the preferred mode,
+but that's not filled yet if the first one is the preferred one and
+it's not the one with the maximum refresh rate.
+
+amdgpu_dm_connector_mode_valid()
+create_validate_stream_for_sink()
+create_stream_for_sink()
+decide_crtc_timing_for_drm_display_mode(&mode, preferred_mode, scale)
+
+It works if I call
+drm_mode_set_crtcinfo((struct drm_display_mode *)mode, 0) before=20
+create_validate_stream_for_sink()
+in amdgpu_dm_connector_mode_valid()
+
+or=20
+
+if I comment out the decide_crtc_timing_for_drm_display_mode() in
+create_stream_for_sink()
+
+but a better fix than these can be imagined :)
+
+more information:
+https://gitlab.freedesktop.org/drm/amd/-/issues/4085
+
+Regards,
+Gergo
 
