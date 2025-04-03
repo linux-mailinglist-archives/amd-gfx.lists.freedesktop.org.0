@@ -2,51 +2,149 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661A8A79E97
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Apr 2025 10:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B36A79F58
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Apr 2025 11:03:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF9A10E931;
-	Thu,  3 Apr 2025 08:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCA3810E945;
+	Thu,  3 Apr 2025 09:03:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="YuLwsDia";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KrpL8hfh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
- [136.143.188.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 988E810E8CD
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Apr 2025 20:11:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1743624673; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=bac8eKNcgMxZ+iSgQRNQ1eUuHdNVfWnS5NHEn9vT+Iczm7Zp1AhxVxaheIiQ7Ce5wJ80nk5kyABclsVYWb55E2zzM27rd54Tt87MTuogh3dOpm0GAoBw0T1q2WXb0oP2t+pZVaQa85mfdMFFS82JYFDEtNRMpyE9Jqnc9tli44Y=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1743624673;
- h=Content-Type:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
- bh=4kNb4NMrfDf1vsmM2JQ8sfqAuCZMh5/PllUCiZS9RkM=; 
- b=BDZbVlo2n8BUTEXZAfiVCugoY0YTGj5lpFy6bGxq3Amk6lOj/GPOUS8igPuSznBsXlQ527vHyjLZgXWzXtNQ2323xAwAv0Q+16w4VWM89goL93KeMP58wm2HO8ovDA+yRmk5jhXk1Fn9/iy1Eq1yD2FzYkKPU4OydsxKhw144zY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=mark.filion@collabora.com;
- dmarc=pass header.from=<mark.filion@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1743624673; 
- s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
- bh=4kNb4NMrfDf1vsmM2JQ8sfqAuCZMh5/PllUCiZS9RkM=;
- b=YuLwsDia0qxPu6wBM5MXwbZSxOS4bm7xF1ddt/Kbi5Ox8iwFPdgEhHIeXppEF3hV
- idk8LNFubaqvakb3Mi9BfJd0/mTpeaXiWoo/GmM9U8TzHxpHKV3gzPdWRVPfmVtXEEP
- HGcmfUN/lVy3qHJ+r+AZ+5CwYfcW2ISAsqXQf2pk=
-Received: by mx.zohomail.com with SMTPS id 1743624670732275.4775603278689;
- Wed, 2 Apr 2025 13:11:10 -0700 (PDT)
-Message-ID: <c6fb43f7f2dcc7f9bab931be657ae28df6325091.camel@collabora.com>
-Subject: 2025 X.Org Board of Directors Elections Nomination period is NOW OPEN
-From: Mark Filion <mark.filion@collabora.com>
-To: amd-gfx@lists.freedesktop.org
-Date: Wed, 02 Apr 2025 16:11:09 -0400
-Content-Type: multipart/alternative; boundary="=-0OZdLeWSpEQimpi7140Q"
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41app1) 
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2085.outbound.protection.outlook.com [40.107.101.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 930B510E945
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Apr 2025 09:03:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xiEtrK1Y296XqC3jkLZIh4NBSWW3mLxVX7BuHfBVIrhD5WI42xRtNqv7/SJD2lgpOCaHFSOqCrPhJqbHwj8M/qztPl9FW3ymiG2oSB89u8/V8CHxaDWeNzbDtpTImuseruHebJAEG8g++pFVIx2jv5yu9UAVroP1vavvScIO/fISM1RR4gM4NywI/GMcbQC+XZxep4UbB4sXMuwYYu5eBtO76FrfiGUAAAfvBsD7d8lBdxQQSDur6tt7AgcCygbMaAWV6VpJjRhHrQ6/q4GffyrIRundr5CF5zRqXqxeI1LJF7oysesxp19GwVUar95deezVqEfvG3uk4afXPRzvaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zxpHNPM1h5WHE3bKFtalzR/jMNcu/d4P6cC88oVhimQ=;
+ b=Fgnz5xRb0/oWTSKPV9pFciTU1b6pYcfa9u2n/LK6u6KC4E1ge7BzZDZSYVDP+LT0I3kEEzm8JjgilpKAjlyazcD/IX0445sZJA/i24il8MUJELgmc9kenVCilsVvHE1sB2xMqpV0Tow/tlaIRItz/IuG2nu6RWP9CxO3+ciADmhJMO3E0TnH9UE2ygcs3P7ZL/iuaw7JtK7HKC7qvWu7gvmjOxkuJFWkY1K8FqMefKQpDWhMgzre+BlfWqMx27DFiq7EhDXSrbdK55MgmieLLKH53QN+3lb6FaLaX4KMgQwMZ0PZFyyrV5ucKLu2jCOUL5U8WXfzWcOXAKctaaUtDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zxpHNPM1h5WHE3bKFtalzR/jMNcu/d4P6cC88oVhimQ=;
+ b=KrpL8hfhIDSxX/A9b6wgBc9Mlhs68d5L4Ud3Jj/E/meahZ2vGaC5d2+8IEYn+xAKSrUzVBIMDd7ivSnB7Nro1IXJDo8ymibl0sMIgKgLBJYkT24YzN0p/cynHz+j31vRVRYtJj0PTplEbsQP9bnB7ZT+aw7V8T5JkisQs7wuUL4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by PH7PR12MB5782.namprd12.prod.outlook.com (2603:10b6:510:1d1::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Thu, 3 Apr
+ 2025 09:03:05 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8534.043; Thu, 3 Apr 2025
+ 09:03:05 +0000
+Message-ID: <cc217826-180b-491d-aa49-0dff073b8f99@amd.com>
+Date: Thu, 3 Apr 2025 11:03:00 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Fix the comment to avoid warning
+To: Sunil Khatri <sunil.khatri@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>
+References: <20250403072910.555319-1-sunil.khatri@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20250403072910.555319-1-sunil.khatri@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0399.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:cf::8) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Mailman-Approved-At: Thu, 03 Apr 2025 08:54:05 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB5782:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d21594f-d804-41c2-151d-08dd728e584a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VmlpL1V6YzlEamZ3b3IzdFdMVGdiMWduRXZQdTljYzcvbmlFc2NMaWhDNmlF?=
+ =?utf-8?B?NGZRWjljVTRsbU55SXVlL3JLVm9UL2d2TTlIZU9vcmpNMmZOa05qZ0dTdFJJ?=
+ =?utf-8?B?clFKTW41T04za0hteVpsd25FMmo2emZnMlNZWENIZ3JtQVhQbDFwTmhZRHo3?=
+ =?utf-8?B?ckFySTl5T1B5cVViY3hOWUg2YUNuQU1RY0QyWUJQQXFnU2JBVWsycjVqc2l4?=
+ =?utf-8?B?TjhYSFE3ZjhSY3VMRGJMYXhja2JkanZVSHJmZlJBdGNQeDNmTWVFSFhwVmUv?=
+ =?utf-8?B?TWFmdVdGMVhMS0ZlWEtua3IvRlIwZHY1QzFxVHZvMjcyc243QnhtMTg5TUFD?=
+ =?utf-8?B?QVdseFoxRDZ4NUtNdit0VVk3dTZOZUg5dkRFOHByNi9VaHBBREVnSlNFM1dS?=
+ =?utf-8?B?Z2o1eTBjTTRMeDFDcVhxbVVnQkoxUThsbEJmNWJCVlNiR01Pc2JoR3JpaXdt?=
+ =?utf-8?B?NHZpaHI1Y0hhNjZydWw2d2tZMkZtMHQxT3pldWx3Y0lXU3FzTWVaQmFzY3k1?=
+ =?utf-8?B?UU5Rd3FYakhSMk84NEF1VjNFYVlhaWhaSjF5N0Rwb0l4Z0ZMaWdlZW1lOHhT?=
+ =?utf-8?B?bkY0UitIR0VZRVdNMzZkSlRHNzRjYk8wUDlza1IrLzhpS3g4enZPQ21MRHNM?=
+ =?utf-8?B?azRZSU1PVTJIcy9oZlM2L3VKUWhzUndOZnhoSzVicWpVTWJCeC85ejZNc09s?=
+ =?utf-8?B?TTBYcU1yVjZqMFc5QkdUaWs5ZHp3a3oycmdONjJjTjMyeDVoSnRmQzVpdXhn?=
+ =?utf-8?B?QXNvSnV3U01pd3kwNkhpb0RadnNYdnpKMHRkVjBBLzZlMkZzWlpUSkd6K2Fz?=
+ =?utf-8?B?bUliTU9JVkZvdDNTTmx2RWVjZ05pODlpM20xSkQyeE9wTHBFQUU5VkFCaElT?=
+ =?utf-8?B?WDlmaG5KTURPb0srdmhha2NFTHcxWVZUNWVEb1FyMmw0eTV0WkZzci9CSk9t?=
+ =?utf-8?B?bW1GM3JHSk1Hd1BRRWZCbW5Rc1NvaDdMNjE4aUk0Wk5ydHNOamxzZTl4bnhS?=
+ =?utf-8?B?NHdLL0lqZy9WeEFWQUU4WGZPRzZCUEhIdEIxWk1tdHVzbFUzeFoza0JBRFA3?=
+ =?utf-8?B?UTVPQWJYZ3A5NGFIdDNsblQ1TCs1R2NvTEtsNDNUSlFzOTRnY0l2SG9VMTZl?=
+ =?utf-8?B?VStsZE54RU5LUzVvRlBreG1QYmZ1UlUyQjdIdi9kMVZRZ2F6clY5NytIZ3pp?=
+ =?utf-8?B?KzIyOU1rSnA3YjF3Ti9nZDEzWFVVazdaZlFCTnpCUzhuM2lPTUE0UlBtLzRR?=
+ =?utf-8?B?SjQydXpFMDUwc0swbXluRkFZUHJQRjZWK1dSM1Z5T3BOVElraEtKZ2FaK2Y1?=
+ =?utf-8?B?ekZmanhheGFaeTMwMGJUZ0hvdDJ6eXlDU3ROVFJabFZ1Z3B0eWJ0UDVUZStm?=
+ =?utf-8?B?bzExWDRHVmVXa0YwUTFFZ3VYQU5jSUtYTDRHK0d0TmlJZXphWkU2TXNENzBw?=
+ =?utf-8?B?NnZlS0RKNWxGdVhadC95WEtuOUVoVVp0ZEhaMXM3Z3g5TnYwbHVFS1FMVmJH?=
+ =?utf-8?B?NDdkMkU1OGcrcytNY0h1ODRlTjc4L21maGFQckVkTGdWN3lMUk1INGlMcTE1?=
+ =?utf-8?B?Z0d1SEtHOE9tWXNVNFNmVmRHTkFpaU1BTEhFeUlKcjJ5bThSZnFRaSt6bC9X?=
+ =?utf-8?B?WUdQMC92NERoWDhGeUtYWFF6T3ZXaE1LS2dxNWJnY05lRk5qc2JtSGFHZTNU?=
+ =?utf-8?B?QlIvYWs3QmEvekI1T2YxSFJEMkpqWHlmV3ByL0ZtaFdyRmU2YWUwaFRhbEx5?=
+ =?utf-8?B?ZUwyMHRhTnFYYXBUb2VpTnJpUlFEa1J6K0RFU2FmWDV4ajNJaHh4d3pjc3JO?=
+ =?utf-8?B?R1p0dXBpK21FYkt2T1prR2FKZlFtcU1vVEw0OHpVVGc3K29kaUpkbll1S2RO?=
+ =?utf-8?Q?oqBDy8GbvZopw?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dHQ4b2dONnJ0dUhtcXUxZmFFUzQwTGttUTlObnF0T0ZBc1ZLNWJYRk5wTjhX?=
+ =?utf-8?B?QXUvaWlZbU5CNEJCdDhlUmQzR05DZTJlSVYraW9ocnFZYVpmN2g4NDJRMEg4?=
+ =?utf-8?B?Rjc4aGJFak51SUNDU0poL29USEw0N2I4allqZXZhTkdXcUdWLy9JK1ZQaXlu?=
+ =?utf-8?B?MGdWaGFXWGVkZ3hQdXI2SCtFUk1jaHUvTUNkdGVaeTN1YUxNK0lLM2JvQ3hp?=
+ =?utf-8?B?dzlIV3AycnB4Vmdlb0xqYVBtSkRXWXk3UzNwaGVqOU1SajBsMmJTYmlXZVll?=
+ =?utf-8?B?QTFWMFVSVEpTYkpoK2Y0cC90MGVyUlJ6MlBWZExIc0tkOWhQWHVxOVlKS0cz?=
+ =?utf-8?B?N1JpMXhEWFIrajcwck9CK1p4Vk9VZDhKeEhDelRCbmQ2Um5WWjJwb0RQVm9l?=
+ =?utf-8?B?SG1xUVVXdkFQT2hSYllFQ3JIQ1haR3MvQVo5RlhzTkdtTEtMV2xKNjE4SGNI?=
+ =?utf-8?B?K1hpR3pnYlc3UFBDNThZOVE2YjdrOFpsSHpINXc2NEw2M0JaZmxwTldQNkt3?=
+ =?utf-8?B?VldZbDlFVkN1WnhDREozM0lrdGNzZmVKaUVhUlcyRTBneld1dmRnSHQzdk8w?=
+ =?utf-8?B?djhpOGdCcnNVWFozcnRWNGRPc1FaY2lFd2U5UklkcFN4VE1FWnk4VWRFSUln?=
+ =?utf-8?B?OUdmVW4rS3dlQ0w2cTFac01xYXVIWlFvZ2pnTDRuRnJ0MnNWUEU5UTVqT1dH?=
+ =?utf-8?B?ckRvbzdNd0YvcnhzTDRSMDlDd1huN1pWNG1uNEtnMEZIdUtYVlFHajVWZGtW?=
+ =?utf-8?B?RXVzU01SZ28rRm9Wa1l3NTNRMXBKOThDWGdrUjN6OGVUcUw5YVZueStYTTRE?=
+ =?utf-8?B?UlQwWElyWFd3Kzd5UmJxSkE3TU1BQjgrZXlaN0Jpd3c4M0N3YVNnajFZSlBs?=
+ =?utf-8?B?NFlkdlUyOUg1M2t2KzRsK0llQmMvcDR1NGMyOFRDWVJ1YVkzRHVnVEw0TG1Q?=
+ =?utf-8?B?bGowd051Z203U3JSQWVmL2Q5RzhMNFZIN2NlN0xveG5HRW1hUVdZTTNBL3pu?=
+ =?utf-8?B?Z0tKdmdaaTViL09kQzhUL1RBS2wvZWZLTEdZbkFOUm1VMlFzYWtnSk5QMW1V?=
+ =?utf-8?B?cjJZcFU4ZFBCM0FvTWJmeVVYWTVnUnp0QkluY0dMZmJadi94Z3VUNEhsUFV4?=
+ =?utf-8?B?aHlZRUQ5Vjhkckc1VEI0b0VlUTQ5Umt5S3dVYWFVVE1RUGMwYUs5ekhCMHVr?=
+ =?utf-8?B?c1JRZmtNajUvM1pSMytZTEo5RUhqZzFtNmhaalVjUGJQbHptQnZaUnJpK2d5?=
+ =?utf-8?B?NW1HT3hTbnVQY3dmU1c5Z2JxVzVSWW13TTMrZDZuK0J3ajBWcGJlTWdJUm1q?=
+ =?utf-8?B?K1lnOFBsam1Ta1pFY3FHMXhwQnBaaGw5cVI3M1Q4c1I3OUtaVkJteVlwZUpV?=
+ =?utf-8?B?Wmd0ZSt5YzZuUXNyQld3b2srR3JlREFRY2V2V3UvRUpnRU95ZlhFRDMxVlRH?=
+ =?utf-8?B?bEtxUDh0QVp1aFJ4VFE3d25CVjBhaDZBMFVScmkvNWJWK1RLR0FOS2RoWWNE?=
+ =?utf-8?B?dXE0Ymt6R21pQ2FBRnliRm5yWkN4T3FocVAzV2RUMVltTmc3U0N5aVdpN0lz?=
+ =?utf-8?B?UG52djNMeXhKWnJsUXJmajlWTE9hTGt5Mzl5bHpLaVVSdi9PTXU4QWE5bWps?=
+ =?utf-8?B?R2FpUFhkZktreGpldTBDR2xHMmt1UFlUNzZ0NFBuQVZEVWlsbThkTEJWalcr?=
+ =?utf-8?B?d2o2YnJXQjlFbVBGU0wzOExVejVGSXgzYTYrQVpyVjhmM29HNjBiYkdkUXov?=
+ =?utf-8?B?STFiVnpvakh0MHYrR01QS3J3Y1ZQNC9uQmVwc1hqSDNZbDVncVhRTHBaTmw5?=
+ =?utf-8?B?dGlONkVBZXlOaDdQcWxTOC9VTWJMWi9FUWhLNXY4VjFsRnJ2K0tYcFdDUGdw?=
+ =?utf-8?B?TzUybHY2dEMxS3ZxWVM3U3pPdjlabEdLMTBBZ1J5WENaYUdiQm5qblZsWXJa?=
+ =?utf-8?B?L1VhSE9vTlRJR3VFVnZleGdaNFlQYXlHR28xek8xditCbTltajk2ZVlhZFpH?=
+ =?utf-8?B?YkIxbTJ3K1M5cTRGbFJWK2lXZHVCQTJNdC9ObTZOMmtBSGJTdDB2Qk5KNlNO?=
+ =?utf-8?B?d0oySC9xMytVb3BUM0F4T2cxVk9ub0t6MHNEaVFQTE94V2RGdVAxSW8reHZF?=
+ =?utf-8?Q?/pdJkjeTt45vTVLHACHemtb74?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d21594f-d804-41c2-151d-08dd728e584a
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2025 09:03:05.1307 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tTzizsUBfo+YhKtahV+qMkugXLk1/kx2vPKAFkPc33EHaODGyDkqSs2RCuqZHl6i
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5782
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,227 +159,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---=-0OZdLeWSpEQimpi7140Q
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Am 03.04.25 um 09:29 schrieb Sunil Khatri:
+> Fix the below comment warning
+> drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c:541:
+> warning: Function parameter or struct member 'adev'
+> not described in 'amdgpu_sdma_register_on_reset_callbacks'
+>
+> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 
-Hello!
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-We are seeking nominations for candidates for election to the X.Org
-Foundation Board of Directors. All X.Org Foundation members are
-eligible for election to the board.
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> index 0a9893fee828..c3c6f03190c8 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> @@ -531,6 +531,7 @@ bool amdgpu_sdma_is_shared_inv_eng(struct amdgpu_device *adev, struct amdgpu_rin
+>  
+>  /**
+>   * amdgpu_sdma_register_on_reset_callbacks - Register SDMA reset callbacks
+> + * @adev: Pointer to the AMDGPU device
+>   * @funcs: Pointer to the callback structure containing pre_reset and post_reset functions
+>   *
+>   * This function allows KFD and AMDGPU to register their own callbacks for handling
 
-Nominations for the 2025 election are now open and will remain open
-until 23:59 UTC on 16 April 2025.
-
-The Board consists of directors elected from the membership. Each year,
-an election is held to bring the total number of directors to eight.
-The four members receiving the highest vote totals will serve as
-directors for two year terms.
-
-The directors who received two year terms starting in 2024 were Erik
-Faye-Lund, Mark Filion, Neal Gompa and Simon Ser. They will continue to
-serve until their term ends in 2026. Current directors whose term
-expires in 2025 are Lyude Paul, Arkadiusz Hiler and Christopher
-Michael. Additionally, a fourth board position is open following the
-resignation of Simona Vetter in Q3 2024.
-
-A director is expected to participate in the fortnightly IRC meeting to
-discuss current business and to attend the annual meeting of the X.Org
-Foundation, which will be held at a location determined in advance by
-the Board of Directors.
-
-A member may nominate themselves or any other member they feel is
-qualified. Nominations should be sent to the Election Committee
-at=C2=A0elections@x.org.
-
-Nominees shall be required to be current members of the X.Org
-Foundation, and submit a personal statement of up to 200 words that
-will be provided to prospective voters. The collected statements, along
-with the statement of contribution to the X.Org Foundation in the
-member's account page on=C2=A0http://members.x.org, will be made available
-to all voters to help them make their voting decisions.
-
-Nominations, membership applications or renewals and completed personal
-statements must be received no later than 23:59 UTC on 16 April 2025.
-
-The slate of candidates will be published 23 April 2025 and candidate
-Q&A will begin then. The deadline for Xorg membership applications and
-renewals is 28 April 2025.
-
-Best,=C2=A0
-
-Mark Filion, on behalf of the X.Org BoD
-
---=-0OZdLeWSpEQimpi7140Q
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><style>pre,code,address {
-  margin: 0px;
-}
-h1,h2,h3,h4,h5,h6 {
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-}
-ol,ul {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-blockquote {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-</style></head><body><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0,=
- 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps: norm=
-al; font-weight: 400; letter-spacing: normal; text-align: start; text-inden=
-t: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webk=
-it-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px;=
- text-decoration: none;">Hello!</div><div style=3D"caret-color: rgb(0, 0, 0=
-); color: rgb(0, 0, 0); font-family: Cantarell; font-style: normal; font-va=
-riant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: s=
-tart; text-indent: 0px; text-transform: none; white-space: normal; word-spa=
-cing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-st=
-roke-width: 0px; text-decoration: none;"><br></div><div style=3D"caret-colo=
-r: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style: n=
-ormal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal;=
- text-align: start; text-indent: 0px; text-transform: none; white-space: no=
-rmal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -=
-webkit-text-stroke-width: 0px; text-decoration: none;">We are seeking nomin=
-ations for candidates for election to the X.Org Foundation Board of Directo=
-rs. All X.Org Foundation members are eligible for election to the board.</d=
-iv><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-famil=
-y: Cantarell; font-style: normal; font-variant-caps: normal; font-weight: 4=
-00; letter-spacing: normal; text-align: start; text-indent: 0px; text-trans=
-form: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-c=
-olor: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: =
-none;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, =
-0); font-family: Cantarell; font-style: normal; font-variant-caps: normal; =
-font-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0=
-px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-t=
-ap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; tex=
-t-decoration: none;">Nominations for the 2025 election are now open and wil=
-l remain open until 23:59 UTC on 16 April 2025.</div><div style=3D"caret-co=
-lor: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style:=
- normal; font-variant-caps: normal; font-weight: 400; letter-spacing: norma=
-l; text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4);=
- -webkit-text-stroke-width: 0px; text-decoration: none;"><br></div><div sty=
-le=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarel=
-l; font-style: normal; font-variant-caps: normal; font-weight: 400; letter-=
-spacing: normal; text-align: start; text-indent: 0px; text-transform: none;=
- white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(=
-0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;">The =
-Board consists of directors elected from the membership. Each year, an elec=
-tion is held to bring the total number of directors to eight. The four memb=
-ers receiving the highest vote totals will serve as directors for two year =
-terms.</div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); f=
-ont-family: Cantarell; font-style: normal; font-variant-caps: normal; font-=
-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; t=
-ext-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap-hi=
-ghlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-dec=
-oration: none;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: r=
-gb(0, 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps:=
- normal; font-weight: 400; letter-spacing: normal; text-align: start; text-=
-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width:=
- 0px; text-decoration: none;">The directors who received two year terms sta=
-rting in 2024 were Erik Faye-Lund, Mark Filion, Neal Gompa and Simon Ser. T=
-hey will continue to serve until their term ends in 2026. Current directors=
- whose term expires in 2025 are Lyude Paul, Arkadiusz Hiler and Christopher=
- Michael. Additionally, a fourth board position is open following the resig=
-nation of Simona Vetter in Q3 2024.</div><div style=3D"caret-color: rgb(0, =
-0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style: normal; fon=
-t-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-alig=
-n: start; text-indent: 0px; text-transform: none; white-space: normal; word=
--spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-tex=
-t-stroke-width: 0px; text-decoration: none;"><br></div><div style=3D"caret-=
-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-styl=
-e: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: nor=
-mal; text-align: start; text-indent: 0px; text-transform: none; white-space=
-: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4=
-); -webkit-text-stroke-width: 0px; text-decoration: none;">A director is ex=
-pected to participate in the fortnightly IRC meeting to discuss current bus=
-iness and to attend the annual meeting of the X.Org Foundation, which will =
-be held at a location determined in advance by the Board of Directors.</div=
-><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family:=
- Cantarell; font-style: normal; font-variant-caps: normal; font-weight: 400=
-; letter-spacing: normal; text-align: start; text-indent: 0px; text-transfo=
-rm: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-col=
-or: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: no=
-ne;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0)=
-; font-family: Cantarell; font-style: normal; font-variant-caps: normal; fo=
-nt-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px=
-; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap=
--highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-=
-decoration: none;">A member may nominate themselves or any other member the=
-y feel is qualified. Nominations should be sent to the Election Committee a=
-t<span class=3D"Apple-converted-space">&nbsp;</span><a href=3D"mailto:elect=
-ions@x.org" style=3D"color: rgb(46, 52, 54);">elections@x.org</a>.</div><di=
-v style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Can=
-tarell; font-style: normal; font-variant-caps: normal; font-weight: 400; le=
-tter-spacing: normal; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: =
-rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;"=
-><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); fo=
-nt-family: Cantarell; font-style: normal; font-variant-caps: normal; font-w=
-eight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; te=
-xt-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap-hig=
-hlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-deco=
-ration: none;">Nominees shall be required to be current members of the X.Or=
-g Foundation, and submit a personal statement of up to 200 words that will =
-be provided to prospective voters. The collected statements, along with the=
- statement of contribution to the X.Org Foundation in the member's account =
-page on<span class=3D"Apple-converted-space">&nbsp;</span><a href=3D"http:/=
-/members.x.org/" style=3D"color: rgb(46, 52, 54);">http://members.x.org</a>=
-, will be made available to all voters to help them make their voting decis=
-ions.</div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); fo=
-nt-family: Cantarell; font-style: normal; font-variant-caps: normal; font-w=
-eight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; te=
-xt-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap-hig=
-hlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-deco=
-ration: none;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rg=
-b(0, 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; text-i=
-ndent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -=
-webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: =
-0px; text-decoration: none;">Nominations, membership applications or renewa=
-ls and completed personal statements must be received no later than 23:59 U=
-TC on 16 April 2025.</div><div style=3D"caret-color: rgb(0, 0, 0); color: r=
-gb(0, 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps:=
- normal; font-weight: 400; letter-spacing: normal; text-align: start; text-=
-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width:=
- 0px; text-decoration: none;"><br></div><div style=3D"caret-color: rgb(0, 0=
-, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style: normal; font=
--variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align=
-: start; text-indent: 0px; text-transform: none; white-space: normal; word-=
-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text=
--stroke-width: 0px; text-decoration: none;">The slate of candidates will be=
- published 23 April 2025 and candidate Q&amp;A will begin then. The deadlin=
-e for Xorg membership applications and renewals is 28 April 2025.</div><div=
- style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cant=
-arell; font-style: normal; font-variant-caps: normal; font-weight: 400; let=
-ter-spacing: normal; text-align: start; text-indent: 0px; text-transform: n=
-one; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: r=
-gba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;">=
-<br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); fon=
-t-family: Cantarell; font-style: normal; font-variant-caps: normal; font-we=
-ight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; tex=
-t-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap-high=
-light-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decor=
-ation: none;">Best,<span class=3D"Apple-converted-space">&nbsp;</span></div=
-><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family:=
- Cantarell; font-style: normal; font-variant-caps: normal; font-weight: 400=
-; letter-spacing: normal; text-align: start; text-indent: 0px; text-transfo=
-rm: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-col=
-or: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: no=
-ne;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0)=
-; font-family: Cantarell; font-style: normal; font-variant-caps: normal; fo=
-nt-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px=
-; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap=
--highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-=
-decoration: none;">Mark Filion, on behalf of the X.Org BoD</div><div><span>=
-</span></div></body></html>
-
---=-0OZdLeWSpEQimpi7140Q--
