@@ -2,56 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65E2AA7AAAC
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Apr 2025 21:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B737BA7AA6A
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Apr 2025 21:13:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB3E010EAA0;
-	Thu,  3 Apr 2025 19:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C339A10EA70;
+	Thu,  3 Apr 2025 19:13:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jwJD2XMx";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TzMp+0U3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEF2D10EAA0;
- Thu,  3 Apr 2025 19:14:58 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3AFC10EA70
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Apr 2025 19:13:27 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 5DC8C5C6C3C;
- Thu,  3 Apr 2025 19:12:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86FD5C4CEE9;
- Thu,  3 Apr 2025 19:14:56 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 2662D6115B;
+ Thu,  3 Apr 2025 19:13:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7253AC4CEE3;
+ Thu,  3 Apr 2025 19:13:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1743707698;
- bh=kaRu9WvREo0g3PGur8HUiN9Nxn15RedJRMDDs3epyfE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jwJD2XMxd/hXiONDOXk7ek3P5kT+v6kRxkH3uQ3kFudDBYEZwart4Mv+9pzW1GQW2
- hCemSLfSKe44G3uapm7av0kvbuyLO2V4MW2wlQUnty7/aEfDnjYPUje+oHX+XyuS7G
- FZtRbZUgq/BOqp8XDALUn5eXgtu4JfzjtosoBQDFyqDdJ3R7IV6N9djG46LFwqr+6s
- qDZ9JxXPz5zDaEQSXIF94EwYglIx2LA6QimiGFT8WCEmJ41B7jx/GPApKy5G2320Xm
- RYfnZDA6wPjF67+Uik98SHDHaBo//6fc3gYC/+FOo+AS+dC6GDMsP4I2qwBvbBZQ21
- BSk0jkys65jKA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
- airlied@gmail.com, simona@ffwll.ch, lijo.lazar@amd.com,
- sunil.khatri@amd.com, Hawking.Zhang@amd.com, Jun.Ma2@amd.com,
- Yunxiang.Li@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.14 37/44] drm/amdgpu: grab an additional reference
- on the gang fence v2
-Date: Thu,  3 Apr 2025 15:13:06 -0400
-Message-Id: <20250403191313.2679091-37-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250403191313.2679091-1-sashal@kernel.org>
-References: <20250403191313.2679091-1-sashal@kernel.org>
+ s=k20201202; t=1743707606;
+ bh=9j3X8cYbJPnTM2hu/v71mN4UAwTCxjDANzgCOndh1UA=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=TzMp+0U3SUwU3bR39ckNl5FBcD5h/TEITrpo10f8tPRLMknosmoVrdyi3xGPa0BEP
+ 8eVuAOrecrDashabYVnSk4UHM4ONISkvHx4KDxxcKmVHZkxkY1m6Xcmv1lDNzB1UKr
+ iqutjt3EJhexjjmpj+7RtbkivlXJKRBj5GpIV/UZavDhDI7Je23pRTGVV2p9x3a/Gw
+ 9Pced2DIxAieBiYbBqI8auLWmpVMPfFQPd5Rm/n4xGkgGZcf5HUUWkVip8FgA9zkWx
+ UnhHeTSbMTqQh9BatWpdqiKdRV3xYOrMRjkagSy6B1kW21Tks4p39aji4BqyUVfRmV
+ IAN5xBs1AGaRA==
+Message-ID: <1d762b4d-3aae-4fad-b464-d1baa124e86e@kernel.org>
+Date: Thu, 3 Apr 2025 14:13:24 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.14
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/amd: Add pre-zen AMD hardware to PCIe dynamic
+ switching exclusions
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ Mario Limonciello <mario.limonciello@amd.com>
+References: <20250403031148.1266785-1-superm1@kernel.org>
+ <CADnq5_Nz76WBm8wsU8k4LUpXrjKk6AbJfYV0CpaV3sXAJ2McEQ@mail.gmail.com>
+Content-Language: en-US
+From: Mario Limonciello <superm1@kernel.org>
+In-Reply-To: <CADnq5_Nz76WBm8wsU8k4LUpXrjKk6AbJfYV0CpaV3sXAJ2McEQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,55 +60,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Christian König <christian.koenig@amd.com>
+On 4/3/2025 10:48 AM, Alex Deucher wrote:
+> On Wed, Apr 2, 2025 at 11:12 PM Mario Limonciello <superm1@kernel.org> wrote:
+>>
+>> From: Mario Limonciello <mario.limonciello@amd.com>
+>>
+>> AMD RX580 when added AMD Phenom 2 has problems with overheating. This is due to
+> 
+> I don't think this is entirely accurate.  I think the GPU gets hot
+> because the device hangs due to a problem with changing the PCIe
+> clocks.
+> 
+>> changes with PCIe dynamic switching introduced by commit 466a7d115326e
+>> ("drm/amd: Use the first non-dGPU PCI device for BW limits").
+>>
+>> To avoid risks of other issues with old hardware require at least Zen hardware
+>> for AMD side to enable PCIe dynamic switching.
+> 
+> I'm pretty sure PCIe reclocking worked on pre-Zen hardware.  We've
+> supported this on our GPUs going back at least 15 or more years.  I
+> suspect the actual problem is that some links may not reliably train
+> at the full bandwidth on some motherboards.  Forcing a higher link
+> speed may cause problems.  
 
-[ Upstream commit 0d9a95099dcb05b5f4719c830d15bf4fdcad0dc2 ]
+That seems odd to me it would advertise a higher link speed than it 
+could train at.
 
-We keep the gang submission fence around in adev, make sure that it
-stays alive.
+> Maybe it would be better to limit the max
+> PCIe link rate to whatever the link is currently trained to.  IIRC,
+> PCIe links will train at the fastest link possible by default.  The
+> previous behavior was to limit the max clock to the slowest link in
+> the topology to save power, but then we changed it to use the fastest
+> link possible based on the PCIe link caps.  Perhaps limiting it to the
+> fastest currently trained link rate would be better.
 
-v2: fix memory leak on retry
+I mean that's essentially what happens when 
+amdgpu_device_pcie_dynamic_switching_supported() returns that it doesn't 
+work.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Acked-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+If your theory is right; maybe what we really need is a pile of DMI 
+quirks for M/B that are having this problem.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 018dfccd771ba..fe40bbead6222 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6851,18 +6851,26 @@ struct dma_fence *amdgpu_device_switch_gang(struct amdgpu_device *adev,
- {
- 	struct dma_fence *old = NULL;
- 
-+	dma_fence_get(gang);
- 	do {
- 		dma_fence_put(old);
- 		old = amdgpu_device_get_gang(adev);
- 		if (old == gang)
- 			break;
- 
--		if (!dma_fence_is_signaled(old))
-+		if (!dma_fence_is_signaled(old)) {
-+			dma_fence_put(gang);
- 			return old;
-+		}
- 
- 	} while (cmpxchg((struct dma_fence __force **)&adev->gang_submit,
- 			 old, gang) != old);
- 
-+	/*
-+	 * Drop it once for the exchanged reference in adev and once for the
-+	 * thread local reference acquired in amdgpu_device_get_gang().
-+	 */
-+	dma_fence_put(old);
- 	dma_fence_put(old);
- 	return NULL;
- }
--- 
-2.39.5
+> 
+> Alex
+> 
+>>
+>> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4098
+>> Fixes: 466a7d115326e ("drm/amd: Use the first non-dGPU PCI device for BW limits")
+>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+>> ---
+>> v2:
+>>   * Cover more hardware
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> index a30111d2c3ea0..caa44ee788c8f 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> @@ -1854,6 +1854,9 @@ bool amdgpu_device_seamless_boot_supported(struct amdgpu_device *adev)
+>>    *
+>>    * https://edc.intel.com/content/www/us/en/design/products/platforms/details/raptor-lake-s/13th-generation-core-processors-datasheet-volume-1-of-2/005/pci-express-support/
+>>    * https://gitlab.freedesktop.org/drm/amd/-/issues/2663
+>> + *
+>> + * AMD Phenom II X6 1090T has a similar issue
+>> + * https://gitlab.freedesktop.org/drm/amd/-/issues/4098
+>>    */
+>>   static bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu_device *adev)
+>>   {
+>> @@ -1866,6 +1869,8 @@ static bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu_device
+>>
+>>          if (c->x86_vendor == X86_VENDOR_INTEL)
+>>                  return false;
+>> +       if (c->x86_vendor == X86_VENDOR_AMD && !cpu_feature_enabled(X86_FEATURE_ZEN))
+>> +               return false;
+>>   #endif
+>>          return true;
+>>   }
+>> --
+>> 2.43.0
+>>
 
