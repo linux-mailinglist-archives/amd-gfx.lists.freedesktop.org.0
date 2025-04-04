@@ -2,72 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF812A7B715
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Apr 2025 07:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08585A7B772
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Apr 2025 07:42:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8732810E25D;
-	Fri,  4 Apr 2025 05:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F014310E276;
+	Fri,  4 Apr 2025 05:42:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MkzLng8t";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Rtd//EeV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
- [209.85.219.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43A7B10E25D
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Apr 2025 05:22:42 +0000 (UTC)
-Received: by mail-qv1-f45.google.com with SMTP id
- 6a1803df08f44-6e8f7019422so14392656d6.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 03 Apr 2025 22:22:42 -0700 (PDT)
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
+ [209.85.222.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C1CB10E276
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Apr 2025 05:42:38 +0000 (UTC)
+Received: by mail-qk1-f180.google.com with SMTP id
+ af79cd13be357-7c53b9d66fdso216653485a.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 03 Apr 2025 22:42:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1743744162; x=1744348962; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=dGrG5/7fNmHx+zAKimqETKQQkPhX2+GrogBayXXbWkI=;
- b=MkzLng8t5xP/TCL0K9BU8mcTPcayOzS7hIS96mq4ZHkzDxVTtWUFsEgC5gQo35iHsJ
- ajzPkHKUy+ntx8kd0hsr3flJuHw6e2k6U77GY/Z9ViHcPb/XwaXV6W9/j2D1cXBSdNrk
- BASw2wwtZnaF+OXa4d8QSXAaNeyC/Gv0w/ju9gUh5QTya4s+fjxAE42qY63TjGF3dZGL
- dDqf1aRI93e7P/KEghZtrdZprwNEyG6Do6heM37QwoDGkX/GHlzPL30fszLceqd/0t4D
- grbOmTFx4MLLvcaAtHEHdvapoc0fq/IBTn2jMuaD5kZc5G9wO0NruuRIQemffO6LyDBZ
- bmMA==
+ d=gmail.com; s=20230601; t=1743745357; x=1744350157; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ax4tFaDNfSBe8OwieuN54bJJ11A29N/Q1Dhvw5XXad0=;
+ b=Rtd//EeVz5hndxHUQZWySysnKTkekLHuhV76DcnCdVdfvfoE5Gcc3qsumNDutLbRH1
+ HWa7FHINlw1Ggl6/G0tmfdDMq4ZodtXWiITJHRSOJVL+qBSsstR7/DD9ze92CDVcUZfR
+ sDSU2Wba6AWhOIybUuMJc8bAiGgDhjcrk0ZpR15PJNG7XOm0PyO/hluMCFeHpz6SnWPq
+ jXmk0VUYTw5+ukpHYqLCvZ+Af25EFdTuWoOOrChvd2G96gjjfYfV9tOqU+ns1wa+M7nn
+ 6DtWYL9Y+xtxsoo5MPm6kIvE9qeNcAfD/R6MyVTaZiQhUEdpm7gK6iV5fKDl11/d4bDW
+ L+lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1743744162; x=1744348962;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=dGrG5/7fNmHx+zAKimqETKQQkPhX2+GrogBayXXbWkI=;
- b=rHP1I5NXSTNdnrjM6tPzXzSN+jTvOVVlLPCYcAGszAXM8uKWNxcCYCBEQLXF7uE6yJ
- bnzia8jt9tDxuMts1Tfs05CkrAfzOqAI/yGZ1vZ+D0X21671eFlWacYRJfVcW5GV3aI6
- aPjpHF3Jx7O9VLmB5eLHqF4uKRGdDq5e0VLNjQAf6DciSBhdFr/11VUpmMncw95kLIxI
- +HtK7xxhgTAwD+zzM2uvUl/iJ8FH7lrBdesviydS9HgXRLjnUto3jOtgiJjxfczvXjNS
- MxC6TdpIvKsqR2EKMqxqE2JUj82GoYIhmYWiKZST7a1M5/GB9BNpuJUllGqJQIomcobM
- fhvQ==
-X-Gm-Message-State: AOJu0YxQD7YTq8RMJ9qbdDPfgwmqNV8jp1IMcpEzarz5tP3IlAWA7eue
- lVOcnI0NmKqGJO3eolC6ffWgFbENjvl6cL3ysZX2cgNfgZ78FjHsQ00jOw==
-X-Gm-Gg: ASbGncvawNVXj8efYe80TgpSk2usOHO0icxkwQ1G7bZG7YWAqXDXp38YPSvaFZvRyRq
- W8zYhxirylV+dsFaxj5v4MiEBcGRb1brxuoVgJ2gW5oFlWCWpyoQ+Bp2lmb7OyscJh6gJEb9Wv+
- EOGEKuSozNMx3n/7ofZd4tk1ShrEsAa5wyE/qoIU9X2ryuzwYIz5QumVVUeQ2Uex+KA72BUP1im
- FcOScepsro3Pu6HKNRIECGwpwzkP1QbHb9LM85/wVpmBLevopFmjfuBU5vDDm1qrKChGjJcv4P0
- d/myuPD/r0/Eez2u8Oz1GdCJV4muZ042YpVmarO9d/zJ/eZ5brI7WGHHpLKYJ5WD9iJI
-X-Google-Smtp-Source: AGHT+IHCIO6XXCZWUhCd43FEkXSZ848DDqJqWNnrstszekA1sqLCQrjW0xTbYWLYS3OLVEDbxnhyPQ==
-X-Received: by 2002:a05:6214:1253:b0:6e4:4194:df35 with SMTP id
- 6a1803df08f44-6f00debcad6mr31512026d6.9.1743744161637; 
- Thu, 03 Apr 2025 22:22:41 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1743745357; x=1744350157;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=ax4tFaDNfSBe8OwieuN54bJJ11A29N/Q1Dhvw5XXad0=;
+ b=Ti2q8dWIkgLamiPkHHaV7ftgcONBMwOdIMNWhKa6jhbyt2gCx1ym9Gq9CbcbOkhf+D
+ XG9c5ms6XJDxvI+DWsVwMOHuUyKG5PB0/bBxjZB/H6j+DRAzs8G/hEFY50piGqfD+vDH
+ omj+nbiLUxr3qwUJKRg60fUnQO+FKvKqwFQtML3U651Xo2S1vSt3iZ3WlGK8JqaYsDXH
+ Rpz2iGhtwPdFntZ60dfNsqIUkkTYTZOe0gr7g6CvZU33nnV/Y5FTdEvlGkQ25pPq0PQN
+ EzhL1rxPfYp6xpMOIx87vXxy/fcd109XhPZTbMGKW+w6WUhSeeb598j59pS5L7XZq5Ee
+ Pj+w==
+X-Gm-Message-State: AOJu0YxGmcyrVe0DlmrtBJCjx0Y21O2vJdVaBKc+9urdnxXgE6x8uQT4
+ vcjptne8NJ8uqXx/3V3f1yJXMcY0HfJ65pfWXMW8zmPwwHlnLmmF0Xq6ig==
+X-Gm-Gg: ASbGnct3Iedy84DEmRZZGUNGj+rWMjuxHmGQV0q8cpC+MVl7mVBJuZ/a9czSorZynT4
+ xJI63tcljFDvLCXxiXNR/WZBFoMoQiMD7aIl2eGkM3yF3oh9H7tKbjVo4T3iv9+WauJfg88Qh1F
+ 112N7D59po6XajzIi3rKQZPAIFb3YMZPCpXTnHRlurFeYtQI+K0djRsKehdz6HuxZbwmWQos5UX
+ 9WtgV1nRA2t0IVw2P+Vc1kw2OaSqsctyvuGm/WAYdSkZsSRyhLQj5o254azNN+bkcHqu1GzvuIQ
+ 9x85I57nz90QAM67INUMUm+PWoStNa3Pkam27SdvG45OZZh0vQxv57fSi9aqAQCQuPeS
+X-Google-Smtp-Source: AGHT+IFXVQymHJZ1cFaK6B/y0ZoadDMTyTxlcaO2GZ2P3LwHOeQVzq2wozooy/Mc91NQnfxcAkfaog==
+X-Received: by 2002:a05:620a:192a:b0:7c5:6a04:d0a8 with SMTP id
+ af79cd13be357-7c774d27393mr296100385a.5.1743745357270; 
+ Thu, 03 Apr 2025 22:42:37 -0700 (PDT)
 Received: from localhost.localdomain ([38.121.253.36])
  by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4791b071b42sm17238651cf.27.2025.04.03.22.22.40
+ af79cd13be357-7c76e96e566sm171746385a.63.2025.04.03.22.42.36
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Apr 2025 22:22:41 -0700 (PDT)
+ Thu, 03 Apr 2025 22:42:36 -0700 (PDT)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu: use "irq" in place of "interrupt" in DCE6/8
- as in DCE10/11
-Date: Fri,  4 Apr 2025 01:22:22 -0400
-Message-ID: <20250404052222.19955-3-alexandre.f.demers@gmail.com>
+Subject: [PATCH 0/2] drm/amdgpu: better complete DCE6 and GMC6
+Date: Fri,  4 Apr 2025 01:42:23 -0400
+Message-ID: <20250404054225.101791-1-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250404052222.19955-1-alexandre.f.demers@gmail.com>
-References: <20250404052222.19955-1-alexandre.f.demers@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -84,127 +80,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-"interrupt" becomes "irq" in:
-dce_vX_0_set_hpd_interrupt_state()
-dce_vX_0_set_crtc_interrupt_state()
-dce_vX_0_set_pageflip_interrupt_state()
+First patch moves some DCE files around so they are distributed as are
+other DCE files
 
-It is easier when going through the code to just change the DCE number in
-the functions' name to find and compare them across DCE versions.
+Second patch implements gmc_v6_0_set_clockgating_state(), which was mostly
+there, but commented out. A few tweeks were needed to make it work under
+amdgpu.
 
-Also, it standardizes function mapping inside a given structure where .set
-and .process are both set to functions with a "_irq" suffix.
+Alexandre Demers (2):
+  drm/amd/display/dc: reclassify DCE6 resources and hw sequencer
+  drm/amdgpu: fill in gmc_v6_0_set_clockgating_state()
 
-Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 12 ++++++------
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c | 12 ++++++------
- 2 files changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c         | 44 ++++++++++++-------
+ drivers/gpu/drm/amd/display/dc/dce60/Makefile |  3 +-
+ drivers/gpu/drm/amd/display/dc/hwss/Makefile  | 24 ++++++----
+ .../dce60/dce60_hwseq.c}                      |  2 +-
+ .../dce60/dce60_hwseq.h}                      |  0
+ .../gpu/drm/amd/display/dc/resource/Makefile  | 24 ++++++----
+ .../dc/{ => resource}/dce60/dce60_resource.c  |  2 +-
+ .../dc/{ => resource}/dce60/dce60_resource.h  |  0
+ 8 files changed, 63 insertions(+), 36 deletions(-)
+ rename drivers/gpu/drm/amd/display/dc/{dce60/dce60_hw_sequencer.c => hwss/dce60/dce60_hwseq.c} (99%)
+ rename drivers/gpu/drm/amd/display/dc/{dce60/dce60_hw_sequencer.h => hwss/dce60/dce60_hwseq.h} (100%)
+ rename drivers/gpu/drm/amd/display/dc/{ => resource}/dce60/dce60_resource.c (99%)
+ rename drivers/gpu/drm/amd/display/dc/{ => resource}/dce60/dce60_resource.h (100%)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index aa205c5b268c..142661352bc4 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -2927,7 +2927,7 @@ static void dce_v6_0_set_crtc_vline_interrupt_state(struct amdgpu_device *adev,
- 
- }
- 
--static int dce_v6_0_set_hpd_interrupt_state(struct amdgpu_device *adev,
-+static int dce_v6_0_set_hpd_irq_state(struct amdgpu_device *adev,
- 					    struct amdgpu_irq_src *src,
- 					    unsigned hpd,
- 					    enum amdgpu_interrupt_state state)
-@@ -2957,7 +2957,7 @@ static int dce_v6_0_set_hpd_interrupt_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int dce_v6_0_set_crtc_interrupt_state(struct amdgpu_device *adev,
-+static int dce_v6_0_set_crtc_irq_state(struct amdgpu_device *adev,
- 					     struct amdgpu_irq_src *src,
- 					     unsigned type,
- 					     enum amdgpu_interrupt_state state)
-@@ -3042,7 +3042,7 @@ static int dce_v6_0_crtc_irq(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int dce_v6_0_set_pageflip_interrupt_state(struct amdgpu_device *adev,
-+static int dce_v6_0_set_pageflip_irq_state(struct amdgpu_device *adev,
- 						 struct amdgpu_irq_src *src,
- 						 unsigned type,
- 						 enum amdgpu_interrupt_state state)
-@@ -3457,17 +3457,17 @@ static void dce_v6_0_set_display_funcs(struct amdgpu_device *adev)
- }
- 
- static const struct amdgpu_irq_src_funcs dce_v6_0_crtc_irq_funcs = {
--	.set = dce_v6_0_set_crtc_interrupt_state,
-+	.set = dce_v6_0_set_crtc_irq_state,
- 	.process = dce_v6_0_crtc_irq,
- };
- 
- static const struct amdgpu_irq_src_funcs dce_v6_0_pageflip_irq_funcs = {
--	.set = dce_v6_0_set_pageflip_interrupt_state,
-+	.set = dce_v6_0_set_pageflip_irq_state,
- 	.process = dce_v6_0_pageflip_irq,
- };
- 
- static const struct amdgpu_irq_src_funcs dce_v6_0_hpd_irq_funcs = {
--	.set = dce_v6_0_set_hpd_interrupt_state,
-+	.set = dce_v6_0_set_hpd_irq_state,
- 	.process = dce_v6_0_hpd_irq,
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index 4491b82561a7..3870b6fd5b1a 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -2995,7 +2995,7 @@ static void dce_v8_0_set_crtc_vline_interrupt_state(struct amdgpu_device *adev,
- 	}
- }
- 
--static int dce_v8_0_set_hpd_interrupt_state(struct amdgpu_device *adev,
-+static int dce_v8_0_set_hpd_irq_state(struct amdgpu_device *adev,
- 					    struct amdgpu_irq_src *src,
- 					    unsigned type,
- 					    enum amdgpu_interrupt_state state)
-@@ -3025,7 +3025,7 @@ static int dce_v8_0_set_hpd_interrupt_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int dce_v8_0_set_crtc_interrupt_state(struct amdgpu_device *adev,
-+static int dce_v8_0_set_crtc_irq_state(struct amdgpu_device *adev,
- 					     struct amdgpu_irq_src *src,
- 					     unsigned type,
- 					     enum amdgpu_interrupt_state state)
-@@ -3110,7 +3110,7 @@ static int dce_v8_0_crtc_irq(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int dce_v8_0_set_pageflip_interrupt_state(struct amdgpu_device *adev,
-+static int dce_v8_0_set_pageflip_irq_state(struct amdgpu_device *adev,
- 						 struct amdgpu_irq_src *src,
- 						 unsigned type,
- 						 enum amdgpu_interrupt_state state)
-@@ -3521,17 +3521,17 @@ static void dce_v8_0_set_display_funcs(struct amdgpu_device *adev)
- }
- 
- static const struct amdgpu_irq_src_funcs dce_v8_0_crtc_irq_funcs = {
--	.set = dce_v8_0_set_crtc_interrupt_state,
-+	.set = dce_v8_0_set_crtc_irq_state,
- 	.process = dce_v8_0_crtc_irq,
- };
- 
- static const struct amdgpu_irq_src_funcs dce_v8_0_pageflip_irq_funcs = {
--	.set = dce_v8_0_set_pageflip_interrupt_state,
-+	.set = dce_v8_0_set_pageflip_irq_state,
- 	.process = dce_v8_0_pageflip_irq,
- };
- 
- static const struct amdgpu_irq_src_funcs dce_v8_0_hpd_irq_funcs = {
--	.set = dce_v8_0_set_hpd_interrupt_state,
-+	.set = dce_v8_0_set_hpd_irq_state,
- 	.process = dce_v8_0_hpd_irq,
- };
- 
 -- 
 2.49.0
 
