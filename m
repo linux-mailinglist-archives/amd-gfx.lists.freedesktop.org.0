@@ -2,80 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4944AA7CFF2
-	for <lists+amd-gfx@lfdr.de>; Sun,  6 Apr 2025 21:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ABE4A7D005
+	for <lists+amd-gfx@lfdr.de>; Sun,  6 Apr 2025 21:58:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AA4310E059;
-	Sun,  6 Apr 2025 19:35:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4379F10E0A0;
+	Sun,  6 Apr 2025 19:58:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HoD3Fwe5";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="epJ1OeBN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C30EF10E04F;
- Sat,  5 Apr 2025 03:13:08 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-22423adf751so27038175ad.2; 
- Fri, 04 Apr 2025 20:13:08 -0700 (PDT)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF8D110E0A0
+ for <amd-gfx@lists.freedesktop.org>; Sun,  6 Apr 2025 19:58:24 +0000 (UTC)
+Received: by mail-pj1-f48.google.com with SMTP id
+ 98e67ed59e1d1-301317939a0so379067a91.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 06 Apr 2025 12:58:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1743822788; x=1744427588; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=drXA/ORq1/goPnK4FHQgOKB7BhpRoZK6LoRjQ5OhHHo=;
- b=HoD3Fwe5ydhVZvBtdANV1n/LM0ZEKvV/VKHvXlwziX+JXR+I2XJ25TO42QrjkHH5Kf
- SNwuh5Qm/YccVtRf3e0aIhLyHCvNqSX6R8b2ewmvdLNTFQeIrAnyiThVXUcy8emFL8Yo
- RbREYXnIlsvwf1LXdst921u2c8M4Fy3t0koBF5s5kLtG77PqyAw+/FYRxWGcoLwaZImN
- H1hU4k0SI19oc990fbir0oqxL0taAzmc+4I/PtsomNM4mmcSJp+QLzBRBldoqQFI6jKS
- Rr7oJix0nTV+cCCjLpnqk/eZuAPwNh0oWToNXMY94S8UjUrNnG4fKicy0wvzDkGf69+Q
- OFkw==
+ d=gmail.com; s=20230601; t=1743969502; x=1744574302; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=cxcANlwy/TuT8NdysHDYuF4y6YQwyUXQsRmzniJmli0=;
+ b=epJ1OeBNKyfQteM7oDalYWPKFJNlIon0T4Ns+p7yE761NMbahvIGMnxPW7FEEWg3qf
+ CGNGFQmjcTMptEYvGeMc6I7V0wge1tsIdm+yCPYwW8lhKOhSgFGKjcbpR+M+oX3jB39X
+ x2BmrWCDM1anUeN6KDpNlrTK3M5uozkn55IZsJTJ6pHGVuUyyPUVwe69uU4C9Xmy4rMk
+ 3obPnZKv4qZsaoVDYL9AbbLJt2qWORLiUMmp04gjxFV7hNOi8HfeQXUiF0ck7lLv40U0
+ ir6mkffZsOvWBqbUHHF1QzS0oqRoOcIJ3X+vwRekPa+g9Hk7F9HLGAtYUmORQ4qkjYlt
+ WQHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1743822788; x=1744427588;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=drXA/ORq1/goPnK4FHQgOKB7BhpRoZK6LoRjQ5OhHHo=;
- b=IzmMYjlce45HlHFFnQ70vcOd/qL2eEe2Q2IX2MxqwyFUHwcICF9l4J8Id71H45B7P9
- 7dugHRK9D0vVcZfJ30dvttXWmN5nWgoHQJL4q1W2Y5hSNZpGoUgiAzRTysHuRVbc9F9x
- OFPCxl05JuBECSVZuEuxHf5nBsvqqsG7G3h0P4TBzqoJxkieU20hNauQQukXUtK8l/Qg
- i2h32UBCn1sd42ssFCm+byyAdfD+5oLZfxBeVn2rh6+wS2ziYCGZ4V9Vua6ODnCgAy50
- r28CK88ww23XoDLKtNJDA9xJ79hBBcgLqBPJoSIIYOCpm4baVohgfZ+9QDwRmTmN5wfh
- Tdcg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUrWn0iXy9r5dTx/XqO3y0u8KuyRca+huYiwG1RtENybIXpxHnDBhMcsx1QksKWt7IMv1n/iiCBxaE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzgB5AxGkQ/Appa0b0KELiorUsw8v2A5OBiT2e72kJNfogfteor
- tydw7k/kXT5gnSrwekBT3yRB9lziWzzvDtfxiRe/Cxzmw8qcpVdI
-X-Gm-Gg: ASbGnctFmxzqg/TRnDoC6iCD297QkRgr/RuyRME86K3lD5ReDTYaH8gnYuSBbxF/itJ
- iZSXYBjsp0ITo29oyHsI+Io0qMmHbdJsKFV+BOgwL99+TmzWONAKwez47eRpo3E+Yu5S7oHoSNK
- L5ROB6SJGfEpsFMRHJ8FPkt18yeyMPNL5aLT5Sei3TgdB8hgQgyhC+a3qud+fYThlNp33HNpX4z
- RMJUU01w4VZVSiuW/yd2FFef0f5F3qt2mTnNBE0WgTo3253/KohGAX78wqzCgwxxA7WgEhBhQjB
- a50KzkLuRXraSqS1hFZv2VvkTf/RaBnqdktJePSfZxo/YgaDekdEMshIFKzvFQiJ
-X-Google-Smtp-Source: AGHT+IE3iEB32WmiGNtkvgzjIzILnbvUYJ6xa15e+n+H/vT9fCrVReqQW9kxkhkIbU/RbmW5+vXFnA==
-X-Received: by 2002:a17:903:1209:b0:224:76f:9e4a with SMTP id
- d9443c01a7336-22a8a05b5cdmr75324725ad.14.1743822788103; 
- Fri, 04 Apr 2025 20:13:08 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:60dc:5afc:cf4e:e4c3:6b7:3c11])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-229785ad8d6sm40514395ad.1.2025.04.04.20.13.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Apr 2025 20:13:07 -0700 (PDT)
-From: Kevin Paul Reddy Janagari <kevinpaul468@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, sunil.khatri@amd.com, mario.limonciello@amd.com,
- aurabindo.pillai@amd.com, boyuan.zhang@amd.com, sunpeng.li@amd.com,
- dominik.kaszewski@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- Kevin Paul Reddy Janagari <kevinpaul468@gmail.com>
-Subject: [PATCH] Fixed the warning at
- ./drivers/gpu/drm/amd/include/amd_shared.h:369
-Date: Sat,  5 Apr 2025 08:42:42 +0530
-Message-Id: <20250405031242.64373-1-kevinpaul468@gmail.com>
-X-Mailer: git-send-email 2.39.5
+ d=1e100.net; s=20230601; t=1743969502; x=1744574302;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=cxcANlwy/TuT8NdysHDYuF4y6YQwyUXQsRmzniJmli0=;
+ b=QmEGWBE/tmitfl/7LtMeyR1X7ufemLH72YRGLKRHBwsWhhiO/WLSrke6BqbpBKi3cb
+ zXNOkMNvoa9cY5HjGTtMWRykXb7Rp24S14gng9jijOs0gFOaAiTSq1acYq4YlIi5O4cL
+ fHseznPt2JCxnlWizOo+YSecKXXQ6UwgkVvrIl0GFPYRYrOOvCCO1Rhi2RdJxz4FZJ4N
+ m2dlLNZu6Nj1QnVX6AnB5Z/zj3r2sHw/1F/FTSTkT+CUowrXezVRLeaEZF/baQ893GmK
+ ucU53KsNr4AQqDW71/6/VRP/cPyzG7c4LIrdRP5muvxw/4stvHqsYlaUozDEXvRSaiGZ
+ BDKw==
+X-Gm-Message-State: AOJu0YwBHrqdjLiYNBdyNGkEy7JhWU/+XK2sGYH/7OSvw0jsM8ux24i/
+ zVnWsn4rxxHGyZ1RuxncsnodG71F+y1AaHEhD3n7eV6BNiI9qAshlYIoRqgbAcxN5sguFZZr/64
+ 4Z6pGxM6vi+YXntikElBRlCnTZd7NneTK
+X-Gm-Gg: ASbGncuIoZPlCf7Z/emqR+j62oeXuu738965YO/yr7LM7ihnRDG+W/onkEuPoVaFzvk
+ 4UePQW0tiuITcY0B81J0Dz8SdqfZNJFZ62KQKU7ScsuXeVAne0Cza7SYVXDXzM9Yv6Y4Wr1dE7m
+ sLQ6qaSSP8+aYAXTTiZzu3f4yqHQ==
+X-Google-Smtp-Source: AGHT+IGtc+ldaOLm7KArL70HQY0VrWV1PdkFvz1jwPK7d6K9S9gz8W+9q2yV9oI0URUDJ5tAD/phWgEV3047IlKMYjg=
+X-Received: by 2002:a17:90b:4f89:b0:2ff:4b7a:f0a4 with SMTP id
+ 98e67ed59e1d1-306a4865251mr5017956a91.3.1743969502145; Sun, 06 Apr 2025
+ 12:58:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sun, 06 Apr 2025 19:35:54 +0000
+References: <20250403031148.1266785-1-superm1@kernel.org>
+ <CADnq5_Nz76WBm8wsU8k4LUpXrjKk6AbJfYV0CpaV3sXAJ2McEQ@mail.gmail.com>
+ <1d762b4d-3aae-4fad-b464-d1baa124e86e@kernel.org>
+In-Reply-To: <1d762b4d-3aae-4fad-b464-d1baa124e86e@kernel.org>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Sun, 6 Apr 2025 15:58:10 -0400
+X-Gm-Features: ATxdqUFLFnmSSVproTi7WU_dg9mrbI-mS0B3mke3nK0PsoBa7IQn3-rY_-nB5eY
+Message-ID: <CADnq5_NKAHX1NOyS2GNx1v7uYq2d9D9op4BDqgbYxcCwD_QRjQ@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amd: Add pre-zen AMD hardware to PCIe dynamic
+ switching exclusions
+To: Mario Limonciello <superm1@kernel.org>
+Cc: amd-gfx@lists.freedesktop.org, 
+ Mario Limonciello <mario.limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,27 +83,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-warning: Incorrect use of kernel-doc format:
-* @DC_HDCP_LC_ENABLE_SW_FALLBACK If set, upon HDCP Locality Check FW
+On Thu, Apr 3, 2025 at 3:13=E2=80=AFPM Mario Limonciello <superm1@kernel.or=
+g> wrote:
+>
+> On 4/3/2025 10:48 AM, Alex Deucher wrote:
+> > On Wed, Apr 2, 2025 at 11:12=E2=80=AFPM Mario Limonciello <superm1@kern=
+el.org> wrote:
+> >>
+> >> From: Mario Limonciello <mario.limonciello@amd.com>
+> >>
+> >> AMD RX580 when added AMD Phenom 2 has problems with overheating. This =
+is due to
+> >
+> > I don't think this is entirely accurate.  I think the GPU gets hot
+> > because the device hangs due to a problem with changing the PCIe
+> > clocks.
+> >
+> >> changes with PCIe dynamic switching introduced by commit 466a7d115326e
+> >> ("drm/amd: Use the first non-dGPU PCI device for BW limits").
+> >>
+> >> To avoid risks of other issues with old hardware require at least Zen =
+hardware
+> >> for AMD side to enable PCIe dynamic switching.
+> >
+> > I'm pretty sure PCIe reclocking worked on pre-Zen hardware.  We've
+> > supported this on our GPUs going back at least 15 or more years.  I
+> > suspect the actual problem is that some links may not reliably train
+> > at the full bandwidth on some motherboards.  Forcing a higher link
+> > speed may cause problems.
+>
+> That seems odd to me it would advertise a higher link speed than it
+> could train at.
 
-Signed-off-by: Kevin Paul Reddy Janagari <kevinpaul468@gmail.com>
----
- drivers/gpu/drm/amd/include/amd_shared.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That's why we train the link; to determine what speed is reliable.  It
+could be that there is a marginal trace on the motherboard that has
+deteriorated over time or was never reliable to begin with.   It would
+be interesting to know if the link used to work reliably on this
+board.
 
-diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-index 4c95b885d1d0..c8eccee9b023 100644
---- a/drivers/gpu/drm/amd/include/amd_shared.h
-+++ b/drivers/gpu/drm/amd/include/amd_shared.h
-@@ -366,7 +366,7 @@ enum DC_DEBUG_MASK {
- 	DC_HDCP_LC_FORCE_FW_ENABLE = 0x80000,
- 
- 	/**
--	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK If set, upon HDCP Locality Check FW
-+	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK: If set, upon HDCP Locality Check FW
- 	 * path failure, retry using legacy SW path.
- 	 */
- 	DC_HDCP_LC_ENABLE_SW_FALLBACK = 0x100000,
--- 
-2.39.5
+>
+> > Maybe it would be better to limit the max
+> > PCIe link rate to whatever the link is currently trained to.  IIRC,
+> > PCIe links will train at the fastest link possible by default.  The
+> > previous behavior was to limit the max clock to the slowest link in
+> > the topology to save power, but then we changed it to use the fastest
+> > link possible based on the PCIe link caps.  Perhaps limiting it to the
+> > fastest currently trained link rate would be better.
+>
+> I mean that's essentially what happens when
+> amdgpu_device_pcie_dynamic_switching_supported() returns that it doesn't
+> work.
 
+I mean rather than checking the PCIe caps, check the current link
+speed instead.  pcie_bandwidth_available() returns the speed and lanes
+of the slowest link in the topology; what we want is the current speed
+that the link upstream of the GPU is trained at.  If there is no
+USB4/TB or limited speed bridge upstream of the GPU, then that
+function should return the current speed of the link which would be
+fine.  The problem is that
+amdgpu_device_pcie_dynamic_switching_supported() returning false
+disables PCIe DPM so we don't dynamically change the PCIe speed/lanes
+at runtime.  I suspect that would work fine as long as we don't go
+past the current speed the link is currently trained at.
+
+>
+> If your theory is right; maybe what we really need is a pile of DMI
+> quirks for M/B that are having this problem.
+
+Depends on whether it's a general problem or something specific to
+this particular board.  I.e., the slot on this board has deteriorated.
+I think what we want is to enable PCIe DPM, but just limit the link
+the the max current speed rather than the max speed.  If the links are
+reliable the links should train at the max speed on power up.
+
+Alex
+
+>
+> >
+> > Alex
+> >
+> >>
+> >> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4098
+> >> Fixes: 466a7d115326e ("drm/amd: Use the first non-dGPU PCI device for =
+BW limits")
+> >> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> >> ---
+> >> v2:
+> >>   * Cover more hardware
+> >> ---
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++++
+> >>   1 file changed, 5 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/=
+drm/amd/amdgpu/amdgpu_device.c
+> >> index a30111d2c3ea0..caa44ee788c8f 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >> @@ -1854,6 +1854,9 @@ bool amdgpu_device_seamless_boot_supported(struc=
+t amdgpu_device *adev)
+> >>    *
+> >>    * https://edc.intel.com/content/www/us/en/design/products/platforms=
+/details/raptor-lake-s/13th-generation-core-processors-datasheet-volume-1-o=
+f-2/005/pci-express-support/
+> >>    * https://gitlab.freedesktop.org/drm/amd/-/issues/2663
+> >> + *
+> >> + * AMD Phenom II X6 1090T has a similar issue
+> >> + * https://gitlab.freedesktop.org/drm/amd/-/issues/4098
+> >>    */
+> >>   static bool amdgpu_device_pcie_dynamic_switching_supported(struct am=
+dgpu_device *adev)
+> >>   {
+> >> @@ -1866,6 +1869,8 @@ static bool amdgpu_device_pcie_dynamic_switching=
+_supported(struct amdgpu_device
+> >>
+> >>          if (c->x86_vendor =3D=3D X86_VENDOR_INTEL)
+> >>                  return false;
+> >> +       if (c->x86_vendor =3D=3D X86_VENDOR_AMD && !cpu_feature_enable=
+d(X86_FEATURE_ZEN))
+> >> +               return false;
+> >>   #endif
+> >>          return true;
+> >>   }
+> >> --
+> >> 2.43.0
+> >>
+>
