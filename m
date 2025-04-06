@@ -2,120 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 952F6A7D0B9
-	for <lists+amd-gfx@lfdr.de>; Sun,  6 Apr 2025 23:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D71A7D125
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Apr 2025 01:18:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11C1E10E13F;
-	Sun,  6 Apr 2025 21:37:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 798A010E154;
+	Sun,  6 Apr 2025 23:07:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lr8ldh5M";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mz6tOsaR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2059.outbound.protection.outlook.com [40.107.93.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57B2410E13F
- for <amd-gfx@lists.freedesktop.org>; Sun,  6 Apr 2025 21:37:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w2XwqT93gUnCkFiV+e1hRUrT3zWr0k28uvetTn3GjdM1mnpixVdYsKMzHRSebQH5wnD/eaBy9AIXFcTgkffjyUC9iSlOj1wFCpyv0IIKxiMnhcUBx6Hx+bWZZavf6k0Fr4pogHnSJBBvuHxuNhz3/3u2dglMHmkGB/B6qLRH6l/O/OmuCykzaeLCs/q+zgbVhh5cZpe+fyECD7o2HyMcU+W/RPoE1ARJWrVrqU3c04IWJQUI+p2uCO5sZ1RE3mYt+t8tvcw0RQ2JwgwCCYFM2juHABRALqZ5DFJhu22r5/QAHbnR1p8xs/KK0rjX1+wPGRDCS8ShcBkWMlwxxCUqhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=htVL5MufsfZgUEHlGnZZJ+CeBmF50Z47fHni2P0alyY=;
- b=At5qEdboCvDrAYQV3aJFM8uIBf/gE1HPYeqSH9CtI3mTKhY49E7eyOl8Gnxg1JwIjV4ydzLSsuj5L/TvpN9sgokSQJaDvd08nPPjsryNJKam7lHs4Rg7xan4/MGG0BSbU2cHazthUxVtw0+axtiIkR48Rwt5R1YHiAoPBhMrt811j0mo2p+hnfEDerAjNde5QmvP7JWgIim3EJukdXjuBILTIX7aEDDob3utmGXr3W3+yegKxuVn76hYwXQZSDxNyZOv5h4xfkxGGQl92MovOfRxq4X017XaG1DhTQw7ukOO3ddULpUAptFTHwR+x3q61Ar7oDZiJvFJl1KUPDOpYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=htVL5MufsfZgUEHlGnZZJ+CeBmF50Z47fHni2P0alyY=;
- b=lr8ldh5MYqAdFZhFZdWOXPUgiLMFieftRZUO1DDaEqB2ByKcvu2ZZJSMLlKYZFd/hjkDkJVVR9vJAgqnxPbPxEMKIFKPm+Q07zzY3vjMwPCGjiWCD/sEIHcjFnoJdjXcf2+aIUGw08iIjoxHRifKap+hFIMMA2XJnFZZ95voDJA=
-Received: from MW4PR03CA0125.namprd03.prod.outlook.com (2603:10b6:303:8c::10)
- by CH1PPFDAD84AB72.namprd12.prod.outlook.com
- (2603:10b6:61f:fc00::627) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8583.46; Sun, 6 Apr
- 2025 21:37:08 +0000
-Received: from MWH0EPF000971E7.namprd02.prod.outlook.com
- (2603:10b6:303:8c:cafe::e7) by MW4PR03CA0125.outlook.office365.com
- (2603:10b6:303:8c::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8606.27 via Frontend Transport; Sun,
- 6 Apr 2025 21:37:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MWH0EPF000971E7.mail.protection.outlook.com (10.167.243.75) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8606.22 via Frontend Transport; Sun, 6 Apr 2025 21:37:07 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 6 Apr
- 2025 16:37:06 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: cancel gfx idle work in device suspend for s0ix
-Date: Sun, 6 Apr 2025 17:36:47 -0400
-Message-ID: <20250406213647.48382-1-alexander.deucher@amd.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E1B010E044
+ for <amd-gfx@lists.freedesktop.org>; Sun,  6 Apr 2025 23:07:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=ix0D5ijwgoY8dLuMwiKfezPucHyAHJkD52Z2Zb8jvQg=; b=mz6tOsaRL6M5GmbnbaVF24rQCQ
+ LNwEsYx/c+pAsu7nnGp0NDVcj1C0oDhbv0Ov76OGUmrjt4cgCPJTBzDE/BPZkcVOiOmNQLqsh19fN
+ i88cDldAXPv6bBgQ4UPWMRlAVFSTcBhm1kqoG8JsFXEJ4DF1xWDDexahzuuvrWK5xUsa0semjrCFa
+ NJSXnc5yeysU/lF7Y8a4CGZF8Stg3Ped2mGTPeTZMF904yHp54yRIvJwUFehASMiJFDIpUzVCrtgY
+ dhMLIavWc7t8It+rxHsInVMWBv3ZG6UFTo5j7OF0xgGHmPDL3icdKGfTUzSu2c5SgzecGkzitNS/l
+ nMHRaxWw==;
+Received: from d162-157-58-14.abhsia.telus.net ([162.157.58.14]
+ helo=maloca.lan) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1u1Z5I-00CfEV-6c; Mon, 07 Apr 2025 01:07:24 +0200
+From: Rodrigo Siqueira <siqueira@igalia.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rodrigo Siqueira <siqueira@igalia.com>
+Subject: [PATCH 0/6] Introduce a generic function to get the CSB buffer
+Date: Sun,  6 Apr 2025 17:02:55 -0600
+Message-ID: <20250406230703.2128148-1-siqueira@igalia.com>
 X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000971E7:EE_|CH1PPFDAD84AB72:EE_
-X-MS-Office365-Filtering-Correlation-Id: dcd72aff-40d2-4f89-e84c-08dd75532e2a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wjCafG6Uku+8EnNLHWkahbcDzfuET5ZysN0skSeZ91+e6Yy/BQ6+wSoHecdB?=
- =?us-ascii?Q?rdw1w6fQFvTT3CtdxL7oqcfHhepk4hrQ8usYG2gXKEv72QUxg9KP20zbEd4W?=
- =?us-ascii?Q?kZle8i/z0u5CoT0fd1w8oeQOBpoH0MvDOJJa/qGcZZrlIC+F6/e1cI2AqwHi?=
- =?us-ascii?Q?q5CYeGJMaC62Ou36qU0wmVWDIU1y3XNN5MAW3iAD6BRg6eHEZ+7yzfvsLTBj?=
- =?us-ascii?Q?f2tMTzahTpsDL1CPGkiAgc3XG9guFL1JyefzQMANkhUUb1H+/qxN70qrWqRp?=
- =?us-ascii?Q?4xoz+hQPuzH4BXKgbJV/K3W3iXhxjRS4hsA41YAcDKJl+QXNL7en3GdhW/2c?=
- =?us-ascii?Q?rnG30Cf39Y7e66Q5ajJqZUzXw/+R2qOh9TYJ0vB5avbm0jDiEs4fPO4Kx7sR?=
- =?us-ascii?Q?Q0ukFV994iAyIuvbbG24ou9/qckikjIGfYqMO/NCbjoPiecW5vts091cLVSN?=
- =?us-ascii?Q?84/Rde7PZoT0ObcNMay/3v3+ni2+fC69eWLavg3yzMA5cLG1FirBJ286Ifjj?=
- =?us-ascii?Q?sccn5LK+mWYOcFbMTz70hKx+lLlAf9qxjbvonjfrFDdp+Nv8sfUhCJfhNRUB?=
- =?us-ascii?Q?2VvlOFTHCmw9deW8PsqjqrAw3sXFyTn4xKu5L2NJsiOzkIf6IoqyyFo8OlIY?=
- =?us-ascii?Q?dqQU+GuqNUF7rhbVpJdvPkBcrOEtGT0FN6J/VU8FN5UHbX1Eg4XD0RVR4E1Z?=
- =?us-ascii?Q?rNDdle2RZ90S0LojPNeYozw3hWo/Ri0+gTTcyhvEHq9lnFMenWKuH9zY6f7N?=
- =?us-ascii?Q?cfJnS61C3uHGBCckcT/hEVHoFPw7X6p3s8VooXaJnl047j8FA31XxMeFJO+6?=
- =?us-ascii?Q?inS/8bAmqpKt6CiujTwpQT11xOKHU5VyQXnTfhqcrl//fuYcgBjNNkVueomm?=
- =?us-ascii?Q?XfTDsegRY9R1EazU/tu3T/o3BHGbo3u717nUAKSkwgGBediDHhY4NUv0375B?=
- =?us-ascii?Q?zCgD7yhfaLWZCnlddEcANtY789R0FejYdkfjsgczWaTPpKN31KV/gMKHME3m?=
- =?us-ascii?Q?Yb5Nne0BXHP7uJNtAxl0IY4fQYLxf13edOduCckm2s2dwhjwJjdUrz4P1g0D?=
- =?us-ascii?Q?0/6eSS/2jNtveR7VL3jqz8cRK56kScPjzusLNsmnXSyIgi4VaxW1HAkxoNmW?=
- =?us-ascii?Q?KEzDOv9Ms0ZoW7irU6ghDkvzrONEw7S/NrUCADVSWrjkTwS6HaEOco7yzeIo?=
- =?us-ascii?Q?7zvuFdEXAFoW5Zue1Qpui9e2EpP+BZdPbx9QlunRweqEK0LiGLo2hEAdDx17?=
- =?us-ascii?Q?vCJJrw4GIMblYT0JlKu+hbeaxPWmLfUfZm9pJhS/EQTgTHkpQm2wk95KLt4f?=
- =?us-ascii?Q?KO6/k/9OKeWKOTWWs57EkrgG3yPO3Yv0J5wiUYUoolucu1MglVwJ7Eb/NaMO?=
- =?us-ascii?Q?dCd8aHlzHEG+HLVKx/TXo2aoHqRmjM6caQBf0tSa6oDxc+yN6/45g299kpFe?=
- =?us-ascii?Q?EfWuQXfyjsZREibPc3+gAKLiQhoIMV0gpFR8HHZvzHbKi0DCWFa3ibEeZPuO?=
- =?us-ascii?Q?S7B5eHRgKs33rYg=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2025 21:37:07.2527 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcd72aff-40d2-4f89-e84c-08dd75532e2a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000971E7.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PPFDAD84AB72
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,36 +59,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is normally handled in the gfx IP suspend callbacks, but
-for S0ix, those are skipped because we don't want to touch
-gfx.  So handle it in device suspend.
+This patchset was inspired and made on top of the below series:
 
-Fixes: b9467983b774 ("drm/amdgpu: add dynamic workload profile switching for gfx10")
-Fixes: 963537ca2325 ("drm/amdgpu: add dynamic workload profile switching for gfx11")
-Fixes: 5f95a1549555 ("drm/amdgpu: add dynamic workload profile switching for gfx12")
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+https://lore.kernel.org/amd-gfx/20250319162225.3775315-1-alexander.deucher@amd.com/
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index c2c2ca7922d5c..8a14caeb808dd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3641,6 +3641,13 @@ static int amdgpu_device_ip_suspend_phase2(struct amdgpu_device *adev)
- 			    adev, adev->ip_blocks[i].version->type))
- 			continue;
- 
-+		/* Since we skip suspend for S0i3, we need to cancel the delayed
-+		 * idle work here as the suspend callback never gets called.
-+		 */
-+		if (adev->in_s0ix &&
-+		    adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX &&
-+		    amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(10, 0, 0))
-+			cancel_delayed_work_sync(&adev->gfx.idle_work);
- 		/* skip suspend of gfx/mes and psp for S0ix
- 		 * gfx is in gfxoff state, so on resume it will exit gfxoff just
- 		 * like at runtime. PSP is also part of the always on hardware
+In the above series, there is a bug fix in many functions named
+gfx_vX_0_get_csb_buffer (where X ranges from 6 to 11). After closely
+looking at those functions, it became clear that most of the code could
+be shared from gfx6 to gfx11. Aside from the code duplication removal,
+this also improves maintainability since a bug fix in a shared function
+can be propagated to all ASICs.
+
+The first patch of this series created one dedicated file for
+encapsulating common GC registers (gc_common_offset.h); this series only
+adds registers associated with the CSB. In the future, this file can
+keep growing as we identify common registers to be shared in the
+gc_common_offset.h.
+
+The second patch introduces the generic gfx_get_csb_buffer function,
+which has the same implementation found in gfx_v10_0_get_csb_buffer and
+gfx_v11_0_get_csb_buffer (these two functions have the same code). After
+that, every patch is dedicated to absorbing one of the csb_buffer
+functions from gfx from 9 to 6; notice that some adaptations were
+required.
+
+Thanks
+
+Rodrigo Siqueira (6):
+  drm/amd/amdgpu: Create a headears to keep some common GC registers
+  drm/amdgpu/gfx: Introduce generic gfx_get_csb_buffer
+  drm/amdgpu/gfx: Integrate gfx_v9_0_get_csb_buffer into
+    gfx_get_csb_buffer
+  drm/amdgpu/gfx: Absorb gfx_v8_0_get_csb_buffer into gfx_get_csb_buffer
+  drm/amdgpu/gfx: Assimilate gfx_v7_0_get_csb_buffer into
+    gfx_get_csb_buffer
+  drm/amdgpu/gfx: Merge gfx_v6_0_get_csb_buffer into gfx_get_csb_buffer
+
+ Documentation/gpu/amdgpu/amdgpu-glossary.rst  |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c       | 101 ++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h       |   1 +
+ drivers/gpu/drm/amd/amdgpu/cik.c              |   2 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        |  51 +--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        |  53 +--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c         |  46 +-------
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c         |  70 +-----------
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c         |  51 +--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c         |  43 +-------
+ drivers/gpu/drm/amd/amdgpu/mxgpu_vi.c         |   1 +
+ drivers/gpu/drm/amd/amdgpu/si.c               |   2 +
+ drivers/gpu/drm/amd/amdgpu/vi.c               |   2 +
+ .../include/asic_reg/gc/gc_10_1_0_offset.h    |   3 -
+ .../include/asic_reg/gc/gc_10_3_0_offset.h    |   3 -
+ .../include/asic_reg/gc/gc_11_0_0_offset.h    |   2 -
+ .../include/asic_reg/gc/gc_11_0_3_offset.h    |   2 -
+ .../include/asic_reg/gc/gc_11_5_0_offset.h    |   2 -
+ .../include/asic_reg/gc/gc_12_0_0_offset.h    |   2 -
+ .../amd/include/asic_reg/gc/gc_9_0_offset.h   |   3 -
+ .../amd/include/asic_reg/gc/gc_9_1_offset.h   |   3 -
+ .../amd/include/asic_reg/gc/gc_9_2_1_offset.h |   3 -
+ .../amd/include/asic_reg/gc/gc_9_4_2_offset.h |   2 -
+ .../amd/include/asic_reg/gc/gc_9_4_3_offset.h |   2 -
+ .../include/asic_reg/gc/gc_common_offset.h    |  11 ++
+ .../drm/amd/include/asic_reg/gca/gfx_6_0_d.h  |   1 -
+ .../drm/amd/include/asic_reg/gca/gfx_7_0_d.h  |   1 -
+ .../drm/amd/include/asic_reg/gca/gfx_7_2_d.h  |   1 -
+ .../drm/amd/include/asic_reg/gca/gfx_8_0_d.h  |   1 -
+ .../drm/amd/include/asic_reg/gca/gfx_8_1_d.h  |   1 -
+ 30 files changed, 141 insertions(+), 328 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/include/asic_reg/gc/gc_common_offset.h
+
 -- 
 2.49.0
 
