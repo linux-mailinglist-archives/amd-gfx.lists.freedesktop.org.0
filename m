@@ -2,51 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED52A7D124
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Apr 2025 01:18:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C077BA7D3A0
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Apr 2025 07:40:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA5A10E169;
-	Sun,  6 Apr 2025 23:07:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E12C510E00C;
+	Mon,  7 Apr 2025 05:40:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="iVdcGPb0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z5yFFSCF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62ED310E144
- for <amd-gfx@lists.freedesktop.org>; Sun,  6 Apr 2025 23:07:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=6B3UkjtVcz/AbeCtOf4LgdpKDD1HhKIhiyVNnoSq4tw=; b=iVdcGPb0xcKfdIvB3/foNpQ1bp
- FUcYyeJlxpOf6I1nAoGXGZKskiv+tgIHZIYx0+m6sAPXXWxFdWedcHNiObf4ywzeoCcpsfMeu6qRg
- abtwfFpJDXczpPxuXyOT1g43Ems/SgSNGb5baIwxOP6EDEWrqrifFayepKwOaUnjQFV7FotQWKK+Q
- XqDrKCcPr5bEhquoKmD44rbvWrzX3qtvdUVMz2YZpqHRIiv5h5AYaK01jFB3X5cDaQyF1KgU0/rrD
- Dr8royewsuqmYXfwZ7dQ+UYUsvznP9nlkXtRgDc0ymdUSFqI/wjVuW8/sh/h+kZiBmK5J9syENV0N
- aOrYnFUg==;
-Received: from d162-157-58-14.abhsia.telus.net ([162.157.58.14]
- helo=maloca.lan) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1u1Z5S-00CfEV-Di; Mon, 07 Apr 2025 01:07:34 +0200
-From: Rodrigo Siqueira <siqueira@igalia.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH 6/6] drm/amdgpu/gfx: Merge gfx_v6_0_get_csb_buffer into
- gfx_get_csb_buffer
-Date: Sun,  6 Apr 2025 17:03:01 -0600
-Message-ID: <20250406230703.2128148-7-siqueira@igalia.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250406230703.2128148-1-siqueira@igalia.com>
-References: <20250406230703.2128148-1-siqueira@igalia.com>
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com
+ [209.85.161.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0033F10E00C
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Apr 2025 05:40:22 +0000 (UTC)
+Received: by mail-oo1-f43.google.com with SMTP id
+ 006d021491bc7-6021b5d1c2fso321834eaf.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 06 Apr 2025 22:40:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1744004422; x=1744609222; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=lcQekedDka8GM+sZB3s0t0ImMA4H8JvoqX6cgQ+A6es=;
+ b=Z5yFFSCF8TmPAKg8CQegEuDfVtxhw/Krf+lWliNX71h2SNnYwjW+ta+hvqJIu33eD1
+ SLeZV3Nv/pFiqqhOatADaFcT6umLKvznmHI9DFPpSJGA0UoNXWGmDRTmzQah5hFpca0L
+ +D0Pwl9tF5Fc/6+eaS2rBLccdfxYerlTvK+Ymp/rRXm4ggni8bUGcqPQcq6iBSx5k4rY
+ Au0AuuAL86G5IaJH1gbteCp50uLMb18eX4k8Jqr/y2hwTt6QGu2Y3xZSCpwXzyznTGPZ
+ WrtK79DpOkJjRbaUJvMLz0eeGxgowf3Gs/WVX2eDKx2bZSgAbpbAX1vsL+4WuCP3H0CN
+ IJXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1744004422; x=1744609222;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=lcQekedDka8GM+sZB3s0t0ImMA4H8JvoqX6cgQ+A6es=;
+ b=Nk5P39zLN13S3JqxM1LJa3VDtW5lJrBBMDo7chegXFL0wtk8flhUxk+qUzTIhjU6Sa
+ D+WO3rK0thUXT7ELSRp70dmEqh9ENZRyc0CmbLPElrss0z2HnxPYvvOqM+kl9bqaMN3E
+ 1dCorFk6yp7N+76h+GI+qSnD+D0MzsEUm1nioiZKCguNtaRdQ99goTBAy6Z4gnMpu3//
+ VQbEV7KiqQM+zh9KKQbecRqXpNAvrWBKfbyfhxdNcGaC40TQ6Rwnq0BPs2YzyGnEr+y5
+ 2rfhWcY194Wsrh3PqHBW5WugOZUN6IzgcQ8PRMxBtcs+7Bns+ta7jYYDZ34lvPd0xwZo
+ rigw==
+X-Gm-Message-State: AOJu0YzHJCmCSmwx23LdHxVXDiC/+2Q0FQvE0xw3+v4V/WzngyGSWT6A
+ 3t66dH985vvFfLf2I2MVg36AoBiwnTM2Mx5H2J6jI3ohlQJfQ2IHdjmTU+hWjgP8Y/DMvWuf8hG
+ 9lf5y4k/B1KodjC8GIxJ3svjgtks=
+X-Gm-Gg: ASbGncvR4QZGnXkv8l6oJv5MunFHCTxHeFqPbC7+Ja4aNBGqIEYBdsyJ53cPHBiCWTl
+ qQPB7EFL9iSEJ73H4HQV1IAcWOjN3JwBgKPsn2MO5fLgQq5bj5iHXQWMbGXDNDNpbfTIl7djPoo
+ Eoi/HVO4CkRfvhAyNJZ/hGpqNrilg=
+X-Google-Smtp-Source: AGHT+IG6nLrLmMquZfjhlJAk0Jl1Ao043WoaBEIwJRudoYzT5Ah7kfUBSKzvThCV74Qw6mmQi5z907IG0r6fWx41Kwk=
+X-Received: by 2002:a05:6870:63a1:b0:29e:3b8e:66c8 with SMTP id
+ 586e51a60fabf-2cc9e5be818mr2203542fac.6.1744004421997; Sun, 06 Apr 2025
+ 22:40:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250324203328.4174703-1-alexander.deucher@amd.com>
+In-Reply-To: <20250324203328.4174703-1-alexander.deucher@amd.com>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Mon, 7 Apr 2025 01:39:45 -0400
+X-Gm-Features: ATxdqUELL4udIvLc5OzXour95ASiemYQGSkRAINUnj6EJUP0yyouDrSnPEhCEIU
+Message-ID: <CAAxE2A7N5ZAVsTrF91gX+9hvNv3MEt_wrnc_GrPVn3+sudHKeQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: add UAPI to query if user queues are
+ supported
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, marek.olsak@amd.com, prike.liang@amd.com, 
+ sunil.khatri@amd.com, yogesh.mohanmarimuthu@amd.com
+Content-Type: multipart/alternative; boundary="0000000000000f5d4f063229ac9d"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,103 +79,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Move the only specific GFX6 part from gfx_v6_0_get_csb_buffer to
-gfx_get_csb_buffer and remove the gfx6 version.
+--0000000000000f5d4f063229ac9d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c |  8 +++++
- drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c   | 44 +------------------------
- 2 files changed, 9 insertions(+), 43 deletions(-)
+Reviewed-by: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 57bf3282e797..2c77408b7f0d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -2254,6 +2254,14 @@ void gfx_get_csb_buffer(struct amdgpu_device *adev, volatile u32 *buffer)
- 		}
- 	}
- 
-+	// GFX6
-+	if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(6, 0, 0) &&
-+	    amdgpu_ip_version(adev, GC_HWIP, 0) <  IP_VERSION(7, 0, 0)) {
-+		buffer[count++] = cpu_to_le32(PACKET3(PACKET3_SET_CONTEXT_REG, 1));
-+		buffer[count++] = cpu_to_le32(mmPA_SC_RASTER_CONFIG - PACKET3_SET_CONTEXT_REG_START);
-+		buffer[count++] = cpu_to_le32(adev->gfx.config.rb_config[0][0].raster_config);
-+	}
-+
- 	// GFX7 and GFX8
- 	if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(7, 0, 0) &&
- 	    amdgpu_ip_version(adev, GC_HWIP, 0) <  IP_VERSION(9, 0, 0)) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-index ff794410794d..737ce600c7d9 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-@@ -88,7 +88,6 @@ MODULE_FIRMWARE("amdgpu/hainan_ce.bin");
- MODULE_FIRMWARE("amdgpu/hainan_rlc.bin");
- 
- static u32 gfx_v6_0_get_csb_size(struct amdgpu_device *adev);
--static void gfx_v6_0_get_csb_buffer(struct amdgpu_device *adev, volatile u32 *buffer);
- //static void gfx_v6_0_init_cp_pg_table(struct amdgpu_device *adev);
- static void gfx_v6_0_init_pg(struct amdgpu_device *adev);
- 
-@@ -2401,7 +2400,7 @@ static int gfx_v6_0_rlc_init(struct amdgpu_device *adev)
- 		dst_ptr[0] = cpu_to_le32(upper_32_bits(reg_list_mc_addr));
- 		dst_ptr[1] = cpu_to_le32(lower_32_bits(reg_list_mc_addr));
- 		dst_ptr[2] = cpu_to_le32(adev->gfx.rlc.clear_state_size);
--		gfx_v6_0_get_csb_buffer(adev, &dst_ptr[(256/4)]);
-+		gfx_get_csb_buffer(adev, &dst_ptr[(256/4)]);
- 		amdgpu_bo_kunmap(adev->gfx.rlc.clear_state_obj);
- 		amdgpu_bo_unreserve(adev->gfx.rlc.clear_state_obj);
- 	}
-@@ -2857,47 +2856,6 @@ static u32 gfx_v6_0_get_csb_size(struct amdgpu_device *adev)
- 	return count;
- }
- 
--static void gfx_v6_0_get_csb_buffer(struct amdgpu_device *adev,
--				    volatile u32 *buffer)
--{
--	u32 count = 0, i;
--	const struct cs_section_def *sect = NULL;
--	const struct cs_extent_def *ext = NULL;
--
--	if (adev->gfx.rlc.cs_data == NULL)
--		return;
--	if (buffer == NULL)
--		return;
--
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_PREAMBLE_CNTL, 0));
--	buffer[count++] = cpu_to_le32(PACKET3_PREAMBLE_BEGIN_CLEAR_STATE);
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_CONTEXT_CONTROL, 1));
--	buffer[count++] = cpu_to_le32(0x80000000);
--	buffer[count++] = cpu_to_le32(0x80000000);
--
--	for (sect = adev->gfx.rlc.cs_data; sect->section != NULL; ++sect) {
--		for (ext = sect->section; ext->extent != NULL; ++ext) {
--			if (sect->id == SECT_CONTEXT) {
--				buffer[count++] =
--					cpu_to_le32(PACKET3(PACKET3_SET_CONTEXT_REG, ext->reg_count));
--				buffer[count++] = cpu_to_le32(ext->reg_index - 0xa000);
--				for (i = 0; i < ext->reg_count; i++)
--					buffer[count++] = cpu_to_le32(ext->extent[i]);
--			}
--		}
--	}
--
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_SET_CONTEXT_REG, 1));
--	buffer[count++] = cpu_to_le32(mmPA_SC_RASTER_CONFIG - PACKET3_SET_CONTEXT_REG_START);
--	buffer[count++] = cpu_to_le32(adev->gfx.config.rb_config[0][0].raster_config);
--
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_PREAMBLE_CNTL, 0));
--	buffer[count++] = cpu_to_le32(PACKET3_PREAMBLE_END_CLEAR_STATE);
--
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_CLEAR_STATE, 0));
--	buffer[count++] = cpu_to_le32(0);
--}
--
- static void gfx_v6_0_init_pg(struct amdgpu_device *adev)
- {
- 	if (adev->pg_flags & (AMD_PG_SUPPORT_GFX_PG |
--- 
-2.49.0
+For both patches.
 
+Marek
+
+On Mon, Mar 24, 2025 at 4:34=E2=80=AFPM Alex Deucher <alexander.deucher@amd=
+.com>
+wrote:
+
+> Add an INFO query to check if user queues are supported.
+>
+> v2: switch to a mask of IPs (Marek)
+> v3: move to drm_amdgpu_info_device (Marek)
+>
+> Cc: marek.olsak@amd.com
+> Cc: prike.liang@amd.com
+> Cc: sunil.khatri@amd.com
+> Cc: yogesh.mohanmarimuthu@amd.com
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 7 +++++++
+>  include/uapi/drm/amdgpu_drm.h           | 3 +++
+>  2 files changed, 10 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> index 3b7dfd56ccd0e..0ba3ef1e4a068 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> @@ -1009,6 +1009,13 @@ int amdgpu_info_ioctl(struct drm_device *dev, void
+> *data, struct drm_file *filp)
+>                         }
+>                 }
+>
+> +               if (adev->userq_funcs[AMDGPU_HW_IP_GFX])
+> +                       dev_info->userq_ip_mask |=3D (1 << AMDGPU_HW_IP_G=
+FX);
+> +               if (adev->userq_funcs[AMDGPU_HW_IP_COMPUTE])
+> +                       dev_info->userq_ip_mask |=3D (1 <<
+> AMDGPU_HW_IP_COMPUTE);
+> +               if (adev->userq_funcs[AMDGPU_HW_IP_DMA])
+> +                       dev_info->userq_ip_mask |=3D (1 << AMDGPU_HW_IP_D=
+MA);
+> +
+>                 ret =3D copy_to_user(out, dev_info,
+>                                    min((size_t)size, sizeof(*dev_info))) =
+?
+> -EFAULT : 0;
+>                 kfree(dev_info);
+> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.=
+h
+> index 5dbd9037afe75..ef97c0d78b8a0 100644
+> --- a/include/uapi/drm/amdgpu_drm.h
+> +++ b/include/uapi/drm/amdgpu_drm.h
+> @@ -1453,6 +1453,9 @@ struct drm_amdgpu_info_device {
+>         __u32 csa_size;
+>         /* context save area base virtual alignment for gfx11 */
+>         __u32 csa_alignment;
+> +       /* Userq IP mask (1 << AMDGPU_HW_IP_*) */
+> +       __u32 userq_ip_mask;
+> +       __u32 pad;
+>  };
+>
+>  struct drm_amdgpu_info_hw_ip {
+> --
+> 2.49.0
+>
+>
+
+--0000000000000f5d4f063229ac9d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Reviewed-by: Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"mai=
+lto:marek.olsak@amd.com" target=3D"_blank">marek.olsak@amd.com</a>&gt;</div=
+><div><br></div><div>For both patches.</div><div><br></div><div>Marek</div>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Mon, Mar 24, 2025 at 4:34=E2=80=AFPM Alex Deucher &lt;<a href=3D"mailto:=
+alexander.deucher@amd.com" target=3D"_blank">alexander.deucher@amd.com</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Add a=
+n INFO query to check if user queues are supported.<br>
+<br>
+v2: switch to a mask of IPs (Marek)<br>
+v3: move to drm_amdgpu_info_device (Marek)<br>
+<br>
+Cc: <a href=3D"mailto:marek.olsak@amd.com" target=3D"_blank">marek.olsak@am=
+d.com</a><br>
+Cc: <a href=3D"mailto:prike.liang@amd.com" target=3D"_blank">prike.liang@am=
+d.com</a><br>
+Cc: <a href=3D"mailto:sunil.khatri@amd.com" target=3D"_blank">sunil.khatri@=
+amd.com</a><br>
+Cc: <a href=3D"mailto:yogesh.mohanmarimuthu@amd.com" target=3D"_blank">yoge=
+sh.mohanmarimuthu@amd.com</a><br>
+Signed-off-by: Alex Deucher &lt;<a href=3D"mailto:alexander.deucher@amd.com=
+" target=3D"_blank">alexander.deucher@amd.com</a>&gt;<br>
+---<br>
+=C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 7 +++++++<br>
+=C2=A0include/uapi/drm/amdgpu_drm.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0| 3 +++<br>
+=C2=A02 files changed, 10 insertions(+)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_kms.c<br>
+index 3b7dfd56ccd0e..0ba3ef1e4a068 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br>
+@@ -1009,6 +1009,13 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *=
+data, struct drm_file *filp)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (adev-&gt;userq_=
+funcs[AMDGPU_HW_IP_GFX])<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0dev_info-&gt;userq_ip_mask |=3D (1 &lt;&lt; AMDGPU_HW_IP_GFX);<br=
+>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (adev-&gt;userq_=
+funcs[AMDGPU_HW_IP_COMPUTE])<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0dev_info-&gt;userq_ip_mask |=3D (1 &lt;&lt; AMDGPU_HW_IP_COMPUTE)=
+;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (adev-&gt;userq_=
+funcs[AMDGPU_HW_IP_DMA])<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0dev_info-&gt;userq_ip_mask |=3D (1 &lt;&lt; AMDGPU_HW_IP_DMA);<br=
+>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ret =3D copy_to_use=
+r(out, dev_info,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0min((size_t)size, sizeo=
+f(*dev_info))) ? -EFAULT : 0;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 kfree(dev_info);<br=
+>
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h<=
+br>
+index 5dbd9037afe75..ef97c0d78b8a0 100644<br>
+--- a/include/uapi/drm/amdgpu_drm.h<br>
++++ b/include/uapi/drm/amdgpu_drm.h<br>
+@@ -1453,6 +1453,9 @@ struct drm_amdgpu_info_device {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32 csa_size;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /* context save area base virtual alignment for=
+ gfx11 */<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32 csa_alignment;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Userq IP mask (1 &lt;&lt; AMDGPU_HW_IP_*) */=
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 userq_ip_mask;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 pad;<br>
+=C2=A0};<br>
+<br>
+=C2=A0struct drm_amdgpu_info_hw_ip {<br>
+-- <br>
+2.49.0<br>
+<br>
+</blockquote></div>
+
+--0000000000000f5d4f063229ac9d--
