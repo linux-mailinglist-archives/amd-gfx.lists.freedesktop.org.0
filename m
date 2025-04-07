@@ -2,55 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1CDA7D701
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Apr 2025 09:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2FAA7D8D0
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Apr 2025 10:59:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3967C10E2DF;
-	Mon,  7 Apr 2025 07:59:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71DA610E3E2;
+	Mon,  7 Apr 2025 08:59:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="L7H5B2qE";
+	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="pENCprZ7";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (unknown [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C22D810E328;
- Mon,  7 Apr 2025 07:17:06 +0000 (UTC)
-Received: from localhost.localdomain (unknown [124.16.141.245])
- by APP-01 (Coremail) with SMTP id qwCowABXAAHfe_NnCWDSBg--.45177S2;
- Mon, 07 Apr 2025 15:16:49 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch
-Cc: hamza.mahfooz@amd.com, chiahsuan.chung@amd.com, sunil.khatri@amd.com,
- alex.hung@amd.com, aurabindo.pillai@amd.com, hersenxs.wu@amd.com,
- mario.limonciello@amd.com, mwen@igalia.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Wentao Liang <vulab@iscas.ac.cn>
-Subject: [PATCH] drm/amd/display: Add error check for avi and vendor infoframe
- setup function
-Date: Mon,  7 Apr 2025 15:16:27 +0800
-Message-ID: <20250407071627.1666-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.42.0.windows.2
+X-Greylist: delayed 465 seconds by postgrey-1.36 at gabe;
+ Mon, 07 Apr 2025 08:59:03 UTC
+Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E762210E3E2
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Apr 2025 08:59:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed; 
+ h=From:To:Subject:Date:Message-ID; t=1744015823;
+ bh=FBxNdb3HLrC4QCyP3ozxU4W
+ FQwYr1gUSw11DMHYxubY=; b=L7H5B2qEkDkD3v1uqH3BRo1FZuUWOBoj9DfwrA7ZnIHIQjI5r0
+ a16DF8cHMtUuFy3hkuDCCuhdXW7+dL3/u3uidrKcAYlvpkE3yzROwyeTqFlaZQlWKuwpomh620I
+ WUmI/cW6J1BonOSj2thsfTSvB/QNkeSweDW8jIoMnM35WJ0uKCY+TGroD3c8cUVyLO5DBV/9AYz
+ QECiXCCtRmX7wueRT9QSpgHNIkK/7U4qy/oY/d/4z9rfiF7LvQcb7nQs9fsPnReguo/wP6dMYWJ
+ VbCw0Raczp20pCL7+IET6gHg4V4uL0VVQTSM3UQfP2Qcizk2tQ0eEvuaKrNTveendGg==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
+ c=relaxed/relaxed; 
+ h=From:To:Subject:Date:Message-ID; t=1744015823; bh=FBxNdb3HLrC4QCyP3ozxU4W
+ FQwYr1gUSw11DMHYxubY=; b=pENCprZ7eyfKPQsOxMuSxOMK8dkjiF4VtQvdzyFatLk1k/OQEm
+ S+6c4w92+OWDeFCeiwwzUEsVPI4JUn9vhhDA==;
+Message-ID: <e94b2e41-a3a3-40d5-ac2c-42e3a406b79e@damsy.net>
+Date: Mon, 7 Apr 2025 10:50:22 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] drm/amdgpu/gfx9: dump full CP packet header FIFOs
+To: Alex Deucher <alexdeucher@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+References: <20250320165634.1245798-1-alexander.deucher@amd.com>
+ <CADnq5_O1TWAx9neJmNtAQ+kmn+85NHsfzoMr5P_fbz=ZRNpoHw@mail.gmail.com>
+Content-Language: en-US
+From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
+In-Reply-To: <CADnq5_O1TWAx9neJmNtAQ+kmn+85NHsfzoMr5P_fbz=ZRNpoHw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowABXAAHfe_NnCWDSBg--.45177S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7CF4UAr47KFW8CF47Jw1rtFb_yoW8Gw4Upw
- 48Ja4qvrWkWFZFyryUAF1ruFWYk3srJFW7Kr45Aw15W345CrZ8Ja1rJwn5t347uFWrA3ya
- y3WDZ3yxXF1vkw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJV
- W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
- Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
- 0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
- zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
- 4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
- CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
- nIWIevJa73UjIFyTuYvjTRCnmRDUUUU
-X-Originating-IP: [124.16.141.245]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBgwFA2fzOj3udQACsG
-X-Mailman-Approved-At: Mon, 07 Apr 2025 07:59:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,32 +60,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The function fill_stream_properties_from_drm_display_mode() calls the
-function drm_hdmi_avi_infoframe_from_display_mode() and the
-function drm_hdmi_vendor_infoframe_from_display_mode(), but does
-not check its return value. Log the error messages to prevent silent
-failure if either function fails.
+Reviewed-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
 
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 0396429a64be..d6feafb8fa3d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6152,8 +6152,8 @@ static void fill_stream_properties_from_drm_display_mode(
- 
- 	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A) {
- 		err = drm_hdmi_avi_infoframe_from_display_mode(&avi_frame, (struct drm_connector *)connector, mode_in);
--                if (err < 0)
--                        dev_err(connector->dev, "Failed to setup avi infoframe: %zd\n", err);
-+		if (err < 0)
-+			dev_err(connector->dev, "Failed to setup avi infoframe: %zd\n", err);
- 		timing_out->vic = avi_frame.video_code;
- 		err = drm_hdmi_vendor_infoframe_from_display_mode(&hv_frame, (struct drm_connector *)connector, mode_in);
- 		if (err < 0)
--- 
-2.42.0.windows.2
-
+Le 24/03/2025 à 20:48, Alex Deucher a écrit :
+> ping on this series?
+> 
+> Alex
+> 
+> On Thu, Mar 20, 2025 at 12:57 PM Alex Deucher <alexander.deucher@amd.com> wrote:
+>>
+>> In dev core dump, dump the full header fifo for
+>> each queue. Each FIFO has 8 entries.
+>>
+>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 62 +++++++++++++++++++++------
+>>   1 file changed, 49 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>> index f4dfa1418b740..64342160ff7d0 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>> @@ -225,17 +225,36 @@ static const struct amdgpu_hwip_reg_entry gc_reg_list_9[] = {
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmRLC_SMU_SAFE_MODE),
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmRLC_INT_STAT),
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmRLC_GPM_GENERAL_6),
+>> -       /* cp header registers */
+>> -       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> -       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP),
+>> -       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME2_HEADER_DUMP),
+>> -       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> -       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP),
+>>          /* SE status registers */
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmGRBM_STATUS_SE0),
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmGRBM_STATUS_SE1),
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmGRBM_STATUS_SE2),
+>> -       SOC15_REG_ENTRY_STR(GC, 0, mmGRBM_STATUS_SE3)
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmGRBM_STATUS_SE3),
+>> +       /* packet headers */
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_CE_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_PFP_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_ME_HEADER_DUMP)
+>>   };
+>>
+>>   static const struct amdgpu_hwip_reg_entry gc_cp_reg_list_9[] = {
+>> @@ -277,6 +296,14 @@ static const struct amdgpu_hwip_reg_entry gc_cp_reg_list_9[] = {
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_WPTR_LO),
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_WPTR_HI),
+>>          SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_GFX_STATUS),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP),
+>> +       SOC15_REG_ENTRY_STR(GC, 0, mmCP_MEC_ME1_HEADER_DUMP)
+>>   };
+>>
+>>   enum ta_ras_gfx_subblock {
+>> @@ -7340,9 +7367,14 @@ static void gfx_v9_ip_print(struct amdgpu_ip_block *ip_block, struct drm_printer
+>>                          for (k = 0; k < adev->gfx.mec.num_queue_per_pipe; k++) {
+>>                                  drm_printf(p, "\nmec %d, pipe %d, queue %d\n", i, j, k);
+>>                                  for (reg = 0; reg < reg_count; reg++) {
+>> -                                       drm_printf(p, "%-50s \t 0x%08x\n",
+>> -                                                  gc_cp_reg_list_9[reg].reg_name,
+>> -                                                  adev->gfx.ip_dump_compute_queues[index + reg]);
+>> +                                       if (i && gc_cp_reg_list_9[reg].reg_offset == mmCP_MEC_ME1_HEADER_DUMP)
+>> +                                               drm_printf(p, "%-50s \t 0x%08x\n",
+>> +                                                          "mmCP_MEC_ME2_HEADER_DUMP",
+>> +                                                          adev->gfx.ip_dump_compute_queues[index + reg]);
+>> +                                       else
+>> +                                               drm_printf(p, "%-50s \t 0x%08x\n",
+>> +                                                          gc_cp_reg_list_9[reg].reg_name,
+>> +                                                          adev->gfx.ip_dump_compute_queues[index + reg]);
+>>                                  }
+>>                                  index += reg_count;
+>>                          }
+>> @@ -7379,9 +7411,13 @@ static void gfx_v9_ip_dump(struct amdgpu_ip_block *ip_block)
+>>                                  soc15_grbm_select(adev, 1 + i, j, k, 0, 0);
+>>
+>>                                  for (reg = 0; reg < reg_count; reg++) {
+>> -                                       adev->gfx.ip_dump_compute_queues[index + reg] =
+>> -                                               RREG32(SOC15_REG_ENTRY_OFFSET(
+>> -                                                       gc_cp_reg_list_9[reg]));
+>> +                                       if (i && gc_cp_reg_list_9[reg].reg_offset == mmCP_MEC_ME1_HEADER_DUMP)
+>> +                                               adev->gfx.ip_dump_compute_queues[index + reg] =
+>> +                                                       RREG32(SOC15_REG_OFFSET(GC, 0, mmCP_MEC_ME2_HEADER_DUMP));
+>> +                                       else
+>> +                                               adev->gfx.ip_dump_compute_queues[index + reg] =
+>> +                                                       RREG32(SOC15_REG_ENTRY_OFFSET(
+>> +                                                                      gc_cp_reg_list_9[reg]));
+>>                                  }
+>>                                  index += reg_count;
+>>                          }
+>> --
+>> 2.49.0
+>>
