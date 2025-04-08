@@ -2,70 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7BFA7F291
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC2FA7F292
 	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 04:11:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66B0810E5A3;
-	Tue,  8 Apr 2025 02:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5B1410E5A0;
+	Tue,  8 Apr 2025 02:11:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fMvbUlzt";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vzrf7WKx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
- [209.85.222.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4F1510E1FF
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Apr 2025 02:11:33 +0000 (UTC)
-Received: by mail-qk1-f175.google.com with SMTP id
- af79cd13be357-7c5e39d1db2so294214685a.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 07 Apr 2025 19:11:33 -0700 (PDT)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
+ [209.85.222.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D799910E1FF
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Apr 2025 02:11:34 +0000 (UTC)
+Received: by mail-qk1-f169.google.com with SMTP id
+ af79cd13be357-7c5675dec99so555625885a.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 07 Apr 2025 19:11:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1744078292; x=1744683092; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1744078294; x=1744683094; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=FnEBW9VZrzmnUK6LrflCXguguVybE6XA2qj4f7RK8eY=;
- b=fMvbUlztW2cH8D17LcmVymYIwb3hfkg5bZm+ng1+5iy1ROKl2+bTWlvLx2YL0TPceo
- ZIxUpd7iGMxxGzwZH6mt1tj0JmBwqdKVcbx9LKJbihJs0BKMvO8sthEvhN1eyQD3IzyC
- jLFertOspzNgiczx8sS0kgF+S4FAO6ZiK/MhN5vbAOwz5boEiPzXWdOsKTfRKdJq9VVU
- v5T0t2mL1I80IvmQmBfjSSqVY6BKbCamiBE2LrD2EeoUcwvVy4JtCwEUb95QRzrpwDOj
- 32zLSZDjTYKcQsZYGPWwUXzBxPK47Skpazk78gihH0gFVW+q2pZZfQwhaYW5Sn/COr+G
- Hrlw==
+ :reply-to; bh=DUzn7fjvVJqyu8tREIvUwjqWhf8w67yKfaORndYqiv8=;
+ b=Vzrf7WKxbm8+QfZVY0jUoyjVfcyOVLOPwwD2MIOKwcSQ0myL+sxWWjEXiLgcSPaI5C
+ A1nKuFCAv8HN9/spNBNF6a+w48X2wcCjqi7oLuG5CTIh4TM9Z8l+c8Etd09vlqyY3GwS
+ pWMsp3bZ9GhM43kiB0K2uENtYNU9W3DcKdJd9Rl3y2Z+UHzXbFjVH67TMo+JoCuh2vbC
+ PWhfaKSTA4nS9mYFA7WMhGoKUoRN++12Kd8owmqnbpbp57Ez7H6YtwxSA7l+QjFuRQA1
+ j9KG5d5jXCbfJAO8MEFm2k4l5GuBeQN15reaQJBwfB78FWBS/TtLhxQONBubme0oNLcl
+ VDag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744078292; x=1744683092;
+ d=1e100.net; s=20230601; t=1744078294; x=1744683094;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=FnEBW9VZrzmnUK6LrflCXguguVybE6XA2qj4f7RK8eY=;
- b=EedZEoTT52QDppHfMjhr+gshnAEHYHua2x+Yo0JutfGkOpSSsuXa4KIbZcqhSUI44A
- AgP7uPsvNdwfa5/wCs9NIhxPVJVUbTSkfi9nwcQg8k7pVD7+W1PbouERgUz8tIndT4TE
- keqYTHFOMhsL8Xx0/w3m0qPWydkB/K2HOXzw5nCyi+YLs5oInXnuCFobQPx1LwOWKTZI
- 4iI4pcuDRnLJCHJ9fhMhIUrAaaaqV7dDUuiO9kkIqN1HsihSEGJ/oAVsjSYyFh0OTSvT
- LGZFXT7Mp/gfYaasyTQ4rPKHOFZ/y9cx9n/OdK3qnKxwthpY1ngQ5frOxOyhzqjEQatv
- 7Wow==
-X-Gm-Message-State: AOJu0YwEbTjpK5pftYgl4d/SuF+YtxfM8bR+ZwQL3SWh40kOHa+sljQY
- 3Hi54IObkqq841gLnhiiVaD3YvYSfn4QqiESGeuNWkzWct6iBPpV/X+B0Q==
-X-Gm-Gg: ASbGncuR0VAaKZJdEpitLM/6ouyRTlkoOWZQ/0b9c5+JpN2/aKuBTGzhxIlART/c7eh
- kc+HYX7UEG0B1yCVgUJWxnu4sieCxH4uGQ1Ox3/+JpqDcRBiLw1o3rCUGAMtuQuRF1Lit1WmH4F
- lIAFWuz9eg0EYHsrEEu4w6Y3KWyKf/MY4H3jQwTtA6wqMBa17jmCp8syjhVr9CPmFyaSL3V2CKD
- +UtloMyEIFuVDKN7ZgpcKs16leu9fU1VL+Y1ZVwI7AIO3qLdMldi9wupzg8/2Ul+LLSKQNBfYSo
- OaaW5wqvZ1QsKxjkXNDarNfYr/BwUNSVECWBw8WIcBB/lAkDdE1HynhB8BXBHxgeWDUaTXuDGzb
- xgOE=
-X-Google-Smtp-Source: AGHT+IHXhP/cSOwhbCXgOjLTO3wkyejR2Z+lUZ1s1De5AoGjaBHrbw0ycMKauXO9MNooTyvrwm1Gvg==
-X-Received: by 2002:a05:620a:438d:b0:7c5:4738:8a11 with SMTP id
- af79cd13be357-7c775a2e8f5mr2499355285a.27.1744078292574; 
- Mon, 07 Apr 2025 19:11:32 -0700 (PDT)
+ bh=DUzn7fjvVJqyu8tREIvUwjqWhf8w67yKfaORndYqiv8=;
+ b=bJATJhqqISS5RsZpejG74K7alkZGxFuJtyf+evAbxAi2Pi6jWaEmY6Oh3T61pudwAS
+ bCqAIzxrN1OeHB5+SmPrwk164xY9Bs6cjIdA1djBIRhNHfQtRV/BHqVbsiiHGWWT8DTp
+ 7pHTQJ0ZEhas3K5f+bjQT8QPq+4YxUa+mfr8SIvcSi4S7cRd4ZwgiLke5IQZjs2QkDXg
+ MeaTTAQEUfr1owMSJtjLE6nSP4W5OLAin/PUdMgqB4LHEfOE0EdeCIgrBQh7XEiiLNtg
+ iy1QbhfzcDjVLThB4MX1Ar84KDeFoztFt96sXWNdNqjJyEPPQRcCzEu7dQe7cus8YJUI
+ dccA==
+X-Gm-Message-State: AOJu0YyQ4YBh3PlkIVwe1VviGPN284Qp9BE8vUq87XIbAFvaGu9X3LPc
+ xsBodyOe8DDIshQg4qxWOEYuCHobCZ2PNqcPgClSP6beiQbc8x3Idv/r4A==
+X-Gm-Gg: ASbGncv5mCB9yPvHQHpxvE38QDzya8sOkAuu+HZAPrpTtxSjb2RuUYBzpKeB5Tr4E0b
+ /P6NuTI4IrwHolOluUD/XEx3QEI8+mdv0HhC+KiGvl7Tqqm3wYj9EXmSVjVlpAAdaNuPnC4uC5I
+ pccOw6nHbh8fm9oCczJQGpgYK3/8M81db0hOfsTxt6haahEmkgPS8k2Z22Tl54t4lKSKh/zj8QE
+ LvtGVlr7OiWC/2+K1f6gHJOTRBgkzd228u426oRpJnIDn50AfjF9dZdnqmU60YrwQ1mvPP/A0OB
+ RvXAxUUombp0Nfcr2U39RBt6u4d3N4nIiXAq6oqYgfLwZax4o2sLapbJ3OvO4ipWADOZ
+X-Google-Smtp-Source: AGHT+IEgfTluC9r6HZXHG/a0PIGG3M6lOXYf/ptMXQSgUC9mhETIBD/v+p2vl5MdN+nAkpZZajCpjA==
+X-Received: by 2002:a05:620a:178d:b0:7c5:65ab:4ff5 with SMTP id
+ af79cd13be357-7c775ae04f2mr2004279885a.45.1744078293626; 
+ Mon, 07 Apr 2025 19:11:33 -0700 (PDT)
 Received: from localhost.localdomain ([38.121.253.36])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7c76ea5992csm687693985a.84.2025.04.07.19.11.31
+ af79cd13be357-7c76ea5992csm687693985a.84.2025.04.07.19.11.32
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Apr 2025 19:11:31 -0700 (PDT)
+ Mon, 07 Apr 2025 19:11:32 -0700 (PDT)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/6] drm/amdgpu: fix duplicated value setting in
- dce100_resource_construct()
-Date: Mon,  7 Apr 2025 22:10:59 -0400
-Message-ID: <20250408021100.5439-6-alexandre.f.demers@gmail.com>
+Subject: [PATCH 6/6] drm/amdgpu: fix typo in bios_parser.c
+Date: Mon,  7 Apr 2025 22:11:00 -0400
+Message-ID: <20250408021100.5439-7-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250408021100.5439-1-alexandre.f.demers@gmail.com>
 References: <20250408021100.5439-1-alexandre.f.demers@gmail.com>
@@ -85,27 +83,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-i2c_speed_in_khz was set twice with the same values. Looking at other DCE
-versions, we probably wanted to set the value for i2c_speed_in_khz_hdcp.
+Probably a cut and paste error from using get_integrated_info_v8's comment.
+This has to be get_integrated_info_v9
 
 Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 ---
- .../gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
-index e698543ec937..e0c64861eff3 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
-@@ -1069,7 +1069,7 @@ static bool dce100_resource_construct(
- 	pool->base.timing_generator_count = pool->base.res_cap->num_timing_generator;
- 	dc->caps.max_downscale_ratio = 200;
- 	dc->caps.i2c_speed_in_khz = 40;
--	dc->caps.i2c_speed_in_khz = 40;
-+	dc->caps.i2c_speed_in_khz_hdcp = 40;
- 	dc->caps.max_cursor_size = 128;
- 	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dual_link_dvi = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
+index 3bacf470f7c5..67f08495b7e6 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
+@@ -2384,10 +2384,10 @@ static enum bp_result get_integrated_info_v8(
+ }
+ 
+ /*
+- * get_integrated_info_v8
++ * get_integrated_info_v9
+  *
+  * @brief
+- * Get V8 integrated BIOS information
++ * Get V9 integrated BIOS information
+  *
+  * @param
+  * bios_parser *bp - [in]BIOS parser handler to get master data table
 -- 
 2.49.0
 
