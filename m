@@ -2,147 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27318A80C89
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 15:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76D20A80FFB
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 17:30:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CD9510E699;
-	Tue,  8 Apr 2025 13:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C48710E23F;
+	Tue,  8 Apr 2025 15:30:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uo1vr1hU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PguGPcwP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2055.outbound.protection.outlook.com [40.107.236.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5AF410E690
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Apr 2025 13:38:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A7a88k8P3/v+CRr9xKqV7dIGRHgyDWto6zr+xuxO62RKcwmW6IBYtRr+ZUL5pH2qWX0WDd0z++ufQCHxpP/NZfRDjGVNjQOPaaKgtfcguii2jkNDMl3OQhhJEkgyKlQ9eNlzEAOmNqJo5VSE52dYZS6/UqDrZMlkWG8oRt/bWoW/FJfuEvPYMb6Jgu4iPJZLuBlIPQc+7s4FZx+DYnyr9A46W3QQUcCaamiPUVe0xhSmgbOWB4PAnou5Dsg2I5ILUCO8hr9n9/4u5kAx/LBgH3LFP3onbSaq5IKmV+27V88mwL7gUpJr/WETEUmkw7m/kjD2RWVjXnneiCR2VRcDrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y41zDm8Siuk53B9+CmvIELdL3lw6G1Txre2GdHM4cA8=;
- b=vi+UhDZTGYsywRzrAgUjFPRNBaFufDPPezyKswelPelL/X8WG3p4k5qPtK/rYNhY1wYNWrMrV6k6KImpktDNAvELN7qC2d6J81KMbT1YVi/GmR0YVBaAySJRQjUzBnoDa7lLmoSg4S0HK8aVZD928A40YiMU3WVujZ4X6/ft4ZtxBK1IsQJlb9dNKpygC7EpEk5LB4geDIYIbpDeqcBnlo0b8BY9rmFmQyTagn62VkGFiBLEhQ0huKdkhjLlKjfsI85Ojvt9r/U6ZYhQh0FxNZxtmZsPUNxiTX+QXGgJKvlUmigjVfP5KGt6ubzD3KOiJz1cVxueLJjmx0gJlHcN9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y41zDm8Siuk53B9+CmvIELdL3lw6G1Txre2GdHM4cA8=;
- b=uo1vr1hU9qPg5ErFJojNzkiPEc4yqb0wjozaOBnGW7EC55MnyqZiIjccfqV5d8I3hA4Qq7DBtTs8wTwQ99gQ6lUFe+qJWRUWVIINpiEud3JFZ2Jh8yErUf8tF94j++dgJNXFL6eqtOgazVQAz8Vv1suA0s46AeEEy6sqMnV1LEc=
-Received: from DS7PR12MB5765.namprd12.prod.outlook.com (2603:10b6:8:74::19) by
- MW4PR12MB7465.namprd12.prod.outlook.com (2603:10b6:303:212::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.35; Tue, 8 Apr
- 2025 13:38:12 +0000
-Received: from DS7PR12MB5765.namprd12.prod.outlook.com
- ([fe80::3f49:9f92:3fcd:e374]) by DS7PR12MB5765.namprd12.prod.outlook.com
- ([fe80::3f49:9f92:3fcd:e374%7]) with mapi id 15.20.8606.033; Tue, 8 Apr 2025
- 13:38:12 +0000
-From: "Yi, Tony" <Tony.Yi@amd.com>
-To: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Skvortsov, Victor"
- <Victor.Skvortsov@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Luo, Zhigang" <Zhigang.Luo@amd.com>, "Zhou1, Tao" <Tao.Zhou1@amd.com>,
- "Zhao, Victor" <Victor.Zhao@amd.com>
-Subject: Re: [PATCH] drm/amdgpu: Fix CPER error handling on VFs
-Thread-Topic: [PATCH] drm/amdgpu: Fix CPER error handling on VFs
-Thread-Index: AQHbo0bl0i8NH+3mlUiA+KMCKHgStbOPx4CAgAoI4Xs=
-Date: Tue, 8 Apr 2025 13:38:12 +0000
-Message-ID: <DS7PR12MB5765D5E289A7BA12F623C262EFB52@DS7PR12MB5765.namprd12.prod.outlook.com>
-References: <20250401204415.417443-1-victor.skvortsov@amd.com>
- <BN9PR12MB52578A1D5385C8EF5788EB8CFCAF2@BN9PR12MB5257.namprd12.prod.outlook.com>
-In-Reply-To: <BN9PR12MB52578A1D5385C8EF5788EB8CFCAF2@BN9PR12MB5257.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-04-08T13:38:11.984Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard; 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS7PR12MB5765:EE_|MW4PR12MB7465:EE_
-x-ms-office365-filtering-correlation-id: 772a6674-483a-45d5-70c6-08dd76a29bd8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|8096899003|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?1OByCqdgh4AAzhPBgNRp2dGEOxvO305qRh+C/1THwq/kx1vgPmjJvUxC/CoT?=
- =?us-ascii?Q?M107MbWvsVgaUATKqM2i7ZwDdd+3kY0nJ3IiW0DW0y5snDlZvqIh9il+WLcW?=
- =?us-ascii?Q?OnElYyJ4Nv5UeDh1GZ1T5No0wCmpq0rNyroFunRfOX1g3mcuVMWm/di7gS2o?=
- =?us-ascii?Q?bY9RKzYlwu65P2+lOL0p2R2aVUrp2J9nHyLF7ft0ZhrE0GcOF2YwHQ5knNLr?=
- =?us-ascii?Q?x/Dzm9WQqamkpOh24sVOVXuKfvvePo74A1AZoMtXU5JKBg+P3iDx6MO3oJ3p?=
- =?us-ascii?Q?cTkGm7BVIJc2njIme7XGDemd4e92P4WU9EBaxEi4RYJBXeIOrMxce5Nj5aGT?=
- =?us-ascii?Q?dbPBW7iziDkjA8OgLlViHr916qmPYdppWlO7nVBjes5xTkGKn/9XwHkVEi2r?=
- =?us-ascii?Q?3Yh/UWjj2hFPrkN1s9KnmBhvThp0R0ihv9FR9xaaHsnnSKDI2H51M39l56sJ?=
- =?us-ascii?Q?31e378/7hrmRDEiH8RC32LMsnE9sN4o2O3l26k6d1QDf/FEg115+dOLKoPN+?=
- =?us-ascii?Q?B+vZ9zGNv97RVZAy0mhjMJbrYiOT4krljYxVVO+LOntNpZef9KUv5e1qJePs?=
- =?us-ascii?Q?akuly7wDyXAJVzJVAX6MDU8NDZXNyFM2+TGT9BsMEZqUfU8nznK3Tf3FNuNp?=
- =?us-ascii?Q?NSIy0sJe1rJTiEnIzaL6GCqg3VZO7KJjRz578I+ze2OPTGCQFtKkWiS+O1a7?=
- =?us-ascii?Q?j+UrLYEtAnUk1mXvjcSy8WsA7ovRGZFStwYTpVfagQ6opFzdVn8bKZFQKciI?=
- =?us-ascii?Q?aZzib0NKCc0zVy1ko6/66g6VP4M9byl+4rMIzBJCRa0AKm49GZp5D1v52o3B?=
- =?us-ascii?Q?pmOtPJ+ZK8vQs6ECq51JAty/GKEz7uWfUtnRqyxGcE8zaAKjUJAWCo8xEZur?=
- =?us-ascii?Q?QpDED+dVb+sekh9MjT8nzz3MbM/M4GlkhL79G0KI4dkEUl0jAXJ5wvvBjnES?=
- =?us-ascii?Q?h0LTD6LnEZixxMmUSMFotieefPJSXwg0/UYZdJo4+l2bVPGGaN/uuJJvm6o9?=
- =?us-ascii?Q?k2u17AST6oAZnh68W97bckRP3N3d1gXZkQUTkJFVynSxWMYXcqUWSMCrtwCE?=
- =?us-ascii?Q?Vxw3y9g3VNmAQDKfbPf4YO6rPbzHMoQ3GJNSjRFtwoPyslwz8q4P1SlRkENO?=
- =?us-ascii?Q?WkSogKpTSgfyzAglVz95/+PYD7akGqsIZrjp7SgRXVMxeKWgK1eYEusoh1s9?=
- =?us-ascii?Q?Q4xJaVHn2C6FMBVzRfTYioHVri4l4e/kdaVExoIzRGG/ogutrAoOM3kw4Knv?=
- =?us-ascii?Q?CKPXZAmI2UhGzyI7/RyDcSTSXDUaVrfdXWL04XDm31sr1YuMVuuh95g/6H8H?=
- =?us-ascii?Q?e+GJEv80xKLrTtTwFssfWiG20V32/r9Jo0vOhZ0br/RQTB4Pvdccj3ft30IW?=
- =?us-ascii?Q?OU9kUvuLf+hmXjzN6mSO6giODQeShkpoA36F6MKD+hd884cGQmoPWscJsMTi?=
- =?us-ascii?Q?aWPtcdDcfxNYM0ht/wsnAZ1Xe6vOO9DG?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR12MB5765.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(8096899003)(7053199007)(38070700018);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?mnwE8EPq4LiRoU7e20RxluQnYsGs1R43WuY6gwuyqJnAwl2FH1OJsYnjlB4l?=
- =?us-ascii?Q?780/78R0pBD/2jaIZpKNMlyFFLkty44dr24VJKdanhi9De/zZRaDoJ230tyd?=
- =?us-ascii?Q?0T1xb/Y1sPVrQmG5jp3dgpZEoRHwGGlojgbrGdRZAp84x1rVQtSCw+wz0pCA?=
- =?us-ascii?Q?8mQDrnwY3Hu/Cg3mR8ZfCBUlyKOmLmsMauzwz5OwgR7BmQjZ6Eghn7qWkOba?=
- =?us-ascii?Q?pzK3geS12k7UYqbe+iWWyzoG6b9n4qacHHHLWUD8qo0NUx7ArRtiUKrjWV+r?=
- =?us-ascii?Q?XNbDjtIZjq6s7PmgiFwvs+NMmombBYCeWVzgOLp1WgaFMhzpoFauiLGH+hUK?=
- =?us-ascii?Q?RMKxL2PkC4dAIRVe54SXt0UosMZK7yf7GRrYTI66c/iH5Ai2zFrNVT0POorB?=
- =?us-ascii?Q?uxScpmuBNGo9Jh57k/OLr9J2kE7u+01Vj+EO2GjEkHk6F2YSmjp9qbY5wGR8?=
- =?us-ascii?Q?YbgvDgZ2hyPm527+2+AUZBYEJjtA7FgEIgIu1bp79Ww8mAUrFhG++Wl+JYpZ?=
- =?us-ascii?Q?15rI9fiILvzHOAU6d5cleAy91p/G71YTZxw0Ay8aNFtEodCCpBwgXNKPw1j0?=
- =?us-ascii?Q?gPPQA09LQR1rRW6QFpaJFDSbIErOE3SJHtjAm9G+zHo0d41awo/rhA2eq+ow?=
- =?us-ascii?Q?2/tDpySK6BUM5gjf4TD7AZleJ8VY9kBpslXCaBWDXBmfjI3eLAWTM/95K54y?=
- =?us-ascii?Q?Xm3GknwiEuY9J/yZjTpkvl9ISEkpUtfQDT3GXm4r5CFnyWjkjMwd/xTQKOc5?=
- =?us-ascii?Q?9sRZ/c0IoNjKdvHPVuUe55bIap/Ci0tBqZABazLP0fSu8f7TbV/Sme505LF7?=
- =?us-ascii?Q?vdoGVCmUf+/Tkppo9nwzYe7NpMwzR223Lpn+Hf99eQXzSQVUMliEoi0sZVYW?=
- =?us-ascii?Q?xHGCOBuidEDa5stXZv3MH7pEgKplmbO6KcAGvHxZAIY70CIBmKCnFbYuO5BD?=
- =?us-ascii?Q?S+EmWJgRmJ7Hiqg+6j9orWwwHVgz0GnmwKwurew5RhfhZa0RsmFzGwyYXdeu?=
- =?us-ascii?Q?ddRfCXmbEKFCHUR6bbOcuG6u4Y5O3DkiRcv6QX3/jX8BibWJuehVQnhC+kr3?=
- =?us-ascii?Q?fgG2KCYggHILHivbj90ro1iH0b4SmXeSE+eGvRMXk6z1hxbhjFh9Fa1FEuME?=
- =?us-ascii?Q?7R9Q3ZCFmtKOCEI/Gp6HiRq6vjZLtFTTdWaWVfz67JcT207K9IEATgFRMqTW?=
- =?us-ascii?Q?lIwBITPrLHvJXZZBe+mn2v8kmNj/lJRlESGJuHZy6L8AJgNkxA7l2B0IehLG?=
- =?us-ascii?Q?ZnWCN04i39Cqy0PJG0rlp9bxqGDgMTi2qBPMEqv+1AfOV5cqeB78pLBDY6jT?=
- =?us-ascii?Q?2V2kzpyHdS8bVaWtyUEAMFXGkAlk74DheiWeiHT0Jjt+wAcdNMxiYRTk3TiR?=
- =?us-ascii?Q?IWOiWvTXFkSZlOuHWnWIbu0SLKjmrk7TYyaJEGOhbE71bU3HDMXJTv8Zb/I5?=
- =?us-ascii?Q?+rlIo4ScFk6P1eqtkrZcYvJ5zDxgH1pljf0LWd2IVlDaKgD74T+DLePmVrLm?=
- =?us-ascii?Q?R1AZc/BuHRYfDaE5I7Gow+WDVJ0UuT3fFF4caonbYzAi2UC+rjxEkSb5BPCj?=
- =?us-ascii?Q?Oy2deSUfLmIEIN2UQt8=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_DS7PR12MB5765D5E289A7BA12F623C262EFB52DS7PR12MB5765namp_"
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57AE710E23F
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Apr 2025 15:30:21 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-43cf680d351so39990325e9.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 08 Apr 2025 08:30:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1744126220; x=1744731020; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=JwEY8rh2q4zDoVNACS5cKIMZYh2B0sgLn/jSrx5mMCQ=;
+ b=PguGPcwP94ZbJYLconfKN3reta+0kKljCzobFrnebIgOY+vM130TM2xBjjOniAvxT0
+ ZAXsrB6xu7YZh78wa6C11fs7ry5aIqKubx0maX5zeqPS6qPXz6glkzlfc4mITpBC+zy5
+ DfWD0lPxuaW4BO6CDgD9dc05AcXCEh8LHSIo8bCY6JhsiaZ1qK/tXjHsrlSa5TPIHqTL
+ 5aZLbEsLTlvMLX+Mu82SgKwZnfupxHibWOstkoycxfVANsM6JJJ9YC+MvxX39p+bNnSU
+ aJF2CUrukTEz9+FI3VVPawJ7jsiRL59ZhMZtQ10ViqLXP7Vvd/hkuhlYTQy+nZASDEPz
+ Y6Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1744126220; x=1744731020;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=JwEY8rh2q4zDoVNACS5cKIMZYh2B0sgLn/jSrx5mMCQ=;
+ b=lA4c0XpmenJw89GiuG28Ee33sOxBsgcisJPtd/t1LDZdt/C8c9WSicRst02+k7v0a1
+ mgnVaiQfMn+DcmQ9FKCw9Drpo3tG0lCZooOOnYRh+tOrxRLAeuHa2GlZVC9b/YRg+Avu
+ E38+/UR1ydMJUgWygT29bQCQsUSJXJP3H9GIZPsXqctvzAXmCZ6YKyXy8bE2tEx2IXry
+ /q3pgxuVE7XhrfY0gUFIUEZF24RlrTPve5uQxBS+ADYVi7GhnnoLWiaWzfT47WsNXQwk
+ g+qKBB5McqkssxIVC7APTsCChgAiQLLnqcWboGikGYUM611Sd6uw1n/oo8p5bbAR+HzK
+ VD4A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVFtydM6050ejOCzmCOi2oE/ZSvJJDrYoVKdaRoKpx6Avh4YvuWZ1axsR5GvN/VxWHSKCdKLrMn@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw1mvpaB+VB5jck4FOdZDnU6SCJkFAsV4zGV1gbed5Q8UMnsbBo
+ Cn29Y7fdp34tQOeJSV02turh4iBLEwXF/iRQ63SfpUvM5C/Wtk9+
+X-Gm-Gg: ASbGnctKq+dEgrsY3TQlpAYbxOREvHEz7yFJF+bw5aismHPFX0UKYpYU50kFw22703Z
+ FlMeJuGxAoW3v2QFImbNGdpqTQMA3hlKLdFr2Gl7iTBlmAaqFskSO5RazukRvhL8a0kQbZvvowk
+ so4nBJFV0KsF99uXEVGoRBegZRuHOljX0h3ZagUTbxFULIH1PNw7VsqaFpGGDg0OTmgevU4Ljg8
+ 6EBLSDG+wJUXc8aThN7i2uL/rqX2tcc0NyyVsfhlz1AD/XE4A3EmjmSNDP2mDXOwKXFyvvCY3go
+ eVRcFERBFMtpU5Unm6eK4VOCpFAowIqXbwvBMZryXuxCObRqrw8XVCpdtA==
+X-Google-Smtp-Source: AGHT+IECYEgkmBdXJpZ9n1n0E54r1fd7ivP3vhzgr+UNaU83WS9ueKtyNCzjraVRDFqpIX03d9qnKw==
+X-Received: by 2002:a5d:64c6:0:b0:39c:30d8:3265 with SMTP id
+ ffacd0b85a97d-39d820ba07emr3299645f8f.15.1744126219618; 
+ Tue, 08 Apr 2025 08:30:19 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:15c5:ac00:7bc3:87c3:a7e6:fa57])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-39c301a7045sm15423747f8f.39.2025.04.08.08.30.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Apr 2025 08:30:19 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: srinivasan.shanmugam@amd.com,
+	amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdgpu: use a dummy owner for sysfs triggered cleaner
+ shaders v3
+Date: Tue,  8 Apr 2025 17:30:17 +0200
+Message-Id: <20250408153018.1770-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB5765.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 772a6674-483a-45d5-70c6-08dd76a29bd8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2025 13:38:12.7662 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RZo1+i7wadx3km+md8n1MGU13fObZU/ivOvP1ARHECl4ppSE6mcBt8Q4iqnw8vKvZ1rUPepG0IJ6ghExI23Nag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7465
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,217 +86,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_DS7PR12MB5765D5E289A7BA12F623C262EFB52DS7PR12MB5765namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Otherwise triggering sysfs multiple times without other submissions in
+between only runs the shader once.
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+v2: add some comment
+v3: re-add missing cast
 
-Signed-off-by: Tony Yi <Tony.Yi@amd.com>
-________________________________
-From: Zhang, Hawking <Hawking.Zhang@amd.com>
-Sent: Wednesday, April 2, 2025 12:23 AM
-To: Skvortsov, Victor <Victor.Skvortsov@amd.com>; amd-gfx@lists.freedesktop=
-.org <amd-gfx@lists.freedesktop.org>
-Cc: Luo, Zhigang <Zhigang.Luo@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Zha=
-o, Victor <Victor.Zhao@amd.com>; Yi, Tony <Tony.Yi@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: Fix CPER error handling on VFs
-
-[AMD Official Use Only - AMD Internal Distribution Only]
-
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-
-Regards,
-Hawking
------Original Message-----
-From: Skvortsov, Victor <Victor.Skvortsov@amd.com>
-Sent: Wednesday, April 2, 2025 04:44
-To: amd-gfx@lists.freedesktop.org
-Cc: Luo, Zhigang <Zhigang.Luo@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.c=
-om>; Zhou1, Tao <Tao.Zhou1@amd.com>; Zhao, Victor <Victor.Zhao@amd.com>; Yi=
-, Tony <Tony.Yi@amd.com>; Skvortsov, Victor <Victor.Skvortsov@amd.com>
-Subject: [PATCH] drm/amdgpu: Fix CPER error handling on VFs
-
-From: Tony Yi <Tony.Yi@amd.com>
-
-CPER read will loop infinitely if an error is encountered and the more bit =
-is set. Add error checks to break upon failure.
-
-Suggested-by: Tony Yi <Tony.Yi@amd.com>
-Signed-off-by: Victor Skvortsov <Victor.Skvortsov@amd.com>
+Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_virt.c
-index 0bb8cbe0dcc0..8d2da3a27440 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -1378,14 +1378,16 @@ amdgpu_virt_write_cpers_to_ring(struct amdgpu_devic=
-e *adev,
-        used_size =3D host_telemetry->header.used_size;
-
-        if (used_size > (AMD_SRIOV_RAS_TELEMETRY_SIZE_KB << 10))
--               return 0;
-+               return -EINVAL;
-
-        cper_dump =3D kmemdup(&host_telemetry->body.cper_dump, used_size, G=
-FP_KERNEL);
-        if (!cper_dump)
-                return -ENOMEM;
-
--       if (checksum !=3D amd_sriov_msg_checksum(cper_dump, used_size, 0, 0=
-))
-+       if (checksum !=3D amd_sriov_msg_checksum(cper_dump, used_size, 0, 0=
-)) {
-+               ret =3D -EINVAL;
-                goto out;
-+       }
-
-        *more =3D cper_dump->more;
-
-@@ -1434,7 +1436,7 @@ static int amdgpu_virt_req_ras_cper_dump_internal(str=
-uct amdgpu_device *adev)
-                                adev, virt->fw_reserve.ras_telemetry, &more=
-);
-                else
-                        ret =3D 0;
--       } while (more);
-+       } while (more && !ret);
-
-        return ret;
- }
---
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index f64675b2ab75..76237961a08f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -1439,9 +1439,11 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
+ 	struct amdgpu_device *adev = ring->adev;
+ 	struct drm_gpu_scheduler *sched = &ring->sched;
+ 	struct drm_sched_entity entity;
++	static atomic_t counter;
+ 	struct dma_fence *f;
+ 	struct amdgpu_job *job;
+ 	struct amdgpu_ib *ib;
++	void * owner;
+ 	int i, r;
+ 
+ 	/* Initialize the scheduler entity */
+@@ -1452,9 +1454,15 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
+ 		goto err;
+ 	}
+ 
+-	r = amdgpu_job_alloc_with_ib(ring->adev, &entity, NULL,
+-				     64, 0,
+-				     &job);
++	/*
++	 * Use some unique dummy value as the owner to make sure we execute
++	 * the cleaner shader on each submission. The value just need to change
++	 * for each submission and is otherwise meaningless.
++	 */
++	owner = (void *)(unsigned long)atomic_inc_return(&counter),
++
++	r = amdgpu_job_alloc_with_ib(ring->adev, &entity, owner,
++				     64, 0, &job);
+ 	if (r)
+ 		goto err;
+ 
+-- 
 2.34.1
 
-
---_000_DS7PR12MB5765D5E289A7BA12F623C262EFB52DS7PR12MB5765namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Calibri;font-size:10pt;color:#0000FF;margin:5pt;fon=
-t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
-[AMD Official Use Only - AMD Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-Signed-off-by:&nbsp;Tony Yi &lt;Tony.Yi@amd.com&gt;</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Zhang, Hawking &lt;Ha=
-wking.Zhang@amd.com&gt;<br>
-<b>Sent:</b> Wednesday, April 2, 2025 12:23 AM<br>
-<b>To:</b> Skvortsov, Victor &lt;Victor.Skvortsov@amd.com&gt;; amd-gfx@list=
-s.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Cc:</b> Luo, Zhigang &lt;Zhigang.Luo@amd.com&gt;; Zhou1, Tao &lt;Tao.Zho=
-u1@amd.com&gt;; Zhao, Victor &lt;Victor.Zhao@amd.com&gt;; Yi, Tony &lt;Tony=
-.Yi@amd.com&gt;<br>
-<b>Subject:</b> RE: [PATCH] drm/amdgpu: Fix CPER error handling on VFs</fon=
-t>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font face=3D"Times New Roman" size=3D"3"><span=
- style=3D"font-size:12pt;"><a name=3D"BM_BEGIN"></a>
-<div><font size=3D"2"><span style=3D"font-size:11pt;">[AMD Official Use Onl=
-y - AMD Internal Distribution Only]<br>
-<br>
-Reviewed-by: Hawking Zhang &lt;Hawking.Zhang@amd.com&gt;<br>
-<br>
-Regards,<br>
-Hawking<br>
------Original Message-----<br>
-From: Skvortsov, Victor &lt;Victor.Skvortsov@amd.com&gt;<br>
-Sent: Wednesday, April 2, 2025 04:44<br>
-To: amd-gfx@lists.freedesktop.org<br>
-Cc: Luo, Zhigang &lt;Zhigang.Luo@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zh=
-ang@amd.com&gt;; Zhou1, Tao &lt;Tao.Zhou1@amd.com&gt;; Zhao, Victor &lt;Vic=
-tor.Zhao@amd.com&gt;; Yi, Tony &lt;Tony.Yi@amd.com&gt;; Skvortsov, Victor &=
-lt;Victor.Skvortsov@amd.com&gt;<br>
-Subject: [PATCH] drm/amdgpu: Fix CPER error handling on VFs<br>
-<br>
-From: Tony Yi &lt;Tony.Yi@amd.com&gt;<br>
-<br>
-CPER read will loop infinitely if an error is encountered and the more bit =
-is set. Add error checks to break upon failure.<br>
-<br>
-Suggested-by: Tony Yi &lt;Tony.Yi@amd.com&gt;<br>
-Signed-off-by: Victor Skvortsov &lt;Victor.Skvortsov@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 8 +++++---<br>
-&nbsp;1 file changed, 5 insertions(+), 3 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_virt.c<br>
-index 0bb8cbe0dcc0..8d2da3a27440 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c<br>
-@@ -1378,14 +1378,16 @@ amdgpu_virt_write_cpers_to_ring(struct amdgpu_devic=
-e *adev,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; used_size =3D host_telemetry-&gt=
-;header.used_size;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (used_size &gt; (AMD_SRIOV_RA=
-S_TELEMETRY_SIZE_KB &lt;&lt; 10))<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; return 0;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; return -EINVAL;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cper_dump =3D kmemdup(&amp;host_=
-telemetry-&gt;body.cper_dump, used_size, GFP_KERNEL);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!cper_dump)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return -ENOMEM;<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (checksum !=3D amd_sriov_msg_check=
-sum(cper_dump, used_size, 0, 0))<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (checksum !=3D amd_sriov_msg_check=
-sum(cper_dump, used_size, 0, 0)) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D -EINVAL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; goto out;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *more =3D cper_dump-&gt;more;<br=
->
-<br>
-@@ -1434,7 +1436,7 @@ static int amdgpu_virt_req_ras_cper_dump_internal(str=
-uct amdgpu_device *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev, virt-&gt;fw_reserve.ras_telemetr=
-y, &amp;more);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; else<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D 0;<=
-br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while (more);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while (more &amp;&amp; !ret);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;}<br>
---<br>
-2.34.1<br>
-<br>
-</span></font></div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_DS7PR12MB5765D5E289A7BA12F623C262EFB52DS7PR12MB5765namp_--
