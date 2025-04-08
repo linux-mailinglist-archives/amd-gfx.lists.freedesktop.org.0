@@ -2,54 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FCDFA81269
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 18:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F27A81284
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 18:36:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C8C810E57F;
-	Tue,  8 Apr 2025 16:33:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6AC610E709;
+	Tue,  8 Apr 2025 16:36:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ispras.ru header.i=@ispras.ru header.b="EhFBw5+G";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A7Ryzj6m";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6081510E6F6;
- Tue,  8 Apr 2025 16:07:21 +0000 (UTC)
-Received: from localhost (unknown [10.10.165.6])
- by mail.ispras.ru (Postfix) with ESMTPSA id 2A1484076729;
- Tue,  8 Apr 2025 16:07:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.ispras.ru 2A1484076729
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ispras.ru;
- s=default; t=1744128439;
- bh=tmVV9ouHA7nkCSbZA75D06w8/DLaWCXo2XKIz9rcldw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=EhFBw5+GZGy4x8ryaNMFrY1c5FUYrPu+hn738QqRKuKvGy2kjRolURUaxlMl3r+z/
- DOkNiOY3aS/wueewtjdMbNpWLsKrcPsvEn7lD8ikLOOPgJ+PeZw7kqOY5lbuF3r6SY
- Fc8YnZ7GH2rkk4RZ69xYW7EYnwwYMmGVwL1/Pelc=
-Date: Tue, 8 Apr 2025 19:07:19 +0300
-From: Fedor Pchelkin <pchelkin@ispras.ru>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Cc: Denis Arefev <arefev@swemel.ru>, 
- Alex Deucher <alexander.deucher@amd.com>, Simona Vetter <simona@ffwll.ch>,
- lvc-project@linuxtesting.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Subject: Re: [lvc-project] [PATCH] drm/amdgpu: check a user-provided number
- of BOs in list
-Message-ID: <pmby7iowvxuomsbuxebttosz245j7ngw5enbl72dq675nrgvve@ugkvzeihbtut>
-References: <20250408091755.10074-1-arefev@swemel.ru>
- <e6ccef21-3ca5-4b5a-b18a-3ba45859569c@amd.com>
- <bmdour3gw4tuwqgvvw764p4ot3nnltqm4e7n3edlbtpfazvp5c@cqe5dwgc66uy>
- <f8810b13-01d1-4615-b6e2-2e791c48b466@amd.com>
- <qc72y52kt7vuwox4lhk42zligy5bslttselfoexse42mywtpps@ebqijs2tap2t>
- <edc08eb4-63dd-402c-82df-af6898d499a9@amd.com>
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+ [209.85.215.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBF9510E709
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Apr 2025 16:36:47 +0000 (UTC)
+Received: by mail-pg1-f182.google.com with SMTP id
+ 41be03b00d2f7-ad55376c2c8so404511a12.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 08 Apr 2025 09:36:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1744130207; x=1744735007; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4NqKMwyNRa0vhY7nkBg5FnzWC5pVep5jYeFVM/iCq9I=;
+ b=A7Ryzj6mQzT30eFNAJCcgT+vtlWfuxyK9NnzJy5ZXGGZDTryIybgccZA+M9GnDfZs/
+ 7LL/DuIbPRikwcHKCqlWksHjfTr0PmXb5HQbAiS4IPXLd4Pj7feQoE9mycO2hlnlbBJG
+ MHgMyAZWKq2FY1GDHZE/4mlT78WZUQxJLf4seIf9AmNPZeUAaU0b8X5cqZ3M51goAi1a
+ EtY47x43NuDfXl20rb30Uoo5KAW4u3qYIG5glnd/5oVfg3q8PHov4MgjO6u2sS2cq4/d
+ LmotO3AH7Zyc8iIO5LJik7KRSV2AuP63coDqadV9BI0/EWsR9KsU+IE4h8ZakTJSeTV7
+ 69jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1744130207; x=1744735007;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=4NqKMwyNRa0vhY7nkBg5FnzWC5pVep5jYeFVM/iCq9I=;
+ b=tWowzQ0waNtv4wkuisCoOejAJFoEV3cJBJGevjP6qeQA6bXdkFijNgI4XxH0/clEFp
+ DhnbLFz4tc+W5FaD+8ERfZQd8cp+daITk2dIGhjZEdxuTYJ3NG7DsbgcQ0TET2/PPe6e
+ Jdj3u8w7AEY+t+NaxLDRYfmw/wzoWmOmt6Fes4rDwwjNq8dTnpgvWAF2GefJmoN8gjmJ
+ 1tZTXPE8v3TKTo2Vl9Se3rHKcHNoqSkScpU7I+I2bCOZ8aahluQsWapbjYoYw2EU9eTU
+ yRdtrFFgmHDX4nFEJw0OOU7hcKENzP7sH6NFp9kEGBzEvI86se8OPcAilahcJZMgBmff
+ EWaQ==
+X-Gm-Message-State: AOJu0YyezM9pWgObrPAdoj2Yv4kD5AT/tJcQ2SkOT0gWxU/EKaRK689G
+ clIDz2RfiVI+R2PTX8fzzlD1q/AKEy9nolN0dnks2VokJLhCxB39uzJdfd9s/PSyQt5Ra2tvpcE
+ DnHFTpNXHBjiaa4OIEQfncDoKJbI=
+X-Gm-Gg: ASbGncsCPu/lIiR5kywGq+ZOxPvPK0bgqSxysbwhl6UvqA23zzR7MA3AeoCKwQYS6T0
+ /UjepC/pUHnE7lUGKrj+u9r05riNEo+RvZAkxPryih//GSppN1y7eneeHRjIzr3SrAGCaKpdRch
+ 4N4JLojWHEhhcHG2GfCLkOOqBJbQ==
+X-Google-Smtp-Source: AGHT+IHAgWpfgDqFmfbcldHTGfgggnr76dPGXyk34pkyBKSCHY8DTrhvGzkMfLHRBi7yWPd7EXzIyOSVswBI4jcgHSY=
+X-Received: by 2002:a17:902:cecf:b0:224:88c:9255 with SMTP id
+ d9443c01a7336-22a8a04bfd0mr94129565ad.3.1744130207065; Tue, 08 Apr 2025
+ 09:36:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <edc08eb4-63dd-402c-82df-af6898d499a9@amd.com>
-X-Mailman-Approved-At: Tue, 08 Apr 2025 16:33:46 +0000
+References: <20250328115219.1763423-1-Prike.Liang@amd.com>
+In-Reply-To: <20250328115219.1763423-1-Prike.Liang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 8 Apr 2025 12:36:34 -0400
+X-Gm-Features: ATxdqUGxvcDrrmyhrou-p9cq1p9P6ZWCyFp6t9N49vEQwJ1bgxK2-aSRoZWff_U
+Message-ID: <CADnq5_PYJrueyk_-Ecpuu++CgicJ-QtNjR+mJt=ZjUC_Q88Hqw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: remove the duplicated mes queue active state
+ setting
+To: Prike Liang <Prike.Liang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,138 +80,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 08. Apr 14:22, Christian König wrote:
-> Am 08.04.25 um 13:54 schrieb Fedor Pchelkin:
-> > If user can request an arbitrary size value then we should use __GFP_NOWARN
-> > and back on the allocator to return NULL in case it doesn't even try to
-> > satisfy an enormous memory allocation request (in which case it yells in
-> > the log without __GFP_NOWARN being passed). Maybe that would be a more
-> > appropriate thing here?
-> 
-> Using __GFP_NOWARN is most likely an incorrect approach as well, this
-> might disable all warnings. E.g. also OOM if I'm not completely mistaken
-> and we clearly do want those.
+On Fri, Mar 28, 2025 at 7:52=E2=80=AFAM Prike Liang <Prike.Liang@amd.com> w=
+rote:
+>
+> The MES queue deactivation and active status are already set in
+> mes_userq_unmap|map(), so the caller needn't set the queue_active
+> bit again.
+>
+> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
 
-Okay, that sounds reasonable.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-> 
-> > Please see:
-> > https://lore.kernel.org/dm-devel/CAHk-=wi8Zer6tnqO-bz+WxFpMv9sPc-LxGRm_3poOtZegjhfrg@mail.gmail.com/
-> 
-> Linus comment is about kvmalloc(), but the code here is using
-> kvmalloc_array() which as far as I know is explicitly made to safely
-> allocate arrays with parameters provided by userspace.
-
-[27651.163357] ------------[ cut here ]------------
-[27651.163361] WARNING: CPU: 3 PID: 183060 at mm/util.c:657 __kvmalloc_node_noprof+0xc1/0xd0
-[27651.163411] CPU: 3 UID: 0 PID: 183060 Comm: a.out Not tainted 6.13.9-200.fc41.x86_64 #1
-[27651.163412] Hardware name: ASUS System Product Name/PRIME X670E-PRO WIFI, BIOS 3035 09/05/2024
-[27651.163413] RIP: 0010:__kvmalloc_node_noprof+0xc1/0xd0
-[27651.163424] Call Trace:
-[27651.163426]  <TASK>
-[27651.163429]  ? show_trace_log_lvl+0x1b0/0x2f0
-[27651.163431]  ? show_trace_log_lvl+0x1b0/0x2f0
-[27651.163434]  ? amdgpu_bo_create_list_entry_array+0x3d/0x150 [amdgpu]
-[27651.163579]  ? __kvmalloc_node_noprof+0xc1/0xd0
-[27651.163581]  ? __warn.cold+0x93/0xfa
-[27651.163582]  ? __kvmalloc_node_noprof+0xc1/0xd0
-[27651.163584]  ? report_bug+0xff/0x140
-[27651.163586]  ? handle_bug+0x58/0x90
-[27651.163588]  ? exc_invalid_op+0x17/0x70
-[27651.163589]  ? asm_exc_invalid_op+0x1a/0x20
-[27651.163591]  ? __kmalloc_node_noprof+0x3f9/0x590
-[27651.163592]  ? __kvmalloc_node_noprof+0xc1/0xd0
-[27651.163594]  ? __kvmalloc_node_noprof+0x37/0xd0
-[27651.163595]  amdgpu_bo_create_list_entry_array+0x3d/0x150 [amdgpu]
-[27651.163704]  amdgpu_bo_list_ioctl+0x55/0x350 [amdgpu]
-[27651.163805]  ? __pfx_amdgpu_bo_list_ioctl+0x10/0x10 [amdgpu]
-[27651.163909]  drm_ioctl_kernel+0xad/0x100
-[27651.163911]  drm_ioctl+0x288/0x530
-[27651.163912]  ? __pfx_amdgpu_bo_list_ioctl+0x10/0x10 [amdgpu]
-[27651.164010]  amdgpu_drm_ioctl+0x4b/0x80 [amdgpu]
-[27651.164106]  __x64_sys_ioctl+0x94/0xc0
-[27651.164108]  do_syscall_64+0x82/0x160
-[27651.164110]  ? handle_mm_fault+0x20d/0x330
-[27651.164111]  ? do_user_addr_fault+0x55a/0x7b0
-[27651.164113]  ? exc_page_fault+0x7e/0x180
-[27651.164114]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-[27651.164116] RIP: 0033:0x7f271589d4ad
-[27651.164138]  </TASK>
-[27651.164138] ---[ end trace 0000000000000000 ]---
-
-
-That's just
-
-    union drm_amdgpu_bo_list bo_list;
-    int fd, ret;
-
-    memset(&bo_list, 0, sizeof(bo_list));
-
-    fd = open(DEVICE_PATH, O_RDWR);
-
-    bo_list.in.bo_number = 1 << 31;
-    ret = ioctl(fd, DRM_IOCTL_AMDGPU_BO_LIST, &bo_list);
-
-
-> 
-> So pre-checking those parameters in the caller once more is a bit
-> questionable, especially since we need to spread that around to all
-> callers of kvmalloc_array() which looks backwards considering the
-> purpose of kvmalloc_array().
-
-kvmalloc_array() performs an extra check only for that the `size * n`
-thing doesn't overflow the (generally) 64-bit arithmetic. Otherwise, it's
-actually like an ordinary kvmalloc() with a request of `size * n`.
-
-Performing that extra size_t-overflow check is not the same as checking
-that `size * n` cannot take enormous and possibly unverified values.
-That's what the logic of the checks inside the allocator implies IMO.
-
-> 
-> Maybe we should reduce the warning to info level for kvmalloc_array()
-> since returning NULL when incorrect parameters are given can be
-> perfectly handled by the caller.
-
-That would require running through and inspecting all of its callers in
-the source tree.
-
-And it would then differentiate from the underlying kvmalloc(), I'd say.
-
-The warning was added deliberately.
-
-commit 7661809d493b426e979f39ab512e3adf41fbcc69
-Author: Linus Torvalds <torvalds@linux-foundation.org>
-Date:   Wed Jul 14 09:45:49 2021 -0700
-
-    mm: don't allow oversized kvmalloc() calls
-    
-    'kvmalloc()' is a convenience function for people who want to do a
-    kmalloc() but fall back on vmalloc() if there aren't enough physically
-    contiguous pages, or if the allocation is larger than what kmalloc()
-    supports.
-    
-    However, let's make sure it doesn't get _too_ easy to do crazy things
-    with it.  In particular, don't allow big allocations that could be due
-    to integer overflow or underflow.  So make sure the allocation size fits
-    in an 'int', to protect against trivial integer conversion issues.
-    
-    Acked-by: Willy Tarreau <w@1wt.eu>
-    Cc: Kees Cook <keescook@chromium.org>
-    Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
-
-diff --git a/mm/util.c b/mm/util.c
-index db3091116b7c..499b6b5767ed 100644
---- a/mm/util.c
-+++ b/mm/util.c
-@@ -593,6 +593,10 @@ void *kvmalloc_node(size_t size, gfp_t flags, int node)
-        if (ret || size <= PAGE_SIZE)
-                return ret;
- 
-+       /* Don't even allow crazy sizes */
-+       if (WARN_ON_ONCE(size > INT_MAX))
-+               return NULL;
-+
-        return __vmalloc_node(size, 1, flags, node,
-                        __builtin_return_address(0));
- }
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 6 +-----
+>  1 file changed, 1 insertion(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm=
+/amd/amdgpu/mes_userqueue.c
+> index b469b800119f..b9705cbec74d 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+> @@ -358,10 +358,8 @@ mes_userq_mqd_destroy(struct amdgpu_userq_mgr *uq_mg=
+r,
+>  static int mes_userq_suspend(struct amdgpu_userq_mgr *uq_mgr,
+>                                    struct amdgpu_usermode_queue *queue)
+>  {
+> -       if (queue->queue_active) {
+> +       if (queue->queue_active)
+>                 mes_userq_unmap(uq_mgr, queue);
+> -               queue->queue_active =3D false;
+> -       }
+>
+>         return 0;
+>  }
+> @@ -379,8 +377,6 @@ static int mes_userq_resume(struct amdgpu_userq_mgr *=
+uq_mgr,
+>                 DRM_ERROR("Failed to resume queue\n");
+>                 return ret;
+>         }
+> -
+> -       queue->queue_active =3D true;
+>         return 0;
+>  }
+>
+> --
+> 2.34.1
+>
