@@ -2,43 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09AD5A8126D
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 18:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A05A81268
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 18:33:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88E4810E70C;
-	Tue,  8 Apr 2025 16:33:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1E6410E28C;
+	Tue,  8 Apr 2025 16:33:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=swemel.ru header.i=@swemel.ru header.b="BY4NRvtF";
+	dkim=pass (1024-bit key; unprotected) header.d=swemel.ru header.i=@swemel.ru header.b="moaCAWWZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mx.swemel.ru (mx.swemel.ru [95.143.211.150])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E09910E5FF;
- Tue,  8 Apr 2025 08:16:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF5210E1FA;
+ Tue,  8 Apr 2025 09:17:58 +0000 (UTC)
 From: Denis Arefev <arefev@swemel.ru>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=swemel.ru; s=mail;
- t=1744100198;
+ t=1744103875;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=KycvnFWvB7WLb2FMk02JJRuq8Z8TQ1r5p1fwmK7UuQI=;
- b=BY4NRvtF8TGoqRIlOh7vqXec44FXLXMcGrQLgiSlHUoZiE1Bc9+uNECT0fDAo27IT+iXqD
- hOzTflwyN46+PtVNtVol6lKGo+7HladIctIV9TD8NXhvUHw4PRBDt9Nvt5wArpvnnpUnEY
- bdd8fzIFmrOyE69kfnvxNS7XwQ209IY=
-To: alexdeucher@gmail.com
-Cc: Jun.Ma2@amd.com, airlied@gmail.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, arefev@swemel.ru, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, kenneth.feng@amd.com,
- kevinyang.wang@amd.com, lijo.lazar@amd.com, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org, mario.limonciello@amd.com, simona@ffwll.ch,
- srinivasan.shanmugam@amd.com
-Subject: Re: [PATCH] drm/amd/pm/smu11: Prevent division by zero
-Date: Tue,  8 Apr 2025 11:16:38 +0300
-Message-ID: <20250408081638.5295-1-arefev@swemel.ru>
-In-Reply-To: <CADnq5_O+TMVD0B28Q6CgzhAi1aDR5ofjogE18HDXrJOJ1XwbDQ@mail.gmail.com>
-References: <CADnq5_O+TMVD0B28Q6CgzhAi1aDR5ofjogE18HDXrJOJ1XwbDQ@mail.gmail.com>
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=1FLiFT+T5gQcR7Vpti1w2BgNdDvjvH7axHcj6poLqfw=;
+ b=moaCAWWZ18pXziwG8oX+TkII9D5Ads52zgtbWvMZzDuX39fTOmjHt1GkoXlh4B6BG9OqwM
+ p6o3vkxR0o29TanFoIgXefyWW+280xeadbOdDlOFzLYuuzGecmd7yDtWHwwrUs8YxEpDMM
+ YaBH8aWZ71hdODC+SzmYFAlLdpdYvTU=
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Chunming Zhou <david1.zhou@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ lvc-project@linuxtesting.org, stable@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: check a user-provided number of BOs in list
+Date: Tue,  8 Apr 2025 12:17:53 +0300
+Message-ID: <20250408091755.10074-1-arefev@swemel.ru>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 08 Apr 2025 16:33:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -55,32 +53,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> ---
->  drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> index 189c6a32b6bd..54229b991858 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> @@ -1200,7 +1200,7 @@ int smu_v11_0_set_fan_speed_rpm(struct smu_context *smu,
->         uint32_t crystal_clock_freq = 2500;
->         uint32_t tach_period;
->
-> -       if (speed == 0)
-> +       if (!speed || speed > UINT_MAX/8)
->                 return -EINVAL;
->         /*
->          * To prevent from possible overheat, some ASICs may have requirement
-> --
-> 2.43.0
->
+The user can set any value to the variable ‘bo_number’, via the ioctl
+command DRM_IOCTL_AMDGPU_BO_LIST. This will affect the arithmetic
+expression ‘in->bo_number * in->bo_info_size’, which is prone to
+overflow. Add a valid value check.
 
-Hi Alex.
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-The patch 'drm/amd/pm/smu11: Prevent division by zero' was sent 
-separately, not part of the patch series, maybe that's why it wasn't
-accepted. Should I resend it?
+Fixes: 964d0fbf6301 ("drm/amdgpu: Allow to create BO lists in CS ioctl v3")
+Cc: stable@vger.kernel.org
+Signed-off-by: Denis Arefev <arefev@swemel.ru>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Regards, Denis.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
+index 702f6610d024..dd30d2426ff7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
+@@ -189,6 +189,9 @@ int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
+ 	struct drm_amdgpu_bo_list_entry *info;
+ 	int r;
+ 
++	if (!in->bo_number || in->bo_number > UINT_MAX / info_size)
++		return -EINVAL;
++
+ 	info = kvmalloc_array(in->bo_number, info_size, GFP_KERNEL);
+ 	if (!info)
+ 		return -ENOMEM;
+-- 
+2.43.0
 
