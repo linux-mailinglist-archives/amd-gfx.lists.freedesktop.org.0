@@ -2,69 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B19A7F28E
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 04:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCCBA7F290
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 04:11:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10F0E10E599;
-	Tue,  8 Apr 2025 02:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3142A10E5A2;
+	Tue,  8 Apr 2025 02:11:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F8sdTqZv";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GcB2Ukp9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
- [209.85.222.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0B510E599
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Apr 2025 02:11:31 +0000 (UTC)
-Received: by mail-qk1-f177.google.com with SMTP id
- af79cd13be357-7c5568355ffso425708085a.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 07 Apr 2025 19:11:31 -0700 (PDT)
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
+ [209.85.222.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 384D710E599
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Apr 2025 02:11:32 +0000 (UTC)
+Received: by mail-qk1-f171.google.com with SMTP id
+ af79cd13be357-7be49f6b331so525866985a.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 07 Apr 2025 19:11:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1744078290; x=1744683090; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=WpiL9JIcKCZpiO60KViaazUBowYJJ7Did2fz4rW1Mxc=;
- b=F8sdTqZvrvGdfpc5X1enLjKjl4krV3yY54hRwMux4DqZywHLJd8zoJjhCcseJHS6kG
- TFuKpPNarbBjt76nZG1IoBzt2M9GKt6shYa5VyzyYYvc90Q6WGMBGF7YASWfQVehiepI
- Ijp72wjikq8APP8ab28taqXq/PdsZ2botndT3i4VLgMLbgjHUztLEY9E2ja4egsRpyAo
- 6jfZ+sbuY/E2NP7lG87dmbFsZRLebp88h87Qv+ooDi9IGzeg/aU4K4UsMoJ16Di8M/zu
- 08rJFp0ePZIHyX45j7cHj6NPEem+wpL2aA8jq/L6BuQrgdQB/T+LbVGfyCPWJjwVovcx
- 1Q9w==
+ :reply-to; bh=WAMooTpEAwYzJIXYvNGQLnoibuKC02Gc2Oq+iSrxM9A=;
+ b=GcB2Ukp9tmy1bNuxw6MVigBK2SNHIuSNXKp3j67z1FXWDkgANcy2D7Cy0UQJ4HkK71
+ YpnUs8XIRBRH9cozU3yB3xKTWici4OPpU/HAfdCw7J1z/EsIeu3eHjW2HOUsuJ5Lt+ss
+ O+WsORh15MTi6I4QNQrFR3mmZaSYW9ClaDnV9SD+0RyoGynv+aHamPjhrk+6nN9kB+Kt
+ FrbT4+2Fnq8edRbcSqw4rneC/Z4a05aGVtC3dbrd51wbH7XeXSWM4ufMU9BsEL+P3eB2
+ TiEHJ3a5bhrmcVBRyHe4hOU+fJEsTD6UqIMElBNLWHcvFBTGHXjEpkOpmzcnwOzSj/Xm
+ T11A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744078290; x=1744683090;
+ d=1e100.net; s=20230601; t=1744078291; x=1744683091;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=WpiL9JIcKCZpiO60KViaazUBowYJJ7Did2fz4rW1Mxc=;
- b=D2S/AsFYtRJcWFb+bZSh32oPL0D6ByTnZox47w/5PxsDTn0NuH3jxsS3ZIT6bP9LVo
- ejPYJYEb+RpSE/fpvk86BBJKtcoq+3NE5rDZBbI5HiMTZlm4dIZ6LNwCWTnNmNaMJeeW
- ss/658Lg7yk3yT0UJTa+hGQLZOwcVJEl7bna2Hmhw6uw7OkHf+EWFhadegjs7nluPoqW
- EvMn1w/WvREtPjVQFIISiMSYLUDfdQbDXQ4ORzR3vS9JuKS+b9NbLA1JmfFpDo2gpJ35
- 70B9akchqwE3g2wsOVr2M9hEEWphnZIuWRCdftekgn0gH4ucUgoAhSAMleW23kAbsL8u
- JBzQ==
-X-Gm-Message-State: AOJu0YyIL09ZUBym8DfMvdTQBsw7YU+wKx/6DdFxj+xCRBcSQq7B3LBt
- 8dBiV4ASNd/pnlkYvIng4OTwr5RkT4V0TcU2CDWkBPbdiMx2dB1FHWyqRg==
-X-Gm-Gg: ASbGnctS5m9qm6LvVqqlJInMn49loR8UMQ8Y0yfmECxjDAfE7BNM3y0K/WFyywoYJQA
- iUZAYyzDpbCpICmw/jxSWCZRx5OENkeT/ojXGPFO40gUaZWPJXEJQod0AY6gxF8gpceKhodju9J
- SdL196G1wuOJduz25FBu2QHK4O2GWd7snuUc6Z8Zg3QenmR2xpV1nk+bzQCqcmeAydZ4sQXFJIR
- NOaSASve5geZNUvQLC2hJysNRACEsawtxxZlA+0cjt9ljT97Cv2aRLloPW6UE4jXjFyM+cOTCSK
- PbfEYqr2wAC60X0ov6mm/rl9CyBEd7LIGjU7tac0tGybgeGKKVqx7dPu8tTc2abFFRrB
-X-Google-Smtp-Source: AGHT+IGxdzaByfy+dCI9Ry2r+odMgzOtCZ8G/Ki3TbMQS6ZL4BdY4AtyB/6x4ekr81zqvHKJVa+LDg==
-X-Received: by 2002:a05:620a:4515:b0:7c7:739d:5cea with SMTP id
- af79cd13be357-7c774e16427mr2123501885a.35.1744078289783; 
- Mon, 07 Apr 2025 19:11:29 -0700 (PDT)
+ bh=WAMooTpEAwYzJIXYvNGQLnoibuKC02Gc2Oq+iSrxM9A=;
+ b=uW5yWTxmO1iGhDjJZO/DH/4UKtzFViVEScwNGeRV02nvUry+8sqGf7/6h+2B5JZzVx
+ ANWS5Gtzw0kYbGUtgd12dXtp+CI0wbkjoCQIhDQ2GRtTEqmei+lOO6Q2eNZmyau5hj/6
+ 2dzpdTe94tOLAj+J0H+2wfzvRBuMnQ23vFuFW5t1tgL5zB1DIAoxy/u0Zba36BUi5mHF
+ jFmw5koIoiIXxa6q/tqTrASvzK6ZebtoswcvJ0HopisXfgRFbpLdPEHF479cLheBSYui
+ R1Sm61zowbJtSgyMkaZd46JG7Eh6Gxt4BptzwyUwpoJ0kGJ7nD+FTq6OSaxzdMiBWkzW
+ GBaw==
+X-Gm-Message-State: AOJu0Yww/FSGNdU+xDZgc7iqCwjByx6Rkp9FC8inhlg6QZAeH2ay8ZYO
+ 9p1dRfUU24nyRG7HNDfAAJVGYbKTZJ3sUsJ+7LNEa0ocm/aZENZalJ20Qw==
+X-Gm-Gg: ASbGncswVYFFWtxeQ9Cxa4rjbLciu5R+rXz/CNBRNq8Opyys13P/bD3x0RxQ5lckSjL
+ 5KockIRDagNYp0Qf6bN1N8HkWEW/LNygJRwoAFayhHv+WN4PU/vYMaCZ3tiO19zKtoUW527dulb
+ Ow18B2mZYuXE9CIp91iBzF30Oz8I46VK/G6vtk37GxytRtughU0OFmBhztjyGH0NTmHn4LghUMn
+ rTjUfVNoqJ8cxT7nsnpW51UPIDxLZrm9omb5d8L9tg27JBvwSPwwLjG/wnZuiegy42FWXbrtRSY
+ 2lPbcV4NZ/HAWD82Ll9eu7zKpvFuCDRuKhxxOSC0iFr8BYilmpTr7v6yeqbAamhZGlqz
+X-Google-Smtp-Source: AGHT+IG4XpnnXlhb3HUj7HBgNZ5+M0zhakhnTwkrrqhEweT7oNH7xV7AbHQtBfZ6MQelnYoU1BpZBw==
+X-Received: by 2002:a05:620a:f04:b0:7c0:a70e:b934 with SMTP id
+ af79cd13be357-7c77dd6b3c9mr1795247385a.7.1744078290642; 
+ Mon, 07 Apr 2025 19:11:30 -0700 (PDT)
 Received: from localhost.localdomain ([38.121.253.36])
  by smtp.gmail.com with ESMTPSA id
  af79cd13be357-7c76ea5992csm687693985a.84.2025.04.07.19.11.29
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Apr 2025 19:11:29 -0700 (PDT)
+ Mon, 07 Apr 2025 19:11:30 -0700 (PDT)
 From: Alexandre Demers <alexandre.f.demers@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/6] drm/amdgpu: add missing parameter name in
- dce110_clk_src_construct() declaration
-Date: Mon,  7 Apr 2025 22:10:56 -0400
-Message-ID: <20250408021100.5439-3-alexandre.f.demers@gmail.com>
+Subject: [PATCH 3/6] drm/amdgpu: fix typo in atombios.h
+Date: Mon,  7 Apr 2025 22:10:57 -0400
+Message-ID: <20250408021100.5439-4-alexandre.f.demers@gmail.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250408021100.5439-1-alexandre.f.demers@gmail.com>
 References: <20250408021100.5439-1-alexandre.f.demers@gmail.com>
@@ -84,27 +83,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-While not needed per speaking, all the other parameters have names but
-this one.
+"aligned" not "aligend"
 
 Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.h | 2 +-
+ drivers/gpu/drm/amd/include/atombios.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.h b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.h
-index 0721ae895ae9..94128f7a18b1 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.h
-@@ -257,7 +257,7 @@ bool dce110_clk_src_construct(
- 	struct dce110_clk_src *clk_src,
- 	struct dc_context *ctx,
- 	struct dc_bios *bios,
--	enum clock_source_id,
-+	enum clock_source_id id,
- 	const struct dce110_clk_src_regs *regs,
- 	const struct dce110_clk_src_shift *cs_shift,
- 	const struct dce110_clk_src_mask *cs_mask);
+diff --git a/drivers/gpu/drm/amd/include/atombios.h b/drivers/gpu/drm/amd/include/atombios.h
+index b78360a71bc9..52bac19fb404 100644
+--- a/drivers/gpu/drm/amd/include/atombios.h
++++ b/drivers/gpu/drm/amd/include/atombios.h
+@@ -4308,7 +4308,7 @@ typedef struct _ATOM_DPCD_INFO
+ // note2: From RV770, the memory is more than 32bit addressable, so we will change
+ //        ucTableFormatRevision=1,ucTableContentRevision=4, the strcuture remains
+ //        exactly same as 1.1 and 1.2 (1.3 is never in use), but ulStartAddrUsedByFirmware
+-//        (in offset to start of memory address) is KB aligned instead of byte aligend.
++//        (in offset to start of memory address) is KB aligned instead of byte aligned.
+ // Note3:
+ /* If we change usReserved to "usFBUsedbyDrvInKB", then to VBIOS this usFBUsedbyDrvInKB is a predefined, unchanged
+ constant across VGA or non VGA adapter,
 -- 
 2.49.0
 
