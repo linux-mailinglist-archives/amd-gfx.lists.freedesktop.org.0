@@ -2,148 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B1DA8126C
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 18:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FCDFA81269
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 18:33:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7416310E70B;
-	Tue,  8 Apr 2025 16:33:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C8C810E57F;
+	Tue,  8 Apr 2025 16:33:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=arndb.de header.i=@arndb.de header.b="hA88t/vO";
-	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="favHyVHy";
+	dkim=pass (1024-bit key; unprotected) header.d=ispras.ru header.i=@ispras.ru header.b="EhFBw5+G";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 511 seconds by postgrey-1.36 at gabe;
- Tue, 08 Apr 2025 12:46:14 UTC
-Received: from flow-a4-smtp.messagingengine.com
- (flow-a4-smtp.messagingengine.com [103.168.172.139])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BAA310E21B;
- Tue,  8 Apr 2025 12:46:14 +0000 (UTC)
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal
- [10.202.2.52])
- by mailflow.phl.internal (Postfix) with ESMTP id 17DEF20014C;
- Tue,  8 Apr 2025 08:37:42 -0400 (EDT)
-Received: from phl-imap-11 ([10.202.2.101])
- by phl-compute-12.internal (MEProxy); Tue, 08 Apr 2025 08:37:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1744115862;
- x=1744123062; bh=zFcPiZ2dymYdvLOyrug0agUR+Yq1LwHn6b82n9khMg4=; b=
- hA88t/vObgZNfV8F5NhyBQDmfCG2RNVd3x2W8Zufg5dKOllZq0HmIBVOcD6R36zJ
- dUCUywkMJxl7olxwesgdwzLHVYZfXbO7TxVrBr34ZEZpUkerU1xvSRbkkDSZQ/9n
- ti95kDMNS1ircDu6txuTKq8Hh8VUCvlxep8/3cOOvCP7Q63L2FogRGZ33xdZokde
- PdfcEjksnqVG17B652nC+IhEmQNrFc3YibLlR/x90pUo9x9m0Ts21QdVCVpX/j7U
- 636ZLGawOhOkDuGc7S8W9Zmc4MYzQXDQHycgj5wwS0FmTIfNN0KNwgm4ro6pUeZX
- LsT22uPqc5Q1CNOHypTk1g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1744115862; x=
- 1744123062; bh=zFcPiZ2dymYdvLOyrug0agUR+Yq1LwHn6b82n9khMg4=; b=f
- avHyVHyAljzCU9WCVJ7GlxybwygLxx2202W3vZyzfM1hE0yjRO840WBBo4hP3JK2
- r1jKrH5EIHGvxEKWXY4Ig+qnPSSqpTtVGTfy9AGbDze5O8/y/6+v1I/xl+CLdYrK
- aEQf8yAGMssi1yqPB8HPMx1ia4cNhlshdMv9ijgMlpEo2WgQBksdXe5hArDFuaIw
- esnV/cUFAWWwKm4cSMr+F5MisAl5eaHMhTJGxYfxNiE4JMziwW8LaIobdf5PtJYo
- muj3hPmZ1/VVn9ARm6FTGVJN9+VdUdIcK1pYNOfzSn2jD1pfDE2TgwwauKx7EWmd
- RBPRlx9lcMiaCjPpvyLng==
-X-ME-Sender: <xms:lBj1Z37JAzdSNf8RJrNISVcmekNoGYtUdhdE1QR9UEGc2QW4tGNGOg>
- <xme:lBj1Z84awh_MckpPiLeuycHQNakSdVuimpyB1mLs-zmVBFHbzFvyCubtMH4eHE4JS
- akJYYWs_HT1xQkMCP4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdefuddtucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
- pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
- gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertder
- tddtnecuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnug
- gsrdguvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeet
- fefggfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
- hmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohep
- hedtpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrlhgvgigrnhguvghrrdguvg
- hutghhvghrsegrmhgurdgtohhmpdhrtghpthhtoheptghhrhhishhtihgrnhdrkhhovghn
- ihhgsegrmhgurdgtohhmpdhrtghpthhtoheplhhijhhordhlrgiirghrsegrmhgurdgtoh
- hmpdhrtghpthhtohepmhgrrhhiohdrlhhimhhonhgtihgvlhhlohesrghmugdrtghomhdp
- rhgtphhtthhopegstghmqdhkvghrnhgvlhdqfhgvvggusggrtghkqdhlihhsthessghroh
- gruggtohhmrdgtohhmpdhrtghpthhtohepiigrtghkrdhruhhsihhnsegsrhhorggutgho
- mhdrtghomhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtg
- hpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopehgvggvrhhtodhr
- vghnvghsrghssehglhhiuggvrhdrsggv
-X-ME-Proxy: <xmx:lBj1Z-fVAjsZ2IIW4CR__HAOTrryAbYjqVMOrlOZgaW86YnkED3CFw>
- <xmx:lBj1Z4IJOnTETXjr4ynY7WjdTH_esquf0Z5UMtrXw7IIvLP8bg1uYg>
- <xmx:lBj1Z7KcXF2sCvdK7Ff6e9FiI3KbzMJNGznflf86a2Xe4P-8mJ791g>
- <xmx:lBj1ZxxANUYN7ozS0kgUp28zlepO11cm_xgpJdfD8viEjBQpcHAVAQ>
- <xmx:lhj1Z5h2PSWgYdsFLsX0gpRa4lpt3LVHr5UE24EGmNNdcmE4PFSdJj4t>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 5F2962220073; Tue,  8 Apr 2025 08:37:40 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6081510E6F6;
+ Tue,  8 Apr 2025 16:07:21 +0000 (UTC)
+Received: from localhost (unknown [10.10.165.6])
+ by mail.ispras.ru (Postfix) with ESMTPSA id 2A1484076729;
+ Tue,  8 Apr 2025 16:07:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.ispras.ru 2A1484076729
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ispras.ru;
+ s=default; t=1744128439;
+ bh=tmVV9ouHA7nkCSbZA75D06w8/DLaWCXo2XKIz9rcldw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=EhFBw5+GZGy4x8ryaNMFrY1c5FUYrPu+hn738QqRKuKvGy2kjRolURUaxlMl3r+z/
+ DOkNiOY3aS/wueewtjdMbNpWLsKrcPsvEn7lD8ikLOOPgJ+PeZw7kqOY5lbuF3r6SY
+ Fc8YnZ7GH2rkk4RZ69xYW7EYnwwYMmGVwL1/Pelc=
+Date: Tue, 8 Apr 2025 19:07:19 +0300
+From: Fedor Pchelkin <pchelkin@ispras.ru>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Denis Arefev <arefev@swemel.ru>, 
+ Alex Deucher <alexander.deucher@amd.com>, Simona Vetter <simona@ffwll.ch>,
+ lvc-project@linuxtesting.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Subject: Re: [lvc-project] [PATCH] drm/amdgpu: check a user-provided number
+ of BOs in list
+Message-ID: <pmby7iowvxuomsbuxebttosz245j7ngw5enbl72dq675nrgvve@ugkvzeihbtut>
+References: <20250408091755.10074-1-arefev@swemel.ru>
+ <e6ccef21-3ca5-4b5a-b18a-3ba45859569c@amd.com>
+ <bmdour3gw4tuwqgvvw764p4ot3nnltqm4e7n3edlbtpfazvp5c@cqe5dwgc66uy>
+ <f8810b13-01d1-4615-b6e2-2e791c48b466@amd.com>
+ <qc72y52kt7vuwox4lhk42zligy5bslttselfoexse42mywtpps@ebqijs2tap2t>
+ <edc08eb4-63dd-402c-82df-af6898d499a9@amd.com>
 MIME-Version: 1.0
-X-ThreadId: T702257fbe5397c0b
-Date: Tue, 08 Apr 2025 14:37:07 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Arnd Bergmann" <arnd@kernel.org>
-Cc: "Bjorn Helgaas" <bhelgaas@google.com>,
- "Jeff Hugo" <jeff.hugo@oss.qualcomm.com>,
- "Carl Vanderlip" <quic_carlv@quicinc.com>,
- "Oded Gabbay" <ogabbay@kernel.org>,
- "Takashi Sakamoto" <o-takashi@sakamocchi.jp>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "Dave Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Dave Airlie" <airlied@redhat.com>,
- "Jocelyn Falempe" <jfalempe@redhat.com>,
- "Patrik Jakobsson" <patrik.r.jakobsson@gmail.com>,
- "Xinliang Liu" <xinliang.liu@linaro.org>,
- "Tian Tao" <tiantao6@hisilicon.com>,
- "Xinwei Kong" <kong.kongxinwei@hisilicon.com>,
- "Sumit Semwal" <sumit.semwal@linaro.org>,
- "Yongqin Liu" <yongqin.liu@linaro.org>, "John Stultz" <jstultz@google.com>,
- "Sui Jingfeng" <suijingfeng@loongson.cn>,
- "Lyude Paul" <lyude@redhat.com>, "Danilo Krummrich" <dakr@kernel.org>,
- "Gerd Hoffmann" <kraxel@redhat.com>,
- "Zack Rusin" <zack.rusin@broadcom.com>,
- "Broadcom internal kernel review list"
- <bcm-kernel-feedback-list@broadcom.com>,
- "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Andrew Lunn" <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>, "Saurav Kashyap" <skashyap@marvell.com>,
- "Javed Hasan" <jhasan@marvell.com>, GR-QLogic-Storage-Upstream@marvell.com,
- "James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- "Nilesh Javali" <njavali@marvell.com>,
- "Manish Rangankar" <mrangankar@marvell.com>,
- "Alex Williamson" <alex.williamson@redhat.com>,
- "Geert Uytterhoeven" <geert+renesas@glider.be>,
- "Javier Martinez Canillas" <javierm@redhat.com>,
- "Jani Nikula" <jani.nikula@intel.com>,
- "Mario Limonciello" <mario.limonciello@amd.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- "Lijo Lazar" <lijo.lazar@amd.com>,
- "Niklas Schnelle" <schnelle@linux.ibm.com>,
- "Dmitry Baryshkov" <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux1394-devel@lists.sourceforge.net, amd-gfx@lists.freedesktop.org,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-scsi@vger.kernel.org,
- kvm@vger.kernel.org, "Greg Ungerer" <gerg@linux-m68k.org>
-Message-Id: <9abf582c-ea8e-42ca-a6d5-34c1e1932f95@app.fastmail.com>
-In-Reply-To: <CAMuHMdWN=wurw7qz0t2ovMkUNu0BJRAMv_0U63Lqs2MGxkVnHw@mail.gmail.com>
-References: <20250407104025.3421624-1-arnd@kernel.org>
- <CAMuHMdWN=wurw7qz0t2ovMkUNu0BJRAMv_0U63Lqs2MGxkVnHw@mail.gmail.com>
-Subject: Re: [RFC] PCI: add CONFIG_MMU dependency
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <edc08eb4-63dd-402c-82df-af6898d499a9@amd.com>
 X-Mailman-Approved-At: Tue, 08 Apr 2025 16:33:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,39 +64,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 8, 2025, at 12:22, Geert Uytterhoeven wrote:
-> On Mon, 7 Apr 2025 at 12:40, Arnd Bergmann <arnd@kernel.org> wrote:
->
->> --- a/drivers/pci/Kconfig
->> +++ b/drivers/pci/Kconfig
->> @@ -21,6 +21,7 @@ config GENERIC_PCI_IOMAP
->>  menuconfig PCI
->>         bool "PCI support"
->>         depends on HAVE_PCI
->> +       depends on MMU
->>         help
->>           This option enables support for the PCI local bus, including
->>           support for PCI-X and the foundations for PCI Express support.
->
-> While having an MMU is a hardware feature, I consider disabling MMU
-> support software configuration.  So this change prevents people from
-> disabling MMU support on a system that has both a PCI bus and an MMU.
-> But other people may not agree, or care?
+On Tue, 08. Apr 14:22, Christian König wrote:
+> Am 08.04.25 um 13:54 schrieb Fedor Pchelkin:
+> > If user can request an arbitrary size value then we should use __GFP_NOWARN
+> > and back on the allocator to return NULL in case it doesn't even try to
+> > satisfy an enormous memory allocation request (in which case it yells in
+> > the log without __GFP_NOWARN being passed). Maybe that would be a more
+> > appropriate thing here?
+> 
+> Using __GFP_NOWARN is most likely an incorrect approach as well, this
+> might disable all warnings. E.g. also OOM if I'm not completely mistaken
+> and we clearly do want those.
 
-I created this patch after Greg said that the coldfire-v4 chips
-that have an MMU are not really used without it any more, and
-I had accidentally only build tested a patch without CONFIG_MMU.
+Okay, that sounds reasonable.
 
-On ARM, CONFIG_MMU can no longer be disabled on CPUs that have
-one, this was a side-effect of the ARCH_MULTIPLATFORM conversion.
+> 
+> > Please see:
+> > https://lore.kernel.org/dm-devel/CAHk-=wi8Zer6tnqO-bz+WxFpMv9sPc-LxGRm_3poOtZegjhfrg@mail.gmail.com/
+> 
+> Linus comment is about kvmalloc(), but the code here is using
+> kvmalloc_array() which as far as I know is explicitly made to safely
+> allocate arrays with parameters provided by userspace.
 
-I just tried building an SH7751 kernel with MMU disabled but PCI
-enable. This produces build errors in several files, clearly nobody
-has tried this in a long time.
+[27651.163357] ------------[ cut here ]------------
+[27651.163361] WARNING: CPU: 3 PID: 183060 at mm/util.c:657 __kvmalloc_node_noprof+0xc1/0xd0
+[27651.163411] CPU: 3 UID: 0 PID: 183060 Comm: a.out Not tainted 6.13.9-200.fc41.x86_64 #1
+[27651.163412] Hardware name: ASUS System Product Name/PRIME X670E-PRO WIFI, BIOS 3035 09/05/2024
+[27651.163413] RIP: 0010:__kvmalloc_node_noprof+0xc1/0xd0
+[27651.163424] Call Trace:
+[27651.163426]  <TASK>
+[27651.163429]  ? show_trace_log_lvl+0x1b0/0x2f0
+[27651.163431]  ? show_trace_log_lvl+0x1b0/0x2f0
+[27651.163434]  ? amdgpu_bo_create_list_entry_array+0x3d/0x150 [amdgpu]
+[27651.163579]  ? __kvmalloc_node_noprof+0xc1/0xd0
+[27651.163581]  ? __warn.cold+0x93/0xfa
+[27651.163582]  ? __kvmalloc_node_noprof+0xc1/0xd0
+[27651.163584]  ? report_bug+0xff/0x140
+[27651.163586]  ? handle_bug+0x58/0x90
+[27651.163588]  ? exc_invalid_op+0x17/0x70
+[27651.163589]  ? asm_exc_invalid_op+0x1a/0x20
+[27651.163591]  ? __kmalloc_node_noprof+0x3f9/0x590
+[27651.163592]  ? __kvmalloc_node_noprof+0xc1/0xd0
+[27651.163594]  ? __kvmalloc_node_noprof+0x37/0xd0
+[27651.163595]  amdgpu_bo_create_list_entry_array+0x3d/0x150 [amdgpu]
+[27651.163704]  amdgpu_bo_list_ioctl+0x55/0x350 [amdgpu]
+[27651.163805]  ? __pfx_amdgpu_bo_list_ioctl+0x10/0x10 [amdgpu]
+[27651.163909]  drm_ioctl_kernel+0xad/0x100
+[27651.163911]  drm_ioctl+0x288/0x530
+[27651.163912]  ? __pfx_amdgpu_bo_list_ioctl+0x10/0x10 [amdgpu]
+[27651.164010]  amdgpu_drm_ioctl+0x4b/0x80 [amdgpu]
+[27651.164106]  __x64_sys_ioctl+0x94/0xc0
+[27651.164108]  do_syscall_64+0x82/0x160
+[27651.164110]  ? handle_mm_fault+0x20d/0x330
+[27651.164111]  ? do_user_addr_fault+0x55a/0x7b0
+[27651.164113]  ? exc_page_fault+0x7e/0x180
+[27651.164114]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[27651.164116] RIP: 0033:0x7f271589d4ad
+[27651.164138]  </TASK>
+[27651.164138] ---[ end trace 0000000000000000 ]---
 
-I'm not entirely sure about xtensa, but it seems that PCI is
-only supported on the "virt" platform, which in turn cannot
-turn off MMU, even if there are other platforms that can build
-with out without MMU enabled.
 
-     Arnd
+That's just
+
+    union drm_amdgpu_bo_list bo_list;
+    int fd, ret;
+
+    memset(&bo_list, 0, sizeof(bo_list));
+
+    fd = open(DEVICE_PATH, O_RDWR);
+
+    bo_list.in.bo_number = 1 << 31;
+    ret = ioctl(fd, DRM_IOCTL_AMDGPU_BO_LIST, &bo_list);
+
+
+> 
+> So pre-checking those parameters in the caller once more is a bit
+> questionable, especially since we need to spread that around to all
+> callers of kvmalloc_array() which looks backwards considering the
+> purpose of kvmalloc_array().
+
+kvmalloc_array() performs an extra check only for that the `size * n`
+thing doesn't overflow the (generally) 64-bit arithmetic. Otherwise, it's
+actually like an ordinary kvmalloc() with a request of `size * n`.
+
+Performing that extra size_t-overflow check is not the same as checking
+that `size * n` cannot take enormous and possibly unverified values.
+That's what the logic of the checks inside the allocator implies IMO.
+
+> 
+> Maybe we should reduce the warning to info level for kvmalloc_array()
+> since returning NULL when incorrect parameters are given can be
+> perfectly handled by the caller.
+
+That would require running through and inspecting all of its callers in
+the source tree.
+
+And it would then differentiate from the underlying kvmalloc(), I'd say.
+
+The warning was added deliberately.
+
+commit 7661809d493b426e979f39ab512e3adf41fbcc69
+Author: Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Wed Jul 14 09:45:49 2021 -0700
+
+    mm: don't allow oversized kvmalloc() calls
+    
+    'kvmalloc()' is a convenience function for people who want to do a
+    kmalloc() but fall back on vmalloc() if there aren't enough physically
+    contiguous pages, or if the allocation is larger than what kmalloc()
+    supports.
+    
+    However, let's make sure it doesn't get _too_ easy to do crazy things
+    with it.  In particular, don't allow big allocations that could be due
+    to integer overflow or underflow.  So make sure the allocation size fits
+    in an 'int', to protect against trivial integer conversion issues.
+    
+    Acked-by: Willy Tarreau <w@1wt.eu>
+    Cc: Kees Cook <keescook@chromium.org>
+    Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+
+diff --git a/mm/util.c b/mm/util.c
+index db3091116b7c..499b6b5767ed 100644
+--- a/mm/util.c
++++ b/mm/util.c
+@@ -593,6 +593,10 @@ void *kvmalloc_node(size_t size, gfp_t flags, int node)
+        if (ret || size <= PAGE_SIZE)
+                return ret;
+ 
++       /* Don't even allow crazy sizes */
++       if (WARN_ON_ONCE(size > INT_MAX))
++               return NULL;
++
+        return __vmalloc_node(size, 1, flags, node,
+                        __builtin_return_address(0));
+ }
+
