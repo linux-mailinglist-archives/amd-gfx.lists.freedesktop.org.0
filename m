@@ -2,67 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB0EA7F612
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 09:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9049A7F60F
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Apr 2025 09:22:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5FC710E204;
-	Tue,  8 Apr 2025 07:22:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D42810E5EC;
+	Tue,  8 Apr 2025 07:22:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
- [205.220.178.238])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF06110E58E;
- Tue,  8 Apr 2025 00:59:40 +0000 (UTC)
-Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
- by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5380R3sF032020;
- Tue, 8 Apr 2025 00:59:23 GMT
-Received: from ala-exchng02.corp.ad.wrs.com (ala-exchng02.wrs.com
- [147.11.82.254])
- by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 45tug8k4ch-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Tue, 08 Apr 2025 00:59:23 +0000 (GMT)
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.43; Mon, 7 Apr 2025 17:59:21 -0700
-Received: from pek-lpg-core1.wrs.com (147.11.136.210) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2507.43 via Frontend Transport; Mon, 7 Apr 2025 17:59:17 -0700
-From: <jianqi.ren.cn@windriver.com>
-To: <stable@vger.kernel.org>
-CC: <Tim.Huang@amd.com>, <Jesse.Zhang@amd.com>, <patches@lists.linux.dev>,
- <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
- <jianqi.ren.cn@windriver.com>, <harry.wentland@amd.com>,
- <sunpeng.li@amd.com>, <Rodrigo.Siqueira@amd.com>,
- <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <chiahsuan.chung@amd.com>, <alex.hung@amd.com>,
- <daniel.wheeler@amd.com>, <hersenxs.wu@amd.com>
-Subject: [PATCH 5.10.y] drm/amd/pm: Fix negative array index read
-Date: Tue, 8 Apr 2025 08:59:16 +0800
-Message-ID: <20250408005916.3362084-1-jianqi.ren.cn@windriver.com>
-X-Mailer: git-send-email 2.34.1
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5D3B10E1EF;
+ Tue,  8 Apr 2025 02:20:45 +0000 (UTC)
+Received: from localhost.localdomain (unknown [124.16.141.245])
+ by APP-05 (Coremail) with SMTP id zQCowAA3dQ30h_RnricPBw--.24673S2;
+ Tue, 08 Apr 2025 10:20:37 +0800 (CST)
+From: Wentao Liang <vulab@iscas.ac.cn>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, simona@ffwll.ch
+Cc: hamza.mahfooz@amd.com, chiahsuan.chung@amd.com, sunil.khatri@amd.com,
+ alex.hung@amd.com, aurabindo.pillai@amd.com, hersenxs.wu@amd.com,
+ mario.limonciello@amd.com, mwen@igalia.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Wentao Liang <vulab@iscas.ac.cn>
+Subject: [PATCH v2] drm/amd/display: Add error check for avi and vendor
+ infoframe setup function
+Date: Tue,  8 Apr 2025 10:20:18 +0800
+Message-ID: <20250408022018.2786-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.42.0.windows.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: 7PQuZLHbPOKsCVgyxeGy_nUbdk4xh-_p
-X-Authority-Analysis: v=2.4 cv=YJefyQGx c=1 sm=1 tr=0 ts=67f474eb cx=c_pps
- a=K4BcnWQioVPsTJd46EJO2w==:117 a=K4BcnWQioVPsTJd46EJO2w==:17
- a=XR8D0OoHHMoA:10 a=zd2uoN0lAAAA:8 a=t7CeM3EgAAAA:8 a=U7fDvu6cvwUxRHWrC4cA:9
- a=FdTzh2GWekK77mhwV6Dw:22
-X-Proofpoint-ORIG-GUID: 7PQuZLHbPOKsCVgyxeGy_nUbdk4xh-_p
-X-Sensitive_Customer_Information: Yes
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-07_07,2025-04-07_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- malwarescore=0 bulkscore=0 mlxlogscore=999 adultscore=0 lowpriorityscore=0
- mlxscore=0 clxscore=1011 impostorscore=0 phishscore=0 spamscore=0
- suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.21.0-2502280000
- definitions=main-2504080005
+X-CM-TRANSID: zQCowAA3dQ30h_RnricPBw--.24673S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CF4UAr47KFyUJw47ZF4rAFb_yoW8uF1Dpw
+ 48ta4DtrWvqFZxCryUAFn5ua90k3s7JFy7Kr45Aw15W3s5KrZ3Ja1fJF1kJ39rZFZ5A3Wa
+ y3WUX3y7XF1vk3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9214x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr
+ 1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
+ 7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
+ 1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02
+ 628vn2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4
+ IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1r
+ MI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJV
+ WUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j
+ 6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYx
+ BIdaVFxhVjvjDU0xZFpf9x0pRHUDLUUUUU=
+X-Originating-IP: [124.16.141.245]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAgGA2f0eChG3AAAsY
 X-Mailman-Approved-At: Tue, 08 Apr 2025 07:22:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,83 +65,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jesse Zhang <jesse.zhang@amd.com>
+The function fill_stream_properties_from_drm_display_mode() calls the
+function drm_hdmi_avi_infoframe_from_display_mode() and the
+function drm_hdmi_vendor_infoframe_from_display_mode(), but does
+not check its return value. Log the error messages to prevent silent
+failure if either function fails.
 
-[ Upstream commit c8c19ebf7c0b202a6a2d37a52ca112432723db5f ]
-
-Avoid using the negative values
-for clk_idex as an index into an array pptable->DpmDescriptor.
-
-V2: fix clk_index return check (Tim Huang)
-
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
-Reviewed-by: Tim Huang <Tim.Huang@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-[Minor conflict resolved due to code context change.]
-Signed-off-by: Jianqi Ren <jianqi.ren.cn@windriver.com>
-Signed-off-by: He Zhe <zhe.he@windriver.com>
+Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
 ---
-Verified the build test
----
- .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 21 ++++++++++++++-----
- 1 file changed, 16 insertions(+), 5 deletions(-)
+v2: Fix code diff error
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index a7773b6453d5..0af9ee3a520a 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -900,19 +900,22 @@ static int navi10_get_current_clk_freq_by_table(struct smu_context *smu,
- 					   value);
- }
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 5f216d626cbb..8fc6ba12c82d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6104,6 +6104,7 @@ static void fill_stream_properties_from_drm_display_mode(
+ 	struct amdgpu_dm_connector *aconnector = NULL;
+ 	struct hdmi_vendor_infoframe hv_frame;
+ 	struct hdmi_avi_infoframe avi_frame;
++	ssize_t err;
  
--static bool navi10_is_support_fine_grained_dpm(struct smu_context *smu, enum smu_clk_type clk_type)
-+static int navi10_is_support_fine_grained_dpm(struct smu_context *smu, enum smu_clk_type clk_type)
- {
- 	PPTable_t *pptable = smu->smu_table.driver_pptable;
- 	DpmDescriptor_t *dpm_desc = NULL;
--	uint32_t clk_index = 0;
-+	int clk_index = 0;
+ 	if (connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
+ 		aconnector = to_amdgpu_dm_connector(connector);
+@@ -6150,9 +6151,17 @@ static void fill_stream_properties_from_drm_display_mode(
+ 	}
  
- 	clk_index = smu_cmn_to_asic_specific_index(smu,
- 						   CMN2ASIC_MAPPING_CLK,
- 						   clk_type);
-+	if (clk_index < 0)
-+		return clk_index;
-+
- 	dpm_desc = &pptable->DpmDescriptor[clk_index];
+ 	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A) {
+-		drm_hdmi_avi_infoframe_from_display_mode(&avi_frame, (struct drm_connector *)connector, mode_in);
++		err = drm_hdmi_avi_infoframe_from_display_mode(&avi_frame,
++							       (struct drm_connector *)connector,
++							       mode_in);
++		if (err < 0)
++			dev_err(connector->dev, "Failed to setup avi infoframe: %zd\n", err);
+ 		timing_out->vic = avi_frame.video_code;
+-		drm_hdmi_vendor_infoframe_from_display_mode(&hv_frame, (struct drm_connector *)connector, mode_in);
++		err = drm_hdmi_vendor_infoframe_from_display_mode(&hv_frame,
++								  (struct drm_connector *)connector,
++								  mode_in);
++		if (err < 0)
++			dev_err(connector->dev, "Failed to setup vendor infoframe: %zd\n", err);
+ 		timing_out->hdmi_vic = hv_frame.vic;
+ 	}
  
- 	/* 0 - Fine grained DPM, 1 - Discrete DPM */
--	return dpm_desc->SnapToDiscrete == 0 ? true : false;
-+	return dpm_desc->SnapToDiscrete == 0 ? 1 : 0;
- }
- 
- static inline bool navi10_od_feature_is_supported(struct smu_11_0_overdrive_table *od_table, enum SMU_11_0_ODFEATURE_CAP cap)
-@@ -964,7 +967,11 @@ static int navi10_print_clk_levels(struct smu_context *smu,
- 		if (ret)
- 			return size;
- 
--		if (!navi10_is_support_fine_grained_dpm(smu, clk_type)) {
-+		ret = navi10_is_support_fine_grained_dpm(smu, clk_type);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (!ret) {
- 			for (i = 0; i < count; i++) {
- 				ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, i, &value);
- 				if (ret)
-@@ -1127,7 +1134,11 @@ static int navi10_force_clk_levels(struct smu_context *smu,
- 	case SMU_UCLK:
- 	case SMU_FCLK:
- 		/* There is only 2 levels for fine grained DPM */
--		if (navi10_is_support_fine_grained_dpm(smu, clk_type)) {
-+		ret = navi10_is_support_fine_grained_dpm(smu, clk_type);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (ret) {
- 			soft_max_level = (soft_max_level >= 1 ? 1 : 0);
- 			soft_min_level = (soft_min_level >= 1 ? 1 : 0);
- 		}
 -- 
-2.34.1
+2.42.0.windows.2
 
