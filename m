@@ -2,61 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83B05A8441F
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A25EA84431
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:09:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 872E610E9E5;
-	Thu, 10 Apr 2025 13:08:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E339610E9AB;
+	Thu, 10 Apr 2025 13:08:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="H9kbCebU";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="DRMU8Oec";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F012F10E800;
- Wed,  9 Apr 2025 08:03:44 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZXb711qMBz9t4w;
- Wed,  9 Apr 2025 10:03:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1744185821; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=7fqznLAyvHu/jJ9za6hfLAeZqCvQ3xojCZMtgLC3XYw=;
- b=H9kbCebUZR1c7HOrQgYjPIYBVEFAXQSWcq6/p1UyaFsQL5RVW8qDJPZJDp+qC3GjKNVxRt
- DRZL0n/rENniKePXYZaCqEJY0i7wRIVO8nj1NZnDeePrW2Dn3W1dB+9XWKWpB33dMcfYJ9
- J2f7juccWHrQ6rBYVzSeuDhek0t6v0Y1omaNC+VbHOyOLNiRNHXjOlg+v77wj55CLq6kZe
- I8GCkSKnPB7VGieK0t/tUrz6+VwPURjf1eHIX/aqKevwbGEZET2BfNY4v4zU1C5ZKlQMsV
- q1BjHRuzslbwi9G5yJVXKkWQP5uTYc6Ftpwgx9gaAtErlzy1rplwxy1+/krYeg==
-Message-ID: <2486e9eba3806f8e7fc3df724e916929a627fac7.camel@mailbox.org>
-Subject: Re: [PATCH v8 00/10] Improve gpu_scheduler trace events + UAPI
-From: Philipp Stanner <phasta@mailbox.org>
-To: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>, Pierre-Eric
- Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, Philipp Stanner <phasta@kernel.org>, Danilo
- Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, lima@lists.freedesktop.org, 
- linaro-mm-sig@lists.linaro.org, linux-arm-msm@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, nouveau@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 10:03:34 +0200
-In-Reply-To: <f3416edf-46f8-4296-86bd-600ab629fe60@damsy.net>
-References: <20250320095818.40622-1-pierre-eric.pelloux-prayer@amd.com>
- <f3416edf-46f8-4296-86bd-600ab629fe60@damsy.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D77E10E309
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Apr 2025 08:46:54 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-43ea40a6e98so55962515e9.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 09 Apr 2025 01:46:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1744188412; x=1744793212; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=4OzH9YwLXWPPugPuWyfNy8OfCZxBMvD1de7nAngTy4M=;
+ b=DRMU8OecM/9/Z/7EpeVSM68Y6zVh0Hc0CAFI/gkCLbJ/l06/AoVszIoAM5SVXBpVAN
+ Is+a5tBySCyZNTRQEkixJcx1mjSip8c0O6QV3SDW2NHjAI7u+rvYIcxelD4ODM/+Dz+a
+ 46c3Ev7cwxgbAjGj5BKgUSECb99gBpvaZoXEij1d/wXRil/tV+5UcISyTRbE34+3fCtg
+ Xd85slcLjJW2iTlYZbr564hRHgxf/z/dwBL7i6Cz/DU8b2zBqIU6GTFoP1ylZYz+uSCj
+ vizmomcDlqtuVM0+UORqRsykykT5X5L4QtCd2V/J+py2zd9ZrUKju5XOga3GGtqEy2/i
+ AxFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1744188412; x=1744793212;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=4OzH9YwLXWPPugPuWyfNy8OfCZxBMvD1de7nAngTy4M=;
+ b=rGJAwMqxxknqWAf5/kZ4TDvQKeMrQvWtw8HDwQz3QvF9Cxg1VSVbCMEo31V1G+FLru
+ XXVf8ydgzdH+Y9AEkfZgtKq0djYvRq3ok+xPI+3BKeJhNQhOukW9ieviFLHqEJDXxmbV
+ pA1E7mvhAELPLiG6MYfLpzN5m+u1QxgLeBYbFb4lzH+miA4n9KmtzUmfQ6pfaijw2SKc
+ RCMF7quT5kobkedc0goSRmKWTyAqyKqqLZHzXoTGC6R2yk0SwJNEABbkstSldtGH/IIH
+ sAD+dgchcTIrB6BwVscLvKQQ1UkP5RNZKJL19pDXshZi/o04szAyzVs7VJpAP40cjWei
+ QzQA==
+X-Gm-Message-State: AOJu0YxtaAzqMCdPioJtzEM1PYasML+7gIBO8xGBWASnqs+mWsiRSotf
+ s3n8l1rL6Wj7G6we5LAc8DSWDYnQZ7N6YDo1W/LnbBMsQJaHvW+d3l9N03f5qDw=
+X-Gm-Gg: ASbGncvYLRyiZ8IrNgOBI1ktsaD2bZIh/Ht1wDNd2rWac+XI5zAd2NN9IpqBubIFzXC
+ YjoomgOMCVeYaZsn1vjMlGrtxEhdI13emlGsKIQ2GaeHMpJAwB0f2zgh2bvUDzlU0sHflFzHLGl
+ J1b3k27Z9c6qs010J+3sQAWTIMBo69+vQ2ledb+9N9731XOUUb2TZHdOog42J8wtZ816givrWVR
+ UHS25ZuRYGB78espx2MJxRraGTbK1PcNSlDuNCtBT17e1nhh11sN0K6XNU+FpoTiVQNOUv3ejTq
+ z80v2gweV/+wE6qBbQLsYyJ1LySW4dxf/5xThmEfuuryzg==
+X-Google-Smtp-Source: AGHT+IEgjSsiil3k2mighLToTN7rxETZ7M6ku/D6xblpxHB81KuZ3F8CJtBjqFCuTMyr0rTm3Wyxug==
+X-Received: by 2002:a05:6000:400a:b0:38d:badf:9df5 with SMTP id
+ ffacd0b85a97d-39d87aa7f5emr1672599f8f.17.1744188412603; 
+ Wed, 09 Apr 2025 01:46:52 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-39d8938a4dasm959289f8f.48.2025.04.09.01.46.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Apr 2025 01:46:52 -0700 (PDT)
+Date: Wed, 9 Apr 2025 11:46:48 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Ce Sun <cesun102@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amdgpu: Multi-GPU DPC recovery support
+Message-ID: <ecb6666e-7ef0-4dbc-ad11-df9ca16fac43@stanley.mountain>
 MIME-Version: 1.0
-X-MBO-RS-META: ac77wnkq97cnh7ipc437xrje46qmhgfq
-X-MBO-RS-ID: 890d0c8e5ddfbadb243
-X-Mailman-Approved-At: Thu, 10 Apr 2025 13:08:16 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 10 Apr 2025 13:08:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,155 +79,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2025-04-09 at 09:52 +0200, Pierre-Eric Pelloux-Prayer wrote:
-> Hi,
->=20
-> I've rebased the series on top of drm-next, applied the minor tweaks
-> suggested by Tvrtko on v8 and=20
-> the R-b tags. The result can be found on gitlab.fdo:
->=20
-> https://gitlab.freedesktop.org/pepp/linux/-/commits/improve_gpu_scheduler=
-_trace_v9
->=20
-> I believe it's ready to be merged, unless I've missed something?
+Hello Ce Sun,
 
-Has slipped my radar for a while, sorry.
+Commit 8ba904f54148 ("drm/amdgpu: Multi-GPU DPC recovery support")
+from Mar 21, 2025 (linux-next), leads to the following Smatch static
+checker warning:
 
-I browsed over the series=20
+	drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:6820 amdgpu_pci_slot_reset()
+	warn: iterator used outside loop: 'tmp_adev'
 
-Can you pro forma send the v9 (with the scheduler maintainers also in
-the cover letter's CC) with the changelog, please?
+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+    6753 pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
+    6754 {
+    6755         struct drm_device *dev = pci_get_drvdata(pdev);
+    6756         struct amdgpu_device *adev = drm_to_adev(dev);
+    6757         struct amdgpu_reset_context reset_context;
+    6758         struct amdgpu_device *tmp_adev = NULL;
+    6759         struct amdgpu_hive_info *hive = NULL;
+    6760         struct list_head device_list;
+    6761         int r = 0, i;
+    6762         u32 memsize;
+    6763 
+    6764         /* PCI error slot reset should be skipped During RAS recovery */
+    6765         if ((amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 4, 3) ||
+    6766             amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 4, 4)) &&
+    6767             amdgpu_ras_in_recovery(adev))
+    6768                 return PCI_ERS_RESULT_RECOVERED;
+    6769 
+    6770         dev_info(adev->dev, "PCI error: slot reset callback!!\n");
+    6771 
+    6772         memset(&reset_context, 0, sizeof(reset_context));
+    6773 
+    6774         /* wait for asic to come out of reset */
+    6775         msleep(700);
+    6776 
+    6777         /* Restore PCI confspace */
+    6778         amdgpu_device_load_pci_state(pdev);
+    6779 
+    6780         /* confirm  ASIC came out of reset */
+    6781         for (i = 0; i < adev->usec_timeout; i++) {
+    6782                 memsize = amdgpu_asic_get_config_memsize(adev);
+    6783 
+    6784                 if (memsize != 0xffffffff)
+    6785                         break;
+    6786                 udelay(1);
+    6787         }
+    6788         if (memsize == 0xffffffff) {
+    6789                 r = -ETIME;
+    6790                 goto out;
+    6791         }
+    6792 
+    6793         reset_context.method = AMD_RESET_METHOD_NONE;
+    6794         reset_context.reset_req_dev = adev;
+    6795         set_bit(AMDGPU_NEED_FULL_RESET, &reset_context.flags);
+    6796         set_bit(AMDGPU_SKIP_COREDUMP, &reset_context.flags);
+    6797         INIT_LIST_HEAD(&device_list);
+    6798 
+    6799         hive = amdgpu_get_xgmi_hive(adev);
+    6800         if (hive) {
+    6801                 mutex_lock(&hive->hive_lock);
+    6802                 reset_context.hive = hive;
+    6803                 list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
+    6804                         tmp_adev->pcie_reset_ctx.in_link_reset = true;
+    6805                         list_add_tail(&tmp_adev->reset_list, &device_list);
+    6806                 }
 
-Then I'd ACK and someone (probably me?) can take it in.
+tmp_adev is an invalid non-NULL pointer.
 
-Thanks
-P.
+    6807         } else {
+    6808                 set_bit(AMDGPU_SKIP_HW_RESET, &reset_context.flags);
+    6809                 list_add_tail(&adev->reset_list, &device_list);
+    6810         }
+    6811 
+    6812         r = amdgpu_device_asic_reset(adev, &device_list, &reset_context);
+    6813 out:
+    6814         if (!r) {
+    6815                 if (amdgpu_device_cache_pci_state(adev->pdev))
+    6816                         pci_restore_state(adev->pdev);
+    6817                 dev_info(adev->dev, "PCIe error recovery succeeded\n");
+    6818         } else {
+    6819                 dev_err(adev->dev, "PCIe error recovery failed, err:%d\n", r);
+--> 6820                 if (tmp_adev) {
 
->=20
-> Thanks,
-> Pierre-Eric
->=20
-> Le 20/03/2025 =C3=A0 10:57, Pierre-Eric Pelloux-Prayer a =C3=A9crit=C2=A0=
-:
-> > Hi,
-> >=20
-> > The initial goal of this series was to improve the drm and amdgpu
-> > trace events to be able to expose more of the inner workings of
-> > the scheduler and drivers to developers via tools.
-> >=20
-> > Then, the series evolved to become focused only on gpu_scheduler.
-> > The changes around vblank events will be part of a different
-> > series, as well as the amdgpu ones.
-> >=20
-> > Moreover Sima suggested to make some trace events stable uAPI,
-> > so tools can rely on them long term.
-> >=20
-> > The first patches extend and cleanup the gpu scheduler events,
-> > then add a documentation entry in drm-uapi.rst.
-> >=20
-> > The last 2 patches are new in v8. One is based on a suggestion
-> > from Tvrtko and gets rid of drm_sched_job::id. The other is a
-> > cleanup of amdgpu trace events to use the fence=3D%llu:%llu format.
-> >=20
-> > The drm_sched_job patches don't affect gpuvis which has code to
-> > parse
-> > the gpu_scheduler events but these events are not enabled.
-> >=20
-> > Changes since v7:
-> > * uint64_t -> u64
-> > * reworked dependencies tracing (Tvrtko)
-> > * use common name prefix for all events (Tvrtko)
-> > * dropped drm_sched_job::id (Tvrtko)
-> >=20
-> > Useful links:
-> > - userspace tool using the updated events:
-> > https://gitlab.freedesktop.org/tomstdenis/umr/-/merge_requests/37
-> > - v7:
-> > https://lists.freedesktop.org/archives/dri-devel/2025-January/488117.ht=
-ml
-> >=20
-> > Pierre-Eric Pelloux-Prayer (10):
-> > =C2=A0=C2=A0 drm/debugfs: output client_id in in drm_clients_info
-> > =C2=A0=C2=A0 drm/sched: store the drm client_id in drm_sched_fence
-> > =C2=A0=C2=A0 drm/sched: add device name to the drm_sched_process_job ev=
-ent
-> > =C2=A0=C2=A0 drm/sched: cleanup gpu_scheduler trace events
-> > =C2=A0=C2=A0 drm/sched: trace dependencies for gpu jobs
-> > =C2=A0=C2=A0 drm/sched: add the drm_client_id to the drm_sched_run/exec=
-_job
-> > events
-> > =C2=A0=C2=A0 drm/sched: cleanup event names
-> > =C2=A0=C2=A0 drm/doc: document some tracepoints as uAPI
-> > =C2=A0=C2=A0 drm: get rid of drm_sched_job::id
-> > =C2=A0=C2=A0 drm/amdgpu: update trace format to match gpu_scheduler_tra=
-ce
-> >=20
-> > =C2=A0 Documentation/gpu/drm-uapi.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 19 ++++
-> > =C2=A0 drivers/accel/amdxdna/aie2_ctx.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_job.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 32 ++----
-> > =C2=A0 drivers/gpu/drm/drm_debugfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 =
-+-
-> > =C2=A0 drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c=C2=A0 |=C2=A0=C2=A0=
- 2 +-
-> > =C2=A0 drivers/gpu/drm/imagination/pvr_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/imagination/pvr_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +-
-> > =C2=A0 drivers/gpu/drm/imagination/pvr_queue.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/lima/lima_gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/lima/lima_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
-> > =C2=A0 drivers/gpu/drm/lima/lima_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/msm/msm_gem_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/panfrost/panfrost_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/panthor/panthor_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/panthor/panthor_mmu.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/panthor/panthor_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +-
-> > =C2=A0 drivers/gpu/drm/panthor/panthor_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 .../gpu/drm/scheduler/gpu_scheduler_trace.h=C2=A0=C2=A0 | 103
-> > +++++++++++++-----
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 16 ++-
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_internal.h=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +-
-> > =C2=A0 drivers/gpu/drm/v3d/v3d_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 13 ++-
-> > =C2=A0 30 files changed, 186 insertions(+), 96 deletions(-)
-> >=20
+This looks like it might have been intentional but it would be more
+readable to check if (hive) {
 
+    6821                         list_for_each_entry(tmp_adev, &device_list, reset_list)
+    6822                                 amdgpu_device_unset_mp1_state(tmp_adev);
+    6823                         amdgpu_device_unlock_reset_domain(adev->reset_domain);
+    6824                 }
+    6825         }
+    6826 
+    6827         if (hive) {
+    6828                 mutex_unlock(&hive->hive_lock);
+    6829                 amdgpu_put_xgmi_hive(hive);
+    6830         }
+    6831 
+    6832         return r ? PCI_ERS_RESULT_DISCONNECT : PCI_ERS_RESULT_RECOVERED;
+    6833 }
+
+regards,
+dan carpenter
