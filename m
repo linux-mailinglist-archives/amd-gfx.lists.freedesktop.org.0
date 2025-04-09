@@ -2,67 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74978A81C0E
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Apr 2025 07:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A838A81C54
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Apr 2025 07:49:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1CC610E7D4;
-	Wed,  9 Apr 2025 05:20:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794FF10E043;
+	Wed,  9 Apr 2025 05:49:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tz0oNzNh";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SU3mXUFA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1748010E111;
- Wed,  9 Apr 2025 05:20:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744176055; x=1775712055;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=qEER/RgVCOioJPbMmsKJ72fps24z+FpHP98LKMZRgy8=;
- b=Tz0oNzNhrbSsbpX9baFOciG05kkYmROvnzZGZygIOLrOBV6Xk5AnNnGp
- BOfixlSSgSs77rAjanB3uHe6VTgZiME4uD/Nfkxla63RA/LD9C7Sjcptj
- XXE5G38E2SQVjFBoRf/HWsDCfz+kIoZ5xBVkZi9NxOwgRKpl0Of20qoHF
- ThAkKqNAuvIaeDUD+/pDS6ry1pIF8zmfRZdg/8fAwUK8uREPVAUyJmTOs
- KFdtug1bcyVgI2OKxYPPYJb1kVAIe9ZrdPW4AHrqV7foBU0JRDuEsO+5k
- p8e2Ay3EgkWTUH05lqM6xLjjMXqeAkxTvv+qR9xaHF30aQOCm5yKbJhRQ Q==;
-X-CSE-ConnectionGUID: JbHaQKgoQ06MPED5X86iOQ==
-X-CSE-MsgGUID: z881i1RbQWyJ4CZQCtbNVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45348891"
-X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="45348891"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 22:20:54 -0700
-X-CSE-ConnectionGUID: 5otkT78iTxWk/lUttB9mag==
-X-CSE-MsgGUID: 3fmEncnOSRSVDKK+BN7tWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="133601185"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
- by fmviesa004.fm.intel.com with ESMTP; 08 Apr 2025 22:20:49 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1u2Nri-0008H5-1s;
- Wed, 09 Apr 2025 05:20:46 +0000
-Date: Wed, 9 Apr 2025 13:20:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Wentao Liang <vulab@iscas.ac.cn>, harry.wentland@amd.com,
- sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, airlied@gmail.com, simona@ffwll.ch
-Cc: oe-kbuild-all@lists.linux.dev, hamza.mahfooz@amd.com,
- chiahsuan.chung@amd.com, sunil.khatri@amd.com, alex.hung@amd.com,
- aurabindo.pillai@amd.com, hersenxs.wu@amd.com,
- mario.limonciello@amd.com, mwen@igalia.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>
-Subject: Re: [PATCH v2] drm/amd/display: Add error check for avi and vendor
- infoframe setup function
-Message-ID: <202504091230.CXdkQbvK-lkp@intel.com>
-References: <20250408022018.2786-1-vulab@iscas.ac.cn>
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2065.outbound.protection.outlook.com [40.107.244.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 770F610E043
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Apr 2025 05:49:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oo/pg2c/sJH5wsQnNG0VKkiyNxlDglFAyAy2fcoEi5W/+2/pKt1txf473PdjyEn0DH0YugdtAktOBocnSH0w5YJNrBQw4/aPKEaBLOEWHD8Ke+F+9nsPy0lWpjP6c2p4+aOUrzneP7ch6xGJ7X3gF1/+Bhwt7yIk4HyCEUVBknWzIl/Ulm6469IGVHYgJWHixNWxSs4n2F39550FMvS+Ys8B+FzjCZ404c7JJr2K2jxtJ3MQXxdVS1G3ALNFEn98Zv1BZ/GPFE5G47/hL5vOhc8jWqrMzX3xYOPYhO5dWP6mPiveFH6q/CV0N19jyQHe4qaWunDdpTOn8jiNMQByFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fB3gAD3AHCI9Z2IAWHYgAW2koPneNydsAvgvueAwjJ0=;
+ b=OYo3CplT6U4ydgQC8sgTOj6399p+TMJQAUp2i0B17YA+YBE2ZlTbHZOq5diqm8JUdNUpvAIDO9MOBDRIOAge8HyyU+dzQSAWNwm0H1PHRT0hBzCoBxt/Wk5IKiKrfQRqDwv/c23QaX5r469Glze1Bg00oAYVeSm01SSmrMHYajtKqTAJwqf5KyrdabrkzJ83WaugTCC2lb+Zi/jv535ds8bWqMIBtMQRoRtcQExU6bbawg7pcfwIB102gXvhtAqJ4xUATJghU6tcwZ5gRuMSrWO77mfdFNoX2PNFU9xCI0Wu26iSYPPgyuSOXxdg+TYuXZTCkWsP2u2gSmZ7vqWLiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fB3gAD3AHCI9Z2IAWHYgAW2koPneNydsAvgvueAwjJ0=;
+ b=SU3mXUFABfmOf+waTE7ya1ZH8olB2uFPybG94zxeW4CtOs+gax4EtoiHhHFyFZvQ2m4D1hC6A4Vo61ZoQICR1vwSXowI6Hgucnhz0uNfZzfT/aZyh7nAJypufA3FV3Ae3xjxpiHEyD9+9CVrJ//ZAHTqfQVMcHqyHjC0UGYkA98=
+Received: from MW4PR04CA0228.namprd04.prod.outlook.com (2603:10b6:303:87::23)
+ by MN2PR12MB4080.namprd12.prod.outlook.com (2603:10b6:208:1d9::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.35; Wed, 9 Apr
+ 2025 05:49:15 +0000
+Received: from CO1PEPF000044F8.namprd21.prod.outlook.com
+ (2603:10b6:303:87:cafe::f2) by MW4PR04CA0228.outlook.office365.com
+ (2603:10b6:303:87::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8606.36 via Frontend Transport; Wed,
+ 9 Apr 2025 05:49:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000044F8.mail.protection.outlook.com (10.167.241.198) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8655.0 via Frontend Transport; Wed, 9 Apr 2025 05:49:14 +0000
+Received: from rtg-System-Product-Name.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 9 Apr 2025 00:49:11 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <christian.koenig@amd.com>, <alexander.deucher@amd.com>, "Arunpravin
+ Paneer Selvam" <Arunpravin.PaneerSelvam@amd.com>
+Subject: [PATCH 1/5] drm/amdgpu/userq: Fix lock contention in userq fence
+Date: Wed, 9 Apr 2025 11:18:26 +0530
+Message-ID: <20250409054831.2411-1-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250408022018.2786-1-vulab@iscas.ac.cn>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F8:EE_|MN2PR12MB4080:EE_
+X-MS-Office365-Filtering-Correlation-Id: e671d98d-5f0c-45c1-5dad-08dd772a427b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?IRoUy5mcp5PfUc9eVtklw5FHVP239IwHWj3PkUySvDUdWObyCENjaeAPOxhn?=
+ =?us-ascii?Q?X36OPza3KLUmg+TylmxygNPDaVWPVerDsF0YBYjWcm+IS3/XnTo6HJ7UGjNq?=
+ =?us-ascii?Q?aQcWfcvqZX0BoxFhSUbBha+52vZ1mNAFmeaRBW242pLviHpVRRosc7rn1Dpl?=
+ =?us-ascii?Q?s66K0EG/RHNonYZaK1XXbisksxK3GOMGuY7WWtACzZvsC8hNsFQgvHQb4uYn?=
+ =?us-ascii?Q?gK3fbcQz6XAqwNUN3/k+6QPdaWYrtwrj0IZil9FFlARTbiIzpoPF5CfdN+rL?=
+ =?us-ascii?Q?yBEQ0rB6ZEubuxZtyqd05hsG1StDW83X6UIVw/sT6JYRW9eoDEnONeD9P5tA?=
+ =?us-ascii?Q?zKNBNVv/u3uOXxEITSer3hcP35R4SBnRy2uRqXgtsk71YUhWYQo4c3owgmgI?=
+ =?us-ascii?Q?76lCTscGxhK+x5iP35bADpT4JNe4UL0Z70Zh5gt5fsgSDNPU2LHkQDq30sYn?=
+ =?us-ascii?Q?xdcghxcTD6hAvrNqnKCVbYWSiGzrCFVSmdIOYCiVKETB+lvZPt3hjClZgi6y?=
+ =?us-ascii?Q?QF5EiSRsnq/7vNiluFJhMZM/KibHMDHSKS0Xd4VKEmJrTJO+BgglCJVOnfql?=
+ =?us-ascii?Q?Ig+jGQzsfXrVlAFcc86RDEk3l1eZTz6juq1C9/36XsQZ3g4OjKOZNz9IpCIb?=
+ =?us-ascii?Q?GfpdgQPXu4Cg0T96iLkUiTJFr6sLZX7u+96yw7Au1U6En0wCuC8cY24Gcw/u?=
+ =?us-ascii?Q?sC+msffSSs5Sdg5uhM/V8E2vPaJNRpfUnkTSc42AlmUc8Z9+C3Aruq3DZqcI?=
+ =?us-ascii?Q?ArKw8svYBMapCd1L4mY531CE0s3MyRXJLz1KKkTZnqApfzPDoaINMbWl8U9m?=
+ =?us-ascii?Q?EgkGXFQ52A6fXihB0XUL14RGtAwt96W0Jb8q2U/9AFgwvZXah2mX9GAEabOr?=
+ =?us-ascii?Q?LXBgAqoWLn4m5bbmCVgtTJaR28kmf23+7VoDl1wGGvHJ15GUon7ML6lKTIgZ?=
+ =?us-ascii?Q?4bVhVOxc9qRrl2X2UBwt1pLgxCjrAH3HAfiEf7JFdumN2M1orRGVben8kqfm?=
+ =?us-ascii?Q?YY4x1QPvCQR/ltxpVzSVeeHItSKXRKH3y2ehDJifGcLp+VjDoTkOTXg1Rb+u?=
+ =?us-ascii?Q?qXCgqvKgmCQ0BMXdwU0Wo7RTqzj4XEZIql5PYmWraBxgiIptdEUzwx4JKmkN?=
+ =?us-ascii?Q?OQbUeX9q9AND1rbjeUOQKP60feXLuiXxoYlpCf/+X97wxwngJ/10wwFgArCv?=
+ =?us-ascii?Q?l0W5qtQTqVH5QJNNcywQPF5gmvf6RZSfEZ1yAydfIfWX4aBxqu6BOWOTKn7r?=
+ =?us-ascii?Q?imPl6Cp8hKISJOkf69JDNLhb0wP3y9OGHrNisj9x+lU2YQQwrTv5F/nN7tmu?=
+ =?us-ascii?Q?58q/XUf7nEm8DmbP0BnnN3MlABiPN/oKBPRY6LG6vIGUsG7fUlLu/mADbYpQ?=
+ =?us-ascii?Q?QRN1KtxMQnSMsNu31UyUaqvqYfIIRw8A3GBjnHosljMReDmx0i3i496zhufG?=
+ =?us-ascii?Q?jypnxNWG8Y23qCbbHWZ7aVIpzVEco98lyJNi0ICfnSEfQ3ME9lfzJ4+/gPHM?=
+ =?us-ascii?Q?an+REKpAjgbWgyY=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 05:49:14.2643 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e671d98d-5f0c-45c1-5dad-08dd772a427b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F8.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4080
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,186 +131,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Wentao,
+Fix lockdep warnings.
 
-kernel test robot noticed the following build errors:
+[  +0.000637] ================================
+[  +0.000004] WARNING: inconsistent lock state
+[  +0.000004] 6.12.0+ #18 Tainted: G        W  OE
+[  +0.000004] --------------------------------
+[  +0.000004] inconsistent {IN-HARDIRQ-W} -> {HARDIRQ-ON-W} usage.
+[  +0.000004] Xwayland/1952 [HC0[0]:SC0[0]:HE1:SE1] takes:
+[  +0.000005] ffff8884636f4740 (&fence_drv->fence_list_lock){?...}-{2:2}, at: amdgpu_userq_fence_driver_destroy+0xb8/0x540 [amdgpu]
+[  +0.000208] {IN-HARDIRQ-W} state was registered at:
+[  +0.000004]   lock_acquire.part.0+0x116/0x360
+[  +0.000005]   lock_acquire+0x7c/0xc0
+[  +0.000005]   _raw_spin_lock+0x2f/0x60
+[  +0.000005]   amdgpu_userq_fence_driver_process+0x75/0x400 [amdgpu]
+[  +0.000185]   gfx_v12_0_eop_irq+0x29f/0x420 [amdgpu]
+[  +0.000210]   amdgpu_irq_dispatch+0x2a4/0x7b0 [amdgpu]
+[  +0.000191]   amdgpu_ih_process+0x1e1/0x3d0 [amdgpu]
+[  +0.000185]   amdgpu_irq_handler+0x28/0xc0 [amdgpu]
+[  +0.000183]   __handle_irq_event_percpu+0x1bb/0x590
+[  +0.000005]   handle_irq_event+0xab/0x1d0
+[  +0.000005]   handle_edge_irq+0x1fd/0xc10
+[  +0.000005]   __common_interrupt+0x83/0x190
+[  +0.000004]   common_interrupt+0xb1/0xe0
+[  +0.000005]   asm_common_interrupt+0x27/0x40
+[  +0.000004]   cpuidle_enter_state+0x2ba/0x530
+[  +0.000005]   cpuidle_enter+0x4f/0xb0
+[  +0.000006]   call_cpuidle+0x46/0xd0
+[  +0.000005]   do_idle+0x367/0x430
+[  +0.000004]   cpu_startup_entry+0x58/0x70
+[  +0.000005]   start_secondary+0x224/0x2b0
+[  +0.000005]   common_startup_64+0x13e/0x141
+[  +0.000005] irq event stamp: 88271
+[  +0.000004] hardirqs last  enabled at (88271): [<ffffffffad9ca7a1>] _raw_spin_unlock_irqrestore+0x51/0x80
+[  +0.000005] hardirqs last disabled at (88270): [<ffffffffad9ca424>] _raw_spin_lock_irqsave+0x74/0x80
+[  +0.000005] softirqs last  enabled at (87858): [<ffffffffaa67377e>] __irq_exit_rcu+0x17e/0x1d0
+[  +0.000005] softirqs last disabled at (87849): [<ffffffffaa67377e>] __irq_exit_rcu+0x17e/0x1d0
+[  +0.000005]
+              other info that might help us debug this:
+[  +0.000004]  Possible unsafe locking scenario:
 
-[auto build test ERROR on drm-exynos/exynos-drm-next]
-[also build test ERROR on linus/master v6.15-rc1 next-20250408]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[  +0.000003]        CPU0
+[  +0.000004]        ----
+[  +0.000003]   lock(&fence_drv->fence_list_lock);
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Wentao-Liang/drm-amd-display-Add-error-check-for-avi-and-vendor-infoframe-setup-function/20250408-102113
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos.git exynos-drm-next
-patch link:    https://lore.kernel.org/r/20250408022018.2786-1-vulab%40iscas.ac.cn
-patch subject: [PATCH v2] drm/amd/display: Add error check for avi and vendor infoframe setup function
-config: csky-randconfig-001-20250409 (https://download.01.org/0day-ci/archive/20250409/202504091230.CXdkQbvK-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250409/202504091230.CXdkQbvK-lkp@intel.com/reproduce)
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504091230.CXdkQbvK-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:15,
-                    from include/linux/acpi.h:14,
-                    from include/linux/i2c.h:13,
-                    from include/drm/display/drm_dp_helper.h:27,
-                    from drivers/gpu/drm/amd/amdgpu/../display/dc/os_types.h:37,
-                    from drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:29,
-                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:29:
-   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c: In function 'fill_stream_properties_from_drm_display_mode':
->> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:6221:42: error: passing argument 1 of '_dev_err' from incompatible pointer type [-Wincompatible-pointer-types]
-    6221 |                         dev_err(connector->dev, "Failed to setup avi infoframe: %zd\n", err);
-         |                                 ~~~~~~~~~^~~~~
-         |                                          |
-         |                                          struct drm_device *
-   include/linux/dev_printk.h:110:25: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                         ^~~
-   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:6221:25: note: in expansion of macro 'dev_err'
-    6221 |                         dev_err(connector->dev, "Failed to setup avi infoframe: %zd\n", err);
-         |                         ^~~~~~~
-   include/linux/dev_printk.h:86:36: note: expected 'const struct device *' but argument is of type 'struct drm_device *'
-      86 | void _dev_err(const struct device *dev, const char *fmt, ...)
-         |               ~~~~~~~~~~~~~~~~~~~~~^~~
-   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:6227:42: error: passing argument 1 of '_dev_err' from incompatible pointer type [-Wincompatible-pointer-types]
-    6227 |                         dev_err(connector->dev, "Failed to setup vendor infoframe: %zd\n", err);
-         |                                 ~~~~~~~~~^~~~~
-         |                                          |
-         |                                          struct drm_device *
-   include/linux/dev_printk.h:110:25: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                         ^~~
-   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:6227:25: note: in expansion of macro 'dev_err'
-    6227 |                         dev_err(connector->dev, "Failed to setup vendor infoframe: %zd\n", err);
-         |                         ^~~~~~~
-   include/linux/dev_printk.h:86:36: note: expected 'const struct device *' but argument is of type 'struct drm_device *'
-      86 | void _dev_err(const struct device *dev, const char *fmt, ...)
-         |               ~~~~~~~~~~~~~~~~~~~~~^~~
-
-
-vim +/_dev_err +6221 drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
-
-  6156	
-  6157	static void fill_stream_properties_from_drm_display_mode(
-  6158		struct dc_stream_state *stream,
-  6159		const struct drm_display_mode *mode_in,
-  6160		const struct drm_connector *connector,
-  6161		const struct drm_connector_state *connector_state,
-  6162		const struct dc_stream_state *old_stream,
-  6163		int requested_bpc)
-  6164	{
-  6165		struct dc_crtc_timing *timing_out = &stream->timing;
-  6166		const struct drm_display_info *info = &connector->display_info;
-  6167		struct amdgpu_dm_connector *aconnector = NULL;
-  6168		struct hdmi_vendor_infoframe hv_frame;
-  6169		struct hdmi_avi_infoframe avi_frame;
-  6170		ssize_t err;
-  6171	
-  6172		if (connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
-  6173			aconnector = to_amdgpu_dm_connector(connector);
-  6174	
-  6175		memset(&hv_frame, 0, sizeof(hv_frame));
-  6176		memset(&avi_frame, 0, sizeof(avi_frame));
-  6177	
-  6178		timing_out->h_border_left = 0;
-  6179		timing_out->h_border_right = 0;
-  6180		timing_out->v_border_top = 0;
-  6181		timing_out->v_border_bottom = 0;
-  6182		/* TODO: un-hardcode */
-  6183		if (drm_mode_is_420_only(info, mode_in)
-  6184				&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
-  6185			timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
-  6186		else if (drm_mode_is_420_also(info, mode_in)
-  6187				&& aconnector
-  6188				&& aconnector->force_yuv420_output)
-  6189			timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
-  6190		else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR444)
-  6191				&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
-  6192			timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR444;
-  6193		else
-  6194			timing_out->pixel_encoding = PIXEL_ENCODING_RGB;
-  6195	
-  6196		timing_out->timing_3d_format = TIMING_3D_FORMAT_NONE;
-  6197		timing_out->display_color_depth = convert_color_depth_from_display_info(
-  6198			connector,
-  6199			(timing_out->pixel_encoding == PIXEL_ENCODING_YCBCR420),
-  6200			requested_bpc);
-  6201		timing_out->scan_type = SCANNING_TYPE_NODATA;
-  6202		timing_out->hdmi_vic = 0;
-  6203	
-  6204		if (old_stream) {
-  6205			timing_out->vic = old_stream->timing.vic;
-  6206			timing_out->flags.HSYNC_POSITIVE_POLARITY = old_stream->timing.flags.HSYNC_POSITIVE_POLARITY;
-  6207			timing_out->flags.VSYNC_POSITIVE_POLARITY = old_stream->timing.flags.VSYNC_POSITIVE_POLARITY;
-  6208		} else {
-  6209			timing_out->vic = drm_match_cea_mode(mode_in);
-  6210			if (mode_in->flags & DRM_MODE_FLAG_PHSYNC)
-  6211				timing_out->flags.HSYNC_POSITIVE_POLARITY = 1;
-  6212			if (mode_in->flags & DRM_MODE_FLAG_PVSYNC)
-  6213				timing_out->flags.VSYNC_POSITIVE_POLARITY = 1;
-  6214		}
-  6215	
-  6216		if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A) {
-  6217			err = drm_hdmi_avi_infoframe_from_display_mode(&avi_frame,
-  6218								       (struct drm_connector *)connector,
-  6219								       mode_in);
-  6220			if (err < 0)
-> 6221				dev_err(connector->dev, "Failed to setup avi infoframe: %zd\n", err);
-  6222			timing_out->vic = avi_frame.video_code;
-  6223			err = drm_hdmi_vendor_infoframe_from_display_mode(&hv_frame,
-  6224									  (struct drm_connector *)connector,
-  6225									  mode_in);
-  6226			if (err < 0)
-  6227				dev_err(connector->dev, "Failed to setup vendor infoframe: %zd\n", err);
-  6228			timing_out->hdmi_vic = hv_frame.vic;
-  6229		}
-  6230	
-  6231		if (aconnector && is_freesync_video_mode(mode_in, aconnector)) {
-  6232			timing_out->h_addressable = mode_in->hdisplay;
-  6233			timing_out->h_total = mode_in->htotal;
-  6234			timing_out->h_sync_width = mode_in->hsync_end - mode_in->hsync_start;
-  6235			timing_out->h_front_porch = mode_in->hsync_start - mode_in->hdisplay;
-  6236			timing_out->v_total = mode_in->vtotal;
-  6237			timing_out->v_addressable = mode_in->vdisplay;
-  6238			timing_out->v_front_porch = mode_in->vsync_start - mode_in->vdisplay;
-  6239			timing_out->v_sync_width = mode_in->vsync_end - mode_in->vsync_start;
-  6240			timing_out->pix_clk_100hz = mode_in->clock * 10;
-  6241		} else {
-  6242			timing_out->h_addressable = mode_in->crtc_hdisplay;
-  6243			timing_out->h_total = mode_in->crtc_htotal;
-  6244			timing_out->h_sync_width = mode_in->crtc_hsync_end - mode_in->crtc_hsync_start;
-  6245			timing_out->h_front_porch = mode_in->crtc_hsync_start - mode_in->crtc_hdisplay;
-  6246			timing_out->v_total = mode_in->crtc_vtotal;
-  6247			timing_out->v_addressable = mode_in->crtc_vdisplay;
-  6248			timing_out->v_front_porch = mode_in->crtc_vsync_start - mode_in->crtc_vdisplay;
-  6249			timing_out->v_sync_width = mode_in->crtc_vsync_end - mode_in->crtc_vsync_start;
-  6250			timing_out->pix_clk_100hz = mode_in->crtc_clock * 10;
-  6251		}
-  6252	
-  6253		timing_out->aspect_ratio = get_aspect_ratio(mode_in);
-  6254	
-  6255		stream->out_transfer_func.type = TF_TYPE_PREDEFINED;
-  6256		stream->out_transfer_func.tf = TRANSFER_FUNCTION_SRGB;
-  6257		if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A) {
-  6258			if (!adjust_colour_depth_from_display_info(timing_out, info) &&
-  6259			    drm_mode_is_420_also(info, mode_in) &&
-  6260			    timing_out->pixel_encoding != PIXEL_ENCODING_YCBCR420) {
-  6261				timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
-  6262				adjust_colour_depth_from_display_info(timing_out, info);
-  6263			}
-  6264		}
-  6265	
-  6266		stream->output_color_space = get_output_color_space(timing_out, connector_state);
-  6267		stream->content_type = get_output_content_type(connector_state);
-  6268	}
-  6269	
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+index a4953d668972..24d19b920100 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+@@ -159,10 +159,11 @@ void amdgpu_userq_fence_driver_destroy(struct kref *ref)
+ 	struct amdgpu_device *adev = fence_drv->adev;
+ 	struct amdgpu_userq_fence *fence, *tmp;
+ 	struct xarray *xa = &adev->userq_xa;
++	unsigned long fence_list_flags;
+ 	unsigned long index, flags;
+ 	struct dma_fence *f;
+ 
+-	spin_lock(&fence_drv->fence_list_lock);
++	spin_lock_irqsave(&fence_drv->fence_list_lock, fence_list_flags);
+ 	list_for_each_entry_safe(fence, tmp, &fence_drv->fences, link) {
+ 		f = &fence->base;
+ 
+@@ -174,7 +175,7 @@ void amdgpu_userq_fence_driver_destroy(struct kref *ref)
+ 		list_del(&fence->link);
+ 		dma_fence_put(f);
+ 	}
+-	spin_unlock(&fence_drv->fence_list_lock);
++	spin_unlock_irqrestore(&fence_drv->fence_list_lock, fence_list_flags);
+ 
+ 	xa_lock_irqsave(xa, flags);
+ 	xa_for_each(xa, index, xa_fence_drv)
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
