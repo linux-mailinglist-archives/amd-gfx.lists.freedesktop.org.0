@@ -2,73 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35CCA84436
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D82EA84433
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:09:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 509CF10E9B4;
-	Thu, 10 Apr 2025 13:09:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE02010E2AF;
+	Thu, 10 Apr 2025 13:09:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; secure) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="YlmtSUyk";
+	dkim=pass (4096-bit key; secure) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="Fb8ctfzS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from bout3.ijzerbout.nl (bout3.ijzerbout.nl [136.144.140.114])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9BCA710E20D
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Apr 2025 18:28:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D381810E172
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Apr 2025 18:45:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
- t=1744223279; bh=yjh43TtDm+paZlNIRlrqPwPQ02q0Bjp2xXCqZ3x0O0c=;
+ t=1744224353; bh=f9a1XqQLDNh1vEwIwEt4W9XxbqqlXzCj/L9/JkkY6t0=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=YlmtSUykxFWQOWVLo+nuJDSq9I10JBfzx/66JhXKSVrahZo3YJ6OrGtlr9ANrHZj2
- V6XiMqpK5OtKbhC9wJdVENM3IBjJ66WuPAP9VObAoATnjkuDNDJz4p45IsRtoD8KMz
- tShzVjfUHsGSeiN3XfKjI1xAFznPtdmevsMFKTnsxebUPkfu1JweZZDOdU8xEjU4Yi
- 8DG8G7XynnQFT8ZdBW1c8E/DdiJmtu3vsy5gXtsAeSJUlfYELB3eJE6fXpJV3Ypmjn
- t43MuhuOhLr8gEyXgjLs1OUb9idkDTmKBM5JxNeJqp5Ekw5rCqvcr13L1grwRvDLXL
- F7OiH+2W5w1zuhq4YoL4LoYvuFpPg0VXZLdlg1bn9au7WqqcpmUlmzoarSv7ACMc/l
- HDwo9v86T+VRmsczy+3/ce+MLITfcvq7ZinrzpvgqusM99Hs251S1IyT6RmsO1YtQm
- ybww8NKSL6xDVxDqKEpVZ5GZDehNJYj2uHsiBNfB8ejnoRbI7nZAICrUIdivrqLQbF
- evOy9P93l28c/7HPtSJFzkn9x4KHSr0gGvjZzUoRUkvYyr5PMPbY1kiSt/ItmkOhCV
- VPLKBd34n1pTFkHGCwPPsP7RgP5RRPFgKB4o+9UCEM0UAsa3jjocytrCV1KQs98aB7
- 2B+/mq2B1o77rBAHWz5a3fjs=
+ b=Fb8ctfzScQvlZ4qK3VjMPQNuQSiNVvzlMa6xXuD085pKsMYcrYepYNgLrY4dl9rEz
+ uRvRCCyv8bPCtN1lyIPDYg9SWw9Dn21+iY3zkXV4a8JNCpjppYSdSPKJPkD3LqDJT4
+ NW5OqhGXN5jc/ZdqdRx58Dw81eE1WQaPze59f8kDykkgaCbJoIf1LN865c4Gz9I/F2
+ 0xU8Uoj6fAcrdees8NU2dxzubGysJnfhVjJ7W/jnfS70Vl1yd6CmJ7drY8IN7SMPMx
+ BtTRLZiriLsEWkRbrNJz5nVtKB0pX22mAw95KJIoXDud1Ll6E0EgVWXwoEFsE+cs3/
+ GqVPX4eh6u21nRjKOEpBmkYGytASF6XlxnmQ9OtEdsW0M6EHN0upIJBXUj0seBLzd/
+ 9Xskika8yI1EhekIt6G0KoajVXiQAIaxR2iRFkXKeO7oe7cne5HVN6/TVCznGJMsGC
+ ax+EsrrZ1lUgK5qIaGuKqXCGz3j/MjAbu6OHeaqAKEl1srkshE5+z5zCZ9hjdzEwML
+ X9KGBAwdgkxq0U/qtG3poSZpZ8olGSyq/NV0y9hHysx6pcdr0PzG1qhdRMLqW4rf6Y
+ gnP0HwZ6DOPVRP/EjxRSXlsWFrYpPF+STdYP8p2tbmd0pZ0kuvaDB4kJWydHlJb9WD
+ FQ8N8UwQ2dRqfWYMZlcphco0=
 Received: from [IPV6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a] (racer.ijzerbout.nl
  [IPv6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a])
- by bout3.ijzerbout.nl (Postfix) with ESMTPSA id 7B4B8162A2C;
- Wed,  9 Apr 2025 20:27:58 +0200 (CEST)
-Message-ID: <bf7bfe6f-69d7-4166-b3c4-010f7b9f3113@ijzerbout.nl>
-Date: Wed, 9 Apr 2025 20:27:56 +0200
+ by bout3.ijzerbout.nl (Postfix) with ESMTPSA id 2EC7F160180;
+ Wed,  9 Apr 2025 20:45:53 +0200 (CEST)
+Message-ID: <3c3a0b28-831e-4c8a-8904-cee96c021d23@ijzerbout.nl>
+Date: Wed, 9 Apr 2025 20:45:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND RFC v4 3/6] drm/display: dp: use new DCPD access
- helpers
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, Yongqin Liu
- <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Jani Nikula <jani.nikula@intel.com>
-References: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
- <20250324-drm-rework-dpcd-access-v4-3-e80ff89593df@oss.qualcomm.com>
+Subject: Re: [PATCH v3 06/09] drm/amdgpu: Few optimization and fixes for userq
+ fence driver
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com, alexander.deucher@amd.com
+References: <20240930115906.191060-1-Arunpravin.PaneerSelvam@amd.com>
+ <20240930115906.191060-6-Arunpravin.PaneerSelvam@amd.com>
 Content-Language: en-US
 From: Kees Bakker <kees@ijzerbout.nl>
-In-Reply-To: <20250324-drm-rework-dpcd-access-v4-3-e80ff89593df@oss.qualcomm.com>
+In-Reply-To: <20240930115906.191060-6-Arunpravin.PaneerSelvam@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 10 Apr 2025 13:08:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,33 +64,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Op 24-03-2025 om 12:51 schreef Dmitry Baryshkov:
-> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Op 30-09-2024 om 13:59 schreef Arunpravin Paneer Selvam:
+> Few optimization and fixes for userq fence driver.
 >
-> Switch drm_dp_helper.c to use new set of DPCD read / write helpers.
+> v1:(Christian):
+>    - Remove unnecessary comments.
+>    - In drm_exec_init call give num_bo_handles as last parameter it would
+>      making allocation of the array more efficient
+>    - Handle return value of __xa_store() and improve the error handling of
+>      amdgpu_userq_fence_driver_alloc().
 >
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> v2:(Christian):
+>     - Revert userq_xa xarray init to XA_FLAGS_LOCK_IRQ.
+>     - move the xa_unlock before the error check of the call xa_err(__xa_store())
+>       and moved this change to a separate patch as this is adding a missing error
+>       handling.
+>     - Removed the unnecessary comments.
+>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Reviewed-by: Christian König <christian.koenig@amd.com>
 > ---
->   drivers/gpu/drm/display/drm_dp_helper.c | 296 +++++++++++++-------------------
->   1 file changed, 116 insertions(+), 180 deletions(-)
+>   .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 44 ++++++++++++-------
+>   .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.h   |  2 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c |  6 +--
+>   .../gpu/drm/amd/include/amdgpu_userqueue.h    |  2 +-
+>   4 files changed, 32 insertions(+), 22 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index 410be0be233ad94702af423262a7d98e21afbfeb..e2439c8a7fefe116b04aaa689b557e2387b05540 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> index ca8f01b2bd96..56bd870ff15d 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> @@ -77,7 +77,8 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
+>   	fence_drv = kzalloc(sizeof(*fence_drv), GFP_KERNEL);
+>   	if (!fence_drv) {
+>   		DRM_ERROR("Failed to allocate memory for fence driver\n");
+> -		return -ENOMEM;
+> +		r = -ENOMEM;
+> +		goto free_fence_drv;
+>   	}
+>   
+>   	/* Acquire seq64 memory */
+> @@ -85,7 +86,8 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
+>   			       &fence_drv->cpu_addr);
+>   	if (r) {
+>   		kfree(fence_drv);
+> -		return -ENOMEM;
+> +		r = -ENOMEM;
+> +		goto free_seq64;
+Sorry to come back to this old patch.
+Can I still ask you to take a closer look? The erroneous
+code is still present in today's linux-next.
+
+You've replaced a `return -ENOMEM` by setting `r` and
+jumping to `free_seq64` where the freed pointer
+is used again (use-after-free). And it is doing another
+`kfree` with the same pointer.
+
+>   	}
+>   
+>   	memset(fence_drv->cpu_addr, 0, sizeof(u64));
+> @@ -95,7 +97,7 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
+>   	spin_lock_init(&fence_drv->fence_list_lock);
+>   
+>   	fence_drv->adev = adev;
+> -	fence_drv->uq_fence_drv_xa_ref = &userq->uq_fence_drv_xa;
+> +	fence_drv->fence_drv_xa_ptr = &userq->fence_drv_xa;
+>   	fence_drv->context = dma_fence_context_alloc(1);
+>   	get_task_comm(fence_drv->timeline_name, current);
+>   
+> @@ -107,6 +109,13 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
+>   	userq->fence_drv = fence_drv;
+>   
+>   	return 0;
+> +
+> +free_seq64:
+> +	amdgpu_seq64_free(adev, fence_drv->gpu_addr);
+> +free_fence_drv:
+> +	kfree(fence_drv);
+> +
+> +	return r;
+>   }
+>   
+>   void amdgpu_userq_fence_driver_process(struct amdgpu_userq_fence_driver *fence_drv)
 > [...]
-> @@ -3542,7 +3509,7 @@ int drm_dp_pcon_frl_configure_2(struct drm_dp_aux *aux, int max_frl_mask,
->   	else
->   		buf &= ~DP_PCON_FRL_LINK_TRAIN_EXTENDED;
->   
-> -	ret = drm_dp_dpcd_writeb(aux, DP_PCON_HDMI_LINK_CONFIG_2, buf);
-> +	return drm_dp_dpcd_write_byte(aux, DP_PCON_HDMI_LINK_CONFIG_2, buf);
->   	if (ret < 0)
->   		return ret;
->   
-Don't forget to delete the remainder of the function.
-Also the variable `ret` isn't used anymore.
--- 
-Kees
+
