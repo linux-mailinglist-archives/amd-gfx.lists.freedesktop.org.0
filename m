@@ -2,72 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A25EA84431
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB4DA84421
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:08:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E339610E9AB;
-	Thu, 10 Apr 2025 13:08:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1E1510EA06;
+	Thu, 10 Apr 2025 13:08:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="DRMU8Oec";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="x3lh9W4O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D77E10E309
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Apr 2025 08:46:54 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-43ea40a6e98so55962515e9.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 09 Apr 2025 01:46:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1744188412; x=1744793212; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=4OzH9YwLXWPPugPuWyfNy8OfCZxBMvD1de7nAngTy4M=;
- b=DRMU8OecM/9/Z/7EpeVSM68Y6zVh0Hc0CAFI/gkCLbJ/l06/AoVszIoAM5SVXBpVAN
- Is+a5tBySCyZNTRQEkixJcx1mjSip8c0O6QV3SDW2NHjAI7u+rvYIcxelD4ODM/+Dz+a
- 46c3Ev7cwxgbAjGj5BKgUSECb99gBpvaZoXEij1d/wXRil/tV+5UcISyTRbE34+3fCtg
- Xd85slcLjJW2iTlYZbr564hRHgxf/z/dwBL7i6Cz/DU8b2zBqIU6GTFoP1ylZYz+uSCj
- vizmomcDlqtuVM0+UORqRsykykT5X5L4QtCd2V/J+py2zd9ZrUKju5XOga3GGtqEy2/i
- AxFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744188412; x=1744793212;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=4OzH9YwLXWPPugPuWyfNy8OfCZxBMvD1de7nAngTy4M=;
- b=rGJAwMqxxknqWAf5/kZ4TDvQKeMrQvWtw8HDwQz3QvF9Cxg1VSVbCMEo31V1G+FLru
- XXVf8ydgzdH+Y9AEkfZgtKq0djYvRq3ok+xPI+3BKeJhNQhOukW9ieviFLHqEJDXxmbV
- pA1E7mvhAELPLiG6MYfLpzN5m+u1QxgLeBYbFb4lzH+miA4n9KmtzUmfQ6pfaijw2SKc
- RCMF7quT5kobkedc0goSRmKWTyAqyKqqLZHzXoTGC6R2yk0SwJNEABbkstSldtGH/IIH
- sAD+dgchcTIrB6BwVscLvKQQ1UkP5RNZKJL19pDXshZi/o04szAyzVs7VJpAP40cjWei
- QzQA==
-X-Gm-Message-State: AOJu0YxtaAzqMCdPioJtzEM1PYasML+7gIBO8xGBWASnqs+mWsiRSotf
- s3n8l1rL6Wj7G6we5LAc8DSWDYnQZ7N6YDo1W/LnbBMsQJaHvW+d3l9N03f5qDw=
-X-Gm-Gg: ASbGncvYLRyiZ8IrNgOBI1ktsaD2bZIh/Ht1wDNd2rWac+XI5zAd2NN9IpqBubIFzXC
- YjoomgOMCVeYaZsn1vjMlGrtxEhdI13emlGsKIQ2GaeHMpJAwB0f2zgh2bvUDzlU0sHflFzHLGl
- J1b3k27Z9c6qs010J+3sQAWTIMBo69+vQ2ledb+9N9731XOUUb2TZHdOog42J8wtZ816givrWVR
- UHS25ZuRYGB78espx2MJxRraGTbK1PcNSlDuNCtBT17e1nhh11sN0K6XNU+FpoTiVQNOUv3ejTq
- z80v2gweV/+wE6qBbQLsYyJ1LySW4dxf/5xThmEfuuryzg==
-X-Google-Smtp-Source: AGHT+IEgjSsiil3k2mighLToTN7rxETZ7M6ku/D6xblpxHB81KuZ3F8CJtBjqFCuTMyr0rTm3Wyxug==
-X-Received: by 2002:a05:6000:400a:b0:38d:badf:9df5 with SMTP id
- ffacd0b85a97d-39d87aa7f5emr1672599f8f.17.1744188412603; 
- Wed, 09 Apr 2025 01:46:52 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-39d8938a4dasm959289f8f.48.2025.04.09.01.46.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Apr 2025 01:46:52 -0700 (PDT)
-Date: Wed, 9 Apr 2025 11:46:48 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Ce Sun <cesun102@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amdgpu: Multi-GPU DPC recovery support
-Message-ID: <ecb6666e-7ef0-4dbc-ad11-df9ca16fac43@stanley.mountain>
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DAAE10E336;
+ Wed,  9 Apr 2025 10:28:47 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ZXfLK1PCFz9tLj;
+ Wed,  9 Apr 2025 12:28:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1744194521; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GpQYzk+s2AU5nFVaWxSMN7KrT/8j3r63dy+crDWPfAk=;
+ b=x3lh9W4ObZI0dPOVE48lmW7k7NT61xhY7BNR6XwwTCf6iDtJroCQ4JcKy9pAUe8NbcZWmG
+ PFzYi+iXhXJaeoFvFGF/kXj1tDJtYHkMcBLj0ee2uCg/odQV3/PEoPccm9kZ93HD7lsyc8
+ L7vHWq2TNXxHZ553Jp+XQ3fyCjnTqfdqdf/pgTSt8nSMqX84NjaTn59CpIXfuBPlR6SS17
+ QZnTZyiI2Y6Oq2UeGaL0M6Ha++ylinFvWqtK++z/iCqQJXALbgxT5xPXhPJu479kWZSapg
+ fx6F5y086cwMMy2qHTh8TkE3GuaBVlpZF6AfK1SDH9nL/2HKP48Rali8r42QPw==
+Message-ID: <867c3abac8a222fa42921a6725e85fe459bc9d5e.camel@mailbox.org>
+Subject: Re: [PATCH 1/2] drm/sched: add drm_sched_prealloc_dependency_slots v2
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ tvrtko.ursulin@igalia.com, dakr@kernel.org,
+ dri-devel@lists.freedesktop.org,  amd-gfx@lists.freedesktop.org
+Date: Wed, 09 Apr 2025 12:28:37 +0200
+In-Reply-To: <20250321155852.15162-1-christian.koenig@amd.com>
+References: <20250321155852.15162-1-christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Thu, 10 Apr 2025 13:08:31 +0000
+X-MBO-RS-ID: 3f07f75e1677f71e1a0
+X-MBO-RS-META: 1qkrmr8zjbr1gx3it1usrjsxbipnun1s
+X-Mailman-Approved-At: Thu, 10 Apr 2025 13:08:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,107 +60,148 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Ce Sun,
+On Fri, 2025-03-21 at 16:58 +0100, Christian K=C3=B6nig wrote:
+> Sometimes drivers need to be able to submit multiple jobs which
+> depend on
+> each other to different schedulers at the same time, but using
+> drm_sched_job_add_dependency() can't fail any more after the first
+> job is
+> initialized.
+>=20
+> This function preallocate memory for dependency slots so that no
+> ENOMEM
+> can come later while adding dependencies.
+>=20
+> v2: rework implementation an documentation
+>=20
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 44
+> ++++++++++++++++++++++++--
+> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
+> =C2=A02 files changed, 43 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> b/drivers/gpu/drm/scheduler/sched_main.c
+> index 4d4219fbe49d..ee3701f346b2 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -852,6 +852,39 @@ void drm_sched_job_arm(struct drm_sched_job
+> *job)
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(drm_sched_job_arm);
+> =C2=A0
+> +/**
+> + * drm_sched_job_prealloc_dependency_slots - avoid ENOMEM on adding
+> dependencies
+> + * @job: scheduler job where dependencies will be added
+> + * @num_deps: number of dependencies to preallocate slots for
+> +=C2=A0 *
+> + * Sometimes drivers need to be able to submit multiple jobs which
+> depend on
+> + * each other to different schedulers at the same time, but using
+> + * drm_sched_job_add_dependency() can't fail any more after the
+> first job is
+> + * initialized.
+> + *
+> + * This function preallocate memory for dependency slots so that no
+> ENOMEM can
+> + * come later while adding dependencies.
+> + *
+> + * Return:
+> + * 0 on success, or an error on failing to expand the array.
+> + */
+> +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
+> *job,
+> +					=C2=A0=C2=A0=C2=A0 unsigned int num_deps)
+> +{
+> +	u32 id =3D 0;
+> +	int ret;
+> +
+> +	while (num_deps--) {
+> +		ret =3D xa_alloc(&job->dependencies, &id,
+> XA_ZERO_ENTRY,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xa_limit_32b, GFP_KERNEL);
 
-Commit 8ba904f54148 ("drm/amdgpu: Multi-GPU DPC recovery support")
-from Mar 21, 2025 (linux-next), leads to the following Smatch static
-checker warning:
+I've had some time to re-read the xarray documentation and I think that
+this is what xa_reserve() was born for. The Book of Documentation/core-
+api/xarray.rst sayeth:
 
-	drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:6820 amdgpu_pci_slot_reset()
-	warn: iterator used outside loop: 'tmp_adev'
+"Sometimes you need to ensure that a subsequent call to xa_store()
+will not need to allocate memory.  The xa_reserve() function
+will store a reserved entry at the indicated index.  Users of the
+normal API will see this entry as containing ``NULL``."
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-    6753 pci_ers_result_t amdgpu_pci_slot_reset(struct pci_dev *pdev)
-    6754 {
-    6755         struct drm_device *dev = pci_get_drvdata(pdev);
-    6756         struct amdgpu_device *adev = drm_to_adev(dev);
-    6757         struct amdgpu_reset_context reset_context;
-    6758         struct amdgpu_device *tmp_adev = NULL;
-    6759         struct amdgpu_hive_info *hive = NULL;
-    6760         struct list_head device_list;
-    6761         int r = 0, i;
-    6762         u32 memsize;
-    6763 
-    6764         /* PCI error slot reset should be skipped During RAS recovery */
-    6765         if ((amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 4, 3) ||
-    6766             amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 4, 4)) &&
-    6767             amdgpu_ras_in_recovery(adev))
-    6768                 return PCI_ERS_RESULT_RECOVERED;
-    6769 
-    6770         dev_info(adev->dev, "PCI error: slot reset callback!!\n");
-    6771 
-    6772         memset(&reset_context, 0, sizeof(reset_context));
-    6773 
-    6774         /* wait for asic to come out of reset */
-    6775         msleep(700);
-    6776 
-    6777         /* Restore PCI confspace */
-    6778         amdgpu_device_load_pci_state(pdev);
-    6779 
-    6780         /* confirm  ASIC came out of reset */
-    6781         for (i = 0; i < adev->usec_timeout; i++) {
-    6782                 memsize = amdgpu_asic_get_config_memsize(adev);
-    6783 
-    6784                 if (memsize != 0xffffffff)
-    6785                         break;
-    6786                 udelay(1);
-    6787         }
-    6788         if (memsize == 0xffffffff) {
-    6789                 r = -ETIME;
-    6790                 goto out;
-    6791         }
-    6792 
-    6793         reset_context.method = AMD_RESET_METHOD_NONE;
-    6794         reset_context.reset_req_dev = adev;
-    6795         set_bit(AMDGPU_NEED_FULL_RESET, &reset_context.flags);
-    6796         set_bit(AMDGPU_SKIP_COREDUMP, &reset_context.flags);
-    6797         INIT_LIST_HEAD(&device_list);
-    6798 
-    6799         hive = amdgpu_get_xgmi_hive(adev);
-    6800         if (hive) {
-    6801                 mutex_lock(&hive->hive_lock);
-    6802                 reset_context.hive = hive;
-    6803                 list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
-    6804                         tmp_adev->pcie_reset_ctx.in_link_reset = true;
-    6805                         list_add_tail(&tmp_adev->reset_list, &device_list);
-    6806                 }
+That's far better, this way we don't have to use that more or less
+xarray-internal flag.
 
-tmp_adev is an invalid non-NULL pointer.
 
-    6807         } else {
-    6808                 set_bit(AMDGPU_SKIP_HW_RESET, &reset_context.flags);
-    6809                 list_add_tail(&adev->reset_list, &device_list);
-    6810         }
-    6811 
-    6812         r = amdgpu_device_asic_reset(adev, &device_list, &reset_context);
-    6813 out:
-    6814         if (!r) {
-    6815                 if (amdgpu_device_cache_pci_state(adev->pdev))
-    6816                         pci_restore_state(adev->pdev);
-    6817                 dev_info(adev->dev, "PCIe error recovery succeeded\n");
-    6818         } else {
-    6819                 dev_err(adev->dev, "PCIe error recovery failed, err:%d\n", r);
---> 6820                 if (tmp_adev) {
+> +		if (ret !=3D 0)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_sched_job_prealloc_dependency_slots);
+> +
+> =C2=A0/**
+> =C2=A0 * drm_sched_job_add_dependency - adds the fence as a job dependenc=
+y
+> =C2=A0 * @job: scheduler job to add the dependencies to
+> @@ -878,10 +911,15 @@ int drm_sched_job_add_dependency(struct
+> drm_sched_job *job,
+> =C2=A0	 * engines involved, rather than the number of BOs.
+> =C2=A0	 */
+> =C2=A0	xa_for_each(&job->dependencies, index, entry) {
+> -		if (entry->context !=3D fence->context)
+> +		if (xa_is_zero(entry)) {
+> +			/*
+> +			 * Reserved entries must not alloc memory,
+> but let's
+> +			 * use GFP_ATOMIC just to be on the
+> defensive side.
+> +			*/
+> +			xa_store(&job->dependencies, index, fence,
+> GFP_ATOMIC);
 
-This looks like it might have been intentional but it would be more
-readable to check if (hive) {
+And regarding this =E2=80=93 it can actually never happen, but you provide
+ATOMIC just to be sure?
 
-    6821                         list_for_each_entry(tmp_adev, &device_list, reset_list)
-    6822                                 amdgpu_device_unset_mp1_state(tmp_adev);
-    6823                         amdgpu_device_unlock_reset_domain(adev->reset_domain);
-    6824                 }
-    6825         }
-    6826 
-    6827         if (hive) {
-    6828                 mutex_unlock(&hive->hive_lock);
-    6829                 amdgpu_put_xgmi_hive(hive);
-    6830         }
-    6831 
-    6832         return r ? PCI_ERS_RESULT_DISCONNECT : PCI_ERS_RESULT_RECOVERED;
-    6833 }
+I think it would be better if we'd just run into an obvious bug here
+instead, so like a deadlock with GFP_KERNEL.
 
-regards,
-dan carpenter
+That's how we do it with pointers that cannot be NULL, too. If the
+impossible were to happen and it were NULL, we'd crash.
+
+P.
+
+> +		} else if (entry->context !=3D fence->context) {
+> =C2=A0			continue;
+> -
+> -		if (dma_fence_is_later(fence, entry)) {
+> +		} else if (dma_fence_is_later(fence, entry)) {
+> =C2=A0			dma_fence_put(entry);
+> =C2=A0			xa_store(&job->dependencies, index, fence,
+> GFP_KERNEL);
+> =C2=A0		} else {
+> diff --git a/include/drm/gpu_scheduler.h
+> b/include/drm/gpu_scheduler.h
+> index 1a7e377d4cbb..916e820b27ff 100644
+> --- a/include/drm/gpu_scheduler.h
+> +++ b/include/drm/gpu_scheduler.h
+> @@ -632,6 +632,8 @@ int drm_sched_job_init(struct drm_sched_job *job,
+> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 credits, void *owner);
+> =C2=A0void drm_sched_job_arm(struct drm_sched_job *job);
+> =C2=A0void drm_sched_entity_push_job(struct drm_sched_job *sched_job);
+> +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
+> *job,
+> +					=C2=A0=C2=A0=C2=A0 unsigned int num_deps);
+> =C2=A0int drm_sched_job_add_dependency(struct drm_sched_job *job,
+> =C2=A0				 struct dma_fence *fence);
+> =C2=A0int drm_sched_job_add_syncobj_dependency(struct drm_sched_job *job,
+
