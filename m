@@ -2,56 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F16A84420
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:08:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58572A84437
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:09:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09B6E10E9C0;
-	Thu, 10 Apr 2025 13:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C997610E9BB;
+	Thu, 10 Apr 2025 13:09:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="SCv/+zgi";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="LS9up8sz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF6D10E8DB;
- Wed,  9 Apr 2025 14:04:47 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BF210E931;
+ Wed,  9 Apr 2025 15:04:27 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZXl7b31gbz9sms;
- Wed,  9 Apr 2025 16:04:43 +0200 (CEST)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4ZXmSR19b9z9t7P;
+ Wed,  9 Apr 2025 17:04:23 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1744207483; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1744211063; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=4eNcZ24PeZ6CGi/BByczkF4dSaDfbXFUAvZaMNmgbRE=;
- b=SCv/+zgi+3jwe96veE9zj2YFHn30KMzLO6ozOr7bXQ9pkfx6SJpfeAUu2/rZgRl3Fc5kCx
- b+2Rvo8Rm0EY8x1vaWCK0uOtnUFdRWErCCUO5XkNF+gkE7yopRU1k3GgXQpKwQBDCadAWC
- XLX1eevJKmgOaWueW9q0YddYeUtudaBddvBmdBAZAW+xzSVtd3/WTVPLelYg9bxpRj7wcI
- ya797xQExxBcaQRgDM7pfqeYm0fsje90pfNWwTYqTzA422PfXt1eVN9+d5VR6sqwNutsTD
- xTRYazM50e3ceIrs0Y2jLyX2AOLun+px2wVcrv6oLhLk6heaYP2B+fMM1UrYAQ==
-Message-ID: <4c5d9342b8e2e04c3928ebba003d4f9ab06659b0.camel@mailbox.org>
-Subject: Re: [PATCH 1/2] drm/sched: add drm_sched_prealloc_dependency_slots v2
+ bh=vXNbrTLUQrlYNydORT5K+rP57dVB2oADM2jV2AgBth4=;
+ b=LS9up8szfCpBJACvt4gXa2EtpB97sVavX67wzRPpNDGRm6AHGs0RWhd+AXtPqRnp9op8zM
+ yE04pWSHbv+2bVCH/VYb7yTY+oy+qVUAZ4WW9/6lnP3PpHLGzc4tcRtTF4O7CQkK3tXhvX
+ cCiMrZuEgIld1a2KfjtHsIUu/oAQCKCx7fGs11u4gWzMoATXWnWjLCYPUuT99rUvw0HFVE
+ FckYqYRVDbBSXy1btg0Kjd2aoH0hjFAIPruG1nC4IsLJddiCYtoMfHQpDpP9RKPQBOiAnR
+ HJHimkXP9tmHGGqthFRauJolLOimIaLd2csSieO9zeWinLAUXQxNFxqKta20mA==
+Message-ID: <0b2fc70d8fae566c8ca43bafc929e2bd19725924.camel@mailbox.org>
+Subject: Re: [PATCH 1/2] dma-fence: Rename dma_fence_is_signaled()
 From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- phasta@kernel.org, tvrtko.ursulin@igalia.com, dakr@kernel.org, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: Matthew Wilcox <willy@infradead.org>
-Date: Wed, 09 Apr 2025 16:04:41 +0200
-In-Reply-To: <c2ed3d7e-d5c3-4d74-8365-fdb3f46f6a3a@gmail.com>
-References: <20250321155852.15162-1-christian.koenig@amd.com>
- <867c3abac8a222fa42921a6725e85fe459bc9d5e.camel@mailbox.org>
- <c2ed3d7e-d5c3-4d74-8365-fdb3f46f6a3a@gmail.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ phasta@kernel.org, Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, Lucas Stach
+ <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,  Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Frank Binns
+ <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, Qiang Yu
+ <yuq825@gmail.com>, Rob Clark <robdclark@gmail.com>, Sean Paul
+ <sean@poorly.run>,  Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Marijn Suijten
+ <marijn.suijten@somainline.org>,  Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,  Steven Price
+ <steven.price@arm.com>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann
+ <kraxel@redhat.com>,  Matthew Brost <matthew.brost@intel.com>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Melissa Wen
+ <mwen@igalia.com>, =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Zack
+ Rusin <zack.rusin@broadcom.com>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Bas Nieuwenhuizen
+ <bas@basnieuwenhuizen.nl>,  Yang Wang <kevinyang.wang@amd.com>, Jesse Zhang
+ <jesse.zhang@amd.com>, Tim Huang <tim.huang@amd.com>,  Sathishkumar S
+ <sathishkumar.sundararaju@amd.com>, Saleemkhan Jamadar
+ <saleemkhan.jamadar@amd.com>, Sunil Khatri <sunil.khatri@amd.com>, Lijo
+ Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, Ma Jun
+ <Jun.Ma2@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>, Eric Huang
+ <jinhuieric.huang@amd.com>, Asad Kamal <asad.kamal@amd.com>, Srinivasan
+ Shanmugam <srinivasan.shanmugam@amd.com>,  Jack Xiao <Jack.Xiao@amd.com>,
+ Friedrich Vock <friedrich.vock@gmx.de>, Michel =?ISO-8859-1?Q?D=E4nzer?=
+ <mdaenzer@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, Thomas Gleixner
+ <tglx@linutronix.de>, Frederic Weisbecker <frederic@kernel.org>, Dan
+ Carpenter <dan.carpenter@linaro.org>,  linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org,  amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
+ lima@lists.freedesktop.org,  linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org,  nouveau@lists.freedesktop.org,
+ virtualization@lists.linux.dev,  spice-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Date: Wed, 09 Apr 2025 17:04:00 +0200
+In-Reply-To: <334e843c-d7fe-4e33-b4fc-f3d18226465a@amd.com>
+References: <20250409120640.106408-2-phasta@kernel.org>
+ <20250409120640.106408-3-phasta@kernel.org>
+ <20250409143917.31303d22@collabora.com>
+ <73d41cd84c73b296789b654e45125bfce88e0dbf.camel@mailbox.org>
+ <72eb974dfea8fa1167cf97e29848672223f6fc5b.camel@mailbox.org>
+ <ab7d1937-d0e9-45f8-8f7d-ddd7a1a9d3d5@amd.com>
+ <9a90f7f14c22c01aa28d89aa91bf4dfa4049c062.camel@mailbox.org>
+ <334e843c-d7fe-4e33-b4fc-f3d18226465a@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 5ad11815f6510f54c95
-X-MBO-RS-META: qr9bugj9tkqwotc8re1961omkey8uhz7
-X-Mailman-Approved-At: Thu, 10 Apr 2025 13:08:25 +0000
+X-MBO-RS-META: 9wh48drngnos9i43y9zpcu5f5mrpihgx
+X-MBO-RS-ID: f0082fb0ff96fc9be99
+X-Mailman-Approved-At: Thu, 10 Apr 2025 13:08:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,109 +116,166 @@ Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-+Cc Matthew
-
-On Wed, 2025-04-09 at 15:55 +0200, Christian K=C3=B6nig wrote:
-> Am 09.04.25 um 12:28 schrieb Philipp Stanner:
-> > On Fri, 2025-03-21 at 16:58 +0100, Christian K=C3=B6nig wrote:
-> > > Sometimes drivers need to be able to submit multiple jobs which
-> > > depend on
-> > > each other to different schedulers at the same time, but using
-> > > drm_sched_job_add_dependency() can't fail any more after the
+On Wed, 2025-04-09 at 16:10 +0200, Christian K=C3=B6nig wrote:
+> Am 09.04.25 um 16:01 schrieb Philipp Stanner:
+> > On Wed, 2025-04-09 at 15:14 +0200, Christian K=C3=B6nig wrote:
+> > > Am 09.04.25 um 14:56 schrieb Philipp Stanner:
+> > > > On Wed, 2025-04-09 at 14:51 +0200, Philipp Stanner wrote:
+> > > > > On Wed, 2025-04-09 at 14:39 +0200, Boris Brezillon wrote:
+> > > > > > Hi Philipp,
+> > > > > >=20
+> > > > > > On Wed,=C2=A0 9 Apr 2025 14:06:37 +0200
+> > > > > > Philipp Stanner <phasta@kernel.org> wrote:
+> > > > > >=20
+> > > > > > > dma_fence_is_signaled()'s name strongly reads as if this
+> > > > > > > function
+> > > > > > > were
+> > > > > > > intended for checking whether a fence is already
+> > > > > > > signaled.
+> > > > > > > Also
+> > > > > > > the
+> > > > > > > boolean it returns hints at that.
+> > > > > > >=20
+> > > > > > > The function's behavior, however, is more complex: it can
+> > > > > > > check
+> > > > > > > with a
+> > > > > > > driver callback whether the hardware's sequence number
+> > > > > > > indicates
+> > > > > > > that
+> > > > > > > the fence can already be treated as signaled, although
+> > > > > > > the
+> > > > > > > hardware's /
+> > > > > > > driver's interrupt handler has not signaled it yet. If
+> > > > > > > that's
+> > > > > > > the
+> > > > > > > case,
+> > > > > > > the function also signals the fence.
+> > > > > > >=20
+> > > > > > > (Presumably) this has caused a bug in Nouveau (unknown
+> > > > > > > commit),
+> > > > > > > where
+> > > > > > > nouveau_fence_done() uses the function to check a fence,
+> > > > > > > which
+> > > > > > > causes a
+> > > > > > > race.
+> > > > > > >=20
+> > > > > > > Give the function a more obvious name.
+> > > > > > This is just my personal view on this, but I find the new
+> > > > > > name
+> > > > > > just
+> > > > > > as
+> > > > > > confusing as the old one. It sounds like something is
+> > > > > > checked,
+> > > > > > but
+> > > > > > it's
+> > > > > > clear what, and then the fence is forcibly signaled like it
+> > > > > > would
+> > > > > > be
+> > > > > > if
+> > > > > > you call drm_fence_signal(). Of course, this clarified by
+> > > > > > the
+> > > > > > doc,
+> > > > > > but
+> > > > > > given the goal was to make the function name clearly
+> > > > > > reflect
+> > > > > > what
+> > > > > > it
+> > > > > > does, I'm not convinced it's significantly better.
+> > > > > >=20
+> > > > > > Maybe dma_fence_check_hw_state_and_propagate(), though it
+> > > > > > might
+> > > > > > be
+> > > > > > too long of name. Oh well, feel free to ignore this
+> > > > > > comments if
+> > > > > > a
+> > > > > > majority is fine with the new name.
+> > > > > Yoa, the name isn't perfect (the perfect name describing the
+> > > > > whole
+> > > > > behavior would be
+> > > > > dma_fence_check_if_already_signaled_then_check_hardware_state
+> > > > > _and
+> > > > > _pro
+> > > > > pa
+> > > > > gate() ^^'
+> > > > >=20
+> > > > > My intention here is to have the reader realize "watch out,
+> > > > > the
+> > > > > fence
+> > > > > might get signaled here!", which is probably the most
+> > > > > important
+> > > > > event
+> > > > > regarding fences, which can race, invoke the callbacks and so
+> > > > > on.
+> > > > >=20
+> > > > > For details readers will then check the documentation.
+> > > > >=20
+> > > > > But I'm of course open to see if there's a majority for this
+> > > > > or
+> > > > > that
+> > > > > name.
+> > > > how about:
+> > > >=20
+> > > > dma_fence_check_hw_and_signal() ?
+> > > I don't think that renaming the function is a good idea in the
 > > > first
-> > > job is
-> > > initialized.
+> > > place.
 > > >=20
-> > > This function preallocate memory for dependency slots so that no
-> > > ENOMEM
-> > > can come later while adding dependencies.
+> > > What the function does internally is an implementation detail of
+> > > the
+> > > framework.
 > > >=20
-> > > v2: rework implementation an documentation
-> > >=20
-> > > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 44
-> > > ++++++++++++++++++++++++--
-> > > =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
-> > > =C2=A02 files changed, 43 insertions(+), 3 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > b/drivers/gpu/drm/scheduler/sched_main.c
-> > > index 4d4219fbe49d..ee3701f346b2 100644
-> > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > @@ -852,6 +852,39 @@ void drm_sched_job_arm(struct drm_sched_job
-> > > *job)
-> > > =C2=A0}
-> > > =C2=A0EXPORT_SYMBOL(drm_sched_job_arm);
-> > > =C2=A0
-> > > +/**
-> > > + * drm_sched_job_prealloc_dependency_slots - avoid ENOMEM on
-> > > adding
-> > > dependencies
-> > > + * @job: scheduler job where dependencies will be added
-> > > + * @num_deps: number of dependencies to preallocate slots for
-> > > +=C2=A0 *
-> > > + * Sometimes drivers need to be able to submit multiple jobs
-> > > which
-> > > depend on
-> > > + * each other to different schedulers at the same time, but
-> > > using
-> > > + * drm_sched_job_add_dependency() can't fail any more after the
-> > > first job is
-> > > + * initialized.
-> > > + *
-> > > + * This function preallocate memory for dependency slots so that
-> > > no
-> > > ENOMEM can
-> > > + * come later while adding dependencies.
-> > > + *
-> > > + * Return:
-> > > + * 0 on success, or an error on failing to expand the array.
-> > > + */
-> > > +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
-> > > *job,
-> > > +					=C2=A0=C2=A0=C2=A0 unsigned int
-> > > num_deps)
-> > > +{
-> > > +	u32 id =3D 0;
-> > > +	int ret;
-> > > +
-> > > +	while (num_deps--) {
-> > > +		ret =3D xa_alloc(&job->dependencies, &id,
-> > > XA_ZERO_ENTRY,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xa_limit_32b, GFP_KERNEL);
-> > I've had some time to re-read the xarray documentation and I think
-> > that
-> > this is what xa_reserve() was born for. The Book of
-> > Documentation/core-
-> > api/xarray.rst sayeth:
+> > > For the code using this function it's completely irrelevant if
+> > > the
+> > > function might also signal the fence, what matters for the caller
+> > > is
+> > > the returned status of the fence. I think this also counts for
+> > > the
+> > > dma_fence_is_signaled() documentation.
+> > It does obviously matter. As it's currently implemented, a lot of
+> > important things happen implicitly.
+>=20
+> Yeah, but that's ok.
+>=20
+> The code who calls this is the consumer of the interface and so
+> shouldn't need to know this. That's why we have created the DMA fence
+> framework in the first place.
+>=20
+> For the provider side when a driver or similar implements the
+> interface the relevant documentation is the dma_fence_ops structure.
+>=20
+> > I only see improvement by making things more obvious.
 > >=20
-> > "Sometimes you need to ensure that a subsequent call to xa_store()
-> > will not need to allocate memory.=C2=A0 The xa_reserve() function
-> > will store a reserved entry at the indicated index.=C2=A0 Users of the
-> > normal API will see this entry as containing ``NULL``."
-> >=20
-> > That's far better, this way we don't have to use that more or less
-> > xarray-internal flag.
+> > In any case, how would you call a wrapper that just does
+> > test_bit(IS_SIGNALED, =E2=80=A6) ?
 >=20
-> Yeah I have seen that as well. The reason why I didn't followed this
-> route was that I wasn't sure if I then need to check for NULL entries
-> while iterating over the XA.
+> Broken, that was very intentionally removed quite shortly after we
+> created the framework.
 >=20
-> Additional to that I couldn't figure out of hand how to determine a
-> the next free index slot.
->=20
-> Have you found any example how to use that? I mean the documentation
-> could certainly be improved a bit.
+> We have a few cases were implementations do check that for their
+> fences, but consumers should never be allowed to touch such
+> internals.
 
-Maybe Matthew can help us out here?
+There is theory and there is practice. In practice, those internals are
+being used by Nouveau, i915, Xe, vmgfx and radeon.
 
-Matthew, what would be the idiomatic way to do this, and can we help
-out with improving the Xarray's documentation?
+So it seems that we failed quite a bit at communicating clearly how the
+interface should be used.
 
-Thx,
+And, to repeat myself, with both name and docu of that function, I
+think it is very easy to misunderstand what it's doing. You say that it
+shouldn't matter =E2=80=93 and maybe that's true, in theory. In practice, i=
+t
+does matter. In practice, APIs get misused and have side-effects. And
+making that harder is desirable.
+
+In any case, I might have to add another such call to Nouveau, because
+the solution preferred by you over the callback causes another race.
+Certainly one could solve this in a clean way, but someone has to do
+the work, and we're talking about more than a few hours here.
+
+In any case, be so kind and look at patch 2 and tell me there if you're
+at least OK with making the documentation more detailed.
+
 P.
 
 >=20
@@ -177,78 +283,37 @@ P.
 > Christian.
 >=20
 > >=20
-> >=20
-> > > +		if (ret !=3D 0)
-> > > +			return ret;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_sched_job_prealloc_dependency_slots);
-> > > +
-> > > =C2=A0/**
-> > > =C2=A0 * drm_sched_job_add_dependency - adds the fence as a job
-> > > dependency
-> > > =C2=A0 * @job: scheduler job to add the dependencies to
-> > > @@ -878,10 +911,15 @@ int drm_sched_job_add_dependency(struct
-> > > drm_sched_job *job,
-> > > =C2=A0	 * engines involved, rather than the number of BOs.
-> > > =C2=A0	 */
-> > > =C2=A0	xa_for_each(&job->dependencies, index, entry) {
-> > > -		if (entry->context !=3D fence->context)
-> > > +		if (xa_is_zero(entry)) {
-> > > +			/*
-> > > +			 * Reserved entries must not alloc
-> > > memory,
-> > > but let's
-> > > +			 * use GFP_ATOMIC just to be on the
-> > > defensive side.
-> > > +			*/
-> > > +			xa_store(&job->dependencies, index,
-> > > fence,
-> > > GFP_ATOMIC);
-> > And regarding this =E2=80=93 it can actually never happen, but you prov=
-ide
-> > ATOMIC just to be sure?
-> >=20
-> > I think it would be better if we'd just run into an obvious bug
-> > here
-> > instead, so like a deadlock with GFP_KERNEL.
-> >=20
-> > That's how we do it with pointers that cannot be NULL, too. If the
-> > impossible were to happen and it were NULL, we'd crash.
-> >=20
 > > P.
 > >=20
-> > > +		} else if (entry->context !=3D fence->context) {
-> > > =C2=A0			continue;
-> > > -
-> > > -		if (dma_fence_is_later(fence, entry)) {
-> > > +		} else if (dma_fence_is_later(fence, entry)) {
-> > > =C2=A0			dma_fence_put(entry);
-> > > =C2=A0			xa_store(&job->dependencies, index,
-> > > fence,
-> > > GFP_KERNEL);
-> > > =C2=A0		} else {
-> > > diff --git a/include/drm/gpu_scheduler.h
-> > > b/include/drm/gpu_scheduler.h
-> > > index 1a7e377d4cbb..916e820b27ff 100644
-> > > --- a/include/drm/gpu_scheduler.h
-> > > +++ b/include/drm/gpu_scheduler.h
-> > > @@ -632,6 +632,8 @@ int drm_sched_job_init(struct drm_sched_job
-> > > *job,
-> > > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 credits, void *owner=
-);
-> > > =C2=A0void drm_sched_job_arm(struct drm_sched_job *job);
-> > > =C2=A0void drm_sched_entity_push_job(struct drm_sched_job *sched_job)=
-;
-> > > +int drm_sched_job_prealloc_dependency_slots(struct drm_sched_job
-> > > *job,
-> > > +					=C2=A0=C2=A0=C2=A0 unsigned int
-> > > num_deps);
-> > > =C2=A0int drm_sched_job_add_dependency(struct drm_sched_job *job,
-> > > =C2=A0				 struct dma_fence *fence);
-> > > =C2=A0int drm_sched_job_add_syncobj_dependency(struct drm_sched_job
-> > > *job,
+> > > What we should improve is the documentation of the dma_fence_ops-
+> > > > enable_signaling and dma_fence_ops->signaled callbacks.
+> > > Especially see the comment about reference counts on
+> > > enable_signaling
+> > > which is missing on the signaled callback. That is most likely
+> > > the
+> > > root cause why nouveau implemented enable_signaling correctly but
+> > > not
+> > > the other one.
+> > >=20
+> > > But putting that aside I think we should make nails with heads
+> > > and
+> > > let the framework guarantee that the fences stay alive until they
+> > > are
+> > > signaled (one way or another). This completely removes the burden
+> > > to
+> > > keep a reference on unsignaled fences from the drivers /
+> > > implementations and make things more over all more defensive.
+> > >=20
+> > > Regards,
+> > > Christian.
+> > >=20
+> > > > P.
+> > > >=20
+> > > > > P.
+> > > > >=20
+> > > > >=20
+> > > > > > Regards,
+> > > > > >=20
+> > > > > > Boris
 >=20
 
