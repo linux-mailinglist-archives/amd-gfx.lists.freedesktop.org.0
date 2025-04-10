@@ -2,122 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A9AFA84C7A
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 20:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B1F1A84CFB
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 21:28:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D1B10EA15;
-	Thu, 10 Apr 2025 18:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 156FA10E057;
+	Thu, 10 Apr 2025 19:28:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bjK3IS1i";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UcHEroE3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2047.outbound.protection.outlook.com [40.107.102.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A0F910EA07
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Apr 2025 18:54:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ggvTiky5Nvg7DMUO5DcJ7phls92/kFZQvwPtlS88Iom37bR4+Q89yk3dH2dtUv6j101Nkq5ArrhyRoU2ScMqhg/XKkVLVpnhIgLY1ZJburj1R8Yzs45Wd9445CBxZrMp2STFDl+MHWzrQDX0neLOKsBWxel2HhaBhzmkpobNIy27WAtA/GfsH87AGuhp9QJTZq4hSEN4rTpQfAWSUYK62Eyt4GOm6skQQ3KDxhJDxOlN7TysZ/UEYVe3C165xsWXXHTfnH1n3f1hEllrnjWZLaIoc7HPXa8IkWG1ZoMlP5jDJxR77dvozCdFNSNPBcakih507SUev0j1ck7MMp7sLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=es9Ibwh73VFHU1CmJTqrNAVLy5faUIk8BOuIUyG9V3Q=;
- b=uCu4QZgipWObNjxgQPxqn3dvD61oYkXh9AMtzQFJX/fTFLInMyku8SY1S9CpvvsCLu1RI1cB1RHrqORIKcKB7GZdKddK+BSPaFz/t5e808qIMBiR9nsAnlQCmoVLNA3MkV0e03iL4WbnjZPB8+7d0m7ytyFACMgJqk+N0y1/YDrrh1Qb8BHOm0riOBin3FxLp5tK3AV73+uV8Z+4OGPIeJaRfT4cHJriEJbwXFud+g31yAnIl3HbR0bWAF7kLSYolNJRS35c745bGm/bcmpjU8JMD9Nru24q0RZ/hravU72CanQ5ItStV74MwxFbBmqLR5GhmRVes/9Fjp+8dcGeeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=es9Ibwh73VFHU1CmJTqrNAVLy5faUIk8BOuIUyG9V3Q=;
- b=bjK3IS1ifXg6btcXr1BT2QUtr1BoRQbun4GEO9bN2OjksSBcBgl5ITo+F33WW3qWxkecyzlcpAowzI/flckysg35NRLTI1NGlJSbbPWYChC1EIHewINX5v+JZ0p9lw8ihCDDYqh1vRbhtoLwZAx14gq2bpwUKCSm1+tAhHmzpjQ=
-Received: from BN9PR03CA0901.namprd03.prod.outlook.com (2603:10b6:408:107::6)
- by PH8PR12MB6794.namprd12.prod.outlook.com (2603:10b6:510:1c5::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.25; Thu, 10 Apr
- 2025 18:54:23 +0000
-Received: from BN1PEPF0000468E.namprd05.prod.outlook.com
- (2603:10b6:408:107:cafe::89) by BN9PR03CA0901.outlook.office365.com
- (2603:10b6:408:107::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8632.24 via Frontend Transport; Thu,
- 10 Apr 2025 18:54:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN1PEPF0000468E.mail.protection.outlook.com (10.167.243.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8632.13 via Frontend Transport; Thu, 10 Apr 2025 18:54:23 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 10 Apr
- 2025 13:54:20 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 13/13] drm/amdgpu/userq: enable support for secure queues
-Date: Thu, 10 Apr 2025 14:54:02 -0400
-Message-ID: <20250410185402.2352109-13-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250410185402.2352109-1-alexander.deucher@amd.com>
-References: <20250410185402.2352109-1-alexander.deucher@amd.com>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D73AA10E057;
+ Thu, 10 Apr 2025 19:28:14 +0000 (UTC)
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi
+ [81.175.209.231])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 69CDB352;
+ Thu, 10 Apr 2025 21:26:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1744313172;
+ bh=n5YDJmJCE+8tNXLCkkhfeEwPTl/eXzYaXNhwX3cdLAo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=UcHEroE3IoHtAiaCtxVRX7fr9fWrFoJzEv1ddztAMoaWEKnj5ZKhV9GSpCDPtVVAs
+ hnm0vMVQNNd2wRUSDshcQb9TSoa3+nAbq3dpvSTcgp5BwLGwOrJGZD1BQ0D5B0EjmR
+ vTyjAqOJ5mBBsCZ0uqhCdhTtjIuBQ7t8IXecWXOk=
+Date: Thu, 10 Apr 2025 22:27:45 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 01/19] drm: Pass pixel_format+modifier to
+ .get_format_info()
+Message-ID: <20250410192745.GA27834@pendragon.ideasonboard.com>
+References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+ <20250410163218.15130-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF0000468E:EE_|PH8PR12MB6794:EE_
-X-MS-Office365-Filtering-Correlation-Id: cdb607f8-fd1d-495e-db81-08dd78611bd5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?AEtcrQlwQ7kryaERZkKZddw2YEcrxvFaHo/Fd+W5RRtZVWLtSps0vOIgXJb0?=
- =?us-ascii?Q?d+L79aCl60lgXW0+xUF+mKpVOz62oP0d7klwvpPOxcB8mOiDtyim8K7zECsI?=
- =?us-ascii?Q?tRRhq/m1jXkjzacpVAfLaxTYBm1RGW4rfv4MLUzP70wgemqO52e4518WCqeF?=
- =?us-ascii?Q?iKfTs1MUg8qWB80wHqRA1xGm7/IWBbTxtRtMY4YLTbHuhqLHdgimCheUCrLk?=
- =?us-ascii?Q?jCZ5ZKjpQZl6IzQEhZ5g3wUToZ0kJgUCoJCgKa8B6nVpICUQDSdKyGhgcPtj?=
- =?us-ascii?Q?NZXb0qbltbexGk4EyhseMFv7EP129W95Hc7e7zdV2j2vnnIJXovE4Rm8T2/A?=
- =?us-ascii?Q?B+6AhaaNGBT4ufnp7HbyKOLMJt4ceLyBTpXJqYqakfzP0Hd0mH36FYvL3/35?=
- =?us-ascii?Q?2bNhZAI4O9FwM0GbzbWBZeqJGY3ygvsvHAdMKtISNcsJdhCsWPbpusBGlRbG?=
- =?us-ascii?Q?P6BQfW/CHQUwgFDiWltBbgVk93cczsfk7DSe0tVWubeRZKPOvCy7smsO1Qnj?=
- =?us-ascii?Q?dioKGXfa5NDxwAn8h6hZYJTOXY0pchQGtMPq0lloOMBsY/AbPDIuQ8kdJBsd?=
- =?us-ascii?Q?aS4tYTgPE42DjM1pX+mcQ8Y9ffciMX94USinDeHvo9CvdAGGXu5qhvC9MIXg?=
- =?us-ascii?Q?8J5Az+fGRmkw73oNzUPXUwGBMU5wqjRmdA6rGAq9G0XloWevkYpzEhV7e2/K?=
- =?us-ascii?Q?4O96LuuJNl4hD+tfQHb+JJ58mIV+UpKpwklWOJn4qP+ZjgeOIEuR+bp99g9X?=
- =?us-ascii?Q?EdD98CNLqX/hXotBZqobNKI9B9eC/moPgmDrpm13oeGQhGIG4nBMj3842pUi?=
- =?us-ascii?Q?RYB4E4NPqcRfdGRYAX6IHsvtrxJjIpe0qP6WMp6rXQLNvGT5681EStskwUoj?=
- =?us-ascii?Q?Ak8RdZcSVzEFxyXlNzPbeBevzBYNGJAXEqx4USZhZYo+dnqO6ezHFumv3Xs8?=
- =?us-ascii?Q?Yc+zhnPoZolc21MOEdvZuZfK9tgQ4G18Lv00jYNH9vD4ALBzs+0Rtc0nJmr6?=
- =?us-ascii?Q?mb13F9dUOT5V1/gBbnm9ZxSyIzKYw6aVYlhx3El1NUwzzw43fawBV3+k96m+?=
- =?us-ascii?Q?PUGlHZ7/cS/v1k4z9100wcDHd3VnWStnQgGWD61/Aq2Ds3wqoltUnQhgCWFQ?=
- =?us-ascii?Q?qnekKrhVRB0ULQvGsVe+l2ZtFJZpTelUF/E5SeA0u5J5EdDt0o60t9vH7N4p?=
- =?us-ascii?Q?6YR9Zc2Xaf8WPPYE7WTae+wkNpPfB8s/ZhLnl67IJH4+xUmgnXLtqvbJwX/W?=
- =?us-ascii?Q?McrIbf2ufVLJ3Q3bBwaDsFKJMlYbmFK7DAxOcvCU1Dofau5FqtrqFdfTE6E7?=
- =?us-ascii?Q?kCzJObW/Xcg9nLBX5oJ8WuXNuycBQLnN558haAqgocVz7MfMnVCoTDOAJprB?=
- =?us-ascii?Q?8eLYCtbxysMKZD2IssE7ITM0KZpKE75cZDIiIsAbrg/Lx+SSQCKwcfSioTlB?=
- =?us-ascii?Q?VLNU0/HQFQ3IaF57yHd5FTqumw+hTB2i/2DicT8axWNPa7W8g7eNlT1Op/WL?=
- =?us-ascii?Q?XHXxbF+li3D0VTMm3PrbYPkhf8gxsqpT73NH?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 18:54:23.0124 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cdb607f8-fd1d-495e-db81-08dd78611bd5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468E.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6794
+In-Reply-To: <20250410163218.15130-2-ville.syrjala@linux.intel.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,42 +58,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enable users to create secure GFX/compute queues.
+Hi Ville,
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+Thank you for the patch.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
-index b8b13b6ab4631..cd279f8164158 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
-@@ -303,6 +303,14 @@ amdgpu_userqueue_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	if (r)
- 		return r;
- 
-+	if ((args->in.flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE_SECURE) &&
-+	    (args->in.ip_type != AMDGPU_HW_IP_GFX) &&
-+	    (args->in.ip_type != AMDGPU_HW_IP_COMPUTE) &&
-+	    !amdgpu_is_tmz(adev)) {
-+		drm_err(adev_to_drm(adev), "Secure only supported on GFX/Compute queues\n");
-+		return -EINVAL;
-+	}
-+
- 	/*
- 	 * There could be a situation that we are creating a new queue while
- 	 * the other queues under this UQ_mgr are suspended. So if there is any
-@@ -401,7 +409,8 @@ int amdgpu_userq_ioctl(struct drm_device *dev, void *data,
- 
- 	switch (args->in.op) {
- 	case AMDGPU_USERQ_OP_CREATE:
--		if (args->in.flags & ~AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_MASK)
-+		if (args->in.flags & ~(AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_MASK |
-+				       AMDGPU_USERQ_CREATE_FLAGS_QUEUE_SECURE))
- 			return -EINVAL;
- 		r = amdgpu_userqueue_create(filp, args);
- 		if (r)
+On Thu, Apr 10, 2025 at 07:32:00PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Decouple .get_format_info() from struct drm_mode_fb_cmd2 and just
+> pass the pixel format+modifier combo in by hand.
+> 
+> We may want to use .get_format_info() outside of the normal
+> addfb paths where we won't have a struct drm_mode_fb_cmd2, and
+> creating a temporary one just for this seems silly.
+> 
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Leo Li <sunpeng.li@amd.com>
+> Cc: Rodrigo Siqueira <siqueira@igalia.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 4 ++--
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h | 2 +-
+>  drivers/gpu/drm/drm_fourcc.c                            | 3 ++-
+>  drivers/gpu/drm/i915/display/intel_fb.c                 | 9 +++++----
+>  drivers/gpu/drm/i915/display/intel_fb.h                 | 2 +-
+>  include/drm/drm_mode_config.h                           | 2 +-
+>  6 files changed, 12 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> index 3e0f45f1711c..69d715b6abd3 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> @@ -92,9 +92,9 @@ enum dm_micro_swizzle {
+>  	MICRO_SWIZZLE_R = 3
+>  };
+>  
+> -const struct drm_format_info *amdgpu_dm_plane_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+> +const struct drm_format_info *amdgpu_dm_plane_get_format_info(u32 pixel_format, u64 modifier)
+>  {
+> -	return amdgpu_lookup_format_info(cmd->pixel_format, cmd->modifier[0]);
+> +	return amdgpu_lookup_format_info(pixel_format, modifier);
+>  }
+>  
+>  void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state *plane_state,
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+> index 615d2ab2b803..ea2619b507db 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+> @@ -58,7 +58,7 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+>  			 unsigned long possible_crtcs,
+>  			 const struct dc_plane_cap *plane_cap);
+>  
+> -const struct drm_format_info *amdgpu_dm_plane_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
+> +const struct drm_format_info *amdgpu_dm_plane_get_format_info(u32 pixel_format, u64 modifier);
+>  
+>  void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state *plane_state,
+>  				    bool *per_pixel_alpha, bool *pre_multiplied_alpha,
+> diff --git a/drivers/gpu/drm/drm_fourcc.c b/drivers/gpu/drm/drm_fourcc.c
+> index 3a94ca211f9c..f79fff8209fd 100644
+> --- a/drivers/gpu/drm/drm_fourcc.c
+> +++ b/drivers/gpu/drm/drm_fourcc.c
+> @@ -395,7 +395,8 @@ drm_get_format_info(struct drm_device *dev,
+>  	const struct drm_format_info *info = NULL;
+>  
+>  	if (dev->mode_config.funcs->get_format_info)
+> -		info = dev->mode_config.funcs->get_format_info(mode_cmd);
+> +		info = dev->mode_config.funcs->get_format_info(mode_cmd->pixel_format,
+> +							       mode_cmd->modifier[0]);
+>  
+>  	if (!info)
+>  		info = drm_format_info(mode_cmd->pixel_format);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 2b0e0f220442..b83c42fe3233 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -421,21 +421,22 @@ unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
+>  
+>  /**
+>   * intel_fb_get_format_info: Get a modifier specific format information
+> - * @cmd: FB add command structure
+> + * @pixel_format: pixel format
+> + * @modifier: modifier
+>   *
+>   * Returns:
+>   * Returns the format information for @cmd->pixel_format specific to @cmd->modifier[0],
+>   * or %NULL if the modifier doesn't override the format.
+
+This needs to be updated too.
+
+>   */
+>  const struct drm_format_info *
+> -intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+> +intel_fb_get_format_info(u32 pixel_format, u64 modifier)
+>  {
+> -	const struct intel_modifier_desc *md = lookup_modifier_or_null(cmd->modifier[0]);
+> +	const struct intel_modifier_desc *md = lookup_modifier_or_null(modifier);
+>  
+>  	if (!md || !md->formats)
+>  		return NULL;
+>  
+> -	return lookup_format_info(md->formats, md->format_count, cmd->pixel_format);
+> +	return lookup_format_info(md->formats, md->format_count, pixel_format);
+>  }
+>  
+>  static bool plane_caps_contain_any(u8 caps, u8 mask)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+> index bdd76b372957..7d1267fbeee2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+> @@ -47,7 +47,7 @@ u64 *intel_fb_plane_get_modifiers(struct intel_display *display,
+>  bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier);
+>  
+>  const struct drm_format_info *
+> -intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
+> +intel_fb_get_format_info(u32 pixel_format, u64 modifier);
+>  
+>  bool
+>  intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
+> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> index 4b8f0370b79b..6fca0362bc31 100644
+> --- a/include/drm/drm_mode_config.h
+> +++ b/include/drm/drm_mode_config.h
+> @@ -95,7 +95,7 @@ struct drm_mode_config_funcs {
+>  	 * The format information specific to the given fb metadata, or
+>  	 * NULL if none is found.
+
+And here too. The full documentation block states
+
+	/**
+	 * @get_format_info:
+	 *
+	 * Allows a driver to return custom format information for special
+	 * fb layouts (eg. ones with auxiliary compression control planes).
+	 *
+	 * RETURNS:
+	 *
+	 * The format information specific to the given fb metadata, or
+	 * NULL if none is found.
+	 */
+
+Updating the RETURNS section is easy, but the text before that is
+problematic. If the intent was to support formats with auxialiary
+compression control planes, this won't be possible anymore if we pass
+cmd->modifier[0] only. Is that an issue, or was this a foreseen use case
+that never materialized ? If we don't need to support this anymore then
+the code change is fine, and the documentation should be updated
+accordingly.
+
+>  	 */
+> -	const struct drm_format_info *(*get_format_info)(const struct drm_mode_fb_cmd2 *mode_cmd);
+> +	const struct drm_format_info *(*get_format_info)(u32 pixel_format, u64 modifier);
+>  
+>  	/**
+>  	 * @mode_valid:
+
 -- 
-2.49.0
+Regards,
 
+Laurent Pinchart
