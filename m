@@ -2,73 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 674C3A84425
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5152BA843EC
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 15:01:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD9810E9F5;
-	Thu, 10 Apr 2025 13:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDAFA10E99C;
+	Thu, 10 Apr 2025 13:01:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="NOocmX0j";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ftr8O5cB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DA4610E7BC
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Apr 2025 07:06:31 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-43d0359b1fcso2903185e9.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Apr 2025 00:06:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1744268790; x=1744873590; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=cwxfCTEdetiKaMfqynDfn0wx7lhTuU9HpsdLJoyDrmE=;
- b=NOocmX0j4D9lop0z6AvBKjUqIf2bzoLe3BPlDqkkGevwOhRW93EI1/uDocO8oVMewW
- qeOuGH7Q9C/fi5QIYNxzaF5iYPXi2ZA2JvUAFWzwGe7TVkvS8eA16VN8+bDumFJjk1Ai
- Bn8Hval/Jn1vRgGt22CrUsaZjWGmRsNnnb+bLpPW6hf4Ba86CdLsAE6Iv3Du50cZsupo
- EGKupR3l7/WeTPvOQPQ/taztTJow1EHjjBZnHtE3bDZ+KuNo4Fndo3qzakhEY9VDx0mj
- QH2AAXeVJsT3bccTzIO52R/jRpJhDiIN7kdyScn/19JKQ6a7j/dT4ClENcVtUw+O2r63
- nOqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744268790; x=1744873590;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=cwxfCTEdetiKaMfqynDfn0wx7lhTuU9HpsdLJoyDrmE=;
- b=LGrBLf34qnrfZv6vwN/6cE/FhNc06fWla9Qi8Syu2Em+Ac9SPEjI0q6dwYQAinT186
- 9h6XVdv2kigftwAydEC3mpmZ2dHn+EAM48iDws/hcWtoCn8Pb9591xwkAk8/2SsrIOTq
- Trg4YhVs5BkH24k4W6Zc5omHSJnoFN4m9onQZ6g9CkJrMw1VZIqRyv0OmmYMnAC4o9dc
- /9fqvcznOdF4jDTqoSfHoDivqEYOttO34k4ySTte54xtYS4w3nPf4WpN+m/MqIvbHUpk
- UWd3OAmhqrNlwV9LdTitPVDrqVGCSEIK4hNOItnAGVwkiaJQl1c0ABLottR2PwX83Dmc
- vxYw==
-X-Gm-Message-State: AOJu0YzzZ8xhRBc4bnGiUC2/3qqohtfFEeBjvUACoIaV+pF6xWE/NiGx
- oYu1Bk7P6v7pjpPlkWSF08ZMIhJ2MQOF1eW8PvUWw0innU/BsVGWlpTpYIHfiLttMnDvhJFXLsa
- X
-X-Gm-Gg: ASbGncvYjnETIWEGwyf0dHK48fHECtNvupwh0aESUAkkz65Q9l0vDKCNM/Bax803LHE
- Gv+nTm5WJE0S5CcXCEjMDkCCzVOfoi/praT69/JMGYdJWfGnvMszX8AHRyhXoyjQT5xNKJzCuXE
- A+zqCYTzlv0h3u9NiA8jvlD9TFDtlhBR6WNGev+OcAdPlWDXI3bHXd2+ms4fZKONP46eReegZ0P
- 86b8THRUjNBhNNdmm0E0/KOofxqdz78wjk3OoDllJzsznsdfPN4AofSRUWmwdngdAC1636keAFJ
- 7lyGqNXVP1d7YCpBomD5E7wbiJHNfEJyJC1RpgE5fd2qJQ==
-X-Google-Smtp-Source: AGHT+IFau3e6qLoWSMO48vbZxGVOkcueBOlGBmRLhV5G/YbYHafg1UvVvF2Fh7TwwHwhx79axI8RGA==
-X-Received: by 2002:a05:600c:34c2:b0:439:4b23:9e8e with SMTP id
- 5b1f17b1804b1-43f2efe1e4dmr12810115e9.3.1744268790084; 
- Thu, 10 Apr 2025 00:06:30 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-43f2066d6e8sm45924755e9.23.2025.04.10.00.06.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Apr 2025 00:06:29 -0700 (PDT)
-Date: Thu, 10 Apr 2025 10:06:26 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Arvind Yadav <arvind.yadav@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amdgpu: update userqueue BOs and PDs
-Message-ID: <7074cf24-b136-44fc-a86d-4394d62c5242@stanley.mountain>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2045.outbound.protection.outlook.com [40.107.92.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D042510E99D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Apr 2025 13:01:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vIqm7kwBXJrRbjc0LzOgl4/37IbQCBnnOIQUFnuSzTuhvQGUisB38KFsLdSsG3je1w3omWAs/VvVLRtjmqtvVlIlPujWXkjtmGN67CDVBd4VLp16yUeR4WQCo0HN+IAzOo1uTjGK2XGDEciFr50qKt/448xUAq6jvvjLNUsPeNRBaJxzxqD03qloDRkQxC3q+4owNWrqknkTNL5eHeMre3Lk3tLgAkMs5KmXzfx47V07x/p9c+34CpqKZ+y236seHqR8Aozlk69H3baxOiKA6nPM6NKCGt4z2ymsL/0RzvxOfQJkyiEIzTX7pZwtugJ556epHp4Ycau9gLeXsBU4Yw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GuNya7Egc7n16JGql4Usp6Y5u9tusJpiuMbV8OPRGJU=;
+ b=s3Bs2YaHlcJMesuQarGQjbtzvgqqE1RCCDhxa/ZqUGBIy5GM0xRd6LN4wW5DRmjDY77AXmvSFzesUBR4zP200naV8idqGGXuwM3z8PoQwtnD95GzXTp4YKRQCHuD7DXDe+d5iZ97jTB/05WsBngrrD5t44AjFawr7tb8QPXr/x9TWtc1PL3mVGfZQkR3HsQEPKgipMT8OubZr7r6mCRLTrvecfoVq6tJzNItHaOfDV5LnFvYg2lKiU3wVHLqIegyP1RQlS3a/vPLLIChGhYihYUfVwn/Xt/Mu+S9jo5Pfk/Tb1O8wLyWJeO2M6iGsuhKiq4ocMlqWmnxRZ+oXs2irA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GuNya7Egc7n16JGql4Usp6Y5u9tusJpiuMbV8OPRGJU=;
+ b=ftr8O5cBnEA1yVY3EL/ngbJhfBVqGE/8HBTEh3lnLfaicUMk6uSJmKIWVmiBRgnXcgNtAMf9q5xNgCABYchG4DfUMog8RSR5QBtc06F9YcDUSotwAECXo5bwQwapr4Ckfv6x7fnPPKrYr6PIY/pXEhAGPJbQPGpnqZndBfromCM=
+Received: from BYAPR21CA0011.namprd21.prod.outlook.com (2603:10b6:a03:114::21)
+ by MN2PR12MB4079.namprd12.prod.outlook.com (2603:10b6:208:1d5::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.21; Thu, 10 Apr
+ 2025 13:01:29 +0000
+Received: from SJ1PEPF00001CE6.namprd03.prod.outlook.com
+ (2603:10b6:a03:114:cafe::3) by BYAPR21CA0011.outlook.office365.com
+ (2603:10b6:a03:114::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8632.10 via Frontend Transport; Thu,
+ 10 Apr 2025 13:01:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ1PEPF00001CE6.mail.protection.outlook.com (10.167.242.22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8632.13 via Frontend Transport; Thu, 10 Apr 2025 13:01:28 +0000
+Received: from sathish-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 10 Apr 2025 08:01:26 -0500
+From: Sathishkumar S <sathishkumar.sundararaju@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Leo Liu <Leo.Liu@amd.com>, Zhang Hawking <Hawking.Zhang@amd.com>, "Shiwu
+ Zhang" <shiwu.zhang@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: Update vcn doorbell range in NBIO 7.9
+Date: Thu, 10 Apr 2025 18:31:12 +0530
+Message-ID: <20250410130113.2834113-1-sathishkumar.sundararaju@amd.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Thu, 10 Apr 2025 13:08:33 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE6:EE_|MN2PR12MB4079:EE_
+X-MS-Office365-Filtering-Correlation-Id: 13bdd5b4-8c76-4e94-044f-08dd782fcf0c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|376014|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WUpWUE1pS01JeXBwUndnWFlVWXFJV256emFvdjE1UDE1RzJOUVFTVElNYWpI?=
+ =?utf-8?B?bmlhQ0loMnRyZ01DbmU3U1hHdnJPeG4raTl4SkYwR005SnhJdHZXbU5aMDdx?=
+ =?utf-8?B?ZGxJQ1dnWWhPMXE1NHdJQTJCbm9tdWQ1eUgvRWQxQnpMR0pPdXRVT2JiMnNm?=
+ =?utf-8?B?dldCTDlaeWY4b1BUWlgxWGNWdCt3U3pkWFNwS1hHcitDWFlFWU1PdnlWSUFo?=
+ =?utf-8?B?RWgvbUxMWDV3dzVhMmNhN0syaEJDQmltT2RCd20yOWdTRnd0Q2R5eXFXUTB6?=
+ =?utf-8?B?K0svcXE4QUxBeUNHNG9RS3BqRnMzallkTTRHaXM2TWFuVkM1V3VkSVdubmwz?=
+ =?utf-8?B?Q0dGL0NHVUlYRFNrLzFCb2w2b1R1K0tTNFA5aUxoNmltaFZxUjJEeTFkRFNZ?=
+ =?utf-8?B?bnVLamMxdHZTOWE2dnBScFQyUTJnRnFhbWRYQTJScWpJZW1kaVg2aUUzMk5P?=
+ =?utf-8?B?U2s1WXRJZk5KV2w1N1Y0Q2ZvUnIwS2p1RzJtZEh3RjVGb29uWkNVTDkzdFBI?=
+ =?utf-8?B?aFdudE8zRlhGYUwxM1ZJYmhNMDRPZHNQS2ZsUFFLbUQ3U2RQaTN1QWNLb2lq?=
+ =?utf-8?B?ajdpUlNvZHFTdUxFaGlLRTdRVlpOdDhOeU5sMEJwRHpBdjQ3bGl0dHFUQ3JX?=
+ =?utf-8?B?N3BhdkdWR0ErMUxkazZKRmNBbEZCNjZrcjBid0I5TjluQk9MRkdJaUQ3UWt0?=
+ =?utf-8?B?OFVoZHFzbllwc05DY2NyTzgvY2J6K1VKZGRaOHN3M2NxRnVZdjRQUnVJM0s0?=
+ =?utf-8?B?YTBzNFAxTW9weUcrbGtTWkRvZ09KdjBKb01YWGxkbTdVN3Q0UVVGOHl3VHcr?=
+ =?utf-8?B?eGF6dUgwWHBBOCszc29SNUN5Z3VlVk93VC84VmFBdGZDUy9hTWxXT1o4QWV1?=
+ =?utf-8?B?RkJSWTBJU0dpNityUGZrSjhpRW5WMXZsa2NOc0NHUkh2K1RZQ2oxZEx6ZDB3?=
+ =?utf-8?B?QmdPKzg2eHk5czBtb1NCL1NLQkxEanlFZHlFWlMwOEc1YW5VTm9HeFdKVjF5?=
+ =?utf-8?B?blJvNVNVUHA3WGNsVlBTRDFVZWk3cTl1VGxvTU04VExBZWxKaFpjd2d3em1s?=
+ =?utf-8?B?TllxaW5hN2c4NVJ0bWRWa1k2cHhiUkM5SlJxanpuWnIzaWY0NUQzQktvcFJj?=
+ =?utf-8?B?bW1EQ2Y2ZjlVSEZVRGhNallkTWVOeDdKUUtZZTJKQzNXTDZlb09GQm1reUlM?=
+ =?utf-8?B?M2RLSnBqalNzeEJPSE8vYWpBMzlMT3BsdHFPRWN5NlFzTGowRWo1ZTQyS01j?=
+ =?utf-8?B?RVpNTW1vRmZ3U3FCVEo3N3hOUzJJcUlWa3FkSnZCRC9DRnI0UXFCaXpVd29Q?=
+ =?utf-8?B?UmczenBwYVFVbjFXR2ZjK2xMenNoQ1lKR2F6SkV2Vldjb3QyUTFNQXVGQy80?=
+ =?utf-8?B?OVEvU0ZHbmg2eHJWVTZhRHp4OU4yWk9SeWVPTUtYSDdkaE11WGs1WFZuVTdT?=
+ =?utf-8?B?WERUcEE5V3ppOTZSN3RUMENGZFpTYmZiZG1tOG9Vd3dvNjFkdXBUV3JHLzNE?=
+ =?utf-8?B?b0cyQ1ArNWFKc1FMektxT0JUQlYvcGI3NEpWTFZhNWN0Skg2dHh4UVR2NXhq?=
+ =?utf-8?B?czNydmY2cUxrSkJHZnIvU09FaHoza2dSTEFyOFo1aGk4SGtzd3NWTmZSNVFy?=
+ =?utf-8?B?c3UrKzJsN0dKanlrT3B4bzA4U1MwT1RTWVdDdEhRNEt5M3ZsVTkzU3hUbnJ6?=
+ =?utf-8?B?eXRrSUJKWXI1ejdZZ0EyNmNvMUJKcEpQRnZMbmliN0JPb09tbUQyWlRGTVVz?=
+ =?utf-8?B?TWVxNGRkTFRUYUVXV2hZd2cvMkdKQkJrOUJ5eDNzSHFBcnBoMjBEZUNrTWlw?=
+ =?utf-8?B?MkVjYkNDUTV6ZVRKR3dNaGE5eEdCUWs3SXZMN2MzZTVzbHJjM1c2WjFaamg3?=
+ =?utf-8?B?bUlYR0VMTFhYcWw3SUc3aEpNdjFyQjlQU3JEaklpSExnV0ZQQ2h6VjNzUDFq?=
+ =?utf-8?B?OU1zQlJUdXBzeXZQK0lXSHpkeGRoOU9oNGNzYlBuZXU0SUVlT21KYmYyQmVm?=
+ =?utf-8?Q?m3lO55NGPP+wDiiiyppHHuJVHayuzQ=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 13:01:28.7539 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13bdd5b4-8c76-4e94-044f-08dd782fcf0c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE6.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4079
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,64 +139,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Arvind Yadav,
+From: Shiwu Zhang <shiwu.zhang@amd.com>
 
-Commit 70773bef4e09 ("drm/amdgpu: update userqueue BOs and PDs") from
-Sep 25, 2024 (linux-next), leads to the following Smatch static
-checker warning:
+Increase vcn doorbell range for gfx950 to 11.
 
-	drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c:139 amdgpu_gem_update_bo_mapping()
-	error: we previously assumed 'bo_va' could be null (see line 124)
+Signed-off-by: Shiwu Zhang <shiwu.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-    115 static void
-    116 amdgpu_gem_update_bo_mapping(struct drm_file *filp,
-    117                              struct amdgpu_bo_va *bo_va,
-    118                              uint32_t operation,
-    119                              uint64_t point,
-    120                              struct dma_fence *fence,
-    121                              struct drm_syncobj *syncobj,
-    122                              struct dma_fence_chain *chain)
-    123 {
-    124         struct amdgpu_bo *bo = bo_va ? bo_va->base.bo : NULL;
-                                  ^^^^^^^^^^
-If bo_va is NULL then bo is also NULL
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
+index f23cb79110d6..a376f072700d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
+@@ -177,8 +177,12 @@ static void nbio_v7_9_vcn_doorbell_range(struct amdgpu_device *adev, bool use_do
+ {
+ 	u32 doorbell_range = 0, doorbell_ctrl = 0;
+ 	u32 aid_id = instance;
++	u32 range_size;
+ 
+ 	if (use_doorbell) {
++		range_size = (amdgpu_ip_version(adev, GC_HWIP, 0) ==
++						IP_VERSION(9, 5, 0)) ?
++						0xb : 0x9;
+ 		doorbell_range = REG_SET_FIELD(doorbell_range,
+ 				DOORBELL0_CTRL_ENTRY_0,
+ 				BIF_DOORBELL0_RANGE_OFFSET_ENTRY,
+@@ -186,7 +190,7 @@ static void nbio_v7_9_vcn_doorbell_range(struct amdgpu_device *adev, bool use_do
+ 		doorbell_range = REG_SET_FIELD(doorbell_range,
+ 				DOORBELL0_CTRL_ENTRY_0,
+ 				BIF_DOORBELL0_RANGE_SIZE_ENTRY,
+-				0x9);
++				range_size);
+ 		if (aid_id)
+ 			doorbell_range = REG_SET_FIELD(doorbell_range,
+ 					DOORBELL0_CTRL_ENTRY_0,
+@@ -204,7 +208,7 @@ static void nbio_v7_9_vcn_doorbell_range(struct amdgpu_device *adev, bool use_do
+ 				S2A_DOORBELL_PORT1_RANGE_OFFSET, 0x4);
+ 		doorbell_ctrl = REG_SET_FIELD(doorbell_ctrl,
+ 				S2A_DOORBELL_ENTRY_1_CTRL,
+-				S2A_DOORBELL_PORT1_RANGE_SIZE, 0x9);
++				S2A_DOORBELL_PORT1_RANGE_SIZE, range_size);
+ 		doorbell_ctrl = REG_SET_FIELD(doorbell_ctrl,
+ 				S2A_DOORBELL_ENTRY_1_CTRL,
+ 				S2A_DOORBELL_PORT1_AWADDR_31_28_VALUE, 0x4);
+-- 
+2.48.1
 
-    125         struct amdgpu_fpriv *fpriv = filp->driver_priv;
-    126         struct amdgpu_vm *vm = &fpriv->vm;
-    127         struct dma_fence *last_update;
-    128 
-    129         if (!syncobj)
-    130                 return;
-    131 
-    132         /* Find the last update fence */
-    133         switch (operation) {
-    134         case AMDGPU_VA_OP_MAP:
-    135         case AMDGPU_VA_OP_REPLACE:
-    136                 if (bo && (bo->tbo.base.resv == vm->root.bo->tbo.base.resv))
-                            ^^
-
-    137                         last_update = vm->last_update;
-    138                 else
---> 139                         last_update = bo_va->last_pt_update;
-                                              ^^^^^
-This pointer is dereferenced without being checked.
-
-    140                 break;
-    141         case AMDGPU_VA_OP_UNMAP:
-    142         case AMDGPU_VA_OP_CLEAR:
-    143                 last_update = fence;
-    144                 break;
-    145         default:
-    146                 return;
-    147         }
-    148 
-    149         /* Add fence to timeline */
-    150         if (!point)
-    151                 drm_syncobj_replace_fence(syncobj, last_update);
-    152         else
-    153                 drm_syncobj_add_point(syncobj, chain, last_update, point);
-    154 }
-
-regards,
-dan carpenter
