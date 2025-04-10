@@ -2,147 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838BEA83BE9
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 09:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53222A83CA7
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Apr 2025 10:23:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46BE610E076;
-	Thu, 10 Apr 2025 07:59:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA7B510E0A2;
+	Thu, 10 Apr 2025 08:23:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qohNd+1r";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="AggXW2nP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2073.outbound.protection.outlook.com [40.107.101.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2112410E076
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Apr 2025 07:59:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fPKOq/nbr5XUAcgDiPwH9ygni+VpC+RQCY92A0aad5XEHh2xXQ3ci7/91v0hmGBULbtxOA4Saq08rDe98VjTCeZKjjyLTNHRvHOHCqCBClLOoJuDYZ+57P8KxFZZ8/k90326KIy/lcjTvMgGZWUeSvFzzGgSnpruShcopFyx0szy2Bnc9WlfOI6pkyRMWgeuCJl4qrRmtYKGIjiA/3qEmTp/BoHP4cI3VKjWPIMBxzQqjOm0qNSCK/TMQ3mClv1FkoqCQfLWWYSVDpglGEyJO7o6f554UZ7Q+rLU42RwjjB8gdy/8/zmiou1zIAu513f0J62AP5qYDJWelPfaky7kw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I1rNMu2hIWmDEvLAkxjsdbe6A/XmainuyG0e10VPHzI=;
- b=wGzlFXhsFw37Qyz7fLt6PSjIST/LmhQ01okeFE3Pc8z4YA0rs7wlhsSMv6fgJiXanGM817gtPa9il/5aOVPcOxfUhOV7AtHcrCv4P44ABJVderwUB9ftGJQoz6Z1VyVez3WbAxTGHDy8Q4VPWuKGH23/IKerVoD0zDcNozeSnaPN/J59PM0FxOyeCfYepWWg5W4IKb6BfR+bREH0WqGSMdC64y+W512aY8TAyf8F+HB2qiA9GV5OLEKyX0iboBOA/AkTDiivSUgWrA/q8HLNGxf36twyYr6DfW9IM3bpjNwXOiSU+LT96dBZzal8LKod1E1BzAwZsYpVXzLf3017mw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I1rNMu2hIWmDEvLAkxjsdbe6A/XmainuyG0e10VPHzI=;
- b=qohNd+1rTq0sFtWja4oRbnPHLOX+UH3YWDHWxRu1QE6tI2Yenv3HaHByhVluhm2pLquXfHYdaIn4nXkZGYu8By5uu58W8/gO8NgpHnqbNIk/T01LKt1ySnwBuzi2+Y2lzzmRbiGaU2x9M5OEPs4DGU5UKuDg12HF/BFt1B36bjA=
-Received: from BL1PR12MB5061.namprd12.prod.outlook.com (2603:10b6:208:310::13)
- by CY8PR12MB8215.namprd12.prod.outlook.com (2603:10b6:930:77::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.31; Thu, 10 Apr
- 2025 07:59:32 +0000
-Received: from BL1PR12MB5061.namprd12.prod.outlook.com
- ([fe80::acb3:ef8d:e8cf:438e]) by BL1PR12MB5061.namprd12.prod.outlook.com
- ([fe80::acb3:ef8d:e8cf:438e%3]) with mapi id 15.20.8632.021; Thu, 10 Apr 2025
- 07:59:32 +0000
-From: "Chen, Horace" <Horace.Chen@amd.com>
-To: "Deng, Emily" <Emily.Deng@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Deng, Emily" <Emily.Deng@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: Clear overflow for SRIOV
-Thread-Topic: [PATCH] drm/amdgpu: Clear overflow for SRIOV
-Thread-Index: AQHbqeF5XVRlT4aeUEuIWzlRLveIBrOciKOQ
-Date: Thu, 10 Apr 2025 07:59:31 +0000
-Message-ID: <BL1PR12MB5061918092FCB2FE9076CA84E1B72@BL1PR12MB5061.namprd12.prod.outlook.com>
-References: <20250410062554.573023-1-Emily.Deng@amd.com>
-In-Reply-To: <20250410062554.573023-1-Emily.Deng@amd.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=5adafb39-3d89-4545-83b8-a205a311519c;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-04-10T07:57:26Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10, 3, 0, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5061:EE_|CY8PR12MB8215:EE_
-x-ms-office365-filtering-correlation-id: 6a8cf920-7fde-40cf-ce28-08dd7805a084
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?NEsLrD+HXiSPop/QcUFr3e6Sgrobi16f0l0y3Dzjh/IJr7MWEmIsfJ4G/pZZ?=
- =?us-ascii?Q?HNoyFJpYKt9rLXZng0Ccng//HRAWxjq9O+MfBmjJo5bSVSrVQQTaIpyMnaHw?=
- =?us-ascii?Q?2vxVNfpKXWUNX+iMsBQaSSQWZspTF2azOf79Qq8b/rHSVpy5u5jpOCX2q/jj?=
- =?us-ascii?Q?WoV9K4HsKp3/GUhmBFvA/mo82blcbi6ppCMUopEMaw8d2znddYboWq/A85qv?=
- =?us-ascii?Q?O42Yp0ZLb6A6CdFEdFrfuEqFTuQAIeynP1hcXdtXIV6nlhvjvEEgmN1ei9IJ?=
- =?us-ascii?Q?5Z/J3CNE3RXyAv/3sbcqTucQNpsBZ06zsLLb6xeRMy/7oJfp4at/Y9KMQqh/?=
- =?us-ascii?Q?DnENmEM6ejdjefKpE2a/hhZQcyCQivvAGPQxhdEJlwlUKNCzvcVZOb64sb4M?=
- =?us-ascii?Q?tAIcyjA0TKEy6zMHabh9RVYMQf6VynSkk2QWKjZRXrTUq74DcEER2WpNbhSh?=
- =?us-ascii?Q?XMiOdi/J6+HrDeYVM8W34FgRRO05A7yLnI+sF/C7XX046Ho2CJh30eaPZEpF?=
- =?us-ascii?Q?t8ibudFLH4zqtWkFUQzfWKwuyg93QIYDrP73YmQTvOV1DnZaU1ND1tVaz3hZ?=
- =?us-ascii?Q?5sMf/4PbOHX+tU6r/InhHGDX1KD5poP1con6/IRdNIFuZaTpmdvT1mTMr93O?=
- =?us-ascii?Q?FCLGDJDg5uiixsg+AU7yO89WCIl0K3JHi6rEmPEMUa4OmzoEyFUzk2ToZMOt?=
- =?us-ascii?Q?mR5s3acP8+chL0chKSSm4bQ3uCBSeq0FoHb9gaSIMGAzyocP/KFy3c0IVv2b?=
- =?us-ascii?Q?qdw+ZRLEwrgD1oZyszvzJnAtCu6ZCH9cXLUAveuVerl8rlVDOe1Ry8FOp53E?=
- =?us-ascii?Q?f5urN0N7DIrBuU9GtRjxPPpnRuLXcqwcXbEJYJYlUQbKVA3XDuAWppi/W5Ng?=
- =?us-ascii?Q?VoWtdBsirvkdBErtL6uBWBB/Ajc6oWdLN2WMmtdsSrNijsOM65Aiy03JbB2f?=
- =?us-ascii?Q?rfomjQ5aYwBcfiQuzED9MB/KblGYpq6fhTgTcsZ25rw60HKXdCBFEcSbX72a?=
- =?us-ascii?Q?ssd34aBK8TbXd1gOrteKgQeneAj3+E7J5vo5SLcNCRSL6NP8hfm9Hh9wHnmP?=
- =?us-ascii?Q?fbiEuxMAN+Z8z4X/6lOAz88Vy9/o0egLK27UhyuGG8c8xwhCSEJF782w7EBT?=
- =?us-ascii?Q?vNA5gvrgmsFNrUYnqcR5AFRdrZGAJ1RHZx0Cc1vAFkstVqqzUIiIsixN4wS4?=
- =?us-ascii?Q?n6QjxC2yM54Tm/gLlllrtcMHoBsIsf+AP7q3r0FhNtG+KAo/C0NqcHoV5Zvc?=
- =?us-ascii?Q?0yusY5PnPx4eTxobQZWtdU31T78qOEg8iqIJubgCv54nmYzkNilB50Zz783J?=
- =?us-ascii?Q?WPZqKbEa8NFDEtlyG3STCi++grXH4em5Wek91qWfSWN4SlnPz9yjh0Qd1Hi8?=
- =?us-ascii?Q?b7IMCsp7BPlJY8NR8lUJ4Lvp4j8F/KkW/bONMhBtrgKuO7lopWomVKb6A+Uk?=
- =?us-ascii?Q?WAP+zQl2Eiu/a5gEC79CLDPpSzdBbut/sF9h4IQpL5qU0CR0RNYHWsh91EZf?=
- =?us-ascii?Q?DDDAvVzfdg/BN+s=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5061.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?/+R6hCxo1t5d5BjyXRey4tU7PqU2+O7O5lRO78Xzc8EMmiHE+OPbHfL+TiAA?=
- =?us-ascii?Q?pNEUe1AXJvjE1e4NEJjY971+el9Nm2r1kbpk9nch9qvRjnf/sVTLF2+7op2h?=
- =?us-ascii?Q?gcMYUtDm4uXLlSFwUFwS8eaGh+U543JZpe+kZZpaA/BLrp69hMNrmvVUz6n2?=
- =?us-ascii?Q?pimMbf6FdNEwF0kUuE/bEpmdgvtv7DeOiwG6OLd+0KU274ThbplQvkna6NHT?=
- =?us-ascii?Q?uqjNLcOSsVAatSSe8AhRQKVLQEM6LkzIyfb6jWxeuruZgZu9D+xLPNmzFelM?=
- =?us-ascii?Q?5BDYt+opxaN+rY+Ut6TnUlt2mp4Gkxl9HiAaVk9VNm/rMl6lwjHGISLiQOfE?=
- =?us-ascii?Q?vYxHQ4jt0c/Zgw7IDVMX9nULk/2lJw7rEg43EwWh1l9DW+8kto/CSnwIRByh?=
- =?us-ascii?Q?rG9dD0gZL48QZ3+1UU0F6aaZuO5tQRQOfldshyn2bbPxMFN6eVbxMi3Nekeq?=
- =?us-ascii?Q?yoXAz0+9o56txp63Zf5OE4G/KFI+tzndXwCPp2J7wgFl5LHfOytI3U7Ntdka?=
- =?us-ascii?Q?f8MaphQgO8k81BEUL1P0N1oGypryjkEN5p/42S6cef2ScwUPtgSlYMa5AfS/?=
- =?us-ascii?Q?OnU0+ZiqmKfUpsQe9ZXn55jR+qjM+Usz14vqG4nl/i2jlRPBvhiFRzkpOPwu?=
- =?us-ascii?Q?fDPUzDajGb+KLiscVUlwsrA0rBrpL3kzxYmHyLyFRTvwywqjUBLNXqvM2et4?=
- =?us-ascii?Q?Zsj/zy8+aQjkcIW+4CZGhvXVlb1CgGJMp9F0UXtB1IF7RbOD0+rS2JOmHwm4?=
- =?us-ascii?Q?3PYz2B+8rc27wt6pu6LkEKCsRRJkKQrOIQJiRvRNwjIjicV1KYPFRsi4xMef?=
- =?us-ascii?Q?p9N8hJSzRjieh9pJ2aN+mttkVMRemAeAbbUGQM6ScifPQz+ijBxLSK3wmIzY?=
- =?us-ascii?Q?tiCeuchwSXc/tekrmdIK/9HxSh4SteadHdcoMnhYPk3YuUTfnwRnqUwS6nZm?=
- =?us-ascii?Q?NPH38j9ZPpoxUnRNriCHOpG+vHwFCratvHagAEA/o4ZQEqBWGBO2LtSocXuI?=
- =?us-ascii?Q?XocbwrVgalff/Kn4L2j0+XkqRcRLnpt6sJqNA5J7rXOBxABd4D3h7YMhLerl?=
- =?us-ascii?Q?ShfJ919k0/acBLTGx/X9UIZRof2psdAyq5ccTQJg3ysAsAZ2Jqyku84Kztz+?=
- =?us-ascii?Q?or0OVrRSFhN/sCkqa6JaWQRa4+4xaY8FWhjdkBYgDMYHP6tiNVmIjUf4rGBo?=
- =?us-ascii?Q?mQL8pjg04l0TwQpICu7qg9aHT6NdRTSqaTPGtascsFsWR7EuDACLTZilblfE?=
- =?us-ascii?Q?Vl3/GWuKMt8izr1Aw0GHqWSYBllCdh0ysOB+sWrPOAlKRjCtQRl8QE/RGL5Q?=
- =?us-ascii?Q?9WTcn+gQe5MXkHVuhDP76ROu0f+sRFdTSUldZzyBUzMwwJ8SX7DyppCBNl/X?=
- =?us-ascii?Q?UVTJMmlhbcI8uGB+plpfD7gJkAaKR4WcH8pb2kqL5rY8Shfyr9D0fuqvRiPf?=
- =?us-ascii?Q?PKODQGiQbverXc9bs7wyPvW/9tUJY0cszPmTKddCj9f4/2AKbdapZla8f11y?=
- =?us-ascii?Q?aghEupcJgHfy/yhfw92ExcHDM2Zj2iD8nF+cWkUi0lPoIbBpFVNzzz50NB6D?=
- =?us-ascii?Q?QtH9nrGow7Mc+MxadBM=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 1771 seconds by postgrey-1.36 at gabe;
+ Thu, 10 Apr 2025 08:23:31 UTC
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D0A510E0A2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Apr 2025 08:23:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=mW2BmBRJFzbbLmtrNW8NouiCPlCCvhYr21PM7cw/3Qk=; b=AggXW2nPjCelRs+WCJrazMHd8T
+ gmlPDgsfrDVd1AJaOs6qVkzbP6Fa8pwjFZn+Hs0QdRPpD5vkys560liiLjDZtaAlEe4c1lvaKqoiM
+ lob+cpcz8FWKT4iUpQuJCU3hWESSyeOF7oddPu2nJUtC7WhfpC/ghlmjl+0bJUhXxTpNWtShnNEpL
+ GRVziewSbsRH6XnBo6paUprFGYrzfH4SXhrTuOI/lyMgHWW9tcDg7oObouRCNQNPu0hcXeg9QuaQg
+ IewwXJKfMQvubfZqT9aj7h/smGnyF9SKAMqaFXwyb29jm50hwzghTqS1aV3AtxqVdXPDBGua/bs19
+ ARX4jUrQ==;
+Received: from [194.136.85.206] (port=44146 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.98.1)
+ (envelope-from <pekka.paalanen@haloniitty.fi>)
+ id 1u2mjS-000000005Gf-1Ewf; Thu, 10 Apr 2025 10:53:54 +0300
+Date: Thu, 10 Apr 2025 10:53:43 +0300
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: Harry Wentland <harry.wentland@amd.com>
+Cc: Daniel Stone <daniel@fooishbar.org>, Simon Ser <contact@emersion.fr>,
+ Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, wayland-devel@lists.freedesktop.org,
+ leo.liu@amd.com, ville.syrjala@linux.intel.com, mwen@igalia.com,
+ jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com,
+ agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org,
+ xaver.hugl@gmail.com, victoria@system76.com, daniel@ffwll.ch,
+ uma.shankar@intel.com, quic_naseer@quicinc.com, quic_cbraga@quicinc.com,
+ quic_abhinavk@quicinc.com, marcan@marcan.st, Liviu.Dudau@arm.com,
+ sashamcintosh@google.com, chaitanya.kumar.borah@intel.com,
+ louis.chauvet@bootlin.com
+Subject: Pipeline vs. no pipeline (Re: [PATCH V8 06/43] drm/colorop: Add 1D
+ Curve subtype)
+Message-ID: <20250410105343.606bb75c@eldfell>
+In-Reply-To: <87fd7840-b021-4d3a-9d0b-2724e941c5dc@amd.com>
+References: <20250326234748.2982010-1-alex.hung@amd.com>
+ <20250326234748.2982010-7-alex.hung@amd.com>
+ <CAPj87rOh=1OuASau+fjL_z+XBs-P=jUiQgjJjWXQZt1FYFC==w@mail.gmail.com>
+ <46R4JuwCeyu56R2FsAN-j6n0Pu5VSeLdju8KUycQ3PF5cVQrlUO3C5SX8CgpRJ-QL5_-XS2ds94pPjhzEl6hOo3iyLl0y_d0Syzinn7BxSY=@emersion.fr>
+ <CAPj87rOpp8CE_kmcJmp69pM5NhxBkLOGp-BKdALX4F8GL5-29Q@mail.gmail.com>
+ <87fd7840-b021-4d3a-9d0b-2724e941c5dc@amd.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5061.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a8cf920-7fde-40cf-ce28-08dd7805a084
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2025 07:59:31.9344 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nrw+a001bWLoce/PCeLaTtpYYYDJee7gDFn8aVbB+YEPu1+VmUyIzzYDXBh253sK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8215
+Content-Type: multipart/signed; boundary="Sig_/NG3=OMGu0Zwg7p3kMNF=p/s";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,124 +88,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+--Sig_/NG3=OMGu0Zwg7p3kMNF=p/s
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Tested on MI210 VF also.
+On Tue, 8 Apr 2025 13:30:46 -0400
+Harry Wentland <harry.wentland@amd.com> wrote:
 
-Tested-by: Horace Chen <Horace.Chen@amd.com>
+> On 2025-04-08 12:40, Daniel Stone wrote:
+> > Hi there,
+> >=20
+> > On Tue, 1 Apr 2025 at 20:53, Simon Ser <contact@emersion.fr> wrote: =20
+> >> On Tuesday, April 1st, 2025 at 17:14, Daniel Stone <daniel@fooishbar.o=
+rg> wrote: =20
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Emily De=
-ng
-Sent: Thursday, April 10, 2025 2:26 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deng, Emily <Emily.Deng@amd.com>
-Subject: [PATCH] drm/amdgpu: Clear overflow for SRIOV
+...
 
-For VF, it doesn't have the permission to clear overflow, clear the bit by =
-reset.
+> >>> 1. Is it guaranteed that, if any plane on a device supports the
+> >>> COLOR_PIPELINE property, all planes will support COLOR_PIPELINE?
+> >>> (Given the amdgpu cursor-plane discussion, it looks like no, which is
+> >>> unfortunate but oh well.) =20
+> >>
+> >> I don't think so. (They could all expose a COLOR_PIPELINE with the only
+> >> choice as the zero bypass pipeline, but that sounds silly.) =20
+> >=20
+> > Works for me: so any planes could not have colour pipelines, and the
+> > result would be undefined (well, less defined) colour. =20
+>=20
+> Yes, basically it would be what we have now (without color pipelines).
 
-Signed-off-by: Emily Deng <Emily.Deng@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c | 10 ++++++++--  drivers/gpu/drm/am=
-d/amdgpu/amdgpu_ih.h |  1 +
- drivers/gpu/drm/amd/amdgpu/ih_v6_0.c   |  6 +++++-
- drivers/gpu/drm/amd/amdgpu/vega20_ih.c |  6 +++++-
- 4 files changed, 19 insertions(+), 4 deletions(-)
+Hi,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c b/drivers/gpu/drm/amd/a=
-mdgpu/amdgpu_ih.c
-index 901f8b12c672..23bace1b457f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c
-@@ -227,13 +227,19 @@ int amdgpu_ih_process(struct amdgpu_device *adev, str=
-uct amdgpu_ih_ring *ih)
-                ih->rptr &=3D ih->ptr_mask;
-        }
+I see Alex wrote:
 
--       amdgpu_ih_set_rptr(adev, ih);
-+       if ((!amdgpu_sriov_vf(adev)) || !ih->overflow)
-+               amdgpu_ih_set_rptr(adev, ih);
-+
-        wake_up_all(&ih->wait_process);
+> In order to support YUV we'll need to add COLOR_ENCODING and COLOR_RANGE
+> support to the color pipeline. I have sketched these out already but
+> don't have it all hooked up yet. This should not hinder adoption of this
+> API for gaming use-cases.
 
-        /* make sure wptr hasn't changed while processing */
-        wptr =3D amdgpu_ih_get_wptr(adev, ih);
-        if (wptr !=3D ih->rptr)
--               goto restart_ih;
-+               if ((!amdgpu_sriov_vf(adev)) ||  !ih->overflow)
-+                       goto restart_ih;
-+
-+       if (amdgpu_sriov_vf(adev) && ih->overflow)
-+               amdgpu_amdkfd_gpu_reset(adev);
+Was it considered to be able to lift the full-range RGB restriction
+from the color pipelines, eventually leading to the possibility of
+scanning out limited-range YCbCr bit-identical, giving userspace access
+to the sub-black and super-white ranges for e.g. BT.814 purposes?
 
-        return IRQ_HANDLED;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h b/drivers/gpu/drm/amd/a=
-mdgpu/amdgpu_ih.h
-index b0a88f92cd82..7f7ea046e209 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h
-@@ -72,6 +72,7 @@ struct amdgpu_ih_ring {
-        /* For waiting on IH processing at checkpoint. */
-        wait_queue_head_t wait_process;
-        uint64_t                processed_timestamp;
-+       bool overflow;
- };
+These questions are pointing in the direction of a bypass
+COLOR_PIPELINE being different from no COLOR_PIPELINE. I assume a
+bypass pipeline needs to shovel values through unchanged, while
+"without color pipelines" would need the old COLOR_ENCODING and
+COLOR_RANGE properties.
 
- /* return true if time stamp t2 is after t1 with 48bit wrap around */ diff=
- --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c b/drivers/gpu/drm/amd/amdgpu/=
-ih_v6_0.c
-index f8a485164437..8d3ae88b96a4 100644
---- a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
-@@ -349,6 +349,7 @@ static int ih_v6_0_irq_init(struct amdgpu_device *adev)
-                        if (ret)
-                                return ret;
-                }
-+               ih[i]->overflow =3D false;
-        }
+That reminds me of yet another question: if the framebuffer is limited
+range, and it's not converted to full-range at the start of a color
+pipeline, how will the sub-black and super-white ranges be represented?
+Will they be negative and greater than 1.0 values, respectively? This
+would be meaningful for the colorops being defined now, as I assume
+people might implicitly limit their thinking to the [0.0, 1.0] range,
+or at least exclude negative values.
 
-        /* update doorbell range for ih ring 0 */ @@ -446,7 +447,10 @@ stat=
-ic u32 ih_v6_0_get_wptr(struct amdgpu_device *adev,
-        wptr =3D RREG32_NO_KIQ(ih_regs->ih_rb_wptr);
-        if (!REG_GET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW))
-                goto out;
--       wptr =3D REG_SET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW, 0);
-+       if (!amdgpu_sriov_vf(adev))
-+               wptr =3D REG_SET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW, 0);
-+       else
-+               ih->overflow =3D true;
+The 3x4 CTM colorop is not yet explicit on whether it clamps its inputs
+or outputs. Should all colorops be explicit about it?
 
-        /* When a ring buffer overflow happen start parsing interrupt
-         * from the last not overwritten vector (wptr + 32). Hopefully diff=
- --git a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c b/drivers/gpu/drm/amd/amdgp=
-u/vega20_ih.c
-index e9e3b2ed4b7b..2ad209406d17 100644
---- a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-@@ -350,6 +350,7 @@ static int vega20_ih_irq_init(struct amdgpu_device *ade=
-v)
-                        if (ret)
-                                return ret;
-                }
-+               ih[i]->overflow =3D false;
-        }
 
-        if (!amdgpu_sriov_vf(adev))
-@@ -437,7 +438,10 @@ static u32 vega20_ih_get_wptr(struct amdgpu_device *ad=
-ev,
-        if (!REG_GET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW))
-                goto out;
+Thanks,
+pq
 
--       wptr =3D REG_SET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW, 0);
-+       if (!amdgpu_sriov_vf(adev))
-+               wptr =3D REG_SET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW, 0);
-+       else
-+               ih->overflow =3D true;
+--Sig_/NG3=OMGu0Zwg7p3kMNF=p/s
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-        /* When a ring buffer overflow happen start parsing interrupt
-         * from the last not overwritten vector (wptr + 32). Hopefully
---
-2.34.1
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmf3eQcACgkQI1/ltBGq
+qqc3NBAAi7pNZ7ZuYasRVx7esRptni9eG21TQv97wrJYmBae54fHhVKFfMeCYh8k
+ZuhmcCeYnIfepVwhcY8DM3CpjihB2aSZD8IV4KjOtuq1ReGnToWGsum/lkZ0CdRn
++5T+z31vzangptCOxfWGX2N3g+5kiPwW3hZeAArJoAnJeBNZ0Rhwd/7oPFztB+qX
+4wUVQ+zsAlqT80kAflp9DijJSg1AOPJE9iDnduP22m2MBtG8WvvU0kOt9jFz/jak
+wQ5c3GLxfRft9b9bwnpiGVO9+5R+zMbeoCQ5P1y+zVjYOLFrYKbm0SFeqmjOQ0BW
+KuK4wTe0Cn0xdNzh4OHW5FGMEI+FloFtZz5BJZCIRLMarhefu6j9eekH94nAlCwr
+pdYPqzl1lz4s0uBfmT4nXO5/NqlfsWEUbhKnusJ1dBYCKS6/rDXHhd7NuNswKlfQ
+5GrVPPscQGJjEM9zTJEoEfr9m9/rc4i7eeRDmgHjLVLLetEvsK0glDA02phbB55h
+OZiROum7sQrXvF6b8/O2Dj8dShebY1ACad8CR/da5EBOIV4Wmb+t/Mw6PwsR4cd2
+cJ0H/Enh/0ClQJ/y9jRUADk/FyiFWHRVSgxcZ4hfJey9s/xkmbqdlFnPul7I42Y0
+gv9o+bula3dn6QdEGW+v57cfFnQe/Za+qpcra79pYqSfkUEGxKA=
+=CrDc
+-----END PGP SIGNATURE-----
+
+--Sig_/NG3=OMGu0Zwg7p3kMNF=p/s--
