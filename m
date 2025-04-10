@@ -2,33 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A83A85B8F
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Apr 2025 13:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA7FA85CF8
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Apr 2025 14:24:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 851AE10EB77;
-	Fri, 11 Apr 2025 11:26:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F18210EB94;
+	Fri, 11 Apr 2025 12:24:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="WPBIV2xY";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D22E10EB77
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Apr 2025 11:26:35 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 53BBQOIW4075540; Fri, 11 Apr 2025 16:56:24 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 53BBQOhK4075539;
- Fri, 11 Apr 2025 16:56:24 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F24210EA04
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Apr 2025 16:24:55 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-39c2688619bso624221f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Apr 2025 09:24:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1744302294; x=1744907094; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=/Q0HEw3hrYVGi9s56H8x5ezvg01Afiad6GaTNJBgE4g=;
+ b=WPBIV2xYzXx2f1YnKFJWHS1hfjhzZukFalWUFE7oyKohHg8GdFngV1eeYRuPOjDtiF
+ iV6cwuEbX+rvwB8hGRxwGstVvtEtTngWfdK9QJsIIfzc0PJRMpi+vBnBxfDwvTmMkXYn
+ v1DIXqeZUuyW2htKu29edUJ8u4VUsXFwop6Sh+kakw0BAx3Qkoze5rspb+r7BF7cbNJt
+ qefgL3VeHhNh3ylyMw+OWm18FuPg8zncDaqfIazYFEkdF9Gg9+2U+UuqQEKYlRo4bjSm
+ vEq8qXAKCmMHk+fA8UVnbtlnoKFOvoMakFEOu/FtWLejzvCAp5Go1gGSkqTzNl2aGrtz
+ jPgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1744302294; x=1744907094;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=/Q0HEw3hrYVGi9s56H8x5ezvg01Afiad6GaTNJBgE4g=;
+ b=tLcjDCk5Ava5AloqQxV4xda5h+4IODv/hUG6HDnJohagJbgrOHilZW5UOyOUW0Sq0l
+ hftIZsy7+YaPg2XN238khbFLc7OiG3NDKYk1G98KMRZe44d7h+VXSUpmw5Kr2A5ufQLv
+ QNhmLrb7BczjU8MMqHzcB/3TQIPxjtnR14vqelVAqvnQIU5KH9O8SQpht2T1CGm3A7PM
+ dudkdULgs+Da7Wg4zjyDIdQMeMZ3rcuh3eHZPL4UVlpS/jMcJ0FkUmK861XwxsFGOnsR
+ xqvnzHFVHHqipE5RbuHRbErW9jwY5mWrKHr3UinvT2PZJk/2DgHoLj436w/jkQTx5L0j
+ XGMQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWKh2UpsjCQfb9u8NFiruXgrhEu5dXs1aKvEHmVux1QJ9FgTJsJRpWFi7wVOKgmkjMLf6482d75@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwIjiUGjXUL+knLUOoA/9lscnAvNJ2fH8Bk+wZMXucIr/CVYczL
+ sU2Ai/dWGgva0UlfghFrq+rC1ZEI3OU+qJ0Iva+WU2pdx/pDj79utHDHyl6GKi0=
+X-Gm-Gg: ASbGnct/+eCKQMqy11RxMRcEU7cVCzTTMFsy+AuKM3oYYFtOSMhKgOCAP4lXJISDUEa
+ BqocPQz2onSSW7ylsCCMbiQ7sZDh7lagSYSln0RYG1XCpbnawu0Ejv/o1lCKDn70O2/FclhXH7m
+ Ah3wFdaALoZHPtwk7BXnjBvlIth0IDU0wz+Som77lUOPHwjdOmLnDEDiGHTdd+e+xIX9oKBLcvy
+ yISvkxAHqmElhynqeMz6ZtxTunUqVf1WpA8dvXqT2Y/L+ZJoFWelSkx+GD/KAks/+Hblj+Ieqg9
+ Rx2NMeptXf9FxSH10jzF5Lxa2SNrIE0qDQFWlcS79aIXrw==
+X-Google-Smtp-Source: AGHT+IE5gbRW9QyJ582gnS5/K6En7dv4OcdtzrH6WqFi8GhS+S5YHvq23DQaLTjIP0Syy2HVbmP5YA==
+X-Received: by 2002:a05:6000:1785:b0:39c:dfa:e1bb with SMTP id
+ ffacd0b85a97d-39d8f4dcf9amr2828748f8f.42.1744302293770; 
+ Thu, 10 Apr 2025 09:24:53 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-39d89402a08sm5153257f8f.100.2025.04.10.09.24.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 10 Apr 2025 09:24:53 -0700 (PDT)
+Date: Thu, 10 Apr 2025 19:24:50 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH] drm: function to get process name and pid
-Date: Fri, 11 Apr 2025 16:56:22 +0530
-Message-Id: <20250411112622.4075526-1-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Arvind Yadav <Arvind.Yadav@amd.com>,
+ Shashank Sharma <shashank.sharma@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Subject: [PATCH next] drm/amdgpu: Fix double free in
+ amdgpu_userq_fence_driver_alloc()
+Message-ID: <5ff4d367-b5bd-40ae-9529-56d08ea6c1d0@stanley.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+X-Mailman-Approved-At: Fri, 11 Apr 2025 12:24:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,69 +91,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add helper function which get the process information for
-the drm_file and updates the user provided character buffer
-with the information of process name and pid as a string.
+The goto frees "fence_drv" so this is a double free bug.  There is no
+need to call amdgpu_seq64_free(adev, fence_drv->va) since the seq64
+allocation failed so change the goto to goto free_fence_drv.  Also
+propagate the error code from amdgpu_seq64_alloc() instead of hard coding
+it to -ENOMEM.
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+Fixes: e7cf21fbb277 ("drm/amdgpu: Few optimization and fixes for userq fence driver")
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 ---
- drivers/gpu/drm/drm_file.c | 30 ++++++++++++++++++++++++++++++
- include/drm/drm_file.h     |  1 +
- 2 files changed, 31 insertions(+)
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-index cb5f22f5bbb6..4434258d21b5 100644
---- a/drivers/gpu/drm/drm_file.c
-+++ b/drivers/gpu/drm/drm_file.c
-@@ -965,6 +965,36 @@ void drm_show_fdinfo(struct seq_file *m, struct file *f)
- }
- EXPORT_SYMBOL(drm_show_fdinfo);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+index a4953d668972..b012fece91e8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+@@ -84,11 +84,8 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
+ 	/* Acquire seq64 memory */
+ 	r = amdgpu_seq64_alloc(adev, &fence_drv->va, &fence_drv->gpu_addr,
+ 			       &fence_drv->cpu_addr);
+-	if (r) {
+-		kfree(fence_drv);
+-		r = -ENOMEM;
+-		goto free_seq64;
+-	}
++	if (r)
++		goto free_fence_drv;
  
-+/**
-+ * drm_process_info - Fill info string with process name and pid
-+ * @file_priv: context of interest for process name and pid
-+ * @proc_info: user char ptr to write the string to
-+ * @buff_size: size of the buffer passed for the string
-+ *
-+ * This update the user provided buffer with process
-+ * name and pid information for @file_priv
-+ */
-+void drm_process_info(struct drm_file *file_priv, char *proc_info, size_t buff_size)
-+{
-+	struct task_struct *task;
-+	struct pid *pid;
-+	struct drm_device *dev = file_priv->minor->dev;
-+
-+	if (!proc_info) {
-+		drm_err(dev, "Invalid user buffer\n");
-+		return;
-+	}
-+
-+	rcu_read_lock();
-+	pid = rcu_dereference(file_priv->pid);
-+	task = pid_task(pid, PIDTYPE_TGID);
-+	if (task)
-+		snprintf(proc_info, buff_size, "comm:%s pid:%d", task->comm, task->pid);
-+
-+	rcu_read_unlock();
-+}
-+EXPORT_SYMBOL(drm_process_info);
-+
- /**
-  * mock_drm_getfile - Create a new struct file for the drm device
-  * @minor: drm minor to wrap (e.g. #drm_device.primary)
-diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-index f0ef32e9fa5e..c01b34936968 100644
---- a/include/drm/drm_file.h
-+++ b/include/drm/drm_file.h
-@@ -501,6 +501,7 @@ void drm_print_memory_stats(struct drm_printer *p,
- 
- void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file);
- void drm_show_fdinfo(struct seq_file *m, struct file *f);
-+void drm_process_info(struct drm_file *file_priv, char *proc_info, size_t buff_size);
- 
- struct file *mock_drm_getfile(struct drm_minor *minor, unsigned int flags);
+ 	memset(fence_drv->cpu_addr, 0, sizeof(u64));
  
 -- 
-2.34.1
+2.47.2
 
