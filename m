@@ -2,166 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8113A85CE8
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Apr 2025 14:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBDD2A85D8F
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Apr 2025 14:47:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB33E10E25A;
-	Fri, 11 Apr 2025 12:23:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B99F10EB9C;
+	Fri, 11 Apr 2025 12:47:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WGblNMGO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aTfcuCZR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2088.outbound.protection.outlook.com [40.107.93.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B09BB10E25A;
- Fri, 11 Apr 2025 12:23:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Q0JDn3mm1Aeu50Yx8EdXISADSllk0ZfC81Q5j4jxa+Gdluuyxct68UtQw0sP2nj55O+jQI80CMp05k8W8aYhjHY9BEiqGeeJ2GK72EhoDoO73b6RgoVg36oHdxyUR/JzTQrfUQ4w34i9FmbxQbUeQXG912Ob6Pm5BpcIY3mwFHC6BY2Tm1soAHUWhf9gxX6lkpTwhtr0O8oBQgnHL3lqkbFS+pqYAbmUaLWWYXgDEGj/XnI3mCvYvVyQQLdGqlRx3iTdrzBU/jIi3+3yu/5jWLk8qoFMZ7OG2UaoHZL8LnKVLh5fpPMAJe0Sk/dIG9apYqUHtk0sjhuf6zPl/dKNnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fTmmfAG5Sgxkgl6oIH3q6VNeRGQSQ8elveUI5Y/s6Gc=;
- b=HzwfX8kcfHGeqwYn6rzLIagSNavLQYpKQm3VmZxhNYptUOfDzJiqeiKoCfj4idjL81SzgNzs8e+ApaTA+BUJbFBsWoBaHkpyVSG6Hi05KVKGN4Uf2uB7wTTdclGgION2lWEAtiCYPBpMHUGQq85qoFAhjWGZ44brs/XiDF6EStrp8W3zMfuWKToChyK4FP58o4L1fFCwiL+W1UxJ8fUi2TdUAAEeS5F1RureP3pBzCp8O5lA2q7U84zC1H5Q6KREmkJo7N9OQEqsjh/CqgcudUjBwwY02sYLFn18JgbdN5mQ+B2ooL88ZvRC8p9/DA2VSTXpDzHPcy6nta/PJu4K4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fTmmfAG5Sgxkgl6oIH3q6VNeRGQSQ8elveUI5Y/s6Gc=;
- b=WGblNMGO2/jV66MzFXHk2OGMWdqpNcDsem2bQByiasIldcFvY1hRVCR5SjrJc0Sdh+406dBmcc3C7EBfsBdrO0fhtnD3bF/UYn/VbJjVMHx2UDmmYc17B3A0q7pEiBxnqnfXFjja82AIZw2l2Y8VLloZjy8VL5rTuFDmLkSwOEE=
-Received: from BL1PR12MB5753.namprd12.prod.outlook.com (2603:10b6:208:390::15)
- by DS5PPF18A985A10.namprd12.prod.outlook.com (2603:10b6:f:fc00::645)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.21; Fri, 11 Apr
- 2025 12:22:58 +0000
-Received: from BL1PR12MB5753.namprd12.prod.outlook.com
- ([fe80::2b0e:7fc3:1d21:5d2e]) by BL1PR12MB5753.namprd12.prod.outlook.com
- ([fe80::2b0e:7fc3:1d21:5d2e%3]) with mapi id 15.20.8632.021; Fri, 11 Apr 2025
- 12:22:58 +0000
-From: "Khatri, Sunil" <Sunil.Khatri@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Subject: RE: [PATCH] drm: function to get process name and pid
-Thread-Topic: [PATCH] drm: function to get process name and pid
-Thread-Index: AQHbqtSVzyiJv9jn6kySRHsn3pViKrOeX48AgAADlBA=
-Date: Fri, 11 Apr 2025 12:22:58 +0000
-Message-ID: <BL1PR12MB575316AE9C3957F352DF4B7393B62@BL1PR12MB5753.namprd12.prod.outlook.com>
-References: <20250411112622.4075526-1-sunil.khatri@amd.com>
- <15b041aa-f87b-4e8a-8144-cabd07e19001@amd.com>
-In-Reply-To: <15b041aa-f87b-4e8a-8144-cabd07e19001@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=6607cdaa-f29d-4cb5-b06c-ee9f78b6c5b5;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-04-11T12:22:32Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10, 3, 0, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5753:EE_|DS5PPF18A985A10:EE_
-x-ms-office365-filtering-correlation-id: 33aa1c23-1673-4539-46ab-08dd78f39851
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?utf-8?B?Q2NqSDl6SkVneU1zelgyM1JVSTRyeTVNTFE4Vk1hTWRkbFZ1VWYvUWVTZGhy?=
- =?utf-8?B?d2MrdzFkRklYd3U1N2ZxcWg1SlVjUitqenc0L2tSWTJac3dwN1YySGVlV0p3?=
- =?utf-8?B?c1dNR2FKTmJ3Mm5RYmNwSFNaRE5yMVQxN29QVHRBWFhzVXZCT1VaVFFzL25S?=
- =?utf-8?B?b2JlWFVwVGpLK0xZODdwTmFSYVhJY3RhbkdNMEVZWkJERENpNzhzd2ozN01k?=
- =?utf-8?B?OXcyWXBvcnpwUDNFMVZjYnBMQzJzQVVaQm1tQTdRTnVKcnMwOVFqbTNiYlJx?=
- =?utf-8?B?S3kxSFdDYXl3NVBoREowWi8vZy9lUHJHckdzaUxjUHhzV0tlYWFQVDM1SUVX?=
- =?utf-8?B?bkMyQS9lenN3YnUxckNhd2xaRlY1dXlENnUxSWNwaHROSWFnNTZnKzJIb1FB?=
- =?utf-8?B?aUFEbVFGb2s4VHRDc09YcFlQbG5Ka3lENFNrWDJaQnRwRmR3WFN5QktpeHRP?=
- =?utf-8?B?T0RLbTB3RWU0c3B2TkdNRDVnajlRNndEbjIrWWVyTkY5SEJleFRHRGJtZ1BS?=
- =?utf-8?B?ZGt2NCtTV25FRHhyQjk4MSs4RllXcFZIanNiYXdlSkh6K1BKZU9TQXgxc2VD?=
- =?utf-8?B?ck1vaTNvSWg2RHg0T0hRQjZqVHp3ZFNkblBoZnJtWktYNmFzSjFLc1dqRFlw?=
- =?utf-8?B?YlJMMGJpMTlXUXBmSmhHWG81clMxVVJCTWlmMU1ySTFxR2xkN29FRTBZKzBX?=
- =?utf-8?B?dGhnMXljVTFMclAwWDhhS0lISktVMFBMcDZHVDBmS3pGclZPYWVUWElrMlFu?=
- =?utf-8?B?c2w4TVJTSVVxdXhVY1dNSU9YeUNlVkxSbU81eEZTa1VXclZhRXNYMXpqK2tB?=
- =?utf-8?B?SG5Sb3Z3ajkrTi9rQlo3TWxDaG95Zmw2VkpzaWZvUW1kL3hNQW91blduejdy?=
- =?utf-8?B?UXJiSGJ2eGN5Z3FqNmpvdCt6elpzN2tmUFc0TUsxSnRwRDlvT2t0R3VSSkJL?=
- =?utf-8?B?VER5N1NST1VpempDbk5rTHBYalgvbXZULys1Y08xeUlMamhtOXJHNlFxcXo1?=
- =?utf-8?B?dGI4dFNSb3YycUZ6RnFlT1IxVnBOR1h1eXVBT1BDZUozWEt6endoNkNzMGtv?=
- =?utf-8?B?TWlsS0x2M1FybGcvR2RyVXdFUjJqb01WUVZjdE9uNzNldSt1djQ2MXBHWHRG?=
- =?utf-8?B?eEUrRGhUUTNjMGpKNDBmVm9jZTZULzhtUVdKYWRIOWIvRlpDU3cwelRreUdX?=
- =?utf-8?B?N1JLN25QZVZib2czWm5oT1Myc3p0TGllQ3hvL21DN3huMHdUb1Y1M2lqdTJz?=
- =?utf-8?B?ekxYNXJrOGNPTWhFbUpiYWFJK1VFbFNRS1BGTmxrU2JIR0prbUs5SCtLV0Vn?=
- =?utf-8?B?VThSRzBxSzFCbkxxdnVLZUZJKzJtRFk0bVYxSjUzeGtoWDB6cEIwY3FkN2Er?=
- =?utf-8?B?RU12SXFQRHQ3M1NSclNVY1YrWCtQbituU1B5MThsWk5JL0ViU282M1dMWlVQ?=
- =?utf-8?B?OG1vQlp6QnArY3Z1c0lBbGpBd3lzTThDM3l1WXhOTkRldmJqMjBXNFdsMWs1?=
- =?utf-8?B?UkhSeW1QK1diZ0RzVzc5WGlsaVVISGkzUHFkSk8rVEpOdzRRVjF5eXJ0V3Nq?=
- =?utf-8?B?MG1vZTJ2T3FMNHpMMG5lTTdadmt0Tm85N0dXWVBGNi9mUU1qNWpoejJXYUlr?=
- =?utf-8?B?cVJZSU1QN0EwQlZ5eVc2M0cvcWZYREVVVjVVdFN5TUJXeGxLMWR6bHVuQWpJ?=
- =?utf-8?B?dXFJVk81cUVsUmJoeEREbmlxbE9vU0VJZUl2MVd5bXdJaFFDelhjdTFucmdp?=
- =?utf-8?B?UTRZSXlHRzZLNWdhV3JHZitjam53VUtaV2t4bllUdVNJWkZOVDhZckM1QURy?=
- =?utf-8?B?TG5tL01WSW5KVTU4Sm5FVVhIa1FJT2YyR0FtK3JMRG5ySzRSaXlsUnJqZFZD?=
- =?utf-8?B?Q20raXVvWGV0TW80V2VtdlVPc0dsY1djVksrWVh5TGJWa2JGV2xOOVFPL09I?=
- =?utf-8?B?M28wRi82dC9pVUZoeXFJRUZnRkkzWFR2ai8rYVRXVmluQkluTXk2WGNNT2dQ?=
- =?utf-8?Q?7GmLDirCxtlAreklHul9Y4EJbwJxec=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5753.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZUIxbjlkajU4Q3BlT0NnNFNTeU5Ec2xoVkdhT1U1Z3NsWWhVQ3ppVFVBMDg2?=
- =?utf-8?B?cHpDQUdWOHk0OXBqNUw1UklXZkhyeTdOUlhhVHZiTDNoNU0zK1hvU1NDOTcr?=
- =?utf-8?B?TWNWYXNyU1NxNEFzMjhTblJRNDJNYU0yMGc1Q1hSakVqQ3ZBeUFmNDEyaXdz?=
- =?utf-8?B?ZDg2czZiZzNyN0g0cytZbkJtdnRnTU9KTmcrT0hOblFnWmgvamhkUW1XWjdX?=
- =?utf-8?B?bWxLNFhQTnlraG5aQ3pmdjc1Rng3VENIUkt1YnNsdHlNYUdzb1hld1lDVXRU?=
- =?utf-8?B?S3ZrNnpkRmxMQkUzSEZ2WHMwaTJMZDdrNnlEU25jRVpaSkphaEJoTDVoMWcv?=
- =?utf-8?B?bSthRnA4TXJ0MjBYSmwxSllXSWtKNGhKSlR6bDVFTW9TQk82M0hLdlpMbHk0?=
- =?utf-8?B?T3p2OWNGSmcrMndFSDVsdGc1dzMwVG9VbVJ2bEM3aTBrcy90ZTdJZUNsNmNV?=
- =?utf-8?B?WXlHcDA2NWVSb1FCSGZ3eWZpb0I4eWdycmowSWtvWDNiMXJXYWc0MTRiRldP?=
- =?utf-8?B?bDMxd0xOcktTWTA2NHptSGhicDVmMGZCWXp3Sm80SDdZeHpxTHR6V2xUajVo?=
- =?utf-8?B?alREeDZSSUdGdVhpMUtINlNGdnlITTArWTJ5WWowai84NkozdXhUNU8rd0dZ?=
- =?utf-8?B?cldxR3lvOExjK29JbHdVWm9hblBENm1FK2h3K3dJb1dTWTVGOUYzYXdCemdK?=
- =?utf-8?B?bVNCQzBwc0V6MlJFQWdFZm5rWjZwWFFoVEVEenp6ZUMyOGRCN2NhRGtIdkh6?=
- =?utf-8?B?bC82OHI1bHVpcTFnY2dxTW5JK3FkdUZBZDQxTVVjWU40alhxRlRFbnIyRU9B?=
- =?utf-8?B?Y1h1SW5kNDNOUEpQNFJVdENVK0dpZUQzVjN1TCs5cUZKNWw2QW8vRTVKc0NW?=
- =?utf-8?B?YlpUa2Nyek51eUF0cG1ET1JaZE5KNkhoWnJqemFhYi95bnFSMHZQQyt2UHox?=
- =?utf-8?B?cHk5MVNpczh4SklucWZFeUt0aTV2ejh2Y1E5ZGlZbTBPSmk1eC9IbFdYOTBk?=
- =?utf-8?B?ZkR0alFZTTlvYU1LYlVMR3BLT21RNjZYeWxDaExxQjFzUVYway9SM2gwdUNs?=
- =?utf-8?B?YWlTcklGU1VpemNjM0xOaE54YXlOMDFJZ3pmLzV4YmJZTC9JcHlGM2FoVkhk?=
- =?utf-8?B?Zk5zYzRZazB1VmFPZGppU2YycUVzNitUTmV2c0NidEd2cmYxa0kxclQ4S3U3?=
- =?utf-8?B?REdKZ0lNY1oyTjZuVkZmV0ladVNjMnVpVzM5c255YkZZVVlOdHpnME50VExD?=
- =?utf-8?B?MEgyOG5DNytZaEtZNjNPZ094VnRKWDJtNTVCbngxQmYzUlZtS09wQ2FsclhT?=
- =?utf-8?B?N3VUMzRoYlFHUUlZNVFhWXFFZHdiVnd4QkdDMmh0clQ2U1cwN1ZzQ2JwNS8z?=
- =?utf-8?B?aFE0enF4djJmKzA0bkZrVUxHek9nbmxSZlJGbFJBWk81bnh5ZEFpL0JHZm1p?=
- =?utf-8?B?QUJnVWgxblR6cnpPY2gzQnVhekR3UWdMblIraEthOGIxNVNKeHNYTFFKSE1z?=
- =?utf-8?B?ZkhldUFyRGhkaTRXNlJWalRBMVVJVXhRVXFIdjhuZnBZclU5SCtOOGJGbkIx?=
- =?utf-8?B?Z1ZIVkV0RXJ6WS8vNmI3UHpITEhHVWVONXphd3MyU3lWNzFpVmFmVVZiY0RP?=
- =?utf-8?B?V0lYZlJ6TVQxdVlHcC9CTWkwc0tBdGJKOGFUT0dvYVpQS3BYTE9NWWpuVHZE?=
- =?utf-8?B?Z3lwSzhPUUh3aXNwUG40VWx2eXZ0QTZydDFNMmNyaXU1a21oRGxJdHVmMktV?=
- =?utf-8?B?aUxOb3d4NlR0R3p3SGxCTEc3d1RYVitsZ21ZZE9FV2lIVm1HTGpETHJ2TU80?=
- =?utf-8?B?RkppMXk2aFdUYzJsZkNoejhIbHdEY21ndm15Tnh2b2kxVTVzUmlFd3dXKzdC?=
- =?utf-8?B?TStVRFg0TTd3ajR2bEJ0MW4vdGYxeUlBZGFWbWdRNThnNktJYjJGNUlQT1Bp?=
- =?utf-8?B?QzIzbk84V21HRlBmUndHVmhoRVRJLzVQVmNhR3N6dDFBNWtWaWpUa2xwZkN3?=
- =?utf-8?B?dEtUM2FpZkl2VGpqYktIYUUrVWNZOFBsRGRpRzhObVNBTHpFNm9pTGVUNjA1?=
- =?utf-8?B?a0NuMjVZdlkrOXRzYnZkYkg1K0l5bzlKOEY2ZU5PK1k1MWNPaktBdXJZcmMr?=
- =?utf-8?Q?HLQc=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4D910EB9C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Apr 2025 12:47:43 +0000 (UTC)
+Received: by mail-pj1-f47.google.com with SMTP id
+ 98e67ed59e1d1-301001bc6a8so279634a91.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Apr 2025 05:47:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1744375662; x=1744980462; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=K+yybrggFwRAsQiRt99WyhZWGB0o+zi51+S0PwFndXo=;
+ b=aTfcuCZRriwoDP65Oc9yY5UeAd5nMMTBuBeRRF41zboN9eZSGBRkEYHo/bpkOeAsUT
+ qb3CxgeyieLnnUu1ug05spLK01l8+UpV0BWF51JNN8dJWZZvgc1iaBGfX8njYIdy9pjx
+ kTMWhb4SPHJ73wrV47K/xyykCNflfZas3ImfKbq61yUjfaJMGE8KEE1yc3OTgAa+dTfv
+ PIPxqr7vocTzJrkbWNrJFqAqFNzQYBkEhY8iuyltuDpuYszAy+OEoCcqKgCHgYe+TvTX
+ 9kBXMtNSWvC+U2ZlSUSxZseaziUrvQ9DebF1qHa7an43zsFQNYwSiqOuop5Bo+fDRmxk
+ rsIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1744375662; x=1744980462;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=K+yybrggFwRAsQiRt99WyhZWGB0o+zi51+S0PwFndXo=;
+ b=cTGR6RkN//PLH0AbjcPHg6BnaGlfc7LnW53gXVIiOOXgF7bpa+qr3+Ka3FT/Syw5JG
+ 8ENZuXHMDAaDgoQZrEwIIl0ZW0VUVMv76EunxUIQ9lQgCduYsokpmmAOAKeIw3QjFzta
+ Uem6G+fAKplINteBuAsRHNSZFhbVShFurHIazyZG9bnLKJyirej3fRCYac+9QKFtkc80
+ Ge7ctDGY6atqRt6wwu8djM6VB2dFUoULK6Kro80PamMIOdvrCDlz5KVpMXsxf2l2xfnf
+ Cw+KZa6/dsH/79ErlFiJ6OHczGejEs9lV6SMGdYH+Tn6GpWIlSpHMM1Wgm1IDlLtQQJ6
+ pmeA==
+X-Gm-Message-State: AOJu0Yx3yakPCULwhTXIUOeEyHzNcRs3Ml8/5mbpgUVgkbbgNCmOyAVe
+ MjbLsgFkcBFr+4/3d0VQJtp/27klbYNZoWfSfuhD8ENbCynhEbxCQLqnpvBAVSCXkde87UIJa32
+ 6LVnQxz8tQ2w2SQjYE3GEYNWnfAo=
+X-Gm-Gg: ASbGnct9+FLY93SBRj3CDwZoObnONWlHxJf6wprRuec6/oIFd8rOoV5z1HRNvyfly2m
+ LscFtOIU/2u7EFXy4Rw9Ctta9UEm4NxWSYyBjRv/nf2QcXmdmb2LCvFW6vDFVVNulvIHbF9Y5Om
+ tWrwAGGLV1AavBltXlyP+zow==
+X-Google-Smtp-Source: AGHT+IGFozpbX/w2ged2l9Q4QEtNNIJnI/C1R5+bST/hYImIlrNEpWp97hk+47kErhT0daZgnkRM4EbHYRzAFojz+4I=
+X-Received: by 2002:a17:90b:3a8b:b0:2fe:b972:a2c3 with SMTP id
+ 98e67ed59e1d1-308235c3c9emr1585806a91.0.1744375662316; Fri, 11 Apr 2025
+ 05:47:42 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5753.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33aa1c23-1673-4539-46ab-08dd78f39851
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Apr 2025 12:22:58.3813 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: GNK84oVWujvERZ5SZcYL5P2AhI1CFgBY7nY/ZrEQXonom3bci6auhl2xwwN9zwpe0vn5LZnlNSEyaPtMAqEYnA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF18A985A10
+References: <20250411121524.589317-1-lijo.lazar@amd.com>
+ <20250411121524.589317-2-lijo.lazar@amd.com>
+In-Reply-To: <20250411121524.589317-2-lijo.lazar@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 11 Apr 2025 08:47:29 -0400
+X-Gm-Features: ATxdqUFyCqpEgixUgbUQIZkeG5xR2UHEWH_qcTSJiyH62Ie08x344woJp8gATng
+Message-ID: <CADnq5_NFi1T16zkWj5PsdjQZat+80wRNm2+3U+PME-g2hcJ5yA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: Use the right function for hdp flush
+To: Lijo Lazar <lijo.lazar@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, 
+ Alexander.Deucher@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,58 +81,315 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5hbCBEaXN0cmlidXRpb24gT25seV0N
-Cg0KU3VyZSwgSSB3aWxsIHNlbmQgdGhlIHBhdGNoIGZvciB0aGUgdXNlciB0b28uDQoNClJlZ2Fy
-ZHMNClN1bmlsIEtoYXRyaQ0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogS29l
-bmlnLCBDaHJpc3RpYW4gPENocmlzdGlhbi5Lb2VuaWdAYW1kLmNvbT4NClNlbnQ6IEZyaWRheSwg
-QXByaWwgMTEsIDIwMjUgNTo0MCBQTQ0KVG86IEtoYXRyaSwgU3VuaWwgPFN1bmlsLktoYXRyaUBh
-bWQuY29tPjsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgYW1kLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcNCkNjOiBEZXVjaGVyLCBBbGV4YW5kZXIgPEFsZXhhbmRlci5EZXVjaGVy
-QGFtZC5jb20+DQpTdWJqZWN0OiBSZTogW1BBVENIXSBkcm06IGZ1bmN0aW9uIHRvIGdldCBwcm9j
-ZXNzIG5hbWUgYW5kIHBpZA0KDQpBbSAxMS4wNC4yNSB1bSAxMzoyNiBzY2hyaWViIFN1bmlsIEto
-YXRyaToNCj4gQWRkIGhlbHBlciBmdW5jdGlvbiB3aGljaCBnZXQgdGhlIHByb2Nlc3MgaW5mb3Jt
-YXRpb24gZm9yIHRoZSBkcm1fZmlsZQ0KPiBhbmQgdXBkYXRlcyB0aGUgdXNlciBwcm92aWRlZCBj
-aGFyYWN0ZXIgYnVmZmVyIHdpdGggdGhlIGluZm9ybWF0aW9uIG9mDQo+IHByb2Nlc3MgbmFtZSBh
-bmQgcGlkIGFzIGEgc3RyaW5nLg0KDQpIaSBTdW5pbCwNCg0KeW91IG5lZWQgdG8gc2VuZCB0aGlz
-IG91dCB0b2dldGhlciB3aXRoIHRoZSBwYXRjaCB3aGljaCBtYWtlcyB1c2Ugb2YgdGhlIG5ldyBm
-dW5jdGlvbi4NCg0KUmVnYXJkcywNCkNocmlzdGlhbi4NCg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBT
-dW5pbCBLaGF0cmkgPHN1bmlsLmtoYXRyaUBhbWQuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1
-L2RybS9kcm1fZmlsZS5jIHwgMzAgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ICBp
-bmNsdWRlL2RybS9kcm1fZmlsZS5oICAgICB8ICAxICsNCj4gIDIgZmlsZXMgY2hhbmdlZCwgMzEg
-aW5zZXJ0aW9ucygrKQ0KPg0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9maWxl
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZpbGUuYw0KPiBpbmRleCBjYjVmMjJmNWJiYjYuLjQ0
-MzQyNThkMjFiNSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9maWxlLmMNCj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9maWxlLmMNCj4gQEAgLTk2NSw2ICs5NjUsMzYgQEAg
-dm9pZCBkcm1fc2hvd19mZGluZm8oc3RydWN0IHNlcV9maWxlICptLCBzdHJ1Y3QNCj4gZmlsZSAq
-ZikgIH0gIEVYUE9SVF9TWU1CT0woZHJtX3Nob3dfZmRpbmZvKTsNCj4NCj4gKy8qKg0KPiArICog
-ZHJtX3Byb2Nlc3NfaW5mbyAtIEZpbGwgaW5mbyBzdHJpbmcgd2l0aCBwcm9jZXNzIG5hbWUgYW5k
-IHBpZA0KPiArICogQGZpbGVfcHJpdjogY29udGV4dCBvZiBpbnRlcmVzdCBmb3IgcHJvY2VzcyBu
-YW1lIGFuZCBwaWQNCj4gKyAqIEBwcm9jX2luZm86IHVzZXIgY2hhciBwdHIgdG8gd3JpdGUgdGhl
-IHN0cmluZyB0bw0KPiArICogQGJ1ZmZfc2l6ZTogc2l6ZSBvZiB0aGUgYnVmZmVyIHBhc3NlZCBm
-b3IgdGhlIHN0cmluZw0KPiArICoNCj4gKyAqIFRoaXMgdXBkYXRlIHRoZSB1c2VyIHByb3ZpZGVk
-IGJ1ZmZlciB3aXRoIHByb2Nlc3MNCj4gKyAqIG5hbWUgYW5kIHBpZCBpbmZvcm1hdGlvbiBmb3Ig
-QGZpbGVfcHJpdiAgKi8gdm9pZA0KPiArZHJtX3Byb2Nlc3NfaW5mbyhzdHJ1Y3QgZHJtX2ZpbGUg
-KmZpbGVfcHJpdiwgY2hhciAqcHJvY19pbmZvLCBzaXplX3QNCj4gK2J1ZmZfc2l6ZSkgew0KPiAr
-ICAgICBzdHJ1Y3QgdGFza19zdHJ1Y3QgKnRhc2s7DQo+ICsgICAgIHN0cnVjdCBwaWQgKnBpZDsN
-Cj4gKyAgICAgc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGZpbGVfcHJpdi0+bWlub3ItPmRldjsN
-Cj4gKw0KPiArICAgICBpZiAoIXByb2NfaW5mbykgew0KPiArICAgICAgICAgICAgIGRybV9lcnIo
-ZGV2LCAiSW52YWxpZCB1c2VyIGJ1ZmZlclxuIik7DQo+ICsgICAgICAgICAgICAgcmV0dXJuOw0K
-PiArICAgICB9DQo+ICsNCj4gKyAgICAgcmN1X3JlYWRfbG9jaygpOw0KPiArICAgICBwaWQgPSBy
-Y3VfZGVyZWZlcmVuY2UoZmlsZV9wcml2LT5waWQpOw0KPiArICAgICB0YXNrID0gcGlkX3Rhc2so
-cGlkLCBQSURUWVBFX1RHSUQpOw0KPiArICAgICBpZiAodGFzaykNCj4gKyAgICAgICAgICAgICBz
-bnByaW50Zihwcm9jX2luZm8sIGJ1ZmZfc2l6ZSwgImNvbW06JXMgcGlkOiVkIiwgdGFzay0+Y29t
-bSwNCj4gK3Rhc2stPnBpZCk7DQo+ICsNCj4gKyAgICAgcmN1X3JlYWRfdW5sb2NrKCk7DQo+ICt9
-DQo+ICtFWFBPUlRfU1lNQk9MKGRybV9wcm9jZXNzX2luZm8pOw0KPiArDQo+ICAvKioNCj4gICAq
-IG1vY2tfZHJtX2dldGZpbGUgLSBDcmVhdGUgYSBuZXcgc3RydWN0IGZpbGUgZm9yIHRoZSBkcm0g
-ZGV2aWNlDQo+ICAgKiBAbWlub3I6IGRybSBtaW5vciB0byB3cmFwIChlLmcuICNkcm1fZGV2aWNl
-LnByaW1hcnkpIGRpZmYgLS1naXQNCj4gYS9pbmNsdWRlL2RybS9kcm1fZmlsZS5oIGIvaW5jbHVk
-ZS9kcm0vZHJtX2ZpbGUuaCBpbmRleA0KPiBmMGVmMzJlOWZhNWUuLmMwMWIzNDkzNjk2OCAxMDA2
-NDQNCj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2ZpbGUuaA0KPiArKysgYi9pbmNsdWRlL2RybS9k
-cm1fZmlsZS5oDQo+IEBAIC01MDEsNiArNTAxLDcgQEAgdm9pZCBkcm1fcHJpbnRfbWVtb3J5X3N0
-YXRzKHN0cnVjdCBkcm1fcHJpbnRlciAqcCwNCj4NCj4gIHZvaWQgZHJtX3Nob3dfbWVtb3J5X3N0
-YXRzKHN0cnVjdCBkcm1fcHJpbnRlciAqcCwgc3RydWN0IGRybV9maWxlDQo+ICpmaWxlKTsgIHZv
-aWQgZHJtX3Nob3dfZmRpbmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgc3RydWN0IGZpbGUgKmYpOw0K
-PiArdm9pZCBkcm1fcHJvY2Vzc19pbmZvKHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LCBjaGFy
-ICpwcm9jX2luZm8sDQo+ICtzaXplX3QgYnVmZl9zaXplKTsNCj4NCj4gIHN0cnVjdCBmaWxlICpt
-b2NrX2RybV9nZXRmaWxlKHN0cnVjdCBkcm1fbWlub3IgKm1pbm9yLCB1bnNpZ25lZCBpbnQNCj4g
-ZmxhZ3MpOw0KPg0KDQo=
+On Fri, Apr 11, 2025 at 8:16=E2=80=AFAM Lijo Lazar <lijo.lazar@amd.com> wro=
+te:
+>
+> There are a few prechecks made before HDP flush like a flush is not
+> required on APU bare metal. Using hdp callback directly bypasses those
+> checks. Use amdgpu_device_flush_hdp which takes care of prechecks.
+>
+> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c |  8 ++++----
+>  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 12 ++++++------
+>  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c |  6 +++---
+>  drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c |  4 ++--
+>  drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c |  4 ++--
+>  drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c |  4 ++--
+>  drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c  |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/psp_v11_0.c |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/psp_v13_0.c |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/psp_v14_0.c |  2 +-
+>  10 files changed, 23 insertions(+), 23 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd=
+/amdgpu/gfx_v10_0.c
+> index f5dcb72a6bf5..00eb4cfecf8f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> @@ -6172,7 +6172,7 @@ static int gfx_v10_0_cp_gfx_load_pfp_microcode(stru=
+ct amdgpu_device *adev)
+>         }
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         tmp =3D RREG32_SOC15(GC, 0, mmCP_PFP_IC_BASE_CNTL);
+>         tmp =3D REG_SET_FIELD(tmp, CP_PFP_IC_BASE_CNTL, VMID, 0);
+> @@ -6250,7 +6250,7 @@ static int gfx_v10_0_cp_gfx_load_ce_microcode(struc=
+t amdgpu_device *adev)
+>         }
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         tmp =3D RREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_CNTL);
+>         tmp =3D REG_SET_FIELD(tmp, CP_CE_IC_BASE_CNTL, VMID, 0);
+> @@ -6327,7 +6327,7 @@ static int gfx_v10_0_cp_gfx_load_me_microcode(struc=
+t amdgpu_device *adev)
+>         }
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         tmp =3D RREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_CNTL);
+>         tmp =3D REG_SET_FIELD(tmp, CP_ME_IC_BASE_CNTL, VMID, 0);
+> @@ -6702,7 +6702,7 @@ static int gfx_v10_0_cp_compute_load_microcode(stru=
+ct amdgpu_device *adev)
+>         }
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         tmp =3D RREG32_SOC15(GC, 0, mmCP_CPC_IC_BASE_CNTL);
+>         tmp =3D REG_SET_FIELD(tmp, CP_CPC_IC_BASE_CNTL, CACHE_POLICY, 0);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd=
+/amdgpu/gfx_v11_0.c
+> index 91d29f482c3c..fa39ae17222f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> @@ -2481,7 +2481,7 @@ static int gfx_v11_0_config_me_cache(struct amdgpu_=
+device *adev, uint64_t addr)
+>         }
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         tmp =3D RREG32_SOC15(GC, 0, regCP_ME_IC_BASE_CNTL);
+>         tmp =3D REG_SET_FIELD(tmp, CP_ME_IC_BASE_CNTL, VMID, 0);
+> @@ -2525,7 +2525,7 @@ static int gfx_v11_0_config_pfp_cache(struct amdgpu=
+_device *adev, uint64_t addr)
+>         }
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         tmp =3D RREG32_SOC15(GC, 0, regCP_PFP_IC_BASE_CNTL);
+>         tmp =3D REG_SET_FIELD(tmp, CP_PFP_IC_BASE_CNTL, VMID, 0);
+> @@ -2570,7 +2570,7 @@ static int gfx_v11_0_config_mec_cache(struct amdgpu=
+_device *adev, uint64_t addr)
+>         }
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         tmp =3D RREG32_SOC15(GC, 0, regCP_CPC_IC_BASE_CNTL);
+>         tmp =3D REG_SET_FIELD(tmp, CP_CPC_IC_BASE_CNTL, CACHE_POLICY, 0);
+> @@ -3206,7 +3206,7 @@ static int gfx_v11_0_cp_gfx_load_pfp_microcode_rs64=
+(struct amdgpu_device *adev)
+>         amdgpu_bo_unreserve(adev->gfx.pfp.pfp_fw_data_obj);
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         WREG32_SOC15(GC, 0, regCP_PFP_IC_BASE_LO,
+>                 lower_32_bits(adev->gfx.pfp.pfp_fw_gpu_addr));
+> @@ -3424,7 +3424,7 @@ static int gfx_v11_0_cp_gfx_load_me_microcode_rs64(=
+struct amdgpu_device *adev)
+>         amdgpu_bo_unreserve(adev->gfx.me.me_fw_data_obj);
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         WREG32_SOC15(GC, 0, regCP_ME_IC_BASE_LO,
+>                 lower_32_bits(adev->gfx.me.me_fw_gpu_addr));
+> @@ -4620,7 +4620,7 @@ static int gfx_v11_0_gfxhub_enable(struct amdgpu_de=
+vice *adev)
+>         if (r)
+>                 return r;
+>
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         value =3D (amdgpu_vm_fault_stop =3D=3D AMDGPU_VM_FAULT_STOP_ALWAY=
+S) ?
+>                 false : true;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd=
+/amdgpu/gfx_v12_0.c
+> index 2474006b1a34..f347921fa909 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+> @@ -2389,7 +2389,7 @@ static int gfx_v12_0_cp_gfx_load_pfp_microcode_rs64=
+(struct amdgpu_device *adev)
+>         amdgpu_bo_unreserve(adev->gfx.pfp.pfp_fw_data_obj);
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         WREG32_SOC15(GC, 0, regCP_PFP_IC_BASE_LO,
+>                 lower_32_bits(adev->gfx.pfp.pfp_fw_gpu_addr));
+> @@ -2533,7 +2533,7 @@ static int gfx_v12_0_cp_gfx_load_me_microcode_rs64(=
+struct amdgpu_device *adev)
+>         amdgpu_bo_unreserve(adev->gfx.me.me_fw_data_obj);
+>
+>         if (amdgpu_emu_mode =3D=3D 1)
+> -               adev->hdp.funcs->flush_hdp(adev, NULL);
+> +               amdgpu_device_flush_hdp(adev, NULL);
+>
+>         WREG32_SOC15(GC, 0, regCP_ME_IC_BASE_LO,
+>                 lower_32_bits(adev->gfx.me.me_fw_gpu_addr));
+> @@ -3503,7 +3503,7 @@ static int gfx_v12_0_gfxhub_enable(struct amdgpu_de=
+vice *adev)
+>         if (r)
+>                 return r;
+>
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         value =3D (amdgpu_vm_fault_stop =3D=3D AMDGPU_VM_FAULT_STOP_ALWAY=
+S) ?
+>                 false : true;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd=
+/amdgpu/gmc_v10_0.c
+> index b6ac4c7adc8a..7648e977b44b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> @@ -268,7 +268,7 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_dev=
+ice *adev, uint32_t vmid,
+>         ack =3D hub->vm_inv_eng0_ack + hub->eng_distance * eng;
+>
+>         /* flush hdp cache */
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         /* This is necessary for SRIOV as well as for GFXOFF to function
+>          * properly under bare metal
+> @@ -965,7 +965,7 @@ static int gmc_v10_0_gart_enable(struct amdgpu_device=
+ *adev)
+>         adev->hdp.funcs->init_registers(adev);
+>
+>         /* Flush HDP after it is initialized */
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         value =3D (amdgpu_vm_fault_stop =3D=3D AMDGPU_VM_FAULT_STOP_ALWAY=
+S) ?
+>                 false : true;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd=
+/amdgpu/gmc_v11_0.c
+> index 5c91d4445418..7f5ca170f141 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+> @@ -229,7 +229,7 @@ static void gmc_v11_0_flush_gpu_tlb(struct amdgpu_dev=
+ice *adev, uint32_t vmid,
+>         ack =3D hub->vm_inv_eng0_ack + hub->eng_distance * eng;
+>
+>         /* flush hdp cache */
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         /* This is necessary for SRIOV as well as for GFXOFF to function
+>          * properly under bare metal
+> @@ -895,7 +895,7 @@ static int gmc_v11_0_gart_enable(struct amdgpu_device=
+ *adev)
+>                 return r;
+>
+>         /* Flush HDP after it is initialized */
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         value =3D (amdgpu_vm_fault_stop =3D=3D AMDGPU_VM_FAULT_STOP_ALWAY=
+S) ?
+>                 false : true;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd=
+/amdgpu/gmc_v12_0.c
+> index d544419e3b44..b645d3e6a6c8 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+> @@ -297,7 +297,7 @@ static void gmc_v12_0_flush_gpu_tlb(struct amdgpu_dev=
+ice *adev, uint32_t vmid,
+>                 return;
+>
+>         /* flush hdp cache */
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         /* This is necessary for SRIOV as well as for GFXOFF to function
+>          * properly under bare metal
+> @@ -877,7 +877,7 @@ static int gmc_v12_0_gart_enable(struct amdgpu_device=
+ *adev)
+>                 return r;
+>
+>         /* Flush HDP after it is initialized */
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         value =3D (amdgpu_vm_fault_stop =3D=3D AMDGPU_VM_FAULT_STOP_ALWAY=
+S) ?
+>                 false : true;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/=
+amdgpu/gmc_v9_0.c
+> index 8d3560314e5b..53050176c244 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+> @@ -2425,7 +2425,7 @@ static int gmc_v9_0_hw_init(struct amdgpu_ip_block =
+*ip_block)
+>         adev->hdp.funcs->init_registers(adev);
+>
+>         /* After HDP is initialized, flush HDP.*/
+> -       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +       amdgpu_device_flush_hdp(adev, NULL);
+>
+>         if (amdgpu_vm_fault_stop =3D=3D AMDGPU_VM_FAULT_STOP_ALWAYS)
+>                 value =3D false;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd=
+/amdgpu/psp_v11_0.c
+> index bb5dfc410a66..215543575f47 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+> @@ -533,7 +533,7 @@ static int psp_v11_0_memory_training(struct psp_conte=
+xt *psp, uint32_t ops)
+>                         }
+>
+>                         memcpy_toio(adev->mman.aper_base_kaddr, buf, sz);
+> -                       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +                       amdgpu_device_flush_hdp(adev, NULL);
+>                         vfree(buf);
+>                         drm_dev_exit(idx);
+>                 } else {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c b/drivers/gpu/drm/amd=
+/amdgpu/psp_v13_0.c
+> index 17f1ccd8bd53..f5f616ab20e7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
+> @@ -610,7 +610,7 @@ static int psp_v13_0_memory_training(struct psp_conte=
+xt *psp, uint32_t ops)
+>                         }
+>
+>                         memcpy_toio(adev->mman.aper_base_kaddr, buf, sz);
+> -                       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +                       amdgpu_device_flush_hdp(adev, NULL);
+>                         vfree(buf);
+>                         drm_dev_exit(idx);
+>                 } else {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v14_0.c b/drivers/gpu/drm/amd=
+/amdgpu/psp_v14_0.c
+> index 7c49c3f3c388..256288c6cd78 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/psp_v14_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/psp_v14_0.c
+> @@ -498,7 +498,7 @@ static int psp_v14_0_memory_training(struct psp_conte=
+xt *psp, uint32_t ops)
+>                         }
+>
+>                         memcpy_toio(adev->mman.aper_base_kaddr, buf, sz);
+> -                       adev->hdp.funcs->flush_hdp(adev, NULL);
+> +                       amdgpu_device_flush_hdp(adev, NULL);
+>                         vfree(buf);
+>                         drm_dev_exit(idx);
+>                 } else {
+> --
+> 2.25.1
+>
