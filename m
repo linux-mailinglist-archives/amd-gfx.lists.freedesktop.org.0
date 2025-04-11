@@ -2,105 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653EEA85CFA
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Apr 2025 14:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 147DBA85C77
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Apr 2025 14:07:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99C5410EB92;
-	Fri, 11 Apr 2025 12:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89E1110EB84;
+	Fri, 11 Apr 2025 12:07:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="DkesvRPb";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="AFKm5rGx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dcdsb7jx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 577 seconds by postgrey-1.36 at gabe;
- Fri, 11 Apr 2025 10:11:11 UTC
-Received: from fout-a2-smtp.messagingengine.com
- (fout-a2-smtp.messagingengine.com [103.168.172.145])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53F4D10EB5C;
- Fri, 11 Apr 2025 10:11:09 +0000 (UTC)
-Received: from phl-compute-03.internal (phl-compute-03.phl.internal
- [10.202.2.43])
- by mailfout.phl.internal (Postfix) with ESMTP id BF8911380226;
- Fri, 11 Apr 2025 06:01:28 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
- by phl-compute-03.internal (MEProxy); Fri, 11 Apr 2025 06:01:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:from:from:in-reply-to
- :in-reply-to:message-id:mime-version:references:reply-to:subject
- :subject:to:to; s=fm2; t=1744365688; x=1744452088; bh=z5cs1W8tVA
- bJ3ZA2qMajWH2YzqXLYeH4TnXCQKM1qc8=; b=DkesvRPbaObCmJtnsaeuQhyWuE
- jBT+v0SPalOYX2jilqnBC88s9Kpn3iKmJ0z3Ig7eYDIYd1PmwDW8ldGxpT3o+qeU
- gZICnCYqz0pBx9EV1Q7Ya1h0tqVhUCf2kHf75wALwToRTJpflOgAQHTfLvIf89AY
- RKKuPQ3Q6mIVJoKMM7NAk1AWF2LpRlf53Bg0PbRZcp0fS4iDhNpLEisur+bBxWSQ
- qKXZGy6szUcI+TO5NQlQKjUOGDz7HThAz837SzRDnBFSpl72AMg8r+oIZKcoBZjp
- ZtmNyM+NfJnQvFhm7LfN1Qm5v0DjpD6atDcaQ/DNMNtFz/0Jo7iltkwDpJJw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1744365688; x=
- 1744452088; bh=z5cs1W8tVAbJ3ZA2qMajWH2YzqXLYeH4TnXCQKM1qc8=; b=A
- FKm5rGx2BLCYEndgJ7mw3IN+L37G97Xeyaci4YKzEJ6xen2Y6XaE57Ucczz1kRnU
- 1L82wq/s8jPk4vsMp6G2p8X4rLrHGFAphiiB4Y3hs0g0CmVlc31BeUxkHUZU8dRf
- WGILwzfEVGNCou7acgL+VcOgkwQmJL8DPTn7dw4wog123nihpwYJm2U5vIXvLS1/
- zYGlcHfY9qxX1oXufcEVGpzkO/Gp2QPubG06TZFraW14ADQBNhTFMM3W0LpqVfN8
- mkqg1QCQGOaG3Y47ljRt30aWD6OUEyYsb6S7vp8AzO7UgdOnoNqbPbup6nb8stYx
- oWCMHGXW5LzQ635kHpI5Q==
-X-ME-Sender: <xms:eOj4Z18WohOqzZh-qJlmkzeCbSsRkR8now3uvVLiJJiUCE7KntVeFQ>
- <xme:eOj4Z5v8pkWUzauwqvKEZMar3D6uq_IUrubosCzJknM-vQMjHEJUM0HLy1ccc8X-E
- ni4SIsyRSa0OQ>
-X-ME-Received: <xmr:eOj4ZzAoUe-SJf3YXEDsTikSMVm2w2BYN9d9l7VW-KtuoeMIiZ43A-FmMEjwEmZBzJGAnWHaishA_BRniFUk_LNw3UECHcHTfg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvudduhedvucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
- pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
- gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtgfgjgesthekredttddt
- jeenucfhrhhomhepofgrrhgvkhcuofgrrhgtiiihkhhofihskhhiqdfikphrvggtkhhiuc
- eomhgrrhhmrghrvghksehinhhvihhsihgslhgvthhhihhnghhslhgrsgdrtghomheqnecu
- ggftrfgrthhtvghrnhephefgteevgfefgeetteefueeuvefhfeektdelhfeuffeuleefhf
- dvgeffkefgieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhf
- rhhomhepmhgrrhhmrghrvghksehinhhvihhsihgslhgvthhhihhnghhslhgrsgdrtghomh
- dpnhgspghrtghpthhtohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehs
- ohihvghrsehirhhlrdhhuhdprhgtphhtthhopegusggrrhihshhhkhhovhesghhmrghilh
- drtghomhdprhgtphhtthhopehluhhmrghgsehkvghrnhgvlhdrohhrghdprhgtphhtthho
- pehrvghgrhgvshhsihhonhhssehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtoh
- epughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgt
- phhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprh
- gtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
- pdhrtghpthhtohephhguvghgohgvuggvsehrvgguhhgrthdrtghomhdprhgtphhtthhope
- grlhgvgigrnhguvghrrdguvghutghhvghrsegrmhgurdgtohhm
-X-ME-Proxy: <xmx:eOj4Z5eozMALmK2q7WTH3Y7NW2p5xx8GWN8pEMuDFLJ0mi2F1s7-AQ>
- <xmx:eOj4Z6M2E5C1Nn_VE7HWQ6o8uJmm9wXtXpaRTTwA_4eNQUMH7eOrBw>
- <xmx:eOj4Z7lRb9TdtFPHrQO6x-e0jhSIgjFA_uFcvgcYaS_cA_PWhH_7Zw>
- <xmx:eOj4Z0uT-62w59kPKHqk3P3hXEjVInJ-nq6VqMNpiEPHU0iV2RAm8w>
- <xmx:eOj4Zz3ztczLsdEPlh51aY9pvfDh_6eqGCOVKW2rVT7VRP6SMyDLSRaI>
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 11 Apr 2025 06:01:26 -0400 (EDT)
-Date: Fri, 11 Apr 2025 12:01:24 +0200
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
-To: Gergo Koteles <soyer@irl.hu>
-Cc: Dmitry Baryshkov <dbaryshkov@gmail.com>,
- Dmitry Baryshkov <lumag@kernel.org>, regressions@lists.linux.dev,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Alex Hung <alex.hung@amd.com>, Harry Wentland <harry.wentland@amd.com>
-Subject: Re: amdgpu_dm_connector_mode_valid regression
-Message-ID: <Z_jodBrNFdEpJRKA@mail-itl>
-References: <ed09edb167e74167a694f4854102a3de6d2f1433.camel@irl.hu>
- <8963a409dd575e040e5f07e4ad5e9c1d26b421f2.camel@irl.hu>
- <CALT56yPd-xfd=47xRxrCk4F3jib4Ti7kg8pRXy-gVAQpbOc=pw@mail.gmail.com>
- <e323219b52cda1891a55d12ad77a2b34edc8688b.camel@irl.hu>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D437310EB84;
+ Fri, 11 Apr 2025 12:07:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744373270; x=1775909270;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=/pRtNN/baCy6DaANz+nXHBDMq81WCqSjU3Mcwr/XIic=;
+ b=Dcdsb7jxXGjfKvLIVqEYGpiY/d/Ha7CDrvMYBd8gF0fDhDVOuX2KBJ4B
+ uKt9rvtei7D1ur5+Ov098CgiuGeCfNV+pgXqRlQkOiupP77Cj1e83TnlH
+ nSa4dnRSPLg7bq2iy/+oca5jQmACHuFQz2HEHBceGmBsCSjZTmZ5MJ9Fw
+ 5kjV12INYL/qUiYBLLdY0ti4/OUxP09Q7eWAdAQ+s7IQQsI5NQdG/Lpr/
+ hGatxW12NZiZSzezleryV7TR6xwBYfptM/bFwmHSP0/Hq7srDJR2e8A9N
+ mbOTP1isXm+Ri5IVXw8HffmJuTe4hJnYfdJh0A+o6AS2sjDxakX8kWOOG A==;
+X-CSE-ConnectionGUID: YlSbNw1sTSmNPGm6h3/ysg==
+X-CSE-MsgGUID: 9+kcJLWOSVioIJFr004hcw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="71309363"
+X-IronPort-AV: E=Sophos;i="6.15,205,1739865600"; d="scan'208";a="71309363"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2025 05:07:49 -0700
+X-CSE-ConnectionGUID: bYxTWJ0hSC2IC2lTF3LnZA==
+X-CSE-MsgGUID: vYowM+W/SL2FZUZ390HV5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,205,1739865600"; d="scan'208";a="128950671"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.125])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2025 05:07:47 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Sunil Khatri <sunil.khatri@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6n?=
+ =?utf-8?Q?ig?=
+ <christian.koenig@amd.com>, Sunil Khatri <sunil.khatri@amd.com>
+Subject: Re: [PATCH] drm: function to get process name and pid
+In-Reply-To: <20250411112622.4075526-1-sunil.khatri@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250411112622.4075526-1-sunil.khatri@amd.com>
+Date: Fri, 11 Apr 2025 15:07:43 +0300
+Message-ID: <87v7raucj4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; x-action=pgp-signed
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e323219b52cda1891a55d12ad77a2b34edc8688b.camel@irl.hu>
-X-Mailman-Approved-At: Fri, 11 Apr 2025 12:24:49 +0000
+Content-Type: text/plain
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,69 +70,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA256
+On Fri, 11 Apr 2025, Sunil Khatri <sunil.khatri@amd.com> wrote:
+> Add helper function which get the process information for
+> the drm_file and updates the user provided character buffer
+> with the information of process name and pid as a string.
 
+Where's the user for this function?
 
-Hi,
+BR,
+Jani.
 
-On Wed, Apr 02, 2025 at 04:35:05PM +0200, Gergo Koteles wrote:
-> Hi Dmitry,
-> 
-> But the code would start to become quite untraceable.
-> duplicate mode in amdgpu_dm_connector_mode_valid()
-> call drm_mode_set_crtcinfo() in amdgpu_dm_connector_mode_valid()
-> duplicate mode in create_stream_for_sink()
-> overwrite ctrc in decide_crtc_timing_for_drm_display_mode()
-> if crtc_clock == 0 call drm_mode_set_crtcinfo() again in
-> create_stream_for_sink() 
-
-FWIW I'm affected by the same issue (on HP ProBook 445 G7, with AMD
-Ryzen 5 4500U). And the patch quoted below fixes it for me too.
-
-> 
-> saved_mode is never used after this, so I can't add the condition here
->         if (recalculate_timing)
->                 drm_mode_set_crtcinfo(&saved_mode, 0);
-> 
-> This commit is related, I think:
-> 1101185 ("drm/amd/display: fix the ability to use lower resolution
-> modes on eDP")
-> 
-> Regards,
-> Gergo
-> 
+>
+> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 > ---
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index bae83a129b5f..83c8c81d4015 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -6984,6 +6984,9 @@ create_stream_for_sink(struct drm_connector
-> *connector,
->         if (recalculate_timing)
->                 drm_mode_set_crtcinfo(&saved_mode, 0);
+>  drivers/gpu/drm/drm_file.c | 30 ++++++++++++++++++++++++++++++
+>  include/drm/drm_file.h     |  1 +
+>  2 files changed, 31 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index cb5f22f5bbb6..4434258d21b5 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -965,6 +965,36 @@ void drm_show_fdinfo(struct seq_file *m, struct file *f)
+>  }
+>  EXPORT_SYMBOL(drm_show_fdinfo);
 >  
-> +       if (mode.crtc_clock == 0)
-> +               drm_mode_set_crtcinfo(&mode, 0);
+> +/**
+> + * drm_process_info - Fill info string with process name and pid
+> + * @file_priv: context of interest for process name and pid
+> + * @proc_info: user char ptr to write the string to
+> + * @buff_size: size of the buffer passed for the string
+> + *
+> + * This update the user provided buffer with process
+> + * name and pid information for @file_priv
+> + */
+> +void drm_process_info(struct drm_file *file_priv, char *proc_info, size_t buff_size)
+> +{
+> +	struct task_struct *task;
+> +	struct pid *pid;
+> +	struct drm_device *dev = file_priv->minor->dev;
 > +
->         /*
->          * If scaling is enabled and refresh rate didn't change
->          * we copy the vic and polarities of the old timings
-> --
+> +	if (!proc_info) {
+> +		drm_err(dev, "Invalid user buffer\n");
+> +		return;
+> +	}
+> +
+> +	rcu_read_lock();
+> +	pid = rcu_dereference(file_priv->pid);
+> +	task = pid_task(pid, PIDTYPE_TGID);
+> +	if (task)
+> +		snprintf(proc_info, buff_size, "comm:%s pid:%d", task->comm, task->pid);
+> +
+> +	rcu_read_unlock();
+> +}
+> +EXPORT_SYMBOL(drm_process_info);
+> +
+>  /**
+>   * mock_drm_getfile - Create a new struct file for the drm device
+>   * @minor: drm minor to wrap (e.g. #drm_device.primary)
+> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> index f0ef32e9fa5e..c01b34936968 100644
+> --- a/include/drm/drm_file.h
+> +++ b/include/drm/drm_file.h
+> @@ -501,6 +501,7 @@ void drm_print_memory_stats(struct drm_printer *p,
+>  
+>  void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file);
+>  void drm_show_fdinfo(struct seq_file *m, struct file *f);
+> +void drm_process_info(struct drm_file *file_priv, char *proc_info, size_t buff_size);
+>  
+>  struct file *mock_drm_getfile(struct drm_minor *minor, unsigned int flags);
 
-- -- 
-Best Regards,
-Marek Marczykowski-Górecki
-Invisible Things Lab
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmf46HQACgkQ24/THMrX
-1ywBfAf/SX79WOL0Rv1cL2F/YeEUbr6b/FxZ6W+xsFCi38UxcN0PKCGalQ76jT5r
-LAyy1zPedAAdGu+JdQ8abrVfPbSXnzLUcUZNN75kGHixS1c/TqfP4L9ymZ6Z5rAB
-BUt579EkdDZlm2dZ0mxwHcdoArv7fK05Fb+l3Vd645w5MK0fmwWPesCeBaEiwG2S
-ZiuSOWcJBL0yPPzvRaVPD5FCgjjjEhQ2fZZinqhwVy1LNA6OBXQrVvNhOazFVjKq
-rQV1YLG4gCBu6TD6NaETrPMevmZmovuo7o4/6Y5vJQexhQv3eaaxE5dh/0AaWovJ
-FqW2VrxvWXz6HgOokPpfispYzpMgEQ==
-=+SPC
------END PGP SIGNATURE-----
+-- 
+Jani Nikula, Intel
