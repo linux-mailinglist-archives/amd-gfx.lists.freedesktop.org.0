@@ -2,74 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BEFDA865A9
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Apr 2025 20:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1215DA865C0
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Apr 2025 20:48:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA9A10EC56;
-	Fri, 11 Apr 2025 18:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA12910EC62;
+	Fri, 11 Apr 2025 18:48:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HU+Eo9fn";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="GpKhIwVb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com
- [209.85.216.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E382810EC56
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Apr 2025 18:41:59 +0000 (UTC)
-Received: by mail-pj1-f43.google.com with SMTP id
- 98e67ed59e1d1-2ff67f44fcaso408648a91.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Apr 2025 11:41:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1744396919; x=1745001719; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=mzYmGD5PvOQl7WePjk7oAv+kTMl+4frGczfDDmr9A+0=;
- b=HU+Eo9fn/B/l7dsX/gxegh/4k0WCUM7XENfi0W3TtXfv63bz9/meDv3YrDsNA+EkUr
- ior4R0q0loK3e7R6GnNhyLwWamldUyx05LVHv1efYEuT6mRe6e2D/VEnxIDl/BUwfClo
- 1N18D5A8KFU7wEEABNMfxDsbFJ+zSeN3sn+hp6qXNBJdVzZKUaT2pXN/ibvsfQvhQC6X
- IsA4nooag5rirYh9WReuBQpm0ItTrcEmSR6zxNAwFB2sFZOURdaF30HbFy3WBge6PObq
- jvbHxS3N4vKq62GF3Bs8ZdlEa+D1ikwNuEvlYtm03kKAbKzIcreVn9lwyfIkxPY4LD8s
- GO3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744396919; x=1745001719;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=mzYmGD5PvOQl7WePjk7oAv+kTMl+4frGczfDDmr9A+0=;
- b=O7CsslUAVALflkrLEeoqabztelKsuBK9XPy1yq0SD9yHcqDSQhUX08/Cy1/NZJXaT9
- N52Ea1P3maEZo6dGZmBz1Ng8ONEkNfth90+FUPT9Aw5izNhsQf9bsUsBw+Mr7gtr6hWA
- drBAitKXhoi7K4020l3zAkPqS3NNn35l5OUB6O3yOWxgbGdIpE4F1ndLFw2uiVKhvzW1
- Tkovb7dEc8G9Wz9FP/tG0mPkUnO7G8O+0PW7NzzDRevWJhzgolPYle1B23Kx2xMxzI5S
- U6Ebyaxwx2VqfQLV6S+AciLtejStwQ3wuu80aexDysgrVDwnBckGeTingxk/7MszjvLX
- b+aQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWsciJevkpZPlcAxEojm2HghHDUSDnSDhTKVAUjGn3t8dE/jutn0qnZ+WhV1w+86/DNHbHaxM+G@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyqfndthVSVWEsmSb+vO1G2P1/Q8fGCczGvmt1S3SMGxSKAgyPY
- B4AJuDTVW6AMw47uv1g8JUh4P7u19kK4LCDtbHIPYI9vKN8PJd7BzzhsISB+unSk7cJusftOYBo
- GmSzVOFRmDNvS3HGGs87KVExyBC4=
-X-Gm-Gg: ASbGncvWLhX4Wq9w2AJlvyzoGXZuNyHDiODIrN2Oy56WI/JrorxMvQny8O+g39UJn+d
- G5WwJ2Ch0IBOIZ1cuqtEaqOfpeAg841rO67lf2DQKCJTr9qjKYFANiw36EPbYIunzypbfM/FlDE
- 9iP/nSaQsWC4aAEtKK/sZChA==
-X-Google-Smtp-Source: AGHT+IFCc7ayN4jht6lFho9rErhU1kMLnsr8ktXF4ceKrGEoQ6vCR+80M89uT//L4cdYr6FUeqyqHhsRIAScHLp4B00=
-X-Received: by 2002:a17:90b:3ece:b0:2fa:6055:17e7 with SMTP id
- 98e67ed59e1d1-3082378c79bmr2208029a91.8.1744396919197; Fri, 11 Apr 2025
- 11:41:59 -0700 (PDT)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2063.outbound.protection.outlook.com [40.107.237.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B70510EC5C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Apr 2025 18:48:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=quCLiNHLvbsm/N4QqC1s2r8MdEwuboJ3b8rzwLEmyLadDbIbHoT39CSLM37tKinCeto9JVzJQZ6RuaxGi3mSS0YK+vZr/N3eFVSptJCqyzFlQqeSjeTWmi3s0VGv8INCPhAjGg2NYB17tkgc4ve1VEzmYM9yZKgTK+rKbHS6FJ8JDr7iyXo6Hsqucn7ERPE3tq/XM8afvFekvnB6jDTEZ8lMC0pQwxQa6t4SY4UqTS4v7TOkZULUDu2yJpmLUzqe5z/zIRUd4bU5T9WfJcElQhShb54J9GTWaDUYO9LgGXh5ijqN1lXHZUW92rkV/fg1bGAvpF5jSMcL/lxL4tEbOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ChGMnx2koCH2Pt2xgOR5J1h5MmCDoGQUfjnQpjhnOX4=;
+ b=ZZ/QcflBLmi8d81Hh6eg470qE6B5rcs9TVVLY2PmkQkwMsCQEvqB5GzFNtn9SeNwML97Zgxyba7MwfeT63KCjD8Kp7FVYPONi6aReByvOqhOQl9YTUGR2bFD9uB7fmDjxB5IM7w6UwqSA8wGrFZ35V38Kf+2f3gagw4Dg8cE4MzbfgJllj7antgfRk1pYr+b7ZCErQPurQamoy7GW940zN1V2OZLN94wE8vUEQiNXBp+Yn8plqs9MRN9wdrQBiseUW3dpztocyWDvPuucQ7FndytgyCvoa69f70BbGYEYCtkta68Nybzv/Vu05EOY/isEyWAXmRZzcKD4MubQWpwYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ChGMnx2koCH2Pt2xgOR5J1h5MmCDoGQUfjnQpjhnOX4=;
+ b=GpKhIwVbeFKNLiO5Vm5IBW0OwkIJuhv1RAsS4bcooW2DiTjF9w97qRWbdfdSa6iUKijrbHyHqj3AI9tyada9qm4nNpUI2BZi5vbiFWam38ZpAI5kIMI7Fiw4978cfWnCdLRiirYVe/DQZrANhL7+uhViZgyNRhJTD2NxJT94R/0=
+Received: from BL1PR13CA0288.namprd13.prod.outlook.com (2603:10b6:208:2bc::23)
+ by DS0PR12MB7655.namprd12.prod.outlook.com (2603:10b6:8:11e::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.27; Fri, 11 Apr
+ 2025 18:48:38 +0000
+Received: from BN2PEPF000055DE.namprd21.prod.outlook.com
+ (2603:10b6:208:2bc:cafe::a7) by BL1PR13CA0288.outlook.office365.com
+ (2603:10b6:208:2bc::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.8 via Frontend Transport; Fri,
+ 11 Apr 2025 18:48:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN2PEPF000055DE.mail.protection.outlook.com (10.167.245.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8655.0 via Frontend Transport; Fri, 11 Apr 2025 18:48:38 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 11 Apr
+ 2025 13:48:37 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>, Sunil Khatri
+ <sunil.khatri@amd.com>
+Subject: [PATCH 01/10] drm/amdgpu/userq: rename suspend/resume callbacks
+Date: Fri, 11 Apr 2025 14:48:16 -0400
+Message-ID: <20250411184825.2890189-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-References: <20250410185402.2352109-1-alexander.deucher@amd.com>
- <20250410185402.2352109-7-alexander.deucher@amd.com>
- <b372fade-f4d6-4eb5-8654-354d6ba4d1f7@amd.com>
-In-Reply-To: <b372fade-f4d6-4eb5-8654-354d6ba4d1f7@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 11 Apr 2025 14:41:47 -0400
-X-Gm-Features: ATxdqUGinZ01RtHR0Dwy_6NytkcaEe0cRMJO97_iSNrAuEPDo-zYuZiYbfQXgUY
-Message-ID: <CADnq5_N6JgBKcF4_QTyfSuTp6RxO=Qt9kFo3ectNvxutNgVJFA@mail.gmail.com>
-Subject: Re: [PATCH 07/13] drm/amdgpu/userq: enable support for queue
- priorities
-To: "Khatri, Sunil" <sukhatri@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055DE:EE_|DS0PR12MB7655:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9b1b227-4db1-448c-20b8-08dd7929789f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?1dn+MauypIatBZkvIsKLrZUI2baOEWHtZ4hN/HbxKkMrwKhp5Yrwy03QDrr/?=
+ =?us-ascii?Q?TOmHzxBCeZ2cR6OzSThfqGX+ICVqf6YDGdGIyRUlB8JVvAdUFowKCPHA71cO?=
+ =?us-ascii?Q?skgLGwG7yrnZOqfAAcJ9+4W8fEBC9+bdeOgq5wFyet3Aivi5C0YNp9sn00yc?=
+ =?us-ascii?Q?4r7h3Mvp1uh2fCC5VbCNLf1ZlBKER0HqRC90H1ri4Ux1fsc6oUi6DXNwpMs/?=
+ =?us-ascii?Q?zK8oO5j1nBNZa1QyVrismD3nr7xRrlqpnTnrds5sRlPzvYiqghmRfQXCHvTg?=
+ =?us-ascii?Q?W1wfQhOtdY0pEPOoOg63vZMxCM5Zr3Iyx+nTzGmXcMTQ20o24gcUFTyV4gVd?=
+ =?us-ascii?Q?mBDun+K7VBghR/S6YOAsEM5ItVFvDWfr/pGHwFOjd7dH2QN65iWwc4LK09Fu?=
+ =?us-ascii?Q?QbBPyStVF6Mk8RSo+chwByqwkpI61c9MbKEF1qqdGs/1D4D5wAVn5/YLLEOO?=
+ =?us-ascii?Q?he0tHnxyF/iFo5ceShbwS2aCbg7NGH5Y3699bZ30tZuNbBJDsTBU1clMIhXx?=
+ =?us-ascii?Q?5vJVponc9d1F241NaLrHGZxcwNs5Ec/whOmyYMEtdghAjJ9quc+4zX7/+BC2?=
+ =?us-ascii?Q?DNYTGtKH79kSCPiH9XYjZJeCxcHZsE/WlLSTXVBvf/AJdOJ5qLeP2KNn9h0n?=
+ =?us-ascii?Q?JwWxML9Z1QnF0dw1pOf3A+QQUZ9XnIziOV++pwxvtLFIJwMiH1fESMnP6s9y?=
+ =?us-ascii?Q?hNWFQVWBLJ6X8OlpxVNrotdBNEwLq/LI+6rQtwv3XX5McROFgFvhXswBbsSA?=
+ =?us-ascii?Q?CQfeVuj5fUgnTvnTB9IsQhS7lmhLmhRDOV8HzRiGodcrawQL1K//DtYOc4ZX?=
+ =?us-ascii?Q?FT4U3JBBuGhbNBgosmMPkUJFKJD8Y+W5ePgoabfXVjOjVdoFyg4zpmayjrUR?=
+ =?us-ascii?Q?7Wx4EzabM0s3Ig0RMeEsMBiJhIdRJlsidRbllCFKBJ/wLg2m5blMMUyDGrY4?=
+ =?us-ascii?Q?gzMx+X8uiQ9xn5/3nDTTodXQXjOAi0NgK0H5vSamM2lYbqdcU4ti0SBHad6e?=
+ =?us-ascii?Q?b6/v3u3qJMj88OuRAM81HUPRzXg1v6xi913pWKjoVRweFTP097aiNyfg6nzK?=
+ =?us-ascii?Q?P/I+KBIVhcI11HqbopEc1xG2aVwe5jZZ336Vj2p3z7pt/8jECR5UkOWRm8Uh?=
+ =?us-ascii?Q?Q+PGgtdm2oaT2avpXKl6g4Pu/ybyboYKpDj5KCP8jDQBwBxk9PPfeChGTMdb?=
+ =?us-ascii?Q?11QVcONxP9H3knuWTC3p4OSDKz+dCkX7BLkjMPYxOyGcomgNntenDgAuczao?=
+ =?us-ascii?Q?f3o2AvhcAvQ1VUavS8vOa+OT/jDGENf6EwwNBFK2xy+qLi6dnIS8KYJZ+88L?=
+ =?us-ascii?Q?uuFLu+yqlON14HOanMlkAF/LDie6bfLHwvxzfMLIh5UXnUrcVWt1L7oNah3j?=
+ =?us-ascii?Q?Eg0tA973QwM748gbKaGxLlP4OpSF2JhI779/k9O5PzO+FqI1fg+aYWbsRkW7?=
+ =?us-ascii?Q?XLEhDKIk63/pfnBjZefiBgipFsWhTBkeYkEi2vx4w4SISHa5q7Zip2/hwFJb?=
+ =?us-ascii?Q?KQ3StwGxBgtxmKrYhIuzV+9FzFF46bj2VzAQ?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2025 18:48:38.0355 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9b1b227-4db1-448c-20b8-08dd7929789f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000055DE.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7655
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,109 +131,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 11, 2025 at 1:18=E2=80=AFPM Khatri, Sunil <sukhatri@amd.com> wr=
-ote:
->
-> A small comment otherwise it looks great.
-> Reviewed-by: Sunil Khatri <sunil.khatri@amd.com>
->
-> On 4/11/2025 12:23 AM, Alex Deucher wrote:
-> > Enable users to create queues at different priority levels.
-> > The highest level is restricted to drm master.
-> >
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c | 26 ++++++++++++++++++=
+Rename to map and umap to better align with what is happening
+at the firmware level and remove the extra level of indirection
+in the MES userq code.
+
+Reviewed-by: Sunil Khatri <sunil.khatri@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c | 10 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h |  8 ++--
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c    | 46 ++++++-------------
+ 3 files changed, 23 insertions(+), 41 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
+index ecd49cf15b2a9..2be1e54b78997 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
+@@ -432,11 +432,11 @@ amdgpu_userqueue_resume_all(struct amdgpu_userq_mgr *uq_mgr)
+ 	/* Resume all the queues for this process */
+ 	idr_for_each_entry(&uq_mgr->userq_idr, queue, queue_id) {
+ 		userq_funcs = adev->userq_funcs[queue->queue_type];
+-		ret = userq_funcs->resume(uq_mgr, queue);
++		ret = userq_funcs->map(uq_mgr, queue);
+ 	}
+ 
+ 	if (ret)
+-		DRM_ERROR("Failed to resume all the queue\n");
++		DRM_ERROR("Failed to map all the queues\n");
+ 	return ret;
+ }
+ 
+@@ -587,14 +587,14 @@ amdgpu_userqueue_suspend_all(struct amdgpu_userq_mgr *uq_mgr)
+ 	int queue_id;
+ 	int ret = 0;
+ 
+-	/* Try to suspend all the queues in this process ctx */
++	/* Try to unmap all the queues in this process ctx */
+ 	idr_for_each_entry(&uq_mgr->userq_idr, queue, queue_id) {
+ 		userq_funcs = adev->userq_funcs[queue->queue_type];
+-		ret += userq_funcs->suspend(uq_mgr, queue);
++		ret += userq_funcs->unmap(uq_mgr, queue);
+ 	}
+ 
+ 	if (ret)
+-		DRM_ERROR("Couldn't suspend all the queues\n");
++		DRM_ERROR("Couldn't unmap all the queues\n");
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h
+index ec1a4ca6f6321..a0cf6978f2ba8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h
+@@ -64,10 +64,10 @@ struct amdgpu_userq_funcs {
+ 			  struct amdgpu_usermode_queue *queue);
+ 	void (*mqd_destroy)(struct amdgpu_userq_mgr *uq_mgr,
+ 			    struct amdgpu_usermode_queue *uq);
+-	int (*suspend)(struct amdgpu_userq_mgr *uq_mgr,
+-		       struct amdgpu_usermode_queue *queue);
+-	int (*resume)(struct amdgpu_userq_mgr *uq_mgr,
+-		      struct amdgpu_usermode_queue *queue);
++	int (*unmap)(struct amdgpu_userq_mgr *uq_mgr,
++		     struct amdgpu_usermode_queue *queue);
++	int (*map)(struct amdgpu_userq_mgr *uq_mgr,
++		   struct amdgpu_usermode_queue *queue);
+ };
+ 
+ /* Usermode queues for gfx */
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index 7ae4759b5b569..fe6fc3e0a3204 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -98,14 +98,17 @@ mes_userq_create_wptr_mapping(struct amdgpu_userq_mgr *uq_mgr,
+ }
+ 
+ static int mes_userq_map(struct amdgpu_userq_mgr *uq_mgr,
+-			 struct amdgpu_usermode_queue *queue,
+-			 struct amdgpu_mqd_prop *userq_props)
++			 struct amdgpu_usermode_queue *queue)
+ {
+ 	struct amdgpu_device *adev = uq_mgr->adev;
+ 	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
++	struct amdgpu_mqd_prop *userq_props = queue->userq_prop;
+ 	struct mes_add_queue_input queue_input;
+ 	int r;
+ 
++	if (queue->queue_active)
++		return 0;
++
+ 	memset(&queue_input, 0x0, sizeof(struct mes_add_queue_input));
+ 
+ 	queue_input.process_va_start = 0;
+@@ -143,14 +146,17 @@ static int mes_userq_map(struct amdgpu_userq_mgr *uq_mgr,
+ 	return 0;
+ }
+ 
+-static void mes_userq_unmap(struct amdgpu_userq_mgr *uq_mgr,
+-			    struct amdgpu_usermode_queue *queue)
++static int mes_userq_unmap(struct amdgpu_userq_mgr *uq_mgr,
++			   struct amdgpu_usermode_queue *queue)
+ {
+ 	struct amdgpu_device *adev = uq_mgr->adev;
+ 	struct mes_remove_queue_input queue_input;
+ 	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
+ 	int r;
+ 
++	if (!queue->queue_active)
++		return 0;
++
+ 	memset(&queue_input, 0x0, sizeof(struct mes_remove_queue_input));
+ 	queue_input.doorbell_offset = queue->doorbell_index;
+ 	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+@@ -161,6 +167,7 @@ static void mes_userq_unmap(struct amdgpu_userq_mgr *uq_mgr,
+ 	if (r)
+ 		DRM_ERROR("Failed to unmap queue in HW, err (%d)\n", r);
+ 	queue->queue_active = false;
++	return r;
+ }
+ 
+ static int mes_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
+@@ -314,7 +321,7 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ 	}
+ 
+ 	/* Map userqueue into FW using MES */
+-	r = mes_userq_map(uq_mgr, queue, userq_props);
++	r = mes_userq_map(uq_mgr, queue);
+ 	if (r) {
+ 		DRM_ERROR("Failed to init MQD\n");
+ 		goto free_ctx;
+@@ -354,34 +361,9 @@ mes_userq_mqd_destroy(struct amdgpu_userq_mgr *uq_mgr,
+ 	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
+ }
+ 
+-static int mes_userq_suspend(struct amdgpu_userq_mgr *uq_mgr,
+-				   struct amdgpu_usermode_queue *queue)
+-{
+-	if (queue->queue_active)
+-		mes_userq_unmap(uq_mgr, queue);
 -
-> >   1 file changed, 25 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c b/drivers/gp=
-u/drm/amd/amdgpu/amdgpu_userqueue.c
-> > index 57a4ef64e0b8b..b8b13b6ab4631 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
-> > @@ -22,6 +22,7 @@
-> >    *
-> >    */
-> >
-> > +#include <drm/drm_auth.h>
-> >   #include <drm/drm_exec.h>
-> >   #include "amdgpu.h"
-> >   #include "amdgpu_vm.h"
-> > @@ -260,6 +261,21 @@ amdgpu_userqueue_destroy(struct drm_file *filp, in=
-t queue_id)
-> >       return r;
-> >   }
-> >
-> > +static int amdgpu_userq_priority_permit(struct drm_file *filp,
-> > +                                     int priority)
-> > Do we want this value of priority to be unsigned as we only want values=
- >=3D0.
+-	return 0;
+-}
+-
+-static int mes_userq_resume(struct amdgpu_userq_mgr *uq_mgr,
+-				  struct amdgpu_usermode_queue *queue)
+-{
+-	int ret;
+-
+-	if (queue->queue_active)
+-		return 0;
+-
+-	ret = mes_userq_map(uq_mgr, queue, queue->userq_prop);
+-	if (ret) {
+-		DRM_ERROR("Failed to resume queue\n");
+-		return ret;
+-	}
+-	return 0;
+-}
+-
+ const struct amdgpu_userq_funcs userq_mes_funcs = {
+ 	.mqd_create = mes_userq_mqd_create,
+ 	.mqd_destroy = mes_userq_mqd_destroy,
+-	.suspend = mes_userq_suspend,
+-	.resume = mes_userq_resume,
++	.unmap = mes_userq_unmap,
++	.map = mes_userq_map,
+ };
+-- 
+2.49.0
 
-The values we pass in will always be >=3D0.
-
-Alex
-
-> > +{
-> > +     if (priority < AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH)
-> > +             return 0;
-> > +
-> > +     if (capable(CAP_SYS_NICE))
-> > +             return 0;
-> > +
-> > +     if (drm_is_current_master(filp))
-> > +             return 0;
-> > +
-> > +     return -EACCES;
-> > +}
-> > +
-> >   static int
-> >   amdgpu_userqueue_create(struct drm_file *filp, union drm_amdgpu_userq=
- *args)
-> >   {
-> > @@ -271,6 +287,9 @@ amdgpu_userqueue_create(struct drm_file *filp, unio=
-n drm_amdgpu_userq *args)
-> >       struct amdgpu_db_info db_info;
-> >       uint64_t index;
-> >       int qid, r =3D 0;
-> > +     int priority =3D
-> > +             (args->in.flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORIT=
-Y_MASK) >>
-> > +             AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_SHIFT;
-> >
-> >       /* Usermode queues are only supported for GFX IP as of now */
-> >       if (args->in.ip_type !=3D AMDGPU_HW_IP_GFX &&
-> > @@ -280,6 +299,10 @@ amdgpu_userqueue_create(struct drm_file *filp, uni=
-on drm_amdgpu_userq *args)
-> >               return -EINVAL;
-> >       }
-> >
-> > +     r =3D amdgpu_userq_priority_permit(filp, priority);
-> > +     if (r)
-> > +             return r;
-> > +
-> >       /*
-> >        * There could be a situation that we are creating a new queue wh=
-ile
-> >        * the other queues under this UQ_mgr are suspended. So if there =
-is any
-> > @@ -305,6 +328,7 @@ amdgpu_userqueue_create(struct drm_file *filp, unio=
-n drm_amdgpu_userq *args)
-> >       queue->doorbell_handle =3D args->in.doorbell_handle;
-> >       queue->queue_type =3D args->in.ip_type;
-> >       queue->vm =3D &fpriv->vm;
-> > +     queue->priority =3D priority;
-> >
-> >       db_info.queue_type =3D queue->queue_type;
-> >       db_info.doorbell_handle =3D queue->doorbell_handle;
-> > @@ -377,7 +401,7 @@ int amdgpu_userq_ioctl(struct drm_device *dev, void=
- *data,
-> >
-> >       switch (args->in.op) {
-> >       case AMDGPU_USERQ_OP_CREATE:
-> > -             if (args->in.flags)
-> > +             if (args->in.flags & ~AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRI=
-ORITY_MASK)
-> >                       return -EINVAL;
-> >               r =3D amdgpu_userqueue_create(filp, args);
-> >               if (r)
