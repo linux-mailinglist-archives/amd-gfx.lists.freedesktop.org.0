@@ -2,83 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D92B9A86E12
-	for <lists+amd-gfx@lfdr.de>; Sat, 12 Apr 2025 18:08:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F04A86F4C
+	for <lists+amd-gfx@lfdr.de>; Sat, 12 Apr 2025 22:22:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F149210E2CB;
-	Sat, 12 Apr 2025 16:08:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A715710E3E8;
+	Sat, 12 Apr 2025 20:21:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="bA/r0IVx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Yu6pmc7e";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
- [209.85.221.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D665310E2B7
- for <amd-gfx@lists.freedesktop.org>; Sat, 12 Apr 2025 14:39:47 +0000 (UTC)
-Received: by mail-wr1-f54.google.com with SMTP id
- ffacd0b85a97d-39c31e4c3e5so1832485f8f.0
- for <amd-gfx@lists.freedesktop.org>; Sat, 12 Apr 2025 07:39:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1744468786; x=1745073586; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=/0APbTrVqZTQ7b+tNHxNW9om5cpeJ+hNOY66GU+x9GE=;
- b=bA/r0IVx2JUlL8YecfHUjtA9eEWFkiDQqKWiL8oXlsYdEaPB/I2zbNCl4O56WnMtqS
- TSHGAYHPmVwFecvVgIGNCI7Tbvz4CGLQYB1XTiU1t0ZX6msr6z+MsmoEXnk1LZMOsczm
- idh72Y2KsLPf6B0jZGsu0e6o2J2A/i120v5ThkfdEs6gnc5hbvKecakC/5k+sDExPgpo
- ctUlZxRqR8c9yzaox8Av9pzU/aMaTn1lMcHl1rgOQPcSOJCquPYRGiKVcbYoWA+m8lgt
- Zl7RxKUGArW8QoRQCjdtotANvB+CdFyexCWZNttWvaGhx+IzZAWgVPZYirROkmjxx7IX
- Qkjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744468786; x=1745073586;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/0APbTrVqZTQ7b+tNHxNW9om5cpeJ+hNOY66GU+x9GE=;
- b=smYzqZsq9LJsNh3mvDcXmkok33khIyH9y3NI8i5Lik4UQBxY1BfzSjCrWftoNlLQSs
- Z5vFKQ27aHfvuoh/oer9GTiBU4f2vnaolb0FAbSdgeZpmVy+dBMuxYSSjYOQb+XCUS3f
- 9mQ5VLNhJBv3pVG07HGhvl1YPSvIpY0aRWaFrNE/Y1r+xYbAlIMcFWyOxLg9oXkdWc6a
- q6Fna8ZnFiAT/46ZF07BARRWfvyBvQPrETSQTR5FkP7FRV/H/9WcCAfSV2cWttvkkGvy
- VBaNveGnL+Tw6XG+GSSjs69HfI9+EeFG45tZkfHIh5wqAtVCFqt3xvDJZrT2MaqizSv2
- Qx8w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCViY+NFNwPlQo0a9eTf2GwyUkZ11tNRNO/n78zU8nBACn7SBzobY9K+1/8evaFPBnmGPJvWk8rn@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx9/5kCYJdsw2Z8lagJX+uDJMqoMpiCuk5ISK1oEmWITA/TvdP/
- D+JbiRGjyonyLA8NoInE/i59YP5WzlSmf47AVu4nsTOlCC+ViFryk5gpJdloyDI=
-X-Gm-Gg: ASbGncu2w2wxj0KOymJzwcL8i/Ua7LF0Eq/t+Dn5qydrkqL2kGk5MitRnMci92/NaeJ
- clR2UMGBapp0ijwsZr5q3E4z6V+G2aqGYZCzMszmlpFBkxKCuDVG89sV2AGNeKoQPR7lSC9oQvD
- jKh9U9OuQQdXQgYpOx28TRWE+m5coqfaCA8y3lw7rO9Hsv3CAp2Ov8S98PyWOHT2M5KkpODH1yb
- 2ty2GXLKhK+q0KHkZ6rAiPvXEgi8Z4Eg9sximJfK0gFtWJCHYEmOMZ9xWV3kuQk6kThsWiyNcPF
- DwjE9ydpbBDyGRLPDSVn9IELiUkPnoM1wiSUjkvzFZo7Eg==
-X-Google-Smtp-Source: AGHT+IEIPIweCgA9/UK8lpvU9btA6Cbv8a80TioEApKtzRIcWdW/8sHJOEnuxUXW7drGXCEjT/WBmA==
-X-Received: by 2002:a05:6000:1a8f:b0:391:a74:d7dc with SMTP id
- ffacd0b85a97d-39eaaecab96mr5356300f8f.50.1744468786353; 
- Sat, 12 Apr 2025 07:39:46 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-39eae963fccsm5179479f8f.3.2025.04.12.07.39.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 12 Apr 2025 07:39:46 -0700 (PDT)
-Date: Sat, 12 Apr 2025 17:39:43 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- Arvind Yadav <Arvind.Yadav@amd.com>,
- Shashank Sharma <shashank.sharma@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] drm/amdgpu: Clean up error handling in
- amdgpu_userq_fence_driver_alloc()
-Message-ID: <b9adf038b3ccf058c49e7e74e1998bc2216e0678.1744468610.git.dan.carpenter@linaro.org>
-References: <cover.1744468610.git.dan.carpenter@linaro.org>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA9A10E3E9
+ for <amd-gfx@lists.freedesktop.org>; Sat, 12 Apr 2025 20:21:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=kzXwog7NOYPNvfuVLPRY5fJzt3iR+x/wueoAxRiG3lI=; b=Yu6pmc7e4E/rE8VpbJwzXelRsS
+ eRrhSfVS9c7ZPL+HrmwK1Pcd8pYZ8gDFtLyHqsp5SpYI8HGiEXUmTwJnALMXFmzExyBy9iv1oTp4P
+ 4f9oNUjXhTHRIiwCHtd2uCEtydI6tt0Wh7vwO6CC6NRSemTvegnq4Fk3ker3dx3jWnEdrT2iwHs/5
+ ZVl2IJYgdQC9JDxguzvRhf4xkggKw4yZoLpfwq6hbXkVLbUhVW3rhrwcuREF7YaMF+3zzFljkltNR
+ gjnPh0safsQlOHgoHzVHmZfZWVtiMxicB10xyXtNrENhWZ/die1xW1SLjDUMR02UBCtHtjqioUMuz
+ GsGGe5Ag==;
+Received: from d162-157-58-14.abhsia.telus.net ([162.157.58.14]
+ helo=maloca.lan) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1u3hMI-00Fepq-1v; Sat, 12 Apr 2025 22:21:46 +0200
+From: Rodrigo Siqueira <siqueira@igalia.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rodrigo Siqueira <siqueira@igalia.com>
+Subject: [PATCH v2 0/9] Introduce a helper functions to get the CSB buffer
+Date: Sat, 12 Apr 2025 14:21:05 -0600
+Message-ID: <20250412202134.3025051-1-siqueira@igalia.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1744468610.git.dan.carpenter@linaro.org>
-X-Mailman-Approved-At: Sat, 12 Apr 2025 16:07:59 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,38 +58,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-1) Checkpatch complains if we print an error message for kzalloc()
-   failure.  The kzalloc() failure already has it's own error messages
-   built in.  Also this allocation is small enough that it is guaranteed
-   to succeed.
-2) Return directly instead of doing a goto free_fence_drv.  The
-   "fence_drv" is already NULL so no cleanup is necessary.
+This patchset was inspired from the below series:
 
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
-v2: New patch
+https://lore.kernel.org/amd-gfx/20250319162225.3775315-1-alexander.deucher@amd.com/
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+In the above series, there is a bug fix in many functions named
+gfx_vX_0_get_csb_buffer (where X ranges from 6 to 11). After closely
+looking at those functions, it became clear that most of the code could
+be shared from gfx6 to gfx11. Aside from the code duplication removal,
+this also improves maintainability since a bug fix in a shared function
+can be propagated to all ASICs.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index b012fece91e8..86eab5461162 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -75,11 +75,8 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
- 	int r;
- 
- 	fence_drv = kzalloc(sizeof(*fence_drv), GFP_KERNEL);
--	if (!fence_drv) {
--		DRM_ERROR("Failed to allocate memory for fence driver\n");
--		r = -ENOMEM;
--		goto free_fence_drv;
--	}
-+	if (!fence_drv)
-+		return -ENOMEM;
- 
- 	/* Acquire seq64 memory */
- 	r = amdgpu_seq64_alloc(adev, &fence_drv->va, &fence_drv->gpu_addr,
+Alex provided some feedback, and from that, I modified this new version
+to:
+
+1. Create a dedicated function for the preamble start.
+2. Create a function to parse the cs data.
+3. Create a helper for finishing the preamble.
+4. Replace the duplicated part from gfx6 to 11.
+
+For the GFX update, I created one commit for each to ensure this series
+is bisectable.
+
+Thanks
+
+Rodrigo Siqueira (9):
+  drm/amdgpu/gfx: Introduce helpers for CSB manipulation
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v11_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v10_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v9_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v8_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v7_0_get_csb_buffer
+  drm/amdgpu/gfx: Clean up gfx_v7_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v6_0_get_csb_buffer
+  drm/amdgpu: Add CSB documentation
+
+ Documentation/gpu/amdgpu/amdgpu-glossary.rst |  3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c      | 69 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h      |  3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h      | 14 ++++
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c       | 34 ++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c       | 34 ++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c        | 29 ++------
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c        | 39 ++---------
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c        | 34 ++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c        | 32 ++-------
+ 10 files changed, 116 insertions(+), 175 deletions(-)
+
 -- 
-2.47.2
+2.49.0
 
