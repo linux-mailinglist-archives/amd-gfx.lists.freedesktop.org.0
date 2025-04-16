@@ -2,80 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB91A90489
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 15:41:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26295A8B223
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 09:29:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5282010E922;
-	Wed, 16 Apr 2025 13:41:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4BDF10E86C;
+	Wed, 16 Apr 2025 07:29:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FaGXBAS3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="U0u9Z6b9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
- [209.85.215.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0344F10E86F;
- Wed, 16 Apr 2025 07:33:22 +0000 (UTC)
-Received: by mail-pg1-f169.google.com with SMTP id
- 41be03b00d2f7-af6a315b491so5656507a12.1; 
- Wed, 16 Apr 2025 00:33:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1744788802; x=1745393602; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=BHkkBSUEnJtBBjxdrXpYHYmA889tBVCePybNfFBjZCM=;
- b=FaGXBAS3L6BCT+zPYPQdH4p4BthJjOPM8e48gkHHyKbZ9tINJ2cJJJlIKc3oBFOMon
- 9uRcPwSAnpx60Oc87WQhcsle6C2lPVICQHpXmbvUTqTdbzSxcg/Rm/NzbevTOm7yamal
- ddeswogx8APaPfFhEvBcdonqxM6hWNIBQvnAku5EOv6C+QikG5Ww0C2M1ZdsoY5jkqiG
- bGYXaKi6I+NF/d6YIQrl0dkCho3j2PDGWCv+ANnFyIo3nZVOyTVo3qUbmueV7pf59wkX
- r+mlktSoJSqSr2oXuoBboI8hADIMd7kjsMN5cFqLUfYlY9/8LdEDtmmetGdbhwV3PFlU
- 4c3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744788802; x=1745393602;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=BHkkBSUEnJtBBjxdrXpYHYmA889tBVCePybNfFBjZCM=;
- b=lmD48SnnG6EtVE/HiWLJtUl6cu7FUEBrfiH5NPOHTY7C87efcXwzylpurIrN96SNOE
- Ra4hcatmSWR5LsgQBkahepfA22hAZWR7bFokvP2F/GylxV/2k+jvGnUZg/ocHzeFGyjW
- 1WkflwzupS/y0UV407H6Jlb6CL2H1SncJ6cGSYlyWOT4W3vCm/b4u0EaK4OCBxzD0YYz
- ANNRItBs3RIpzJ3rdnJrSjQiApaxl7w10nxjIFx3knf8wCFZ+VgVog/N7WkkDCmKFIW2
- 3o9R2SHjgRQjp0P7ZusdzbcMeePNUxzx405hD9pBdshc9xe9EGW1czwlhQxx8vGyMKSh
- DC3w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVE1zifNmpH+AURj3V1UeiNQtfhcpu1r6E6iaRb9I6fUpyiClEA7kuytL2Fw0rBjiefkb8LNk03@lists.freedesktop.org,
- AJvYcCWJqEF4sorBQaaaWc+Jk+NpY7vKBMfY4nbmrczI27WUoIKyso9PNRzt8iQXDUr61Dhr4YaILaJM3exK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxx9XWe0tBCD5PuSh8phnoM9LFCH6etiAjc7DDtRd7WYCCvcBxJ
- vlZBVablMtHmJRPl66gEroVQA/OwJN2pQNAZu5mFRoSPk+DtbbQ=
-X-Gm-Gg: ASbGncvvXprzEnjEJnNP/EIWJtVEHJvzMwSMmW0RxE7RBITqaKJiAy7ZtFruJYMJ3rE
- /BdwSsMalEUpcAETAvUkcMhcN7qQdv0j/uk2O3FpB+4MAplT88w0yspBsltgvHmWgTbPQO9E7Ak
- zFGSU+yaenpooD2HQDied3Zz8DdM8X+3Je7DFxHq7Y7Ns3NfDdaDv5avXCOhoBwZuqamffFCBoB
- 40STCjzThiDsSh+aVsBsPT8tUyf+40bOxJYHSKjhVY5Cr0piXNEQPnuZwgR0Mlzf/kKqjZ4tJMy
- /wd+PJa9eHTlcirttolfUmozo0DeRMqWOf7nJtPt4C0EJOGMrw9p
-X-Google-Smtp-Source: AGHT+IFLWgEp5oj4dvUn/SbRKIWaHPfRDLLf1Fv5DfWee3CnAQT0vY2xt1RkVb9UhgQN+Oqxzum4Aw==
-X-Received: by 2002:a17:90b:5824:b0:2ee:f687:6acb with SMTP id
- 98e67ed59e1d1-30863f1936cmr1284633a91.13.1744788802331; 
- Wed, 16 Apr 2025 00:33:22 -0700 (PDT)
-Received: from debian.ujwal.com ([152.58.237.59])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-308611f3e51sm863339a91.16.2025.04.16.00.33.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Apr 2025 00:33:21 -0700 (PDT)
-From: Ujwal Kundur <ujwal.kundur@gmail.com>
-To: alexander.deucher@amd.com,
-	christian.koenig@amd.com
-Cc: airlied@gmail.com, simona@ffwll.ch, lijo.lazar@amd.com,
- sunil.khatri@amd.com, Hawking.Zhang@amd.com, Jun.Ma2@amd.com,
- Yunxiang.Li@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ujwal Kundur <ujwal.kundur@gmail.com>
-Subject: [PATCH RFC] drm/amdgpu: Block userspace mapping of IO
-Date: Wed, 16 Apr 2025 12:58:26 +0530
-Message-Id: <20250416072825.3790-1-ujwal.kundur@gmail.com>
-X-Mailer: git-send-email 2.20.1
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0C3910E86C;
+ Wed, 16 Apr 2025 07:29:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Ia4B45pMDmZ3UwY9Bd4jR/lwQE2ezYjp7vEdsGcZgWI=; b=U0u9Z6b9xfpzzZC9L1kjIZguNj
+ hyqJ2apa/3vr7X7PbWRbtTIXxtaghOpSd7xEQ++Ll0XwFJY4d6RRKwMPf37RPs8mvSP2/nXcxCnk0
+ RaNlEE8SubDeFTbexpwpTvlr9K4Zwrb3oTz3b9VDi9DuWVY/yyeH0Dd2tXvvMOAx1jKrJ66PlpMBK
+ A+5YWB+3SROFfgAMgD2DFfGSkWBPOF+0AEmgc7spkhIC+PgD66Qi3ZmEwXG4HxcXvz19cGnV23G99
+ V5/xnQezYniR98OEtNh5EaIRWIfPrRcZ+mfzovL6CBnawI2sBjYIv/mzWGLTXht5TW3qrdnPy0A+z
+ FqqgcT2w==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1u4xDT-00HHAl-TH; Wed, 16 Apr 2025 09:29:51 +0200
+Message-ID: <dcc0921c-d0f1-491c-b5f8-ef0be4d08dfb@igalia.com>
+Date: Wed, 16 Apr 2025 08:29:51 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 16 Apr 2025 13:41:29 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] drm/amdgpu: add drm_file reference in userq_mgr
+To: Sunil Khatri <sunil.khatri@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+References: <20250415184318.2465197-1-sunil.khatri@amd.com>
+ <20250415184318.2465197-2-sunil.khatri@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250415184318.2465197-2-sunil.khatri@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,53 +63,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a RFC patch for blocking userspace mapping of IO register(s)
-before ioremap() calls are made. Out of the available IRQ sources, CRTC
-seemed the most appropriate for this task, however I'm not quite sure
-about that as well as the type, which I've set to 0.
 
-If I understand correctly, we actually want to block certain ioctls from
-userspace that can interfere with ioremap but I don't see a dedicated
-source for that.
+On 15/04/2025 19:43, Sunil Khatri wrote:
+> drm_file will be used in usermode queues code to
+> enable better process information in logging and hence
+> add drm_file part of the userq_mgr struct.
+> 
+> update the drm_file pointer in userq_mgr for each
+> amdgpu_driver_open_kms.
+> 
+> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       | 1 +
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h | 1 +
+>   2 files changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> index 3d319687c1c9..3de3071d66ee 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> @@ -1436,6 +1436,7 @@ int amdgpu_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
+>   
+>   	amdgpu_ctx_mgr_init(&fpriv->ctx_mgr, adev);
+>   
+> +	fpriv->userq_mgr.file = file_priv;
+>   	r = amdgpu_userq_mgr_init(&fpriv->userq_mgr, adev);
 
-Signed-off-by: Ujwal Kundur <ujwal.kundur@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+It's a bit of a layering violation since amdgpu_userq_mgr_init() is the 
+place which otherwise initialises fpriv->user_mgr. One day someome might 
+put a memset in there for example. Anyway, I think it would be nicer if 
+you passed fpriv to that function. Potentially instead of adev. Looks 
+like that would be cleaner "design".
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index a30111d2c3ea..365af52af6e5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -47,6 +47,7 @@
- #include <linux/vga_switcheroo.h>
- #include <linux/efi.h>
- #include "amdgpu.h"
-+#include "amdgpu_irq.h"
- #include "amdgpu_trace.h"
- #include "amdgpu_i2c.h"
- #include "atom.h"
-@@ -4367,7 +4368,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	ratelimit_set_flags(&adev->throttling_logging_rs, RATELIMIT_MSG_ON_RELEASE);
- 
- 	/* Registers mapping */
--	/* TODO: block userspace mapping of io register */
-+	/* Block userspace mapping of io register */
-+	amdgpu_irq_put(adev, &adev->crtc_irq, 0);
-+
- 	if (adev->asic_type >= CHIP_BONAIRE) {
- 		adev->rmmio_base = pci_resource_start(adev->pdev, 5);
- 		adev->rmmio_size = pci_resource_len(adev->pdev, 5);
-@@ -4380,6 +4383,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 		atomic_set(&adev->pm.pwr_state[i], POWER_STATE_UNKNOWN);
- 
- 	adev->rmmio = ioremap(adev->rmmio_base, adev->rmmio_size);
-+
-+	amdgpu_irq_get(adev, &adev->crtc_irq, 0);
-+
- 	if (!adev->rmmio)
- 		return -ENOMEM;
- 
--- 
-2.20.1
+Regards,
+
+Tvrtko
+
+>   	if (r)
+>   		DRM_WARN("Can't setup usermode queues, use legacy workload submission only\n");
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h
+> index 381b9c6f0573..fe51a45f7ee4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.h
+> @@ -77,6 +77,7 @@ struct amdgpu_userq_mgr {
+>   	struct amdgpu_device		*adev;
+>   	struct delayed_work		resume_work;
+>   	struct list_head		list;
+> +	struct drm_file			*file;
+>   };
+>   
+>   struct amdgpu_db_info {
 
