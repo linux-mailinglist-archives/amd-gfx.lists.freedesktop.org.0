@@ -2,54 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB61A8B20D
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 09:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB91A90489
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 15:41:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D78810E867;
-	Wed, 16 Apr 2025 07:26:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5282010E922;
+	Wed, 16 Apr 2025 13:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="gaqFbA2A";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FaGXBAS3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 061CD10E867;
- Wed, 16 Apr 2025 07:26:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=JwobS364zmSsD5+VPW6jxonJjGIzHyIDQmMvrDv4xWM=; b=gaqFbA2AVj69FCrf1RLy5eujHl
- BCObck6GgXhzv707OiHQX7zT+myC0HP19ezTXSCOo+vu8J5s6KSKs8Y+UgbzqerpoKZqJKYgAG2AU
- YIHv2gybOKQ5oCdedABA/vUO1FfuFaha5hS7OFejU/ohd6XdJUxNqmyo7WlscQYmFUqUN9Cpjglpf
- MDXCesnkmzV3zHpmvaT+4wGcFkhXSSERfQ+JoZqnlcVcKF8ibmkHlvOknFSzBEcGEElMQfOab1G+j
- B9K66sGm0GJ2YDCPyn3yi/b/qfnay3KttUbGloR9MMi13anmfdRuRsaveY4vp/TrMQgoNuqTduo9F
- xygfPXYQ==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1u4xAP-00HH5l-65; Wed, 16 Apr 2025 09:26:41 +0200
-Message-ID: <34b082d4-b320-4eb3-8b36-fb63ffca3730@igalia.com>
-Date: Wed, 16 Apr 2025 08:26:40 +0100
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
+ [209.85.215.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0344F10E86F;
+ Wed, 16 Apr 2025 07:33:22 +0000 (UTC)
+Received: by mail-pg1-f169.google.com with SMTP id
+ 41be03b00d2f7-af6a315b491so5656507a12.1; 
+ Wed, 16 Apr 2025 00:33:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1744788802; x=1745393602; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=BHkkBSUEnJtBBjxdrXpYHYmA889tBVCePybNfFBjZCM=;
+ b=FaGXBAS3L6BCT+zPYPQdH4p4BthJjOPM8e48gkHHyKbZ9tINJ2cJJJlIKc3oBFOMon
+ 9uRcPwSAnpx60Oc87WQhcsle6C2lPVICQHpXmbvUTqTdbzSxcg/Rm/NzbevTOm7yamal
+ ddeswogx8APaPfFhEvBcdonqxM6hWNIBQvnAku5EOv6C+QikG5Ww0C2M1ZdsoY5jkqiG
+ bGYXaKi6I+NF/d6YIQrl0dkCho3j2PDGWCv+ANnFyIo3nZVOyTVo3qUbmueV7pf59wkX
+ r+mlktSoJSqSr2oXuoBboI8hADIMd7kjsMN5cFqLUfYlY9/8LdEDtmmetGdbhwV3PFlU
+ 4c3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1744788802; x=1745393602;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=BHkkBSUEnJtBBjxdrXpYHYmA889tBVCePybNfFBjZCM=;
+ b=lmD48SnnG6EtVE/HiWLJtUl6cu7FUEBrfiH5NPOHTY7C87efcXwzylpurIrN96SNOE
+ Ra4hcatmSWR5LsgQBkahepfA22hAZWR7bFokvP2F/GylxV/2k+jvGnUZg/ocHzeFGyjW
+ 1WkflwzupS/y0UV407H6Jlb6CL2H1SncJ6cGSYlyWOT4W3vCm/b4u0EaK4OCBxzD0YYz
+ ANNRItBs3RIpzJ3rdnJrSjQiApaxl7w10nxjIFx3knf8wCFZ+VgVog/N7WkkDCmKFIW2
+ 3o9R2SHjgRQjp0P7ZusdzbcMeePNUxzx405hD9pBdshc9xe9EGW1czwlhQxx8vGyMKSh
+ DC3w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVE1zifNmpH+AURj3V1UeiNQtfhcpu1r6E6iaRb9I6fUpyiClEA7kuytL2Fw0rBjiefkb8LNk03@lists.freedesktop.org,
+ AJvYcCWJqEF4sorBQaaaWc+Jk+NpY7vKBMfY4nbmrczI27WUoIKyso9PNRzt8iQXDUr61Dhr4YaILaJM3exK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxx9XWe0tBCD5PuSh8phnoM9LFCH6etiAjc7DDtRd7WYCCvcBxJ
+ vlZBVablMtHmJRPl66gEroVQA/OwJN2pQNAZu5mFRoSPk+DtbbQ=
+X-Gm-Gg: ASbGncvvXprzEnjEJnNP/EIWJtVEHJvzMwSMmW0RxE7RBITqaKJiAy7ZtFruJYMJ3rE
+ /BdwSsMalEUpcAETAvUkcMhcN7qQdv0j/uk2O3FpB+4MAplT88w0yspBsltgvHmWgTbPQO9E7Ak
+ zFGSU+yaenpooD2HQDied3Zz8DdM8X+3Je7DFxHq7Y7Ns3NfDdaDv5avXCOhoBwZuqamffFCBoB
+ 40STCjzThiDsSh+aVsBsPT8tUyf+40bOxJYHSKjhVY5Cr0piXNEQPnuZwgR0Mlzf/kKqjZ4tJMy
+ /wd+PJa9eHTlcirttolfUmozo0DeRMqWOf7nJtPt4C0EJOGMrw9p
+X-Google-Smtp-Source: AGHT+IFLWgEp5oj4dvUn/SbRKIWaHPfRDLLf1Fv5DfWee3CnAQT0vY2xt1RkVb9UhgQN+Oqxzum4Aw==
+X-Received: by 2002:a17:90b:5824:b0:2ee:f687:6acb with SMTP id
+ 98e67ed59e1d1-30863f1936cmr1284633a91.13.1744788802331; 
+ Wed, 16 Apr 2025 00:33:22 -0700 (PDT)
+Received: from debian.ujwal.com ([152.58.237.59])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-308611f3e51sm863339a91.16.2025.04.16.00.33.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 16 Apr 2025 00:33:21 -0700 (PDT)
+From: Ujwal Kundur <ujwal.kundur@gmail.com>
+To: alexander.deucher@amd.com,
+	christian.koenig@amd.com
+Cc: airlied@gmail.com, simona@ffwll.ch, lijo.lazar@amd.com,
+ sunil.khatri@amd.com, Hawking.Zhang@amd.com, Jun.Ma2@amd.com,
+ Yunxiang.Li@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Ujwal Kundur <ujwal.kundur@gmail.com>
+Subject: [PATCH RFC] drm/amdgpu: Block userspace mapping of IO
+Date: Wed, 16 Apr 2025 12:58:26 +0530
+Message-Id: <20250416072825.3790-1-ujwal.kundur@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] drm/amdgpu: use drm_file_err in logging to also
- dump process information
-To: Sunil Khatri <sunil.khatri@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-References: <20250415184318.2465197-1-sunil.khatri@amd.com>
- <20250415184318.2465197-3-sunil.khatri@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250415184318.2465197-3-sunil.khatri@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 16 Apr 2025 13:41:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,98 +90,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This is a RFC patch for blocking userspace mapping of IO register(s)
+before ioremap() calls are made. Out of the available IRQ sources, CRTC
+seemed the most appropriate for this task, however I'm not quite sure
+about that as well as the type, which I've set to 0.
 
-On 15/04/2025 19:43, Sunil Khatri wrote:
-> add process and pid information in the userqueue error
-> logging to make it more useful in resolving the error
-> by logs.
-> 
-> Sample log:
-> [   42.444297] [drm:amdgpu_userqueue_wait_for_signal [amdgpu]] *ERROR* Timed out waiting for fence f=000000001c74d978 for comm:Xwayland pid:3427
-> [   42.444669] [drm:amdgpu_userqueue_suspend [amdgpu]] *ERROR* Not suspending userqueue, timeout waiting for comm:Xwayland pid:3427
-> [   42.824729] [drm:amdgpu_userqueue_wait_for_signal [amdgpu]] *ERROR* Timed out waiting for fence f=0000000074407d3e for comm:systemd-logind pid:1058
-> [   42.825082] [drm:amdgpu_userqueue_suspend [amdgpu]] *ERROR* Not suspending userqueue, timeout waiting for comm:systemd-logind pid:1058
-> 
-> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c | 14 ++++++++------
->   1 file changed, 8 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
-> index 1867520ba258..05c1ee27a319 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
-> @@ -43,7 +43,7 @@ amdgpu_userqueue_cleanup(struct amdgpu_userq_mgr *uq_mgr,
->   	if (f && !dma_fence_is_signaled(f)) {
->   		ret = dma_fence_wait_timeout(f, true, msecs_to_jiffies(100));
->   		if (ret <= 0) {
-> -			DRM_ERROR("Timed out waiting for fence f=%p\n", f);
-> +			drm_file_err(uq_mgr->file, "Timed out waiting for fence f=%p\n", f);
+If I understand correctly, we actually want to block certain ioctls from
+userspace that can interfere with ioremap but I don't see a dedicated
+source for that.
 
-You decided to leave %p after all?
+Signed-off-by: Ujwal Kundur <ujwal.kundur@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
->   			return;
->   		}
->   	}
-> @@ -440,7 +440,8 @@ amdgpu_userqueue_resume_all(struct amdgpu_userq_mgr *uq_mgr)
->   	}
->   
->   	if (ret)
-> -		DRM_ERROR("Failed to map all the queues\n");
-> +		drm_file_err(uq_mgr->file, "Failed to map all the queue\n");
-
-You lost the plural by accident.
-
-I am also not sure "all the queues" makes sense in this context versus 
-"all queues" but it's inconsequential really.
-
-> +
->   	return ret;
->   }
->   
-> @@ -598,7 +599,8 @@ amdgpu_userqueue_suspend_all(struct amdgpu_userq_mgr *uq_mgr)
->   	}
->   
->   	if (ret)
-> -		DRM_ERROR("Couldn't unmap all the queues\n");
-> +		drm_file_err(uq_mgr->file, "Couldn't unmap all the queues\n");
-> +
->   	return ret;
->   }
->   
-> @@ -615,7 +617,7 @@ amdgpu_userqueue_wait_for_signal(struct amdgpu_userq_mgr *uq_mgr)
->   			continue;
->   		ret = dma_fence_wait_timeout(f, true, msecs_to_jiffies(100));
->   		if (ret <= 0) {
-> -			DRM_ERROR("Timed out waiting for fence f=%p\n", f);
-> +			drm_file_err(uq_mgr->file, "Timed out waiting for fence f=%p\n", f);
->   			return -ETIMEDOUT;
->   		}
->   	}
-> @@ -634,13 +636,13 @@ amdgpu_userqueue_suspend(struct amdgpu_userq_mgr *uq_mgr,
->   	/* Wait for any pending userqueue fence work to finish */
->   	ret = amdgpu_userqueue_wait_for_signal(uq_mgr);
->   	if (ret) {
-> -		DRM_ERROR("Not suspending userqueue, timeout waiting for work\n");
-> +		drm_file_err(uq_mgr->file, "Not suspending userqueue, timeout waiting\n");
->   		return;
->   	}
->   
->   	ret = amdgpu_userqueue_suspend_all(uq_mgr);
->   	if (ret) {
-> -		DRM_ERROR("Failed to evict userqueue\n");
-> +		drm_file_err(uq_mgr->file, "Failed to evict userqueue\n");
->   		return;
-
-It is pre-existing but strikes me as odd that failure to 
-amdgpu_userqueue_suspend_all() logs a failure to *evict* instead of 
-suspend (as the previous log does). Anyway, I did not look at the 
-surrounding code so just thinking out loud.
-
-Regards,
-
-Tvrtko
-
->   	}
->   
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index a30111d2c3ea..365af52af6e5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -47,6 +47,7 @@
+ #include <linux/vga_switcheroo.h>
+ #include <linux/efi.h>
+ #include "amdgpu.h"
++#include "amdgpu_irq.h"
+ #include "amdgpu_trace.h"
+ #include "amdgpu_i2c.h"
+ #include "atom.h"
+@@ -4367,7 +4368,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 	ratelimit_set_flags(&adev->throttling_logging_rs, RATELIMIT_MSG_ON_RELEASE);
+ 
+ 	/* Registers mapping */
+-	/* TODO: block userspace mapping of io register */
++	/* Block userspace mapping of io register */
++	amdgpu_irq_put(adev, &adev->crtc_irq, 0);
++
+ 	if (adev->asic_type >= CHIP_BONAIRE) {
+ 		adev->rmmio_base = pci_resource_start(adev->pdev, 5);
+ 		adev->rmmio_size = pci_resource_len(adev->pdev, 5);
+@@ -4380,6 +4383,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 		atomic_set(&adev->pm.pwr_state[i], POWER_STATE_UNKNOWN);
+ 
+ 	adev->rmmio = ioremap(adev->rmmio_base, adev->rmmio_size);
++
++	amdgpu_irq_get(adev, &adev->crtc_irq, 0);
++
+ 	if (!adev->rmmio)
+ 		return -ENOMEM;
+ 
+-- 
+2.20.1
 
