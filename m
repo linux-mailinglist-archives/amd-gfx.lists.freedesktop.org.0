@@ -2,85 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5171BA90487
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 15:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 759B4A90488
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 15:41:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5431A10E91C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95A2C10E91F;
 	Wed, 16 Apr 2025 13:41:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="XWuoy2rF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hKTrvxQg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28DF410E8CB
- for <amd-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 11:25:33 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-43cfba466b2so68997345e9.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 04:25:33 -0700 (PDT)
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
+ [209.85.215.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49B3910E8D5;
+ Wed, 16 Apr 2025 11:44:03 +0000 (UTC)
+Received: by mail-pg1-f179.google.com with SMTP id
+ 41be03b00d2f7-7fd35b301bdso7386413a12.2; 
+ Wed, 16 Apr 2025 04:44:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1744802732; x=1745407532; darn=lists.freedesktop.org;
- h=in-reply-to:references:subject:cc:to:from:message-id:date
- :content-transfer-encoding:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=M1SJQCGEYPEhCrI3qgX6t+obEkrQ6EqASbeC+/fQb1k=;
- b=XWuoy2rF6Dbaq0acQ5kK8Mj13JSKXvRH0kkJAW4RrwVqXKh2HBvjhZT9cH24eUOxOf
- bnUNaN7LnaLEOGTQS4d6gODkY16j/KvafO7tZtc3NmALwAVH452QmXRRNNRYfIBTafG2
- qVKn7NYzoeuEd+T4O9zWMex+8Z7MCmmq+mh+5vKTFFEJocIk51YslkrxB9s+rvisE0Ju
- h4DH2WX6aoMskYIT+jtIvkbWjZs2eZTb3p9rtomo6qAY9hASZtKUXd1LSxT6nz5e5Kx8
- tNhZp7bOV293nohwtW3MjIwFWRmoYzDYmjG7SqOLyPz362YwucxJstUzP8PiJcdqtAhq
- I0EA==
+ d=gmail.com; s=20230601; t=1744803843; x=1745408643; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=AZEe1RfOvu1q7GUgcepVbmiSBnsNo8L/yZQuZJXUvpo=;
+ b=hKTrvxQgvJG+9mDBHGfVU5MFEjkxbaTsRtqLavM3apmGU/8a0628ncW6HXXnPWCD+2
+ VLfg/FS/nuETaZRDGibNKTVGnTws2LKpbTMbHcgXJQLZs28l3mSeY9xw2e/TKZO/w8EB
+ x6/9PVGKMrH2zviICJARd11mJNiObO7oZ5zWvqE9k4UXKalrAseNkdCjntAvNtPnlmyW
+ 4j5yTxlJ7e2t9bobh92O05OlWeEkQQ09FnjKnqiL9UG8+6lvMAR7OYOwso3kyG2hvD03
+ Uos/9/x/ujftsCU3FkKLvzbyw3kTHa7ndyyiZk7QAgaUrmXZ6nsG9N1kSmm6wcKU2ejU
+ x4tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744802732; x=1745407532;
- h=in-reply-to:references:subject:cc:to:from:message-id:date
- :content-transfer-encoding:mime-version:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=M1SJQCGEYPEhCrI3qgX6t+obEkrQ6EqASbeC+/fQb1k=;
- b=JHLNwkD9ATrZfAENLl71sYZKodlPi7wTH5Lts/m4HJw+FraYXafjSxrWAX/Q9wFLyz
- B41m1eFAJCalx2viO+F3iAjHBMrFWqm5BYcMttGYgiPuImfd5yiG6oAheCOGgA517A/J
- 0u2/SObK13fGYnkH1pGHFe4ZZxPLREuwCfq402wIetSOyMP9TfSaVQnxaOg9TLEHkl5Z
- VND0om76uhHJfgF0LOqjClfbX4JG6MZNbQg3JAbjmc48kTW5LxI/9SVnmFhwzKYA+SJ6
- NQaHxZ0agheSyTp8wWkRKm+5+hLDF0dptcjGOaWd75Mirp55HtgpuZUXlH3cDZy3zJVc
- XTag==
+ d=1e100.net; s=20230601; t=1744803843; x=1745408643;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=AZEe1RfOvu1q7GUgcepVbmiSBnsNo8L/yZQuZJXUvpo=;
+ b=wP4m7ejgfSjLrXZjUZFZqfUwk6w7FWSYPKSagFrpbcKX77qPCPQPlVtUyOjRL4mWgn
+ OMc+5Ewv60qZwofzdvsYOnyaAWOTfqkfFkPV8SeBTu9KGhsir5tAZ5wnzJ4yQuQKF46U
+ RDcIyMg4/r6c3sCkFie1qqW5jKLmzMps1q2ayI/NTQEl3/mOW/DQ5pESd/NnHE4BGUZ9
+ m8IueJoV/ilVomVAjzHBT5A02VT/q9Vz/YsqqGApbKouU+MiVF/O/2wp2BGfK9yFBJq5
+ M6A0iBXepJtPRjeiOd0Cm7NjNB0OcXoPnJedzZ94bHBpzWRt0O3VZVVSCUXLVSgjuyT6
+ WSvA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXn9/5L3+Iv4SyWaikyCTie/wo/ES/MsQeGkrD/zdqlgbuc73JHWFGyvbCYVbsCU/DxU4pl0I/N@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyMiAWEFFmFUS7bkOWTO97Gm0uGBJQ4iQL9uEHO6ngIKl5eWsRJ
- MuMMwKyQ83mn2HuXCYh3dAEl2JIrCvX7Ad/7RQI6It+a+dbz4/2gqHenjCIMJTY=
-X-Gm-Gg: ASbGncspcqL4WAOiApA7AVbbDwgsSOYC4lMY9TVdG030oFC7vliHfOM3WM6t4bhBmml
- vL+rB2iEbnKDpnUuOODyauei3dqvC9zYLFDkK1HFRRh+Bt/EatPEpsHsq+sBkll8tazcVLW+tSV
- MPVnsMQMd5Vb41sT44LF+AjmVtMGfvDtO7cxFsuT2N32nvgnVYmjLA1CSiDs/ZopuNk/EDcVwId
- mNNw0UmjekbgNxBbbFzPi0RDYs2Sds7vP+ezE/QqijgaYxc9E1Ty4V29SOcxGzD4Bv0YktBWyPl
- rxL3LjgtW7k6y3oWmMjJOAwGKNlRgV1VLOvzDOEB
-X-Google-Smtp-Source: AGHT+IE2uGk7viULXRHwcMC6GtLWc6X+31aPOyWo4guoKeQ4IlVtxGCdVZQNStIgzEReOhLBuSGQSQ==
-X-Received: by 2002:a05:600c:3d0c:b0:43d:b85:1831 with SMTP id
- 5b1f17b1804b1-4405d5bd218mr15007975e9.0.1744802731815; 
- Wed, 16 Apr 2025 04:25:31 -0700 (PDT)
-Received: from localhost ([2.216.7.124]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4405b5adb6fsm18524045e9.40.2025.04.16.04.25.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Apr 2025 04:25:31 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 16 Apr 2025 12:25:30 +0100
-Message-Id: <D980Y4WDV662.L4S7QAU72GN2@linaro.org>
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Fugang Duan" <fugang.duan@cixtech.com>, "alexander.deucher@amd.com"
- <alexander.deucher@amd.com>, "frank.min@amd.com" <frank.min@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>,
- "david.belanger@amd.com" <david.belanger@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>, "Peter Chen"
- <peter.chen@cixtech.com>, "cix-kernel-upstream"
- <cix-kernel-upstream@cixtech.com>, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>
-Subject: =?utf-8?q?Re:_=E5=9B=9E=E5=A4=8D:_[REGRESSION]_amdgpu:_async_system_error?=
- =?utf-8?q?_exception_from_hdp=5Fv5=5F0=5Fflush=5Fhdp()?=
-X-Mailer: aerc 0.20.0
-References: <D97FB92117J2.PXTNFKCIRWAS@linaro.org>
- <SI2PR06MB5041FB15F8DBB44916FB6430F1BD2@SI2PR06MB5041.apcprd06.prod.outlook.com>
-In-Reply-To: <SI2PR06MB5041FB15F8DBB44916FB6430F1BD2@SI2PR06MB5041.apcprd06.prod.outlook.com>
+ AJvYcCUIu8+kOrjKJnbdN4djHGvOBO+4GynyzTdZyhIUyjr5y/UA9lD5fn/JAho71eUpNFDRLs31ZFE4xFJm@lists.freedesktop.org,
+ AJvYcCVTRHo66GpSo2cPQ8tdkotDQXvs5ArvrgcDj7Kuv9bMBgrtCRC7e8JSE4JNOvD9Khwd7eQMdRbe@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwX+5s/7nq293XPPtNGhugJMnrGj4/6AR52xI9h0Gub81vdZ1HP
+ nuqsZw5ksXeaNXX/LCuRczTcVaPsWMYfVLVW1F2QIp2yaGoJr9rrGzCV5lyH+ljEmMEcH7hqTRo
+ kZHyTc89EVGdEkhQ/Tqydjqyg7g==
+X-Gm-Gg: ASbGncsPpBGy7tDcXb7hVAmwVk8M3jrDBB+DkhwhRCA67Qp51qxsisx1GDFXSr2KGct
+ 5NgvzlFtLo6jnqJTfWIMyj9CQre4n47j9y0y+t5ic31nl16kA0D19gbS0I5GudrNIWJdE6A9kCO
+ k9TeLMfuIdV+h4lTcGWaYXC5DXuEG7/Ep7vj/7g2hxQQ4zrdXmsthEE9M=
+X-Google-Smtp-Source: AGHT+IHRzDwjfA3VhiXoJ9w7CvBGnZUfl1D3wlF7cVjsZnBUO1T3cpj1g1gCRyxquxD7cm2X4+bYulvm0qakj3Q2+Fc=
+X-Received: by 2002:a17:90b:1f92:b0:2ee:ad18:b309 with SMTP id
+ 98e67ed59e1d1-30863d1de84mr2289142a91.3.1744803842763; Wed, 16 Apr 2025
+ 04:44:02 -0700 (PDT)
+MIME-Version: 1.0
+References: <20250416072825.3790-1-ujwal.kundur@gmail.com>
+ <241a9bbb-6d59-4c24-8e18-a0acebc6f536@amd.com>
+In-Reply-To: <241a9bbb-6d59-4c24-8e18-a0acebc6f536@amd.com>
+From: Ujwal Kundur <ujwal.kundur@gmail.com>
+Date: Wed, 16 Apr 2025 17:13:50 +0530
+X-Gm-Features: ATxdqUHlTjwJQjfOZfGM2sNeVWakgF2t5Ff-hXQ0-Ap1ykAmMwP7TjWL6pmkSIw
+Message-ID: <CALkFLLLKT=4LD_YFJdq8QdzybknRQW+W3P-3GnJzT1eoYuGg8A@mail.gmail.com>
+Subject: Re: [PATCH RFC] drm/amdgpu: Block userspace mapping of IO
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: alexander.deucher@amd.com, airlied@gmail.com, simona@ffwll.ch, 
+ lijo.lazar@amd.com, sunil.khatri@amd.com, Hawking.Zhang@amd.com, 
+ Jun.Ma2@amd.com, Yunxiang.Li@amd.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Wed, 16 Apr 2025 13:41:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,34 +85,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed Apr 16, 2025 at 4:12 AM BST, Fugang Duan wrote:
-> =E5=8F=91=E4=BB=B6=E4=BA=BA: Alexey Klimov <alexey.klimov@linaro.org> =E5=
-=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2025=E5=B9=B44=E6=9C=8816=E6=97=A5 2:28
->>#regzbot introduced: v6.12..v6.13
+Thanks for your response.
 
-[..]
+> Hui what? Why do you think that grabbing a reference to an interrupt would block userspace mapping of IO registers?
 
->>The only change related to hdp_v5_0_flush_hdp() was
->>cf424020e040 drm/amdgpu/hdp5.0: do a posting read when flushing HDP
->>
->>Reverting that commit ^^ did help and resolved that problem. Before sendi=
-ng
->>revert as-is I was interested to know if there supposed to be a proper fi=
-x for
->>this or maybe someone is interested to debug this or have any suggestions=
-.
->>
-> Can you revert the change and try again https://gitlab.com/linux-kernel/l=
-inux/-/commit/cf424020e040be35df05b682b546b255e74a420f
+It looks like I am missing a lot of pieces to do this, I'll try again
+once I have a better understanding.
 
-Please read my email in the first place.
-Let me quote just in case:
+Sorry about that and thanks again for your time.
 
->The only change related to hdp_v5_0_flush_hdp() was
->cf424020e040 drm/amdgpu/hdp5.0: do a posting read when flushing HDP
-
->Reverting that commit ^^ did help and resolved that problem.
-
-Thanks,
-Alexey
-
+--- Ujwal.
