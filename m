@@ -2,82 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F1E3A8B1FD
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 09:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91FADA8B1FC
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 09:25:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A781510E85B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5486710E859;
 	Wed, 16 Apr 2025 07:25:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nczuRMFj";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=embeddedor.com header.i=@embeddedor.com header.b="ZOv3TV2n";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
- [209.85.219.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D86F310E162;
- Tue, 15 Apr 2025 22:49:29 +0000 (UTC)
-Received: by mail-yb1-f180.google.com with SMTP id
- 3f1490d57ef6-e3978c00a5aso4882283276.1; 
- Tue, 15 Apr 2025 15:49:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1744757368; x=1745362168; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=TBy/k/5Nk+oz59QuiwTpYbqHNj2ov+/FVca+4VwHPcw=;
- b=nczuRMFjqzglA4pEN9AlOibu/eUq5Y+1iJvK1roWAFAYAex7T11wTb0rOyiR3TYw7i
- uGmzt1GjJBDhh3VlINzIylIc7RU33hwC9JmFqK5oYYWJZzvcxAwcTNsIGpW/0S+LouB/
- +NmefXrnvxxxB0Jtawq5c++k7h4I3RUNtNXrAE5qHPk6v0ueyudx8H6h6cWgcRj3eo4C
- THbka2N7btbJdisAAcjFEwu1l8BjSanCiupXSKGYIT2drWJ2Q/nGcqQcBVNaAOK/VTt6
- GZqgSYSenpwbdAqu8BmbhfX/49mdFfScIGecR2BaME+Lt77x8lu4xSb1+5/0/YFio56P
- GHjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744757368; x=1745362168;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TBy/k/5Nk+oz59QuiwTpYbqHNj2ov+/FVca+4VwHPcw=;
- b=hXvHNdp044vv0JMQtHJk0YbTQFr8jmmj55iGwGX2mSsX6B37VmN1eWi7JHZWQ4Ol3J
- 4cfeWvqWrXGpxj+kj8jbYmUo7HjUDfafNlD7N52e92KmWoM8F2I7F3LzD1O55w1thd6z
- EHc/LmjJhbDY3Y/2d4pZ9UdgVRceua5ckcHLxsIhAB3PJH2H8VIOuEeMkg9i4zZjOEq2
- 2oXzHUPiaUMc5gtNxOhSQArtaVmS/1PqO2z2FWL9tsCPR+h6n98NDaWDz80S81bqZNRQ
- EUwywgZq2VTPX8tSMHfN9ktJ6/se/m903qt0uuCCNokMhHEyrRq+tBZoB2ta8S53oyYx
- GgNQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUazlzvwYHy+qjhJsXmXY2WtQJ/pkQKXiz7/lliPo86jG4ALCukwwj3pjvdgaDHtLP/btxI8/RttjvsknHd/w==@lists.freedesktop.org,
- AJvYcCWQc+mY5egFjE/uuM9iPAtgUEYiVa13L54FJO1cZa8HqxcRI9Le77koXpVRu6+Ldqy03BiNvuZEq24s@lists.freedesktop.org,
- AJvYcCWwkJc3/e4EEQuqihF7MkeK5YlWb5wJ1iQlihEVz3C/NphxJ5WtKJkb4pNW0Xzy0P1wQZLDm+La@lists.freedesktop.org,
- AJvYcCXK5Pg9jXFBHHt4Bs3RJGjmm9hDtjHCNhC82e7vFPOvFNB1fvvvfKF4GVOa3gxk5aE28LHmF1o6GLtW@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzk9qrg/dSqTYrqXkcYgWKPVfo3BxeFXQ2nIPpvuoDW9zoP5ZYK
- Ie1gCIqRvM2y1ZiSJGKDvjm9TE+pAsfzmpbwZcJVPpR7poOaWfZW1th8ct3sxqGwkSCP7CmTQ4T
- 6GjwtD10qm3PBjMv+mC4hLsCAPPs=
-X-Gm-Gg: ASbGncvmvZzKYuef/lZAa0a3C/i1i5O48Y3+fxzs+5JhkqwPBtptmJok2jnLVlC8OLC
- AhlIjxNWBt+hjD2+b2fgWj9S+lwRFHvsBSAoxmWUqytNygsrgXKLvKvgqwJP9UYU7xjb5BY0G2f
- f3ybmA66BO9JSZCaRudA4o
-X-Google-Smtp-Source: AGHT+IHKwNRtebTsCB1ynvwlleGqOBo6vd1fadMzVDtULsLDAE2yNxumOT7/yZv12UgE0QLbAucJrcqv9ZjoW7UMOwc=
-X-Received: by 2002:a05:690c:3707:b0:702:195b:7ebe with SMTP id
- 00721157ae682-706acee3f2bmr16326777b3.22.1744757368597; Tue, 15 Apr 2025
- 15:49:28 -0700 (PDT)
+X-Greylist: delayed 428 seconds by postgrey-1.36 at gabe;
+ Wed, 16 Apr 2025 00:37:46 UTC
+Received: from omta040.useast.a.cloudfilter.net
+ (omta040.useast.a.cloudfilter.net [44.202.169.39])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2D0E10E396
+ for <amd-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 00:37:46 +0000 (UTC)
+Received: from eig-obgw-6001a.ext.cloudfilter.net ([10.0.30.140])
+ by cmsmtp with ESMTPS
+ id 4jd8uwwS1VkcR4qffu2WdO; Wed, 16 Apr 2025 00:30:31 +0000
+Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTPS
+ id 4qfeuh4OpgFaX4qfeuXGyi; Wed, 16 Apr 2025 00:30:30 +0000
+X-Authority-Analysis: v=2.4 cv=DbzcqetW c=1 sm=1 tr=0 ts=67fefa26
+ a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=B3fuDwYyW55wTQKIj88FGw==:17
+ a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=7T7KSl7uo7wA:10 a=VwQbUJbxAAAA:8
+ a=UN1T-_8jpz6L_PNgig8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=Xt_RvD8W3m28Mn_h3AK8:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=oKBjP8juYoC9d3TnLW3yOOR8GjWDwl8kbWpULuM2oic=; b=ZOv3TV2nYLymDuavxSj0Plctwq
+ cl+gt/u9mnaX9R+CgiRs/33/m3ra+AjnxHukcNnk2YrHM6/hXfTsu6V+3OG/OaTvOQ03fP0CGy3AD
+ OvXhqNwFtnInRtk78ljEiM0tWzvUysYI+0M7xSuxJhrH7hFd2JKAVi5EwoAEX5zbSinEulAPeZqWh
+ sDVzgh05jTDi9sfyqfHOUvOAn314Xbx0eH0G9OSeEOPrsaxrDDRnuq9pLYw/9NxiMiPpQtIUJeMV5
+ ovMswtsbAyrAvsX3HNk/ihoZfZj+zI6f96ss1JmZ9EPsN+cu5B+dagInndCHoAVVpnMslRlxOl0TB
+ ZIFK4Xmg==;
+Received: from [201.172.174.147] (port=43583 helo=[192.168.15.14])
+ by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.98.1)
+ (envelope-from <gustavo@embeddedor.com>) id 1u4qfc-00000001dP6-3MLK;
+ Tue, 15 Apr 2025 19:30:29 -0500
+Message-ID: <217b00f5-d03d-4624-9ba9-d838199ef7b9@embeddedor.com>
+Date: Tue, 15 Apr 2025 18:30:20 -0600
 MIME-Version: 1.0
-References: <20250402174156.1246171-1-jim.cromie@gmail.com>
- <20250402174156.1246171-27-jim.cromie@gmail.com>
- <cb9fc7d1-9533-495b-83e1-6950bdd45e85@bootlin.com>
-In-Reply-To: <cb9fc7d1-9533-495b-83e1-6950bdd45e85@bootlin.com>
-From: jim.cromie@gmail.com
-Date: Tue, 15 Apr 2025 16:49:02 -0600
-X-Gm-Features: ATxdqUEynsfg7YuXOle9oKp2N721l58a4kxxw0vTAgdjbpOnM2FgU5Sva6pebu0
-Message-ID: <CAJfuBxxGRujd01b=Ou3MDL8XxX0kOHS9LHWQZMC8xGy+uESqOg@mail.gmail.com>
-Subject: Re: [PATCH v3 26/54] dyndbg: change __dynamic_func_call_cls* macros
- into expressions
-To: Louis Chauvet <louis.chauvet@bootlin.com>
-Cc: jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch, 
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
- ville.syrjala@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH][next] drm/amd/pm: Avoid multiple
+ -Wflex-array-member-not-at-end warnings
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Kenneth Feng <kenneth.feng@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ Kees Cook <keescook@chromium.org>
+References: <Z678TNhCbTk363Tw@kspp>
+ <864c7dd5-0deb-4adb-a1cf-c8a809514d7e@embeddedor.com>
+Content-Language: en-US
+In-Reply-To: <864c7dd5-0deb-4adb-a1cf-c8a809514d7e@embeddedor.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 201.172.174.147
+X-Source-L: No
+X-Exim-ID: 1u4qfc-00000001dP6-3MLK
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.15.14]) [201.172.174.147]:43583
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 24
+X-Org: HG=hgshared;ORG=hostgator;
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfDaQS6cH/Kd4h5LV8gciVOAgbXy7jRe7QTXs5looBeMOIl8RUSznLDzH6DBwoCiuO4SW3ixSPJ3W0WhosakGTcJ/B9wt9XFv2+9IDhvdSJaZnz3eS2pA
+ 7UKjIFPMhhlSPaghcP5LZGbo85RwDgDaUrHk7GvXt7ufH7CVTYj+KKR1A9GrAypyhMcCtHNyefba5m/QpZ+9dlpJJI319fnvYT1hAEECS/ch7iGFRoTxcYPR
 X-Mailman-Approved-At: Wed, 16 Apr 2025 07:25:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,90 +102,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 15, 2025 at 4:06=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
-n.com> wrote:
->
->
->
-> Le 02/04/2025 =C3=A0 19:41, Jim Cromie a =C3=A9crit :
-> > The Xe driver's XE_IOCTL_DBG macro calls drm_dbg() from inside an if
-> > (expression).  This breaks when CONFIG_DRM_USE_DYNAMIC_DEBUG=3Dy becaus=
-e
-> > the invoked macro has a do-while-0 wrapper.
-> >
-> >     if (cond && (drm_dbg("expr-form"),1)) {
-> >        ... do some more stuff
-> >     }
-> >
-> > Fix for this usage by changing __dynamic_func_call_cls{,_no_desc}
-> > macros into expressions, by replacing the do-while-0s with a ({ })
-> > wrapper.  In the common usage, the trailing ';' converts the
-> > expression into a statement.
-> >
-> >     drm_dbg("statement form");
-> >
-> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> > ---
-> > ---
-> >   include/linux/dynamic_debug.h | 12 ++++++------
-> >   1 file changed, 6 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debu=
-g.h
-> > index ce221a702f84..2d87cca27544 100644
-> > --- a/include/linux/dynamic_debug.h
-> > +++ b/include/linux/dynamic_debug.h
-> > @@ -337,20 +337,20 @@ void __dynamic_ibdev_dbg(struct _ddebug *descript=
-or,
-> >    * (|_cls): adds in _DPRINT_CLASS_DFLT as needed
-> >    * (|_no_desc):     former gets callsite descriptor as 1st arg (for p=
-rdbgs)
-> >    */
-> > -#define __dynamic_func_call_cls(id, cls, fmt, func, ...) do {        \
-> > -     DEFINE_DYNAMIC_DEBUG_METADATA_CLS((id), cls, fmt);      \
-> > +#define __dynamic_func_call_cls(id, cls, fmt, func, ...) ({  \
-> > +     DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);        \
->
-> You remove the protection around id here.
->
-> >       if (DYNAMIC_DEBUG_BRANCH(id))                           \
-> > -             func(&id, ##__VA_ARGS__);                       \
-> > -} while (0)
-> > +             func(&(id), ##__VA_ARGS__);                     \
->
-> But you add the protection here.
->
-> I think in macro it is better to be defensive, so I expect to have ()
-> everywhere (except places where it breaks the compilation).
->
+Hi all,
 
-yeah, Im a bit inconsistent.
-defensive parens are almost never a compilation err.
-I'll go thru the macros again
+Friendly ping (second one): who can take this patch, please? 🙂
 
+Thanks!
+-Gustavo
 
-> > +})
-> >   #define __dynamic_func_call(id, fmt, func, ...)                      =
-       \
-> >       __dynamic_func_call_cls(id, _DPRINTK_CLASS_DFLT, fmt,           \
-> >                               func, ##__VA_ARGS__)
-> >
-> > -#define __dynamic_func_call_cls_no_desc(id, cls, fmt, func, ...) do { =
-       \
-> > +#define __dynamic_func_call_cls_no_desc(id, cls, fmt, func, ...) ({  \
-> >       DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);                \
-> >       if (DYNAMIC_DEBUG_BRANCH(id))                                   \
-> >               func(__VA_ARGS__);                                      \
-> > -} while (0)
-> > +})
-> >   #define __dynamic_func_call_no_desc(id, fmt, func, ...)              =
-       \
-> >       __dynamic_func_call_cls_no_desc(id, _DPRINTK_CLASS_DFLT,        \
-> >                                       fmt, func, ##__VA_ARGS__)
->
-> --
-> Louis Chauvet, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
->
+On 11/03/25 02:10, Gustavo A. R. Silva wrote:
+> Hi all,
+> 
+> Friendly ping: who can take this, please? :)
+> 
+> Thanks!
+> -- 
+> Gustavo
+> 
+> On 14/02/25 18:48, Gustavo A. R. Silva wrote:
+>> -Wflex-array-member-not-at-end was introduced in GCC-14, and we are
+>> getting ready to enable it, globally.
+>>
+>> So, in order to avoid ending up with a flexible-array member in the
+>> middle of other structs, we use the `struct_group_tagged()` helper
+>> to create a new tagged `struct NISLANDS_SMC_SWSTATE_HDR` (and `struct
+>> SISLANDS_SMC_SWSTATE_HDR`). This structures group together all the
+>> members of the flexible `struct NISLANDS_SMC_SWSTATE` (and `struct
+>> SISLANDS_SMC_SWSTATE`) except the flexible array.
+>>
+>> As a result, the array is effectively separated from the rest of the
+>> members without modifying the memory layout of the flexible structure.
+>> We then change the type of the middle struct members currently causing
+>> trouble from `struct NISLANDS_SMC_SWSTATE` to `struct
+>> NISLANDS_SMC_SWSTATE_HDR` (and from `struct SISLANDS_SMC_SWSTATE` to
+>> `struct SISLANDS_SMC_SWSTATE_HDR`).
+>>
+>> We also want to ensure that when new members need to be added to the
+>> flexible structure, they are always included within the newly created
+>> tagged struct. For this, we use `static_assert()`. This ensures that
+>> the memory layout for both the flexible structure and the new tagged
+>> struct is the same after any changes.
+>>
+>> This approach avoids having to implement `struct NISLANDS_SMC_SWSTATE_HDR`
+>> (and `struct SISLANDS_SMC_SWSTATE_HDR`) as a completely separate structure,
+>> thus preventing having to maintain two independent but basically identical
+>> structures, closing the door to potential bugs in the future.
+>>
+>> We also use `container_of()` whenever we need to retrieve a pointer to
+>> the flexible structure, through which we can access the flexible-array
+>> member, if necessary.
+>>
+>> So, with this changes, fix the following warnings:
+>>
+>> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/sislands_smc.h:218:49: warning: structure containing a flexible array member is not at the end of another 
+>> structure [-Wflex-array-member-not-at-end]
+>> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.h:819:41: warning: structure containing a flexible array member is not at the end of another structure [- 
+>> Wflex-array-member-not-at-end]
+>> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.h:818:41: warning: structure containing a flexible array member is not at the end of another structure [- 
+>> Wflex-array-member-not-at-end]
+>> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.h:817:41: warning: structure containing a flexible array member is not at the end of another structure [- 
+>> Wflex-array-member-not-at-end]
+>> drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.h:816:41: warning: structure containing a flexible array member is not at the end of another structure [- 
+>> Wflex-array-member-not-at-end]
+>>
+>> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+>> ---
+>>   drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c    |  7 ++++--
+>>   drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h    | 23 +++++++++++--------
+>>   .../gpu/drm/amd/pm/legacy-dpm/sislands_smc.h  | 15 ++++++++----
+>>   3 files changed, 29 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+>> index a87dcf0974bc..2c9d473d122f 100644
+>> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+>> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+>> @@ -5234,7 +5234,8 @@ static int si_init_smc_table(struct amdgpu_device *adev)
+>>       table->driverState.flags = table->initialState.flags;
+>>       table->driverState.levelCount = table->initialState.levelCount;
+>> -    table->driverState.levels[0] = table->initialState.level;
+>> +    container_of(&table->driverState, SISLANDS_SMC_SWSTATE, __hdr)->levels[0] =
+>> +                                table->initialState.level;
+>>       ret = si_do_program_memory_timing_parameters(adev, amdgpu_boot_state,
+>>                                SISLANDS_INITIAL_STATE_ARB_INDEX);
+>> @@ -5755,7 +5756,9 @@ static int si_upload_sw_state(struct amdgpu_device *adev,
+>>       int ret;
+>>       u32 address = si_pi->state_table_start +
+>>           offsetof(SISLANDS_SMC_STATETABLE, driverState);
+>> -    SISLANDS_SMC_SWSTATE *smc_state = &si_pi->smc_statetable.driverState;
+>> +    SISLANDS_SMC_SWSTATE *smc_state =
+>> +        container_of(&si_pi->smc_statetable.driverState,
+>> +                 SISLANDS_SMC_SWSTATE, __hdr);
+>>       size_t state_size = struct_size(smc_state, levels,
+>>                       new_state->performance_level_count);
+>>       memset(smc_state, 0, state_size);
+>> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
+>> index 11cb7874a6bb..62530f89ebdf 100644
+>> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
+>> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
+>> @@ -784,12 +784,17 @@ typedef struct NISLANDS_SMC_HW_PERFORMANCE_LEVEL NISLANDS_SMC_HW_PERFORMANCE_LEV
+>>   struct NISLANDS_SMC_SWSTATE
+>>   {
+>> -    uint8_t                             flags;
+>> -    uint8_t                             levelCount;
+>> -    uint8_t                             padding2;
+>> -    uint8_t                             padding3;
+>> -    NISLANDS_SMC_HW_PERFORMANCE_LEVEL   levels[];
+>> +    /* New members MUST be added within the struct_group() macro below. */
+>> +    struct_group_tagged(NISLANDS_SMC_SWSTATE_HDR, __hdr,
+>> +        uint8_t                             flags;
+>> +        uint8_t                             levelCount;
+>> +        uint8_t                             padding2;
+>> +        uint8_t                             padding3;
+>> +    );
+>> +    NISLANDS_SMC_HW_PERFORMANCE_LEVEL   levels[];
+>>   };
+>> +static_assert(offsetof(struct NISLANDS_SMC_SWSTATE, levels) == sizeof(struct NISLANDS_SMC_SWSTATE_HDR),
+>> +          "struct member likely outside of struct_group_tagged()");
+>>   typedef struct NISLANDS_SMC_SWSTATE NISLANDS_SMC_SWSTATE;
+>> @@ -813,10 +818,10 @@ struct NISLANDS_SMC_STATETABLE
+>>       uint32_t                            lowSMIO[NISLANDS_MAX_NO_VREG_STEPS];
+>>       NISLANDS_SMC_VOLTAGEMASKTABLE       voltageMaskTable;
+>>       PP_NIslands_DPM2Parameters          dpm2Params;
+>> -    NISLANDS_SMC_SWSTATE                initialState;
+>> -    NISLANDS_SMC_SWSTATE                ACPIState;
+>> -    NISLANDS_SMC_SWSTATE                ULVState;
+>> -    NISLANDS_SMC_SWSTATE                driverState;
+>> +    struct NISLANDS_SMC_SWSTATE_HDR        initialState;
+>> +    struct NISLANDS_SMC_SWSTATE_HDR        ACPIState;
+>> +    struct NISLANDS_SMC_SWSTATE_HDR        ULVState;
+>> +    struct NISLANDS_SMC_SWSTATE_HDR        driverState;
+>>       NISLANDS_SMC_HW_PERFORMANCE_LEVEL   dpmLevels[NISLANDS_MAX_SMC_PERFORMANCE_LEVELS_PER_SWSTATE - 1];
+>>   };
+>> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/sislands_smc.h b/drivers/gpu/drm/amd/pm/legacy-dpm/sislands_smc.h
+>> index 90ec411c5029..1711e3e35e80 100644
+>> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/sislands_smc.h
+>> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/sislands_smc.h
+>> @@ -172,12 +172,17 @@ struct SISLANDS_SMC_HW_PERFORMANCE_LEVEL {
+>>   typedef struct SISLANDS_SMC_HW_PERFORMANCE_LEVEL SISLANDS_SMC_HW_PERFORMANCE_LEVEL;
+>>   struct SISLANDS_SMC_SWSTATE {
+>> -    uint8_t                             flags;
+>> -    uint8_t                             levelCount;
+>> -    uint8_t                             padding2;
+>> -    uint8_t                             padding3;
+>> +    /* New members MUST be added within the struct_group() macro below. */
+>> +    struct_group_tagged(SISLANDS_SMC_SWSTATE_HDR, __hdr,
+>> +        uint8_t                             flags;
+>> +        uint8_t                             levelCount;
+>> +        uint8_t                             padding2;
+>> +        uint8_t                             padding3;
+>> +    );
+>>       SISLANDS_SMC_HW_PERFORMANCE_LEVEL   levels[];
+>>   };
+>> +static_assert(offsetof(struct SISLANDS_SMC_SWSTATE, levels) == sizeof(struct SISLANDS_SMC_SWSTATE_HDR),
+>> +          "struct member likely outside of struct_group_tagged()");
+>>   typedef struct SISLANDS_SMC_SWSTATE SISLANDS_SMC_SWSTATE;
+>> @@ -215,7 +220,7 @@ struct SISLANDS_SMC_STATETABLE {
+>>       struct SISLANDS_SMC_SWSTATE_SINGLE    initialState;
+>>       struct SISLANDS_SMC_SWSTATE_SINGLE    ACPIState;
+>>       struct SISLANDS_SMC_SWSTATE_SINGLE    ULVState;
+>> -    SISLANDS_SMC_SWSTATE            driverState;
+>> +    struct SISLANDS_SMC_SWSTATE_HDR        driverState;
+>>       SISLANDS_SMC_HW_PERFORMANCE_LEVEL    dpmLevels[SISLANDS_MAX_SMC_PERFORMANCE_LEVELS_PER_SWSTATE];
+>>   };
+> 
+
