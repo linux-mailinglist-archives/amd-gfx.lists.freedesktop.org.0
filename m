@@ -2,79 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812B7A90505
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 15:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C07CA9052B
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Apr 2025 16:00:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0965810E92A;
-	Wed, 16 Apr 2025 13:54:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YrXlFLEM";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9486010E92D;
+	Wed, 16 Apr 2025 13:59:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8B9210E92A
- for <amd-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 13:54:42 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-43cf06eabdaso66217915e9.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 06:54:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1744811681; x=1745416481; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=XCBV4Cl63wtmiTOvtMTg6CkY8JOlsuFIpuqFt3e3PbI=;
- b=YrXlFLEMYxZbj4RLJJxwdw7mha3uXpiYmb93dupV0IayV6M1wRu447P/fDIm5cGMpX
- vj5f7iH6aTJRqN/UcHxzp/sp8uuyLL3WUPlVaZrkvDWUcHXykY/OXJXQWDZmDuHame1U
- AXNBo0c4tl6gkgsDjiKZTes6mU2BJ7cysKAyyyy8u/8VWzq/3SKUTZEHicJamIaeWXKh
- QYWCRMKR4BY2lOK7HUasvZ3+9o9qeBvrABFe597SHMlpYPkGbBzhmkrMZBlryjBBRK9s
- rVvbqCkb1wvAjZ8+Cg5UY0ImK8IFioFXWCGgg5JCrH9oNnsgdYx/kDpARVkqmj9CMXTJ
- f0/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744811681; x=1745416481;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=XCBV4Cl63wtmiTOvtMTg6CkY8JOlsuFIpuqFt3e3PbI=;
- b=ZP+phWAVHMS8lXKYZ2GpfnhT4ZtjxryRuYtY6AgtmRMd6jBkKXx/xMDKvYir967bcv
- ndv3l4jFELEHPg4Hjbsj+STC3ga7ddvErBjiEcJIBtCS+EKAdfp/CkRe51SxSRNoEeH0
- 3JP7ToGIceHOq2f7mBEdINb/buoImxRd+3sUa0TC5lQkF8jiNW+iW6iw3EyDdCtoTXGu
- JZ9OtczBhK0MNhiriwx0qbtQ+xpBDZ5LEo5VkTZkm9D6Km5r5n3GbGoq6FykEeobKIVq
- 86F2oMaA4sXgnsauotTCMFQONPso6Tg9tv+6YlKByX+vGRkT9wgRz+bQpdf3ezkKewg8
- qNog==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVEvqf7FfiL3c+x35iunyvo83pSneVQio9uSPdvTtpaAK00/GnGYGTzDGtn8enxe7L3m4syPPec@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw495Sl/CtTB/ZfStbAV7pjPAsM2ujtO+22yB+iLp8gpgzmnv5c
- CBrqCrbRO0Dw76qOTEiK8U8t+Crqgwvxz/ADb36kZ+zN1IrzqF1R
-X-Gm-Gg: ASbGncsiTSXJHPd24YaTSOnMW7QjEvQazC5ApwhZxMTFWL3cSJhBF+EwQs8g30E6ms6
- ymx325bul9etvqTMUVc/OOMDUcMNF0oz6WdfOicDbvHipnox6FP1LGpna2s33SgMxwjCNiBqDgS
- wGDJY0irC1OHCP21PjHia7h9yZHwpJcT79wKYUNJ8Ef1wx23tbsX51GU/aK6NBCWMiPstDNECas
- wPjfJgri/P0m7XXYJwvUx1nLRmOs4wxJ3b0/Xax/uxKjwoTiBt/8tx++a3QjueXHylhn9M4Jdri
- a91sga/ZcVTnMt5+VSmbZa+czNC1qyHkUVK/F5aSEgkn2pCqqpWpjVdRDt/Tq/X5pxGdxA==
-X-Google-Smtp-Source: AGHT+IGY8HqgcGwnZq6oCDBehCz2hf7oruoDWf78yl3pkimC1s5jE/lf2ZX2ae2WN9xXLFy6UCKI+w==
-X-Received: by 2002:a05:600c:82c3:b0:43d:683:8cb2 with SMTP id
- 5b1f17b1804b1-4405d61c972mr21925855e9.14.1744811680840; 
- Wed, 16 Apr 2025 06:54:40 -0700 (PDT)
-Received: from [10.254.108.83] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4405b4c8216sm22266145e9.7.2025.04.16.06.54.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Apr 2025 06:54:40 -0700 (PDT)
-Message-ID: <0ca1a883-4ddd-4bc5-8d58-9865a6d497b5@gmail.com>
-Date: Wed, 16 Apr 2025 15:54:39 +0200
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E77C410E932;
+ Wed, 16 Apr 2025 13:59:57 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 53GDxjDo1217602; Wed, 16 Apr 2025 19:29:45 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 53GDxjB91217601;
+ Wed, 16 Apr 2025 19:29:45 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v5 1/5] drm: add macro drm_file_err to print process info
+Date: Wed, 16 Apr 2025 19:29:40 +0530
+Message-Id: <20250416135944.1217580-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] drm/amdgpu: fix fence fallback timer expired error
-To: Samuel Zhang <guoqing.zhang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: victor.zhao@amd.com, haijun.chang@amd.com, emily.deng@amd.com
-References: <20250414104655.336497-1-guoqing.zhang@amd.com>
- <20250414104655.336497-7-guoqing.zhang@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20250414104655.336497-7-guoqing.zhang@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,92 +45,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 14.04.25 um 12:46 schrieb Samuel Zhang:
-> IH is not working after switching a new gpu index for the first time.
-> IH handler function need to be re-registered with kernel after switching
-> to new gpu index.
+Add a drm helper macro which append the process information for
+the drm_file over drm_err.
 
-Why?
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ include/drm/drm_file.h | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-Christian.
-
->
-> Signed-off-by: Samuel Zhang <guoqing.zhang@amd.com>
-> Change-Id: Idece1c8fce24032fd08f5a8b6ac23793c51e56dd
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c |  7 +++++--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h |  1 +
->  drivers/gpu/drm/amd/amdgpu/vega20_ih.c  | 18 ++++++++++++++++--
->  3 files changed, 22 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> index 19ce4da285e8..2292245a0c5d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> @@ -326,7 +326,7 @@ int amdgpu_irq_init(struct amdgpu_device *adev)
->  	return r;
->  }
->  
-> -void amdgpu_irq_fini_hw(struct amdgpu_device *adev)
-> +void amdgpu_irq_uninstall(struct amdgpu_device *adev)
->  {
->  	if (adev->irq.installed) {
->  		free_irq(adev->irq.irq, adev_to_drm(adev));
-> @@ -334,7 +334,10 @@ void amdgpu_irq_fini_hw(struct amdgpu_device *adev)
->  		if (adev->irq.msi_enabled)
->  			pci_free_irq_vectors(adev->pdev);
->  	}
-> -
-> +}
-> +void amdgpu_irq_fini_hw(struct amdgpu_device *adev)
-> +{
-> +	amdgpu_irq_uninstall(adev);
->  	amdgpu_ih_ring_fini(adev, &adev->irq.ih_soft);
->  	amdgpu_ih_ring_fini(adev, &adev->irq.ih);
->  	amdgpu_ih_ring_fini(adev, &adev->irq.ih1);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h
-> index 04c0b4fa17a4..c6e6681b4f71 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h
-> @@ -123,6 +123,7 @@ extern const int node_id_to_phys_map[NODEID_MAX];
->  void amdgpu_irq_disable_all(struct amdgpu_device *adev);
->  
->  int amdgpu_irq_init(struct amdgpu_device *adev);
-> +void amdgpu_irq_uninstall(struct amdgpu_device *adev);
->  void amdgpu_irq_fini_sw(struct amdgpu_device *adev);
->  void amdgpu_irq_fini_hw(struct amdgpu_device *adev);
->  int amdgpu_irq_add_id(struct amdgpu_device *adev,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-> index faa0dd75dd6d..ef996505e4dc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-> @@ -643,12 +643,26 @@ static int vega20_ih_hw_fini(struct amdgpu_ip_block *ip_block)
->  
->  static int vega20_ih_suspend(struct amdgpu_ip_block *ip_block)
->  {
-> -	return vega20_ih_hw_fini(ip_block);
-> +	struct amdgpu_device *adev = ip_block->adev;
-> +	int r = 0;
-> +
-> +	r = vega20_ih_hw_fini(ip_block);
-> +	amdgpu_irq_uninstall(adev);
-> +	return r;
->  }
->  
->  static int vega20_ih_resume(struct amdgpu_ip_block *ip_block)
->  {
-> -	return vega20_ih_hw_init(ip_block);
-> +	struct amdgpu_device *adev = ip_block->adev;
-> +	int r = 0;
-> +
-> +	r = amdgpu_irq_init(adev);
-> +	if (r) {
-> +		dev_err(adev->dev, "amdgpu_irq_init failed in %s, %d\n", __func__, r);
-> +		return r;
-> +	}
-> +	r = vega20_ih_hw_init(ip_block);
-> +	return r;
->  }
->  
->  static bool vega20_ih_is_idle(struct amdgpu_ip_block *ip_block)
+diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+index 94d365b22505..2450178a5ca3 100644
+--- a/include/drm/drm_file.h
++++ b/include/drm/drm_file.h
+@@ -37,6 +37,7 @@
+ #include <uapi/drm/drm.h>
+ 
+ #include <drm/drm_prime.h>
++#include <drm/drm_print.h>
+ 
+ struct dma_fence;
+ struct drm_file;
+@@ -446,6 +447,43 @@ static inline bool drm_is_accel_client(const struct drm_file *file_priv)
+ 	return file_priv->minor->type == DRM_MINOR_ACCEL;
+ }
+ 
++static __maybe_unused struct task_struct *drm_task_lock(struct drm_file *file_priv)
++{
++	struct task_struct *task;
++	struct pid *pid;
++
++	mutex_lock(&file_priv->client_name_lock);
++	rcu_read_lock();
++	pid = rcu_dereference(file_priv->pid);
++	task = pid_task(pid, PIDTYPE_TGID);
++	return task;
++}
++
++static __maybe_unused void drm_task_unlock(struct drm_file *file_priv)
++{
++	rcu_read_unlock();
++	mutex_unlock(&file_priv->client_name_lock);
++}
++/**
++ * drm_file_err - Fill info string with process name and pid
++ * @file_priv: context of interest for process name and pid
++ * @fmt: prinf() like format string
++ *
++ * This update the user provided buffer with process
++ * name and pid information for @file_priv
++ */
++#define drm_file_err(file_priv, fmt, ...)						\
++	do {										\
++		struct task_struct *task;						\
++		struct drm_device *dev = file_priv->minor->dev;				\
++											\
++		task = drm_task_lock(file_priv);					\
++		drm_err(dev, "comm: %s pid: %d client: %s " fmt,			\
++			task ? task->comm : "", task ? task->pid : 0,			\
++			file_priv->client_name ?: "Unset", ##__VA_ARGS__);		\
++		drm_task_unlock(file_priv);						\
++	} while (0)
++
+ void drm_file_update_pid(struct drm_file *);
+ 
+ struct drm_minor *drm_minor_acquire(struct xarray *minors_xa, unsigned int minor_id);
+-- 
+2.34.1
 
