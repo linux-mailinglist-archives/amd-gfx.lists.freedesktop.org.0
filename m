@@ -2,65 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71668A91704
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Apr 2025 10:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A13FA9171E
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Apr 2025 10:58:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3A7210E193;
-	Thu, 17 Apr 2025 08:55:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0FD010E16E;
+	Thu, 17 Apr 2025 08:58:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iByu2/Xf";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ASNiohLw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 706DE10E193;
- Thu, 17 Apr 2025 08:55:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744880138; x=1776416138;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=HY0IJdZ0xUrLxc/f5sk/9tuJaU9s69AQTdtLNO8zLPo=;
- b=iByu2/Xfp64H9NVKEI5EEwANB6wfIjto6Os0PTowU10Rax3dVSsDwVas
- 1+lJQg9InDuujtDFffuu3S4qsEfeKegps5tvUgylQjBbFEkuZWMhPKL7x
- 8USFoxaT9tGx/o8q1J25SXMlayfRQvaqHnwDMRwAAd1+XVCKuiyJO9Ma6
- iVHU4yGa4ffdu/M4JCc6wtSGYmtYqFFZdUkUm5is8SMhlM6xNLToDw7vj
- M2NuF9WxjBgNNGSAmqEYMlFo0MYEeKmL+0c8Ky5y63eSRRMreI18cSvgj
- aq5uz7k8TCXE5ucYfxtV5rKYmrI5tm3rygtniDhyfLnUsuIKib5PS7HDN A==;
-X-CSE-ConnectionGUID: 6PJv+KEETxGnNBwVOIFcnQ==
-X-CSE-MsgGUID: uUKUraUXQGmZki4VtzZJzA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="45691687"
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="45691687"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 01:55:35 -0700
-X-CSE-ConnectionGUID: MRFAzu9HQV21dmpc4DID/Q==
-X-CSE-MsgGUID: FfP6mRDuQm+XTQKAEhNA5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="131284750"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.139])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 01:55:30 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Luke Hofstetter <ldhofstetter@gmail.com>, Alex Deucher
- <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
- <christian.koenig@amd.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sunil
- Khatri <sunil.khatri@amd.com>, Mario Limonciello
- <mario.limonciello@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Boyuan Zhang <boyuan.zhang@amd.com>, Leo Li <sunpeng.li@amd.com>, Dominik
- Kaszewski <dominik.kaszewski@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Luke
- Hofstetter <ldhofstetter@gmail.com>
-Subject: Re: [PATCH] drm/amd/include: fix kernel-doc formatting in amd_shared.h
-In-Reply-To: <20250416091143.67704-1-ldhofstetter@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250416091143.67704-1-ldhofstetter@gmail.com>
-Date: Thu, 17 Apr 2025 11:55:26 +0300
-Message-ID: <877c3jp3pd.fsf@intel.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2045.outbound.protection.outlook.com [40.107.243.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B406D10E16E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Apr 2025 08:58:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dCAEzVFmDrTf9LRZj8YJRozUXead7i4SntcurGg9qP4mk81BhGSOi4aVtSCd6lTXl5qAbgZeBsBCycCDrwD6bTle5/w7lX9c7QY5N1wADVRZFEnO+okFsUardeVUB/8jmGlRFzAEXsYZQjOnQfExjqECw4RpOutZ35YumlX79X1VwfcNs9iSpFctqK+2PLEB2PaAlx77gUIULw8SnDssHYHECGSwX2jc6AYVBXm3Q+A/1JQiP7Vb4VeIB9vLOyK2o5w0Ugtwwt9jtVDyGvHkNyGNdnTKKMqyA5/21JoAp+mvK5mvRIeVvEiedZbIsCY9cU6y24jgd7HIiMZCQ6PwzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pl2wvwsx9HmnwLS7+6GP4k1PgGKDGbk9yn9gHp7n6sc=;
+ b=HXuep0GwRrSq7aln/Dxi5j0RAlwZh0EA2m5JYsGxciiMrSoSMVXP2tKb30uwCyPkR48JTUywjOuMyUIuzdB7WuDNOzXlLByh7zDUVFcmCxukBvvpGAcMmPS6iTcaXGQwj4cLReuVnA11ARz6Aa0hIcJnyIBD2d6g7Fe+JcGAS6XRafhEeDtsu0ZKIOEDTislW70v/FBYssPCKuDCJtmp2nDArk/nr+PHmeFQoD5HA4VveG3ZopwTgUt1nUoPVOBdTuEoAhlaqAdEWuz0zrhV2LGF9WQ8yNUFHa3QSTQN6pAYGSVUSbkpxEf8DosVWDINxAA0LIijjI4VY3wzKCqxow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pl2wvwsx9HmnwLS7+6GP4k1PgGKDGbk9yn9gHp7n6sc=;
+ b=ASNiohLwJiKs+5fjW2hOIJjs66foPT6xBJk4jaEZuTa+dxtL/B2Wdm5VgpD00YsSVjY3pO4fxqNNLoc+zI5Jwfl33vEtfRk/G2sOwYg0RO+SGQa8CsZet2Uw34LvyvfapuxS8IfdioFhCf7IYPgQEMuboVCgc29/KdyYleYxWzQ=
+Received: from CH5P223CA0014.NAMP223.PROD.OUTLOOK.COM (2603:10b6:610:1f3::16)
+ by PH0PR12MB7790.namprd12.prod.outlook.com (2603:10b6:510:289::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.32; Thu, 17 Apr
+ 2025 08:58:44 +0000
+Received: from DS2PEPF00003441.namprd04.prod.outlook.com
+ (2603:10b6:610:1f3:cafe::26) by CH5P223CA0014.outlook.office365.com
+ (2603:10b6:610:1f3::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.18 via Frontend Transport; Thu,
+ 17 Apr 2025 08:58:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS2PEPF00003441.mail.protection.outlook.com (10.167.17.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8655.12 via Frontend Transport; Thu, 17 Apr 2025 08:58:42 +0000
+Received: from tao-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 17 Apr
+ 2025 03:58:41 -0500
+From: Tao Zhou <tao.zhou1@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Tao Zhou <tao.zhou1@amd.com>
+Subject: [PATCH 1/6] drm/amd: add definitions for new memory type
+Date: Thu, 17 Apr 2025 16:58:27 +0800
+Message-ID: <20250417085832.36455-1-tao.zhou1@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003441:EE_|PH0PR12MB7790:EE_
+X-MS-Office365-Filtering-Correlation-Id: b1e75e42-4fc7-499a-afb7-08dd7d8e0dfe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?yw1it7zPP36W6Tb3QfmRyXgb6x0eqCwqPeTlozukcPidOgbmlStTjN6B4+WQ?=
+ =?us-ascii?Q?vqVftBn1VCNMEjE7dw5JD20vYdRW6e2mBBMSdi4vSg4b/zE7mYy8NJs4utqH?=
+ =?us-ascii?Q?NAGEOKJHPbB1rjPke7XX63+atTcmjJ7FE88G1bOliNiYL90xh7bad4CBaXhC?=
+ =?us-ascii?Q?zXTwuCvzq5SrkO7GdjTNa7km9wuRzrho3OV4eAFPgVKv8Lg+7SHLuAsUNwWd?=
+ =?us-ascii?Q?zXXGlsmZHVUtHTLmpChUtvQ16R2FJbmd4dLMxO1nxq1vmHGU9MsRCHxquW6x?=
+ =?us-ascii?Q?k7QmBUe6hSIMD9OeJ4NNlSoGK+6cQ12crBSj05T/pEKV+zWNNFoP0EtmR/sg?=
+ =?us-ascii?Q?lei3EoVKMfFvHOQaWGw1qHPjwSRQVqp4sNdmd6SKxlW6R2iEpWyBI0dNiuxu?=
+ =?us-ascii?Q?UesRudW+OkPtVXZc3uQol2GPUThbN037R6ZPoenlmT6PJddSygWEJ86NdQ4+?=
+ =?us-ascii?Q?mwpDkkTW/3ascXeG3atks21e2Q9UNYYLgOJypgcMfkEtGBI8+5FzIcosj2j2?=
+ =?us-ascii?Q?UzG5X8MwqHvK9xOm14/+xwfaU2GolPqO88A//oahv7ke0rn2VGHQ8VYLKOqR?=
+ =?us-ascii?Q?cUHcpIQX+GT8w7SilPrpXZH4nNQs5qx/J5lU6NFxtVFM53V/J3+FoW4pM+3a?=
+ =?us-ascii?Q?e/6bfLMFmIeMoWW9wihrwrIMxO8oVyCACoeYSFmyDhZ7enZtzlGfJvr3x13T?=
+ =?us-ascii?Q?itKUTEBwtZhcmUIQBIBKTAwdmzlRyxU5vqC24OM29wSIMoQQG6eMYUPi2Uvw?=
+ =?us-ascii?Q?FZKqcR1bD4Rgl85YX2Y5q8FqY9Ca4xScqDIPu/lcTRoSR9OrBn/wMyJy7DJr?=
+ =?us-ascii?Q?ZC8bduPP369z75B6V35Qy1i5oMqHHrd+eLAdjKT9yduj5iCcJyj8LqnvflhU?=
+ =?us-ascii?Q?NFr0QAtuRgd5ORmpplo+J2TE9b7ppDkOMl8beJFwkaqSPuid14JkDNedO2td?=
+ =?us-ascii?Q?Nxly7QNEmFmYPh8Mm7JWQZWWqVnTkKkDzv42XlB2pdP/M5PMo6Inr+3F6I51?=
+ =?us-ascii?Q?yqwFoHRRba0ZBx96KRU2QsXVFxlua6k0qFPsYoQn7HG+THGq4u/DH/bHQvkN?=
+ =?us-ascii?Q?AB6Fm+7A+Fn8jvZ9u1A5L43UC7Tgi839rZoxSCCsJX8f32xzxGDo+5c4/SsM?=
+ =?us-ascii?Q?Ye68ZUyUwrDWQuu1jwwm9vXzar0JJZE+Avc8RlyI4VfEmIji14VFW2IQNdMN?=
+ =?us-ascii?Q?6DMBxm5Q6aTDXcJvfI3CimidbXCa0XGukbsg/h95qpiOIz9CpakBFEKgXhxL?=
+ =?us-ascii?Q?ENJXfbU7oF8lWC7dedz4PG6H7FjXtJwPskOCkgsKmUN3FMCETSEIVm6JRZry?=
+ =?us-ascii?Q?1KRk5wRIUPI5eqhJdwIUL5neOcPSdJwp9d1oGO3fwmxV/MdhGxmtsgKHpgLw?=
+ =?us-ascii?Q?EC6+3P8Voi7PbL4L/x1bqw1l8PY5IAROnwXhvTr8HaIdtKrZKJo3hkt3pbV4?=
+ =?us-ascii?Q?YFyFOwCCO2Cl4cL5le0VU5dWFi5Ht120Lbmj3sthEu3jrXqSonFfVwVnDIYr?=
+ =?us-ascii?Q?6jujIjJIbdmVCdzNkP7Ti4THMXQwd57Q+FXS?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2025 08:58:42.9007 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1e75e42-4fc7-499a-afb7-08dd7d8e0dfe
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003441.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7790
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,180 +130,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 16 Apr 2025, Luke Hofstetter <ldhofstetter@gmail.com> wrote:
-> when doing make htmldocs, Sphinx complained about in-line documentation
-> in enum DC_DEBUG_MASK, so reformatted documentation to define each
-> member in kernel-doc comment above the enum instead.
+Support new versions of HBM and GDDR.
 
-Why? What's the error message exactly? I think what you have now is the
-preferred style. If it really doesn't work for enums, kernel-doc should
-be fixed.
+Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c | 12 ++++++++++++
+ drivers/gpu/drm/amd/include/atomfirmware.h       |  4 ++++
+ include/uapi/drm/amdgpu_drm.h                    |  4 ++++
+ 3 files changed, 20 insertions(+)
 
-BR,
-Jani.
-
->
-> Signed-off-by: Luke Hofstetter <ldhofstetter@gmail.com>
-> ---
->  drivers/gpu/drm/amd/include/amd_shared.h | 124 ++++++-----------------
->  1 file changed, 32 insertions(+), 92 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-> index 4c95b885d1d0..7074ec3b467f 100644
-> --- a/drivers/gpu/drm/amd/include/amd_shared.h
-> +++ b/drivers/gpu/drm/amd/include/amd_shared.h
-> @@ -255,120 +255,60 @@ enum DC_FEATURE_MASK {
->  
->  /**
->   * enum DC_DEBUG_MASK - Bits that are useful for debugging the Display Core IP
-> + * @DC_DISABLE_PIPE_SPLIT: If set, disable pipe-splitting
-> + * @DC_DISABLE_STUTTER: If set, disable memory stutter mode
-> + * @DC_DISABLE_DSC: If set, disable display stream compression
-> + * @DC_DISABLE_CLOCK_GATING: If set, disable clock gating optimizations
-> + * @DC_DISABLE_PSR: If set, disable Panel self refresh v1 and PSR-SU
-> + * @DC_FORCE_SUBVP_MCLK_SWITCH: If set, force mclk switch in subvp, even
-> + *	 							if mclk switch in vblank is possible
-> + * @DC_DISABLE_MPO: If set, disable multi-plane offloading
-> + * @DC_ENABLE_DPIA_TRACE: If set, enable trace logging for DPIA
-> + * @DC_ENABLE_DML2: If set, force usage of DML2, even if the DCN version
-> + *	 				does not default to it.
-> + * @DC_DISABLE_PSR_SU: If set, disable PSR SU
-> + * @DC_DISABLE_REPLAY: If set, disable Panel Replay
-> + * @DC_DISABLE_IPS: If set, disable all Idle Power States, all the time.
-> + *	 				If more than one IPS debug bit is set, the lowest bit takes
-> + *	 				precedence. For example, if DC_FORCE_IPS_ENABLE and
-> + *	 				DC_DISABLE_IPS_DYNAMIC are set, then DC_DISABLE_IPS_DYNAMIC takes
-> + *	 				precedence.
-> + * @DC_DISABLE_IPS_DYNAMIC: If set, disable all IPS, all the time,
-> + *	 						*except* when driver goes into suspend.
-> + * @DC_DISABLE_IPS2_DYNAMIC: If set, disable IPS2 (IPS1 allowed) if
-> + *	 						there is an enabled display. Otherwise, enable all IPS.
-> + * @DC_FORCE_IPS_ENABLE: If set, force enable all IPS, all the time.
-> + * @DC_DISABLE_ACPI_EDID: If set, don't attempt to fetch EDID for
-> + *	 					  eDP display from ACPI _DDC method.
-> + * @DC_DISABLE_HDMI_CEC: If set, disable HDMI-CEC feature in amdgpu driver.
-> + * @DC_DISABLE_SUBVP: If set, disable DCN Sub-Viewport feature in amdgpu driver.
-> + * @DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE: If set, disable support for custom brightness curves
-> + * @DC_HDCP_LC_FORCE_FW_ENABLE: If set, use HDCP Locality Check FW
-> + *	 					        path regardless of reported HW capabilities.
-> + * @DC_HDCP_LC_ENABLE_SW_FALLBACK: If set, upon HDCP Locality Check FW
-> + *	                              path failure, retry using legacy SW path.
->   */
->  enum DC_DEBUG_MASK {
-> -	/**
-> -	 * @DC_DISABLE_PIPE_SPLIT: If set, disable pipe-splitting
-> -	 */
->  	DC_DISABLE_PIPE_SPLIT = 0x1,
-> -
-> -	/**
-> -	 * @DC_DISABLE_STUTTER: If set, disable memory stutter mode
-> -	 */
->  	DC_DISABLE_STUTTER = 0x2,
-> -
-> -	/**
-> -	 * @DC_DISABLE_DSC: If set, disable display stream compression
-> -	 */
->  	DC_DISABLE_DSC = 0x4,
-> -
-> -	/**
-> -	 * @DC_DISABLE_CLOCK_GATING: If set, disable clock gating optimizations
-> -	 */
->  	DC_DISABLE_CLOCK_GATING = 0x8,
-> -
-> -	/**
-> -	 * @DC_DISABLE_PSR: If set, disable Panel self refresh v1 and PSR-SU
-> -	 */
->  	DC_DISABLE_PSR = 0x10,
-> -
-> -	/**
-> -	 * @DC_FORCE_SUBVP_MCLK_SWITCH: If set, force mclk switch in subvp, even
-> -	 * if mclk switch in vblank is possible
-> -	 */
->  	DC_FORCE_SUBVP_MCLK_SWITCH = 0x20,
-> -
-> -	/**
-> -	 * @DC_DISABLE_MPO: If set, disable multi-plane offloading
-> -	 */
->  	DC_DISABLE_MPO = 0x40,
-> -
-> -	/**
-> -	 * @DC_ENABLE_DPIA_TRACE: If set, enable trace logging for DPIA
-> -	 */
->  	DC_ENABLE_DPIA_TRACE = 0x80,
-> -
-> -	/**
-> -	 * @DC_ENABLE_DML2: If set, force usage of DML2, even if the DCN version
-> -	 * does not default to it.
-> -	 */
->  	DC_ENABLE_DML2 = 0x100,
-> -
-> -	/**
-> -	 * @DC_DISABLE_PSR_SU: If set, disable PSR SU
-> -	 */
->  	DC_DISABLE_PSR_SU = 0x200,
-> -
-> -	/**
-> -	 * @DC_DISABLE_REPLAY: If set, disable Panel Replay
-> -	 */
->  	DC_DISABLE_REPLAY = 0x400,
-> -
-> -	/**
-> -	 * @DC_DISABLE_IPS: If set, disable all Idle Power States, all the time.
-> -	 * If more than one IPS debug bit is set, the lowest bit takes
-> -	 * precedence. For example, if DC_FORCE_IPS_ENABLE and
-> -	 * DC_DISABLE_IPS_DYNAMIC are set, then DC_DISABLE_IPS_DYNAMIC takes
-> -	 * precedence.
-> -	 */
->  	DC_DISABLE_IPS = 0x800,
-> -
-> -	/**
-> -	 * @DC_DISABLE_IPS_DYNAMIC: If set, disable all IPS, all the time,
-> -	 * *except* when driver goes into suspend.
-> -	 */
->  	DC_DISABLE_IPS_DYNAMIC = 0x1000,
-> -
-> -	/**
-> -	 * @DC_DISABLE_IPS2_DYNAMIC: If set, disable IPS2 (IPS1 allowed) if
-> -	 * there is an enabled display. Otherwise, enable all IPS.
-> -	 */
->  	DC_DISABLE_IPS2_DYNAMIC = 0x2000,
-> -
-> -	/**
-> -	 * @DC_FORCE_IPS_ENABLE: If set, force enable all IPS, all the time.
-> -	 */
->  	DC_FORCE_IPS_ENABLE = 0x4000,
-> -	/**
-> -	 * @DC_DISABLE_ACPI_EDID: If set, don't attempt to fetch EDID for
-> -	 * eDP display from ACPI _DDC method.
-> -	 */
->  	DC_DISABLE_ACPI_EDID = 0x8000,
-> -
-> -	/**
-> -	 * @DC_DISABLE_HDMI_CEC: If set, disable HDMI-CEC feature in amdgpu driver.
-> -	 */
->  	DC_DISABLE_HDMI_CEC = 0x10000,
-> -
-> -	/**
-> -	 * @DC_DISABLE_SUBVP: If set, disable DCN Sub-Viewport feature in amdgpu driver.
-> -	 */
->  	DC_DISABLE_SUBVP = 0x20000,
-> -	/**
-> -	 * @DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE: If set, disable support for custom brightness curves
-> -	 */
->  	DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE = 0x40000,
-> -
-> -	/**
-> -	 * @DC_HDCP_LC_FORCE_FW_ENABLE: If set, use HDCP Locality Check FW
-> -	 * path regardless of reported HW capabilities.
-> -	 */
->  	DC_HDCP_LC_FORCE_FW_ENABLE = 0x80000,
-> -
-> -	/**
-> -	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK If set, upon HDCP Locality Check FW
-> -	 * path failure, retry using legacy SW path.
-> -	 */
->  	DC_HDCP_LC_ENABLE_SW_FALLBACK = 0x100000,
->  };
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
+index eb015bdda8a7..32fb264849bc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
+@@ -281,6 +281,18 @@ static int convert_atom_mem_type_to_vram_type(struct amdgpu_device *adev,
+ 		case ATOM_DGPU_VRAM_TYPE_GDDR6:
+ 			vram_type = AMDGPU_VRAM_TYPE_GDDR6;
+ 			break;
++		case ATOM_DGPU_VRAM_TYPE_HBM3E:
++			vram_type = AMDGPU_VRAM_TYPE_HBM3E;
++			break;
++		case ATOM_DGPU_VRAM_TYPE_HBM4:
++			vram_type = AMDGPU_VRAM_TYPE_HBM4;
++			break;
++		case ATOM_DGPU_VRAM_TYPE_HBM4E:
++			vram_type = AMDGPU_VRAM_TYPE_HBM4E;
++			break;
++		case ATOM_DGPU_VRAM_TYPE_GDDR7:
++			vram_type = AMDGPU_VRAM_TYPE_GDDR7;
++			break;
+ 		default:
+ 			vram_type = AMDGPU_VRAM_TYPE_UNKNOWN;
+ 			break;
+diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
+index 0160d65f3f5e..8eb8dafb3ac9 100644
+--- a/drivers/gpu/drm/amd/include/atomfirmware.h
++++ b/drivers/gpu/drm/amd/include/atomfirmware.h
+@@ -183,6 +183,10 @@ enum atom_dgpu_vram_type {
+   ATOM_DGPU_VRAM_TYPE_HBM2E = 0x61,
+   ATOM_DGPU_VRAM_TYPE_GDDR6 = 0x70,
+   ATOM_DGPU_VRAM_TYPE_HBM3 = 0x80,
++  ATOM_DGPU_VRAM_TYPE_HBM3E = 0x81,
++  ATOM_DGPU_VRAM_TYPE_HBM4 = 0x82,
++  ATOM_DGPU_VRAM_TYPE_HBM4E = 0x83,
++  ATOM_DGPU_VRAM_TYPE_GDDR7 = 0x90,
+ };
+ 
+ enum atom_dp_vs_preemph_def{
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+index a1c8eded0744..d8b5e1d33cd1 100644
+--- a/include/uapi/drm/amdgpu_drm.h
++++ b/include/uapi/drm/amdgpu_drm.h
+@@ -1423,6 +1423,10 @@ struct drm_amdgpu_info_vbios {
+ #define AMDGPU_VRAM_TYPE_DDR5  10
+ #define AMDGPU_VRAM_TYPE_LPDDR4 11
+ #define AMDGPU_VRAM_TYPE_LPDDR5 12
++#define AMDGPU_VRAM_TYPE_HBM3E 13
++#define AMDGPU_VRAM_TYPE_HBM4 14
++#define AMDGPU_VRAM_TYPE_HBM4E 15
++#define AMDGPU_VRAM_TYPE_GDDR7 16
+ 
+ #define AMDGPU_VRAM_TYPE_HBM_WIDTH 4096
+ 
 -- 
-Jani Nikula, Intel
+2.34.1
+
