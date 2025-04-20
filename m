@@ -2,78 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55B01A94EB5
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Apr 2025 11:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCB46A94EB7
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Apr 2025 11:34:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF4E788A3E;
-	Mon, 21 Apr 2025 09:34:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99F1E10E359;
+	Mon, 21 Apr 2025 09:34:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mw8woiHW";
+	dkim=permerror (0-bit key) header.d=tnxip.de header.i=@tnxip.de header.b="YXx0Kgkj";
+	dkim=pass (1024-bit key; secure) header.d=tnxip.de header.i=@tnxip.de header.b="QibqLAjq";
+	dkim=pass (1024-bit key; secure) header.d=tnxip.de header.i=@tnxip.de header.b="LHikL5oW";
+	dkim=permerror (0-bit key) header.d=tnxip.de header.i=@tnxip.de header.b="rwzoNeL4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
- [209.85.210.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E11410E127;
- Sat, 19 Apr 2025 17:47:27 +0000 (UTC)
-Received: by mail-ot1-f44.google.com with SMTP id
- 46e09a7af769-72ec926e828so797848a34.0; 
- Sat, 19 Apr 2025 10:47:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1745084846; x=1745689646; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=l9p/9GPno78DZ3qtYAcJxFBAogUfeTY9SwXa+83U50I=;
- b=mw8woiHWQHz95USCEEf8SjQvbBJUXhnf7y0gVuNut9sh4PNqFfEVkMJhbiXpd2R1Vb
- HXAaxrT7v3uqwRGX0zyztOwnIJKlo54HjDB7LjijXXfxd9y/C1jFpeO4UaeCU2RQPiDW
- AxFw0PFa5+V4uEcpCf7H3EjubiU0qz5yIpdwxuH0xCqBJESBE1CuliOUV+yE+8kvLvf/
- SDPyGIu2UxwH83yKW0TPc42MtA8dPoyv/4dDq9ok8Q0rZy6F+njz0NH6k4YGyHWVqL3Y
- wOGN6xH42HnIbScvh/V4NHC+RKZH8AYPRfV6BmjiSi8Rhs8RNiyRC/WeiUKqxhTvqpWT
- 0BNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745084846; x=1745689646;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=l9p/9GPno78DZ3qtYAcJxFBAogUfeTY9SwXa+83U50I=;
- b=SqiYm53IXbIEw45PGXCCxIb3+6onYE2S6I/y5vZaPoUjJzy5saqLLw5rXx7DV5ULrc
- ts8WEojGKMiCk9oXpz2BHRHz5ezoAf379POCqJDvPsyL3sb8sgsLFSX/M45OuaO+bxi2
- lm2OGgJS2l1BA5J38fDYHJ3LBT8cUXbBycrZMYfr53/0VlPsJsDj0QCVpL+8jHwymfe/
- BDt6KN4YUEh+5Hp5/HvYzRLnR+PR4Hy0slHLg38w/A/s1uITJv4ZM+1yye1Jpzhmix+p
- F87Ky8/s/WzxLpmlnTaZ5+m/4DFwsw9TXUtIJ5gM6+BE72BriXRAmEJ6aeFZqzaEran3
- Kegg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUvSEDzHYyq/RW++6BEFS47xGguh00nBJTcEB4zSemCjMdr3kzvKGJMZAEG7/1SHZPZYjwY66Hgqpio@lists.freedesktop.org,
- AJvYcCWRA/eu5rcY1vTsHaHJ6m0mB/uJ9tCE+xc8QePv5WcMRake2vOc5DObPHFqkb/AVzX9pOGVlazV@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyqhIFFrJEvvl0R3/Wz/hUIBSQC3RVmqVaC+5pSfWkYQyF/eXfX
- AFz15ckmU71+OHJTQeKxSGipi5pZqBILLTV3cvglDvYzbFrM0I0Q
-X-Gm-Gg: ASbGncsWshwLuyNYfQT+t0IKUCxcNqAxW72J4uaQnRvApwZT/Fxa2fgSnDg+3Tkxgm+
- i2JZBaOtAKPZwUji8mYa09GKP8CZ/NB152TMKZScK6GKS+5vVRNpCf5/oScD3A5tKN2U82SIy8V
- aFirSBdmf1/MXqUccoQ+92geFlqIV19BRnFOCe5vfuSNLibPQLXuOsf66BEE3XOyPat2dA7hAzZ
- vVIxl+UsozWTS37E8+ZTOMdmh7ZZn/QFpx4MgB3iZ//VoS4a2cFZKQY+vHj036NYlrHT0HUiS9e
- 5mATvwMfakOp8p0I1fFj4OP3FaD1bPvZiMEcu1/WNf6XpVSbb4PijvJfC8xsO8tq3w==
-X-Google-Smtp-Source: AGHT+IH7fN/A8iC5n1j7ocQhspXTJ6+h7siteXgS4p4hgqZk5bAH4bdltKLh7cf5EfIBHx46fSjAIg==
-X-Received: by 2002:a05:6830:3696:b0:72a:327:eed3 with SMTP id
- 46e09a7af769-730061fb6d7mr4115147a34.5.1745084846232; 
- Sat, 19 Apr 2025 10:47:26 -0700 (PDT)
-Received: from c65201v1.fyre.ibm.com ([170.225.223.22])
- by smtp.gmail.com with ESMTPSA id
- 46e09a7af769-730047af85bsm773268a34.19.2025.04.19.10.47.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 19 Apr 2025 10:47:25 -0700 (PDT)
-From: Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, sunil.khatri@amd.com, mario.limonciello@amd.com,
- aurabindo.pillai@amd.com
-Cc: boyuan.zhang@amd.com, sunpeng.li@amd.com, dominik.kaszewski@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org,
- Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
-Subject: [PATCH] drm: Fix for kernel doc warning
-Date: Sat, 19 Apr 2025 10:46:08 -0700
-Message-ID: <20250419174608.20993-1-chelsyratnawat2001@gmail.com>
-X-Mailer: git-send-email 2.43.0
+X-Greylist: delayed 347 seconds by postgrey-1.36 at gabe;
+ Sun, 20 Apr 2025 19:44:33 UTC
+Received: from mail.tnxip.de (mail.tnxip.de [49.12.77.104])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC3B10E00D
+ for <amd-gfx@lists.freedesktop.org>; Sun, 20 Apr 2025 19:44:33 +0000 (UTC)
+Received: from gw.tnxip.de (unknown
+ [IPv6:fdc7:1cc3:ec03:1:6878:2204:c74b:bf0d])
+ by mail.tnxip.de (Postfix) with ESMTPS id 8FBB5208AD
+ for <amd-gfx@lists.freedesktop.org>; Sun, 20 Apr 2025 21:38:39 +0200 (CEST)
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=tnxip.de;
+ s=mail-vps-ed; t=1745177919;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=VIbjyIjJEN93mrlZtI4dXkBeej/gN+HDsNlizDzfgsg=;
+ b=YXx0KgkjDMHITDMaH4hopkvPsqvhZgc1YErLBTaMKLWMjK+KrXrUCTMYdB9CBOUwh+IlCK
+ BbcEl4WKt5cNKdAQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tnxip.de; s=mail-vps; 
+ t=1745177919;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=VIbjyIjJEN93mrlZtI4dXkBeej/gN+HDsNlizDzfgsg=;
+ b=QibqLAjqWpdz+XLICe376WXx/OotCl1uPHOK4kU4vYmFCo2LHtYC8h6vZgM07lgEjdbl1h
+ pwtSvKGiD204ZtVFe5DAdTNFqrzZamHLzVw4yrjoo13xxs/cWkqXmR17J3adW/KWGia5JZ
+ qhqx+vENmetqeAuqRBPu1Kjb5Q8iIw8=
+Received: from [IPV6:2a04:4540:8c0d:500:5c42:8296:e6ef:fe7a] (unknown
+ [IPv6:2a04:4540:8c0d:500:5c42:8296:e6ef:fe7a])
+ by gw.tnxip.de (Postfix) with ESMTPSA id 606805800000000001982
+ for <amd-gfx@lists.freedesktop.org>; Sun, 20 Apr 2025 21:38:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tnxip.de; s=mail-gw;
+ t=1745177919;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=VIbjyIjJEN93mrlZtI4dXkBeej/gN+HDsNlizDzfgsg=;
+ b=LHikL5oW1TZYFxsFkL4IegYYWYgy2V73ILC0WJy/2euhTszZZsDpdPRRKVkvC2oGJx8gsu
+ dxqyVadPw+BzR6DYjNWDGz1/s1B9wdA6a0Xt4DbpCYhmS2SvsgDdeRQPYhhVeolb64veaY
+ mCiIkzO/GZ4jryh5UtLLgOqbAyiGof0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=tnxip.de;
+ s=mail-gw-ed; t=1745177919;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=VIbjyIjJEN93mrlZtI4dXkBeej/gN+HDsNlizDzfgsg=;
+ b=rwzoNeL4V4LyNoiUh3ji6OHyNtfWexYWgJFFzNmRRkcBhKq0AUnoQXHQ3ZkvNtn39MQyYd
+ tFL6Gayj0ZFT7NDg==
+Message-ID: <63d93ed2-1ace-430f-980d-27199ffc5b3e@tnxip.de>
+Date: Sun, 20 Apr 2025 21:38:36 +0200
 MIME-Version: 1.0
+User-Agent: Betterbird (Linux)
+Content-Language: en-US, de-DE
+To: amd-gfx@lists.freedesktop.org
+From: =?UTF-8?Q?Malte_Schr=C3=B6der?= <malte.schroeder@tnxip.de>
+Subject: possible bug with RDNA4 and AMS
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 21 Apr 2025 09:34:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -90,28 +87,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Added colon in kernel-doc comment to fix the warning.
+Hi,
 
-drivers/gpu/drm/amd/include/amd_shared.h:369: warning: Incorrect use of kernel-doc format:          * @DC_HDCP_LC_ENABLE_SW_FALLBACK If set, upon HDCP Locality Check FW
+finally found this list, I hope it's the right place for this. I
+recently swapped my trusty RX 6900 XT with a shiny new RX 9070 XT (aka
+RDNA2 to 4). Now, when I start kwin_wayland my desktop is a flickering
+mess. As a workaround I can set KWIN_DRM_NO_AMS, it is working with
+this. Afaik this disables the use of atomic mode setting. So I guess
+there is a bug in either amdgpu kernel side, libdrm or mesa.
 
-Signed-off-by: Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
----
- drivers/gpu/drm/amd/include/amd_shared.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Versions are kernel 6.15-rc2 + drm-fixes-6.15, libdrm is from git
+(2.4.124 fdf384d4), mesa is 25.1-rc and kwin is 6.3.4.
 
-diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-index 4c95b885d1d0..c8eccee9b023 100644
---- a/drivers/gpu/drm/amd/include/amd_shared.h
-+++ b/drivers/gpu/drm/amd/include/amd_shared.h
-@@ -366,7 +366,7 @@ enum DC_DEBUG_MASK {
- 	DC_HDCP_LC_FORCE_FW_ENABLE = 0x80000,
- 
- 	/**
--	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK If set, upon HDCP Locality Check FW
-+	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK: If set, upon HDCP Locality Check FW
- 	 * path failure, retry using legacy SW path.
- 	 */
- 	DC_HDCP_LC_ENABLE_SW_FALLBACK = 0x100000,
--- 
-2.43.0
+I am happy to provide debug, but I need some guidance to it.
+
+
+Regards
+
+Malte
 
