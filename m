@@ -2,63 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5926A95888
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Apr 2025 23:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A47A9591D
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Apr 2025 00:18:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF97110E106;
-	Mon, 21 Apr 2025 21:58:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8E4E10E059;
+	Mon, 21 Apr 2025 22:18:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fFtgHgPG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="F+7PXI2u";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89CEA10E0F4;
- Mon, 21 Apr 2025 21:58:40 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 61C7BA4BE8F;
- Mon, 21 Apr 2025 21:53:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23DE7C4CEE4;
- Mon, 21 Apr 2025 21:58:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1745272719;
- bh=jTKO/ZVih+JbltPyJqGvHcdaODnrapZSlfJDyMxef4Y=;
- h=From:To:Cc:Subject:Date:From;
- b=fFtgHgPGy3B/E/XUe25ID7SWmNeqPWBZxkCVdbHHYL+A51fXREBW8icOwy2DQ1PGZ
- smwFCDE95c6RimcL1YJg9aTDuUYltW33fZi9YMbmACjVwDjG1z/PAFzPST6qh01MnH
- 9KJSw7OSA6E9BHLHw176HqTRC4XPgsDEIMZuXyGRPFfOSmsgg6pEqS/z4I5JiAvYNr
- ALH/HpWab/u82LXnJcB/8M/YqWo/ANNAuKYDerSBBuD6gQBtYA/ubzdJWSfczHdRIS
- 7wM4umVvzxVlGqeqvyjSTgjjbS9aqm1I7po1F3gwmV6MCpIxTwvLmyidAoekEfb/Xw
- lKL/3oJrWjufw==
-From: Kees Cook <kees@kernel.org>
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: Kees Cook <kees@kernel.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jesse Zhang <jesse.zhang@amd.com>,
- Tim Huang <Tim.Huang@amd.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alexander Richards <electrodeyt@gmail.com>,
- Lijo Lazar <lijo.lazar@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Al Viro <viro@zeniv.linux.org.uk>, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Subject: [PATCH] drm/amdgpu/atom: Work around vbios NULL offset false positive
-Date: Mon, 21 Apr 2025 14:58:34 -0700
-Message-Id: <20250421215833.work.924-kees@kernel.org>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 415F210E059
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Apr 2025 22:18:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=f7kQpe9CbShWYa1jOuVn6Z3gjTBbmW95iHPAcQLRS0Q=; b=F+7PXI2uarmH1YVBaCfAnktaxo
+ +HwObFsZXvfBS9ug83ad0FNLPxayM6bAC6vBCpcpdHScdvrhaNz3cgcD7IA9HNfJz3AIM9Zs4ItPA
+ QZZquABN0N3gl8w7JodkJkicKZnQ1h5yTaXJIMPNLWVR/3xkpN3niJPx18t4aib9P8z+OXxvGA1WQ
+ CoNyl6p/I+fLYbS0RUIsJ3rw5WVsZkIu7dNe2rCDD3b/AyD+3HFOhstKuNMiiTFQj/RQA/i2OrKpc
+ 7HWfwDE/jVbckiLu9stOayf1DgAbiMk3vPNb+93tC0mGaNdbHHIw+FR5DlFhjm/LfB9yTG+enITvW
+ TnzxZFwA==;
+Received: from d162-157-58-14.abhsia.telus.net ([162.157.58.14]
+ helo=maloca.lan) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1u6zTD-006CMY-Tp; Tue, 22 Apr 2025 00:18:32 +0200
+From: Rodrigo Siqueira <siqueira@igalia.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rodrigo Siqueira <siqueira@igalia.com>
+Subject: [PATCH v3 0/9] Introduce a helper functions to get the CSB buffer
+Date: Mon, 21 Apr 2025 16:12:17 -0600
+Message-ID: <20250421221616.387927-1-siqueira@igalia.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2865; i=kees@kernel.org;
- h=from:subject:message-id; bh=jTKO/ZVih+JbltPyJqGvHcdaODnrapZSlfJDyMxef4Y=;
- b=owGbwMvMwCVmps19z/KJym7G02pJDBls+zvvHM+YreCqfKrQev31s18a+6e/XrJg684vsbzLU
- 48ZvEp82VHKwiDGxSArpsgSZOce5+Lxtj3cfa4izBxWJpAhDFycAjCRDQEMPxkXbGaK6YjXLGtc
- O/0tz4G3f7gCeBMVuF2kjIJqT2+zt2T47+lbZ/C35qeel/qk3j0vTpQrS/tNEXbtmxJf8EMws6S
- BFwA=
-X-Developer-Key: i=kees@kernel.org; a=openpgp;
- fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,74 +58,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-GCC really does not want to consider NULL (or near-NULL) addresses as
-valid, so calculations based off of NULL end up getting range-tracked into
-being an offset wthin a 0 byte array. It gets especially mad about this:
+This patchset was inspired from the below series:
 
-                if (vbios_str == NULL)
-                        vbios_str += sizeof(BIOS_ATOM_PREFIX) - 1;
-	...
-        if (vbios_str != NULL && *vbios_str == 0)
-                vbios_str++;
+  https://lore.kernel.org/amd-gfx/20250319162225.3775315-1-alexander.deucher@amd.com/
 
-It sees this as being "sizeof(BIOS_ATOM_PREFIX) - 1" byte offset from
-NULL, when building with -Warray-bounds (and the coming
--fdiagnostic-details flag):
+In the above series, there is a bug fix in many functions named
+gfx_vX_0_get_csb_buffer (where X ranges from 6 to 11). After closely
+looking at those functions, it became clear that most of the code could
+be shared from gfx6 to gfx11. Aside from the code duplication removal,
+this also improves maintainability since a bug fix in a shared function
+can be propagated to all ASICs.
 
-In function 'atom_get_vbios_pn',
-    inlined from 'amdgpu_atom_parse' at drivers/gpu/drm/amd/amdgpu/atom.c:1553:2:
-drivers/gpu/drm/amd/amdgpu/atom.c:1447:34: error: array subscript 0 is outside array bounds of 'unsigned char[0]' [-Werror=array-bounds=]
- 1447 |         if (vbios_str != NULL && *vbios_str == 0)
-      |                                  ^~~~~~~~~~
-  'amdgpu_atom_parse': events 1-2
- 1444 |                 if (vbios_str == NULL)
-      |                    ^
-      |                    |
-      |                    (1) when the condition is evaluated to true
-......
- 1447 |         if (vbios_str != NULL && *vbios_str == 0)
-      |                                  ~~~~~~~~~~
-      |                                  |
-      |                                  (2) out of array bounds here
-In function 'amdgpu_atom_parse':
-cc1: note: source object is likely at address zero
+Alex provided some feedback, and from that, I modified this new version
+to:
 
-As there isn't a sane way to convince it otherwise, hide vbios_str from
-GCC's optimizer to avoid the warning so we can get closer to enabling
--Warray-bounds globally.
+1. Create a dedicated function for the preamble start.
+2. Create a function to parse the cs data.
+3. Create a helper for finishing the preamble.
+4. Replace the duplicated part from gfx6 to 11.
 
-Signed-off-by: Kees Cook <kees@kernel.org>
----
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Xinhui Pan <Xinhui.Pan@amd.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Jesse Zhang <jesse.zhang@amd.com>
-Cc: Tim Huang <Tim.Huang@amd.com>
-Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Cc: Alexander Richards <electrodeyt@gmail.com>
-Cc: Lijo Lazar <lijo.lazar@amd.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>
-Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
----
- drivers/gpu/drm/amd/amdgpu/atom.c | 1 +
- 1 file changed, 1 insertion(+)
+For the GFX update, I created one commit for each to ensure this series
+is bisectable.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdgpu/atom.c
-index 81d195d366ce..427b073de2fc 100644
---- a/drivers/gpu/drm/amd/amdgpu/atom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/atom.c
-@@ -1444,6 +1444,7 @@ static void atom_get_vbios_pn(struct atom_context *ctx)
- 		if (vbios_str == NULL)
- 			vbios_str += sizeof(BIOS_ATOM_PREFIX) - 1;
- 	}
-+	OPTIMIZER_HIDE_VAR(vbios_str);
- 	if (vbios_str != NULL && *vbios_str == 0)
- 		vbios_str++;
- 
+Changes since v2:
+- Alex:
+ - Update GFX7 CSB to use rb_config struct.
+- Expand documentation based on Alex's explanations in the previous
+  series.
+
+Thanks
+
+Rodrigo Siqueira (9):
+  drm/amdgpu/gfx: Introduce helpers handling CSB manipulation
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v11_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v10_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v9_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v8_0_get_csb_buffer
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v7_0_get_csb_buffer
+  drm/amdgpu/gfx: Fix gfx_v7_0_get_csb_buffer to use rb_config
+  drm/amdgpu/gfx: Use CSB helpers in gfx_v6_0_get_csb_buffer
+  drm/amdgpu: Add documentation associated with CSB
+
+ Documentation/gpu/amdgpu/amdgpu-glossary.rst |  6 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c      | 69 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h      | 46 +++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h      | 14 ++++
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c       | 34 ++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c       | 34 ++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c        | 29 ++------
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c        | 55 ++--------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c        | 34 ++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c        | 32 ++-------
+ 10 files changed, 164 insertions(+), 189 deletions(-)
+
 -- 
-2.34.1
+2.49.0
 
