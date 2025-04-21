@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03019A95923
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Apr 2025 00:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E7EA95925
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Apr 2025 00:18:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 889DC10E4B7;
-	Mon, 21 Apr 2025 22:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAE5410E4B8;
+	Mon, 21 Apr 2025 22:18:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="r/qjNJ+o";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NdY+CyRw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4133410E4B7
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Apr 2025 22:18:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0F0910E4B8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Apr 2025 22:18:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,26 +22,25 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=QoVvngEShAJiP0+5qJ9xXFuSX5Ol3SuROnAiYiyT4iE=; b=r/qjNJ+ow1XXgg8PNFR40zGHJP
- JzhJrshq0UCHvFcLcssKfprXKIB9sCPPzjFJL9EiOHpt0dxkZYOJWsRKaMq/61OncrBOsIKzYT2cE
- Xrv3G+rSp8kjhTnKiQYv3ri2ipO/WtOTdPLn0I+i66IFXix0ocwyRp3PwV1PUQygcW4rl/3UG0iP/
- rzm0xTYq0khn1aMPwcZgWVd1CysthlY1qLAPxbxmq36tPTysjTnudQXba7e9WAz9k1pEe+6hv8GRq
- rbaiT0JbznzBoMOj2l6PrtuIDPhofP5zktb9VNRBz8Y9L30EhUINjGc/c8caS7GjxLn26T9OZpwuh
- Br23iNVg==;
+ bh=kd9oIWQqcxS+JPXI0ys1qBUAxcPHx6ODFGvXarKkHPw=; b=NdY+CyRwlLVOXbdVjY5sRb4GBV
+ Mcf3lbPziDXbile4XR5YefkmVrlndR5/UTdHq1SHh+mNzTWu/7xfO6kA+pZ5m63GrwEk6CXRU6TpQ
+ qY3TvOIe+JwAAAoTCNuoipHqQP8rkSQxHhG8/IYeUtboNjhuTvHrdS82e00kqBPsbdIuKNrLkCDyr
+ UNxDo7ysis5aiAL1Jky6BcmVlKE+2GoGbAIuZe6Pa+Uj87ou3bOWLRF6aNnYcxP+uZkwu9v3FXK5r
+ nNJyr/GMmgFvz6tzf2+mEZNgnrTv3Fs1tlmLA78d/TCJgsaXET8H+G3aGlakOCEdaaEOnHm6VPX7T
+ hfLijTiA==;
 Received: from d162-157-58-14.abhsia.telus.net ([162.157.58.14]
  helo=maloca.lan) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1u6zTQ-006CMY-Ag; Tue, 22 Apr 2025 00:18:44 +0200
+ id 1u6zTR-006CMY-ST; Tue, 22 Apr 2025 00:18:46 +0200
 From: Rodrigo Siqueira <siqueira@igalia.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
  Mario Limonciello <mario.limonciello@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH v3 8/9] drm/amdgpu/gfx: Use CSB helpers in
- gfx_v6_0_get_csb_buffer
-Date: Mon, 21 Apr 2025 16:12:25 -0600
-Message-ID: <20250421221616.387927-9-siqueira@igalia.com>
+Subject: [PATCH v3 9/9] drm/amdgpu: Add documentation associated with CSB
+Date: Mon, 21 Apr 2025 16:12:26 -0600
+Message-ID: <20250421221616.387927-10-siqueira@igalia.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250421221616.387927-1-siqueira@igalia.com>
 References: <20250421221616.387927-1-siqueira@igalia.com>
@@ -61,64 +60,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove duplications from gfx_v6_0_get_csb_buffer by using CSB helpers.
+Add a description for the get_csb_buffer callback, update the glossary,
+and add some extra information about RB, which is associated with CSB
+configuration.
 
 Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c | 29 ++++-----------------------
- 1 file changed, 4 insertions(+), 25 deletions(-)
+ Documentation/gpu/amdgpu/amdgpu-glossary.rst |  6 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h      | 43 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h      | 14 +++++++
+ 3 files changed, 63 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-index d86620f38855..70d7a1f434c4 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-@@ -2858,42 +2858,21 @@ static u32 gfx_v6_0_get_csb_size(struct amdgpu_device *adev)
- static void gfx_v6_0_get_csb_buffer(struct amdgpu_device *adev,
- 				    volatile u32 *buffer)
- {
--	u32 count = 0, i;
--	const struct cs_section_def *sect = NULL;
--	const struct cs_extent_def *ext = NULL;
-+	u32 count = 0;
+diff --git a/Documentation/gpu/amdgpu/amdgpu-glossary.rst b/Documentation/gpu/amdgpu/amdgpu-glossary.rst
+index 080c3f2250d1..8e6af7cc76c2 100644
+--- a/Documentation/gpu/amdgpu/amdgpu-glossary.rst
++++ b/Documentation/gpu/amdgpu/amdgpu-glossary.rst
+@@ -33,6 +33,9 @@ we have a dedicated glossary for Display Core at
+     CS
+       Command Submission
  
- 	if (adev->gfx.rlc.cs_data == NULL)
- 		return;
- 	if (buffer == NULL)
- 		return;
++    CSB
++      Clear State Indirect Buffer
++
+     CU
+       Compute Unit
  
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_PREAMBLE_CNTL, 0));
--	buffer[count++] = cpu_to_le32(PACKET3_PREAMBLE_BEGIN_CLEAR_STATE);
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_CONTEXT_CONTROL, 1));
--	buffer[count++] = cpu_to_le32(0x80000000);
--	buffer[count++] = cpu_to_le32(0x80000000);
--
--	for (sect = adev->gfx.rlc.cs_data; sect->section != NULL; ++sect) {
--		for (ext = sect->section; ext->extent != NULL; ++ext) {
--			if (sect->id == SECT_CONTEXT) {
--				buffer[count++] =
--					cpu_to_le32(PACKET3(PACKET3_SET_CONTEXT_REG, ext->reg_count));
--				buffer[count++] = cpu_to_le32(ext->reg_index - 0xa000);
--				for (i = 0; i < ext->reg_count; i++)
--					buffer[count++] = cpu_to_le32(ext->extent[i]);
--			}
--		}
--	}
-+	count = amdgpu_gfx_csb_preamble_start(buffer);
-+	count = amdgpu_gfx_csb_data_parser(adev, buffer, count);
+@@ -134,6 +137,9 @@ we have a dedicated glossary for Display Core at
+     PSP
+         Platform Security Processor
  
- 	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_SET_CONTEXT_REG, 1));
- 	buffer[count++] = cpu_to_le32(mmPA_SC_RASTER_CONFIG - PACKET3_SET_CONTEXT_REG_START);
- 	buffer[count++] = cpu_to_le32(adev->gfx.config.rb_config[0][0].raster_config);
++    RB
++      Render Backends. Some people called it ROPs.
++
+     RLC
+       RunList Controller. This name is a remnant of past ages and doesn't have
+       much meaning today. It's a group of general-purpose helper engines for
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 9187b0b3bff6..08f268dab8f5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -170,10 +170,46 @@ struct amdgpu_kiq {
+ #define AMDGPU_GFX_MAX_SE 4
+ #define AMDGPU_GFX_MAX_SH_PER_SE 2
  
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_PREAMBLE_CNTL, 0));
--	buffer[count++] = cpu_to_le32(PACKET3_PREAMBLE_END_CLEAR_STATE);
--
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_CLEAR_STATE, 0));
--	buffer[count++] = cpu_to_le32(0);
-+	amdgpu_gfx_csb_preamble_end(buffer, count);
- }
++/**
++ * amdgpu_rb_config - Configure a single Render Backend (RB)
++ *
++ * Bad RBs are fused off and there is a harvest register the driver reads to
++ * determine which RB(s) are fused off so that the driver can configure the
++ * hardware state so that nothing gets sent to them. There are also user
++ * harvest registers that the driver can program to disable additional RBs,
++ * etc., for testing purposes.
++ */
+ struct amdgpu_rb_config {
++	/**
++	 * @rb_backend_disable:
++	 *
++	 * The value captured from register RB_BACKEND_DISABLE indicates if the
++	 * RB backend is disabled or not.
++	 */
+ 	uint32_t rb_backend_disable;
++
++	/**
++	 * @user_rb_backend_disable:
++	 *
++	 * The value captured from register USER_RB_BACKEND_DISABLE indicates
++	 * if the User RB backend is disabled or not.
++	 */
+ 	uint32_t user_rb_backend_disable;
++
++	/**
++	 * @raster_config:
++	 *
++	 * To set up all of the states, it is necessary to have two registers
++	 * to keep all of the states. This field holds the first register.
++	 */
+ 	uint32_t raster_config;
++
++	/**
++	 * @raster_config_1:
++	 *
++	 * To set up all of the states, it is necessary to have two registers
++	 * to keep all of the states. This field holds the second register.
++	 */
+ 	uint32_t raster_config_1;
+ };
  
- static void gfx_v6_0_init_pg(struct amdgpu_device *adev)
+@@ -221,6 +257,13 @@ struct amdgpu_gfx_config {
+ 	uint32_t macrotile_mode_array[16];
+ 
+ 	struct gb_addr_config gb_addr_config_fields;
++
++	/**
++	 * @rb_config:
++	 *
++	 * Matrix that keeps all the Render Backend (color and depth buffer
++	 * handling) configuration on the 3D engine.
++	 */
+ 	struct amdgpu_rb_config rb_config[AMDGPU_GFX_MAX_SE][AMDGPU_GFX_MAX_SH_PER_SE];
+ 
+ 	/* gfx configure feature */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
+index fce22d3f816b..c210625be220 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
+@@ -237,6 +237,20 @@ struct amdgpu_rlc_funcs {
+ 	void (*unset_safe_mode)(struct amdgpu_device *adev, int xcc_id);
+ 	int  (*init)(struct amdgpu_device *adev);
+ 	u32  (*get_csb_size)(struct amdgpu_device *adev);
++
++	/**
++	 * @get_csb_buffer: Get the clear state to be put into the hardware.
++	 *
++	 * The parameter adev is used to get the CS data and other gfx info,
++	 * and buffer is the RLC CS pointer
++	 *
++	 * Sometimes, the user space puts a request to clear the state in the
++	 * command buffer; this function provides the clear state that gets put
++	 * into the hardware. Note that the driver programs Clear State
++	 * Indirect Buffer (CSB) explicitly when it sets up the kernel rings,
++	 * and it also provides a pointer to it which is used by the firmware
++	 * to load the clear state in some cases.
++	 */
+ 	void (*get_csb_buffer)(struct amdgpu_device *adev, volatile u32 *buffer);
+ 	int  (*get_cp_table_num)(struct amdgpu_device *adev);
+ 	int  (*resume)(struct amdgpu_device *adev);
 -- 
 2.49.0
 
