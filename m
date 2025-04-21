@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6AE4A95922
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Apr 2025 00:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED53A95924
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Apr 2025 00:18:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D72910E4B6;
-	Mon, 21 Apr 2025 22:18:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D08A110E4B9;
+	Mon, 21 Apr 2025 22:18:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="J5VB2qX8";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="DdruRX5U";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29A2C10E4B4
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Apr 2025 22:18:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD84210E4B4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Apr 2025 22:18:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,26 +22,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=YMsEYhKZb3c6wP5Uif3JKB9iubme0eHsYvGIJ931pqQ=; b=J5VB2qX8y02Lr+XYN3V6cb3flF
- Mp5RmBNPgfam0B+xLDNgyZYFEAm58krtRJCG0QiEhuusUvq+pBaV/WA8vBjcAjNvcnku/8wpvCRiO
- Qf0tHnaJFcFnDgZo+N4+GoB9CHBuA1dGH1YJHurHPb/FdGNK4SZDgzpPgIkQEER/PJpHuklUEfuVU
- TZ4vu4WuehT9KFcinvvSBBjOwNrKLGCi1YH03M67Z83R5uHxfsRpHI+PdwcRfaacaQFf12V+0ZE8n
- I3qPBou/vKWFWfA/3xcLEG1Z6tuxx1YuuOeRjiSEMyvncRRdi0mHR+/aZkLf8M1yCTvd5z+PTdk8Q
- tFKDi0iw==;
+ bh=X2/UsaO4RYSFlPo3ZzKYgAvIF17h4gPJiqwCIVCVjKw=; b=DdruRX5UnI8hsHAUbbh3SAnLds
+ U5tonQnuW7mgAkztmnXD/Crbgx7rVEdKOoT4F7fhcVRFd8WmHC8ZWRZ+O6o/cX53X9C69WWr3N3zY
+ jsPDtKzbBxp+Q/0WV/giDySGCB2FFE+kDlcFSLXamj0FfGUN2l93bbrkIixhjrUwtfjuFYGVEy/p+
+ dz7LaylwO785+u5Btmw3QYgaS/49PgM/tTcvaOHcdLW/W3LEbKoXm+2GkP5aDFWtWqZGhxxtw772Q
+ AS1W0lK/WkBWe8FxzyR2+od1EnkJN/7YdGXZky6TNqf5SAT8rlSVkQkbdhX5ha33hq88Bm6TZLRZ0
+ hmsLu/EA==;
 Received: from d162-157-58-14.abhsia.telus.net ([162.157.58.14]
  helo=maloca.lan) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1u6zTN-006CMY-7J; Tue, 22 Apr 2025 00:18:41 +0200
+ id 1u6zTO-006CMY-PB; Tue, 22 Apr 2025 00:18:43 +0200
 From: Rodrigo Siqueira <siqueira@igalia.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
  Mario Limonciello <mario.limonciello@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH v3 6/9] drm/amdgpu/gfx: Use CSB helpers in
- gfx_v7_0_get_csb_buffer
-Date: Mon, 21 Apr 2025 16:12:23 -0600
-Message-ID: <20250421221616.387927-7-siqueira@igalia.com>
+Subject: [PATCH v3 7/9] drm/amdgpu/gfx: Fix gfx_v7_0_get_csb_buffer to use
+ rb_config
+Date: Mon, 21 Apr 2025 16:12:24 -0600
+Message-ID: <20250421221616.387927-8-siqueira@igalia.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250421221616.387927-1-siqueira@igalia.com>
 References: <20250421221616.387927-1-siqueira@igalia.com>
@@ -61,67 +61,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use CSB helpers to remove code duplication from gfx_v7_0_get_csb_buffer.
+Instead of having the hardcoded values for the CSB buffer in
+gfx_v7_0_get_csb_buffer, use the values calculated in previous steps by
+accessing raster_config and raster_config_1.
 
 Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c | 30 ++++-----------------------
- 1 file changed, 4 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c | 25 ++-----------------------
+ 1 file changed, 2 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-index 0fdc4362bbc0..16b94ff5a959 100644
+index 16b94ff5a959..da0534ff1271 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-@@ -3885,33 +3885,15 @@ static u32 gfx_v7_0_get_csb_size(struct amdgpu_device *adev)
- static void gfx_v7_0_get_csb_buffer(struct amdgpu_device *adev,
- 				    volatile u32 *buffer)
- {
--	u32 count = 0, i;
--	const struct cs_section_def *sect = NULL;
--	const struct cs_extent_def *ext = NULL;
-+	u32 count = 0;
- 
- 	if (adev->gfx.rlc.cs_data == NULL)
- 		return;
- 	if (buffer == NULL)
- 		return;
- 
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_PREAMBLE_CNTL, 0));
--	buffer[count++] = cpu_to_le32(PACKET3_PREAMBLE_BEGIN_CLEAR_STATE);
--
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_CONTEXT_CONTROL, 1));
--	buffer[count++] = cpu_to_le32(0x80000000);
--	buffer[count++] = cpu_to_le32(0x80000000);
--
--	for (sect = adev->gfx.rlc.cs_data; sect->section != NULL; ++sect) {
--		for (ext = sect->section; ext->extent != NULL; ++ext) {
--			if (sect->id == SECT_CONTEXT) {
--				buffer[count++] =
--					cpu_to_le32(PACKET3(PACKET3_SET_CONTEXT_REG, ext->reg_count));
--				buffer[count++] = cpu_to_le32(ext->reg_index - PACKET3_SET_CONTEXT_REG_START);
--				for (i = 0; i < ext->reg_count; i++)
--					buffer[count++] = cpu_to_le32(ext->extent[i]);
--			}
--		}
--	}
-+	count = amdgpu_gfx_csb_preamble_start(buffer);
-+	count = amdgpu_gfx_csb_data_parser(adev, buffer, count);
+@@ -3897,29 +3897,8 @@ static void gfx_v7_0_get_csb_buffer(struct amdgpu_device *adev,
  
  	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_SET_CONTEXT_REG, 2));
  	buffer[count++] = cpu_to_le32(mmPA_SC_RASTER_CONFIG - PACKET3_SET_CONTEXT_REG_START);
-@@ -3939,11 +3921,7 @@ static void gfx_v7_0_get_csb_buffer(struct amdgpu_device *adev,
- 		break;
- 	}
+-	switch (adev->asic_type) {
+-	case CHIP_BONAIRE:
+-		buffer[count++] = cpu_to_le32(0x16000012);
+-		buffer[count++] = cpu_to_le32(0x00000000);
+-		break;
+-	case CHIP_KAVERI:
+-		buffer[count++] = cpu_to_le32(0x00000000); /* XXX */
+-		buffer[count++] = cpu_to_le32(0x00000000);
+-		break;
+-	case CHIP_KABINI:
+-	case CHIP_MULLINS:
+-		buffer[count++] = cpu_to_le32(0x00000000); /* XXX */
+-		buffer[count++] = cpu_to_le32(0x00000000);
+-		break;
+-	case CHIP_HAWAII:
+-		buffer[count++] = cpu_to_le32(0x3a00161a);
+-		buffer[count++] = cpu_to_le32(0x0000002e);
+-		break;
+-	default:
+-		buffer[count++] = cpu_to_le32(0x00000000);
+-		buffer[count++] = cpu_to_le32(0x00000000);
+-		break;
+-	}
++	buffer[count++] = cpu_to_le32(adev->gfx.config.rb_config[0][0].raster_config);
++	buffer[count++] = cpu_to_le32(adev->gfx.config.rb_config[0][0].raster_config_1);
  
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_PREAMBLE_CNTL, 0));
--	buffer[count++] = cpu_to_le32(PACKET3_PREAMBLE_END_CLEAR_STATE);
--
--	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_CLEAR_STATE, 0));
--	buffer[count++] = cpu_to_le32(0);
-+	amdgpu_gfx_csb_preamble_end(buffer, count);
+ 	amdgpu_gfx_csb_preamble_end(buffer, count);
  }
- 
- static void gfx_v7_0_init_pg(struct amdgpu_device *adev)
 -- 
 2.49.0
 
