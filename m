@@ -2,70 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A40CA97DD1
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Apr 2025 06:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ADFBA98138
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Apr 2025 09:38:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 858B710E1BC;
-	Wed, 23 Apr 2025 04:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6778010E40F;
+	Wed, 23 Apr 2025 07:38:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YCmv3kB5";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="AKy0i+eQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D64610E3FD
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Apr 2025 04:34:15 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id E95066135E
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Apr 2025 04:33:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C283CC4CEE2
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Apr 2025 04:34:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1745382851;
- bh=ea7Q8NiEYH4CSiqy2JXvGKxiGUwys7CQHgeXQ7Kq7kg=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=YCmv3kB5xkOAenSn5ZaJIvQbxmpdoS+GgctOcEnM0cAOOlQvH/CIorPqKDqjPCq/I
- vlFmBnhq5VFO8Y5bPHhSt834Lx3a9FPmDZiZqgD1yMlwYsgWnWfLtztqOL0AxVXHr4
- /Ot1/fbaHVT3WpNokIbQXN2iLVr2fr1hoilXf9UhDDaUV5Re2fTPzKB9nhs+te9634
- Ysl4ueieq/Cv8DV09+eDCvxfMKsCA+lbJMQci2Y1RU/LPL+WMz4VUwWMGhO3wn7jpL
- g9qFpX3ksEji6YgYgQMUc5awJpgeo1A2+gSRghpRnRcVeymSqapQGKGiaM0nBpEUW1
- NysA6yHgg0XUg==
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-ac7bd86f637so101272466b.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Apr 2025 21:34:11 -0700 (PDT)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B04BA10E1D4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Apr 2025 05:38:52 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-43cfdc2c8c9so33354725e9.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Apr 2025 22:38:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1745386730; x=1745991530; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=MeGAt7xRvc//bByV4JLU0wax0Kl1QxwZERbFWrDsKGU=;
+ b=AKy0i+eQkGdeS2vtn1rSSisyPd4Mj+3pGIAqJ4alzs40l/K0pDypzNn5xPTMtXdsv6
+ 2KqhdE4dKsQ/KYwh524rircn+94Obczttl+2tS+N6M9HIEP6YIzIyFHOzPRhV06WtJhg
+ VbVEfxfeRTPIQswfsjcPLUaT7bN3apwcZSn5QdqbGIvOYFWwhGe1vDkffaAAfaxR4PFt
+ PUXO6E+emi5VakVZxL9ijt2wuqX4jby8ihUakJwFSqrbYBu/VIBymNgr8MFoQcBwUWzG
+ NjRKp0K8iE5JNKnavuYKpZSDvSKqI9FVm9qjCD8iZvEoSqYkokeQpK71qK6XEy6D6IAp
+ kdFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745386730; x=1745991530;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=MeGAt7xRvc//bByV4JLU0wax0Kl1QxwZERbFWrDsKGU=;
+ b=XFRd0Eh1exOaj78PJxC5tQBlzSvcVRRIKqmx7fztITHq56c1A/GRmuw+IlOVLIN2Dc
+ o7p1o/eZaxZLjr3KyOxzyzUTfeMG7Z+loaYpIRwphDuMYghNRTPGG3UBdjgCLacl8EYo
+ YMw3E2zPBj1OfLqN2+5BtElY2r8ijnGh6wPdOH4y//h1tO6RxmobpH5uSjdfEvJ70X/K
+ gjjp/eWtgcEpQs8cuVrY5WxYjVUEC1PngQqoCTgl1zGz8/ZL/AIG321n/BnqVfpvM7cO
+ 1PKriS5u81JB3MCrMwGgSrRGJVh0fT2D8eDpsYJXh9PNR5mjthfHWT9DCDLzoHMQT0uH
+ I/0g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXf57UEgVvYXu3WVtAoA4ys7t52FhOoi8be2JW+bYHZr4xlziOgJ39998n7kiv8fkU8HEDwOHB3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxHnTYE8sQT3+lQCzsbjynC01BjWqP9YhSm8D8yvLqgr8KWA17L
- 71ZeiFkbWIAuVl0gEJCGylyT/CZE4/V1tnvE9xLq+88EadCNFScXRyjNpn+frSitP4mqfNIi6jL
- F05nvsWpcRM8kOM6rsUmuLkTMFfA=
-X-Google-Smtp-Source: AGHT+IFP4BO5RnwBWtl5S3CIgtOYoe7UWVUS2BO3LLQMxBut432oihK8I+i+Cx67b/gLSDLFoL4uIwA2mE4tKQhesvM=
-X-Received: by 2002:a17:907:3e10:b0:ac6:e29b:8503 with SMTP id
- a640c23a62f3a-ace3f255374mr106670466b.1.1745382850396; Tue, 22 Apr 2025
- 21:34:10 -0700 (PDT)
+ AJvYcCX3phw9CiIgwe8a2+KiTZAb3cQzqHtzuiLFYcNtN6+rDr5x08ipAp6b1wcZn5gkzjC34c/rvU/k@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxi/E5yy543dpkVgH4tQVW+wwhWWfg3m33yXHAH5ATciSohEdGk
+ fj99g6CFgrxbQVH7EInsJyTxS94fV7H+J8tl+qOTkhM0ZoLaHNRVn5dnGmSZmeI=
+X-Gm-Gg: ASbGnctOFBoHDUvWS9vwD/H9eLP4OdPrtNjUbD63F/UnqwzJPSsD2bGzd4iCyWEhy36
+ xBj7kEV7dtrg+W1hk15/p9QMNFJ0CB9b4vnQREH9+5tEWg4EFeZzzegkylBPAEhQPmSs4qNo5Q/
+ dPTYUg3D6Gs1GrpVXftYm90GunTR9B5HR4V62B7EMJYDyyw+L6KazizyxXpFU5DvkA/oFm0byw3
+ hjw1s8WJ9f7ZLVbFFWfEAkPcWC18c5Ed3GSEeapKrIEOQLrh6GrVfOl6lrxbhKONUsf7TX2S/oZ
+ KufceHWrGiTw7bHs2tqVRHz2CsROQcc12bmMyiyB/CD5bQ==
+X-Google-Smtp-Source: AGHT+IH+JvzhiiuPxp21fXThiXa4KKOQdZUrXylVOtl86V8GVkFQMLpklekA4Wo6RfFX01DamvuYdg==
+X-Received: by 2002:a05:600c:3d19:b0:440:68db:a045 with SMTP id
+ 5b1f17b1804b1-4406abff89emr146908795e9.26.1745386730581; 
+ Tue, 22 Apr 2025 22:38:50 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 5b1f17b1804b1-44092d214acsm12361645e9.11.2025.04.22.22.38.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Apr 2025 22:38:49 -0700 (PDT)
+Date: Tue, 22 Apr 2025 17:15:02 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/amdgpu: Add NULL check for 'bo_va' in
+ update_bo_mapping v2
+Message-ID: <306b6484-41a2-4ce0-88f5-a009c893de5d@stanley.mountain>
+References: <20250411150052.3321230-1-srinivasan.shanmugam@amd.com>
+ <20250422131726.3873364-1-srinivasan.shanmugam@amd.com>
+ <7c581b1b-5174-4238-8a4f-1724e8977b45@amd.com>
 MIME-Version: 1.0
-References: <20250114132856.19463-1-yangtiezhu@loongson.cn>
- <ab7f1ba8-a49c-41a1-9b6f-ca142fbbe9d2@aosc.io>
-In-Reply-To: <ab7f1ba8-a49c-41a1-9b6f-ca142fbbe9d2@aosc.io>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Wed, 23 Apr 2025 12:33:59 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H7KNuG4hN1F3ctbTL+sz7bbATzKXe610Z9==ApnrX2WXw@mail.gmail.com>
-X-Gm-Features: ATxdqUETq2aKApc4tz68VOqLG_bJRT23Khu1nX2atO0OGoEA7vT3p4-N1ptaBoU
-Message-ID: <CAAhV-H7KNuG4hN1F3ctbTL+sz7bbATzKXe610Z9==ApnrX2WXw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] drm/amd/display: Stop control flow if the divisior
- is zero
-To: Mingcong Bai <jeffbai@aosc.io>
-Cc: Tiezhu Yang <yangtiezhu@loongson.cn>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Huacai Chen <chenhuacai@loongson.cn>, 
- Nathan Chancellor <nathan@kernel.org>, Josh Poimboeuf <jpoimboe@kernel.org>, 
- Peter Zijlstra <peterz@infradead.org>, loongarch@lists.linux.dev, 
- amd-gfx@lists.freedesktop.org, llvm@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Kexy Biscuit <kexybiscuit@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7c581b1b-5174-4238-8a4f-1724e8977b45@amd.com>
+X-Mailman-Approved-At: Wed, 23 Apr 2025 07:38:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,50 +92,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 23, 2025 at 11:48=E2=80=AFAM Mingcong Bai <jeffbai@aosc.io> wro=
-te:
->
-> Hi all,
->
-> =E5=9C=A8 2025/1/14 21:28, Tiezhu Yang =E5=86=99=E9=81=93:
-> > As far as I can tell, with the current existing macro definitions, ther=
-e
-> > is no better way to do the minimal and proper changes to stop the contr=
-ol
-> > flow if the divisior is zero.
+On Tue, Apr 22, 2025 at 03:34:58PM +0200, Christian König wrote:
+> Am 22.04.25 um 15:17 schrieb Srinivasan Shanmugam:
+> > This change adds a check to ensure that 'bo_va' is not null before
+> > dereferencing it. If 'bo_va' is null, the function returns early,
+> > preventing any potential crashes or undefined behavior
+> 
+> That commit message doesn't reflect the changes any more.
+> 
 > >
-> > In order to keep the current ability for the aim of debugging and avoid
-> > printing the warning message twice, it is better to only use ASSERT_BUG=
-()
-> > and SPL_ASSERT_BUG() directly after doing the following two steps:
+> > Fixes the below:
+> > 	drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c:139 amdgpu_gem_update_bo_mapping()
+> > 	error: we previously assumed 'bo_va' could be null (see line 124)
 > >
-> > (1) Add ASSERT_BUG() macro definition
-> > (2) Add SPL_ASSERT_BUG() macro definition
+> > drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> >     115 static void
+> >     116 amdgpu_gem_update_bo_mapping(struct drm_file *filp,
+> >     117                              struct amdgpu_bo_va *bo_va,
+> >     118                              uint32_t operation,
+> >     119                              uint64_t point,
+> >     120                              struct dma_fence *fence,
+> >     121                              struct drm_syncobj *syncobj,
+> >     122                              struct dma_fence_chain *chain)
+> >     123 {
+> >     124         struct amdgpu_bo *bo = bo_va ? bo_va->base.bo : NULL;
+> >                                   ^^^^^^^^^^ If bo_va is NULL then bo is also NULL
 > >
-> > This version is based on 6.13-rc7, tested on x86 and LoongArch.
+> > 	...
+> >     135         case AMDGPU_VA_OP_REPLACE:
+> >     136                 if (bo && (bo->tbo.base.resv == vm->root.bo->tbo.base.resv))
+> >                             ^^
 > >
-> > Tiezhu Yang (3):
-> >    drm/amd/display: Add ASSERT_BUG() macro definition
-> >    drm/amd/display: Add SPL_ASSERT_BUG() macro definition
-> >    drm/amd/display: Harden callers of division functions
+> >     137                         last_update = vm->last_update;
+> >     138                 else
+> > --> 139                         last_update = bo_va->last_pt_update;
+> >                                               ^^^^^ This pointer is dereferenced without being checked.
 > >
-> >   drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c  |  2 +-
-> >   drivers/gpu/drm/amd/display/dc/os_types.h           |  7 +++++++
-> >   drivers/gpu/drm/amd/display/dc/spl/spl_debug.h      | 11 +++++++++++
-> >   drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c |  2 +-
-> >   4 files changed, 20 insertions(+), 2 deletions(-)
-> >
->
-> Gentle ping on this series...
->
-> Harry and Huacai, can you please take a look at this updated series
-> (since you have both provided comments on previous revisions?), thank you=
-!
-I have already given my R-b.
+> >     140                 break;
+> 
+> Please completely drop that. This conclusion is actually incorrect.
+> 
+> BO might be NULL here because bo_va->base.bo is NULL and *not* because bo_va is NULL.
+> 
+> @Dan your script seems to reports false positives here.
+> 
 
-Huacai
+I mean my analysis was only based on only looking at the function itself
+without looking at the caller.
 
->
-> Best Regards,
-> Mingcong Bai
->
+It turns out that it's a false positve because "bo_va" is only NULL when
+the operation is AMDGPU_VA_OP_CLEAR.  You need to look at the caller and
+also where fpriv->prt_va is set in amdgpu_driver_open_kms().  It's a bit
+too complicated for Smatch to do this level of analysis.
+
+Anyway, yes, please don't silence static checker false positives, just
+ignore them.
+
+regards,
+dan carpenter
+
