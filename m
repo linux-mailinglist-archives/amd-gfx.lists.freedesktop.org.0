@@ -2,59 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F45A960C7
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Apr 2025 10:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E08EA960C8
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Apr 2025 10:15:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7452D10E53C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A9EC10E53E;
 	Tue, 22 Apr 2025 08:15:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=nppct.ru header.i=@nppct.ru header.b="Dij3bC6l";
-	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.nppct.ru (mail.nppct.ru [195.133.245.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6BEC10E27A
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Apr 2025 15:09:35 +0000 (UTC)
-Received: from mail.nppct.ru (localhost [127.0.0.1])
- by mail.nppct.ru (Postfix) with ESMTP id BAB081C0E83
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Apr 2025 18:09:32 +0300 (MSK)
-Authentication-Results: mail.nppct.ru (amavisd-new); dkim=pass (1024-bit key)
- reason="pass (just generated,
- assumed good)" header.d=nppct.ru
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nppct.ru; h=
- content-transfer-encoding:mime-version:x-mailer:message-id:date
- :date:subject:subject:to:from:from; s=dkim; t=1745248167; x=
- 1746112168; bh=Mxlmt4OMFp+4CmM5qiqrCkALSFahEOttbOImrEbkWRQ=; b=D
- ij3bC6lGnm6Q3iujMwVbFqCxRts3jzWT0mOGpdPt+L2bfm0AG2hq7YiFU7oInpso
- MpI09cfrTU4wOZGXEnvXscAJP9g8s47MwybKO8m2Kh+niewmrleNMNF/0U0PM/p5
- 7Q49UxdlLkRq+2iPEIjkzedEIo2ERzmq+4yt+wV+r0=
-X-Virus-Scanned: Debian amavisd-new at mail.nppct.ru
-Received: from mail.nppct.ru ([127.0.0.1])
- by mail.nppct.ru (mail.nppct.ru [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id VI1IE6elNR1x for <amd-gfx@lists.freedesktop.org>;
- Mon, 21 Apr 2025 18:09:27 +0300 (MSK)
-Received: from localhost.localdomain (unknown [87.249.24.51])
- by mail.nppct.ru (Postfix) with ESMTPSA id D4DA01C08C3;
- Mon, 21 Apr 2025 18:09:11 +0300 (MSK)
-From: Alexey Nepomnyashih <sdl@nppct.ru>
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: Alexey Nepomnyashih <sdl@nppct.ru>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Sasha Levin <sashal@kernel.org>,
- Lijo Lazar <lijo.lazar@amd.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Friedrich Vock <friedrich.vock@gmx.de>, Victor Zhao <Victor.Zhao@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org,
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1FA810E152;
+ Tue, 22 Apr 2025 02:18:31 +0000 (UTC)
+Received: from localhost.localdomain (unknown [124.16.141.245])
+ by APP-01 (Coremail) with SMTP id qwCowABH7f1u_AZo5+MACw--.9989S2;
+ Tue, 22 Apr 2025 10:18:22 +0800 (CST)
+From: Wentao Liang <vulab@iscas.ac.cn>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, simona@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
  stable@vger.kernel.org
-Subject: [PATCH] drm/amdgpu: restrict the hw sched jobs upper bound
-Date: Mon, 21 Apr 2025 15:09:03 +0000
-Message-ID: <20250421150905.732842-1-sdl@nppct.ru>
-X-Mailer: git-send-email 2.43.0
+Subject: [PATCH RESEND] drm/amd/display: Add dp_decide_lane_settings() to
+ ensure compatibility
+Date: Tue, 22 Apr 2025 10:17:58 +0800
+Message-ID: <20250422021758.1963-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.42.0.windows.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qwCowABH7f1u_AZo5+MACw--.9989S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kr4UGr1DuryxWr4UAr1xGrg_yoW8ur4Dpa
+ 18KFyDJF1UtrW0qa98tF1I9rW5Wa18C3y7Ar9rGasYyry5AF1Ik3y5Cr9Fkr9rGFWkA3yY
+ q3W8Ca1Duwn0kFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9E14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+ JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+ CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+ 2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+ W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+ Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFylc2xSY4AK67AK6r4UMxAIw28IcxkI7VAKI4
+ 8JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xv
+ wVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjx
+ v20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20E
+ Y4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267
+ AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbKhF3UUUUU==
+X-Originating-IP: [124.16.141.245]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAcAA2gG6ExYQgAAsY
 X-Mailman-Approved-At: Tue, 22 Apr 2025 08:15:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,43 +63,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The amdgpu_sched_hw_submission parameter controls the number of hardware
-jobs that can be scheduled concurrently per ring. This value is later
-multiplied by ring->max_dw to compute buffer offsets or command patch
-regions.
+The dp_perform_128b_132b_channel_eq_done_sequence() calls
+dp_get_lane_status_and_lane_adjust() but lacks dp_decide_lane_settings().
+The dp_get_lane_status_and_lane_adjust() and dp_decide_lane_settings()
+functions are essential for DisplayPort link training in the Linux kernel,
+with the former retrieving lane status and adjustment needs, and the
+latter determining optimal lane configurations. This omission risks
+compatibility issues, particularly with lower-quality cables or displays,
+as the system cannot dynamically adjust to hardware limitations,
+potentially leading to failed connections. Add dp_decide_lane_settings()
+to enable adaptive lane configuration.
 
-If amdgpu_sched_hw_submission is set too high (by user input via module
-parameter), the multiplication can overflow, resulting in corrupted memory
-offsets or ring buffer overflows.
-
-Clamp amdgpu_sched_hw_submission to a practical upper bound (e.g. 2^16)
-to prevent arithmetic overflow when computing ring buffer offsets during
-initialization, especially in jpeg_v1_0_start().
-
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
-
-Cc: stable@vger.kernel.org # v5.9+
-Fixes: 5d5bd5e32e6e ("drm/amdgpu: restrict the hw sched jobs number to power of two")
-Signed-off-by: Alexey Nepomnyashih <sdl@nppct.ru>
+Fixes: 630168a97314 ("drm/amd/display: move dp link training logic to link_dp_training")
+Cc: stable@vger.kernel.org # 6.3+
+Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../amd/display/dc/link/protocols/link_dp_training_128b_132b.c  | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 018dfccd771b..69217a021b0e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2056,6 +2056,10 @@ static int amdgpu_device_check_arguments(struct amdgpu_device *adev)
- 		dev_warn(adev->dev, "sched hw submission jobs (%d) must be at least 2\n",
- 			 amdgpu_sched_hw_submission);
- 		amdgpu_sched_hw_submission = 2;
-+	} else if (amdgpu_sched_hw_submission > 65536) {
-+		dev_warn(adev->dev, "sched hw submission jobs (%d) is too large\n",
-+			 amdgpu_sched_hw_submission);
-+		amdgpu_sched_hw_submission = 65536;
- 	} else if (!is_power_of_2(amdgpu_sched_hw_submission)) {
- 		dev_warn(adev->dev, "sched hw submission jobs (%d) must be a power of 2\n",
- 			 amdgpu_sched_hw_submission);
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_128b_132b.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_128b_132b.c
+index db87cfe37b5c..99aae3e43106 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_128b_132b.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_128b_132b.c
+@@ -176,6 +176,8 @@ static enum link_training_result dp_perform_128b_132b_cds_done_sequence(
+ 		wait_time += lt_settings->cds_pattern_time;
+ 		status = dp_get_lane_status_and_lane_adjust(link, lt_settings, dpcd_lane_status,
+ 						&dpcd_lane_status_updated, dpcd_lane_adjust, DPRX);
++		dp_decide_lane_settings(lt_settings, dpcd_lane_adjust,
++				lt_settings->hw_lane_settings, lt_settings->dpcd_lane_settings);
+ 		if (status != DC_OK) {
+ 			result = LINK_TRAINING_ABORT;
+ 		} else if (dp_is_symbol_locked(lt_settings->link_settings.lane_count, dpcd_lane_status) &&
 -- 
-2.43.0
+2.42.0.windows.2
 
