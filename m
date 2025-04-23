@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6452FA9A44F
-	for <lists+amd-gfx@lfdr.de>; Thu, 24 Apr 2025 09:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 697FEA9A451
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Apr 2025 09:40:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B79C110E757;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B761310E753;
 	Thu, 24 Apr 2025 07:40:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="AZnl93BP";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="aRd4ptTT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7591010E6E0
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Apr 2025 15:30:41 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B24CC10E6D8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Apr 2025 15:10:57 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id B95F843770;
- Wed, 23 Apr 2025 15:30:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92DE4C4CEE8;
- Wed, 23 Apr 2025 15:30:40 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 06BB35C5F88;
+ Wed, 23 Apr 2025 15:08:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 717B0C4CEE2;
+ Wed, 23 Apr 2025 15:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1745422240;
- bh=aAIu2FxSlWJ9K6jSn7AhiUCrmZVG2wSv6DaO3Y+Rqkk=;
+ s=korg; t=1745421046;
+ bh=jQls2b7GK1yBlkkRMHVaauZJzBOaegY+AeYLXQwlMaM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=AZnl93BPaDXpVwtwlSbfU36ngqEnMWCMtnufvoUeITQdyr4GG1z9KdLh2DY5G86KD
- hxobVCp4bjC6p2zofdGKPbntYtyxu4fUB1X7xNnmbq37tQOHoAY/rF6XoBg7y88M1v
- kfG45M63Gi7qB9kRM6pqKNLloUce7HXl7Pepbzoo=
+ b=aRd4ptTTI+vW89Ip4EfbgSQr47shfcwcs8eiEtxSloII5nnRaLyuKvvdksRsmKbkn
+ RRCUzy7DrOuA+9MGuLSp7OzBalc7Xpdtw6LkHS39T0Fq/HJ32+AgrTaNuTvT/Z4tVr
+ OcWwph1bohhZ+NHOyQmSpqBMcPyLEAhRS5ABZAmg=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
  Matthew Auld <matthew.auld@intel.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 6.1 240/291] drm/amdgpu/dma_buf: fix page_link check
-Date: Wed, 23 Apr 2025 16:43:49 +0200
-Message-ID: <20250423142634.219917441@linuxfoundation.org>
+Subject: [PATCH 6.12 170/223] drm/amdgpu/dma_buf: fix page_link check
+Date: Wed, 23 Apr 2025 16:44:02 +0200
+Message-ID: <20250423142624.088310148@linuxfoundation.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250423142624.409452181@linuxfoundation.org>
-References: <20250423142624.409452181@linuxfoundation.org>
+In-Reply-To: <20250423142617.120834124@linuxfoundation.org>
+References: <20250423142617.120834124@linuxfoundation.org>
 User-Agent: quilt/0.68
 X-stable: review
 X-Patchwork-Hint: ignore
@@ -60,7 +60,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-6.1-stable review patch.  If anyone has any objections, please let me know.
+6.12-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
@@ -87,7 +87,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-@@ -210,7 +210,7 @@ static void amdgpu_dma_buf_unmap(struct
+@@ -181,7 +181,7 @@ static void amdgpu_dma_buf_unmap(struct
  				 struct sg_table *sgt,
  				 enum dma_data_direction dir)
  {
