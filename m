@@ -2,147 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47575A9A0C2
-	for <lists+amd-gfx@lfdr.de>; Thu, 24 Apr 2025 07:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA531A9A44D
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Apr 2025 09:40:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC67A10E724;
-	Thu, 24 Apr 2025 05:59:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8947110E758;
+	Thu, 24 Apr 2025 07:40:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="MuwUjJ4R";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="QUDOt+ei";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2078.outbound.protection.outlook.com [40.107.243.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE3C10E724
- for <amd-gfx@lists.freedesktop.org>; Thu, 24 Apr 2025 05:59:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v9+Jp2Xlvh0O6zR600J/ladidOIOtyXnTuQ2fwv7BZHpzK33OAY4NOwKxIZjeHrl/WLnygOQOSZV7hkdI7b1jqmaByzJWc1R2XyVfBe/S448ufZ5EuUTvuWdZ5hBb4xdP8auMRWOX9Df3sEiUrwt+ct0Gndv+9qt9i1NlsQ/7Hu6v+NWJ27ytxXbU4kO/SyYjftN0Lwyuo0QB9K+5qZvYMh0Y5UiRMaaQJJskJpzqSKW2naLcGQhdbqruZ+DViSF6Ph3PvfyOH4CaBhq0DoeL5DeIm0UPXQ/vA+mPPtNqT02QAhKZCJ4TaT6auq5sTE93vALvrXKAMOgpcV49E5WQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aX1SIcripqz3G3ow1w6GBn8s3Vpr10DJsz/47vniSeE=;
- b=zNyCR4E7T9zX9XZRFdOaAp2c8+hsQXOLOGOrbWUP1v5SPsuiWTiIj/xD8Ia7LgsuL6F0RSPJkfnlyd6Z2TPNN7uwj6CZBeloEhq4PTLJ+fdO8KEZCaa7FA62uK7PTUt4UJ7AfA+Mwm1wULUhRW2xkQ5G+j3sNpSw2wSrB3LSKUVI/iemikYYVrCHCffB/5S80Ru97jY3BsShHuYe4MrP2JynU+5Pzu6XgCv1NeOSXk9Dv2S965GUePq9wDssCVykP4UtkFa5qQwkabfrTZ8StusCAlLy/AtaIwu3T6fLrLyBL0vgxps5K8ophefRYeBY0nqApoZCBhMla3xbgiYw5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aX1SIcripqz3G3ow1w6GBn8s3Vpr10DJsz/47vniSeE=;
- b=MuwUjJ4RY+62EZ/gMjUEbLalNiWiobOmUE+mVFKbBQ/4eOUgU/veQaf8tG8jVjLZTtrpi+gtV8pIqnAPGnPF0aFhWPRhBPofIyNU//hnzUSZFJq+T2L6nGMGKh1+D0UWAznDkeoDCQQDE1CBjuKteTOBJ/4KrLWpP0QYvmJUdaw=
-Received: from DM4PR12MB5261.namprd12.prod.outlook.com (2603:10b6:5:398::22)
- by DS7PR12MB9550.namprd12.prod.outlook.com (2603:10b6:8:24e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.27; Thu, 24 Apr
- 2025 05:59:49 +0000
-Received: from DM4PR12MB5261.namprd12.prod.outlook.com
- ([fe80::e175:f839:8e2e:2885]) by DM4PR12MB5261.namprd12.prod.outlook.com
- ([fe80::e175:f839:8e2e:2885%5]) with mapi id 15.20.8678.021; Thu, 24 Apr 2025
- 05:59:49 +0000
-From: "Xiao, Shane" <shane.xiao@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>, "Yang, Philip" <Philip.Yang@amd.com>
-Subject: RE: [PATCH] amd/amdkfd: Trigger segfault for early userptr unmmapping
-Thread-Topic: [PATCH] amd/amdkfd: Trigger segfault for early userptr unmmapping
-Thread-Index: AQHbtDU6F4iFaGa3cEuCFM4kP0SL3rOxMTmAgAEhhOA=
-Date: Thu, 24 Apr 2025 05:59:49 +0000
-Message-ID: <DM4PR12MB52615EE9E9D0B99EDDDDD9859D852@DM4PR12MB5261.namprd12.prod.outlook.com>
-References: <20250423095036.1413882-1-shane.xiao@amd.com>
- <991a1499-69be-494d-bff7-810134a8bbcd@amd.com>
-In-Reply-To: <991a1499-69be-494d-bff7-810134a8bbcd@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ActionId=abda426e-bd61-46e8-a118-65f17d87388f;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=0;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=true;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open Source;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-04-24T05:57:14Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Tag=10, 0, 1, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR12MB5261:EE_|DS7PR12MB9550:EE_
-x-ms-office365-filtering-correlation-id: cc1bdc30-837c-4805-c527-08dd82f53948
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?jY8TodPGBF+g0ha2VYwezz0737eOCZoAppKkBjhys1BLm0+m7D/nhZLlwJAu?=
- =?us-ascii?Q?mWv+bWuStMBPMHT7hVhLwfBxJbd7WyAp1eYd6THKoRoVdPuuqOPWSWQkB7Iw?=
- =?us-ascii?Q?BwqUkSW48IUzjD0L/QCgipum+8vdrForXj/UH91Ck/hyTuivTI4tMzO5p8yB?=
- =?us-ascii?Q?3H/jgT8ApH8qhe6rkdCIvcGT+NlCtNEvKLmEKzsMwLRRQcvxFdLWyyQYwCxJ?=
- =?us-ascii?Q?8Ipe/rPkZ/p9gCxn8u7aZDWhUOH/00MV5aSeOxNZ7lfaK9CvGvvbq40N7kBu?=
- =?us-ascii?Q?ZT8kGLOpWPScvhyrF56EYqGk6DBlMdMcbalk6FObeIWwv9MIWbH2CBWOohRJ?=
- =?us-ascii?Q?vzpiBkSRLjWq5m0T7yV+LZAGdvEurhLzIYY+1kBfzqtBHrPN9wHMxlGvfnwi?=
- =?us-ascii?Q?7i2rmf0ZigFROIpOk3dcKoQOTDkbu7J//nQiZvWVrb0jciZtQqsmaeJ8uTp9?=
- =?us-ascii?Q?41aGNXAKYHcWtaY3h+Z+FTw9l+OlgaMGQQijsKD+fM5RibOgPAq10I4eIQiz?=
- =?us-ascii?Q?S9UWtyg2BvpiJrKogDdUh53BpK/MjvodXERb0aRwqey3wvlNCwr/Y5t17iRh?=
- =?us-ascii?Q?d3+Kz7+g77Xlp5XVzNwsrBWy/q7LOMDQ8ZUYgPUpdBqLnTl9/H9p+PEaMwTo?=
- =?us-ascii?Q?y9kAEcFc5qA3zdesUTIBXSjz1ZbKluhWfnlGLG5sEhWj2T1cONrTjLssZC4s?=
- =?us-ascii?Q?CqafyBQWbA+BxRM1e6oJ7kzDeDg3Iny4pVkBIMgX4nqtfYQ5HjscPGa82jBf?=
- =?us-ascii?Q?J6szSlpv9Gja1CbWoNUS/GVZC9FRCCnLpn21MB06oMSB+YRgqjllxfTn42+3?=
- =?us-ascii?Q?6FSXfSf/e6X0PaTLBd5ovo/HoZTleMA+6tZ0G/KPqbgCn5j4xJPyLxkgBOiH?=
- =?us-ascii?Q?wvclPQAsQfk7v/Uhki1EBS76YfBST2pzmHn1YyzHeSf8Jf/5w/rZ7R6qTqYq?=
- =?us-ascii?Q?oQKTp2wyrFSmgIhjryMd+aIvkG9fa3o2VflO/Xk+WFQokqZzL9tn5MdgYBRM?=
- =?us-ascii?Q?OIQm0SgoUIu3ESKzFFYiD4igrWha2QXL6qKEiCeukW81N3rUneDI0QizKT9I?=
- =?us-ascii?Q?VZx+eao9AYa4VXAlksc1EFIhW8f3pYsbc7XXX5Bg6yaAj4v8fNEUmc6XX3yD?=
- =?us-ascii?Q?h9pv3Y9vQBxU++bT4Jn52/1bZVmr9AbtpNJ6BYmE5B+tS/GhgmlBb3ycSlPg?=
- =?us-ascii?Q?npR3hvmLVRkBj+ktVd7rw9imFG5+0/f37ks5WeV+QREP+A2XrYrH+753rhSz?=
- =?us-ascii?Q?UHs6+cVoe5eyycD/iar0C5aWSIw6NsrjYNnwAdYAE5dUpHS8Z2KgIIaGcjgG?=
- =?us-ascii?Q?vUx9o2S2L0JWfV2wxIs2MbHtTm7TcnsptSllHMC8uEK0dv2a0eequyeGcbUz?=
- =?us-ascii?Q?dfc7Q1d5phWFNEVZ+z3H/lRMYPhCpP7ABzTe9AFidKFjmx5qIwf/GSMiaQcD?=
- =?us-ascii?Q?0B6puXYkSRQHftHLSlROo4vuejnI1kOZ4gnSWtDSnceBlGw+sS2NgVsNfCWh?=
- =?us-ascii?Q?3ef9lt4D3uHCM6w=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5261.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?CsOAyujJ+eWFy01SD8/7kknL0q2+8CRX+jht4U5dt03izi+VpjRoi9uQf0VU?=
- =?us-ascii?Q?OIH01sN7wxMrAVU3aRbPKriZ0US1mRvGPv4Z/fVhQh3FJXR3HlQA9MhLjYih?=
- =?us-ascii?Q?Bm7m7RFYFtgtmwD5Lyj/4j8ufVZq7gkRNaSiVo6g/MjenGgmbJPULNJOEaoq?=
- =?us-ascii?Q?kCqmaXfZkWaPlZSo+LbjfIXAdZUdOL33MDvw5KeXyoVyAEXNUCxN5rHkhnmB?=
- =?us-ascii?Q?cj6MOUAJJef9OBRNb16ZZPByJqePiOa+oKlR4LJ1tvbrhIoxLQ06ymJH8GZZ?=
- =?us-ascii?Q?NDA9n9w2WGXTAEDrgtA6KxtByBCJ0isZpD09O/ta06RIRSvOmIBtFSXLde0k?=
- =?us-ascii?Q?0T3lF2qB32ERzGv9G35bB3M29M3Tq65bz6/sMFm/OOchRWRJItBu9lUGIEKO?=
- =?us-ascii?Q?Ou/DRmgOyzqCbLTUzSWDwfAKhS3oivH1PjH1OgQKEXgfHleHmLUXdtTn6yiP?=
- =?us-ascii?Q?0YsdnwTw3yylbiNwNVYseRoUg3Ja5xP4Tmpvngpzy1q0+ZWo5aG9s3teCw8P?=
- =?us-ascii?Q?RhqU9qw1aJB81xfJ/QU8+FFK+h7YLsr8g0jyR5spYDOJp+ADMpDkWNQobdes?=
- =?us-ascii?Q?AP0fekx1oN49Z16dKc/LSApwPvWf+FHLImU7cbMytWcP6MmuYFgGf1CrNyzP?=
- =?us-ascii?Q?KY9u74oe2LnaVm70MRgGvNVy0yUUPXLA5Hx4mw7eIheF7XMCFyuRTm9gErDl?=
- =?us-ascii?Q?8xdDamuwurgV4N6s3Zyv1AMOFW/9FCe6D9D80FDEBXHe2vRPN9zmSs0evp9x?=
- =?us-ascii?Q?9j7AUAoSugLadydrxFf7izp6uh4MHPCkrNIeZaWkVFPLXnfmJbFFIS59dmwr?=
- =?us-ascii?Q?LXF78BLAlsAsBkt5gY0H+U8e2aIZqNGuwALKBAeq1zfbHVH6M/x10ygMTV/c?=
- =?us-ascii?Q?QH2Nl90/USyHAvLP1ZyqJAKiQWiyBN0IisV9SG4bp7UoE2pZK71oHkjPxyK+?=
- =?us-ascii?Q?8LmoUGcwsWwMX5eFiqx2PPgUb1tVxNLWyohzo72LsX5C3JoqZaivq68IpWSD?=
- =?us-ascii?Q?oLfiYwH5rGLln3mvfa7LMG2dholrdIbuhXWjn5tyEUWgiNoVnnT45Sx8yYgW?=
- =?us-ascii?Q?ieq+TtWbs5y9Hh73zU7QurvQJKNos1v4Ivz8CtPInT6PWXZXaawVFUYZ53kP?=
- =?us-ascii?Q?gLHj+ld4G6wFYxIBsLp/goCSS6Ql+MNVKGQVuQxEwpuuirtFCutMjnr7aGYI?=
- =?us-ascii?Q?tNSRI99Du/Me8vnH6XC+6+AfM6VREqk0d2dHEvrUn1hkra5NXQTxLkbAVy5q?=
- =?us-ascii?Q?bn6YgqRofqkM47LywPNCbSWVTw23sc3XzfqRP/FQcPvYUfiVeR9nIw/tVHj2?=
- =?us-ascii?Q?lSjw4X4EtuKOvsTMbE2cf6H+usZMWX/AXObU5hkCMdRTnneL0Af2pN8C+uU8?=
- =?us-ascii?Q?J8mjk9Ub6VLUQZ4iYqN+2ckhyfHCMedA945P3uSq2vaodP3MUco8to96AD9R?=
- =?us-ascii?Q?6F8VcfjeHtRxKrFD/dBTYqyeepwkCl1Ucfu+xV1XT4fzP0WM6UO8X2T2w545?=
- =?us-ascii?Q?5CNouJhhx4WzBFFx5COu5uat4GSJWED+Cf9jJj/+HIpIZWtm/rdQjyxJgfYV?=
- =?us-ascii?Q?FiFNNd8oCE5W03Ljsv4=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC66B10E113
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Apr 2025 08:18:14 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-3912fdddf8fso440127f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Apr 2025 01:18:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1745396293; x=1746001093; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=h+f18L9/GopeAqHiHGz5HvxuOZ5tazfX0IUqKJjBBrU=;
+ b=QUDOt+eia9Xom4FcOcexUS6kHLwZmF6QRpJbef1nZtxVsbI+FGmi7SmpfchQ8D69OX
+ HuFjTz5hAMJseZ7uSyenTzJPT024n33eJyXAJwgf/hdsSzS/CR1UNNYPdorNKFOAtfVP
+ 1QItKkhQ+DAAxhLuJYj9wuZLrlcoBYGQ7phHsnvZWfc50ctPm0TLgm86gRf3SHeV7pW5
+ urd7GB4dLtAQxANzjxGGV10ByIkvbf6CHaV1isxTKPE/S2APly8u7on78I3BIq6gYKM+
+ 0bxyrPvt/rBVC1Wi+OUbNnFqh1RRCSE2GlNewfYpD4z2wLsiiIJnePmWNWiApuBunc1w
+ fD6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745396293; x=1746001093;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=h+f18L9/GopeAqHiHGz5HvxuOZ5tazfX0IUqKJjBBrU=;
+ b=hSyox740P9DSIhUS8MRgcVnhfCukZDahuy2e4t9kyMLqwXlkYW01ShhEolu4zHZ7nK
+ ay1FqgLNHf0sdjzOzneW7UJQqRrSjZLT8FoPE4Oh2ux+pUWzy/qTJEVeEsUtJf9gu/Yu
+ i3jaufmn3mLJ8tKOheZph/3qyIxRIroE//eSsGNhwHrASYWRH3S6nZvyKpf3jwS2AhoD
+ NUUgQcVUIU1FGjzoOjHte8gPfdBQ02ZALVyC83QZFIAebRjgMFDJbU5lR2QjviuZHk99
+ poA0M2Zr/GNxpWXLh2cXtND756+/pBYjG4ybmTB3rLllNrg07HtbjTQsRrIJWav5cgxS
+ Rq3A==
+X-Gm-Message-State: AOJu0Yyow8h3bIA7lgZ71XJFQNGzTc3/YsSLLjVE8RjcPGi+bWUSsF0p
+ dE8ezzWI0iVu+ZQdkIWALfF5QwmiAbPMtNd2vy7iYpIeZY6hcyWrkKfKkbjmObQ=
+X-Gm-Gg: ASbGnctnZI+lJt9shg9AV6rHMyEpckNb9z5dus/d4OUP3s3u406gcGZw+EsahM6yTTF
+ K7+PoYZQzsJTqiToGfMQh3/UiHP3nerooq2UNAoZeKHiGomcKq4FzMDDuZ7CGAOa067UhaKw9uw
+ +XV0RdS6JeoyZROB4UfYck6ZkagcBEYFvm+YDp5ahDx0euFx08O9UAT5eoiQEXquwuRDV26mxGY
+ BU5J03befdxmk3pETO0JsCjdoBcL4uBCJupOiUd7LeQxNmIn0rh7ywXwNipuNrRtHXfuFXQ0FQP
+ 4YT5G+WqdNr7izsjpFGk9EwH5QXeBAYpAb4p+X1x+fLT0Q==
+X-Google-Smtp-Source: AGHT+IFJDVJitW0aDUzqwf8DKepc50MDuMo+yIo6x+p3mOaVsuzV0JBvqQzLxwmjw7l8xqVSxvX/KA==
+X-Received: by 2002:a5d:59a8:0:b0:39c:1f02:44d8 with SMTP id
+ ffacd0b85a97d-3a067222893mr1410557f8f.4.1745396292870; 
+ Wed, 23 Apr 2025 01:18:12 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-39efa433303sm17709077f8f.24.2025.04.23.01.18.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 23 Apr 2025 01:18:12 -0700 (PDT)
+Date: Wed, 23 Apr 2025 11:18:09 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Yihan Zhu <Yihan.Zhu@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amd/display: DCN42 RMCM and MCM 3DLUT support
+Message-ID: <aAiiQYRc8HduYrSo@stanley.mountain>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5261.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc1bdc30-837c-4805-c527-08dd82f53948
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2025 05:59:49.5816 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Sv44NXIA85RlniL3YdD1zyzAHjPJ5CnJTF7XgazVb+k5/2NW3CwBUEZbqhFfxLkPAX6kr2Hamho4B2+jh4SuTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9550
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 24 Apr 2025 07:40:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,81 +82,232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+Hello Yihan Zhu,
 
-> -----Original Message-----
-> From: Koenig, Christian <Christian.Koenig@amd.com>
-> Sent: Wednesday, April 23, 2025 8:40 PM
-> To: Xiao, Shane <shane.xiao@amd.com>; amd-gfx@lists.freedesktop.org;
-> Kuehling, Felix <Felix.Kuehling@amd.com>; Yang, Philip
-> <Philip.Yang@amd.com>
-> Subject: Re: [PATCH] amd/amdkfd: Trigger segfault for early userptr
-> unmmapping
->
->
->
-> On 4/23/25 11:50, Shane Xiao wrote:
-> > If applications unmap the memory before destroying the userptr, it
-> > needs trigger a segfault to notify user space to correct the free
-> > sequence in VM debug mode.
-> >
-> > Signed-off-by: Shane Xiao <shane.xiao@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > index d2ec4130a316..259b38424b7f 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > @@ -2559,6 +2559,16 @@ static int update_invalid_user_pages(struct
-> amdkfd_process_info *process_info,
-> >                     if (ret !=3D -EFAULT)
-> >                             return ret;
-> >
-> > +                   /* If applications unmaps memory before destroying
-> the userptr
-> > +                    * from the KFD, trigger a segmentation fault in VM
-> debug mode.
-> > +                    */
-> > +                   if (amdgpu_ttm_adev(bo->tbo.bdev)->debug_vm) {
->
-> Using debug_vm works for now, but maybe we should have a separate debug
-> flag for this.
+Commit 652968d996d7 ("drm/amd/display: DCN42 RMCM and MCM 3DLUT
+support") from Apr 1, 2025 (linux-next), leads to the following
+Smatch static checker warning:
 
-I have added a new debug_vm_userptr bit in the new patch series.
+	drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn401/dcn401_hwseq.c:720 dcn401_populate_mcm_luts()
+	error: we previously assumed 'mpc->funcs->program_lut_mode' could be null (see line 701)
 
->
-> > +                           amdgpu_ttm_tt_get_userptr(&bo->tbo,
-> userptr);
-> > +                           pr_err("User space unmap memory before
-> destroying a userptr that refers to it\n");
-> > +                           pr_err("The unmap userptr address is
-> 0x%llx\n", userptr);
-> > +                           send_sig(SIGSEGV, get_pid_task(process_info=
--
-> >pid, PIDTYPE_PID),
-> > +0);
->
-> Drivers should *never* mess with send_sig() directly. We made the mistake=
- to
-> allow that with the KFD already.
->
-> We should rather send this as GPU access fault or something like that.
+drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn401/dcn401_hwseq.c
+    642 void dcn401_populate_mcm_luts(struct dc *dc,
+    643                 struct pipe_ctx *pipe_ctx,
+    644                 struct dc_cm2_func_luts mcm_luts,
+    645                 bool lut_bank_a)
+    646 {
+    647         struct dpp *dpp_base = pipe_ctx->plane_res.dpp;
+    648         struct hubp *hubp = pipe_ctx->plane_res.hubp;
+    649         int mpcc_id = hubp->inst;
+    650         struct mpc *mpc = dc->res_pool->mpc;
+    651         union mcm_lut_params m_lut_params;
+    652         enum dc_cm2_transfer_func_source lut3d_src = mcm_luts.lut3d_data.lut3d_src;
+    653         enum hubp_3dlut_fl_format format = 0;
+    654         enum hubp_3dlut_fl_mode mode;
+    655         enum hubp_3dlut_fl_width width = 0;
+    656         enum hubp_3dlut_fl_addressing_mode addr_mode;
+    657         enum hubp_3dlut_fl_crossbar_bit_slice crossbar_bit_slice_y_g;
+    658         enum hubp_3dlut_fl_crossbar_bit_slice crossbar_bit_slice_cb_b;
+    659         enum hubp_3dlut_fl_crossbar_bit_slice crossbar_bit_slice_cr_r;
+    660         enum MCM_LUT_XABLE shaper_xable = MCM_LUT_DISABLE;
+    661         enum MCM_LUT_XABLE lut3d_xable = MCM_LUT_DISABLE;
+    662         enum MCM_LUT_XABLE lut1d_xable = MCM_LUT_DISABLE;
+    663         bool rval;
+    664 
+    665         dcn401_get_mcm_lut_xable_from_pipe_ctx(dc, pipe_ctx, &shaper_xable, &lut3d_xable, &lut1d_xable);
+    666 
+    667         //MCM - setting its location (Before/After) blender
+    668         //set to post blend (true)
+    669         dcn401_set_mcm_location_post_blend(
+    670                 dc,
+    671                 pipe_ctx,
+    672                 mcm_luts.lut3d_data.mpc_mcm_post_blend);
+    673 
+    674         //RMCM - 3dLUT+Shaper
+    675         if (mcm_luts.lut3d_data.rmcm_3dlut_enable) {
+    676                 dcn401_program_rmcm_luts(
+    677                         hubp,
+    678                         pipe_ctx,
+    679                         lut3d_src,
+    680                         &mcm_luts,
+    681                         mpc,
+    682                         lut_bank_a,
+    683                         mpcc_id);
+    684         }
+    685 
+    686         /* 1D LUT */
+    687         if (mcm_luts.lut1d_func) {
+    688                 memset(&m_lut_params, 0, sizeof(m_lut_params));
+    689                 if (mcm_luts.lut1d_func->type == TF_TYPE_HWPWL)
+    690                         m_lut_params.pwl = &mcm_luts.lut1d_func->pwl;
+    691                 else if (mcm_luts.lut1d_func->type == TF_TYPE_DISTRIBUTED_POINTS) {
+    692                         rval = cm3_helper_translate_curve_to_hw_format(
+    693                                         mcm_luts.lut1d_func,
+    694                                         &dpp_base->regamma_params, false);
+    695                         m_lut_params.pwl = rval ? &dpp_base->regamma_params : NULL;
+    696                 }
+    697                 if (m_lut_params.pwl) {
+    698                         if (mpc->funcs->populate_lut)
+    699                                 mpc->funcs->populate_lut(mpc, MCM_LUT_1DLUT, m_lut_params, lut_bank_a, mpcc_id);
+    700                 }
+    701                 if (mpc->funcs->program_lut_mode)
+    702                         mpc->funcs->program_lut_mode(mpc, MCM_LUT_1DLUT, lut1d_xable && m_lut_params.pwl, lut_bank_a, mpcc_id);
+    703         }
+    704 
+    705         /* Shaper */
+    706         if (mcm_luts.shaper && mcm_luts.lut3d_data.mpc_3dlut_enable) {
+    707                 memset(&m_lut_params, 0, sizeof(m_lut_params));
+    708                 if (mcm_luts.shaper->type == TF_TYPE_HWPWL)
+    709                         m_lut_params.pwl = &mcm_luts.shaper->pwl;
+    710                 else if (mcm_luts.shaper->type == TF_TYPE_DISTRIBUTED_POINTS) {
+    711                         ASSERT(false);
+    712                         rval = cm3_helper_translate_curve_to_hw_format(
+    713                                         mcm_luts.shaper,
+    714                                         &dpp_base->regamma_params, true);
+    715                         m_lut_params.pwl = rval ? &dpp_base->regamma_params : NULL;
+    716                 }
+    717                 if (m_lut_params.pwl) {
+    718                         if (mpc->funcs->mcm.populate_lut)
+    719                                 mpc->funcs->mcm.populate_lut(mpc, m_lut_params, lut_bank_a, mpcc_id);
+--> 720                         mpc->funcs->program_lut_mode(mpc, MCM_LUT_SHAPER, MCM_LUT_ENABLE, lut_bank_a, mpcc_id);
 
-Sure, already done it in the new patch.
+All the other places that call ->program_lut_mode() check if it's NULL
+and originally this caller had a check too but the commit removed it.
+Potentially checking m_lut_params.pwl is sufficient?
 
-Best regards,
-Shane
+    721                 }
+    722         }
+    723 
+    724         /* 3DLUT */
+    725         switch (lut3d_src) {
+    726         case DC_CM2_TRANSFER_FUNC_SOURCE_SYSMEM:
+    727                 memset(&m_lut_params, 0, sizeof(m_lut_params));
+    728                 if (hubp->funcs->hubp_enable_3dlut_fl)
+    729                         hubp->funcs->hubp_enable_3dlut_fl(hubp, false);
+    730 
+    731                 if (mcm_luts.lut3d_data.lut3d_func && mcm_luts.lut3d_data.lut3d_func->state.bits.initialized) {
+    732                         m_lut_params.lut3d = &mcm_luts.lut3d_data.lut3d_func->lut_3d;
+    733                         if (mpc->funcs->populate_lut)
+    734                                 mpc->funcs->populate_lut(mpc, MCM_LUT_3DLUT, m_lut_params, lut_bank_a, mpcc_id);
+    735                         if (mpc->funcs->program_lut_mode)
+    736                                 mpc->funcs->program_lut_mode(mpc, MCM_LUT_3DLUT, lut3d_xable, lut_bank_a,
+    737                                                 mpcc_id);
+    738                 }
+    739                 break;
+    740                 case DC_CM2_TRANSFER_FUNC_SOURCE_VIDMEM:
+    741                 switch (mcm_luts.lut3d_data.gpu_mem_params.size) {
+    742                 case DC_CM2_GPU_MEM_SIZE_333333:
+    743                         width = hubp_3dlut_fl_width_33;
+    744                         break;
+    745                 case DC_CM2_GPU_MEM_SIZE_171717:
+    746                         width = hubp_3dlut_fl_width_17;
+    747                         break;
+    748                 case DC_CM2_GPU_MEM_SIZE_TRANSFORMED:
+    749                         width = hubp_3dlut_fl_width_transformed;
+    750                         break;
+    751                 }
+    752 
+    753                 //check for support
+    754                 if (mpc->funcs->mcm.is_config_supported &&
+    755                         !mpc->funcs->mcm.is_config_supported(width))
+    756                         break;
+    757 
+    758                 if (mpc->funcs->program_lut_read_write_control)
+    759                         mpc->funcs->program_lut_read_write_control(mpc, MCM_LUT_3DLUT, lut_bank_a, mpcc_id);
+    760                 if (mpc->funcs->program_lut_mode)
+    761                         mpc->funcs->program_lut_mode(mpc, MCM_LUT_3DLUT, lut3d_xable, lut_bank_a, mpcc_id);
+    762 
+    763                 if (hubp->funcs->hubp_program_3dlut_fl_addr)
+    764                         hubp->funcs->hubp_program_3dlut_fl_addr(hubp, mcm_luts.lut3d_data.gpu_mem_params.addr);
+    765 
+    766                 if (mpc->funcs->mcm.program_bit_depth)
+    767                         mpc->funcs->mcm.program_bit_depth(mpc, mcm_luts.lut3d_data.gpu_mem_params.bit_depth, mpcc_id);
+    768 
+    769                 switch (mcm_luts.lut3d_data.gpu_mem_params.layout) {
+    770                 case DC_CM2_GPU_MEM_LAYOUT_3D_SWIZZLE_LINEAR_RGB:
+    771                         mode = hubp_3dlut_fl_mode_native_1;
+    772                         addr_mode = hubp_3dlut_fl_addressing_mode_sw_linear;
+    773                         break;
+    774                 case DC_CM2_GPU_MEM_LAYOUT_3D_SWIZZLE_LINEAR_BGR:
+    775                         mode = hubp_3dlut_fl_mode_native_2;
+    776                         addr_mode = hubp_3dlut_fl_addressing_mode_sw_linear;
+    777                         break;
+    778                 case DC_CM2_GPU_MEM_LAYOUT_1D_PACKED_LINEAR:
+    779                         mode = hubp_3dlut_fl_mode_transform;
+    780                         addr_mode = hubp_3dlut_fl_addressing_mode_simple_linear;
+    781                         break;
+    782                 default:
+    783                         mode = hubp_3dlut_fl_mode_disable;
+    784                         addr_mode = hubp_3dlut_fl_addressing_mode_sw_linear;
+    785                         break;
+    786                 }
+    787                 if (hubp->funcs->hubp_program_3dlut_fl_mode)
+    788                         hubp->funcs->hubp_program_3dlut_fl_mode(hubp, mode);
+    789 
+    790                 if (hubp->funcs->hubp_program_3dlut_fl_addressing_mode)
+    791                         hubp->funcs->hubp_program_3dlut_fl_addressing_mode(hubp, addr_mode);
+    792 
+    793                 switch (mcm_luts.lut3d_data.gpu_mem_params.format_params.format) {
+    794                 case DC_CM2_GPU_MEM_FORMAT_16161616_UNORM_12MSB:
+    795                         format = hubp_3dlut_fl_format_unorm_12msb_bitslice;
+    796                         break;
+    797                 case DC_CM2_GPU_MEM_FORMAT_16161616_UNORM_12LSB:
+    798                         format = hubp_3dlut_fl_format_unorm_12lsb_bitslice;
+    799                         break;
+    800                 case DC_CM2_GPU_MEM_FORMAT_16161616_FLOAT_FP1_5_10:
+    801                         format = hubp_3dlut_fl_format_float_fp1_5_10;
+    802                         break;
+    803                 }
+    804                 if (hubp->funcs->hubp_program_3dlut_fl_format)
+    805                         hubp->funcs->hubp_program_3dlut_fl_format(hubp, format);
+    806                 if (hubp->funcs->hubp_update_3dlut_fl_bias_scale &&
+    807                                 mpc->funcs->mcm.program_bias_scale) {
+    808                         mpc->funcs->mcm.program_bias_scale(mpc,
+    809                                 mcm_luts.lut3d_data.gpu_mem_params.format_params.float_params.bias,
+    810                                 mcm_luts.lut3d_data.gpu_mem_params.format_params.float_params.scale,
+    811                                 mpcc_id);
+    812                         hubp->funcs->hubp_update_3dlut_fl_bias_scale(hubp,
+    813                                                 mcm_luts.lut3d_data.gpu_mem_params.format_params.float_params.bias,
+    814                                                 mcm_luts.lut3d_data.gpu_mem_params.format_params.float_params.scale);
+    815                 }
+    816 
+    817                 //navi 4x has a bug and r and blue are swapped and need to be worked around here in
+    818                 //TODO: need to make a method for get_xbar per asic OR do the workaround in program_crossbar for 4x
+    819                 dc_get_lut_xbar(
+    820                         mcm_luts.lut3d_data.gpu_mem_params.component_order,
+    821                         &crossbar_bit_slice_cr_r,
+    822                         &crossbar_bit_slice_y_g,
+    823                         &crossbar_bit_slice_cb_b);
+    824 
+    825                 if (hubp->funcs->hubp_program_3dlut_fl_crossbar)
+    826                         hubp->funcs->hubp_program_3dlut_fl_crossbar(hubp,
+    827                                         crossbar_bit_slice_cr_r,
+    828                                         crossbar_bit_slice_y_g,
+    829                                         crossbar_bit_slice_cb_b);
+    830 
+    831                 if (mpc->funcs->mcm.program_lut_read_write_control)
+    832                         mpc->funcs->mcm.program_lut_read_write_control(mpc, MCM_LUT_3DLUT, lut_bank_a, true, mpcc_id);
+    833 
+    834                 if (mpc->funcs->mcm.program_3dlut_size)
+    835                         mpc->funcs->mcm.program_3dlut_size(mpc, width, mpcc_id);
+    836 
+    837                 if (mpc->funcs->update_3dlut_fast_load_select)
+    838                         mpc->funcs->update_3dlut_fast_load_select(mpc, mpcc_id, hubp->inst);
+    839 
+    840                 if (hubp->funcs->hubp_enable_3dlut_fl)
+    841                         hubp->funcs->hubp_enable_3dlut_fl(hubp, true);
+    842                 else {
+    843                         if (mpc->funcs->program_lut_mode) {
+    844                                 mpc->funcs->program_lut_mode(mpc, MCM_LUT_SHAPER, MCM_LUT_DISABLE, lut_bank_a, mpcc_id);
+    845                                 mpc->funcs->program_lut_mode(mpc, MCM_LUT_3DLUT, MCM_LUT_DISABLE, lut_bank_a, mpcc_id);
+    846                                 mpc->funcs->program_lut_mode(mpc, MCM_LUT_1DLUT, MCM_LUT_DISABLE, lut_bank_a, mpcc_id);
+    847                         }
+    848                 }
+    849                 break;
+    850 
+    851         }
+    852 }
 
->
-> Regards,
-> Christian.
->
-> > +                   }
-> > +
-> >                     ret =3D 0;
-> >             }
-> >
-
+regards,
+dan carpenter
