@@ -2,58 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54BD5A9CCF0
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Apr 2025 17:30:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A37CAA9CDB0
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Apr 2025 18:03:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6317210E320;
-	Fri, 25 Apr 2025 15:30:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C6A810E99A;
+	Fri, 25 Apr 2025 16:03:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fN6/WQgV";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q/245fls";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACF1F10E0C5;
- Fri, 25 Apr 2025 15:29:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=V2ubyh+bjlQv6yXlPJcSZvWHB9kI8FXyi+2QpQSBgg0=; b=fN6/WQgVnfsKcjw2LeranTXPwK
- zKytiexROCkGSgc3jY2fqn4iLmqiX4xyFcNvxrhKHn8cwdA08NZNDnKxMYnzFMB5J80mQhSfxFSOV
- 3uZyOicj1vbwmDHFnmBnTBOf3DoztEAhJMWC/Nl1PIUpSjZgJfDiJq3tmxZCdjOl6Kz22ZzUnmaIc
- yEEnHcR6LcdnmlX/EhKw1/mH2eIiOr4tfJ18AQbTuuOn/Vob8N8J//xNgJ/MpDvvrxf3NS3VGK5nP
- ZTf3hSNJjPl6gxuuyL4Vge57Ie7NV3L5udjqW7q1afIzjg65HHoamuil0gbK8g0b6VBp1JtMcws0c
- G2zyNP4w==;
-Received: from [189.6.35.67] (helo=[192.168.0.55])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1u8Kzr-008Nuq-06; Fri, 25 Apr 2025 17:29:47 +0200
-Message-ID: <19fb08c6-7dc2-41c6-9483-45b20eec94bf@igalia.com>
-Date: Fri, 25 Apr 2025 12:29:37 -0300
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
+ [209.85.215.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C96A10E97A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 16:03:18 +0000 (UTC)
+Received: by mail-pg1-f170.google.com with SMTP id
+ 41be03b00d2f7-b1a04f13ad9so78730a12.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 09:03:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1745596997; x=1746201797; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=xV9nqFLeoodBHxsojviZbiTh6w1ctRI5NC/yJCxXZFE=;
+ b=Q/245fls8H3/iw2otNYRUGQq2CncgNww4ft4Zrztdxo0a61fY8qGA3Pjt8Aeubnf/4
+ TrnJKkQFs4j6D9dn5/P2iQLwnduoCDtStBQWg781PS81JTPyzEDrXs9cHpZJNB2KbIvX
+ D0yXrHZooLUdYPSKGlUdHoPGsEeX1DHY+6P0dFlCPu7vpyhEJNJefFeqyF3v2frX8msE
+ nmcdKbaAvfEdGAaRt3uciW3lqw15z2evDEGzYZjT89UdGO18Z9J7zKmmI1A6ieJtp/qS
+ HNYqbsRzOkzvCRVK/yU4TvDO0ld2/K17zFoemtzuBRHoEhk3fyPLSq/Sm6riy9zPshs9
+ ROsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745596997; x=1746201797;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=xV9nqFLeoodBHxsojviZbiTh6w1ctRI5NC/yJCxXZFE=;
+ b=InzY2G0a+a9RxMb1KxMFxN/FUk7G2SbTh4MfCL9994odynYdgFc+ltGffGayKTSCCO
+ eONfrQ/egqNV97CjFI9BOg+lTyucGAAxNKVsNhIJn91rDgX4Q/Ka6wxNOh7wcmi8M8Hs
+ +UH/DNR8dOVHKvEYZOheaOmMU2aALQoeS/133M4HvhiNZhV30coCSYSptCiz7DDZ+gyy
+ n5k2N2XaBBJOlGOaqr87RzBPqif1Pgtvxrs4uawFJKEgI1Ecre3r8LVi/cVaoN2sIrLP
+ ZCZ7pBBO4xMbUkLU7w3eZAeni3zfaVYz2CAeWXo+qFZObn1jYRnxIidFWb0Y9ROAiA65
+ XLdw==
+X-Gm-Message-State: AOJu0YymVXQnilTYcTUJr4FJqQ5QeznTEivr2buBVqWEB+Rd8oFmlTe5
+ A1ojkGWDFZtkZ4l3YIdJ15WlNW0BSGYRc2B3/pPqd88cnXKSj+9Hz8LyLwKOgwpKut10gu7KOIZ
+ xrppfzH3sWd4dKFxNxw5YAFzDPhKyWQ==
+X-Gm-Gg: ASbGnctH5skUpmK/zKQedO3Hc+ty2CqVp7BIh78eFwjW7AKsfe8ZXEZT35PJamS+tlE
+ b1SNPslVJdQ5nnT/89AZCLW3CeeOdj6LnD5GtOY2L+6Cepre79oX+Q73TSfpJ2WcbaCA0moU4kj
+ elJu850d+eOJMG3wqKiwfUVxdSaht9tf4R
+X-Google-Smtp-Source: AGHT+IEx1B8CpeLBr5veeZF2Rs8/QdTPIyJXDoI+SzmdAmbdq7b/ORtvs6chycLALxATReeUCZawhqHkOywLvsX3Vqo=
+X-Received: by 2002:a17:90b:3504:b0:308:2a7b:547b with SMTP id
+ 98e67ed59e1d1-309f7d9ff09mr1714933a91.1.1745596997262; Fri, 25 Apr 2025
+ 09:03:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "drm/amd/display: Hardware cursor changes color
- when switched to software cursor"
-To: Harry Wentland <harry.wentland@amd.com>, sunpeng.li@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: Michel Daenzer <michel.daenzer@mailbox.org>, Alex Hung
- <alex.hung@amd.com>, Aurabindo Pillai <Aurabindo.Pillai@amd.com>,
- Nevenko Stupar <Nevenko.Stupar@amd.com>, Roman Li <roman.li@amd.com>,
- Xaver Hugl <xaver.hugl@gmail.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com
-References: <20250422150427.59679-1-mwen@igalia.com>
- <060be9f5-e5bd-421f-9168-5a7e709959f7@amd.com>
-Content-Language: en-US
-From: Melissa Wen <mwen@igalia.com>
-In-Reply-To: <060be9f5-e5bd-421f-9168-5a7e709959f7@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250425150748.1338-3-nipetrov@amd.com>
+In-Reply-To: <20250425150748.1338-3-nipetrov@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 25 Apr 2025 12:03:05 -0400
+X-Gm-Features: ATxdqUFLqW7oreBW8EMmpj7COVYqLAyBduYAxSK2rTIiZUQ39v58TDy8kyWwfTg
+Message-ID: <CADnq5_P8Sd3fOg3wSTikv1vacY8D__a4azYzRsVU-pMuXjPbnw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/amdgpu: Fix GPU reset handling after WGR is
+ triggered
+To: Nikola Petrovic <nipetrov@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,85 +80,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 24/04/2025 16:10, Harry Wentland wrote:
+On Fri, Apr 25, 2025 at 11:58=E2=80=AFAM Nikola Petrovic <nipetrov@amd.com>=
+ wrote:
 >
-> On 2025-04-22 10:58, Melissa Wen wrote:
->> This reverts commit 272e6aab14bbf98d7a06b2b1cd6308a02d4a10a1.
->>
->> Applying degamma curve to the cursor by default breaks Linux userspace
->> expectation.
->>
->> On Linux, AMD display manager enables cursor degamma ROM just for
->> implict sRGB on HW versions where degamma is split into two blocks:
->> degamma ROM for pre-defined TFs and `gamma correction` for user/custom
->> curves, and degamma ROM settings doesn't apply to cursor plane.
->>
->> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1513
->> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2803
->> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4144
->> Reported-by: Michel Dänzer <michel.daenzer@mailbox.org>
->> Signed-off-by: Melissa Wen <mwen@igalia.com>
->> ---
->>
->> Hi,
->>
->> I suspect there is a conflict of interest between OSes here, because
->> this is not the first time this mechanism has been removed from the
->> DC shared-code and after reintroduced [1].
->>
->> I'd suggest that other OSes set the `dc_cursor_attributes
->> attribute_flags.bits.ENABLE_CURSOR_DEGAMMA` to true by default, rather
->> than removing the mechanism that is valid for the Linux driver. Similar
->> to what the Linux AMD DM does for the implicit sRGB [2][3], but in their
->> case, they just need to initialize with 1.
->>
-> That's a good suggestion and I started that conversation with
-> Windows devs.
+> I've identified a critical issue with the existing GPU reset mechanism th=
+at causes a BSOD on the Windows Hyper-V platform. The current function:
 >
-> Is there an IGT test that would test for this behavior? Without
-> an IGT test I think we're apt to end back here again at some
-> point.
-Indeed, it's a good idea. AFAIK, there is no IGT color test for cursor.
-I'll work on it then, as it might save everyone time.
-
-Thanks
-
-Melissa
+> static void xgpu_nv_mailbox_flr_work(struct work_struct *work)
 >
-> Harry
+> incorrectly sets the AMDGPU_HOST_FLR flag if any engine is hanging. This =
+approach wrongly assumes that the Host PF is always responsible for trigger=
+ing FLR. However, a VF (VM-guest) can also cause a GPU hang, which results =
+in an unsuccessful VM reset. This ultimately causes a FULL_ACCESS_TIMEOUT o=
+n the host side, leading to six attempts to retrigger a Whole Guest Reset (=
+WGR), which results in a BSOD after five to six failed restarts.
 >
->> Finally, thanks Michel for pointing this issue out to me and noticing
->> the similarity to previous solution.
->>
->> [1] https://gitlab.freedesktop.org/agd5f/linux/-/commit/d9fbd64e8e317
->> [2] https://gitlab.freedesktop.org/agd5f/linux/-/commit/857b835f
->> [3] https://gitlab.freedesktop.org/agd5f/linux/-/commit/66eba12a
->>
->> Best Regards,
->>
->> Melissa
->>
->>   drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c | 5 +++--
->>   1 file changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
->> index 1236e0f9a256..712aff7e17f7 100644
->> --- a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
->> +++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
->> @@ -120,10 +120,11 @@ void dpp401_set_cursor_attributes(
->>   	enum dc_cursor_color_format color_format = cursor_attributes->color_format;
->>   	int cur_rom_en = 0;
->>   
->> -	// DCN4 should always do Cursor degamma for Cursor Color modes
->>   	if (color_format == CURSOR_MODE_COLOR_PRE_MULTIPLIED_ALPHA ||
->>   		color_format == CURSOR_MODE_COLOR_UN_PRE_MULTIPLIED_ALPHA) {
->> -		cur_rom_en = 1;
->> +		if (cursor_attributes->attribute_flags.bits.ENABLE_CURSOR_DEGAMMA) {
->> +			cur_rom_en = 1;
->> +		}
->>   	}
->>   
->>   	REG_UPDATE_3(CURSOR0_CONTROL,
+> Additionally, the current sequence sends a READY_TO_RESTART event and the=
+n requests FULL_ACCESS, which seems incorrect to me.
+>
+> My fix addresses this problem by using REQ_GPU_RESET to initiate the nece=
+ssary restart while appropriately handling the FULL ACCESS request. My impl=
+ementation has successfully passed 100 loop tests, confirming its effective=
+ness.
+>
+> Signed-off-by: Nikola Petrovic <nipetrov@amd.com>
 
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_device.c
+> index 7f354cd532dc..a2a436707200 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -5314,11 +5314,12 @@ static int amdgpu_device_reset_sriov(struct amdgp=
+u_device *adev,
+>         struct amdgpu_hive_info *hive =3D NULL;
+>
+>         if (test_bit(AMDGPU_HOST_FLR, &reset_context->flags)) {
+> +               r =3D amdgpu_virt_wait_reset(adev);
+> +               if (r)
+> +                       return r;
+>                 if (!amdgpu_ras_get_fed_status(adev))
+> -                       amdgpu_virt_ready_to_reset(adev);
+> -               amdgpu_virt_wait_reset(adev);
+> +                       amdgpu_virt_reset_gpu(adev);
+>                 clear_bit(AMDGPU_HOST_FLR, &reset_context->flags);
+> -               r =3D amdgpu_virt_request_full_gpu(adev, true);
+>         } else {
+>                 r =3D amdgpu_virt_reset_gpu(adev);
+>         }
+> --
+> 2.43.0
+>
