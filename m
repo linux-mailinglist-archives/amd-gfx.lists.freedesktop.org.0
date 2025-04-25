@@ -2,49 +2,149 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1297CA9BFE3
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Apr 2025 09:39:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58173A9BE63
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Apr 2025 08:07:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA50E10E8A1;
-	Fri, 25 Apr 2025 07:39:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28D8D10E88C;
+	Fri, 25 Apr 2025 06:07:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=abv.bg header.i=@abv.bg header.b="I8pMzi8/";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="axAWR+VY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 561 seconds by postgrey-1.36 at gabe;
- Thu, 24 Apr 2025 15:24:28 UTC
-Received: from pop36.abv.bg (pop36.abv.bg [194.153.145.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 426B310E834
- for <amd-gfx@lists.freedesktop.org>; Thu, 24 Apr 2025 15:24:28 +0000 (UTC)
-Received: from smtp.abv.bg (localhost [127.0.0.1])
- by pop36.abv.bg (Postfix) with ESMTP id 6B4C91805D2D;
- Thu, 24 Apr 2025 18:14:56 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abv.bg; s=smtp-out;
- t=1745507696; bh=MPc9jSI1zCl6BTdIscu6ybN1aJS6kPg8y/OMmaKXouI=;
- h=Date:From:To:Cc:Subject:From;
- b=I8pMzi8/zHh5bNJGwhoMxzJiVcHML1GBgsIK7eGdSFX9xuyebQNayivyvD9YR5lbs
- V0qgliH47GWcprFXGtP5M996bKEbT2htoowfrDpU8BuONA/AZY/lXpdCcx1gt2mwy1
- RssQamanLsZF90fVP+2O6d76EYThn375EJW5Avow=
-X-HELO: laptop
-Authentication-Results: smtp.abv.bg;
- auth=pass (login) smtp.auth=ivan.shamliev.dev@abv.bg
-Received: from pop-144.92.escom.bg (HELO laptop) (93.183.144.92)
- by smtp.abv.bg (qpsmtpd/0.96) with ESMTPSA (ECDHE-RSA-AES256-GCM-SHA384
- encrypted); Thu, 24 Apr 2025 18:14:56 +0300
-Date: Thu, 24 Apr 2025 18:14:53 +0300
-From: Ivan Shamliev <ivan.shamliev.dev@abv.bg>
-To: austin.zheng@amd.com, jun.lei@amd.com, harry.wentland@amd.com
-Cc: amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- ivan.shamliev.dev@abv.bg
-Subject: [PATCH] drm/amd/display: Use true/false for boolean variables in
- DML2 core files
-Message-ID: <20250424181453.3f78a2a9@laptop>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2043.outbound.protection.outlook.com [40.107.92.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 217F710E88C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 06:07:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OBW2pvB1h5uNwj3UCPhdO0gIGP0Jabq7Noyk6+acK9Ym2udAN9F//BY3ayv422BKDsQBjGq1j5/aAlTBZxvZVXdLwYuosH2crBv3a59E51bhQblVjCLyC9Qwx6w3HbT4yFMP1jkePe89Kj94rDy5kegOfpv5gu4r300srWgRel+wNyPgYB5Vl7GFIDzReUMfpmhr5Hql1pHM6vExNKRkUe5yvwhpdiOMOWv9LR4Gws6aAFaw+u/4MpwAnO8yCadtWW05SAT+6fDG9gPoHt8K3P5LsjgumM5dm6f64gVok2qYjTspRmQuKM/OVlwHx9tYPnbhvBhfnwhLSxzlUEQrug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ASdvCw02/CiUbyATMt0B86OAZIMwPBZntyE/tT0OlA4=;
+ b=ndx3iUMslUTYDmFHi5fjvyDFG5He0cWTjUtyfWePimeZ6lJdK68Tkig0rDRlchFY9gzigSPXKFHfJ1WcZeikZPfzgKmpxmYz0nbzwy7ZrTnTiwsC1Fg+pnmp+Hp54HvVrzHSBRWambJU2ayIKFgtwiM5gHTDkwWk0busgs25h290t5Ybb5K2tJnIBdiDMipcCm+NzjgsBwsmC+S6rqkchOAitAuoCMj3K2b5HdJo4CaxJ+GOtQSL6SAg60z67uY8RkEL4+BSX7+jZvAMLtDuOSoxIAzAzZHCc6dEsgQcxp0ecYOCMQrHZL34JYRY2rpGOeXKBfhMYH/Dv2H+QQ0fzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ASdvCw02/CiUbyATMt0B86OAZIMwPBZntyE/tT0OlA4=;
+ b=axAWR+VYG6vvHs/Mpu8iPZP2fDks+N35mLnCQjG8ZOA6lMxSrsVnHIBW0xhEumUwA9/8AvpTAFbwoxeALK/b0RKITnNdkrkbYYZ3jfD88Xjfu5RcJEFTSqru7SRkGLwFnLsS/hE33eaBZxqcsNRJ0p4/VQAN1y53EQZnVxkNR4Y=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
+ DS0PR12MB8272.namprd12.prod.outlook.com (2603:10b6:8:fc::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8678.27; Fri, 25 Apr 2025 06:07:27 +0000
+Received: from DS0PR12MB7804.namprd12.prod.outlook.com
+ ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
+ ([fe80::8327:d71a:ce21:a290%6]) with mapi id 15.20.8678.025; Fri, 25 Apr 2025
+ 06:07:25 +0000
+Message-ID: <0203271e-8cde-4522-a7ae-a8025e80f1fc@amd.com>
+Date: Fri, 25 Apr 2025 11:37:20 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Add DPG pause for VCN v5.0.1
+To: Sonny Jiang <sonny.jiang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20250424171300.668773-1-sonny.jiang@amd.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <20250424171300.668773-1-sonny.jiang@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN4PR01CA0039.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:277::6) To DS0PR12MB7804.namprd12.prod.outlook.com
+ (2603:10b6:8:142::5)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 25 Apr 2025 07:39:20 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|DS0PR12MB8272:EE_
+X-MS-Office365-Filtering-Correlation-Id: 804cab8f-a01a-4318-e496-08dd83bf7338
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Vll4ODl0UnVtejVQSHgyLzg2MXp3akVxMVIzdmhXUks0VVAwOWlRWUtMWlF0?=
+ =?utf-8?B?cFlWMGFjSjVlNkJHTmp4djVHOGVMYlBudmhrV3h1L2ZZYjdTOThRS3MyMW03?=
+ =?utf-8?B?RjdaeUpjbUt1Nkd5Y1JiVlp3SStaVlNUWGZma2haMUJKaGI2YTdjZ0NOdGdn?=
+ =?utf-8?B?WFhRUjdxWEpjTEF3UEd0OTcyRjZVekVxb1g4aWtJZEFnQmtFaUc0cml0YVpz?=
+ =?utf-8?B?WHBvUGdyais0WTJHTTZMTjFsNERFWmpYYWVMancwaktHdXAvQVF4KzZ3L2RG?=
+ =?utf-8?B?OHEvWTZDVjIyVlpUZnNLRXZaOUpEKzM3d1lCSFhmUDh0V2oxaW55QXhEaHNx?=
+ =?utf-8?B?MEF3T0NpYlZjd0xHZ0xOMjRMYjJxL0VuMFB0MksvbThwUlZEbU1wQXE4RHdw?=
+ =?utf-8?B?WXF5K2dFSVVaaWY1ZjRSSUNhcVB0L0ozcTJEMmJVRnVDL2d1d0NFbFhoTkNs?=
+ =?utf-8?B?TlhGd2dUNE14clQ2cmV4UHBQSjZYQmcySmpNZVRsUTdmaitnY3h2a0NXc1Vy?=
+ =?utf-8?B?ODlieE9ZU3pDMFhOcjZnckorQk1STVRvbVRWZ2c3Z3FsNlJtSVd5dzRkWnMx?=
+ =?utf-8?B?OGhLaDc2VTFhSHA0Z0JzS2dFRWtmVlFHMmJqb1JKb0Q4OWxGMlU5ZnRrZTJu?=
+ =?utf-8?B?MFFKYWRrSktJYVVSNDlIRU5jdXNvTC9MZDlKQXJrUE9tVkFueTBkeU8waTlk?=
+ =?utf-8?B?ZmFyQU85LzdtbUNWRDFuK0djdXZDQ3VqTVpBOWs1N3RCUGRFNlA3OC9idEVp?=
+ =?utf-8?B?djNuKy9WYi83RlVCcy9VN05Tanh1NXgvM2cxRDRrOFo2aEZWMUVKWEQ2QzFI?=
+ =?utf-8?B?aFRaNm16WGs4RXVweDFDRDVYWURud0JYYVo1VEpBblcyWmF0L2Z6cVZjbnV3?=
+ =?utf-8?B?NXNvRk9FREZWd0krdFl1eXZrMDlaZnJ2OGJEWGMrTHg1TzhpSUNlemdTMm9s?=
+ =?utf-8?B?UnBuUDJJaDk5VkJoWHBUS0RjVnQxUGpvVEJPUzJSWm40T2R0Z0RLQld2MUpN?=
+ =?utf-8?B?dHU3NkRYNk9aTzFZREpveHRjWktTclNHU1BFeDNka1VVVDJWdFpyUVdEdzlt?=
+ =?utf-8?B?R3BYQmczY1hCQTBHWHd5RFYrelBGY04wa0Rkd3YwV2hEQ0UvVktHUUJNS3pK?=
+ =?utf-8?B?QmFuTklGOFFhaU9veGxSMmNZVDZQenhEdVFwZ1JORjlpYWxZaWErWmRUVFF1?=
+ =?utf-8?B?Y1JqemZNTEVrY2VyNE16QWxVOWcyRjd6ay81QnptZ1pkZEZZN0ptZU1MUVFm?=
+ =?utf-8?B?anp4S3RVenZkUUdDaiswYitsVzg5NFNQZzgzS1ZrckttemJBWGNpbS9BQjln?=
+ =?utf-8?B?VEVFQ1pTdzRwM0ZFR2pQdTJXZU05YitvTHJWYnlPbDRKektaVlYzUFFlTnl6?=
+ =?utf-8?B?WU9YNDltY1h5MEZhV3VpNXBhL2syV0dOM3RPcGNuSWxrU2N4OGY1dWlJUWli?=
+ =?utf-8?B?dVBSMk1LcHg0aE4rc2oxRDdJSDNub1BhUnpaSHY3UU0xeGxibGc5SnptLzIw?=
+ =?utf-8?B?S25tKzlNTmlsaWtrRHF3LzRXWEIzYkZjZlJKRERVTkNBejh4ZUNkNC9LWXgr?=
+ =?utf-8?B?Z3J4UUdGZXBOZkp5N2dTWUJjR1cwa29EYXVzclhQQlhCM1pWU3hlRHZ1YWN4?=
+ =?utf-8?B?Z3poZHdCb3NqZkxhbVVBMFZGb01seXVKaVVRQ3FCeGpTVExveDlxdWZIZFFi?=
+ =?utf-8?B?ZUVhOTk1RXE4dk5hWERPSVB1U1IwenczVFhIRitGTkZZdWM2a0lKdDV2OXd0?=
+ =?utf-8?B?NnVVOGovVGV1aktaUGxKR05TeHBxZDZuZk9NVHBoNEVESjhoeVEwYTcybjJM?=
+ =?utf-8?B?dTB1VDRzKzV4K3h1dUFKbmhObm0zQlhXZ2pBQzg3blpPTWRYbW1MaUFNTjJF?=
+ =?utf-8?B?bncyTmlBcTRiWGZlcVI2cHhhUnJuallacG8wZGs3M3lkOHF2aTVWY0ZleFRD?=
+ =?utf-8?Q?bbNJInn7OUw=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1J4MHRYU3htLy9DM3JpYW8yUzJ4TzVjUkxLZTgrUDBOUmU5cWg0QWczUzBH?=
+ =?utf-8?B?RE1tK2RibnNpUmtiSGpXckdPY3EwVVhGOVFIOThuSS9DU2Z2M2doTDdIdjk3?=
+ =?utf-8?B?OUVyVUNjbmdTYlhFaGN2VjBpdnlJcUtMUXltbXJYTnAyV1IyVGRsNW10WDY2?=
+ =?utf-8?B?M2JRekJIWjVpNGY5Wi9YR0JZbkpkVzZHTzdlTUlaOEp2Tnp3dU1EbmxzaXh1?=
+ =?utf-8?B?Y0UzOEVSa0t2RXR0aUJQOWpLdkMvYUJMZnorTGFZWGhNL1hxOTJ2azYzci9Y?=
+ =?utf-8?B?RDBmTzNrL1ZCUjR6K1crd0hQMTRTdVc4TXdJN2ZJajlVTkJjeUx5SEpuYVRz?=
+ =?utf-8?B?K0Z1NWhOUmd3VkFJSUJIa01TOGduaUJhcTJkd3c4RXJpNy9lUXVoTVdCK1I4?=
+ =?utf-8?B?OXF5U1p0M2dJckt0R2JzSStpMlh1K01iWUl5WGRiVE11cjA4K3FUMXduSmY2?=
+ =?utf-8?B?NEF5TWd6TkluSTYxb3ZtbUR0SFAycUw4aTVRNjJCVjNDNFlWTURUNHZYV0sw?=
+ =?utf-8?B?N0ZDQktTMVJ2L21PUmgvbWRQZVlTZjh4MkY3alNvT29JTUFGSW81eTkya1FC?=
+ =?utf-8?B?RDYwNWFjV2QxSTdyR0s0b1ptMjlsREJCVnRTTnZ1aUNwcGxzV3pCZkFDRC8x?=
+ =?utf-8?B?d04yVEU3TWo2cjFjUzZiZVZ1QUhTank3dHpDMGxOa25MVlVNUitUQ2krNzI1?=
+ =?utf-8?B?S3JEYkJjaUQ1VUZXQm5teVNaQm5DQVVQS3BtaFZXeGkyanc2NUppNUhxK0JF?=
+ =?utf-8?B?eGYrV0JDQmJubXpUN1hPT2RLQitjb29rUnJZNjdKZ1dIUnJaaFd1L0FUTnJl?=
+ =?utf-8?B?bTMwSUt4Tjlxbk9UK2p4ZlNoN3Y0WFNxWUJuVmdYUEJpcnVLQjN2UE5maGRE?=
+ =?utf-8?B?cTIzWktGQnp0UjlzYit1dnI5UEdjdkJKeDY2SlJmR0xOem1xSStXc0o5aXBD?=
+ =?utf-8?B?QncxUzdydHkxZ1BUUytrdURhcnJWVEFqQi9ZQ2NZMGhuODRZbFVlVXJpbFRV?=
+ =?utf-8?B?UkhxQ056bFR5dGZIQlpUdkNsK0NQUEtXMjlzQUd3ZEhOSHVHM1QzVEMyWFIv?=
+ =?utf-8?B?Zm0vb01xYk9GdllTNTlOSFROWmU5cEV6T25OZDZzbGRjQlZKZGtRbjg4b1p0?=
+ =?utf-8?B?QzAvNWNHRWtIclljazFpcUp0YnMrZ0VyejNpWkpnL3A4M1FYbXZ6VmJ4djVy?=
+ =?utf-8?B?UkpUR3FmL1haOWR6M1ZSallVVWNHUTFhQ3dLcHZ4TDI3dTl4SnV2TTREWm44?=
+ =?utf-8?B?ZENUR01tcHJEcTlBMlMwTXE0RDRUSVhXZ21WUVJvazVxNjFHbGNGSndNeWcy?=
+ =?utf-8?B?aC9yV1NWZjFsQ2hJMmJlWEhNMmF5elMxZGRHUUtyRXNyMktFQVEwUzhjcmNL?=
+ =?utf-8?B?MHE4ckZIakNFMXNzK0hzNnh2aUxVZDZnSUZRd0Ira1lLeE5raFFONWYzb3lT?=
+ =?utf-8?B?a24yVDYvZVM5Rzk3SnpHQTMzN0VtOTByaHZBVXpqbUl4MkdreUcwc283dTRa?=
+ =?utf-8?B?ZTBJK1Yyemp4Q0pkWmRjcXA1bFVmTG4yT2dDUUxsRHlhZ0lRdXZqSERoUGxa?=
+ =?utf-8?B?bmgzK1RNdVpnblYzSGh1TUlEVFUzUHloMlZMRnNuc0VrVklKdkZEWTBhcVFZ?=
+ =?utf-8?B?Mi9TdmRYOUFwdnppYzFzMFVYdDRXWEFrRjRWRkxxUGVGSjU4dWY4R1c5LzFk?=
+ =?utf-8?B?Q1BhYSt5SkpGSlhrMGRiRWdWMGtDNXlrUG5tclZqZ3lNYUl1SjhuNWg4alV3?=
+ =?utf-8?B?MTg3OGlnL1Y0M2d2MklWV1cxNndZeHJwNEI4bDlYOTVBSkVVamF3NDdjcE0x?=
+ =?utf-8?B?NjllSktncm1FU3FaTzVSdUtGWDZ2cFMvMU12c0tyRkxMcUIzNmNUc3FIMjN5?=
+ =?utf-8?B?VzZySmxnRWc3MjRNZmdlbS9Da09lRjU1cFNvL3NhMDc3bVd5bkhTQWlLSGJx?=
+ =?utf-8?B?cUJWbkQ1YkU4SzEvd3ArUWRVMDcxQ1pkbE85Nk5RRk9uNHlsTUg1blRXcXVE?=
+ =?utf-8?B?anU3Yy9xUDNOajZlUkovY0JrUG5jdzdCdkVhbXZpdHAyaWV4SVJJS3RLblVY?=
+ =?utf-8?B?bzZ6OGRhVHJqSWxDaVZscWJnQWY2bkFqNzErZzJYd0F4OHViN1d6djNJT2hn?=
+ =?utf-8?Q?DWHQSzR3OyWscCXS9iFrZdq8h?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 804cab8f-a01a-4318-e496-08dd83bf7338
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2025 06:07:25.5289 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LW6mBS3HQenOlhvVZ9BfvWcJ4P36LWBPYcYYHHV3JXNi3Hq1LKLRHRmozw9fXMtH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8272
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,154 +159,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-=46rom 694c017112d176af07c2a65f015a8e73d6895e81 Mon Sep 17 00:00:00 2001
-From: Ivan Shamliev <ivan.shamliev.dev@abv.bg>
-Date: Thu, 24 Apr 2025 11:00:08 +0300
-Subject: [PATCH] drm/amd/display: Use true/false for boolean variables in D=
-ML2
- core files
 
-Replace 0 and 1 with false and true for boolean variables in
-dml2_core_dcn4_calcs.c and dml2_core_utils.c to align with the Linux
-kernel coding style guidelines, which recommend using C99 bool type
-with true/false values.
 
-Signed-off-by: Ivan Shamliev <ivan.shamliev.dev@abv.bg>
----
- .../dml21/src/dml2_core/dml2_core_dcn4_calcs.c   | 16 ++++++++--------
- .../dml2/dml21/src/dml2_core/dml2_core_utils.c   |  8 ++++----
- 2 files changed, 12 insertions(+), 12 deletions(-)
+On 4/24/2025 10:43 PM, Sonny Jiang wrote:
+> For vcn5.0.1 only, enable DPG PAUSE to avoid DPG resets.
+> 
+> Signed-off-by: Sonny Jiang <sonny.jiang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c | 55 +++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
+> index 4b2e6a033831..a115dd2c1d82 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
+> @@ -502,6 +502,53 @@ static void vcn_v5_0_1_enable_clock_gating(struct amdgpu_vcn_inst *vinst)
+>  {
+>  }
+>  
+> +/**
+> + * vcn_v5_0_1_pause_dpg_mode - VCN pause with dpg mode
+> + *
+> + * @vinst: VCN instance
+> + * @new_state: pause state
+> + *
+> + * Pause dpg mode for VCN block
+> + */
+> +static int vcn_v5_0_1_pause_dpg_mode(struct amdgpu_vcn_inst *vinst,
+> +				     struct dpg_pause_state *new_state)
+> +{
+> +	struct amdgpu_device *adev = vinst->adev;
+> +	int inst_idx = vinst->inst;
+> +	uint32_t reg_data = 0;
+> +	int vcn_inst;
+> +
+> +	vcn_inst = GET_INST(VCN, inst_idx);
+> +
+> +	/* pause/unpause if state is changed */
+> +	if (adev->vcn.inst[inst_idx].pause_state.fw_based != new_state->fw_based) {
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_c=
-ore_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/=
-dml2_core_dcn4_calcs.c
-index 4c504cb0e1c5..c299fe4b3b74 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn=
-4_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn=
-4_calcs.c
-@@ -4962,11 +4962,11 @@ static double get_urgent_bandwidth_required(
- 		l->adj_factor_cur_pre =3D UrgentBurstFactorCursorPre[k];
-=20
- 		bool is_phantom =3D dml_is_phantom_pipe(&display_cfg->plane_descriptors[=
-k]);
--		bool exclude_this_plane =3D 0;
-+		bool exclude_this_plane =3D false;
-=20
- 		// Exclude phantom pipe in bw calculation for non svp prefetch state
- 		if (state_type !=3D dml2_core_internal_soc_state_svp_prefetch && is_phan=
-tom)
--			exclude_this_plane =3D 1;
-+			exclude_this_plane =3D true;
-=20
- 		// The qualified row bandwidth, qual_row_bw, accounts for the regular no=
-n-flip row bandwidth when there is no possible immediate flip or HostVM inv=
-alidation flip.
- 		// The qual_row_bw is zero if HostVM is possible and only non-zero and e=
-qual to row_bw(i) if immediate flip is not allowed for that pipe.
-@@ -7163,13 +7163,13 @@ static unsigned int get_qos_param_index(unsigned lo=
-ng uclk_freq_khz, const struc
- static unsigned int get_active_min_uclk_dpm_index(unsigned long uclk_freq_=
-khz, const struct dml2_soc_state_table *clk_table)
- {
- 	unsigned int i;
--	bool clk_entry_found =3D 0;
-+	bool clk_entry_found =3D false;
-=20
- 	for (i =3D 0; i < clk_table->uclk.num_clk_values; i++) {
- 		dml2_printf("DML::%s: clk_table.uclk.clk_values_khz[%d] =3D %d\n", __fun=
-c__, i, clk_table->uclk.clk_values_khz[i]);
-=20
- 		if (uclk_freq_khz =3D=3D clk_table->uclk.clk_values_khz[i]) {
--			clk_entry_found =3D 1;
-+			clk_entry_found =3D true;
- 			break;
- 		}
- 	}
-@@ -8502,7 +8502,7 @@ static bool dml_core_mode_support(struct dml2_core_ca=
-lcs_mode_support_ex *in_out
-=20
- 	for (k =3D 0; k < mode_lib->ms.num_active_planes; ++k) {
- 		double line_time_us =3D (double)display_cfg->stream_descriptors[display_=
-cfg->plane_descriptors[k].stream_index].timing.h_total / ((double)display_c=
-fg->stream_descriptors[display_cfg->plane_descriptors[k].stream_index].timi=
-ng.pixel_clock_khz / 1000);
--		bool cursor_not_enough_urgent_latency_hiding =3D 0;
-+		bool cursor_not_enough_urgent_latency_hiding =3D false;
-=20
- 		if (display_cfg->plane_descriptors[k].cursor.num_cursors > 0) {
- 			calculate_cursor_req_attributes(
-@@ -11097,7 +11097,7 @@ static bool dml_core_mode_programming(struct dml2_c=
-ore_calcs_mode_programming_ex
- 		mode_lib->soc.qos_parameters.qos_params.dcn4x.fabric_max_transport_laten=
-cy_margin);
-=20
- 	for (k =3D 0; k < s->num_active_planes; ++k) {
--		bool cursor_not_enough_urgent_latency_hiding =3D 0;
-+		bool cursor_not_enough_urgent_latency_hiding =3D false;
- 		s->line_times[k] =3D display_cfg->stream_descriptors[display_cfg->plane_=
-descriptors[k].stream_index].timing.h_total /
- 			((double)display_cfg->stream_descriptors[display_cfg->plane_descriptors=
-[k].stream_index].timing.pixel_clock_khz / 1000);
-=20
-@@ -12199,10 +12199,10 @@ void dml2_core_calcs_get_dpte_row_height(
-=20
- static bool is_dual_plane(enum dml2_source_format_class source_format)
- {
--	bool ret_val =3D 0;
-+	bool ret_val =3D false;
-=20
- 	if ((source_format =3D=3D dml2_420_12) || (source_format =3D=3D dml2_420_=
-8) || (source_format =3D=3D dml2_420_10) || (source_format =3D=3D dml2_rgbe=
-_alpha))
--		ret_val =3D 1;
-+		ret_val =3D true;
-=20
- 	return ret_val;
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_c=
-ore_utils.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_=
-core_utils.c
-index 2504d9c2ec34..215fd80cdc8d 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_uti=
-ls.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_uti=
-ls.c
-@@ -533,13 +533,13 @@ unsigned int dml2_core_utils_get_qos_param_index(unsi=
-gned long uclk_freq_khz, co
- unsigned int dml2_core_utils_get_active_min_uclk_dpm_index(unsigned long u=
-clk_freq_khz, const struct dml2_soc_state_table *clk_table)
- {
- 	unsigned int i;
--	bool clk_entry_found =3D 0;
-+	bool clk_entry_found =3D false;
-=20
- 	for (i =3D 0; i < clk_table->uclk.num_clk_values; i++) {
- 		dml2_printf("DML::%s: clk_table.uclk.clk_values_khz[%d] =3D %d\n", __fun=
-c__, i, clk_table->uclk.clk_values_khz[i]);
-=20
- 		if (uclk_freq_khz =3D=3D clk_table->uclk.clk_values_khz[i]) {
--			clk_entry_found =3D 1;
-+			clk_entry_found =3D true;
- 			break;
- 		}
- 	}
-@@ -555,10 +555,10 @@ unsigned int dml2_core_utils_get_active_min_uclk_dpm_=
-index(unsigned long uclk_fr
-=20
- bool dml2_core_utils_is_dual_plane(enum dml2_source_format_class source_fo=
-rmat)
- {
--	bool ret_val =3D 0;
-+	bool ret_val =3D false;
-=20
- 	if (dml2_core_utils_is_420(source_format) || dml2_core_utils_is_422_plana=
-r(source_format) || (source_format =3D=3D dml2_rgbe_alpha))
--		ret_val =3D 1;
-+		ret_val =3D true;
-=20
- 	return ret_val;
- }
---=20
-2.43.0
+adev->vcn.inst[inst_idx] => Please replace all with vinst.
+
+Thanks,
+Lijo
+
+> +		DRM_DEV_DEBUG(adev->dev, "dpg pause state changed %d -> %d %s\n",
+> +			adev->vcn.inst[inst_idx].pause_state.fw_based, new_state->fw_based,
+> +			new_state->fw_based ? "VCN_DPG_STATE__PAUSE" : "VCN_DPG_STATE__UNPAUSE");
+> +		reg_data = RREG32_SOC15(VCN, vcn_inst, regUVD_DPG_PAUSE) &
+> +			(~UVD_DPG_PAUSE__NJ_PAUSE_DPG_ACK_MASK);
+> +
+> +		if (new_state->fw_based == VCN_DPG_STATE__PAUSE) {
+> +			/* pause DPG */
+> +			reg_data |= UVD_DPG_PAUSE__NJ_PAUSE_DPG_REQ_MASK;
+> +			WREG32_SOC15(VCN, vcn_inst, regUVD_DPG_PAUSE, reg_data);
+> +
+> +			/* wait for ACK */
+> +			SOC15_WAIT_ON_RREG(VCN, vcn_inst, regUVD_DPG_PAUSE,
+> +					UVD_DPG_PAUSE__NJ_PAUSE_DPG_ACK_MASK,
+> +					UVD_DPG_PAUSE__NJ_PAUSE_DPG_ACK_MASK);
+> +		} else {
+> +			/* unpause DPG, no need to wait */
+> +			reg_data &= ~UVD_DPG_PAUSE__NJ_PAUSE_DPG_REQ_MASK;
+> +			WREG32_SOC15(VCN, vcn_inst, regUVD_DPG_PAUSE, reg_data);
+> +		}
+> +		adev->vcn.inst[inst_idx].pause_state.fw_based = new_state->fw_based;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +
+>  /**
+>   * vcn_v5_0_1_start_dpg_mode - VCN start with dpg mode
+>   *
+> @@ -518,6 +565,7 @@ static int vcn_v5_0_1_start_dpg_mode(struct amdgpu_vcn_inst *vinst,
+>  	volatile struct amdgpu_vcn5_fw_shared *fw_shared =
+>  		adev->vcn.inst[inst_idx].fw_shared.cpu_addr;
+>  	struct amdgpu_ring *ring;
+> +	struct dpg_pause_state state = {.fw_based = VCN_DPG_STATE__PAUSE};
+>  	int vcn_inst;
+>  	uint32_t tmp;
+>  
+> @@ -582,6 +630,9 @@ static int vcn_v5_0_1_start_dpg_mode(struct amdgpu_vcn_inst *vinst,
+>  	if (indirect)
+>  		amdgpu_vcn_psp_update_sram(adev, inst_idx, AMDGPU_UCODE_ID_VCN0_RAM);
+>  
+> +	/* Pause dpg */
+> +	vcn_v5_0_1_pause_dpg_mode(vinst, &state);
+> +
+>  	ring = &adev->vcn.inst[inst_idx].ring_enc[0];
+>  
+>  	WREG32_SOC15(VCN, vcn_inst, regUVD_RB_BASE_LO, lower_32_bits(ring->gpu_addr));
+> @@ -775,9 +826,13 @@ static void vcn_v5_0_1_stop_dpg_mode(struct amdgpu_vcn_inst *vinst)
+>  	int inst_idx = vinst->inst;
+>  	uint32_t tmp;
+>  	int vcn_inst;
+> +	struct dpg_pause_state state = {.fw_based = VCN_DPG_STATE__UNPAUSE};
+>  
+>  	vcn_inst = GET_INST(VCN, inst_idx);
+>  
+> +	/* Unpause dpg */
+> +	vcn_v5_0_1_pause_dpg_mode(vinst, &state);
+> +
+>  	/* Wait for power status to be 1 */
+>  	SOC15_WAIT_ON_RREG(VCN, vcn_inst, regUVD_POWER_STATUS, 1,
+>  		UVD_POWER_STATUS__UVD_POWER_STATUS_MASK);
 
