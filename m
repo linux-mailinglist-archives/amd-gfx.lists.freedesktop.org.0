@@ -2,61 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A66A9E25E
-	for <lists+amd-gfx@lfdr.de>; Sun, 27 Apr 2025 12:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FB2EA9E262
+	for <lists+amd-gfx@lfdr.de>; Sun, 27 Apr 2025 12:13:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD17E10E1AB;
-	Sun, 27 Apr 2025 10:13:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31B0D10E369;
+	Sun, 27 Apr 2025 10:13:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MriyEWx3";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 402 seconds by postgrey-1.36 at gabe;
- Sun, 27 Apr 2025 04:20:40 UTC
-Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0421310E044;
- Sun, 27 Apr 2025 04:20:40 +0000 (UTC)
-Received: from mxde.zte.com.cn (unknown [10.35.20.121])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxct.zte.com.cn (FangMail) with ESMTPS id 4ZlY9X639czKhp;
- Sun, 27 Apr 2025 12:13:52 +0800 (CST)
-Received: from mxhk.zte.com.cn (unknown [192.168.250.138])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxde.zte.com.cn (FangMail) with ESMTPS id 4ZlY9S24RwzBRHKJ;
- Sun, 27 Apr 2025 12:13:48 +0800 (CST)
-Received: from mse-db.zte.com.cn (unknown [10.5.228.131])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxhk.zte.com.cn (FangMail) with ESMTPS id 4ZlY981t3Vz5B1KR;
- Sun, 27 Apr 2025 12:13:32 +0800 (CST)
-Received: (from root@localhost) by mse-db.zte.com.cn id 53R4DUco001600;
- Sun, 27 Apr 2025 12:13:30 +0800 (+08)
- (envelope-from liu.song13@zte.com.cn)
-Message-Id: <202504270413.53R4DUco001600@mse-db.zte.com.cn>
-Received: from xaxapp01.zte.com.cn ([10.88.99.176])
- by mse-fl2.zte.com.cn with SMTP id 53R1P9Pd083371;
- Sun, 27 Apr 2025 09:25:09 +0800 (+08)
- (envelope-from liu.song13@zte.com.cn)
-Received: from mapi (xaxapp01[null]) by mapi (Zmail) with MAPI id mid31;
- Sun, 27 Apr 2025 09:25:10 +0800 (CST)
-Date: Sun, 27 Apr 2025 09:25:10 +0800 (CST)
-X-Zmail-TransId: 2af9680d8776ffffffff9e6-9acdf
-X-Mailer: Zmail v1.0
-Mime-Version: 1.0
-From: <liu.song13@zte.com.cn>
-To: <felix.kuehling@amd.com>
-Cc: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <airlied@gmail.com>, <simona@ffwll.ch>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <liu.xuemei1@zte.com.cn>,
- <jiang.xuexin@zte.com.cn>, <xue.zhihong@zte.com.cn>
-Subject: =?UTF-8?B?W1BBVENIXSBkcm0vYW1ka2ZkOiBlbmFibGUga2ZkIG9uIFJJU0NWIHN5c3RlbXM=?=
-Content-Type: text/plain;
-	charset="UTF-8"
-X-MAIL: mse-db.zte.com.cn 53R4DUco001600
-X-MSS: AUDITRELEASE@mse-db.zte.com.cn
-X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 680DAEFF.000/4ZlY9X639czKhp
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EBEC10E0AC;
+ Sun, 27 Apr 2025 02:37:10 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-2295d78b45cso53239715ad.0; 
+ Sat, 26 Apr 2025 19:37:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1745721429; x=1746326229; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=sGhmxhSrOG99ny8cfzHBCSn4oPUOL2LGUGAF5QgBGIw=;
+ b=MriyEWx3ueC7pBQpCVuOo1/PjbxkpN/B2qRqWasyRT2p9cB0txdXYgPY1XpthxXI+f
+ iJgUS1lylpgSTsHlcwSv6gLBvlobR0bHOLG5SUCEEqsPWALHMmCkxbbq9QFQpOZiituJ
+ H0ynQ+MfGVd1E+WpuRhsmKMumWiNcrfhMNq08tGkgZvaCimIlBMmhYyNI0Ew1bDgn8CG
+ rWZTLJJ/5pHtinHwWLn7QSLwuwecQAOxYSFx+kqHq/LSihbPMNb5hbV4EgO7NmetQKxf
+ VQcswkz51ema4DJfvIq1CCCRShPyz/jSfgDwdYnnl/6dVJBwG9q9Bo2ES5mhhoIB8B1T
+ VGfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745721430; x=1746326230;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=sGhmxhSrOG99ny8cfzHBCSn4oPUOL2LGUGAF5QgBGIw=;
+ b=MRKEvhCkruApeZzw6AbcfCiz2pgqg3p+hu5PVPD7eqthNHkQzgyBtBJ/30IRLEYAK4
+ TRjThhSncjsyitM+NSW9SZPU/aGWyKE4wf5HYYBGVGz1AKh/Oj3NqmHvw+JCEDym8mFH
+ yOZ8IiuQF+ZhWna2CBQlnL437d0S6ZMY90E9kH/Rp8XfpK0aWOm3Pnuzm+IRQm2S1Tjc
+ 0R0x/Ajwvj0CPhij886GBwlTznl6DAPTsiCQEHcaTSvAQdxJ30RxQyg2qhjcpzAGJQz7
+ PjbTyfhOKwJ+QLFK4zC8zxQ5hcxFRVg2QNGd17JW8XyYdQzPyfyKxrYVPhJE+VWIJjYf
+ VLdg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUK0kpFNkhLCgBuwN68DNwQiQ0Niwyn4lnE2chvEOrs3WBfHco92kOJ4GYzJirId64LooqEUGLB@lists.freedesktop.org,
+ AJvYcCVS1zbEbQ6S/mvxual8jvJZU73rjyfS7TunIpEg9ULwqSyHs90rtER7oqOBbnzrQqkktNEaXhkhfyzz@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx0XImfah0/eC4tHFpiwOcipGqxWIx2Ab/YCwH6l9rWJoGw+HIN
+ 9+uANY1SIEjOSQ75DVtfR8YePkJSLEWMnJgSIQ6srs2+2JhZtq5l
+X-Gm-Gg: ASbGncvWcHpGNgYSgpEKjAtYyREBw3B6qt2tlf4PPgoVLvHqeEhlL4xFDuDk1bEFgyY
+ gIc225VXanUbvNcd/+i0yT9pCSJJ5KryynsjOjCUYWuTOmpF9YKBBNhU7VwNOps1n4wvGwxgg81
+ SuWZYLKaAcVL3x41SrZjysdms4ukNys1rvldkJ22ICZFPmPGwmhEAw0wDWM79E9Zu9eHCAqsk0e
+ jRubyjzIrHgM7SakcnKgsCCkbGmt1UcBpxKtD+IDp6E8zI+X8Yi7FtD0hNgJP3xqMCZsaeecnbw
+ 9RQ+IXQsv8YPVbMHF1rdYLB9sTo3dyEiDWvhHNX4
+X-Google-Smtp-Source: AGHT+IHORZxRoCwJgkxTIznfaV7sWbHLw+4c1AAkdhkWHc2dCqwboQ1cj9cnhpySTMZq7KnyUv6y+Q==
+X-Received: by 2002:a17:903:1b26:b0:21f:564:80a4 with SMTP id
+ d9443c01a7336-22dc6a6852amr69641655ad.33.1745721429362; 
+ Sat, 26 Apr 2025 19:37:09 -0700 (PDT)
+Received: from archie.me ([103.124.138.155]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-22db4d74c93sm56570415ad.11.2025.04.26.19.37.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 26 Apr 2025 19:37:08 -0700 (PDT)
+Received: by archie.me (Postfix, from userid 1000)
+ id 0AE584208F70; Sun, 27 Apr 2025 09:37:04 +0700 (WIB)
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Documentation <linux-doc@vger.kernel.org>,
+ Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
+ Linux DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Ramesh Errabolu <Ramesh.Errabolu@amd.com>,
+ Arvind Yadav <Arvind.Yadav@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
+ Bagas Sanjaya <bagasdotme@gmail.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: [PATCH] drm/amdgpu/userq: fix user_queue parameters list
+Date: Sun, 27 Apr 2025 09:36:26 +0700
+Message-ID: <20250427023625.14327-2-bagasdotme@gmail.com>
+X-Mailer: git-send-email 2.49.0
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1905; i=bagasdotme@gmail.com;
+ h=from:subject; bh=rK+u9vJhz3zpOrwMOXrVbGhSFwLMiih9GqsN16Vu+8s=;
+ b=owGbwMvMwCX2bWenZ2ig32LG02pJDBm801606YS91/42J91SNohletaKPw1KmtNYn19wEVjq2
+ vrqkJNuRykLgxgXg6yYIsukRL6m07uMRC60r3WEmcPKBDKEgYtTACZyK4KR4cOB5FrhC3KymaEl
+ DxbEmN6Yf/ioboVi+vInemYRTs3deYwMS59Y6YpzNLeK8PPsShB5nN6ULXNG96RTdn3a5VcvFq7
+ mBgA=
+X-Developer-Key: i=bagasdotme@gmail.com; a=openpgp;
+ fpr=701B806FDCA5D3A58FFB8F7D7C276C64A5E44A1D
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 27 Apr 2025 10:13:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,28 +107,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Xuemei Liu <liu.xuemei1@zte.com.cn>
+Sphinx reports htmldocs warning:
 
-KFD has been confirmed that can run on RISCV systems. It's necessary to
-support CONFIG_HSA_AMD on RISCV.
+Documentation/gpu/amdgpu/module-parameters:7: drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c:1119: ERROR: Unexpected indentation. [docutils]
 
-Signed-off-by: Xuemei Liu <liu.xuemei1@zte.com.cn>
+Fix the warning by using reST bullet list syntax for user_queue
+parameter options, separated from preceding paragraph by a blank
+line.
+
+Fixes: fb20954c9717 ("drm/amdgpu/userq: rework driver parameter")
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Closes: https://lore.kernel.org/linux-next/20250422202956.176fb590@canb.auug.org.au/
+Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
 ---
- drivers/gpu/drm/amd/amdkfd/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/Kconfig b/drivers/gpu/drm/amd/amdkfd/Kconfig
-index d3c3d3ab7225..9d4a5f8ef43f 100644
---- a/drivers/gpu/drm/amd/amdkfd/Kconfig
-+++ b/drivers/gpu/drm/amd/amdkfd/Kconfig
-@@ -5,7 +5,7 @@
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index b9a1ef343c79cf..ec8057597c5aad 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -1115,11 +1115,12 @@ module_param_named(rebar, amdgpu_rebar, int, 0444);
+ 
+ /**
+  * DOC: user_queue (int)
+- * Enable user queues on systems that support user queues.
+- * -1 = auto (ASIC specific default)
+- *  0 = user queues disabled
+- *  1 = user queues enabled and kernel queues enabled (if supported)
+- *  2 = user queues enabled and kernel queues disabled
++ * Enable user queues on systems that support user queues. Possible values:
++ *
++ * - -1 = auto (ASIC specific default)
++ * -  0 = user queues disabled
++ * -  1 = user queues enabled and kernel queues enabled (if supported)
++ * -  2 = user queues enabled and kernel queues disabled
+  */
+ MODULE_PARM_DESC(user_queue, "Enable user queues (-1 = auto (default), 0 = disable, 1 = enable, 2 = enable UQs and disable KQs)");
+ module_param_named(user_queue, amdgpu_user_queue, int, 0444);
 
- config HSA_AMD
-  bool "HSA kernel driver for AMD GPU devices"
-- depends on DRM_AMDGPU && (X86_64 || ARM64 || PPC64)
-+ depends on DRM_AMDGPU && (X86_64 || ARM64 || PPC64 || RISCV)
-  select HMM_MIRROR
-  select MMU_NOTIFIER
-  select DRM_AMDGPU_USERPTR
+base-commit: 127e612bf16726620e431b6e0f771424916492be
 -- 
-2.25.1
+An old man doll... just what I always wanted! - Clara
+
