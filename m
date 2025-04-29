@@ -2,60 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372A8AA0EBC
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Apr 2025 16:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6FF2AA0E28
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Apr 2025 16:05:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5734310E0FC;
-	Tue, 29 Apr 2025 14:28:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 354C910E4A5;
+	Tue, 29 Apr 2025 14:05:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RV6Fo6Pn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JvxuJyfZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1938 seconds by postgrey-1.36 at gabe;
- Tue, 29 Apr 2025 14:28:03 UTC
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7CFE10E4DD;
- Tue, 29 Apr 2025 14:28:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=UxJe9PzKrKIYs/Hyxyd4qmS6r+QCAJE3Jx5c9/ARI78=; b=RV6Fo6PnXBii0bCKrwTtzzaAMF
- Jn2XO0XbuyLaOJV/pLOUq/S9uFe94/kMVtYB+1qXPHXwi80siYCAAISWC4ybEeOYU9nevmMzN7chJ
- 8Tu3FOZZq/k/CCIBmCH5plsBbpQQB0lSUnYDNyzDeEtEpwIp8veHoOMu8lSswp7eZQI5Tu5ipP+1o
- V7k0uaJRcdpcYt/F/c6b2QUFhaItBOp3a6gs8QoS8WJIxZ8pJ5TPRdSwbPkNvfQuyhaWXtGWfICZb
- aiHYefKqv51ywi3YtkQIa9iG+Qycnl5fHV0UWuSckgv7jIw7je7yvzlUlNKxQo1PoYJKbTUEEDsum
- 6jed92jA==;
-Received: from [189.6.35.67] (helo=[192.168.0.55])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1u9lQX-000LmM-U3; Tue, 29 Apr 2025 15:55:33 +0200
-Message-ID: <93eb1aa2-31b9-4d99-baac-8e698241830a@igalia.com>
-Date: Tue, 29 Apr 2025 10:55:25 -0300
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
+ [209.85.215.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD1DF10E4A5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Apr 2025 14:05:53 +0000 (UTC)
+Received: by mail-pg1-f171.google.com with SMTP id
+ 41be03b00d2f7-b143ad615f2so458980a12.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Apr 2025 07:05:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1745935553; x=1746540353; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zOMJzH2CanLqn+f6nS1N08VmQhZoMulbV/w93TSTuvY=;
+ b=JvxuJyfZb/mg5u8DtenZ8KWO2iTfMlU5rPqwt54OxfR6IOItNC7U7BbxU0B4FgkGGn
+ zspW+YBzevqi336F64hoJeumeQWco5nqoqDETKyKUDiLZE148ggjeRtVwud89WpMA4pi
+ 2YbO4AZGqhTJmUp0fSaHxU8111DdeNSogSS++r0GiP5HTe1+LZk4VpcMKWOsUudt6OJc
+ hiig5hN9T/KqeBa/SFHumPTVJm/JcRpEzONpDCXiBcHKZ6kmRqmLqQaTh2QFLOqr5MXE
+ QA/kh/ZGz44R82B9CcatsIUZCXW0L69RroDRp1QY8LULX4An/cgJrdZCRt0nhDL/IhmM
+ Ey9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745935553; x=1746540353;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=zOMJzH2CanLqn+f6nS1N08VmQhZoMulbV/w93TSTuvY=;
+ b=TAFkY6q3AwJu6TwE2htmfqgRf5lONTWRpa9HZQIG+CTeHpsQwoV4lkZC1BDTt6F6c6
+ XbfX/Z4Za4mim1hkWBvQf12VaRae7/Jrex7agH/rjzi0cR0e0jHiNteFt/2gX4GDnkrQ
+ fiSBpRHGf66xMOji+2+TuYNCYUoBTDfS1TfrF7Fd7hq+h/QX8zkduEgQpWAA20wwxoXs
+ E0nIS7/q9090fiU2C49sg3gZxBdSxR6VLwf+vs1Fg7jjPyfLVJrV0zFdfWSMecuap5Ea
+ u7QWY7NhN+WFp64KqDVbmrJ4hUiD/ff4fRrDDkuckl/Dx44RjSGD65yi402TjRzK+AqV
+ h+MA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX7WeGAeE4+kTEWyUi36h3IdmowDqh7GtRYZFNC3zijltTHjIOrcd+AjGVi8L6Bd3O1kglypu74@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw78QHXeKygjY4OOnCY3YJNlg1JT7Qhj7zLiPiI2B79UFMAJarE
+ p7iu3CwgPV5G1Bw36H5EGV2fBLlJhLq1PO/jlkBqewul+IQXwCvXYbWby6vT66K8R7i2iUDaXE/
+ VgBmuPKp2ImYcxYailECDFnV6YQ6V6A==
+X-Gm-Gg: ASbGncsWYu7IhjJqDsR9yMSUDRhdV9L4VnDNEEWcx+hQYHlYMXgaM8FzoXgLGH+xCoC
+ aUNt5BgPurKCMeFzbduWvV9mGA0fa+TLoW2j25TzGlWS0oTy/h+C/ozB4CuDzgkVz2vHUTKdSiP
+ wzZRMQFXQBi+RmXuqHKDAtrQ==
+X-Google-Smtp-Source: AGHT+IETf1/5BfdrcM3edcj5Mnli036RXRfnkVO26eWtzaxCQ0EKy3M/K3NjYd/yF49CoJOeg8w875tw4984dBCS9XU=
+X-Received: by 2002:a17:90b:4a05:b0:2ff:7970:d2b6 with SMTP id
+ 98e67ed59e1d1-309f7e9e312mr8805603a91.5.1745935553202; Tue, 29 Apr 2025
+ 07:05:53 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "drm/amd/display: Hardware cursor changes color
- when switched to software cursor"
-To: Shengyu Qu <wiagn233@outlook.com>, harry.wentland@amd.com,
- sunpeng.li@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
- airlied@gmail.com, simona@ffwll.ch
-Cc: Michel Daenzer <michel.daenzer@mailbox.org>, Alex Hung
- <alex.hung@amd.com>, Aurabindo Pillai <Aurabindo.Pillai@amd.com>,
- Nevenko Stupar <Nevenko.Stupar@amd.com>, Roman Li <roman.li@amd.com>,
- Xaver Hugl <xaver.hugl@gmail.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com
-References: <20250422150427.59679-1-mwen@igalia.com>
- <TYCPR01MB8437276B8FDCA38DFB06B42198812@TYCPR01MB8437.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: Melissa Wen <mwen@igalia.com>
-In-Reply-To: <TYCPR01MB8437276B8FDCA38DFB06B42198812@TYCPR01MB8437.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250429102954.3913983-1-ray.huang@amd.com>
+ <34919514-46de-4e4d-9eae-e58bb8c7bb94@amd.com>
+ <aBDb59NyMq1G0iW3@amd.com>
+In-Reply-To: <aBDb59NyMq1G0iW3@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 29 Apr 2025 10:05:40 -0400
+X-Gm-Features: ATxdqUFx61fInvxkpCOxK8TrmEZqd0sx955NCw6wGWOcVd8jaVUBnXJFLWS_5Dw
+Message-ID: <CADnq5_OKugU+ogJ5+1=EyvPNyHyoBs6Ja+bTtTG=6JjnN5jzqg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: remove re-route ih in psp v12
+To: Huang Rui <ray.huang@amd.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Trigger Huang <Trigger.Huang@amd.com>, Zhu Lingshan <lingshan.zhu@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,98 +85,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 28/04/2025 06:21, Shengyu Qu wrote:
-> Hi,
+On Tue, Apr 29, 2025 at 10:02=E2=80=AFAM Huang Rui <ray.huang@amd.com> wrot=
+e:
 >
-> Personally I prefer we always disable cursor HW degamma, and this is 
-> what color pipeline patch series have done for cursor plane(actually 
-> all colorops are disabled on cursor plane and its background plane). 
-> Since cursor plane shares colorops with cursor's background plane.
+> On Tue, Apr 29, 2025 at 03:50:25PM +0200, Christian K=C3=B6nig wrote:
+> > On 4/29/25 12:29, Huang Rui wrote:
+> > > APU doesn't have second IH ring, so re-routing action here is a no-op=
+.
+> > > It will take a lot of time to wait timeout from PSP during the
+> > > initialization. So remove the function in psp v12.
+> >
+> >
+> > Not 100% sure, but I think this code is also used for non APUs.
+> >
+> > So we need to keep it around, just don't try to re-route faults to the =
+second IH ring on APUs.
+>
+> Yes, psp v12 is only for APUs like Renoir and related APU kicker and won'=
+t
+> be applied to dGPU. I think we should make series to modify these series =
+to
+> update re-routing into dGPUs next step.
 
-Hi Shengyu,
+These functions have been in this file since it was originally added
+specifically for APUs.  It looks like it was just copy and pasted from
+another psp version.
 
-This feature isn't related to under-discussion plane color mgmt, neither 
-the current atomic CRTC color properties, where this cursor degamma is 
-always disable. It's only needed for DRM legacy gamma because of the 
-implict sRGB done by AMD display driver for this property.
+Alex
 
-Best Regards,
-
-Melissa
 
 >
-> Also, degamma a sRGB image with sRGB curve is not a good choice, or we 
-> have to fake screen TRC to sRGB curve while the screen actually is 
-> calibrated to power 2.2 curve.
+> Thanks,
+> Ray
 >
-> Best regards,
-> Shengyu
->
-> 在 2025/4/22 22:58, Melissa Wen 写道:
->> This reverts commit 272e6aab14bbf98d7a06b2b1cd6308a02d4a10a1.
->>
->> Applying degamma curve to the cursor by default breaks Linux userspace
->> expectation.
->>
->> On Linux, AMD display manager enables cursor degamma ROM just for
->> implict sRGB on HW versions where degamma is split into two blocks:
->> degamma ROM for pre-defined TFs and `gamma correction` for user/custom
->> curves, and degamma ROM settings doesn't apply to cursor plane.
->>
->> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1513
->> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2803
->> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4144
->> Reported-by: Michel Dänzer <michel.daenzer@mailbox.org>
->> Signed-off-by: Melissa Wen <mwen@igalia.com>
->> ---
->>
->> Hi,
->>
->> I suspect there is a conflict of interest between OSes here, because
->> this is not the first time this mechanism has been removed from the
->> DC shared-code and after reintroduced [1].
->>
->> I'd suggest that other OSes set the `dc_cursor_attributes
->> attribute_flags.bits.ENABLE_CURSOR_DEGAMMA` to true by default, rather
->> than removing the mechanism that is valid for the Linux driver. Similar
->> to what the Linux AMD DM does for the implicit sRGB [2][3], but in their
->> case, they just need to initialize with 1.
->>
->> Finally, thanks Michel for pointing this issue out to me and noticing
->> the similarity to previous solution.
->>
->> [1] https://gitlab.freedesktop.org/agd5f/linux/-/commit/d9fbd64e8e317
->> [2] https://gitlab.freedesktop.org/agd5f/linux/-/commit/857b835f
->> [3] https://gitlab.freedesktop.org/agd5f/linux/-/commit/66eba12a
->>
->> Best Regards,
->>
->> Melissa
->>
->>   drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c | 5 +++--
->>   1 file changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git 
->> a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c 
->> b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
->> index 1236e0f9a256..712aff7e17f7 100644
->> --- a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
->> +++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
->> @@ -120,10 +120,11 @@ void dpp401_set_cursor_attributes(
->>       enum dc_cursor_color_format color_format = 
->> cursor_attributes->color_format;
->>       int cur_rom_en = 0;
->>   -    // DCN4 should always do Cursor degamma for Cursor Color modes
->>       if (color_format == CURSOR_MODE_COLOR_PRE_MULTIPLIED_ALPHA ||
->>           color_format == CURSOR_MODE_COLOR_UN_PRE_MULTIPLIED_ALPHA) {
->> -        cur_rom_en = 1;
->> +        if 
->> (cursor_attributes->attribute_flags.bits.ENABLE_CURSOR_DEGAMMA) {
->> +            cur_rom_en = 1;
->> +        }
->>       }
->>         REG_UPDATE_3(CURSOR0_CONTROL,
->
-
+> >
+> > Regards,
+> > Christian.
+> >
+> > >
+> > > Signed-off-by: Huang Rui <ray.huang@amd.com>
+> > > ---
+> > >  drivers/gpu/drm/amd/amdgpu/psp_v12_0.c | 34 ------------------------=
+--
+> > >  1 file changed, 34 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c b/drivers/gpu/drm=
+/amd/amdgpu/psp_v12_0.c
+> > > index 6331941440d9..ed24f61e1ab8 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/psp_v12_0.c
+> > > @@ -34,9 +34,6 @@
+> > >  #include "sdma0/sdma0_4_0_offset.h"
+> > >  #include "nbio/nbio_7_4_offset.h"
+> > >
+> > > -#include "oss/osssys_4_0_offset.h"
+> > > -#include "oss/osssys_4_0_sh_mask.h"
+> > > -
+> > >  MODULE_FIRMWARE("amdgpu/renoir_asd.bin");
+> > >  MODULE_FIRMWARE("amdgpu/renoir_ta.bin");
+> > >  MODULE_FIRMWARE("amdgpu/green_sardine_asd.bin");
+> > > @@ -142,35 +139,6 @@ static int psp_v12_0_bootloader_load_sos(struct =
+psp_context *psp)
+> > >     return ret;
+> > >  }
+> > >
+> > > -static void psp_v12_0_reroute_ih(struct psp_context *psp)
+> > > -{
+> > > -   struct amdgpu_device *adev =3D psp->adev;
+> > > -   uint32_t tmp;
+> > > -
+> > > -   /* Change IH ring for VMC */
+> > > -   tmp =3D REG_SET_FIELD(0, IH_CLIENT_CFG_DATA, CREDIT_RETURN_ADDR, =
+0x1244b);
+> > > -   tmp =3D REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, CLIENT_TYPE, 1);
+> > > -   tmp =3D REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, RING_ID, 1);
+> > > -
+> > > -   WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_69, 3);
+> > > -   WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_70, tmp);
+> > > -   WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_64, GFX_CTRL_CMD_ID_GBR_IH_=
+SET);
+> > > -
+> > > -   psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64),
+> > > -                0x80000000, 0x8000FFFF, false);
+> > > -
+> > > -   /* Change IH ring for UMC */
+> > > -   tmp =3D REG_SET_FIELD(0, IH_CLIENT_CFG_DATA, CREDIT_RETURN_ADDR, =
+0x1216b);
+> > > -   tmp =3D REG_SET_FIELD(tmp, IH_CLIENT_CFG_DATA, RING_ID, 1);
+> > > -
+> > > -   WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_69, 4);
+> > > -   WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_70, tmp);
+> > > -   WREG32_SOC15(MP0, 0, mmMP0_SMN_C2PMSG_64, GFX_CTRL_CMD_ID_GBR_IH_=
+SET);
+> > > -
+> > > -   psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64),
+> > > -                0x80000000, 0x8000FFFF, false);
+> > > -}
+> > > -
+> > >  static int psp_v12_0_ring_create(struct psp_context *psp,
+> > >                             enum psp_ring_type ring_type)
+> > >  {
+> > > @@ -179,8 +147,6 @@ static int psp_v12_0_ring_create(struct psp_conte=
+xt *psp,
+> > >     struct psp_ring *ring =3D &psp->km_ring;
+> > >     struct amdgpu_device *adev =3D psp->adev;
+> > >
+> > > -   psp_v12_0_reroute_ih(psp);
+> > > -
+> > >     if (amdgpu_sriov_vf(psp->adev)) {
+> > >             /* Write low address of the ring to C2PMSG_102 */
+> > >             psp_ring_reg =3D lower_32_bits(ring->ring_mem_mc_addr);
+> >
