@@ -2,64 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0DBAA447E
-	for <lists+amd-gfx@lfdr.de>; Wed, 30 Apr 2025 09:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77B86AA4482
+	for <lists+amd-gfx@lfdr.de>; Wed, 30 Apr 2025 09:55:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4FB110E6E9;
-	Wed, 30 Apr 2025 07:55:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7537410E6ED;
+	Wed, 30 Apr 2025 07:55:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="dsdCvVA2";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A499B10E48D;
- Tue, 29 Apr 2025 13:17:43 +0000 (UTC)
-Received: from mxde.zte.com.cn (unknown [10.35.20.165])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxct.zte.com.cn (FangMail) with ESMTPS id 4Zn17x6tl6zW7s;
- Tue, 29 Apr 2025 21:17:33 +0800 (CST)
-Received: from mxhk.zte.com.cn (unknown [192.168.250.138])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxde.zte.com.cn (FangMail) with ESMTPS id 4Zn17x0ntPz54hQm;
- Tue, 29 Apr 2025 21:17:33 +0800 (CST)
-Received: from mxct.zte.com.cn (unknown [192.168.251.13])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxhk.zte.com.cn (FangMail) with ESMTPS id 4Zn17t2MT5z5B1K0;
- Tue, 29 Apr 2025 21:17:30 +0800 (CST)
-Received: from mse-db.zte.com.cn (unknown [10.5.228.131])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxct.zte.com.cn (FangMail) with ESMTPS id 4Zn17W5ltPz51SYN;
- Tue, 29 Apr 2025 21:17:11 +0800 (CST)
-Received: (from root@localhost) by mse-db.zte.com.cn id 53TDHCXI085256;
- Tue, 29 Apr 2025 21:17:12 +0800 (+08)
- (envelope-from liu.song13@zte.com.cn)
-Message-Id: <202504291317.53TDHCXI085256@mse-db.zte.com.cn>
-Received: from xaxapp02.zte.com.cn ([10.88.97.241])
- by mse-fl1.zte.com.cn with SMTP id 53TAhmmO003471;
- Tue, 29 Apr 2025 18:43:48 +0800 (+08)
- (envelope-from liu.song13@zte.com.cn)
-Received: from mapi (xaxapp04[null]) by mapi (Zmail) with MAPI id mid31;
- Tue, 29 Apr 2025 18:43:51 +0800 (CST)
-Date: Tue, 29 Apr 2025 18:43:51 +0800 (CST)
-X-Zmail-TransId: 2afb6810ad675fe-954e2
-X-Mailer: Zmail v1.0
-Mime-Version: 1.0
-From: <liu.song13@zte.com.cn>
-To: <felix.kuehling@amd.com>
-Cc: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <airlied@gmail.com>, <simona@ffwll.ch>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <liu.xuemei1@zte.com.cn>,
- <jiang.xuexin@zte.com.cn>, <xue.zhihong@zte.com.cn>
-Subject: =?UTF-8?B?W1BBVENIIHYyXSBkcm0vYW1ka2ZkOiBlbmFibGUga2ZkIG9uIFJJU0NWIHN5c3RlbXM=?=
-Content-Type: text/plain;
-	charset="UTF-8"
-X-MAIL: mse-db.zte.com.cn 53TDHCXI085256
-X-MSS: AUDITRELEASE@mse-db.zte.com.cn
-X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 6810D16C.001/4Zn17x6tl6zW7s
+X-Greylist: delayed 481 seconds by postgrey-1.36 at gabe;
+ Tue, 29 Apr 2025 13:16:09 UTC
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2128B10E0A7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Apr 2025 13:16:09 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id E1BA340E021A; 
+ Tue, 29 Apr 2025 13:08:03 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=fail (4096-bit key)
+ reason="fail (body has been altered)"
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id wrGf7WWtCOB6; Tue, 29 Apr 2025 13:08:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1745932079; bh=UFz6C4O5CnyTyz6Ioj0i9bidH2Ii+o7JdCGRWIRCBcg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=dsdCvVA2QiRbyK7Tgf0rPbpAdHNCJi7GVPYiOQzy8uD699rZfmUjFypwrSjfA1cC8
+ uzAjyFNSv1JtUUqpr5wG2zzdX9MowPEr7GZ5kY4rTrN634GGtS3kfyCYOYW7S0pm+d
+ HtO5S7s92ji7gXqonzzwj93pVCgm3gRo/klC7V+g2iHkGEjNTaiXSzQblRhX1P0gK+
+ cmY3ceMPwt+vPfq9pO9+wAmjApqiNEJ+wjWGwZE8vu0htffqvIY/slrRM4F8qtkRVv
+ 2cIrPTsogY4h/ONhc8VBi6Ho2errJeRtH93j6UHtqGnANtz0iTGpIhknzoNphNfCyE
+ vxYtM82/S5cy0LqYzgtrUV9hFEhD5sbWs8gsBuQ0iwAO0hgGk6apAbVQf74AFMeOaK
+ RaTFlQYFJuncwkKolWDTqD9go/zMhEUunypuwcvusa0F4d0MyQDXp6c21jlJW94DU8
+ iQ05nf2RyzG1wnBclGR4Vf1GUv/91mbtMFI3zZh9LfE6IZYBsDS6Fu6+YaeP70czM8
+ IB5eezC6cAjJmqhl4bRhBZAi8OEGfZQwqRH4tTvaDDmtT4QKZrQ2GAUHADjtJH7toG
+ ehRplvTGDKxuCYx0ybMdNnTlSsmDI7FghCUD+Khqp+M9FZIQt0chRIt+a4CVsc5A4H
+ jbLyzgPZjEguc8x1aHKYy5m8=
+Received: from zn.tnic (p579690ee.dip0.t-ipconnect.de [87.150.144.238])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id DF86E40E0173;
+ Tue, 29 Apr 2025 13:07:56 +0000 (UTC)
+Date: Tue, 29 Apr 2025 15:07:49 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: amd-gfx@lists.freedesktop.org
+Cc: Marcus =?utf-8?Q?R=C3=BCckert?= <amd@nordisch.org>
+Subject: Re: Display Port handling errors out when monitor is slow to wake up
+Message-ID: <20250429130749.GBaBDPJSol4WXi-G-r@fat_crate.local>
+References: <15eca28818c4fad674bb2f33df7b3277563ba56d.camel@nordisch.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <15eca28818c4fad674bb2f33df7b3277563ba56d.camel@nordisch.org>
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Wed, 30 Apr 2025 07:55:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,28 +74,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Xuemei Liu <liu.xuemei1@zte.com.cn>
++ amdgpu folks.
 
-KFD has been confirmed that can run on RISCV systems. It's necessary to
-support CONFIG_HSA_AMD on RISCV.
+On Tue, Apr 29, 2025 at 02:51:21PM +0200, Marcus R=C3=BCckert wrote:
+> Hardware:=20
+> - ASUS ROG Swift OLED PG27AQDP =20
+> - XFX Mercury Radeon RX 9070 XT OC Gaming Edition with RGB, 16GB GDDR6,=
+ HDMI, 3x DP RX-97TRGBBB9
+>=20
+> Kernel:
+> - kernel-default-6.15~rc4-1.1.g62ec7c7.x86_64 from https://build.opensu=
+se.org/project/show/Kernel:HEAD
+>=20
+> The monitor is really slow on waking up - or even switching mode e.g. w=
+hen going from console to wayland with 480Hz.
+> When I turn on the monitor before I wake up wayland via keyboard/mouse,=
+ no error comes. If I wake up wayland first and then start the monitor:
+>=20
+> ```
+> [Tue Apr 29 13:49:54 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1118: core_link_write_dpcd (DP_DOWNSPREAD_CTRL) =
+failed
+> [Tue Apr 29 13:49:54 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1123: core_link_write_dpcd (DP_LANE_COUNT_SET) f=
+ailed
+> [Tue Apr 29 13:49:54 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1151: core_link_write_dpcd (DP_LINK_BW_SET) fail=
+ed
+> [Tue Apr 29 13:49:55 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1118: core_link_write_dpcd (DP_DOWNSPREAD_CTRL) =
+failed
+> [Tue Apr 29 13:49:55 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1123: core_link_write_dpcd (DP_LANE_COUNT_SET) f=
+ailed
+> [Tue Apr 29 13:49:55 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1151: core_link_write_dpcd (DP_LINK_BW_SET) fail=
+ed
+> [Tue Apr 29 13:49:56 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1118: core_link_write_dpcd (DP_DOWNSPREAD_CTRL) =
+failed
+> [Tue Apr 29 13:49:56 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1123: core_link_write_dpcd (DP_LANE_COUNT_SET) f=
+ailed
+> [Tue Apr 29 13:49:56 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1151: core_link_write_dpcd (DP_LINK_BW_SET) fail=
+ed
+> [Tue Apr 29 13:49:57 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1118: core_link_write_dpcd (DP_DOWNSPREAD_CTRL) =
+failed
+> [Tue Apr 29 13:49:57 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1123: core_link_write_dpcd (DP_LANE_COUNT_SET) f=
+ailed
+> [Tue Apr 29 13:49:57 2025] [  T70365] amdgpu 0000:03:00.0: [drm] *ERROR=
+* dpcd_set_link_settings:1151: core_link_write_dpcd (DP_LINK_BW_SET) fail=
+ed
+> [Tue Apr 29 13:49:58 2025] [  T70365] amdgpu 0000:03:00.0: [drm] enabli=
+ng link 1 failed: 15
+> ```
+>=20
+> Feel free to ping me if you need more information.
+>=20
+>    darix
+>=20
+> ```
+> --=20
+> Always remember:
+>   Never accept the world as it appears to be.
+>     Dare to see it for what it could be.
+>       The world can always use more heroes.
+>=20
+>=20
+>=20
+>=20
+> ```
+>=20
 
-Signed-off-by: Xuemei Liu <liu.xuemei1@zte.com.cn>
----
- drivers/gpu/drm/amd/amdkfd/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--=20
+Regards/Gruss,
+    Boris.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/Kconfig b/drivers/gpu/drm/amd/amdkfd/Kconfig
-index d3c3d3ab7225..62e88e5362e9 100644
---- a/drivers/gpu/drm/amd/amdkfd/Kconfig
-+++ b/drivers/gpu/drm/amd/amdkfd/Kconfig
-@@ -5,7 +5,7 @@
-
- config HSA_AMD
-  bool "HSA kernel driver for AMD GPU devices"
-- depends on DRM_AMDGPU && (X86_64 || ARM64 || PPC64)
-+ depends on DRM_AMDGPU && (X86_64 || ARM64 || PPC64 || (RISCV && 64BIT))
-  select HMM_MIRROR
-  select MMU_NOTIFIER
-  select DRM_AMDGPU_USERPTR
--- 
-2.25.1
+https://people.kernel.org/tglx/notes-about-netiquette
