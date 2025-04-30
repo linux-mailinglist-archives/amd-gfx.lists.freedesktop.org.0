@@ -2,79 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F94AA5EFB
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 May 2025 15:05:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EFD6AA5EF9
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 May 2025 15:05:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2ADF10E857;
-	Thu,  1 May 2025 13:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5F9A10E854;
+	Thu,  1 May 2025 13:05:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="hs5MgAWq";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="lC82QTne";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 660C810E717
- for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 08:05:18 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-441ab63a415so23473425e9.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 01:05:18 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09A3D10E715
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 09:49:18 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-39c1ef4acf2so5364007f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 02:49:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1746000317; x=1746605117; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=qD6CtIO/TisXjPtHYMRMSY8vPIJC8aCPMTopK7WpI/k=;
- b=hs5MgAWqQnJZ/N2FCOjtup2RwKlamYdJpPYW45yLSbkEzCjWR4EOtby75117HmrIz3
- 8nQVfW5T4Vfua7g4T05cWBp7/QYojmVyhtShN8sEc5dlY5vHjxTxGHGJyz7wq/9ze+ne
- zXZl4dPfjKvarNY+d0N5Lpd3+WVuTLfQevvGx2rBbsJAoxABdG6LoCkeD3SnPk/gQiLR
- 3APcE0eIzdPI9xXPjyXJa1+DDWnYWPMqv0qPQ1L657E6vt2CdNKlMb1cHZ8mB/+YKd0N
- G+t/tIm8YegusI5UHhJ98e1qYz0N1PnutaXMB7gul6uzNFTOPAo8kK7xq6zU9WabMh0L
- jtfw==
+ d=linaro.org; s=google; t=1746006557; x=1746611357; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=LLFFbFj4LwW7R7V2JhHGReQ4jijzBvrTImoxET+7TD4=;
+ b=lC82QTneHETexUwDTeTIpYpgo38XSDWTOnZgH37q6MGU+fr9O9lbElm58Urj/Oegzs
+ 6iDv8B3EUhwSujXS5bbM+aIWtWza0UXS18LplsnvuwbqDMrIR9iN1662oeIV4gk5PY6h
+ bEoDL0SPp/VuHmib0LENGsQDrySkMZ6GjvlLIxf5/ieM0oYftO/wsGO+5jey3/V83Pf9
+ iMjymHrIQtPo5AIg4PA1PsIw/kpNt2pg5bHbnz4QLZwGEuFbJrUo6x39IRdt3LCoUcq3
+ FDVszSs/zKe+QdxkJtaSPeil9UxiNAyeYjnrifP1JlDZPx6xNHKJ8yOKzmz0om6W4Xy8
+ OHGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746000317; x=1746605117;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=qD6CtIO/TisXjPtHYMRMSY8vPIJC8aCPMTopK7WpI/k=;
- b=licJbH5TY1N7NasNiw9npXYOhnimf5W5W1qDAj5RvcGLGBXp7AxUbEfkzIgCzx4eZh
- DZ+fxgcVYj/nItkgYB+3mCxmm3SCXJENiIjubDepJD0TfmDr/BuC99YPnJEPPvBkEK44
- ypTCygtRsMPokacvmjZBcnIUDwdcpM2IU0PH3hdUX6UN0rmyX1TzAKC6K/9Qwnv8jzdY
- vjf21zL/A6hwfOrcJhWuDGoSw4pAhsabq2i08ak7XkM3fXxnQDJRxIydBiWJ7p4XRAtg
- TNHnxX+6srYPFFsnAQfAr5dWpjS6KPKkFbhcwneDddn1KwqWxSJotFF2+ZdyO2nMcHQH
- lkPg==
+ d=1e100.net; s=20230601; t=1746006557; x=1746611357;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=LLFFbFj4LwW7R7V2JhHGReQ4jijzBvrTImoxET+7TD4=;
+ b=f8llIcVtUIj7rgne0qBWBTtMKj1T8kBIJ2PJfJc3Uc0ztgsQlnc50xKEheHIxqZ3+y
+ v5k2JhjS4p+paUHKqlFEWqN6aBThQQv3o4EyPIo/aZUW51HcB6ltUQYDo9l6BLLW2a3b
+ WtYmAIcDGzT7+VZ8ymmcSe5+9PlwCDRlRMSRtY66zyMtvcAI3M1ns57Ml0HY2VPTNgVe
+ q24LFwKFTono95NBzkv5YBhDGjSFdgPd2zpXFwcaF+5EujcTUuv0Mpam40fJzjKzCAOn
+ Yb/5+fuxjZpcNx4yUICgm+niYa2ZtN/r/dV0vpyG1JcXnP+8ueDRn8p3DPWPovdHe4E9
+ 1bcQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVBd3yYr3Ks7Jg+8Gv23GpyPyMhKme77YphSJGRWdDq/A4cCIlXjb5kDQpik/cOdMj48RyaiUTK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YybLeq6VfCyMG361ai5OymCN3p5T8khy3wEhTyVRZWBz/NqktNt
- YDkHjOskIIsdiC6kkjXtrRzoGTdQyOEYlSpdIRxmpNAwGQhidZEVdOnZSLGYRRU=
-X-Gm-Gg: ASbGncvE05AByBsoEnGu1zhAQh5j7RegVeuOvGuHbUI3fZ/iNBPs3mZQjwC0ulvQVmf
- wGnCY5AxV7nS2UzWtvO7llV2b48GRoRaiEkq1uYgfyDNmXk+1hohE291rvLAlmhXU/OfmqT8qyi
- 8huv4UsZVbZZxLIQYUPbDUZIVkoFsDMNTYbUApR+DZzihvmdDZB1y8ZY15jSGNaQ2Lo/PAr3MCF
- aDkmmA7ASZqwpi+gM2AIbChKZoyo14KX4KWa5LpKj+NWL/8RWJ2suyDUtSsqiOXWDgpJ0jVXdHy
- buMUY4iziwjv/P9ivZ4SU+AccXr1vW6ey/XgGLFtZPlgOA==
-X-Google-Smtp-Source: AGHT+IHdEtFR63Z6oiW9IVvngwXx6ZQiZzLOjAXgoM9uBkm6EKIWAveHvb1hm/cJiMmkSf12Z002jw==
-X-Received: by 2002:a05:600c:c054:b0:43d:300f:fa1d with SMTP id
- 5b1f17b1804b1-441b1f5fffbmr15536155e9.31.1746000317302; 
- Wed, 30 Apr 2025 01:05:17 -0700 (PDT)
+ AJvYcCUEYqLpWAaZTLiR6y9DDpqB4chtC2G/VlODlI5oJqoLmj7W/QAwUj0g32flCIBDKPY6tp5KEYDN@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxQDdta7XIbSI6kDoikPdwbIzWkwgrjtVHJhdcRJCRElwbQ0Wka
+ Cz/OAHNhZC+mtLsxm0KHE++jcCeq5nJWWNBO9XRXweew/wPguycvjo2IsF0TJ/o=
+X-Gm-Gg: ASbGnctgvHSu8nXgFjJ6vzEBxeFv43Z0QPdFGR/EHPqQaQ+WvOOIBA6/VK7mv13FN/j
+ IJCBpPFO9aTc72Lor23dUXmd2zv/lIHFveqirgQSNIb08ikcskHHJ5GlCaSBuQAxy5dK4VhB9Cd
+ aAHI9EMWOv9zoOcPOD2pDwlESgmQeb68Y70RFBMuKupw2S4F4lWvw6D/P6N921r2zN6QzBhTs15
+ Zvhyj1Uks9ldxBJwIbIM7+vj+Vdr5S2o5RXcdc5cpv7PRkp8tERq+cH97MVmxbiGVnPUd1NkRvj
+ WYbFv8dgzsXyBLFofauR6t77ZHi+ih+3gsMS5RO1h3y8ACYUbrV+1hAO
+X-Google-Smtp-Source: AGHT+IEK9MNRUEuA0t/++NHkSN+uAgTx0QHITofMQSiawq0yr1kRwXaeYfFa/CByGh7RO0Ly8OPlsA==
+X-Received: by 2002:a05:6000:420e:b0:39e:dbb0:310f with SMTP id
+ ffacd0b85a97d-3a08f7c862emr2373168f8f.39.1746006557355; 
+ Wed, 30 Apr 2025 02:49:17 -0700 (PDT)
 Received: from localhost ([196.207.164.177])
  by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-441b2b20c3fsm15479405e9.28.2025.04.30.01.05.16
+ ffacd0b85a97d-3a073c8d1a5sm16918149f8f.13.2025.04.30.02.49.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 30 Apr 2025 01:05:16 -0700 (PDT)
-Date: Wed, 30 Apr 2025 11:05:13 +0300
+ Wed, 30 Apr 2025 02:49:16 -0700 (PDT)
+Date: Wed, 30 Apr 2025 12:49:13 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+To: "Sharma, Shashank" <Shashank.Sharma@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Shashank Sharma <shashank.sharma@amd.com>,
- Sunil Khatri <sunil.khatri@amd.com>, Arvind Yadav <Arvind.Yadav@amd.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH] drm/amdgpu/userq: remove unnecessary NULL check
-Message-ID: <aBHZuejTTKkdnGaZ@stanley.mountain>
+ "Khatri, Sunil" <Sunil.Khatri@amd.com>,
+ "Yadav, Arvind" <Arvind.Yadav@amd.com>,
+ "Paneer Selvam, Arunpravin" <Arunpravin.PaneerSelvam@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "kernel-janitors@vger.kernel.org" <kernel-janitors@vger.kernel.org>
+Subject: Re: [PATCH] drm/amdgpu/userq: remove unnecessary NULL check
+Message-ID: <ac039a7e-4152-4df5-af3d-c952cedfa6dd@stanley.mountain>
+References: <aBHZuejTTKkdnGaZ@stanley.mountain>
+ <MW4PR12MB566769E097E394ED607DBD9CF2832@MW4PR12MB5667.namprd12.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
+In-Reply-To: <MW4PR12MB566769E097E394ED607DBD9CF2832@MW4PR12MB5667.namprd12.prod.outlook.com>
 X-Mailman-Approved-At: Thu, 01 May 2025 13:05:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,27 +96,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The "ticket" pointer points to in the middle of the &exec struct so it
-can't be NULL.  Remove the check.
+On Wed, Apr 30, 2025 at 09:28:59AM +0000, Sharma, Shashank wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
+> 
+> Hello Dan,
+> 
+> ________________________________
+> From: Dan Carpenter
+> Sent: Wednesday, April 30, 2025 10:05 AM
+> To: Deucher, Alexander
+> Cc: Koenig, Christian; David Airlie; Simona Vetter; Sharma, Shashank; Khatri, Sunil; Yadav, Arvind; Paneer Selvam, Arunpravin; amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org; kernel-janitors@vger.kernel.org
+> Subject: [PATCH] drm/amdgpu/userq: remove unnecessary NULL check
+> 
+> The "ticket" pointer points to in the middle of the &exec struct so it
+> can't be NULL.  Remove the check.
+> 
+> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> index b0e8098a3988..7505d920fb3d 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> @@ -631,7 +631,7 @@ amdgpu_userq_validate_bos(struct amdgpu_userq_mgr *uq_mgr)
+>                          clear = false;
+>                          unlock = true;
+>                  /* The caller is already holding the reservation lock */
+> -               } else if (ticket && dma_resv_locking_ctx(resv) == ticket) {
+> +               } else if (dma_resv_locking_ctx(resv) == ticket) {
+> 
+> Its a Nack for me, There are a few situations (particularly during the
+> first launch of the desktop, and also when eviction fence and new queue
+> creation are working in parallel) where this ticket can be NULL, we
+> observed it during the stress validation and hence added this check,
+> 
 
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+It shouldn't be NULL.  It sounds like you are experiencing stack
+corruption and this is just a bandaid.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index b0e8098a3988..7505d920fb3d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -631,7 +631,7 @@ amdgpu_userq_validate_bos(struct amdgpu_userq_mgr *uq_mgr)
- 			clear = false;
- 			unlock = true;
- 		/* The caller is already holding the reservation lock */
--		} else if (ticket && dma_resv_locking_ctx(resv) == ticket) {
-+		} else if (dma_resv_locking_ctx(resv) == ticket) {
- 			clear = false;
- 			unlock = false;
- 		/* Somebody else is using the BO right now */
--- 
-2.47.2
+drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+   566  static int
+   567  amdgpu_userq_validate_bos(struct amdgpu_userq_mgr *uq_mgr)
+   568  {
+   569          struct amdgpu_fpriv *fpriv = uq_mgr_to_fpriv(uq_mgr);
+   570          struct amdgpu_vm *vm = &fpriv->vm;
+   571          struct amdgpu_device *adev = uq_mgr->adev;
+   572          struct amdgpu_bo_va *bo_va;
+   573          struct ww_acquire_ctx *ticket;
+   574          struct drm_exec exec;
+                ^^^^^^^^^^^^^^^^^^^^^
+The "exec" struct is declared on the stack.
+
+   575          struct amdgpu_bo *bo;
+   576          struct dma_resv *resv;
+   577          bool clear, unlock;
+   578          int ret = 0;
+   579  
+   580          drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
+   581          drm_exec_until_all_locked(&exec) {
+   582                  ret = amdgpu_vm_lock_pd(vm, &exec, 2);
+   583                  drm_exec_retry_on_contention(&exec);
+   584                  if (unlikely(ret)) {
+   585                          DRM_ERROR("Failed to lock PD\n");
+   586                          goto unlock_all;
+   587                  }
+   588  
+   589                  /* Lock the done list */
+   590                  list_for_each_entry(bo_va, &vm->done, base.vm_status) {
+   591                          bo = bo_va->base.bo;
+   592                          if (!bo)
+   593                                  continue;
+   594  
+   595                          ret = drm_exec_lock_obj(&exec, &bo->tbo.base);
+   596                          drm_exec_retry_on_contention(&exec);
+   597                          if (unlikely(ret))
+   598                                  goto unlock_all;
+   599                  }
+   600          }
+   601  
+   602          spin_lock(&vm->status_lock);
+   603          while (!list_empty(&vm->moved)) {
+   604                  bo_va = list_first_entry(&vm->moved, struct amdgpu_bo_va,
+   605                                           base.vm_status);
+   606                  spin_unlock(&vm->status_lock);
+   607  
+   608                  /* Per VM BOs never need to bo cleared in the page tables */
+   609                  ret = amdgpu_vm_bo_update(adev, bo_va, false);
+   610                  if (ret)
+   611                          goto unlock_all;
+   612                  spin_lock(&vm->status_lock);
+   613          }
+   614  
+   615          ticket = &exec.ticket;
+                ^^^^^^^^^^^^^^^^^^^^^
+ticket is only set here.  We know that &exec is non-NULL because it's
+declared on the stack.  ticket is 4 bytes into the middle of a non-NULL
+struct.  It is impossible for ticket to be NULL here.
+
+   616          while (!list_empty(&vm->invalidated)) {
+   617                  bo_va = list_first_entry(&vm->invalidated, struct amdgpu_bo_va,
+   618                                           base.vm_status);
+   619                  resv = bo_va->base.bo->tbo.base.resv;
+   620                  spin_unlock(&vm->status_lock);
+   621  
+   622                  bo = bo_va->base.bo;
+   623                  ret = amdgpu_userq_validate_vm_bo(NULL, bo);
+   624                  if (ret) {
+   625                          DRM_ERROR("Failed to validate BO\n");
+   626                          goto unlock_all;
+   627                  }
+   628  
+   629                  /* Try to reserve the BO to avoid clearing its ptes */
+   630                  if (!adev->debug_vm && dma_resv_trylock(resv)) {
+   631                          clear = false;
+   632                          unlock = true;
+   633                  /* The caller is already holding the reservation lock */
+   634                  } else if (ticket && dma_resv_locking_ctx(resv) == ticket) {
+
+I've included the whole rest of the function so that we can see it is not
+set a second time.
+
+regards,
+dan carpenter
+
+   635                          clear = false;
+   636                          unlock = false;
+   637                  /* Somebody else is using the BO right now */
+   638                  } else {
+   639                          clear = true;
+   640                          unlock = false;
+   641                  }
+   642  
+   643                  ret = amdgpu_vm_bo_update(adev, bo_va, clear);
+   644  
+   645                  if (unlock)
+   646                          dma_resv_unlock(resv);
+   647                  if (ret)
+   648                          goto unlock_all;
+   649  
+   650                  spin_lock(&vm->status_lock);
+   651          }
+   652          spin_unlock(&vm->status_lock);
+   653  
+   654          ret = amdgpu_eviction_fence_replace_fence(&fpriv->evf_mgr, &exec);
+   655          if (ret)
+   656                  DRM_ERROR("Failed to replace eviction fence\n");
+   657  
+   658  unlock_all:
+   659          drm_exec_fini(&exec);
+   660          return ret;
+   661  }
+
 
