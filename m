@@ -2,72 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010B7AA4E62
-	for <lists+amd-gfx@lfdr.de>; Wed, 30 Apr 2025 16:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07CEEAA4E95
+	for <lists+amd-gfx@lfdr.de>; Wed, 30 Apr 2025 16:29:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8832C10E7A6;
-	Wed, 30 Apr 2025 14:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69A1910E330;
+	Wed, 30 Apr 2025 14:29:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TY+endvN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nIQMEgIP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA88410E7A6
- for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 14:22:06 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-2264aefc3b5so15421875ad.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 07:22:06 -0700 (PDT)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B30FD10E330
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 14:29:46 +0000 (UTC)
+Received: by mail-pj1-f48.google.com with SMTP id
+ 98e67ed59e1d1-2ff62f9b6e4so891174a91.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 07:29:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1746022926; x=1746627726; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1746023386; x=1746628186; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=UoMCq6NDBhFYU5deFAf0IfHwHevuptdIrRF9Or7gGpQ=;
- b=TY+endvNFVONuwIm9C2ePqyEqkYu7gxg3hANrK7gmM8nJTaLe49YJqNI0p82T1tJ8j
- iWnJHORgjq+olcfVHlC1DNMn5iIM+StNH7CvXlswXSTEwCNE0QGPWiggKZ3SAdJDTk7B
- GZKMko0S/5Pu5/gXtpV8A+beOsUdBu9b8FAD+0d0vIxfUjIim5a7XO63iAd6Y5n7c7ex
- MKtji/9l0TJOyCD11uAffnkL+Qvoljt0WB3a7e5xLeh4BEVWiGY7bWIBph+hyuHfZIqi
- gO2+yfJlwmvxckDlqZGMoIixB8v55EmA4rJQpf7g3XlIhiFUSvIGjTd3YlUMZEvU4JDu
- 24hg==
+ bh=ut+6UCHt+MA+z+KIGehMgcSk+Kt1wIvxxrRvYc8zTKQ=;
+ b=nIQMEgIP2GREQZe59Zt8ru8JjG6UDYp2ucFWbvs4TuQ/f+SBPGJVMZR2ZrJYFeTiB7
+ wj/cgH/oAagfB3xF4eCrbmeE1/GCs5u7j6HDImMdOkDuFtx1CM5n1ncs/j38DYzgJb9w
+ K1YmT0sLpdq2QOA2UO1LvpU34QxsxvNgieFzAKPKnmF5v9FcDl6N+sOZxTG8LLdEkWjJ
+ d1rRmY707xvQB33tNUa2QDtTYyc/uroMt8arE1cKVTtnRuaioMvKL6YpelvSezeqXGMv
+ Q3CwpP9wvAdZBxlHpioHeadxc1gVo4//yhWpBjjhtYTrpCA4M4yrAswqT/SvlV6+9A0Z
+ a0Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746022926; x=1746627726;
+ d=1e100.net; s=20230601; t=1746023386; x=1746628186;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=UoMCq6NDBhFYU5deFAf0IfHwHevuptdIrRF9Or7gGpQ=;
- b=Fusgg/OCp5u7l8rFxHLMarxGa7tTHBBdBJ/cGJWpD9QmWQE1L3fwyNPt0g3u8m9//E
- 8fJtuwkYJYuqRewwgCsIkxJxON5BX1qokEtFbHvfzDY0rbJ61+OwjXS/a2kjOsmPOXAB
- qfMXX7BsJLF0EwyO0oHea2M6gfrx+/ri66lNyiHPc1uXsOv1jD1Wxs6luHY1AYUPT/1V
- gYsF9j+7dTKJzo7UfaKy+Q3iPZxDO1n3x1hBtgp3Wx9qoJK9colFPTXqasvn9ifnwbWI
- R6VDUFgz/Db6sOl+wsTOWL5FKjXS4wVH3nL8qO35c0T3Y3av9le+GLg+LOl+tAXVav1K
- z/yw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXGiXyZDUwkOz2WFk7SCxtErhx0kdcdnDp3w3c2oWHQkoH17i2Bk9YJF3//CC3dg/By4yB8cIQ1@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxSONb3oE46YL6YTHcuMTERcwydcOt/IvXZhAsIoqtekvdB9NnK
- FchRsr5CCUEj21qLjcg0JtdgD0eShd4NnHPTv/lIBlteTGdEoKcpJJs6t7hKtjaApVhzuwPUNJp
- Cs/5Nz4xqrlj+Ra3CC97lmfc5DyTw/w==
-X-Gm-Gg: ASbGncsWPpUGsHJG1tkrHMjX4uqKdUJC28xqjjKb44JLbj5Uli4jT08eqJbcLHUM4tv
- rRVPNWIJ3EkJ6ck4y8mHxpo07B+zHjXxExXPM3djGh82j3+y9RS+kEFVFnyiCOV6ACQzJJdlUg7
- /01Bo7KUM3u8DVypv7sigdqA==
-X-Google-Smtp-Source: AGHT+IEswVx/ROP8dXmJaUkSTxzTlqgo9gyCeaL+ifhoqnmNmC2sqC3LA/Nw95waOJzp3s6e2uj94O1oaOwDkErobLs=
-X-Received: by 2002:a17:903:1b24:b0:223:f9a4:dc25 with SMTP id
- d9443c01a7336-22df5836c79mr16097345ad.14.1746022926333; Wed, 30 Apr 2025
- 07:22:06 -0700 (PDT)
+ bh=ut+6UCHt+MA+z+KIGehMgcSk+Kt1wIvxxrRvYc8zTKQ=;
+ b=AsWcYjTpEy3271PX/P3IKY4KbpCL0f55uUR8Dj1tSe3ArnGbfEyPMswMIxSTwe0WKl
+ ilwhRVxRhMFskloHpTNWnrVdrtRPfHOBQo4/xEhV08pNKsWMKQfLH1zCLm48avI4XLIV
+ 2eIWO7gfo4xz4kx8VCKAceSO7kLXIAUfOk/w4znOvrzbnGAnLR5U2HwqIPeXbt+kpedG
+ XjTIAEIJyTmdtWe7s3exom8Lcio2S633Q4uZnFiWHNNDwGsmUUgQUqFIqj6qT8L5y3WM
+ gNdNtaPISIt/lir+Wu8JsH9eSCmLjMuqkQbq3mYbEO0oFmwTjHvNz5Jtiu92od+0LnQr
+ 1j4Q==
+X-Gm-Message-State: AOJu0Yyzcr0dUv60sHOmM9Ks5XTsDLe2gTdm+9IZImuUPIvdAA5UdAkV
+ 9ImIb86I6UcAqulMsLBKa3O5X9uMGevEB1NM9dCIfOUAYYWRog+dksFok685OAaa9NZaixf2N0R
+ W8vBvMBszUMFPcPsSa2Wbx6zRtfM=
+X-Gm-Gg: ASbGncsemYrRDC9rIWctaafffD4OKyG1O+dBoMEn6H8+sOKSFDVvpYQ2E18lWTFEH0y
+ KoFAo27OIAtvYJbucaKaMBprtCgD31Co1HIVXFmrt5dRpcJwKuHCj+j4Kv8q01dodosOu5eS2QJ
+ P6VgGuuxfnxb/4P+YyQGNiMIf95Tc3Sw/F
+X-Google-Smtp-Source: AGHT+IHzXaGkwLqvJJ4ye6p2IunqpDnUDWx7oh2DkljW3Kbmlg/IkzQL/klAfPyNTGe6+hOXQPS36KfspZU+E+v/o70=
+X-Received: by 2002:a17:90b:1648:b0:2ff:5759:549a with SMTP id
+ 98e67ed59e1d1-30a349d354amr1554700a91.1.1746023386159; Wed, 30 Apr 2025
+ 07:29:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250429175022.1636538-1-alexander.deucher@amd.com>
- <9379f31c-392e-4ad2-d19b-f2c1a6917208@amd.com>
-In-Reply-To: <9379f31c-392e-4ad2-d19b-f2c1a6917208@amd.com>
+References: <20250430040512.307765-1-ganglxie@amd.com>
+In-Reply-To: <20250430040512.307765-1-ganglxie@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 30 Apr 2025 10:21:54 -0400
-X-Gm-Features: ATxdqUHjCXyp8209Pazz3J2XJDZafL8FbQpzFBR3rQctqhON1hquyTgrTCxXgrg
-Message-ID: <CADnq5_PVhhfGie2iRcoZbL9-gbsaUXDAd0+4x28hStoY0DA7TQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: properly handle GC vs MM in
- amdgpu_vmid_mgr_init()
-To: "Yadav, Arvind" <arvyadav@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
- Arvind Yadav <Arvind.Yadav@amd.com>
+Date: Wed, 30 Apr 2025 10:29:33 -0400
+X-Gm-Features: ATxdqUG6xe7JlNV4SalqF4m5awDX2am7J6leh0jHojx7CxTJcUerWF-IHHBzflM
+Message-ID: <CADnq5_OOoTsgbTLeeQKucpneBttS9bvmBZHC0JNdmgWnne4Lgw@mail.gmail.com>
+Subject: Re: [PATCH] Refine RAS bad page records counting and parsing in
+ eeprom V3
+To: ganglxie <ganglxie@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, tao.zhou1@amd.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -84,85 +80,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 30, 2025 at 1:05=E2=80=AFAM Yadav, Arvind <arvyadav@amd.com> wr=
-ote:
+On Wed, Apr 30, 2025 at 12:13=E2=80=AFAM ganglxie <ganglxie@amd.com> wrote:
+
+Please fix the patch title.  Please add a drm/amdgpu prefix.  E.g.,
+
+drm/amdgpu: Refine RAS bad page records counting and parsing in eeprom V3
+
+
 >
-> Reviewed-by: Arvind Yadav <Arvind.Yadav@amd.com>
+> there is only MCA records in V3, no need to care about PA records.
+> recalculate the value of ras_num_bad_pages when parsing failed and
+> go on with the left records instead of quit.
 >
-> On 4/29/2025 11:20 PM, Alex Deucher wrote:
-> > When kernel queues are disabled, all GC vmids are available
-> > for the scheduler.  MM vmids are still managed by the driver
-> > so make all 16 available.
-> >
-> > Also fix gmc 10 vs 11 mix up in
-> > commit 1f61fc28b939 ("drm/amdgpu/mes: make more vmids available when di=
-sable_kq=3D1")
-> >
-> > Fixes: 1f61fc28b939 ("drm/amdgpu/mes: make more vmids available when di=
-sable_kq=3D1")
-> > Cc: Arvind Yadav <Arvind.Yadav@amd.com>
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c | 8 ++++++--
-> >   drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 2 +-
-> >   drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c  | 2 +-
-> >   3 files changed, 8 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_ids.c
-> > index 359c19de9a5b9..c7a6d40ded5c3 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
-> > @@ -576,8 +576,12 @@ void amdgpu_vmid_mgr_init(struct amdgpu_device *ad=
-ev)
-> >               INIT_LIST_HEAD(&id_mgr->ids_lru);
-> >               id_mgr->reserved_use_count =3D 0;
-> >
-> > -             /* manage only VMIDs not used by KFD */
-> > -             id_mgr->num_ids =3D adev->vm_manager.first_kfd_vmid;
-> > +             if (AMDGPU_IS_MMHUB0(i) ||
-> > +                 AMDGPU_IS_MMHUB1(i))
-> > +                     id_mgr->num_ids =3D 16;
-> > +             else
-> > +                     /* manage only VMIDs not used by KFD */
-> > +                     id_mgr->num_ids =3D adev->vm_manager.first_kfd_vm=
-id;
-
-We need to handle pre GC 10 here as well.  I just sent out an updated patch=
-.
-
-Alex
-
-> >
-> >               /* skip over VMID 0, since it is the system VM */
-> >               for (j =3D 1; j < id_mgr->num_ids; ++j) {
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/a=
-md/amdgpu/gmc_v10_0.c
-> > index 7648e977b44bc..a3e2787501f18 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-> > @@ -896,7 +896,7 @@ static int gmc_v10_0_sw_init(struct amdgpu_ip_block=
- *ip_block)
-> >        * amdgpu graphics/compute will use VMIDs 1-7
-> >        * amdkfd will use VMIDs 8-15
-> >        */
-> > -     adev->vm_manager.first_kfd_vmid =3D adev->gfx.disable_kq ? 1 : 8;
-> > +     adev->vm_manager.first_kfd_vmid =3D 8;
-> >
-> >       amdgpu_vm_manager_init(adev);
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/a=
-md/amdgpu/gmc_v11_0.c
-> > index 7f5ca170f141a..917d894a1316a 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-> > @@ -828,7 +828,7 @@ static int gmc_v11_0_sw_init(struct amdgpu_ip_block=
- *ip_block)
-> >        * amdgpu graphics/compute will use VMIDs 1-7
-> >        * amdkfd will use VMIDs 8-15
-> >        */
-> > -     adev->vm_manager.first_kfd_vmid =3D 8;
-> > +     adev->vm_manager.first_kfd_vmid =3D adev->gfx.disable_kq ? 1 : 8;
-> >
-> >       amdgpu_vm_manager_init(adev);
-> >
+> Signed-off-by: ganglxie <ganglxie@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 61 +++++++++++++++----------
+>  1 file changed, 36 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ras.c
+> index e85143acf3a2..32f41f151c82 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> @@ -2889,6 +2889,7 @@ static int __amdgpu_ras_convert_rec_from_rom(struct=
+ amdgpu_device *adev,
+>                 if (amdgpu_ras_mca2pa_by_idx(adev, bps, err_data))
+>                         return -EINVAL;
+>         }
+> +
+>         return __amdgpu_ras_restore_bad_pages(adev, err_data->err_addr,
+>                                                                         a=
+dev->umc.retire_unit);
+>  }
+> @@ -2903,7 +2904,7 @@ int amdgpu_ras_add_bad_pages(struct amdgpu_device *=
+adev,
+>                         &adev->psp.ras_context.ras->eeprom_control;
+>         enum amdgpu_memory_partition nps =3D AMDGPU_NPS1_PARTITION_MODE;
+>         int ret =3D 0;
+> -       uint32_t i;
+> +       uint32_t i =3D 0;
+>
+>         if (!con || !con->eh_data || !bps || pages <=3D 0)
+>                 return 0;
+> @@ -2924,28 +2925,31 @@ int amdgpu_ras_add_bad_pages(struct amdgpu_device=
+ *adev,
+>         mutex_lock(&con->recovery_lock);
+>
+>         if (from_rom) {
+> -               for (i =3D 0; i < pages; i++) {
+> -                       if (control->ras_num_recs - i >=3D adev->umc.reti=
+re_unit) {
+> -                               if ((bps[i].address =3D=3D bps[i + 1].add=
+ress) &&
+> -                                   (bps[i].mem_channel =3D=3D bps[i + 1]=
+.mem_channel)) {
+> -                                       //deal with retire_unit records a=
+ time
+> -                                       ret =3D __amdgpu_ras_convert_rec_=
+array_from_rom(adev,
+> -                                                                       &=
+bps[i], &err_data, nps);
+> -                                       if (ret)
+> -                                               goto free;
+> -                                       i +=3D (adev->umc.retire_unit - 1=
+);
+> +               /* there is no pa recs in V3, so skip pa recs processing =
+*/
+> +               if (control->tbl_hdr.version < RAS_TABLE_VER_V3) {
+> +                       for (i =3D 0; i < pages; i++) {
+> +                               if (control->ras_num_recs - i >=3D adev->=
+umc.retire_unit) {
+> +                                       if ((bps[i].address =3D=3D bps[i =
++ 1].address) &&
+> +                                               (bps[i].mem_channel =3D=
+=3D bps[i + 1].mem_channel)) {
+> +                                               /* deal with retire_unit =
+records a time */
+> +                                               ret =3D __amdgpu_ras_conv=
+ert_rec_array_from_rom(adev,
+> +                                                                        =
+       &bps[i], &err_data, nps);
+> +                                               if (ret)
+> +                                                       control->ras_num_=
+bad_pages -=3D adev->umc.retire_unit;
+> +                                               i +=3D (adev->umc.retire_=
+unit - 1);
+> +                                       } else {
+> +                                               break;
+> +                                       }
+>                                 } else {
+>                                         break;
+>                                 }
+> -                       } else {
+> -                               break;
+>                         }
+>                 }
+>                 for (; i < pages; i++) {
+>                         ret =3D __amdgpu_ras_convert_rec_from_rom(adev,
+>                                 &bps[i], &err_data, nps);
+>                         if (ret)
+> -                               goto free;
+> +                               control->ras_num_bad_pages -=3D adev->umc=
+.retire_unit;
+>                 }
+>         } else {
+>                 ret =3D __amdgpu_ras_restore_bad_pages(adev, bps, pages);
+> @@ -3040,21 +3044,28 @@ static int amdgpu_ras_load_bad_pages(struct amdgp=
+u_device *adev)
+>                 dev_err(adev->dev, "Failed to load EEPROM table records!"=
+);
+>         } else {
+>                 if (adev->umc.ras && adev->umc.ras->convert_ras_err_addr)=
+ {
+> -                       for (i =3D 0; i < control->ras_num_recs; i++) {
+> -                               if ((control->ras_num_recs - i) >=3D adev=
+->umc.retire_unit) {
+> -                                       if ((bps[i].address =3D=3D bps[i =
++ 1].address) &&
+> -                                               (bps[i].mem_channel =3D=
+=3D bps[i + 1].mem_channel)) {
+> -                                               control->ras_num_pa_recs =
++=3D adev->umc.retire_unit;
+> -                                               i +=3D (adev->umc.retire_=
+unit - 1);
+> +                       /*In V3, there is no pa recs, and some cases(when=
+ address=3D=3D0) may be parsed
+> +                       as pa recs, so add verion check to avoid it.
+> +                       */
+> +                       if (control->tbl_hdr.version < RAS_TABLE_VER_V3) =
+{
+> +                               for (i =3D 0; i < control->ras_num_recs; =
+i++) {
+> +                                       if ((control->ras_num_recs - i) >=
+=3D adev->umc.retire_unit) {
+> +                                               if ((bps[i].address =3D=
+=3D bps[i + 1].address) &&
+> +                                                       (bps[i].mem_chann=
+el =3D=3D bps[i + 1].mem_channel)) {
+> +                                                       control->ras_num_=
+pa_recs +=3D adev->umc.retire_unit;
+> +                                                       i +=3D (adev->umc=
+.retire_unit - 1);
+> +                                               } else {
+> +                                                       control->ras_num_=
+mca_recs +=3D
+> +                                                                        =
+       (control->ras_num_recs - i);
+> +                                                       break;
+> +                                               }
+>                                         } else {
+> -                                               control->ras_num_mca_recs=
+ +=3D
+> -                                                                       (=
+control->ras_num_recs - i);
+> +                                               control->ras_num_mca_recs=
+ +=3D (control->ras_num_recs - i);
+>                                                 break;
+>                                         }
+> -                               } else {
+> -                                       control->ras_num_mca_recs +=3D (c=
+ontrol->ras_num_recs - i);
+> -                                       break;
+>                                 }
+> +                       } else {
+> +                               control->ras_num_mca_recs =3D control->ra=
+s_num_recs;
+>                         }
+>                 }
+>
+> --
+> 2.34.1
+>
