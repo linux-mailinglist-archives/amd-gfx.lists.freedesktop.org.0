@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF7CAA4541
-	for <lists+amd-gfx@lfdr.de>; Wed, 30 Apr 2025 10:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC318AA4544
+	for <lists+amd-gfx@lfdr.de>; Wed, 30 Apr 2025 10:26:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 584FF10E700;
-	Wed, 30 Apr 2025 08:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA1E710E705;
+	Wed, 30 Apr 2025 08:26:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rod6agkU";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KRaYXk++";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2041.outbound.protection.outlook.com [40.107.244.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 357DF10E700
- for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 08:26:12 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2083.outbound.protection.outlook.com [40.107.236.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96F7210E6F6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 08:26:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DPKEV7+NmoqCNqq8gdTOxbLbKjHl6DVAoRshNgY96EksEUM+HxwFRu0vAfb/ASmSq2uE9ru428nqwII56UcDsXiBhidMT9UJ7jaG29rbwXlWfKWC0fe8SWFVx3NGlVf62knPq7l3Hfw1CMTOSfKJTTDlcgdkMCspGVS+mBdT897vbrZFdgCXZxeqGt0AqmltsSgBWHyqU/Tlf+jSKQU0y+MbCX4z09/g0gveB2PIhz8rQN4SZSwFGh8juium/KHe1IRW8MxMDhXGb/KX5a9Ww+eNgdpjFAzrFlxbkzVpv6m+flyu1ww7Z4YnWXjhx2cBw9MAHSZkBCiDqfS0fQDZjg==
+ b=nV0nFusM1/k5HaeopLVQqgr0kkm8h4GlYjgCMcOOaV8l7VgI05Peb0ftp1To0eiEohJ2n+2+xssq1G/U7ZTamJYbLh/S5a4MRdJOaqyTp7EX3owuDtSgKhY8G8jyqUQm3cPzpMbGALB11yqHWcaCfKo7oP0A/uAKexzPZWWWo87aLi/bXDGbJPNAYnR345omjHsGFYmaVrsLkd+3TF4dEGa9yV/WhMZRbB0d5Vq45kfYxDcsVWi6klzxcAFO5dYoU/PrDNz6Aijzb86Fgk0M0RisGkU0o+YIGN9I6AJ15AafUyqmMIihBlB5357Gh/1hWdLKKpohOgzoOP4nw5B9AQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gJiSyPkLc/qHj3U30jGMB8YyQMwnYbxj0ATSDCAlgQg=;
- b=ZxGrLcGnukCypdYxW9VbySSyRlN9MelhadPybvzDlOEkQw3vZA70zIrXZBCSywG7yL2S6vuRBia4/ATfmKWTxwDT+vdDhrdyta6jUDrmHzkGfVWX5usNaUF2c/FK1fQ85DLE7VWtOlf7uMiCft7RQq8eJYxlxv57BkA0my4qZkkq7ea0HumWb4fx++FK3yY0T45qU4YnWPWuGyIQ33TjbuOPi0Fc/oB+UTc6pfgDKNzDdiH9ItFZD/iynT2BBlAsAicvQPq4X4QqFES3hdrrh7kkz2XGLdxdKErXu94CCINe1x8AccjwISNcJ/CxbmEPiMdBaZ3d3WxpSB8Mx+BG4w==
+ bh=5xgon1pONBG6T1UjhlO9nzDw16y4ra9KBU1fsylqFw8=;
+ b=BmV2PfvabE3HBuSDadg7ojhqP+I9B6RNR43nQviROat0qc1XZOlUG9AuLZcCc6Q3TxalK5xP9GNvh4hgjPRt/g0GDEiDKsALoJR5MfWeuoelsHOnVHq7fyG9vSNadyWhWveO+oLabcaucRgx6nxF8y9iT+jgOSMMcU6h9yfeLd9WiRdslz442uykmw+z4vIPc0jMwHx+ErEXaky6sk6FHkipQm9/CXfE+U0bkRhVWnJ2PudCDbFD2+CimFoLNzAXVFg1Laqgq6JbXjLztMl98+ujzFM/Gnlh3LWobwjAZJFsLY/Om91XmvtlzqL9PzTkFcY3rLieofm1d0gNnDIvag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gJiSyPkLc/qHj3U30jGMB8YyQMwnYbxj0ATSDCAlgQg=;
- b=rod6agkUrGT7DGtFbgSOrSb57k3h7lSDsNvKrtrKd2fGtSi3FUMdCSP52HkT4ncuMVvU6VKVxZ8G/uHHI0Chd6hx1HfKyutul6lJzfVmg7YxY/wkiAOYiso/OOCJeRK1D29zqJ/Bqx3D2JBSTiL4ox0FJhSyvYhdC8kkkbKdA0U=
-Received: from BY5PR04CA0006.namprd04.prod.outlook.com (2603:10b6:a03:1d0::16)
- by BL1PR12MB5995.namprd12.prod.outlook.com (2603:10b6:208:39b::20)
+ bh=5xgon1pONBG6T1UjhlO9nzDw16y4ra9KBU1fsylqFw8=;
+ b=KRaYXk++NUGuMBPJIJT4pi/5nVwD2OFfpaOT7zliTuKEp8Kx0DywZ3ItISp+yQKagLAObadt9sE0Chq5ed3zKwGfNO/Qy0pX5AsA15SKyl7I4gEsdvXWsP9Zu2Vq42Uq6HmFyBiUwf73uMvIFq9JLdK/bmmhxHNvaBN4/Jtc/0U=
+Received: from BY5PR04CA0016.namprd04.prod.outlook.com (2603:10b6:a03:1d0::26)
+ by SJ2PR12MB9242.namprd12.prod.outlook.com (2603:10b6:a03:56f::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.21; Wed, 30 Apr
- 2025 08:26:05 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.31; Wed, 30 Apr
+ 2025 08:26:06 +0000
 Received: from SN1PEPF000397B5.namprd05.prod.outlook.com
- (2603:10b6:a03:1d0:cafe::6) by BY5PR04CA0006.outlook.office365.com
- (2603:10b6:a03:1d0::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.36 via Frontend Transport; Wed,
- 30 Apr 2025 08:26:04 +0000
+ (2603:10b6:a03:1d0:cafe::94) by BY5PR04CA0016.outlook.office365.com
+ (2603:10b6:a03:1d0::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.35 via Frontend Transport; Wed,
+ 30 Apr 2025 08:26:06 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,17 +50,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SN1PEPF000397B5.mail.protection.outlook.com (10.167.248.59) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8699.20 via Frontend Transport; Wed, 30 Apr 2025 08:26:04 +0000
+ 15.20.8699.20 via Frontend Transport; Wed, 30 Apr 2025 08:26:06 +0000
 Received: from tao-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 30 Apr
- 2025 03:26:02 -0500
+ 2025 03:26:04 -0500
 From: Tao Zhou <tao.zhou1@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Tao Zhou <tao.zhou1@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
-Subject: [PATCH 3/7] drm/amdgpu: add get_retire_flip_bits for UMC
-Date: Wed, 30 Apr 2025 16:25:46 +0800
-Message-ID: <20250430082550.60109-3-tao.zhou1@amd.com>
+Subject: [PATCH 4/7] drm/amdgpu: implement get_retire_flip_bits for UMC v12
+Date: Wed, 30 Apr 2025 16:25:47 +0800
+Message-ID: <20250430082550.60109-4-tao.zhou1@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250430082550.60109-1-tao.zhou1@amd.com>
 References: <20250430082550.60109-1-tao.zhou1@amd.com>
@@ -72,52 +72,52 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B5:EE_|BL1PR12MB5995:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06280498-7963-40b3-2432-08dd87c0a5e5
+X-MS-TrafficTypeDiagnostic: SN1PEPF000397B5:EE_|SJ2PR12MB9242:EE_
+X-MS-Office365-Filtering-Correlation-Id: c56cb866-aba1-4288-8556-08dd87c0a6f1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9D41UmDJsgsw9ahi5ZpuInp02stxZORSreOArRycgGe/EjZ/3jGP7stURhef?=
- =?us-ascii?Q?n+mAOquqIrKfE0+DwosXITSJj4IdS6KuI3FZwK2JDd34L+YGmHhb9MqXWe/h?=
- =?us-ascii?Q?p9RTGDaJ0f0raknvMSlR5yPEyFfnPGIHei35+ilRO8saoEy3bPgHr+XdcmPJ?=
- =?us-ascii?Q?qVbbRH4W0dMMMRRqNKVEHAAF+LdXwW3IBSdVIbrSUn3RAgzsAQAmNoQyL/F9?=
- =?us-ascii?Q?T/cRNwXmt2B7ebktdQ0w9Z2sDN4AnVfi4fsFLOqDaBchFLR/JuBrpGRb2ES+?=
- =?us-ascii?Q?s3QCOUe7vjw3PNj/i4wtYrBKcQnMa/pcvalgdSGDZhsRR7/cFh5uJSu2qv5M?=
- =?us-ascii?Q?zgvl4r5c9URAXeDwK4916PrBdjAF8/6u5suaLGIAS9jPAGAvDhAQjbTKG0VE?=
- =?us-ascii?Q?PL44fivel4zSon85mANXe6Hr+CTIdFdv8YNQwEUGYkMgujW5b2V3580gP2Z6?=
- =?us-ascii?Q?tuxaTY5xm5hbqHyX1l3/CY60wa47c025kqa9P5LnRPsmVpI0fTvQbshNcEGD?=
- =?us-ascii?Q?4TDZMqbsOGhdNnXan8cXn9HMUh6E8piYtAR2XXZoFqp0ZWlbGmMy42zcJhZ7?=
- =?us-ascii?Q?Gc/VYpYUVJaMw83uDaxAsoh9Ps0f+imwrtzukp2+G4Iz24eKtTwLyzDIufLU?=
- =?us-ascii?Q?j6xzNQ39kjR9s9Y2btbuzZSiblcREWgU0C4/BrVTdZfuJKU3rfAK8ycqokv8?=
- =?us-ascii?Q?OCTjnIkuWW2DpR0dZXNjnrvn4oavDQ/gq2h/JJYuwbjibS+5CnWrDgLlW9tY?=
- =?us-ascii?Q?uVIlySPKRACaKAx7dmbXbPDB5l2nw0z2W8WadIjRSxZuTYwKPMmeS+CdtD8g?=
- =?us-ascii?Q?rN7fRGjg8aSGgGHMe7kmk263+sm03VxlSWUh3ZxfZQPf1rKB9r3kmthVkpfz?=
- =?us-ascii?Q?lCowIcQI+23t8Xp29vzD6j3bacoUpbJ0ZXaCLWpLrUSybL5EL1lpr8k+wpMs?=
- =?us-ascii?Q?kFdterD4BFJXV46MA27TP25GbdXvjyk0baW+QKHp6E8WUolYnzXfTMsc0V61?=
- =?us-ascii?Q?+xkbiv2ApX6tkcOiM1asfjP2Nbdk1lbrTSIIHOja2C8V6cA89pblgcb77PRs?=
- =?us-ascii?Q?Oj0Om/+9k5ZGJ6j5Kx40PS2LsyNtm1VFBng9ICj/yT3KT7hbu95aJ2Apfg7j?=
- =?us-ascii?Q?gI9d1D6Ywlu4BhR7xzbRhSPPawhm4BljIujM1pMOXmOA/GoPJJxDaL0yD1vS?=
- =?us-ascii?Q?2F5220qIHC3bLcnmSgrlAwH6fCqOkJvKayUWzml8QQdHhhqnsBrLwIdy7OpT?=
- =?us-ascii?Q?3qOGYVV1lvxj0tQAsSEvTpSOWpcws6ikTQZprEOZ0oNuU1VHFXxmGlu7h2sY?=
- =?us-ascii?Q?yY4AO33znFSIWhp3A0+aN/QVerssCXCQkd9uP88L9ntsxTTjkkBlDcxiWq7E?=
- =?us-ascii?Q?LC/qex6JBNCohbs4aoRUbA/a23aV0DPkx7U19U+6URd68Y1Gcoev7Ud7lJiV?=
- =?us-ascii?Q?WWpdfAxYbTI83goIsrMBeAKuhd5xPxD3J1Bdp9i+MJVhi2m3ml7v/TKuO6c5?=
- =?us-ascii?Q?WNS+oAAMXBwnD6tN22WAK2ZfoFkJKHwROA0T?=
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?x2vOJJ07DdJNfQGYqiGTGu5gaSMRWeIV1GDzwD5NeeKDEzwa44LeNprFtgIG?=
+ =?us-ascii?Q?TAMMA2IPAy5JFbFoc3+8eco0N679bjFQJnT+iMvcl561RxpqkSutycwhbIcO?=
+ =?us-ascii?Q?SwexZK8eV1syhqwboDGNEbOa61t77XTHzd83SA4p1zQ7gUUbgUI0H6HVBqsn?=
+ =?us-ascii?Q?ucMCAsRWp885QlB/lXAXK67bivDe42ZZDUXZq44wCUvKeLVabBvDqsipz1VH?=
+ =?us-ascii?Q?fOs6NJV1VNy79FlB1DBbAP57ak6MefhQ9ENcYtw43GId63LvaZdpkLyqNuYY?=
+ =?us-ascii?Q?zlBzg6FvZZA1vXLfc6w4xf4wGU62YZoYwLVsb7SojJhE9mThv1bGg4qVpNxK?=
+ =?us-ascii?Q?Nx4n71piv3cIqay+ZcKQv9VeQDw/uYF5xRfok5rWiaKt24ulwYWuwzo3n5O3?=
+ =?us-ascii?Q?iZCIENX9oqNk0I+o2188foYg6sL9wPtlMX1k/MiLh9qsBZIWeVUcYW8kd7gl?=
+ =?us-ascii?Q?e+apFtp2HH5xbR0ZB47qlU1Lco47RYgqXCXuW7thEgSsV4IZttaj1GwLAwKZ?=
+ =?us-ascii?Q?UVuy+dJ5tUm8sLsQ1nCnaYXreGWg06RjZVv6FoKuIZcHQIMnDc8zWRj3MK40?=
+ =?us-ascii?Q?5S6PK/Een3R/fr2yThxkWQlQAGdLLT/fRlaG/ZX7MDVt5Ojk6q1S6A39w2vI?=
+ =?us-ascii?Q?U87CFCv08mIIbmTZWODIAX7L41AtdpSgsATINHKMp8q1giMA0oElgA+bQDS3?=
+ =?us-ascii?Q?zBH2pvAAFrrhMJyp5PAts2DfPBlUeYrB7EXfH8IT7nHT/MPLADTqSVLkwP2W?=
+ =?us-ascii?Q?8MwkVNN4oU9ADsNXZ+x/ZrFAf73DLci0zxaHtDemXB+UIq7Xm/BXVyKu8/Us?=
+ =?us-ascii?Q?lD+C1ikGJVe5+eHfcPYolOBNpx8ZkZzHhYm497ygB+uXdv7d8o9XHEhyrS1Y?=
+ =?us-ascii?Q?McxihS88R/I/hLei2I0K57ROdRHc2xon338Y7XlLUwXJUlPa4ht94XDApIBW?=
+ =?us-ascii?Q?7wthlur7URJKOgAOg9qj2bxbwUMkMDA1fRNFhv66501FfIST6S25FFUmeuFj?=
+ =?us-ascii?Q?qXmnCf8M5psAPWQNFoanFcbAH9FpPEnXzUT41LFBxvkWizFWD4zTcesKg1F+?=
+ =?us-ascii?Q?etSIgioG8kTOWZXRipcXc5Tp4PjVNkQ+tELYSjYsnSm1jeaXUzvR9myD+xj0?=
+ =?us-ascii?Q?Vnln2MUi0rCUmSCJLuNAxufgcYe4G0bw3aYhf6ZVz+VFvXHU0I+NVIGEaOFE?=
+ =?us-ascii?Q?ULXAlr7qq8iXMVcjxdVnPYC327UnX/ZwwPl9O+M4ZflhgG0Rjia359481C3Q?=
+ =?us-ascii?Q?UjGhUldHw2n8fgWNn97ct3StwYtM0LwLblFysnPXHbRp3FQ0j8+GzRAnf2PM?=
+ =?us-ascii?Q?n2+FGFMV1ya7tzoJZYhuaT/DZ8eDcwYibeoXIoNzFh1mTPIn/R7ZObLGqP0s?=
+ =?us-ascii?Q?qKMOTxrDwvPV0RiYQAZfx2oyDg35I4vClN2WBXy0QT8vI4axyowpqPn0vB2j?=
+ =?us-ascii?Q?ClNy50W/R9hUydPNyz7nAHrRQNTONyxrLeyzYDkYJQ3Am9W0oDBojIrmY9Hs?=
+ =?us-ascii?Q?6SqriWg1obNlGrGGDfSfulxPiO73NJwyHJjx?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2025 08:26:04.2623 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06280498-7963-40b3-2432-08dd87c0a5e5
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2025 08:26:06.0221 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c56cb866-aba1-4288-8556-08dd87c0a6f1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B5.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5995
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9242
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,70 +132,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add the general interface to get flip bits for RAS bad page retirement.
+The RAS bad page retire flip bits can be set per vram type,
+vram vendor and NPS mode.
 
 Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c |  4 ++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h | 15 +++++++++++++++
- 2 files changed, 19 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c  |  1 -
+ drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 82 +++++++++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/umc_v12_0.h |  2 -
+ 3 files changed, 53 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 32a8cd64d29a..a5a853894ab0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -3474,6 +3474,10 @@ int amdgpu_ras_init_badpage_info(struct amdgpu_device *adev)
- 	if (!adev->umc.ras || !adev->umc.ras->convert_ras_err_addr)
- 		control->ras_num_pa_recs = control->ras_num_recs;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 3caebe7c25a5..464015fc2012 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -1504,7 +1504,6 @@ static void gmc_v9_0_set_umc_funcs(struct amdgpu_device *adev)
+ 		adev->umc.umc_inst_num = UMC_V12_0_UMC_INSTANCE_NUM;
+ 		adev->umc.node_inst_num /= UMC_V12_0_UMC_INSTANCE_NUM;
+ 		adev->umc.channel_offs = UMC_V12_0_PER_CHANNEL_OFFSET;
+-		adev->umc.retire_unit = UMC_V12_0_BAD_PAGE_NUM_PER_CHANNEL;
+ 		if (!adev->gmc.xgmi.connected_to_cpu && !adev->gmc.is_app_apu)
+ 			adev->umc.ras = &umc_v12_0_ras;
+ 		break;
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+index 5201c106e369..05e3b34927c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+@@ -174,6 +174,49 @@ static void umc_v12_0_query_ras_error_count(struct amdgpu_device *adev,
+ 	umc_v12_0_reset_error_count(adev);
+ }
  
-+	if (adev->umc.ras &&
-+	    adev->umc.ras->get_retire_flip_bits)
-+		adev->umc.ras->get_retire_flip_bits(adev);
++static void umc_v12_0_get_retire_flip_bits(struct amdgpu_device *adev)
++{
++	enum amdgpu_memory_partition nps = AMDGPU_NPS1_PARTITION_MODE;
++	uint32_t vram_type = adev->gmc.vram_type;
++	struct amdgpu_umc_flip_bits *flip_bits = &(adev->umc.flip_bits);
 +
- 	if (control->ras_num_recs) {
- 		ret = amdgpu_ras_load_bad_pages(adev);
- 		if (ret)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-index 857693bcd8d4..78a8b8654573 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-@@ -78,6 +78,18 @@
- #define UMC_NPS_SHIFT 40
- #define UMC_NPS_MASK 0xffULL
++	if (adev->gmc.gmc_funcs->query_mem_partition_mode)
++		nps = adev->gmc.gmc_funcs->query_mem_partition_mode(adev);
++
++	/* default setting */
++	flip_bits->flip_bits_in_pa[0] = UMC_V12_0_PA_C2_BIT;
++	flip_bits->flip_bits_in_pa[1] = UMC_V12_0_PA_C3_BIT;
++	flip_bits->flip_bits_in_pa[2] = UMC_V12_0_PA_C4_BIT;
++	flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R13_BIT;
++	flip_bits->bit_num = 4;
++
++	switch (vram_type) {
++	case AMDGPU_VRAM_TYPE_HBM:
++		/* other nps modes are taken as nps1 */
++		if (nps == AMDGPU_NPS2_PARTITION_MODE) {
++			flip_bits->flip_bits_in_pa[0] = UMC_V12_0_PA_CH5_BIT;
++			flip_bits->flip_bits_in_pa[1] = UMC_V12_0_PA_C2_BIT;
++			flip_bits->flip_bits_in_pa[2] = UMC_V12_0_PA_B1_BIT;
++			flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R12_BIT;
++		}
++
++		if (nps == AMDGPU_NPS4_PARTITION_MODE) {
++			flip_bits->flip_bits_in_pa[0] = UMC_V12_0_PA_CH4_BIT;
++			flip_bits->flip_bits_in_pa[1] = UMC_V12_0_PA_CH5_BIT;
++			flip_bits->flip_bits_in_pa[2] = UMC_V12_0_PA_B0_BIT;
++			flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R11_BIT;
++		}
++
++		break;
++	default:
++		dev_warn(adev->dev,
++			"Unknown HBM type, set RAS retire flip bits to the value in NPS1 mode.\n");
++		break;
++	}
++
++	adev->umc.retire_unit = 0x1 << flip_bits->bit_num;
++}
++
+ static int umc_v12_0_convert_error_address(struct amdgpu_device *adev,
+ 					struct ras_err_data *err_data,
+ 					struct ta_ras_query_address_input *addr_in,
+@@ -182,11 +225,10 @@ static int umc_v12_0_convert_error_address(struct amdgpu_device *adev,
+ {
+ 	uint32_t col, col_lower, row, row_lower, row_high, bank;
+ 	uint32_t channel_index = 0, umc_inst = 0;
+-	uint32_t i, loop_bits[UMC_V12_0_RETIRE_LOOP_BITS];
++	uint32_t i, bit_num, retire_unit, *flip_bits;
+ 	uint64_t soc_pa, column, err_addr;
+ 	struct ta_ras_query_address_output addr_out_tmp;
+ 	struct ta_ras_query_address_output *paddr_out;
+-	enum amdgpu_memory_partition nps = AMDGPU_NPS1_PARTITION_MODE;
+ 	int ret = 0;
  
-+/* three column bits and one row bit in MCA address flip
-+ * in bad page retirement
-+ */
-+#define RETIRE_FLIP_BITS_NUM 4
-+
-+struct amdgpu_umc_flip_bits {
-+	uint32_t flip_bits_in_pa[RETIRE_FLIP_BITS_NUM];
-+	uint32_t flip_row_bit;
-+	uint32_t r13_in_pa;
-+	uint32_t bit_num;
-+};
-+
- typedef int (*umc_func)(struct amdgpu_device *adev, uint32_t node_inst,
- 			uint32_t umc_inst, uint32_t ch_inst, void *data);
+ 	if (!addr_out)
+@@ -211,34 +253,15 @@ static int umc_v12_0_convert_error_address(struct amdgpu_device *adev,
+ 		umc_inst = addr_in->ma.umc_inst;
+ 	}
  
-@@ -100,6 +112,7 @@ struct amdgpu_umc_ras {
- 			bool dump_addr);
- 	uint32_t (*get_die_id_from_pa)(struct amdgpu_device *adev,
- 			uint64_t mca_addr, uint64_t retired_page);
-+	void (*get_retire_flip_bits)(struct amdgpu_device *adev);
+-	loop_bits[0] = UMC_V12_0_PA_C2_BIT;
+-	loop_bits[1] = UMC_V12_0_PA_C3_BIT;
+-	loop_bits[2] = UMC_V12_0_PA_C4_BIT;
+-	loop_bits[3] = UMC_V12_0_PA_R13_BIT;
+-
+-	if (adev->gmc.gmc_funcs->query_mem_partition_mode)
+-		nps = adev->gmc.gmc_funcs->query_mem_partition_mode(adev);
+-
+-	/* other nps modes are taken as nps1 */
+-	if (nps == AMDGPU_NPS2_PARTITION_MODE) {
+-		loop_bits[0] = UMC_V12_0_PA_CH5_BIT;
+-		loop_bits[1] = UMC_V12_0_PA_C2_BIT;
+-		loop_bits[2] = UMC_V12_0_PA_B1_BIT;
+-		loop_bits[3] = UMC_V12_0_PA_R12_BIT;
+-	}
+-
+-	if (nps == AMDGPU_NPS4_PARTITION_MODE) {
+-		loop_bits[0] = UMC_V12_0_PA_CH4_BIT;
+-		loop_bits[1] = UMC_V12_0_PA_CH5_BIT;
+-		loop_bits[2] = UMC_V12_0_PA_B0_BIT;
+-		loop_bits[3] = UMC_V12_0_PA_R11_BIT;
+-	}
++	flip_bits = adev->umc.flip_bits.flip_bits_in_pa;
++	bit_num = adev->umc.flip_bits.bit_num;
++	retire_unit = adev->umc.retire_unit;
+ 
+ 	soc_pa = paddr_out->pa.pa;
+ 	channel_index = paddr_out->pa.channel_idx;
+ 	/* clear loop bits in soc physical address */
+-	for (i = 0; i < UMC_V12_0_RETIRE_LOOP_BITS; i++)
+-		soc_pa &= ~BIT_ULL(loop_bits[i]);
++	for (i = 0; i < bit_num; i++)
++		soc_pa &= ~BIT_ULL(flip_bits[i]);
+ 
+ 	paddr_out->pa.pa = soc_pa;
+ 	/* get column bit 0 and 1 in mca address */
+@@ -259,10 +282,10 @@ static int umc_v12_0_convert_error_address(struct amdgpu_device *adev,
+ 		goto out;
+ 
+ 	/* loop for all possibilities of retired bits */
+-	for (column = 0; column < UMC_V12_0_BAD_PAGE_NUM_PER_CHANNEL; column++) {
++	for (column = 0; column < retire_unit; column++) {
+ 		soc_pa = paddr_out->pa.pa;
+-		for (i = 0; i < UMC_V12_0_RETIRE_LOOP_BITS; i++)
+-			soc_pa |= (((column >> i) & 0x1ULL) << loop_bits[i]);
++		for (i = 0; i < bit_num; i++)
++			soc_pa |= (((column >> i) & 0x1ULL) << flip_bits[i]);
+ 
+ 		col = ((column & 0x7) << 2) | col_lower;
+ 		/* add row bit 13 */
+@@ -684,5 +707,6 @@ struct amdgpu_umc_ras umc_v12_0_ras = {
+ 	.update_ecc_status = umc_v12_0_update_ecc_status,
+ 	.convert_ras_err_addr = umc_v12_0_convert_error_address,
+ 	.get_die_id_from_pa = umc_v12_0_get_die_id,
++	.get_retire_flip_bits = umc_v12_0_get_retire_flip_bits,
  };
  
- struct amdgpu_umc_funcs {
-@@ -130,6 +143,8 @@ struct amdgpu_umc {
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.h b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.h
+index 056bbc038312..ccdd6cd430f8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.h
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.h
+@@ -55,8 +55,6 @@
+ #define UMC_V12_0_NA_MAP_PA_NUM        8
+ /* R13 bit shift should be considered, double the number */
+ #define UMC_V12_0_BAD_PAGE_NUM_PER_CHANNEL (UMC_V12_0_NA_MAP_PA_NUM * 2)
+-/* C2, C3, C4, R13, four bits in MCA address are looped in retirement */
+-#define UMC_V12_0_RETIRE_LOOP_BITS 4
  
- 	/* active mask for umc node instance */
- 	unsigned long active_mask;
-+
-+	struct amdgpu_umc_flip_bits flip_bits;
- };
- 
- int amdgpu_umc_ras_sw_init(struct amdgpu_device *adev);
+ /* column bits in SOC physical address */
+ #define UMC_V12_0_PA_C2_BIT 15
 -- 
 2.34.1
 
