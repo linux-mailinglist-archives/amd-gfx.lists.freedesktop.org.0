@@ -2,50 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3112AA5EFD
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 May 2025 15:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1786FAA5EFA
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 May 2025 15:05:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DBFF10E85A;
-	Thu,  1 May 2025 13:05:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E70E210E850;
+	Thu,  1 May 2025 13:05:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="GRpQgo93";
+	dkim=permerror (0-bit key) header.d=nordisch.org header.i=@nordisch.org header.b="U+TxjzIu";
+	dkim=pass (1024-bit key; secure) header.d=nordisch.org header.i=@nordisch.org header.b="JfQx60BU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
- [136.143.188.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B63E810E748
- for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 18:03:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1746036215; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=FvJCWbipoUWC9Ndng3KlLAzEOxS4yo/iQIxUWKZEreUdKCA+Gy1azHbJUFbogbyAWLK77daoDQMHYhFHCWzt2H7D/9xZVZSSfuyUQ+U9XN4hNR1NTDarbp9MaQ+dck4PSfJQWXhjLt/Uo5NaZwsHyyp1J6OP4Z/JNGaS7qPph2c=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1746036215;
- h=Content-Type:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
- bh=9iW0ill2qqMuQ5frRIHe6M+06J9f9Akjlv6XisPT8F8=; 
- b=MAOtYni3Qg8OnHfGVUQY/ryr1hxR9QsUp/3Z0fBupAMr415RBZpLe47pUTHQ4QhiPfKXedfWtzEex4I01QIfCf3HvCcGIaUWpk5+141RVq/DlkvJ5zsbulEguYnL9sp9lcERPyJahJLw6BvvRvSUFIXQI5M0RBvk8cxP5T7MeJk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=mark.filion@collabora.com;
- dmarc=pass header.from=<mark.filion@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746036215; 
- s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
- bh=9iW0ill2qqMuQ5frRIHe6M+06J9f9Akjlv6XisPT8F8=;
- b=GRpQgo930jujOfqtZmXvuKPZoVIeaDGPoELeiRUN2RCNLDv2EhTPQr7DU2f8mmqF
- WDN5BWZhgHrxiCnlZuqbwIIxxQ8KHbMEjBIn1mThGsDaNbdaBwBoGf5z76vPjrkSD4J
- sCWWzBxna653gmGPOyrAVl7/3iNUgYCjKuAuhLjE=
-Received: by mx.zohomail.com with SMTPS id 1746036213466254.37665555703495;
- Wed, 30 Apr 2025 11:03:33 -0700 (PDT)
-Message-ID: <2d8b9d4b1d3e28db4e85903c146df29ee12f404e.camel@collabora.com>
-Subject: Announcement: 2025 X.Org Foundation Election voting OPEN
-From: Mark Filion <mark.filion@collabora.com>
-To: amd-gfx@lists.freedesktop.org
-Date: Wed, 30 Apr 2025 14:03:32 -0400
-Content-Type: multipart/alternative; boundary="=-8P/ecLwhzslvZHDQRc2b"
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42app2) 
+X-Greylist: delayed 339 seconds by postgrey-1.36 at gabe;
+ Wed, 30 Apr 2025 23:34:17 UTC
+Received: from tengu.nordisch.org (tengu.nordisch.org [138.201.201.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D05210E14D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 23:34:17 +0000 (UTC)
+Received: from [192.168.3.6] (fortress.wg.nordisch.org [192.168.3.6])
+ by tengu.nordisch.org (Postfix) with ESMTPSA id 2513B75B728;
+ Thu, 01 May 2025 01:28:24 +0200 (CEST)
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=nordisch.org;
+ s=tengu_ed25519; t=1746055704;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XDUEgyQuETsjtturu6RqQZ44HHx7WCsRfSeWlLxTKoo=;
+ b=U+TxjzIuC0YLICJge4eQQmXxuwecS5HBGrRLHORLbCzmwoZNWimwiVrg8H5dUHQPBv5KNH
+ zwFZo950O4Au5NDg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nordisch.org;
+ s=tengu_rsa; t=1746055704;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XDUEgyQuETsjtturu6RqQZ44HHx7WCsRfSeWlLxTKoo=;
+ b=JfQx60BUEX0oxkoAlSiN9W80l7PqHVkkXn7sfOwXqVxqwyfNrARUQ25SgNIJDHyPxu/7m5
+ Tr/vxSLtHsmkNBR9otHrEhBUlcD+p55gAVzM9zkai0ePcke4+pND1dHJEsmhLlII7SM/LI
+ i13VLQFw0UynbqyC2qhy+53r1FIGRM4=
+Message-ID: <688457c1079a5cdbb81a0dd21e6d744e72c89101.camel@nordisch.org>
+Subject: Re: amdgpu: Reproducible soft lockups when playing games
+From: Marcus =?ISO-8859-1?Q?R=FCckert?= <amd@nordisch.org>
+To: Alex Deucher <alexdeucher@gmail.com>, Borislav Petkov <bp@alien8.de>
+Cc: amd-gfx@lists.freedesktop.org
+Date: Thu, 01 May 2025 01:28:23 +0200
+In-Reply-To: <CADnq5_PBjOYV5TH5EDXBVvth1ZX6S_TcpDOKOMrbDJUEDzkTww@mail.gmail.com>
+References: <123e013307ad395b3e26c2dd53fb99594191dda0.camel@nordisch.org>
+ <20250429130929.GCaBDPiT_CwyKmHB5o@fat_crate.local>
+ <CADnq5_PBjOYV5TH5EDXBVvth1ZX6S_TcpDOKOMrbDJUEDzkTww@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 MIME-Version: 1.0
-X-ZohoMailClient: External
 X-Mailman-Approved-At: Thu, 01 May 2025 13:05:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,195 +69,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---=-8P/ecLwhzslvZHDQRc2b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, 2025-04-30 at 09:55 -0400, Alex Deucher wrote:
+> please make sure your kernel has these three patches:
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
+mmit/?id=3D4408b59eeacfea777aae397177f49748cadde5ce
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
+mmit/?id=3Dafcdf51d97cd58dd7a2e0aa8acbaea5108fa6826
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
+mmit/?id=3D366e77cd4923c3aa45341e15dcaf3377af9b042f
 
-To all X.Org Foundation Members:
+I am kinda sure that's the patches Takashi backported into our 6.14.3.
+They are already part of 6.15.rc4 no?
 
-The X.Org Foundation's annual election is now open and will remain open
-until 23:59 UTC on 14 May 2025.
+> soft recover kills stuck shaders, so I'd suggest trying a newer
+> version of mesa and LLVM.=C2=A0 If that doesn't help, please file a ticke=
+t
+> here:
 
-Four of the eight director seats are open during this election. The
-four nominees receiving the highest vote totals serving as directors
-for two year terms.
+Newer Mesa is building although I didnt see anything radv related.
 
-There were five candidates nominated. For a complete list of the
-candidates and their personal statements, please
-see=C2=A0https://www.x.org/wiki/BoardOfDirectors/Elections/2025/
+I am curious in https://gitlab.freedesktop.org/drm/amd/-/issues/4192
+there is a lot more details about the crash than what I see. with what
+kind of flags/environment variables do I have to run to get the same?
 
-Here are some instructions on how to cast your vote:
+An observation from my latest crash:
 
-   1. Go directly to the voting link (you might need to log into the
-      member system first)
-     =20
-      https://members.x.org/ballot/16/vote
-     =20
-   2. There is a pull-down selection of candidates next to each
-      preference level.=C2=A0Note that you are NOT required to select your
-      preferences for all five candidates. You can leave more than one
-      blank.
-     =20
-   3. After you have completed your ballot, click the "Vote" button.
-      Note that once you click this button, your votes will be cast and
-      you will not be able to make further changes, so please make sure
-      you are satisfied with your votes before clicking the "Vote"
-      button.
+```
+May 01 01:05:59 steam[223306]: radv/amdgpu: The CS has been cancelled
+because the context is lost. This context is guilty of a soft recovery.
+May 01 01:06:05 steam[223306]: Game Recording - game stopped
+[gameid=3D2357570]
+May 01 01:06:05 steam[223306]: Removing process 352353 for gameID
+2357570
+```
 
-After you click the "Cast vote" button, the system will verify that you
-have completed a valid ballot. If your ballot is invalid (e.g., you
-duplicated a selection or did not answer the By-laws approval
-question), it will return you to the previous voting page. If your
-ballot is valid, your votes will be recorded and the system will show
-you a notice that your votes were cast.
+Is the game launched by steam inheriting that context or could it
+really be the steam process triggering it? As 223306 would be
 
-Note that the election will close at 23:59 UTC on 14 May 2025. At that
-time, the election committee will count the votes and present the
-results to the current board for validation. After the current board
-validates the results, the election committee will present the results
-to the Members.
 
-Mark Filion, on behalf of the X.Org elections committee
+```
+~/.local/share/Steam/ubuntu12_32/steam-runtime/usr/libexec/steam-
+runtime-tools-0/srt-logger --sh-syntax --rotate=3D8388608 --log-directory
+/home/darix/.local/share/Steam/logs --filename console-linux.txt --log-
+fd=3D7 --journal-fd=3D5 --parse-level-prefix
+```
 
---=-8P/ecLwhzslvZHDQRc2b
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+It claims "game recording" but that is actually turned off and their
+LD_PRELOAD-s are blocked because of
+https://github.com/ValveSoftware/steam-for-linux/issues/11446
 
-<html><head><style>pre,code,address {
-  margin: 0px;
-}
-h1,h2,h3,h4,h5,h6 {
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-}
-ol,ul {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-blockquote {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-</style></head><body><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0,=
- 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-var=
-iant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: st=
-art; text-indent: 0px; text-transform: none; white-space: normal; word-spac=
-ing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-str=
-oke-width: 0px; text-decoration: none;">To all X.Org Foundation Members:</d=
-iv><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-famil=
-y: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: normal;=
- font-weight: 400; letter-spacing: normal; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-=
-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; te=
-xt-decoration: none;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); co=
-lor: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: norma=
-l; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; tex=
-t-align: start; text-indent: 0px; text-transform: none; white-space: normal=
-; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webk=
-it-text-stroke-width: 0px; text-decoration: none;">The X.Org Foundation's a=
-nnual election is now open and will remain open until 23:59 UTC on 14 May 2=
-025.</div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); fon=
-t-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; text-i=
-ndent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -=
-webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: =
-0px; text-decoration: none;"><br></div><div style=3D"caret-color: rgb(0, 0,=
- 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style=
-: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: norm=
-al; text-align: start; text-indent: 0px; text-transform: none; white-space:=
- normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4)=
-; -webkit-text-stroke-width: 0px; text-decoration: none;">Four of the eight=
- director seats are open during this election. The four nominees receiving =
-the highest vote totals serving as directors for two year terms.</div><div =
-style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot=
-;Adwaita Sans&quot;; font-style: normal; font-variant-caps: normal; font-we=
-ight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; tex=
-t-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap-high=
-light-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decor=
-ation: none;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb=
-(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-=
-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align:=
- start; text-indent: 0px; text-transform: none; white-space: normal; word-s=
-pacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-=
-stroke-width: 0px; text-decoration: none;">There were five candidates nomin=
-ated. For a complete list of the candidates and their personal statements, =
-please see&nbsp;<a href=3D"https://www.x.org/wiki/BoardOfDirectors/Election=
-s/2025/" style=3D"color: rgb(46, 52, 54);">https://www.x.org/wiki/BoardOfDi=
-rectors/Elections/2025/</a></div><div style=3D"caret-color: rgb(0, 0, 0); c=
-olor: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: norm=
-al; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; te=
-xt-align: start; text-indent: 0px; text-transform: none; white-space: norma=
-l; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -web=
-kit-text-stroke-width: 0px; text-decoration: none;"><br></div><div style=3D=
-"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita=
- Sans&quot;; font-style: normal; font-variant-caps: normal; font-weight: 40=
-0; letter-spacing: normal; text-align: start; text-indent: 0px; text-transf=
-orm: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-co=
-lor: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: n=
-one;">Here are some instructions on how to cast your vote:</div><div style=
-=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwa=
-ita Sans&quot;; font-style: normal; font-variant-caps: normal; font-weight:=
- 400; letter-spacing: normal; text-align: start; text-indent: 0px; text-tra=
-nsform: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight=
--color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration=
-: none;"><br></div><ol style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0,=
- 0); font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-varian=
-t-caps: normal; font-weight: 400; letter-spacing: normal; text-align: start=
-; text-indent: 0px; text-transform: none; white-space: normal; word-spacing=
-: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke=
--width: 0px; text-decoration: none;"><li>Go directly to the voting link (yo=
-u might need to log into the member system first)<br><br><a href=3D"https:/=
-/members.x.org/ballot/16/vote" style=3D"color: rgb(46, 52, 54);">https://me=
-mbers.x.org/ballot/16/vote</a><br><br></li><li>There is a pull-down selecti=
-on of candidates next to each preference level.<span class=3D"Apple-convert=
-ed-space">&nbsp;</span>Note that you are NOT required to select your prefer=
-ences for all five candidates. You can leave more than one blank.<br><br></=
-li><li>After you have completed your ballot, click the "Vote" button. Note =
-that once you click this button, your votes will be cast and you will not b=
-e able to make further changes, so please make sure you are satisfied with =
-your votes before clicking the "Vote" button.</li></ol><div style=3D"caret-=
-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&q=
-uot;; font-style: normal; font-variant-caps: normal; font-weight: 400; lett=
-er-spacing: normal; text-align: start; text-indent: 0px; text-transform: no=
-ne; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rg=
-ba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;"><=
-br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font=
--family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: n=
-ormal; font-weight: 400; letter-spacing: normal; text-align: start; text-in=
-dent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -w=
-ebkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0=
-px; text-decoration: none;">After you click the "Cast vote" button, the sys=
-tem will verify that you have completed a valid ballot. If your ballot is i=
-nvalid (e.g., you duplicated a selection or did not answer the By-laws appr=
-oval question), it will return you to the previous voting page. If your bal=
-lot is valid, your votes will be recorded and the system will show you a no=
-tice that your votes were cast.</div><div style=3D"caret-color: rgb(0, 0, 0=
-); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: =
-normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal=
-; text-align: start; text-indent: 0px; text-transform: none; white-space: n=
-ormal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); =
--webkit-text-stroke-width: 0px; text-decoration: none;"><br></div><div styl=
-e=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adw=
-aita Sans&quot;; font-style: normal; font-variant-caps: normal; font-weight=
-: 400; letter-spacing: normal; text-align: start; text-indent: 0px; text-tr=
-ansform: none; white-space: normal; word-spacing: 0px; -webkit-tap-highligh=
-t-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoratio=
-n: none;">Note that the election will close at 23:59 UTC on 14 May 2025. At=
- that time, the election committee will count the votes and present the res=
-ults to the current board for validation. After the current board validates=
- the results, the election committee will present the results to the Member=
-s.</div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-=
-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: no=
-rmal; font-weight: 400; letter-spacing: normal; text-align: start; text-ind=
-ent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -we=
-bkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0p=
-x; text-decoration: none;"><br></div><div style=3D"caret-color: rgb(0, 0, 0=
-); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: =
-normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal=
-; text-align: start; text-indent: 0px; text-transform: none; white-space: n=
-ormal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); =
--webkit-text-stroke-width: 0px; text-decoration: none;">Mark Filion, on beh=
-alf of the X.Org elections committee</div><div><span></span></div></body></=
-html>
+--=20
+Always remember:
+  Never accept the world as it appears to be.
+    Dare to see it for what it could be.
+      The world can always use more heroes.
 
---=-8P/ecLwhzslvZHDQRc2b--
+
