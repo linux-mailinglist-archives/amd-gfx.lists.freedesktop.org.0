@@ -2,74 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5096FAA5F3B
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 May 2025 15:32:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF66AA6297
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 May 2025 20:04:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8173B10E097;
-	Thu,  1 May 2025 13:32:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE27410E282;
+	Thu,  1 May 2025 18:04:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XzM1xA2E";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RZapQ+3d";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
- [209.85.215.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62B0010E097
- for <amd-gfx@lists.freedesktop.org>; Thu,  1 May 2025 13:32:50 +0000 (UTC)
-Received: by mail-pg1-f179.google.com with SMTP id
- 41be03b00d2f7-b1f2a3bf3c8so133154a12.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 01 May 2025 06:32:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1746106370; x=1746711170; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JU40EBQuwFtfDEgs7TwZUPDJ1aCZrRH+cCgvSAmuomw=;
- b=XzM1xA2E8fmasmJR8To6cozL231MUefjR+B6jAC+u7erKl2aJnXYcPFflsBLRb6VHR
- sqeoOSaLhvcwwAAbXUYRX4BAYpVY06V9enh07Xq1vyVDCY0WRv1CmJVpa+lztuxGNOIU
- aZIMIP3aKp0f+nha/Ra7a02JsoKWT0USQKc35gXr4W2h6arr/4vDL5J51nig5UIsRSx9
- /Euc79mzlrO2gmBwaQwqHSnqiAvm8VmIOoin8is2U2I0tgUmzPSqxRPnRhc/fMdAWtgH
- ngAl4u4VtRhmrXC1leuu/jJ4uZBOQAYqwA77b63IC4RDVgXBdxtp1HWkz2v2nlDBqKeZ
- vHXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746106370; x=1746711170;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=JU40EBQuwFtfDEgs7TwZUPDJ1aCZrRH+cCgvSAmuomw=;
- b=W0KkBRab8LE1hPE+UcZuu4qUDNnW4J+oHrvhfTCHILn8OTWXJGcSV3hy5+qTI4OQRr
- Ld57enYEdcob3+Rp+XeF6ZP8JuiT/WtTenIDRr+r7KK1/CVR5Fzm4HH75A1KxAyB76tN
- f0uAtucFjP5mK08ERJlxOkXtCTFZweOYmhxEWvzQ9wrStmQ5j2sJ4GPsf/56/wcqE42c
- U57XpwrF19yeo+xp7xERWiPvQ1v4cIxGm7y+e2ajtuozE5hwHvxqhBqsG/GTbfaQkgdL
- 50YOMzWubHNv6KUeWcEGUQnSUVMULR9pu08z5dalgfij7vMEfuv6O+dmVmiAH96hsZve
- egTw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXBWt6EmyiMK6sZgmcRjZujKN1yri2OahxxZvSnDT4E+DhKXbGvQ4I5bge8yD950ETQEKk6BLzg@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzPtbJ8RwljwtO42p3y/WyLoyy39tebUdbJfTPmmbV8HkjcNcru
- a8XQqutS7bMkha5Hm87/bSHYbRP3b6bNWi8bjWZmv8KFr/yPq30ksCHCGm3s1ViY2C9iYz5aHLb
- fXN7/5C+SSSCIwgfNRKqN2vBHkZ0yIw==
-X-Gm-Gg: ASbGnctoIxRr3qyXDv1dVVaOQyvuBnJxY3JNCE4F1cBxf+93eQj4IUjhAhhkT8Ztger
- mIel2dbjnX65E8sNDJ126lpGgOt2s/PU2j/akHgz/B8+6IWNYUs7I+OTj/j7sK8zRsgt5/xfRoz
- 3PXTDyImhGgV2UDeLG/Ntc0/6E164dv8UD
-X-Google-Smtp-Source: AGHT+IH68PtNdcIkzrdXnJPR1t5dtAhotylOvFgS2bbNESfhR7rbMU1CxwubEJop2fKHCoLe2YvfcE+x9OO9Jxcrsfg=
-X-Received: by 2002:a17:90b:3e81:b0:305:5f31:6c63 with SMTP id
- 98e67ed59e1d1-30a34a95b45mr3964733a91.6.1746106369586; Thu, 01 May 2025
- 06:32:49 -0700 (PDT)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2088.outbound.protection.outlook.com [40.107.223.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B658610E282
+ for <amd-gfx@lists.freedesktop.org>; Thu,  1 May 2025 18:04:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EAxX+UymtHmvatYrznJ5CC0/mKbp4B0fLqxxvbLuCCEHxfqWWjMl9JC+FGq1jM4tXyOAp7oMC+uMkZCdmugakIf1uAoSjgp+H8L/ITOfDND1S5QuXQ9XD7w+/dmsbE3onCIX3kKQNnldxeUwEwV+oObL5GHKIhW0wUQkdX0Y1m63xJDBN7b9zwuJkZ90tYNv/gvtmMCxmVMSxRPWM8HaRMawHhF9g5KAZmJEaKsffyRrOhjp3F4QPWxNKwKreZW0ujCM65moJE1DhrotuUI9kpdDfi+5w7rHd3O5zze3DVZASWQbQlN+UTgawa/mdimSFYPZJdrYHQfyVGEG4I5X5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oWcfVsITUyPRZXfJ6ZL+ogZfhpJlolzdhBu69b5Rjyc=;
+ b=g6hk9tsu5RJ6NodV+lcl1Pe/OVOh/OFQJw8s+atVYuTgPGTixAvrOAbRBeVn6ZbmlaMWhE1fmC8LRF/MlglCcvE6sx3g/qIA63zy7FXJDFtErxDKlddqvP9kPKrEOpcVkqGMy175W2i0CvSWh+j5cbbW7c/TQezb3+GPWTQM3lVqBZ8jeQzaBbej0/BEF0m2GUY3PtVbS0v1SVpTEw5oHPNKhwfFN5EyXJ4ewWO/Ogd510hYEB8JDMKN07jlhXkgw4gAnzYJvw7jZ/LIWMOFmpL42M8YD3NwGCfQkh31XJdZZwZlrJaZKRxtTPcufe6JP1IBRTusC3fpaZe0S+pmvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oWcfVsITUyPRZXfJ6ZL+ogZfhpJlolzdhBu69b5Rjyc=;
+ b=RZapQ+3di68LJVRxa+6U0+m1foXnlcG6nnucnNotKinGgIzLEjfiQcpGYs5lZj01Nz1gP1ADSeLYuChjaQfaFcouaDEHnOLFRGLLWZFsNcogXgXj3u5GKNWr/PLRweJcsCmlu7jRWkvWUpxZl4LsAQq6p0rcZWvE8VC6bZXhqbo=
+Received: from DS7PR03CA0007.namprd03.prod.outlook.com (2603:10b6:5:3b8::12)
+ by SA3PR12MB8045.namprd12.prod.outlook.com (2603:10b6:806:31d::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.20; Thu, 1 May
+ 2025 18:04:12 +0000
+Received: from CY4PEPF0000FCC3.namprd03.prod.outlook.com
+ (2603:10b6:5:3b8:cafe::a6) by DS7PR03CA0007.outlook.office365.com
+ (2603:10b6:5:3b8::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.42 via Frontend Transport; Thu,
+ 1 May 2025 18:04:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000FCC3.mail.protection.outlook.com (10.167.242.105) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8699.20 via Frontend Transport; Thu, 1 May 2025 18:04:11 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 1 May
+ 2025 13:04:10 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>, Mario Limonciello
+ <mario.limonciello@amd.com>
+Subject: [PATCH 1/2] Revert "drm/amd: Stop evicting resources on APUs in
+ suspend"
+Date: Thu, 1 May 2025 14:03:56 -0400
+Message-ID: <20250501180357.4103402-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-References: <123e013307ad395b3e26c2dd53fb99594191dda0.camel@nordisch.org>
- <20250429130929.GCaBDPiT_CwyKmHB5o@fat_crate.local>
- <CADnq5_PBjOYV5TH5EDXBVvth1ZX6S_TcpDOKOMrbDJUEDzkTww@mail.gmail.com>
- <688457c1079a5cdbb81a0dd21e6d744e72c89101.camel@nordisch.org>
-In-Reply-To: <688457c1079a5cdbb81a0dd21e6d744e72c89101.camel@nordisch.org>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 1 May 2025 09:32:38 -0400
-X-Gm-Features: ATxdqUHk3CBzIcRpWc4I0v-iM2r_I6QFEByMNce4QZVPdE9oUlXr4IBbqmhS6XI
-Message-ID: <CADnq5_OfudYrLEf2OWqhaC2LWVOc_rGBs+NaizT2MfmxU=sZsA@mail.gmail.com>
-Subject: Re: amdgpu: Reproducible soft lockups when playing games
-To: =?UTF-8?Q?Marcus_R=C3=BCckert?= <amd@nordisch.org>
-Cc: Borislav Petkov <bp@alien8.de>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC3:EE_|SA3PR12MB8045:EE_
+X-MS-Office365-Filtering-Correlation-Id: d22f1bce-8d04-4c42-3c1c-08dd88da93d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|1800799024|376014|82310400026|13003099007; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?C+WylxwiPiyWQRk3NLygGg0QtTM3HFxFgt+hG6pOfybfLMLjt2E5ssWmV4+E?=
+ =?us-ascii?Q?vwRB/kgeRvo9bRB1k7USNQhcaFEYR957/pL4piWs3RRxX6qmRSTGw4fOf5TP?=
+ =?us-ascii?Q?bDHTDgK7Ger+EAjmRPL8m/cTjRg3qHlfXL+SNO9HwvHSH6U7p/Kl8cboiypQ?=
+ =?us-ascii?Q?PMaC1mHEjtBRjsLOnL8KzaIbpUm8IH7obGU1IYmIbnmHZ3ryfFMuHvaG1sXJ?=
+ =?us-ascii?Q?+7AlqyVK3E4tsOypUwt54Aw07H0NEeyQj32h18Qjq63pCq4jKQaPgyBeyLjT?=
+ =?us-ascii?Q?5rFwB7jfU/qK7Qnjbzp25do+/EEIgsnZ3aTYpiqyfOo52iq6C+3uH1ym0ih4?=
+ =?us-ascii?Q?1Bq0HivgjIIcARrH7SOsyZjx5biYCtbsTD2mkfhSlAV4e/tvGMP5ljFhwInD?=
+ =?us-ascii?Q?TnDG+9uRQZ9yKH0pwqoOAUhZBaeWzDpMvIEKtJpN4uJZb3Rkk6tjq3fMWBd+?=
+ =?us-ascii?Q?7+pIJeE1L3reBGr/ee/CHu/ajyx4DyqpX02WWormU20oyjMhoG07ok3ErDiY?=
+ =?us-ascii?Q?svTcOQG6BTyuNBmCLu7z0OBpQWHfYNDce9LY/wjmFDq8yitUQ69e4rUjPDjU?=
+ =?us-ascii?Q?ywX+ccX6lTnhnr/43DQXI+2hkRcknVI/FxxVF8g7YUmEzhvDuPeGY2F4fSnG?=
+ =?us-ascii?Q?F46P5hyZhThhSe8MUgM89jyIT9c0by5fM3B6pWTlXMKZiH4stG2J3zwIXv8I?=
+ =?us-ascii?Q?uqV8lC0AL1w4+xkYn4N4Cs+JMWCWvQLa0jaeyyRzuoXT4BAh4yyBchuiONIJ?=
+ =?us-ascii?Q?7wu8HR6t3jKFK1OW5HHynNfpW2qxnB6UkLJeKfA6BumaUIFbO+08I6uEud+W?=
+ =?us-ascii?Q?/XMXCBgGsW3KJGYgSIA0fjH0jJJB5iuSY54R2TMUpZJOM2o9CqxydcJNQSqb?=
+ =?us-ascii?Q?jM6QY0tMJQ7HwxwMh3+vnfeciup6DnHB7e9m611OVPeOXrKjpx9JTB8I4v/g?=
+ =?us-ascii?Q?XmTHurQPCVkRhAW5VtsqRUt18LA14lxtCyyodnYbsSBURoIIlWKhoCSWjZb6?=
+ =?us-ascii?Q?d28oGJ6V8T1YXSkmI03Yv8T6+aWwYE2pdmCE8N6pN/hXgdXrm7iCvnU5Tmc8?=
+ =?us-ascii?Q?92ddRDEbGapsYa6VQLIVO8JHJS/d1IewbjXLdVLBu7tnS08vSvqdeDusxxld?=
+ =?us-ascii?Q?vBzUF/ounCnWqJovePY2hoxH+umuCk7hrMsrr/N0ykIzkFlSGX/376cG6P7T?=
+ =?us-ascii?Q?WRjd0ZJTJwSG1VJq/LMKLfzKugkRcnKmoSmjhhOUxMTMNjcsiD9zVfhSXr9B?=
+ =?us-ascii?Q?ElYbMrobX7+4CbFWun8o0YZcbP3veIm+362wcN6ejKEFxCU1+n6wVhQ4XfWn?=
+ =?us-ascii?Q?Yj2Cv58HOZMV3WBYgmgGsrc8GS80uEBrhAWYNayndhBlp3StfCIK5C/S69S/?=
+ =?us-ascii?Q?nmFDDz/ArH/p1CR4RN4UoAlSRgqqibPtWRb+e565rsL6VHWhMZ+LyA6QWEAE?=
+ =?us-ascii?Q?BI3MGmbZXmpPyO+OWPq8lWWgdeQs2fis2TZ4pYVycybUBnOII+b7wA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026)(13003099007);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2025 18:04:11.9758 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d22f1bce-8d04-4c42-3c1c-08dd88da93d9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC3.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8045
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,78 +131,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 30, 2025 at 7:28=E2=80=AFPM Marcus R=C3=BCckert <amd@nordisch.o=
-rg> wrote:
->
-> On Wed, 2025-04-30 at 09:55 -0400, Alex Deucher wrote:
-> > please make sure your kernel has these three patches:
-> > https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/=
-commit/?id=3D4408b59eeacfea777aae397177f49748cadde5ce
-> > https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/=
-commit/?id=3Dafcdf51d97cd58dd7a2e0aa8acbaea5108fa6826
-> > https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/=
-commit/?id=3D366e77cd4923c3aa45341e15dcaf3377af9b042f
->
-> I am kinda sure that's the patches Takashi backported into our 6.14.3.
-> They are already part of 6.15.rc4 no?
+This reverts commit 3a9626c816db901def438dc2513622e281186d39.
 
-Yes, I think so.
+This breaks S4 because we end up setting the s3/s0ix flags
+even when we are entering s4 since prepare is used by both
+flows.  The causes both the S3/s0ix and s4 flags to be set
+which breaks several checks in the driver which assume they
+are mutually exclusive.
 
->
-> > soft recover kills stuck shaders, so I'd suggest trying a newer
-> > version of mesa and LLVM.  If that doesn't help, please file a ticket
-> > here:
->
-> Newer Mesa is building although I didnt see anything radv related.
->
-> I am curious in https://gitlab.freedesktop.org/drm/amd/-/issues/4192
-> there is a lot more details about the crash than what I see. with what
-> kind of flags/environment variables do I have to run to get the same?
->
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3634
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  2 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c   | 18 ------------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 11 ++---------
+ 3 files changed, 2 insertions(+), 29 deletions(-)
 
-That issue is directly related to suspend and resume.  I.e., the
-issues only happen after a suspend cycle.  Is that also what you are
-seeing?
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index ef6e78224fdfa..c3641331d4de7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1614,11 +1614,9 @@ static inline void amdgpu_acpi_get_backlight_caps(struct amdgpu_dm_backlight_cap
+ #if defined(CONFIG_ACPI) && defined(CONFIG_SUSPEND)
+ bool amdgpu_acpi_is_s3_active(struct amdgpu_device *adev);
+ bool amdgpu_acpi_is_s0ix_active(struct amdgpu_device *adev);
+-void amdgpu_choose_low_power_state(struct amdgpu_device *adev);
+ #else
+ static inline bool amdgpu_acpi_is_s0ix_active(struct amdgpu_device *adev) { return false; }
+ static inline bool amdgpu_acpi_is_s3_active(struct amdgpu_device *adev) { return false; }
+-static inline void amdgpu_choose_low_power_state(struct amdgpu_device *adev) { }
+ #endif
+ 
+ void amdgpu_register_gpu_instance(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+index b7f8f2ff143dd..707e131f89d23 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+@@ -1533,22 +1533,4 @@ bool amdgpu_acpi_is_s0ix_active(struct amdgpu_device *adev)
+ #endif /* CONFIG_AMD_PMC */
+ }
+ 
+-/**
+- * amdgpu_choose_low_power_state
+- *
+- * @adev: amdgpu_device_pointer
+- *
+- * Choose the target low power state for the GPU
+- */
+-void amdgpu_choose_low_power_state(struct amdgpu_device *adev)
+-{
+-	if (adev->in_runpm)
+-		return;
+-
+-	if (amdgpu_acpi_is_s0ix_active(adev))
+-		adev->in_s0ix = true;
+-	else if (amdgpu_acpi_is_s3_active(adev))
+-		adev->in_s3 = true;
+-}
+-
+ #endif /* CONFIG_SUSPEND */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 7f354cd532dc1..5ac7bd5942d01 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4949,15 +4949,13 @@ int amdgpu_device_prepare(struct drm_device *dev)
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
+ 	int i, r;
+ 
+-	amdgpu_choose_low_power_state(adev);
+-
+ 	if (dev->switch_power_state == DRM_SWITCH_POWER_OFF)
+ 		return 0;
+ 
+ 	/* Evict the majority of BOs before starting suspend sequence */
+ 	r = amdgpu_device_evict_resources(adev);
+ 	if (r)
+-		goto unprepare;
++		return r;
+ 
+ 	flush_delayed_work(&adev->gfx.gfx_off_delay_work);
+ 
+@@ -4968,15 +4966,10 @@ int amdgpu_device_prepare(struct drm_device *dev)
+ 			continue;
+ 		r = adev->ip_blocks[i].version->funcs->prepare_suspend(&adev->ip_blocks[i]);
+ 		if (r)
+-			goto unprepare;
++			return r;
+ 	}
+ 
+ 	return 0;
+-
+-unprepare:
+-	adev->in_s0ix = adev->in_s3 = adev->in_s4 = false;
+-
+-	return r;
+ }
+ 
+ /**
+-- 
+2.49.0
 
-> An observation from my latest crash:
->
-> ```
-> May 01 01:05:59 steam[223306]: radv/amdgpu: The CS has been cancelled
-> because the context is lost. This context is guilty of a soft recovery.
-> May 01 01:06:05 steam[223306]: Game Recording - game stopped
-> [gameid=3D2357570]
-> May 01 01:06:05 steam[223306]: Removing process 352353 for gameID
-> 2357570
-> ```
->
-> Is the game launched by steam inheriting that context or could it
-> really be the steam process triggering it? As 223306 would be
-
-The kernel driver stops accepting commands from a process if it caused
-a hang unless the process recreates its context.  I'm not really sure
-what's going on here based on the limited context, but I suspect the
-game causes a GPU hang so the recording process stopped because of
-that.
-
-Alex
-
->
->
-> ```
-> ~/.local/share/Steam/ubuntu12_32/steam-runtime/usr/libexec/steam-
-> runtime-tools-0/srt-logger --sh-syntax --rotate=3D8388608 --log-directory
-> /home/darix/.local/share/Steam/logs --filename console-linux.txt --log-
-> fd=3D7 --journal-fd=3D5 --parse-level-prefix
-> ```
->
-> It claims "game recording" but that is actually turned off and their
-> LD_PRELOAD-s are blocked because of
-> https://github.com/ValveSoftware/steam-for-linux/issues/11446
->
-> --
-> Always remember:
->   Never accept the world as it appears to be.
->     Dare to see it for what it could be.
->       The world can always use more heroes.
->
->
