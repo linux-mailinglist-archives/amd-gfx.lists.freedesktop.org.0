@@ -2,46 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9780AA8979
-	for <lists+amd-gfx@lfdr.de>; Sun,  4 May 2025 23:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C094AA897A
+	for <lists+amd-gfx@lfdr.de>; Sun,  4 May 2025 23:48:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6B8310E040;
-	Sun,  4 May 2025 21:48:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6579010E034;
+	Sun,  4 May 2025 21:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Otc/p1OF";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="KJLveLQm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C709710E034
- for <amd-gfx@lists.freedesktop.org>; Sun,  4 May 2025 21:48:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEB9C10E034
+ for <amd-gfx@lists.freedesktop.org>; Sun,  4 May 2025 21:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=H7po4hHgH/acBcIPv+khc6tyBNRHNhYIBEG2veFiZ84=; b=Otc/p1OF7B/mqIzmwbyYRj8wDj
- DwZ3Mc0Nw450Tsi7OjMnhs/OUY0/aMS2rxZW2wYt0Kv/EtzZW0eos/9D4L1HxvRHVceW89XsMfHCD
- 6+61975j6PlIgvkB0H9MnRYP5cPltQyIs1bTytc5jacOHoevg4zcA0DzCxkN+61Ih1tQVpn23G6po
- IhXDLyw2s8sn+dq3RevJDhR0OJkXimPsIOAuNOA4ccrgZkX98VeUwcWjZhNbbUfAA2kVB6nw2P+45
- rai8KVs3q1l4ZggKRz+/psu24aMlc6ucHVQQ/jCChQJzz3HwjW0SEA/fArBIRzLCtWjepKhpqyP6/
- lHA6bBnQ==;
+ bh=N1hLba7vIkWXacy63AXwit4LVRNl38iWbZj3McuVxMI=; b=KJLveLQmLgdBbEbpSzDdq05AVj
+ haFIomp/4LBUCwdXvtG/qbXi1QbrDoS+lVQfuVS4cuaSyEc3DldSrw4wpp+OxfGyTEylS1Mzagpqk
+ bYX4TXU12tPyf/FUCfwJW7VVYmUw5xCFgm8tafQcupC3LLBHImeH2bYh82q+Ct75W2//NJ9E+0xW9
+ t6ruOXh4Odme0oEfglw+iGEgPTHcOxFxWY0G6AHLWNmUH/0HLxdnJ05m8VXoCK9hgpzrjK8dRusjM
+ meax4EaSdpYIZJffLx0yC6IcNOvky0RtoryrabHH1qiiQA2B9NMXk9Fy1or/dt13omT+/LwCA2Dqy
+ 0AJSNksg==;
 Received: from [193.32.248.132] (helo=debian.lan)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uBh9B-003PPH-RK; Sun, 04 May 2025 23:48:13 +0200
+ id 1uBh9E-003PPH-4Z; Sun, 04 May 2025 23:48:15 +0200
 From: Rodrigo Siqueira <siqueira@igalia.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?=27Christian=20K=C3=B6nig=27?= <christian.koenig@amd.com>,
  Mario Limonciello <mario.limonciello@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH 0/6] Avoid re-parser CSB in gfx_vX_0_cp_gfx_start()
-Date: Sun,  4 May 2025 15:47:33 -0600
-Message-ID: <20250504214801.406245-1-siqueira@igalia.com>
+Subject: [PATCH 1/6] drm/amd/amdgpu: Add a helper to copy the CSB buffer into
+ the ring buffer
+Date: Sun,  4 May 2025 15:47:34 -0600
+Message-ID: <20250504214801.406245-2-siqueira@igalia.com>
 X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250504214801.406245-1-siqueira@igalia.com>
+References: <20250504214801.406245-1-siqueira@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -58,37 +61,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In the functions gfx_vX_0_cp_gfx_start(), where X ranges from 7 to 11,
-parts of the code parser CSB. However, CSB was already parsed in the
-get_csb_buffer() called before gfx_vX_0_cp_gfx_start(). This commit
-introduces a helper to read directly from the CSB buffer available in
-adev->gfx.rlc.cs_ptr, and avoid re-parse CSB.
+In the GFX code, there are multiple parsers of the CSB buffer, which can
+be avoided. This data is parsed via get_csb_buffer() in earlier stages,
+and the result can be checked in "adev->gfx.rlc.cs_ptr". To avoid
+re-parser the CSB buffer, this commit introduces a helper that copies
+the CSB buffer into the ring buffer.
 
-Note: This series idea came from a discussion available in the below
-link:
-
-https://lore.kernel.org/amd-gfx/CADnq5_NAGvaJ1-7+_NZQszLspHcCudRSKKHkezJBEQg0GmEq9Q@mail.gmail.com/T/#m8fd6d9ce10b9644299f2f306f2a7d00a9aa1e5ee
-
-Thanks
-
-Rodrigo Siqueira (6):
-  drm/amd/amdgpu: Add a helper to copy the CSB buffer into the ring
-    buffer
-  drm/amd/amdgpu: Avoid re-parser CSB in gfx_v7_0_cp_gfx_start
-  drm/amd/amdgpu: Avoid re-parser CSB in gfx_v8_0_cp_gfx_start
-  drm/amd/amdgpu: Avoid re-parser CSB in gfx_v9_0_cp_gfx_start
-  drm/amd/amdgpu: Avoid re-parser CSB in gfx_v10_0_cp_gfx_start
-  drm/amd/amdgpu: Avoid re-parser CSB in gfx_v11_0_cp_gfx_start
-
+Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
+---
  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 21 +++++++++++++++++++++
  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  4 ++++
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 23 +++++------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 23 +++++------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c   | 20 +++++---------------
- drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c   | 22 +++++-----------------
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 23 ++++++-----------------
- 7 files changed, 51 insertions(+), 85 deletions(-)
+ 2 files changed, 25 insertions(+)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index 8f1a2f7b03c1..dfd48670a0bf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -2323,6 +2323,27 @@ void amdgpu_gfx_csb_preamble_end(volatile u32 *buffer, u32 count)
+ 	buffer[count++] = cpu_to_le32(0);
+ }
+ 
++/**
++ * amdgpu_gfx_write_csb_to_ring - Write the CSB buffer into the ring
++ *
++ * @ring: Ring reference.
++ * @csb_buffer: CSB buffer.
++ * @csb_size: CSB buffer size.
++ *
++ * Usually, the adev->gfx.rlc.cs_ptr field is filled in earlier stages via
++ * get_csb_buffer(). This function just gets the CSB buffer and fills it in the
++ * ring buffer.
++ */
++void amdgpu_gfx_write_csb_to_ring(struct amdgpu_ring *ring,
++				  volatile u32 *csb_buffer,
++				  u32 csb_size)
++{
++	int i;
++
++	for (i = 0; i < csb_size; i++)
++		amdgpu_ring_write(ring, csb_buffer[i]);
++}
++
+ /*
+  * debugfs for to enable/disable gfx job submission to specific core.
+  */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 08f268dab8f5..ce684c3d3d89 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -646,6 +646,10 @@ u32 amdgpu_gfx_csb_preamble_start(volatile u32 *buffer);
+ u32 amdgpu_gfx_csb_data_parser(struct amdgpu_device *adev, volatile u32 *buffer, u32 count);
+ void amdgpu_gfx_csb_preamble_end(volatile u32 *buffer, u32 count);
+ 
++void amdgpu_gfx_write_csb_to_ring(struct amdgpu_ring *ring,
++				  volatile u32 *csb_buffer,
++				  u32 csb_size);
++
+ void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device *adev);
+ void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev);
+ 
 -- 
 2.47.2
 
