@@ -2,154 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D97AA8F0C
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 May 2025 11:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F35EAA93EB
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 May 2025 15:05:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59D9610E398;
-	Mon,  5 May 2025 09:12:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A666A10E3DE;
+	Mon,  5 May 2025 13:05:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2BotxcvP";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="37wMhD4e";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2084.outbound.protection.outlook.com [40.107.94.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD14710E398
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 May 2025 09:12:11 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2065.outbound.protection.outlook.com [40.107.223.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5AAF10E3EE
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 May 2025 13:05:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ft/pV8hmjTJBLRpyGXU6XmFFt0scmyoP3Ps8l638UqcQSnKoSnbjuCD2eWRtamg5vhttwHWtESLqRLzHfQcfBRxJ79lWiDpJeKUbyE/ZWi2/pFnKE5GJ2grsTQhw1325AtBrfqxHrHVfq++4UBsO7Qzn1wMd3bwngqCvrXdEohPy0UrFaFuGnadlUV8Z1EmXDhVPXDWmewGD4YEvBflXqC0q3Wau1EDHNIzsujBr7l/H8+40N0U99XtmFe6vuGI0mssMX643CkOf2cIkbYboThME6vNmWJXhTSJECfQ+ms8BeASLzNKa/MGPVmq1Uss2hzUtZ/p+HCE+Y6Rk3vJGSA==
+ b=aK0K8k3Vfj9nKJ69Onoal4Qt0CO/uBUg6j8/aOKCU6mw7Fuz9V+sEJpCwY7LD+RHDEINhItUQH5C4lpBzvi97tGsZJWT3vc4iXyBT0OjSVlCoQZfTzbY2A8r3GW88oQKAMnOVjMp4bX/kMGllVlfZPVBbqIO+MlcmJq184o3vGUGR69QpfDbYxgyKVzw5eLkb3nloj+D7D/A4amNmisPadaBnZlHiSSF403fvNWsdVsEFS9BgE7KDKeg9Mm1nuFPKyyj9vSmAtfYDWdzyhKz1kfha+6p4IpGp5K5cHAeoaEgROPE4jFVgSA+Nf0YrxBhW8UfrolmfdabTPO0eDseCw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ClYeCOwgDGb41ki7pk/8OBMqWOSX035j09Vg3ofwLjg=;
- b=kR1I2KUv2JQh7tuSP55/9Ajshze9efMokvX/SUVXJsCTYJ4KnywBwuFtY2Bbp0IiF+gvZTIn/LoT8NbTjbtcCy4mPNkpj+6R+ED/6aYbFpqJzXtMR+O35SOSgf1L0f+mf1CaoIfwNqqlRxyp0AfuGvptRwgyuEAE0xAVViy0MwODhyQuapA2Y/WRormkrVjnk0F586S+XPRzMYBq4Gy7F/QxmC3w9mCEbRPI1O4QehjEz0Fg40bSqkimGfgTT0vDNNOBzA435ezXZ4iPRn1g9A2G7npkwffKkdGGLGgQT03Fd/CXzR0Akh2TSCE0fIsUsMk6vuYSMBcg9KxMn3Fxqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=6NCZpAxY+l2ufXt19B3cCk1s8ws+HbqmAxlYDM2Vg5I=;
+ b=TF6yxPNEOrfV2mkNduCv+CQjm/TP+kLw9OZpG31o+/UPZNkRpyKLM8P30Db26eCMEqkuRzpMMfHr9TK0mCyQBl3fBaSUrmRJSZVqQGR7Zo5Jk5QxPO3H0ohrj6kEbJNDFV6/9qg9I6dntZ2p2uz+zxQFE9nspI7EgHg0wDxl/ZE1UiFuGtCwFJTJj8x1Pdr2U3MH0Qsi92EociKz5yCB9+JHfA1LoGo9y4qbiNgnDFuGEcDSOVxEljbnU5v8VdQLR9b87I0qjJPmjl63NZz5Ej9qaeVlSRYDgpGnXf6VozrozK/kZJj4ZatHlEvFbKCG9LbVLtRivSwDVwqKE5inPQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ClYeCOwgDGb41ki7pk/8OBMqWOSX035j09Vg3ofwLjg=;
- b=2BotxcvP1wLhJ4FFNuC4rMX05AA00BuZ3DR8bWczJzecHvLbHQmP5eKLmsbSqJB65Ca4qKIeoYjyk5cxaNNQZJFelLZQEXCPRul3A0B0MjVMasHse8RNwv6v4USKfpFUw/xCC2tAyqB2djiN9dWa+RD9T21RhAEvUJigy8DkCL4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DM4PR12MB7549.namprd12.prod.outlook.com (2603:10b6:8:10f::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.24; Mon, 5 May
- 2025 09:12:07 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%7]) with mapi id 15.20.8678.028; Mon, 5 May 2025
- 09:12:07 +0000
-Message-ID: <b1c2d811-132a-47e5-a13f-086125b849b5@amd.com>
-Date: Mon, 5 May 2025 11:12:03 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] drm/amd/amdgpu: Add a helper to copy the CSB buffer
- into the ring buffer
-To: Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20250504214801.406245-1-siqueira@igalia.com>
- <20250504214801.406245-2-siqueira@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20250504214801.406245-2-siqueira@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0211.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e4::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ bh=6NCZpAxY+l2ufXt19B3cCk1s8ws+HbqmAxlYDM2Vg5I=;
+ b=37wMhD4eqe5Z1FZTlRgxhbFhqiyhdGImibQdalPpUVUSPpRk1VAKsdZOgZO+C2JppqY4Mb0u+nyY6ZSAVCbipWH5Uhfbh+rARhPbmHSf1ADUIAXyQl5a4VdkCbHRwOuQS1u68n8i0dHsaE7T1YPUrOOIJ6GJCm5ddax8iz5U6mw=
+Received: from CH2PR18CA0017.namprd18.prod.outlook.com (2603:10b6:610:4f::27)
+ by IA0PR12MB7579.namprd12.prod.outlook.com (2603:10b6:208:43c::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.23; Mon, 5 May
+ 2025 13:05:15 +0000
+Received: from DS2PEPF00003443.namprd04.prod.outlook.com
+ (2603:10b6:610:4f:cafe::22) by CH2PR18CA0017.outlook.office365.com
+ (2603:10b6:610:4f::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.26 via Frontend Transport; Mon,
+ 5 May 2025 13:05:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS2PEPF00003443.mail.protection.outlook.com (10.167.17.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8722.18 via Frontend Transport; Mon, 5 May 2025 13:05:14 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 5 May
+ 2025 08:05:13 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 1/7] Revert "drm/amdgpu: Use generic hdp flush function"
+Date: Mon, 5 May 2025 09:04:53 -0400
+Message-ID: <20250505130459.1985637-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM4PR12MB7549:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1c61272e-c635-4354-58d6-08dd8bb4e8c2
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003443:EE_|IA0PR12MB7579:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ed2922f-443f-4af3-dfc1-08dd8bd57a1f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ODc3eEFXdTB2N3lDY1dxUzlZYzNjSGwvQiszWEtkdzdNMnBhenNPcVhhYkZK?=
- =?utf-8?B?L1dmSWZwNVpKVUIzTzdGdkE2S2pscTE3NkQycHZ2dkJ0SFFkYUZneXFWMVha?=
- =?utf-8?B?STNzRmhnVjA0djJNUnZ1Q1orZ3RPeFBheW8waEJENWZodnRhOTdWRXl0VmdN?=
- =?utf-8?B?ZDdWWmNDV1R1V0RnMFllTTNvaGJpa1NYa0dZQzdmNUFIRFpvVVQzUExjU1Js?=
- =?utf-8?B?TzhtSjFNdFdZVnZodmNWOHI0RGpjZFM0Ri9COHJvQWJNbWkyeENmUlRMcWR2?=
- =?utf-8?B?WXJYS0lWTGlQRjlPbnNtQXpmUE9WTnM3b1hNdG5JTEorMzN6WG1hcE5lQmh1?=
- =?utf-8?B?UEk2VzdrVCt1a1Y4R2ZNei93eXF0QXNUNU4yQ2x1bE93b2RlSHF1UlZnRy92?=
- =?utf-8?B?SHdrVS8xRmtma2t6amNxdkxFSHBYVTAyVUJ4VG51QnJOWXp0RG04clBRU3BJ?=
- =?utf-8?B?NVJDZlQvTW8rOGlUakRlek5keUhWNk4zZVdrM3haN3RRZlA2RXozNzlDMjll?=
- =?utf-8?B?Y0JpUngySTJLVTJYWlJscElBSytyQ1RDWFRHUDk5SHJ6OG9hb3pJNzcyT25j?=
- =?utf-8?B?TXJUQ1Jya0s2UGt3MTFWNzZ2eW9MYnlMQmxHbjgyTzFpZ3hhY3BWVlpaa04v?=
- =?utf-8?B?dXZwMU1qbFBLOE9oZjY2ejdsUldSdTNoQlUrc2cvWkY1ZE9HL0hiamFpa091?=
- =?utf-8?B?QjdzZXdMVmFYUHhFR1dtc0dIa2NuNjFYVUkvd2prcFZSMzkwZHY5aU5oVUEx?=
- =?utf-8?B?YW5kL09sNTE2ZU05VlE0YmduTTlUSll2NGpVR21lcnhNWjJuM01LWTRpL3c0?=
- =?utf-8?B?UERxeFBENlJvbEVRdFBJN1VUZEhYUlhOY3BXN2RNTHNERUhHSkxoRWRobGMz?=
- =?utf-8?B?Q2VxVmlwY2FZRjhNWDJyTm9yL3BaRlZxbW1ENFphZTJxdGpXOEIyTzQ3bUx6?=
- =?utf-8?B?QXYzbjkzb1pJWmZDRDZ1WDNDeVh4Skc1TjlWWS9XUW5KdnRWbGg1dk9jUnBC?=
- =?utf-8?B?YlVFUDZTeVUxWVNxMXA4RElhVVd0VFJscGIxa1ZIcEZkWGFsSWZzemM1TURB?=
- =?utf-8?B?MDFhTXRDUTkwM0xBTEExMzZMWnNzOXFKY1VacUphWnFhdjQ5MTZpeFo3UXZ6?=
- =?utf-8?B?K0wwaDRzNklpRlV6VFc0V01XNklrVzViQTF1YVVGN1l5aGJoRkI3ZzVpNitJ?=
- =?utf-8?B?ZE9xQUI1NkU3SVBLR1lZb1d2WXJDRlV0eXJJMXFsbWhCOG11WWhDS1YyR0kr?=
- =?utf-8?B?NmM2Q2xUb2taOUN5SDJiMVJZWEREYXpuaGFTbFRCRnFUdUdwTitPUDNxT292?=
- =?utf-8?B?bDV1TU1TZzk0d1gxcURYcFZNU1ppcXhrLzBabzFWeGRDdTg1aWk5ZDlzWUlS?=
- =?utf-8?B?ejY1dHM0c2pXakNMYkpXS1g1VDQzNHJPUXNRekk1aUZIYWhtZ2xqaTBhaitM?=
- =?utf-8?B?WHlVaThCcGVkUmNxZGhKbTIreDh6L2cybzMvYlM5MUQ2dWtwaGVQK0x2WmhN?=
- =?utf-8?B?ZW5kV2VVMVVWK1Z1VjJKTXFlT1lBUG90aXdvNWp6V29GYXJJNzlPSzNodWF0?=
- =?utf-8?B?RkpOeGVMcElNK2VZS28xOGxSMW95aHJNQktXbW1vRDZxUEk2T0RtUnJEL3c2?=
- =?utf-8?B?ZGNnTXhReUdaUXdFdTlBYlJZM1ZIQ09EMEVKQ3EvVWEzYnhzaUNOWU5QcDFC?=
- =?utf-8?B?V0xlejFDL2F5RnRXYVhVSUJxR2R0d1hQRWJvSVJMN2xtSDBRaXo5RzNNSS83?=
- =?utf-8?B?LzdKR0t5TkNzZzhmUWlZbjZKQkNKS01JZ09wZTlML2lDMWhpZnc5VHRMd1ph?=
- =?utf-8?B?VWFjendQSEpubDVRZHBxZm1BbERFblhDeWlNNUkyYkZZZmNBS2tXMmt3d2Rj?=
- =?utf-8?B?Y0gxaGJVVU9YekZDb0hDMWphbUMrYmZmMExDTVF3VVFVSGRaOXIyOUFtVUJW?=
- =?utf-8?Q?RjsFQgJ1oQE=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDBvT1FjbGo3UzRkODl1YS9rV2VFelA4aDRlL09EcVBCdjlQbWFVL0ZIZ3U5?=
- =?utf-8?B?TDdwV1pSQmkvUGtWSWpERSs4QVFwNkd5RWVVRUZSeFR2alFRL1ZZL3grYU5i?=
- =?utf-8?B?cTd0SHM5dFVybS9JcHRKemtqZTJHOHZYT0kwSnV5UmRlYnpDZjVuZUNRcTNC?=
- =?utf-8?B?dGlodk1LUGdubUhpdEVQOHBRRzh4Z080N3VZWmhZZVUzdEJYTXVXMU9NK3V1?=
- =?utf-8?B?YVhLN2ZHMUY2VmFTVXN4a1Z6QzIvUFo2dHp6elRsN1o2aW5OSHM1ZUp2WUMw?=
- =?utf-8?B?ZWJiM3FSWU5YVksrM3ZuSHBLZHlSZlpaOVFlV0FxclVkUjQ3V25tMFdldXBi?=
- =?utf-8?B?SlMzc1o0M2VuUm13cXY1b2NwbEJnRUF5WnNjcWFuZXB0aWZuYmpIbjk1Slhz?=
- =?utf-8?B?ellCa2doeVFaejRsbExsNkR5ZUpGMVlQc2ZQSEhyNTYyU1MzY3VWakUyWnZC?=
- =?utf-8?B?ODVVVEYvTXR1NHU5WUtYUmxMaDNBRi9nSUtqYjJjNk5EZWxoeUExT2p2SU1M?=
- =?utf-8?B?NEpFOXlmSmFFeHYvNHcwVXg2R3U1dUUwNy9ZVnM2bThJY3h5K01NNTltaVUv?=
- =?utf-8?B?U0xVNlJvSCs3cm5DbVh0Ym5kQ1RUQVoxMWlQQXdqdCtQN0M3VHZ0SWVwRlBr?=
- =?utf-8?B?QWJPekxEL2d5UmpsbkVTcDR1bFZQVTBNdFoyMGxxcERNSGkveGp6OVZod01i?=
- =?utf-8?B?VXk0akxrZHF6MHRKWGNCTjhJcjZ0clNDU3pQaEdFYXhoelpOSlExNTlyTjBs?=
- =?utf-8?B?NnFid0ZOUjYzWTQzUHRuRGxUSzAyVFVmNVk1TTY1YUdXeWdCeEF4bDBnN1V1?=
- =?utf-8?B?ZW5YS1JJYkJpdU5QMm9zVnpiV1pNZzRkbmNaSVBxUkNyVkR1L3hyWnYwZ2sw?=
- =?utf-8?B?MkU0L0dNWVNUcitkbGpBMjJDYmV3RHM0Z1NxTGR5NGJqeG5TZmVzL2d1VEl5?=
- =?utf-8?B?Q2F2akI3ZWtGdVluQUtVZFZEeEhwM0JSbEtvcnFqZjVYeGVCNGZQVjNSVnZU?=
- =?utf-8?B?Vnc0VXBydjJLZ212ZW1wUHR4MlpMeitzRkxtVEwyNUZzblZOTGpQRllxeGlM?=
- =?utf-8?B?MGdZL1lTUXR4aWpBTjlEcTA2L0cxTmRzSmFoWDJtNTNNQjJrclBPQWFhSmJU?=
- =?utf-8?B?ZHFvUUdKTTVrTUhiR092d0JjSGlVN3lFNWp2Y2E3WmRWRk8rejdKRnZEVzBx?=
- =?utf-8?B?NGkxdXFjbWdGNjA0dVBIQkxPcE40d2lNeU5ianlvNTMyMlREbHBVNzZsOC9w?=
- =?utf-8?B?a3IyRnlxelB0WlBQZEdLdzVaRFBXTVV0RFVBTG9BTFZIMDl6NHB6eDM0YWZv?=
- =?utf-8?B?R2htemNndUdCdzUzSUt0WllVOFlKbWh0d2ZQZG1QVHREQjRZWVozSFVtanZP?=
- =?utf-8?B?MTkzWVFFK1l0NGNyY21UWXZaZnpXb1dTbndMS084aTdtR2RHTVZrZ2ZpQ2lW?=
- =?utf-8?B?aVJLMFdhSUw5cVB4RFV5anFsb3ZVMEV5WGw5bXhGbkJoZnJDSGc2UjJHOEZR?=
- =?utf-8?B?WXd6QmQrMWRKMVJNSnJuTzBLSERoZlhVMC96NXdKVERKWFhJRk1TWjJGWWNm?=
- =?utf-8?B?S2VuVGtQRDlwREJrYnpjRXJnUGRiZHJRWFhXSWt1TE5JTkhIYXl4SFF6Sndx?=
- =?utf-8?B?RjZETTVCMjExeGorT2FBWUhHVHU0TDVlcFczdU53TnpBVzA0MDY3N1dFMW8w?=
- =?utf-8?B?dktSTUUzUllwcDlzVjFMWGNmbWxXWVh4YndxRHJGUFhmYUk0TXhtczJ6NHQr?=
- =?utf-8?B?SlI0ZDYwZVl1aVNNblZmNkt5Wlpxa242WklPTllwZXdxOVB5aFJ5SldzclNp?=
- =?utf-8?B?SjExRGVDL0xnWTdpS0dvVFFLNi91ZlJVZUd4Zk5id29PaE5uM3YvSVZ3RFox?=
- =?utf-8?B?NXhyVS9FVnlLWlE3azhIQ0JsSi9iMjZySGwxWm1ua3pNYkZYc0QwdlR2NTFl?=
- =?utf-8?B?cGZSOUlLNlExZ1BmSklETkRNUmNvR1dTVGUycWZhdW1qUE01UmE1YkZ3MkQ4?=
- =?utf-8?B?dFcwcTB0aU5zdDRhKzVNQ0N3QXh3VHU3cFVlYjFYWmxzS0h3L21RVDhsTmRU?=
- =?utf-8?B?QUVYTWZ5anI3cncyT3RWQ3dwYjh3aDNHQmJFVHA3dnRKTE5UaXpMdXk1RUl4?=
- =?utf-8?Q?f+4U8/KtWInN6sxfz7vOKZF3k?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?1pNmpuReolUt5yppmQpfLFDzlVPqtCgayA7giN+ybfeKeWVjLKg8++a2gL74?=
+ =?us-ascii?Q?wyLo3aJu7vPz854bHImvKuH/axlJIcItEtVZWFb5RHgRc5hkyrgK4bfg2ZPh?=
+ =?us-ascii?Q?JJngu5PhSbuHziN8RSzphkmZG7PzfqtUiIfI5K6eaICy9Ms1V/TN24ymWVEA?=
+ =?us-ascii?Q?BhiB/lcm9306JiD5ojv4/4iydUpstwGDAD9pa5ixOkxdQZ5hginXhi60HYhE?=
+ =?us-ascii?Q?R25NBYYMtrJE1y5QN3iS4VHA0daWwSFIJpFsutepHtJWOXh7DMuD7wNmf/DY?=
+ =?us-ascii?Q?txP0hE2xw0lC6HjqrZ8GDsUGT0vaVtuyQsZG0JQOiBjjfe73+i7z54VXY9Na?=
+ =?us-ascii?Q?Ty5uCC3goPxi9WaOaaWVzemup4SyiSdMpoxsDQgw/NM369ZXcBeveI6LR8zs?=
+ =?us-ascii?Q?kHoSdytHcpYPIwtRbDSuPXuf7voe6PVqbRBOfX+/A/5VeWKPQvgscHkh4nBz?=
+ =?us-ascii?Q?MdaTyeQEYPK7Ll+KVi6XXDFAzARvLZONLXRALvO5Bl5yLqOG0FC1vpkAnm4g?=
+ =?us-ascii?Q?pxDYbhS0f2dX8npP/M5UYKViRkMOTOxTkYaLWiSOZdXDnlolO2ISd42bLTAN?=
+ =?us-ascii?Q?yzMZRqqwdDmqmuTZtqGo6p3UcbioXDnnk98hcQCem38Voo1rjQJZINIwFogx?=
+ =?us-ascii?Q?r2bS8AAYVRSM0oTWI/313H+MvbpAjHmhefquWoF7m0xCJPdDuGO+GLMA1RUl?=
+ =?us-ascii?Q?7lXWM7GUU1IAcOSZVS9QoCMSJFMdi0tU4Ohl3GfKHCy/0MaAdx/t2xiYGQVw?=
+ =?us-ascii?Q?ee/2b40bxWAw3PoWH8dKe5WjhmuytxYLo9ASrmRV8exiWZD3qMRR7z7P67sE?=
+ =?us-ascii?Q?pu0f5/RiDk5yDWFrkyHGOtooGPazbezFA21zY1ZDhq7Qrs5aHa15D553pMEE?=
+ =?us-ascii?Q?55h7hNhS1KXb4gMDJlBh7pW7H9H+SF1HVpjOhKOdGwb+tr2E7R5sxFVu7S+g?=
+ =?us-ascii?Q?8RUt2gjZ/FJSLl2RXMeiaW5wp+KPUEsLN716r46Tlcor4il3vdrd54lrMKUI?=
+ =?us-ascii?Q?0mqLiaHZLXClSEtNekap33WrPQHSm81yxzHG7pas2m0YzNf8j6B7Jrvj/p+H?=
+ =?us-ascii?Q?6JcmpOiZbUlQljhQaqobqaIKXsNHLqlDBjvwionX2v12dw9THB9lH7i1JuxK?=
+ =?us-ascii?Q?J5T8qnNUhPJydJQGZpWUEFA6vRAClMjrbkFQL1C70CYCM87JS1SLjZDkKSo4?=
+ =?us-ascii?Q?vy9hmytGQOlMuINGiHNnjy3sSkUoVXufyFQlYVbgoKmdTKFYkTs18ezoTH4S?=
+ =?us-ascii?Q?pAkNAhbkwHypzFImTRv/J4sE9hZJdrxhtIV2on3l3WV5o8wb4JVqUCYNvTKP?=
+ =?us-ascii?Q?wj1ulmfaxJQJ/RnM84u03fCfTMz3yOIEXlI8PMQq1VUmp2sRsK5jU5aS+XOn?=
+ =?us-ascii?Q?Yo6QXcq78RJIAfAYwDbatwu6hAtSQYEqPwEK5EWAumZuFyoNA19qLU44lhBQ?=
+ =?us-ascii?Q?m9DKZS/bqVKIy/YVTwsqUfghM7nvDsWTL1hnq6PHhxyAWFcBFirdozF1X5Q+?=
+ =?us-ascii?Q?TH34gDoSnj6usOxWxSx8fUr88OnE8TPpOxqv?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c61272e-c635-4354-58d6-08dd8bb4e8c2
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2025 09:12:07.4428 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2025 13:05:14.8854 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ed2922f-443f-4af3-dfc1-08dd8bd57a1f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WXWxHdmNuM/8k4o4+pAXw1BJHXVIdesr1X1/c87uOnvGA3IOyThv/3y6ocYyTOpH
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7549
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003443.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7579
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,80 +130,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 5/4/25 23:47, Rodrigo Siqueira wrote:
-> In the GFX code, there are multiple parsers of the CSB buffer, which can
-> be avoided. This data is parsed via get_csb_buffer() in earlier stages,
-> and the result can be checked in "adev->gfx.rlc.cs_ptr". To avoid
-> re-parser the CSB buffer, this commit introduces a helper that copies
-> the CSB buffer into the ring buffer.
-> 
-> Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 21 +++++++++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  4 ++++
->  2 files changed, 25 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> index 8f1a2f7b03c1..dfd48670a0bf 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -2323,6 +2323,27 @@ void amdgpu_gfx_csb_preamble_end(volatile u32 *buffer, u32 count)
->  	buffer[count++] = cpu_to_le32(0);
->  }
->  
-> +/**
-> + * amdgpu_gfx_write_csb_to_ring - Write the CSB buffer into the ring
-> + *
-> + * @ring: Ring reference.
-> + * @csb_buffer: CSB buffer.
-> + * @csb_size: CSB buffer size.
-> + *
-> + * Usually, the adev->gfx.rlc.cs_ptr field is filled in earlier stages via
-> + * get_csb_buffer(). This function just gets the CSB buffer and fills it in the
-> + * ring buffer.
-> + */
-> +void amdgpu_gfx_write_csb_to_ring(struct amdgpu_ring *ring,
+This reverts commit 18a878fd8aef0ec21648a3782f55a79790cd4073.
 
-We already have the amdgpu_ring_write_multiple() function for exactly that.
+Revert this temporarily to make it easier to fix a regression
+in the HDP handling.
 
-> +				  volatile u32 *csb_buffer,
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.c | 21 ---------------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.h |  2 --
+ drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c   | 13 ++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c   | 13 ++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c   | 13 ++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c   | 13 ++++++++++++-
+ 6 files changed, 48 insertions(+), 27 deletions(-)
 
-Please drop volatile from all pointers inside the kernel and point me out if you still find some in existing code.
-
-They are nearly always used incorrectly, see here https://docs.kernel.org/process/volatile-considered-harmful.html
-
-Thanks,
-Christian.
-
-
-> +				  u32 csb_size)
-
-
-
-
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < csb_size; i++)
-> +		amdgpu_ring_write(ring, csb_buffer[i]);
-> +}
-> +
->  /*
->   * debugfs for to enable/disable gfx job submission to specific core.
->   */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> index 08f268dab8f5..ce684c3d3d89 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> @@ -646,6 +646,10 @@ u32 amdgpu_gfx_csb_preamble_start(volatile u32 *buffer);
->  u32 amdgpu_gfx_csb_data_parser(struct amdgpu_device *adev, volatile u32 *buffer, u32 count);
->  void amdgpu_gfx_csb_preamble_end(volatile u32 *buffer, u32 count);
->  
-> +void amdgpu_gfx_write_csb_to_ring(struct amdgpu_ring *ring,
-> +				  volatile u32 *csb_buffer,
-> +				  u32 csb_size);
-> +
->  void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device *adev);
->  void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev);
->  
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.c
+index 7fd8f09c28e66..b6cf801939aa5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.c
+@@ -22,7 +22,6 @@
+  */
+ #include "amdgpu.h"
+ #include "amdgpu_ras.h"
+-#include <uapi/linux/kfd_ioctl.h>
+ 
+ int amdgpu_hdp_ras_sw_init(struct amdgpu_device *adev)
+ {
+@@ -47,23 +46,3 @@ int amdgpu_hdp_ras_sw_init(struct amdgpu_device *adev)
+ 	/* hdp ras follows amdgpu_ras_block_late_init_default for late init */
+ 	return 0;
+ }
+-
+-void amdgpu_hdp_generic_flush(struct amdgpu_device *adev,
+-			      struct amdgpu_ring *ring)
+-{
+-	if (!ring || !ring->funcs->emit_wreg) {
+-		WREG32((adev->rmmio_remap.reg_offset +
+-			KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >>
+-			       2,
+-		       0);
+-		RREG32((adev->rmmio_remap.reg_offset +
+-			KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >>
+-		       2);
+-	} else {
+-		amdgpu_ring_emit_wreg(ring,
+-				      (adev->rmmio_remap.reg_offset +
+-				       KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >>
+-					      2,
+-				      0);
+-	}
+-}
+\ No newline at end of file
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.h
+index 4cfd932b7e91e..7b8a6152dc8d9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.h
+@@ -44,6 +44,4 @@ struct amdgpu_hdp {
+ };
+ 
+ int amdgpu_hdp_ras_sw_init(struct amdgpu_device *adev);
+-void amdgpu_hdp_generic_flush(struct amdgpu_device *adev,
+-			      struct amdgpu_ring *ring);
+ #endif /* __AMDGPU_HDP_H__ */
+diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
+index e6c0d86d34865..f1dc13b3ab38e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
+@@ -36,6 +36,17 @@
+ #define HDP_MEM_POWER_CTRL__RC_MEM_POWER_LS_EN_MASK     0x00020000L
+ #define mmHDP_MEM_POWER_CTRL_BASE_IDX   0
+ 
++static void hdp_v4_0_flush_hdp(struct amdgpu_device *adev,
++				struct amdgpu_ring *ring)
++{
++	if (!ring || !ring->funcs->emit_wreg) {
++		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++		RREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2);
++	} else {
++		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++	}
++}
++
+ static void hdp_v4_0_invalidate_hdp(struct amdgpu_device *adev,
+ 				    struct amdgpu_ring *ring)
+ {
+@@ -169,7 +180,7 @@ struct amdgpu_hdp_ras hdp_v4_0_ras = {
+ };
+ 
+ const struct amdgpu_hdp_funcs hdp_v4_0_funcs = {
+-	.flush_hdp = amdgpu_hdp_generic_flush,
++	.flush_hdp = hdp_v4_0_flush_hdp,
+ 	.invalidate_hdp = hdp_v4_0_invalidate_hdp,
+ 	.update_clock_gating = hdp_v4_0_update_clock_gating,
+ 	.get_clock_gating_state = hdp_v4_0_get_clockgating_state,
+diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
+index 8bc001dc9f631..43195c0797480 100644
+--- a/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
+@@ -27,6 +27,17 @@
+ #include "hdp/hdp_5_0_0_sh_mask.h"
+ #include <uapi/linux/kfd_ioctl.h>
+ 
++static void hdp_v5_0_flush_hdp(struct amdgpu_device *adev,
++				struct amdgpu_ring *ring)
++{
++	if (!ring || !ring->funcs->emit_wreg) {
++		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++		RREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2);
++	} else {
++		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++	}
++}
++
+ static void hdp_v5_0_invalidate_hdp(struct amdgpu_device *adev,
+ 				    struct amdgpu_ring *ring)
+ {
+@@ -206,7 +217,7 @@ static void hdp_v5_0_init_registers(struct amdgpu_device *adev)
+ }
+ 
+ const struct amdgpu_hdp_funcs hdp_v5_0_funcs = {
+-	.flush_hdp = amdgpu_hdp_generic_flush,
++	.flush_hdp = hdp_v5_0_flush_hdp,
+ 	.invalidate_hdp = hdp_v5_0_invalidate_hdp,
+ 	.update_clock_gating = hdp_v5_0_update_clock_gating,
+ 	.get_clock_gating_state = hdp_v5_0_get_clockgating_state,
+diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
+index ec20daf4272c5..a88d25a06c29b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
+@@ -30,6 +30,17 @@
+ #define regHDP_CLK_CNTL_V6_1	0xd5
+ #define regHDP_CLK_CNTL_V6_1_BASE_IDX 0
+ 
++static void hdp_v6_0_flush_hdp(struct amdgpu_device *adev,
++				struct amdgpu_ring *ring)
++{
++	if (!ring || !ring->funcs->emit_wreg) {
++		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++		RREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2);
++	} else {
++		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++	}
++}
++
+ static void hdp_v6_0_update_clock_gating(struct amdgpu_device *adev,
+ 					 bool enable)
+ {
+@@ -138,7 +149,7 @@ static void hdp_v6_0_get_clockgating_state(struct amdgpu_device *adev,
+ }
+ 
+ const struct amdgpu_hdp_funcs hdp_v6_0_funcs = {
+-	.flush_hdp = amdgpu_hdp_generic_flush,
++	.flush_hdp = hdp_v6_0_flush_hdp,
+ 	.update_clock_gating = hdp_v6_0_update_clock_gating,
+ 	.get_clock_gating_state = hdp_v6_0_get_clockgating_state,
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
+index ed1debc035073..49f7eb4fbd117 100644
+--- a/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
+@@ -27,6 +27,17 @@
+ #include "hdp/hdp_7_0_0_sh_mask.h"
+ #include <uapi/linux/kfd_ioctl.h>
+ 
++static void hdp_v7_0_flush_hdp(struct amdgpu_device *adev,
++				struct amdgpu_ring *ring)
++{
++	if (!ring || !ring->funcs->emit_wreg) {
++		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++		RREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2);
++	} else {
++		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
++	}
++}
++
+ static void hdp_v7_0_update_clock_gating(struct amdgpu_device *adev,
+ 					 bool enable)
+ {
+@@ -126,7 +137,7 @@ static void hdp_v7_0_get_clockgating_state(struct amdgpu_device *adev,
+ }
+ 
+ const struct amdgpu_hdp_funcs hdp_v7_0_funcs = {
+-	.flush_hdp = amdgpu_hdp_generic_flush,
++	.flush_hdp = hdp_v7_0_flush_hdp,
+ 	.update_clock_gating = hdp_v7_0_update_clock_gating,
+ 	.get_clock_gating_state = hdp_v7_0_get_clockgating_state,
+ };
+-- 
+2.49.0
 
