@@ -2,133 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B228AACF07
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 May 2025 22:53:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F048CAAD215
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 May 2025 02:17:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC6110E72C;
-	Tue,  6 May 2025 20:53:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2281310E6C2;
+	Wed,  7 May 2025 00:17:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cyIwcMrp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SO35GKG2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2074.outbound.protection.outlook.com [40.107.237.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91D4010E719
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 May 2025 20:53:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q5KO6b+K01rp753LMfNPX0qrBXvvN4NEmtWGe6xm9w49jrXSYVLl0R9BHeOyMrXrjLgJTl6f4DumM0VIdKRRTnG/VBWHuQtkHKep3pALeWLYdUVYpA8rs+pj+P0/SoXoK2RJbo9COOeJTvNJUrJtlSIQDNHmAhvLxDd2SagH+3mxSwfyVO4E2EMLVojChI5iNABJRSamx6IQYBpUOnNfPcsTnumQxYAj7DdrzbIxXJlbu9gozdcmc2i4WGr8aUbRV8M2L/ENEqyQ938Cs2mfOmqC/NiLFTWbpAhovxoFtGfsdwYCZIY6j9aVS4oUnmKR1uaUuelTj+st+QKtzK1uAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C2DuHVX2+cIdwJakTaumtZHa9AvQMHOF3i6TqXrSrjY=;
- b=LJ9AYzqtCT3XE3A0rBWw3YZdsOqreD99QxWCpCrEvt3yWZUbrrtSG6dM++9ROG2kgL8kTVbCJ3ZDob7Fyekex2zTSpxSBBlxzkGGxeevTEhoLbgKyTJIHjEdqLbZ0vEub/zXIdOZ7PLr2nE6UTQsJM/LQt9LGpHgpWV36mjuqFtPj1Vy9S1gMg/VrxjQFbLwmeh1wGFkOFpDSOHq2J4U7/7MatHNQj13XrBaEr+y62ZZjSm+ptNEkPzb6foNJy8i2QZrcEWq9MUnPI04Y4p7AoEE3sqgHk6flms5vL34KGckHIRUsIz+KSib8zmkvnRcWSy7AC7djxjkrMdocmTmmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C2DuHVX2+cIdwJakTaumtZHa9AvQMHOF3i6TqXrSrjY=;
- b=cyIwcMrpg4Z4tuhOkvAojWmKXY7pPeVkKTGb9prtsUZReeEB6/tfgOp5eVj4bMt7tiEVV9mU+HFZwophtduMSv4wbJMFXPKcv1F7YKl4iHooGYJ+ThDPGFi9/uQaXbokPcpRmm9xXvxJmakQvtomv+5WpRbjANlMf4rf137x2gE=
-Received: from DS7PR03CA0326.namprd03.prod.outlook.com (2603:10b6:8:2b::28) by
- CY8PR12MB7339.namprd12.prod.outlook.com (2603:10b6:930:51::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8678.34; Tue, 6 May 2025 20:53:28 +0000
-Received: from CY4PEPF0000EDD0.namprd03.prod.outlook.com
- (2603:10b6:8:2b:cafe::48) by DS7PR03CA0326.outlook.office365.com
- (2603:10b6:8:2b::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.33 via Frontend Transport; Tue,
- 6 May 2025 20:53:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000EDD0.mail.protection.outlook.com (10.167.241.196) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8722.18 via Frontend Transport; Tue, 6 May 2025 20:53:26 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 6 May
- 2025 15:53:25 -0500
-Received: from AB350-desktop.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Tue, 6 May 2025 15:53:24 -0500
-From: <vitaly.prosyak@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>,
- <christian.koenig@amd.com>
-CC: Vitaly Prosyak <vitaly.prosyak@amd.com>, Manu Rastogi
- <manu.rastogi@amd.com>
-Subject: [PATCH] drm/amdgpu/gfx10: Update cleaner shader for GFX10.1.10
-Date: Tue, 6 May 2025 16:53:13 -0400
-Message-ID: <20250506205313.88835-1-vitaly.prosyak@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAC1410E6C2;
+ Wed,  7 May 2025 00:17:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=7O7FaFLSMEDFAPHPxATVbJQy0EyxQB1hjaihkPkHKd4=; b=SO35GKG2EaHGG4iW4xUSUlsOr+
+ hJWNaGjGTGVPh9BwmRCe4wSInmtnnQQOzmECY2+nNXNaTxymaDaHtcbLr+wApVYjqUbSgBwOCL1m6
+ Vk63VfoVpnBOp1x4f3XXL+f8lhVfoE4sINZwmpklByXvaZa44XYX+YoeT2bFCSLL5hteT2CpUgYzW
+ DFHZ5Af3z0O7Z/pRBdRa3O3OqntOSpD3vB1w8bkJmjCQhznVgaUzy0rSFdAQaGqkpeTvrw4q1JWWP
+ bVi6YlDkIkRlEOZPi/yWf3ucPLchP3yCwTxDBHSFjXkEesm8NrRyHSBEVkhU8FzKQFNrKiA/WazoH
+ s0QUiR0A==;
+Received: from [189.6.16.79] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uCSPo-004SNM-EZ; Wed, 07 May 2025 02:17:21 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
+ andrzej.hajda@intel.com, christian.koenig@amd.com, harry.wentland@amd.com,
+ maarten.lankhorst@linux.intel.com, mario.limonciello@amd.com,
+ mripard@kernel.org, mwen@igalia.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, simona@ffwll.ch, siqueira@igalia.com, sunpeng.li@amd.com,
+ tzimmermann@suse.de
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, amd-gfx@lists.freedesktop.org,
+ Michel Daenzer <michel.daenzer@mailbox.org>,
+ dri-devel@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: [PATCH v2 00/14] drm/amd/display: more drm_edid to AMD display driver
+Date: Tue,  6 May 2025 21:03:54 -0300
+Message-ID: <20250507001712.120215-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Received-SPF: None (SATLEXMB03.amd.com: vitaly.prosyak@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD0:EE_|CY8PR12MB7339:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2eb7824-6928-4919-5354-08dd8ce00c61
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WkFjZmpBWDVaQnZnVWwyRG1rRUw1T29YZEFTd3BmcU9Kc2FVL2FqTFpSRUx1?=
- =?utf-8?B?WnlGWUd2ekxBNUNPRjVDM3F0NXdBdmJWL2pUMmprMUdYUWtlMUxsaGhTV0lr?=
- =?utf-8?B?MnRHZGN1RHBNR3hpK2xOUlNCMEZId2JXSWFaL2RsaDlPS0RlMFd2dDFJSk9J?=
- =?utf-8?B?ZXMrQjJBUkxDL2hiVkhWYmJ3dk04Mk9WTjU3eEdTS3NRMG03Tkh3NWtRbHhr?=
- =?utf-8?B?aHhIT2ZRY3RJOTRmbENOSVVHejhSSmEydXlWcG05ZTFjQlRNeWpKdmVTRFFG?=
- =?utf-8?B?dnJac2s4MjI3YStXYUtEVGtBcVFWcUcyby92dXVkVjg2VlkycEtrSDlYLytR?=
- =?utf-8?B?MFV5ZDUxNDBDOEdObEdVRG9hY3lmK0ZXaSs3cVpERldrSUVHUTc5N00zckhR?=
- =?utf-8?B?S3NTaGhrV09IdFFzSitoUWdvK3pUYmFObm5WSVZ6ckVqbnlTUlh1TkN3OGl2?=
- =?utf-8?B?akZ4TDdmYmZKWnFKZXNhbm8zb1gvakhINWQyQXlJTnZSNWgwREhzL25KblpV?=
- =?utf-8?B?WUhYcTkwK0MrTklZejFTS1BCeTJWS1pnYlUyWlEvNjAxR0tMbjEvci9RYk44?=
- =?utf-8?B?RkFkWmd0c0xsUVpMbUZ6bEdMRThGcmlydWsxUFlESmM4bTQ5c0VaakhWNFNz?=
- =?utf-8?B?RklnK3hCSldRc3VHQUJrV3BDMkx0bnVqeEhKZ2pGOHA0dU5JdjlOejFDS0dV?=
- =?utf-8?B?T3pqbmNYY2U3QWVoOURibDRGVWNiT1dCVjhCVjZnTjFVU09iRTNQVExYMkJG?=
- =?utf-8?B?Z0RmMThVVHFTTXZ4M1dyemF5S0NNRnY3Y2RSZy8vaGVRMGJxU0RiV3VEUFhL?=
- =?utf-8?B?eUdReUtKcStsTUpaOE54dUdLYnlpVXJuaStlVGtEcHo1U00xelBjM1hZc2hQ?=
- =?utf-8?B?cHlEQkkxSFhjckhoR01PZHRFTXRudVBod1NaczdnblJNZlZJQVZuMThWUXVw?=
- =?utf-8?B?RmlvWWh2K1hHZnBMdFAwSm9UMmltL1ZqZnpYN1pIZXVPdkJ2V0NHQ3dKblox?=
- =?utf-8?B?Q0QrNG9CNUlxVFFKM1IvaHpacVo2NmZNdGFqWWl4VlBZZnkwdDNPSWVvd042?=
- =?utf-8?B?d29JMHJsOHdDbWhEVXgzaGRSQVB1d1RPSVRUWStUb0o0YTlLZU51d2EvdTZp?=
- =?utf-8?B?VkJaYmpWdU5TQ2wwUkhVMFJpMWREVHMvaEtGUUViUkVTQWNKY0pFWG5uL3lO?=
- =?utf-8?B?V3VDNmNtM2JVUVZRT2k1Q2FRYlhCWmFQL25sQlBLc3lNUDZ6SHBLYXZsUndO?=
- =?utf-8?B?OGx3eDIveURIdkhVM1V3Y0dhMStCdDB3RlNEbHArcnRyL2VyZFlBbW9iWHlv?=
- =?utf-8?B?cHQ1dzJBN3R5ckN5MmNzcU5GYUhleXIrZDVVd2dEZFd4ak8xby9iRFVaUFBm?=
- =?utf-8?B?UDVSdEw3Tzk0V043M1V1WU93ZnZNY21hLzdSSHlXTDU0TXV5c3VUYnRSNnNw?=
- =?utf-8?B?SGVzcGk1SkNIT3pvSEhzaVVKNlo1QXladElTZTRWaW9mcWpKZ1BqMnpSVm90?=
- =?utf-8?B?a201RGtsend3d0dqVmo1VHRDbE5Ia1ZCd3N1aytTUWZXM0RRSGUzYUFsNGJV?=
- =?utf-8?B?NjlBTk9EdDM4WjVyNnR0Z01Qa29VR0QrcGN4L3BuQzZEMmtrY2t3T0VVZ0Ny?=
- =?utf-8?B?MHdqb0lkaHhyZ0lUbXZSZEZXTU1Vck5NeVNOVlpyaERwRWxMUWdTZkxhRGZi?=
- =?utf-8?B?L01RVjhxVFB4RDJwUHBrbk5hZXExbG44dko2YUtSQ3JZWWxNdkFEMkFnUDBp?=
- =?utf-8?B?YVFSSXY0NnJ0VjZNQlJ5R3dlSGNiVWliVWg2VUk2TGFHYUxDYVVxY2xRbmtF?=
- =?utf-8?B?VjhjMGJoTmJqMjBlL0JuaUtvMS9Xam40YW5ZTjJheHZkMHV5QTBNM1EzM0lj?=
- =?utf-8?B?bktDdWtyOU0wMFZoT2dZM1dNSDlIMEt3SlFRMXIydVVsa25CbW9EWjJLNHdq?=
- =?utf-8?B?Z1M5R2V1MG5nNk1vZ01ydDh1M09GSDdjNXYwcTk4eXQwSDQ0L2dRTWptZ0Nw?=
- =?utf-8?B?T29GRnlqbi9idkR4dG5zQSs2OFE1MFFGNW1qL2JrYXZWK0tSdWlOcitsNGVJ?=
- =?utf-8?Q?K8NhW8?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2025 20:53:26.3208 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2eb7824-6928-4919-5354-08dd8ce00c61
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD0.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7339
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,38 +63,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Vitaly Prosyak <vitaly.prosyak@amd.com>
+Hi,
 
-The cleaner shader is a piece of GPU code that is used to clear or
-initialize certain GPU resources, such as Local Data Share (LDS), Vector
-General Purpose Registers (VGPRs), and Scalar General Purpose Registers
-(SGPRs).
+Siqueira and I have been working on a solution to reduce the usage of
+drm_edid_raw in the AMD display driver, since the current guideline in
+the DRM subsystem is to stop handling raw edid data in driver-specific
+implementation and use opaque `drm_edid` object with common-code
+helpers.
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Manu Rastogi <manu.rastogi@amd.com>
-Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+In short, this series approaches the issue of maintaining DC as an
+OS-agnostic component by creating a mid layer to isolate `drm_edid`
+helpers that need to be called in the DC code, while allowing other OSes
+to implement their specific implementation. This is an extension of [1].
+
+- Patch 1 addresses a possible leak added by previous migration to
+  drm_edid.
+- Patch 2 allocates a temporary drm_edid from raw edid for parsing.
+- Patches 3-7 use common-code, drm_edid helpers to parse edid
+  capabilities instead of driver-specific solutions. For this, patch 4
+  introduces a new helper that gets monitor name from drm_edid.
+- Patches 8-9 are groundwork to reduce the noise of Linux/DRM specific
+  code in the DC shared code
+- Patch 10 creates a mid layer to make DC embraces different ways of
+  handling EDID by platforms.
+- Patch 11 move open-coded management of raw EDID data to the mid
+  layer created before.
+- Patch 12 introduces a helper that compares EDIDs from two drm_edids.
+- Patch 13 adds drm_edid to dc_sink struct and a mid-layer helper to
+  free `drm_edid`.
+- Patch 14 switch dc_edid to drm_edid across the driver in a way that
+  the DC shared code is little affected by Linux specific stuff.
+
+[v1] https://lore.kernel.org/dri-devel/20250411201333.151335-1-mwen@igalia.com/
+Changes:
+- fix broken approach to get monitor name from eld (Jani)
+  - I introduced a new helper that gets monitor name from drm_edid
+- rename drm_edid_eq to drm_edid_eq_buf and doc fixes (Jani)
+- add NULL edid checks (Jani)
+- fix mishandling of product_id.manufacturer_name (Michel)
+  - I directly set it to manufacturer_id since sparse didn't complain.
+- add Mario's r-b in the first fix patch and fix commit msg typo.
+
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h
-index 5255378af53c..f67569ccf9f6 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0_cleaner_shader.h
-@@ -43,9 +43,9 @@ static const u32 gfx_10_1_10_cleaner_shader_hex[] = {
- 	0xd70f6a01, 0x000202ff,
- 	0x00000400, 0x80828102,
- 	0xbf84fff7, 0xbefc03ff,
--	0x00000068, 0xbe803080,
--	0xbe813080, 0xbe823080,
--	0xbe833080, 0x80fc847c,
-+	0x00000068, 0xbe803000,
-+	0xbe813000, 0xbe823000,
-+	0xbe833000, 0x80fc847c,
- 	0xbf84fffa, 0xbeea0480,
- 	0xbeec0480, 0xbeee0480,
- 	0xbef00480, 0xbef20480,
+There are three specific points where we still use drm_edid_raw() in the
+driver:
+1. raw edid data for write EDID checksum in DP_TEST_EDID_CHECKSUM via
+   drm_dp_dpcd_write(), that AFAIK there is no common code solution yet;
+2. open-coded connectivity log for dc link detection, that maybe can be
+   moved to drm (?);
+3. open-coded parser that I suspect is a lot of duplicated code, but
+   needs careful examining.
+
+I suggest to address those points in a next phase for regression control.
+
+[1] https://lore.kernel.org/amd-gfx/20250308142650.35920-1-mwen@igalia.com/
+
+Let me know yours thoughts!
+
+Melissa
+
+Melissa Wen (12):
+  drm/amd/display: make sure drm_edid stored in aconnector doesn't leak
+  drm/amd/display: start using drm_edid helpers to parse EDID caps
+  drm/amd/display: use drm_edid_product_id for parsing EDID product info
+  drm/edid: introduce a helper that gets monitor name from drm_edid
+  drm/amd/display: get panel id with drm_edid helper
+  drm/amd/display: get SAD from drm_eld when parsing EDID caps
+  drm/amd/display: get SADB from drm_eld when parsing EDID caps
+  drm/amd/display: simplify dm_helpers_parse_edid_caps signature
+  drm/amd/display: change DC functions to accept private types for edid
+  drm/edid: introduce a helper that compares edid data from two drm_edid
+  drm/amd/display: add drm_edid to dc_sink
+  drm/amd/display: move dc_sink from dc_edid to drm_edid
+
+Rodrigo Siqueira (2):
+  drm/amd/display: add a mid-layer file to handle EDID in DC
+  drm/amd/display: create a function to fill dc_sink with edid data
+
+ .../gpu/drm/amd/display/amdgpu_dm/Makefile    |  1 +
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 33 +++----
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 97 ++++++++-----------
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 21 ++--
+ .../gpu/drm/amd/display/amdgpu_dm/dc_edid.c   | 34 +++++++
+ .../gpu/drm/amd/display/amdgpu_dm/dc_edid.h   | 15 +++
+ .../drm/amd/display/dc/core/dc_link_exports.c |  9 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_sink.c |  3 +
+ drivers/gpu/drm/amd/display/dc/dc.h           | 12 ++-
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h   |  7 +-
+ drivers/gpu/drm/amd/display/dc/inc/link.h     |  9 +-
+ .../drm/amd/display/dc/link/link_detection.c  | 30 ++----
+ .../drm/amd/display/dc/link/link_detection.h  |  9 +-
+ drivers/gpu/drm/bridge/sil-sii8620.c          |  2 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c |  2 +-
+ drivers/gpu/drm/drm_edid.c                    | 57 ++++++++---
+ include/drm/drm_edid.h                        |  9 +-
+ 17 files changed, 195 insertions(+), 155 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/dc_edid.c
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/dc_edid.h
+
 -- 
-2.34.1
+2.47.2
 
