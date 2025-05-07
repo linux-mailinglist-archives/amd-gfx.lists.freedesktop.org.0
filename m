@@ -2,46 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD50CAAFAC9
-	for <lists+amd-gfx@lfdr.de>; Thu,  8 May 2025 15:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E6FDAAFAC3
+	for <lists+amd-gfx@lfdr.de>; Thu,  8 May 2025 15:02:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A840510E90C;
-	Thu,  8 May 2025 13:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E43110E908;
+	Thu,  8 May 2025 13:02:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="EftWKVWm";
+	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="HxLHpG/B";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-106109.protonmail.ch (mail-106109.protonmail.ch
- [79.135.106.109])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6FA410E36D
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 May 2025 13:46:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1746625605; x=1746884805;
- bh=uZ5Qe7tqS+Lcn6Rzm0dh4NGjhzw6mgYx6fToIEeqB+E=;
- h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
- Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector:
- List-Unsubscribe:List-Unsubscribe-Post;
- b=EftWKVWmiEtP8LHqgh7slp1NkC5XR9sI09FpM3k08s1PIfZQXdacr8/PFw+dIHs/v
- CvlmSqrsCKvNMa5W6rDiJjQnNohYKOOcrP/6NXm5P7TW1P5XZzTrrPTVKtksbtncvc
- Vq30PJFLwMG6B1lYqpkdU/xux0ellFloVmQJd6C9y1oBqFzzP8Gq+HuYknUJgEyTff
- jTeeMtumEFzQZH4B7oJSbDWbOUDtqLxEvoTXYQ61j8iEV0PHxhxSRO20hF/1ZlkSg0
- y6o1c7ZOQ3UlAO2XL65HhawqFiZKuFKdfUs4Aqmp9CECXARS9pWG0JSwACZfAtyhHm
- y0w6oN2tdUYsQ==
-Date: Wed, 07 May 2025 13:46:40 +0000
-To: amd-gfx@lists.freedesktop.org
-From: Umio Yasuno <coelacanth_dream@protonmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Kenneth Feng <kenneth.feng@amd.com>, Lijo Lazar <lijo.lazar@amd.com>
-Subject: [PATCH v2] drm/amdgpu/smu13: set the threshold for TEMP_HOTSPOT
- throttling
-Message-ID: <20250507134553.6812-1-coelacanth_dream@protonmail.com>
-Feedback-ID: 19510729:user:proton
-X-Pm-Message-ID: ac6dcd39b9ce2456fe377529c15658cc868ac541
+Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6389210E867;
+ Wed,  7 May 2025 17:01:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
+ ; s=bytemarkmx;
+ h=MIME-Version:Message-ID:Date:Subject:From:Content-Type:From
+ :Subject; bh=tv/2C9kUFFhHmEsxaXVMRgJCCX3yR9ZaEvaUp7YMgy4=; b=HxLHpG/BEFH0fRxN
+ Y8S5kO07JOHJFj8IGSF/Zhv6Utf7x5Vy5jTplODz8KX6ynXlXWRHKoggTt63gMBIpt7PC3SDw6MP8
+ SQcSwdWR1Vb8PnouPSTZ58XtFQzavVY7dBLI6FmB/PyZ4CnfjUe05lm8o33HdrgHKVPxdfTMxMjNS
+ YsOumqCgsE1nVTtQforqRMMwBLEJ6D+vZZNevTp9rMQu1IxHpHyO2O/swMQEctZ+kl2bH2t7McHDG
+ 7mCGid/rV7efGXLMEK1HWVdSqfopzzLWtt9B1AR0Mc/5QtraUAkzR7RrseGlOQ5cyPuTzRayIsEl2
+ q4aEyx8dlsXwzFPsPg==;
+Received: from localhost ([127.0.0.1] helo=dalek.home.treblig.org)
+ by mx.treblig.org with esmtp (Exim 4.96)
+ (envelope-from <linux@treblig.org>) id 1uCi9S-002EIU-0H;
+ Wed, 07 May 2025 17:01:46 +0000
+From: linux@treblig.org
+To: alexander.deucher@amd.com, kenneth.feng@amd.com, christian.koenig@amd.com
+Cc: airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ "Dr. David Alan Gilbert" <linux@treblig.org>
+Subject: [PATCH 0/3] AMD gpu deadcoding (S more)
+Date: Wed,  7 May 2025 18:01:42 +0100
+Message-ID: <20250507170145.102508-1-linux@treblig.org>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 08 May 2025 13:02:10 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 08 May 2025 13:02:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,88 +54,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ThrottlingPercentage for TEMP_HOTSPOT on SMU v13.0.0/7 is almost always gre=
-ater then or equal to 1.
-The THROTTLER_TEMP_HOTSPOT_BIT bit will be set even in idle states and some=
- applications will continue to detect it.
-Therefore, set a threshold and make it work like any other throttling.
+From: "Dr. David Alan Gilbert" <linux@treblig.org>
 
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/3251
+Hi,
+  A few more AMD deadcoding patches spinning out of the
+questions I asked, and Kenneth answered.
 
-Signed-off-by: Umio Yasuno <coelacanth_dream@protonmail.com>
+See:
+  https://lore.kernel.org/all/DM4PR12MB5165D85BD85BC8FC8BF7A3B48E88A@DM4PR12MB5165.namprd12.prod.outlook.com/
 
----
-V1 -> V2: Decrease threshold to 80 and update description
----
- .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c    | 13 ++++++++++---
- .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c    | 13 ++++++++++---
- 2 files changed, 20 insertions(+), 6 deletions(-)
+Dave
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers=
-/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-index 5a9711e8c..34b62eca4 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-@@ -744,14 +744,21 @@ static int smu_v13_0_0_system_features_control(struct=
- smu_context *smu,
- =09return smu_v13_0_system_features_control(smu, en);
- }
-=20
-+#define SMU_13_0_0_TEMP_HOTSPOT_THRESHOLD=0980
- static uint32_t smu_v13_0_get_throttler_status(SmuMetrics_t *metrics)
- {
- =09uint32_t throttler_status =3D 0;
- =09int i;
-=20
--=09for (i =3D 0; i < THROTTLER_COUNT; i++)
--=09=09throttler_status |=3D
--=09=09=09(metrics->ThrottlingPercentage[i] ? 1U << i : 0);
-+=09for (i =3D 0; i < THROTTLER_COUNT; i++) {
-+=09=09if(i =3D=3D THROTTLER_TEMP_HOTSPOT_BIT) {
-+=09=09=09throttler_status |=3D
-+=09=09=09=09((metrics->ThrottlingPercentage[i] >=3D SMU_13_0_0_TEMP_HOTSPO=
-T_THRESHOLD) ? 1U << i : 0);
-+=09=09} else {
-+=09=09=09throttler_status |=3D
-+=09=09=09=09(metrics->ThrottlingPercentage[i] ? 1U << i : 0);
-+=09=09}
-+=09}
-=20
- =09return throttler_status;
- }
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers=
-/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-index c8f4f6fb4..eb007cb37 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-@@ -736,14 +736,21 @@ static bool smu_v13_0_7_is_dpm_running(struct smu_con=
-text *smu)
- =09return !!(feature_enabled & SMC_DPM_FEATURE);
- }
-=20
-+#define SMU_13_0_7_TEMP_HOTSPOT_THRESHOLD=0980
- static uint32_t smu_v13_0_7_get_throttler_status(SmuMetrics_t *metrics)
- {
- =09uint32_t throttler_status =3D 0;
- =09int i;
-=20
--=09for (i =3D 0; i < THROTTLER_COUNT; i++)
--=09=09throttler_status |=3D
--=09=09=09(metrics->ThrottlingPercentage[i] ? 1U << i : 0);
-+=09for (i =3D 0; i < THROTTLER_COUNT; i++) {
-+=09=09if(i =3D=3D THROTTLER_TEMP_HOTSPOT_BIT) {
-+=09=09=09throttler_status |=3D
-+=09=09=09=09((metrics->ThrottlingPercentage[i] >=3D SMU_13_0_7_TEMP_HOTSPO=
-T_THRESHOLD) ? 1U << i : 0);
-+=09=09} else {
-+=09=09=09throttler_status |=3D
-+=09=09=09=09(metrics->ThrottlingPercentage[i] ? 1U << i : 0);
-+=09=09}
-+=09}
-=20
- =09return throttler_status;
- }
---=20
-2.39.5
+Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
 
+
+Dr. David Alan Gilbert (3):
+  drm/amd/pm/smu13: Remove unused smu_v13_0_init_display_count
+  drm/amd/pm: Remove unused smu_mode2_reset_is_support
+  drm/amd/pm: Remove remainder of mode2_reset_is_support
+
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c           | 13 -------------
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h       |  5 -----
+ drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h        |  2 --
+ .../gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c |  6 ------
+ drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c  |  6 ------
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c      | 12 ------------
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c    |  6 ------
+ 7 files changed, 50 deletions(-)
+
+-- 
+2.49.0
 
