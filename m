@@ -2,49 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B075AAFAC5
-	for <lists+amd-gfx@lfdr.de>; Thu,  8 May 2025 15:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E81A2AAF952
+	for <lists+amd-gfx@lfdr.de>; Thu,  8 May 2025 14:05:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9427D10E901;
-	Thu,  8 May 2025 13:02:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B88810E8F4;
+	Thu,  8 May 2025 12:05:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bDfCK9N/";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95A9E10E869
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 May 2025 17:22:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
- ; s=bytemarkmx;
- h=Content-Type:MIME-Version:Message-ID:Subject:From:Date:From
- :Subject; bh=DGwF+sCKYFLJFj1kpcCuagfnDB0QbComp1z6c97B6lw=; b=iAgW+CoAIahiifH2
- JRHnkhoeyW/ONugmr8AXNsfFwoPNNORbCWPNWWbM88FWdzOCcRDx1X6tzXOx6lesKi9pC76nGZwrP
- u6zbIi5pTJeJ5XZMiiptCNd7G3HCxGosqDqm1FXIypLUPznKXu/9oHvwf3z5bYD4zYhrdCMSMaTo3
- WcN+RHwMy9byrdZWrIP8cBF658fGkEX04O/qrlw5NPpsKsjQSbhVg+q2gVeJie7INE/SQpHoJo+2v
- IoiAiaclLWDGRD0rtHPo+L3p+3356ll1Jc6ihoHyVvi25ZrsoQp7Pcf1m4zqGelc1UaB2BrCnPREW
- mC49A8pHn7zePtgBTw==;
-Received: from dg by mx.treblig.org with local (Exim 4.96)
- (envelope-from <dg@treblig.org>) id 1uCiTO-002EZk-33;
- Wed, 07 May 2025 17:22:22 +0000
-Date: Wed, 7 May 2025 17:22:22 +0000
-From: "Dr. David Alan Gilbert" <linux@treblig.org>
-To: "Feng, Kenneth" <Kenneth.Feng@amd.com>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: questions about smu_mode2_reset_is_support and
- smu_v13_0_init_display_count
-Message-ID: <aBuWzlWN5uJqsV90@gallifrey>
-References: <aBqqCmYICO_C0nLT@gallifrey>
- <DM4PR12MB5165D85BD85BC8FC8BF7A3B48E88A@DM4PR12MB5165.namprd12.prod.outlook.com>
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25FEF10E8F4
+ for <amd-gfx@lists.freedesktop.org>; Thu,  8 May 2025 12:05:06 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-43d04ea9d9aso4720055e9.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 08 May 2025 05:05:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1746705904; x=1747310704; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=DTCnTSa/5uYuDNNojvixfto9eXhE4J158SLNzgrVp+0=;
+ b=bDfCK9N/vHUodDkECT4Esb8fVoho8h3dFhiy6IIkVUelDQDTkvyAtZaBzkIkrQhz6W
+ YwnXWMM5zXj/jwTIMYLeam/iQA/pXc2QXirjl+77+5cimL1OYswyBb5br1/tEefNVvpm
+ 51xsmOGSEFXvGzpOmMm6YzLOu/UCddsEP1J/LhBYgTIa5Q0K66V+EtR/qyF3LONfwW2D
+ 5ls93mpII3URtw/eAHP7/hbXb2KQ3/8UM68oXz8yXbGpOnix82o9y+aR93q04cPnMB0n
+ nsIIOvKYGRk15aJgZSW6CtQyj7Y/K4I4NuKC7GNPIC2ceoaW3kJzjsOLCTlEluLBYjMF
+ yhLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1746705904; x=1747310704;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=DTCnTSa/5uYuDNNojvixfto9eXhE4J158SLNzgrVp+0=;
+ b=UbYqcdBXc3OeH6Kib9+yiIFoRts0/WLJB92Vmm62bF4exReZN6baR5GoHD3eYwoOr3
+ rZ9YcbWVYYVbjxCpmNCrd7MmDEbcfuWbLJTkDl18L73xuupNBZstFe9lDqtb6k9c7sYE
+ izDV7Vj61jbKVjKLgPKw+IkaSGwtOHczvy117yXRL2iNs3JLBzV0kE8lJxikbAmIJs7L
+ uKvl9Fqo+/4Vt8YtCOB56TJ3Q7BG8yfCyJYLPLBmgKLayec+QWnoVlZPnMr4ViqlSnM8
+ 4E16KwTg/beEzy1ksyh/ZfLXQHdEZMGTkvjx73SjhwnPpIWTYOY8OhLNnZ65RrFR9tgI
+ Zo4w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV7NeThw7iY0tM9KAjn/ZcahvWs+V6CZFuXo36kN85HO++CT9+fbt+JBeJs+DW/v+yntxruV2wN@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxLEADPV2zpci21EqDminn7ptxY0uJLC26nHH6nQeBwzK8T+qKF
+ jzG567Gx9GkUw3R2kQA0D+YXH8Em0bORam64pg8FyEPGrFd0QmRRtQVCHA==
+X-Gm-Gg: ASbGncvz/izLPsQ5ykoIphlycDU7+P6sxeC94odeQV8KwbKnO21a/nJ0fJBZ/I+pB0Q
+ Y47opKrHt6EzcIClhOx2KzJoY6e+2eUT4l9pcUNmwn6pStMVAEe0kWnSTg8/JKqGyk1PehYbrJZ
+ bfXAGC2PibZNQLagfGVKisEZm0guPGZ3UP8uVaRmYgh4l2vP7kq4ki6V9dNy0RPIuDqJDTarTQh
+ DcBmjBbMqcj2IDQQhqwrByCISAo5o4vAkInpNQP4r+8G/YHB12+0AaKHkabxd1+HSywAK1GdkxV
+ FjhCKxItWFfiJENUGf8yD8uT6nKZnAUv+zBAFATIX5D3ZBaIj68=
+X-Google-Smtp-Source: AGHT+IHzuWaJnebVUnHCvbpp1m9b9UQ7pv9BK04UFtepMCGA2OV6/ZDrIdLtgcXjwpYZ0HQOpp9Ttg==
+X-Received: by 2002:a05:600c:5249:b0:43d:10c:2f60 with SMTP id
+ 5b1f17b1804b1-441d44dd270mr60233815e9.24.1746705903898; 
+ Thu, 08 May 2025 05:05:03 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:1523:6000:25d8:9e9:d5ee:d76])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3a099ae0cafsm20255087f8f.19.2025.05.08.05.05.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 08 May 2025 05:05:03 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: srinivasan.shanmugam@amd.com,
+	amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdgpu: revert "always sync the GFX pipe on ctx
+ switch"
+Date: Thu,  8 May 2025 14:05:01 +0200
+Message-Id: <20250508120502.1467-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-In-Reply-To: <DM4PR12MB5165D85BD85BC8FC8BF7A3B48E88A@DM4PR12MB5165.namprd12.prod.outlook.com>
-X-Chocolate: 70 percent or better cocoa solids preferably
-X-Operating-System: Linux/6.1.0-34-amd64 (x86_64)
-X-Uptime: 17:21:56 up 10 days, 1:35, 1 user, load average: 0.15, 0.07, 0.01
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Mailman-Approved-At: Thu, 08 May 2025 13:02:11 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,67 +86,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-* Feng, Kenneth (Kenneth.Feng@amd.com) wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-> 
-> Hello Dave,
+This reverts commit c2cc3648ba517a6c270500b5447d5a1efdad5936.
 
-Hi Kenneth,
-  Thanks for the reply.
+Not needed any more with the updated cleaner shader code.
 
-> smu_v13_0_init_display_count() is obsolete on smu13 series. It will be removed.
-> Secondly, with cod evolving, all of below can be removed as well.
->   sienna_cichlid_is_mode2_reset_supported,
->   aldebaran_is_mode2_reset_supported,
->   smu_v13_0_6_is_mode2_reset_supported
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-Great, I've sent a series to delete all those, see 20250507170145.102508-1-linux@treblig.org
-
-Dave
-
-> Thanks.
-> 
-> 
-> 
-> -----Original Message-----
-> From: Dr. David Alan Gilbert <linux@treblig.org>
-> Sent: Wednesday, May 7, 2025 8:32 AM
-> To: Deucher, Alexander <Alexander.Deucher@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org; linux-kernel@vger.kernel.org
-> Subject: questions about smu_mode2_reset_is_support and smu_v13_0_init_display_count
-> 
-> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
-> 
-> 
-> Hi,
->   I noticed two functions that are unused but I wasn't sure what to do with them:
-> 
-> smu_v13_0_init_display_count() isn't called/wired up, where as the
-> v11 version is wired up:
-> 
->  drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
->      3574:      .init_display_count = smu_v11_0_init_display_count,
-> 
-> so is v13 really unused or should it be wired up in a similar way?
-> 
-> secondly, smu_mode2_reset_is_support() is uncalled, but it's the only caller through the mode2_reset_is_support() function pointer; so if smu_mode2_reset_is_support() was deleted, does it then make sense to clean up all of
->   sienna_cichlid_is_mode2_reset_supported,
->   aldebaran_is_mode2_reset_supported,
->   smu_v13_0_6_is_mode2_reset_supported
-> 
-> which that function pointer is sett to.
-> 
-> Thanks in advance,
-> 
-> Dave
-> 
-> --
->  -----Open up your eyes, open up your mind, open up your code -------
-> / Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \
-> \        dave @ treblig.org |                               | In Hex /
->  \ _________________________|_____ http://www.treblig.org   |_______/
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+index 802743efa3b3..5eab1c1a380c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+@@ -191,8 +191,8 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
+ 	need_ctx_switch = ring->current_ctx != fence_ctx;
+ 	if (ring->funcs->emit_pipeline_sync && job &&
+ 	    ((tmp = amdgpu_sync_get_fence(&job->explicit_sync)) ||
+-	     need_ctx_switch || amdgpu_vm_need_pipeline_sync(ring, job))) {
+-
++	     (amdgpu_sriov_vf(adev) && need_ctx_switch) ||
++	     amdgpu_vm_need_pipeline_sync(ring, job))) {
+ 		need_pipe_sync = true;
+ 
+ 		if (tmp)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 3911c78f8282..0a80c011e678 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -801,7 +801,7 @@ int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 		patch = amdgpu_ring_init_cond_exec(ring,
+ 						   ring->cond_exe_gpu_addr);
+ 
+-	if (need_pipe_sync)
++	if (need_pipe_sync || cleaner_shader_needed)
+ 		amdgpu_ring_emit_pipeline_sync(ring);
+ 
+ 	if (cleaner_shader_needed)
 -- 
- -----Open up your eyes, open up your mind, open up your code -------   
-/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
-\        dave @ treblig.org |                               | In Hex /
- \ _________________________|_____ http://www.treblig.org   |_______/
+2.34.1
+
