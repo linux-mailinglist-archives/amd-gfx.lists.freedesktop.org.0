@@ -2,59 +2,247 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1016AB32F5
-	for <lists+amd-gfx@lfdr.de>; Mon, 12 May 2025 11:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41584AB3794
+	for <lists+amd-gfx@lfdr.de>; Mon, 12 May 2025 14:44:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29EEF10E0C7;
-	Mon, 12 May 2025 09:20:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D363210E3F1;
+	Mon, 12 May 2025 12:44:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Cfq7HrsX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qRopC9c+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCC1110E0C7;
- Mon, 12 May 2025 09:20:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hj59TOBb21Ws8RgUIds2AGjqvk25AJJ0X33YQR+g87E=; b=Cfq7HrsXcR1m73+T0EZJRtz/jv
- Tstv6f+X1qVwa8HkP3zazgzJfv0uMdBxHG3CsElrnDNsTcAJV/rzuBqkhnpV4ve3jwW3XLjUPoD+y
- uCLa78S2GSFW9dkqaoxJMJic1UmiUb68+4XkdJFPuNT7NQVjlfccMRZQNUl5IARMTVUCUmwgesbEG
- uGb+Irkfi2n4kZALBt8fk4gThYat3oyyc6PUI2+oBtTBPH6F9xCWV5Z+QcBCJsHHUw0fEhpt8qpoI
- 0DQhuSU39BGNeVRc+voKLHJAkYBt60izqVFZY3sdLXlSqBQTKXD5GsiQb9+f4hG1faYSVn70HmAdb
- KWl0S0RQ==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uEPFL-006zkP-80; Mon, 12 May 2025 11:20:09 +0200
-Message-ID: <24fd309e-fb2e-433b-ad9b-f846f296cd2f@igalia.com>
-Date: Mon, 12 May 2025 10:20:08 +0100
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 702D510E348;
+ Mon, 12 May 2025 09:56:21 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 6C6DDA4C9E3;
+ Mon, 12 May 2025 09:56:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C20E1C4CEE7;
+ Mon, 12 May 2025 09:55:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1747043779;
+ bh=i+C4MquKCE5DzjebZIg1suA7nSkmpPf5qHNeApUsg1A=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=qRopC9c+wx/+YYC0sJ/UvJzWi+Nuq8Af/LOL6TTdw1ObAiA1N4EP+e6QolBr4MpT6
+ p5ltChjlCbyDDYRz89R5OVuaZ83tbLw+pYcksx/XVXGNoBUri07jOIpHu8d097AHB/
+ gSDUJRuD+w/qmayEwLfKcRkm+4e+sfpRcvHaPFTEPbrRTxGpnFsatWWUdcTBd7OQnA
+ w+ym87xDkxssPWo79tPQu/rSntgc4PEKUjTQ4e3C6qaM9CVgjCp/lHxzZltc1AavRM
+ /LPUSo4AklmCrtIuWgWZpLqR0YnBmCrfB22k4a1IjHg5OgJnYBulNV1QgQrtx5KTRE
+ uIiF1y2I3VB1w==
+Message-ID: <a40c0dfc-b531-4cc0-80b2-5b972d9fb65c@kernel.org>
+Date: Mon, 12 May 2025 11:55:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v2 03/13] dma-fence: Use a flag for 64-bit seqnos
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- kernel-dev@igalia.com
-References: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
- <20250509153352.7187-4-tvrtko.ursulin@igalia.com>
- <48ca64e8-09a8-4321-a84a-e33f2d32e552@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <48ca64e8-09a8-4321-a84a-e33f2d32e552@amd.com>
+Subject: Re: [PATCH v2 00/57] irqdomain: Cleanups and Documentation
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: maz@kernel.org, linux-kernel@vger.kernel.org,
+ Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Alexandre Ghiti <alex@ghiti.fr>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Alex Shi <alexs@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, =?UTF-8?Q?Alvin_=C5=A0ipraga?=
+ <alsi@bang-olufsen.dk>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ amd-gfx@lists.freedesktop.org, Amit Kucheria <amitk@kernel.org>,
+ Anatolij Gustschin <agust@denx.de>, Andi Shyti <andi.shyti@kernel.org>,
+ =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+ Andreas Kemnade <andreas@kemnade.info>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Andrew Lunn <andrew@lunn.ch>,
+ Andy Shevchenko <andy@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Antoine Tenart <atenart@kernel.org>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+ Anup Patel <anup@brainfault.org>, Arnd Bergmann <arnd@arndb.de>,
+ asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Baruch Siach <baruch@tkos.co.il>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>,
+ Bjorn Andersson <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Borislav Petkov <bp@alien8.de>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Corentin Chary <corentin.chary@gmail.com>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ Daniel Golle <daniel@makrotopia.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Daniel Mack <daniel@zonque.org>,
+ Daniel Palmer <daniel@thingy.jp>, Dave Hansen <dave.hansen@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, "David S. Miller" <davem@davemloft.net>,
+ DENG Qingfang <dqfext@gmail.com>, Dinh Nguyen <dinguyen@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Dongliang Mu <dzm91@hust.edu.cn>, Doug Berger <opendmb@gmail.com>,
+ dri-devel@lists.freedesktop.org, Eddie James <eajames@linux.ibm.com>,
+ Eric Dumazet <edumazet@google.com>, Fabio Estevam <festevam@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Geoff Levand <geoff@infradead.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Gregory Clement <gregory.clement@bootlin.com>, Guo Ren <guoren@kernel.org>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Haojian Zhuang <haojian.zhuang@gmail.com>,
+ Haojian Zhuang <haojian.zhuang@linaro.org>, Heiko Stuebner
+ <heiko@sntech.de>, Herve Codina <herve.codina@bootlin.com>,
+ Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, "H. Peter Anvin" <hpa@zytor.com>,
+ Huacai Chen <chenhuacai@kernel.org>,
+ Changhuang Liang <changhuang.liang@starfivetech.com>,
+ Chen-Yu Tsai <wens@csie.org>, "Chester A. Unal" <chester.a.unal@arinc9.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Chris Zankel <chris@zankel.net>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Imre Kaloz <kaloz@openwrt.org>, Ingo Molnar <mingo@redhat.com>,
+ Jakub Kicinski <kuba@kernel.org>, James Morse <james.morse@arm.com>,
+ Janne Grunau <j@jannau.net>, Janusz Krzysztofik <jmkrzyszt@gmail.com>,
+ Jaroslav Kysela <perex@perex.cz>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Jianjun Wang <jianjun.wang@mediatek.com>, Jiawen Wu
+ <jiawenwu@trustnetic.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ Jim Quinlan <jim2101024@gmail.com>, Jingoo Han <jingoohan1@gmail.com>,
+ Joel Stanley <joel@jms.id.au>, Johannes Berg <johannes@sipsolutions.net>,
+ John Crispin <john@phrozen.org>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ Jonas Bonn <jonas@southpole.se>, Jonathan Cameron <jic23@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Jonathan Hunter <jonathanh@nvidia.com>,
+ =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+ Joyce Ooi <joyce.ooi@intel.com>,
+ Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>, Keerthy
+ <j-keerthy@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski
+ <krzk@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Lakshmi Sowjanya D <lakshmi.sowjanya.d@intel.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Linus Walleij <linusw@kernel.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-edac@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+ linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-remoteproc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ linux-sh@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-um@lists.infradead.org, linux-wireless@vger.kernel.org,
+ loongarch@lists.linux.dev, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, "Luke D. Jones" <luke@ljones.dev>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Mark Brown <broonie@kernel.org>, Mark-PK Tsai <mark-pk.tsai@mediatek.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Max Filippov
+ <jcmvbkbc@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Mengyuan Lou <mengyuanlou@net-swift.com>, Michael Buesch <m@bues.ch>,
+ Michael Ellerman <mpe@ellerman.id.au>, Michal Simek <michal.simek@amd.com>,
+ Miodrag Dinic <miodrag.dinic@mips.com>, Naveen N Rao <naveen@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Nicholas Piggin <npiggin@gmail.com>, Nikhil Agarwal
+ <nikhil.agarwal@amd.com>, Nipun Gupta <nipun.gupta@amd.com>,
+ Nishanth Menon <nm@ti.com>, =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paolo Abeni <pabeni@redhat.com>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Peter Rosin <peda@axentia.se>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ platform-driver-x86@vger.kernel.org,
+ Prasad Kumpatla <quic_pkumpatl@quicinc.com>, Qiang Zhao
+ <qiang.zhao@nxp.com>, Qin Jian <qinjian@cqplus1.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Randy Dunlap
+ <rdunlap@infradead.org>, Ray Jui <rjui@broadcom.com>,
+ Rengarajan Sundararajan <Rengarajan.S@microchip.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Richard Weinberger <richard@nod.at>, Rich Felker <dalias@libc.org>,
+ Rob Clark <robdclark@gmail.com>, Robert Jarzmik <robert.jarzmik@free.fr>,
+ Robert Richter <rric@kernel.org>, Rob Herring <robh@kernel.org>,
+ Roger Quadros <rogerq@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Ryan Chen <ryan_chen@aspeedtech.com>, Ryder Lee <ryder.lee@mediatek.com>,
+ Samuel Holland <samuel@sholland.org>, Santosh Shilimkar
+ <ssantosh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Scott Branden <sbranden@broadcom.com>, Scott Wood <oss@buserror.net>,
+ Sean Paul <sean@poorly.run>, Sean Wang <sean.wang@kernel.org>,
+ Sean Wang <sean.wang@mediatek.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>, Shawn Lin <shawn.lin@rock-chips.com>,
+ Siddharth Vadapalli <s-vadapalli@ti.com>, Simona Vetter <simona@ffwll.ch>,
+ Stafford Horne <shorne@gmail.com>,
+ Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+ Stephen Boyd <sboyd@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+ Takashi Iwai <tiwai@suse.com>, Talel Shenhar <talel@amazon.com>,
+ Tero Kristo <kristo@kernel.org>,
+ Thangaraj Samynathan <Thangaraj.S@microchip.com>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Toan Le <toan@os.amperecomputing.com>, Tony Lindgren <tony@atomide.com>,
+ Tony Luck <tony.luck@intel.com>, UNGLinuxDriver@microchip.com,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Vineet Gupta <vgupta@kernel.org>,
+ Vladimir Oltean <olteanv@gmail.com>, Vladimir Zapolskiy <vz@mleia.com>,
+ WANG Xuerui <kernel@xen0n.name>, Woojung Huh <woojung.huh@microchip.com>,
+ x86@kernel.org, Yanteng Si <si.yanteng@linux.dev>,
+ Yoshinori Sato <ysato@users.sourceforge.jp>, Zhang Rui <rui.zhang@intel.com>
+References: <20250319092951.37667-1-jirislaby@kernel.org> <874ixxonyy.ffs@tglx>
+Content-Language: en-US
+From: Jiri Slaby <jirislaby@kernel.org>
+Autocrypt: addr=jirislaby@kernel.org; keydata=
+ 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
+In-Reply-To: <874ixxonyy.ffs@tglx>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 12 May 2025 12:44:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,136 +257,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 12/05/2025 09:17, Christian König wrote:
-> On 5/9/25 17:33, Tvrtko Ursulin wrote:
->> With the goal of reducing the need for drivers to touch (and dereference)
->> fence->ops, we move the 64-bit seqnos flag from struct dma_fence_ops to
->> the fence->flags.
->>
->> Drivers which were setting this flag are changed to use new
->> dma_fence_init64() instead of dma_fence_init().
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+On 06. 05. 25, 15:41, Thomas Gleixner wrote:
+> On Wed, Mar 19 2025 at 10:28, Jiri Slaby wrote:
 > 
-> My idea was to copy the flag from the ops during init, but that should work as well.
-> 
-> Reviewed-by: Christian König <christian.koenig@amd.com>
-
-Thanks!
-
-One alternative to dma_fence_init64() I was thinking about is to perhaps 
-have add dma_fence_init_flags(). Especially in the context of patch 4/13 
-where it would then look cleaner for callers such as 
-dma_fence_chain_init(). 4/13 aside, how would dma_fence_init_flags look 
-to you? It is a little bit more verbose is one thing. And if we are not 
-doing 4/13, verbosity coupled with a single benefit perhaps it is best 
-to leave dma_fence_init64() as is?
-
-Regards,
-
-Tvrtko
-
->> ---
->>   drivers/dma-buf/dma-fence-chain.c                | 5 ++---
->>   drivers/dma-buf/dma-fence.c                      | 9 +++++++++
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c | 5 ++---
->>   include/linux/dma-fence.h                        | 6 +++++-
->>   4 files changed, 18 insertions(+), 7 deletions(-)
+>> Hi,
 >>
->> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
->> index 90424f23fd73..a8a90acf4f34 100644
->> --- a/drivers/dma-buf/dma-fence-chain.c
->> +++ b/drivers/dma-buf/dma-fence-chain.c
->> @@ -218,7 +218,6 @@ static void dma_fence_chain_set_deadline(struct dma_fence *fence,
->>   }
->>   
->>   const struct dma_fence_ops dma_fence_chain_ops = {
->> -	.use_64bit_seqno = true,
->>   	.get_driver_name = dma_fence_chain_get_driver_name,
->>   	.get_timeline_name = dma_fence_chain_get_timeline_name,
->>   	.enable_signaling = dma_fence_chain_enable_signaling,
->> @@ -262,8 +261,8 @@ void dma_fence_chain_init(struct dma_fence_chain *chain,
->>   			seqno = max(prev->seqno, seqno);
->>   	}
->>   
->> -	dma_fence_init(&chain->base, &dma_fence_chain_ops,
->> -		       &chain->lock, context, seqno);
->> +	dma_fence_init64(&chain->base, &dma_fence_chain_ops, &chain->lock,
->> +			 context, seqno);
->>   
->>   	/*
->>   	 * Chaining dma_fence_chain container together is only allowed through
->> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
->> index f0cdd3e99d36..33661658f684 100644
->> --- a/drivers/dma-buf/dma-fence.c
->> +++ b/drivers/dma-buf/dma-fence.c
->> @@ -1023,3 +1023,12 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>   	trace_dma_fence_init(fence);
->>   }
->>   EXPORT_SYMBOL(dma_fence_init);
->> +
->> +void
->> +dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
->> +		 spinlock_t *lock, u64 context, u64 seqno)
->> +{
->> +	dma_fence_init(fence, ops, lock, context, seqno);
->> +	__set_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags);
->> +}
->> +EXPORT_SYMBOL(dma_fence_init64);
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->> index 51cddfa3f1e8..5d26797356a3 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->> @@ -71,7 +71,6 @@ static void amdgpu_tlb_fence_work(struct work_struct *work)
->>   }
->>   
->>   static const struct dma_fence_ops amdgpu_tlb_fence_ops = {
->> -	.use_64bit_seqno = true,
->>   	.get_driver_name = amdgpu_tlb_fence_get_driver_name,
->>   	.get_timeline_name = amdgpu_tlb_fence_get_timeline_name
->>   };
->> @@ -101,8 +100,8 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
->>   	INIT_WORK(&f->work, amdgpu_tlb_fence_work);
->>   	spin_lock_init(&f->lock);
->>   
->> -	dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
->> -		       vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
->> +	dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
->> +			 vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
->>   
->>   	/* TODO: We probably need a separate wq here */
->>   	dma_fence_get(&f->base);
->> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
->> index 48b5202c531d..ac6535716dbe 100644
->> --- a/include/linux/dma-fence.h
->> +++ b/include/linux/dma-fence.h
->> @@ -97,6 +97,7 @@ struct dma_fence {
->>   };
->>   
->>   enum dma_fence_flag_bits {
->> +	DMA_FENCE_FLAG_SEQNO64_BIT,
->>   	DMA_FENCE_FLAG_SIGNALED_BIT,
->>   	DMA_FENCE_FLAG_TIMESTAMP_BIT,
->>   	DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
->> @@ -262,6 +263,9 @@ struct dma_fence_ops {
->>   void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>   		    spinlock_t *lock, u64 context, u64 seqno);
->>   
->> +void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
->> +		      spinlock_t *lock, u64 context, u64 seqno);
->> +
->>   void dma_fence_release(struct kref *kref);
->>   void dma_fence_free(struct dma_fence *fence);
->>   void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
->> @@ -454,7 +458,7 @@ static inline bool __dma_fence_is_later(struct dma_fence *fence, u64 f1, u64 f2)
->>   	 * 32bit sequence numbers. Use a 64bit compare when the driver says to
->>   	 * do so.
->>   	 */
->> -	if (fence->ops->use_64bit_seqno)
->> +	if (test_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags))
->>   		return f1 > f2;
->>   
->>   	return (int)(lower_32_bits(f1) - lower_32_bits(f2)) > 0;
+>> tl;dr if patches are agreed upon, I ask subsys maintainers to take the
+>> respective ones via their trees (as they are split per subsys), so that
+>> the IRQ tree can take only the rest. That would minimize churn/conflicts
+>> during merges.
 > 
+> So. It's rc5 by now and I picked up everything
 
+Good, thanks.
+
+> which did not show up in next yet. 
+
+Which is the majority -- routing through subsystems didn't work as well 
+as I anticipated.
+
+I planned to retry with v3 after the next merge window, but you were faster.
+
+V3 contains a switch from nodes to dev_fwnode() in some cases. It 
+simplifies the code there. This did not get lost, I will send this 
+separately to maintainers once everything from this series settles in 
+the tree. I.e. likely after the next merge window.
+
+> @Jiri, I fixed up all your subject prefixes as
+> 
+>    'irqdomain: subsys: Switch to foo()'
+> 
+> does not make any sense at all. These subsystems have their regular
+> prefixes and these changes do not justify made up irqdomain special
+> prefixes at all.
+
+Yes.
+
+thanks,
+-- 
+js
+suse labs
