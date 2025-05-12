@@ -2,56 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4862BAB4D31
-	for <lists+amd-gfx@lfdr.de>; Tue, 13 May 2025 09:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D523AB4DDD
+	for <lists+amd-gfx@lfdr.de>; Tue, 13 May 2025 10:16:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC7510E53D;
-	Tue, 13 May 2025 07:45:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7630510E54B;
+	Tue, 13 May 2025 08:16:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Doi9B0lp";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="q47bmBE7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C62FE10E52E;
- Tue, 13 May 2025 07:45:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=uJmrj7E/JEd6hvrOvkRFlGZ+sDXBpTCTR2Oodnvtztg=; b=Doi9B0lpb6IqaW0H1ZwYuLgNYj
- 1EZl68sruqlBx1eM6uDjBddzJ/GRjdS937WzNcHzSOSXxNjsKn5oVqLc8R26OopYki8ny05nfCjuL
- VMNnEOfotnnJfRh9qD/uakYjAZhKR+6HW+wsBtaQEQE8oRo+z+bjXZE8loPxqB5HcisXpLfeXAf0c
- zHwH6S3ZdGU+L/+aVA3lDSgs9Tc8XvcVR4tvUb712hk3Yxcrc4Gk4cnoLpuEqkSqdRbvTje0FpH/O
- UoSfYSq7AppICE3BGP58TRGMeNmE5CkIkWRQG/YPMt5jiNTCJBP0ZZcEClqlNnsizCySHndF+zz4H
- 48ou6++Q==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uEkF7-007Tw1-6q; Tue, 13 May 2025 09:45:31 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC v3 10/10] drm/xe: Make dma-fences compliant with the safe access
- rules
-Date: Tue, 13 May 2025 08:45:13 +0100
-Message-ID: <20250513074513.81727-11-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250513074513.81727-1-tvrtko.ursulin@igalia.com>
-References: <20250513074513.81727-1-tvrtko.ursulin@igalia.com>
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5C9110E181;
+ Mon, 12 May 2025 12:50:06 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4Zwzw705Bdz9sss;
+ Mon, 12 May 2025 14:49:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1747054199; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=RucK/CUg7Z+XGAmZS46R/ajUuyzusOAdYiFs/Ok7uCk=;
+ b=q47bmBE76SXgdFHB5F2/VBCE6kWNYRDxIRLen84vGzAiwZ2OJHh8zujTFpmsvRcz7xUXhZ
+ 5PHQqHaeL5ykn5tqxpF8u5CSbE8s6u5EfSkBJa7XycDe4TsXH5qB4D5OnXZHSvZN08fyLq
+ KcYetILN+GafwNm6SIpmLO+/MjXycwTydFUH5/mu9dUAHx8u4IhJixlJC9cFM8aAFT/7/n
+ 16Bnr99P45+olTKRWSqC8UPRqDwpC7/CPU3nAuP+K7yqKHmQDPxi/JJcZGupt0HaW1CesM
+ yvOfXQV5QMBaBIE+B0Xhew8umNbxXhL4r4okgXqIFQ9oKg4oq383ig4qzPLNBw==
+Message-ID: <657c053d7cd443ff310dfff19d03ab11e0f17289.camel@mailbox.org>
+Subject: Re: [RFC v4 04/16] drm/sched: Avoid double re-lock on the job free
+ path
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ amd-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
+ Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
+Date: Mon, 12 May 2025 14:49:55 +0200
+In-Reply-To: <20250425102034.85133-5-tvrtko.ursulin@igalia.com>
+References: <20250425102034.85133-1-tvrtko.ursulin@igalia.com>
+ <20250425102034.85133-5-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: a51891704627a892095
+X-MBO-RS-META: 7tnqyyomak5yfkowpqcj38ha19666u8n
+X-Mailman-Approved-At: Tue, 13 May 2025 08:15:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,83 +64,157 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Xe can free some of the data pointed to by the dma-fences it exports. Most
-notably the timeline name can get freed if userspace closes the associated
-submit queue. At the same time the fence could have been exported to a
-third party (for example a sync_fence fd) which will then cause an use-
-after-free on subsequent access.
+On Fri, 2025-04-25 at 11:20 +0100, Tvrtko Ursulin wrote:
+> Currently the job free work item will lock sched->job_list_lock first
+> time
+> to see if there are any jobs, free a single job, and then lock again
+> to
+> decide whether to re-queue itself if there are more finished jobs.
+>=20
+> Since drm_sched_get_finished_job() already looks at the second job in
+> the
+> queue we can simply add the signaled check and have it return the
+> presence
+> of more jobs to free to the caller. That way the work item does not
+> have
+> to lock the list again and repeat the signaled check.
 
-To make this safe we need to make the driver compliant with the newly
-documented dma-fence rules. Driver has to ensure a RCU grace period
-between signalling a fence and freeing any data pointed to by said fence.
+Are you convinced that this is worth it?
 
-For the timeline name we simply make the queue be freed via kfree_rcu and
-for the shared lock associated with multiple queues we add a RCU grace
-period before freeing the per GT structure holding the lock.
+I'm torn. It's rare that one returns a status through a boolean by
+reference.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h | 2 ++
- drivers/gpu/drm/xe/xe_guc_submit.c           | 7 ++++++-
- drivers/gpu/drm/xe/xe_hw_fence.c             | 3 +++
- 3 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index 4c39f01e4f52..a3f421e2adc0 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -20,6 +20,8 @@ struct xe_exec_queue;
- struct xe_guc_exec_queue {
- 	/** @q: Backpointer to parent xe_exec_queue */
- 	struct xe_exec_queue *q;
-+	/** @rcu: For safe freeing of exported dma fences */
-+	struct rcu_head rcu;
- 	/** @sched: GPU scheduler for this xe_exec_queue */
- 	struct xe_gpu_scheduler sched;
- 	/** @entity: Scheduler entity for this xe_exec_queue */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index fb125f940de8..879a4474bf51 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1291,7 +1291,11 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
- 	xe_sched_entity_fini(&ge->entity);
- 	xe_sched_fini(&ge->sched);
- 
--	kfree(ge);
-+	/*
-+	 * RCU free due sched being exported via DRM scheduler fences
-+	 * (timeline name).
-+	 */
-+	kfree_rcu(ge, rcu);
- 	xe_exec_queue_fini(q);
- 	xe_pm_runtime_put(guc_to_xe(guc));
- }
-@@ -1474,6 +1478,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- 	q->guc = ge;
- 	ge->q = q;
-+	init_rcu_head(&ge->rcu);
- 	init_waitqueue_head(&ge->suspend_wait);
- 
- 	for (i = 0; i < MAX_STATIC_MSG_TYPE; ++i)
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index 03eb8c6d1616..b2a0c46dfcd4 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -100,6 +100,9 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
- 		spin_unlock_irqrestore(&irq->lock, flags);
- 		dma_fence_end_signalling(tmp);
- 	}
-+
-+	/* Safe release of the irq->lock used in dma_fence_init. */
-+	synchronize_rcu();
- }
- 
- void xe_hw_fence_irq_run(struct xe_hw_fence_irq *irq)
--- 
-2.48.0
+Independently from that, this is a candidate which certainly can be
+branched out from this series, to make the series completely about the
+new scheduling policy, not general other improvements.
+
+
+P.
+
+>=20
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+> ---
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 39 +++++++++++------------=
+-
+> --
+> =C2=A01 file changed, 16 insertions(+), 23 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> b/drivers/gpu/drm/scheduler/sched_main.c
+> index 86e40157b09b..a45b02fd2af3 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -365,22 +365,6 @@ static void __drm_sched_run_free_queue(struct
+> drm_gpu_scheduler *sched)
+> =C2=A0		queue_work(sched->submit_wq, &sched->work_free_job);
+> =C2=A0}
+> =C2=A0
+> -/**
+> - * drm_sched_run_free_queue - enqueue free-job work if ready
+> - * @sched: scheduler instance
+> - */
+> -static void drm_sched_run_free_queue(struct drm_gpu_scheduler
+> *sched)
+> -{
+> -	struct drm_sched_job *job;
+> -
+> -	spin_lock(&sched->job_list_lock);
+> -	job =3D list_first_entry_or_null(&sched->pending_list,
+> -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_job, list);
+> -	if (job && dma_fence_is_signaled(&job->s_fence->finished))
+> -		__drm_sched_run_free_queue(sched);
+> -	spin_unlock(&sched->job_list_lock);
+> -}
+> -
+> =C2=A0/**
+> =C2=A0 * drm_sched_job_done - complete a job
+> =C2=A0 * @s_job: pointer to the job which is done
+> @@ -1097,12 +1081,13 @@ drm_sched_select_entity(struct
+> drm_gpu_scheduler *sched)
+> =C2=A0 * drm_sched_get_finished_job - fetch the next finished job to be
+> destroyed
+> =C2=A0 *
+> =C2=A0 * @sched: scheduler instance
+> + * @have_more: are there more finished jobs on the list
+> =C2=A0 *
+> =C2=A0 * Returns the next finished job from the pending list (if there is
+> one)
+> =C2=A0 * ready for it to be destroyed.
+> =C2=A0 */
+> =C2=A0static struct drm_sched_job *
+> -drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
+> +drm_sched_get_finished_job(struct drm_gpu_scheduler *sched, bool
+> *have_more)
+> =C2=A0{
+> =C2=A0	struct drm_sched_job *job, *next;
+> =C2=A0
+> @@ -1110,22 +1095,27 @@ drm_sched_get_finished_job(struct
+> drm_gpu_scheduler *sched)
+> =C2=A0
+> =C2=A0	job =3D list_first_entry_or_null(&sched->pending_list,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_job, list=
+);
+> -
+> =C2=A0	if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
+> =C2=A0		/* remove job from pending_list */
+> =C2=A0		list_del_init(&job->list);
+> =C2=A0
+> =C2=A0		/* cancel this job's TO timer */
+> =C2=A0		cancel_delayed_work(&sched->work_tdr);
+> -		/* make the scheduled timestamp more accurate */
+> +
+> +		*have_more =3D false;
+> =C2=A0		next =3D list_first_entry_or_null(&sched-
+> >pending_list,
+> =C2=A0						typeof(*next),
+> list);
+> -
+> =C2=A0		if (next) {
+> +			/* make the scheduled timestamp more
+> accurate */
+> =C2=A0			if (test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 &next->s_fence-
+> >scheduled.flags))
+> =C2=A0				next->s_fence->scheduled.timestamp =3D
+> =C2=A0					dma_fence_timestamp(&job-
+> >s_fence->finished);
+> +
+> +			if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 &next->s_fence-
+> >finished.flags))
+> +				*have_more =3D true;
+> +
+> =C2=A0			/* start TO timer for next job */
+> =C2=A0			drm_sched_start_timeout(sched);
+> =C2=A0		}
+> @@ -1184,12 +1174,15 @@ static void drm_sched_free_job_work(struct
+> work_struct *w)
+> =C2=A0	struct drm_gpu_scheduler *sched =3D
+> =C2=A0		container_of(w, struct drm_gpu_scheduler,
+> work_free_job);
+> =C2=A0	struct drm_sched_job *job;
+> +	bool have_more;
+> =C2=A0
+> -	job =3D drm_sched_get_finished_job(sched);
+> -	if (job)
+> +	job =3D drm_sched_get_finished_job(sched, &have_more);
+> +	if (job) {
+> =C2=A0		sched->ops->free_job(job);
+> +		if (have_more)
+> +			__drm_sched_run_free_queue(sched);
+> +	}
+> =C2=A0
+> -	drm_sched_run_free_queue(sched);
+> =C2=A0	drm_sched_run_job_queue(sched);
+> =C2=A0}
+> =C2=A0
 
