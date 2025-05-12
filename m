@@ -2,126 +2,126 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBB7AB2FD8
-	for <lists+amd-gfx@lfdr.de>; Mon, 12 May 2025 08:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F639AB2FDA
+	for <lists+amd-gfx@lfdr.de>; Mon, 12 May 2025 08:42:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9206910E2DB;
-	Mon, 12 May 2025 06:42:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F53210E2D6;
+	Mon, 12 May 2025 06:42:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PYtg9Kp2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uL9AvLaa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2086.outbound.protection.outlook.com [40.107.100.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6B5010E2DB
- for <amd-gfx@lists.freedesktop.org>; Mon, 12 May 2025 06:42:22 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2079.outbound.protection.outlook.com [40.107.236.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC40110E2DC
+ for <amd-gfx@lists.freedesktop.org>; Mon, 12 May 2025 06:42:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c//kzphC7tHRq02pBHPUSHHF0+q3YUu3JUZMN26aaosBRafNm1H1ZrjSPk59WKKHco4A5DpavlNraCggr+4NenUu+MtQQyY082XmNU8OGXTiZVyBMS7wSRltPgVJ3Zko8mVi3+8dQYBMafJRWQxz8tDarAK3S5JuCcdDodU5c7OJ8y32bi9Tsra15wO3KLiKkgJQLH6DnrS8UasARiiX1vTiIPTMOXlMnDbR43E67chY+uJ9WP0NfcO7/oa/YEa3XHEm6tTFOHSBE3wY6a8dw6NprqXes7dNgNBA04AFhp1AuWAxYxqgcBTbLzavqAbjNk/E8Vjk0x5ikzkpfIisng==
+ b=onI/tofA9jCD0s4vVrFZJ0FUZtsaHm8R826K5Oj1jnXd/DdUfASVtI+2HzC7oLL+tAIey7iGR073PULhG0pLwQesM78tA0bVQOltBA2q+svqMcQh82yPkEt6kseKbY7ubgVgrjBkt5gfuJZMhVQ8a99INsQxn2FqsWtBwIrCzQomCY/8di81t4p7YVdjz1ges3Bc8iJh080B9io1ZHBWtiMEcfGxU6FaeUkhxj10GH455WaSMBfAh0hKzhFlVzm3SUbxrLrQ7DGsKhMYhQqo5Xhv4repXxWjmyJ4ghdn9pahiXD7hKVjLMYJZ+DExqUVmjBb4ERbbISZNK1TSTwMYQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WlygrPFgynUPjkMlH7qzJ8Ba40OxUVXa19t1dxyBkF4=;
- b=RUIXGs0AUCEDKk8onVnTbBTIBPmeC+qi9AE0x0qZHgpO1+QQtLX+pOiSUf0FGpBNM477qowWQHG8gjhTR3XmGa1zKloFLkhd+3WWciIdM++oWfVShpSjqSr1UwpVrlVzEv1tY8Z7vylu/z28mCTLXcJQ+CeEnBgOWJw0BsPBSt56VCt8MhM4MZB4gk17e2RSrSRVdhn3m8Ht8fXgn/b0ZZ3UH7TOZUL5XDG0qPkL6gYKsM+VZUK4I+WQEzUbnFohYORzs0sIjp8mzJNLAR2tZtvvgn4++iOlQPkTcq8NJ9vblmMR/sGjFRZdVAp4G5fvoAiXpLbmKhKi5dBqMZ4L/Q==
+ bh=zDOUOzPkNhK0CWJZLcjgV2MnQKHy8OJbLYVAfyjEG4Q=;
+ b=dHx2ZLmcMeorbjXzs1vWU98pcfQNCRc1nPbORYD6U4sRhf9H0gEXxwt9qBcbpZN5ukOIazPqiHt7j4yIaMaa1JTj2++WI3sbE3gObCFv/PvVUJVAKO365qI5c3wV4Hmd37RhcRyo9cJji6/0pI4Wnpmppm3TdTPUqB9Se2DZD+myhXrtjzS819tn4nut5xmuF7d1TGgdZNFyi1+GHB2Y1fnJ1uQvZ/Jo8Mjw8pF0j+hEVpI9Nu3lN0HRWn4uQkE5XZKdK8hGvPLd/9Mi3Xf2c+0INz/vawWCKjPMPDEk3oiCie6I8P7zomMijNmGkuMGGHC6Pn2czw55O365KPprZQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WlygrPFgynUPjkMlH7qzJ8Ba40OxUVXa19t1dxyBkF4=;
- b=PYtg9Kp2NILT2olrbhS1IQsxyC3p61eVkOMCtmr3VwBQzynRgfJCs/Wn/9iXLdFfAWXj3T7drCRj/ITMZ/zUVZI7NJe6B8EoDNwQvTTLI+oHI3P2S6loj3FHM28NXOkJ8hX8jvVCMmQcnfeV9/eGnTj2QhD5LPCn2FNZIvytKxw=
-Received: from MN2PR20CA0043.namprd20.prod.outlook.com (2603:10b6:208:235::12)
- by SJ2PR12MB8847.namprd12.prod.outlook.com (2603:10b6:a03:546::19)
+ bh=zDOUOzPkNhK0CWJZLcjgV2MnQKHy8OJbLYVAfyjEG4Q=;
+ b=uL9AvLaaDslWof5uLDQHXX11PGOOE3BIdoC+WqPd6s2iix+28GjAP1bS8JAjyOIc7oGNBnHwLlMsUJI8UA00jU+FrVY3U2IomQgzq7qPBtc4aSd3mg9er3/Ub5ygKjKfNGvEgYXQq27cHpC1HvZ2peeepKD0YktWlffMYHddvOc=
+Received: from CH2PR15CA0005.namprd15.prod.outlook.com (2603:10b6:610:51::15)
+ by MW4PR12MB7311.namprd12.prod.outlook.com (2603:10b6:303:227::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Mon, 12 May
- 2025 06:42:17 +0000
-Received: from BN2PEPF00004FBE.namprd04.prod.outlook.com
- (2603:10b6:208:235:cafe::87) by MN2PR20CA0043.outlook.office365.com
- (2603:10b6:208:235::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.26 via Frontend Transport; Mon,
- 12 May 2025 06:42:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.28; Mon, 12 May
+ 2025 06:42:19 +0000
+Received: from CH1PEPF0000AD7B.namprd04.prod.outlook.com
+ (2603:10b6:610:51:cafe::ad) by CH2PR15CA0005.outlook.office365.com
+ (2603:10b6:610:51::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.27 via Frontend Transport; Mon,
+ 12 May 2025 06:42:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN2PEPF00004FBE.mail.protection.outlook.com (10.167.243.184) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD7B.mail.protection.outlook.com (10.167.244.58) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8722.18 via Frontend Transport; Mon, 12 May 2025 06:42:16 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.8722.18 via Frontend Transport; Mon, 12 May 2025 06:42:19 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 12 May
- 2025 01:42:15 -0500
+ 2025 01:42:18 -0500
 Received: from hjbog17.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Mon, 12 May 2025 01:42:13 -0500
+ Transport; Mon, 12 May 2025 01:42:16 -0500
 From: Samuel Zhang <guoqing.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <victor.zhao@amd.com>, <haijun.chang@amd.com>, <guoqing.zhang@amd.com>,
  <Christian.Koenig@amd.com>, <Alexander.Deucher@amd.com>,
- <Owen.Zhang2@amd.com>, <Qing.Ma@amd.com>, Jiang Liu <gerry@linux.alibaba.com>
-Subject: [PATCH v5 2/4] drm/amdgpu: update GPU addresses for SMU and PSP
-Date: Mon, 12 May 2025 14:41:39 +0800
-Message-ID: <20250512064141.387079-3-guoqing.zhang@amd.com>
+ <Owen.Zhang2@amd.com>, <Qing.Ma@amd.com>, Emily Deng <Emily.Deng@amd.com>
+Subject: [PATCH v5 3/4] drm/amdgpu: enable pdb0 for hibernation on SRIOV
+Date: Mon, 12 May 2025 14:41:40 +0800
+Message-ID: <20250512064141.387079-4-guoqing.zhang@amd.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <20250512064141.387079-1-guoqing.zhang@amd.com>
 References: <20250512064141.387079-1-guoqing.zhang@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: guoqing.zhang@amd.com does not
+Received-SPF: None (SATLEXMB04.amd.com: guoqing.zhang@amd.com does not
  designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBE:EE_|SJ2PR12MB8847:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b34d400-ae46-4e8a-2acf-08dd912022ba
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7B:EE_|MW4PR12MB7311:EE_
+X-MS-Office365-Filtering-Correlation-Id: 943e18bb-26bd-4a60-a369-08dd91202473
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?s24EGfM12X5XQWQnj47+J1A/7ZSnCkzxYoaUIyweUcfx+s7eNlxnNYq5IN08?=
- =?us-ascii?Q?vOHRHBk2QasNfyaE9/XuiwBlKhZmJ8Qu9Wjwsg26aevT2ITxAq1S1f8BpaiG?=
- =?us-ascii?Q?Gl8eD1H9imrodHh9NixdVO1Qwn6ANcI7aaSmm2DTjpjXfqw4JZiQAF20JMEO?=
- =?us-ascii?Q?rTmQGkbqCC3YIgiFdCLOctIcPCtyNBasuDtQB2ZGbFtbKB09ry8AA/tPVF6C?=
- =?us-ascii?Q?ipXDdBuqx12N80mem0jA+GkXXiICiS3xq/NETVnuekMluCTTpMXkgaI530Ww?=
- =?us-ascii?Q?k7QRpNQIPaUT1Dfej3c2ofH1/rWOiE3gNJZY22yza7QL40ckK5iaq5En2nyj?=
- =?us-ascii?Q?Hm8hrTdsf1469P6Zq64LLRNC8AWXeGKWHRC5EZEn8IrTfLP0SyZpkDb6HxaK?=
- =?us-ascii?Q?glngHPWP//dKoW1TEij/e+SDCctORqFZlCtj46UjTGKFxN1vcEx4kPaFeCUp?=
- =?us-ascii?Q?WkhgNQX+xL98u6pDa0kChyHfGWRXgEm3WfWbfic7cTBfnA71aKF1LbMcZ5ho?=
- =?us-ascii?Q?ruKvxg748HBKm65q56wyGkOlaO1abyk09QNaKoZYza/STqnJq2GmbmeczP1m?=
- =?us-ascii?Q?RTyKp5oSJiXf9vi/CYclXKmRaYpQ7nBFU/bHaBuwlWb86HRl5VnUTDvPIs9a?=
- =?us-ascii?Q?2fj2vflN5Pz5301OSwsJvOFG4u70wRVFNs37rYqhFZSkz2CcyyHfzHkT32Jj?=
- =?us-ascii?Q?UvR6ViyUXNtFdXTKFNvsUz8R58yH1G9lEvpx3Z0wj+sXzdUZ9iRszZZxd874?=
- =?us-ascii?Q?XJFjye25iul62yb/EolCFKvyF8zvvNCLyI5KSKJ9k3ZyWYahvijgXeUvHQfR?=
- =?us-ascii?Q?+ChjIQSrzN4lZo5+d2TaHT7GL0ehnS+e/jeDcuxlmznPKamHRL0DEDl1MITt?=
- =?us-ascii?Q?Q3k6FORUbYB0q4vQPfGbcQephVoh6StZH+LVhnbBzfPz3mOE3l4ksTJyCk4j?=
- =?us-ascii?Q?CRm7BYoVnZPEYfuKZSphtBy/ETdeD108JlD433NLGj6VXhIXYS0L7cOhvUkQ?=
- =?us-ascii?Q?N96L7kDaCqFPVgK1kI78a84pUuXXcGYPPjBK//KlYJCD14Sg+5eFVyKz0WqW?=
- =?us-ascii?Q?fVoeB9+TmLmR2S/JaIrcGPpUqvnLo3glhBrTDs7BZmj8YKYr8Z2bCP9TLscK?=
- =?us-ascii?Q?jS5FpuONI+KcIp7F9WyT4CUxQDUJDKl9gLGjkASq71B0+3bKWb1UT2vPeaQm?=
- =?us-ascii?Q?yWHovZt+xryYuDxy0VOd37ArMIulu0YfCmkfekRNuEx+BzH37kwUT8DugDK5?=
- =?us-ascii?Q?mYFUXW/0Vpf3MXdPDosRYzmxIMbYf8YTI1XsmnuVX6KSNaRs8VHCd8VoZaOt?=
- =?us-ascii?Q?V/QGUGlJD/zMg9D9YOb23lZzfvz+od85xhrr6QjiUdp3bEv5zGsyFyhxOrJf?=
- =?us-ascii?Q?AFJjSDMx5zKOgcz0aCswNr/9ggsMpULapvStm4qkcxFSzivW6AxewAhLdrMq?=
- =?us-ascii?Q?o2DoSzjRhKSyuWmS+Cu03mA5aY8R3W2Nal6VNxzRFXCkSuRrX8mXn4eN3UBh?=
- =?us-ascii?Q?lxvT5triQjpPKzbux34embyQJzWw+PNLPe0R?=
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4+8TU0woj+B4KygevaEB7n2bxjlgXlWUJYaDCqz7T/xFljavfIe7Hd1N++5Y?=
+ =?us-ascii?Q?gpONqou2CF4ggSbOcGDqtYmuSZXBbkNvGEhLurAb376G40zLYs53LMYrB3ai?=
+ =?us-ascii?Q?dlJINuj9M5NyY7dvdI+jGpgStWHlELpjJI1/vYiB9QGl/uVmfZ+W2PSFdxcq?=
+ =?us-ascii?Q?xLBrNCVUX5sELeWZb39+gZUPDX4BMn5CBz3KMkEAp6dsvbrjp7qCCaHWnJi4?=
+ =?us-ascii?Q?WKLlNJ4JjQJXVI4nkKwZpUFClnstEFXXHmU7tQZm8VAGqEJQ5lrxlCeRWuw6?=
+ =?us-ascii?Q?XTcFlOEd66t3uGP7pd4RozsYezHqcfGyI7S3jLbBMD+CBGsS3OP/yGm+IiYu?=
+ =?us-ascii?Q?4JcgZb4diSni09WvOeQEHKNkVDcXX1oqmfvYZfW68Kj0MgWIEqts2eJgcgyw?=
+ =?us-ascii?Q?UByPjT6bqwUfmU/RopnU5J5xPGBgkmza6xkge7V51zX2i4V0eLem/iIFQo2F?=
+ =?us-ascii?Q?arW5XhiFJa5xGohkEnakBc67ykk8BWaAjnsD5NUodATDPcJV3XehReVjlsYv?=
+ =?us-ascii?Q?5yzoY4tghm8UjQK5QRyUDRYjDPnsbNDtZJcNYLGAwk+MT5aa0or7DqjQkYNA?=
+ =?us-ascii?Q?jWOXZd/fZ+vXiEJAhdSdEwbJWzCY1ErmzsDJNUgk7hZXHE6+ll068oqgTrw1?=
+ =?us-ascii?Q?r6ZEgOsId62R0M5D7jTYf3kMIiec+23rcAnWSkdOc2DhVeQtLrfjPGyXd2iy?=
+ =?us-ascii?Q?7H5BaJFoar0Uarbk2rbTqBkUPSzniMXnW+n6gPlXE9gBskh9sEFkMCOPmJ9u?=
+ =?us-ascii?Q?fPxUKfugMWoF+z8+tCERI8vOhyKTuwLLWY1+AV/jYJQVVbxhVahHwwLYq8Bx?=
+ =?us-ascii?Q?1G/YLC+r56hkRY3RzjtvYsgPTD2SDRh/zIt06nHnNx7wRfeCZ+jJ+Q4J1TRF?=
+ =?us-ascii?Q?G5VYKUYaAenE/91+/+wzJMMgZCdeR9HrCtYACc42VChyBu/BNaDxbCFMpNmP?=
+ =?us-ascii?Q?t8BxJIIAnGsaeDjdH1GbavvGWYL3Eu0BQF/7UxP+lqMoeqJUCUYzw/UukmWo?=
+ =?us-ascii?Q?1vQI/gmnzR8nBXoOSh3jtTSNsaWJywpTlC/l+zSGBD+noIkK17z7JPnaZGQf?=
+ =?us-ascii?Q?DWY+C5lO6SU2uf8oWc2/QKk0/aJcgybhVmKm39UU0dUP3hXHNCDmfEr9AGv4?=
+ =?us-ascii?Q?kbhsXg7Vzr0gmsxTXZCRO0nJjgX5gupBTQn//k7uTug/fsmCIU4oLAgR+jV8?=
+ =?us-ascii?Q?imht92hysstJce9on7xk9ViQgpCdgpkneoTyci3qBcbDLFt+f6v4Lj3GuGIg?=
+ =?us-ascii?Q?145cD6Bg1lKcuQFvH6F1wam9JH+7jVBjJJst1HVQT8gJ8m/9n8Em8y20sd7w?=
+ =?us-ascii?Q?Gj/q/jTxKwDPPSFip+PdJLbC236luzv8OjJONKoWUbLsbIQsoPn/f+SDr6Uz?=
+ =?us-ascii?Q?RVB3riRi0iC8TKlDxSC7KiYwWu7JZqRsZWPfxre7oSdOO9kx5GAS00Ng+2i5?=
+ =?us-ascii?Q?ffnIS0F3HCMG1xozampI3NVlJInOW5p9hSEEYMsjhwnyWIc54uGRf4b0J3as?=
+ =?us-ascii?Q?/z/Pjet21dYHg+jPxJsoqnIkR5e9Q0+EQfxJ?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2025 06:42:16.3659 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b34d400-ae46-4e8a-2acf-08dd912022ba
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2025 06:42:19.2477 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 943e18bb-26bd-4a60-a369-08dd91202473
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FBE.namprd04.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD7B.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8847
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7311
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,190 +136,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-add amdgpu_bo_fb_aper_addr() and update the cached GPU addresses to use
-the FB aperture address for SMU and PSP.
+When switching to new GPU index after hibernation and then resume,
+VRAM offset of each VRAM BO will be changed, and the cached gpu
+addresses needed to updated.
 
-2 reasons for this change:
-1. when pdb0 is enabled, gpu addr from amdgpu_bo_create_kernel() is GART
-aperture address, it is not compatible with SMU and PSP, it need to be
-updated to use FB aperture address.
-2. Since FB aperture address will change after switching to new GPU
-index after hibernation, it need to be updated on resume.
+This is to enable pdb0 and switch to use pdb0-based virtual gpu
+address by default in amdgpu_bo_create_reserved(). since the virtual
+addresses do not change, this can avoid the need to update all
+cached gpu addresses all over the codebase.
 
-Signed-off-by: Jiang Liu <gerry@linux.alibaba.com>
+Signed-off-by: Emily Deng <Emily.Deng@amd.com>
 Signed-off-by: Samuel Zhang <guoqing.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 20 ++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c    | 27 ++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c  |  3 +++
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c  | 18 +++++++++++++++
- 5 files changed, 69 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c  | 32 ++++++++++++++++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h  |  1 +
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c    | 16 +++++++++---
+ drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c  |  6 +++--
+ 5 files changed, 43 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 4e794d546b61..3dde57cd5b81 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1513,6 +1513,26 @@ u64 amdgpu_bo_gpu_offset(struct amdgpu_bo *bo)
- 	return amdgpu_bo_gpu_offset_no_check(bo);
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index d1fa5e8e3937..265d6c777af5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -38,6 +38,8 @@
+ #include <drm/drm_drv.h>
+ #include <drm/ttm/ttm_tt.h>
  
-+/**
-+ * amdgpu_bo_fb_aper_addr - return FB aperture GPU offset of the VRAM bo
-+ * @bo:	amdgpu VRAM buffer object for which we query the offset
-+ *
-+ * Returns:
-+ * current FB aperture GPU offset of the object.
-+ */
-+u64 amdgpu_bo_fb_aper_addr(struct amdgpu_bo *bo)
-+{
-+	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
-+	uint64_t offset, fb_base;
-+
-+	WARN_ON_ONCE(bo->tbo.resource->mem_type != TTM_PL_VRAM);
-+
-+	fb_base = adev->mmhub.funcs->get_fb_location(adev);
-+	fb_base += adev->gmc.xgmi.physical_node_id * adev->gmc.xgmi.node_segment_size;
-+	offset = (bo->tbo.resource->start << PAGE_SHIFT) + fb_base;
-+	return amdgpu_gmc_sign_extend(offset);
-+}
++static const u64 four_gb = 0x100000000ULL;
 +
  /**
-  * amdgpu_bo_gpu_offset_no_check - return GPU offset of bo
-  * @bo:	amdgpu object for which we query the offset
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-index dcce362bfad3..c8a63e38f5d9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-@@ -320,6 +320,7 @@ int amdgpu_bo_sync_wait_resv(struct amdgpu_device *adev, struct dma_resv *resv,
- 			     bool intr);
- int amdgpu_bo_sync_wait(struct amdgpu_bo *bo, void *owner, bool intr);
- u64 amdgpu_bo_gpu_offset(struct amdgpu_bo *bo);
-+u64 amdgpu_bo_fb_aper_addr(struct amdgpu_bo *bo);
- u64 amdgpu_bo_gpu_offset_no_check(struct amdgpu_bo *bo);
- uint32_t amdgpu_bo_mem_stats_placement(struct amdgpu_bo *bo);
- uint32_t amdgpu_bo_get_preferred_domain(struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index e1e658a97b36..14271f62ca8e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -871,6 +871,8 @@ static int psp_tmr_init(struct psp_context *psp)
- 					      &psp->tmr_bo, &psp->tmr_mc_addr,
- 					      pptr);
- 	}
-+	if (amdgpu_virt_xgmi_migrate_enabled(psp->adev) && psp->tmr_bo)
-+		psp->tmr_mc_addr = amdgpu_bo_fb_aper_addr(psp->tmr_bo);
- 
- 	return ret;
- }
-@@ -1270,6 +1272,11 @@ int psp_ta_load(struct psp_context *psp, struct ta_context *context)
- 	psp_copy_fw(psp, context->bin_desc.start_addr,
- 		    context->bin_desc.size_bytes);
- 
-+	if (amdgpu_virt_xgmi_migrate_enabled(psp->adev) &&
-+		context->mem_context.shared_bo)
-+		context->mem_context.shared_mc_addr =
-+			amdgpu_bo_fb_aper_addr(context->mem_context.shared_bo);
-+
- 	psp_prep_ta_load_cmd_buf(cmd, psp->fw_pri_mc_addr, context);
- 
- 	ret = psp_cmd_submit_buf(psp, NULL, cmd,
-@@ -2336,11 +2343,27 @@ bool amdgpu_psp_tos_reload_needed(struct amdgpu_device *adev)
- 	return false;
- }
- 
-+static void psp_update_gpu_addresses(struct amdgpu_device *adev)
-+{
-+	struct psp_context *psp = &adev->psp;
-+
-+	if (psp->cmd_buf_bo && psp->cmd_buf_mem) {
-+		psp->fw_pri_mc_addr = amdgpu_bo_fb_aper_addr(psp->fw_pri_bo);
-+		psp->fence_buf_mc_addr = amdgpu_bo_fb_aper_addr(psp->fence_buf_bo);
-+		psp->cmd_buf_mc_addr = amdgpu_bo_fb_aper_addr(psp->cmd_buf_bo);
-+	}
-+	if (adev->firmware.rbuf && psp->km_ring.ring_mem)
-+		psp->km_ring.ring_mem_mc_addr = amdgpu_bo_fb_aper_addr(adev->firmware.rbuf);
-+}
-+
- static int psp_hw_start(struct psp_context *psp)
+  * amdgpu_gmc_pdb0_alloc - allocate vram for pdb0
+  *
+@@ -249,15 +251,24 @@ void amdgpu_gmc_sysvm_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc
  {
- 	struct amdgpu_device *adev = psp->adev;
- 	int ret;
- 
-+	if (amdgpu_virt_xgmi_migrate_enabled(adev))
-+		psp_update_gpu_addresses(adev);
+ 	u64 hive_vram_start = 0;
+ 	u64 hive_vram_end = mc->xgmi.node_segment_size * mc->xgmi.num_physical_nodes - 1;
+-	mc->vram_start = mc->xgmi.node_segment_size * mc->xgmi.physical_node_id;
+-	mc->vram_end = mc->vram_start + mc->xgmi.node_segment_size - 1;
+-	mc->gart_start = hive_vram_end + 1;
 +
- 	if (!amdgpu_sriov_vf(adev)) {
- 		if ((is_psp_fw_valid(psp->kdb)) &&
- 		    (psp->funcs->bootloader_load_kdb != NULL)) {
-@@ -3976,6 +3999,8 @@ static ssize_t psp_usbc_pd_fw_sysfs_write(struct device *dev,
- 	memcpy_toio(fw_pri_cpu_addr, usbc_pd_fw->data, usbc_pd_fw->size);
++	if (amdgpu_virt_xgmi_migrate_enabled(adev)) {
++		/* set mc->vram_start to 0 to switch the returned GPU address of
++		 * amdgpu_bo_create_reserved() from FB aperture to GART aperture.
++		 */
++		amdgpu_gmc_vram_location(adev, mc, 0);
++	} else {
++		mc->vram_start = mc->xgmi.node_segment_size * mc->xgmi.physical_node_id;
++		mc->vram_end = mc->vram_start + mc->xgmi.node_segment_size - 1;
++		dev_info(adev->dev, "VRAM: %lluM 0x%016llX - 0x%016llX (%lluM used)\n",
++				mc->mc_vram_size >> 20, mc->vram_start,
++				mc->vram_end, mc->real_vram_size >> 20);
++	}
++	/* node_segment_size may not 4GB aligned on SRIOV, align up is needed. */
++	mc->gart_start = ALIGN(hive_vram_end + 1, four_gb);
+ 	mc->gart_end = mc->gart_start + mc->gart_size - 1;
+ 	mc->fb_start = hive_vram_start;
+ 	mc->fb_end = hive_vram_end;
+-	dev_info(adev->dev, "VRAM: %lluM 0x%016llX - 0x%016llX (%lluM used)\n",
+-			mc->mc_vram_size >> 20, mc->vram_start,
+-			mc->vram_end, mc->real_vram_size >> 20);
+ 	dev_info(adev->dev, "GART: %lluM 0x%016llX - 0x%016llX\n",
+ 			mc->gart_size >> 20, mc->gart_start, mc->gart_end);
+ }
+@@ -276,7 +287,6 @@ void amdgpu_gmc_sysvm_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc
+ void amdgpu_gmc_gart_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc,
+ 			      enum amdgpu_gart_placement gart_placement)
+ {
+-	const uint64_t four_gb = 0x100000000ULL;
+ 	u64 size_af, size_bf;
+ 	/*To avoid the hole, limit the max mc address to AMDGPU_GMC_HOLE_START*/
+ 	u64 max_mc_address = min(adev->gmc.mc_mask, AMDGPU_GMC_HOLE_START - 1);
+@@ -1068,6 +1078,14 @@ void amdgpu_gmc_init_pdb0(struct amdgpu_device *adev)
+ 	flags |= AMDGPU_PTE_FRAG((adev->gmc.vmid0_page_table_block_size + 9*1));
+ 	flags |= AMDGPU_PDE_PTE_FLAG(adev);
  
- 	mutex_lock(&adev->psp.mutex);
-+	if (amdgpu_virt_xgmi_migrate_enabled(adev))
-+		fw_pri_mc_addr = amdgpu_bo_fb_aper_addr(fw_buf_bo);
- 	ret = psp_load_usbc_pd_fw(&adev->psp, fw_pri_mc_addr);
- 	mutex_unlock(&adev->psp.mutex);
- 
-@@ -4085,6 +4110,8 @@ static ssize_t amdgpu_psp_vbflash_read(struct file *filp, struct kobject *kobj,
- 	memcpy_toio(fw_pri_cpu_addr, adev->psp.vbflash_tmp_buf, adev->psp.vbflash_image_size);
- 
- 	mutex_lock(&adev->psp.mutex);
-+	if (amdgpu_virt_xgmi_migrate_enabled(adev))
-+		fw_pri_mc_addr = amdgpu_bo_fb_aper_addr(fw_buf_bo);
- 	ret = psp_update_spirom(&adev->psp, fw_pri_mc_addr);
- 	mutex_unlock(&adev->psp.mutex);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-index 3d9e9fdc10b4..bf9013f8d12e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-@@ -1152,6 +1152,9 @@ int amdgpu_ucode_init_bo(struct amdgpu_device *adev)
- 		adev->firmware.max_ucodes = AMDGPU_UCODE_ID_MAXIMUM;
- 	}
- 
-+	if (amdgpu_virt_xgmi_migrate_enabled(adev) && adev->firmware.fw_buf)
-+		adev->firmware.fw_buf_mc = amdgpu_bo_fb_aper_addr(adev->firmware.fw_buf);
++	if (amdgpu_virt_xgmi_migrate_enabled(adev)) {
++		/* always start from current device so that the GART address can keep
++		 * consistent when hibernate-resume with different GPUs.
++		 */
++		vram_addr = adev->vm_manager.vram_base_offset;
++		vram_end = vram_addr + vram_size;
++	}
 +
- 	for (i = 0; i < adev->firmware.max_ucodes; i++) {
- 		ucode = &adev->firmware.ucode[i];
- 		if (ucode->fw) {
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 315b0856bf02..f9f49f37dfcd 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1000,6 +1000,21 @@ static int smu_fini_fb_allocations(struct smu_context *smu)
+ 	/* The first n PDE0 entries are used as PTE,
+ 	 * pointing to vram
+ 	 */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+index bd7fc123b8f9..46fac7ca7dfa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+@@ -307,6 +307,7 @@ struct amdgpu_gmc {
+ 	struct amdgpu_bo		*pdb0_bo;
+ 	/* CPU kmapped address of pdb0*/
+ 	void				*ptr_pdb0;
++	bool pdb0_enabled;
+ 
+ 	/* MALL size */
+ 	u64 mall_size;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+index cb25f7f0dfc1..e6165f6d0763 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+@@ -180,7 +180,7 @@ gfxhub_v1_2_xcc_init_system_aperture_regs(struct amdgpu_device *adev,
+ 		/* In the case squeezing vram into GART aperture, we don't use
+ 		 * FB aperture and AGP aperture. Disable them.
+ 		 */
+-		if (adev->gmc.pdb0_bo) {
++		if (adev->gmc.pdb0_bo && !amdgpu_virt_xgmi_migrate_enabled(adev)) {
+ 			WREG32_SOC15(GC, GET_INST(GC, i), regMC_VM_FB_LOCATION_TOP, 0);
+ 			WREG32_SOC15(GC, GET_INST(GC, i), regMC_VM_FB_LOCATION_BASE, 0x00FFFFFF);
+ 			WREG32_SOC15(GC, GET_INST(GC, i), regMC_VM_AGP_TOP, 0);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 59385da80185..5adb2e455892 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -1682,6 +1682,8 @@ static int gmc_v9_0_early_init(struct amdgpu_ip_block *ip_block)
+ 		adev->gmc.private_aperture_start + (4ULL << 30) - 1;
+ 	adev->gmc.noretry_flags = AMDGPU_VM_NORETRY_FLAGS_TF;
+ 
++	adev->gmc.pdb0_enabled = adev->gmc.xgmi.connected_to_cpu ||
++		amdgpu_virt_xgmi_migrate_enabled(adev);
  	return 0;
  }
  
-+static void smu_update_gpu_addresses(struct smu_context *smu)
-+{
-+	struct smu_table_context *smu_table = &smu->smu_table;
-+	struct smu_table *pm_status_table = smu_table->tables + SMU_TABLE_PMSTATUSLOG;
-+	struct smu_table *driver_table = &(smu_table->driver_table);
-+	struct smu_table *dummy_read_1_table = &smu_table->dummy_read_1_table;
-+
-+	if (pm_status_table->bo)
-+		pm_status_table->mc_address = amdgpu_bo_fb_aper_addr(pm_status_table->bo);
-+	if (driver_table->bo)
-+		driver_table->mc_address = amdgpu_bo_fb_aper_addr(driver_table->bo);
-+	if (dummy_read_1_table->bo)
-+		dummy_read_1_table->mc_address = amdgpu_bo_fb_aper_addr(dummy_read_1_table->bo);
-+}
-+
- /**
-  * smu_alloc_memory_pool - allocate memory pool in the system memory
-  *
-@@ -1789,6 +1804,9 @@ static int smu_start_smc_engine(struct smu_context *smu)
- 	struct amdgpu_device *adev = smu->adev;
- 	int ret = 0;
+@@ -1726,7 +1728,7 @@ static void gmc_v9_0_vram_gtt_location(struct amdgpu_device *adev,
  
-+	if (amdgpu_virt_xgmi_migrate_enabled(adev))
-+		smu_update_gpu_addresses(smu);
-+
- 	smu->smc_fw_state = SMU_FW_INIT;
+ 	/* add the xgmi offset of the physical node */
+ 	base += adev->gmc.xgmi.physical_node_id * adev->gmc.xgmi.node_segment_size;
+-	if (adev->gmc.xgmi.connected_to_cpu) {
++	if (adev->gmc.pdb0_enabled) {
+ 		amdgpu_gmc_sysvm_location(adev, mc);
+ 	} else {
+ 		amdgpu_gmc_vram_location(adev, mc, base);
+@@ -1841,7 +1843,7 @@ static int gmc_v9_0_gart_init(struct amdgpu_device *adev)
+ 		return 0;
+ 	}
  
- 	if (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP) {
+-	if (adev->gmc.xgmi.connected_to_cpu) {
++	if (adev->gmc.pdb0_enabled) {
+ 		adev->gmc.vmid0_page_table_depth = 1;
+ 		adev->gmc.vmid0_page_table_block_size = 12;
+ 	} else {
+@@ -1867,7 +1869,7 @@ static int gmc_v9_0_gart_init(struct amdgpu_device *adev)
+ 		if (r)
+ 			return r;
+ 
+-		if (adev->gmc.xgmi.connected_to_cpu)
++		if (adev->gmc.pdb0_enabled)
+ 			r = amdgpu_gmc_pdb0_alloc(adev);
+ 	}
+ 
+@@ -2372,7 +2374,7 @@ static int gmc_v9_0_gart_enable(struct amdgpu_device *adev)
+ {
+ 	int r;
+ 
+-	if (adev->gmc.xgmi.connected_to_cpu)
++	if (adev->gmc.pdb0_enabled)
+ 		amdgpu_gmc_init_pdb0(adev);
+ 
+ 	if (adev->gart.bo == NULL) {
+@@ -2533,6 +2535,12 @@ static int gmc_v9_0_resume(struct amdgpu_ip_block *ip_block)
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	int r;
+ 
++	if (amdgpu_virt_xgmi_migrate_enabled(adev)) {
++		adev->vm_manager.vram_base_offset = adev->gfxhub.funcs->get_mc_fb_offset(adev);
++		adev->vm_manager.vram_base_offset +=
++			adev->gmc.xgmi.physical_node_id * adev->gmc.xgmi.node_segment_size;
++	}
++
+ 	/* If a reset is done for NPS mode switch, read the memory range
+ 	 * information again.
+ 	 */
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
+index 84cde1239ee4..18e80aa78aff 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
+@@ -45,8 +45,10 @@ static u64 mmhub_v1_8_get_fb_location(struct amdgpu_device *adev)
+ 	top &= MC_VM_FB_LOCATION_TOP__FB_TOP_MASK;
+ 	top <<= 24;
+ 
+-	adev->gmc.fb_start = base;
+-	adev->gmc.fb_end = top;
++	if (!amdgpu_virt_xgmi_migrate_enabled(adev)) {
++		adev->gmc.fb_start = base;
++		adev->gmc.fb_end = top;
++	}
+ 
+ 	return base;
+ }
 -- 
 2.43.5
 
