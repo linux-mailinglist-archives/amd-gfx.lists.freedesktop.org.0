@@ -2,75 +2,151 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50CE4AB4DDB
-	for <lists+amd-gfx@lfdr.de>; Tue, 13 May 2025 10:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E7A6AB4EBF
+	for <lists+amd-gfx@lfdr.de>; Tue, 13 May 2025 11:02:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41DCD10E546;
-	Tue, 13 May 2025 08:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC7310E1E5;
+	Tue, 13 May 2025 09:01:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VZwKjd7C";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
- [205.220.178.238])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69CD310E2A2;
- Tue, 13 May 2025 01:52:26 +0000 (UTC)
-Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
- by mx0a-0064b401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54D196Q8028546;
- Tue, 13 May 2025 01:52:21 GMT
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.wrs.com
- [147.11.82.252])
- by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 46hv11jg9p-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Tue, 13 May 2025 01:52:21 +0000 (GMT)
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.43; Mon, 12 May 2025 18:52:19 -0700
-Received: from pek-lpg-core1.wrs.com (147.11.136.210) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2507.43 via Frontend Transport; Mon, 12 May 2025 18:52:15 -0700
-From: <jianqi.ren.cn@windriver.com>
-To: <gregkh@linuxfoundation.org>, <stable@vger.kernel.org>
-CC: <patches@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <jianqi.ren.cn@windriver.com>, <harry.wentland@amd.com>,
- <sunpeng.li@amd.com>, <Rodrigo.Siqueira@amd.com>,
- <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
- <Jerry.Zuo@amd.com>, <wayne.lin@amd.com>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <zaeem.mohamed@amd.com>, <daniel.wheeler@amd.com>
-Subject: [PATCH 6.1.y] drm/amd/display: Don't refer to dc_sink in
- is_dsc_need_re_compute
-Date: Tue, 13 May 2025 09:52:14 +0800
-Message-ID: <20250513015214.3360461-1-jianqi.ren.cn@windriver.com>
-X-Mailer: git-send-email 2.34.1
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2081.outbound.protection.outlook.com [40.107.94.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 291D410E1E5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 13 May 2025 09:01:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w0pwGiswkNUvYDHDRJjnYS1Xs/xLgtZoSz624/ZVRMlS/kplT7ngcJ4BYHMHvp0Rj8SorEKu1cJyKTLvF0slh7aAAKbVbuQUhg4Hy8FNfYIwecbOP69kDPR/2GcGJo/B/oOZ1XnEneY4G9renyH8dzmM5MYAwXedw+ib6cID9WMrMzf/wBa5BU/v7ZE4kl4lkfiF81cj0QlWVK0N9kfMqPPomciKF4w3N9wuo8mx4E/DNFQnb8/Tfy+jx2LFLNmGxs2jSAf0Y262bkNcN9FyEmkOCu7vusOFh0OqoOb7gX3vHB3hfL6oH+oMhcw9KiuDmaVxjygA3DXZwTwMHFrJBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fqhT1rlpkqaHsCzn2sEB3aDuV2gz8hFVeilghnC66ZA=;
+ b=EYO4toTfi+jwdwfQYT/ncOY1Y3ic9CQur3NF08WxYixuHUZ/BXCWLB2dCAceVN1lzwcq+WmnqJEemljNYZsJOgYriGqej+54rh69eKCK13Eu5nGA8GfwBCjCY952V3APc1kCntbMlcme0PZl2oTJuPROTnHt1IfJ2AiPTV2Dz8qlgmPwQNhIe7VPoYgs36lCVWqORjLcfHJymDNC9ggvujrbIrnWXW99XdwIH6HNxqo8Dma0MJMfYMW2Q3u0Kevdq4bggcvjFs9oj2ScvQuTFHWDV97QUEyS5rGQDRsdolt/3Yix0IdF0dW/f9+rRF21aLgEs2BHuErkenbEFivdng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fqhT1rlpkqaHsCzn2sEB3aDuV2gz8hFVeilghnC66ZA=;
+ b=VZwKjd7CRvmexlfBlwllpzBZdCh4LHzDMZ39eXFTn+ftvX1VZmnDNWgr2TDHQkTcEzAjaxgPdhHb3lp/uERx4fWPQef5MSms/e947v1gmEX6qvdhbB7so2C2wXucRM2IJpIigPRWzLa5H0WdDN99eoNRDz7sctlUadxE7ULjBXo=
+Received: from PH0PR12MB8773.namprd12.prod.outlook.com (2603:10b6:510:28d::18)
+ by CH2PR12MB4104.namprd12.prod.outlook.com (2603:10b6:610:a4::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Tue, 13 May
+ 2025 09:01:45 +0000
+Received: from PH0PR12MB8773.namprd12.prod.outlook.com
+ ([fe80::47a4:8efb:3dca:c296]) by PH0PR12MB8773.namprd12.prod.outlook.com
+ ([fe80::47a4:8efb:3dca:c296%2]) with mapi id 15.20.8722.027; Tue, 13 May 2025
+ 09:01:45 +0000
+From: "Zhang, Morris" <Shiwu.Zhang@amd.com>
+To: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Gao, Likun"
+ <Likun.Gao@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu: add debugfs for spirom IFWI dump
+Thread-Topic: [PATCH] drm/amdgpu: add debugfs for spirom IFWI dump
+Thread-Index: AQHbvwp3+7tl5Bq+w0qYOyfDvO+3+bPIea6ggAFc+4CABLTIgIAAib4AgAE2TsA=
+Date: Tue, 13 May 2025 09:01:45 +0000
+Message-ID: <PH0PR12MB877347DA5AF9E4C926BD9BDFF996A@PH0PR12MB8773.namprd12.prod.outlook.com>
+References: <20250507044159.1006093-1-shiwu.zhang@amd.com>
+ <PH0PR12MB8773D3ADD8CD6D40D46D7127F98BA@PH0PR12MB8773.namprd12.prod.outlook.com>
+ <BN9PR12MB525754FD1CB54E142B15AD05FC8AA@BN9PR12MB5257.namprd12.prod.outlook.com>
+ <PH0PR12MB87734DD27DEE9922EA0D4CCDF997A@PH0PR12MB8773.namprd12.prod.outlook.com>
+ <BN9PR12MB52577F8350CD5BD10EE4BB3CFC97A@BN9PR12MB5257.namprd12.prod.outlook.com>
+In-Reply-To: <BN9PR12MB52577F8350CD5BD10EE4BB3CFC97A@BN9PR12MB5257.namprd12.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=1edc1c76-3d9b-40da-b3cd-3400b86ebdb6;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution Only;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-05-08T09:30:48Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10, 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR12MB8773:EE_|CH2PR12MB4104:EE_
+x-ms-office365-filtering-correlation-id: 85a6c4a9-311c-4eee-c438-08dd91fcc954
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|38070700018|7053199007; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?bHJX1SkleL7+jyACOPpur7EbCWEyeSJfT4Y7q8z6YV+/CueCdvuzMQOfDbUA?=
+ =?us-ascii?Q?qxLuDEuRh5o5GOYWCMBMB8ef/hxFMRzO+NDpAeyw4oexY7/I0tIyi0WS3UHc?=
+ =?us-ascii?Q?eMpcguigHyV/c5e8qBI9QWO1P000DJV5suFQUaPxo+NWxcpBWatIFJVqUCJu?=
+ =?us-ascii?Q?Z6HadUl8VFBLOtIihEmg/eovDVUpM+5L1CKOOLaGjbeuJqtaiX5soaXOo42l?=
+ =?us-ascii?Q?ybFkFo3QsoH2/aU0BybmjtYj1w29IW3WJAk59oh1NZsajysCWEl6N/tBT32s?=
+ =?us-ascii?Q?YirZ9wDdGLwxtKQqt60rT052lWDgNAwa3oLjeHWQ1wfELhvH0ekKIQs/oWmd?=
+ =?us-ascii?Q?fgZT4VmiHQmgZT/p0B5gNQced7AsYmrRfVRLBzQBDmA4D2GBqf3EFg415d3c?=
+ =?us-ascii?Q?DPShz5SAlVRaW/oBIlO8JQKUav3hicDBH4+7zbC8GV+UzJ4NF5LPNyf883AR?=
+ =?us-ascii?Q?fd/HTGm6Wc4IyXySqoCLO4+/r2Lq7VmD9gQxwIA4luNHK1Lbo/v+LAeQ5jJI?=
+ =?us-ascii?Q?cD2Rw8p1XmAETda4cnobtNGyJ0lQrLkPcv9taNrRGi47vzri+24vu52kYD1s?=
+ =?us-ascii?Q?GVyKo2IRm9UM1Rgepan1r4hB7OZgDrJIHvDEiYhiLWuia7SFPXWcWtv3VJx+?=
+ =?us-ascii?Q?E0eUoZGNAK0p0qXIzwRSEHtROaKNom6vWBcVrXVCRejem+TJPiNpCy03ugqm?=
+ =?us-ascii?Q?fDww8FdL3qBWby8YYlzYT1DXg9tnimDU4YoqSvKlb5DW8JGeyfRwNMk45oED?=
+ =?us-ascii?Q?K7MhAYZI/7/KTDweWyslCD7C2+G20dxylXfJYg4mHIoe4Fdz8p9Lx65noCDh?=
+ =?us-ascii?Q?orzsPrQGMrrJXX+5ERO3+J7uJeL6U3gfWc3vndkWyovcIEtH7z5/gsr13+9L?=
+ =?us-ascii?Q?mxs+tMqxfxDHOlN2r196dFK+leW/e/taJY4TPJtE+jma3bXu/4HSuY7A1cRa?=
+ =?us-ascii?Q?RBo8VfgNLFxYJyjgKez1bYqA6HnYrVsCzvkiZ1d+ktO6rAiv1tWbGC8mmO8L?=
+ =?us-ascii?Q?kP0YSTGTK5uiUwOgQERJebQQ8WXLkkV7mLvfUcfIILMyWcgq1e6GWUjFDUUl?=
+ =?us-ascii?Q?uNQtLXApiI1zUq2NU1wTA5cFm2Ugf0h8VZ8xf6IGe7c3lvnMeEGwEjRumJDy?=
+ =?us-ascii?Q?2ODlKiYPCW8hvfpydSxRSO8r6ukz89taIXtTSzKir9YqxYasvIaVK2EVjyy2?=
+ =?us-ascii?Q?d8LyrzvRwzyjZ6UUUdztEu64y8wignxFq7JzbX6+41+gnW54Y0DnYDv/G6fz?=
+ =?us-ascii?Q?TK5RWfzWUxOJdNqiHqEOmHpt/XbRdMPK/ccsigsL9x7is8hdB7RdYBHY/YL8?=
+ =?us-ascii?Q?qh9ZFWHWhDwnFI79rRvBJCOD5HnGYyXYVTteLbqU3mHsnihJkOqoExg3Ihxj?=
+ =?us-ascii?Q?PEYv67/d3toFKkAnRV4hG1gQrLpkLclhQKhvCKn5KsQEJPMBmbk3Cc3h1e2H?=
+ =?us-ascii?Q?Pj5Kg3bJuH6bcWTMw5PbxPAgj05T0WewHqWYQd1JbaQ8t1zBAMVfizkb3wv5?=
+ =?us-ascii?Q?sGUsQPLq/NIhzKI=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR12MB8773.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tXyCNGgCG11OXaPEVRahI3gRBC3JAVI6M5jgPXcN28xK1L9oR4rh0xHtVFab?=
+ =?us-ascii?Q?+ZK9tznn5KxeisTtwDl4Bs15zeF/vJ0et0qy7RL/bjjOmtAE4dLGJKAXCsmi?=
+ =?us-ascii?Q?CqtJs5gDQioInkYqQ13on88b7sF2/SWC6Y/CtdpDFqvuyjnBqK+vGlWsUvRe?=
+ =?us-ascii?Q?DfYDuVPFBwr2b9jYOTNjOtBtYMtS2HtmbdC0S/lvl5NWhhO36zfR5AfBswMP?=
+ =?us-ascii?Q?RPJiK2biO8me2WGtMIZuCg72dnhfqEu5WSd1H/1sFnaKkU7wqokEQmUFX6W3?=
+ =?us-ascii?Q?UFVtBEdcmG0kxhnp0gseHZGPp84qPGK9IGcYri2LaOurH+zuExHFIZv5onp3?=
+ =?us-ascii?Q?utw/93wByQ3aNXJC/wI6eE7d17Yu71IeIWjnphDxohQou/5m3shRXdbqt0il?=
+ =?us-ascii?Q?quIh+paX0rTZ5aqypRUx1vZILFrK/D6riOI2/w4HhTx+zahjCKADWQXPUIPk?=
+ =?us-ascii?Q?NwX6a+w29hquhsVdDtCD4THyzA0yxSHlid9Zg79RnYt/KdbaddzKedlDqCny?=
+ =?us-ascii?Q?NpHckmwi0y1YKoS925iaONCDAl2ZXr8pKAbVusQ56e76yGpBgt+0aofv5w/C?=
+ =?us-ascii?Q?gcrVOD2JWe92BO2jqUbtgcuWl+z72MsALr7kNpaBFfgB5TN5/2HkW5rEMH1p?=
+ =?us-ascii?Q?H1ESsTteLkExKV6fE/s1a6bVd9yCctL+rnVJe4KtKoL5Er83O8gxtQNgBJ2q?=
+ =?us-ascii?Q?eOzt4dP6zYtGRdO9kQ3xb/msfcuDdK1SOe6SO96EC0v3pmT+0Ywbpv/nb94u?=
+ =?us-ascii?Q?PT7/bd7Ox5SDjDQ2SUtRInBOQ3GSEO8xMEWJOCntNVy1wOL9Dr1AYzzgMfOw?=
+ =?us-ascii?Q?yWeE/0X5iOM01kI7ZKTzyjkA/aYZtrEmNn+9j0KTBTCOyLds+yDP4a9/ausr?=
+ =?us-ascii?Q?bE9jcXOAAbhr8scbS2gwGPwxkdMCEJJjE/nb1BoS/nqOSCXTC41geP4vMcWL?=
+ =?us-ascii?Q?sS5oToY/X9d8p5bumQ77NG+ZdQAhXXn8n8No2mzAE94NsnfM6Ngsz+ZXA95o?=
+ =?us-ascii?Q?YWE5dlPgxA9mg7m2pfYQXl65C1mXMftBmSb7aD3x70dJX/izU9kas67AxbBO?=
+ =?us-ascii?Q?MGqvPloPShKab96MDHHzbEPEoqD/1eZQiiXxYUGIJL+9CxYnYQkHUmMVfkox?=
+ =?us-ascii?Q?Uz+6hEQsxhrYYOPwRiu6flmnCTu0Iejl4kSVr1ht7/HFWegqsXCgqvnmrHeI?=
+ =?us-ascii?Q?nawxfcbIwk10zijNLEhtvuQc10YKJR60y/2AUVbe/Ccp+5ZbpdfOjJuLLRCX?=
+ =?us-ascii?Q?E5KG5jHkAr29vOlVPx4+VpyvWXLFUyZ9dt0HWjCnO5OM6Dgf6Ix7Lxa8KkuL?=
+ =?us-ascii?Q?JO9CzMH0DFzNm+SfCwl0jQbwK3KjDORC7bfVDouj29rCfLDqESTTl9Fogw/K?=
+ =?us-ascii?Q?UiMCJxJB/SM03spzHx8zUxsJJlXZmGbpxWBb3Sa6AahNyhGwr8paCoFWSBGX?=
+ =?us-ascii?Q?4xR20JUUXyHcmg45aC8GmygNip1bbQkyA81dXM5ksrZ9Yptt8utaUeVp1g9q?=
+ =?us-ascii?Q?KAjYG9jyO03bco0d73PVHDK+ABoPENC0r9z0pYWySGGjf/nZr2jpSDAB1dp3?=
+ =?us-ascii?Q?wPLMGZyxAFEGGnR9q9c=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Authority-Analysis: v=2.4 cv=TZCWtQQh c=1 sm=1 tr=0 ts=6822a5d5 cx=c_pps
- a=/ZJR302f846pc/tyiSlYyQ==:117 a=/ZJR302f846pc/tyiSlYyQ==:17
- a=dt9VzEwgFbYA:10 a=zd2uoN0lAAAA:8 a=t7CeM3EgAAAA:8 a=r8Kla15me-PCpvyDwbMA:9
- a=FdTzh2GWekK77mhwV6Dw:22
-X-Proofpoint-GUID: IfsBuhMvJYAouEqq-Dl30CUPGKGNyJ_c
-X-Proofpoint-ORIG-GUID: IfsBuhMvJYAouEqq-Dl30CUPGKGNyJ_c
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEzMDAxNSBTYWx0ZWRfX7nmkn/8mDoje
- Fu6onx5XJN1H5fJMKinqsKlP5HAFLE1QQasBeElUiF/SbMgJGKkB9hZOr/ew42pm0nDLMWgUI4W
- V/EsSWVwW61Z51laT7w7InyLPRX3xme8ONHquNW6HgbftrO+Cpq7p8OB4vFkT3Gs7ihGYGYfgvD
- ay3+E9SJ1uYKkZAdyQ9wuT7BypwFVkFzrnoyDV+7sBaruPdXAb+PrclKMYMIxbuNmE//HVlRXrG
- P7+iIe/m5uiYzbPoViTrBjuNd8z/mLkzk26QhcRtEccGCgdM3HPV/PbZUPTl71Ym6WTE8J6XXn6
- gL5BhoBsSGlinnrKV4oA/jiFla8R74Q1RpuTdxU71KEZ074FQXflRKan9K2PFUgzRipgTttlKl2
- +tTBEH55Fo4Ca25TQrfddwm4HOBvBbS4uqe8WzGubnhpN3Z5CVEJV3hQNmQvy/kFRNJqOpE4
-X-Sensitive_Customer_Information: Yes
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-12_07,2025-05-09_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 bulkscore=0
- phishscore=0 mlxscore=0 adultscore=0 mlxlogscore=999 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.21.0-2504070000
- definitions=main-2505130015
-X-Mailman-Approved-At: Tue, 13 May 2025 08:15:53 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR12MB8773.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85a6c4a9-311c-4eee-c438-08dd91fcc954
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2025 09:01:45.1472 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: C7AQyY1hEeTFWwNxIfTcSMWtZLkJfd3y4rl0Fu5hFdk6oIi2L7kz4CX7wmf+oEzuk/Av35/sXMRPN/4Swwy9mA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4104
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,58 +161,453 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wayne Lin <wayne.lin@amd.com>
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-[ Upstream commit fcf6a49d79923a234844b8efe830a61f3f0584e4 ]
+[public]
 
-[Why]
-When unplug one of monitors connected after mst hub, encounter null pointer dereference.
+> -----Original Message-----
+> From: Zhang, Hawking <Hawking.Zhang@amd.com>
+> Sent: Monday, May 12, 2025 10:25 PM
+> To: Zhang, Morris <Shiwu.Zhang@amd.com>; Gao, Likun <Likun.Gao@amd.com>;
+> amd-gfx@lists.freedesktop.org
+> Subject: RE: [PATCH] drm/amdgpu: add debugfs for spirom IFWI dump
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> I see. Thanks for clarifying.
+>
+> #define C2PMSG_CMD_SPI_UPDATE_ROM_IMAGE_ADDR_LO 0x2 #define
+> C2PMSG_CMD_SPI_UPDATE_ROM_IMAGE_ADDR_HI 0x3 #define
+> C2PMSG_CMD_SPI_UPDATE_FLASH_IMAGE 0x4
+> +#define C2PMSG_CMD_SPI_GET_ROM_IMAGE_ADDR_LO 0xf #define
+> +C2PMSG_CMD_SPI_GET_ROM_IMAGE_ADDR_HI 0x10 #define
+> +C2PMSG_CMD_SPI_GET_FLASH_IMAGE 0x11
+>
+> [Hawking] I suggest putting above definition in amdgpu_psp.h, including
+> SPI_GET_ROM_IMAGE and SPI_UPDATE_ROM_IMAGE. These command, and
+> their related definitions are common across psp_v13 and psp_v14. There is=
+ no need
+> to duplicate them for every PSP IP generation.
+>
+[Morris] Will do it in v2. Thanks!
 
-It's due to dc_sink get released immediately in early_unregister() or detect_ctx(). When
-commit new state which directly referring to info stored in dc_sink will cause null pointer
-dereference.
+>
+> +#if defined(CONFIG_DEBUG_FS)
+> +struct bo_address_triplet {
+> +       struct amdgpu_bo *bo;
+> +       uint64_t mc_addr;
+> +       void *cpu_addr;
+> +};
+> +#endif
+>
+> [Hawking] bo_address_triplet is specifically used for dumping the spirom =
+image. I
+> would suggest renaming it to spirom_bo, instead of more general name like
+> bo_address.
+[Morris] Will do it in v2. Thanks!
 
-[how]
-Remove redundant checking condition. Relevant condition should already be covered by checking
-if dsc_aux is null or not. Also reset dsc_aux to NULL when the connector is disconnected.
+>
+> +       debugfs_create_file_size("psp_spirom_dump", 0444, minor->debugfs_=
+root,
+> +                               adev, &psp_dump_spirom_debugfs_ops,
+> + AMD_VBIOS_FILE_MAX_SIZE_B * 2);
+>
+> [Hawking] does the caller need to access the entire amdgpu_device? Or sha=
+ll we
+> consider exposing spirom_bo for this specific use case.
 
-Reviewed-by: Jerry Zuo <jerry.zuo@amd.com>
-Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Wayne Lin <wayne.lin@amd.com>
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-[The deleted codes in this fix is introduced by commit b9b5a82c5321
-("drm/amd/display: Fix DSC-re-computing") after 6.11.]
-Signed-off-by: Jianqi Ren <jianqi.ren.cn@windriver.com>
-Signed-off-by: He Zhe <zhe.he@windriver.com>
----
-Verified the build test
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 5eb994ed5471..6bb590bc7c19 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -183,6 +183,8 @@ amdgpu_dm_mst_connector_early_unregister(struct drm_connector *connector)
- 		dc_sink_release(dc_sink);
- 		aconnector->dc_sink = NULL;
- 		aconnector->edid = NULL;
-+		aconnector->dsc_aux = NULL;
-+		port->passthrough_aux = NULL;
- 	}
- 
- 	aconnector->mst_status = MST_STATUS_DEFAULT;
-@@ -487,6 +489,8 @@ dm_dp_mst_detect(struct drm_connector *connector,
- 		dc_sink_release(aconnector->dc_sink);
- 		aconnector->dc_sink = NULL;
- 		aconnector->edid = NULL;
-+		aconnector->dsc_aux = NULL;
-+		port->passthrough_aux = NULL;
- 
- 		amdgpu_dm_set_mst_status(&aconnector->mst_status,
- 			MST_REMOTE_EDID | MST_ALLOCATE_NEW_PAYLOAD | MST_CLEAR_ALLOCATED_PAYLOAD,
--- 
-2.34.1
+[Morris] yes, the pointer to adev is needed for the psp_read_spirom_debugfs=
+_open() especially as it will do the psp handshake.
+This data parameter is for kernel usage only and no risk to leak to user sp=
+ace. And you can find the similar usage in debugfs.
+>
+> Regards,
+> Hawking
+>
+> -----Original Message-----
+> From: Zhang, Morris <Shiwu.Zhang@amd.com>
+> Sent: Monday, May 12, 2025 14:39
+> To: Zhang, Hawking <Hawking.Zhang@amd.com>; Gao, Likun
+> <Likun.Gao@amd.com>; amd-gfx@lists.freedesktop.org
+> Subject: RE: [PATCH] drm/amdgpu: add debugfs for spirom IFWI dump
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> Hi hawking,
+> thanks for taking your time reviewing. simple_read_from_buffer() is just =
+a linux
+> wrapper around copy_to_user() and it handles the reading count and buffer=
+ position
+> checking well so it can clean up the code a little bit. FYI.
+>
+> And the one-time handshake with psp is put into the .open() for 1. Normal=
+ly user will
+> call syscall open() only once but can call the read() multi times and 2. =
+The mutex
+> operations include buffer allocation and handshake can be put into one pl=
+ace so that
+> the .read() and .release() can eliminate the need to request the mutex. T=
+hanks!
+>
+>
+> > -----Original Message-----
+> > From: Zhang, Hawking <Hawking.Zhang@amd.com>
+> > Sent: Friday, May 9, 2025 2:20 PM
+> > To: Zhang, Morris <Shiwu.Zhang@amd.com>; Gao, Likun
+> > <Likun.Gao@amd.com>; amd-gfx@lists.freedesktop.org
+> > Subject: RE: [PATCH] drm/amdgpu: add debugfs for spirom IFWI dump
+> >
+> > [AMD Official Use Only - AMD Internal Distribution Only]
+> >
+> > Hi Morris,
+> >
+> > I will review the change later today. At first glance, it seems that
+> > some implementations are not included in the patch. For example, I
+> > couldn't find the implementation of simple_read_from_buffer. Did I miss
+> something?
+> >
+> > +       return simple_read_from_buffer(buf,
+> > +                                      size,
+> > +                                      pos, bo_triplet->cpu_addr,
+> > +                                      AMD_VBIOS_FILE_MAX_SIZE_B * 2);
+> > + }
+> >
+> > Regards,
+> > Hawking
+> > -----Original Message-----
+> > From: Zhang, Morris <Shiwu.Zhang@amd.com>
+> > Sent: Thursday, May 8, 2025 17:34
+> > To: Zhang, Morris <Shiwu.Zhang@amd.com>; Zhang, Hawking
+> > <Hawking.Zhang@amd.com>; Gao, Likun <Likun.Gao@amd.com>; amd-
+> > gfx@lists.freedesktop.org
+> > Subject: RE: [PATCH] drm/amdgpu: add debugfs for spirom IFWI dump
+> >
+> > [AMD Official Use Only - AMD Internal Distribution Only]
+> >
+> > Ping. Thanks!
+> >
+> > --Brs,
+> > Morris Zhang
+> > MLSE Linux  ML SRDC
+> > Ext. 25147
+> >
+> > > -----Original Message-----
+> > > From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> > > Shiwu Zhang
+> > > Sent: Wednesday, May 7, 2025 12:42 PM
+> > > To: Zhang, Hawking <Hawking.Zhang@amd.com>; Gao, Likun
+> > > <Likun.Gao@amd.com>; amd-gfx@lists.freedesktop.org
+> > > Subject: [PATCH] drm/amdgpu: add debugfs for spirom IFWI dump
+> > >
+> > > Expose the debugfs file node for user space to dump the IFWI image on=
+ spirom.
+> > >
+> > > For one transaction between PSP and host, it will read out the
+> > > images on both active and inactive partitions so a buffer with two
+> > > times the size of maximum IFWI image (currently 16MByte) is needed.
+> > >
+> > > Signed-off-by: Shiwu Zhang <shiwu.zhang@amd.com>
+> > > ---
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |   1 +
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c     | 104
+> ++++++++++++++++++++
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h     |  17 ++++
+> > >  drivers/gpu/drm/amd/amdgpu/psp_v13_0.c      |  40 +++++++-
+> > >  4 files changed, 161 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> > > index 4835123c99f3..bfa3b1519d4c 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> > > @@ -2113,6 +2113,7 @@ int amdgpu_debugfs_init(struct amdgpu_device
+> *adev)
+> > >       amdgpu_rap_debugfs_init(adev);
+> > >       amdgpu_securedisplay_debugfs_init(adev);
+> > >       amdgpu_fw_attestation_debugfs_init(adev);
+> > > +     amdgpu_psp_debugfs_init(adev);
+> > >
+> > >       debugfs_create_file("amdgpu_evict_vram", 0400, root, adev,
+> > >                           &amdgpu_evict_vram_fops); diff --git
+> > > a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > > index 6f9bcffda875..210a7bdda332 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > > @@ -4185,6 +4185,110 @@ const struct attribute_group
+> > > amdgpu_flash_attr_group =3D {
+> > >       .is_visible =3D amdgpu_flash_attr_is_visible,  };
+> > >
+> > > +#if defined(CONFIG_DEBUG_FS)
+> > > +static int psp_read_spirom_debugfs_open(struct inode *inode, struct
+> > > +file *filp) {
+> > > +     struct amdgpu_device *adev =3D filp->f_inode->i_private;
+> > > +     struct bo_address_triplet *bo_triplet;
+> > > +     int ret;
+> > > +
+> > > +     /* serialize the open() file calling */
+> > > +     if (!mutex_trylock(&adev->psp.mutex))
+> > > +             return -EBUSY;
+> > > +
+> > > +     /*
+> > > +      * make sure only one userpace process is alive for dumping so =
+that
+> > > +      * only one memory buffer of AMD_VBIOS_FILE_MAX_SIZE * 2 is
+> > > consumed.
+> > > +      * let's say the case where one process try opening the file wh=
+ile
+> > > +      * another one has proceeded to read or release. In this way, e=
+liminate
+> > > +      * the use of mutex for read() or release() callback as well.
+> > > +      */
+> > > +     if (adev->psp.spirom_dump_trip) {
+> > > +             mutex_unlock(&adev->psp.mutex);
+> > > +             return -EBUSY;
+> > > +     }
+> > > +
+> > > +     bo_triplet =3D kzalloc(sizeof(struct bo_address_triplet), GFP_K=
+ERNEL);
+> > > +     if (!bo_triplet) {
+> > > +             mutex_unlock(&adev->psp.mutex);
+> > > +             return -ENOMEM;
+> > > +     }
+> > > +
+> > > +     ret =3D amdgpu_bo_create_kernel(adev, AMD_VBIOS_FILE_MAX_SIZE_B=
+ *
+> 2,
+> > > +                                     AMDGPU_GPU_PAGE_SIZE,
+> > > +                                     AMDGPU_GEM_DOMAIN_GTT,
+> > > +                                     &bo_triplet->bo,
+> > > +                                     &bo_triplet->mc_addr,
+> > > +                                     &bo_triplet->cpu_addr);
+> > > +     if (ret)
+> > > +             goto rel_trip;
+> > > +
+> > > +     ret =3D psp_dump_spirom(&adev->psp, bo_triplet->mc_addr);
+> > > +     if (ret)
+> > > +             goto rel_bo;
+> > > +
+> > > +     adev->psp.spirom_dump_trip =3D bo_triplet;
+> > > +     mutex_unlock(&adev->psp.mutex);
+> > > +     return 0;
+> > > +rel_bo:
+> > > +     amdgpu_bo_free_kernel(&bo_triplet->bo, &bo_triplet->mc_addr,
+> > > +                           &bo_triplet->cpu_addr);
+> > > +rel_trip:
+> > > +     kfree(bo_triplet);
+> > > +     mutex_unlock(&adev->psp.mutex);
+> > > +     dev_err(adev->dev, "Trying IFWI dump fails, err =3D %d\n", ret)=
+;
+> > > +     return ret;
+> > > +}
+> > > +
+> > > +static ssize_t psp_read_spirom_debugfs_read(struct file *filp, char
+> > > +__user *buf,
+> > > size_t size,
+> > > +                             loff_t *pos) {
+> > > +     struct amdgpu_device *adev =3D filp->f_inode->i_private;
+> > > +     struct bo_address_triplet *bo_triplet =3D
+> > > +adev->psp.spirom_dump_trip;
+> > > +
+> > > +     if (!bo_triplet)
+> > > +             return -EINVAL;
+> > > +
+> > > +     return simple_read_from_buffer(buf,
+> > > +                                    size,
+> > > +                                    pos, bo_triplet->cpu_addr,
+> > > +                                    AMD_VBIOS_FILE_MAX_SIZE_B * 2);
+> > > + }
+> > > +
+> > > +static int psp_read_spirom_debugfs_release(struct inode *inode,
+> > > +struct file *filp) {
+> > > +     struct amdgpu_device *adev =3D filp->f_inode->i_private;
+> > > +     struct bo_address_triplet *bo_triplet =3D
+> > > +adev->psp.spirom_dump_trip;
+> > > +
+> > > +     if (bo_triplet) {
+> > > +             amdgpu_bo_free_kernel(&bo_triplet->bo, &bo_triplet->mc_=
+addr,
+> > > +                                   &bo_triplet->cpu_addr);
+> > > +             kfree(bo_triplet);
+> > > +     }
+> > > +
+> > > +     adev->psp.spirom_dump_trip =3D NULL;
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static const struct file_operations psp_dump_spirom_debugfs_ops =3D =
+{
+> > > +     .owner =3D THIS_MODULE,
+> > > +     .open =3D psp_read_spirom_debugfs_open,
+> > > +     .read =3D psp_read_spirom_debugfs_read,
+> > > +     .release =3D psp_read_spirom_debugfs_release,
+> > > +     .llseek =3D default_llseek,
+> > > +};
+> > > +#endif
+> > > +
+> > > +void amdgpu_psp_debugfs_init(struct amdgpu_device *adev) { #if
+> > > +defined(CONFIG_DEBUG_FS)
+> > > +     struct drm_minor *minor =3D adev_to_drm(adev)->primary;
+> > > +
+> > > +     debugfs_create_file_size("psp_spirom_dump", 0444, minor->debugf=
+s_root,
+> > > +                             adev, &psp_dump_spirom_debugfs_ops,
+> > > AMD_VBIOS_FILE_MAX_SIZE_B * 2);
+> > > +#endif }
+> > > +
+> > >  const struct amd_ip_funcs psp_ip_funcs =3D {
+> > >       .name =3D "psp",
+> > >       .early_init =3D psp_early_init,
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> > > index 3876ac57ce62..8fc4a7bb865e 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+> > > @@ -138,6 +138,7 @@ struct psp_funcs {
+> > >       int (*load_usbc_pd_fw)(struct psp_context *psp, uint64_t fw_pri=
+_mc_addr);
+> > >       int (*read_usbc_pd_fw)(struct psp_context *psp, uint32_t *fw_ve=
+r);
+> > >       int (*update_spirom)(struct psp_context *psp, uint64_t
+> > > fw_pri_mc_addr);
+> > > +     int (*dump_spirom)(struct psp_context *psp, uint64_t
+> > > + fw_pri_mc_addr);
+> > >       int (*vbflash_stat)(struct psp_context *psp);
+> > >       int (*fatal_error_recovery_quirk)(struct psp_context *psp);
+> > >       bool (*get_ras_capability)(struct psp_context *psp); @@ -322,6
+> > > +323,14 @@ struct psp_runtime_scpm_entry {
+> > >       enum psp_runtime_scpm_authentication scpm_status;  };
+> > >
+> > > +#if defined(CONFIG_DEBUG_FS)
+> > > +struct bo_address_triplet {
+> > > +     struct amdgpu_bo *bo;
+> > > +     uint64_t mc_addr;
+> > > +     void *cpu_addr;
+> > > +};
+> > > +#endif
+> > > +
+> > >  struct psp_context {
+> > >       struct amdgpu_device            *adev;
+> > >       struct psp_ring                 km_ring;
+> > > @@ -409,6 +418,9 @@ struct psp_context {
+> > >       char                            *vbflash_tmp_buf;
+> > >       size_t                          vbflash_image_size;
+> > >       bool                            vbflash_done;
+> > > +#if defined(CONFIG_DEBUG_FS)
+> > > +     struct bo_address_triplet       *spirom_dump_trip;
+> > > +#endif
+> > >  };
+> > >
+> > >  struct amdgpu_psp_funcs {
+> > > @@ -467,6 +479,10 @@ struct amdgpu_psp_funcs {
+> > >       ((psp)->funcs->update_spirom ? \
+> > >       (psp)->funcs->update_spirom((psp), fw_pri_mc_addr) : -EINVAL)
+> > >
+> > > +#define psp_dump_spirom(psp, fw_pri_mc_addr) \
+> > > +     ((psp)->funcs->dump_spirom ? \
+> > > +     (psp)->funcs->dump_spirom((psp), fw_pri_mc_addr) : -EINVAL)
+> > > +
+> > >  #define psp_vbflash_status(psp) \
+> > >       ((psp)->funcs->vbflash_stat ? \
+> > >       (psp)->funcs->vbflash_stat((psp)) : -EINVAL) @@ -578,6 +594,7
+> > > @@ int psp_config_sq_perfmon(struct psp_context *psp, uint32_t
+> > > xcc_id, bool amdgpu_psp_tos_reload_needed(struct amdgpu_device
+> > > *adev);  int amdgpu_psp_reg_program_no_ring(struct psp_context *psp, =
+uint32_t
+> val,
+> > >                                  enum psp_reg_prog_id id);
+> > > +void amdgpu_psp_debugfs_init(struct amdgpu_device *adev);
+> > >
+> > >
+> > >  #endif
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
+> > > b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
+> > > index 17f1ccd8bd53..78f434f84c22 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
+> > > @@ -79,6 +79,9 @@ MODULE_FIRMWARE("amdgpu/psp_14_0_4_ta.bin");
+> > >  #define C2PMSG_CMD_SPI_UPDATE_ROM_IMAGE_ADDR_LO 0x2  #define
+> > > C2PMSG_CMD_SPI_UPDATE_ROM_IMAGE_ADDR_HI 0x3  #define
+> > > C2PMSG_CMD_SPI_UPDATE_FLASH_IMAGE 0x4
+> > > +#define C2PMSG_CMD_SPI_GET_ROM_IMAGE_ADDR_LO 0xf #define
+> > > +C2PMSG_CMD_SPI_GET_ROM_IMAGE_ADDR_HI 0x10 #define
+> > > +C2PMSG_CMD_SPI_GET_FLASH_IMAGE 0x11
+> > >
+> > >  /* memory training timeout define */
+> > >  #define MEM_TRAIN_SEND_MSG_TIMEOUT_US        3000000
+> > > @@ -710,7 +713,8 @@ static int psp_v13_0_exec_spi_cmd(struct
+> > > psp_context *psp, int cmd)
+> > >       /* Ring the doorbell */
+> > >       WREG32_SOC15(MP0, 0, regMP0_SMN_C2PMSG_73, 1);
+> > >
+> > > -     if (cmd =3D=3D C2PMSG_CMD_SPI_UPDATE_FLASH_IMAGE)
+> > > +     if (cmd =3D=3D C2PMSG_CMD_SPI_UPDATE_FLASH_IMAGE ||
+> > > +         cmd =3D=3D C2PMSG_CMD_SPI_GET_FLASH_IMAGE)
+> > >               ret =3D psp_wait_for_spirom_update(psp,
+> > > SOC15_REG_OFFSET(MP0, 0, regMP0_SMN_C2PMSG_115),
+> > >                                                MBOX_READY_FLAG,
+> > > MBOX_READY_MASK, PSP_SPIROM_UPDATE_TIMEOUT);
+> > >       else
+> > > @@ -766,6 +770,39 @@ static int psp_v13_0_update_spirom(struct
+> > > psp_context *psp,
+> > >       return 0;
+> > >  }
+> > >
+> > > +static int psp_v13_0_dump_spirom(struct psp_context *psp,
+> > > +                                uint64_t fw_pri_mc_addr) {
+> > > +     struct amdgpu_device *adev =3D psp->adev;
+> > > +     int ret;
+> > > +
+> > > +     /* Confirm PSP is ready to start */
+> > > +     ret =3D psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0,
+> > > regMP0_SMN_C2PMSG_115),
+> > > +                        MBOX_READY_FLAG, MBOX_READY_MASK, false);
+> > > +     if (ret) {
+> > > +             dev_err(adev->dev, "PSP Not ready to start processing,
+> > > + ret =3D %d",
+> > > ret);
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > +     WREG32_SOC15(MP0, 0, regMP0_SMN_C2PMSG_116,
+> > > +lower_32_bits(fw_pri_mc_addr));
+> > > +
+> > > +     ret =3D psp_v13_0_exec_spi_cmd(psp,
+> > > C2PMSG_CMD_SPI_GET_ROM_IMAGE_ADDR_LO);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     WREG32_SOC15(MP0, 0, regMP0_SMN_C2PMSG_116,
+> > > +upper_32_bits(fw_pri_mc_addr));
+> > > +
+> > > +     ret =3D psp_v13_0_exec_spi_cmd(psp,
+> > > C2PMSG_CMD_SPI_GET_ROM_IMAGE_ADDR_HI);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     ret =3D psp_v13_0_exec_spi_cmd(psp,
+> > > C2PMSG_CMD_SPI_GET_FLASH_IMAGE);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > >  static int psp_v13_0_vbflash_status(struct psp_context *psp)  {
+> > >       struct amdgpu_device *adev =3D psp->adev; @@ -898,6 +935,7 @@
+> > > static const struct psp_funcs psp_v13_0_funcs =3D {
+> > >       .load_usbc_pd_fw =3D psp_v13_0_load_usbc_pd_fw,
+> > >       .read_usbc_pd_fw =3D psp_v13_0_read_usbc_pd_fw,
+> > >       .update_spirom =3D psp_v13_0_update_spirom,
+> > > +     .dump_spirom =3D psp_v13_0_dump_spirom,
+> > >       .vbflash_stat =3D psp_v13_0_vbflash_status,
+> > >       .fatal_error_recovery_quirk =3D psp_v13_0_fatal_error_recovery_=
+quirk,
+> > >       .get_ras_capability =3D psp_v13_0_get_ras_capability,
+> > > --
+> > > 2.34.1
+> >
+> >
+>
+>
 
