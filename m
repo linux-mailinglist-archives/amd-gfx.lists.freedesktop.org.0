@@ -2,129 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 248D0AB53CE
-	for <lists+amd-gfx@lfdr.de>; Tue, 13 May 2025 13:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D92AB54CF
+	for <lists+amd-gfx@lfdr.de>; Tue, 13 May 2025 14:33:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE45C10E584;
-	Tue, 13 May 2025 11:25:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6135810E594;
+	Tue, 13 May 2025 12:33:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iPrJLjZh";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="oWHmfKA2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66DC110E584
- for <amd-gfx@lists.freedesktop.org>; Tue, 13 May 2025 11:25:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v7PVD6R/AfAVuPafWQCLUAYfeDaujKbOfBfKbVUkvXTxubcTVnnmh19zyvEV5j8IFKSXqjf8JXad1ZTXJCfXDWXkoLYDwVpVuQ4b/iLLs82qk8PUMKtczugVVe/YHcRsPubIk5kE3WRw3saYXiErhJACIP1SkpLMDLkJik/puUy4TV02e8YdhqW5GtuQIrtq87kFvFtkUj7ouHaveULQn4hrsUQDbdaeaC5iNspzDPKdVicy3TZIH8/4kBLhQtGfeJlGKbMS3mD2q7DRj5/MSK9SV1++XVxmitTa4dPLp7qqXM3GJQ2I8Npf83pMVGNYnNp8DCA4E1Hy/ras9iNVdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jA8jjOBexYXriUY6Fys/BNPejKJuKKmSuF9/spJnoEg=;
- b=ph59fFXghkz5YxNJuwC6bYdfT5/yc3/Py0TFlDNI3d2LP2Keuo1rhNDj64Y4TuI6dSFmQ/Db19fZhcvWD2gcQz92h5CcY45MlZ5S0peHSrryqN2qdIFAjtCXrRSRl0TndbmDrQJSaVdAcIPhXKhTMnMfbTLpP+S8iR3V7xo4qaxMKnJ9Sbq8KWmhzrOAxj+vHDkXNJvTtNpUhHnWsddvZtXQiDivLD8x6rRwCvgwn2JxuVXR6AZItG+CX/IerNVBZ+EN/fb71Bh5C2IXGMfdu3B+4Aw04WE0Q+ijJT6iRvZB6obBR3SytdvaT6fFiYK7tjIH1qaXWRvxhhURHMHJPA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jA8jjOBexYXriUY6Fys/BNPejKJuKKmSuF9/spJnoEg=;
- b=iPrJLjZhxeJXofqmVBg1jn2K5X94ZHeephq4gWv4ezGDk59RGwuLo6GV8jU40HetN6M+cjqktMTuMoWu5V2UnD8GGBT6VxFDNPzp8e5Xd9rzFfej6mOb4rvLt+3JQsCt55OCTwgQnNCuciQS5Ym8+zCIGEL1mNBXgb7gNfaXmEA=
-Received: from MN2PR10CA0009.namprd10.prod.outlook.com (2603:10b6:208:120::22)
- by BN5PR12MB9464.namprd12.prod.outlook.com (2603:10b6:408:2ab::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.30; Tue, 13 May
- 2025 11:25:29 +0000
-Received: from BL6PEPF0001AB76.namprd02.prod.outlook.com
- (2603:10b6:208:120:cafe::60) by MN2PR10CA0009.outlook.office365.com
- (2603:10b6:208:120::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.29 via Frontend Transport; Tue,
- 13 May 2025 11:25:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL6PEPF0001AB76.mail.protection.outlook.com (10.167.242.169) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8722.18 via Frontend Transport; Tue, 13 May 2025 11:25:28 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 13 May
- 2025 06:25:28 -0500
-Received: from tom-r5.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Tue, 13 May 2025 06:25:25 -0500
-From: Tom Chung <chiahsuan.chung@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
- Zuo" <jerry.zuo@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Taimur Hassan
- <Syed.Hassan@amd.com>
-Subject: [PATCH 11/11] drm/amd/display: Promote DAL to 3.2.334
-Date: Tue, 13 May 2025 19:24:39 +0800
-Message-ID: <20250513112439.2295366-12-chiahsuan.chung@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250513112439.2295366-1-chiahsuan.chung@amd.com>
-References: <20250513112439.2295366-1-chiahsuan.chung@amd.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6206910E16C;
+ Tue, 13 May 2025 07:42:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1747122163;
+ bh=lfE9Fx0YxcY7+yid9yq30xLGb7KlsukHQPwIvTdg3sk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=oWHmfKA2raFKnyFoK3lyWorBRxA55B585Yzbh1aCtbgVMXhY93+4VWjcSo8epFozE
+ 92KQ9lCcZ/wZMdMqTPwW1aQnetVeIft8lH7WwmTKKYiKGISnfEF61i5jHkKvVzDeTD
+ ryw5fI53phe0igoxbTyrm8XObgoxTy3+0HWLeqOxajLywKZQVzjT3/HAsqFuJNZSDG
+ +rTPJZMp/uR6MYVfFcl/lUpOJ++Ouqouamcu1T2x4mJeUgvprBH4PXCqUqpO+wRNcv
+ PybfxoUMLk+lWxqZ11GVg3J14DE/wVGkoN14SlFhWkjmj6astem0F3YeuMKMabrTj0
+ 10HMqbmLghG4g==
+Received: from eldfell (unknown [194.136.85.206])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id B5E9417E1220;
+ Tue, 13 May 2025 09:42:42 +0200 (CEST)
+Date: Tue, 13 May 2025 10:42:12 +0300
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Melissa Wen <mwen@igalia.com>
+Cc: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, wayland-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, leo.liu@amd.com, ville.syrjala@linux.intel.com,
+ contact@emersion.fr, jadahl@redhat.com, sebastian.wick@redhat.com,
+ shashank.sharma@amd.com, agoins@nvidia.com, joshua@froggi.es,
+ mdaenzer@redhat.com, aleixpol@kde.org, xaver.hugl@gmail.com,
+ victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com,
+ quic_naseer@quicinc.com, quic_cbraga@quicinc.com,
+ quic_abhinavk@quicinc.com, marcan@marcan.st, Liviu.Dudau@arm.com,
+ sashamcintosh@google.com, chaitanya.kumar.borah@intel.com,
+ louis.chauvet@bootlin.com, Daniel Stone <daniels@collabora.com>
+Subject: Re: [PATCH V9 26/43] drm/amd/display: Add support for sRGB EOTF in
+ DEGAM block
+Message-ID: <20250513104213.1c5d905a@eldfell>
+In-Reply-To: <twwndnvjm6rmxdt4cs747fixvplpeuy3yh3ho6d4yq3y3prhub@fag4kafh2xct>
+References: <20250430011115.223996-1-alex.hung@amd.com>
+ <20250430011115.223996-27-alex.hung@amd.com>
+ <twwndnvjm6rmxdt4cs747fixvplpeuy3yh3ho6d4yq3y3prhub@fag4kafh2xct>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: chiahsuan.chung@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB76:EE_|BN5PR12MB9464:EE_
-X-MS-Office365-Filtering-Correlation-Id: 316bb034-236f-4a68-afa1-08dd9210dd6f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CUqHNXq59ePHJm7qQVRs+T3BIg4Y2AYGJs/Or0L/hnzJIE7ci2wwnvlbAPDO?=
- =?us-ascii?Q?E5ROuSQ5oyYYO+fFlLWSNE8HW781C5iQPHgD4rt8YPQg2tCbGSDQSyE2fDhv?=
- =?us-ascii?Q?7AE5XX6Fyj6eA8BiF33sKgvRrDDdJVCBN2GXwy3Po/IfPjM3z9/jC+taq2g2?=
- =?us-ascii?Q?aOLeCU8DSd6Ha2n2WQB/xaHE9mITy/w+sIPABJw6gsAJre7gBRnXE66WX2mt?=
- =?us-ascii?Q?aXUhQ7BuaLb2T4l2mvHH5N1+vGK7T6XHM62zLqOvHcIaL8886LNzj09pumN1?=
- =?us-ascii?Q?1PN0SlFV0PCI7X4gW5ktbmxVIpAO5u1SXveAnJdlKRaSVRGfe8u5VMDh2TwW?=
- =?us-ascii?Q?hD8zdB0hEzhtRTlyCrdKeP0kT4avJ1ddb+q7VYeEPlxc131RUBaIBgjGmkvK?=
- =?us-ascii?Q?Ub6ie8AAQ6z72t/0EdsTeA20yc6ah+o3ffSSngFvMkp1YhN8Gd/O+e7GhrEr?=
- =?us-ascii?Q?qpQuSnC0pcKnU3sNtZ0mxx0n/U5T68kOqhopgkl3/Utwyv4ndxripcSzASeF?=
- =?us-ascii?Q?Z2aIwnlf6aX57QL2EKzXrcdFICjtOEIQO+AuY1xY3K0ghf2OwDJe2j8+cjTY?=
- =?us-ascii?Q?V15b8C5B3vMjBZ16h7iBWajh/Fw9HkkT7pt0Y/cMWffNAoRF1/L/mQpJfK35?=
- =?us-ascii?Q?jeCEOgSRSUETtcSjQ20G5IjzIOoP26qFaolac3oAOm1NuZPBj+kXoReQMDGM?=
- =?us-ascii?Q?eHZsfA+kKYDx3vApqa/QL1s7vJBcFuM0F/x2cLCMBE9mnclQxYaRhgNzQ4wa?=
- =?us-ascii?Q?GMvXC9DUNrSj/GQRZuFdTSyr7+i/7hlFKC59Rs0dJtrsidjKsHTDXrjkjLxM?=
- =?us-ascii?Q?2QMqTIvLfNUjwX6VLocA3E6pseJ+lorY4g+KghHy7dGHYHCDVnaQMxDkYz+i?=
- =?us-ascii?Q?KYfAenJdDJyvCamDXhtKNNN8WXUHu8fJwyqtW0cA4v91sjoEdTTHISn+SQnH?=
- =?us-ascii?Q?jKA9QHHgJVMDtGtuWq8+sX1EAQjjR9xBu+jExvxMSoY+iN4FYbOb+0fJDmeD?=
- =?us-ascii?Q?GWG/SxETMHsB2wo91sUfwl/eli41g0rTipbqCEZFKHLOb4aZvVLCR7O/5Fr5?=
- =?us-ascii?Q?RCY2+E3wBBt0DXtPtVn8aJQf+xajPLTGH5Fh4fGhkhFuezhZg1jChS2VhO2Z?=
- =?us-ascii?Q?U/eEUrthiuPfwx3OkOkxETSNjM9PHSU55OjWiP1/hx4v2IW0+uTNKMLEAneQ?=
- =?us-ascii?Q?MEdy55DflfSDppxujbGXo/5TpGOMBOKV4CkkXzx4Gtqd/9VlSWp79esSjJ9C?=
- =?us-ascii?Q?vD+HeS+gT5XMLXukvs+vIo1jrewmjoprA8v2WJcqrQhrU70MyCAt7F39YqcV?=
- =?us-ascii?Q?/ZLnDoJCcKH97JoziZ/hyGl+rsDF5jBHPrS2bubmbJ4dmm+qhNQzWmrHpxMG?=
- =?us-ascii?Q?C3C27Xc7hLHK2jhE26C6pWAsRg0GgGE/eDV/OTIYa+F8JpbyMBX5fETAgIC3?=
- =?us-ascii?Q?PUqxoZ4fe1MD1Gt611bOD7vkMJqkqKxwcRD75CFXtwMS+VKGBFZxWxJ192P6?=
- =?us-ascii?Q?xv+xf5IKRSRVW/5wOObqjJsVU5nEvgP/zAwU?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2025 11:25:28.8251 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 316bb034-236f-4a68-afa1-08dd9210dd6f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB76.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN5PR12MB9464
+Content-Type: multipart/signed; boundary="Sig_/A0x/3fzY+c_Yy3jqOjxoPnx";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Tue, 13 May 2025 12:33:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,34 +73,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Taimur Hassan <Syed.Hassan@amd.com>
+--Sig_/A0x/3fzY+c_Yy3jqOjxoPnx
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-This version brings along following update:
--Support external tunneling feature
--Modify DCN401 DMUB reset & halt sequence
--Fix the typo in dcn401 Hubp block
--Skip backend validation for virtual monitors
+On Mon, 12 May 2025 15:50:17 -0300
+Melissa Wen <mwen@igalia.com> wrote:
 
-Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: Taimur Hassan <Syed.Hassan@amd.com>
-Signed-off-by: Tom Chung <chiahsuan.chung@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> On 04/29, Alex Hung wrote:
+> > Expose one 1D curve colorop with support for
+> > DRM_COLOROP_1D_CURVE_SRGB_EOTF and program HW to perform
+> > the sRGB transform when the colorop is not in bypass.
+> >=20
+> > With this change the following IGT test passes:
+> > kms_colorop --run plane-XR30-XR30-srgb_eotf
+> >=20
+> > The color pipeline now consists of a single colorop:
+> > 1. 1D curve colorop w/ sRGB EOTF
+> >=20
+> > Signed-off-by: Alex Hung <alex.hung@amd.com>
+> > Co-developed-by: Harry Wentland <harry.wentland@amd.com>
+> > Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> > Reviewed-by: Daniel Stone <daniels@collabora.com>
+> > ---
+> > V9:
+> >  - Update function names by _plane_ (Chaitanya Kumar Borah)
+> >  - Update replace cleanup code by drm_colorop_pipeline_destroy (Simon S=
+er)
+> >=20
+> > v8:
+> >  - Fix incorrect && by || in __set_colorop_in_tf_1d_curve (Leo Li)
+> >=20
+> > v7:
+> >  - Fix checkpatch warnings
+> >   - Change switch "{ }" position
+> >   - Delete double ";"
+> >   - Delete "{ }" for single-line if-statement
+> >   - Add a new line at EOF
+> >   - Change SPDX-License-Identifier: GPL-2.0+ from // to /* */
+> >=20
+> > v6:
+> >  - cleanup if colorop alloc or init fails
+> >=20
+> >  .../gpu/drm/amd/display/amdgpu_dm/Makefile    |  3 +-
+> >  .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 86 +++++++++++++++++++
+> >  .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 69 +++++++++++++++
+> >  .../amd/display/amdgpu_dm/amdgpu_dm_colorop.h | 34 ++++++++
+> >  .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 10 +++
+> >  5 files changed, 201 insertions(+), 1 deletion(-)
+> >  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_col=
+orop.c
+> >  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_col=
+orop.h
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile b/drivers/g=
+pu/drm/amd/display/amdgpu_dm/Makefile
+> > index ab2a97e354da..46158d67ab12 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
+> > @@ -38,7 +38,8 @@ AMDGPUDM =3D \
+> >  	amdgpu_dm_pp_smu.o \
+> >  	amdgpu_dm_psr.o \
+> >  	amdgpu_dm_replay.o \
+> > -	amdgpu_dm_wb.o
+> > +	amdgpu_dm_wb.o \
+> > +	amdgpu_dm_colorop.o
+> > =20
+> >  ifdef CONFIG_DRM_AMD_DC_FP
+> >  AMDGPUDM +=3D dc_fpu.o
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/=
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> > index ebabfe3a512f..0b513ab5050f 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> > @@ -668,6 +668,18 @@ amdgpu_tf_to_dc_tf(enum amdgpu_transfer_function t=
+f)
+> >  	}
+> >  }
+> > =20
+> > +static enum dc_transfer_func_predefined
+> > +amdgpu_colorop_tf_to_dc_tf(enum drm_colorop_curve_1d_type tf)
+> > +{
+> > +	switch (tf) {
+> > +	case DRM_COLOROP_1D_CURVE_SRGB_EOTF:
+> > +	case DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF:
+> > +		return TRANSFER_FUNCTION_SRGB;
+> > +	default:
+> > +		return TRANSFER_FUNCTION_LINEAR;
+> > +	}
+> > +}
+> > +
+> >  static void __to_dc_lut3d_color(struct dc_rgb *rgb,
+> >  				const struct drm_color_lut lut,
+> >  				int bit_precision)
+> > @@ -1137,6 +1149,59 @@ __set_dm_plane_degamma(struct drm_plane_state *p=
+lane_state,
+> >  	return 0;
+> >  }
+> > =20
+> > +static int
+> > +__set_colorop_in_tf_1d_curve(struct dc_plane_state *dc_plane_state,
+> > +		       struct drm_colorop_state *colorop_state)
+> > +{
+> > +	struct dc_transfer_func *tf =3D &dc_plane_state->in_transfer_func;
+> > +	struct drm_colorop *colorop =3D colorop_state->colorop;
+> > +	struct drm_device *drm =3D colorop->dev;
+> > +
+> > +	if (colorop->type !=3D DRM_COLOROP_1D_CURVE ||
+> > +	    colorop_state->curve_1d_type !=3D DRM_COLOROP_1D_CURVE_SRGB_EOTF)
+> > +		return -EINVAL;
+> > +
+> > +	if (colorop_state->bypass) {
+> > +		tf->type =3D TF_TYPE_BYPASS;
+> > +		tf->tf =3D TRANSFER_FUNCTION_LINEAR;
+> > +		return 0;
+> > +	}
+> > +
+> > +	drm_dbg(drm, "Degamma colorop with ID: %d\n", colorop->base.id);
+> > +
+> > +	tf->type =3D TF_TYPE_PREDEFINED;
+> > +	tf->tf =3D amdgpu_colorop_tf_to_dc_tf(colorop_state->curve_1d_type);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int
+> > +__set_dm_plane_colorop_degamma(struct drm_plane_state *plane_state,
+> > +			       struct dc_plane_state *dc_plane_state,
+> > +			       struct drm_colorop *colorop)
+> > +{
+> > +	struct drm_colorop *old_colorop;
+> > +	struct drm_colorop_state *colorop_state =3D NULL, *new_colorop_state;
+> > +	struct drm_atomic_state *state =3D plane_state->state;
+> > +	int i =3D 0;
+> > +
+> > +	old_colorop =3D colorop;
+> > +
+> > +	/* 1st op: 1d curve - degamma */
+> > +	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
+> > +		if (new_colorop_state->colorop =3D=3D old_colorop &&
+> > +		    new_colorop_state->curve_1d_type =3D=3D DRM_COLOROP_1D_CURVE_SRG=
+B_EOTF) {
+> > +			colorop_state =3D new_colorop_state;
+> > +			break;
+> > +		}
+> > +	}
+> > +
+> > +	if (!colorop_state)
+> > +		return -EINVAL;
+> > +
+> > +	return __set_colorop_in_tf_1d_curve(dc_plane_state, colorop_state); =
+=20
+>=20
+> I wonder what will happen if plane degamma isn't set, but CRTC degamma
+> LUT or legacy CRTC regamma LUT (with its implicity sRGB degamma) is used
+> together with other plane color ops.
+>=20
+> I can imagine the mess, so I think CRTC degamma LUT and legacy CRTC
+> regamma LUT should be somehow entirely disabled (or rejected) if plane
+> color pipeline is in use.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index c14390efe633..1d917be36fc4 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -53,7 +53,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
- 
--#define DC_VER "3.2.333"
-+#define DC_VER "3.2.334"
- 
- /**
-  * MAX_SURFACES - representative of the upper bound of surfaces that can be piped to a single CRTC
--- 
-2.34.1
+Hi Melissa,
 
+if using a plane color pipeline means that a CRTC LUT cannot be used, it
+will severely limit the usefulness of the whole KMS color processing. In
+Weston's case it would prohibit *all* KMS off-loading when color
+management is in use.
+
+Weston chooses to do composition and blending in an optical space. This
+means that plane color pipelines are required to convert incoming
+pixels into the optical space, and a CRTC LUT (a CRTC color pipeline in
+the future) is required to convert from the optical space to the
+monitor signalling (electrical space).
+
+I don't know what "with its implicity sRGB degamma" means, but there
+cannot be any implicit curves at all. The driver has no knowledge of
+how the framebuffer pixels are encoded, nor about what the blending
+space should be.
+
+
+Thanks,
+pq
+
+--Sig_/A0x/3fzY+c_Yy3jqOjxoPnx
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmgi99UACgkQI1/ltBGq
+qqcP7w//e9mBTAMdftuA5HbVW2htz/qP7+y50Sst2XG7y6OdP7NIkq8XRLvN+ug4
+e1+GzFWMn2TunSfuf62SGk26V5jeaU3Uj3QIwZz1WPccHpRI0WE6g+7BkPNbwwnt
+3TFljsw/t8hRZXYJKz02LRrkPb7+ZpgidDyOexIrothMjURtMsHb+wLOBYlmzEqC
+C7hEFU17BertdhQzttiWZDghusZFE9247IBQxQ1qv5DyxZtgkVPrWrRaPvdhPSgX
+U6zKHy6gDPna0528ILfR+Ivqg2Yy4wsIxRkSvHT2BnCqv/l5CxftnB2TyFdmgGlD
++ctGTr2oTNXKzDar1TKWktNvzZpS9tDbB9/kaoClu/eZYOeR02APVI3ulnsxsWj4
+WwYNnyCQq5eIYgLLZB5n57bs7D61sJKm5cGyyQCH3cCTUyxUIK7mS30qNvmsAnBe
+3XHT6RxjIowYDkh/jkg5D87CRlwJUVF+nARDoCU5jHGE2H/ig1CUXcLuZErrxHeF
+MbYvY5xP4eIkhhfdDgEO5Xlaxjj0KS6B6g89SsRFdC0AjnegMJNevzlGicfhYHp8
+RcYRyR4wVTopkA6onoq2UuGjw6Bh9Vu8JNAdoHh27im5ISsBEenUSV52Scbo2W0Z
+3T8lM6qShNwh9BBhKM+VcOuxO4XxPBE0ttd7tpC90aYVZX0TPV4=
+=TUkI
+-----END PGP SIGNATURE-----
+
+--Sig_/A0x/3fzY+c_Yy3jqOjxoPnx--
