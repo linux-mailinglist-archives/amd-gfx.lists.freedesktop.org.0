@@ -2,76 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E946AB6465
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 May 2025 09:31:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B93C2AB6468
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 May 2025 09:31:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD62B10E262;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B59710E24B;
 	Wed, 14 May 2025 07:31:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AOXLAbaX";
+	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="WgGedhVm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A9AB10E218;
- Tue, 13 May 2025 23:46:31 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-442eb7edc80so1074505e9.1; 
- Tue, 13 May 2025 16:46:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747179987; x=1747784787; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Am7EfrJqOwulXz2MygzhqsLfPIY8ao2NbUQeLabZZDU=;
- b=AOXLAbaXXAdKCbIyhyWok36Sh9/luHSkdR19zaqyCoCh18P+7LB6jiIB4h577AK1JX
- q6rMf5F+XbVkf+6+FSmfzWs6+H1wLbHaCKytE+ZOz6pnx1LFLdlBR+8NSQFpdZPhy+jp
- oxCRQAyFwdwk8Sl09k8YaPGxQys1WO6USVGsP/pY1IKk7HhzBjgurv1SM9LUExL33mhE
- HVcRnfGsxrvmYuIvhiz7xdDfhfYvFnq47UMm1Xf/hbSL5sGUY5OOHFu8ggAukebuTnD9
- Xr0SYkPqmljHn2Ueq2Bj1oH8OOlpzdNM1UwgetGNR0ZJ8S5MYm11g+IEE8VrnJL2NuSN
- NjqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747179987; x=1747784787;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Am7EfrJqOwulXz2MygzhqsLfPIY8ao2NbUQeLabZZDU=;
- b=WHm3k5nP9T17ZMk5qVZQ9eCgEQDz7IGdPq+ueR+ehokoRPQnYFXs7frXd6xEwxz5Km
- vDMEdC6t5DPnj+lYQuG+8GB/Lvj3ui316023ZyMp+RO6jnncsr2ynMXcwHFaZ0IaRPca
- /JrqZLlduAt3t1ZIzANI57wR6FaQilG9heqOX9kPrbpLQJhiiM22pLSsylOv5FRgemrq
- eTV94yRJuY28nXPkclQZe5reV8B2sa/PfSinROuVMOD8EtI58Rs9Irml1a/GOGnjATgC
- joePUbPL/vPOXr14T8ox2ROxevCpl/qaVnSdDvM8JhLteVM+CIYpd4uIL2w9W5MJ/1Qd
- vcKw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUyWO1eXrrtl73OqmD6ynUYZMnOOPxK2mX1834zFJGnF5ym1LLFwaznKOSmJTrIwHvVlwEcEEQkfTA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzG8OJ70vBAm7F4m3KmXHgYs9KHz4thhizlkcpIigffaRosJuPb
- MLLMnpVwK88vKW6mPc1x7HriSjXV/eC1b9PrCD6JWqRnB+NyZbE2
-X-Gm-Gg: ASbGncvRnzOTxubJM+Ri3XcJE09GLg4lcyj7h05wRmnsRV0RRRfi4elGx+SnieMwKW9
- Au4nnKJv9AsdRJHLNQcoE8zxhw1AGgd8JoygpYXNGTjN6mXe5Se4rhmNS4JV1pRgP+d7yzd6uEd
- KmS7Ri+KAuVCvdSwk6/uXe+d7/PRnogSTF+h8bp1jPxguWirHHOszXoZpLjC4IFYjKrXKYUF6Dr
- +ZdEfKV9NkxvDR59j83aWwvTkOsuKZViZC0NhxFOy8PJMCgUiqNdVvnHecAAX1Py6a7qzwi1q0B
- TdFp9LDnM/I4HN45Sccpu3hra2DgXUsDR87QXbbOlYMZqo/AhS7QI5r0NCy+SEvnL7EWq//RigF
- CRuXNMK+3wO8o
-X-Google-Smtp-Source: AGHT+IHSw2JHRvnitJtJa6AdYdxRDFYEo1OfcoOtexkTf6XFYzq3VybGtqZnXlr+zjXBLXMGWv0Flw==
-X-Received: by 2002:a05:600c:1c2a:b0:43d:fa5d:2675 with SMTP id
- 5b1f17b1804b1-442f219511emr2834195e9.9.1747179987106; 
- Tue, 13 May 2025 16:46:27 -0700 (PDT)
-Received: from localhost.localdomain ([102.44.114.188])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-442f3369138sm5670665e9.8.2025.05.13.16.46.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 May 2025 16:46:26 -0700 (PDT)
-From: Abdelrahman Fekry <abdelrahmanfekry375@gmail.com>
-X-Google-Original-From: Abdelrahman Fekry <Abdelrahmanfekry375@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, skhan@linuxfoundation.org
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev,
- Abdelrahman Fekry <Abdelrahmanfekry375@gmail.com>
-Subject: [PATCH] drm/amd: fix kernel-doc parameter tag format
-Date: Wed, 14 May 2025 02:46:21 +0300
-Message-Id: <20250513234621.322283-1-Abdelrahmanfekry375@gmail.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FE9810E17F;
+ Wed, 14 May 2025 01:16:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
+ ; s=bytemarkmx;
+ h=MIME-Version:Message-ID:Date:Subject:From:Content-Type:From
+ :Subject; bh=1hs0q+mYysLcaiUGDRGU9TTWH9u5sOR249xe+14mUYE=; b=WgGedhVmEtnihbug
+ SFvkbuRhV8goYYF6lKHH2iKLLNc8rG4SVCmXVxAWsML0+B9VAbNCQ+ToGlPa+bFCPDv5gLjq65LTL
+ wdEjOe6Ih+peKUx/B3FBq5j1yYptpGsrpGL3Fccnlq+FhVTpcj+K+pHpt1g7r+qphZQ3Bjz9c7cd2
+ lxCpD8+tFTksaAJFpsW51xhj0jAaGraa9BYTtT/5xVItG+6TXZC9Tu7vVz+d5tosp6h83Fu9NVfhm
+ 7Y3FxO6XaXXZu929fpm1eHeKo2l7q5TbbL0wFgM5cGU143FyYKYWVODs95f1H4ZaYb6RY1TpeSYld
+ aAPQZz4AiVKysSYc4w==;
+Received: from localhost ([127.0.0.1] helo=dalek.home.treblig.org)
+ by mx.treblig.org with esmtp (Exim 4.96)
+ (envelope-from <linux@treblig.org>) id 1uF0jD-003Oxd-2I;
+ Wed, 14 May 2025 01:16:11 +0000
+From: linux@treblig.org
+To: alexander.deucher@amd.com, christophe.jaillet@wanadoo.fr,
+ christian.koenig@amd.com
+Cc: airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ "Dr. David Alan Gilbert" <linux@treblig.org>
+Subject: [PATCH] drm/radeon/cik: Clean up doorbells
+Date: Wed, 14 May 2025 02:16:10 +0100
+Message-ID: <20250514011610.136607-1-linux@treblig.org>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 14 May 2025 07:31:11 +0000
@@ -89,33 +55,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The DC_HDCP_LC_ENABLE_SW_FALLBACK enum comment was missing the required
-colon after the parameter name in its kernel-doc tag:
+From: "Dr. David Alan Gilbert" <linux@treblig.org>
 
-  * @DC_HDCP_LC_ENABLE_SW_FALLBACK If set, ...
+Free doorbells in the error paths of cik_init and in cik_fini.
 
-Kernel-doc insists on the form @name: description. Adding the colon
-eliminates the warning and ensures consistent extraction into Sphinx
-documentation. No functional changes are made.
+Build tested only.
 
-Signed-off-by: Abdelrahman Fekry <Abdelrahmanfekry375@gmail.com>
+Suggested-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
 ---
- drivers/gpu/drm/amd/include/amd_shared.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+RFC->v1
+  Renamed ringCP[12]->ring_cp[12]
+  Cleaned up doorbells in cik_startup failure case
 
-diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-index 4c95b885d1d0..c8eccee9b023 100644
---- a/drivers/gpu/drm/amd/include/amd_shared.h
-+++ b/drivers/gpu/drm/amd/include/amd_shared.h
-@@ -366,7 +366,7 @@ enum DC_DEBUG_MASK {
- 	DC_HDCP_LC_FORCE_FW_ENABLE = 0x80000,
+ drivers/gpu/drm/radeon/cik.c | 42 +++++++++++++++++++++++++-----------
+ 1 file changed, 30 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
+index 11a492f21157..51a3e0fc2f56 100644
+--- a/drivers/gpu/drm/radeon/cik.c
++++ b/drivers/gpu/drm/radeon/cik.c
+@@ -8548,7 +8548,7 @@ int cik_suspend(struct radeon_device *rdev)
+  */
+ int cik_init(struct radeon_device *rdev)
+ {
+-	struct radeon_ring *ring;
++	struct radeon_ring *ring, *ring_cp1, *ring_cp2;
+ 	int r;
  
- 	/**
--	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK If set, upon HDCP Locality Check FW
-+	 * @DC_HDCP_LC_ENABLE_SW_FALLBACK: If set, upon HDCP Locality Check FW
- 	 * path failure, retry using legacy SW path.
+ 	/* Read BIOS */
+@@ -8623,19 +8623,22 @@ int cik_init(struct radeon_device *rdev)
+ 	ring->ring_obj = NULL;
+ 	r600_ring_init(rdev, ring, 1024 * 1024);
+ 
+-	ring = &rdev->ring[CAYMAN_RING_TYPE_CP1_INDEX];
+-	ring->ring_obj = NULL;
+-	r600_ring_init(rdev, ring, 1024 * 1024);
+-	r = radeon_doorbell_get(rdev, &ring->doorbell_index);
++	ring_cp1 = &rdev->ring[CAYMAN_RING_TYPE_CP1_INDEX];
++	ring_cp2 = &rdev->ring[CAYMAN_RING_TYPE_CP2_INDEX];
++	ring_cp1->ring_obj = NULL;
++	ring_cp2->ring_obj = NULL;
++	ring_cp1->doorbell_index = RADEON_MAX_DOORBELLS;
++	ring_cp2->doorbell_index = RADEON_MAX_DOORBELLS;
++
++	r600_ring_init(rdev, ring_cp1, 1024 * 1024);
++	r = radeon_doorbell_get(rdev, &ring_cp1->doorbell_index);
+ 	if (r)
+ 		return r;
+ 
+-	ring = &rdev->ring[CAYMAN_RING_TYPE_CP2_INDEX];
+-	ring->ring_obj = NULL;
+-	r600_ring_init(rdev, ring, 1024 * 1024);
+-	r = radeon_doorbell_get(rdev, &ring->doorbell_index);
++	r600_ring_init(rdev, ring_cp2, 1024 * 1024);
++	r = radeon_doorbell_get(rdev, &ring_cp2->doorbell_index);
+ 	if (r)
+-		return r;
++		goto out;
+ 
+ 	ring = &rdev->ring[R600_RING_TYPE_DMA_INDEX];
+ 	ring->ring_obj = NULL;
+@@ -8653,12 +8656,16 @@ int cik_init(struct radeon_device *rdev)
+ 
+ 	r = r600_pcie_gart_init(rdev);
+ 	if (r)
+-		return r;
++		goto out;
+ 
+ 	rdev->accel_working = true;
+ 	r = cik_startup(rdev);
+ 	if (r) {
+ 		dev_err(rdev->dev, "disabling GPU acceleration\n");
++		radeon_doorbell_free(rdev, ring_cp1->doorbell_index);
++		radeon_doorbell_free(rdev, ring_cp2->doorbell_index);
++		ring_cp1->doorbell_index = RADEON_MAX_DOORBELLS;
++		ring_cp2->doorbell_index = RADEON_MAX_DOORBELLS;
+ 		cik_cp_fini(rdev);
+ 		cik_sdma_fini(rdev);
+ 		cik_irq_fini(rdev);
+@@ -8678,10 +8685,16 @@ int cik_init(struct radeon_device *rdev)
  	 */
- 	DC_HDCP_LC_ENABLE_SW_FALLBACK = 0x100000,
+ 	if (!rdev->mc_fw && !(rdev->flags & RADEON_IS_IGP)) {
+ 		DRM_ERROR("radeon: MC ucode required for NI+.\n");
+-		return -EINVAL;
++		r = -EINVAL;
++		goto out;
+ 	}
+ 
+ 	return 0;
++
++out:
++	radeon_doorbell_free(rdev, ring_cp1->doorbell_index);
++	radeon_doorbell_free(rdev, ring_cp2->doorbell_index);
++	return r;
+ }
+ 
+ /**
+@@ -8695,6 +8708,7 @@ int cik_init(struct radeon_device *rdev)
+  */
+ void cik_fini(struct radeon_device *rdev)
+ {
++	struct radeon_ring *ring;
+ 	radeon_pm_fini(rdev);
+ 	cik_cp_fini(rdev);
+ 	cik_sdma_fini(rdev);
+@@ -8708,6 +8722,10 @@ void cik_fini(struct radeon_device *rdev)
+ 	radeon_ib_pool_fini(rdev);
+ 	radeon_irq_kms_fini(rdev);
+ 	uvd_v1_0_fini(rdev);
++	ring = &rdev->ring[CAYMAN_RING_TYPE_CP1_INDEX];
++	radeon_doorbell_free(rdev, ring->doorbell_index);
++	ring = &rdev->ring[CAYMAN_RING_TYPE_CP2_INDEX];
++	radeon_doorbell_free(rdev, ring->doorbell_index);
+ 	radeon_uvd_fini(rdev);
+ 	radeon_vce_fini(rdev);
+ 	cik_pcie_gart_fini(rdev);
 -- 
-2.25.1
+2.49.0
 
