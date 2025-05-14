@@ -2,57 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3567BAB76ED
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 May 2025 22:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE69AB76E8
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 May 2025 22:23:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBADC10E735;
-	Wed, 14 May 2025 20:23:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8044B10E73A;
+	Wed, 14 May 2025 20:23:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lOl3vN6H";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D140810E62A;
- Wed, 14 May 2025 12:50:17 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4ZyCqV1vnxz9tYZ;
- Wed, 14 May 2025 14:50:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1747227014; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=nlKh+0ijam3nCwhu9fJcC9cBwZeP43xTZB9GHxwpAWQ=;
- b=O8Vw10cbuaUq8yNfc1gIWbc372m21pzL/iexcgtwUbrLlHkhue6ho4HqgSiZswrtxCrBuF
- Az3R86tMvk2nYJ63XzFgfNlDz/28zNaVFpl/jKvZCEQH3KDESRfXsjwd87zJr037LHkWhY
- lP8LWvK5RvbwFFIWYNBg7xonLYUwC33OC9A5df6qUfB/QX49JYu3li6r6GYR0SgoPRT/HX
- XEUjpSn8mcs7P3Gx05Y5YdzC6jj9HdyXu45y2pt+egoyDxm5ptJpl3tiqbHRLvboatSVHf
- LWPKIW+Ga73drMHXgg+NKxM5BPqppmZyysUgKbBdFbQ4p4V7lMWUaa3kTu7jGQ==
-Message-ID: <1929a77847b9ee7a2f4cb652ee6326fbe417625d.camel@mailbox.org>
-Subject: Re: [PATCH v9 08/10] drm: get rid of drm_sched_job::id
-From: Philipp Stanner <phasta@mailbox.org>
-To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>,  David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,  Danilo
- Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Tvrtko Ursulin <tursulin@igalia.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Wed, 14 May 2025 14:50:09 +0200
-In-Reply-To: <20250424083834.15518-9-pierre-eric.pelloux-prayer@amd.com>
-References: <20250424083834.15518-1-pierre-eric.pelloux-prayer@amd.com>
- <20250424083834.15518-9-pierre-eric.pelloux-prayer@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB72810E63F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 May 2025 16:11:17 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-442ec3ce724so117725e9.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 May 2025 09:11:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1747239076; x=1747843876; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Y2/V4Vh+d+a0nZcON/MiVuUcn+BjyzHoYwdbSHuLjiw=;
+ b=lOl3vN6H1JCmQLfrUmDguddFHoxvKhzZAqhUto8+bnJZsHWbw9QGPECXnE9BUVQb6Q
+ C6Na6LT8+fEf3yZksMe2ymZTdyWeeBx4doQFz3PNypuwhg9WmMf+sa2D1pF/kNWF5c0V
+ 0gI8t5EtWMBaVVd9eck/ITr8yNlGcEwZF7OJ+BcgZwNBh/hR47yXKsPvyGGJKPZytf+q
+ zpi0oqH4EIsIwp2KkZG7txmHtdOQDkPrl86qKC07drRMMgCyiiWw4wR4QBGddfhd/L1d
+ KO9pt3XOecxPOXlOGkualPDXEXMdXv2gXb3jYVbtq+E485RvBNjyVpUrf2wOF9hFqWMR
+ r6qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747239076; x=1747843876;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Y2/V4Vh+d+a0nZcON/MiVuUcn+BjyzHoYwdbSHuLjiw=;
+ b=lgq0U5Db4Rc0aweLEPXnGimgqi/9GukLLezC44hZLqp3HKWyzJrM9E+/y/R3QKG546
+ PRcyjXc2sllWjcq+g576y/QwoJh7QNh3QMpyeIXyeAW5QJBWZn7S1ZhTifFnV9mfVubG
+ 2Mgq+/hwJvtzkKVLl/jKejUg6laAxpIcbXMWXc1loy2IZobyd18ilGHBQIYetVKBvJqm
+ kCneRQsQXcKIO/LOKsLhWKbDCr/STrdSzniK8xccQOHlykdigK2ykonSV+Me9pS0maKi
+ uXQmZf9ZW7H9D7bzW6IKux5kOFcFqB4Gm4YjBR/aiXNFuf1XGGxPrrDpI9pPtUDyMb0o
+ AFsA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV8FD+m4qmKDmBrkbXqrMBy3G5P7miistLnMqKvK1Rzgs0FZ69Dd2O4VdMGDM4PUVhcjuoRLDxW@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzqsGFW3RACeWHbAkiy7v0oXV49Bxgiv4duf5Qq7+rUQTWd7htO
+ V0rcsL9TIb3v5GFyp0AhTxUlKyl+5ronMnsp0OhnlmBUoXfIPo14
+X-Gm-Gg: ASbGnctn0efqvlJyyLMe58R7HQgtaQyCNo5dT0cUqf3AxpUPCz9HjzYocqaGdvOOYhS
+ lQ+99AzlBLmLaqf2lGsAV1M1W44W5VsT+xfEFg7Y8dh1H+8O6wAiLMavChwiwPsJs8czlzVkxP3
+ VLO/I5lvr6UUOievG70GCPZQxCLsgKGeq1QTCliz8rfAgnFZKYbdMsEwKKnX5MzEGAsAnLoxSKX
+ fQuS7D4ENyg7gzrpvgFMRTjwfl2GJNtMEAhguoEi75vPOLfvrmfeMrB5DmpDnlf/NWMA6jSo059
+ 7zx7EZ+W+dRAGVfqpN4FCSV20EKxP17gX7/JpZF3C4VzckQJiR43oZq9s1mY2wc=
+X-Google-Smtp-Source: AGHT+IFGHec//hF81vQxUlFa4erK/ez1voAa+p6UTDP3HcrYgaIZTtF6BiQEOAEJgs3Vbq8qTw4hYQ==
+X-Received: by 2002:a05:600c:348a:b0:43c:fa0e:4713 with SMTP id
+ 5b1f17b1804b1-442f20bb25dmr40829335e9.2.1747239074979; 
+ Wed, 14 May 2025 09:11:14 -0700 (PDT)
+Received: from [192.168.1.121] ([176.206.99.211])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-442f337dbb7sm35500765e9.14.2025.05.14.09.11.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 14 May 2025 09:11:14 -0700 (PDT)
+Message-ID: <965c9753-f14b-4a87-9f6d-8798e09ad6f5@gmail.com>
+Date: Wed, 14 May 2025 18:11:13 +0200
 MIME-Version: 1.0
-X-MBO-RS-ID: cd461b57c8791af4e28
-X-MBO-RS-META: rocdc9sxx4pkpjjrhzorktz33gu3ny43
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Bug 220110] probably thunderbolt or pci leads to pci usage
+ counter underflow
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Yijun Shen
+ <Yijun_Shen@dell.com>, David Perry <david.perry@amd.com>,
+ Kai-Heng Feng <kaihengf@nvidia.com>, AceLan Kao <acelan.kao@canonical.com>,
+ Mark Pearson <mpearson-lenovo@squebb.ca>,
+ =?UTF-8?Q?Merthan_Karaka=C5=9F?= <m3rthn.k@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20250513194506.GA1155899@bhelgaas>
+ <b2f9c88d-59b5-416f-b8d5-2e0fb1fc74fd@amd.com>
+Content-Language: en-US, it-IT, en-US-large
+From: Denis Benato <benato.denis96@gmail.com>
+In-Reply-To: <b2f9c88d-59b5-416f-b8d5-2e0fb1fc74fd@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 14 May 2025 20:23:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,294 +96,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-04-24 at 10:38 +0200, Pierre-Eric Pelloux-Prayer wrote:
-> Its only purpose was for trace events, but jobs can already be
-> uniquely identified using their fence.
->=20
-> The downside of using the fence is that it's only available
-> after 'drm_sched_job_arm' was called which is true for all trace
-> events that used job.id so they can safely switch to using it.
 
-nit: in the title you use double colon :: as a namespace separator. In
-the kernel docu style only . (as here above) or -> are used.
+On 5/13/25 21:51, Mario Limonciello wrote:
+> On 5/13/2025 2:45 PM, Bjorn Helgaas wrote:
+>>  From Denis's report at https://bugzilla.kernel.org/show_bug.cgi?id=220110:
+>>
+>>> I am having problems with my laptop that has a thunderbolt
+>>> controller to which I connected an AMD 6750XT.
+>>>
+>>> The topology of my system is described in this bug:
+>>> https://gitlab.freedesktop.org/drm/amd/-/issues/4014 yet I don't
+>>> know if this is related or not.
+>>>
+>>> I experienced PC attempting to enter s2idle while playing a YT
+>>> video; PC has become totally unresponsive to input in any
+>>> keyboard/mouse and power button after turning off screens attached
+>>> to the AMD card (the built-in screen was off already).
+>>>
+>>>  From a look at the logs it appears one uncorrectible AER pci error
+>>> triggered a pci root reset, and that comes with a bug where the
+>>> usage counter assumes a wrong value; this in turn seems to cause all
+>>> sorts of weird bugs.
+>>>
+>>> That however is my interpretation of the attached log, that might be
+>>> very wrong.
+>>>
+>>> This is the first time I experience this bug in a year with this
+>>> laptop and I don't know how easy it is to reproduce.
+>>>
+>>> The kernel has been compiled from sources and it has
+>>>
+>>>    [PATCH v2] PCI: Explicitly put devices into D0 when initializing
+>>>    [PATCH v4] PCI/PM: Put devices to low power state on shutdown
+>>>
+>>> as I am helping testing things. I find unlikely any of those might
+>>> cause these issues especially "PCI: Explicitly put devices into D0
+>>> when initializing" that has been there for a few weeks now.
+>>>
+>>> Thanks in advice to whoever will help me.
+>
+> From the logs the system didn't actually enter s2idle, but because of the failure to recover after AER he lost the external GPU.
+>
+> I don't expect that "PCI/PM: Put devices to low power state on shutdown" has anything to do with this issue.  This should only affect system shutdown.  (Tangentially related comment; we have another version of this on the linux-pm list now that is more generic [1]).
+>
+> How readily can this be reproduced?  Can you try to reproduce once more?
+> Can this reproduce on an unpatched kernel?
+>
+I have tried many different of unpatched and patched 6.14.6 for a few hours and I could not get this same bug again.
 
-Commit title should be consistent with that.
+After unsuccessfully attempting to reproduce with the kernel I have been running I decided to test the newest "PM_ Use hibernate flows for system power off" patch [1].
 
-Other than that, nice clean up.
+and that patch seems to help quickly poweroff my laptop when combined with the other mentioned patch.
 
-P.
+> To confirm if "PCI: Explicitly put devices into D0 when initializing" is the cause can you compare the PCI state of all devices from sysfs with and without the patch in place after bootup?  Basically run this in patched kernel and unpatched kernel and let's compare.
+>
+> $ grep -v foo /sys/bus/pci/devices/*/power_state
+>
+>
+unpatched: https://pastebin.com/Ym31Vjh6
+patched with just "PCI: Explicitly put devices into D0 when initializing": https://pastebin.com/SSSWLgcs
 
->=20
-> Suggested-by: Tvrtko Ursulin <tursulin@igalia.com>
-> Signed-off-by: Pierre-Eric Pelloux-Prayer
-> <pierre-eric.pelloux-prayer@amd.com>
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
-> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 18 ++++++----------
-> --
-> =C2=A0.../gpu/drm/scheduler/gpu_scheduler_trace.h=C2=A0=C2=A0=C2=A0 | 18 =
-++++++----------
-> --
-> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 -
-> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 3 ---
-> =C2=A04 files changed, 12 insertions(+), 28 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-> index 11dd2e0f7979..4fd810cb5387 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-> @@ -167,7 +167,6 @@ TRACE_EVENT(amdgpu_cs_ioctl,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_PROTO(struct amdgpu_job *job),
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_ARGS(job),
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_STRUCT__entry(
-> -			=C2=A0=C2=A0=C2=A0=C2=A0 __field(uint64_t, sched_job_id)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __string(timeline,
-> AMDGPU_JOB_GET_TIMELINE_NAME(job))
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(unsigned int, context)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(unsigned int, seqno)
-> @@ -177,15 +176,14 @@ TRACE_EVENT(amdgpu_cs_ioctl,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 ),
-> =C2=A0
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_fast_assign(
-> -			=C2=A0=C2=A0 __entry->sched_job_id =3D job->base.id;
-> =C2=A0			=C2=A0=C2=A0 __assign_str(timeline);
-> =C2=A0			=C2=A0=C2=A0 __entry->context =3D job->base.s_fence-
-> >finished.context;
-> =C2=A0			=C2=A0=C2=A0 __entry->seqno =3D job->base.s_fence-
-> >finished.seqno;
-> =C2=A0			=C2=A0=C2=A0 __assign_str(ring);
-> =C2=A0			=C2=A0=C2=A0 __entry->num_ibs =3D job->num_ibs;
-> =C2=A0			=C2=A0=C2=A0 ),
-> -	=C2=A0=C2=A0=C2=A0 TP_printk("sched_job=3D%llu, timeline=3D%s, context=
-=3D%u,
-> seqno=3D%u, ring_name=3D%s, num_ibs=3D%u",
-> -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->sched_job_id, __get_str(timeli=
-ne),
-> __entry->context,
-> +	=C2=A0=C2=A0=C2=A0 TP_printk("timeline=3D%s, context=3D%u, seqno=3D%u,
-> ring_name=3D%s, num_ibs=3D%u",
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __get_str(timeline), __entry->context,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->seqno, __get_str(ring), _=
-_entry-
-> >num_ibs)
-> =C2=A0);
-> =C2=A0
-> @@ -193,7 +191,6 @@ TRACE_EVENT(amdgpu_sched_run_job,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_PROTO(struct amdgpu_job *job),
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_ARGS(job),
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_STRUCT__entry(
-> -			=C2=A0=C2=A0=C2=A0=C2=A0 __field(uint64_t, sched_job_id)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __string(timeline,
-> AMDGPU_JOB_GET_TIMELINE_NAME(job))
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(unsigned int, context)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(unsigned int, seqno)
-> @@ -202,15 +199,14 @@ TRACE_EVENT(amdgpu_sched_run_job,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 ),
-> =C2=A0
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_fast_assign(
-> -			=C2=A0=C2=A0 __entry->sched_job_id =3D job->base.id;
-> =C2=A0			=C2=A0=C2=A0 __assign_str(timeline);
-> =C2=A0			=C2=A0=C2=A0 __entry->context =3D job->base.s_fence-
-> >finished.context;
-> =C2=A0			=C2=A0=C2=A0 __entry->seqno =3D job->base.s_fence-
-> >finished.seqno;
-> =C2=A0			=C2=A0=C2=A0 __assign_str(ring);
-> =C2=A0			=C2=A0=C2=A0 __entry->num_ibs =3D job->num_ibs;
-> =C2=A0			=C2=A0=C2=A0 ),
-> -	=C2=A0=C2=A0=C2=A0 TP_printk("sched_job=3D%llu, timeline=3D%s, context=
-=3D%u,
-> seqno=3D%u, ring_name=3D%s, num_ibs=3D%u",
-> -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->sched_job_id, __get_str(timeli=
-ne),
-> __entry->context,
-> +	=C2=A0=C2=A0=C2=A0 TP_printk("timeline=3D%s, context=3D%u, seqno=3D%u,
-> ring_name=3D%s, num_ibs=3D%u",
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __get_str(timeline), __entry->context,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->seqno, __get_str(ring), _=
-_entry-
-> >num_ibs)
-> =C2=A0);
-> =C2=A0
-> @@ -551,7 +547,6 @@ TRACE_EVENT(amdgpu_ib_pipe_sync,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_ARGS(sched_job, fence),
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_STRUCT__entry(
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __string(ring, sched_job->base.sched-
-> >name)
-> -			=C2=A0=C2=A0=C2=A0=C2=A0 __field(uint64_t, id)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(struct dma_fence *, fence)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(uint64_t, ctx)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(unsigned, seqno)
-> @@ -559,13 +554,12 @@ TRACE_EVENT(amdgpu_ib_pipe_sync,
-> =C2=A0
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_fast_assign(
-> =C2=A0			=C2=A0=C2=A0 __assign_str(ring);
-> -			=C2=A0=C2=A0 __entry->id =3D sched_job->base.id;
-> =C2=A0			=C2=A0=C2=A0 __entry->fence =3D fence;
-> =C2=A0			=C2=A0=C2=A0 __entry->ctx =3D fence->context;
-> =C2=A0			=C2=A0=C2=A0 __entry->seqno =3D fence->seqno;
-> =C2=A0			=C2=A0=C2=A0 ),
-> -	=C2=A0=C2=A0=C2=A0 TP_printk("job ring=3D%s, id=3D%llu, need pipe sync =
-to
-> fence=3D%p, context=3D%llu, seq=3D%u",
-> -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __get_str(ring), __entry->id,
-> +	=C2=A0=C2=A0=C2=A0 TP_printk("job ring=3D%s need pipe sync to fence=3D%=
-p,
-> context=3D%llu, seq=3D%u",
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __get_str(ring),
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->fence, __entry->ctx,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->seqno)
-> =C2=A0);
-> diff --git a/drivers/gpu/drm/scheduler/gpu_scheduler_trace.h
-> b/drivers/gpu/drm/scheduler/gpu_scheduler_trace.h
-> index 4ce53e493fef..781b20349389 100644
-> --- a/drivers/gpu/drm/scheduler/gpu_scheduler_trace.h
-> +++ b/drivers/gpu/drm/scheduler/gpu_scheduler_trace.h
-> @@ -36,7 +36,6 @@ DECLARE_EVENT_CLASS(drm_sched_job,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_PROTO(struct drm_sched_job *sched_job, struc=
-t
-> drm_sched_entity *entity),
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_ARGS(sched_job, entity),
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_STRUCT__entry(
-> -			=C2=A0=C2=A0=C2=A0=C2=A0 __field(uint64_t, id)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __string(name, sched_job->sched->name)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(u32, job_count)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(int, hw_job_count)
-> @@ -47,7 +46,6 @@ DECLARE_EVENT_CLASS(drm_sched_job,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 ),
-> =C2=A0
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_fast_assign(
-> -			=C2=A0=C2=A0 __entry->id =3D sched_job->id;
-> =C2=A0			=C2=A0=C2=A0 __assign_str(name);
-> =C2=A0			=C2=A0=C2=A0 __entry->job_count =3D
-> spsc_queue_count(&entity->job_queue);
-> =C2=A0			=C2=A0=C2=A0 __entry->hw_job_count =3D atomic_read(
-> @@ -57,8 +55,8 @@ DECLARE_EVENT_CLASS(drm_sched_job,
-> =C2=A0			=C2=A0=C2=A0 __entry->fence_seqno =3D sched_job-
-> >s_fence->finished.seqno;
-> =C2=A0			=C2=A0=C2=A0 __entry->client_id =3D sched_job->s_fence-
-> >drm_client_id;
-> =C2=A0			=C2=A0=C2=A0 ),
-> -	=C2=A0=C2=A0=C2=A0 TP_printk("dev=3D%s, id=3D%llu, fence=3D%llu:%llu, r=
-ing=3D%s,
-> job count:%u, hw job count:%d, client_id:%llu",
-> -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __get_str(dev), __entry->id,
-> +	=C2=A0=C2=A0=C2=A0 TP_printk("dev=3D%s, fence=3D%llu:%llu, ring=3D%s, j=
-ob
-> count:%u, hw job count:%d, client_id:%llu",
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __get_str(dev),
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->fence_context, __entry->f=
-ence_seqno,
-> __get_str(name),
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->job_count, __entry->hw_jo=
-b_count,
-> __entry->client_id)
-> =C2=A0);
-> @@ -95,7 +93,6 @@ TRACE_EVENT(drm_sched_job_add_dep,
-> =C2=A0	TP_STRUCT__entry(
-> =C2=A0		=C2=A0=C2=A0=C2=A0 __field(u64, fence_context)
-> =C2=A0		=C2=A0=C2=A0=C2=A0 __field(u64, fence_seqno)
-> -		=C2=A0=C2=A0=C2=A0 __field(u64, id)
-> =C2=A0		=C2=A0=C2=A0=C2=A0 __field(u64, ctx)
-> =C2=A0		=C2=A0=C2=A0=C2=A0 __field(u64, seqno)
-> =C2=A0		=C2=A0=C2=A0=C2=A0 ),
-> @@ -103,12 +100,11 @@ TRACE_EVENT(drm_sched_job_add_dep,
-> =C2=A0	TP_fast_assign(
-> =C2=A0		=C2=A0=C2=A0=C2=A0 __entry->fence_context =3D sched_job->s_fence-
-> >finished.context;
-> =C2=A0		=C2=A0=C2=A0=C2=A0 __entry->fence_seqno =3D sched_job->s_fence-
-> >finished.seqno;
-> -		=C2=A0=C2=A0=C2=A0 __entry->id =3D sched_job->id;
-> =C2=A0		=C2=A0=C2=A0=C2=A0 __entry->ctx =3D fence->context;
-> =C2=A0		=C2=A0=C2=A0=C2=A0 __entry->seqno =3D fence->seqno;
-> =C2=A0		=C2=A0=C2=A0=C2=A0 ),
-> -	TP_printk("fence=3D%llu:%llu, id=3D%llu depends on
-> fence=3D%llu:%llu",
-> -		=C2=A0 __entry->fence_context, __entry->fence_seqno,
-> __entry->id,
-> +	TP_printk("fence=3D%llu:%llu depends on fence=3D%llu:%llu",
-> +		=C2=A0 __entry->fence_context, __entry->fence_seqno,
-> =C2=A0		=C2=A0 __entry->ctx, __entry->seqno)
-> =C2=A0);
-> =C2=A0
-> @@ -118,7 +114,6 @@ TRACE_EVENT(drm_sched_job_unschedulable,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_STRUCT__entry(
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(u64, fence_context)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(u64, fence_seqno)
-> -			=C2=A0=C2=A0=C2=A0=C2=A0 __field(uint64_t, id)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(u64, ctx)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 __field(u64, seqno)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 ),
-> @@ -126,12 +121,11 @@ TRACE_EVENT(drm_sched_job_unschedulable,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 TP_fast_assign(
-> =C2=A0			=C2=A0=C2=A0 __entry->fence_context =3D sched_job-
-> >s_fence->finished.context;
-> =C2=A0			=C2=A0=C2=A0 __entry->fence_seqno =3D sched_job-
-> >s_fence->finished.seqno;
-> -			=C2=A0=C2=A0 __entry->id =3D sched_job->id;
-> =C2=A0			=C2=A0=C2=A0 __entry->ctx =3D fence->context;
-> =C2=A0			=C2=A0=C2=A0 __entry->seqno =3D fence->seqno;
-> =C2=A0			=C2=A0=C2=A0 ),
-> -	=C2=A0=C2=A0=C2=A0 TP_printk("fence=3D%llu:%llu, id=3D%llu depends on
-> unsignalled fence=3D%llu:%llu",
-> -		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->fence_context, __entry->fence_=
-seqno,
-> __entry->id,
-> +	=C2=A0=C2=A0=C2=A0 TP_printk("fence=3D%llu:%llu depends on unsignalled
-> fence=3D%llu:%llu",
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->fence_context, __entry->fence_=
-seqno,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 __entry->ctx, __entry->seqno)
-> =C2=A0);
-> =C2=A0
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> b/drivers/gpu/drm/scheduler/sched_main.c
-> index 195b5f891068..dafda1803c7c 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -852,7 +852,6 @@ void drm_sched_job_arm(struct drm_sched_job *job)
-> =C2=A0
-> =C2=A0	job->sched =3D sched;
-> =C2=A0	job->s_priority =3D entity->priority;
-> -	job->id =3D atomic64_inc_return(&sched->job_id_count);
-> =C2=A0
-> =C2=A0	drm_sched_fence_init(job->s_fence, job->entity);
-> =C2=A0}
-> diff --git a/include/drm/gpu_scheduler.h
-> b/include/drm/gpu_scheduler.h
-> index 6fe3b4c0cffb..48190fdf661a 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -326,7 +326,6 @@ struct drm_sched_fence *to_drm_sched_fence(struct
-> dma_fence *f);
-> =C2=A0 * @finish_cb: the callback for the finished fence.
-> =C2=A0 * @credits: the number of credits this job contributes to the
-> scheduler
-> =C2=A0 * @work: Helper to reschedule job kill to different context.
-> - * @id: a unique id assigned to each job scheduled on the scheduler.
-> =C2=A0 * @karma: increment on every hang caused by this job. If this
-> exceeds the hang
-> =C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 limit of the sch=
-eduler then the job is marked guilty and
-> will not
-> =C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 be scheduled fur=
-ther.
-> @@ -339,8 +338,6 @@ struct drm_sched_fence *to_drm_sched_fence(struct
-> dma_fence *f);
-> =C2=A0 * to schedule the job.
-> =C2=A0 */
-> =C2=A0struct drm_sched_job {
-> -	u64				id;
-> -
-> =C2=A0	/**
-> =C2=A0	 * @submit_ts:
-> =C2=A0	 *
+diff for easy view: https://www.diffchecker.com/y5GVyEG1/
 
+
+two devices were D3hot and two were unknown, while now are recognized as D0.
+
+
+Having those two patches together does not seem to cause any harm and I could not reproduce the issue.
+
+I do not believe any of those patches are the cause for the particular crash I experienced, however I do believe there is something wrong going on because on power on the amdgpu on the thunderbolt card sometimes is there sometimes is not and I have to unplug and replug it for it to work.
+
+The only patch that alleviates this particular problem is [2] "[PATCH v3] PCI: Prevent power state transition of erroneous device" but it comes with a regression where I can no longer wake up the laptop properly.
+
+I will write this in detail as a response to that patch given that was not part of the subject here.
+
+[2] https://lore.kernel.org/linux-pci/aCLNe2wHTiKdE5ZO@wunner.de/T/#m90fb151a4ab4af5ec8c667a27eb98bf43a9942dc
+
+> [1] https://lore.kernel.org/linux-pm/20250512212628.2539193-1-superm1@kernel.org/T/#u
