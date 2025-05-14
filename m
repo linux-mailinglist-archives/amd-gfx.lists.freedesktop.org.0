@@ -2,87 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE69AB76E8
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 May 2025 22:23:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86D08AB76EC
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 May 2025 22:23:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8044B10E73A;
-	Wed, 14 May 2025 20:23:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 980A910E738;
+	Wed, 14 May 2025 20:23:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lOl3vN6H";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vju7Yuzk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB72810E63F
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 May 2025 16:11:17 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-442ec3ce724so117725e9.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 May 2025 09:11:17 -0700 (PDT)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com
+ [209.85.222.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DACA10E64A;
+ Wed, 14 May 2025 17:43:19 +0000 (UTC)
+Received: by mail-ua1-f41.google.com with SMTP id
+ a1e0cc1a2514c-878af63c5eeso911241.3; 
+ Wed, 14 May 2025 10:43:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747239076; x=1747843876; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Y2/V4Vh+d+a0nZcON/MiVuUcn+BjyzHoYwdbSHuLjiw=;
- b=lOl3vN6H1JCmQLfrUmDguddFHoxvKhzZAqhUto8+bnJZsHWbw9QGPECXnE9BUVQb6Q
- C6Na6LT8+fEf3yZksMe2ymZTdyWeeBx4doQFz3PNypuwhg9WmMf+sa2D1pF/kNWF5c0V
- 0gI8t5EtWMBaVVd9eck/ITr8yNlGcEwZF7OJ+BcgZwNBh/hR47yXKsPvyGGJKPZytf+q
- zpi0oqH4EIsIwp2KkZG7txmHtdOQDkPrl86qKC07drRMMgCyiiWw4wR4QBGddfhd/L1d
- KO9pt3XOecxPOXlOGkualPDXEXMdXv2gXb3jYVbtq+E485RvBNjyVpUrf2wOF9hFqWMR
- r6qg==
+ d=gmail.com; s=20230601; t=1747244598; x=1747849398; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=LUKDAyGVgyLttQIEKGjY2SVfmg/Stniz0okiGwO+ins=;
+ b=Vju7YuzkM8BIAPmW7B6Dk5ZJR7o62Z8ZzCW+5q4BiS2VSYiWOc7+0z6SJz9jc5cLr/
+ w3dD2aLwXhKR5+K+eTctxodjoK3582SxtrxdpCZBTNu5diaCQe9vD0DLN5PFVK0+YTVw
+ nXfQZUiZJS1ApWhBAdphOKg4aGLkesWedd29sER7GXZlx4kt+U8V6tZGTNQDDITCO2gT
+ tJCldZ/2uPj2jQEcvNyDnMjuFjG3DwUNLq2IDJvZHeUGi6pHqIOg4p89auY/QVQHdJ3b
+ uRf5GSxUtyPhbN/NDZ9mkOS4QFPdMOtFMOu+RSci9itXzyD07Jda4cFyo+rKUYdzfOxc
+ ij5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747239076; x=1747843876;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Y2/V4Vh+d+a0nZcON/MiVuUcn+BjyzHoYwdbSHuLjiw=;
- b=lgq0U5Db4Rc0aweLEPXnGimgqi/9GukLLezC44hZLqp3HKWyzJrM9E+/y/R3QKG546
- PRcyjXc2sllWjcq+g576y/QwoJh7QNh3QMpyeIXyeAW5QJBWZn7S1ZhTifFnV9mfVubG
- 2Mgq+/hwJvtzkKVLl/jKejUg6laAxpIcbXMWXc1loy2IZobyd18ilGHBQIYetVKBvJqm
- kCneRQsQXcKIO/LOKsLhWKbDCr/STrdSzniK8xccQOHlykdigK2ykonSV+Me9pS0maKi
- uXQmZf9ZW7H9D7bzW6IKux5kOFcFqB4Gm4YjBR/aiXNFuf1XGGxPrrDpI9pPtUDyMb0o
- AFsA==
+ d=1e100.net; s=20230601; t=1747244598; x=1747849398;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=LUKDAyGVgyLttQIEKGjY2SVfmg/Stniz0okiGwO+ins=;
+ b=tAu37cHq5x+FH0ND5OFfMkA267wzKou+xZ3HSDWeUiptreDbJGTPdvjJa21q/cTbOZ
+ GtIzTlJlZiBSMRRb9HnsLt7qWxxctVx9NpTF6F5Q/hF9gtTh4OwLapaLIdhA6i5NIGMA
+ nag19SWTqP/3DGbJJm6gSJGAthczDBopShXJxpb4b5GlFnUwf3ozqPzeyCIkkn3iJJKK
+ SDR48XVkKmEZDHK3GHVjTsKJsUttrtaUHblJ9zmkYoeHAJgesYrIfRfZIBlnQhkPlkGA
+ UB89FSbNiluI7a/2M3j2ALU+Nzo9VdI3YNr8KXOmiPLkX6a26OqVS22rGs3XznxxX3th
+ Ntng==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV8FD+m4qmKDmBrkbXqrMBy3G5P7miistLnMqKvK1Rzgs0FZ69Dd2O4VdMGDM4PUVhcjuoRLDxW@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzqsGFW3RACeWHbAkiy7v0oXV49Bxgiv4duf5Qq7+rUQTWd7htO
- V0rcsL9TIb3v5GFyp0AhTxUlKyl+5ronMnsp0OhnlmBUoXfIPo14
-X-Gm-Gg: ASbGnctn0efqvlJyyLMe58R7HQgtaQyCNo5dT0cUqf3AxpUPCz9HjzYocqaGdvOOYhS
- lQ+99AzlBLmLaqf2lGsAV1M1W44W5VsT+xfEFg7Y8dh1H+8O6wAiLMavChwiwPsJs8czlzVkxP3
- VLO/I5lvr6UUOievG70GCPZQxCLsgKGeq1QTCliz8rfAgnFZKYbdMsEwKKnX5MzEGAsAnLoxSKX
- fQuS7D4ENyg7gzrpvgFMRTjwfl2GJNtMEAhguoEi75vPOLfvrmfeMrB5DmpDnlf/NWMA6jSo059
- 7zx7EZ+W+dRAGVfqpN4FCSV20EKxP17gX7/JpZF3C4VzckQJiR43oZq9s1mY2wc=
-X-Google-Smtp-Source: AGHT+IFGHec//hF81vQxUlFa4erK/ez1voAa+p6UTDP3HcrYgaIZTtF6BiQEOAEJgs3Vbq8qTw4hYQ==
-X-Received: by 2002:a05:600c:348a:b0:43c:fa0e:4713 with SMTP id
- 5b1f17b1804b1-442f20bb25dmr40829335e9.2.1747239074979; 
- Wed, 14 May 2025 09:11:14 -0700 (PDT)
-Received: from [192.168.1.121] ([176.206.99.211])
+ AJvYcCWUazqEO9NoVURjSseW1+bSfetBh+zqfaV6JhtZB+kDsVe/qYxh4AcNuH9xjJXoSLcp3ToGd8KcF2lb@lists.freedesktop.org,
+ AJvYcCXo38XuZo4gCiVZ0OeA2KwTzjKlhmVKhHPm+aHcndFcyxPPO5d1zRJe66qAb8OY40GaCBzqJP8l@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzHEL4oaKScf0EtYODDdWe0fG6W+mpNEBTgU4f6HDnKwxgGad+1
+ bs/UHUKQkF6l097YrWoH7uBefLTGC0XmyvXGtLluVhnRNNZVtgSY
+X-Gm-Gg: ASbGncuRc/dKa3U3KPCRxPN62LZ8klXAA3pt5XKCQ9GrqZE7KQhoEvhSfS3dZh2qDdJ
+ ZCKKIbT6u4j65Z8vl40LVcoiZ/TX8zeEYY9uhKdulN+eyOmAMJqRe0qrDTQDfw8liCxBcCIRLV0
+ Opx+HlDToE2+rUtf/h9O2cnRRDTJlXEjN1juwEODLDkuFtkmEasHWkANp1yXSRWbxG/RjsCC0Qo
+ gK26wtLiU3cJeLGm3Uiq6Hs7Ebt5C3Tt7qLXgGXKUw3GPvd49jWkzIsF3IMXJvUM5JwBWagvtsC
+ DhgScPe6rZQ//h6OVUZCFwRqfDMVfLMprxVCMObZ5PyJc54NWmXoyWA1ip/PvH/3fN2i3yrj6O0
+ L
+X-Google-Smtp-Source: AGHT+IGoJsdHAEYEYraq2rXfkPE6o1kobdA0jAPjtdBlaO0B2I7AI3uhQp+JSAioPsOruEFo9Nx0Iw==
+X-Received: by 2002:a05:6122:1792:b0:520:42d3:91c1 with SMTP id
+ 71dfb90a1353d-52d9c730db9mr3453623e0c.10.1747244597912; 
+ Wed, 14 May 2025 10:43:17 -0700 (PDT)
+Received: from xodo-linux.semfio.usp.br ([143.107.45.1])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-442f337dbb7sm35500765e9.14.2025.05.14.09.11.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 14 May 2025 09:11:14 -0700 (PDT)
-Message-ID: <965c9753-f14b-4a87-9f6d-8798e09ad6f5@gmail.com>
-Date: Wed, 14 May 2025 18:11:13 +0200
+ 71dfb90a1353d-52c727f5d86sm6401595e0c.10.2025.05.14.10.43.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 May 2025 10:43:17 -0700 (PDT)
+From: Leonardo Gomes <leonardodasigomes@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch
+Cc: derick.william.moraes@gmail.com,
+ Leonardo Gomes <leonardodasigomes@gmail.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH 1/2 RESEND] drm/amd/display: Adjust get_value function with
+ prefix to help in ftrace
+Date: Wed, 14 May 2025 14:42:10 -0300
+Message-ID: <20250514174306.82693-1-leonardodasigomes@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Bug 220110] probably thunderbolt or pci leads to pci usage
- counter underflow
-To: Mario Limonciello <mario.limonciello@amd.com>,
- Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Yijun Shen
- <Yijun_Shen@dell.com>, David Perry <david.perry@amd.com>,
- Kai-Heng Feng <kaihengf@nvidia.com>, AceLan Kao <acelan.kao@canonical.com>,
- Mark Pearson <mpearson-lenovo@squebb.ca>,
- =?UTF-8?Q?Merthan_Karaka=C5=9F?= <m3rthn.k@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20250513194506.GA1155899@bhelgaas>
- <b2f9c88d-59b5-416f-b8d5-2e0fb1fc74fd@amd.com>
-Content-Language: en-US, it-IT, en-US-large
-From: Denis Benato <benato.denis96@gmail.com>
-In-Reply-To: <b2f9c88d-59b5-416f-b8d5-2e0fb1fc74fd@amd.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 14 May 2025 20:23:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -99,80 +90,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Adjust get_value function in hw_hpd.c file to have
+prefix to help in ftrace, the name change from
+'get_value' to 'dal_hw_gpio_get_value'
 
-On 5/13/25 21:51, Mario Limonciello wrote:
-> On 5/13/2025 2:45 PM, Bjorn Helgaas wrote:
->>  From Denis's report at https://bugzilla.kernel.org/show_bug.cgi?id=220110:
->>
->>> I am having problems with my laptop that has a thunderbolt
->>> controller to which I connected an AMD 6750XT.
->>>
->>> The topology of my system is described in this bug:
->>> https://gitlab.freedesktop.org/drm/amd/-/issues/4014 yet I don't
->>> know if this is related or not.
->>>
->>> I experienced PC attempting to enter s2idle while playing a YT
->>> video; PC has become totally unresponsive to input in any
->>> keyboard/mouse and power button after turning off screens attached
->>> to the AMD card (the built-in screen was off already).
->>>
->>>  From a look at the logs it appears one uncorrectible AER pci error
->>> triggered a pci root reset, and that comes with a bug where the
->>> usage counter assumes a wrong value; this in turn seems to cause all
->>> sorts of weird bugs.
->>>
->>> That however is my interpretation of the attached log, that might be
->>> very wrong.
->>>
->>> This is the first time I experience this bug in a year with this
->>> laptop and I don't know how easy it is to reproduce.
->>>
->>> The kernel has been compiled from sources and it has
->>>
->>>    [PATCH v2] PCI: Explicitly put devices into D0 when initializing
->>>    [PATCH v4] PCI/PM: Put devices to low power state on shutdown
->>>
->>> as I am helping testing things. I find unlikely any of those might
->>> cause these issues especially "PCI: Explicitly put devices into D0
->>> when initializing" that has been there for a few weeks now.
->>>
->>> Thanks in advice to whoever will help me.
->
-> From the logs the system didn't actually enter s2idle, but because of the failure to recover after AER he lost the external GPU.
->
-> I don't expect that "PCI/PM: Put devices to low power state on shutdown" has anything to do with this issue.  This should only affect system shutdown.  (Tangentially related comment; we have another version of this on the linux-pm list now that is more generic [1]).
->
-> How readily can this be reproduced?  Can you try to reproduce once more?
-> Can this reproduce on an unpatched kernel?
->
-I have tried many different of unpatched and patched 6.14.6 for a few hours and I could not get this same bug again.
+Signed-off-by: Leonardo da Silva Gomes <leonardodasigomes@gmail.com>
+Co-developed-by: Derick Frias <derick.william.moraes@gmail.com>
+Signed-off-by: Derick Frias <derick.william.moraes@gmail.com>
+---
+ drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-After unsuccessfully attempting to reproduce with the kernel I have been running I decided to test the newest "PM_ Use hibernate flows for system power off" patch [1].
+diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
+index 3f13a744d07d..b11ed1089589 100644
+--- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
++++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
+@@ -62,7 +62,7 @@ static void dal_hw_hpd_destroy(
+ 	*ptr = NULL;
+ }
+ 
+-static enum gpio_result get_value(
++static enum gpio_result dal_hw_gpio_get_value(
+ 	const struct hw_gpio_pin *ptr,
+ 	uint32_t *value)
+ {
+@@ -104,7 +104,7 @@ static enum gpio_result set_config(
+ static const struct hw_gpio_pin_funcs funcs = {
+ 	.destroy = dal_hw_hpd_destroy,
+ 	.open = dal_hw_gpio_open,
+-	.get_value = get_value,
++	.get_value = dal_hw_gpio_get_value,
+ 	.set_value = dal_hw_gpio_set_value,
+ 	.set_config = set_config,
+ 	.change_mode = dal_hw_gpio_change_mode,
+-- 
+2.43.0
 
-and that patch seems to help quickly poweroff my laptop when combined with the other mentioned patch.
-
-> To confirm if "PCI: Explicitly put devices into D0 when initializing" is the cause can you compare the PCI state of all devices from sysfs with and without the patch in place after bootup?  Basically run this in patched kernel and unpatched kernel and let's compare.
->
-> $ grep -v foo /sys/bus/pci/devices/*/power_state
->
->
-unpatched: https://pastebin.com/Ym31Vjh6
-patched with just "PCI: Explicitly put devices into D0 when initializing": https://pastebin.com/SSSWLgcs
-
-diff for easy view: https://www.diffchecker.com/y5GVyEG1/
-
-
-two devices were D3hot and two were unknown, while now are recognized as D0.
-
-
-Having those two patches together does not seem to cause any harm and I could not reproduce the issue.
-
-I do not believe any of those patches are the cause for the particular crash I experienced, however I do believe there is something wrong going on because on power on the amdgpu on the thunderbolt card sometimes is there sometimes is not and I have to unplug and replug it for it to work.
-
-The only patch that alleviates this particular problem is [2] "[PATCH v3] PCI: Prevent power state transition of erroneous device" but it comes with a regression where I can no longer wake up the laptop properly.
-
-I will write this in detail as a response to that patch given that was not part of the subject here.
-
-[2] https://lore.kernel.org/linux-pci/aCLNe2wHTiKdE5ZO@wunner.de/T/#m90fb151a4ab4af5ec8c667a27eb98bf43a9942dc
-
-> [1] https://lore.kernel.org/linux-pm/20250512212628.2539193-1-superm1@kernel.org/T/#u
