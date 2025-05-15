@@ -2,51 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48DAFAB9719
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 May 2025 10:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AFEBAB971A
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 May 2025 10:05:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E37A010E9D5;
-	Fri, 16 May 2025 08:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F58C10E9DC;
+	Fri, 16 May 2025 08:05:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=att.net header.i=@att.net header.b="mQHNBCzd";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B447B10E8C4;
- Thu, 15 May 2025 14:18:09 +0000 (UTC)
-Received: from localhost.localdomain (unknown [124.16.141.245])
- by APP-01 (Coremail) with SMTP id qwCowADni_yb9yVoS_LMFQ--.6807S2;
- Thu, 15 May 2025 22:18:05 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH] drm: radeon: ci_dpm: Add error handling for
- ci_send_msg_to_smc_with_parameter()
-Date: Thu, 15 May 2025 22:17:40 +0800
-Message-ID: <20250515141740.1324-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.42.0.windows.2
+Received: from sonic307-12.consmr.mail.ne1.yahoo.com
+ (sonic307-12.consmr.mail.ne1.yahoo.com [66.163.190.35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DECE210E902
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 May 2025 16:11:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=att.net; s=s1024;
+ t=1747325485; bh=O76SHHXQZgA+EpWomFALQCHjcEYdFJfVnrFAlAf4t7w=;
+ h=Date:From:Subject:To:Cc:In-Reply-To:References:From:Subject:Reply-To;
+ b=mQHNBCzdlBK3VojoYcIVR7jCtbAn2VSWk8cVQeWgtednz2/ru9MwL+HCQ45hD7qobXCcEwNiaAZQ3uWu6Un5cXjN70vQdwu/wJwwm65Fcn5W3mSVR0Vg7Sh/kLfn5WLpLdKpczubW1glW6nUeMLhch/jwjBo78/q4P/9JcJVWxE=
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1747325485; bh=HoJ3fQFWk0ELs3ubb6mo58ut2kaYPS6JmQHlupsEMsO=;
+ h=X-Sonic-MF:Date:From:Subject:To:From:Subject;
+ b=EiQ9yEbK69NZKPTzTokCCwxjQLD9EA7oyOFEpwAfj9Tttq6Mp/h8skX1i5pTpyYTYS/NzZVTgoSCpE++mZflbMzkQkIpQ2aormqe0uQKf/TqJbapmqs743fG+cPofLGE9MeyLWGPT9wIis1KaGRm2d/MYBcK4wS/oTCwphF9M5ZCefMcCxKQDNSED9yx05sz/a4+oL7WN4FX2q1AMke8P17DsCFGr/ssUE9zII1ZWpCNRQomYL2ajwZNo7U1ieduX4lxJAPprRBVGDzf/9a8BHk3tflIwElvUuhQutHHcCWI4G+OtfIl29u7IZopv+Nd0trKDBOffvSLrzNPYFiVOA==
+X-YMail-OSG: ADZlCpAVM1kHtMlANVU4dAY5uHPlE26ysqdYexDs9S2lT9lXJHjL4YSOAR9tdxl
+ iOSRt0HoZ1AYP3IBJ12DztmGwm4OKlU1c_pcJZmzFMIrr52AsUFNhpgctzqdDioNr5Hn.L1NuAbp
+ 8LTUmSQ7tuztN9IksHSsYri08n8D.snMkMj.41ZRdJzfLc3XyiiBEDHNg2idC0UNHaJBY27wBQLz
+ JPyLkp8n0NjIDLKZWTFtlqullSZomRrjO.RceHAK_vSwMKLH_NI2FUf95_1dXGQztwnPB5VgZrXH
+ WuffrjKXanA9ZDYZNV_tsZnZlgb44RGBp8VOA7d6V.dARCpkAvW7kuntCm0m.0ofIXV1I1pZyjKO
+ Afz0AMm4rPy69KgtkZ4LKi.9mhWh3MB3_zIVGIpXJ5Y9zi5bIl8vPofL2BzVBGyfRW4OHDBa2UP9
+ pmj5VBpaHMe3OGYHEgFwXN77f3qdbfqr3WrFsgD4bbs99iK8vIMAw3R88l0GeAPsDRjPM5sivQHR
+ jayOl5QKUNuk.jlwzRMB0BHUPNE8723y5et26hnZGhyvdOU73dtzzL_yEKd4pRj83lA8_ElIRvAq
+ xCdljtSRZkYwM7qpaRzgagY7pfvuKnlMKnvH6MgMNcmZIPMaMOAjwwJRZt9TM4qYkqpF1_55qUB0
+ 1GV_mzBIk0.vESgZvcomFGF64v0GRt9bLnPOV6gU85gFdtZQIE9e2Dra5Pp8E.z12XnmUOeiSotp
+ KDF4NO7jAgV2T.s4GjdIAfEjLNnzamEoJALlS.bjFd1u2thghTDm82bq_coK370T4sivvVjosiT4
+ pa2LOGO1eO0meT.AXQ8KAYtfLeCQYDIOJ0HbCSNLsdr2fIopD5i.fI56urspWKNAqEPWlvPUVQ1h
+ eWoGcpNldCukZ0FPhAimemXDVYPzx2K6mbx1laZ6n4JUfBgxzGRI.U5mQ8MH0aY3nOgKFrVTjGRm
+ G0jIvZNnsLEXoH1ORAi_OMVi1tJGRqSWfHG.Sm7DBT9.ibDx1v1.WXkVGMUIlKU6xSBUjvr7o5a4
+ Voqd_PIPp_ExuWE0_Ft_ouoH8utR11fm7BiZBYQ7WkryYcxlXo97lp7dpVzTXDA9Csxwx_Fx6es.
+ yjjiIAuJHo9kiKIe8vO5IqCviPigi0UA_KHHiJrI1rdd1wsUPN2XPf.xXmhdqwoIa4NEUcZ3EJWD
+ 4Y1mD4Xz.fRRoHxr95GUDV7B7ehHWl56Z2MbHP59ucffA_Gw5HeIkykBoIq.CeUlYauIb5w53Yig
+ Vc_X6FJDlJ64ncff8r1k8AtekW7XqgrUyrqJOHe5GVLQD4ToBa6LpKhCdb2k5ZmhZK1rHD7xbTy9
+ gEAifZN_QnRecfaoeB5dkNmP5SwC6a4nXiAP1LdubBEBMDV5m6a2KVQ.tMpadt1lTDPnDycTgN6G
+ uCYOazOiB1qVfamVY0nzuIFJEWhhfufhV7MQ.q7FNmq0.3B4M_PStVSn7XI3H0drG8JC1BnuTGV5
+ rqg8_kSVM7HfpBDodHBHeHZVbYC4XhYculfI4812kXoVbjxveKKhqwTp9wWDnsNvJzYVN4UJunLR
+ k0Rp40R7PmWOFLiG0NuL6jUt_pp9VzKA9e13G1P03KkOmDTjrk8ZwxZunAvKRlg0faPXSYeD7W53
+ 9X5W2upx04_nI9rgbP.HLcylun6qOAl_1aC5AgxTUXB3bJlm1FT1yaCc6FR096DsBGw.LXS5nupA
+ HegqwAkid4rkbe0YvK_PodisneChWr9b8zlF.he3tnX6OgmKitn_vpIqLZ51Uu8adRJK24MHf61c
+ VzN2GPOtNYv_vSB3e5EQXv7sZOAb_e1He24rq2E0Vy1VRmrPOFpDC1QfzSJkcKqtXJwlmHenFSu8
+ dOQXCqj58.3HEeuNqgWOOVWES6nLQ10h.yeJ9abJyYz.1b7zSkDFQqnKiOKefunEeSZlNEcyY3qs
+ hFkdjDvNkfDdzKEZFi_PwrOqQw_3G8Do9B_s6mrXZqLo0JePeKdOqgoJAfc2Sq5vdxLCG4UlB7NG
+ wp02PgXX5rgL.4_oabtyZzku8ALJVAMozwuReleb_lszixw5s1OeZd2S2FwS.TpKzHt_aHlWx3A9
+ nrJ4t3GPYHuQep_Q3F7PeO089oP1YM3Z9D2C1wUP509BKQMjJf.lWvMZOvV2XQruiZZWxGTmcnFq
+ DVa1RLqNEKdKX8HvskZYOMdPt
+X-Sonic-MF: <pheonix.sja@att.net>
+X-Sonic-ID: 6a98b255-e2ff-4986-b4f1-3fd111e879ca
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic307.consmr.mail.ne1.yahoo.com with HTTP; Thu, 15 May 2025 16:11:25 +0000
+Received: by hermes--production-ne1-9495dc4d7-9mdbh (Yahoo Inc. Hermes SMTP
+ Server) with ESMTPA ID 43d5d9edef7359cb552bcf57ec7b14fb; 
+ Thu, 15 May 2025 16:11:19 +0000 (UTC)
+Date: Thu, 15 May 2025 12:11:12 -0400
+From: Steven J Abner <pheonix.sja@att.net>
+Subject: Re: Kernels >= 6.3 disable video output
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-Id: <OY8BWS.OAO65CCC74TY1@att.net>
+In-Reply-To: <CADnq5_PbeZCPD7WWO0i5HSVMepka7Ao6byfkx3zHkiBfg4amwg@mail.gmail.com>
+References: <6DWYVS.BXJ4YUZ0KN5B3.ref@att.net> <6DWYVS.BXJ4YUZ0KN5B3@att.net>
+ <CADnq5_Pk41iOvibFSjt7+Wjj=FXWR--XMt+OCqmkWWveLfU_ig@mail.gmail.com>
+ <GXXZVS.Q1GIIU1M9VBL1@att.net>
+ <CADnq5_NvoPfgTxOxjBCc-iGR7k8w7oR7VKkXQtWga8VP7vBViQ@mail.gmail.com>
+ <1Q10WS.BHBZBX486I3M2@att.net> <EWZ5WS.K2DTZM5DEZCL2@att.net>
+ <CADnq5_PbeZCPD7WWO0i5HSVMepka7Ao6byfkx3zHkiBfg4amwg@mail.gmail.com>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowADni_yb9yVoS_LMFQ--.6807S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Cw1kKFW5uw4Utw4rJw4kCrg_yoW8KFW8pa
- yxCFyYyrZ5AayrWwsFyw4UAryrAwsrXFWxJrsrKw43Z34ayFyrJF13uryayFW0yryvgFya
- vrn2y3W8Zr4UCF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJV
- W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
- Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
- 0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
- zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
- 4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
- CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
- nIWIevJa73UjIFyTuYvjfU52NtDUUUU
-X-Originating-IP: [124.16.141.245]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCQ4DA2glvjTL+AAAsz
+Content-Type: text/plain; charset=us-ascii; format=flowed
 X-Mailman-Approved-At: Fri, 16 May 2025 08:05:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,67 +92,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The ci_enable_uvd_dpm() calls ci_send_msg_to_smc_with_parameter()
-but does not check the return value. This could lead to the execution
-with potentially invalid data. A proper implementation can be found
-in the ci_fan_ctrl_start_smc_fan_control().
+On Mon, May 12 2025 at 08:10:40 PM +0000, Alex Deucher 
+<alexdeucher@gmail.com> wrote:
+> See:
+> https://docs.kernel.org/admin-guide/bug-bisect.html
+> ... identify the exact commit which broke caused your issue.
 
-Add a check after calling ci_send_msg_to_smc_with_parameter(), return
--EINVAL if the sending fails.
+ One heck of a journey! But tested the solution on the first broken 
+kernel 6.3. Too chicken to force revert attempts of 6.12 and 6.6 since 
+I really didn't understand why revert spewed out 'nah-ah' for a one 
+liner. 6.3 passed simple test of no blackouts for 8 in a row boots.
+ Firstly let me qualify the revert, cause it's how i got it to work:
+git show c76e483cd9163138e8fc44d829c986819f072d4f | patch --fuzz=999 
+-p1 -R
+ It seems simple enough of code which appears to set 8 bits of color 
+for rgb as maximum, but with struct changes and me having a 
+'historical' processor :) didn't want to have a non-expert speak that 
+this is the full solution.
+ Also note that I didn't 100% follow the bug-bisect guide as mine was 
+apparently a unique situation where it had to first learn to connect to 
+the internet and I don't use intrd images among other oddities. Also 
+did this from last working kernel (6.2.16) to verify it was the last. 
+PS had to patch amdgpu Makefile to allow the 6.2 series to compile with 
+new gcc (-Wno-error).
+ If need other info or need me to test actual patched 'upstream' 
+kernel, I'm here.
+Thank you!
+Steve
 
-Fixes: cc8dbbb4f62a ("drm/radeon: add dpm support for CI dGPUs (v2)")
-Cc: stable@vger.kernel.org # v3.12
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/radeon/ci_dpm.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/ci_dpm.c b/drivers/gpu/drm/radeon/ci_dpm.c
-index abe9d65cc460..3877863c6893 100644
---- a/drivers/gpu/drm/radeon/ci_dpm.c
-+++ b/drivers/gpu/drm/radeon/ci_dpm.c
-@@ -3889,6 +3889,7 @@ static int ci_enable_uvd_dpm(struct radeon_device *rdev, bool enable)
- 	struct ci_power_info *pi = ci_get_pi(rdev);
- 	const struct radeon_clock_and_voltage_limits *max_limits;
- 	int i;
-+	PPSMC_Result result;
- 
- 	if (rdev->pm.dpm.ac_power)
- 		max_limits = &rdev->pm.dpm.dyn_state.max_clock_voltage_on_ac;
-@@ -3907,24 +3908,30 @@ static int ci_enable_uvd_dpm(struct radeon_device *rdev, bool enable)
- 			}
- 		}
- 
--		ci_send_msg_to_smc_with_parameter(rdev,
-+		result = ci_send_msg_to_smc_with_parameter(rdev,
- 						  PPSMC_MSG_UVDDPM_SetEnabledMask,
- 						  pi->dpm_level_enable_mask.uvd_dpm_enable_mask);
-+		if (result != PPSMC_Result_OK)
-+			return -EINVAL;
- 
- 		if (pi->last_mclk_dpm_enable_mask & 0x1) {
- 			pi->uvd_enabled = true;
- 			pi->dpm_level_enable_mask.mclk_dpm_enable_mask &= 0xFFFFFFFE;
--			ci_send_msg_to_smc_with_parameter(rdev,
-+			result = ci_send_msg_to_smc_with_parameter(rdev,
- 							  PPSMC_MSG_MCLKDPM_SetEnabledMask,
- 							  pi->dpm_level_enable_mask.mclk_dpm_enable_mask);
-+			if (result != PPSMC_Result_OK)
-+				return -EINVAL;
- 		}
- 	} else {
- 		if (pi->last_mclk_dpm_enable_mask & 0x1) {
- 			pi->uvd_enabled = false;
- 			pi->dpm_level_enable_mask.mclk_dpm_enable_mask |= 1;
--			ci_send_msg_to_smc_with_parameter(rdev,
-+			result = ci_send_msg_to_smc_with_parameter(rdev,
- 							  PPSMC_MSG_MCLKDPM_SetEnabledMask,
- 							  pi->dpm_level_enable_mask.mclk_dpm_enable_mask);
-+			if (result != PPSMC_Result_OK)
-+				return -EINVAL;
- 		}
- 	}
- 
--- 
-2.42.0.windows.2
 
