@@ -2,158 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA45ABB449
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 07:03:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C339EABB5E5
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8478D10E05B;
-	Mon, 19 May 2025 05:03:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B96C10E336;
+	Mon, 19 May 2025 07:15:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xHdGp2zp";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="iVpZ0tlB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2057.outbound.protection.outlook.com [40.107.244.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 271B610E05B
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 May 2025 05:03:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d1j/htnP8jrRkW6ur/ozIgbkFoQUok+16SV3IP9llvKkMelEay27+co9SHmavmc0J047P8n6btjIxtvaHnl0YgO4Fn/gBxrCqcels6Iqoa4Hm0w1v917ArGnekuJ12HRNrSC3WEULpBplCYKhEqcPrWjqlpuJLZsKiNBqnsxRATjkjnMwwAXpkK9ZUJF1Rp9M7Jdgt2j9N3+VEbBrE4pyKEuR86/MZjjrvd834kwq2u75Y6yJGiYo8BzVbpeQkoTF/pc7QBGQ0XqBtP02P1SGs/+xY2cHLnedt76b3QlIcflcya3TxXuMbg+/c0iQUvGa7grFYa1AfctJ1pqhiBj1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5wbe7/CcqqH4eUD3YFtblxqwbsztZ2SZl3j8jD8PYrI=;
- b=C4gK1YxamgIha4lgEiHr2D2BeG5/wweveVifg0Q/baGQ28EuSx3fJRuTq1T7Im28dLSx6IB8JeRP6Mq437SRHtpK62Kp3HrbXTwZOZjQdfdzQun6Gm9ryAXvoj4ttDz3BthrgftyzBpBhGzNMA6HrooOfar7UcMlqVE77aaWB3wHkWTRw4V+gHKhZDoyV3Y9axwxwMvSXR7BozmBqyd/AQGHVy5IJbuPzSQxR+RRg4ZbZZFDAG4+hoaekwgY2UXVqaYoJgHJYI6Q1Fclkm4D6zC1rxyL0v+C3fsxIOhPf0KVst5oAufWQWs4nxrjpaU31pIWnxV6tR1Z01UnR1BuJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5wbe7/CcqqH4eUD3YFtblxqwbsztZ2SZl3j8jD8PYrI=;
- b=xHdGp2zpV3hCfbtWWz827A3JIbxwnjRUua5C8RGE1WmQHipb3NeA3IkD0POfiii6rsX0SqncdsPFo8qFctMrsmhA4J+zu343YObbR5kamf0n+UCHr1PcdQbBXPzUcy4KU6SFEjg2eg1Lk6vfY9OUlWtYV1Gb28qkYb1Ve9KGtV0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- MN2PR12MB4238.namprd12.prod.outlook.com (2603:10b6:208:199::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.30; Mon, 19 May
- 2025 05:03:02 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290%6]) with mapi id 15.20.8746.030; Mon, 19 May 2025
- 05:03:01 +0000
-Message-ID: <2fe1b506-12b9-4ec0-a02f-16f85332d001@amd.com>
-Date: Mon, 19 May 2025 10:32:54 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 9/9] drm/amdgpu: read back register after written
-To: "Wu, David" <davidwu2@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, "David (Ming Qiang) Wu" <David.Wu3@amd.com>,
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F74D10EABC;
+ Fri, 16 May 2025 13:38:33 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ZzSpC6pbsz9stp;
+ Fri, 16 May 2025 15:38:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1747402708; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ynZX+jbx5PtIxuVuU724rkfw45EIE4frtPVN1GJr46k=;
+ b=iVpZ0tlBlEallv4txbYxhGkmlzL44dNeJKdwBISKBcQNS0c7BDWUjCBl0ci2nBMTictYW0
+ syCFWVIXq+q8klbInvX7jidz41f3ftltOIEAgIksB1anHcoiCLXYdQMM8zck8iCXG45JA9
+ w4llYeIvRnEXL5+2adU1F4VtKZrJr1p1+8StqJLZdVwV6Z4aTMYfNQoDwBJFdJJ/dJrKmf
+ qlfBe2XUCRuTFkMKKBkFIPZw1+pXLNVzURYHNP6zDpVlxuftT2sdKCWUuamvrijTjwKRdS
+ XcQtKxeKheYbBfns+li0wzgyTITRQBKnJWH2SAVq/kvawjBRr+FH9WzUGNihVg==
+Message-ID: <fc617b712c5937c02be89f7ba068ce0de1512027.camel@mailbox.org>
+Subject: Re: [PATCH 1/3] drm/sched: add drm_sched_prealloc_dependency_slots v3
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tursulin@ursulin.net>, phasta@kernel.org, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, 
  amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, leo.liu@amd.com, sonny.jiang@amd.com,
- ruijing.dong@amd.com
-References: <20250515164102.808954-1-David.Wu3@amd.com>
- <20250515164102.808954-9-David.Wu3@amd.com>
- <b52390dc-05a3-463b-9bee-001c6cafb303@amd.com>
- <73dd9680-1aca-4e73-b43f-495fede147cb@amd.com>
- <0242ae98-0d56-42b2-a58c-2a5bfa3697ed@amd.com>
- <f30b6320-eb6a-42c2-a8ef-77d856604f70@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <f30b6320-eb6a-42c2-a8ef-77d856604f70@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN4P287CA0025.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:26f::7) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+Date: Fri, 16 May 2025 15:38:25 +0200
+In-Reply-To: <6a361f21-1ba2-4084-b85c-0db30c9b01cc@ursulin.net>
+References: <20250515150038.4615-1-christian.koenig@amd.com>
+ <20250515150038.4615-2-christian.koenig@amd.com>
+ <a5e53b34-c247-4193-b4ab-551693ad089a@ursulin.net>
+ <5c93f114a58e84796f239b9e0f4a13e9c223e45b.camel@mailbox.org>
+ <6e5ab077-77ff-443b-b345-7d99fcd01a73@ursulin.net>
+ <6a361f21-1ba2-4084-b85c-0db30c9b01cc@ursulin.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|MN2PR12MB4238:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9512a422-9305-43ed-63af-08dd96926de0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SVBYSDFKdUdaTDMvR2lMQXZWYmlJMjNzS29ZTkpXS2RxMm01eUwyRGE0ODFP?=
- =?utf-8?B?Y3NmSkFnL3FiU0FSTlgxZXJnd2NPZnE3Z3Z3eXk3Z1pRSWFoRnFlanNmbmV5?=
- =?utf-8?B?OFF1RE9qY1U3WGdhdEsybkFJbE9sRDc4M2VkaEhNWGRhU0JLd0J4c1h5SFMv?=
- =?utf-8?B?aitDdmdub2x5T2M5azJvRW16TGlMZXI1b3IyRXR4c0FxRXYxM1VSWndpaVQ1?=
- =?utf-8?B?b3h1aTJaR1hQTTVaem5Ecm1MMHo0dFBXUWxIN1haT0dJeUc4WXRCREExblEz?=
- =?utf-8?B?enpTMFRuZjV6SmZNRTZYb2NJWHBvU1FUeHJGeDR6TVZETm1DTVhPblJSQzM5?=
- =?utf-8?B?a3lRbUttSGhOVTI0cEVsREdsb3VIcFljYUNZK1VCV1MvWEV0TXpRUGE2N1RO?=
- =?utf-8?B?VGhoNUFZQklVcHJQcDNkczBOTElGeHg2Mms1THY5WmxGbUFCZUs0RXhteWMz?=
- =?utf-8?B?VWpzYjhhVmRMbE9ydFJrR0V0cDZ5bGtTcGV6QlhlNFZaVXFRRWczR3d6Um1T?=
- =?utf-8?B?cE0zTUtPamFSaHBYbHkzcU1tZGVwcERuM1NHaDgvQjJLWTh2MFArTkxzNkZ6?=
- =?utf-8?B?Unp4NmQreHRZc1lycnFObTZoR083MkJnS1FUd1BtdC9kb0dLYWJkU0pNdlBs?=
- =?utf-8?B?Qkx1alRMa2hSSjFKd0dvWWFQTGxzbHI5REh1bUVkTXdFRzlmMURibFlOQysw?=
- =?utf-8?B?YXNkbUVhM3J4blBObS9kaVd5ZURFVlY0U1QrOWdUUEdaQ2VWbmR6L0xDQ0NX?=
- =?utf-8?B?SGZMTXBKODA5d0cyaUFSUTB3djhzTnhsVXhGdHlmK1NEY2oyWlVLUE5wamJa?=
- =?utf-8?B?Z3ZlRzZuYkIxam1GcW42U3NrOTdtUkVweldsbVcyMktXbmMvUEdtWVBIc0l2?=
- =?utf-8?B?cGc0VGdBRU5Ca0M0U0xGWlNncVpiTStzeWRyZlBDbk1xRUExSzd4RlNJeHg3?=
- =?utf-8?B?TkQ4SnV3K0FZSEFxWHNuVXJLeTcxRG9TOHA1blY5OGNGb2ZMZThiS3NkS3E3?=
- =?utf-8?B?eC9vSHQvMWtqVmRxUEt6eldYWWZhS0g4eFA5MHA2bUY4NFp0OHdmQ3UxbERI?=
- =?utf-8?B?NXRhUTZUQXFuM0h0MGRHa0dmcUtHMzRPck0wY1ZBWm43c090cHYraGF1YUhm?=
- =?utf-8?B?dGxDOERRdGRxcUxxeE1JRlBKcE9DckpOV0g2Zjlvc0dBbG9MNko1cU8zbk5W?=
- =?utf-8?B?UkhEbHZTNFk5RHpyL0NVYWNsQUxDcHo1QjlrUG5Ic2NiZWlWY2hLaXZJT2Ew?=
- =?utf-8?B?enQ4YnlHVThEdFQ4Z2xMcDlvOWFHL25vaC9pL0R6cDVMYmwwQ3RtaWpTVzIr?=
- =?utf-8?B?VmFSVEgxa2FDWUFWZU03b1dUdjZmWk5vaExva01GUVRwOTV3VWZuM2V2MWda?=
- =?utf-8?B?cEFqRmFENlZoQVlwOW9ma3YzcDhuQmVjVGJQVnZLdGZuU2tNVUg3TTlqVjZs?=
- =?utf-8?B?cTIzNEphYnlsWFFKQ1FBZXlxQmZVS1BDb2kvTW5xZ09ML1dub3AwR1RPb0tT?=
- =?utf-8?B?RWF5UWFRL2pUTjVWeWFoUmJmS3RBUisrUVpRMEtrM2Z0aTViUXV5OVVkR2Jp?=
- =?utf-8?B?MHlJTVpqckh6RDVPWHVIS2Vra2M5dy9lMkNkVUtaQmpPL2hrWjYxWkdYR1RO?=
- =?utf-8?B?RGxlZ0NaWjUxaTN5cmw1Q3NPbWRlSkdCMzEySDVQbjJTeXArRUc5RjFaVnow?=
- =?utf-8?B?Wm5Hd3RVKyt2a0Q3SEV0WHNwbTNGZWMxb29TVkMxYjdMeUo4dGtUZkpqei9N?=
- =?utf-8?B?L29lK2JIR3dIOEZNOW44QjduSDF1ZS9lZHdISWFmcWlpcFJ6dVFjTzNaR29Y?=
- =?utf-8?B?MkdncEMrRWZCdW9oTWhzNzFid3pJWUVHOXE4VHREaUJMRDQ4TVFYcDkwRXhY?=
- =?utf-8?B?cWZyZ2pqdlJ3RFQ2MGxQM0dHbSszM21xQ1MwQ29jQ3R3NzlMUjJuc2lIWnpw?=
- =?utf-8?Q?OBC3FmVOuw0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cTBJL3VhSGFwYVpvVjJ6V1dDYTkwNlNBa3RTUXQrMVE0bEhVTTkwZTFSVHl4?=
- =?utf-8?B?VWpCYnR3cnFTajdyakZwZkdKa2VndlpjNUFOeG81M2laWFZ3eHJSdTRGTGlh?=
- =?utf-8?B?VVhqS3AxRnJoYjdZOGIwUDd4S3ZBNldCOUU0d01tYnNrTXF5NFlkSVdoTWRZ?=
- =?utf-8?B?TGFTb1M3TERrN3Y1KzlqUkRCeERNZUF2b0cwYlhvM2wyRUtwdkpIQWxBMGJs?=
- =?utf-8?B?dEVvdjlkVVVXUTFVUC85Ly8yK2RERElPaGxUdEp6dEhPbDE4eUlxOTlNRXh4?=
- =?utf-8?B?UWpJWUhJNEoxa0J6MW9xWEpJS3F4UXdIVVl2NGJta0xiZEhpa25VSWtpajBW?=
- =?utf-8?B?RFpTZWFJYUtUWEZqaWtWVGg2ZU9XckVKVHdqQmhDU3cvVEtCRVp3dk9TOEhG?=
- =?utf-8?B?QTlaVW05VGxWWFRheGVLcjRLMk5hVkpNVWtUS2Y1RWd6VVJ5dDlKdEdYSm5j?=
- =?utf-8?B?YVNPejBhWnlYTHB6TnRmMGs3Rm5TVHFzUUwyRXhyRVpuRjExVW02RkpuL0Rz?=
- =?utf-8?B?bm50M000SDB5Mm15d0NNbHRqYlBOZkpucG4vMFVIbmpPc1lseWpQNlRVcVdk?=
- =?utf-8?B?RktsRFRSd2I5ZmxTbnY0aGVOelIyWDJpdEg4YVNDZjVNYkprSk5EVnNEZ3ZD?=
- =?utf-8?B?REhUZkZnUkFteEEzZkhEdlZwZElYUGdwbDlpTlRlc2ZVditvcWk4WHJGR21a?=
- =?utf-8?B?eVFiSVlDUXZ3QTF2TUttREFaQ2xENWpra29yYWROTVpaZUlobndFTk5jUDU4?=
- =?utf-8?B?aGM4ZWFsWFY2ZFB2UlZhZHdzNHhIM200NFFkd0RVOXhVRGRmUzZpYTB0d1dm?=
- =?utf-8?B?MFBJNncydkJKMERsN0EwZ2twUmg3ZTcwRGQrMEhsVEVId2ZEUmxqRE1OeUFP?=
- =?utf-8?B?bU9ZdEh0WnB3bFk2Z3I0TlhrVUFnL2JiV1dXSHcrNEIyRnRDMWJLcFdpQzRr?=
- =?utf-8?B?U0wvWUh2TW1TVXFXdStzaFJ0R0FDM1c3bXc4TG54UGMzUXdXeGRhWHlCWHdY?=
- =?utf-8?B?MHBuNmZzbUJwVWluU0tkTXl1alBuQmxPVmljMVYrTjZ4R0I3TTZVaEU1b3Zs?=
- =?utf-8?B?VWVkdkIvNnAzRVdTdExNYTgzdGVDbjVnYlVWSWViZ0VrOC9tRDV2UmNmcURv?=
- =?utf-8?B?VVB0ZzJqbGpVVkZSZlQwM25KdVNIYVJKRkFaU2h6QUxJS3pkeDFvY2hyVlo3?=
- =?utf-8?B?QUU1N0diWldQbHNUdllRNk9FUTdPcmRIaVJ0SXdOS3pxdlJuY2c0M1RkSS9N?=
- =?utf-8?B?TnBnTkhVbjFXaTV2dXl1TmJCWXBBMkdWdzk1QXJhU081Sms3SEt3bzY4ajF4?=
- =?utf-8?B?NFZkMGJYMktXMkRrUWtrdHl3K3pXMU1pWnJjb1phNlBpYzQvSDFpV01GR2cr?=
- =?utf-8?B?aW5nRjQrZFVWdVZaQUNYVEd2SnlPSHdxYjFlU0ZiYzRsVW5lTXl5RUJRM3Bs?=
- =?utf-8?B?M2NhNFIyV3dERzVNbUZ4LytkS0F5bTRDY3gzY0xRdmxXcUZlcWhMc0taSTJs?=
- =?utf-8?B?cDFDWFVIUnFTaVcwS2hwVk56UmdUZ0ZFQXE4d2EzYWgwNDdiMHluNzZmR0ht?=
- =?utf-8?B?bGRYWmFMOHlnRFA4b25EaVNTaHJ1MHJQNmdQYTBNK0hPNzNFOUIyd3k1SGdT?=
- =?utf-8?B?MlNoRXdNZFh4UFdMZktJaEhVL0hCTVlrS0NZbjV4RCt5d1NJejFMRlNhR2hZ?=
- =?utf-8?B?ZytOa1d0N2FzdG82YWJaZlFkZ25TQkNwbTVTN1ZvaGVGZzlreDVsU01uWmJW?=
- =?utf-8?B?S291bi9qb2RqNGk1cTRKRHBHRDRzN2FmeGZZL3QvSEdwUEFCRTAwNXluNnBj?=
- =?utf-8?B?anNCUSt6dXM2ZzBXWmJwVjRlRDUvZW9FMnZnS1JWSDVMdWoxcUtreXZhOTZa?=
- =?utf-8?B?a1cyTnJLQXNJQXVOemNUd1Fqc1NOWE9oTW9HdmxyYnBsbFVnNmNOSnN0amVi?=
- =?utf-8?B?blRPNFlwOGlkMWhLWFExd1ZtbE1DSi9GQStSTkoyMlJzSFZjV2dMdk5ScWJq?=
- =?utf-8?B?Mm9JcitmUlJLczNTUFZwTzNzYzBxbzBpWFB0ZjhlYW9wTGd4WVAwalBhY2lW?=
- =?utf-8?B?QXh3cXFDVHIwYWpjQmdFRlMycWhyem5qWXM1dnBEdVR1S05LS3doVFhydzRh?=
- =?utf-8?Q?L1b0+lNToHM7yba4zPaD21IgV?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9512a422-9305-43ed-63af-08dd96926de0
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2025 05:03:01.3235 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xyOZWYMy1d1yXIBAECZuiHRtJLWstYxcbku6vWp9cxiBqEHhJwbPJq8pSRCVAYMX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4238
+X-MBO-RS-ID: 2e758a28f01a70e803f
+X-MBO-RS-META: pg1d3wzd3foequ5mcryf89tos3ns9hq8
+X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,125 +66,231 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 2025-05-16 at 13:10 +0100, Tvrtko Ursulin wrote:
+>=20
+> On 16/05/2025 12:53, Tvrtko Ursulin wrote:
+> >=20
+> > On 16/05/2025 08:28, Philipp Stanner wrote:
+> > > On Thu, 2025-05-15 at 17:17 +0100, Tvrtko Ursulin wrote:
+> > > >=20
+> > > > On 15/05/2025 16:00, Christian K=C3=B6nig wrote:
+> > > > > Sometimes drivers need to be able to submit multiple jobs
+> > > > > which
+> > > > > depend on
+> > > > > each other to different schedulers at the same time, but
+> > > > > using
+> > > > > drm_sched_job_add_dependency() can't fail any more after the
+> > > > > first
+> > > > > job is
+> > > > > initialized.
+> > > > >=20
+> > > > > This function preallocate memory for dependency slots so that
+> > > > > no
+> > > > > ENOMEM
+> > > > > can come later while adding dependencies.
+> > > > >=20
+> > > > > v2: rework implementation an documentation
+> > > > > v3: rework from scratch, use separate function to add
+> > > > > preallocated
+> > > > > deps
+> > >=20
+> > > I think we agreed to not put change logs into commit messages
+> > > anymore
+> > > :)
+> > >=20
+> > > They aren't useful for any reader. Who needs the changelog
+> > > afterwards
+> > > can retreive it through the mail thread link that we add.
+> > >=20
+> > > > >=20
+> > > > > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > > > ---
+> > > > > =C2=A0=C2=A0 drivers/gpu/drm/scheduler/sched_main.c | 45
+> > > > > ++++++++++++++++++++++++++
+> > > > > =C2=A0=C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +++
+> > > > > =C2=A0=C2=A0 2 files changed, 49 insertions(+)
+> > > > >=20
+> > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > index f7118497e47a..b95e7089aa70 100644
+> > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > @@ -858,6 +858,51 @@ void drm_sched_job_arm(struct
+> > > > > drm_sched_job
+> > > > > *job)
+> > > > > =C2=A0=C2=A0 }
+> > > > > =C2=A0=C2=A0 EXPORT_SYMBOL(drm_sched_job_arm);
+> > > > > +/**
+> > > > > + * drm_sched_job_prealloc_dependency_slot - avoid ENOMEM on
+> > > > > adding
+> > > > > dependencies
+> > > > > + * @job: scheduler job where dependencies will be added
+> > > > > + * @id: id for the allocated slot
+> > > > > +=C2=A0 *
+> > > > > + * Sometimes drivers need to be able to submit multiple jobs
+> > > > > which
+> > > > > depend on
+> > > > > + * each other to different schedulers at the same time, but
+> > > > > using
+> > > > > + * drm_sched_job_add_dependency() can't fail any more after
+> > > > > the
+> > > > > first job is
+> > > > > + * initialized.
+> > > > > + *
+> > > > > + * This function preallocate memory for a dependency slot so
+> > > > > that
+> > > > > no ENOMEM can
+> > > > > + * come later while adding dependencies. The index of the
+> > > > > preallocated slot is
+> > > > > + * returned in @id.
+> > > > > + *
+> > > > > + * Return:
+> > > > > + * 0 on success, or an error on failing to expand the array.
+> > > > > + */
+> > > > > +int drm_sched_job_prealloc_dependency_slot(struct
+> > > > > drm_sched_job
+> > > > > *job,
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 u32 *id)
+> > > > > +{
+> > > > > +=C2=A0=C2=A0=C2=A0 return xa_alloc(&job->dependencies, id, NULL,
+> > > > > xa_limit_32b, GFP_KERNEL);
+> > > > > +}
+> > > > > +EXPORT_SYMBOL(drm_sched_job_prealloc_dependency_slot);
+> > > > > +
+> > > > > +/**
+> > > > > + * drm_sched_job_add_prealloc_dep - add dependency to
+> > > > > preallocated
+> > > > > slot
+> > > > > + * @job: scheduler job where dependencies will be added
+> > > > > + * @id: the preallocated slot index
+> > > > > + * @fence: the dependency to add
+> > > > > + *
+> > > > > + * Consumes @fence and adds it to the preallocated slot
+> > > > > dependency.
+> > > > > + */
+> > > > > +void drm_sched_job_add_prealloc_dep(struct drm_sched_job
+> > > > > *job, u32
+> > > > > id,
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 struct dma_fence *fence)
+> > > > > +{
+> > > > > +=C2=A0=C2=A0=C2=A0 fence =3D xa_store(&job->dependencies, id, fe=
+nce,
+> > > > > GFP_ATOMIC);
+> > > >=20
+> > > > Add assert that the passed id exists (was preallocated) and is
+> > > > NULL?
+> > >=20
+> > > You
+> >=20
+> > Hm?
+> >=20
+> > > >=20
+> > > > Also, if someone preallocates and does not consume the slot
+> > > > will that
+> > > > confuse the iteration in drm_sched_job_dependency()?
+> > >=20
+> > > drm_sched_job_add_dependency() you mean.
+> >=20
+> > I was actually thinking of drm_sched_job_dependency() because that=20
+> > looked it would skip dependencies upon encountering an unconsumed=20
+> > preallocated slot, but yes, drm_sched_job_add_dependency() could
+> > explode=20
+> > even earlier if adding a normal dependency after preallocating a
+> > slot.
+> >=20
+> > > Yes, it would. All operations simply give you NULL for those
+> > > slots. So
+> > > seems to me you have to check for NULL wherever a preallocated
+> > > slot
+> > > might drop out. That would then be a bug.
+> > >=20
+> > > It's kind of tricky, all that. It's a pity that Wilcox didn't
+> > > answer
+> > > our questions about the idiomatic way to do it.
+> > >=20
+> > > Maybe reserving slots with already signaled fences wasn't such a
+> > > bad
+> > > idea after all?
+> > >=20
+> > > If we go for the NULL approach, it's probably the only sane way
+> > > to then
+> > > check for NULL wherever dependencies are accessed :(
+> > >=20
+> > > Opinions?
+> >=20
+> > Well if the xarray API returns the NULL consistently the approach
+> > from=20
+> > this patch is fine I think.
+> >=20
+> > We just need to add two more checks to the above mentioned
+> > functions,=20
+>=20
+> I need to correct myself, drm_sched_job_dependency() wouldn't be able
+> to=20
+> just skip NULLs since it relies on NULL for "no more dependencies".
+> We=20
+> would need to track something like job->max_dependency and terminate
+> on=20
+> job->last_dependency > job->max_dependency or so.
+
+Agreed, that would have to be fixed.
+
+I believe we should reconsider Christian's first idea [1].
+
+Thinking about it some more:
+ * With the NULL version, suddenly the xarray containing only valid
+   dependencies can sometimes contain NULL entries.
+ * If we could create our own tag, entries could be returned that were
+   neither NULL nor valid fences, also requiring checks 'everywhere'.
+ * Only the "signaled fence as prealloc reservation" approach is fully
+   backwards compatible and will never cause anyone to block after
+   later reworks.
+
+So maybe it's actually the best idea?
+
+Sorry for the zigg-zagg. No hard requirements intended from my side,
+I'm willing to go with what you guys think.
+
+Just saying, at least now I think that the already-signaled fence seems
+the most elegant solution. And since there's a function
+(dma_fence_get_stub()) for that, it seems to be in alignment with
+official dma_fence rules.
 
 
-On 5/17/2025 2:16 AM, Wu, David wrote:
-> hahaha! ok - I can drop this one (as no need but rather make it clear
-> that any register read should do)
-> I kind of disagree about guarantee  - as long as the theory(read post
-> write on PCIe will allow writes hit hardware) hold it is guaranteed. Why
-> I ask for testing is to prove it works as expected which I am confident
-> about.
+Philipp
 
-As mentioned previously, a doorbell doesn't pass a register write on VCN
-5.0.1/VCN 4.0.3 hardware over PCIe - this was already confirmed by
-hardware team in a debug we had before. It could pass within SOC, but
-that path is not required unless really required. There is no need to do
-this to remain 'consistent' across SOCs. All SOCs don't behave the same
-and there is no need to carry a VCN 1.0 programming model to VCN 5
-generation or vice versa.
 
-Thanks,
-Lijo
+[1]https://lore.kernel.org/all/20250318120313.19099-2-christian.koenig@amd.=
+com/
 
-> 
-> Thanks for input. I will drop this change regardless.
-> David
-> 
-> On 5/16/2025 1:45 PM, Christian König wrote:
->> Well testing only falsifies things.
->>
->> I agree that it should server the same purpose, but we don't have a guarantee for that and as far as I can see there is not need to switch to a different register.
->>
->> So this change seems superfluous if not dangerous to me.
->>
->> Regards,
->> Christian.
->>
->> On 5/16/25 18:23, Wu, David wrote:
->>> Hi Christian,
->>> For this change on VCN5.0.1 I will leave it to Sonny for a test. Since the readback is for each VCN instance it should work for that clock domain. As Alex has pointed out that readback post all writes will let the writes hit hardware, using UVD_STATUS instead of VCN_RB1_DB_CTRL should serve the same purpose. I also tested it on STRIX VCN4.0.5 and it works ( using UVD_STATUS  instead of VCN_RB1_DB_CTRL ).
->>>
->>> Sonny - Would you be able to test this simple change?
->>>
->>> Thanks,
->>> David
->>> On 5/16/2025 3:07 AM, Christian König wrote:
->>>> On 5/15/25 18:41, David (Ming Qiang) Wu wrote:
->>>>> The addition of register read-back in VCN v5.0.1 is intended to prevent
->>>>> potential race conditions.
->>>>>
->>>>> Signed-off-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
->>>>> ---
->>>>>  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c | 22 ++++++++++++++++++++--
->>>>>  1 file changed, 20 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
->>>>> index 60ee6e02e6ac..79d36d48a6b6 100644
->>>>> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
->>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
->>>>> @@ -657,8 +657,11 @@ static int vcn_v5_0_1_start_dpg_mode(struct amdgpu_vcn_inst *vinst,
->>>>>  	WREG32_SOC15(VCN, vcn_inst, regVCN_RB1_DB_CTRL,
->>>>>  		ring->doorbell_index << VCN_RB1_DB_CTRL__OFFSET__SHIFT |
->>>>>  		VCN_RB1_DB_CTRL__EN_MASK);
->>>>> -	/* Read DB_CTRL to flush the write DB_CTRL command. */
->>>>> -	RREG32_SOC15(VCN, vcn_inst, regVCN_RB1_DB_CTRL);
->>>>> +
->>>>> +	/* Keeping one read-back to ensure all register writes are done,
->>>>> +	 * otherwise it may introduce race conditions.
->>>>> +	 */
->>>>> +	RREG32_SOC15(VCN, vcn_inst, regUVD_STATUS);
->>>> I'm not sure that this is a good idea.
->>>>
->>>> The read back from specific registers was usually to sync up with the clock driving those registers, e.g. the VCN_RB1_DB_CTRL register here.
->>>>
->>>> Could be that for VCN we only have one clock domain, but if you would do this for one of the old PLLs for example I can guarantee that it won't work.
->>>>
->>>> Regards,
->>>> Christian.
->>>>
->>>>
->>>>>  
->>>>>  	return 0;
->>>>>  }
->>>>> @@ -809,6 +812,11 @@ static int vcn_v5_0_1_start(struct amdgpu_vcn_inst *vinst)
->>>>>  	WREG32_SOC15(VCN, vcn_inst, regVCN_RB_ENABLE, tmp);
->>>>>  	fw_shared->sq.queue_mode &= ~(FW_QUEUE_RING_RESET | FW_QUEUE_DPG_HOLD_OFF);
->>>>>  
->>>>> +	/* Keeping one read-back to ensure all register writes are done,
->>>>> +	 * otherwise it may introduce race conditions.
->>>>> +	 */
->>>>> +	RREG32_SOC15(VCN, vcn_inst, regUVD_STATUS);
->>>>> +
->>>>>  	return 0;
->>>>>  }
->>>>>  
->>>>> @@ -843,6 +851,11 @@ static void vcn_v5_0_1_stop_dpg_mode(struct amdgpu_vcn_inst *vinst)
->>>>>  	/* disable dynamic power gating mode */
->>>>>  	WREG32_P(SOC15_REG_OFFSET(VCN, vcn_inst, regUVD_POWER_STATUS), 0,
->>>>>  		~UVD_POWER_STATUS__UVD_PG_MODE_MASK);
->>>>> +
->>>>> +	/* Keeping one read-back to ensure all register writes are done,
->>>>> +	 * otherwise it may introduce race conditions.
->>>>> +	 */
->>>>> +	RREG32_SOC15(VCN, vcn_inst, regUVD_STATUS);
->>>>>  }
->>>>>  
->>>>>  /**
->>>>> @@ -918,6 +931,11 @@ static int vcn_v5_0_1_stop(struct amdgpu_vcn_inst *vinst)
->>>>>  	/* clear status */
->>>>>  	WREG32_SOC15(VCN, vcn_inst, regUVD_STATUS, 0);
->>>>>  
->>>>> +	/* Keeping one read-back to ensure all register writes are done,
->>>>> +	 * otherwise it may introduce race conditions.
->>>>> +	 */
->>>>> +	RREG32_SOC15(VCN, vcn_inst, regUVD_STATUS);
->>>>> +
->>>>>  	return 0;
->>>>>  }
->>>>>  
-> 
+
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
+> > some more unit tests probably to make sure, and that should be fine
+> > for=20
+> > now.
+> >=20
+> > On the bikeshedding front I would perhaps suggest:
+> >=20
+> > =C2=A0=C2=A0- drm_sched_job_preallocate_dependency()
+> > =C2=A0=C2=A0- drm_sched_job_replace_dependency()
+> >=20
+> > Reads a little bit more aligned with the rest of the API and a bit=20
+> > easier on the eyes, to my eyes at least.
+> >=20
+> > Regards,
+> >=20
+> > Tvrtko
+> >=20
+>=20
 
