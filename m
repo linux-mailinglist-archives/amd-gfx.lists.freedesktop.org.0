@@ -2,61 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF7A3ABB5E4
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04694ABB5D8
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9DB010E34B;
-	Mon, 19 May 2025 07:15:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81DBA10E2EC;
+	Mon, 19 May 2025 07:15:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="c2JnYpxL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HUGeAvRb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7834510EB4B;
- Fri, 16 May 2025 17:16:51 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org
- [IPv6:2001:67c:2050:b231:465::1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4ZzYf62p9Tz9t4n;
- Fri, 16 May 2025 19:16:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1747415806; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=gnOfrcXuNEntf/5DHZrhzEOfZ1YhnUjH4lLh1wWH9RI=;
- b=c2JnYpxLCWGJFDiDTztK7hDG4vXBq0jtoXKeB3CqV2MNnJaGWBBpFz7Cx3FeD7FDd+mlPZ
- Y5lQdbUf/V7pdK9cAL8hL2+1XSGFi8sfIQZJmhOyU7FWEn4HXjTfQHvdYriJB447olwC8t
- rNyPMWtZ7Tjz/H5U9MrCtz00kPmpk0Zst1E4RQH4oFTw7Yid006UMwN2d7yFwFLqff1Hae
- nWgl2nkEicwJvIekrUmlkDGCR+GgE+UMNvQUt/pDrgFSyai86yYCPHslB0bB15DZHtEfP6
- bT3DzaLMUAId5wRoMSHEpL3er4GZWqwHKG8WzxULtvJ1GRM3/ryb1/DOTR03Eg==
-Message-ID: <a36fdcf31fa0ca7d9e1a24f60ba4c5bf78c7ae87.camel@mailbox.org>
-Subject: Re: [PATCH 1/3] drm/sched: add drm_sched_prealloc_dependency_slots v3
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tursulin@ursulin.net>, phasta@kernel.org, Christian
- =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- dri-devel@lists.freedesktop.org, dakr@kernel.org, 
- amd-gfx@lists.freedesktop.org
-Date: Fri, 16 May 2025 19:16:44 +0200
-In-Reply-To: <01cce810-7303-4c92-b138-d8a647f3dcee@ursulin.net>
-References: <20250515150038.4615-1-christian.koenig@amd.com>
- <20250515150038.4615-2-christian.koenig@amd.com>
- <a5e53b34-c247-4193-b4ab-551693ad089a@ursulin.net>
- <5c93f114a58e84796f239b9e0f4a13e9c223e45b.camel@mailbox.org>
- <6e5ab077-77ff-443b-b345-7d99fcd01a73@ursulin.net>
- <6a361f21-1ba2-4084-b85c-0db30c9b01cc@ursulin.net>
- <fc617b712c5937c02be89f7ba068ce0de1512027.camel@mailbox.org>
- <01cce810-7303-4c92-b138-d8a647f3dcee@ursulin.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
+ [209.85.167.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1707710E0EF;
+ Fri, 16 May 2025 23:35:32 +0000 (UTC)
+Received: by mail-lf1-f46.google.com with SMTP id
+ 2adb3069b0e04-54b166fa41bso3566145e87.0; 
+ Fri, 16 May 2025 16:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1747438530; x=1748043330; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=m/UJ81NU6SEe9/os128VngMenn6RX/mPtCB9eJUEZR0=;
+ b=HUGeAvRb0NzRdAJToEnO78Iytump0zXdnIKuJCIJyGXG1gZAr6kBgJ/muxGPcpQTqU
+ vo9s0LEWsLmfz/JphHgH9M3emlnfZ4vo3BeM7AqSCVXZ2ZXaEGv5w9FKsc1DoXSak5vd
+ fUrYk87SluYgzgG9OBbyuOgY4IyNcgmpwo0P2+rcHK2Lh7+q9vze9DopoX2L05R5d64m
+ 9a+TVKzsOfn7ZImtB51lUdRxe0Tj4HhQy1DmPju/FbDqKaiB3iW+K2JjHRZ6U+OSD+Ku
+ v81R9TkGg+6bNFJ9oVDvauCC2XN2i/F+6QQwZHuWLLBnb3FwBCGnQyWhrrMsZzAOxTjm
+ tUCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747438530; x=1748043330;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=m/UJ81NU6SEe9/os128VngMenn6RX/mPtCB9eJUEZR0=;
+ b=LHoRmLJZTSOkuL6VAQ8VyNjFsYNzqqSc1nemyQzE7aTgyWfWDgMlaEKg38ejf1lsjQ
+ S6IIr2bQ+7E9UI8rdLBUdkC/6C2apnVkmjikN5Vz/QwddYYzKDZPdhvqxlBFt3iqeS08
+ Miu7XAmots7WY9GEKSeuyolC3OJz+lhVJvGj82bTIocbE3viAXDWqLMj0zUJAzeUy1lM
+ IZwdGTBap/ISIDHJEKSyL4j9MaV58hO4d+b6gtRRMyu+kVv0xTQ6EWuC4ZUXOt3Gs7UN
+ UDCbTVOpzuykC6mcFWjDWY3+qPQl2O9ARj59jKjX+6GqbKnw3atOikxsOyaBayoZ1m4C
+ WXww==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUCZmQmUGNpGeEFskOzr0QULtOq22mw9QVtLOA41kGwlBZ8AIYlTFG5aYpbqhtFYD6ovIE2sYbf@lists.freedesktop.org,
+ AJvYcCVgrfX3YUv/OC5WrMG+4c2sJljheqAQrOdvfOow7vpxNyWM6r3QRpYioiY3IJ7aVzNq+1nSzUobNeTk@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyIuk9GpUx4g04QDViz/yp/NPT9PlTj7iz/piD398d15Q+FUc29
+ 0pEmrUUBUEkCxmdXy4yOkkC8p35cPiR14OvneStA9EFXmsa5tbMHooB8
+X-Gm-Gg: ASbGncsvDkd1/3y+sXmNBCGMm0DACKh0rZdXTqnDEuX/ghwujoWyf361YMk1M9w3n1n
+ O5hKdxPi6GTicb4Xsphkhi409quRykEjxrnf+I3RX344iJ7ala4SzBB/kx6ECR9IQupfOvve7AF
+ DvUT61bd8eXmfY8EDMMym9oGUje2r73xviIwKzAkjQWhQJDIvRVs78Z7S1tlfDU7jMONPp+Ky95
+ VIsNAzSzvEOXT7+Ihna2x31p4OqkZHvHJVZPvc1hRhGhx4i4Ji6ENvEVAWPdHBvkWkp+5ReY1HB
+ qiM0GNqfMsxJHlgAy/kxG+VrKngwIoWXB/lTw1pp1uCap+Zn/DrR9BcOAAn+WJPuFHdX
+X-Google-Smtp-Source: AGHT+IEQC4DeuYTJhufYSI6129vfrr80bHmVfYOe0SjjWY523RPLnpdKb5yhbp53P0ChZXzr9q90wA==
+X-Received: by 2002:a05:6512:2613:b0:545:652:109 with SMTP id
+ 2adb3069b0e04-550e7253122mr1527825e87.51.1747438529935; 
+ Fri, 16 May 2025 16:35:29 -0700 (PDT)
+Received: from danyaPC.localdomain ([192.145.30.107])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-328084ca251sm5952871fa.38.2025.05.16.16.35.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 16 May 2025 16:35:29 -0700 (PDT)
+From: Daniil Ryabov <daniilryabov4@gmail.com>
+To: alexander.deucher@amd.com
+Cc: christian.koenig@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Daniil Ryabov <daniilryabov4@gmail.com>
+Subject: [PATCH] drm/amd/display: fix typo in comments
+Date: Sat, 17 May 2025 02:35:16 +0300
+Message-ID: <20250516233516.29480-1-daniilryabov4@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MBO-RS-ID: d8a859cc94117e1c20d
-X-MBO-RS-META: 5ooyhctdz7gsd8osmdq9mu1fkiktf6gm
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,303 +84,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2025-05-16 at 15:30 +0100, Tvrtko Ursulin wrote:
->=20
-> On 16/05/2025 14:38, Philipp Stanner wrote:
-> > On Fri, 2025-05-16 at 13:10 +0100, Tvrtko Ursulin wrote:
-> > >=20
-> > > On 16/05/2025 12:53, Tvrtko Ursulin wrote:
-> > > >=20
-> > > > On 16/05/2025 08:28, Philipp Stanner wrote:
-> > > > > On Thu, 2025-05-15 at 17:17 +0100, Tvrtko Ursulin wrote:
-> > > > > >=20
-> > > > > > On 15/05/2025 16:00, Christian K=C3=B6nig wrote:
-> > > > > > > Sometimes drivers need to be able to submit multiple jobs
-> > > > > > > which
-> > > > > > > depend on
-> > > > > > > each other to different schedulers at the same time, but
-> > > > > > > using
-> > > > > > > drm_sched_job_add_dependency() can't fail any more after
-> > > > > > > the
-> > > > > > > first
-> > > > > > > job is
-> > > > > > > initialized.
-> > > > > > >=20
-> > > > > > > This function preallocate memory for dependency slots so
-> > > > > > > that
-> > > > > > > no
-> > > > > > > ENOMEM
-> > > > > > > can come later while adding dependencies.
-> > > > > > >=20
-> > > > > > > v2: rework implementation an documentation
-> > > > > > > v3: rework from scratch, use separate function to add
-> > > > > > > preallocated
-> > > > > > > deps
-> > > > >=20
-> > > > > I think we agreed to not put change logs into commit messages
-> > > > > anymore
-> > > > > :)
-> > > > >=20
-> > > > > They aren't useful for any reader. Who needs the changelog
-> > > > > afterwards
-> > > > > can retreive it through the mail thread link that we add.
-> > > > >=20
-> > > > > > >=20
-> > > > > > > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com=
->
-> > > > > > > ---
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/scheduler/sched_main.c | 4=
-5
-> > > > > > > ++++++++++++++++++++++++++
-> > > > > > > =C2=A0=C2=A0=C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +++
-> > > > > > > =C2=A0=C2=A0=C2=A0 2 files changed, 49 insertions(+)
-> > > > > > >=20
-> > > > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > index f7118497e47a..b95e7089aa70 100644
-> > > > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > @@ -858,6 +858,51 @@ void drm_sched_job_arm(struct
-> > > > > > > drm_sched_job
-> > > > > > > *job)
-> > > > > > > =C2=A0=C2=A0=C2=A0 }
-> > > > > > > =C2=A0=C2=A0=C2=A0 EXPORT_SYMBOL(drm_sched_job_arm);
-> > > > > > > +/**
-> > > > > > > + * drm_sched_job_prealloc_dependency_slot - avoid ENOMEM
-> > > > > > > on
-> > > > > > > adding
-> > > > > > > dependencies
-> > > > > > > + * @job: scheduler job where dependencies will be added
-> > > > > > > + * @id: id for the allocated slot
-> > > > > > > +=C2=A0 *
-> > > > > > > + * Sometimes drivers need to be able to submit multiple
-> > > > > > > jobs
-> > > > > > > which
-> > > > > > > depend on
-> > > > > > > + * each other to different schedulers at the same time,
-> > > > > > > but
-> > > > > > > using
-> > > > > > > + * drm_sched_job_add_dependency() can't fail any more
-> > > > > > > after
-> > > > > > > the
-> > > > > > > first job is
-> > > > > > > + * initialized.
-> > > > > > > + *
-> > > > > > > + * This function preallocate memory for a dependency
-> > > > > > > slot so
-> > > > > > > that
-> > > > > > > no ENOMEM can
-> > > > > > > + * come later while adding dependencies. The index of
-> > > > > > > the
-> > > > > > > preallocated slot is
-> > > > > > > + * returned in @id.
-> > > > > > > + *
-> > > > > > > + * Return:
-> > > > > > > + * 0 on success, or an error on failing to expand the
-> > > > > > > array.
-> > > > > > > + */
-> > > > > > > +int drm_sched_job_prealloc_dependency_slot(struct
-> > > > > > > drm_sched_job
-> > > > > > > *job,
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 u32 *id=
-)
-> > > > > > > +{
-> > > > > > > +=C2=A0=C2=A0=C2=A0 return xa_alloc(&job->dependencies, id, N=
-ULL,
-> > > > > > > xa_limit_32b, GFP_KERNEL);
-> > > > > > > +}
-> > > > > > > +EXPORT_SYMBOL(drm_sched_job_prealloc_dependency_slot);
-> > > > > > > +
-> > > > > > > +/**
-> > > > > > > + * drm_sched_job_add_prealloc_dep - add dependency to
-> > > > > > > preallocated
-> > > > > > > slot
-> > > > > > > + * @job: scheduler job where dependencies will be added
-> > > > > > > + * @id: the preallocated slot index
-> > > > > > > + * @fence: the dependency to add
-> > > > > > > + *
-> > > > > > > + * Consumes @fence and adds it to the preallocated slot
-> > > > > > > dependency.
-> > > > > > > + */
-> > > > > > > +void drm_sched_job_add_prealloc_dep(struct drm_sched_job
-> > > > > > > *job, u32
-> > > > > > > id,
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 struct dma_fence *fence)
-> > > > > > > +{
-> > > > > > > +=C2=A0=C2=A0=C2=A0 fence =3D xa_store(&job->dependencies, id=
-, fence,
-> > > > > > > GFP_ATOMIC);
-> > > > > >=20
-> > > > > > Add assert that the passed id exists (was preallocated) and
-> > > > > > is
-> > > > > > NULL?
-> > > > >=20
-> > > > > You
-> > > >=20
-> > > > Hm?
-> > > >=20
-> > > > > >=20
-> > > > > > Also, if someone preallocates and does not consume the slot
-> > > > > > will that
-> > > > > > confuse the iteration in drm_sched_job_dependency()?
-> > > > >=20
-> > > > > drm_sched_job_add_dependency() you mean.
-> > > >=20
-> > > > I was actually thinking of drm_sched_job_dependency() because
-> > > > that
-> > > > looked it would skip dependencies upon encountering an
-> > > > unconsumed
-> > > > preallocated slot, but yes, drm_sched_job_add_dependency()
-> > > > could
-> > > > explode
-> > > > even earlier if adding a normal dependency after preallocating
-> > > > a
-> > > > slot.
-> > > >=20
-> > > > > Yes, it would. All operations simply give you NULL for those
-> > > > > slots. So
-> > > > > seems to me you have to check for NULL wherever a
-> > > > > preallocated
-> > > > > slot
-> > > > > might drop out. That would then be a bug.
-> > > > >=20
-> > > > > It's kind of tricky, all that. It's a pity that Wilcox didn't
-> > > > > answer
-> > > > > our questions about the idiomatic way to do it.
-> > > > >=20
-> > > > > Maybe reserving slots with already signaled fences wasn't
-> > > > > such a
-> > > > > bad
-> > > > > idea after all?
-> > > > >=20
-> > > > > If we go for the NULL approach, it's probably the only sane
-> > > > > way
-> > > > > to then
-> > > > > check for NULL wherever dependencies are accessed :(
-> > > > >=20
-> > > > > Opinions?
-> > > >=20
-> > > > Well if the xarray API returns the NULL consistently the
-> > > > approach
-> > > > from
-> > > > this patch is fine I think.
-> > > >=20
-> > > > We just need to add two more checks to the above mentioned
-> > > > functions,
-> > >=20
-> > > I need to correct myself, drm_sched_job_dependency() wouldn't be
-> > > able
-> > > to
-> > > just skip NULLs since it relies on NULL for "no more
-> > > dependencies".
-> > > We
-> > > would need to track something like job->max_dependency and
-> > > terminate
-> > > on
-> > > job->last_dependency > job->max_dependency or so.
-> >=20
-> > Agreed, that would have to be fixed.
-> >=20
-> > I believe we should reconsider Christian's first idea [1].
-> >=20
-> > Thinking about it some more:
-> > =C2=A0 * With the NULL version, suddenly the xarray containing only
-> > valid
-> > =C2=A0=C2=A0=C2=A0 dependencies can sometimes contain NULL entries.
-> > =C2=A0 * If we could create our own tag, entries could be returned that
-> > were
-> > =C2=A0=C2=A0=C2=A0 neither NULL nor valid fences, also requiring checks
-> > 'everywhere'.
-> > =C2=A0 * Only the "signaled fence as prealloc reservation" approach is
-> > fully
-> > =C2=A0=C2=A0=C2=A0 backwards compatible and will never cause anyone to =
-block after
-> > =C2=A0=C2=A0=C2=A0 later reworks.
-> >=20
-> > So maybe it's actually the best idea?
-> >=20
-> > Sorry for the zigg-zagg. No hard requirements intended from my
-> > side,
-> > I'm willing to go with what you guys think.
-> >=20
-> > Just saying, at least now I think that the already-signaled fence
-> > seems
-> > the most elegant solution. And since there's a function
-> > (dma_fence_get_stub()) for that, it seems to be in alignment with
-> > official dma_fence rules.
->=20
-> Potential problem there was dma_fence_is_signaled() and fence
-> signaling=20
-> annotations. In case some driver is holding a lock over the arm+push=20
-> pair. I wish we had a non-signaling is_signaled helper..
->=20
+Fix double 'u' in 'frequuency'
 
-Yes! +1!
+Signed-off-by: Daniil Ryabov <daniilryabov4@gmail.com>
+---
+ drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-But Christian doesn't like that direction:
-
-https://lore.kernel.org/all/20250409120640.106408-2-phasta@kernel.org/
-
-
-P.
-
->=20
->=20
-
-
->=20
->=20
-> Anyway, I think both options are passable. I even like the NULL entry
-> slightly more since it is simpler in a way and I don't mind some
-> extra=20
-> checks completely hidden in scheduler internals.
->=20
-> Regards,
->=20
-> Tvrtko
->=20
-> >=20
-> >=20
-> > Philipp
-> >=20
-> >=20
-> > [1]
-> > https://lore.kernel.org/all/20250318120313.19099-2-christian.koenig@amd=
-.com
-> > /
-> >=20
-> >=20
-> > >=20
-> > > Regards,
-> > >=20
-> > > Tvrtko
-> > >=20
-> > > > some more unit tests probably to make sure, and that should be
-> > > > fine
-> > > > for
-> > > > now.
-> > > >=20
-> > > > On the bikeshedding front I would perhaps suggest:
-> > > >=20
-> > > > =C2=A0=C2=A0=C2=A0- drm_sched_job_preallocate_dependency()
-> > > > =C2=A0=C2=A0=C2=A0- drm_sched_job_replace_dependency()
-> > > >=20
-> > > > Reads a little bit more aligned with the rest of the API and a
-> > > > bit
-> > > > easier on the eyes, to my eyes at least.
-> > > >=20
-> > > > Regards,
-> > > >=20
-> > > > Tvrtko
-> > > >=20
-> > >=20
-> >=20
->=20
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
+index 681799468..d897f8a30 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
+@@ -1393,7 +1393,7 @@ static void calculate_bandwidth(
+ 						if ((bw_mtn(data->dram_speed_change_margin, bw_int_to_fixed(0)) && bw_ltn(data->dram_speed_change_margin, bw_int_to_fixed(9999)))) {
+ 							/*determine the minimum dram clock change margin for each set of clock frequencies*/
+ 							data->min_dram_speed_change_margin[i][j] = bw_min2(data->min_dram_speed_change_margin[i][j], data->dram_speed_change_margin);
+-							/*compute the maximum clock frequuency required for the dram clock change at each set of clock frequencies*/
++							/*compute the maximum clock frequency required for the dram clock change at each set of clock frequencies*/
+ 							data->dispclk_required_for_dram_speed_change_pipe[i][j] = bw_max2(bw_div(bw_div(bw_mul(data->src_pixels_for_first_output_pixel[k], dceip->display_pipe_throughput_factor), dceip->lb_write_pixels_per_dispclk), (bw_sub(bw_sub(bw_sub(data->maximum_latency_hiding_with_cursor[k], vbios->nbp_state_change_latency), data->dmif_burst_time[i][j]), data->dram_speed_change_line_source_transfer_time[k][i][j]))), bw_div(bw_div(bw_mul(data->src_pixels_for_last_output_pixel[k], dceip->display_pipe_throughput_factor), dceip->lb_write_pixels_per_dispclk), (bw_add(bw_sub(bw_sub(bw_sub(data->maximum_latency_hiding_with_cursor[k], vbios->nbp_state_change_latency), data->dmif_burst_time[i][j]), data->dram_speed_change_line_source_transfer_time[k][i][j]), data->active_time[k]))));
+ 							if ((bw_ltn(data->dispclk_required_for_dram_speed_change_pipe[i][j], vbios->high_voltage_max_dispclk))) {
+ 								data->display_pstate_change_enable[k] = 1;
+@@ -1407,7 +1407,7 @@ static void calculate_bandwidth(
+ 						if ((bw_mtn(data->dram_speed_change_margin, bw_int_to_fixed(0)) && bw_ltn(data->dram_speed_change_margin, bw_int_to_fixed(9999)))) {
+ 							/*determine the minimum dram clock change margin for each display pipe*/
+ 							data->min_dram_speed_change_margin[i][j] = bw_min2(data->min_dram_speed_change_margin[i][j], data->dram_speed_change_margin);
+-							/*compute the maximum clock frequuency required for the dram clock change at each set of clock frequencies*/
++							/*compute the maximum clock frequency required for the dram clock change at each set of clock frequencies*/
+ 							data->dispclk_required_for_dram_speed_change_pipe[i][j] = bw_max2(bw_div(bw_div(bw_mul(data->src_pixels_for_first_output_pixel[k], dceip->display_pipe_throughput_factor), dceip->lb_write_pixels_per_dispclk), (bw_sub(bw_sub(bw_sub(bw_sub(data->maximum_latency_hiding_with_cursor[k], vbios->nbp_state_change_latency), data->dmif_burst_time[i][j]), data->dram_speed_change_line_source_transfer_time[k][i][j]), data->mcifwr_burst_time[i][j]))), bw_div(bw_div(bw_mul(data->src_pixels_for_last_output_pixel[k], dceip->display_pipe_throughput_factor), dceip->lb_write_pixels_per_dispclk), (bw_add(bw_sub(bw_sub(bw_sub(bw_sub(data->maximum_latency_hiding_with_cursor[k], vbios->nbp_state_change_latency), data->dmif_burst_time[i][j]), data->dram_speed_change_line_source_transfer_time[k][i][j]), data->mcifwr_burst_time[i][j]), data->active_time[k]))));
+ 							if ((bw_ltn(data->dispclk_required_for_dram_speed_change_pipe[i][j], vbios->high_voltage_max_dispclk))) {
+ 								data->display_pstate_change_enable[k] = 1;
+-- 
+2.43.0
 
