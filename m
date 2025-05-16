@@ -2,76 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB37ABB5E0
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF7A3ABB5E4
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB5810E1EE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9DB010E34B;
 	Mon, 19 May 2025 07:15:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="S+yUg2IR";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="c2JnYpxL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
- [209.85.208.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BABDD10EB17;
- Fri, 16 May 2025 16:13:27 +0000 (UTC)
-Received: by mail-ed1-f42.google.com with SMTP id
- 4fb4d7f45d1cf-5f4d0da2d2cso4228996a12.3; 
- Fri, 16 May 2025 09:13:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747412006; x=1748016806; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=hLJmovg9plUQcWnyMDtPPXJApgKGoEewf0WKlQ2WBJ4=;
- b=S+yUg2IRCdIldUZxccDCkfEItaoLe5zPvCaYRBJvk2ycbLccW6h+mLa2AewhU0gXU9
- kpU9IMk6o517n3GVGNrUop2Nsl2a4gKadPlmJG7bL6W3uWJ0ClbN/8DHI8pYZBq4Ht+U
- csKfQM5+AxjxLw1MS8C4VuXKFxQEFgJgeKYY4gnR/Ph/jmGDB2a4bmf4XFsB5b+FwXbi
- GbJ4y2ILfb/lSr9V2Mps1neP6lwVwWNk34QVGEQCCVN64uLB4KI45bRu4ENlf0aUHshf
- TGGzwoJX6pF4UzE1ZGr7NA7u7roB9YHwTDvxIxAtxQXFw8R2Hvnw3+D+0Jb1eZYra8JM
- nW2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747412006; x=1748016806;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=hLJmovg9plUQcWnyMDtPPXJApgKGoEewf0WKlQ2WBJ4=;
- b=Ll8l9oh8tRnq/PL75REbGxhFtVPVgp9yXRMqh6OgW/Jt6dVh6D61TCXnZIo9sQ/sPD
- Bs7IJv005x7l0fnoEzrXixqCRh1lx7wxqSf1HnAC2k6ri5HNz5JhmT9zfssLKGzPyrYU
- v5gKdSxHEfE+tNMpRAb2tgI+OBy4QkhO47WDVmHs+d7ebIp2iL17EtclJTnNp5pqlUaf
- FgcB6CFZvc1m/B0DVq3fZoi6YVBNrdRnO+eSgWooWBuHFn7vV097FO/p/JKvFnmd7JQq
- AYx+Z8tgNY4SRI9eKnW3a2jkLsVlcyA9AKdhZz+dSBifQKqkO2mHOzsEVr7jQzZs+Ltm
- aJRg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWwsuEYgCy7hgUIQjKgjPpojSSfA8Qm3K2rtFVpQ2zVkoPIx2N3ckXWXc1q17sx5D7C6GTUpI1M@lists.freedesktop.org,
- AJvYcCXrOBLoO2rCcQBjVkL8dYh3lDqRKKVP4Sr8XYCizB6b36DqiLONtAdR/Z/k6bzGpvnnLKqVLOBUR3/E@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy0AKGNJbLlyH3mdABd2kmA7LbEFK6E1uYqt+D3HlpKYLQoLMtH
- GrLDbRjGRU6hKndFAMy6MdaoFYI7wyY9vf0yA6pxX9lhs0dEeNpHH2rF
-X-Gm-Gg: ASbGncuVhg1d/3lz9dJrAIV4tzii+pZsO42Rl4EN90PKJMYB6FZHDaEx/Bztg5glqI2
- /6i6pYC5TqQgSiaQjrdE7v17t8mbS17HRqXxfRN+xT6LB/yudpBVO9E2PXfvW6Qv4msAG2utLXb
- oWFjU3AzTeFBrPwHrsxW7bfqIpHWFIfXIk7sAZ+FE6rril7lGtNA1axyP0QJXJJSGi2q6I0yOfR
- 4+wAof/nbHJ04ywWSbfxiaoc8B/RlsgNvbPaQbUPUV2fZutjNqK3Y+RGt01xQl8kGQztKvCypjK
- PSxsscn7n+qMmCgEJnAh7DkUAgkHDfRi4FZ0pIQ=
-X-Google-Smtp-Source: AGHT+IHNN4EPAuY1cd4IMbE8HdxTl2O6RmOg1nWALDwkNAMDfdDvrOuPS2dn2gOhqkvwH1ifaGmjtA==
-X-Received: by 2002:a05:6402:5cd:b0:5f6:4a5b:9305 with SMTP id
- 4fb4d7f45d1cf-60119cd4192mr2838792a12.33.1747412005973; 
- Fri, 16 May 2025 09:13:25 -0700 (PDT)
-Received: from pc ([165.51.5.169]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-6005ae3888esm1616084a12.65.2025.05.16.09.13.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 16 May 2025 09:13:25 -0700 (PDT)
-Date: Fri, 16 May 2025 17:13:22 +0100
-From: Salah Triki <salah.triki@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: salah.triki@gmail.com
-Subject: [PATCH] drm/amdgpu: check return value of xa_store()
-Message-ID: <aCdkIkNOQgnA5Pou@pc>
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7834510EB4B;
+ Fri, 16 May 2025 17:16:51 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4ZzYf62p9Tz9t4n;
+ Fri, 16 May 2025 19:16:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1747415806; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gnOfrcXuNEntf/5DHZrhzEOfZ1YhnUjH4lLh1wWH9RI=;
+ b=c2JnYpxLCWGJFDiDTztK7hDG4vXBq0jtoXKeB3CqV2MNnJaGWBBpFz7Cx3FeD7FDd+mlPZ
+ Y5lQdbUf/V7pdK9cAL8hL2+1XSGFi8sfIQZJmhOyU7FWEn4HXjTfQHvdYriJB447olwC8t
+ rNyPMWtZ7Tjz/H5U9MrCtz00kPmpk0Zst1E4RQH4oFTw7Yid006UMwN2d7yFwFLqff1Hae
+ nWgl2nkEicwJvIekrUmlkDGCR+GgE+UMNvQUt/pDrgFSyai86yYCPHslB0bB15DZHtEfP6
+ bT3DzaLMUAId5wRoMSHEpL3er4GZWqwHKG8WzxULtvJ1GRM3/ryb1/DOTR03Eg==
+Message-ID: <a36fdcf31fa0ca7d9e1a24f60ba4c5bf78c7ae87.camel@mailbox.org>
+Subject: Re: [PATCH 1/3] drm/sched: add drm_sched_prealloc_dependency_slots v3
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tursulin@ursulin.net>, phasta@kernel.org, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+ amd-gfx@lists.freedesktop.org
+Date: Fri, 16 May 2025 19:16:44 +0200
+In-Reply-To: <01cce810-7303-4c92-b138-d8a647f3dcee@ursulin.net>
+References: <20250515150038.4615-1-christian.koenig@amd.com>
+ <20250515150038.4615-2-christian.koenig@amd.com>
+ <a5e53b34-c247-4193-b4ab-551693ad089a@ursulin.net>
+ <5c93f114a58e84796f239b9e0f4a13e9c223e45b.camel@mailbox.org>
+ <6e5ab077-77ff-443b-b345-7d99fcd01a73@ursulin.net>
+ <6a361f21-1ba2-4084-b85c-0db30c9b01cc@ursulin.net>
+ <fc617b712c5937c02be89f7ba068ce0de1512027.camel@mailbox.org>
+ <01cce810-7303-4c92-b138-d8a647f3dcee@ursulin.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-MBO-RS-ID: d8a859cc94117e1c20d
+X-MBO-RS-META: 5ooyhctdz7gsd8osmdq9mu1fkiktf6gm
 X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,43 +69,303 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-xa_store() may fail so check its return value and if error occurred free
-numa_info and return NULL.
+On Fri, 2025-05-16 at 15:30 +0100, Tvrtko Ursulin wrote:
+>=20
+> On 16/05/2025 14:38, Philipp Stanner wrote:
+> > On Fri, 2025-05-16 at 13:10 +0100, Tvrtko Ursulin wrote:
+> > >=20
+> > > On 16/05/2025 12:53, Tvrtko Ursulin wrote:
+> > > >=20
+> > > > On 16/05/2025 08:28, Philipp Stanner wrote:
+> > > > > On Thu, 2025-05-15 at 17:17 +0100, Tvrtko Ursulin wrote:
+> > > > > >=20
+> > > > > > On 15/05/2025 16:00, Christian K=C3=B6nig wrote:
+> > > > > > > Sometimes drivers need to be able to submit multiple jobs
+> > > > > > > which
+> > > > > > > depend on
+> > > > > > > each other to different schedulers at the same time, but
+> > > > > > > using
+> > > > > > > drm_sched_job_add_dependency() can't fail any more after
+> > > > > > > the
+> > > > > > > first
+> > > > > > > job is
+> > > > > > > initialized.
+> > > > > > >=20
+> > > > > > > This function preallocate memory for dependency slots so
+> > > > > > > that
+> > > > > > > no
+> > > > > > > ENOMEM
+> > > > > > > can come later while adding dependencies.
+> > > > > > >=20
+> > > > > > > v2: rework implementation an documentation
+> > > > > > > v3: rework from scratch, use separate function to add
+> > > > > > > preallocated
+> > > > > > > deps
+> > > > >=20
+> > > > > I think we agreed to not put change logs into commit messages
+> > > > > anymore
+> > > > > :)
+> > > > >=20
+> > > > > They aren't useful for any reader. Who needs the changelog
+> > > > > afterwards
+> > > > > can retreive it through the mail thread link that we add.
+> > > > >=20
+> > > > > > >=20
+> > > > > > > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com=
+>
+> > > > > > > ---
+> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/scheduler/sched_main.c | 4=
+5
+> > > > > > > ++++++++++++++++++++++++++
+> > > > > > > =C2=A0=C2=A0=C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +++
+> > > > > > > =C2=A0=C2=A0=C2=A0 2 files changed, 49 insertions(+)
+> > > > > > >=20
+> > > > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > > > b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > > > index f7118497e47a..b95e7089aa70 100644
+> > > > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > > > @@ -858,6 +858,51 @@ void drm_sched_job_arm(struct
+> > > > > > > drm_sched_job
+> > > > > > > *job)
+> > > > > > > =C2=A0=C2=A0=C2=A0 }
+> > > > > > > =C2=A0=C2=A0=C2=A0 EXPORT_SYMBOL(drm_sched_job_arm);
+> > > > > > > +/**
+> > > > > > > + * drm_sched_job_prealloc_dependency_slot - avoid ENOMEM
+> > > > > > > on
+> > > > > > > adding
+> > > > > > > dependencies
+> > > > > > > + * @job: scheduler job where dependencies will be added
+> > > > > > > + * @id: id for the allocated slot
+> > > > > > > +=C2=A0 *
+> > > > > > > + * Sometimes drivers need to be able to submit multiple
+> > > > > > > jobs
+> > > > > > > which
+> > > > > > > depend on
+> > > > > > > + * each other to different schedulers at the same time,
+> > > > > > > but
+> > > > > > > using
+> > > > > > > + * drm_sched_job_add_dependency() can't fail any more
+> > > > > > > after
+> > > > > > > the
+> > > > > > > first job is
+> > > > > > > + * initialized.
+> > > > > > > + *
+> > > > > > > + * This function preallocate memory for a dependency
+> > > > > > > slot so
+> > > > > > > that
+> > > > > > > no ENOMEM can
+> > > > > > > + * come later while adding dependencies. The index of
+> > > > > > > the
+> > > > > > > preallocated slot is
+> > > > > > > + * returned in @id.
+> > > > > > > + *
+> > > > > > > + * Return:
+> > > > > > > + * 0 on success, or an error on failing to expand the
+> > > > > > > array.
+> > > > > > > + */
+> > > > > > > +int drm_sched_job_prealloc_dependency_slot(struct
+> > > > > > > drm_sched_job
+> > > > > > > *job,
+> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 u32 *id=
+)
+> > > > > > > +{
+> > > > > > > +=C2=A0=C2=A0=C2=A0 return xa_alloc(&job->dependencies, id, N=
+ULL,
+> > > > > > > xa_limit_32b, GFP_KERNEL);
+> > > > > > > +}
+> > > > > > > +EXPORT_SYMBOL(drm_sched_job_prealloc_dependency_slot);
+> > > > > > > +
+> > > > > > > +/**
+> > > > > > > + * drm_sched_job_add_prealloc_dep - add dependency to
+> > > > > > > preallocated
+> > > > > > > slot
+> > > > > > > + * @job: scheduler job where dependencies will be added
+> > > > > > > + * @id: the preallocated slot index
+> > > > > > > + * @fence: the dependency to add
+> > > > > > > + *
+> > > > > > > + * Consumes @fence and adds it to the preallocated slot
+> > > > > > > dependency.
+> > > > > > > + */
+> > > > > > > +void drm_sched_job_add_prealloc_dep(struct drm_sched_job
+> > > > > > > *job, u32
+> > > > > > > id,
+> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 struct dma_fence *fence)
+> > > > > > > +{
+> > > > > > > +=C2=A0=C2=A0=C2=A0 fence =3D xa_store(&job->dependencies, id=
+, fence,
+> > > > > > > GFP_ATOMIC);
+> > > > > >=20
+> > > > > > Add assert that the passed id exists (was preallocated) and
+> > > > > > is
+> > > > > > NULL?
+> > > > >=20
+> > > > > You
+> > > >=20
+> > > > Hm?
+> > > >=20
+> > > > > >=20
+> > > > > > Also, if someone preallocates and does not consume the slot
+> > > > > > will that
+> > > > > > confuse the iteration in drm_sched_job_dependency()?
+> > > > >=20
+> > > > > drm_sched_job_add_dependency() you mean.
+> > > >=20
+> > > > I was actually thinking of drm_sched_job_dependency() because
+> > > > that
+> > > > looked it would skip dependencies upon encountering an
+> > > > unconsumed
+> > > > preallocated slot, but yes, drm_sched_job_add_dependency()
+> > > > could
+> > > > explode
+> > > > even earlier if adding a normal dependency after preallocating
+> > > > a
+> > > > slot.
+> > > >=20
+> > > > > Yes, it would. All operations simply give you NULL for those
+> > > > > slots. So
+> > > > > seems to me you have to check for NULL wherever a
+> > > > > preallocated
+> > > > > slot
+> > > > > might drop out. That would then be a bug.
+> > > > >=20
+> > > > > It's kind of tricky, all that. It's a pity that Wilcox didn't
+> > > > > answer
+> > > > > our questions about the idiomatic way to do it.
+> > > > >=20
+> > > > > Maybe reserving slots with already signaled fences wasn't
+> > > > > such a
+> > > > > bad
+> > > > > idea after all?
+> > > > >=20
+> > > > > If we go for the NULL approach, it's probably the only sane
+> > > > > way
+> > > > > to then
+> > > > > check for NULL wherever dependencies are accessed :(
+> > > > >=20
+> > > > > Opinions?
+> > > >=20
+> > > > Well if the xarray API returns the NULL consistently the
+> > > > approach
+> > > > from
+> > > > this patch is fine I think.
+> > > >=20
+> > > > We just need to add two more checks to the above mentioned
+> > > > functions,
+> > >=20
+> > > I need to correct myself, drm_sched_job_dependency() wouldn't be
+> > > able
+> > > to
+> > > just skip NULLs since it relies on NULL for "no more
+> > > dependencies".
+> > > We
+> > > would need to track something like job->max_dependency and
+> > > terminate
+> > > on
+> > > job->last_dependency > job->max_dependency or so.
+> >=20
+> > Agreed, that would have to be fixed.
+> >=20
+> > I believe we should reconsider Christian's first idea [1].
+> >=20
+> > Thinking about it some more:
+> > =C2=A0 * With the NULL version, suddenly the xarray containing only
+> > valid
+> > =C2=A0=C2=A0=C2=A0 dependencies can sometimes contain NULL entries.
+> > =C2=A0 * If we could create our own tag, entries could be returned that
+> > were
+> > =C2=A0=C2=A0=C2=A0 neither NULL nor valid fences, also requiring checks
+> > 'everywhere'.
+> > =C2=A0 * Only the "signaled fence as prealloc reservation" approach is
+> > fully
+> > =C2=A0=C2=A0=C2=A0 backwards compatible and will never cause anyone to =
+block after
+> > =C2=A0=C2=A0=C2=A0 later reworks.
+> >=20
+> > So maybe it's actually the best idea?
+> >=20
+> > Sorry for the zigg-zagg. No hard requirements intended from my
+> > side,
+> > I'm willing to go with what you guys think.
+> >=20
+> > Just saying, at least now I think that the already-signaled fence
+> > seems
+> > the most elegant solution. And since there's a function
+> > (dma_fence_get_stub()) for that, it seems to be in alignment with
+> > official dma_fence rules.
+>=20
+> Potential problem there was dma_fence_is_signaled() and fence
+> signaling=20
+> annotations. In case some driver is holding a lock over the arm+push=20
+> pair. I wish we had a non-signaling is_signaled helper..
+>=20
 
-Signed-off-by: Salah Triki <salah.triki@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Yes! +1!
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index 707e131f89d2..bff82ac651f4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -876,7 +876,7 @@ static inline uint64_t amdgpu_acpi_get_numa_size(int nid)
- 
- static struct amdgpu_numa_info *amdgpu_acpi_get_numa_info(uint32_t pxm)
- {
--	struct amdgpu_numa_info *numa_info;
-+	struct amdgpu_numa_info *numa_info, *old;
- 	int nid;
- 
- 	numa_info = xa_load(&numa_info_xa, pxm);
-@@ -898,7 +898,11 @@ static struct amdgpu_numa_info *amdgpu_acpi_get_numa_info(uint32_t pxm)
- 		} else {
- 			numa_info->size = amdgpu_acpi_get_numa_size(nid);
- 		}
--		xa_store(&numa_info_xa, numa_info->pxm, numa_info, GFP_KERNEL);
-+		old  = xa_store(&numa_info_xa, numa_info->pxm, numa_info, GFP_KERNEL);
-+		if (xa_is_err(old)) {
-+			kfree(numa_info);
-+			return NULL;
-+		}
- 	}
- 
- 	return numa_info;
--- 
-2.43.0
+But Christian doesn't like that direction:
+
+https://lore.kernel.org/all/20250409120640.106408-2-phasta@kernel.org/
+
+
+P.
+
+>=20
+>=20
+
+
+>=20
+>=20
+> Anyway, I think both options are passable. I even like the NULL entry
+> slightly more since it is simpler in a way and I don't mind some
+> extra=20
+> checks completely hidden in scheduler internals.
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
+> >=20
+> >=20
+> > Philipp
+> >=20
+> >=20
+> > [1]
+> > https://lore.kernel.org/all/20250318120313.19099-2-christian.koenig@amd=
+.com
+> > /
+> >=20
+> >=20
+> > >=20
+> > > Regards,
+> > >=20
+> > > Tvrtko
+> > >=20
+> > > > some more unit tests probably to make sure, and that should be
+> > > > fine
+> > > > for
+> > > > now.
+> > > >=20
+> > > > On the bikeshedding front I would perhaps suggest:
+> > > >=20
+> > > > =C2=A0=C2=A0=C2=A0- drm_sched_job_preallocate_dependency()
+> > > > =C2=A0=C2=A0=C2=A0- drm_sched_job_replace_dependency()
+> > > >=20
+> > > > Reads a little bit more aligned with the rest of the API and a
+> > > > bit
+> > > > easier on the eyes, to my eyes at least.
+> > > >=20
+> > > > Regards,
+> > > >=20
+> > > > Tvrtko
+> > > >=20
+> > >=20
+> >=20
+>=20
 
