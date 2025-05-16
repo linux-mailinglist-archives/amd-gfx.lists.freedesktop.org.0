@@ -2,75 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466D2AB9718
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 May 2025 10:05:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D08EAB971B
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 May 2025 10:05:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2719910E9D8;
-	Fri, 16 May 2025 08:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B83E10E9DB;
+	Fri, 16 May 2025 08:05:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dp/bTmqk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aC8j9Jwp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
- [209.85.216.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82AAE10E054;
- Fri, 16 May 2025 01:23:44 +0000 (UTC)
-Received: by mail-pj1-f42.google.com with SMTP id
- 98e67ed59e1d1-30c1c4a8224so1320051a91.0; 
- Thu, 15 May 2025 18:23:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747358624; x=1747963424; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=RABf2HYAiUJcvyUGs60HaCG9k0Cil314tRcPOU+eWQM=;
- b=dp/bTmqkJ29x9rmpXcKE020uTC6xqac9WlOAMuRfyHXjsUzc7gvbj7Oipzu45IN+mm
- vyUxkqbH6vLN2Nnxtd3QUIf4tG1wWJ4fIPo6a7A8EsKeIWyjXE+RJzPDXKsg4F2gEYYH
- silVHoon2sVnkT4P8MijlCRiD9MSouU42CckQvq5Xnk9BGCpB3uDnePpd0zP1OQ7ySrs
- J8yE1kx624+A1wTqE3tHoyS/multl2WKkJqWBxE3DkZ4Oet9HGYA3I08MdtOGslXnbi/
- ApzkWgwWE0bUYoJL9/Fa5bSDiV9SipBaH4eALLpgOKOHcJ0TvrLd/ry9vSYq2APJDnlh
- ALsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747358624; x=1747963424;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=RABf2HYAiUJcvyUGs60HaCG9k0Cil314tRcPOU+eWQM=;
- b=TSYjJ79jSMsN8hEt6hjAERm235LvxjAV/l2jxyt5/jGrUV/KYXRjavdP6TTlMLxPfF
- HE5OMluWz5yxqijlfmhnQHdVvgJ9Y0ufvlQUKFsSDJc8kNKz4fywbIHneSbVhI5UJTjP
- ssQYOCZ8Uu+oFgEKHxUrnHKdy1Ck9UxINYsyaes0+3tMZ/dq4R5zfDcX0JPjYt+taXSb
- 8zBdLUsq7ru//lxknvODoK4wQ972vsBRWmVGWjdVkvCKM4m8WMkk7MV+ZoMVjeUUWCdk
- s422fQkeyfKq3ek/f6DoxfLBIFn+20Fxx3MVbCMas7+w2hzxFYw5P2djVUB1nyw0Fn7p
- w77A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU29Y9v0LjD0IObfRsI37zBI5JEyepBfemiw9Gu14jwUjxRqc2adgrhXOaQOfqWRQCFvrVrC7D6Bw4J@lists.freedesktop.org,
- AJvYcCWIM0UQh+2gAvLXk2UDN34HrHOVYJcmUTuSoonNye2HWGzA9GfRmiplECrcKeTgiAXL4TXxCGlU@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxoziTMyQoajKWDh79lzK0dfN8AY0nXItuepwHZjPfHrtB3jTQk
- 2Ma6ev6AeYkIX3gAMKxfqWEgK72glrZ1oYP67D28iseJ3eN57/Sz2twmxUUp7vugITswutYOd0k
- tP7OzErMbKKrySJgCojcWzBEXZ+ydJ/8=
-X-Gm-Gg: ASbGncs680L19jCQVif6WcE8y3g7HQ2lRF+QU9aaQnNLVBSUv5JJSWcmzcq9rOS7Ihn
- gbvS03VGj6JjRsnYnX5bV4cjuoMSRaowEb8oaCU+4EToAFZyViwXeZhlsKY+MCSPn4ffPzHiqeC
- 8WPcvwTqUnr7rGIjsKxcO0Rum5iv8Y1NG7hPQNYspbfW3Go8+uQNCBpPBN9wa3jspVlQ==
-X-Google-Smtp-Source: AGHT+IGR7paf7BjQb3wScAbnTJMOdm+L+6Jo/HoYF9TI8h8o0r13tGzqxRFJcB3lzVQc9bB5YzvN/9pQZ89xbX/dXpw=
-X-Received: by 2002:a17:90b:2d47:b0:2f8:b2c:5ef3 with SMTP id
- 98e67ed59e1d1-30e7d520bfemr1889874a91.14.1747358623962; Thu, 15 May 2025
- 18:23:43 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF34210E868;
+ Fri, 16 May 2025 07:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747379010; x=1778915010;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=yhtrPlJ9qmNyVnIMkIRuxU21wfsbr+ewaXgbpucVwKI=;
+ b=aC8j9JwpvDXHGdczQYOhi8gsjWw3+lx2duVDZeRZ79yD7emdbHz7aSBa
+ QfkrfQCCW9ZSPQ+kNl3swrO8EBLelm1dP9wQoaRO6KfYI4liMrkPdpEOy
+ sx322J6EUXdhtsxKTC4eQXXQVu+rtAosoXh2gKzyXavLFyp0X/sfsiwns
+ +Z6wkiBHcAaeYm7A/MhKnM5T+t8EfqifgQBfsZkV7Oj5iGkEThF7jIDia
+ C+PdwANMWsAA9SY3jt1RjVGGzjGUCF48y3K3RboMmozrQ/Wm1dLaC1KF3
+ NLG1+nMr+i2jg50jaCZBivN0ol32cjb+qgYWfUBOmblFRKkM16b/qjSXO g==;
+X-CSE-ConnectionGUID: DBtY1VIjSAqMddztoUwhpw==
+X-CSE-MsgGUID: h+tDxLQ/R+iWNWYeVCzTCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="49477435"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="49477435"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2025 00:03:27 -0700
+X-CSE-ConnectionGUID: vXCqJWCVTqKRwiW6nA2nnQ==
+X-CSE-MsgGUID: ZVjwAZNZQ0OfN1RXidy/aw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143724385"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2025 00:03:23 -0700
+Date: Fri, 16 May 2025 10:03:19 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ Xaver Hugl <xaver.hugl@gmail.com>,
+ "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v3 2/3] drm/doc: Add a section about "App information"
+ for the wedge API
+Message-ID: <aCbjN9lqP4ZWV_lY@black.fi.intel.com>
+References: <20250512203437.989894-1-andrealmeid@igalia.com>
+ <20250512203437.989894-3-andrealmeid@igalia.com>
 MIME-Version: 1.0
-References: <20250514174306.82693-1-leonardodasigomes@gmail.com>
- <CADnq5_OEdpRvpfL9+aCQOfRGUW-vOGzXq3ts5buWXoOTxtHr6Q@mail.gmail.com>
-In-Reply-To: <CADnq5_OEdpRvpfL9+aCQOfRGUW-vOGzXq3ts5buWXoOTxtHr6Q@mail.gmail.com>
-From: Leonardo Gomes <leonardodasigomes@gmail.com>
-Date: Thu, 15 May 2025 22:23:32 -0300
-X-Gm-Features: AX0GCFs4w4xq-tFk-r_bnv1c--x5-ws9BGrSOte2ZKGV9q3Ghg8usGcJqzEzYqs
-Message-ID: <CABtyycTNz7dmir5Ydc=VDiTUsLy0tryBgGmtWCJQZSauuaSJwg@mail.gmail.com>
-Subject: Re: [PATCH 1/2 RESEND] drm/amd/display: Adjust get_value function
- with prefix to help in ftrace
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com, 
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch, 
- derick.william.moraes@gmail.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000139f09063536a28d"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250512203437.989894-3-andrealmeid@igalia.com>
 X-Mailman-Approved-At: Fri, 16 May 2025 08:05:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,148 +79,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000139f09063536a28d
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Mon, May 12, 2025 at 05:34:36PM -0300, André Almeida wrote:
+> Add a section about "App information" for the wedge API.
+> 
+> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+> ---
+> v3:
+>  - Change "app that caused ..." to "app involved ..."
+>  - Clarify that devcoredump have more information about what happened
+>  - Update that PID and APP will be empty if there's no app info
+> ---
+>  Documentation/gpu/drm-uapi.rst | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+> index 69f72e71a96e..3300a928d8ef 100644
+> --- a/Documentation/gpu/drm-uapi.rst
+> +++ b/Documentation/gpu/drm-uapi.rst
+> @@ -446,6 +446,23 @@ telemetry information (devcoredump, syslog). This is useful because the first
+>  hang is usually the most critical one which can result in consequential hangs or
+>  complete wedging.
+>  
+> +App information
+> +---------------
+> +
+> +The information about which application (if any) was involved in the device
+> +wedging is useful for userspace if they want to notify the user about what
+> +happened (e.g. the compositor display a message to the user "The <app name>
+> +caused a graphical error and the system recovered") or to implement policies
+> +(e.g. the daemon may "ban" an app that keeps resetting the device). If the app
+> +information is available, the uevent will display as ``PID=<pid>`` and
+> +``APP=<task name>``. Otherwise, ``PID`` and ``APP`` will not appear in the event
 
-Thanks for your reply Alex,
+Personally I'd use Linux specific naming for consistency.
 
-I just realize with your comment that
-*drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c* import *dal_hw_gpio_get_val=
-ue
-*and *dal_hw_gpio_set_value*.
-So to make those functions inside
-*drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c*  more clear what do you
-think to change them to *dal_hw_hpd_get_config* and *dal_hw_hpd_set_config*=
-,
-making clear that this is a function from the file hw_hpd?
+s/APP/TASK
 
-Leonardo Gomes
+But in any case,
 
-Em qua., 14 de mai. de 2025 =C3=A0s 18:08, Alex Deucher <alexdeucher@gmail.=
-com>
-escreveu:
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
 
-> On Wed, May 14, 2025 at 4:48=E2=80=AFPM Leonardo Gomes
-> <leonardodasigomes@gmail.com> wrote:
-> >
-> > Adjust get_value function in hw_hpd.c file to have
-> > prefix to help in ftrace, the name change from
-> > 'get_value' to 'dal_hw_gpio_get_value'
->
-> This won't compile.  dal_hw_gpio_get_value is already defined in
-> drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c.
->
-> Alex
->
-> >
-> > Signed-off-by: Leonardo da Silva Gomes <leonardodasigomes@gmail.com>
-> > Co-developed-by: Derick Frias <derick.william.moraes@gmail.com>
-> > Signed-off-by: Derick Frias <derick.william.moraes@gmail.com>
-> > ---
-> >  drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-> b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-> > index 3f13a744d07d..b11ed1089589 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-> > +++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-> > @@ -62,7 +62,7 @@ static void dal_hw_hpd_destroy(
-> >         *ptr =3D NULL;
-> >  }
-> >
-> > -static enum gpio_result get_value(
-> > +static enum gpio_result dal_hw_gpio_get_value(
-> >         const struct hw_gpio_pin *ptr,
-> >         uint32_t *value)
-> >  {
-> > @@ -104,7 +104,7 @@ static enum gpio_result set_config(
-> >  static const struct hw_gpio_pin_funcs funcs =3D {
-> >         .destroy =3D dal_hw_hpd_destroy,
-> >         .open =3D dal_hw_gpio_open,
-> > -       .get_value =3D get_value,
-> > +       .get_value =3D dal_hw_gpio_get_value,
-> >         .set_value =3D dal_hw_gpio_set_value,
-> >         .set_config =3D set_config,
-> >         .change_mode =3D dal_hw_gpio_change_mode,
-> > --
-> > 2.43.0
-> >
->
+> +string.
+> +
+> +The reliability of this information is driver and hardware specific, and should
+> +be taken with a caution regarding it's precision. To have a big picture of what
+> +happened,
 
---000000000000139f09063536a28d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Nit: what *really* happened
 
-<div dir=3D"ltr">Thanks for your reply Alex,<div><br></div><div>I just real=
-ize with your comment that=C2=A0<i>drivers/gpu/drm/amd/display/dc/gpio/hw_g=
-pio.c</i> import <i>dal_hw_gpio_get_value </i>and <i>dal_hw_gpio_set_value<=
-/i>.</div><div>So to make those functions inside <i>drivers/gpu/drm/amd/dis=
-play/dc/gpio/hw_hpd.c</i>=C2=A0 more clear what do you think to change them=
- to=C2=A0<i>dal_hw_<b>hpd</b>_get_config</i> and <i>dal_hw_<b>hpd</b>_set_c=
-onfig</i>, making clear that this is a function from the file hw_hpd?</div>=
-<div><br></div><div>Leonardo Gomes</div></div><br><div class=3D"gmail_quote=
- gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">Em qua., 14 d=
-e mai. de 2025 =C3=A0s 18:08, Alex Deucher &lt;<a href=3D"mailto:alexdeuche=
-r@gmail.com">alexdeucher@gmail.com</a>&gt; escreveu:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex">On Wed, May 14, 2025 at 4:48=E2=80=AFP=
-M Leonardo Gomes<br>
-&lt;<a href=3D"mailto:leonardodasigomes@gmail.com" target=3D"_blank">leonar=
-dodasigomes@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Adjust get_value function in hw_hpd.c file to have<br>
-&gt; prefix to help in ftrace, the name change from<br>
-&gt; &#39;get_value&#39; to &#39;dal_hw_gpio_get_value&#39;<br>
-<br>
-This won&#39;t compile.=C2=A0 dal_hw_gpio_get_value is already defined in<b=
-r>
-drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c.<br>
-<br>
-Alex<br>
-<br>
-&gt;<br>
-&gt; Signed-off-by: Leonardo da Silva Gomes &lt;<a href=3D"mailto:leonardod=
-asigomes@gmail.com" target=3D"_blank">leonardodasigomes@gmail.com</a>&gt;<b=
-r>
-&gt; Co-developed-by: Derick Frias &lt;<a href=3D"mailto:derick.william.mor=
-aes@gmail.com" target=3D"_blank">derick.william.moraes@gmail.com</a>&gt;<br=
->
-&gt; Signed-off-by: Derick Frias &lt;<a href=3D"mailto:derick.william.morae=
-s@gmail.com" target=3D"_blank">derick.william.moraes@gmail.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c | 4 ++--<br>
-&gt;=C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c b/drivers/gp=
-u/drm/amd/display/dc/gpio/hw_hpd.c<br>
-&gt; index 3f13a744d07d..b11ed1089589 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c<br>
-&gt; @@ -62,7 +62,7 @@ static void dal_hw_hpd_destroy(<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*ptr =3D NULL;<br>
-&gt;=C2=A0 }<br>
-&gt;<br>
-&gt; -static enum gpio_result get_value(<br>
-&gt; +static enum gpio_result dal_hw_gpio_get_value(<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const struct hw_gpio_pin *ptr,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t *value)<br>
-&gt;=C2=A0 {<br>
-&gt; @@ -104,7 +104,7 @@ static enum gpio_result set_config(<br>
-&gt;=C2=A0 static const struct hw_gpio_pin_funcs funcs =3D {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.destroy =3D dal_hw_hpd_destroy,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.open =3D dal_hw_gpio_open,<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_value =3D get_value,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_value =3D dal_hw_gpio_get_value,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.set_value =3D dal_hw_gpio_set_value,=
-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.set_config =3D set_config,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.change_mode =3D dal_hw_gpio_change_m=
-ode,<br>
-&gt; --<br>
-&gt; 2.43.0<br>
-&gt;<br>
-</blockquote></div>
-
---000000000000139f09063536a28d--
+> the devcoredump file provides should have much more detailed
+> +information about the device state and about the event.
+> +
+>  Consumer prerequisites
+>  ----------------------
+>  
+> -- 
+> 2.49.0
+> 
