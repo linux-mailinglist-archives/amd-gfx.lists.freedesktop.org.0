@@ -2,74 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 940C7AB971D
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 May 2025 10:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 466D2AB9718
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 May 2025 10:05:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42AD410E9E2;
-	Fri, 16 May 2025 08:05:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2719910E9D8;
+	Fri, 16 May 2025 08:05:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=leandro.ribeiro@collabora.com header.b="fqcJMFHj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dp/bTmqk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5509610E953;
- Thu, 15 May 2025 19:59:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1747339165; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=nvlv6xnlJoDgRfLIHOAipOToMF/YSEpecVBgTaLD+kDsN2BVNIDdg2tPTNdGlyt12q+sp2VXef7SHsJmTrJt5wsRfWaMGo9eSTkaK/sksDwfamivDuii1w2WWDZm+sFYRyzAU88uq7RLNxaPj2LPfnvrM00FYbwg2YPAYMPMFDA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1747339165;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=vOSMcnf9uOjbrEUaXsExY71mh+tkMHw3FuQ3PB7hzTs=; 
- b=cvtX4le/Jb8hAXNerl7bAcJClkHvZPtU8qUUFIvGD/DfR/MjrRtTJxY+JIhpS1VXrdbMyQ9HMnt5uQYQ0PTUQb/caCW2qQF9xAJDWXzh8RwVj+gZdLxp/dJWYpQt+bwiIEZq2UWKMMrzuhJ1e91h9wRh76UcLeb6jlk80vBlRDM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=leandro.ribeiro@collabora.com;
- dmarc=pass header.from=<leandro.ribeiro@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1747339165; 
- s=zohomail; d=collabora.com; i=leandro.ribeiro@collabora.com; 
- h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=vOSMcnf9uOjbrEUaXsExY71mh+tkMHw3FuQ3PB7hzTs=;
- b=fqcJMFHj142HjhPzbIH9Ut71s/atlF+UWShAxVU+LocDoPwEW1QPXEPnyYzbH8uV
- WPc4J0Y3cSW2Dv8Rsr+P2rFH+M1n5B4xRIQbv0c/aNe9cOhoMoHVAPnxLCex7AsDNhi
- 6vQncVp1itE8O/kGPP9iULiu0yX4ppHSH/Hm7p44=
-Received: by mx.zohomail.com with SMTPS id 1747339162654100.60362466798995;
- Thu, 15 May 2025 12:59:22 -0700 (PDT)
-Message-ID: <5921076d-0150-4e0f-a3ef-1b8dec021630@collabora.com>
-Date: Thu, 15 May 2025 16:59:14 -0300
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82AAE10E054;
+ Fri, 16 May 2025 01:23:44 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-30c1c4a8224so1320051a91.0; 
+ Thu, 15 May 2025 18:23:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1747358624; x=1747963424; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=RABf2HYAiUJcvyUGs60HaCG9k0Cil314tRcPOU+eWQM=;
+ b=dp/bTmqkJ29x9rmpXcKE020uTC6xqac9WlOAMuRfyHXjsUzc7gvbj7Oipzu45IN+mm
+ vyUxkqbH6vLN2Nnxtd3QUIf4tG1wWJ4fIPo6a7A8EsKeIWyjXE+RJzPDXKsg4F2gEYYH
+ silVHoon2sVnkT4P8MijlCRiD9MSouU42CckQvq5Xnk9BGCpB3uDnePpd0zP1OQ7ySrs
+ J8yE1kx624+A1wTqE3tHoyS/multl2WKkJqWBxE3DkZ4Oet9HGYA3I08MdtOGslXnbi/
+ ApzkWgwWE0bUYoJL9/Fa5bSDiV9SipBaH4eALLpgOKOHcJ0TvrLd/ry9vSYq2APJDnlh
+ ALsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747358624; x=1747963424;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=RABf2HYAiUJcvyUGs60HaCG9k0Cil314tRcPOU+eWQM=;
+ b=TSYjJ79jSMsN8hEt6hjAERm235LvxjAV/l2jxyt5/jGrUV/KYXRjavdP6TTlMLxPfF
+ HE5OMluWz5yxqijlfmhnQHdVvgJ9Y0ufvlQUKFsSDJc8kNKz4fywbIHneSbVhI5UJTjP
+ ssQYOCZ8Uu+oFgEKHxUrnHKdy1Ck9UxINYsyaes0+3tMZ/dq4R5zfDcX0JPjYt+taXSb
+ 8zBdLUsq7ru//lxknvODoK4wQ972vsBRWmVGWjdVkvCKM4m8WMkk7MV+ZoMVjeUUWCdk
+ s422fQkeyfKq3ek/f6DoxfLBIFn+20Fxx3MVbCMas7+w2hzxFYw5P2djVUB1nyw0Fn7p
+ w77A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU29Y9v0LjD0IObfRsI37zBI5JEyepBfemiw9Gu14jwUjxRqc2adgrhXOaQOfqWRQCFvrVrC7D6Bw4J@lists.freedesktop.org,
+ AJvYcCWIM0UQh+2gAvLXk2UDN34HrHOVYJcmUTuSoonNye2HWGzA9GfRmiplECrcKeTgiAXL4TXxCGlU@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxoziTMyQoajKWDh79lzK0dfN8AY0nXItuepwHZjPfHrtB3jTQk
+ 2Ma6ev6AeYkIX3gAMKxfqWEgK72glrZ1oYP67D28iseJ3eN57/Sz2twmxUUp7vugITswutYOd0k
+ tP7OzErMbKKrySJgCojcWzBEXZ+ydJ/8=
+X-Gm-Gg: ASbGncs680L19jCQVif6WcE8y3g7HQ2lRF+QU9aaQnNLVBSUv5JJSWcmzcq9rOS7Ihn
+ gbvS03VGj6JjRsnYnX5bV4cjuoMSRaowEb8oaCU+4EToAFZyViwXeZhlsKY+MCSPn4ffPzHiqeC
+ 8WPcvwTqUnr7rGIjsKxcO0Rum5iv8Y1NG7hPQNYspbfW3Go8+uQNCBpPBN9wa3jspVlQ==
+X-Google-Smtp-Source: AGHT+IGR7paf7BjQb3wScAbnTJMOdm+L+6Jo/HoYF9TI8h8o0r13tGzqxRFJcB3lzVQc9bB5YzvN/9pQZ89xbX/dXpw=
+X-Received: by 2002:a17:90b:2d47:b0:2f8:b2c:5ef3 with SMTP id
+ 98e67ed59e1d1-30e7d520bfemr1889874a91.14.1747358623962; Thu, 15 May 2025
+ 18:23:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V9 00/43] Color Pipeline API w/ VKMS
-To: Daniel Stone <daniel@fooishbar.org>,
- Harry Wentland <harry.wentland@amd.com>
-Cc: Simon Ser <contact@emersion.fr>, Alex Hung <alex.hung@amd.com>,
- Misyl Toad <misyl@froggi.es>, Xaver Hugl <xaver.hugl@gmail.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- wayland-devel@lists.freedesktop.org, leo.liu@amd.com,
- ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com,
- mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
- shashank.sharma@amd.com, agoins@nvidia.com, joshua@froggi.es,
- mdaenzer@redhat.com, aleixpol@kde.org, victoria@system76.com,
- daniel@ffwll.ch, uma.shankar@intel.com, quic_naseer@quicinc.com,
- quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com, marcan@marcan.st,
- Liviu.Dudau@arm.com, sashamcintosh@google.com,
- chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com,
- Arthur Grillo <arthurgrillo@riseup.net>
-References: <20250430011115.223996-1-alex.hung@amd.com>
- <o4MtjqyDUjuFR4Y9Q1IEZlvVQ7Nkggq0v-KtBcH0aM3pTvEq8UcSoUDxefSBVdTmLj_1_a6GmbjU_mRSFinOb44B4bu1u3mMIckuQhhZWCc=@emersion.fr>
- <3bbd4bd7-7217-4a14-b7bb-383226f44f55@amd.com>
- <CAPj87rNUDdDEopPH+iAF-a=Or6eXH4cMRU8eOj81g_40cq8gdA@mail.gmail.com>
- <f7e9cd32-3e2b-4f06-aa13-049c8b7ba29b@amd.com>
- <CAPj87rMbcZKy2ARe_tp_-+-tMu3FpS0C9R1BHVzjsUpOsU9M4g@mail.gmail.com>
-Content-Language: en-US
-From: Leandro Ribeiro <leandro.ribeiro@collabora.com>
-In-Reply-To: <CAPj87rMbcZKy2ARe_tp_-+-tMu3FpS0C9R1BHVzjsUpOsU9M4g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
-X-ZohoMail-Owner: <5921076d-0150-4e0f-a3ef-1b8dec021630@collabora.com>+zmo_0_leandro.ribeiro@collabora.com
+References: <20250514174306.82693-1-leonardodasigomes@gmail.com>
+ <CADnq5_OEdpRvpfL9+aCQOfRGUW-vOGzXq3ts5buWXoOTxtHr6Q@mail.gmail.com>
+In-Reply-To: <CADnq5_OEdpRvpfL9+aCQOfRGUW-vOGzXq3ts5buWXoOTxtHr6Q@mail.gmail.com>
+From: Leonardo Gomes <leonardodasigomes@gmail.com>
+Date: Thu, 15 May 2025 22:23:32 -0300
+X-Gm-Features: AX0GCFs4w4xq-tFk-r_bnv1c--x5-ws9BGrSOte2ZKGV9q3Ghg8usGcJqzEzYqs
+Message-ID: <CABtyycTNz7dmir5Ydc=VDiTUsLy0tryBgGmtWCJQZSauuaSJwg@mail.gmail.com>
+Subject: Re: [PATCH 1/2 RESEND] drm/amd/display: Adjust get_value function
+ with prefix to help in ftrace
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com, 
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch, 
+ derick.william.moraes@gmail.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000139f09063536a28d"
 X-Mailman-Approved-At: Fri, 16 May 2025 08:05:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,45 +86,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--000000000000139f09063536a28d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Thanks for your reply Alex,
 
-On 5/15/25 15:39, Daniel Stone wrote:
-> Hi,
-> 
-> On Thu, 15 May 2025 at 19:02, Harry Wentland <harry.wentland@amd.com> wrote:
->> On 2025-05-15 13:19, Daniel Stone wrote:
->>> Yeah, the Weston patches are marching on. We've still been doing a
->>> little bit of cleanup and prep work in the background to land them,
->>> but we also can't land them until the kernel lands. None of that work
->>> is material to the uAPI though: as said previously, the uAPI looks
->>> completely solid and it's something we can definitely beneficially use
->>> in Weston. (Even if we do need the obvious follow-ons for
->>> post-blending as well ...)
->>
->> We can't merge kernel uAPI without canonical userspace that uses it.
->> To move forward we'll need a userspace to at least publish a branch
->> that shows the use of this new uAPI.
->>
->> Do you have a public branch for the Weston work for this?
-> 
-> Yeah, https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1702
-> has been around for a little while now. There are some driver bugs
-> that Leandro commented on, but they don't seem material to the uAPI as
-> such?
+I just realize with your comment that
+*drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c* import *dal_hw_gpio_get_val=
+ue
+*and *dal_hw_gpio_set_value*.
+So to make those functions inside
+*drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c*  more clear what do you
+think to change them to *dal_hw_hpd_get_config* and *dal_hw_hpd_set_config*=
+,
+making clear that this is a function from the file hw_hpd?
 
-Hello,
+Leonardo Gomes
 
-Yes, there's nothing related to the API that is blocking us. It seemed
-very flexible and easy to use. The bugs that I've spotted are probably
-internal to AMD driver.
+Em qua., 14 de mai. de 2025 =C3=A0s 18:08, Alex Deucher <alexdeucher@gmail.=
+com>
+escreveu:
 
-I'd say that the Weston patches are converging nicely, we just need time
-to get them fully reviewed. We had a few preparation MR's to land
-before !1702, and now there's only one left (!1617).
+> On Wed, May 14, 2025 at 4:48=E2=80=AFPM Leonardo Gomes
+> <leonardodasigomes@gmail.com> wrote:
+> >
+> > Adjust get_value function in hw_hpd.c file to have
+> > prefix to help in ftrace, the name change from
+> > 'get_value' to 'dal_hw_gpio_get_value'
+>
+> This won't compile.  dal_hw_gpio_get_value is already defined in
+> drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c.
+>
+> Alex
+>
+> >
+> > Signed-off-by: Leonardo da Silva Gomes <leonardodasigomes@gmail.com>
+> > Co-developed-by: Derick Frias <derick.william.moraes@gmail.com>
+> > Signed-off-by: Derick Frias <derick.william.moraes@gmail.com>
+> > ---
+> >  drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
+> b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
+> > index 3f13a744d07d..b11ed1089589 100644
+> > --- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
+> > +++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
+> > @@ -62,7 +62,7 @@ static void dal_hw_hpd_destroy(
+> >         *ptr =3D NULL;
+> >  }
+> >
+> > -static enum gpio_result get_value(
+> > +static enum gpio_result dal_hw_gpio_get_value(
+> >         const struct hw_gpio_pin *ptr,
+> >         uint32_t *value)
+> >  {
+> > @@ -104,7 +104,7 @@ static enum gpio_result set_config(
+> >  static const struct hw_gpio_pin_funcs funcs =3D {
+> >         .destroy =3D dal_hw_hpd_destroy,
+> >         .open =3D dal_hw_gpio_open,
+> > -       .get_value =3D get_value,
+> > +       .get_value =3D dal_hw_gpio_get_value,
+> >         .set_value =3D dal_hw_gpio_set_value,
+> >         .set_config =3D set_config,
+> >         .change_mode =3D dal_hw_gpio_change_mode,
+> > --
+> > 2.43.0
+> >
+>
 
-Thanks,
-Leandro
-> 
-> Cheers,
-> Daniel
+--000000000000139f09063536a28d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Thanks for your reply Alex,<div><br></div><div>I just real=
+ize with your comment that=C2=A0<i>drivers/gpu/drm/amd/display/dc/gpio/hw_g=
+pio.c</i> import <i>dal_hw_gpio_get_value </i>and <i>dal_hw_gpio_set_value<=
+/i>.</div><div>So to make those functions inside <i>drivers/gpu/drm/amd/dis=
+play/dc/gpio/hw_hpd.c</i>=C2=A0 more clear what do you think to change them=
+ to=C2=A0<i>dal_hw_<b>hpd</b>_get_config</i> and <i>dal_hw_<b>hpd</b>_set_c=
+onfig</i>, making clear that this is a function from the file hw_hpd?</div>=
+<div><br></div><div>Leonardo Gomes</div></div><br><div class=3D"gmail_quote=
+ gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">Em qua., 14 d=
+e mai. de 2025 =C3=A0s 18:08, Alex Deucher &lt;<a href=3D"mailto:alexdeuche=
+r@gmail.com">alexdeucher@gmail.com</a>&gt; escreveu:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">On Wed, May 14, 2025 at 4:48=E2=80=AFP=
+M Leonardo Gomes<br>
+&lt;<a href=3D"mailto:leonardodasigomes@gmail.com" target=3D"_blank">leonar=
+dodasigomes@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Adjust get_value function in hw_hpd.c file to have<br>
+&gt; prefix to help in ftrace, the name change from<br>
+&gt; &#39;get_value&#39; to &#39;dal_hw_gpio_get_value&#39;<br>
+<br>
+This won&#39;t compile.=C2=A0 dal_hw_gpio_get_value is already defined in<b=
+r>
+drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c.<br>
+<br>
+Alex<br>
+<br>
+&gt;<br>
+&gt; Signed-off-by: Leonardo da Silva Gomes &lt;<a href=3D"mailto:leonardod=
+asigomes@gmail.com" target=3D"_blank">leonardodasigomes@gmail.com</a>&gt;<b=
+r>
+&gt; Co-developed-by: Derick Frias &lt;<a href=3D"mailto:derick.william.mor=
+aes@gmail.com" target=3D"_blank">derick.william.moraes@gmail.com</a>&gt;<br=
+>
+&gt; Signed-off-by: Derick Frias &lt;<a href=3D"mailto:derick.william.morae=
+s@gmail.com" target=3D"_blank">derick.william.moraes@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c | 4 ++--<br>
+&gt;=C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c b/drivers/gp=
+u/drm/amd/display/dc/gpio/hw_hpd.c<br>
+&gt; index 3f13a744d07d..b11ed1089589 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c<br>
+&gt; @@ -62,7 +62,7 @@ static void dal_hw_hpd_destroy(<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*ptr =3D NULL;<br>
+&gt;=C2=A0 }<br>
+&gt;<br>
+&gt; -static enum gpio_result get_value(<br>
+&gt; +static enum gpio_result dal_hw_gpio_get_value(<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const struct hw_gpio_pin *ptr,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t *value)<br>
+&gt;=C2=A0 {<br>
+&gt; @@ -104,7 +104,7 @@ static enum gpio_result set_config(<br>
+&gt;=C2=A0 static const struct hw_gpio_pin_funcs funcs =3D {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.destroy =3D dal_hw_hpd_destroy,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.open =3D dal_hw_gpio_open,<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_value =3D get_value,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_value =3D dal_hw_gpio_get_value,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.set_value =3D dal_hw_gpio_set_value,=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.set_config =3D set_config,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.change_mode =3D dal_hw_gpio_change_m=
+ode,<br>
+&gt; --<br>
+&gt; 2.43.0<br>
+&gt;<br>
+</blockquote></div>
+
+--000000000000139f09063536a28d--
