@@ -2,68 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C776EABB5EB
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C08DABB5E9
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7ECC10E35B;
-	Mon, 19 May 2025 07:15:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD7310E377;
+	Mon, 19 May 2025 07:15:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=froggi.es header.i=misyl@froggi.es header.b="hEOLal4y";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="REFTROYa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 904 seconds by postgrey-1.36 at gabe;
- Sat, 17 May 2025 17:53:00 UTC
-Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com
- [136.143.188.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A01E810E053;
- Sat, 17 May 2025 17:53:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1747503466; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Nffj33e2YL/ILQZ6iPnLPHW3UV/iGjVUFzIQe6lF5W0NyX7vHDVmDet9/ScN8GEdZ77GFjz3PXrnUbB+kPpFK4U8Y9rgLvNW8s1xMaJFZqAijNo9jo0OWiSoY8tJda3IVbqx5hzOtmn1EuTOAX22DTKr2xDolg50ipBSQcKKxGE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1747503466;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=ezkHkwC9s2Z5d6+xKnDQMCu1S8rNkHLf2BEhK46Pwz4=; 
- b=PAHtiedLZA19uRxcuZzlYuY7TvocziaIzhUxqrVbwnNQ+UrHILZZwwk+5Glumu0DIC8/C2h+BsF3srduhaSuAJc0rW6zVkJD1YcVaEkOo2/OqU8ET9kp6ScCs+kLC5h79YguCZ11eANvLk+tl2qj7XFj31HLw+HpyWVyKAbfl7Q=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=froggi.es;
- spf=pass  smtp.mailfrom=misyl@froggi.es;
- dmarc=pass header.from=<misyl@froggi.es>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1747503466; 
- s=mail; d=froggi.es; i=misyl@froggi.es;
- h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=ezkHkwC9s2Z5d6+xKnDQMCu1S8rNkHLf2BEhK46Pwz4=;
- b=hEOLal4yOQqptZ8nbj5icqqzcpfs8yV3uUTQ+665tCVRHo7XojnKBwgNRJMnUYDL
- /irSOgIGlldfnrwDPTKVS2A3r9BWaphNVisWB/Mect8I11xcix8AeHlWm2JfJjVqNu2
- 68ccCjdvhABIRgDKNRgNuiuAmfLBWfVjObiy2GKA=
-Received: by mx.zohomail.com with SMTPS id 1747503462353236.58079519107616;
- Sat, 17 May 2025 10:37:42 -0700 (PDT)
-Message-ID: <c562cd90-fdc4-409d-830c-855f88dbf5d5@froggi.es>
-Date: Sat, 17 May 2025 18:36:28 +0100
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
+ [209.85.218.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDA0C10E168;
+ Sat, 17 May 2025 22:32:49 +0000 (UTC)
+Received: by mail-ej1-f54.google.com with SMTP id
+ a640c23a62f3a-ad24b7e0331so485818666b.0; 
+ Sat, 17 May 2025 15:32:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1747521168; x=1748125968; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=+Q8GiGwI07IVqiWqNBHYMW+ExmUEnIUfs7vQs+IrKVU=;
+ b=REFTROYahR5M3/sTnl0JBy9NplPBW+UpUlHKEzlGC9MswgT6ByeHmV6MgRdRKQLLlL
+ AeFJv9ro7pmLAOg3zaU8vxyAkmh1Bl8y+dSqhLVMWT5IhoOJTzMhBT6eRMnE/foS4Kcv
+ 73/FYphxPWQgRVOa/ZRG6SM87NP7hLHxI9fwi00bkhOlrlxGCDOvxUxgv9zMbVZyVpv3
+ Vb4eHCumsVJZM+D9jlnO50PfCaq/hFT87O7TWQ2owcvGmxadaRfK0pL7ImvAlQjnGcN8
+ QYHw9QZzPpkI+O7IfwJSW9Zf5/z9Z5O2OpwWByE7822WyOmEqT3nDmHVufaIEEIXB9pF
+ A7Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747521168; x=1748125968;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=+Q8GiGwI07IVqiWqNBHYMW+ExmUEnIUfs7vQs+IrKVU=;
+ b=V2gQZ/FirI+UdUtS6hLJx8v0NQuE8ns5i2i8n0iuOKDp3SvkZYeqyahmYdVuIyk5AG
+ eVG89j5L5r0GjLrJSM4BbTPLueQ5Yk2KsjRuHy0PyyiOhRWebf3jwZJgyr7Hv6JSMy2Q
+ 1rq/sdm0QPeX/VuLGg7jW0WB55R4CPgny5CA7CNKJD4IwPDclTDY1KovnZsfY881TF+p
+ xYHug1iMkE/3pCjqlExVfWSGPrKOszsx96C2Afvh/G2nsbFZuVS/QsiW+fb4+NJgCXrZ
+ 5z7nc6CPAvy+m5sFz5UNm2uOAHC37w7lRkVS9mGeaO+7YK9K1mxG06JwdzSzo3Pua75/
+ jk5g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUyCVjOsiDmTLHcnSHIOb72+7DU6FwlWaZTSkDoalBbGTSJdDvG1CiBSFf3QnmFGDp3yDJ6F1lDymmR737YQg==@lists.freedesktop.org,
+ AJvYcCVnLkQTNuTyu0s3ujmMOfqhdI1vU3G1PoUUdr3LA8na2c7pTvYcHwGysKm0289bRb4nPrDCGiecOB4e@lists.freedesktop.org,
+ AJvYcCXAvXWjAyE6xMNyZWsC7d8Vgnrn08hl9DBDN0bTvY8gGPI460gmpirBqduMofYhXWoT3QHEZjbj@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwF2pCxx8WO+wikG+X4AdodXZBn9z5xWa455Wm/wwTLrijquato
+ Ad0znfPfjAwE6g9peK2EYp7o6eGqepsg0aH6w4md4mRcQtBGKbQhNkpmk7Zk8vZ4HFviMih1cLl
+ PZZbhWnrUvHThODY7d8PANdxSPVkI2Rk=
+X-Gm-Gg: ASbGnctK5KDzjGqnhKZTSI3nlG99tNcVD0l+yVaDATTdGFbSI9wQHHC8XXUlqXdVfwp
+ t8GWfk9c2eZpeaLfdSxKb2kQMcpzap4AWmMROdrgfg+fkZ5MxlT+vR/RSDzpgD+iKaC0zUhcPPH
+ TZIdwGEwraqBW/8hfhenva8hgUkVSdHLAXTnuchilQhNdobMMs4AuJEbevxkoO2udqfA==
+X-Google-Smtp-Source: AGHT+IEXUbx9G36j8YjZDly+X1MF9h6MXqkhnX04yMkz2yPALji4nO7eKGCwA+y7c7VXmp77beXLxYpFQwY+qVfkUtc=
+X-Received: by 2002:a17:907:1c11:b0:ac3:f1dc:f3db with SMTP id
+ a640c23a62f3a-ad52d4b2e34mr785164966b.13.1747521168115; Sat, 17 May 2025
+ 15:32:48 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V8 40/43] drm/colorop: Add 3D LUT support to color pipeline
-To: Xaver Hugl <xaver.hugl@gmail.com>, Alex Hung <alex.hung@amd.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- wayland-devel@lists.freedesktop.org, harry.wentland@amd.com,
- leo.liu@amd.com, ville.syrjala@linux.intel.com,
- pekka.paalanen@collabora.com, contact@emersion.fr, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com,
- agoins@nvidia.com, mdaenzer@redhat.com, aleixpol@kde.org,
- victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com,
- quic_naseer@quicinc.com, quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com,
- marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com,
- chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com
 References: <20250326234748.2982010-1-alex.hung@amd.com>
  <20250326234748.2982010-41-alex.hung@amd.com>
  <CAFZQkGwrP39REsvZwQ_Uaq+cHR_pH2EPuv_POXRO7Hxj9u4Xsw@mail.gmail.com>
-Content-Language: en-US
-From: Autumn Ashton <misyl@froggi.es>
-In-Reply-To: <CAFZQkGwrP39REsvZwQ_Uaq+cHR_pH2EPuv_POXRO7Hxj9u4Xsw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+ <vyX7bdPppc_pDUQBeKeZNyy69WUl_XKExs-I7dfuDJJy6SKXWoBL7B-IRMZKxuktNMQCIg0lP56Xj0qLidKOlBJQJjUYHOQ5Id6yw5k8Q10=@emersion.fr>
+In-Reply-To: <vyX7bdPppc_pDUQBeKeZNyy69WUl_XKExs-I7dfuDJJy6SKXWoBL7B-IRMZKxuktNMQCIg0lP56Xj0qLidKOlBJQJjUYHOQ5Id6yw5k8Q10=@emersion.fr>
+From: Xaver Hugl <xaver.hugl@gmail.com>
+Date: Sun, 18 May 2025 00:32:36 +0200
+X-Gm-Features: AX0GCFtiFMdoRuUqUiuYglljhX7JAPco07x17e8Pk-swDwhD_So_SthsbllaKZ4
+Message-ID: <CAFZQkGxXJe=FGdymMRevbtU+jKre6PdthAu33Qz+kVsR_OVpJg@mail.gmail.com>
+Subject: Re: [PATCH V8 40/43] drm/colorop: Add 3D LUT support to color pipeline
+To: Simon Ser <contact@emersion.fr>
+Cc: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, wayland-devel@lists.freedesktop.org, 
+ harry.wentland@amd.com, leo.liu@amd.com, ville.syrjala@linux.intel.com, 
+ pekka.paalanen@collabora.com, mwen@igalia.com, jadahl@redhat.com, 
+ sebastian.wick@redhat.com, shashank.sharma@amd.com, agoins@nvidia.com, 
+ joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org, 
+ victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com, 
+ quic_naseer@quicinc.com, quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com, 
+ marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com, 
+ chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,151 +94,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+> We can always make the property mutable on drivers that support it in
+> the future, much like the zpos property. I think we should keep it
+> immutable for now.
 
-On 5/17/25 2:22 AM, Xaver Hugl wrote:
-> Am Do., 27. März 2025 um 00:58 Uhr schrieb Alex Hung <alex.hung@amd.com>:
->> It is to be used to enable HDR by allowing userpace to create and pass
->> 3D LUTs to kernel and hardware.
->>
->> new drm_colorop_type: DRM_COLOROP_3D_LUT.
->>
->> Signed-off-by: Alex Hung <alex.hung@amd.com>
->> ---
->> v8:
->>   - Fix typo in subject (Simon Ser)
->>   - Update documentation for DRM_COLOROP_3D_LUT (Simon Ser)
->>   - Delete empty lines (Simon Ser)
->>
->> v7:
->>   - Simplify 3D LUT by removing lut_3d_modes and related functions (Simon Ser)
->>
->>   drivers/gpu/drm/drm_atomic.c      |  6 +++
->>   drivers/gpu/drm/drm_atomic_uapi.c |  6 +++
->>   drivers/gpu/drm/drm_colorop.c     | 72 +++++++++++++++++++++++++++++++
->>   include/drm/drm_colorop.h         | 21 +++++++++
->>   include/uapi/drm/drm_mode.h       | 33 ++++++++++++++
->>   5 files changed, 138 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
->> index 0efb0ead204a..ef47a06344f3 100644
->> --- a/drivers/gpu/drm/drm_atomic.c
->> +++ b/drivers/gpu/drm/drm_atomic.c
->> @@ -806,6 +806,12 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
->>          case DRM_COLOROP_MULTIPLIER:
->>                  drm_printf(p, "\tmultiplier=%llu\n", state->multiplier);
->>                  break;
->> +       case DRM_COLOROP_3D_LUT:
->> +               drm_printf(p, "\tsize=%d\n", colorop->lut_size);
->> +               drm_printf(p, "\tinterpolation=%s\n",
->> +                          drm_get_colorop_lut3d_interpolation_name(colorop->lut3d_interpolation));
->> +               drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
->> +               break;
->>          default:
->>                  break;
->>          }
->> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
->> index 947c18e8bf9b..d5d464b4d0f6 100644
->> --- a/drivers/gpu/drm/drm_atomic_uapi.c
->> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
->> @@ -719,6 +719,10 @@ static int drm_atomic_color_set_data_property(struct drm_colorop *colorop,
->>          case DRM_COLOROP_CTM_3X4:
->>                  size = sizeof(struct drm_color_ctm_3x4);
->>                  break;
->> +       case DRM_COLOROP_3D_LUT:
->> +               size = colorop->lut_size * colorop->lut_size * colorop->lut_size *
->> +                      sizeof(struct drm_color_lut);
->> +               break;
->>          default:
->>                  /* should never get here */
->>                  return -EINVAL;
->> @@ -771,6 +775,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
->>                  *val = state->multiplier;
->>          } else if (property == colorop->lut_size_property) {
->>                  *val = colorop->lut_size;
->> +       } else if (property == colorop->lut3d_interpolation_property) {
->> +               *val = colorop->lut3d_interpolation;
->>          } else if (property == colorop->data_property) {
->>                  *val = (state->data) ? state->data->base.id : 0;
->>          } else {
->> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
->> index e03706e7179b..224c6be237d2 100644
->> --- a/drivers/gpu/drm/drm_colorop.c
->> +++ b/drivers/gpu/drm/drm_colorop.c
->> @@ -67,6 +67,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
->>          { DRM_COLOROP_1D_LUT, "1D LUT" },
->>          { DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
->>          { DRM_COLOROP_MULTIPLIER, "Multiplier"},
->> +       { DRM_COLOROP_3D_LUT, "3D LUT"},
->>   };
->>
->>   static const char * const colorop_curve_1d_type_names[] = {
->> @@ -82,6 +83,11 @@ static const struct drm_prop_enum_list drm_colorop_lut1d_interpolation_list[] =
->>          { DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR, "Linear" },
->>   };
->>
->> +
->> +static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] = {
->> +       { DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
->> +};
->> +
->>   /* Init Helpers */
->>
->>   static int drm_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
->> @@ -349,6 +355,51 @@ int drm_colorop_mult_init(struct drm_device *dev, struct drm_colorop *colorop,
->>   }
->>   EXPORT_SYMBOL(drm_colorop_mult_init);
->>
->> +int drm_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *colorop,
->> +                          struct drm_plane *plane,
->> +                          uint32_t lut_size,
->> +                          enum drm_colorop_lut3d_interpolation_type interpolation,
->> +                          bool allow_bypass)
->> +{
->> +       struct drm_property *prop;
->> +       int ret;
->> +
->> +       ret = drm_colorop_init(dev, colorop, plane, DRM_COLOROP_3D_LUT, allow_bypass);
->> +       if (ret)
->> +               return ret;
->> +
->> +       /* LUT size */
->> +       prop = drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE  | DRM_MODE_PROP_ATOMIC,
->> +                                        "SIZE", 0, UINT_MAX);
->> +       if (!prop)
->> +               return -ENOMEM;
->> +
->> +       colorop->lut_size_property = prop;
->> +       drm_object_attach_property(&colorop->base, colorop->lut_size_property, lut_size);
->> +       colorop->lut_size = lut_size;
->> +
->> +       /* interpolation */
->> +       prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE, "LUT3D_INTERPOLATION",
-> Do we ever expect this to be something with multiple options that
-> userspace could select? I think it would be good to keep our options
-> open and make this property not immutable (properties that are
-> sometimes but not always immutable are more annoying to deal with in
-> userspace).
-
-
-I don't think so, AFAIK on AMD there is only tetrahedral.
-
-Other vendors might have that as configurable, but I imagine that's why 
-this is immutable in this instance.
-
-
-Whether or not the interpolation mode is tetrahedral or linear would 
-probably affect whether I would use the HW block.
-
-Small (eg. 9x9x9 or 17x17x17) 3D LUTs interpolated as linear cannot 
-apply identity 3D LUTs as identity.
-
-This is why we do manual tetrahedral sampling in Gamescope in our shader 
-path too...
-
-
-- Autumn ✨
-
-
->
-> Same applies to 1D LUTs as well.
-
+Sure, but I don't see any reason for immutability with an enum
+property - it can just limit the possible values to what it supports,
+and that can be only one value. Either way, it's not a big issue.
