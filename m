@@ -2,76 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04694ABB5D8
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A7DABB5D5
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81DBA10E2EC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 539E210E23C;
 	Mon, 19 May 2025 07:15:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HUGeAvRb";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TA+R+Nn3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1707710E0EF;
- Fri, 16 May 2025 23:35:32 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-54b166fa41bso3566145e87.0; 
- Fri, 16 May 2025 16:35:31 -0700 (PDT)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47A5710E06D;
+ Sat, 17 May 2025 01:23:11 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id
+ a640c23a62f3a-acbb85ce788so527722466b.3; 
+ Fri, 16 May 2025 18:23:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747438530; x=1748043330; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=m/UJ81NU6SEe9/os128VngMenn6RX/mPtCB9eJUEZR0=;
- b=HUGeAvRb0NzRdAJToEnO78Iytump0zXdnIKuJCIJyGXG1gZAr6kBgJ/muxGPcpQTqU
- vo9s0LEWsLmfz/JphHgH9M3emlnfZ4vo3BeM7AqSCVXZ2ZXaEGv5w9FKsc1DoXSak5vd
- fUrYk87SluYgzgG9OBbyuOgY4IyNcgmpwo0P2+rcHK2Lh7+q9vze9DopoX2L05R5d64m
- 9a+TVKzsOfn7ZImtB51lUdRxe0Tj4HhQy1DmPju/FbDqKaiB3iW+K2JjHRZ6U+OSD+Ku
- v81R9TkGg+6bNFJ9oVDvauCC2XN2i/F+6QQwZHuWLLBnb3FwBCGnQyWhrrMsZzAOxTjm
- tUCQ==
+ d=gmail.com; s=20230601; t=1747444989; x=1748049789; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=25iFNJ5FYOB28Ks45PjA86xu93MkwtBe+kaVmwZePmc=;
+ b=TA+R+Nn3UUhA63XkQu7AVVbjgjJ4ozvOpe0o9O2sprlGs14cppd8gzdPTNIBvGGuoe
+ xG53YZmCK9e2Uru0khKSdtV4IB6hIsgG3SkzF1Mo98wCoLgMHMPmfhhwYipKga2VurLL
+ vyo4y5UOOCyP2UAC/WFz6n/LBFYaFlIeWF6ABkaz7liqJ5ACu0Pz9G8pmvu150bh063w
+ 3bPQfYSm8akS1QaRlOyJYWGkkZ5LtO7enP+yiXyUdRNI0xHxolnFAFG60UBMM32l9m5h
+ /Z5fhXfE3LCZJC2lKR2FMt1gDUNjnVu9YjjuNjiYq+Sgj+yRLPfxm9HMSaJ8Q1xeeX7H
+ M1XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747438530; x=1748043330;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=m/UJ81NU6SEe9/os128VngMenn6RX/mPtCB9eJUEZR0=;
- b=LHoRmLJZTSOkuL6VAQ8VyNjFsYNzqqSc1nemyQzE7aTgyWfWDgMlaEKg38ejf1lsjQ
- S6IIr2bQ+7E9UI8rdLBUdkC/6C2apnVkmjikN5Vz/QwddYYzKDZPdhvqxlBFt3iqeS08
- Miu7XAmots7WY9GEKSeuyolC3OJz+lhVJvGj82bTIocbE3viAXDWqLMj0zUJAzeUy1lM
- IZwdGTBap/ISIDHJEKSyL4j9MaV58hO4d+b6gtRRMyu+kVv0xTQ6EWuC4ZUXOt3Gs7UN
- UDCbTVOpzuykC6mcFWjDWY3+qPQl2O9ARj59jKjX+6GqbKnw3atOikxsOyaBayoZ1m4C
- WXww==
+ d=1e100.net; s=20230601; t=1747444989; x=1748049789;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=25iFNJ5FYOB28Ks45PjA86xu93MkwtBe+kaVmwZePmc=;
+ b=CSNH0j12WCN6PMJZHFA/ht8S7acYH3bZsuRcmsFoTO9cCvBRLWCJ13Z2LRDcT/pR+/
+ ORR1JFgVr+JZe9r4hJDPcy/2E5YQJW6gA606gM9B9oOUL3VDDdZ15wH+rn2B9dqDVsN8
+ USGBoQUk/32393q4c2c1gITbzDVVv7BiB+1ssL5nHDXiphs0U6rP1nVQXdCCWLrx3gss
+ +QHWR2qohV4xJq8SVakTuXCgyEDEuiMbU261q1YlzLW6VNtFoB6QwxbGDVjZTXgAHjN+
+ LF+98p2LXsGUQ3zoFrHMaJ3sxENOur9BhSL5NUCteX/F2l8/nYoxMKZ3pmSYSKH7pveY
+ agvg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUCZmQmUGNpGeEFskOzr0QULtOq22mw9QVtLOA41kGwlBZ8AIYlTFG5aYpbqhtFYD6ovIE2sYbf@lists.freedesktop.org,
- AJvYcCVgrfX3YUv/OC5WrMG+4c2sJljheqAQrOdvfOow7vpxNyWM6r3QRpYioiY3IJ7aVzNq+1nSzUobNeTk@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyIuk9GpUx4g04QDViz/yp/NPT9PlTj7iz/piD398d15Q+FUc29
- 0pEmrUUBUEkCxmdXy4yOkkC8p35cPiR14OvneStA9EFXmsa5tbMHooB8
-X-Gm-Gg: ASbGncsvDkd1/3y+sXmNBCGMm0DACKh0rZdXTqnDEuX/ghwujoWyf361YMk1M9w3n1n
- O5hKdxPi6GTicb4Xsphkhi409quRykEjxrnf+I3RX344iJ7ala4SzBB/kx6ECR9IQupfOvve7AF
- DvUT61bd8eXmfY8EDMMym9oGUje2r73xviIwKzAkjQWhQJDIvRVs78Z7S1tlfDU7jMONPp+Ky95
- VIsNAzSzvEOXT7+Ihna2x31p4OqkZHvHJVZPvc1hRhGhx4i4Ji6ENvEVAWPdHBvkWkp+5ReY1HB
- qiM0GNqfMsxJHlgAy/kxG+VrKngwIoWXB/lTw1pp1uCap+Zn/DrR9BcOAAn+WJPuFHdX
-X-Google-Smtp-Source: AGHT+IEQC4DeuYTJhufYSI6129vfrr80bHmVfYOe0SjjWY523RPLnpdKb5yhbp53P0ChZXzr9q90wA==
-X-Received: by 2002:a05:6512:2613:b0:545:652:109 with SMTP id
- 2adb3069b0e04-550e7253122mr1527825e87.51.1747438529935; 
- Fri, 16 May 2025 16:35:29 -0700 (PDT)
-Received: from danyaPC.localdomain ([192.145.30.107])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-328084ca251sm5952871fa.38.2025.05.16.16.35.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 16 May 2025 16:35:29 -0700 (PDT)
-From: Daniil Ryabov <daniilryabov4@gmail.com>
-To: alexander.deucher@amd.com
-Cc: christian.koenig@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Daniil Ryabov <daniilryabov4@gmail.com>
-Subject: [PATCH] drm/amd/display: fix typo in comments
-Date: Sat, 17 May 2025 02:35:16 +0300
-Message-ID: <20250516233516.29480-1-daniilryabov4@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ AJvYcCVmu3C1s3jKju+warmZNeKVsoyTHL2TGE5ry+PrNmIDeJLLHR31ckr8zkiGsLMO+yhQ90l915eQEMhqJYHapQ==@lists.freedesktop.org,
+ AJvYcCWPoMe9TXfSE7BXZePhFZ1c7TiQyXmtu1Ypu4zHjZ4zzh4D7fnaS7OO+d0K240rvOk022moVhxZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy+mg7r4e77SZ9D0aWmeN47TEu+x3D6axdHzdybTHVwhpRZEr87
+ n1QFKk0FV94Ql7eMkSg9eFnTkpYL0TrFv9uWxvw/zU64ad1YpO+j7m4anRir2OGaXnrKx0PKSUP
+ MFDIjuIW0gcPmJpEoybqcV/Qnk0Fd35Q=
+X-Gm-Gg: ASbGncu4gC+j6NQQM36eohMeWE1BBSxXkDy7w7SSrGNwsiM2iebWgZuKxn9AhgIjUxp
+ U9ozIzsG3T2ugsou9bbU8oWtQuBBrBIMDSP64xqsui0b7rdoXEJaQ1mrNU52MM/JaUm/Wh3ygm8
+ M3yvw7fMhHG6bAgki40yhqMksngI1KXoh2FX4AMymrRehlmrYm99rV1fuo5eRg0q0BXA==
+X-Google-Smtp-Source: AGHT+IGJZZYvjvNgphG6zPo450tizZ0G45jOjPvl7iZI4z2BBNA5YMtn+7uFPFYF8eBndJAzXugGC3fw9GHpEwFqMZ8=
+X-Received: by 2002:a17:907:7ba3:b0:ad4:d0b7:c990 with SMTP id
+ a640c23a62f3a-ad52d4df2d5mr472506066b.26.1747444989393; Fri, 16 May 2025
+ 18:23:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250326234748.2982010-1-alex.hung@amd.com>
+ <20250326234748.2982010-41-alex.hung@amd.com>
+In-Reply-To: <20250326234748.2982010-41-alex.hung@amd.com>
+From: Xaver Hugl <xaver.hugl@gmail.com>
+Date: Sat, 17 May 2025 03:22:58 +0200
+X-Gm-Features: AX0GCFuvD3OsCGzAPf7Ov-LvC6QAawQsojy7fJfqOKgGdwWusDq4JeBH8jLa7d0
+Message-ID: <CAFZQkGwrP39REsvZwQ_Uaq+cHR_pH2EPuv_POXRO7Hxj9u4Xsw@mail.gmail.com>
+Subject: Re: [PATCH V8 40/43] drm/colorop: Add 3D LUT support to color pipeline
+To: Alex Hung <alex.hung@amd.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, harry.wentland@amd.com, leo.liu@amd.com, 
+ ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com, 
+ contact@emersion.fr, mwen@igalia.com, jadahl@redhat.com, 
+ sebastian.wick@redhat.com, shashank.sharma@amd.com, agoins@nvidia.com, 
+ joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org, 
+ victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com, 
+ quic_naseer@quicinc.com, quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com, 
+ marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com, 
+ chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,35 +93,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix double 'u' in 'frequuency'
+Am Do., 27. M=C3=A4rz 2025 um 00:58 Uhr schrieb Alex Hung <alex.hung@amd.co=
+m>:
+>
+> It is to be used to enable HDR by allowing userpace to create and pass
+> 3D LUTs to kernel and hardware.
+>
+> new drm_colorop_type: DRM_COLOROP_3D_LUT.
+>
+> Signed-off-by: Alex Hung <alex.hung@amd.com>
+> ---
+> v8:
+>  - Fix typo in subject (Simon Ser)
+>  - Update documentation for DRM_COLOROP_3D_LUT (Simon Ser)
+>  - Delete empty lines (Simon Ser)
+>
+> v7:
+>  - Simplify 3D LUT by removing lut_3d_modes and related functions (Simon =
+Ser)
+>
+>  drivers/gpu/drm/drm_atomic.c      |  6 +++
+>  drivers/gpu/drm/drm_atomic_uapi.c |  6 +++
+>  drivers/gpu/drm/drm_colorop.c     | 72 +++++++++++++++++++++++++++++++
+>  include/drm/drm_colorop.h         | 21 +++++++++
+>  include/uapi/drm/drm_mode.h       | 33 ++++++++++++++
+>  5 files changed, 138 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index 0efb0ead204a..ef47a06344f3 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -806,6 +806,12 @@ static void drm_atomic_colorop_print_state(struct dr=
+m_printer *p,
+>         case DRM_COLOROP_MULTIPLIER:
+>                 drm_printf(p, "\tmultiplier=3D%llu\n", state->multiplier)=
+;
+>                 break;
+> +       case DRM_COLOROP_3D_LUT:
+> +               drm_printf(p, "\tsize=3D%d\n", colorop->lut_size);
+> +               drm_printf(p, "\tinterpolation=3D%s\n",
+> +                          drm_get_colorop_lut3d_interpolation_name(color=
+op->lut3d_interpolation));
+> +               drm_printf(p, "\tdata blob id=3D%d\n", state->data ? stat=
+e->data->base.id : 0);
+> +               break;
+>         default:
+>                 break;
+>         }
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
+ic_uapi.c
+> index 947c18e8bf9b..d5d464b4d0f6 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -719,6 +719,10 @@ static int drm_atomic_color_set_data_property(struct=
+ drm_colorop *colorop,
+>         case DRM_COLOROP_CTM_3X4:
+>                 size =3D sizeof(struct drm_color_ctm_3x4);
+>                 break;
+> +       case DRM_COLOROP_3D_LUT:
+> +               size =3D colorop->lut_size * colorop->lut_size * colorop-=
+>lut_size *
+> +                      sizeof(struct drm_color_lut);
+> +               break;
+>         default:
+>                 /* should never get here */
+>                 return -EINVAL;
+> @@ -771,6 +775,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *c=
+olorop,
+>                 *val =3D state->multiplier;
+>         } else if (property =3D=3D colorop->lut_size_property) {
+>                 *val =3D colorop->lut_size;
+> +       } else if (property =3D=3D colorop->lut3d_interpolation_property)=
+ {
+> +               *val =3D colorop->lut3d_interpolation;
+>         } else if (property =3D=3D colorop->data_property) {
+>                 *val =3D (state->data) ? state->data->base.id : 0;
+>         } else {
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.=
+c
+> index e03706e7179b..224c6be237d2 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -67,6 +67,7 @@ static const struct drm_prop_enum_list drm_colorop_type=
+_enum_list[] =3D {
+>         { DRM_COLOROP_1D_LUT, "1D LUT" },
+>         { DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
+>         { DRM_COLOROP_MULTIPLIER, "Multiplier"},
+> +       { DRM_COLOROP_3D_LUT, "3D LUT"},
+>  };
+>
+>  static const char * const colorop_curve_1d_type_names[] =3D {
+> @@ -82,6 +83,11 @@ static const struct drm_prop_enum_list drm_colorop_lut=
+1d_interpolation_list[] =3D
+>         { DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR, "Linear" },
+>  };
+>
+> +
+> +static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_l=
+ist[] =3D {
+> +       { DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
+> +};
+> +
+>  /* Init Helpers */
+>
+>  static int drm_colorop_init(struct drm_device *dev, struct drm_colorop *=
+colorop,
+> @@ -349,6 +355,51 @@ int drm_colorop_mult_init(struct drm_device *dev, st=
+ruct drm_colorop *colorop,
+>  }
+>  EXPORT_SYMBOL(drm_colorop_mult_init);
+>
+> +int drm_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *c=
+olorop,
+> +                          struct drm_plane *plane,
+> +                          uint32_t lut_size,
+> +                          enum drm_colorop_lut3d_interpolation_type inte=
+rpolation,
+> +                          bool allow_bypass)
+> +{
+> +       struct drm_property *prop;
+> +       int ret;
+> +
+> +       ret =3D drm_colorop_init(dev, colorop, plane, DRM_COLOROP_3D_LUT,=
+ allow_bypass);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /* LUT size */
+> +       prop =3D drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE  =
+| DRM_MODE_PROP_ATOMIC,
+> +                                        "SIZE", 0, UINT_MAX);
+> +       if (!prop)
+> +               return -ENOMEM;
+> +
+> +       colorop->lut_size_property =3D prop;
+> +       drm_object_attach_property(&colorop->base, colorop->lut_size_prop=
+erty, lut_size);
+> +       colorop->lut_size =3D lut_size;
+> +
+> +       /* interpolation */
+> +       prop =3D drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE, "=
+LUT3D_INTERPOLATION",
 
-Signed-off-by: Daniil Ryabov <daniilryabov4@gmail.com>
----
- drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Do we ever expect this to be something with multiple options that
+userspace could select? I think it would be good to keep our options
+open and make this property not immutable (properties that are
+sometimes but not always immutable are more annoying to deal with in
+userspace).
 
-diff --git a/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
-index 681799468..d897f8a30 100644
---- a/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
-@@ -1393,7 +1393,7 @@ static void calculate_bandwidth(
- 						if ((bw_mtn(data->dram_speed_change_margin, bw_int_to_fixed(0)) && bw_ltn(data->dram_speed_change_margin, bw_int_to_fixed(9999)))) {
- 							/*determine the minimum dram clock change margin for each set of clock frequencies*/
- 							data->min_dram_speed_change_margin[i][j] = bw_min2(data->min_dram_speed_change_margin[i][j], data->dram_speed_change_margin);
--							/*compute the maximum clock frequuency required for the dram clock change at each set of clock frequencies*/
-+							/*compute the maximum clock frequency required for the dram clock change at each set of clock frequencies*/
- 							data->dispclk_required_for_dram_speed_change_pipe[i][j] = bw_max2(bw_div(bw_div(bw_mul(data->src_pixels_for_first_output_pixel[k], dceip->display_pipe_throughput_factor), dceip->lb_write_pixels_per_dispclk), (bw_sub(bw_sub(bw_sub(data->maximum_latency_hiding_with_cursor[k], vbios->nbp_state_change_latency), data->dmif_burst_time[i][j]), data->dram_speed_change_line_source_transfer_time[k][i][j]))), bw_div(bw_div(bw_mul(data->src_pixels_for_last_output_pixel[k], dceip->display_pipe_throughput_factor), dceip->lb_write_pixels_per_dispclk), (bw_add(bw_sub(bw_sub(bw_sub(data->maximum_latency_hiding_with_cursor[k], vbios->nbp_state_change_latency), data->dmif_burst_time[i][j]), data->dram_speed_change_line_source_transfer_time[k][i][j]), data->active_time[k]))));
- 							if ((bw_ltn(data->dispclk_required_for_dram_speed_change_pipe[i][j], vbios->high_voltage_max_dispclk))) {
- 								data->display_pstate_change_enable[k] = 1;
-@@ -1407,7 +1407,7 @@ static void calculate_bandwidth(
- 						if ((bw_mtn(data->dram_speed_change_margin, bw_int_to_fixed(0)) && bw_ltn(data->dram_speed_change_margin, bw_int_to_fixed(9999)))) {
- 							/*determine the minimum dram clock change margin for each display pipe*/
- 							data->min_dram_speed_change_margin[i][j] = bw_min2(data->min_dram_speed_change_margin[i][j], data->dram_speed_change_margin);
--							/*compute the maximum clock frequuency required for the dram clock change at each set of clock frequencies*/
-+							/*compute the maximum clock frequency required for the dram clock change at each set of clock frequencies*/
- 							data->dispclk_required_for_dram_speed_change_pipe[i][j] = bw_max2(bw_div(bw_div(bw_mul(data->src_pixels_for_first_output_pixel[k], dceip->display_pipe_throughput_factor), dceip->lb_write_pixels_per_dispclk), (bw_sub(bw_sub(bw_sub(bw_sub(data->maximum_latency_hiding_with_cursor[k], vbios->nbp_state_change_latency), data->dmif_burst_time[i][j]), data->dram_speed_change_line_source_transfer_time[k][i][j]), data->mcifwr_burst_time[i][j]))), bw_div(bw_div(bw_mul(data->src_pixels_for_last_output_pixel[k], dceip->display_pipe_throughput_factor), dceip->lb_write_pixels_per_dispclk), (bw_add(bw_sub(bw_sub(bw_sub(bw_sub(data->maximum_latency_hiding_with_cursor[k], vbios->nbp_state_change_latency), data->dmif_burst_time[i][j]), data->dram_speed_change_line_source_transfer_time[k][i][j]), data->mcifwr_burst_time[i][j]), data->active_time[k]))));
- 							if ((bw_ltn(data->dispclk_required_for_dram_speed_change_pipe[i][j], vbios->high_voltage_max_dispclk))) {
- 								data->display_pstate_change_enable[k] = 1;
--- 
-2.43.0
-
+Same applies to 1D LUTs as well.
