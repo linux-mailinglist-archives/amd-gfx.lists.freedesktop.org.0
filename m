@@ -2,50 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D467ABB5D6
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22763ABB5DD
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52FAA10E225;
-	Mon, 19 May 2025 07:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA4010E325;
+	Mon, 19 May 2025 07:15:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="Fr3jup6I";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YjFfYbE7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
- [136.143.188.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 425DD10E242
- for <amd-gfx@lists.freedesktop.org>; Sat, 17 May 2025 09:44:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1747475091; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=bz/Y/h+/MAQKbIPhd/lTkMRTiGkq7OwvMme+xhoEHqugmn2JAkm6qzMUuMXv2JjaKk98PyiebJeHbueruINRscwpTUuqUmi1gHmqxuOdEkmV3ZF/FEyJLr82dFCMi/sIsV/PQYJ3D2k3X6qHyykejqAx1KYu9Sjd67BwxNheoWY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1747475091;
- h=Content-Type:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
- bh=78fkDI4HR9qFxJ/YmLUo4iyrOLZ5IO4Y2c1ffGHhH10=; 
- b=B3T3cW06lclZegyhdc7qNK1wM8a08K8XQSGmoXX0j3Pz7elSAidF2QoZCvG06kSuahn+i9kqXcHanSxyZY/Hcyy1Ar+X1han+ULvstv+KZRmlxb3Ms56/TBO3l0wwlYf/p+jO69lQdOXcydfQwEvtZz2j5RyaSVtHyB1lKeZJvA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=mark.filion@collabora.com;
- dmarc=pass header.from=<mark.filion@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1747475091; 
- s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
- bh=78fkDI4HR9qFxJ/YmLUo4iyrOLZ5IO4Y2c1ffGHhH10=;
- b=Fr3jup6ImwmKbZTWxC3It1f6B6i5qVhxpk5ZlPNDvjfIH9uV1aVyapmXL7GEbGlO
- mhgTgfZoOSgYDbdT6bk6BiyxcUXheKIA/IlEvOidK5qxCzVY+P6JxqruLevImm/vo0w
- 3lwME6XWquof6akE3DRBGDAzsw0SwfpQozS685vs=
-Received: by mx.zohomail.com with SMTPS id 1747475089479377.89698017949024;
- Sat, 17 May 2025 02:44:49 -0700 (PDT)
-Message-ID: <57d630f3665a8251422ec7a650b9f0af3b4b3833.camel@collabora.com>
-Subject: 2025 X.Org Foundation Election results
-From: Mark Filion <mark.filion@collabora.com>
-To: amd-gfx@lists.freedesktop.org
-Date: Sat, 17 May 2025 11:44:47 +0200
-Content-Type: multipart/alternative; boundary="=-PJNXq+wHnYpqyMFsfqAa"
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42app2) 
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
+ [209.85.218.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D489910E07E;
+ Sat, 17 May 2025 11:51:27 +0000 (UTC)
+Received: by mail-ej1-f48.google.com with SMTP id
+ a640c23a62f3a-acb5ec407b1so483902266b.1; 
+ Sat, 17 May 2025 04:51:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1747482686; x=1748087486; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=MCG7UsgmOfTrLfJG+2ZE0hq0MEHcnjnuqiq7V6Le5YE=;
+ b=YjFfYbE7XRtUst6ksOwyFz9+9OIkIpheWc6NIedPaILmSqPn0SwRdVTvT7W1xOGUxF
+ PA99h1zFbO9no1XkhXIG2+h3zWI+yfJOPEmWSsdPPYn6RVz2OxGUzTsRJHJAYBgeH/7L
+ mWeopGgRDvtLxwp8rWSyhR3Rulnjl2ujHJrH21hZD0qm99M8GRpOwa7/TD+0bjtMh+Ae
+ hchwRDjDqGxIh9S5B3EtgXGLKs5ANZKo3EYUbh6VXdYniWhTONfaiML1HjKU+TN4wC22
+ hJPUmDWcumqAiW5O+rE6t/8yHAYy7azVOi3ZuaVgRUFKxT7k2Rq1XBzwLdzs4sOfit8v
+ KSNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747482686; x=1748087486;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=MCG7UsgmOfTrLfJG+2ZE0hq0MEHcnjnuqiq7V6Le5YE=;
+ b=OxbiAiu2Vd943Z//ThEcJfIgSS2gmC3mRZCcZ2hjbySp7n84H1xKfpzu3203C03hl+
+ T99GMArcWEjBUGQNzPQhw3hMHhYXx3zZ3mXlTXElDSPluRzXZ78vFVwVoyJM5uU9uk6m
+ JrQN/yuuPQ+QgOE4JeqRI5evSLgH217A3SVphv9hndh6NVVvfyv2j2ZuJK8QB3kSN1/M
+ jXkTm+RjmXaU8bxtORtCmcr2RgjzTkg1mvOl7lBc7TLi4aXfR6V3cWTL3YUZOIMwTFZt
+ ZlzMqmwYjDMWaEqwediQD8D7vYggMaRbCO2ybotqJUwKukUA6NN4V/sQvdZeHkPJc2eA
+ NwwA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU1yxMvkqrzWLl337DoCgDj51+3EZE4xgi7yLRmXpaNiw5SEftMoJvgwWjWyHu8ab3NI65iThCP@lists.freedesktop.org,
+ AJvYcCUpDOqy9p0L7L/c7QbIxQJdWJBrwZ+3HC/h4G5ER+/2jmbp6VEUt8ncob4UJdJQB9sz0NiCelJb/5h0@lists.freedesktop.org,
+ AJvYcCVSEKodkSUNqbjMZ/3SBfCmnWBjaXzkPjgecLuC9uE3tQCr44DyZwbNWggTtNi062UgIo0XAeNIm8DHLEVoKQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZLY/vSVWs+YI6IA9mbpKnHsE3oVsXec7vc+2vlCkZNmDfdySU
+ GlHMCB1JWz2S8SKleYHeyY2y603DveTeWRjcWhIg7rmIrW6T8KWOLHyf8lUnRyXDMVNKt4nxz4L
+ LdzSxrXCJhy+vfym02QcTjez1JtJx/9U=
+X-Gm-Gg: ASbGncsleYdo0fZ+Z5YvcR9EBBDo0SG80LnL8k9qiV0dzIm87tsZsuqUMnKOZ5d8iU7
+ 0RuICDMqCLVTfvoPTI+rPNkRf1dIGX/LLJ76aiZt1uUWK4SGF8rFF0kvsguKTSjy32SC38HO8lC
+ 23YQiQSCkAM00fBtj0jSpnCB75SUdJTtLP92sVjKxXugHu6K+/luhstYW8J1tMcQEjVPoasvSM5
+ 8Mu
+X-Google-Smtp-Source: AGHT+IFp0bS9J5A+F88R+FnWorgbxFFe6hmX2LBxvbwajivcYeUO3tISkaiUFqp/6TQFSKcyU/+VL1VRjq7PN9sdryI=
+X-Received: by 2002:a17:907:80b:b0:ad2:2fa8:c0a7 with SMTP id
+ a640c23a62f3a-ad536b7c43fmr551592066b.21.1747482685976; Sat, 17 May 2025
+ 04:51:25 -0700 (PDT)
 MIME-Version: 1.0
-X-ZohoMailClient: External
+References: <20250430011115.223996-1-alex.hung@amd.com>
+ <o4MtjqyDUjuFR4Y9Q1IEZlvVQ7Nkggq0v-KtBcH0aM3pTvEq8UcSoUDxefSBVdTmLj_1_a6GmbjU_mRSFinOb44B4bu1u3mMIckuQhhZWCc=@emersion.fr>
+ <3bbd4bd7-7217-4a14-b7bb-383226f44f55@amd.com>
+ <CAPj87rNUDdDEopPH+iAF-a=Or6eXH4cMRU8eOj81g_40cq8gdA@mail.gmail.com>
+ <f7e9cd32-3e2b-4f06-aa13-049c8b7ba29b@amd.com>
+ <CAPj87rMbcZKy2ARe_tp_-+-tMu3FpS0C9R1BHVzjsUpOsU9M4g@mail.gmail.com>
+ <5921076d-0150-4e0f-a3ef-1b8dec021630@collabora.com>
+In-Reply-To: <5921076d-0150-4e0f-a3ef-1b8dec021630@collabora.com>
+From: Xaver Hugl <xaver.hugl@gmail.com>
+Date: Sat, 17 May 2025 13:51:14 +0200
+X-Gm-Features: AX0GCFsRuvAiaNtf2Rr2dvEsOdgNQYtUCZXulXk4PGtG-IFz9IIXobYQS1Dhpgk
+Message-ID: <CAFZQkGymi1XY7m0Ghs8R2HaNRQptE_0NO-5J5Z2c61gDJRho3Q@mail.gmail.com>
+Subject: Re: [PATCH V9 00/43] Color Pipeline API w/ VKMS
+To: Leandro Ribeiro <leandro.ribeiro@collabora.com>
+Cc: Daniel Stone <daniel@fooishbar.org>,
+ Harry Wentland <harry.wentland@amd.com>, 
+ Simon Ser <contact@emersion.fr>, Alex Hung <alex.hung@amd.com>,
+ Misyl Toad <misyl@froggi.es>, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, leo.liu@amd.com, 
+ ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com, mwen@igalia.com, 
+ jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com, 
+ agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org, 
+ victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com, 
+ quic_naseer@quicinc.com, quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com, 
+ marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com, 
+ chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com, 
+ Arthur Grillo <arthurgrillo@riseup.net>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,121 +102,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---=-PJNXq+wHnYpqyMFsfqAa
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Am Do., 15. Mai 2025 um 22:00 Uhr schrieb Leandro Ribeiro
+<leandro.ribeiro@collabora.com>:
+>
+>
+>
+> On 5/15/25 15:39, Daniel Stone wrote:
+> > Hi,
+> >
+> > On Thu, 15 May 2025 at 19:02, Harry Wentland <harry.wentland@amd.com> wrote:
+> >> On 2025-05-15 13:19, Daniel Stone wrote:
+> >>> Yeah, the Weston patches are marching on. We've still been doing a
+> >>> little bit of cleanup and prep work in the background to land them,
+> >>> but we also can't land them until the kernel lands. None of that work
+> >>> is material to the uAPI though: as said previously, the uAPI looks
+> >>> completely solid and it's something we can definitely beneficially use
+> >>> in Weston. (Even if we do need the obvious follow-ons for
+> >>> post-blending as well ...)
+> >>
+> >> We can't merge kernel uAPI without canonical userspace that uses it.
+> >> To move forward we'll need a userspace to at least publish a branch
+> >> that shows the use of this new uAPI.
+> >>
+> >> Do you have a public branch for the Weston work for this?
+> >
+> > Yeah, https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1702
+> > has been around for a little while now. There are some driver bugs
+> > that Leandro commented on, but they don't seem material to the uAPI as
+> > such?
+>
+> Hello,
+>
+> Yes, there's nothing related to the API that is blocking us. It seemed
+> very flexible and easy to use. The bugs that I've spotted are probably
+> internal to AMD driver.
+>
+> I'd say that the Weston patches are converging nicely, we just need time
+> to get them fully reviewed. We had a few preparation MR's to land
+> before !1702, and now there's only one left (!1617).
 
-Hello all,
+I also updated the KWin MR
+(https://invent.kde.org/plasma/kwin/-/merge_requests/6600), it can now
+use all the available properties and I think it's ready. I found two
+issues with the kernel patches though:
+- while attempting to set COLOR_ENCODING and COLOR_RANGE results in
+the atomic commit being rejected, the existing values still get
+applied if you use YCbCr-type buffers. I would've expected the color
+pipeline to operate on the YUV values in that case - and leave
+conversion to RGB up to the compositor adding the relevant matrix to
+the pipeline
+- the interpolation mode drm properties for 1D and 3D LUTs are
+immutable, I think they shouldn't be - to make it less annoying if in
+the future we decide to add modes that userspace can set
 
-The Board of Directors election concluded at 23:59 UTC on 14 May 2025.
-For this election, we had 77 members who could cast a vote. 72 did, so
-the turnout was 92.5%. This is the 3rd highest turnout in the last 10
-elections, with only 2021 (93.8%) and 2016 (98.8%) being higher. It is
-also a 147% increase from last year's turnout (62.9%). Thank you to
-everyone who took the time to vote!
+Other than that, I agree that it's ready to go.
 
-In the election of the Directors to the Board of the X.Org Foundation,
-the results were that Lyude Paul, Andres Gomez, Arkadiusz Hiler and
-Harry Wentland were elected for two year terms.
-
-The old full board is: Erik Faye-Lund, Mark Filion, Neal Gompa,
-Arkadiusz Hiler, Christopher Michael, Lyude Paul, and Simon Ser.
-
-The new full board is: Erik Faye-Lund, Mark Filion, Andres Gomez, Neal
-Gompa, Arkadiusz Hiler, Lyude Paul, Simon Ser, and Harry Wentland.
-
-Mark Filion, on behalf of the X.Org elections committee
-
---=-PJNXq+wHnYpqyMFsfqAa
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><style>pre,code,address {
-  margin: 0px;
-}
-h1,h2,h3,h4,h5,h6 {
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-}
-ol,ul {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-blockquote {
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-</style></head><body><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0,=
- 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-var=
-iant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: st=
-art; text-indent: 0px; text-transform: none; white-space: normal; word-spac=
-ing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-str=
-oke-width: 0px; text-decoration: none;">Hello all,</div><div style=3D"caret=
--color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&=
-quot;; font-style: normal; font-variant-caps: normal; font-weight: 400; let=
-ter-spacing: normal; text-align: start; text-indent: 0px; text-transform: n=
-one; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: r=
-gba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;">=
-<br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); fon=
-t-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; text-align: start; text-i=
-ndent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -=
-webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: =
-0px; text-decoration: none;">The Board of Directors election concluded at 2=
-3:59 UTC on 14 May 2025. For this election, we had 77 members who could cas=
-t a vote. 72 did, so the turnout was 92.5%. This is the 3rd highest turnout=
- in the last 10 elections, with only 2021 (93.8%) and 2016 (98.8%) being hi=
-gher. It is also a 147% increase from last year's turnout (62.9%). Thank yo=
-u to everyone who took the time to vote!</div><div style=3D"caret-color: rg=
-b(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; fon=
-t-style: normal; font-variant-caps: normal; font-weight: 400; letter-spacin=
-g: normal; text-align: start; text-indent: 0px; text-transform: none; white=
--space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, =
-0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;"><br></div>=
-<div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: =
-&quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: normal; fo=
-nt-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px=
-; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap=
--highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-=
-decoration: none;">In the election of the Directors to the Board of the X.O=
-rg Foundation, the results were that Lyude Paul, Andres Gomez, Arkadiusz Hi=
-ler and Harry Wentland were elected for two year terms.</div><div style=3D"=
-caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita =
-Sans&quot;; font-style: normal; font-variant-caps: normal; font-weight: 400=
-; letter-spacing: normal; text-align: start; text-indent: 0px; text-transfo=
-rm: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-col=
-or: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: no=
-ne;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0)=
-; font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-c=
-aps: normal; font-weight: 400; letter-spacing: normal; text-align: start; t=
-ext-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0=
-px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-wi=
-dth: 0px; text-decoration: none;">The old full board is: Erik Faye-Lund, Ma=
-rk Filion, Neal Gompa, Arkadiusz Hiler, Christopher Michael, Lyude Paul, an=
-d Simon Ser.</div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0,=
- 0); font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-varian=
-t-caps: normal; font-weight: 400; letter-spacing: normal; text-align: start=
-; text-indent: 0px; text-transform: none; white-space: normal; word-spacing=
-: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke=
--width: 0px; text-decoration: none;"><br></div><div style=3D"caret-color: r=
-gb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; fo=
-nt-style: normal; font-variant-caps: normal; font-weight: 400; letter-spaci=
-ng: normal; text-align: start; text-indent: 0px; text-transform: none; whit=
-e-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0,=
- 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;">The new f=
-ull board is: Erik Faye-Lund, Mark Filion, Andres Gomez, Neal Gompa, Arkadi=
-usz Hiler, Lyude Paul, Simon Ser, and Harry Wentland.</div><div style=3D"ca=
-ret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sa=
-ns&quot;; font-style: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; text-align: start; text-indent: 0px; text-transform=
-: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color=
-: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none=
-;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
-font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-cap=
-s: normal; font-weight: 400; letter-spacing: normal; text-align: start; tex=
-t-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px=
-; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-widt=
-h: 0px; text-decoration: none;">Mark Filion, on behalf of the X.Org electio=
-ns committee</div><div><span></span></div></body></html>
-
---=-PJNXq+wHnYpqyMFsfqAa--
+> Thanks,
+> Leandro
+> >
+> > Cheers,
+> > Daniel
+>
