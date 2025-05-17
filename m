@@ -2,82 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A7DABB5D5
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A181ABB5DE
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 539E210E23C;
-	Mon, 19 May 2025 07:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B118010E327;
+	Mon, 19 May 2025 07:15:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TA+R+Nn3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EYfwv0ev";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47A5710E06D;
- Sat, 17 May 2025 01:23:11 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-acbb85ce788so527722466b.3; 
- Fri, 16 May 2025 18:23:11 -0700 (PDT)
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com
+ [209.85.160.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC0F510E200;
+ Sat, 17 May 2025 03:06:17 +0000 (UTC)
+Received: by mail-qt1-f173.google.com with SMTP id
+ d75a77b69052e-47662449055so16680611cf.1; 
+ Fri, 16 May 2025 20:06:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747444989; x=1748049789; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=25iFNJ5FYOB28Ks45PjA86xu93MkwtBe+kaVmwZePmc=;
- b=TA+R+Nn3UUhA63XkQu7AVVbjgjJ4ozvOpe0o9O2sprlGs14cppd8gzdPTNIBvGGuoe
- xG53YZmCK9e2Uru0khKSdtV4IB6hIsgG3SkzF1Mo98wCoLgMHMPmfhhwYipKga2VurLL
- vyo4y5UOOCyP2UAC/WFz6n/LBFYaFlIeWF6ABkaz7liqJ5ACu0Pz9G8pmvu150bh063w
- 3bPQfYSm8akS1QaRlOyJYWGkkZ5LtO7enP+yiXyUdRNI0xHxolnFAFG60UBMM32l9m5h
- /Z5fhXfE3LCZJC2lKR2FMt1gDUNjnVu9YjjuNjiYq+Sgj+yRLPfxm9HMSaJ8Q1xeeX7H
- M1XQ==
+ d=gmail.com; s=20230601; t=1747451177; x=1748055977; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ZZGXEhveDuCitdT22/K4UxFR+ROBomEnJNWF8hsYQo8=;
+ b=EYfwv0evnZcj08BH/uoXrPtcKKIq8X8/8JRDoUH1arv8P4UUt2fCGWhsGBflIo0oiI
+ UiWS5e8cN9soRTDGvv8SqzMqP9xKZUT7BTMzY4w/eP034Ak+sqlFC3hohWMUWub//+9s
+ uWYc7AfTjGAa2Bwppec4HwVeq0Rvx1kFh31v026OpzJabUNlYfFGaFk6wefckJTQAjiE
+ HY6ay9F7Fw48LrfaO9DjkjdCVlzm55qOFKt7jHRkKSg0fwnqykOKUt2M/mbYK42R2RLs
+ qe+JvSiCSUrCeMg13rIF/95GsNoI3pcxIK63u77VVekDAJW2ErphiptY2qiD1iGS7pZs
+ 01WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747444989; x=1748049789;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=25iFNJ5FYOB28Ks45PjA86xu93MkwtBe+kaVmwZePmc=;
- b=CSNH0j12WCN6PMJZHFA/ht8S7acYH3bZsuRcmsFoTO9cCvBRLWCJ13Z2LRDcT/pR+/
- ORR1JFgVr+JZe9r4hJDPcy/2E5YQJW6gA606gM9B9oOUL3VDDdZ15wH+rn2B9dqDVsN8
- USGBoQUk/32393q4c2c1gITbzDVVv7BiB+1ssL5nHDXiphs0U6rP1nVQXdCCWLrx3gss
- +QHWR2qohV4xJq8SVakTuXCgyEDEuiMbU261q1YlzLW6VNtFoB6QwxbGDVjZTXgAHjN+
- LF+98p2LXsGUQ3zoFrHMaJ3sxENOur9BhSL5NUCteX/F2l8/nYoxMKZ3pmSYSKH7pveY
- agvg==
+ d=1e100.net; s=20230601; t=1747451177; x=1748055977;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ZZGXEhveDuCitdT22/K4UxFR+ROBomEnJNWF8hsYQo8=;
+ b=hn8ZLwV7dumGqlQm02PqjODys3ycjqwwpatV/NecHhMFAkVhL3x9OvQwCg/4Q3qU2Y
+ dh/QikpTSzNy+9KzGwh+dMTxzP+x42Qj+DMUSNHoIoEnHX/9TbrNqXP4ok8cOCg4DExR
+ EjgdeB3sPvWf11w+uRlSYYPoeYRPOA3GDXlYdpvRoZIElxuEV4LntJYC+uxSYWe4PRJ0
+ 2aF1K6Mabg1u1rQaG4WIM4BdBZR3oSX80NeTb8HtAnwkf1LSim/sGrFT/ETOYeMQnzWa
+ g5J+rwwKI2pRcrXwKq0R8aNyVA7Ht7I+9qPBHXezgutl+wN3YlHm1+pXaBgwZdyCwSXI
+ ApCA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVmu3C1s3jKju+warmZNeKVsoyTHL2TGE5ry+PrNmIDeJLLHR31ckr8zkiGsLMO+yhQ90l915eQEMhqJYHapQ==@lists.freedesktop.org,
- AJvYcCWPoMe9TXfSE7BXZePhFZ1c7TiQyXmtu1Ypu4zHjZ4zzh4D7fnaS7OO+d0K240rvOk022moVhxZ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy+mg7r4e77SZ9D0aWmeN47TEu+x3D6axdHzdybTHVwhpRZEr87
- n1QFKk0FV94Ql7eMkSg9eFnTkpYL0TrFv9uWxvw/zU64ad1YpO+j7m4anRir2OGaXnrKx0PKSUP
- MFDIjuIW0gcPmJpEoybqcV/Qnk0Fd35Q=
-X-Gm-Gg: ASbGncu4gC+j6NQQM36eohMeWE1BBSxXkDy7w7SSrGNwsiM2iebWgZuKxn9AhgIjUxp
- U9ozIzsG3T2ugsou9bbU8oWtQuBBrBIMDSP64xqsui0b7rdoXEJaQ1mrNU52MM/JaUm/Wh3ygm8
- M3yvw7fMhHG6bAgki40yhqMksngI1KXoh2FX4AMymrRehlmrYm99rV1fuo5eRg0q0BXA==
-X-Google-Smtp-Source: AGHT+IGJZZYvjvNgphG6zPo450tizZ0G45jOjPvl7iZI4z2BBNA5YMtn+7uFPFYF8eBndJAzXugGC3fw9GHpEwFqMZ8=
-X-Received: by 2002:a17:907:7ba3:b0:ad4:d0b7:c990 with SMTP id
- a640c23a62f3a-ad52d4df2d5mr472506066b.26.1747444989393; Fri, 16 May 2025
- 18:23:09 -0700 (PDT)
+ AJvYcCWinTlke3lb8sLyMKPE9jxu+Rr1/o1XDxuux0nkGhFq0y2PNb6PEeptwKCjOEHmVe2M+WgNIHChO14=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwXLlApl6RiNttePjafuwN26qJuibXxme40MMLD2n99qI9lqTsf
+ JVBH17j3KPfocLBvZnQZl6sJk2M14LpIv+Mw2DN9ZYkeBoGP3/Vr+Cs=
+X-Gm-Gg: ASbGnctfr7KeH2GyB0jGI1qP/HGW1yYRaGeWMikkkYBm9+3F9idtxXD0hR4glCvL7oe
+ 8w8L2h9Xwaub3XQUByKo+zvaIqqzCo4shdidX9qQEtYUmR1biz/xAOZr26RbgVuTFVS0nY57b1d
+ 2D2iXURDZRCyIOMyeP2Q9n5biTgQiLd87kqso1+/sc4qcOiBeBmv8x++z/jGeGRjSSSxLS34F6w
+ Zi74HVbcS1OKlV0bMZImu2fG6y099ZJUTkEPsXnLKTizkVRa17sfjeHQY+royNkl2lLvmggigfD
+ zFmqBYKL66ObJCdf7psW8llaAUjd9SfqLWR4Em2LcCBr2Hf1CmWlRnblN5r6024qKeI0fUdP/pc
+ k
+X-Google-Smtp-Source: AGHT+IGC2KqqWdKSLgraq4ZAjWt6t+IYKKHBmiJqJ15wcpjY1936g/G59NR3qvc/8AmiYG0AaW0wow==
+X-Received: by 2002:a05:622a:2447:b0:48b:512a:a919 with SMTP id
+ d75a77b69052e-494ae3500acmr97122961cf.3.1747451176587; 
+ Fri, 16 May 2025 20:06:16 -0700 (PDT)
+Received: from localhost.localdomain
+ ([2a0d:e487:156f:5546:ce07:3a5c:a2f1:3741])
+ by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-494ae3cd517sm19165721cf.10.2025.05.16.20.06.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 16 May 2025 20:06:16 -0700 (PDT)
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+To: harry.wentland@amd.com,
+	sunpeng.li@amd.com,
+	siqueira@igalia.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
+ linux-kernel-mentees@lists.linux.dev, jihed.chaibi.dev@gmail.com
+Subject: [PATCH 1/2] fixing typo in macro name
+Date: Sat, 17 May 2025 05:06:09 +0200
+Message-Id: <20250517030609.818725-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-References: <20250326234748.2982010-1-alex.hung@amd.com>
- <20250326234748.2982010-41-alex.hung@amd.com>
-In-Reply-To: <20250326234748.2982010-41-alex.hung@amd.com>
-From: Xaver Hugl <xaver.hugl@gmail.com>
-Date: Sat, 17 May 2025 03:22:58 +0200
-X-Gm-Features: AX0GCFuvD3OsCGzAPf7Ov-LvC6QAawQsojy7fJfqOKgGdwWusDq4JeBH8jLa7d0
-Message-ID: <CAFZQkGwrP39REsvZwQ_Uaq+cHR_pH2EPuv_POXRO7Hxj9u4Xsw@mail.gmail.com>
-Subject: Re: [PATCH V8 40/43] drm/colorop: Add 3D LUT support to color pipeline
-To: Alex Hung <alex.hung@amd.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, harry.wentland@amd.com, leo.liu@amd.com, 
- ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com, 
- contact@emersion.fr, mwen@igalia.com, jadahl@redhat.com, 
- sebastian.wick@redhat.com, shashank.sharma@amd.com, agoins@nvidia.com, 
- joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org, 
- victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com, 
- quic_naseer@quicinc.com, quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com, 
- marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com, 
- chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,152 +90,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am Do., 27. M=C3=A4rz 2025 um 00:58 Uhr schrieb Alex Hung <alex.hung@amd.co=
-m>:
->
-> It is to be used to enable HDR by allowing userpace to create and pass
-> 3D LUTs to kernel and hardware.
->
-> new drm_colorop_type: DRM_COLOROP_3D_LUT.
->
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
-> ---
-> v8:
->  - Fix typo in subject (Simon Ser)
->  - Update documentation for DRM_COLOROP_3D_LUT (Simon Ser)
->  - Delete empty lines (Simon Ser)
->
-> v7:
->  - Simplify 3D LUT by removing lut_3d_modes and related functions (Simon =
-Ser)
->
->  drivers/gpu/drm/drm_atomic.c      |  6 +++
->  drivers/gpu/drm/drm_atomic_uapi.c |  6 +++
->  drivers/gpu/drm/drm_colorop.c     | 72 +++++++++++++++++++++++++++++++
->  include/drm/drm_colorop.h         | 21 +++++++++
->  include/uapi/drm/drm_mode.h       | 33 ++++++++++++++
->  5 files changed, 138 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 0efb0ead204a..ef47a06344f3 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -806,6 +806,12 @@ static void drm_atomic_colorop_print_state(struct dr=
-m_printer *p,
->         case DRM_COLOROP_MULTIPLIER:
->                 drm_printf(p, "\tmultiplier=3D%llu\n", state->multiplier)=
-;
->                 break;
-> +       case DRM_COLOROP_3D_LUT:
-> +               drm_printf(p, "\tsize=3D%d\n", colorop->lut_size);
-> +               drm_printf(p, "\tinterpolation=3D%s\n",
-> +                          drm_get_colorop_lut3d_interpolation_name(color=
-op->lut3d_interpolation));
-> +               drm_printf(p, "\tdata blob id=3D%d\n", state->data ? stat=
-e->data->base.id : 0);
-> +               break;
->         default:
->                 break;
->         }
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
-ic_uapi.c
-> index 947c18e8bf9b..d5d464b4d0f6 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -719,6 +719,10 @@ static int drm_atomic_color_set_data_property(struct=
- drm_colorop *colorop,
->         case DRM_COLOROP_CTM_3X4:
->                 size =3D sizeof(struct drm_color_ctm_3x4);
->                 break;
-> +       case DRM_COLOROP_3D_LUT:
-> +               size =3D colorop->lut_size * colorop->lut_size * colorop-=
->lut_size *
-> +                      sizeof(struct drm_color_lut);
-> +               break;
->         default:
->                 /* should never get here */
->                 return -EINVAL;
-> @@ -771,6 +775,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *c=
-olorop,
->                 *val =3D state->multiplier;
->         } else if (property =3D=3D colorop->lut_size_property) {
->                 *val =3D colorop->lut_size;
-> +       } else if (property =3D=3D colorop->lut3d_interpolation_property)=
- {
-> +               *val =3D colorop->lut3d_interpolation;
->         } else if (property =3D=3D colorop->data_property) {
->                 *val =3D (state->data) ? state->data->base.id : 0;
->         } else {
-> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.=
-c
-> index e03706e7179b..224c6be237d2 100644
-> --- a/drivers/gpu/drm/drm_colorop.c
-> +++ b/drivers/gpu/drm/drm_colorop.c
-> @@ -67,6 +67,7 @@ static const struct drm_prop_enum_list drm_colorop_type=
-_enum_list[] =3D {
->         { DRM_COLOROP_1D_LUT, "1D LUT" },
->         { DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
->         { DRM_COLOROP_MULTIPLIER, "Multiplier"},
-> +       { DRM_COLOROP_3D_LUT, "3D LUT"},
->  };
->
->  static const char * const colorop_curve_1d_type_names[] =3D {
-> @@ -82,6 +83,11 @@ static const struct drm_prop_enum_list drm_colorop_lut=
-1d_interpolation_list[] =3D
->         { DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR, "Linear" },
->  };
->
-> +
-> +static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_l=
-ist[] =3D {
-> +       { DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
-> +};
-> +
->  /* Init Helpers */
->
->  static int drm_colorop_init(struct drm_device *dev, struct drm_colorop *=
-colorop,
-> @@ -349,6 +355,51 @@ int drm_colorop_mult_init(struct drm_device *dev, st=
-ruct drm_colorop *colorop,
->  }
->  EXPORT_SYMBOL(drm_colorop_mult_init);
->
-> +int drm_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *c=
-olorop,
-> +                          struct drm_plane *plane,
-> +                          uint32_t lut_size,
-> +                          enum drm_colorop_lut3d_interpolation_type inte=
-rpolation,
-> +                          bool allow_bypass)
-> +{
-> +       struct drm_property *prop;
-> +       int ret;
-> +
-> +       ret =3D drm_colorop_init(dev, colorop, plane, DRM_COLOROP_3D_LUT,=
- allow_bypass);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /* LUT size */
-> +       prop =3D drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE  =
-| DRM_MODE_PROP_ATOMIC,
-> +                                        "SIZE", 0, UINT_MAX);
-> +       if (!prop)
-> +               return -ENOMEM;
-> +
-> +       colorop->lut_size_property =3D prop;
-> +       drm_object_attach_property(&colorop->base, colorop->lut_size_prop=
-erty, lut_size);
-> +       colorop->lut_size =3D lut_size;
-> +
-> +       /* interpolation */
-> +       prop =3D drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE, "=
-LUT3D_INTERPOLATION",
+"ENABLE" is currently misspelled in SYS_INFO_GPUCAPS__ENABEL_DFS_BYPASS
 
-Do we ever expect this to be something with multiple options that
-userspace could select? I think it would be good to keep our options
-open and make this property not immutable (properties that are
-sometimes but not always immutable are more annoying to deal with in
-userspace).
+PS: checkpatch.pl is complaining about the presence of a space at the
+start of drivers/gpu/drm/amd/include/atomfirmware.h line: 1716 
+This is propably because this file uses (two) spaces and not tabs.
 
-Same applies to 1D LUTs as well.
+Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+---
+ drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h | 2 +-
+ drivers/gpu/drm/amd/include/atombios.h                      | 4 ++--
+ drivers/gpu/drm/amd/include/atomfirmware.h                  | 2 +-
+ drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c                  | 2 +-
+ drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c         | 2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
+index 813463ffe..cc4670316 100644
+--- a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
++++ b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
+@@ -424,7 +424,7 @@ struct integrated_info {
+ /*
+  * DFS-bypass flag
+  */
+-/* Copy of SYS_INFO_GPUCAPS__ENABEL_DFS_BYPASS from atombios.h */
++/* Copy of SYS_INFO_GPUCAPS__ENABLE_DFS_BYPASS from atombios.h */
+ enum {
+ 	DFS_BYPASS_ENABLE = 0x10
+ };
+diff --git a/drivers/gpu/drm/amd/include/atombios.h b/drivers/gpu/drm/amd/include/atombios.h
+index b78360a71..a99923b4e 100644
+--- a/drivers/gpu/drm/amd/include/atombios.h
++++ b/drivers/gpu/drm/amd/include/atombios.h
+@@ -6017,7 +6017,7 @@ typedef struct _ATOM_INTEGRATED_SYSTEM_INFO_V1_7
+ #define SYS_INFO_GPUCAPS__TMDSHDMI_COHERENT_SINGLEPLL_MODE                0x01
+ #define SYS_INFO_GPUCAPS__DP_SINGLEPLL_MODE                               0x02
+ #define SYS_INFO_GPUCAPS__DISABLE_AUX_MODE_DETECT                         0x08
+-#define SYS_INFO_GPUCAPS__ENABEL_DFS_BYPASS                               0x10
++#define SYS_INFO_GPUCAPS__ENABLE_DFS_BYPASS                               0x10
+ //ulGPUCapInfo[16]=1 indicate SMC firmware is able to support GNB fast resume function, so that driver can call SMC to program most of GNB register during resuming, from ML
+ #define SYS_INFO_GPUCAPS__GNB_FAST_RESUME_CAPABLE                         0x00010000
+ 
+@@ -6460,7 +6460,7 @@ typedef struct _ATOM_INTEGRATED_SYSTEM_INFO_V1_9
+ 
+ // ulGPUCapInfo
+ #define SYS_INFO_V1_9_GPUCAPSINFO_DISABLE_AUX_MODE_DETECT                         0x08
+-#define SYS_INFO_V1_9_GPUCAPSINFO_ENABEL_DFS_BYPASS                               0x10
++#define SYS_INFO_V1_9_GPUCAPSINFO_ENABLE_DFS_BYPASS                               0x10
+ //ulGPUCapInfo[16]=1 indicate SMC firmware is able to support GNB fast resume function, so that driver can call SMC to program most of GNB register during resuming, from ML
+ #define SYS_INFO_V1_9_GPUCAPSINFO_GNB_FAST_RESUME_CAPABLE                         0x00010000
+ //ulGPUCapInfo[18]=1 indicate the IOMMU is not available
+diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
+index 0160d65f3..52eb3a474 100644
+--- a/drivers/gpu/drm/amd/include/atomfirmware.h
++++ b/drivers/gpu/drm/amd/include/atomfirmware.h
+@@ -1713,7 +1713,7 @@ enum atom_system_vbiosmisc_def{
+ 
+ // gpucapinfo
+ enum atom_system_gpucapinf_def{
+-  SYS_INFO_GPUCAPS__ENABEL_DFS_BYPASS  = 0x10,
++  SYS_INFO_GPUCAPS__ENABLE_DFS_BYPASS  = 0x10,
+ };
+ 
+ //dpphy_override
+diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
+index 59fae668d..34e71727b 100644
+--- a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
++++ b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
+@@ -2594,7 +2594,7 @@ static int kv_parse_sys_info_table(struct amdgpu_device *adev)
+ 				le32_to_cpu(igp_info->info_8.ulNbpStateNClkFreq[i]);
+ 		}
+ 		if (le32_to_cpu(igp_info->info_8.ulGPUCapInfo) &
+-		    SYS_INFO_GPUCAPS__ENABEL_DFS_BYPASS)
++		    SYS_INFO_GPUCAPS__ENABLE_DFS_BYPASS)
+ 			pi->caps_enable_dfs_bypass = true;
+ 
+ 		sumo_construct_sclk_voltage_mapping_table(adev,
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c
+index 9d3b33446..9b20076e2 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c
+@@ -394,7 +394,7 @@ static int smu8_get_system_info_data(struct pp_hwmgr *hwmgr)
+ 	}
+ 
+ 	if (le32_to_cpu(info->ulGPUCapInfo) &
+-		SYS_INFO_GPUCAPS__ENABEL_DFS_BYPASS) {
++		SYS_INFO_GPUCAPS__ENABLE_DFS_BYPASS) {
+ 		phm_cap_set(hwmgr->platform_descriptor.platformCaps,
+ 				    PHM_PlatformCaps_EnableDFSBypass);
+ 	}
+-- 
+2.39.5
+
