@@ -2,77 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A19DFABB5D9
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C776EABB5EB
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAA3410E306;
-	Mon, 19 May 2025 07:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7ECC10E35B;
+	Mon, 19 May 2025 07:15:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EuDAOxH6";
+	dkim=pass (1024-bit key; unprotected) header.d=froggi.es header.i=misyl@froggi.es header.b="hEOLal4y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0A4C10E05D;
- Sat, 17 May 2025 14:24:36 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-231bf5851b7so22358615ad.0; 
- Sat, 17 May 2025 07:24:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747491876; x=1748096676; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=RyN54yu+4eZmPFXQlkm/F9Rt9k9KQTZs1dMWtDoUYX0=;
- b=EuDAOxH6aeszBrG21FT6X9vqbwDcq3iEaz6l9X0bfRZtck5z/ssMHv6S7j99Vt3+8c
- 3NDeA3e/rSVBqwWCu2P4EUnDL/JP8pAaEvmjrLZSwxUiaj5nvC2HaqcgBvSJ4lHNSvOh
- 9OmvkXbhGI3SN9znmtcsVGKg7zomj9MdQonC4cSHulaIzAMZm9j+BxSOSGCzUcFCBKj7
- x4pk8oKbI5drG0C1Sv2c5Kt4lkvIrXgU+viwclCRtArxQzL61P8ee4YE+73fivp6Pu3d
- yFPFEfjpoMZSS8sFu9POSgwAmohnzXF/4Ggmt9OUq9jp42rcLw4amxsMLQCfF2daUeCW
- QHNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747491876; x=1748096676;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=RyN54yu+4eZmPFXQlkm/F9Rt9k9KQTZs1dMWtDoUYX0=;
- b=sqRKUsQbxGSMcpPZxfbXIGfJmt6i4xV72lU3fS7Edpqbt02jRiJEU4HsLKF1fc18lh
- 8emoF6saDnVURt7pqLvp2qfSyFNHKyW42OsD/RzfptPufnK17rwz8PSkL3mV+aoV2njj
- mr1rCJ5C1a9VZLJqF78zr6lpzSEkz6ioYYBLLZs75gnRg15v52ySg3g4mXfe8yOG7o2G
- c+L0Dflk6kfd2j+/e7Nsq5mIKKA0djyDl977DItWobOftZUdj28UsZF419vo28AjoO3G
- 8T3qXPxE6SIozU0O6hQ2+wl1BLBl5MvcmzO6C+GpG7Kmws15qkD4SbZ9VsMngsEtkRQS
- 7BTg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUMImboCHtnCzIiE8ka0qUTvI+kELnfqK3pkJD64TW8R/PgL5oDFWfCgO+vqUJNIhS8+Yi8UBDP@lists.freedesktop.org,
- AJvYcCWQheIjL0ekdBSJU8iGjk9Di0pfpkypFGeJjdhiITAew3/KMSWfZ5PBH5z+SfHwrWGGW6nGsp762IxF@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxESfS6ZU0ArLha/HHGtCYwxX5jb9VsTBP6qTIw9A2e2DJ0GEmv
- hFf6SKpCFWKdOokmsB8aQQnvQuZLrKqY9vTmcQKvTpL/h3zxmSG3mV6qapKUXzWewv9yRg2+2G7
- SFIeJFPv7js8YL1joHce2sDnrHfXNFxOcqJOdk3szrw==
-X-Gm-Gg: ASbGncsWTnRraqLV1kXD8CsHG7U/bWLr43viJUuXBbATYKLZqBQuz2NvF5NZrq5CVPQ
- +8r8PWMlIBEu4DigrftbMvD5D0IAT66JxOLMcqFPugyQsDTroZAh8QifBJt2R0lUwGLYgrGgZW4
- G+KRgk4FgYBDrk2qYSxdv1P95UvO/oHyRUIZ/kT0Jkm8UJ3AgYibCvSNhD+gPtrfkl9g==
-X-Google-Smtp-Source: AGHT+IGT4GPCJWdJXDl6+yZgWrJ0LJqyH+PWDQzzymc57FXF+qCCdn5jGLFHy+6pmAD2rbtKyUefOa011fwdLq49evM=
-X-Received: by 2002:a17:903:2bcb:b0:215:b75f:a1cb with SMTP id
- d9443c01a7336-231d43d99bamr92758275ad.9.1747491875965; Sat, 17 May 2025
- 07:24:35 -0700 (PDT)
+X-Greylist: delayed 904 seconds by postgrey-1.36 at gabe;
+ Sat, 17 May 2025 17:53:00 UTC
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com
+ [136.143.188.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A01E810E053;
+ Sat, 17 May 2025 17:53:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1747503466; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=Nffj33e2YL/ILQZ6iPnLPHW3UV/iGjVUFzIQe6lF5W0NyX7vHDVmDet9/ScN8GEdZ77GFjz3PXrnUbB+kPpFK4U8Y9rgLvNW8s1xMaJFZqAijNo9jo0OWiSoY8tJda3IVbqx5hzOtmn1EuTOAX22DTKr2xDolg50ipBSQcKKxGE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1747503466;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=ezkHkwC9s2Z5d6+xKnDQMCu1S8rNkHLf2BEhK46Pwz4=; 
+ b=PAHtiedLZA19uRxcuZzlYuY7TvocziaIzhUxqrVbwnNQ+UrHILZZwwk+5Glumu0DIC8/C2h+BsF3srduhaSuAJc0rW6zVkJD1YcVaEkOo2/OqU8ET9kp6ScCs+kLC5h79YguCZ11eANvLk+tl2qj7XFj31HLw+HpyWVyKAbfl7Q=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=froggi.es;
+ spf=pass  smtp.mailfrom=misyl@froggi.es;
+ dmarc=pass header.from=<misyl@froggi.es>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1747503466; 
+ s=mail; d=froggi.es; i=misyl@froggi.es;
+ h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=ezkHkwC9s2Z5d6+xKnDQMCu1S8rNkHLf2BEhK46Pwz4=;
+ b=hEOLal4yOQqptZ8nbj5icqqzcpfs8yV3uUTQ+665tCVRHo7XojnKBwgNRJMnUYDL
+ /irSOgIGlldfnrwDPTKVS2A3r9BWaphNVisWB/Mect8I11xcix8AeHlWm2JfJjVqNu2
+ 68ccCjdvhABIRgDKNRgNuiuAmfLBWfVjObiy2GKA=
+Received: by mx.zohomail.com with SMTPS id 1747503462353236.58079519107616;
+ Sat, 17 May 2025 10:37:42 -0700 (PDT)
+Message-ID: <c562cd90-fdc4-409d-830c-855f88dbf5d5@froggi.es>
+Date: Sat, 17 May 2025 18:36:28 +0100
 MIME-Version: 1.0
-References: <20250514174306.82693-1-leonardodasigomes@gmail.com>
- <CADnq5_OEdpRvpfL9+aCQOfRGUW-vOGzXq3ts5buWXoOTxtHr6Q@mail.gmail.com>
- <CABtyycTNz7dmir5Ydc=VDiTUsLy0tryBgGmtWCJQZSauuaSJwg@mail.gmail.com>
- <CADnq5_P7m_a2CToL5JAkDSZDvUgx1LWGaS158CLMBr8xyGtVkw@mail.gmail.com>
-In-Reply-To: <CADnq5_P7m_a2CToL5JAkDSZDvUgx1LWGaS158CLMBr8xyGtVkw@mail.gmail.com>
-From: Leonardo Gomes <leonardodasigomes@gmail.com>
-Date: Sat, 17 May 2025 11:24:24 -0300
-X-Gm-Features: AX0GCFvJD7wbWoEZTBeLCX6ttDEdCVVXx53o8wpIST6mUpWnitjJhFUFRuNEHqY
-Message-ID: <CABtyycR-Etym4gggPEhUYNoTPNNjZJhMAavV29dJ5T8TKaGTwg@mail.gmail.com>
-Subject: Re: [PATCH 1/2 RESEND] drm/amd/display: Adjust get_value function
- with prefix to help in ftrace
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com, 
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch, 
- derick.william.moraes@gmail.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="00000000000083ccea063555a859"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V8 40/43] drm/colorop: Add 3D LUT support to color pipeline
+To: Xaver Hugl <xaver.hugl@gmail.com>, Alex Hung <alex.hung@amd.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ wayland-devel@lists.freedesktop.org, harry.wentland@amd.com,
+ leo.liu@amd.com, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, contact@emersion.fr, mwen@igalia.com,
+ jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com,
+ agoins@nvidia.com, mdaenzer@redhat.com, aleixpol@kde.org,
+ victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com,
+ quic_naseer@quicinc.com, quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com,
+ marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com,
+ chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com
+References: <20250326234748.2982010-1-alex.hung@amd.com>
+ <20250326234748.2982010-41-alex.hung@amd.com>
+ <CAFZQkGwrP39REsvZwQ_Uaq+cHR_pH2EPuv_POXRO7Hxj9u4Xsw@mail.gmail.com>
+Content-Language: en-US
+From: Autumn Ashton <misyl@froggi.es>
+In-Reply-To: <CAFZQkGwrP39REsvZwQ_Uaq+cHR_pH2EPuv_POXRO7Hxj9u4Xsw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,196 +79,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---00000000000083ccea063555a859
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Good morning Alex,
+On 5/17/25 2:22 AM, Xaver Hugl wrote:
+> Am Do., 27. März 2025 um 00:58 Uhr schrieb Alex Hung <alex.hung@amd.com>:
+>> It is to be used to enable HDR by allowing userpace to create and pass
+>> 3D LUTs to kernel and hardware.
+>>
+>> new drm_colorop_type: DRM_COLOROP_3D_LUT.
+>>
+>> Signed-off-by: Alex Hung <alex.hung@amd.com>
+>> ---
+>> v8:
+>>   - Fix typo in subject (Simon Ser)
+>>   - Update documentation for DRM_COLOROP_3D_LUT (Simon Ser)
+>>   - Delete empty lines (Simon Ser)
+>>
+>> v7:
+>>   - Simplify 3D LUT by removing lut_3d_modes and related functions (Simon Ser)
+>>
+>>   drivers/gpu/drm/drm_atomic.c      |  6 +++
+>>   drivers/gpu/drm/drm_atomic_uapi.c |  6 +++
+>>   drivers/gpu/drm/drm_colorop.c     | 72 +++++++++++++++++++++++++++++++
+>>   include/drm/drm_colorop.h         | 21 +++++++++
+>>   include/uapi/drm/drm_mode.h       | 33 ++++++++++++++
+>>   5 files changed, 138 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+>> index 0efb0ead204a..ef47a06344f3 100644
+>> --- a/drivers/gpu/drm/drm_atomic.c
+>> +++ b/drivers/gpu/drm/drm_atomic.c
+>> @@ -806,6 +806,12 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
+>>          case DRM_COLOROP_MULTIPLIER:
+>>                  drm_printf(p, "\tmultiplier=%llu\n", state->multiplier);
+>>                  break;
+>> +       case DRM_COLOROP_3D_LUT:
+>> +               drm_printf(p, "\tsize=%d\n", colorop->lut_size);
+>> +               drm_printf(p, "\tinterpolation=%s\n",
+>> +                          drm_get_colorop_lut3d_interpolation_name(colorop->lut3d_interpolation));
+>> +               drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+>> +               break;
+>>          default:
+>>                  break;
+>>          }
+>> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+>> index 947c18e8bf9b..d5d464b4d0f6 100644
+>> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+>> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+>> @@ -719,6 +719,10 @@ static int drm_atomic_color_set_data_property(struct drm_colorop *colorop,
+>>          case DRM_COLOROP_CTM_3X4:
+>>                  size = sizeof(struct drm_color_ctm_3x4);
+>>                  break;
+>> +       case DRM_COLOROP_3D_LUT:
+>> +               size = colorop->lut_size * colorop->lut_size * colorop->lut_size *
+>> +                      sizeof(struct drm_color_lut);
+>> +               break;
+>>          default:
+>>                  /* should never get here */
+>>                  return -EINVAL;
+>> @@ -771,6 +775,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
+>>                  *val = state->multiplier;
+>>          } else if (property == colorop->lut_size_property) {
+>>                  *val = colorop->lut_size;
+>> +       } else if (property == colorop->lut3d_interpolation_property) {
+>> +               *val = colorop->lut3d_interpolation;
+>>          } else if (property == colorop->data_property) {
+>>                  *val = (state->data) ? state->data->base.id : 0;
+>>          } else {
+>> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+>> index e03706e7179b..224c6be237d2 100644
+>> --- a/drivers/gpu/drm/drm_colorop.c
+>> +++ b/drivers/gpu/drm/drm_colorop.c
+>> @@ -67,6 +67,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
+>>          { DRM_COLOROP_1D_LUT, "1D LUT" },
+>>          { DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
+>>          { DRM_COLOROP_MULTIPLIER, "Multiplier"},
+>> +       { DRM_COLOROP_3D_LUT, "3D LUT"},
+>>   };
+>>
+>>   static const char * const colorop_curve_1d_type_names[] = {
+>> @@ -82,6 +83,11 @@ static const struct drm_prop_enum_list drm_colorop_lut1d_interpolation_list[] =
+>>          { DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR, "Linear" },
+>>   };
+>>
+>> +
+>> +static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] = {
+>> +       { DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
+>> +};
+>> +
+>>   /* Init Helpers */
+>>
+>>   static int drm_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
+>> @@ -349,6 +355,51 @@ int drm_colorop_mult_init(struct drm_device *dev, struct drm_colorop *colorop,
+>>   }
+>>   EXPORT_SYMBOL(drm_colorop_mult_init);
+>>
+>> +int drm_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *colorop,
+>> +                          struct drm_plane *plane,
+>> +                          uint32_t lut_size,
+>> +                          enum drm_colorop_lut3d_interpolation_type interpolation,
+>> +                          bool allow_bypass)
+>> +{
+>> +       struct drm_property *prop;
+>> +       int ret;
+>> +
+>> +       ret = drm_colorop_init(dev, colorop, plane, DRM_COLOROP_3D_LUT, allow_bypass);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       /* LUT size */
+>> +       prop = drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE  | DRM_MODE_PROP_ATOMIC,
+>> +                                        "SIZE", 0, UINT_MAX);
+>> +       if (!prop)
+>> +               return -ENOMEM;
+>> +
+>> +       colorop->lut_size_property = prop;
+>> +       drm_object_attach_property(&colorop->base, colorop->lut_size_property, lut_size);
+>> +       colorop->lut_size = lut_size;
+>> +
+>> +       /* interpolation */
+>> +       prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE, "LUT3D_INTERPOLATION",
+> Do we ever expect this to be something with multiple options that
+> userspace could select? I think it would be good to keep our options
+> open and make this property not immutable (properties that are
+> sometimes but not always immutable are more annoying to deal with in
+> userspace).
 
-I just resend the patch with the name I`ve been suggesting, please let me
-know if you have any recommendation.
-And thanks again for your reply =F0=9F=98=84
 
-Leonardo Gomes
+I don't think so, AFAIK on AMD there is only tetrahedral.
 
-Em sex., 16 de mai. de 2025 =C3=A0s 13:56, Alex Deucher <alexdeucher@gmail.=
-com>
-escreveu:
+Other vendors might have that as configurable, but I imagine that's why 
+this is immutable in this instance.
 
-> On Thu, May 15, 2025 at 9:23=E2=80=AFPM Leonardo Gomes
-> <leonardodasigomes@gmail.com> wrote:
-> >
-> > Thanks for your reply Alex,
-> >
-> > I just realize with your comment that
-> drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c import dal_hw_gpio_get_valu=
-e
-> and dal_hw_gpio_set_value.
-> > So to make those functions inside
-> drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c  more clear what do you thin=
-k
-> to change them to dal_hw_hpd_get_config and dal_hw_hpd_set_config, making
-> clear that this is a function from the file hw_hpd?
-> >
+
+Whether or not the interpolation mode is tetrahedral or linear would 
+probably affect whether I would use the HW block.
+
+Small (eg. 9x9x9 or 17x17x17) 3D LUTs interpolated as linear cannot 
+apply identity 3D LUTs as identity.
+
+This is why we do manual tetrahedral sampling in Gamescope in our shader 
+path too...
+
+
+- Autumn ✨
+
+
 >
-> Right.  It needs a different name to avoid the conflict with the other
-> function.
->
-> Alex
->
-> > Leonardo Gomes
-> >
-> > Em qua., 14 de mai. de 2025 =C3=A0s 18:08, Alex Deucher <
-> alexdeucher@gmail.com> escreveu:
-> >>
-> >> On Wed, May 14, 2025 at 4:48=E2=80=AFPM Leonardo Gomes
-> >> <leonardodasigomes@gmail.com> wrote:
-> >> >
-> >> > Adjust get_value function in hw_hpd.c file to have
-> >> > prefix to help in ftrace, the name change from
-> >> > 'get_value' to 'dal_hw_gpio_get_value'
-> >>
-> >> This won't compile.  dal_hw_gpio_get_value is already defined in
-> >> drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c.
-> >>
-> >> Alex
-> >>
-> >> >
-> >> > Signed-off-by: Leonardo da Silva Gomes <leonardodasigomes@gmail.com>
-> >> > Co-developed-by: Derick Frias <derick.william.moraes@gmail.com>
-> >> > Signed-off-by: Derick Frias <derick.william.moraes@gmail.com>
-> >> > ---
-> >> >  drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c | 4 ++--
-> >> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-> b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-> >> > index 3f13a744d07d..b11ed1089589 100644
-> >> > --- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-> >> > +++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
-> >> > @@ -62,7 +62,7 @@ static void dal_hw_hpd_destroy(
-> >> >         *ptr =3D NULL;
-> >> >  }
-> >> >
-> >> > -static enum gpio_result get_value(
-> >> > +static enum gpio_result dal_hw_gpio_get_value(
-> >> >         const struct hw_gpio_pin *ptr,
-> >> >         uint32_t *value)
-> >> >  {
-> >> > @@ -104,7 +104,7 @@ static enum gpio_result set_config(
-> >> >  static const struct hw_gpio_pin_funcs funcs =3D {
-> >> >         .destroy =3D dal_hw_hpd_destroy,
-> >> >         .open =3D dal_hw_gpio_open,
-> >> > -       .get_value =3D get_value,
-> >> > +       .get_value =3D dal_hw_gpio_get_value,
-> >> >         .set_value =3D dal_hw_gpio_set_value,
-> >> >         .set_config =3D set_config,
-> >> >         .change_mode =3D dal_hw_gpio_change_mode,
-> >> > --
-> >> > 2.43.0
-> >> >
->
+> Same applies to 1D LUTs as well.
 
---00000000000083ccea063555a859
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Good morning Alex,<br><br>I just resend the patch with the=
- name I`ve been suggesting, please let me know if you have any recommendati=
-on.=C2=A0<div>And thanks again for your reply=C2=A0=F0=9F=98=84<br><br></di=
-v><div>Leonardo Gomes<br></div></div><br><div class=3D"gmail_quote gmail_qu=
-ote_container"><div dir=3D"ltr" class=3D"gmail_attr">Em sex., 16 de mai. de=
- 2025 =C3=A0s 13:56, Alex Deucher &lt;<a href=3D"mailto:alexdeucher@gmail.c=
-om">alexdeucher@gmail.com</a>&gt; escreveu:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">On Thu, May 15, 2025 at 9:23=E2=80=AFPM Leonard=
-o Gomes<br>
-&lt;<a href=3D"mailto:leonardodasigomes@gmail.com" target=3D"_blank">leonar=
-dodasigomes@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Thanks for your reply Alex,<br>
-&gt;<br>
-&gt; I just realize with your comment that drivers/gpu/drm/amd/display/dc/g=
-pio/hw_gpio.c import dal_hw_gpio_get_value and dal_hw_gpio_set_value.<br>
-&gt; So to make those functions inside drivers/gpu/drm/amd/display/dc/gpio/=
-hw_hpd.c=C2=A0 more clear what do you think to change them to dal_hw_hpd_ge=
-t_config and dal_hw_hpd_set_config, making clear that this is a function fr=
-om the file hw_hpd?<br>
-&gt;<br>
-<br>
-Right.=C2=A0 It needs a different name to avoid the conflict with the other=
- function.<br>
-<br>
-Alex<br>
-<br>
-&gt; Leonardo Gomes<br>
-&gt;<br>
-&gt; Em qua., 14 de mai. de 2025 =C3=A0s 18:08, Alex Deucher &lt;<a href=3D=
-"mailto:alexdeucher@gmail.com" target=3D"_blank">alexdeucher@gmail.com</a>&=
-gt; escreveu:<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, May 14, 2025 at 4:48=E2=80=AFPM Leonardo Gomes<br>
-&gt;&gt; &lt;<a href=3D"mailto:leonardodasigomes@gmail.com" target=3D"_blan=
-k">leonardodasigomes@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Adjust get_value function in hw_hpd.c file to have<br>
-&gt;&gt; &gt; prefix to help in ftrace, the name change from<br>
-&gt;&gt; &gt; &#39;get_value&#39; to &#39;dal_hw_gpio_get_value&#39;<br>
-&gt;&gt;<br>
-&gt;&gt; This won&#39;t compile.=C2=A0 dal_hw_gpio_get_value is already def=
-ined in<br>
-&gt;&gt; drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c.<br>
-&gt;&gt;<br>
-&gt;&gt; Alex<br>
-&gt;&gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Signed-off-by: Leonardo da Silva Gomes &lt;<a href=3D"mailto:=
-leonardodasigomes@gmail.com" target=3D"_blank">leonardodasigomes@gmail.com<=
-/a>&gt;<br>
-&gt;&gt; &gt; Co-developed-by: Derick Frias &lt;<a href=3D"mailto:derick.wi=
-lliam.moraes@gmail.com" target=3D"_blank">derick.william.moraes@gmail.com</=
-a>&gt;<br>
-&gt;&gt; &gt; Signed-off-by: Derick Frias &lt;<a href=3D"mailto:derick.will=
-iam.moraes@gmail.com" target=3D"_blank">derick.william.moraes@gmail.com</a>=
-&gt;<br>
-&gt;&gt; &gt; ---<br>
-&gt;&gt; &gt;=C2=A0 drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c | 4 ++--<b=
-r>
-&gt;&gt; &gt;=C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c b/d=
-rivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c<br>
-&gt;&gt; &gt; index 3f13a744d07d..b11ed1089589 100644<br>
-&gt;&gt; &gt; --- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c<br>
-&gt;&gt; &gt; +++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c<br>
-&gt;&gt; &gt; @@ -62,7 +62,7 @@ static void dal_hw_hpd_destroy(<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*ptr =3D NULL;<br>
-&gt;&gt; &gt;=C2=A0 }<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; -static enum gpio_result get_value(<br>
-&gt;&gt; &gt; +static enum gpio_result dal_hw_gpio_get_value(<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const struct hw_gpio_pin *pt=
-r,<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t *value)<br>
-&gt;&gt; &gt;=C2=A0 {<br>
-&gt;&gt; &gt; @@ -104,7 +104,7 @@ static enum gpio_result set_config(<br>
-&gt;&gt; &gt;=C2=A0 static const struct hw_gpio_pin_funcs funcs =3D {<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.destroy =3D dal_hw_hpd_dest=
-roy,<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.open =3D dal_hw_gpio_open,<=
-br>
-&gt;&gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_value =3D get_value,<br>
-&gt;&gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_value =3D dal_hw_gpio_get_va=
-lue,<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.set_value =3D dal_hw_gpio_s=
-et_value,<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.set_config =3D set_config,<=
-br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.change_mode =3D dal_hw_gpio=
-_change_mode,<br>
-&gt;&gt; &gt; --<br>
-&gt;&gt; &gt; 2.43.0<br>
-&gt;&gt; &gt;<br>
-</blockquote></div>
-
---00000000000083ccea063555a859--
