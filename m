@@ -2,91 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22763ABB5DD
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E6EABB5DB
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 May 2025 09:15:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA4010E325;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 337EA10E2FA;
 	Mon, 19 May 2025 07:15:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YjFfYbE7";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dJ8/DF1S";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
- [209.85.218.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D489910E07E;
- Sat, 17 May 2025 11:51:27 +0000 (UTC)
-Received: by mail-ej1-f48.google.com with SMTP id
- a640c23a62f3a-acb5ec407b1so483902266b.1; 
- Sat, 17 May 2025 04:51:27 -0700 (PDT)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com
+ [209.85.217.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBE710E181;
+ Sat, 17 May 2025 14:22:07 +0000 (UTC)
+Received: by mail-vs1-f52.google.com with SMTP id
+ ada2fe7eead31-4c34dcdaf88so1080971137.2; 
+ Sat, 17 May 2025 07:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747482686; x=1748087486; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=MCG7UsgmOfTrLfJG+2ZE0hq0MEHcnjnuqiq7V6Le5YE=;
- b=YjFfYbE7XRtUst6ksOwyFz9+9OIkIpheWc6NIedPaILmSqPn0SwRdVTvT7W1xOGUxF
- PA99h1zFbO9no1XkhXIG2+h3zWI+yfJOPEmWSsdPPYn6RVz2OxGUzTsRJHJAYBgeH/7L
- mWeopGgRDvtLxwp8rWSyhR3Rulnjl2ujHJrH21hZD0qm99M8GRpOwa7/TD+0bjtMh+Ae
- hchwRDjDqGxIh9S5B3EtgXGLKs5ANZKo3EYUbh6VXdYniWhTONfaiML1HjKU+TN4wC22
- hJPUmDWcumqAiW5O+rE6t/8yHAYy7azVOi3ZuaVgRUFKxT7k2Rq1XBzwLdzs4sOfit8v
- KSNQ==
+ d=gmail.com; s=20230601; t=1747491726; x=1748096526; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=+IvTjJwrU8s7iUyjtPaZ5HJKqtg72p6APhpbESxqvdw=;
+ b=dJ8/DF1Ss86GKt6HkKOzt7Tkotm2o5FD49gXy9CyXyGZxpYI58UakjG/B3UIhZ5FNj
+ Pdxqlsclea6Hlsm4EmUs5TSp5+RFhNA4OJLTsCDx2XlPF575G0Tg7LklUayZRV1wRDBW
+ Y6bcT6M3W8wRFLL+nc2aRJkl4IVW5tetZ1lCf0fVaLMHjaTS6SMldxGB9SLDgowXEgJT
+ /qtPPclWtXwMd1dnJ9vUcCbfqCsZnjFeIwb9IIh1IfUWeDk6o98GXjrW3GkrfcKPPCgl
+ iCp++5/9dlBP4VEq1Kuv266uCAcQsdODhY5d1hdJAKvJdTdsxmBM0VkWT05EX6y24C6h
+ rwaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747482686; x=1748087486;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ d=1e100.net; s=20230601; t=1747491726; x=1748096526;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=MCG7UsgmOfTrLfJG+2ZE0hq0MEHcnjnuqiq7V6Le5YE=;
- b=OxbiAiu2Vd943Z//ThEcJfIgSS2gmC3mRZCcZ2hjbySp7n84H1xKfpzu3203C03hl+
- T99GMArcWEjBUGQNzPQhw3hMHhYXx3zZ3mXlTXElDSPluRzXZ78vFVwVoyJM5uU9uk6m
- JrQN/yuuPQ+QgOE4JeqRI5evSLgH217A3SVphv9hndh6NVVvfyv2j2ZuJK8QB3kSN1/M
- jXkTm+RjmXaU8bxtORtCmcr2RgjzTkg1mvOl7lBc7TLi4aXfR6V3cWTL3YUZOIMwTFZt
- ZlzMqmwYjDMWaEqwediQD8D7vYggMaRbCO2ybotqJUwKukUA6NN4V/sQvdZeHkPJc2eA
- NwwA==
+ bh=+IvTjJwrU8s7iUyjtPaZ5HJKqtg72p6APhpbESxqvdw=;
+ b=hUhTfrVEk/lCShRzB9HdX+RUW/3WEBrJYsj+pk+foKoTxantS1tu3RamSj7j/DXMko
+ T3Gc4M7Q2vqnQ6XiAZ1XD627qEF/ZcbQ1RS7+ncMk1njM4yqS4pxJRyuRtK9uCJ0FrN/
+ c8SyuOZK9VAFxoxQXDuJi9RT7T093Zc7pPZyj7FF6mJ7veTFlCGVvrSLYsD1t5O6FKiO
+ MBUApSBOYhFb5xveysVjKGvRqQhdJ4gZkL0H2dxEY2UqT4lnLYHAcoq3k/9AHTZ7Jit3
+ ngc1iFev2IrADnOI+rpU6EYVaOkBzcThgRGeB7e3+WDhFoasL9s3F7n2OZlOQWj+P9I6
+ PEJg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU1yxMvkqrzWLl337DoCgDj51+3EZE4xgi7yLRmXpaNiw5SEftMoJvgwWjWyHu8ab3NI65iThCP@lists.freedesktop.org,
- AJvYcCUpDOqy9p0L7L/c7QbIxQJdWJBrwZ+3HC/h4G5ER+/2jmbp6VEUt8ncob4UJdJQB9sz0NiCelJb/5h0@lists.freedesktop.org,
- AJvYcCVSEKodkSUNqbjMZ/3SBfCmnWBjaXzkPjgecLuC9uE3tQCr44DyZwbNWggTtNi062UgIo0XAeNIm8DHLEVoKQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwZLY/vSVWs+YI6IA9mbpKnHsE3oVsXec7vc+2vlCkZNmDfdySU
- GlHMCB1JWz2S8SKleYHeyY2y603DveTeWRjcWhIg7rmIrW6T8KWOLHyf8lUnRyXDMVNKt4nxz4L
- LdzSxrXCJhy+vfym02QcTjez1JtJx/9U=
-X-Gm-Gg: ASbGncsleYdo0fZ+Z5YvcR9EBBDo0SG80LnL8k9qiV0dzIm87tsZsuqUMnKOZ5d8iU7
- 0RuICDMqCLVTfvoPTI+rPNkRf1dIGX/LLJ76aiZt1uUWK4SGF8rFF0kvsguKTSjy32SC38HO8lC
- 23YQiQSCkAM00fBtj0jSpnCB75SUdJTtLP92sVjKxXugHu6K+/luhstYW8J1tMcQEjVPoasvSM5
- 8Mu
-X-Google-Smtp-Source: AGHT+IFp0bS9J5A+F88R+FnWorgbxFFe6hmX2LBxvbwajivcYeUO3tISkaiUFqp/6TQFSKcyU/+VL1VRjq7PN9sdryI=
-X-Received: by 2002:a17:907:80b:b0:ad2:2fa8:c0a7 with SMTP id
- a640c23a62f3a-ad536b7c43fmr551592066b.21.1747482685976; Sat, 17 May 2025
- 04:51:25 -0700 (PDT)
+ AJvYcCUqHlWzEr9vy3ZuGPkIGJW/oXya0O/Ls/Rxna+KKW+OU32kpkUaYm2tpUGukQlpIyHMmGKu5xby+/fC@lists.freedesktop.org,
+ AJvYcCXQu8nmY08I0jDDlCRoqDJGmLHHBF+dnUfnuc/dnswUm5OmmY//23/LUJeAANMOMZPw4ramJSZR@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwnupVzNhV83lJ7yKDyV9UAq6a2BpAj8edQuyWe3OlRxYB7qkrV
+ c1VfirJJa6lvOmJZqkzRizAm+jGIFx7arv/T1jNG5csj/eVFLAmUtJ+D
+X-Gm-Gg: ASbGncu/3qmzBMBbWS/p9skUi4gaFtE42l0xlnnrI4gb303VTHyXt9q73hqivKV6BvO
+ PkAJdUCzq2UiAPeu2QPLV8v2RP+Pm4cawtEuCC3vQl0yMCOCyaigeAdX3DOlXBxx0lX+y8rPSY/
+ l8Ahnia4AW+pWwM3ziUa9DUDeGThM6yS3Tyx8IAy+MUP646BDdIm2zmHtH4u1KoDQoOdvxaPTSu
+ f2fOEyttZWectVgikIgmfgcKrr8J8WTnk0m5NWXz7409ddna3aZdlShybHmwQk4W+CmMua+dHaH
+ Ps9TlpDJ+Bf6pG1UoI5kZF00i2gqEQDdCeATOSX+/ZilBedWhn46uIefTnLxmQnIlS+Kl/7CMM6
+ IRtUXS7Ok7g==
+X-Google-Smtp-Source: AGHT+IGG5NhOZRozR2C8EWXYBxU1OmFZROlehFOf2lGzQ3vkREzu72l4NqHjWlxaigokyImy5fawXQ==
+X-Received: by 2002:a05:6102:1512:b0:4d7:9072:1873 with SMTP id
+ ada2fe7eead31-4e053c6e238mr6937466137.24.1747491726015; 
+ Sat, 17 May 2025 07:22:06 -0700 (PDT)
+Received: from xodo-linux.tailb46509.ts.net
+ ([2804:1b1:f983:1b4a:2975:d863:b306:345f])
+ by smtp.gmail.com with ESMTPSA id
+ a1e0cc1a2514c-87bec1ef3a8sm3349819241.21.2025.05.17.07.22.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 17 May 2025 07:22:05 -0700 (PDT)
+From: Leonardo Gomes <leonardodasigomes@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch
+Cc: derick.william.moraes@gmail.com,
+ Leonardo Gomes <leonardodasigomes@gmail.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH 1/2 RESEND] drm/amd/display: Adjust get_value function with
+ prefix to help in ftrace
+Date: Sat, 17 May 2025 11:20:54 -0300
+Message-ID: <20250517142114.140016-1-leonardodasigomes@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20250430011115.223996-1-alex.hung@amd.com>
- <o4MtjqyDUjuFR4Y9Q1IEZlvVQ7Nkggq0v-KtBcH0aM3pTvEq8UcSoUDxefSBVdTmLj_1_a6GmbjU_mRSFinOb44B4bu1u3mMIckuQhhZWCc=@emersion.fr>
- <3bbd4bd7-7217-4a14-b7bb-383226f44f55@amd.com>
- <CAPj87rNUDdDEopPH+iAF-a=Or6eXH4cMRU8eOj81g_40cq8gdA@mail.gmail.com>
- <f7e9cd32-3e2b-4f06-aa13-049c8b7ba29b@amd.com>
- <CAPj87rMbcZKy2ARe_tp_-+-tMu3FpS0C9R1BHVzjsUpOsU9M4g@mail.gmail.com>
- <5921076d-0150-4e0f-a3ef-1b8dec021630@collabora.com>
-In-Reply-To: <5921076d-0150-4e0f-a3ef-1b8dec021630@collabora.com>
-From: Xaver Hugl <xaver.hugl@gmail.com>
-Date: Sat, 17 May 2025 13:51:14 +0200
-X-Gm-Features: AX0GCFsRuvAiaNtf2Rr2dvEsOdgNQYtUCZXulXk4PGtG-IFz9IIXobYQS1Dhpgk
-Message-ID: <CAFZQkGymi1XY7m0Ghs8R2HaNRQptE_0NO-5J5Z2c61gDJRho3Q@mail.gmail.com>
-Subject: Re: [PATCH V9 00/43] Color Pipeline API w/ VKMS
-To: Leandro Ribeiro <leandro.ribeiro@collabora.com>
-Cc: Daniel Stone <daniel@fooishbar.org>,
- Harry Wentland <harry.wentland@amd.com>, 
- Simon Ser <contact@emersion.fr>, Alex Hung <alex.hung@amd.com>,
- Misyl Toad <misyl@froggi.es>, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, leo.liu@amd.com, 
- ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com, mwen@igalia.com, 
- jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com, 
- agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org, 
- victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com, 
- quic_naseer@quicinc.com, quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com, 
- marcan@marcan.st, Liviu.Dudau@arm.com, sashamcintosh@google.com, 
- chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com, 
- Arthur Grillo <arthurgrillo@riseup.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 19 May 2025 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,64 +91,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am Do., 15. Mai 2025 um 22:00 Uhr schrieb Leandro Ribeiro
-<leandro.ribeiro@collabora.com>:
->
->
->
-> On 5/15/25 15:39, Daniel Stone wrote:
-> > Hi,
-> >
-> > On Thu, 15 May 2025 at 19:02, Harry Wentland <harry.wentland@amd.com> wrote:
-> >> On 2025-05-15 13:19, Daniel Stone wrote:
-> >>> Yeah, the Weston patches are marching on. We've still been doing a
-> >>> little bit of cleanup and prep work in the background to land them,
-> >>> but we also can't land them until the kernel lands. None of that work
-> >>> is material to the uAPI though: as said previously, the uAPI looks
-> >>> completely solid and it's something we can definitely beneficially use
-> >>> in Weston. (Even if we do need the obvious follow-ons for
-> >>> post-blending as well ...)
-> >>
-> >> We can't merge kernel uAPI without canonical userspace that uses it.
-> >> To move forward we'll need a userspace to at least publish a branch
-> >> that shows the use of this new uAPI.
-> >>
-> >> Do you have a public branch for the Weston work for this?
-> >
-> > Yeah, https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1702
-> > has been around for a little while now. There are some driver bugs
-> > that Leandro commented on, but they don't seem material to the uAPI as
-> > such?
->
-> Hello,
->
-> Yes, there's nothing related to the API that is blocking us. It seemed
-> very flexible and easy to use. The bugs that I've spotted are probably
-> internal to AMD driver.
->
-> I'd say that the Weston patches are converging nicely, we just need time
-> to get them fully reviewed. We had a few preparation MR's to land
-> before !1702, and now there's only one left (!1617).
+Adjust get_value function in hw_hpd.c file to have
+prefix to help in ftrace, the name change from
+'get_value' to 'dal_hw_hpd_get_value'
 
-I also updated the KWin MR
-(https://invent.kde.org/plasma/kwin/-/merge_requests/6600), it can now
-use all the available properties and I think it's ready. I found two
-issues with the kernel patches though:
-- while attempting to set COLOR_ENCODING and COLOR_RANGE results in
-the atomic commit being rejected, the existing values still get
-applied if you use YCbCr-type buffers. I would've expected the color
-pipeline to operate on the YUV values in that case - and leave
-conversion to RGB up to the compositor adding the relevant matrix to
-the pipeline
-- the interpolation mode drm properties for 1D and 3D LUTs are
-immutable, I think they shouldn't be - to make it less annoying if in
-the future we decide to add modes that userspace can set
+Signed-off-by: Leonardo da Silva Gomes <leonardodasigomes@gmail.com>
+Co-developed-by: Derick Frias <derick.william.moraes@gmail.com>
+Signed-off-by: Derick Frias <derick.william.moraes@gmail.com>
+---
+ drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Other than that, I agree that it's ready to go.
+diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
+index 3f13a744d07d..886dd05b012f 100644
+--- a/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
++++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c
+@@ -62,7 +62,7 @@ static void dal_hw_hpd_destroy(
+ 	*ptr = NULL;
+ }
+ 
+-static enum gpio_result get_value(
++static enum gpio_result dal_hw_hpd_get_value(
+ 	const struct hw_gpio_pin *ptr,
+ 	uint32_t *value)
+ {
+@@ -104,7 +104,7 @@ static enum gpio_result set_config(
+ static const struct hw_gpio_pin_funcs funcs = {
+ 	.destroy = dal_hw_hpd_destroy,
+ 	.open = dal_hw_gpio_open,
+-	.get_value = get_value,
++	.get_value = dal_hw_hpd_get_value,
+ 	.set_value = dal_hw_gpio_set_value,
+ 	.set_config = set_config,
+ 	.change_mode = dal_hw_gpio_change_mode,
+-- 
+2.43.0
 
-> Thanks,
-> Leandro
-> >
-> > Cheers,
-> > Daniel
->
