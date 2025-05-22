@@ -2,69 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F915AC0C57
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 May 2025 15:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F01BAC0C55
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 May 2025 15:11:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06A8310EC88;
-	Thu, 22 May 2025 13:12:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BC0710EC6D;
+	Thu, 22 May 2025 13:11:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="YZLoE4I9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LNpJWyvX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 087ED10ED47;
- Thu, 22 May 2025 07:58:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1747900676;
- bh=XoL4gpKlHYJ+sqRIbsFdXMS7BBSJEp74ozw8/DjLDCQ=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=YZLoE4I9cY/UqsIcAJu93aQl3QDjrLbj4NxjIHRLKR+D0r//5VekljUkuQg3jHoT2
- ae06ZpzPAf44lZMmrUr6+DghitZcioIdWx0fznBUQfJ4y4w9ky0+PXyWmnM++kblNj
- uPveNIG7fCFEUhCY3JZQr9XZ9A9LcgcrpoJpiKA1ZaADKT1EzL5qTVeDlElbnERFrE
- 1kH16R1ndk2JruQolTCI6gqosf8a+GEM3oALA5zVmRp/dJtc9lNYnxLLqlyZ1wTUs2
- Kt90LF2Q6V67fykRHk7I5YPk0/cidFy0ABB1F28yVrNuR1JRewNR+WpsEcam0WBU32
- 7ZU8Yz2KlCVJA==
-Received: from eldfell (unknown [194.136.85.206])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id E2DEE17E0393;
- Thu, 22 May 2025 09:57:54 +0200 (CEST)
-Date: Thu, 22 May 2025 10:57:41 +0300
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: Xaver Hugl <xaver.hugl@gmail.com>, Leandro Ribeiro
- <leandro.ribeiro@collabora.com>, Daniel Stone <daniel@fooishbar.org>, Simon
- Ser <contact@emersion.fr>, Alex Hung <alex.hung@amd.com>, Misyl Toad
- <misyl@froggi.es>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, wayland-devel@lists.freedesktop.org,
- leo.liu@amd.com, ville.syrjala@linux.intel.com, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com, shashank.sharma@amd.com,
- agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, aleixpol@kde.org,
- victoria@system76.com, daniel@ffwll.ch, uma.shankar@intel.com,
- quic_naseer@quicinc.com, quic_cbraga@quicinc.com,
- quic_abhinavk@quicinc.com, marcan@marcan.st, Liviu.Dudau@arm.com,
- sashamcintosh@google.com, chaitanya.kumar.borah@intel.com,
- louis.chauvet@bootlin.com, Arthur Grillo <arthurgrillo@riseup.net>
-Subject: Re: [PATCH V9 00/43] Color Pipeline API w/ VKMS
-Message-ID: <20250522105741.6aafc955@eldfell>
-In-Reply-To: <63e934e6-3c27-4128-801b-f1189f12f8f0@amd.com>
-References: <20250430011115.223996-1-alex.hung@amd.com>
- <o4MtjqyDUjuFR4Y9Q1IEZlvVQ7Nkggq0v-KtBcH0aM3pTvEq8UcSoUDxefSBVdTmLj_1_a6GmbjU_mRSFinOb44B4bu1u3mMIckuQhhZWCc=@emersion.fr>
- <3bbd4bd7-7217-4a14-b7bb-383226f44f55@amd.com>
- <CAPj87rNUDdDEopPH+iAF-a=Or6eXH4cMRU8eOj81g_40cq8gdA@mail.gmail.com>
- <f7e9cd32-3e2b-4f06-aa13-049c8b7ba29b@amd.com>
- <CAPj87rMbcZKy2ARe_tp_-+-tMu3FpS0C9R1BHVzjsUpOsU9M4g@mail.gmail.com>
- <5921076d-0150-4e0f-a3ef-1b8dec021630@collabora.com>
- <CAFZQkGymi1XY7m0Ghs8R2HaNRQptE_0NO-5J5Z2c61gDJRho3Q@mail.gmail.com>
- <63e934e6-3c27-4128-801b-f1189f12f8f0@amd.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
+ [209.85.166.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B528810ED54
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 May 2025 11:30:43 +0000 (UTC)
+Received: by mail-io1-f53.google.com with SMTP id
+ ca18e2360f4ac-8647a81e683so192952339f.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 May 2025 04:30:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1747913442; x=1748518242; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=tO+EPnAPVJiuWHkuvnHJBaP5+AY092bC5r7Cuo5Qndo=;
+ b=LNpJWyvXCwaHG4Pn84dQAGbRXAnQNSiqInB9aF79YvqWU9npcmw22j+y2UNMplMBUF
+ i+fsBa6rzz6kj66rXOnwLQnMjqjC7Ta+Dp7vaJuhdLbC2/Ovxvrlj7madFk1VVF9qoXd
+ w2vrixsljh7KHhpQoAdUSLlL/NoolH1iy4nzgO/XzK67VcrqOEfy506F8WmiCqgkPLBv
+ smb7ZZdRFCbIDUzaho4Qbddp6wUdVjX8hbrQb14sNCc0x7chr1Flkc107eugfXGcGXbc
+ IAPvwnE64nN9siSc+hPT0p2Bbyj6bf8qrFPF78jv9Z2Xml1MpjryFFL8xbp/HxbtJBQg
+ wG0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747913442; x=1748518242;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=tO+EPnAPVJiuWHkuvnHJBaP5+AY092bC5r7Cuo5Qndo=;
+ b=eqtvJ3G1KvtOW3ezqQw7c1MJOE5ONjDRDPtJmfkBHiVEu2rS8WYHSzSInwPPDEI3l2
+ bNqnW2hCOJOLIVndDL18tTJ3FMiCvgR6PZB7POtVAT6maNjjxrCyNdNJReIq7UrKz/+m
+ g5uBGqFUOjcecCNWqHhd4i3EwKA8/wopOuOid6UwVlsT7dT2dUyDaYvy73NEN8Y9wiQE
+ HljsTp1gecdqn1KvFVuuMKv8oGIYVrCxhUEo2Un2IwSIVDmXJrNMxAPAN4Cy+ZPlSSrZ
+ nJG5a7wI2/A5vW9Dm2rMGlTIA6MtdsdEizudGmz/NS+hayc6N6UfJrgX1ucFcZ+NTh8U
+ NONw==
+X-Gm-Message-State: AOJu0YxfkAcbtkv/liTH6n0uxi/5BEMPw0iZGVkyjxq9RGBaBEEZRkms
+ ShluRks09jParzEaxU6li0vlhg26dENf2GJ6Bqc2uNNNZ2tEMpKaAEoIWS9ebMEXGakPA8D4vMD
+ b1+VoTuHIiCyL4Rko1aHLLphBkObHFMaHGtNnyMlv0Toq
+X-Gm-Gg: ASbGncsoOq+iAj76kkPlhvAwrzuLBjpwJ7iPxrChMarN5M0qDvFdAGp7TBpQXv+ql/q
+ dFmLKBVwSV5+iwq3k4S31YUzCwtVykKS6VDcDCvlz7yI9AHdMfQp0TOk/fMgOsJgQ4ZvBib7jY+
+ MihWDNhuBrKsutDvibKeo8za/YmswbLhs=
+X-Google-Smtp-Source: AGHT+IGQoGOWevIkTplWz9TkR9JaToft2uJmM3q03OA0sccaFwSHS50uy9tOl+Ov9hgjeW8mCnQEzEQBjB11qIWGagI=
+X-Received: by 2002:a05:6602:3799:b0:85b:4afc:11d1 with SMTP id
+ ca18e2360f4ac-86a2319bccdmr3203445739f.5.1747913441690; Thu, 22 May 2025
+ 04:30:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/vC+ojhB1KZ=+fWvDp2G82kU";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+From: =?UTF-8?Q?Durmu=C5=9F?= <dozaltay@gmail.com>
+Date: Thu, 22 May 2025 14:30:30 +0300
+X-Gm-Features: AX0GCFscMOU6vP8UZ7irVCBVzgloDU9wjhyooSHHnzwONQS1fuipRkGZevNiFTc
+Message-ID: <CABH-8xf3sg1CiHWM9nN0a3eSRTF9Lc_vkcZDzbvWZAH0f+Gf2g@mail.gmail.com>
+Subject: Regression: RX 470 fails to boot with amdgpu.dpm=1 on kernel 6.7+
+To: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 22 May 2025 13:11:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,125 +76,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/vC+ojhB1KZ=+fWvDp2G82kU
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-On Wed, 21 May 2025 15:48:00 -0400
-Harry Wentland <harry.wentland@amd.com> wrote:
+I'm experiencing a critical issue on my system with an AMD RX 470 GPU.
+When booting with recent kernel versions (6.7.x or newer), the system
+fails to boot properly unless I explicitly disable Dynamic Power
+Management (DPM) via the `amdgpu.dpm=3D0` kernel parameter.
 
-> On 2025-05-17 07:51, Xaver Hugl wrote:
-> > Am Do., 15. Mai 2025 um 22:00 Uhr schrieb Leandro Ribeiro
-> > <leandro.ribeiro@collabora.com>: =20
-> >>
-> >>
-> >>
-> >> On 5/15/25 15:39, Daniel Stone wrote: =20
-> >>> Hi,
-> >>>
-> >>> On Thu, 15 May 2025 at 19:02, Harry Wentland <harry.wentland@amd.com>=
- wrote: =20
-> >>>> On 2025-05-15 13:19, Daniel Stone wrote: =20
-> >>>>> Yeah, the Weston patches are marching on. We've still been doing a
-> >>>>> little bit of cleanup and prep work in the background to land them,
-> >>>>> but we also can't land them until the kernel lands. None of that wo=
-rk
-> >>>>> is material to the uAPI though: as said previously, the uAPI looks
-> >>>>> completely solid and it's something we can definitely beneficially =
-use
-> >>>>> in Weston. (Even if we do need the obvious follow-ons for
-> >>>>> post-blending as well ...) =20
-> >>>>
-> >>>> We can't merge kernel uAPI without canonical userspace that uses it.
-> >>>> To move forward we'll need a userspace to at least publish a branch
-> >>>> that shows the use of this new uAPI.
-> >>>>
-> >>>> Do you have a public branch for the Weston work for this? =20
-> >>>
-> >>> Yeah, https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/=
-1702
-> >>> has been around for a little while now. There are some driver bugs
-> >>> that Leandro commented on, but they don't seem material to the uAPI as
-> >>> such? =20
-> >>
-> >> Hello,
-> >>
-> >> Yes, there's nothing related to the API that is blocking us. It seemed
-> >> very flexible and easy to use. The bugs that I've spotted are probably
-> >> internal to AMD driver.
-> >>
-> >> I'd say that the Weston patches are converging nicely, we just need ti=
-me
-> >> to get them fully reviewed. We had a few preparation MR's to land
-> >> before !1702, and now there's only one left (!1617). =20
-> >=20
-> > I also updated the KWin MR
-> > (https://invent.kde.org/plasma/kwin/-/merge_requests/6600), it can now
-> > use all the available properties and I think it's ready. I found two
-> > issues with the kernel patches though:
-> > - while attempting to set COLOR_ENCODING and COLOR_RANGE results in
-> > the atomic commit being rejected, the existing values still get
-> > applied if you use YCbCr-type buffers. I would've expected the color
-> > pipeline to operate on the YUV values in that case - and leave
-> > conversion to RGB up to the compositor adding the relevant matrix to
-> > the pipeline =20
->=20
-> AMD HW always operates on RGB values, so there'll always be an
-> implicit conversion of YCbCr-type buffers to RGB.
+When DPM is enabled (`amdgpu.dpm=3D1` or omitted, since it's the
+default), the system either freezes during early boot or fails to
+initialize the display. However, using the LTS kernel (6.6.x),
+everything works as expected with DPM enabled.
 
-Surely the transformation from YCbCr to RGB can be one that maps each
-of Y, Cb and Cr channels to G, B and R ranges [0.0, 1.0]?
+This seems to be a regression introduced in kernel 6.7 or later, and
+it specifically affects older GCN4 (Polaris) GPUs like the RX 470.
+Disabling DPM allows the system to boot, but significantly reduces GPU
+performance.
 
-Of course, that's not identity transformation (Cb and Cr have domain
-[-0.5, 0.5] or something like that) and R, B may not handle negative
-values.
+Things I=E2=80=99ve tried:
+- Confirmed that the latest `linux-firmware` is installed.
+- Verified correct firmware files exist under `/lib/firmware/amdgpu/`.
+- Tested multiple kernels (mainline and LTS).
+- Using Mesa with ACO (Radeon open driver stack).
+- System boots fine with LTS kernel (6.6.x) + DPM enabled.
 
-But if R and B channels can be negative too, then identity mapping
-would be usable.
+System info:
+- GPU: AMD RX 470 (GCN 4 / Polaris)
+- Distro: Arch Linux
+- Kernel (working): linux-lts 6.6.x
+- Kernel (broken): 6.7.x and newer (currently tested on 6.14.6)
 
-There will need to be a definition of how YCbCr enters the color
-pipeline: the order of the channels and their domains. The rest can be
-just more colorops.
-
-We should be careful to allow limited range YUV formats to be
-interpreted as full range to avoid clipping the sub-black and
-super-white signal ranges. The color pipeline can be configured to deal
-with those ranges as necessary.
-
-> What we should
-> do is reject YCbCr-type buffers with the color pipeline until we
-> implement support for COLOR_ENCODING and COLOR_RANGE as a new
-> CSC colorop.
-
-Rejecting is fine, but is implementing COLOR_ENCODING and COLOR_RANGE
-really a good idea instead of making the color pipelines handle them?
-
-Wasn't the original plan to hide all such legacy plane properties when
-userspace signals color pipeline support?
-
-
-Thanks,
-pq
-
---Sig_/vC+ojhB1KZ=+fWvDp2G82kU
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmgu2PUACgkQI1/ltBGq
-qqcU5g//QVFAf1F1KLz0X8ehCJa9ilKukLt+PgrlU+PZk55xrvV2K37xgvQdIxa1
-tRaIc0HBs6yzFABh80q86I2TImr5BHG0bgggDYOksIaWB/tfv3JpuE5QlAE7snfH
-geHs4MR9NHtFCxPNAEQ5nYBk1BQnE5p4/DUHrPnBeY1WwjzMCz6Ds6UaZPbucNzy
-P1Qh3ymGQsV088FuChXVfVvZyUPU3QfizLnbpTiwKLFveNArGBt947W3iXC4akn+
-kJJ3GiYgYqPhXRQzD+/23psPBtlIr9RmoLfLN3d+Uh8kjEuYGfE40Q2yTxduwWR9
-8PgYIAMUMaP8EQ+t+6K6VOaGHOv4sW9y4h4K6d3a1OoANPsOH+kioRghQJ1AsW8s
-k1ZTwiPvWkwEp7Mzq2nGF3ifr7DZMfX7Bl+f3ozR3VH66Xs4cFFoxSlFgD3wIsxp
-03nJMmtYHmC+UezVAbDbmqp2+BMXHfB+f4bxLzCUU39hBiQkIk2BOocAX1c/Kq41
-copoh7OiKcG7Hl2ShjnywC+221hrOIhhxTtDXqqRRDL16vDoZGIwp9z/ZaUUMgE6
-kbP5jJZH+rqoZidx1+qOxWeeQMS6egc3NgMtXBjY0irDbORbgAHsMW610xjN5SUi
-ZOn+q7qKaN6yzZ7Rr4rJN3+/GjzFs2/PVhQvsZ71HCgQvg+O7E8=
-=IQkg
------END PGP SIGNATURE-----
-
---Sig_/vC+ojhB1KZ=+fWvDp2G82kU--
+Thanks in advance,
+Durmus Ozaltay
