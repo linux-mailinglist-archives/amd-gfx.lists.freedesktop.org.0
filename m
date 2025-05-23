@@ -2,122 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA90AC1AD3
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 May 2025 05:53:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03003AC1DC1
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 May 2025 09:39:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC90710E11C;
-	Fri, 23 May 2025 03:53:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2061C10E728;
+	Fri, 23 May 2025 07:39:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pQiccLCo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iu4Fy2bW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D851D10E1B5
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 May 2025 03:53:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mIRvZpLPxHBQMM6e6dMAphQQRoodjM4Msc4LDIBMBhZqJN3Vbjtfy1dp480pGwDy/zWtiNhxfEoveKvH8EeaNmu8EOlUD9+RyTT8M+DFnlGzRst7OxGHPWavYZdMl1ogAZE8eULxAgGqat5E5kyvYTEEn5FoNkdfc7b2iQCNsqOXbNOz3xQGI614yCGjeLnBxT6e++Lql4TPI24f4D9CnH4FQTGBHstI+uemm+NStwckKTD0C/rKjyYBgK5KmNyNL12X+bhvHVWj2+hIzHESEXmhi2/XiqR+wS2NbXibq/K9MnQPLIcACCZFnp4GGV+v0oXbEYGDZBF4sP37mlClCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SFCzp9XrT2SSVmZH2/dH0DKlxdZInVNGBLO69FqNl/M=;
- b=Za+llgWkEKCAtUpcQaattfVQyKRWB+j7qDPmhBYKuQVpR0AUCzc/g9UtBgseX1zKLU//On4U93pBl/RR23WInJQeI/fBs9Cm8r4buTA+RSMZyddgmrsrumJY835vQ9bIXeoJX/t1S7JxEv5jFimaq7/Vv+yIrq5vmhGjehS4QTDLMw/3tHZQq3qtfj9n4HQoZJM/iVERbhFkpXdX6V426l7gQWdyI2CK+PtE2pVBHQkttuXa0bRA/EaxNEullwK1cxMEgrgknfU5Aw4F5lge4LNCshoUc396T4gDR6XYQO4wJI5PTlTRjmY3sifznCRxPXQtE+GP764T2zpbOGBCaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SFCzp9XrT2SSVmZH2/dH0DKlxdZInVNGBLO69FqNl/M=;
- b=pQiccLColE6JiSubp1EBmREnyOsOJod/ZPkm+JMsdv9jw7SFPkwIBGw+3j5wPVOjnkcOnl6j3MtkcQfmDNVYY/a9KGjMTYJaLK7YIoWDK6lh5+fCX8ehxK6Ir2yxINnKKDalpZ2sqKLYZU2sjkDKRahg09t65MUA3pjDDWp7wag=
-Received: from SA9PR13CA0036.namprd13.prod.outlook.com (2603:10b6:806:22::11)
- by CY8PR12MB8266.namprd12.prod.outlook.com (2603:10b6:930:79::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Fri, 23 May
- 2025 03:53:10 +0000
-Received: from SA2PEPF00003F64.namprd04.prod.outlook.com
- (2603:10b6:806:22:cafe::4f) by SA9PR13CA0036.outlook.office365.com
- (2603:10b6:806:22::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8769.18 via Frontend Transport; Fri,
- 23 May 2025 03:53:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF00003F64.mail.protection.outlook.com (10.167.248.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8769.18 via Frontend Transport; Fri, 23 May 2025 03:53:08 +0000
-Received: from gangliang-mlse-vm.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 22 May 2025 22:53:07 -0500
-From: ganglxie <ganglxie@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <tao.zhou1@amd.com>, ganglxie <ganglxie@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: Get mca for old eeprom records
-Date: Fri, 23 May 2025 11:51:55 +0800
-Message-ID: <20250523035155.63467-2-ganglxie@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250523035155.63467-1-ganglxie@amd.com>
-References: <20250523035155.63467-1-ganglxie@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E6C10E07E;
+ Fri, 23 May 2025 03:02:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747969330; x=1779505330;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wplwYI7GgC9kB2y7v0LF84mYlsoFz02XT65yeJzSsCI=;
+ b=Iu4Fy2bWt56EJQ4FTNA3JCNn85/v0DCAkFVAMEddrFSmwxr1AZPAhI8D
+ F2ygFmJyhoFP/yhsPrzPE1mNa0VNF7JKyTkBsBNKRym2qrY1+qm2eNZtK
+ IExNmaduVKY8ltNNdixrmDbq/lWeUhI+4TY8Z2uuSNOpVQ9xLqKEAgKx+
+ U+BT2KqvrKkxGIleQ7YT3biHDCqHRJf5yDDv0rKCXUCn8FQ2x5wgQLGwW
+ 1p3xQOGEYNOkrO2fYsB9RpV0ND3KhsF4ps+466TD+Tayi83KLyr+gwJmT
+ JpnggpkI4wmPlddCojMA8g1nobRYsbfavTaievM3UBCwEANrovMEsuGCP w==;
+X-CSE-ConnectionGUID: t4T1ZNHJQVW4CJOzl75DLg==
+X-CSE-MsgGUID: L7R92BOzQBi5FxAz5yVEZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="53811567"
+X-IronPort-AV: E=Sophos;i="6.15,307,1739865600"; d="scan'208";a="53811567"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 19:45:43 -0700
+X-CSE-ConnectionGUID: lPJiDiioS8qyMY/cX+2KUw==
+X-CSE-MsgGUID: rh8X+AASQBiFD9N6/1cKWQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,307,1739865600"; d="scan'208";a="171873796"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2025 19:45:39 -0700
+Date: Fri, 23 May 2025 05:45:36 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ Xaver Hugl <xaver.hugl@gmail.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v6 1/3] drm: Create a task info option for wedge events
+Message-ID: <aC_hUHyLhaY40aSl@black.fi.intel.com>
+References: <20250521153323.935974-1-andrealmeid@igalia.com>
+ <20250521153323.935974-2-andrealmeid@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F64:EE_|CY8PR12MB8266:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2572d276-4ef2-4ab5-8d56-08dd99ad54ef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xMjC+b9/32D8JNta+d04njspBLZLEsawLN1LKwJVjZHhKaxyKF9hQbRinETz?=
- =?us-ascii?Q?+jEqgXGcdNQpDhJs9jrZbDlUCdPQ8pEZBCjKX6fIqDETyd1doI+8cVEb5tQP?=
- =?us-ascii?Q?kFbTEJuSn0kww5l/iS547lhNRThIv+B/OWM05YNFf82QO8NE+EsXfZ3kr5H1?=
- =?us-ascii?Q?tfOuPmwPe5z2IfVpo9+OX9hkAxfS/dYTGvqM6bsoNxI0gZqx+QazPuFIMnEv?=
- =?us-ascii?Q?Sz9D9vWI8+Q4ywg0glxdLZGm21ia1IMIP1uIVrEkoZkxoYQ+99YqjI8WdJA7?=
- =?us-ascii?Q?eulT8aVt3WZeP0KTgqxWLit8d0yiUrYFZQPHQSD2pPpa5zVA//lmwbNR2wuj?=
- =?us-ascii?Q?FBHo+ZmJoh6NQuqaf9lg2UsAKWzhnmE4VKyhbE1HH5TDmWMbMDYtB5LnzVlw?=
- =?us-ascii?Q?Md0hpGkVBBh5w2iHqF4CeU69t4pgBDdVKQ+Pxxfuk9kvE++L1aMBPU0S8j76?=
- =?us-ascii?Q?c+ruH2VWQNpcLtAOKGWAgsuugzapjA54DZpgvEoqyR3hJCmNPD8FDZd9W5jj?=
- =?us-ascii?Q?dK1wKdG2UQiZ8izD/m2kDlbHsXTIE8f5nbwFZ3kipIyKrnospxN6EtpPz6Ng?=
- =?us-ascii?Q?vTDiscKOD9fl6qCBvb4u4Bq4/P5ZGYt6lzTX2W0GrT28xiCDgv0C8sFK5QlB?=
- =?us-ascii?Q?dGb8rDfgZNoMquuPla6zbAMmVqeuwgdfjPW9Zj0fHEoTlsSs7ipbKyfRNmiP?=
- =?us-ascii?Q?FpdBS87e7m+x0rEP3LV++299BYdM5JWczlKUJ50C7ubU46W6bRLRD29HlR5d?=
- =?us-ascii?Q?c44oJRHrxUuQgNmDEl/rYZQjK1LQfXwqK4oZTEAf4W/xka4I/MwwnDGAzjkN?=
- =?us-ascii?Q?tRtU96zCJNnlm4SLaHf/kp0XfgW5NYx1qFD6RI/LSBoHgi0QzJupyRhrLetX?=
- =?us-ascii?Q?ufRJXZvddAoHEurZ0XGooPok7CsPEIU2Q8PztZ5SbIo2qxuqdGmgjQI2apaF?=
- =?us-ascii?Q?K5OVIT10ZSJSt/foQHCvSfrv7IfkorIqj/0zxYkh7R7CjwYZlRMfrxs7cOXr?=
- =?us-ascii?Q?KHUk+iqiKbGYZZplxp4cBSvXLCwcfDxqusCEkR2TCrUyiXiSOcS3HWesHRLG?=
- =?us-ascii?Q?gwzwA1+LMC913Xwz+WOo0wV9yLdy33/qk/mu/i9e3/TpogLVN7dFKv2TY0m1?=
- =?us-ascii?Q?QaU51TGfgryAl3D6Cv6tgnZX1VXQezbtV+g+fYpPH/Nqbf8twD57Vrvm4jjq?=
- =?us-ascii?Q?Xp3rDQ1f65lnSBwOhgOw6ykux3jal/XOHnySV40+MwVCf3/IqqW8Blvxnonn?=
- =?us-ascii?Q?KgYdBWCk5LSUsY080F2VHa0CSeaHCHj4pczVkpgiMw+HJtPDOa/OwkUZn0Gr?=
- =?us-ascii?Q?Dydl9/7vjXbHlbGEbklIRMHClyXoVD2Z7r+uZJD7P44/POIcE+lr74wAmVsl?=
- =?us-ascii?Q?1VyQK9rx9FOeYn2q/+3QwIk0AyQXzFCudt6XmBJRf28gnPRTXQ9gddFaqce5?=
- =?us-ascii?Q?lpYpmaVldAgBJpsipZkglUUYf/l2bTNZctRZWiZxUq//koQwkfyVgcuKXt7k?=
- =?us-ascii?Q?PBkiOd9CoSQQ0X58bRcTwxmBaDkjAAOj+NOp?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2025 03:53:08.9114 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2572d276-4ef2-4ab5-8d56-08dd99ad54ef
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F64.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8266
+In-Reply-To: <20250521153323.935974-2-andrealmeid@igalia.com>
+X-Mailman-Approved-At: Fri, 23 May 2025 07:39:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,31 +77,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-after getting mca for old eeprom records with 'address==0', it can be
-correctly parsed under none-nps1, or it will be dropped.
+On Wed, May 21, 2025 at 12:33:21PM -0300, André Almeida wrote:
+> When a device get wedged, it might be caused by a guilty application.
+> For userspace, knowing which task was the cause can be useful for some
 
-Signed-off-by: ganglxie <ganglxie@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+s/cause/involved
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 7d4d31c6ab48..f943b9107067 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -2860,6 +2860,12 @@ static int __amdgpu_ras_convert_rec_array_from_rom(struct amdgpu_device *adev,
- 				return -EINVAL;
- 		}
- 	} else {
-+		if (bps[0].address == 0) {
-+			if (amdgpu_umc_pa2mca(adev, bps[0].retired_page << AMDGPU_GPU_PAGE_SHIFT,
-+				&(bps[0].address), AMDGPU_NPS1_PARTITION_MODE))
-+				return -EINVAL;
-+		}
-+
- 		if (amdgpu_ras_mca2pa(adev, &bps[0], err_data)) {
- 			if (nps == AMDGPU_NPS1_PARTITION_MODE)
- 				memcpy(err_data->err_addr, bps,
--- 
-2.34.1
+> situations, like for implementing a policy, logs or for giving a chance
+> for the compositor to let the user know what task caused the problem.
 
+Ditto
+
+> This is an optional argument, when the task info is not available, the
+> PID and TASK string won't appear in the event string.
+> 
+> Sometimes just the PID isn't enough giving that the task might be already
+> dead by the time userspace will try to check what was this PID's name,
+> so to make the life easier also notify what's the task's name in the user
+> event.
+
+...
+
+> -int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
+> +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method,
+> +			 struct drm_wedge_task_info *info)
+>  {
+>  	const char *recovery = NULL;
+>  	unsigned int len, opt;
+> -	/* Event string length up to 28+ characters with available methods */
+> -	char event_string[32];
+> -	char *envp[] = { event_string, NULL };
+> +	char event_string[WEDGE_STR_LEN], pid_string[PID_LEN] = "", comm_string[TASK_COMM_LEN] = "";
+
+Most likely there's no need to initialize these.
+
+With above changes,
+
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
