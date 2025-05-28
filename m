@@ -2,75 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0936FAC6089
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 May 2025 05:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D32DAC60AF
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 May 2025 06:19:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76AAF10E16A;
-	Wed, 28 May 2025 03:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34F9610E545;
+	Wed, 28 May 2025 04:19:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jLSjSvZ+";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hHcBff5M";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
- [209.85.216.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 063BF10E16A
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 May 2025 03:58:56 +0000 (UTC)
-Received: by mail-pj1-f46.google.com with SMTP id
- 98e67ed59e1d1-30e7ee5fe74so506638a91.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 May 2025 20:58:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748404736; x=1749009536; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=aPI9KYo37tePYX/w4uGjoRORUn+DSJHjMDO6cKd8iEQ=;
- b=jLSjSvZ+qonCjip3PHMoUGXYMwhI0SImTG0JXSsdmQpN/59zZVnXzGMaIPj2CG0+py
- xx1qZjTDMb8eRHxDRzXO7e4Zg/sF2eG0B47lm5ZylKTee42ZEjawXcZLbyuvivsE49pw
- BDq0KXZETwpnH2S+9yrBcujOTgyCJQbzlchX2Se1KJfeiCAZOrV1vcFe7J4h9P1stoF6
- E6QLn0ZoL7mEXJGLPEvjHnMTFSnxM3YC9mkyhzwUBntWsL3QFwArDh5lb0EifYfQY0LS
- 2u6M/VlEafLztvTwZcAxuIjVCJuzS0GSTcuwMNTlDbjicVvUyYcAjs/F2frarqM+KSz6
- uXDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748404736; x=1749009536;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=aPI9KYo37tePYX/w4uGjoRORUn+DSJHjMDO6cKd8iEQ=;
- b=KwZvXt8n5RAXIKDR/EU58h58UkPuKINvvTcvZZ9p9qTeUbeu7fmaiyJH/PM9LOmxfh
- uMTDP3ZUNlPMjsS4lmbjeG2WEgbeo7pwePIgve0bHJSgSGOP6CAbYGW/Eh63M11SRtsz
- 6hYy0VekFQtVwrgfQBhfEVdVNU848uckBq3aYCQcHwHgtHo+OJB7+UwXY/+J+As0S1SE
- fZWT5dEgAxwKOrQSlwh0v0fr5U+nEeuQ8Hq59rdRM46NVVlr2lGsSXXZoc055jhzU8w2
- P1BTPQznHzbTVyAKWyIWNYqsyzZ2fsmiQykU9m6wvOPewCZrknbIWm6KbVlN6mxaZxM2
- o3+Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUc8pEuGDcxGlwSNG8FBhn89kLrKnx7YZ6JMtayhiCxOhlzzzwDPkcpkCResWPG8yUIBlt+FACT@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyUQMGizPkmmL0gFesZDVcsH6gR95/bACWLd850kxQAUiYPhVL3
- ZKpEPNi7kuY8neUkh85do3aLaF4riS5a9zM4JO+6JHFf3QWMxn1hBlsE3cQd/kWDzg90H0/0+fC
- /hn6AcU5gPF1snIUzkVL+ilHTengR9iA=
-X-Gm-Gg: ASbGncuAUzMI+X0yBUtyj0aMBmfyJV7/LOPbE+xXMf9eKqbwdRrBgepdohlX5Cf63xX
- Z8Ca/satr9bDpTtB8s1rjYDdlrYfXGTYji+PF8iD3EJiLIF/tEon6hNMr2DKV984Wb8ORJvGqqi
- 87N971Z3/8mZq1QFKjtinoN2fujAgHG0wjeA==
-X-Google-Smtp-Source: AGHT+IGYhCAktzkFuQml4fCq4838BydlhpHaktjCiGA73axl4zGndCl4yKF47C59EwGWfxDflbYmk2j0Fz+rMchQg08=
-X-Received: by 2002:a17:90b:3912:b0:310:cf92:7899 with SMTP id
- 98e67ed59e1d1-311e1813502mr674912a91.3.1748404736355; Tue, 27 May 2025
- 20:58:56 -0700 (PDT)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2068.outbound.protection.outlook.com [40.107.244.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D764610E1C3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 May 2025 04:19:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pAaRjEutBOLHo7zMBfgbZmAQQhUOqdigLFDlOocd0S/SBws9bFY/vP8TQLnIVAkFM4wFqgSSjyVsfZ53P06mlq7KRV7pheYga4jTf18xghVWzSIgx27YVBg5lfIkH8lKpm5FIBT7LWgS5b9x5ElSZ7Aa/bihERL9C6Z+Yiu+tedQsGu9bh4HqKsOUEU0GvcCEAQhmhc3YKC3rQnfn9/ZlUYs2rfMeimlTJx/hHC5MMWXw4gd4T5Yz1Jq2xwWn7RfY2WvwjcEixeknN0WlA/xSt+eXbzpaodfkRjia4wE0MKG10euo3VtxA3DkdfyA2KfGyIAuEJk2YWkLjQ31NhSzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bYjip72b6O2a8x1cSO4lfYwSq4+dHk5SRa+IFYZog5s=;
+ b=J04JHx47yG3sn00XmwhaWwUeU5XkUboTgOSK/uzVPe0nczij/jDfqPFf8om0JpCrCnH/BMD9fw4aRMeIOnkNcBv4YIUEa6yYamgwTtjIsIh0YfmYFGzQ0yPfemVYhpQFxAU3bvH5Hl8YLLyb5EVKUaOMmDpelPZch5S9x2B5dtRknHvOOSSG1csQotMThqCoDYpiYtoFHzkpETrGJDzaT5tSUAourB96hzZBxg2Ks7TZFTrqJLDUN/za7TntZ5fO11ztmgleZcQ2FXkAIzhy7uJTu8srvryBzHMD0xhd44WTfERtluqcBbuwhCIwEB2LLWwAfdoZOMdk1V7YxD3Org==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bYjip72b6O2a8x1cSO4lfYwSq4+dHk5SRa+IFYZog5s=;
+ b=hHcBff5M9yB8UCu/FYiekyGcnEbAvXzhVby963fGHpPmU4y4yWvxNLvj1BhdhaoWAue7sjWto9CLzNdontsHyPhqvjtb9mLuqoMnnGmJjpY/tQe9Zztbdjx7dwPxaGvv9ihyToNPIhSreioW72qX7DzLJqybPhiOQ0TcmptQ2I8=
+Received: from DS7PR05CA0059.namprd05.prod.outlook.com (2603:10b6:8:2f::32) by
+ SJ1PR12MB6364.namprd12.prod.outlook.com (2603:10b6:a03:452::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8722.33; Wed, 28 May 2025 04:19:30 +0000
+Received: from DS3PEPF000099E0.namprd04.prod.outlook.com
+ (2603:10b6:8:2f:cafe::48) by DS7PR05CA0059.outlook.office365.com
+ (2603:10b6:8:2f::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8769.18 via Frontend Transport; Wed,
+ 28 May 2025 04:19:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS3PEPF000099E0.mail.protection.outlook.com (10.167.17.203) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8769.18 via Frontend Transport; Wed, 28 May 2025 04:19:29 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 27 May
+ 2025 23:19:28 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH V3 00/19] Reset improvements for GC10+
+Date: Wed, 28 May 2025 00:18:55 -0400
+Message-ID: <20250528041914.5844-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-References: <20250522215559.14677-1-alexander.deucher@amd.com>
- <20250522215559.14677-3-alexander.deucher@amd.com>
- <mmoave25vjenpkpt3osch5kin5qnryurqaty5pmtsju7zh37xk@22wccbz47es6>
-In-Reply-To: <mmoave25vjenpkpt3osch5kin5qnryurqaty5pmtsju7zh37xk@22wccbz47es6>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 27 May 2025 23:58:44 -0400
-X-Gm-Features: AX0GCFuIhwwYDcmTa6o21O0i6qp607DTDd4CQ6vdZ2yyvThfwKPxid-5-UWMpec
-Message-ID: <CADnq5_NB54fQoTg+i_TexTERRLizY_KbkMMZm+ypEoSzfx5RhA@mail.gmail.com>
-Subject: Re: [PATCH 02/10] drm/amdgpu: rework queue reset scheduler interaction
-To: Rodrigo Siqueira <siqueira@igalia.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
- christian.koenig@amd.com, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099E0:EE_|SJ1PR12MB6364:EE_
+X-MS-Office365-Filtering-Correlation-Id: c786fdc6-642e-4e26-4533-08dd9d9ed757
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VUMwYjhDU2pCeWovZ1RNOGwxZVJnSkJ6eXRTQ3lwZWdibkRpMTROc3dmNXY4?=
+ =?utf-8?B?UEdKTTJBbkdoTDdVZk5NcHlVaWQzUU5mRi9jZzZzQVAzVlA1c0ZjT1YzVDZC?=
+ =?utf-8?B?UGpXNVR6bUxmRDJXQ2Y2bHlsZkt1cHoyd0dPR0wvTHJQSEtYMDVvYVRDYmYz?=
+ =?utf-8?B?MG0zZmVHQXBMT1kxa0c0WWk3SmtNdFVxY3BaSzJFUEtBcngxUlJYNGdjd3R4?=
+ =?utf-8?B?SFBMZEI0MGhWQWhlVXIxNFZDZ0NhNGFOeFU1aE0xZ3QyeWhsUFZBbjJOVXFY?=
+ =?utf-8?B?UmxScThNMlZaZERyNEt6Sk1CSk5jKytoVTlaK1FhbTZTQlZabEhzaUgweVdL?=
+ =?utf-8?B?cEpWTWIvdWw2VDFRMm4ycWpuSnl4QXk2RHNWMFZDbENONnRvbm5vRmxVMjlu?=
+ =?utf-8?B?aDEwNUh2NTJjQm9ubG54eE9HSFluQmM2WStMNi9yZlZVNVVqa3RQM3NVTzM4?=
+ =?utf-8?B?bndFanZXTVYzRjdxcVJHTDgyamRvdWFIUnV6TmRLcDVMWVRObnBJUlR2UTQ2?=
+ =?utf-8?B?NDF2Q2l5Y1ZLc1Z4RVAxMWZPcEtsblJrVFpQL3lxbTFaYlZlVDJLUUkzUUwx?=
+ =?utf-8?B?TmZZMGEvdGR5RlBZOTJYNXB5RFZ1TkdXT3JmYktsbWVKZDhySUhWSUlrelV4?=
+ =?utf-8?B?UWIzbWY2eDRvZlYxQ3dMZ3pETDVNK28xT2s1cEhEaTJDbElWWUJmU1QxVmJC?=
+ =?utf-8?B?aWcwa2o1ZDNtNlArZzlMV3VZTFBVWkl6NWdWL2xTNlROSmtOZ3VNREJ3eDBi?=
+ =?utf-8?B?RmVpMmRmSmVFM1pVNktvckNJZVB3QmlZSmJ6TUxOSS93eGg4UUhEWkRBb1hW?=
+ =?utf-8?B?REtUcXA0SWY2K3RsSzlRMVY0amZkOHJpSmladUQ3bUZLZ3Zwa0dYNHRhRHFK?=
+ =?utf-8?B?VXpzWVhYRUowdlBsdmZ4cjNDWTJPSVp4OVhqYklGRGVPWXdEZzJveVJTNFZE?=
+ =?utf-8?B?cmtKM0ZwQUVPMzZPSXVQQlBBcWoza2FTc1JreHdLWlZDTHdRYTU2U0kwSWl6?=
+ =?utf-8?B?Nno5ZlJNL1ZVWFNQaVNlQlhVRTQ4bmMwRFpMZUhaaW5HcnpwT0YzRW1xL05N?=
+ =?utf-8?B?cEJZWU1OTGhVNHVUbEREVFpzMFhjaUorUWZ4aWZHNmlyaGZuRWFkTFIxYTVM?=
+ =?utf-8?B?VVJOSVR1QUpyckJ3VjRCaHcwWTlsb2gwcHlPRkZYYmYwcUp5YlQrcytNZG5G?=
+ =?utf-8?B?bEJTMWJFMTZvdWhOQXBsT1RSOU1JL240VkMzaHhoVjgrVUxPZjVyYTdUUWNa?=
+ =?utf-8?B?emJUM2JVRXZheUJnNWkxQUM2dkZvL2l4UzNmbVlVWk5YaGRFNi9uR0RYQnZI?=
+ =?utf-8?B?MEFXYkNnTGFmZjgyL1VjSnhsekQwSUs2ODJDV0Y5bTVrb21GcTN6LzFGbUNS?=
+ =?utf-8?B?WjR6a2EyNEcvQTYzdmo1U204RVp2a3Y2dHRoS2RKNnh6Q3ZidWdKUkd5UmNG?=
+ =?utf-8?B?OTVyMk56UXQwNkV5Tk4wUUpUczVrZFk5RXBCV21PVjZocHk3YVBmZ24zYUEz?=
+ =?utf-8?B?L1BWOVBoQWFsY1dHbzk4QjRMMmV6VGwrZ3JFTVJUYzFROUtOR091OU84UnJU?=
+ =?utf-8?B?ald3RTg0b1lQRmpXcjJIZk54V2RMTzVNTXZlOGVKcjEzK3oyVkZ4SXk2VVp3?=
+ =?utf-8?B?Y1JScmxFc2QwdjFnUENiN2ZVa0xMSldJUkVpZDA1b3VvdzBqcGpSSlY4MG5G?=
+ =?utf-8?B?d3c5OUllZytZRDVRczJ2UDVKZDBEMlhyRnZPcEtBNUo3bmxNNnlSaXZ2MGNY?=
+ =?utf-8?B?UTZZUVhoMzRiakdiWm5sZzhMTFBWR0ZCWnBBMjNtTVBqNlpjNTlNWTNmN0wz?=
+ =?utf-8?B?UUJhQTRoNmUzSkdsMXd6ZVY1dGdjOFN1RnJYRC9RLzB6Qkd1VWhUK1ZGbWVy?=
+ =?utf-8?B?R05XZlZpRFI3QTZRc0NBd1FZMTlHVTZNYlZBaWlZWGdOUGNYY1FBcFozdVB5?=
+ =?utf-8?B?ekZ0SWR1ZzBGYzhhS016QTNQb3ZJWEorZk5MY1VQaSs3aFZ0dTA4ZHpTWTVl?=
+ =?utf-8?B?TjBya2paWHQ1Y3YwM2Vab0FhUmpuMmVlZXYxcHJHeUVlRU9jSFBzRUxUZkNm?=
+ =?utf-8?Q?etYWwm?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 04:19:29.8901 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c786fdc6-642e-4e26-4533-08dd9d9ed757
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099E0.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6364
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,112 +139,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 27, 2025 at 12:47=E2=80=AFPM Rodrigo Siqueira <siqueira@igalia.=
-com> wrote:
->
-> On 05/22, Alex Deucher wrote:
-> > From: Christian K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
-> >
-> > Stopping the scheduler for queue reset is generally a good idea because
-> > it prevents any worker from touching the ring buffer.
-> >
-> > But using amdgpu_fence_driver_force_completion() before restarting it w=
-as
-> > a really bad idea because it marked fences as failed while the work was
-> > potentially still running.
-> >
-> > Stop doing that and cleanup the comment a bit.
-> >
-> > v2: keep amdgpu_fence_driver_force_completion() for non-gfx rings
->
-> Why keep this amdgpu_fence_driver_force_completion() for non-gfx is ok?
-> From the commit descriptions, sounds like we want to avoid
-> amdgpu_fence_driver_force_completion() before the driver restarts the
-> queue.
+This set improves per queue reset support for GC10+.
+When we reset the queue, the queue is lost so we need
+to re-emit the unprocessed state from subsequent submissions.
+To that end, in order to make sure we actually restore
+unprocessed state, we need to enable legacy enforce isolation
+so that we can safely re-emit the unprocessed state.  If
+we don't multiple jobs can run in parallel and we may not
+end up resetting the correct one.  This is similar to how
+windows handles queues.  This also gives us correct guilty
+tracking for GC.
 
-It depends on what the queue reset actually does.  If the entire queue
-is lost, then amdgpu_fence_driver_force_completion() is what we want.
-If the queue reset is able to reset the queue and restore the
-non-guilty state, then there is no need to call this because the
-subsequent fences should signal and the rest of the jobs should
-naturally complete.
+Tested on GC 10 and 11 chips with a game running and
+then running hang tests.  The game pauses when the
+hang happens, then continues after the queue reset.
 
-Alex
+I tried this same approach and GC8 and 9, but it
+was not as reliable as soft recovery.  As such, I've dropped
+the KGQ reset code for pre-GC10.
 
->
-> >
-> > Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-> > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 26 +++++++++++++------------
-> >  1 file changed, 14 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_job.c
-> > index acb21fc8b3ce5..e57401ef85140 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> > @@ -136,10 +136,12 @@ static enum drm_gpu_sched_stat amdgpu_job_timedou=
-t(struct drm_sched_job *s_job)
-> >       } else if (amdgpu_gpu_recovery && ring->funcs->reset) {
-> >               bool is_guilty;
-> >
-> > -             dev_err(adev->dev, "Starting %s ring reset\n", s_job->sch=
-ed->name);
-> > -             /* stop the scheduler, but don't mess with the
-> > -              * bad job yet because if ring reset fails
-> > -              * we'll fall back to full GPU reset.
-> > +             dev_err(adev->dev, "Starting %s ring reset\n",
-> > +                     s_job->sched->name);
-> > +
-> > +             /*
-> > +              * Stop the scheduler to prevent anybody else from touchi=
-ng the
-> > +              * ring buffer.
-> >                */
-> >               drm_sched_wqueue_stop(&ring->sched);
-> >
-> > @@ -157,19 +159,19 @@ static enum drm_gpu_sched_stat amdgpu_job_timedou=
-t(struct drm_sched_job *s_job)
-> >
-> >               r =3D amdgpu_ring_reset(ring, job->vmid);
-> >               if (!r) {
-> > -                     if (amdgpu_ring_sched_ready(ring))
-> > -                             drm_sched_stop(&ring->sched, s_job);
-> >                       if (is_guilty) {
-> >                               atomic_inc(&ring->adev->gpu_reset_counter=
-);
-> > -                             amdgpu_fence_driver_force_completion(ring=
-);
-> > +                             if (ring->funcs->type !=3D AMDGPU_RING_TY=
-PE_GFX)
-> > +                                     amdgpu_fence_driver_force_complet=
-ion(ring);
-> >                       }
-> > -                     if (amdgpu_ring_sched_ready(ring))
-> > -                             drm_sched_start(&ring->sched, 0);
-> > -                     dev_err(adev->dev, "Ring %s reset succeeded\n", r=
-ing->sched.name);
-> > -                     drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE=
-_RECOVERY_NONE);
-> > +                     drm_sched_wqueue_start(&ring->sched);
-> > +                     dev_err(adev->dev, "Ring %s reset succeeded\n",
-> > +                             ring->sched.name);
-> > +                     drm_dev_wedged_event(adev_to_drm(adev),
-> > +                                          DRM_WEDGE_RECOVERY_NONE);
-> >                       goto exit;
-> >               }
-> > -             dev_err(adev->dev, "Ring %s reset failure\n", ring->sched=
-.name);
-> > +             dev_err(adev->dev, "Ring %s reset failed\n", ring->sched.=
-name);
-> >       }
-> >       dma_fence_set_error(&s_job->s_fence->finished, -ETIME);
-> >
-> > --
-> > 2.49.0
-> >
->
-> --
-> Rodrigo Siqueira
+The same approach can be extended to SDMA and VCN in the future.
+They don't need enforce isolation because those engines
+are single threaded so they always operate serially.
+
+Alex Deucher (18):
+  drm/amdgpu/gfx10: enable legacy enforce isolation
+  drm/amdgpu/gfx11: enable legacy enforce isolation
+  drm/amdgpu/gfx12: enable legacy enforce isolation
+  drm/amdgpu/gfx7: drop reset_kgq
+  drm/amdgpu/gfx8: drop reset_kgq
+  drm/amdgpu/gfx9: drop reset_kgq
+  drm/amdgpu: add AMDGPU_QUEUE_RESET_TIMEOUT
+  drm/amdgpu/ring: add helper for padding the ring
+  drm/amdgpu: pad ring in amdgpu_ib_schedule
+  drm/amdgpu: track ring state associated with a job
+  drm/amdgpu/gfx10: re-emit unprocessed state on kgq reset
+  drm/amdgpu/gfx11: re-emit unprocessed state on kgq reset
+  drm/amdgpu/gfx12: re-emit unprocessed state on kgq reset
+  drm/amdgpu/gfx9: re-emit unprocessed state on kcq reset
+  drm/amdgpu/gfx9.4.3: re-emit unprocessed state on kcq reset
+  drm/amdgpu/gfx10: re-emit unprocessed state on kcq reset
+  drm/amdgpu/gfx11: re-emit unprocessed state on kcq reset
+  drm/amdgpu/gfx12: re-emit unprocessed state on kcq reset
+
+Christian König (1):
+  drm/amdgpu: rework queue reset scheduler interaction
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h      |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c   |  8 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  | 32 ++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h  |  2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 52 ++++++++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  6 ++
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   | 57 ++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c   | 48 +++++++++-------
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c   | 48 +++++++++-------
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c    | 71 ------------------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c    | 71 ------------------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    | 59 ++++----------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c  | 15 ++++-
+ 13 files changed, 192 insertions(+), 278 deletions(-)
+
+-- 
+2.49.0
+
