@@ -2,42 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B050CACA81C
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Jun 2025 03:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D713ACA81A
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Jun 2025 03:44:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5088A10E45C;
-	Mon,  2 Jun 2025 01:44:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC7910E174;
+	Mon,  2 Jun 2025 01:44:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A9cvP680";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="m+lTUgvT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C39010E174
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5C710E298
  for <amd-gfx@lists.freedesktop.org>; Mon,  2 Jun 2025 01:44:46 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 71C0B61127;
+ by tor.source.kernel.org (Postfix) with ESMTP id 161556113B;
+ Mon,  2 Jun 2025 01:44:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 660FCC4CEED;
  Mon,  2 Jun 2025 01:44:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3DB3C4CEE7;
- Mon,  2 Jun 2025 01:44:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1748828680;
- bh=w5r5SeHc37+UD8EAGYS7R8Ty8dvRsT8Te6+stFvuwcs=;
- h=From:To:Cc:Subject:Date:From;
- b=A9cvP680BnnApmWRZIJd78sMwedT017IRjESQxCeTiewgtomUdrGDGxNXH43ntY4h
- /DDr2za+z7bHcbs0XUjnZn3/7cd+BjiidZEu9Fpausw1k0oJ/I1tvkkaDC11JAhu25
- I6bEsys8wTBNqR88gU0cnbR6jHN4ATC9JssBtLTvGP3J8Mzallyz0l7Z888+IDR/yJ
- D/5Dtlorfc7yxu10QfEe6hQYG626UtX6h5vWzE10M2yX/+Y2pnpj32YFMbsIlEgXcb
- 9Bk4mioCKQwstk/pRnaHC2sby02bsMKbvRt5M9/nxmP5pTz3EFyD4lFmwD6RhyXla1
- r8/PU5lSbe1Tg==
+ bh=sOj+vMcGSpkrJuSvboO8dgUzWvjLunGU//CbLA/ymfg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=m+lTUgvTDO8kLtAk/4O/kstUK3FXysKwcACHsr5OMerVf6H41oF3oUMDifKPEm2Lx
+ VYV/tpZ62myowB1cI+sghk89G4kRqse6HUJfcBIYx12zoBfbeSADs4G2gaHoJ5E6Jp
+ POcHoUYj/ckCtj5hI0SEMhm7JiXGFmn7f1KMiW9Eym1T+wS7Vapo9mZfVdeiECowsN
+ /CxfEs2H13TfUMnVYPvEjWXkGBxf3ifEcBMsdN2xhOx/UClfT4+aQLzxNab/S1WH6z
+ 2GCF7/8VgtHkguZwVRGHrVM47/b7LT9LjsdfPW3adSwdNJDFUmrN0JMI9+YoxVhamm
+ 5I+XXULtwnPGw==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: Chris Bainbridge <chris.bainbridge@gmail.com>,
  Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH 0/3] Handle aborted suspend better
-Date: Sun,  1 Jun 2025 20:44:29 -0500
-Message-ID: <20250602014432.3538345-1-superm1@kernel.org>
+Subject: [PATCH 1/3] drm/amd: Add support for a complete pmops action
+Date: Sun,  1 Jun 2025 20:44:30 -0500
+Message-ID: <20250602014432.3538345-2-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250602014432.3538345-1-superm1@kernel.org>
+References: <20250602014432.3538345-1-superm1@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -56,30 +58,91 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Chris Bainbridge reported some list corruption occurring around the
-suspend sequence when an aborted suspend occurs.
+complete() callbacks are supposed to handle reversing anything
+that occurred during prepare() callbacks.  They'll be called on every
+power state transition, and will also be called if the sequence is
+failed (such as an aborted suspend).
 
-I couldn't reproduce this specific problem, but when I tried I found
-some other issues where the cached DM state isn't properly destroyed.
+Add support for IP blocks to support this action.
 
-This is because there isn't a complete() callback to match the prepare()
-callback used by amdgpu. Normally the PM core will call complete() after
-every suspend attempt (succesful or not).
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  2 +-
+ drivers/gpu/drm/amd/include/amd_shared.h   |  1 +
+ 4 files changed, 25 insertions(+), 1 deletion(-)
 
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/4280
-
-Mario Limonciello (3):
-  drm/amd: Add support for a complete pmops action
-  drm/amd/display: Stop storing failures into adev->dm.cached_state
-  drm/amd/display: Destroy cached state in complete() callback
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  22 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |   2 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 125 +++++++++++-------
- drivers/gpu/drm/amd/include/amd_shared.h      |   1 +
- 5 files changed, 103 insertions(+), 48 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index a5ccd0ada16ab..77da367231b3a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1619,6 +1619,7 @@ void amdgpu_driver_release_kms(struct drm_device *dev);
+ 
+ int amdgpu_device_ip_suspend(struct amdgpu_device *adev);
+ int amdgpu_device_prepare(struct drm_device *dev);
++void amdgpu_device_complete(struct drm_device *dev);
+ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon);
+ int amdgpu_device_resume(struct drm_device *dev, bool fbcon);
+ u32 amdgpu_get_vblank_counter_kms(struct drm_crtc *crtc);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 72e41781afb06..abe86c7d830d5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -5034,6 +5034,28 @@ int amdgpu_device_prepare(struct drm_device *dev)
+ 	return 0;
+ }
+ 
++/**
++ * amdgpu_device_complete - complete power state transition
++ *
++ * @dev: drm dev pointer
++ *
++ * Undo the changes from amdgpu_device_prepare. This will be
++ * called on all resume transitions, including those that failed.
++ */
++void amdgpu_device_complete(struct drm_device *dev)
++{
++	struct amdgpu_device *adev = drm_to_adev(dev);
++	int i;
++
++	for (i = 0; i < adev->num_ip_blocks; i++) {
++		if (!adev->ip_blocks[i].status.valid)
++			continue;
++		if (!adev->ip_blocks[i].version->funcs->complete)
++			continue;
++		adev->ip_blocks[i].version->funcs->complete(&adev->ip_blocks[i]);
++	}
++}
++
+ /**
+  * amdgpu_device_suspend - initiate device suspend
+  *
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 4db92e0a60da7..0fc0eeedc6461 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -2570,7 +2570,7 @@ static int amdgpu_pmops_prepare(struct device *dev)
+ 
+ static void amdgpu_pmops_complete(struct device *dev)
+ {
+-	/* nothing to do */
++	amdgpu_device_complete(dev_get_drvdata(dev));
+ }
+ 
+ static int amdgpu_pmops_suspend(struct device *dev)
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
+index 11374a2cbab87..a06e92b1b2ef9 100644
+--- a/drivers/gpu/drm/amd/include/amd_shared.h
++++ b/drivers/gpu/drm/amd/include/amd_shared.h
+@@ -427,6 +427,7 @@ struct amd_ip_funcs {
+ 	int (*prepare_suspend)(struct amdgpu_ip_block *ip_block);
+ 	int (*suspend)(struct amdgpu_ip_block *ip_block);
+ 	int (*resume)(struct amdgpu_ip_block *ip_block);
++	void (*complete)(struct amdgpu_ip_block *ip_block);
+ 	bool (*is_idle)(struct amdgpu_ip_block *ip_block);
+ 	int (*wait_for_idle)(struct amdgpu_ip_block *ip_block);
+ 	bool (*check_soft_reset)(struct amdgpu_ip_block *ip_block);
 -- 
 2.43.0
 
