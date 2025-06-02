@@ -2,54 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A17FACA371
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Jun 2025 01:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B050CACA81C
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Jun 2025 03:44:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE9B910E4C5;
-	Sun,  1 Jun 2025 23:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5088A10E45C;
+	Mon,  2 Jun 2025 01:44:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ukyIz+G2";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A9cvP680";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7827210E4C1;
- Sun,  1 Jun 2025 23:45:53 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C39010E174
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Jun 2025 01:44:46 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 14DC95C4A51;
- Sun,  1 Jun 2025 23:43:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60767C4CEF2;
- Sun,  1 Jun 2025 23:45:51 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 71C0B61127;
+ Mon,  2 Jun 2025 01:44:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3DB3C4CEE7;
+ Mon,  2 Jun 2025 01:44:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1748821552;
- bh=JHWLWwdDqv4gDOc6/jG8G5P94Q/KqoEUEdQVFhGjWYI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ukyIz+G2iwpc40fiKkoDUJC3FcxoGlbCM9x/xqU/KABS2KOGn2F9k+VrA/gSkFtOs
- OS7gKViDTZksS+K5tzr+oUgr1yuMhz1Efah85/tsSwq4r/SaEnJWlq86eOoip64krh
- SDOev20/EIpyke20KytGtjPPv7NfuGgS4vhOf/bz0lnM3uR68OVBYZ9BimDntw4hUG
- XcApgAsRvpiZIzXYa0EDswUlViBcJPpschrqmh2lEMs4Y2DYT2N+3E2ejIkMaRkn6q
- HsKZzKcnrYDgTyOQr0yyvpRgvib5O1JCAOUlIBEclTl/NwQPntkPkif1cDqBvYYLcI
- YyoI5Hl3D2uwA==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Amber Lin <Amber.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Sasha Levin <sashal@kernel.org>, Felix.Kuehling@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 14/22] drm/amdkfd: Set
- SDMA_RLCx_IB_CNTL/SWITCH_INSIDE_IB
-Date: Sun,  1 Jun 2025 19:45:05 -0400
-Message-Id: <20250601234515.3519309-14-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250601234515.3519309-1-sashal@kernel.org>
-References: <20250601234515.3519309-1-sashal@kernel.org>
+ s=k20201202; t=1748828680;
+ bh=w5r5SeHc37+UD8EAGYS7R8Ty8dvRsT8Te6+stFvuwcs=;
+ h=From:To:Cc:Subject:Date:From;
+ b=A9cvP680BnnApmWRZIJd78sMwedT017IRjESQxCeTiewgtomUdrGDGxNXH43ntY4h
+ /DDr2za+z7bHcbs0XUjnZn3/7cd+BjiidZEu9Fpausw1k0oJ/I1tvkkaDC11JAhu25
+ I6bEsys8wTBNqR88gU0cnbR6jHN4ATC9JssBtLTvGP3J8Mzallyz0l7Z888+IDR/yJ
+ D/5Dtlorfc7yxu10QfEe6hQYG626UtX6h5vWzE10M2yX/+Y2pnpj32YFMbsIlEgXcb
+ 9Bk4mioCKQwstk/pRnaHC2sby02bsMKbvRt5M9/nxmP5pTz3EFyD4lFmwD6RhyXla1
+ r8/PU5lSbe1Tg==
+From: Mario Limonciello <superm1@kernel.org>
+To: amd-gfx@lists.freedesktop.org
+Cc: Chris Bainbridge <chris.bainbridge@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Subject: [PATCH 0/3] Handle aborted suspend better
+Date: Sun,  1 Jun 2025 20:44:29 -0500
+Message-ID: <20250602014432.3538345-1-superm1@kernel.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.4.293
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,85 +54,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Amber Lin <Amber.Lin@amd.com>
+From: Mario Limonciello <mario.limonciello@amd.com>
 
-[ Upstream commit ab9fcc6362e0699fc1150aa1d8503c40fce2c1e1 ]
+Chris Bainbridge reported some list corruption occurring around the
+suspend sequence when an aborted suspend occurs.
 
-When submitting MQD to CP, set SDMA_RLCx_IB_CNTL/SWITCH_INSIDE_IB bit so
-it'll allow SDMA preemption if there is a massive command buffer of
-long-running SDMA commands.
+I couldn't reproduce this specific problem, but when I tried I found
+some other issues where the cached DM state isn't properly destroyed.
 
-Signed-off-by: Amber Lin <Amber.Lin@amd.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
+This is because there isn't a complete() callback to match the prepare()
+callback used by amdgpu. Normally the PM core will call complete() after
+every suspend attempt (succesful or not).
 
-Based on my comprehensive analysis of both the commit and the kernel
-codebase context, here is my assessment: **YES** This commit should be
-backported to stable kernel trees. Here's my extensive analysis: ## Code
-Analysis The commit makes a minimal but important change to
-`drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c` in the
-`update_mqd_sdma()` function: ```c m->sdmax_rlcx_ib_cntl |=
-SDMA0_GFX_IB_CNTL__SWITCH_INSIDE_IB_MASK; ``` ## Why This Should Be
-Backported ### 1. **Fixes a Clear Functional Bug** - The commit
-addresses missing register configuration that prevents proper SDMA
-preemption - Without this bit set, SDMA engines cannot perform context
-switches inside Indirect Buffers (IBs) - This creates a scheduling
-fairness issue where long-running SDMA commands can starve other queues
-### 2. **Minimal Risk, High Confidence Change** - **Single line
-addition**: Only adds one register bit setting - **Well-understood
-hardware feature**: The `SWITCH_INSIDE_IB` bit is a documented hardware
-capability - **Conservative fix**: Simply enables existing hardware
-functionality that should have been enabled - **No API changes**:
-Doesn't modify interfaces or data structures ### 3. **Broad Impact on
-Modern AMD Hardware** - Affects all AMD GPUs with SDMA engines from GCN
-4.0+ (Vega, Navi, RDNA generations) - Impacts compute workloads using
-ROCm, OpenCL, and HIP - The issue affects system responsiveness under
-heavy SDMA usage patterns ### 4. **Consistent with Kernel Patterns**
-From examining similar commits, this follows the pattern of commits
-marked "Backport Status: YES": - **Similar Commit #5** was backported
-for implementing missing register state control in SDMA - Both commits
-involve configuring SDMA control registers that were previously unset -
-Both address functional correctness rather than adding new features ###
-5. **Meets Stable Tree Criteria** - **Important bugfix**: ✅ Fixes SDMA
-scheduling fairness - **Small and contained**: ✅ Single line change in
-one function - **No architectural changes**: ✅ Uses existing register
-and bit definitions - **Minimal regression risk**: ✅ Only enables
-documented hardware feature - **Critical subsystem**: ✅ GPU scheduling
-affects system performance ### 6. **Clear User Impact** The commit
-message explicitly states the problem: "massive command buffer of long-
-running SDMA commands" can cause starvation. This directly impacts: -
-Multi-process compute workloads - Real-time or interactive applications
-that need timely SDMA access - System responsiveness during heavy GPU
-compute usage ### 7. **Evidence from Codebase Analysis** My kernel tree
-analysis revealed: - The `SWITCH_INSIDE_IB` functionality exists across
-all SDMA generations - Other SDMA drivers (amdgpu) properly configure
-this register - KFD was missing this configuration, creating an
-inconsistency - No security implications found - this is purely a
-scheduling correctness issue This commit represents exactly the type of
-targeted bugfix that stable trees are designed to include: it's small,
-safe, fixes a real user-impacting issue, and has minimal risk of
-regression.
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/4280
 
- drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Mario Limonciello (3):
+  drm/amd: Add support for a complete pmops action
+  drm/amd/display: Stop storing failures into adev->dm.cached_state
+  drm/amd/display: Destroy cached state in complete() callback
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-index d978fcac26651..4110cdc71f045 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-@@ -387,6 +387,10 @@ static void update_mqd_sdma(struct mqd_manager *mm, void *mqd,
- 	m->sdma_engine_id = q->sdma_engine_id;
- 	m->sdma_queue_id = q->sdma_queue_id;
- 	m->sdmax_rlcx_dummy_reg = SDMA_RLC_DUMMY_DEFAULT;
-+	/* Allow context switch so we don't cross-process starve with a massive
-+	 * command buffer of long-running SDMA commands
-+	 */
-+	m->sdmax_rlcx_ib_cntl |= SDMA0_GFX_IB_CNTL__SWITCH_INSIDE_IB_MASK;
- 
- 	q->is_active = QUEUE_IS_ACTIVE(*q);
- }
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  22 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |   2 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 125 +++++++++++-------
+ drivers/gpu/drm/amd/include/amd_shared.h      |   1 +
+ 5 files changed, 103 insertions(+), 48 deletions(-)
+
 -- 
-2.39.5
+2.43.0
 
