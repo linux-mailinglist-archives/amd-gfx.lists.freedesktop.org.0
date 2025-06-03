@@ -2,46 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6B2ACC666
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Jun 2025 14:24:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7FE7ACC7BA
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Jun 2025 15:27:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 596E810E20E;
-	Tue,  3 Jun 2025 12:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACBBC10E622;
+	Tue,  3 Jun 2025 13:27:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WQjE+ct9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F9YrQGo/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C87C10E20E
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Jun 2025 12:24:04 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id CF145629DE
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Jun 2025 12:24:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 843B3C4CEF2
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Jun 2025 12:24:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1748953443;
- bh=7QLGbXdkxks7XLfFk2zDgD3AFaXdmO+aci/PG1X2O+E=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=WQjE+ct9AxxT9/mOMimmEdNtBD3/0al0sOHnJeZzg6GgT7qj1wXzmicAf56V8CgWi
- xigwCrFjQeUVK+EmR3jcmZd5k43XhzIQOcmdIEK7wzvNFcUR2VkOv4wlxGZMLtoOeM
- 2owVfSUzh8coCfjaOFr25c5BEZhTP4918VPH6CzWgekllHlt+KfNn6VahP5EOzGh89
- D5uFfa0muoMxj55JYfQjH/u7jLMzhy5zkTMWKhndb9AjawGLCb1UiKkAVah6uMFKH6
- CI3AT+1W16FkiM0eJqH5ITgUqR39SSlpoBRdmDvlV/BvctnUx/k3HLhubtruBh9LMc
- Bw5P8wIzZSwug==
-Received: by mail-ua1-f41.google.com with SMTP id
- a1e0cc1a2514c-87ded9c6eb4so3293557241.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 03 Jun 2025 05:24:03 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com
+ [209.85.128.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7550010E010
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Jun 2025 12:27:04 +0000 (UTC)
+Received: by mail-yw1-f180.google.com with SMTP id
+ 00721157ae682-70e2b601a6bso51165787b3.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 03 Jun 2025 05:27:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1748953623; x=1749558423; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=KS9rkPTGJqa2rNA3qxQ2zxOhS+BwbC1h7+9syRUgbFA=;
+ b=F9YrQGo/T+meVBqx4DUOQ/mth2n0+HD3HKzSXLGGcSyY430KDjo3RcdDpxZLzZW4lB
+ 6gCXBwTxPukEu8nOweXbQXpZmzBjuWzqSYG5+EQL16hLQTLHEW8trjdcqwRbFz7p5wKo
+ cjKTvIXSWgXtrmQy9WaSSMLxp0XRPWZoAsFw0pI2xpOiYGJfoJfguBR7KprGPR8TnXUI
+ p42lN6UmHvsRBw+oVm4zHWuy1AX9Geq1Qc0W5yhf2iyVMHTRl9NgKTcbtQYuSi4vEVdI
+ wxsIH0X5OK3B4fAPNz1/MVaCSGPqNEHhBcfSKl9B6H1RTCKJDd6QIrZy0jhmWdGFbe0l
+ SKOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1748953623; x=1749558423;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=KS9rkPTGJqa2rNA3qxQ2zxOhS+BwbC1h7+9syRUgbFA=;
+ b=RmPbvDnKuG5CmHTwEXcInjubACOAdX+S3JUw1JdpC+zQwqxziwyNNLNjWiYvrCJCFu
+ Dt9WJ7Zx9W5fGXQfZJaZpE9sKFLiJeiMvL4Bzb3YDZ6v/lPVJ3RAACABd5k/4aRR8KZF
+ Ox3ZW5iKU5D2b9SwVO1ZqU7N94ms6P9aj+FQrRsdOtnpwFQwWjZQTcVe7B2KCa5/ITwF
+ oznBTSl6/iIUknITX1tPzA4DMg2PveLbiESF9l1XtQXDRnCM5npczMG1WuRRvG4f+GjM
+ fNfBBWkxHLv0BRmFPCNSYRMO98SMoSiLfQdd/O09qLQuVTmcSsDHc8dMRHesB9U53rta
+ syuw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV0Yvz95lKxxGw2rz4OZ/vRKspCUnWhTk7t8IvvxPAiW10/Es7fTcYcPP2MtO7nVA2bXiyD7nKM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz0Zp2Zr4W5xoNfHN1O5ZXTF22GMMvx2YK4Aya56zVfRTJ+8FNT
- cHqBxVt0bCTeMm73ny7nQXIeXurSRDekqC7qb8OVIIU0U9oHLmeVuFJONwJdRaYtYWJkbRbfDtJ
- VeRpves3VS0QaH9/zWivAURciGPL/dVA=
-X-Google-Smtp-Source: AGHT+IFNf83vfCXnhXoj7PNcjEM/Y3fO7C/IOPvyM+NChi36n2vzN7U3cpUD1bzhXl7kFo1Bgst8AhF8A2fRgZjJTMU=
-X-Received: by 2002:a05:6808:1789:b0:401:bb42:700c with SMTP id
- 5614622812f47-408e36c0748mr1412570b6e.19.1748953431946; Tue, 03 Jun 2025
- 05:23:51 -0700 (PDT)
+ AJvYcCVop0OdrlfHAdEKaZeCzM6BSjmmc3bVfSbGHjpWC+z10AAwV/Dw8XBDr7YcgBTi4EMdiWvkXmSr@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxVoxNpNEqcrCt6gdfzTX3Wgjm6FwTmPS1q+uYAh8cCI42dXWvt
+ 6MOFbWtZrzV629FBXlfEYZmsS5YEdzN2/RHlFv58X9pCPWSGoKWHVZHye3uc441HjnR4ti/KLkQ
+ Y/i53EVP1csZ4FpxT0u2FSdsn0iXaXds=
+X-Gm-Gg: ASbGncv4YTioEfXfhX5zz3mu6acx8XHNbwhdU1j4SY1PERF4lCah/EGsIeA8HcpE1aR
+ 6NfEm62NP13WMX0Yd0GdkOHPEWMbmAWcb+k2afc0pHuUBm1AOQP7GzsWkr3mUQ0hAQgCGmEsv7R
+ GuunZULEKq1TpstrFZ33e+l1IqMnW/4dDCFjiomSL2T8KUkZ+Z685t3N75hnnOsgGF8w==
+X-Google-Smtp-Source: AGHT+IEbfkw52dYwb3QTIYKq+WBEWXWfcgfIwhgKwctTOG2OKjmN/e1jk1HhPX0yI+JSVRibG8FbMs6A5Hv3I1EPdFI=
+X-Received: by 2002:a05:690c:7488:b0:70e:5eda:4810 with SMTP id
+ 00721157ae682-70f97e784dcmr265465657b3.13.1748953623445; Tue, 03 Jun 2025
+ 05:27:03 -0700 (PDT)
 MIME-Version: 1.0
 References: <aD2U3VIhf8vDkl09@debian.local>
  <CAJZ5v0h-nrVamqiAJ957aYjHqaeAZUUW7BRi0WxPgCFc40M5cQ@mail.gmail.com>
@@ -54,25 +66,25 @@ References: <aD2U3VIhf8vDkl09@debian.local>
  <CAJZ5v0gF=ewooE0cUrNfe5_inhnzq6bqw8VTjkFwr56_wrptJQ@mail.gmail.com>
  <CAJZ5v0hpJSVdiCN29=kbV8KfgU1y1d3hFfshtBoMpVFXf+LvBQ@mail.gmail.com>
  <aD7nOMP3xA9BR781@debian.local>
-In-Reply-To: <aD7nOMP3xA9BR781@debian.local>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Tue, 3 Jun 2025 14:23:40 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0gAcohRWuSZbFWvyfAU9Vjc7nRyj+AFRYQ7hcGEXdPxyQ@mail.gmail.com>
-X-Gm-Features: AX0GCFtHfgoEkBkaJCucBFxe92zc09KeHz7xeAlRFNLtr6kTo9V07rizcEW5UeM
-Message-ID: <CAJZ5v0gAcohRWuSZbFWvyfAU9Vjc7nRyj+AFRYQ7hcGEXdPxyQ@mail.gmail.com>
+ <CAJZ5v0gAcohRWuSZbFWvyfAU9Vjc7nRyj+AFRYQ7hcGEXdPxyQ@mail.gmail.com>
+In-Reply-To: <CAJZ5v0gAcohRWuSZbFWvyfAU9Vjc7nRyj+AFRYQ7hcGEXdPxyQ@mail.gmail.com>
+From: Chris Bainbridge <chris.bainbridge@gmail.com>
+Date: Tue, 3 Jun 2025 13:26:52 +0100
+X-Gm-Features: AX0GCFuyhCVtL8Hjsbmm71G8qbnwHENp7Q1i1Zyf7FagPmfvh1ldlhfNBWSaUl8
+Message-ID: <CAP-bSRbVjcXBvxDT6ZQuoRB+JF6A4LhdMVnNqnaQC0bg-xg2BQ@mail.gmail.com>
 Subject: Re: [PATCH v3 2/5] PM: sleep: Suspend async parents after suspending
  children
-To: Chris Bainbridge <chris.bainbridge@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Mario Limonciello <superm1@kernel.org>, 
- "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM <linux-pm@vger.kernel.org>, 
- LKML <linux-kernel@vger.kernel.org>, Alan Stern <stern@rowland.harvard.edu>, 
- Ulf Hansson <ulf.hansson@linaro.org>, Johan Hovold <johan@kernel.org>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Jon Hunter <jonathanh@nvidia.com>, 
- Saravana Kannan <saravanak@google.com>, amd-gfx@lists.freedesktop.org
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Mario Limonciello <superm1@kernel.org>,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>, 
+ Linux PM <linux-pm@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
+ Alan Stern <stern@rowland.harvard.edu>, Ulf Hansson <ulf.hansson@linaro.org>, 
+ Johan Hovold <johan@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Jon Hunter <jonathanh@nvidia.com>, Saravana Kannan <saravanak@google.com>, 
+ amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 03 Jun 2025 13:27:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,103 +99,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 3, 2025 at 2:15=E2=80=AFPM Chris Bainbridge
-<chris.bainbridge@gmail.com> wrote:
->
-> On Tue, Jun 03, 2025 at 01:39:01PM +0200, Rafael J. Wysocki wrote:
-> > On Tue, Jun 3, 2025 at 1:37=E2=80=AFPM Rafael J. Wysocki <rafael@kernel=
-.org> wrote:
-> > >
-> > > On Tue, Jun 3, 2025 at 12:30=E2=80=AFPM Rafael J. Wysocki <rafael@ker=
-nel.org> wrote:
-> > > >
-> > > > On Tue, Jun 3, 2025 at 12:29=E2=80=AFPM Rafael J. Wysocki <rafael@k=
-ernel.org> wrote:
-> > > > >
-> > > > > On Tue, Jun 3, 2025 at 12:17=E2=80=AFPM Chris Bainbridge
-> > > > > <chris.bainbridge@gmail.com> wrote:
-> > > > > >
-> > > > > > On Tue, Jun 03, 2025 at 11:38:37AM +0200, Rafael J. Wysocki wro=
-te:
-> > > > > > >
-> > > > > > > Chris, please check if the attached patch helps.  I'm going t=
-o post it
-> > > > > > > as a fix anyway later today, but it would be good to verify t=
-hat it is
-> > > > > > > sufficient.
-> > > > > >
-> > > > > > This did not fix my test case, pstore crash log was:
-> > > > >
-> > > > > OK, so can you please enable PM debug messages:
-> > > > >
-> > > > > # echo 1 > /sys/power/pm_debug/messages
-> > > >
-> > > > This should be
-> > > >
-> > > > # echo 1 > /sys/power/pm_debug_messages
-> > > >
-> > > > sorry.
-> > > >
-> > > > > and enabled dynamic debug in drivers/base/power/main.c:
-> > > > >
-> > > > > # echo "file drivers/base/power/main.c +p" > /proc/dynamic_debug/=
-control
-> > > > >
-> > > > > repeat the test and capture the log?
-> > >
-> > > Actually, no need to do this, there is an obvious bug:
-> > > list_splice_init() should be used instead of list_splice() when the
-> > > emptied list is going to be used again.  Ugh.
-> > >
-> > > Please check if the attached patch along with the previous one makes
-> > > the issue go away entirely.
+On Tue, 3 Jun 2025 at 13:24, Rafael J. Wysocki <rafael@kernel.org> wrote:
 > >
-> > Really attached this time, sorry.
+> > This patch does fix the list corruption, but the "Unbalanced
+> > pm_runtime_enable" still occurs:
 >
-> > ---
-> >  drivers/base/power/main.c |    6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > --- a/drivers/base/power/main.c
-> > +++ b/drivers/base/power/main.c
-> > @@ -1458,7 +1458,7 @@
-> >                        * Move all devices to the target list to resume =
-them
-> >                        * properly.
-> >                        */
-> > -                     list_splice(&dpm_late_early_list, &dpm_noirq_list=
-);
-> > +                     list_splice_init(&dpm_late_early_list, &dpm_noirq=
-_list);
-> >                       break;
-> >               }
-> >       }
-> > @@ -1660,7 +1660,7 @@
-> >                        * Move all devices to the target list to resume =
-them
-> >                        * properly.
-> >                        */
-> > -                     list_splice(&dpm_suspended_list, &dpm_late_early_=
-list);
-> > +                     list_splice_init(&dpm_suspended_list, &dpm_late_e=
-arly_list);
-> >                       break;
-> >               }
-> >       }
-> > @@ -1953,7 +1953,7 @@
-> >                        * Move all devices to the target list to resume =
-them
-> >                        * properly.
-> >                        */
-> > -                     list_splice(&dpm_prepared_list, &dpm_suspended_li=
-st);
-> > +                     list_splice_init(&dpm_prepared_list, &dpm_suspend=
-ed_list);
-> >                       break;
-> >               }
-> >       }
->
-> This patch does fix the list corruption, but the "Unbalanced
-> pm_runtime_enable" still occurs:
+> Have you applied it together with the previous patch?
 
-Have you applied it together with the previous patch?
+Yes
