@@ -2,78 +2,197 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED265ACC20D
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Jun 2025 10:18:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7853ACC22F
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Jun 2025 10:30:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF35110E6E0;
-	Tue,  3 Jun 2025 08:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E86610E636;
+	Tue,  3 Jun 2025 08:30:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="TBUkPCrY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dugkb7A9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 600B410E564
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Jun 2025 16:22:15 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-451dbe494d6so12918325e9.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 02 Jun 2025 09:22:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1748881334; x=1749486134; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=oqfFn1Mp9nAjcQeZ04D2BespZSz7Bz0Bfj7To4SwEHM=;
- b=TBUkPCrYbP5Ir/Hc9o/c46wjFpuIFyjNIPxykm3Ci/b2/OHeDw2pMd88dkvkrKt1jT
- Dvs6UxGBNRYnljMMcxoqaf6zvhzRrya0122847ZLiq5CyEp4Fshn8vz39ohzRIJ021+W
- Vf8bX+bxLd2BsjtP299Mf5duTYYJ6tfnZeRw/C3yxhWkBNIm6qBanXl1yq3jAYspYT3Y
- fpRhgqNkK1RSh71eO9rBiYtUWf23QibWlaDlDDT0zEE53lZeQsECNe14XdjmSzqa2HsW
- Bn5nZG0SKZk9ctRDfjeJK5mEPUMjniBA12Qb417S/aKeeUREHNCwq1wmsQ2+kAmT6tFw
- sRHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748881334; x=1749486134;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=oqfFn1Mp9nAjcQeZ04D2BespZSz7Bz0Bfj7To4SwEHM=;
- b=sZOPFtFBPvfPhA08QoWIsKW6+3k6w4zT+iQTn38UfDjquBCDZQZDD6Ij9SHFwa7mJ0
- wLGX5jIbFuSps6BE63CrDWS/Hc09s/kivX7iZWNx5/6GPUjbHBVshOVhY6JPGm/Q76Ey
- iDJ03MRKLEWjo7VopwBBMExHLi8i7pgKHBxCYlBXoD0IMU9930Hjw65EleUfgdQgoW5W
- 5O6kAqvTfyafgcbyqYt1otLPqJrQx6jCvjZbADKVC8/ZuVk1D7D9CiCeIYj6j4AZ4DGn
- XLOudMknPDDW3/kFPvQMk8nS3iHqqbWupmf0qHbSkUTF5jkPIxBTwUTaU8wGb+XduOn+
- vv7A==
-X-Gm-Message-State: AOJu0Yxb9iL0KBkqXSAIFJsXLwkO2cPobbJ+UwRBvD3uim9PbP9rv2Lz
- SE9FYLR9XAMiED33K0NpYRO+NssIlkK2PEMhcfZz/pnt8/SQT4kb3M61eqnyyzu8hKg=
-X-Gm-Gg: ASbGnctK0jgu0XEV5WfoXIkPPRzg1RNPt46HbIpZlza1IaPz3FkulSjzOlvrr5TvM16
- 76dYIdcGlfIjbhdF/0KcdwGfPV2cs7JVyBMFsyBQNXwXIEmigDJeOuhXpXso8DKl8u1K1N03y63
- LqQo1MM2ch475ua1M15YWqIojxmq3IAnlBTx5q0xCitqXxz0vnSLWpZ8ooA/xwXCtx2AwomuWbk
- pZLy7VTuQM1cB+FmU1UyWZ/7U663l6B5LEVVOcnPGpE8ZXz6kP0Vfb9R/1IYYiehHWPEeR/tgxb
- BQO2rh00ZJxMZ5o/Stf9/KfmY41SP3B3wJcNFLJleXTewaQrd909jg==
-X-Google-Smtp-Source: AGHT+IGQVG+9kkgM+Gw/QYtVE3BGrFi5tE9uRyvIoBigGuatn/IymWmr23s7esoleYgMrHZm28xf9g==
-X-Received: by 2002:a05:6000:3106:b0:3a4:f70d:a65e with SMTP id
- ffacd0b85a97d-3a4fe393558mr6030409f8f.37.1748881333706; 
- Mon, 02 Jun 2025 09:22:13 -0700 (PDT)
-Received: from blackdock.suse.cz ([193.86.92.181])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-450d8006613sm132908715e9.28.2025.06.02.09.22.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Jun 2025 09:22:13 -0700 (PDT)
-Date: Mon, 2 Jun 2025 18:22:11 +0200
-From: Michal =?utf-8?Q?Koutn=C3=BD?= <mkoutny@suse.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@intel.com>, 
- Tejun Heo <tj@kernel.org>
-Subject: Re: [RFC 20/23] cgroup/drm: Introduce weight based scheduling control
-Message-ID: <jlswx5kabjkszrkdmoflcqi7ycbxbfjfflbni3knromz6ucx63@kjwypivu3jpq>
-References: <20250502123256.50540-1-tvrtko.ursulin@igalia.com>
- <20250502123256.50540-21-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 082BD10E5DF;
+ Tue,  3 Jun 2025 08:30:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748939449; x=1780475449;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=eJKxa3GvESyewDl3VjbpbCbDAkG56tVAPhT7bQV3aN4=;
+ b=dugkb7A90y258ri2y4szs9/uwMPWV6ZN962tq8uwPBnrjgIEECqs54bd
+ FRYXhshGK/M4UO99szaxpuFKzE/Zox1/wl7S7G/IVxtu1lVcqVit9r0IV
+ uzxaUddIvuMliHTNsAvD7EpoXNET9Y7FrlaB4ikOL9z6ZXlJdmAto3Rc+
+ cH4U9XnrUrNnJgHEdJ+B2YgZbKU+Z1FCVJc9RU9hLAnrE5rUxRJk9y3DI
+ gwFulwJ8py3O5BNoLqqlUa14M4a8gqKnvVFVppqqQ2uSo67WrxoxlzLqS
+ Kx2rpIJEd1Gv9/pT7sSMyEzBVSS3U98Hrj5kI3sNDGs5kJWX/GFtBLhUA A==;
+X-CSE-ConnectionGUID: RK3BNp27QPukSSzLRaGK6w==
+X-CSE-MsgGUID: 9bnlk2dMQI+agyBKSESxxQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="38595502"
+X-IronPort-AV: E=Sophos;i="6.16,205,1744095600"; d="scan'208";a="38595502"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 01:30:47 -0700
+X-CSE-ConnectionGUID: STG+fTk4QH6gzWpLFcy4IQ==
+X-CSE-MsgGUID: LW10FEi2QCy/3dJy+oGh6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,205,1744095600"; d="scan'208";a="144762247"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 01:30:47 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Tue, 3 Jun 2025 01:30:46 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Tue, 3 Jun 2025 01:30:46 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.83)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Tue, 3 Jun 2025 01:30:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RQ04jLz6r6F/NI3TrlwM+EpIgROibWxhyMXl9SQz3ahGRhzAGWgoHxIOp2kMQqbJscpdZPVOwOA5SM8oQfbOq51jOVu+rI+oJ6TFTJSL4pydNvvH98eBiHePxpAFNlhklo34z/uUHqbQsmJuZMUQk9PpIVtRPjEyYqL7TnA7PYrQNcSJ/kfwZSguhMOTNlZ5bkSjcA1sJhVMEbUs9MyKmnJuJnD16OgCvN/5l1zmyLkQ4W4PzdMhdKu8EnnV3yuiDcHTixCFZ4Eb0kyAGHOU1sHDPNodcktS7kudC2VHWMjPIuoEfYyiHPrngeXMoXvEnr+LGBS4w0z8DTKCSCIWrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KbwCwPvlXzJjujokqK9eJ+eHuN5zJTVW1UnoaIZk084=;
+ b=D6/UK/+ZO698rjaxoJxAtcnvU6DzY9q1NPvaE+62DTBWqn2CmnYmNONQCWiAD3fz+e7QQl6aX//g3meL/ITk05y0TiYedZtNloAqntImzIzcNvkLl2I6PIi2RcfB3+DrbD+wpu9fWqWxgTlminDeTPNL4N1GE1Ioaov3TG2GhjWniAVUhmVbKwo0QG3g17xj1Ng3zYMibHWijHZ9KU+XCZ1r0tuuUc9yF+aBo7m611NgES/tbQlTQJ9rkOZi8mgrqdx/1Vs/K3QXMrak6/0W5OITi31WVg+PFhxGZ4r95ttj5d7EUFFV2bU+L+Oi530pj0rVIZoW09RK0sIBWGIUGw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ SJ5PPFEC87B8781.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::85c)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.30; Tue, 3 Jun
+ 2025 08:30:24 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::8648:3a6b:af5c:b6e6%5]) with mapi id 15.20.8769.037; Tue, 3 Jun 2025
+ 08:30:23 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: Pekka Paalanen <pekka.paalanen@collabora.com>
+CC: Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>, 
+ Alex Hung <alex.hung@amd.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
+ <wayland-devel@lists.freedesktop.org>, "leo.liu@amd.com" <leo.liu@amd.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "mwen@igalia.com" <mwen@igalia.com>, "jadahl@redhat.com" <jadahl@redhat.com>, 
+ "sebastian.wick@redhat.com" <sebastian.wick@redhat.com>,
+ "shashank.sharma@amd.com" <shashank.sharma@amd.com>, "agoins@nvidia.com"
+ <agoins@nvidia.com>, "joshua@froggi.es" <joshua@froggi.es>,
+ "mdaenzer@redhat.com" <mdaenzer@redhat.com>, "aleixpol@kde.org"
+ <aleixpol@kde.org>, "xaver.hugl@gmail.com" <xaver.hugl@gmail.com>,
+ "victoria@system76.com" <victoria@system76.com>, "daniel@ffwll.ch"
+ <daniel@ffwll.ch>, "quic_naseer@quicinc.com" <quic_naseer@quicinc.com>,
+ "quic_cbraga@quicinc.com" <quic_cbraga@quicinc.com>,
+ "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>, "marcan@marcan.st"
+ <marcan@marcan.st>, "Liviu.Dudau@arm.com" <Liviu.Dudau@arm.com>,
+ "sashamcintosh@google.com" <sashamcintosh@google.com>, "Borah, Chaitanya
+ Kumar" <chaitanya.kumar.borah@intel.com>, "louis.chauvet@bootlin.com"
+ <louis.chauvet@bootlin.com>
+Subject: RE: [PATCH V8 32/43] drm/colorop: Add 1D Curve Custom LUT type
+Thread-Topic: [PATCH V8 32/43] drm/colorop: Add 1D Curve Custom LUT type
+Thread-Index: AQHbnqqz2YhtxDgq7E6gFv3ZntqEdLOkXCdQgAACfoCAAAPEoIAAj/AAgAAWPQCAOdBI4IAMv5WAgAXmbmA=
+Date: Tue, 3 Jun 2025 08:30:23 +0000
+Message-ID: <DM4PR11MB6360BFCB5756A16F38945DE7F46DA@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20250326234748.2982010-1-alex.hung@amd.com>
+ <20250326234748.2982010-33-alex.hung@amd.com>
+ <CY5PR11MB63441E057180C043C51230A3F4B22@CY5PR11MB6344.namprd11.prod.outlook.com>
+ <fzuE3KXuocsKA0I9kWXruyw7IVbw3jwH2yeh59SfE0Qb0SGxa29rrj9X_XgNCdmj1vWgxLO619xyJY3r5R3hsZK6ElIkTvbyNfu40x1SiZM=@emersion.fr>
+ <CY5PR11MB63449DBA54519766E345CADAF4B22@CY5PR11MB6344.namprd11.prod.outlook.com>
+ <3ca1958f-62e0-4a5c-837b-3cd705acc181@amd.com>
+ <ZqHOWK3X_Ici9wNgijgeUt9r3asi4jhqw-0-keIfXYAFxbsGLaFTIozGHHR64SnkAzPA4CM-zmc6OwVtrKMKjVyoblti88KpRf9wEu8daP0=@emersion.fr>
+ <DM4PR11MB6360CE0C5C99FB02CD6CC0BFF499A@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <20250530165818.0e6cb846@eldfell>
+In-Reply-To: <20250530165818.0e6cb846@eldfell>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|SJ5PPFEC87B8781:EE_
+x-ms-office365-filtering-correlation-id: 3e0d9b08-584d-4641-e2c4-08dda278e2a4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|7416014|366016|376014|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?PqlB1vgYlaTnDdHJUncEjYNaXkHPCyBIYZ37YU34BrqlgHaOa/dRkg3lueZI?=
+ =?us-ascii?Q?e4jTXuIGpf+mqhc9AdVlcCH9bjseM2laTa73wAYMiNXaCXViSnzEY4/4js3y?=
+ =?us-ascii?Q?BtcZie+GDBO07k+8OjUkwOUzyScRjx1AYB4f3quZhtcSi09G5sbw60Alkw1h?=
+ =?us-ascii?Q?cP4YyjmrNm1K8VmutK2s4lpoY/DPhUixFHqAvcK1of79jO4HmgVC58fdn5lP?=
+ =?us-ascii?Q?Wg+r0dMhXVw2YdJJ+5B6gVVb2AHgpwsLC2SbiYeEUbO5QLtoQ4+JJvE5/n1z?=
+ =?us-ascii?Q?5kFalLunyIDwLfhcHqfQakcXp+2uHa6gHDjn1jmR0gJAGp+BWmiKKW88S2hO?=
+ =?us-ascii?Q?RMaVvXxIm6RJD61V5za7cbZX0GAyyPV2LMyXuFk6OLJXXDOt2c1nWJCKtjlI?=
+ =?us-ascii?Q?AhcMvIDFZUbU407zGbpxKHPRj1ntdCR+6mjuayYY0JJrlbuqaITQm5OjTbos?=
+ =?us-ascii?Q?0iF841Xif3Gd1EmLPNVjsGq/WXf/+snj4cGP1hORVpR/0dh5PviyQESJ1CLs?=
+ =?us-ascii?Q?AuGpi+9aZaTGx9pHuJLAKv4oO2fN/0bvAJVezTgETt2AclGGpafNiQjKzYEx?=
+ =?us-ascii?Q?G9f5hgrvTML4hbYkIvvF/WN6DsZzcPeXcUtlkqz0XjTmMDXWnbpGvKc/bu24?=
+ =?us-ascii?Q?ImWx7RutiMbUOV3MtUVYMjsBqzzNlN2Mp5+Q2k4w65I6QdbOGlmnLFrgxP45?=
+ =?us-ascii?Q?fbl0DYM6NkmL0uhwPOfD+LdJnLquO0MqwcvQnoPnP4TjO1EcIjrF/U9gxw3W?=
+ =?us-ascii?Q?Df35OitMaMYYTKrCT+O8rRP3cPjTIm2yjyDkFXtJvs6iMHCSYgs/NUPaf6/r?=
+ =?us-ascii?Q?ASIKbxeZ2XqjNRQ98youv+QjphaMUiunNDha+Bq+8fn6AABngUIwDwODgWz/?=
+ =?us-ascii?Q?HCDV3HxdyQ5j+T3/+M6PqH50coIYTYO7G1Yy4LcQbzK63f5qcq+QKEpIRi5J?=
+ =?us-ascii?Q?SvwBAYQm31zwPgglUPUtdiApsOt8/u8eqjbyso0WIdQR354tPd7l4taHEFgC?=
+ =?us-ascii?Q?14otuok+80XWiUV1c5zXYT0RX0dqIx5KAj+V6W5RIWtdb/Fj2GwnV5ddDd+R?=
+ =?us-ascii?Q?hfYhEN9bjSWMfAPMK8r49UC+wxAkDpXpMOLCYqmdJhRbjvoy1HgC7H4QqSQx?=
+ =?us-ascii?Q?Qyfa01QLFW/qwXIZymmT7aK/gXxloPBN0qGAWOw9t6kYI1s9/HurjPMyMTvw?=
+ =?us-ascii?Q?hChrN566Cf6Aca+I+VWwPmHoIabbsny/6zafcxvkXjYkIduD/ZaYNdbgH4Hu?=
+ =?us-ascii?Q?EM5ZtmiERyv4Vn7O1IuyPrq1DyW22nRsiR+KHqNmuCU7sIKKxoRmSxU1XL7V?=
+ =?us-ascii?Q?fj3bBmJx5t8SOx+kpUqtWFJsOJ7NX2Cuu0LOQN1hzFCYFZdZYrya2ufCQWZk?=
+ =?us-ascii?Q?avVyTUmQ1rYOtXwhw5WJpS+D6HLpS4ty6RJee31oBMk7VT+xV8pj2gWC9SFt?=
+ =?us-ascii?Q?DTIFGN9KitM=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(366016)(376014)(7053199007)(38070700018);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zTmuXIe2HsHjuja8DvZb4gLaGILx05xErb3wTYb3QNHQNFClE6pXg06e7Ffb?=
+ =?us-ascii?Q?KyP6mc2NUzUdf4n+CiLAqRGm1uS3D+nLkulMfO5yNbWCFwT9rDkkT0UXytYO?=
+ =?us-ascii?Q?/cdn8wnh23+8dkbf19NTYXUVFN4n8vCSDN0RW+3pvxgpiy+SbEYLxPov4Cml?=
+ =?us-ascii?Q?pjickQC+oqNYwQ7i6KrBRuHskEoTXovVZN78NBF9H6TP+tEM2DfQcNC9Q4iR?=
+ =?us-ascii?Q?ucqCiCD9WNh1lVucj4gTwWIeC9jEOoVXF1aBCED7OYP0I9g3wysZqtQDeevK?=
+ =?us-ascii?Q?zhZ3M2VdXrkNigXW58PHKUeG7ht8RHiJjnwS4oSKqgVRxKGFxt1HnnVb72JY?=
+ =?us-ascii?Q?r4xoc/YClIQ7rO6ppeqHXc/x69X89dkL6GazmQi3pdSqvOOuRKDf44f0yQfA?=
+ =?us-ascii?Q?wj0/HTPg1RuR84GGKsUrHKqjK2TXRuORRX/0CMfRb157a1pvL4xeQrcIN7AE?=
+ =?us-ascii?Q?ZrSeOngzhQoK0gEgYiPNl8VlFwWRgFmW1w28C3UHMxnTB8uNDenrT71ovHHu?=
+ =?us-ascii?Q?6cn7sW5h9ISLLe3Y3GDlz1g8ifbXwuDqP9vxqHZFfiG128MhQeUPvp6KYY4w?=
+ =?us-ascii?Q?VV2uFSuCNiANwzXIC1A++bqICO6D0PrQNeyMHDh9R7a59fj44hJeULCOCT77?=
+ =?us-ascii?Q?mHs38HE896fgVbSCn3E13nJfHIc52i/CwKhkNzY3aGp3Kid6kXfYQOexLM88?=
+ =?us-ascii?Q?+1IethYXCA55YYoBbN3CUb0mRM3bGiVxH3RL04w5oeS38oAk7HH06qPXCDsI?=
+ =?us-ascii?Q?KjPlqGiYwhvBUoWsomys7uHvEfHZrfi0Hq4b8oe+Fb76re/N4YJBu3jIwXgg?=
+ =?us-ascii?Q?EdsKUtRlq9NEbRBRgRtaXZX0VgbgHy7r921XeESHaQLZClUHlHRlhIceK4oO?=
+ =?us-ascii?Q?2Is6zZQ+QWe0wvtHv9OsrsnP4mmcdOX1PtjKi6QfaEqtpTOBx2YrOAV7DEwP?=
+ =?us-ascii?Q?6TE8a/Vwr3Xh8w0Sj/g5I1uFkKkN98RknwhF604kZ8XaXAvw3vx7UAaPSmGA?=
+ =?us-ascii?Q?XoogCglm9Tt6PN/8ar9/4rhIhO46yCB8QndF9xmgeAC93LaBC9bOdTsYU3Sb?=
+ =?us-ascii?Q?maC0qQXEjbMD2ol4MXMbJ19QtjnUX9JXjBdwrNDfmfusFH4CDm0Ov8bk+nSw?=
+ =?us-ascii?Q?DMGh1n+GBUxdUv0xZAVEi//H/aDcgO4Z5HFvJKSXxuMxX8Sn8aP1XNbN+F6A?=
+ =?us-ascii?Q?8d21MY8KkjoBzOrRytHO6xER1A4hJ3Dxg/xD0f/SMMA1tF4Dr3Yj+MXbMbGj?=
+ =?us-ascii?Q?rsPfc1FsFuXgXbBxITrch5NC3ao6lhseZUlAEd27YpeNLu7um0X0KwdnM7+r?=
+ =?us-ascii?Q?zMqyMTG2PVVhRmXnqAumxk05Omle3wBz9WXSBKS6FDEKq68mGH/2S/052srq?=
+ =?us-ascii?Q?FleKlXGUndBRvChOEsWa2E1l1dW616p+cUncFhtp0PVJKMR6vqZtt4262Jtb?=
+ =?us-ascii?Q?2XR8MyN0hqGfedai1XqLIPIzov3yH73DqvxDax8p4HOFuXIawhzzQsx1lM6b?=
+ =?us-ascii?Q?R2SB+67b2u4/nPcWxtJoCuLbALIvw9aLmtIgpBYpoJKNh/1S4GJfK0hWDPPM?=
+ =?us-ascii?Q?Xk3AEeXHc7Smo+ZHos7oS5mv+9F9NZNkMeFiQycf?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="uwbgl3tifamqbhkd"
-Content-Disposition: inline
-In-Reply-To: <20250502123256.50540-21-tvrtko.ursulin@igalia.com>
-X-Mailman-Approved-At: Tue, 03 Jun 2025 08:18:53 +0000
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e0d9b08-584d-4641-e2c4-08dda278e2a4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2025 08:30:23.8353 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2++7297HZncEHorYJqPUrw9V50FI4MM1L4jm369a27/IxGRA1ZwZisqNa3LzW9O9++LWZHhhLgfqnDvVH/Zeww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFEC87B8781
+X-OriginatorOrg: intel.com
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,549 +208,98 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
---uwbgl3tifamqbhkd
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC 20/23] cgroup/drm: Introduce weight based scheduling control
-MIME-Version: 1.0
 
-Hello.
-
-On Fri, May 02, 2025 at 01:32:53PM +0100, Tvrtko Ursulin <tvrtko.ursulin@ig=
-alia.com> wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> -----Original Message-----
+> From: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Sent: Friday, May 30, 2025 7:28 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: Simon Ser <contact@emersion.fr>; Harry Wentland
+> <harry.wentland@amd.com>; Alex Hung <alex.hung@amd.com>; dri-
+> devel@lists.freedesktop.org; amd-gfx@lists.freedesktop.org; intel-
+> gfx@lists.freedesktop.org; wayland-devel@lists.freedesktop.org;
+> leo.liu@amd.com; ville.syrjala@linux.intel.com; pekka.paalanen@collabora.=
+com;
+> mwen@igalia.com; jadahl@redhat.com; sebastian.wick@redhat.com;
+> shashank.sharma@amd.com; agoins@nvidia.com; joshua@froggi.es;
+> mdaenzer@redhat.com; aleixpol@kde.org; xaver.hugl@gmail.com;
+> victoria@system76.com; daniel@ffwll.ch; quic_naseer@quicinc.com;
+> quic_cbraga@quicinc.com; quic_abhinavk@quicinc.com; marcan@marcan.st;
+> Liviu.Dudau@arm.com; sashamcintosh@google.com; Borah, Chaitanya Kumar
+> <chaitanya.kumar.borah@intel.com>; louis.chauvet@bootlin.com
+> Subject: Re: [PATCH V8 32/43] drm/colorop: Add 1D Curve Custom LUT type
 >=20
-> Similar to CPU and IO scheduling, implement a concept of weight in the DRM
-> cgroup controller.
+> On Thu, 22 May 2025 11:33:00 +0000
+> "Shankar, Uma" <uma.shankar@intel.com> wrote:
 >=20
-> Individual drivers are now able to register with the controller which will
-> notify them of the relative scheduling weight for each open DRM client.
+> > One request though: Can we enhance the lut samples from existing
+> > 16bits to 32bits as lut precision is going to be more than 16 in certai=
+n hardware.
+> While adding the new UAPI, lets extend this to 32 to make it future proof=
+.
+> > Reference:
+> > https://patchwork.freedesktop.org/patch/642592/?series=3D129811&rev=3D4
+> >
+> > +/**
+> > + * struct drm_color_lut_32 - Represents high precision lut values
+> > + *
+> > + * Creating 32 bit palette entries for better data
+> > + * precision. This will be required for HDR and
+> > + * similar color processing usecases.
+> > + */
+> > +struct drm_color_lut_32 {
+> > +	/*
+> > +	 * Data for high precision LUTs
+> > +	 */
+> > +	__u32 red;
+> > +	__u32 green;
+> > +	__u32 blue;
+> > +	__u32 reserved;
+> > +};
 >=20
-> The notifications are triggered on cgroup weight changes and DRM clients
-> appearing and disappearing in/from cgroups. Latter is done because it is
-> handy to ignore the groups with no DRM clients in relative weight
-> calculations.
+> Hi,
 >=20
-> The notifications are also consolidated by using a delayed worker.
+> I suppose you need this much precision for optical data? If so, floating-=
+point would
+> be much more appropriate and we could probably keep 16-bit storage.
 >=20
-> On the userspace API level we use the same range and defaults as the CPU
-> controller - CGROUP_WEIGHT_MIN, CGROUP_WEIGHT_DFL and CGROUP_WEIGHT_MAX.
+> What does the "more than 16-bit" hardware actually use? ISTR at least AMD
+> having some sort of float'ish point internal pipeline?
 >=20
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Michal Koutn=FD <mkoutny@suse.com>
-> Cc: Tejun Heo <tj@kernel.org>
-> ---
->  Documentation/admin-guide/cgroup-v2.rst |  22 ++
->  include/linux/cgroup_drm.h              |   2 +
->  kernel/cgroup/drm.c                     | 313 +++++++++++++++++++++++-
->  3 files changed, 331 insertions(+), 6 deletions(-)
+> This sounds the same thing as non-uniformly distributed taps in a LUT.
+> That mimics floating-point input while this feels like floating-point out=
+put of a LUT.
 >=20
-> diff --git a/Documentation/admin-guide/cgroup-v2.rst b/Documentation/admi=
-n-guide/cgroup-v2.rst
-> index 1a16ce68a4d7..095b7dee0151 100644
-> --- a/Documentation/admin-guide/cgroup-v2.rst
-> +++ b/Documentation/admin-guide/cgroup-v2.rst
-> @@ -2729,6 +2729,28 @@ HugeTLB Interface Files
->          hugetlb pages of <hugepagesize> in this cgroup.  Only active in
->          use hugetlb pages are included.  The per-node values are in byte=
-s.
-> =20
-> +DRM
-> +---
-> +
-> +The controller allows for configuring of scheduling weights of cgroups r=
-elative
-> +to their siblings.
-> +
-> +NOTE: This is an optional feature into which individual DRM drivers need=
- to
-> +      opt-in if they want to support it.
-> +
-> +NOTE: Only single GPU systems will work as expected in the current
-> +      implementation.
-> +
-> +DRM Interface Files
-> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> +
-> +  drm.weight
-> +        A read-write single value file which exists on non-root cgroups.=
- The
-> +        default is "100".
+> I've recently decided for myself (and Weston) that I will never store opt=
+ical data in
+> an integer format, because it is far too wasteful. That's why the electri=
+cal
+> encodings like power-2.2 are so useful, not just for emulating a CRT.
 
-Should this be akin to IO controller and have subkey granularity for
-individual devices? (With special 'default' entry.)
+Hi Pekka,
+Internal pipeline in hardware can operate at higher precision than the inpu=
+t framebuffer
+to plane engines. So, in case we have optical data of 16bits or 10bits prec=
+ision, hardware
+can scale this up to higher precision in internal pipeline in hardware to t=
+ake care of rounding
+and overflow issues. Even FP16 optical data will be normalized and converte=
+d internally for
+further processing.
 
-(Can those devices come and go (hotplug)?)
+Input to LUT hardware can be 16bits or even higher, so the look up table we=
+ program can
+be of higher precision than 16 (certain cases 24 in Intel pipeline). This i=
+s later truncated to bpc supported
+in output formats from sync (10, 12 or 16), mostly for electrical value to =
+be sent to sink.
 
-> +
-> +        The weights are in the range [1, 10000] and specify the relative
-> +        scheduling weights for cgroups in relation to their siblings.
-> +
->  Misc
->  ----
-> =20
-> diff --git a/include/linux/cgroup_drm.h b/include/linux/cgroup_drm.h
-> index d6a9a2fbdbf5..9961003958b4 100644
-> --- a/include/linux/cgroup_drm.h
-> +++ b/include/linux/cgroup_drm.h
-> @@ -6,6 +6,8 @@
-> =20
->  #include <drm/drm_file.h>
-> =20
-> +#define DRM_CGROUP_WEIGHT_SHIFT 10
-> +
->  #if IS_ENABLED(CONFIG_CGROUP_DRM)
->  void drmcgroup_client_open(struct drm_file *file_priv);
->  void drmcgroup_client_close(struct drm_file *file_priv);
-> diff --git a/kernel/cgroup/drm.c b/kernel/cgroup/drm.c
-> index ea7655edf86a..532702604786 100644
-> --- a/kernel/cgroup/drm.c
-> +++ b/kernel/cgroup/drm.c
-> @@ -13,10 +13,18 @@ struct drm_cgroup_state {
->  	struct cgroup_subsys_state css;
-> =20
->  	struct list_head clients;
-> +	unsigned int num_clients; /* Whole branch */
-> +
-> +	unsigned int sum_children_weights;
-> +
-> +	unsigned int weight;
-> +	unsigned int effective_weight;
+Hence requesting to increase the container from current u16 to u32, to get =
+advantage of higher
+precision luts.
 
-IIUC, this is weight normalized across siblings (and not scaled by
-ancestors)?
+Thanks & Regards,
+Uma Shankar
 
-It should be then sufficient to only notify the siblings of modified
-cgroup after the recalculation, shouldn't it?
-
->  };
-> =20
->  struct drm_root_cgroup_state {
->  	struct drm_cgroup_state drmcs;
-> +
-> +	struct delayed_work notify_work;
->  };
-> =20
->  static struct drm_root_cgroup_state root_drmcs =3D {
-> @@ -31,7 +39,7 @@ css_to_drmcs(struct cgroup_subsys_state *css)
->  	return container_of(css, struct drm_cgroup_state, css);
->  }
-> =20
-> -static void __maybe_unused
-> +static void
->  drmcs_notify_weight(struct drm_cgroup_state *drmcs)
->  {
->  	struct drm_file *fpriv;
-> @@ -43,16 +51,152 @@ drmcs_notify_weight(struct drm_cgroup_state *drmcs)
->  			fpriv->minor->dev->driver->cg_ops;
-> =20
->  		if (cg_ops && cg_ops->notify_weight)
-> -			cg_ops->notify_weight(fpriv, 0);
-> +			cg_ops->notify_weight(fpriv, drmcs->effective_weight);
->  	}
->  }
-> =20
-> +static void drmcg_update_weights_locked(void)
-> +{
-> +	lockdep_assert_held(&drmcg_mutex);
-> +
-> +	mod_delayed_work(system_wq,
-> +			 &root_drmcs.notify_work,
-> +			 usecs_to_jiffies(1000));
-
-This value is little bit magic.
-What is this consolidatiot good for?
-(I guess it's rather because of clients joining/leaving rather than
-cgroup attribute modifications.)
-
-> +}
-> +
-> +static void drmcg_update_weights(void)
-> +{
-> +	mutex_lock(&drmcg_mutex);
-> +	drmcg_update_weights_locked();
-> +	mutex_unlock(&drmcg_mutex);
-> +}
-> +
-> +static u64
-> +drmcs_read_weight(struct cgroup_subsys_state *css, struct cftype *cft)
-> +{
-> +	struct drm_cgroup_state *drmcs =3D css_to_drmcs(css);
-> +
-> +	return drmcs->weight;
-> +}
-> +
-> +static int
-> +drmcs_write_weight(struct cgroup_subsys_state *css, struct cftype *cftyp=
-e,
-> +		   u64 weight)
-> +{
-> +	struct drm_cgroup_state *drmcs =3D css_to_drmcs(css);
-> +	int ret;
-> +
-> +	if (weight < CGROUP_WEIGHT_MIN || weight > CGROUP_WEIGHT_MAX)
-> +		return -ERANGE;
-> +
-> +	ret =3D mutex_lock_interruptible(&drmcg_mutex);
-> +	if (ret)
-> +		return ret;
-> +	drmcs->weight =3D weight;
-> +	drmcg_update_weights_locked();
-> +	mutex_unlock(&drmcg_mutex);
-> +
-> +	return 0;
-> +}
-> +
-> +static void notify_worker(struct work_struct *work)
-> +{
-> +	struct drm_cgroup_state *root =3D &root_drmcs.drmcs;
-> +	struct cgroup_subsys_state *node;
-> +	bool updated;
-> +
-> +	mutex_lock(&drmcg_mutex);
-> +	rcu_read_lock();
-> +
-> +	/*
-> +	 * Always come back later if we race with core cgroup management.
-> +	 */
-> +	updated =3D false;
-> +	if (WARN_ON_ONCE(!css_tryget_online(&root->css)))
-> +		goto out_unlock;
-> +
-> +	css_for_each_descendant_post(node, &root->css) {
-> +		struct drm_cgroup_state *drmcs =3D css_to_drmcs(node);
-> +
-> +		if (!css_tryget_online(node))
-> +			goto out_put;
-> +
-> +		drmcs->sum_children_weights =3D 0;
-> +		css_put(node);
-> +	}
-> +
-> +	css_for_each_descendant_post(node, &root->css) {
-> +		struct drm_cgroup_state *drmcs =3D css_to_drmcs(node);
-> +		struct drm_cgroup_state *parent;
-> +
-> +		if (!css_tryget_online(node))
-> +			goto out_put;
-> +		if (!node->parent || !drmcs->num_clients) {
-> +			css_put(node);
-> +			continue;
-> +		}
-> +		if (!css_tryget_online(node->parent)) {
-> +			css_put(node);
-> +			goto out_put;
-> +		}
-> +
-> +		parent =3D css_to_drmcs(node->parent);
-> +		parent->sum_children_weights +=3D drmcs->weight;
-> +		css_put(node);
-> +		css_put(&parent->css);
-> +	}
-> +
-> +	css_for_each_descendant_pre(node, &root->css) {
-> +		struct drm_cgroup_state *drmcs =3D css_to_drmcs(node);
-> +		struct cgroup_subsys_state *css;
-> +
-> +		if (!css_tryget_online(node))
-> +			goto out_put;
-> +		if (!drmcs->num_clients) {
-> +			css_put(node);
-> +			continue;
-> +		}
-> +
-> +		css_for_each_child(css, &drmcs->css) {
-> +			struct drm_cgroup_state *sibling =3D css_to_drmcs(css);
-> +
-> +			if (!css_tryget_online(css)) {
-> +				css_put(node);
-> +				goto out_put;
-> +			}
-> +			if (!sibling->num_clients) {
-> +				css_put(css);
-> +				continue;
-> +			}
-> +
-> +			sibling->effective_weight =3D
-> +				DIV_ROUND_CLOSEST(sibling->weight <<
-> +						  DRM_CGROUP_WEIGHT_SHIFT,
-> +						  drmcs->sum_children_weights);
-> +			drmcs_notify_weight(sibling);
-> +			css_put(css);
-> +		}
-> +
-> +		css_put(node);
-> +	}
-> +
-> +	updated =3D true;
-> +
-> +out_put:
-> +	css_put(&root->css);
-> +out_unlock:
-> +	rcu_read_unlock();
-> +
-> +	if (!updated)
-> +		drmcg_update_weights_locked();
-> +
-> +	mutex_unlock(&drmcg_mutex);
-> +}
-> +
->  static void drmcs_free(struct cgroup_subsys_state *css)
->  {
-> -	struct drm_cgroup_state *drmcs =3D css_to_drmcs(css);
-> -
-> -	if (drmcs !=3D &root_drmcs.drmcs)
-> -		kfree(drmcs);
-> +	if (css !=3D &root_drmcs.drmcs.css)
-> +		kfree(css_to_drmcs(css));
->  }
-> =20
->  static struct cgroup_subsys_state *
-> @@ -62,6 +206,7 @@ drmcs_alloc(struct cgroup_subsys_state *parent_css)
-> =20
->  	if (!parent_css) {
->  		drmcs =3D &root_drmcs.drmcs;
-> +		INIT_DELAYED_WORK(&root_drmcs.notify_work, notify_worker);
->  	} else {
->  		drmcs =3D kzalloc(sizeof(*drmcs), GFP_KERNEL);
->  		if (!drmcs)
-> @@ -70,9 +215,147 @@ drmcs_alloc(struct cgroup_subsys_state *parent_css)
->  		INIT_LIST_HEAD(&drmcs->clients);
->  	}
-> =20
-> +	drmcs->weight =3D CGROUP_WEIGHT_DFL;
-> +	drmcs->effective_weight =3D (1 << DRM_CGROUP_WEIGHT_SHIFT) / 2;
-> +
->  	return &drmcs->css;
->  }
-> =20
-> +static int drmcs_online(struct cgroup_subsys_state *css)
-> +{
-> +	drmcg_update_weights();
-> +
-> +	return 0;
-> +}
-> +
-> +static void drmcs_offline(struct cgroup_subsys_state *css)
-> +{
-> +	drmcg_update_weights();
-> +}
-> +
-> +static struct drm_cgroup_state *old_drmcs;
-> +
-> +static int drmcs_can_attach(struct cgroup_taskset *tset)
-> +{
-> +	struct cgroup_subsys_state *css;
-> +	struct task_struct *task;
-> +
-> +	task =3D cgroup_taskset_first(tset, &css);
-> +	old_drmcs =3D css_to_drmcs(task_css(task, drm_cgrp_id));
-
-This is similar to cpuset's cpuset_attach_old_cs.
-Beware that when controller is disabled, the migration happens from
-multiple (chilren) csses.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static void __inc_clients(struct drm_cgroup_state *drmcs)
-> +{
-> +	struct cgroup_subsys_state *parent =3D NULL;
-> +
-> +	rcu_read_lock();
-> +	do {
-> +		drmcs->num_clients++;
-> +		WARN_ON_ONCE(!drmcs->num_clients);
-> +
-> +		if (parent)
-> +			css_put(parent);
-> +
-> +		parent =3D drmcs->css.parent;
-> +		if (parent) {
-> +			if (WARN_ON_ONCE(!css_tryget(parent)))
-
-This should be ensured implicitly thanks to css::online_cnt.
-
-> +				break;
-> +
-> +			drmcs =3D css_to_drmcs(parent);
-> +		}
-> +	} while (parent);
-> +	rcu_read_unlock();
-> +}
-> +
-> +static void __dec_clients(struct drm_cgroup_state *drmcs)
-> +{
-> +	struct cgroup_subsys_state *parent =3D NULL;
-> +
-> +	rcu_read_lock();
-> +	do {
-> +		WARN_ON_ONCE(!drmcs->num_clients);
-> +		drmcs->num_clients--;
-> +
-> +		if (parent)
-> +			css_put(parent);
-> +
-> +		parent =3D drmcs->css.parent;
-> +		if (parent) {
-> +			if (WARN_ON_ONCE(!css_tryget(parent)))
-> +				break;
-> +
-> +			drmcs =3D css_to_drmcs(parent);
-> +		}
-> +	} while (parent);
-> +	rcu_read_unlock();
-> +}
-> +
-> +static void drmcs_attach(struct cgroup_taskset *tset)
-> +{
-> +	struct drm_cgroup_state *old =3D old_drmcs;
-> +	struct cgroup_subsys_state *css;
-> +	struct drm_file *fpriv, *next;
-> +	struct drm_cgroup_state *new;
-> +	struct task_struct *task;
-> +	bool migrated =3D false;
-> +
-> +	if (!old)
-> +		return;
-> +
-> +	task =3D cgroup_taskset_first(tset, &css);
-> +	new =3D css_to_drmcs(task_css(task, drm_cgrp_id));
-> +	if (new =3D=3D old)
-> +		return;
-
-Beware here too, it'd be better to use css from
-cgroup_taskset_for_each(task, css, tset) below as the new css.
-
-> +
-> +	mutex_lock(&drmcg_mutex);
-> +
-> +	list_for_each_entry_safe(fpriv, next, &old->clients, clink) {
-> +		cgroup_taskset_for_each(task, css, tset) {
-> +			struct cgroup_subsys_state *old_css;
-> +			struct drm_cgroup_state *old_;
-> +
-> +			if (task->flags & PF_KTHREAD)
-> +				continue;
-> +			if (!thread_group_leader(task))
-> +				continue;
-
-Maybe cgroup_taskset_for_each_leader()
-
-> +
-> +			new =3D css_to_drmcs(task_css(task, drm_cgrp_id));
-> +			if (WARN_ON_ONCE(new =3D=3D old))
-> +				continue;
-> +
-> +			if (rcu_access_pointer(fpriv->pid) !=3D task_tgid(task))
-> +				continue;
-> +
-> +			if (WARN_ON_ONCE(fpriv->__css !=3D &old->css))
-> +				continue;
-> +
-> +			old_css =3D fpriv->__css;
-> +			old_ =3D css_to_drmcs(old_css);
-> +			fpriv->__css =3D &new->css;
-> +			css_get(fpriv->__css);
-> +			list_move_tail(&fpriv->clink, &new->clients);
-> +			__dec_clients(old);
-> +			__inc_clients(new);
-> +			css_put(old_css);
-> +			migrated =3D true;
-> +		}
-> +	}
-> +
-> +	if (migrated)
-> +		drmcg_update_weights_locked();
-> +
-> +	mutex_unlock(&drmcg_mutex);
-> +
-> +	old_drmcs =3D NULL;
-> +}
-> +
-> +static void drmcs_cancel_attach(struct cgroup_taskset *tset)
-> +{
-> +	old_drmcs =3D NULL;
-> +}
-> +
->  void drmcgroup_client_open(struct drm_file *file_priv)
->  {
->  	struct drm_cgroup_state *drmcs;
-> @@ -85,6 +368,8 @@ void drmcgroup_client_open(struct drm_file *file_priv)
->  	mutex_lock(&drmcg_mutex);
->  	file_priv->__css =3D &drmcs->css; /* Keeps the reference. */
->  	list_add_tail(&file_priv->clink, &drmcs->clients);
-> +	__inc_clients(drmcs);
-> +	drmcg_update_weights_locked();
->  	mutex_unlock(&drmcg_mutex);
->  }
->  EXPORT_SYMBOL_GPL(drmcgroup_client_open);
-> @@ -100,7 +385,9 @@ void drmcgroup_client_close(struct drm_file *file_pri=
-v)
-> =20
->  	mutex_lock(&drmcg_mutex);
->  	list_del(&file_priv->clink);
-> +	__dec_clients(drmcs);
->  	file_priv->__css =3D NULL;
-> +	drmcg_update_weights_locked();
->  	mutex_unlock(&drmcg_mutex);
-> =20
->  	css_put(&drmcs->css);
-> @@ -124,6 +411,9 @@ void drmcgroup_client_migrate(struct drm_file *file_p=
-riv)
->  	if (src !=3D dst) {
->  		file_priv->__css =3D &dst->css; /* Keeps the reference. */
->  		list_move_tail(&file_priv->clink, &dst->clients);
-> +		__dec_clients(src);
-> +		__inc_clients(dst);
-> +		drmcg_update_weights_locked();
->  	}
-> =20
->  	mutex_unlock(&drmcg_mutex);
-> @@ -133,12 +423,23 @@ void drmcgroup_client_migrate(struct drm_file *file=
-_priv)
->  EXPORT_SYMBOL_GPL(drmcgroup_client_migrate);
-> =20
->  struct cftype files[] =3D {
-> +	{
-> +		.name =3D "weight",
-> +		.flags =3D CFTYPE_NOT_ON_ROOT,
-> +		.read_u64 =3D drmcs_read_weight,
-> +		.write_u64 =3D drmcs_write_weight,
-> +	},
->  	{ } /* Zero entry terminates. */
->  };
-> =20
->  struct cgroup_subsys drm_cgrp_subsys =3D {
->  	.css_alloc	=3D drmcs_alloc,
->  	.css_free	=3D drmcs_free,
-> +	.css_online	=3D drmcs_online,
-> +	.css_offline	=3D drmcs_offline,
-> +	.can_attach     =3D drmcs_can_attach,
-> +	.attach		=3D drmcs_attach,
-> +	.cancel_attach  =3D drmcs_cancel_attach,
->  	.early_init	=3D false,
->  	.legacy_cftypes	=3D files,
->  	.dfl_cftypes	=3D files,
-> --=20
-> 2.48.0
 >=20
-
-
-Regards,
-Michal
-
---uwbgl3tifamqbhkd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTd6mfF2PbEZnpdoAkt3Wney77BSQUCaD3PsQAKCRAt3Wney77B
-SSZdAP97iGN5AQSIIeoxFDYFLrnaUussI2rGjqzM5YCfvzSffgD9GGAwStMZXNaI
-XVOMnNE3aJieaR/h/MpexQlC663uIgk=
-=6twu
------END PGP SIGNATURE-----
-
---uwbgl3tifamqbhkd--
+> Thanks,
+> pq
