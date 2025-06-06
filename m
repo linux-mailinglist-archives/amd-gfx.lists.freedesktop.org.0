@@ -2,150 +2,128 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42087ACFC49
-	for <lists+amd-gfx@lfdr.de>; Fri,  6 Jun 2025 07:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 495BAACFCF8
+	for <lists+amd-gfx@lfdr.de>; Fri,  6 Jun 2025 08:44:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC6D710E042;
-	Fri,  6 Jun 2025 05:39:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5592410E3BE;
+	Fri,  6 Jun 2025 06:44:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="t9XbcDu8";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cLjjxyyR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53A0E10E042
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Jun 2025 05:39:26 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2077.outbound.protection.outlook.com [40.107.237.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B6B10E2DA
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Jun 2025 06:44:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=go8fVhWaa0hl8ZVtqdTkNQF9GWwN0lF1NY1q2GZumClb7g1BVizJy8iYBOljB2Pg7k8aHkc9CzM131seJlwbbIqUe86eRd9w0vlhVje/GizG5WUE5TzVJ5ocQsbQ1/KYiAkXO9GIfVZ8x2Up45U9GhYTODO+Z8GBITcbiMaMpD1KvKaDn5UGrstvYWe95TNHunRm5ypRmpQgOFFH1HvifzvgUxPi5w6hQLtXSSUYweksNkfnoAOtfSkaxP07eslAUg2hSAH9HzgCIV00mgEOjp2XuCWP5mDM+lLDK8rfEKRU6+eCgLo1hX4fQAErirh4lBqVQryp4i2Il8EQwj0Tyg==
+ b=Jz+5wYg5ZDYWpvFWZEd53kKJAEOYwlP0DfU3zCCZ5+aZGf5+rpKKIJAC12xMdBCDE9Id7StsOw981GzRyGCcFL8o9LzN9sqn2i2gcqQ4o/DRnWm9OXjTeCzWfDv9upfjjLFGf9joYHAdJrWnDQlA2oXRseg8Hjhf7UHEGC9ijbtoBc8wdjL3Iqs+HpgoWr7fGLAetg7Mg9tx7NWQ8R/cXoNsFfRgtcV8KfXQ/7qd3dm7NHtkvObdcfRDfGWzNXiYqRMAoICXUtuC8sHMCYOThuJHvyyzD9g6LVfuCeXPJYgbj4TGwuK5nSTvg88XzIuC20c4d2FjDbzb6LE24eJAxw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Kg7Bdrsh9m3uewyWsiZ49AgaW9igZJPYp/UTjcSrWpk=;
- b=V4X6YHEhtRPxZxJE0CKCt5T7bfsguGVWXI55fRVNWdqTgZCTNLu+zaQjZPnqVFb0guYE8wsvylP0AAykAsXmMn8YwO1o2Hq9nVl1pggsglU/TuBSk6by8e+s7TItRFamgKxarWIJX88lbdktEj1517+NFjTas2nfNzbVBhsqAQ1iBv4yRHSCrGrwAtOC9LocqLvx0W+oQ1RVnRFUzxPUqo789iwhoVa15A5Tu00ZcTTAmylebvp8+iaTF6jGhpewEhn8LDu+k2wjVWmYAZC3vB4zG8UsImqE2vmpGfXtYVuALjo+gwBB1MB8cNGlahXtrI/AOD2BG1cHD1xIygNwNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=ugtkDDJc8JEn3RnNPT4cq3xu/HQs4PDUJCX8k6nGbWs=;
+ b=wyu4pM3x6kd0R2eSFjqbbLf5O9x6+3teTYwd8E6Xji8VZqrcEWmsjRiJARER/+T7pGWC7FHiNGNkLC10HuA8rZFl4F1XePgd+JWAZbnGns9w6gONDalFIPcM8sPluvMLO559rVjO4cpLCgKRodLmjRZ5hRMrECK9JMRuGVtUu9NEjXvNM1UtKYy1Ckut2QrbkrJYjj7ZKwdeexHMXbO7eaHAbmpxKrdjHU1hC484Xh8S3u7sbstLLI44FCO+Xh7uzhpPKqAMagvRLWBVE2sbq+1SplpqepRMog37tNHFJ2tPG+T+GPK6CwPklxooYhKarvNbYMN0gwb8xGGLdLMiPQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Kg7Bdrsh9m3uewyWsiZ49AgaW9igZJPYp/UTjcSrWpk=;
- b=t9XbcDu80GfK+XX7RwAEHfycqI90we1m6WVKgB0NsnbsA68FadeE6CkPefPomQY0qhPFMk6kpC0HTqh3TPDZwyv5X1WaHlZcCG7qdNbUnJyxOMkhbWLQBIf+L924RbyGoq6wIuUe2GguyZSULbbEhpINko6OrNPjD9BxbIjfk1U=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- CH2PR12MB4197.namprd12.prod.outlook.com (2603:10b6:610:ab::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8792.35; Fri, 6 Jun 2025 05:39:18 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290%4]) with mapi id 15.20.8792.033; Fri, 6 Jun 2025
- 05:39:18 +0000
-Message-ID: <a6753644-2ddd-46a0-8046-6fc3dee426ac@amd.com>
-Date: Fri, 6 Jun 2025 11:09:12 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/amdkfd: Move the process suspend and resume out of
- full access
-To: Emily Deng <Emily.Deng@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20250604074817.1444723-1-Emily.Deng@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20250604074817.1444723-1-Emily.Deng@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BMXP287CA0009.INDP287.PROD.OUTLOOK.COM
- (2603:1096:b00:2c::15) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+ bh=ugtkDDJc8JEn3RnNPT4cq3xu/HQs4PDUJCX8k6nGbWs=;
+ b=cLjjxyyRHtCkTxu7kRckkfRU+gwvyiJdq+x/yqxMcnNA0VbHsTJzdCd40ohpyQQPBfQsRSR6WWozQfGBMc5IyAQfhl/wVxCtI5kLp6NOItpGX4iUYfDA5xcpXum9Vtd5RKC/yXdfjwOv942srwsW7FeSsNcHCQ13wPAAKaKgZGQ=
+Received: from SJ0PR05CA0089.namprd05.prod.outlook.com (2603:10b6:a03:332::34)
+ by BL3PR12MB6402.namprd12.prod.outlook.com (2603:10b6:208:3b2::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.35; Fri, 6 Jun
+ 2025 06:44:10 +0000
+Received: from SJ1PEPF00001CE4.namprd03.prod.outlook.com
+ (2603:10b6:a03:332:cafe::c9) by SJ0PR05CA0089.outlook.office365.com
+ (2603:10b6:a03:332::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8835.10 via Frontend Transport; Fri,
+ 6 Jun 2025 06:44:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ1PEPF00001CE4.mail.protection.outlook.com (10.167.242.20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8792.29 via Frontend Transport; Fri, 6 Jun 2025 06:44:09 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 6 Jun
+ 2025 01:44:08 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH V7 00/29] Reset improvements
+Date: Fri, 6 Jun 2025 02:43:25 -0400
+Message-ID: <20250606064354.5858-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|CH2PR12MB4197:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef434079-317e-4cd4-842c-08dda4bc7b15
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE4:EE_|BL3PR12MB6402:EE_
+X-MS-Office365-Filtering-Correlation-Id: 815b8419-1f8c-4516-cdd4-08dda4c58a4b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SFdHOXRaUkxocGxzZ1o2ekRQRithRjVBemZIZk9HTVhRaC9XbGRoTTBCWnRj?=
- =?utf-8?B?endXTjViR0g4WG5qL0RqUTdhczRSVnQ3ZTNCd3RONWYyeTFoWkQ4VVFsczJY?=
- =?utf-8?B?cDFlSWY3UHFtaXdzaHhVZmJMWXpvR2czUzVoaE5yM29kcDBPeVRWQ0JJb3Nx?=
- =?utf-8?B?WnVuYnA3cFlBLzNnS1ltTTdlT2g4Mm41a1BRUE5WdHhGT01BWXJPSS9rWkZa?=
- =?utf-8?B?K0JZd0l4MUZtWTRmUFZvdksraGdVZTR6VHdpTjNRUE5LZmtmUXVEbzZCd0s3?=
- =?utf-8?B?TVFHVThybFZyb3plTjJBUEVzUDVrc3ZBNkxFTEhZMkljblJvQmVVeUtWbzdQ?=
- =?utf-8?B?TGhGTzFGSnFlQVVZTkozWG5YTEN6dUFkaUpFSUN5bWNOU01GdGRaNXZxOUJF?=
- =?utf-8?B?R0Fma2RWaVZIQS9zVEpEbGcyVlpJeVdLSmxBdkcyNTZBd3NjZGk3SzMxWUFx?=
- =?utf-8?B?cFZYeTVLcVJ2MGVqYVN5bUxreHZBckppRk5ReTJoT25CMmFpVjd0ZEpYamkv?=
- =?utf-8?B?amtGUnV0eXlsdm5tSkhFQjVJeVhFZjlWNkRyZE90bDZKdStsL0luSzNnNHBC?=
- =?utf-8?B?S2p5aVBITmQwbVk3UDVTcUJ2dXRuVlo1WHE1bVdKMDcwSi9GYWxhazZ0cU1B?=
- =?utf-8?B?ZGxvM3NlY0pRU0ZkSGJ6U0NzenFaS0JaQWw1QklKSGhhYXE1QjFaanJMZTJ5?=
- =?utf-8?B?OGhuYTFXTHl2RzZUeTk0TjdVOFdNVFRleU81RHMwUHI2QTRhU2toSi91TnMw?=
- =?utf-8?B?UUdHMWo1OGpXYmZjV0RxUUk4OW1OdTI5eXQ2WTVuQ3NvSTRqQ3pXZXpTVk9P?=
- =?utf-8?B?TlNocmo2aWFlbDN1ZDlka0lYbVYyNmRDVGR6S24ySjRha3hqYTlybDRrYUQ1?=
- =?utf-8?B?TFdybFNDSVp5dmtWOHExVy9iNmd2dGZoZTByQzZRTUVyTFgvN3daUTlUdjlo?=
- =?utf-8?B?eXN0ZzcycVQ5cE5xR1hVU2VTS21YblpPMmlTU1pZUGE1Sk50WUdaWjF1ZktK?=
- =?utf-8?B?dWdIMlRqbnZrdVVaOUpVOXBueHlIUDhxSzY0VlRSYzU0ZG9kVjBqZGxpTzJo?=
- =?utf-8?B?Vm9ndGZIdGNJcC9USXR5aWV3Wjg5Q1VQUi9OWWw3RFo0L2RRdWRLdllhMmlU?=
- =?utf-8?B?UXJkcXZHekYyWHNFMUtFaVdsQmxsVEdiVGNSV0VEdVVvZ3FNWXdjeTdHUHVC?=
- =?utf-8?B?VjR0c1cyQmpwQ0ZEN2NmazAyNU0rdnkxWkoxb2FqYlEzc2w3cDJrYW1sTmd3?=
- =?utf-8?B?enhWaHVoaFp2ZTY1L3dnTU50bTBDNkI0Q0tkcTNQcW0vSFpoVGl6b3BaeUJK?=
- =?utf-8?B?dW96ek1OSFRKc0lHVDNzVHVzMjllVDlITXcrQWNQOHQ0YVdhU3NMcXhpZU1D?=
- =?utf-8?B?azUxZWFnZjdTb1diRW90Q29iYU1zUWZKQksyZ2ppc0xBV3JpdVlmSERKZkVs?=
- =?utf-8?B?WkRoekkzTlI3OWpYaEhSeVlya0ZqSWdrakVNYmJpVW5qWXVTVHh4MHhwd3Fi?=
- =?utf-8?B?T01ZQmZmdWhvaWNhSEpwVzBXc1pmRUhPMHdybXRKMm9UZUpTVkZxMUErTjEv?=
- =?utf-8?B?OFVRM1lsL3pVNGk2Z1dLOGV0THZFRTBHYkhmd1krcjN0Mmhhb25rY1A2UDZy?=
- =?utf-8?B?bFhOY2MxM09lMlI3Y0dMckh3T1l0Z1U4SFdOdHQ0SWxBbUNnRjRtWWI1bXJt?=
- =?utf-8?B?VTJHYjRtZ1NhNlR0cWd2NUQxODhtZlpBcng1K01URHNTS3M2RzhaT3FHbzd4?=
- =?utf-8?B?VXdSK1F3RWFmY0hlWnMvdWRObFA0bHRZUjdLaG9pN2k4SWJ1SFpqQ3RPbFhZ?=
- =?utf-8?B?MVBwK3Vud2NiK0VOTmg2RDlUMnRiczhTWUxWTjlNZk00a3JGTXFFTkJialJX?=
- =?utf-8?B?SmhHbGZIUmtLZm1aZGFyNEpoNE5PYk8zcHJnSkpmSk5FbFlERnptb1dyVHVu?=
- =?utf-8?Q?XpX1qRuXu1k=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cHdzVUhoWGkxTUI4cWxRRW1iaHM1a2FVSGJUdkltNFpzUWxxZUN5Nlh4M1M1?=
- =?utf-8?B?cG5uZU9JTXZCSUpDYU9CNWQzWGczWFBYTXZpcVFmYmt3SzlNVTc4VGVTdlh1?=
- =?utf-8?B?bkNRRmpKNzlBK1BYMUllZkZqdTl1Ky9zWFVXQmE4WEJxM0F2Ny9JRFlZSVNs?=
- =?utf-8?B?Wnl3NDJIRFp5ajk5aHBZa3FRVWV1b1RmRUpFVm5HcDI3VDVuVWd3QkNGUVp5?=
- =?utf-8?B?dkxXTmpNeDgyQmE1ZkhmMWxqbzI2REpvK3VqK1BVVlAvdjBoa2tvTllERnla?=
- =?utf-8?B?MTRLS2s2Ym54UkJvRjBpeC9TWFJSR2ZvUlBPTWt3MStVbnhManl1WFNRTkZk?=
- =?utf-8?B?TDFWZ3B0b2FuRmNTRUJPUjRITEdUdktEdk02N3owQUVMNUhpcXZONlhYVDdQ?=
- =?utf-8?B?N3c4QVNUeTJXS1VSK3dYUnBNR1NjVURnbU8xeXpoVjNaZFlZZ3FSMElQc1JE?=
- =?utf-8?B?alU0V0lUSGRjMTdwUGVBN1YydFdmUWMwZ0Q2dUxwSW11YTlha0JIdGtpNzdL?=
- =?utf-8?B?RTlFR2Fqbys4dUp1SlU1RnhydXlYeDZqUDhyVjkyZE1ndUp2WjJBMHBMeEI5?=
- =?utf-8?B?c2FIeVRFUTlncVVZWE5Mb1FmYzJqTURBdmxlQWNPNHpaU2x3U2M1UUxYYS9r?=
- =?utf-8?B?TDljU0FZVzRqaDVMMXMycUNHaWlsODR3N01uRlVEWVBRcExtRGFGbUt6SzZQ?=
- =?utf-8?B?eG1HM0RuejY4Z1VQQmZ1T3RqYWZkOFEyMUhnd1o4SStFT1NHWk5maUxnalA5?=
- =?utf-8?B?ZmNtOWQ3a2NiSFRSdndrU25pS1NIYlZ1cGZyK2w3Sk9LQ1huWUVYQnkrQnE4?=
- =?utf-8?B?QkQwMS9hdkhuTTdmUEFTb25aanJnSUFDUnV5blF5YkFqTFNYZDArUkczWHV3?=
- =?utf-8?B?MFBrbjNsNjArUE95QW9QTWlIbXNERXJpeVF5c0RjZENDVWlmRjBiTy9QU2Vu?=
- =?utf-8?B?RUMwY3JDMHJPNk1SMGIzYnIzRk9DY2h6d0htTy9ZbFNPZTVBSFAyWDNSZ3hs?=
- =?utf-8?B?ekdlM3FEZXlvZk9kdnlmeUN6K1l5S0d1aytXSXVsWGdpbFVPMllRZ042bEhu?=
- =?utf-8?B?ZFZ1RFBXMi9JZnAxVGhVZ1J5Qm1pWkRyY0JlSEJFR0Jkc1loZG5HRHVkN3RL?=
- =?utf-8?B?MWVMSjMydmJXSTJ4T3VhbzArTXVXU2ZMeHBraStrZDhnN1dlUHduTDVKcGRu?=
- =?utf-8?B?VmRwYXFuWXJQL1JFT3lqWGZUZTF0WlFaV0Ftd0pXWmdXbTJJakc3T0Y1WjZZ?=
- =?utf-8?B?TjBPY2ZKTEhLeEc0NnRkeDN1UjRTM1luN2Y5TklRbFhKd0xxOEI2YzE2KzBu?=
- =?utf-8?B?d3ExWmRtbXRjK0wxYVZQcXZjY2h4WjRuNnpBYk9nRENjZUptVjNjNExwQnlw?=
- =?utf-8?B?RzE5aUFZb0VIM05xOHBPUlliWTR4VFcrcFdBZ0ZhVWhSbXBSUmU0ZTROUVBi?=
- =?utf-8?B?M2FFcElaQlk1Q2ZyM0xvckViK2xmT21EVnJRTlliRXVzbk1TZ3FiVGZldXc2?=
- =?utf-8?B?dTZXUnQzWnJKZ0ZTbE0xbVN6RW5Mc0JpY2J6N1pUQzczOG1XSWNUSHArYjlE?=
- =?utf-8?B?OGdGT1lzM1cvOW9icXBmeDBaakdRcE5iZ3oxbXdWdTlRSlp5TWg3MnZDOXpz?=
- =?utf-8?B?eUw1UFlCeHYreElBejlCaWIyT09BcTRqaGZSNVB1Y3h0R3dvS3h2SlE4VXUz?=
- =?utf-8?B?M2NocnZBcFhiUlM1SjVDUlZnZDBHOG1CYXptemhubkwvRWZVTEJXRHRBM3kx?=
- =?utf-8?B?bXd4ZnQrRmxKcUk2NUk0K2pmdHAxdWZRTzBDb3FJbUpLcG45ekxCYzJBVTls?=
- =?utf-8?B?VHRXbnlnZkZrUXJhRU01S0ZLci82VU03Q24zeE5remNYUzRWUld6czJkcDcz?=
- =?utf-8?B?WXpyc3RYajBhcHdNRXFzK0NLQ29IYmFXM2Nvby9YQmsxNm5tWWVPSHBRZ1gw?=
- =?utf-8?B?OGQ1ZXRCQWd0WVd5eE5qMFFlZjMxR0ZSYndzS2JYMDQ2QUE4ZmNQUEhNeUlT?=
- =?utf-8?B?cmU4Q1JGZk9Bd2ltSnhoR0dQRnoraGhyZWFYVU8vbXB5VjJiSGo5SDBGTXhi?=
- =?utf-8?B?bktGSm03MjZEVTlSVmFCdHFJWnBDek5VOFdzOU1wYzZBRkVqb3VZbVk5NEx4?=
- =?utf-8?Q?ixDp9hzGMfcbDxUFn6squWqSG?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|376014|82310400026|13003099007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VkpSL212bVU3Z1hWMHN2ZURSNk5KZnZ2YVd6cmdOK09PRmtsRGpmOVZXQWpS?=
+ =?utf-8?B?a0xYQkRtOW8zK3kwVlNKd3hiWHFlcDJtUVlsQk1LSU9CUWFsU1poUVdOaFc0?=
+ =?utf-8?B?N01nVmx1YWQxQkNNb0oyQXVuR2JIWlBGREJZSFlNSWF2dlJGRENBcHIyZHNM?=
+ =?utf-8?B?VzBuV2lwTUZQcnREbEtVOERMcFBqVGRlNWNFQ2NPRmM5bkJzUHJtWmxBemxL?=
+ =?utf-8?B?MU4wWjlkQjNlYUpQRHRodDY0a293N3FKL1lUNXVpa0tLQ3ZheDh0OCtwUmNa?=
+ =?utf-8?B?ZTZGdnFUNlpwQ3B2bGFRd1hFLzI0QzN3SWpUYy9OL21SR3ArNmx1WTN4SUZu?=
+ =?utf-8?B?M3FDVlFkNDVGdWRQSFdXa0o0YU1TVVlLWjhyZnUvZ3JjaEdJbkVWOHFJQlNt?=
+ =?utf-8?B?Sk1vdllLam5PUW1tSElXdC9LeWluSEFONjJ2cjVrbjAwTFpaNXVpVDRMRitH?=
+ =?utf-8?B?RDU5ajZHOExYR2ZSNW1nbmdJTGhRbWRRTnJDdS9IM2xsTWZ1QllqczVZamty?=
+ =?utf-8?B?VVNFQmdhTitwOUJGTk1nZUlDV0paYXU2dHREbEFlcGxHVXc5Mi9EZ0xWVTZX?=
+ =?utf-8?B?UWRRMHVmbzJ4YitLRE92YUFRcVlDVG5KL1VPaFl6YmV2dGd4a1NqVncxN3hv?=
+ =?utf-8?B?clNTOUdKNkdFSlZtYkRLTHVmWWZnc3Rja2VEdXBSQzM3K3FEbmFjYlNXcmVW?=
+ =?utf-8?B?K3k4dkxiQjUxSkU0MnRRREhjd2VJVXQ2bzA1NXBZQWZ4Ny9WMEpFRmFwL1J0?=
+ =?utf-8?B?L2J1M1kzOGZMeEFJZEw2UmRuZERBbGdJYk9XdEdNVTJCTFVJYXRxUXdPc2tL?=
+ =?utf-8?B?L1BqOWpFbXFCTmxGTGp2R2ZVTFRVOWVSNEdjR29oVjU0eFYxeFljUWt6Z2xk?=
+ =?utf-8?B?WjVSaHROYzZaN2RKaDZkaE5vSHpITWwvT21kcC9rc3RrSUdPd2xvMkd1MzdE?=
+ =?utf-8?B?b05NTWpkLzl6Z3VMSGdpeGlxV2I5ZjhybUc4TXluUnpoSU9CSDJSbGNPQnVo?=
+ =?utf-8?B?LzczM0lTc3JqQm1Gb2pIaFQwZFJFNDdLVXNOemthQ292U3B2d3RraDc4azU2?=
+ =?utf-8?B?ZXZreEhwN3p1QVNSL3JFbkYvL2tJVEMxVElJaWRsS3hNVnRrT25qWmZ0S0do?=
+ =?utf-8?B?bWVqWVRxSE1KS0wwaVNMb0lITFgzOGNwR2tXOHVSRGh4aWl6NlJaSE5PMSs5?=
+ =?utf-8?B?TDYxUktsUHowVHVNYUZaTWloNTlGOCtGQWFJa05samJlQml3dytBM3V2Tzc3?=
+ =?utf-8?B?eWlKOXF5R0lHNERicXRSRVViT2xTMlpncjYxcG9rRkJDK2JOZkxlaFhiRnM0?=
+ =?utf-8?B?UE1Eb3Q2endxWDVYbHBudVR0K0JWTWpETHhoNDkxZUdJcDZ0QndRSUtyYzdS?=
+ =?utf-8?B?aUx1anI2NERXaUtlQ1hKazF2VVFBdERjYVB1WVd1U3FxRTN1T1UwNTkwNXNZ?=
+ =?utf-8?B?VWVlMy9qTTVLY3ovT3k1Tk9yTmd1dkhZVnBQVlhQUVEwQVlyb3luSm04Rzhr?=
+ =?utf-8?B?UG5RV2oweWMvK3RwZVNSL1dCUGJGeTBFTVRhVWVrZWZRMEtBcUFzc3BHdG5R?=
+ =?utf-8?B?dFlRSkxpdzA5SEZ6Qmt1MDJ0ajh6UStmcHV0OU1RUlhRRjRYKzdkNjRTM0xk?=
+ =?utf-8?B?alpBZmpCeFlLSndFLyt0TGpwc3RxQTRvbk1DQzdqbnJuQVMxSWJqYnU1YTlW?=
+ =?utf-8?B?ekpSTDcvUU54eVR4QlduSlRyZzZ3bHNLTHZObTZqOG1INDdiRlBKS2ZLeHB3?=
+ =?utf-8?B?eDZmZUpFSE5oKzNKMVkyZXVOV1J5UWVmK1p5eW12cEFpVEZGMUlRTmViSmZy?=
+ =?utf-8?B?RURLVUFoZ1o1ZDRYTGxBZ1VLeklONWV4aE42ZjIxY1lzT0poaVhsTDVXaE05?=
+ =?utf-8?B?ZXYzTUdBLzBYTGhGc1UxbkZtVHArS1kyYkJmRFoydWJSZVJBUGpJanFqUHlL?=
+ =?utf-8?B?WDZoejVXbWNoa083aUtqTHBFeGhEek9PakJZR2dCcUFZOHNGa01UdStHZTNk?=
+ =?utf-8?B?ZXNTc2duTFNRPT0=?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026)(13003099007);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef434079-317e-4cd4-842c-08dda4bc7b15
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2025 05:39:18.5365 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2025 06:44:09.0947 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 815b8419-1f8c-4516-cdd4-08dda4c58a4b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pLt3AswZRXUixmwFmemrZ0R0/9Q7kmSAdVQX6iv8IRqZYbZQK31kouCd7Aou9Zdt
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4197
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE4.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6402
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,208 +138,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This set improves per queue reset support for a number of IPs.
+When we reset the queue, the queue is lost so we need
+to re-emit the unprocessed state from subsequent submissions.
+To that end, in order to make sure we actually restore
+unprocessed state, we need to enable legacy enforce isolation
+so that we can safely re-emit the unprocessed state.  If
+we don't multiple jobs can run in parallel and we may not
+end up resetting the correct one.  This is similar to how
+windows handles queues.  This also gives us correct guilty
+tracking for GC.
 
+Tested on GC 10 and 11 chips with a game running and
+then running hang tests.  The game pauses when the
+hang happens, then continues after the queue reset.
 
-On 6/4/2025 1:18 PM, Emily Deng wrote:
-> For the suspend and resume process, exclusive access is not required.
-> Therefore, it can be moved out of the full access section to reduce the
-> duration of exclusive access.
-> 
-> v3:
-> Move suspend processes before hardware fini.
-> Remove twice call for bare metal.
-> 
-> Signed-off-by: Emily Deng <Emily.Deng@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 16 +++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h | 13 +++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  9 +++--
->  drivers/gpu/drm/amd/amdkfd/kfd_device.c    | 40 +++++++++++++++++-----
->  4 files changed, 67 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-> index d8ac4b1051a8..0a8e7835d0fc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-> @@ -264,6 +264,22 @@ int amdgpu_amdkfd_resume(struct amdgpu_device *adev, bool run_pm)
->  	return r;
->  }
->  
-> +void amdgpu_amdkfd_suspend_process(struct amdgpu_device *adev, bool run_pm)
+I tried this same approach and GC8 and 9, but it
+was not as reliable as soft recovery.  As such, I've dropped
+the KGQ reset code for pre-GC10.
 
-run_pm flag is not required in *_suspend/resume_process calls. It may be
-checked at the caller site. Call the functions as required based on the
-flags.
+The same approach is extended to SDMA and VCN.
+They don't need enforce isolation because those engines
+are single threaded so they always operate serially.
 
-> +{
-> +	if (adev->kfd.dev)
-> +		kgd2kfd_suspend_process(adev->kfd.dev, run_pm);
-> +}
-> +
-> +int amdgpu_amdkfd_resume_process(struct amdgpu_device *adev, bool run_pm)
-> +{
-> +	int r = 0;
-> +
-> +	if (adev->kfd.dev)
-> +		r = kgd2kfd_resume_process(adev->kfd.dev, run_pm);
-> +
-> +	return r;
-> +}
-> +
->  int amdgpu_amdkfd_pre_reset(struct amdgpu_device *adev,
->  			    struct amdgpu_reset_context *reset_context)
->  {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-> index b6ca41859b53..841ae8b75ab1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-> @@ -156,6 +156,8 @@ void amdgpu_amdkfd_fini(void);
->  
->  void amdgpu_amdkfd_suspend(struct amdgpu_device *adev, bool run_pm);
->  int amdgpu_amdkfd_resume(struct amdgpu_device *adev, bool run_pm);
-> +void amdgpu_amdkfd_suspend_process(struct amdgpu_device *adev, bool run_pm);
-> +int amdgpu_amdkfd_resume_process(struct amdgpu_device *adev, bool run_pm);
->  void amdgpu_amdkfd_interrupt(struct amdgpu_device *adev,
->  			const void *ih_ring_entry);
->  void amdgpu_amdkfd_device_probe(struct amdgpu_device *adev);
-> @@ -413,6 +415,8 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
->  void kgd2kfd_device_exit(struct kfd_dev *kfd);
->  void kgd2kfd_suspend(struct kfd_dev *kfd, bool run_pm);
->  int kgd2kfd_resume(struct kfd_dev *kfd, bool run_pm);
+Rework re-emit to signal the seq number of the bad job and
+verify that to verify that the reset worked, then re-emit the
+rest of the non-guilty state.  This way we are not waiting on
+the rest of the state to complete, and if the subsequent state
+also contains a bad job, we'll end up in queue reset again rather
+than adapter reset.
 
-run_pm in the above two calls may be renamed to
-suspend_process/resume_process flags. Aligns more with the generic logic
-of - based on suspend/resume flags, process suspend/resume is taken care.
+Git tree:
+https://gitlab.freedesktop.org/agd5f/linux/-/commits/kq_resets?ref_type=heads
 
-> +void kgd2kfd_suspend_process(struct kfd_dev *kfd, bool run_pm);
-> +int kgd2kfd_resume_process(struct kfd_dev *kfd, bool run_pm);
->  int kgd2kfd_pre_reset(struct kfd_dev *kfd,
->  		      struct amdgpu_reset_context *reset_context);
->  int kgd2kfd_post_reset(struct kfd_dev *kfd);
-> @@ -463,6 +467,15 @@ static inline int kgd2kfd_resume(struct kfd_dev *kfd, bool run_pm)
->  	return 0;
->  }
->  
-> +static inline void kgd2kfd_suspend_process(struct kfd_dev *kfd, bool run_pm)
-> +{
-> +}
-> +
-> +static inline int kgd2kfd_resume_process(struct kfd_dev *kfd, bool run_pm)
-> +{
-> +	return 0;
-> +}
-> +
->  static inline int kgd2kfd_pre_reset(struct kfd_dev *kfd,
->  				    struct amdgpu_reset_context *reset_context)
->  {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 5289400879ec..08ff9917c62f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -5061,6 +5061,8 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
->  	adev->in_suspend = true;
->  
->  	if (amdgpu_sriov_vf(adev)) {
-> +		if (!adev->in_s0ix)
-> +			amdgpu_amdkfd_suspend_process(adev, adev->in_runpm);
->  		amdgpu_virt_fini_data_exchange(adev);
->  		r = amdgpu_virt_request_full_gpu(adev, false);
->  		if (r)
-> @@ -5080,7 +5082,7 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
->  	amdgpu_device_ip_suspend_phase1(adev);
->  
->  	if (!adev->in_s0ix) {
-> -		amdgpu_amdkfd_suspend(adev, adev->in_runpm);
-> +		amdgpu_amdkfd_suspend(adev, amdgpu_sriov_vf(adev) || adev->in_runpm);
->  		amdgpu_userq_suspend(adev);
->  	}
->  
-> @@ -5178,7 +5180,7 @@ int amdgpu_device_resume(struct drm_device *dev, bool notify_clients)
->  	}
->  
->  	if (!adev->in_s0ix) {
-> -		r = amdgpu_amdkfd_resume(adev, adev->in_runpm);
-> +		r = amdgpu_amdkfd_resume(adev, amdgpu_sriov_vf(adev) || adev->in_runpm);
->  		if (r)
->  			goto exit;
->  
-> @@ -5197,6 +5199,9 @@ int amdgpu_device_resume(struct drm_device *dev, bool notify_clients)
->  	if (amdgpu_sriov_vf(adev)) {
->  		amdgpu_virt_init_data_exchange(adev);
->  		amdgpu_virt_release_full_gpu(adev, true);
-> +
-> +		if (!adev->in_s0ix && !r)
-> +			r = amdgpu_amdkfd_resume_process(adev, adev->in_runpm);
->  	}
->  
->  	if (r)
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> index bf0854bd5555..22c6ef7c42b6 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> @@ -1027,15 +1027,7 @@ void kgd2kfd_suspend(struct kfd_dev *kfd, bool run_pm)
->  	if (!kfd->init_complete)
->  		return;
->  
-> -	/* for runtime suspend, skip locking kfd */
-> -	if (!run_pm) {
-> -		mutex_lock(&kfd_processes_mutex);
-> -		/* For first KFD device suspend all the KFD processes */
-> -		if (++kfd_locked == 1)
-> -			kfd_suspend_all_processes();
-> -		mutex_unlock(&kfd_processes_mutex);
-> -	}
-> -
-> +	kgd2kfd_suspend_process(kfd, run_pm);
+v4: Drop explicit padding patches
+    Drop new timeout macro
+    Rework re-emit sequence
+v5: Add a helper for reemit
+    Convert VCN, JPEG, SDMA to use new helpers
+v6: Update SDMA 4.4.2 to use new helpers
+    Move ptr tracking to amdgpu_fence
+    Skip all jobs from the bad context on the ring
+v7: Rework the backup logic
+    Move and clean up the guilty logic for engine resets
+    Integrate suggestions from Christian
+    Add JPEG 4.0.5 support
 
-To clarify further about the earlier comments, this will be
+Alex Deucher (28):
+  drm/amdgpu: enable legacy enforce isolation by default
+  drm/amdgpu/gfx7: drop reset_kgq
+  drm/amdgpu/gfx8: drop reset_kgq
+  drm/amdgpu/gfx9: drop reset_kgq
+  drm/amdgpu: switch job hw_fence to amdgpu_fence
+  drm/amdgpu: update ring reset function signature
+  drm/amdgpu: move force completion into ring resets
+  drm/amdgpu: move guilty handling into ring resets
+  drm/amdgpu: track ring state associated with a job
+  drm/amdgpu/gfx9: re-emit unprocessed state on kcq reset
+  drm/amdgpu/gfx9.4.3: re-emit unprocessed state on kcq reset
+  drm/amdgpu/gfx10: re-emit unprocessed state on ring reset
+  drm/amdgpu/gfx11: re-emit unprocessed state on ring reset
+  drm/amdgpu/gfx12: re-emit unprocessed state on ring reset
+  drm/amdgpu/sdma6: re-emit unprocessed state on ring reset
+  drm/amdgpu/sdma7: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg2: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg2.5: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg3: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg4: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg4.0.3: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg4.0.5: add queue reset
+  drm/amdgpu/jpeg5: add queue reset
+  drm/amdgpu/jpeg5.0.1: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn4: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn4.0.3: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn4.0.5: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn5: re-emit unprocessed state on ring reset
 
-if (suspend_process)
-	kgd2kfd_suspend_process(kfd);
+Christian König (1):
+  drm/amdgpu: rework queue reset scheduler interaction
 
-Same for resume below.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c   | 120 ++++++++++++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c      |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c     |  59 ++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h     |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c    |  27 +++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h    |  35 +++++-
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c      |  66 ++++++-----
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c      |  61 ++++++----
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c      |  61 ++++++----
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c       |  71 ------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c       |  71 ------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c       |  67 +++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c     |  23 +++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c      |  21 +++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c      |  21 +++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c      |  21 +++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c      |  21 +++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c    |  21 +++-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c    |  25 ++++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c    |  28 +++++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c    |  21 +++-
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c    |  61 +++++-----
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c      |  33 +++++-
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c      |  35 +++++-
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c      |  22 +++-
+ drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c      |  22 +++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c       |  19 +++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c     |  20 +++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c     |  20 +++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c     |  20 +++-
+ 32 files changed, 710 insertions(+), 400 deletions(-)
 
-Thanks,
-Lijo
-
->  	for (i = 0; i < kfd->num_nodes; i++) {
->  		node = kfd->nodes[i];
->  		node->dqm->ops.stop(node->dqm);
-> @@ -1055,6 +1047,36 @@ int kgd2kfd_resume(struct kfd_dev *kfd, bool run_pm)
->  			return ret;
->  	}
->  
-> +	ret = kgd2kfd_resume_process(kfd, run_pm);
-> +
-> +	return ret;
-> +}
-> +
-> +void kgd2kfd_suspend_process(struct kfd_dev *kfd, bool run_pm)
-> +{
-> +	struct kfd_node *node;
-> +	int i;
-> +
-> +	if (!kfd->init_complete)
-> +		return;
-> +
-> +	/* for runtime suspend, skip locking kfd */
-> +	if (!run_pm) {
-> +		mutex_lock(&kfd_processes_mutex);
-> +		/* For first KFD device suspend all the KFD processes */
-> +		if (++kfd_locked == 1)
-> +			kfd_suspend_all_processes();
-> +		mutex_unlock(&kfd_processes_mutex);
-> +	}
-> +}
-> +
-> +int kgd2kfd_resume_process(struct kfd_dev *kfd, bool run_pm)
-> +{
-> +	int ret, i;
-> +
-> +	if (!kfd->init_complete)
-> +		return 0;
-> +
->  	/* for runtime resume, skip unlocking kfd */
->  	if (!run_pm) {
->  		mutex_lock(&kfd_processes_mutex);
+-- 
+2.49.0
 
