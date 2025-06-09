@@ -2,71 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D9DAD925B
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 18:03:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06CC4AD927B
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 18:06:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBCD610E25E;
-	Fri, 13 Jun 2025 16:03:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E03D10EA36;
+	Fri, 13 Jun 2025 16:06:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kg480kVE";
+	dkim=permerror (0-bit key) header.d=r26.me header.i=@r26.me header.b="XQAIh+u2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 250A510E204
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jun 2025 16:03:22 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-235db423abdso1899935ad.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jun 2025 09:03:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749830602; x=1750435402; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=RWNsGZDE9JoxY+f8eFyYpSBnMiZ2g9IZPIa7iPAsA8Q=;
- b=kg480kVEXJcxYXkFE+RMhnJF+8g9r7rY1p+lfKq22GnIIPzy2IfP41TfpF0MFk8iNC
- 2zulJZhpcwqBgXrtHu2hKHErJ2ppyURMXZmcctcxPJ8+PRxX6dw6BXBEXjGaFiHFykX3
- wKjnkpkXDbEDfE987dxp4T94Rmp7vSDWJowHK6b/QOnpacOY4zmpUx4xkxoGLxbotQJS
- 3qbBG95kD4uwhnbBo+I9kh8Ab4T+2UCqiQzw0+xfCGR8mWZQI5IXHfFwpOlKHovypiWM
- PwJxsJ8yqVXEsQtgSiqtNT0kNSfaxE16ie0J5WgsU/Fp/HTOU81oWVazaRjIqAgGUg4+
- TvfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749830602; x=1750435402;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=RWNsGZDE9JoxY+f8eFyYpSBnMiZ2g9IZPIa7iPAsA8Q=;
- b=Q7jcdAVNNftyEwTxhoUGmrF+NZ9h2rjhOfpdv78pDNkPKnJXyuKlxP1jO/MHDUlC34
- rDocbK60jB3v1yQgnA2kCda/3vJBe+R5QprkjGvbeRNqB/hhajwSnR+h1bgoP6qBgrGw
- oTkbd3l7jjvRYS/xZFx6eE3p22OQnhEEgePSP94wQlw45tasUz/y3xH3ZOCDlOQKZeFG
- 4uhnU+S8sf4in/WAWPKPzbaDmObM7fYTKCqJNn/tjHOl39clAljr2dEwDrRXBXzytISb
- 4NRRTleKIQ0snHPsHuK5P94vw8xV/X1A6ZMt/H23b15wvZ97MRzt67X3MCVyO0vaIv8r
- sa1Q==
-X-Gm-Message-State: AOJu0Yw81Bi0930xF3jGi4MdjBKava0ojHv+rAqPDD/x7nVr8CObobPi
- uFP5L8A3lpOxFsepO2iAxreGtPO6clXIEj7akPqg83bVhd65hg8Xxo4Gil0XFOKeomb7IDvxHcs
- laSpQSRAKpEqg4AW3Fvi/U7cnAfVrflgzOQ==
-X-Gm-Gg: ASbGncvwGssg8RKCbfdKcElYseeIEyS/UEuzRdj+3smKgOnWn4HBGNDMNiYesLADBk8
- DJbwF36RhXlS6bz8UMNeukXkUpuzBwH6jOxczDDPNFxtuTOMmu/QpBVIdKepNOh8yBYn+Zv57hG
- 2G2IARhiQID353zyiwFkfWDWHcAdoGpA2I3pB4RwUxPG58a1o+Icm8lNY=
-X-Google-Smtp-Source: AGHT+IFq4oJW4oxxtdTQr6GQcevAwBEhDg1F3GRrwjm0yzVtwMk7OZuVqt4mNuWyFR2BhpMwdSYbrHcjxNt49cqwEA8=
-X-Received: by 2002:a17:902:d4c9:b0:223:5124:ee7f with SMTP id
- d9443c01a7336-2366b14f811mr500575ad.12.1749830601623; Fri, 13 Jun 2025
- 09:03:21 -0700 (PDT)
+Received: from mail-244102.protonmail.ch (mail-244102.protonmail.ch
+ [109.224.244.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A190710E402
+ for <amd-gfx@lists.freedesktop.org>; Mon,  9 Jun 2025 14:23:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=r26.me;
+ s=protonmail3; t=1749478981; x=1749738181;
+ bh=JQSxPuSgebu8ngU9w0fbtaPNsN1gzZlPt15SLF4hvf4=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+ b=XQAIh+u2WdmTWrdVozzGrqHM0fzEeqw3KYJcnwJOqCl9oit4MkOjRsfZ/ZlmmPSEb
+ B2rsNhQsOYpc4P6b7htniepsKAGvdHS7JKFrBs8VkQMrEtZ7Gxb/DsnjijvccwJGmU
+ joOaaJlA6o8pejq8QE0SWVh22W5TB3kc8zyEdVPMX0Re7H5L+iV7HR2tlWXwUt4I96
+ WLnfgkQ7h2Cko+TVb+F1apq2iIQKEQqX1CKX0Y7r43H+9TVCNR4AVPYLJMWVVn67p2
+ YAnhuUIauz5ZLH1SFVMy6M4IZ103fw8QyveXPVX8vnIKcrAkHtiGSKMvHoMgL/jA1y
+ VedWy3z4w1bMg==
+Date: Mon, 09 Jun 2025 14:22:55 +0000
+To: =?utf-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+From: Rio Liu <rio@r26.me>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [REGRESSION] amdgpu fails to load external RX 580 since PCI:
+ Allow relaxed bridge window tail sizing for optional resources
+Message-ID: <w3gGcmhWNmeGetzLnhgkjfx0JTEyIOKN5sDu-uShZ_7JWthMgGP6plgDuhDbkYyaA7vtGbdl1WbMTZ5zM80OyJoqUa69krqDpuhqDangkLY=@r26.me>
+In-Reply-To: <7a7a3619-902c-06ee-6171-6d8ec2107f97@linux.intel.com>
+References: <o2bL8MtD_40-lf8GlslTw-AZpUPzm8nmfCnJKvS8RQ3NOzOW1uq1dVCEfRpUjJ2i7G2WjfQhk2IWZ7oGp-7G-jXN4qOdtnyOcjRR0PZWK5I=@r26.me>
+ <7a7a3619-902c-06ee-6171-6d8ec2107f97@linux.intel.com>
+Feedback-ID: 77429777:user:proton
+X-Pm-Message-ID: 9e591caaea3c8cdf34da3a0674d87646d7d67758
 MIME-Version: 1.0
-References: <20250613144203.441129-1-kenneth.feng@amd.com>
- <20250613144203.441129-2-kenneth.feng@amd.com>
-In-Reply-To: <20250613144203.441129-2-kenneth.feng@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 13 Jun 2025 12:03:10 -0400
-X-Gm-Features: AX0GCFvEFxC7W3SezuwMXomPi0TXoqI5XahJ-G2189ZFezWmsU1svkgiiZ8qfH0
-Message-ID: <CADnq5_O--6JxQW++XDnnjMbPg8AeOt-uCzLz9fJ6bNUDa_04Bw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amd/pm: set pcie default dpm table when updating
- pcie dpm parameters
-To: Kenneth Feng <kenneth.feng@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Lijo.Lazar@amd.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 13 Jun 2025 16:05:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,435 +62,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 13, 2025 at 10:42=E2=80=AFAM Kenneth Feng <kenneth.feng@amd.com=
-> wrote:
->
-> set pcie default dpm table when updating pcie dpm parameters
+On Monday, June 9th, 2025 at AM 5:09, Ilpo J=C3=A4rvinen <ilpo.jarvinen@lin=
+ux.intel.com> wrote:
 
-Is there a reason to integrate this with the updating?
-
-Alex
-
->
-> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
-> ---
->  .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  | 104 ++++++++++++++----
->  .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  | 103 +++++++++++++----
->  .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  |  45 ++++----
->  3 files changed, 186 insertions(+), 66 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drive=
-rs/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> index 5a9711e8cf68..257082c03865 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> @@ -572,8 +572,6 @@ static int smu_v13_0_0_set_default_dpm_table(struct s=
-mu_context *smu)
->         PPTable_t *pptable =3D table_context->driver_pptable;
->         SkuTable_t *skutable =3D &pptable->SkuTable;
->         struct smu_13_0_dpm_table *dpm_table;
-> -       struct smu_13_0_pcie_table *pcie_table;
-> -       uint32_t link_level;
->         int ret =3D 0;
->
->         /* socclk dpm table setup */
-> @@ -689,24 +687,6 @@ static int smu_v13_0_0_set_default_dpm_table(struct =
-smu_context *smu)
->                 dpm_table->max =3D dpm_table->dpm_levels[0].value;
->         }
->
-> -       /* lclk dpm table setup */
-> -       pcie_table =3D &dpm_context->dpm_tables.pcie_table;
-> -       pcie_table->num_of_link_levels =3D 0;
-> -       for (link_level =3D 0; link_level < NUM_LINK_LEVELS; link_level++=
-) {
-> -               if (!skutable->PcieGenSpeed[link_level] &&
-> -                   !skutable->PcieLaneCount[link_level] &&
-> -                   !skutable->LclkFreq[link_level])
-> -                       continue;
-> -
-> -               pcie_table->pcie_gen[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->PcieGenSpeed[link_level=
-];
-> -               pcie_table->pcie_lane[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->PcieLaneCount[link_leve=
-l];
-> -               pcie_table->clk_freq[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->LclkFreq[link_level];
-> -               pcie_table->num_of_link_levels++;
-> -       }
-> -
->         /* dcefclk dpm table setup */
->         dpm_table =3D &dpm_context->dpm_tables.dcef_table;
->         if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_DCN_BIT)) {
-> @@ -3150,6 +3130,88 @@ static int smu_v13_0_0_set_power_limit(struct smu_=
-context *smu,
->         return 0;
->  }
->
-> +static int smu_v13_0_0_update_pcie_parameters(struct smu_context *smu,
-> +                                    uint8_t pcie_gen_cap,
-> +                                    uint8_t pcie_width_cap)
-> +{
-> +       struct smu_13_0_dpm_context *dpm_context =3D smu->smu_dpm.dpm_con=
-text;
-> +       struct smu_13_0_pcie_table *pcie_table =3D
-> +                               &dpm_context->dpm_tables.pcie_table;
-> +       int num_of_levels;
-> +       uint32_t smu_pcie_arg;
-> +       uint32_t link_level;
-> +       struct smu_table_context *table_context =3D &smu->smu_table;
-> +       PPTable_t *pptable =3D table_context->driver_pptable;
-> +       SkuTable_t *skutable =3D &pptable->SkuTable;
-> +       int ret =3D 0;
-> +       int i;
-> +
-> +       pcie_table->num_of_link_levels =3D 0;
-> +
-> +       for (link_level =3D 0; link_level < NUM_LINK_LEVELS; link_level++=
-) {
-> +               if (!skutable->PcieGenSpeed[link_level] &&
-> +                   !skutable->PcieLaneCount[link_level] &&
-> +                   !skutable->LclkFreq[link_level])
-> +                       continue;
-> +
-> +               pcie_table->pcie_gen[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->PcieGenSpeed[link_level=
-];
-> +               pcie_table->pcie_lane[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->PcieLaneCount[link_leve=
-l];
-> +               pcie_table->clk_freq[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->LclkFreq[link_level];
-> +               pcie_table->num_of_link_levels++;
-> +       }
-> +
-> +       num_of_levels =3D pcie_table->num_of_link_levels;
-> +       if (!num_of_levels)
-> +               return 0;
-> +
-> +       if (!(smu->adev->pm.pp_feature & PP_PCIE_DPM_MASK)) {
-> +               if (pcie_table->pcie_gen[num_of_levels - 1] < pcie_gen_ca=
-p)
-> +                       pcie_gen_cap =3D pcie_table->pcie_gen[num_of_leve=
-ls - 1];
-> +
-> +               if (pcie_table->pcie_lane[num_of_levels - 1] < pcie_width=
-_cap)
-> +                       pcie_width_cap =3D pcie_table->pcie_lane[num_of_l=
-evels - 1];
-> +
-> +               /* Force all levels to use the same settings */
-> +               for (i =3D 0; i < num_of_levels; i++) {
-> +                       pcie_table->pcie_gen[i] =3D pcie_gen_cap;
-> +                       pcie_table->pcie_lane[i] =3D pcie_width_cap;
-> +                       smu_pcie_arg =3D i << 16;
-> +                       smu_pcie_arg |=3D pcie_table->pcie_gen[i] << 8;
-> +                       smu_pcie_arg |=3D pcie_table->pcie_lane[i];
-> +
-> +                       ret =3D smu_cmn_send_smc_msg_with_param(smu,
-> +                                                               SMU_MSG_O=
-verridePcieParameters,
-> +                                                               smu_pcie_=
-arg,
-> +                                                               NULL);
-> +                       if (ret)
-> +                               break;
-> +               }
-> +       } else {
-> +               for (i =3D 0; i < num_of_levels; i++) {
-> +                       if (pcie_table->pcie_gen[i] > pcie_gen_cap ||
-> +                               pcie_table->pcie_lane[i] > pcie_width_cap=
-) {
-> +                               pcie_table->pcie_gen[i] =3D pcie_gen_cap;
-> +                               pcie_table->pcie_lane[i] =3D pcie_width_c=
-ap;
-> +                               smu_pcie_arg =3D i << 16;
-> +                               smu_pcie_arg |=3D pcie_table->pcie_gen[i]=
- << 8;
-> +                               smu_pcie_arg |=3D pcie_table->pcie_lane[i=
-];
-> +
-> +                               ret =3D smu_cmn_send_smc_msg_with_param(s=
-mu,
-> +                                                                       S=
-MU_MSG_OverridePcieParameters,
-> +                                                                       s=
-mu_pcie_arg,
-> +                                                                       N=
-ULL);
-> +                               if (ret)
-> +                                       break;
-> +                       }
-> +               }
-> +       }
-> +
-> +       return ret;
-> +}
-> +
->  static const struct pptable_funcs smu_v13_0_0_ppt_funcs =3D {
->         .get_allowed_feature_mask =3D smu_v13_0_0_get_allowed_feature_mas=
-k,
->         .set_default_dpm_table =3D smu_v13_0_0_set_default_dpm_table,
-> @@ -3179,7 +3241,7 @@ static const struct pptable_funcs smu_v13_0_0_ppt_f=
-uncs =3D {
->         .feature_is_enabled =3D smu_cmn_feature_is_enabled,
->         .print_clk_levels =3D smu_v13_0_0_print_clk_levels,
->         .force_clk_levels =3D smu_v13_0_0_force_clk_levels,
-> -       .update_pcie_parameters =3D smu_v13_0_update_pcie_parameters,
-> +       .update_pcie_parameters =3D smu_v13_0_0_update_pcie_parameters,
->         .get_thermal_temperature_range =3D smu_v13_0_0_get_thermal_temper=
-ature_range,
->         .register_irq_handler =3D smu_v13_0_register_irq_handler,
->         .enable_thermal_alert =3D smu_v13_0_enable_thermal_alert,
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drive=
-rs/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-> index c8f4f6fb4083..e96364856e74 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-> @@ -579,8 +579,6 @@ static int smu_v13_0_7_set_default_dpm_table(struct s=
-mu_context *smu)
->         PPTable_t *driver_ppt =3D smu->smu_table.driver_pptable;
->         SkuTable_t *skutable =3D &driver_ppt->SkuTable;
->         struct smu_13_0_dpm_table *dpm_table;
-> -       struct smu_13_0_pcie_table *pcie_table;
-> -       uint32_t link_level;
->         int ret =3D 0;
->
->         /* socclk dpm table setup */
-> @@ -687,24 +685,6 @@ static int smu_v13_0_7_set_default_dpm_table(struct =
-smu_context *smu)
->                 dpm_table->max =3D dpm_table->dpm_levels[0].value;
->         }
->
-> -       /* lclk dpm table setup */
-> -       pcie_table =3D &dpm_context->dpm_tables.pcie_table;
-> -       pcie_table->num_of_link_levels =3D 0;
-> -       for (link_level =3D 0; link_level < NUM_LINK_LEVELS; link_level++=
-) {
-> -               if (!skutable->PcieGenSpeed[link_level] &&
-> -                   !skutable->PcieLaneCount[link_level] &&
-> -                   !skutable->LclkFreq[link_level])
-> -                       continue;
-> -
-> -               pcie_table->pcie_gen[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->PcieGenSpeed[link_level=
-];
-> -               pcie_table->pcie_lane[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->PcieLaneCount[link_leve=
-l];
-> -               pcie_table->clk_freq[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->LclkFreq[link_level];
-> -               pcie_table->num_of_link_levels++;
-> -       }
-> -
->         /* dcefclk dpm table setup */
->         dpm_table =3D &dpm_context->dpm_tables.dcef_table;
->         if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_DCN_BIT)) {
-> @@ -2739,6 +2719,87 @@ static int smu_v13_0_7_set_power_limit(struct smu_=
-context *smu,
->         return 0;
->  }
->
-> +static int smu_v13_0_7_update_pcie_parameters(struct smu_context *smu,
-> +                                    uint8_t pcie_gen_cap,
-> +                                    uint8_t pcie_width_cap)
-> +{
-> +       struct smu_13_0_dpm_context *dpm_context =3D smu->smu_dpm.dpm_con=
-text;
-> +       struct smu_13_0_pcie_table *pcie_table =3D
-> +                               &dpm_context->dpm_tables.pcie_table;
-> +       int num_of_levels;
-> +       int link_level;
-> +       uint32_t smu_pcie_arg;
-> +       struct smu_table_context *table_context =3D &smu->smu_table;
-> +       PPTable_t *pptable =3D table_context->driver_pptable;
-> +       SkuTable_t *skutable =3D &pptable->SkuTable;
-> +       int ret =3D 0;
-> +       int i;
-> +
-> +       pcie_table->num_of_link_levels =3D 0;
-> +       for (link_level =3D 0; link_level < NUM_LINK_LEVELS; link_level++=
-) {
-> +               if (!skutable->PcieGenSpeed[link_level] &&
-> +                   !skutable->PcieLaneCount[link_level] &&
-> +                   !skutable->LclkFreq[link_level])
-> +                       continue;
-> +
-> +               pcie_table->pcie_gen[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->PcieGenSpeed[link_level=
-];
-> +               pcie_table->pcie_lane[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->PcieLaneCount[link_leve=
-l];
-> +               pcie_table->clk_freq[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->LclkFreq[link_level];
-> +               pcie_table->num_of_link_levels++;
-> +       }
-> +
-> +       num_of_levels =3D pcie_table->num_of_link_levels;
-> +       if (!num_of_levels)
-> +               return 0;
-> +
-> +       if (!(smu->adev->pm.pp_feature & PP_PCIE_DPM_MASK)) {
-> +               if (pcie_table->pcie_gen[num_of_levels - 1] < pcie_gen_ca=
-p)
-> +                       pcie_gen_cap =3D pcie_table->pcie_gen[num_of_leve=
-ls - 1];
-> +
-> +               if (pcie_table->pcie_lane[num_of_levels - 1] < pcie_width=
-_cap)
-> +                       pcie_width_cap =3D pcie_table->pcie_lane[num_of_l=
-evels - 1];
-> +
-> +               /* Force all levels to use the same settings */
-> +               for (i =3D 0; i < num_of_levels; i++) {
-> +                       pcie_table->pcie_gen[i] =3D pcie_gen_cap;
-> +                       pcie_table->pcie_lane[i] =3D pcie_width_cap;
-> +                       smu_pcie_arg =3D i << 16;
-> +                       smu_pcie_arg |=3D pcie_table->pcie_gen[i] << 8;
-> +                       smu_pcie_arg |=3D pcie_table->pcie_lane[i];
-> +
-> +                       ret =3D smu_cmn_send_smc_msg_with_param(smu,
-> +                                                               SMU_MSG_O=
-verridePcieParameters,
-> +                                                               smu_pcie_=
-arg,
-> +                                                               NULL);
-> +                       if (ret)
-> +                               break;
-> +               }
-> +       } else {
-> +               for (i =3D 0; i < num_of_levels; i++) {
-> +                       if (pcie_table->pcie_gen[i] > pcie_gen_cap ||
-> +                               pcie_table->pcie_lane[i] > pcie_width_cap=
-) {
-> +                               pcie_table->pcie_gen[i] =3D pcie_gen_cap;
-> +                               pcie_table->pcie_lane[i] =3D pcie_width_c=
-ap;
-> +                               smu_pcie_arg =3D i << 16;
-> +                               smu_pcie_arg |=3D pcie_table->pcie_gen[i]=
- << 8;
-> +                               smu_pcie_arg |=3D pcie_table->pcie_lane[i=
-];
-> +
-> +                               ret =3D smu_cmn_send_smc_msg_with_param(s=
-mu,
-> +                                                                       S=
-MU_MSG_OverridePcieParameters,
-> +                                                                       s=
-mu_pcie_arg,
-> +                                                                       N=
-ULL);
-> +                               if (ret)
-> +                                       break;
-> +                       }
-> +               }
-> +       }
-> +
-> +       return ret;
-> +}
-> +
->  static const struct pptable_funcs smu_v13_0_7_ppt_funcs =3D {
->         .get_allowed_feature_mask =3D smu_v13_0_7_get_allowed_feature_mas=
-k,
->         .set_default_dpm_table =3D smu_v13_0_7_set_default_dpm_table,
-> @@ -2768,7 +2829,7 @@ static const struct pptable_funcs smu_v13_0_7_ppt_f=
-uncs =3D {
->         .feature_is_enabled =3D smu_cmn_feature_is_enabled,
->         .print_clk_levels =3D smu_v13_0_7_print_clk_levels,
->         .force_clk_levels =3D smu_v13_0_7_force_clk_levels,
-> -       .update_pcie_parameters =3D smu_v13_0_update_pcie_parameters,
-> +       .update_pcie_parameters =3D smu_v13_0_7_update_pcie_parameters,
->         .get_thermal_temperature_range =3D smu_v13_0_7_get_thermal_temper=
-ature_range,
->         .register_irq_handler =3D smu_v13_0_register_irq_handler,
->         .enable_thermal_alert =3D smu_v13_0_enable_thermal_alert,
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drive=
-rs/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> index d5a4abd60d06..581a4e59130a 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> @@ -502,8 +502,6 @@ static int smu_v14_0_2_set_default_dpm_table(struct s=
-mu_context *smu)
->         PPTable_t *pptable =3D table_context->driver_pptable;
->         SkuTable_t *skutable =3D &pptable->SkuTable;
->         struct smu_14_0_dpm_table *dpm_table;
-> -       struct smu_14_0_pcie_table *pcie_table;
-> -       uint32_t link_level;
->         int ret =3D 0;
->
->         /* socclk dpm table setup */
-> @@ -619,27 +617,6 @@ static int smu_v14_0_2_set_default_dpm_table(struct =
-smu_context *smu)
->                 dpm_table->max =3D dpm_table->dpm_levels[0].value;
->         }
->
-> -       /* lclk dpm table setup */
-> -       pcie_table =3D &dpm_context->dpm_tables.pcie_table;
-> -       pcie_table->num_of_link_levels =3D 0;
-> -       for (link_level =3D 0; link_level < NUM_LINK_LEVELS; link_level++=
-) {
-> -               if (!skutable->PcieGenSpeed[link_level] &&
-> -                   !skutable->PcieLaneCount[link_level] &&
-> -                   !skutable->LclkFreq[link_level])
-> -                       continue;
-> -
-> -               pcie_table->pcie_gen[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->PcieGenSpeed[link_level=
-];
-> -               pcie_table->pcie_lane[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->PcieLaneCount[link_leve=
-l];
-> -               pcie_table->clk_freq[pcie_table->num_of_link_levels] =3D
-> -                                       skutable->LclkFreq[link_level];
-> -               pcie_table->num_of_link_levels++;
-> -
-> -               if (link_level =3D=3D 0)
-> -                       link_level++;
-> -       }
-> -
->         /* dcefclk dpm table setup */
->         dpm_table =3D &dpm_context->dpm_tables.dcef_table;
->         if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_DCN_BIT)) {
-> @@ -1487,11 +1464,31 @@ static int smu_v14_0_2_update_pcie_parameters(str=
-uct smu_context *smu,
->         struct smu_14_0_dpm_context *dpm_context =3D smu->smu_dpm.dpm_con=
-text;
->         struct smu_14_0_pcie_table *pcie_table =3D
->                                 &dpm_context->dpm_tables.pcie_table;
-> -       int num_of_levels =3D pcie_table->num_of_link_levels;
-> +       int num_of_levels;
->         uint32_t smu_pcie_arg;
-> +       uint32_t link_level;
-> +       struct smu_table_context *table_context =3D &smu->smu_table;
-> +       PPTable_t *pptable =3D table_context->driver_pptable;
-> +       SkuTable_t *skutable =3D &pptable->SkuTable;
->         int ret =3D 0;
->         int i;
->
-> +       pcie_table->num_of_link_levels =3D 0;
-> +       for (link_level =3D 0; link_level < NUM_LINK_LEVELS; link_level++=
-) {
-> +               if (!skutable->PcieGenSpeed[link_level] &&
-> +                   !skutable->PcieLaneCount[link_level] &&
-> +                   !skutable->LclkFreq[link_level])
-> +                       continue;
-> +
-> +               pcie_table->pcie_gen[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->PcieGenSpeed[link_level=
-];
-> +               pcie_table->pcie_lane[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->PcieLaneCount[link_leve=
-l];
-> +               pcie_table->clk_freq[pcie_table->num_of_link_levels] =3D
-> +                                       skutable->LclkFreq[link_level];
-> +               pcie_table->num_of_link_levels++;
-> +       }
-> +       num_of_levels =3D pcie_table->num_of_link_levels;
->         if (!num_of_levels)
->                 return 0;
->
+>=20
+>=20
+> On Mon, 9 Jun 2025, rio@r26.me wrote:
+>=20
+> > Hello,
+> >=20
+> > I have an external Radeon RX580 on my machine connected via Thunderbolt=
+, and
+> > since upgrading from 6.14.1 the setup stopped working. Dmesg showed war=
+ning from
+> > resource sanity check, followed by a stack trace https://pastebin.com/n=
+jR55rQW.
+> > Relevant snippet:
+> >=20
+> > [ 12.134907] amdgpu 0000:06:00.0: BAR 2 [mem 0x6000000000-0x60001fffff =
+64bit pref]: releasing
+> > [ 12.134910] [drm:amdgpu_device_resize_fb_bar [amdgpu]] ERROR Problem r=
+esizing BAR0 (-16).
+> > [ 12.135456] amdgpu 0000:06:00.0: BAR 2 [mem 0x6000000000-0x60001fffff =
+64bit pref]: assigned
+> > [ 12.135524] amdgpu 0000:06:00.0: amdgpu: VRAM: 8192M 0x000000F40000000=
+0 - 0x000000F5FFFFFFFF (8192M used)
+> > [ 12.135527] amdgpu 0000:06:00.0: amdgpu: GART: 256M 0x000000FF00000000=
+ - 0x000000FF0FFFFFFF
+> > [ 12.135536] resource: resource sanity check: requesting [mem 0x0000000=
+000000000-0xffffffffffffffff], which spans more than PCI Bus 0000:00 [mem 0=
+x000a0000-0x000bffff window]
+> > [ 12.135542] ------------[ cut here ]------------
+> > [ 12.135543] WARNING: CPU: 6 PID: 599 at arch/x86/mm/pat/memtype.c:721 =
+memtype_reserve_io+0xfc/0x110
+> > [ 12.135551] Modules linked in: ccm amdgpu(+) snd_hda_codec_realtek ...
+> > [ 12.135652] CPU: 6 UID: 0 PID: 599 Comm: (udev-worker) Tainted: G S 6.=
+15.0-13743-g8630c59e9936 #16 PREEMPT(full) 3b462c924b3ffd8156fc3b77bcc8ddbf=
+7257fa57
+> > [ 12.135654] Tainted: [S]=3DCPU_OUT_OF_SPEC
+> > [ 12.135655] Hardware name: COPELION INTERNATIONAL INC. ZX Series/ZX Se=
+ries, BIOS 1.07.08TCOP3 03/27/2020
+> > [ 12.135656] RIP: 0010:memtype_reserve_io+0xfc/0x110
+> > [ 12.135659] Code: aa fb ff ff b8 f0 ff ff ff eb 88 8b 54 24 04 4c 89 e=
+e 48 89 df e8 04 fe ff ff 85 c0 75 db 8b 54 24 04 41 89 16 e9 69 ff ff ff <=
+0f> 0b e9 4b ff ff ff e8 b8 5c fc 00 0f 1f 84 00 00 00 00 00 90 90
+> >=20
+> > Bisecting the stable branch pointed me to the following commit:
+> >=20
+> > commit 22df32c984be9e9145978acf011642da042a2af3 (HEAD)
+> > Author: Ilpo J=C3=A4rvinen ilpo.jarvinen@linux.intel.com
+> > Date: Mon Dec 16 19:56:11 2024 +0200
+> >=20
+> > PCI: Allow relaxed bridge window tail sizing for optional resources
+> >=20
+> > [ Upstream commit 67f9085596ee55dd27b540ca6088ba0717ee511c ]
+> >=20
+> > I've tested on stable (as of now 8630c59e99363c4b655788fd01134aef9bcd92=
+64), and
+> > the issue persists. Reverting the offending commit via `git revert -n 2=
+2df32c984be9e9145978acf011642da042a2af3` allowed amdgpu to load again.
+> > Dmesg: https://pastebin.com/xd76rDsW.
+> >=20
+> > Additional information
+> > - Distribution: Artix
+> > - Arch: x86_64
+> > - Kernel config: https://pastebin.com/DWSERJL5
+> > - eGPU adapter: https://www.adt.link/product/R43SG-TB3.html
+> > - Booting with pci=3Drealloc,hpbussize=3D0x33,hpmmiosize=3D256M,hpmmiop=
+refsize=3D1G
+> >=20
+> > I'm reporting here as these are the contacts from the commit message.
+> > Please let me know if there's a more appropriate place for this, as wel=
+l
+> > as any more information I can provide.
+>=20
+>=20
+> Hi Rio,
+>=20
+> Thanks for the report and I'm sorry about causing this issue. Could you
+> please try if the patch below solves the issue.
+>=20
 > --
-> 2.34.1
->
+> From b94823a193032b5f87114cff9e8edc5c67e4ef40 Mon Sep 17 00:00:00 2001
+> From: =3D?UTF-8?q?Ilpo=3D20J=3DC3=3DA4rvinen?=3D ilpo.jarvinen@linux.inte=
+l.com
+>=20
+> Date: Mon, 9 Jun 2025 12:05:20 +0300
+> Subject: [PATCH 1/1] PCI: Relaxed alignment should never increase min_ali=
+gn
+> MIME-Version: 1.0
+> Content-Type: text/plain; charset=3DUTF-8
+> Content-Transfer-Encoding: 8bit
+>=20
+> When using relaxed tail alignment for the bridge window,
+> pbus_size_mem() also tries to minimize min_align, which can under
+> certain scenarios end up increasing min_align from that found by
+> calculate_mem_align().
+>=20
+> Ensure min_align is not increased by the relaxed tail alignment.
+>=20
+> Eventually, it would be better to add calculate_relaxed_head_align()
+> similar to calculate_mem_align() which finds out what alignment can be
+> used for the head without introducing any gaps into the bridge window
+> to give flexibility on head address too. But that looks relatively
+> complex algorithm so it requires much more testing than fixing the
+> immediate problem causing a regression.
+>=20
+> Reported-by: Rio rio@r26.me
+>=20
+> Signed-off-by: Ilpo J=C3=A4rvinen ilpo.jarvinen@linux.intel.com
+>=20
+> ---
+> drivers/pci/setup-bus.c | 11 +++++++----
+> 1 file changed, 7 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/pci/setup-bus.c b/drivers/pci/setup-bus.c
+> index 07c3d021a47e..f90d49cd07da 100644
+> --- a/drivers/pci/setup-bus.c
+> +++ b/drivers/pci/setup-bus.c
+> @@ -1169,6 +1169,7 @@ static int pbus_size_mem(struct pci_bus *bus, unsig=
+ned long mask,
+> resource_size_t children_add_size =3D 0;
+> resource_size_t children_add_align =3D 0;
+> resource_size_t add_align =3D 0;
+> + resource_size_t relaxed_align;
+>=20
+> if (!b_res)
+> return -ENOSPC;
+> @@ -1246,8 +1247,9 @@ static int pbus_size_mem(struct pci_bus *bus, unsig=
+ned long mask,
+> if (bus->self && size0 &&
+>=20
+> !pbus_upstream_space_available(bus, mask | IORESOURCE_PREFETCH, type,
+> size0, min_align)) {
+> - min_align =3D 1ULL << (max_order + __ffs(SZ_1M));
+> - min_align =3D max(min_align, win_align);
+> + relaxed_align =3D 1ULL << (max_order + __ffs(SZ_1M));
+> + relaxed_align =3D max(relaxed_align, win_align);
+> + min_align =3D min(min_align, relaxed_align);
+> size0 =3D calculate_memsize(size, min_size, 0, 0, resource_size(b_res), w=
+in_align);
+> pci_info(bus->self, "bridge window %pR to %pR requires relaxed alignment =
+rules\n",
+>=20
+> b_res, &bus->busn_res);
+>=20
+> @@ -1261,8 +1263,9 @@ static int pbus_size_mem(struct pci_bus *bus, unsig=
+ned long mask,
+> if (bus->self && size1 &&
+>=20
+> !pbus_upstream_space_available(bus, mask | IORESOURCE_PREFETCH, type,
+> size1, add_align)) {
+> - min_align =3D 1ULL << (max_order + __ffs(SZ_1M));
+> - min_align =3D max(min_align, win_align);
+> + relaxed_align =3D 1ULL << (max_order + __ffs(SZ_1M));
+> + relaxed_align =3D max(min_align, win_align);
+> + min_align =3D min(min_align, relaxed_align);
+> size1 =3D calculate_memsize(size, min_size, add_size, children_add_size,
+> resource_size(b_res), win_align);
+> pci_info(bus->self,
+>=20
+>=20
+> base-commit: 3719a04a80caf660f899a462cd8f3973bcfa676e
+> --
+> 2.39.5
+
+Hello Ilpo,
+
+I've tested the patch and it seems to fix the issue. Thank you!
+
+Rio Liu
