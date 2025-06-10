@@ -2,55 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4DE7AD9270
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 18:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2137AD9277
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 18:05:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05A4910E8DE;
-	Fri, 13 Jun 2025 16:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C26510EA2B;
+	Fri, 13 Jun 2025 16:05:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=r26.me header.i=@r26.me header.b="Sp/sfUli";
+	dkim=pass (1024-bit key; unprotected) header.d=foxmail.com header.i=@foxmail.com header.b="pjxKQkns";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 52952 seconds by postgrey-1.36 at gabe;
- Mon, 09 Jun 2025 17:16:47 UTC
-Received: from mail-24421.protonmail.ch (mail-24421.protonmail.ch
- [109.224.244.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1256289C5E
- for <amd-gfx@lists.freedesktop.org>; Mon,  9 Jun 2025 17:16:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=r26.me;
- s=protonmail3; t=1749489401; x=1749748601;
- bh=Mmv4D6m6HZ+ZCvrc/3Fib8VNrQQAmGDeQVCJzexSH1o=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
- b=Sp/sfUliJPKaIXzhyIwSNHr07c8lSllRGAfnv0Us/I1R4BXWlM5ppZHIGf2APhns5
- O6Py5r5qNTtNW2Dz6scY3VF0+7pP7uJuCjTUaa0rwNRaBaXiPMbCCV52KX0aILwaCq
- D4ZGm3ocDCTL0wIcRUYmp3TsIVyoX0isX6388SfHO8Y3wHhgTPrPBYqMWsm/KSYuX6
- 9u8seYphZwyoSn1z5LghRI34dIUzY12awr1f7Yp4gdKm+5nrx1s59tH5Hs5KatvHea
- EO4h3CtqlqwWijy8CRWy5YSupjkaNB1ULt+R4o7zjuA0kMJJ6uJ1j1oTf9JKvTDHE/
- IUwP6lsLmdN2g==
-Date: Mon, 09 Jun 2025 17:16:37 +0000
-To: =?utf-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-From: Rio Liu <rio@r26.me>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [REGRESSION] amdgpu fails to load external RX 580 since PCI:
- Allow relaxed bridge window tail sizing for optional resources
-Message-ID: <onf2nAzOEySlZFoS5IQLCqqJAtiw3K7HmeH7CAghzunYBhYB8NqDT8UAfHHkpG_gWUbQp4flZFWsNyot9HGMELLXeM1oVu71lLB3GKL1AZY=@r26.me>
-In-Reply-To: <21d41e66-d019-31c7-1e73-fed80cf54965@linux.intel.com>
-References: <o2bL8MtD_40-lf8GlslTw-AZpUPzm8nmfCnJKvS8RQ3NOzOW1uq1dVCEfRpUjJ2i7G2WjfQhk2IWZ7oGp-7G-jXN4qOdtnyOcjRR0PZWK5I=@r26.me>
- <7a7a3619-902c-06ee-6171-6d8ec2107f97@linux.intel.com>
- <w3gGcmhWNmeGetzLnhgkjfx0JTEyIOKN5sDu-uShZ_7JWthMgGP6plgDuhDbkYyaA7vtGbdl1WbMTZ5zM80OyJoqUa69krqDpuhqDangkLY=@r26.me>
- <21d41e66-d019-31c7-1e73-fed80cf54965@linux.intel.com>
-Feedback-ID: 77429777:user:proton
-X-Pm-Message-ID: cff81bdc5bf1b863859f55e89e5955fe24437d45
+X-Greylist: delayed 54010 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Jun 2025 00:45:37 UTC
+Received: from out162-62-57-64.mail.qq.com (out162-62-57-64.mail.qq.com
+ [162.62.57.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA30610E04A;
+ Tue, 10 Jun 2025 00:45:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+ s=s201512; t=1749516329;
+ bh=eh0MKFXwRSKJeN6xSCf1HbT1d8FUKtrqXJ+Dp8MAsIQ=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=pjxKQknsZV1+5nEsvPA1d38Tjq3RF7JxJuK0VuGzRDfy9w+4QcckJE0KE9Ku/y3kj
+ 0dgkQa97ghkUrObVtFeAVflLLvWnydTXh/Ske8vYeLll+7CcJxuIrCPhTKPSpe7peu
+ 7dG3nDOJWwCKkHGP5+VtJxjXtwm6vskj5/HWzPhk=
+Received: from [192.168.3.19] ([218.4.27.159])
+ by newxmesmtplogicsvrszc16-0.qq.com (NewEsmtp) with SMTP
+ id B4787495; Tue, 10 Jun 2025 08:45:07 +0800
+X-QQ-mid: xmsmtpt1749516307twxekh8mx
+Message-ID: <tencent_1EB006F3EADC43F9710EC002C328BC474B09@qq.com>
+X-QQ-XMAILINFO: MStTOrhA1CLVe8QmYEvkvgVwbij+zYPHXHa/ukbjGk7o/rxjTDwq8lMuHcxyEC
+ ZbPs0GxvKyk5ETXRRnvIKReAnq9O0vHbhyzxBlK/K/LAt1a3skGrvaEo5c31smC9oEevs3jNbLDq
+ lm1ERe1RSzUOBQXs9Fa/d5J/t+BlT4uVb4YbTd2NLQXppUSQYGQgxLLqIpEBsNdoQJauWVblw2ze
+ wLk/m+1euA6o363+TWfPQtrVABlYRCjckiGpIN7MsjDblVpxXoKxVGuLo/k+ogd8WxnzcAwpzct4
+ WboutieCsggDtEISQI8KzA18Gbq/EQ1HacOcFZqcfVDw55xMxNb5xMbB3KxyYZVvzwYrQxqitHkq
+ jyMBqaJbDAVdgqba9GHFOLZUwNdR4ohutnDBsyDmGl1pq2e8vcdtOlp9eJcwQfXcAE2m/HR32v+Z
+ Rz7vEIM+de/FAU60U1EwinndkwEp9iYRQwja5el7eKijAm66f/KLRBdbgvbh7UncJelyHYQRFroV
+ /dOPLnu4BF96cOH2vDILkVEB8DUoXHQ4aDCJ8EP2TUOluqQkwC9l1CS5hdJwEM/2gDrKI6Km3HlC
+ kQRYILYYBRaLE7BpzkmSTTfEfx0umnWkPQq5TxhRR7WlfXtDocNO4W9TuhMrDrDZppnqSjnHs+ph
+ DYQqcQ9zzDgHtetsf46gvwxx21pzgCPIumrAu9RMGeauj+phFxAwYnrxq42Hs7/nxTuZEzWK8/hm
+ fcyaXv7u4/YuuKkPZZrWkDtqpdSH4k0QGuD+HQWpucoHE3DU4bD/nwKXV31aQpM924egN6N0cfXz
+ bAzzBiXXUt/TU/0xtWOKQDAhilgNJ+KTyIZ1qvHtSP3g9qsBJyn111uyz8nEBM12faS3GLiHfard
+ pTdeaR1JNHyJWyZwBIIVus8fZh96QAcqT8234GHp4bQfCwirEcK1DRnQQaDbODN0qulrhMd22tI2
+ +zWNIReNWt9LFE0Po5mkhZq9RFV79G2o2TUjeeYozucxriZWNif4Tnd9ayQDVQeZcgAg3727hpLF
+ N/PL6Gg2bvvO8cCUFFfTfjrCoyR3hiPM93dXA5k3wY59J/cK/qCq6zXgH4xyU=
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+X-OQ-MSGID: <f8f78ac6-4fdb-4f75-ba8b-e146ddf58bad@foxmail.com>
+Date: Tue, 10 Jun 2025 08:45:07 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdkfd: register HMM dev memory to DMA-able range
+ first
+To: Felix Kuehling <felix.kuehling@amd.com>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <tencent_03FB073FD3015AE02485DD6839D6571EBC06@qq.com>
+ <560baf50-1bc5-473c-9889-59f7d625ddd9@amd.com>
+Content-Language: en-US
+From: francisco_flynn <francisco_flynn@foxmail.com>
+In-Reply-To: <560baf50-1bc5-473c-9889-59f7d625ddd9@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 13 Jun 2025 16:05:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,17 +78,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Monday, June 9th, 2025 at PM 1:07, Ilpo J=C3=A4rvinen <ilpo.jarvinen@lin=
-ux.intel.com> wrote:
+On 6/9/25 20:46, Felix Kuehling wrote:
+> On 2025-06-09 5:36, francisco_flynn wrote:
+>> HMM device memory is allocated at the top of
+>> iomem_resource, when iomem_resource is larger than
+>> GPU device's dma mask, after devm_memremap_pages,
+>> max_pfn will also be update and exceed device's
+>> dma mask, when there are multiple card on system
+>> need to be init, ttm_device_init would be called
+>> with use_dma32=true, and this is not necessary at
+>> all. let's request dev memory region at DMA-able
+>> range first.
+> That doesn't make sense to me. The addresses allocated here are not DMA addresses. They cannot be accessed by the GPU via DMA. They are purely fictional addresses for the purposes of creating struct pages for device-private memory. There should be no need to limit them by the GPU's DMA mask.
 
->
->
-> Great, thanks for testing.
->
-> If you want, you can give your Tested-by tag so I can include it into the
-> official submission of the fix.
->
-> --
-> i.
 
-That sounds good, thanks!
+yes, this address is used by CPU to access VRAM. The patch is intended 
+to cope with a special case, after checking the latest kernel code, i 
+found this problem has been solved by this commit,
+
+https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/commit/?id=7170130e4c72ce0caa0cb42a1627c635cc262821
+
+thanks for you reply.
+
+Best regards,
+flynn
+
+
+> Regards,
+>    Felix
+>
+>
+>> Signed-off-by: francisco_flynn <francisco_flynn@foxmail.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdkfd/kfd_migrate.c | 6 +++++-
+>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+>> index 79251f22b702..3856b9fd2a70 100644
+>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+>> @@ -1020,6 +1020,7 @@ int kgd2kfd_init_zone_device(struct amdgpu_device *adev)
+>>   	struct amdgpu_kfd_dev *kfddev = &adev->kfd;
+>>   	struct dev_pagemap *pgmap;
+>>   	struct resource *res = NULL;
+>> +	struct resource temp_res = iomem_resource;
+>>   	unsigned long size;
+>>   	void *r;
+>>   
+>> @@ -1042,7 +1043,10 @@ int kgd2kfd_init_zone_device(struct amdgpu_device *adev)
+>>   		pgmap->range.end = adev->gmc.aper_base + adev->gmc.aper_size - 1;
+>>   		pgmap->type = MEMORY_DEVICE_COHERENT;
+>>   	} else {
+>> -		res = devm_request_free_mem_region(adev->dev, &iomem_resource, size);
+>> +		temp_res.end = dma_get_mask(adev->dev);
+>> +		res = devm_request_free_mem_region(adev->dev, &temp_res, size);
+>> +		if (IS_ERR(res))
+>> +			res = devm_request_free_mem_region(adev->dev, &iomem_resource, size);
+>>   		if (IS_ERR(res))
+>>   			return PTR_ERR(res);
+>>   		pgmap->range.start = res->start;
+
