@@ -2,55 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B67AD3F49
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Jun 2025 18:42:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E97EBAD42AE
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Jun 2025 21:12:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1078410E5B9;
-	Tue, 10 Jun 2025 16:42:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 896A210E151;
+	Tue, 10 Jun 2025 19:12:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Ho/TRwK7";
+	dkim=pass (2048-bit key; unprotected) header.d=free.fr header.i=@free.fr header.b="IqJk/SqM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87F5E10E31F;
- Tue, 10 Jun 2025 16:42:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=IYsJEgMaqHnkj9zogcLK1cRSEP1fqVxPH3eFOlMY9Uk=; b=Ho/TRwK7kPK0DkozDpOcx5bLJp
- BDHBb8OeLWc7/97YDGpsBNBSL86VuXqj89OZwQRGCGbiQ/ImD6jlMy89QmEVFCQgEBXK1KVL/NlwL
- r3THf+vMvfSO/WD6OihMEsJgfd8PmCnox41UcZaN8oYEhVUa2mFYNOR0dRByHxeu+GiN1VtQYpFDn
- IBpdCfsISWwJ0P4nqTS43RE2r3whSTW7jJek07k1x1hXnihKFVLqiStHPG6erMjjOOGU9G3z/wnvg
- yU1TLR3JsQI0YMcej/HIPOZdnYmikLlfw4wSXqrKY1jazHSjWiUGh8Ae+02DYtsIiLSo4L7AdI2nb
- vyAtmecQ==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uP23Y-001t9s-L5; Tue, 10 Jun 2025 18:42:36 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Rob Clark <robdclark@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v6 4/4] drm/xe: Make dma-fences compliant with the safe access
- rules
-Date: Tue, 10 Jun 2025 17:42:26 +0100
-Message-ID: <20250610164226.10817-5-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250610164226.10817-1-tvrtko.ursulin@igalia.com>
-References: <20250610164226.10817-1-tvrtko.ursulin@igalia.com>
+Received: from smtp6-g21.free.fr (smtp6-g21.free.fr [212.27.42.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABAB410E151
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Jun 2025 19:12:49 +0000 (UTC)
+Received: from over.fork.zz (unknown [82.65.94.41])
+ (Authenticated sender: patrick9876@free.fr)
+ by smtp6-g21.free.fr (Postfix) with ESMTPSA id D8FFE78035E;
+ Tue, 10 Jun 2025 21:12:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+ s=smtp-20201208; t=1749582764;
+ bh=C+o1vlwFlP0hESaP8Wpb91s4oN5FOtBtx9KxIXzolyU=;
+ h=From:To:Cc:Subject:Date:From;
+ b=IqJk/SqMAoQSmblg3crP039cE+CKi4hqe7iVl6d2fudnFGrLnsl3lFMQui30g9dmg
+ p3GvbHdpoSojY16/BPUVvEiLtHe8W1MPfnOViRZK7Xcxzyt7EFPvih3XbTYwKDuDzA
+ 8nRIWWb41NlI8X+eIrNbiY5ytDKIv/kPFxDGTXSMYfLy+QrqZugUIc0IGk83TXztrs
+ BiknUksW5NzZ3kulwINWUi88DNuub19D4RcULYYf//5mghGJSWrhtQRrr2fkAW7Htx
+ wqToALS9sWN8MKlhghIIg7oxbYNwQWa+o+F6CskEO/Xq9S30p5cB4uxsqpslICA9nI
+ 86WvIlQq1omSg==
+From: Patrick Lerda <patrick9876@free.fr>
+To: amd-gfx@lists.freedesktop.org
+Cc: Patrick Lerda <patrick9876@free.fr>
+Subject: [PATCH 1/2] drm/radeon/evergreen_cs: implement cond_exec and
+ cond_write
+Date: Tue, 10 Jun 2025 21:12:22 +0200
+Message-ID: <20250610191232.15597-1-patrick9876@free.fr>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -67,80 +53,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Xe can free some of the data pointed to by the dma-fences it exports. Most
-notably the timeline name can get freed if userspace closes the associated
-submit queue. At the same time the fence could have been exported to a
-third party (for example a sync_fence fd) which will then cause an use-
-after-free on subsequent access.
+This change implements the support of PACKET3_COND_EXEC and
+PACKET3_COND_WRITE which are required to implement
+ARB_indirect_parameters. ARB_indirect_parameters is
+part of OpenGL 4.6.
 
-To make this safe we need to make the driver compliant with the newly
-documented dma-fence rules. Driver has to ensure a RCU grace period
-between signalling a fence and freeing any data pointed to by said fence.
-
-For the timeline name we simply make the queue be freed via kfree_rcu and
-for the shared lock associated with multiple queues we add a RCU grace
-period before freeing the per GT structure holding the lock.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34726
+Signed-off-by: Patrick Lerda <patrick9876@free.fr>
 ---
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h | 2 ++
- drivers/gpu/drm/xe/xe_guc_submit.c           | 7 ++++++-
- drivers/gpu/drm/xe/xe_hw_fence.c             | 3 +++
- 3 files changed, 11 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/radeon/evergreen_cs.c | 96 ++++++++++++++++++++++++++-
+ 1 file changed, 95 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index 4c39f01e4f52..a3f421e2adc0 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -20,6 +20,8 @@ struct xe_exec_queue;
- struct xe_guc_exec_queue {
- 	/** @q: Backpointer to parent xe_exec_queue */
- 	struct xe_exec_queue *q;
-+	/** @rcu: For safe freeing of exported dma fences */
-+	struct rcu_head rcu;
- 	/** @sched: GPU scheduler for this xe_exec_queue */
- 	struct xe_gpu_scheduler sched;
- 	/** @entity: Scheduler entity for this xe_exec_queue */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 2b61d017eeca..c7f45800ec6a 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1299,7 +1299,11 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
- 	xe_sched_entity_fini(&ge->entity);
- 	xe_sched_fini(&ge->sched);
- 
--	kfree(ge);
-+	/*
-+	 * RCU free due sched being exported via DRM scheduler fences
-+	 * (timeline name).
-+	 */
-+	kfree_rcu(ge, rcu);
- 	xe_exec_queue_fini(q);
- 	xe_pm_runtime_put(guc_to_xe(guc));
- }
-@@ -1482,6 +1486,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- 	q->guc = ge;
- 	ge->q = q;
-+	init_rcu_head(&ge->rcu);
- 	init_waitqueue_head(&ge->suspend_wait);
- 
- 	for (i = 0; i < MAX_STATIC_MSG_TYPE; ++i)
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index 03eb8c6d1616..b2a0c46dfcd4 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -100,6 +100,9 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
- 		spin_unlock_irqrestore(&irq->lock, flags);
- 		dma_fence_end_signalling(tmp);
+diff --git a/drivers/gpu/drm/radeon/evergreen_cs.c b/drivers/gpu/drm/radeon/evergreen_cs.c
+index a46613283393..7d00096fc915 100644
+--- a/drivers/gpu/drm/radeon/evergreen_cs.c
++++ b/drivers/gpu/drm/radeon/evergreen_cs.c
+@@ -2661,6 +2661,95 @@ static int evergreen_packet3_check(struct radeon_cs_parser *p,
+ 		}
+ 		break;
  	}
++	case PACKET3_COND_EXEC:
++	{
++		u64 offset;
 +
-+	/* Safe release of the irq->lock used in dma_fence_init. */
-+	synchronize_rcu();
- }
- 
- void xe_hw_fence_irq_run(struct xe_hw_fence_irq *irq)
++		if (pkt->count != 2) {
++			DRM_ERROR("bad COND_EXEC (invalid count)\n");
++			return -EINVAL;
++		}
++		r = radeon_cs_packet_next_reloc(p, &reloc, 0);
++		if (r) {
++			DRM_ERROR("bad COND_EXEC (missing reloc)\n");
++			return -EINVAL;
++		}
++		offset = radeon_get_ib_value(p, idx + 0);
++		offset += ((u64)(radeon_get_ib_value(p, idx + 1) & 0xff)) << 32UL;
++		if (offset & 0x7) {
++			DRM_ERROR("bad COND_EXEC (address not qwords aligned)\n");
++			return -EINVAL;
++		}
++		if ((offset + 8) > radeon_bo_size(reloc->robj)) {
++			DRM_ERROR("bad COND_EXEC bo too small: 0x%llx, 0x%lx\n",
++				  offset + 8, radeon_bo_size(reloc->robj));
++			return -EINVAL;
++		}
++		offset += reloc->gpu_offset;
++		ib[idx + 0] = offset;
++		ib[idx + 1] = upper_32_bits(offset) & 0xff;
++		break;
++	}
++	case PACKET3_COND_WRITE:
++		if (pkt->count != 7) {
++			DRM_ERROR("bad COND_WRITE (invalid count)\n");
++			return -EINVAL;
++		}
++		if (idx_value & 0x10) {
++			u64 offset;
++			/* POLL is memory. */
++			r = radeon_cs_packet_next_reloc(p, &reloc, 0);
++			if (r) {
++				DRM_ERROR("bad COND_WRITE (missing src reloc)\n");
++				return -EINVAL;
++			}
++			offset = radeon_get_ib_value(p, idx + 1);
++			offset += ((u64)(radeon_get_ib_value(p, idx + 2) & 0xff)) << 32;
++			if ((offset + 8) > radeon_bo_size(reloc->robj)) {
++				DRM_ERROR("bad COND_WRITE src bo too small: 0x%llx, 0x%lx\n",
++					  offset + 8, radeon_bo_size(reloc->robj));
++				return -EINVAL;
++			}
++			offset += reloc->gpu_offset;
++			ib[idx + 1] = offset;
++			ib[idx + 2] = upper_32_bits(offset) & 0xff;
++		} else {
++			/* POLL is a reg. */
++			reg = radeon_get_ib_value(p, idx + 1) << 2;
++			if (!evergreen_is_safe_reg(p, reg)) {
++				dev_warn(p->dev, "forbidden register 0x%08x at %d\n",
++					 reg, idx + 1);
++				return -EINVAL;
++			}
++		}
++		if (idx_value & 0x100) {
++			u64 offset;
++			/* WRITE is memory. */
++			r = radeon_cs_packet_next_reloc(p, &reloc, 0);
++			if (r) {
++				DRM_ERROR("bad COND_WRITE (missing dst reloc)\n");
++				return -EINVAL;
++			}
++			offset = radeon_get_ib_value(p, idx + 5);
++			offset += ((u64)(radeon_get_ib_value(p, idx + 6) & 0xff)) << 32;
++			if ((offset + 8) > radeon_bo_size(reloc->robj)) {
++				DRM_ERROR("bad COND_WRITE dst bo too small: 0x%llx, 0x%lx\n",
++					  offset + 8, radeon_bo_size(reloc->robj));
++				return -EINVAL;
++			}
++			offset += reloc->gpu_offset;
++			ib[idx + 5] = offset;
++			ib[idx + 6] = upper_32_bits(offset) & 0xff;
++		} else {
++			/* WRITE is a reg. */
++			reg = radeon_get_ib_value(p, idx + 5) << 2;
++			if (!evergreen_is_safe_reg(p, reg)) {
++				dev_warn(p->dev, "forbidden register 0x%08x at %d\n",
++					 reg, idx + 5);
++				return -EINVAL;
++			}
++		}
++		break;
+ 	case PACKET3_NOP:
+ 		break;
+ 	default:
+@@ -3406,7 +3495,12 @@ static int evergreen_vm_packet3_check(struct radeon_device *rdev,
+ 	case CAYMAN_PACKET3_DEALLOC_STATE:
+ 		break;
+ 	case PACKET3_COND_WRITE:
+-		if (idx_value & 0x100) {
++		if (!(idx_value & 0x10)) {
++			reg = ib[idx + 1] * 4;
++			if (!evergreen_vm_reg_valid(reg))
++				return -EINVAL;
++		}
++		if (!(idx_value & 0x100)) {
+ 			reg = ib[idx + 5] * 4;
+ 			if (!evergreen_vm_reg_valid(reg))
+ 				return -EINVAL;
 -- 
-2.48.0
+2.49.0
 
