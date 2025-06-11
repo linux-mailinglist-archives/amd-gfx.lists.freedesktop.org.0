@@ -2,56 +2,128 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD68AD5A73
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Jun 2025 17:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D8DAD5E68
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Jun 2025 20:41:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3630310E6A3;
-	Wed, 11 Jun 2025 15:29:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A81F10E317;
+	Wed, 11 Jun 2025 18:41:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cHbbKNhr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zum2HTzm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C7A110E6A9;
- Wed, 11 Jun 2025 15:29:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=0r5SdQ/0L/7BLhNXEpm/mv03XglIjWInycPNIZEV/90=; b=cHbbKNhrFvgV6lZV4yqX1KM5kA
- 1U+7WDR0aBf8vm9kUUr6EkKs3DqXzzQxXY8bzA3ckASSTj5ZMMznLasIIkA5j6+a5AKqqJQT70Kax
- THXNrNF0PbIG3POp3pn26rCdbiMoh9rVnn/+/t/mYBsf/rk8rsa4zQpR5RI/IWns2q0hKSbwfF5+w
- 57B87DiLHz2wIHpAKcy6d+AeV1hSEeL+rHeCrmA4LTGsJ4Gk2fevn0kr+jenX4jsA85M7wljYZ+zD
- i78BaWk2CkqPMhHbHm1l3fd1XHcLroMM/RKAZ+w8lPVVh7IlTy9smXZAUCThseKMcrqbh5DkmlFLC
- KJftCSXA==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uPNO7-002Fxu-7b; Wed, 11 Jun 2025 17:29:15 +0200
-Message-ID: <10e83252-e565-4cb4-9bc2-ae238528df92@igalia.com>
-Date: Wed, 11 Jun 2025 16:29:14 +0100
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2069.outbound.protection.outlook.com [40.107.212.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8426910E2F2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Jun 2025 18:41:24 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AW5+Yr+XQ5t6VphAwGlj2AdyJJrJJXG/zdXbuLOIDWO/t7hEhNEeDBo0CkYBT4YejbBwgCrawVcSkhpkQG9dyIFO/sEC2zINq/czHwMwnhijI0NMm6n56s5T3E/S+EHXwp52BivJz4OhtXyULFSwMwnyHj9udUuI4+VUyH0ZSD78TRRbGBGfNRtn36Qo3+uCzYRntruAv8nOwVEifVE303tsIO+LF5ezhP+KM+1VbwMconQ55HfGBIrb6R/zeF2g/UX82/GKcDDnSHOtHovUocCDox7gmwm9uErEwnXD3ez7hpJYl5J3trSL65viOV7yTQun155ErT8U9JCFUjHdJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HA0c27Xw52rRgVqWdt1CyIHGQwSvMcRe2QrOhR6hHiw=;
+ b=rfpuuHS5aCarIYPjnlo/vpKbTZa3VrBDTbW4UVlM1QwLyJb9THAE77FUoN/HzZZGrNRQmV2RrS1kzgbIh8cRJeZGTWeAEcyys2mmXEpfriIHGa1G6ogr7rvSZfWCda7ox3YKd3uCFFIor6ZQQgDRD/0uHmQLCIcp1BCCbTVugdBuvsUR0v4OZp0LOf6NlQMRwMpwLzK5aNwALTLMZsoASEHwzeYfDzD81lUzS7kWEABMGdt7Sa3hLMIXPHU4wP+UAsxDXmdYSZnM4h7upQqvwQtmqp6Hlqzls/3fK6RHR/DnWhLrJxhLcdDTT+ZIU6k5x/sswhAHCR9zxehrQBL5dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HA0c27Xw52rRgVqWdt1CyIHGQwSvMcRe2QrOhR6hHiw=;
+ b=zum2HTzms7Bg0J/N4yioVMtCAAdyRBqGDvRGk9DYuoYh2+1G/FSZD/P197OSojbf0SJJSt6aaYsrtA/o4AOvT/ZlSNE2RuB6SuEKGpNfoPPJOmQQqMbFKG94P7OWM2iMkghf1H6MS90HaRBRenaCcv9QI5e0N59VQ5v6pVC7onU=
+Received: from BN9PR03CA0506.namprd03.prod.outlook.com (2603:10b6:408:130::31)
+ by DS4PR12MB9659.namprd12.prod.outlook.com (2603:10b6:8:27f::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.19; Wed, 11 Jun
+ 2025 18:41:14 +0000
+Received: from BL02EPF00021F6E.namprd02.prod.outlook.com
+ (2603:10b6:408:130:cafe::fe) by BN9PR03CA0506.outlook.office365.com
+ (2603:10b6:408:130::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8792.35 via Frontend Transport; Wed,
+ 11 Jun 2025 18:41:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BL02EPF00021F6E.mail.protection.outlook.com (10.167.249.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8835.15 via Frontend Transport; Wed, 11 Jun 2025 18:41:13 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Jun
+ 2025 13:41:12 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Jun
+ 2025 13:41:11 -0500
+Received: from aaurabin-z5-cachy.amd.com (10.180.168.240) by
+ SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39
+ via Frontend Transport; Wed, 11 Jun 2025 13:41:11 -0500
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
+ Zuo" <jerry.zuo@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Alex Hung
+ <alex.hung@amd.com>
+Subject: [PATCH 00/10] DC Patches for 16 June 2025
+Date: Wed, 11 Jun 2025 14:39:50 -0400
+Message-ID: <20250611184111.517494-1-aurabindo.pillai@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/6] drm/syncobj: Add a fast path to
- drm_syncobj_array_find
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, =?UTF-8?Q?Michel_D=C3=A4nzer?=
- <michel.daenzer@mailbox.org>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>
-References: <20250611140057.27259-1-tvrtko.ursulin@igalia.com>
- <20250611140057.27259-7-tvrtko.ursulin@igalia.com>
- <b57b6549-7dbe-45fe-ab8e-4232041ec1a5@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <b57b6549-7dbe-45fe-ab8e-4232041ec1a5@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF00021F6E:EE_|DS4PR12MB9659:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42c37e66-3167-4da0-5dab-08dda9178adf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?NDOIjhqgqs2P3JlU8Z4u3pGr4bDclRE3K9yIDKvGIJLYDON1cOKQbRS6vhcM?=
+ =?us-ascii?Q?mZ3vaR/EpXuq7btQyAS7cb7mdS/B/IKGZv2XQ811VilJf5ZKh7hxQhHtWq1M?=
+ =?us-ascii?Q?JgCmN47W53TV+VTk2Dh/LyizfdezyGBP/Uld/q2WLaabylDykMcGNdnnGUF1?=
+ =?us-ascii?Q?vyBp3vodCsO0ocusyUkGiSY5NYGZD+PkFKpSTNM2pHvtpno4VReA4JCYaXOY?=
+ =?us-ascii?Q?WerDk5KeSMjyz9uI5ONeXqX6/D6zU33PixEpHwjazWaDxS7NL8ZzXQglcOvd?=
+ =?us-ascii?Q?756Urvl2+Z4aM/uIn74HeiJjb1aCUlxshgWN+qqv2mzlrd6U03kmmympTITT?=
+ =?us-ascii?Q?8XP0tmWMlmAX4glDc+G9wJQaV9fm+j8GwRGRFhb3Qx1EtCn8IxFALByNX/t8?=
+ =?us-ascii?Q?lzPO+zGpmeeAFR9FbuUTok0nCIQEc2LXCFNx9lKUqN0POkV66HfHGsAdVjYE?=
+ =?us-ascii?Q?oNU46QIQ/JLrNSUBkhSHYgJcopk+Jghw4iH5i9LsUv3SBbM+WzIu/d4zcLQY?=
+ =?us-ascii?Q?es+2X77Rg2Sxbp7NxC30ssX/tVUP/K21/Vn0EbKD6yoYKdGPpouDKls7ZboT?=
+ =?us-ascii?Q?al0V7TOLE6wJ6HFGWpnbsnTG6O3ORLERMXqRxcI4UwwDNM452+OleZCV4ICG?=
+ =?us-ascii?Q?M/Oq+AYiF9FGmonoBnL6oo/ZD/6anrK7GPwMby4p0Psvr6TOb57En2qwZ3kk?=
+ =?us-ascii?Q?GTZvnboR7IvEavoMwR91SWWNt33IAJZT9RA2VtkykTQVWolL8B5hyr8rpQWP?=
+ =?us-ascii?Q?YAX2T+Bq+AqxNrKIIOIT0JVYcPapHt0gTRkUyXiGHqgKUE0u+SilUoMGvJwJ?=
+ =?us-ascii?Q?h6+Tx0+c29xSoCSzQcxENY9iP/XchGrFdZ92aM/HvmXykVRPFENPpR0eJ6/N?=
+ =?us-ascii?Q?XfmX9SCkEU0GT6u1AV/EXdlFdm6z72FdALPDrFzi0nSoHOwZ7aOxsmRpyTlI?=
+ =?us-ascii?Q?vNof4AVIZWsx1u+T8NnLK/c8LHjBB5bof+RtvAg1GocB5l1Nq/QHCEOI1yvg?=
+ =?us-ascii?Q?Msc6ciM9FAT9D/gJhtAP9eXHwKB+vlKB9OTje6UtsdeJa9d+Rv3X1pkOgrx6?=
+ =?us-ascii?Q?iHyuKT6d1Xolg/uasuEPYdzWEzm4t3gtriqBtetTFKZKfMrYDZkaFoCt47H8?=
+ =?us-ascii?Q?GmvSiqMi/bKgZpXBbop75QBWsU0i0eJDo8k0d9JeGsbtCiXejsEZ0it399BF?=
+ =?us-ascii?Q?FYEivJogmd5XLjcZCqZlp8PwzziPh3yIHfHwcm4PhtEFqIyb1mIJFJD87Ncw?=
+ =?us-ascii?Q?JalWlAT/Jtbn3j5bVdg798jGqGhxEclxwQXmFWY98K76fVdIelAcMmraNizW?=
+ =?us-ascii?Q?w9cPuxDoQUhEwEW4KILdlc35DGy2gkuW8vDiHd7PkCvYZyi+8JocAX9w7+op?=
+ =?us-ascii?Q?/KUl40EY/Y4No1ghY3+3uq2B2lATCsDWsANBWYWjzBUUMwTmBIb7E46nhdSC?=
+ =?us-ascii?Q?uJysziU/nNXL/Ecjrp6FM4exrFH7tYaWgU8gblkid4XzK/cJ6qEMogsKYqzX?=
+ =?us-ascii?Q?IKyMlDFUon8nsRNB++ahBoTmjkM+oveH9s6z?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 18:41:13.5265 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42c37e66-3167-4da0-5dab-08dda9178adf
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00021F6E.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9659
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,262 +138,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+DC v3.2.338 highlights:
 
-On 11/06/2025 15:21, Christian König wrote:
-> On 6/11/25 16:00, Tvrtko Ursulin wrote:
->> Running the Cyberpunk 2077 benchmark we can observe that the lookup helper
->> is relatively hot, but the 97% of the calls are for a single object. (~3%
->> for two points, and never more than three points. While a more trivial
->> workload like vkmark under Plasma is even more skewed to single point
->> lookups.)
->>
->> Therefore lets add a fast path to bypass the kmalloc_array/kfree and use a
->> pre-allocated stack array for those cases.
-> 
-> Have you considered using memdup_user()? That's using a separate bucket IIRC and might give similar performance.
+* DML bug fixes
+* Add pwait to DMCUB hang reporting
+* New definitions / changes to prep for new platforms.
+* Misc cleanups
 
-I haven't but I can try it. I would be surprised if it made a (positive) 
-difference though.
+_________________
 
-And I realised I need to repeat the benchmarks anyway, since in v4 I had 
-to stop doing access_ok+__get_user, after kernel test robot let me know 
-64-bit get_user is a not a thing on all platforms. I thought the gains 
-are from avoiding allocations but, as you say, now I need to see if 
-copy_from_user doesn't nullify them..
+Alex Hung (1):
+  drm/amd/display: Check dce_hwseq before dereferencing it
 
-> If that is still not sufficient I'm really wondering if we shouldn't have a macro for doing this. It's a really common use case as far as I can see.
+Charlene Liu (1):
+  drm/amd/display: add APG struct to stream_enc for future use
 
-Hmm macro for what exactly?
+Karthi Kandasamy (1):
+  drm/amd/display: prepare for new platform
 
-Regards,
+Mario Limonciello (2):
+  drm/amd/display: Use scaling for non-native resolutions on eDP
+  drm/amd/display: Disable common modes for eDP
 
-Tvrtko
+Nicholas Kazlauskas (1):
+  drm/amd/display: Add pwait status to DMCUB diagnostics
 
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Reviewed-by: Maíra Canal <mcanal@igalia.com>
->> ---
->> v2:
->>   * Added comments describing how the fast path arrays were sized.
->>   * Make container freeing criteria clearer by using a boolean.
->> ---
->>   drivers/gpu/drm/drm_syncobj.c | 56 +++++++++++++++++++++++++++--------
->>   1 file changed, 44 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
->> index be5905dca87f..65c301852f0d 100644
->> --- a/drivers/gpu/drm/drm_syncobj.c
->> +++ b/drivers/gpu/drm/drm_syncobj.c
->> @@ -1259,6 +1259,8 @@ EXPORT_SYMBOL(drm_timeout_abs_to_jiffies);
->>   static int drm_syncobj_array_find(struct drm_file *file_private,
->>   				  u32 __user *handles,
->>   				  uint32_t count,
->> +				  struct drm_syncobj **stack_syncobjs,
->> +				  u32 stack_count,
->>   				  struct drm_syncobj ***syncobjs_out)
->>   {
->>   	struct drm_syncobj **syncobjs;
->> @@ -1268,9 +1270,13 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
->>   	if (!access_ok(handles, count * sizeof(*handles)))
->>   		return -EFAULT;
->>   
->> -	syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
->> -	if (!syncobjs)
->> -		return -ENOMEM;
->> +	if (count > stack_count) {
->> +		syncobjs = kmalloc_array(count, sizeof(*syncobjs), GFP_KERNEL);
->> +		if (!syncobjs)
->> +			return -ENOMEM;
->> +	} else {
->> +		syncobjs = stack_syncobjs;
->> +	}
->>   
->>   	for (i = 0; i < count; i++) {
->>   		u32 handle;
->> @@ -1292,25 +1298,31 @@ static int drm_syncobj_array_find(struct drm_file *file_private,
->>   err_put_syncobjs:
->>   	while (i-- > 0)
->>   		drm_syncobj_put(syncobjs[i]);
->> -	kfree(syncobjs);
->> +
->> +	if (syncobjs != stack_syncobjs)
->> +		kfree(syncobjs);
->>   
->>   	return ret;
->>   }
->>   
->>   static void drm_syncobj_array_free(struct drm_syncobj **syncobjs,
->> -				   uint32_t count)
->> +				   uint32_t count,
->> +				   bool free_container)
->>   {
->>   	uint32_t i;
->>   
->>   	for (i = 0; i < count; i++)
->>   		drm_syncobj_put(syncobjs[i]);
->> -	kfree(syncobjs);
->> +
->> +	if (free_container)
->> +		kfree(syncobjs);
->>   }
->>   
->>   int
->>   drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
->>   		       struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_wait *args = data;
->>   	ktime_t deadline, *pdeadline = NULL;
->>   	u32 count = args->count_handles;
->> @@ -1336,6 +1348,8 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     count,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1354,7 +1368,7 @@ drm_syncobj_wait_ioctl(struct drm_device *dev, void *data,
->>   						 &first,
->>   						 pdeadline);
->>   
->> -	drm_syncobj_array_free(syncobjs, count);
->> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
->>   
->>   	if (timeout < 0)
->>   		return timeout;
->> @@ -1368,6 +1382,7 @@ int
->>   drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
->>   				struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_timeline_wait *args = data;
->>   	ktime_t deadline, *pdeadline = NULL;
->>   	u32 count = args->count_handles;
->> @@ -1394,6 +1409,8 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     count,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1412,7 +1429,7 @@ drm_syncobj_timeline_wait_ioctl(struct drm_device *dev, void *data,
->>   						 &first,
->>   						 pdeadline);
->>   
->> -	drm_syncobj_array_free(syncobjs, count);
->> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
->>   
->>   	if (timeout < 0)
->>   		return timeout;
->> @@ -1529,6 +1546,7 @@ int
->>   drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
->>   			struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_array *args = data;
->>   	struct drm_syncobj **syncobjs;
->>   	uint32_t i;
->> @@ -1546,6 +1564,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     args->count_handles,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1553,7 +1573,8 @@ drm_syncobj_reset_ioctl(struct drm_device *dev, void *data,
->>   	for (i = 0; i < args->count_handles; i++)
->>   		drm_syncobj_replace_fence(syncobjs[i], NULL);
->>   
->> -	drm_syncobj_array_free(syncobjs, args->count_handles);
->> +	drm_syncobj_array_free(syncobjs, args->count_handles,
->> +			       syncobjs != stack_syncobjs);
->>   
->>   	return 0;
->>   }
->> @@ -1562,6 +1583,7 @@ int
->>   drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
->>   			 struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_array *args = data;
->>   	struct drm_syncobj **syncobjs;
->>   	uint32_t i;
->> @@ -1579,6 +1601,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     args->count_handles,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1589,7 +1613,8 @@ drm_syncobj_signal_ioctl(struct drm_device *dev, void *data,
->>   			break;
->>   	}
->>   
->> -	drm_syncobj_array_free(syncobjs, args->count_handles);
->> +	drm_syncobj_array_free(syncobjs, args->count_handles,
->> +			       syncobjs != stack_syncobjs);
->>   
->>   	return ret;
->>   }
->> @@ -1598,6 +1623,7 @@ int
->>   drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->>   				  struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_timeline_array *args = data;
->>   	uint64_t __user *points = u64_to_user_ptr(args->points);
->>   	uint32_t i, j, count = args->count_handles;
->> @@ -1617,6 +1643,8 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     count,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1653,7 +1681,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->>   err_chains:
->>   	kfree(chains);
->>   out:
->> -	drm_syncobj_array_free(syncobjs, count);
->> +	drm_syncobj_array_free(syncobjs, count, syncobjs != stack_syncobjs);
->>   
->>   	return ret;
->>   }
->> @@ -1661,6 +1689,7 @@ drm_syncobj_timeline_signal_ioctl(struct drm_device *dev, void *data,
->>   int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
->>   			    struct drm_file *file_private)
->>   {
->> +	struct drm_syncobj *stack_syncobjs[DRM_SYNCOBJ_FAST_PATH_ENTRIES];
->>   	struct drm_syncobj_timeline_array *args = data;
->>   	struct drm_syncobj **syncobjs;
->>   	uint64_t __user *points = u64_to_user_ptr(args->points);
->> @@ -1679,6 +1708,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
->>   	ret = drm_syncobj_array_find(file_private,
->>   				     u64_to_user_ptr(args->handles),
->>   				     args->count_handles,
->> +				     stack_syncobjs,
->> +				     ARRAY_SIZE(stack_syncobjs),
->>   				     &syncobjs);
->>   	if (ret < 0)
->>   		return ret;
->> @@ -1722,7 +1753,8 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
->>   		if (ret)
->>   			break;
->>   	}
->> -	drm_syncobj_array_free(syncobjs, args->count_handles);
->> +	drm_syncobj_array_free(syncobjs, args->count_handles,
->> +			       syncobjs != stack_syncobjs);
->>   
->>   	return ret;
->>   }
-> 
+Ryan Seto (1):
+  drm/amd/display: Removing Unused DPP Functions
+
+Taimur Hassan (1):
+  drm/amd/display: Promote DC to 3.2.338
+
+Yan Li (2):
+  drm/amd/display: apply two different methods to validate modes
+  drm/amd/display: remove use_native_pstate_optimization
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  18 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |   2 +-
+ .../amd/display/dc/dml2/display_mode_core.c   |   2 +-
+ .../dc/dml2/display_mode_core_structs.h       |   1 +
+ .../display/dc/dml2/dml2_translation_helper.c |  19 --
+ .../drm/amd/display/dc/dml2/dml2_wrapper.c    | 242 +++---------------
+ .../amd/display/dc/dpp/dcn401/dcn401_dpp.c    |   2 +-
+ .../amd/display/dc/dpp/dcn401/dcn401_dpp.h    |   2 -
+ .../amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c |  24 --
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c |   2 +-
+ .../amd/display/dc/inc/hw/stream_encoder.h    |   1 +
+ .../drm/amd/display/dc/mpc/dcn32/dcn32_mpc.c  |   2 +-
+ .../drm/amd/display/dc/mpc/dcn32/dcn32_mpc.h  |   8 +
+ .../dc/resource/dcn32/dcn32_resource.c        |   1 -
+ .../dc/resource/dcn321/dcn321_resource.c      |   1 -
+ .../dc/resource/dcn35/dcn35_resource.c        |   1 -
+ .../dc/resource/dcn351/dcn351_resource.c      |   1 -
+ .../dc/resource/dcn36/dcn36_resource.c        |   1 -
+ .../dc/resource/dcn401/dcn401_resource.c      |   1 -
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |   1 +
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn31.c |   5 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn35.c |   5 +-
+ .../drm/amd/display/dmub/src/dmub_dcn401.c    |   5 +-
+ 23 files changed, 78 insertions(+), 269 deletions(-)
+
+-- 
+2.49.0
 
