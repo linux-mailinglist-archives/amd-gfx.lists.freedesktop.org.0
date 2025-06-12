@@ -2,56 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52CA6AD9278
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C0DAD9279
 	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 18:06:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6909510EA2E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C81210EA2F;
 	Fri, 13 Jun 2025 16:05:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="rLQ63c4K";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="kyLBLoNp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 320 seconds by postgrey-1.36 at gabe;
- Thu, 12 Jun 2025 14:14:17 UTC
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD95510E876
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jun 2025 14:14:17 +0000 (UTC)
-Received: from [192.168.178.76] (host-212-18-30-247.customer.m-online.net
- [212.18.30.247])
- (Authenticated sender: g.gottleuber@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 9E63E2FC01A4;
- Thu, 12 Jun 2025 16:08:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1749737336;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=s5RIfBjLWs/xgjxHgpqZTRDMhe9rCAFWtvXm/cCwe04=;
- b=rLQ63c4KFwKsdCLhObDXXmCpVSmdMv9txk1MrlfTzroHr2j2j7QInvwdgbM3YAbgBRZW9C
- cF1KyBivKbPYLLbqxJXEFszUJPKhq3fLaa0zR0IdBSgw/QUD09JGN4iKYyYYraCQl/QpM1
- H4Uu1ols9PKB7cq1dLE0CVo77Gw1LtU=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com
- smtp.mailfrom=ggo@tuxedocomputers.com
-Message-ID: <fd10cda4-cd9b-487e-b7c6-83c98c9db3f8@tuxedocomputers.com>
-Date: Thu, 12 Jun 2025 16:08:55 +0200
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BEC510E888
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jun 2025 14:14:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1749737683; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=eSogwdLKrLhsIPBqwGkb/W+aPrWr3hZxmeFspf2Cjlg52ISh7x0cmLP0HkYlE4pOoXAvKCpfFSeO4niwX7P6vkmCGuvaoauW0vvbkzU82M96WM1gZ2mq6IK80bao4M6rfGd5ps1QPNLcwYuIbkTSysUqkBNSOIb6v7Nw8dgH1TY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1749737683;
+ h=Content-Type:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+ bh=xfuYkkr1+jlR7/pgLAgqhnjNyk7przN+TkiX63NNkCw=; 
+ b=LnnsJHvmEplmHuGn8LMS/+2YhSiZFTRqGxwQcCGdhbXx7U1wtXXxSVPKJza6neUkFFrTRJuHjeyNnyxInEPU0D9WH8a08K4E6wVOonfZaj9hNpyOMUeoWWIJlQr1lkRz/KqFMMQi+7NoXUe+TJD0DTUn/THx/TawDUmcnXyZUM0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=mark.filion@collabora.com;
+ dmarc=pass header.from=<mark.filion@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749737682; 
+ s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
+ bh=xfuYkkr1+jlR7/pgLAgqhnjNyk7przN+TkiX63NNkCw=;
+ b=kyLBLoNp3tqwqDQhhq3uIOLt1He6Z08iJC8GOfgKnlyO+Brlr032m2T+5vFwKE5f
+ qYknZbVxW+1O25PI5HhpBAF0ge9d7/iZzvNgmpnd1DrL0MQNeN3JigEmkIpsA2empuy
+ IYsfGWhV03CWBtt6Es/D2CtlH6uh5xnu0pLIWeZc=
+Received: by mx.zohomail.com with SMTPS id 1749737680402737.0863656361084;
+ Thu, 12 Jun 2025 07:14:40 -0700 (PDT)
+Message-ID: <3e8681f3a593174633b103386bc4c8a7d642fdb7.camel@collabora.com>
+Subject: Reminder: Registration & Call for Proposals open for XDC 2025
+From: Mark Filion <mark.filion@collabora.com>
+To: amd-gfx@lists.freedesktop.org
+Date: Thu, 12 Jun 2025 10:14:39 -0400
+Content-Type: multipart/alternative; boundary="=-C25AQAZ8RmUjPUdgSB3D"
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42app2) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: stable@vger.kernel.org, regressions@lists.linux.dev,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-From: ggo@tuxedocomputers.com
-Cc: amd-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Werner Sembach <wse@tuxedocomputers.com>,
- Christoffer Sandberg <cs@tuxedocomputers.com>
-Subject: [REGRESSION] drm/amd/display: Radeon 840M/860M: bisected suspend crash
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 13 Jun 2025 16:05:52 +0000
+X-ZohoMailClient: External
+X-Mailman-Approved-At: Fri, 13 Jun 2025 16:05:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,42 +61,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--=-C25AQAZ8RmUjPUdgSB3D
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I have discovered that two small form factor desktops with Ryzen AI 7
-350 and Ryzen AI 5 340 crash when woken up from suspend. I can see how
-the LED on the USB mouse is switched on when I trigger a resume via
-keyboard button, but the display remains black. The kernel also no
-longer responds to Magic SysRq keys in this state.
+Hello!
 
-The problem affects all kernels after merge b50753547453 (v6.11.0). But
-this merge only adds PCI_DEVICE_ID_AMD_1AH_M60H_ROOT with commit
-59c34008d (necessary to trigger this bug with Ryzen AI CPU).
-I cherry-picked this commit and continued searching. Which finally led
-me to commit f6098641d3e - drm/amd/display: fix s2idle entry for DCN3.5+
+Registration & Call for Proposals are open for XDC 2025, which will
+take place at the=C2=A0 TU Wien Kuppelsaal in Vienna, Austria on 29
+September to 1 October.
 
-If I remove the code, which has changed somewhat in the meantime, then
-the suspend works without any problems. See the following patch.
+=C2=A0=C2=A0=C2=A0=C2=A0https://xdc2025.x.org
+=C2=A0=C2=A0
+As usual, the conference is free of charge and open to the general
+public. If you plan on attending, please make sure to register as early
+as possible:
 
-Regards,
-Georg
+=C2=A0=C2=A0=C2=A0=C2=A0https://indico.freedesktop.org/event/10/registratio=
+ns/
 
+In addition to registration, the CfP is now open for talks, demos, and
+workshops at XDC 2025. While any serious proposal will be gratefully
+considered, topics of interest to X.Org and freedesktop.org developers
+are encouraged. The program focus is on new development, ongoing
+challenges and anything else that will spark discussions among
+attendees in the hallway track.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index d3100f641ac6..76204ae70acc 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3121,9 +3121,6 @@ static int dm_suspend(struct amdgpu_ip_block
-*ip_block)
+We are open to talks across all layers of the graphics stack, from the
+kernel to desktop environments / graphical applications and about how
+to make things better for the developers who build them. Head to the
+CfP page to learn more:
 
- 	dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D3);
+=C2=A0=C2=A0=C2=A0=C2=A0https://indico.freedesktop.org/event/10/abstracts/
 
--	if (dm->dc->caps.ips_support && adev->in_s0ix)
--		dc_allow_idle_optimizations(dm->dc, true);
--
- 	dc_dmub_srv_set_power_state(dm->dc->ctx->dmub_srv,
-DC_ACPI_CM_POWER_STATE_D3);
+The deadline for submissions Friday, 11 July 2025.
 
- 	return 0;
+We are looking forward to seeing you in Vienna! If you have any
+questions, please email the organizer (hfink at snap.com), adding on
+CC the X.org board (board at foundation.x.org).
 
+And don't forget, you can follow us on Mastodon for all the latest
+updates and to stay connected:
+
+=C2=A0=C2=A0=C2=A0=C2=A0https://floss.social/@XOrgDevConf
+
+Best,
+
+Mark
+
+--=-C25AQAZ8RmUjPUdgSB3D
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style>pre,code,address {
+  margin: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+ol,ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+blockquote {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+</style></head><body><div><div><span style=3D"caret-color: rgb(46, 52, 54);=
+ color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">Hello!</sp=
+an><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-=
+family: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54=
+); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span st=
+yle=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &=
+quot;Adwaita Mono&quot;;">Registration &amp; Call for Proposals are open fo=
+r XDC 2025, which will</span><br style=3D"caret-color: rgb(46, 52, 54); col=
+or: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D=
+"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;A=
+dwaita Mono&quot;;">take place at the&nbsp; TU Wien Kuppelsaal in Vienna, A=
+ustria on 29</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46=
+, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-col=
+or: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mon=
+o&quot;;">September to 1 October.</span><br style=3D"caret-color: rgb(46, 5=
+2, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br=
+ style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family=
+: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); c=
+olor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&nbsp;=
+&nbsp;&nbsp;</span><a href=3D"https://xdc2025.x.org/" title=3D"Click to ope=
+n https://xdc2025.x.org/" style=3D"font-family: &quot;Adwaita Mono&quot;;">=
+https://xdc2025.x.org</a><br style=3D"caret-color: rgb(46, 52, 54); color: =
+rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"car=
+et-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwai=
+ta Mono&quot;;">&nbsp;&nbsp;</span><br style=3D"caret-color: rgb(46, 52, 54=
+); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span st=
+yle=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &=
+quot;Adwaita Mono&quot;;">As usual, the conference is free of charge and op=
+en to the general</span><br style=3D"caret-color: rgb(46, 52, 54); color: r=
+gb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"care=
+t-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwait=
+a Mono&quot;;">public. If you plan on attending, please make sure to regist=
+er as early</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46,=
+ 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-colo=
+r: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono=
+&quot;;">as possible:</span><br style=3D"caret-color: rgb(46, 52, 54); colo=
+r: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br style=3D"ca=
+ret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwa=
+ita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46=
+, 52, 54); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;=
+</span><a href=3D"https://indico.freedesktop.org/event/10/registrations/" t=
+itle=3D"Click to open https://indico.freedesktop.org/event/10/registrations=
+/" style=3D"font-family: &quot;Adwaita Mono&quot;;">https://indico.freedesk=
+top.org/event/10/registrations/</a><br style=3D"caret-color: rgb(46, 52, 54=
+); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br styl=
+e=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &qu=
+ot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color:=
+ rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">In addition to re=
+gistration, the CfP is now open for talks, demos, and</span><br style=3D"ca=
+ret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwa=
+ita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46=
+, 52, 54); font-family: &quot;Adwaita Mono&quot;;">workshops at XDC 2025. W=
+hile any serious proposal will be gratefully</span><br style=3D"caret-color=
+: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&=
+quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54)=
+; font-family: &quot;Adwaita Mono&quot;;">considered, topics of interest to=
+ X.Org and freedesktop.org developers</span><br style=3D"caret-color: rgb(4=
+6, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"=
+><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-=
+family: &quot;Adwaita Mono&quot;;">are encouraged. The program focus is on =
+new development, ongoing</span><br style=3D"caret-color: rgb(46, 52, 54); c=
+olor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quo=
+t;Adwaita Mono&quot;;">challenges and anything else that will spark discuss=
+ions among</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, =
+52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color=
+: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&=
+quot;;">attendees in the hallway track.</span><br style=3D"caret-color: rgb=
+(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;=
+;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-=
+family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, =
+54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">We are=
+ open to talks across all layers of the graphics stack, from the</span><br =
+style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family:=
+ &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); co=
+lor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">kernel to des=
+ktop environments / graphical applications and about how</span><br style=3D=
+"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;A=
+dwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb=
+(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">to make things better=
+ for the developers who build them. Head to the</span><br style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mo=
+no&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, =
+54); font-family: &quot;Adwaita Mono&quot;;">CfP page to learn more:</span>=
+<br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-fam=
+ily: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); =
+color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quo=
+t;Adwaita Mono&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=3D"https://in=
+dico.freedesktop.org/event/10/abstracts/" title=3D"Click to open https://in=
+dico.freedesktop.org/event/10/abstracts/" style=3D"font-family: &quot;Adwai=
+ta Mono&quot;;">https://indico.freedesktop.org/event/10/abstracts/</a><br s=
+tyle=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: =
+&quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); color=
+: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"c=
+aret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adw=
+aita Mono&quot;;">The deadline for submissions Friday, 11 July 2025.</span>=
+<br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-fam=
+ily: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); =
+color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quo=
+t;Adwaita Mono&quot;;">We are looking forward to seeing you in Vienna! If y=
+ou have any</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46,=
+ 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-colo=
+r: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono=
+&quot;;">questions, please email the organizer (hfink at snap.com), adding =
+on</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54);=
+ font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46=
+, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">=
+CC the X.org board (board at foundation.x.org).</span><br style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mo=
+no&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54=
+); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(=
+46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;=
+">And don't forget, you can follow us on Mastodon for all the latest</span>=
+<br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-fam=
+ily: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54)=
+; color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">updates a=
+nd to stay connected:</span><br style=3D"caret-color: rgb(46, 52, 54); colo=
+r: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br style=3D"ca=
+ret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwa=
+ita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46=
+, 52, 54); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;=
+</span><a href=3D"https://floss.social/@XOrgDevConf" title=3D"Click to open=
+ https://floss.social/@XOrgDevConf" style=3D"font-family: &quot;Adwaita Mon=
+o&quot;;">https://floss.social/@XOrgDevConf</a><br style=3D"caret-color: rg=
+b(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot=
+;;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font=
+-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52,=
+ 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">Best,=
+</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); f=
+ont-family: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52=
+, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><spa=
+n style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-famil=
+y: &quot;Adwaita Mono&quot;;">Mark</span></div></div><div><span></span></di=
+v></body></html>
+
+--=-C25AQAZ8RmUjPUdgSB3D--
