@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EBC1AD9791
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 23:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 564FFAD978E
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 23:48:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA8DA10EA6A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB9D10EA65;
 	Fri, 13 Jun 2025 21:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Uoc3XTdK";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RJ9hY9Qr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2043.outbound.protection.outlook.com [40.107.92.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68EAA10EA64
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2042.outbound.protection.outlook.com [40.107.223.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54A6D10EA62
  for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jun 2025 21:48:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PmgYP1ShU8KmJLFW/Nfw+O2izAdLCtc4chbeep+UzSaEfVt8UlPjhhdw+si6C5zDFPzH7Nlh4RA2VBygvknPaaaLgNcKnRglRQDhi0Kv/b4cEjCYeufgL2+kCPObRXgvpjdpIdMH3lvgcb0YqIn4DNoPDB4R5LdTSYMvTtBWEBoVqB6GAWMQ8F0PmEy5clwFdmMGbH9q+S8bAARKmv0E+LuabA8El3mS+LHlhe2VCzsmGvEBZiMmgQ3cs4cn8ZZMPb1yY+PrkqgsrBBpY+H69uj45Xc5ES4fe/G7llcGVf2HCxD4zlyqglKlQ411AOV90ToG5TP33BV88vU+NLUsZQ==
+ b=JNFT2ZOBaap8tW7l4H/Pdd9dRfoxLd/9HsVuFVhldSAmUXRkx080o2Qsv9K126NXSJAHIhuTkziwa5MN5RcZc83LmcVHZ4qdUVlGw2HxenlTyNlX4koF4mWUFPIzOL9HpwWhyRiEJkEfJRwFP2OBm8BhyONwV6AVz3u7ZjdP/LK3E+w0VkxAlO5tNpElQzHwT4aSGwF9fZ9/K3dhxafB6Bh1ssA56A19qzvu4CN7Q9RJKj249ofkm4Fdhud5dusiVy03zfmoZX46k4ek0bD2LvgCM6Pl2b34xX9oqKLa3/lHPArjKcV8L7mCHdlRU26C7oBjIRX1ewM2RLdkAAxg/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fQADdnkrp8Fpr48JJEdM04KmBFFvZm1CBm6RADngpII=;
- b=FXhByD3scr6oauJdovj9vtfkctRm4vzJFaJji0++T+RO/Dg4vTRIbDLyuLOvFVZpkPsUZbzeUKFrn9Sa3r6oQkNhgkS/jhETzGPjPRVU0FCq9bep5Ov6qVKk020m4MjueiF5b1gPfq/zmxuNpsyJC+OR52SB9KeuMVKXTGPd9xe51SQki5hbiJr2EMiqskLPphX4TRwlnY86sn8wKOOitOuBK+V+zTcDOc65Kd5vJia+7WMdxE4VnmxG8dP6zQPqywhouSHq0uI16++1/NBXfCpUbBI0YFIzc9aOdlUyoEPpGPCttUDccprafDiH+T59wo7uuRVUZxy7pZymP8XDZA==
+ bh=LsQZqz1RxH2ouUU5XCcqjH2meiIZsY95g2029fvDhuI=;
+ b=g5SsSprvBmZZh9c9AIrXMYbDrq6KQXjngzsIuwFN5vnlagcRoCyfZUUNgSzQgKBCAaEPDjFsEXujbPZjYh6b26tJiLvx6itVk5hlv+DbM0NZ5+1ei3Q02lx5ihHHbzqqqU76fnnxiEYHOhchLk0EhZmA+SD3jJ1JvbAJyz1oALttCdsA/HivJYM4lGB0lIRkwEdSbh8Vk4i7RHe+6Fx6B399UIPnO1LtTFprMAScyb7WjjHmLvjsp1UyVOKwI1f7MYfpWjD03jdn02Jquvo30AU20m7KHK7804f38yJn+LqFNfF5dPEa7M0QxyzFUxrzNubENN8aMxIeJJJGy8KQWg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fQADdnkrp8Fpr48JJEdM04KmBFFvZm1CBm6RADngpII=;
- b=Uoc3XTdKlBEAqW0NAPI0icyQOFbd1A8Vu+E16eefc3KpxMhxmmX5a4PvUvlaj4SYBG3/Pxc/MkCqoGjo/vuhaEAOCPXIEyb1yGUl8deTWQMqOfGXIAj0s75oc8yO0QNALb/XTu8kHCK/Jd+bfSzgqbKDcueLfJv8G1ZqepIfdX8=
-Received: from CH5PR04CA0007.namprd04.prod.outlook.com (2603:10b6:610:1f4::7)
- by IA1PR12MB6089.namprd12.prod.outlook.com (2603:10b6:208:3ef::9)
+ bh=LsQZqz1RxH2ouUU5XCcqjH2meiIZsY95g2029fvDhuI=;
+ b=RJ9hY9Qr/7RoZYwza6sdZcl2rOE6EVfy8RIs5XlliZNUbxa57xdSJXLdp/6Yn66JV5JKTdKEsfWCGmk34Q7fL1cfVBZEtIuB6/pErKY4oaA2b7PJFp04la5q7dgpPZ+RYT5+T0mpboLHCAX3w95Io9gRQnKiGB61ya5Hue4A8mg=
+Received: from CH5PR04CA0014.namprd04.prod.outlook.com (2603:10b6:610:1f4::26)
+ by SA1PR12MB6752.namprd12.prod.outlook.com (2603:10b6:806:259::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.19; Fri, 13 Jun
- 2025 21:48:09 +0000
+ 2025 21:48:10 +0000
 Received: from CH2PEPF00000146.namprd02.prod.outlook.com
- (2603:10b6:610:1f4:cafe::b) by CH5PR04CA0007.outlook.office365.com
- (2603:10b6:610:1f4::7) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:610:1f4:cafe::84) by CH5PR04CA0014.outlook.office365.com
+ (2603:10b6:610:1f4::26) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.8835.25 via Frontend Transport; Fri,
- 13 Jun 2025 21:48:09 +0000
+ 13 Jun 2025 21:48:10 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,18 +50,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CH2PEPF00000146.mail.protection.outlook.com (10.167.244.103) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8835.15 via Frontend Transport; Fri, 13 Jun 2025 21:48:09 +0000
+ 15.20.8835.15 via Frontend Transport; Fri, 13 Jun 2025 21:48:10 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 13 Jun
- 2025 16:48:05 -0500
+ 2025 16:48:06 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
  <sasundar@amd.com>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 07/27] drm/amdgpu: move guilty handling into ring resets
-Date: Fri, 13 Jun 2025 17:47:28 -0400
-Message-ID: <20250613214748.5889-8-alexander.deucher@amd.com>
+Subject: [PATCH 08/27] drm/amdgpu: track ring state associated with a job
+Date: Fri, 13 Jun 2025 17:47:29 -0400
+Message-ID: <20250613214748.5889-9-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250613214748.5889-1-alexander.deucher@amd.com>
 References: <20250613214748.5889-1-alexander.deucher@amd.com>
@@ -73,52 +73,52 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000146:EE_|IA1PR12MB6089:EE_
-X-MS-Office365-Filtering-Correlation-Id: 441628b9-c53e-499b-b183-08ddaac3fd02
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000146:EE_|SA1PR12MB6752:EE_
+X-MS-Office365-Filtering-Correlation-Id: 21f15c2d-f79c-4ef0-017e-08ddaac3fd5f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hwq1jRpzUscTFiBmQMekEGyX/TR2RggswyLqiw1NCd7HVE0ilq5tYl1Q7+uV?=
- =?us-ascii?Q?2LGrll/W1RRoFbTC0WtGvFDw5kbYym3W3vYBGVqYHjzWSWd4j61KwCYsgu26?=
- =?us-ascii?Q?5nC8/rW/b5bxvGndezngn0GYMgSlhQL92dxtwQvwFuqw19Ii+O8mz1tPn/Bt?=
- =?us-ascii?Q?IglIqT4wU1Ed2q40FCnCNynQ3CHNzIAPvulAL9VYlO7M74tOqqdLeCTu5lvs?=
- =?us-ascii?Q?ITP2GDgEVZqJttwwto9fGxLpo9AA63o15FGSgJENg6B0K+X3NSBsscY6iuOi?=
- =?us-ascii?Q?Z/DtR1v4uEWR2DskFvHAIACLsfp8QpvECwuvdoAIirUIedvpBCkFrQzZTkZB?=
- =?us-ascii?Q?IlDUWaeXYjBdW9ZOIpmK4xSSgqtjCZNfCXCgTzCpSZEM6TxbH08NYZslea9F?=
- =?us-ascii?Q?4l/RjuhTckh/GKSEo96BbKIsJoSLjguQnTO2T0/PYp40u8lOaenObFwXcvwn?=
- =?us-ascii?Q?S+G4miTO1CH/YpU9pgkBk56E7mmapVmmQmS85mYCC88TRu0+wtyegm6nG3is?=
- =?us-ascii?Q?H8T29uCGNmBgGPtF9HGPb7dSlOcqu3kYD+JZ9we3TQrJ4Y+GRE7y3xJ0SwmH?=
- =?us-ascii?Q?ejyZ/4Dr2wzuS0lZh8FRUmdWWO5rCCCG8puF1qMcqTeE+V3D5Qt/5EEyolK3?=
- =?us-ascii?Q?y371jQ+anYdN70cCnKlnLM96Mo5WiEnqKv3qrRCQLkcO3R+ErgSvku7dNUHj?=
- =?us-ascii?Q?3G+GY8+EeZXGbChS5rCIsRS+nVj+m0je7XfRc64x9tEicds+jW2idrLEkG0e?=
- =?us-ascii?Q?DokMDD3ZsbHWGvPIfbJGLwM6NMTNF29bdb1DhtvK1uMlh7vkwdcgg73HWiAa?=
- =?us-ascii?Q?t3IePbIFgXUXLP9kcusNiH64v4gyBLsXpRgdc7bhMs8mdZVEvQFkqNcmTAd2?=
- =?us-ascii?Q?6X+KC4VckYmWG6b+YrfLn52x854nryY63klKUDj5at9jPp9RqzqRoFCRCUjB?=
- =?us-ascii?Q?QeHpc2A8fjOqP7RYSWdFHkylB2k3Sq4ZS2bGFQCjYYzGJi422omqkrcWUMIB?=
- =?us-ascii?Q?bQJkZChF11uQF/u/z8QqZxJzT7Gyq+/uqNuk9k2eycPjONjqoueV8OXLH+qo?=
- =?us-ascii?Q?WUhjCAA2NOsJjpWFE3tygOaz1vnVs88F/oDAkuA1EY+hW6xGmIbgBKAgXgP+?=
- =?us-ascii?Q?jYvxYkV9A/XI93B3DFDEGlk+tMyRrQ0z14PvJ+c1P+LF5i3hhjBIypSeLxKG?=
- =?us-ascii?Q?8jj5imNEIofiZUu1WW8I4ssXbXknNX5Xm+2uEnzR7hjZ917BhpjCQ0Vfwa+3?=
- =?us-ascii?Q?kXFzet6xBAMrcOYg6kgwgytNZDUxqZJ9OIJD+lzbg4fjO0vZQbtPgb5YMwm3?=
- =?us-ascii?Q?+Q91TvuiOFFZuhlED75M8CsNVsr4pWz/qt3aoVlpBwzZwhGII6A56ioB8CA/?=
- =?us-ascii?Q?VpuRpFDsXVgfR8NCAEJGC+aigivWI2MFfacf14N2a7KOeFQQhwoRiEeW8mrM?=
- =?us-ascii?Q?ppTAjEM4Djycp+NCJW9aj10QxIdsjqNxCJXz0lMahV+d8wm+L/P9+J/7ThOX?=
- =?us-ascii?Q?h/C18j/yYAV4/g5VkAq6nP8TNLrPKtdEH8mE?=
+ ARA:13230040|36860700013|82310400026|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CXacUNJS6gIbitmnT7CseNGWCxJonoODaGM5ZNno+CONX9WfKjwf1cnefl3N?=
+ =?us-ascii?Q?+6JdayJ2B5QlhuTdXn2MxsNf9Usn4Bwlgm8hwQL57r/c3C0htM6ZKiXG4qQn?=
+ =?us-ascii?Q?TlvrM5NXzj+j+n51p05VIChfs6HCjHgMANdMIUi+nyQhoAKe3v3ZqtYe6Qxs?=
+ =?us-ascii?Q?K//YI2VvB2iMaOTT7OPlUm8zDK9SELwMWVo4gNiP2umVbVNeK+Ojm5zY/xgq?=
+ =?us-ascii?Q?TckqLv5kAeJiSsReL8bsNVssR4lNduouRPJPORWasJY/00CUF+6Zfk99pJzk?=
+ =?us-ascii?Q?ujvzKZjMjF1cIiS6At3GgVfb68plES8x235Vv+4WXOQIdgUko2gM9v80RzZh?=
+ =?us-ascii?Q?H2WYFNm594HVbjVYCZoccPXwFp3uB7X/JfRgIqh1G84tLHynvoQbU6l5oQZ+?=
+ =?us-ascii?Q?Ie0R5I0LPZKTqbY7JMzjir4V00S0ZCMTfhazCArL+5jDk5g1nufGP5n5wGuG?=
+ =?us-ascii?Q?XjMIfDkJTelCx5aIwzRlV+cooIQ8/deejSzA2xIElEhx96n4mz84150vL7H1?=
+ =?us-ascii?Q?Dsf/Y5oz6k0mQp+DczbbbV+XesiXBkmsIjS3SmV0U7SJF9xaOgp+Z+W7SBG2?=
+ =?us-ascii?Q?wp2wuZl+FWhZKGRHA0pSQepJ6wfAtVJnZiqiLkPw39wEYzidJGLpVbVkr5hB?=
+ =?us-ascii?Q?aVC+QrG/8u7oBprh88QiRk7NqzUioMvd9AeEqKjwP1OmewrinZaz5mhx3uqf?=
+ =?us-ascii?Q?8qAD0MyzcWnUZQWCF7V2hZviGV7qvO4L5gKtWLBdpE5fuqYQsQgaflIczXKv?=
+ =?us-ascii?Q?nkntiRCKTp0hfxIFrrEWAtEKehhgoZ6KervYAEvZGs/swJC8cCeku0pO0DDT?=
+ =?us-ascii?Q?KbtHyBstVADWTbUG6LLblpprnTOgh4vwH3fpcpPL49rUlzNAgxzA+vKNqDZE?=
+ =?us-ascii?Q?8vQctYRWwpFaDIaNDMgiy9vT0x+e/xdZFj9MmxQjeTy8engVe7pQDIHiXYLb?=
+ =?us-ascii?Q?0hiCXYtWEi4QpVDqaFRsuhXzpgCCfPhqH6r6WceNsW5wa8b/VLIwwkIey4Sm?=
+ =?us-ascii?Q?3Tec5+6D7+lS6qUgO+t+8r1MWqV+EA0yJOt9BE3bo1HTnIsnqnVdtAXW+3uZ?=
+ =?us-ascii?Q?Ibabbq5DH6bIAkZMYPXtO/Sc3dbVodJa+b5Uy3fo+7nr7v/Fe6omYhKVfoMI?=
+ =?us-ascii?Q?Ya4MRCn8wP0qz10HdXEVCu8dPDuzqXlTRBr9dl/Bw/ZKJD3XLzARkfoMsueR?=
+ =?us-ascii?Q?v5jieaaItAmfKRN1gq9fkZ3vp4ZnMx+OZbsCTqY/Gs3HtMEqiHpDGSvq4e+z?=
+ =?us-ascii?Q?HCsb0KPpQXp7OUkpyfrSEiYE3YN0Nto3FBCmaUZynysNtvEYYD9IGm3OWAVq?=
+ =?us-ascii?Q?2QytarFxFM30/kIBOl8o3EM7ezwsJtPduTscQazXa3lvkv+5e7KhNl/tHfdS?=
+ =?us-ascii?Q?hX0WDHCg0jHVxeMNTp5YBvP3NmYjqGhJ5IbRF5bSwaKYyhj1uqvigqTfk30y?=
+ =?us-ascii?Q?BvKt7VNfrP+pr7VrnM2mj8t5C5kFqFDxTCZU2bq78c6sWQvqB4ozj9CIVKxi?=
+ =?us-ascii?Q?TIIzHopy55XJwAYegZgyn+VTdWHkCov24tQ4?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2025 21:48:09.6064 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 441628b9-c53e-499b-b183-08ddaac3fd02
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2025 21:48:10.2150 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21f15c2d-f79c-4ef0-017e-08ddaac3fd5f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000146.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6089
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6752
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,552 +133,312 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Move guilty logic into the ring reset callbacks.  This
-allows each ring reset callback to better handle fence
-errors and force completions in line with the reset
-behavior for each IP.  It also allows us to remove
-the ring guilty callback since that logic now lives
-in the reset callback.
+We need to know the wptr and sequence number associated
+with a job so that we can re-emit the unprocessed state
+after a ring reset.  Pre-allocate storage space for
+the ring buffer contents and add helpers to save off
+and re-emit the unprocessed state so that it can be
+re-emitted after the queue is reset.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  | 22 +---------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  1 -
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   |  2 +
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c   |  2 +
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c   |  2 +
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    |  1 +
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c  |  1 +
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c   |  1 +
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c   |  1 +
- drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c   |  1 +
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c   |  1 +
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c |  1 +
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c |  1 +
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 52 ++++++++++++------------
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   | 23 ++++++++++-
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   | 25 ++++++++++--
- drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   |  1 +
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   |  1 +
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c    |  1 +
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c  |  1 +
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c  |  1 +
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c  |  1 +
- 22 files changed, 89 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 96 +++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c    |  8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c   |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c  | 27 +++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h  | 14 ++++
+ 5 files changed, 146 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 569e0e5373927..d9e75d38bebf7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -135,12 +135,20 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **f, struct amd
+ 		am_fence = kmem_cache_alloc(amdgpu_fence_slab, GFP_ATOMIC);
+ 		if (am_fence == NULL)
+ 			return -ENOMEM;
++		am_fence->context = 0;
+ 	} else {
+ 		/* take use of job-embedded fence */
+ 		am_fence = &job->hw_fence;
++		if (job->base.s_fence) {
++			struct dma_fence *finished = &job->base.s_fence->finished;
++			am_fence->context = finished->context;
++		} else {
++			am_fence->context = 0;
++		}
+ 	}
+ 	fence = &am_fence->base;
+ 	am_fence->ring = ring;
++	am_fence->wptr = 0;
+ 
+ 	seq = ++ring->fence_drv.sync_seq;
+ 	if (job && job->job_run_counter) {
+@@ -276,6 +284,7 @@ bool amdgpu_fence_process(struct amdgpu_ring *ring)
+ 
+ 	do {
+ 		struct dma_fence *fence, **ptr;
++		struct amdgpu_fence *am_fence;
+ 
+ 		++last_seq;
+ 		last_seq &= drv->num_fences_mask;
+@@ -288,6 +297,9 @@ bool amdgpu_fence_process(struct amdgpu_ring *ring)
+ 		if (!fence)
+ 			continue;
+ 
++		am_fence = container_of(fence, struct amdgpu_fence, base);
++		if (am_fence->wptr)
++			drv->last_wptr = am_fence->wptr;
+ 		dma_fence_signal(fence);
+ 		dma_fence_put(fence);
+ 		pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
+@@ -748,6 +760,90 @@ void amdgpu_fence_driver_force_completion(struct amdgpu_ring *ring)
+ 	amdgpu_fence_process(ring);
+ }
+ 
++/**
++ * amdgpu_fence_driver_guilty_force_completion - force signal of specified sequence
++ *
++ * @fence: fence of the ring to signal
++ *
++ */
++void amdgpu_fence_driver_guilty_force_completion(struct amdgpu_fence *fence)
++{
++	dma_fence_set_error(&fence->base, -ETIME);
++	amdgpu_fence_write(fence->ring, fence->base.seqno);
++	amdgpu_fence_process(fence->ring);
++}
++
++void amdgpu_fence_save_wptr(struct dma_fence *fence)
++{
++	struct amdgpu_fence *am_fence = container_of(fence, struct amdgpu_fence, base);
++
++	am_fence->wptr = am_fence->ring->wptr;
++}
++
++static void amdgpu_ring_backup_unprocessed_command(struct amdgpu_ring *ring,
++						   unsigned int idx,
++						   u64 start_wptr, u32 end_wptr)
++{
++	unsigned int first_idx = start_wptr & ring->buf_mask;
++	unsigned int last_idx = end_wptr & ring->buf_mask;
++	unsigned int i, j, entries_to_copy;
++
++	if (last_idx < first_idx) {
++		entries_to_copy = ring->buf_mask + 1 - first_idx;
++		for (i = 0; i < entries_to_copy; i++)
++			ring->ring_backup[idx + i] = ring->ring[first_idx + i];
++		ring->ring_backup_entries_to_copy += entries_to_copy;
++		entries_to_copy = last_idx;
++		for (j = 0; j < entries_to_copy; j++)
++			ring->ring_backup[idx + i + j] = ring->ring[j];
++		ring->ring_backup_entries_to_copy += entries_to_copy;
++	} else {
++		entries_to_copy = last_idx - first_idx;
++		for (i = 0; i < entries_to_copy; i++)
++			ring->ring_backup[idx + i] = ring->ring[first_idx + i];
++		ring->ring_backup_entries_to_copy += entries_to_copy;
++	}
++}
++
++void amdgpu_ring_backup_unprocessed_commands(struct amdgpu_ring *ring,
++					     struct amdgpu_fence *guilty_fence)
++{
++	struct amdgpu_fence *fence;
++	struct dma_fence *unprocessed, **ptr;
++	u64 wptr, i, seqno;
++
++	if (guilty_fence) {
++		seqno = guilty_fence->base.seqno;
++		wptr = guilty_fence->wptr;
++	} else {
++		seqno = amdgpu_fence_read(ring);
++		wptr = ring->fence_drv.last_wptr;
++	}
++	ring->ring_backup_entries_to_copy = 0;
++	for (i = seqno + 1; i <= ring->fence_drv.sync_seq; ++i) {
++		ptr = &ring->fence_drv.fences[i & ring->fence_drv.num_fences_mask];
++		rcu_read_lock();
++		unprocessed = rcu_dereference(*ptr);
++
++		if (unprocessed && !dma_fence_is_signaled(unprocessed)) {
++			fence = container_of(unprocessed, struct amdgpu_fence, base);
++
++			/* save everything if the ring is not guilty, otherwise
++			 * just save the content from other contexts.
++			 */
++			if (fence->wptr &&
++			    (!guilty_fence || (fence->context != guilty_fence->context))) {
++				amdgpu_ring_backup_unprocessed_command(ring,
++								       ring->ring_backup_entries_to_copy,
++								       wptr,
++								       fence->wptr);
++				wptr = fence->wptr;
++			}
++		}
++		rcu_read_unlock();
++	}
++}
++
+ /*
+  * Common fence implementation
+  */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+index 802743efa3b39..789f9b2af8f99 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+@@ -138,7 +138,6 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
+ 	int vmid = AMDGPU_JOB_GET_VMID(job);
+ 	bool need_pipe_sync = false;
+ 	unsigned int cond_exec;
+-
+ 	unsigned int i;
+ 	int r = 0;
+ 
+@@ -306,6 +305,13 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
+ 
+ 	amdgpu_ring_ib_end(ring);
+ 	amdgpu_ring_commit(ring);
++
++	/* This must be last for resets to work properly
++	 * as we need to save the wptr associated with this
++	 * fence.
++	 */
++	amdgpu_fence_save_wptr(*f);
++
+ 	return 0;
+ }
+ 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index 177f04491a11b..680cdd8fc3ab2 100644
+index 680cdd8fc3ab2..af45b4a1e0c83 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -91,7 +91,6 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+@@ -89,8 +89,8 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+ {
+ 	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
  	struct amdgpu_job *job = to_amdgpu_job(s_job);
- 	struct amdgpu_task_info *ti;
+-	struct amdgpu_task_info *ti;
  	struct amdgpu_device *adev = ring->adev;
--	bool set_error = false;
++	struct amdgpu_task_info *ti;
  	int idx, r;
  
  	if (!drm_dev_enter(adev_to_drm(adev), &idx)) {
-@@ -134,8 +133,6 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 	if (unlikely(adev->debug_disable_gpu_ring_reset)) {
- 		dev_err(adev->dev, "Ring reset disabled by debug mask\n");
- 	} else if (amdgpu_gpu_recovery && ring->funcs->reset) {
--		bool is_guilty;
--
- 		dev_err(adev->dev, "Starting %s ring reset\n",
- 			s_job->sched->name);
- 
-@@ -145,24 +142,8 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+@@ -142,7 +142,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
  		 */
  		drm_sched_wqueue_stop(&ring->sched);
  
--		/* for engine resets, we need to reset the engine,
--		 * but individual queues may be unaffected.
--		 * check here to make sure the accounting is correct.
--		 */
--		if (ring->funcs->is_guilty)
--			is_guilty = ring->funcs->is_guilty(ring);
--		else
--			is_guilty = true;
--
--		if (is_guilty) {
--			dma_fence_set_error(&s_job->s_fence->finished, -ETIME);
--			set_error = true;
--		}
--
- 		r = amdgpu_ring_reset(ring, job->vmid, NULL);
+-		r = amdgpu_ring_reset(ring, job->vmid, NULL);
++		r = amdgpu_ring_reset(ring, job->vmid, &job->hw_fence);
  		if (!r) {
--			if (is_guilty)
--				atomic_inc(&ring->adev->gpu_reset_counter);
  			drm_sched_wqueue_start(&ring->sched);
  			dev_err(adev->dev, "Ring %s reset succeeded\n",
- 				ring->sched.name);
-@@ -173,8 +154,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 		dev_err(adev->dev, "Ring %s reset failed\n", ring->sched.name);
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 426834806fbf2..736ff5bafd520 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -333,6 +333,12 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
+ 	/*  Initialize cached_rptr to 0 */
+ 	ring->cached_rptr = 0;
  
--	if (!set_error)
--		dma_fence_set_error(&s_job->s_fence->finished, -ETIME);
-+	dma_fence_set_error(&s_job->s_fence->finished, -ETIME);
++	if (!ring->ring_backup) {
++		ring->ring_backup = kvzalloc(ring->ring_size, GFP_KERNEL);
++		if (!ring->ring_backup)
++			return -ENOMEM;
++	}
++
+ 	/* Allocate ring buffer */
+ 	if (ring->ring_obj == NULL) {
+ 		r = amdgpu_bo_create_kernel(adev, ring->ring_size + ring->funcs->extra_dw, PAGE_SIZE,
+@@ -342,6 +348,7 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
+ 					    (void **)&ring->ring);
+ 		if (r) {
+ 			dev_err(adev->dev, "(%d) ring create failed\n", r);
++			kvfree(ring->ring_backup);
+ 			return r;
+ 		}
+ 		amdgpu_ring_clear_ring(ring);
+@@ -385,6 +392,8 @@ void amdgpu_ring_fini(struct amdgpu_ring *ring)
+ 	amdgpu_bo_free_kernel(&ring->ring_obj,
+ 			      &ring->gpu_addr,
+ 			      (void **)&ring->ring);
++	kvfree(ring->ring_backup);
++	ring->ring_backup = NULL;
  
- 	if (amdgpu_device_should_recover_gpu(ring->adev)) {
- 		struct amdgpu_reset_context reset_context;
+ 	dma_fence_put(ring->vmid_wait);
+ 	ring->vmid_wait = NULL;
+@@ -753,3 +762,21 @@ bool amdgpu_ring_sched_ready(struct amdgpu_ring *ring)
+ 
+ 	return true;
+ }
++
++int amdgpu_ring_reemit_unprocessed_commands(struct amdgpu_ring *ring)
++{
++	unsigned int i;
++	int r;
++
++	/* re-emit the unprocessed ring contents */
++	if (ring->ring_backup_entries_to_copy) {
++		r = amdgpu_ring_alloc(ring, ring->ring_backup_entries_to_copy);
++		if (r)
++			return r;
++		for (i = 0; i < ring->ring_backup_entries_to_copy; i++)
++			amdgpu_ring_write(ring, ring->ring_backup[i]);
++		amdgpu_ring_commit(ring);
++	}
++
++	return 0;
++}
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index ff3a4b81e51ab..c1d14183abfe6 100644
+index c1d14183abfe6..7a61f3b74c69f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -271,7 +271,6 @@ struct amdgpu_ring_funcs {
- 	int (*reset)(struct amdgpu_ring *ring, unsigned int vmid,
- 		     struct amdgpu_fence *guilty_fence);
- 	void (*emit_cleaner_shader)(struct amdgpu_ring *ring);
--	bool (*is_guilty)(struct amdgpu_ring *ring);
+@@ -118,6 +118,7 @@ struct amdgpu_fence_driver {
+ 	/* sync_seq is protected by ring emission lock */
+ 	uint32_t			sync_seq;
+ 	atomic_t			last_seq;
++	u64				last_wptr;
+ 	bool				initialized;
+ 	struct amdgpu_irq_src		*irq_src;
+ 	unsigned			irq_type;
+@@ -141,6 +142,11 @@ struct amdgpu_fence {
+ 	/* RB, DMA, etc. */
+ 	struct amdgpu_ring		*ring;
+ 	ktime_t				start_timestamp;
++
++	/* wptr for the fence for resets */
++	u64				wptr;
++	/* fence context for resets */
++	u64				context;
  };
  
- /**
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index b4f4ad966db82..a9d26d91c8468 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -9581,6 +9581,7 @@ static int gfx_v10_0_reset_kgq(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
+ extern const struct drm_sched_backend_ops amdgpu_sched_ops;
+@@ -148,6 +154,8 @@ extern const struct drm_sched_backend_ops amdgpu_sched_ops;
+ void amdgpu_fence_driver_clear_job_fences(struct amdgpu_ring *ring);
+ void amdgpu_fence_driver_set_error(struct amdgpu_ring *ring, int error);
+ void amdgpu_fence_driver_force_completion(struct amdgpu_ring *ring);
++void amdgpu_fence_driver_guilty_force_completion(struct amdgpu_fence *fence);
++void amdgpu_fence_save_wptr(struct dma_fence *fence);
  
-@@ -9658,6 +9659,7 @@ static int gfx_v10_0_reset_kcq(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
+ int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring);
+ int amdgpu_fence_driver_start_ring(struct amdgpu_ring *ring,
+@@ -284,6 +292,9 @@ struct amdgpu_ring {
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 5707ce7dd5c82..3dd2e04830dc6 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -6846,6 +6846,7 @@ static int gfx_v11_0_reset_kgq(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-@@ -7012,6 +7013,7 @@ static int gfx_v11_0_reset_kcq(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 259a83c3acb5d..d2ee4543ce222 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -5341,6 +5341,7 @@ static int gfx_v12_0_reset_kgq(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-@@ -5460,6 +5461,7 @@ static int gfx_v12_0_reset_kcq(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index e0dec946b7cdc..1b767094dfa24 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -7228,6 +7228,7 @@ static int gfx_v9_0_reset_kcq(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index e5fcc63cd99df..05abe86ecd9ac 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -3625,6 +3625,7 @@ static int gfx_v9_4_3_reset_kcq(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-index 0b1fa35a441ae..dbc28042c7d53 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-@@ -776,6 +776,7 @@ static int jpeg_v2_0_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-index 7a9e91f6495de..f8af473e2a7a4 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-@@ -655,6 +655,7 @@ static int jpeg_v2_5_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
-index 81ee1ba4c0a3c..83559a32ed3d2 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
-@@ -567,6 +567,7 @@ static int jpeg_v3_0_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-index 06f75091e1304..b0f80f2a549c6 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-@@ -735,6 +735,7 @@ static int jpeg_v4_0_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-index 10a7b990b0adf..4fd9386d2efd6 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-@@ -1158,6 +1158,7 @@ static int jpeg_v4_0_3_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-index 88dea7a47a1e5..beca4d1e941b3 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-@@ -849,6 +849,7 @@ static int jpeg_v5_0_1_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index c5e0d2e730740..0199d5bb5821d 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -1651,37 +1651,21 @@ static bool sdma_v4_4_2_is_queue_selected(struct amdgpu_device *adev, uint32_t i
- 	return (context_status & SDMA_GFX_CONTEXT_STATUS__SELECTED_MASK) != 0;
- }
- 
--static bool sdma_v4_4_2_ring_is_guilty(struct amdgpu_ring *ring)
--{
--	struct amdgpu_device *adev = ring->adev;
--	uint32_t instance_id = ring->me;
--
--	return sdma_v4_4_2_is_queue_selected(adev, instance_id, false);
--}
--
--static bool sdma_v4_4_2_page_ring_is_guilty(struct amdgpu_ring *ring)
--{
--	struct amdgpu_device *adev = ring->adev;
--	uint32_t instance_id = ring->me;
--
--	if (!adev->sdma.has_page_queue)
--		return false;
--
--	return sdma_v4_4_2_is_queue_selected(adev, instance_id, true);
--}
--
- static int sdma_v4_4_2_reset_queue(struct amdgpu_ring *ring,
- 				   unsigned int vmid,
- 				   struct amdgpu_fence *guilty_fence)
- {
--	bool is_guilty = ring->funcs->is_guilty(ring);
- 	struct amdgpu_device *adev = ring->adev;
- 	u32 id = ring->me;
-+	bool is_guilty;
- 	int r;
- 
- 	if (!(adev->sdma.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
- 		return -EOPNOTSUPP;
- 
-+	is_guilty = sdma_v4_4_2_is_queue_selected(adev, id,
-+						  &adev->sdma.instance[id].page == ring);
-+
- 	amdgpu_amdkfd_suspend(adev, false);
- 	r = amdgpu_sdma_reset_engine(adev, id);
- 	amdgpu_amdkfd_resume(adev, false);
-@@ -1689,7 +1673,7 @@ static int sdma_v4_4_2_reset_queue(struct amdgpu_ring *ring,
- 		return r;
- 
- 	if (is_guilty)
--		amdgpu_fence_driver_force_completion(ring);
-+		atomic_inc(&ring->adev->gpu_reset_counter);
- 
- 	return 0;
- }
-@@ -1735,8 +1719,8 @@ static int sdma_v4_4_2_stop_queue(struct amdgpu_ring *ring)
- static int sdma_v4_4_2_restore_queue(struct amdgpu_ring *ring)
- {
- 	struct amdgpu_device *adev = ring->adev;
--	u32 inst_mask;
--	int i;
-+	u32 inst_mask, tmp_mask;
-+	int i, r;
- 
- 	inst_mask = 1 << ring->me;
- 	udelay(50);
-@@ -1753,7 +1737,25 @@ static int sdma_v4_4_2_restore_queue(struct amdgpu_ring *ring)
- 		return -ETIMEDOUT;
- 	}
- 
--	return sdma_v4_4_2_inst_start(adev, inst_mask, true);
-+	r = sdma_v4_4_2_inst_start(adev, inst_mask, true);
-+	if (r) {
-+		return r;
-+	}
-+
-+	tmp_mask = inst_mask;
-+	for_each_inst(i, tmp_mask) {
-+		ring = &adev->sdma.instance[i].ring;
-+
-+		amdgpu_fence_driver_force_completion(ring);
-+
-+		if (adev->sdma.has_page_queue) {
-+			struct amdgpu_ring *page = &adev->sdma.instance[i].page;
-+
-+			amdgpu_fence_driver_force_completion(page);
-+		}
-+	}
-+
-+	return r;
- }
- 
- static int sdma_v4_4_2_soft_reset_engine(struct amdgpu_device *adev,
-@@ -2159,7 +2161,6 @@ static const struct amdgpu_ring_funcs sdma_v4_4_2_ring_funcs = {
- 	.emit_reg_wait = sdma_v4_4_2_ring_emit_reg_wait,
- 	.emit_reg_write_reg_wait = amdgpu_ring_emit_reg_write_reg_wait_helper,
- 	.reset = sdma_v4_4_2_reset_queue,
--	.is_guilty = sdma_v4_4_2_ring_is_guilty,
- };
- 
- static const struct amdgpu_ring_funcs sdma_v4_4_2_page_ring_funcs = {
-@@ -2192,7 +2193,6 @@ static const struct amdgpu_ring_funcs sdma_v4_4_2_page_ring_funcs = {
- 	.emit_reg_wait = sdma_v4_4_2_ring_emit_reg_wait,
- 	.emit_reg_write_reg_wait = amdgpu_ring_emit_reg_write_reg_wait_helper,
- 	.reset = sdma_v4_4_2_reset_queue,
--	.is_guilty = sdma_v4_4_2_page_ring_is_guilty,
- };
- 
- static void sdma_v4_4_2_set_ring_funcs(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-index 09419db2d49a6..4a36e5199f248 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-@@ -1538,18 +1538,34 @@ static int sdma_v5_0_soft_reset(struct amdgpu_ip_block *ip_block)
- 	return 0;
- }
- 
-+static bool sdma_v5_0_is_queue_selected(struct amdgpu_device *adev,
-+					uint32_t instance_id)
-+{
-+	u32 context_status = RREG32(sdma_v5_0_get_reg_offset(adev, instance_id,
-+							     mmSDMA0_GFX_CONTEXT_STATUS));
-+
-+	/* Check if the SELECTED bit is set */
-+	return (context_status & SDMA0_GFX_CONTEXT_STATUS__SELECTED_MASK) != 0;
-+}
-+
- static int sdma_v5_0_reset_queue(struct amdgpu_ring *ring,
- 				 unsigned int vmid,
- 				 struct amdgpu_fence *guilty_fence)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	u32 inst_id = ring->me;
-+	bool is_guilty = sdma_v5_0_is_queue_selected(adev, inst_id);
- 	int r;
- 
-+	amdgpu_amdkfd_suspend(adev, false);
- 	r = amdgpu_sdma_reset_engine(adev, inst_id);
-+	amdgpu_amdkfd_resume(adev, false);
- 	if (r)
- 		return r;
--	amdgpu_fence_driver_force_completion(ring);
-+
-+	if (is_guilty)
-+		atomic_inc(&ring->adev->gpu_reset_counter);
-+
- 	return 0;
- }
- 
-@@ -1617,7 +1633,10 @@ static int sdma_v5_0_restore_queue(struct amdgpu_ring *ring)
- 
- 	r = sdma_v5_0_gfx_resume_instance(adev, inst_id, true);
- 	amdgpu_gfx_rlc_exit_safe_mode(adev, 0);
--	return r;
-+	if (r)
-+		return r;
-+	amdgpu_fence_driver_force_completion(ring);
-+	return 0;
- }
- 
- static int sdma_v5_0_ring_preempt_ib(struct amdgpu_ring *ring)
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index 365c710ee9e8c..84d85ef30701c 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -1451,18 +1451,34 @@ static int sdma_v5_2_wait_for_idle(struct amdgpu_ip_block *ip_block)
- 	return -ETIMEDOUT;
- }
- 
-+static bool sdma_v5_2_is_queue_selected(struct amdgpu_device *adev,
-+					uint32_t instance_id)
-+{
-+	u32 context_status = RREG32(sdma_v5_2_get_reg_offset(adev, instance_id,
-+							     mmSDMA0_GFX_CONTEXT_STATUS));
-+
-+	/* Check if the SELECTED bit is set */
-+	return (context_status & SDMA0_GFX_CONTEXT_STATUS__SELECTED_MASK) != 0;
-+}
-+
- static int sdma_v5_2_reset_queue(struct amdgpu_ring *ring,
- 				 unsigned int vmid,
- 				 struct amdgpu_fence *guilty_fence)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	u32 inst_id = ring->me;
-+	bool is_guilty = sdma_v5_2_is_queue_selected(adev, inst_id);
- 	int r;
- 
-+	amdgpu_amdkfd_suspend(adev, false);
- 	r = amdgpu_sdma_reset_engine(adev, inst_id);
-+	amdgpu_amdkfd_resume(adev, false);
- 	if (r)
- 		return r;
--	amdgpu_fence_driver_force_completion(ring);
-+
-+	if (is_guilty)
-+		atomic_inc(&ring->adev->gpu_reset_counter);
-+
- 	return 0;
- }
- 
-@@ -1529,11 +1545,12 @@ static int sdma_v5_2_restore_queue(struct amdgpu_ring *ring)
- 	freeze = RREG32(sdma_v5_2_get_reg_offset(adev, inst_id, mmSDMA0_FREEZE));
- 	freeze = REG_SET_FIELD(freeze, SDMA0_FREEZE, FREEZE, 0);
- 	WREG32(sdma_v5_2_get_reg_offset(adev, inst_id, mmSDMA0_FREEZE), freeze);
--
- 	r = sdma_v5_2_gfx_resume_instance(adev, inst_id, true);
--
- 	amdgpu_gfx_rlc_exit_safe_mode(adev, 0);
--	return r;
-+	if (r)
-+		return r;
-+	amdgpu_fence_driver_force_completion(ring);
-+	return 0;
- }
- 
- static int sdma_v5_2_ring_preempt_ib(struct amdgpu_ring *ring)
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-index 746f14862d9ff..595e90a5274ea 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-@@ -1565,6 +1565,7 @@ static int sdma_v6_0_reset_queue(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-index 2e4c658598001..3e036c37b1f5a 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-@@ -830,6 +830,7 @@ static int sdma_v7_0_reset_queue(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-index 0d73b2bd4aad6..d5be19361cc89 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-@@ -1985,6 +1985,7 @@ static int vcn_v4_0_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-index bf9edfef2107e..c7c2b7f5ba56d 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-@@ -1626,6 +1626,7 @@ static int vcn_v4_0_3_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-index 3a3ed600e15f0..af75617cf6df5 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-@@ -1483,6 +1483,7 @@ static int vcn_v4_0_5_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-index c7953116ad532..64f2b64da6258 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-@@ -1210,6 +1210,7 @@ static int vcn_v5_0_0_ring_reset(struct amdgpu_ring *ring,
- 	if (r)
- 		return r;
- 	amdgpu_fence_driver_force_completion(ring);
-+	atomic_inc(&ring->adev->gpu_reset_counter);
- 	return 0;
- }
- 
+ 	struct amdgpu_bo	*ring_obj;
+ 	uint32_t		*ring;
++	/* backups for resets */
++	uint32_t		*ring_backup;
++	unsigned int		ring_backup_entries_to_copy;
+ 	unsigned		rptr_offs;
+ 	u64			rptr_gpu_addr;
+ 	volatile u32		*rptr_cpu_addr;
+@@ -550,4 +561,7 @@ int amdgpu_ib_pool_init(struct amdgpu_device *adev);
+ void amdgpu_ib_pool_fini(struct amdgpu_device *adev);
+ int amdgpu_ib_ring_tests(struct amdgpu_device *adev);
+ bool amdgpu_ring_sched_ready(struct amdgpu_ring *ring);
++void amdgpu_ring_backup_unprocessed_commands(struct amdgpu_ring *ring,
++					     struct amdgpu_fence *guilty_fence);
++int amdgpu_ring_reemit_unprocessed_commands(struct amdgpu_ring *ring);
+ #endif
 -- 
 2.49.0
 
