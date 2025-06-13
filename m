@@ -2,34 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38FF4AD83DB
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 09:15:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C74D5AD8465
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 09:40:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C385B10E8C3;
-	Fri, 13 Jun 2025 07:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7332B10E8BF;
+	Fri, 13 Jun 2025 07:40:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pKtl3N3d";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 007EA10E8CB;
- Fri, 13 Jun 2025 07:15:45 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 55D7Fdgp701601; Fri, 13 Jun 2025 12:45:39 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 55D7Fd36701600;
- Fri, 13 Jun 2025 12:45:39 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 2/2] amdgpu: add debugfs file for pt-base per client-id
-Date: Fri, 13 Jun 2025 12:45:37 +0530
-Message-Id: <20250613071537.701563-3-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250613071537.701563-1-sunil.khatri@amd.com>
-References: <20250613071537.701563-1-sunil.khatri@amd.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBDC10E1C5;
+ Fri, 13 Jun 2025 07:40:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=30ezSC5SuiN0IChbbRZASt5M1rZUDx5UAhi1YP6jKF0=; b=pKtl3N3dNtArzKVtv7y/bpuBWj
+ Et87NBgYnRm91BqJx4CM/u0+4pR95JNXUx6cKR+XyLuukbV2oVoWbWer+E2r8ceQDs/lLNJksLy6z
+ j/bW1JXti2NzQ/AMj8ypECl9riVPFyEvp+vZQtb0D53cluiwEw6FHko0fyXaa7dVvZLrTspUmVzeZ
+ UxBBYrOCuFYt/qa61rpkSIPS+/a3mLwo0tN3d90N0o1ocQEny8xTo9WNPgy0sreWTB57wba1rfUu1
+ AkeVh50M+5C3biWbOyMABV8ghv5b1ODheC8TN7/d6LQ5P0oLWW/M5ZIHnHxhu2WnDbZp3K1gvugqp
+ KBTqgMfw==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uPz1K-002vBD-5Z; Fri, 13 Jun 2025 09:40:14 +0200
+Message-ID: <36c36380-6770-4776-9e85-69299e4ab11a@igalia.com>
+Date: Fri, 13 Jun 2025 08:40:12 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/4] drm/xe: Make dma-fences compliant with the safe
+ access rules
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20250610164226.10817-1-tvrtko.ursulin@igalia.com>
+ <20250610164226.10817-5-tvrtko.ursulin@igalia.com>
+ <lagtnrxxqzwn4akmummmuxd4msqctbzrqbht66debl7ktzgkpm@7xn5yv5ackvl>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <lagtnrxxqzwn4akmummmuxd4msqctbzrqbht66debl7ktzgkpm@7xn5yv5ackvl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,84 +69,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Each drm node is associated with a unique client-id.
-Adding root page table base address of the VM under
-the client-id node in debugfs.
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 14 +++++++++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  |  4 +++-
- 3 files changed, 17 insertions(+), 3 deletions(-)
+On 12/06/2025 18:49, Lucas De Marchi wrote:
+> On Tue, Jun 10, 2025 at 05:42:26PM +0100, Tvrtko Ursulin wrote:
+>> Xe can free some of the data pointed to by the dma-fences it exports. 
+>> Most
+>> notably the timeline name can get freed if userspace closes the 
+>> associated
+>> submit queue. At the same time the fence could have been exported to a
+>> third party (for example a sync_fence fd) which will then cause an use-
+>> after-free on subsequent access.
+>>
+>> To make this safe we need to make the driver compliant with the newly
+>> documented dma-fence rules. Driver has to ensure a RCU grace period
+>> between signalling a fence and freeing any data pointed to by said fence.
+>>
+>> For the timeline name we simply make the queue be freed via kfree_rcu and
+>> for the shared lock associated with multiple queues we add a RCU grace
+>> period before freeing the per GT structure holding the lock.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> 
+> 
+> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> for merging this through drm-misc tree.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index d2ce7d86dbc8..aa912168fd68 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1395,7 +1395,7 @@ int amdgpu_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
- 	if (r)
- 		goto error_pasid;
- 
--	r = amdgpu_vm_init(adev, &fpriv->vm, fpriv->xcp_id);
-+	r = amdgpu_vm_init(adev, &fpriv->vm, fpriv->xcp_id, file_priv);
- 	if (r)
- 		goto error_pasid;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 3911c78f8282..33415ecc6819 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2520,6 +2520,17 @@ void amdgpu_vm_set_task_info(struct amdgpu_vm *vm)
- 	get_task_comm(vm->task_info->process_name, current->group_leader);
- }
- 
-+#if defined(CONFIG_DEBUG_FS)
-+static int amdgpu_pt_base_show(void *data, u64 *val)
-+{
-+	struct amdgpu_vm *vm = (struct amdgpu_vm *)data;
-+	*val = amdgpu_bo_gpu_offset(vm->root.bo);
-+	return 0;
-+}
-+
-+DEFINE_DEBUGFS_ATTRIBUTE(amdgpu_pt_base_fops, amdgpu_pt_base_show, NULL, "%llx\n");
-+#endif
-+
- /**
-  * amdgpu_vm_init - initialize a vm instance
-  *
-@@ -2533,7 +2544,7 @@ void amdgpu_vm_set_task_info(struct amdgpu_vm *vm)
-  * 0 for success, error for failure.
-  */
- int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
--		   int32_t xcp_id)
-+		   int32_t xcp_id, struct drm_file *file)
- {
- 	struct amdgpu_bo *root_bo;
- 	struct amdgpu_bo_vm *root;
-@@ -2609,6 +2620,7 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	if (r)
- 		DRM_DEBUG("Failed to create task info for VM\n");
- 
-+	debugfs_create_file("pt_base", 0444, file->debugfs_client, vm, &amdgpu_pt_base_fops);
- 	amdgpu_bo_unreserve(vm->root.bo);
- 	amdgpu_bo_unref(&root_bo);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-index f3ad687125ad..555afaf867c4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -487,7 +487,9 @@ int amdgpu_vm_set_pasid(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 			u32 pasid);
- 
- long amdgpu_vm_wait_idle(struct amdgpu_vm *vm, long timeout);
--int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm, int32_t xcp_id);
-+int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm, int32_t xcp_id,
-+		   struct drm_file *file);
-+
- int amdgpu_vm_make_compute(struct amdgpu_device *adev, struct amdgpu_vm *vm);
- void amdgpu_vm_fini(struct amdgpu_device *adev, struct amdgpu_vm *vm);
- int amdgpu_vm_lock_pd(struct amdgpu_vm *vm, struct drm_exec *exec,
--- 
-2.34.1
+Thanks!
+
+I've now pushed the series drm-misc-next.
+
+Btw there is also an IGT for xe I wrote ages ago^1, if you want to ping 
+someone to review it or take it over. Might be useful to have permanent 
+verification the UAF keeps being resolved.
+
+
+Regards,
+
+Tvrtko
+
+1) https://patchwork.freedesktop.org/patch/642709/?series=146211&rev=2
 
