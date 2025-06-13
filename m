@@ -2,76 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6942AD9275
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 18:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0F34AD927E
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jun 2025 18:06:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF03A10EA28;
-	Fri, 13 Jun 2025 16:05:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="d84t17wQ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F80710EA35;
+	Fri, 13 Jun 2025 16:06:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4CE310E29B
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jun 2025 21:31:13 +0000 (UTC)
-Received: by mail-pl1-f169.google.com with SMTP id
- d9443c01a7336-23633a6ac50so19945255ad.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jun 2025 14:31:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1749763873; x=1750368673;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:to:from:cc
- :in-reply-to:subject:date:from:to:cc:subject:date:message-id
- :reply-to; bh=kAiNH9B1y5rWcHog71i4hUznzWj+jJc4yS7lpSm9QgM=;
- b=d84t17wQUce23BG90h16kh9ux61+9XDB0ZAYgSQ0I2FlkJWoUNPlnfHPjeWbA205Ku
- Vt0qsAgb9rfaatt9WxWYRVmOILRabGD0xvkB7ik5hLyyqCMCyUKpGXKMgd+TEnVqIhyg
- 6uCFwSB1H0NkgkbpobfYimSsubSEn7pQqb3yZT59DJ0kDvl2LD7++Kd2LWi00vu2u6CM
- U6SmnbMyHvAmy5eOImLLyzvykw5gYi9PjeQsiKe9FdNqwVFDQM5cJmGu3NEa0e+9iwZi
- Y0BVxKbkM+OR4ztcBmOgXtGe0eyBN3MlvcWguNezHVCZWslgY9+mDc6dqjvNkL3B6jMg
- NfRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749763873; x=1750368673;
- h=content-transfer-encoding:mime-version:message-id:to:from:cc
- :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=kAiNH9B1y5rWcHog71i4hUznzWj+jJc4yS7lpSm9QgM=;
- b=gjJ/AoshOpRQqHD1f1GnGvNCEAzVDHVlgasWYTjw2q4UXpkN79kpR1YquT5WkYETkI
- TqtEAxcNyzu799XXqa12RPHKk+oAgqmNV39IfIBkgoR6+K8CcPC62MVuBVogPIzHMsZH
- dks1HgBs5VfiBTs9i1CjpMv7iYIR7Z/Dr2bmTo348lViLc+q5H4tllORCkDORTWXKmyN
- amrFxTxlb1zlr88gOobKSMR1mcwQb/fttvOUdumr4lf/JdHacc4FsBSS4WiLBsn8e++e
- Uh55dD92703W/bPlDKSq+eEWcrYVIbLgP7X1en5Odn9xSVGUoTJz4fuw9THsGFLLgsEs
- bo4Q==
-X-Gm-Message-State: AOJu0Yx+OApEEjq+2DToKikLIJRqGN7TxNhEYzT+hSCYiPoDqrP3Y0DP
- yHt2hFqWEl7yER/CMP3b92wjeQ0GVRHYh4L8PPfvICGKq6hNgWkHHzUg9IJUrX03FQ1XsYI10X5
- YzOnZ
-X-Gm-Gg: ASbGnctw/a8osFJG35s9pnjGOZ3vSmlrkoJK8sgXUyJf4qk8q1jNEe0QDKENYwaqcDd
- dAK69uK5bsbCPuVpHOaPlWl6OslslFvQmqB2I5UdEDA4QlhrkMt84j8nvXogkwwag8WHeIg7bmD
- WvAg2/sCp5ZGgEikrPDb0gac99SEhVP83OsvH370WGK6tHMBUzbAuzgD3IjngjObLKV6T+igZcg
- x4Q2Fmiquexbod3Xqn+LC+c1pQz6G9IGoGJq0ba1pSWTyn2efckp+tEJ5Pm3lc2K3QgTis9LZhB
- vU4zooqGr0Vzr+vjAiRCiM88gwYs58DZav4hhWCrZERIzUQjxMPV5pbaNmyFWO7OMSrTuXw=
-X-Google-Smtp-Source: AGHT+IFDnejqr8oRFqr+54M6Q0Qk8od5uIXQThtywqkd6sZvggjsiSEKivHDUfWiTs7aGZTXil9lAQ==
-X-Received: by 2002:a17:902:b185:b0:235:866:9fac with SMTP id
- d9443c01a7336-2365d8a28ecmr5983835ad.2.1749763869384; 
- Thu, 12 Jun 2025 14:31:09 -0700 (PDT)
-Received: from localhost ([2620:10d:c090:500::7:116a])
- by smtp.gmail.com with UTF8SMTPSA id
- d9443c01a7336-2365deca351sm1803855ad.207.2025.06.12.14.31.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Jun 2025 14:31:08 -0700 (PDT)
-Date: Thu, 12 Jun 2025 14:31:08 -0700 (PDT)
-X-Google-Original-Date: Thu, 12 Jun 2025 14:31:05 PDT (-0700)
-Subject: Re: [PATCH] drm/amd/pm: Use pointer type for typecheck()
-In-Reply-To: <20250612122321.801690-1-lijo.lazar@amd.com>
-CC: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com,
- Alexander.Deucher@amd.com, Asad.Kamal@amd.com, kent.russell@amd.com
-From: Palmer Dabbelt <palmer@dabbelt.com>
-To: lijo.lazar@amd.com
-Message-ID: <mhng-51EEFB4C-FC18-4BC2-81E7-094C20719C1A@palmerdabbelt-mac>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55ADE10E202;
+ Fri, 13 Jun 2025 08:29:41 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bJXcx3YVtz9v10;
+ Fri, 13 Jun 2025 10:29:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1749803377; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=tNpSDNdMO+AR7AGKxlxT5hD4CHTTY7xIcpDZwJEt8dc=;
+ b=v8gfinIX2Rzitbded0n7JKwEI/NpWg13y6RsTqtEddGvANJCEIJXK1Y9Xgq/7rUTSBWKCW
+ d5wpPjSLy5gqIjTqW5LuAJkv9EzO4GjakMAzlph2hIIEArmwM+DPLbzDLYdQ4gOIa40SpC
+ oPc5MClt0oQQ+0nYiKIfy2vN4rVJIadJCsTIqMsxEe5c54K4j4a+ChuiFtuVPSq8BLwo3/
+ WQPuUTBLiAWfIoXsYWe0HT/V3dgjd+t/pNRqjXWc3r7J8Lzdticw4U7l+Y/IGuiyPwe1Im
+ RpgSTw4xNwwmal7pYmrRIAujUIYzfI4YbR6I/2re+xcG2rmSHaOTzoSnXvDhew==
+Message-ID: <a495f31526f19457f44d502cf2de98ab0de33383.camel@mailbox.org>
+Subject: Re: [PATCH v1] drm/amdgpu: give each kernel job a unique id
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo
+ Krummrich <dakr@kernel.org>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, 
+ alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org, Philipp Stanner
+ <phasta@kernel.org>, dri-devel@lists.freedesktop.org
+Date: Fri, 13 Jun 2025 10:29:35 +0200
+In-Reply-To: <099816b4-0b7b-4ac7-9bb5-22f23b1db7b7@amd.com>
+References: <aEmR9420vj-ISz-W@cassiopeiae>
+ <dc661205-1e5b-4697-863b-36a299365219@amd.com>
+ <aEmcpsXwS8dLNGUg@cassiopeiae>
+ <5f71cfd0-fd38-491c-8255-bdd3e0fb19dc@amd.com>
+ <aEtnS6kvh1mssFTb@cassiopeiae>
+ <099816b4-0b7b-4ac7-9bb5-22f23b1db7b7@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MBO-RS-META: fjsea1z6obwr5iqg6dy18tz7q8adyj98
+X-MBO-RS-ID: 8aa27cae7fe50eeb8a3
 X-Mailman-Approved-At: Fri, 13 Jun 2025 16:05:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,85 +64,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 12 Jun 2025 05:23:21 PDT (-0700), lijo.lazar@amd.com wrote:
-> typecheck creates local variables based on the type passed. That could
-> result in stack frame size warnings like below in certain configs:
->
-> drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_6_ppt.c:2885:1: error: the frame size of 8304 bytes is larger than 2048 bytes [-Werror=frame-larger-than=]
->
-> Checking against the pointer type is sufficient for the purpose of
-> getting a diagnostic message during build time.
->
-> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-> ---
->  drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h | 41 +++++++++++++-------------
->  1 file changed, 21 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-> index 7473672abd2a..a608cdbdada4 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-> @@ -40,28 +40,29 @@
->  #define SMU_IH_INTERRUPT_CONTEXT_ID_FAN_ABNORMAL        0x8
->  #define SMU_IH_INTERRUPT_CONTEXT_ID_FAN_RECOVERY        0x9
->
-> -#define smu_cmn_init_soft_gpu_metrics(ptr, frev, crev)         \
-> -	do {                                                   \
-> -		typecheck(struct gpu_metrics_v##frev##_##crev, \
-> -			  typeof(*(ptr)));                     \
-> -		struct metrics_table_header *header =          \
-> -			(struct metrics_table_header *)(ptr);  \
-> -		memset(header, 0xFF, sizeof(*(ptr)));          \
-> -		header->format_revision = frev;                \
-> -		header->content_revision = crev;               \
-> -		header->structure_size = sizeof(*(ptr));       \
-> +#define smu_cmn_init_soft_gpu_metrics(ptr, frev, crev)                   \
-> +	do {                                                             \
-> +		typecheck(struct gpu_metrics_v##frev##_##crev *, (ptr)); \
-> +		struct gpu_metrics_v##frev##_##crev *tmp = (ptr);        \
-> +		struct metrics_table_header *header =                    \
-> +			(struct metrics_table_header *)tmp;              \
-> +		memset(header, 0xFF, sizeof(*tmp));                      \
-> +		header->format_revision = frev;                          \
-> +		header->content_revision = crev;                         \
-> +		header->structure_size = sizeof(*tmp);                   \
->  	} while (0)
->
-> -#define smu_cmn_init_partition_metrics(ptr, frev, crev)                     \
-> -	do {                                                                \
-> -		typecheck(struct amdgpu_partition_metrics_v##frev##_##crev, \
-> -			  typeof(*(ptr)));                                  \
-> -		struct metrics_table_header *header =                       \
-> -			(struct metrics_table_header *)(ptr);               \
-> -		memset(header, 0xFF, sizeof(*(ptr)));                       \
-> -		header->format_revision = frev;                             \
-> -		header->content_revision = crev;                            \
-> -		header->structure_size = sizeof(*(ptr));                    \
-> +#define smu_cmn_init_partition_metrics(ptr, fr, cr)                        \
-> +	do {                                                               \
-> +		typecheck(struct amdgpu_partition_metrics_v##fr##_##cr *,  \
-> +			  (ptr));                                          \
-> +		struct amdgpu_partition_metrics_v##fr##_##cr *tmp = (ptr); \
-> +		struct metrics_table_header *header =                      \
-> +			(struct metrics_table_header *)tmp;                \
-> +		memset(header, 0xFF, sizeof(*tmp));                        \
-> +		header->format_revision = fr;                              \
-> +		header->content_revision = cr;                             \
-> +		header->structure_size = sizeof(*tmp);                     \
->  	} while (0)
->
->  extern const int link_speed[];
+On Fri, 2025-06-13 at 10:23 +0200, Christian K=C3=B6nig wrote:
+> On 6/13/25 01:48, Danilo Krummrich wrote:
+> > On Thu, Jun 12, 2025 at 09:00:34AM +0200, Christian K=C3=B6nig wrote:
+> > > On 6/11/25 17:11, Danilo Krummrich wrote:
+> > > > > > > Mhm, reiterating our internal discussion on the mailing
+> > > > > > > list.
+> > > > > > >=20
+> > > > > > > I think it would be nicer if we could use negative values
+> > > > > > > for the kernel submissions and positive for userspace.
+> > > > > > > But as discussed internally we would need to adjust the
+> > > > > > > scheduler trace points for that once more.
+> > > > > > >=20
+> > > > > > > @Philip and @Danilo any opinion on that?
+> > > > > >=20
+> > > > > > Both, the U64_MAX and the positive-negative approach, are a
+> > > > > > bit hacky. I wonder
+> > > > > > why we need client_id to be a u64, wouldn't a u32 not be
+> > > > > > enough?
+> > > > >=20
+> > > > > That can trivially overflow on long running boxes.
+> > > >=20
+> > > > I don't know if "trivially" is the word of choice given that
+> > > > the number is
+> > > > 4,294,967,295.
+> > > >=20
+> > > > But I did indeed miss that this is a for ever increasing
+> > > > atomic. Why is it an
+> > > > atomic? Why is it not an IDA?
+> > >=20
+> > > Well IDA has some extra overhead compared to an ever increasing
+> > > atomic, additional to that it might not be the best choice to re-
+> > > use numbers for clients in a trace log.
+> >=20
+> > I think the overhead is not relevant at all, this is called from
+> > drm_file_alloc(). The only path I can see where this is called is
+> > drm_client_init(), which isn't high frequent stuff at all, is it?
+>=20
+> I don't think so. But we should really use ida_alloc_cyclic to make
+> sure that numbers are not re-used so quickly.
 
-This fixes my build isuses over at 
-https://lore.kernel.org/r/20250610212141.19445-1-palmer@dabbelt.com .  
+Shouldn't the xarray be used nowadays for ID allocation? I think
+idr_alloc_cyclic() (ida_alloc_cyclic() doesn't exist) is just a wrapper
+around the xarray anyways.
 
-Reviewed-by: Palmer Dabbelt <palmer@dabbelt.com>
-Tested-by: Palmer Dabbelt <palmer@dabbelt.com>
+P.
 
-Thanks!
 
-[I'm going to stash it on my tester branch until it land somewhere 
-else.]
+>=20
+> >=20
+> > It seems to me that we should probably use IDA here.
+> >=20
+> > > On the other hand using smaller numbers is usually nicer for
+> > > manual inspection.
+> >=20
+> > Another option is to just add an interface to get a kernel
+> > client_id from the
+> > same atomic / IDA.
+>=20
+> That won't give us fixed numbers for in kernel clients.
+>=20
+> Regards,
+> Christian.
+
