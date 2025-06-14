@@ -2,71 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FC44ADB13A
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B0A8ADB136
 	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jun 2025 15:10:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D99910E3A4;
-	Mon, 16 Jun 2025 13:10:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EEA110E3A8;
+	Mon, 16 Jun 2025 13:10:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TOIkFy/s";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZfU2pChh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B87A110E3C9
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jun 2025 22:09:17 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-55350d0eedeso2469382e87.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jun 2025 15:09:17 -0700 (PDT)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 400DE10E02A;
+ Sat, 14 Jun 2025 10:37:21 +0000 (UTC)
+Received: by mail-wr1-f52.google.com with SMTP id
+ ffacd0b85a97d-3a4f64cdc2dso208369f8f.1; 
+ Sat, 14 Jun 2025 03:37:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749852556; x=1750457356; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=/u0ZWPSj54fO1LPwsRtPsBzAv0bNs4kDvAcQ63XNs0c=;
- b=TOIkFy/sflHhcAUo8SE5CxRSyiO/DWhITJY2JTqNyWvEFkwy8DfhyuC/cU1rr1PT5G
- p0KdsJXcMzyEG/OltqfWD1HAIkzpToYd6zy6qjZw1BDmmdBeGV24lc8QjXQnO/qV2zzd
- 2ncIuKtJkD+lJWxOQLtphJeaQf1p7vqXEKGfAp0LDXCmf6kBoFEClmXsgDZx/3jij+6M
- Pp+lTGNUvKz62kq5frAfXTkW1AulaJo/SHFs/oZ1v4EC9FJscqNJXopKSzn7sZNkSeRM
- 9PJ61ByifP1IlXA+73i24w33iMKJJBOocxp66Q6UAW10VB/HZxWiDlegGlFjhNiWdjVE
- UBSw==
+ d=gmail.com; s=20230601; t=1749897440; x=1750502240; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=PLl1qEEwnvWsAvy9J8JIB4fScmcygAgIc7ADndq+ADY=;
+ b=ZfU2pChhZbTD4zV0Q94r01ab1yfbsSjgE3gexMdIacAE+XOIgjeU4xUGzUD2rZxudp
+ 6riKp9CZwonoymqJvTWggGmSpNRNIpO6z+WhJfRxX8xcGMwJkSkrpLY1lQnSHs8PsrGK
+ eJ0M3gKG/IFvY0ONbxno8dTHyHTDtMjHv7cQ0adVjWS02nEEtz6kwki5R8DSnVL/pw+s
+ fgs+WItEDAKWFpmCSNo/aG4UqAvSx1lyK6oF6tDVKGrQi8RNNWBZPYDC4JfhXYJuAdNe
+ UIAv97pdwnTy0RNzZyArd8ivVBx7ITGwN0xSDHWc6F9qIXzRIG5Avku/sqy6KADDtlWy
+ y9iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749852556; x=1750457356;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ d=1e100.net; s=20230601; t=1749897440; x=1750502240;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=/u0ZWPSj54fO1LPwsRtPsBzAv0bNs4kDvAcQ63XNs0c=;
- b=Q7kthB8lOvUszAU95r6bn3RtXjNmL2BxTxjsy31vI/UZw0cnylZIdPBLlwCuFrHcQD
- LKFOLE006DMJHJWfhFBAkhjiPJZleseZGm0JiQ8iaH175XJmieedP36IYW+Rv6SKa/Uj
- wtF8t5Z4bKIfGslUWC2ddYCqujo3C+MR8A/vJW4nOzVMA88PhZm+EC1OUmYiEUNITpkP
- 2dJ+XVOUmChIUmnZqpqfAzRnMXX6aDouqXZJdl1iTFK8eXNcTYffEl21KT/GeMohOzgZ
- lfUX/SRdPbd/0JawQRmR9z35jzutoEZUgXhia3hgtdhWkh7mqJlXdgToKGkMuRcfxhAa
- VV8g==
+ bh=PLl1qEEwnvWsAvy9J8JIB4fScmcygAgIc7ADndq+ADY=;
+ b=NANi5ndaaNLhoWHmvUo0HITEqUr5VplZPg2Supe9QvlOeYmS5IPpdlKtvCUSwtna52
+ pjWfLTs/Xip9QkzmeNrAMsYyRIziJQtIS8uaZiz9lqt+Un7xkB8Noj42yUBFuG4glSEa
+ uJG4/SFndBi74cseV0/YL1DS4yYLdNXoNgVGzPatmEbs1I3kNwjpgPeFzrXoV94PmwzB
+ iF1eEHpVVN0zQ8c5Mh12OjF1ACWuttaQiuFa24EdVzgjYyauxdq6wSEtw7FAkNOaFbX3
+ YnjIpSE1bUPDyPIOjeEaSXAAH+Kr2Iiw1lYvrWUZjoTt54JyIeeS0/pWxa3+1ww4ePWG
+ agIA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWvhnr4+a/sMMVTfJT4YQ9Vhe0s9H8TNPgKVVDBL6wxFraKbg68ovrYGnExEMRQVouWnIiT8GPH@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxXUxtZMOvgbDW7saKZac8seS1MM8/KQzRKd+J/nMhLjHaOumJk
- QOrgOYWRaJkTk7LQOuDjzrxcOKc47bKmlLpeHmadNqEmWu/vM4IAZKLlqzbICgBJWnI4fgpJmhs
- ppOO4tGySZlGJwZ/tHVCUFZ3fO5TZ8i8=
-X-Gm-Gg: ASbGncsUFx5WcpW0q7R03z3AQvzfDNjYjjY6jyRlRVImGmhzpmIrMkkc9J0ZXeu65em
- TO6mGnCJ7d6jyj8Cb5rkirTysvrh2hlbjodCEoqMUfi2xsJITLDBiO6DRIQ7I0PsbsAtZjnM7sr
- aqQMkO4B/46jhnY1YZd2EN/3NIT8dXiTTDWp2Xtqtw+9O91Bohw+Njzjk+ThGY54uv+s6ZSFmd2
- TnI
-X-Google-Smtp-Source: AGHT+IGkpKIf5qdK4N/MvTV6cv41VEAat6/gwe+bBQCYNueB+b4IOpxLbGkBjDEeJckPJqOrlTnSwgeFkb2flzixecs=
-X-Received: by 2002:a05:6512:3d03:b0:553:35f5:7aac with SMTP id
- 2adb3069b0e04-553b6f4cd1amr197453e87.48.1749852555489; Fri, 13 Jun 2025
- 15:09:15 -0700 (PDT)
+ AJvYcCU/r81j/zdxZbvrVaNH+mxVYm7pPqcSA/0SH7Psl4hU0YaWaXGHVMiOaF0nPxXMEiCTkQrJ9+kTMQI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwvCxA+i+xrrFDNINBU86pXx94wtiHuZEPjHbn0YFWBn2Qmyku0
+ TkaL25Z/VgJ22mHUV+VrsQhjRTOAjxpub7aDIoIADLcK2SxrtD610L74
+X-Gm-Gg: ASbGncuOu9HW+y76kxs6Damcj5YISXAu63Kbtwtxoa1LbViiQMrT4O5M4q4FfHLbtUd
+ PJvzzofDhEO+UL39OBOSNEqH2J1BRWYnzHnyeiw2XygjEARiF4qCceaGMbAYca2I6waevSCG9CV
+ hGryueGl+sRAD2liWErrdZkvXbLnXBFsLd935cLkHpUks9d/qAww3B11kG/PtKCx/WRjZu9m6Sw
+ xubyyvNiAL8iJQPbv9bchq8xLIFMGLfsQJKGm7AoPAy7wAebctbDYqKYx2Qd9BtTkTw/UWB+7m4
+ 0G6TDaJKeVlbIbbhtfUGKo+2AYVZYwwDjmv1zYM0J28XW/l0wJIrKeUvPvJKHUq5OPWAZtjITDv
+ jiQcYB0h3iP/hg6SJLRDvC7nSM2fuMlmLPg==
+X-Google-Smtp-Source: AGHT+IEO2WJsG7rm3hmH9d2SJMbbIL0GVTNr61YBvUZhyy9Qp55TsFSXVuwBOr+Ocv8M12TzoBRQiA==
+X-Received: by 2002:a05:6000:2f84:b0:3a5:2ee8:ee1d with SMTP id
+ ffacd0b85a97d-3a572e99672mr881171f8f.16.1749897439458; 
+ Sat, 14 Jun 2025 03:37:19 -0700 (PDT)
+Received: from localhost.localdomain ([154.182.223.70])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4532e24420csm78091745e9.20.2025.06.14.03.37.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 14 Jun 2025 03:37:18 -0700 (PDT)
+From: Abdelrahman Fekry <abdelrahmanfekry375@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev,
+ skhan@linuxfoundation.com,
+ Abdelrahman Fekry <abdelrahmanfekry375@gmail.com>
+Subject: [PATCH] drm/amd/display: Add kernel-doc for mpc_funcs.mcm and rmcm
+Date: Sat, 14 Jun 2025 13:37:09 +0300
+Message-Id: <20250614103709.72045-1-abdelrahmanfekry375@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20250613214101.4117000-1-superm1@kernel.org>
- <1240341a-d19b-4a54-b18a-a4cec00c606e@amd.com>
-In-Reply-To: <1240341a-d19b-4a54-b18a-a4cec00c606e@amd.com>
-From: Marcus Seyfarth <m.seyfarth@gmail.com>
-Date: Sat, 14 Jun 2025 00:09:03 +0200
-X-Gm-Features: AX0GCFtmOVmVcSJQicdfz1fchzKb6EJwjEfs11wzW-saJsi_sEooDtY1OFXyH5Q
-Message-ID: <CA+FbhJPSoPS+uv6XAoL6gSYVB6K1TU+ToD++mUruji0px=AR1w@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd: Adjust output for discovery error handling
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Mario Limonciello <superm1@kernel.org>, amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000fab7e606377b4bd9"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 16 Jun 2025 13:10:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,211 +90,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000fab7e606377b4bd9
-Content-Type: text/plain; charset="UTF-8"
+This patch fixes documentation build warnings:
+- WARNING: ./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:1068 
+struct member 'mcm' not described in 'mpc_funcs'
+- WARNING: ./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:1068
+struct member 'rmcm' not described in 'mpc_funcs'
 
-Thanks for fixing this, Mario! If this optional firmware file could be made
-available so that Linux distros could pick it up, this would be great.
+Signed-off-by: Abdelrahman Fekry <abdelrahmanfekry375@gmail.com>
+---
+ drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-Am Fr., 13. Juni 2025 um 23:56 Uhr schrieb Mario Limonciello <
-mario.limonciello@amd.com>:
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+index 6e303b81bfb0..ac2957c9fdd2 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+@@ -1038,6 +1038,16 @@ struct mpc_funcs {
+ 	*/
+ 	void (*program_3dlut_size)(struct mpc *mpc, bool is_17x17x17, int mpcc_id);
+ 
++     /**
++	* @mcm: Multi-Channel Mode configuration operations
++	*
++	* Contains functions for programming Multi-Channel Mode features:
++	* - 3D LUT sizing
++	* - Bias/scale programming
++	* - Bit depth configuration
++	* - LUT read/write control
++	* - LUT population
++	*/
+ 	struct {
+ 		void (*program_3dlut_size)(struct mpc *mpc, uint32_t width, int mpcc_id);
+ 		void (*program_bias_scale)(struct mpc *mpc, uint16_t bias, uint16_t scale, int mpcc_id);
+@@ -1050,6 +1060,11 @@ struct mpc_funcs {
+ 			bool lut_bank_a, int mpcc_id);
+ 	} mcm;
+ 
++     /**
++	* @rmcm: Remove Multi-Channel Mode configuration operations
++	*
++	* Contains functions for removing or resetting Multi-Channel Mode features
++	*/
+ 	struct {
+ 		void (*enable_3dlut_fl)(struct mpc *mpc, bool enable, int mpcc_id);
+ 		void (*update_3dlut_fast_load_select)(struct mpc *mpc, int mpcc_id, int hubp_idx);
+-- 
+2.25.1
 
-> On 6/13/2025 4:41 PM, Mario Limonciello wrote:
-> > From: Mario Limonciello <mario.limonciello@amd.com>
-> >
-> > commit 017fbb6690c22 ("drm/amdgpu/discovery: check ip_discovery fw file
-> > available") added support for reading an amdgpu IP discovery bin file
-> > for some specific products. If it's not found then it will fallback to
-> > hardcoded values. However if it's not found there is also a lot of noise
-> > about missing files and errors.
-> >
-> > Adjust the error handling to decrease most messages to DEBUG and to show
-> > at most one message to a user about the missing file at INFO level.
-> >
-> > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4312
-> Reported-and-tested-by Marcus Seyfarth <m.seyfarth@gmail.com>?
-> > Fixes: 017fbb6690c22 ("drm/amdgpu/discovery: check ip_discovery fw file
-> available")
-> > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 17 ++++++-----------
-> >   1 file changed, 6 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> > index a0e9bf9b27108..8e4526a8c2600 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> > @@ -321,10 +321,9 @@ static int
-> amdgpu_discovery_read_binary_from_file(struct amdgpu_device *adev,
-> >       const struct firmware *fw;
-> >       int r;
-> >
-> > -     r = request_firmware(&fw, fw_name, adev->dev);
-> > +     r = firmware_request_nowarn(&fw, fw_name, adev->dev);
-> >       if (r) {
-> > -             dev_err(adev->dev, "can't load firmware \"%s\"\n",
-> > -                     fw_name);
-> > +             drm_info(&adev->ddev, "Optional firmware \"%s\" was not
-> found\n", fw_name);
-> >               return r;
-> >       }
-> >
-> > @@ -459,16 +458,12 @@ static int amdgpu_discovery_init(struct
-> amdgpu_device *adev)
-> >       /* Read from file if it is the preferred option */
-> >       fw_name = amdgpu_discovery_get_fw_name(adev);
-> >       if (fw_name != NULL) {
-> > -             dev_info(adev->dev, "use ip discovery information from
-> file");
-> > +             drm_dbg(&adev->ddev, "use ip discovery information from
-> file");
-> >               r = amdgpu_discovery_read_binary_from_file(adev,
-> adev->mman.discovery_bin, fw_name);
-> > -
-> > -             if (r) {
-> > -                     dev_err(adev->dev, "failed to read ip discovery
-> binary from file\n");
-> > -                     r = -EINVAL;
-> > +             if (r)
-> >                       goto out;
-> > -             }
-> > -
-> >       } else {
-> > +             drm_dbg(&adev->ddev, "use ip discovery information from
-> memory");
-> >               r = amdgpu_discovery_read_binary_from_mem(
-> >                       adev, adev->mman.discovery_bin);
-> >               if (r)
-> > @@ -1339,7 +1334,7 @@ static int amdgpu_discovery_reg_base_init(struct
-> amdgpu_device *adev)
-> >
-> >       r = amdgpu_discovery_init(adev);
-> >       if (r) {
-> > -             DRM_ERROR("amdgpu_discovery_init failed\n");
-> > +             drm_warn(&adev->ddev, "%s failed: %d\n", __func__, r);
-> >               return r;
-> >       }
-> >
->
->
-
---000000000000fab7e606377b4bd9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Thanks for fixing this, Mario! If this optional firmware f=
-ile could be made available so that Linux distros could pick it up, this wo=
-uld be great.</div><br><div class=3D"gmail_quote gmail_quote_container"><di=
-v dir=3D"ltr" class=3D"gmail_attr">Am Fr., 13. Juni 2025 um 23:56=C2=A0Uhr =
-schrieb Mario Limonciello &lt;<a href=3D"mailto:mario.limonciello@amd.com">=
-mario.limonciello@amd.com</a>&gt;:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex">On 6/13/2025 4:41 PM, Mario Limonciello wrote:<br>
-&gt; From: Mario Limonciello &lt;<a href=3D"mailto:mario.limonciello@amd.co=
-m" target=3D"_blank">mario.limonciello@amd.com</a>&gt;<br>
-&gt; <br>
-&gt; commit 017fbb6690c22 (&quot;drm/amdgpu/discovery: check ip_discovery f=
-w file<br>
-&gt; available&quot;) added support for reading an amdgpu IP discovery bin =
-file<br>
-&gt; for some specific products. If it&#39;s not found then it will fallbac=
-k to<br>
-&gt; hardcoded values. However if it&#39;s not found there is also a lot of=
- noise<br>
-&gt; about missing files and errors.<br>
-&gt; <br>
-&gt; Adjust the error handling to decrease most messages to DEBUG and to sh=
-ow<br>
-&gt; at most one message to a user about the missing file at INFO level.<br=
->
-&gt; <br>
-&gt; Closes: <a href=3D"https://gitlab.freedesktop.org/drm/amd/-/issues/431=
-2" rel=3D"noreferrer" target=3D"_blank">https://gitlab.freedesktop.org/drm/=
-amd/-/issues/4312</a><br>
-Reported-and-tested-by Marcus Seyfarth &lt;<a href=3D"mailto:m.seyfarth@gma=
-il.com" target=3D"_blank">m.seyfarth@gmail.com</a>&gt;?<br>
-&gt; Fixes: 017fbb6690c22 (&quot;drm/amdgpu/discovery: check ip_discovery f=
-w file available&quot;)<br>
-&gt; Signed-off-by: Mario Limonciello &lt;<a href=3D"mailto:mario.limonciel=
-lo@amd.com" target=3D"_blank">mario.limonciello@amd.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 17 ++++++-=
-----------<br>
-&gt;=C2=A0 =C2=A01 file changed, 6 insertions(+), 11 deletions(-)<br>
-&gt; <br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/g=
-pu/drm/amd/amdgpu/amdgpu_discovery.c<br>
-&gt; index a0e9bf9b27108..8e4526a8c2600 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
-&gt; @@ -321,10 +321,9 @@ static int amdgpu_discovery_read_binary_from_file=
-(struct amdgpu_device *adev,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0const struct firmware *fw;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0int r;<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0r =3D request_firmware(&amp;fw, fw_name, adev-&gt=
-;dev);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0r =3D firmware_request_nowarn(&amp;fw, fw_name, a=
-dev-&gt;dev);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (r) {<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dev_err(adev-&gt;dev,=
- &quot;can&#39;t load firmware \&quot;%s\&quot;\n&quot;,<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0fw_name);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0drm_info(&amp;adev-&g=
-t;ddev, &quot;Optional firmware \&quot;%s\&quot; was not found\n&quot;, fw_=
-name);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return r;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt; @@ -459,16 +458,12 @@ static int amdgpu_discovery_init(struct amdgpu_d=
-evice *adev)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Read from file if it is the preferred opt=
-ion */<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0fw_name =3D amdgpu_discovery_get_fw_name(ade=
-v);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (fw_name !=3D NULL) {<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dev_info(adev-&gt;dev=
-, &quot;use ip discovery information from file&quot;);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0drm_dbg(&amp;adev-&gt=
-;ddev, &quot;use ip discovery information from file&quot;);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D amdgpu_dis=
-covery_read_binary_from_file(adev, adev-&gt;mman.discovery_bin, fw_name);<b=
-r>
-&gt; -<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (r) {<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0dev_err(adev-&gt;dev, &quot;failed to read ip discovery binary from =
-file\n&quot;);<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0r =3D -EINVAL;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (r)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0goto out;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt; -<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0drm_dbg(&amp;adev-&gt=
-;ddev, &quot;use ip discovery information from memory&quot;);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D amdgpu_dis=
-covery_read_binary_from_mem(<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0adev, adev-&gt;mman.discovery_bin);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (r)<br>
-&gt; @@ -1339,7 +1334,7 @@ static int amdgpu_discovery_reg_base_init(struct=
- amdgpu_device *adev)<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D amdgpu_discovery_init(adev);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (r) {<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DRM_ERROR(&quot;amdgp=
-u_discovery_init failed\n&quot;);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0drm_warn(&amp;adev-&g=
-t;ddev, &quot;%s failed: %d\n&quot;, __func__, r);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return r;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0<br>
-<br>
-</blockquote></div>
-
---000000000000fab7e606377b4bd9--
