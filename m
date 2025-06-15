@@ -2,79 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B0A8ADB136
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jun 2025 15:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1ED8ADB134
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jun 2025 15:10:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EEA110E3A8;
-	Mon, 16 Jun 2025 13:10:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3CF010E3A0;
+	Mon, 16 Jun 2025 13:10:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZfU2pChh";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="PTpGEuVX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 400DE10E02A;
- Sat, 14 Jun 2025 10:37:21 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-3a4f64cdc2dso208369f8f.1; 
- Sat, 14 Jun 2025 03:37:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749897440; x=1750502240; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=PLl1qEEwnvWsAvy9J8JIB4fScmcygAgIc7ADndq+ADY=;
- b=ZfU2pChhZbTD4zV0Q94r01ab1yfbsSjgE3gexMdIacAE+XOIgjeU4xUGzUD2rZxudp
- 6riKp9CZwonoymqJvTWggGmSpNRNIpO6z+WhJfRxX8xcGMwJkSkrpLY1lQnSHs8PsrGK
- eJ0M3gKG/IFvY0ONbxno8dTHyHTDtMjHv7cQ0adVjWS02nEEtz6kwki5R8DSnVL/pw+s
- fgs+WItEDAKWFpmCSNo/aG4UqAvSx1lyK6oF6tDVKGrQi8RNNWBZPYDC4JfhXYJuAdNe
- UIAv97pdwnTy0RNzZyArd8ivVBx7ITGwN0xSDHWc6F9qIXzRIG5Avku/sqy6KADDtlWy
- y9iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749897440; x=1750502240;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=PLl1qEEwnvWsAvy9J8JIB4fScmcygAgIc7ADndq+ADY=;
- b=NANi5ndaaNLhoWHmvUo0HITEqUr5VplZPg2Supe9QvlOeYmS5IPpdlKtvCUSwtna52
- pjWfLTs/Xip9QkzmeNrAMsYyRIziJQtIS8uaZiz9lqt+Un7xkB8Noj42yUBFuG4glSEa
- uJG4/SFndBi74cseV0/YL1DS4yYLdNXoNgVGzPatmEbs1I3kNwjpgPeFzrXoV94PmwzB
- iF1eEHpVVN0zQ8c5Mh12OjF1ACWuttaQiuFa24EdVzgjYyauxdq6wSEtw7FAkNOaFbX3
- YnjIpSE1bUPDyPIOjeEaSXAAH+Kr2Iiw1lYvrWUZjoTt54JyIeeS0/pWxa3+1ww4ePWG
- agIA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU/r81j/zdxZbvrVaNH+mxVYm7pPqcSA/0SH7Psl4hU0YaWaXGHVMiOaF0nPxXMEiCTkQrJ9+kTMQI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwvCxA+i+xrrFDNINBU86pXx94wtiHuZEPjHbn0YFWBn2Qmyku0
- TkaL25Z/VgJ22mHUV+VrsQhjRTOAjxpub7aDIoIADLcK2SxrtD610L74
-X-Gm-Gg: ASbGncuOu9HW+y76kxs6Damcj5YISXAu63Kbtwtxoa1LbViiQMrT4O5M4q4FfHLbtUd
- PJvzzofDhEO+UL39OBOSNEqH2J1BRWYnzHnyeiw2XygjEARiF4qCceaGMbAYca2I6waevSCG9CV
- hGryueGl+sRAD2liWErrdZkvXbLnXBFsLd935cLkHpUks9d/qAww3B11kG/PtKCx/WRjZu9m6Sw
- xubyyvNiAL8iJQPbv9bchq8xLIFMGLfsQJKGm7AoPAy7wAebctbDYqKYx2Qd9BtTkTw/UWB+7m4
- 0G6TDaJKeVlbIbbhtfUGKo+2AYVZYwwDjmv1zYM0J28XW/l0wJIrKeUvPvJKHUq5OPWAZtjITDv
- jiQcYB0h3iP/hg6SJLRDvC7nSM2fuMlmLPg==
-X-Google-Smtp-Source: AGHT+IEO2WJsG7rm3hmH9d2SJMbbIL0GVTNr61YBvUZhyy9Qp55TsFSXVuwBOr+Ocv8M12TzoBRQiA==
-X-Received: by 2002:a05:6000:2f84:b0:3a5:2ee8:ee1d with SMTP id
- ffacd0b85a97d-3a572e99672mr881171f8f.16.1749897439458; 
- Sat, 14 Jun 2025 03:37:19 -0700 (PDT)
-Received: from localhost.localdomain ([154.182.223.70])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4532e24420csm78091745e9.20.2025.06.14.03.37.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 14 Jun 2025 03:37:18 -0700 (PDT)
-From: Abdelrahman Fekry <abdelrahmanfekry375@gmail.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev,
- skhan@linuxfoundation.com,
- Abdelrahman Fekry <abdelrahmanfekry375@gmail.com>
-Subject: [PATCH] drm/amd/display: Add kernel-doc for mpc_funcs.mcm and rmcm
-Date: Sat, 14 Jun 2025 13:37:09 +0300
-Message-Id: <20250614103709.72045-1-abdelrahmanfekry375@gmail.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6B7A10E20E
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Jun 2025 09:51:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1749981101; x=1750240301;
+ bh=VJQgMpmHTeeoZYrCQy+SA7PdH5AFlipJ6dsXxWqLrnI=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+ b=PTpGEuVXHr7xXmdIXTIXZYb7XZuWdVNyS1e0muJoyjHuD0mpLi5IMyHuEJFRv4laI
+ XSM6504PGt70uT8HOZTp+xPE0hAM5Gn9fvglOs/zygP257Z5sdpNHt/54tlIEE+IpE
+ 3vpSeH25TUF/P3g24Tu6E+6Xo1rTedGgGtkQZxpfq78MOKpYQUttq0bUm6ihcKrmvG
+ E2d5ibhUnO7QEp1mN25tjWjZKPAczSBPM7NU5eaKlR4v26SKtBqSuUJ/AWhtfLvIrh
+ Zki46fdjeUUEmpd8T6rQ0bsSxZJM9bJtEvpFSFsh4WFoZSIBA/Ml93wtZpkdD3P6cq
+ oxigjPy2gwHog==
+Date: Sun, 15 Jun 2025 09:51:37 +0000
+To: Alex Deucher <alexdeucher@gmail.com>
+From: SyntheticBird <syntheticbirdxmr@protonmail.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: drm/amdgpu: AMDGPU unusable since 6.12.1 and it looks like no one
+ cares.
+Message-ID: <gE19BlFWNv1spLRDzd5---KtXkBEYRKTKFR-R2YSWJ4rBnQG8R_Gaeqh56sFHvTc-QlLLPc-rYgKCJSCgxsTlKUhJ-zGovqmZq7BnjVlZTw=@protonmail.com>
+In-Reply-To: <CADnq5_MoZ7W0pf2BFx7Rs2e+6YyJNO2KBCfjjnrkv-+hKNqduA@mail.gmail.com>
+References: <o93Aruut7VI05oqVX7Se1udr5FAyqfyP_TGDutW0p2fXBSkRv7QkhpLmAT-buTpdWIwn8PnC8B2DNSMtaTp5kk00ZtK653PDLuK14uoUI4k=@protonmail.com>
+ <CADnq5_PatAYdyKGVJpX5TrVJ451Ga9PJjCx85jna+CUxsaFAhA@mail.gmail.com>
+ <8o8j5o9K-GIowaV5BW0uUds5QSczbsDlObPMAEUyGjPMV1G2tq-3sdYaQwbZHt_d4p-9sqBe5OnsUkkbS2gb6eZT1d5KiOXyTdz3vy75_V8=@protonmail.com>
+ <EefQ4XqoUhDVKwtzYbP7Cwv1m6p8brSTBJzVQeojHh8X688L3QdBfGkakTuU0yf3lWfne5Bhcj90MXHhB9nblEqobkXeWvluAnwrplGkH2A=@protonmail.com>
+ <CADnq5_MoZ7W0pf2BFx7Rs2e+6YyJNO2KBCfjjnrkv-+hKNqduA@mail.gmail.com>
+Feedback-ID: 130782727:user:proton
+X-Pm-Message-ID: 07997c61df64830737079e4a10468aa82d53229e
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 16 Jun 2025 13:10:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,50 +60,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch fixes documentation build warnings:
-- WARNING: ./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:1068 
-struct member 'mcm' not described in 'mpc_funcs'
-- WARNING: ./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:1068
-struct member 'rmcm' not described in 'mpc_funcs'
+Dear Alex,
 
-Signed-off-by: Abdelrahman Fekry <abdelrahmanfekry375@gmail.com>
----
- drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+The situation is more than concerning and my frustration, as well as others=
+, is growing.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-index 6e303b81bfb0..ac2957c9fdd2 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-@@ -1038,6 +1038,16 @@ struct mpc_funcs {
- 	*/
- 	void (*program_3dlut_size)(struct mpc *mpc, bool is_17x17x17, int mpcc_id);
- 
-+     /**
-+	* @mcm: Multi-Channel Mode configuration operations
-+	*
-+	* Contains functions for programming Multi-Channel Mode features:
-+	* - 3D LUT sizing
-+	* - Bias/scale programming
-+	* - Bit depth configuration
-+	* - LUT read/write control
-+	* - LUT population
-+	*/
- 	struct {
- 		void (*program_3dlut_size)(struct mpc *mpc, uint32_t width, int mpcc_id);
- 		void (*program_bias_scale)(struct mpc *mpc, uint16_t bias, uint16_t scale, int mpcc_id);
-@@ -1050,6 +1060,11 @@ struct mpc_funcs {
- 			bool lut_bank_a, int mpcc_id);
- 	} mcm;
- 
-+     /**
-+	* @rmcm: Remove Multi-Channel Mode configuration operations
-+	*
-+	* Contains functions for removing or resetting Multi-Channel Mode features
-+	*/
- 	struct {
- 		void (*enable_3dlut_fl)(struct mpc *mpc, bool enable, int mpcc_id);
- 		void (*update_3dlut_fast_load_select)(struct mpc *mpc, int mpcc_id, int hubp_idx);
--- 
-2.25.1
+https://gitlab.freedesktop.org/drm/amd/-/issues/3787
+https://gitlab.freedesktop.org/drm/amd/-/issues/2950
 
+There has been a hundred of reports on gitlab, I can find more on reddit, t=
+ech1level forum, phoronix forum, I got confirmation by some folks on Matrix=
+ that are staying in 6.1 and are starting to mock the amdgpu driver. I've s=
+een features after features being merged in amdgpu yet people are laughing =
+in forum, at how bugs are not fixed. On reddit, some users decided to go ba=
+ck on Windows because of it.
+
+There has been 4 bisection attempts so far, that led to no result, and (I'm=
+ in part at fault here for having used an experimental filesystem with majo=
+r version changes). There are people that managed to grasp debug infos befo=
+re the timeout.
+
+In two months, this significant issue will be a year old.=20
+
+I do not understand, how you guys are not hitting it/trying to bisect it. A=
+re you not keeping your machine up for more than 30 sec.
+With the immense spectrum of hardware concerned, I cannot believe that you =
+guys are immune to this. And I cannot believe that you guys are letting thi=
+s rot.
+
+Right now, only a minority is managing to recover their session after a few=
+ minutes. Some people are able to get away with it by enabling the debug fl=
+ag, but this only work for some people and there are no guarantees that it =
+will last long.=20
+
+Please,
+It's time to forget trying to pass the hotball and get a maintainer investi=
+gate and fix this before it gets too late. If we let it rot another year, n=
+o one will be able to bisect it because distros and hardware will make use =
+of recent versions only.
