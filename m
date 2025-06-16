@@ -2,52 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E89ADCC52
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 15:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2808ADCC44
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 15:02:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DFFA10E674;
-	Tue, 17 Jun 2025 13:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 521A610E644;
+	Tue, 17 Jun 2025 13:02:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="SvqyFL5h";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PpKrbbTW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA6510E3BB
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Jun 2025 14:54:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=ImzOJ0Fu7HUWP5Tk98CrEZQ+23QR5aPJDRY8eqZP6s8=; b=SvqyFL5hLq5vK8nQbihAXrkG0G
- hw3+hd/uF1wbC3Yj1e5Zo7ByN+JQTEazFGwTVRGmiAmxCamg2J8mUxLqMC9bn6yfGu3H5UfRPhwtj
- rkVuK3WqM5EEYF/EoVXWs+sS/+i7WjyMX7BjJaaz+m5G3tVceT8LLAMVB+qoCiy/7KdZqRcaEEC3W
- t07vMuQ8Tu3KDNFe+2xXhnERpnb7Z7D8hYXqiwYRJaJ0CS6pFEDHlXd23KAfG+3i4hasHl1K7vHI3
- M9hg5KGCxZP4vMJCeKFZPAue8AGPbyb8b6Vcn9jCqh3+HNJW+8J/ClnXXu1C1KdG8G22Z1wqSrix+
- c3c9Pftw==;
-Received: from
- 2001-1c00-8d82-d000-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
- ([2001:1c00:8d82:d000:266e:96ff:fe07:7dcc]
- helo=noisy.programming.kicks-ass.net)
- by desiato.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1uRBEM-00000003cMr-2pmi; Mon, 16 Jun 2025 14:54:38 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
- id 5847430D551; Mon, 16 Jun 2025 16:54:37 +0200 (CEST)
-Date: Mon, 16 Jun 2025 16:54:37 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: alexander.deucher@amd.com, Borislav Petkov <bp@alien8.de>,
- amd-gfx@lists.freedesktop.org
-Subject: Re: amdgpu vs kexec
-Message-ID: <20250616145437.GG1613376@noisy.programming.kicks-ass.net>
-References: <20250616093945.GA1613200@noisy.programming.kicks-ass.net>
- <4f5f95ff-b97e-41db-b9fd-5204e6581a30@amd.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABC8F10E423;
+ Mon, 16 Jun 2025 18:15:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=vDKcW68nzROUj9CbHR0FyUYWXknhrv44YLJ1qPZX0+0=; b=PpKrbbTWxEZovYBMAIrzJBDH+T
+ vp7VyvpfLx6c59EjZciDSaNTp3n3mnwVTXfKefVGnm/rRD/r/wdSJl82HwxqY5E2e/oJmqQXo09MM
+ ME3kjsugkBIhWb3E4hvHM3+b9TkCFyiOhbVhnRjRQHoGQA1/fSaYMQB/xRLYEU6Xfsc+1wOYUjZRP
+ gstaU4CflbOXWQAA6iWXlAxMxRlAXEg1KcyTiEYPZ0K56W3oGqxovS/7gTBLxbREqBpYRKXkqIpZ+
+ 3WFugXmi3AV61B7ImMOC7k4A7BDvllYH2065J/Qnw8qF9S5TMkesWWTXDbXzzLfYEx0No3oIyryj9
+ myFKVQ8g==;
+Received: from [191.204.192.64] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uREMW-004Eh6-2G; Mon, 16 Jun 2025 20:15:16 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: "Alex Deucher" <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v8 0/6] drm: Create a task info option for wedge events
+Date: Mon, 16 Jun 2025 15:14:32 -0300
+Message-ID: <20250616181438.2124656-1-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4f5f95ff-b97e-41db-b9fd-5204e6581a30@amd.com>
-X-Mailman-Approved-At: Tue, 17 Jun 2025 13:02:38 +0000
+X-Mailman-Approved-At: Tue, 17 Jun 2025 13:02:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,33 +65,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 16, 2025 at 01:51:21PM +0200, Christian Kˆnig wrote:
-> Hi Peter,
-> 
-> On 6/16/25 11:39, Peter Zijlstra wrote:
-> > Hi guys,
-> > 
-> > My (Intel Sapphire Rapids) workstation has a RX 7800 XT and when I kexec
-> > a bunch of times, the amdgpu driver gets upset and barfs on boot.
-> 
-> yeah, that is an "intentional" HW feature and yes you're certainly not
-> the first one to complain about it :(
-> 
-> The PSP (platform security processor IIRC) is designed in such a way
-> that you can initialize it only once after a power cycle / hard reset
-> for security reasons (e.g. to not leak crypto keys used for digital
-> rights management etc..).
-> 
-> On dGPUs we work around that manually by power cycling the ASIC when
-> that situation is detected during amdgpu load, but that unfortunately
-> doesn't work 100% reliable.
+This patchset implements a request made by Xaver Hugl about wedge events:
 
-Right.. hence the splats.
+"I'd really like to have the PID of the client that triggered the GPU
+reset, so that we can kill it if multiple resets are triggered in a
+row (or switch to software rendering if it's KWin itself) and show a
+user-friendly notification about why their app(s) crashed, but that
+can be added later."
 
-> On APUs the situation is even worse because the PSP is shared between
-> the GPU and the CPU.
-> 
-> We have forwarded such complains internally for years, but there is
-> not much else Alex and I can do about it.
+From https://lore.kernel.org/dri-devel/CAFZQkGwJ4qgHV8WTp2=svJ_VXhb-+Y8_VNtKB=jLsk6DqMYp9w@mail.gmail.com/
 
-Oh well. Thanks for the info!
+For testing, I've used amdgpu's debug_mask options debug_disable_soft_recovery
+and debug_disable_gpu_ring_reset to test both wedge event paths in the driver.
+To trigger a ring timeout, I've used this app:
+https://gitlab.freedesktop.org/andrealmeid/gpu-timeout
+
+Thanks!
+
+Changelog:
+
+v8:
+ - New patch "Allow NULL pointers at amdgpu_vm_put_task_info()"
+ - Dropped inline for amdgpu_vm_print_task_info()
+ - Code style changes for "Create a task info option for wedge events"
+ - Drop check before calling amdgpu_vm_put_task_info()
+
+v7:
+ - Change `char *comm` to `char comm[TASK_COMM_LEN]`
+ - New patches to encapsulate struct drm_wedge_task_info inside of struct
+   amdgpu_task_info
+ - Remove struct cast for struct amdgpu_task_info, now we can use `info =
+   &ti->task`
+ - Fix struct lifetime, move amdgpu_vm_put_task_info() after
+   drm_dev_wedged_event() call
+
+v6:
+ - Check if PID >= 0 for displaying the task info
+ - s/app/task in a comment
+
+v5:
+ - Change from app to task also in structs, commit message and docs
+ - Add a check for NULL or empty task name string
+
+v4:
+ - Change from APP to TASK
+ - Add defines for event_string and pid_string length
+
+v3:
+ - Make comm_string and pid_string empty when there's no app info
+ - Change "app that caused ..." to "app involved ..."
+ - Clarify that devcoredump have more information about what happened
+
+v2:
+  - Rebased on top of drm/drm-next
+  - Added new patch for documentation
+
+Andr√© Almeida (6):
+  drm: amdgpu: Allow NULL pointers at amdgpu_vm_put_task_info()
+  drm: amdgpu: Create amdgpu_vm_print_task_info()
+  drm: Create a task info option for wedge events
+  drm/doc: Add a section about "Task information" for the wedge API
+  drm: amdgpu: Use struct drm_wedge_task_info inside of struct
+    amdgpu_task_info
+  drm/amdgpu: Make use of drm_wedge_task_info
+
+ Documentation/gpu/drm-uapi.rst                | 17 ++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 13 +++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       | 11 +++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        | 22 ++++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |  6 +++--
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c        |  5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c        |  5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c        |  5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c         |  4 +---
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c         |  5 +----
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c        |  2 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c      |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c       |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c   |  8 +++----
+ drivers/gpu/drm/drm_drv.c                     | 21 ++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  3 ++-
+ drivers/gpu/drm/xe/xe_device.c                |  3 ++-
+ include/drm/drm_device.h                      |  9 ++++++++
+ include/drm/drm_drv.h                         |  3 ++-
+ 22 files changed, 103 insertions(+), 51 deletions(-)
+
+-- 
+2.49.0
+
