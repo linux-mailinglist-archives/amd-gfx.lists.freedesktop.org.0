@@ -2,154 +2,147 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD28ADB0B3
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jun 2025 14:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 628B5ADB175
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jun 2025 15:16:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94FFA10E367;
-	Mon, 16 Jun 2025 12:56:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05E7710E3A6;
+	Mon, 16 Jun 2025 13:16:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KTvZD+ud";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="izYgUkn4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2056.outbound.protection.outlook.com [40.107.100.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E764B10E367;
- Mon, 16 Jun 2025 12:56:43 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2067.outbound.protection.outlook.com [40.107.237.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D99B10E3A6
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Jun 2025 13:16:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v3hy1zrVs+XZF8qkc/52osaltvijieemijmKZklJdcLLcfh/qz0eV/N8svhVnuG8mhz14UTa0OQs7L5Mz1JTms8kRksi3zHSZypo4SVg6qlydHEILhFIZNpee1FfpE+J4/tkM8yRL0n9s1cOQXxUiPUfVndRLKkrzEdQjrqcbeL1+ShfI9xfAAyEsy/RP81lRwF7JrCYO8wpg5PqEEb5I4AnOrB7s/JDKJ5pwkrG+uUMlyGAeco5Tr4Ou5FpiUNlCUIoN82CHzQHC9MuhbYa0D/Zehb3zOFiIeSb9Y7MPceH9Q8uzTYl0/xFT2YMnEOaOWVOahmwAljGMxN9jjGWAA==
+ b=PfkI3g5nEq6Ako1lfoIbNgS7Hm6uVw8d2fYlgeYDLLOQvwJRvI+6haBkYK+p2xIj5vte3Lugx3Froz2co+juE14AeRGCTKxCDRnyt0j+DwFngeyMOg+SYDxN3JKkMvMLfml9wWqa59u/iqq+2Gp0jVUxS4h558guYTxCbMtsUgN+GQAxVq8prYSweaPxwqLhI7htQ7ESqGy3OolfXBkFHHSPPMf8KdJR0ekW2xrr0LLzJyGYNjiUlY1RYGs2SzXtv7fgulFnNcwUMNQdjQ0xZ1Jf95QYIz0hyUHBw86Fkukdo8ZUC3QCHntUfFeAYfRC0n+t2RjBSqLmWbxMh4CWqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B4n99gy+Cvp4EJODXJGQimbfaQijXijYyy3sZMazPik=;
- b=C6Zu1pAghyxU9rkYQlvXggaBeYq2d6/0S1iKbVqUPEWQJgv/m9zRizuZU2sGs3cQLVTuvx9LgDsnoo0NIemXfGn39/FEHKuZW8zWKDNn9HPlEMv3+sahWQ1d8QRNp4i369mKjSZ8KEjOJdf8Obei3ktkd/jnD4nrlH3v7L6fTPiwos4x+lCRkVX1fvp84X3c/ABg1xcJ+wRGr8ylrU5CiRlHtLx4YuvzXc7RHvajkRBi014/HM/h6QhjuuohoZ6QVMdAt+O/WeaDiVlImrq1pQqd5+CxYXhCJhDBbvfzKbYrsGet1CTAECdNQgKoMD5i8qRQLlPyqpIitpQU5PB2Cg==
+ bh=2XmZ95RZDCypNtfqyHcT9SwFw6lyCTIEg7DXRU8w0mA=;
+ b=JJc2eCbddZsT0FrJ+J/75/VtthrHI4v4CW1TolA3dfm4dzkHf0/efscO8CCTWDhChDhwNgctQxr32C4+pxly5q12xq9n+IQnyCd1iRmybYQIKH6h8J82xD/FNblnFEONAvIgcX8zHn+Bl6QqWPwIvuRv9i8yVr6DPjNY87JmObc92Xp2Uh9nglj45aBE2xjZNkGO6pM9uZ4JKizeEbH3KZNEWtCFxWZHO3Mc/A45vMj5ZGzbwGVBG1MkhTT7rG5fz+pMrcd5m6TrRCIW8A8KsEDBtwonJVWzUl6FvrrSQFFp7hNBwUzwnyNYRMhOkM4uBJs3aSwIB6YObNDA39udGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B4n99gy+Cvp4EJODXJGQimbfaQijXijYyy3sZMazPik=;
- b=KTvZD+udd5/8cw68g8BEtav3O9kcll5WHSfo5szyTP5Fx/W2EyqDLp9gVn0oA0ghpovEOHEhqFQxLTaZkHG6oZMg5QPK5mKavWHsQmx4Cw29RExzHJWGCjCkFpz5f05zwgDDeOpIbpXBFDyhxiKCV3NDV9SkiA0cSBDEzsmTjSA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA5PPFCAFD069B8.namprd12.prod.outlook.com
- (2603:10b6:80f:fc04::8e1) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.19; Mon, 16 Jun
- 2025 12:56:39 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%7]) with mapi id 15.20.8722.031; Mon, 16 Jun 2025
- 12:56:39 +0000
-Message-ID: <cf0e1436-462f-4d63-a7fb-d1201d100bba@amd.com>
-Date: Mon, 16 Jun 2025 14:56:35 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm: add debugfs support on per client-id basis
-To: "Khatri, Sunil" <sukhatri@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org
-References: <20250616100503.1204166-1-sunil.khatri@amd.com>
- <20250616100503.1204166-3-sunil.khatri@amd.com>
- <3ca35236-377f-4ef0-becd-ba5d22b5edd8@amd.com>
- <84af6984-bd2e-4378-a5c0-ee2356f96b8f@amd.com>
+ bh=2XmZ95RZDCypNtfqyHcT9SwFw6lyCTIEg7DXRU8w0mA=;
+ b=izYgUkn4f32MSwNHxUppXmP0OKBFNxc1wIHsDwdHJgvWga7w7WbaCx1GcRSsZRnc/7cZ4ybHj3GzfBGRiH2W2H+rrkrKvV3NjUPFXtqZGi8yAfeJdJBP4LNGTj2YKKM7LNhVo09z0mn6hkooef4KjsR+WIzCaUqFAb0eGivPx5Y=
+Received: from DS0PR12MB6534.namprd12.prod.outlook.com (2603:10b6:8:c1::19) by
+ PH7PR12MB6761.namprd12.prod.outlook.com (2603:10b6:510:1ab::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Mon, 16 Jun
+ 2025 13:16:15 +0000
+Received: from DS0PR12MB6534.namprd12.prod.outlook.com
+ ([fe80::ea87:74ba:36ec:8cf6]) by DS0PR12MB6534.namprd12.prod.outlook.com
+ ([fe80::ea87:74ba:36ec:8cf6%5]) with mapi id 15.20.8835.027; Mon, 16 Jun 2025
+ 13:16:15 +0000
+From: "Wheeler, Daniel" <Daniel.Wheeler@amd.com>
+To: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "Wentland, Harry" <Harry.Wentland@amd.com>, "Li, Sun peng (Leo)"
+ <Sunpeng.Li@amd.com>, "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>, "Li,
+ Roman" <Roman.Li@amd.com>, "Lin, Wayne" <Wayne.Lin@amd.com>, "Chung,
+ ChiaHsuan (Tom)" <ChiaHsuan.Chung@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>, 
+ "Hung, Alex" <Alex.Hung@amd.com>
+Subject: RE: [PATCH 00/10] DC Patches for 16 June 2025
+Thread-Topic: [PATCH 00/10] DC Patches for 16 June 2025
+Thread-Index: AQHb2wBoXEyzCmnFL0Stc16UY5CT6bQFyw0Q
+Date: Mon, 16 Jun 2025 13:16:15 +0000
+Message-ID: <DS0PR12MB653462CEB6312FF67E3449419C70A@DS0PR12MB6534.namprd12.prod.outlook.com>
+References: <20250611184111.517494-1-aurabindo.pillai@amd.com>
+In-Reply-To: <20250611184111.517494-1-aurabindo.pillai@amd.com>
+Accept-Language: en-CA, en-US
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <84af6984-bd2e-4378-a5c0-ee2356f96b8f@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0313.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f6::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-06-16T13:16:09.0000000Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR12MB6534:EE_|PH7PR12MB6761:EE_
+x-ms-office365-filtering-correlation-id: 40fd8559-c45f-4b1e-47b1-08ddacd7f94d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?NjojqnMuu4VFFn/m/a6zfip75SAMH8UQtqv695P7BH1G+XiVob9BOKBb7h?=
+ =?iso-8859-1?Q?+9RUtNLlo3a2nRY6QzhXW2l51A4oUv4TFmTXDQsg8DxCWaOzFw3lC1Sm6D?=
+ =?iso-8859-1?Q?U29DBcnvr9uwUeSWvfMp9154KT4BiT1mNXrml3+e+iDT0SlxVSpuMZxrKq?=
+ =?iso-8859-1?Q?aQ70VNF3Xffyd++aTSp3D7czn4leLJKXzXYcLYznf9mwpxOTLWzTXJJEa4?=
+ =?iso-8859-1?Q?HTsJ+LvKKwpQJ39hCA26rb6fWq2ZaRFPcKUIfrdwjKf3XIiV0Rc5HgRn39?=
+ =?iso-8859-1?Q?vUWs6C6nwv3KN1KGnGjMCC4HU75Y47ZFujdEsGTcEzoK+8yiJ8un9OAtqT?=
+ =?iso-8859-1?Q?Edl8631tYvSi2aIjWGylreRh5YRtU2Or48ZGfrkRY+qUNJPn3wtkpHUCgj?=
+ =?iso-8859-1?Q?/cBo6UFtpSb0W4m1D+SLvwoBGlHJWZAiVap47LoZ+qjPNUExQjigMPXn8V?=
+ =?iso-8859-1?Q?mS8p9FyPY/uWRQflel+JPvS8nTZKvzViYkkA/wSmdxNk08isKniYokbWEg?=
+ =?iso-8859-1?Q?IZVIi+ruxlxYJtowe97D7Lg/YQ49bVb/HnfSNJDBrPKygvCPJfsQFcWpc4?=
+ =?iso-8859-1?Q?iUi2i/bqLeBEkaAnYS+wJRMJbzGLvlEv9G5A3PM1HLRXuLXDlIsygNnhkJ?=
+ =?iso-8859-1?Q?z0AcMY15q2T0kCt/YxxeGLtywSz31LQzaOmd+bpr6rdKKRtpEBhMQbpSvO?=
+ =?iso-8859-1?Q?RmDpMBHJJOPq4YoNmK3lieQ+cp5mIV8mlyAbUwFVMrF8+HsNlSQwDbVQXE?=
+ =?iso-8859-1?Q?oC7Eut9Rt1I6yMU//2dlzaNyYz676bxMMHnYfwTMM9LCFc1C9P2LYnULh4?=
+ =?iso-8859-1?Q?aduiXbLydZZa4o+LbyQAAThkw+ROCwXcUYygOW4rzzypONrHJ9rn8XMJ9Q?=
+ =?iso-8859-1?Q?yOGNwlNWO1T09Yyqvxl1iXW3WEqJVZjRZ5VM9UIWJ36EYlpsweT7yzEzY4?=
+ =?iso-8859-1?Q?oNBR4ec8hvdRIfsK3pxYyCVaOe6u/8ManzmUDq/B7/LjGjc2nrAvgpqMUx?=
+ =?iso-8859-1?Q?7A6AZYsR4r0I37QXx1f9bzbFwCZxCC7uOi8jDPL4hRvm8XOW/EWj/EnTBN?=
+ =?iso-8859-1?Q?tc7cdshAxwBiniS3uh++LTUxgrwp5ie9G9SZE5zsuYH19bqkOEQP3IcoAy?=
+ =?iso-8859-1?Q?g4tclsYBUA5VA6KiLLFAcf7QZFT7tWOT3X0R3sinsgv0Qm/QA846LqegDL?=
+ =?iso-8859-1?Q?knLD9Bx+t2bW6OXAPHge41QiiL16miKqNaMVYdmzXaMjUO2k4xYTloqoa4?=
+ =?iso-8859-1?Q?sfLVgOm1j6Ilz3LYA1ILRnMbX2CufKSZLbjAgOAywIvmcWfGWsRJX+HwV6?=
+ =?iso-8859-1?Q?TQ1oQ5taGLXfKqWCDdYIjjvFJu5gLnp+d8sYDz7wG4fqEtcTqnrprCB7QJ?=
+ =?iso-8859-1?Q?rlTDdkilwN54It5F99f2HJuZWGY0vpZSlVN9golQoXlwgUvcyG3PrQBPDT?=
+ =?iso-8859-1?Q?tGSLJ030DfzY7UXhYF3tw+DRL5ltFwY8e7FJHym5QXatmsKkVL5ZsgGcHm?=
+ =?iso-8859-1?Q?BZluM75Fp3DIa74B+MDtth8xyaCpP+zCvZ1HmNYNCesQ=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6534.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?5MQoCUsHzKPPYAXvrA8V1yLfmvnquA+H9q0EfmIf01ydZ0yu0ZjJjd3aWK?=
+ =?iso-8859-1?Q?y8H26RsXUiTVgJdNJQSPn0Z1VEfqyo11Kj7VYJDfhTYv89XxdpGQj9VaG0?=
+ =?iso-8859-1?Q?DOGQhDDsPHNLFzMp6k6jzc9mIxPkgNo8+aRmIvDVbfuq6MoyDnR3jFmoX8?=
+ =?iso-8859-1?Q?kJMVKYF8b2dXmELtL81OYVk0AMvrxWNnA44jW/p2eyk7GsrovnTxP92KNm?=
+ =?iso-8859-1?Q?VP72XFw8ElIo/e9mmiges8EKTS1bFxT9XdyxSO5Miv3XzOCYTHfaMK5U0/?=
+ =?iso-8859-1?Q?HFwBfn5cvuog6T+d8hH6OoxYMueCmtzv/l2BXgtxKnOiA+F3r1l6wDXGvu?=
+ =?iso-8859-1?Q?3gI+RMjnM3U9kYjE1p/vfQdE0MBa1+tqgyz9GXqZ3Lhgaa0tb8TcU5xtmF?=
+ =?iso-8859-1?Q?N2WpPGOSCfzaIqF08vDuXEeqoXeK3PFpl3XP62cC8nK+4SE9JLgDZ/KT2N?=
+ =?iso-8859-1?Q?OAegpldJtK8aDsEgblAMnrQXbkceKG0LAWYZt0mMzzynJqKqG3qy8cj4/b?=
+ =?iso-8859-1?Q?VqtBtzBePKItdIRbp1CIPvtuqRM3rbERc+N1OABCrmQ4ufH+6QLEW98/N9?=
+ =?iso-8859-1?Q?OOxG44ZANfq8EhpNZ/mTPV59eKYNzrooJsQ5WfVPj0xAabQc33r9RqnTnb?=
+ =?iso-8859-1?Q?Kf1N1QeoiQP28XCPbQN//4bi3OptH3ca43MHwbs+l/0cWnqyKBGKOBbkga?=
+ =?iso-8859-1?Q?JYLa082idnQPfiVPWI5YhI8lj2b8LJzA/OHmvsw49MWBiaUaHwnF07Mdsm?=
+ =?iso-8859-1?Q?jNK4XS+LVnXpGqOTjf6AgIb+7V3c1BIKFqXvj1w2CV9SeF/UsiT5tPwcEM?=
+ =?iso-8859-1?Q?tPqU+dvuIw+yPHFRWpOzoQKYJsp5qtB/i2eSDjmbQ7wAPyNA7jj5PrnS/q?=
+ =?iso-8859-1?Q?TohTJp4vCqnjNZl6eYlhG7xJxldxFW+rofoCl16Fa0t2k/gVgMPfCrMooQ?=
+ =?iso-8859-1?Q?AtgbWJvl/6pXbqnSB1dfCkdWj4SHh0ZkT09ym1DX440hidnAOo+ct0slo8?=
+ =?iso-8859-1?Q?OxOMgL2ZOQlP5oSP/HwJyqC4DDGc3r94DABIoe3l6mOzK7HWUH2T4MMJBR?=
+ =?iso-8859-1?Q?xOcfSI7sB8a/qHs6u4UWE/+FweOTlqWKnncs84Odsi9G6eZ6Leqw64UMni?=
+ =?iso-8859-1?Q?ohiBbJ7HKiEppx6nLVDXVDj//UhPOQbI4z77JKwLbz//wslnvYZ9fEb1mN?=
+ =?iso-8859-1?Q?ibAkz+9xiqUJKFvN8NZcTu2V//9ARmiAkqBMvp/JLtYWC8yyTE2hqZWenv?=
+ =?iso-8859-1?Q?1jTDCr9nW4pR0edb84/WZ2joSXftEBXS4NtZo/cdHfQKFsBlKCPtZIiP7y?=
+ =?iso-8859-1?Q?+GMDil8wp84RI1sA5JPIHeKlqN3fIT19xSsW205UHlAVoJzt75Q5L3uMYg?=
+ =?iso-8859-1?Q?3tvNtrXQpTH4bSjEwqCM1/eVjoeQ5EhWYadyi+nikglyAs7uBuiUvrbWEW?=
+ =?iso-8859-1?Q?dEiWCPNyWi9Z2nqYaZKaBfHOL4zjCOxQn9glAb3AGCNfkyU4666EPN9WgB?=
+ =?iso-8859-1?Q?InqiPMXCrUt1K+yqTNVoj/hCgf6Bxi1VW8vyXR7KgUVYzbShfH1YqH4tcZ?=
+ =?iso-8859-1?Q?0T4r7bR63qt/Morj6weCvD5j71/AoGsMJDNP6DrJrOvOOIgQ8EsoN7nugT?=
+ =?iso-8859-1?Q?HF3bABF6qz6a4=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA5PPFCAFD069B8:EE_
-X-MS-Office365-Filtering-Correlation-Id: 837d6d7d-0216-4c65-6f54-08ddacd53c13
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?U0VmZ3lXbnJZQWdWZ0k2WVdCZ3pqZUVvTG5ad3Yra0RiL3JteEZtUXdrL0ZL?=
- =?utf-8?B?UnNwTHYrcHd5OUpHQ0NXZ3JhQlN0a0dXeFAySXg1eFpoKzY4WGEvVldhR2NY?=
- =?utf-8?B?clU3VnRHRTdSVUpQVk53MlpSUHM5QVhEVGU1OW9Vanp5NWc0cUViVDFQTUtI?=
- =?utf-8?B?eGw1WExaS01tZjRWNXRrQVhMVWEyOWZXbmV2b2dGS2NBdHFhczMrckhtUktL?=
- =?utf-8?B?ZHhGSVJVcHh2NkVGL0o2cXRZRDcxVnFnSEhRakJkVVVxKzB3TDRqbEIvbEFT?=
- =?utf-8?B?UFB1VTlkN0ptck53U1JnYm9qQUxNalJBWTl1bk1FajMxSC9Da1NzTGpTbGZY?=
- =?utf-8?B?WGhwcVJGd0N2cGE3eWxOVEpOQ1M0dUJ6OXBVUUlqME5XKzlyekFoSmErSGhY?=
- =?utf-8?B?RVBWUE9MQkxpeTZERHhaZTVnS251QTB1R3VkVDkwUGRFQkxRSlpMazYzeE1F?=
- =?utf-8?B?Vk84TERyTjU5d2ZIelM0bTlUY1RDQTUzbEp3eEdhQkMyVUNuN0NHQkRZSnR4?=
- =?utf-8?B?bFlZSGZHN1NkQTJ3K2lhQ1NWOWgyczFONGVrejRROFlIT0FxTzRpQ3RrT0RK?=
- =?utf-8?B?b1d4ZTUvRnlDalZIdlRkWjJOYjBIQlNtbTBGaGpQTkpYck5mUGxaNjBHSnYy?=
- =?utf-8?B?Z3RQMkR3a1ZZcFV0NTVET0M2Q0gxMUl0RmwvQkxEZjU0akZhUzIvc2JOUXBI?=
- =?utf-8?B?c0ZuZDYxTzl3K0NQR211VHZZVlFMTlRHcmtiZjFIS1Jlb2N3b0JKa3lzaXlo?=
- =?utf-8?B?bS9BOVIyK2xSK3VMVWJHMUkyUkVvMWFyaFEvRkRCSGs1ZFRQVytSazRLSGkr?=
- =?utf-8?B?b0pra0huWWFHTS9Fa2d3S1VxWTk1ODlVRGdsQ2VzZ0s3UkVoVnZmQ01KcE8x?=
- =?utf-8?B?VzFOb2RWcVJ6ZWgwODJ4U011bHZBenlxRG5rL0VhdGFlUThaT2dIODN6QXVQ?=
- =?utf-8?B?Nk00MEgzRlZYTVlsZithbGd4MWxHQUJGaDZrUTFsRXArQjVKYmRVZGkzbW1C?=
- =?utf-8?B?K3BiWnVHQVYyRG5VQ0ZYbjUrNXNRcktDb1hTQ3N2bUt0ZWJ0RHJMWW1rSTJh?=
- =?utf-8?B?NkdjMGd4dzZDUmZ2RU0vSTArWUthdC9zYVU2b3JXRmRoNFcwRmVuR2ZkeFN0?=
- =?utf-8?B?VlBHSVM1VlVjdU03Z0pQdzkycjBZQUl1WXkzeG8zL05IQmxvNmVtNTAxSXR1?=
- =?utf-8?B?WWVJU0ZURnVoTGtaM1FUZUR3dC9QWmJ2NEIyUy9Jb1NUbTU0M3ZPUS9paFB1?=
- =?utf-8?B?cUZUelM0VXVNRHhKSEZYUzhRTEVKZGFrRS90VzQwbjVJcTg0M0Z2RnBJVEpH?=
- =?utf-8?B?cW9haDRUbGNKRk1LdWVjaUxiWWNmNXQvSVEyaDNVQUlpMnJCb09WZmE5K1Fm?=
- =?utf-8?B?bzByRG42NXFtdnMwTXpuZGdWKzZQZndwQk9KSXZEMkhXNlVxREtiWjk2dXgv?=
- =?utf-8?B?cDA5Z011M1lHZ0NpZWZpcEZ6Tm9UbXVZZm9ndDQ5V1pNUjJRc1BiQldJUGp0?=
- =?utf-8?B?cjhFRWNSQmZaWjJwRUIzUy8wTzlwOVA0MU1kSFE0Rmo2RjIyUUNheVBGVXNx?=
- =?utf-8?B?QmVXaW1SVUVPQmRKVUdpRlJEdHJGQzRnZk9wWWZYV1hWQWRXbnVyMzRpeG5u?=
- =?utf-8?B?aTVuYXBxNEM0bWlDM2p2RkdIRWN0WVpzUWIrZzhjdUwzVWdEQ0dNTmVjbVdH?=
- =?utf-8?B?cDBaVEs0dmYvY2JtbmJUcWJKVFFWY0Z3RklyZTQ5S041d3YrcGQ1NUVnOUN5?=
- =?utf-8?B?dlNVZUVDRFZBUUtFeDRSY1pJanJ2T1pVaHRjTHRZUXBFT3ZOOVh5b3I4YU9l?=
- =?utf-8?B?amtOYWhmNWx3MXcwbmRpMGRibnNRamk3ZCttNXY3SEhpQmVXclJGNU8zejJW?=
- =?utf-8?B?QkthbUplYVRuQUVGSzI0aDNEc0Jqd1BHcnhwaWRTSEl4YkVnQm9PcnRGaEZT?=
- =?utf-8?Q?JWzSBsE1Aq0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SEVDVStkc1hXdStSRjduS1kxRVFHT0hkMzh5TndxTjg0bDhLZVUydUQ1WWh1?=
- =?utf-8?B?NUxESk1IK0doYzZiQ2pEK2lYTUdyUUNhakQwZDFDNzNlMmlqZVZ6bWNJK0Vu?=
- =?utf-8?B?aU5pM0hkSTNuWVpUaUYwb0xhMDdNb0lCYzlLTWxhczhJZzVLSGE4dXRXRy8z?=
- =?utf-8?B?UW1nSkVCVnpJbkhwUnJTa1Fxa3RpRm1kcFBVdTdwYnJ6MWlQWnFLUDJ0L1NN?=
- =?utf-8?B?K0JUTU1MUndDU3o3Q0ZzRGdEVGxnTDlHZXVrV09UaTFVajBCRkRpM21qQlZS?=
- =?utf-8?B?K0VjbE9QWDhENmRhbG9kc3hDZGlVZmovNksraGFjVlZJUUNrM1N3VXBZUFhu?=
- =?utf-8?B?NDFxaERIUk5HL0szYTJTZi9sVU1iRzBrQ0J6QWtNSXptdC9RcHYwVmhVbDVm?=
- =?utf-8?B?YTd5TUNSbDUrOTBrcENzZEx2c2lCek51ZHFtQTJ0TjI1enc5ZFoxRm4wYkh5?=
- =?utf-8?B?UkY4RXZTSDNhaGEwcG5iN29ZbHlCNHhqZmxobHhLdEFxUCtoQldwRUNRbmFW?=
- =?utf-8?B?TlJ6eEQvMlB0QXNtM0xlcG5lTkIyeTI4c0ZmSHpTYzZMTHJIT3hpUXdhbHda?=
- =?utf-8?B?c0N5OEJycWV6ZDZYNWJUcXUwMjdGTjVpNEVlcC9iQ2ZxWHNKeU5neDhqVE03?=
- =?utf-8?B?NkxmNXRBaEJucFdzSWF5d1dNdWF3SzlTTXA4b0xUS1FhTTd5S25NUEhNcFJ6?=
- =?utf-8?B?RHNwOUtCZVdSWEVFNVdPVXA2akREZDZoeUtRREpFUDZSRS8vZUsvTElvR3RF?=
- =?utf-8?B?R3QrZWdQbkhQTGlxbnRJTDVHNnA1MWJlVE9rWTQ2K01OeFIwTG5vTEpaeEQy?=
- =?utf-8?B?a2hjb2xTR0hwSmttNGZUYWo5cThXdzlhMWRKNzJzdTQxYk5mM1pGYmxTajNY?=
- =?utf-8?B?M3RNNllPNTVlbFZ0Q0ZlZlljY3I0NG9WOFUrWEx5MjI0MlU2ZTdFQ3czS1dj?=
- =?utf-8?B?djNTYkVqNXpPcXZjWUc3eE05ektmaWZEbmZCamVyL2RoU2pVWFhRd1FUUGRJ?=
- =?utf-8?B?T2NZU3B4c3kxd3JqdkNMWUJkZE10RjBMZkVSdk1zS1A3TDhBM0FnYUVaY1Fx?=
- =?utf-8?B?YXgrWEk3UzU3WWJBK0wza2JZOWJ2OGZlNkVGK2tMcnc0VlNKLzExTjhRRXls?=
- =?utf-8?B?SU5uNkpSajFrTll0N0w4YXdqejAzK0JsQ29NVlJndVUzUzhLbmtqQ3VsY1pE?=
- =?utf-8?B?Y2JHVnBXdkJUZUk5S3dvZjdvczBuMnVjNERmdjNtNzJhQVkvVHlhTEZqMGFQ?=
- =?utf-8?B?ZHBRUG9FVHFlSko3c3czSXlCTE1JQVl0VVBmcVdnTlltNEFLdW8rYnZBOW5t?=
- =?utf-8?B?NzNLM0EzNXJEUW9ickZ6bTgvMGRlQkJ0OHRiYitZaDhyOEViZ2tpN2RjSWRH?=
- =?utf-8?B?TGl6djVvVUZiMGd5eEVOWFlmSCt0V3dVbEpGWEMvUnY4cXRDT1Ura251TVQ0?=
- =?utf-8?B?OExiVlFhZDl0eFQrMzRuY0dBWFFreXJwMlFvM2R5YlFJZzZObFpURGMrQ3Fm?=
- =?utf-8?B?bTE0cGhzWTluZ0UzN1lEZE1jYzlXNW5NUG4zMFlvWE9Nc2g2U1hKdi83VlMr?=
- =?utf-8?B?eWJFdlo4cy8wdkViRGYzU1M2aGE3amtocEZndzVSbDhBNEpuODdqMGdJS0tz?=
- =?utf-8?B?djl5cVRvNGhiSXJTNndHYXROeG11Y1ZqTm9ZUWcrb0ovd28yMnJQWFV3czlw?=
- =?utf-8?B?aWVzdW1EMll1MEtFTGMxOU5naE9VV2JCV0o3RFN3SlgzWTNyVFoxZDZacjZ0?=
- =?utf-8?B?K2NGUXhRNVJMK2t1QVZYMHJoNlowMk80ekZJV2c1TkxHcGVoQ1hPaGpsQVRG?=
- =?utf-8?B?QmhSUElxeXJUNi9OdDgyaE1GNkdFTmtNTlFTMlJLdHNLNnR4N0hFVWd4WkdI?=
- =?utf-8?B?WDV4cThVQWZkMS92OUtkNG9IU1NRWXU4NE50MFFxR1Noc0NObUJVdXpna0pR?=
- =?utf-8?B?WmFrQWtyaTdwZ0ZJOVhNcWlLR01kTmtwcm5acmdUanJXakljeWlWUkg3WFRl?=
- =?utf-8?B?bkczRHVpOHBUbG5vWXJUR0RrVXVuSUc5UXZ6YkRGeno0bUNSNzlJeUFUOVRw?=
- =?utf-8?B?amxKWFg1NFVML1FRcWpoeGlTWEg0QVdHbU95SFVoZ2pUUWFSekEwNUJmTCsw?=
- =?utf-8?Q?dFFMtwCSL1GmYztKOu+3CnGcH?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 837d6d7d-0216-4c65-6f54-08ddacd53c13
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2025 12:56:39.4883 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: czkxfIaKK3aGi9vv3jMnfHkBznN0tg6Uk8n92JdkcI4H1mrf5YDUTX3zH++cxGDf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFCAFD069B8
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6534.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40fd8559-c45f-4b1e-47b1-08ddacd7f94d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2025 13:16:15.6775 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ornwPM77xiPJJO5vH89IpKu1IbCkkJWso7cjZDYHyCp12Td4fmmcaSelmHQhIFLKq9eA/Z36gv2nfMsEhnWOdg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6761
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,155 +157,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 6/16/25 14:25, Khatri, Sunil wrote:
-> 
-> On 6/16/2025 5:41 PM, Christian König wrote:
->> On 6/16/25 12:05, Sunil Khatri wrote:
->>> add support to add a directory for each client-id
->>> with root at the dri level. Since the clients are
->>> unique and not just related to one single drm device,
->>> so it makes more sense to add all the client based
->>> nodes with root as dri.
->>>
->>> Also create a symlink back to the parent drm device
->>> from each client.
->>>
->>> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
->>> ---
->>>   drivers/gpu/drm/drm_debugfs.c |  1 +
->>>   drivers/gpu/drm/drm_file.c    | 26 ++++++++++++++++++++++++++
->>>   include/drm/drm_device.h      |  4 ++++
->>>   include/drm/drm_file.h        |  7 +++++++
->>>   4 files changed, 38 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
->>> index 2d43bda82887..b4956960ae76 100644
->>> --- a/drivers/gpu/drm/drm_debugfs.c
->>> +++ b/drivers/gpu/drm/drm_debugfs.c
->>> @@ -296,6 +296,7 @@ EXPORT_SYMBOL(drm_debugfs_remove_files);
->>>   void drm_debugfs_dev_init(struct drm_device *dev, struct dentry *root)
->>>   {
->>>       dev->debugfs_root = debugfs_create_dir(dev->unique, root);
->>> +    dev->drm_debugfs_root = root;
->> We should probably just move drm_debugfs_root into drm_debugfs.c instead of keeping that around per device.
-> root node above is needed in the drm_file.c function drm_alloc and there is nothing above drm_device where i can get the root information. that is the reason i mentioned it as drm_debugfs_root as root node of the drm subsystem itself.
+[Public]
 
-drm_debugfs_root is currently a global variable in drm_drv.c, but if we move it to drm_debugfs.c all functions in that file could use it.
+Hi all,
 
-Including the new functions for creating the per-client debugfs directory.
+This week this patchset was tested on 4 systems, two dGPU and two APU based=
+, and tested across multiple display and connection types.
 
-Regards,
-Christian.
+APU
+        * Single Display eDP -> 1080p 60hz, 1920x1200 165hz
+        * Single Display DP (SST DSC) -> 4k144hz, 4k240hz
+        * Multi display -> eDP + DP/HDMI/USB-C -> 1080p 60hz eDP + 4k 144hz=
+, 4k 240hz (Includes USB-C to DP/HDMI adapters)
+        * Thunderbolt -> LG Ultrafine 5k
+        * MST DSC -> Cable Matters 101075 (DP to 3x DP) with 3x 4k60hz disp=
+lays, HP Hook G2 with 2x 4k60hz displays
+        * USB 4 -> HP Hook G4, Lenovo Thunderbolt Dock, both with 2x 4k60hz=
+ DP and 1x 4k60hz HDMI displays
+        * SST PCON -> Club3D CAC-1085 + 1x 4k 144hz, FRL3, at a max resolut=
+ion supported by the dongle of 4k 120hz YUV420 12bpc.
+        * MST PCON -> 1x 4k 144hz, FRL3, at a max resolution supported by t=
+he adapter of 4k 120hz RGB 8bpc.
+
+DGPU
+        * Single Display DP (SST DSC) -> 4k144hz, 4k240hz
+        * Multiple Display DP -> 4k240hz + 4k144hz
+        * MST (Startech MST14DP123DP [DP to 3x DP] and 2x 4k 60hz displays)
+        * MST DSC (with Cable Matters 101075 [DP to 3x DP] with 3x 4k60hz d=
+isplays)
+
+The testing is a mix of automated and manual tests. Manual testing includes=
+ (but is not limited to)
+        * Changing display configurations and settings
+        * Video/Audio playback
+        * Benchmark testing
+        * Suspend/Resume testing
+        * Feature testing (Freesync, HDCP, etc.)
+
+Automated testing includes (but is not limited to)
+        * Script testing (scripts to automate some of the manual checks)
+        * IGT testing
+
+The testing is mainly tested on the following displays, but occasionally th=
+ere are tests with other displays
+        * Samsung G8 Neo 4k240hz
+        * Samsung QN55QN95B 4k 120hz
+        * Acer XV322QKKV 4k144hz
+        * HP U27 4k Wireless 4k60hz
+        * LG 27UD58B 4k60hz
+        * LG 32UN650WA 4k60hz
+        * LG Ultrafine 5k 5k60hz
+        * AU Optronics B140HAN01.1 1080p 60hz eDP
+        * AU Optronics B160UAN01.J 1920x1200 165hz eDP
+
+The patchset consists of the amd-staging-drm-next branch (Head commit - 74c=
+623c8bbfcaf5a49a25dd17a7fbe63d2b21e5d -> drm/amdgpu: add kicker fws loading=
+ for gfx11/smu13/psp13) with new patches added on top of it.
+
+Tested on Ubuntu 24.04.3, on Wayland and X11, using KDE Plasma and Gnome.
+
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
 
 
-> ~Sunil
->>
->>>   }
->>>     /**
->>> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
->>> index 06ba6dcbf5ae..32012e39dcb4 100644
->>> --- a/drivers/gpu/drm/drm_file.c
->>> +++ b/drivers/gpu/drm/drm_file.c
->>> @@ -39,6 +39,7 @@
->>>   #include <linux/poll.h>
->>>   #include <linux/slab.h>
->>>   #include <linux/vga_switcheroo.h>
->>> +#include <linux/debugfs.h>
->>>     #include <drm/drm_client_event.h>
->>>   #include <drm/drm_drv.h>
->>> @@ -133,6 +134,7 @@ struct drm_file *drm_file_alloc(struct drm_minor *minor)
->>>       struct drm_device *dev = minor->dev;
->>>       struct drm_file *file;
->>>       int ret;
->>> +    char *dir_name, *drm_name, *symlink;
->>>         file = kzalloc(sizeof(*file), GFP_KERNEL);
->>>       if (!file)
->>> @@ -143,6 +145,27 @@ struct drm_file *drm_file_alloc(struct drm_minor *minor)
->>>       rcu_assign_pointer(file->pid, get_pid(task_tgid(current)));
->>>       file->minor = minor;
->>>   +    dir_name = kasprintf(GFP_KERNEL, "client-%llu", file->client_id);
->>> +    if (!dir_name)
->>> +        return ERR_PTR(-ENOMEM);
->>> +
->>> +    /* Create a debugfs directory for the client in root on drm debugfs */
->>> +    file->debugfs_client = debugfs_create_dir(dir_name, dev->drm_debugfs_root);
->>> +    kfree(dir_name);
->>> +
->>> +    drm_name = kasprintf(GFP_KERNEL, "%d", minor->index);
->>> +    if (!drm_name)
->>> +        return ERR_PTR(-ENOMEM);
->>> +
->>> +    symlink = kasprintf(GFP_KERNEL, "../%d", minor->index);
->> Better use dev->unique here, minor->index is also only a symlink.
-> 
-> Thats a good suggestion and doable. Will update in next version
-> 
-> ~Sunil
-> 
->>
->>> +    if (!symlink)
->>> +        return ERR_PTR(-ENOMEM);
->>> +
->>> +    /* Create a link from client_id to the drm device this client id belongs to */
->>> +    debugfs_create_symlink(drm_name, file->debugfs_client, symlink);
->>> +    kfree(drm_name);
->>> +    kfree(symlink);
->>> +
->> Move all that debugfs handling into a function in drm_debugfs.c
-> Sure, let me try that and push another patch.
->>
->>>       /* for compatibility root is always authenticated */
->>>       file->authenticated = capable(CAP_SYS_ADMIN);
->>>   @@ -237,6 +260,9 @@ void drm_file_free(struct drm_file *file)
->>>         drm_events_release(file);
->>>   +    debugfs_remove_recursive(file->debugfs_client);
->>> +    file->debugfs_client = NULL;
->>> +
->> Same here, move to drm_debugfs.c
-> 
-> Sure, let me try that if there are not challenges.
-> 
-> ~sunil
-> 
->>
->> Apart from that looks solid to me.
->>
->> Regards,
->> Christian.
->>
->>
->>>       if (drm_core_check_feature(dev, DRIVER_MODESET)) {
->>>           drm_fb_release(file);
->>>           drm_property_destroy_user_blobs(dev, file);
->>> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
->>> index 6ea54a578cda..ec20b777b3cc 100644
->>> --- a/include/drm/drm_device.h
->>> +++ b/include/drm/drm_device.h
->>> @@ -325,6 +325,10 @@ struct drm_device {
->>>        * Root directory for debugfs files.
->>>        */
->>>       struct dentry *debugfs_root;
->>> +    /**
->>> +     * @drm_debugfs_root;
->>> +     */
->>> +    struct dentry *drm_debugfs_root;
->>>   };
->>>     #endif
->>> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
->>> index 5c3b2aa3e69d..eab7546aad79 100644
->>> --- a/include/drm/drm_file.h
->>> +++ b/include/drm/drm_file.h
->>> @@ -400,6 +400,13 @@ struct drm_file {
->>>        * @client_name_lock: Protects @client_name.
->>>        */
->>>       struct mutex client_name_lock;
->>> +
->>> +    /**
->>> +     * @debugfs_client:
->>> +     *
->>> +     * debugfs directory for each client under a drm node.
->>> +     */
->>> +    struct dentry *debugfs_client;
->>>   };
->>>     /**
+
+Thank you,
+
+Dan Wheeler
+Sr. Technologist  |  AMD
+SW Display
+---------------------------------------------------------------------------=
+---------------------------------------
+1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
+Facebook |  Twitter |  amd.com
+
+
+-----Original Message-----
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Sent: Wednesday, June 11, 2025 2:40 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun peng (Leo) <Sunpeng.L=
+i@amd.com>; Pillai, Aurabindo <Aurabindo.Pillai@amd.com>; Li, Roman <Roman.=
+Li@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>; Chung, ChiaHsuan (Tom) <ChiaHs=
+uan.Chung@amd.com>; Zuo, Jerry <Jerry.Zuo@amd.com>; Wheeler, Daniel <Daniel=
+.Wheeler@amd.com>; Hung, Alex <Alex.Hung@amd.com>
+Subject: [PATCH 00/10] DC Patches for 16 June 2025
+
+DC v3.2.338 highlights:
+
+* DML bug fixes
+* Add pwait to DMCUB hang reporting
+* New definitions / changes to prep for new platforms.
+* Misc cleanups
+
+_________________
+
+Alex Hung (1):
+  drm/amd/display: Check dce_hwseq before dereferencing it
+
+Charlene Liu (1):
+  drm/amd/display: add APG struct to stream_enc for future use
+
+Karthi Kandasamy (1):
+  drm/amd/display: prepare for new platform
+
+Mario Limonciello (2):
+  drm/amd/display: Use scaling for non-native resolutions on eDP
+  drm/amd/display: Disable common modes for eDP
+
+Nicholas Kazlauskas (1):
+  drm/amd/display: Add pwait status to DMCUB diagnostics
+
+Ryan Seto (1):
+  drm/amd/display: Removing Unused DPP Functions
+
+Taimur Hassan (1):
+  drm/amd/display: Promote DC to 3.2.338
+
+Yan Li (2):
+  drm/amd/display: apply two different methods to validate modes
+  drm/amd/display: remove use_native_pstate_optimization
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  18 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |   2 +-
+ .../amd/display/dc/dml2/display_mode_core.c   |   2 +-
+ .../dc/dml2/display_mode_core_structs.h       |   1 +
+ .../display/dc/dml2/dml2_translation_helper.c |  19 --
+ .../drm/amd/display/dc/dml2/dml2_wrapper.c    | 242 +++---------------
+ .../amd/display/dc/dpp/dcn401/dcn401_dpp.c    |   2 +-
+ .../amd/display/dc/dpp/dcn401/dcn401_dpp.h    |   2 -
+ .../amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c |  24 --
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c |   2 +-
+ .../amd/display/dc/inc/hw/stream_encoder.h    |   1 +
+ .../drm/amd/display/dc/mpc/dcn32/dcn32_mpc.c  |   2 +-
+ .../drm/amd/display/dc/mpc/dcn32/dcn32_mpc.h  |   8 +
+ .../dc/resource/dcn32/dcn32_resource.c        |   1 -
+ .../dc/resource/dcn321/dcn321_resource.c      |   1 -
+ .../dc/resource/dcn35/dcn35_resource.c        |   1 -
+ .../dc/resource/dcn351/dcn351_resource.c      |   1 -
+ .../dc/resource/dcn36/dcn36_resource.c        |   1 -
+ .../dc/resource/dcn401/dcn401_resource.c      |   1 -
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |   1 +
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn31.c |   5 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn35.c |   5 +-
+ .../drm/amd/display/dmub/src/dmub_dcn401.c    |   5 +-
+ 23 files changed, 78 insertions(+), 269 deletions(-)
+
+--
+2.49.0
 
