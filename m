@@ -2,71 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1D79ADCC5A
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 15:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E89ADCC52
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 15:02:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A6FD10E68C;
-	Tue, 17 Jun 2025 13:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DFFA10E674;
+	Tue, 17 Jun 2025 13:02:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="bKNGXXHb";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="SvqyFL5h";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEC4A10E38B;
- Mon, 16 Jun 2025 13:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1750080746;
- bh=8k8I7nKGUakfQ6zb/kzp99Iekk+1EYDKSkxMrzwM4Lw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=bKNGXXHbCWVSanxrc7oomr3W6aNTAWUjw623pBavKgrUyNx9JZ7CAKmBrjqA4mV+x
- ym/XaK3rlOFKW3MVcQfu8xm2rmYdpBF414TroUaqMi7JekVjifNmUN2YnlDsPTCZBu
- n0yx8Ig55k5cZUifeAfI1E+A/ANxOHBp2n+5Q47dsYLunMBLa9skMMvN3q4lR6zy/N
- ELj2GLrFkY0pn1P2rTb8Pc6ewVYTUKC+GFyU+E0ChD5H2Am9PL0gkBAmoUNbvLvZCC
- 9xXr7rY6mpIk9XG5GeV9bXbvMMQtkEpe5J8sDPjj+jfNEniVkCd6Q2DNoGdllnDm5Q
- lypsKWu443vYQ==
-Received: from eldfell (unknown [194.136.85.206])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 4081F17E0E8F;
- Mon, 16 Jun 2025 15:32:25 +0200 (CEST)
-Date: Mon, 16 Jun 2025 16:32:12 +0300
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: Alex Hung <alex.hung@amd.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
- <wayland-devel@lists.freedesktop.org>, "harry.wentland@amd.com"
- <harry.wentland@amd.com>, "leo.liu@amd.com" <leo.liu@amd.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "mwen@igalia.com" <mwen@igalia.com>, "jadahl@redhat.com"
- <jadahl@redhat.com>, "sebastian.wick@redhat.com"
- <sebastian.wick@redhat.com>, "shashank.sharma@amd.com"
- <shashank.sharma@amd.com>, "agoins@nvidia.com" <agoins@nvidia.com>,
- "joshua@froggi.es" <joshua@froggi.es>, "mdaenzer@redhat.com"
- <mdaenzer@redhat.com>, "aleixpol@kde.org" <aleixpol@kde.org>,
- "xaver.hugl@gmail.com" <xaver.hugl@gmail.com>, "victoria@system76.com"
- <victoria@system76.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>, "Shankar,
- Uma" <uma.shankar@intel.com>, "quic_naseer@quicinc.com"
- <quic_naseer@quicinc.com>, "quic_cbraga@quicinc.com"
- <quic_cbraga@quicinc.com>, "quic_abhinavk@quicinc.com"
- <quic_abhinavk@quicinc.com>, "marcan@marcan.st" <marcan@marcan.st>,
- "Liviu.Dudau@arm.com" <Liviu.Dudau@arm.com>, "sashamcintosh@google.com"
- <sashamcintosh@google.com>, "louis.chauvet@bootlin.com"
- <louis.chauvet@bootlin.com>, Daniel Stone <daniels@collabora.com>
-Subject: Re: [PATCH V9 16/43] drm/colorop: Add 3x4 CTM type
-Message-ID: <20250616163212.62361605@eldfell>
-In-Reply-To: <SJ1PR11MB61298CC231B8739FD48E30E1B970A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <20250430011115.223996-1-alex.hung@amd.com>
- <20250430011115.223996-17-alex.hung@amd.com>
- <SJ1PR11MB61298CC231B8739FD48E30E1B970A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA6510E3BB
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Jun 2025 14:54:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Transfer-Encoding:
+ Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=ImzOJ0Fu7HUWP5Tk98CrEZQ+23QR5aPJDRY8eqZP6s8=; b=SvqyFL5hLq5vK8nQbihAXrkG0G
+ hw3+hd/uF1wbC3Yj1e5Zo7ByN+JQTEazFGwTVRGmiAmxCamg2J8mUxLqMC9bn6yfGu3H5UfRPhwtj
+ rkVuK3WqM5EEYF/EoVXWs+sS/+i7WjyMX7BjJaaz+m5G3tVceT8LLAMVB+qoCiy/7KdZqRcaEEC3W
+ t07vMuQ8Tu3KDNFe+2xXhnERpnb7Z7D8hYXqiwYRJaJ0CS6pFEDHlXd23KAfG+3i4hasHl1K7vHI3
+ M9hg5KGCxZP4vMJCeKFZPAue8AGPbyb8b6Vcn9jCqh3+HNJW+8J/ClnXXu1C1KdG8G22Z1wqSrix+
+ c3c9Pftw==;
+Received: from
+ 2001-1c00-8d82-d000-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
+ ([2001:1c00:8d82:d000:266e:96ff:fe07:7dcc]
+ helo=noisy.programming.kicks-ass.net)
+ by desiato.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1uRBEM-00000003cMr-2pmi; Mon, 16 Jun 2025 14:54:38 +0000
+Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 5847430D551; Mon, 16 Jun 2025 16:54:37 +0200 (CEST)
+Date: Mon, 16 Jun 2025 16:54:37 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: alexander.deucher@amd.com, Borislav Petkov <bp@alien8.de>,
+ amd-gfx@lists.freedesktop.org
+Subject: Re: amdgpu vs kexec
+Message-ID: <20250616145437.GG1613376@noisy.programming.kicks-ass.net>
+References: <20250616093945.GA1613200@noisy.programming.kicks-ass.net>
+ <4f5f95ff-b97e-41db-b9fd-5204e6581a30@amd.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/T3duQgSDnptyMjxoNQll_bn";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4f5f95ff-b97e-41db-b9fd-5204e6581a30@amd.com>
 X-Mailman-Approved-At: Tue, 17 Jun 2025 13:02:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,97 +62,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/T3duQgSDnptyMjxoNQll_bn
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Mon, Jun 16, 2025 at 01:51:21PM +0200, Christian König wrote:
+> Hi Peter,
+> 
+> On 6/16/25 11:39, Peter Zijlstra wrote:
+> > Hi guys,
+> > 
+> > My (Intel Sapphire Rapids) workstation has a RX 7800 XT and when I kexec
+> > a bunch of times, the amdgpu driver gets upset and barfs on boot.
+> 
+> yeah, that is an "intentional" HW feature and yes you're certainly not
+> the first one to complain about it :(
+> 
+> The PSP (platform security processor IIRC) is designed in such a way
+> that you can initialize it only once after a power cycle / hard reset
+> for security reasons (e.g. to not leak crypto keys used for digital
+> rights management etc..).
+> 
+> On dGPUs we work around that manually by power cycling the ASIC when
+> that situation is detected during amdgpu load, but that unfortunately
+> doesn't work 100% reliable.
 
-On Mon, 16 Jun 2025 11:30:23 +0000
-"Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
+Right.. hence the splats.
 
-> > -----Original Message-----
-> > From: Alex Hung <alex.hung@amd.com>
-> > Sent: Wednesday, April 30, 2025 6:41 AM
-> > To: dri-devel@lists.freedesktop.org; amd-gfx@lists.freedesktop.org
-> > Cc: wayland-devel@lists.freedesktop.org; harry.wentland@amd.com;
-> > alex.hung@amd.com; leo.liu@amd.com; ville.syrjala@linux.intel.com;
-> > pekka.paalanen@collabora.com; contact@emersion.fr; mwen@igalia.com;
-> > jadahl@redhat.com; sebastian.wick@redhat.com;
-> > shashank.sharma@amd.com; agoins@nvidia.com; joshua@froggi.es;
-> > mdaenzer@redhat.com; aleixpol@kde.org; xaver.hugl@gmail.com;
-> > victoria@system76.com; daniel@ffwll.ch; Shankar, Uma
-> > <uma.shankar@intel.com>; quic_naseer@quicinc.com;
-> > quic_cbraga@quicinc.com; quic_abhinavk@quicinc.com; marcan@marcan.st;
-> > Liviu.Dudau@arm.com; sashamcintosh@google.com; Borah, Chaitanya
-> > Kumar <chaitanya.kumar.borah@intel.com>; louis.chauvet@bootlin.com;
-> > Daniel Stone <daniels@collabora.com>
-> > Subject: [PATCH V9 16/43] drm/colorop: Add 3x4 CTM type
-> >=20
-> > From: Harry Wentland <harry.wentland@amd.com>
-> >=20
-> > This type is used to support a 3x4 matrix in colorops. A 3x4 matrix use=
-s the
-> > last column as a "bias" column. Some HW exposes support for 3x4. The
-> > calculation looks like:
-> >=20
-> >  out   matrix    in
-> >  |R|   |0  1  2  3 |   | R |
-> >  |G| =3D |4  5  6  7 | x | G |
-> >  |B|   |8  9  10 11|   | B |
-> >                        |1.0|
-> >=20
-> > This is also the first colorop where we need a blob property to program=
- the
-> > property. For that we'll introduce a new DATA property that can be used=
- by all
-> > colorop TYPEs requiring a blob. The way a DATA blob is read depends on =
-the
-> > TYPE of the colorop.
-> >=20
-> > We only create the DATA property for property types that need it. =20
->=20
-> Is there any value to adding pre-offsets [1] in the uapi?=20
->=20
->  |R/Cr|    | c0 c1 c2 |   ( |R/Cr|   |preoff0| )   |postoff0|
->  |G/Y | =3D | c3 c4 c5 | x ( |G/Y | + |preoff1| ) + |postoff1|
->  |B/Cb|   | c6 c7 c8 |   ( |B/Cb|   |preoff2| )   |postoff2|
->=20
-> Handling limited range values is one use case that I can think of. =20
+> On APUs the situation is even worse because the PSP is shared between
+> the GPU and the CPU.
+> 
+> We have forwarded such complains internally for years, but there is
+> not much else Alex and I can do about it.
 
-Hi,
-
-in the mathematical sense, no. A pre-offset can always be converted
-into a post-offset by multiplying it with the 3x3 matrix (and adding to
-the existing post-offset). This can be pre-computed, no need to do
-it separately for every pixel.
-
-For hardware reasons, I have no idea.
-
-> [1] https://cgit.freedesktop.org/drm-tip/tree/drivers/gpu/drm/i915/displa=
-y/intel_color.c#n112
->=20
-
-Thanks,
-pq
-
---Sig_/T3duQgSDnptyMjxoNQll_bn
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmhQHNwACgkQI1/ltBGq
-qqccYBAAj9hZL1XZgGR1bvYIXfjb500MXuAbnT1uyPSmsEs1gxhHH6G5I55vcgDI
-sLn+ur+/KyGFrovN3qHFVhJM7TGPyeFJIfnV+cpapCNh12M0L8nQ80+IXtbjSjzR
-TgaseaQAp4EYQFzOHn79qZvQQ+xkCfVXDIqgIOZBNd6VuRLKpWurlE5k2TuNgde0
-ULopgVimIOUeI45qKaTGXmIrcUk20aU4LNcWzN9dJ12qtqnWTMIj/DJmUVYH9GSE
-Lcb2mAzfgt75zgvZWJL+C/fJK96EtudqVnliiK/LCr4qynOq7ZHVT6FK8y0cK9rB
-dqgUzDKPth130DyHMndIrkrcQ7obFxdisHNJHIKAe8BQsVMLxbJ8RVp5Il0eiAtP
-8vAodv6TGioqOETMcKHtVlo6K4oSaQQvzBuQMoXxjdQTAhoTUl3DOZvZDMkR3MuS
-T8g+LBLNg7xCg/dY5kPiQYbr+tq3Uga76Ktwdl3im0VAq5TEsm3wM8MWcQZgAmvv
-7WvxdUKMdyFvSicELVM0GAnlSR8XKWa85tXbhZIsEEuqMArDvJTG4If995xZXBAf
-VNpVLbF5muVSHWbuZqLDTJjpxG7MQDJ1ntUhkS/V7ZJ9cx53Gio0tqUmdJI7M187
-MGL3nRJdcP1gUJvfb21ZLiVRHXj9lqTQgztNEAVdVKbLajMwazc=
-=ONXQ
------END PGP SIGNATURE-----
-
---Sig_/T3duQgSDnptyMjxoNQll_bn--
+Oh well. Thanks for the info!
