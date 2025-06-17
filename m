@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EEAAADBF7E
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE23ADBF7D
 	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 05:09:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B8F410E483;
-	Tue, 17 Jun 2025 03:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4213F10E47E;
+	Tue, 17 Jun 2025 03:08:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="MwCfSbXo";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="eXIHhpql";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2082.outbound.protection.outlook.com [40.107.94.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D01B810E3BC
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2046.outbound.protection.outlook.com [40.107.236.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14F8910E3D8
  for <amd-gfx@lists.freedesktop.org>; Tue, 17 Jun 2025 03:08:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Dbl0FefitgAstsNlhsia5l4GLu+EcJzYTh52D9L3D5Hs1/3HNvnrCTjpwwvqOvPajMdBYfl9Y3bBuxmW4rQPRGFOzB4UnwLH16P9lzs+PPck+SN6fAmQqjobrRGPrI+u57eg8iLCR95kgYijVSCXKXpMO0TmOxUvhN+rtjD9cCbLFz34r5DXc/L/KKVhNE0JM6Vs7AraY80Wu/nG4cAsFCxMaCCAuQ0UdCSVfKhjjFh0Dzye2bEpwh0N+bRzEzDF8TTBfSpx+xYwFxSignW136Rfve+jfF+e2QyJD5HVXJ+BZpMpuBlVG0lN3aru8LF6yQtG8ZTuoJh6y1fK/HetCg==
+ b=VxxIusW3D+NQEpbxKGCG6sCb692aoUH64XB0jfCs73mEcmE6j53llPjsJaUU8vpQfBiWJEqL1w9QiJQLcOxpYpzdGq3wo65S3WO+BsXfA0AK6iuH9cbeaQu8jLhV09vfvDPie0ttDqYBk0l0Gv48i9KlPcVRuBlsvdbh5rRlS866mV1+5EYF8nBhypH/o/NPFdVCATU03AbD5I45NH4VO3RJVSbsM6gEqXkP642tZZ2NcMDevZsE0nGK2IvdNU/TkGtS9IkgYTbRqW/NXAwxxGAvVgNY7x5pEQEJdvVL9Sy1c1Oz4esqicGaVneYzoSljS7yBstVHJmCcW3iXtVmHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mt4nkXDW3chcPgud3WsfPkAwz4CZaypdC3EAsU1XNxI=;
- b=imkFnt6mLvEwSwMP3R5dOoueC01Pls3kF7s7mdVhtmwvB7Y4eFaQ4OXe1/WwNCpCxmu05nR6l/GCw5Ls9pxUucCFYIcWoKjkfrw8n8UjiWU2GnkwCKq65Thnv2J61jQ7HAfxb552byrt3Er/DT4Zc4MWSOpv4V4KKPe6Gf+nabDC+TUFshaeST54VuQ/aHkImrDvdj4CVqnpz1y7Sv3nJeOFbrKbBzZ6wTIi5zl+vNghEPwEDsACiqZ2Q6/8oYCu9kbVu37gJ06VAMVqZ00pSpcoJ1vOiebCzTRrcGgDoygMcYGNwA7um8CSY0EVujTl+uoNp4BXzpJaJjk5XAjI3g==
+ bh=9aEvO8J0YepYj5fqY3SoFEfGEYDXYyWlp++e80aXJQU=;
+ b=gHchSGxurdWL43XMeFysan7Bfe3TPlMO4pcAeklRdRRpuvKhgvaRJnsqAGToCgrMbp+WFHqWkP0dlMBql1jLZ0YZO1Q25QMJI4IxdNV9Hr7Y3BpsXLWa7dVezPzrT6DpvJ7su6KNstB8e0ljcMCAv8rhSDiVGzfkY3mjCdfwxWcWUYiTrI/wosnY8Fg/ljdOOc7iFO3bPuevHxsMVkHc5gui2VFwRbkjeWIQGaGnP1OGao37as7RnTGGeE2mbeM2I1Rh7fsFX2VnrSP5vCfxMlf48T1k4fe/tGIgNzA1fEsd71gNhWmfG5OXaepO1GR/usYjwO+nuA/WPO7nhh1B/g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mt4nkXDW3chcPgud3WsfPkAwz4CZaypdC3EAsU1XNxI=;
- b=MwCfSbXot5tpxpewH8lYa+O+5Z7ylpGMKjJpIjn368TPTXPkvL8KPE2swUFfFlMdTfbHV8j4lwHD0zHzWsNTdKY4OfLgjE7zemMGoeBp7r6QtxOiR+i9S0ZAbYXeuzp8UNCmtr1trbD6vjL076heOHzrcNU5frWZr+tApfWIIRQ=
-Received: from MW4PR03CA0009.namprd03.prod.outlook.com (2603:10b6:303:8f::14)
- by DS7PR12MB5959.namprd12.prod.outlook.com (2603:10b6:8:7e::21) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=9aEvO8J0YepYj5fqY3SoFEfGEYDXYyWlp++e80aXJQU=;
+ b=eXIHhpqlMcsGxVW/ILgixGb0PXU491xgMXAA++tIXPsTLtJMzQrqGe/7g/vkIvx0I3UJMR98VOCrLWGnJWpvtZN2W90ENUYHU9jJg3Eij87py5PpWBpc1i3rNP/fHx3zCdyNqF4AhgzYma1unabFHmNN0K7B77iBpnFe89qwXwI=
+Received: from MW4PR03CA0014.namprd03.prod.outlook.com (2603:10b6:303:8f::19)
+ by CY3PR12MB9555.namprd12.prod.outlook.com (2603:10b6:930:10a::14)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.28; Tue, 17 Jun
- 2025 03:08:31 +0000
+ 2025 03:08:32 +0000
 Received: from SJ1PEPF00002324.namprd03.prod.outlook.com
- (2603:10b6:303:8f:cafe::a0) by MW4PR03CA0009.outlook.office365.com
- (2603:10b6:303:8f::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8792.35 via Frontend Transport; Tue,
- 17 Jun 2025 03:08:31 +0000
+ (2603:10b6:303:8f:cafe::13) by MW4PR03CA0014.outlook.office365.com
+ (2603:10b6:303:8f::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8835.19 via Frontend Transport; Tue,
+ 17 Jun 2025 03:08:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,7 +50,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SJ1PEPF00002324.mail.protection.outlook.com (10.167.242.87) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8835.15 via Frontend Transport; Tue, 17 Jun 2025 03:08:30 +0000
+ 15.20.8835.15 via Frontend Transport; Tue, 17 Jun 2025 03:08:31 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 16 Jun
@@ -59,72 +59,66 @@ From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
  <sasundar@amd.com>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH V9 00/36] Reset improvements
-Date: Mon, 16 Jun 2025 23:07:39 -0400
-Message-ID: <20250617030815.5785-1-alexander.deucher@amd.com>
+Subject: [PATCH 01/36] drm/amdgpu: switch job hw_fence to amdgpu_fence
+Date: Mon, 16 Jun 2025 23:07:40 -0400
+Message-ID: <20250617030815.5785-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250617030815.5785-1-alexander.deucher@amd.com>
+References: <20250617030815.5785-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002324:EE_|DS7PR12MB5959:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36e8a3f7-6ded-4c83-246b-08ddad4c3cac
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002324:EE_|CY3PR12MB9555:EE_
+X-MS-Office365-Filtering-Correlation-Id: b1b8ffbc-e5ea-44ed-2db6-08ddad4c3d8f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014|13003099007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Qmp6QXJGeW1CZGw4a21NVktkNjJCRmo3d2thZzFaL281LzZVYkF5UWRaNHYr?=
- =?utf-8?B?amtKNUFFRi9SS2VUNzNPU1hBK2ZFV3R4Q2E4N3loMHA0Uk9uUDNmU2RBY2k2?=
- =?utf-8?B?WDFkbUhlMTJYN2ROVE11ZkllM3AwZDRHbFNkcDZZcHlBTjJKZGZtZ2R5NEk4?=
- =?utf-8?B?bCtEbytHdjFYaXgvb1dkeWF1alJKcXdnWFpKYkQ0R3BGRVh3TGZNb3IwY0k4?=
- =?utf-8?B?d3JLQWdEK0tRN2lmeUlVamduK3NaSEw0SG9NK09nSVEvSXh3TFlEVEJCV0Vt?=
- =?utf-8?B?Y3NGRXdTMXhFVGEyNWlVc0FrME11Tk1lcVNCM3dnWXFNSEN2dkExMzBYdVRt?=
- =?utf-8?B?Yk9RZDZ3Q3FVeVZYWTNtR0NHMXQrMno4TDZKM1NmeTB2NWZKTllsZmRpVXRP?=
- =?utf-8?B?MVZ4ZG5FQTloY29XODllK0c1ZmtuZjJFY3VMMG1jTHBEVVdPYjBNUytGd2I2?=
- =?utf-8?B?REYzSnBzaVlqM0ZkMnZjUnI2RGh0TE5tQU81RWN0QlozR0hCaDE2S1I2MHNX?=
- =?utf-8?B?R1RRbTFMc1RvbHcwODBqK2FtemowWTRCYkZNWWI4Z3FnUXk4aFRTUTd6Q0cr?=
- =?utf-8?B?ZFJXb0pYQ0poREpUMDF5cnl1UE54cGJTdWcwUmh1WEZjTmFYSTVsK25SWU1P?=
- =?utf-8?B?ODRla0ZLbjhOSG9MaHJ4T052RUp2N0pZdTBhSWtRb2lQbkhScXRUTVhPaWZF?=
- =?utf-8?B?Q0VQU1BkcnFEQ1VBeUIzdXRTUDQ5Y2JNdWRqTVVzZ2JiYThSdVcrdS9tazdk?=
- =?utf-8?B?MlBnV1FTR0FlcC9sd0d2VVgzZVR2SVptMmY0REhEOE9NSE1MRE1samtQalQ4?=
- =?utf-8?B?dXRCU3pQOTRhdjFyS3V5cWg5TGtqNDhiT2pTK1psOGdpT2ttcmdLRFJSUXlC?=
- =?utf-8?B?b1ZQdURLbFRCSmo3Yk42VUVGMWExNFFPWUpMTG9iNG1wL3d6aHVRTXpneHNo?=
- =?utf-8?B?Um5vemJLWUExTnJHbS9qb0FJeEhUc0NzZVREZHRaWlkzalhWVDk3b0NpWlVF?=
- =?utf-8?B?MXh5cEpOYlBIMkFzemQ3UndOSUkxYm41UHB1VFZxbVpRc2dFczVTZkJlMnBN?=
- =?utf-8?B?b1ZkYlE3NFRVYUpVQjlUNXBjMElQa1JVR25TQ3dTT2RLK0tUUE90K2lVR0lW?=
- =?utf-8?B?UElIREpRZVZJWHYwV2VybFRPdC9yaVpMSXZGS0ozVTFydjcrS1ZzelBPME1R?=
- =?utf-8?B?cGhGMzIyVndWTmhGYVhqUGhWN2dLYVRzc242bSs1enJtSWNCWmZsTHYxclN4?=
- =?utf-8?B?TFBqZW9ONDVxczUwS3lseVVXazZxaHdjNGJOSlExS1I5SDBKbWszbFRKendR?=
- =?utf-8?B?eWhBN2lKVXdWZHdVT1VWYUZsdVNIUVRkSTljbkNrZVJ1UDJvbEFWbTh2cGZN?=
- =?utf-8?B?aGNHSGY5WldHREQzRVdnSGU0bDZ1SDlZRGU5cUwvUFArS3BEVXNGSkVIWmtv?=
- =?utf-8?B?N0FJWGhRd05XQ2p3VlVJYlA4UnNUc3ZWekVGWXFmdkIrRGxUeTIzWXlHZUZ2?=
- =?utf-8?B?aFgxU3RKaklpektVYzF2OW1yaUV3cHJTbFBxQjduUWhMTHh0amJqK09MRFk3?=
- =?utf-8?B?dm5Xc2tadUlMc3ZFcSsrZ1RpR1MyUnRVMy9INmpQQ2FKd0FtQmNqUVYvcUhm?=
- =?utf-8?B?TmlGV1lzSFZQSE9CcHA4aDl3NUFLNmtrdE8wUklQUFJEN2xySWI4UDhlOUFZ?=
- =?utf-8?B?QjNRQzh4eXUxT3BvU2c0cFlNTHVPWStrOEJEYjBEaXJtRUVVaDB1Qy9qaFNm?=
- =?utf-8?B?bk1EaE5VZUJMVE9iZDdFekg1YktPRFppK21WOTdMZmMzK1dZUGFOYnJ2eDlQ?=
- =?utf-8?B?WFNML2NRdXlQMThubEM2amJUWExjOElia2VJNnpLS2RmVk84ZXphVFMyNkZk?=
- =?utf-8?B?cnhRTXBIN0hvNHp3NUY4ZW9NaFp6NTViQ0dwQWhyaFNGd0grdldBREVzeUMy?=
- =?utf-8?B?WEVwaFZFdHhLcUpxWER0cTlkZEpmTG83TEJrZHdBRjNaOGNwekhHRkg1RUhh?=
- =?utf-8?B?VXNPTkhWNVNRPT0=?=
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gDoLaeaZ02WiweEfzR4NRhH14dvUv/ZSbmw/QuCoCg+X/EIK+9qnmNqGjMQM?=
+ =?us-ascii?Q?LE/la2ZJCnuWzKOY8U2ymHqr4OWKAevHco7kyz7wDEyzbZJ2B/Bc4aeERs4H?=
+ =?us-ascii?Q?usQ9tapNszQoR2TuTLMwGLX8FfDjFgZlRbAEbTl94PYxQ+ewyrIw4dD7pd+O?=
+ =?us-ascii?Q?ramk0L4lJaNrQteUtl+/Shg4mDxkLkj0MExxaHKTvIqdg7JxYnIcmQsAk/jN?=
+ =?us-ascii?Q?PKEZCGbewKhwQK44R6N8Gd/O02/hR9zYzOQE8lkb3RShUHTIWYMX80wRFOay?=
+ =?us-ascii?Q?cTjUeOCAyQX0OeLzL06QwcyhRBOX3XPVZsXXykb9+iYppYINt7++vag+fW9p?=
+ =?us-ascii?Q?I5i1n6ryNccqshKV3YtEGNEGPIQlXhD8Z7BN46jzb2GLlAUbOLk2NsueL1iK?=
+ =?us-ascii?Q?ZKfufZTh5GMADu9lgxtAEzCij/nIq8ie9l9A41TYqvyN9hfRbkiYOgNSxyZe?=
+ =?us-ascii?Q?ZWiupmWctFc/cjwoW/QMA66Rob5x57WI9Xdza9MmKw3GGPGpGpCCtdKikqxP?=
+ =?us-ascii?Q?/YBRwhmfP/LCjVjQTQro6lK8cbU+XlQ0T0jfMQa9/P5rQAxCNwqxZEIhpBzA?=
+ =?us-ascii?Q?3CBX/6FEuf2jXj54gr2avhlpMtnu1G2QSMKZemWheBokXDVSairLuOXgUv/0?=
+ =?us-ascii?Q?9whcnYHrgcFXlDbu/QTKrGaFX8CoOfbhlKu1AdYlatsrcTqvZdvHvW26Mn7e?=
+ =?us-ascii?Q?D0q+02O+eairxtfM4somJk9yYf41VIO83wCR9bNQS9KD3/eVl/yNYmBUAhEZ?=
+ =?us-ascii?Q?xRYw5fOMuybw0j6sQQukjnDK+PIah6iwo0qqAEib85GF3xqo5dKE3H0pO6gS?=
+ =?us-ascii?Q?v6aRyhlpf9aHOXDKXhNhinlUMGFWZnb5wyFaOt2Aj1CpP7ov5A0S4tpijmWi?=
+ =?us-ascii?Q?JORHa0sZaMBePI+OB6OiiOEmA6sQTTCPz0TrH9komZbzqf6dlNPrI5+8CiJq?=
+ =?us-ascii?Q?fX5ZfDO0mkhMPzo3OQsOJdvjU/Bqqfqpo7mi59kcm5Vn5BTTOo2/qqGEowaz?=
+ =?us-ascii?Q?og9jH80ModGaVRqzTl8aEPWTevaklWheGN7nTOM70h77nVtNddyXzYmCJ1Jr?=
+ =?us-ascii?Q?S+wCY4/T2MNkIyAxnsn0yXpTIUJBQHA9//f0m1zMxKARFiJfyZ76berhtrL3?=
+ =?us-ascii?Q?YsWeEDbPvp7C26p5QxejRS6qR3yN/0sIQA/Hgber+6zcxRA1dOAsJBdM7umT?=
+ =?us-ascii?Q?9AmiVAdTGPomsrXIeaVKqR9MmjJp7w4IJkLS9agZnFGa7cFSq30b52BTZAaT?=
+ =?us-ascii?Q?hUJB5ELeeiFN+FwVgLSWzNTC7mzrhBYlp9TzgM2sRi8VgZUR9IW+KPbbTaPV?=
+ =?us-ascii?Q?YLSZrlTmVXiNVsdU5MXGNTSwtQrhHGggKOLEptcEwrglhWc7Tfjx8X80ChsM?=
+ =?us-ascii?Q?cWak0SOSPcp/yaS2/1awdO8zOcPi/GZxkfCnD7FXYaXOkfJjNSWMTNbpjIuw?=
+ =?us-ascii?Q?/aRk6klNAGQ7NXkfOTnh40k2WaMbXQkJWsJ/yn6kcJsnmdM6h8RQCd3vtlxW?=
+ =?us-ascii?Q?+7HYKevq5/oVPI2CYhciSlXN0HfGCKDJSCFz?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014)(13003099007);
- DIR:OUT; SFP:1101; 
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2025 03:08:30.2172 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36e8a3f7-6ded-4c83-246b-08ddad4c3cac
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2025 03:08:31.7047 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1b8ffbc-e5ea-44ed-2db6-08ddad4c3d8f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002324.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5959
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9555
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,140 +133,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This set improves per queue reset support for a number of IPs.
-When we reset the queue, the queue is lost so we need
-to re-emit the unprocessed state from subsequent submissions.
-To that end, in order to make sure we actually restore
-unprocessed state, we need to enable legacy enforce isolation
-so that we can safely re-emit the unprocessed state.  If
-we don't multiple jobs can run in parallel and we may not
-end up resetting the correct one.  This is similar to how
-windows handles queues.  This also gives us correct guilty
-tracking for GC.
+Use the amdgpu fence container so we can store additional
+data in the fence.  This also fixes the start_time handling
+for MCBP since we were casting the fence to an amdgpu_fence
+and it wasn't.
 
-Tested on GC 10 and 11 chips with a game running and
-then running hang tests.  The game pauses when the
-hang happens, then continues after the queue reset.
+Fixes: 3f4c175d62d8 ("drm/amdgpu: MCBP based on DRM scheduler (v9)")
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c   | 30 +++++----------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c     | 12 ++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h     |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h    | 16 +++++++++++
+ 6 files changed, 32 insertions(+), 32 deletions(-)
 
-I tried this same approach and GC8 and 9, but it
-was not as reliable as soft recovery.  As such, I've dropped
-the KGQ reset code for pre-GC10.
-
-The same approach is extended to SDMA and VCN.
-They don't need enforce isolation because those engines
-are single threaded so they always operate serially.
-
-Rework re-emit to signal the seq number of the bad job and
-verify that to verify that the reset worked, then re-emit the
-rest of the non-guilty state.  This way we are not waiting on
-the rest of the state to complete, and if the subsequent state
-also contains a bad job, we'll end up in queue reset again rather
-than adapter reset.
-
-Git tree:
-https://gitlab.freedesktop.org/agd5f/linux/-/commits/kq_resets?ref_type=heads
-
-v4: Drop explicit padding patches
-    Drop new timeout macro
-    Rework re-emit sequence
-v5: Add a helper for reemit
-    Convert VCN, JPEG, SDMA to use new helpers
-v6: Update SDMA 4.4.2 to use new helpers
-    Move ptr tracking to amdgpu_fence
-    Skip all jobs from the bad context on the ring
-v7: Rework the backup logic
-    Move and clean up the guilty logic for engine resets
-    Integrate suggestions from Christian
-    Add JPEG 4.0.5 support
-v8: Add non-guilty ring backup handling
-    Clean up new function signatures
-    Reorder some bug fixes to the start of the series
-v9: Clean up fence_emit
-    SDMA 5.x fixes
-    Add new reset helpers
-    sched wqueue stop/start cleanup
-    Add support for VCNs without unified queues
-
-Alex Deucher (35):
-  drm/amdgpu: switch job hw_fence to amdgpu_fence
-  drm/amdgpu: remove job parameter from amdgpu_fence_emit()
-  drm/amdgpu: remove fence slab
-  drm/amdgpu: enable legacy enforce isolation by default
-  drm/amdgpu/sdma5.x: suspend KFD queues in ring reset
-  drm/amdgpu/sdma5: init engine reset mutex
-  drm/amdgpu/sdma5.2: init engine reset mutex
-  drm/amdgpu: update ring reset function signature
-  drm/amdgpu: move force completion into ring resets
-  drm/amdgpu: move guilty handling into ring resets
-  drm/amdgpu: move scheduler wqueue handling into callbacks
-  drm/amdgpu: track ring state associated with a job
-  drm/amdgpu/gfx9: re-emit unprocessed state on kcq reset
-  drm/amdgpu/gfx9.4.3: re-emit unprocessed state on kcq reset
-  drm/amdgpu/gfx10: re-emit unprocessed state on ring reset
-  drm/amdgpu/gfx11: re-emit unprocessed state on ring reset
-  drm/amdgpu/gfx12: re-emit unprocessed state on ring reset
-  drm/amdgpu/sdma6: re-emit unprocessed state on ring reset
-  drm/amdgpu/sdma7: re-emit unprocessed state on ring reset
-  drm/amdgpu/jpeg2: re-emit unprocessed state on ring reset
-  drm/amdgpu/jpeg2.5: re-emit unprocessed state on ring reset
-  drm/amdgpu/jpeg3: re-emit unprocessed state on ring reset
-  drm/amdgpu/jpeg4: re-emit unprocessed state on ring reset
-  drm/amdgpu/jpeg4.0.3: re-emit unprocessed state on ring reset
-  drm/amdgpu/jpeg4.0.5: add queue reset
-  drm/amdgpu/jpeg5: add queue reset
-  drm/amdgpu/jpeg5.0.1: re-emit unprocessed state on ring reset
-  drm/amdgpu/vcn4: re-emit unprocessed state on ring reset
-  drm/amdgpu/vcn4.0.3: re-emit unprocessed state on ring reset
-  drm/amdgpu/vcn4.0.5: re-emit unprocessed state on ring reset
-  drm/amdgpu/vcn5: re-emit unprocessed state on ring reset
-  drm/amdgpu/vcn: add a helper framework for engine resets
-  drm/amdgpu/vcn2: implement ring reset
-  drm/amdgpu/vcn2.5: implement ring reset
-  drm/amdgpu/vcn3: implement ring reset
-
-Christian König (1):
-  drm/amdgpu: rework queue reset scheduler interaction
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h         |   3 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  15 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c     |   5 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c   | 175 +++++++++++++-------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c      |  19 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c     |  60 ++-----
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.h     |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c    |  59 +++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h    |  43 ++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c    |  17 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c     |  64 +++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h     |   6 +-
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c      |  42 ++---
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c      |  33 ++--
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c      |  33 ++--
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c       |   9 +-
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c     |  11 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c      |   7 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c      |   7 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c      |   7 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c      |   7 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c    |   7 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c    |  11 ++
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c    |  14 ++
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c    |   7 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c    |  49 +++---
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c      |  17 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c      |  17 +-
- drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c      |  25 ++-
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c      |  25 ++-
- drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c       |  25 +++
- drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c       |  24 +++
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c       |  24 +++
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c       |   8 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c     |   9 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c     |   8 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c     |   8 +-
- 38 files changed, 629 insertions(+), 275 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index 8e626f50b362e..f81608330a3d0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -1902,7 +1902,7 @@ static void amdgpu_ib_preempt_mark_partial_job(struct amdgpu_ring *ring)
+ 			continue;
+ 		}
+ 		job = to_amdgpu_job(s_job);
+-		if (preempted && (&job->hw_fence) == fence)
++		if (preempted && (&job->hw_fence.base) == fence)
+ 			/* mark the job as preempted */
+ 			job->preemption_status |= AMDGPU_IB_PREEMPTED;
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index f134394047603..13070211dc69c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -6427,7 +6427,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+ 	 *
+ 	 * job->base holds a reference to parent fence
+ 	 */
+-	if (job && dma_fence_is_signaled(&job->hw_fence)) {
++	if (job && dma_fence_is_signaled(&job->hw_fence.base)) {
+ 		job_signaled = true;
+ 		dev_info(adev->dev, "Guilty job already signaled, skipping HW reset");
+ 		goto skip_hw_reset;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 2f24a6aa13bf6..569e0e5373927 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -41,22 +41,6 @@
+ #include "amdgpu_trace.h"
+ #include "amdgpu_reset.h"
+ 
+-/*
+- * Fences mark an event in the GPUs pipeline and are used
+- * for GPU/CPU synchronization.  When the fence is written,
+- * it is expected that all buffers associated with that fence
+- * are no longer in use by the associated ring on the GPU and
+- * that the relevant GPU caches have been flushed.
+- */
+-
+-struct amdgpu_fence {
+-	struct dma_fence base;
+-
+-	/* RB, DMA, etc. */
+-	struct amdgpu_ring		*ring;
+-	ktime_t				start_timestamp;
+-};
+-
+ static struct kmem_cache *amdgpu_fence_slab;
+ 
+ int amdgpu_fence_slab_init(void)
+@@ -151,12 +135,12 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **f, struct amd
+ 		am_fence = kmem_cache_alloc(amdgpu_fence_slab, GFP_ATOMIC);
+ 		if (am_fence == NULL)
+ 			return -ENOMEM;
+-		fence = &am_fence->base;
+-		am_fence->ring = ring;
+ 	} else {
+ 		/* take use of job-embedded fence */
+-		fence = &job->hw_fence;
++		am_fence = &job->hw_fence;
+ 	}
++	fence = &am_fence->base;
++	am_fence->ring = ring;
+ 
+ 	seq = ++ring->fence_drv.sync_seq;
+ 	if (job && job->job_run_counter) {
+@@ -718,7 +702,7 @@ void amdgpu_fence_driver_clear_job_fences(struct amdgpu_ring *ring)
+ 			 * it right here or we won't be able to track them in fence_drv
+ 			 * and they will remain unsignaled during sa_bo free.
+ 			 */
+-			job = container_of(old, struct amdgpu_job, hw_fence);
++			job = container_of(old, struct amdgpu_job, hw_fence.base);
+ 			if (!job->base.s_fence && !dma_fence_is_signaled(old))
+ 				dma_fence_signal(old);
+ 			RCU_INIT_POINTER(*ptr, NULL);
+@@ -780,7 +764,7 @@ static const char *amdgpu_fence_get_timeline_name(struct dma_fence *f)
+ 
+ static const char *amdgpu_job_fence_get_timeline_name(struct dma_fence *f)
+ {
+-	struct amdgpu_job *job = container_of(f, struct amdgpu_job, hw_fence);
++	struct amdgpu_job *job = container_of(f, struct amdgpu_job, hw_fence.base);
+ 
+ 	return (const char *)to_amdgpu_ring(job->base.sched)->name;
+ }
+@@ -810,7 +794,7 @@ static bool amdgpu_fence_enable_signaling(struct dma_fence *f)
+  */
+ static bool amdgpu_job_fence_enable_signaling(struct dma_fence *f)
+ {
+-	struct amdgpu_job *job = container_of(f, struct amdgpu_job, hw_fence);
++	struct amdgpu_job *job = container_of(f, struct amdgpu_job, hw_fence.base);
+ 
+ 	if (!timer_pending(&to_amdgpu_ring(job->base.sched)->fence_drv.fallback_timer))
+ 		amdgpu_fence_schedule_fallback(to_amdgpu_ring(job->base.sched));
+@@ -845,7 +829,7 @@ static void amdgpu_job_fence_free(struct rcu_head *rcu)
+ 	struct dma_fence *f = container_of(rcu, struct dma_fence, rcu);
+ 
+ 	/* free job if fence has a parent job */
+-	kfree(container_of(f, struct amdgpu_job, hw_fence));
++	kfree(container_of(f, struct amdgpu_job, hw_fence.base));
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index acb21fc8b3ce5..ddb9d3269357c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -272,8 +272,8 @@ void amdgpu_job_free_resources(struct amdgpu_job *job)
+ 	/* Check if any fences where initialized */
+ 	if (job->base.s_fence && job->base.s_fence->finished.ops)
+ 		f = &job->base.s_fence->finished;
+-	else if (job->hw_fence.ops)
+-		f = &job->hw_fence;
++	else if (job->hw_fence.base.ops)
++		f = &job->hw_fence.base;
+ 	else
+ 		f = NULL;
+ 
+@@ -290,10 +290,10 @@ static void amdgpu_job_free_cb(struct drm_sched_job *s_job)
+ 	amdgpu_sync_free(&job->explicit_sync);
+ 
+ 	/* only put the hw fence if has embedded fence */
+-	if (!job->hw_fence.ops)
++	if (!job->hw_fence.base.ops)
+ 		kfree(job);
+ 	else
+-		dma_fence_put(&job->hw_fence);
++		dma_fence_put(&job->hw_fence.base);
+ }
+ 
+ void amdgpu_job_set_gang_leader(struct amdgpu_job *job,
+@@ -322,10 +322,10 @@ void amdgpu_job_free(struct amdgpu_job *job)
+ 	if (job->gang_submit != &job->base.s_fence->scheduled)
+ 		dma_fence_put(job->gang_submit);
+ 
+-	if (!job->hw_fence.ops)
++	if (!job->hw_fence.base.ops)
+ 		kfree(job);
+ 	else
+-		dma_fence_put(&job->hw_fence);
++		dma_fence_put(&job->hw_fence.base);
+ }
+ 
+ struct dma_fence *amdgpu_job_submit(struct amdgpu_job *job)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+index f2c049129661f..931fed8892cc1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+@@ -48,7 +48,7 @@ struct amdgpu_job {
+ 	struct drm_sched_job    base;
+ 	struct amdgpu_vm	*vm;
+ 	struct amdgpu_sync	explicit_sync;
+-	struct dma_fence	hw_fence;
++	struct amdgpu_fence	hw_fence;
+ 	struct dma_fence	*gang_submit;
+ 	uint32_t		preamble_status;
+ 	uint32_t                preemption_status;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index b95b471107692..e1f25218943a4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -127,6 +127,22 @@ struct amdgpu_fence_driver {
+ 	struct dma_fence		**fences;
+ };
+ 
++/*
++ * Fences mark an event in the GPUs pipeline and are used
++ * for GPU/CPU synchronization.  When the fence is written,
++ * it is expected that all buffers associated with that fence
++ * are no longer in use by the associated ring on the GPU and
++ * that the relevant GPU caches have been flushed.
++ */
++
++struct amdgpu_fence {
++	struct dma_fence base;
++
++	/* RB, DMA, etc. */
++	struct amdgpu_ring		*ring;
++	ktime_t				start_timestamp;
++};
++
+ extern const struct drm_sched_backend_ops amdgpu_sched_ops;
+ 
+ void amdgpu_fence_driver_clear_job_fences(struct amdgpu_ring *ring);
 -- 
 2.49.0
 
