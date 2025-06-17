@@ -2,60 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7968ADCC4F
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 15:02:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73D97ADCC56
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 15:02:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F36410E677;
-	Tue, 17 Jun 2025 13:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91A0C10E690;
+	Tue, 17 Jun 2025 13:02:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=foxmail.com header.i=@foxmail.com header.b="U78h4Hif";
+	dkim=pass (2048-bit key; secure) header.d=disroot.org header.i=@disroot.org header.b="BBArIcmN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 499 seconds by postgrey-1.36 at gabe;
- Tue, 17 Jun 2025 08:59:09 UTC
-Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com
- [162.62.57.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A06010E541;
- Tue, 17 Jun 2025 08:59:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
- s=s201512; t=1750150746;
- bh=2gVFkORzM62hZB18JS/222UmlfBatrpXaEZJPo4NBDg=;
- h=From:To:Cc:Subject:Date;
- b=U78h4Hif9dVyWARrO5evDvy7A48bhkzKnkfCSjMtHxjiMtKkyC8yDd9sNp8dc5N6n
- FxyfiYgEtN8dzPGiA2//WaN8w7BkCLJeBaWR6PCUxHxxcwqR4poHv60facdCFS6x+A
- MftwUXYx0t5W3oJ9fwnTKuVRdALcREw7ZOPrqL9c=
-Received: from localhost.localdomain ([116.128.244.169])
- by newxmesmtplogicsvrszb16-1.qq.com (NewEsmtp) with SMTP
- id B67830BE; Tue, 17 Jun 2025 16:45:39 +0800
-X-QQ-mid: xmsmtpt1750149939tfjk0u1ko
-Message-ID: <tencent_24A44EBAE7F05D812288B973A8EC2013BC09@qq.com>
-X-QQ-XMAILINFO: No7DFzN00JnRs2AZ9M9EPgnY/wZEwJNUZpthjcQ9o7AUHD2ySvoAQVE5/Xy5ux
- pNO+Ng4Gwf8TbQ8rbFGQQdm2bVqnVopO+CXLLsY3WW3FHNoG3YJ8BgCT4T5jjL9s/BdbXk9p9BkV
- EFIWskl3v5kGMyqARd18knuJcUDyGiABD09PvMvCpOAZlPBs1zWXfLVoOccv/FlhPLr/KlHnhxnR
- fltVBMktIA+onVZVzcB9Na+SVPwXNoGBxf28LJ7JhqJ1vKYyF3c7fcHS/EnFthMdPjUHLK5Hvqbd
- bQi0j8y30uKNdaqoWAYFZJESb8sT8+XV9QqEINwbCBFFcMr4em0iG7kWj+sDIcYd+YbYsmgyYc01
- RHS/wk6BrfanRSxbBZk/1sHtWPeyBwyE9P71CoA+xRalrUiX2+5GibAAFLzw7w5wYZz+9fGIK0Hg
- sf44RLUPjIhSUy83w55Mxy/6DBTOh+qwNwY4WKe4mxL4Oayi3/jE6JTAUSZS8J90OWN7RDuj3v8a
- sd2jBB3S/INT2pyHKFrxOIFobSl9nQ/ho3qet2mhub1I5hSqRqUeHSZwXmv1K4Gfdqh9krnhzJ5O
- xkdhlOUqnpeENx1DfcDFyCdseEkf6pznxD9PaB2JNqd7rqU7esHu+2xRZAWCGyHCjIB/2+KzAcJ8
- JdlmbOUal6qiOrM8QMOmw5KjwkHKJY7nQZaBZO0pmvccCQASTK/EFLWpIAnHoMNLWqHr4arlc0lb
- pw9saynpmvFp8Xra6ATkhT+PxA1HBs2gC96aLP3DpSf+D6SWC6uEUiAWVTR4NWhL20ZfUPWyMgBj
- BPLvCr/FF+RAcUnchgwdF01OdiOF21iT5SjQ7AgWLki+l0TKMGPNbTVcrHmKPRq2aY433qmj1Fo2
- qMGAwpDC7QA66Ol/dadhDb4wsw9LBOr2vuoDI18QS+0Jpu3AhXZ3r4QaxLVyhWGnFqT77G4amLkK
- yNokzGpNtWkg8VodchsS4j8cQ0a6slvj2wKp8ZJuwW88gKyTxj2YigPTbzcxPJMgNh4H/Afmo=
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-From: xiaopeitux@foxmail.com
-To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Pei Xiao <xiaopei01@kylinos.cn>
-Subject: [PATCH] drm/amd/display: sspl: Use of macro ARRAY_SIZE to calculate
- array size
-Date: Tue, 17 Jun 2025 16:45:38 +0800
-X-OQ-MSGID: <1a2b56dba50b9b4fc4b69ffdf84de6e67e7e3dff.1750148897.git.xiaopei01@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE9CF10E58F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Jun 2025 09:42:05 +0000 (UTC)
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+ by disroot.org (Postfix) with ESMTP id 7B0E425F98;
+ Tue, 17 Jun 2025 11:42:04 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id DLfz8DzFOpKU; Tue, 17 Jun 2025 11:42:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+ t=1750153323; bh=kEVr5LRDJXI5+NMKIDFQUd9VmCGFm55tC/Y7nPANTt8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References;
+ b=BBArIcmNxHIoKXxCgCBxozEjIHCMN0lxBNp8rZFkzi4cfUkTmHUYZA+btASY+rxE0
+ Zk42MC5u/x40Y32dkU6MEq9405EV1UR2DhNI8mtSCelB1EOtsnKjYkm+qNFPmtjFup
+ Xnb5iAjftrdy6AcGBVVFQaBW0EP1mU4N9lYhMgc7iOxlUrgDgbvXY2D1MUOe5jtyfo
+ 2L7b475uhTOlyAtprlcIMMw06ieRPzrRUOxzGS+MqMwcs3KmWSW4fyv+GhBaLcMd1e
+ JOaJEZDqCoT9jxAsG2/W76gPiEMQZcfwYF6W+0HLBSMiUJSVT084pZYKoMKAD6hHlg
+ aqi5zH64yEj4Q==
 MIME-Version: 1.0
+Date: Tue, 17 Jun 2025 11:42:03 +0200
+From: machion@disroot.org
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: stable@vger.kernel.org, regressions@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ christian.koenig@amd.com
+Subject: Re: Unplayable framerates in game but specific kernel versions work, 
+ maybe amdgpu problem
+In-Reply-To: <CADnq5_PkOuAHuDjMNXABEcenaZFZgU044G=9pTu=EgMr_grXbw@mail.gmail.com>
+References: <c415d9e0b08bcba068b01700225bf560@disroot.org>
+ <CADnq5_PX1dYF2Jd3q7ghaBjpPhNLq9EmFJtN1w6YOSfVo++7sA@mail.gmail.com>
+ <69b5ebaa719355994a383fa026dc3fba@disroot.org>
+ <CADnq5_PkOuAHuDjMNXABEcenaZFZgU044G=9pTu=EgMr_grXbw@mail.gmail.com>
+Message-ID: <fadf714ecdc2e3bd5bed0c3ee69177a1@disroot.org>
+X-Sender: machion@disroot.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 17 Jun 2025 13:02:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -72,177 +65,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Pei Xiao <xiaopei01@kylinos.cn>
+I feared that.
 
-Use of macro ARRAY_SIZE to calculate array size and reduce the number of
-lines of code.
+It seems a crazy problem, when many people are affected and in opposite 
+ways.
+This ReBAR/UEFI thing is also new to me, but I don't have this on my 
+system either (using BIOS/MBR).
 
-cocci warning:
-drivers/gpu/drm/amd/display/dc/sspl/dc_spl_scl_easf_filters.c:
-	WARNING: Use ARRAY_SIZE
+I hope, it can be fixed for all scenarios.
 
-Signed-off-by: Pei Xiao <xiaopei01@kylinos.cn>
----
- .../display/dc/sspl/dc_spl_scl_easf_filters.c | 50 +++++++------------
- 1 file changed, 17 insertions(+), 33 deletions(-)
+Marion
 
-diff --git a/drivers/gpu/drm/amd/display/dc/sspl/dc_spl_scl_easf_filters.c b/drivers/gpu/drm/amd/display/dc/sspl/dc_spl_scl_easf_filters.c
-index 0d1bd81ff04a..1b11dc886a7e 100644
---- a/drivers/gpu/drm/amd/display/dc/sspl/dc_spl_scl_easf_filters.c
-+++ b/drivers/gpu/drm/amd/display/dc/sspl/dc_spl_scl_easf_filters.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: MIT
- //
- // Copyright 2024 Advanced Micro Devices, Inc.
--
-+#include <linux/array_size.h>
- #include "spl_debug.h"
- #include "dc_spl_filters.h"
- #include "dc_spl_scl_filters.h"
-@@ -2409,8 +2409,7 @@ static uint32_t spl_easf_get_scale_ratio_to_reg_value(struct spl_fixed31_32 rati
- uint32_t spl_get_v_bf3_mode(struct spl_fixed31_32 ratio)
- {
- 	uint32_t value;
--	unsigned int num_entries = sizeof(easf_v_bf3_mode_lookup) /
--		sizeof(struct scale_ratio_to_reg_value_lookup);
-+	unsigned int num_entries = ARRAY_SIZE(easf_v_bf3_mode_lookup);
- 	value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 		easf_v_bf3_mode_lookup, num_entries);
- 	return value;
-@@ -2418,8 +2417,7 @@ uint32_t spl_get_v_bf3_mode(struct spl_fixed31_32 ratio)
- uint32_t spl_get_h_bf3_mode(struct spl_fixed31_32 ratio)
- {
- 	uint32_t value;
--	unsigned int num_entries = sizeof(easf_h_bf3_mode_lookup) /
--		sizeof(struct scale_ratio_to_reg_value_lookup);
-+	unsigned int num_entries = ARRAY_SIZE(easf_h_bf3_mode_lookup);
- 	value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 		easf_h_bf3_mode_lookup, num_entries);
- 	return value;
-@@ -2430,13 +2428,11 @@ uint32_t spl_get_reducer_gain6(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 4) {
--		num_entries = sizeof(easf_reducer_gain6_4tap_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_reducer_gain6_4tap_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_reducer_gain6_4tap_lookup, num_entries);
- 	} else if (taps == 6) {
--		num_entries = sizeof(easf_reducer_gain6_6tap_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_reducer_gain6_6tap_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_reducer_gain6_6tap_lookup, num_entries);
- 	} else
-@@ -2449,13 +2445,11 @@ uint32_t spl_get_reducer_gain4(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 4) {
--		num_entries = sizeof(easf_reducer_gain4_4tap_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_reducer_gain4_4tap_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_reducer_gain4_4tap_lookup, num_entries);
- 	} else if (taps == 6) {
--		num_entries = sizeof(easf_reducer_gain4_6tap_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_reducer_gain4_6tap_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_reducer_gain4_6tap_lookup, num_entries);
- 	} else
-@@ -2468,13 +2462,11 @@ uint32_t spl_get_gainRing6(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 4) {
--		num_entries = sizeof(easf_gain_ring6_4tap_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_gain_ring6_4tap_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_gain_ring6_4tap_lookup, num_entries);
- 	} else if (taps == 6) {
--		num_entries = sizeof(easf_gain_ring6_6tap_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_gain_ring6_6tap_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_gain_ring6_6tap_lookup, num_entries);
- 	} else
-@@ -2487,13 +2479,11 @@ uint32_t spl_get_gainRing4(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 4) {
--		num_entries = sizeof(easf_gain_ring4_4tap_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_gain_ring4_4tap_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_gain_ring4_4tap_lookup, num_entries);
- 	} else if (taps == 6) {
--		num_entries = sizeof(easf_gain_ring4_6tap_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_gain_ring4_6tap_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_gain_ring4_6tap_lookup, num_entries);
- 	} else
-@@ -2506,8 +2496,7 @@ uint32_t spl_get_3tap_dntilt_uptilt_offset(int taps, struct spl_fixed31_32 ratio
- 	unsigned int num_entries;
- 
- 	if (taps == 3) {
--		num_entries = sizeof(easf_3tap_dntilt_uptilt_offset_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_3tap_dntilt_uptilt_offset_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_3tap_dntilt_uptilt_offset_lookup, num_entries);
- 	} else
-@@ -2520,8 +2509,7 @@ uint32_t spl_get_3tap_uptilt_maxval(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 3) {
--		num_entries = sizeof(easf_3tap_uptilt_maxval_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_3tap_uptilt_maxval_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_3tap_uptilt_maxval_lookup, num_entries);
- 	} else
-@@ -2534,8 +2522,7 @@ uint32_t spl_get_3tap_dntilt_slope(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 3) {
--		num_entries = sizeof(easf_3tap_dntilt_slope_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_3tap_dntilt_slope_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_3tap_dntilt_slope_lookup, num_entries);
- 	} else
-@@ -2548,8 +2535,7 @@ uint32_t spl_get_3tap_uptilt1_slope(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 3) {
--		num_entries = sizeof(easf_3tap_uptilt1_slope_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_3tap_uptilt1_slope_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_3tap_uptilt1_slope_lookup, num_entries);
- 	} else
-@@ -2562,8 +2548,7 @@ uint32_t spl_get_3tap_uptilt2_slope(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 3) {
--		num_entries = sizeof(easf_3tap_uptilt2_slope_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_3tap_uptilt2_slope_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_3tap_uptilt2_slope_lookup, num_entries);
- 	} else
-@@ -2576,8 +2561,7 @@ uint32_t spl_get_3tap_uptilt2_offset(int taps, struct spl_fixed31_32 ratio)
- 	unsigned int num_entries;
- 
- 	if (taps == 3) {
--		num_entries = sizeof(easf_3tap_uptilt2_offset_lookup) /
--			sizeof(struct scale_ratio_to_reg_value_lookup);
-+		num_entries = ARRAY_SIZE(easf_3tap_uptilt2_offset_lookup);
- 		value = spl_easf_get_scale_ratio_to_reg_value(ratio,
- 			easf_3tap_uptilt2_offset_lookup, num_entries);
- 	} else
--- 
-2.25.1
-
+Am 2025-06-16 15:29, schrieb Alex Deucher:
+> On Fri, Jun 13, 2025 at 3:38 PM <machion@disroot.org> wrote:
+>> 
+>> Hi,
+>> sorry for the delay.
+>> Besides less time, I had to make myself familiar with bisecting and
+>> again kernel compiling. Last time I compiled the kernel myself was
+>> around 2010 I think.
+>> 
+>> Anyway it seems I found the bad commit. The result after bisecting 10
+>> commits is:
+>> 
+>> a53d959fe660341788cb8dbc3ac3330d90a09ecf is the first bad commit
+>> commit a53d959fe660341788cb8dbc3ac3330d90a09ecf
+>> Author: Christian König <christian.koenig@amd.com>
+>> Date:   Thu Mar 20 14:46:18 2025 +0100
+>> 
+>>      drm/amdgpu: immediately use GTT for new allocations
+>> 
+>>      commit a755906fb2b8370c43e91ba437ae1b3e228e8b02 upstream.
+>> 
+>>      Only use GTT as a fallback if we already have a backing store. 
+>> This
+>>      prevents evictions when an application constantly allocates and
+>> frees new
+>>      memory.
+>> 
+>>      Partially fixes
+>>      
+>> https://gitlab.freedesktop.org/drm/amd/-/issues/3844#note_2833985.
+>> 
+>>      Signed-off-by: Christian König <christian.koenig@amd.com>
+>>      Fixes: 216c1282dde3 ("drm/amdgpu: use GTT only as fallback for
+>> VRAM|GTT")
+>>      Acked-by: Alex Deucher <alexander.deucher@amd.com>
+>>      Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>>      Cc: stable@vger.kernel.org
+>>      Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>> 
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> Unfortunately reverting that commit will reintroduce a similar
+> performance issue for lots of other uses.  See:
+> https://gitlab.freedesktop.org/drm/amd/-/issues/3844#note_2827990
+> for a description of the fundemental problem.
+> 
+> Alex
+> 
+>> 
+>> Marion
+>> 
+>> 
+>> Am 2025-05-08 15:18, schrieb Alex Deucher:
+>> > On Thu, May 8, 2025 at 9:13 AM <machion@disroot.org> wrote:
+>> >>
+>> >> Hello kernel/driver developers,
+>> >>
+>> >> I hope, with my information it's possible to find a bug/problem in the
+>> >> kernel. Otherwise I am sorry, that I disturbed you.
+>> >> I only use LTS kernels, but I can narrow it down to a hand full of
+>> >> them,
+>> >> where it works.
+>> >>
+>> >> The PC: Manjaro Stable/Cinnamon/X11/AMD Ryzen 5 2600/Radeon HD
+>> >> 7790/8GB
+>> >> RAM
+>> >> I already asked the Manjaro community, but with no luck.
+>> >>
+>> >> The game: Hellpoint (GOG Linux latest version, Unity3D-Engine v2021),
+>> >> uses vulkan
+>> >>
+>> >> ---
+>> >>
+>> >> I came a long road of kernels. I had many versions of 5.4, 5.10, 5.15,
+>> >> 6.1 and 6.6 and and the game was always unplayable, because the frames
+>> >> where around 1fps (performance of PC is not the problem).
+>> >> I asked the mesa and cinnamon team for help in the past, but also with
+>> >> no luck.
+>> >> It never worked, till on 2025-03-29 when I installed 6.12.19 for the
+>> >> first time and it worked!
+>> >>
+>> >> But it only worked with 6.12.19, 6.12.20 and 6.12.21
+>> >> When I updated to 6.12.25, it was back to unplayable.
+>> >
+>> > Can you bisect to see what fixed it in 6.12.19 or what broke it in
+>> > 6.12.25?  For example if it was working in 6.12.21 and not working in
+>> > 6.12.25, you can bisect between 6.12.21 and .25.
+>> >
+>> > Alex
+>> >
+>> >>
+>> >> For testing I installed 6.14.4 with the same result. It doesn't work.
+>> >>
+>> >> I also compared file /proc/config.gz of both kernels (6.12.21 <>
+>> >> 6.14.4), but can't seem to see drastic changes to the graphical part.
+>> >>
+>> >> I presume it has something to do with amdgpu.
+>> >>
+>> >> If you need more information, I would be happy to help.
+>> >>
+>> >> Kind regards,
+>> >> Marion
