@@ -2,56 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20401ADCC46
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 15:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F22ADCC58
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jun 2025 15:02:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CCA710E660;
-	Tue, 17 Jun 2025 13:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E606710E699;
+	Tue, 17 Jun 2025 13:02:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="S6vJATHD";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="BdsvolV7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 614C910E432;
- Mon, 16 Jun 2025 18:15:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=HoiH7l3fENLBTE2ibK2tEdCTvd0Zntd1kdiJj4+rKlE=; b=S6vJATHDbgMv1X0XOriLBSRSPr
- 1c+rADVNGTiXsY7wmFw8PvxO87yFr5t/U/aye+LWMIzMBIrEAsDzB5iCrkEpA+DunEZFW2L4WPbX8
- GXFxUFyLOfockJgonTV2GxnCwo0sADSI+s7vJnyU9sXk/EizLoObNB0juT4nADlpEhElf9tF7AqPV
- hezfQdsdS463Sydd0eipLI+UHqUwC8j7k8kAZ3EtpJWkyocuGwULDAxAaR3SRCXHL5TZlymJi1Bw4
- F2v48woVuzz97qroNmp+LaAKu2jNMnezO/KkIds51IjHwxgDH78ka8oKEr4NT/Iq+McZ2sD/Jdgi+
- ecEoyphg==;
-Received: from [191.204.192.64] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uREMt-004Eh6-Rx; Mon, 16 Jun 2025 20:15:40 +0200
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: "Alex Deucher" <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
- "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v8 6/6] drm/amdgpu: Make use of drm_wedge_task_info
-Date: Mon, 16 Jun 2025 15:14:38 -0300
-Message-ID: <20250616181438.2124656-7-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250616181438.2124656-1-andrealmeid@igalia.com>
-References: <20250616181438.2124656-1-andrealmeid@igalia.com>
+X-Greylist: delayed 846 seconds by postgrey-1.36 at gabe;
+ Tue, 17 Jun 2025 06:54:39 UTC
+Received: from mout.web.de (mout.web.de [212.227.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61DA210E059
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Jun 2025 06:54:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1750143267; x=1750748067; i=markus.elfring@web.de;
+ bh=W/eYVUsYjhYNAzlFtlDPOabUz5P88wa8dv8eQF4JdOw=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+ References:From:In-Reply-To:Content-Type:
+ Content-Transfer-Encoding:cc:content-transfer-encoding:
+ content-type:date:from:message-id:mime-version:reply-to:subject:
+ to;
+ b=BdsvolV7bQyozsWc6AcsCzupRFadsD/7O5fmSEcENfpCfo40Bat/B6/UTB3DGRi5
+ J3swKRGKjZ2vMQ8RRwSQ1obmvL5kEo4bFJ1b7BnvC34YOepN5vx+K0MeX2Ttq2SNm
+ 16QkZyiemjZyWns5sfH77P3b5gsJ1167pQnwUFr+lCyhT05SZ5A63xi0SfVm1dYch
+ TwrbGvjx9qJmkcsUeIbaIw0ZZLF8kDMFbyDqcT7m8kNRfI1i+rR/sLHhBMJpisw7r
+ YTE6Y9yGkoGRlWr+8HQkD1ed73iISc4SXfmQ9QmWLGpOitZrwoDcGQboZb4SMTOAH
+ ANk2cjdu6dOKon3HNQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.69.238]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MRk0W-1uLStw45Uo-00L8b0; Tue, 17
+ Jun 2025 08:40:31 +0200
+Message-ID: <f9bffb72-b463-45d0-ac72-9a5ff4daec38@web.de>
+Date: Tue, 17 Jun 2025 08:40:28 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v3] drm/amd/display: Fix exception handling in
+ dm_validate_stream_and_context()
+To: Alex Hung <alex.hung@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Dominik Kaszewski <dominik.kaszewski@amd.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Mario Limonciello <mario.limonciello@amd.com>,
+ Roman Li <roman.li@amd.com>, Simona Vetter <simona@ffwll.ch>,
+ Tom Chung <chiahsuan.chung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+ lkp@intel.com, oe-kbuild-all@lists.linux.dev, llvm@lists.linux.dev,
+ cocci@inria.fr, Melissa Wen <mwen@igalia.com>
+References: <f9303bdc-b1a7-be5e-56c6-dfa8232b8b55@web.de>
+ <e6656c83-ee7a-a253-2028-109138779c94@web.de>
+ <ea0ff67b-3665-db82-9792-67a633ba07f5@web.de>
+ <32674bac-92c2-8fc7-0977-6d2d81b3257f@amd.com>
+ <da489521-7786-4716-8fb8-d79b3c08d93c@web.de>
+ <8684e2ba-b644-44c8-adf7-9f1423a1251d@web.de>
+ <ba89d859-f132-4e7d-ba29-47331e02152a@amd.com>
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <ba89d859-f132-4e7d-ba29-47331e02152a@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:hnrgU48qW8YbbumGxfVVaCQYutIW5tQhAnG2uxaNogCv+Volpoz
+ NtmjNa9mVp1Vuc014Zos4Xx/7c7bXp3juCUjI3normNm47Rk1rswj21iMGDp7AcOX7DblMb
+ KwwbP0mep3lNNqI9JxRT3dxZn3UYBMTSkeenIAn3Ux2HAwTpkF0J6NIhXnlxWYwlkXIwnis
+ mJXovzuulJoDRcs3vcBIQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:7HxqG3Rx4i8=;wS1c0XkyRDcJGb/QEhbXkR61HhH
+ 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
+ hp6wI9UXaNAT9mu8GKqYltgLf1TikEDXCOnG4A==
 X-Mailman-Approved-At: Tue, 17 Jun 2025 13:02:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,86 +133,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To notify userspace about which task (if any) made the device get in a
-wedge state, make use of drm_wedge_task_info parameter, filling it with
-the task PID and name.
+=E2=80=A6
+>> 1. Thus return directly if
+=E2=80=A6
+> I guess the intention was to reduce goto statements.
+=E2=80=A6
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
----
-v8:
- - Drop check before calling amdgpu_vm_put_task_info()
- - Drop local variable `info`
-v7:
- - Remove struct cast, now we can use `info = &ti->task`
- - Fix struct lifetime, move amdgpu_vm_put_task_info() after
-   drm_dev_wedged_event() call
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 13 +++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  7 +++++--
- 2 files changed, 16 insertions(+), 4 deletions(-)
+Partly, yes.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 8a0f36f33f13..a59f194e3360 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6363,8 +6363,17 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 
- 	atomic_set(&adev->reset_domain->reset_res, r);
- 
--	if (!r)
--		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-+	if (!r) {
-+		struct amdgpu_task_info *ti = NULL;
-+
-+		if (job)
-+			ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
-+
-+		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE,
-+				     ti ? &ti->task : NULL);
-+
-+		amdgpu_vm_put_task_info(ti);
-+	}
- 
- 	return r;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index 0c1381b527fe..1e24590ae144 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -89,6 +89,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- {
- 	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
- 	struct amdgpu_job *job = to_amdgpu_job(s_job);
-+	struct drm_wedge_task_info *info = NULL;
- 	struct amdgpu_task_info *ti;
- 	struct amdgpu_device *adev = ring->adev;
- 	int idx;
-@@ -125,7 +126,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 	ti = amdgpu_vm_get_task_info_pasid(ring->adev, job->pasid);
- 	if (ti) {
- 		amdgpu_vm_print_task_info(adev, ti);
--		amdgpu_vm_put_task_info(ti);
-+		info = &ti->task;
- 	}
- 
- 	/* attempt a per ring reset */
-@@ -164,13 +165,15 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 			if (amdgpu_ring_sched_ready(ring))
- 				drm_sched_start(&ring->sched, 0);
- 			dev_err(adev->dev, "Ring %s reset succeeded\n", ring->sched.name);
--			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-+			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
- 			goto exit;
- 		}
- 		dev_err(adev->dev, "Ring %s reset failure\n", ring->sched.name);
- 	}
- 	dma_fence_set_error(&s_job->s_fence->finished, -ETIME);
- 
-+	amdgpu_vm_put_task_info(ti);
-+
- 	if (amdgpu_device_should_recover_gpu(ring->adev)) {
- 		struct amdgpu_reset_context reset_context;
- 		memset(&reset_context, 0, sizeof(reset_context));
--- 
-2.49.0
+See also once more:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/coding-style.rst?h=3Dv6.16-rc2#n532
 
+Regards,
+Markus
