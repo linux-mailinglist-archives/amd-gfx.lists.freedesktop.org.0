@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87E8ADF1E4
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Jun 2025 17:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E7CADF1E1
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Jun 2025 17:55:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C9EC10E8BC;
-	Wed, 18 Jun 2025 15:55:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DD7110E8C9;
+	Wed, 18 Jun 2025 15:55:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="P8ANGNbO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pfN878Ul";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98AC810E8BD
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2048.outbound.protection.outlook.com [40.107.243.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67F7C10E8BC
  for <amd-gfx@lists.freedesktop.org>; Wed, 18 Jun 2025 15:54:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tEMPrT1HvmWvZEkMj1aFMnVfG1o9hvnktwJE010gBmKW38SjLYU2EDdwOvgubMvR07d3+gpm53zyS9LfQflMBclmPIsPnkMCsDU+a5RgI3cxFwAWhkcQY+9D0eb6t/MSmPWKG3lWejz2ubfY6L44ExclKOL/zOd2cJHShpUsrqCwgzubZy+cNk5OaMMVwX1i+lUuj1v29I6fQphjJiiUvQRGY5noIvyeo6EkPjFY/FPQ2AlNoXcEkZgVQ9XNRqpRqu6WhaLXhVFoA6b/hqYF2xWhYXkWmEat+ZLNehy+5U8LupNeN5zSq7tCuI6+ggAsbfXRRTiySkX2IeOUN7rW/w==
+ b=gbM28yki8WoLcQwHDR1YQHnZ7zSWQLtK26MoJP0efNc65N9bV+mcwtUGM+fxLu0vUgJx8Ec1nLh3JFU3qeQSlENFH38/dG/qYNO7JFS8gdFIy9Bz66gLWIokgFi7cQqceEGdRYc6IEiNRQ2unWX5/mDBsMdHWkBBz4xluduXBwDqBg0DAZhVLMVq6vW1rpidbPN/yDLesdcTOFfNqiiN2nTb08JQVH3UrtAen26cWGlqA//+nyHLFvXN2dQe0of212gHsBFCHgHO2N/FH6rGERwYwsWbXUVUCjN84sEAJbGo8dG6M7n4hLaHCklZBl/hTytISzJiIhEv9cJaQ+5FXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q//yOKtJgvDDLgZziCoYV4epipnj2NDvFXr1/BUcotQ=;
- b=rnZM7rDqKpoun7NEBhfdBi05PEQI+fO+gPHs1uNwT5g4rFV0oS0cq8Zth6YHIn+6xa1wrpdxEgL1V/FQ574HfP662EHI2mtPVQrhFsUiZehksp0Bsh3AYkQekBoxMbApJCjr7ANCuNrgi/wJuiuHGd7YR9CUUFXcAcEbL4YVmqTtujmim5DJraKhBDbEDxc3t8Rovig2rVrLt+SQ6NTJWIb64Lxx3vfaWXrZOBkaZdgBbBbMPwVSLHsxESg0ZSSQcdvNyueDXabESjgmN4lGvmuyCG/H3lXMz2ZDWdj/K+5kQPFvQZqsF7HlCDCkTENIHqML7t5AQUbd4M1NhdGy3w==
+ bh=IdiyNjipMNSiy0ynrAIvL9qCKoI5P4RmYDykBchVxzo=;
+ b=ToTvsfAinUg68pO96yLQfvgDlrRVOLa0ej53Llr+35vXjtDDzXot7+/850qGAVRjGItr7LVmjqvi/L1/xmIiHC3HINoCZH/KHKmofe0C8+d/4xYJhKzwV4iSw6pKSuDw14RQWGJE8/mvUd/N84xf4JdwLnSV5Des3EXKnl/zLwPNjgaMJAyWg9llp+4MiaHa/vJ42e5nPK6xkVDnqF1N8TbJzTgEx1nRsjJ9dH+4r/4Xrp9Q7oO7WxVufGTCGwpgH8O9rFUknoU98ovAHzqHbbemXlB4cOtthk88ExLpL73HaviY0PY+c3SCOwJAp6Yp+shBwlJa1vd1Xp36rc9GTg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q//yOKtJgvDDLgZziCoYV4epipnj2NDvFXr1/BUcotQ=;
- b=P8ANGNbO8cZJI7Oipfq5UsJjg9wkgZ5J28J+g/c8J9wnyukLlKgeeCk7+cruHxoDf26c+vGlnVhLFKwlPpIv80ptbdTcw6DR/ozm8kzdylCvh/Ya1t4gpJPsRODhdt9FNtGcBhRu4S74UKEwGFj6OvvpXBcFsHSUkpLthf7fTV4=
-Received: from CH2PR07CA0006.namprd07.prod.outlook.com (2603:10b6:610:20::19)
- by SJ2PR12MB9190.namprd12.prod.outlook.com (2603:10b6:a03:554::7)
+ bh=IdiyNjipMNSiy0ynrAIvL9qCKoI5P4RmYDykBchVxzo=;
+ b=pfN878UlkAy8HqyKFrSVeTiZQPa6kOrJnVMfwm5TsB+ETvNBiz0psSZaCxjHl3J6pmdbZFvs8WzooMn268GZoFkfDTPxmZizTsHxUbpSz13YvthoZO3UOCF1uIe63NbOUBvITAhwdwu/I+P5AfBw3x41/2/20pPIgxXJyFe3mT4=
+Received: from CH2PR07CA0005.namprd07.prod.outlook.com (2603:10b6:610:20::18)
+ by BL4PR12MB9724.namprd12.prod.outlook.com (2603:10b6:208:4ed::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.25; Wed, 18 Jun
- 2025 15:54:50 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.27; Wed, 18 Jun
+ 2025 15:54:51 +0000
 Received: from CH1PEPF0000AD75.namprd04.prod.outlook.com
- (2603:10b6:610:20:cafe::44) by CH2PR07CA0006.outlook.office365.com
- (2603:10b6:610:20::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8835.33 via Frontend Transport; Wed,
- 18 Jun 2025 15:54:49 +0000
+ (2603:10b6:610:20:cafe::a8) by CH2PR07CA0005.outlook.office365.com
+ (2603:10b6:610:20::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8835.35 via Frontend Transport; Wed,
+ 18 Jun 2025 15:54:50 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CH1PEPF0000AD75.mail.protection.outlook.com (10.167.244.54) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8857.21 via Frontend Transport; Wed, 18 Jun 2025 15:54:49 +0000
+ 15.20.8857.21 via Frontend Transport; Wed, 18 Jun 2025 15:54:50 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 18 Jun
- 2025 10:54:48 -0500
+ 2025 10:54:49 -0500
 Received: from jzuo-linux.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
  Transport; Wed, 18 Jun 2025 10:54:48 -0500
@@ -64,12 +64,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Austin Zheng
- <Austin.Zheng@amd.com>, Dillon Varone <dillon.varone@amd.com>
-Subject: [PATCH 01/13] drm/amd/display: Include EQU Prefetch Bandwidth For
- Bandwidth Calculations
-Date: Wed, 18 Jun 2025 11:33:49 -0400
-Message-ID: <20250618153936.6472-2-Jerry.Zuo@amd.com>
+ <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Alvin Lee
+ <Alvin.Lee2@amd.com>, Sridevi Arvindekar <sridevi.arvindekar@amd.com>
+Subject: [PATCH 02/13] drm/amd/display: Removed unnecessary comment
+Date: Wed, 18 Jun 2025 11:33:50 -0400
+Message-ID: <20250618153936.6472-3-Jerry.Zuo@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250618153936.6472-1-Jerry.Zuo@amd.com>
 References: <20250618153936.6472-1-Jerry.Zuo@amd.com>
@@ -80,52 +79,52 @@ Received-SPF: None (SATLEXMB03.amd.com: Jerry.Zuo@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|SJ2PR12MB9190:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c0c0cab-21f3-4816-876b-08ddae80750f
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|BL4PR12MB9724:EE_
+X-MS-Office365-Filtering-Correlation-Id: deea8880-b147-40aa-4fa9-08ddae807598
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?GhAwjlCcJn+lW9uRYuG7X2JggsXNTQdgtAKOqJe+LJkis6Tz+b0dA57wesYG?=
- =?us-ascii?Q?lDCH2ZRbd3BfHaOcCjTEqeWR4XDu55kLoo8Ar0bl8/6IF9k2cODc8YeCbj+1?=
- =?us-ascii?Q?1fe1HiUfNU/+NRUN86drlQPmgjbHc5ifP8sNOPjjt019uQUadOz3pEoNUOlg?=
- =?us-ascii?Q?2SQXy+GvGaX3EINWlccSizti2nOikEqD2c91HyhsCvCq0Ks9riREr7Sgaeby?=
- =?us-ascii?Q?63yEL1gv78BAtWM4IVKqo1GovSxDtNH114Fq7ud0RruUaFcXLrTVtvMi5glT?=
- =?us-ascii?Q?vEQTHp7XMZaX6Ozlv8nMMJpABvVvWqeC668jQqF/pryIfkImznKOP+XXBBbp?=
- =?us-ascii?Q?+JQNLSA+xj3J6Uztt3FmfGYHZWUb16BjOOjimAgBB6s4TKIwdELar/LgVsPR?=
- =?us-ascii?Q?yJm8tP2WTCay4snAfggzJcIflpWYpjzQ2pSx4GtYuqsld7kdSYhbhuTRtxTo?=
- =?us-ascii?Q?TCGaHruuQT+rmpQ9QKK6/PuIawhMr+Hw0uneRLlfRgsCNFy1qhHXkeIg0Ecg?=
- =?us-ascii?Q?3x0DUngoirv3q7dUi1DKgTvY/E0PuqBEoUfqFHcpxlXWHN1rEurT+swPmQe9?=
- =?us-ascii?Q?LDuLl2rfu1WBl041UAxUjYwETbyTikn1e/AL3UBWm3tPovjfNabfbs4+zoRb?=
- =?us-ascii?Q?9cFt+EiwGfi8FLRkpse+LpvVoNiZ4nz7ygUJc55eH5o7u19pYSMDExEZjzMT?=
- =?us-ascii?Q?otc0QnhdNz1Evjc82RLXdX6I7CLgzhFA34ev3FIlEPqi83hfltehBJe/WTt4?=
- =?us-ascii?Q?pXzq9tq3pfAeFwM+6FAvNhXy+a1iYfG4cFPIH0CVZ6tIs9yCUTHisd10Pfz/?=
- =?us-ascii?Q?r9nNk7rBUh2oN951kiOIJaPKnGBH8yEYH19qJH+TDC3E0oMlygfjEaOEupDs?=
- =?us-ascii?Q?NQrsDXez4GBPiflMjUaUvCGIEV9VPym/F1z84yXrBoBcEZUpHhw4sDarBC9C?=
- =?us-ascii?Q?grHOmaf1jwodsCDU6jV7ZqkO2w3oeuhwiqWTRU6IEWv2MuGf1Sa2qyaCtZxp?=
- =?us-ascii?Q?mBywo5uflPfgEoKUOdMz0dIlsNmxRRiFdVGBOPaAz3hE9kVw3Pz4RihuLxQ/?=
- =?us-ascii?Q?Sdfy/I2ytVqLDe7b2j0OjM2JldSZsPBckzneiLa5Ev3YyQLdrXikslf7a4hV?=
- =?us-ascii?Q?5UfG+NeiO6UU1dzDylDwgYq+Fw3nc1bZWHH62udPWnrupItxiJVZGUlWTqLJ?=
- =?us-ascii?Q?UBC0ucnO5t7/9PnPo7nVHMZr/Dqu4wx1DjTnGHBoftjDwWtSFbVJSF03Qo4U?=
- =?us-ascii?Q?JLCIwHbjG1sT/BgD93TSDgobPfuXad2IVlRUsjAlBnoIkuwGSVrWVNKK/2nu?=
- =?us-ascii?Q?xUFDbT3KbePJw+IvnkVZLqHD1jxuQBT74PIUTAC3dDfeyAbZfvjzPM18SBkF?=
- =?us-ascii?Q?6cvAW3p8ffOvV8dwcF9aSgR9eYI1wco0o/F1Rx/I6SuEanvN0hmkHadzTYEL?=
- =?us-ascii?Q?JBOz3dh1iGGBSSbsMYmpCbr3jFYxRpSTYbWLZDs/mGd13NFduNhciOHRdckr?=
- =?us-ascii?Q?dxci6eeHQzURLpMzCVceAhEUXkJ7361SCMg2?=
+ ARA:13230040|82310400026|376014|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cYZ/a+EjOgHt2dgdibzRHDNbA4qeXksGtCLCKA9LEFEGzAXlxDVcqSwbVIF8?=
+ =?us-ascii?Q?KlT8h6TeTHw89b6agjfKUmY2jGMaFtERUiJsAQZz0SiABOuCvzcWqEw6pvXm?=
+ =?us-ascii?Q?eerRLWOnqN3Q7wCEDXgMG+OdBxnRouCi53Xx1l+BkoqyTaQave8hAfy6SpjF?=
+ =?us-ascii?Q?5GHsYBZLGsqZiZDE74QFFbzjtyjVlZwf5ZnifNqVA8iThIFylwrc2qtRF5C1?=
+ =?us-ascii?Q?mZRVm6pGyRh3W7uNYDeJsSV2FE28tM04mivJA5vaY1iQD0+qC0rg4IzTbNIU?=
+ =?us-ascii?Q?kRjSVr0vc47xXaTHqaYufFzAWQcAySzpbO+OA6XDCJyxQQrckKKOPqvPfc32?=
+ =?us-ascii?Q?MttB+ysv+ntAIPbIhwY88WoFQqx61+8bMAPVtqAMdp6D3GaVsVQiKnM4jbRM?=
+ =?us-ascii?Q?5qMFpHWFkS4C1p9o+WkuScjv40Ast25aMIyb3ohkULJHpVk1QQ/gQMZ/ITAz?=
+ =?us-ascii?Q?ybphd+Budm1ocT+JdYSOyN8lTfAd501h8UEEEykFUPmjoj3RBrRmFHVertno?=
+ =?us-ascii?Q?Y25vGqaFu9+ui5lUXzwRiTtKUzpfLfOodQ18IxfsUqQoz7ZMTA+X+6ImXZIw?=
+ =?us-ascii?Q?8Uv65lFjSxDLPsFXXoo8lKJiEsTnHA/BxOid7JW549SjbgS/I5gN9Iyy9egn?=
+ =?us-ascii?Q?YExwxOx0skfEMIZT/N7F4xD238tZElHIPdz+jv6S3//gkxRZUyov/Chp5+L1?=
+ =?us-ascii?Q?OAW7R2t36wN5AePTFru7zRXUFntAhRbpq1JJdv0giv9PrzdGiZdQiPwu7yYc?=
+ =?us-ascii?Q?OBpM4F0F3Fup2pq+YBiyVsiJvBlPRWKR+2eQMY92ZESzyGkx2qXGOdi42hDs?=
+ =?us-ascii?Q?SGu3r/+tpuenU/QNbLAuopj05RgajVxDCiFjrxtbhHnQAyCrZGqWKdV/oZ39?=
+ =?us-ascii?Q?6VMPH9LIQkOpCbMuUSuntsrQHuOwKgW5XRDn0pLXqOyz19fdagUQfGWUW7j/?=
+ =?us-ascii?Q?5tFWkVBTL2ghQFcmqehktKJ8061ffnqLInSxAfST3oENIf2HnBRVujAaco2a?=
+ =?us-ascii?Q?noNQV7EVMdP1xhtdkEVCCMAjauvx9vSYkP5CnFpnxFV0YAqzpJjNn0u19gWQ?=
+ =?us-ascii?Q?4V1pV4To4wLAhyCgG3wFwBkG88CGDDb+4N9KpsturnvNc6JxfdJUWb3uq/qB?=
+ =?us-ascii?Q?NmfwT/N9OgNkgtNSHqnx+qFr18Bv+aYxmKtAvItYcmtyYvl8SM0dnePd5nrm?=
+ =?us-ascii?Q?z3k9E6TADxT8eQU4GoAfmkh8D6mfv7tMchKFHE2nC1mo7js5xjEWird5zijY?=
+ =?us-ascii?Q?f9CgHSziqOKGVuL7TWduueABK7oxW6mHydfSSibe4wpeCrAU2PW915u4x3/2?=
+ =?us-ascii?Q?c3y30mR32rPpQ2gdDFZEWygXHLLZz2+mDdH3IsgI+MTyCxuDbzLhUbOtHlwZ?=
+ =?us-ascii?Q?GYyV02f0HG9NFJhYnIH4mxYpJHl9oyL/p0Dju/t3G252WrmYyh5QSs7SDwzi?=
+ =?us-ascii?Q?gGqrdBBKnuaN2I3QmupNVgaAZs2bF/qmPfKNS3pDhLdb9lwXn6Spo7SLfMpI?=
+ =?us-ascii?Q?LFskM+vOMfSw4CluBIDlpirYSBTLEKS7lwGv?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014); DIR:OUT;
+ SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2025 15:54:49.8911 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c0c0cab-21f3-4816-876b-08ddae80750f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2025 15:54:50.7878 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: deea8880-b147-40aa-4fa9-08ddae807598
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD75.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9190
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR12MB9724
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,238 +139,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Austin Zheng <Austin.Zheng@amd.com>
+From: Alvin Lee <Alvin.Lee2@amd.com>
 
-[Why]
-Pixel data bandwidth required in mode programming (MP) ends up being
-higher than what was calculated in mode support (MS) even though
-the prefetch bandwidths calculated in MP are lower than the MS ones.
-
-MP used a different equ prefetch schedule than MS which lead a
-slight difference in parameters. This resulted in the pixel data
-bandwidth in MP to be higher than MS.
-
-[How]
-Rename the RequiredPrefetchBWOTO term so it can be applied generically.
-Update the value with the EQU bandwidth if the EQU schedule is used.
-Get the max prefetch bandwidth that MS calculated and use it
-as part of the calculations for required bandwidth.
-
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
-Signed-off-by: Austin Zheng <Austin.Zheng@amd.com>
+Reviewed-by: Sridevi Arvindekar <sridevi.arvindekar@amd.com>
+Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
 Signed-off-by: Fangzhi Zuo <jerry.zuo@amd.com>
 ---
- .../src/dml2_core/dml2_core_dcn4_calcs.c      | 42 +++++++++++--------
- .../src/dml2_core/dml2_core_shared_types.h    | 16 ++++---
- 2 files changed, 35 insertions(+), 23 deletions(-)
+ .../gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-index 5dceab1208f2..8d4e5a91af06 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-@@ -4861,7 +4861,7 @@ static double get_urgent_bandwidth_required(
- 	double ReadBandwidthChroma[],
- 	double PrefetchBandwidthLuma[],
- 	double PrefetchBandwidthChroma[],
--	double PrefetchBandwidthOto[],
-+	double PrefetchBandwidthMax[],
- 	double excess_vactive_fill_bw_l[],
- 	double excess_vactive_fill_bw_c[],
- 	double cursor_bw[],
-@@ -4925,9 +4925,9 @@ static double get_urgent_bandwidth_required(
- 			l->vm_row_bw = NumberOfDPP[k] * prefetch_vmrow_bw[k];
- 			l->flip_and_active_bw = l->per_plane_flip_bw[k] + ReadBandwidthLuma[k] * l->adj_factor_p0 + ReadBandwidthChroma[k] * l->adj_factor_p1 + cursor_bw[k] * l->adj_factor_cur;
- 			l->flip_and_prefetch_bw = l->per_plane_flip_bw[k] + NumberOfDPP[k] * (PrefetchBandwidthLuma[k] * l->adj_factor_p0_pre + PrefetchBandwidthChroma[k] * l->adj_factor_p1_pre) + prefetch_cursor_bw[k] * l->adj_factor_cur_pre;
--			l->flip_and_prefetch_bw_oto = l->per_plane_flip_bw[k] + NumberOfDPP[k] * (PrefetchBandwidthOto[k] * l->adj_factor_p0_pre + PrefetchBandwidthChroma[k] * l->adj_factor_p1_pre) + prefetch_cursor_bw[k] * l->adj_factor_cur_pre;
-+			l->flip_and_prefetch_bw_max = l->per_plane_flip_bw[k] + NumberOfDPP[k] * (PrefetchBandwidthMax[k] * l->adj_factor_p0_pre + PrefetchBandwidthChroma[k] * l->adj_factor_p1_pre) + prefetch_cursor_bw[k] * l->adj_factor_cur_pre;
- 			l->active_and_excess_bw = (ReadBandwidthLuma[k] + excess_vactive_fill_bw_l[k]) * l->tmp_nom_adj_factor_p0 + (ReadBandwidthChroma[k] + excess_vactive_fill_bw_c[k]) * l->tmp_nom_adj_factor_p1 + dpte_row_bw[k] + meta_row_bw[k];
--			surface_required_bw[k] = math_max5(l->vm_row_bw, l->flip_and_active_bw, l->flip_and_prefetch_bw, l->active_and_excess_bw, l->flip_and_prefetch_bw_oto);
-+			surface_required_bw[k] = math_max5(l->vm_row_bw, l->flip_and_active_bw, l->flip_and_prefetch_bw, l->active_and_excess_bw, l->flip_and_prefetch_bw_max);
- 
- 			/* export peak required bandwidth for the surface */
- 			surface_peak_required_bw[k] = math_max2(surface_required_bw[k], surface_peak_required_bw[k]);
-@@ -5125,7 +5125,7 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
- 	s->Tsw_est3 = 0.0;
- 	s->cursor_prefetch_bytes = 0;
- 	*p->prefetch_cursor_bw = 0;
--	*p->RequiredPrefetchBWOTO = 0.0;
-+	*p->RequiredPrefetchBWMax = 0.0;
- 
- 	dcc_mrq_enable = (p->dcc_enable && p->mrq_present);
- 
-@@ -5356,7 +5356,7 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
- 	 * mp will fail if ms decides to use equ schedule and mp decides to use oto schedule
- 	 * and the required bandwidth increases when going from ms to mp
- 	 */
--	*p->RequiredPrefetchBWOTO = s->prefetch_bw_oto;
-+	*p->RequiredPrefetchBWMax = s->prefetch_bw_oto;
- 
- #ifdef __DML_VBA_DEBUG__
- 	DML_LOG_VERBOSE("DML::%s: vactive_sw_bw_l = %f\n", __func__, p->vactive_sw_bw_l);
-@@ -5718,8 +5718,14 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
- 			s->TimeForFetchingVM = s->Tvm_equ;
- 			s->TimeForFetchingRowInVBlank = s->Tr0_equ;
- 
--		*p->dst_y_per_vm_vblank = math_ceil2(4.0 * s->TimeForFetchingVM / s->LineTime, 1.0) / 4.0;
--		*p->dst_y_per_row_vblank = math_ceil2(4.0 * s->TimeForFetchingRowInVBlank / s->LineTime, 1.0) / 4.0;
-+			*p->dst_y_per_vm_vblank = math_ceil2(4.0 * s->TimeForFetchingVM / s->LineTime, 1.0) / 4.0;
-+			*p->dst_y_per_row_vblank = math_ceil2(4.0 * s->TimeForFetchingRowInVBlank / s->LineTime, 1.0) / 4.0;
-+
-+			/* equ bw should be propagated so a ceiling of the equ bw is accounted for prior to mode programming.
-+			 * Overall bandwidth may be lower when going from mode support to mode programming but final pixel data
-+			 * bandwidth may end up higher than what was calculated in mode support.
-+			 */
-+			*p->RequiredPrefetchBWMax = math_max2(s->prefetch_bw_equ, *p->RequiredPrefetchBWMax);
- 
- #ifdef __DML_VBA_DEBUG__
- 			DML_LOG_VERBOSE("DML::%s: Using equ bw scheduling for prefetch\n", __func__);
-@@ -6115,7 +6121,7 @@ static void calculate_peak_bandwidth_required(
- 				p->surface_read_bandwidth_c,
- 				l->zero_array, //PrefetchBandwidthLuma,
- 				l->zero_array, //PrefetchBandwidthChroma,
--				l->zero_array, //PrefetchBWOTO
-+				l->zero_array, //PrefetchBWMax
- 				l->zero_array,
- 				l->zero_array,
- 				l->zero_array,
-@@ -6152,7 +6158,7 @@ static void calculate_peak_bandwidth_required(
- 				p->surface_read_bandwidth_c,
- 				l->zero_array, //PrefetchBandwidthLuma,
- 				l->zero_array, //PrefetchBandwidthChroma,
--				l->zero_array, //PrefetchBWOTO
-+				l->zero_array, //PrefetchBWMax
- 				p->excess_vactive_fill_bw_l,
- 				p->excess_vactive_fill_bw_c,
- 				p->cursor_bw,
-@@ -6189,7 +6195,7 @@ static void calculate_peak_bandwidth_required(
- 				p->surface_read_bandwidth_c,
- 				p->prefetch_bandwidth_l,
- 				p->prefetch_bandwidth_c,
--				p->prefetch_bandwidth_oto, // to prevent ms/mp mismatch when oto bw > total vactive bw
-+				p->prefetch_bandwidth_max, // to prevent ms/mp mismatches where mp prefetch bw > ms prefetch bw
- 				p->excess_vactive_fill_bw_l,
- 				p->excess_vactive_fill_bw_c,
- 				p->cursor_bw,
-@@ -6226,7 +6232,7 @@ static void calculate_peak_bandwidth_required(
- 				p->surface_read_bandwidth_c,
- 				p->prefetch_bandwidth_l,
- 				p->prefetch_bandwidth_c,
--				p->prefetch_bandwidth_oto, // to prevent ms/mp mismatch when oto bw > total vactive bw
-+				p->prefetch_bandwidth_max, // to prevent ms/mp mismatch where mp prefetch bw > ms prefetch bw
- 				p->excess_vactive_fill_bw_l,
- 				p->excess_vactive_fill_bw_c,
- 				p->cursor_bw,
-@@ -6263,7 +6269,7 @@ static void calculate_peak_bandwidth_required(
- 				p->surface_read_bandwidth_c,
- 				p->prefetch_bandwidth_l,
- 				p->prefetch_bandwidth_c,
--				p->prefetch_bandwidth_oto, // to prevent ms/mp mismatch when oto bw > total vactive bw
-+				p->prefetch_bandwidth_max, // to prevent ms/mp mismatches where mp prefetch bw > ms prefetch bw
- 				p->excess_vactive_fill_bw_l,
- 				p->excess_vactive_fill_bw_c,
- 				p->cursor_bw,
-@@ -7490,7 +7496,7 @@ static noinline_for_stack void dml_core_ms_prefetch_check(struct dml2_core_inter
- 			CalculatePrefetchSchedule_params->VRatioPrefetchC = &mode_lib->ms.VRatioPreC[k];
- 			CalculatePrefetchSchedule_params->RequiredPrefetchPixelDataBWLuma = &mode_lib->ms.RequiredPrefetchPixelDataBWLuma[k]; // prefetch_sw_bw_l
- 			CalculatePrefetchSchedule_params->RequiredPrefetchPixelDataBWChroma = &mode_lib->ms.RequiredPrefetchPixelDataBWChroma[k]; // prefetch_sw_bw_c
--			CalculatePrefetchSchedule_params->RequiredPrefetchBWOTO = &mode_lib->ms.RequiredPrefetchBWOTO[k];
-+			CalculatePrefetchSchedule_params->RequiredPrefetchBWMax = &mode_lib->ms.RequiredPrefetchBWMax[k];
- 			CalculatePrefetchSchedule_params->NotEnoughTimeForDynamicMetadata = &mode_lib->ms.NoTimeForDynamicMetadata[k];
- 			CalculatePrefetchSchedule_params->Tno_bw = &mode_lib->ms.Tno_bw[k];
- 			CalculatePrefetchSchedule_params->Tno_bw_flip = &mode_lib->ms.Tno_bw_flip[k];
-@@ -7635,7 +7641,7 @@ static noinline_for_stack void dml_core_ms_prefetch_check(struct dml2_core_inter
- 			calculate_peak_bandwidth_params->surface_read_bandwidth_c = mode_lib->ms.vactive_sw_bw_c;
- 			calculate_peak_bandwidth_params->prefetch_bandwidth_l = mode_lib->ms.RequiredPrefetchPixelDataBWLuma;
- 			calculate_peak_bandwidth_params->prefetch_bandwidth_c = mode_lib->ms.RequiredPrefetchPixelDataBWChroma;
--			calculate_peak_bandwidth_params->prefetch_bandwidth_oto = mode_lib->ms.RequiredPrefetchBWOTO;
-+			calculate_peak_bandwidth_params->prefetch_bandwidth_max = mode_lib->ms.RequiredPrefetchBWMax;
- 			calculate_peak_bandwidth_params->excess_vactive_fill_bw_l = mode_lib->ms.excess_vactive_fill_bw_l;
- 			calculate_peak_bandwidth_params->excess_vactive_fill_bw_c = mode_lib->ms.excess_vactive_fill_bw_c;
- 			calculate_peak_bandwidth_params->cursor_bw = mode_lib->ms.cursor_bw;
-@@ -7802,7 +7808,7 @@ static noinline_for_stack void dml_core_ms_prefetch_check(struct dml2_core_inter
- 		calculate_peak_bandwidth_params->surface_read_bandwidth_c = mode_lib->ms.vactive_sw_bw_c;
- 		calculate_peak_bandwidth_params->prefetch_bandwidth_l = mode_lib->ms.RequiredPrefetchPixelDataBWLuma;
- 		calculate_peak_bandwidth_params->prefetch_bandwidth_c = mode_lib->ms.RequiredPrefetchPixelDataBWChroma;
--		calculate_peak_bandwidth_params->prefetch_bandwidth_oto = mode_lib->ms.RequiredPrefetchBWOTO;
-+		calculate_peak_bandwidth_params->prefetch_bandwidth_max = mode_lib->ms.RequiredPrefetchBWMax;
- 		calculate_peak_bandwidth_params->excess_vactive_fill_bw_l = mode_lib->ms.excess_vactive_fill_bw_l;
- 		calculate_peak_bandwidth_params->excess_vactive_fill_bw_c = mode_lib->ms.excess_vactive_fill_bw_c;
- 		calculate_peak_bandwidth_params->cursor_bw = mode_lib->ms.cursor_bw;
-@@ -11257,7 +11263,7 @@ static bool dml_core_mode_programming(struct dml2_core_calcs_mode_programming_ex
- 			CalculatePrefetchSchedule_params->VRatioPrefetchC = &mode_lib->mp.VRatioPrefetchC[k];
- 			CalculatePrefetchSchedule_params->RequiredPrefetchPixelDataBWLuma = &mode_lib->mp.RequiredPrefetchPixelDataBWLuma[k];
- 			CalculatePrefetchSchedule_params->RequiredPrefetchPixelDataBWChroma = &mode_lib->mp.RequiredPrefetchPixelDataBWChroma[k];
--			CalculatePrefetchSchedule_params->RequiredPrefetchBWOTO = &s->dummy_single_array[0][k];
-+			CalculatePrefetchSchedule_params->RequiredPrefetchBWMax = &s->dummy_single_array[0][k];
- 			CalculatePrefetchSchedule_params->NotEnoughTimeForDynamicMetadata = &mode_lib->mp.NotEnoughTimeForDynamicMetadata[k];
- 			CalculatePrefetchSchedule_params->Tno_bw = &mode_lib->mp.Tno_bw[k];
- 			CalculatePrefetchSchedule_params->Tno_bw_flip = &mode_lib->mp.Tno_bw_flip[k];
-@@ -11400,7 +11406,7 @@ static bool dml_core_mode_programming(struct dml2_core_calcs_mode_programming_ex
- 			calculate_peak_bandwidth_params->surface_read_bandwidth_c = mode_lib->mp.vactive_sw_bw_c;
- 			calculate_peak_bandwidth_params->prefetch_bandwidth_l = mode_lib->mp.RequiredPrefetchPixelDataBWLuma;
- 			calculate_peak_bandwidth_params->prefetch_bandwidth_c = mode_lib->mp.RequiredPrefetchPixelDataBWChroma;
--			calculate_peak_bandwidth_params->prefetch_bandwidth_oto = s->dummy_single_array[0];
-+			calculate_peak_bandwidth_params->prefetch_bandwidth_max = s->dummy_single_array[0];
- 			calculate_peak_bandwidth_params->excess_vactive_fill_bw_l = mode_lib->mp.excess_vactive_fill_bw_l;
- 			calculate_peak_bandwidth_params->excess_vactive_fill_bw_c = mode_lib->mp.excess_vactive_fill_bw_c;
- 			calculate_peak_bandwidth_params->cursor_bw = mode_lib->mp.cursor_bw;
-@@ -11540,7 +11546,7 @@ static bool dml_core_mode_programming(struct dml2_core_calcs_mode_programming_ex
- 			calculate_peak_bandwidth_params->meta_row_bw = mode_lib->mp.meta_row_bw;
- 			calculate_peak_bandwidth_params->prefetch_cursor_bw = mode_lib->mp.prefetch_cursor_bw;
- 			calculate_peak_bandwidth_params->prefetch_vmrow_bw = mode_lib->mp.prefetch_vmrow_bw;
--			calculate_peak_bandwidth_params->prefetch_bandwidth_oto = s->dummy_single_array[0];
-+			calculate_peak_bandwidth_params->prefetch_bandwidth_max = s->dummy_single_array[0];
- 			calculate_peak_bandwidth_params->flip_bw = mode_lib->mp.final_flip_bw;
- 			calculate_peak_bandwidth_params->urgent_burst_factor_l = mode_lib->mp.UrgentBurstFactorLuma;
- 			calculate_peak_bandwidth_params->urgent_burst_factor_c = mode_lib->mp.UrgentBurstFactorChroma;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared_types.h b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared_types.h
-index 5f5b15b478e3..fb57fe459227 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared_types.h
-@@ -497,8 +497,14 @@ struct dml2_core_internal_mode_support {
- 	double WriteBandwidth[DML2_MAX_PLANES][DML2_MAX_WRITEBACK];
- 	double RequiredPrefetchPixelDataBWLuma[DML2_MAX_PLANES];
- 	double RequiredPrefetchPixelDataBWChroma[DML2_MAX_PLANES];
--	/* oto bw should also be considered when calculating peak urgent bw to avoid situations oto/equ mismatches between ms and mp */
--	double RequiredPrefetchBWOTO[DML2_MAX_PLANES];
-+	/* Max bandwidth calculated from prefetch schedule should be considered in addition to the pixel data bw to avoid ms/mp mismatches.
-+	 * 1. oto bw should also be considered when calculating peak urgent bw to avoid situations oto/equ mismatches between ms and mp
-+	 *
-+	 * 2. equ bandwidth needs to be considered for calculating peak urgent bw when equ schedule is used in mode support.
-+	 *    Some slight difference in variables may cause the pixel data bandwidth to be higher
-+	 *    even though overall equ prefetch bandwidths can be lower going from ms to mp
-+	 */
-+	double RequiredPrefetchBWMax[DML2_MAX_PLANES];
- 	double cursor_bw[DML2_MAX_PLANES];
- 	double prefetch_cursor_bw[DML2_MAX_PLANES];
- 	double prefetch_vmrow_bw[DML2_MAX_PLANES];
-@@ -1469,7 +1475,7 @@ struct dml2_core_shared_get_urgent_bandwidth_required_locals {
- 	double vm_row_bw;
- 	double flip_and_active_bw;
- 	double flip_and_prefetch_bw;
--	double flip_and_prefetch_bw_oto;
-+	double flip_and_prefetch_bw_max;
- 	double active_and_excess_bw;
- };
- 
-@@ -1881,7 +1887,7 @@ struct dml2_core_calcs_CalculatePrefetchSchedule_params {
- 	double *VRatioPrefetchC;
- 	double *RequiredPrefetchPixelDataBWLuma;
- 	double *RequiredPrefetchPixelDataBWChroma;
--	double *RequiredPrefetchBWOTO;
-+	double *RequiredPrefetchBWMax;
- 	bool *NotEnoughTimeForDynamicMetadata;
- 	double *Tno_bw;
- 	double *Tno_bw_flip;
-@@ -2118,7 +2124,7 @@ struct dml2_core_calcs_calculate_peak_bandwidth_required_params {
- 	double *surface_read_bandwidth_c;
- 	double *prefetch_bandwidth_l;
- 	double *prefetch_bandwidth_c;
--	double *prefetch_bandwidth_oto;
-+	double *prefetch_bandwidth_max;
- 	double *excess_vactive_fill_bw_l;
- 	double *excess_vactive_fill_bw_c;
- 	double *cursor_bw;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
+index 19f794e46e0e..42bc6e4cf509 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
+@@ -735,7 +735,6 @@ static void populate_dml21_surface_config_from_plane_state(
+ 	switch (plane_state->tiling_info.gfxversion) {
+ 	case DcGfxVersion7:
+ 	case DcGfxVersion8:
+-		// Placeholder for programming the array_mode
+ 		break;
+ 	case DcGfxVersion9:
+ 	case DcGfxVersion10:
 -- 
 2.43.0
 
