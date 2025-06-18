@@ -2,61 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16FBDADED4F
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Jun 2025 15:03:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18E18ADEDEB
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Jun 2025 15:35:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34BA310E81E;
-	Wed, 18 Jun 2025 13:03:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACC3F10E832;
+	Wed, 18 Jun 2025 13:35:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fheX8NLd";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Vwh1769G";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56FC310E815;
- Wed, 18 Jun 2025 12:39:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=llImzjIbhjZJrpdOHyErF1aaIt3Spa/yRg33TxcGabE=; b=fheX8NLdVkqkIqxe97nkmLdrFM
- lbcNCNW+ClOA5yZo3mKOr60il84d7TwCZm7Tluk+9xQ0029jpCSZ92MxM92PmQIUu4QpBZOYW8UZ6
- AS5/gjcWMmUVY2qToLuyGgDwNm9N5lNexQhHIlfzx5Os+rC+LqMhu+m6e/NCxVBQcMTu42vR8ds4l
- R3cLO5pvkCmQ7xjTkidRLakqbPneVuLdpT9q/BRzj902dmn3KXGlObf143mv9OPhrR5v43fJ1KW7F
- bZcQsOBfgSaipj45CqazW1cpkQLYI4uHL/IPAbW1RJmCe66gWk8BhayTie9k1f9dYpuAMzwx38iHH
- dw0Jxf2g==;
-Received: from [191.204.192.64] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uRs4Y-00543t-61; Wed, 18 Jun 2025 14:39:22 +0200
-Message-ID: <c62c2994-19e3-4599-9ac9-d49c37845011@igalia.com>
-Date: Wed, 18 Jun 2025 09:39:16 -0300
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9985710E836
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Jun 2025 13:35:03 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4CC6444CC0;
+ Wed, 18 Jun 2025 13:34:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A65CC4CEE7;
+ Wed, 18 Jun 2025 13:34:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1750253698;
+ bh=ny1NDbdkUXe0G54cgyu+9Iqir8capZn8xavcC2FhdO4=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=Vwh1769Ga9sD2rrkx1K2RhZXe4OUiFF8SFZBpjz4c6SqeoOiZNK9AmnPpDo/eG1K+
+ PoVwHZNpxc55+2he8zkdTQRSqyaz4g4O8vRZvk5v6rjeP/MoytNGF+HkAAiMy7GHLI
+ 9MXjZRPVACCcSCKBfsbJkCyT8f9ZK/zjXkXQhqxovTaEaQuJZ3QNZ6XQQw/uKtf+a6
+ ZstsklCxLqSy7kK4NYdvvr2zEkkRDebNonrHZlXxsr7qJcIIt0Uum08ybrQxEGiDTA
+ GQhrY5wg+FvmdCx2Yw1PNAD4aFE3wa2eXifW7KgxL4S/uPiuXzfofU5VabAQzV8T/S
+ jS4M+WHF8Zaag==
+Message-ID: <83550401-b2ae-4165-84b2-4f9343d3d1ed@kernel.org>
+Date: Wed, 18 Jun 2025 08:34:56 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 6/6] drm/amdgpu: Make use of drm_wedge_task_info
+Subject: Re: amdgpu vs kexec
 To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, siqueira@igalia.com,
- airlied@gmail.com, simona@ffwll.ch, Raag Jadav <raag.jadav@intel.com>,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- Xaver Hugl <xaver.hugl@gmail.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20250617124949.2151549-1-andrealmeid@igalia.com>
- <20250617124949.2151549-7-andrealmeid@igalia.com>
- <5db1dda6-0cd7-4fc7-9a22-8ed57b12ada1@amd.com>
- <63b4fb79-8132-4c05-bcac-3238366899d9@igalia.com>
- <a0f508fd-3277-4839-a4b6-e6bc56546f6c@amd.com>
+ Peter Zijlstra <peterz@infradead.org>, "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: alexander.deucher@amd.com, Borislav Petkov <bp@alien8.de>,
+ amd-gfx@lists.freedesktop.org
+References: <20250616093945.GA1613200@noisy.programming.kicks-ass.net>
+ <4f5f95ff-b97e-41db-b9fd-5204e6581a30@amd.com>
+ <20250616145437.GG1613376@noisy.programming.kicks-ass.net>
+ <2bbcc44d-9079-4a73-ba6c-e93fdcb9cf6f@kernel.org>
+ <20250618085123.GF1613376@noisy.programming.kicks-ass.net>
+ <f474345d-78f6-424b-8c0f-584c5f0c162d@amd.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <a0f508fd-3277-4839-a4b6-e6bc56546f6c@amd.com>
+From: Mario Limonciello <superm1@kernel.org>
+In-Reply-To: <f474345d-78f6-424b-8c0f-584c5f0c162d@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 18 Jun 2025 13:03:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,29 +64,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Christian,
-
-Em 18/06/2025 04:29, Christian König escreveu:
-> On 6/17/25 15:22, André Almeida wrote:
->> Em 17/06/2025 10:07, Christian König escreveu:
->>> On 6/17/25 14:49, André Almeida wrote:
->>>> To notify userspace about which task (if any) made the device get in a
->>>> wedge state, make use of drm_wedge_task_info parameter, filling it with
->>>> the task PID and name.
->>>>
->>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
->>>
->>> Reviewed-by: Christian König <christian.koenig@amd.com>
->>>
->>> Do you have commit right for drm-misc-next?
->>>
+On 6/18/2025 4:05 AM, Christian König wrote:
+> On 6/18/25 10:51, Peter Zijlstra wrote:
+>> On Tue, Jun 17, 2025 at 09:12:12PM -0500, Mario Limonciello wrote:
 >>
->> Thanks for the reviews!
+>>> How about if we reset before the kexec?  There is a symbol for drivers to
+>>> use to know they're about to go through kexec to do $THINGS.
+>>>
+>>> Something like this:
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>> index 0fc0eeedc6461..2b1216b14d618 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>> @@ -34,6 +34,7 @@
+>>>
+>>>   #include <linux/cc_platform.h>
+>>>   #include <linux/dynamic_debug.h>
+>>> +#include <linux/kexec.h>
+>>>   #include <linux/module.h>
+>>>   #include <linux/mmu_notifier.h>
+>>>   #include <linux/pm_runtime.h>
+>>> @@ -2544,6 +2545,9 @@ amdgpu_pci_shutdown(struct pci_dev *pdev)
+>>>                  adev->mp1_state = PP_MP1_STATE_UNLOAD;
+>>>          amdgpu_device_ip_suspend(adev);
+>>>          adev->mp1_state = PP_MP1_STATE_NONE;
+>>> +
+>>> +       if (kexec_in_progress)
+>>> +               amdgpu_asic_reset(adev);
+>>>   }
+>>>
+>>>   static int amdgpu_pmops_prepare(struct device *dev)
 >>
->> I do have access, but if you don't mind, can you push this one?
+>> I will throw this in the dev kernel... I'll let you know.
 > 
-> Sure, but give me till the end of today.
+> Mhm if the drivers are informed about the kexec
+
+It looks like PeterZ found the symbol isn't exported; but that's not to 
+say it "can't be" if it fixes this issue.
+
+> then we could also send the unload/reset packet only to the PSP IIRC.
 > 
+> That might have a better chance of succeeding than a full ASIC reset.
+> 
+> Lijo should know more about that.
+> 
+> Regards,
+> Christian.
 
-It was already merged, no worries!
-
+Another idea is to do a FLR on the way down.
