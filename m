@@ -2,80 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573D1ADEE44
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Jun 2025 15:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72C7DADEE4D
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Jun 2025 15:48:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA77710E83C;
-	Wed, 18 Jun 2025 13:46:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BUEbOfnr";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB4110E83F;
+	Wed, 18 Jun 2025 13:48:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
- [209.85.216.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7697310E83C
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Jun 2025 13:46:39 +0000 (UTC)
-Received: by mail-pj1-f51.google.com with SMTP id
- 98e67ed59e1d1-31305ee3281so1187777a91.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Jun 2025 06:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750254399; x=1750859199; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=T/+dJG3F08qnun0OMdrTbLgJ5sErhqNPY1uYEI2qzME=;
- b=BUEbOfnrzliG8sfY2/W5SuZq40OXb+nXDjf8voD93Wz7h66uR4Ks5Is+i2/8gDL/pM
- hRoKzKiv+XZmc2Qf1zX91JqhjEmns/9JinZvTsGgk9GqjC47YH2bxpJrx4x/co96+b1H
- F1lCD63aYnMajpQV18tUCCon2c7kESSJ/QnavRL+zf1x4PjD4ozGOtY2xLt98P+wRtb1
- MVZOUcIZwYFqGeGRbVze0DuB8pgbILwq5sEFIakVk73cJcBrmwITwOS1E/6YFAxJgPVi
- 16huqKKSCY3yCEAhpxHODC9IcpE9ZzBBqUzuWLQEMvGAPNKgTvfstv1AtGNhO5NSIwgD
- aqsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750254399; x=1750859199;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=T/+dJG3F08qnun0OMdrTbLgJ5sErhqNPY1uYEI2qzME=;
- b=mntPOPjqSZBXnfGNy8GkENhAteVBFFM2LM7oQyAihKZtFIjMtR3JL1rKqwXUS7ttZh
- gLAEGVJtCLUrBMwz/mF9UrTJ+38SwfDNj+wtPAGmHaeW14EoTtJwauy8lsyCjqL/ZDGI
- Ndo1x2zE/+86GdR05s1bBax/zmmxXQUZ7eTXEkEemCclPuVl+gQCWZacAvrYx+WQyEjm
- T/J2MzYcsaeJi7flk+/GLKHwlAVT/jCcDi8eiCKqutKAS9OO4B8XHMm7cMfx1xEPzFPq
- PLMc180J808yzt9sNP/EvA5y5Kkbv7x1CrftoBsYAZWJF+aTwnbGn0Otujfav4ssStGz
- B2Gw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVI+ozN10NTF8/VMbzhpDqdp6qJWmCiOaegL0l0V4u7kGWww83C6YzOkqnDu1oFEXIRqc0e9Pkq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxoBNJjGkIWtSp4w4/lH7IzCMVUAsSqufweJjoEwSIhM3h1A5nr
- JhYNddvRFMUr1CvqULccdWHEkVhqcGRLT3ZWdjnt1jTTskrSwHLsltHKzemzPPhG/9Q+VVlyXXP
- dpV5uDErnA8BEuV0yfIq+Gt+nl+7dr7o=
-X-Gm-Gg: ASbGncu73XIWOe/T0R31PgiSMd5Qy2VY/zGJ2Zh6whDL9UGCcuzwA9VeGdsQqXN6Uk+
- amDuiqy3nllx9QGe6Eu93OMW9+MVPm2ix5ZVgKYNe/wo7NXppzx0DlfYYUVyd44utZJ3imLuvVD
- gtRmqctvdzlyveZNVnDVj5VGyZh2OgGEdGSmE92RNv1UX1
-X-Google-Smtp-Source: AGHT+IEoQW2OeSeAyDRNiJUchBB0CqO0vV5ktvN4tSpL7lf212CO4qGOnDe2Ls8E7g5FqYb9n2fvkPRcXWH3PlsZ3IA=
-X-Received: by 2002:a17:90a:e7c8:b0:312:639:a06d with SMTP id
- 98e67ed59e1d1-313f1daa350mr9845839a91.5.1750254398833; Wed, 18 Jun 2025
- 06:46:38 -0700 (PDT)
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A831910E83E;
+ Wed, 18 Jun 2025 13:48:24 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 55IDlt693893203; Wed, 18 Jun 2025 19:17:55 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 55IDlrLT3893190;
+ Wed, 18 Jun 2025 19:17:53 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, simona@ffwll.ch, tzimmermann@suse.de,
+ tursulin@ursulin.net, phasta@kernel.org, dakr@kernel.org,
+ Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v4 1/4] drm: move debugfs functionality from drm_drv.c to
+ drm_debugfs.c
+Date: Wed, 18 Jun 2025 19:17:44 +0530
+Message-Id: <20250618134747.3893138-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20250616093945.GA1613200@noisy.programming.kicks-ass.net>
- <4f5f95ff-b97e-41db-b9fd-5204e6581a30@amd.com>
- <20250616145437.GG1613376@noisy.programming.kicks-ass.net>
- <2bbcc44d-9079-4a73-ba6c-e93fdcb9cf6f@kernel.org>
- <20250618085123.GF1613376@noisy.programming.kicks-ass.net>
- <f474345d-78f6-424b-8c0f-584c5f0c162d@amd.com>
- <83550401-b2ae-4165-84b2-4f9343d3d1ed@kernel.org>
-In-Reply-To: <83550401-b2ae-4165-84b2-4f9343d3d1ed@kernel.org>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 18 Jun 2025 09:46:27 -0400
-X-Gm-Features: AX0GCFthzwPwaWNnNSm3u0xjB-OjoCpV80EBKg2tNkm4wre4xVfxFUZ2xMpsmMU
-Message-ID: <CADnq5_MHFgcZokeyRzK8V1Y0qAz20uafR7dYpGvhCPeVvbwRtw@mail.gmail.com>
-Subject: Re: amdgpu vs kexec
-To: Mario Limonciello <superm1@kernel.org>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Peter Zijlstra <peterz@infradead.org>, "Lazar, Lijo" <lijo.lazar@amd.com>,
- alexander.deucher@amd.com, 
- Borislav Petkov <bp@alien8.de>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,63 +46,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 18, 2025 at 9:41=E2=80=AFAM Mario Limonciello <superm1@kernel.o=
-rg> wrote:
->
-> On 6/18/2025 4:05 AM, Christian K=C3=B6nig wrote:
-> > On 6/18/25 10:51, Peter Zijlstra wrote:
-> >> On Tue, Jun 17, 2025 at 09:12:12PM -0500, Mario Limonciello wrote:
-> >>
-> >>> How about if we reset before the kexec?  There is a symbol for driver=
-s to
-> >>> use to know they're about to go through kexec to do $THINGS.
-> >>>
-> >>> Something like this:
-> >>>
-> >>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >>> index 0fc0eeedc6461..2b1216b14d618 100644
-> >>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> >>> @@ -34,6 +34,7 @@
-> >>>
-> >>>   #include <linux/cc_platform.h>
-> >>>   #include <linux/dynamic_debug.h>
-> >>> +#include <linux/kexec.h>
-> >>>   #include <linux/module.h>
-> >>>   #include <linux/mmu_notifier.h>
-> >>>   #include <linux/pm_runtime.h>
-> >>> @@ -2544,6 +2545,9 @@ amdgpu_pci_shutdown(struct pci_dev *pdev)
-> >>>                  adev->mp1_state =3D PP_MP1_STATE_UNLOAD;
-> >>>          amdgpu_device_ip_suspend(adev);
-> >>>          adev->mp1_state =3D PP_MP1_STATE_NONE;
-> >>> +
-> >>> +       if (kexec_in_progress)
-> >>> +               amdgpu_asic_reset(adev);
-> >>>   }
-> >>>
-> >>>   static int amdgpu_pmops_prepare(struct device *dev)
-> >>
-> >> I will throw this in the dev kernel... I'll let you know.
-> >
-> > Mhm if the drivers are informed about the kexec
->
-> It looks like PeterZ found the symbol isn't exported; but that's not to
-> say it "can't be" if it fixes this issue.
->
-> > then we could also send the unload/reset packet only to the PSP IIRC.
-> >
-> > That might have a better chance of succeeding than a full ASIC reset.
-> >
-> > Lijo should know more about that.
-> >
-> > Regards,
-> > Christian.
->
-> Another idea is to do a FLR on the way down.
+move the functions from drm_drv.c which uses the static
+drm_debugfs_root as parent node in the debugfs by drm.
 
-I think you want something like:
+move this root node to the debugfs for easily handling
+of future requirements to add more information in the
+root directory and one of which is planned to have
+directories for each client in the root directory
+which is dri.
 
-r =3D amdgpu_dpm_set_mp1_state(adev, PP_MP1_STATE_UNLOAD);
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/drm_debugfs.c  | 22 ++++++++++++++++++----
+ drivers/gpu/drm/drm_drv.c      | 11 ++++-------
+ drivers/gpu/drm/drm_internal.h |  6 ++----
+ include/drm/drm_drv.h          | 10 ++++++++++
+ 4 files changed, 34 insertions(+), 15 deletions(-)
 
-Alex
+diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
+index 2d43bda82887..5a33ec299c04 100644
+--- a/drivers/gpu/drm/drm_debugfs.c
++++ b/drivers/gpu/drm/drm_debugfs.c
+@@ -44,6 +44,8 @@
+ #include "drm_crtc_internal.h"
+ #include "drm_internal.h"
+ 
++static struct dentry *drm_debugfs_root;
++
+ /***************************************************
+  * Initialization, etc.
+  **************************************************/
+@@ -286,6 +288,16 @@ int drm_debugfs_remove_files(const struct drm_info_list *files, int count,
+ }
+ EXPORT_SYMBOL(drm_debugfs_remove_files);
+ 
++void drm_debugfs_create_dir(void)
++{
++	drm_debugfs_root = debugfs_create_dir("dri", NULL);
++}
++
++void drm_debugfs_remove_dir(void)
++{
++	debugfs_remove(drm_debugfs_root);
++}
++
+ /**
+  * drm_debugfs_dev_init - create debugfs directory for the device
+  * @dev: the device which we want to create the directory for
+@@ -295,7 +307,10 @@ EXPORT_SYMBOL(drm_debugfs_remove_files);
+  */
+ void drm_debugfs_dev_init(struct drm_device *dev, struct dentry *root)
+ {
+-	dev->debugfs_root = debugfs_create_dir(dev->unique, root);
++	if (!root)
++		dev->debugfs_root = debugfs_create_dir(dev->unique, drm_debugfs_root);
++	else
++		dev->debugfs_root = debugfs_create_dir(dev->unique, root);
+ }
+ 
+ /**
+@@ -322,14 +337,13 @@ void drm_debugfs_dev_register(struct drm_device *dev)
+ 		drm_atomic_debugfs_init(dev);
+ }
+ 
+-int drm_debugfs_register(struct drm_minor *minor, int minor_id,
+-			 struct dentry *root)
++int drm_debugfs_register(struct drm_minor *minor, int minor_id)
+ {
+ 	struct drm_device *dev = minor->dev;
+ 	char name[64];
+ 
+ 	sprintf(name, "%d", minor_id);
+-	minor->debugfs_symlink = debugfs_create_symlink(name, root,
++	minor->debugfs_symlink = debugfs_create_symlink(name, drm_debugfs_root,
+ 							dev->unique);
+ 
+ 	/* TODO: Only for compatibility with drivers */
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 17fc5dc708f4..8abc52eac8f3 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -69,8 +69,6 @@ DEFINE_XARRAY_ALLOC(drm_minors_xa);
+  */
+ static bool drm_core_init_complete;
+ 
+-static struct dentry *drm_debugfs_root;
+-
+ DEFINE_STATIC_SRCU(drm_unplug_srcu);
+ 
+ /*
+@@ -183,8 +181,7 @@ static int drm_minor_register(struct drm_device *dev, enum drm_minor_type type)
+ 		return 0;
+ 
+ 	if (minor->type != DRM_MINOR_ACCEL) {
+-		ret = drm_debugfs_register(minor, minor->index,
+-					   drm_debugfs_root);
++		ret = drm_debugfs_register(minor, minor->index);
+ 		if (ret) {
+ 			DRM_ERROR("DRM: Failed to initialize /sys/kernel/debug/dri.\n");
+ 			goto err_debugfs;
+@@ -754,7 +751,7 @@ static int drm_dev_init(struct drm_device *dev,
+ 	if (drm_core_check_feature(dev, DRIVER_COMPUTE_ACCEL))
+ 		accel_debugfs_init(dev);
+ 	else
+-		drm_debugfs_dev_init(dev, drm_debugfs_root);
++		drm_debugfs_dev_init(dev, NULL);
+ 
+ 	return 0;
+ 
+@@ -1168,7 +1165,7 @@ static void drm_core_exit(void)
+ 	drm_panic_exit();
+ 	accel_core_exit();
+ 	unregister_chrdev(DRM_MAJOR, "drm");
+-	debugfs_remove(drm_debugfs_root);
++	drm_debugfs_remove_dir();
+ 	drm_sysfs_destroy();
+ 	WARN_ON(!xa_empty(&drm_minors_xa));
+ 	drm_connector_ida_destroy();
+@@ -1187,7 +1184,7 @@ static int __init drm_core_init(void)
+ 		goto error;
+ 	}
+ 
+-	drm_debugfs_root = debugfs_create_dir("dri", NULL);
++	drm_debugfs_create_dir();
+ 
+ 	ret = register_chrdev(DRM_MAJOR, "drm", &drm_stub_fops);
+ 	if (ret < 0)
+diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+index b2b6a8e49dda..d2d8e72f32d9 100644
+--- a/drivers/gpu/drm/drm_internal.h
++++ b/drivers/gpu/drm/drm_internal.h
+@@ -186,8 +186,7 @@ void drm_gem_vunmap(struct drm_gem_object *obj, struct iosys_map *map);
+ #if defined(CONFIG_DEBUG_FS)
+ void drm_debugfs_dev_fini(struct drm_device *dev);
+ void drm_debugfs_dev_register(struct drm_device *dev);
+-int drm_debugfs_register(struct drm_minor *minor, int minor_id,
+-			 struct dentry *root);
++int drm_debugfs_register(struct drm_minor *minor, int minor_id);
+ void drm_debugfs_unregister(struct drm_minor *minor);
+ void drm_debugfs_connector_add(struct drm_connector *connector);
+ void drm_debugfs_connector_remove(struct drm_connector *connector);
+@@ -205,8 +204,7 @@ static inline void drm_debugfs_dev_register(struct drm_device *dev)
+ {
+ }
+ 
+-static inline int drm_debugfs_register(struct drm_minor *minor, int minor_id,
+-				       struct dentry *root)
++static inline int drm_debugfs_register(struct drm_minor *minor, int minor_id)
+ {
+ 	return 0;
+ }
+diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+index a43d707b5f36..4e77a0c4a7f9 100644
+--- a/include/drm/drm_drv.h
++++ b/include/drm/drm_drv.h
+@@ -567,10 +567,20 @@ static inline bool drm_firmware_drivers_only(void)
+ 
+ #if defined(CONFIG_DEBUG_FS)
+ void drm_debugfs_dev_init(struct drm_device *dev, struct dentry *root);
++void drm_debugfs_create_dir(void);
++void drm_debugfs_remove_dir(void);
+ #else
+ static inline void drm_debugfs_dev_init(struct drm_device *dev, struct dentry *root)
+ {
+ }
++
++static inline void drm_debugfs_create_dir(void)
++{
++}
++
++static inline void drm_debugfs_remove_dir(void)
++{
++}
+ #endif
+ 
+ #endif
+-- 
+2.34.1
+
