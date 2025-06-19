@@ -2,70 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBAA6AE082A
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Jun 2025 16:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D205AE0569
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Jun 2025 14:20:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5744810EA6F;
-	Thu, 19 Jun 2025 14:02:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E81B10EA0E;
+	Thu, 19 Jun 2025 12:20:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AKpRLnv5";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="eHLS/Xpb";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="T9lxjRgC";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="eHLS/Xpb";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="T9lxjRgC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3571110E1FE
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Jun 2025 23:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1750290925;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=HiaOuJ42vqNHhFgJMjJLM7wPYAnFg3s/hwNHhH+fcys=;
- b=AKpRLnv5WnX1N2CfGZbOT646ujfD3F51qwgE93sz/7Z7yMNFCsAm2q8MZov+Cb59wxZI1y
- zC8uRsSKS5Jk1PGqNyfYp6zPK54Q84ZdbwVufd5PKis3cIx/Amd/YT4bpNBWLp9F+khI6E
- 7EhonD1v87GBP6OyUuWhW4NmPcDQt2M=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-85-CAwjoseQN8-yz18sAk_5bg-1; Wed,
- 18 Jun 2025 19:55:21 -0400
-X-MC-Unique: CAwjoseQN8-yz18sAk_5bg-1
-X-Mimecast-MFC-AGG-ID: CAwjoseQN8-yz18sAk_5bg_1750290919
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB9410EA0E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Jun 2025 12:20:17 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 149AD1800343; Wed, 18 Jun 2025 23:55:19 +0000 (UTC)
-Received: from localhost (unknown [10.72.112.28])
- by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 7666A180045B; Wed, 18 Jun 2025 23:55:16 +0000 (UTC)
-Date: Thu, 19 Jun 2025 07:55:12 +0800
-From: Baoquan He <bhe@redhat.com>
-To: Peter Zijlstra <peterz@infradead.org>
-Cc: Mario Limonciello <superm1@kernel.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, Borislav Petkov <bp@alien8.de>,
- amd-gfx@lists.freedesktop.org
-Subject: Re: amdgpu vs kexec
-Message-ID: <aFNR4E/4CR1b/MsG@MiWiFi-R3L-srv>
-References: <20250616093945.GA1613200@noisy.programming.kicks-ass.net>
- <4f5f95ff-b97e-41db-b9fd-5204e6581a30@amd.com>
- <20250616145437.GG1613376@noisy.programming.kicks-ass.net>
- <2bbcc44d-9079-4a73-ba6c-e93fdcb9cf6f@kernel.org>
- <20250618085123.GF1613376@noisy.programming.kicks-ass.net>
- <20250618091232.GD1613633@noisy.programming.kicks-ass.net>
+ by smtp-out2.suse.de (Postfix) with ESMTPS id C520F1F397;
+ Thu, 19 Jun 2025 12:20:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1750335615; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=QVEIIOIJXtiEQ/3g9nfb6CKyT0PlAzOgAUC+buNw/xk=;
+ b=eHLS/XpbZQp/VPE8etA8MSGwriLw12KwyNaW4D6YNtpcZZreVbzeW9sQ9bS4hkdR+79XK9
+ P994JC2SSqw8Z9FAsYmJ9CbEiiHjtslEV6hpi8LMcTJeRWNvTJBthE3Fdcwhc/FySR5Vc0
+ sKV4ChWJQhb1Xvndb2PmRGCU0KlIr5w=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1750335615;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=QVEIIOIJXtiEQ/3g9nfb6CKyT0PlAzOgAUC+buNw/xk=;
+ b=T9lxjRgCeaDpYckSAe7bU8TlPHQzUHBTtm9SWOGWJoB+fAPDaQYu0P7kQE6ITGXVUM6dl2
+ F3e9r3Bf3Jmd6xBQ==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1750335615; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=QVEIIOIJXtiEQ/3g9nfb6CKyT0PlAzOgAUC+buNw/xk=;
+ b=eHLS/XpbZQp/VPE8etA8MSGwriLw12KwyNaW4D6YNtpcZZreVbzeW9sQ9bS4hkdR+79XK9
+ P994JC2SSqw8Z9FAsYmJ9CbEiiHjtslEV6hpi8LMcTJeRWNvTJBthE3Fdcwhc/FySR5Vc0
+ sKV4ChWJQhb1Xvndb2PmRGCU0KlIr5w=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1750335615;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=QVEIIOIJXtiEQ/3g9nfb6CKyT0PlAzOgAUC+buNw/xk=;
+ b=T9lxjRgCeaDpYckSAe7bU8TlPHQzUHBTtm9SWOGWJoB+fAPDaQYu0P7kQE6ITGXVUM6dl2
+ F3e9r3Bf3Jmd6xBQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 7CAF8136CC;
+ Thu, 19 Jun 2025 12:20:15 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id fywIHX8AVGigegAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 19 Jun 2025 12:20:15 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, sumit.semwal@linaro.org
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 0/2] drm/amd: Avoid using import_attach directly
+Date: Thu, 19 Jun 2025 14:15:45 +0200
+Message-ID: <20250619121635.105329-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-In-Reply-To: <20250618091232.GD1613633@noisy.programming.kicks-ass.net>
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: OmIXtv2PJt35d-A98EzxZTWbGPnt9zHIshBJQyYiD1o_1750290919
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Thu, 19 Jun 2025 14:02:00 +0000
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-0.998];
+ MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,linaro.org];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ RCPT_COUNT_SEVEN(0.00)[8];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Spam-Score: -2.80
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,44 +105,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 06/18/25 at 11:12am, Peter Zijlstra wrote:
-> On Wed, Jun 18, 2025 at 10:51:23AM +0200, Peter Zijlstra wrote:
-> > On Tue, Jun 17, 2025 at 09:12:12PM -0500, Mario Limonciello wrote:
-> > 
-> > > How about if we reset before the kexec?  There is a symbol for drivers to
-> > > use to know they're about to go through kexec to do $THINGS.
-> > > 
-> > > Something like this:
-> > > 
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > > index 0fc0eeedc6461..2b1216b14d618 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > > @@ -34,6 +34,7 @@
-> > > 
-> > >  #include <linux/cc_platform.h>
-> > >  #include <linux/dynamic_debug.h>
-> > > +#include <linux/kexec.h>
-> > >  #include <linux/module.h>
-> > >  #include <linux/mmu_notifier.h>
-> > >  #include <linux/pm_runtime.h>
-> > > @@ -2544,6 +2545,9 @@ amdgpu_pci_shutdown(struct pci_dev *pdev)
-> > >                 adev->mp1_state = PP_MP1_STATE_UNLOAD;
-> > >         amdgpu_device_ip_suspend(adev);
-> > >         adev->mp1_state = PP_MP1_STATE_NONE;
-> > > +
-> > > +       if (kexec_in_progress)
-> > > +               amdgpu_asic_reset(adev);
-> > >  }
-> > > 
-> > >  static int amdgpu_pmops_prepare(struct device *dev)
-> > 
-> > I will throw this in the dev kernel... I'll let you know.
-> 
-> First hurdle appears to be that this symbol is not exported. I fixed
-> that, but perhaps the kexec folks don't like drivers to use this?
+The field import_attach of struct drm_gem_object is often only
+required by PRIME code. In other places, replace its use with
+clearer alternatives.
 
-I can't find the original mail of this thread, while we don't have a
-known restriction about that afaik.
+Thomas Zimmermann (2):
+  drm/amdgpu: Test for imported buffers with drm_gem_is_imported()
+  drm/amdgpu: Use dma_buf from GEM object instance
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c     |  5 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  | 14 ++++++--------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      |  6 +++---
+ 6 files changed, 15 insertions(+), 18 deletions(-)
+
+-- 
+2.49.0
 
