@@ -2,74 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3A2AE1BEC
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Jun 2025 15:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 053D7AE1B13
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Jun 2025 14:40:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 343F510EB63;
-	Fri, 20 Jun 2025 13:19:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E23310EB52;
+	Fri, 20 Jun 2025 12:40:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K+W5Q7w6";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="knhDQnpe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46FAB10E21F
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Jun 2025 12:14:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750421670; x=1781957670;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=akZkLO9HpvybIYtKa+1huJIJ17R706HAo3uzRMtFzvc=;
- b=K+W5Q7w6LR0mG5i5dwk+TnGOv64qb5FRZrLlaWeOrf9kC+PmvtkhmHOR
- lLk4wT/lxea748JiHwxRxJ6zEVs4vIMxYuTIrEUCrP8x6PLiKAAildxcF
- B3S4OWgbeuVFHjYo704GNhH4YfL9EB2LyA/GrnwNEInINgqupj8CxekH6
- BJLh0H5Ptd53XasRjhnI2koOWPI7USYPXy4lkiqInr4m2vY7o/7sUPIU+
- SMZHv8YT+kBpyG8A3XNRKf8FZYfd4XDjsXkmwij/k2s7ihNt5EOgvDhWi
- ZZsgUotQ+kNqiW7qJD648FSO7meC/hLV84hcD2THFPlXwldg/vdXYTnON A==;
-X-CSE-ConnectionGUID: 3bhEz44zTZedoYARcDfybA==
-X-CSE-MsgGUID: Fc+B10zdQ4u0UkmfJfr7mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="52613105"
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="52613105"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 05:14:30 -0700
-X-CSE-ConnectionGUID: 86AhDx93Q+CJrNlp9wdJzw==
-X-CSE-MsgGUID: vVVico3cSyel5glwcJaBig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="150495286"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 05:14:26 -0700
-Date: Fri, 20 Jun 2025 15:14:23 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Mario Limonciello <superm1@kernel.org>,
- Denis Benato <benato.denis96@gmail.com>, mahesh@linux.ibm.com,
- oohall@gmail.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- ilpo.jarvinen@linux.intel.com, lukas@wunner.de,
- aravind.iddamsetty@linux.intel.com,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: Re: [PATCH v4] PCI: Prevent power state transition of erroneous device
-Message-ID: <aFVQn5N1srBuDkuP@black.fi.intel.com>
-References: <CAJZ5v0gRFwKhq21ima3kT0zzFLk4=47ivvzJqARksV7nYHTJAQ@mail.gmail.com>
- <CAJZ5v0h9--jFVBtQ5F7Gee3Cy8P3TeSLdiHEWykQ=EsZdoffmg@mail.gmail.com>
- <aDnpfKvLwRZsKxhH@black.fi.intel.com>
- <CAJZ5v0gjA2B4AnaYpfYpaNDo49k4LM2FGSrPFFuOCJ62bCMmkA@mail.gmail.com>
- <aEBpdwMfxp5M4Hxr@black.fi.intel.com>
- <CAJZ5v0hhoh0Fqnph6ZcbyZBj1Wp0t8UqnLr27TAVW31ZyKPL3Q@mail.gmail.com>
- <aEGDL0IF10QX3Abr@black.fi.intel.com>
- <CAJZ5v0hJbKEJKRKv67bcQaHbL7h5e_WDGNPg4BA_P4JY-mk_nw@mail.gmail.com>
- <aEg2vzf6tn4j96LG@black.fi.intel.com>
- <CAJZ5v0iiPVWpWdAHJkzWCHGrUj5i5b8nN9G2_CAWUarc3Ryskg@mail.gmail.com>
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 561CC10EB53
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Jun 2025 12:40:53 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-453647147c6so8157655e9.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Jun 2025 05:40:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1750423252; x=1751028052;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=tWHsGUBFEN1KUfzCF8rv1/QvjATm1qfhGurlRc+Xo8w=;
+ b=knhDQnpe2vzou/WJvA4D2Wj8eluMt8AH9axGPoy91pP1qim8sz5kfh+/ywiDDYnycF
+ fzQxVe+LP9DF1EQUyS81v2i/1PBvUIEffZHR5XqcXylqMND0Q2OF+ZgbfFusoVzOII5R
+ TKmUgWZTwsOiFiHhMZ4aiJ1Hqzy5r84c7UScWxzhTu+Z0wggNDNYh8kLSPNgcXDKNAyd
+ prL4rhn/uPt+c6ALNXvySpDKuYmKFQNS6nVyhCmYq3mlsEzUhMsWwayShpAVnK+g0ReK
+ fzNTKL6MnmDUR0e/6NmRoYveybzpVjeW8oKvd5wroP+yoosjz0ZTKCxEU5WeX39EhrlZ
+ 0mwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750423252; x=1751028052;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=tWHsGUBFEN1KUfzCF8rv1/QvjATm1qfhGurlRc+Xo8w=;
+ b=OY7jkWbYvXgK2lR9XMldtubFQ82C9wlGBXP4Np2KVF/0McfA1EYCLBYURuECBj+aa7
+ 01s98sN5lWsJ/iSZctODzS1l4FYBgcIa4DLg5LYEp3TIg3+a1U5zBx9LRlXGljBDwWrx
+ gGUVq0TFCLxxXK81gQcyQtsQ8BFlJJE7ctE0BWQKnN+qYTvg5euqkNyrUEX+bYSjbMYC
+ 6xHQtgJ6sFHwPUCP6JLVxpUw8+q0qcyipHNnAUVvWUh+oCQ6+ovGN9QG1FYZKLLFtukR
+ UhPlcQl2P9pkS5GR2W1+dpmRFBSyb7yoXicJL56orsDGcIOD3nuTwHmyGWbwqJq2v/48
+ kPhg==
+X-Gm-Message-State: AOJu0Yz5aSlyERzDHsZQYmLVnCZLq0EDRjvnMM+kDy6ICm4OtPa+vq5Q
+ Kb+p6CCzUjqj/oS2HZw/6WGguUHP+aERbe54+eG8Y4jUlmCpBlpt7V/it+p0CEPDzk8=
+X-Gm-Gg: ASbGncvh++eG2zsBqI9dKcdmr79R4MgfzS+UIgLgdFW9r6ICHJgUOiKf+1KaYXwvHGv
+ BerO7MEQcxDWWAsvAPQIssIqAFj2w7j4VwroDgihcZliSKJgDMuzhtUoFsuo2ZiTQ1u9uRcDw8m
+ IOKZ/ljJP9y2JtnISgAVQJPh115LD06+xbevkC2jDulOLPv/PBCTrpOSACBZL37JURIyN6cmvms
+ C8VBkfFpV7DocJd2j7JoMK+z/bFeqONcIkJRag7hxl42am5CZiMBtx74HqZpdXh8gD6Z7O7ZsxX
+ /jS/ZTelIdxYNbThs+Z2pKgiFwgJo3FrqS6dEhpfW7gDP1cQt48KdLIrG3CvHY7l/pp3eblDnz6
+ V
+X-Google-Smtp-Source: AGHT+IElOXijoyB+KGBKjJKjycZ49XMmKLEe2pa6xDkJBW3yU7xU50uT5NxqB7o/cFFnTHdxgNoR/A==
+X-Received: by 2002:a05:600c:1392:b0:43c:ed61:2c26 with SMTP id
+ 5b1f17b1804b1-453658ba515mr26170355e9.17.1750423251386; 
+ Fri, 20 Jun 2025 05:40:51 -0700 (PDT)
+Received: from [192.168.0.101] ([81.79.92.254])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3a6d0f1d1bbsm1982491f8f.41.2025.06.20.05.40.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 20 Jun 2025 05:40:50 -0700 (PDT)
+Message-ID: <2e76cb27-ef90-4da5-a10d-5c1ac20a3d67@ursulin.net>
+Date: Fri, 20 Jun 2025 13:40:50 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0iiPVWpWdAHJkzWCHGrUj5i5b8nN9G2_CAWUarc3Ryskg@mail.gmail.com>
-X-Mailman-Approved-At: Fri, 20 Jun 2025 13:19:02 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/2] debugfs support for pt base for each vm
+To: Sunil Khatri <sunil.khatri@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+References: <20250613071537.701563-1-sunil.khatri@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20250613071537.701563-1-sunil.khatri@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,76 +90,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 10, 2025 at 03:53:10PM +0200, Rafael J. Wysocki wrote:
-> On Tue, Jun 10, 2025 at 3:44 PM Raag Jadav <raag.jadav@intel.com> wrote:
-> > On Thu, Jun 05, 2025 at 02:26:05PM +0200, Rafael J. Wysocki wrote:
-> > > On Thu, Jun 5, 2025 at 1:44 PM Raag Jadav <raag.jadav@intel.com> wrote:
-> > > > On Wed, Jun 04, 2025 at 08:19:34PM +0200, Rafael J. Wysocki wrote:
-> > > > > On Wed, Jun 4, 2025 at 5:43 PM Raag Jadav <raag.jadav@intel.com> wrote:
-> > > > > > On Fri, May 30, 2025 at 07:49:26PM +0200, Rafael J. Wysocki wrote:
-> > > > > > > On Fri, May 30, 2025 at 7:23 PM Raag Jadav <raag.jadav@intel.com> wrote:
-> > > > > > > > On Fri, May 23, 2025 at 05:23:10PM +0200, Rafael J. Wysocki wrote:
-> > > > > > > > > On Wed, May 21, 2025 at 1:27 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
-> > > > > > > > > > On Wed, May 21, 2025 at 10:54 AM Raag Jadav <raag.jadav@intel.com> wrote:
-> > > > > > > > > > > On Tue, May 20, 2025 at 01:56:28PM -0500, Mario Limonciello wrote:
-> > > > > > > > > > > > On 5/20/2025 1:42 PM, Raag Jadav wrote:
-> > > > > > > > > > > > > On Tue, May 20, 2025 at 12:39:12PM -0500, Mario Limonciello wrote:
-> > > > > >
-> > > > > > ...
-> > > > > >
-> > > > > > > > > > > > From the driver perspective it does have expectations that the parts outside
-> > > > > > > > > > > > the driver did the right thing.  If the driver was expecting the root port
-> > > > > > > > > > > > to be powered down at suspend and it wasn't there are hardware components
-> > > > > > > > > > > > that didn't power cycle and that's what we're seeing here.
-> > > > > > > > > > >
-> > > > > > > > > > > Which means the expectation set by the driver is the opposite of the
-> > > > > > > > > > > purpose of this patch, and it's going to fail if any kind of error is
-> > > > > > > > > > > detected under root port during suspend.
-> > > > > > > > > >
-> > > > > > > > > > And IMV this driver's expectation is questionable at least.
-> > > > > > > > > >
-> > > > > > > > > > There is no promise whatsoever that the device will always be put into
-> > > > > > > > > > D3cold during system suspend.
-> > > > > > > > >
-> > > > > > > > > For instance, user space may disable D3cold for any PCI device via the
-> > > > > > > > > d3cold_allowed attribute in sysfs.
-> > > > > > > > >
-> > > > > > > > > If the driver cannot handle this, it needs to be fixed.
-> > > > > > > >
-> > > > > > > > Thanks for confirming. So should we consider this patch to be valid
-> > > > > > > > and worth moving forward?
-> > > > > > >
-> > > > > > > It doesn't do anything that would be invalid in principle IMV.
-> > > > > > >
-> > > > > > > You need to consider one more thing, though: It may be necessary to
-> > > > > > > power-cycle the device in order to kick it out of the erroneous state
-> > > > > > > and the patch effectively blocks this if I'm not mistaken.
-> > > > > > >
-> > > > > > > But admittedly I'm not sure if this really matters.
-> > > > > >
-> > > > > > Wouldn't something like bus reset (SBR) be more predictable?
-> > > > >
-> > > > > Maybe.
-> > > > >
-> > > > > The device state is most likely inconsistent in that case, so it depends.
-> > > >
-> > > > My limited understanding is that if SBR doesn't help, at that point all
-> > > > bets are off including PMCSR configuration and probably a cold boot is
-> > > > needed.
-> > >
-> > > I'm not talking about PMCSR, I'm talking about power removal (D3cold).
-> > > This should be equivalent to a cold boot for the particular device
-> > > except that cold boot would also reset the hierarchy above it.
-> >
-> > Sure. But for D3cold we rely on everything else under root port to also
-> > be suspended, which we can't predict while in endpoint suspend path. And
-> > with that we're back to "no guarantees" problem, which was the case either
-> > way. The patch might just prevent any further damage than what's already
-> > done.
+
+On 13/06/2025 08:15, Sunil Khatri wrote:
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/clients
+>               command  tgid dev master a   uid      magic                                                             name client-id
+>        systemd-logind  1056   0   y    y     0          0                                                          <unset>     5
+>              Xwayland  1733 128   n    n   120          0                                                          <unset>     8
+>       mutter-x11-fram  2048 128   n    n   120          0                                                          <unset>     9
+>              ibus-x11  2071 128   n    n   120          0                                                          <unset>    10
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/client
+> client-1/  client-10/ client-2/  client-5/  client-8/  client-9/  clients
+
+How about making clients a directory? Ie. in your example:
+
+# ls -1 /sys/kernel/debug/dri/0/clients/
+1
+5
+8
+9
+10
+
+# cat /sys/kernel/debug/dri/0/clients/1/pt_base
+81febf3000
+
+Regards,
+
+Tvrtko
+
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/client-1
+> client-1/  client-10/
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/client-1
+> client-1/  client-10/
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/client-1/pt_base
+> 81febf3000
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/client-5/pt_base
+> 81febe9000
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/client-8/pt_base
+> 81febdc000
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/client-9/pt_base
+> 81febb2000
+> root@amd-X570-AORUS-ELITE:~# cat /sys/kernel/debug/dri/0/client-10/pt_base
+> 81febaf000
 > 
-> Fair enough.
+> 
+> Sunil Khatri (2):
+>    drm: add debugfs support per client-id
+>    amdgpu: add debugfs file for pt-base per client-id
+> 
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |  2 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 14 +++++++++++++-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  |  4 +++-
+>   drivers/gpu/drm/drm_file.c              | 13 +++++++++++++
+>   include/drm/drm_file.h                  |  7 +++++++
+>   5 files changed, 37 insertions(+), 3 deletions(-)
+> 
 
-So anything I can do to move this forward?
-Sorry I didn't include your tag since I changed the core logic.
-
-Raag
