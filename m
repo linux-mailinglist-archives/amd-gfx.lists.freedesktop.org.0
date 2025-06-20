@@ -2,159 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E668AE1926
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Jun 2025 12:39:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68CBEAE1BEB
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Jun 2025 15:19:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8FBE10EB41;
-	Fri, 20 Jun 2025 10:39:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02D3810EB5B;
+	Fri, 20 Jun 2025 13:19:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HLJwxpv+";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="CvQkZyeu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2057.outbound.protection.outlook.com [40.107.243.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5CA10EB41
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Jun 2025 10:39:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=STzf0v6b6PAcuYViC1QeuQqDDj567frkCjxlW4OxHZBc+QTuvJRoTs78+l9v0Dk+RBH91jQuv4kroIldjbKculvXHePHVyQx34lWRK/XNwpAfFzjq534Om8/kw6FspBeidWoBPZcK5lujjaTHNVmvY6Ny4bhdgUquENrJjxPo2FVgqE8Ffo3kDPvdt1+UwoVYN/0P1WIvexpFbpJCdR94s0UGTk1fN1YDNbtLfPF/ArzKCKxbPlRfI2kfdVF53W30qByrvNN+FuZFoaBEKFCOELMtaiO66a3Wb9LZkvf8GVuZn2MiDzfOrYoBsvShqK891BSFvZW4DA+1jA390X4Lg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8/chqzdy+pSX58Y7Th5RuOKKpl5I6GRABIgz5H7FzzM=;
- b=zOe55w13jRVgErSsO11wOy0rMMscjScKH9bnrD+QXDZkmL0zYS2mWL9VqdvoIp79JZ23HOfevwESdHhN/8Bc7KF8PDHhgk4P7Zrpl7eWJBOKZyd9lPZEnV9d17L4y/KngZmtYfc5xaZKH64XtAyWtgpFuOrdPXKGAjBuTpcNB9HjKRJkRpItbeoNqeTpCF0h5diDbKjLCF4rg3oWIYC+qw/7HQMjKT44Z671OKcvozd/HMZF9ElquNZcJmD1dZnDLv0qW7qEofOq2WFhyPU94k2oiL0StGecWrtiE4nm2uCW3hVA9xLTrQ62tS0aJqBDg15yEzcOX83xszjPtViP/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8/chqzdy+pSX58Y7Th5RuOKKpl5I6GRABIgz5H7FzzM=;
- b=HLJwxpv+h4ucGkDOmYvCe5o4Oh9zPnDQGLS3PRLwLLYA+cS7KfX7+j+b1xKsQEko6h6Gm8Y7gXtr0X4nYfXLCDQh7wPu5txl4LVhXjfCthZxBX8T/K6gUD8rssXIrXZs0l0vN6r+Bmu9lkvmsbB3saE+dNo14Y1QoYD2d/Yfif0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- SJ2PR12MB7964.namprd12.prod.outlook.com (2603:10b6:a03:4cf::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8769.24; Fri, 20 Jun 2025 10:39:31 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::8327:d71a:ce21:a290%4]) with mapi id 15.20.8835.023; Fri, 20 Jun 2025
- 10:39:31 +0000
-Message-ID: <c9ee4d71-2db6-4636-8376-a8dc53b29dd2@amd.com>
-Date: Fri, 20 Jun 2025 16:09:24 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: amdgpu vs kexec
-To: Peter Zijlstra <peterz@infradead.org>,
- Mario Limonciello <superm1@kernel.org>, bhe@redhat.com
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, Borislav Petkov <bp@alien8.de>,
- amd-gfx@lists.freedesktop.org
-References: <20250616093945.GA1613200@noisy.programming.kicks-ass.net>
- <4f5f95ff-b97e-41db-b9fd-5204e6581a30@amd.com>
- <20250616145437.GG1613376@noisy.programming.kicks-ass.net>
- <2bbcc44d-9079-4a73-ba6c-e93fdcb9cf6f@kernel.org>
- <20250618085123.GF1613376@noisy.programming.kicks-ass.net>
- <20250618091232.GD1613633@noisy.programming.kicks-ass.net>
- <20250618092625.GE1613633@noisy.programming.kicks-ass.net>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20250618092625.GE1613633@noisy.programming.kicks-ass.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4PR01CA0091.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:2af::9) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+X-Greylist: delayed 448 seconds by postgrey-1.36 at gabe;
+ Fri, 20 Jun 2025 12:03:14 UTC
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F2BC10E21F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Jun 2025 12:03:13 +0000 (UTC)
+Received: from [192.168.178.76] (host-212-18-30-247.customer.m-online.net
+ [212.18.30.247])
+ (Authenticated sender: g.gottleuber@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 5CE232FC007C;
+ Fri, 20 Jun 2025 13:55:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1750420544;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=MO78KbUAIvE06t0LdPjySs+xxyAgHTWk9FjQUky7GBg=;
+ b=CvQkZyeuOaEMvd4IAB2YeZAFxWcuvq13KUo9ffknB+8+0jFnBoPCc+q6msywkwYcyzUh/M
+ LIgrZzIp48VzutnBXUHCP5l0FNMx+6AtlZA1MH3xzMimvS+y8ap0PQ4YFARHEU3zoNy6XB
+ W3ARagkHuENBzyL/iu4A6mPzPoJTZW4=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com
+ smtp.mailfrom=g.gottleuber@tuxedocomputers.com
+Message-ID: <0d86a892-ebfb-40b9-b84c-ad8075905cd8@tuxedocomputers.com>
+Date: Fri, 20 Jun 2025 13:55:44 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|SJ2PR12MB7964:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c1b1c47-ac48-4fbe-fe45-08ddafe6bd47
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Rkp1OGlrYThsR1VBbjRLM2N2U1N4WFNubW5ncUZWVnBTajcyT2RhbzBsSGxi?=
- =?utf-8?B?SStHUlV1Zk9jMlJSQVZZTTllbWt0R2tOUVNUQWhoRUpWVFgzR012bnd3RFVW?=
- =?utf-8?B?YjFJV3VTSmJYbzQ2Mkw5Sm1VTVc2d0NqKzVtNWVCa1dOZkZkSXJzN3NPVFlj?=
- =?utf-8?B?N1ZnUzd2b2ZGdU5LSHRlU1M5VFJxUmttQlM3NjNkczVQazhxN0hCbFhUOWFh?=
- =?utf-8?B?K2dhbmw4Q1hZM0JieUJvMEgxVzdzNEFOL0NiWnJCb3FpWkRTOUl0bHdUWG9w?=
- =?utf-8?B?akRodHlCUFpuREZaaW90UklRYmxqTTBlV3ZRWkozN3FWOFN1U3A0djlZUHgz?=
- =?utf-8?B?YVFGYVJWd1QrWmtTOGtGc2d4b1BzTW1LdlNqSXFUaGJqbHd6RDR6bTF3QWF2?=
- =?utf-8?B?dThUZTJpT1dRMDhtUVpiZno4VkhQcGpqRWplKzQ1dU1pNWFKWCtrM1JkWkFl?=
- =?utf-8?B?aEF5SDdocHZJZTlWdTQzQ1Jna04rUkcvUkhqWG1Ld21KcC9rTlM2QUZOS1Bm?=
- =?utf-8?B?RkgwWkt3c3JQUUtoc1FacXlOSlA0UU9pV1hvbGtOYzhubmk3RFVpTmV6OWdt?=
- =?utf-8?B?M3ZiSGF4WExkdURCOXpGSmJrQkhEZFgwd09JOWZZTVJsZWh0bEUyQkxTQkhB?=
- =?utf-8?B?dTZCTFFySmNrcUI0TUdqQ1VRUmxzbGdiSmpjTTRpVHAzM0IrZ3gwYmY2MWZJ?=
- =?utf-8?B?Y0pWQitjako3V0s1TUd4b05hWmNxQTYrR21jL2pqa1dEV29qbjNLc3VQU1BS?=
- =?utf-8?B?Vk5GQm9uZ1g5eDZGVU5EeTk0RDA5a2Q3SXAxRGMrdUZqK3VWWlB3a1l3NEs5?=
- =?utf-8?B?K0tpSFdyVzJoTnFIMDI3dDhNYmRDNHZvV2pPWmJad2k0dVdOa3JHWktXVHYy?=
- =?utf-8?B?QmhDNXhiRVpNYzJKU1lCWTlmUmxZRjVIY3R5WElEUkZUMmo5TFdTTmQzc292?=
- =?utf-8?B?MHJCamRFd1puYWF0eE8xcGRhRnQrS3JBZmk5T0M0WHhBYjI0MDlxUnZSOXZC?=
- =?utf-8?B?UGFxSmpCRUFtRE9RejlwdDdzS01BN21KTGhBTi9SbjZrYmNZTjVJcXBHaC9X?=
- =?utf-8?B?NjhPc1pmNGtieGpSLzRxRndLRmxNeTI1YzJ1enlqZkVlRWZpd2ZDMm9YaUF5?=
- =?utf-8?B?YkUrdWZ0WDFuMzBxM1drTjR6VTdBS2tIbnE0d2xmVjRUanpFd0pKL204cFNO?=
- =?utf-8?B?eVB4ZnZQajNiTE0rZkN6SFBKUWQrOGJkQmRqNFErRXJ0ZzZJdHNiMGRJQ0pI?=
- =?utf-8?B?TVppdjF3OHczbi9US2dkQ2FLdE9SUngxMWdRVzF1WVRmelNtKzE5TEg2QXZt?=
- =?utf-8?B?K1BpMCt6dzJ6N1A4dWtSVVY0RmIxWWFBanlvVVQwamVlN3p0QVVGQ0YrOEQ5?=
- =?utf-8?B?NHZ1WVAzbnhwS0pKN1JmTXlVeXpxbVBSSlJ6NnY4OHF4Q0Y1UEFjeVNneFBt?=
- =?utf-8?B?RHF5WmtRb093Rm1jT1JDS0luSHBNMTAwWkVFaENZUnRZVnY2Q3plSjZUdVhk?=
- =?utf-8?B?MTJMeUxyYkZOY295ZnBUV0gxcE9UTHBQV2k5YXROa1ZIVyswNE1aMHBYak9W?=
- =?utf-8?B?cVd5cVYrdVIxNG9ydER2L2dxK214WUtzb3dNK3FlWjdya2tDRm84RTg5aThn?=
- =?utf-8?B?Y0laNWN2a1dsYnpETE9ONXFuaTV1TmNJeGtObDcxRkFLRmRZaThBY2VDWmpT?=
- =?utf-8?B?QzBYUnAwT21oREY0TlNyYmJTL0xoUWhqaG1jTWdGNG9HQkduaUJRR3lUWDcx?=
- =?utf-8?B?QnZtd1NkZ1pWNHdGSGFLenpRL2pJamlZK1pwY2ZacGM0a05GeGNPVUdBYVhj?=
- =?utf-8?B?Zm5CTFRUL0JCTzhJblI4RzFHNk5jeHA3WEFMdlpXQ1ZkRlF6MlMxWmpCRWZO?=
- =?utf-8?B?UTNxVVQ1SzZWV0trSXkvNkFtWE1KQVNlRGlPL1huNTRwaStOMWQ2TlhuOG9H?=
- =?utf-8?Q?EpSRQ4uemA0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qk1KMEtCSVVDWEt4RWVoYzhpcnNQcTM2dHd5MWxkdDFJRmZqbjdvc0IwNExj?=
- =?utf-8?B?VkpzNkcyZm5jQmxERVNGcEJ0V3c5M3N0Y0RhcnR6a2RPem13SGRJMnpGR3Jt?=
- =?utf-8?B?R2MyNGhNTkZCem9uRmQ1aHVNNytpTU1JYXJ6TjR5S1R1emI1aElNbkczR2py?=
- =?utf-8?B?MXFYNWd6WEJmMkZYQlVFaTFPT3hWNTMzTm45K1pBMWNrSlhRRGU4U3JETDhr?=
- =?utf-8?B?dmZpMk9HM2NjTTU4ZWJ3MU1pejNuNW8rMzV2WkxybGZmRklyWkJhN2FkT1Vs?=
- =?utf-8?B?eERPQXprSHBIMEVQRHkxWWtneDhUbFF3blUzKzlMMjYvQW8yYkZMZkhNUyt6?=
- =?utf-8?B?aks5cG5sWWZNVDR5bU1HR0wwVytKU0dQVGNNRzF1VU1EY2lENjZlVWZra256?=
- =?utf-8?B?UGxkWDE0cHNKNzBhTC9nUm5MMUY1TXNIOFFVVWU3QWNmcldDZzgrZENEYnQy?=
- =?utf-8?B?WnorREJybW5JeXdONUhleThCODVER2J3aElaL2U3cUVSTSttUjg4Tit5TUpL?=
- =?utf-8?B?UkVzTUVzTG5mdHVIRzJxM3VWTFNvMFpHYnYzTG1FcHJyZUFCTDBaTWtGRjds?=
- =?utf-8?B?YXU0VUF1MVJPYTNaamFsV2U0Y0w1S2tvakNQZ2llaTVFbDBHYzBkb1UzdXZv?=
- =?utf-8?B?QU85aTQxTWZsSkRnL1lvTlg1N2ZLQUJhTGFOcHhiVlZyekpLVElvRnE5WG5F?=
- =?utf-8?B?ZzYwMDNkOU1CaG5IbWRaaWduODN1UEltVjJ3MGoxSnZNWWpXM1U4Y0ZETjdp?=
- =?utf-8?B?azQzRFUxd2pNNlJWeDJIYWIwazZRRGQ3V3ZFRFc3NmtKNGNudXdBN1VuNXh0?=
- =?utf-8?B?d2QzaEsrRDRLemJjQnNiRjJJVmJ6bW9wMjMxUWwzNVpWaW9GcVpQa0hGWkFr?=
- =?utf-8?B?V09BbktiS1l6RjNKditvejlla3RXUjNFbTBIUFhWcWVISEExdEtUVXluOXNY?=
- =?utf-8?B?cElHTmxONEx3NE0yOWh5UmprU2hWNXNQRWMyZTV6UzFuUUtzM3E2TmgrSEx1?=
- =?utf-8?B?L1R5UnlNdktZMXk5OEJSQ0svQis0bWg3L3lTTVlKRW90TkxwZjdnQ0xTd0xH?=
- =?utf-8?B?VjFMQUU5VWIxVzRGdlNFOHBxR1hUT3VPK21hcFc1OTNIVURRRE5JamQ4SE8y?=
- =?utf-8?B?RWVra1VndjNKaWRpeHBaWENOVngzZ1gxbWVnU2ZLQ1lTeWZlMjgvSzRja2RX?=
- =?utf-8?B?RjdxbkE5TmZOL0FCK1RIeFRRWDFQdDJ5N1VZQmlOUFM5VEZNcTBxdmRIbWRN?=
- =?utf-8?B?M3FxbFVnbVc1eVVaRW1vWXU5WmhuTkE4cmhpK3ErMEh3NWJJbEo0eGhack9v?=
- =?utf-8?B?Z3N4VnJzWDVnMDFkRWJIME5SM2RkSkF5aFNZSURqMWRCQ0Z4QktVRmp2b0pT?=
- =?utf-8?B?cFl3MGdMUjhVMGdzUXFYMGg5M1VOcGZyTVhrcUUwL2VTdVVRRlY1bElyTi91?=
- =?utf-8?B?dGw1U1gwYndwYzJlWENZaktYSmhiTHcrL0dOKy9OdmZWRCtSTTZPMnI4T0NR?=
- =?utf-8?B?THJvNUUrNS9jSDB1SWZha0k1Q0FMNENCWTd5aUM2eUE0enVZNGtkOWh5eVdr?=
- =?utf-8?B?aytObVBSRkF0WnkvMGhmTXAwWjhya0F5OUhiRDE4QW9CZTA0MFRCQTJjMk5P?=
- =?utf-8?B?SUZWaEc4bVZxMFlzYTdEcis1MEVzL2hVblpQenRpVFFoWDcvWFZSejdiM3dt?=
- =?utf-8?B?Zk9zSE44bXRKZjBYOWRsWG9EOHZYakFhN0ZrdCszYXZiSzlrbWhQTDFxQVhw?=
- =?utf-8?B?TnR1c3BlUk9PYzJZZDB2QzZqQ2ZWaXNVY0ZpS0x6KzhmWkQzd2JZK1VpclVt?=
- =?utf-8?B?TGhzMVlZZU92TzBEdUxXaythZlVRZWNwc3VTK2YvbGJhNDE4MGl0NUlQSEhX?=
- =?utf-8?B?YXNGQkl2ZGJuZ1hkT0FvU3pkVDVXakNsMjZBSGt3RjNJbFJaT1NhZ3BtMjMz?=
- =?utf-8?B?T3kzOG5YbjhtaEo2YkVjM0dvSFNvd0k2bzNSVVRqRmNlVXpYRHZPeVg5aTZM?=
- =?utf-8?B?V2NhWXZVT1BTRjg0QmpWL2pSYjgxa0ZIcVk3dGpyVWFuUGp2SUFXZlNvdFZi?=
- =?utf-8?B?TVY3OGI3THdBSmVmRDQvLzR3Sm0zVWgrYStXUmN6eVFxRGNNeXNZZlhISllQ?=
- =?utf-8?Q?exY1vaWDfIpiq64ujbPj54pkl?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c1b1c47-ac48-4fbe-fe45-08ddafe6bd47
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2025 10:39:31.3493 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 31D7GNQUY6aC+9QIJy/I+rYqvlM6VD2rCE2jRKuOeI7cdqZ9CHzMNWOJEKq0MDiT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7964
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REGRESSION] drm/amd/display: Radeon 840M/860M: bisected suspend
+ crash
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Alex Hung <alex.hung@amd.com>, ggo@tuxedocomputers.com,
+ stable@vger.kernel.org, regressions@lists.linux.dev,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: amd-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Christoffer Sandberg <cs@tuxedocomputers.com>
+References: <fd10cda4-cd9b-487e-b7c6-83c98c9db3f8@tuxedocomputers.com>
+ <3002633a-5c9e-4baa-b16a-91fdec994e02@amd.com>
+ <3271e5d7-9b2a-4378-9ed2-825507202c16@amd.com>
+Content-Language: en-US
+From: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>
+Autocrypt: addr=g.gottleuber@tuxedocomputers.com; keydata=
+ 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
+ bsxTTcOuRnk=
+In-Reply-To: <3271e5d7-9b2a-4378-9ed2-825507202c16@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 20 Jun 2025 13:19:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,51 +119,77 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 6/18/2025 2:56 PM, Peter Zijlstra wrote:
-> On Wed, Jun 18, 2025 at 11:12:32AM +0200, Peter Zijlstra wrote:
->> On Wed, Jun 18, 2025 at 10:51:23AM +0200, Peter Zijlstra wrote:
->>> On Tue, Jun 17, 2025 at 09:12:12PM -0500, Mario Limonciello wrote:
->>>
->>>> How about if we reset before the kexec?  There is a symbol for drivers to
->>>> use to know they're about to go through kexec to do $THINGS.
->>>>
->>>> Something like this:
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->>>> index 0fc0eeedc6461..2b1216b14d618 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
->>>> @@ -34,6 +34,7 @@
->>>>
->>>>  #include <linux/cc_platform.h>
->>>>  #include <linux/dynamic_debug.h>
->>>> +#include <linux/kexec.h>
->>>>  #include <linux/module.h>
->>>>  #include <linux/mmu_notifier.h>
->>>>  #include <linux/pm_runtime.h>
->>>> @@ -2544,6 +2545,9 @@ amdgpu_pci_shutdown(struct pci_dev *pdev)
->>>>                 adev->mp1_state = PP_MP1_STATE_UNLOAD;
->>>>         amdgpu_device_ip_suspend(adev);
->>>>         adev->mp1_state = PP_MP1_STATE_NONE;
->>>> +
->>>> +       if (kexec_in_progress)
->>>> +               amdgpu_asic_reset(adev);
->>>>  }
->>>>
->>>>  static int amdgpu_pmops_prepare(struct device *dev)
->>>
->>> I will throw this in the dev kernel... I'll let you know.
+Am 18.06.25 um 04:16 schrieb Mario Limonciello:
+> On 6/17/2025 6:42 PM, Alex Hung wrote:
+>> Hi,
 >>
->> First hurdle appears to be that this symbol is not exported. I fixed
->> that, but perhaps the kexec folks don't like drivers to use this?
+>> Thanks for reporting. Can you please create a bug at https:// 
+>> gitlab.freedesktop.org/drm/amd/-/issues/ for issue tracking and log 
+>> collection.
+>>
+>> On 6/12/25 08:08, ggo@tuxedocomputers.com wrote:
+>>> Hi,
+>>>
+>>> I have discovered that two small form factor desktops with Ryzen AI 7
+>>> 350 and Ryzen AI 5 340 crash when woken up from suspend. I can see how
+>>> the LED on the USB mouse is switched on when I trigger a resume via
+>>> keyboard button, but the display remains black. The kernel also no
+>>> longer responds to Magic SysRq keys in this state.
+>>>
+>>> The problem affects all kernels after merge b50753547453 (v6.11.0). But
+>>> this merge only adds PCI_DEVICE_ID_AMD_1AH_M60H_ROOT with commit
+>>> 59c34008d (necessary to trigger this bug with Ryzen AI CPU).
+>>> I cherry-picked this commit and continued searching. Which finally led
+>>> me to commit f6098641d3e - drm/amd/display: fix s2idle entry for DCN3.5+
+>>>
+>>> If I remove the code, which has changed somewhat in the meantime, then
+>>> the suspend works without any problems. See the following patch.
+>>>
+>>> Regards,
+>>> Georg
+>>>
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>> index d3100f641ac6..76204ae70acc 100644
+>>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>> @@ -3121,9 +3121,6 @@ static int dm_suspend(struct amdgpu_ip_block
+>>> *ip_block)
+>>>
+>>>       dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D3);
+>>>
+>>> -    if (dm->dc->caps.ips_support && adev->in_s0ix)
+>>> -        dc_allow_idle_optimizations(dm->dc, true);
+>>> -
+>>>       dc_dmub_srv_set_power_state(dm->dc->ctx->dmub_srv,
+>>> DC_ACPI_CM_POWER_STATE_D3);
+>>>
+>>>       return 0;
+>>>
+>>
+>>
 > 
-> Bah, so first kexec after a fresh reboot into a kernel carrying this has
-> the thing failing.
+> That patch you did is basically blocking hardware sleep.  I wouldn't 
+> call it a solution.
+> 
+> If you haven't already; please use 
+> https://git.kernel.org/pub/scm/linux/kernel/git/superm1/amd-debug-tools.git/about/ 
+> to triage this issue.  It will flag the most common things that are hard 
+> to diagnose without knowledge.
+> 
+> If that doesn't flag anything, please reproduce on a mainline kernel 
+> (6.15.y or 6.16-rcX) and then file a bug as Alex suggested.  Attach the 
+> report you generated from the tool there.
 > 
 
-Could you check if passing amdgpu module param - 'runpm=0' - helps?
+Tested with newest mainline kernel 6.16.0-rc2 and the bug somehow
+changed. Now the system resumes always (with GUI), but NVMe is always
+disconnected. If I apply the patch resume works (including NVMe).
 
-Thanks,
-Lijo
+Created an issue:
+https://gitlab.freedesktop.org/drm/amd/-/issues/4344 (with report)
+
+Regards,
+Georg
 
