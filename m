@@ -2,122 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34088AE395E
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Jun 2025 11:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F72AE3A06
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Jun 2025 11:28:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD36410E1E1;
-	Mon, 23 Jun 2025 09:04:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CF3E10E2A3;
+	Mon, 23 Jun 2025 09:28:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xUPi+X9t";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="TvthYNQU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6609F10E1D8
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 09:04:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tpnNZp7r03F23eRiRaezvqvdg/9x1DXyy+z3QjjNzL9aEQ/+I6yx27tO9e4ogR/diNUTnXfQghz9pMPmDYF1zV/oQN9KexNe0zdupIb+V7wp00zNJFbYTBVDS3iGWE631YM4S8JFyPokbzROJ1Pzt1gyUlIyLeFRFVAG3umu/PDysF+jcHNPDlfNWR19hTdXLRgGSxQ+sCaru/Bu1tbBt+Gg9YDi0auhN1fJXHuK0qtx3m9kt/jGjd7sOX4NuNmq726vDvf7I6Uz5tiDpUFD8ly15UKBt5ljZ/1TbZBeL5rFhZf997whOUCWB0Rbeq58Sh/vzv8yL8LnJAmvwCBomw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VzL85oRwbd06jyVBbx1r0aDnMhzQ4dKMZ87pElJPc4c=;
- b=FHDwcdjd+LscMnh2QBndtddboH+g43ztLxCR67tvS3A/8fUEqp3daDcBowSvRrZWYS88/tFOqnbQi1Dr0UG8j5AFvyspDMnlPmwOLoj62CmmtdOBiD2y/QnpV8mLPhQJ5O+rh6MW/B1fSjLKLRGl4Hd3PFnuz8tsfvNcgpdhn5d0lEwddE2inISyvPK1plamn8N/huKX3uXLeUqkMngqb55IMEzf18JXaRw4ify/NVKAh3w1yTGqQ63FSDJCwer9fyuSbpkO2R8HO2ObCclXFxHBF/vm6M8Yq5sSfTS59wIvKR3heorGOjB2K0VDVEfGbCjVSa1DeRVVehhJizgyNA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VzL85oRwbd06jyVBbx1r0aDnMhzQ4dKMZ87pElJPc4c=;
- b=xUPi+X9ti89KRnXhv5DLkOhWxQQCzWqWAPIR2cWSalZuBC803f//NE13T8KoL7QtIt23/WbwnFsmllG3n/NK9eBwMvae84Y4CLCKUtkmPv/Io4nv5T3MNXaSHGsQZKHUTT08X7QMAhW2wZ2KmV7kiPWeF72h1fbcdkJ5VU1VdWg=
-Received: from SJ0PR13CA0031.namprd13.prod.outlook.com (2603:10b6:a03:2c2::6)
- by DS7PR12MB6144.namprd12.prod.outlook.com (2603:10b6:8:98::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8857.28; Mon, 23 Jun 2025 09:04:50 +0000
-Received: from SJ1PEPF000023D8.namprd21.prod.outlook.com
- (2603:10b6:a03:2c2:cafe::c0) by SJ0PR13CA0031.outlook.office365.com
- (2603:10b6:a03:2c2::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8880.15 via Frontend Transport; Mon,
- 23 Jun 2025 09:04:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SJ1PEPF000023D8.mail.protection.outlook.com (10.167.244.73) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8901.1 via Frontend Transport; Mon, 23 Jun 2025 09:04:50 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 23 Jun
- 2025 04:04:47 -0500
-Received: from kenneth-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via
- Frontend Transport; Mon, 23 Jun 2025 04:04:46 -0500
-From: Kenneth Feng <kenneth.feng@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <KevinYang.Wang@amd.com>, Kenneth Feng <kenneth.feng@amd.com>
-Subject: [PATCH] drm/amd/pm: revise the pcie dpm parameters
-Date: Mon, 23 Jun 2025 17:04:39 +0800
-Message-ID: <20250623090439.959876-1-kenneth.feng@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2832910E2A3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 09:28:11 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-45348bff79fso43913705e9.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 02:28:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1750670889; x=1751275689;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=OO/idZQSS5cQFxp8gfwUuiwtWMk5ElukOWUF6vn1f0M=;
+ b=TvthYNQU37192MjfL3UrAtMTYfFZVatXafB2wEsR47PoWpA4WEz5ujtkFiUvlOF7OC
+ lYyvre70Xtu4rcIuig9uC0c51tUvHfgWTv+H1sAE6zKJgT+vDibiFQB8hJ9WHvVrCari
+ Wv9yeiCO1jc4TKMWNpwtOhVUn6JgMHuAMCzFtwGh9N5SJoMuxk2URWyzEySdM1DbFowf
+ yDIezy63jByrBmxun8D/xXn8Mkm2AB5kYf/4oSK3s2qoQjfTBPN/SjYQ+5HuLSTFwiN7
+ 2cKuCBzhWbiV3PHXN0+VZFTD/PCQnpdU4ZVMu8i1FjcCiMZaIqiwsMFqRQJfAXKTKxd3
+ wB/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750670889; x=1751275689;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=OO/idZQSS5cQFxp8gfwUuiwtWMk5ElukOWUF6vn1f0M=;
+ b=tfjNOBHWAByaF4Nc5uWfPSbNkSNoj0mQ+VCVps0RMOCFzuh6hqzxfe3cYC4lu2vbhE
+ 78S/SsVriM82XrNJtN/JB5M5xTxOLPcRT/a8n9GCD0SIoU0CReJboC+gYZEljW3LSUGF
+ wRIQbjYvcd5+sDxwP7qO0eyCm9ph4RhadUugxJ2qTtBst0z4Xez02Gb5DGylwNfeIRQ0
+ K2xsIT/zZO6HxyrguJNzx27sSJ/obTJYUkKhnRk7XriVBEo3aoSOl6l4Y/q5YP8HwOju
+ J7dwtIdNFlMiZub151VuCZhUmK0QLiraoNDGQ8qOxcVUqcuyFgJwu7fofkASAM7nna8H
+ +PQw==
+X-Gm-Message-State: AOJu0YxcjNPg60HPWP/1xSojkELY/3qYqsHNGjvFm8jH9BHAQSwn3fEI
+ 0/9GPoIJRD6dbcyHyyw1/7dOtpmi4CH6u65WIvTL+IqU3iAREhlEeIMf5tAwIO/CBTQ=
+X-Gm-Gg: ASbGncsc06iQA46x7uzaqcdnPBBAVIwpVFc66ihRqhjFDSagGyWE2GxrjHM8v4ql+yL
+ qNEdwAuzCAZwgdi7t+7h8QY9MTAx8xZNt3jddNCo7gsu8XEvwOTfBVHS280uusympATigBY5CYe
+ 69KTrYU2K5US5OlJM48rbMD3vsbZnE3ElqP7+01ujmmVXS/4JBS37akLuFbmAqGwsVa7Wdw6+7P
+ bZ08s9Lg5Wh41omkbXz+ppIvp5+ewTL5gvJiNq8Dt0ZLjpaOEITwRcgwktRL50HOiZf2X9ZAC5T
+ S4qF39KXeK640/LrLpWJkwJ2M6+uqmVZQa15hQ7YO/sIyvY36u3mBELhAgq+rjkhAFtAidZpl8d
+ TtgP5yk4UR1I=
+X-Google-Smtp-Source: AGHT+IF1e17PymZsogQru2VIH1zKILybdvwE2KT6iLXFL7wEy6C6BpmVNAbvrRZr+vgDkS0RbHsFlg==
+X-Received: by 2002:a05:600c:4512:b0:453:5c30:a1d0 with SMTP id
+ 5b1f17b1804b1-4536e0da765mr50193325e9.21.1750670888914; 
+ Mon, 23 Jun 2025 02:28:08 -0700 (PDT)
+Received: from [192.168.0.101] ([81.79.92.254])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4535ead202asm137905985e9.27.2025.06.23.02.28.08
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 23 Jun 2025 02:28:08 -0700 (PDT)
+Message-ID: <d1372124-616b-4bc7-8a5c-50c524bc3e5d@ursulin.net>
+Date: Mon, 23 Jun 2025 10:28:07 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: kenneth.feng@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D8:EE_|DS7PR12MB6144:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07e871a1-2380-4585-bc79-08ddb235027f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/4vlK26ba9NcN2ARQ7QkAKHhxqHrxqTS3bEinT6ebYQPpSnpkOB8l8ybVIWq?=
- =?us-ascii?Q?p5E82Y1azqWtJjdXkFaYxL0fBb44YktQz9aZwLKSHhvh0GkULyBPnS284p/t?=
- =?us-ascii?Q?w42oSbaKJDkBgnXRXIR2MkPqdsTkYCdfUE0CCQ/NkJUH/7x+E7IySYIlbbs2?=
- =?us-ascii?Q?htHzrty+vpirQ92WCdGnCrUvDzKycDTOVhjuyF+KBs/rFG/FeGj3xH123ZQm?=
- =?us-ascii?Q?7Wv08kZRfNo1VgpI4KilX9+A/RNFnwP1iXTovQhLwkzIwDlSZx1xP/U2JvF7?=
- =?us-ascii?Q?nYb1Co0RNsFycxd867Avo6Tl+01mXKjihAOY33iE7TqX0COybjgsCtoaTZnc?=
- =?us-ascii?Q?+0eTycqzxWaEWvhxG+aBIX+wHgGqUUcSMNHydzoCIB0kOlsSpbEjB6Z+Tr9w?=
- =?us-ascii?Q?4uHk21k7aU7F2VW5OH7YEk58AFgGt9qxpgPG2nEBHrPmS1WPE+OjhGdUU9c3?=
- =?us-ascii?Q?qpdIAIps+KvHrK5xHgRPwrXmc3vbDLSFN7JMDKO7owM0+zcA+Ud1aVv4VrjJ?=
- =?us-ascii?Q?jR2yHs87ldfdOFJ8N5oWbvLOxrSljssiDoSKqyZLLQIMAwaLQRW1/Jg19raI?=
- =?us-ascii?Q?PfW9L1g1eDISQW0Av4s9dLdqWunz4BdC11QekBqHOzprNzLQlmMLNqmWk7dQ?=
- =?us-ascii?Q?NE1Je0UmBSE+3f4yWTlC6RArhlBZqCjPMLxNCHoqlDJWT3YMO88CV5ApPtRO?=
- =?us-ascii?Q?JeV/OmeOX4POJkl8dLDkoLZOSEyBDmbgsJ8fDBD/OeBhhfzKxzLqHadw1JdG?=
- =?us-ascii?Q?A16VjzCQXUxlkUHVtzpQLs9I7YdICi9b4kZFHNipg2QvBa7RABffqHQPllnz?=
- =?us-ascii?Q?aDaa+HwUet25zjaH4ty4u3PxQ+Y80QuDuQWmQ9FH8QB+x1shp+sB3V6nXsNO?=
- =?us-ascii?Q?mWH7LKNHVvVLMQf4wuREvZyIvu1+Gbhvcq8Fqqphc/VePgKqSzyDBaCzZtM8?=
- =?us-ascii?Q?Q3pm4q2Gxm1jr0IKjeO5lVjqVZARyrJnFDJICzBGB02xQN2jebnIftIX4xTM?=
- =?us-ascii?Q?EAZj2DwIijcuiQwWLIlo4+o14ZHAR7iG5rTwMv8h7HkkZkbsign3xzssjVAq?=
- =?us-ascii?Q?VFrw/m7XWQkEv82MRCrxJdWBKiL4p2oRC+4cT4EHIy16GBa7mitbhVACBUey?=
- =?us-ascii?Q?IppJGkSAcsLJsWS9zwT20H1O1xoe5aVs8d5SH0rg2lutpJoPkJ9aCvj24Ek3?=
- =?us-ascii?Q?BQh3EQY8QyyLTLKa2wMjmQ/bmOlYMqvBqkI90m+MsYbAQBLvASZg0EGiOib+?=
- =?us-ascii?Q?YKDjNEsoW/KFR7JgeP7V0cRV1yntatZ5s3RZ4ix2MUZQxmYo2Xtfs6i1J+Ij?=
- =?us-ascii?Q?X1/QCBjUHZWDrBD1xJnnyazFCJbkfKYPZRxS0kS3ycsSPKQCq6iLs6IlLXsr?=
- =?us-ascii?Q?o0xlnuvLlJNeQBvnR9j9xTe/D1dJaTgyhH0+QHlR+BrZimidH7YHTRh3mjAx?=
- =?us-ascii?Q?K/mw1W/lD1muPEleY+kD3IAHhIqjir7L9cs4PnvecCgZih7twmlUDlH9lakf?=
- =?us-ascii?Q?O7zpCJz2kzVtRxbZA3s/XXI4r9lTuV5BVt5+?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 09:04:50.0083 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07e871a1-2380-4585-bc79-08ddb235027f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D8.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6144
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] drm: add debugfs support on per client-id basis
+To: Sunil Khatri <sunil.khatri@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, simona@ffwll.ch, tzimmermann@suse.de,
+ phasta@kernel.org, dakr@kernel.org
+References: <20250618134747.3893138-1-sunil.khatri@amd.com>
+ <20250618134747.3893138-2-sunil.khatri@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20250618134747.3893138-2-sunil.khatri@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,86 +92,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-revise the pcie dpm parameters
 
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c      | 8 ++++++--
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 6 ++++--
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c | 6 ++++--
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c | 6 ++++--
- 4 files changed, 18 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index d7d5ec247624..aac202d0c30e 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -2456,8 +2456,12 @@ static int navi10_update_pcie_parameters(struct smu_context *smu,
- 	for (i = 0; i < NUM_LINK_LEVELS; i++) {
- 		if (pptable->PcieGenSpeed[i] > pcie_gen_cap ||
- 			pptable->PcieLaneCount[i] > pcie_width_cap) {
--			dpm_context->dpm_tables.pcie_table.pcie_gen[i] = pcie_gen_cap;
--			dpm_context->dpm_tables.pcie_table.pcie_lane[i] = pcie_width_cap;
-+			dpm_context->dpm_tables.pcie_table.pcie_gen[i] =
-+									pptable->PcieGenSpeed[i] > pcie_gen_cap ?
-+									pcie_gen_cap : pptable->PcieGenSpeed[i];
-+			dpm_context->dpm_tables.pcie_table.pcie_lane[i] =
-+									pptable->PcieLaneCount[i] > pcie_width_cap ?
-+									pcie_width_cap : pptable->PcieLaneCount[i];
- 			smu_pcie_arg = i << 16;
- 			smu_pcie_arg |= pcie_gen_cap << 8;
- 			smu_pcie_arg |= pcie_width_cap;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-index 257082c03865..e084ed99ec0e 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-@@ -3193,8 +3193,10 @@ static int smu_v13_0_0_update_pcie_parameters(struct smu_context *smu,
- 		for (i = 0; i < num_of_levels; i++) {
- 			if (pcie_table->pcie_gen[i] > pcie_gen_cap ||
- 				pcie_table->pcie_lane[i] > pcie_width_cap) {
--				pcie_table->pcie_gen[i] = pcie_gen_cap;
--				pcie_table->pcie_lane[i] = pcie_width_cap;
-+				pcie_table->pcie_gen[i] = pcie_table->pcie_gen[i] > pcie_gen_cap ?
-+										  pcie_gen_cap : pcie_table->pcie_gen[i];
-+				pcie_table->pcie_lane[i] = pcie_table->pcie_lane[i] > pcie_width_cap ?
-+										   pcie_width_cap : pcie_table->pcie_lane[i];
- 				smu_pcie_arg = i << 16;
- 				smu_pcie_arg |= pcie_table->pcie_gen[i] << 8;
- 				smu_pcie_arg |= pcie_table->pcie_lane[i];
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-index e96364856e74..c96fa5e49ed6 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-@@ -2781,8 +2781,10 @@ static int smu_v13_0_7_update_pcie_parameters(struct smu_context *smu,
- 		for (i = 0; i < num_of_levels; i++) {
- 			if (pcie_table->pcie_gen[i] > pcie_gen_cap ||
- 				pcie_table->pcie_lane[i] > pcie_width_cap) {
--				pcie_table->pcie_gen[i] = pcie_gen_cap;
--				pcie_table->pcie_lane[i] = pcie_width_cap;
-+				pcie_table->pcie_gen[i] = pcie_table->pcie_gen[i] > pcie_gen_cap ?
-+										  pcie_gen_cap : pcie_table->pcie_gen[i];
-+				pcie_table->pcie_lane[i] = pcie_table->pcie_lane[i] > pcie_width_cap ?
-+										   pcie_width_cap : pcie_table->pcie_lane[i];
- 				smu_pcie_arg = i << 16;
- 				smu_pcie_arg |= pcie_table->pcie_gen[i] << 8;
- 				smu_pcie_arg |= pcie_table->pcie_lane[i];
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-index 581a4e59130a..3aea32baea3d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-@@ -1518,8 +1518,10 @@ static int smu_v14_0_2_update_pcie_parameters(struct smu_context *smu,
- 		for (i = 0; i < num_of_levels; i++) {
- 			if (pcie_table->pcie_gen[i] > pcie_gen_cap ||
- 				pcie_table->pcie_lane[i] > pcie_width_cap) {
--				pcie_table->pcie_gen[i] = pcie_gen_cap;
--				pcie_table->pcie_lane[i] = pcie_width_cap;
-+				pcie_table->pcie_gen[i] = pcie_table->pcie_gen[i] > pcie_gen_cap ?
-+										  pcie_gen_cap : pcie_table->pcie_gen[i];
-+				pcie_table->pcie_lane[i] = pcie_table->pcie_lane[i] > pcie_width_cap ?
-+										   pcie_width_cap : pcie_table->pcie_lane[i];
- 				smu_pcie_arg = i << 16;
- 				smu_pcie_arg |= pcie_table->pcie_gen[i] << 8;
- 				smu_pcie_arg |= pcie_table->pcie_lane[i];
--- 
-2.34.1
+On 18/06/2025 14:47, Sunil Khatri wrote:
+> add support to add a directory for each client-id
+> with root at the dri level. Since the clients are
+> unique and not just related to one single drm device,
+> so it makes more sense to add all the client based
+> nodes with root as dri.
+> 
+> Also create a symlink back to the parent drm device
+> from each client.
+
+TBH I can see an use case for both clients at DRI level and clients 
+under DRM devices. I guess you have an use case for global and per 
+device can be added later if it becomes needed.
+
+> 
+> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+> ---
+>   drivers/gpu/drm/drm_debugfs.c | 32 ++++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/drm_file.c    | 10 ++++++++++
+>   include/drm/drm_debugfs.h     | 12 ++++++++++++
+>   include/drm/drm_file.h        |  7 +++++++
+>   4 files changed, 61 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
+> index 5a33ec299c04..875276d5fb9f 100644
+> --- a/drivers/gpu/drm/drm_debugfs.c
+> +++ b/drivers/gpu/drm/drm_debugfs.c
+> @@ -298,6 +298,38 @@ void drm_debugfs_remove_dir(void)
+>   	debugfs_remove(drm_debugfs_root);
+>   }
+>   
+> +int drm_debugfs_clients_add(struct drm_file *file)
+> +{
+> +	struct drm_device *dev;
+> +	char *client_dir, *symlink;
+> +
+> +	dev = file->minor->dev;
+
+FWIW, as dev is only used once and string locals are not overlapping, 
+you could reduce to a single local variable like char *name and re-use 
+it. Up to you.
+
+> +
+> +	client_dir = kasprintf(GFP_KERNEL, "client-%llu", file->client_id);
+> +	if (!client_dir)
+> +		return -ENOMEM;
+
+It is a bit more work, but I think a clients/ directory with numerical 
+client id subdirs would be nicer.
+
+> +
+> +	/* Create a debugfs directory for the client in root on drm debugfs */
+> +	file->debugfs_client = debugfs_create_dir(client_dir, drm_debugfs_root);
+> +	kfree(client_dir);
+> +
+> +	symlink = kasprintf(GFP_KERNEL, "../%s", dev->unique);
+> +	if (!symlink)
+> +		return -ENOMEM;
+
+Worth removing the partial construction?
+
+> +
+> +	/* Create a link from client_id to the drm device this client id belongs to */
+> +	debugfs_create_symlink("device", file->debugfs_client, symlink);
+
+This can also fail.
+
+> +	kfree(symlink);
+> +
+> +	return 0;
+> +}
+> +
+> +void drm_debugfs_clients_remove(struct drm_file *file)
+> +{
+> +	debugfs_remove_recursive(file->debugfs_client);
+> +	file->debugfs_client = NULL;
+> +}
+> +
+>   /**
+>    * drm_debugfs_dev_init - create debugfs directory for the device
+>    * @dev: the device which we want to create the directory for
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index 06ba6dcbf5ae..8502c5a630b1 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -39,12 +39,14 @@
+>   #include <linux/poll.h>
+>   #include <linux/slab.h>
+>   #include <linux/vga_switcheroo.h>
+> +#include <linux/debugfs.h>
+>   
+>   #include <drm/drm_client_event.h>
+>   #include <drm/drm_drv.h>
+>   #include <drm/drm_file.h>
+>   #include <drm/drm_gem.h>
+>   #include <drm/drm_print.h>
+> +#include <drm/drm_debugfs.h>
+>   
+>   #include "drm_crtc_internal.h"
+>   #include "drm_internal.h"
+> @@ -143,6 +145,13 @@ struct drm_file *drm_file_alloc(struct drm_minor *minor)
+>   	rcu_assign_pointer(file->pid, get_pid(task_tgid(current)));
+>   	file->minor = minor;
+>   
+> +	ret = drm_debugfs_clients_add(file);
+
+Slightly tricky part is that as soon as this runs userspace can enter 
+debugfs. If in the future any debufs clients file is added which can 
+dereference any of the drm_file fields not yet initialized it has the 
+potential to explode and/or be exploited.
+
+Hence I think to be safe the usual pattern of exposing drm_file to 
+userspace at the end, only _after_ drm_file has been *fully* initialized.
+
+Slightly annoying part with that might be undoing dev->driver->open() 
+but maybe it is not that bad.
+
+> +	if (ret) {
+> +		put_pid(rcu_access_pointer(file->pid));
+> +		kfree(file);
+> +		return ERR_PTR(ret);
+
+Onion unwind already exists in the function so could have used it. (Add 
+a new label and here simply "goto out_put_pid".) But as above we discuss 
+tweaking the order lets see how that goes first.
+
+> +	}
+> +
+>   	/* for compatibility root is always authenticated */
+>   	file->authenticated = capable(CAP_SYS_ADMIN);
+>   
+> @@ -236,6 +245,7 @@ void drm_file_free(struct drm_file *file)
+>   		     atomic_read(&dev->open_count));
+>   
+>   	drm_events_release(file);
+> +	drm_debugfs_clients_remove(file);
+>   
+>   	if (drm_core_check_feature(dev, DRIVER_MODESET)) {
+>   		drm_fb_release(file);
+> diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
+> index cf06cee4343f..4bd6cc1d0900 100644
+> --- a/include/drm/drm_debugfs.h
+> +++ b/include/drm/drm_debugfs.h
+> @@ -153,6 +153,9 @@ void drm_debugfs_add_files(struct drm_device *dev,
+>   
+>   int drm_debugfs_gpuva_info(struct seq_file *m,
+>   			   struct drm_gpuvm *gpuvm);
+> +
+> +int drm_debugfs_clients_add(struct drm_file *file);
+> +void drm_debugfs_clients_remove(struct drm_file *file);
+>   #else
+>   static inline void drm_debugfs_create_files(const struct drm_info_list *files,
+>   					    int count, struct dentry *root,
+> @@ -181,6 +184,15 @@ static inline int drm_debugfs_gpuva_info(struct seq_file *m,
+>   {
+>   	return 0;
+>   }
+> +
+> +int drm_debugfs_clients_add(struct drm_file *file)
+> +{
+> +	return 0;
+> +}
+> +
+> +void drm_debugfs_clients_remove(struct drm_file *file)
+> +{
+> +}
+
+Static inline for the two above.
+
+>   #endif
+>   
+>   #endif /* _DRM_DEBUGFS_H_ */
+> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> index 5c3b2aa3e69d..eab7546aad79 100644
+> --- a/include/drm/drm_file.h
+> +++ b/include/drm/drm_file.h
+> @@ -400,6 +400,13 @@ struct drm_file {
+>   	 * @client_name_lock: Protects @client_name.
+>   	 */
+>   	struct mutex client_name_lock;
+> +
+> +	/**
+> +	 * @debugfs_client:
+> +	 *
+> +	 * debugfs directory for each client under a drm node.
+> +	 */
+> +	struct dentry *debugfs_client;
+
+Is it worth idefing this out if !CONFIG_DEBUG_FS?
+
+Regards,
+
+Tvrtko
+
+>   };
+>   
+>   /**
 
