@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C2C3AE3962
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Jun 2025 11:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34088AE395E
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Jun 2025 11:05:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2BCC10E28F;
-	Mon, 23 Jun 2025 09:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD36410E1E1;
+	Mon, 23 Jun 2025 09:04:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mn7Qdzq2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xUPi+X9t";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2052.outbound.protection.outlook.com [40.107.100.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E56A810E28F
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 09:05:07 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6609F10E1D8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 09:04:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I1pY9sweUqEGbpQ7pIH8jDKU9J6B0Vu+bfSwTlwESQ0wr/BmVIfIfc42hGyvL9pEtL+L62X8LfQFZANwYzzTVCgenBN9NP7UlfHWDmAbEFKKVdJnbfieV6BtGXyXQxpnq+95/aWUfKI0H4RBlGT+fT30/x0OVZ6xt2i68o0/hm/nQAai2DVfyk1gqbmlilnm2tUTnXNGJmU8eUwqDVJmRi6F7WS2g+aQ66EPom91L2OAX8qaZ8JSxSkA9DLeAoNWPS8RyLPJiFAoNqUsSNzOZmIlpA15oI3Pzg7d7d7oPJmQNbgL4FDTVhMUc1kYqQ+SxDQCCfwV/Q3uu9rwFHwXDA==
+ b=tpnNZp7r03F23eRiRaezvqvdg/9x1DXyy+z3QjjNzL9aEQ/+I6yx27tO9e4ogR/diNUTnXfQghz9pMPmDYF1zV/oQN9KexNe0zdupIb+V7wp00zNJFbYTBVDS3iGWE631YM4S8JFyPokbzROJ1Pzt1gyUlIyLeFRFVAG3umu/PDysF+jcHNPDlfNWR19hTdXLRgGSxQ+sCaru/Bu1tbBt+Gg9YDi0auhN1fJXHuK0qtx3m9kt/jGjd7sOX4NuNmq726vDvf7I6Uz5tiDpUFD8ly15UKBt5ljZ/1TbZBeL5rFhZf997whOUCWB0Rbeq58Sh/vzv8yL8LnJAmvwCBomw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FoFPUZE8emlg1RABpEiaWTZ2lf5y+Nvg2nWbjr6nlKo=;
- b=j+Q1IlNAE6PpeqCbtz5AVTatwBOzPq6J3sK0xIIIh78XxLvgWDYJMWi9LY7bnbNaWPwZjYyLTU10yQonRS+q7bwi5dS1YQXABWs6dRMgHo8CegmY5jMnlj6Y/gx2NwfsfsUX7omQ0b22/sGfCRCJlhk++3DkjQwvTHEOgAIHEfhGW0cthY6HV4YTCSG8DgXP3rs2LgJUZnXSJxDnBRv3mEnkcPsL97iGOsSGOJPk+T0lPC3ObQMpI/qe8yqk3jbq8VozkFUCpKGJ1wLu98Pyr4sDhK1H4Cuf7Ft/wBXQnnqMQ23kD41oxIlzPg+eBOROS+5NtQ7G/NZGyl1+yQ+5/Q==
+ bh=VzL85oRwbd06jyVBbx1r0aDnMhzQ4dKMZ87pElJPc4c=;
+ b=FHDwcdjd+LscMnh2QBndtddboH+g43ztLxCR67tvS3A/8fUEqp3daDcBowSvRrZWYS88/tFOqnbQi1Dr0UG8j5AFvyspDMnlPmwOLoj62CmmtdOBiD2y/QnpV8mLPhQJ5O+rh6MW/B1fSjLKLRGl4Hd3PFnuz8tsfvNcgpdhn5d0lEwddE2inISyvPK1plamn8N/huKX3uXLeUqkMngqb55IMEzf18JXaRw4ify/NVKAh3w1yTGqQ63FSDJCwer9fyuSbpkO2R8HO2ObCclXFxHBF/vm6M8Yq5sSfTS59wIvKR3heorGOjB2K0VDVEfGbCjVSa1DeRVVehhJizgyNA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FoFPUZE8emlg1RABpEiaWTZ2lf5y+Nvg2nWbjr6nlKo=;
- b=mn7Qdzq2oCcTPnpQBuldcKlzvLiU3d3PbhfZhBjWCDw9aizEbcmGf0AoKf2NIYhY5/pNUHoEZKWO4jXuvN0xCdwSm6XF3TJ+tjdYKluF+RP1D2+Nka8pZwHmqQppfm6ksm7pl1GoFUn3WbXZAU1f3YNf+KaI/k1W6HWrS4vZEu0=
-Received: from SJ0PR13CA0038.namprd13.prod.outlook.com (2603:10b6:a03:2c2::13)
- by MN0PR12MB6078.namprd12.prod.outlook.com (2603:10b6:208:3ca::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.22; Mon, 23 Jun
- 2025 09:05:03 +0000
+ bh=VzL85oRwbd06jyVBbx1r0aDnMhzQ4dKMZ87pElJPc4c=;
+ b=xUPi+X9ti89KRnXhv5DLkOhWxQQCzWqWAPIR2cWSalZuBC803f//NE13T8KoL7QtIt23/WbwnFsmllG3n/NK9eBwMvae84Y4CLCKUtkmPv/Io4nv5T3MNXaSHGsQZKHUTT08X7QMAhW2wZ2KmV7kiPWeF72h1fbcdkJ5VU1VdWg=
+Received: from SJ0PR13CA0031.namprd13.prod.outlook.com (2603:10b6:a03:2c2::6)
+ by DS7PR12MB6144.namprd12.prod.outlook.com (2603:10b6:8:98::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8857.28; Mon, 23 Jun 2025 09:04:50 +0000
 Received: from SJ1PEPF000023D8.namprd21.prod.outlook.com
- (2603:10b6:a03:2c2:cafe::60) by SJ0PR13CA0038.outlook.office365.com
- (2603:10b6:a03:2c2::13) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:a03:2c2:cafe::c0) by SJ0PR13CA0031.outlook.office365.com
+ (2603:10b6:a03:2c2::6) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.8880.15 via Frontend Transport; Mon,
- 23 Jun 2025 09:05:03 +0000
+ 23 Jun 2025 09:04:50 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,78 +50,74 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  SJ1PEPF000023D8.mail.protection.outlook.com (10.167.244.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8901.1 via Frontend Transport; Mon, 23 Jun 2025 09:05:03 +0000
+ 15.20.8901.1 via Frontend Transport; Mon, 23 Jun 2025 09:04:50 +0000
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 23 Jun
- 2025 04:04:57 -0500
-Received: from jessevm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Mon, 23 Jun 2025 04:04:52 -0500
-From: Jesse Zhang <jesse.zhang@amd.com>
+ 2025 04:04:47 -0500
+Received: from kenneth-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via
+ Frontend Transport; Mon, 23 Jun 2025 04:04:46 -0500
+From: Kenneth Feng <kenneth.feng@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- Jesse Zhang <jesse.zhang@amd.com>, Jesse Zhang <Jesse.Zhang@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: Add user queue instance count reporting for
- gfx11
+CC: <KevinYang.Wang@amd.com>, Kenneth Feng <kenneth.feng@amd.com>
+Subject: [PATCH] drm/amd/pm: revise the pcie dpm parameters
 Date: Mon, 23 Jun 2025 17:04:39 +0800
-Message-ID: <20250623090439.3811614-2-jesse.zhang@amd.com>
+Message-ID: <20250623090439.959876-1-kenneth.feng@amd.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250623090439.3811614-1-jesse.zhang@amd.com>
-References: <20250623090439.3811614-1-jesse.zhang@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: jesse.zhang@amd.com does not designate
- permitted sender hosts)
+Received-SPF: None (SATLEXMB03.amd.com: kenneth.feng@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D8:EE_|MN0PR12MB6078:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f85aa16-2563-4b18-6d1f-08ddb2350a44
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D8:EE_|DS7PR12MB6144:EE_
+X-MS-Office365-Filtering-Correlation-Id: 07e871a1-2380-4585-bc79-08ddb235027f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wsk1ghW/Y5WAVtqqKKcFpQOyY4vFjLMMs+DCGYL7tVvCS01RbKJlFAXxwe/W?=
- =?us-ascii?Q?K1D7m7L9DnxKLPtitkvVvkC/AyzbXsSblU+DOchK3U51jzbFR2KisvQeJ16E?=
- =?us-ascii?Q?frCLJs+9NGxSC80P2Dnbg/9tuwxr8nvrF3ZorXLm1nDt+Qw6mFPtFzmkB9B9?=
- =?us-ascii?Q?Y57fSq4m2V/XQC0x30L6lwkQvPdpq9+8vmHkLXpkv2rIoXu6RTaYJTTfQdSb?=
- =?us-ascii?Q?yfM9544q0ctKOhF3Q07jzW+s9r6f1pthCbsxLwhmgv90ZCS+GXqXnh061JOH?=
- =?us-ascii?Q?hhcFg8LAIJ71urdRIEJeZhy40CHqcMLBwoMxhk52nAoaBew2KKfhg4PscPS7?=
- =?us-ascii?Q?/e2Tbkk7F9cwdxdvmIWOPBl8z4FhiKSQBmQLN+Aplljwss+Y50zvezxqbKa7?=
- =?us-ascii?Q?zNa9W4WPguL9x6F+wQ6KXLKX3soTJthi5rpVXjUUS6ZLXGu7KViq/xHlH1C3?=
- =?us-ascii?Q?Owyu+lOpVs5kt5eeFottHVRoPEnlsI4twObuhpzfIYnWAk/UXDrc6ddiWjiH?=
- =?us-ascii?Q?CzeLNew0zI6c8hFZ7rxovBx2lJlIvIUqlqglCBGTP5zZ/H0OG+iNa029AwCp?=
- =?us-ascii?Q?oLfrYGPSYq13pLFWiQimLml/W1u+LrMRJSCBoFk8MtC4rdynMOpYQTnp+114?=
- =?us-ascii?Q?wimgDT00napBdko/9q/ZYCcQzhegrJPrS00/ovQpDm1jZ+PeMjeFUaYdrWne?=
- =?us-ascii?Q?BSGti2dv3r8+x9mbgdct5mD8KiLwHWl0YBfYbpRwZJjLkCxVUPRHlPHRw0fI?=
- =?us-ascii?Q?h5ECw2w4OZQK2+6WUJvba9+qIL9X0unkfv8ZRRgc7KG7CcV8qrdnbfnK5FFX?=
- =?us-ascii?Q?//REtbTkxvfa3MoGSWiI1q3v/dy2eR2aKhPX92s5gg5RP9vfiUR0V/60YDiE?=
- =?us-ascii?Q?n2ql+QcLGDvsuWJR7H1PBPC1c8pKrH45tdnUeSfy7l97h/R8clWFSqrBcPz0?=
- =?us-ascii?Q?WLcHAqk7w/xvo3suusJGO3qDOhDcGx1ZdD4oRvuKJAKZjCA0hIsv2Rm2t893?=
- =?us-ascii?Q?hn7bmTJ9Gr1VRV73gvrVGzFyuC20pmZ+5fgE3cfDhGEWsNr0Wl0LkxiAqBQ/?=
- =?us-ascii?Q?7V3SE1EJF0z3fzBgJM5BS4HpanOEBLGL6DpMPpauJNIyZG+kRp9y4mzUdsDA?=
- =?us-ascii?Q?yoXIgDQL/hWZv6YptMRjNu9pWrACQ/ZND77SRoPDthrKjBnfuSbWrEF89avi?=
- =?us-ascii?Q?8QJPzcsHg26cH90ZjqrdFb87pQt5vWTGQXaG7a9RB3Ilu8jN1i6hzb8EtR4i?=
- =?us-ascii?Q?FN3qRGLkKIDObjIVM7cVyu6ZqJxUIKiZiBxRc8zMt1xgDg+xIUYV1/dvVI5L?=
- =?us-ascii?Q?lsLXEtDzflmcbpj5AUlelcoTOGnJA/f5nFytHDiSBvurEdhWEEobrW6e53BH?=
- =?us-ascii?Q?5jiaFiL+IZe8FtKqT3XTrW8ML7c8yBvExFxHA2kX7TDHU/cvR+1qiKAmqCFq?=
- =?us-ascii?Q?lBrZVTc5A2AQt0oEPT0tKjmrxTw1G2MhgaCS2MKAu5LeOiZIK/NVXikB5Lnh?=
- =?us-ascii?Q?QzH4yry5m9mWXlueEJ4bbh3t8xg3kZk6Jj8S?=
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/4vlK26ba9NcN2ARQ7QkAKHhxqHrxqTS3bEinT6ebYQPpSnpkOB8l8ybVIWq?=
+ =?us-ascii?Q?p5E82Y1azqWtJjdXkFaYxL0fBb44YktQz9aZwLKSHhvh0GkULyBPnS284p/t?=
+ =?us-ascii?Q?w42oSbaKJDkBgnXRXIR2MkPqdsTkYCdfUE0CCQ/NkJUH/7x+E7IySYIlbbs2?=
+ =?us-ascii?Q?htHzrty+vpirQ92WCdGnCrUvDzKycDTOVhjuyF+KBs/rFG/FeGj3xH123ZQm?=
+ =?us-ascii?Q?7Wv08kZRfNo1VgpI4KilX9+A/RNFnwP1iXTovQhLwkzIwDlSZx1xP/U2JvF7?=
+ =?us-ascii?Q?nYb1Co0RNsFycxd867Avo6Tl+01mXKjihAOY33iE7TqX0COybjgsCtoaTZnc?=
+ =?us-ascii?Q?+0eTycqzxWaEWvhxG+aBIX+wHgGqUUcSMNHydzoCIB0kOlsSpbEjB6Z+Tr9w?=
+ =?us-ascii?Q?4uHk21k7aU7F2VW5OH7YEk58AFgGt9qxpgPG2nEBHrPmS1WPE+OjhGdUU9c3?=
+ =?us-ascii?Q?qpdIAIps+KvHrK5xHgRPwrXmc3vbDLSFN7JMDKO7owM0+zcA+Ud1aVv4VrjJ?=
+ =?us-ascii?Q?jR2yHs87ldfdOFJ8N5oWbvLOxrSljssiDoSKqyZLLQIMAwaLQRW1/Jg19raI?=
+ =?us-ascii?Q?PfW9L1g1eDISQW0Av4s9dLdqWunz4BdC11QekBqHOzprNzLQlmMLNqmWk7dQ?=
+ =?us-ascii?Q?NE1Je0UmBSE+3f4yWTlC6RArhlBZqCjPMLxNCHoqlDJWT3YMO88CV5ApPtRO?=
+ =?us-ascii?Q?JeV/OmeOX4POJkl8dLDkoLZOSEyBDmbgsJ8fDBD/OeBhhfzKxzLqHadw1JdG?=
+ =?us-ascii?Q?A16VjzCQXUxlkUHVtzpQLs9I7YdICi9b4kZFHNipg2QvBa7RABffqHQPllnz?=
+ =?us-ascii?Q?aDaa+HwUet25zjaH4ty4u3PxQ+Y80QuDuQWmQ9FH8QB+x1shp+sB3V6nXsNO?=
+ =?us-ascii?Q?mWH7LKNHVvVLMQf4wuREvZyIvu1+Gbhvcq8Fqqphc/VePgKqSzyDBaCzZtM8?=
+ =?us-ascii?Q?Q3pm4q2Gxm1jr0IKjeO5lVjqVZARyrJnFDJICzBGB02xQN2jebnIftIX4xTM?=
+ =?us-ascii?Q?EAZj2DwIijcuiQwWLIlo4+o14ZHAR7iG5rTwMv8h7HkkZkbsign3xzssjVAq?=
+ =?us-ascii?Q?VFrw/m7XWQkEv82MRCrxJdWBKiL4p2oRC+4cT4EHIy16GBa7mitbhVACBUey?=
+ =?us-ascii?Q?IppJGkSAcsLJsWS9zwT20H1O1xoe5aVs8d5SH0rg2lutpJoPkJ9aCvj24Ek3?=
+ =?us-ascii?Q?BQh3EQY8QyyLTLKa2wMjmQ/bmOlYMqvBqkI90m+MsYbAQBLvASZg0EGiOib+?=
+ =?us-ascii?Q?YKDjNEsoW/KFR7JgeP7V0cRV1yntatZ5s3RZ4ix2MUZQxmYo2Xtfs6i1J+Ij?=
+ =?us-ascii?Q?X1/QCBjUHZWDrBD1xJnnyazFCJbkfKYPZRxS0kS3ycsSPKQCq6iLs6IlLXsr?=
+ =?us-ascii?Q?o0xlnuvLlJNeQBvnR9j9xTe/D1dJaTgyhH0+QHlR+BrZimidH7YHTRh3mjAx?=
+ =?us-ascii?Q?K/mw1W/lD1muPEleY+kD3IAHhIqjir7L9cs4PnvecCgZih7twmlUDlH9lakf?=
+ =?us-ascii?Q?O7zpCJz2kzVtRxbZA3s/XXI4r9lTuV5BVt5+?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 09:05:03.0407 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f85aa16-2563-4b18-6d1f-08ddb2350a44
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 09:04:50.0083 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07e871a1-2380-4585-bc79-08ddb235027f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D8.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6078
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6144
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,34 +132,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Initialize the number of available user queue instances for GFX11 hardware
-when user queues are enabled (!disable_uq).
+revise the pcie dpm parameters
 
-This sets:
-- userq_gfx_instances to GFX11_NUM_GFX_RINGS
-- userq_compute_instances to AMDGPU_MAX_COMPUTE_RINGS
-
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c      | 8 ++++++--
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 6 ++++--
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c | 6 ++++--
+ drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c | 6 ++++--
+ 4 files changed, 18 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index ec9b84f92d46..775036146d5a 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -5226,6 +5226,11 @@ static int gfx_v11_0_early_init(struct amdgpu_ip_block *ip_block)
- 						  AMDGPU_MAX_COMPUTE_RINGS);
- 	}
- 
-+	if (!adev->gfx.disable_uq) {
-+		adev->gfx.userq_gfx_instances = GFX11_NUM_GFX_RINGS;
-+		adev->gfx.userq_compute_instances = AMDGPU_MAX_COMPUTE_RINGS;
-+	}
-+
- 	gfx_v11_0_set_kiq_pm4_funcs(adev);
- 	gfx_v11_0_set_ring_funcs(adev);
- 	gfx_v11_0_set_irq_funcs(adev);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+index d7d5ec247624..aac202d0c30e 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+@@ -2456,8 +2456,12 @@ static int navi10_update_pcie_parameters(struct smu_context *smu,
+ 	for (i = 0; i < NUM_LINK_LEVELS; i++) {
+ 		if (pptable->PcieGenSpeed[i] > pcie_gen_cap ||
+ 			pptable->PcieLaneCount[i] > pcie_width_cap) {
+-			dpm_context->dpm_tables.pcie_table.pcie_gen[i] = pcie_gen_cap;
+-			dpm_context->dpm_tables.pcie_table.pcie_lane[i] = pcie_width_cap;
++			dpm_context->dpm_tables.pcie_table.pcie_gen[i] =
++									pptable->PcieGenSpeed[i] > pcie_gen_cap ?
++									pcie_gen_cap : pptable->PcieGenSpeed[i];
++			dpm_context->dpm_tables.pcie_table.pcie_lane[i] =
++									pptable->PcieLaneCount[i] > pcie_width_cap ?
++									pcie_width_cap : pptable->PcieLaneCount[i];
+ 			smu_pcie_arg = i << 16;
+ 			smu_pcie_arg |= pcie_gen_cap << 8;
+ 			smu_pcie_arg |= pcie_width_cap;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+index 257082c03865..e084ed99ec0e 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+@@ -3193,8 +3193,10 @@ static int smu_v13_0_0_update_pcie_parameters(struct smu_context *smu,
+ 		for (i = 0; i < num_of_levels; i++) {
+ 			if (pcie_table->pcie_gen[i] > pcie_gen_cap ||
+ 				pcie_table->pcie_lane[i] > pcie_width_cap) {
+-				pcie_table->pcie_gen[i] = pcie_gen_cap;
+-				pcie_table->pcie_lane[i] = pcie_width_cap;
++				pcie_table->pcie_gen[i] = pcie_table->pcie_gen[i] > pcie_gen_cap ?
++										  pcie_gen_cap : pcie_table->pcie_gen[i];
++				pcie_table->pcie_lane[i] = pcie_table->pcie_lane[i] > pcie_width_cap ?
++										   pcie_width_cap : pcie_table->pcie_lane[i];
+ 				smu_pcie_arg = i << 16;
+ 				smu_pcie_arg |= pcie_table->pcie_gen[i] << 8;
+ 				smu_pcie_arg |= pcie_table->pcie_lane[i];
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+index e96364856e74..c96fa5e49ed6 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+@@ -2781,8 +2781,10 @@ static int smu_v13_0_7_update_pcie_parameters(struct smu_context *smu,
+ 		for (i = 0; i < num_of_levels; i++) {
+ 			if (pcie_table->pcie_gen[i] > pcie_gen_cap ||
+ 				pcie_table->pcie_lane[i] > pcie_width_cap) {
+-				pcie_table->pcie_gen[i] = pcie_gen_cap;
+-				pcie_table->pcie_lane[i] = pcie_width_cap;
++				pcie_table->pcie_gen[i] = pcie_table->pcie_gen[i] > pcie_gen_cap ?
++										  pcie_gen_cap : pcie_table->pcie_gen[i];
++				pcie_table->pcie_lane[i] = pcie_table->pcie_lane[i] > pcie_width_cap ?
++										   pcie_width_cap : pcie_table->pcie_lane[i];
+ 				smu_pcie_arg = i << 16;
+ 				smu_pcie_arg |= pcie_table->pcie_gen[i] << 8;
+ 				smu_pcie_arg |= pcie_table->pcie_lane[i];
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+index 581a4e59130a..3aea32baea3d 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
+@@ -1518,8 +1518,10 @@ static int smu_v14_0_2_update_pcie_parameters(struct smu_context *smu,
+ 		for (i = 0; i < num_of_levels; i++) {
+ 			if (pcie_table->pcie_gen[i] > pcie_gen_cap ||
+ 				pcie_table->pcie_lane[i] > pcie_width_cap) {
+-				pcie_table->pcie_gen[i] = pcie_gen_cap;
+-				pcie_table->pcie_lane[i] = pcie_width_cap;
++				pcie_table->pcie_gen[i] = pcie_table->pcie_gen[i] > pcie_gen_cap ?
++										  pcie_gen_cap : pcie_table->pcie_gen[i];
++				pcie_table->pcie_lane[i] = pcie_table->pcie_lane[i] > pcie_width_cap ?
++										   pcie_width_cap : pcie_table->pcie_lane[i];
+ 				smu_pcie_arg = i << 16;
+ 				smu_pcie_arg |= pcie_table->pcie_gen[i] << 8;
+ 				smu_pcie_arg |= pcie_table->pcie_lane[i];
 -- 
 2.34.1
 
