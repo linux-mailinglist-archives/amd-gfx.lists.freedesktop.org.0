@@ -2,62 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64455AE4089
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Jun 2025 14:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A81AE41A0
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Jun 2025 15:07:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1A5110E3A4;
-	Mon, 23 Jun 2025 12:37:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57B9D10E3AD;
+	Mon, 23 Jun 2025 13:07:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FSRtIGfd";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="fvdGYxzY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E940A10E3AD;
- Mon, 23 Jun 2025 12:37:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750682261; x=1782218261;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=jOOtIzg+qfOmHQceAyeLn4PiLd1Wxl/+vF70O4jTiQU=;
- b=FSRtIGfd5Xmu+91rLV3/ppEQDc+3iAXuKKO4v9dObst1R4x03wFK9Aj6
- 1CFi+iN2MQ2saRVeW1ti095KUoyFCNv2/jn1epTSNCkQ4DHfvmCX2jfWT
- 1XyYo4xLYtOlJ0MDxfKBd0Oj2cMWPmZc2HIthXCrPxbXlO/AMnK9LUpEP
- td7J6WM2JM7KjspkzC8au3fFJ01HqSOeAb3vCjmd4BxEPQQS6Yz8xnOm+
- arnzhqv+ogLswPmfXFh6yoBhJ20//Tk971tOkcg9WwtgT7k0Kw6dnPbkv
- PzQ5U4h8lcbeIeTTWk/D7fnxgEpf8W69CFViP+e+EPHrG5YnoJjFAIXAA A==;
-X-CSE-ConnectionGUID: AinJDl4uTCWBUobYYDoZGA==
-X-CSE-MsgGUID: OEeznP8zRSaRGPKsVyioPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="56666224"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="56666224"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 05:37:40 -0700
-X-CSE-ConnectionGUID: b10mhB7hRcuT8k5vRF0Wlw==
-X-CSE-MsgGUID: cUrA/9NyTFOzEIuyKS2A5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="175204491"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO [10.245.244.101])
- ([10.245.244.101])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 05:37:38 -0700
-Message-ID: <2250a163-76ee-4da0-8804-9157d269c84b@intel.com>
-Date: Mon, 23 Jun 2025 13:37:35 +0100
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3FA310E3AD
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 13:07:43 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-451d54214adso27575335e9.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 06:07:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1750684062; x=1751288862;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=zn4TgrW4kioehQfpdKSOPjOeEv5U2KEo+3+XZJOvU1I=;
+ b=fvdGYxzY0q6UQJoEs4joATngVeU0g6ltUoYaRyRn3u74+CwUx23MDKsAJUY1dZ4uFY
+ eeKjYZd6JCft0tzZ8+JjrqKeE1/j85xWkPfzmyCLzzBGbwgsFGvHlX2Xr/D4Kv7PfXRG
+ qP4BsGY/+1ECMqharXxXsv0Tp9+AAdO8xT6rtkKFKMEM8WscqwbRESUbS8YXgDwSAZdv
+ XFzEFZfl96kqAey9hcOT3tdDPY7l/+OE3Pk3OKAoVsCxyYz2zRx8zHnFzh8Hw4XyFzU6
+ 0/Ak4YrRkvLaksomvAOsdk1BU5TPPTK/LPu/Uu+BlUhfR9sgDCyVoCm8OkIyQvuvTcHT
+ NiVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750684062; x=1751288862;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=zn4TgrW4kioehQfpdKSOPjOeEv5U2KEo+3+XZJOvU1I=;
+ b=lGogSqBOJg6552u+yx6ySHcKGAyPnunIfIheR3Qz9ey2ScpebP+hx99guYA/uelfAk
+ eI6LwKxon1JkANBr5aQ5Bh0Swn11SNZV5x63G2zhNAMmCJ/FjNOxh02PQz86T0+/ezw3
+ A4pQRyBZIiSbsbseD0fY59E9LPHCwguQCL572Ale1Apom1dVzfHmsy70sSy/xEYTs+BP
+ uvZkQ95B8orAMd+Ylb6cpIJFTVIGdXZzmHXD25ZPmNCl7r6zV1fk/MQW8KEOjuZtedas
+ 7GF1STuXOD4R5L7UOoc3LIYnRYUk8v6qmpmiJgDSUG9ybpCwyRnfW5eLBgPssay+7aME
+ E1ug==
+X-Gm-Message-State: AOJu0YwIAOO88Nh4VZcboO8TeLsfXDsmVcg4Oqq8O1IZexAzj3UK3iB2
+ j6tUp4WGN4onkxpiS3d2NW8NZ5s4Sr6DerX5S6PwjBl6foOwoBJIGCSSOXzyafOlu2E=
+X-Gm-Gg: ASbGncv0fsEfIfixyZvmD34LHSE8W3TkzQ8gSXUgyTOtUWc2Ay1Gu62eJkISEKVEB8K
+ 83j+GGB+T1QyggcXVYAaRDIkojgl0l3NCYLWoC0W/zpFGvHA2WEdVBCMLniABRGQ8dBfusoWdWz
+ tidRDFDd1NDDDdWLAEGyQjeQYzytPEkXUoD8Ik8TVDpyoTOeN1IZCmru4Jo4BqEfhmGRbykgI35
+ uItR+rRX24sAkJjHCT6AAczHwsh7Nf0fG+TIb3krtSHpSg6Xq6EqERqTqhfUcGJG0eDOg7MRQM4
+ il3vU5CzgX9eGcx88dlQejj8pr+GPPStJSwXwYVFx3Djq3dtqGAsgJwGKShaXRZ3I6DUsF/nWw6
+ U
+X-Google-Smtp-Source: AGHT+IHr6QUDQq6xdNeBSBfJD0JLohrLYdQWwMr8VsggbPvo9pNJdLyRl09ME/G0LmwIu9/SAJROiw==
+X-Received: by 2002:a05:600c:c48e:b0:442:c993:6f94 with SMTP id
+ 5b1f17b1804b1-453659c58d6mr117574365e9.12.1750684061925; 
+ Mon, 23 Jun 2025 06:07:41 -0700 (PDT)
+Received: from [192.168.0.101] ([81.79.92.254])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-453646d1391sm110713935e9.9.2025.06.23.06.07.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 23 Jun 2025 06:07:41 -0700 (PDT)
+Message-ID: <067c1b95-9411-437c-9c57-0cc040547ffd@ursulin.net>
+Date: Mon, 23 Jun 2025 14:07:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/amdgpu: Reset the clear flag in buddy during
- resume
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
- stable@vger.kernel.org, Matthew Brost <matthew.brost@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20250623055253.56630-1-Arunpravin.PaneerSelvam@amd.com>
- <20250623055253.56630-2-Arunpravin.PaneerSelvam@amd.com>
+Subject: Re: [PATCH v4 2/4] drm: add debugfs support on per client-id basis
+To: "Khatri, Sunil" <sukhatri@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, simona@ffwll.ch, tzimmermann@suse.de,
+ phasta@kernel.org, dakr@kernel.org
+References: <20250618134747.3893138-1-sunil.khatri@amd.com>
+ <20250618134747.3893138-2-sunil.khatri@amd.com>
+ <d1372124-616b-4bc7-8a5c-50c524bc3e5d@ursulin.net>
+ <090b8491-329e-4dd7-9480-cf58fd4477da@amd.com>
 Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250623055253.56630-2-Arunpravin.PaneerSelvam@amd.com>
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <090b8491-329e-4dd7-9480-cf58fd4477da@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -74,114 +94,270 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-+Matt B who is adding clear-on-free support in xe. I'm not sure if we 
-might also see something like this.
 
-On 23/06/2025 06:52, Arunpravin Paneer Selvam wrote:
-> - Added a handler in DRM buddy manager to reset the cleared
->    flag for the blocks in the freelist.
+On 23/06/2025 11:24, Khatri, Sunil wrote:
 > 
-> - This is necessary because, upon resuming, the VRAM becomes
->    cluttered with BIOS data, yet the VRAM backend manager
->    believes that everything has been cleared.
+> On 6/23/2025 2:58 PM, Tvrtko Ursulin wrote:
+>>
+>>
+>> On 18/06/2025 14:47, Sunil Khatri wrote:
+>>> add support to add a directory for each client-id
+>>> with root at the dri level. Since the clients are
+>>> unique and not just related to one single drm device,
+>>> so it makes more sense to add all the client based
+>>> nodes with root as dri.
+>>>
+>>> Also create a symlink back to the parent drm device
+>>> from each client.
+>>
+>> TBH I can see an use case for both clients at DRI level and clients 
+>> under DRM devices. I guess you have an use case for global and per 
+>> device can be added later if it becomes needed.
+>>
+>>>
+>>> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+>>> ---
+>>>   drivers/gpu/drm/drm_debugfs.c | 32 ++++++++++++++++++++++++++++++++
+>>>   drivers/gpu/drm/drm_file.c    | 10 ++++++++++
+>>>   include/drm/drm_debugfs.h     | 12 ++++++++++++
+>>>   include/drm/drm_file.h        |  7 +++++++
+>>>   4 files changed, 61 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/ 
+>>> drm_debugfs.c
+>>> index 5a33ec299c04..875276d5fb9f 100644
+>>> --- a/drivers/gpu/drm/drm_debugfs.c
+>>> +++ b/drivers/gpu/drm/drm_debugfs.c
+>>> @@ -298,6 +298,38 @@ void drm_debugfs_remove_dir(void)
+>>>       debugfs_remove(drm_debugfs_root);
+>>>   }
+>>>   +int drm_debugfs_clients_add(struct drm_file *file)
+>>> +{
+>>> +    struct drm_device *dev;
+>>> +    char *client_dir, *symlink;
+>>> +
+>>> +    dev = file->minor->dev;
+>>
+>> FWIW, as dev is only used once and string locals are not overlapping, 
+>> you could reduce to a single local variable like char *name and re-use 
+>> it. Up to you.
+>>
+> Let me see what i could do with that. But yes can reduce locals.
+
+Ok.
+
+> regards
 > 
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Cc: stable@vger.kernel.org
-> Fixes: a68c7eaa7a8f ("drm/amdgpu: Enable clear page functionality")
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3812
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   |  2 ++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h |  5 ++++
->   drivers/gpu/drm/drm_buddy.c                  | 24 ++++++++++++++++++++
->   include/drm/drm_buddy.h                      |  2 ++
->   4 files changed, 33 insertions(+)
+> Sunil
+
+Usually when you sign people stop reading. In this case I accidentaly 
+spotted there is more below.
+
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index a59f194e3360..eb67d6c97392 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -5193,6 +5193,8 @@ int amdgpu_device_resume(struct drm_device *dev, bool notify_clients)
->   		dev->dev->power.disable_depth--;
->   #endif
->   	}
-> +
-> +	amdgpu_vram_mgr_clear_reset_blocks(&adev->mman.vram_mgr.mm);
->   	adev->in_suspend = false;
->   
->   	if (amdgpu_acpi_smart_shift_update(dev, AMDGPU_SS_DEV_D0))
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-> index 1019c5806ec7..e9e2928fa4d1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-> @@ -58,6 +58,11 @@ static inline bool amdgpu_vram_mgr_is_cleared(struct drm_buddy_block *block)
->   	return drm_buddy_block_is_clear(block);
->   }
->   
-> +static inline void amdgpu_vram_mgr_clear_reset_blocks(struct drm_buddy *mm)
-> +{
-> +	drm_buddy_clear_reset_blocks(mm);
+>>> +
+>>> +    client_dir = kasprintf(GFP_KERNEL, "client-%llu", file->client_id);
+>>> +    if (!client_dir)
+>>> +        return -ENOMEM;
+>>
+>> It is a bit more work, but I think a clients/ directory with numerical 
+>> client id subdirs would be nicer.
+> 
+> It was with the id only first but with feedback from Christian i moved 
+> it with client-$. Also since we want it in main root directory along 
+> with nodes like 0 and 128, it makes sense to differentiate and make a clear
+> 
+> representation of clients.
 
-No lock needed?
+I don't mean id only in the root dir, but add a clients subdir in the 
+root, where clients subdir contains more subdirs for individual clients. 
+Maybe it is personal but for me $dri_root/clients/1/something feels 
+nicer, less cluttered and potentially easier to handle in scripts and/or 
+code that $dri_root/client-1/something.
 
-> +}
-> +
->   static inline struct amdgpu_vram_mgr_resource *
->   to_amdgpu_vram_mgr_resource(struct ttm_resource *res)
->   {
-> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> index a1e652b7631d..b5e44867adf2 100644
-> --- a/drivers/gpu/drm/drm_buddy.c
-> +++ b/drivers/gpu/drm/drm_buddy.c
-> @@ -405,6 +405,30 @@ drm_get_buddy(struct drm_buddy_block *block)
->   }
->   EXPORT_SYMBOL(drm_get_buddy);
->   
-> +/**
-> + * drm_buddy_clear_reset_blocks - reset cleared blocks
-> + *
-> + * @mm: DRM buddy manager
-> + *
-> + * Reset all the cleared blocks in the freelist.
-> + */
-> +void drm_buddy_clear_reset_blocks(struct drm_buddy *mm)
-> +{
-> +	unsigned int i;
-> +
+> 
+>>
+>>> +
+>>> +    /* Create a debugfs directory for the client in root on drm 
+>>> debugfs */
+>>> +    file->debugfs_client = debugfs_create_dir(client_dir, 
+>>> drm_debugfs_root);
+>>> +    kfree(client_dir);
+>>> +
+>>> +    symlink = kasprintf(GFP_KERNEL, "../%s", dev->unique);
+>>> +    if (!symlink)
+>>> +        return -ENOMEM;
+>>
+>> Worth removing the partial construction?
+> Ideally it should never fail and but yes makes sense to clean up.
+>>
+>>> +
+>>> +    /* Create a link from client_id to the drm device this client id 
+>>> belongs to */
+>>> +    debugfs_create_symlink("device", file->debugfs_client, symlink);
+>>
+>> This can also fail.
+> sure. Noted
+>>
+>>> +    kfree(symlink);
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +void drm_debugfs_clients_remove(struct drm_file *file)
+>>> +{
+>>> +    debugfs_remove_recursive(file->debugfs_client);
+>>> +    file->debugfs_client = NULL;
+>>> +}
+>>> +
+>>>   /**
+>>>    * drm_debugfs_dev_init - create debugfs directory for the device
+>>>    * @dev: the device which we want to create the directory for
+>>> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+>>> index 06ba6dcbf5ae..8502c5a630b1 100644
+>>> --- a/drivers/gpu/drm/drm_file.c
+>>> +++ b/drivers/gpu/drm/drm_file.c
+>>> @@ -39,12 +39,14 @@
+>>>   #include <linux/poll.h>
+>>>   #include <linux/slab.h>
+>>>   #include <linux/vga_switcheroo.h>
+>>> +#include <linux/debugfs.h>
+>>>     #include <drm/drm_client_event.h>
+>>>   #include <drm/drm_drv.h>
+>>>   #include <drm/drm_file.h>
+>>>   #include <drm/drm_gem.h>
+>>>   #include <drm/drm_print.h>
+>>> +#include <drm/drm_debugfs.h>
+>>>     #include "drm_crtc_internal.h"
+>>>   #include "drm_internal.h"
+>>> @@ -143,6 +145,13 @@ struct drm_file *drm_file_alloc(struct drm_minor 
+>>> *minor)
+>>>       rcu_assign_pointer(file->pid, get_pid(task_tgid(current)));
+>>>       file->minor = minor;
+>>>   +    ret = drm_debugfs_clients_add(file);
+>>
+>> Slightly tricky part is that as soon as this runs userspace can enter 
+>> debugfs. If in the future any debufs clients file is added which can 
+>> dereference any of the drm_file fields not yet initialized it has the 
+>> potential to explode and/or be exploited.
+>>
+>> Hence I think to be safe the usual pattern of exposing drm_file to 
+>> userspace at the end, only _after_ drm_file has been *fully* initialized.
+>>
+>> Slightly annoying part with that might be undoing dev->driver->open() 
+>> but maybe it is not that bad.
+> 
+> I need this before driver open as the entry is accessed in driver->open 
+> in amdgpu to add files to the directory.
+> 
+> So, i could see to move it just before the open but not after. Anyways 
+> if we reach till driver open surely file is fully initialized. Nothing 
+> else is done in that function after that.
 
-This might be a good spot to also force merge freed blocks back 
-together, for the ones that have the clear vs dirty mismatch. Otherwise 
-with the below loop we can have two buddies that are now dirty but don't 
-get merged back together? Fairly sure fini() can chuck a warning 
-otherwise. Also a simple kunit test for this would be good.
+I guess it is fine as long as dev->driver->open() will be the only place 
+which will be adding files. If one day DRM core decides to add some 
+common file it will need to make things it can dereference are fully 
+initialized.
 
-> +	for (i = 0; i <= mm->max_order; ++i) {
-> +		struct drm_buddy_block *block;
-> +
-> +		list_for_each_entry_reverse(block, &mm->free_list[i], link) {
-> +			if (drm_buddy_block_is_clear(block)) {
-> +				clear_reset(block);
-> +				mm->clear_avail -= drm_buddy_block_size(mm, block);
-> +			}
-> +		}
-> +	}
-> +}
-> +EXPORT_SYMBOL(drm_buddy_clear_reset_blocks);
-> +
->   /**
->    * drm_buddy_free_block - free a block
->    *
-> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
-> index 9689a7c5dd36..da569dea16b7 100644
-> --- a/include/drm/drm_buddy.h
-> +++ b/include/drm/drm_buddy.h
-> @@ -160,6 +160,8 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
->   			 u64 new_size,
->   			 struct list_head *blocks);
->   
-> +void drm_buddy_clear_reset_blocks(struct drm_buddy *mm);
-> +
->   void drm_buddy_free_block(struct drm_buddy *mm, struct drm_buddy_block *block);
->   
->   void drm_buddy_free_list(struct drm_buddy *mm,
+Perhaps what makes sense today to make this more robust, and it is not 
+hard, is to simply move drm_debugfs_clients_add to just before 
+dev->driver->open()?
+
+> 
+>>
+>>> +    if (ret) {
+>>> +        put_pid(rcu_access_pointer(file->pid));
+>>> +        kfree(file);
+>>> +        return ERR_PTR(ret);
+>>
+>> Onion unwind already exists in the function so could have used it. 
+>> (Add a new label and here simply "goto out_put_pid".) But as above we 
+>> discuss tweaking the order lets see how that goes first.
+> Sure.
+>>
+>>> +    }
+>>> +
+>>>       /* for compatibility root is always authenticated */
+>>>       file->authenticated = capable(CAP_SYS_ADMIN);
+>>>   @@ -236,6 +245,7 @@ void drm_file_free(struct drm_file *file)
+>>>                atomic_read(&dev->open_count));
+>>>         drm_events_release(file);
+>>> +    drm_debugfs_clients_remove(file);
+>>>         if (drm_core_check_feature(dev, DRIVER_MODESET)) {
+>>>           drm_fb_release(file);
+>>> diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
+>>> index cf06cee4343f..4bd6cc1d0900 100644
+>>> --- a/include/drm/drm_debugfs.h
+>>> +++ b/include/drm/drm_debugfs.h
+>>> @@ -153,6 +153,9 @@ void drm_debugfs_add_files(struct drm_device *dev,
+>>>     int drm_debugfs_gpuva_info(struct seq_file *m,
+>>>                  struct drm_gpuvm *gpuvm);
+>>> +
+>>> +int drm_debugfs_clients_add(struct drm_file *file);
+>>> +void drm_debugfs_clients_remove(struct drm_file *file);
+>>>   #else
+>>>   static inline void drm_debugfs_create_files(const struct 
+>>> drm_info_list *files,
+>>>                           int count, struct dentry *root,
+>>> @@ -181,6 +184,15 @@ static inline int drm_debugfs_gpuva_info(struct 
+>>> seq_file *m,
+>>>   {
+>>>       return 0;
+>>>   }
+>>> +
+>>> +int drm_debugfs_clients_add(struct drm_file *file)
+>>> +{
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +void drm_debugfs_clients_remove(struct drm_file *file)
+>>> +{
+>>> +}
+>>
+>> Static inline for the two above.
+> Noted
+>>
+>>>   #endif
+>>>     #endif /* _DRM_DEBUGFS_H_ */
+>>> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+>>> index 5c3b2aa3e69d..eab7546aad79 100644
+>>> --- a/include/drm/drm_file.h
+>>> +++ b/include/drm/drm_file.h
+>>> @@ -400,6 +400,13 @@ struct drm_file {
+>>>        * @client_name_lock: Protects @client_name.
+>>>        */
+>>>       struct mutex client_name_lock;
+>>> +
+>>> +    /**
+>>> +     * @debugfs_client:
+>>> +     *
+>>> +     * debugfs directory for each client under a drm node.
+>>> +     */
+>>> +    struct dentry *debugfs_client;
+>>
+>> Is it worth idefing this out if !CONFIG_DEBUG_FS?
+> 
+> Surprisingly i dont see CONFIG_DEBUG_FS used in drm much.  So keeping it 
+> same for this one variable too. Need a whole new change to keep debugfs 
+> related things under the if.
+
+Ah struct drm_device.. I see what you mean. I guess the waste if 
+progressively worse as the unused fields move from structs with fewer 
+instances to ones which can be a lot more.
+
+Regards,
+
+Tvrtko
+
+> 
+> Regards
+> Sunil Khatri
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>   };
+>>>     /**
+>>
 
