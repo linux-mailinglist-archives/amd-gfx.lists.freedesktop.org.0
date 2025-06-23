@@ -2,65 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FDB5AE5EE9
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Jun 2025 10:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7865AE5EE7
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Jun 2025 10:17:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5DAE10E517;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79ACB10E4F2;
 	Tue, 24 Jun 2025 08:17:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="W2zEcxAa";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="M85iveCA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
- [209.85.167.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5024110E430
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 16:49:29 +0000 (UTC)
-Received: by mail-lf1-f47.google.com with SMTP id
- 2adb3069b0e04-553bcf41440so4782605e87.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 09:49:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750697367; x=1751302167; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=xw5fgUlYCzuWQShMydsoGvu+L3uBmSPFwBeprXNUxNw=;
- b=W2zEcxAabVaZhcWZer5MrNpqw8cXUj+Bf9OsDiQpLqWU6o2tY3yicmPP95/Y5odF5p
- Yuk5szKdTZtnKNNzC+OFQbpksfBeaum548yh5y4KXTzAwrnVK9pi/aVPDeogmvoUJd1/
- lYNx3wAAh8S31KJD1lT7d3MGMdMSmDVxPYeTI29cALzHDAPkvMPR14UJLyeF/cLIzqio
- 0hiJh++gXB2tkE6MqaNSutte5cV2N3NMpSoPgNhIPY+6xoYyoSfWyBl3giQjGsNUZlY7
- vji3vUZi4jXWz5K9KOA5YvldR84U+JvppO4pI7OQfcNzpdj9RV0f+E37qatSBLrSBa7B
- dWXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750697367; x=1751302167;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=xw5fgUlYCzuWQShMydsoGvu+L3uBmSPFwBeprXNUxNw=;
- b=BiWWgaSbojlZkbAmlCWUXoAOqMrYwV3hhMO9OwYnzzgRYy4UCwaQW5zwzX1EIQCQLT
- gXShk6HaG4/yMDtPeKWXDR7YjzDu4kduMU9dK0XwLWexpCrve3DwEkb6IobFlMRou5GA
- d3xeicXpkn/onT1eZDTkHinylbivMSNDZW+Ci9idsDw6EzRVC5fMpZepGGMxjWTtuuT0
- jT/PguIL/E4IUW1MUjMF2O5SDQr/4LCVkznGJR63WUg06a3+VV4i+A+chNlEvYFQG5ZG
- cQd0Uun4Vwzh4W2Eot/1Iy/HXrX72zZEKeX0TcOQNB49mJoNi4zj39lMyj+eU7nFZanw
- NI3w==
-X-Gm-Message-State: AOJu0YwrRSH8wswe/f3XoKw9vSu4fdXB+4uxNB2+QAMirQ++iDlTOp06
- aRipkZTNkMgNh4/reTkiraj2FRk43bHlMg9MDEyExuzT5ihmKNnLTU6PslqekywPM7EnSFdLhxt
- 9kc9X/OvLTDL/jo+M/s2kmicYv+i7GUs=
-X-Gm-Gg: ASbGnctlt/uBNqB1Vu6ZnAZvFd99DdSURglhE6WFzlZ6kV/wG8sUXOnOz6usdC/9OZ+
- o5cHIi9mj/XVhzFgGclY+oX2lc8KYl3z6Le8O37aEmxZ5SMsvJgZNNoe8M/PqW+uXsK8lvOA1Ai
- efAjqujEggn5jLwoaBjFwU8VVmsi6dk/eIx91dVajR0WoKhA0bRZbWBy1nKFbqHiQCXZYZbhq5e
- asw9drP74xgc4g=
-X-Google-Smtp-Source: AGHT+IGI5qQg6x//9IH4v7r0ZJr6BYdhZy+SJZ1waHU4VFizK0ZyrCfH2jNrWTd3cGXjiGvEffyR7QdTyVr0/mCgsVo=
-X-Received: by 2002:a05:6512:3b24:b0:553:aadd:1987 with SMTP id
- 2adb3069b0e04-553e3bea921mr3830461e87.30.1750697367032; Mon, 23 Jun 2025
- 09:49:27 -0700 (PDT)
+X-Greylist: delayed 465 seconds by postgrey-1.36 at gabe;
+ Mon, 23 Jun 2025 17:52:37 UTC
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A19A210E1B7;
+ Mon, 23 Jun 2025 17:52:37 +0000 (UTC)
+Received: from [192.168.42.116] (pd9e59880.dip0.t-ipconnect.de
+ [217.229.152.128]) (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id D888D2FC00B9;
+ Mon, 23 Jun 2025 19:44:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1750700690;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=UbXQuU/zh2aPEjiLQBI3jeIcNgyyYrcMwjflvNV957Q=;
+ b=M85iveCAlJ9X8va6S8s4Xuzr8Jnw+n6+IhjELzE4MOEragy7DI4cdsQzTCiLjueXk2y+yF
+ B5h6svLNVH1VVksh+uzvuNY9lWtvIkUpsZnGlHqFiFNxOxkGCoogKAaTqJR3pRhDyGtqSg
+ 5KeIJRhnoNpvJ5/jtmKIn+rVfRr5DFQ=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+Message-ID: <08ceaa42-a12c-4bd4-bb75-b71126a60688@tuxedocomputers.com>
+Date: Mon, 23 Jun 2025 19:44:48 +0200
 MIME-Version: 1.0
-From: Marcus Seyfarth <m.seyfarth@gmail.com>
-Date: Mon, 23 Jun 2025 18:49:16 +0200
-X-Gm-Features: Ac12FXxaT-f23KSNG-OzM13KrEpN-mBAa34_O_DkrZ1ijLaTRtiVtbPMhljfuNE
-Message-ID: <CA+FbhJO5rzT0T8uWM+mtVqAVx4qiY3G3nfaHmSL-jb01GmwEuQ@mail.gmail.com>
-Subject: [PATCH] drm/amd/display: Fix AMDGPU_MAX_BL_LEVEL value
-To: mario.limonciello@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/amd/display: Add quirk to force backlight type on
+ some TUXEDO devices
+To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20250409163029.130651-1-wse@tuxedocomputers.com>
+ <20250409163029.130651-2-wse@tuxedocomputers.com>
+Content-Language: en-US
+From: Werner Sembach <wse@tuxedocomputers.com>
+In-Reply-To: <20250409163029.130651-2-wse@tuxedocomputers.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 24 Jun 2025 08:17:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,15 +68,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Just FYI, using Clang-21git, I see this new warning with the current patch:
+gentle bump
 
-drivers/gpu/drm/amd/amdgpu/atombios_encoders.c:131:11: warning:
-implicit conversion from 'int' to 'u8' (aka 'unsigned char') changes
-value from 65535 to 255 [-Wconstant-conversion]
- 131 |                 level = AMDGPU_MAX_BL_LEVEL;
-     |                       ~ ^~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h:438:29: note: expanded from
-macro 'AMDGPU_MAX_BL_LEVEL'
- 438 | #define AMDGPU_MAX_BL_LEVEL 0xFFFF
-     |                             ^~~~~~
-1 warning generated.
+Am 09.04.25 um 18:27 schrieb Werner Sembach:
+> The display backlight on TUXEDO Polaris AMD Gen2 and Gen3 with panels
+> BOE 2420 and BOE 2423 must be forced to pwn controlled to be able to
+> control the brightness.
+>
+> This could already be archived via a module parameter, but this patch adds
+> a quirk to apply this by default on the mentioned device + panel
+> combinations.
+>
+> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> Cc: stable@vger.kernel.org
+> ---
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 32 ++++++++++++++++++-
+>   1 file changed, 31 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 39df45f652b32..2bad6274ad8ff 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -1625,11 +1625,13 @@ static bool dm_should_disable_stutter(struct pci_dev *pdev)
+>   struct amdgpu_dm_quirks {
+>   	bool aux_hpd_discon;
+>   	bool support_edp0_on_dp1;
+> +	bool boe_2420_2423_bl_force_pwm;
+>   };
+>   
+>   static struct amdgpu_dm_quirks quirk_entries = {
+>   	.aux_hpd_discon = false,
+> -	.support_edp0_on_dp1 = false
+> +	.support_edp0_on_dp1 = false,
+> +	.boe_2420_2423_bl_force_pwm = false
+>   };
+>   
+>   static int edp0_on_dp1_callback(const struct dmi_system_id *id)
+> @@ -1644,6 +1646,12 @@ static int aux_hpd_discon_callback(const struct dmi_system_id *id)
+>   	return 0;
+>   }
+>   
+> +static int boe_2420_2423_bl_force_pwm_callback(const struct dmi_system_id *id)
+> +{
+> +	quirk_entries.boe_2420_2423_bl_force_pwm = true;
+> +	return 0;
+> +}
+> +
+>   static const struct dmi_system_id dmi_quirk_table[] = {
+>   	{
+>   		.callback = aux_hpd_discon_callback,
+> @@ -1722,6 +1730,20 @@ static const struct dmi_system_id dmi_quirk_table[] = {
+>   			DMI_MATCH(DMI_PRODUCT_NAME, "HP EliteBook 665 16 inch G11 Notebook PC"),
+>   		},
+>   	},
+> +	{
+> +		// TUXEDO Polaris AMD Gen2
+> +		.callback = boe_2420_2423_bl_force_pwm_callback,
+> +		.matches = {
+> +			DMI_MATCH(DMI_BOARD_NAME, "GMxNGxx"),
+> +		},
+> +	},
+> +	{
+> +		// TUXEDO Polaris AMD Gen3
+> +		.callback = boe_2420_2423_bl_force_pwm_callback,
+> +		.matches = {
+> +			DMI_MATCH(DMI_BOARD_NAME, "GMxZGxx"),
+> +		},
+> +	},
+>   	{}
+>   	/* TODO: refactor this from a fixed table to a dynamic option */
+>   };
+> @@ -3586,6 +3608,7 @@ static void update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
+>   	struct amdgpu_device *adev;
+>   	struct drm_luminance_range_info *luminance_range;
+>   	int min_input_signal_override;
+> +	u32 panel;
+>   
+>   	if (aconnector->bl_idx == -1 ||
+>   	    aconnector->dc_link->connector_signal != SIGNAL_TYPE_EDP)
+> @@ -3610,6 +3633,13 @@ static void update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
+>   		caps->aux_support = false;
+>   	else if (amdgpu_backlight == 1)
+>   		caps->aux_support = true;
+> +	else if (amdgpu_backlight == -1 &&
+> +		 quirk_entries.boe_2420_2423_bl_force_pwm) {
+> +		panel = drm_edid_get_panel_id(aconnector->drm_edid);
+> +		if (panel == drm_edid_encode_panel_id('B', 'O', 'E', 0x0974) ||
+> +		    panel == drm_edid_encode_panel_id('B', 'O', 'E', 0x0977))
+> +			caps->aux_support = false;
+> +	}
+>   	if (caps->aux_support)
+>   		aconnector->dc_link->backlight_control_type = BACKLIGHT_CONTROL_AMD_AUX;
+>   
