@@ -2,83 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE28AE6119
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Jun 2025 11:47:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85A69AE63A6
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Jun 2025 13:35:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E58F610E541;
-	Tue, 24 Jun 2025 09:47:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="Ydlb/TSe";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10EF310E57B;
+	Tue, 24 Jun 2025 11:35:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 696BC10E541
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Jun 2025 09:46:58 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-453426170b6so36429065e9.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Jun 2025 02:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1750758417; x=1751363217;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=7KXxwbHVWhaJwWfs+CMcQez53m1pJfDu3vlWMg5CPb0=;
- b=Ydlb/TSeADLRhat9K5AmM+MWsIBmNcYhkRep96FbPA8k8yQCmL4NCgxQDUufmKwBoh
- kPK+Gq38z6A6chprwFC6XyY7fAJ60dLlU9zYI/w9n1e54HjBwgGeUP+MyltWcS3IwM8W
- 7wd1cyxuI4ojBIE/vONn5Br39kuXTMoT1V34MuXBQTiBaGuumxFQ0Hy9g8uzlHFuf7Ps
- ldgry4t2EmupnCuo4alElq8B33bin39iRdLQw02D7hErooQyvm51At1kcCEm2LsSiSLB
- NsVjNrl26aUhXqiq7talsur4arqkMLLvLhut8S44WsQWLr2GBjlneXzL5SzDb7iSJv8E
- xFQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750758417; x=1751363217;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=7KXxwbHVWhaJwWfs+CMcQez53m1pJfDu3vlWMg5CPb0=;
- b=aquA2U4JnovWOkqVlyT6eHp2AX2Hiz+UvRDTpldLZAgdEQQa3x9C4O+yqCE+ZBiH3P
- QEGxbkB0snvfC9gXmpfCyB63OYZU53q3dl/WzBYPdUOlXeYJXZvT4+QWQ3vVrUkSe/TI
- W3pym1J0k0fdW+KHZLKgNKMPWjOsR3/yg638S1KS9LXJwil+u1mJlFxlDPjJ+V7lYy9O
- 3spY3nDEFyeSEc/oCk+rFvxnLc3IHwMwmeEdGv02Diwnx8UWG7Oh9jDADakJ9rYuBAXj
- 8ao2BLBlkDKmSlbFNztWMhuf/+GfEuaFRC2rcLFL/O4PsvACN8y6PV2wqf1ONtTRL/Ll
- niQw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWC7eul41pHUr+gmWHnRs/TeLGDnZEC1YNll5ag92mx5nV0O8n0y3Tp1DyuriNanjPgLIb30Mep@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw13oQW/61o6T6MiZ9FtJzYLzTXa/6dnDJrxd03JkOSLOqe96eC
- jowwRFLv81fey/nPCvKS/+O9TIcukDjxZJv1gZ1AXOZcYt5oCQlQq7srm63uH8GSIQMCAv3Xgj8
- 2exBK
-X-Gm-Gg: ASbGncuP4Vt0k4PYDMg+1QangQrp1SWM3GoUFDN2SYl1dq0pYbXHQMdTvSVwwjYZ7up
- uuFXkwn9yTXFeUmKUaVb83guPJ34cGkCNPvFijbQhzvptER+/NYbC/hZFKVVQs6RCFWxKJhjlRf
- AA1ijkIVscit3KoZMM3+CuEux9HVja1rWrE+ixLRkHey7C5/T86caDUYuPbjs2FSsd/Lt6AQKla
- X5+2ujfRNaKPhWfT18Mm1Vpk+cSBYdskFNm9OdRXPrlY1HCCP4GdAf39Qx7pPVGxY1P2mdb+yQU
- tCCcgsBtu8kgF4f+8hihMWA7BEfDezx+WuuiRWwFT8ppvByfVdubCuh5DbmRemtiA4NUsD+D2D/
- +
-X-Google-Smtp-Source: AGHT+IHe98vbPFuP0inahHGYkGgZXsJrrTIOSa5hnhDZWpiX+E23u2PXsQyTQWGjgjcUSW4DdByhDQ==
-X-Received: by 2002:a5d:5f92:0:b0:3a5:25e2:6129 with SMTP id
- ffacd0b85a97d-3a6e7206741mr2286030f8f.21.1750758416996; 
- Tue, 24 Jun 2025 02:46:56 -0700 (PDT)
-Received: from [192.168.0.101] ([81.79.92.254])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-453646fd642sm132712455e9.21.2025.06.24.02.46.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 24 Jun 2025 02:46:56 -0700 (PDT)
-Message-ID: <b7fc658e-2778-48dd-8584-3f33bbcc5ab7@ursulin.net>
-Date: Tue, 24 Jun 2025 10:46:55 +0100
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79CF610E570;
+ Tue, 24 Jun 2025 11:35:25 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 55OBZ4LI2323014; Tue, 24 Jun 2025 17:05:04 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 55OBZ3HM2323007;
+ Tue, 24 Jun 2025 17:05:03 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, simona@ffwll.ch, tzimmermann@suse.de,
+ tursulin@ursulin.net, phasta@kernel.org, dakr@kernel.org,
+ Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v5 1/5] drm: move the debugfs accel driver code to drm layer
+Date: Tue, 24 Jun 2025 17:04:50 +0530
+Message-Id: <20250624113454.2322935-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: put ctx's ref count in
- amdgpu_ctx_mgr_entity_fini()
-To: "Lin.Cao" <lincao12@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: haijun.chang@amd.com, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>
-References: <20250624091823.3963949-1-lincao12@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20250624091823.3963949-1-lincao12@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,43 +44,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+move the debugfs accel driver code to the drm layer.
+This is first inline change to move the debugfs
+related changes for drm to drm_debugfs.c
 
-On 24/06/2025 10:18, Lin.Cao wrote:
-> patch "daf823f1d0cd drm/amdgpu: Remove duplicated "context still
-> alive" check" removed ctx put, which will cause amdgpu_ctx_fini()
-> cannot be called and then cause some finished fence that added by
-> amdgpu_ctx_add_fence() cannot be released and cause memleak.
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/accel/drm_accel.c | 16 ----------------
+ drivers/gpu/drm/drm_drv.c |  6 +++++-
+ include/drm/drm_accel.h   |  5 -----
+ 3 files changed, 5 insertions(+), 22 deletions(-)
 
-Ouch I removed the wrong one. :( Probably misread kref_put as kref_read..
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-
-But is the SHA correct? I see it is dd64956685fa.
-
-Which would mean adding:
-
-Fixes: dd64956685fa ("drm/amdgpu: Remove duplicated "context still 
-alive" check")
-
-Regards,
-
-Tvrtko
-
-> Signed-off-by: Lin.Cao <lincao12@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> index 85567d0d9545..f5d5c45ddc0d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> @@ -944,6 +944,7 @@ static void amdgpu_ctx_mgr_entity_fini(struct amdgpu_ctx_mgr *mgr)
->   				drm_sched_entity_fini(entity);
->   			}
->   		}
-> +		kref_put(&ctx->refcount, amdgpu_ctx_fini);
->   	}
->   }
->   
+diff --git a/drivers/accel/drm_accel.c b/drivers/accel/drm_accel.c
+index aa826033b0ce..ca3357acd127 100644
+--- a/drivers/accel/drm_accel.c
++++ b/drivers/accel/drm_accel.c
+@@ -20,8 +20,6 @@
+ 
+ DEFINE_XARRAY_ALLOC(accel_minors_xa);
+ 
+-static struct dentry *accel_debugfs_root;
+-
+ static const struct device_type accel_sysfs_device_minor = {
+ 	.name = "accel_minor"
+ };
+@@ -73,17 +71,6 @@ static const struct drm_info_list accel_debugfs_list[] = {
+ };
+ #define ACCEL_DEBUGFS_ENTRIES ARRAY_SIZE(accel_debugfs_list)
+ 
+-/**
+- * accel_debugfs_init() - Initialize debugfs for device
+- * @dev: Pointer to the device instance.
+- *
+- * This function creates a root directory for the device in debugfs.
+- */
+-void accel_debugfs_init(struct drm_device *dev)
+-{
+-	drm_debugfs_dev_init(dev, accel_debugfs_root);
+-}
+-
+ /**
+  * accel_debugfs_register() - Register debugfs for device
+  * @dev: Pointer to the device instance.
+@@ -194,7 +181,6 @@ static const struct file_operations accel_stub_fops = {
+ void accel_core_exit(void)
+ {
+ 	unregister_chrdev(ACCEL_MAJOR, "accel");
+-	debugfs_remove(accel_debugfs_root);
+ 	accel_sysfs_destroy();
+ 	WARN_ON(!xa_empty(&accel_minors_xa));
+ }
+@@ -209,8 +195,6 @@ int __init accel_core_init(void)
+ 		goto error;
+ 	}
+ 
+-	accel_debugfs_root = debugfs_create_dir("accel", NULL);
+-
+ 	ret = register_chrdev(ACCEL_MAJOR, "accel", &accel_stub_fops);
+ 	if (ret < 0)
+ 		DRM_ERROR("Cannot register ACCEL major: %d\n", ret);
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 17fc5dc708f4..5d57b622f9aa 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -70,6 +70,7 @@ DEFINE_XARRAY_ALLOC(drm_minors_xa);
+ static bool drm_core_init_complete;
+ 
+ static struct dentry *drm_debugfs_root;
++static struct dentry *accel_debugfs_root;
+ 
+ DEFINE_STATIC_SRCU(drm_unplug_srcu);
+ 
+@@ -752,7 +753,7 @@ static int drm_dev_init(struct drm_device *dev,
+ 	}
+ 
+ 	if (drm_core_check_feature(dev, DRIVER_COMPUTE_ACCEL))
+-		accel_debugfs_init(dev);
++		drm_debugfs_dev_init(dev, accel_debugfs_root);
+ 	else
+ 		drm_debugfs_dev_init(dev, drm_debugfs_root);
+ 
+@@ -1166,6 +1167,7 @@ static void drm_core_exit(void)
+ {
+ 	drm_privacy_screen_lookup_exit();
+ 	drm_panic_exit();
++	debugfs_remove(accel_debugfs_root);
+ 	accel_core_exit();
+ 	unregister_chrdev(DRM_MAJOR, "drm");
+ 	debugfs_remove(drm_debugfs_root);
+@@ -1193,6 +1195,8 @@ static int __init drm_core_init(void)
+ 	if (ret < 0)
+ 		goto error;
+ 
++	accel_debugfs_root = debugfs_create_dir("accel", NULL);
++
+ 	ret = accel_core_init();
+ 	if (ret < 0)
+ 		goto error;
+diff --git a/include/drm/drm_accel.h b/include/drm/drm_accel.h
+index 038ccb02f9a3..20a665ec6f16 100644
+--- a/include/drm/drm_accel.h
++++ b/include/drm/drm_accel.h
+@@ -58,7 +58,6 @@ void accel_core_exit(void);
+ int accel_core_init(void);
+ void accel_set_device_instance_params(struct device *kdev, int index);
+ int accel_open(struct inode *inode, struct file *filp);
+-void accel_debugfs_init(struct drm_device *dev);
+ void accel_debugfs_register(struct drm_device *dev);
+ 
+ #else
+@@ -77,10 +76,6 @@ static inline void accel_set_device_instance_params(struct device *kdev, int ind
+ {
+ }
+ 
+-static inline void accel_debugfs_init(struct drm_device *dev)
+-{
+-}
+-
+ static inline void accel_debugfs_register(struct drm_device *dev)
+ {
+ }
+-- 
+2.34.1
 
