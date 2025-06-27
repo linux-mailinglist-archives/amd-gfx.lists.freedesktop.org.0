@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBC0AAEB9FA
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Jun 2025 16:34:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4529AEB9FB
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Jun 2025 16:34:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F15C10EA40;
-	Fri, 27 Jun 2025 14:34:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8C5310EA46;
+	Fri, 27 Jun 2025 14:34:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sJAAdt6q";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tdDPm2vN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C3A10EA2B
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Jun 2025 14:34:40 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7E0910EA47
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Jun 2025 14:34:42 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id CCA6543E8F;
- Fri, 27 Jun 2025 14:34:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39CF9C4CEEF;
+ by dfw.source.kernel.org (Postfix) with ESMTP id 056D15C69D5;
+ Fri, 27 Jun 2025 14:34:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB04BC4CEED;
  Fri, 27 Jun 2025 14:34:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1751034878;
- bh=fuuBtpfxo+3ldX8wgxlc7hAAfTDXMhcp0UrYCOsvzM0=;
+ s=k20201202; t=1751034879;
+ bh=6vmK5gtQeJGuQCLWvhOBKAdR6VOdGwgqBe4zP8gU8BI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=sJAAdt6qV4i8Srk481kYJ09Y/Q2/JdHgzSJdBvDepB8N5g5pw8pDr36yGmhlRErwT
- iPkS7+9Os4zGjPf7WH0U+MReln7sT5YUJ27dyfSo7rR1I7kD3H9L7l2L/VHVIR7msY
- +HJgcVyqPfSHsCmpBJWhEEnZFnvz5ocF6lmAXxLVxkWAzVhZA+E9NbElFYkg8wi6Vp
- PhabDlgwI8gqBYzIPyErCGAjkVlKP5ODJJ/mO9gaNiYiriQW0zicXNA+bqNdaq7YLv
- pZVJK8aLzDhtxi+5FcFynbfNM/rBNr7DE8dEr8knZnFoHwJQGIkGU5sAMxK5JTQYP6
- 9OLEib6N0B0EA==
+ b=tdDPm2vNRlT0ft2VbSd3i7pvycrVrwTGcc2eDQsRZdoEU8TKUqCjQDcVFCAVpVbug
+ XJ65G4mMfjHITvkuXOm3YM2mMM0cCrmQoHZYThzXo7zPjBNjLBWRo46iV/ddnjWHHX
+ 7Itr1+t+l1vq31pY+onheE74bjRNJ+nBsIONq3KyopDO5WXXyHE0R5NALho3nMtxVk
+ X8AhrvNEaQJ1IRyVT5+efN4BDSBnHIo04L1WAc8fszFH4J39EZoo9MEjMCSdy++nxr
+ KhmLRz12mJSu3e6MGMPq2SDo1Dsz3a5NclshARDA+7LoWua0HT6B62GqKpyl0DHGlZ
+ 9C/d7QMENcpyA==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: Mario Limonciello <mario.limonciello@amd.com>,
  Lijo Lazar <lijo.lazar@amd.com>,
  Alexandre Demers <alexandre.f.demers@gmail.com>
-Subject: [PATCH v3 2/3] drm/amd: Change legacy-dpm DRM_*() macros to drm_*()
-Date: Fri, 27 Jun 2025 09:34:31 -0500
-Message-ID: <20250627143432.3222843-2-superm1@kernel.org>
+Subject: [PATCH v3 3/3] drm/amd: Change kv-dpm DRM_*() macros to drm_*()
+Date: Fri, 27 Jun 2025 09:34:32 -0500
+Message-ID: <20250627143432.3222843-3-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250627143432.3222843-1-superm1@kernel.org>
 References: <20250627143432.3222843-1-superm1@kernel.org>
@@ -65,99 +65,232 @@ Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Cc: Alexandre Demers <alexandre.f.demers@gmail.com>
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- .../gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c    | 26 +++++++++----------
- 1 file changed, 13 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c | 56 +++++++++++-----------
+ 1 file changed, 28 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c
-index 2492d9a31bdfa..ea3ace882a10a 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c
-@@ -673,64 +673,64 @@ void amdgpu_add_thermal_controller(struct amdgpu_device *adev)
- 			adev->pm.fan_max_rpm = controller->ucFanMaxRPM;
+diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
+index 5d0b18062b8c1..307ebf7e32267 100644
+--- a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
++++ b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
+@@ -1242,7 +1242,7 @@ static void kv_dpm_enable_bapm(void *handle, bool enable)
+ 	if (pi->bapm_enable) {
+ 		ret = amdgpu_kv_smc_bapm_enable(adev, enable);
+ 		if (ret)
+-			DRM_ERROR("amdgpu_kv_smc_bapm_enable failed\n");
++			drm_err(adev_to_drm(adev), "amdgpu_kv_smc_bapm_enable failed\n");
+ 	}
+ }
+ 
+@@ -1266,40 +1266,40 @@ static int kv_dpm_enable(struct amdgpu_device *adev)
+ 
+ 	ret = kv_process_firmware_header(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_process_firmware_header failed\n");
++		drm_err(adev_to_drm(adev), "kv_process_firmware_header failed\n");
+ 		return ret;
+ 	}
+ 	kv_init_fps_limits(adev);
+ 	kv_init_graphics_levels(adev);
+ 	ret = kv_program_bootup_state(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_program_bootup_state failed\n");
++		drm_err(adev_to_drm(adev), "kv_program_bootup_state failed\n");
+ 		return ret;
+ 	}
+ 	kv_calculate_dfs_bypass_settings(adev);
+ 	ret = kv_upload_dpm_settings(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_upload_dpm_settings failed\n");
++		drm_err(adev_to_drm(adev), "kv_upload_dpm_settings failed\n");
+ 		return ret;
+ 	}
+ 	ret = kv_populate_uvd_table(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_populate_uvd_table failed\n");
++		drm_err(adev_to_drm(adev), "kv_populate_uvd_table failed\n");
+ 		return ret;
+ 	}
+ 	ret = kv_populate_vce_table(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_populate_vce_table failed\n");
++		drm_err(adev_to_drm(adev), "kv_populate_vce_table failed\n");
+ 		return ret;
+ 	}
+ 	ret = kv_populate_samu_table(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_populate_samu_table failed\n");
++		drm_err(adev_to_drm(adev), "kv_populate_samu_table failed\n");
+ 		return ret;
+ 	}
+ 	ret = kv_populate_acp_table(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_populate_acp_table failed\n");
++		drm_err(adev_to_drm(adev), "kv_populate_acp_table failed\n");
+ 		return ret;
+ 	}
+ 	kv_program_vc(adev);
+@@ -1310,39 +1310,39 @@ static int kv_dpm_enable(struct amdgpu_device *adev)
+ 	if (pi->enable_auto_thermal_throttling) {
+ 		ret = kv_enable_auto_thermal_throttling(adev);
+ 		if (ret) {
+-			DRM_ERROR("kv_enable_auto_thermal_throttling failed\n");
++			drm_err(adev_to_drm(adev), "kv_enable_auto_thermal_throttling failed\n");
+ 			return ret;
  		}
- 		if (controller->ucType == ATOM_PP_THERMALCONTROLLER_RV6xx) {
--			DRM_INFO("Internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_RV6XX;
- 		} else if (controller->ucType == ATOM_PP_THERMALCONTROLLER_RV770) {
--			DRM_INFO("Internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_RV770;
- 		} else if (controller->ucType == ATOM_PP_THERMALCONTROLLER_EVERGREEN) {
--			DRM_INFO("Internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_EVERGREEN;
- 		} else if (controller->ucType == ATOM_PP_THERMALCONTROLLER_SUMO) {
--			DRM_INFO("Internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_SUMO;
- 		} else if (controller->ucType == ATOM_PP_THERMALCONTROLLER_NISLANDS) {
--			DRM_INFO("Internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_NI;
- 		} else if (controller->ucType == ATOM_PP_THERMALCONTROLLER_SISLANDS) {
--			DRM_INFO("Internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_SI;
- 		} else if (controller->ucType == ATOM_PP_THERMALCONTROLLER_CISLANDS) {
--			DRM_INFO("Internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_CI;
- 		} else if (controller->ucType == ATOM_PP_THERMALCONTROLLER_KAVERI) {
--			DRM_INFO("Internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_KV;
- 		} else if (controller->ucType == ATOM_PP_THERMALCONTROLLER_EXTERNAL_GPIO) {
--			DRM_INFO("External GPIO thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "External GPIO thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_EXTERNAL_GPIO;
- 		} else if (controller->ucType ==
- 			   ATOM_PP_THERMALCONTROLLER_ADT7473_WITH_INTERNAL) {
--			DRM_INFO("ADT7473 with internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "ADT7473 with internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_ADT7473_WITH_INTERNAL;
- 		} else if (controller->ucType ==
- 			   ATOM_PP_THERMALCONTROLLER_EMC2103_WITH_INTERNAL) {
--			DRM_INFO("EMC2103 with internal thermal controller %s fan control\n",
-+			drm_info(adev_to_drm(adev), "EMC2103 with internal thermal controller %s fan control\n",
- 				 (controller->ucFanParameters &
- 				  ATOM_PP_FANPARAMETERS_NOFAN) ? "without" : "with");
- 			adev->pm.int_thermal_type = THERMAL_TYPE_EMC2103_WITH_INTERNAL;
- 		} else if (controller->ucType < ARRAY_SIZE(pp_lib_thermal_controller_names)) {
--			DRM_INFO("Possible %s thermal controller at 0x%02x %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Possible %s thermal controller at 0x%02x %s fan control\n",
- 				 pp_lib_thermal_controller_names[controller->ucType],
- 				 controller->ucI2cAddress >> 1,
- 				 (controller->ucFanParameters &
-@@ -746,7 +746,7 @@ void amdgpu_add_thermal_controller(struct amdgpu_device *adev)
- 				i2c_new_client_device(&adev->pm.i2c_bus->adapter, &info);
+ 	}
+ 	ret = kv_enable_dpm_voltage_scaling(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_enable_dpm_voltage_scaling failed\n");
++		drm_err(adev_to_drm(adev), "kv_enable_dpm_voltage_scaling failed\n");
+ 		return ret;
+ 	}
+ 	ret = kv_set_dpm_interval(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_set_dpm_interval failed\n");
++		drm_err(adev_to_drm(adev), "kv_set_dpm_interval failed\n");
+ 		return ret;
+ 	}
+ 	ret = kv_set_dpm_boot_state(adev);
+ 	if (ret) {
+-		DRM_ERROR("kv_set_dpm_boot_state failed\n");
++		drm_err(adev_to_drm(adev), "kv_set_dpm_boot_state failed\n");
+ 		return ret;
+ 	}
+ 	ret = kv_enable_ulv(adev, true);
+ 	if (ret) {
+-		DRM_ERROR("kv_enable_ulv failed\n");
++		drm_err(adev_to_drm(adev), "kv_enable_ulv failed\n");
+ 		return ret;
+ 	}
+ 	kv_start_dpm(adev);
+ 	ret = kv_enable_didt(adev, true);
+ 	if (ret) {
+-		DRM_ERROR("kv_enable_didt failed\n");
++		drm_err(adev_to_drm(adev), "kv_enable_didt failed\n");
+ 		return ret;
+ 	}
+ 	ret = kv_enable_smc_cac(adev, true);
+ 	if (ret) {
+-		DRM_ERROR("kv_enable_smc_cac failed\n");
++		drm_err(adev_to_drm(adev), "kv_enable_smc_cac failed\n");
+ 		return ret;
+ 	}
+ 
+@@ -1350,7 +1350,7 @@ static int kv_dpm_enable(struct amdgpu_device *adev)
+ 
+ 	ret = amdgpu_kv_smc_bapm_enable(adev, false);
+ 	if (ret) {
+-		DRM_ERROR("amdgpu_kv_smc_bapm_enable failed\n");
++		drm_err(adev_to_drm(adev), "amdgpu_kv_smc_bapm_enable failed\n");
+ 		return ret;
+ 	}
+ 
+@@ -1358,7 +1358,7 @@ static int kv_dpm_enable(struct amdgpu_device *adev)
+ 	    kv_is_internal_thermal_sensor(adev->pm.int_thermal_type)) {
+ 		ret = kv_set_thermal_temperature_range(adev, KV_TEMP_RANGE_MIN, KV_TEMP_RANGE_MAX);
+ 		if (ret) {
+-			DRM_ERROR("kv_set_thermal_temperature_range failed\n");
++			drm_err(adev_to_drm(adev), "kv_set_thermal_temperature_range failed\n");
+ 			return ret;
+ 		}
+ 		amdgpu_irq_get(adev, &adev->pm.dpm.thermal.irq,
+@@ -1382,7 +1382,7 @@ static void kv_dpm_disable(struct amdgpu_device *adev)
+ 
+ 	err = amdgpu_kv_smc_bapm_enable(adev, false);
+ 	if (err)
+-		DRM_ERROR("amdgpu_kv_smc_bapm_enable failed\n");
++		drm_err(adev_to_drm(adev), "amdgpu_kv_smc_bapm_enable failed\n");
+ 
+ 	if (adev->asic_type == CHIP_MULLINS)
+ 		kv_enable_nb_dpm(adev, false);
+@@ -1920,7 +1920,7 @@ static int kv_dpm_set_power_state(void *handle)
+ 	if (pi->bapm_enable) {
+ 		ret = amdgpu_kv_smc_bapm_enable(adev, adev->pm.ac_power);
+ 		if (ret) {
+-			DRM_ERROR("amdgpu_kv_smc_bapm_enable failed\n");
++			drm_err(adev_to_drm(adev), "amdgpu_kv_smc_bapm_enable failed\n");
+ 			return ret;
+ 		}
+ 	}
+@@ -1931,7 +1931,7 @@ static int kv_dpm_set_power_state(void *handle)
+ 			kv_update_dfs_bypass_settings(adev, new_ps);
+ 			ret = kv_calculate_ds_divider(adev);
+ 			if (ret) {
+-				DRM_ERROR("kv_calculate_ds_divider failed\n");
++				drm_err(adev_to_drm(adev), "kv_calculate_ds_divider failed\n");
+ 				return ret;
  			}
- 		} else {
--			DRM_INFO("Unknown thermal controller type %d at 0x%02x %s fan control\n",
-+			drm_info(adev_to_drm(adev), "Unknown thermal controller type %d at 0x%02x %s fan control\n",
- 				 controller->ucType,
- 				 controller->ucI2cAddress >> 1,
- 				 (controller->ucFanParameters &
+ 			kv_calculate_nbps_level_settings(adev);
+@@ -1947,7 +1947,7 @@ static int kv_dpm_set_power_state(void *handle)
+ 
+ 			ret = kv_update_vce_dpm(adev, new_ps, old_ps);
+ 			if (ret) {
+-				DRM_ERROR("kv_update_vce_dpm failed\n");
++				drm_err(adev_to_drm(adev), "kv_update_vce_dpm failed\n");
+ 				return ret;
+ 			}
+ 			kv_update_sclk_t(adev);
+@@ -1960,7 +1960,7 @@ static int kv_dpm_set_power_state(void *handle)
+ 			kv_update_dfs_bypass_settings(adev, new_ps);
+ 			ret = kv_calculate_ds_divider(adev);
+ 			if (ret) {
+-				DRM_ERROR("kv_calculate_ds_divider failed\n");
++				drm_err(adev_to_drm(adev), "kv_calculate_ds_divider failed\n");
+ 				return ret;
+ 			}
+ 			kv_calculate_nbps_level_settings(adev);
+@@ -1972,7 +1972,7 @@ static int kv_dpm_set_power_state(void *handle)
+ 			kv_set_enabled_levels(adev);
+ 			ret = kv_update_vce_dpm(adev, new_ps, old_ps);
+ 			if (ret) {
+-				DRM_ERROR("kv_update_vce_dpm failed\n");
++				drm_err(adev_to_drm(adev), "kv_update_vce_dpm failed\n");
+ 				return ret;
+ 			}
+ 			kv_update_acp_boot_level(adev);
+@@ -2521,7 +2521,7 @@ static int kv_set_thermal_temperature_range(struct amdgpu_device *adev,
+ 	if (high_temp > max_temp)
+ 		high_temp = max_temp;
+ 	if (high_temp < low_temp) {
+-		DRM_ERROR("invalid thermal range: %d - %d\n", low_temp, high_temp);
++		drm_err(adev_to_drm(adev), "invalid thermal range: %d - %d\n", low_temp, high_temp);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -2563,7 +2563,7 @@ static int kv_parse_sys_info_table(struct amdgpu_device *adev)
+ 					      data_offset);
+ 
+ 		if (crev != 8) {
+-			DRM_ERROR("Unsupported IGP table: %d %d\n", frev, crev);
++			drm_err(adev_to_drm(adev), "Unsupported IGP table: %d %d\n", frev, crev);
+ 			return -EINVAL;
+ 		}
+ 		pi->sys_info.bootup_sclk = le32_to_cpu(igp_info->info_8.ulBootUpEngineClock);
+@@ -2579,7 +2579,7 @@ static int kv_parse_sys_info_table(struct amdgpu_device *adev)
+ 		else
+ 			pi->sys_info.htc_hyst_lmt = igp_info->info_8.ucHtcHystLmt;
+ 		if (pi->sys_info.htc_tmp_lmt <= pi->sys_info.htc_hyst_lmt) {
+-			DRM_ERROR("The htcTmpLmt should be larger than htcHystLmt.\n");
++			drm_err(adev_to_drm(adev), "The htcTmpLmt should be larger than htcHystLmt.\n");
+ 		}
+ 
+ 		if (le32_to_cpu(igp_info->info_8.ulSystemConfig) & (1 << 3))
+@@ -3015,13 +3015,13 @@ static int kv_dpm_sw_init(struct amdgpu_ip_block *ip_block)
+ 	adev->pm.dpm.current_ps = adev->pm.dpm.requested_ps = adev->pm.dpm.boot_ps;
+ 	if (amdgpu_dpm == 1)
+ 		amdgpu_pm_print_power_states(adev);
+-	DRM_INFO("amdgpu: dpm initialized\n");
++	drm_info(adev_to_drm(adev), "dpm initialized\n");
+ 
+ 	return 0;
+ 
+ dpm_failed:
+ 	kv_dpm_fini(adev);
+-	DRM_ERROR("amdgpu: dpm initialization failed\n");
++	drm_err(adev_to_drm(adev), "dpm initialization failed: %d\n", ret);
+ 	return ret;
+ }
+ 
 -- 
 2.43.0
 
