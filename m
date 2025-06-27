@@ -2,70 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0DFAEAD3C
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Jun 2025 05:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42FC0AEAD5C
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Jun 2025 05:40:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 011C110E0CD;
-	Fri, 27 Jun 2025 03:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFBBD10E93D;
+	Fri, 27 Jun 2025 03:40:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SU8MrqQa";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="chopoQYn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
- [209.85.215.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F10A10E0CD
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Jun 2025 03:19:19 +0000 (UTC)
-Received: by mail-pg1-f177.google.com with SMTP id
- 41be03b00d2f7-b34b770868dso216103a12.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Jun 2025 20:19:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750994359; x=1751599159; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5x4tLFeY1t1LZrD8ap8HbewBlQWRewxwXMFgKmZ4sHw=;
- b=SU8MrqQa/IvlnRJdVRawnMxdghA/3lrUE1DyIFgmQQ1lJSb7Vbg4igHkXeOViFs8N5
- KKb7CrCl2uOLXYTFlffbtNDKvWWG/JY+5VqDtDBmjksAAvLYE0Bmo8LGF9SX6bKtEWlr
- JnfIOUWWz4jitB2ieYdSk9MXjK80Y7M9eAqSlVPlD1hnzELfmNJOzXA+TxrVyNxkKnNb
- EM8GXG/dDQzYLfuOeE06CSKmMxYUtg1umABUQESIYAp1NyCml5nGDGrS/FncPsjJo6y5
- En3RgnTbUx6t/eG6Dr9j5oXQoZon5ckZJVjIQ5X3xT8RflmUOGMXebgkJVipr1NZ3i8o
- L5zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750994359; x=1751599159;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5x4tLFeY1t1LZrD8ap8HbewBlQWRewxwXMFgKmZ4sHw=;
- b=KStdhcVQKBIldjHiiSzrYSkQkEuzHY/ucmzwrua56OqT3kySoc8H2mPyZxrDBdZOV0
- Yt67T6SqEDbPKcXWiizNA0OUz9TB62yKTWO35z2a4K946r/tnNMxHGj2e8fVM4aR4gOB
- HYz+SfD3fmajwRvTi5FlVmrwZGgvCe1+Bgm2RKajJu/9HoHwTiPO6HTy86KVXSGuiBhe
- RTdvrDk6JnTTzFCG6d8CEM1z8gr9OXl6SvuVEQcaG+u812R5q9Uw7x8gUPCzByRXuUL1
- iVKbXFB1D6Xt4MqXPamXySGQ9PnzDcpmNNbtuVZ/d40iQLejfXSM+p9O0XoJylDnuMX1
- +Usw==
-X-Gm-Message-State: AOJu0YznTRHU1LcZNb9GXPqb0MpYNzH7SH6kafdTz35f4E7uaAdQZ6xl
- /CqHHj2WIk/vhHGc7IiKlEgIaEp/NfaoVEN6/JRDOCg+3jSnv+qrharHg4tfnsRML920PO6AiOW
- 7vYDB2VKZKSTM3XGLuIzXFKHs48r5G37so64g
-X-Gm-Gg: ASbGnctpsGA2rZbjwQ/mpIr8NIel490yYh5ycTnUK0csC/1FnFlwYlwKmjMxI0dJH67
- 3gaA+jk/FfG1vONpW7qCOD09uBE5b1ueNOX8taHPfIiQXyEm4+hh8RkSrUM/cdJKTlqBacJe2+c
- OtevXuOL4WUmyVojON7vl6ze3CM+Pzcy+yvSl/IQHZoyhQ
-X-Google-Smtp-Source: AGHT+IFWBJp47MhkHxGVbRFOfGfrHsSohJ7o4VrvovtlL1qVhPtKsGUg5gE0JB3v8JUe5R3zP7auNO4rVVrUtHVDHS8=
-X-Received: by 2002:a17:903:11c6:b0:234:c8f6:1b09 with SMTP id
- d9443c01a7336-23ac45eeb3cmr10522215ad.9.1750994358527; Thu, 26 Jun 2025
- 20:19:18 -0700 (PDT)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2089.outbound.protection.outlook.com [40.107.92.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0980410E936
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Jun 2025 03:40:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=O0tw/pSExopa/p+lZa+zxR2uMZ8l/io5uERL7CubinpyS/rfcJptest+JGDVOxY28nhcsEeiAXJB4kCtqHFRGpaH23Gwly+I0T/qest+CuQ8XYJuluUuAcinHWttbWkAXgiz2a8JV64MoVr2svIlHHfTK2t+hQVbOKCH7hKOTn7sMVCrw/PasKmsqioLyNE/wuMzhp95zv6zOw2zOCooFbW3ozqyUrYuL/cIx2I23jEMeTy0R33AhhGpJgWzkVqgRwGWhXua8M9Y6HUIk0SXiljMWghbGX99X6jLrukCQiHazxg7ghB018KzJtb5tjr04avfpWnPxUs1hdfocqL2uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c14aIsWf8/RISI3QAi6HSg1fdISsQWr2k8rCEyVAXTA=;
+ b=kMDWPafHnnXYXh40qybClcFj4n0BB4+4IvGAIwh1py+lj6GUSz2L13lnBmHd/3YS2dWALmKzVpsIyqOIvmOryXhIkgqGThzfl31+fM+tNOZfgvXGs/X7+z7kSgAJHUTI9wvH56Od4G5sqFrP1jm6SSZlvSYJIMIfIY8GvSEBsP6hsH4fwMYwU541R8a9M1fmo7lwbick0lBT7Hfh/HhQdzkMJCXkCnlxAD7Ch3I+pmdqJer2fszvWOK3Lj2ymBuBbkGVLzG42YmgXLk/ANI76TYn0ZCXp7N0+YFlhHMyjVi8mIW7m+MmrEzFpz4CU+cltdYgFlbQp9JHN9sECRGb/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c14aIsWf8/RISI3QAi6HSg1fdISsQWr2k8rCEyVAXTA=;
+ b=chopoQYnLlnaXKkFIxExnDx0DMGGlJJGiuEFQG+8aYnDqdAJB4feZiMFXgVk7O/HBE5QcJB8VjPAh7w7EiRm9JhdEe7CB6/dcj2f4hFtjpwB99l7MlSIpOm4YnXnLGV/Wah22Y0o08MEBaGbtK4/3BQOnSGMwsRpZ1GGKHdQkVE=
+Received: from MN2PR15CA0042.namprd15.prod.outlook.com (2603:10b6:208:237::11)
+ by DM4PR12MB6616.namprd12.prod.outlook.com (2603:10b6:8:8e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.20; Fri, 27 Jun
+ 2025 03:40:21 +0000
+Received: from BL6PEPF0001AB57.namprd02.prod.outlook.com
+ (2603:10b6:208:237:cafe::63) by MN2PR15CA0042.outlook.office365.com
+ (2603:10b6:208:237::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8880.20 via Frontend Transport; Fri,
+ 27 Jun 2025 03:40:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF0001AB57.mail.protection.outlook.com (10.167.241.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8880.14 via Frontend Transport; Fri, 27 Jun 2025 03:40:21 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 26 Jun
+ 2025 22:40:19 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
+ <sasundar@amd.com>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH V12 00/33] Reset improvements
+Date: Thu, 26 Jun 2025 23:39:29 -0400
+Message-ID: <20250627034002.5590-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.50.0
 MIME-Version: 1.0
-References: <20250626015709.251938-1-jesse.zhang@amd.com>
-In-Reply-To: <20250626015709.251938-1-jesse.zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 26 Jun 2025 23:19:07 -0400
-X-Gm-Features: Ac12FXxoDAa3zY6EsbK7NxE23VzsfBfU2VSVSlanjv47StLQtMQO-3Og7fVK80c
-Message-ID: <CADnq5_MbziLrZ0WWwK4p=YqwKsnWVgUNivCpP2zGjYLT328tBA@mail.gmail.com>
-Subject: Re: [PATCH V3] drm/amdgpu: Add user queue instance count in HW IP info
-To: Jesse Zhang <jesse.zhang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Christian Koenig <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB57:EE_|DM4PR12MB6616:EE_
+X-MS-Office365-Filtering-Correlation-Id: d650305a-0151-4ab1-3507-08ddb52c57ca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+Gt5Z5Cb/KjPqSLr7qk1YiS50SMZZcxL+UtsEH+7pyLAkY21/ntfDU3KcxHU?=
+ =?us-ascii?Q?sOwaK5kBJB8IxBNXrt5f4oQLqrfZvdzOSynEhxVWu+pndAdCwdqLGp37jCbZ?=
+ =?us-ascii?Q?sDA0Zkb/tb+fQtg8OXxXciDZRVGShvTVkhX9NiHwT608LEHaz68gIJeh3FkR?=
+ =?us-ascii?Q?IGQPYyuLN3PUmB3oD35vTF3FdeNvF0pRPnu82GxVLJKwKxbc28L9HOLv4FqB?=
+ =?us-ascii?Q?4f3H7i87naPYL/Irwd/K2agcgzcvIzaBKXV2Bo5GQdHR8bXib7E7+OOCEtwU?=
+ =?us-ascii?Q?S8m9NC0QVox8BpOpqfHo4LQoZK6emjSzFjLnMqISYjtTRxIc0FnA3kou5lxU?=
+ =?us-ascii?Q?FJM6KaL3TA6306D4sqp9A85pdparC4Ukzz28AmZbSkcQI5x/ekxDmQidqPD4?=
+ =?us-ascii?Q?0LeQreGCDQKuCygjW/cNMWFGjoJb0vhDSrPla0Sr00/b/b0XhCkeZGyT00G5?=
+ =?us-ascii?Q?I2TdAA8qRRw5Q+L2e0+cgDrnwXcfnqX2kat0CfhP+i2QanM+gk0tAn1IDQ8n?=
+ =?us-ascii?Q?e+g0SMuMovicKM3NKg6jYCk3NrEpKUda1qdu1PLv5dOZPUGpEQnAIauUj850?=
+ =?us-ascii?Q?4ASmeshnlluiVsZ9yV/jqbeEmWNOcN6Mif76N8wBuvGjmKns/k7yi7SrHDsT?=
+ =?us-ascii?Q?CoGYtb4ZJ7IHnB8DAEjnuznOWxbIWasbEJNQeWIimx9Kw6KmWfhr1tqCbKGN?=
+ =?us-ascii?Q?rcuvkmwRBUQddD+QriL6L12irH6hn3HQM+zNEoGcFXOxf4V9jwaXJXY0Rm2H?=
+ =?us-ascii?Q?lnKUHwfEC5fv8ehJOB0JL8v4oiSXVNXjUsccjxIUJpur4T4xIgdYQiRcf6CL?=
+ =?us-ascii?Q?Ibc3n642dU4tHl1nzyPLI+XsIHgRPq3CqYptL6GO1HtSSRLBZ3qhV7lXkGdq?=
+ =?us-ascii?Q?N689T/zi+PXtav9xBUbJab9pR9vN/Fm2r5vhcUs7WQFoaLE4fy6muPnOAwE/?=
+ =?us-ascii?Q?aBPf6183GW/pbwbSf+3ZzMx2RXe11alegb4eJgI/NlgnUvbn0ZiX7V5brxUa?=
+ =?us-ascii?Q?aP528LqKqCbpw7g0yFPCy4fkNWSDfLj5pgiqEK02fZzJhCbihHoi+fcKAdKd?=
+ =?us-ascii?Q?8T4YAx3d8KtHadYDHlx7DoacKYvrDN7JBquDT3rWO1xtneFpX2vI3BsH+uME?=
+ =?us-ascii?Q?WNXQ4BWm5yxDMe4PG3jygBllD9vmqktl44++UM3/Jq0YFiHkDt6EooyG6iPy?=
+ =?us-ascii?Q?YYxcidGFYCCJ9a5K+bDYTxIIDKmgw3JUtwo/fz/A7LL+pIDK2MXuXSxEmutq?=
+ =?us-ascii?Q?TuU7dPyXBBtrQQFRpaSvgKGfn+BYeXdHX4JCnltyjiuFrtc4y71ulfEpyAvw?=
+ =?us-ascii?Q?i296YnFR2A3msz3OihLXu9bGfxqQdjZsjutLsLuHMyocXKxyIj5dJ66Ren4D?=
+ =?us-ascii?Q?6TTCTvF+HMpKkdG4oYfE+wYCXsD6+hmEIeU1KZcWWBc2oDQjVUtFq/dCW4eS?=
+ =?us-ascii?Q?1hRmSScvtZPIZhiZreJCIf3kzOkt5KS5Wuy5eRG9zcf/iCuYAJ31SA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2025 03:40:21.2086 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d650305a-0151-4ab1-3507-08ddb52c57ca
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB57.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6616
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,131 +130,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 25, 2025 at 10:13=E2=80=AFPM Jesse Zhang <jesse.zhang@amd.com> =
-wrote:
->
-> This change exposes the number of available user queue instances
-> for each hardware IP type (GFX, COMPUTE, SDMA) through the
-> drm_amdgpu_info_hw_ip interface.
->
-> Key changes:
-> 1. Added userq_num_instance field to drm_amdgpu_info_hw_ip structure
-> 2. Implemented counting of available HQD slots using:
->    - mes.gfx_hqd_mask for GFX queues
->    - mes.compute_hqd_mask for COMPUTE queues
->    - mes.sdma_hqd_mask for SDMA queues
-> 3. Only counts available instances when user queues are enabled
->    (!disable_uq)
->
-> V2: using the adev->mes.gfx_hqd_mask[]/compute_hqd_mask[]/sdma_hqd_mask[]=
- masks
->   to determine the number of queue slots available for each engine type (=
-Alex)
->
-> V3: rename userq_num_instance to userq_num_hqds (Alex)
->
-> Suggested-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 17 +++++++++++++++++
->  include/uapi/drm/amdgpu_drm.h           |  2 ++
->  2 files changed, 19 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_kms.c
-> index 195ed81d39ff..31ba4efabb9d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> @@ -399,6 +399,7 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *ad=
-ev,
->         uint32_t ib_size_alignment =3D 0;
->         enum amd_ip_block_type type;
->         unsigned int num_rings =3D 0;
-> +       uint32_t num_hqds =3D 0;
->         unsigned int i, j;
->
->         if (info->query_hw_ip.ip_instance >=3D AMDGPU_HW_IP_INSTANCE_MAX_=
-COUNT)
-> @@ -411,6 +412,11 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *a=
-dev,
->                         if (adev->gfx.gfx_ring[i].sched.ready &&
->                             !adev->gfx.gfx_ring[i].no_user_submission)
->                                 ++num_rings;
-> +
-> +               if (!adev->gfx.disable_uq)
-> +                       for (i =3D 0; i < AMDGPU_MES_MAX_GFX_PIPES; i++)
-> +                               num_hqds +=3D hweight32(adev->mes.gfx_hqd=
-_mask[i]);
-> +
+This set improves per queue reset support for a number of IPs.
+When we reset the queue, the queue is lost so we need
+to re-emit the unprocessed state from subsequent submissions.
+This is handled in gfx/compute queues via switch buffer and
+pipeline sync packets.  However, you can still end up with
+parallel execution across queues.  For correctness in that
+cause, enforce isolation needs to be enabled.  That can
+impact certain use cases however and in most cases, the
+guilty job is correctly identified even without enforce isolation.
 
-I think kernel coding style recommends putting parens around this.  E.g.,
+Tested on GC 10 and 11 chips with a game running and
+then running hang tests.  The game pauses when the
+hang happens, then continues after the queue reset.
 
-if (!adev->gfx.disable_uq) {
-    for (i =3D 0; i < AMDGPU_MES_MAX_GFX_PIPES; i++)
-        num_hqds +=3D hweight32(adev->mes.gfx_hqd_mask[i]);
-}
-Same for the others below.  WIth these fixed:
+The same approach is extended to SDMA and VCN.
+They don't need enforce isolation because those engines
+are single threaded so they always operate serially.
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Rework re-emit to signal the seq number of the bad job and
+verify that to verify that the reset worked, then re-emit the
+rest of the non-guilty state.  This way we are not waiting on
+the rest of the state to complete, and if the subsequent state
+also contains a bad job, we'll end up in queue reset again rather
+than adapter reset.
 
+Git tree:
+https://gitlab.freedesktop.org/agd5f/linux/-/commits/kq_resets?ref_type=heads
 
->                 ib_start_alignment =3D 32;
->                 ib_size_alignment =3D 32;
->                 break;
-> @@ -420,6 +426,11 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *a=
-dev,
->                         if (adev->gfx.compute_ring[i].sched.ready &&
->                             !adev->gfx.compute_ring[i].no_user_submission=
-)
->                                 ++num_rings;
-> +
-> +               if (!adev->sdma.disable_uq)
-> +                       for (i =3D 0; i < AMDGPU_MES_MAX_COMPUTE_PIPES; i=
-++)
-> +                               num_hqds +=3D hweight32(adev->mes.compute=
-_hqd_mask[i]);
-> +
->                 ib_start_alignment =3D 32;
->                 ib_size_alignment =3D 32;
->                 break;
-> @@ -429,6 +440,11 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *a=
-dev,
->                         if (adev->sdma.instance[i].ring.sched.ready &&
->                             !adev->sdma.instance[i].ring.no_user_submissi=
-on)
->                                 ++num_rings;
-> +
-> +               if (!adev->gfx.disable_uq)
-> +                       for (i =3D 0; i < AMDGPU_MES_MAX_SDMA_PIPES; i++)
-> +                               num_hqds +=3D hweight32(adev->mes.sdma_hq=
-d_mask[i]);
-> +
->                 ib_start_alignment =3D 256;
->                 ib_size_alignment =3D 4;
->                 break;
-> @@ -570,6 +586,7 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *ad=
-ev,
->         }
->         result->capabilities_flags =3D 0;
->         result->available_rings =3D (1 << num_rings) - 1;
-> +       result->userq_num_hqds =3D num_hqds;
->         result->ib_start_alignment =3D ib_start_alignment;
->         result->ib_size_alignment =3D ib_size_alignment;
->         return 0;
-> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.=
-h
-> index 45c4fa13499c..66c4a03ac9f9 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -1493,6 +1493,8 @@ struct drm_amdgpu_info_hw_ip {
->         __u32  available_rings;
->         /** version info: bits 23:16 major, 15:8 minor, 7:0 revision */
->         __u32  ip_discovery_version;
-> +       /* Userq available hqds */
-> +       __u32  userq_num_hqds;
->  };
->
->  /* GFX metadata BO sizes and alignment info (in bytes) */
-> --
-> 2.34.1
->
+The IGT deadlock tests need the following fixes to properly handle -ETIME fences:
+https://patchwork.freedesktop.org/series/150724/
+
+v4: Drop explicit padding patches
+    Drop new timeout macro
+    Rework re-emit sequence
+v5: Add a helper for reemit
+    Convert VCN, JPEG, SDMA to use new helpers
+v6: Update SDMA 4.4.2 to use new helpers
+    Move ptr tracking to amdgpu_fence
+    Skip all jobs from the bad context on the ring
+v7: Rework the backup logic
+    Move and clean up the guilty logic for engine resets
+    Integrate suggestions from Christian
+    Add JPEG 4.0.5 support
+v8: Add non-guilty ring backup handling
+    Clean up new function signatures
+    Reorder some bug fixes to the start of the series
+v9: Clean up fence_emit
+    SDMA 5.x fixes
+    Add new reset helpers
+    sched wqueue stop/start cleanup
+    Add support for VCNs without unified queues
+v10: Drop enforce isolation default change
+     Add more documentation
+     Clean up ring backup logic
+v11: SDMA6/7 fixes
+v12: Ring backup and reemit fixes
+     SDMA cleanups
+     SDMA5.x reemit support
+     GFX10 KGQ reset fix
+
+Alex Deucher (33):
+  drm/amdgpu/gfx10: fix KGQ reset sequence
+  drm/amdgpu/sdma: consolidate engine reset handling
+  drm/amdgpu/sdma: allow caller to handle kernel rings in engine reset
+  drm/amdgpu/sdma5: clean up resume code
+  drm/amdgpu/sdma5.2: clean up resume code
+  drm/amdgpu/sdma6: clean up resume code
+  drm/amdgpu/sdma7: clean up resume code
+  drm/amdgpu: track ring state associated with a fence
+  drm/amdgpu/gfx9: re-emit unprocessed state on kcq reset
+  drm/amdgpu/gfx9.4.3: re-emit unprocessed state on kcq reset
+  drm/amdgpu/gfx10: re-emit unprocessed state on ring reset
+  drm/amdgpu/gfx11: re-emit unprocessed state on ring reset
+  drm/amdgpu/gfx12: re-emit unprocessed state on ring reset
+  drm/amdgpu/sdma5: re-emit unprocessed state on ring reset
+  drm/amdgpu/sdma5.2: re-emit unprocessed state on ring reset
+  drm/amdgpu/sdma6: re-emit unprocessed state on ring reset
+  drm/amdgpu/sdma7: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg2: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg2.5: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg3: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg4: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg4.0.3: re-emit unprocessed state on ring reset
+  drm/amdgpu/jpeg4.0.5: add queue reset
+  drm/amdgpu/jpeg5: add queue reset
+  drm/amdgpu/jpeg5.0.1: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn4: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn4.0.3: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn4.0.5: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn5: re-emit unprocessed state on ring reset
+  drm/amdgpu/vcn: add a helper framework for engine resets
+  drm/amdgpu/vcn2: implement ring reset
+  drm/amdgpu/vcn2.5: implement ring reset
+  drm/amdgpu/vcn3: implement ring reset
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c     | 90 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c        | 15 +++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c      | 67 ++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h      | 18 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c      | 43 +++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h      |  3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c       | 76 ++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h       |  6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  4 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        | 57 ++++--------
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 35 +-------
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c        | 35 +-------
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c         | 12 +--
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c       | 12 +--
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c        | 11 +--
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c        | 11 +--
+ drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c        | 11 +--
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c        | 11 +--
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c      | 11 +--
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c      | 11 +++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c      | 14 +++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c      | 11 +--
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c      | 19 +---
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c        | 50 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c        | 50 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c        | 43 +++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c        | 44 ++++-----
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c         | 12 +++
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c         | 11 +++
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c         | 13 +++
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c         | 11 +--
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c       | 10 +--
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c       | 11 +--
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c       | 11 +--
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c |  2 +-
+ 36 files changed, 502 insertions(+), 353 deletions(-)
+
+-- 
+2.50.0
+
