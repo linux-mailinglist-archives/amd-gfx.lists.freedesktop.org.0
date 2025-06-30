@@ -2,72 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48E1AEE09A
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Jun 2025 16:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC703AEE0EE
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Jun 2025 16:36:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35A1D10E231;
-	Mon, 30 Jun 2025 14:26:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Y8Q4iBC4";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97AAA10E472;
+	Mon, 30 Jun 2025 14:36:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
- [209.85.216.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D269410E231
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Jun 2025 14:26:05 +0000 (UTC)
-Received: by mail-pj1-f41.google.com with SMTP id
- 98e67ed59e1d1-31306794b30so560969a91.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Jun 2025 07:26:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751293565; x=1751898365; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ZRxYpul+LUJLaVzLU+5/dJUPlmelMIXwyM9npPqIARk=;
- b=Y8Q4iBC4dCSJrJhknHSC7QeANKgCU4p9VKpWl8nL9ldJKiC7KQL4pQwPr21Owd6EDP
- XrgALadAsK7XkWa8T3W0lNBXcsSbreoptlFdI8eTfVzU6ZHOz/T0Zw//r2GOQwoA29XN
- uhDeaTbwCp+AwpdSvxsjsHieUcRbG5SHAC3yOz3MHHFo+jd0OxIK65UfRacSLuLB4pab
- TIRELYvkqzBrfRDTMTzYmEJpwkcIlp+oZzKDCc7GodbP5GqXZc54B3A69cfWAebkqjM7
- L5cLwHyDbCPmiiZA2HCPLZGomShGJ6KFfYy6cURPdTCMfcfroS1pYAtMStCCK1ZBEFDV
- HFxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751293565; x=1751898365;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ZRxYpul+LUJLaVzLU+5/dJUPlmelMIXwyM9npPqIARk=;
- b=fUtwT6WyN9KZKS74cvmWYAa3M27FrhgcPwDMSJolHXVNrto3CZfLGSJIoi/oXyLKK3
- J9KNFb11AQSKriccJtBSayUVncDZzvVj3tbyQVxdnrSkGcL4rZ9IrbwD6nHZohZVKTjD
- e8hVOIqYgVq6bTgSto8YXr4bmHjfv6vAr0ZfUrcwO/OnMPzcbDQvgyXZeqCrgaST4YMS
- ssuJfwhkzISPyWMD0qcmL2I2C+3TQL56ybjvX+46LUAotf2xN2w3GdQiBqpGpF0jCgxB
- Tq90wYUT8jOTSQTzVnlORfI0rLsmI0rjyiyaaH0ZGcmb39msCM9f2FgjXg9G9sl1S9Rx
- +dXA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVMOwUfPojSs6N6W+AvPX6ABZPzCkzt8HPPsL2LhkKKtSYS4LNN5qP2qId+0kOAMcgY4/XPdhw8@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxXuGujfqwS9Z1SeNcaTEH16QgYqylUFDpIL192dyLgx95T8Z3h
- R1EjocNIicv0/XCyIPeujkmhhIqmAp4QqkiTgZmBagtb68M1KPdwIPAk/n3LHPpBPFaYhjMn4RM
- LoKEJscdyaG8GafdFc9j7nAb2M16gPo4=
-X-Gm-Gg: ASbGncsQ0j5K1ghysZe4tsqdQPbRvEpKYg8sL/x8bGydn74cSbMAJaTNXYU75qNz815
- ADto7st1mltYURBwKgcRvg8/6TPFl9XZdY9gmQqq8GL1+hbmL6mHC6C7hRk4XZXbLMc/5ibwqVi
- r1RKnfC9XWp3Cvlyq7cuyUkOY6S0ZkB8HII+uyC/d3Sdo/
-X-Google-Smtp-Source: AGHT+IH0iSgYGPC1HHQ8WWzT16uYaBy/1joGF8VQqAdRo/QFeVfWzwOhWWhcj4zpTj42oOYit0dYsnVT0xWDRxAhRDc=
-X-Received: by 2002:a17:90b:582e:b0:310:8d54:3209 with SMTP id
- 98e67ed59e1d1-318ede30aa8mr5128036a91.2.1751293565308; Mon, 30 Jun 2025
- 07:26:05 -0700 (PDT)
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00F5410E469;
+ Mon, 30 Jun 2025 14:36:36 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 55UEaGi92520147; Mon, 30 Jun 2025 20:06:16 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 55UEaETx2520140;
+ Mon, 30 Jun 2025 20:06:14 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, simona@ffwll.ch, tzimmermann@suse.de,
+ tursulin@ursulin.net, phasta@kernel.org, dakr@kernel.org,
+ Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v7 1/5] drm: move the debugfs accel driver code to drm layer
+Date: Mon, 30 Jun 2025 20:06:09 +0530
+Message-Id: <20250630143613.2520111-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <CADnq5_MRRO=YPv4OfzYeiZUgjqi35yKLG7+fOVmqaVXn5FZHTw@mail.gmail.com>
- <20250628185442.11819-1-patrick9876@free.fr>
-In-Reply-To: <20250628185442.11819-1-patrick9876@free.fr>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 30 Jun 2025 10:25:54 -0400
-X-Gm-Features: Ac12FXyxzOWjCqta9TPtQCy93S9wNBZ_Z2p0_B419BdHJXRYF0W5S2z-vRt1XvY
-Message-ID: <CADnq5_PdQpzDs1PtoN_fewmuhe00-EzRTn-7PNrRysz83LqrVw@mail.gmail.com>
-Subject: Re: [PATCH] drm/radeon: bump version to 2.51.0
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: patrick9876@free.fr, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,39 +45,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
+Move the debugfs accel driver code to the drm layer
+and it is an intermediate step to move all debugfs
+related handling into drm_debugfs.c
 
-Alex
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/accel/drm_accel.c | 16 ----------------
+ drivers/gpu/drm/drm_drv.c |  6 +++++-
+ include/drm/drm_accel.h   |  5 -----
+ 3 files changed, 5 insertions(+), 22 deletions(-)
 
-On Sat, Jun 28, 2025 at 2:55=E2=80=AFPM Patrick Lerda <patrick9876@free.fr>=
- wrote:
->
-> The version 2.51.0 adds OpenGL 4.6 compatibility to
-> evergreen and cayman.
->
-> Signed-off-by: Patrick Lerda <patrick9876@free.fr>
-> ---
->  drivers/gpu/drm/radeon/radeon_drv.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon=
-/radeon_drv.c
-> index 267f082bc430..88e821d67af7 100644
-> --- a/drivers/gpu/drm/radeon/radeon_drv.c
-> +++ b/drivers/gpu/drm/radeon/radeon_drv.c
-> @@ -110,9 +110,10 @@
->   *   2.48.0 - TA_CS_BC_BASE_ADDR allowed on SI
->   *   2.49.0 - DRM_RADEON_GEM_INFO ioctl returns correct vram_size/visibl=
-e values
->   *   2.50.0 - Allows unaligned shader loads on CIK. (needed by OpenGL)
-> + *   2.51.0 - Add evergreen/cayman OpenGL 4.6 compatibility
->   */
->  #define KMS_DRIVER_MAJOR       2
-> -#define KMS_DRIVER_MINOR       50
-> +#define KMS_DRIVER_MINOR       51
->  #define KMS_DRIVER_PATCHLEVEL  0
->
->  int radeon_no_wb;
-> --
-> 2.50.0
->
+diff --git a/drivers/accel/drm_accel.c b/drivers/accel/drm_accel.c
+index aa826033b0ce..ca3357acd127 100644
+--- a/drivers/accel/drm_accel.c
++++ b/drivers/accel/drm_accel.c
+@@ -20,8 +20,6 @@
+ 
+ DEFINE_XARRAY_ALLOC(accel_minors_xa);
+ 
+-static struct dentry *accel_debugfs_root;
+-
+ static const struct device_type accel_sysfs_device_minor = {
+ 	.name = "accel_minor"
+ };
+@@ -73,17 +71,6 @@ static const struct drm_info_list accel_debugfs_list[] = {
+ };
+ #define ACCEL_DEBUGFS_ENTRIES ARRAY_SIZE(accel_debugfs_list)
+ 
+-/**
+- * accel_debugfs_init() - Initialize debugfs for device
+- * @dev: Pointer to the device instance.
+- *
+- * This function creates a root directory for the device in debugfs.
+- */
+-void accel_debugfs_init(struct drm_device *dev)
+-{
+-	drm_debugfs_dev_init(dev, accel_debugfs_root);
+-}
+-
+ /**
+  * accel_debugfs_register() - Register debugfs for device
+  * @dev: Pointer to the device instance.
+@@ -194,7 +181,6 @@ static const struct file_operations accel_stub_fops = {
+ void accel_core_exit(void)
+ {
+ 	unregister_chrdev(ACCEL_MAJOR, "accel");
+-	debugfs_remove(accel_debugfs_root);
+ 	accel_sysfs_destroy();
+ 	WARN_ON(!xa_empty(&accel_minors_xa));
+ }
+@@ -209,8 +195,6 @@ int __init accel_core_init(void)
+ 		goto error;
+ 	}
+ 
+-	accel_debugfs_root = debugfs_create_dir("accel", NULL);
+-
+ 	ret = register_chrdev(ACCEL_MAJOR, "accel", &accel_stub_fops);
+ 	if (ret < 0)
+ 		DRM_ERROR("Cannot register ACCEL major: %d\n", ret);
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 17fc5dc708f4..5d57b622f9aa 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -70,6 +70,7 @@ DEFINE_XARRAY_ALLOC(drm_minors_xa);
+ static bool drm_core_init_complete;
+ 
+ static struct dentry *drm_debugfs_root;
++static struct dentry *accel_debugfs_root;
+ 
+ DEFINE_STATIC_SRCU(drm_unplug_srcu);
+ 
+@@ -752,7 +753,7 @@ static int drm_dev_init(struct drm_device *dev,
+ 	}
+ 
+ 	if (drm_core_check_feature(dev, DRIVER_COMPUTE_ACCEL))
+-		accel_debugfs_init(dev);
++		drm_debugfs_dev_init(dev, accel_debugfs_root);
+ 	else
+ 		drm_debugfs_dev_init(dev, drm_debugfs_root);
+ 
+@@ -1166,6 +1167,7 @@ static void drm_core_exit(void)
+ {
+ 	drm_privacy_screen_lookup_exit();
+ 	drm_panic_exit();
++	debugfs_remove(accel_debugfs_root);
+ 	accel_core_exit();
+ 	unregister_chrdev(DRM_MAJOR, "drm");
+ 	debugfs_remove(drm_debugfs_root);
+@@ -1193,6 +1195,8 @@ static int __init drm_core_init(void)
+ 	if (ret < 0)
+ 		goto error;
+ 
++	accel_debugfs_root = debugfs_create_dir("accel", NULL);
++
+ 	ret = accel_core_init();
+ 	if (ret < 0)
+ 		goto error;
+diff --git a/include/drm/drm_accel.h b/include/drm/drm_accel.h
+index 038ccb02f9a3..20a665ec6f16 100644
+--- a/include/drm/drm_accel.h
++++ b/include/drm/drm_accel.h
+@@ -58,7 +58,6 @@ void accel_core_exit(void);
+ int accel_core_init(void);
+ void accel_set_device_instance_params(struct device *kdev, int index);
+ int accel_open(struct inode *inode, struct file *filp);
+-void accel_debugfs_init(struct drm_device *dev);
+ void accel_debugfs_register(struct drm_device *dev);
+ 
+ #else
+@@ -77,10 +76,6 @@ static inline void accel_set_device_instance_params(struct device *kdev, int ind
+ {
+ }
+ 
+-static inline void accel_debugfs_init(struct drm_device *dev)
+-{
+-}
+-
+ static inline void accel_debugfs_register(struct drm_device *dev)
+ {
+ }
+-- 
+2.34.1
+
