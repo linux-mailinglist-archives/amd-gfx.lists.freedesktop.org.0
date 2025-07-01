@@ -2,77 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C208AEFBC3
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Jul 2025 16:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB3BAF0C73
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jul 2025 09:21:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1516B10E5B7;
-	Tue,  1 Jul 2025 14:13:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A19510E2FC;
+	Wed,  2 Jul 2025 07:21:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HaKJkXyV";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="UIlakh6W";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
- [209.85.215.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FE1110E5B7
- for <amd-gfx@lists.freedesktop.org>; Tue,  1 Jul 2025 14:13:16 +0000 (UTC)
-Received: by mail-pg1-f182.google.com with SMTP id
- 41be03b00d2f7-b34b770868dso655433a12.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 01 Jul 2025 07:13:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751379196; x=1751983996; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JyRvlATSbgt740VCzn1FP0H5CBoiMRL3ItdlqiN5NVM=;
- b=HaKJkXyVzNYxZqhCJerrXme526XpqF+dTIPD7BeENGLLI3lidaprHg+YL7rMjR4zsM
- hNE9//Het0D31v7Vu8ahYMUeQ9YS83l5aJCcHC+Wm7huLIB+/JexAqUkcbOSlOi49H5v
- peU0n7x/zgSpYzaJeHag3HG6aiVWnjuoXuRcmqm4nXKkHaMy4mTGlwJ6/caqDfzkH2bt
- M5/T5Vyi5NtvHfH8JBJA32bls3E0KnppsECGjlaQrknlMCcnI2IYc4rHCDuyMtxE/zok
- 4GEzWSzNsuvOdwcUWrV6rInI8JKOm6iNwLCuZfAMnm9gri4t11lQnKybrC00KR15m+3s
- NfEA==
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2656A10E2B3
+ for <amd-gfx@lists.freedesktop.org>; Tue,  1 Jul 2025 15:21:01 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 561BrYBt029749
+ for <amd-gfx@lists.freedesktop.org>; Tue, 1 Jul 2025 15:21:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ nWs/xb1vRSVrZ23orH469KqPX5Uv0VM7XaZIbkm6Jh4=; b=UIlakh6W1MCgTS0w
+ dQ8YPd0+SU/cW248W90o4Yn+WukQbWtsRGcboMH8I+RWg6rWgEse+YqacUs29E0v
+ oRiJ+a0dDL5ayDgStgmik0I26Nhnx+x/LkFotu4/Ns1kxcPWo4TluIq1qiRj3GY+
+ GMxyh6bkcsDfxD9uSWeGtu0qnhuVNtdoUE5NFXmkh2r4OHzpoTXe4KvkuOYgXrn/
+ Kul5rvlt4XmBwOigbvoWEZnZOebN8vwkou5DuEAXjhzEij8FbdTYZ/C8Py8qiH+2
+ WjLotb9uB8PRQa+EdoKYLd/cAk9vVbNEyj7y1FCM/qVnHKBaQoM5qyqjbxIs9a/u
+ bHVwtA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
+ [209.85.214.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47m02v3em8-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <amd-gfx@lists.freedesktop.org>; Tue, 01 Jul 2025 15:21:00 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id
+ d9443c01a7336-2354ba59eb6so56305615ad.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 01 Jul 2025 08:21:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751379196; x=1751983996;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=JyRvlATSbgt740VCzn1FP0H5CBoiMRL3ItdlqiN5NVM=;
- b=qK2lpII1VV5y3Or8oB8H1gA4S036gDy1pBo7gRcRb8lLfvv6/eDfAYF3MBmyFROls4
- VGadttz7xia3tEpK+E+DMID8mnhbJwrwBaDNQRX849GlcgMJZphHOy2Y1Hoo6sAyzHth
- GuLiihdiflc8zBaIKVG/CUnoJ0flbgY9AQPBV6rNe37E9mzH60/PIgPpiJJsqySQ95mH
- tFrhBOux0DBwCgr7SRBs5Jc1/7saDWnAsXc2tOExlm/EPl+5NX4gbAP9QoYcSKcsZzjD
- bkPnLqmqxUDVLseZWpZTTlEslb6B07o7zbp1KK38P5egROsN7aLzy5tWdyRm62vcvzQ4
- VDwA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXEFENcWxXw9jIxqFx1Ej6CD7NhMLilqczlyopiXeZd70Nh5nP4Fx+ZM8PYlbqNq5318GntP28x@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyFJF/lZezEbXO5w5d6SUapMtODYoObVnc4JVg7kbcUTTWb3RUo
- 0RtFEyV1tcDK+OJKgG107a4BVVEDUlMWYxaLv3G9u39m1PTgNnTT+7Z/tf5NU++HjAB3u8cV/FL
- HM0pRPDK3WQHgBfzvHk3Z3kelr4EFIMgGuQ==
-X-Gm-Gg: ASbGncuFgGPyOizz71AjkVNj10yct+f7h461WXuys75QOkHgQKKE/4rAkwqRe2HTbb1
- BOr/kJ0s+6crU2hEJE5CMS8gKrw/nqIquugjWTgI8L2wnGpKSMhyC/YCHQSvp8tK2CQs8Kdvna0
- JE+rtFpQ59N/Cq+wDCKbRR9eMOYjDqF/QddHgBspMBB8t6
-X-Google-Smtp-Source: AGHT+IGcHZC5atsBb5qx0DnTJXOw9jLFtLigkNvZfKlt3UFm5dhkzrYqxT7z7zKvqa96ikimFYXxhA8DAssa3nCtKIM=
-X-Received: by 2002:a17:90b:1f84:b0:311:e9a6:332e with SMTP id
- 98e67ed59e1d1-3193a78c333mr1813462a91.0.1751379195703; Tue, 01 Jul 2025
- 07:13:15 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1751383259; x=1751988059;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=nWs/xb1vRSVrZ23orH469KqPX5Uv0VM7XaZIbkm6Jh4=;
+ b=AVZUx+H+VgXlnUufmYFJT4oGUlr3e+vJRX+veugV/qCBYoCz743+sYoaL1D3G8tIo2
+ VUVqxsy79zbDN1cDQ08z1ct9JOWA9Qf1c6iUX6Fzy5alkx1JmY/2rfyKKWAEWBr3fru6
+ vMW7Z91Kyp55nZj8SwYjNLRn3cFTOw09yfNoyg5hThoydIK7vUKj/mb7HV6D7oz1gv49
+ yK/XkkQpniaedaIcUFwALTc/096AE4t5HnJ5rz1HXXOAYTNw7/35BW2OV+cujhb2dtAT
+ QN7yxqae0Sofp3CZTF0spmzajVXy+gjvMUyypR+p/YMDI65Ko5LQToJfakHIzjjzyUbV
+ 0nqA==
+X-Gm-Message-State: AOJu0Yxb9dw1N6TUcLjPgWDfnGRqdK6r3U3C5RyPkkffun64tm8LhTqR
+ fm/xsOr3y9hcxrkM8Qdbk31OdCOgoy8T5zdTNTfHwXy3RFIH33m5UuSRmEDSn2BC3c7C0H6+QvU
+ l8clwQO/CQUKm57E4+Tio89AsTDeWDXl5AnVcKkrGyeaJ7RoO6lKzCEuam+ByAzDZG4h8
+X-Gm-Gg: ASbGncvsDH0QtZXGyuhZmswpjcw8tkPQtrJp7rNqcayMVwnRKxFhDTJZ+oIAXNTQCnu
+ wAAPF83+xQU2g6jmsttwo97SHUSH0pU/FLM+maEfLkV3VTvtFH0NwO7EAQki+TUJESt4KoA9zMg
+ waCLMv5uCPK06Qjdje50AVztHYSXyiW8E0EuNt6ptlQ7Ja65xFrGPzL3/DmA2LL4Oh0ZUjT8TD2
+ G7JWPGGeIlrN+PSYHC/74LvLsM8a/ufm5otT4Hf8Svw1doEZb24k+P2mBBwhq0UMQV+Ox9KVDub
+ gd5Xqe0DDIKP7Z9t121jcyoMUZ4Jd8LCcqkZZ9Cw4u8Scsx+JCMZXm993byyj5a+9O7zH2c4
+X-Received: by 2002:a17:903:2acc:b0:234:a139:11fa with SMTP id
+ d9443c01a7336-23ac381b1efmr236944175ad.3.1751383259300; 
+ Tue, 01 Jul 2025 08:20:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFStwjk67YEUI9Oq8heAN5eBmkoywGIh/1YJEVqnxjaukSDuHrgyVq2fd/MD04Ev/pgKWVXWg==
+X-Received: by 2002:a17:903:2acc:b0:234:a139:11fa with SMTP id
+ d9443c01a7336-23ac381b1efmr236943785ad.3.1751383258925; 
+ Tue, 01 Jul 2025 08:20:58 -0700 (PDT)
+Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-23acb2e1b49sm110555205ad.22.2025.07.01.08.20.57
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 01 Jul 2025 08:20:58 -0700 (PDT)
+Message-ID: <04216cc3-c8ec-4782-a021-705f53c0fefc@oss.qualcomm.com>
+Date: Tue, 1 Jul 2025 09:20:56 -0600
 MIME-Version: 1.0
-References: <20250623111717.224707-1-srinivasan.shanmugam@amd.com>
- <20250701064459.287603-1-srinivasan.shanmugam@amd.com>
- <CADnq5_OyF=E23TrceinSnt2fFntUB3DBP0cRfUgh9JeAgPfYFw@mail.gmail.com>
- <94f6ae89-5b7d-4541-a119-c0bcf862288c@amd.com>
-In-Reply-To: <94f6ae89-5b7d-4541-a119-c0bcf862288c@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 1 Jul 2025 10:13:03 -0400
-X-Gm-Features: Ac12FXwBFahWv1SYkHwNsMAF6codU33Xvi6kGBgBp3plhlZ3se4kPu_tI-zGH_8
-Message-ID: <CADnq5_NRNGiZXREnUJP=_OhyPjLT8rXcnteYxUdEtdT79ZV4sA@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amdgpu: Unify Device Aperture in amdgpu_info_ioctl
- for KGD/KFD
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- amd-gfx@lists.freedesktop.org, David Yat Sin <David.YatSin@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/4] drm: move drm based debugfs funcs to drm_debugfs.c
+To: "Khatri, Sunil" <Sunil.Khatri@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "simona@ffwll.ch" <simona@ffwll.ch>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "tursulin@ursulin.net" <tursulin@ursulin.net>,
+ "phasta@kernel.org" <phasta@kernel.org>, "dakr@kernel.org"
+ <dakr@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Oded Gabbay <ogabbay@kernel.org>
+References: <20250701063303.3210665-1-sunil.khatri@amd.com>
+ <BL1PR12MB575314D550E85AAB35321DA79341A@BL1PR12MB5753.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+In-Reply-To: <BL1PR12MB575314D550E85AAB35321DA79341A@BL1PR12MB5753.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDEwMiBTYWx0ZWRfX7OITKUFwpfcj
+ /jpD7BPTfiRssEusaau2DKtw5OQHYxHOATtPSp0g5jVobyb1ARrknwdM4nxyrwVSoimgP+2pyRq
+ IzYjqczJKkoD777z9q07DQtKTsKec0X8y9REOXOTFgHiiPA4QZ8m9/q4n8F5uYJJ00pzdiVEcYd
+ e2nMH5slgw9ghPFjzD8Fv7c5bd0Gmi7s91xI+s7VCMZyghgl7yGNoH9eVkh4/5sZw0hbdfpZKn1
+ L+MsIH7BUDMq8ViLsjtmq9eV+pxRTThCNW5UZNa6vXKKB4cToacPtG6zwg/N4z5UsV3ZhqmdBk3
+ 1E+vmmPdhRN1VvT8Muakr7eU98EffwUSoU6JCI/e9nNOiac8UgpEkuKF9zUb0OS6FGBEhF+4SUM
+ 2tIkQ00C6JX6SUAs2vH+tp1IKzoeuEmnE6Ig3I/FCfcyOmViumk8YRprBP2nR6bDrPlXhkQT
+X-Authority-Analysis: v=2.4 cv=Y8L4sgeN c=1 sm=1 tr=0 ts=6863fcdc cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=RAJSH83syF66xFRst6sA:9
+ a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: Hqfz55hMQjYDrWe1TZXHWMu8H88JThJG
+X-Proofpoint-ORIG-GUID: Hqfz55hMQjYDrWe1TZXHWMu8H88JThJG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
+ definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 priorityscore=1501 mlxlogscore=888
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0
+ mlxscore=0 spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507010102
+X-Mailman-Approved-At: Wed, 02 Jul 2025 07:21:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,275 +129,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 1, 2025 at 10:11=E2=80=AFAM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->
-> On 01.07.25 16:07, Alex Deucher wrote:
-> > On Tue, Jul 1, 2025 at 2:53=E2=80=AFAM Srinivasan Shanmugam
-> > <srinivasan.shanmugam@amd.com> wrote:
-> >>
-> >> This commit refines the amdgpu_info_ioctl function to unify
-> >> the reporting of device apertures for both KGD and KFD
-> >> subsystems.
-> >>
-> >> v2:
-> >> - Use amdgpu_ip_version() instead of directly accessing
-> >>   adev->ip_versions. (Alex)
-> >> - Added AMDGPU_VM_ prefix to scratch and LDS base and limit macros.
-> >>   (Christian)
-> >> - Clarified in comments that the top 16 bits of the 64-bit address mus=
-t
-> >>   not be 0x0000 or 0xffff to avoid sign extension problems. (Christian=
-)
-> >>
-> >> Cc: David Yat Sin <David.YatSin@amd.com>
-> >> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >> Cc: Alex Deucher <alexander.deucher@amd.com>
-> >> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> >
-> > Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
->
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com> as well.
->
-> > But don't commit this yet as we are still waiting on the userspace
-> > side to be complete.
->
-> Mhm, how do we want to do this with the ROCm?
->
-> I mean for Mesa we usually wait for the merge request these days.
->
-> For ROCm we just wait for it to end up in thunk or libdrm or what?
+On 7/1/2025 7:02 AM, Khatri, Sunil wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 
-Yeah, we usually post a topic branch on github with support for the new fea=
-ture.
+I cannot review this message with this restriction.  In my opinion, your 
+email client is not properly configured for interfacing with the community.
 
-Alex
-
->
-> Regards,
-> Christian.
->
-> >
-> > Alex
-> >
-> >> ---
-> >>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c      | 25 +++++++++++
-> >>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h       | 23 ++++++++++
-> >>  drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c | 45 ++++---------------=
--
-> >>  include/uapi/drm/amdgpu_drm.h                |  6 +++
-> >>  4 files changed, 62 insertions(+), 37 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_kms.c
-> >> index 4aab5e394ce2..76d902342271 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> >> @@ -46,6 +46,7 @@
-> >>  #include "amdgpu_reset.h"
-> >>  #include "amd_pcie.h"
-> >>  #include "amdgpu_userq.h"
-> >> +#include "amdgpu_vm.h"
-> >>
-> >>  void amdgpu_unregister_gpu_instance(struct amdgpu_device *adev)
-> >>  {
-> >> @@ -1031,6 +1032,30 @@ int amdgpu_info_ioctl(struct drm_device *dev, v=
-oid *data, struct drm_file *filp)
-> >>
-> >>                 dev_info->userq_ip_mask =3D amdgpu_userq_get_supported=
-_ip_mask(adev);
-> >>
-> >> +               /* Retrieve Device Apertures */
-> >> +               if (amdgpu_ip_version(adev, GC_HWIP, 0) >=3D IP_VERSIO=
-N(9, 0, 0)) {
-> >> +                       dev_info->lds_base =3D AMDGPU_VM_MAKE_LDS_APP_=
-BASE_V9();
-> >> +                       dev_info->scratch_base =3D AMDGPU_VM_MAKE_SCRA=
-TCH_APP_BASE_V9();
-> >> +
-> >> +                       dev_info->lds_limit =3D AMDGPU_VM_MAKE_LDS_APP=
-_LIMIT(dev_info->lds_base);
-> >> +                       dev_info->scratch_limit =3D
-> >> +                               AMDGPU_VM_MAKE_SCRATCH_APP_LIMIT(dev_i=
-nfo->scratch_base);
-> >> +               } else {
-> >> +                       dev_info->lds_base =3D AMDGPU_VM_MAKE_LDS_APP_=
-BASE_VI();
-> >> +                       dev_info->scratch_base =3D AMDGPU_VM_MAKE_SCRA=
-TCH_APP_BASE_VI();
-> >> +
-> >> +                       dev_info->lds_limit =3D AMDGPU_VM_MAKE_LDS_APP=
-_LIMIT(dev_info->lds_base);
-> >> +                       dev_info->scratch_limit =3D
-> >> +                               AMDGPU_VM_MAKE_SCRATCH_APP_LIMIT(dev_i=
-nfo->scratch_base);
-> >> +               }
-> >> +
-> >> +               dev_dbg(adev->dev, "Node ID: %u\n", adev->dev->id);
-> >> +               dev_dbg(adev->dev, "GPU ID: %u\n", dev_info->device_id=
-);
-> >> +               dev_dbg(adev->dev, "LDS Base: %llX\n", dev_info->lds_b=
-ase);
-> >> +               dev_dbg(adev->dev, "LDS Limit: %llX\n", dev_info->lds_=
-limit);
-> >> +               dev_dbg(adev->dev, "Scratch Base: %llX\n", dev_info->s=
-cratch_base);
-> >> +               dev_dbg(adev->dev, "Scratch Limit: %llX\n", dev_info->=
-scratch_limit);
-> >> +
-> >>                 ret =3D copy_to_user(out, dev_info,
-> >>                                    min((size_t)size, sizeof(*dev_info)=
-)) ? -EFAULT : 0;
-> >>                 kfree(dev_info);
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_vm.h
-> >> index f3ad687125ad..fd8f6da30096 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> >> @@ -184,6 +184,29 @@ struct amdgpu_bo_vm;
-> >>  #define AMDGPU_VM_USE_CPU_FOR_GFX (1 << 0)
-> >>  #define AMDGPU_VM_USE_CPU_FOR_COMPUTE (1 << 1)
-> >>
-> >> +#define AMDGPU_VM_MAKE_SCRATCH_APP_BASE_VI() \
-> >> +       (((uint64_t)(0x1UL) << 61) + 0x100000000L)
-> >> +#define AMDGPU_VM_MAKE_SCRATCH_APP_LIMIT(base) \
-> >> +       (((uint64_t)(base) & 0xFFFFFFFF00000000UL) | 0xFFFFFFFF)
-> >> +
-> >> +#define AMDGPU_VM_MAKE_LDS_APP_BASE_VI() \
-> >> +       (((uint64_t)(0x1UL) << 61) + 0x0)
-> >> +#define AMDGPU_VM_MAKE_LDS_APP_LIMIT(base) \
-> >> +       (((uint64_t)(base) & 0xFFFFFFFF00000000UL) | 0xFFFFFFFF)
-> >> +
-> >> +/* On GFXv9 the LDS and scratch apertures are programmed independentl=
-y
-> >> + * using the high 16 bits of the 64-bit virtual address. They must be
-> >> + * in the hole, which will be the case as long as the high 16 bits ar=
-e
-> >> + * neither 0x0000 nor 0xffff to avoid sign extension issues.
-> >> + *
-> >> + * The aperture sizes are still 4GB implicitly.
-> >> + *
-> >> + * Note: While GPUVM apertures are generally not applicable on GFXv9,
-> >> + * there is at least one APU case where GFX9 has a limited GPUVM aper=
-ture.
-> >> + */
-> >> +#define AMDGPU_VM_MAKE_LDS_APP_BASE_V9() ((uint64_t)(0x1UL) << 48)
-> >> +#define AMDGPU_VM_MAKE_SCRATCH_APP_BASE_V9() ((uint64_t)(0x2UL) << 48=
-)
-> >> +
-> >>  /* VMPT level enumerate, and the hiberachy is:
-> >>   * PDB2->PDB1->PDB0->PTB
-> >>   */
-> >> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c b/drivers/gp=
-u/drm/amd/amdkfd/kfd_flat_memory.c
-> >> index 1d170dc50df3..291b068aaf8a 100644
-> >> --- a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-> >> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-> >> @@ -276,35 +276,6 @@
-> >>   * for FLAT_* / S_LOAD operations.
-> >>   */
-> >>
-> >> -#define MAKE_GPUVM_APP_BASE_VI(gpu_num) \
-> >> -       (((uint64_t)(gpu_num) << 61) + 0x1000000000000L)
-> >> -
-> >> -#define MAKE_GPUVM_APP_LIMIT(base, size) \
-> >> -       (((uint64_t)(base) & 0xFFFFFF0000000000UL) + (size) - 1)
-> >> -
-> >> -#define MAKE_SCRATCH_APP_BASE_VI() \
-> >> -       (((uint64_t)(0x1UL) << 61) + 0x100000000L)
-> >> -
-> >> -#define MAKE_SCRATCH_APP_LIMIT(base) \
-> >> -       (((uint64_t)base & 0xFFFFFFFF00000000UL) | 0xFFFFFFFF)
-> >> -
-> >> -#define MAKE_LDS_APP_BASE_VI() \
-> >> -       (((uint64_t)(0x1UL) << 61) + 0x0)
-> >> -#define MAKE_LDS_APP_LIMIT(base) \
-> >> -       (((uint64_t)(base) & 0xFFFFFFFF00000000UL) | 0xFFFFFFFF)
-> >> -
-> >> -/* On GFXv9 the LDS and scratch apertures are programmed independentl=
-y
-> >> - * using the high 16 bits of the 64-bit virtual address. They must be
-> >> - * in the hole, which will be the case as long as the high 16 bits ar=
-e
-> >> - * not 0.
-> >> - *
-> >> - * The aperture sizes are still 4GB implicitly.
-> >> - *
-> >> - * A GPUVM aperture is not applicable on GFXv9.
-> >> - */
-> >> -#define MAKE_LDS_APP_BASE_V9() ((uint64_t)(0x1UL) << 48)
-> >> -#define MAKE_SCRATCH_APP_BASE_V9() ((uint64_t)(0x2UL) << 48)
-> >> -
-> >>  /* User mode manages most of the SVM aperture address space. The low
-> >>   * 16MB are reserved for kernel use (CWSR trap handler and kernel IB
-> >>   * for now).
-> >> @@ -319,8 +290,8 @@ static void kfd_init_apertures_vi(struct kfd_proce=
-ss_device *pdd, uint8_t id)
-> >>          * node id couldn't be 0 - the three MSB bits of
-> >>          * aperture shouldn't be 0
-> >>          */
-> >> -       pdd->lds_base =3D MAKE_LDS_APP_BASE_VI();
-> >> -       pdd->lds_limit =3D MAKE_LDS_APP_LIMIT(pdd->lds_base);
-> >> +       pdd->lds_base =3D AMDGPU_VM_MAKE_LDS_APP_BASE_VI();
-> >> +       pdd->lds_limit =3D AMDGPU_VM_MAKE_LDS_APP_LIMIT(pdd->lds_base)=
-;
-> >>
-> >>         /* dGPUs: SVM aperture starting at 0
-> >>          * with small reserved space for kernel.
-> >> @@ -336,21 +307,21 @@ static void kfd_init_apertures_vi(struct kfd_pro=
-cess_device *pdd, uint8_t id)
-> >>         pdd->qpd.cwsr_base =3D SVM_CWSR_BASE;
-> >>         pdd->qpd.ib_base =3D SVM_IB_BASE;
-> >>
-> >> -       pdd->scratch_base =3D MAKE_SCRATCH_APP_BASE_VI();
-> >> -       pdd->scratch_limit =3D MAKE_SCRATCH_APP_LIMIT(pdd->scratch_bas=
-e);
-> >> +       pdd->scratch_base =3D AMDGPU_VM_MAKE_SCRATCH_APP_BASE_VI();
-> >> +       pdd->scratch_limit =3D AMDGPU_VM_MAKE_SCRATCH_APP_LIMIT(pdd->s=
-cratch_base);
-> >>  }
-> >>
-> >>  static void kfd_init_apertures_v9(struct kfd_process_device *pdd, uin=
-t8_t id)
-> >>  {
-> >> -       pdd->lds_base =3D MAKE_LDS_APP_BASE_V9();
-> >> -       pdd->lds_limit =3D MAKE_LDS_APP_LIMIT(pdd->lds_base);
-> >> +       pdd->lds_base =3D AMDGPU_VM_MAKE_LDS_APP_BASE_V9();
-> >> +       pdd->lds_limit =3D AMDGPU_VM_MAKE_LDS_APP_LIMIT(pdd->lds_base)=
-;
-> >>
-> >>         pdd->gpuvm_base =3D AMDGPU_VA_RESERVED_BOTTOM;
-> >>         pdd->gpuvm_limit =3D
-> >>                 pdd->dev->kfd->shared_resources.gpuvm_size - 1;
-> >>
-> >> -       pdd->scratch_base =3D MAKE_SCRATCH_APP_BASE_V9();
-> >> -       pdd->scratch_limit =3D MAKE_SCRATCH_APP_LIMIT(pdd->scratch_bas=
-e);
-> >> +       pdd->scratch_base =3D AMDGPU_VM_MAKE_SCRATCH_APP_BASE_V9();
-> >> +       pdd->scratch_limit =3D AMDGPU_VM_MAKE_SCRATCH_APP_LIMIT(pdd->s=
-cratch_base);
-> >>
-> >>         /*
-> >>          * Place TBA/TMA on opposite side of VM hole to prevent
-> >> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_d=
-rm.h
-> >> index 66c4a03ac9f9..f285e9325d06 100644
-> >> --- a/include/uapi/drm/amdgpu_drm.h
-> >> +++ b/include/uapi/drm/amdgpu_drm.h
-> >> @@ -1477,6 +1477,12 @@ struct drm_amdgpu_info_device {
-> >>         /* Userq IP mask (1 << AMDGPU_HW_IP_*) */
-> >>         __u32 userq_ip_mask;
-> >>         __u32 pad;
-> >> +
-> >> +       /* Additional fields for memory aperture information */
-> >> +       __u64 lds_base;          /* LDS base */
-> >> +       __u64 lds_limit;         /* LDS limit */
-> >> +       __u64 scratch_base;      /* Scratch base */
-> >> +       __u64 scratch_limit;     /* Scratch limit */
-> >>  };
-> >>
-> >>  struct drm_amdgpu_info_hw_ip {
-> >> --
-> >> 2.34.1
-> >>
->
+-Jeff
