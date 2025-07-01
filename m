@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A67AF0367
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Jul 2025 21:10:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42706AF03BB
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Jul 2025 21:27:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEA3D10E624;
-	Tue,  1 Jul 2025 19:09:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74EFE10E5FE;
+	Tue,  1 Jul 2025 19:27:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="24oQGpx5";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nEshbynl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2083.outbound.protection.outlook.com [40.107.220.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA6E910E60B;
- Tue,  1 Jul 2025 19:09:57 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2087.outbound.protection.outlook.com [40.107.243.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50FF410E2E3;
+ Tue,  1 Jul 2025 19:27:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yX+id2xCorhutY9Ovn+triMa6g/72RYWBlRlT9Tbq7KuoZ1Qn2YSLwcoc5hkEzG9ikRIo5sKq1Mlqless84yNbYs5PFhMtUtcTDZl+sdj6hW0y1doSWpmuw/EbamadWymmldHZsO3XCPALqjCUsQjPz8RIOVDeEcSrgQf4ZkdaSti0LQU01dOKGvy+yIV2KJV9Dd+Y9wsZCHJNFGwVH2Zh0PHvuSZLz/C0XmEXG6GmXPyp565Dnudj15xqBoaQ3gtC39JDmuHD8AVYQffHglhGr0MRQKRdLxfIO7CdO0PPgmDRkCccRw0yTqhQYWLW6x/xB12KuvrIaWNMWs3dspgA==
+ b=m87fLFhI6iLjWIGRq0JNZv0ELMXtALWGTx1/ksffkNqu9HAUIU5SAPGsaxSNHiZpbhpInxDD1rC9E98I3mW5y78Ixyy5gTI1VYvM115NXFlpHZZ2gYmVS4vaLzV1GPdQsO/pLOyiGwSknRWGk5D1dMmbCxKHjodXsdWuwEB76OYIg8tCWyRwXeL34/ZvXrOV5rVr03uZ8/TYNwJNi+wFoSJpZbyZ/Ge4rjPtav11t5FRtW76zNrQrzkO76npQnlGRAbMryhtBMr4fO5m2ZLwHL5HLmZHEAtLuNeGxk2epewlNfMz3HndIvQ1vKUkorFzzBCGDYnjDipkg1r/y1UHNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yTbKVYPSBtpwXva4eCd5m8kwnm9PpPRJ5MJ3nMW2keU=;
- b=DwxqPdAPHRLSPhnv9+Lopy3MDG7SAUkUVz1x9TJqBXvK/fZqzvkjRE+yC1E4fBFt2eZr1ea6yaYL/gdrjlasrryp99FwnPnirc0OKPCJ5F3cIDdnIgz7V+RqHfBYwtKUNqa0hIuXqnDoimhJWN7hWo6NqXGItKWz8I1AnI6ZrXgIGUGCP7CTTH7VUy4HmcMeoESzS577PqiqgFynx/NiMzzAYw1TJ1ves6dU+ypajom9Qkv6zSgH1Q0yHLrS2OVAn86Nxo2r+PJjvPwPrwTmJRd9lSahFjsPoOv6ju1YC8PNeSwvBaWrD7/h4QxlxePGjTLfkLIhtgwLhKx3lNWntw==
+ bh=WlCWWuRFEo2uwKaUdxq5bE/h2J7tvPeGJqcocrloWyA=;
+ b=T8olUZS3lausLXJgg1+GFmAVw7DuKGybg7O2NMRMTERiirCmBiGXHly66K30upoYJ4pw2BYY9fmoGAz7BzxKnXk1WnbrQHou2FKoY/Y03X2hEyy+ZZDIicmm52VrwRCJy2USSMOhAy4IBwnPhuUsh0+RBCSWMBHRSR5pHWX9KX1cYqsj6dz9M3ShnGlrbUA6dFG91i7v5t3ZUaSFW8RW097AdPjYQQiXuGFZL+QRt4OgXTE7FUdsv3B2jw09sqvz6zN8nTNZz29ci8DdOmLQHi0s3yBuWwYrtbJUlhYt7vwiaCbxxBhTnn+G47118WLTcZHw4YpuOLqPrIoXl0y8bg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yTbKVYPSBtpwXva4eCd5m8kwnm9PpPRJ5MJ3nMW2keU=;
- b=24oQGpx5DEIvbzc5VFLf3BHuGiw535n2swBBp/Qamh8g+CyBdIFrPHAqNT0wfVQOuMpuuKikpnmO5dq382AAWVEZJG1EspUrbCZs+fwKPIEEl6RTO1GqUpuQQXkXGMg2zu7RhzTWuRehzeIrM42Wi8yuRa2BFIhPi3cpdAghOEc=
-Received: from BLAP220CA0005.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::10)
- by DS0PR12MB8442.namprd12.prod.outlook.com (2603:10b6:8:125::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.27; Tue, 1 Jul
- 2025 19:09:55 +0000
-Received: from BN1PEPF00005FFC.namprd05.prod.outlook.com
- (2603:10b6:208:32c:cafe::2c) by BLAP220CA0005.outlook.office365.com
- (2603:10b6:208:32c::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8880.26 via Frontend Transport; Tue,
- 1 Jul 2025 19:09:55 +0000
+ bh=WlCWWuRFEo2uwKaUdxq5bE/h2J7tvPeGJqcocrloWyA=;
+ b=nEshbynlDGES+l9wQjsLc1wQniYFaF5oDJHdjVVvDmvOBCrAHgsx3vXqbjstYDL02S3+jQ77eqRu4nFPHhXeqP9bIMpyymxT2xD6ABmw9wGHJ0mFNJuodSU5IY05Loowkn0R+EUhHhWgZkxx5Imwtl2vU1aAcAsLyvEUS+RsBes=
+Received: from CH5P220CA0019.NAMP220.PROD.OUTLOOK.COM (2603:10b6:610:1ef::17)
+ by MW4PR12MB6778.namprd12.prod.outlook.com (2603:10b6:303:1e8::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.29; Tue, 1 Jul
+ 2025 19:26:58 +0000
+Received: from DS3PEPF000099D7.namprd04.prod.outlook.com
+ (2603:10b6:610:1ef:cafe::2b) by CH5P220CA0019.outlook.office365.com
+ (2603:10b6:610:1ef::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8901.19 via Frontend Transport; Tue,
+ 1 Jul 2025 19:26:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,26 +48,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN1PEPF00005FFC.mail.protection.outlook.com (10.167.243.228) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8880.14 via Frontend Transport; Tue, 1 Jul 2025 19:09:54 +0000
-Received: from rtg-System-Product-Name.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 1 Jul 2025 14:09:52 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <christian.koenig@amd.com>, <matthew.auld@intel.com>,
- <matthew.brost@intel.com>
-CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH v2 3/3] drm/buddy: Add a new unit test case for buffer
- clearance issue
-Date: Wed, 2 Jul 2025 00:38:22 +0530
-Message-ID: <20250701190822.5272-3-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250701190822.5272-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20250701190822.5272-1-Arunpravin.PaneerSelvam@amd.com>
+ DS3PEPF000099D7.mail.protection.outlook.com (10.167.17.8) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8901.15 via Frontend Transport; Tue, 1 Jul 2025 19:26:57 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 1 Jul
+ 2025 14:26:55 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <airlied@gmail.com>, <simona.vetter@ffwll.ch>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [pull] amdgpu, amndkfd drm-fixes-6.16
+Date: Tue, 1 Jul 2025 15:26:42 -0400
+Message-ID: <20250701192642.32490-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.50.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -76,52 +71,51 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00005FFC:EE_|DS0PR12MB8442:EE_
-X-MS-Office365-Filtering-Correlation-Id: a21eae1d-0df6-4bd7-3954-08ddb8d2dcfb
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D7:EE_|MW4PR12MB6778:EE_
+X-MS-Office365-Filtering-Correlation-Id: c9d406e0-31df-4413-911d-08ddb8d53e6f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?HSnSC7PlxV52doUaLUuLmsWhDeCLpZQqMirBDfOMrKPIjWb7yu7G5mLMbthL?=
- =?us-ascii?Q?6yG7KVJ9npWQ07ZBcwqgUIDI4T4FyXqQn4802L1drqZQqAlCGAr32JC2kyAA?=
- =?us-ascii?Q?p9IfV/rQOmBivTl/LuOim52uQUPBIjlt8NQvfRfj1/Z2HNApRun0BNa15bPf?=
- =?us-ascii?Q?PQ5bxVBFGG9qcgKN4cdy86h8Jj7DDUoEI6HT9NlE3j6jXtv2M/Hd4NpriUAB?=
- =?us-ascii?Q?lDPy3OlbU2X11YNLSPTAeS4zTy3XrWmVc1FlfIcoxeGsqJyFujI5+8fkimYM?=
- =?us-ascii?Q?w+/YeEDXF1maHnYCm1h0Z/fCTCVyJrv8FRr+1I7dPwPeb7NYFBRrUyFq/KqB?=
- =?us-ascii?Q?uELbdtucdPlSL/EiyLzGAxtFTjZ2VXyMpQwlyuJvRii9JdgQhimvuaqxg7sM?=
- =?us-ascii?Q?wqXM/ZzMbAZhmrW7iqGBAwc3xvF0j6knpFOPFmTNRSyKWGnrLnFyylo2t5Re?=
- =?us-ascii?Q?vbHCvL89UVQ21xPM9BHK4UsjK6Zqp738TErU0Lk6f/LhsJrBC5vMDT0QVeSp?=
- =?us-ascii?Q?X9j5HDU2ygWAZgZqE6jcF7jMZ3TQWaa/3gx1yUwUruheT8n21+6FSLMIWj+c?=
- =?us-ascii?Q?sQ4AzXXpQ2M9iKWs+n1bsF/+x4uYr3UPJZKV9rCrYwWMfcpkoOtv5aVkmS6F?=
- =?us-ascii?Q?3sJ7TAMVbHJkXBjezq8Z8dOuQf+6SfP4A1k1wI6jbgco2s7Erd0exB+sVM0w?=
- =?us-ascii?Q?3AFfET91KAJ+flZry6lZeRomKIy4SMx8ILsz0I29Rb2RisA2Dq704gC/Inb7?=
- =?us-ascii?Q?96bQF79fQ/WgDX9OFaGGD9jOw3J+rIwOWINrUXnlFHyCqZgr/M4s8k29X+p1?=
- =?us-ascii?Q?B2QySruM0EmScV1bD+I8dgZNWcL+3FW3n2g7KCq3GKhNtBg3EC5+/qRa2SBG?=
- =?us-ascii?Q?rUIN+W1OkOCz+ub6cW0ouG66aTKP90OhOj6Wa6PidfMzBkOAIKNOPDI1YE3U?=
- =?us-ascii?Q?vtuIomQRltYQv+yBdf21oTxYJ6jZo4T+wKwLqRslljjE3qsd3cKIOoNSWidg?=
- =?us-ascii?Q?hJKHyO3PivxZvHyR1x+LPWBpfYAdTVzoLyeDn9CxA/Vm9F76TGlcof1dsPJh?=
- =?us-ascii?Q?+EagsuZn/QNH9hvZ+7XKx0+ZG5Bys8ejUkBfWJwLQtbt6CkCHzK+ECi7oHBL?=
- =?us-ascii?Q?3xKg993dDWk3f1G5eZLICbN6W9hVdpHTy2u7eoHh7o0FZuEtI9S8DLkDrOiM?=
- =?us-ascii?Q?wuJWuAUgmxyeSVWFJdv6YbUQACL4Bg8yrbegU7Qa84bBMfglneLq6eJVCQK2?=
- =?us-ascii?Q?jY9aC+JOsOOU5hwaTIcER828L+ty+inaw6y4LyS+cFQAyWpVUdHOTmeUbNRu?=
- =?us-ascii?Q?+QhiCbnmJhxGUrlAku55wWGEBHvOydTq4lavTjuBZ/TaV72Emr0aIj169NGJ?=
- =?us-ascii?Q?nvXMQUGI9tYxkee0zeHNBRuUdu9+m51xd7XT+f0pxihj5O7qRoQCLRxFKdOo?=
- =?us-ascii?Q?/m0vB3dULlN0blmdgsIUMsGCO8Qe9Dijp20hSOeYTFhXLR8Fxgrs7S9z+r+9?=
- =?us-ascii?Q?nov9BLBMNDz9bD5vA5qhe3H4xH//1PgjEFDy?=
+ ARA:13230040|1800799024|36860700013|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZBJzAy+g7H91HhV+joJyj7OikME4eaI/7RF9Om1idhgiBBvmteiorgO10BuD?=
+ =?us-ascii?Q?8p1oyxQW1MoApuC/ICUODy+25V6w2ZZS4qBq+zTHf76kgnhD5imteEEL4lXz?=
+ =?us-ascii?Q?2pR+Z4Q1EIZWw9WQEy+BR+KL9iSyFvz9r3L+qdsqU5eKb7sJHIC2pPR/2KmI?=
+ =?us-ascii?Q?urhWWToGjV+iossPuJ5vVNU9mH3tCHOKAnEN0Ln1SO3gtTpPykh0gnWN9Nl7?=
+ =?us-ascii?Q?cQEI62oC4kvQie90zJEXNOs8oV+2flupjrQYOHpoYwrGtr80fZrUk20UgKkc?=
+ =?us-ascii?Q?b64+t1dFTds2mS5ckWBUg+e+RcE1P7E6xfIzFG66o6n+S27I4ewHCUW5Rhc2?=
+ =?us-ascii?Q?VgyTS2/zz/gQb67vK95d9SHlDRnsHwnjrmH2bzVezmcfERtxmF6SKqworzAl?=
+ =?us-ascii?Q?n+18uolV76ohKJOL46qn10tmi0iTUrAFUSQNuUmHUETikuRVr8oUcC0Fwxxl?=
+ =?us-ascii?Q?X4GWUB6bMoYDlxDNzxap+o03SZSbk+SxaYJtUhFtVVc1yjWtBMpXmxG520l9?=
+ =?us-ascii?Q?DZ5phLkT8ifpR5DaCiYfs0YesaYsEN6PCUtLZ5ACDoWcyzYCu1ig+WzVBV2X?=
+ =?us-ascii?Q?1WtIzbIIiHO9zu1oZqVtMpREatMafxh4ZSfTvUii4rkglU71ADM7VAMcEFrA?=
+ =?us-ascii?Q?/AHj4Djwr/0Hi0YPDKs4OeBXMpaZt867FvYv2kNFZTtA6Xst49Sjso5Dlrri?=
+ =?us-ascii?Q?hA/ZvaRwxCSI7+LKu6oPPQl4/68Z+o07g+STyr7R+uRC8OOq9Fbm5WfiSRhI?=
+ =?us-ascii?Q?yl2YNQGot8/zYBY/uKx4eHjHCUjD/oXB0Qg6/FQZrvYfJl2evwKqzpOEyE64?=
+ =?us-ascii?Q?f7q9+hmP1MSy8xKGcar5gvF4RV3xjgqlWWaQDPqh7YFWBbpdFGzuRefYCpJL?=
+ =?us-ascii?Q?1DME/pvoDM4NUrspyiOfX4pUSbWm4AVs8dRMHqZpQBt+tzQijHjz1fdg0R/i?=
+ =?us-ascii?Q?lUGCWxfMrA6xA9TIukacVNiuKY1YnMcw8cXtrp9dhDQI/8JevIIRFeWsFgio?=
+ =?us-ascii?Q?EoycbiUZxnOg6TGIUA1zuHkPFoHQoHG8Jgqpzv51gWytHkBFv9X7I3QyfBfH?=
+ =?us-ascii?Q?/qGi13beqn8FtcWacQ6Els23kpn2MOnB8LTaAJ6duWwMBnKgAgwRxnyJTVl3?=
+ =?us-ascii?Q?SQFM+ORZZYJDT5iVcq9GdNLocWX43bxZWeFvFJTESDikIWePApdihlwjogFH?=
+ =?us-ascii?Q?8lFbYgQoTpGUwQtgrfXQS05Ei5m2dkk8E8jfzi1R3zz3PW8OU0qauNRwkvQ6?=
+ =?us-ascii?Q?onAGXW4dyLy0VTSq/puhoEXWY7nBrlnS0a8u5vAGRGf+GHTOMMi9/js886R3?=
+ =?us-ascii?Q?qA8r/Cmt4/0iHvb51kS1bqE1FEs3dMaihH1IoRCUhZhAp3Ak1yQSQMeLHYlo?=
+ =?us-ascii?Q?g/WIMxBcou3n1oD/Ls+f4M9lkoNYPcz3UcHHxgcaVHNllt6J0fZuzfyDJ4nH?=
+ =?us-ascii?Q?hu3YkuQk9FHFi6cp17zDn7MFxJYCPXDghZT2a8FI6qXp1bz7QUoCgw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
+ SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2025 19:09:54.6155 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a21eae1d-0df6-4bd7-3954-08ddb8d2dcfb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2025 19:26:57.0772 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9d406e0-31df-4413-911d-08ddb8d53e6f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00005FFC.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D7.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8442
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6778
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,72 +130,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add a new unit test case for buffer clearance issue during
-resume.
+Hi Dave, Simona,
 
-Using a non-power-of-two mm size, allocate alternating blocks of
-4KiB in an even sequence and free them as cleared. All alternate
-blocks should be marked as dirty and the split blocks should be
-merged back to their original size when the blocks clear reset
-function is called.
+Fixes for 6.16.
 
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/drm/tests/drm_buddy_test.c | 41 ++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+The following changes since commit 9fbceb37c95939182e1409211447a1d3f3db9274:
 
-diff --git a/drivers/gpu/drm/tests/drm_buddy_test.c b/drivers/gpu/drm/tests/drm_buddy_test.c
-index 7a0e523651f0..e23922a21c77 100644
---- a/drivers/gpu/drm/tests/drm_buddy_test.c
-+++ b/drivers/gpu/drm/tests/drm_buddy_test.c
-@@ -408,6 +408,47 @@ static void drm_test_buddy_alloc_clear(struct kunit *test)
- 				"buddy_alloc hit an error size=%lu\n", ps);
- 	drm_buddy_free_list(&mm, &allocated, DRM_BUDDY_CLEARED);
- 	drm_buddy_fini(&mm);
-+
-+	/*
-+	 * Using a non-power-of-two mm size, allocate alternating blocks of 4KiB in an
-+	 * even sequence and free them as cleared. All blocks should be marked as
-+	 * dirty and the split blocks should be merged back to their original
-+	 * size when the blocks clear reset function is called.
-+	 */
-+	KUNIT_EXPECT_FALSE(test, drm_buddy_init(&mm, mm_size, ps));
-+	KUNIT_EXPECT_EQ(test, mm.max_order, max_order);
-+
-+	i = 0;
-+	n_pages = mm_size / ps;
-+	do {
-+		if (i % 2 == 0)
-+			KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, mm_size,
-+									    ps, ps, &allocated, 0),
-+						"buddy_alloc hit an error size=%lu\n", ps);
-+	} while (++i < n_pages);
-+
-+	drm_buddy_free_list(&mm, &allocated, DRM_BUDDY_CLEARED);
-+	drm_buddy_reset_clear_state(&mm, false);
-+	KUNIT_EXPECT_EQ(test, mm.clear_avail, 0);
-+
-+	/*
-+	 * Using a non-power-of-two mm size, allocate alternating blocks of 4KiB in an
-+	 * odd sequence and free them as cleared. All blocks should be marked as
-+	 * cleared and the split blocks should be merged back to their original
-+	 * size when the blocks clear reset function is called.
-+	 */
-+	i = 0;
-+	do {
-+		if (i % 2 != 0)
-+			KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, mm_size,
-+									    ps, ps, &allocated, 0),
-+						"buddy_alloc hit an error size=%lu\n", ps);
-+	} while (++i < n_pages);
-+
-+	drm_buddy_free_list(&mm, &allocated, DRM_BUDDY_CLEARED);
-+	drm_buddy_reset_clear_state(&mm, true);
-+	KUNIT_EXPECT_EQ(test, mm.clear_avail, mm_size);
-+	drm_buddy_fini(&mm);
- }
- 
- static void drm_test_buddy_alloc_contiguous(struct kunit *test)
--- 
-2.43.0
+  Merge tag 'drm-misc-fixes-2025-06-26' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-fixes (2025-06-28 06:53:00 +1000)
 
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-fixes-6.16-2025-07-01
+
+for you to fetch changes up to 39d81457ad3417a98ac826161f9ca0e642677661:
+
+  drm/amd/display: Don't allow OLED to go down to fully off (2025-06-30 14:01:05 -0400)
+
+----------------------------------------------------------------
+amd-drm-fixes-6.16-2025-07-01:
+
+amdgpu:
+- SDMA 5.x reset fix
+- Add missing firmware declaration
+- Fix leak in amdgpu_ctx_mgr_entity_fini()
+- Freesync fix
+- OLED backlight fix
+
+amdkfd:
+- mtype fix for ext coherent system memory
+- MMU notifier fix
+- gfx7/8 fix
+
+----------------------------------------------------------------
+Alex Deucher (2):
+      drm/amdgpu/sdma5.x: suspend KFD queues in ring reset
+      drm/amdkfd: add hqd_sdma_get_doorbell callbacks for gfx7/8
+
+David Yat Sin (1):
+      amdkfd: MTYPE_UC for ext-coherent system memory
+
+Harold Sun (1):
+      drm/amd/display: Added case for when RR equals panel's max RR using freesync
+
+Kent Russell (1):
+      drm/amdgpu: Include sdma_4_4_4.bin
+
+Lin.Cao (1):
+      drm/amdgpu: Fix memory leak in amdgpu_ctx_mgr_entity_fini
+
+Mario Limonciello (1):
+      drm/amd/display: Don't allow OLED to go down to fully off
+
+Philip Yang (1):
+      drm/amdkfd: Don't call mmput from MMU notifier callback
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c  |  8 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c  |  8 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c            |  1 +
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c           |  1 +
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c             |  7 +++-
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c             |  7 +++-
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c               | 45 ++++++++++------------
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 12 +++---
+ drivers/gpu/drm/amd/display/dc/dc_hw_types.h       |  1 +
+ .../drm/amd/display/modules/freesync/freesync.c    |  8 ++++
+ 10 files changed, 67 insertions(+), 31 deletions(-)
