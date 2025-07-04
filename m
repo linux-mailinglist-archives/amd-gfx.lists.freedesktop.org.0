@@ -2,160 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83159AFA7BF
-	for <lists+amd-gfx@lfdr.de>; Sun,  6 Jul 2025 22:44:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FFC3AFA883
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jul 2025 01:58:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 261E710E2E3;
-	Sun,  6 Jul 2025 20:44:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34C7910E3D9;
+	Sun,  6 Jul 2025 23:58:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1Y5Tp/mB";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="rLENB0TE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2063.outbound.protection.outlook.com [40.107.94.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94F7810E2E3;
- Sun,  6 Jul 2025 20:44:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d+fNYnD+OJiQdQDgl2jmzN1Vgotncx01uovquI25RPkQueWRLky9yG3V2psZHhZFjQ8rEioVQXdUJZip6HgzzvupCEphhCmOdmxRYAHDWt1raNkmx92QqRwlNtqi0E7gbcZ+rhO1iWyG7Nxdq1QU/Cqh3wiSlgtb1SXj+kTSPHR1y5OucxY27/4ishvrLCxXPqqvhymWaeIU57uA+soE8j2P/ON5UdXkkz6AvaNdk0b8/ic8rSWgEmgx5QMxaiMrNEYtbQemgowGAuhWxkCr6EBWqJiedrMOepsYhCrBAGRDcy5FRBqaR0WrK08irduCgYp2e0bwr3uNiB8bIoFn2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h1FYZfvWnk3mvvOCW+avIvJReP5y0k8vFAdLhVkJTFA=;
- b=V8TxK0g3dKeijywqQpA1Z9O6T5N72PU63tne9SthZ4pgQ7jWNtl4416naILJclUS9M1KCkbqx6B5YJg2wZ6tX1/cJlDt2GUn3MGGIPkORzA4HpB9OzWBNO5J1F0wWTuulFItBALR8kfww+Ef1MzO5gflsPhXLsNUU//Cf7pNgN8FKnZmr+5GbimVib1DGLvKVmLr3HDL5EULJroZfCcIvw3CIcqNhyl/FV+TgGkDsI0Xip/LjIdk6mjw4HRlsIDKyW+h/eXi5XW3rZfmU2fpCXmuz722KYhwmK9y7uW26sEvS09sKs0U+ilDPJAexzHJQNgWWrhDTBgZ6xo046xUMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h1FYZfvWnk3mvvOCW+avIvJReP5y0k8vFAdLhVkJTFA=;
- b=1Y5Tp/mBCXVoMXexFg5D6km+fsKcq1MxAvm7hQ+01Ryqv2PzhoG2q9JlmkJrDxWfQHf/fYYd/Xgx7SzcGY11SBbayGlIEaj180PA74wGtZgC9ymZypO5/I3xZC53N8YPZP/NC0oL8YadR2VM1rHpNKivRbk7/qEH0jlJxdvdhq0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by IA0PR12MB8746.namprd12.prod.outlook.com (2603:10b6:208:490::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.26; Sun, 6 Jul
- 2025 20:44:30 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::37ee:a763:6d04:81ca]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::37ee:a763:6d04:81ca%4]) with mapi id 15.20.8901.021; Sun, 6 Jul 2025
- 20:44:30 +0000
-Message-ID: <5c4f5f0d-024a-46e5-9506-0b589f6cce5d@amd.com>
-Date: Sun, 6 Jul 2025 16:44:27 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] drm/ttm: add ttm_device_prepare_hibernation() api
-To: Samuel Zhang <guoqing.zhang@amd.com>, alexander.deucher@amd.com,
- christian.koenig@amd.com, rafael@kernel.org, len.brown@intel.com,
- pavel@kernel.org, gregkh@linuxfoundation.org, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, ray.huang@amd.com,
- matthew.auld@intel.com, matthew.brost@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de
-Cc: lijo.lazar@amd.com, victor.zhao@amd.com, haijun.chang@amd.com,
- Qing.Ma@amd.com, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20250704101233.347506-1-guoqing.zhang@amd.com>
- <20250704101233.347506-2-guoqing.zhang@amd.com>
-Content-Language: en-US
-From: Mario Limonciello <mario.limonciello@amd.com>
-In-Reply-To: <20250704101233.347506-2-guoqing.zhang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT4PR01CA0446.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:10d::7) To MN0PR12MB6101.namprd12.prod.outlook.com
- (2603:10b6:208:3cb::10)
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6382410EA2D;
+ Fri,  4 Jul 2025 12:56:48 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4bYYYT0N6Wz9tRx;
+ Fri,  4 Jul 2025 14:56:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1751633805; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=75Z15CnWZd3L9kj4/Zv3wqcuf+PCK2TBIk6DBeDw8Hg=;
+ b=rLENB0TEg5PnDVTxm7BopruKOXJJ7mjj3AnihaKF9hlXosl6SrxwjTX+21fardfBa12L3T
+ zpoSDgj9hbCi9D7pW6KlIiMcpvdIIaeimUk9YHv6/T3jroidaUk7xW1SqOMkjNLw8kiHk/
+ CI8l43OO+lA+//KbXBCfQ4TO0UQ3bFyavbfUzydsk2I5+t8IYBQx0oz4f1cUX8EbT554da
+ at74aOl1wSSC0PBbNdTIUsZo2OsCvyc6J5ZYOzACQE8FuypM7Tr3L1ihphC80XvNBD4OgL
+ a3zktOSWEus8BSRCw4EJKx8FiptzAIW1FhSv3bSijH/BZxVE1A4Xs4eM/R0vzg==
+Message-ID: <70a5fcd839c0582ed2216c8a61e128834bf81315.camel@mailbox.org>
+Subject: Re: [PATCH v5 04/16] drm/sched: Avoid double re-lock on the job
+ free path
+From: Philipp Stanner <phasta@mailbox.org>
+To: =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
+ Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>
+Date: Fri, 04 Jul 2025 14:56:41 +0200
+In-Reply-To: <3ab04122-72dc-41f4-95af-6c4bf851c6d0@igalia.com>
+References: <20250623122746.46478-1-tvrtko.ursulin@igalia.com>
+ <20250623122746.46478-5-tvrtko.ursulin@igalia.com>
+ <3ab04122-72dc-41f4-95af-6c4bf851c6d0@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|IA0PR12MB8746:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc58bb7b-1384-4cb7-9fa8-08ddbccde7e7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|7416014|921020; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SE5xR09JZHpWeTh3U2IreVhjTVhXTmZ6Mm9ZM3hiMHZQZ25HSmtqZEVjWGpu?=
- =?utf-8?B?ZVBFVFNsK1Z0WDJQSERGa3JIWnh1K0MycnhXNnNoY3JmRWFOcHVyZzBySTBo?=
- =?utf-8?B?aW51eTRMUjR2eWwxcG1SeGllc004OWNzc1p5MHJGZldOcDk4T21pdElDNmNi?=
- =?utf-8?B?YzhIVWV5N2hRa1NFMUttMlBhYXVZSUFXZ0NGdGhKZ243OGVZNXlyY2ljcTBW?=
- =?utf-8?B?RUxkWUlKeVBITDI0ZHVBZ2orYjBiSlpNVkZSNmp0bXMyYVBSNUxseUppYk1M?=
- =?utf-8?B?VElucFhyUVJUY09QWGRWZFJnQVZrNUpPZXhjUFo2b2dCeC9XY0UveHFuUkUy?=
- =?utf-8?B?VHovczhWcDhseWs2ckNpSG9mUVBlUUpHZFhKamxXbzkxdDZRTEtuWk8ycFpo?=
- =?utf-8?B?dUdZbU9pSWVaQlYzSFlCSzdVTXFLSlEvV0E5aTRONkl6TS9WYTRQU3FjNzVa?=
- =?utf-8?B?MzdRZDVZUzVaL3pEcUl2UGJWSzRBMDlLOEZkUEJ4bmdGYUNlc3VtSUE2N1Fx?=
- =?utf-8?B?aFpqQnRFczYzMmJpYzg2dHcxRVpzWnNmWG5UeFpGT1hHc2wweDV4OUd6VXo1?=
- =?utf-8?B?S0hZVTZVSzVPNUxSMFRyTDJ1eDRZeDV1VXdBREM3KzVEZCsxcUQ5NFBDdHFv?=
- =?utf-8?B?SEEzRCt2TC9FUlA4WlBUc1VCckdhTStCMTZCQnA5dENLa1ltcUVldUtCRVVM?=
- =?utf-8?B?aU9EVGdFUjVCWGpzSm9ZeVdxSUZYQndLVFhLMkVORlRSalhHUTNPR1BZRDht?=
- =?utf-8?B?azUyQlkwbHZCYkNkWG9USzZMNGs3LzlSREs3QmdORDZodWtET0NqT3diODZv?=
- =?utf-8?B?WjN0ekZNNkRaUTV4R2FESWQ4QlJMVzF6WGx3KzVWZGxEZXIyNnE0aDVIUjd6?=
- =?utf-8?B?RnE2SXZwOG4rcXM2U1IyVU13SEN4cVllY0pJMnlVWEJQUFBQWmE0dzgwcHo4?=
- =?utf-8?B?cjR1a3Z2S1dobnlPbHU5NnpQNkJSclc3OVEvS1JxZWNEbVd0cHgwRTJ3MGIz?=
- =?utf-8?B?UW4rc3E1Z0t1ck1WZkNETmxyZ0RYR3JOaHVXWVV5N3p3Wmp4U3FCWGhMdXBx?=
- =?utf-8?B?Mm1EVGZndzJ4a203K0NaTzVWQk42cUlNNEJQTVNKc3VCcU1KNXZYOFpVRmEv?=
- =?utf-8?B?RGM5b2c5QURPYzVhVHFxY2E5b05QR3N5RzFMdmQrUmxMSzBGR29hQ1pFWVlv?=
- =?utf-8?B?dVh4L2p5NE5TV3RQc29zcUJJZTJwK0Q3OHhMekRCVC81em1Xd1YzQjZEaWFy?=
- =?utf-8?B?YUNJTUxoV21zdUhrQ01CWHZacmp6UFlSbHZmSUVIZDVCYWMzejUxMFdNZXVx?=
- =?utf-8?B?aUExd3BlVzNWNzN4dlBEQU5UcGdveDVxdWJtSGF4a1VPZml4N3huSytqdHRJ?=
- =?utf-8?B?UGlqVTZWUnE3RjZBajFJNXUvWG5EdHpTSmdHSE1MNUtBV2pybUNhTkJNb1I2?=
- =?utf-8?B?cythQlJZdllhVFVWMmVaRklkTFJBVVJIc3NUbGVLMXprMnJnNWpxRjEvZmtC?=
- =?utf-8?B?bWxBaVUyOHJ5VCtxNEgvTnAvMzBqRTZQRmwxeGh6cUZmZUd1VzZQTjdIOFBl?=
- =?utf-8?B?QWFXc0JGdzllK1laZ2FjYUJOSGFoQ2UvNWxXbmhaZ3dUbjdocDlrekJFR1RN?=
- =?utf-8?B?cXFkWDNDWVVLQkFkUWJPeUkvR0RKSmhIUWZDZVVhbHN0Qndadk45bTBucXpI?=
- =?utf-8?B?ZmNKQXpPWHJkTkFqVlliZGZpVWRDdnhEVGs3NG9HOXAwZWNMVmhNYS9tVnBO?=
- =?utf-8?B?bFF5alczNTk5c05tR0xSQUlCVnRuemFnWTdCTmRCN1FkNTl2NzdMZHFtZFlk?=
- =?utf-8?B?WlBXK0ZsbHBrV1FpMHNMaWFNNFRrRTdhdWtNamhna2RsME5JbzZiRDg4Rzgv?=
- =?utf-8?B?WmtRbCtjbUxQUVdCb1hGRDVlTnlrYW1ac1I1Rk40T3V6MjVDYk1IRThNMWlo?=
- =?utf-8?B?Qnl2d2luSjVNWmhneStsbUFheXVxck5KUGVtQXRKYWxCSC9kb2ZHZVZRQm51?=
- =?utf-8?B?a2JmWUwzNy93PT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7416014)(921020); DIR:OUT; SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RFI5TURETTZkek5vemw4QVF5M3QzT1hveTV2K0t1bzh2dkFKbE50OUFxM2J1?=
- =?utf-8?B?Nit1cnNuNCtLUGFudC9acVNQY2xZVWRCZUxpWEpxM21LcWIzRG85QjIxa1hW?=
- =?utf-8?B?ZEVGNzZmVkc2MGNjU05VQzlKbHA4a3JoUHAxSWRXd2M3MUVOWnpiNkJpeXBX?=
- =?utf-8?B?czY5czhSNnhxcDBGVDEvbEYyTktqSU5FOUt0QjNXNGErQldLN3NIeDNzdHBM?=
- =?utf-8?B?dGpwa2EwOTc0V2Jxd3dML25QMUtqTEdHZXZZNjRrNFBPR1RKdU05VnFNZW8x?=
- =?utf-8?B?MUh2RS9VL2pwa0o1WkhiOVczUEQ4S0FxNUpwaG1jaHQ2Rm9rZTBiaTU1U2x2?=
- =?utf-8?B?VkEveTJoU2dKUGhKK0JTVWpLMkcvM1JCc3J1b3pEZnlHcGRvNForcmZFc01G?=
- =?utf-8?B?eFBsWWszL00rc045bm9hUzc4Vmd6djBaTzdUN0M0aW1JT3J3R2xhS2JrbVF6?=
- =?utf-8?B?amRKcTE0bW0zTlNxcXF6SkQrMEc2TEM0OURxbjFBenlTM1BsOHVQRnM1aERE?=
- =?utf-8?B?Zkp2NXoxWWNWTXBBZDJLVFQ3ek9tU0RJcFh4OW1pSlU4eE9PYllDN3dKb0lQ?=
- =?utf-8?B?aWw3aFpWYjlTdlcxR0NYeWZKbWRvOHhTUUQ1Zm5lZ3BPYU1RNFJXYkN3bk9T?=
- =?utf-8?B?ZU5sMFJQWHZFMGdFVW9MS2cxNkdHUUR5dzMxY3N4VERHb3Fic0tRdFVTL0xD?=
- =?utf-8?B?ZFkzVjhCRHQrT0lhZ2FvOGE3TWRsYkd1cWFMc2NDZVQxKzdKUVNGRWJoQmQ5?=
- =?utf-8?B?c1o2TWFYb0FPdW83d1c2YjJPSjM3bnF1UkdXSGw0eFlnSlpqWk5pcmZxbzlU?=
- =?utf-8?B?alRYRnZFMTIzVUtMWTFod1N6bzZBeTdBZHIxVjh6ampzMitEU2Y0WDMrOWJl?=
- =?utf-8?B?UDUwbzJBNEdVbFpCNkFaQU9sQzV6VDNLSitZbkVWRHNWOHZLYW92MUtNTkxn?=
- =?utf-8?B?bHBiRU8rUE0xeEZTOG9QcFh0dk9xSlU5bXBHbTNYMEJlYnlmMjRseDg1b1Y4?=
- =?utf-8?B?THhIOFFIbzlSZStKTHhEbE1sNkI3S2VWRXd6T3NyU2V0Z3ljNTRlZTBYOTVL?=
- =?utf-8?B?ZEtBVU1DTjhGSHMzZ2ZFaDFWVUxURnExMWt3WFY1N1ZZai9UaG9yMDhPdVpH?=
- =?utf-8?B?RnhVUmtaWEZadTVYc2tSV3U5bGZ2NVJ5RlRRVzZmK2ttU254cERERDYzUUR3?=
- =?utf-8?B?QUpoMXBSZmRsazlObTJlZFVDOElhcTU1Z09hU1VPS2t0TG1qbkFNOWQ2SXA3?=
- =?utf-8?B?YURIRHo0MHRTRksyTjQvaW5ONEJTbmdBRDBhYkdEaEN1eEhkL0duU0RFZXhE?=
- =?utf-8?B?N0owSCtqbDJLbHB2TDUrOFFTK0VESTlRUkdWekw0YlVzRVR0RzF6V3B2UW5E?=
- =?utf-8?B?anUxalE1WHVGam9JMzFvL2RjU1JDM041cHVXTXpCa3M3UlcxWEVsSUhWWG51?=
- =?utf-8?B?V0U2TXBOTGpaQmRSU1hQL0pwRFlRb0ljYmlRYzNRU0l6L1pBVmxvT3VFVVNQ?=
- =?utf-8?B?b09YYnN4Rm43SEUzVi9NemtrbzE1ZGVPS3o2MitXMkM5M2ZoSEZTWnQ3U1pL?=
- =?utf-8?B?bjBqcTJiVEJ5S0RuZ1hXcng3a0NieUZva1UxWWRkc3I1RU8zWGIyZGR0RTBq?=
- =?utf-8?B?Y0x2Nlh2b0kyMmhDVkxzcUFiOHl0NHpFNnJIUEsyNHdzaFlib2NhU1AxbzBG?=
- =?utf-8?B?S056SlB0Z2FBMDNGZGV3N25mc2RLdFYyNzdnODExVTBxTEtIT3J5U2Z1NnpS?=
- =?utf-8?B?Qzh4cDQwLzVLYUI3bndBNXh6WVpsTjNBbUJZNGZ3a2J2VDl3U0ZMc1E0QWRT?=
- =?utf-8?B?MVZLb0RpRVA2Ym5IM3dCdWJ3bndNRUV1ZUdEQnRHTDd3d2s5WnZYa0YzS3Y1?=
- =?utf-8?B?QXg2TW1DRDRmUVdyY0NBQnZUa2hrNUFVT2hWYzFmMkhmWTNzL0M1eGMzUXQ1?=
- =?utf-8?B?MTNTQkFiT2RkRi9lVjUrbWdqc3hpQnNORkhCZE0zVHg3eGpQMjVLc2tJUGJp?=
- =?utf-8?B?ekxIQ1pBbG4yNGxwbHNuMURsUURYRXkrQnV2Yi9aSjhTN0tSYlIyMUtXYmZt?=
- =?utf-8?B?dXkxZy9Ya3VxL0trK3hIZzFXMzJORGgwa3lDRDM5bkY4SmhGbytKV2IxeXUw?=
- =?utf-8?Q?pGp+2V+FbKO9vxnIJjKL1agSY?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc58bb7b-1384-4cb7-9fa8-08ddbccde7e7
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2025 20:44:30.3094 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M4VkzaUucNHDwaVVELYiy27qCaNIvlMhDMlLbbHSWCs5Oc3hsmnZQpdWQN9urOLVMGaggKUhrBsLJ2VVyBwVjg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8746
+X-MBO-RS-ID: 490ddd0416b2a277c83
+X-MBO-RS-META: 4rxan76ewaocugnyi99sjspb9a1wuh1q
+X-Mailman-Approved-At: Sun, 06 Jul 2025 23:58:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,87 +66,155 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 7/4/2025 6:12 AM, Samuel Zhang wrote:
-> This new api is used for hibernation to move GTT BOs to shmem after
-> VRAM eviction. shmem will be flushed to swap disk later to reduce
-> the system memory usage for hibernation.
-> 
-> Signed-off-by: Samuel Zhang <guoqing.zhang@amd.com>
-> ---
->   drivers/gpu/drm/ttm/ttm_device.c | 29 +++++++++++++++++++++++++++++
->   include/drm/ttm/ttm_device.h     |  1 +
->   2 files changed, 30 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-> index 02e797fd1891..19ab35ffeead 100644
-> --- a/drivers/gpu/drm/ttm/ttm_device.c
-> +++ b/drivers/gpu/drm/ttm/ttm_device.c
-> @@ -123,6 +123,35 @@ static int ttm_global_init(void)
->   	return ret;
->   }
->   
-> +/**
-> + * move GTT BOs to shmem for hibernation.
-> + *
-> + * returns 0 on success, negative on failure.
-> + */
-> +int ttm_device_prepare_hibernation(void)
-> +{
-> +	struct ttm_operation_ctx ctx = {
-> +		.interruptible = false,
-> +		.no_wait_gpu = false,
-> +		.force_alloc = true
-> +	};
-> +	struct ttm_global *glob = &ttm_glob;
-> +	struct ttm_device *bdev;
-> +	int ret = 0;
-> +
-> +	mutex_lock(&ttm_global_mutex);
-> +	list_for_each_entry(bdev, &glob->device_list, device_list) {
-> +		do {
-> +			ret = ttm_device_swapout(bdev, &ctx, GFP_KERNEL);
-> +		} while (ret > 0);
-> +		if (ret < 0)
-> +			break;
-> +	}
-> +	mutex_unlock(&ttm_global_mutex);
-> +	return ret;
+On Fri, 2025-07-04 at 09:29 -0300, Ma=C3=ADra Canal wrote:
+> Hi Tvrtko,
+>=20
+> On 23/06/25 09:27, Tvrtko Ursulin wrote:
+> > Currently the job free work item will lock sched->job_list_lock
+> > first time
+> > to see if there are any jobs, free a single job, and then lock
+> > again to
+> > decide whether to re-queue itself if there are more finished jobs.
+> >=20
+> > Since drm_sched_get_finished_job() already looks at the second job
+> > in the
+> > queue we can simply add the signaled check and have it return the
+> > presence
+> > of more jobs to free to the caller. That way the work item does not
+> > have
+> > to lock the list again and repeat the signaled check.
+> >=20
+> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Cc: Danilo Krummrich <dakr@kernel.org>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: Philipp Stanner <phasta@kernel.org>
+> > ---
+> > =C2=A0 drivers/gpu/drm/scheduler/sched_main.c | 39 +++++++++++---------=
+-
+> > -----
+> > =C2=A0 1 file changed, 16 insertions(+), 23 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > b/drivers/gpu/drm/scheduler/sched_main.c
+> > index 1f077782ec12..c6c26aec07b6 100644
+> > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > @@ -366,22 +366,6 @@ static void __drm_sched_run_free_queue(struct
+> > drm_gpu_scheduler *sched)
+> > =C2=A0=C2=A0		queue_work(sched->submit_wq, &sched-
+> > >work_free_job);
+> > =C2=A0 }
+> > =C2=A0=20
+> > -/**
+> > - * drm_sched_run_free_queue - enqueue free-job work if ready
+> > - * @sched: scheduler instance
+> > - */
+> > -static void drm_sched_run_free_queue(struct drm_gpu_scheduler
+> > *sched)
+> > -{
+> > -	struct drm_sched_job *job;
+> > -
+> > -	spin_lock(&sched->job_list_lock);
+> > -	job =3D list_first_entry_or_null(&sched->pending_list,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_job,
+> > list);
+> > -	if (job && dma_fence_is_signaled(&job->s_fence->finished))
+> > -		__drm_sched_run_free_queue(sched);
+> > -	spin_unlock(&sched->job_list_lock);
+> > -}
+> > -
+> > =C2=A0 /**
+> > =C2=A0=C2=A0 * drm_sched_job_done - complete a job
+> > =C2=A0=C2=A0 * @s_job: pointer to the job which is done
+> > @@ -1102,12 +1086,13 @@ drm_sched_select_entity(struct
+> > drm_gpu_scheduler *sched)
+> > =C2=A0=C2=A0 * drm_sched_get_finished_job - fetch the next finished job=
+ to be
+> > destroyed
+> > =C2=A0=C2=A0 *
+> > =C2=A0=C2=A0 * @sched: scheduler instance
+> > + * @have_more: are there more finished jobs on the list
+> > =C2=A0=C2=A0 *
+> > =C2=A0=C2=A0 * Returns the next finished job from the pending list (if =
+there
+> > is one)
+> > =C2=A0=C2=A0 * ready for it to be destroyed.
+> > =C2=A0=C2=A0 */
+> > =C2=A0 static struct drm_sched_job *
+> > -drm_sched_get_finished_job(struct drm_gpu_scheduler *sched)
+> > +drm_sched_get_finished_job(struct drm_gpu_scheduler *sched, bool
+> > *have_more)
+> > =C2=A0 {
+> > =C2=A0=C2=A0	struct drm_sched_job *job, *next;
+> > =C2=A0=20
+> > @@ -1115,22 +1100,27 @@ drm_sched_get_finished_job(struct
+> > drm_gpu_scheduler *sched)
+> > =C2=A0=20
+> > =C2=A0=C2=A0	job =3D list_first_entry_or_null(&sched->pending_list,
+> > =C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_j=
+ob,
+> > list);
+> > -
+> > =C2=A0=C2=A0	if (job && dma_fence_is_signaled(&job->s_fence->finished))
+> > {
+> > =C2=A0=C2=A0		/* remove job from pending_list */
+> > =C2=A0=C2=A0		list_del_init(&job->list);
+> > =C2=A0=20
+> > =C2=A0=C2=A0		/* cancel this job's TO timer */
+> > =C2=A0=C2=A0		cancel_delayed_work(&sched->work_tdr);
+> > -		/* make the scheduled timestamp more accurate */
+> > +
+> > +		*have_more =3D false;
+> > =C2=A0=C2=A0		next =3D list_first_entry_or_null(&sched-
+> > >pending_list,
+> > =C2=A0=C2=A0						typeof(*next),
+> > list);
+> > -
+> > =C2=A0=C2=A0		if (next) {
+> > +			/* make the scheduled timestamp more
+> > accurate */
+> > =C2=A0=C2=A0			if (test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
+> > =C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 &next->s_fence-
+> > >scheduled.flags))
+> > =C2=A0=C2=A0				next->s_fence->scheduled.timestamp
+> > =3D
+> > =C2=A0=C2=A0					dma_fence_timestamp(&job-
+> > >s_fence->finished);
+> > +
+> > +			if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 &next->s_fence-
+> > >finished.flags))
+>=20
+> Shouldn't we use dma_fence_is_signaled() to keep the same check that
+> we
+> have in drm_sched_run_free_queue()?
 
-I'd personally rather see scoped guard here so you can return 
-immediately and the guard will clean up but up to Christian what he thinks.
+There is a paused-ongoing discussion about this function:
 
-int ret;
+https://lore.kernel.org/all/20250522112540.161411-2-phasta@kernel.org/
 
-scoped_guard(mutex, &ttm_global_mutex) {
-	list_for_each_entry(bdev, &glob->device_list, device_list) {
-		do {
-			ret = ttm_device_swapout(bdev, &ctx, GFP_KERNEL);
-		} while (ret > 0);
-		if (ret)
-			return ret;
-}
 
-return 0;
+dma_fence_is_signaled() can have side effects by actually signaling,
+instead of just checking.
 
-> +}
-> +EXPORT_SYMBOL(ttm_device_prepare_hibernation);
-> +
->   /*
->    * A buffer object shrink method that tries to swap out the first
->    * buffer object on the global::swap_lru list.
-> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
-> index 39b8636b1845..b45498b398dd 100644
-> --- a/include/drm/ttm/ttm_device.h
-> +++ b/include/drm/ttm/ttm_device.h
-> @@ -272,6 +272,7 @@ struct ttm_device {
->   int ttm_global_swapout(struct ttm_operation_ctx *ctx, gfp_t gfp_flags);
->   int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
->   		       gfp_t gfp_flags);
-> +int ttm_device_prepare_hibernation(void);
->   
->   static inline struct ttm_resource_manager *
->   ttm_manager_type(struct ttm_device *bdev, int mem_type)
+Not sure if Tvrtko wanted to bypass that behavior here, though.
+
+P.
+
+>=20
+> Best Regards,
+> - Ma=C3=ADra
+>=20
+> > +				*have_more =3D true;
+> > +
+> > =C2=A0=C2=A0			/* start TO timer for next job */
+> > =C2=A0=C2=A0			drm_sched_start_timeout(sched);
+> > =C2=A0=C2=A0		}
+>=20
+>=20
 
