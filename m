@@ -2,63 +2,154 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846C2AF8CB6
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Jul 2025 10:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27809AF8E37
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Jul 2025 11:20:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D182D10E98D;
-	Fri,  4 Jul 2025 08:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B386710E9B9;
+	Fri,  4 Jul 2025 09:20:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A12++TEL";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="w3XKZPXC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15DC610E989;
- Fri,  4 Jul 2025 08:52:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751619142; x=1783155142;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=eDaB4H7uTImRWrHDBvRkFn8cXQ2OlGO5SiT890oT2Yc=;
- b=A12++TELaUCZPjEjQQjJUBcCrZuYAktSCSHp3BaJQaGv954KYE3Ji0dQ
- +UbjUZhhspDyxCC+vsT7M+/Uz6D6iZEnkRUEdY+0FhRnukPqHD+cWXU1t
- XJIkkx/AnMevkyneZgUUmz24FGpa/tcr5Sf7/ndfw6XC/MNhXEeCW9CtX
- HHwZTr8ZVka8VSpsvreTzMnYk/+4hcVkyAQyUujQjV94xuaOsR7vn4SRY
- 1ec2z1fXY61mA61DtUrGpiMzQphzgIxxxOFc8Hh1lzboXmf8KDpk+mxnI
- KiMY7aG9NPW2rE41rqTtwzMrfq0p6Vql5BiZ2J5Gh/ZYgGR9r3M1Ad/+g Q==;
-X-CSE-ConnectionGUID: 04AZaugmR3ek89XCYwvA9A==
-X-CSE-MsgGUID: Qcg+sOUbS4KlDPSbD7NrPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="79391981"
-X-IronPort-AV: E=Sophos;i="6.16,286,1744095600"; d="scan'208";a="79391981"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 01:52:22 -0700
-X-CSE-ConnectionGUID: G5wxgdf2Rzq9ri+HZ0T8fw==
-X-CSE-MsgGUID: RBoYUIHbTmeF3eCB66dyMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,286,1744095600"; d="scan'208";a="154722521"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.245.51])
- ([10.245.245.51])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 01:52:20 -0700
-Message-ID: <358045a3-c2ac-4d3c-942c-aa5473d88298@intel.com>
-Date: Fri, 4 Jul 2025 09:52:16 +0100
-MIME-Version: 1.0
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2084.outbound.protection.outlook.com [40.107.92.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91D7C10E9B9;
+ Fri,  4 Jul 2025 09:20:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DJ/4ehlmjaxjEXYlBv7SAYQ+NkgIVLznnX2eaJ03CgelsbvV0Gr+JrMDV1NSAibZbTWbQcqKiwKtNDdGu2IDafVe3oldfu/ZAdevOrFDJ3dD5ngngXNkmaqkzyS5bGov7/oHJqN6UYYoly0ZVt3q9vLKxHaeDsQRj9pA4NjFbCLTB6lw4zicNC+HOVY1wKcCLsEx0p1lYMiqN8wfn6qvzW1ISwF0+CEf0R4Jmo3A7WJO2AA/EZFPRzoHjZne5Ar+tczUcI2mhPJbeQjWv9SGcBFsTOPXys5y9cF6gLQ8ZTmU6KnLk3oPTJaAwh6v3bRjqs9MKJTAilq+P2wneiIJAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T3orMCRS1ZwpttPCQ39hGJEk83cXGcwch1IxwQHdl50=;
+ b=uEm7Z2XZ5aYWLYKxyMOFu0L9ZdTISOwmSSEdRNI2QGaoh3E8uMW8c3rX7McV17BAKKCsc/v975YdhsVEfGoC9N/cKQzrEyutpC7FyHVrfJak/cMY1U8PglzhZIrCV4YtuZiiuswVlBrvmqlvdfnUR4PhlLxbRiAm1cuO5Xp/RFSba1UV9g7ZfrURhNVkeZ+45fu/tArda9QL4Z144hohl1A8pPpYQO1TrAaKrKiu5FfSdB8DtWiGxaNCbjMcPLl0pyrCRQEmA9triJUizsKXL1+bt37/2nR51ZwVuQdWnTlHiPZtOpute/h/uYORGeXTTu962XrYgogb8cf5EiRozw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T3orMCRS1ZwpttPCQ39hGJEk83cXGcwch1IxwQHdl50=;
+ b=w3XKZPXCON1tymwU6T1ZvHepTw495GIXhgpdyDlJYIHrZqate6kvHb6jDpfb0/PbB2xnlSmoCG4LZSFCfwoH2uTFNlakFgUDgN+qXLvXR5TdNF1Kw7Mg7ST+hStoaNo1ZviMVrCoKWtbPKKsdefOhD6LmuypVlo0C9Pm+qpPO3I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA3PR12MB9157.namprd12.prod.outlook.com (2603:10b6:806:39a::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.21; Fri, 4 Jul
+ 2025 09:20:12 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8901.018; Fri, 4 Jul 2025
+ 09:20:12 +0000
+Message-ID: <a13fe778-a766-4221-8a60-5ee4f25f88d3@amd.com>
+Date: Fri, 4 Jul 2025 11:20:06 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] drm/amdgpu: Reset the clear flag in buddy during
- resume
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- christian.koenig@amd.com, matthew.brost@intel.com
-Cc: alexander.deucher@amd.com, stable@vger.kernel.org
-References: <20250701190822.5272-1-Arunpravin.PaneerSelvam@amd.com>
- <20250701190822.5272-2-Arunpravin.PaneerSelvam@amd.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250701190822.5272-2-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH] drm/amdgpu: Fix lifetime of struct amdgpu_task_info after
+ ring reset
+To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ Dave Airlie <airlied@gmail.com>
+References: <20250704030629.1064397-1-andrealmeid@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20250704030629.1064397-1-andrealmeid@igalia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0014.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c8::12) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB9157:EE_
+X-MS-Office365-Filtering-Correlation-Id: 99f0dc8b-09c2-4e05-8dd3-08ddbadbfa74
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TVpoT0IxcWVwSVhjOHRmRlZZc1Q0NGptSWlsQWVQT291em9vZ3JScHV0QXNu?=
+ =?utf-8?B?WGNSbU5kZFhtMXZjNXhJMFNLNHc5cHhFcFphTWF4Zk5jNVpFUEllZXZ0WlFJ?=
+ =?utf-8?B?OG11dFFrT2FXMzloemJHNHpwY0tVaGtYVG81aWZhcHBoVWpacUUwYmJCNVpn?=
+ =?utf-8?B?M1g0bkJDZGNrY0MrbnpJV1NFQnh2d2JzN2hyWE9vTE9qZDFKeURoT0ppblN5?=
+ =?utf-8?B?ZXlEYzIvWW9ZODZ3YmlzeVFjeno3ZDE0YS9UVml1ODNaN1ZzVk1RNUIvN3Iv?=
+ =?utf-8?B?aytMajIwODdxczh0c0c3M1VOZ3hmd0Q3N21ia2k3bVRWNDNiS3huUGsxdTVE?=
+ =?utf-8?B?SnFleW1JQXk3a2NWNW1iUE1qQVZYd25NM3hXMkZJUHM1MDlnZ0R0M0ZpSnlx?=
+ =?utf-8?B?aE1mQWFCV2xGTHpGZFNORDFocXBrNHViMXJSZG14b1BiVGk1NTNCL3Q0UFc4?=
+ =?utf-8?B?WWpBc2RRWUtXUENwNURFL3dqalRsQk9QdHN6ekw2MlpMbEZoTWFSVWg4OVo2?=
+ =?utf-8?B?dUhhZVpKdDJ6Q014SFVsT3ZjcjRlRVBzTlhCd245UFJ6Yi92cERLdDZjdTVV?=
+ =?utf-8?B?K0U3cDVjTlhkM08veHZiYk5HYXBadGl5REdSZ25XSDRiWlFrRlJUcWNkQm4x?=
+ =?utf-8?B?YmErOUkxZ1JhSjltbnJjSS9Nb3g0NUxFVi9uMEZJdWVDSm03aHlxLy9IMlQ4?=
+ =?utf-8?B?S05vQ2duWTVHYmo0Rmo5U25uWU9Bc054VjFkMDlmckRiVEFjNVEwRzAwVWlj?=
+ =?utf-8?B?TENNU2UzL2lPZEhLSzRhVVdEUnRuMC9OcitRbG04ZzBnVnVpY3F5bGlXTGpa?=
+ =?utf-8?B?RnlRdEltVzJ1NHdXcGdxMDk2dTZDQngrRWl6ajVVbVFhMkdraHgwTS9kSUlw?=
+ =?utf-8?B?ejhYVXFnVk9HMXZKcHlpSjdTU25wcU5kREt3TmRDSDNOYVVESmpmd3IwWWFN?=
+ =?utf-8?B?b05QbXBPWXMxZXVmdmVrMDhxOVdlazZ1WFlBSjdTV1FFLzZ5a3JyUG9iOWEy?=
+ =?utf-8?B?dy9OL3Q1MjVveVc1QmRWVk5rSktPK0hZaWtLaDRDR1JoUXZaTTV5MHJyZFlH?=
+ =?utf-8?B?Ym1FWGN5UThHc29qNHo1ckgxRWU3bzJLNzVWbXNIYVFSMGhhdHZWbEZSNzR6?=
+ =?utf-8?B?elB4OGdra2VrSzVFNkFyS05tQlA2a0tqem5WRHNYNWpxNHVvdUpwMjRUeEV0?=
+ =?utf-8?B?cGtIMjRDdTNnRGZoSXdyWkNsOGVFY1JNcyszOGR0UFNWRUd6Z2xra1pKT1R3?=
+ =?utf-8?B?YXArZVU4bG8rQ1hCL3NtUFZGcEJ5YXI2WlJkSGtibmQyNG5xY2Y5d2l4ejcy?=
+ =?utf-8?B?dGIrdmg0RFZOV2dTWmZZY1U4em5DM3oxQUVTSVIzc1kwWXV3MWR2ZXg5cnNQ?=
+ =?utf-8?B?Sklqbmd3TWwwc29HTCtwRS9PYUN2L0VNbksvU2hOZ1h6b01oWUFxK3VuRktw?=
+ =?utf-8?B?aGljUlU2bit4cmo3b3JobHNkeDhqL0t5cDNpenpBcGVVeVUxbnk1SlFETEcz?=
+ =?utf-8?B?MTJ4MTQrb3VRY3lQYmFLajRVK3JxSTZQczgvYXorYmNweGU3T1hUNW9pTnhZ?=
+ =?utf-8?B?TG1xS3BOakpMUVM1aDlzYjUyQXYwdzhoa2xIRWNxdVdlSExhc1h0MHVvRzZt?=
+ =?utf-8?B?NnVBaXlXOVU5T0d0a2xTRzZGeHdNL2kwZXM5eDF6NTdmWVlZcGNpM25BaGo0?=
+ =?utf-8?B?U3Y2aXAxSTN0UnpBS2tReFY1V3l3RXJtRzd6VmxtUHI4U041cXJiRDhYbnJq?=
+ =?utf-8?B?V3dNSHNMVVJlTjRBZy92V1JaVFdvbURMOWpLY3BXdk1oMExXK3hqY1ZLVGg5?=
+ =?utf-8?B?Slk0THdsWE52c3JVTHZPSWliMGg4bXd4U3RwSnR5NUpLdmwwSWp1QTd2T2xQ?=
+ =?utf-8?B?djlsQUV2a2RuUVhXQXVrbEd2UnFPdkNwUE12NVRJL2ZqcmRpUzJQTUY0S090?=
+ =?utf-8?Q?0b6+exG0wP0=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzNsWUg1K3hHdG0zbFQ3bmFmczNPQkZGZXBwQUtLaG16RENnK0FiRlA1M3pJ?=
+ =?utf-8?B?T2VMZzJpdDM5K09oS3VVendlZUFoMEFmaEd5dHNWZjdqZFA2Q3dBbUJ3Umd6?=
+ =?utf-8?B?b3ltekRqb1krbkFheURKQlAyTXF5M1ZmYUh6YkxWemViMFEzZHhyWExRSVBV?=
+ =?utf-8?B?WXBZUzU5TzVvODhydnZMRWlkMlJUdGF6aElpRGxQMUZ4RnNLN0w2V0pFc25k?=
+ =?utf-8?B?Mi9ZUDlpa3V3UFgvdzZQYnh0ZG92SE5pOE5OeHlneWloOUc4aGxTTTFrajRS?=
+ =?utf-8?B?dzJIVS9ONHZmY2lBZ1RQaHp4Y01JM3FvVXFVcUJDMFlTZ0xuNytCQWZYQkJJ?=
+ =?utf-8?B?L2pneExYRkNnWFAvWjZWd1lTakhjQUhsWU5lNkFESlJpL0FvdHc1UVRaK3o4?=
+ =?utf-8?B?Vzl6U1FyMTBDMXBTUDhsUHg2Rm9xYlFtbTNlVmZ2cC85cnIwMnNTS25vR0Y1?=
+ =?utf-8?B?T3p1cC9XdnlqRzBDOU1LUmYwS3NKZjh3Q21UUGxvTk5iUklKb2NwajI2QVZM?=
+ =?utf-8?B?SzNLaGNSTWtiRkxvc2FqVklkV2pNclJTYlY4aVllczJoV1VicFFqYXFrUi8z?=
+ =?utf-8?B?cVFRVDFwS1BFTlovNGlkTmZoSldRTm5qYWY1ektCMnl2UWxieTNmRE1LQzVW?=
+ =?utf-8?B?NXhPbElxc29WS2tLaHhxWVVWZnhSNzlyYmtTbnovaVpsOTNiSkw5MkJHNEMv?=
+ =?utf-8?B?OEJ6RzZjWHVac29uVDkzTlNmV09pdUNXaVBXWDN1a2hEQjVRMUZWbHBTcnBY?=
+ =?utf-8?B?cFZFTXRjWXR0M2NTWTdHQnJTSW51WE1WTGJJMVIrcUw1TDZZRC96NzNmU01R?=
+ =?utf-8?B?RlFlc2oyQnVBSEY2L1RtRWpTR1hHOGE5QXlEeGZFMi9pckJxU1QvSENKdVFv?=
+ =?utf-8?B?Vmg4dnIxa3Z3ZlVoeVd3a0JXTWZnOFVlellJV0RabnYvZzFSaDMrbTlBZ2k2?=
+ =?utf-8?B?UjRFalpTT0JKRERYNzM0NVRVT2pEci9hWE1pZUd3VWhNcitWbjMwd2lkMkMy?=
+ =?utf-8?B?bGxpM3orZjhock8wOWNqQ01CbytLQlF2aCt5OEdvQVQraUlhZmF4NG03Qm9r?=
+ =?utf-8?B?TkhMZ0ppbThMQzY4a1Z1M0d6K2xIdU0xaEdQbElWTllEV0dSbWdYSnNNaFhr?=
+ =?utf-8?B?K01NZEp2RWluL2FKOEJFUEROOXdyWklHdEtpYi9aVkVqTW5sOW5NMEZHQmFv?=
+ =?utf-8?B?UDFnaGhzVHV5WnpqR3k2ZmxQcndCUHE4Nmw5MkhGVE96UDcxbG9qeHNVKzAz?=
+ =?utf-8?B?Znd1blBhcnNtZ0Zpb21Sd0pRcTJkK3lSOTYwNFdBR2VId29HeHpIMWp4S0tZ?=
+ =?utf-8?B?RVdlLy9Ba3Q3OXVSVHhCNmJJMDNJRHhlVEdURkhReDB3dkhDSUs1MFAwR3V3?=
+ =?utf-8?B?NnpydDlTelJMSTdUNkR1a1A2eTJxVTZERFRrNUx5ZTJoU0pGam9JcC9LNVp0?=
+ =?utf-8?B?M2RtWWs2Q0pMN011bisxdmMvVkxSR3EzNUJWalZ2OXZiNkVSckZTRmcwaDVF?=
+ =?utf-8?B?K2t3R0c2TERQZ3NLejZkbFFIOHJmMWx6S3JIN01MR1d3R3U3UGRBRlhUbXZE?=
+ =?utf-8?B?SjBpcUlZMU1ieERBRVl6dHdSK282YjRTSk45N1laODZBdWhCbys4WWVsMHpj?=
+ =?utf-8?B?MVl2YzB2UzJhRm4raTdaZkc4ZWRtbjFXTXQrOFZuK0xiTmYrdUxoZ2ZNK3BI?=
+ =?utf-8?B?WGc1b3MvYXNUY05XZTBsM0RzUy9iSWw5K1N6b3VZblA4RllWUmVYVzJTSjZU?=
+ =?utf-8?B?dXdpOTBad0VYS0tzNXJ4MStiOHU2dC9xYllhc1g5Mm93andGMUF4NkovQ3hR?=
+ =?utf-8?B?cjIrU2ZxQ2FEbVQ3dXpITHRtYUprbnFrbjYwU2hJb0pEbGtyckJPTUx2dm1H?=
+ =?utf-8?B?TnJuVEk3N0szNXpnU29rV3BtNUI0eHdIaUNqemt5clUwRkw1aExEQnIyNnYx?=
+ =?utf-8?B?TGZsNHkxUmM1T3podlhvbkhRRm1JdHJuSW44STduOHBtOHJTbnkrc1FndklX?=
+ =?utf-8?B?RzZWTEJwVi9lWXgrZWttaVY3RFBVNkx3eUNMTEdjd1NqNHJQQjVYTk90clB2?=
+ =?utf-8?B?S1JONWhRV3ZUKzRhcnppbTBUakh0eUFVbG1RMHA2aFl1QjdnUlhJam10a3pw?=
+ =?utf-8?Q?Cx3Q=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99f0dc8b-09c2-4e05-8dd3-08ddbadbfa74
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2025 09:20:12.2446 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zZpCf5e9o67txCmJGcdFWQorP4MinVPsURCNN/HgnLyIoxJ2M7BPJlubNGHxorGa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9157
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,312 +164,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 01/07/2025 20:08, Arunpravin Paneer Selvam wrote:
-> - Added a handler in DRM buddy manager to reset the cleared
->    flag for the blocks in the freelist.
+On 04.07.25 05:06, André Almeida wrote:
+> When a ring reset happens, amdgpu calls drm_dev_wedged_event() using
+> struct amdgpu_task_info *ti as one of the arguments. After using *ti, a
+> call to amdgpu_vm_put_task_info(ti) is required to correctly track its
+> lifetime.
 > 
-> - This is necessary because, upon resuming, the VRAM becomes
->    cluttered with BIOS data, yet the VRAM backend manager
->    believes that everything has been cleared.
+> However, it's called from a place that the ring reset path never reaches
+> due to a goto after drm_dev_wedged_event() is called. Move
+> amdgpu_vm_put_task_info() bellow the exit label to make sure that it's
+> called regardless of the code path.
 > 
-> v2:
->    - Add lock before accessing drm_buddy_clear_reset_blocks()(Matthew Auld)
->    - Force merge the two dirty blocks.(Matthew Auld)
->    - Add a new unit test case for this issue.(Matthew Auld)
->    - Having this function being able to flip the state either way would be
->      good. (Matthew Brost)
+> amdgpu_vm_put_task_info() can only accept a valid address or NULL as
+> argument, so initialise *ti to make sure we can call this function if
+> *ti isn't used.
 > 
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Cc: stable@vger.kernel.org
-> Fixes: a68c7eaa7a8f ("drm/amdgpu: Enable clear page functionality")
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3812
+> Fixes: a72002cb181f ("drm/amdgpu: Make use of drm_wedge_task_info")
+> Reported-by: Dave Airlie <airlied@gmail.com>
+> Closes: https://lore.kernel.org/dri-devel/CAPM=9tz0rQP8VZWKWyuF8kUMqRScxqoa6aVdwWw9=5yYxyYQ2Q@mail.gmail.com/
+> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+
+Reviewed-by: Christian König <christian.koenig@amd.com>
+
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   |  2 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h      |  1 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 17 ++++
->   drivers/gpu/drm/drm_buddy.c                  | 90 +++++++++++++++++---
->   include/drm/drm_buddy.h                      |  2 +
->   5 files changed, 99 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index a59f194e3360..b89e46f29b51 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -5193,6 +5193,8 @@ int amdgpu_device_resume(struct drm_device *dev, bool notify_clients)
->   		dev->dev->power.disable_depth--;
->   #endif
->   	}
-> +
-> +	amdgpu_vram_mgr_clear_reset_blocks(adev);
->   	adev->in_suspend = false;
->   
->   	if (amdgpu_acpi_smart_shift_update(dev, AMDGPU_SS_DEV_D0))
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> index 208b7d1d8a27..450e4bf093b7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> @@ -154,6 +154,7 @@ int amdgpu_vram_mgr_reserve_range(struct amdgpu_vram_mgr *mgr,
->   				  uint64_t start, uint64_t size);
->   int amdgpu_vram_mgr_query_page_status(struct amdgpu_vram_mgr *mgr,
->   				      uint64_t start);
-> +void amdgpu_vram_mgr_clear_reset_blocks(struct amdgpu_device *adev);
->   
->   bool amdgpu_res_cpu_visible(struct amdgpu_device *adev,
->   			    struct ttm_resource *res);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> index abdc52b0895a..665656fbc948 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -782,6 +782,23 @@ uint64_t amdgpu_vram_mgr_vis_usage(struct amdgpu_vram_mgr *mgr)
->   	return atomic64_read(&mgr->vis_usage);
->   }
->   
-> +/**
-> + * amdgpu_vram_mgr_clear_reset_blocks - reset clear blocks
-> + *
-> + * @adev: amdgpu device pointer
-> + *
-> + * Reset the cleared drm buddy blocks.
-> + */
-> +void amdgpu_vram_mgr_clear_reset_blocks(struct amdgpu_device *adev)
-> +{
-> +	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
-> +	struct drm_buddy *mm = &mgr->mm;
-> +
-> +	mutex_lock(&mgr->lock);
-> +	drm_buddy_reset_clear_state(mm, false);
-> +	mutex_unlock(&mgr->lock);
-> +}
-> +
->   /**
->    * amdgpu_vram_mgr_intersects - test each drm buddy block for intersection
->    *
-> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> index a1e652b7631d..436f7e4ee202 100644
-> --- a/drivers/gpu/drm/drm_buddy.c
-> +++ b/drivers/gpu/drm/drm_buddy.c
-> @@ -12,6 +12,9 @@
->   
->   #include <drm/drm_buddy.h>
->   
-> +#define FORCE_MERGE	BIT(0)
-> +#define RESET_CLEAR	BIT(1)
-> +
->   static struct kmem_cache *slab_blocks;
->   
->   static struct drm_buddy_block *drm_block_alloc(struct drm_buddy *mm,
-> @@ -60,6 +63,16 @@ static void list_insert_sorted(struct drm_buddy *mm,
->   	__list_add(&block->link, node->link.prev, &node->link);
->   }
->   
-> +static bool is_force_merge_enabled(unsigned int flags)
-> +{
-> +	return flags & FORCE_MERGE;
-> +}
-> +
-> +static bool is_reset_clear_enabled(unsigned int flags)
-> +{
-> +	return flags & RESET_CLEAR;
-> +}
-> +
->   static void clear_reset(struct drm_buddy_block *block)
->   {
->   	block->header &= ~DRM_BUDDY_HEADER_CLEAR;
-> @@ -122,7 +135,7 @@ __get_buddy(struct drm_buddy_block *block)
->   
->   static unsigned int __drm_buddy_free(struct drm_buddy *mm,
->   				     struct drm_buddy_block *block,
-> -				     bool force_merge)
-> +				     unsigned int flags)
->   {
->   	struct drm_buddy_block *parent;
->   	unsigned int order;
-> @@ -135,7 +148,7 @@ static unsigned int __drm_buddy_free(struct drm_buddy *mm,
->   		if (!drm_buddy_block_is_free(buddy))
->   			break;
->   
-> -		if (!force_merge) {
-> +		if (!is_force_merge_enabled(flags)) {
->   			/*
->   			 * Check the block and its buddy clear state and exit
->   			 * the loop if they both have the dissimilar state.
-> @@ -149,7 +162,9 @@ static unsigned int __drm_buddy_free(struct drm_buddy *mm,
->   		}
->   
->   		list_del(&buddy->link);
-> -		if (force_merge && drm_buddy_block_is_clear(buddy))
-> +		if (is_force_merge_enabled(flags) &&
-> +		    !is_reset_clear_enabled(flags) &&
-> +		    drm_buddy_block_is_clear(buddy))
->   			mm->clear_avail -= drm_buddy_block_size(mm, buddy);
->   
->   		drm_block_free(mm, block);
-> @@ -167,7 +182,8 @@ static unsigned int __drm_buddy_free(struct drm_buddy *mm,
->   static int __force_merge(struct drm_buddy *mm,
->   			 u64 start,
->   			 u64 end,
-> -			 unsigned int min_order)
-> +			 unsigned int min_order,
-> +			 unsigned int flags)
->   {
->   	unsigned int order;
->   	int i;
-> @@ -178,6 +194,8 @@ static int __force_merge(struct drm_buddy *mm,
->   	if (min_order > mm->max_order)
->   		return -EINVAL;
->   
-> +	flags |= FORCE_MERGE;
-> +
->   	for (i = min_order - 1; i >= 0; i--) {
->   		struct drm_buddy_block *block, *prev;
->   
-> @@ -198,7 +216,8 @@ static int __force_merge(struct drm_buddy *mm,
->   			if (!drm_buddy_block_is_free(buddy))
->   				continue;
->   
-> -			WARN_ON(drm_buddy_block_is_clear(block) ==
-> +			WARN_ON(!is_reset_clear_enabled(flags) &&
-> +				drm_buddy_block_is_clear(block) ==
->   				drm_buddy_block_is_clear(buddy));
->   
->   			/*
-> @@ -210,10 +229,11 @@ static int __force_merge(struct drm_buddy *mm,
->   				prev = list_prev_entry(prev, link);
->   
->   			list_del(&block->link);
-> -			if (drm_buddy_block_is_clear(block))
-> +			if (!is_reset_clear_enabled(flags) &&
-> +			    drm_buddy_block_is_clear(block))
->   				mm->clear_avail -= drm_buddy_block_size(mm, block);
->   
-> -			order = __drm_buddy_free(mm, block, true);
-> +			order = __drm_buddy_free(mm, block, flags);
->   			if (order >= min_order)
->   				return 0;
->   		}
-> @@ -336,7 +356,7 @@ void drm_buddy_fini(struct drm_buddy *mm)
->   	for (i = 0; i < mm->n_roots; ++i) {
->   		order = ilog2(size) - ilog2(mm->chunk_size);
->   		start = drm_buddy_block_offset(mm->roots[i]);
-> -		__force_merge(mm, start, start + size, order);
-> +		__force_merge(mm, start, start + size, order, 0);
->   
->   		if (WARN_ON(!drm_buddy_block_is_free(mm->roots[i])))
->   			kunit_fail_current_test("buddy_fini() root");
-> @@ -405,6 +425,50 @@ drm_get_buddy(struct drm_buddy_block *block)
->   }
->   EXPORT_SYMBOL(drm_get_buddy);
->   
-> +/**
-> + * drm_buddy_reset_clear_state - reset blocks clear state
-> + *
-> + * @mm: DRM buddy manager
-> + * @is_clear: blocks clear state
-> + *
-> + * Reset the clear state based on @clear value for each block
-> + * in the freelist.
-> + */
-> +void drm_buddy_reset_clear_state(struct drm_buddy *mm, bool is_clear)
-> +{
-> +	u64 root_size, size, start;
-> +	unsigned int order;
-> +	int i;
-> +
-> +	for (i = 0; i <= mm->max_order; ++i) {
-> +		struct drm_buddy_block *block;
-> +
-> +		list_for_each_entry_reverse(block, &mm->free_list[i], link) {
-> +			if (is_clear != drm_buddy_block_is_clear(block)) {
-> +				if (is_clear) {
-> +					mark_cleared(block);
-> +					mm->clear_avail += drm_buddy_block_size(mm, block);
-> +				} else {
-> +					clear_reset(block);
-> +					mm->clear_avail -= drm_buddy_block_size(mm, block);
-> +				}
-> +			}
-> +		}
-> +	}
-
-Is it not possible to do the merge step first and then go through 
-whatever is left marking at clear/dirty? If we do that then we maybe 
-don't need any extra changes or flags outside of reset_clear_state? Or 
-am I missing something?
-
-> +
-> +	/* Force merge the two dirty or two cleared blocks */
-> +	size = mm->size;
-> +	for (i = 0; i < mm->n_roots; ++i) {
-> +		order = ilog2(size) - ilog2(mm->chunk_size);
-> +		start = drm_buddy_block_offset(mm->roots[i]);
-> +		__force_merge(mm, start, start + size, order, RESET_CLEAR);
-> +
-> +		root_size = mm->chunk_size << order;
-> +		size -= root_size;
-> +	}
-> +}
-> +EXPORT_SYMBOL(drm_buddy_reset_clear_state);
-> +
->   /**
->    * drm_buddy_free_block - free a block
->    *
-> @@ -419,7 +483,7 @@ void drm_buddy_free_block(struct drm_buddy *mm,
->   	if (drm_buddy_block_is_clear(block))
->   		mm->clear_avail += drm_buddy_block_size(mm, block);
->   
-> -	__drm_buddy_free(mm, block, false);
-> +	__drm_buddy_free(mm, block, 0);
->   }
->   EXPORT_SYMBOL(drm_buddy_free_block);
->   
-> @@ -566,7 +630,7 @@ __alloc_range_bias(struct drm_buddy *mm,
->   	if (buddy &&
->   	    (drm_buddy_block_is_free(block) &&
->   	     drm_buddy_block_is_free(buddy)))
-> -		__drm_buddy_free(mm, block, false);
-> +		__drm_buddy_free(mm, block, 0);
->   	return ERR_PTR(err);
->   }
->   
-> @@ -684,7 +748,7 @@ alloc_from_freelist(struct drm_buddy *mm,
->   
->   err_undo:
->   	if (tmp != order)
-> -		__drm_buddy_free(mm, block, false);
-> +		__drm_buddy_free(mm, block, 0);
->   	return ERR_PTR(err);
->   }
->   
-> @@ -770,7 +834,7 @@ static int __alloc_range(struct drm_buddy *mm,
->   	if (buddy &&
->   	    (drm_buddy_block_is_free(block) &&
->   	     drm_buddy_block_is_free(buddy)))
-> -		__drm_buddy_free(mm, block, false);
-> +		__drm_buddy_free(mm, block, 0);
->   
->   err_free:
->   	if (err == -ENOSPC && total_allocated_on_err) {
-> @@ -1051,7 +1115,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
->   			if (order-- == min_order) {
->   				/* Try allocation through force merge method */
->   				if (mm->clear_avail &&
-> -				    !__force_merge(mm, start, end, min_order)) {
-> +				    !__force_merge(mm, start, end, min_order, 0)) {
->   					block = __drm_buddy_alloc_blocks(mm, start,
->   									 end,
->   									 min_order,
-> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
-> index 9689a7c5dd36..8b5273d4b2d1 100644
-> --- a/include/drm/drm_buddy.h
-> +++ b/include/drm/drm_buddy.h
-> @@ -160,6 +160,8 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
->   			 u64 new_size,
->   			 struct list_head *blocks);
->   
-> +void drm_buddy_reset_clear_state(struct drm_buddy *mm, bool is_clear);
-> +
->   void drm_buddy_free_block(struct drm_buddy *mm, struct drm_buddy_block *block);
->   
->   void drm_buddy_free_list(struct drm_buddy *mm,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+> index 1e24590ae144..e69366401f6b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+> @@ -90,7 +90,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+>  	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
+>  	struct amdgpu_job *job = to_amdgpu_job(s_job);
+>  	struct drm_wedge_task_info *info = NULL;
+> -	struct amdgpu_task_info *ti;
+> +	struct amdgpu_task_info *ti = NULL;
+>  	struct amdgpu_device *adev = ring->adev;
+>  	int idx;
+>  	int r;
+> @@ -172,8 +172,6 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+>  	}
+>  	dma_fence_set_error(&s_job->s_fence->finished, -ETIME);
+>  
+> -	amdgpu_vm_put_task_info(ti);
+> -
+>  	if (amdgpu_device_should_recover_gpu(ring->adev)) {
+>  		struct amdgpu_reset_context reset_context;
+>  		memset(&reset_context, 0, sizeof(reset_context));
+> @@ -199,6 +197,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
+>  	}
+>  
+>  exit:
+> +	amdgpu_vm_put_task_info(ti);
+>  	drm_dev_exit(idx);
+>  	return DRM_GPU_SCHED_STAT_NOMINAL;
+>  }
 
