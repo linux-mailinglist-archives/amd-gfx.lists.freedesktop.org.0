@@ -2,77 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E775AFA881
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jul 2025 01:58:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FC5AFA886
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jul 2025 01:58:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38B5E10E3DA;
-	Sun,  6 Jul 2025 23:58:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B48C10E3DD;
+	Sun,  6 Jul 2025 23:58:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hVVMO3ZX";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qniy9ODx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
- [209.85.216.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C3F010E1E0;
- Sat,  5 Jul 2025 08:06:08 +0000 (UTC)
-Received: by mail-pj1-f49.google.com with SMTP id
- 98e67ed59e1d1-3141b84bf65so1530372a91.1; 
- Sat, 05 Jul 2025 01:06:08 -0700 (PDT)
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
+ [209.85.210.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DEE310E22B;
+ Sat,  5 Jul 2025 15:59:37 +0000 (UTC)
+Received: by mail-pf1-f182.google.com with SMTP id
+ d2e1a72fcca58-74b52bf417cso1133840b3a.0; 
+ Sat, 05 Jul 2025 08:59:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751702768; x=1752307568; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1751731176; x=1752335976; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=5YZ16XW5/oaudvAcjdRll9Pwcbdl4hYkpk0raAHNXFw=;
- b=hVVMO3ZXMD5YzjrNTCa1qcv8UEHEU6VJ77JnCLycWZcnP9cd3Ak1bLGwOUqRVHohz7
- OtsDmdkpJfp151C7kwMaImaQz3E2zfjvzgETmjCS0DvEPKJHYQ+jWqxspgLfkoPVLHj9
- 7+UZQmSCQov6D4XhufIcMrFHV8uLI/wtiLCYHvN5ihEMiUu01nr8b8e/fKVgbyz959b1
- edt+Q7QBHRwTErUHlqJI003xepS9hG7Od/jlONMt2vT11wdimuGmp5vQ3e1O2n6AYZNw
- GJmJyJ8dBMTBXwCDo2Xsg8q5hh59tDR1kYxLcI4foQfX3BY8Xa5TSIvFl0sOxdR8/RNh
- tyOg==
+ bh=Xxe3hUK0FcWLFBwawbJlsURwRJfsz9aIAfjmQMU/LHU=;
+ b=Qniy9ODxwHkwBwuN33ivO2ubRTRaYNwrgqF6uUvxQt1D4xEnl0yokvUYaSyZgPBbou
+ x+DgtndDnZDtRxDJvB4Y+sV2ORmg9K28VFEOlImm/4RCZftYPeMjmXakSo3t3cDevKYC
+ gE5J3jiARDgrY4IF6MFH7iuj4FLw81vr0vaAsQ0ckaq5yVJpUNZhRucH/Bb0e8uqdyTk
+ KpW4Zrdr7SVReVVW2miXJ7S9wDmFUlhjNxSA6PJpIDNN9YNVpd+E2yOovgDuaCXX+kAF
+ aXzxi41F4JLok70N3rn/flasgcVaksI4Fe6G4/eA8/Q9xtuS6wsovi4QWcVdKOtHfm2u
+ W+oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751702768; x=1752307568;
+ d=1e100.net; s=20230601; t=1751731176; x=1752335976;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=5YZ16XW5/oaudvAcjdRll9Pwcbdl4hYkpk0raAHNXFw=;
- b=RGWds8arbTqca6xpWFl4rJg9tEg00P7CzKpDmuGUt/gr4kHwtuq4pny4MAYct+gF7J
- AT8cQ6jbWKmJh+QaflgdEBHyUcN5YPMd4ZZXbApUVXFdQeY7Fkam18JBtO8SvCm0K/4c
- K2n1Ba1h+v4LIyBtUr1VrFSShHI9JuC7xccJDC6mPheUndLzdxp4AvLJj+qiHJ1VEO+E
- r/Y4g4o/ocT37a4RbK/GDot1ITYpYIyQmj+WPOzNzYN+TpiVH3UPI5zMi5bMS5n0n9bu
- JkfmJrViqjgHbLN55m91GZiTW3FSiYnTr+2K2yEnxAXi/lEIJZTRGwKHdeRom8fOyenM
- fP/Q==
+ bh=Xxe3hUK0FcWLFBwawbJlsURwRJfsz9aIAfjmQMU/LHU=;
+ b=wnBQ4OCu9RUb6sJGgtr7+AFokwo6lHoZxGdpkqfA9tg+6T7fiYNBVRgUrlVF5PBTe6
+ 8cKzzGAp/uR6CAppaRunGJmfMZ3a6gX1w2hdgPFlMezm67uqxelBGvlEV9aE0dY01YYA
+ LGXoZLYDcsIT25VRJDSDsSyD+ce2F6w0GOLARSYAfSFD9GwVoWOUlrtZZC2rXCV5S63q
+ 5lnvw//DWlrvhC40WGyGAU9x7qx6tSyQObcxOkVZlfBuWxHem2zkwoPwPBGvk0eDQ16m
+ rj9uERqwREA+1EcHNxiL4ftE93Utj1pA41vHzsdQGyEbwEm5e730+4An+geLLR5sVPoD
+ GE0Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU7hFMLx+ujsqUiHNaCm4Yz2C1LQP7S5DOVE9IiDGA9ftZYSF3463NV3johulaTijgL99DuNV/1Mhs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx/I/ZktrIRZ/4BDIA8lPoiyUCuw02LjGYrQkUGwR0Ay6i0xBBV
- U8LD6iir+TRpbhpPy/lUHX1TPFfiCg8d6DEdVynHgofjvDBxbb/iRYew
-X-Gm-Gg: ASbGncvQiNcW3rY7XKWW4l+GvX/SNKCg/mvoWr+b/rG88L2C3mtH++lAR6vsEl6RiFp
- 5UhjTSWkudQ+I1vLTNasgaBiYXUc2XtZk5T/viQuQsfHoKBFx9KVM7CyO2LqsJMbtDN94wCFtB8
- +wK+8Qa1CLS88+E5YuoHWtHkzRFkR+lLQILEKfPffrV4Nlvg86qF4k8jh/a7f3iV6bMLpIEfbVy
- Oz8rQc+bhPmvW20OOV3XtpOJe6vwHXh1MxoECB21XM38Feoy0ke5PpYZ7KvI1wLaXNvkRH4TrZp
- 48DnNKAK/p0Zmgv6usBBMG7ryBO5uLyhx+5D4wvhc+1JmgPEGMaer2lN6xolHPh29nZ9lXAIYgX
- FAdmIDMs=
-X-Google-Smtp-Source: AGHT+IGTWL+LXaCE0s7SVZTJw0Dw926iGaq0yWHgQOoV3X86xxB0l6u8NCO6LtHsTJv7Lmyc64Fp3Q==
-X-Received: by 2002:a17:90b:1f87:b0:312:1ae9:152b with SMTP id
- 98e67ed59e1d1-31aba8d2954mr1758967a91.23.1751702767425; 
- Sat, 05 Jul 2025 01:06:07 -0700 (PDT)
-Received: from localhost.localdomain ([119.8.44.69])
+ AJvYcCUpgJTMFGxI7fQBBY77UZ+i7ok4Ei0UFDiqNKxOBmOH/ZqPT2tcikwy+rVVtD8yc0lY+NlpyFtWYOU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyv3YFIfaW1ZWJhQblo2zUMeRzcz8Acrlh8lQ1ALMt8Sxt2OJjX
+ vubMz10HT5tTR3ayzOLlX75QnFQV4VTu2nON93Xp1wYa0yH94oi5mZuw
+X-Gm-Gg: ASbGncsT2pqgHNSzaneVEFW6pu4tue7EMDWDXTIIRVqXg7q3thIrcs1awWCrQRPHj0H
+ In0frBpgWyXAx1aWSV58lLsko1jQE/pTfkUc4+FQ6zDcB/Mm7ePWYsefJU7nTCCSwSKgqON7IyY
+ toozV3qbv82pP1ruIhqe66Lrhd0y0ROnA0aIJkpdTGQZquoYkF5OSJXt6fL3tzjqJ7/zZVUuUQ4
+ 0Wy5gFpeVFIusb/aZHYGf8YxupeU6W3AsQmvBClxQtgO18U+IKxjryJEqZzfkM88mvk43gfpYQF
+ dvx7s5VWz+16csJnXtXFdOboKgpBhO9n/1DXoBt1qpzGhBhQalHkO0A1n3DNrOQLnSOv87nYm97
+ 32xkld5hVWvlYPc8=
+X-Google-Smtp-Source: AGHT+IFjq06wwaJBBhZjTvlaIGp9QtkdQ8b7G5Dhd4VLbUDuY3LNRSFQdF8WPRHnHcJuL4ZpsupNFA==
+X-Received: by 2002:a05:6a21:7a43:b0:223:76d2:5a7 with SMTP id
+ adf61e73a8af0-225b948850fmr10729212637.24.1751731176590; 
+ Sat, 05 Jul 2025 08:59:36 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:882f:293:70ba:30fe:2559:8217])
  by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-31aaae3e3a3sm4010095a91.4.2025.07.05.01.06.04
+ 41be03b00d2f7-b38ee74cf48sm4539103a12.77.2025.07.05.08.59.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 05 Jul 2025 01:06:06 -0700 (PDT)
-From: Han Gao <rabenda.cn@gmail.com>
-To: Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Han Gao <rabenda.cn@gmail.com>
+ Sat, 05 Jul 2025 08:59:36 -0700 (PDT)
+From: Abinash Singh <abinashlalotra@gmail.com>
+X-Google-Original-From: Abinash Singh <abinashsinghlalotra@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-Subject: [PATCH] drm/amdkfd: enable kfd on LoongArch systems
-Date: Sat,  5 Jul 2025 16:05:40 +0800
-Message-ID: <2b83380bf64a424b9cb902a20a244c3e106c4bb8.1751702072.git.rabenda.cn@gmail.com>
-X-Mailer: git-send-email 2.47.2
+ linux-kernel@vger.kernel.org, Abinash Singh <abinashsinghlalotra@gmail.com>
+Subject: [PATCH RFC] drm/radeon: fix the warning for radeon_cs_ioctl()
+Date: Sat,  5 Jul 2025 21:29:14 +0530
+Message-ID: <20250705155914.806693-1-abinashsinghlalotra@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 06 Jul 2025 23:58:15 +0000
@@ -90,27 +88,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-KFD has been confirmed that can run on LoongArch systems.
-It's necessary to support CONFIG_HSA_AMD on LoongArch.
+Fix the following compiler warning about excessive stack usage:
 
-Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+ drivers/gpu/drm/radeon/radeon_cs.c:669:5: warning: stack frame size (1200) exceeds limit (1024) in 'radeon_cs_ioctl' [-Wframe-larger-than]
+
+The warning is caused by a large objects like  `struct radeon_cs_parser`
+ being allocated on the stack. This patch changes the parser to be 
+ heap-allocated via `kzalloc()`, thus reducing stack pressure. 
+ It uses the __free() attribute  to ensure automatic 
+ cleanup on return.
+
+This change should not affect functionality, as all usage of the
+ `parser` remains intact and is now accessed via a pointer.
+
+
+Signed-off-by: Abinash Singh <abinashsinghlalotra@gmail.com>
 ---
- drivers/gpu/drm/amd/amdkfd/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+the radeon_cs_ioctl() consumes around 1200 bytes on stack.
+It was confirmed using -fstack-usage
+....................................
+divers/gpu/drm/radeon/radeon_cs.c:669:radeon_cs_ioctl  1200    static
+drivers/gpu/drm/radeon/radeon_cs.c:416:radeon_cs_parser_fini    56      static
+...............................................
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/Kconfig b/drivers/gpu/drm/amd/amdkfd/Kconfig
-index 62e88e5362e9..b2387d529bf0 100644
---- a/drivers/gpu/drm/amd/amdkfd/Kconfig
-+++ b/drivers/gpu/drm/amd/amdkfd/Kconfig
-@@ -5,7 +5,7 @@
- 
- config HSA_AMD
- 	bool "HSA kernel driver for AMD GPU devices"
--	depends on DRM_AMDGPU && (X86_64 || ARM64 || PPC64 || (RISCV && 64BIT))
-+	depends on DRM_AMDGPU && (X86_64 || ARM64 || PPC64 || (RISCV && 64BIT) || LOONGARCH)
- 	select HMM_MIRROR
- 	select MMU_NOTIFIER
- 	select DRM_AMDGPU_USERPTR
--- 
-2.47.2
+After applying this patch the stack size effectivly reduces to 656 bytes
+...............................................
+drivers/gpu/drm/radeon/radeon_cs.c:669:radeon_cs_ioctl  656     static
+drivers/gpu/drm/radeon/radeon_cs.c:416:radeon_cs_parser_fini    56      static
+.....................................................
+
+This will eliminate the build warning .But will this dynamic allocation with kzalloc()
+affect performance as compared to stack allocation + memset . Or will this way we will
+suffer greater penalty ?
+ drivers/gpu/drm/radeon/radeon_cs.c | 34 ++++++++++++++++--------------
+ 1 file changed, 18 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm/radeon/radeon_cs.c
+index b8e6202f1d5b..ca7fad842db7 100644
+--- a/drivers/gpu/drm/radeon/radeon_cs.c
++++ b/drivers/gpu/drm/radeon/radeon_cs.c
+@@ -669,9 +669,12 @@ static int radeon_cs_ib_fill(struct radeon_device *rdev, struct radeon_cs_parser
+ int radeon_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ {
+ 	struct radeon_device *rdev = dev->dev_private;
+-	struct radeon_cs_parser parser;
++	struct radeon_cs_parser *parser __free(kfree) = NULL;
+ 	int r;
+-
++
++	parser = kzalloc(sizeof(*parser), GFP_KERNEL);
++	if (!parser)
++		return -ENOMEM;
+ 	down_read(&rdev->exclusive_lock);
+ 	if (!rdev->accel_working) {
+ 		up_read(&rdev->exclusive_lock);
+@@ -685,46 +688,45 @@ int radeon_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 		return r;
+ 	}
+ 	/* initialize parser */
+-	memset(&parser, 0, sizeof(struct radeon_cs_parser));
+-	parser.filp = filp;
+-	parser.rdev = rdev;
+-	parser.dev = rdev->dev;
+-	parser.family = rdev->family;
+-	r = radeon_cs_parser_init(&parser, data);
++	parser->filp = filp;
++	parser->rdev = rdev;
++	parser->dev = rdev->dev;
++	parser->family = rdev->family;
++	r = radeon_cs_parser_init(parser, data);
+ 	if (r) {
+ 		DRM_ERROR("Failed to initialize parser !\n");
+-		radeon_cs_parser_fini(&parser, r);
++		radeon_cs_parser_fini(parser, r);
+ 		up_read(&rdev->exclusive_lock);
+ 		r = radeon_cs_handle_lockup(rdev, r);
+ 		return r;
+ 	}
+
+-	r = radeon_cs_ib_fill(rdev, &parser);
++	r = radeon_cs_ib_fill(rdev, parser);
+ 	if (!r) {
+-		r = radeon_cs_parser_relocs(&parser);
++		r = radeon_cs_parser_relocs(parser);
+ 		if (r && r != -ERESTARTSYS)
+ 			DRM_ERROR("Failed to parse relocation %d!\n", r);
+ 	}
+
+ 	if (r) {
+-		radeon_cs_parser_fini(&parser, r);
++		radeon_cs_parser_fini(parser, r);
+ 		up_read(&rdev->exclusive_lock);
+ 		r = radeon_cs_handle_lockup(rdev, r);
+ 		return r;
+ 	}
+
+-	trace_radeon_cs(&parser);
++	trace_radeon_cs(parser);
+
+-	r = radeon_cs_ib_chunk(rdev, &parser);
++	r = radeon_cs_ib_chunk(rdev, parser);
+ 	if (r) {
+ 		goto out;
+ 	}
+-	r = radeon_cs_ib_vm_chunk(rdev, &parser);
++	r = radeon_cs_ib_vm_chunk(rdev, parser);
+ 	if (r) {
+ 		goto out;
+ 	}
+ out:
+-	radeon_cs_parser_fini(&parser, r);
++	radeon_cs_parser_fini(parser, r);
+ 	up_read(&rdev->exclusive_lock);
+ 	r = radeon_cs_handle_lockup(rdev, r);
+ 	return r;
+--q
+2.43.0
 
