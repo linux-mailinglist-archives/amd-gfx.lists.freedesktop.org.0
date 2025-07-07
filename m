@@ -2,54 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD05FAFC78D
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Jul 2025 11:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDF61AFC873
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Jul 2025 12:29:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04A7010E155;
-	Tue,  8 Jul 2025 09:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6E6110E5F8;
+	Tue,  8 Jul 2025 10:29:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mlLGHade";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="C1JbOEwB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7FA210E5FA;
- Tue,  8 Jul 2025 09:52:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=mQc/QlZ/dQCxTeNNoxiCCSqyeFmkCpbL7fsQUFq0QgY=; b=mlLGHadeONeWhPDOxHRMVqqrhm
- oRxRBS+/4TXMiolNaO0tZkMGL1Y5wL9RKzCoZ8l/0kI1Jh9g3dco99tHOmt9MA6WLDjDlWAoviRCY
- Ov2NBfVyhN58aaH9ftcPUWO5jt9fOSwBGn0d24kxjFhwGtbpf5xUUSNhWuMwtQrdIfHAcgDmAICM7
- GRBv4+p4JukBFD7krJwPGlIxlJhbGdCQLRpR9c0/ePykCKYYfE0t3bAz5ZOdH78oS3JXwnZcVFiF2
- BXg2uSWeBKtIyd6RUz3UKeh6B5vAM0n7XFZG10xa2sG2FemwQXQPbyCBFb39pLtoNJrxI/CUikifA
- kGXbjsEQ==;
-Received: from [84.65.48.237] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uZ4zZ-00Dx5T-5U; Tue, 08 Jul 2025 11:52:01 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Philipp Stanner <phasta@kernel.org>
-Subject: [PATCH v6 15/15] drm/sched: Embed run queue singleton into the
- scheduler
-Date: Tue,  8 Jul 2025 10:51:47 +0100
-Message-ID: <20250708095147.73366-16-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250708095147.73366-1-tvrtko.ursulin@igalia.com>
-References: <20250708095147.73366-1-tvrtko.ursulin@igalia.com>
+X-Greylist: delayed 605 seconds by postgrey-1.36 at gabe;
+ Mon, 07 Jul 2025 09:41:01 UTC
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42D6110E31A;
+ Mon,  7 Jul 2025 09:41:01 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id BF41240E0208; 
+ Mon,  7 Jul 2025 09:30:54 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id jbK1aqKiTf2C; Mon,  7 Jul 2025 09:30:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1751880650; bh=1lz/JpPtCN7njwwxfe47p4WGy8o2scBRxB/pzapm9KI=;
+ h=Date:From:To:Cc:Subject:From;
+ b=C1JbOEwBSbRAVbykwKs8j6NZofsnsHLWDwhg4FLoR2hrJ0ltzP4r7S7+F3KK6mirk
+ v/rCCS8xa6TGIIo50OAUFj/q+KaLj9laFQK8H4NU00MYbRd8VELaWqLakGizgVmPxF
+ gF130GLXTOK0kC2XMlhqlRWVA+aLXT+NLACNz7uA1ckAbNtp8lfqGpFb5vkZmVAuHu
+ bTY5rsJ6MB3w6so3CFXEIDSXBJ+fyJZZmrxUviZh2lyQzhX+k3KgkTHuM44Y4FjA6+
+ LPGFHpYKjlTfE9FvW5HXm9dhzt9/MmLGy9lwA19GUkMDF47jgY8/dkbmYv9akmViC0
+ dVxS8JAfnC7+wJyzdBsD/Jn1V2kPdHiixWL/IgBEKwT3vE9rLrLV7D75Wg3Qdo/ta+
+ fms9sXLrObKOj1kwjm7FtogFPfKm9jvkzzH5mKyMfPZy7rqBk6M2r5bRrg4ZAQRyeW
+ fIF2Hhhdi1+q06jLKL4kFOUOKVO0hz1p7JQCr3DeoH2AXqlNmCJ4fXjuAo5EWlPApe
+ IMLDnuhHdrXA+eXkdFdqYLFZoVjC5AjrlOvOiVH8JKjCwt3eZe/Fh4YMPr9qtdQwTB
+ TNvQTxnEcs9L8vJDnNtg27jlmHoBTkBPyolu5VueCzbaMnJ0WKT+/W7TO4vnDjCaYh
+ 2azpldGwVqgZj+jC4LTqwKdE=
+Received: from zn.tnic (p57969c58.dip0.t-ipconnect.de [87.150.156.88])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 50F4940E0198;
+ Mon,  7 Jul 2025 09:30:40 +0000 (UTC)
+Date: Mon, 7 Jul 2025 11:30:32 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>,
+ Marek =?utf-8?B?T2zFocOhaw==?= <marek.olsak@amd.com>,
+ Ramesh Errabolu <Ramesh.Errabolu@amd.com>,
+ Arvind Yadav <Arvind.Yadav@amd.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: WARNING: drivers/gpu/drm/drm_gem.c:286 at
+ drm_gem_object_handle_put_unlocked+0xb1/0xf0 [drm]
+Message-ID: <20250707093032.GAaGuTuJ0ZYHPgA2q3@fat_crate.local>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 08 Jul 2025 10:29:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,489 +79,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Now that the run queue to scheduler relationship is always 1:1 we can
-embed it (the run queue) directly in the scheduler struct and save on
-some allocation error handling code and such.
+Hi all,
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Philipp Stanner <phasta@kernel.org>
+I see the below on -rc5 + tip, on a RN machine.
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      |  6 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c     |  6 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.h     |  5 +++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h   |  8 ++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c |  8 +++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c     |  8 +++---
- drivers/gpu/drm/scheduler/sched_entity.c    | 32 +++++++++------------
- drivers/gpu/drm/scheduler/sched_fence.c     |  2 +-
- drivers/gpu/drm/scheduler/sched_internal.h  |  6 ++--
- drivers/gpu/drm/scheduler/sched_main.c      | 31 ++++----------------
- drivers/gpu/drm/scheduler/sched_rq.c        | 18 ++++++------
- include/drm/gpu_scheduler.h                 |  5 +---
- 12 files changed, 58 insertions(+), 77 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index a2adaacf6adb..a7b7db91b2d3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1131,7 +1131,8 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
- 	if (p->gang_size > 1 && !adev->vm_manager.concurrent_flush) {
- 		for (i = 0; i < p->gang_size; ++i) {
- 			struct drm_sched_entity *entity = p->entities[i];
--			struct drm_gpu_scheduler *sched = entity->rq->sched;
-+			struct drm_gpu_scheduler *sched =
-+				container_of(entity->rq, typeof(*sched), rq);
- 			struct amdgpu_ring *ring = to_amdgpu_ring(sched);
- 
- 			if (amdgpu_vmid_uses_reserved(vm, ring->vm_hub))
-@@ -1259,7 +1260,8 @@ static int amdgpu_cs_sync_rings(struct amdgpu_cs_parser *p)
- 			return r;
- 	}
- 
--	sched = p->gang_leader->base.entity->rq->sched;
-+	sched = container_of(p->gang_leader->base.entity->rq, typeof(*sched),
-+			     rq);
- 	while ((fence = amdgpu_sync_get_fence(&p->sync))) {
- 		struct drm_sched_fence *s_fence = to_drm_sched_fence(fence);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index c9534cc439b9..9fe5f7ec850d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -338,7 +338,9 @@ static struct dma_fence *
- amdgpu_job_prepare_job(struct drm_sched_job *sched_job,
- 		      struct drm_sched_entity *s_entity)
- {
--	struct amdgpu_ring *ring = to_amdgpu_ring(s_entity->rq->sched);
-+	struct drm_gpu_scheduler *sched =
-+		container_of(s_entity->rq, typeof(*sched), rq);
-+	struct amdgpu_ring *ring = to_amdgpu_ring(sched);
- 	struct amdgpu_job *job = to_amdgpu_job(sched_job);
- 	struct dma_fence *fence;
- 	int r;
-@@ -438,7 +440,7 @@ drm_sched_entity_queue_pop(struct drm_sched_entity *entity)
- 
- void amdgpu_job_stop_all_jobs_on_sched(struct drm_gpu_scheduler *sched)
- {
--	struct drm_sched_rq *rq = sched->rq;
-+	struct drm_sched_rq *rq = &sched->rq;
- 	struct drm_sched_entity *s_entity;
- 	struct drm_sched_job *s_job;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-index 2f302266662b..d7415eb32982 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-@@ -86,7 +86,10 @@ struct amdgpu_job {
- 
- static inline struct amdgpu_ring *amdgpu_job_ring(struct amdgpu_job *job)
- {
--	return to_amdgpu_ring(job->base.entity->rq->sched);
-+	struct drm_gpu_scheduler *sched =
-+		container_of(job->base.entity->rq, typeof(*sched), rq);
-+
-+	return to_amdgpu_ring(sched);
- }
- 
- int amdgpu_job_alloc(struct amdgpu_device *adev, struct amdgpu_vm *vm,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-index d13e64a69e25..85724ec6aaf8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-@@ -145,6 +145,7 @@ TRACE_EVENT(amdgpu_cs,
- 		     struct amdgpu_ib *ib),
- 	    TP_ARGS(p, job, ib),
- 	    TP_STRUCT__entry(
-+			     __field(struct drm_gpu_scheduler *, sched)
- 			     __field(struct amdgpu_bo_list *, bo_list)
- 			     __field(u32, ring)
- 			     __field(u32, dw)
-@@ -152,11 +153,14 @@ TRACE_EVENT(amdgpu_cs,
- 			     ),
- 
- 	    TP_fast_assign(
-+			   __entry->sched = container_of(job->base.entity->rq,
-+							 typeof(*__entry->sched),
-+							 rq);
- 			   __entry->bo_list = p->bo_list;
--			   __entry->ring = to_amdgpu_ring(job->base.entity->rq->sched)->idx;
-+			   __entry->ring = to_amdgpu_ring(__entry->sched)->idx;
- 			   __entry->dw = ib->length_dw;
- 			   __entry->fences = amdgpu_fence_count_emitted(
--				to_amdgpu_ring(job->base.entity->rq->sched));
-+				to_amdgpu_ring(__entry->sched));
- 			   ),
- 	    TP_printk("bo_list=%p, ring=%u, dw=%u, fences=%u",
- 		      __entry->bo_list, __entry->ring, __entry->dw,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
-index 46d9fb433ab2..42f2bfb30af1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
-@@ -105,13 +105,13 @@ static int amdgpu_vm_sdma_prepare(struct amdgpu_vm_update_params *p,
- static int amdgpu_vm_sdma_commit(struct amdgpu_vm_update_params *p,
- 				 struct dma_fence **fence)
- {
-+	struct drm_gpu_scheduler *sched =
-+		container_of(p->vm->delayed.rq, typeof(*sched), rq);
-+	struct amdgpu_ring *ring =
-+		container_of(sched, struct amdgpu_ring, sched);
- 	struct amdgpu_ib *ib = p->job->ibs;
--	struct amdgpu_ring *ring;
- 	struct dma_fence *f;
- 
--	ring = container_of(p->vm->delayed.rq->sched, struct amdgpu_ring,
--			    sched);
--
- 	WARN_ON(ib->length_dw == 0);
- 	amdgpu_ring_pad_ib(ring, ib);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-index c8fcafeb6864..f0e820e08d1e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-@@ -432,15 +432,15 @@ int amdgpu_xcp_open_device(struct amdgpu_device *adev,
- void amdgpu_xcp_release_sched(struct amdgpu_device *adev,
- 				  struct amdgpu_ctx_entity *entity)
- {
--	struct drm_gpu_scheduler *sched;
--	struct amdgpu_ring *ring;
-+	struct drm_gpu_scheduler *sched =
-+		container_of(entity->entity.rq, typeof(*sched), rq);
- 
- 	if (!adev->xcp_mgr)
- 		return;
- 
--	sched = entity->entity.rq->sched;
- 	if (drm_sched_wqueue_ready(sched)) {
--		ring = to_amdgpu_ring(entity->entity.rq->sched);
-+		struct amdgpu_ring *ring = to_amdgpu_ring(sched);
-+
- 		atomic_dec(&adev->xcp_mgr->xcp[ring->xcp_id].ref_cnt);
- 	}
- }
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index 30dba2409ea4..be24cddc811f 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -114,19 +114,12 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
- 	 * is initialized itself.
- 	 */
- 	entity->sched_list = num_sched_list > 1 ? sched_list : NULL;
-+	if (num_sched_list) {
-+		entity->sched_list = num_sched_list > 1 ? sched_list : NULL;
-+		entity->rq = &sched_list[0]->rq;
-+	}
- 	RCU_INIT_POINTER(entity->last_scheduled, NULL);
- 	RB_CLEAR_NODE(&entity->rb_tree_node);
--
--	if (num_sched_list && !sched_list[0]->rq) {
--		/* Since every entry covered by num_sched_list
--		 * should be non-NULL and therefore we warn drivers
--		 * not to do this and to fix their DRM calling order.
--		 */
--		pr_warn("%s: called with uninitialized scheduler\n", __func__);
--	} else if (num_sched_list) {
--		entity->rq = sched_list[0]->rq;
--	}
--
- 	init_completion(&entity->entity_idle);
- 
- 	/* We start in an idle state. */
-@@ -314,7 +307,7 @@ long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout)
- 	if (!entity->rq)
- 		return 0;
- 
--	sched = entity->rq->sched;
-+	sched = container_of(entity->rq, typeof(*sched), rq);
- 	/**
- 	 * The client will not queue more IBs during this fini, consume existing
- 	 * queued IBs or discard them on SIGKILL
-@@ -406,9 +399,11 @@ static void drm_sched_entity_wakeup(struct dma_fence *f,
- {
- 	struct drm_sched_entity *entity =
- 		container_of(cb, struct drm_sched_entity, cb);
-+	struct drm_gpu_scheduler *sched =
-+		container_of(entity->rq, typeof(*sched), rq);
- 
- 	drm_sched_entity_clear_dep(f, cb);
--	drm_sched_wakeup(entity->rq->sched);
-+	drm_sched_wakeup(sched);
- }
- 
- /**
-@@ -434,7 +429,8 @@ EXPORT_SYMBOL(drm_sched_entity_set_priority);
-  */
- static bool drm_sched_entity_add_dependency_cb(struct drm_sched_entity *entity)
- {
--	struct drm_gpu_scheduler *sched = entity->rq->sched;
-+	struct drm_gpu_scheduler *sched =
-+		container_of(entity->rq, typeof(*sched), rq);
- 	struct dma_fence *fence = entity->dependency;
- 	struct drm_sched_fence *s_fence;
- 
-@@ -573,7 +569,7 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
- 
- 	spin_lock(&entity->lock);
- 	sched = drm_sched_pick_best(entity->sched_list, entity->num_sched_list);
--	rq = sched ? sched->rq : NULL;
-+	rq = sched ? &sched->rq : NULL;
- 	if (rq != entity->rq) {
- 		drm_sched_rq_remove_entity(entity->rq, entity);
- 		entity->rq = rq;
-@@ -596,6 +592,8 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
- void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- {
- 	struct drm_sched_entity *entity = sched_job->entity;
-+	struct drm_gpu_scheduler *sched =
-+		container_of(entity->rq, typeof(*sched), rq);
- 	bool first;
- 
- 	trace_drm_sched_job_queue(sched_job, entity);
-@@ -607,7 +605,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 		xa_for_each(&sched_job->dependencies, index, entry)
- 			trace_drm_sched_job_add_dep(sched_job, entry);
- 	}
--	atomic_inc(entity->rq->sched->score);
-+	atomic_inc(sched->score);
- 	WRITE_ONCE(entity->last_user, current->group_leader);
- 
- 	/*
-@@ -618,8 +616,6 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 
- 	/* first job wakes up scheduler */
- 	if (first) {
--		struct drm_gpu_scheduler *sched;
--
- 		sched = drm_sched_rq_add_entity(entity);
- 		if (sched)
- 			drm_sched_wakeup(sched);
-diff --git a/drivers/gpu/drm/scheduler/sched_fence.c b/drivers/gpu/drm/scheduler/sched_fence.c
-index 9391d6f0dc01..da4f53a9ca35 100644
---- a/drivers/gpu/drm/scheduler/sched_fence.c
-+++ b/drivers/gpu/drm/scheduler/sched_fence.c
-@@ -227,7 +227,7 @@ void drm_sched_fence_init(struct drm_sched_fence *fence,
- {
- 	unsigned seq;
- 
--	fence->sched = entity->rq->sched;
-+	fence->sched = container_of(entity->rq, typeof(*fence->sched), rq);
- 	seq = atomic_inc_return(&entity->fence_seq);
- 	dma_fence_init(&fence->scheduled, &drm_sched_fence_ops_scheduled,
- 		       &fence->lock, entity->fence_context, seq);
-diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
-index 1a5c2f255223..3483ed52da1f 100644
---- a/drivers/gpu/drm/scheduler/sched_internal.h
-+++ b/drivers/gpu/drm/scheduler/sched_internal.h
-@@ -24,11 +24,9 @@ struct drm_sched_entity_stats {
- 
- void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
- 
--void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
--		       struct drm_sched_rq *rq);
-+void drm_sched_rq_init(struct drm_gpu_scheduler *sched);
- struct drm_sched_entity *
--drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
--			   struct drm_sched_rq *rq);
-+drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched);
- struct drm_gpu_scheduler *
- drm_sched_rq_add_entity(struct drm_sched_entity *entity);
- void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 1fb3f1da4821..b14f98ac91b9 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -578,7 +578,7 @@ void drm_sched_job_arm(struct drm_sched_job *job)
- 
- 	BUG_ON(!entity);
- 	drm_sched_entity_select_rq(entity);
--	sched = entity->rq->sched;
-+	sched = container_of(entity->rq, typeof(*sched), rq);
- 
- 	job->sched = sched;
- 	job->s_priority = entity->priority;
-@@ -919,7 +919,7 @@ static void drm_sched_run_job_work(struct work_struct *w)
- 
- 	while (!READ_ONCE(sched->pause_submit)) {
- 		/* Find entity with a ready job */
--		entity = drm_sched_rq_select_entity(sched, sched->rq);
-+		entity = drm_sched_rq_select_entity(sched);
- 		if (!entity)
- 			break;	/* No more work */
- 
-@@ -1022,15 +1022,6 @@ int drm_sched_init(struct drm_gpu_scheduler *sched, const struct drm_sched_init_
- 	sched->score = args->score ? args->score : &sched->_score;
- 	sched->dev = args->dev;
- 
--	if (sched->rq) {
--		/* Not an error, but warn anyway so drivers can
--		 * fine-tune their DRM calling order, and return all
--		 * is good.
--		 */
--		dev_warn(sched->dev, "%s: scheduler already initialized!\n", __func__);
--		return 0;
--	}
--
- 	if (args->submit_wq) {
- 		sched->submit_wq = args->submit_wq;
- 		sched->own_submit_wq = false;
-@@ -1042,11 +1033,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched, const struct drm_sched_init_
- 		sched->own_submit_wq = true;
- 	}
- 
--	sched->rq = kmalloc(sizeof(*sched->rq), GFP_KERNEL | __GFP_ZERO);
--	if (!sched->rq)
--		goto Out_check_own;
--
--	drm_sched_rq_init(sched, sched->rq);
-+	drm_sched_rq_init(sched);
- 
- 	init_waitqueue_head(&sched->job_scheduled);
- 	INIT_LIST_HEAD(&sched->pending_list);
-@@ -1061,12 +1048,6 @@ int drm_sched_init(struct drm_gpu_scheduler *sched, const struct drm_sched_init_
- 
- 	sched->ready = true;
- 	return 0;
--
--Out_check_own:
--	if (sched->own_submit_wq)
--		destroy_workqueue(sched->submit_wq);
--	dev_err(sched->dev, "%s: Failed to setup GPU scheduler--out of memory\n", __func__);
--	return -ENOMEM;
- }
- EXPORT_SYMBOL(drm_sched_init);
- 
-@@ -1094,7 +1075,7 @@ EXPORT_SYMBOL(drm_sched_init);
- void drm_sched_fini(struct drm_gpu_scheduler *sched)
- {
- 
--	struct drm_sched_rq *rq = sched->rq;
-+	struct drm_sched_rq *rq = &sched->rq;
- 	struct drm_sched_entity *s_entity;
- 
- 	drm_sched_wqueue_stop(sched);
-@@ -1118,8 +1099,6 @@ void drm_sched_fini(struct drm_gpu_scheduler *sched)
- 	if (sched->own_submit_wq)
- 		destroy_workqueue(sched->submit_wq);
- 	sched->ready = false;
--	kfree(sched->rq);
--	sched->rq = NULL;
- }
- EXPORT_SYMBOL(drm_sched_fini);
- 
-@@ -1136,7 +1115,7 @@ void drm_sched_increase_karma(struct drm_sched_job *bad)
- {
- 	struct drm_gpu_scheduler *sched = bad->sched;
- 	struct drm_sched_entity *entity, *tmp;
--	struct drm_sched_rq *rq = sched->rq;
-+	struct drm_sched_rq *rq = &sched->rq;
- 
- 	/* don't change @bad's karma if it's from KERNEL RQ,
- 	 * because sometimes GPU hang would cause kernel jobs (like VM updating jobs)
-diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/scheduler/sched_rq.c
-index f0afdc0bd417..0d7a433ac2e3 100644
---- a/drivers/gpu/drm/scheduler/sched_rq.c
-+++ b/drivers/gpu/drm/scheduler/sched_rq.c
-@@ -52,17 +52,16 @@ static void drm_sched_rq_update_tree_locked(struct drm_sched_entity *entity,
-  * drm_sched_rq_init - initialize a given run queue struct
-  *
-  * @sched: scheduler instance to associate with this run queue
-- * @rq: scheduler run queue
-  *
-  * Initializes a scheduler runqueue.
-  */
--void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
--		       struct drm_sched_rq *rq)
-+void drm_sched_rq_init(struct drm_gpu_scheduler *sched)
- {
-+	struct drm_sched_rq *rq = &sched->rq;
-+
- 	spin_lock_init(&rq->lock);
- 	INIT_LIST_HEAD(&rq->entities);
- 	rq->rb_tree_root = RB_ROOT_CACHED;
--	rq->sched = sched;
- }
- 
- static ktime_t
-@@ -109,8 +108,8 @@ drm_sched_rq_add_entity(struct drm_sched_entity *entity)
- 	}
- 
- 	rq = entity->rq;
-+	sched = container_of(rq, typeof(*sched), rq);
- 	spin_lock(&rq->lock);
--	sched = rq->sched;
- 
- 	if (list_empty(&entity->list)) {
- 		atomic_inc(sched->score);
-@@ -138,6 +137,8 @@ drm_sched_rq_add_entity(struct drm_sched_entity *entity)
- void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
- 				struct drm_sched_entity *entity)
- {
-+	struct drm_gpu_scheduler *sched = container_of(rq, typeof(*sched), rq);
-+
- 	lockdep_assert_held(&entity->lock);
- 
- 	if (list_empty(&entity->list))
-@@ -145,7 +146,7 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
- 
- 	spin_lock(&rq->lock);
- 
--	atomic_dec(rq->sched->score);
-+	atomic_dec(sched->score);
- 	list_del_init(&entity->list);
- 
- 	drm_sched_rq_remove_tree_locked(entity, rq);
-@@ -193,16 +194,15 @@ void drm_sched_rq_pop_entity(struct drm_sched_entity *entity)
-  * drm_sched_rq_select_entity - Select an entity which provides a job to run
-  *
-  * @sched: the gpu scheduler
-- * @rq: scheduler run queue to check.
-  *
-  * Find oldest waiting ready entity.
-  *
-  * Return an entity if one is found or NULL if no ready entity was found.
-  */
- struct drm_sched_entity *
--drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
--			   struct drm_sched_rq *rq)
-+drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched)
- {
-+	struct drm_sched_rq *rq = &sched->rq;
- 	struct rb_node *rb;
- 
- 	spin_lock(&rq->lock);
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 6947a577d249..c51ac2ab8c30 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -245,7 +245,6 @@ struct drm_sched_entity {
- /**
-  * struct drm_sched_rq - queue of entities to be scheduled.
-  *
-- * @sched: the scheduler to which this rq belongs to.
-  * @lock: protects @entities, @rb_tree_root and @rr_deadline.
-  * @rr_deadline: monotonically incrementing fake timestamp for RR mode
-  * @entities: list of the entities to be scheduled.
-@@ -256,8 +255,6 @@ struct drm_sched_entity {
-  * the next entity to emit commands from.
-  */
- struct drm_sched_rq {
--	struct drm_gpu_scheduler	*sched;
--
- 	spinlock_t			lock;
- 	/* Following members are protected by the @lock: */
- 	ktime_t				rr_deadline;
-@@ -560,7 +557,7 @@ struct drm_gpu_scheduler {
- 	atomic_t			credit_count;
- 	long				timeout;
- 	const char			*name;
--	struct drm_sched_rq             *rq;
-+	struct drm_sched_rq             rq;
- 	wait_queue_head_t		job_scheduled;
- 	atomic64_t			job_id_count;
- 	struct workqueue_struct		*submit_wq;
--- 
-2.48.0
+[    5.592468] cdc_ncm 2-2:2.0 eth0: register 'cdc_ncm' at usb-0000:03:00.3=
+-2, CDC NCM (NO ZLP), f8:e4:3b:33:37:71
+[    5.593133] usbcore: registered new interface driver cdc_ncm
+[    5.597944] usbcore: registered new interface driver cdc_wdm
+[    5.600108] usbcore: registered new interface driver cdc_mbim
+[    6.912317] ------------[ cut here ]------------
+[    6.912377] WARNING: drivers/gpu/drm/drm_gem.c:286 at drm_gem_object_han=
+dle_put_unlocked+0xb1/0xf0 [drm], CPU#1: Xorg/629
+[    6.912429] Modules linked in: cdc_mbim(E) cdc_wdm(E) cdc_ncm(E) cdc_eth=
+er(E) amd_atl(E) nls_ascii(E) nls_cp437(E) vfat(E) fat(E) joydev(E) amdgpu(=
+E) edac_mce_amd(E) snd_hda_codec_realtek(E) snd_hda_codec_generic(E) snd_hd=
+a_scodec_component(E) snd_hda_codec_hdmi(E) rtw88_8822ce(E) hid_multitouch(=
+E) amdxcp(E) kvm_amd(E) sha3_generic(E) rtw88_8822c(E) i2c_algo_bit(E) rtw8=
+8_pci(E) drm_client_lib(E) snd_hda_intel(E) drm_ttm_helper(E) rtw88_core(E)=
+ jitterentropy_rng(E) hid_generic(E) snd_intel_dspcfg(E) tpm_crb(E) wmi_bmo=
+f(E) drbg(E) ttm(E) kvm(E) snd_hda_codec(E) drm_exec(E) mac80211(E) irqbypa=
+ss(E) snd_hwdep(E) snd_hda_core(E) ghash_clmulni_intel(E) gpu_sched(E) liba=
+rc4(E) aesni_intel(E) snd_pcm(E) drm_suballoc_helper(E) drm_panel_backlight=
+_quirks(E) sp5100_tco(E) rapl(E) cec(E) snd_timer(E) watchdog(E) cfg80211(E=
+) drm_buddy(E) snd_rn_pci_acp3x(E) ucsi_acpi(E) snd_acp_config(E) drm_displ=
+ay_helper(E) pcspkr(E) i2c_piix4(E) xhci_pci(E) snd_soc_acpi(E) acpi_cpufre=
+q(E) snd(E) video(E) typec_ucsi(E) roles(E) drm_kms_helper(E)
+[    6.912495]  ccp(E) soundcore(E) snd_pci_acp3x(E) xhci_hcd(E) k10temp(E)=
+ rfkill(E) i2c_smbus(E) typec(E) battery(E) wmi(E) tpm_tis(E) i2c_hid_acpi(=
+E) tpm_tis_core(E) i2c_hid(E) hid(E) ac(E) button(E) fuse(E) drm(E) efi_pst=
+ore(E) tpm(E) libaescfb(E) ecdh_generic(E) ecc(E) rng_core(E) autofs4(E) ev=
+dev(E) serio_raw(E)
+[    6.912538] CPU: 1 UID: 0 PID: 629 Comm: Xorg Tainted: G            E   =
+    6.16.0-rc5+ #1 PREEMPT(voluntary)=20
+[    6.912542] Tainted: [E]=3DUNSIGNED_MODULE
+[    6.912544] Hardware name: HP HP ProBook 635 Aero G7 Notebook PC/8830, B=
+IOS S84 Ver. 01.05.00 05/14/2021
+[    6.912547] RIP: 0010:drm_gem_object_handle_put_unlocked+0xb1/0xf0 [drm]
+[    6.912573] Code: 55 d1 1e f3 48 89 ef e8 fd 22 1e f3 eb d8 48 8b 43 08 =
+48 8d b8 f8 0c 00 00 e8 cb 85 1a f3 c7 83 18 01 00 00 00 00 00 00 eb 98 <0f=
+> 0b 5b 5d e9 26 d1 1e f3 48 8b 83 f8 01 00 00 48 8b 00 48 85 c0
+[    6.912575] RSP: 0018:ffffb5ebc32e3ba0 EFLAGS: 00010246
+[    6.912578] RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffb5ebc32=
+e3b1c
+[    6.912581] RDX: 0000000000000000 RSI: ffff9efb8cb005e8 RDI: ffff9efb861=
+cd448
+[    6.912583] RBP: ffff9efb8cb00010 R08: 0000000000000001 R09: ffff9efb8cb=
+00610
+[    6.912584] R10: 0000000000000000 R11: ffffb5ebc32e3b58 R12: ffff9efb8c2=
+41700
+[    6.912586] R13: 00000000ffffffdd R14: ffffb5ebc32e3c80 R15: ffff9efb8cb=
+00010
+[    6.912588] FS:  00007f320acb2b00(0000) GS:ffff9efcd29b8000(0000) knlGS:=
+0000000000000000
+[    6.912591] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    6.912593] CR2: 00005605532d6164 CR3: 000000000bee9000 CR4: 00000000003=
+50ef0
+[    6.912595] Call Trace:
+[    6.912597]  <TASK>
+[    6.912599]  drm_gem_fb_destroy+0x2c/0x50 [drm_kms_helper]
+[    6.912616]  drm_mode_cursor_universal+0x10d/0x2a0 [drm]
+[    6.912647]  drm_mode_cursor_common.part.0+0xb0/0x200 [drm]
+[    6.912676]  ? __pfx_drm_mode_cursor2_ioctl+0x10/0x10 [drm]
+[    6.912700]  drm_ioctl_kernel+0xa9/0x100 [drm]
+[    6.912728]  drm_ioctl+0x275/0x520 [drm]
+[    6.912752]  ? __pfx_drm_mode_cursor2_ioctl+0x10/0x10 [drm]
+[    6.912777]  ? lock_release+0xc6/0x290
+[    6.912783]  ? _raw_spin_unlock_irqrestore+0x44/0x60
+[    6.912789]  amdgpu_drm_ioctl+0x4e/0x90 [amdgpu]
+[    6.913114]  __x64_sys_ioctl+0x85/0xd0
+[    6.913120]  do_syscall_64+0x6a/0x2e0
+[    6.913125]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[    6.913128] RIP: 0033:0x7f320b0338db
+[    6.913131] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 =
+00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <89=
+> c2 3d 00 f0 ff ff 77 1c 48 8b 44 24 18 64 48 2b 04 25 28 00 00
+[    6.913134] RSP: 002b:00007ffd66400810 EFLAGS: 00000246 ORIG_RAX: 000000=
+0000000010
+[    6.913137] RAX: ffffffffffffffda RBX: 00007ffd664008a0 RCX: 00007f320b0=
+338db
+[    6.913139] RDX: 00007ffd664008a0 RSI: 00000000c02464bb RDI: 00000000000=
+0000f
+[    6.913141] RBP: 00007ffd664008a0 R08: 00007f320a8cbb20 R09: 00000000000=
+00001
+[    6.913143] R10: 000000000000004b R11: 0000000000000246 R12: 00000000c02=
+464bb
+[    6.913145] R13: 000000000000000f R14: 0000000000000001 R15: 00005605530=
+01d10
+[    6.913152]  </TASK>
+[    6.913153] irq event stamp: 354561
+[    6.913155] hardirqs last  enabled at (354569): [<ffffffffb2b951f2>] __u=
+p_console_sem+0x52/0x60
+[    6.913159] hardirqs last disabled at (354576): [<ffffffffb2b951d7>] __u=
+p_console_sem+0x37/0x60
+[    6.913161] softirqs last  enabled at (352542): [<ffffffffb2aeb586>] __i=
+rq_exit_rcu+0x96/0xc0
+[    6.913165] softirqs last disabled at (352537): [<ffffffffb2aeb586>] __i=
+rq_exit_rcu+0x96/0xc0
+[    6.913167] ---[ end trace 0000000000000000 ]---
+[    6.913288] ------------[ cut here ]------------
+[    6.913290] WARNING: drivers/gpu/drm/drm_gem.c:286 at drm_gem_object_han=
+dle_put_unlocked+0xb1/0xf0 [drm], CPU#1: Xorg/629
+[    6.913318] Modules linked in: cdc_mbim(E) cdc_wdm(E) cdc_ncm(E) cdc_eth=
+er(E) amd_atl(E) nls_ascii(E) nls_cp437(E) vfat(E) fat(E) joydev(E) amdgpu(=
+E) edac_mce_amd(E) snd_hda_codec_realtek(E) snd_hda_codec_generic(E) snd_hd=
+a_scodec_component(E) snd_hda_codec_hdmi(E) rtw88_8822ce(E) hid_multitouch(=
+E) amdxcp(E) kvm_amd(E) sha3_generic(E) rtw88_8822c(E) i2c_algo_bit(E) rtw8=
+8_pci(E) drm_client_lib(E) snd_hda_intel(E) drm_ttm_helper(E) rtw88_core(E)=
+ jitterentropy_rng(E) hid_generic(E) snd_intel_dspcfg(E) tpm_crb(E) wmi_bmo=
+f(E) drbg(E) ttm(E) kvm(E) snd_hda_codec(E) drm_exec(E) mac80211(E) irqbypa=
+ss(E) snd_hwdep(E) snd_hda_core(E) ghash_clmulni_intel(E) gpu_sched(E) liba=
+rc4(E) aesni_intel(E) snd_pcm(E) drm_suballoc_helper(E) drm_panel_backlight=
+_quirks(E) sp5100_tco(E) rapl(E) cec(E) snd_timer(E) watchdog(E) cfg80211(E=
+) drm_buddy(E) snd_rn_pci_acp3x(E) ucsi_acpi(E) snd_acp_config(E) drm_displ=
+ay_helper(E) pcspkr(E) i2c_piix4(E) xhci_pci(E) snd_soc_acpi(E) acpi_cpufre=
+q(E) snd(E) video(E) typec_ucsi(E) roles(E) drm_kms_helper(E)
+[    6.913380]  ccp(E) soundcore(E) snd_pci_acp3x(E) xhci_hcd(E) k10temp(E)=
+ rfkill(E) i2c_smbus(E) typec(E) battery(E) wmi(E) tpm_tis(E) i2c_hid_acpi(=
+E) tpm_tis_core(E) i2c_hid(E) hid(E) ac(E) button(E) fuse(E) drm(E) efi_pst=
+ore(E) tpm(E) libaescfb(E) ecdh_generic(E) ecc(E) rng_core(E) autofs4(E) ev=
+dev(E) serio_raw(E)
+[    6.913408] CPU: 1 UID: 0 PID: 629 Comm: Xorg Tainted: G        W   E   =
+    6.16.0-rc5+ #1 PREEMPT(voluntary)=20
+[    6.913412] Tainted: [W]=3DWARN, [E]=3DUNSIGNED_MODULE
+[    6.913414] Hardware name: HP HP ProBook 635 Aero G7 Notebook PC/8830, B=
+IOS S84 Ver. 01.05.00 05/14/2021
+[    6.913416] RIP: 0010:drm_gem_object_handle_put_unlocked+0xb1/0xf0 [drm]
+[    6.913438] Code: 55 d1 1e f3 48 89 ef e8 fd 22 1e f3 eb d8 48 8b 43 08 =
+48 8d b8 f8 0c 00 00 e8 cb 85 1a f3 c7 83 18 01 00 00 00 00 00 00 eb 98 <0f=
+> 0b 5b 5d e9 26 d1 1e f3 48 8b 83 f8 01 00 00 48 8b 00 48 85 c0
+[    6.913441] RSP: 0018:ffffb5ebc32e3ba0 EFLAGS: 00010246
+[    6.913443] RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffb5ebc32=
+e3b1c
+[    6.913445] RDX: 0000000000000000 RSI: ffff9efb8cb005e8 RDI: ffff9efb861=
+cd448
+[    6.913447] RBP: ffff9efb8cb00010 R08: 0000000000000001 R09: ffff9efb8cb=
+00610
+[    6.913449] R10: 0000000000000000 R11: ffffb5ebc32e3b58 R12: ffff9efb8c2=
+41700
+[    6.913451] R13: 00000000ffffffdd R14: ffffb5ebc32e3c80 R15: ffff9efb8cb=
+00010
+[    6.913453] FS:  00007f320acb2b00(0000) GS:ffff9efcd29b8000(0000) knlGS:=
+0000000000000000
+[    6.913455] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    6.913457] CR2: 00005605532d6164 CR3: 000000000bee9000 CR4: 00000000003=
+50ef0
+[    6.913459] Call Trace:
+[    6.913461]  <TASK>
+[    6.913464]  drm_gem_fb_destroy+0x2c/0x50 [drm_kms_helper]
+[    6.913477]  drm_mode_cursor_universal+0x10d/0x2a0 [drm]
+[    6.913506]  drm_mode_cursor_common.part.0+0xb0/0x200 [drm]
+[    6.913534]  ? __pfx_drm_mode_cursor2_ioctl+0x10/0x10 [drm]
+[    6.913557]  drm_ioctl_kernel+0xa9/0x100 [drm]
+[    6.913583]  drm_ioctl+0x275/0x520 [drm]
+[    6.913607]  ? __pfx_drm_mode_cursor2_ioctl+0x10/0x10 [drm]
+[    6.913631]  ? lock_release+0xc6/0x290
+[    6.913637]  ? _raw_spin_unlock_irqrestore+0x44/0x60
+[    6.913642]  amdgpu_drm_ioctl+0x4e/0x90 [amdgpu]
+[    6.913818]  __x64_sys_ioctl+0x85/0xd0
+[    6.913823]  do_syscall_64+0x6a/0x2e0
+[    6.913828]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[    6.913830] RIP: 0033:0x7f320b0338db
+[    6.913832] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 =
+00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <89=
+> c2 3d 00 f0 ff ff 77 1c 48 8b 44 24 18 64 48 2b 04 25 28 00 00
+[    6.913835] RSP: 002b:00007ffd66400810 EFLAGS: 00000246 ORIG_RAX: 000000=
+0000000010
+[    6.913838] RAX: ffffffffffffffda RBX: 00007ffd664008a0 RCX: 00007f320b0=
+338db
+[    6.913839] RDX: 00007ffd664008a0 RSI: 00000000c02464bb RDI: 00000000000=
+0000f
+[    6.913841] RBP: 00007ffd664008a0 R08: 00007f320a8cbb20 R09: 00000000000=
+00001
+[    6.913843] R10: 000000000000004b R11: 0000000000000246 R12: 00000000c02=
+464bb
+[    6.913845] R13: 000000000000000f R14: 0000000000000001 R15: 00005605530=
+01d10
+[    6.913852]  </TASK>
+[    6.913853] irq event stamp: 355561
+[    6.913855] hardirqs last  enabled at (355569): [<ffffffffb2b951f2>] __u=
+p_console_sem+0x52/0x60
+[    6.913858] hardirqs last disabled at (355576): [<ffffffffb2b951d7>] __u=
+p_console_sem+0x37/0x60
+[    6.913861] softirqs last  enabled at (352542): [<ffffffffb2aeb586>] __i=
+rq_exit_rcu+0x96/0xc0
+[    6.913864] softirqs last disabled at (352537): [<ffffffffb2aeb586>] __i=
+rq_exit_rcu+0x96/0xc0
+[    6.913866] ---[ end trace 0000000000000000 ]---
+[   45.744032]     percentage:          78%
+[  225.782261]     percentage:          79%
 
+--=20
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
