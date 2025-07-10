@@ -2,133 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7267B00DCF
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Jul 2025 23:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2295B00DD4
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Jul 2025 23:31:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF9B10E963;
-	Thu, 10 Jul 2025 21:31:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A7D710E96C;
+	Thu, 10 Jul 2025 21:31:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BQ0/XHH/";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="33gIJpJT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6235710E96B
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 21:31:03 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2073.outbound.protection.outlook.com [40.107.94.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81E8410E96B
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 21:31:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w2612BYMeE4K6u61JzKdkxJ4UlozFlQMubELNOy4jmtsQLu4IXlwcTJV29BMk8YRvRhEFdMqCxJKEB87dDO/L/4gU6U8eorMRPOgE90IWBT74luuAzhig1zHWUiTSjwPOEc4FOsvyxHHaBD6aA+1TfTdtaQTgkNgTHuTVp5tTBWodc0taJcIvVAdwU/3a1C9Xyh2J9hOyrUggum5AFksajtDlSmVTs0K26vhtxZBj99yarZ6/DmIecHr3dCHXPdLHl5YU+PFdFglH9Ym0TMBA/X5Pp7ILpdLcyjUJP0Q/WTEkmUZ6gT4eKvCk1u3+mDO3tecnBjiaFg73M2DOX4qxQ==
+ b=oKxoV2zMGYLxB256V6mRxNaTXUb/yg79OvcMlERdC+Dfyr4PbugLtP0GKkRGWkcY20jl1zroIyVuu0HTQY0X1/McSwNrCnHm//JYHVNFxTvuNyzztF+X064WvgyX6+en5LCMx72E8Eos6g59tOe5nyHNV6sUbKXkQu/Rn3J3IwilbeiHuIP86PqF29Gw3I0/kw95axHOfhahiPO51YfVpxPrm8YJZPWnH5a3VP3jP5ayg+X2Gb+2A5emwqaysVpUjoeLv7rtikPf+Qu61lxsIMNfd7I3tc4hkdM83BfE/iD5L93ewkNQaImbo0Ijwdj/+6tIsVDRKwJ2+3syR7sBng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4bYI60Ergi3yAU4uM7TFWnC0wF5AIK/ljimBoL91d1A=;
- b=LvSkA1x+uxqw0SwLjEyjSemuCIvcNFqFMkqzHPrC0xKKr8aGmbfbHkH/1drykIIP0tzCAOovzuuQG/tMctCBSNVTYSJX+aF1HgI8CEfa5FdwLJ3/qhu9goYEd6/iB5ZToGvkpeRU1Ywl3wL2afgKL6JqDZL3kainSbhmgI0R7heTbWl3BFJuGth38buHMhmElAHknof71lttBUL3nuGAjShJmZHWlQYL7TJvOz6kmACT6WaGryuJdZA+oIbnlDLWDJtMAIhR5cGdsLA6zXNMtFHcB1ESm4deYke238vgic5ka1zQfYPmG6IQD5yI5F3X/vjwGHz6fqRRCpdoZHw1oQ==
+ bh=ejPLng73wicBiAFByJnve/r0621Jt31+pxKgd0ABzo4=;
+ b=eFOBELPHR0nMviihoFX7bX2qsx2wmcKIfcpsyfmIg1ehnJCGxgvq53wbAASmIC5FFjCdsVd2flQVkRPTMBc9fgWjYgBNbtAAIGmlDiFqDyCQSUNSPl+2daTdvXD/iIyk/bGkMT5x2WUGfY2tPFyIFrpfWiOuZEmMXMXZDUs52m87e2zU+BnyohYDb2Id/pb4AOvlRwxH9vbEBPVKoSBujIT/eN1K+rHLOlremthHR3CI83AeAneOKu5eNRTKVwsaXTHKNnHRE2CF5fTeE7Vc+OXNp6tY+KyZfkDX6c/1hnNItFs3/PFCr0Chbpx+1cR1dGxM/uMhB3hHgBnIa3bAJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4bYI60Ergi3yAU4uM7TFWnC0wF5AIK/ljimBoL91d1A=;
- b=BQ0/XHH/h8TYJ+gpcYg+2Dg/Hq6pcxcMZTgqi7dP99kAvmjzqVnrcwqZ2zrNEaGsKCPz8r61Hi/wIyUCNEPw+CEa+TnJ7oP45nzOt+U0wiUCQ0XJZ90FqhwG6GhZiN2eocKD3O0PBdpvAT9ZDti4t0qJ4aOpfXsqJFGyJToEUPU=
-Received: from SJ0PR13CA0205.namprd13.prod.outlook.com (2603:10b6:a03:2c3::30)
- by BL1PR12MB5804.namprd12.prod.outlook.com (2603:10b6:208:394::5)
+ bh=ejPLng73wicBiAFByJnve/r0621Jt31+pxKgd0ABzo4=;
+ b=33gIJpJTdOS5fj2OlNFNPDFiz8CFJeFwiVu8usS4HBVPC0GysyoLlK6iSnANF+I8/eIOBAQPnwqDlsg+LQWx22wlt7Onkn6q7oj24aMxCo0RPkeN7TbVxZpnj4Zw6nDumY/eeGpEnaD8Z7VoqIkaTDH8JTc55yOpjXpgRdFXjQs=
+Received: from CH0PR03CA0019.namprd03.prod.outlook.com (2603:10b6:610:b0::24)
+ by SA1PR12MB9246.namprd12.prod.outlook.com (2603:10b6:806:3ac::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.28; Thu, 10 Jul
- 2025 21:30:59 +0000
-Received: from SJ1PEPF000023CC.namprd02.prod.outlook.com
- (2603:10b6:a03:2c3:cafe::7) by SJ0PR13CA0205.outlook.office365.com
- (2603:10b6:a03:2c3::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8943.7 via Frontend Transport; Thu,
- 10 Jul 2025 21:30:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.27; Thu, 10 Jul
+ 2025 21:31:10 +0000
+Received: from CH1PEPF0000AD76.namprd04.prod.outlook.com
+ (2603:10b6:610:b0:cafe::3d) by CH0PR03CA0019.outlook.office365.com
+ (2603:10b6:610:b0::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.22 via Frontend Transport; Thu,
+ 10 Jul 2025 21:31:10 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SJ1PEPF000023CC.mail.protection.outlook.com (10.167.244.6) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD76.mail.protection.outlook.com (10.167.244.53) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8922.22 via Frontend Transport; Thu, 10 Jul 2025 21:30:58 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.8922.22 via Frontend Transport; Thu, 10 Jul 2025 21:31:10 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 10 Jul
- 2025 16:30:55 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 10 Jul
- 2025 16:30:54 -0500
+ 2025 16:31:01 -0500
 Received: from box-0.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 10 Jul 2025 16:30:54 -0500
+ Transport; Thu, 10 Jul 2025 16:30:56 -0500
 From: <IVAN.LIPSKI@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Leo Chen <leo.chen@amd.com>, 
- Duncan Ma <duncan.ma@amd.com>, Ivan Lipski <ivan.lipski@amd.com>
-Subject: [PATCH 08/18] drm/amd/display: Adding missing driver code for IPSv2.0
-Date: Thu, 10 Jul 2025 17:25:41 -0400
-Message-ID: <20250710212941.630259-9-IVAN.LIPSKI@amd.com>
+ <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Duncan Ma
+ <Duncan.Ma@amd.com>, Duncan Ma <duncan.ma@amd.com>, Ivan Lipski
+ <ivan.lipski@amd.com>
+Subject: [PATCH 09/18] drm/amd/display: Notify DMUB on HW Release
+Date: Thu, 10 Jul 2025 17:25:42 -0400
+Message-ID: <20250710212941.630259-10-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250710212941.630259-1-IVAN.LIPSKI@amd.com>
 References: <20250710212941.630259-1-IVAN.LIPSKI@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: IVAN.LIPSKI@amd.com does not designate
+Received-SPF: None (SATLEXMB04.amd.com: IVAN.LIPSKI@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023CC:EE_|BL1PR12MB5804:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d29b06c-22c5-461a-e797-08ddbff90fb4
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD76:EE_|SA1PR12MB9246:EE_
+X-MS-Office365-Filtering-Correlation-Id: ee448b88-c455-41c2-75b3-08ddbff916a4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8BChqhHz0s/PXKKrIr2mZHypHoYjiFb6FNxdDcolWrkzrQrAdIHAjsZMhOHn?=
- =?us-ascii?Q?l7Lc1beAtQ7u3sW3Cxb2RH6kg2IXkT7A/qmECrkIIeipvZuzJOS86kcCE4oa?=
- =?us-ascii?Q?mdmqPxoXqftPmDQeimrJGKcG5uDEP/7N3l7VllGJQiACgttAiG4GgitDMCLc?=
- =?us-ascii?Q?amOJZCJ642nTCfBKq9siNNZUIUN6ya0pmQ554SYYVbKhEUs7O27BXtWUmIPM?=
- =?us-ascii?Q?3q6YNLVS7D80slgPxpgtIWJxuKTMHZF45VkbhTfPzAMq0RVU7uF5hmSKUVCU?=
- =?us-ascii?Q?CuljBFRhIuhleF2RhsE21pJKpZbR359ZadBph6a/Noy7uK3pGMQ001h9Tqaf?=
- =?us-ascii?Q?zFLAf9AhCbkla52jO8WlPAB2VF7CINMk8dwgbAndUQMLTqX/kP6rRpoVYybG?=
- =?us-ascii?Q?rE5cBJEaSzuPkRP7VB1XqjzUDSKZyJSpazkhi/w12wGoOsByirWKoIGMh6JY?=
- =?us-ascii?Q?riSQOzW39NTwJXKUjtymii1h32veXNpCkGvT1saTJ61DYxdoTsVtEkqR/LdB?=
- =?us-ascii?Q?k957E58bNJLg7gg/6xvRtzS5AuiQOTImKv5TALy1va/zFfdQaa+v5/FvZQG3?=
- =?us-ascii?Q?nYqeGzQKJw6i81AFnVkgzgB1s7Wt1NOQX11vdBkLwDrLw6RYbaw6FVgwRDuQ?=
- =?us-ascii?Q?00oHKESVSnOb+mDtpBnhDMFewHQmz9Bneu7zwZIySIUsOWEymIpC2e90Tj/p?=
- =?us-ascii?Q?BNgJ2ILlcgChiuwy3HAMItc/M+04Z4uoJ4Wqc5JkNRsZOVsM/hQeyQvRTrBI?=
- =?us-ascii?Q?njpFIBCOSD731fszsgh08aw8XEgIhEcRKTF9H5MDblKyROpPYHo7x5f0QcBL?=
- =?us-ascii?Q?T3+nw7DcuYv0Xbw+i3n28QH7+UTRe8UDcvou3ca+Y/Lyso24oh6Ehweu8klo?=
- =?us-ascii?Q?WYhvK+1kalci17XHeSy8ieFXA7Uvhjgus/k+1ObkIFHs+pWoFAINCkQeI60u?=
- =?us-ascii?Q?/oUglC428kcox8gtT7omU4ztbffO8lYkMNI6o23yYoSq/ewSFrmGbJBikYFt?=
- =?us-ascii?Q?VUAw2yc7tzEQbJqo0ZKPXkLNDMAzySYPufLF/12DejWsBXzqEkydfVx45KZP?=
- =?us-ascii?Q?h2kRbVjJMytxwBlEGUqy4WIx2AamZ/jbpEHj1jVZ1I3C7ISS/d5S0XCQUnzi?=
- =?us-ascii?Q?hktuXyflCsupYR2CAIs9+tfeOdQ+7IOojbCvzzkweFa9OqQ1WenTRT8UkFs9?=
- =?us-ascii?Q?Jt+cXkUtfyC54XaHfpid/n1HejosuCU3cYMxWRPI4x4TCOBMZ2IQhc6JD55s?=
- =?us-ascii?Q?GjAW6xWmGNcUW0jGA9FC3nkyBKXfdz/xSONmVvY6XKCcn41/7mnxo50MSCq1?=
- =?us-ascii?Q?XBPhukwvagTv24rF0v7IOFKJT8IomeKQZZfGM+ylZhAZnvrSfJiwBvb4CBfM?=
- =?us-ascii?Q?V3odkWQGaH/eI9zulcc6d4teljw7qj95LbTKyUCQmdfE8dXqNFUxrBaNXtpd?=
- =?us-ascii?Q?jJGeWmOEk2WjjBWP93NKDQQjUSEk8OLNP0j0JKM6BJ1qYWlb16R3M21I0oZr?=
- =?us-ascii?Q?HnBQVncTjm6nUR84sfIFO/Z8DhUiGDeI1y0P?=
+ ARA:13230040|36860700013|1800799024|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?VgXlhHZWTzoBek8q8BB8CxH46sDejN8f7q8xgbtK6b5RbtmpF8LAfrUZH+tM?=
+ =?us-ascii?Q?x0P1o8mSCXpyEQStJWcD3x23jGmA4tzhNaan93HPoXcdwpJX47J711cw241R?=
+ =?us-ascii?Q?qA6XFvsMDAd5eDlkvxpGN2i4LuB4OxGk0cuRsQPvDa4rwueZSXC5nwp3Yoz6?=
+ =?us-ascii?Q?zXH0diCnOXQ13v+rYHzsuqG3DXaioE9PZZG6KwOQdBodNgRzHUa37nkjK+1F?=
+ =?us-ascii?Q?P9GgN48Ogh4pimVPP4Gbeg3ib3RGBe+RP7Oe+Ead25ABvisieA+JdbBbcza6?=
+ =?us-ascii?Q?R68uco9cqL+g0+0Keywxlyk+HeXBTgsCq13X+7F1ZeMu9T2NgE285fo2UEuY?=
+ =?us-ascii?Q?eM2V91wziVH5UtAQ6gArDhaQlyjE6fA/J6pSEeYbBkX6MiUY3Uh8mzzCwFgg?=
+ =?us-ascii?Q?qGfpox6vUzaHgxpEskgMAZ4rQLuR48gbuq6wR0K1iApTzy1/BimBD3fRsTvC?=
+ =?us-ascii?Q?IFfECGHHzPUhe9IsF4259u48C1MTFvEOLQIekNyoNP+sfQbfgfeC94JcDRyT?=
+ =?us-ascii?Q?5DUjwYfGFAEkLm9N8fiNtkiIv0hJD7HfNMI9Rpa+e9dRW1fyEkNg/kbqpQ1y?=
+ =?us-ascii?Q?iUFsHcSlvFWUDWfhQuCj4UQNlPYQ4oyewWMv7VlNmCUWXgo6AnFqzwkL39yn?=
+ =?us-ascii?Q?44Ej5va0eDeW8vp43YxqztWo+OISEmMmKzKrJUJAv56WHl4EPsqq7DyfmEVX?=
+ =?us-ascii?Q?NBOARObG4FgfzrgW9RBGmASGkbnXLrtTp8+Vu9q1GPKlxyjZo2ehqeQKYVAI?=
+ =?us-ascii?Q?Si9063Rwo5zr/4VTzA/hgmbZ/6wjuZwI9jubYbqCGAbgf1rgXEU9IhOpdJng?=
+ =?us-ascii?Q?Q0R/ErioQUhEPwYvnTx7NZ3akXXd2OmgkLvaVpX20Y3D5EiUh25WixFPrTk6?=
+ =?us-ascii?Q?G4yjRZ3a1hOdtdwhf5etw4GsfmKl2RMA0GS5QYOXOJGFYSlAhn6CsF/7NlXF?=
+ =?us-ascii?Q?i9M0U5mWXi9OZUhnsS3C8iFiajn8gUMDrODif6cGmEIttqvggotjnyygIO/W?=
+ =?us-ascii?Q?QY4ihoy4F9CGzmuH6Y/AjZh1RyM8xpeG5V0zdc2oaGQsMqm/1GCQ5625XL/5?=
+ =?us-ascii?Q?w3qfZQro730MscDYhPwBykTek8fwv/qtEHRi4//SeiAuO4zvjW+BCsWhK2lR?=
+ =?us-ascii?Q?xGLHvdo56JRjkIgScFifMgfcVz3qMLmFrxkb9xDFqZWZBocOcvlrR7E2OGkL?=
+ =?us-ascii?Q?TKju/0WcM6FbOkqpKfJFCNI0y4gP7pYrcsLs1aFg7bT2fb/1v7NocDxhT8Oc?=
+ =?us-ascii?Q?ccQBElDtbMVUzWLy1qhAhL+VBPxsb2X2jjGTKUVVTQBw4FSLWljqcBULxhVF?=
+ =?us-ascii?Q?zw8O8nu3VCKH6zzYc5Bknts0K8RHGid0pZ2yYk3I6AdFskM6b4JVyz08NMdT?=
+ =?us-ascii?Q?0Ond1iApSSFrFykSKMbpsirZUdHi90eIlACmREV8K0khTS+ozNtYQFXcA9ep?=
+ =?us-ascii?Q?xsBKrKRPv0gnRR4zs9VI4l4Hlx2+3McI9QgbH/9QD/OCjUDWzx0e9pG/sDWX?=
+ =?us-ascii?Q?/ISO5CF7qXCdyME+l9G9M28NfhAq7VW6ovtB?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2025 21:30:58.6462 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d29b06c-22c5-461a-e797-08ddbff90fb4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2025 21:31:10.3568 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee448b88-c455-41c2-75b3-08ddbff916a4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023CC.namprd02.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD76.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5804
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9246
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,196 +140,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Leo Chen <leo.chen@amd.com>
+From: Duncan Ma <Duncan.Ma@amd.com>
 
 [Why & How]
-Aligned IPS FW state with DMCUB IPS FW state
-Added debug option disable_ips_rcg to modify RCG behaviour in IPS modes.
-Updated existing debug option disable_ips to align with new changes introduced by IPSv2.0
+DMUB shall be notified on driver hardware
+release. Implement notification.
 
 Reviewed-by: Duncan Ma <duncan.ma@amd.com>
-Signed-off-by: Leo Chen <leo.chen@amd.com>
+Signed-off-by: Duncan Ma <Duncan.Ma@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  | 51 ++++++++++++++-----
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  4 +-
- 3 files changed, 41 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 17 +++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h |  6 ++++++
+ 2 files changed, 23 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index aa1b976cf40d..8a09c5f487d3 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -515,6 +515,7 @@ struct dc_config {
- 	bool EnableMinDispClkODM;
- 	bool enable_auto_dpm_test_logs;
- 	unsigned int disable_ips;
-+	unsigned int disable_ips_rcg;
- 	unsigned int disable_ips_in_vpb;
- 	bool disable_ips_in_dpms_off;
- 	bool usb4_bw_alloc_support;
 diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-index 0a47d1a3515b..c10e603b54af 100644
+index c10e603b54af..b4525b1fc11b 100644
 --- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
 +++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-@@ -1269,12 +1269,16 @@ static void dc_dmub_srv_notify_idle(const struct dc *dc, bool allow_idle)
- 			new_signals.bits.allow_ips1 = 1;
- 			new_signals.bits.allow_ips2 = 1;
- 			new_signals.bits.allow_z10 = 1;
-+			// New in IPSv2.0
-+			new_signals.bits.allow_ips1z8 = 1;
- 		} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS1) {
- 			new_signals.bits.allow_ips1 = 1;
- 		} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS2) {
-+			// IPSv1.0 only
- 			new_signals.bits.allow_pg = 1;
- 			new_signals.bits.allow_ips1 = 1;
- 		} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS2_Z10) {
-+			// IPSv1.0 only
- 			new_signals.bits.allow_pg = 1;
- 			new_signals.bits.allow_ips1 = 1;
- 			new_signals.bits.allow_ips2 = 1;
-@@ -1286,6 +1290,8 @@ static void dc_dmub_srv_notify_idle(const struct dc *dc, bool allow_idle)
- 				new_signals.bits.allow_ips1 = 1;
- 				new_signals.bits.allow_ips2 = 1;
- 				new_signals.bits.allow_z10 = 1;
-+				// New in IPSv2.0
-+				new_signals.bits.allow_ips1z8 = 1;
- 			} else {
- 				/* RCG only */
- 				new_signals.bits.allow_pg = 0;
-@@ -1293,8 +1299,21 @@ static void dc_dmub_srv_notify_idle(const struct dc *dc, bool allow_idle)
- 				new_signals.bits.allow_ips2 = 0;
- 				new_signals.bits.allow_z10 = 0;
- 			}
-+		} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_Z8_RETENTION) {
-+			new_signals.bits.allow_pg = 1;
-+			new_signals.bits.allow_ips1 = 1;
-+			new_signals.bits.allow_ips2 = 1;
-+			new_signals.bits.allow_z10 = 1;
-+		}
-+		// Setting RCG allow bits (IPSv2.0)
-+		if (dc->config.disable_ips_rcg == DMUB_IPS_RCG_ENABLE) {
-+			new_signals.bits.allow_ips0_rcg = 1;
-+			new_signals.bits.allow_ips1_rcg = 1;
-+		} else if (dc->config.disable_ips_rcg == DMUB_IPS0_RCG_DISABLE) {
-+			new_signals.bits.allow_ips1_rcg = 1;
-+		} else if (dc->config.disable_ips_rcg == DMUB_IPS1_RCG_DISABLE) {
-+			new_signals.bits.allow_ips0_rcg = 1;
- 		}
--
- 		ips_driver->signals = new_signals;
- 		dc_dmub_srv->driver_signals = ips_driver->signals;
- 	}
-@@ -1318,7 +1337,7 @@ static void dc_dmub_srv_notify_idle(const struct dc *dc, bool allow_idle)
- static void dc_dmub_srv_exit_low_power_state(const struct dc *dc)
- {
- 	struct dc_dmub_srv *dc_dmub_srv;
--	uint32_t rcg_exit_count = 0, ips1_exit_count = 0, ips2_exit_count = 0;
-+	uint32_t rcg_exit_count = 0, ips1_exit_count = 0, ips2_exit_count = 0, ips1z8_exit_count = 0;
- 
- 	if (dc->debug.dmcub_emulation)
- 		return;
-@@ -1338,31 +1357,34 @@ static void dc_dmub_srv_exit_low_power_state(const struct dc *dc)
- 		rcg_exit_count = ips_fw->rcg_exit_count;
- 		ips1_exit_count = ips_fw->ips1_exit_count;
- 		ips2_exit_count = ips_fw->ips2_exit_count;
-+		ips1z8_exit_count = ips_fw->ips1_z8ret_exit_count;
- 
- 		ips_driver->signals.all = 0;
- 		dc_dmub_srv->driver_signals = ips_driver->signals;
- 
- 		DC_LOG_IPS(
--			"%s (allow ips1=%u ips2=%u) (commit ips1=%u ips2=%u) (count rcg=%u ips1=%u ips2=%u)",
-+			"%s (allow ips1=%u ips2=%u) (commit ips1=%u ips2=%u ips1z8=%u) (count rcg=%u ips1=%u ips2=%u ips1_z8=%u)",
- 			__func__,
- 			ips_driver->signals.bits.allow_ips1,
- 			ips_driver->signals.bits.allow_ips2,
- 			ips_fw->signals.bits.ips1_commit,
- 			ips_fw->signals.bits.ips2_commit,
-+			ips_fw->signals.bits.ips1z8_commit,
- 			ips_fw->rcg_entry_count,
- 			ips_fw->ips1_entry_count,
--			ips_fw->ips2_entry_count);
-+			ips_fw->ips2_entry_count,
-+			ips_fw->ips1_z8ret_entry_count);
- 
- 		/* Note: register access has technically not resumed for DCN here, but we
- 		 * need to be message PMFW through our standard register interface.
- 		 */
- 		dc_dmub_srv->needs_idle_wake = false;
- 
--		if ((prev_driver_signals.bits.allow_ips2 || prev_driver_signals.all == 0) &&
-+		if (!dc->caps.ips_v2_support && ((prev_driver_signals.bits.allow_ips2 || prev_driver_signals.all == 0) &&
- 		    (!dc->debug.optimize_ips_handshake ||
--		     ips_fw->signals.bits.ips2_commit || !ips_fw->signals.bits.in_idle)) {
-+		     ips_fw->signals.bits.ips2_commit || !ips_fw->signals.bits.in_idle))) {
- 			DC_LOG_IPS(
--				"wait IPS2 eval (ips1_commit=%u ips2_commit=%u)",
-+				"wait IPS2 eval (ips1_commit=%u ips2_commit=%u )",
- 				ips_fw->signals.bits.ips1_commit,
- 				ips_fw->signals.bits.ips2_commit);
- 
-@@ -1422,28 +1444,31 @@ static void dc_dmub_srv_exit_low_power_state(const struct dc *dc)
- 		dc_dmub_srv_notify_idle(dc, false);
- 		if (prev_driver_signals.bits.allow_ips1 || prev_driver_signals.all == 0) {
- 			DC_LOG_IPS(
--				"wait for IPS1 commit clear (ips1_commit=%u ips2_commit=%u)",
-+				"wait for IPS1 commit clear (ips1_commit=%u ips2_commit=%u ips1z8=%u)",
- 				ips_fw->signals.bits.ips1_commit,
--				ips_fw->signals.bits.ips2_commit);
-+				ips_fw->signals.bits.ips2_commit,
-+				ips_fw->signals.bits.ips1z8_commit);
- 
- 			while (ips_fw->signals.bits.ips1_commit)
- 				udelay(1);
- 
- 			DC_LOG_IPS(
--				"wait for IPS1 commit clear done (ips1_commit=%u ips2_commit=%u)",
-+				"wait for IPS1 commit clear done (ips1_commit=%u ips2_commit=%u ips1z8=%u)",
- 				ips_fw->signals.bits.ips1_commit,
--				ips_fw->signals.bits.ips2_commit);
-+				ips_fw->signals.bits.ips2_commit,
-+				ips_fw->signals.bits.ips1z8_commit);
- 		}
- 	}
- 
- 	if (!dc_dmub_srv_is_hw_pwr_up(dc->ctx->dmub_srv, true))
- 		ASSERT(0);
- 
--	DC_LOG_IPS("%s exit (count rcg=%u ips1=%u ips2=%u)",
-+	DC_LOG_IPS("%s exit (count rcg=%u ips1=%u ips2=%u ips1z8=%u)",
- 		__func__,
- 		rcg_exit_count,
- 		ips1_exit_count,
--		ips2_exit_count);
-+		ips2_exit_count,
-+		ips1z8_exit_count);
+@@ -2176,3 +2176,20 @@ bool dmub_lsdma_send_poll_reg_write_command(struct dc_dmub_srv *dc_dmub_srv, uin
+ 	return result;
  }
  
- void dc_dmub_srv_set_power_state(struct dc_dmub_srv *dc_dmub_srv, enum dc_acpi_cm_power_state power_state)
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 5cf5dd5831fc..938a07cdcfec 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -875,7 +875,7 @@ enum dmub_shared_state_feature_id {
- /**
-  * struct dmub_shared_state_ips_fw - Firmware signals for IPS.
-  */
--union dmub_shared_state_ips_fw_signals {
-+ union dmub_shared_state_ips_fw_signals {
- 	struct {
- 		uint32_t ips1_commit : 1;  /**< 1 if in IPS1 or IPS0 RCG */
- 		uint32_t ips2_commit : 1; /**< 1 if in IPS2 */
-@@ -890,7 +890,7 @@ union dmub_shared_state_ips_fw_signals {
- /**
-  * struct dmub_shared_state_ips_signals - Firmware signals for IPS.
-  */
--union dmub_shared_state_ips_driver_signals {
-+ union dmub_shared_state_ips_driver_signals {
- 	struct {
- 		uint32_t allow_pg : 1; /**< 1 if PG is allowed */
- 		uint32_t allow_ips1 : 1; /**< 1 is IPS1 is allowed */
++void dc_dmub_srv_release_hw(const struct dc *dc)
++{
++	struct dc_dmub_srv *dc_dmub_srv = dc->ctx->dmub_srv;
++	union dmub_rb_cmd cmd = {0};
++
++	if (!dc_dmub_srv || !dc_dmub_srv->dmub)
++		return;
++
++	memset(&cmd, 0, sizeof(cmd));
++	cmd.idle_opt_notify_idle.header.type = DMUB_CMD__IDLE_OPT;
++	cmd.idle_opt_notify_idle.header.sub_type = DMUB_CMD__IDLE_OPT_RELEASE_HW;
++	cmd.idle_opt_notify_idle.header.payload_bytes =
++		sizeof(cmd.idle_opt_notify_idle) -
++		sizeof(cmd.idle_opt_notify_idle.header);
++
++	dm_execute_dmub_cmd(dc->ctx, &cmd,  DM_DMUB_WAIT_TYPE_WAIT);
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+index 1f1c155be30e..8ea320f21269 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+@@ -291,4 +291,10 @@ bool dc_dmub_srv_ips_query_residency_info(const struct dc_context *ctx, uint8_t
+ 					  struct dmub_ips_residency_info *driver_info,
+ 					  enum ips_residency_mode ips_mode);
+ 
++/**
++ * dc_dmub_srv_release_hw() - Notifies DMUB service that HW access is no longer required.
++ *
++ * @dc - pointer to DC object
++ */
++void dc_dmub_srv_release_hw(const struct dc *dc);
+ #endif /* _DMUB_DC_SRV_H_ */
 -- 
 2.43.0
 
