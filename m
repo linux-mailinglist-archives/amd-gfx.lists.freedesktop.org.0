@@ -2,117 +2,152 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0626CB01D32
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Jul 2025 15:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B95F7B01B81
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Jul 2025 14:08:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97A3E10E3A2;
-	Fri, 11 Jul 2025 13:17:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5994C10EA2C;
+	Fri, 11 Jul 2025 12:08:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="WJVXqqL3";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iG9zDc7w";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3987810E98A
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 23:43:07 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56AJQtBS013136
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 23:43:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:message-id
- :mime-version:subject:to; s=qcppdkim1; bh=O6dneaoEJTU4dB5TWgOZwO
- yJvDGKlM6DOiO6ssR/9JM=; b=WJVXqqL30MlBFZimKymhYq0ZPOc2GjQ8kRGkbn
- JtTWjw2HfnXQ/+A8ZgY/nBlGV6LWs3MT4eznqJyTRJ0mPuDgkJUh02MyxpDVImIZ
- qeovXmX+ARKDOhbZy6WzJ87cIq3ST2EE5sv3e81NVl87WAsZCHO1kHlyjqDrDzqf
- Bxh04kzmwRYEUeHXHWk8Z+VLoT7H7E1nobaKLxxGdG8CtYHu5ZNJvK3ISjhDbwyo
- Vz9FgcJEeu9e2SbyjSMSxZxM5JgJkxpFeZA0eJTHuuvCodg/f4ZT2XAFpYi1Kavy
- lrb8n8KYvjUl5WLKyvqk7h25xWoagu/I/8ditp4+cWbM+9JA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
- [209.85.214.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47pucna61b-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 23:43:06 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id
- d9443c01a7336-235e3f93687so22063995ad.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 16:43:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752190985; x=1752795785;
- h=content-transfer-encoding:subject:cc:to:from:content-language
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=O6dneaoEJTU4dB5TWgOZwOyJvDGKlM6DOiO6ssR/9JM=;
- b=WTXnRo2VqliA4woKh1G6DCQ66FkbDiV944mWtPeTYaxhuPJiKg+IiR3sAHFxPypimP
- 8XYphhDFbwgUngaxdhFMtr20RkXUK3yagQvkwGYpm9vjEFVce4MenXGbWbQQALuixRHB
- FadBhiu3KzOnnqYm3a22LQ20T2eIkEpVbb3P0e8WvMu/qWYUI9RP1/l3xwcibnBcZxv5
- ng9X5wGQyC58fk3INyjpUaA6M5HFFzFMofM6cC70to05jnpn3Sky1p/iG3qYizh7Jv2w
- SWKA/y6/hgQWKKVVtymPp8dKv1KliccxpD+O+hpgl+/lJnlXX85wU6ruUdCyQj9cYOP2
- Xq/A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV4AWOJ1Jf2PG+ySkUxrGD36qbYQNwnsNqMM13HaMs2LJ3R/3YpisIUXDsw6yz0/PBYp0HuZdBV@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzKh7z9xUA1cWKeopUv3TS2/saqJbUesmGgBSWofaeEYewT8uUo
- 9JgUkr/Wby3xL6UjXMjJTuDUsBfqncAl0mc4I/PJQGkQeMpC5F/PaogPYJYPzQMIIgWfcpe6j9o
- ZeBDa4D5ztUcq6lWt3QhswdDwNATZJiHh0He2Lg5+aq0O1q7cWQ3VQFmAaHq8nlNaGWW0
-X-Gm-Gg: ASbGncsGDhwly1Hu1yKwvyCWMQ94mtx8jZ5mpyoAJxlV7ZBsjUPUNj23WZi1eJIICrC
- l+Y09RsemrY9bz0XfUOdOrZhSvfSw+IO4ZUQzisZZNwYEViR1XoiGHE8YcXLEB6O7xQVIZnVbOe
- W8EaWTTk2iQ2qTqJqbOhww4nYICAtqWP2ErBD2rVYvxtFABQPfT6nWOqqbZau8DUaiG9WZHA4vQ
- 5DpJap6NHQb4H0qQ9Sli/3JI2YjHmBfxmQQNIu3d2MlUwtU7pizs9KeSKvhXwHNEe5zyDQMZANe
- MxkM7TI+5kPpFEaLjAu4yZbitPkmEt1VB6e+X9uoLc+Th3jBeTDzHNkLuNbJblU/enDaWJnhulZ
- 4cHQ3N9OUnZdcv4VBWjgl5xtq58hjX/Mc
-X-Received: by 2002:a17:902:e947:b0:234:9092:9dda with SMTP id
- d9443c01a7336-23dede7d49bmr17258295ad.24.1752190984472; 
- Thu, 10 Jul 2025 16:43:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHND8BuRmtddpqtYLgCU+bPJQKH6MwPIq7BEDW2QdigNAgxlg8RW8yy15cqprrIb+/9yikrig==
-X-Received: by 2002:a17:902:e947:b0:234:9092:9dda with SMTP id
- d9443c01a7336-23dede7d49bmr17257985ad.24.1752190983964; 
- Thu, 10 Jul 2025 16:43:03 -0700 (PDT)
-Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net.
- [73.202.227.126]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23de4322e7fsm34742765ad.93.2025.07.10.16.43.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 10 Jul 2025 16:43:03 -0700 (PDT)
-Message-ID: <0a087cfd-bd4c-48f1-aa2f-4a3b12593935@oss.qualcomm.com>
-Date: Thu, 10 Jul 2025 16:43:02 -0700
-MIME-Version: 1.0
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2085.outbound.protection.outlook.com [40.107.100.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B96610EA2C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 12:08:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AAbfcX1zovnBqq4k844fsSQtFRPRu+rwhF2qqRKSmCP2C3lCKlos2Z603Vu+ZvD4Me7yFEAnAv5hIo6vLZZ6NIgj61YTWW96Tnzaf4tEIek4zVyU5T2pTYdIQNasZDeE3FIKzM7di1vYu/O2M9KyaY8lbp9LgSeMnWE6iI9FWWj+MhRu008kOy10vGkkhUNWyff8UkFLYoEnSeY28ZRAHg0lzQaylEH2i8ANcockzk0L/h8LMMShIKzoDnBsTO/RDoGUmPGxwqiTddXk6Ytd0a//yArfUYJ+aaZJYOF5nnwk22+J6GozIKPp3S2Tn5yQYPE0LbM/BHMsOpdGumcW7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=koaAbtMm+fc/gsUehPaNtMEqDoz92UOwD/NoJo98v7A=;
+ b=isitB1JU552KFn6hV82kmpocm5slF5F09x3dQ0wupwq1GoNhm8tVmfPIng9b874ygNAf9kVfD6bxq5E2gsBfBwhyBEjEmeCsiN2loD3dxq14YpgH5I2+bXUDEY5d37SWYzfKfFejRbs/0ebsMwA62z8SddVkGPcAzOol6g7dU70TLKgaMfau6cNn7A6Y/XtHLRsx4ANlvFCU8i8jS68Jrb2kIHP3bRnxVKn8NQ3oByn8RaLp79Kg4DvQB/KNIPSZU4kFqyYT7uEYUT2N57SsJnmX2ksGgllcIt9O81rjhpzKRzcwUMEIoB3O5zmwHm3fPsMLQ5zhewc6OaZDHgScVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=koaAbtMm+fc/gsUehPaNtMEqDoz92UOwD/NoJo98v7A=;
+ b=iG9zDc7wMi2uZtzzjjrAlHyO7CgSf0EltNxDUiuWndhTU4O6l8f+sgdwNoAI82nA4qUUZBXiGLHGmRRzHG/2GSSpKGOY6wONTNfHk6xTTwZBhH82RBbkOfpdT75hBMjYFFdSIMvp4CLeK0SR3BAq5MOIYthPKfJEpqXaWdjMtmM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by BL3PR12MB6594.namprd12.prod.outlook.com (2603:10b6:208:38d::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Fri, 11 Jul
+ 2025 12:08:20 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8901.024; Fri, 11 Jul 2025
+ 12:08:20 +0000
+Message-ID: <2f056c77-8c26-4bf3-aa89-2965c7896139@amd.com>
+Date: Fri, 11 Jul 2025 14:08:16 +0200
 User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 04/11] drm/amdgpu: validate userq buffer virtual
+ address and size
+To: Prike Liang <Prike.Liang@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alexander.Deucher@amd.com
+References: <20250711093930.1411470-1-Prike.Liang@amd.com>
+ <20250711093930.1411470-4-Prike.Liang@amd.com>
 Content-Language: en-US
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org,
- linux-kernel <linux-kernel@vger.kernel.org>,
- Linux AMDGPU <amd-gfx@lists.freedesktop.org>
-Subject: WARNING: possible circular locking dependency detected:
- drm_client_dev_suspend() & radeon_suspend_kms()
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20250711093930.1411470-4-Prike.Liang@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=GdQXnRXL c=1 sm=1 tr=0 ts=6870500a cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=e70TP3dOR9hTogukJ0528Q==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=eMaqxZqQJXyQkHEHPUwA:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-GUID: Aej3A53zrrv3PJzUwa6hDjUBcJ3R1ZCg
-X-Proofpoint-ORIG-GUID: Aej3A53zrrv3PJzUwa6hDjUBcJ3R1ZCg
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzEwMDE5OCBTYWx0ZWRfX0rSjBdpPI1m+
- 5B41df6guJJjV/cLrORaFCowpms+B9gm7kBOBIAXTEywjddc/AfrXj+o7JKKpmFLG17lYDZZaMP
- lGQSy0QsSPp6v6yTIXo+FffJOCgSuAQEq6eZUAxPTENPQoSgkmHFB5l2f/+TVXJpQFF/yoh/Z+s
- IdKlm39hMHGbKG5IswRyGANvfE2JAr9yOW/fPqpz7oB3p6saAmBpxD2dEMam43a4q5y6ASD/B5n
- 3CCIZJQbCuHr59dklzdF/RMbYgiUn+P7rPx09vyDaR6UlkAJo5eTjrhSsNq4t1Ob3Rb28uhAB+f
- ttEd6wswxQXi5k8CfikxJUbrxW5ptjYjRuuiIo7ExbuOCQQlSpf37cX+FNIvE5smdhkAX62XgST
- ogdkELL+1MU57y3WRUQ610xZJHUILMFvmBTJ0+GpoNSwqY6+knjRC07l70FLLVmau+VzBI3V
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-10_06,2025-07-09_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0 clxscore=1011
- spamscore=0 suspectscore=0 mlxlogscore=999 priorityscore=1501 impostorscore=0
- malwarescore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507100198
-X-Mailman-Approved-At: Fri, 11 Jul 2025 13:17:28 +0000
+X-ClientProxiedBy: BL0PR02CA0010.namprd02.prod.outlook.com
+ (2603:10b6:207:3c::23) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BL3PR12MB6594:EE_
+X-MS-Office365-Filtering-Correlation-Id: 72ee5ac3-e077-40bc-f0f2-08ddc073a03e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Tjc0dnNFOEU5TXd0UGwwbEVmNW9FZERYOFFTbE5DWlp6cWxidDVMck9EV2RD?=
+ =?utf-8?B?c2JYMkhHbm5oNThRcHd3WVRDNFhZUEZ5SnNmQjVUby80dkFNakcrZXFPd0NU?=
+ =?utf-8?B?QVFBNE1SVnk5YWt3dG5CdWtOVzlkNXNvV2ZRejFEeFltbyszaWxMQk5RQVl6?=
+ =?utf-8?B?a05TZUZMUVhPRnVsdE5YeUY4bHd6TEQwM29TSjgzZFV1MFY3TkZrTHpFbFIx?=
+ =?utf-8?B?Q0kwam91dUIrMXVIeFl4TkpaeklTRGdiUUpmbnRFbXhWcGZLbldmTTA3MVFw?=
+ =?utf-8?B?Qis2NTg1NlV1M3lkOGtGb24zMVhhMmRQdDJXblVvbjBaVlFMYjkyRWxvY3VN?=
+ =?utf-8?B?YVdwTHB3ZkpJdG1acWNCUUE0R2FKbzZnUnVwUzhsUC9xZjZwdUpWandqSkFQ?=
+ =?utf-8?B?a1J0bTlPYXF3MnZDLzB0QlB1aURERXE2Nk9xUGpJeGFnWmM2bXZCUFNjbkht?=
+ =?utf-8?B?cHJ4RVBUdUtZcmFYVXBFL2pUTGRGUFljQW0yRnJKTDVUb0lUWnNNaklGS01J?=
+ =?utf-8?B?TzI2S0RQTzJiWDIyTEVEeno3YURGbndPaGpIRkNybDJPYlNkdlZhVjJHemhL?=
+ =?utf-8?B?S3oweXhua2poUkFkNXM2QUg5QkMyZ2pIWkpEdGJQcFlrWisxOFc1aUV4UC9r?=
+ =?utf-8?B?T0oxcDBGbkk3TEpxcHlpVk56b21BM2JYTDc5SFBDTTZkZTFrK2l2QklTM3JQ?=
+ =?utf-8?B?a1psQVNNbGtaMm1Yakl1dGxYNHh3ckdPbEc3b2JEamVYanhVRlVha1JZcWhB?=
+ =?utf-8?B?T2hEcnNMdmVxcW5NZEsyUmlGa2U5TXBmZlZVdmNhQjVmTmsybTNKTzZDVVhs?=
+ =?utf-8?B?bUNwRW5lZURPaHlUZkVhekIvZkY2Zmk5NnBtK0w4MjduSEtXeFlwWkQvbjJ4?=
+ =?utf-8?B?Q00rSVFzaC92aGtYUGM0dmRsajZYaEdsMit5YXg4OUtLUE05SlU0T0hYUjcy?=
+ =?utf-8?B?NjBYVEFFM0twaWtKYVZhd3NCaStFZUxhM05weVhoOHUvaVdYN09WZGU3VEhu?=
+ =?utf-8?B?KzJFN0RnNTN0cXpJc2d3aDQydktvK0lhSG5laHdsZHQrSlhsQVU5bDdSc0d4?=
+ =?utf-8?B?SWNjMEo5ZHFvUlBaSHRiVHJKTzlGT1pLbk9lNW4xMEJNVWZyR1VySTNvSHVZ?=
+ =?utf-8?B?ZmZkYUZHNEJ6dkxtbDFpYmNEN0d0NWt0WVVSTUdjYlR5UVIxVjYydjVucjZ5?=
+ =?utf-8?B?Z0JoQjFmNkxYakorQVZEY01JOTZKR2Rub0lLeDZZNE1Yd1ZDc0IrYyszc0cv?=
+ =?utf-8?B?Umg2OHVOTFV3aGRGZk5NSGYvZUJURGRwa3NQSVRIdEJPZEhHVlFVRlZ4K25F?=
+ =?utf-8?B?ZTdBc3V3cDV5REUvNUJ6STdGUkd1ZmswSWJQK2lWZEorcDBOcHZTNEdZay9R?=
+ =?utf-8?B?ZWhjSmxUU3kreHJpQ0ozQmRUTWFmYkFxWUtFNkhrRU50eEl4M1kreTB0UnQ0?=
+ =?utf-8?B?eTYydzBXQUZGdTB1cEQzWUdCZDczY0pZaENxRHhyYTZ0aDh5bkpPeWhIYTAz?=
+ =?utf-8?B?Tkgwbjg3Y1FPNEtlN2RFMU80azVtc0lGd3lrRUlzQmJMdWg1K0c3TmV3RHBF?=
+ =?utf-8?B?dlpzeFNZTWpWWDJzTitFWGFSdElCQS9BbndwdnIwWDNrR1RMeDBNL3krU0Ni?=
+ =?utf-8?B?NGk4VXVkdVNWSFF1MFFObEJOK1pETmJuazJGZlQwcElCZkwzMDVrUnY0N2JS?=
+ =?utf-8?B?cHkyT3JEcjgwdy9rNlpLQ2xHTWUzU3dsZVZuLzBiejF4KzdQVHZud2psR1dv?=
+ =?utf-8?B?YytJckZxdTk2K1JTMW5OMWZTTi91aHVwUmV0L1hZVDVySS91Rk1uQXJmd3Ez?=
+ =?utf-8?B?V2pTRmY4Ykptb1lqTnpQZ3NIUGJtRHo5ejlKS0ZaTHBYZlRIV2FpamhSM00w?=
+ =?utf-8?B?YytNUkcxQytVdTY3M1BKTno2SFJWUFFUdGl4dFhubTZ5S29hL0oxNTBiTHJr?=
+ =?utf-8?Q?eq2gn8jHpBs=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2RYMmxXNldwUUNWOHNvRThnejdlT3pLdG94MTNsTlpLSmhmcC9renM2QUMx?=
+ =?utf-8?B?bXVLYlk5S2tpNHVjeHFIRmhIR09pSE5Pb1V6YmVJS2RXOTdOYS9yR2RHYkI0?=
+ =?utf-8?B?QTlRWTNtVS9PRG5vbHNYUkpzYVlxQ1Jvb3NJSld0U1pHRURCWkd1UU9Oa0Vt?=
+ =?utf-8?B?eXpyaUVGcjRmRjArUkpuSDdXMDVieVdCN0Z5S0xJZXNDTFk3UzRFZ01BODlW?=
+ =?utf-8?B?YmhwSWZiODlUb0RZYUhaTzV2MnRFYXlRREJkLzR1WjMzVVBRcHo1WUt4YlJM?=
+ =?utf-8?B?UFdRTHNna05hY2JFeVI2YlMvWlJYRU04TWxzdW9sdmw3L0VkZkgwNDZaNzlx?=
+ =?utf-8?B?VEhHUW10OWZ0dWliNzZvRTY0K1lHMHR3UXNRNUcrWTRkNWJRaGF2RGdWblU3?=
+ =?utf-8?B?NXh2TzRWZHFKN1hnQXJSamRzSnFFN0FNWnRCRCtIMzdPbUtGdlF0NHNVKzdE?=
+ =?utf-8?B?Y3hSZy85bEZtU1BCbEN2N1AyR094cjlRVm9DT1duSGtnY2djditwSnFoMkdq?=
+ =?utf-8?B?aW1WaWdSTDhiWERJYmw3aTc1MzFnd2hZeWxCMGJJQS9CUmFieEUvMVl5NzVR?=
+ =?utf-8?B?ZHJRTFd2eFl1OFRPOFd0NmQ1YXIzSzB5OE9IOTFzQWtwNHp0YUt3U25HMEN1?=
+ =?utf-8?B?ZUVlandqSktCVy9SckxyWFRqdnZDYWcyVGJJSTA1VFdMYmtDMXpBa01saFhX?=
+ =?utf-8?B?R3hnODZjbDd3SkliRGprbmhZaE5ZcUdUSGQ4OTNVVm5GcjVDdEpac1FtL2FY?=
+ =?utf-8?B?SjFKb0IrMzFWOTB4TXMzSFN1WWxmaERlZmlXb0t5VUpIc01QVENUWU1tZ0dY?=
+ =?utf-8?B?MEdsSlBVWjE2YTU3alFCaTBsTCtKNkZnZE1valg5K2xuQm9VZzZHY21JdHZI?=
+ =?utf-8?B?Z3JKeEFDUERCZ0t6czhvcEQwSTlrWklaYWcvMXJGd3RnQkM2U0RLVlNlUGxK?=
+ =?utf-8?B?bGtSQnZjcFhLN1ZpRmk3akNZbnhicHFjemRKcmNwOTBlRml2SzBydjE2cVZa?=
+ =?utf-8?B?aHdOUVhxSStrTFFFekkwd05MZ0RGT3BISUlhajhwK3ViWWdRUFVUWmhpWkgy?=
+ =?utf-8?B?bjk1dkhUbnN1TmhtZG9pMmR6UnZBaHV3TFVoL0VCOTNRdnNsY1IraWkvTU40?=
+ =?utf-8?B?NzdNaGl1UUVuQU04WDBVeFErVUFkNklDbW5WUktFQUVxalVvWis5c1g0TUVU?=
+ =?utf-8?B?TlQ0K3ZQell6SDFYVjExNElVd0VOOE5uNjB0SEpFR1M4UVZmUjErUWlnTGFa?=
+ =?utf-8?B?cGlReGRyd3NuL2preUtrM1Z1WVNNUlYrTEFCalppN1lBeEoxSTRON0ZCV0hP?=
+ =?utf-8?B?ck1iNmZBdEZyNFFGUVRScWtSdSs5Q2lSNjNET3lvcHoxc3ArN2tTSlJPbWlx?=
+ =?utf-8?B?a0VIY0UvQ2JneUhya1FMQUhwanZOMFY0K1ViNXhFVHZVQWpFRkdOSTNHcVVI?=
+ =?utf-8?B?Smx3UG10NGloOWZlRXM2djhZbFV1ZzVRRitGZWwzUmJDS21YL2E5RldwUjJL?=
+ =?utf-8?B?bWxBY3l2bXpJNXZ4bEJ2MFQ5Nmhhbm1odVNhajA3WUlGWjJlM2xNRlo1N3JE?=
+ =?utf-8?B?TThWSzhNb3Y4YzBYQ3RuTUN1Mzl4bDFUVTNJNXVKRWNLWGd0LzBuTVJxZVl0?=
+ =?utf-8?B?NFFodFFFSnA2WURiN3VCMmdCMkhjNjRUZWlHWlFVcW9JNDNvU1FRTXI4Q2dZ?=
+ =?utf-8?B?MVUydUtFUktzbnRqK1QrNUFSa0pKcUxvUDI2cHUveDhkNXQrK3g2WUVncGtX?=
+ =?utf-8?B?WUYwUG9aSUZoZ0N5N25QVVhRdlVNWVRPSHNMUGhHRTBqdW9zU2IrRm9QeHFp?=
+ =?utf-8?B?SXRpdjJQQTFPVnJkRXpiRHlUWk1qZDhTQVMvL21FeE56aDNSOHl6UTZjQUhV?=
+ =?utf-8?B?R2gybTRqSlk2bFRBdU1Fc09xU2MvbWlQV2plSHNIa0YvS3pHT2pvSG91Q2tX?=
+ =?utf-8?B?emRZazZJZlJQcFE2Vy9Kc0ptTCt6KzdORm5KVWVqS2ZIN2tSSG9mSW8rN1M1?=
+ =?utf-8?B?Mnp3RjNleDdWaGZ6K2RUcGR1cmlNb25OaW9pVlplNFNaUzdyRTJPSWdKdXVO?=
+ =?utf-8?B?UjVicFRkRGowZlpOb1BTcnhJU1JJVzk2Z0tjaGV2MWszK0MwcnU3TmxpL0Zy?=
+ =?utf-8?Q?O9ARsQGzFLjwux8309kJFz7d4?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72ee5ac3-e077-40bc-f0f2-08ddc073a03e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2025 12:08:20.0250 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5L1rdEHepRdR3HOOssU7nY+EyZzi2BPTqCyd1Ytbx8NVJm6Y/TBGgJKk1+v9yxEx
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6594
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,135 +162,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-I'm trying to debug a hibernation issue with the ath12k driver, but to
-establish a baseline I started with Linus' current tree. I have the following
-enabled in my .config:
 
-CONFIG_PROVE_LOCKING=y
-CONFIG_PROVE_RAW_LOCK_NESTING=y
-CONFIG_PROVE_RCU=y
 
-As part of the baseline I observed the following:
+On 11.07.25 11:39, Prike Liang wrote:
+> It needs to validate the userq object virtual address to
+> determin whether it is residented in a valid vm mapping.
+> 
+> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  | 38 ++++++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 25 ++++++++++++++
+>  3 files changed, 65 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> index 15e833b1b3e3..a41dd38b0adb 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> @@ -44,6 +44,36 @@ u32 amdgpu_userq_get_supported_ip_mask(struct amdgpu_device *adev)
+>  	return userq_ip_mask;
+>  }
+>  
+> +int amdgpu_userq_input_va_validate(struct amdgpu_vm *vm, u64 addr,
+> +				u64 expected_size)
+> +{
+> +	struct amdgpu_bo_va_mapping *va_map;
+> +	u64 user_addr;
+> +	u64 size;
+> +	int r;
+> +
+> +	user_addr = (addr & AMDGPU_GMC_HOLE_MASK) >> AMDGPU_GPU_PAGE_SHIFT;
+> +	size = expected_size >> AMDGPU_GPU_PAGE_SHIFT;
+> +
+> +	r = amdgpu_bo_reserve(vm->root.bo, false);
+> +	if (r)
+> +		return r;
+> +
+> +	va_map = amdgpu_vm_bo_lookup_mapping(vm, user_addr);
+> +	if (!va_map)
+> +		goto out_err;
+> +	/* Only validate the userq whether resident in the VM mapping range */
+> +	if (user_addr >= va_map->start &&
 
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: ======================================================
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: WARNING: possible circular locking dependency detected
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 6.16.0-rc5+ #6 Not tainted
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: ------------------------------------------------------
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: kworker/u16:13/3787 is trying to acquire lock:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: ffff8881113e0308 (&dev->clientlist_mutex){+.+.}-{4:4}, at: drm_client_dev_suspend+0x37/0x250 [drm]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 
-                                           but task is already holding lock:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: ffffffff8a2e4b80 (console_lock){+.+.}-{0:0}, at: radeon_suspend_kms+0x63b/0x7d0 [radeon]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 
-                                           which lock already depends on the new lock.
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 
-                                           the existing dependency chain (in reverse order) is:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 
-                                           -> #1 (console_lock){+.+.}-{0:0}:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        console_lock+0x8d/0x130
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        drm_fb_helper_set_suspend_unlocked+0x10e/0x200 [drm_kms_helper]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        drm_fbdev_client_suspend+0x24/0x30 [drm_client_lib]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        drm_client_dev_suspend+0x138/0x250 [drm]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        i915_drm_suspend.isra.0+0x74/0x260 [i915]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        i915_pm_suspend+0x6b/0x90 [i915]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        pci_pm_suspend+0x1e3/0x4f0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        dpm_run_callback+0xa0/0x100
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        device_suspend+0x41e/0xdc0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        async_suspend+0x1d/0x30
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        async_run_entry_fn+0x96/0x3e0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        process_one_work+0x86e/0x14b0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        worker_thread+0x5d0/0xfc0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        kthread+0x375/0x750
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        ret_from_fork+0x215/0x2f0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        ret_from_fork_asm+0x1a/0x30
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 
-                                           -> #0 (&dev->clientlist_mutex){+.+.}-{4:4}:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        __lock_acquire+0x15b5/0x2ac0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        lock_acquire+0x154/0x2d0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        __mutex_lock+0x15f/0x12c0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        drm_client_dev_suspend+0x37/0x250 [drm]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        radeon_suspend_kms+0x648/0x7d0 [radeon]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        pci_pm_suspend+0x1e3/0x4f0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        dpm_run_callback+0xa0/0x100
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        device_suspend+0x41e/0xdc0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        async_suspend+0x1d/0x30
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        async_run_entry_fn+0x96/0x3e0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        process_one_work+0x86e/0x14b0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        worker_thread+0x5d0/0xfc0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        kthread+0x375/0x750
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        ret_from_fork+0x215/0x2f0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        ret_from_fork_asm+0x1a/0x30
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 
-                                           other info that might help us debug this:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  Possible unsafe locking scenario:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        CPU0                    CPU1
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:        ----                    ----
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:   lock(console_lock);
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:                                lock(&dev->clientlist_mutex);
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:                                lock(console_lock);
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:   lock(&dev->clientlist_mutex);
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 
-                                            *** DEADLOCK ***
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 4 locks held by kworker/u16:13/3787:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  #0: ffff888100dee148 ((wq_completion)async){+.+.}-{0:0}, at: process_one_work+0xe97/0x14b0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  #1: ffff88813f22fd30 ((work_completion)(&entry->work)){+.+.}-{0:0}, at: process_one_work+0x7f6/0x14b0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  #2: ffff8881049241b0 (&dev->mutex){....}-{4:4}, at: device_suspend+0x3bd/0xdc0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  #3: ffffffff8a2e4b80 (console_lock){+.+.}-{0:0}, at: radeon_suspend_kms+0x63b/0x7d0 [radeon]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: 
-                                           stack backtrace:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: CPU: 0 UID: 0 PID: 3787 Comm: kworker/u16:13 Not tainted 6.16.0-rc5+ #6 PREEMPT(voluntary) 
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: Hardware name: Hewlett-Packard HP ZBook 14 G2/2216, BIOS M71 Ver. 01.31 02/24/2020
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: Workqueue: async async_run_entry_fn
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel: Call Trace:
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  <TASK>
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  dump_stack_lvl+0x5b/0x80
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  print_circular_bug.cold+0x178/0x1be
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  check_noncircular+0x130/0x150
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? 0xffffffffc1600000
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? radeon_suspend_kms+0x63b/0x7d0 [radeon]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  __lock_acquire+0x15b5/0x2ac0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  lock_acquire+0x154/0x2d0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? drm_client_dev_suspend+0x37/0x250 [drm]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_stack_trace_save+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? acpi_ut_release_mutex+0xba/0x150
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  __mutex_lock+0x15f/0x12c0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? drm_client_dev_suspend+0x37/0x250 [drm]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? drm_client_dev_suspend+0x37/0x250 [drm]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? add_lock_to_list+0x2c/0x1b0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx___mutex_lock+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? lock_acquire+0x154/0x2d0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? radeon_suspend_kms+0x63b/0x7d0 [radeon]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? drm_client_dev_suspend+0x37/0x250 [drm]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  drm_client_dev_suspend+0x37/0x250 [drm]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  radeon_suspend_kms+0x648/0x7d0 [radeon]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_radeon_pmops_suspend+0x10/0x10 [radeon]
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  pci_pm_suspend+0x1e3/0x4f0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_pci_pm_suspend+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  dpm_run_callback+0xa0/0x100
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_dpm_run_callback+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  device_suspend+0x41e/0xdc0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_device_suspend+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_async_suspend+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  async_suspend+0x1d/0x30
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  async_run_entry_fn+0x96/0x3e0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  process_one_work+0x86e/0x14b0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_process_one_work+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? assign_work+0x16c/0x240
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  worker_thread+0x5d0/0xfc0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_worker_thread+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  kthread+0x375/0x750
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_kthread+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? ret_from_fork+0x1f/0x2f0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? lock_release+0xc6/0x2a0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_kthread+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ret_from_fork+0x215/0x2f0
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ? __pfx_kthread+0x10/0x10
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  ret_from_fork_asm+0x1a/0x30
-Jul 10 16:12:52 qca-HP-ZBook-14-G2 kernel:  </TASK>
+This check is unecessary.
 
-This doesn't seem to be the cause of the ath12k issue I'm debugging,
-but thought it worth mentioning since I only see one similar report
-on lore, and that didn't have any apparent follow-up:
-https://lore.kernel.org/all/20250202161048.373f89c0@yea/
+> +	    (size != 0 && user_addr + size - 1 <= va_map->last)) {
 
-/jeff
+The size != 0 check is unecessary as well and you need to be careful with wrap arounds.
+
+Better write this like that (va_map->last - user_addr + 1 >= size) 
+
+> +		amdgpu_bo_unreserve(vm->root.bo);
+> +		return 0;
+> +	}
+> +
+> +out_err:
+> +	amdgpu_bo_unreserve(vm->root.bo);
+> +	return -EINVAL;
+> +}
+> +
+>  static int
+>  amdgpu_userq_unmap_helper(struct amdgpu_userq_mgr *uq_mgr,
+>  			  struct amdgpu_usermode_queue *queue)
+> @@ -386,6 +416,14 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+>  		r = -EINVAL;
+>  		goto unlock;
+>  	}
+> +	/* Validate the userq virtual address.*/
+> +	if (amdgpu_userq_input_va_validate(&fpriv->vm, args->in.queue_va, args->in.queue_size) ||
+> +	    amdgpu_userq_input_va_validate(&fpriv->vm, args->in.rptr_va, PAGE_SIZE) ||
+> +	    amdgpu_userq_input_va_validate(&fpriv->vm, args->in.wptr_va, PAGE_SIZE)) {
+> +		drm_file_err(uq_mgr->file, "Usermode queue input virt address is invalid\n");
+
+No error message on invalid userspace parameters please.
+
+Apart from those comments looks like the right thing to do to me.
+
+Regards,
+Christian.
+
+> +		r = -EINVAL;
+> +		goto unlock;
+> +	}
+>  
+>  	queue = kzalloc(sizeof(struct amdgpu_usermode_queue), GFP_KERNEL);
+>  	if (!queue) {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+> index ec040c2fd6c9..704935ca0c36 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+> @@ -132,4 +132,6 @@ int amdgpu_userq_stop_sched_for_enforce_isolation(struct amdgpu_device *adev,
+>  int amdgpu_userq_start_sched_for_enforce_isolation(struct amdgpu_device *adev,
+>  						   u32 idx);
+>  
+> +int amdgpu_userq_input_va_validate(struct amdgpu_vm *vm, u64 addr,
+> +			u64 expected_size);
+>  #endif
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+> index 15aa1ca67a11..75b9a6294b53 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+> @@ -206,6 +206,7 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+>  	struct amdgpu_mqd *mqd_hw_default = &adev->mqds[queue->queue_type];
+>  	struct drm_amdgpu_userq_in *mqd_user = args_in;
+>  	struct amdgpu_mqd_prop *userq_props;
+> +	struct amdgpu_gfx_shadow_info shadow_info;
+>  	int r;
+>  
+>  	/* Structure to initialize MQD for userqueue using generic MQD init function */
+> @@ -231,6 +232,8 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+>  	userq_props->doorbell_index = queue->doorbell_index;
+>  	userq_props->fence_address = queue->fence_drv->gpu_addr;
+>  
+> +	if (adev->gfx.funcs->get_gfx_shadow_info)
+> +		adev->gfx.funcs->get_gfx_shadow_info(adev, &shadow_info, true);
+>  	if (queue->queue_type == AMDGPU_HW_IP_COMPUTE) {
+>  		struct drm_amdgpu_userq_mqd_compute_gfx11 *compute_mqd;
+>  
+> @@ -247,6 +250,13 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+>  			goto free_mqd;
+>  		}
+>  
+> +		if (amdgpu_userq_input_va_validate(queue->vm, compute_mqd->eop_va,
+> +					max_t(u32, PAGE_SIZE, AMDGPU_GPU_PAGE_SIZE))) {
+> +			drm_file_err(uq_mgr->file, "EOP VA is invalid\n");
+> +			r = -EINVAL;
+> +			goto free_mqd;
+> +		}
+> +
+>  		userq_props->eop_gpu_addr = compute_mqd->eop_va;
+>  		userq_props->hqd_pipe_priority = AMDGPU_GFX_PIPE_PRIO_NORMAL;
+>  		userq_props->hqd_queue_priority = AMDGPU_GFX_QUEUE_PRIORITY_MINIMUM;
+> @@ -274,6 +284,14 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+>  		userq_props->csa_addr = mqd_gfx_v11->csa_va;
+>  		userq_props->tmz_queue =
+>  			mqd_user->flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE_SECURE;
+> +
+> +		if (amdgpu_userq_input_va_validate(queue->vm, mqd_gfx_v11->shadow_va,
+> +					shadow_info.shadow_size)) {
+> +			drm_file_err(uq_mgr->file, "shadow VA is invalid\n");
+> +			r = -EINVAL;
+> +			goto free_mqd;
+> +		}
+> +
+>  		kfree(mqd_gfx_v11);
+>  	} else if (queue->queue_type == AMDGPU_HW_IP_DMA) {
+>  		struct drm_amdgpu_userq_mqd_sdma_gfx11 *mqd_sdma_v11;
+> @@ -291,6 +309,13 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+>  			goto free_mqd;
+>  		}
+>  
+> +		if (amdgpu_userq_input_va_validate(queue->vm, mqd_sdma_v11->csa_va,
+> +					shadow_info.csa_size)) {
+> +			drm_file_err(uq_mgr->file, "CSA VA is invalid\n");
+> +			r = -EINVAL;
+> +			goto free_mqd;
+> +		}
+> +
+>  		userq_props->csa_addr = mqd_sdma_v11->csa_va;
+>  		kfree(mqd_sdma_v11);
+>  	}
+
