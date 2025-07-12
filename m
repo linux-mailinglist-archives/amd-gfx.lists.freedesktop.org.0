@@ -2,43 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C59C0B02B36
-	for <lists+amd-gfx@lfdr.de>; Sat, 12 Jul 2025 16:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C34CCB02C7F
+	for <lists+amd-gfx@lfdr.de>; Sat, 12 Jul 2025 21:02:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CF5F10E16A;
-	Sat, 12 Jul 2025 14:13:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C953F10E165;
+	Sat, 12 Jul 2025 19:02:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="H51IS8LT";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HWjizx5l";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6187710E3CC
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 21:40:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1752270047; x=1752529247;
- bh=hJ0jSzcfOdcIeibWpnzc5LfKFvCLTxGO8F/0VNnJlgQ=;
- h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
- Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
- b=H51IS8LT3w4HQoTbwB9r7RnEJGxRzOQB4EwLvQv7ovnUnB89v2rcPX/EgXzOSGrOi
- 2soot8EZW08LsGTDPHM+W//gM3Moi4/VvEp/laYHucQNp/R8SoIcgQNsRo55LhUZPD
- BQYESJrXJJ21njZ8GIugMI3C2CYFj7eFRjGucS7H474VAjg6bMSAzS9PdOfDQhOrPW
- 5oI9KCRiJgva2ZyPjr6OzlPgBcNX7ntlHSFHbMT3tmcbeSmUXT+tmlnB+Z3fl9d07z
- 3Xl6nBT556T+czTMFs67chanGiXjDb5T2N5uDF+iVQcjz+2tW+cP1nK0U1P8CH9SMM
- ppSB8Qg3ZFyYw==
-Date: Fri, 11 Jul 2025 21:40:41 +0000
-To: amd-gfx@lists.freedesktop.org
-From: Umio Yasuno <coelacanth_dream@protonmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- Ma Jun <Jun.Ma2@amd.com>
-Subject: [PATCH] drm/amd/pm: fix null pointer access
-Message-ID: <20250711213720.48928-1-coelacanth_dream@protonmail.com>
-Feedback-ID: 19510729:user:proton
-X-Pm-Message-ID: 1e366993ce0a54a14c99e159dbbbfe7831f86801
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2573D10E06B;
+ Sat, 12 Jul 2025 19:02:42 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 6998AA53424;
+ Sat, 12 Jul 2025 19:02:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 045A7C4CEEF;
+ Sat, 12 Jul 2025 19:02:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1752346960;
+ bh=LhsEIKj1SLsQCAk5TPT4MTfImsiSbwHmFcHOMwWmXc8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=HWjizx5l0FEQT25bpugRRwK1iwSRYSUMnnEfumnnbKkrN1YDIHJFkE8VgedfrpLRH
+ dogoPSSvR5+vV2TXvrLEB3e+GRLCNQ5J+JnwTSnwYJBqhbSEYRUyhsWp25MUqYlCbp
+ QhS8oFlveZ5w9be6sF23N78x/sru3d5CnLo+5eZ3UF3HV6Eoy55hqAJ6v3lM9Qm1fs
+ ZULGTqqGmC3OckTk9IhfXYJ1NS25fOe0nTLMoH6ae2dEwnnL7Hx2m6cHXw9hryCOCa
+ r3C/mHyyAsrsfVhfUEaiXn/KIkEm3dVV0XDmhEo1XjZmYqCcRqVFr5uAQzdE1yshMW
+ H8COPV+f4FwFg==
+Message-ID: <35f0dd7e-f4c1-4042-bc85-19d277f4b1f9@kernel.org>
+Date: Sat, 12 Jul 2025 14:02:38 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 12 Jul 2025 14:13:40 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: linux-next: Tree for Jul 11 [drivers/gpu/drm/amd/amdgpu/amdgpu.ko]
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux DRI Development <dri-devel@lists.freedesktop.org>,
+ Samuel Zhang <guoqing.zhang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20250711191014.12a64210@canb.auug.org.au>
+ <49080a96-2c7a-4eea-a64c-deac0b7a665b@infradead.org>
+ <CAJZ5v0h1CX+aTu7dFy6vB-9LM6t5J4rt7Su3qVnq1xx-BFAm=Q@mail.gmail.com>
+Content-Language: en-US
+From: Mario Limonciello <superm1@kernel.org>
+In-Reply-To: <CAJZ5v0h1CX+aTu7dFy6vB-9LM6t5J4rt7Su3qVnq1xx-BFAm=Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,42 +65,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Writing a string without delimiters (' ', '\n', '\0') to the under
-gpu_od/fan_ctrl sysfs or pp_power_profile_mode for the CUSTOM profile
-will result in a null pointer dereference.
 
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4401
----
- drivers/gpu/drm/amd/pm/amdgpu_pm.c | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/am=
-dgpu_pm.c
-index edd9895b4..39ee81085 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -1398,6 +1398,8 @@ static ssize_t amdgpu_set_pp_power_profile_mode(struc=
-t device *dev,
- =09=09=09if (ret)
- =09=09=09=09return -EINVAL;
- =09=09=09parameter_size++;
-+=09=09=09if (!tmp_str)
-+=09=09=09=09break;
- =09=09=09while (isspace(*tmp_str))
- =09=09=09=09tmp_str++;
- =09=09}
-@@ -3645,6 +3647,9 @@ static int parse_input_od_command_lines(const char *b=
-uf,
- =09=09=09return -EINVAL;
- =09=09parameter_size++;
-=20
-+=09=09if (!tmp_str)
-+=09=09=09break;
-+
- =09=09while (isspace(*tmp_str))
- =09=09=09tmp_str++;
- =09}
---=20
-2.47.2
+On 7/12/25 3:11 AM, Rafael J. Wysocki wrote:
+> On Fri, Jul 11, 2025 at 11:25 PM Randy Dunlap <rdunlap@infradead.org> wrote:
+>>
+>>
+>>
+>> On 7/11/25 2:10 AM, Stephen Rothwell wrote:
+>>> Hi all,
+>>>
+>>> Changes since 20250710:
+>>>
+>>
+>> on x86_64, when
+>> # CONFIG_SUSPEND is not set
+>> # CONFIG_HIBERNATION is not set
+>> # CONFIG_PM is not set
+>>
+>> ERROR: modpost: "pm_hibernate_is_recovering" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+>>
+>> caused by commit
+>> 530694f54dd5e ("drm/amdgpu: do not resume device in thaw for normal hibernation")
+>>
+>> Rafael, is a stub appropriate for this case?
+> 
+> pm_hibernate_is_recovering() is not supposed to be called by code that
+> does not depend on CONFIG_HIBERNATE_CALLBACKS, but a stub returning
+> false would work for this.
 
+Thanks, I just sent out a fix for this.
+
+> 
+> Mario, it would be good to fix this up in your tree.  Also, it would
+> be good to expose stuff to 0-day build testing before letting it go
+> into linux-next.  I use the bleeding-edge branch for this purpose.
+> 
+Honestly; I'm surprised that 0-day didn't raise this on either dri-devel 
+or amd-gfx.  I had expected at least one of those lists to raise this 
+over the last week of patches.
+
+Anyone know the history why neither has 0-day?
 
