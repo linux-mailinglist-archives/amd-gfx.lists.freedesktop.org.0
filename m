@@ -2,104 +2,145 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 358FDB05313
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Jul 2025 09:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA48B05198
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Jul 2025 08:18:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53C0E10E533;
-	Tue, 15 Jul 2025 07:26:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A26A10E084;
+	Tue, 15 Jul 2025 06:18:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="Lnt9gkmO";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="hD9nCXPB";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="d1pyEmFq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 553 seconds by postgrey-1.36 at gabe;
- Mon, 14 Jul 2025 15:11:09 UTC
-Received: from fhigh-b3-smtp.messagingengine.com
- (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 965BD10E4AF
- for <amd-gfx@lists.freedesktop.org>; Mon, 14 Jul 2025 15:11:09 +0000 (UTC)
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal
- [10.202.2.45])
- by mailfhigh.stl.internal (Postfix) with ESMTP id AA1F77A030E;
- Mon, 14 Jul 2025 11:01:55 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
- by phl-compute-05.internal (MEProxy); Mon, 14 Jul 2025 11:01:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1752505315;
- x=1752591715; bh=+1B/AXLCX2MnzgZT1P/hZnnKS44NBY8AHKmKaJUNjHA=; b=
- Lnt9gkmOg7Xkq89lXSDdqF6u/n5n+KP+kWpxSKsa0W5EyJFy4hdiOGa1JbYwumSm
- 9IkPXtrZTsGYg9ZyJnTrP8MTuiN60IAOssZ0GOkp1W8ZDls1nuRGdab2ZWZJNLWd
- 0XmoTJsl98lONw+/oXzvM87Zc7X07ubenQevj2gP6XYArab8E8xeH4WyAZIXIyhs
- iwK7BCo35DnzvnuCWMhpEaYoG/p10glsfdQPObSyc11IiRNAPifVCRX3ptturnFu
- q7LqYuLZVSaJhysaSJkedd1/cYw3HF1j5fL4OE4QbygtrDt6R3EstAeBgm6UEFvd
- 416FY0+G6ebBi2UPHPXWqA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752505315; x=
- 1752591715; bh=+1B/AXLCX2MnzgZT1P/hZnnKS44NBY8AHKmKaJUNjHA=; b=h
- D9nCXPBNwV9yhWnhYz6+BE0yJa7wDhKiwsVUafySXFes/USmMAvijahCEIZEVKAk
- ciolENnVd8dGzsMKHr7I0eRdseKf/gLKDyMFkZyzuUDKE9EUqdeleMGxXNq9Brwk
- qw8bNJ6CROfTtLX5fu7ygZwS/iSxEfztmpDiEpId8J5a6uo6mJY6gcdJZSa8RA+q
- UZBUWwNUf3ExLjDaIgl4h2fmQpAkLqVJghoYYvwstMKiOH1oyHmPvUVQI5YZkYA0
- DVktlWzFKV/XklDEuyWngo11r8bXH3mdQrP9GpUmuLeAP54uThchLcSlXQWyc/Fs
- oXpKwIdN7t7vYBYKgZymg==
-X-ME-Sender: <xms:4xt1aBeevDjtc7QjeN4MMMMMtw1AoPdpdcorr2416lREOt8UwlJR9g>
- <xme:4xt1aPMVgpUS4RUeiApBtEvcTf1a6GlpX0A0Fng9TOXq7przNMFz1PEwGpSjzr9S0
- 6vrv6wlFwJlhGmI3y0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdehvddviecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
- ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
- hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
- uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
- hnpeefhfehteffuddvgfeigefhjeetvdekteekjeefkeekleffjeetvedvgefhhfeihfen
- ucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenuc
- frrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghp
- thhtohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrlhgvgigrnhguvg
- hrrdguvghutghhvghrsegrmhgurdgtohhmpdhrtghpthhtoheptghhrhhishhtihgrnhdr
- khhovghnihhgsegrmhgurdgtohhmpdhrtghpthhtohepghhuohhqihhnghdriihhrghngh
- esrghmugdrtghomhdprhgtphhtthhopehlihhjohdrlhgriigrrhesrghmugdrtghomhdp
- rhgtphhtthhopehmrghrvghkrdholhhsrghksegrmhgurdgtohhmpdhrtghpthhtohepmh
- grrhhiohdrlhhimhhonhgtihgvlhhlohesrghmugdrtghomhdprhgtphhtthhopehsihhm
- ohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtg
- homhdprhgtphhtthhopegrrhhnugeskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:4xt1aCNBxZskL_8p4yOUexz9__kVpRRrAHDhPRWOc2m80NmDexf9fQ>
- <xmx:4xt1aG5Ptm7zHvvRneYE3WgmmWDd9iyDkI53lDsudPnV9XGaR8RlVA>
- <xmx:4xt1aGZF0vG5_euE8xNc-dfI7F1ESS8G9iCpgOv-dZtW4vDMMS22LQ>
- <xmx:4xt1aDc70-fnx9WR5_cHqte56g2r-WIzq94_lEA4c91dSXpRoVDjOQ>
- <xmx:4xt1aKCQIt1k0BO0KgbnfxhA-z9ZxcBWdQjU_K1r_--Fq3wFuU2SmcMk>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 06F92700069; Mon, 14 Jul 2025 11:01:55 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2088.outbound.protection.outlook.com [40.107.94.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E7A810E084
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Jul 2025 06:18:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TlI+4IhPKsZapP4hmVJMsG5mlcNDJt9hb1M/ADpTyidSVp8NnflJzJrcbqhTemYvRpdBFU7uUZIYwBJY6nuCkCR8gaAtIyOcqsgDKCAvSJKdjiTXBMoDa6GqI83MEQmc7sbicsXu/Z2voEPNuuSFb9l5xnchN4/3dbzzDSVqzzvGW9/8NcjHMcfVmkw66uVMJzVbFcqYjY7LyJfOthH1q4lZEJe1VsHbYE71LWv3xAzuqsmHs2nfnN8q7Z0TgCnuowx2LWURdLceEggJTXVdYm3ag6jHPXr7f4b7BM3ZGn7Q45mAMlNGR8fR2+HdfiASC/fQbSWujlGsXokpoMdR0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CLlnQEwBu3+wV1oPhF6uFYDVlt3clcHnHHJ6oKwm+fE=;
+ b=tYlMHWpg/e0QDXD/5nNfryJwvbYpepppOnqyvoAL6T52NwvbygRACMsihcfzSA9LDWQHeff38VT9CRC3x3Tvtgls5vnjS4zMMIX/r6hsJunMRlANtvLP0RoUXesfbhGSVbdro1iZktQBWQ7//1caMn9Y+wKzWWv/BImT4ghYFGaFGq91Jdt+LwnxtY2aMZR5xbhNy0YN0lCSISVUx0gqPTbFz/opeFzH65diOk9wYfJvevOv8eidmvBLaOzArsebUcdqM2vElwGg8i/luQjBWLWe//mez+zZ3OrlxtDnunkn9z7xhdiw70FQaK71VmRnYcjEk7D2xBgL/E7YjmUomA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CLlnQEwBu3+wV1oPhF6uFYDVlt3clcHnHHJ6oKwm+fE=;
+ b=d1pyEmFqBt3OcxzlmBOv22k1rx97zeEGxmnu5QnDlp4IjeefQAX0jnTxHy8mWCD9gk9swzEn0bN7+i1ezSooDGdm2UwQZR62msM8zGiA4FiW68zrPW+qVIHd02DYQL7NjVtZ6ib4oKZ6Eh/y7yos05RWqZGAaGtTjOzhIFPTiNI=
+Received: from DS7PR12MB6071.namprd12.prod.outlook.com (2603:10b6:8:9d::11) by
+ CH3PR12MB8972.namprd12.prod.outlook.com (2603:10b6:610:169::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Tue, 15 Jul
+ 2025 06:17:58 +0000
+Received: from DS7PR12MB6071.namprd12.prod.outlook.com
+ ([fe80::be26:4c33:76bc:e1b]) by DS7PR12MB6071.namprd12.prod.outlook.com
+ ([fe80::be26:4c33:76bc:e1b%5]) with mapi id 15.20.8922.025; Tue, 15 Jul 2025
+ 06:17:58 +0000
+From: "Kamal, Asad" <Asad.Kamal@amd.com>
+To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>
+Subject: RE: [PATCH] drm/amd/pm: Get max/min frequency on aldebaran VF
+Thread-Topic: [PATCH] drm/amd/pm: Get max/min frequency on aldebaran VF
+Thread-Index: AQHb9Te/+aEnZYQ9xUS9oF92x/Bb5LQytfMQ
+Date: Tue, 15 Jul 2025 06:17:58 +0000
+Message-ID: <DS7PR12MB60718CDAE9F88057AC358FB28E57A@DS7PR12MB6071.namprd12.prod.outlook.com>
+References: <20250715032230.1531865-1-lijo.lazar@amd.com>
+In-Reply-To: <20250715032230.1531865-1-lijo.lazar@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-07-15T06:17:51.0000000Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR12MB6071:EE_|CH3PR12MB8972:EE_
+x-ms-office365-filtering-correlation-id: 7b84cbab-21bd-4748-afe6-08ddc367581b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?YG2tRsrsO66eNZvFD60P5zpgFpsEUwlsWOyhcVe7NZ82Jc+OdaUTvdfssIdV?=
+ =?us-ascii?Q?MoeRo5JFPwdxNETkSGjR8m1VVbZqoVUAgDLxqfJo03IIvnJQw8/654X2OV7S?=
+ =?us-ascii?Q?spJIRPh0yfmknbxHfXtgECcOrg/+IkZJwDbLMh9mOgFWtubR8j+g1LyIqUGg?=
+ =?us-ascii?Q?Vw7vUkNAcGTmKsVJ6Rb+fccImCV5u9KAeoNqq5jMgxMkq8I8uCXUwqzmHIat?=
+ =?us-ascii?Q?xS9DnoZxv/Uhrc7E5IakNGS045GIvv0FTrCVGwYYG9Mns+vU6Ihqg9DsusIA?=
+ =?us-ascii?Q?Seb9o8FmBeXov0aA/9Awg5mb4aqX9ak+QE99jWlA31zBEdhXlcQDKCqBOVWb?=
+ =?us-ascii?Q?TPFcjQxzE5z05BUhsuiRCf+jt3ahDAVm8CaLBp/UcalYQdh37rbXyac8LqE4?=
+ =?us-ascii?Q?0GJYI2Gxrdr3GyGsO45duQtV3zNRdz4gZlVv5ntdq9vDpC0l3hg3Da3ih9CM?=
+ =?us-ascii?Q?7Hs5F/q/batWNu9aJxWsFlWHhOQJYbztv1dz8VT/4dlU/05clkEMarOo4Gqf?=
+ =?us-ascii?Q?PYnAIanzDvhqUaoV9S/Bke24EQfHLI5hbOp7np8AYo3iZTzlLr658N/MYMdc?=
+ =?us-ascii?Q?quhRm/5j0ERcGbcFgaxS4AV01+gYewoEIgtoECvPpCFtZeMO7Vrc96IwIPkq?=
+ =?us-ascii?Q?gNSCUTAG+yoXH2T7zT9o622rqaCCjYak2kTL3bhu3eYtOPKY6wdDM4PzknUo?=
+ =?us-ascii?Q?uaq/24UiSHK5F/PlpBjkxRLGgtVX9tVk+zU3NhgRE9FqHHOyxvujW8JgbGA3?=
+ =?us-ascii?Q?mw1gZZB1CkgBQu7IbG/XfPpFCg3wUhziN4lRphoG0tHgpYasb//Uy5kfGiZZ?=
+ =?us-ascii?Q?gwlmjDMztvsjU8nSCV4dcHX0SPkppi24Y3i28PLNDtiOX6ekrnhKFZTs4d3u?=
+ =?us-ascii?Q?JxuDYHk9l3LkCCymdRXTF71dPVUlKpgrKkYWKcFj6AHRO8V1MKtIP+jT6qwZ?=
+ =?us-ascii?Q?25oZsKdy+uGB4jNQgYJNbOJYYksZqotkmHUk8k+PVtUNjTcPWm8RLai7d0jv?=
+ =?us-ascii?Q?a9R9bHQiqajvGYmXO/I/L29W42KCJfUtwzipXerGXfpCZ4lU+ctIoQPrt4gd?=
+ =?us-ascii?Q?JsynpUK2nn+G3xdCGDBWKNNcYLTi+41DDN+gbGcyhbdnSphJ2Zyn/4i4mmSm?=
+ =?us-ascii?Q?MtXOmmcYSPxUkCd1Cg7khjkROZp7bjtmphH55QQqM7tGdMHEAPoCSJFAi8Cc?=
+ =?us-ascii?Q?XKls6eeuqMUKzdiSviSPLrJwwC/lvJip0fw5ikfyH96MUVAlQAZz+sxC3G1h?=
+ =?us-ascii?Q?I5Iydc03WgMube6Qa2bCUESocdLKI2FAVFb4kG87M3rtoYlE4OiESqaM1GFK?=
+ =?us-ascii?Q?2K8gTfcR4hA4Tpm173o+XMwNwjsp24vZWL+ZPiS5Gj2EpfdLxTfENQse82Za?=
+ =?us-ascii?Q?xaavmNROHtLF9Di2y8VeU1Q7Wfh8Gh84x7Iwpp3XP1Y6cZrH/GN3npvBujx+?=
+ =?us-ascii?Q?UR3qZUw0VL1ckUY89NkWU/lACIQOfqKE8wO8cog2JtzIf5FfWxLpNw=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR12MB6071.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?rZccf0W8gGkWgFmBYYlOAKETRzKi0fNiKRyUtu2Dp2EWrRVevFPYjG532qrj?=
+ =?us-ascii?Q?B8BeJchVdN6g7sMTMZIbTQCDdrrN6qXJetpF75W3H7mdNZWFmFdcZQRYdB7D?=
+ =?us-ascii?Q?UQ4syi5WoQ9kiymgtR/dbJvpp7CPUV/16zR+0kH1IxIfc9fUqXVqQSAUpkVG?=
+ =?us-ascii?Q?C7+xEA9Ok1ZEw+N4tnyDrdB4jWiGoChzeWZVaEXviWbfJOOn3VBlyhLYyMWJ?=
+ =?us-ascii?Q?Uy83KSR8Q+5MC6dLKYBiDHLDvcj1xHHCTOmE3+LwSLlJHSrP5MdXbNdSI8jo?=
+ =?us-ascii?Q?6Oq6f1gkcry1jq5UjFRa01EaCu1EGaAdpOYtddj/c0QJsLL0VZ8j8EzO0VXs?=
+ =?us-ascii?Q?r2/p3S368By7Rp10SzyWMGe0mf8sUtNOhO4RkEZFm3uTtIf88CrEbrh3jTYG?=
+ =?us-ascii?Q?kzElDI5QLgu1Hf1aP+JMbvoWAOK5rLvWiZhh8scCfVFB9o26u+hfA+ZzEJ/c?=
+ =?us-ascii?Q?cWNilzORnS7YUbAMyZHd2gDRlYtRPRHYFCX5VNsXUuP9yFMl7QM/qwlgVcK5?=
+ =?us-ascii?Q?X5j1BikYD3xJK+l8g1L5tR7rrmUc10MEsEcSoesObUqxtJRpBLu3UvjbDXKB?=
+ =?us-ascii?Q?oQ4wf9SPhoUVZEAIPwTeRVJ+YZif+lNKev3bVLKOpD5yFuyYwXlgPs4fnAnz?=
+ =?us-ascii?Q?1THFjzIxIpLgWvM8oypz+1ALkve8gKRcmUdtwoqFj5kIcRsFrnazOPQ2QHz7?=
+ =?us-ascii?Q?nrlfW0cFh9h5AyU2lW5EA8xUGT4Uz2GB+2TvUNpo9IVtXPuSrGqDVXXRr7OC?=
+ =?us-ascii?Q?UaHyI0zgTe4s/8WJ+sY7S1x2/HNnp5yeU7chrDlRZ6VMUGv9CJB3y/TOKDmg?=
+ =?us-ascii?Q?E9xTbUsY282pzDQy+tpUXTk5DuSL23cJYdmEuLB5xKsFMeTBddx3Y0lwk9aV?=
+ =?us-ascii?Q?QVe7AflwXDIzJU0EfodahaNpoG3lZS3lXXXn0knOnuDBa9+W8QubJ1gqoNVG?=
+ =?us-ascii?Q?BVUvSq7oI+nNS0c7Y1BAw7WLWqKbqVWUcmI9+wIksx9U2PF2F4eHlmBcNqZo?=
+ =?us-ascii?Q?giX+mfXAXDiV9QRrP8GOwnU/qOS7W+aTDfzcMSqA1DZEiVnt7V1GY6D5BHi+?=
+ =?us-ascii?Q?ENfs37FPHp9im1BMaNYCp25SciN71AACG/ot+6/nWFML+VRNAGzD0FDXcm5L?=
+ =?us-ascii?Q?ajWO35CQne9jY0Y/ErIRzPZfSUnTTwcWKrHyYjpqB7S2XVmD2o0DjZ2GT8Zj?=
+ =?us-ascii?Q?3lgjyI5/bYPzfZi6yGKNeaUP1NEz7F+YUw2Mg/0dAHaHc1lEdyzRGQQJV5Pb?=
+ =?us-ascii?Q?6eUl33/orvk8DLQy+W6JCJsJh2eM23LpAX+rsvQEN+dx0u48ZMtNY2ek+Zns?=
+ =?us-ascii?Q?KoobCxcwdg58avts/qOAq83GDocfLSt4Bp9kpZxQ7+f9sJmtu8uwu7IhJlSP?=
+ =?us-ascii?Q?dyldLBmzNjDQn5Kp+aISDgmz1NCPgabDIjzzChku2tXsW+dG6beqKN7Hb6F7?=
+ =?us-ascii?Q?7YgRmk8dkJ+fWwoOXyjFkzCrTc+3ySpu++NS0uQ863YJ8rKtUTRG7QZZHOSB?=
+ =?us-ascii?Q?94lFlkNAKrwfzU6Fv39AZu2kTZdA0hOWVk92HZLzOztQb7phXFlZADWM0q2+?=
+ =?us-ascii?Q?fpkSWHPt9vS/ocbj0l8=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-ThreadId: T6e7c1da684903917
-Date: Mon, 14 Jul 2025 17:01:34 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Mario Limonciello" <Mario.Limonciello@amd.com>,
- "Arnd Bergmann" <arnd@kernel.org>,
- "Alex Deucher" <Alexander.Deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <Christian.Koenig@amd.com>,
- "Dave Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Lijo Lazar" <Lijo.Lazar@amd.com>,
- "Zhang, GuoQing (Sam)" <GuoQing.Zhang@amd.com>
-Cc: "Olsak, Marek" <Marek.Olsak@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Message-Id: <724b4600-d983-434a-acf6-68cd87b04636@app.fastmail.com>
-In-Reply-To: <db654178-a6d7-416c-bab6-b494a7c118ce@amd.com>
-References: <20250714081635.4071570-1-arnd@kernel.org>
- <db654178-a6d7-416c-bab6-b494a7c118ce@amd.com>
-Subject: Re: [PATCH] drm/amdgpu: fix link error for !PM_SLEEP
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 15 Jul 2025 07:26:58 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB6071.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b84cbab-21bd-4748-afe6-08ddc367581b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2025 06:17:58.3417 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0bj6zHzgt4pP9QsaTsUZbU5jUJujO7SlCyYPqphfdBswhVfqUK4W7Y+dMmS3CUXw3PK2IGm3MHJiQ48l0iyGjA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8972
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,31 +155,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 14, 2025, at 16:59, Limonciello, Mario wrote:
-> On 7/14/25 3:16 AM, Arnd Bergmann wrote:
->> From: Arnd Bergmann <arnd@arndb.de>
->> 
->> When power management is not enabled in the kernel build, the newly
->> added hibernation changes cause a link failure:
->> 
->> arm-linux-gnueabi-ld: drivers/gpu/drm/amd/amdgpu/amdgpu_drv.o: in function `amdgpu_pmops_thaw':
->> amdgpu_drv.c:(.text+0x1514): undefined reference to `pm_hibernate_is_recovering'
->> 
->> Make the power management code in this driver conditional on
->> CONFIG_PM and CONFIG_PM_SLEEP
->> 
->> Fixes: 530694f54dd5 ("drm/amdgpu: do not resume device in thaw for normal hibernation")
->> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
->
-> We're going to fix it using this stub instead.
->
-> https://lore.kernel.org/linux-pm/20250712233715.821424-1-superm1@kernel.org/
->
-> It's in drm-misc-next as of this weekend and it should show up in 
-> linux-next in the next day or two.
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-That patch makes sense as well, but I think mine is useful as an
-improvement even if it doesn't address a link failure but only
-reduces the object size by reducing the amount of dead code.
+Reviewed-by: Asad Kamal <asad.kamal@amd.com>
 
-      Arnd
+Thanks & Regards
+Asad
+
+-----Original Message-----
+From: Lazar, Lijo <Lijo.Lazar@amd.com>
+Sent: Tuesday, July 15, 2025 8:53 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Deucher, Alexander <Alexander.D=
+eucher@amd.com>; Kamal, Asad <Asad.Kamal@amd.com>
+Subject: [PATCH] drm/amd/pm: Get max/min frequency on aldebaran VF
+
+PMFW interface to get max/min frequencies is not available on aldebaran VFs=
+. Use data, if available, in DPM tables to get the max/min frequencies.
+
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+---
+ .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 57 ++++++++++++++++++-
+ 1 file changed, 56 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/g=
+pu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+index 9a61cf904275..b067147b7c41 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+@@ -342,6 +342,61 @@ static int aldebaran_get_allowed_feature_mask(struct s=
+mu_context *smu,
+        return 0;
+ }
+
++static int aldebaran_get_dpm_ultimate_freq(struct smu_context *smu,
++                                          enum smu_clk_type clk_type,
++                                          uint32_t *min, uint32_t *max)
++{
++       struct smu_13_0_dpm_context *dpm_context =3D smu->smu_dpm.dpm_conte=
+xt;
++       struct smu_13_0_dpm_table *dpm_table;
++       uint32_t min_clk, max_clk;
++
++       if (amdgpu_sriov_vf(smu->adev)) {
++               switch (clk_type) {
++               case SMU_MCLK:
++               case SMU_UCLK:
++                       dpm_table =3D &dpm_context->dpm_tables.uclk_table;
++                       break;
++               case SMU_GFXCLK:
++               case SMU_SCLK:
++                       dpm_table =3D &dpm_context->dpm_tables.gfx_table;
++                       break;
++               case SMU_SOCCLK:
++                       dpm_table =3D &dpm_context->dpm_tables.soc_table;
++                       break;
++               case SMU_FCLK:
++                       dpm_table =3D &dpm_context->dpm_tables.fclk_table;
++                       break;
++               case SMU_VCLK:
++                       dpm_table =3D &dpm_context->dpm_tables.vclk_table;
++                       break;
++               case SMU_DCLK:
++                       dpm_table =3D &dpm_context->dpm_tables.dclk_table;
++                       break;
++               default:
++                       return -EINVAL;
++               }
++
++               min_clk =3D dpm_table->min;
++               max_clk =3D dpm_table->max;
++
++               if (min) {
++                       if (!min_clk)
++                               return -ENODATA;
++                       *min =3D min_clk;
++               }
++               if (max) {
++                       if (!max_clk)
++                               return -ENODATA;
++                       *max =3D max_clk;
++               }
++
++       } else {
++               return smu_v13_0_get_dpm_ultimate_freq(smu, clk_type, min, =
+max);
++       }
++
++       return 0;
++}
++
+ static int aldebaran_set_default_dpm_table(struct smu_context *smu)  {
+        struct smu_13_0_dpm_context *dpm_context =3D smu->smu_dpm.dpm_conte=
+xt; @@ -2081,7 +2136,7 @@ static const struct pptable_funcs aldebaran_ppt_f=
+uncs =3D {
+        .set_azalia_d3_pme =3D smu_v13_0_set_azalia_d3_pme,
+        .get_max_sustainable_clocks_by_dc =3D smu_v13_0_get_max_sustainable=
+_clocks_by_dc,
+        .get_bamaco_support =3D aldebaran_get_bamaco_support,
+-       .get_dpm_ultimate_freq =3D smu_v13_0_get_dpm_ultimate_freq,
++       .get_dpm_ultimate_freq =3D aldebaran_get_dpm_ultimate_freq,
+        .set_soft_freq_limited_range =3D aldebaran_set_soft_freq_limited_ra=
+nge,
+        .od_edit_dpm_table =3D aldebaran_usr_edit_dpm_table,
+        .set_df_cstate =3D aldebaran_set_df_cstate,
+--
+2.49.0
+
