@@ -1,152 +1,146 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA68B08534
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Jul 2025 08:43:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4AEB0871C
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Jul 2025 09:40:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4027810E6B6;
-	Thu, 17 Jul 2025 06:42:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBC5C10E72A;
+	Thu, 17 Jul 2025 07:40:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vPHxIYgt";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1HMMY7Pi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2053.outbound.protection.outlook.com [40.107.100.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE5810E6B6
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Jul 2025 06:42:47 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2071.outbound.protection.outlook.com [40.107.223.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D533E10E72A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Jul 2025 07:40:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e0Y9yhkrhVUbvUOLuco+FNeZiq4X4ms2bgat5ZGKLr+r8xHe4qM1qFJngkZFjk/C4JR5xdoRF9JAkSrqIohe0NeTrK25xR2aHVaKhRdirhcK4jW5jgch9ORyaocGcNbeJ9mwM+PnXbHdhcaRn1RAxWr2MFG4fxJRB0IniXhClOA8yCHBL+7jnEUkI3eEgjAdm3l3X65Lcof4Yv1LXlWWuQDkVJ5fQ7bWRL9gM8XH8gTooQ85OZlN/y259Yi4tMfFcixmgWJr1TWYeNZoe+KFj4+8gKk2BIUUVSq6aH5wpj/kXV1XYStOVJCoy7aM4PN1pkoJr1TL5SoYbNskSuGkwg==
+ b=fI+gfzNYqbbmy9nieGRCRktnjyv1ypzdL+ePD0m7YOroCwVwQLtWaSCbAN36mQL4MMW7vt8UQ3ZOmck/lwZBIcG1oaBiNm1lCfyo6KQVFxgGnjOOmdj51eSPWBXWpG1Q12vDTFCKg1kF61rE8fy0AE5jzNag+AD9fUaT+Yw5ztEZbDA3rfz7R6Di6PQb3tbNHW55D8ptkCaZolV7OYL+DBfo6lyiPxQ9yvrhvTGCj/cfHT29V0PcwRFiCBHDFZk/6NuUdnRnb9E62cRGDDaoeLgamScgRGyCOHDAE+TMYFV1AOl2McRJ/JtAk0zAHI6OmiHJ/bUvPWWfJARWasep3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HxsH+qo5P78NY7Deos9lEkO8AQkP9NTXEBNQOeyCdEQ=;
- b=Q6eYVc+sZKLKKFH2M36/PElGj6aqVHbx7vDbHrdh3+jCNxqXjYZpyaZikbVN5aMKJ1SOasMgmViVCkkqdJYFRrFqei1J6ZggWXO0EWnvFzuYHwzArxVJGQ7TFOQ4v8HX+s/+TpFOPxDddrdERxjeNcIpVBh0yEojZacQhYMDgMS2kNsVgCQTZqYyKy1rrSo3ExhzoIOk9VD7FmwbCBcNOGfed4rAgwpDK2a5PZUxNXZRnaMYyQrF+7WpwlQi/Wl6Yt4qp7LEdr0b+76PeGS6LuqCnLLhbZ/NTM/RyhUlRrR73obA5rNfgGOz4qn+v99w3BbxMacrgMh8A25A//SeRQ==
+ bh=vURK8FWp3hinzAZFN5x3jyA6B+vfI06bmliHpsDvpNE=;
+ b=E9urMB2tpwz7GpSVxCFO+Neps6bmV5XP97r8pV1+h1CtgWTtA35ajkFn9exFupLkhsKrkJUPVuTE45hAULjMJkrntcSSORMy+OfXq2xLayTOlEovZ7IIo6NmV3E1bxxIsTp7Y9jjHk1Lyiy2tcS3m4jBMWl6yZlzIjDWn0+Vi/NKZtso/lJwt/bbp4Wx3iWi7rj6lFpT+pFg+DgjS+quhouHbRblirEsJ+qkal3yzEC9x8flOtfzRkfXFb8OVtDEWjJdjLrIXE9a4f6enDLK0trV46oODmbtulLIxtx9aBGBYTxOnmPzxtIJvSpcM/E0vZ+NxefARv9EMYnR9n6rug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HxsH+qo5P78NY7Deos9lEkO8AQkP9NTXEBNQOeyCdEQ=;
- b=vPHxIYgtBTgvpwg5lCy2gKd3CXtsUAkfeO0kXJpqezk2zznJtCITJnU6QqmekZvdcapbvKfDceOins7/VgDSGJDWwpo5KuRiRKNNDEf8Gfgg/ikc4ISdxth9ZPSihwLXm64Rd6NjS5Wrmqg3kpGtGN1GC0ZJhVjhypBJA6siMJc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB7820.namprd12.prod.outlook.com (2603:10b6:510:268::8)
- by DM4PR12MB5889.namprd12.prod.outlook.com (2603:10b6:8:65::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.19; Thu, 17 Jul
- 2025 06:42:43 +0000
-Received: from PH7PR12MB7820.namprd12.prod.outlook.com
- ([fe80::7606:59:8d0d:6d4c]) by PH7PR12MB7820.namprd12.prod.outlook.com
- ([fe80::7606:59:8d0d:6d4c%4]) with mapi id 15.20.8880.021; Thu, 17 Jul 2025
- 06:42:43 +0000
-Message-ID: <c3943b8c-c194-4fb4-a5fd-0730e111c15a@amd.com>
-Date: Thu, 17 Jul 2025 12:12:38 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/amdgpu: move reset support type checks into the
- caller
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20250715160051.533747-1-alexander.deucher@amd.com>
- <20250715160051.533747-2-alexander.deucher@amd.com>
+ bh=vURK8FWp3hinzAZFN5x3jyA6B+vfI06bmliHpsDvpNE=;
+ b=1HMMY7Pimc3Euc+/aUwTKa6fm9A8Ywiio/byqJ3HvbqvW81saYkk+bDa0e3juGH4Vp8vyyptQ2hR8VcH4AF2NZ3en7QvttX9AsiNnd998U3/bOL9lgykolpZompAlnaVXS046xPMKRQ/xVM/loGYvQceTf5Ps1Hlpb0BAHF68fQ=
+Received: from CH2PR12MB4215.namprd12.prod.outlook.com (2603:10b6:610:ab::24)
+ by MW3PR12MB4394.namprd12.prod.outlook.com (2603:10b6:303:54::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.39; Thu, 17 Jul
+ 2025 07:40:08 +0000
+Received: from CH2PR12MB4215.namprd12.prod.outlook.com
+ ([fe80::b053:488f:853d:892a]) by CH2PR12MB4215.namprd12.prod.outlook.com
+ ([fe80::b053:488f:853d:892a%5]) with mapi id 15.20.8922.037; Thu, 17 Jul 2025
+ 07:40:08 +0000
+From: "Chai, Thomas" <YiPeng.Chai@amd.com>
+To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: add command to check address validity
+Thread-Topic: [PATCH] drm/amdgpu: add command to check address validity
+Thread-Index: AQHb9h25Gr2LXt8XNkyYxbA9UZyxp7Q13wuAgAAQEhA=
+Date: Thu, 17 Jul 2025 07:40:07 +0000
+Message-ID: <CH2PR12MB421543C50A14F0B85C5C7BAAFC51A@CH2PR12MB4215.namprd12.prod.outlook.com>
+References: <20250716064823.1272183-1-YiPeng.Chai@amd.com>
+ <PH7PR12MB8796D356664839C1D5445032B051A@PH7PR12MB8796.namprd12.prod.outlook.com>
+In-Reply-To: <PH7PR12MB8796D356664839C1D5445032B051A@PH7PR12MB8796.namprd12.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20250715160051.533747-2-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4P287CA0120.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:2b0::6) To PH7PR12MB7820.namprd12.prod.outlook.com
- (2603:10b6:510:268::8)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-07-17T06:39:00.0000000Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH2PR12MB4215:EE_|MW3PR12MB4394:EE_
+x-ms-office365-filtering-correlation-id: 49e23f41-945f-4fa3-3367-08ddc5052743
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?LmmYw3Hjah2eUjzEvcPF2IOe7ddyr+u9txmouceKOZbEfDB8gvtn/cNWWVlL?=
+ =?us-ascii?Q?f3NFMBZaqU2MnZ7khOx6y0NaEvxJXCdImZcNQ7aXOyOm9F0h82c/YzZAwTbu?=
+ =?us-ascii?Q?P5mQQnCqTQGZ2cWZK2CGc+p/HmW1H1qWEgX2aLuK+2p0Ga2x7zZ5SSWz+g4d?=
+ =?us-ascii?Q?nmJmm9GkcrInD1AfRRPbB+CPE2xmfBG5TP9rnu3s+cJ9YG/GJtwHGvPiL0dH?=
+ =?us-ascii?Q?GVy2uJ6YsVj+Qg1Ky/s43vrmmap11aYIelkqKE34CI43HsbVfMC69mdutxZh?=
+ =?us-ascii?Q?HiET3ThKA6LnSusr8L3SFvRvGwk+QTMFxKTKC616FqimkDplEkEkZQjdRHJT?=
+ =?us-ascii?Q?7sf/FXQZ6tZkII6Bg3PZpkbRtKtsZe3kWkg5qEnZENF/DFAYG4VGmZWcTux4?=
+ =?us-ascii?Q?Hyt8kt3Z+a5mVu/YdQKUD8+M7zH6FFq46LncyO79F/zYTC9cqMNxPRo+tMgs?=
+ =?us-ascii?Q?wMjJ0aHZvrmwarJmOIOFC0D2XrjQJrf40Rc7MfSyDuMJwGCm+I4fHefqP2tv?=
+ =?us-ascii?Q?E2TBEmhnkzjQrbtjf1sIMCmbzvAZ8Ai8G39hYFk+uYigcakMB7CXv5meA/zQ?=
+ =?us-ascii?Q?5VmZOTdLXeyLRRj/yWiKf5pE1l7IJVeXCV259TDRnJJAA9xwSpmqvnucpaEU?=
+ =?us-ascii?Q?tRTDGeDR0e5MDYz1Ml3dDBCbijZNz439pgxOSHmlQpzazowBXAFN6+P82eGq?=
+ =?us-ascii?Q?82+c12jxj59n3YsND7Z8Y9a/sq22D0YZt/lyoOyTX943bAHXqq1Frmani/vh?=
+ =?us-ascii?Q?UVz3YXrxiNIJ4DY2Jcimue4kwm26VlQ4EkZ4hZA9t58/7jaDKw/xjhk3rwdV?=
+ =?us-ascii?Q?DVKtTuBapjPP2plzory+fERpjvZ5J8REMeffKp0MCe2A78soQWmN19fXDWlP?=
+ =?us-ascii?Q?z2MSNdQg6VnJAgCYC6pB3YmZ9FlswMRu0BCvSJC++uYR/tF0m0diU2ypHMDO?=
+ =?us-ascii?Q?n9e163KK6Hcfia7OfHhncygnIBuRFljmB4ySJ3W3c0BoBEvdaVcnP5K/+a0J?=
+ =?us-ascii?Q?t2K/2g5MdwJF5lD54h2N6uTDR4Cvsq2xO2yaIpeQ1IDRjTcvypmuRViZVZtk?=
+ =?us-ascii?Q?PYH7480dnuMDmxUxNOECzNpkt5I5tLDoI0NXdsBF7u1se9VHuBsam3xp3If+?=
+ =?us-ascii?Q?Z/W9JwR/eudtHDB1dZkqjXjNOz+ZYc0jMj6o15P5bnPWqSU17lxl461mvBJg?=
+ =?us-ascii?Q?Xuc/5kuBXarRhayuhY+594aKYR3DzKrosPAq7f+umWFbhT8OT+Pof0VxV8dG?=
+ =?us-ascii?Q?OJw4C70dbai46nD1+KQbiwRNiPZ25Y9/+Bw3m7Jrz2RAix/DE17p7SxxQQFj?=
+ =?us-ascii?Q?nCT3qqdZIOSa4g0lHbUqjpGZiPyoNynVxnqnhn0mQ8ZuPvgbbwJ7ad/Ouu7F?=
+ =?us-ascii?Q?BLV+Hqjcp/Z4yq/v4WOsDXxltM6tqfw8QrDafBaIrOrVHA01BZDlu8A7YFrB?=
+ =?us-ascii?Q?Ae+LQfDpeKLe7NmwixAORNKguj0LjgEGfOaa4EPOUmSJs/5atv70nA=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB4215.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?L4E/GpNtbVNj94BqFor5YbLW+VjvYi0sBWoOl4YgJ+NXITZYYyVcUIdaWy+s?=
+ =?us-ascii?Q?1hOBjtxm6xtDZaf3KE9yTddQDgVdVN27T1T8VdZ3WvrBZyzRk+xqyy0eXLKq?=
+ =?us-ascii?Q?/VDqNjZUBpk36sBhz720rZ/9M8JAdFK7FFuTP/5WkrHZ01lA+IIC4Cc4PfKW?=
+ =?us-ascii?Q?pZpXTXi3bRsunInC4F54QV294Hhdc6ucujOYugueuV2D5qxq/ysMLyctHT92?=
+ =?us-ascii?Q?0uzLpxfttMyLyV0i0MQV1hSK1clvZMhQDFOKktCtbcvq5cnNW07kvBOFIclv?=
+ =?us-ascii?Q?viIGXr4liW9SeGqkk1lh5NRd8jQRMh/SrDIkhJwJ+qzjsA3VsObdf8uSNpD0?=
+ =?us-ascii?Q?gJFHlClAoScew/24IyXySn2aALsTExSC3CdB85d0f0uD1gPoJegOVqgBHEAU?=
+ =?us-ascii?Q?2eq2bXXVRIPlbIpZUSZOZg1kfDFHISiSsHoQIlKBzGWM8IPFxzvg31IK5ER0?=
+ =?us-ascii?Q?mAVzXhOgY1FpG9QsLjvHwNVUUcZGILl/R9THu/T1t5XZje4z6y3kVDJ8pG9v?=
+ =?us-ascii?Q?67HK9eRRqaiBlmQ38LfZrwteVT3hlzoG3iSg/paMzlZRsEqhT4mZM9TD6TzZ?=
+ =?us-ascii?Q?CyEAD8K+2OPmOHc6lK2hnaGqtanukjdyJBggPOHUcZM26jLkTlnGmwRwfYmz?=
+ =?us-ascii?Q?pHQxLXzb+b5AvthOKLkPBnGyw7OGTPgb6rdh3HY/QaNQUdGmNsYygptTvse0?=
+ =?us-ascii?Q?jcngzp3eMZU0RtOc6b5MSJFxQ4mM10EtKhOt+wacYTVF3WX7uI49VEVYM60V?=
+ =?us-ascii?Q?Cagy8aM65qSxvw/VVi5gyreKxqzW1D0BQ6vEO4BeDBg/x8a+R5taizwoCnqS?=
+ =?us-ascii?Q?NQxo17KSTtmyV9HJqad4rbvsN9Z0OBVwx0Eis655vkfbdUOjGHvUgWmq1w1y?=
+ =?us-ascii?Q?XGjMs3tJMKG7g+eY1Xf+khl4JVKle+LKFmRggPRap3vg+hstHUBI2uvCjADZ?=
+ =?us-ascii?Q?e29J5rgPXTG2R918vEFrMxYISH0Arcw5UdZNXNBlEm5Z31aNxZQ9BqWKmXzb?=
+ =?us-ascii?Q?+stVhGYMfL0scmoX4eZtbTPClRz957RaOGyq9a8bSsr8o9WAocAzFBltDuzq?=
+ =?us-ascii?Q?K46RbH0MbDlS3CmGKklM5/gTnmHbQqghtMNenPkXMJW5HqjZad+IaxoqRjhK?=
+ =?us-ascii?Q?vFoxB5rs7lwzUIfDqiwlNHyg7kAqa2qcWGV8Wq+aldYk+6xzslHDwJFed4vi?=
+ =?us-ascii?Q?qAgVttyXweMSXJxqI3fQJ+oul1lmAA/2+sdQOs9XlAu9EKRaCX1FIbHx4PLR?=
+ =?us-ascii?Q?z4LfTKNc0rjWZ66Unw3jHpT0NmCyiaGZc88taPZIYrVyTp7cjyrputBGV2Ic?=
+ =?us-ascii?Q?U45uDdKqHWIrZXaJghm585O9g23fYwAiT3j7odHILkxfyvUANsM/l5yg5SBd?=
+ =?us-ascii?Q?ZvP7xLaVqQNiWsgWcutmLE0YCgtGkrJ1f72rsshh1VHtnr3W3t7e/B3HLLbV?=
+ =?us-ascii?Q?if5uUbinCFX+fQaOyHo4fPdB7UgHMHHb6zutcPMAIkXCObL0CiZNFz/IjldJ?=
+ =?us-ascii?Q?e+2khtNBXnYHkLb57zTcSAquH/iuB4npIJN15z/SVxzHdXjbFzrsDT7SEXo8?=
+ =?us-ascii?Q?BOET1otxNCgZLUUby6s=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB7820:EE_|DM4PR12MB5889:EE_
-X-MS-Office365-Filtering-Correlation-Id: 914ee654-e843-41b1-094c-08ddc4fd21f1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?a1pncTZpenlTSkF1V0NhZVN1WlZhbU9ZZ09UVkNhNHZ6K1JleG91NjR1RzU3?=
- =?utf-8?B?MWxKZkU5OVBBWHNQVW55OXlCUzFvRzhsbmQ2NUVMNEtJK3B6RnR3T1VCQXo3?=
- =?utf-8?B?OHMrV2QvN2EwNUlha1MxaXROcmFWOU0vM0E3enAzOWdrUHNMb21xTE9Mcmox?=
- =?utf-8?B?bkd0aEFUdUZiR0VUTGp3cEUybmk4NmtJZHlLUjFnRElyZUc4U3A1WE1kRFZL?=
- =?utf-8?B?aGxpTUdCcTVkM3pJUkZxQm5BSTFqYzU0UUpXVW1KNnRrYkNMNGkxbkdmdk1I?=
- =?utf-8?B?ekJBOUZ5ZXZScTA4WEhVQ1VFcU1HYzlHclVhRG4zTHYyY3pmSUZPQVF5YUxj?=
- =?utf-8?B?NUJsdmJVS1FCRmNGUEM4dXNydnY2TU9VVnUyRVhpWHFtVkQ5THgyNXRiQnFx?=
- =?utf-8?B?NElzaERyQVljN2h5V25seXhNMWk0cWFMVHJaNHJubTR0YmtvQ01udmhuZTd6?=
- =?utf-8?B?NzJ2RnNLWUdENktxazdBeCtqam5ndGpVdWVsL3p2MDBHRk9pbm0vcnduTzRV?=
- =?utf-8?B?SlNBTTlTdW9IaGU4Vkg1TVZLMFlibWU5cms0T2ppZURaNzl4M3FDOWhNZE1i?=
- =?utf-8?B?bkhkWlZlU251Z2xDSmQ2bzFJWFB1V2FVamZTRkhSUGQzNlhKNEpMQ0tFN2I0?=
- =?utf-8?B?L1crem9UN3BnY2J3YkFreHY1cUFEY0hDMUMzeHNzeVkxK1p0OXJHZ09rWCt6?=
- =?utf-8?B?czk2bkcxeTczaVorTVJFc2lNdnUvNFlkNDhhNHhyTHd3THcvLzB1QzU5dlkw?=
- =?utf-8?B?bmhKanQzMjc4UnJ6cDA4c0k0dWJpajdLZnc3M0dnK3NqVVBpU3c5a2lxLzFJ?=
- =?utf-8?B?cmtldHRkcEdndTFrNmxaS2ZEVlZIa0NLekpNRlhuUnNhRkFXYkl3UnB2ajFF?=
- =?utf-8?B?MmxpTWcxT3JKb0ZFeFlQL1RIaVlmZmlXeVNTZzRrVjhpMGhKWC9LQmU1ZWFo?=
- =?utf-8?B?VVhqanNIbFpPdldQYWM0VjhuaUdmTG91dlVRM255MFZsQjFGZTBUTmdFSy9u?=
- =?utf-8?B?OGlrQXBXUWcwbXF0M1Rwd2pRR01oQnZIQytPcldaRTVOcm9kdVhDbnA2VVhz?=
- =?utf-8?B?V3ZodXF6S09uRERlYktKRDRYd2VxMVRPOFI0RzUrYVlXL2lDZlZaSDdqeENq?=
- =?utf-8?B?clBsbk00SnIzVW0xZStBaTJFUjdSMGdzNys3S08vTitGT2hMYUkrdVVDM2Y2?=
- =?utf-8?B?bVhudWMxSktLRUZYenEwVDR1OHRYYzVTcFd1TlhqQ3k5b0FLRVR2K1B5R1VQ?=
- =?utf-8?B?UVkyNUNHSFo4NHZyeFpvRllrTnpkbkU5QmR6TVFhTnk3ZnBNVE4wb3V1NG9z?=
- =?utf-8?B?NllvM0lXZXFXVnBad0xVSXV4RkQvNEpOK2lCbStKQUVab0F6WE5FTWEwSjN2?=
- =?utf-8?B?cERpd01IOC9jOTVTNWtTelF5K2I3ZnhqRTlWcHRaaU1pSEZQRXlmcDkvVHhx?=
- =?utf-8?B?dHNnV2dTcHZ6aHo3WWNuemJsYzcrMWRWTzdMeFpFaTdDSGF6QjZHa0p0a0Yv?=
- =?utf-8?B?NEg0YVpOVWsrbHFxK3lpcXdodVliODhEdXZhMjNnS1FzNTUvMWZSTFdyWnp0?=
- =?utf-8?B?M2VOV2lRdFUzQzdsc25Nbm9XYko3YWZNUXZJaEFyclJLd3Bzc29OVFgzSUUr?=
- =?utf-8?B?NnlqSzZpU2pOSWJ5aGtHRkIyM3lrRjNSQ2Y0bXpmL0paRSswV1Q2ZHBObXFt?=
- =?utf-8?B?YTdqdThjcTBZcHAwMFRXMzFJdlpReFVwMERxdnoycnQyNnZPV2RLcFV1T2FH?=
- =?utf-8?B?aUZibVZmamtlOGVPbHBJd3g2eTMxdXdhemJhQWN3T2poZUh1Q214VUQ5aEtM?=
- =?utf-8?B?Z1VjeklsTE5zUzdEcExmam9CTVVUakljQUlPZEJkakN6VUQzK2Rrd3dhZ25S?=
- =?utf-8?B?dXdJb0ZvWnVWbGVsWE55OGZveGNudHdIc0ttM1FQUm1wNWFEdVRIS09jN244?=
- =?utf-8?Q?B02BxX+uwjk=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB7820.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0N1dnRQelR5ZGMvYTUrQmFSbW42VnlyZHNUT0dERTJqSVNYcXRhOTRwMVR2?=
- =?utf-8?B?VlhSUHFoSUREellWSHN2SVg4M1NlOWhjbUhDOGhGKzZHQTYyN2NVU1dMVWlD?=
- =?utf-8?B?NitiRDFIMFNoREE0RWt3QUJtOVB3RkZ2bGFBbDFuZTJtdVE2OGRKeFBmWnU4?=
- =?utf-8?B?R1RSbTg3V3B5QThNSktYaFJoVitSdXF1RGlVU05FQmZ4S25JNktNL1JuR3lR?=
- =?utf-8?B?NTVpYkV5dFl6NjNDSE1sTTBzWmd4L2ZsZEZpZTRNMlc5TXRGSENuNFZObkF3?=
- =?utf-8?B?enF1QnFOTlFqeXJXMWhaeVU3dlpSSnZpR1NUK3pzNVgySVdyc0NvR2N0OThs?=
- =?utf-8?B?Y2J0RXFqMEZsRzBLaHUwWjRFZXpXRFF6VUNjVTNFdFJwbkd1WXd3VnVzc3Rs?=
- =?utf-8?B?VEdST0tyd3h5Mi9FMkUwc2FXRG9XLzZNVDY0UkgwZ05iaW1kbUlqRjFneDhN?=
- =?utf-8?B?ZDJHYkJ6T1pubXNWcWpGQm1ReEtpTHBGTUFDanpzKy9vK0M3bXhzUnp5RDMv?=
- =?utf-8?B?d01qdk1BS2hsZ1A4Uk5IRW8wTzJnTDBpbGFUWVVoMGw1ZnoyTjIydElTVEly?=
- =?utf-8?B?Q25qL1FnTHJGM1dNZWdRNWNjR0ZqLzUvSWlMcVF4WFpnaW5JZXhmaDlFTWFZ?=
- =?utf-8?B?K1ZEclcxa0JQOVFvVk1GMUxNSUg5djV0bWVkU2hwRkV2RTQxUDJIUzRKbjA4?=
- =?utf-8?B?ZGdINTNGVktFZDY2bW1TZllQd0M4VzIwNmEya3RWVW85Wjlpb1ZMaHFHV2dt?=
- =?utf-8?B?V1BtenJMN0FxQTF3STVyNkhiK2JHRWlJNG82ZXVueThHMFRxbWMvaHVJUzlV?=
- =?utf-8?B?SVR1dUU4Yms2NWFML3VndVN5d25HQk0wUDRnazA4d0hZckVBN0FML2dhbUlk?=
- =?utf-8?B?RCtaN3R4Y3c4WUhhVGxRK21sL09lQzZGV0VoaisxM01OWDg3ODVpaGdIdSt2?=
- =?utf-8?B?UzkxTHhhZnRtN1dnMk1GdXFldDVxQXVYS1ZmNnZQczhkRkV1bkkvdmF4dk5C?=
- =?utf-8?B?MzZGMEhSb1FLVGk2NjdUS3FZN2dWSzBYNnpnallkSXhYTTg1dVlkNWFOOHlD?=
- =?utf-8?B?TTdyblpmL25KYmF3alo5ZDJ5MUV1SUtpa2YwL3FIRlNUOWoxS2c4SWY1Tm55?=
- =?utf-8?B?RUd3NGMvSEtvc2loVS8yWVZlSFlEV0x1UzJwWnhuaW5HWU9OblZHajUzb1U4?=
- =?utf-8?B?dkU0aG5GUG5qYmQ3Q203dExJSmJQZ2grK050YkNvWGdOWDc2UHNKOTc2SmE1?=
- =?utf-8?B?SHRpV0RkcmdxOW1pK3pqRGRyRGxaQmhxdVBYZ050M204dnc4b294M3NLZzNW?=
- =?utf-8?B?VERxbkhsSm0wWEFQOENKcm5EUS9Ecm5ZV0Y3MEtBdloxd3NTSjdWeEI4TG5D?=
- =?utf-8?B?Szh4TmY5T2hPeUxQUzNISnhKMnZtYVlLazE0UFdGalRFOWcrdm0wV2tXbzZt?=
- =?utf-8?B?QVpTNHovNW1jQXVveURYSWtaNWl3LzlLZ0wrYTE3WnhVUVhGcHBWZWdKZk5k?=
- =?utf-8?B?dUVtNE53dHBienpmbTF5a00va1V6UnN2T25WeVM3dThoTS9Kb2paNlRvS0I0?=
- =?utf-8?B?Um1vM3FlMytsQnljTTgzMkN3TVhFWmZiOHBqK1pHc1RDMEx3RlhCUlJsZTl5?=
- =?utf-8?B?ZEh6a3ZMbHd2eEJoUFNuMHJGemhXR3F3c3JjeXAwY3laaFhuL1JDUGpxdjBW?=
- =?utf-8?B?eUxqODlHVjc4NElIRnRJbHVHdDM4U0d6aXBXRFh4YTZHenl0WUNiU1pNZ1hM?=
- =?utf-8?B?ck1sNklMdmlhdkE4TVptLzFnMEJOdjlBSUtKWVowZWlGd3dtSlFMd1pxSmZW?=
- =?utf-8?B?NXZrQzlja0p1OENMZ1lyZGU3YlNBM1FaSjcrL3R0VnlkWmFHcURGVklKR0dX?=
- =?utf-8?B?WjZTSkc1WGhiSW13d0ZtQ3hqeEJ1TlFjYTRIQkc3cnhrQk9HL1UwZjE5RTM4?=
- =?utf-8?B?SUU4RE84SWNBUjh4OEJYcFFYVlRLdlZEdmFMQ0ZJaXM4NWNvK1NXUjlad3Jt?=
- =?utf-8?B?L3VOaWhSNWxnRmwxSWZURUI1TXZ4YytmMHZYOUhDaDdwSTlKeDNvK1FBRDRI?=
- =?utf-8?B?anhEVzBYNTkvMGNhVnlmbFFDMjFjZW0vUmtud0t1QVhHREtmc2xKZWUwUkVs?=
- =?utf-8?Q?J+sDIcB3eMem9yd9SbvpS9bIz?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 914ee654-e843-41b1-094c-08ddc4fd21f1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB7820.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2025 06:42:43.3439 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AYGMZzYydLkB2D8Jd//sx4Q2uUzytokDv0qSkpYBKb6RB5CZ9uhja86Z315729ZF
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5889
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4215.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49e23f41-945f-4fa3-3367-08ddc5052743
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2025 07:40:08.0369 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JE6ZzCG7tfVTFhOKbkNVDhI9FfYnSGindLtMSRgySQy8sIPTpnb69rEA1/ofyc3Fge3tL+Mchap3Y85/DM5d9Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4394
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,459 +155,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+[AMD Official Use Only - AMD Internal Distribution Only]
 
+-----Original Message-----
+From: Zhou1, Tao <Tao.Zhou1@amd.com>
+Sent: Thursday, July 17, 2025 2:40 PM
+To: Chai, Thomas <YiPeng.Chai@amd.com>; amd-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: add command to check address validity
 
-On 7/15/2025 9:30 PM, Alex Deucher wrote:
-> Rather than checking in the callbacks, check if the reset
-> type is supported in the caller.
-> 
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
-
-Thanks,
-Lijo
-
+> -----Original Message-----
+> From: Chai, Thomas <YiPeng.Chai@amd.com>
+> Sent: Wednesday, July 16, 2025 2:48 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Chai, Thomas <YiPeng.Chai@amd.com>; Zhang, Hawking
+> <Hawking.Zhang@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Chai, Thomas
+> <YiPeng.Chai@amd.com>
+> Subject: [PATCH] drm/amdgpu: add command to check address validity
+>
+> Add command to check address validity and remove unused command codes.
+>
+> Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  |  5 +++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 31 ++++++++++++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  2 ++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c  |  3 ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   |  6 -----
->  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c   |  6 -----
->  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c   |  6 -----
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    |  3 ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c  |  3 ---
->  drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c   |  3 ---
->  drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c   |  3 ---
->  drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c   |  3 ---
->  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c   |  3 ---
->  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c |  3 ---
->  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c |  3 ---
->  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c |  3 ---
->  drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c |  3 ---
->  drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   |  3 ---
->  drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   |  3 ---
->  drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   |  3 ---
->  drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   |  3 ---
->  drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c    |  3 ---
->  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c  |  6 -----
->  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c  |  3 ---
->  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c  |  3 ---
->  25 files changed, 37 insertions(+), 79 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> index 45febdc2f3493..8635f66921335 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> @@ -111,6 +111,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
->  		amdgpu_job_core_dump(adev, job);
->  
->  	if (amdgpu_gpu_recovery &&
-> +	    amdgpu_ring_is_reset_type_supported(ring, AMDGPU_RESET_TYPE_SOFT_RESET) &&
->  	    amdgpu_ring_soft_recovery(ring, job->vmid, s_job->s_fence->parent)) {
->  		dev_err(adev->dev, "ring %s timeout, but soft recovered\n",
->  			s_job->sched->name);
-> @@ -132,7 +133,9 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
->  	/* attempt a per ring reset */
->  	if (unlikely(adev->debug_disable_gpu_ring_reset)) {
->  		dev_err(adev->dev, "Ring reset disabled by debug mask\n");
-> -	} else if (amdgpu_gpu_recovery && ring->funcs->reset) {
-> +	} else if (amdgpu_gpu_recovery &&
-> +		   amdgpu_ring_is_reset_type_supported(ring, AMDGPU_RESET_TYPE_PER_QUEUE) &&
-> +		   ring->funcs->reset) {
->  		dev_err(adev->dev, "Starting %s ring reset\n",
->  			s_job->sched->name);
->  		r = amdgpu_ring_reset(ring, job->vmid, &job->hw_fence);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> index 09d7681b7a754..4f69aa60478a2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> @@ -820,3 +820,34 @@ int amdgpu_ring_reset_helper_end(struct amdgpu_ring *ring,
->  	drm_sched_wqueue_start(&ring->sched);
->  	return 0;
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 58
+> +++++++++++-------------- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h |  3
+> ++
+>  2 files changed, 29 insertions(+), 32 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> index 15bde4904996..68feec0956f0 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> @@ -163,47 +163,38 @@ static bool
+> amdgpu_ras_get_error_query_ready(struct
+> amdgpu_device *adev)
+>       return false;
 >  }
+>
+> -static int amdgpu_reserve_page_direct(struct amdgpu_device *adev,
+> uint64_t
+> address)
+> +static int amdgpu_check_address_validity(struct amdgpu_device *adev,
+> +uint64_t address)
+>  {
+> -     struct ras_err_data err_data;
+> -     struct eeprom_table_record err_rec;
+> -     int ret;
+> +     struct amdgpu_ras *con =3D amdgpu_ras_get_context(adev);
+> +     struct amdgpu_vram_block_info blk_info;
+> +     uint64_t page_pfns[32] =3D {0};
+> +     int i, ret, count;
 > +
-> +bool amdgpu_ring_is_reset_type_supported(struct amdgpu_ring *ring,
-> +					 u32 reset_type)
-> +{
-> +	switch (ring->funcs->type) {
-> +	case AMDGPU_RING_TYPE_GFX:
-> +		if (ring->adev->gfx.gfx_supported_reset & reset_type)
-> +			return true;
-> +		break;
-> +	case AMDGPU_RING_TYPE_COMPUTE:
-> +		if (ring->adev->gfx.compute_supported_reset & reset_type)
-> +			return true;
-> +		break;
-> +	case AMDGPU_RING_TYPE_SDMA:
-> +		if (ring->adev->sdma.supported_reset & reset_type)
-> +			return true;
-> +		break;
-> +	case AMDGPU_RING_TYPE_VCN_DEC:
-> +	case AMDGPU_RING_TYPE_VCN_ENC:
-> +		if (ring->adev->vcn.supported_reset & reset_type)
-> +			return true;
-> +		break;
-> +	case AMDGPU_RING_TYPE_VCN_JPEG:
-> +		if (ring->adev->jpeg.supported_reset & reset_type)
-> +			return true;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +	return false;
-> +}
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> index 309e7bb6001bd..7670f5d82b9e4 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> @@ -568,4 +568,6 @@ void amdgpu_ring_reset_helper_begin(struct amdgpu_ring *ring,
->  				    struct amdgpu_fence *guilty_fence);
->  int amdgpu_ring_reset_helper_end(struct amdgpu_ring *ring,
->  				 struct amdgpu_fence *guilty_fence);
-> +bool amdgpu_ring_is_reset_type_supported(struct amdgpu_ring *ring,
-> +					 u32 reset_type);
->  #endif
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> index d799bc74936c0..f1f67521c29ca 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> @@ -1522,9 +1522,6 @@ int amdgpu_vcn_ring_reset(struct amdgpu_ring *ring,
->  {
->  	struct amdgpu_device *adev = ring->adev;
->  
-> -	if (!(adev->vcn.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
+> +     if (amdgpu_ip_version(adev, UMC_HWIP, 0) < IP_VERSION(12, 0, 0))
+> +             return 0;
+>
+>       if ((address >=3D adev->gmc.mc_vram_size) ||
+>           (address >=3D RAS_UMC_INJECT_ADDR_LIMIT)) {
+>               dev_warn(adev->dev,
+> -                      "RAS WARN: input address 0x%llx is invalid.\n",
+> -                      address);
+> +                 "RAS WARN: input address 0x%llx is invalid.\n",
+> +                 address);
+>               return -EINVAL;
+>       }
+>
+> -     if (amdgpu_ras_check_bad_page(adev, address)) {
+> -             dev_warn(adev->dev,
+> -                      "RAS WARN: 0x%llx has already been marked as bad
+> page!\n",
+> -                      address);
+> -             return 0;
+> -     }
 > -
->  	if (adev->vcn.inst[ring->me].using_unified_queue)
->  		return -EINVAL;
->  
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> index 744f51a6f522d..7bd506f06eb15 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -9523,9 +9523,6 @@ static int gfx_v10_0_reset_kgq(struct amdgpu_ring *ring,
->  	u64 addr;
->  	int r;
->  
-> -	if (!(adev->gfx.gfx_supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
+> -     ret =3D amdgpu_ras_error_data_init(&err_data);
+> -     if (ret)
+> -             return ret;
+> +     count =3D amdgpu_umc_lookup_bad_pages_in_a_row(adev,
+> +                             address, page_pfns, ARRAY_SIZE(page_pfns));
+> +     if (count <=3D 0)
+> +             return -EPERM;
+>
+> -     memset(&err_rec, 0x0, sizeof(struct eeprom_table_record));
+> -     err_data.err_addr =3D &err_rec;
+> -     amdgpu_umc_fill_error_record(&err_data, address, address, 0, 0);
 > -
->  	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
->  		return -EINVAL;
->  
-> @@ -9591,9 +9588,6 @@ static int gfx_v10_0_reset_kcq(struct amdgpu_ring *ring,
->  	unsigned long flags;
->  	int i, r;
->  
-> -	if (!(adev->gfx.compute_supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
+> -     if (amdgpu_bad_page_threshold !=3D 0) {
+> -             amdgpu_ras_add_bad_pages(adev, err_data.err_addr,
+> -                                      err_data.err_addr_cnt, false);
+> -             amdgpu_ras_save_bad_pages(adev, NULL);
+> +     for (i =3D 0; i < count; i++) {
+> +             memset(&blk_info, 0, sizeof(blk_info));
+> +             ret =3D amdgpu_vram_mgr_query_address_block_info(&adev-
+> >mman.vram_mgr,
+> +                                     page_pfns[i] <<
+> AMDGPU_GPU_PAGE_SHIFT, &blk_info);
+> +             if (!ret && (blk_info.task.pid =3D=3D con->init_task_pid) &=
+&
+> +                     !strncmp(blk_info.task.comm,
+> + con->init_task_comm,
+> TASK_COMM_LEN))
+> +                     return -EACCES;
+>       }
+>
+> -     amdgpu_ras_error_data_fini(&err_data);
 > -
->  	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
->  		return -EINVAL;
->  
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> index 465fcd6503735..c01c241a1b063 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -6808,9 +6808,6 @@ static int gfx_v11_0_reset_kgq(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	int r;
->  
-> -	if (!(adev->gfx.gfx_supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
+> -     dev_warn(adev->dev, "WARNING: THIS IS ONLY FOR TEST PURPOSES
+> AND WILL CORRUPT RAS EEPROM\n");
+> -     dev_warn(adev->dev, "Clear EEPROM:\n");
+> -     dev_warn(adev->dev, "    echo 1 >
+> /sys/kernel/debug/dri/0/ras/ras_eeprom_reset\n");
 > -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  
->  	r = amdgpu_mes_reset_legacy_queue(ring->adev, ring, vmid, false);
-> @@ -6974,9 +6971,6 @@ static int gfx_v11_0_reset_kcq(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	int r = 0;
->  
-> -	if (!(adev->gfx.compute_supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  
->  	r = amdgpu_mes_reset_legacy_queue(ring->adev, ring, vmid, true);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> index 5d32ae4b1a4c9..09bf72237d1d6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> @@ -5303,9 +5303,6 @@ static int gfx_v12_0_reset_kgq(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	int r;
->  
-> -	if (!(adev->gfx.gfx_supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  
->  	r = amdgpu_mes_reset_legacy_queue(ring->adev, ring, vmid, false);
-> @@ -5421,9 +5418,6 @@ static int gfx_v12_0_reset_kcq(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	int r;
->  
-> -	if (!(adev->gfx.compute_supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  
->  	r = amdgpu_mes_reset_legacy_queue(ring->adev, ring, vmid, true);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 9c0cdf4dde714..20b30f4b3c7d4 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -7183,9 +7183,6 @@ static int gfx_v9_0_reset_kcq(struct amdgpu_ring *ring,
->  	unsigned long flags;
->  	int i, r;
->  
-> -	if (!(adev->gfx.compute_supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
->  		return -EINVAL;
->  
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> index d80f1fb261d1e..e2a726669f7e6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> @@ -3563,9 +3563,6 @@ static int gfx_v9_4_3_reset_kcq(struct amdgpu_ring *ring,
->  	unsigned long flags;
->  	int r;
->  
-> -	if (!(adev->gfx.compute_supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
->  		return -EINVAL;
->  
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-> index b93d6af8f6e54..58239c405fda5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-> @@ -773,9 +773,6 @@ static int jpeg_v2_0_ring_reset(struct amdgpu_ring *ring,
->  {
->  	int r;
->  
-> -	if (!(ring->adev->jpeg.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	r = jpeg_v2_0_stop(ring->adev);
->  	if (r)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-> index b6d5ba0bdc143..3e2c389242dbe 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-> @@ -650,9 +650,6 @@ static int jpeg_v2_5_ring_reset(struct amdgpu_ring *ring,
->  				unsigned int vmid,
->  				struct amdgpu_fence *timedout_fence)
->  {
-> -	if (!(ring->adev->jpeg.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	jpeg_v2_5_stop_inst(ring->adev, ring->me);
->  	jpeg_v2_5_start_inst(ring->adev, ring->me);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
-> index a229d7eb900c9..a44eb2667664b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
-> @@ -564,9 +564,6 @@ static int jpeg_v3_0_ring_reset(struct amdgpu_ring *ring,
->  {
->  	int r;
->  
-> -	if (!(ring->adev->jpeg.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	r = jpeg_v3_0_stop(ring->adev);
->  	if (r)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-> index f3a9073b8b243..da3ee69f1a3ba 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-> @@ -729,9 +729,6 @@ static int jpeg_v4_0_ring_reset(struct amdgpu_ring *ring,
->  {
->  	int r;
->  
-> -	if (!(ring->adev->jpeg.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	r = jpeg_v4_0_stop(ring->adev);
->  	if (r)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c
-> index 1892c278ea3c4..481d1a2dbe5aa 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_5.c
-> @@ -774,9 +774,6 @@ static int jpeg_v4_0_5_ring_reset(struct amdgpu_ring *ring,
->  {
->  	int r;
->  
-> -	if (!(ring->adev->jpeg.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	r = jpeg_v4_0_5_stop(ring->adev);
->  	if (r)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
-> index 0b4de0c6476ae..e0a71909252be 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
-> @@ -650,9 +650,6 @@ static int jpeg_v5_0_0_ring_reset(struct amdgpu_ring *ring,
->  {
->  	int r;
->  
-> -	if (!(ring->adev->jpeg.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	r = jpeg_v5_0_0_stop(ring->adev);
->  	if (r)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-> index e622db1f818bf..54523dc1f7026 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-> @@ -836,9 +836,6 @@ static int jpeg_v5_0_1_ring_reset(struct amdgpu_ring *ring,
->  				  unsigned int vmid,
->  				  struct amdgpu_fence *timedout_fence)
->  {
-> -	if (amdgpu_sriov_vf(ring->adev))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	jpeg_v5_0_1_core_stall_reset(ring);
->  	jpeg_v5_0_1_init_jrbc(ring);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-> index c0c418aa2c299..0fe0f371f6fd5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-> @@ -1664,9 +1664,6 @@ static int sdma_v4_4_2_reset_queue(struct amdgpu_ring *ring,
->  	u32 id = ring->me;
->  	int r;
->  
-> -	if (!(adev->sdma.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_amdkfd_suspend(adev, true);
->  	r = amdgpu_sdma_reset_engine(adev, id, false);
->  	amdgpu_amdkfd_resume(adev, true);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> index d8c19601dd2e6..7dc67a22a7a01 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c
-> @@ -1547,9 +1547,6 @@ static int sdma_v5_0_reset_queue(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	int r;
->  
-> -	if (!(adev->sdma.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	if (ring->me >= adev->sdma.num_instances) {
->  		dev_err(adev->dev, "sdma instance not found\n");
->  		return -EINVAL;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> index 5d56029e88a62..3bd44c24f692d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> @@ -1461,9 +1461,6 @@ static int sdma_v5_2_reset_queue(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	int r;
->  
-> -	if (!(adev->sdma.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	if (ring->me >= adev->sdma.num_instances) {
->  		dev_err(adev->dev, "sdma instance not found\n");
->  		return -EINVAL;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-> index 5d31f318cb3c7..e6d8eddda2bfa 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-> @@ -1578,9 +1578,6 @@ static int sdma_v6_0_reset_queue(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	int r;
->  
-> -	if (!(adev->sdma.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	if (ring->me >= adev->sdma.num_instances) {
->  		dev_err(adev->dev, "sdma instance not found\n");
->  		return -EINVAL;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-> index 13abc0c46eab0..b8b06d4c5882c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-> @@ -809,9 +809,6 @@ static int sdma_v7_0_reset_queue(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	int r;
->  
-> -	if (!(adev->sdma.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	if (ring->me >= adev->sdma.num_instances) {
->  		dev_err(adev->dev, "sdma instance not found\n");
->  		return -EINVAL;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-> index f642a06a77b56..1924e075b66f4 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-> @@ -1976,9 +1976,6 @@ static int vcn_v4_0_ring_reset(struct amdgpu_ring *ring,
->  	struct amdgpu_vcn_inst *vinst = &adev->vcn.inst[ring->me];
->  	int r;
->  
-> -	if (!(adev->vcn.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	r = vcn_v4_0_stop(vinst);
->  	if (r)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-> index 3bda19b92cde7..2a3663b551af9 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-> @@ -1603,12 +1603,6 @@ static int vcn_v4_0_3_ring_reset(struct amdgpu_ring *ring,
->  	struct amdgpu_device *adev = ring->adev;
->  	struct amdgpu_vcn_inst *vinst = &adev->vcn.inst[ring->me];
->  
-> -	if (amdgpu_sriov_vf(ring->adev))
-> -		return -EOPNOTSUPP;
-> -
-> -	if (!(adev->vcn.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  
->  	vcn_inst = GET_INST(VCN, ring->me);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-> index 039989ab452ad..caf2d95a85d43 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-> @@ -1474,9 +1474,6 @@ static int vcn_v4_0_5_ring_reset(struct amdgpu_ring *ring,
->  	struct amdgpu_vcn_inst *vinst = &adev->vcn.inst[ring->me];
->  	int r;
->  
-> -	if (!(adev->vcn.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	r = vcn_v4_0_5_stop(vinst);
->  	if (r)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-> index ec0268b5666cc..07a6e95828808 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-> @@ -1201,9 +1201,6 @@ static int vcn_v5_0_0_ring_reset(struct amdgpu_ring *ring,
->  	struct amdgpu_vcn_inst *vinst = &adev->vcn.inst[ring->me];
->  	int r;
->  
-> -	if (!(adev->vcn.supported_reset & AMDGPU_RESET_TYPE_PER_QUEUE))
-> -		return -EOPNOTSUPP;
-> -
->  	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
->  	r = vcn_v5_0_0_stop(vinst);
->  	if (r)
+>       return 0;
+>  }
+>
+> @@ -295,7 +286,7 @@ static int amdgpu_ras_debugfs_ctrl_parse_data(struct =
+file *f,
+>               op =3D 1;
+>       else if (sscanf(str, "inject %32s %8s", block_name, err) =3D=3D 2)
+>               op =3D 2;
+> -     else if (strstr(str, "retire_page") !=3D NULL)
+> +     else if (strstr(str, "check_address") !=3D NULL)
+
+> [Tao] the added check is fine for me, but I prefer to reserve retire_page=
+ command, we can set check_address to op 4.
+
+[Thomas] ok.
+
+>               op =3D 3;
+>       else if (str[0] && str[1] && str[2] && str[3])
+>               /* ascii string, but commands are not matched. */ @@
+> -495,7 +486,7 @@ static ssize_t amdgpu_ras_debugfs_ctrl_write(struct file=
+ *f,
+>               return ret;
+>
+>       if (data.op =3D=3D 3) {
+> -             ret =3D amdgpu_reserve_page_direct(adev, data.inject.addres=
+s);
+> +             ret =3D amdgpu_check_address_validity(adev,
+> + data.inject.address);
+>               if (!ret)
+>                       return size;
+>               else
+> @@ -4103,6 +4094,9 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
+>                       goto release_con;
+>       }
+>
+> +     con->init_task_pid =3D task_pid_nr(current);
+> +     get_task_comm(con->init_task_comm, current);
+> +
+>       dev_info(adev->dev, "RAS INFO: ras initialized successfully, "
+>                "hardware ability[%x] ras_mask[%x]\n",
+>                adev->ras_hw_enabled, adev->ras_enabled); diff --git
+> a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+> index 927d6bff734a..7f10a7402160 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+> @@ -570,6 +570,9 @@ struct amdgpu_ras {
+>       struct ras_event_manager *event_mgr;
+>
+>       uint64_t reserved_pages_in_bytes;
+> +
+> +     pid_t init_task_pid;
+> +     char init_task_comm[TASK_COMM_LEN];
+>  };
+>
+>  struct ras_fs_data {
+> --
+> 2.34.1
+
 
