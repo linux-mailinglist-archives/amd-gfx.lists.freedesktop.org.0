@@ -2,79 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C454B0B6BA
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD7AB0B6B5
 	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 17:33:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4263010E382;
-	Sun, 20 Jul 2025 15:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5F0A10E386;
+	Sun, 20 Jul 2025 15:33:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="P/vBc69j";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="MT33T1UE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8B910EA16
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:52:01 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I8p9kE021593
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:52:00 GMT
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B6CC10EA17
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:53:37 +0000 (UTC)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I9HoD1016243
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:53:36 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-transfer-encoding:content-type:date:from:in-reply-to
  :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- i/jJS211K+91WfPtzNzKrjWRU80MmsvCM3rgFx21dfM=; b=P/vBc69jyQvb8sow
- lV/WOYxFLnnzhJsAqu/H721IYea+wKWldZ4xEYW92WXsZSktINoRbl0ftsHf3RFw
- x/1FLPFMwXwG9xAzrRr1gn/M+wzs6rR9jrpm7PFqfcpCe061m5PGDozIRfvr1fSV
- x5Ip0dkql6htf1/vbpv662dOR36r0VSNUp2XahM1HQuwQknuXgRAi3EeWFMXbo57
- ZmW4wtfDwMEKlSGkHEK+X61BYZv3NI767se+yb0V19LFavGHalln4qC7+6fHfQWf
- oi/SngOP17bMOcXoOE/IKlfcsFXN9g9wlPOWUOZyhdmB/pJowmXiJOiwODcz6jUd
- +PHV0Q==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
- [209.85.216.71])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufu8m5cn-1
+ m1zCD0dfghAVW4/iCikI1Mzy4E0jkoMJk9ypegKSOwQ=; b=MT33T1UEHYC6YVkh
+ xssZayZWI3HS9jTCahfMVvQEQoKilwVkz1JDIhdTWrr4fS2s0bFRtxtea1tSz0cx
+ WvCNn89b9XbKFUWvy6JOzg8z9k0pDLm7fTdPcpsfrG9CsK7EbrbZhsQP7pwVM8w5
+ dhFWVEnhlBAWK3K5ERCzbGmCe3HsEwoOaaln7zV7ZWLEaThH+tVSpffHKWuRfTzK
+ e0mUY7unvjQaE/RrPs7Tow3QPlwL6d9HfPpq/Ltwe3CCoZtcvp8935E6BXZHVjWo
+ gx/UHuloGVJyE1k90Gixf1pB/v3W/YqPVPFFDXsrUPlD4rBg6S8NVsUuIkC3+ABz
+ xfDK0Q==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
+ [209.85.214.198])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47y3tc47tq-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:52:00 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id
- 98e67ed59e1d1-3138e64b3f1so3212404a91.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 09:52:00 -0700 (PDT)
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:53:36 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id
+ d9443c01a7336-235089528a0so29388805ad.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 09:53:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752857519; x=1753462319;
+ d=1e100.net; s=20230601; t=1752857616; x=1753462416;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=i/jJS211K+91WfPtzNzKrjWRU80MmsvCM3rgFx21dfM=;
- b=HfWTSniyspd1Lijg1Q6uaKnlEjnlwlNQix1mjyEBEa3x6jRQvtABC0s8DZP6nTW2zK
- 3xHT0V2yeKf3SjJqAy8h91y5J6He/kyu781WPVm5T1yefo1z11NOL4YSrOTWZWxLb1ca
- KfpuREENkfQ0x6Bk6n7rMPb2503F0HuesUjg3iIauWXRCoQWqpY+ogdQnXJ/HPgQficI
- mxtYHttBwGtj6Y5G0lZiTqH9lVm+EGWkFlxBnNxsL7OlTo00iZRLaJLXbfo4fLBrAbmz
- arNvrMHTQVrfk2A/f/c89xLMTZJJyN6Q/ekNVhKOZjYDUotuiEmpUsu9VeghgkzErvRq
- Z05w==
-X-Gm-Message-State: AOJu0Yyw5miB1KKy0WZz9v0SiqMEK47HAggY5LT4IWZK9W/oywtTIf0k
- K/4LwWD1JNbsecjU66vRYa8BoUsYIpg9XcZWaiMtCYTWXmBWyFzZMPLCwWCBx8suy+3gjfwdefV
- /TPuxoGjPBu4FkGcioHtdDqSv0upIsgGHNuXSqk4zlBMWn+cEwfnYeg29r33cRIZf19zY
-X-Gm-Gg: ASbGncvwc83MKmu4jZs/EUk/BvYTqQaOCQSIhNVDFuhPwPPOUYJK+1OzoCx8rsGSuXu
- z/ZiBtwDvhEVsoKs63J+FkF5G49xSKN1H3BcI/vUfpCKShQ+OnaBdBvpAdJQWXq8fdp9vMsSZnf
- n1OYHf1Tys6alSP2Gxw/ujQDpSlE/j6UBZsdzkgnSkvX9v6ZZA/TkwYjgMyOmh0/CtpdvAxw/CE
- 7Y4FMRB4+c2/1UCqh+uFty4UvFVB4wY+x4ZNvr7gU41/4gxKT6s0GkLx2skgxhaUTt3qkl9Rg9D
- SCuUqYADHmiQTtAkNIbxiryWRC5o1kWvaR0A0PIQH6O01ZfmeFtf3/xva91/h4Rw8DJqamz2LuZ
- 2k4pn8y23JTtxfA==
-X-Received: by 2002:a17:90a:ec8b:b0:312:1ac5:c7c7 with SMTP id
- 98e67ed59e1d1-31c9f3993d8mr17038304a91.2.1752857518917; 
- Fri, 18 Jul 2025 09:51:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH9NIA98X5HRDDVuwcioD+0TFYXDcZBMvtr4Luz9HPLr/CXztRxjI3u8ZOFya8id3YrAIy6yQ==
-X-Received: by 2002:a17:90a:ec8b:b0:312:1ac5:c7c7 with SMTP id
- 98e67ed59e1d1-31c9f3993d8mr17038273a91.2.1752857518544; 
- Fri, 18 Jul 2025 09:51:58 -0700 (PDT)
+ bh=m1zCD0dfghAVW4/iCikI1Mzy4E0jkoMJk9ypegKSOwQ=;
+ b=Ot5mCElr8+2AWeaAYP6e1nLe7VNLwDI21Sxa89Iz+Ep2j2igyRC2L9OmcAdDhyEFTv
+ IPGtph7JMKQYBLOmYcOv4BjsqXvrS3djck6/0cRyyOk7V4UfZem2KbOZk9knW3zzoLPq
+ 4gJWbSlhZrU59czp3bkv55U9TKT8W12pxUi8zzYfD8JBb98D+wR09OQi3CWqTHtk6pXL
+ 92qu0Zqjen3mMRgTXLxme9Rcxhi5bKtcOFsnpRtYG0l9Fg3Bknn4+6LaYBnFTU6SBjbn
+ oYhFI6s2JN4jcEhQy2RdHZIsqs8SpS5Ddl5MQxAru3waV97Cvo34is1xZvAn5slYjd0y
+ OVYQ==
+X-Gm-Message-State: AOJu0YzqfQUbp6xhHgAXzslok/TkWgtcLxjUYryOBPd9umhuSkOvZDmM
+ 8nEZzO+QSpkfUUcodM7GRb9f2sSuuvfHBGVSDUFE+xMcDbGlqJrte6kGV99F+LngQcgfqhq2Swr
+ ZlJuN+bMvxWQKx4DMSlYYKjt0+sg7aVAXklRkQOhDFXzku8J2h6YkKpvbSkAk2mgIZuV9
+X-Gm-Gg: ASbGncsHor/hhEWTvlv5mjh1/2DV3s3BFXWuUcju0IUQggIwBvXdIqpXqzZ2LUkPlHx
+ xy4av5MSSvAyDCme5VTpIz24JVQ2mhMnW7DnZth+DuM2VBui+cy0gjP2IlwTj6ethuEomvKWrZm
+ OuP48Ye836LyCznhos1XAUIMTTSX4i67iWMtIvZVwxgnCrPeUX4jNcCVRwYLMGEke6izdKbGIe7
+ yog5C4IH5I1c0qWRjCsKQijRLNUEKXHFOBP/7ISY+Qj8J3kxYlYfA33kY+TWZ30nPGOKMxdIIP7
+ G7W2k3Cq+I9Jg8WggYJwgOK86aCdmxKeupG51BrmQWGjePdRn+XtNmV0CGvjrJpVinWds1Hv2QY
+ dXGdrHBrzOnm1kQ==
+X-Received: by 2002:a17:903:186:b0:215:6c5f:d142 with SMTP id
+ d9443c01a7336-23e2f744c24mr114646215ad.20.1752857615751; 
+ Fri, 18 Jul 2025 09:53:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHuWrniCXSDlgPowFyHtxd19vZI/IqgnQedWoC58cRaes2308e8m8bmwseHhboSm6uY1fQsWw==
+X-Received: by 2002:a17:903:186:b0:215:6c5f:d142 with SMTP id
+ d9443c01a7336-23e2f744c24mr114645715ad.20.1752857615304; 
+ Fri, 18 Jul 2025 09:53:35 -0700 (PDT)
 Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
  by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-31cb6ad7257sm3078809a91.42.2025.07.18.09.51.56
+ d9443c01a7336-23e3b6b490fsm15812805ad.112.2025.07.18.09.53.33
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Jul 2025 09:51:58 -0700 (PDT)
-Message-ID: <2de96bf3-0c63-4db9-b581-f011bc1446c2@oss.qualcomm.com>
-Date: Fri, 18 Jul 2025 10:51:55 -0600
+ Fri, 18 Jul 2025 09:53:34 -0700 (PDT)
+Message-ID: <515c3aae-13f7-47d4-91e4-d2d54fc8e2f3@oss.qualcomm.com>
+Date: Fri, 18 Jul 2025 10:53:32 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/4] drm: move drm based debugfs funcs to drm_debugfs.c
+Subject: Re: [PATCH v10 2/4] drm: add debugfs support on per client-id basis
 To: Sunil Khatri <sunil.khatri@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  dri-devel@lists.freedesktop.org
@@ -86,35 +86,34 @@ Cc: amd-gfx@lists.freedesktop.org, simona@ffwll.ch, tzimmermann@suse.de,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>
 References: <20250704075548.1549849-1-sunil.khatri@amd.com>
- <20250704075548.1549849-2-sunil.khatri@amd.com>
+ <20250704075548.1549849-3-sunil.khatri@amd.com>
 Content-Language: en-US
 From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-In-Reply-To: <20250704075548.1549849-2-sunil.khatri@amd.com>
+In-Reply-To: <20250704075548.1549849-3-sunil.khatri@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDEzMyBTYWx0ZWRfX8sf+Y6ZkQZj/
- BMbiybDAHqgMmCP5xlaiMMwVojxN1D1OUR3ixUfLw1fy5VX+IOVmsx2YkmDnF0r44fI/ef/18tk
- llTh7LfMbrN8fkPjf281tMAUZaAUTKMdgYarSAZXgfBhBhiPR69gcLGdavVAnYu1G07N+avvbe5
- TSYX19llMyf2DHa/zawWDAuH8Sgo/fOa04GyeExmhUotjbSiuPOLnRL6nwpHPAaTUaSoRr0OuCJ
- ow2FIBlmpL20WurBGRzjTFw78rFZgtxKn1uGmCRhIyKk5cv0OJEnXzL7K1oZgMhvqp5l7fufg+9
- Fd+kSHVmk590JVN2O9sraz3hHVgndXK+HhtDt68LFxZ1bN6FV0d14MgwVYhEudG2ITxnmg4HnJM
- 1n8G8gtLzdv8fdAgcabeyUQtiBKdYaFSrCMcQSxru0ZK6L9vzCFjiiTSSS1Um1vqz7eLQRoi
-X-Proofpoint-ORIG-GUID: vVRxF9N1S_ZtSQeJrFOssHA_nkZgJPL3
-X-Proofpoint-GUID: vVRxF9N1S_ZtSQeJrFOssHA_nkZgJPL3
-X-Authority-Analysis: v=2.4 cv=f59IBPyM c=1 sm=1 tr=0 ts=687a7bb0 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=zd2uoN0lAAAA:8 a=EUspDBNiAAAA:8
- a=qFjxPv6tQ-BECiE8w1cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Z5PsHGRA c=1 sm=1 tr=0 ts=687a7c10 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KjCdSd8fyryEu2hfdkEA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: xzwoLLv0aX1rE3s0rq18ipkHNxIAMncl
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDEzMiBTYWx0ZWRfX2FNaW7Pql+LD
+ HMiYHA6MdQROXGijFGN8TB1jjVMLN4Jf5XmHSL3O8etHepZSzl/IUhS5dtZXflU0RtZ9ljlSmv+
+ mNdqGyGpoWombwQBei83LDfXarur8cSjLDfK2JgxwKfdxW5YYHQNTOo9+RcY/zTtEMrsls3rDYS
+ OSk8HW1Y1wQeyon3dwtYXxpWoqwM9mtvsFKBVDUfsdJd9dWSBWnumS16sykP5L1eAKtv7iZbkrA
+ kgxTNlI/kM9uw2AK57MEwm+x/NZOKJyrjp0yWBW8lE6CKo4XIVgcLDMC+oJviBNvRaR0DFhA9aV
+ U8w9Qcr1CzL7NtulnkWDJZsHQgnaGM2fiMu+PqiEOFaouabSlg45AOtMJgA50Ts8YlqKJOtpuHJ
+ xZpVHaE18o8cXoOdGy6D7HDosic9SizhSLshGsYFx6apdq4jKxE40FtN33bjZOX+HevaSLF9
+X-Proofpoint-GUID: xzwoLLv0aX1rE3s0rq18ipkHNxIAMncl
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-18_04,2025-07-17_02,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxscore=0
- bulkscore=0 suspectscore=0 impostorscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=724 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ impostorscore=0 mlxlogscore=791 suspectscore=0 spamscore=0 clxscore=1015
+ mlxscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507180133
+ definitions=main-2507180132
 X-Mailman-Approved-At: Sun, 20 Jul 2025 15:32:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -131,26 +130,10 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 On 7/4/2025 1:55 AM, Sunil Khatri wrote:
-> Requirement is to create per client-id based directories to
-> hold key debugging information and for that access to
-> root debugfs dentry is need which is not in one place
-> and that information cannot be stored in drm_device.
-> 
-> Move the debugfs functionality from drm_drv.c and drm_accel.c
-> to drm_debugfs.c This enables debugfs root node reference
-> directly drm_debugfs.c and hence enable to create per client-id
-> directory.
-> 
-> v8: Create drm_accel dentry only if it's config is enabled (Jeff, Hugo)
-> v8: Merge drm_drv and drm_accel debugfs patches (Koenig, Christian)
-> 
-> v10: Since we moved drm_debugfs_root, hence to handle drm bridge
-> debugfs add a new function which call drm_bridge_debugfs_params where
-> drm_debugfs_root is accessible.
-> 
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+> add support to add a directory for each client-id
 
- From the Accel perspective, this seems ok.
+Nitpick.  This is the start of a sentence, and therefore proper grammar 
+would have the first letter capitalized.  So, "add support" should be 
+"Add support".
 
-Reviewed-by: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+-Jeff
