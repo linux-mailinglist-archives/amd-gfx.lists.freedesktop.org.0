@@ -2,60 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F002B0B62D
-	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 14:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3030B0B6B4
+	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 17:33:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAFEF895CA;
-	Sun, 20 Jul 2025 12:49:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69D0D10E21C;
+	Sun, 20 Jul 2025 15:32:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GvzWUlFD";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=hacktheplanet.fi header.i=@hacktheplanet.fi header.b="ipPcvZM3";
+	dkim=pass (2048-bit key; unprotected) header.d=hacktheplanet.fi header.i=@hacktheplanet.fi header.b="XJuhlFvi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B09AA895CA
- for <amd-gfx@lists.freedesktop.org>; Sun, 20 Jul 2025 12:49:52 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 4570545531;
- Sun, 20 Jul 2025 12:49:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B65C4CEE7;
- Sun, 20 Jul 2025 12:49:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1753015792;
- bh=oxFpdknoeX5Vw+UUVKkbtToVxydEtk2SgKvQHO4LClA=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=GvzWUlFD5xtVgR4UOIIYcFPe2ZprorZ8ZGG+bXlshclLbKYjwp40Eg+C4sLajjrPF
- 62cjZW0idnISxvQ1FVr8yi5SwGi8whd368XgEGRjERcAJpoda4/InBqp++bc+oiprP
- TUNIg4pzl2ymi4ELcsDptVd4Qwx6Qpx/8y4lzwxVqXpYBvKflp6UGoLqw/09r8NjF0
- 3hrHJuRsZeCpJZKlMcDFamJD0HAcI5gPUdV77NNlGOJqhZ5U2QK0DVfUPBftiZCNz8
- +Bi7NqFynEo+emRFifeUKiBT7xs+qy0IzOV6Ey5Ktu/yVMF+342ZWb4fjfua438tja
- g7AqvYW8liYCw==
-Message-ID: <18a71fc3-dd01-4335-9655-716c87048530@kernel.org>
-Date: Sun, 20 Jul 2025 07:49:50 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] [PATCH] drm/amd/display: fix initial backlight
- brightness calculation
-To: Lauri Tirkkonen <lauri@hacktheplanet.fi>
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com
+ [91.218.175.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7C2C10E9CA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 14:36:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; s=gibson; bh=mCJTMl6hmU/t/
+ n7RMrAexSGMCuHAoxTnyKTXuygkquM=;
+ h=in-reply-to:references:subject:cc:
+ to:from:date; d=hacktheplanet.fi; b=ipPcvZM3bpMRJzxRS0cot5qFHDc+uFbNh/
+ hJrhoxcKvc68HaecB44RlKS7zlclhqvmPniNnPsgpormEgUYIVt6FDOowL7BvGrzRvlvjN
+ otPTSFQUyLVli7gPNsRtNMZlz9J2nvVjLHpcDvUn2N9IQhYfUx3uh57SqfMgMRkc3bsOH0
+ YXVuBwLGfTW5mwbyxFuTVNwfs/r6vkgDRihTr+MeGUrCO0Q9wT1Y264pYbO5NiR2Ub5/I7
+ je7NJ2i8fwnZOy9YJkZMXLdWZrsX6ja4gVfP5V8KpCcUZxmIEfvG0a0vaTnNky58NwqVaR
+ yO13azxNMKaq2ZkNDH/eVRUdb84A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hacktheplanet.fi;
+ s=key1; t=1752849384;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=U4fWzDUDVjTYg2bPTnEOawxX6k0jS8mMVyArseOI0Ro=;
+ b=XJuhlFvinkI3yznxCnIYv2c0XaEPy6pnW/s+axNlivjtyGr1LBuHtl9DMslPWcbGJOEUI2
+ NJKOpBr6bVvFxOtkeDf2x/i1lqyo0h3D0fk3h7GvAnkI189C++7fCwsBPCcd9+1beaeaKk
+ vlBmjvmrd1fG82LdTsqNjDR1Up5AZepcwFD/6XEcyCn9TvbQK1pJSJeAQa37bOZYEUTNR1
+ 6+fC2dKgKnu+70i+2Hrdy5ajG6SUg59oPhq9YuuImiVhC5735Mcz7oLPX06Y/ywteZK77h
+ AbGzTzFLwmQqmBtfqA28gVhfve6tglukDQQ+EnkyfN4seCDrbWcNjhknLAcDxg==
+Date: Fri, 18 Jul 2025 23:36:17 +0900
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Lauri Tirkkonen <lauri@hacktheplanet.fi>
+To: Mario Limonciello <superm1@kernel.org>
 Cc: stable@vger.kernel.org, regressions@lists.linux.dev,
- amd-gfx@lists.freedesktop.org, Wayne Lin <wayne.lin@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [REGRESSION] drm/amd/display: backlight brightness set to 0 at
+ amdgpu initialization
+Message-ID: <aHpb4ZTZ5FoOBUrZ@hacktheplanet.fi>
 References: <aHn33vgj8bM4s073@hacktheplanet.fi>
  <d92458bf-fc2b-47bf-b664-9609a3978646@kernel.org>
- <aHpb4ZTZ5FoOBUrZ@hacktheplanet.fi>
- <46de4f2a-8836-42cd-a621-ae3e782bf253@kernel.org>
- <aHru-sP7S2ufH7Im@hacktheplanet.fi>
- <664c5661-0fa8-41db-b55d-7f1f58e40142@kernel.org>
- <aHr--GxhKNj023fg@hacktheplanet.fi>
- <f12cfe85-3597-4cf7-9236-3e00f16c3c38@kernel.org>
- <cc7a41dc-066a-41c8-a271-7e4c92088d65@kernel.org>
- <aHy4Ols-BZ3_UgQQ@hacktheplanet.fi> <aHy4tohvbwd1HpxI@hacktheplanet.fi>
-Content-Language: en-US
-From: Mario Limonciello <superm1@kernel.org>
-In-Reply-To: <aHy4tohvbwd1HpxI@hacktheplanet.fi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d92458bf-fc2b-47bf-b664-9609a3978646@kernel.org>
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Sun, 20 Jul 2025 15:32:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,36 +72,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Jul 18 2025 08:10:06 -0500, Mario Limonciello wrote:
+> Do you by chance have an OLED panel?  I believe what's going on is that
+> userspace is writing zero or near zero and on OLED panels with older kernels
+> this means non-visible.
 
+Yes, this is an OLED panel. But I don't believe it's userspace writing
+anything at this point in the boot; before the bisected commit,
+brightness was set to 32 (out of max 255) on this hardware when I
+checked from the initramfs rescue shell. At the bisected commit, it's 0
+(out of max 255).
 
-On 7/20/25 4:36 AM, Lauri Tirkkonen wrote:
-> DIV_ROUND_CLOSEST(x, 100) returns either 0 or 1 if 0<x<=100, so the
-> division needs to be performed after the multiplication and not the
-> other way around, to properly scale the value.
-> 
-> Fixes: 6c56c8ec6f97 ("drm/amd/display: Fix default DC and AC levels")
-> Signed-off-by: Lauri Tirkkonen <lauri@hacktheplanet.fi>
-> ---
->   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index f58fa5da7fe5..8a5b5dfad1ab 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -4941,9 +4941,9 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
->   	caps = &dm->backlight_caps[aconnector->bl_idx];
->   	if (get_brightness_range(caps, &min, &max)) {
->   		if (power_supply_is_system_supplied() > 0)
-> -			props.brightness = (max - min) * DIV_ROUND_CLOSEST(caps->ac_level, 100);
-> +			props.brightness = DIV_ROUND_CLOSEST((max - min) * caps->ac_level, 100);
->   		else
-> -			props.brightness = (max - min) * DIV_ROUND_CLOSEST(caps->dc_level, 100);
-> +			props.brightness = DIV_ROUND_CLOSEST((max - min) * caps->dc_level, 100);
->   		/* min is zero, so max needs to be adjusted */
->   		props.max_brightness = max - min;
->   		drm_dbg(drm, "Backlight caps: min: %d, max: %d, ac %d, dc %d\n", min, max,
+> There is another commit that fixes the behavior that is probably missing.
 
-Thanks! The change makes sense.  Besides Greg's comments can you please 
-send out of the regression thread?  IMO This should be it's own patch 
-thread.
+Which commit is that? It's not in 6.15.7?
+
+-- 
+Lauri Tirkkonen | lotheac @ IRCnet
