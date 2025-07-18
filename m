@@ -2,64 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF10B0B6B2
-	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 17:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C454B0B6BA
+	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 17:33:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D74010E37B;
-	Sun, 20 Jul 2025 15:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4263010E382;
+	Sun, 20 Jul 2025 15:33:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pcq9LXoH";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="P/vBc69j";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A25E410E9EC;
- Fri, 18 Jul 2025 15:37:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752853027; x=1784389027;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ltIuRJBzfoP4LzI8kUoo54zZCELzuoWYyP9nbjNM8uI=;
- b=Pcq9LXoHNtjhLDqIkxz+JBseQQfdx0lFeMy0XsNAfHRnL7stDC4vfNQ7
- 8tkw3JqpixczEb1FARNQyv8aSm+xEAPCk63TrdN+3BhgYQIp8CQ906eNY
- 26B5Ctg4SkAE5MQUlvVCCmLPMlbfHbP3zDnX8cHyENL8/PF8Oh52QJ0Do
- Ijt076nDdfA3nfP2K3YVjXH6csmTWZImhZUtzflg3iPVnE9uQVIiymVDu
- hirCZ6R23wIVx2CxTKrvFAKUceZozohpet+4ynFFt+8N67UwohQrDfN03
- +jBPQppPVjc/TZ08rsNheB24paq7uXUsfrX1Lwf0+76IaaLudr8qX8fol g==;
-X-CSE-ConnectionGUID: fVpooUiBTLyGPRlgq3jzKg==
-X-CSE-MsgGUID: yDNlHWVuRlqPZhstDipd9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="42774450"
-X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="42774450"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2025 08:37:06 -0700
-X-CSE-ConnectionGUID: mlbnjXt0Qsua6n7jnctHCw==
-X-CSE-MsgGUID: GpXjDRgpRPyg98Fb/ijsdw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="163713156"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
- by orviesa005-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2025 08:37:04 -0700
-Date: Fri, 18 Jul 2025 17:37:01 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: IVAN.LIPSKI@amd.com
-Cc: igt-dev@lists.freedesktop.org, sunpeng.li@amd.com,
- harry.wentland@amd.com, amd-gfx@lists.freedesktop.org,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-Subject: Re: [PATCH i-g-t] tests/amdgpu: Add test for native cursor fallback
- to overlay
-Message-ID: <20250718153701.xi24dlco7a7bdtq2@kamilkon-DESK.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- IVAN.LIPSKI@amd.com, igt-dev@lists.freedesktop.org,
- sunpeng.li@amd.com, harry.wentland@amd.com,
- amd-gfx@lists.freedesktop.org,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-References: <20250717204155.17468-1-IVAN.LIPSKI@amd.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8B910EA16
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:52:01 +0000 (UTC)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I8p9kE021593
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:52:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ i/jJS211K+91WfPtzNzKrjWRU80MmsvCM3rgFx21dfM=; b=P/vBc69jyQvb8sow
+ lV/WOYxFLnnzhJsAqu/H721IYea+wKWldZ4xEYW92WXsZSktINoRbl0ftsHf3RFw
+ x/1FLPFMwXwG9xAzrRr1gn/M+wzs6rR9jrpm7PFqfcpCe061m5PGDozIRfvr1fSV
+ x5Ip0dkql6htf1/vbpv662dOR36r0VSNUp2XahM1HQuwQknuXgRAi3EeWFMXbo57
+ ZmW4wtfDwMEKlSGkHEK+X61BYZv3NI767se+yb0V19LFavGHalln4qC7+6fHfQWf
+ oi/SngOP17bMOcXoOE/IKlfcsFXN9g9wlPOWUOZyhdmB/pJowmXiJOiwODcz6jUd
+ +PHV0Q==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
+ [209.85.216.71])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47ufu8m5cn-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:52:00 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id
+ 98e67ed59e1d1-3138e64b3f1so3212404a91.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 09:52:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752857519; x=1753462319;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=i/jJS211K+91WfPtzNzKrjWRU80MmsvCM3rgFx21dfM=;
+ b=HfWTSniyspd1Lijg1Q6uaKnlEjnlwlNQix1mjyEBEa3x6jRQvtABC0s8DZP6nTW2zK
+ 3xHT0V2yeKf3SjJqAy8h91y5J6He/kyu781WPVm5T1yefo1z11NOL4YSrOTWZWxLb1ca
+ KfpuREENkfQ0x6Bk6n7rMPb2503F0HuesUjg3iIauWXRCoQWqpY+ogdQnXJ/HPgQficI
+ mxtYHttBwGtj6Y5G0lZiTqH9lVm+EGWkFlxBnNxsL7OlTo00iZRLaJLXbfo4fLBrAbmz
+ arNvrMHTQVrfk2A/f/c89xLMTZJJyN6Q/ekNVhKOZjYDUotuiEmpUsu9VeghgkzErvRq
+ Z05w==
+X-Gm-Message-State: AOJu0Yyw5miB1KKy0WZz9v0SiqMEK47HAggY5LT4IWZK9W/oywtTIf0k
+ K/4LwWD1JNbsecjU66vRYa8BoUsYIpg9XcZWaiMtCYTWXmBWyFzZMPLCwWCBx8suy+3gjfwdefV
+ /TPuxoGjPBu4FkGcioHtdDqSv0upIsgGHNuXSqk4zlBMWn+cEwfnYeg29r33cRIZf19zY
+X-Gm-Gg: ASbGncvwc83MKmu4jZs/EUk/BvYTqQaOCQSIhNVDFuhPwPPOUYJK+1OzoCx8rsGSuXu
+ z/ZiBtwDvhEVsoKs63J+FkF5G49xSKN1H3BcI/vUfpCKShQ+OnaBdBvpAdJQWXq8fdp9vMsSZnf
+ n1OYHf1Tys6alSP2Gxw/ujQDpSlE/j6UBZsdzkgnSkvX9v6ZZA/TkwYjgMyOmh0/CtpdvAxw/CE
+ 7Y4FMRB4+c2/1UCqh+uFty4UvFVB4wY+x4ZNvr7gU41/4gxKT6s0GkLx2skgxhaUTt3qkl9Rg9D
+ SCuUqYADHmiQTtAkNIbxiryWRC5o1kWvaR0A0PIQH6O01ZfmeFtf3/xva91/h4Rw8DJqamz2LuZ
+ 2k4pn8y23JTtxfA==
+X-Received: by 2002:a17:90a:ec8b:b0:312:1ac5:c7c7 with SMTP id
+ 98e67ed59e1d1-31c9f3993d8mr17038304a91.2.1752857518917; 
+ Fri, 18 Jul 2025 09:51:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH9NIA98X5HRDDVuwcioD+0TFYXDcZBMvtr4Luz9HPLr/CXztRxjI3u8ZOFya8id3YrAIy6yQ==
+X-Received: by 2002:a17:90a:ec8b:b0:312:1ac5:c7c7 with SMTP id
+ 98e67ed59e1d1-31c9f3993d8mr17038273a91.2.1752857518544; 
+ Fri, 18 Jul 2025 09:51:58 -0700 (PDT)
+Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-31cb6ad7257sm3078809a91.42.2025.07.18.09.51.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 18 Jul 2025 09:51:58 -0700 (PDT)
+Message-ID: <2de96bf3-0c63-4db9-b581-f011bc1446c2@oss.qualcomm.com>
+Date: Fri, 18 Jul 2025 10:51:55 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250717204155.17468-1-IVAN.LIPSKI@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/4] drm: move drm based debugfs funcs to drm_debugfs.c
+To: Sunil Khatri <sunil.khatri@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, simona@ffwll.ch, tzimmermann@suse.de,
+ tursulin@ursulin.net, phasta@kernel.org, dakr@kernel.org,
+ linux-kernel@vger.kernel.org, Oded Gabbay <ogabbay@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>
+References: <20250704075548.1549849-1-sunil.khatri@amd.com>
+ <20250704075548.1549849-2-sunil.khatri@amd.com>
+Content-Language: en-US
+From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+In-Reply-To: <20250704075548.1549849-2-sunil.khatri@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDEzMyBTYWx0ZWRfX8sf+Y6ZkQZj/
+ BMbiybDAHqgMmCP5xlaiMMwVojxN1D1OUR3ixUfLw1fy5VX+IOVmsx2YkmDnF0r44fI/ef/18tk
+ llTh7LfMbrN8fkPjf281tMAUZaAUTKMdgYarSAZXgfBhBhiPR69gcLGdavVAnYu1G07N+avvbe5
+ TSYX19llMyf2DHa/zawWDAuH8Sgo/fOa04GyeExmhUotjbSiuPOLnRL6nwpHPAaTUaSoRr0OuCJ
+ ow2FIBlmpL20WurBGRzjTFw78rFZgtxKn1uGmCRhIyKk5cv0OJEnXzL7K1oZgMhvqp5l7fufg+9
+ Fd+kSHVmk590JVN2O9sraz3hHVgndXK+HhtDt68LFxZ1bN6FV0d14MgwVYhEudG2ITxnmg4HnJM
+ 1n8G8gtLzdv8fdAgcabeyUQtiBKdYaFSrCMcQSxru0ZK6L9vzCFjiiTSSS1Um1vqz7eLQRoi
+X-Proofpoint-ORIG-GUID: vVRxF9N1S_ZtSQeJrFOssHA_nkZgJPL3
+X-Proofpoint-GUID: vVRxF9N1S_ZtSQeJrFOssHA_nkZgJPL3
+X-Authority-Analysis: v=2.4 cv=f59IBPyM c=1 sm=1 tr=0 ts=687a7bb0 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=zd2uoN0lAAAA:8 a=EUspDBNiAAAA:8
+ a=qFjxPv6tQ-BECiE8w1cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-18_04,2025-07-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxscore=0
+ bulkscore=0 suspectscore=0 impostorscore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=724 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507180133
 X-Mailman-Approved-At: Sun, 20 Jul 2025 15:32:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,80 +130,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi IVAN.LIPSKI,
-On 2025-07-17 at 16:41:46 -0400, IVAN.LIPSKI@amd.com wrote:
-> From: Ivan Lipski <ivan.lipski@amd.com>
+On 7/4/2025 1:55 AM, Sunil Khatri wrote:
+> Requirement is to create per client-id based directories to
+> hold key debugging information and for that access to
+> root debugfs dentry is need which is not in one place
+> and that information cannot be stored in drm_device.
 > 
-> [Why & How]
-> The AMD display hardware does not use dedicated cursor planes.
-> Instead, the cursor is rendered either using the primary plane
-> or an available overlay plane. This test verifies that the
-> cursor correctly falls back from native to overlay mode
-> when the underneath primary plane is incompatible. It also tests
+> Move the debugfs functionality from drm_drv.c and drm_accel.c
+> to drm_debugfs.c This enables debugfs root node reference
+> directly drm_debugfs.c and hence enable to create per client-id
+> directory.
 > 
-> It has 4 subtests:
+> v8: Create drm_accel dentry only if it's config is enabled (Jeff, Hugo)
+> v8: Merge drm_drv and drm_accel debugfs patches (Koenig, Christian)
 > 
-> rgb-to-yuv
-> Switches the primary plane to a NV12 format FB and verifies that
-> the cursor falls back from native to overlay.
+> v10: Since we moved drm_debugfs_root, hence to handle drm bridge
+> debugfs add a new function which call drm_bridge_debugfs_params where
+> drm_debugfs_root is accessible.
 > 
-> non-full
-> Switches the primary planeto a FB that does not fill the entire CRTC
-> (currently sized at a quarter of the CRTC).
-> 
-> scaling-[50,75,125,150,175,200]
-> Switches the primary plane to a FB with a chosen scaling (50%-200%), which
-> is then filled in the CRTC.
-> 
-> no-available-planes
-> Enables all available overlay planes, a primary plane and a cursor. Then
-> switches the primary plane to YUV to cause the cursor to fall back to
-> overlay. Verifies that the atomic commit fails due to no available overlay
-> planes.
-> 
-> Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
-> ---
->  tests/amdgpu/amd_cursor_overlay.c | 433 ++++++++++++++++++++++++++++++
->  tests/amdgpu/meson.build          |   1 +
->  2 files changed, 434 insertions(+)
->  create mode 100644 tests/amdgpu/amd_cursor_overlay.c
-> 
-> diff --git a/tests/amdgpu/amd_cursor_overlay.c b/tests/amdgpu/amd_cursor_overlay.c
-> new file mode 100644
-> index 000000000..52cae8454
-> --- /dev/null
-> +++ b/tests/amdgpu/amd_cursor_overlay.c
-> @@ -0,0 +1,433 @@
-> +/*
-> + * Copyright 2025 Advanced Micro Devices, Inc.
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining a
+> Suggested-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 
-Please remove it and use SPDX instead.
+ From the Accel perspective, this seems ok.
 
-+cc Vitaly
-
-Regards,
-Kamil
-
-> + * copy of this software and associated documentation files (the "Software"),
-> + * to deal in the Software without restriction, including without limitation
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice shall be included in
-> + * all copies or substantial portions of the Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> + * OTHER DEALINGS IN THE SOFTWARE.
-> + */
-> +
-> +#include "igt.h"
-> +
-[cut]
+Reviewed-by: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
