@@ -2,118 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FD7AB0B6B5
-	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 17:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD6EB0B6B1
+	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 17:33:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5F0A10E386;
-	Sun, 20 Jul 2025 15:33:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0CAE10E37C;
+	Sun, 20 Jul 2025 15:32:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="MT33T1UE";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="z43EccIG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B6CC10EA17
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:53:37 +0000 (UTC)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I9HoD1016243
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:53:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- m1zCD0dfghAVW4/iCikI1Mzy4E0jkoMJk9ypegKSOwQ=; b=MT33T1UEHYC6YVkh
- xssZayZWI3HS9jTCahfMVvQEQoKilwVkz1JDIhdTWrr4fS2s0bFRtxtea1tSz0cx
- WvCNn89b9XbKFUWvy6JOzg8z9k0pDLm7fTdPcpsfrG9CsK7EbrbZhsQP7pwVM8w5
- dhFWVEnhlBAWK3K5ERCzbGmCe3HsEwoOaaln7zV7ZWLEaThH+tVSpffHKWuRfTzK
- e0mUY7unvjQaE/RrPs7Tow3QPlwL6d9HfPpq/Ltwe3CCoZtcvp8935E6BXZHVjWo
- gx/UHuloGVJyE1k90Gixf1pB/v3W/YqPVPFFDXsrUPlD4rBg6S8NVsUuIkC3+ABz
- xfDK0Q==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
- [209.85.214.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47y3tc47tq-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 16:53:36 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id
- d9443c01a7336-235089528a0so29388805ad.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 09:53:36 -0700 (PDT)
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+ [209.85.214.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAD0810EA2A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 17:57:19 +0000 (UTC)
+Received: by mail-pl1-f176.google.com with SMTP id
+ d9443c01a7336-2357c61cda7so13385ad.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 10:57:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1752861439; x=1753466239;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fQwq6XL4XMMDUVPyAAts9uHNc3Wh3Ah7TMpl+x8VXU4=;
+ b=z43EccIG2lRK9j1LP1nZmdFBxXoPGUnzbBry4agKBKx10LQ+ni1bzFBVlagILBwbHs
+ TMfvSDloojsr+jxI8YwNQMLuN1uP2mzAQ+dhPPQiZqhtOj81C7yFuXZIcNYKFF8ggxaU
+ uk76sANW7Cq5xFjUWv1c4Z2osdeES8nyS44hu2R41ROLMZOhAtPjc6gX2SxUvpDd1xmS
+ nr8nBEfKxiV2pPQ1doZRzGmYGsEz/9gU2YYvuXYihPfKS3mrlqzz6ECLiYSR1Shu6wHN
+ cC1XAIBpbMBo2M09yonP0zhs1xTRIcS41UKIkK38EzdsAFdyU52qGmbhVBoCd9Y+irzo
+ GxcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752857616; x=1753462416;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=m1zCD0dfghAVW4/iCikI1Mzy4E0jkoMJk9ypegKSOwQ=;
- b=Ot5mCElr8+2AWeaAYP6e1nLe7VNLwDI21Sxa89Iz+Ep2j2igyRC2L9OmcAdDhyEFTv
- IPGtph7JMKQYBLOmYcOv4BjsqXvrS3djck6/0cRyyOk7V4UfZem2KbOZk9knW3zzoLPq
- 4gJWbSlhZrU59czp3bkv55U9TKT8W12pxUi8zzYfD8JBb98D+wR09OQi3CWqTHtk6pXL
- 92qu0Zqjen3mMRgTXLxme9Rcxhi5bKtcOFsnpRtYG0l9Fg3Bknn4+6LaYBnFTU6SBjbn
- oYhFI6s2JN4jcEhQy2RdHZIsqs8SpS5Ddl5MQxAru3waV97Cvo34is1xZvAn5slYjd0y
- OVYQ==
-X-Gm-Message-State: AOJu0YzqfQUbp6xhHgAXzslok/TkWgtcLxjUYryOBPd9umhuSkOvZDmM
- 8nEZzO+QSpkfUUcodM7GRb9f2sSuuvfHBGVSDUFE+xMcDbGlqJrte6kGV99F+LngQcgfqhq2Swr
- ZlJuN+bMvxWQKx4DMSlYYKjt0+sg7aVAXklRkQOhDFXzku8J2h6YkKpvbSkAk2mgIZuV9
-X-Gm-Gg: ASbGncsHor/hhEWTvlv5mjh1/2DV3s3BFXWuUcju0IUQggIwBvXdIqpXqzZ2LUkPlHx
- xy4av5MSSvAyDCme5VTpIz24JVQ2mhMnW7DnZth+DuM2VBui+cy0gjP2IlwTj6ethuEomvKWrZm
- OuP48Ye836LyCznhos1XAUIMTTSX4i67iWMtIvZVwxgnCrPeUX4jNcCVRwYLMGEke6izdKbGIe7
- yog5C4IH5I1c0qWRjCsKQijRLNUEKXHFOBP/7ISY+Qj8J3kxYlYfA33kY+TWZ30nPGOKMxdIIP7
- G7W2k3Cq+I9Jg8WggYJwgOK86aCdmxKeupG51BrmQWGjePdRn+XtNmV0CGvjrJpVinWds1Hv2QY
- dXGdrHBrzOnm1kQ==
-X-Received: by 2002:a17:903:186:b0:215:6c5f:d142 with SMTP id
- d9443c01a7336-23e2f744c24mr114646215ad.20.1752857615751; 
- Fri, 18 Jul 2025 09:53:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHuWrniCXSDlgPowFyHtxd19vZI/IqgnQedWoC58cRaes2308e8m8bmwseHhboSm6uY1fQsWw==
-X-Received: by 2002:a17:903:186:b0:215:6c5f:d142 with SMTP id
- d9443c01a7336-23e2f744c24mr114645715ad.20.1752857615304; 
- Fri, 18 Jul 2025 09:53:35 -0700 (PDT)
-Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23e3b6b490fsm15812805ad.112.2025.07.18.09.53.33
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Jul 2025 09:53:34 -0700 (PDT)
-Message-ID: <515c3aae-13f7-47d4-91e4-d2d54fc8e2f3@oss.qualcomm.com>
-Date: Fri, 18 Jul 2025 10:53:32 -0600
+ d=1e100.net; s=20230601; t=1752861439; x=1753466239;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=fQwq6XL4XMMDUVPyAAts9uHNc3Wh3Ah7TMpl+x8VXU4=;
+ b=VcWGoS5GTdMTwn1o6BtSYg4aAU9aKr6aJRf+mFnhhox0OxfGna54e7P+ECeKqFdACV
+ cAXZMUj2GbJtfnSy2uAqpdZm9IDcCQBtCvoRHq0fFt5Tx2RsXNEEFd+A0UW9aPuQXz7t
+ f/7MEdKA7eqwAXxQP/U2Xdy6FLJ9SHYkqALdtfjGmfbNg/bYH15HOOJfGOTUSpNLleHj
+ QmuKB1tHt/Ksvex8kF1191QYr4p1qljGGae/AOiMEvVj2OO8i9bXJXzBYyOOrYFYW25b
+ 9vFVnAJhavxEbm2iaHNRNLktrzrSZoCPkpLbsEFDsE/sgYxwzst65sB+9hSa9PSg6H2A
+ krMw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXEJsaCtYqTe+0tMmt5nJ7w7hurKO8SgPw6DCqMPA520X0rnmVIyXZN70Go2ACd8BBi6dkw8xaq@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyiTiA9eSZXiafUe93+MqGp4dYNYJ/kTLdzml6V9NYJAzZlibjn
+ hL/HDOB+x178Lpx4NMR2o0HJcemW2BK6N/P11pFVg9qxPrdZJ9TBvKkoo7nXfjePMW+zbz9caTj
+ U7IPmSZakQe20BwKXcGcN8Okb9acmsxYQpUmylM0f
+X-Gm-Gg: ASbGncvL3ZB3bJLX8xQ1BkuZ0cY5KhjMMkxehC/GIbY9xNgEW0Jj2w4+CKHEs1YPmWj
+ E99xjSgNQWGDm7oIJzo0saVVFlL4LkDEmPbhBsYAGsBOzQ5jb4koGWMrHrL/XHeybaX0tj9xs+t
+ am4CIYq8bJzV4NNZ1Q9FqZPbZ1qEvkWWQJ1dH/lE3Xv48PxFmiElXu29ufMs7eymfIsE6TJtq0S
+ LbNkw==
+X-Google-Smtp-Source: AGHT+IFB7mRsL16wpHPWottVi1OKrwf75zBs0DCPDQD+QRajm4wHJjRQeKVuBUPTfJF/u36oAJXSpzv3mDvRuLFSvUg=
+X-Received: by 2002:a17:902:e845:b0:231:d0ef:e8ff with SMTP id
+ d9443c01a7336-23f71cf6272mr147495ad.8.1752861438668; Fri, 18 Jul 2025
+ 10:57:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 2/4] drm: add debugfs support on per client-id basis
-To: Sunil Khatri <sunil.khatri@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org, simona@ffwll.ch, tzimmermann@suse.de,
- tursulin@ursulin.net, phasta@kernel.org, dakr@kernel.org,
- linux-kernel@vger.kernel.org, Oded Gabbay <ogabbay@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-References: <20250704075548.1549849-1-sunil.khatri@amd.com>
- <20250704075548.1549849-3-sunil.khatri@amd.com>
-Content-Language: en-US
-From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-In-Reply-To: <20250704075548.1549849-3-sunil.khatri@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Z5PsHGRA c=1 sm=1 tr=0 ts=687a7c10 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KjCdSd8fyryEu2hfdkEA:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-ORIG-GUID: xzwoLLv0aX1rE3s0rq18ipkHNxIAMncl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDEzMiBTYWx0ZWRfX2FNaW7Pql+LD
- HMiYHA6MdQROXGijFGN8TB1jjVMLN4Jf5XmHSL3O8etHepZSzl/IUhS5dtZXflU0RtZ9ljlSmv+
- mNdqGyGpoWombwQBei83LDfXarur8cSjLDfK2JgxwKfdxW5YYHQNTOo9+RcY/zTtEMrsls3rDYS
- OSk8HW1Y1wQeyon3dwtYXxpWoqwM9mtvsFKBVDUfsdJd9dWSBWnumS16sykP5L1eAKtv7iZbkrA
- kgxTNlI/kM9uw2AK57MEwm+x/NZOKJyrjp0yWBW8lE6CKo4XIVgcLDMC+oJviBNvRaR0DFhA9aV
- U8w9Qcr1CzL7NtulnkWDJZsHQgnaGM2fiMu+PqiEOFaouabSlg45AOtMJgA50Ts8YlqKJOtpuHJ
- xZpVHaE18o8cXoOdGy6D7HDosic9SizhSLshGsYFx6apdq4jKxE40FtN33bjZOX+HevaSLF9
-X-Proofpoint-GUID: xzwoLLv0aX1rE3s0rq18ipkHNxIAMncl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-18_04,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 mlxlogscore=791 suspectscore=0 spamscore=0 clxscore=1015
- mlxscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507180132
+References: <20250716161753.231145-1-bgeffon@google.com>
+ <CADnq5_P+a2g_YzKW7S4YSF5kQgXe+PNrMKEOAHuf9yhFg98pSQ@mail.gmail.com>
+ <CADyq12zB7+opz0vUgyAQSdbHcYMwbZrZp+qxKdYcqaeCeRVbCw@mail.gmail.com>
+ <CADnq5_OeTJqzg0DgV06b-u_AmgaqXL5XWdQ6h40zcgGj1mCE_A@mail.gmail.com>
+ <CADyq12ysC9C2tsQ3GrQJB3x6aZPzM1o8pyTW8z4bxjGPsfEZvw@mail.gmail.com>
+ <CADnq5_PnktmP+0Hw0T04VkrkKoF_TGz5HOzRd1UZq6XOE0Rm1g@mail.gmail.com>
+In-Reply-To: <CADnq5_PnktmP+0Hw0T04VkrkKoF_TGz5HOzRd1UZq6XOE0Rm1g@mail.gmail.com>
+From: Brian Geffon <bgeffon@google.com>
+Date: Fri, 18 Jul 2025 13:56:42 -0400
+X-Gm-Features: Ac12FXy1d35S96EobB812Shedx-VhbSYaFw_UhX7goQUz4ANBgmd9GU0nbH0gb8
+Message-ID: <CADyq12x1f0VLjHKWEmfmis8oLncqSWxeTGs5wL0Xj2hua+onOQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Raven: don't allow mixing GTT and VRAM
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: "Wentland, Harry" <Harry.Wentland@amd.com>,
+ "Leo (Sunpeng) Li" <Sunpeng.Li@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Yunxiang Li <Yunxiang.Li@amd.com>, 
+ Lijo Lazar <lijo.lazar@amd.com>, Prike Liang <Prike.Liang@amd.com>, 
+ Pratap Nirujogi <pratap.nirujogi@amd.com>, Luben Tuikov <luben.tuikov@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, Garrick Evans <garrick@google.com>, 
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sun, 20 Jul 2025 15:32:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -129,11 +98,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 7/4/2025 1:55 AM, Sunil Khatri wrote:
-> add support to add a directory for each client-id
+On Thu, Jul 17, 2025 at 10:59=E2=80=AFAM Alex Deucher <alexdeucher@gmail.co=
+m> wrote:
+>
+> On Wed, Jul 16, 2025 at 8:13=E2=80=AFPM Brian Geffon <bgeffon@google.com>=
+ wrote:
+> >
+> > On Wed, Jul 16, 2025 at 5:03=E2=80=AFPM Alex Deucher <alexdeucher@gmail=
+.com> wrote:
+> > >
+> > > On Wed, Jul 16, 2025 at 12:40=E2=80=AFPM Brian Geffon <bgeffon@google=
+.com> wrote:
+> > > >
+> > > > On Wed, Jul 16, 2025 at 12:33=E2=80=AFPM Alex Deucher <alexdeucher@=
+gmail.com> wrote:
+> > > > >
+> > > > > On Wed, Jul 16, 2025 at 12:18=E2=80=AFPM Brian Geffon <bgeffon@go=
+ogle.com> wrote:
+> > > > > >
+> > > > > > Commit 81d0bcf99009 ("drm/amdgpu: make display pinning more fle=
+xible (v2)")
+> > > > > > allowed for newer ASICs to mix GTT and VRAM, this change also n=
+oted that
+> > > > > > some older boards, such as Stoney and Carrizo do not support th=
+is.
+> > > > > > It appears that at least one additional ASIC does not support t=
+his which
+> > > > > > is Raven.
+> > > > > >
+> > > > > > We observed this issue when migrating a device from a 5.4 to 6.=
+6 kernel
+> > > > > > and have confirmed that Raven also needs to be excluded from mi=
+xing GTT
+> > > > > > and VRAM.
+> > > > >
+> > > > > Can you elaborate a bit on what the problem is?  For carrizo and
+> > > > > stoney this is a hardware limitation (all display buffers need to=
+ be
+> > > > > in GTT or VRAM, but not both).  Raven and newer don't have this
+> > > > > limitation and we tested raven pretty extensively at the time.
+> > > >
+> > > > Thanks for taking the time to look. We have automated testing and a
+> > > > few igt gpu tools tests failed and after debugging we found that
+> > > > commit 81d0bcf99009 is what introduced the failures on this hardwar=
+e
+> > > > on 6.1+ kernels. The specific tests that fail are kms_async_flips a=
+nd
+> > > > kms_plane_alpha_blend, excluding Raven from this sharing of GTT and
+> > > > VRAM buffers resolves the issue.
+> > >
+> > > + Harry and Leo
+> > >
+> > > This sounds like the memory placement issue we discussed last week.
+> > > In that case, the issue is related to where the buffer ends up when w=
+e
+> > > try to do an async flip.  In that case, we can't do an async flip
+> > > without a full modeset if the buffers locations are different than th=
+e
+> > > last modeset because we need to update more than just the buffer base
+> > > addresses.  This change works around that limitation by always forcin=
+g
+> > > display buffers into VRAM or GTT.  Adding raven to this case may fix
+> > > those tests but will make the overall experience worse because we'll
+> > > end up effectively not being able to not fully utilize both gtt and
+> > > vram for display which would reintroduce all of the problems fixed by
+> > > 81d0bcf99009 ("drm/amdgpu: make display pinning more flexible (v2)").
+> >
+> > Thanks Alex, the thing is, we only observe this on Raven boards, why
+> > would Raven only be impacted by this? It would seem that all devices
+> > would have this issue, no? Also, I'm not familiar with how
+>
+> It depends on memory pressure and available memory in each pool.
+> E.g., initially the display buffer is in VRAM when the initial mode
+> set happens.  The watermarks, etc. are set for that scenario.  One of
+> the next frames ends up in a pool different than the original.  Now
+> the buffer is in GTT.  The async flip interface does a fast validation
+> to try and flip as soon as possible, but that validation fails because
+> the watermarks need to be updated which requires a full modeset.
+>
+> It's tricky to fix because you don't want to use the worst case
+> watermarks all the time because that will limit the number available
+> display options and you don't want to force everything to a particular
+> memory pool because that will limit the amount of memory that can be
+> used for display (which is what the patch in question fixed).  Ideally
+> the caller would do a test commit before the page flip to determine
+> whether or not it would succeed before issuing it and then we'd have
+> some feedback mechanism to tell the caller that the commit would fail
+> due to buffer placement so it would do a full modeset instead.  We
+> discussed this feedback mechanism last week at the display hackfest.
+>
+>
+> > kms_plane_alpha_blend works, but does this also support that test
+> > failing as the cause?
+>
+> That may be related.  I'm not too familiar with that test either, but
+> Leo or Harry can provide some guidance.
+>
+> Alex
 
-Nitpick.  This is the start of a sentence, and therefore proper grammar 
-would have the first letter capitalized.  So, "add support" should be 
-"Add support".
+Thanks everyone for the input so far. I have a question for the
+maintainers, given that it seems that this is functionally broken for
+ASICs which are iGPUs, and there does not seem to be an easy fix, does
+it make sense to extend this proposed patch to all iGPUs until a more
+permanent fix can be identified? At the end of the day I'll take
+functional correctness over performance.
 
--Jeff
+Brian
+
+>
+> >
+> > Thanks again,
+> > Brian
+> >
+> > >
+> > > Alex
+> > >
+> > > >
+> > > > Brian
+> > > >
+> > > > >
+> > > > >
+> > > > > Alex
+> > > > >
+> > > > > >
+> > > > > > Fixes: 81d0bcf99009 ("drm/amdgpu: make display pinning more fle=
+xible (v2)")
+> > > > > > Cc: Luben Tuikov <luben.tuikov@amd.com>
+> > > > > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > > > > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > > > > > Cc: stable@vger.kernel.org # 6.1+
+> > > > > > Tested-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+> > > > > > Signed-off-by: Brian Geffon <bgeffon@google.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 3 ++-
+> > > > > >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drive=
+rs/gpu/drm/amd/amdgpu/amdgpu_object.c
+> > > > > > index 73403744331a..5d7f13e25b7c 100644
+> > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+> > > > > > @@ -1545,7 +1545,8 @@ uint32_t amdgpu_bo_get_preferred_domain(s=
+truct amdgpu_device *adev,
+> > > > > >                                             uint32_t domain)
+> > > > > >  {
+> > > > > >         if ((domain =3D=3D (AMDGPU_GEM_DOMAIN_VRAM | AMDGPU_GEM=
+_DOMAIN_GTT)) &&
+> > > > > > -           ((adev->asic_type =3D=3D CHIP_CARRIZO) || (adev->as=
+ic_type =3D=3D CHIP_STONEY))) {
+> > > > > > +           ((adev->asic_type =3D=3D CHIP_CARRIZO) || (adev->as=
+ic_type =3D=3D CHIP_STONEY) ||
+> > > > > > +            (adev->asic_type =3D=3D CHIP_RAVEN))) {
+> > > > > >                 domain =3D AMDGPU_GEM_DOMAIN_VRAM;
+> > > > > >                 if (adev->gmc.real_vram_size <=3D AMDGPU_SG_THR=
+ESHOLD)
+> > > > > >                         domain =3D AMDGPU_GEM_DOMAIN_GTT;
+> > > > > > --
+> > > > > > 2.50.0.727.gbf7dc18ff4-goog
+> > > > > >
