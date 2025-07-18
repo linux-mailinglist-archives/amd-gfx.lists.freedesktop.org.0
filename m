@@ -2,74 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21219B0A4E0
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jul 2025 15:12:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C3B7B0A558
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jul 2025 15:41:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EFC110E9C2;
-	Fri, 18 Jul 2025 13:12:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00D6910E0E9;
+	Fri, 18 Jul 2025 13:41:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lMnSJBlW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZxMpOVzI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2ACB10E9C2;
- Fri, 18 Jul 2025 13:12:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:Message-ID:References:
- In-Reply-To:Subject:Cc:To:From:Date:MIME-Version:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=AwU7bt8MAvt9UXAndNFX+doc5wRh0645T3vY748a7p8=; b=lMnSJBlWkX8FSxQuOMoUSOKkbl
- 7ChAXCwspgLSj7A56x+UI07xXtZUXgV8HRhCZ1U55csorv1oFe9zvobtBoQg/1qIWpqzTgylXLICC
- 2WpJEI145+nu6ovJxSCOtVS8AHGsQfP0Aw/gg8T6YxsBQIGjxTnbRtjkqbd+dw87rneNcPAj0Qv7X
- A0wyX/7mJWG7QUzVGM1pzz3Vk+n98oqwPPK5Cd14jMKT2FwquCkbh1BFU2ZXr10jwo90ciK6B1dqP
- xj35hTdz5sQoEkwb5yrlVJj2bARF785hE6VwI4Y5SSjd1bqL0RufYubd2X3F1zvGbbaZaq1MgFsoW
- N74Gpvsg==;
-Received: from maestria.local.igalia.com ([192.168.10.14] helo=mail.igalia.com)
- by fanzine2.igalia.com with esmtps 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ucksP-000a1q-4B; Fri, 18 Jul 2025 15:11:49 +0200
-Received: from webmail.service.igalia.com ([192.168.21.45])
- by mail.igalia.com with esmtp (Exim)
- id 1ucksM-00Ae9x-M1; Fri, 18 Jul 2025 15:11:48 +0200
-Received: from localhost ([127.0.0.1] helo=webmail.igalia.com)
- by webmail with esmtp (Exim 4.96) (envelope-from <mwen@igalia.com>)
- id 1ucksM-00FOx5-0J; Fri, 18 Jul 2025 15:11:46 +0200
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA4E210E0E9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 13:41:14 +0000 (UTC)
+Received: by mail-pj1-f52.google.com with SMTP id
+ 98e67ed59e1d1-313067339e9so377379a91.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 06:41:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1752846074; x=1753450874; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=wzxKFRpd0DFNnzKuKWUe58AlBSnbCxk7UIckn6IJCoc=;
+ b=ZxMpOVzIQUN4qD/FTcEc9XoKy3Ckvjz0HE2SKomicbIheirXfr99GF+b8RlUDatIey
+ DKEPkaK/6YiOlLXw5XAYfvSokPCm+Ky5fxU5jrW5WIO1WnIrqj7yabss0XxkhgJ8soOK
+ 8JEvzS/sV5UUCtp4PASfIx0lBYpNrhWnwcd1Ezd4MhKwGmRwHZ32mhJ4G+bZr73zWo3W
+ cBj9sUbzJh3fS/EVsizjGGUgUHmNFaeKsvZDf508UkL8oAqWPsUzJR1GsS7JTpA7rHHA
+ AQx3aEw+ABOd8bHxrUbuohD7kAAfxUxMEqrQUkpne7ujSb8wmBzeTw9FqSKo4pB+vdZp
+ tXow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752846074; x=1753450874;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=wzxKFRpd0DFNnzKuKWUe58AlBSnbCxk7UIckn6IJCoc=;
+ b=PbLImCmlvFqtsKpal7icI8yHR9GoDdVAuoaSV+yUvCCdhea0vaqUyCC133P/eth9wk
+ rNcOygKR6IxGvsy2wbToGMTU/bHfllaMalcm7gEbkl4LLaFR8KoS3Uqf8r+t4Ud/yWiN
+ x2I34ARIJvM/yvrH6DNn18iMBf8+N+GHyOWX7XmOixD89K+2t+3K+doYz1yUJdFiUgvg
+ oh3gN6c7s407r3IhkNbAVkYXbUcH6ZzfhCBfT1vgSkvaKTkL4y/QjDMclcmd0ZXtunoR
+ e9NlxA+1li/A4iC77pxNISrrHA0JpNqaMh1DtnIbTidXGjQZaf5/+mwAa/iXcU8z9PVK
+ 7Nmg==
+X-Gm-Message-State: AOJu0YwUrr+0iP4rsVD8TyJNbcrqD5U03Vsj4+YM2W8pWsp+ezU8QRpL
+ 4aA5WGKQ47ZU0s2oRRlGbnZM3xVPAido93pJpl65fVxG8MNO9gRuzB6i117mo12csi0pU7rthHx
+ 8XKUHbSp5Pt5CaqtOKjCVSk84ABhm13mbPQ==
+X-Gm-Gg: ASbGncvwn9Jn7oyfzibOoXRsMcM8VrLLKonTbQhfsWjGZtxdJdPrbNvulu3YW2W/bCx
+ ig1MqijCZHb1dvqaFiY66VEYDIZu1cxvNkM/YI6vKasaRJwt+aGIkAROMEDIsHLZesNtZvcw/7J
+ 2wgEngGiMOGhPfCtapT6UUy9DEzjzYAHWgm2qP/sxzTJIBok8lTBUeBNltY4Lyx/prSuHyL3UqW
+ HPW5HXu
+X-Google-Smtp-Source: AGHT+IE5Ua4xxco0J10r+nJgEsdqOj3qCCTqCpoilKGdtsswxCzCCkj/aCXx3g4uFr2TkoBn1cuvbGho6Vm83flowW8=
+X-Received: by 2002:a17:90b:2689:b0:313:151a:8653 with SMTP id
+ 98e67ed59e1d1-31c9e7a412bmr5772949a91.8.1752846074246; Fri, 18 Jul 2025
+ 06:41:14 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 18 Jul 2025 12:11:46 -0100
-From: Melissa Wen <mwen@igalia.com>
-To: Matthew Schwartz <matthew.schwartz@linux.dev>
-Cc: Matthew Schwartz <mattschwartz@gwmail.gwu.edu>, "Limonciello, Mario"
- <Mario.Limonciello@amd.com>, "Wentland, Harry" <Harry.Wentland@amd.com>,
- "Li, Sun peng (Leo)" <Sunpeng.Li@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
- airlied@gmail.com, simona@ffwll.ch, "Hung, Alex" <Alex.Hung@amd.com>, "Liu,
- Charlene" <Charlene.Liu@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH] Revert "drm/amd/display: limit clear_update_flags to
- dcn32 and above"
-In-Reply-To: <8d859c5f-2551-4624-a9b8-a816f1809feb@linux.dev>
-References: <20250717143738.84722-1-mwen@igalia.com>
- <70ac7b1e-9a28-45ff-b7b2-ab0f4fe9030a@amd.com>
- <bb4099a70c2a8c78ef07d5fb6a8f0d3b@igalia.com>
- <55467ebe-42c8-4387-9a61-aa60b3a84053@amd.com>
- <BA28247C-9779-4C4C-A8E3-ACF57BEF1521@gwmail.gwu.edu>
- <67169725b87e02cc8fdc19be5fc7df59@igalia.com>
- <CAD9O9Dq=dAsMs5a3VzgSvLwfuYYhkARDFBXyWUy+yktEZv5WbQ@mail.gmail.com>
- <bdfc8786-d4b8-4391-a4d4-c5fe06020802@igalia.com>
- <CAD9O9DqxJQyAJM=po4yDbAC=hHK2pi12qTVYeb+ar_GenGpMnw@mail.gmail.com>
- <478eb8175779f03a399f7d933614e14c@igalia.com>
- <8d859c5f-2551-4624-a9b8-a816f1809feb@linux.dev>
-Message-ID: <801d0d97e7cdd1eb3b845347ccb5ddbf@igalia.com>
-X-Sender: mwen@igalia.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Report: NO, Score=-2.2, Tests=ALL_TRUSTED=-3,BAYES_50=0.8
-X-Spam-Score: -21
-X-Spam-Bar: --
+References: <20250718035945.1560178-1-lijo.lazar@amd.com>
+In-Reply-To: <20250718035945.1560178-1-lijo.lazar@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 18 Jul 2025 09:41:02 -0400
+X-Gm-Features: Ac12FXw4LhZsF1G6aMfIEOSRztzxx_1_C27bfrlTMo9HbAgYRIpUFcqd0Uammho
+Message-ID: <CADnq5_P2Q-y2z2ZrtD6R9CT=7QJR2MpXdb3EL+8CAU1t+MYEdA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Add NULL check for asic_funcs
+To: Lijo Lazar <lijo.lazar@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, 
+ Alexander.Deucher@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,98 +81,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 18-07-2025 00:51, Matthew Schwartz wrote:
-[...]
-> 
-> Sure, going to use my Legion Go S w/ Z2 Go for this (DCN 3.1.2). All
-> of these are from amd-staging-drm-next with AMD_PRIVATE_COLOR=y.
-> 
-> DTN log from Hades II with MangoHud enabled:
-> https://gist.github.com/matte-schwartz/0c290ffe99bdb4f0d7369ee8817d1145
-> 
-> DTN log from Hades II with MangoHud disabled:
-> https://gist.github.com/matte-schwartz/3e2867e192ec9742ec545d2c5dd3096a
-> 
-> drm_info from Hades II with MangoHud enabled:
-> https://gist.github.com/matte-schwartz/456684fc60f7e84173ee2f42de4b774b
-> 
-> drm_info from Hades II with MangoHud disabled:
-> https://gist.github.com/matte-schwartz/6b635fa584d033234b435667f5d2c153
-> 
+On Fri, Jul 18, 2025 at 12:08=E2=80=AFAM Lijo Lazar <lijo.lazar@amd.com> wr=
+ote:
+>
+> If driver load fails too early, asic_funcs pointer remains unassigned.
+> Add NULL check to sanitize unwind path.
+>
+> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 
-Hey Matthew,
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Thanks for the logs.
-There is actually a difference between your hw and Steam Deck in terms
-of pipe split.
-With your hw, there is no pipe split in both scenarios. However, on
-Steam Deck with MangoHud disabled, we can see the split (2 planes):
-
-HUBP:  format  addr_hi  width  height  rot  mir  sw_mode  dcc_en 
-blank_en  clock_en  ttu_dis  underflow   min_ttu_vblank       qos_low_wm
-     qos_high_wm
-[ 0]:      8h      f4h   1280     400   3h   0h      1bh       1        
-0         1        0         0h           36.562            0.000       
-   33.854
-[ 1]:      8h      f4h   1280     400   3h   0h      1bh       1        
-0         1        0         0h           36.562            0.000       
-   33.854
-[ 2]:      8h      f4h   1280     400   3h   0h      1bh       1        
-0         1        0         0h           36.562            0.000       
-   33.854
-[ 3]:      8h      f4h   1280     400   3h   0h      1bh       1        
-0         1        0         0h           36.562            0.000       
-   33.854
-
-For completion, this is the DTN log of Steam Deck with MangoHud enabled
-(3 planes, no pipe split):
-
-HUBP:  format  addr_hi  width  height  rot  mir  sw_mode  dcc_en 
-blank_en  clock_en  ttu_dis  underflow   min_ttu_vblank       qos_low_wm
-     qos_high_wm
-[ 0]:      8h      f4h   1280     800   3h   0h      1bh       1        
-0         1        0         0h           44.708            0.000       
-   33.854
-[ 1]:      0h       0h      0       0   0h   0h       0h       0        
-0         0        0         0h            0.000            0.000       
-    0.000
-[ 2]:      8h      f4h   1280     800   3h   0h      1bh       1        
-0         1        0         0h           44.708            0.000       
-   33.854
-[ 3]:      8h      f4h   1280     800   3h   0h      1bh       1        
-0         1        0         0h           44.708            0.000       
-   33.854
-
-I couldn't find a pipe-split policy specific for 3.1.2, but I guess it
-follows the 3.1 Dynamic policy, that is the same of the Steam Deck:
-
-drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c:863:    
-.pipe_split_policy = MPC_SPLIT_DYNAMIC,
-drivers/gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c:883:  
-.pipe_split_policy = MPC_SPLIT_DYNAMIC,
-drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c:863:  
-.pipe_split_policy = MPC_SPLIT_DYNAMIC,
-drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c:858:  
-.pipe_split_policy = MPC_SPLIT_DYNAMIC,
-
-I remember that we have discussed about the possibility of workaround
-those glitches by avoiding pipe split (and then we would avoid the
-"split" transition), right?
-
-In short, there is a chance that you are not seeing those glitches
-because there are no changes in the pipe split when transitioning
-between 1-2 overlay planes in your hw, but the split happens on steam
-deck for some reasons. I don't know how the driver decides whether or
-not to split pipes.
-
-That said, if AMD prefers to go with an exception for steam deck, better
-if this situation is documented.
-
-Steam Deck still needs the clear_update_flags() because it uses plane
-color caps and therefore sets multiple update flags, and some glitches
-appear when transitioning from 2 planes (with pipe split) to 3 planes
-(no pipe split). It might be related to minimal transition machinery.
-
-Thank you for all inputs.
-
-Melissa
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c b/drivers/gpu/drm/a=
+md/amdgpu/amdgpu_nbio.c
+> index e56ba93a8df6..a974265837f0 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.c
+> @@ -55,7 +55,8 @@ u64 amdgpu_nbio_get_pcie_replay_count(struct amdgpu_dev=
+ice *adev)
+>
+>  bool amdgpu_nbio_is_replay_cnt_supported(struct amdgpu_device *adev)
+>  {
+> -       if (amdgpu_sriov_vf(adev) || !adev->asic_funcs->get_pcie_replay_c=
+ount ||
+> +       if (amdgpu_sriov_vf(adev) || !adev->asic_funcs ||
+> +           !adev->asic_funcs->get_pcie_replay_count ||
+>             (!adev->nbio.funcs || !adev->nbio.funcs->get_pcie_replay_coun=
+t))
+>                 return false;
+>
+> --
+> 2.49.0
+>
