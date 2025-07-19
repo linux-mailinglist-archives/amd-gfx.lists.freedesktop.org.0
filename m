@@ -2,41 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96EFEB0B6B0
-	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 17:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 103A6B0B6B6
+	for <lists+amd-gfx@lfdr.de>; Sun, 20 Jul 2025 17:33:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79CBB10E225;
-	Sun, 20 Jul 2025 15:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3F010E45E;
+	Sun, 20 Jul 2025 15:33:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=felixrichter.tech header.i=@felixrichter.tech header.b="Jl34XNkt";
+	dkim=pass (1024-bit key; unprotected) header.d=felixrichter.tech header.i=@felixrichter.tech header.b="Dn1+S9+i";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dijkstra.felixrichter.tech (unknown [37.120.184.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FA1210E1E4;
- Sat, 19 Jul 2025 10:11:05 +0000 (UTC)
+Received: from dijkstra.felixrichter.tech (dijkstra.felixrichter.tech
+ [37.120.184.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E63210E055;
+ Sat, 19 Jul 2025 17:02:34 +0000 (UTC)
 Received: from [10.130.10.1] (unknown [10.130.10.1])
- by dijkstra.felixrichter.tech (Postfix) with ESMTPSA id BF8651A30BD;
- Sat, 19 Jul 2025 12:11:38 +0200 (CEST)
+ by dijkstra.felixrichter.tech (Postfix) with ESMTPSA id 4158A1A30C1;
+ Sat, 19 Jul 2025 19:03:17 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=felixrichter.tech;
- s=20210926; t=1752919899;
- bh=3VNfUxSAOp65CvuEaSzBq77SlXZOKw58vVaXGiL/O5w=;
+ s=20210926; t=1752944598;
+ bh=H83MShKAd/oyxO7riTCnrTaBgzS9cMCO2sU8P39Gq7Q=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=Jl34XNktwUvmuKXe7npo+PCYFQW/xOBr1+GtI/8at3IY6Mfm29wl8adA41SvXnFAl
- PoDU7ZOUVe8YMCXvQHyJh+XFfmiHXON4PLPjQnNncDG0YYX+KsiLQvT0u5fZBJuNZ3
- z0TOW2IAFN6kQhgrqR4phjTkIX+jkZZxYAWNY22A=
-Message-ID: <5f63ae37-793e-4e34-a8ab-1845121fcd7e@felixrichter.tech>
-Date: Sat, 19 Jul 2025 12:10:51 +0200
+ b=Dn1+S9+i2TTcF3EdclYiAu6MoREY+2bNoN6WBH2vJ5xY5wwK57PYjwrScS3kvT8oU
+ vcmS3ag1MvhqeuMrXzdXzHY/pwXmwdOARZhpW+SDhx5T8FazvmUzDv4R3F1GNk5Gti
+ c3fCUaeXUlBd2Xsoi2PAlRYL2XMawxLnqC80YYoM=
+Message-ID: <19229f06-9062-492b-90fd-b6c931e29146@felixrichter.tech>
+Date: Sat, 19 Jul 2025 19:02:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: Regression: DDC I2C Display Freezing for internal displays
 To: Mario Limonciello <superm1@kernel.org>,
  Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>
 Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, jonas@3j14.de
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jonas@3j14.de, seanpaul@chromium.org
 References: <0863bc3e-7364-4572-bb72-fc85657cbad7@felixrichter.tech>
  <d9706fe0-7965-457d-830e-19f9aafee855@felixrichter.tech>
  <1c64c181-4e96-4274-975b-454f7207af92@kernel.org>
+ <5f63ae37-793e-4e34-a8ab-1845121fcd7e@felixrichter.tech>
+ <79d7b8a1-b472-4f32-a724-1f2303fb2cab@kernel.org>
 Content-Language: en-US
 From: Felix Richter <judge@felixrichter.tech>
 Autocrypt: addr=judge@felixrichter.tech; keydata=
@@ -82,7 +86,7 @@ Autocrypt: addr=judge@felixrichter.tech; keydata=
  YkbG+ExKtTB95OaJ5iKyXZZwuO32PcTWoS5zZ1l80NJdo7k2fkHd6sXBbtGD++HD20IT/8Jg
  fCYFhM7sYeeNDe/MSjqF0KIKPTRlP81NhTy6VaN9tlA6V4PG5nDj4ZYmZi8fYBnyESGOdZp7
  /gCDtAyFQYGIbXKjiOFvQzpD93R7ljal4D+J/RyIFR94xM5xOwX24kxN
-In-Reply-To: <1c64c181-4e96-4274-975b-454f7207af92@kernel.org>
+In-Reply-To: <79d7b8a1-b472-4f32-a724-1f2303fb2cab@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 20 Jul 2025 15:32:54 +0000
@@ -100,52 +104,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thanks for the reply.
-
-I am aware that i can read and `edid` via sysfs from the drm device. I 
-did not know about `drm_info` but from a quick look at it I don't think 
-it provides the information I need.
-
-The problem is not that I need more information about the attached 
-display. The problem is that there is not enough information about the 
-what `i2c` device corresponds to which monitors ddc channel. Relying on 
-udev hierarchies is not sufficient, because in many cases the relevant 
-i2c device has no parent drm output device. So when I have no 
-information about the i2c device I need to get more information by 
-reading from it. Then I know more and can map the device to the correct 
-display. I am happy to change the approach if there is a simpler way for 
-me to get this information.
-
-Ultimately I don't think that me accessing the bus should be the issue 
-here … This issue did not happen with kernel 6.6, so it definitely 
-qualifies as a regression. In my mind it is the job of the driver to 
-handle resource allocation, so if the bus is in use by somebody else it 
-is the kernels job to handle who uses it. It is not the users job to 
-have to worry about some sort of synchronization issue. That is the 
-operating systems job.
-
-People have been experiencing similar screen freezing issues randomly on 
-this drm issue thread: 
-https://gitlab.freedesktop.org/drm/amd/-/issues/4141#note_3016182
-
-This example highlights an issue that can be triggered reliably with a 
-very similar effect. It may not be the same issue, but they may be related.
-
-
-On 7/18/25 20:02, Mario Limonciello wrote:
+On 7/19/25 14:23, Mario Limonciello wrote:
 >
-> At least to me, this issue sounds like a case that multiple entities 
-> are trying to communicate with the panel at the same time.
+> On 7/19/25 5:10 AM, Felix Richter wrote:
+>> Thanks for the reply.
+>>
+>> I am aware that i can read and `edid` via sysfs from the drm device. 
+>> I did not know about `drm_info` but from a quick look at it I don't 
+>> think it provides the information I need.
+>>
+>> The problem is not that I need more information about the attached 
+>> display. The problem is that there is not enough information about 
+>> the what `i2c` device corresponds to which monitors ddc channel. 
+>> Relying on udev hierarchies is not sufficient, because in many cases 
+>> the relevant i2c device has no parent drm output device. So when I 
+>> have no information about the i2c device I need to get more 
+>> information by reading from it. Then I know more and can map the 
+>> device to the correct display. I am happy to change the approach if 
+>> there is a simpler way for me to get this information.
 >
-> By setting dcdebugmask=0x10 what you're essentially doing is stopping 
-> the display hardware from trying to put the panel into PSR.  So there 
-> is "less" I2C traffic to fight with.
->
-> *Why* are you using I2C to read the EDID like this?  Could you instead 
-> use /sys/class/drm/cardX-inputY/edid?  Or even better - can you use 
-> the information from drm_info to make decisions?
->
-> I think the less I2C traffic done directly from userspace the better 
-> when it comes to synchronization issues..
->
+> ❯ ls -alh /sys/class/drm/*/ddc
+Nice, I will consider adding that information to the logic for matching 
+i2c devices to displays. But I do have to tell you that still is not 
+sufficient in every case. It probably works for all direct interfaces 
+that are always present on the device. But it fails to match i2c ddc 
+channels when monitors are attached via a docking station using USB-C. 
+Those monitors will not even show up in the command you provided. This 
+again leads me to having to probe the i2c device directly anyway.
 
+> I get where you're coming from, but there are cases that are 
+> ultimately impossible to prevent when it comes to "long", or 
+> "frequent" sequences and responding to interrupts. There are lots of 
+> examples like this in the kernel that if you break what a driver is 
+> doing with a device from a userspace interface you get to pick up the 
+> pieces.
+>
+> I'll give you two examples:
+>
+> 1) You can access R/W PCI config data.
+> /sys/bus/pci/devices/*/config
+>
+> You can break power management state machines, bus mastering, really 
+> anything a device driver can do from a userspace application.  For 
+> example if I had a userspace app that did something like this:
+>
+> dd if=/dev/zero of=/sys/bus/pci/devices/${BDF}/config bs=1 count=4096
+>
+> and it broke how can the kernel do anything about it?
+>
+> 2) There was a case that fwupd was doing something very similar to you 
+> with a "probe" but with the DP aux character device.  It was trying to 
+> detect devices with updates and would fight specifically with link 
+> training.  The outcome was non-functional devices.  The workaround 
+> currently employed is that fwupd will wait a few seconds (5 or 10, I 
+> forget) and then do the probe to avoid that fight.  This doesn't solve 
+> things though because there are pulse interrupts that could still come 
+> at any time. The DP spec has response requirements for these.
+>
+> We talked about it at the display next hackfest this year and the 
+> decision was this information that fwupd was needing should be pushed 
+> into the kernel (let fwupd probe a sysfs file that gets cached data 
+> the driver fetched).
+>
+I get that you can not protect against every case of malicious use. I am 
+not sure that my example qualifies as that extreme though. I am only 
+trying to read some data, that is in no way comparable to actively 
+changing values.
+>
+>> People have been experiencing similar screen freezing issues randomly 
+>> on this drm issue thread: https://gitlab.freedesktop.org/drm/amd/-/ 
+>> issues/4141#note_3016182> > This example highlights an issue that can 
+>> be triggered reliably with a
+>> very similar effect. It may not be the same issue, but they may be 
+>> related.
+>
+> Yeah; I'm aware of this thread and agree it's an issue with similar 
+> symptoms.
+
+At the very least I hope that my example code for triggering a similar 
+issue can help figure out what is going on there ;)
