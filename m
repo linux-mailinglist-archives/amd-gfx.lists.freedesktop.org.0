@@ -2,41 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B67E6B0B9EF
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jul 2025 04:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0EE5B0B9F1
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jul 2025 04:14:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 510EE10E10A;
-	Mon, 21 Jul 2025 02:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 629AF10E46F;
+	Mon, 21 Jul 2025 02:14:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JWEeQP4r";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="L1B/Wcf7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BAC010E10A
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jul 2025 02:14:50 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D0C810E243
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jul 2025 02:14:51 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 30AC7A50A5C;
+ by dfw.source.kernel.org (Postfix) with ESMTP id 0DF845C352B;
+ Mon, 21 Jul 2025 02:14:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F44C4CEEB;
  Mon, 21 Jul 2025 02:14:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CB14C4CEE7;
- Mon, 21 Jul 2025 02:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1753064088;
- bh=YlWlFbGerR7OWGvt9al5Uv4wUfz9bpSGV7W9CMKmRp4=;
- h=From:To:Cc:Subject:Date:From;
- b=JWEeQP4r0zQxwObCpNEe/m3K0x0HhUecK4W5QuvHEHsk3SdJgD47ZluAej+2oyd0B
- n5u11jUm5BUXITnwpGiXXnVYnPU+jkiCQVfF2MUwnIWLvOdI9NgMIWzBDt5asSDt3e
- is8R2bRIIsKsTL6wLG2SAByiScKJnkTwv3Ez4xO6QFjHFwpPHrr4tDByDISU5GuPDj
- bQtACXButF7BsUhQGxymS0TpziQh9dbB0vuszyz5peNRtizGPz4+Gcx2IAZHt4dpUQ
- pUjtJBG1SNGR5C+vsx3G7/IYwNxAeTN5e3HO5ZXeC1W6e7ZEEs2NUYIn4y5XxAK5UL
- zxZkRagJ8w3ng==
+ s=k20201202; t=1753064089;
+ bh=eUNHcPK3pcHwZwv1Zbc8v3IzjTChfCKOraZl9NmUGhw=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=L1B/Wcf7Qj/+x06wVVmZiUTGo8eakkjDN/6g/ITjT8TmvU6ZnW9TSRlFxcY8vMBZ1
+ 7Q69ZT/XMKRMS0aVB06zdyaCeimMy0Dn+ZMQimpmGmUOit1SIMTWAtGSq9qe3TZ8h5
+ ogrAiApo55Y8HW1vcHasmBq9c6IiuIMyHnGu04TTNjH+grkZUvygss+YsqNPWPZRc2
+ PQpY5zgpoq8pLjhSADsHAOrycPlM2+YkgxMh8Se42U/PJlE3yHU0LXSGLsYl2+N2Aw
+ irielm7L+XYKR2iUspWrskeLC14LpL3Ksh0N7hmLAlbiT+vz3OP7wh4aFotqaSFWD6
+ JlwERsuHU5O+A==
 From: Mario Limonciello <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH 0/3] Add IGT test for compositor control of ABM
-Date: Sun, 20 Jul 2025 21:13:16 -0500
-Message-ID: <20250721021320.2346961-1-superm1@kernel.org>
+Subject: [PATCH 1/3] tests/amdgpu: Remove unneeded includes
+Date: Sun, 20 Jul 2025 21:13:17 -0500
+Message-ID: <20250721021320.2346961-2-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250721021320.2346961-1-superm1@kernel.org>
+References: <20250721021320.2346961-1-superm1@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -55,21 +57,31 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-After the Display Next 2025 hackfest a patch series was introduced to
-allow the compositor to control ABM. sysfs writes are blocked when set.
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ tests/amdgpu/amd_abm.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Add support for testing that the writes really are blocked.
-
-Link: https://lore.kernel.org/amd-gfx/20250718192045.2091650-1-superm1@kernel.org/T/#m5124cd2eb62e50f220f462c5bd8e9043a035dd81
-
-Mario Limonciello (3):
-  tests/amdgpu: Remove unneeded includes
-  tests/amdgpu: Rename set_abm_level to set_abm_level_sysfs
-  tests/amdgpu: Add support for testing compositor control of ABM
-
- tests/amdgpu/amd_abm.c | 103 ++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 91 insertions(+), 12 deletions(-)
-
+diff --git a/tests/amdgpu/amd_abm.c b/tests/amdgpu/amd_abm.c
+index 97813d80f..f55b055f9 100644
+--- a/tests/amdgpu/amd_abm.c
++++ b/tests/amdgpu/amd_abm.c
+@@ -20,7 +20,6 @@
+  * OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+-#include "igt.h"
+ #include "drmtest.h"
+ #include "igt_kms.h"
+ #include <limits.h>
+@@ -28,7 +27,6 @@
+ #include <stdbool.h>
+ #include <stdlib.h>
+ #include <stdio.h>
+-#include <string.h>
+ #include <fcntl.h>
+ #include <time.h>
+ 
 -- 
 2.50.1
 
