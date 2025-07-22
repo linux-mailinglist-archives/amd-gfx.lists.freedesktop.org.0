@@ -2,116 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF98B0D3C7
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Jul 2025 09:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1EAFB0D3B2
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Jul 2025 09:46:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 534D910E614;
-	Tue, 22 Jul 2025 07:47:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 902C210E30A;
+	Tue, 22 Jul 2025 07:46:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="BGkz1TGc";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Yvukc0s7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1216F10E56D
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jul 2025 15:26:30 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56LA34XF029264
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jul 2025 15:26:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:reply-to:subject:to; s=
- qcppdkim1; bh=MnOD77sB2Ik3kJ7rDMTC033zhiY3x1p8B9vcyupzsb8=; b=BG
- kz1TGcI4MFfbOe5H/VgBz4u5HbpHgshH6Xl1II8hXJUKWkg8HPL9JYwqbx2neLEG
- ljnqf/ncKlo91sx1F74m4BqX/xfV1tDeVhB9CpttO0w1skrxPCoTRlkYij3WEpvn
- bnJ0ZuKiiHt6QSfoxIfml17kM8nKkQhyiagixzuZ1lf93nLPb7haKctryk4kfbyK
- 15DboDxgowALoAWR3aPMDt2JL8rQj1+iDdDwdGKntmJdHp1H0jI/kUwq669Ldcfz
- /Ewm0bToxyO6SYurW+BdrDKtW1QOQthRkp9PWeJwGEvs4/CB1gS44/VtTpKhFiR+
- TJS7KfYYfiPU9zu1sUrg==
-Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com
- [209.85.167.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48048tdtg5-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jul 2025 15:26:29 +0000 (GMT)
-Received: by mail-oi1-f197.google.com with SMTP id
- 5614622812f47-41d2ce923a6so3730215b6e.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jul 2025 08:26:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753111589; x=1753716389;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=MnOD77sB2Ik3kJ7rDMTC033zhiY3x1p8B9vcyupzsb8=;
- b=ioJ5SlK1bHy7MxCTUhy0Ytay6J3Ou91ilMnnum0p8eIsvYFmMzHpcmjtAP0Mw9CpeH
- XzsPSifo85mRSkntuTTaCXk18m99ySuaA+QSGA+Lv+QOX8d4emBp+ALjNpImTN51k3gH
- WopKvR7b9GdObuysRfYZd0HfMxCuKEqZeHa573AX/rXIJTiICwrphEOFVvt1HY+hHRNM
- GS7xyuIpLywABS9CWD94IyosOciXS42ir15b6mTP3kvOEpdCLYJRENWn0H0/FveOyu19
- gQsTnDBbWQXvViLqjcsndof4guaEuvMqDnGKxPCoTlNfJw7CQm8usV3ixRFiPyiZN2lz
- xIQg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW1QINIeJ1zC7qCF/xWTjkbnjqiGP7ts7KVYlawDZAEq/OOoTD6PqdfZrLkCVhQ/z3IdXaIFyol@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxq+a5k5liTm3ZW1PXjod88ntnk97ldfb7cp1O8M4XYCFNmZtuG
- NppNHxzOO9Wo4zGRaBK1H+2K9tanwyVQsaceZ33TYJbH+O5YvZsSMDrEL0cbSRKhZbtV0DoRtWK
- lXkCZ1w2byx8ytkJrnURu4w5MXYdy1udMwxAyolu6zCKOqgdJZZoTxQFSStJVsudT2gSOc6AL16
- QTAGpKHH+zxVCNt1iHhw4cHJEMn4a8VYqNuLcnv3yzuNI=
-X-Gm-Gg: ASbGncviKGNlpzrWSM4044ArkxLksnCPlkh4dc+1Vf0xQM39Lbspbs53J1sRSh/gzyf
- tkgngttEhsLa2pn4wA03pTpWNWcCSs0LfRP2j1fUo6WittCXTsIdecMF+vgghO3Np2raok7yOd+
- ODmi2ErEeFN17KMa/sle3Cw79Jb1iIU7Z+kO5orR1I3B5S3GqHr57S
-X-Received: by 2002:a05:6808:3a15:b0:40a:533c:c9cb with SMTP id
- 5614622812f47-41d05654bcdmr14287439b6e.38.1753111588651; 
- Mon, 21 Jul 2025 08:26:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGXFzYPkALClywTu5mOqRfeWp2m4fp272DjkezOJQOXBIAzqRGxPfJR9UxsN521B6259dXufoQBJ1qY0x7OZog=
-X-Received: by 2002:a05:6808:3a15:b0:40a:533c:c9cb with SMTP id
- 5614622812f47-41d05654bcdmr14287392b6e.38.1753111588114; Mon, 21 Jul 2025
- 08:26:28 -0700 (PDT)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2049.outbound.protection.outlook.com [40.107.244.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2FC10E30A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 07:46:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LBlpbluvi++qoYk4SKLRuOlOx+drl/qD+paT2HPeCd+sqxphCmHPHvB6WEuni+UX5Cm5d/A7/OWKHNuy9dAvdvF+LhshtyQ2zedgmYS2i0Z1lHHj+M1AqiLhUDwPKuvvEROSL/eKQYxz6x3eKl180hfEuOph2VgtzoJv3OVQHXb3gi/UyopGd8oP1ajjtAMmSh7PWYS2QA8RnJJN72pUlRKAuKUda29At4vBV/+9/YbzgWQlg9ocO3m0Sk74wbtD+kpUI1sJgWVc8Fk1HOJNsgzDz43Lw5wqM77rUGzR5/wxdqY0HMi3EvvaBWi2jJdl5bvf6gf/ZnY8m0IKjAsz3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BbAVNy8JnxmnsBIpqIhoOAjedzgKOg+ic1N16XhiPl8=;
+ b=WqrD2JLxxpmZcCY0ivQU5v22AeGXpv5APrCgAacXRkl1zSrl7fgJwmNpDF2aQJtJcFPFk9PfIHisBYNv0y9y5YZqLO0y396tpgPsk83xHvZ25jB3jqC6kn3Azznn+Tm/B3cogFZm1DRSIaBpy2d21VlJ03wsmAEG1MLPZqJodq2gIbA7kOALdo634iCer5DEgCDZpoqoNuU2oI3XxFWieQLUgmWVE/v908Mhhvak4V/JVijcJbCL4sYjXIoQRdvRl6z1+XdRsbvXnZe9BjE355aHhL788WI0+42Qo2Ii2MfJoEG8VL7czrmewWy09orhl+G91dRj6xlUl68PA2UT/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BbAVNy8JnxmnsBIpqIhoOAjedzgKOg+ic1N16XhiPl8=;
+ b=Yvukc0s7zN7e3/2wPKdAR7oGbbAG7hnZRycjpBt5MC3RNOSyYi3OMqON1Iuf9AX6g2+OZ1VeAh54KNNJyLmHudOmVdhgnA8aUmvRwMTbsPyn9AN0iC52aY/azq0qE2bs8gnj4lDZrAssM4QwlK7ZH2/SWKxgNLxWZgCRSw49oB0=
+Received: from BN9PR03CA0655.namprd03.prod.outlook.com (2603:10b6:408:13b::30)
+ by DS7PR12MB5981.namprd12.prod.outlook.com (2603:10b6:8:7c::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.29; Tue, 22 Jul
+ 2025 07:46:38 +0000
+Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
+ (2603:10b6:408:13b:cafe::58) by BN9PR03CA0655.outlook.office365.com
+ (2603:10b6:408:13b::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8943.29 via Frontend Transport; Tue,
+ 22 Jul 2025 07:46:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 07:46:37 +0000
+Received: from prike-code-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 22 Jul
+ 2025 02:46:35 -0500
+From: Prike Liang <Prike.Liang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>, Prike Liang
+ <Prike.Liang@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH v7 01/14] drm/amdgpu: validate userq input args
+Date: Tue, 22 Jul 2025 15:46:10 +0800
+Message-ID: <20250722074623.1464666-1-Prike.Liang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20250718105407.32878-1-vignesh.raman@collabora.com>
- <20250718105407.32878-6-vignesh.raman@collabora.com>
- <7c6suvc6quwwxni2nsos65btzim2lbv7f2u6mz5qbupzpmpzgb@g46wg63ubr6l>
-In-Reply-To: <7c6suvc6quwwxni2nsos65btzim2lbv7f2u6mz5qbupzpmpzgb@g46wg63ubr6l>
-From: Rob Clark <rob.clark@oss.qualcomm.com>
-Date: Mon, 21 Jul 2025 08:26:17 -0700
-X-Gm-Features: Ac12FXw4vMk5Whh0pLXxQUQeTvmf5_E4on_jddtIDBax9_-2BPFjBHHhqwcfDPI
-Message-ID: <CACSVV03x0DZLmoc_0GjiL+qhYH2ei8nKzuPRCTa+h6+j1pbhbQ@mail.gmail.com>
-Subject: Re: [PATCH v1 5/7] drm/ci: uprev IGT
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vignesh Raman <vignesh.raman@collabora.com>,
- dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com,
- lumag@kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIxMDEzNyBTYWx0ZWRfXwwRkqMrwYQlR
- PDsRkxgnCfYSoQrHOJK0LjEhkyUNaq5KW7oRIZNO8OcuNDzrfM92ByV26d0PZFYKnwJdISPGDo6
- yNCD/4aZkAp7wacClPRKkl/8B+DL6ta55quBokk3jIpBlO4lVt50P5KYy7Rv37A9/tZqpEAXPmu
- LGMZMHxiDxnHgSxx5IXoBr7pvxrupFrKcCgnK65sj7vNqKnMf+eSWeCe667F2tDCfbN7u2xrW9/
- 4Af4fIQqTO7rzJLKB7KuhqGX1UowO4Yz8rRXKlE6T7PN7ODi2L6qB2ejRl0ZdUXiWYThqHlOwmD
- Ob0f5e9rz7F+Tlg8u9Vi6hoDGLNNCmDgSjTMfFN174qxYIq8ufM6toG9+j5zqjCQM5WldsMqsdj
- SuxTGo30V7LI1BKlOlMSP7YiGT89p9FqVrUB10/qFahDWRG3Asnf0AYynh72p2Sj6RSGwdm2
-X-Authority-Analysis: v=2.4 cv=Jb68rVKV c=1 sm=1 tr=0 ts=687e5c25 cx=c_pps
- a=WJcna6AvsNCxL/DJwPP1KA==:117 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10
- a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=QX4gbG5DAAAA:8
- a=kxiJzIYbFHhRTRM7nIQA:9 a=QEXdDO2ut3YA:10 a=_Y9Zt4tPzoBS9L09Snn2:22
- a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: JSq_a1VgmVxeKSnJQhEtcmDskfoR0TXE
-X-Proofpoint-ORIG-GUID: JSq_a1VgmVxeKSnJQhEtcmDskfoR0TXE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-21_04,2025-07-21_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 adultscore=0 priorityscore=1501 clxscore=1011 phishscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 malwarescore=0 mlxscore=0
- spamscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507210137
-X-Mailman-Approved-At: Tue, 22 Jul 2025 07:47:34 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|DS7PR12MB5981:EE_
+X-MS-Office365-Filtering-Correlation-Id: 94f514b1-62e5-4e03-fe5b-08ddc8f3e396
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?akobkX6TReXyVUzmaIVZyoawpR4kxLAEDHuo43qDCqmsLgATU1WUj250gEUi?=
+ =?us-ascii?Q?ToPh+6w0JhnA8rHVhgtkSl9nweAd+hzeFbZm8ysRuv/9KpWNuR7jFjRmqvuL?=
+ =?us-ascii?Q?p+ED7is88miWhaMHriCZcZ5d05h0W19eX8N6h4bVqBfJMavcjLUoUcieRnfM?=
+ =?us-ascii?Q?y/KMwXaSJCV61TG4ofHbnhQ9t6ClR8iRkWvjA/nWtpACVVfwIxoKgdT6BJfZ?=
+ =?us-ascii?Q?PE7HqOrCgJCKvSyV+0TopD2HJVISkKs5dz/Exki40wKtdsE2bTc598M8I/UT?=
+ =?us-ascii?Q?gDc43SUKgwVJyv0RkdTzKCaeZO7Y+msjGgx7FD34JSw1wbK7OgqlqEEO/wT+?=
+ =?us-ascii?Q?KMVn7Rq92vJdH76LmHsnybbYARU8D7mSkyh6+MMAT6Fpj3NS3gfX4gNl7RSC?=
+ =?us-ascii?Q?AjZLq4WGwUyyzyw35K9A/dSzuLCgq4DBbbIGMelV8u3a+fYcUs2NpnM1bIta?=
+ =?us-ascii?Q?PDxpLu1WO3jkBEsqkYLdBAgSlfChaUQBcEShX2ZoMM5x0JNw8hSREuDPv3CL?=
+ =?us-ascii?Q?xwTLKeu6fTYV1hzQj6Cq2QADEn13a2zY+r8lyu/5auE1Xcp7U78wXpdigu63?=
+ =?us-ascii?Q?Y/yPuwGHwFCKgrYz77hAIlOrQf+zXS4zQLdcfsAhGN5V0M+uyo+6QAdKqX2O?=
+ =?us-ascii?Q?b2txJPvk30FLhvca7/O4l50lQwYuu6VHtB/zRFHvkuqKXhU+s+mB9P0i+WRg?=
+ =?us-ascii?Q?lgDEgX5m6SADoybphZfJ59fn9XvuXZW3leLxxwmDlJRvZhkYmUFhA/mSIJFf?=
+ =?us-ascii?Q?idEwkDFDFf3HckAto1LvRFxI6El0eid22Ei5q+w6P6ckTnN1x42C5+d1LjdD?=
+ =?us-ascii?Q?hqlnvQY9KcHjzVmhgqFFvdMCZtfZEUXJyNQ1gE/Tujev6OimYqco96Nodz31?=
+ =?us-ascii?Q?SbjtIWLW4VpNbVvTQyIoROck10ziAY9Q5LA7mmUEZWogCCDeIu80YFUfooG4?=
+ =?us-ascii?Q?Z3/6Qip5TSN8irf28xdkZZMvr71R8Ees6TUNtLbrxNDzIF+yX8yXooRdu/b7?=
+ =?us-ascii?Q?baj+D0jtLLuizmqgLdrjiW2Xle+T7qpWTC1SQHVEX1B7xw5iHCXKbDaxmtBA?=
+ =?us-ascii?Q?3LapbBV9R7NtkUsXsCWn285jbgnTTcL9hzV4BFrzFPve+IoB11jrVmXDfF8d?=
+ =?us-ascii?Q?195hObFszJJJQ1xcR9AFmeXQvaoB2/f7SER2Vea2u2IKfSj/nMjfTvEbI+Xq?=
+ =?us-ascii?Q?xBXJAtAucRAw+Cy2KN+aC7YV+Ti0+lA7hm8DDAqbdvSwGE+r+SopNVVzX/cI?=
+ =?us-ascii?Q?vS6shNmI9LjwXSLPISSFGtWn43GasxkWMlmFfhJVFFLF8cYpjVylCH0Oo4GY?=
+ =?us-ascii?Q?EdGzk9AAWm530HBteXCSY/PjsffLx23hJ6lAWE+elEWau/GW0S8oSVByHO0C?=
+ =?us-ascii?Q?ib12fuMilDhyj6CRqYoyUhfQUmYxPWAkDLI+ciECEmlRjnKln6T/FdQHGpI4?=
+ =?us-ascii?Q?McDk8pJaetjlQDC3iFKu61P+J/pTONX2iChZHQPRU0DpwCkYFZaa5WHs+pJp?=
+ =?us-ascii?Q?5LEZs0Gis+Q6PtnooXNOGZGD5gYxlSW8U55u?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 07:46:37.6976 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94f514b1-62e5-4e03-fe5b-08ddc8f3e396
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FC.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5981
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,226 +128,156 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: rob.clark@oss.qualcomm.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 18, 2025 at 5:54=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> On Fri, Jul 18, 2025 at 04:23:57PM +0530, Vignesh Raman wrote:
-> > Uprev IGT to the latest version and update expectation files.
-> >
-> > Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> > ---
-> >  drivers/gpu/drm/ci/gitlab-ci.yml              |   2 +-
-> >  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |   2 +
-> >  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |   7 ++
-> >  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  11 +-
-> >  drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |   2 +
-> >  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |  29 +----
-> >  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |   7 ++
-> >  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |   8 +-
-> >  drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |  83 ++++++++++++
-> >  drivers/gpu/drm/ci/xfails/i915-jsl-fails.txt  |  10 +-
-> >  drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |   3 +
-> >  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |   5 +-
-> >  drivers/gpu/drm/ci/xfails/i915-tgl-flakes.txt |   6 +
-> >  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |   7 +-
-> >  .../drm/ci/xfails/mediatek-mt8173-fails.txt   |   5 +-
-> >  .../drm/ci/xfails/mediatek-mt8173-flakes.txt  | 119 ++++++++++++++++++
-> >  .../drm/ci/xfails/mediatek-mt8183-fails.txt   |   7 +-
-> >  .../msm-sc7180-trogdor-kingoftown-fails.txt   |   1 +
-> >  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt |   1 +
-> >  .../drm/ci/xfails/msm-sm8350-hdk-fails.txt    |   1 +
-> >  .../drm/ci/xfails/msm-sm8350-hdk-skips.txt    |  73 +++++++++++
-> >  .../drm/ci/xfails/panfrost-mt8183-fails.txt   |   1 +
-> >  .../drm/ci/xfails/panfrost-rk3288-fails.txt   |   1 +
-> >  .../drm/ci/xfails/panfrost-rk3399-fails.txt   |   1 +
-> >  .../drm/ci/xfails/rockchip-rk3288-fails.txt   |  12 +-
-> >  .../drm/ci/xfails/rockchip-rk3288-flakes.txt  |  21 ++++
-> >  .../drm/ci/xfails/rockchip-rk3399-fails.txt   |   9 +-
-> >  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  35 ++++++
-> >  .../drm/ci/xfails/virtio_gpu-none-fails.txt   |   4 +
-> >  drivers/gpu/drm/ci/xfails/vkms-none-fails.txt |   3 +
-> >  drivers/gpu/drm/ci/xfails/vkms-none-skips.txt |   3 +
-> >  31 files changed, 416 insertions(+), 63 deletions(-)
-> >  create mode 100644 drivers/gpu/drm/ci/xfails/i915-tgl-flakes.txt
-> >
-> > diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fa=
-ils.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> > index e4a8f8352cd6..9bf38c077f8e 100644
-> > --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> > +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> > @@ -15,3 +15,4 @@ kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
-> >  kms_plane_alpha_blend@alpha-7efc,Fail
-> >  kms_plane_alpha_blend@coverage-7efc,Fail
-> >  kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
-> > +core_setmaster@master-drop-set-user,Fail
->
-> Could you please point out the issue / failure log?
->
-> > diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozee=
-n-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-f=
-ails.txt
-> > index e4a8f8352cd6..7441b363efae 100644
-> > --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails=
-.txt
-> > +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails=
-.txt
-> > @@ -1,3 +1,4 @@
-> > +core_setmaster@master-drop-set-user,Fail
-> >  kms_color@ctm-0-25,Fail
-> >  kms_color@ctm-0-50,Fail
-> >  kms_color@ctm-0-75,Fail
-> > diff --git a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt b/drive=
-rs/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> > index 8d26b23133aa..f387c73193c6 100644
-> > --- a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> > +++ b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> > @@ -1,3 +1,4 @@
-> > +core_setmaster@master-drop-set-user,Fail
-> >  kms_3d,Fail
-> >  kms_cursor_legacy@forked-bo,Fail
-> >  kms_cursor_legacy@forked-move,Fail
-> > diff --git a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt b/drive=
-rs/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
-> > index 9450f2a002fd..84ffbe0981ea 100644
-> > --- a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
-> > +++ b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
-> > @@ -210,3 +210,76 @@ msm/msm_mapping@ring
-> >  # [  229.752499] CPU features: 0x18,00000017,00200928,4200720b
-> >  # [  229.758095] Memory Limit: none
-> >  # [  229.761291] ---[ end Kernel panic - not syncing: softlockup: hung=
- tasks ]---
-> > +
-> > +msm/msm_recovery@gpu-fault
->
-> Hmm. I thought this should have been fixed...
+This will help on validating the userq input args, and
+rejecting for the invalid userq request at the IOCTLs
+first place.
 
-There is another fix which came out of stress testing the kernel uprev
-in mesa-ci:
+Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  | 81 +++++++++++++++-------
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c |  7 --
+ 2 files changed, 56 insertions(+), 32 deletions(-)
 
-https://lore.kernel.org/all/20250718-msm-gmu-fault-wait-v1-1-4dcadd3b0eb6@g=
-mail.com/
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 295e7186e156..7f9dfeae4322 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -359,27 +359,10 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 		(args->in.flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_MASK) >>
+ 		AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_SHIFT;
+ 
+-	/* Usermode queues are only supported for GFX IP as of now */
+-	if (args->in.ip_type != AMDGPU_HW_IP_GFX &&
+-	    args->in.ip_type != AMDGPU_HW_IP_DMA &&
+-	    args->in.ip_type != AMDGPU_HW_IP_COMPUTE) {
+-		drm_file_err(uq_mgr->file, "Usermode queue doesn't support IP type %u\n",
+-			     args->in.ip_type);
+-		return -EINVAL;
+-	}
+-
+ 	r = amdgpu_userq_priority_permit(filp, priority);
+ 	if (r)
+ 		return r;
+ 
+-	if ((args->in.flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE_SECURE) &&
+-	    (args->in.ip_type != AMDGPU_HW_IP_GFX) &&
+-	    (args->in.ip_type != AMDGPU_HW_IP_COMPUTE) &&
+-	    !amdgpu_is_tmz(adev)) {
+-		drm_file_err(uq_mgr->file, "Secure only supported on GFX/Compute queues\n");
+-		return -EINVAL;
+-	}
+-
+ 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
+ 	if (r < 0) {
+ 		drm_file_err(uq_mgr->file, "pm_runtime_get_sync() failed for userqueue create\n");
+@@ -485,22 +468,45 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	return r;
+ }
+ 
+-int amdgpu_userq_ioctl(struct drm_device *dev, void *data,
+-		       struct drm_file *filp)
++static int amdgpu_userq_input_args_validate(struct drm_device *dev,
++					union drm_amdgpu_userq *args,
++					struct drm_file *filp)
+ {
+-	union drm_amdgpu_userq *args = data;
+-	int r;
++	struct amdgpu_device *adev = drm_to_adev(dev);
+ 
+ 	switch (args->in.op) {
+ 	case AMDGPU_USERQ_OP_CREATE:
+ 		if (args->in.flags & ~(AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_MASK |
+ 				       AMDGPU_USERQ_CREATE_FLAGS_QUEUE_SECURE))
+ 			return -EINVAL;
+-		r = amdgpu_userq_create(filp, args);
+-		if (r)
+-			drm_file_err(filp, "Failed to create usermode queue\n");
+-		break;
++		/* Usermode queues are only supported for GFX IP as of now */
++		if (args->in.ip_type != AMDGPU_HW_IP_GFX &&
++		    args->in.ip_type != AMDGPU_HW_IP_DMA &&
++		    args->in.ip_type != AMDGPU_HW_IP_COMPUTE) {
++			drm_file_err(filp, "Usermode queue doesn't support IP type %u\n",
++				     args->in.ip_type);
++			return -EINVAL;
++		}
++
++		if ((args->in.flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE_SECURE) &&
++		    (args->in.ip_type != AMDGPU_HW_IP_GFX) &&
++		    (args->in.ip_type != AMDGPU_HW_IP_COMPUTE) &&
++		    !amdgpu_is_tmz(adev)) {
++			drm_file_err(filp, "Secure only supported on GFX/Compute queues\n");
++			return -EINVAL;
++		}
+ 
++		if (args->in.queue_va == AMDGPU_BO_INVALID_OFFSET ||
++		    args->in.queue_va == 0 ||
++		    args->in.queue_size == 0) {
++			drm_file_err(filp, "invalidate userq queue va or size\n");
++			return -EINVAL;
++		}
++		if (!args->in.wptr_va || !args->in.rptr_va) {
++			drm_file_err(filp, "invalidate userq queue rptr or wptr\n");
++			return -EINVAL;
++		}
++		break;
+ 	case AMDGPU_USERQ_OP_FREE:
+ 		if (args->in.ip_type ||
+ 		    args->in.doorbell_handle ||
+@@ -514,6 +520,31 @@ int amdgpu_userq_ioctl(struct drm_device *dev, void *data,
+ 		    args->in.mqd ||
+ 		    args->in.mqd_size)
+ 			return -EINVAL;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++int amdgpu_userq_ioctl(struct drm_device *dev, void *data,
++		       struct drm_file *filp)
++{
++	union drm_amdgpu_userq *args = data;
++	int r;
++
++	if (amdgpu_userq_input_args_validate(dev, args, filp) < 0)
++		return -EINVAL;
++
++	switch (args->in.op) {
++	case AMDGPU_USERQ_OP_CREATE:
++		r = amdgpu_userq_create(filp, args);
++		if (r)
++			drm_file_err(filp, "Failed to create usermode queue\n");
++		break;
++
++	case AMDGPU_USERQ_OP_FREE:
+ 		r = amdgpu_userq_destroy(filp, args->in.queue_id);
+ 		if (r)
+ 			drm_file_err(filp, "Failed to destroy usermode queue\n");
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index d6f50b13e2ba..1457fb49a794 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -215,13 +215,6 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ 		return -ENOMEM;
+ 	}
+ 
+-	if (!mqd_user->wptr_va || !mqd_user->rptr_va ||
+-	    !mqd_user->queue_va || mqd_user->queue_size == 0) {
+-		DRM_ERROR("Invalid MQD parameters for userqueue\n");
+-		r = -EINVAL;
+-		goto free_props;
+-	}
+-
+ 	r = amdgpu_userq_create_object(uq_mgr, &queue->mqd, mqd_hw_default->mqd_size);
+ 	if (r) {
+ 		DRM_ERROR("Failed to create MQD object for userqueue\n");
+-- 
+2.34.1
 
-BR,
--R
-
->
-> > +# DEBUG - Begin test msm/msm_recovery@gpu-fault
-> > +# [  153.288652] [IGT] msm_recovery: executing
-> > +# [  153.295317] [IGT] msm_recovery: starting subtest gpu-fault
-> > +# [  153.317588] adreno 3d00000.gpu: CP | opcode error | possible opco=
-de=3D0xDEADDEAD
-> > +# [  153.367412] adreno 3d00000.gpu: [drm:a6xx_irq] *ERROR* gpu fault =
-ring 0 fence 814 status 00800005 rb 016b/0215 ib1 000000010000B000/0000 ib2=
- 0000000000000000/0000
-> > +# [  153.383449] msm_dpu ae01000.display-controller: [drm:recover_work=
-er] *ERROR* 6.6.0.1: hangcheck recover!
-> > +# [  153.393296] msm_dpu ae01000.display-controller: [drm:recover_work=
-er] *ERROR* 6.6.0.1: offending task: msm_recovery (/igt/libexec/igt-gpu-too=
-ls/msm/msm_recovery --run-subtest gpu-fault)
-> > +# [  153.436085] revision: 660 (6.6.0.1)
-> > +# [  153.439702] rb 0: fence:    2063/2068
-> > +# [  153.443659] rptr:     360
-> > +# [  153.446389] rb wptr:  533
-> > +# [  153.449103] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-0: 0
-> > +# [  153.455746] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-1: 0
-> > +# [  153.462387] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-2: 2062
-> > +# [  153.469293] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-3: 0
-> > +# [  153.475680] adreno 3d00000.gpu: [drm:a6xx_irq] *ERROR* gpu fault =
-ring 0 fence 814 status 00800005 rb 016b/0215 ib1 000000010000B000/0000 ib2=
- 0000000000000000/0000
-> > +# [  153.475919] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-4: 0
-> > +# [  153.475925] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-5: 0
-> > +# [  153.475928] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-6: 0
-> > +# [  153.475930] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-7: 1
-> > +# [  153.529587] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* =
-Timeout waiting for GMU OOB set GPU_SET: 0x0
-> > +# [  153.539837] msm_dpu ae01000.display-controller: [drm:recover_work=
-er] *ERROR* 6.6.0.1: hangcheck recover!
-> > +# [  153.549597] msm_dpu ae01000.display-controller: [drm:recover_work=
-er] *ERROR* 6.6.0.1: offending task: msm_recovery (/igt/libexec/igt-gpu-too=
-ls/msm/msm_recovery --run-subtest gpu-fault)
-> > +# [  153.566489] revision: 660 (6.6.0.1)
-> > +# [  153.570099] rb 0: fence:    2064/2068
-> > +# [  153.573878] rptr:     0
-> > +# [  153.576411] rb wptr:  688
-> > +# [  153.579134] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-0: 0
-> > +# [  153.585775] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-1: 0
-> > +# [  153.592410] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-2: 0
-> > +# [  153.597308] [IGT] msm_recovery: finished subtest gpu-fault, FAIL
-> > +# [  153.599039] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-3: 0
-> > +# [  153.611856] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-4: 0
-> > +# [  153.618498] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-5: 0
-> > +# [  153.625132] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-6: 0
-> > +# [  153.631766] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG=
-7: 0
-> > +# [  153.639162] *** gpu fault: ttbr0=3D00000001042fc000 iova=3D000000=
-0000000000 dir=3DREAD type=3DTRANSLATION source=3DCP (0,0,0,0)
-> > +# [  153.648502] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* =
-Timeout waiting for GMU OOB set GPU_SET: 0x0
-> > +# [  153.650144] *** gpu fault: ttbr0=3D00000001042fc000 iova=3D000000=
-0000000020 dir=3DREAD type=3DTRANSLATION source=3DCP (0,0,0,0)
-> > +# [  153.650241] adreno 3d00000.gpu: CP illegal instruction error
-> > +# [  153.671006] platform 3d6a000.gmu: [drm:a6xx_rpmh_start] *ERROR* U=
-nable to power on the GPU RSC
-> > +# [  153.687278] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* =
-Timeout waiting for GMU OOB set GPU_SET: 0x0
-> > +# [  363.495437] INFO: task msm_recovery:876 blocked for more than 120=
- seconds.
-> > +# [  363.503070]       Not tainted 6.16.0-rc2-g0594d0b01a7c #1
-> > +# [  363.508838] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" di=
-sables this message.
-> > +# [  363.517142] task:msm_recovery    state:D stack:0     pid:876   tg=
-id:876   ppid:274    task_flags:0x400100 flags:0x00000009
-> > +# [  363.528876] Call trace:
-> > +# [  363.531554]  __switch_to+0xf8/0x1a8 (T)
-> > +# [  363.535703]  __schedule+0x418/0xee0
-> > +# [  363.539486]  schedule+0x4c/0x164
-> > +# [  363.542986]  schedule_timeout+0x11c/0x128
-> > +# [  363.547281]  dma_fence_default_wait+0x13c/0x234
-> > +# [  363.552123]  dma_fence_wait_timeout+0x160/0x45c
-> > +# [  363.556947]  dma_resv_wait_timeout+0x70/0x11c
-> > +# [  363.561582]  msm_gem_close+0xac/0xe4
-> > +# [  363.565405]  drm_gem_handle_delete+0x74/0xe8
-> > +# [  363.569951]  drm_gem_close_ioctl+0x38/0x44
-> > +# [  363.574297]  drm_ioctl_kernel+0xc4/0x134
-> > +# [  363.578442]  drm_ioctl+0x224/0x4f0
-> > +# [  363.582050]  __arm64_sys_ioctl+0xac/0x104
-> > +# [  363.586292]  invoke_syscall+0x48/0x110
-> > +# [  363.590254]  el0_svc_common.constprop.0+0x40/0xe0
-> > +# [  363.595197]  do_el0_svc+0x1c/0x28
-> > +# [  363.598705]  el0_svc+0x4c/0x158
-> > +# [  363.602035]  el0t_64_sync_handler+0x10c/0x138
-> > +# [  363.606601]  el0t_64_sync+0x198/0x19c
-> > +# [  363.610465] Showing all locks held in the system:
-> > +# [  363.620406]  #0: ffff0000840200a0 (&tty->ldisc_sem){++++}-{0:0}, =
-at: ldsem_down_read+0x18/0x24
-> > +# [  363.629412]  #1: ffff800080d7c2f0 (&ldata->atomic_read_lock){+.+.=
-}-{4:4}, at: n_tty_read+0x15c/0x57c
-> > +# [  363.643169]  #0: ffffbd9c0475d920 (rcu_read_lock){....}-{1:3}, at=
-: debug_show_all_locks+0x18/0x1c0
-> > +# [  363.654158] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
->
-> --
-> With best wishes
-> Dmitry
