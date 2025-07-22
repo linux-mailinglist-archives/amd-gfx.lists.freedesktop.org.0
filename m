@@ -2,135 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AB9B0E6A2
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 00:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1427CB0E6A9
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 00:46:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08A1910E725;
-	Tue, 22 Jul 2025 22:46:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62E8A10E736;
+	Tue, 22 Jul 2025 22:46:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uFWybwPU";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="e6piEuWU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70A3610E726
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 22:46:02 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2056.outbound.protection.outlook.com [40.107.92.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBD9110E737
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 22:46:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HonPXzfW/3waR1chQHZ34AX4M78l/IjZP9oNsGz5uxEYCKtZMpOl+UhJ3xmD6dX91eNM5Wjbs4hMtim//SUMF/6IOMBpRh9YoHpvwWoiGX0OSorU/pXabua5ug1luOuQhaQ/KAW5q1xPNtc6hpvggBhJ1Bm5Y9PgWRgXBoJsMGeEiFXXGOsW30KV2wg92mGAnC85RAbsa6ywmwhGiz2foOVZZZSA97Or7f9ra0CaYRj/Fa9xPmyF5z1SPGImz4Jxz50WD8CG6+jaTv4fIxXpHxV5s8beFt06mgh7zbkeM2f4RrOvZL/u0mY33xlGO9K7l/Jd2Jnrp2TpaHb1LI2YuA==
+ b=hpU88rc8gREIoc5aC2mq2ldUjQ/3qmaBcPfLGKTTVOq0PH4mjGsUrPjKO7xNPhA244XOSQF7QH5WEIFpoecdoepCj5Mk9P6yOYoIc83PZlnMRLbD5b/FuBH7KdJpHgmA5HRGsx07Vn8XmB34fa+N9FEsJTS+YDRJmnv3ez684F+qMUJxbW8KYM6/CkhXZRkULJLYxo9/rebmc4WXj6QJ+DcxENhpwtRQvfpBoYXdHwsCOHwFNn/Is6LFnumH/w21NGb3Es+jValGXiC4FmeqyRGoolQKuOp5hQ7OYEDgPJwxoLCD+W0Hn6xodaeXw7+dCEwkOHD48AOcIFPONwXSoQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nQIE1d+E7qzDg+dLa//7qFjW0AsVkkwbZyC8R3Pniso=;
- b=dzjOi2hk28SoZ0IYT7YFRhxxGyEOfw2Q1wxAWxE+bQTg0oggLhPX8t8m++5MaU6rPDGQ+zAkNz3SB+q4eb5SBJl1idVRuAb5H2yTS8ju3B5QlBWpj7PdW16g2lCDHFopqcCFrMJhAfyv1I2aZIzyJ/hHB5ZGJsWYRhzQ+jm+Mfwe7xCtEtqHZ6utMgpuS5E0umhn1ePZclMbnNrdHmmq+avDwYeT/G2IKwQe41IObOKNfi8SUcFANeSb94C3LY+7BupfUSOIBtCS5wqEqzyS7zReXhKLzxc5VVUPxdVL31MMYIxsAc3mYqXJFvmApcH5oRmMtxrzQYwOynNdtkY9jQ==
+ bh=/AYztXn6Wa5kifv1l794Ah5WuW69dFbDpGMZqW8Jbis=;
+ b=KCm03KDTZQhmG3KxysMT9Biz77F8zrCx+DOxwYgFwGtCfeensRCjoJtPCZWp67LZndZynfOF+hNa/YFHHAGZfKArgEH4K4uB8ZEU0eEaTgMevknqilExzh+FEYN84JYkWKPA15qAaS7Bx6eDf/w3jJPrwrfKN6P2ytjjt8FNH8Fymxad7yKhmA525/GblTUnuQ+DFIHzhTMuctNf3IOhknuyKf+mAgjz3NuuF8Oj3kl1PJreBcLLHGNZ/MrBPD6R95U689cSFoMhULJk6qfLl5sxjJGe7y3+/AJlniuSxbUPbXeF9+eUMZspdPLvoLGdHJfTA1+BjKhkURiKrQRFOg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nQIE1d+E7qzDg+dLa//7qFjW0AsVkkwbZyC8R3Pniso=;
- b=uFWybwPUN6hnQPp+MIWZ1Muxn8QD8zmggvd9yzOPAFDAOCPuY19Noj4oNOUiR6natPCWM23PJasHYiX7szzzEA9/9dSbr8iO7rzd6ORRYLVjsB+FMOX+Sx1X7S1Pz827kgUdAveLnSk3CDymQ7ckCKUS0DtUFkKot/jQ2/k7pLs=
-Received: from SJ0PR03CA0361.namprd03.prod.outlook.com (2603:10b6:a03:3a1::6)
- by IA0PPF7D094C5BF.namprd12.prod.outlook.com
- (2603:10b6:20f:fc04::bd4) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.28; Tue, 22 Jul
- 2025 22:45:59 +0000
-Received: from SJ5PEPF000001ED.namprd05.prod.outlook.com
- (2603:10b6:a03:3a1:cafe::a8) by SJ0PR03CA0361.outlook.office365.com
- (2603:10b6:a03:3a1::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.21 via Frontend Transport; Tue,
- 22 Jul 2025 22:45:59 +0000
+ bh=/AYztXn6Wa5kifv1l794Ah5WuW69dFbDpGMZqW8Jbis=;
+ b=e6piEuWUTAxtrYXaD2tfF+bLAF+dQTyV2a5IftbbRNeUT7D2d1Hc/yy8povR6LmKd7wzoCBoPW8X/FBm98L6aKEociZ1Vf8/aq9hF8sXTTunV//bAs25QkONQyFZa3cEwwkCLaUnvnaL+xLc2XU1XRqgRGAUto7luFE+bQqUkT4=
+Received: from BYAPR06CA0001.namprd06.prod.outlook.com (2603:10b6:a03:d4::14)
+ by IA0PR12MB8931.namprd12.prod.outlook.com (2603:10b6:208:48a::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.29; Tue, 22 Jul
+ 2025 22:46:09 +0000
+Received: from SJ1PEPF00002313.namprd03.prod.outlook.com
+ (2603:10b6:a03:d4:cafe::39) by BYAPR06CA0001.outlook.office365.com
+ (2603:10b6:a03:d4::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8943.29 via Frontend Transport; Tue,
+ 22 Jul 2025 22:46:09 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SJ5PEPF000001ED.mail.protection.outlook.com (10.167.242.201) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ1PEPF00002313.mail.protection.outlook.com (10.167.242.167) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 22:45:59 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 22:46:08 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 22 Jul
- 2025 17:45:58 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 17:46:05 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 22 Jul
- 2025 17:45:58 -0500
+ 2025 17:46:05 -0500
 Received: from box-0.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Tue, 22 Jul 2025 17:45:57 -0500
+ Transport; Tue, 22 Jul 2025 17:45:59 -0500
 From: <IVAN.LIPSKI@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Michael Strauss
- <michael.strauss@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, Ivan Lipski
- <ivan.lipski@amd.com>
-Subject: [PATCH 19/25] drm/amd/display: Increase AUX Intra-Hop Done Max Wait
- Duration
-Date: Tue, 22 Jul 2025 18:44:28 -0400
-Message-ID: <20250722224514.2655899-19-IVAN.LIPSKI@amd.com>
+ <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Ray Wu <ray.wu@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>
+Subject: [PATCH 20/25] drm/amd/display: Add Replay residency in debugfs
+Date: Tue, 22 Jul 2025 18:44:29 -0400
+Message-ID: <20250722224514.2655899-20-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250722224514.2655899-15-IVAN.LIPSKI@amd.com>
 References: <20250722224514.2655899-15-IVAN.LIPSKI@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: IVAN.LIPSKI@amd.com does not designate
- permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001ED:EE_|IA0PPF7D094C5BF:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf0e0815-b514-4a26-e7ba-08ddc971871f
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002313:EE_|IA0PR12MB8931:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05f8b79d-8e46-4a02-caea-08ddc9718cc8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wvy30sEGsjjr+QfNouASHLe4WtNnkfbHR5guTS/VgQTc6c0wUIvN7rysva8i?=
- =?us-ascii?Q?hQ1WOgy+Ub/G3MxcftsAH3UlkOcnvqzlpbPaWBGuwJoXGLBoFB1gONqAkF3e?=
- =?us-ascii?Q?47Ru3+uQse9k17sFMr1at9miPf7P4ZvFJIgoIL7kZptU1K3Ht7SM3LvKgHVw?=
- =?us-ascii?Q?dEOzzMU/6rff8hnN05Qr7KVO5HN/PQTDI/+gcSnTkelK/dIqL3KMOztqlVIp?=
- =?us-ascii?Q?gbyiJzM+Qb/rtRZ39qXQWcGMG0A6G/N8rA0bUPZRQDmKZWCQt57CVbw3gKBZ?=
- =?us-ascii?Q?SnrxKziB6Y+DMns6vEGVabxJI8Wp991p2kCvCHS4XtVl1u/RIOX919wCitwg?=
- =?us-ascii?Q?crcLdF5VGvhyQNNWbf24HtkaeuNzVW77y1DAjy3ZvZyTk0P8Wxbbcv+r13AG?=
- =?us-ascii?Q?m9IFlvRDfHjxYyVXn897QuPznT2WxNjy9IzLdyBKZ6NPYtY+N3lzeLLOGyTs?=
- =?us-ascii?Q?v8dvOFPp/auIi2ilXao/tvJGBQisSsmSyR2ACvMP1XiXcK+87WxZsSLJMQfl?=
- =?us-ascii?Q?ZgEjoW8D8deAUWkXK/wZ2450s1TQQ5nwkkzTjQ4TIX/5KkUInuQvdp8O+Y5h?=
- =?us-ascii?Q?mv7zlMbwO/JiS1z5m2OjJVXMzm9F1fm5ankzVNib7ODdDKZyl3b9EQrsxI/A?=
- =?us-ascii?Q?LFSoYN9dvretH7JYMgdGQd1rhYYFeE+HPY3MXTn7ozyp9g4uZYzVzxwbsZki?=
- =?us-ascii?Q?1+HwEpgtBr6GjzAiBpq4hMKk2fyml5Wy14vQ8to6ZQGR2qgLAGKwiqbG+6Rr?=
- =?us-ascii?Q?ZBZYIlABdZ4+1wczVdHfnTbUeWWQIM4nwI885dyA3+2up8hYSh+F5bzi7+af?=
- =?us-ascii?Q?0+7LaUKt/XYq8pALByovxXepUh70ClIRwVAUWhfEKk8AVIinGtVAyWijDS9T?=
- =?us-ascii?Q?iGf9DHPOlHdfGVxcLWMFxLC3aVNhnBvd5j4+Pr4ZwAMnkHB8+e0OQhMCQ6SL?=
- =?us-ascii?Q?9sYVAVwDQnoGWmHyz50uh2s7PkGhvVeHNBBHh26kqR3HgGhd0UzV9JXv6/0K?=
- =?us-ascii?Q?LflvAMYbCLcO2EzgO4ZDTUkERx91tol8/pAJEkSu4BEwXAr8XACGxFm7DXR+?=
- =?us-ascii?Q?6nmIGitV1cQf07DZhbKqOGIkJn+RTRGflORp51YJJdddXFp5yGVHkr0shJXf?=
- =?us-ascii?Q?ZPuCEz0dqH6dg1Jflcu2bLbo7/5BeD8f86/7x/Sgp0CuxdVM8e+tb6Az4qVY?=
- =?us-ascii?Q?S4DCQ31UJdmJQareZCDAzMS0cf7WpyM/Vy7jspW+oro26dAIcfBxET50uIJa?=
- =?us-ascii?Q?8TaPh7u4/ChaLa1IFIVr29kskIdeSJyTO2MOIMhkP1nG9EaHOOZAYKNi7rzu?=
- =?us-ascii?Q?wUjd6CZVLdgpckxvopzddiWT/tS7o/M0RHdqofirzPuIcfdgFe49IaPzWhDK?=
- =?us-ascii?Q?H2Abk3EpvjlX0yVArTZ8/czBS69Fv88Ylcp7lf5ol8YO7z4YB9cLY+A/+q1J?=
- =?us-ascii?Q?o3XVAaMCEUZcKBVUt+D6f8S209RfLofEomTYoeCMczTQ21IhuNk/+xg6yWvR?=
- =?us-ascii?Q?sdxn5FdbIsQ08me0YLIRga/6dHXZVp8IKnAb?=
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?AY4kHmGYnelyHYBwJtI8gu7j/wq/mE+tQ44gTVN764arvNHx0NctNTxNj322?=
+ =?us-ascii?Q?kLiTj8B/MtyDlssmp1OwuTVMgBnSKcNW7qx5PVSHWl1g09WwH8e8A8MKxQ0L?=
+ =?us-ascii?Q?xSl7+SCIbuBhxJdEBWOJ1mley4J6INlf6Vw/pViNHRld3EP+SbUAw77wja/e?=
+ =?us-ascii?Q?+YqPzCJESqCHm5FFq9koMp9fYdUTnhjpNjcDr3Uu5KmW8Y11CBqiTloekiFR?=
+ =?us-ascii?Q?K+/bakC49Ilg2iVIxQuK9wQoP85JktI/QBh8NTuxXoe5rgG567hKJRtM9SZ2?=
+ =?us-ascii?Q?lUyP7rxgOpsBcdFDOkdUNvJ6Vd70urt1n/2grAr9knA3m/ORyY7kUj9BhC/p?=
+ =?us-ascii?Q?ueYnTKR2qM5QBUzDJYeVp/xWWpeYbsclYGS4oCGxYkxzpnak20cCgyzxqpo4?=
+ =?us-ascii?Q?ho8znfEMXDvX+riX0SmRd/5QhPaRNKjHRgLG6Blnd4Fdm1jH4Hv0sKxunmsQ?=
+ =?us-ascii?Q?cfZC+mzGAa9NsRf3hqwPrpEZ9cmpZWTaHBhKqUBfKmsX6nCla+caOvk+7t7J?=
+ =?us-ascii?Q?SSPRhSCb1eRarK+FSqUrYedIj98mUF4HBPiIZFvktfihhzdwIeg7+L8wuPwe?=
+ =?us-ascii?Q?JbudOsxT0s0+FspjZPtJX2bTN8mDUpnqxXP7n/cz9LooR94IRA1lArtfepkK?=
+ =?us-ascii?Q?SeNNGROSfvZTPc+En6g7U3bx3n8LOJp1DmwkgLaeBCCIFLScY+YzDaf61zEM?=
+ =?us-ascii?Q?RTHyy39jsytyGNCNs2OGQFlCd2Q8qDObsHn2VVm8SoL+JbqLqSUewseu2v5S?=
+ =?us-ascii?Q?mrZLmKOvFJfx69ETy1QI5uN0UmxoVT4jiFbj7tv8dxcY1LRgHAc3F9UewXDk?=
+ =?us-ascii?Q?PgtR1L1CQuD+I++fY4lmi7psac2ngbRZp9M66yxWmkNMxboKOgJBJQXF5PXf?=
+ =?us-ascii?Q?NO3FY2T0DWUZQAeRBcfG1l2bp8ae/cghx/83lMVJahHCCgDPlyAPcR+pvFe1?=
+ =?us-ascii?Q?Sq++lcwIYUNXlTYIoAiw3Mea6hpfr+J6+2HuGiWoJAmAL90V/oDyEhCg6zRL?=
+ =?us-ascii?Q?72WSFRH1ktWi2/v/Oj4eNzeHJzs3S9V8xqh/9XuvFZ8OLr7aoEAblzmSum+f?=
+ =?us-ascii?Q?8DdS5N6SpFQnv4QY0EqS9RyTpWheo2oiEw60a0MuiAQUzZXUTVucGtuVbSSX?=
+ =?us-ascii?Q?99vJLM6UuZXtEw18n9ir6fzeTKCPQ57SeCiS7fn10lGqV9bVcCh9OXhJjPI5?=
+ =?us-ascii?Q?u0L/eTDrvzb129Q48bXx62jeqxlSS9isxx3C+d33lYJYKjf7aMnHyPqsNlg2?=
+ =?us-ascii?Q?D0Qi+lkn035Bq3Ieu3jAMeyhWphscTW/dEgXg7n5JIdGimxeVdKixS8oeHoJ?=
+ =?us-ascii?Q?p1lX7bNvkerWHOkpbIEhVJSPrgzAi/fO4KpjqM9FaWjwpB6/hK42y+Byz2Qp?=
+ =?us-ascii?Q?Qk+bdXz/eLAIJ4f0OKkCJv1HnL7X/b0UdFenF7DQM929WKkjBKEH7RCoE1Go?=
+ =?us-ascii?Q?IiCqmj1wM9KpKP231MdjHXaHfPN8QoH18VHATKa2nUB+BKFMYeeuNUMoqCkv?=
+ =?us-ascii?Q?NuMZ8xczPdpUonNzxISoafm3dmuM+ODi6e5b?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 22:45:59.0632 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf0e0815-b514-4a26-e7ba-08ddc971871f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 22:46:08.5584 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05f8b79d-8e46-4a02-caea-08ddc9718cc8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001ED.namprd05.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002313.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PPF7D094C5BF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8931
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,52 +141,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Michael Strauss <michael.strauss@amd.com>
+From: Ray Wu <ray.wu@amd.com>
 
-[WHY]
-In the worst case, AUX intra-hop done can take hundreds of milliseconds as
-each retimer in a link might have to wait a full AUX_RD_INTERVAL to send
-LT abort downstream.
+[Why]
+Users can access the replay residency to get PHY off percentage
 
-[HOW]
-Wait 300ms for each retimer in a link to allow time to propagate a LT abort
-without infinitely waiting on intra-hop done.
-For no-retimer case, keep the max duration at 10ms.
+[How]
+Start capture residency:
+sudo echo 1 /sys/kernel/debug/dri/0/eDP-1/replay_residency
 
-Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
-Signed-off-by: Michael Strauss <michael.strauss@amd.com>
+Stop and Get replay residency:
+sudo cat /sys/kernel/debug/dri/0/eDP-1/replay_residency
+
+Reviewed-by: ChiaHsuan (Tom) Chung <chiahsuan.chung@amd.com>
+Signed-off-by: Ray Wu <ray.wu@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- .../drm/amd/display/dc/link/protocols/link_dp_training.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 34 ++++++++++++++++++-
+ 1 file changed, 33 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training.c
-index 2dc1a660e504..134093ce5a8e 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training.c
-@@ -1018,7 +1018,12 @@ static enum link_training_result dpcd_exit_training_mode(struct dc_link *link, e
- {
- 	enum dc_status status;
- 	uint8_t sink_status = 0;
--	uint8_t i;
-+	uint32_t i;
-+	uint8_t lttpr_count = dp_parse_lttpr_repeater_count(link->dpcd_caps.lttpr_caps.phy_repeater_cnt);
-+	uint32_t intra_hop_disable_time_ms = (lttpr_count > 0 ? lttpr_count * 300 : 10);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 484691335fd6..f263e1a4537e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -3106,6 +3106,35 @@ static int replay_get_state(void *data, u64 *val)
+ 	return 0;
+ }
+ 
++/*
++ *  Start / Stop capture Replay residency
++ */
++static int replay_set_residency(void *data, u64 val)
++{
++	struct amdgpu_dm_connector *connector = data;
++	struct dc_link *link = connector->dc_link;
++	bool is_start = (val != 0);
++	u32 residency = 0;
 +
-+	// Each hop could theoretically take over 256ms (max 128b/132b AUX RD INTERVAL)
-+	// To be safe, allow 300ms per LTTPR and 10ms for no LTTPR case
++	link->dc->link_srv->edp_replay_residency(link, &residency, is_start, PR_RESIDENCY_MODE_PHY);
++	return 0;
++}
++
++/*
++ *  Read Replay residency
++ */
++static int replay_get_residency(void *data, u64 *val)
++{
++	struct amdgpu_dm_connector *connector = data;
++	struct dc_link *link = connector->dc_link;
++	u32 residency = 0;
++
++	link->dc->link_srv->edp_replay_residency(link, &residency, false, PR_RESIDENCY_MODE_PHY);
++	*val = (u64)residency;
++
++	return 0;
++}
++
+ /*
+  *  Read PSR state
+  */
+@@ -3325,7 +3354,8 @@ DEFINE_DEBUGFS_ATTRIBUTE(dmcub_trace_event_state_fops, dmcub_trace_event_state_g
+ 			 dmcub_trace_event_state_set, "%llu\n");
  
- 	/* clear training pattern set */
- 	status = dpcd_set_training_pattern(link, DP_TRAINING_PATTERN_VIDEOIDLE);
-@@ -1028,7 +1033,7 @@ static enum link_training_result dpcd_exit_training_mode(struct dc_link *link, e
- 
- 	if (encoding == DP_128b_132b_ENCODING) {
- 		/* poll for intra-hop disable */
--		for (i = 0; i < 10; i++) {
-+		for (i = 0; i < intra_hop_disable_time_ms; i++) {
- 			if ((core_link_read_dpcd(link, DP_SINK_STATUS, &sink_status, 1) == DC_OK) &&
- 					(sink_status & DP_INTRA_HOP_AUX_REPLY_INDICATION) == 0)
- 				break;
+ DEFINE_DEBUGFS_ATTRIBUTE(replay_state_fops, replay_get_state, NULL, "%llu\n");
+-
++DEFINE_DEBUGFS_ATTRIBUTE(replay_residency_fops, replay_get_residency, replay_set_residency,
++			 "%llu\n");
+ DEFINE_DEBUGFS_ATTRIBUTE(psr_fops, psr_get, NULL, "%llu\n");
+ DEFINE_DEBUGFS_ATTRIBUTE(psr_residency_fops, psr_read_residency, NULL,
+ 			 "%llu\n");
+@@ -3503,6 +3533,8 @@ void connector_debugfs_init(struct amdgpu_dm_connector *connector)
+ 		debugfs_create_file("replay_capability", 0444, dir, connector,
+ 					&replay_capability_fops);
+ 		debugfs_create_file("replay_state", 0444, dir, connector, &replay_state_fops);
++		debugfs_create_file_unsafe("replay_residency", 0444, dir,
++					   connector, &replay_residency_fops);
+ 		debugfs_create_file_unsafe("psr_capability", 0444, dir, connector, &psr_capability_fops);
+ 		debugfs_create_file_unsafe("psr_state", 0444, dir, connector, &psr_fops);
+ 		debugfs_create_file_unsafe("psr_residency", 0444, dir,
 -- 
 2.43.0
 
