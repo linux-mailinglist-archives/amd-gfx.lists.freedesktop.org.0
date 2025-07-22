@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74807B0DA59
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Jul 2025 15:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAEC0B0DAF8
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Jul 2025 15:37:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3FA10E2EB;
-	Tue, 22 Jul 2025 13:00:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37D2E10E691;
+	Tue, 22 Jul 2025 13:37:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zpjjwfBt";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="K8BFTC4M";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2051.outbound.protection.outlook.com [40.107.212.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74F3F10E2EB
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 13:00:03 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2043.outbound.protection.outlook.com [40.107.93.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41D2910E691;
+ Tue, 22 Jul 2025 13:37:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IpUDEFU84T/Yf1vmv32Jd+4MA1V0+Y/5iyMuT3KCNa4uWpPDx/PcRCLXbMy4lIpGIldzQROYpRUJdroyCcv1nsJJew4E/60ic9Ml75PyyWClwHSC40ioqJb4AQjJybi5GZiaJufQuCKKsRnHuceUyxIQMeuAIQPFYQnVtnQUJd8zhCqbIhK10qSzf+xGjTqv+K8YoQXavO4IB/OVz/EaNYe83CmaRzhJZXEbCA+xD9B0n7F+hvgflO8cjdwGvXTr+QETxGGj7vygQQrcsns/UuInPzRhujTZM/1bUs/zI723X2+7es34Vfh1vcI/ee3jRENlnQbBr8LvJqSgmw7xLA==
+ b=guEckM1j9cs/x1gIJaJNfHPrD6WRsX2djKs6MbBU0VhtQhrGV9QDEJT6aLdtuyBfEUVBSviynJr7tQq3Cs8GT/EwifmMIupVTuBZ7hqN1VKGs3I9acCkouBUJDyk95ZZlrbUiZw4YPvk5UU0BqNL7lqOPSNpsMLSmH36ShLDs1/nTj788LO6FpzDLkY0Nvm4TzzpEDet5N/Jmu+TclN+89jKsG162N9hcuu3RP3oUBYjav6lPnWpeMPvCWUU0XQBqBELGTXoR38dxL7IkIH3dQYtk/EplMDPtUXxNd2V5FlYAgIf6XaR4D5oL6IniIa5VomspsPMiO8uhBkB0MyzHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SnKlvKstld1JbCOmOHzGRupk6TraKncytT9opSr+TwQ=;
- b=dv4HvRxYpMfaRKyKJogJ+M2neUhnKMUJ5mgtyyY62HNMixYyE5yfi8X0Jl7ibq5D2db+qYeqHPdJaKEjzj87qHJnhEdrc1sQLYjFXwgtmjyDVfafrXHwipJpmi8qzPThI9BGD3c4kFhNvs8n8tQSjuz9lV+USIxwKgJel6/euStv9AXjjwgbBbpmEEtwvIUFR20Q+Bo57XR89uHOfbpNcBgc3zDziLEXnyDf3S8ULAZpJJ6APxVQP/bu8js3LLjOfQ/qF4ET8ACpNqurhaSdOfWgyQIJsx2Wj9EUHSfdXdj0Sc+t7zb2EUPQQVdK/XgBzHeun0KUVBM7tiAqbUHkbA==
+ bh=i0a9MuWZVbMqTZ8RnZTa23edb6CFp9sZOlmo8p/kY3w=;
+ b=hm0K1WdJDgBf/B6C7RHFf9+u6N4evnLMMCKKJX05NbB1ksG6DlpHrZHc3RNKW4OF8xCNTMfFyUyUv3qX2INHABQZQyTwgnxvKOZXlnTubOpbIOj7x6nGb39zNDkBgdxvKgzxuW1qEqLG/SbwyfCx9QpH4P894tOxa0+3Cbz3+iyNm7QaCM1aZnu7li9fiGCV2dxPsBo8ghdppvfNpHMXkZtzctDQa5P+Y1noqb79IXnujWPt895eDUDM0KA3O2RW68yj4j0JTT3O5QCMVf4uSu4h7gpg0ThBBTBirLXfldrMhRWDHaBfPXuIAbNCqOWFrgAb6RDcdVyRQk7LghQ1AQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SnKlvKstld1JbCOmOHzGRupk6TraKncytT9opSr+TwQ=;
- b=zpjjwfBtXWUZvdYr6cebQsElOvMMt6L+1WnQxDJFKYqxRJSIzNaKqoUmjm6STGLIRi15tWPbw1QPTulinmnajFO+8FA7bfE383MUU4bBAdRi7gaoEBUiPsqee5H4MO2teVcMXmDJKAGB/vmRykVamgzQt3fMCljXvEHUBNjdhJc=
-Received: from BL1PR13CA0406.namprd13.prod.outlook.com (2603:10b6:208:2c2::21)
- by DM4PR12MB7504.namprd12.prod.outlook.com (2603:10b6:8:110::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Tue, 22 Jul
- 2025 13:00:00 +0000
-Received: from BL02EPF0001A104.namprd05.prod.outlook.com
- (2603:10b6:208:2c2:cafe::1d) by BL1PR13CA0406.outlook.office365.com
- (2603:10b6:208:2c2::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.21 via Frontend Transport; Tue,
- 22 Jul 2025 13:00:00 +0000
+ bh=i0a9MuWZVbMqTZ8RnZTa23edb6CFp9sZOlmo8p/kY3w=;
+ b=K8BFTC4M9Okjqu03WXmACzBxhPH5nsQJ7cvPny+znkRGa/tlf3+vn8vDyTMbUMMyPvoqJZ8p4s5dHI30yBJuPBCbCK8mQkZWsQFDkCd9/fmSmnKiyaagoedJY6qnoJNbGY15Y7avogM19AGJD4ueSFMr3oeA9wqbTFdS8p5JQ4c=
+Received: from BN9PR03CA0565.namprd03.prod.outlook.com (2603:10b6:408:138::30)
+ by SJ2PR12MB8183.namprd12.prod.outlook.com (2603:10b6:a03:4f4::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.35; Tue, 22 Jul
+ 2025 13:37:27 +0000
+Received: from BL6PEPF0001AB71.namprd02.prod.outlook.com
+ (2603:10b6:408:138:cafe::c0) by BN9PR03CA0565.outlook.office365.com
+ (2603:10b6:408:138::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.27 via Frontend Transport; Tue,
+ 22 Jul 2025 13:37:26 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,22 +48,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0001A104.mail.protection.outlook.com (10.167.241.135) with Microsoft
+ BL6PEPF0001AB71.mail.protection.outlook.com (10.167.242.164) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 13:00:00 +0000
-Received: from work-495456.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 13:37:26 +0000
+Received: from arun-nv33.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 22 Jul
- 2025 07:59:59 -0500
-From: James Zhu <James.Zhu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <philip.yang@amd.com>
-CC: <Felix.kuehling@amd.com>, <christian.koenig@amd.com>, <jamesz@amd.com>
-Subject: [PATCH v4 2/2] drm/amdkfd: return migration pages from copy function
-Date: Tue, 22 Jul 2025 08:59:49 -0400
-Message-ID: <20250722125950.7574-1-James.Zhu@amd.com>
+ 2025 08:37:24 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <christian.koenig@amd.com>, <matthew.auld@intel.com>,
+ <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
+ <Arunpravin.PaneerSelvam@amd.com>
+Subject: [PATCH 1/2] drm/buddy: Optimize free block management with RB tree
+Date: Tue, 22 Jul 2025 19:07:08 +0530
+Message-ID: <20250722133709.2191-1-Arunpravin.PaneerSelvam@amd.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250528171908.82639-2-James.Zhu@amd.com>
-References: <20250528171908.82639-2-James.Zhu@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -72,52 +72,52 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A104:EE_|DM4PR12MB7504:EE_
-X-MS-Office365-Filtering-Correlation-Id: f051e3d1-2606-45fd-19ae-08ddc91faae2
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB71:EE_|SJ2PR12MB8183:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6086a53a-de51-4d2f-86cc-08ddc924e5c1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?0FoxSiHbCJd4Ws/L7OZNxvA/lXP8TxfgOHYKgZwUy2NL7BgPq/avLXryzVW3?=
- =?us-ascii?Q?bAn2I9Ei49Flr9oDL4xEPQ274OYFcF9kZiFNWwsA6beVifJO9GYUHHHcwFMA?=
- =?us-ascii?Q?JJv/3Dz5i1XbNMUo7mm7VLtBIMaXCONXPrwKKZztmpgVoRFVBV1Kr1ZaAz/P?=
- =?us-ascii?Q?wD4fzba9wjgZZzQnb3bVJeTE1AodSgcl6vFsJIw0uJjmDG07RfPx0dcUCznO?=
- =?us-ascii?Q?7yg0wAGONUpheGOnawxqbXZPjATaDQKikPKlExjA3fS38mDUQgN3+Fi/rTky?=
- =?us-ascii?Q?u7XXq5+DLGHY64CvDJgQmdN8lOwvfe60l/ulCv4pHzwaOK78KifNbHTouZFl?=
- =?us-ascii?Q?FoE2D3AND4nU5zavmpjgsABqsuH5nbBJEkicVQvDbXV2E7RQ8fIj993i/XCp?=
- =?us-ascii?Q?g6M2QrY28fMa5AJ62RbqeBwxXHbGDG1LS/taOyxTHt/GBlnxPJ5stKP/uIqw?=
- =?us-ascii?Q?WwuRi65j8wYxsHlKwFW8h1sjd82Bgkf2znbtzRyiOYw4QqSKsAMufHr7jIdE?=
- =?us-ascii?Q?XK/RmVIV2GMOQAvif0mRUx9H/3thQvA9Xkh3rpVGEKBrtu36H73qXdtxsmoS?=
- =?us-ascii?Q?HSPvlU5tEbawBhhijKLpTKwjzY97RiS/A+kQwb5dY0YDyFrrRGifna6n3f5a?=
- =?us-ascii?Q?qrBt4OO2qnwP6i+MyRO/KOxq25/8fGPbClGRq3MJSTw4bQwbzsOga18J4C0O?=
- =?us-ascii?Q?Xxwf9CuIzNuEvcy8BK2oenTjEiBbuJ5mI1nYzl2iXzmLdlhVb8MxnGcA+2/a?=
- =?us-ascii?Q?5/CE4RQOLnyL9gSXVDi+W8TMQw3xxWDS1lp8tX9Wnh3Dij8FEXZpACnNweZq?=
- =?us-ascii?Q?7eLnhM1IO0qRhakcT7JpAww7DCKLEAqyPwCF4bWqHs8N5XmQm2yZnt4IYH+6?=
- =?us-ascii?Q?UAlOIximhyiE0Kc+ox9bSbmkV2EIcE6wjIQo6Hc2KhlNGK6ZWAnVjPGIIaA5?=
- =?us-ascii?Q?5gCEcznlfNif1/RWIDU1jMmXaXGD+WKhdxifVeZbqJDjR13+4HwNyJoMs0sb?=
- =?us-ascii?Q?Oyy8wkQsaG7C17xbbTODUr0BQRa87uWPG8TtVJMnTZB3DLxTSEPzOAs39tzy?=
- =?us-ascii?Q?QoexM/iMVCZwxFVtHJFdah266zaEByxIen7d4afZHP3yKhEfvKvEVGVX6Op1?=
- =?us-ascii?Q?h1PkFheLriAWbOxXBPHmGKBCJEDaRJ7BQiH66KvF1uatpCiBqmKs7/dFFZDK?=
- =?us-ascii?Q?6ndBbZIFnK9K2IEeHBTvG+zQLYsqkN6DOEUs+dTP6qvNXBj1Uyjxo977Mb8l?=
- =?us-ascii?Q?5lF8n7M6uKwYEfEs6C1sC5zHakWaJpVVbDAbfu2MgH6H/+OL8G6HKAu49ZD9?=
- =?us-ascii?Q?ucYgDawWS3W37Q6q40sBRnHNCAgS4tpINGPPzVGmSJoqdNSSEOZfb0UiH4GQ?=
- =?us-ascii?Q?uP0WyOd1N2rS7oQ96GpK2CvA4kYSeiDMAW1Ewt4VOmyl3tUGfjwo8ynouksp?=
- =?us-ascii?Q?kAew3lxx5DUdBV4Q8bWQAKx3PGPHWKVKJ7GukAUhrZ2zq+csfTrPeB7MO+70?=
- =?us-ascii?Q?ezUNH2ngmqG5XR/2MSNpdFacpZhRxu7YeV2d?=
+ ARA:13230040|82310400026|1800799024|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Cg4ieeoyN1H+lZ5E+b00zT4Qa/eVc8b4Nrgg9XZv+x6jpLjLGAqZ41Q1aarr?=
+ =?us-ascii?Q?WWqY76YUcjQmNl/bOShKKiN4ha/gg+N6A3OOFhXi/NCygu0/az2dwb6tHlAF?=
+ =?us-ascii?Q?mv+vcFHALyJldarjMM9QA/GrdXcWGCCky5+Z+C8TBS3Gk2OeLdD5aT1c9CoM?=
+ =?us-ascii?Q?insE8JngomMBO6unTsYz9gNnxE1E0SeDYF5Md/F0vBguQV3HVwI0C2mWUkKQ?=
+ =?us-ascii?Q?va5Hoy3nm0OZDdIEcqB/158S14FwzOF5LD1wxxNeDfGcTP08GA6492oaeNwl?=
+ =?us-ascii?Q?64uRWGUA52zeJX7h5SOFdL4MG22uiE06BJgJ0F9UdVZUb/fHFJ3ijUzCbCKX?=
+ =?us-ascii?Q?5GYLzONyXHEBe0zCopbdwVJ7EkhfWe3/71z8oUhUfTGlGZZ7gXw5uYNZgy3w?=
+ =?us-ascii?Q?kfEMEu9EyMns2bfcr2BNhxN9jKir84mPlHDcGN2pjYIk4Hd5jLiPW2FPBx91?=
+ =?us-ascii?Q?GtMFIaPIZa560P0O4YfsrYCOgQmLd1a9y3zmv4+PCYnv5bH7A6YwsCP9TU4D?=
+ =?us-ascii?Q?SgKupywEgueyplkAc30Y+lRbZDkoGWu9KryemzENITV9+x8porDUncnKAjoZ?=
+ =?us-ascii?Q?M9FOqKXHyFPaXsyyEQVT183f5YIW4ZQohQ/w2Z/ngv7/anYoiIzbEd7PrAX6?=
+ =?us-ascii?Q?iUnnZFGCBcN3iSVTz2nNSA4uT0r4yW5gTB21JR/ZhOfvvOStQ5DhM5v9jRFV?=
+ =?us-ascii?Q?ewGMlK3PUzAXdi+WQ79GqrtS+rso00Cj7xo3/dp89j5gF2Sdgx9XCPVdXkdS?=
+ =?us-ascii?Q?bY23GHSJOej4flRzaK/viOOc33kdTkCc0FKhBlJSpJNnH7feJhFc8820mLX8?=
+ =?us-ascii?Q?41fR5/G/ZEkblboP3zjiRxWlwmbSqS9b1yRQmW+V2Vb46DHfvKG81lvJR6eh?=
+ =?us-ascii?Q?hPS2N6MFSYh1/4hMv9Y7rLMZOdchfTGTFKnVT1Nc70JUnN67MYnGoHu2sSxS?=
+ =?us-ascii?Q?c4hQ4EBZ4G629UdJI+R162nEb6tLDUek05nE7P8J3uE6pq5BZkLYp2VDMWVK?=
+ =?us-ascii?Q?5uqq71+fgTjYuOLlIUBn346r/DUXyhdUoUkTIzUH/U64fcTZYzZwjggpzNNU?=
+ =?us-ascii?Q?ylOyt1wuF/S8FpYHx4gu28MjNYZ6jFnoNo8tFF9Yx4j8cCpNrdoeOS9ZNbjS?=
+ =?us-ascii?Q?uXdlzjfkumcrpf2GQ/JCK+kfEAbRU0x6cPghi2vsBj3w5TKswwCasAExpbw9?=
+ =?us-ascii?Q?F9tamsEU5pqifQlShGLnI5fnNsLtNaAUjtrUUjhL8QR+NTTuenJYWlxEm4TX?=
+ =?us-ascii?Q?prPVBunlFdl1jq53S80494zVrhAxtwI32YYVpuf/5+W9Q+iexHmwi7WTqSgs?=
+ =?us-ascii?Q?CP93/J6ckc+cykhJtIOjVi4pKu32uMeexr/VWH+KihlceWJxDKbhBhBdCnl0?=
+ =?us-ascii?Q?sKFHUhW6SJPblwPeUxM8FPbzbvy0XiNRlnGSG9+FQcr2vddeNxn0VxwSX8ye?=
+ =?us-ascii?Q?q45fShIe6h5QX7iM7NQ3GsWABFVEGX/3VpBO4wVsl1WAjkTFhlxffo8zcOTa?=
+ =?us-ascii?Q?UyjHWIcat2Fdx++tGmLw3iHD8VKf2HkjsAWC?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
+ SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 13:00:00.4154 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f051e3d1-2606-45fd-19ae-08ddc91faae2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 13:37:26.6713 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6086a53a-de51-4d2f-86cc-08ddc924e5c1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A104.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB71.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7504
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8183
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,245 +132,446 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-dst MIGRATE_PFN_VALID bit and src MIGRATE_PFN_MIGRATE bit
-should always be set when migration success. cpage includes
-src MIGRATE_PFN_MIGRATE bit set and MIGRATE_PFN_VALID bit
-unset pages for both ram and vram when memory is only allocated
-without being populated before migration, those ram pages should
-be counted as migrate pages and those vram pages should not be
-counted as migrate pages. Here migration pages refer to how many
-vram pages invloved.
+Replace the freelist (O(n)) used for free block management with a
+red-black tree, providing more efficient O(log n) search, insert,
+and delete operations. This improves scalability and performance
+when managing large numbers of free blocks per order (e.g., hundreds
+or thousands).
 
--v2 use dst to check MIGRATE_PFN_VALID bit (suggested-by Philip)
--v3 add warning when vram pages is less than migration pages
-    return migration pages directly from copy function
--v4 correct comments and copy fucntion return mpage (suggested-by Felix)
+In the VK-CTS memory stress subtest, the buddy manager merges
+fragmented memory and inserts freed blocks into the freelist. Since
+freelist insertion is O(n), this becomes a bottleneck as fragmentation
+increases. Benchmarking shows list_insert_sorted() consumes ~52.69% CPU
+with the freelist, compared to just 0.03% with the RB tree
+(rbtree_insert.isra.0), despite performing the same sorted insert.
 
-Signed-off-by: James Zhu <James.Zhu@amd.com>
+This also improves performance in heavily fragmented workloads,
+such as games or graphics tests that stress memory.
+
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c | 72 ++++++++++++------------
- 1 file changed, 36 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/drm_buddy.c | 141 +++++++++++++++++++++++-------------
+ include/drm/drm_buddy.h     |  39 +++++++++-
+ 2 files changed, 128 insertions(+), 52 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index f0b690d4bb46..5d7eb0234002 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -260,20 +260,7 @@ static void svm_migrate_put_sys_page(unsigned long addr)
- 	put_page(page);
- }
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index a1e652b7631d..19e9773b41be 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -31,6 +31,8 @@ static struct drm_buddy_block *drm_block_alloc(struct drm_buddy *mm,
+ 	block->header |= order;
+ 	block->parent = parent;
  
--static unsigned long svm_migrate_unsuccessful_pages(struct migrate_vma *migrate)
--{
--	unsigned long upages = 0;
--	unsigned long i;
--
--	for (i = 0; i < migrate->npages; i++) {
--		if (migrate->src[i] & MIGRATE_PFN_VALID &&
--		    !(migrate->src[i] & MIGRATE_PFN_MIGRATE))
--			upages++;
--	}
--	return upages;
--}
--
--static int
-+static long
- svm_migrate_copy_to_vram(struct kfd_node *node, struct svm_range *prange,
- 			 struct migrate_vma *migrate, struct dma_fence **mfence,
- 			 dma_addr_t *scratch, uint64_t ttm_res_offset)
-@@ -282,7 +269,7 @@ svm_migrate_copy_to_vram(struct kfd_node *node, struct svm_range *prange,
- 	struct amdgpu_device *adev = node->adev;
- 	struct device *dev = adev->dev;
- 	struct amdgpu_res_cursor cursor;
--	uint64_t mpages = 0;
-+	long mpages;
- 	dma_addr_t *src;
- 	uint64_t *dst;
- 	uint64_t i, j;
-@@ -296,6 +283,7 @@ svm_migrate_copy_to_vram(struct kfd_node *node, struct svm_range *prange,
- 
- 	amdgpu_res_first(prange->ttm_res, ttm_res_offset,
- 			 npages << PAGE_SHIFT, &cursor);
-+	mpages = 0;
- 	for (i = j = 0; (i < npages) && (mpages < migrate->cpages); i++) {
- 		struct page *spage;
- 
-@@ -356,13 +344,14 @@ svm_migrate_copy_to_vram(struct kfd_node *node, struct svm_range *prange,
- out_free_vram_pages:
- 	if (r) {
- 		pr_debug("failed %d to copy memory to vram\n", r);
--		for (i = 0; i < npages && mpages; i++) {
-+		while (i-- && mpages) {
- 			if (!dst[i])
- 				continue;
- 			svm_migrate_put_vram_page(adev, dst[i]);
- 			migrate->dst[i] = 0;
- 			mpages--;
- 		}
-+		mpages = r;
- 	}
- 
- #ifdef DEBUG_FORCE_MIXED_DOMAINS
-@@ -380,7 +369,7 @@ svm_migrate_copy_to_vram(struct kfd_node *node, struct svm_range *prange,
- 	}
- #endif
- 
--	return r;
-+	return mpages;
- }
- 
- static long
-@@ -395,7 +384,7 @@ svm_migrate_vma_to_vram(struct kfd_node *node, struct svm_range *prange,
- 	struct dma_fence *mfence = NULL;
- 	struct migrate_vma migrate = { 0 };
- 	unsigned long cpages = 0;
--	unsigned long mpages = 0;
-+	long mpages = 0;
- 	dma_addr_t *scratch;
- 	void *buf;
- 	int r = -ENOMEM;
-@@ -441,15 +430,17 @@ svm_migrate_vma_to_vram(struct kfd_node *node, struct svm_range *prange,
- 	else
- 		pr_debug("0x%lx pages collected\n", cpages);
- 
--	r = svm_migrate_copy_to_vram(node, prange, &migrate, &mfence, scratch, ttm_res_offset);
-+	mpages = svm_migrate_copy_to_vram(node, prange, &migrate, &mfence, scratch, ttm_res_offset);
- 	migrate_vma_pages(&migrate);
- 
- 	svm_migrate_copy_done(adev, mfence);
- 	migrate_vma_finalize(&migrate);
- 
--	mpages = cpages - svm_migrate_unsuccessful_pages(&migrate);
--	pr_debug("successful/cpages/npages 0x%lx/0x%lx/0x%lx\n",
-+	if (mpages >= 0)
-+		pr_debug("migrated/collected/requested 0x%lx/0x%lx/0x%lx\n",
- 			 mpages, cpages, migrate.npages);
-+	else
-+		r = mpages;
- 
- 	svm_range_dma_unmap_dev(adev->dev, scratch, 0, npages);
- 
-@@ -459,14 +450,13 @@ svm_migrate_vma_to_vram(struct kfd_node *node, struct svm_range *prange,
- 				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
- 				    0, node->id, trigger, r);
- out:
--	if (!r && mpages) {
-+	if (!r && mpages > 0) {
- 		pdd = svm_range_get_pdd_by_node(prange, node);
- 		if (pdd)
- 			WRITE_ONCE(pdd->page_in, pdd->page_in + mpages);
--
--		return mpages;
- 	}
--	return r;
++	RB_CLEAR_NODE(&block->rb);
 +
-+	return r ? r : mpages;
+ 	BUG_ON(block->header & DRM_BUDDY_HEADER_UNUSED);
+ 	return block;
+ }
+@@ -41,23 +43,53 @@ static void drm_block_free(struct drm_buddy *mm,
+ 	kmem_cache_free(slab_blocks, block);
  }
  
- /**
-@@ -577,7 +567,7 @@ static void svm_migrate_page_free(struct page *page)
- 	}
- }
- 
--static int
-+static long
- svm_migrate_copy_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 			struct migrate_vma *migrate, struct dma_fence **mfence,
- 			dma_addr_t *scratch, uint64_t npages)
-@@ -586,6 +576,7 @@ svm_migrate_copy_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 	uint64_t *src;
- 	dma_addr_t *dst;
- 	struct page *dpage;
-+	long mpages;
- 	uint64_t i = 0, j;
- 	uint64_t addr;
- 	int r = 0;
-@@ -598,6 +589,7 @@ svm_migrate_copy_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 	src = (uint64_t *)(scratch + npages);
- 	dst = scratch;
- 
-+	mpages = 0;
- 	for (i = 0, j = 0; i < npages; i++, addr += PAGE_SIZE) {
- 		struct page *spage;
- 
-@@ -646,6 +638,7 @@ svm_migrate_copy_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 				     dst[i] >> PAGE_SHIFT, page_to_pfn(dpage));
- 
- 		migrate->dst[i] = migrate_pfn(page_to_pfn(dpage));
-+		mpages++;
- 		j++;
- 	}
- 
-@@ -655,13 +648,17 @@ svm_migrate_copy_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- out_oom:
- 	if (r) {
- 		pr_debug("failed %d copy to ram\n", r);
--		while (i--) {
-+		while (i-- && mpages) {
-+			if (!migrate->dst[i])
-+				continue;
- 			svm_migrate_put_sys_page(dst[i]);
- 			migrate->dst[i] = 0;
-+			mpages--;
- 		}
-+		mpages = r;
- 	}
- 
--	return r;
-+	return mpages;
- }
- 
- /**
-@@ -688,9 +685,8 @@ svm_migrate_vma_to_ram(struct kfd_node *node, struct svm_range *prange,
+-static void list_insert_sorted(struct drm_buddy *mm,
+-			       struct drm_buddy_block *block)
++static void rbtree_insert(struct drm_buddy *mm,
++			  struct drm_buddy_block *block)
  {
- 	struct kfd_process *p = container_of(prange->svms, struct kfd_process, svms);
- 	uint64_t npages = (end - start) >> PAGE_SHIFT;
--	unsigned long upages = npages;
- 	unsigned long cpages = 0;
--	unsigned long mpages = 0;
-+	long mpages = 0;
- 	struct amdgpu_device *adev = node->adev;
- 	struct kfd_process_device *pdd;
- 	struct dma_fence *mfence = NULL;
-@@ -744,13 +740,15 @@ svm_migrate_vma_to_ram(struct kfd_node *node, struct svm_range *prange,
- 	else
- 		pr_debug("0x%lx pages collected\n", cpages);
++	struct rb_root *root = &mm->free_tree[drm_buddy_block_order(block)];
++	struct rb_node **link = &root->rb_node;
++	struct rb_node *parent = NULL;
+ 	struct drm_buddy_block *node;
+-	struct list_head *head;
++	u64 offset;
++
++	offset = drm_buddy_block_offset(block);
  
--	r = svm_migrate_copy_to_ram(adev, prange, &migrate, &mfence,
-+	mpages = svm_migrate_copy_to_ram(adev, prange, &migrate, &mfence,
- 				    scratch, npages);
- 	migrate_vma_pages(&migrate);
- 
--	upages = svm_migrate_unsuccessful_pages(&migrate);
--	pr_debug("unsuccessful/cpages/npages 0x%lx/0x%lx/0x%lx\n",
--		 upages, cpages, migrate.npages);
-+	if (mpages >= 0)
-+		pr_debug("migrated/collected/requested 0x%lx/0x%lx/0x%lx\n",
-+		 mpages, cpages, migrate.npages);
-+	else
-+		r = mpages;
- 
- 	svm_migrate_copy_done(adev, mfence);
- 	migrate_vma_finalize(&migrate);
-@@ -763,8 +761,7 @@ svm_migrate_vma_to_ram(struct kfd_node *node, struct svm_range *prange,
- 				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
- 				    node->id, 0, trigger, r);
- out:
--	if (!r && cpages) {
--		mpages = cpages - upages;
-+	if (!r && mpages > 0) {
- 		pdd = svm_range_get_pdd_by_node(prange, node);
- 		if (pdd)
- 			WRITE_ONCE(pdd->page_out, pdd->page_out + mpages);
-@@ -847,6 +844,9 @@ int svm_migrate_vram_to_ram(struct svm_range *prange, struct mm_struct *mm,
+-	head = &mm->free_list[drm_buddy_block_order(block)];
+-	if (list_empty(head)) {
+-		list_add(&block->link, head);
+-		return;
++	while (*link) {
++		parent = *link;
++		node = rb_entry(parent, struct drm_buddy_block, rb);
++
++		if (offset < drm_buddy_block_offset(node))
++			link = &parent->rb_left;
++		else
++			link = &parent->rb_right;
  	}
  
- 	if (r >= 0) {
-+		WARN_ONCE(prange->vram_pages < mpages,
-+			"Recorded vram pages(0x%llx) should not be less than migration pages(0x%lx).",
-+			prange->vram_pages, mpages);
- 		prange->vram_pages -= mpages;
+-	list_for_each_entry(node, head, link)
+-		if (drm_buddy_block_offset(block) < drm_buddy_block_offset(node))
+-			break;
++	rb_link_node(&block->rb, parent, link);
++	rb_insert_color(&block->rb, root);
++}
++
++static void rbtree_remove(struct drm_buddy *mm,
++			  struct drm_buddy_block *block)
++{
++	struct rb_root *root;
  
- 		/* prange does not have vram page set its actual_loc to system
+-	__list_add(&block->link, node->link.prev, &node->link);
++	root = &mm->free_tree[drm_buddy_block_order(block)];
++	rb_erase(&block->rb, root);
++
++	RB_CLEAR_NODE(&block->rb);
++}
++
++static inline struct drm_buddy_block *
++rbtree_last_entry(struct drm_buddy *mm, unsigned int order)
++{
++	struct rb_node *node = rb_last(&mm->free_tree[order]);
++
++	return node ? rb_entry(node, struct drm_buddy_block, rb) : NULL;
++}
++
++static bool rbtree_is_empty(struct drm_buddy *mm, unsigned int order)
++{
++	return RB_EMPTY_ROOT(&mm->free_tree[order]);
+ }
+ 
+ static void clear_reset(struct drm_buddy_block *block)
+@@ -70,12 +102,13 @@ static void mark_cleared(struct drm_buddy_block *block)
+ 	block->header |= DRM_BUDDY_HEADER_CLEAR;
+ }
+ 
+-static void mark_allocated(struct drm_buddy_block *block)
++static void mark_allocated(struct drm_buddy *mm,
++			   struct drm_buddy_block *block)
+ {
+ 	block->header &= ~DRM_BUDDY_HEADER_STATE;
+ 	block->header |= DRM_BUDDY_ALLOCATED;
+ 
+-	list_del(&block->link);
++	rbtree_remove(mm, block);
+ }
+ 
+ static void mark_free(struct drm_buddy *mm,
+@@ -84,15 +117,16 @@ static void mark_free(struct drm_buddy *mm,
+ 	block->header &= ~DRM_BUDDY_HEADER_STATE;
+ 	block->header |= DRM_BUDDY_FREE;
+ 
+-	list_insert_sorted(mm, block);
++	rbtree_insert(mm, block);
+ }
+ 
+-static void mark_split(struct drm_buddy_block *block)
++static void mark_split(struct drm_buddy *mm,
++		       struct drm_buddy_block *block)
+ {
+ 	block->header &= ~DRM_BUDDY_HEADER_STATE;
+ 	block->header |= DRM_BUDDY_SPLIT;
+ 
+-	list_del(&block->link);
++	rbtree_remove(mm, block);
+ }
+ 
+ static inline bool overlaps(u64 s1, u64 e1, u64 s2, u64 e2)
+@@ -148,7 +182,7 @@ static unsigned int __drm_buddy_free(struct drm_buddy *mm,
+ 				mark_cleared(parent);
+ 		}
+ 
+-		list_del(&buddy->link);
++		rbtree_remove(mm, buddy);
+ 		if (force_merge && drm_buddy_block_is_clear(buddy))
+ 			mm->clear_avail -= drm_buddy_block_size(mm, buddy);
+ 
+@@ -179,12 +213,17 @@ static int __force_merge(struct drm_buddy *mm,
+ 		return -EINVAL;
+ 
+ 	for (i = min_order - 1; i >= 0; i--) {
+-		struct drm_buddy_block *block, *prev;
++		struct drm_buddy_block *block, *prev_block, *first_block;
++
++		first_block = rb_entry(rb_first(&mm->free_tree[i]), struct drm_buddy_block, rb);
+ 
+-		list_for_each_entry_safe_reverse(block, prev, &mm->free_list[i], link) {
++		for_each_rb_entry_reverse_safe(block, prev_block, &mm->free_tree[i], rb) {
+ 			struct drm_buddy_block *buddy;
+ 			u64 block_start, block_end;
+ 
++			if (RB_EMPTY_NODE(&block->rb))
++				break;
++
+ 			if (!block->parent)
+ 				continue;
+ 
+@@ -206,10 +245,14 @@ static int __force_merge(struct drm_buddy *mm,
+ 			 * block in the next iteration as we would free the
+ 			 * buddy block as part of the free function.
+ 			 */
+-			if (prev == buddy)
+-				prev = list_prev_entry(prev, link);
++			if (prev_block && prev_block == buddy) {
++				if (prev_block != first_block)
++					prev_block = rb_entry(rb_prev(&prev_block->rb),
++							      struct drm_buddy_block,
++							      rb);
++			}
+ 
+-			list_del(&block->link);
++			rbtree_remove(mm, block);
+ 			if (drm_buddy_block_is_clear(block))
+ 				mm->clear_avail -= drm_buddy_block_size(mm, block);
+ 
+@@ -258,14 +301,14 @@ int drm_buddy_init(struct drm_buddy *mm, u64 size, u64 chunk_size)
+ 
+ 	BUG_ON(mm->max_order > DRM_BUDDY_MAX_ORDER);
+ 
+-	mm->free_list = kmalloc_array(mm->max_order + 1,
+-				      sizeof(struct list_head),
++	mm->free_tree = kmalloc_array(mm->max_order + 1,
++				      sizeof(struct rb_root),
+ 				      GFP_KERNEL);
+-	if (!mm->free_list)
++	if (!mm->free_tree)
+ 		return -ENOMEM;
+ 
+ 	for (i = 0; i <= mm->max_order; ++i)
+-		INIT_LIST_HEAD(&mm->free_list[i]);
++		mm->free_tree[i] = RB_ROOT;
+ 
+ 	mm->n_roots = hweight64(size);
+ 
+@@ -273,7 +316,7 @@ int drm_buddy_init(struct drm_buddy *mm, u64 size, u64 chunk_size)
+ 				  sizeof(struct drm_buddy_block *),
+ 				  GFP_KERNEL);
+ 	if (!mm->roots)
+-		goto out_free_list;
++		goto out_free_tree;
+ 
+ 	offset = 0;
+ 	i = 0;
+@@ -312,8 +355,8 @@ int drm_buddy_init(struct drm_buddy *mm, u64 size, u64 chunk_size)
+ 	while (i--)
+ 		drm_block_free(mm, mm->roots[i]);
+ 	kfree(mm->roots);
+-out_free_list:
+-	kfree(mm->free_list);
++out_free_tree:
++	kfree(mm->free_tree);
+ 	return -ENOMEM;
+ }
+ EXPORT_SYMBOL(drm_buddy_init);
+@@ -323,7 +366,7 @@ EXPORT_SYMBOL(drm_buddy_init);
+  *
+  * @mm: DRM buddy manager to free
+  *
+- * Cleanup memory manager resources and the freelist
++ * Cleanup memory manager resources and the freetree
+  */
+ void drm_buddy_fini(struct drm_buddy *mm)
+ {
+@@ -350,7 +393,7 @@ void drm_buddy_fini(struct drm_buddy *mm)
+ 	WARN_ON(mm->avail != mm->size);
+ 
+ 	kfree(mm->roots);
+-	kfree(mm->free_list);
++	kfree(mm->free_tree);
+ }
+ EXPORT_SYMBOL(drm_buddy_fini);
+ 
+@@ -383,7 +426,7 @@ static int split_block(struct drm_buddy *mm,
+ 		clear_reset(block);
+ 	}
+ 
+-	mark_split(block);
++	mark_split(mm, block);
+ 
+ 	return 0;
+ }
+@@ -598,7 +641,7 @@ get_maxblock(struct drm_buddy *mm, unsigned int order,
+ 	for (i = order; i <= mm->max_order; ++i) {
+ 		struct drm_buddy_block *tmp_block;
+ 
+-		list_for_each_entry_reverse(tmp_block, &mm->free_list[i], link) {
++		for_each_rb_entry_reverse(tmp_block, &mm->free_tree[i], rb) {
+ 			if (block_incompatible(tmp_block, flags))
+ 				continue;
+ 
+@@ -624,7 +667,7 @@ get_maxblock(struct drm_buddy *mm, unsigned int order,
+ }
+ 
+ static struct drm_buddy_block *
+-alloc_from_freelist(struct drm_buddy *mm,
++alloc_from_freetree(struct drm_buddy *mm,
+ 		    unsigned int order,
+ 		    unsigned long flags)
+ {
+@@ -641,7 +684,7 @@ alloc_from_freelist(struct drm_buddy *mm,
+ 		for (tmp = order; tmp <= mm->max_order; ++tmp) {
+ 			struct drm_buddy_block *tmp_block;
+ 
+-			list_for_each_entry_reverse(tmp_block, &mm->free_list[tmp], link) {
++			for_each_rb_entry_reverse(tmp_block, &mm->free_tree[tmp], rb) {
+ 				if (block_incompatible(tmp_block, flags))
+ 					continue;
+ 
+@@ -657,10 +700,8 @@ alloc_from_freelist(struct drm_buddy *mm,
+ 	if (!block) {
+ 		/* Fallback method */
+ 		for (tmp = order; tmp <= mm->max_order; ++tmp) {
+-			if (!list_empty(&mm->free_list[tmp])) {
+-				block = list_last_entry(&mm->free_list[tmp],
+-							struct drm_buddy_block,
+-							link);
++			if (!rbtree_is_empty(mm, tmp)) {
++				block = rbtree_last_entry(mm, tmp);
+ 				if (block)
+ 					break;
+ 			}
+@@ -728,7 +769,7 @@ static int __alloc_range(struct drm_buddy *mm,
+ 
+ 		if (contains(start, end, block_start, block_end)) {
+ 			if (drm_buddy_block_is_free(block)) {
+-				mark_allocated(block);
++				mark_allocated(mm, block);
+ 				total_allocated += drm_buddy_block_size(mm, block);
+ 				mm->avail -= drm_buddy_block_size(mm, block);
+ 				if (drm_buddy_block_is_clear(block))
+@@ -806,7 +847,6 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+ {
+ 	u64 rhs_offset, lhs_offset, lhs_size, filled;
+ 	struct drm_buddy_block *block;
+-	struct list_head *list;
+ 	LIST_HEAD(blocks_lhs);
+ 	unsigned long pages;
+ 	unsigned int order;
+@@ -819,11 +859,10 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+ 	if (order == 0)
+ 		return -ENOSPC;
+ 
+-	list = &mm->free_list[order];
+-	if (list_empty(list))
++	if (rbtree_is_empty(mm, order))
+ 		return -ENOSPC;
+ 
+-	list_for_each_entry_reverse(block, list, link) {
++	for_each_rb_entry_reverse(block, &mm->free_tree[order], rb) {
+ 		/* Allocate blocks traversing RHS */
+ 		rhs_offset = drm_buddy_block_offset(block);
+ 		err =  __drm_buddy_alloc_range(mm, rhs_offset, size,
+@@ -933,7 +972,7 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
+ 	list_add(&block->tmp_link, &dfs);
+ 	err =  __alloc_range(mm, &dfs, new_start, new_size, blocks, NULL);
+ 	if (err) {
+-		mark_allocated(block);
++		mark_allocated(mm, block);
+ 		mm->avail -= drm_buddy_block_size(mm, block);
+ 		if (drm_buddy_block_is_clear(block))
+ 			mm->clear_avail -= drm_buddy_block_size(mm, block);
+@@ -956,8 +995,8 @@ __drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 		return  __drm_buddy_alloc_range_bias(mm, start, end,
+ 						     order, flags);
+ 	else
+-		/* Allocate from freelist */
+-		return alloc_from_freelist(mm, order, flags);
++		/* Allocate from freetree */
++		return alloc_from_freetree(mm, order, flags);
+ }
+ 
+ /**
+@@ -974,8 +1013,8 @@ __drm_buddy_alloc_blocks(struct drm_buddy *mm,
+  * alloc_range_bias() called on range limitations, which traverses
+  * the tree and returns the desired block.
+  *
+- * alloc_from_freelist() called when *no* range restrictions
+- * are enforced, which picks the block from the freelist.
++ * alloc_from_freetree() called when *no* range restrictions
++ * are enforced, which picks the block from the freetree.
+  *
+  * Returns:
+  * 0 on success, error code on failure.
+@@ -1077,7 +1116,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 			}
+ 		} while (1);
+ 
+-		mark_allocated(block);
++		mark_allocated(mm, block);
+ 		mm->avail -= drm_buddy_block_size(mm, block);
+ 		if (drm_buddy_block_is_clear(block))
+ 			mm->clear_avail -= drm_buddy_block_size(mm, block);
+@@ -1161,7 +1200,7 @@ void drm_buddy_print(struct drm_buddy *mm, struct drm_printer *p)
+ 		struct drm_buddy_block *block;
+ 		u64 count = 0, free;
+ 
+-		list_for_each_entry(block, &mm->free_list[order], link) {
++		for_each_rb_entry(block, &mm->free_tree[order], rb) {
+ 			BUG_ON(!drm_buddy_block_is_free(block));
+ 			count++;
+ 		}
+diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+index 9689a7c5dd36..a64d108a33b7 100644
+--- a/include/drm/drm_buddy.h
++++ b/include/drm/drm_buddy.h
+@@ -10,6 +10,7 @@
+ #include <linux/list.h>
+ #include <linux/slab.h>
+ #include <linux/sched.h>
++#include <linux/rbtree.h>
+ 
+ #include <drm/drm_print.h>
+ 
+@@ -22,6 +23,41 @@
+ 	start__ >= max__ || size__ > max__ - start__; \
+ })
+ 
++/*
++ * for_each_rb_entry() - iterate over an RB tree in order
++ * @pos:	the struct type * to use as a loop cursor
++ * @root:	pointer to struct rb_root to iterate
++ * @member:	name of the rb_node field within the struct
++ */
++#define for_each_rb_entry(pos, root, member) \
++	for (pos = rb_entry_safe(rb_first(root), typeof(*pos), member); \
++	     pos; \
++	     pos = rb_entry_safe(rb_next(&(pos)->member), typeof(*pos), member))
++
++/*
++ * for_each_rb_entry_reverse() - iterate over an RB tree in reverse order
++ * @pos:	the struct type * to use as a loop cursor
++ * @root:	pointer to struct rb_root to iterate
++ * @member:	name of the rb_node field within the struct
++ */
++#define for_each_rb_entry_reverse(pos, root, member) \
++	for (pos = rb_entry_safe(rb_last(root), typeof(*pos), member); \
++	     pos; \
++	     pos = rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member))
++
++/**
++ * for_each_rb_entry_reverse_safe() - safely iterate over an RB tree in reverse order
++ * @pos:	the struct type * to use as a loop cursor.
++ * @n:		another struct type * to use as temporary storage.
++ * @root:	pointer to struct rb_root to iterate.
++ * @member:	name of the rb_node field within the struct.
++ */
++#define for_each_rb_entry_reverse_safe(pos, n, root, member) \
++	for (pos = rb_entry_safe(rb_last(root), typeof(*pos), member), \
++	     n = pos ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member) : NULL; \
++	     pos; \
++	     pos = n, n = pos ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member) : NULL)
++
+ #define DRM_BUDDY_RANGE_ALLOCATION		BIT(0)
+ #define DRM_BUDDY_TOPDOWN_ALLOCATION		BIT(1)
+ #define DRM_BUDDY_CONTIGUOUS_ALLOCATION		BIT(2)
+@@ -53,6 +89,7 @@ struct drm_buddy_block {
+ 	 * a list, if so desired. As soon as the block is freed with
+ 	 * drm_buddy_free* ownership is given back to the mm.
+ 	 */
++	struct rb_node rb;
+ 	struct list_head link;
+ 	struct list_head tmp_link;
+ };
+@@ -68,7 +105,7 @@ struct drm_buddy_block {
+  */
+ struct drm_buddy {
+ 	/* Maintain a free list for each order. */
+-	struct list_head *free_list;
++	struct rb_root *free_tree;
+ 
+ 	/*
+ 	 * Maintain explicit binary tree(s) to track the allocation of the
 -- 
 2.34.1
 
