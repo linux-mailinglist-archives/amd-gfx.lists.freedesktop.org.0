@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 680BBB0E6A1
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 00:46:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F82B0E6A3
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 00:46:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E23210E722;
-	Tue, 22 Jul 2025 22:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D9C010E731;
+	Tue, 22 Jul 2025 22:46:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LZymYV6E";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UZAdNvyi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2057.outbound.protection.outlook.com [40.107.94.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3127D10E722
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 22:45:59 +0000 (UTC)
+ (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4FBF10E726
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 22:46:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yFJ+h/UsWPzuiDPIM9f0bikUP50+9EnzzbyiW3EiFJru/EtqdjEHojC5tnW8KyMMNpdscB2d827wjmeRBEODbGNsRcViXUBUlDlIvTwg0uf8Ty/ac6KBthNzRiMomODKKwgz1eVXOsn6kzPzSvSRS2FoIWewXJV7GJe+2ZY5K7yLESVxMiB/A/2mVWthE80P5ZVJ/6XB8//R//NWxGmtPJgFWV+0mNl9HZyjyk7ILC5wvx1hp+m7arP2e9zZJrR9l8u1YU/9koZq803OE15L2eSeXEsL1OG+UqKEPFM6sMT6lqtahATNSyEevRGfq/3lbQgFk9SeCfU8esezNeCG2w==
+ b=KaHFW+13Ek/d6H4DCN8c3VP7QWMoxw5kxsqo3PAFNjKjq76eMDc0kSYM6uxa/MA/QQJUlW24fBeG4jK0hOD0rgfCULS6WQIW9KbWqzzssBNWo9CZROVyLqXC8v9cx8SIZ5jWstS9ZlF1TIJ4KOJHSlZ+N+RdPD5nzgI+sspI1mqGb0+FYUaLdgPFATHPbWRpiBIItwMiFWFln1lwhdWL4FQk6OcoXjCae5vcISh+tj1OKnstWxfcLuHFOY2l9BlI1zjjfz+d0wmKMu8qaqTH9vNu6lCE+mb257QmomxV/EuUWC4Jua+rDf++QAa/6UWZ4WqWBNEG7bPYXG+HkgULew==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1G8iP8O1weSagJC2VItzxcoWtDPvXUXzbV30I5ZwnD8=;
- b=ctv+VhmvQBzpHSKc8VbyCgcxIMDSSKPR9HcxUnoY4UsCTXBuHize5AWfr0t5+618XBT8FDo+lOddwhb6Pw6gPIReiShQKX0CDS6puHbkLKhf3ky2FXCpgeyyW7rQzsvbgfNa5jkGDEBV/BpWKyzakLon3hap2lTGmTr2OQNzFSmTZe9yZXJoMUDFNWtpFCkw8TndQB1hT23G09z0Nsarul3J1MY4HdzTZ62nEi39z6XYVaDgRf8ZtgwUhxFH74Zqk0DOyzn0x6urlBUwIqh7x935P4E+YYZcb1Eo/a3Us+neP3rkRNm9wLsK5QC9O0v1jlMGpaU+EZGRnua5CobBQw==
+ bh=wIx2woDIgn++Oqb4J9d4W4cjSdKLexnh+ckWOtdcLPI=;
+ b=pWW+MOcS1xdGrhVV7XuBB9FfVxse7jGsClN8Kce1cxxMlxH6b1BVZxS0WZOXz79lI5B0RcZi5kKXZ2cCQ36yakJvlmy7b5C5FHelj4og8mVxltP22As+1OvH+nYzCUjzzX8haFIUNjf93TwGeICNNzA1OsjYOGEgzc1mn70LmN05gH3Mc2NiWu6V1L0yndnJw5C5HlMbyVdu7XRTQuj5xLOLFwTf/dTA23t7WPBW4YYLcd2Z4cAcJrjlhniWpNYi3PzBlBS7OiNTHczqE3df+vaeOZRiUzsggwarz296Mq7D6+BFlpkNYSFFwm2jJEVT115hKdv5J7hHHU0ThmA4ag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1G8iP8O1weSagJC2VItzxcoWtDPvXUXzbV30I5ZwnD8=;
- b=LZymYV6E+RlVMz6KpOPC4airW0s488/BPsRrBwgAYNJnmQJQo0QoonmrTf0LAoM7QF0E6OpOGvhc8t5SEvsSszqbkXm60W0TVf8T+ArFAl+P3qZtpzgbKK6uztswOvCqVo4J0enQTANsloN+PuB1Z7HUk9SGI+0gDd1OC8lDn24=
-Received: from SN6PR01CA0023.prod.exchangelabs.com (2603:10b6:805:b6::36) by
- IA1PR12MB8223.namprd12.prod.outlook.com (2603:10b6:208:3f3::10) with
+ bh=wIx2woDIgn++Oqb4J9d4W4cjSdKLexnh+ckWOtdcLPI=;
+ b=UZAdNvyi3OcizZItLH2IrvwgSM1hdjqUfj9QVNw5L/v4GRN1alWHJzDiHkcNT7xrXS0hsiXxlFHY6hnOa63hyBozFXYUpAEVaMb+lkmhN4CfEW7l37PtJixWi+U7kOl1/aVRSa1CqXPa8KptP/f6VPirv5/XPKWikLf1HgAVWGY=
+Received: from SN6PR01CA0006.prod.exchangelabs.com (2603:10b6:805:b6::19) by
+ MN6PR12MB8542.namprd12.prod.outlook.com (2603:10b6:208:477::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Tue, 22 Jul
- 2025 22:45:54 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.39; Tue, 22 Jul
+ 2025 22:45:55 +0000
 Received: from SA2PEPF00003F68.namprd04.prod.outlook.com
- (2603:10b6:805:b6:cafe::a2) by SN6PR01CA0023.outlook.office365.com
- (2603:10b6:805:b6::36) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:805:b6:cafe::d3) by SN6PR01CA0006.outlook.office365.com
+ (2603:10b6:805:b6::19) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.21 via Frontend Transport; Tue,
- 22 Jul 2025 22:45:25 +0000
+ 22 Jul 2025 22:45:33 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,27 +50,28 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  SA2PEPF00003F68.mail.protection.outlook.com (10.167.248.43) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 22:45:53 +0000
+ 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 22:45:55 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 22 Jul
- 2025 17:45:53 -0500
+ 2025 17:45:54 -0500
 Received: from box-0.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Tue, 22 Jul 2025 17:45:52 -0500
+ Transport; Tue, 22 Jul 2025 17:45:54 -0500
 From: <IVAN.LIPSKI@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Relja Vojvodic
- <rvojvodi@amd.com>, Alvin Lee <alvin.lee2@amd.com>, Ivan Lipski
- <ivan.lipski@amd.com>
-Subject: [PATCH 16/25] drm/amd/display: Allow for sharing of some link and
- audio link functions
-Date: Tue, 22 Jul 2025 18:44:25 -0400
-Message-ID: <20250722224514.2655899-16-IVAN.LIPSKI@amd.com>
+ <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Cruise Hung
+ <Cruise.Hung@amd.com>, Meenakshikumar Somasundaram
+ <meenakshikumar.somasundaram@amd.com>, PeiChen Huang <peichen.huang@amd.com>, 
+ Ivan Lipski <ivan.lipski@amd.com>
+Subject: [PATCH 17/25] drm/amd/display: Add debug option to control BW
+ Allocation mode
+Date: Tue, 22 Jul 2025 18:44:26 -0400
+Message-ID: <20250722224514.2655899-17-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250722224514.2655899-15-IVAN.LIPSKI@amd.com>
 References: <20250722224514.2655899-15-IVAN.LIPSKI@amd.com>
@@ -81,52 +82,52 @@ Received-SPF: None (SATLEXMB03.amd.com: IVAN.LIPSKI@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F68:EE_|IA1PR12MB8223:EE_
-X-MS-Office365-Filtering-Correlation-Id: 90377579-c4e1-4aa8-646e-08ddc97183c5
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F68:EE_|MN6PR12MB8542:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e9d849c-cda9-47d7-d0b4-08ddc97184e8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7fe5WQGG7OEekQcPyNSbbhrYnWa/i60IACktvvF4fHqjv+Ew9bj5o9GMNiAp?=
- =?us-ascii?Q?uSDq3IRapYVll/XeqXf7tBkSX4sx/1IFi49HGq+2rujaJT+c4W2zjlwUiTrO?=
- =?us-ascii?Q?6VeK/4+GfRz/7D6l7MZ7bwHq7ilTRewC7H8R7bLEJHe+yBQmQkhIc8uMYuAm?=
- =?us-ascii?Q?9gY35N+cER/d2pDwuAWxVE7QZLt/+0MJdSLX+wUwpeX2afQgqfRl1ChgACFi?=
- =?us-ascii?Q?YHDJBn6afMQuHoHr558MMul9NGBbsyPhpLYhoWDM13EIh+v3in1+9lOenuRc?=
- =?us-ascii?Q?6QAdu6NyEE5YEE0MibsVsDUSvcfhyXUytbAcUvslqWx024uCI1VZilBDMZQe?=
- =?us-ascii?Q?KNCDqptujRM7dRxXCu5Kvp0QMG866M9tyXnhGToB/RrJAlI+0zcMQRpJzOip?=
- =?us-ascii?Q?iwrXFuzDcjxLad3kNzgG1iGOZL/OsnCAuUtvyz8ZonwFusqrt/3e9PQa3EC0?=
- =?us-ascii?Q?GIDTtxXGjtsbkTYmn76o7n+2nDBkH/5sqJ+/N+QvvbeGwCdLZhF+mWkxCXXU?=
- =?us-ascii?Q?ieYKaoI3xarSrb9OTVSKpPl1lpx7NMkLc/LGjigtitU7pZaI5xigqO30Dtxh?=
- =?us-ascii?Q?X8fOQf7I/tdxZDHWQ8wQ36KShF+398rFUqn83x0Wbtj9/IwGVEg2DQhMcr8l?=
- =?us-ascii?Q?6jEaJHtu0/0KgHHRcdTacIgD9O7JBReD3Bk6744QxvCBPQDgucQMbrkhtXDx?=
- =?us-ascii?Q?h0rii6swZdEBKIzMfRaakON7X6pxVVSzBgDHMLEl6p1V8FM+1rVi6EwZ9lWd?=
- =?us-ascii?Q?Cgv0vY/xolFEK5BStSKSXwwv37t69F2dciU/Ni+bGGxwnbKuJ7DKsHpODIB2?=
- =?us-ascii?Q?JVL8NT1MVaCj40oKvC1JjD0pHUW++14rxLM+ityGTEh1CDqb+JCZ2jSFjE6f?=
- =?us-ascii?Q?97tPt5B+8Twm9rlnoLueFLUTqVkJP2CmXfQ25wc0BhMSD/BMwSaZDLu79Lks?=
- =?us-ascii?Q?xBH8HHWEzSU38YTCEAiVuiMO3zGLU/m/1hnZN35gviBb5dkYFVTqQo3QjDc/?=
- =?us-ascii?Q?jRMmqNcoFeLStI3kPZicULYDAC7SQi9LqqeL5jPWajvOUpL01oXvJK36dP0u?=
- =?us-ascii?Q?8uRZMd83f9DIwXGyQwXsy6pLHZHVAxIMX8ghucL+Z25zAYlG56zkrmFyR+fu?=
- =?us-ascii?Q?xxqSgweheneBS54inkOiKu5Z5IblYeLaNtrtCV93dREgXJUwal5ErVtY/jQT?=
- =?us-ascii?Q?XJpFJse87PQgs2GPvMHQbABZLF7dznUoMSn1ySOFtD3VYdJm7YIb4QCLIBG+?=
- =?us-ascii?Q?OHSV9foq9vpp5UyyJCu6/3DzYqbredG3cevKfOC1svpDRARNLumQo2uOwMYK?=
- =?us-ascii?Q?JItN3DtToOeGaxfcyO+va6EcOlbjhBDhMvv4WHHqeTmcqOdLxfT6SPx+0MMx?=
- =?us-ascii?Q?6hC3MU56FNvBUpX77YjAAZLjI02zTuz4fezpw6f/c19sDI2JmED5lSuaCL6h?=
- =?us-ascii?Q?OOe0lrhhsLfGB4KzsMyD8xJmhj9zENkUw9tP4LvOJjK2bwTiXqwEBx5cXlCG?=
- =?us-ascii?Q?buA4w++uJyrSaJu4iHuouCI0Ns9KDOpaTiUl?=
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bh49xlmMsuMMae7mFnVO7U3V5UOzyN8zUZCkhmtaT0wYGZqihXprjyjEMsHy?=
+ =?us-ascii?Q?62jvkI66vqIl47r49dqoPFkGRN9e+hoUpKgxGHfi5yw2zhigNLR3lhj9fipE?=
+ =?us-ascii?Q?mXE4o7p8RVkId7QKP5+5l+zR96Xu/P7/NZusD8k/R/jnnpyKM+cdwpGohcsL?=
+ =?us-ascii?Q?LVncz0QyjsufjRVgA9ELkubXlFrj6R9qlPnzzZjJV/Y8gWNIurMvks39ySvE?=
+ =?us-ascii?Q?o0LBrtG7FzhIm8yulxr/qVG5c2K+JrgHFNZShkvRG/NNFaAAA1RwugnXwGm5?=
+ =?us-ascii?Q?xDNfluzC5Poug9MQ4FI/SPOlkiQsIAdlE1daI5lwhf29FQtosK0XdWK6s4q7?=
+ =?us-ascii?Q?zpZwph4WzU15ocvKIRP+6hNE753rwzvtNe9PufOM4B/7ZsTbYHGkN3i+no8m?=
+ =?us-ascii?Q?HhKT12YMvvOwXG3EaG2HwBctZprN3iV5G4FQO2yOnwBJp7w6ztUyKYNk/5m9?=
+ =?us-ascii?Q?/qbOPrViJ0ne/imSUpNR1alrG6JFxKz6/goODT2o1m1NdPnVhD+8bmhj/DzN?=
+ =?us-ascii?Q?5HnLVw+24P8XKBn9zxFAgw+C25Rp0dfbkwcjNVJFrMQHmSxTqqNWpjzOUpF2?=
+ =?us-ascii?Q?GoD0w4nRFE5H3I83J1R3iItoaMewb+SDjK7i/zTv3+ebMtRCLm4u7Hooe3yH?=
+ =?us-ascii?Q?2rlj/CU4rjtHLNUmOvKrdURyK3XaUV10ICKYpTNNBAxsF2oGo9GIajfvZlYg?=
+ =?us-ascii?Q?8yjQw0LqzWuiFQxdNOAq2+IzBw0uPHQ3zoIhr0MqQbDT4D4xtiZD/0AaN7SF?=
+ =?us-ascii?Q?jrw54EdFaWB+N1tVBJ+7ErqED9JOlRI72CYe0obiHnBAR8r/hkkwkHPqElDG?=
+ =?us-ascii?Q?m+wOscmYECAe+u7u1TmDabA7MNClrsyji4i+P1vaZ+Gfx2cOslB0tmeGl8cf?=
+ =?us-ascii?Q?IXUCa2FDwlKskm05Qx+WvYAHBZddSD4cjJ00w7+diIj21WJESW4gCH+H3ylC?=
+ =?us-ascii?Q?Sf4StgoB9o34T1BQKG5LJRVVvU4M0HCFz4UgcFu2SoKc5O4nWeQhQtYdYKpx?=
+ =?us-ascii?Q?1TTjMDpEr2bflbCSlstdKLyF1aYTOespkqfVpHhcNECtSojwO38y+AXQBCD/?=
+ =?us-ascii?Q?F/gAzQy8t9+1CYM5rlolIAq5zVQqfnF2yK5Uu6Wly58XmaXpkA6pYfuBRIuJ?=
+ =?us-ascii?Q?t28yAKYJlEN6CWho1qU9rFr/dkr/rc+hFhtuRfVnSj4GgAwy165KfIpQNHcI?=
+ =?us-ascii?Q?uk+Ah4q037q5Gr3k7n9OoLygGWv5Ktfk+eNmtqwDryNs3ChHC1ZHa8FGEVtC?=
+ =?us-ascii?Q?AUypULfJLEd+j6H1DOXey0xH0qqlTtoCVZ9zpgxC+ZrYB4tLTDc1gUgkZduE?=
+ =?us-ascii?Q?91Z4KS6QNDkmuWg1rj9bUN96YttGNGTqBZmPSHZyQQo+G1SdJlC0//Pm51DN?=
+ =?us-ascii?Q?7Brt/M6XW6RsKMsuw1NUX/8SYL5tSQnVAnTMzlWonMDGFv/OPyipv4E4rxqF?=
+ =?us-ascii?Q?wBBOdLFQ9By2t7JA6VpMl0HvMH58tN7OiRXlmPzfYriRcDAk8Q3Zpq872RRV?=
+ =?us-ascii?Q?zs4zLSxwFBKzV8A6F+HVq7jo7vZx65Rl/95H?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 22:45:53.4990 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90377579-c4e1-4aa8-646e-08ddc97183c5
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 22:45:55.4076 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e9d849c-cda9-47d7-d0b4-08ddc97184e8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F68.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8223
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8542
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,69 +142,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Relja Vojvodic <rvojvodi@amd.com>
+From: Cruise Hung <Cruise.Hung@amd.com>
 
-[Why&How]
-Allow for sharing of some link and audio link functions by removing static
-keyword from function definitions.
-Expose those functions in the HWSEQ header.
+[Why & How]
+Add debug option to control BW Allocation mode.
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
-Signed-off-by: Relja Vojvodic <rvojvodi@amd.com>
+Reviewed-by: Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>
+Reviewed-by: PeiChen (Pei-Chen) Huang <peichen.huang@amd.com>
+Signed-off-by: Cruise Hung <Cruise.Hung@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c | 6 +++---
- drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h | 7 +++++++
- 2 files changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h                          | 3 ++-
+ .../gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c  | 5 +++++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index 62cdfee82956..b412419ee5b3 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -1270,7 +1270,7 @@ void dce110_set_avmute(struct pipe_ctx *pipe_ctx, bool enable)
- 		pipe_ctx->stream_res.stream_enc->funcs->set_avmute(pipe_ctx->stream_res.stream_enc, enable);
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index fee54cc0f7d4..57f4a9445b7e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -839,7 +839,8 @@ union dpia_debug_options {
+ 		uint32_t enable_force_tbt3_work_around:1; /* bit 4 */
+ 		uint32_t disable_usb4_pm_support:1; /* bit 5 */
+ 		uint32_t enable_usb4_bw_zero_alloc_patch:1; /* bit 6 */
+-		uint32_t reserved:25;
++		uint32_t enable_bw_allocation_mode:1; /* bit 7 */
++		uint32_t reserved:24;
+ 	} bits;
+ 	uint32_t raw;
+ };
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
+index 906d85ca8956..8a3c18ae97a7 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
+@@ -225,6 +225,11 @@ bool link_dpia_enable_usb4_dp_bw_alloc_mode(struct dc_link *link)
+ 	bool ret = false;
+ 	uint8_t val;
  
--static enum audio_dto_source translate_to_dto_source(enum controller_id crtc_id)
-+enum audio_dto_source translate_to_dto_source(enum controller_id crtc_id)
- {
- 	switch (crtc_id) {
- 	case CONTROLLER_ID_D0:
-@@ -1290,7 +1290,7 @@ static enum audio_dto_source translate_to_dto_source(enum controller_id crtc_id)
- 	}
- }
++	if (link->dc->debug.dpia_debug.bits.enable_bw_allocation_mode == false) {
++		DC_LOG_DEBUG("%s:  link[%d] DPTX BW allocation mode disabled", __func__, link->link_index);
++		return false;
++	}
++
+ 	val = DPTX_BW_ALLOC_MODE_ENABLE | DPTX_BW_ALLOC_UNMASK_IRQ;
  
--static void populate_audio_dp_link_info(
-+void populate_audio_dp_link_info(
- 	const struct pipe_ctx *pipe_ctx,
- 	struct audio_dp_link_info *dp_link_info)
- {
-@@ -2255,7 +2255,7 @@ static bool should_enable_fbc(struct dc *dc,
- /*
-  *  Enable FBC
-  */
--static void enable_fbc(
-+void enable_fbc(
- 		struct dc *dc,
- 		struct dc_state *context)
- {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h
-index 7cd8c1576988..9c032e449481 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h
-@@ -114,5 +114,12 @@ void build_audio_output(
- 		struct dc_state *state,
- 		const struct pipe_ctx *pipe_ctx,
- 		struct audio_output *audio_output);
-+enum audio_dto_source translate_to_dto_source(enum controller_id crtc_id);
-+void populate_audio_dp_link_info(
-+	const struct pipe_ctx *pipe_ctx,
-+	struct audio_dp_link_info *dp_link_info);
-+void enable_fbc(
-+	struct dc *dc,
-+	struct dc_state *context);
- #endif /* __DC_HWSS_DCE110_H__ */
- 
+ 	if (core_link_write_dpcd(link, DPTX_BW_ALLOCATION_MODE_CONTROL, &val, sizeof(uint8_t)) == DC_OK) {
 -- 
 2.43.0
 
