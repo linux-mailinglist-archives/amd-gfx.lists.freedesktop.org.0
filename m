@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB477B0E682
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 00:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA79CB0E687
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 00:39:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45B6310E720;
-	Tue, 22 Jul 2025 22:39:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DD4610E32C;
+	Tue, 22 Jul 2025 22:39:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Xtc4o9iX";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ckpww19B";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1A5D10E720
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 22:39:28 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2058.outbound.protection.outlook.com [40.107.237.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E860510E722
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 22:39:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dwGxZFq32OQlbhojMGxhPyuW2QGiyV4aFQvFyrvuuX0EI9DiJceDjxh1fHMkXUprlhUog/c0nrOqcD4giBTEl+aOSQIiS6tV0OGXWH8b2PD7Uq3E28FYsGxhpuGyjdZ9/aCfpMTI0g4UmdmTmoDeRCkU8OqDMFImGwpoZD/p5vmoBEVBc3wsV+iz6yIOjfJbBUy0hIrH1y+TeS4DCOwtAo7IRIVqCZU+Jc0WnIHE6fWFRmryEolfnEvKPQPg2VwXuIUGlUA66mD5tXhl7NNJvFbbB8sV2lEbd8HNqIdn6STIO5JWDmhPVJLD7i+5NHEwfUS1ZHgKWThW4lhV3wDH5g==
+ b=AFNfoHbFDolGMrNMmKKFyNM5nEM01ZPTB0AVwmWwUVm5LfjEtEC41JGEBehGyq7rhkElUbZKWBWw0VqabJgsbBrB4hpR+W8prbiR5T2hYFPI5u8pEa5Rl4gYOc7866J/Dq7+suDk+g7ZF7wNx4LzkX75eW4NCpieNBRs2LXsrynkCixOCJC9zPB4sviXJALGjWe3MpwuDBEOzR6AR2RjazHRvMOuhGotVndXBKfF/8yy8GgDpGUgtlmQP40BfOExoX5nthFA8DUoir0VOkiAHAiLEZUr/mz7UWGPtQ/icPjIrpdEwF9bHabpkO5wFrwwCL9Xu3OASgws6SFleIRpuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YlI25edCJMrwI5i/xYN1GyFQWtWDQ2bzm0XzJxP+xMU=;
- b=POu+eYcmz5O8VNxUiyjEn0/iDF8ybZig4Hl4njv1XqmTZOyZQL58JVGFozUKmgTTBXiDJ2jjto4UzHgMRTwt8Y6ACHGBzTZB5KzYHJrVskLbdCAnpP7pdLXtXk2AY5foBWn/3dYFp9tzALcAHdFu9xF46G5hYEqjgMOQMu3lM/dPSYfL9Kj+3PAoO1+Hgu5OeGHeKe5+bHdixF7s5nMl6tD9r047wZJZGvK2p3vX0Wb1e0klGfW0hd545FVIL3Vwr01Jlz1rNbanehysjLuv0SHY3cni5yIjbzckUDIhDf3vJts/S8RK7Oazne1QS7ayN+Umj2sezvlJGU0GUYSr3Q==
+ bh=ycQCflSl8t5NhTfx5CyiaoA2sQXsTjZETIpQXbAmos4=;
+ b=IPX1pAPQYKqaftN8n1O9CRJd9qxnpLB/dvNXkmpymPrwszkFfW6Ru3IPI96vyttR8gdCf2toQOobkgth50IJs5KTdvlLRq5zXGRKXKOjJ0iAkhn3kmOX+1V8BBgZ1+GVU+GZ+ltmri3bSEl0RQJAkfZDt6PEIwQ2MW2iqs8JBjI76lTaVdOhw8DxIfXl+YcG35hT1v2OnSYghxX4/RtbS5hYpmNjpOF5cVMMJCUPd1jC7cbvr8OzY8oUXA6qhfR1S0giI8dOrd6uc8xS++0ZGN8D7XtlwgEz7hlOqCA9WtPZRP+DVwR1WcUzvaqgnZvxFYQ3l/NXwxYlXaWgziR9jg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YlI25edCJMrwI5i/xYN1GyFQWtWDQ2bzm0XzJxP+xMU=;
- b=Xtc4o9iXwIxxvEdqwaUPeSSIyN9xe/+sAVhtR5jHQtpJnCMTdguXm017/pbQpFpRq4WBew3n8fL4/5XSEuNyy3vqKdKkfuCq2YYG7kciZQzkeR92llM3SqY6e8kJuLxmmK0G5I8KQJdfwQ6svjS4tih0404dpHtssFokdGyM4XU=
-Received: from MN2PR05CA0032.namprd05.prod.outlook.com (2603:10b6:208:c0::45)
- by MW4PR12MB6828.namprd12.prod.outlook.com (2603:10b6:303:209::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.24; Tue, 22 Jul
- 2025 22:39:23 +0000
+ bh=ycQCflSl8t5NhTfx5CyiaoA2sQXsTjZETIpQXbAmos4=;
+ b=Ckpww19B0dZqFzvqn1VDXtZ28Px4LnCTwlbT/vAupUV5D/pQkVETvhhmDaR3h7Oqgr1Y/smszlya25uKlFoROMRuiIQj1Sty0qTX8mVji9OCoR1uUUfXtv92lawXvyT7/Dy0KXMt332vLTlW9Ef6b7c6zKI1pIZeCrjzVaDF6hQ=
+Received: from MN2PR05CA0027.namprd05.prod.outlook.com (2603:10b6:208:c0::40)
+ by SA5PPFA403A61D8.namprd12.prod.outlook.com
+ (2603:10b6:80f:fc04::8da) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.42; Tue, 22 Jul
+ 2025 22:39:24 +0000
 Received: from BL6PEPF0001AB53.namprd02.prod.outlook.com
- (2603:10b6:208:c0:cafe::48) by MN2PR05CA0032.outlook.office365.com
- (2603:10b6:208:c0::45) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:208:c0:cafe::e3) by MN2PR05CA0027.outlook.office365.com
+ (2603:10b6:208:c0::40) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.21 via Frontend Transport; Tue,
- 22 Jul 2025 22:39:22 +0000
+ 22 Jul 2025 22:39:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  BL6PEPF0001AB53.mail.protection.outlook.com (10.167.241.5) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 22:39:22 +0000
+ 15.20.8964.20 via Frontend Transport; Tue, 22 Jul 2025 22:39:23 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 22 Jul
- 2025 17:39:17 -0500
+ 2025 17:39:18 -0500
 Received: from box-0.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
  Transport; Tue, 22 Jul 2025 17:39:17 -0500
@@ -64,12 +64,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Michael Strauss
- <michael.strauss@amd.com>, Ovidiu Bunea <ovidiu.bunea@amd.com>, Ivan Lipski
+ <Ray.Wu@amd.com>, Alex Hung <alex.hung@amd.com>, Jingwen Zhu
+ <Jingwen.Zhu@amd.com>, Hansen Dsouza <hansen.dsouza@amd.com>, Ivan Lipski
  <ivan.lipski@amd.com>
-Subject: [PATCH 04/25] drm/amd/display: Move setup_stream_attribute
-Date: Tue, 22 Jul 2025 18:36:10 -0400
-Message-ID: <20250722223911.2655505-5-IVAN.LIPSKI@amd.com>
+Subject: [PATCH 05/25] drm/amd/display: Add a config flag for limited_pll_vco
+Date: Tue, 22 Jul 2025 18:36:11 -0400
+Message-ID: <20250722223911.2655505-6-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250722223911.2655505-1-IVAN.LIPSKI@amd.com>
 References: <20250722223911.2655505-1-IVAN.LIPSKI@amd.com>
@@ -80,52 +80,52 @@ Received-SPF: None (SATLEXMB03.amd.com: IVAN.LIPSKI@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB53:EE_|MW4PR12MB6828:EE_
-X-MS-Office365-Filtering-Correlation-Id: 62691532-6e99-4d0e-c93b-08ddc9709ae8
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB53:EE_|SA5PPFA403A61D8:EE_
+X-MS-Office365-Filtering-Correlation-Id: a139db9e-4846-4b2c-2ed7-08ddc9709b96
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2UnwmC2gyI1Dog3nqMyiYdPHXhH9UTlh6U/o0wXj70rbwRlzMChc0RCfJxI8?=
- =?us-ascii?Q?K2RdPstt42RlQIkfMjsotEU8JMv5cJF5J3aXH91So0QGww3GjdjXJZtAXgCg?=
- =?us-ascii?Q?j7tePfYqVrVZrkYpvvAPDvSb2Qqs+L3qc/GbDWXfdRhyG3ugORuawWFBWpuU?=
- =?us-ascii?Q?e7X4+YpOloCYFQbdPYdJmRJaeGN7CBYpeQK8ErqAT9XVLLNgQonlyXWw53yy?=
- =?us-ascii?Q?rZflqILgpLIb/1nrBanlYf2l2r8gnfVF7hBHhRK3G82bLwmrHhR0XjnbtNxz?=
- =?us-ascii?Q?RQ7uy9IVTbor7977XJfKSnMAu0DdYnknoz7m366RIaEolRnl5g5hAlHYaSqV?=
- =?us-ascii?Q?yOJL0E/kUtDHPMAh9Ws0JlcUDkmtU+lZMbJI7HERcSbv2PTo35oIy7mzvqBL?=
- =?us-ascii?Q?OmGZIasQYEuwZ3KDapUIRJIR21H+tHeQoIxzYX1t01GFzgl4axVtHZlz4OsB?=
- =?us-ascii?Q?AJllaGUntNDfGPJWMovogzM5pRAW+0A5us2TDeWTPycBXFlg/G/kc2Dn+EKk?=
- =?us-ascii?Q?o1j2DEK3v5dKJN6FJM464727do46GxFfQVDaMQiTLuoDvdqrb13sqM5Wf9/+?=
- =?us-ascii?Q?zVOkw03uR3A4oujr7g1EF32sVc+H1RPq0Aqa9aOD5DMD96cDm+Tn1JenyVf+?=
- =?us-ascii?Q?+7Jq1V3cobeXQX2mkG35LgY8GkM43aTO2slDzpMHsJbtIFlny+rvZs4unHn/?=
- =?us-ascii?Q?sGdVtajpSrbrevw5v74X60OVXwdQK1ESWbsvYrx9V3grRji1dg6WO2V7HFPl?=
- =?us-ascii?Q?EbNy64eFN9cX4yDg/OIw2Igqu+Y1iMOo4eqFj+JQOKqbosR2TR8VJIkS+6RT?=
- =?us-ascii?Q?cCB318yDuapHKsvu//FhZlvo0SWwMYyTBf1cjbxbT7N7UoXOsVujp0PViKlj?=
- =?us-ascii?Q?a6PfaT/l1SVZSwUeyvKUhoc/4thOrHTwEQXcN0X2ParuusBAj0jeNcz8XwDl?=
- =?us-ascii?Q?eJp34IDD2xpHUY6ca4FdCNku7455B8KQ0aiVlspA0oaod+sfxOkndHsBk1hJ?=
- =?us-ascii?Q?Fe+ytzdT4XpeTT7fZKR4wEmmWSftpV7ElTZ+LqXkMX566GasUAU/ZDENcBiI?=
- =?us-ascii?Q?gOEp950Rh1d6WOjMb+lxUd5gX1/BgHYjiPZ6Pu7p9m2c4pqHwELUZoWdNNU/?=
- =?us-ascii?Q?bPzQzLJspyzx+vDS8qxU+P9lCmaaoFg7o0fffLBPYr8zweC+15LU7Rg+i4y+?=
- =?us-ascii?Q?x7DrgdE7s5csbSzFfZnKW6ZOgj4F5g5kR67ExMmLbno34oHo0SwVNByZOyEl?=
- =?us-ascii?Q?SpUufCilXnYoIg9YlNdTIiZAF7xNjsuWZ6xEd8VixgkjyL8WCl1Q/mGHNqa/?=
- =?us-ascii?Q?ZmABTH7moynxmHaWF0+QysQsoC2Rn3yzsrdBDnyj81xxRHM3Y+NfRlUTZIVC?=
- =?us-ascii?Q?/1mDl4J4mCiXktmUQ80KjGIKoTt27n0jCzmHTsxNt1hosp8NRn4qsSZdKDwV?=
- =?us-ascii?Q?17hrW6uNkCIKCOUlOj9b8dYcfkEZ3pvfdBOmZ8VXn58mZzC5N1sSE2iVg24s?=
- =?us-ascii?Q?QLhM0KrfHu1I3Hfr7rZffNgJEEmwJZTkvnRC?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5BygrfDnjaYHCCiNkkt6U0DZMOnY+V38iUcvixBG3aQJg9nXm+vSk2wVtUlh?=
+ =?us-ascii?Q?5HIBoJvz01h0YvM6ypF/89u0n9h+3C363ob/S8wjSDaeyGGDkWeOT+a8rgLz?=
+ =?us-ascii?Q?T09ao4s6L/Fikb6tnbQtfxNJaTTaIC9RrDOPuJIcFUjudXI1b2RwaCPeyDhq?=
+ =?us-ascii?Q?KRtu1GrwO1TiJXNM6VOYGXIRhU6qe92haC104iHgz/+VEMmWkNT0XZVO2ZeZ?=
+ =?us-ascii?Q?EEsjNeOZZGTo1u1Je2qecmrc3EZf/Pve24HR8v1AgePiWyKPUnZcalZ58R4t?=
+ =?us-ascii?Q?qW7uwiM909V1gFhuy9zvhI9xtq22EgJ3UuR1paUfqV7IkfyvUvg90/69Vudy?=
+ =?us-ascii?Q?Kxs5qyxRBhb/neAmQXCkq72t7wTboSRSG4DJwEDYpcCd5OuL3V3irtTt/Foe?=
+ =?us-ascii?Q?vhWZj1URFafjf3f773uFcaCOrmH8WmOYtkUOLNPJia8i2XbRAhUWGe2RXI9i?=
+ =?us-ascii?Q?8QCbd65CdUnJhlJT2FPfsynz/npmj3krSbTztpupc4fopNIECKFBZcrEGyAs?=
+ =?us-ascii?Q?SeGtaxeXtpcBwzos5/srmxfhw1FXFDo4JlL6OMUZEb1xNMjHtDFZnzEolq01?=
+ =?us-ascii?Q?WFRxhFoz7peEqJx1zfgDUaxy41CWjWIUMJctovVWjElTiOutLBfWDNxr8fWP?=
+ =?us-ascii?Q?ku14HnEFzYPEvSfTTYlMLS4rrt+dS0/M6SUIauoclwuNBR+VIph4RyxHJtTg?=
+ =?us-ascii?Q?Vm6+i7cRsz6QBdr5ryRzeXfmd7eOXIrPvRqTISEjCdSpplhnqHrF3XW4RDK6?=
+ =?us-ascii?Q?e8KGcATtVv3ymboeGVhWb+djH7j2sD9i/yPUCKhky5YBoTdFfWt2ksTkBCrY?=
+ =?us-ascii?Q?oaDU7oYjNFtMs1pkNmCxYnzdZ9lRdUeSLkN1jlhnz2l7G9kpOomrhMaqTGHb?=
+ =?us-ascii?Q?GJajjneA6X7VevNg6SRoSkVIhCsBjhYijIRbvlydk4/GzEK1gX0S3kBJw6V2?=
+ =?us-ascii?Q?spBTiVcZmR39v2Wy8Fuz62gnWb6MPmXj8TArQnwKhzGC8zO+i9f9Oyv9wFmq?=
+ =?us-ascii?Q?/dhhGUAJNgUSPrgvXSklKwBC+kt5lk/8Pq8I1WZsOjHQpjC6oycxoNh1au5v?=
+ =?us-ascii?Q?UXLip9rzfR392Ql/2BRmp/RYUTI7t7wTl9gjFayGK5yIewGXe/2A5rI+rJCi?=
+ =?us-ascii?Q?D2mnOzVBn2b71VlVahJ7A3s6mHFGu/w7ZCWGxSPkqhvjE/oGhDMmVwPj6aH2?=
+ =?us-ascii?Q?3JN7U3FpP79jPLfdD3XH1afQC9OsYWusX80IegtHWU4P/H4fHR9MfUH82oEQ?=
+ =?us-ascii?Q?xIDzZrDOkaFHHAUbcuXCiMU6u+RM7Z3tkqCAB1RCr4NcWvym+E2UrZtmE+D3?=
+ =?us-ascii?Q?eKXgIvpV2U0bPNuFW+z0jxKZur+y2uz9TWwFerZOczUXCOsZpBPtrnwLlXI3?=
+ =?us-ascii?Q?q6FL+yIckKk5YuFUpkfKQmG+f4tnKAH1/sa5v9MxxBfs3qahQN+UnyhWi40B?=
+ =?us-ascii?Q?zQthtx7MqYdi6xz72liTHd3vszeHfSIPz7qMHACuDk6Bhxx9F11ae/aTBxK/?=
+ =?us-ascii?Q?LjP5HncpLP0jJCVj7xIZg1joPVyC6axkdu2t?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 22:39:22.8504 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62691532-6e99-4d0e-c93b-08ddc9709ae8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 22:39:23.9782 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a139db9e-4846-4b2c-2ed7-08ddc9709b96
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB53.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6828
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFA403A61D8
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,115 +140,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Michael Strauss <michael.strauss@amd.com>
+From: Jingwen Zhu <Jingwen.Zhu@amd.com>
 
-[WHY]
-If symclk RCO is enabled, stream encoder may not be receiving an ungated
-clock by the time we attempt to set stream attributes when setting dpms
-on. Since the clock is gated, register writes to the stream encoder fail.
+[Why/How]
+Added a new config flag to pass to the DMUB during boot.
+This workaround will solves black screen issue on reboot.
 
-[HOW]
-Move set_stream_attribute call into enable_stream, just after the point
-where symclk32_se is ungated.
-Logically there is no need to set stream attributes as early as is
-currently done in link_set_dpms_on, so this should have no impact beyond
-the RCO fix.
-
-Reviewed-by: Ovidiu (Ovi) Bunea <ovidiu.bunea@amd.com>
-Signed-off-by: Michael Strauss <michael.strauss@amd.com>
+Reviewed-by: Hansen Dsouza <hansen.dsouza@amd.com>
+Signed-off-by: Jingwen Zhu <Jingwen.Zhu@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c  | 1 +
- drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c    | 2 ++
- drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c  | 2 ++
- drivers/gpu/drm/amd/display/dc/link/link_dpms.c            | 3 ---
- .../drm/amd/display/dc/virtual/virtual_stream_encoder.c    | 7 +++++++
- 5 files changed, 12 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h       | 1 +
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 3 ++-
+ drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c | 1 +
+ 3 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index 4ea13d0bf815..62cdfee82956 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -671,6 +671,7 @@ void dce110_enable_stream(struct pipe_ctx *pipe_ctx)
- 	uint32_t early_control = 0;
- 	struct timing_generator *tg = pipe_ctx->stream_res.tg;
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index 0bafb6710761..87b761ac3135 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -316,6 +316,7 @@ struct dmub_srv_hw_params {
+ 	bool disable_sldo_opt;
+ 	bool enable_non_transparent_setconfig;
+ 	bool lower_hbr3_phy_ssc;
++	bool override_hbr3_pll_vco;
+ };
  
-+	link_hwss->setup_stream_attribute(pipe_ctx);
- 	link_hwss->setup_stream_encoder(pipe_ctx);
+ /**
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index a89bf08ffd37..e2e5f71c03f2 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -843,7 +843,8 @@ union dmub_fw_boot_options {
+ 		uint32_t ips_sequential_ono: 1; /**< 1 to enable sequential ONO IPS sequence */
+ 		uint32_t disable_sldo_opt: 1; /**< 1 to disable SLDO optimizations */
+ 		uint32_t lower_hbr3_phy_ssc: 1; /**< 1 to lower hbr3 phy ssc to 0.125 percent */
+-		uint32_t reserved : 6; /**< reserved */
++		uint32_t override_hbr3_pll_vco: 1; /**< 1 to override the hbr3 pll vco to 0 */
++		uint32_t reserved : 5; /**< reserved */
+ 	} bits; /**< boot bits */
+ 	uint32_t all; /**< 32-bit access to bits */
+ };
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+index 3f38db752b84..4777c7203b2c 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+@@ -377,6 +377,7 @@ void dmub_dcn31_enable_dmub_boot_options(struct dmub_srv *dmub, const struct dmu
+ 	boot_options.bits.dpia_hpd_int_enable_supported = params->dpia_hpd_int_enable_supported;
+ 	boot_options.bits.power_optimization = params->power_optimization;
+ 	boot_options.bits.lower_hbr3_phy_ssc = params->lower_hbr3_phy_ssc;
++	boot_options.bits.override_hbr3_pll_vco = params->override_hbr3_pll_vco;
  
- 	dc->hwss.update_info_frame(pipe_ctx);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index 3207addbd4eb..7d24fa1517bf 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -3054,6 +3054,8 @@ void dcn20_enable_stream(struct pipe_ctx *pipe_ctx)
- 						      link_enc->transmitter - TRANSMITTER_UNIPHY_A);
- 	}
+ 	boot_options.bits.sel_mux_phy_c_d_phy_f_g = (dmub->asic == DMUB_ASIC_DCN31B) ? 1 : 0;
  
-+	link_hwss->setup_stream_attribute(pipe_ctx);
-+
- 	if (dc->res_pool->dccg->funcs->set_pixel_rate_div)
- 		dc->res_pool->dccg->funcs->set_pixel_rate_div(
- 			dc->res_pool->dccg,
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-index cc9f40d97af2..fb949aeb1244 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-@@ -965,6 +965,8 @@ void dcn401_enable_stream(struct pipe_ctx *pipe_ctx)
- 		}
- 	}
- 
-+	link_hwss->setup_stream_attribute(pipe_ctx);
-+
- 	if (dc->res_pool->dccg->funcs->set_pixel_rate_div) {
- 		dc->res_pool->dccg->funcs->set_pixel_rate_div(
- 			dc->res_pool->dccg,
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-index 8c8682f743d6..cb80b4599936 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-@@ -2458,7 +2458,6 @@ void link_set_dpms_on(
- 	struct link_encoder *link_enc = pipe_ctx->link_res.dio_link_enc;
- 	enum otg_out_mux_dest otg_out_dest = OUT_MUX_DIO;
- 	struct vpg *vpg = pipe_ctx->stream_res.stream_enc->vpg;
--	const struct link_hwss *link_hwss = get_link_hwss(link, &pipe_ctx->link_res);
- 	bool apply_edp_fast_boot_optimization =
- 		pipe_ctx->stream->apply_edp_fast_boot_optimization;
- 
-@@ -2502,8 +2501,6 @@ void link_set_dpms_on(
- 		pipe_ctx->stream_res.tg->funcs->set_out_mux(pipe_ctx->stream_res.tg, otg_out_dest);
- 	}
- 
--	link_hwss->setup_stream_attribute(pipe_ctx);
--
- 	pipe_ctx->stream->apply_edp_fast_boot_optimization = false;
- 
- 	// Enable VPG before building infoframe
-diff --git a/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
-index ad088d70e189..6ffc74fc9dcd 100644
---- a/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/virtual/virtual_stream_encoder.c
-@@ -44,6 +44,11 @@ static void virtual_stream_encoder_dvi_set_stream_attribute(
- 	struct dc_crtc_timing *crtc_timing,
- 	bool is_dual_link) {}
- 
-+static void virtual_stream_encoder_lvds_set_stream_attribute(
-+	struct stream_encoder *enc,
-+	struct dc_crtc_timing *crtc_timing)
-+{}
-+
- static void virtual_stream_encoder_set_throttled_vcp_size(
- 	struct stream_encoder *enc,
- 	struct fixed31_32 avg_time_slots_per_mtp)
-@@ -115,6 +120,8 @@ static const struct stream_encoder_funcs virtual_str_enc_funcs = {
- 		virtual_stream_encoder_hdmi_set_stream_attribute,
- 	.dvi_set_stream_attribute =
- 		virtual_stream_encoder_dvi_set_stream_attribute,
-+	.lvds_set_stream_attribute =
-+		virtual_stream_encoder_lvds_set_stream_attribute,
- 	.set_throttled_vcp_size =
- 		virtual_stream_encoder_set_throttled_vcp_size,
- 	.update_hdmi_info_packets =
 -- 
 2.43.0
 
