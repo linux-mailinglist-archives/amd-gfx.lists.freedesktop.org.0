@@ -2,73 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E958B0F79C
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 17:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A7EB0F797
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 17:58:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9FB89196;
-	Wed, 23 Jul 2025 15:58:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F290410E806;
+	Wed, 23 Jul 2025 15:58:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gRQKK0F6";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c9znJODP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
- [209.85.221.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CE4910E80B
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 15:58:29 +0000 (UTC)
-Received: by mail-wr1-f48.google.com with SMTP id
- ffacd0b85a97d-3a528243636so4168148f8f.3
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E5BA10E7FF
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 15:58:30 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-4561a4a8bf2so77453115e9.1
  for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 08:58:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1753286308; x=1753891108; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=WaOjeO/VWAyELTACsW5k0RSkF1IRXRbWIG8hHbwMSBg=;
- b=gRQKK0F6oNPP+uTWSBUofml2tLrUc4BoRzLRsHc/SalSVxy9M3L2JcJhXGzFSVQQoq
- Khkv/mkG552kfJVmat+JqU6GRIhoqnQQPB46zDaXf3qMBGGaI4a5WMuixWIE4j9/3/e6
- 6t3Av65NaWG3ctV/+TPBeW+WxksAgZw5joUxRXHoP3MSORyoCPFnQU9GpaJkbo0DeaOl
- 2GCgWIrPLGPseb0l7SqbBtrnNaDqRPmMqQLTYXD4PB4gGVHV/rgcZZZwnJnvb9oX/s2y
- WecI30J2wHg+EFqhBIKCsZ9S3OrMFTEbO/sLrW/cpxyzjCpK/l24VeQLmGCDDLAoXxR+
- GMdQ==
+ bh=pv1NFD8WlWHwqAVD6KpdIX45eCtayX3XmouwcEYGrGU=;
+ b=c9znJODPsd9JfT0pNl4+5K8cQ9iUYCuyrswyQDG67PKyBmfmFIeWGQsakwf9haa5Lp
+ w00R13TYXctBbL4esrXYbKlDtHBkCGS/JzlPDb5w1UyBQY9o0w7Hl3W5i9t3aSPU6OeP
+ UPflAdbelcCFeUf4hIUbDZBDyQssn0hu1Ac0fnyBB4v2vOBSGTwCkyDETe25vXiwHEKQ
+ YuJO71fqV/Qs5k223QVQFtDfMsatRGwhR9KTp9wZaIo1u5jkBG5TW+GgjLKk+YZwaebG
+ 9Y2MMomKx917SunrUDSuv3TjWI/iY3yWFjzXhNnTadNRpeAaZF5YItTZ9LdLfZtA5HGJ
+ 1tDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1753286308; x=1753891108;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=WaOjeO/VWAyELTACsW5k0RSkF1IRXRbWIG8hHbwMSBg=;
- b=EDQKiNnQBzagXypXXJos4tqzLB7oz5KQztn52yDev8I8rmJoIygbdiz/spUXoh/zj7
- vwoI2QGUC7LumkcWTWxf823njbmUeqJ2ugER3JLVdoFYvhjarkXth55RCKeVYjeYtyGu
- RXsITSx+GThWVVWKvGi1jG6+A2n1jVte3ZTHH2lFFB0wKYEzbWOAdX6sPecgy2uw6/Nr
- 2/kwSfb0/jCCzIzmmx9UUqKP5TIvQH8a5TFDZbHN1LSsKoH76HEcU2xjOj3Be9Y4ev3R
- b2dZ0vTZuIE5NyLXqMGoWSWClpjEtuTel+ZdXWEJmKFxAr3Iaxez8gLYVdlWido4YAp6
- EWHw==
-X-Gm-Message-State: AOJu0YyeTyt3j2R2J+gLEEsNWUUbE5qSPm2zk7rHEWUMM794VKccGZv0
- rYL1g3lG29Im0kqaudLg+/ebjighHe7kGFTAN8dn0zEnCYFXS1B+UDfe6/RgtA==
-X-Gm-Gg: ASbGnctCSblQSoOpfUl1wCvENcXq775eDsWVOuc/EaspMLuGvNzoQZ79L2Zo+LgLwn4
- uqCE4VPBpoKEAFfV+QEOVj6qljeCBy7Y9y4mrDcJ4YzgfOjCb7MyptYAt3vYg4guogDWabESO6a
- vwJ4Xx9JjpIcQxc8RhisPnzgq08+njg/1QoeLfFuNZa10OGgu4UNtdajYD8hZcqKKzyKlVnDHcK
- cG0Tx9LHQ8+MjxtLpKw+kh76StBCxUdK/wMFIvDjhk4Yh9CdSpWspc5C93BZ0OjKz8cNxAockX/
- N56JpWmpH3s6vwh9HxElRED/mUtuOFPedDpx9rdsr/8GpQQTxZh8R+FUlMnWsRLjNT/7vmvZp4F
- l6kDRK60B2tnVks2xos4MKzoB7wSqWNuqqWgcUD+t/hw1lGGonWyT0F+DDQlID9Hav1EJ9HAZlb
- CWQBw76BfEv+ZefyGSTXBHUJQcjA==
-X-Google-Smtp-Source: AGHT+IHWFKGfV76eDSnrF9TKUMY57fRVvKikjFfNLEMfFX8fY8Xeh3r78B8mJ57GhGEw9z/XYoy4Zg==
-X-Received: by 2002:a05:6000:4285:b0:3a8:38b3:1aa1 with SMTP id
- ffacd0b85a97d-3b768f1ab44mr3019505f8f.27.1753286307455; 
- Wed, 23 Jul 2025 08:58:27 -0700 (PDT)
+ bh=pv1NFD8WlWHwqAVD6KpdIX45eCtayX3XmouwcEYGrGU=;
+ b=Jj3PjDgtdRmdqOcwU6sXDEtgHqFeHggYX+eNAN6aQmtjuP3b7hywAPCcbnwRZhsS9u
+ 5TpulmRTqGuObtR2Eh5H8vDE6jP1pdepTn+5diLS6GlrRczRhD1mgQjwGIRIyAFu0cD/
+ utpo/utGTjkY5HBT9feyOYuQXCB+W73lWSILxx92ZKOIMFEfCXt7+J1zrhHefSgZlzTm
+ DKFl9k4Ozrf7tyh8uvxzTmZgCCB5+wGjFkn7SudrpueyRIMHOdZbsa3GQSwL5fxh7DEC
+ OkOhee0zfpE3tes6CPSlbahK2pDz/Ejv6735NN3Z2TTRbAM/BXtLmeOWn2Xr9UXl6jGP
+ 30XQ==
+X-Gm-Message-State: AOJu0YwWL2HPEc06miGazlQK+YKqy0BhamDdcrj4r9jHp9yy+su2fpDf
+ PJs1hMsIj317nF0+M3yrEMvzhNZQHe1it9MWVL+FB5AGRj0keIjj8rslGCOgYQ==
+X-Gm-Gg: ASbGnctfb2XfCcD8+/WC9/QVoZuTBwcqXVnJumjso/mRKHbMIP8kkKhh9G5qbW42Ze+
+ FGAGIvhB768K4G2vmZozLAPdQzHIO8zKEuMIBFdmO82OALemUlspy7TwcDgRyxttfG6Yf0aXax+
+ WLAm2ColLh8eQOyvAILmSpZ4w0bdc9R8vo3m4wslr43B5XrCwX/VCtiIGetDTu6gWivKehSiBQR
+ N4EKlZCDXY0pLswBXnAsrIlgQRWnI/ihnBPqidhQnx/DYXYE3T02ItRWMmJnqYG60CkiBuFYWxI
+ Cnvx8/xw8q0UcdgozSVFV31R9aITV1/B9LbzrQy4fcCBok8vNQR54K+iZVL4C9F6Cr8MIpGn8HX
+ +cDjpSwcuDKKQ5iPTWks0SSzFuAgdLcJLw3jXCAfUcoQUZZqn+v0YSjgVRLnWQRsf+aBUWYZhTA
+ TTcL19OxuGXVIZ0uKk3+tppcoI/Q==
+X-Google-Smtp-Source: AGHT+IFOkVZsw2XDZCVBJe8j79aBf07fbBv5AgwrkXu34JXVLC3s5gC31GEUGvx7TKeg9BBZVESXQA==
+X-Received: by 2002:a05:600c:6209:b0:456:1dd2:4e3a with SMTP id
+ 5b1f17b1804b1-45868c75be7mr37683725e9.3.1753286308187; 
+ Wed, 23 Jul 2025 08:58:28 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4D24D8FC008443E005DD6C3C62.dsl.pool.telekom.hu.
  [2001:4c4d:24d8:fc00:8443:e005:dd6c:3c62])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3b61ca2bf99sm16710468f8f.32.2025.07.23.08.58.26
+ ffacd0b85a97d-3b61ca2bf99sm16710468f8f.32.2025.07.23.08.58.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Wed, 23 Jul 2025 08:58:27 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 09/20] drm/amd/display: Add concept of analog encoders
-Date: Wed, 23 Jul 2025 17:58:02 +0200
-Message-ID: <20250723155813.9101-10-timur.kristof@gmail.com>
+Subject: [PATCH 10/20] drm/amd/display: Implement DCE analog stream encoders
+Date: Wed, 23 Jul 2025 17:58:03 +0200
+Message-ID: <20250723155813.9101-11-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250723155813.9101-1-timur.kristof@gmail.com>
 References: <20250723155813.9101-1-timur.kristof@gmail.com>
@@ -89,155 +89,169 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add a num_analog_stream_encoders field to indicate how many
-analog stream encoders are present. When analog stream encoders
-are present, create them.
+Add stream encoders for DCE6-10 only, because there are definitely
+graphics cards with analog connectors out there with these DCE
+versions. I am not aware of newer ones.
 
-Additionally, add an analog_engine field to link encoders and
-search for supported analog encoders in the BIOS for each link.
-When connecting an RGB signal, search for analog stream encoders.
-
-The actual DCE analog stream encoder support is going to be
-added in a subsequent commit.
+Considering that all stream encoder functions currently have to do
+with digital streams, there is nothing for an analog stream
+encoder to do, making them basically a no-op.
+That being said, we still need some kind of stream encoder to
+represent an analog stream, and it is beneficial to split them from
+digital stream encoders in the code to make sure they don't
+accidentally write any DIG* registers.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  8 ++++++
- .../drm/amd/display/dc/inc/hw/link_encoder.h  |  2 ++
- drivers/gpu/drm/amd/display/dc/inc/resource.h |  1 +
- .../drm/amd/display/dc/link/link_factory.c    | 28 +++++++++++++++++++
- .../dc/resource/dce100/dce100_resource.c      |  7 +++--
- 5 files changed, 44 insertions(+), 2 deletions(-)
+ .../drm/amd/display/dc/dce/dce_stream_encoder.c    | 14 ++++++++++++++
+ .../drm/amd/display/dc/dce/dce_stream_encoder.h    |  5 +++++
+ .../display/dc/resource/dce100/dce100_resource.c   |  6 ++++++
+ .../amd/display/dc/resource/dce60/dce60_resource.c |  8 ++++++++
+ .../amd/display/dc/resource/dce80/dce80_resource.c |  8 ++++++++
+ 5 files changed, 41 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 4d6181e7c612..9561d0bd255a 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -441,6 +441,14 @@ bool resource_construct(
- 				DC_ERR("DC: failed to create stream_encoder!\n");
- 			pool->stream_enc_count++;
- 		}
-+
-+		for (i = 0; i < caps->num_analog_stream_encoder; i++) {
-+			pool->stream_enc[caps->num_stream_encoder + i] =
-+				create_funcs->create_stream_encoder(ENGINE_ID_DACA + i, ctx);
-+			if (pool->stream_enc[caps->num_stream_encoder + i] == NULL)
-+				DC_ERR("DC: failed to create analog stream_encoder %d!\n", i);
-+			pool->stream_enc_count++;
-+		}
- 	}
- 
- 	pool->hpo_dp_stream_enc_count = 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h b/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-index 08c16ba52a51..df512920a9fa 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-@@ -47,6 +47,7 @@ struct encoder_init_data {
- 	enum hpd_source_id hpd_source;
- 	/* TODO: in DAL2, here was pointer to EventManagerInterface */
- 	struct graphics_object_id encoder;
-+	enum engine_id analog_engine;
- 	struct dc_context *ctx;
- 	enum transmitter transmitter;
- };
-@@ -83,6 +84,7 @@ struct link_encoder {
- 	struct graphics_object_id connector;
- 	uint32_t output_signals;
- 	enum engine_id preferred_engine;
-+	enum engine_id analog_engine;
- 	struct encoder_feature_support features;
- 	enum transmitter transmitter;
- 	enum hpd_source_id hpd_source;
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
-index a890f581f4e8..9a10fbc93e5f 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
-@@ -48,6 +48,7 @@ struct resource_caps {
- 	int num_video_plane;
- 	int num_audio;
- 	int num_stream_encoder;
-+	int num_analog_stream_encoder;
- 	int num_pll;
- 	int num_dwb;
- 	int num_ddc;
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_factory.c b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-index de1143dbbd25..71c10a1261b9 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-@@ -449,6 +449,32 @@ static enum channel_id get_ddc_line(struct dc_link *link)
- 	return channel;
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+index 1130d7619b26..f8996ee2856b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+@@ -1567,3 +1567,17 @@ void dce110_stream_encoder_construct(
+ 	enc110->se_shift = se_shift;
+ 	enc110->se_mask = se_mask;
  }
- 
-+static enum engine_id find_analog_engine(struct dc_link *link)
++
++static const struct stream_encoder_funcs dce110_an_str_enc_funcs = {0};
++
++void dce110_analog_stream_encoder_construct(
++	struct dce110_stream_encoder *enc110,
++	struct dc_context *ctx,
++	struct dc_bios *bp,
++	enum engine_id eng_id)
 +{
-+	struct dc_bios *bp = link->ctx->dc_bios;
-+	struct graphics_object_id encoder = {0};
-+	enum bp_result bp_result = BP_RESULT_OK;
-+	int i;
-+
-+	for (i = 0; i < 3; i++) {
-+		bp_result = bp->funcs->get_src_obj(bp, link->link_id, i, &encoder);
-+
-+		if (bp_result != BP_RESULT_OK)
-+			return ENGINE_ID_UNKNOWN;
-+
-+		switch (encoder.id) {
-+		case ENCODER_ID_INTERNAL_DAC1:
-+		case ENCODER_ID_INTERNAL_KLDSCP_DAC1:
-+			return ENGINE_ID_DACA;
-+		case ENCODER_ID_INTERNAL_DAC2:
-+		case ENCODER_ID_INTERNAL_KLDSCP_DAC2:
-+			return ENGINE_ID_DACB;
-+		}
-+	}
-+
-+	return ENGINE_ID_UNKNOWN;
++	enc110->base.funcs = &dce110_an_str_enc_funcs;
++	enc110->base.ctx = ctx;
++	enc110->base.id = eng_id;
++	enc110->base.bp = bp;
 +}
-+
- static bool construct_phy(struct dc_link *link,
- 			      const struct link_init_data *init_params)
- {
-@@ -461,6 +487,7 @@ static bool construct_phy(struct dc_link *link,
- 	const struct dc_vbios_funcs *bp_funcs = bios->funcs;
- 	struct bp_disp_connector_caps_info disp_connect_caps_info = { 0 };
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
+index cc5020a8e1e1..068de1392121 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
+@@ -708,6 +708,11 @@ void dce110_stream_encoder_construct(
+ 	const struct dce_stream_encoder_shift *se_shift,
+ 	const struct dce_stream_encoder_mask *se_mask);
  
-+
- 	DC_LOGGER_INIT(dc_ctx->logger);
++void dce110_analog_stream_encoder_construct(
++	struct dce110_stream_encoder *enc110,
++	struct dc_context *ctx,
++	struct dc_bios *bp,
++	enum engine_id eng_id);
  
- 	link->irq_source_hpd = DC_IRQ_SOURCE_INVALID;
-@@ -614,6 +641,7 @@ static bool construct_phy(struct dc_link *link,
- 	enc_init_data.connector = link->link_id;
- 	enc_init_data.channel = get_ddc_line(link);
- 	enc_init_data.hpd_source = get_hpd_line(link);
-+	enc_init_data.analog_engine = find_analog_engine(link);
- 
- 	link->hpd_src = enc_init_data.hpd_source;
- 
+ void dce110_se_audio_mute_control(
+ 	struct stream_encoder *enc, bool mute);
 diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
-index 3a51be63f020..72efb13c9027 100644
+index 72efb13c9027..9e70e920eb69 100644
 --- a/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
-@@ -935,6 +935,10 @@ struct stream_encoder *dce100_find_first_free_match_stream_enc_for_link(
- 	int i;
- 	int j = -1;
- 	struct dc_link *link = stream->link;
-+	enum engine_id preferred_engine = link->link_enc->preferred_engine;
-+
-+	if (dc_is_rgb_signal(stream->signal))
-+		preferred_engine = link->link_enc->analog_engine;
+@@ -374,6 +374,7 @@ static const struct bios_registers bios_regs = {
+ static const struct resource_caps res_cap = {
+ 	.num_timing_generator = 6,
+ 	.num_audio = 6,
++	.num_analog_stream_encoder = 1,
+ 	.num_stream_encoder = 6,
+ 	.num_pll = 3,
+ 	.num_ddc = 6,
+@@ -483,6 +484,11 @@ static struct stream_encoder *dce100_stream_encoder_create(
+ 	if (!enc110)
+ 		return NULL;
  
- 	for (i = 0; i < pool->stream_enc_count; i++) {
- 		if (!res_ctx->is_stream_enc_acquired[i] &&
-@@ -943,8 +947,7 @@ struct stream_encoder *dce100_find_first_free_match_stream_enc_for_link(
- 			 * in daisy chain use case
- 			 */
- 			j = i;
--			if (pool->stream_enc[i]->id ==
--					link->link_enc->preferred_engine)
-+			if (pool->stream_enc[i]->id == preferred_engine)
- 				return pool->stream_enc[i];
- 		}
- 	}
++	if (eng_id == ENGINE_ID_DACA || eng_id == ENGINE_ID_DACB) {
++		dce110_analog_stream_encoder_construct(enc110, ctx, ctx->dc_bios, eng_id);
++		return &enc110->base;
++	}
++
+ 	dce110_stream_encoder_construct(enc110, ctx, ctx->dc_bios, eng_id,
+ 					&stream_enc_regs[eng_id], &se_shift, &se_mask);
+ 	return &enc110->base;
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
+index 58b59d52dc9d..29ccfbddb492 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
+@@ -372,6 +372,7 @@ static const struct bios_registers bios_regs = {
+ static const struct resource_caps res_cap = {
+ 		.num_timing_generator = 6,
+ 		.num_audio = 6,
++		.num_analog_stream_encoder = 1,
+ 		.num_stream_encoder = 6,
+ 		.num_pll = 2,
+ 		.num_ddc = 6,
+@@ -381,6 +382,7 @@ static const struct resource_caps res_cap_61 = {
+ 		.num_timing_generator = 4,
+ 		.num_audio = 6,
+ 		.num_stream_encoder = 6,
++		.num_analog_stream_encoder = 1,
+ 		.num_pll = 3,
+ 		.num_ddc = 6,
+ };
+@@ -388,6 +390,7 @@ static const struct resource_caps res_cap_61 = {
+ static const struct resource_caps res_cap_64 = {
+ 		.num_timing_generator = 2,
+ 		.num_audio = 2,
++		.num_analog_stream_encoder = 1,
+ 		.num_stream_encoder = 2,
+ 		.num_pll = 2,
+ 		.num_ddc = 2,
+@@ -598,6 +601,11 @@ static struct stream_encoder *dce60_stream_encoder_create(
+ 	if (!enc110)
+ 		return NULL;
+ 
++	if (eng_id == ENGINE_ID_DACA || eng_id == ENGINE_ID_DACB) {
++		dce110_analog_stream_encoder_construct(enc110, ctx, ctx->dc_bios, eng_id);
++		return &enc110->base;
++	}
++
+ 	dce110_stream_encoder_construct(enc110, ctx, ctx->dc_bios, eng_id,
+ 					&stream_enc_regs[eng_id],
+ 					&se_shift, &se_mask);
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
+index 3e8b0ac11d90..f90e51696bda 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
+@@ -374,6 +374,7 @@ static const struct bios_registers bios_regs = {
+ static const struct resource_caps res_cap = {
+ 		.num_timing_generator = 6,
+ 		.num_audio = 6,
++		.num_analog_stream_encoder = 1,
+ 		.num_stream_encoder = 6,
+ 		.num_pll = 3,
+ 		.num_ddc = 6,
+@@ -382,6 +383,7 @@ static const struct resource_caps res_cap = {
+ static const struct resource_caps res_cap_81 = {
+ 		.num_timing_generator = 4,
+ 		.num_audio = 7,
++		.num_analog_stream_encoder = 1,
+ 		.num_stream_encoder = 7,
+ 		.num_pll = 3,
+ 		.num_ddc = 6,
+@@ -390,6 +392,7 @@ static const struct resource_caps res_cap_81 = {
+ static const struct resource_caps res_cap_83 = {
+ 		.num_timing_generator = 2,
+ 		.num_audio = 6,
++		.num_analog_stream_encoder = 1,
+ 		.num_stream_encoder = 6,
+ 		.num_pll = 2,
+ 		.num_ddc = 2,
+@@ -604,6 +607,11 @@ static struct stream_encoder *dce80_stream_encoder_create(
+ 	if (!enc110)
+ 		return NULL;
+ 
++	if (eng_id == ENGINE_ID_DACA || eng_id == ENGINE_ID_DACB) {
++		dce110_analog_stream_encoder_construct(enc110, ctx, ctx->dc_bios, eng_id);
++		return &enc110->base;
++	}
++
+ 	dce110_stream_encoder_construct(enc110, ctx, ctx->dc_bios, eng_id,
+ 					&stream_enc_regs[eng_id],
+ 					&se_shift, &se_mask);
 -- 
 2.50.1
 
