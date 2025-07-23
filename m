@@ -2,73 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737B3B0F795
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 17:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0701B0F799
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 17:58:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8DF10E807;
-	Wed, 23 Jul 2025 15:58:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E6F910E80D;
+	Wed, 23 Jul 2025 15:58:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IZCGQ7DY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jT4T9iQe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
- [209.85.221.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25F1C10E7FC
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAF9210E802
  for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 15:58:26 +0000 (UTC)
-Received: by mail-wr1-f53.google.com with SMTP id
- ffacd0b85a97d-3b45edf2303so6167391f8f.2
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-451d3f72391so70118715e9.3
  for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 08:58:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1753286305; x=1753891105; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=PUhf7vvlQ2QoKPK4m2srI8VOVK+Q+O4nuDajyDmuqX4=;
- b=IZCGQ7DYjIuZUMhfekZxOqKOZB7bnn98EkJAuzUpmE2sjzi6EyR7tzRH5tiZJdf4Rv
- pyUYjuJ0kjeDXNCTBiA2+fJ6JzwFUJOwAM+dWDZWxznDVB4jZdU5K1rBOJNPJITU9uLO
- EOvc6TZMn4jtpv4g3n6R0yellSHD+SGjB+ntglL6FvoaSBfvVhqb2VFGlTU3XkJLqUUy
- twFnm4bWKXPStSappir3PQ5h2DvJPyciI+d4Lvl8tcujZAQuzvUIw8wuNFMPUNPKVl2g
- hkZLsACK3DmNSxvb3zUWpGgW42BInzjm2FAUque6WORp/Xb7/CLJzNOYRT/wlfaamjtM
- F+kw==
+ bh=UfCgrV4wwObRjfvsQdhH0ICtEQwPygXV8y6ZOUyIrC4=;
+ b=jT4T9iQevuo82D87kyyFGDe5J+JV7hk1LcVdnlgETDSqBnW3A+4vnTNtwmitVAFj5o
+ kyW7bq0XiIi7a7OLpOlxdNpjt3BtAuaUZynkxCLFNdGwJONEu50j/Q7uxxfXGLLVU+3v
+ KXK8DQqxQQE1JnT/zO7nv3IcSXLH4SKYzL1pKNeSVLm37FNFMgC2cA26WO3AQbt6BFEk
+ 2avJsyewG7z1YvpFshfs2AupnJpVE7a59cqPY4QNSA3WIGLo7wHOQH3jkckPa5n87PLU
+ mc01qfFChvpu8CAqhIwck6Ul1YwGsq6H2KJLchbxwPb15czRmYa/9M/c+Yw8cUvz8vh0
+ ntxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1753286305; x=1753891105;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=PUhf7vvlQ2QoKPK4m2srI8VOVK+Q+O4nuDajyDmuqX4=;
- b=GbbQ+mWhZSPZUTl7OBseA6zU68fQQ4iajOz+GXmNb5KZwFVc00Xx5z8xjK8NQq9+wi
- j7QcdEOCyBZHAnFinMVRRaitmDPCvr1mJoZtFmL1EKGI2Tu8tXB0+TvROqcHK7GalIso
- DyLovlBOoalr1sh2Gb/EwRHWD3+Yqy263EfgfXPBdxPN3gWztyvtLNHcaiEXu9s0llPP
- e9RlyDXetiUD3XDiXL20Te98JtMsQgXuDVrHYFTMShZIsWk/ltvDJbv+82s4ZMiuG7N6
- y6K9JaaPDKaSglDsHQ/Yk4VIgcq5aAuaytK8jmTx8RhA6p24rayj1M7rVVrN0y69BaDp
- ZkkQ==
-X-Gm-Message-State: AOJu0YzcQq9OXGLrdGn9Xiw6B6gXDcujz+p9Wrz4QYa0pm3jV7iiglO1
- l34J92mFU+EMDIME7+yoCMuQ77ZdjYRiManfNtBdFtzqV5wcABPJUqCdHT1SdA==
-X-Gm-Gg: ASbGncvogPk64TnPJnlgLmlNXX6OSYgEBhHxtUlk7J/OW52y0yguAOrsnCi8PKzlFTd
- dtNatcxNmko8oz2loVFUjsVdgdYu390fdUyxq9GBZNjRlse4NjrR+PqHSJ8+b72cK64BdGi4Dh7
- ykDCWURBfam+mnADGBGtxBciabXCNb/OvIGW6lFwKY3dpo9+7KDQsjA0MvXJ9CR53/l5WGn4A9z
- ysFpExaZU0KFmvUaoK5huIeRrkAHDkJGtR0h6KaenHUC5u1d4MHu46kWKOpyhxD8s23Ahou3I5G
- T44rw3yjX2lugt3GMM2ObeGC4o9jHJ7RmRzReS47cWz41UFhl8rx3j7HUuN80bI6TW8JAXiR0+S
- EIVgNaf3HCcQER3iHRr9xRVFuvO5FYeJimDIhRikiOD21fkSUf/8UtLCEB5iNCwROh0DP8IDMll
- 0fDGhRr/0kZ3tHTw0Z+jWudffT/g==
-X-Google-Smtp-Source: AGHT+IGG6aRAA7pwE4qONDNlCcxry0btPw8Tjuj91++Vau7uJh87njryQIcD9A0gywtytw81IMtWDQ==
-X-Received: by 2002:a05:6000:24c9:b0:3b7:61e5:a8a5 with SMTP id
- ffacd0b85a97d-3b768f0760emr2836356f8f.47.1753286304402; 
- Wed, 23 Jul 2025 08:58:24 -0700 (PDT)
+ bh=UfCgrV4wwObRjfvsQdhH0ICtEQwPygXV8y6ZOUyIrC4=;
+ b=IA0Hk/aSS+ZfcgbM5io6dARbJMMBAE+ABdvvulPNuTdxnKChYKjTCTsnNFmTIRVmK1
+ 7FF4jyvi4iOtR/YG2gKC2CwJpZ0ixt0/Mi8twV58j3vMcfnxL6pGis2srOJ6+AckFTCt
+ ATHo/zqiBlVht4wKoSprkzj5VnyNjyvb6yVBMs9SHJm8Wp2rjBTjHMiHQi3svNRJ07fK
+ sypMIuw75l7cQ4jU5LSYConkXiYs712p+T0CkIXhHnFy8PYg+mvFcFZzh6njrNFWnkA7
+ 2yJ1r82wsSQNkfLh4ctIvVGIEJ/i5LM8q0RaCpgHCvir7fZJr+AVGonPfAzNCRNriDHr
+ fasw==
+X-Gm-Message-State: AOJu0YzxzoSzbIrjOmR0VUn7RFG6AKdceT4IzSHv8apfyH03MseXcYX9
+ MrHvV//W3rs9HinOGJhME7gecU748UTwwpLt1NW9mS65eIw4qfF1jHJNLs7vgA==
+X-Gm-Gg: ASbGncvdjmP0+HfpLtCQ9zpOC47VNJNURfSgnoz81LbIS3I0bvKMQnvjKHkOKUeqLrp
+ R07O2DoNJlDJa3GeFCjbs8CTi3rLeXFjwQPcZipZcb/3i5pzihOIY1L6DXGbb91o87YI/X1mKO1
+ FJEvNUdCptWYNZNCcjxiPr35X5l0cNQYy1w0yj8rMwoTakFb/CbWFDcdhB4w/LWCSlNllQ8gw6Y
+ DxP/zhidRw2Ve3uVp1+SV5nq8z0IxLt2WXzKejkBHNpLjO39sJnSi7u0m/eJ4DXhpKqdc5W0qt5
+ C0OxGR9o9cB2m6mqPB14CbCPBC7dFB5LFb6LjzPXawZazU9TD/Rxa59t2BWjblehqKq1+Pdjhxt
+ noXqYQwbDON15H7Zp520PyoCCYNLB9x7kGra1is1FZihq/VjRUh6v1VguLTGTZCYgU6lKdGnxzs
+ ZvOijyWnC3zn+xR9b+3jp//qwAdg==
+X-Google-Smtp-Source: AGHT+IEZXIKVV9j8d5dVa+woGjsOoV6UBKF/xpqjEtg+XnCkcIrgrIqtgeRKSSgqgpRXRCdVeVtifg==
+X-Received: by 2002:a05:6000:2387:b0:3b7:6828:5f6d with SMTP id
+ ffacd0b85a97d-3b768c9e913mr3092355f8f.3.1753286305117; 
+ Wed, 23 Jul 2025 08:58:25 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4D24D8FC008443E005DD6C3C62.dsl.pool.telekom.hu.
  [2001:4c4d:24d8:fc00:8443:e005:dd6c:3c62])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3b61ca2bf99sm16710468f8f.32.2025.07.23.08.58.23
+ ffacd0b85a97d-3b61ca2bf99sm16710468f8f.32.2025.07.23.08.58.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Wed, 23 Jul 2025 08:58:24 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 05/20] drm/amd/display: Add SelectCRTC_Source to BIOS parser
-Date: Wed, 23 Jul 2025 17:57:58 +0200
-Message-ID: <20250723155813.9101-6-timur.kristof@gmail.com>
+Subject: [PATCH 06/20] drm/amd/display: Get maximum pixel clock from VBIOS
+Date: Wed, 23 Jul 2025 17:57:59 +0200
+Message-ID: <20250723155813.9101-7-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250723155813.9101-1-timur.kristof@gmail.com>
 References: <20250723155813.9101-1-timur.kristof@gmail.com>
@@ -89,318 +89,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The SelectCRTC_Source command will be used to change which CRTC
-should be connected to which encoder.
+We will use this for validating the pixel clock when
+an analog monitor is connected to VGA or DVI-I connectors.
 
-To implement this, I used the legacy display code as reference:
-amdgpu_atombios_encoder_set_crtc_source
+Reference in the legacy code:
+amdgpu_connector_vga_mode_valid
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../gpu/drm/amd/display/dc/bios/bios_parser.c |  14 ++
- .../drm/amd/display/dc/bios/command_table.c   | 194 ++++++++++++++++++
- .../drm/amd/display/dc/bios/command_table.h   |   3 +
- .../gpu/drm/amd/display/dc/dc_bios_types.h    |   3 +
- .../amd/display/include/bios_parser_types.h   |   6 +-
- 5 files changed, 215 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser.c           | 2 ++
+ drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h | 1 +
+ 2 files changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-index 6914dd6944b7..bfacfd2a5376 100644
+index bfacfd2a5376..bd61ed6cafab 100644
 --- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
 +++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-@@ -739,6 +739,18 @@ static enum bp_result bios_parser_transmitter_control(
- 	return bp->cmd_tbl.transmitter_control(bp, cntl);
- }
+@@ -444,6 +444,7 @@ static enum bp_result get_firmware_info_v1_4(
+ 		le32_to_cpu(firmware_info->ulMinPixelClockPLL_Output) * 10;
+ 	info->pll_info.max_output_pxl_clk_pll_frequency =
+ 		le32_to_cpu(firmware_info->ulMaxPixelClockPLL_Output) * 10;
++	info->max_pixel_clock = le16_to_cpu(firmware_info->usMaxPixelClock) * 10;
  
-+static enum bp_result bios_parser_select_crtc_source(
-+	struct dc_bios *dcb,
-+	struct bp_crtc_source_select *bp_params)
-+{
-+	struct bios_parser *bp = BP_FROM_DCB(dcb);
-+
-+	if (!bp->cmd_tbl.select_crtc_source)
-+		return BP_RESULT_FAILURE;
-+
-+	return bp->cmd_tbl.select_crtc_source(bp, bp_params);
-+}
-+
- static enum bp_result bios_parser_encoder_control(
- 	struct dc_bios *dcb,
- 	struct bp_encoder_control *cntl)
-@@ -2848,6 +2860,8 @@ static const struct dc_vbios_funcs vbios_funcs = {
- 	.is_device_id_supported = bios_parser_is_device_id_supported,
+ 	if (firmware_info->usFirmwareCapability.sbfAccess.MemoryClockSS_Support)
+ 		/* Since there is no information on the SS, report conservative
+@@ -500,6 +501,7 @@ static enum bp_result get_firmware_info_v2_1(
+ 	info->external_clock_source_frequency_for_dp =
+ 		le16_to_cpu(firmwareInfo->usUniphyDPModeExtClkFreq) * 10;
+ 	info->min_allowed_bl_level = firmwareInfo->ucMinAllowedBL_Level;
++	info->max_pixel_clock = le16_to_cpu(firmwareInfo->usMaxPixelClock) * 10;
  
- 	/* COMMANDS */
-+	.select_crtc_source = bios_parser_select_crtc_source,
-+
- 	.encoder_control = bios_parser_encoder_control,
+ 	/* There should be only one entry in the SS info table for Memory Clock
+ 	 */
+diff --git a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
+index cc467031651d..38a77fa9b4af 100644
+--- a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
++++ b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
+@@ -169,6 +169,7 @@ struct dc_firmware_info {
+ 		uint32_t engine_clk_ss_percentage;
+ 	} feature;
  
- 	.transmitter_control = bios_parser_transmitter_control,
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/command_table.c b/drivers/gpu/drm/amd/display/dc/bios/command_table.c
-index 2bcae0643e61..8983220d2a4b 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/command_table.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/command_table.c
-@@ -52,6 +52,7 @@ static void init_transmitter_control(struct bios_parser *bp);
- static void init_set_pixel_clock(struct bios_parser *bp);
- static void init_enable_spread_spectrum_on_ppll(struct bios_parser *bp);
- static void init_adjust_display_pll(struct bios_parser *bp);
-+static void init_select_crtc_source(struct bios_parser *bp);
- static void init_dac_encoder_control(struct bios_parser *bp);
- static void init_dac_output_control(struct bios_parser *bp);
- static void init_set_crtc_timing(struct bios_parser *bp);
-@@ -69,6 +70,7 @@ void dal_bios_parser_init_cmd_tbl(struct bios_parser *bp)
- 	init_set_pixel_clock(bp);
- 	init_enable_spread_spectrum_on_ppll(bp);
- 	init_adjust_display_pll(bp);
-+	init_select_crtc_source(bp);
- 	init_dac_encoder_control(bp);
- 	init_dac_output_control(bp);
- 	init_set_crtc_timing(bp);
-@@ -1609,6 +1611,198 @@ static enum bp_result adjust_display_pll_v3(
- 	return result;
- }
- 
-+/*******************************************************************************
-+ ********************************************************************************
-+ **
-+ **                  SELECT CRTC SOURCE
-+ **
-+ ********************************************************************************
-+ *******************************************************************************/
-+
-+static enum bp_result select_crtc_source_v1(
-+	struct bios_parser *bp,
-+	struct bp_crtc_source_select *bp_params);
-+static enum bp_result select_crtc_source_v2(
-+	struct bios_parser *bp,
-+	struct bp_crtc_source_select *bp_params);
-+static enum bp_result select_crtc_source_v3(
-+	struct bios_parser *bp,
-+	struct bp_crtc_source_select *bp_params);
-+
-+static void init_select_crtc_source(struct bios_parser *bp)
-+{
-+	switch (BIOS_CMD_TABLE_PARA_REVISION(SelectCRTC_Source)) {
-+	case 1:
-+		bp->cmd_tbl.select_crtc_source = select_crtc_source_v1;
-+		break;
-+	case 2:
-+		bp->cmd_tbl.select_crtc_source = select_crtc_source_v2;
-+		break;
-+	case 3:
-+		bp->cmd_tbl.select_crtc_source = select_crtc_source_v3;
-+		break;
-+	default:
-+		bp->cmd_tbl.select_crtc_source = NULL;
-+		break;
-+	}
-+}
-+
-+static enum bp_result select_crtc_source_v1(
-+	struct bios_parser *bp,
-+	struct bp_crtc_source_select *bp_params)
-+{
-+	enum bp_result result = BP_RESULT_FAILURE;
-+	SELECT_CRTC_SOURCE_PS_ALLOCATION params;
-+
-+	if (!bp->cmd_helper->controller_id_to_atom(bp_params->controller_id, &params.ucCRTC))
-+		return BP_RESULT_BADINPUT;
-+
-+	switch (bp_params->engine_id) {
-+	case ENGINE_ID_DACA:
-+		params.ucDevice = ATOM_DEVICE_CRT1_INDEX;
-+		break;
-+	case ENGINE_ID_DACB:
-+		params.ucDevice = ATOM_DEVICE_CRT2_INDEX;
-+		break;
-+	default:
-+		return BP_RESULT_BADINPUT;
-+	}
-+
-+	if (EXEC_BIOS_CMD_TABLE(SelectCRTC_Source, params))
-+		result = BP_RESULT_OK;
-+
-+	return result;
-+}
-+
-+static bool select_crtc_source_v2_encoder_id(
-+	enum engine_id engine_id, uint8_t *out_encoder_id)
-+{
-+	uint8_t encoder_id = 0;
-+
-+	switch (engine_id) {
-+	case ENGINE_ID_DIGA:
-+		encoder_id = ASIC_INT_DIG1_ENCODER_ID;
-+		break;
-+	case ENGINE_ID_DIGB:
-+		encoder_id = ASIC_INT_DIG2_ENCODER_ID;
-+		break;
-+	case ENGINE_ID_DIGC:
-+		encoder_id = ASIC_INT_DIG3_ENCODER_ID;
-+		break;
-+	case ENGINE_ID_DIGD:
-+		encoder_id = ASIC_INT_DIG4_ENCODER_ID;
-+		break;
-+	case ENGINE_ID_DIGE:
-+		encoder_id = ASIC_INT_DIG5_ENCODER_ID;
-+		break;
-+	case ENGINE_ID_DIGF:
-+		encoder_id = ASIC_INT_DIG6_ENCODER_ID;
-+		break;
-+	case ENGINE_ID_DIGG:
-+		encoder_id = ASIC_INT_DIG7_ENCODER_ID;
-+		break;
-+	case ENGINE_ID_DACA:
-+		encoder_id = ASIC_INT_DAC1_ENCODER_ID;
-+		break;
-+	case ENGINE_ID_DACB:
-+		encoder_id = ASIC_INT_DAC2_ENCODER_ID;
-+		break;
-+	default:
-+		return false;
-+	}
-+
-+	*out_encoder_id = encoder_id;
-+	return true;
-+}
-+
-+static bool select_crtc_source_v2_encoder_mode(
-+	enum signal_type signal_type, uint8_t *out_encoder_mode)
-+{
-+	uint8_t encoder_mode = 0;
-+
-+	switch (signal_type) {
-+	case SIGNAL_TYPE_DVI_SINGLE_LINK:
-+	case SIGNAL_TYPE_DVI_DUAL_LINK:
-+		encoder_mode = ATOM_ENCODER_MODE_DVI;
-+		break;
-+	case SIGNAL_TYPE_HDMI_TYPE_A:
-+		encoder_mode = ATOM_ENCODER_MODE_HDMI;
-+		break;
-+	case SIGNAL_TYPE_LVDS:
-+		encoder_mode = ATOM_ENCODER_MODE_LVDS;
-+		break;
-+	case SIGNAL_TYPE_RGB:
-+		encoder_mode = ATOM_ENCODER_MODE_CRT;
-+		break;
-+	case SIGNAL_TYPE_DISPLAY_PORT:
-+		encoder_mode = ATOM_ENCODER_MODE_DP;
-+		break;
-+	case SIGNAL_TYPE_DISPLAY_PORT_MST:
-+		encoder_mode = ATOM_ENCODER_MODE_DP_MST;
-+		break;
-+	case SIGNAL_TYPE_EDP:
-+		encoder_mode = ATOM_ENCODER_MODE_DP;
-+		break;
-+	default:
-+		return false;
-+	}
-+
-+	*out_encoder_mode = encoder_mode;
-+	return true;
-+}
-+
-+static enum bp_result select_crtc_source_v2(
-+	struct bios_parser *bp,
-+	struct bp_crtc_source_select *bp_params)
-+{
-+	enum bp_result result = BP_RESULT_FAILURE;
-+	SELECT_CRTC_SOURCE_PARAMETERS_V3 params;
-+
-+	if (!bp->cmd_helper->controller_id_to_atom(bp_params->controller_id, &params.ucCRTC))
-+		return BP_RESULT_BADINPUT;
-+
-+	if (!select_crtc_source_v2_encoder_id(
-+		bp_params->engine_id,
-+		&params.ucEncoderID))
-+		return BP_RESULT_BADINPUT;
-+	if (!select_crtc_source_v2_encoder_mode(
-+		bp_params->sink_signal,
-+		&params.ucEncodeMode))
-+		return BP_RESULT_BADINPUT;
-+
-+	if (EXEC_BIOS_CMD_TABLE(SelectCRTC_Source, params))
-+		result = BP_RESULT_OK;
-+
-+	return result;
-+}
-+
-+static enum bp_result select_crtc_source_v3(
-+	struct bios_parser *bp,
-+	struct bp_crtc_source_select *bp_params)
-+{
-+	enum bp_result result = BP_RESULT_FAILURE;
-+	SELECT_CRTC_SOURCE_PARAMETERS_V3 params;
-+
-+	if (!bp->cmd_helper->controller_id_to_atom(bp_params->controller_id, &params.ucCRTC))
-+		return BP_RESULT_BADINPUT;
-+
-+	if (!select_crtc_source_v2_encoder_id(
-+		bp_params->engine_id,
-+		&params.ucEncoderID))
-+		return BP_RESULT_BADINPUT;
-+	if (!select_crtc_source_v2_encoder_mode(
-+		bp_params->sink_signal,
-+		&params.ucEncodeMode))
-+		return BP_RESULT_BADINPUT;
-+
-+	params.ucDstBpc = bp_params->bit_depth;
-+
-+	if (EXEC_BIOS_CMD_TABLE(SelectCRTC_Source, params))
-+		result = BP_RESULT_OK;
-+
-+	return result;
-+}
-+
- /*******************************************************************************
-  ********************************************************************************
-  **
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/command_table.h b/drivers/gpu/drm/amd/display/dc/bios/command_table.h
-index ad533775e724..8b04b903e93d 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/command_table.h
-+++ b/drivers/gpu/drm/amd/display/dc/bios/command_table.h
-@@ -52,6 +52,9 @@ struct cmd_tbl {
- 	enum bp_result (*adjust_display_pll)(
- 		struct bios_parser *bp,
- 		struct bp_adjust_pixel_clock_parameters *bp_params);
-+	enum bp_result (*select_crtc_source)(
-+		struct bios_parser *bp,
-+		struct bp_crtc_source_select *bp_params);
- 	enum bp_result (*dac1_encoder_control)(
- 		struct bios_parser *bp,
- 		bool enable,
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-index 5fa5e2b63fb7..545ce1e15eae 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-@@ -91,6 +91,9 @@ struct dc_vbios_funcs {
- 		struct device_id id);
- 	/* COMMANDS */
- 
-+	enum bp_result (*select_crtc_source)(
-+		struct dc_bios *bios,
-+		struct bp_crtc_source_select *bp_params);
- 	enum bp_result (*encoder_control)(
- 		struct dc_bios *bios,
- 		struct bp_encoder_control *cntl);
-diff --git a/drivers/gpu/drm/amd/display/include/bios_parser_types.h b/drivers/gpu/drm/amd/display/include/bios_parser_types.h
-index 812377d9e48f..d9e58a6a0d36 100644
---- a/drivers/gpu/drm/amd/display/include/bios_parser_types.h
-+++ b/drivers/gpu/drm/amd/display/include/bios_parser_types.h
-@@ -135,12 +135,8 @@ struct bp_external_encoder_control {
- struct bp_crtc_source_select {
- 	enum engine_id engine_id;
- 	enum controller_id controller_id;
--	/* from GPU Tx aka asic_signal */
--	enum signal_type signal;
--	/* sink_signal may differ from asicSignal if Translator encoder */
- 	enum signal_type sink_signal;
--	enum display_output_bit_depth display_output_bit_depth;
--	bool enable_dp_audio;
-+	uint8_t bit_depth;
- };
- 
- struct bp_transmitter_control {
++	uint32_t max_pixel_clock; /* in KHz */
+ 	uint32_t default_display_engine_pll_frequency; /* in KHz */
+ 	uint32_t external_clock_source_frequency_for_dp; /* in KHz */
+ 	uint32_t smu_gpu_pll_output_freq; /* in KHz */
 -- 
 2.50.1
 
