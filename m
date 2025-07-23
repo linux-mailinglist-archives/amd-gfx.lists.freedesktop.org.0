@@ -2,73 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDB50B0F79B
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 17:58:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05FA5B0F7A0
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 17:58:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AED710E7FF;
-	Wed, 23 Jul 2025 15:58:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76A0E10E80F;
+	Wed, 23 Jul 2025 15:58:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Lq1ALp+g";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nDbUB/Aa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2B7F10E7FB
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 15:58:33 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-4561ed868b5so47297285e9.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 08:58:33 -0700 (PDT)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BACD89196
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 15:58:34 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-4538bc52a8dso56169035e9.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 08:58:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753286312; x=1753891112; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1753286313; x=1753891113; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=8wT/i5v3HFSZf2cyvj3Bbnb0mDDwWZfh8EsphnCwTGw=;
- b=Lq1ALp+gtvM19jcNTLDXMNqsPdMOPNPvZU3JzUZMfcLxotzbzM+qN71jTjqtClFIoW
- KYYXUVcV1mdGXTRjafg/xTYu7kfOfe9M1zmcOFZmxt4RDZs8oniKNA+8ZWsQ0Nyt5SZR
- 5cvjfIcL6E+fDk9zm0cNhVP2FPNwczp5L3np2Ejtx45DN82Fnyqe1R+5vNpY1ZB/4QCp
- 9UIfxBA31aLuaDvtA84Xkp/6bVkjhpWm7D9l7AtUOTqMooQN2c/YVihtGoLyrYbXsRdm
- 8PG3EhSWEzuN+a9tgZKlko90FlpUn6QrWbUCaybhGsWlvR5cs4col4XtarbdE3VKq5c8
- nZHw==
+ bh=3cT0B32NTl7aFc1KRckpae57/sS1O3c6Kojzb6e4sa8=;
+ b=nDbUB/Aac44DdiPaD+ma5gEiWb7TYs3X98hAPQg8XKs8M6ucmKH2AYemRcmiWnZa4U
+ ZMQlOtjZnSMy5tHFSZSKXh0MAFUvUf5R2vUL76h69cnBzhPxXoRUmihhbaajS/5GjJrV
+ 0EkJ6X21oylyID/Ypavmy8n9iB3pCTAr1oBBz063HarSJchfEcu+LUYf/8kanhdxS1wS
+ yogTeTStpvVF3/riSPnmcycO3agZUdbCrWSFiIl1GMFDNag2fgAEVuCpd2oEvjejT/t3
+ UVBcXXxtfPm5Q2PdL3+44sJwPpX4uTz+Memt+0l+LY6BtBvt0cUB5unUd/ZACbA92Se8
+ XlsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753286312; x=1753891112;
+ d=1e100.net; s=20230601; t=1753286313; x=1753891113;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=8wT/i5v3HFSZf2cyvj3Bbnb0mDDwWZfh8EsphnCwTGw=;
- b=MujdNIb10UeTu0Z1GVtLHEkx+Z24KceNGaJaV9ssF5CX7cgkovm5b7Qjw3mKb0Vh7s
- HMX7VoYvpm41tK5SShYTpkov9dr0eqn+/ja9wD5w0q+Xecxxq2+gR9dTWsL6e8bdMsZ4
- aM9gUiAnrqUAD5I6rbEapdGOTl/7ipvJ9uftm8jufJGpPWbZo7kweiNSo/q5OT7yjT5P
- akbjc54zNEtwqGYkzLEZYEHW5mCHoN7+hd61HTCg2pAK8IemIstacVV6mSyfS+fWvQ8p
- PFXXQubZtWIOLhoeTIgvPUwIMO8s2Bh3qwewdeGjQtFXTXrIQYqSxfAputS3b50BRD+y
- Oxeg==
-X-Gm-Message-State: AOJu0YzW6ow8YUfcaACOO7rlYvpzMhwUOkT0mtaGJ/rZQUENHUcPkUZr
- iubcqzIibPHvziHICvbfAj9FRgdqka9lu63WSKzBmGAbDySQTPcEboto1qRW7w==
-X-Gm-Gg: ASbGncsdZxF/CX7tG4y68xHGizn8r/AbnGXemHvZCbYpkbnN58UwnAp1QQoNLRjhaFV
- 9i3NLjL3LIqKWWRDZ8oUvDY8JAFK374+fWPUiLbdqgbnVnoOEhn3GRwVV4B5htGEEifOIWWCFZg
- fQRG0nePiIHyMDmDYm5sX198CvmnYWBFEzbCpoP+sQvZbK3ypLd5JUc+h04bbWMd2yWLPJceMYO
- AvilYcN28TRrbdT0213XrdS+TqaTzKAq90bfHIQlIeJI527TyUn2UUEGi3rju7gAG9X1KND3IBQ
- dyQS4s+vMY9vZp9/YPc5nAEVYNoeozwZwl/RLJiAjSN1uYyRtHHU81nYrPprqz8vFpOG3bsuVTM
- deoQ26wKmtVnKiv7bLIbuojncsC5GUzHG97tHPPFKfurwEDR9U0Ame0IafjMFHdEP8Pb+S5xfPK
- p3RZ4KaHOrj9BhhWfLSVDzbnpOHw==
-X-Google-Smtp-Source: AGHT+IGHvy49k+UY6AGK8WS+o1iTeK2EAswaGL6SyEVWUv5NAO55WW4XOBMrLHvxNPKYS9FXnPzyug==
-X-Received: by 2002:a05:6000:430e:b0:3a6:d967:380c with SMTP id
- ffacd0b85a97d-3b768ef5bf6mr3152977f8f.36.1753286311882; 
- Wed, 23 Jul 2025 08:58:31 -0700 (PDT)
+ bh=3cT0B32NTl7aFc1KRckpae57/sS1O3c6Kojzb6e4sa8=;
+ b=P6aDUh7CBT5NS8yRNefYrz05CeiberYR5Snu/M/GXDh4VtrVuho2Pbkz89QhHK05kp
+ KACgdtg8ExEAwhxS4RBjSRUuyYVWmYbi1iElTjmTGK93aqglWwVe6rfBxqPODIGXvAls
+ kyphh/7xA/th4Ite/wSNLjXfjYknXeh7vWxkCUO+s3fJyRKrtjciX5Il6v3nTXYPV+3u
+ jU7nrmk82560gBcgxtXRWXs0lS4bDnyCTe4VAEvDfPSE5YjsUIQumC0iatt3wTNIa0sx
+ bsVNqDlck6lRtHspG9wlC8/TOinbx5LLGfRi2EOGXaE0TjYuFnz5AP/UPE9N8U3KFoRG
+ wvtA==
+X-Gm-Message-State: AOJu0Yz2ssJs9IaxM+asdf2vyk5bka6V09uZZ11uAuTRtgNfY54RQwOd
+ YaHDhgS9+KgmnED0ciuVD++lfHC/oI9nya0HGhGZYn3P4Y8+VX4ZfNBBrqJjXA==
+X-Gm-Gg: ASbGncs0LG+eRN1bcRnp0GUgSwlGpxYd6C0u63oY/KyfLrU48HEfPTWklBRz+Pfo8Ou
+ hREOuq6nx/D734MKgBAYLiFMolc/W2WMIb+HaoulRGC5cTkZr6S9SnSgxCYOgTay4/FauP3GutV
+ co2Yl/gjT/EY+erhueQKes6Z+gcEAS2c276WUc7r3qdq9RDungNb+9DMzUohBzbhzWAzdjWDrN6
+ PTBy81f5G9dCGhOI3hn+MdetFEHvMyjGtyY89mM9/2bDSnugKSpbmqKJI5mahIyRApBDVdJPHWy
+ VGLAUtiOgulRpb8zHeUHr3lv/jURULJp7tmfG3Evpx+sK0B8fzJhrRFXY8RYg25byw8hQuytIM5
+ TgnLFEDjpBl1rN3Drb0QW6NjcniPLgKIxGU1zd4Y/s1KvE/P0zLf7W+Bnl8rxRERF9GZc3dZKQO
+ x+A161LPilg0FrJgER8xJAA6LSVg==
+X-Google-Smtp-Source: AGHT+IHtUd9PyJOsHF7lTZFJfxIuBb6h3Vxi+aA8hYbpyc8rcUm9HHrS6C7/tk75188PqrB3YBEkBA==
+X-Received: by 2002:a05:600c:630f:b0:456:2bac:8f8 with SMTP id
+ 5b1f17b1804b1-45868d485b0mr39467465e9.16.1753286312577; 
+ Wed, 23 Jul 2025 08:58:32 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4D24D8FC008443E005DD6C3C62.dsl.pool.telekom.hu.
  [2001:4c4d:24d8:fc00:8443:e005:dd6c:3c62])
  by smtp.gmail.com with ESMTPSA id
  ffacd0b85a97d-3b61ca2bf99sm16710468f8f.32.2025.07.23.08.58.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Jul 2025 08:58:31 -0700 (PDT)
+ Wed, 23 Jul 2025 08:58:32 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 15/20] drm/amd/display: Add DCE BIOS_SCRATCH_0 register
-Date: Wed, 23 Jul 2025 17:58:08 +0200
-Message-ID: <20250723155813.9101-16-timur.kristof@gmail.com>
+Subject: [PATCH 16/20] drm/amd/display: Make get_support_mask_for_device_id
+ reusable
+Date: Wed, 23 Jul 2025 17:58:09 +0200
+Message-ID: <20250723155813.9101-17-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250723155813.9101-1-timur.kristof@gmail.com>
 References: <20250723155813.9101-1-timur.kristof@gmail.com>
@@ -89,148 +90,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The BIOS uses this register to write the results of the
-DAC_LoadDetection command, so we'll need to read this
-in order to make DAC load detection work.
-
-As a reference, I used the mmBIOS_SCRATCH_0 definition from
-the amdgpu legacy display code.
+This will be reused by DAC load detection.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_bios_types.h                  | 1 +
- .../gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c    | 2 ++
- .../gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c    | 2 ++
- .../gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c    | 2 ++
- .../gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c    | 1 +
- drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c  | 2 ++
- drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c  | 2 ++
- 7 files changed, 12 insertions(+)
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-index 545ce1e15eae..50c8906b74c5 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-@@ -168,6 +168,7 @@ struct dc_vbios_funcs {
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
+index bd61ed6cafab..44f71757508f 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
+@@ -67,7 +67,9 @@ static ATOM_HPD_INT_RECORD *get_hpd_record(struct bios_parser *bp,
+ 	ATOM_OBJECT *object);
+ static struct device_id device_type_from_device_id(uint16_t device_id);
+ static uint32_t signal_to_ss_id(enum as_signal_type signal);
+-static uint32_t get_support_mask_for_device_id(struct device_id device_id);
++static uint32_t get_support_mask_for_device_id(
++	enum dal_device_type device_type,
++	uint32_t enum_id);
+ static ATOM_ENCODER_CAP_RECORD_V2 *get_encoder_cap_record(
+ 	struct bios_parser *bp,
+ 	ATOM_OBJECT *object);
+@@ -891,7 +893,7 @@ static bool bios_parser_is_device_id_supported(
+ {
+ 	struct bios_parser *bp = BP_FROM_DCB(dcb);
  
- struct bios_registers {
-+	uint32_t BIOS_SCRATCH_0;
- 	uint32_t BIOS_SCRATCH_3;
- 	uint32_t BIOS_SCRATCH_6;
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
-index 6a4c1b47f80d..3b6f330d27b4 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce100/dce100_resource.c
-@@ -77,6 +77,7 @@
- #endif
+-	uint32_t mask = get_support_mask_for_device_id(id);
++	uint32_t mask = get_support_mask_for_device_id(id.device_type, id.enum_id);
  
- #ifndef mmBIOS_SCRATCH_2
-+	#define mmBIOS_SCRATCH_0 0x05C9
- 	#define mmBIOS_SCRATCH_2 0x05CB
- 	#define mmBIOS_SCRATCH_3 0x05CC
- 	#define mmBIOS_SCRATCH_6 0x05CF
-@@ -368,6 +369,7 @@ static const struct dce_abm_mask abm_mask = {
- #define DCFE_MEM_PWR_CTRL_REG_BASE 0x1b03
- 
- static const struct bios_registers bios_regs = {
-+	.BIOS_SCRATCH_0 = mmBIOS_SCRATCH_0,
- 	.BIOS_SCRATCH_3 = mmBIOS_SCRATCH_3,
- 	.BIOS_SCRATCH_6 = mmBIOS_SCRATCH_6
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c
-index cccde5a6f3cd..42b0068b1c05 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce110/dce110_resource.c
-@@ -82,6 +82,7 @@
- #endif
- 
- #ifndef mmBIOS_SCRATCH_2
-+	#define mmBIOS_SCRATCH_0 0x05C9
- 	#define mmBIOS_SCRATCH_2 0x05CB
- 	#define mmBIOS_SCRATCH_3 0x05CC
- 	#define mmBIOS_SCRATCH_6 0x05CF
-@@ -377,6 +378,7 @@ static const struct dce110_clk_src_mask cs_mask = {
- };
- 
- static const struct bios_registers bios_regs = {
-+	.BIOS_SCRATCH_0 = mmBIOS_SCRATCH_0,
- 	.BIOS_SCRATCH_3 = mmBIOS_SCRATCH_3,
- 	.BIOS_SCRATCH_6 = mmBIOS_SCRATCH_6
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
-index 164ba796f64c..62babc9dfca0 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
-@@ -76,6 +76,7 @@
- #endif
- 
- #ifndef mmBIOS_SCRATCH_2
-+	#define mmBIOS_SCRATCH_0 0x05C9
- 	#define mmBIOS_SCRATCH_2 0x05CB
- 	#define mmBIOS_SCRATCH_3 0x05CC
- 	#define mmBIOS_SCRATCH_6 0x05CF
-@@ -385,6 +386,7 @@ static const struct dce110_clk_src_mask cs_mask = {
- };
- 
- static const struct bios_registers bios_regs = {
-+	.BIOS_SCRATCH_0 = mmBIOS_SCRATCH_0,
- 	.BIOS_SCRATCH_3 = mmBIOS_SCRATCH_3,
- 	.BIOS_SCRATCH_6 = mmBIOS_SCRATCH_6
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
-index eb1e158d3436..4998f45ace11 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
-@@ -491,6 +491,7 @@ static struct dce_i2c_hw *dce120_i2c_hw_create(
- 	return dce_i2c_hw;
+ 	return (le16_to_cpu(bp->object_info_tbl.v1_1->usDeviceSupport) & mask) != 0;
  }
- static const struct bios_registers bios_regs = {
-+	.BIOS_SCRATCH_0 = mmBIOS_SCRATCH_0 + NBIO_BASE(mmBIOS_SCRATCH_0_BASE_IDX),
- 	.BIOS_SCRATCH_3 = mmBIOS_SCRATCH_3 + NBIO_BASE(mmBIOS_SCRATCH_3_BASE_IDX),
- 	.BIOS_SCRATCH_6 = mmBIOS_SCRATCH_6 + NBIO_BASE(mmBIOS_SCRATCH_6_BASE_IDX)
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
-index 98775e5ef0bf..3e1032d5cae3 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
-@@ -79,6 +79,7 @@
+@@ -2182,11 +2184,10 @@ static uint32_t signal_to_ss_id(enum as_signal_type signal)
+ 	return clk_id_ss;
+ }
  
- 
- #ifndef mmBIOS_SCRATCH_2
-+	#define mmBIOS_SCRATCH_0 0x05C9
- 	#define mmBIOS_SCRATCH_2 0x05CB
- 	#define mmBIOS_SCRATCH_3 0x05CC
- 	#define mmBIOS_SCRATCH_6 0x05CF
-@@ -367,6 +368,7 @@ static const struct dce110_clk_src_mask cs_mask = {
- };
- 
- static const struct bios_registers bios_regs = {
-+	.BIOS_SCRATCH_0 = mmBIOS_SCRATCH_0,
- 	.BIOS_SCRATCH_3 = mmBIOS_SCRATCH_3,
- 	.BIOS_SCRATCH_6 = mmBIOS_SCRATCH_6
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
-index 7fde2b8719c7..1462adf7df70 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
-@@ -77,6 +77,7 @@
- 
- 
- #ifndef mmBIOS_SCRATCH_2
-+	#define mmBIOS_SCRATCH_0 0x05C9
- 	#define mmBIOS_SCRATCH_2 0x05CB
- 	#define mmBIOS_SCRATCH_3 0x05CC
- 	#define mmBIOS_SCRATCH_6 0x05CF
-@@ -368,6 +369,7 @@ static const struct dce110_clk_src_mask cs_mask = {
- };
- 
- static const struct bios_registers bios_regs = {
-+	.BIOS_SCRATCH_0 = mmBIOS_SCRATCH_0,
- 	.BIOS_SCRATCH_3 = mmBIOS_SCRATCH_3,
- 	.BIOS_SCRATCH_6 = mmBIOS_SCRATCH_6
- };
+-static uint32_t get_support_mask_for_device_id(struct device_id device_id)
++static uint32_t get_support_mask_for_device_id(
++	enum dal_device_type device_type,
++	uint32_t enum_id)
+ {
+-	enum dal_device_type device_type = device_id.device_type;
+-	uint32_t enum_id = device_id.enum_id;
+-
+ 	switch (device_type) {
+ 	case DEVICE_TYPE_LCD:
+ 		switch (enum_id) {
 -- 
 2.50.1
 
