@@ -2,150 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCA50B0E6A6
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 00:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD92B0E7BB
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 02:57:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 186E510E726;
-	Tue, 22 Jul 2025 22:46:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1235210E066;
+	Wed, 23 Jul 2025 00:57:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ni2jSqdD";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="a/XvjtKZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2070.outbound.protection.outlook.com [40.107.92.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE3DA10E726
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Jul 2025 22:46:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GL5F3zpirszKo9vs3zxsTrEK5ZyetI2FHfRJ5RcWzFu2JK67+volKdRBCCmVR+5dmecoHBtxVtHchlUwY/h4E2N4gyHSnhZV+3qHHZC3V4apUs9JbOslK8A4xcn+7NuVxoPOJ/twB4qUCDcO5DtZuOLd2+Z8wA+xlEO5KLWk+3JqdHNPdES3VpSna72Jl3+9SsOCqrVwh3rKx2WZ+Ug2KR051UmjajqvWD7RnjCYBERIRWjcFCuL+NNbKZHO1nM3QGTGv8bEJFOEsoRSdoRQA6hotjw5X2nlaYm6MHvm4hut3KA/KDBVS1gkuFn/X8bnIA5AwB33LUGybFkexM4wMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oEXe4bv50E3hBWUwkXnrrejYLVRoHIV2ws/7XY2IvF0=;
- b=buuetrqwKNSuiNDXfRPDs+axv4JFBzlf9pZoHCVR1AuzQOn5t3TLE9fzLDjBB9OWUPa2x82ccSPPCn1hevBOZliOZTqrcB3Dxdub5Z6SKdgNOkkAQfMQWG1S4F9xzNrqdwm8ieTUC5MEayHOgtt7nBhzurA4KbL85mKT/jiJAmgzjTH9uQfzDzmADh4ojF14haxE9sBE+KkbVhvsgap4Ob7cfms6JboYK+rk+/OUe6D2H2+c07B9oH/LQtaKfJfQeTdfbQ7XXWYN4kWRCgufH/WK43vcnfvZtUgZfbIxJfPldVoMGeY7KSRFGib2/yZp7x+lHHPEyy9L4UWjpH5ilQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oEXe4bv50E3hBWUwkXnrrejYLVRoHIV2ws/7XY2IvF0=;
- b=ni2jSqdDRsV96AZcHLNRyxoAWpwM0YXDFLNfs4gOKTXDbpgwMCjirnNOoCFUPKmjglfGfnYiyLvaIg9LNWxrWIf6nLRZBGg80gv6vo+q/eNd08I7cwj26p+o+sfKtu6ysfT69WzZ9FQyR/egInQGAVMX/eMJczoOA44OTBqlMNw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6566.namprd12.prod.outlook.com (2603:10b6:8:8d::16) by
- DM3PR12MB9433.namprd12.prod.outlook.com (2603:10b6:0:47::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8943.30; Tue, 22 Jul 2025 22:46:08 +0000
-Received: from DM4PR12MB6566.namprd12.prod.outlook.com
- ([fe80::31b:5d31:8ba6:abd7]) by DM4PR12MB6566.namprd12.prod.outlook.com
- ([fe80::31b:5d31:8ba6:abd7%4]) with mapi id 15.20.8964.019; Tue, 22 Jul 2025
- 22:46:07 +0000
-Content-Type: multipart/alternative;
- boundary="------------18ZKMwiLfqe0icKeTx5b0EsE"
-Message-ID: <f81030dd-198e-4d7b-8467-7e7b3f199f32@amd.com>
-Date: Tue, 22 Jul 2025 17:46:05 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdkfd: Handle lack of READ permissions in SVM mapping
-To: Kent Russell <kent.russell@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: felix.kuehling@amd.com
-References: <20250722162450.79502-1-kent.russell@amd.com>
-Content-Language: en-US
-From: "Chen, Xiaogang" <xiaogang.chen@amd.com>
-In-Reply-To: <20250722162450.79502-1-kent.russell@amd.com>
-X-ClientProxiedBy: SN7PR04CA0184.namprd04.prod.outlook.com
- (2603:10b6:806:126::9) To DM4PR12MB6566.namprd12.prod.outlook.com
- (2603:10b6:8:8d::16)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 236EE10E066
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 00:57:27 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4DA7A44A4B;
+ Wed, 23 Jul 2025 00:57:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64A9DC4CEEB;
+ Wed, 23 Jul 2025 00:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1753232246;
+ bh=48SgJw4SONaP9EMOakTgn2ovcTJ5x2EMc/vmfcamkYI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=a/XvjtKZJufNbd/dBUy2MeJyAMcUZNIAe6vegTZC0uM/4U/Cmze1niHwF9ZouSoP8
+ N0ZEw8L6kwrUBoSnCHEFMQmjUIT+tNwULA3bQRsH1mZa3s1+IuPLVneqatB5yWV7G4
+ xtfI0pilbwMIriGR2D23qpFkah0l7TiDpf4qwyUch/4KvumscMLd2yz/9k/T4HnbSw
+ hxmmMgLCRr1O7kDgSQutuVD9pV0feLrCIdTCrLSddwYJgY/6RCCaHJPbVl8inFu0RL
+ YzZuQyFFUjvIh8TuSkoEm4XKYtPFWBe4QhitwoAhdfl4YPLvpOomnqJODGXMWWXFhV
+ 6h5txQJyyc8VA==
+From: Sasha Levin <sashal@kernel.org>
+To: patches@lists.linux.dev,
+	stable@vger.kernel.org
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ christian.koenig@amd.com, amd-gfx@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.15 1/8] drm/radeon: Do not hold console lock while
+ suspending clients
+Date: Tue, 22 Jul 2025 20:57:14 -0400
+Message-Id: <20250723005722.1022962-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6566:EE_|DM3PR12MB9433:EE_
-X-MS-Office365-Filtering-Correlation-Id: b70b18cc-ac33-488b-8798-08ddc9718c11
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|8096899003;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?azBibVZaYUY0azl1a2lacHRpSk5JengxeHp2UFlabDUybjhzMXlmZjlPRUgy?=
- =?utf-8?B?Zk84bDlFWFZWQXJDdzRwU3pIR2FMSWtzRFpneVgvZXpFQTJ1SVVVbCttNGFE?=
- =?utf-8?B?Vjdac3FWaTE1TDN2TVkrTFZ6Yy9teFpLcE54YUdTdmFGLzh2eHBkV2o4T0hs?=
- =?utf-8?B?emNqSVNjQzRlKy9aRjBNNGZzSEJnaEVPQWtGakFCa2w5OEpLVkM4a0Y4cGJB?=
- =?utf-8?B?Q21NM092bmxmbzN3bnB6VUN2c3prWEM3MHR0SStVdTNyb2IzeEVYWTJlZFM0?=
- =?utf-8?B?WjBrZ05Manlic1VHM0ZQM1AzbnJkbW00MHZnUHE1Tm1ZZTEwRDFaNDlwWXcr?=
- =?utf-8?B?UG5kTjRjejgvd2R4Q2hTVlYwcU5PRVl0NzRBV0hTa2xuTWVPcmNxRG9HNjVR?=
- =?utf-8?B?aDVpTFl3dzI0eDFCcFEwZk1wOURIVlNWU3NZQ1hxeFRuS0prcWFtNWNmTGx4?=
- =?utf-8?B?TmpqdXpSWHdFdmhjaCt2cm5VTGtQckdxWEl2ME5lL2lGelluV3lpTnJWcjBX?=
- =?utf-8?B?ZDNYSk8wM21SVS9xK2hCL0RYdFhtL09xMVM1TVJIbUNnNTN4Rkw2QzRxbVpK?=
- =?utf-8?B?ZW1mQkhJNGZGY0FGT0tQV0p4ajdDT2xwSi9yaDQ3TlVSbWJzNit1SGFFWUwy?=
- =?utf-8?B?ODQyWWtBbTlxelpkaXptK3d4cklYMkVrRG5UVjFXQit6bjFrOHVhZnZBcHlB?=
- =?utf-8?B?N2tPU1RlWEQyb2VNUlVwL2thaHExQmZIOUsxMDl2bW9vS2ljZ2owalhDTDBW?=
- =?utf-8?B?cTdESU11TTBHdXk2dFVuTVNpTng3VFlJeGpGUGU3S0FLVU9BcksycVhrcTdN?=
- =?utf-8?B?NEhuUEMxZ3d1TkFZWWJhdFcxRXJiaWhOd0phMDZzS1k0SlpNU3piNDc0Mm9j?=
- =?utf-8?B?SFI0N0p0WTRQQ1JScG9XY1htOURGcW5mVm5tT2RSa2pKOVNWME96WWR4ZThX?=
- =?utf-8?B?cWNMTGR5NzAxNDF2b1B6R2taOVRXdm91cGJHSmxEbmFXN2tYS2lBU0pxRE5p?=
- =?utf-8?B?bG04NFFneld0NGtWeHpKUmJNVDlYczFoKy9rMHdUVG1GcDJTM0JaU1Y3N0Y0?=
- =?utf-8?B?eTRRMzdCYi9kcnRadWovbTlNRyszZHA3d2V2cWE0WGZXTmUwdmwvV1czTVNy?=
- =?utf-8?B?Rm1haUhuaDBKaUVuelZJUS95ZGJ6UEVNTWRibCtnM1JCNnNzMmhDVWJEMFU3?=
- =?utf-8?B?S0dVaHNtdjJNM3kzbzRlQ2dwK1V6THNOWTFuMmI2dTZ5YmhSaWl6STI4SC9Y?=
- =?utf-8?B?bG1PNVdKZWdaanhzRVN1czNiMmYzQmI5S0x2REUzRFNTdGsrU1crWG14R0Rx?=
- =?utf-8?B?anRJZWlaVzFkTWMzWkFEcmZiUCtyZjQvME1KVjREcThhbjRqc2l2aUluUWVs?=
- =?utf-8?B?Q2FMUkhkMDZ1cERHdlprZ0JKcmVGcm85b0t2MFY0Q1ZSdW4rLzVHdWJPc3ZD?=
- =?utf-8?B?czFjU2JNblVIRUU4UGxwc3QrUU5IRFlSR2JOQzdVc2NMQ3IrVk9hd2NGa2Iy?=
- =?utf-8?B?N21JbDF5YzQ4S3pZSzNDYUc5QXVDUEsvS1o1a3NUK0duMlltT2V2emg4c0lO?=
- =?utf-8?B?YXVZNDdCcHczMmxKdk90aXNYdkFzWGFVelp3dmhkZGtCN0g2RURZNzIxekNF?=
- =?utf-8?B?VThtcmV5UHpmU2ozU0hOZDQ3YnMzWmRtRnJjQ0hEaXRXcGVkb21ZRG1uS0lI?=
- =?utf-8?B?Q0d3OWdsVFlibW12UHNreU1vOEhrcklBZmYwY2FlTlA3M0tQcXFjZFUrZnA2?=
- =?utf-8?B?K0ZIdW5lQjRlL1pLZUtWTHZ0dkhRelM4YWQ2M3BVSkRneUFySitzdWZJTUQz?=
- =?utf-8?B?TWloRm5GeHAwc0RsUmJQcWxSalpxdWh0SU5ndkFKMzBxV0dmMjJIOW5oanNw?=
- =?utf-8?B?SkhrbERtUjN3cDJlVm5SeW5lU3pYYjBFbkNjT0JvUk4xZ2JsMlcyUGJkVjhN?=
- =?utf-8?Q?yQcEE5YqKPs=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6566.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(8096899003); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dUxUMkY3VG1nZ3lRanV3U29XMjJGTjlGNUJBc1FvM3cvUG1Qd0w4SUhFdVgw?=
- =?utf-8?B?Ymk0T0lPdFFSUmE5QUlibFc5WkprNnVEbXNFUTV2VW54VktCT2kvZUtwblV3?=
- =?utf-8?B?bmlldnpBb01ObHpFTlowdzJtcHYycmpZaHNLU0F4QmpsZ2pMVVk5dHhNUTVs?=
- =?utf-8?B?VEdTb1ZYRk1FK1NlQkNTS1Jvd3NrYzJZR2xpL3J0empFclFpMC9kZGVkWWdU?=
- =?utf-8?B?TWFRRU5sN3VkbjZMb2xYd1RYYVlhRmIyUnMvV2duVElNVVZKM21WbTc0M0hn?=
- =?utf-8?B?YmFIdjkzZnJHcWJ4TXV3QWoyaFpzRGZJUGt1WFgrbkR1VWZBOGhMV1ZiZ3hv?=
- =?utf-8?B?VjZsbXkwNFVUaEJQaEMxcGJ2MWFEOVJMOVhMZ2tCc0h5WTFOY0JlblpFKzRt?=
- =?utf-8?B?RGtwK0NqV0luSVBhL3Zla2o4VUVjWXA1WHVXL2ROUlpha2tBZ2I1WUpOSmdq?=
- =?utf-8?B?aE5qNnBZV05SSW1yektES29UcVp6cFVRYzAzZXQ5cFZRRlFyS1U4RW9LZHJB?=
- =?utf-8?B?bThhejVSZzZTWk45MEdQd25rbVJJYWJDTG9XVnBYTUVUWmFEeElWd1lGbG5D?=
- =?utf-8?B?MlU5OWdNM0tDeUZRUnlKMDJFVjVjOVcrQXkra0tMcmNmOHZVVGUxTzgvZFRw?=
- =?utf-8?B?b3dGM0RnWTZxNzJ1TE9ZeS9ldUhlL0xKcURNM1U1QjhibWVENlFkbGRnODBR?=
- =?utf-8?B?VU5ac0NHM1pHK1AvOEk1bWNHYVQzTUFCUlQ5QzlnSS9SK3pWWG42dGlrdkRW?=
- =?utf-8?B?ay9kNTMwM29TS2crTWlEQ0dyZlQxSzBoUnJpSGZNWkxZbStmRFkxUkxvR1JI?=
- =?utf-8?B?T0ZCUzU3Sm9Wd0dRQlZ2a0RrSVlsK0t6OVRlSmFLajVTakpmN2dvR1NRVGhN?=
- =?utf-8?B?Y1VYYXJMa05SbW0yK3Q0WU45cFN5VkpLWmFQUU1LQjJ0RklGUytjZFNtYUo4?=
- =?utf-8?B?NDc1NmtZcnNwZ2I5Q0JrTk1lT1JpeUhOVHEzelhDSyt3L0ZjMW16by9PT0JZ?=
- =?utf-8?B?NHNwWks2c2lSMVBvay9uaWUzTzJTQlR5Z29rZEt6YWRRYU1Tcm5ITTVCUUcx?=
- =?utf-8?B?ZTBpcUF6OFJaRmVHT3hHWVFNUGJ6SFNGbHRmZEYvRzZOd0NYUXNVdmNJd2RB?=
- =?utf-8?B?VVRJRGNidU1ZTG5lclJTMGwrNDh4V3lYVUFsRUVMVHpqSEhYUXBZT05LM2wy?=
- =?utf-8?B?UXg3aU51YlRkbytHbXRXUURVNzJDZXNVTnlYREpNVFVMUFlmcm5YRHRRQkx5?=
- =?utf-8?B?NzJUdXpWaHBZMXQ3V0ZyVWtiSU5HQStDMlhqN3ZvSEhHUDk4VmV2a25XVXdN?=
- =?utf-8?B?MXl4djVmSmNPTlRtTXg0UHZrLzdVMlZCTUlUdEJJdXUwM01ZM2lHVXhoNHFU?=
- =?utf-8?B?K2o4dTdyTkk1K2tCSkRod1huVm5pU1g3RllOK1FmUmRYUGNEM3prektGQUNH?=
- =?utf-8?B?MDRjbTVVaENSdC9CTHlUb2c4YnpUUVJzRk5XYk1KcE5nNTZYWVBjTXdaT3Z5?=
- =?utf-8?B?SUxDYVUwTFNmYkd0a25OWkVaZGJpQytoOGJsckpJTG5qQ1Rqc2d6WjNlMFNv?=
- =?utf-8?B?cld1YlI2L0tmaGhKc09kQlh6OWhOSi92eDV3dHQ3dEdLNTlZc2tyVlBQY0JG?=
- =?utf-8?B?TGVPRExKTUNqUENuWThMZERPOFZZUko1bHpFTTFvcmNMS0xkdkloVVZqalF6?=
- =?utf-8?B?dEZSZWhEakZXeG9CK05UNTZqTlhFTEYrbVh4OVIxZnRJOUdWRWx0M0NncUhj?=
- =?utf-8?B?emFXSkZYK2JGc2hsM0xVVkxHNGFmVzRPa01YZm9qYyt5aUlRcjlqaWFYUXY2?=
- =?utf-8?B?dTBrSHhDTGhBUHpNV2pxZXQ0YnpFRjZSTCsvUzhpaXFYRnZVbWVyQzJWRFZC?=
- =?utf-8?B?R3pMVFBBd2dla0dDODVrcWFnbFNOYW55WkJ6dXY4bnhhSkZhNjd6MWxqam5W?=
- =?utf-8?B?MDZJaytYOG1oUFd6YlNZQkxkWFIrVTVUSTl3NHlhd0gwWFh1eUJKdTRsazNQ?=
- =?utf-8?B?Q25ZMktqeHhZeFpFb1M1ZDgvTU9QU0JlQXZDbis3N2tiU2dLcVN1N1FNanlF?=
- =?utf-8?B?dEQ1T1lDSk9HM0RNcFl1SFhoa0JKc0NrZjVwcHl3VlhLNUJiQ2h3SjgzUHU4?=
- =?utf-8?Q?2MGk=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b70b18cc-ac33-488b-8798-08ddc9718c11
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6566.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 22:46:07.6792 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IqKtZMCUBnN/CciSiHeD+BZsvK5gcRloa4Kkt6eKP8ug/yyGu12XBR69ZZ4tRS2N
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR12MB9433
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.15.7
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,164 +63,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---------------18ZKMwiLfqe0icKeTx5b0EsE
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Thomas Zimmermann <tzimmermann@suse.de>
 
+[ Upstream commit 5dd0b96118e09a3725e3f83543e133b1fd02c18c ]
 
-On 7/22/2025 11:24 AM, Kent Russell wrote:
-> HMM assumes that pages have READ permissions by default. Inside
-> svm_range_validate_and_map, we add READ permissions then add WRITE
-> permissions if the VMA isn't read-only. This will conflict with regions
-> that only have PROT_WRITE or have PROT_NONE. When that happens,
-Why read-only conflict with PROT_WRITE or have PROT_NONE? They are 
-vma->vm_flags that specifies the vma protection. User can change its 
-value at runtime. Is user not allowed to change it from read-only to 
-PROT_NONE?
-> svm_range_validate_and_map will continue to retry, silently, giving the
-> impression of a hang.
->
-> If pages don't have READ permissions, simply unmap them and continue. If
-> they weren't mapped in the first place, this would be a no-op. Since x86
-> doesn't support write-only, and PROT_NONE doesn't allow reads or writes
-> anyways, this will allow the svm range validation to continue without
-> getting stuck in a loop forever on mappings we can't use with HMM.
->
-> Signed-off-by: Kent Russell<kent.russell@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 18 ++++++++++++++++++
->   1 file changed, 18 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> index e23b5a0f31f2..10b70b941b11 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> @@ -1713,6 +1713,24 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
->   
->   			next = min(vma->vm_end, end);
->   			npages = (next - addr) >> PAGE_SHIFT;
-> +			/* HMM requires at least READ permissions. If provided with PROT_NONE,
-> +			 * unmap the memory. If it's not already mapped, this is a no-op
-> +			 * If PROT_WRITE is provided without READ, warn first then unmap
-> +			 */
-> +			if (!(vma->vm_flags & VM_READ)) {
-> +				unsigned long e, s;
-> +
-> +				if (vma->vm_flags & VM_WRITE)
-> +					pr_warn("VM_WRITE without VM_READ is not supported");
-> +				s = max(start, prange->start);
-> +				e = min(end, prange->last);
-> +				if (e >= s)
-> +					svm_range_unmap_from_gpus(prange, s, e,
-> +						       KFD_SVM_UNMAP_TRIGGER_UNMAP_FROM_CPU);
-> +				addr = next;
-> +				continue;
-> +			}
-> +
->   			WRITE_ONCE(p->svms.faulting_task, current);
->   			r = amdgpu_hmm_range_get_pages(&prange->notifier, addr, npages,
->   						       readonly, owner, NULL,
+The radeon driver holds the console lock while suspending in-kernel
+DRM clients. This creates a circular dependency with the client-list
+mutex, which is supposed to be acquired first. Reported when combining
+radeon with another DRM driver.
 
-It seems the real problem is at amdgpu_hmm_range_get_pages. It always 
-set HMM_PFN_REQ_FAULT to hmm_range->default_flags. HMM_PFN_REQ_FAULT 
-means the page is faultable and a future call with HMM_PFN_REQ_FAULT 
-could succeed. When vma->vm_flags is PROT_NONE the vma is not faultable, 
-so hmm_range->default_flags should be not set to HMM_PFN_REQ_FAULT to 
-avoid hmm_range_fault fault this vma.
+Therefore, do not take the console lock in radeon, but let the fbdev
+DRM client acquire the lock when needed. This is what all other DRM
+drivers so.
 
-Regards
-
-Xiaogang
-
-
-
-
---------------18ZKMwiLfqe0icKeTx5b0EsE
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 7/22/2025 11:24 AM, Kent Russell
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20250722162450.79502-1-kent.russell@amd.com">
-      <pre wrap="" class="moz-quote-pre">HMM assumes that pages have READ permissions by default. Inside
-svm_range_validate_and_map, we add READ permissions then add WRITE
-permissions if the VMA isn't read-only. This will conflict with regions
-that only have PROT_WRITE or have PROT_NONE. When that happens,</pre>
-    </blockquote>
-    Why read-only conflict with <span style="white-space: pre-wrap">PROT_WRITE or have PROT_NONE? </span>They
-    are vma-&gt;vm_flags that specifies the vma protection. User can
-    change its value at runtime. Is user not allowed to change it from
-    read-only to <span style="white-space: pre-wrap">PROT_NONE?</span>
-    <blockquote type="cite" cite="mid:20250722162450.79502-1-kent.russell@amd.com">
-      <pre wrap="" class="moz-quote-pre">
-svm_range_validate_and_map will continue to retry, silently, giving the
-impression of a hang.
-
-If pages don't have READ permissions, simply unmap them and continue. If
-they weren't mapped in the first place, this would be a no-op. Since x86
-doesn't support write-only, and PROT_NONE doesn't allow reads or writes
-anyways, this will allow the svm range validation to continue without
-getting stuck in a loop forever on mappings we can't use with HMM.
-
-Signed-off-by: Kent Russell <a class="moz-txt-link-rfc2396E" href="mailto:kent.russell@amd.com">&lt;kent.russell@amd.com&gt;</a>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reported-by: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Closes: https://lore.kernel.org/dri-devel/0a087cfd-bd4c-48f1-aa2f-4a3b12593935@oss.qualcomm.com/
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+(cherry picked from commit 612ec7c69d04cb58beb1332c2806da9f2f47a3ae)
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index e23b5a0f31f2..10b70b941b11 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1713,6 +1713,24 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
+LLM Generated explanations, may be completely bogus:
+
+Based on my analysis of the commit and the code changes, here is my
+assessment:
+
+**Answer: YES**
+
+This commit should be backported to stable kernel trees. Here's my
+extensive explanation:
+
+## 1. **The commit fixes a real circular locking dependency bug**
+
+The commit message clearly states this fixes a "circular dependency with
+the client-list mutex" that was "Reported when combining radeon with
+another DRM driver." This is a real bug that can lead to deadlocks in
+production systems.
+
+## 2. **The fix is minimal and focused**
+
+The code changes are very small and targeted:
+- In `radeon_suspend_kms()`: Changed from calling
+  `drm_client_dev_suspend(dev, true)` with console_lock held to
+  `drm_client_dev_suspend(dev, false)` without holding the lock
+- In `radeon_resume_kms()`: Removed the console_lock/unlock calls around
+  `drm_client_dev_resume()`
+
+The second parameter to `drm_client_dev_suspend()` indicates whether the
+caller holds the console lock. By changing it from `true` to `false`,
+radeon now follows the same pattern as other DRM drivers.
+
+## 3. **This aligns radeon with other DRM drivers**
+
+The commit message explicitly states: "This is what all other DRM
+drivers so." Looking at the similar commits provided:
+- Similar Commit #1 shows radeon being updated to use the new client
+  suspend/resume infrastructure
+- Similar Commit #4 shows amdgpu (the successor to radeon) already using
+  `drm_client_dev_suspend(dev, false)` without holding the console lock
+
+## 4. **The bug has real-world impact**
+
+The issue was reported by a real user (Jeff Johnson) and occurs "when
+combining radeon with another DRM driver." Multi-GPU systems are
+increasingly common, especially with integrated + discrete GPU
+configurations.
+
+## 5. **Low regression risk**
+
+The change removes lock acquisition rather than adding it, which
+generally has lower risk. The fbdev DRM client will acquire the console
+lock when needed (as mentioned in the commit message), so the necessary
+locking still occurs - just at the correct layer to avoid the circular
+dependency.
+
+## 6. **Similar to historical fixes**
+
+Looking at Similar Commit #5 (amdgpu console lock restructuring), we can
+see there's a history of console lock ordering issues in AMD GPU drivers
+that have been fixed in the past. This suggests these types of fixes are
+considered important enough for the maintainers.
+
+## 7. **The fix is already cherry-picked**
+
+The commit message shows "(cherry picked from commit
+612ec7c69d04cb58beb1332c2806da9f2f47a3ae)" indicating this was already
+selected for backporting by maintainers.
+
+The only potential concern would be ensuring that the DRM client
+infrastructure this depends on is present in the stable kernels being
+targeted, but given that this is fixing a bug in existing code paths,
+the infrastructure must already be there.
+
+ drivers/gpu/drm/radeon/radeon_device.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+index bbd39348a7aba..6f50cfdfe5a2e 100644
+--- a/drivers/gpu/drm/radeon/radeon_device.c
++++ b/drivers/gpu/drm/radeon/radeon_device.c
+@@ -1635,11 +1635,9 @@ int radeon_suspend_kms(struct drm_device *dev, bool suspend,
+ 		pci_set_power_state(pdev, PCI_D3hot);
+ 	}
  
- 			next = min(vma-&gt;vm_end, end);
- 			npages = (next - addr) &gt;&gt; PAGE_SHIFT;
-+			/* HMM requires at least READ permissions. If provided with PROT_NONE,
-+			 * unmap the memory. If it's not already mapped, this is a no-op
-+			 * If PROT_WRITE is provided without READ, warn first then unmap
-+			 */
-+			if (!(vma-&gt;vm_flags &amp; VM_READ)) {
-+				unsigned long e, s;
+-	if (notify_clients) {
+-		console_lock();
+-		drm_client_dev_suspend(dev, true);
+-		console_unlock();
+-	}
++	if (notify_clients)
++		drm_client_dev_suspend(dev, false);
 +
-+				if (vma-&gt;vm_flags &amp; VM_WRITE)
-+					pr_warn(&quot;VM_WRITE without VM_READ is not supported&quot;);
-+				s = max(start, prange-&gt;start);
-+				e = min(end, prange-&gt;last);
-+				if (e &gt;= s)
-+					svm_range_unmap_from_gpus(prange, s, e,
-+						       KFD_SVM_UNMAP_TRIGGER_UNMAP_FROM_CPU);
-+				addr = next;
-+				continue;
-+			}
-+
- 			WRITE_ONCE(p-&gt;svms.faulting_task, current);
- 			r = amdgpu_hmm_range_get_pages(&amp;prange-&gt;notifier, addr, npages,
- 						       readonly, owner, NULL,</pre>
-    </blockquote>
-    <p>It seems the real problem is at amdgpu_hmm_range_get_pages. It
-      always set HMM_PFN_REQ_FAULT to hmm_range-&gt;default_flags.
-      HMM_PFN_REQ_FAULT means the page is faultable and a future call
-      with HMM_PFN_REQ_FAULT could succeed. When vma-&gt;vm_flags is <span style="white-space: pre-wrap">PROT_NONE</span> the vma is not
-      faultable, so hmm_range-&gt;default_flags should be not set to
-      HMM_PFN_REQ_FAULT to avoid hmm_range_fault fault this vma. <br>
-    </p>
-    <p>Regards</p>
-    <p>Xiaogang<br>
-    </p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-  </body>
-</html>
+ 	return 0;
+ }
+ 
+-- 
+2.39.5
 
---------------18ZKMwiLfqe0icKeTx5b0EsE--
