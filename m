@@ -2,73 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8367DB0F79F
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 17:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F66FB0F79D
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Jul 2025 17:58:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FB2B10E80B;
-	Wed, 23 Jul 2025 15:58:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACBA110E800;
+	Wed, 23 Jul 2025 15:58:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DkxqbAXU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fy4vpVGF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A623B10E80C
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 15:58:31 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-4561ca74829so75622175e9.0
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A20C10E80D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 15:58:32 +0000 (UTC)
+Received: by mail-wr1-f50.google.com with SMTP id
+ ffacd0b85a97d-3a536ecbf6fso4049353f8f.2
  for <amd-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 08:58:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1753286310; x=1753891110; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=0RGXvlUNkk/YL1sdJJYKS2dJUEu+ZQpbtYjx+RT8DDQ=;
- b=DkxqbAXU3ctqYEeZM++GEncgooHpGq7mhBK+Gin7TdsCuVTe3f2RGycn5rFHtsIzMJ
- ylB4jXkwhei+4CvamutpJnaGaG53yiOp/pNPUUhbkFRfrsuEpJRwXsr+BPelFk3W96Co
- TOnCuMhvmgmDwD4/IQbnrPLrBEc0ahIMbL9q3eiRIdkdci3zMZ/TzoEGRZlcA9sWP8v2
- TYRDbHb8bqDW4xnrvqsSE8It6P/lRYRO/b1OL3tXSqgP7opyMEgq2LAxGQz+BHt3sPZS
- ZPI4hMPDJC9rn6d2iJghqmWQpQbLxh8FilpL/+CrUIY3T9tjqajJPRRimlka/hoGHenQ
- nphA==
+ bh=5Z/mBnF2C++8Y28ugjpgFUVT2mPtu84eg9HV77jgOw4=;
+ b=Fy4vpVGFLM1067BgRcTjeGQ6eru1AJwRbtfzGSHDdOXFzh6jUlxEAJfUGIvGIkJjGD
+ kBIHldm9w1TpQZ+a3oHkBb6YP4hDaGZOIa4U2mnct1K6q+rPk1Z6MG5TlCvb8JgxLyy/
+ hFN81qQpfUQQiq0Ri8VVqan/d/MNpvd06176o2/MaEHpHsDhJ2FyWZ9qEvSVR0wF/JGW
+ iCa9PxdvfRJvFJ3CGqia0nPQ2PGdOdPO89MnFv4f5QHXiQJ/Vc4ed1Zgrk3Lw3NBUoqQ
+ jfDOSrfwfktu31d61Rz7TRYW5fNTUv1p37RYhz4CiOMZIA9WY4xRgWiQKN2b+5aTNpDU
+ q1Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1753286310; x=1753891110;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=0RGXvlUNkk/YL1sdJJYKS2dJUEu+ZQpbtYjx+RT8DDQ=;
- b=JUC0Kk58IixylTqpMjE//5qdc20SzdIlFTye61TI0NtrzQFkMwcBTo0fzYHQBO+Wcy
- Wcetqkkp11X8ae4gpZZfrAr8wsdmCHY1xP0a6dJkIP0eKJWnooA0W7qo7pB7rvoVTx/m
- JXGT4qJH/Nu1OSru9/HaJtcAe+gAyxzM82pkJA/TmIo4vRgeNcb44RfVw0aV0rAwHVvT
- JC28skmVuCMeQ0hfVx9euoCY3Sn8Xr5XNlwkl1GY/nFroeaPZX1cwNeSSRkeYnMnpXFp
- EXALIMJraE3wvvGmt6bfjC9CFXMeSlRGxuOpuesJ/HYrixMfjl9aUrRInkYHUVTm+tMy
- 0d9Q==
-X-Gm-Message-State: AOJu0YxxSRCyaZcRgAex85cENenr8TAGmKQtMjEYn1zJh8GpnABvjDRO
- Trp09vsL+q9UTCL7oQ2t+tlzED4fUklvISu5Qq0/DBVSW+gDJ2+gntyB3kemlA==
-X-Gm-Gg: ASbGncsbetz2uVtvsgQoi+WjyfmD/LhVKUIrZyFfXEZZYawKdJIbWvgpwNl7VSo6AVZ
- T0F29jN/mh/tA83JwMWVliSJOy6va00c1JUtsEaIYZ0XvybeTHJHuZG62xx6YLS+Dmz91W0napS
- P53fADbYIo8RQu3BCSV5Ql6AEGq8i37HdhqD9QZX8SeHCF3Tja5G40TF1bmguUkK7SVDsNhw4Pt
- oIiOOX1YVQB8hCPbL2RROfaQq88O1OGyBeQXdxO3X4bGPmAPqEgLa3dn0kJqcmioAvEwJfM+6th
- UksuJNQ4els9aULz/I0zuYK3Ndgz6RYidDvT31hk6AhawUqU8SeLyZK32X2YGDI8AZtP7K0m9Nd
- yX3ukNF+4udbe2pyi7ksFVK45W7AD/ffDsUcCXq4w9YOCJUlnXmz4hJs216afY0P20xPTMj9k1X
- IdkHGV5BHtcgdgxQ4SP7KowyCZGg==
-X-Google-Smtp-Source: AGHT+IHgo1T73BaanEHrZM7JJi3YPdNN8P/cSKqF0YUtohIVEho+riHJ1VhLSbugONRWY55NtqPpGw==
-X-Received: by 2002:a05:600c:a08e:b0:450:30e4:bdf6 with SMTP id
- 5b1f17b1804b1-45868d43d42mr30433675e9.19.1753286309703; 
- Wed, 23 Jul 2025 08:58:29 -0700 (PDT)
+ bh=5Z/mBnF2C++8Y28ugjpgFUVT2mPtu84eg9HV77jgOw4=;
+ b=B0cHUVvEgEU7BqHEsjlPFqosPZ30Qc80whGn9KfwUUa/OQDm6JH2vjz0y+ovrig/Xs
+ bS7sKQRm9j9OQ51pLoAsKAK+bm0MbVfpAXoazcgpDGc+E4nGzPi9nNPG9YPOvaYE2Xa3
+ GvrvTL68P/TUebCIBzkK4JI+FWbpQE1wvfzwoRJ9JrdTVbQ4Q2Iyc3LJImSwmp0QsQwf
+ APi92649TsSFKjQdL+ZhIPAM2e0viqVi5lXzourM4KVLPvg275Ju24FE1dOyMoRr6bAE
+ gCZJoxV6tM0cp8fME1gytKFFUVS0DPcbwp6dgMdx3YptOewGY003hNrgr4gg3x6cFlFT
+ 11+w==
+X-Gm-Message-State: AOJu0Yy8ljt8mkyE8/Hs2YHAvLr1XjcPPLniG9sw2fDSLFIk0ZskpQBH
+ Frwj5P8Atr2DMX7UGwIr0N+kUwRbvhFCDx8LCiGnUZseeILq1UyFHzJjJsKK0w==
+X-Gm-Gg: ASbGncv26QPI9v83dxG1UxahGF4tw072a0M8FThc6T8n0wNKpoiCKzGgIHbG5i0RP0X
+ wnZ4vEgil0/TUwLszSnauGiKj8fEqYPezUDMkwp3tsuXjCVwYk1tu6fEgQCPEFn6Jq2n+IqY0ie
+ XYkvWfTp8OyxN/AQ1qPT6EeiyWnrqzMm/qMwgBahRRrh8ZwbOuRRu0smpiAYowxD6Ka2b55KqpL
+ /9hCW6Jnys14/NnK/hmu0FHuzk0t3VW8CA1EVawPisWZs7KNmd7bFutRCOGeVBDRx93exGiGgB9
+ 8YgRvVg72qnw+0Wft8XBhfz73aAyTqBkq5CGCDk70CPKieUd86Ha7tZs9JO30/m2r2eCK88m/R6
+ OUS12zQBzicnyZXLfPq5lPJVo/btySvKWTrohU6WkeAO4y729nHwH92+/07LVlyg/C3cgDYHKsK
+ sxUA2EWVpr9kioHIjO3CkfMnvvg8GGMTUCvLuR
+X-Google-Smtp-Source: AGHT+IHnvw2IfKvH09/EbxZOfjyOHZbOBbALxLER1F4qf16UeiVqeFV5JR0DrFib6pg9/f/YQbUU7g==
+X-Received: by 2002:a05:6000:22ca:b0:3b3:9ca4:ac8e with SMTP id
+ ffacd0b85a97d-3b768f1f20cmr3140902f8f.44.1753286310384; 
+ Wed, 23 Jul 2025 08:58:30 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4D24D8FC008443E005DD6C3C62.dsl.pool.telekom.hu.
  [2001:4c4d:24d8:fc00:8443:e005:dd6c:3c62])
  by smtp.gmail.com with ESMTPSA id
  ffacd0b85a97d-3b61ca2bf99sm16710468f8f.32.2025.07.23.08.58.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Jul 2025 08:58:29 -0700 (PDT)
+ Wed, 23 Jul 2025 08:58:30 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 12/20] drm/amd/display: Support DAC in dce110_hwseq
-Date: Wed, 23 Jul 2025 17:58:05 +0200
-Message-ID: <20250723155813.9101-13-timur.kristof@gmail.com>
+Subject: [PATCH 13/20] drm/amd/display: Add analog link detection
+Date: Wed, 23 Jul 2025 17:58:06 +0200
+Message-ID: <20250723155813.9101-14-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250723155813.9101-1-timur.kristof@gmail.com>
 References: <20250723155813.9101-1-timur.kristof@gmail.com>
@@ -89,148 +89,216 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The dce110_hwseq is used by all DCE hardware,
-so add the DAC support here.
+Analog displays typically have a DDC connection which can be
+used by the GPU to read EDID. This commit adds the capability
+to probe analog displays using DDC, reading the EDID header and
+deciding whether the analog link is connected based on the data
+that was read.
 
-When enabling/disabling a stream for a RGB signal,
-this will call the VBIOS to enable/disable the DAC.
-Additionally, when applying the controller context,
-call SelectCRTC_Source from VBIOS in order to
-direct the CRTC output to the DAC.
+As a reference, I used the following functions:
+amdgpu_connector_vga_detect
+amdgpu_display_ddc_probe
+
+DAC load detection will be implemented in a separate commit.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 75 ++++++++++++++++++-
- 1 file changed, 73 insertions(+), 2 deletions(-)
+ .../amd/display/dc/link/hwss/link_hwss_dio.c  | 16 ++--
+ .../drm/amd/display/dc/link/link_detection.c  | 80 ++++++++++++++++++-
+ .../gpu/drm/amd/display/dc/link/link_dpms.c   |  3 +
+ .../drm/amd/display/dc/link/link_factory.c    |  3 +
+ 4 files changed, 95 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index 4ea13d0bf815..cc1f899f37e8 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -659,6 +659,20 @@ void dce110_update_info_frame(struct pipe_ctx *pipe_ctx)
+diff --git a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
+index f3470716734d..b9ebb992dc98 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
++++ b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
+@@ -58,8 +58,9 @@ void setup_dio_stream_encoder(struct pipe_ctx *pipe_ctx)
+ 		return;
  	}
- }
  
-+static void
-+dce110_dac_encoder_control(struct pipe_ctx *pipe_ctx, bool enable)
-+{
-+	struct dc_link *link = pipe_ctx->stream->link;
-+	struct dc_bios *bios = link->ctx->dc_bios;
-+	struct bp_encoder_control encoder_control = {0};
-+
-+	encoder_control.action = enable ? ENCODER_CONTROL_ENABLE : ENCODER_CONTROL_DISABLE;
-+	encoder_control.engine_id = link->link_enc->analog_engine;
-+	encoder_control.pixel_clock = pipe_ctx->stream->timing.pix_clk_100hz / 10;
-+
-+	bios->funcs->encoder_control(bios, &encoder_control);
-+}
-+
- void dce110_enable_stream(struct pipe_ctx *pipe_ctx)
- {
- 	enum dc_lane_count lane_count =
-@@ -688,6 +702,9 @@ void dce110_enable_stream(struct pipe_ctx *pipe_ctx)
- 		early_control = lane_count;
- 
- 	tg->funcs->set_early_control(tg, early_control);
-+
-+	if (dc_is_rgb_signal(pipe_ctx->stream->signal))
-+		dce110_dac_encoder_control(pipe_ctx, true);
- }
- 
- static enum bp_result link_transmitter_control(
-@@ -1175,7 +1192,8 @@ void dce110_disable_stream(struct pipe_ctx *pipe_ctx)
- 		pipe_ctx->stream_res.stream_enc->funcs->stop_dp_info_packets(
- 			pipe_ctx->stream_res.stream_enc);
- 
--	dc->hwss.disable_audio_stream(pipe_ctx);
+-	link_enc->funcs->connect_dig_be_to_fe(link_enc,
+-			pipe_ctx->stream_res.stream_enc->id, true);
 +	if (!dc_is_rgb_signal(pipe_ctx->stream->signal))
-+		dc->hwss.disable_audio_stream(pipe_ctx);
- 
- 	link_hwss->reset_stream_encoder(pipe_ctx);
- 
-@@ -1195,6 +1213,9 @@ void dce110_disable_stream(struct pipe_ctx *pipe_ctx)
- 		dccg->funcs->disable_symclk_se(dccg, stream_enc->stream_enc_inst,
- 					       link_enc->transmitter - TRANSMITTER_UNIPHY_A);
- 	}
++		link_enc->funcs->connect_dig_be_to_fe(link_enc,
++				pipe_ctx->stream_res.stream_enc->id, true);
+ 	if (dc_is_dp_signal(pipe_ctx->stream->signal))
+ 		pipe_ctx->stream->ctx->dc->link_srv->dp_trace_source_sequence(pipe_ctx->stream->link,
+ 				DPCD_SOURCE_SEQ_AFTER_CONNECT_DIG_FE_BE);
+@@ -98,10 +99,13 @@ void reset_dio_stream_encoder(struct pipe_ctx *pipe_ctx)
+ 	if (stream_enc->funcs->enable_stream)
+ 		stream_enc->funcs->enable_stream(stream_enc,
+ 				pipe_ctx->stream->signal, false);
+-	link_enc->funcs->connect_dig_be_to_fe(
+-			link_enc,
+-			pipe_ctx->stream_res.stream_enc->id,
+-			false);
 +
-+	if (dc_is_rgb_signal(pipe_ctx->stream->signal))
-+		dce110_dac_encoder_control(pipe_ctx, false);
++	if (!dc_is_rgb_signal(pipe_ctx->stream->signal))
++		link_enc->funcs->connect_dig_be_to_fe(
++				link_enc,
++				pipe_ctx->stream_res.stream_enc->id,
++				false);
++
+ 	if (dc_is_dp_signal(pipe_ctx->stream->signal))
+ 		pipe_ctx->stream->ctx->dc->link_srv->dp_trace_source_sequence(
+ 				pipe_ctx->stream->link,
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_detection.c b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+index 827b630daf49..fcabc83464af 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+@@ -942,6 +942,12 @@ static bool detect_link_and_local_sink(struct dc_link *link,
+ 			break;
+ 		}
+ 
++		case SIGNAL_TYPE_RGB: {
++			sink_caps.transaction_type = DDC_TRANSACTION_TYPE_I2C;
++			sink_caps.signal = SIGNAL_TYPE_RGB;
++			break;
++		}
++
+ 		case SIGNAL_TYPE_LVDS: {
+ 			sink_caps.transaction_type = DDC_TRANSACTION_TYPE_I2C;
+ 			sink_caps.signal = SIGNAL_TYPE_LVDS;
+@@ -1133,9 +1139,17 @@ static bool detect_link_and_local_sink(struct dc_link *link,
+ 				sink = prev_sink;
+ 				prev_sink = NULL;
+ 			}
+-			query_hdcp_capability(sink->sink_signal, link);
++
++			if (!sink->edid_caps.analog)
++				query_hdcp_capability(sink->sink_signal, link);
+ 		}
+ 
++		/* DVI-I connector connected to analog display. */
++		if ((link->link_enc->connector.id == CONNECTOR_ID_DUAL_LINK_DVII ||
++		     link->link_enc->connector.id == CONNECTOR_ID_SINGLE_LINK_DVII) &&
++			sink->edid_caps.analog)
++			sink->sink_signal = SIGNAL_TYPE_RGB;
++
+ 		/* HDMI-DVI Dongle */
+ 		if (sink->sink_signal == SIGNAL_TYPE_HDMI_TYPE_A &&
+ 		    !sink->edid_caps.edid_hdmi)
+@@ -1228,6 +1242,64 @@ static bool detect_link_and_local_sink(struct dc_link *link,
+ 	return true;
  }
  
- void dce110_unblank_stream(struct pipe_ctx *pipe_ctx,
-@@ -1580,6 +1601,51 @@ static enum dc_status dce110_enable_stream_timing(
- 	return DC_OK;
- }
- 
-+static void
-+dce110_select_crtc_source(struct pipe_ctx *pipe_ctx)
++/**
++ * Evaluates whether an EDID header is acceptable,
++ * for the purpose of determining a connection with a display.
++ */
++static bool link_detect_evaluate_edid_header(uint8_t edid_header[8])
 +{
-+	struct dc_link *link = pipe_ctx->stream->link;
-+	struct dc_bios *bios = link->ctx->dc_bios;
-+	struct bp_crtc_source_select crtc_source_select = {0};
-+	enum engine_id engine_id = link->link_enc->preferred_engine;
-+	uint8_t bit_depth;
++	int edid_header_score = 0;
++	int i;
 +
-+	if (dc_is_rgb_signal(pipe_ctx->stream->signal))
-+		engine_id = link->link_enc->analog_engine;
++	for (i = 0; i < 8; ++i)
++		edid_header_score += edid_header[i] == ((i == 0 || i == 7) ? 0x00 : 0xff);
 +
-+	switch (pipe_ctx->stream->timing.display_color_depth) {
-+	case COLOR_DEPTH_UNDEFINED:
-+		bit_depth = 0;
-+		break;
-+	case COLOR_DEPTH_666:
-+		bit_depth = 6;
-+		break;
-+	default:
-+	case COLOR_DEPTH_888:
-+		bit_depth = 8;
-+		break;
-+	case COLOR_DEPTH_101010:
-+		bit_depth = 10;
-+		break;
-+	case COLOR_DEPTH_121212:
-+		bit_depth = 12;
-+		break;
-+	case COLOR_DEPTH_141414:
-+		bit_depth = 14;
-+		break;
-+	case COLOR_DEPTH_161616:
-+		bit_depth = 16;
-+		break;
-+	}
-+
-+	crtc_source_select.controller_id = CONTROLLER_ID_D0 + pipe_ctx->stream_res.tg->inst;
-+	crtc_source_select.bit_depth = bit_depth;
-+	crtc_source_select.engine_id = engine_id;
-+	crtc_source_select.sink_signal = pipe_ctx->stream->signal;
-+
-+	bios->funcs->select_crtc_source(bios, &crtc_source_select);
++	return edid_header_score >= 6;
 +}
 +
- enum dc_status dce110_apply_single_controller_ctx_to_hw(
- 		struct pipe_ctx *pipe_ctx,
- 		struct dc_state *context,
-@@ -1599,6 +1665,10 @@ enum dc_status dce110_apply_single_controller_ctx_to_hw(
- 		hws->funcs.disable_stream_gating(dc, pipe_ctx);
- 	}
- 
-+	if (pipe_ctx->stream->signal == SIGNAL_TYPE_RGB) {
-+		dce110_select_crtc_source(pipe_ctx);
++/**
++ * Tries to detect a connected display by probing the DDC
++ * and reading the EDID header.
++ * The probing is considered successful if we receive a
++ * reply from the DDC over I2C and the EDID header matches.
++ */
++static bool link_detect_ddc_probe(struct dc_link *link)
++{
++	if (!link->ddc)
++		return false;
++
++	uint8_t edid_header[8] = {0};
++	bool ddc_probed = i2c_read(link->ddc, 0x50, edid_header, sizeof(edid_header));
++
++	if (!ddc_probed)
++		return false;
++
++	if (!link_detect_evaluate_edid_header(edid_header))
++		return false;
++
++	return true;
++}
++
++/**
++ * Determines if there is an analog sink connected.
++ */
++static bool link_detect_analog(struct dc_link *link, enum dc_connection_type *type)
++{
++	/* Don't care about connectors that don't support an analog signal. */
++	if (link->link_enc->connector.id != CONNECTOR_ID_VGA &&
++		link->link_enc->connector.id != CONNECTOR_ID_SINGLE_LINK_DVII &&
++		link->link_enc->connector.id != CONNECTOR_ID_DUAL_LINK_DVII)
++		return false;
++
++	if (link_detect_ddc_probe(link)) {
++		*type = dc_connection_single;
++		return true;
 +	}
 +
- 	if (pipe_ctx->stream_res.audio != NULL) {
- 		struct audio_output audio_output = {0};
++	*type = dc_connection_none;
++	return true;
++}
++
+ /*
+  * link_detect_connection_type() - Determine if there is a sink connected
+  *
+@@ -1238,6 +1310,7 @@ static bool detect_link_and_local_sink(struct dc_link *link,
+ bool link_detect_connection_type(struct dc_link *link, enum dc_connection_type *type)
+ {
+ 	uint32_t is_hpd_high = 0;
++	bool supports_hpd = link->irq_source_hpd != DC_IRQ_SOURCE_INVALID;
  
-@@ -1678,7 +1748,8 @@ enum dc_status dce110_apply_single_controller_ctx_to_hw(
- 		pipe_ctx->stream_res.tg->funcs->set_static_screen_control(
- 				pipe_ctx->stream_res.tg, event_triggers, 2);
+ 	if (link->connector_signal == SIGNAL_TYPE_LVDS) {
+ 		*type = dc_connection_single;
+@@ -1261,6 +1334,8 @@ bool link_detect_connection_type(struct dc_link *link, enum dc_connection_type *
+ 		return true;
+ 	}
  
--	if (!dc_is_virtual_signal(pipe_ctx->stream->signal))
-+	if (!dc_is_virtual_signal(pipe_ctx->stream->signal) &&
-+		!dc_is_rgb_signal(pipe_ctx->stream->signal))
- 		pipe_ctx->stream_res.stream_enc->funcs->dig_connect_to_otg(
- 			pipe_ctx->stream_res.stream_enc,
- 			pipe_ctx->stream_res.tg->inst);
++	if (!supports_hpd)
++		return link_detect_analog(link, type);
+ 
+ 	if (!query_hpd_status(link, &is_hpd_high))
+ 		goto hpd_gpio_failure;
+@@ -1269,6 +1344,9 @@ bool link_detect_connection_type(struct dc_link *link, enum dc_connection_type *
+ 		*type = dc_connection_single;
+ 		/* TODO: need to do the actual detection */
+ 	} else {
++		if (link_detect_analog(link, type))
++			return true;
++
+ 		*type = dc_connection_none;
+ 		if (link->connector_signal == SIGNAL_TYPE_EDP) {
+ 			/* eDP is not connected, power down it */
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
+index d6b7347c6c11..ac25d89a4148 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
+@@ -2256,6 +2256,9 @@ static enum dc_status enable_link(
+ 		enable_link_lvds(pipe_ctx);
+ 		status = DC_OK;
+ 		break;
++	case SIGNAL_TYPE_RGB:
++		status = DC_OK;
++		break;
+ 	case SIGNAL_TYPE_VIRTUAL:
+ 		status = enable_link_virtual(pipe_ctx);
+ 		break;
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_factory.c b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
+index 71c10a1261b9..c9725fd316f6 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_factory.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
+@@ -555,6 +555,9 @@ static bool construct_phy(struct dc_link *link,
+ 	case CONNECTOR_ID_DUAL_LINK_DVII:
+ 		link->connector_signal = SIGNAL_TYPE_DVI_DUAL_LINK;
+ 		break;
++	case CONNECTOR_ID_VGA:
++		link->connector_signal = SIGNAL_TYPE_RGB;
++		break;
+ 	case CONNECTOR_ID_DISPLAY_PORT:
+ 	case CONNECTOR_ID_MXM:
+ 	case CONNECTOR_ID_USBC:
 -- 
 2.50.1
 
