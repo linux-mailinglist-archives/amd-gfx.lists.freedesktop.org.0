@@ -2,127 +2,146 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E4C9B10233
-	for <lists+amd-gfx@lfdr.de>; Thu, 24 Jul 2025 09:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CAA2B10281
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Jul 2025 09:58:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA4CE10E1D8;
-	Thu, 24 Jul 2025 07:48:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B94B010E8B5;
+	Thu, 24 Jul 2025 07:58:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="OyER3n89";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ttv4UE4U";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2063.outbound.protection.outlook.com [40.107.244.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25D4C10E1D8
- for <amd-gfx@lists.freedesktop.org>; Thu, 24 Jul 2025 07:48:56 +0000 (UTC)
+ (mail-mw2nam12on2076.outbound.protection.outlook.com [40.107.244.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF06D10E8B5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 24 Jul 2025 07:58:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MksvjTG9rCypwlJYCnC+rHzTGu7RPDZ/4RE0Hsdfm7VFbO41olAWF60wIWvb9c80s1Pqy7n/2q0WlC8ntb65QqXz7x7WOJ6jlkL7WmyJEaZ6N4zhYfsj5Q1GKR3J0LEYQAR5+knu2E+9luaVhdqaHuHSQuaRPjKX0qCgVVe2adzkkzg9TFuf04FfHw8ybsNSuQydcDS7vPWbsbX0JvC8VeqgZv+g/d2DFkVGWwnhgBQfV5EqpbCU8JOwwsxehJ9cKKJVoshsfwLStmRlUhMl43oqQ7JievX4d/hr+rkeQZAfx3oJxHDHq1IVhkpjgfDR9fUUZfYJ8fn4ZFSbiGwv7A==
+ b=pCJn/pjx2Q995fE6BuzcHwxXdx5cuLRpO4e8HO6Uu9tBRkkkXlrJTbDSIHAUVRlADCk9CJ8p8iSryZhuscsbgtjMMZ0XyN0rchp3BieNcB51SwyYPAS2UfZDUvNGvxunTPCZf1H8EkodGnFAtq14TJsoe6HG6U7rbedARn33oRvqwWEZS+8UUUIPiy0EWz0qew+J8i1eE2lrNi2HP9XZP9wJ+90F19NZgR3lKf4JijbaNC3JJazbN21ONhwy4+JYmP7UiuO+Ixx0bWtmR0NBrBSIztXeA4OQN3JmFjQiBNkLlFRG9CyDF1EEkRnQEv2X80FfnuoT7tSFSGdPUWf5FA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tdQtQ5ipS2vCoR7StplXAub8Bi5n55/TDX26+LZM/7I=;
- b=bi1yx7bPmhIlc5rYwhCyRiBJx0Jgjz9DF/FjT2qELYwxhl8bqpKMP5OEopa+rPWakPf+kdf9hUCosVg/LNZxfECW6thLEsJ10ga1f2VVW5j/J0e8/6BtLaKU5kVriCpeh5bSGsGeHL9N54ahm5SqDtpwFOGcorz7RNWXZaNAxFNXC47Ed4MU4bm1yMkE8dG8+h81IjoMSATmvj9iQRCSrfFJjxP/6jaACzfKoTX70XcvdVhFaPJu8aa058N066myAfZYfkdu+ZIwnZe1bMLkvKMFWAM9TuvDn2u0BrvoLvhVUnVMT3kJ5mDOwxjYwDiPyBGvu8b2RJIXB0oPt9/4gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=Wt9gLRqKNRgAc+a5SHHSgBNmR5USmMx62DcD2z422po=;
+ b=gYNEdR5PfWXIpzs9Fn6/JEPAXRY++fLNBWjLn5w7FTCR4ovCRDLGKygwrmYCoPIrLFhZ1Cz1Pz1lUH9uGo1xfNANFX4vY9bfoOHOwwK+btHxariA24U+ljhK+c7XNGtnT2vxKlC0GJ57y68VQKt2bJnqI7qxgNw9QhSXB8qoKNTO6WlvJychCi/TVw3OWo9Iaelb7OPxaBt508u8SCIyyK77ViLz9dcAdehI8Rj4S+jDKTHu1+8rcgsJZoPLpPEeOH/QRwkCk96HbeW/XFla8zPMKf6OCGHXj4Gk0W5gTrLK7zIP8HvlweaWOBow5n2aB/9zcIv3w96kR39A6ex1FA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tdQtQ5ipS2vCoR7StplXAub8Bi5n55/TDX26+LZM/7I=;
- b=OyER3n89upL9s+zK3fvG+hscBZh3peGgaHbdxD40RJWuAPv+PrL0p4agwR+PIfPrvy+5AHWrHjU0PklMD5N+jQDe63YYxlHorIp0YWupHeG0/PnefxVNe1n9yr98eEapkpOSPVgRUsIbeamNMAloZJaOCi83wgvcwkRyHwJ9Qzc=
-Received: from BN9PR03CA0947.namprd03.prod.outlook.com (2603:10b6:408:108::22)
- by PH7PR12MB8596.namprd12.prod.outlook.com (2603:10b6:510:1b7::6)
+ bh=Wt9gLRqKNRgAc+a5SHHSgBNmR5USmMx62DcD2z422po=;
+ b=ttv4UE4ULR9KE9HXCUTQegunr1oDhtvzLXktB0njzqio6yMmaPlrR34CfSs5l16AQ7WHI0A8cPgZI1NUo87Ttf9Vg7cqXfMKUidxZQ0ZmowPkX1lZLERoFAlfAFRmIsiGJprOSkg1ad49fFWGrBSagWyo5eZS6O+KPfzALIdJ2M=
+Received: from PH7PR12MB8796.namprd12.prod.outlook.com (2603:10b6:510:272::22)
+ by SA3PR12MB9107.namprd12.prod.outlook.com (2603:10b6:806:381::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Thu, 24 Jul
- 2025 07:48:51 +0000
-Received: from BN3PEPF0000B36F.namprd21.prod.outlook.com
- (2603:10b6:408:108:cafe::10) by BN9PR03CA0947.outlook.office365.com
- (2603:10b6:408:108::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8943.29 via Frontend Transport; Thu,
- 24 Jul 2025 07:48:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN3PEPF0000B36F.mail.protection.outlook.com (10.167.243.166) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8989.1 via Frontend Transport; Thu, 24 Jul 2025 07:48:50 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 24 Jul 2025 02:48:47 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>, Wenjing Liu
- <wenjing.liu@amd.com>, Michael Strauss <michael.strauss@amd.com>, Alex Hung
- <alex.hung@amd.com>, George Shen <george.shen@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Wayne Lin <wayne.lin@amd.com>, Alvin Lee
- <Alvin.Lee2@amd.com>, Ray Wu <ray.wu@amd.com>, Harry Wentland
- <harry.wentland@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Roman Li
- <roman.li@amd.com>
-Subject: [PATCH] drm/amd/display: Reduce Stack Usage by moving 'audio_output'
- into 'stream_res'
-Date: Thu, 24 Jul 2025 13:18:33 +0530
-Message-ID: <20250724074833.1385215-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B36F:EE_|PH7PR12MB8596:EE_
-X-MS-Office365-Filtering-Correlation-Id: c05529d4-f469-4b78-1ff0-08ddca8687c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JRH/o1bnkBgfPz6b3epKUTX3fAivrYpcd5wrIrPK1b3Z5BIxyO1F3c/446Jx?=
- =?us-ascii?Q?3g+wSuN0+zrYsGIluYub1roVkDBxfHDPdmN+9uzLO8zIUeztnW+Wt7srCJlM?=
- =?us-ascii?Q?Yt4pcG7R/cF4VcfhSFxDOVOddSqCkwyQkojBYpJ3FCwux8btMX+X3JWXSI9I?=
- =?us-ascii?Q?OsW2wtAGwcAWYuDrtLoIDNUakLzDZgycxWwdzAIQcRWyIJIsXf9LPtLPGM4c?=
- =?us-ascii?Q?3hL+8s1Z6WJZIHBz8HDRwwilk2Pm7ckf0xuPcVgz2wrMvGU18xQgVN8eUhGV?=
- =?us-ascii?Q?IRs0CQ4U+JqQDXFPMvZnBcrko0MdhQzKE3eunqF1AisAODj+h5jFS4QHwHW2?=
- =?us-ascii?Q?ZRYWtownQTlKQ2s/+Ca4zczONZnUChQ219Cp+DMjk6JFKcTho1pK8upmoKLr?=
- =?us-ascii?Q?AWmuAlKBH5h23Y2VScWaw/vO3hggNnzwdW7yNkWbUJnm42D8Mw4I1oANdKJj?=
- =?us-ascii?Q?rnLYZo5mGQd62ZJfiukeDaiiwbpr+cQ09ydDc9HGz4mM4cqWfIL3zGtPAmnT?=
- =?us-ascii?Q?5Sfvjoo/pkjo5jSsnGOWqyU1u+f5u1ZFLuebgH7NNz3M+cO/GdNH3AzvC++9?=
- =?us-ascii?Q?Vlk4vbXc6AxkJ5Fvzjp0BOYNbwocL8kCrcPJkqzBnk05AA0L7q/M8DVbOOWm?=
- =?us-ascii?Q?q+F9Pg/Zir2pVp2nqZdAt24JXVT+NCL/GvZZduc/7SY3wIaXOZ1tNgCgpTlx?=
- =?us-ascii?Q?vz9j1bpBFukmQh9aaPAcx0pgQzDi6kJCn94AGgMdphiuRxT5NyjgdJm0uH+D?=
- =?us-ascii?Q?TXsEPwq6QQ7Ulm8WYJKCFz7gxP7gkI8IcE+UuP7aigrn3oiXofaFGyKAExAf?=
- =?us-ascii?Q?2k0KYp5Z83+726CgUOa8X0VnfBYioofl0tkcXjtWszn5Kp661PgUdIXUb0f/?=
- =?us-ascii?Q?F2GHkOcfds/dxscOyyxDvX8jTkMP3KtD5lAKjJ21oi+wHlPWiLDPreYSD1Se?=
- =?us-ascii?Q?wPucQcjPH6C+svskET3EkOvZuspYPIRHfGF9HpaAkcfqToVmJ0TRIaDeDg/G?=
- =?us-ascii?Q?5DQGWM8tGbZ2jmTRLGpmxQ1zGnxvOzCMDMeuq86HWIApfn1KNuSvISXmQFyh?=
- =?us-ascii?Q?hGRnkhOIx5lK+LNBPI1pJoWHRPeuc46RgVHxGVIXZq4GbotmPei8vnDfztG3?=
- =?us-ascii?Q?Pn0W9b6W94YfILPuNqMYv7LSbTm3yNtiL2K8eClo5yyt8+cbh3N+VL2fFCs+?=
- =?us-ascii?Q?pyiuiiQyEh5ksrqMhALwp2wlU5XDixTO5hqG2/VOt/E5Sbuo8puW8bwmvz/y?=
- =?us-ascii?Q?Z1nuBdr8LY+nXqIxIImaTKqYs5Xk2plvzHFZuf9Txh0vu7RGTSakTNWN57KZ?=
- =?us-ascii?Q?IXEryD37io5beI8DxKGj4nJ8owTBLvAyrpviNjsW961KPPn6iKS8gq5SJJlJ?=
- =?us-ascii?Q?qM0lRfaEs7zp/nx0ZrHfKlzoSCm0CsLsdNu+g1vkQHFZwkVfSxR7PpLz09ys?=
- =?us-ascii?Q?GAiMXxoc2UPN8FS/jR5zRv/xb44qVYEepEKftccuaLwq7Uh74gVv4I0+LHDh?=
- =?us-ascii?Q?FIXXYhZ4iUlOII5f1gMhO+T/6w56H3LRQIO1?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ 2025 07:58:49 +0000
+Received: from PH7PR12MB8796.namprd12.prod.outlook.com
+ ([fe80::910f:c354:ea0d:1fd]) by PH7PR12MB8796.namprd12.prod.outlook.com
+ ([fe80::910f:c354:ea0d:1fd%5]) with mapi id 15.20.8964.019; Thu, 24 Jul 2025
+ 07:58:48 +0000
+From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
+To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Subject: RE: [PATCH] drm/amd/amdgpu: fix missing lock for cper.ring->rptr/wptr
+ access
+Thread-Topic: [PATCH] drm/amd/amdgpu: fix missing lock for
+ cper.ring->rptr/wptr access
+Thread-Index: AQHb/G4GmDhJ5nkMJkGIxU6Gq4XdeLRA6LDQ
+Date: Thu, 24 Jul 2025 07:58:48 +0000
+Message-ID: <PH7PR12MB8796166DE31700613AA08F72B05EA@PH7PR12MB8796.namprd12.prod.outlook.com>
+References: <20250724073846.3991348-1-kevinyang.wang@amd.com>
+In-Reply-To: <20250724073846.3991348-1-kevinyang.wang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-07-24T07:58:42.0000000Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR12MB8796:EE_|SA3PR12MB9107:EE_
+x-ms-office365-filtering-correlation-id: 52e154bb-ccd4-4b4b-9220-08ddca87ebfe
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?Sw8lyrzMwoK7CpDnkTKbRbInNR9TKnt2oVUAh+knwF685iHOdwi7MnNpQfLx?=
+ =?us-ascii?Q?xW1Sp/xXecEy3gAPBVC700SpGKSnRqli8lN1vPr8EKHs94hnoQ2sziHAZ7Ut?=
+ =?us-ascii?Q?0APj81HhlM+AKL6lbnarVqRhv3ZHNXahmzgKgCjp7y/HKnHmxVuS0DExRUFS?=
+ =?us-ascii?Q?M+Lxf5d1OPWx6nKsi0UIhUkve46JBCNwWgKLvp4HDR+X49w5UKaoAmhk8sJ3?=
+ =?us-ascii?Q?YHsiIiEzmgtISFrl4DY1r445yOpV+0Ze6bBl7P8piMXFwj9iLoR0HxMXYmM+?=
+ =?us-ascii?Q?B0rq7RNHgFnf+MJ8wphuaMM9iq8nC9mohlzyv3S6GRHUz4+yE/x5pmwykXcs?=
+ =?us-ascii?Q?X8xcRFZ5vTVduTV4u43EEjUbpQR3V0t4DAc+tK434Sugimyi5vnM+LKCHVLk?=
+ =?us-ascii?Q?okpC+0XOA2I0TzFbduDNNpm4hzyi4o9R06VbIvU/Szx3vJko07X+IC+BgZbc?=
+ =?us-ascii?Q?u7oo///mIRrUvmhRxyFIrUce+Yol+RPhdDyUszvZ5eKMB6XvXqsLLz9ViK48?=
+ =?us-ascii?Q?LmVV3it6p01iXprtrO1ERlJBGVpEbuUUf8HcaCEkYDSNJJPbFWrXateTZ9uZ?=
+ =?us-ascii?Q?yawU7K4/5GwHQ285lLkflD5+YfZmZ9kBMQmj274BWqB/e59D+6PdYzz6OHBT?=
+ =?us-ascii?Q?qMrPTCUKyqnsZ7OMtloS2Qs0VOaAur8qOvHWVc4rwasMGt0t9bxKIHA4ccx1?=
+ =?us-ascii?Q?n1+RDVOwAIWqh/BVC5wpvd3b+5x9PGBHMuk0v+HTrwmGRdd3o2FJ3bo/Q1pa?=
+ =?us-ascii?Q?UY+cFVPJN9v2SPzAjVYv1FWx96Rzm4I7SAotXvYe+Ki0IGyixCDTdwXXdAY5?=
+ =?us-ascii?Q?/k+WEyxaZeV9PW1LHa2lW6sD9ItDow3E8ioqIQu+k2wrNH5fESODVnNyV30V?=
+ =?us-ascii?Q?eNUrHE5oof//mSNV5xTz/x8rf0heQgXpGOUwje9wdrR1bhHw5iKZdGEy2pxO?=
+ =?us-ascii?Q?osJ/yIZb/1ijJIlo/PsL20CRFGn2GVWHAO3jJEk6V64gUkN/bmJrWc0eJkeg?=
+ =?us-ascii?Q?F0j5un08AyaBjUBu+AtT7mbkFrQZ+16D6vQJwy0xQeNlmykS8G7nc8ERbkUD?=
+ =?us-ascii?Q?fe+77aRKQZhssMbU0EQRqt38orJ9EdxCvS2ndq5YeLL9QcmkXZY5keMoGs1X?=
+ =?us-ascii?Q?YNesXo4HhLwz0neU+521OqIUtrziHrS3Ce7fXkx0A+/MhJheQ9G9Bf5AaTxc?=
+ =?us-ascii?Q?UchDCEtsfNGT20Fk58yEX34XNHGEYmmjDmKFFMb4Ua/CH++97Yrz3pnt2Ft0?=
+ =?us-ascii?Q?FlCSLGB5kPb0gZr6gSI4uYaVgJ0ZcfilQ86uy7QWtbgpTaqYjYpTQYpYtejf?=
+ =?us-ascii?Q?NVLzVh23YIrO9HGJiCXHHJPxOgAHKO49Yw7YVjLL2SvtDhYTzygw5NhLGhqo?=
+ =?us-ascii?Q?9L+o1IU2zu3lIP6ruQg+R/LLzdxZdMvTX6wE7xGNXvcBR0wHG1v5M8zbvSAV?=
+ =?us-ascii?Q?3kTNoNM4YdnQoFixBSw4EJTxoExfEp/la8LyM/zw8DvHldksxXyw+w=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB8796.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007)(38070700018); DIR:OUT;
  SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bDzkVwtP8vI4yCsyMwUOSS0cu1Yea5nPwMG0zOSkqRVBLGhsvBMY3259kI70?=
+ =?us-ascii?Q?ROxh3F5wCPde019NP2ezqRw+EzuGH7ApMe6gya3Y9ykR58vnPUBH3/G0w/P5?=
+ =?us-ascii?Q?Umi4rNfdWATpL6/HnQ7+0oIaAmIn0BCxFQe4gi6SrW6vDuzDhZmbyc6C8bZp?=
+ =?us-ascii?Q?+q5xd9RmCHfYBcSySg5YhfPx97jQLOHI0Lz6l/JMTnGzOmF9LtD4SXQT/8gD?=
+ =?us-ascii?Q?DsXc5w5TO4DaxKkbGXChR4bn1J7H8DARbj4L4l2uHwrh/284QxcVdr8Bx6PL?=
+ =?us-ascii?Q?ZtO5szOMm8Jm2IMYlgwbFzAEzroQKJ21lERHJe7aaNnbMhgjd/pPJEXk1yZw?=
+ =?us-ascii?Q?JdvCujl0GXHVU8fJTqwkIF1K54vkt47jqDZhAhr2HsBoievrObgecILYIUzY?=
+ =?us-ascii?Q?yi/HCkdcTNPK5vfjF2/T+W+WlThuHooBxs9E7P2Y43Vxd6RBuiNFG/msDpbi?=
+ =?us-ascii?Q?4iuZMZ4f7WCtVNySF2Sa9gN/dTjmPCfSUxE5Pa1K4OKQAQbKRatPjYSSKkSu?=
+ =?us-ascii?Q?K+juAaIhAttb3VuT6Xv8l5GcepPjVC0AW1taZ9PE+3u1erRypbeykXePYfqc?=
+ =?us-ascii?Q?fiPOHaHhQw18Xmmrv6Gqti3RZrVKRBCpXf9072d0sncnSST4Sfmke+Zj1awP?=
+ =?us-ascii?Q?WZbmszDP/mY7rNffBOKPCkjXJrKGhDg7OBJqwMwCaQeBxU4qXzb7kc+BK/Ve?=
+ =?us-ascii?Q?y32Ca6Y4a3MXEbete/BKmeUmneovUb2yLeW5q4n6nfy0nHaekYeh1HBOetUx?=
+ =?us-ascii?Q?v/bLtk1u107C7wDAsp10DgfKI3HZ4sbEnf8VIAqF060v5irkTrQKG72ifEyA?=
+ =?us-ascii?Q?C5GuZALVLt1TM7f1nVyFcqm3/TtdcbBKKSHaQpS50fa8ok3yvRh+30w+7zXD?=
+ =?us-ascii?Q?cOjO8aChw/rrnDRww3csRY9BBNWeB3LJQTiudtyW+/yGrEj0uibbhLJaEIRW?=
+ =?us-ascii?Q?GOSoE1eIOkHHotxvIvkN+PSg3WZKEYb7gWbWaLa+kW5JzCtMF/j8bOK8iGae?=
+ =?us-ascii?Q?SNJjGaEPmYdXFv3o5zzRvdZ9sUR7XIaZzDy3E1DcD3+ng9bE1JJfczt0N0CS?=
+ =?us-ascii?Q?Awy//6pcOiEZsVXdWQJkmA686sucYVH0j9zph5FzOm25hMSuExHY0+Nfen6J?=
+ =?us-ascii?Q?2C2oAEW1w29jo8ViJJNE0K8SYbGpW9q6fb3FKSsaaYfYnepfQCG66NXsnqSi?=
+ =?us-ascii?Q?MdiM6MQN2UdQi1Oua20XLip/gTEDtmEbT90IoavWOHN2jICZ8aK7E8AhIK9s?=
+ =?us-ascii?Q?kBpoC/bFuf6z2bafxglPeGdoLXV+epQm8mUi1iO9cz6mBWru31ALtPt4L79Q?=
+ =?us-ascii?Q?oLLJ88BSQ8/lq6gmuU79Dgn9hkdNMFRZEu3sSc3d8bRmtjWnrHQpGAvPg0XL?=
+ =?us-ascii?Q?OSTiDRY4zGWyKnRFGiGjBBcm8l5nHDsqkhVj0d6JRSvJMONhhB2Sx5tpsplT?=
+ =?us-ascii?Q?OMyOU3sEu9PSzodIawZQFxachtXEe3K0gxxWOPNAU0vIOHbQ/GOCwNel+GSl?=
+ =?us-ascii?Q?+09/Qn+a2BcIWvAiZCzI9oaIbED2vRGw2lDhA0DDH52cfDQGGXEPTncT7z4B?=
+ =?us-ascii?Q?/KISzelsN9GKrvIXSks=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2025 07:48:50.8526 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c05529d4-f469-4b78-1ff0-08ddca8687c8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B36F.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8596
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8796.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52e154bb-ccd4-4b4b-9220-08ddca87ebfe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2025 07:58:48.5067 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KPEuoKXfg95TUgPI3WX6IswuUM7W27IDboQbh24rz1j1U65dwd0laxvagk5SUxa0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9107
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,141 +156,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The function `dp_retrain_link_dp_test` currently allocates a large
-audio_output array on the stack, causing the stack frame size to exceed
-the compiler limit (1080 bytes > 1024 bytes).
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-This change prevents stack overflow issues:
-amdgpu/../display/dc/link/accessories/link_dp_cts.c:65:13: warning: stack frame size (1080) exceeds limit (1024) in 'dp_retrain_link_dp_test' [-Wframe-larger-than]
-static void dp_retrain_link_dp_test(struct dc_link *link,
+Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 
-v2: Move audio-related data like `audio_output` is kept "per pipe" to
-    manage the audio for that specific display pipeline/display output path
-    (stream). (Wenjing)
-
-'Fixes: 9437059b4bfb ("drm/amd/display: Fix Link Override Sequencing When
-Switching Between DIO/HPO")'
-Cc: Wayne Lin <wayne.lin@amd.com>
-Cc: George Shen <george.shen@amd.com>
-Cc: Michael Strauss <michael.strauss@amd.com>
-Cc: Alvin Lee <Alvin.Lee2@amd.com>
-Cc: Ray Wu <ray.wu@amd.com>
-Cc: Wenjing Liu <wenjing.liu@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Tom Chung <chiahsuan.chung@amd.com>
-Cc: Roman Li <roman.li@amd.com>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/display/dc/inc/core_types.h      |  5 +++--
- .../amd/display/dc/link/accessories/link_dp_cts.c    | 12 ++++++------
- .../amd/display/dc/resource/dcn31/dcn31_resource.c   |  5 ++---
- .../amd/display/dc/resource/dcn31/dcn31_resource.h   |  3 +--
- 4 files changed, 12 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-index f0d7185153b2..f896cce87b8d 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-@@ -228,8 +228,7 @@ struct resource_funcs {
- 	enum dc_status (*update_dc_state_for_encoder_switch)(struct dc_link *link,
- 		struct dc_link_settings *link_setting,
- 		uint8_t pipe_count,
--		struct pipe_ctx *pipes,
--		struct audio_output *audio_output);
-+		struct pipe_ctx *pipes);
- };
- 
- struct audio_support{
-@@ -361,6 +360,8 @@ struct stream_resource {
- 	uint8_t gsl_group;
- 
- 	struct test_pattern_params test_pattern_params;
-+
-+	struct audio_output audio_output;
- };
- 
- struct plane_resource {
-diff --git a/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c b/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-index 2956c2b3ad1a..b12d61701d4d 100644
---- a/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-@@ -75,7 +75,6 @@ static void dp_retrain_link_dp_test(struct dc_link *link,
- 	bool is_hpo_acquired;
- 	uint8_t count;
- 	int i;
--	struct audio_output audio_output[MAX_PIPES];
- 
- 	needs_divider_update = (link->dc->link_srv->dp_get_encoding_format(link_setting) !=
- 	link->dc->link_srv->dp_get_encoding_format((const struct dc_link_settings *) &link->cur_link_settings));
-@@ -99,7 +98,7 @@ static void dp_retrain_link_dp_test(struct dc_link *link,
- 	if (needs_divider_update && link->dc->res_pool->funcs->update_dc_state_for_encoder_switch) {
- 		link->dc->res_pool->funcs->update_dc_state_for_encoder_switch(link,
- 				link_setting, count,
--				*pipes, &audio_output[0]);
-+				*pipes);
- 		for (i = 0; i < count; i++) {
- 			pipes[i]->clock_source->funcs->program_pix_clk(
- 					pipes[i]->clock_source,
-@@ -111,15 +110,16 @@ static void dp_retrain_link_dp_test(struct dc_link *link,
- 				const struct link_hwss *link_hwss = get_link_hwss(
- 					link, &pipes[i]->link_res);
- 
--				link_hwss->setup_audio_output(pipes[i], &audio_output[i],
--						pipes[i]->stream_res.audio->inst);
-+				link_hwss->setup_audio_output(pipes[i],
-+							      &pipes[i]->stream_res.audio_output,
-+							      pipes[i]->stream_res.audio->inst);
- 
- 				pipes[i]->stream_res.audio->funcs->az_configure(
- 						pipes[i]->stream_res.audio,
- 						pipes[i]->stream->signal,
--						&audio_output[i].crtc_info,
-+						&pipes[i]->stream_res.audio_output.crtc_info,
- 						&pipes[i]->stream->audio_info,
--						&audio_output[i].dp_link_info);
-+						&pipes[i]->stream_res.audio_output.dp_link_info);
- 
- 				if (link->dc->config.disable_hbr_audio_dp2 &&
- 						pipes[i]->stream_res.audio->funcs->az_disable_hbr_audio &&
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
-index 3ed7f50554e2..ca17e5d8fdc2 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
-@@ -2239,8 +2239,7 @@ struct resource_pool *dcn31_create_resource_pool(
- enum dc_status dcn31_update_dc_state_for_encoder_switch(struct dc_link *link,
- 	struct dc_link_settings *link_setting,
- 	uint8_t pipe_count,
--	struct pipe_ctx *pipes,
--	struct audio_output *audio_output)
-+	struct pipe_ctx *pipes)
- {
- 	struct dc_state *state = link->dc->current_state;
- 	int i;
-@@ -2255,7 +2254,7 @@ enum dc_status dcn31_update_dc_state_for_encoder_switch(struct dc_link *link,
- 
- 		// Setup audio
- 		if (pipes[i].stream_res.audio != NULL)
--			build_audio_output(state, &pipes[i], &audio_output[i]);
-+			build_audio_output(state, &pipes[i], &pipes[i].stream_res.audio_output);
- 	}
- #else
- 	/* This DCN requires rate divider updates and audio reprogramming to allow DP1<-->DP2 link rate switching,
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.h b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.h
-index c32c85ef0ba4..7e8fde65528f 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.h
-@@ -69,8 +69,7 @@ unsigned int dcn31_get_det_buffer_size(
- enum dc_status dcn31_update_dc_state_for_encoder_switch(struct dc_link *link,
- 	struct dc_link_settings *link_setting,
- 	uint8_t pipe_count,
--	struct pipe_ctx *pipes,
--	struct audio_output *audio_output);
-+	struct pipe_ctx *pipes);
- 
- /*temp: B0 specific before switch to dcn313 headers*/
- #ifndef regPHYPLLF_PIXCLK_RESYNC_CNTL
--- 
-2.34.1
+> -----Original Message-----
+> From: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
+> Sent: Thursday, July 24, 2025 3:39 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Zhou1, Tao
+> <Tao.Zhou1@amd.com>
+> Subject: [PATCH] drm/amd/amdgpu: fix missing lock for cper.ring->rptr/wpt=
+r access
+>
+> Add lock protection for 'ring->wptr'/'ring->rptr' to ensure the correct e=
+xecution.
+>
+> Fixes: 8652920d2c00 ("drm/amdgpu: add mutex lock for cper ring")
+> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
+> index 15dde1f50328..25252231a68a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
+> @@ -459,7 +459,7 @@ static u32 amdgpu_cper_ring_get_ent_sz(struct
+> amdgpu_ring *ring, u64 pos)
+>
+>  void amdgpu_cper_ring_write(struct amdgpu_ring *ring, void *src, int cou=
+nt)  {
+> -     u64 pos, wptr_old, rptr =3D *ring->rptr_cpu_addr & ring->ptr_mask;
+> +     u64 pos, wptr_old, rptr;
+>       int rec_cnt_dw =3D count >> 2;
+>       u32 chunk, ent_sz;
+>       u8 *s =3D (u8 *)src;
+> @@ -472,9 +472,11 @@ void amdgpu_cper_ring_write(struct amdgpu_ring *ring=
+,
+> void *src, int count)
+>               return;
+>       }
+>
+> +     mutex_lock(&ring->adev->cper.ring_lock);
+> +
+>       wptr_old =3D ring->wptr;
+> +     rptr =3D *ring->rptr_cpu_addr & ring->ptr_mask;
+>
+> -     mutex_lock(&ring->adev->cper.ring_lock);
+>       while (count) {
+>               ent_sz =3D amdgpu_cper_ring_get_ent_sz(ring, ring->wptr);
+>               chunk =3D umin(ent_sz, count);
+> --
+> 2.34.1
 
