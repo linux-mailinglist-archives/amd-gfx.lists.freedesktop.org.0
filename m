@@ -2,120 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1332FB11823
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jul 2025 07:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D73B1191C
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jul 2025 09:24:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15ACB10E085;
-	Fri, 25 Jul 2025 05:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5E410E0A2;
+	Fri, 25 Jul 2025 07:24:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="D2z5a0vw";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=aladdin.ru header.i=@aladdin.ru header.b="IVZvlrzM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2058.outbound.protection.outlook.com [40.107.94.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD99510E085
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Jul 2025 05:56:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j6qtEukwK6RhOn4qbeJBwUSjZ7WTpN/6I7UlQ5bJ8IJutUmRBaIM6O/5xC4FzQlD5+Btt+wkrAlvFmgXS4HVnoSgqsBfjXt7s6dMKTOVY/mXlJ2i/MjOc/nB8eleIAODdntIGSzou9q/e6RlboMulVd2mJ70rogXyFCm0s/YaNwaZp26UFzs2lAgLjfjIr6eHOIv8ZpxfPHEvAfwsQ8VZDK4G9/m7O/hs+1sDnK/Cm7sYjZBHnFhO5AkQ3u9UZTkOL0eogRoOjt7BuKkmh5E+kLrxwxaJq+TlIv1SI5Ma3j9f0NWeAOODVLdHQihOoqbiN5vsEE8IIrher1UkQGM5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wqI2DyORwQxruQXkAchaVhJLTAoGQFBc1U7t5I4A4IY=;
- b=iNQWVIGdJqMFgfJ9Livxf0slilT3yps6jOmBjEjbaHMEomOCs8GkG+UBC98dXgVwkYTn3lDFUqMaKLL+WxX7SqTo+uXX6W9KR0YN7ENRaOHcPWS2bHKRuPrLxCIfdzrtZ8Y6bSJeT+TlPoK0cgGSSQVGRqjyqzEPpK09Ls6mxO2CQMm9M1hJHsrvCqdA92tWe4e3TRp3cCxYy6uF3fT+Su6WmPWkn3hSBXHiE5C9A+wmBLYQ/pnOe3CF6HE6/wVeYbjvRf08HS9Q5ofy43553kabA9HbyPOYnWs1D5RZUTbOmS6HliLJfDf9rlkXkVbYcCFqWXfjblUBUsQdm9biVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wqI2DyORwQxruQXkAchaVhJLTAoGQFBc1U7t5I4A4IY=;
- b=D2z5a0vwn2U0PmrkTkATfEVKgD4U2WnD188rI5ui6OCN1S08IY8ecvfTJ95ysaV83SeUvFWJLJy+6gZEjT/ypajQI5SEWFqJTBzE5s4Nrpx2nK0OZs9cLBJwJG9pcj0WzK1hR47LWX+ksqFo9N7ES0e4PvGDHMOokC3YsyUK6ck=
-Received: from BYAPR02CA0020.namprd02.prod.outlook.com (2603:10b6:a02:ee::33)
- by PH7PR12MB7258.namprd12.prod.outlook.com (2603:10b6:510:206::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.39; Fri, 25 Jul
- 2025 05:56:19 +0000
-Received: from CO1PEPF000042A8.namprd03.prod.outlook.com
- (2603:10b6:a02:ee:cafe::2e) by BYAPR02CA0020.outlook.office365.com
- (2603:10b6:a02:ee::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.23 via Frontend Transport; Fri,
- 25 Jul 2025 05:56:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000042A8.mail.protection.outlook.com (10.167.243.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8964.20 via Frontend Transport; Fri, 25 Jul 2025 05:56:18 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 25 Jul
- 2025 00:56:16 -0500
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: Update external revid for GC v9.5.0
-Date: Fri, 25 Jul 2025 11:26:01 +0530
-Message-ID: <20250725055601.1637428-1-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
+X-Greylist: delayed 905 seconds by postgrey-1.36 at gabe;
+ Thu, 24 Jul 2025 10:40:19 UTC
+Received: from mail-out.aladdin-rd.ru (mail-out.aladdin-rd.ru [91.199.251.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC97710E061;
+ Thu, 24 Jul 2025 10:40:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; d=aladdin.ru; s=mail; c=simple/simple;
+ t=1753352697; h=from:subject:to:date:message-id;
+ bh=0vefUBiAWQYh2/3REMI7EF97twDh4DDuzRSmvvySUiU=;
+ b=IVZvlrzM7XgROlM2SvvSleF3Z4ZrFYTtzyDrPbeVBCmEJ/V2dNFwVdTWpX3OV6lzkW/V7w+FV28
+ OAEtMGbHy0IJyJCo+EX1c4DIgrziMlH7zrHxS2g76b3OqLV3moS3hvqh3Ptqkr3Cqf1+2hspCxbB9
+ Cp+Il7vDkPM/OzLKtW6DLnxfC2VIj0lEtAnfAGPR+U9yEUxY9v/6O8KSDSqQlni0pJf37WH1OMziZ
+ VqXj8i2aAlkhCqr06cWaGh7FsZQPVImiLmJ9hiJSyF81ESBJX+SXzf0sS3VFlzKL77Nk6o682AIwi
+ M8plSBHPJuKsL/KXSS17vqxi+20fPH307i3A==
+From: Daniil Dulov <d.dulov@aladdin.ru>
+To: <stable@vger.kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Daniil Dulov <d.dulov@aladdin.ru>, Harry Wentland
+ <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira
+ <siqueira@igalia.com>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
+ <airlied@linux.ie>, Simona Vetter <simona@ffwll.ch>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>, "Rodrigo
+ Siqueira" <rodrigo.siqueira@amd.com>, Jerry Zuo <jerry.zuo@amd.com>, Alex
+ Hung <alex.hung@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>
+Subject: [PATCH 5.10] drm/amd/display: Pass non-null to
+ dcn20_validate_apply_pipe_split_flags
+Date: Thu, 24 Jul 2025 13:24:48 +0300
+Message-ID: <20250724102449.63028-1-d.dulov@aladdin.ru>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042A8:EE_|PH7PR12MB7258:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc465ae9-b930-433f-d611-08ddcb3ff9c4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?MVyN0MnwCwBeDwy9+m9d4B6mwXvrenxMkpeBSyeZyS95m8Y58ltgLMl/wcsu?=
- =?us-ascii?Q?ROIO5uQQ7NCMvJV5UKfY9IM9alOIEECXDKsnkbX1Ccch3h0gBgHMhoJOaMQy?=
- =?us-ascii?Q?8Aa6NZXwNQD0CqZQ+SE0Tvl63cq4Ox/sTR3V2tYx5Rd4hutLV1/BS2lZLGIE?=
- =?us-ascii?Q?7W1hOFYyt+TUtgZycQnOGYBwHIzAVASRohNqhqXS3CrpieWdWVtV8VQfxGHG?=
- =?us-ascii?Q?V3eQExAl0UXyZH0vrZ/UnwiFKVCfr6tYnjN/YrTdG+FxXyYtqSSYA3zcXVcm?=
- =?us-ascii?Q?k1hY8bIGQDsJn3BKetsbRmhJrL6zjTJc/CRvzi+qnIp1pxr42V10txfQaQaZ?=
- =?us-ascii?Q?dXpsaES9jZJq2/bPsrkl3Mcc1NrK5Q2a5nRRL/1HvdQ6SgfxN6MJtC7I8xjh?=
- =?us-ascii?Q?LEKZt4m68uAjwV/9a3Y8zHlsbLZLvRKb9OWJoDEb2pLlgf+QZOzy4oIUaGfi?=
- =?us-ascii?Q?AmPmcUk3rmkt9NC2zDfIMoEjw4xRGaOoXQX2/3mL+/z3GT4BBuWV2DuP1dW5?=
- =?us-ascii?Q?2zRtL0es21StNr+ODG22porw0Q7m7H6z0BFiBOEgqKom3QHSTKKFBHxqPgL/?=
- =?us-ascii?Q?P57SyB+U54ofjHzSBdko2usnKCFp10FXuHjdhOmU7fv2Rffyc1it+8hl4z11?=
- =?us-ascii?Q?4leJNX2VLiCXebDl0OtXcietkyYgic4KyCk16013kJDd6h/UpH25mLnbNGXq?=
- =?us-ascii?Q?wrnGrdtyb6PRxq/ClPwpVK6p+bRhgXSaMd7mHd+Un3H92we1Y4UXIBOCSGZA?=
- =?us-ascii?Q?huyVGRY2setPazPovapKXrWwIwT8SaZsYLSM8eba+lPeyvWluuGI5gNdDsOM?=
- =?us-ascii?Q?pD/M4zEZSIE6MtkdMXTO5LdslaIKxvLRvWthTl2iMjMXyBJ1cLmojqVqsi4S?=
- =?us-ascii?Q?wk5p7vngTUeIHe/xBhefMYyslF+QBYJoSWxkt7NafmCcYSoKurcV85kTX5Lr?=
- =?us-ascii?Q?nkhchA9yr1+MEIanCjTLw1HQ5B9Z0vSY7FSORI5yst+qI25kMzwBCqlGUfye?=
- =?us-ascii?Q?Zns7QH+C/sqFiKLCK9UJnywxe6kVW0N9RbiXzgbxQWXiyKNL9EZqhpeY5LMr?=
- =?us-ascii?Q?maQGrS09XdkLS6cXQjdVLLHPmUC6brC9ymQYjIvMVW60bFg3gKepmIEG91ED?=
- =?us-ascii?Q?DsrPdTSQc5jIo3rWM6foltKRYbznmwIi4V7Vn+LpTNhJT0SWGHQEoEfFgqSe?=
- =?us-ascii?Q?iGPLTav4ZbqEgrBULOCV5xncQI0Gnd4wo4KaD/XrRQxDqYs/9R+v5/yfgwen?=
- =?us-ascii?Q?zASREPcxtY5AKbvffwBKb/r/jxDHls4J8wzx97kZ8SxgR4bkNI4NoxL+asMP?=
- =?us-ascii?Q?ycmXIAOmZ3q16x86bQ7XaGnu41kGdnIj+ZQo3dYJJSKhxJXx/N0io+LSNApr?=
- =?us-ascii?Q?XdFiE2NUDNzV/GCano87/4BaWTQHXye8mfiGSllcco6h737jjLAlPzOwcaaJ?=
- =?us-ascii?Q?6r+kvt5rwN7XxFDwHXbgBItAWhGSwKvzO9hbfz+arf0VCcVfT9gnxcpifsh9?=
- =?us-ascii?Q?jznEuuB+dAOX2jyUDC+JOcEnDy2wRqxnY0gW?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2025 05:56:18.8922 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc465ae9-b930-433f-d611-08ddcb3ff9c4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042A8.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7258
+X-Originating-IP: [10.0.122.7]
+X-ClientProxiedBy: EXCH-2016-03.aladdin.ru (192.168.1.103) To
+ EXCH-2016-01.aladdin.ru (192.168.1.101)
+X-Mailman-Approved-At: Fri, 25 Jul 2025 07:24:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,27 +62,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use different external revid for GC v9.5.0 SOCs.
+From: Alex Hung <alex.hung@amd.com>
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+commit 5559598742fb4538e4c51c48ef70563c49c2af23 upstream.
+
+[WHAT & HOW]
+"dcn20_validate_apply_pipe_split_flags" dereferences merge, and thus it
+cannot be a null pointer. Let's pass a valid pointer to avoid null
+dereference.
+
+This fixes 2 FORWARD_NULL issues reported by Coverity.
+
+Reviewed-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Signed-off-by: Jerry Zuo <jerry.zuo@amd.com>
+Signed-off-by: Alex Hung <alex.hung@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+[ Daniil: Changes to dcn21_fast_validate_bw() were dropped since the function
+  is not inplemented in 5.10.y. Also dcn20 and dcn21 were moved from
+  drivers/gpu/drm/amd/display/dc to drivers/gpu/drm/amd/display/dc/resource
+  since commit 8b8eed05a1c6 ("drm/amd/display: Refactor resource into component
+  directory"). The path is changed accordingly to apply the patch on 5.10.y ]
+Signed-off-by: Daniil Dulov <d.dulov@aladdin.ru>
 ---
- drivers/gpu/drm/amd/amdgpu/soc15.c | 2 ++
- 1 file changed, 2 insertions(+)
+Backport fix for CVE-2024-49923
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-index c457be3a3c56..9e74c9822e62 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-@@ -1218,6 +1218,8 @@ static int soc15_common_early_init(struct amdgpu_ip_block *ip_block)
- 			AMD_PG_SUPPORT_JPEG;
- 		/*TODO: need a new external_rev_id for GC 9.4.4? */
- 		adev->external_rev_id = adev->rev_id + 0x46;
-+		if (amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 5, 0))
-+			adev->external_rev_id = adev->rev_id + 0x50;
- 		break;
- 	default:
- 		/* FIXME: not supported yet */
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index b4bff3b3d842..029aba780d83 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -2847,6 +2847,7 @@ bool dcn20_fast_validate_bw(
+ {
+ 	bool out = false;
+ 	int split[MAX_PIPES] = { 0 };
++	bool merge[MAX_PIPES] = { false };
+ 	int pipe_cnt, i, pipe_idx, vlevel;
+ 
+ 	ASSERT(pipes);
+@@ -2869,7 +2870,7 @@ bool dcn20_fast_validate_bw(
+ 	if (vlevel > context->bw_ctx.dml.soc.num_states)
+ 		goto validate_fail;
+ 
+-	vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, NULL);
++	vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, merge);
+ 
+ 	/*initialize pipe_just_split_from to invalid idx*/
+ 	for (i = 0; i < MAX_PIPES; i++)
 -- 
-2.49.0
+2.34.1
 
