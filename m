@@ -2,155 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C636B12549
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jul 2025 22:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C065BB12816
+	for <lists+amd-gfx@lfdr.de>; Sat, 26 Jul 2025 02:39:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B559D10E050;
-	Fri, 25 Jul 2025 20:26:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B086A10E46C;
+	Sat, 26 Jul 2025 00:38:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="b3kb2hYg";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="EzKWfdKG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2081.outbound.protection.outlook.com [40.107.244.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA4710E050
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Jul 2025 20:26:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q8uB6i2SKXcERButoSwLykUJf/Su1qOeYmwxNoJReNi1wTaiD2npjr0yCIBKs75cCuOiohAt7til4XiXUshMtAwMeH9wqbLsHXg3K5MBL+Pt4631yQ/KCn9qgyu65vJYqu8tT3vHX6d5zy41LDEhU2xBh7pF/D/8GLmyCiR1CIhISSOVSjx6kYXK9vsFC6tLEcniWJK2r5BxM10fwIPyBBvYhwhkzykkypGoPaEcUUaZ0ujlA2eSKt1AnSdpHaMpjlK1DBOA0l+PE5C4GeiTtaMe0Y+SzqlczPM6XqwkwKrRACmICrRbEx5EDEuCwGXDhQ94Ca8/SgutR1zPXjN56A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OxTikUKmVP6zt6HkNImOpRN58AgLCfHPm2a4RPEdpQs=;
- b=J/cZoSpv8fmJ5xzPA5j5xJxgn+/0m6nofKhSe6TvrPW9c1jOwO7OjXj4Q5Tysmo+eBxDu43y5KiWJDeethIG++hUXxb5IXk6Fe8y66kNmc7Yvu9hb0RNg2n2gzrUYC69EqUGjyoYKMdDk03x1KD7nKJJ/i7j7AuN/faoh4kY4U6LWPGaWf8TJaF4vP5UbAnqg+lAPNE+KAlAPDmeDpTgxx9O0Yqs+TBpxp0Aa+PjZEdsuielOBpfdYEv3jII4VqhShbZs6htdU3Ow1GilaMytq08SVb0BTyEdTwZe1pEUUjejSCX1bH3U9ICINeCAla/EXuHxhIX2yznh8U8fvG5KA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OxTikUKmVP6zt6HkNImOpRN58AgLCfHPm2a4RPEdpQs=;
- b=b3kb2hYg99BhePIv7jrMj4NxmvWVxeVqxtceTopH5HWcbcOZ6NDP0uxVEVsSYtncTYW4fNhtc96CAhX3/R7fLE/ygS0PGehY6ghnB4//7fs7bc4wt/oPcXyEmxoTPlDUJ6P5H7bPq09/+ZeczGVAeV106Ts0M/8d3hbP7dDDaX8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
- by SJ2PR12MB8881.namprd12.prod.outlook.com (2603:10b6:a03:546::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.29; Fri, 25 Jul
- 2025 20:26:37 +0000
-Received: from DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2ed6:28e6:241e:7fc1]) by DM4PR12MB8476.namprd12.prod.outlook.com
- ([fe80::2ed6:28e6:241e:7fc1%6]) with mapi id 15.20.8964.021; Fri, 25 Jul 2025
- 20:26:36 +0000
-Message-ID: <017ac59e-1945-4951-bc86-9357a1f868f4@amd.com>
-Date: Fri, 25 Jul 2025 14:26:34 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/amd/display: Fix refactored DSC cap calculation
-To: Rodrigo Siqueira <siqueira@igalia.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Dillon Varone <dillon.varone@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20250722155830.67401-1-timur.kristof@gmail.com>
- <20250722155830.67401-2-timur.kristof@gmail.com>
- <kzydigo7sq2odubrh5cci54lw2htowj56g3ihg6hn5pynnnq6u@oof6cdqts3h3>
-Content-Language: en-US
-From: Alex Hung <alex.hung@amd.com>
-In-Reply-To: <kzydigo7sq2odubrh5cci54lw2htowj56g3ihg6hn5pynnnq6u@oof6cdqts3h3>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR03CA0080.namprd03.prod.outlook.com
- (2603:10b6:303:b6::25) To DM4PR12MB8476.namprd12.prod.outlook.com
- (2603:10b6:8:17e::15)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E578710E46B;
+ Sat, 26 Jul 2025 00:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=pS5hWffFV1Ob4zspaBt4ryV9sAvtzrgQ51ESWq+RxsM=; b=EzKWfdKG7+KE4K+uoPbfbiTbK3
+ ENFpw8HgHAzOJ+JbnfM+JLThvA7tz/EHNr5KpUSrLtyOfZN3ZmKBHddzGvSDRv1lIiZI+uLXZncUF
+ FkI/uws1AMOSW+MWFwXkICvukR+hP1hbPGh7OERZlwiOT4QpXOEMmiqOEc/NUeUGzUIUw3CrLI+zY
+ 5CizCr3e6QVTiUwMxRLKSSrJvIxIxj7LCD6Isa5ZLmfm83fhu0+d81bXAXMnGmRcena1N49mtnCSM
+ FHof5FPTnRwFzb29eVWnRXVexdR3cuvsKsavxaOctRZH1K17L6cFTLqjHcUnjeLTsSr0NPYcmjVRt
+ 63seddew==;
+Received: from [189.6.13.79] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1ufSvj-003wod-TE; Sat, 26 Jul 2025 02:38:28 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ airlied@gmail.com, alexander.deucher@amd.com, andrzej.hajda@intel.com,
+ christian.koenig@amd.com, harry.wentland@amd.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, mwen@igalia.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org, simona@ffwll.ch,
+ sunpeng.li@amd.com, tzimmermann@suse.de
+Cc: Michel Daenzer <michel.daenzer@mailbox.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: [PATCH v6 00/14] drm/amd/display: more drm_edid to AMD display driver
+Date: Fri, 25 Jul 2025 21:33:01 -0300
+Message-ID: <20250726003816.435227-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|SJ2PR12MB8881:EE_
-X-MS-Office365-Filtering-Correlation-Id: 467c6c79-d67d-4b6c-cd0d-08ddcbb98dc2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UC91VnphZzhaR3NVWUhaMGh2YXluMVlvdEt3SGN5MXBtdjFJanBaLzIxOXRI?=
- =?utf-8?B?NEN3b1FqZG5mQVJzS0Yxc2Jld0ZOTXROeG5TcGVQRXo2Y0hDQ2QreWhmWndB?=
- =?utf-8?B?Zlovell6dG0rSDJQK1VGbXFEOCtVVUJLR3FYWkVjbTgzcEpyS0wrSVkyeWxy?=
- =?utf-8?B?Tjg4UzVDT01IcCt2R0JWb3ZXOUpFOGk1ZmJFdzBqclI0QmJkeFByWjg4MWcr?=
- =?utf-8?B?WkF0eWx4K0ZMOTh5MHJTZHlKQWxTS1B4NjR2a1REWHorQzdETFlzY0VaWEpk?=
- =?utf-8?B?c2R5c2EwZkR2b0NPbWc2NkYwV0Vvc2ZHbXQraWRVdVhzUWRZbEllOXI1QUlZ?=
- =?utf-8?B?U1JKNHBUNC80a2RiTmJHMWdOTEVhNVA5OUR2bUkvQTAzeUVHWlkxUHkrK0hj?=
- =?utf-8?B?K0I0RTlSbmR4QmphRktIRVhXTHVuMUFGSDlZeHpxdStmdW05eFVDQ2FJNDJK?=
- =?utf-8?B?ZmF4RnFFOXl5SFNUY3BXUHlDR2kraDdCMXpnZ3NQUzNTSDJPMHd1SUF5Rjg3?=
- =?utf-8?B?aGxFRlZRRjE5T1lhdkxFbkMvajVteXF1OUlseXFEd01MT1REZmIwU2w3ZHoz?=
- =?utf-8?B?VktVQkNaN2ErQklXR1R6MEtNa0l0Um1wNWJPelBaQjlnQnhDcW11VDVsbXh2?=
- =?utf-8?B?dERnN2xsTW1jNXJINDB1Yk5kSFlid21MWi9EWjR4RmdNNlkzdzNDMEFnNnR6?=
- =?utf-8?B?NFNwTWJYQVp4Y1pPa1E5R1FwSElEbFMzaFhRbFg5RXRQaUNJaFRGczQ0WGgr?=
- =?utf-8?B?ZXRYV1BVOVdsL0ltak16VE51YXgvZnJxL0lueWtBcXhUekl6bWRUM09LV01Q?=
- =?utf-8?B?VWwrd1V3blIyY1BWY2htZ1NXZFV4RHlDNU0wa1U0Q3p4cUZRY2RMQ0kxc29H?=
- =?utf-8?B?LzVJRmF4VkFIMkh1RlpXbm9GUFRBa1FqWWpuZVNybFVTRWdFTEdrR0tjaHNY?=
- =?utf-8?B?cEtudEsxaklJbmEvamxzcmhtRWc5TTJwWHB5Vi9abGRHdVkycm9GUVh4dGFT?=
- =?utf-8?B?RTlxMFc0UjNFSHNLUFRUWVdmanpnWnlaZGN6dVk0YzVYOU54MG5oWUxKSTNz?=
- =?utf-8?B?MDN3QUdCcHVJT2Z0VnFoZ3pYbi9wMGxUYm5HUXo2TXZoUDRWTm1DZ1pjUFNX?=
- =?utf-8?B?UTdwejZSTVFPZTM5dTR0TWsyb0xNUHVXc3FHYTh0ZEJCeVZLNDd1eEl0aXVw?=
- =?utf-8?B?a0NBdU94amlaNkw5M0lwbXF2Z3hLYVRXV0dhaDZZeWxHUWhPZkQ2M0dvK3B0?=
- =?utf-8?B?NEFtVWFvYXlEMHVUWUsxdllsMlNNSFp6eU1aS21leDlXblBlaDNIMmlmcFlR?=
- =?utf-8?B?RHRCYWlsZkY0Z1dOV0hUdUVyZFdoYktnQitXSFFrbXl1dnNGY2g3cGd5TThv?=
- =?utf-8?B?S0s0OFhkb0UzLzROOXc1Q0VuMmltNnBtNGFKRTVrRWprS2FubENNTFE4eU9F?=
- =?utf-8?B?ZDNlZ3RkcjZwK2JXbUQwVTdrQ3ZKWFlJTndTc3IrRG82RnlxM0M5QzdnZE1x?=
- =?utf-8?B?d0htcWtIMlRDR2k2akhiQWdGTlk4NjVBbTlqVHpjMVNudzNQVlBDMjJ3VVRv?=
- =?utf-8?B?VStEdkErbTJnSi9zdDdkbHlaRjRkT2hNb001UkVUZGV0Wmg2QWpjZGFIY3kv?=
- =?utf-8?B?bStoQ1k4dGVKK3Nrb3psbGNpdzNzZERWVUZVeFlqUUM5bXM0S2xrRzdDazBZ?=
- =?utf-8?B?ZnR1Mlh4OW9QTWFvRU9yZW5OK2t5d2NydVJJZ2pOZTF3eU1lRWtjTENHUlZ4?=
- =?utf-8?B?SDk4Q2xqV2YrNE5lWmg5VUpPVWVBY2VqR2dFQ0dUeHhkUnJZeFVTM0VzSFEz?=
- =?utf-8?Q?e7Nifw95SV9TE+vZHUMbb26n6yNBojB1P/GdM=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dWtNMkZNN2huekZFVWUzZzRlQUtGbkZxc0xJUTBTVFdNcXUyUEdYWTRuNm16?=
- =?utf-8?B?RTBIT3lHNlM2bktzWm5UeEFJUmlBZy9LQXBuTE5mTFNFM0dPaGszNzlIK0xJ?=
- =?utf-8?B?NitVUVZ3Nnd6ZTMyUkF3bXdHd0NZQmlIc3lFRnFSeFQzT05KZjlDNjI5d21n?=
- =?utf-8?B?RGVQK21XdzYwajhwbkhiQ3YwYkYwd2NGblNhL3ZIN0dYNzdGWlhoUnkzZUxT?=
- =?utf-8?B?WkFXR1MwTUkzU2V4Uk1rclRMbTB2eWVxQ2JyQjBkeDdraVR4eW5NY3E0TmRR?=
- =?utf-8?B?bEhmS1drRHJ1TllZdHRwTEpjTFZIcnhTeEZJSHF2QlpoVzZoL0dYTEYwUzJj?=
- =?utf-8?B?cWNUekpuRDJFOElIOUJtWmlrMnV5TlJRSFV1d25tSmE5ZVM3ZDd1akkvRkdI?=
- =?utf-8?B?Y2pid0psSUttK05rVDAvMitCZUtZYlpqUE1Mellsc1QxLzlQMThCNlVjZWFQ?=
- =?utf-8?B?WXY4aUFoMjhUdkp6aU5IT3YxWDdKa3ZmeStjakZSSVlycGE0ZE80N0pTRGZU?=
- =?utf-8?B?eGRZdVNsUkp2ZEc0SmN6VzAxM2FBVms4Z3RmVEJYWFZ5WGphYW9zYTA0blVr?=
- =?utf-8?B?STVySm5Ec1BTak1wb05oczEvVHhjMGt4elkxd3VHVjFMbHVQd2grMVpVUDIv?=
- =?utf-8?B?STl0cGFMcytLQXk3eGt6cHBOMHlYa2JYSDJmbzZvUDFPSC9sZCtCRTdFY2tU?=
- =?utf-8?B?SFpxSTRtVDI4eXhZOFlnUEJsS0lVeExma1IvRmxRdURjS0d5Rk9DR0FIbFd1?=
- =?utf-8?B?MXBtdHFkV281Ri94MGkwTERWbEtxSkxLeUgySmMzNTF3bFF5OHVtYmpFZHRO?=
- =?utf-8?B?SHhsM3NhdVZtQmlzN3pGaHdFZlhRcUt0NkNBcnhBWVFrb214Wi95SHVXOGYw?=
- =?utf-8?B?RGV5RE5yN0VLNkczTG9JbzdRZTFFVmNvNTRIYlF5b1pJT2lIdVBPMU4vREVw?=
- =?utf-8?B?RW1vWHZRY2xMWFZINjlYM1RZejFtZHpNR0xWZTIvUXJpOTRLZXJNQyt4QUNo?=
- =?utf-8?B?amN3YXNDazJ6QVg4SjdLNzVRTDBxSnhHTkFQMkJkYnQ2cXlzZGtNcTVlSkpK?=
- =?utf-8?B?SkV3Mnd2cS95VW80aG1UbU1YS3JLeVVHNWFzTmEvVThMb1RFdEs1S3FjcEd2?=
- =?utf-8?B?OVprd1M1VjR3d0ZseUg0dDdha01ZcGVUR0FnYnVqSTVzU1ROWW5nM0llRWFW?=
- =?utf-8?B?c2dBcFNaMkx1UElHUlBoampJNVlmZGdIakZYUElSSlRUaHdxaTczc2Z0SlZC?=
- =?utf-8?B?WU01QjdpeXN4ZXZ0ZktubFl2ZVprSkRiTEREWExWdU5kK29RSC9ZTmVYNHpN?=
- =?utf-8?B?dFc4TnZLTVE4SXozRytpTGcvUXFIYUY1cFJsOTZJTDBUc0dtREFDYktzQ3l0?=
- =?utf-8?B?Z1pJU2NEME5FYTMvcEtFY1drM0djWjFaUmdRNVIwSlFKOFlCaE1ySDhNZWxx?=
- =?utf-8?B?ZUFaZ25ML2dKejFRbTBFaHNmbWg5KzRidkdBdGc4WC9hY1BDQkp6SUNoT2R3?=
- =?utf-8?B?S0wvRWpHazRyUmVmb1Z5bm1uUDJsc0Z5MFlCbU9iSlczcjl4WHFNZXNCa3BW?=
- =?utf-8?B?R3M5dHdEenMyR040U3FSQ1owZU9BNGdOeVFQdTk0bU84NUZXSnIwazhkVVFz?=
- =?utf-8?B?VXl6K0oreFRVOEtqZ1JOS2lZcE5zMDJVTVg0UXdoNXRiWnNTZzVuaWNPODVZ?=
- =?utf-8?B?K0FldnVyeXlLenBvMFhmUzVqKzI4TUo2NDJpM3FRYWFLQ2ordWpZSFc2OEtm?=
- =?utf-8?B?R2d6VmZYdmxnR0dEZFJ4UmNCdi9jdUdMOGphYUpsd0E5Ryt2UXQ1UGNoMGxC?=
- =?utf-8?B?QUlUUTlHNlUyK01xUXpZNWh3NThGcTdXRk5GL2VqdE05TDJ5TU1kZTIyRlZJ?=
- =?utf-8?B?YXoyQVFCVzZjN2FXVm02Ym1oZzkwL1R3WGQ0dVM1MnpxYlBzUk52cFdVQzBX?=
- =?utf-8?B?SS9hNGo3MHhDclhwYjc4M2x0bno5d3J6eE93MGxUN0ZjQVhJa2dDRkVBc3Aw?=
- =?utf-8?B?UkthYkFwTzVSWHlvRVVPTEJqcFRXU0xHaFB3cFJ4OHRIQXpleXQyTVhyUmlt?=
- =?utf-8?B?MmNzNU5oOWwzcUk0Ylo2VFp6SWd2ZzVBclYxRnFma0JjakgreHRsNW5CeFU5?=
- =?utf-8?Q?DgJZrpvBNn+f+Dh1gKiE9x0o1?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 467c6c79-d67d-4b6c-cd0d-08ddcbb98dc2
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2025 20:26:36.6474 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /bjslyZGx2naAtekaLsP8UmnHJgJLF4NFdRExke0pjnOj0lK9bQneCEIMQt1RaBpT2zNYnSq73CF4dHkNNtjgw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8881
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,72 +63,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch may be related and conflict to 
-https://www.mail-archive.com/amd-gfx@lists.freedesktop.org/msg125873.html
+Hi,
 
-amd-staging-drm-next should include the above patch but it is not 
-updated for 2 weeks, so let's wait for ASDN to be updated.
+Siqueira and I have been working on a solution to reduce the usage of
+drm_edid_raw in the AMD display driver, since the current guideline in
+the DRM subsystem is to stop handling raw edid data in driver-specific
+implementation and use opaque `drm_edid` object with common-code
+helpers.
 
+To keep DC as an OS-agnostic component, we create a mid layer that
+isolates `drm_edid` helpers called in the DC code, while allowing other
+OSes to implement their specific implementation.
 
-On 7/24/25 16:32, Rodrigo Siqueira wrote:
-> On 010/22, Timur Kristóf wrote:
->> After refactoring the DSC capability calculation, the
->> get_min_slice_count_for_odm could crash on some GPUs due to a
->> division by zero when max_total_throughput_mps was zero.
->> As a result, DC was broken when connecting a GPU that doesn't
->> support DSC to a monitor that supports DSC.
->> Tested on Oland (DCE 6) and Fiji (DCE 10).
->>
->> This commit fixes it by returning zero instead.
->>
->> Fixes: 4909b8b3846c ("drm/amd/display: Refactor DSC cap calculations")
->> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
->> ---
->>   drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c | 17 +++++++++--------
->>   1 file changed, 9 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
->> index a454d16e6586..4169ece9c535 100644
->> --- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
->> +++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
->> @@ -642,14 +642,15 @@ static unsigned int get_min_slice_count_for_odm(
->>   	unsigned int max_dispclk_khz;
->>   
->>   	/* get max pixel rate and combine caps */
->> -	max_dispclk_khz = dsc_enc_caps->max_total_throughput_mps * 1000;
->> -	if (dsc && dsc->ctx->dc) {
->> -		if (dsc->ctx->dc->clk_mgr &&
->> -			dsc->ctx->dc->clk_mgr->funcs->get_max_clock_khz) {
->> -			/* dispclk is available */
->> -			max_dispclk_khz = dsc->ctx->dc->clk_mgr->funcs->get_max_clock_khz(dsc->ctx->dc->clk_mgr, CLK_TYPE_DISPCLK);
->> -		}
->> -	}
->> +	if (dsc && dsc->ctx->dc && dsc->ctx->dc->clk_mgr &&
->> +		dsc->ctx->dc->clk_mgr->funcs->get_max_clock_khz)
->> +		max_dispclk_khz =
->> +			dsc->ctx->dc->clk_mgr->funcs->get_max_clock_khz(
->> +				dsc->ctx->dc->clk_mgr, CLK_TYPE_DISPCLK);
->> +	else if (dsc_enc_caps->max_total_throughput_mps)
->> +		max_dispclk_khz = dsc_enc_caps->max_total_throughput_mps * 1000;
->> +	else
->> +		return 0;
->>   
->>   	/* consider minimum odm slices required due to
->>   	 * 1) display pipe throughput (dispclk)
->> -- 
->> 2.50.1
->>
-> 
-> This patch lgtm.
-> 
-> Reviewed-by: Rodrigo Siqueira <siqueira@igalia.com>
-> 
-> I added other display folks to this patch.
-> 
-> I'm not sure if the original modification (4909b8b3846c) is already in
-> the stable kernel; if so, it could be a good idea to send this fix to
-> the stable kernel as well.
-> 
-> Thanks
-> 
+This work is an extension of [1].
+
+- Patch 1 addresses a possible leak added by previous migration to
+  drm_edid.
+- Patch 2 allocates a temporary drm_edid from raw edid for parsing.
+- Patches 3-7 use common-code, drm_edid helpers to parse edid
+  capabilities instead of driver-specific solutions. For this, patch 4
+  introduces a new helper that gets monitor name from drm_edid.
+- Patches 8-9 are groundwork to reduce the noise of Linux/DRM specific
+  code in the DC shared code
+- Patch 10 creates a mid layer to make DC embraces different ways of
+  handling EDID by platforms.
+- Patch 11 move open-coded management of raw EDID data to the mid
+  layer created before.
+- Patch 12 introduces a helper that compares EDIDs from two drm_edids.
+- Patch 13 adds drm_edid to dc_sink struct and a mid-layer helper to
+  free `drm_edid`.
+- Patch 14 switch dc_edid to drm_edid across the driver in a way that
+  the DC shared code is little affected by Linux specific stuff.
+
+[v1] https://lore.kernel.org/dri-devel/20250411201333.151335-1-mwen@igalia.com/
+Changes:
+- fix broken approach to get monitor name from eld (Jani)
+  - I introduced a new helper that gets monitor name from drm_edid
+- rename drm_edid_eq to drm_edid_eq_buf and doc fixes (Jani)
+- add NULL edid checks (Jani)
+- fix mishandling of product_id.manufacturer_name (Michel)
+  - I directly set it to manufacturer_id since sparse didn't complain.
+- add Mario's r-b in the first fix patch and fix commit msg typo.
+
+[v2] https://lore.kernel.org/dri-devel/20250507001712.120215-1-mwen@igalia.com/
+Changes:
+- kernel-doc and commit msg fixes (Jani)
+- use drm_edid_legacy_init instead of open coded (Jani)
+- place drm_edid new func into the right section (Jani)
+- paramenter names fix (Jani)
+- add Jani's r-b to the patch 12
+- remove unnecessary include (Jani)
+- call dc_edid_sink_edid_free in link_detection, instead of drm_edid_free
+- rebase on top of asdn
+
+[v3] https://lore.kernel.org/dri-devel/20250514202130.291324-1-mwen@igalia.com/
+Changes:
+- rebase to asdn
+- some kernel-doc fixes
+- move some changes to the right commit
+
+[v4] https://lore.kernel.org/amd-gfx/20250613150015.245917-1-mwen@igalia.com/
+Changes:
+- fix comments and commit messages (Mario)
+- remove unnecessary drm_edid dup and fix mem leak (Mario)
+- add Mario's rb to patches 5-7
+
+[v5] https://lore.kernel.org/amd-gfx/20250618152216.948406-1-mwen@igalia.com/
+Changes:
+- fix NULL pointer dereference (Alex H.) with the same approach proposed
+  by 7c3be3ce3dfae
+
+---
+
+There are three specific points where we still use drm_edid_raw() in the
+driver:
+1. raw edid data for write EDID checksum in DP_TEST_EDID_CHECKSUM via
+   drm_dp_dpcd_write(), that AFAIK there is no common code solution yet;
+2. open-coded connectivity log for dc link detection, that maybe can be
+   moved to drm (?);
+3. open-coded parser that I suspect is a lot of duplicated code, but
+   needs careful examining.
+
+I suggest to address those points in a next phase for regression control.
+
+[1] https://lore.kernel.org/amd-gfx/20250308142650.35920-1-mwen@igalia.com/
+
+Let me know yours thoughts!
+
+Melissa
+
+Melissa Wen (12):
+  drm/amd/display: make sure drm_edid stored in aconnector doesn't leak
+  drm/amd/display: start using drm_edid helpers to parse EDID caps
+  drm/amd/display: use drm_edid_product_id for parsing EDID product info
+  drm/edid: introduce a helper that gets monitor name from drm_edid
+  drm/amd/display: get panel id with drm_edid helper
+  drm/amd/display: get SAD from drm_eld when parsing EDID caps
+  drm/amd/display: get SADB from drm_eld when parsing EDID caps
+  drm/amd/display: simplify dm_helpers_parse_edid_caps signature
+  drm/amd/display: change DC functions to accept private types for edid
+  drm/edid: introduce a helper that compares edid data from two drm_edid
+  drm/amd/display: add drm_edid to dc_sink
+  drm/amd/display: move dc_sink from dc_edid to drm_edid
+
+Rodrigo Siqueira (2):
+  drm/amd/display: add a mid-layer file to handle EDID in DC
+  drm/amd/display: create a function to fill dc_sink with edid data
+
+ .../gpu/drm/amd/display/amdgpu_dm/Makefile    |   1 +
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  33 +++---
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 109 +++++++-----------
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  21 ++--
+ .../gpu/drm/amd/display/amdgpu_dm/dc_edid.c   |  39 +++++++
+ .../gpu/drm/amd/display/amdgpu_dm/dc_edid.h   |  15 +++
+ .../drm/amd/display/dc/core/dc_link_exports.c |   9 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_sink.c |   3 +
+ drivers/gpu/drm/amd/display/dc/dc.h           |  10 +-
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h   |   7 +-
+ drivers/gpu/drm/amd/display/dc/inc/link.h     |   9 +-
+ .../drm/amd/display/dc/link/link_detection.c  |  30 ++---
+ .../drm/amd/display/dc/link/link_detection.h  |   9 +-
+ drivers/gpu/drm/bridge/sil-sii8620.c          |   2 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c |   2 +-
+ drivers/gpu/drm/drm_edid.c                    |  54 +++++++--
+ include/drm/drm_edid.h                        |  10 +-
+ 17 files changed, 199 insertions(+), 164 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/dc_edid.c
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/dc_edid.h
+
+-- 
+2.47.2
 
