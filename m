@@ -2,110 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1019BB13557
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Jul 2025 09:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87FC7B13ADC
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Jul 2025 14:58:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00B5210E00C;
-	Mon, 28 Jul 2025 07:08:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1095110E4EE;
+	Mon, 28 Jul 2025 12:58:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="gGfWW5rv";
+	dkim=pass (2048-bit key; secure) header.d=cachyos.org header.i=@cachyos.org header.b="gL/9WQ/q";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 311 seconds by postgrey-1.36 at gabe;
- Sun, 27 Jul 2025 19:51:27 UTC
-Received: from mout.web.de (mout.web.de [212.227.15.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29FA710E318;
- Sun, 27 Jul 2025 19:51:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1753645885; x=1754250685; i=markus.elfring@web.de;
- bh=w7wV4bQw6I+f2MyxezAE54mSoFDxSCTYKVYPfxLRr80=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
- Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=gGfWW5rvO8+2fRGO3S4msEjf0YzBdojeC6mQBnrOp1Tj+23BiOeIpvJX9JWZhdf6
- wIkbMQtlIAi+dOQlV28xdou+bRhT9xHXxlaxFdx7dpK6Pr5cHFA2PZR01eU1VU7KQ
- 5g7+qIIlqdjJMvH8BDnLjv79g0u0WX5tw07KkMrZgP5tN+Sg9L1E2Cq3EZG9xjaqE
- 78HZAr0DmxN8EGh2U7V/7v/UdsSKa6K4w9xYbH3Derlxr5CgeyBQ+QeYwYonJJOWQ
- 5tZ3upELEFye6/q+1AcrRrnHWGRsHazX50Bw+ZoOljVSXWxQsOcpLomS8w5faNKFv
- glk/pZHIPNB3HesMfQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.93.1]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1M3Euv-1uhVIH2JFl-00H3nV; Sun, 27
- Jul 2025 21:46:04 +0200
-Message-ID: <3f9121a0-30ae-4dde-8c22-be195dfc4fe4@web.de>
-Date: Sun, 27 Jul 2025 21:46:01 +0200
+Received: from mail.ptr1337.dev (mail.ptr1337.dev [202.61.224.105])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72D9E10E341;
+ Mon, 28 Jul 2025 08:54:04 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 05FAE2842E3; Mon, 28 Jul 2025 10:45:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cachyos.org; s=dkim;
+ t=1753692331; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references;
+ bh=hZAZQxcJny2MJlnbj6INcbeqX5pbA4FFdFvh2PmI64w=;
+ b=gL/9WQ/qCqbdu8zR86gU47Fb4JEBykEZI3fYcn9RWlJ1FkRil9jRegxpKVtlMVHiuCRkvD
+ eUN8qjcTZbRYiOkvX4mdgh/LxFAr5+8+kF7N59rXBpMN6Ij4pFM7K0toI9/17YaGKGKaib
+ TRUqRWvjhzvFhphSevh08vs5VWbN3+rSK8oTR33/pl3tDKExtUZjXzo2iLkcAc7fqbskIw
+ LuRqFnwnfmC9KGst5fDt6aVyRY9/lqAnz1lnsj7VqV6WWNJBP5H76boU0TjPx4UuuMwu9R
+ DCIWav85qzoBaQQMN29prltn9IdsIgfcfFXvyThIPqE17s2r92h8R/Qfq6plxQ==
+Message-ID: <d9a1ed6d-05bb-440d-afa9-cb30315bd02d@cachyos.org>
+Date: Mon, 28 Jul 2025 15:45:25 +0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: Salah Triki <salah.triki@gmail.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <aCdkIkNOQgnA5Pou@pc>
-Subject: Re: [PATCH] drm/amdgpu: check return value of xa_store()
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <aCdkIkNOQgnA5Pou@pc>
+Subject: Re: [PATCH v4 0/5] Improvements to S5 power consumption
+To: Mario Limonciello <superm1@kernel.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Bjorn Helgaas <bhelgaas@google.com>
+Cc: "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:HIBERNATION (aka Software Suspend, aka swsusp)"
+ <linux-pm@vger.kernel.org>,
+ "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>,
+ "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ "open list:SCSI SUBSYSTEM" <linux-scsi@vger.kernel.org>,
+ "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+ Mario Limonciello <mario.limonciello@amd.com>
+References: <20250616175019.3471583-1-superm1@kernel.org>
+Content-Language: en-US
+From: Eric Naim <dnaim@cachyos.org>
+In-Reply-To: <20250616175019.3471583-1-superm1@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:/UEPh5id4lqeb+TOA1F8EsVORfB81cvRTm/3ntn9RE3QjgTxHvO
- QmkaeUpukQGSzRTZLbW9OxqV5MYL7NiLNttLqBOJbuZ8ZEYpRLFeXwQZTb9YameuFdaiaja
- eUpa2NtQfkgDY0SthmK/DfbyXmxaZh/5q1UShwxio4vPZyV4zS712gytH2K3tRv894B4brs
- 2sr5WiAZBqfW+lIpyJ7zQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:T8AGUB0TVkE=;kY1NtqiN+H6U/XETaZeOMhhZEFR
- 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
-X-Mailman-Approved-At: Mon, 28 Jul 2025 07:08:32 +0000
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Mailman-Approved-At: Mon, 28 Jul 2025 12:58:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,16 +69,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> xa_store() may fail so check its return value and if error occurred free
-> numa_info and return NULL.
+On 6/17/25 00:50, Mario Limonciello wrote:
+> From: Mario Limonciello <mario.limonciello@amd.com>
+> 
+> A variety of issues both in function and in power consumption have been
+> raised as a result of devices not being put into a low power state when
+> the system is powered off.
+> 
+> There have been some localized changes[1] to PCI core to help these issues,
+> but they have had various downsides.
+> 
+> This series instead tries to use the S4 flow when the system is being
+> powered off.  This lines up the behavior with what other operating systems
+> do as well.  If for some reason that fails or is not supported, unwind and
+> do the previous S5 flow that will wake all devices and run their shutdown()
+> callbacks.
+> 
 
-* I find such a change description improvable another bit.
+Hi Mario,
 
-* How do you think about to add any tags (like =E2=80=9CFixes=E2=80=9D and=
- =E2=80=9CCc=E2=80=9D) accordingly?
-  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
-Documentation/process/submitting-patches.rst?h=3Dv6.16-rc7#n145
+I've been running this series on CachyOS since 6.16-rc3 and have no issues.
 
+Feel free to add
 
+Tested-by: Eric Naim <dnaim@cachyos.org>
+
+-- 
 Regards,
-Markus
+  Eric
+> v3->v4:
+>  * Fix LKP robot failure
+>  * Rebase on v6.16-rc2
+> 
+> Previous submissions [1]:
+> Link: https://lore.kernel.org/linux-pm/CAJZ5v0hrKEJa8Ad7iiAvQ3d_0ysVhzZcXSYc5kkL=6vtseF+bg@mail.gmail.com/T/#m91e4eae868a7405ae579e89b135085f4906225d2
+> Link: https://lore.kernel.org/linux-pci/20250506041934.1409302-1-superm1@kernel.org/
+> Link: https://lore.kernel.org/linux-pci/20231213182656.6165-1-mario.limonciello@amd.com/ (v1)
+> Link: https://lore.kernel.org/linux-pm/20250514193406.3998101-1-superm1@kernel.org/ (v2)
+> Link: https://lore.kernel.org/linux-pm/20250609024619.407257-1-superm1@kernel.org/ (v3)
+> 
+> Mario Limonciello (5):
+>   PM: Use hibernate flows for system power off
+>   PCI: Put PCIe ports with downstream devices into D3 at hibernate
+>   drm/amd: Avoid evicting resources at S5
+>   scsi: Add PM_EVENT_POWEROFF into suspend callbacks
+>   usb: sl811-hcd: Add PM_EVENT_POWEROFF into suspend callbacks
+> 
+>  drivers/base/power/main.c                  |  7 ++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 +
+>  drivers/pci/pci-driver.c                   | 94 ++++++++++++++--------
+>  drivers/scsi/mesh.c                        |  1 +
+>  drivers/scsi/stex.c                        |  1 +
+>  drivers/usb/host/sl811-hcd.c               |  1 +
+>  include/linux/pm.h                         |  3 +
+>  include/trace/events/power.h               |  3 +-
+>  kernel/reboot.c                            |  6 ++
+>  9 files changed, 86 insertions(+), 34 deletions(-)
+> 
