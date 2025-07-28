@@ -2,58 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0DF0B139B6
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Jul 2025 13:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26DE1B13AE8
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Jul 2025 15:02:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6377610E4DF;
-	Mon, 28 Jul 2025 11:14:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3C0210E505;
+	Mon, 28 Jul 2025 13:01:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="b/u1wlyJ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HM09IXrB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DE4D10E4DA;
- Mon, 28 Jul 2025 11:14:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hmyVjFhM9n39tBDNOfktS5Ta0EggXanZ2OCbX4RAjxw=; b=b/u1wlyJzgNt6WD5ph0nwGB3yw
- 67wLyLSYckaUONOmFL9nDUusXp8UTFeRaxY6Bps69xOQGa0yKDtBKS6eDazRFnJgaMGBeggd1foPT
- s8cjclAgxzAp0digZWwGAaMxyfGXHwKGJqU02J86qKKTHEpufQV4jN5jboPILa1V2ruwyT1soU5Pa
- chnuXjnusQS/iBaHrBomaYx/UIryUIzuHW4zUMDdIy6n51fbBfos8u5Z/kxhsRTSfRhrN99MPA63x
- gL2A6Hi8Fe7K7kBirtgEoYxBXBGveu8e897vjk/OFCz87IyTcFqTlYfQZQeKTk2qZg4cdmEv0NWDU
- qKhAIPpw==;
-Received: from [84.66.36.92] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1ugLoB-004sFd-CP; Mon, 28 Jul 2025 13:14:19 +0200
-Message-ID: <0312116d-b216-4afb-bf9f-210b553fed7f@igalia.com>
-Date: Mon, 28 Jul 2025 12:14:18 +0100
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E457A10E502
+ for <amd-gfx@lists.freedesktop.org>; Mon, 28 Jul 2025 13:01:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eYK5D3IjAsKNfhugfKkA6vmc4dDJRgU5/n6wGG5VuE9Q4nB+y3WPWxYFNN1A8EiqvKumRL0++Hq5Y4zl03PvCGsG4BoNwXsMvHkfdn1FaR97TIEJ2eXFFl4smg2zPI0pFinwXEGJrU+hjqR1Bi3rTt4cMKDrb8wbBdYMPBZvxH3C5/Knluki/xcub3QSXJ+7zKKK4X9x0FsWmQipQ3iTXA+tb7/H43MgQByog2+gf9hDOPBJB47hcfbDYyBHQ0KKFJot9fdky275SKMmCeKDgIQnE0fmLebVVBc7FUCpy0wMUrpme0djkrC/YvwgsIG7GssS/MJyCkFyjDvm8dpRZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=B1ZxdtKMgN64mMpH0vF4bBs63/pmXiZXtw2s0zP+eZk=;
+ b=sanuCyPW/hHGaIjMtD6kFUkLsBBBnByAXzph3FSRJHYaMjQIR/v1HW3TTAEY7ekeJI+E9ENCFx+u7AuXyEYtg7cpw1r/nZfv0IaLLR8RK08E3UYQ1QNyYXRG+vKYxdKJLnOXxDaY+yhhzFJSx22M/Wb6muFVS7bkwmQMi/4KglNubU/ArIVO1sBPdapVv8uNF7RpeALeh8winxK+5AwYK10HRhs0uy1OJ1H7mhT0xy2JLgKBrMBOgzVp54CVKRKc3tEkm0oL3rRuoPb/c2wf1GNz9Q3hxoc6enAMjC2VR2tMXJ2W+DfuSuRSamc1UoQGlo0a6F/fkU25pJ1JVPa5hg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B1ZxdtKMgN64mMpH0vF4bBs63/pmXiZXtw2s0zP+eZk=;
+ b=HM09IXrBQI6lTfGwToPJD/mZfcrivboY6FC3bXXazA+J2EEVu4OYhI4nz6RTqt6P8X9KzRCbFO/gk/hVrIP6cmG505Q1N0Nq/mYvLkGalqbLwXv0cwmnaOckyBFDK/sTIS5nNL7D7efEicdxYn3qWHQ3G8buJi/mCmxxS8XWCEY=
+Received: from MW4PR03CA0142.namprd03.prod.outlook.com (2603:10b6:303:8c::27)
+ by MN0PR12MB5786.namprd12.prod.outlook.com (2603:10b6:208:375::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.21; Mon, 28 Jul
+ 2025 13:01:56 +0000
+Received: from SN1PEPF0002BA51.namprd03.prod.outlook.com
+ (2603:10b6:303:8c:cafe::85) by MW4PR03CA0142.outlook.office365.com
+ (2603:10b6:303:8c::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.26 via Frontend Transport; Mon,
+ 28 Jul 2025 13:01:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SN1PEPF0002BA51.mail.protection.outlook.com (10.167.242.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8989.10 via Frontend Transport; Mon, 28 Jul 2025 13:01:55 +0000
+Received: from MKMYUNXIALI01.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Jul
+ 2025 08:01:54 -0500
+From: Yunxiang Li <Yunxiang.Li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>
+CC: Yunxiang Li <Yunxiang.Li@amd.com>
+Subject: [PATCH] drm/amdgpu: skip mgpu fan boost for multi-vf
+Date: Mon, 28 Jul 2025 09:01:27 -0400
+Message-ID: <20250728130128.875-1-Yunxiang.Li@amd.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v7 10/12] drm/sched: Break submission patterns with some
- randomness
-To: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
- <phasta@kernel.org>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-References: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
- <20250724141921.75583-11-tvrtko.ursulin@igalia.com>
- <fe05e8fd-d56f-4b32-a65b-46c9ef6df9c7@damsy.net>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <fe05e8fd-d56f-4b32-a65b-46c9ef6df9c7@damsy.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA51:EE_|MN0PR12MB5786:EE_
+X-MS-Office365-Filtering-Correlation-Id: d1dba6a8-b91a-44e4-2144-08ddcdd6edf4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xUvN1p2A6CLZY3+gnZX+GYcU9FxP7Vg20qf+uau102HGZHyzwh2WOCLMFJVy?=
+ =?us-ascii?Q?+k44/VoUigbNgxjYMVRS9mvXnLSOgxzUtzJhudVvezVHaViUHxIcEnK7BRiF?=
+ =?us-ascii?Q?DmDOktslUuprBHwkgMRRQwKa3m3AFjsHZqQ7AyClqZNv1T+lA9WKtdjhBWaP?=
+ =?us-ascii?Q?gdKCBTNbELq/zYKkW1/VmenHV+6Uqg78V/OUg7px2BXLXSp8TFvoRH4cPdzN?=
+ =?us-ascii?Q?XPAIKCUwApppnHyW4688N9RyJ0Ep5OXlRTbXUmtjfiWVHM4YHKbJjv35gn/m?=
+ =?us-ascii?Q?lVOeI9lb7Qw01sCYVEgueLPPhinqg+ZrFRC1//RCsuNThE3IFCMWJCZXxHvl?=
+ =?us-ascii?Q?xFCxtyuto9XiGz30Sw5KjX8JCv3IFH0BWFfmzojx9jfz9GIZ6Vo0PvMHFrLD?=
+ =?us-ascii?Q?4aLN/7OmaZ0tNnNQVhceAjtG0ONFZsZ078TGbk9wFHwIVMXvesyQrr44O9WD?=
+ =?us-ascii?Q?UKw/KLVBlwgZNZtYnYARp8cEUaDinNBvEug0KVcif0dS508wb/SiXJ+uhI4N?=
+ =?us-ascii?Q?fv6s85YAkBLDjbzkBod+bYrxs/NYdiqrqk+eoREPUROtDQa2epoign1zUnF2?=
+ =?us-ascii?Q?N2Ma8CTxu6IWYstKTLPII6eRuHw6kk8lOqRTEl2vuVusGUmTTH1txeXgPrPj?=
+ =?us-ascii?Q?pzyGa4IMjSn6vmg5mYRxMh91KLipSqnfJqfhiKDV9xtNPftxn07nyNWP0nxy?=
+ =?us-ascii?Q?X0iBbUC9oNlJRgWXfhEabpIWC1HIeMkV9aMwI/RQY7xCqUFiH/tpjk6jOgRA?=
+ =?us-ascii?Q?cwkj4tUrCSm5hadysb66v4kq/uN0qtABy7fSvns6j2usIm+ReeFrK69xH8gS?=
+ =?us-ascii?Q?h0vbWRyY0CHtmMx6rpfDaCYPv3925cO2RysvinXtIwC/uRr5y6L+SLMN7FSS?=
+ =?us-ascii?Q?7/xM6a0KrQRAZ68myGT/iKNIXCHM9yyPFuAAuMw4MTMBFdWpkfAhB++gt84h?=
+ =?us-ascii?Q?fjiUeCvolxSXlFzE4HP8ufSY0Bbrt4CxrUThsfo5TonYjgYMT4Q7qeeG5BFW?=
+ =?us-ascii?Q?i9faWZ5NKD2Qi0n0OBHlivFAg/hVLcS+1gFbaKJsRdvdBG0pP5PPU3KbQx3Z?=
+ =?us-ascii?Q?XfPsQCLX0r8QvPoU1SJuCK38utbuR2FA+PxFCspA1BwYvzK8fucmdxJD4qK1?=
+ =?us-ascii?Q?u82JdMhttEz0E4BvEIMZgpiI69y8RHDl/AWFtXOlc9dvsGOSMSIYspfoWlsm?=
+ =?us-ascii?Q?6Rhzgg9lBkMu3up1fCyb6nd7mypgx8MWtE07p/pNW4s6JNGs17xTmPQHUc34?=
+ =?us-ascii?Q?gy8qjq2HeVy7YqAY8DoqMZ9mAMIHEfzw8HL3C4lYHxu6TSGdTB3khtyHOR1z?=
+ =?us-ascii?Q?ebhlUxwjwEx/GWFKQBJ2bwEvBTBU4uvRpWCJyxSf9o3BmrCyymB7Mi0IE8um?=
+ =?us-ascii?Q?pcAMr/nTbr73dRECl2+F8PFNn7Wk/OUDRqBzsm6OU30qkbLcDZBzFFIEHdqy?=
+ =?us-ascii?Q?/AYveG5nNtq2+aY3hG6NTBVsaw3GRLoa86NgSz6aVD9X02Z2O1A1nX6abiLg?=
+ =?us-ascii?Q?7NqYoyem9p43ovw3NiROErglFTIeVXQQLmDa?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2025 13:01:55.4724 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1dba6a8-b91a-44e4-2144-08ddcdd6edf4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA51.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5786
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,145 +130,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On multi-vf setup if the VM have two vf assigned, perhaps from two
+different gpus, mgpu fan boost will fail.
 
-On 28/07/2025 10:28, Pierre-Eric Pelloux-Prayer wrote:
-> Le 24/07/2025 à 16:19, Tvrtko Ursulin a écrit :
->> GPUs generally don't implement preemption and DRM scheduler definitely
->> does not support it at the front end scheduling level. This means
->> execution quanta can be quite long and is controlled by userspace,
->> consequence of which is picking the "wrong" entity to run can have a
->> larger negative effect than it would have with a virtual runtime based 
->> CPU
->> scheduler.
->>
->> Another important consideration is that rendering clients often have
->> shallow submission queues, meaning they will be entering and exiting the
->> scheduler's runnable queue often.
->>
->> Relevant scenario here is what happens when an entity re-joins the
->> runnable queue with other entities already present. One cornerstone of 
->> the
->> virtual runtime algorithm is to let it re-join at the head and depend on
->> the virtual runtime accounting to sort out the order after an execution
->> quanta or two.
->>
->> However, as explained above, this may not work fully reliably in the GPU
->> world. Entity could always get to overtake the existing entities, or not,
->> depending on the submission order and rbtree equal key insertion
->> behaviour.
->>
->> We can break this latching by adding some randomness for this specific
->> corner case.
->>
->> If an entity is re-joining the runnable queue, was head of the queue the
->> last time it got picked, and there is an already queued different entity
->> of an equal scheduling priority, we can break the tie by randomly 
->> choosing
->> the execution order between the two.
->>
->> For randomness we implement a simple driver global boolean which selects
->> whether new entity will be first or not. Because the boolean is global 
->> and
->> shared between all the run queues and entities, its actual effect can be
->> loosely called random. Under the assumption it will not always be the 
->> same
->> entity which is re-joining the queue under these circumstances.
->>
->> Another way to look at this is that it is adding a little bit of limited
->> random round-robin behaviour to the fair scheduling algorithm.
->>
->> Net effect is a significant improvemnt to the scheduling unit tests which
->> check the scheduling quality for the interactive client running in
->> parallel with GPU hogs.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Danilo Krummrich <dakr@kernel.org>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Philipp Stanner <phasta@kernel.org>
->> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
->> ---
->>   drivers/gpu/drm/scheduler/sched_rq.c | 10 ++++++++++
->>   1 file changed, 10 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/ 
->> scheduler/sched_rq.c
->> index d16ee3ee3653..087a6bdbb824 100644
->> --- a/drivers/gpu/drm/scheduler/sched_rq.c
->> +++ b/drivers/gpu/drm/scheduler/sched_rq.c
->> @@ -147,6 +147,16 @@ drm_sched_entity_restore_vruntime(struct 
->> drm_sched_entity *entity,
->>                * Higher priority can go first.
->>                */
->>               vruntime = -us_to_ktime(rq_prio - prio);
->> +        } else {
->> +            static const int shuffle[2] = { -100, 100 };
->> +            static bool r = 0;
->> +
->> +            /*
->> +             * For equal priority apply some randomness to break
->> +             * latching caused by submission patterns.
->> +             */
->> +            vruntime = shuffle[r];
->> +            r ^= 1;
-> 
-> I don't understand why this is needed at all?
-> 
-> I suppose this is related to how drm_sched_entity_save_vruntime saves a 
-> relative vruntime (= entity rejoins with a 0 runtime would be impossible 
-> otherwise) but I don't understand this either.
+Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Two things (and a bit more) to explain here for the record. And as 
-agreed off-line I need to add some more code comments for this are in 
-the next respin.
-
-First the saving of "vruntime - min_runtime" when entity exits the 
-run-queue.
-
-That is a core CFS concept AFAIU which enables the relative position of 
-the entity to be restored once it re-enters the rq.
-
-It only applies on the scenario when the picked entity was not the head 
-of the queue, due the actual head being not runnable due a dependency.
-
-If the picked entity then leaves the queue and re-joins, this relative 
-vruntime is used to put it back where it was relative to the unready 
-entity (which may have became ready by now and so it needs to be picked 
-next and not overtaken so easily.)
-
-It has to be the relative vruntime that is preserved, ie. entity which 
-re-enters cannot simply keep its previous vruntime, since by then that 
-could lag significantly behind the vruntime of other active entities, 
-which in turn would mean the re-joining entity could be head of the 
-queue for a long time.
-
-Second part is the special case from the quoted patch and that only 
-applies to entities which are re-joining the queue after having been 
-picked from the head _and_ there is another entity in the rq.
-
-By the nature of the CFS algorithm the re-joining entity continues with 
-the vruntime assigned from the current rq min_vruntime. Which puts two 
-entities with the same vruntime at the head of the queue and the actual 
-picking order influenced by the submit order (FIFO) and rbtree sort 
-order (did not check). But in any case it is not desirable for all the 
-description of GPU scheduling weaknesses from the commit text (this patch).
-
-For this special case there are three sub-paths:
-
-  1. Re-joining entity is higher scheduling prio -> we pull its vruntime 
-a tiny bit ahead of the min_vruntime so it runs first.
-
-  2. Lower re-joining prio -> the opposite of the above - we explicitly 
-prevent it overtaking the higher priority head.
-
-  3. Equal prio -> apply some randomness as to which one runs first.
-
-Idea being avoidance of any "latching" of the execution order based on 
-submission patterns. Which kind of applies a little bit of 
-round/random-robin for this very specific case of equal priority entity 
-re-joining at the top of the queue.
-
-Regards,
-
-Tvrtko
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 684d66bc0b5f..e0faf7200ec5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -3389,7 +3389,7 @@ static int amdgpu_device_enable_mgpu_fan_boost(void)
+ 	for (i = 0; i < mgpu_info.num_dgpu; i++) {
+ 		gpu_ins = &(mgpu_info.gpu_ins[i]);
+ 		adev = gpu_ins->adev;
+-		if (!(adev->flags & AMD_IS_APU) &&
++		if (!(adev->flags & AMD_IS_APU || amdgpu_sriov_multi_vf_mode(adev)) &&
+ 		    !gpu_ins->mgpu_fan_enabled) {
+ 			ret = amdgpu_dpm_enable_mgpu_fan_boost(adev);
+ 			if (ret)
+-- 
+2.50.1
 
