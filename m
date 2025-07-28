@@ -2,61 +2,146 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E16B13ADD
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Jul 2025 14:58:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4EDAB13720
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Jul 2025 11:01:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11FE110E4F9;
-	Mon, 28 Jul 2025 12:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24E6910E4B3;
+	Mon, 28 Jul 2025 09:01:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=cachyos.org header.i=@cachyos.org header.b="gL/9WQ/q";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UnNuoykG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 511 seconds by postgrey-1.36 at gabe;
- Mon, 28 Jul 2025 08:54:04 UTC
-Received: from mail.ptr1337.dev (mail.ptr1337.dev [202.61.224.105])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D77810E004;
- Mon, 28 Jul 2025 08:54:04 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 5403F284303; Mon, 28 Jul 2025 10:45:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cachyos.org; s=dkim;
- t=1753692331; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:content-language:in-reply-to:references;
- bh=hZAZQxcJny2MJlnbj6INcbeqX5pbA4FFdFvh2PmI64w=;
- b=gL/9WQ/qCqbdu8zR86gU47Fb4JEBykEZI3fYcn9RWlJ1FkRil9jRegxpKVtlMVHiuCRkvD
- eUN8qjcTZbRYiOkvX4mdgh/LxFAr5+8+kF7N59rXBpMN6Ij4pFM7K0toI9/17YaGKGKaib
- TRUqRWvjhzvFhphSevh08vs5VWbN3+rSK8oTR33/pl3tDKExtUZjXzo2iLkcAc7fqbskIw
- LuRqFnwnfmC9KGst5fDt6aVyRY9/lqAnz1lnsj7VqV6WWNJBP5H76boU0TjPx4UuuMwu9R
- DCIWav85qzoBaQQMN29prltn9IdsIgfcfFXvyThIPqE17s2r92h8R/Qfq6plxQ==
-Message-ID: <d9a1ed6d-05bb-440d-afa9-cb30315bd02d@cachyos.org>
-Date: Mon, 28 Jul 2025 15:45:25 +0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/5] Improvements to S5 power consumption
-To: Mario Limonciello <superm1@kernel.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, Bjorn Helgaas <bhelgaas@google.com>
-Cc: "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:HIBERNATION (aka Software Suspend, aka swsusp)"
- <linux-pm@vger.kernel.org>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>,
- "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- "open list:SCSI SUBSYSTEM" <linux-scsi@vger.kernel.org>,
- "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>
-References: <20250616175019.3471583-1-superm1@kernel.org>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2084.outbound.protection.outlook.com [40.107.237.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0CD10E4B3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 28 Jul 2025 09:01:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CmngXtWC+ihAmEVaNOCHOVI1G6x0PZE+x+PW6gvolWLzLFKrP7dsTqcefbonE5KwiNUgNq48JwsnJLuYWg+oMBghNLZV3vbh7J+tunrgvgpHVFXDAp554AMoqt8N2RQAn+WYm9cEQOKM8ajyinRQOgvOYq2Eeb1KcScOMH30RFH7Dno9uKNaOmhinBVcAVum5Itzb6EU3lWEovMhebCUMMwh2cRflB+Pj+FrxmVXRA/w5sjTB0eneWrc8LdicQKjP3IDHbZytREej8V3lSdumL4zjBlCcC54QRJfRtBPLxmUInJoccXw7RduDqZBoyaSoXcRpG01CEbld8b6P9opiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WVcSwiph3dCajaTwt/Ez6sqNbK9sM9ZpEeGXLqfX4Xw=;
+ b=rLhbiwMvcsXAk+OGRNQ5i8fNqPgaCNYjGhWD+ko8nwzJT3X4mgS30xoizBG4rvCQnYIhNdFmgkZlTXfsuwglmK1etRohr8IwSnk/C80gpIndsz7M+TxmOzssmsocG5+WyETAd7/iW/GrC5L/pt/xqURBqzkYXlUIgQj79E4uLEYLY6gUc8xyTGvnrnvyIxrRrZCYsw81uqVWZRlzOJ9C1HntFuWsmbsy/u4GJTBTuSUMRc5vn8gkx7rnAg8gbN/HlYVG2KRjcCJLAhKvK0+uKoQ5c7LGEes2AZh863NFmtYqfwV69wIicIuOd+fXJSwX3t6SV4nvIiWvwPst8YjFmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WVcSwiph3dCajaTwt/Ez6sqNbK9sM9ZpEeGXLqfX4Xw=;
+ b=UnNuoykGFHgB+IBK5VrQoI7Amn3i0zDVp8hCcg6MqwTNA7Z7zcZQQ2WKYtyQoNXnqpDG5842yG/3LeANnb51HzDk2MKrs78yWNjbOzpCVmpJ3UVyUYFzmn99pVFYkStncx/5uggpzHUFGnBly1bSV7Vj+h9A8j12ZY8QDDwFZjM=
+Received: from PH0PR12MB5420.namprd12.prod.outlook.com (2603:10b6:510:e8::18)
+ by PH8PR12MB6916.namprd12.prod.outlook.com (2603:10b6:510:1bd::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.26; Mon, 28 Jul
+ 2025 09:00:56 +0000
+Received: from PH0PR12MB5420.namprd12.prod.outlook.com
+ ([fe80::dd32:9eed:14e9:33f1]) by PH0PR12MB5420.namprd12.prod.outlook.com
+ ([fe80::dd32:9eed:14e9:33f1%6]) with mapi id 15.20.8964.025; Mon, 28 Jul 2025
+ 09:00:56 +0000
+From: "YuanShang Mao (River)" <YuanShang.Mao@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+CC: "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "cao, lin"
+ <lin.cao@amd.com>, "Zhang, Tiantian (Celine)" <Tiantian.Zhang@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: keep job->vm in amdgpu_job_prepare_job
+Thread-Topic: [PATCH] drm/amdgpu: keep job->vm in amdgpu_job_prepare_job
+Thread-Index: AQHb+7EcoCXofQ9OfkW7m4hre0+GirRHQr2g
+Date: Mon, 28 Jul 2025 09:00:56 +0000
+Message-ID: <PH0PR12MB5420F1D3878389D200D4E419E05AA@PH0PR12MB5420.namprd12.prod.outlook.com>
+References: <20250723090624.53536-1-YuanShang.Mao@amd.com>
+In-Reply-To: <20250723090624.53536-1-YuanShang.Mao@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Eric Naim <dnaim@cachyos.org>
-In-Reply-To: <20250616175019.3471583-1-superm1@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Mailman-Approved-At: Mon, 28 Jul 2025 12:58:48 +0000
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-07-28T08:53:17.0000000Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR12MB5420:EE_|PH8PR12MB6916:EE_
+x-ms-office365-filtering-correlation-id: c2201a77-083f-44b8-7ef2-08ddcdb543d6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?sMRpQDnI3nyrHLpafk+AXhyCSQ8yaRDjJDms4mHCPABnT0TXOs+8ot3Zzc+l?=
+ =?us-ascii?Q?cM8dgWATpCCdlNwy0M0iHACHLGpgLV7WUh47vG6eDIXn6sRdy8lMg0fiQ58A?=
+ =?us-ascii?Q?hSRUwBRnaCOfB4qI4I7NPbBXpvuXWQyPcYEorhD5krRUu16ZqMBYQUA48Tzm?=
+ =?us-ascii?Q?z2QCSC3LqPJ3Ou5D1+J0TkkIbYMuRBPiIO6aACFAHyHF4T/TC4oKmoP2g+Tc?=
+ =?us-ascii?Q?R224/CQ378FqgjdBktPGSNGgb03RSJooMmmQBw0EM8eOy4fY5kdGlDFQc7lc?=
+ =?us-ascii?Q?Qd5nCaE/lXImHrMFqdoZLj8SaYD65CtksWbb+wDqQmt9J1yy2kTDytvjr7/6?=
+ =?us-ascii?Q?erp0D9xZlidSR965zNB7RSUYyZ5kvYG9I4gneMAXOPemHx5tnpYSuSNJMZ0x?=
+ =?us-ascii?Q?O7hacxe7xq5Mt47/ADpUQQdqeP1Hb10zq+NBLvXJKZhJT6zi/eE8LUzXakVU?=
+ =?us-ascii?Q?xWHtZhM5+WhwtlhBWfdguBPyea/ipYa1wVRJ10nS4e94KyWYU2//j/LB9Fi1?=
+ =?us-ascii?Q?7RyM6yD5Xyipw3U6fPyHBgg5AQxt1JJhovlQIkuDSUbnxyxWZID0emcswVdM?=
+ =?us-ascii?Q?bN1xbDn5zzTbTlxJSVOIu6AwFRIpQxVPmAWvO38cDwEKF6nnKjP+Fb24+kpC?=
+ =?us-ascii?Q?HpM7dA9bs3o1BHJ/gE782OVgk6OKNTom9ULw9Aecrs/V/XEPurKQOtAlQ7Lk?=
+ =?us-ascii?Q?iSDk1nxokMbnIx0YmDIkfgxUbOxAEPvyL7DIHqb+xO/pgMn++UZWfEssfQ1z?=
+ =?us-ascii?Q?BHYj/1xSW7tx9IhYJvo6RGq8DvKNvWQSaof7CJ/97Ya9/vbCiq+vGHtkpA7s?=
+ =?us-ascii?Q?kkyI8+uzLhL7wmNrlSU/3Hr6StNjkpc0GpLunWk7k5Nxzu46Bh0PNDM6YK11?=
+ =?us-ascii?Q?0+7wbOhQW0Mm7fPkE5LJ/Otvc/ISbYI7ixT4WK7kroAAJiLOJo+9Hmq6bs/J?=
+ =?us-ascii?Q?+c+C6N2ooutlo+juFvFsufvDYNV1cWmwM+C4GLir6BSEhS4qXVPQGzKjqN04?=
+ =?us-ascii?Q?ulBigimBF1v8SL2JsWNqotEqZNrkxUi0AlFhIYZr/kaPkQIKHWX6iTb3HEgG?=
+ =?us-ascii?Q?sux9DI2CQwA0V775dh7XioI5GoOj091zb2wsYhTYXmnOEzY5CFF3YjgQKR8/?=
+ =?us-ascii?Q?q4UYJOMTabYkaCmi/wHf2Fgn5RAvJEIY806vY33ThKDreX+8KiQTkwctsxxf?=
+ =?us-ascii?Q?MuI24vdBXRcFI38xyZasouTaMijaq7tKsTaW40IkyYw9/AclEXS05ZSSeqQo?=
+ =?us-ascii?Q?bM8F1V4N4+Vqw+Stwb5Coc8ouYJOG2uzcXDVJe3RlvqyrnlzYzUAgF8suz1y?=
+ =?us-ascii?Q?j4Bdw2ac5hv7t4Sn2QtUbNC/vTZlPISJXD/gH68v9kl/8JSuZJw3rwexHqR3?=
+ =?us-ascii?Q?g/QQKAxs/AzEJ7lWItoAJJ0HUtsDMN8UswTBJUmYo7bc75DQu2zvfaj6Mnpb?=
+ =?us-ascii?Q?pSZlX30WhqRK1jnwQhUdCh4KZPfU6qDlQCmGVLho8PPoCv700G8TcfgWY6sc?=
+ =?us-ascii?Q?KZCelZ8S8VJNB2g=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR12MB5420.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sZBB9oJiIhVAfRd+zjhoHrWKr2DIOmb53bnLnPSAZQ7doe/iEyHpIGALMoeY?=
+ =?us-ascii?Q?Ps100RO3NKZJvxl5iJxxG+9yHLYm95sW5vC71qYreC1nWkLDqm3Kktoin2g4?=
+ =?us-ascii?Q?kKKwuJS1XLJ1xv3LcXXHBZaILe4YnusZ4UO6NoMgrlCjhlxYyLglmX8xnMTI?=
+ =?us-ascii?Q?HssdMs8f6neA91wwbgx78F0RudfW2oDeJ0WopCwnmeqkKDlqIMC2JGyuoi9m?=
+ =?us-ascii?Q?FA6hPcn+OA1rqP2sFxrYR0l9yhjgbXU4wzVYcbV+TWfh0A0XlObDytUV764Y?=
+ =?us-ascii?Q?yRa+UBBp7BZG7oxzht/eqteDGdxPlCSZSwmN3t96eN7CEDPMyr2JasCESNxL?=
+ =?us-ascii?Q?AUz4J23v8A5WS88hv0GWg2rxXtj4cfLvjYpBGRTI07ng5eyJYFUIpkJVfBc2?=
+ =?us-ascii?Q?4Kk46tXSciVdFAETSHPqIWIovkriuaj6dqpnyrArSupu3ZI6wVZVwe1zmwFq?=
+ =?us-ascii?Q?9+noUHHwFVSPFDW3dEY9aOEcZR+T8xmQu9S1K98TEtck+r9pLehCTOjnE1Ez?=
+ =?us-ascii?Q?iVx1aL/158cJz8tHJZUBrPdP6yLd1Mu7RHv91nPenjpLNylJIjpMOQHTAIv5?=
+ =?us-ascii?Q?Q49Jh1SHTHN+CnNgLciQ3SdYu7QfRwv0UUNFb5rQrSjAMNKpEUPVCU8X148K?=
+ =?us-ascii?Q?yFGY3UmoDWqaDXOOs2DC76Ty6OBLeGSm8vQoPJIkmZ5WT6u12SNynIPN9eJh?=
+ =?us-ascii?Q?ZHZDrTto/6dg+X677tTTrW54FrlQw94f3zQ24FjHfSA2ntnEViGZbdXdrrul?=
+ =?us-ascii?Q?fP47V1PqGZFM7pMto8fmdKQgfUWkI6ij7J5xe1/DUfM8J8RlFlnb9XVotbo2?=
+ =?us-ascii?Q?gXLl1ryWMGFYCWFYDTXjEVFSDmofjZCw0gkO6eIVfXRTiGR8OlgGrOdtpuvY?=
+ =?us-ascii?Q?cGqcPIAYMcoInv2cJaSXH2+21uGqQ932QMAQjZvlo8EauYsyQamOyE2V/oSK?=
+ =?us-ascii?Q?X67nWUHzycSKcZn1Wx+itYpU8nF/esDld4l0BI5vHH9tK+jmEsKQz9RZhNGl?=
+ =?us-ascii?Q?RfR3Jw68f3ybhspSKmqTmmacaaoLx9eQO34sbM/rrpoDbdqh0fMSb3mV9Yrk?=
+ =?us-ascii?Q?AM5fcp/Ktkkj7fcCXRugjWb+U5+wsi1yIQEmj3laPWmeDu9kSQvlPvcp4WV5?=
+ =?us-ascii?Q?tHHzjwW4sFaa9Ph2copEbIiwYFf8v3+lUEUEUgLqOQ6cdDkpU29U2DAIDL15?=
+ =?us-ascii?Q?Byh6F9PBPPQomQUeez9KXDQH/AiIvlP13rx5/PFINwsBMr97zUM1xGkZM/WA?=
+ =?us-ascii?Q?NUhMOyS9wxk6S8oHncI1Fl7zl1tJFm5s6uutZ4K/KhlpMEF4pdesXPxiCI8v?=
+ =?us-ascii?Q?oI6XkXqA5JcfXgQ9DHSazXU7BOwwf0QSp9P46M0xl5B2Z1T+0BJwJ0nUKIpU?=
+ =?us-ascii?Q?KffpaJ6Huu2yVVZoAHAL4tfzDIxOvmuro5nPAZYw/znE9CzePRm4FrgUYuMX?=
+ =?us-ascii?Q?TCLViULZA3Q0NvNntgFQTef2mLcSYeihldlLS2BQT9+Gv9/8jCQdCkdnJnHw?=
+ =?us-ascii?Q?x6cV+tEF6dWZpATca10Y3C0hw3RvJrf6jPQzXQccfTfrHI6jAfvJoSJVNedk?=
+ =?us-ascii?Q?0GMtAp8ieCkeKQcvBVQ=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR12MB5420.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2201a77-083f-44b8-7ef2-08ddcdb543d6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2025 09:00:56.7007 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CspJFCIaaWh/+YuWTzgmSybPD5sOnS9w/HFscZgGV8l+mL4Z7PJlIlx/acWPG5OeoMKNooY5rgidm22LkpSpUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6916
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,60 +156,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 6/17/25 00:50, Mario Limonciello wrote:
-> From: Mario Limonciello <mario.limonciello@amd.com>
-> 
-> A variety of issues both in function and in power consumption have been
-> raised as a result of devices not being put into a low power state when
-> the system is powered off.
-> 
-> There have been some localized changes[1] to PCI core to help these issues,
-> but they have had various downsides.
-> 
-> This series instead tries to use the S4 flow when the system is being
-> powered off.  This lines up the behavior with what other operating systems
-> do as well.  If for some reason that fails or is not supported, unwind and
-> do the previous S5 flow that will wake all devices and run their shutdown()
-> callbacks.
-> 
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Hi Mario,
+Hi Alexander
 
-I've been running this series on CachyOS since 6.16-rc3 and have no issues.
+        Since Christian is on vacation. Could you help review the below pat=
+ch?
+        If set job->vm to null in amdgpu_job_prepare_job, the job which sho=
+uld be skipped in amdgpu_job_run will be submitted unexpectedly.
 
-Feel free to add
+Thanks
+River
 
-Tested-by: Eric Naim <dnaim@cachyos.org>
 
--- 
-Regards,
-  Eric
-> v3->v4:
->  * Fix LKP robot failure
->  * Rebase on v6.16-rc2
-> 
-> Previous submissions [1]:
-> Link: https://lore.kernel.org/linux-pm/CAJZ5v0hrKEJa8Ad7iiAvQ3d_0ysVhzZcXSYc5kkL=6vtseF+bg@mail.gmail.com/T/#m91e4eae868a7405ae579e89b135085f4906225d2
-> Link: https://lore.kernel.org/linux-pci/20250506041934.1409302-1-superm1@kernel.org/
-> Link: https://lore.kernel.org/linux-pci/20231213182656.6165-1-mario.limonciello@amd.com/ (v1)
-> Link: https://lore.kernel.org/linux-pm/20250514193406.3998101-1-superm1@kernel.org/ (v2)
-> Link: https://lore.kernel.org/linux-pm/20250609024619.407257-1-superm1@kernel.org/ (v3)
-> 
-> Mario Limonciello (5):
->   PM: Use hibernate flows for system power off
->   PCI: Put PCIe ports with downstream devices into D3 at hibernate
->   drm/amd: Avoid evicting resources at S5
->   scsi: Add PM_EVENT_POWEROFF into suspend callbacks
->   usb: sl811-hcd: Add PM_EVENT_POWEROFF into suspend callbacks
-> 
->  drivers/base/power/main.c                  |  7 ++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 +
->  drivers/pci/pci-driver.c                   | 94 ++++++++++++++--------
->  drivers/scsi/mesh.c                        |  1 +
->  drivers/scsi/stex.c                        |  1 +
->  drivers/usb/host/sl811-hcd.c               |  1 +
->  include/linux/pm.h                         |  3 +
->  include/trace/events/power.h               |  3 +-
->  kernel/reboot.c                            |  6 ++
->  9 files changed, 86 insertions(+), 34 deletions(-)
-> 
+-----Original Message-----
+From: YuanShang Mao (River) <YuanShang.Mao@amd.com>
+Sent: Wednesday, July 23, 2025 5:06 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Koenig, Christian <Christian.Koenig@amd.com>; YuanShang Mao (River) <Yu=
+anShang.Mao@amd.com>
+Subject: [PATCH] drm/amdgpu: keep job->vm in amdgpu_job_prepare_job
+
+job->vm is used in function amdgpu_job_run to get the page
+table re-generation counter and decide whether the job should be skipped.
+
+Signed-off-by: YuanShang <YuanShang.Mao@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_job.c
+index 45febdc2f349..18998343815e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -360,13 +360,6 @@ amdgpu_job_prepare_job(struct drm_sched_job *sched_job=
+,
+                        dev_err(ring->adev->dev, "Error getting VM ID (%d)\=
+n", r);
+                        goto error;
+                }
+-               /*
+-                * The VM structure might be released after the VMID is
+-                * assigned, we had multiple problems with people trying to=
+ use
+-                * the VM pointer so better set it to NULL.
+-                */
+-               if (!fence)
+-                       job->vm =3D NULL;
+                return fence;
+        }
+
+--
+2.25.1
+
