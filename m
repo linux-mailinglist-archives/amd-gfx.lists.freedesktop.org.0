@@ -2,122 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09C66B1548D
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Jul 2025 23:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C670CB154AA
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Jul 2025 23:30:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8488110E29D;
-	Tue, 29 Jul 2025 21:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A210D10E04F;
+	Tue, 29 Jul 2025 21:29:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NppQQPd5";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="35s+hUHU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2066.outbound.protection.outlook.com [40.107.92.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E311810E29D
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Jul 2025 21:08:12 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2041.outbound.protection.outlook.com [40.107.95.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 193A410E04F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Jul 2025 21:29:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LCa7SKPmOdzeQRLT09HU+/fCm1uhrrXVqfElGV+guUGLBgkGJaF1UB6xZSxVAJx2b6TCevE5LNXTfPSc4W282ZLBpN+/WKmZEPKfSkEbA2GXj1Odr0inNjfLdhoOnK9dLIS7wwGO5vpzWKI0GJev3Z8PeG7lJXQe7rqQsvnQk7QFGj2xAe5eLZEAKn0Ng3itrrLi7c5UKHV3zS1fXzNC6zGixafosrfM4MMOzDzpVZF+4j+MNEdkbbd2NVDdou4D+f0LM2dB6xqkT1mBi3jinrT0EThVpKdbLrcCl9j+ruvRye6Gq1+wZ05RkFqvmiSg3FqXfUbiVrWU3TInfmMl/g==
+ b=DI5hY9ukOCA/5sQ+duqatABlD8rdL3W/dvu6H3YNOZncYivBPVoHMtamjWYBtazx5/Rw33iEw5/IPw6x26GklxxUqwyfSfXFRj0yQqSVV9Xf/YPMnyOSaKbdAB6OkFy21p8Y5lqutyX2oiFurwIacMOh1gTWwP5cYPQZIwz55fX2/WlynsluCVODhP6ihAGFIeSLipmyJjv1/60+nbtHjbzbbuTFxGaNrtdOvJPk5KJkJSyqqlftjKwhOC0apQDcAfUluttgNclb7hOkpHOVMO9/31dADJAhrUEC4UOTpheDDU8p4Pi4gBYtnMkryN+MJgk0HOjIp7aj0yVm6iqCIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KzV7qCmiIbTzgAvmo30cytm+NlCur38UpDM4hLWVeE8=;
- b=HjGnkNV1zvPo1t5E0FSQVSlfCoI7RnzZ68U26EE0W9jK3C6TNPuvl3zaIA85ocJEbMH2gV+YOQymFVB3S2bELhBST8d4VnTU791c3qMuDn+lkB6/2GvsX7IfMYS7BKGvv83RPyDgM9aWWQuMV7lZuqAanzp19gjo+SAor9jgHLW+SIFQGqpvZ90XOoAymlHfGyl5u6Ibymzn7qDR/0Z44SE/x5J77RXxtVlfN4ady/5uAS1nty4IuzlfbC6KOB9bx2E/Da1JissiKFAvDvP+O8epDv6v9jxgDpu/LUtgYIXzHBufQHxL3LWAZd8hYwtrjF+HzBTbYlSRAtyMR8hjWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=+NFGD7IRZm3uxy7pRtxb6/sx9cvXSADs1mOrjlvu0zA=;
+ b=UtHEmwCRVIImMuDuEHkEf6bbgANqSkrSPwPrxOaWSPNk05d11BgHlE+Yj3Ow9P8ONoBRO7n1mH1giojBroYfvzfJ93V7DMBCY4nQxklj9qC4dRylqdIGBf25qcX9H0OzEDq1U1tmS5nN5Fmlid+pGFb2SHaRXEmjemyB1ftwoE33hTVoQDQurymCYkQwsD59h701YoMAUsbchFYI7MkI3VM/9fw+6rMXg15nv/nUDbsT5Rd0K7arAbjkan5VVDdSRwQezAEE3F6Y/w1xl/41vyUbQd1yiNrNp+jIUPSLoHYk61NQGYYjBJlzckfXAdenOUa0G8+rgZJidXRGgy/Qsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KzV7qCmiIbTzgAvmo30cytm+NlCur38UpDM4hLWVeE8=;
- b=NppQQPd5qPHMawF4OIwFTsH0x0UKFRy//3QGnaT/vyEzjSOJZDl77cyht1mXTg6mfsMWCzHc/6kuVX4ABFHmTVePCQfwyIFbvYfRRT964UxDF3UjlJjmwOhaymT0jsJxFerHmbNl+Zfb4EcGib5wIIzaP/bFueRMlCkvX49rB/I=
-Received: from BN0PR04CA0134.namprd04.prod.outlook.com (2603:10b6:408:ed::19)
- by SA5PPF0EB7D076B.namprd12.prod.outlook.com
- (2603:10b6:80f:fc04::8c5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Tue, 29 Jul
- 2025 21:08:10 +0000
-Received: from BN1PEPF00006003.namprd05.prod.outlook.com
- (2603:10b6:408:ed:cafe::9d) by BN0PR04CA0134.outlook.office365.com
- (2603:10b6:408:ed::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8989.11 via Frontend Transport; Tue,
- 29 Jul 2025 21:08:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN1PEPF00006003.mail.protection.outlook.com (10.167.243.235) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8989.10 via Frontend Transport; Tue, 29 Jul 2025 21:08:09 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 29 Jul
- 2025 16:08:08 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: update mmhub 3.3 client id mappings
-Date: Tue, 29 Jul 2025 17:07:54 -0400
-Message-ID: <20250729210754.2304695-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250729210754.2304695-1-alexander.deucher@amd.com>
+ bh=+NFGD7IRZm3uxy7pRtxb6/sx9cvXSADs1mOrjlvu0zA=;
+ b=35s+hUHU3lc8Cs+6b/9qXpdb6vbVLm/kah1l/M3dDZu3o7CVolejI3F6I4e3eZcaf55JtPJ402RTyolvpAiE/weZ8mUFQFPBh1pwpi9HfjdVhFyMVdwTPC4ZTAFg6cmZJz2nR7CbwednC78JedYg47ECRM/gZUu7DVZPruagu6k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB7210.namprd12.prod.outlook.com (2603:10b6:510:205::17)
+ by CY5PR12MB6299.namprd12.prod.outlook.com (2603:10b6:930:20::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.27; Tue, 29 Jul
+ 2025 21:29:55 +0000
+Received: from PH7PR12MB7210.namprd12.prod.outlook.com
+ ([fe80::54c:74b2:5935:6041]) by PH7PR12MB7210.namprd12.prod.outlook.com
+ ([fe80::54c:74b2:5935:6041%3]) with mapi id 15.20.8964.025; Tue, 29 Jul 2025
+ 21:29:54 +0000
+Content-Type: multipart/alternative;
+ boundary="------------lmbVRtVZ624RkotaACSy9WTu"
+Message-ID: <a9606504-d719-4629-b743-462415c6612e@amd.com>
+Date: Tue, 29 Jul 2025 17:29:52 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/amdgpu: update mmhub 3.3 client id mappings
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
 References: <20250729210754.2304695-1-alexander.deucher@amd.com>
+ <20250729210754.2304695-2-alexander.deucher@amd.com>
+Content-Language: en-US
+From: David Wu <davidwu2@amd.com>
+In-Reply-To: <20250729210754.2304695-2-alexander.deucher@amd.com>
+X-ClientProxiedBy: YQZPR01CA0009.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:85::22) To PH7PR12MB7210.namprd12.prod.outlook.com
+ (2603:10b6:510:205::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00006003:EE_|SA5PPF0EB7D076B:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c4c7e86-d2cf-4831-0a04-08ddcee40595
+X-MS-TrafficTypeDiagnostic: PH7PR12MB7210:EE_|CY5PR12MB6299:EE_
+X-MS-Office365-Filtering-Correlation-Id: 224508e4-3494-4206-779c-08ddcee70f1e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?EqgtRo5dnzB/x2L+7zW7ZZU0zYB/IVIRwb7lu7shnNz9ou2SQ1TlsDP/PxOo?=
- =?us-ascii?Q?Hh/ZASS2PyTc1i8Nj+N9fVh2BRs3f20hdwD6jL9tEzdNkXGliYsXFC4PWej4?=
- =?us-ascii?Q?07ztduiKNRxke/8O31QbEVknyoTEECfGZAIgo3T0Ory+LscC0y8O6kWb3X2c?=
- =?us-ascii?Q?laxPs1el31dhMJVXwYulcE4VzoWBWfPRU2UMXL+DsD0AuDxn4ETDP76m19mi?=
- =?us-ascii?Q?hJvkVrSuPz+/QnMN7YHPIHcyhhFzEltw4j9t0bKfWRu3zdupGV6IsCzW+IIF?=
- =?us-ascii?Q?qfK/uFI0k+zDZSVJIDuDK89P4uW8D2jl5aMECKUoxiNXQl09O3wr+MB3oQzL?=
- =?us-ascii?Q?DI5Os5zmLDlj172u+MhjSk08gXKRvxu6zmNnzB+jnBrMfdAn9DhhO9nsvQhq?=
- =?us-ascii?Q?p5QcQT2eveZKXwgL0SmbB41DAA9CfsI9iW2AUd841oOURlL94uHUl/B7hxPb?=
- =?us-ascii?Q?hzYD0S/KhNWwl3/dEXzNAhovAfVyr9zr3wF2m2DHQCJPYVgOr3S3OdrBmcNT?=
- =?us-ascii?Q?JoZbY++Gsj7zpsaOKLIIUNbtAb/FwKU/fBD7khB7EtLJ40xTuNqBPi/ho6bn?=
- =?us-ascii?Q?ENj+/otNFg28Z575vRxmtokIUA19AcQdntOtZwPTUu5RG4LVlIJUGXgvFrYW?=
- =?us-ascii?Q?0o7B3OS3gEOD3bxm0os2Fr3++NKe3IF/uZG+dD/UswrZeEM+fehMBSrl8YqS?=
- =?us-ascii?Q?JtbNOU4ucr/kveCx56kVomF9fHIGVHVHQrwtYUrjGt7x3T4Z+IDk3IqiBKa1?=
- =?us-ascii?Q?6l32EO8cxiOz7wt8pN9UEpd7wWRHxVdMPWN4k7ffY6MeNFQ+mZ2truJpYEXi?=
- =?us-ascii?Q?/ork7QC77I/A3l9Qdm1ZcsTlkM9riM3/k+j2ejeq55nqxNgY8AAQuV1UyUnw?=
- =?us-ascii?Q?bX7YaspL0xeYPuTsm1DGIBOjnzv7FrLq7CfOJIuqLYE/4eUIRil4ygl+e9Ep?=
- =?us-ascii?Q?QBGwRX+FN0Wf2/bDaSGXQE1yg8pjMPB6Fy8X0S50ZuzZ5A5zbvIEpnaF+xFa?=
- =?us-ascii?Q?5sviwUJo7jrBw+jycdIrc0tCsh3NG03et2ba4Zb9MNYj6PmV/U/Mnxl1HKJY?=
- =?us-ascii?Q?01zW9X+FlhBo6a4ftJJjBJIcuHM+m+rhNe1q/J6uvU/Sa/ur7aG4jqkDoPmk?=
- =?us-ascii?Q?L7RdWuu+dT4FCb+ZM18QCJ1AWg+yZpHU4M28HK2JIF78UlwQmWOnMS/lEsk8?=
- =?us-ascii?Q?1ZQ7jcVp9otTrQutJDbJ5xkU2h4PK1UzN7tlf5cTvswR8P5Bd9kxRIZCmhu7?=
- =?us-ascii?Q?vUxOf72UNFAgWQoWrTR3iPPtsU+kWeRZBamHtUNFeehLNb5IzCSbgNQ20hMq?=
- =?us-ascii?Q?n8pprCacenC7vvjviUutm0q0Q+XExl5t2HqKddSnTbO68VbEjSfTebSYRvCc?=
- =?us-ascii?Q?oAaCfVVYcm5SxgVPYRc3zphA65Io9FWUgz/d7Ig/2dwvG65ZNRJmKgfGm9Jy?=
- =?us-ascii?Q?b/8w/1IbM7YUpqUlsIBWurh0Q+F3LNd08Qxb+EXfQH+rCZqxkOCHYjeeDzfy?=
- =?us-ascii?Q?SEFqyGv6y5cLnEG9kgd4YN873AuV3WqFl+0H?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Tmh4M28veVZ4RkhDbVJlcktFQzBHUmlPeURWTzd1OG1CSExqZEFwT1ptUytl?=
+ =?utf-8?B?aGxDeGVFVlNSVDR6QWt4YTRYbVh4RGlpdEJ2UmRNQUNYZWFENlF4TTVMRkxS?=
+ =?utf-8?B?T1RuK1VzUnVsQ3pTWkd1ZklTL2F6UG9rTDJBZGhadFJWMko3RVNaendMN3ov?=
+ =?utf-8?B?Ti9wdHFYYWJ5MzRzK2RYVmxCaURoRElKOGRsMUVXYWthT0pocEdJdW1ncERs?=
+ =?utf-8?B?MENrN2pEUGRnRWhNcnd5VHF4Ulh4WlRrcm5VWXBvQk5CL0FvdUErZUt0VVdB?=
+ =?utf-8?B?Tm5CczBQd1IyVlBwTGN0UW10V1M4SXl6d1JJY3ZWTllTbE5DMVM3QndDMUNw?=
+ =?utf-8?B?MVlKbFdHbWNhSUI2cmJWSGl5UWJMUi9WSDUzSm5kNHhnZG5tSVFQbUxTWDdo?=
+ =?utf-8?B?SEtrUk1vUjFTTjJyOTdUUVlrQjNKbHhDY1J4WkZacWZHcyt1bWdnYjBTODFR?=
+ =?utf-8?B?STVaTG9lN2ZzNldEWk9HdEVhRnhCQVA4SHAzRGlOcDNhYTdJOFIraXNHa3dM?=
+ =?utf-8?B?VjVKNmJTcmszVGxBRjBLK3dVTEVhMXdUaVJmSE1ic1hrNmhLdmJ4WklmdGNK?=
+ =?utf-8?B?R3V1RUswQ0gvVlZVV3VvSWlqaDZ5MXo0SDN2c3g3ZmdDVkIyRzBYcWZ2enpN?=
+ =?utf-8?B?MjcrV0tzR2doMmVuRlhIT2lUMTdVYVltWGYzUkhVTFpLb0RUUGRhREY4VkNP?=
+ =?utf-8?B?U0lpWmhLZTZ3c3FaR1hSMnh2dWtKM1VzQ1U5UG5iRXhvVUMzQUZiMnU0Ky9T?=
+ =?utf-8?B?amFvKzc0RDJYRmRJdTM3cmtIU3lXQTNRZEJ4R0ZLZGNBSVVVbC9JZ1BJYkE3?=
+ =?utf-8?B?T253QjN5V1VHc2pnSmJ2enF5Y3BGKzVvQkNjYVFLR1lmLzdVUHFvc3FWWktH?=
+ =?utf-8?B?MXFiZXUvUm96S0ZNSm9xOXZwdlF4bStpOGRWUDFDbUNQbDFDMlRWdE4zWldR?=
+ =?utf-8?B?K1BwbEVTWG1OSmd1L0piRGdTSE4yWE1xQUVTNXNJeEV2ZXkzWVVwYVRqUHRh?=
+ =?utf-8?B?b1daQkJabXVMVHNrQlMybUphQzFKcEVrYW1Pakl3U2QybHl1M25tYXEwQ3hD?=
+ =?utf-8?B?QTRDZTNYT2hjbWd5MFY5WG15YndackowdzRwekJQUVNjUXQwL1d0ZHc2THJL?=
+ =?utf-8?B?ZTM4dXhVOXVjVmF0VFpCenM2bktoYXhKcW02QlZDbENCcGFZU0JXMUVZajFP?=
+ =?utf-8?B?V2wzMnZlOHNDQmVtMmNyZjhZaGpjaHJjTVMzUEJ1NnVtRjZCZzlyZnVZMGRr?=
+ =?utf-8?B?OEFlNGNNUE5CUXNjclV2c2E2QThVQ3FCSElEbVZJUjZGOW9uZVB6emxKV3o0?=
+ =?utf-8?B?RVUyVWVuR2l2a2lEM1lkUzJOYi9PL0N1SVh3VHUvanNjdW81NElZTFdQUUxD?=
+ =?utf-8?B?Q3Y0MVAzQWFSSUxKak5EZVZaK2FXQ0VvekpPODk1Nk1JT2RDYXVXVWw5Yzlw?=
+ =?utf-8?B?d0xpSkluMDNPS1JuR1FIM2F2MVY5czlvRlExV1ZWb2psUlZPdGxCbjRNSGxQ?=
+ =?utf-8?B?L1haZ1ZKY1pxbXh4L3M4LytRcWxVTGsrK0JTeHdZSUdRUlN2RUFIZHdoL0tJ?=
+ =?utf-8?B?Z0ZTYnZiSTlXQ0NKUEtoMGpmbVJLOTVhdjJzenNON0hiU1dJeGZjV25hT1FC?=
+ =?utf-8?B?UWwvTEZVYTFDeUk0d1lYR3hZbGFjSlhYMGRkSXB0K0hQcktVU05FNitrVmdw?=
+ =?utf-8?B?U0VaZkFERHg1ZkpMUGx6VVptZUpicDY4VWt1SmN4RkxSTmtPR0FsY0pkRHE4?=
+ =?utf-8?B?eW5ETEZwQkN2SUt2R2o5L0xwRzdxMms1WUpjR25TMFFPM3FHMjZUR0dpb1JC?=
+ =?utf-8?B?Q0hKTWlSWVY0bU9xMjlFSGRkQzB0b3orTUlyRU9PV2xzdk5acGZiMndnMjRu?=
+ =?utf-8?B?UGRzTTNkQ2VNRHJNUFljb3RkemMvdFlLS1RXODdQYlV1MmZFbnRrUXRiWHVF?=
+ =?utf-8?Q?K51V5LPM/k0=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB7210.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(8096899003); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2Fyb0NubG5MZ1EwRmdsQzZvVElsRkNuNlczaFdPbFdRZjNTRFVwZVlranVH?=
+ =?utf-8?B?RVFYdG5kOTlFOUVCRS9TTUtnM2llZEc3MHR1UUNSc05Udm5keVlsdEdtVExq?=
+ =?utf-8?B?dmRydmhjUjBJWDZHMG5xMCtaOWovM0Vrb1Ntakc1ZDRzRXhKKzh2OTVrWUUz?=
+ =?utf-8?B?cGpxRnlnWGhPeVNhVzZ3eW95dXhOK1hrekIxMjlmcTFqZENPY09KQ0phYXps?=
+ =?utf-8?B?V3JuMGZ3RmV6cHNPczd3bm1ReFNOc2o3SVhNM0RtS29XQnh5MWZuWVE0bkdi?=
+ =?utf-8?B?ZWJoOTZ6TnAxSlVManYyY3JYOGhpcXdDM3IycHpyVDlJekhjRktOZXR3NXZ4?=
+ =?utf-8?B?WmtHdDRFbmwzdExEVWh4RDRNRGMxVUNyWFMwRWlGZ1d1NE1IbUhoRzBUWU0z?=
+ =?utf-8?B?WGlnZ0pJNnQwNUxrUCtrazdvQWo4SndIK0t5QVNERmdHc2EwZWFtU2dEUS9o?=
+ =?utf-8?B?QmpWMHFaaHJQYlIrTkx3TmRTYnBZSkZqcUo0UzJHMFJVckxQeUZ0OTZoZk9h?=
+ =?utf-8?B?T1ppQzQwSEVURU03ZmlEQUUzL0dWNmN3YllRS1FQMkEzZmhrSjdWSlYybU02?=
+ =?utf-8?B?MUY5a3RwOG5QUlJ4Tmcyc0xrdUoyQjRVUXoyWFhacVBGM096Wks4Ri9IS2Jh?=
+ =?utf-8?B?a2pML1VXZytDNlkwWmwrdnpsbWZaUTlQYWluZWJweDFzdXhDdVNIREt2dW1D?=
+ =?utf-8?B?RHUwcU5vdHhmVW80aUFTcDY4NXh6dTNhd3hOVlVQbEFDQWxsZWtJUFpvaU8r?=
+ =?utf-8?B?dmY3aWc1MVR4d1NEejVLamtOcDlIVVFKT0JMNjMwMUkvbERDaFFLdFJ2WkRF?=
+ =?utf-8?B?b3ZXRmhtNVZJRG1adlpZNzRNeW53YWY4T0ZUMEF5clJONE5wOTdySlhFbFVl?=
+ =?utf-8?B?eG80Q09Xd1liMGJ1SlhpWWJtWWYza0VVbS95VlZoSDd5ODNTR1ZtajBEOVU2?=
+ =?utf-8?B?TWUzWXVLcCt1NXdZaGhhOEM5c2N4SlRzRFlra0VqN1JaY2VtNTFOOEhyK1Ru?=
+ =?utf-8?B?SGh5ZTFVYkxVdWZLQzlLcVo2V09rY0tCRjRVZmdqYVZiUkdaaStNSDl5eDNq?=
+ =?utf-8?B?RDBsOWJ2RkhodElyR3MrZVZ0M2w0QnBJWitYS0V6YWZZQUZFWksvYy8xd2hz?=
+ =?utf-8?B?OG5BclhzRHMwZ3BMSm43ZDREWXF4TTlvRElNU3hQNmtDMXRaSGNhVlZld0lR?=
+ =?utf-8?B?WUVLUUh0dnlNMklxLzJMZUNaZDR6R1BCT3VRZ1dVQzE0c1pZZEVEcmI4VXBT?=
+ =?utf-8?B?YTNRNkZSZE9EU1ljU2ViY3ZkazNFdHZKd2ZBUWVNZ0ZlakhRa1JTSDFKQ0g1?=
+ =?utf-8?B?YmFpeldURzNnT0FHdmZBbWVsbDltYStiVlBQZmQzYi9wR2s3eTFhSlU5Slh6?=
+ =?utf-8?B?NFhBOHJYSmpPRFdKVXNjU3RlL1B5UFk5Q3UweVdhdUpvNS9uUHl0U1hvSnRq?=
+ =?utf-8?B?K3NtcWtiUjVLdXJuRzJzZWpLYWtaNm9XSHZwczMxemcyZjlBaS9Bdi80WmN4?=
+ =?utf-8?B?ckQ1YjR0aVdlMTErVk1GcFl3T0dTRXpGSERyRUpPTUxHbkxsc3FXS3lTU1Z1?=
+ =?utf-8?B?blNEUkxadktWaXduakJsbzFnNUprTklXMmh5VGFSSWJMc09vQlVNbnZNZ2RD?=
+ =?utf-8?B?Sm5wU2tZSDB5U3NWMDhTdU15NytyVjFBU0V3UHFKc01lZVdYMklGVm9MK0sr?=
+ =?utf-8?B?QjlZSXhiSlBMWEFZMjZVOTNPa1Q5MHprVFFES0tYZ1k4WUJURDFtU1ozeEsv?=
+ =?utf-8?B?NWo5RzhmZC9qNVJXL3NYNElHTWc2V3JWUS9UQnBKZ3FseFNMMTlYVEhYVU9k?=
+ =?utf-8?B?enpEUGJheG05MVBEWStob0JYTzFvSVd0Y2FjOWROWDlwVVZNdjZwS0FERDZH?=
+ =?utf-8?B?M3V1NXlodEZBVnNkYjBxYS9VdUl6UVVuWWFnb3MvZUFRRWpNZ1d0a0RxVlZp?=
+ =?utf-8?B?bnJGR2VaY3c1b2ZFTmR5UmNER2RHQXBkekVDYzEvcDhNUWZtbW1Xc3NYQytN?=
+ =?utf-8?B?VEFaSmpZVlBTbHZmOU5oTjdMOXZ6TGtYNVpxMkpOKzFWWWQxNE8yOExLd2Fn?=
+ =?utf-8?B?RkQrZ0padkZCT3hwNURaamIrTWsxSVVJaGFEb3cvZHpvQTgwL0VnZE82eXV6?=
+ =?utf-8?Q?mhmX9fo3wm+N/z35ICGghJpM3?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 21:08:09.7577 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c4c7e86-d2cf-4831-0a04-08ddcee40595
+X-MS-Exchange-CrossTenant-Network-Message-Id: 224508e4-3494-4206-779c-08ddcee70f1e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB7210.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 21:29:54.5540 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00006003.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPF0EB7D076B
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +z3GSRYczhYUyBuBQ0j7AUzEFsbrrMyyW33lazVFuZYIrHdNpt55y3pjpJDsSYuhkYNXtV6L/f1sfXggyzpZjg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6299
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,12 +160,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Update the client id mapping so the correct clients
+--------------lmbVRtVZ624RkotaACSy9WTu
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+I think there is one more change here [32+5][1] = "ISPC*IS*WR" => 
+"ISPC*SIS*WR".
+others look good for these 2 patches -
+        Reviewed-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
+thanks,
+
+David
+
+On 2025-07-29 17:07, Alex Deucher wrote:
+
+> Update the client id mapping so the correct clients
+> get printed when there is a mmhub page fault.
+>
+> v2: fix typos spotted by David Wu.
+>
+> Signed-off-by: Alex Deucher<alexander.deucher@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c | 105 +++++++++++++++++++++++-
+>   1 file changed, 104 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c
+> index bc3d6c2fc87a4..733bc76a0f3f8 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c
+> @@ -40,30 +40,129 @@
+>   
+>   static const char *mmhub_client_ids_v3_3[][2] = {
+>   	[0][0] = "VMC",
+> +	[1][0] = "ISPXT",
+> +	[2][0] = "ISPIXT",
+>   	[4][0] = "DCEDMC",
+>   	[6][0] = "MP0",
+>   	[7][0] = "MP1",
+>   	[8][0] = "MPM",
+> +	[9][0] = "ISPPDPRD",
+> +	[10][0] = "ISPCSTATRD",
+> +	[11][0] = "ISPBYRPRD",
+> +	[12][0] = "ISPRGBPRD",
+> +	[13][0] = "ISPMCFPRD",
+> +	[14][0] = "ISPMCFPRD1",
+> +	[15][0] = "ISPYUVPRD",
+> +	[16][0] = "ISPMCSCRD",
+> +	[17][0] = "ISPGDCRD",
+> +	[18][0] = "ISPLMERD",
+> +	[22][0] = "ISPXT1",
+> +	[23][0] = "ISPIXT1",
+>   	[24][0] = "HDP",
+>   	[25][0] = "LSDMA",
+>   	[26][0] = "JPEG",
+>   	[27][0] = "VPE",
+> +	[28][0] = "VSCH",
+>   	[29][0] = "VCNU",
+>   	[30][0] = "VCN",
+> +	[1][1] = "ISPXT",
+> +	[2][1] = "ISPIXT",
+>   	[3][1] = "DCEDWB",
+>   	[4][1] = "DCEDMC",
+> +	[5][1] = "ISPCSISWR",
+>   	[6][1] = "MP0",
+>   	[7][1] = "MP1",
+>   	[8][1] = "MPM",
+> +	[9][1] = "ISPPDPWR",
+> +	[10][1] = "ISPCSTATWR",
+> +	[11][1] = "ISPBYRPWR",
+> +	[12][1] = "ISPRGBPWR",
+> +	[13][1] = "ISPMCFPWR",
+> +	[14][1] = "ISPMWR0",
+> +	[15][1] = "ISPYUVPWR",
+> +	[16][1] = "ISPMCSCWR",
+> +	[17][1] = "ISPGDCWR",
+> +	[18][1] = "ISPLMEWR",
+> +	[20][1] = "ISPMWR2",
+>   	[21][1] = "OSSSYS",
+> +	[22][1] = "ISPXT1",
+> +	[23][1] = "ISPIXT1",
+>   	[24][1] = "HDP",
+>   	[25][1] = "LSDMA",
+>   	[26][1] = "JPEG",
+>   	[27][1] = "VPE",
+> +	[28][1] = "VSCH",
+>   	[29][1] = "VCNU",
+>   	[30][1] = "VCN",
+>   };
+>   
+> +static const char *mmhub_client_ids_v3_3_1[][2] = {
+> +	[0][0] = "VMC",
+> +	[4][0] = "DCEDMC",
+> +	[6][0] = "MP0",
+> +	[7][0] = "MP1",
+> +	[8][0] = "MPM",
+> +	[24][0] = "HDP",
+> +	[25][0] = "LSDMA",
+> +	[26][0] = "JPEG0",
+> +	[27][0] = "VPE0",
+> +	[28][0] = "VSCH",
+> +	[29][0] = "VCNU0",
+> +	[30][0] = "VCN0",
+> +	[32+1][0] = "ISPXT",
+> +	[32+2][0] = "ISPIXT",
+> +	[32+9][0] = "ISPPDPRD",
+> +	[32+10][0] = "ISPCSTATRD",
+> +	[32+11][0] = "ISPBYRPRD",
+> +	[32+12][0] = "ISPRGBPRD",
+> +	[32+13][0] = "ISPMCFPRD",
+> +	[32+14][0] = "ISPMCFPRD1",
+> +	[32+15][0] = "ISPYUVPRD",
+> +	[32+16][0] = "ISPMCSCRD",
+> +	[32+17][0] = "ISPGDCRD",
+> +	[32+18][0] = "ISPLMERD",
+> +	[32+22][0] = "ISPXT1",
+> +	[32+23][0] = "ISPIXT1",
+> +	[32+26][0] = "JPEG1",
+> +	[32+27][0] = "VPE1",
+> +	[32+29][0] = "VCNU1",
+> +	[32+30][0] = "VCN1",
+> +	[3][1] = "DCEDWB",
+> +	[4][1] = "DCEDMC",
+> +	[6][1] = "MP0",
+> +	[7][1] = "MP1",
+> +	[8][1] = "MPM",
+> +	[21][1] = "OSSSYS",
+> +	[24][1] = "HDP",
+> +	[25][1] = "LSDMA",
+> +	[26][1] = "JPEG0",
+> +	[27][1] = "VPE0",
+> +	[28][1] = "VSCH",
+> +	[29][1] = "VCNU0",
+> +	[30][1] = "VCN0",
+> +	[32+1][1] = "ISPXT",
+> +	[32+2][1] = "ISPIXT",
+> +	[32+5][1] = "ISPCISWR",
+> +	[32+9][1] = "ISPPDPWR",
+> +	[32+10][1] = "ISPCSTATWR",
+> +	[32+11][1] = "ISPBYRPWR",
+> +	[32+12][1] = "ISPRGBPWR",
+> +	[32+13][1] = "ISPMCFPWR",
+> +	[32+14][1] = "ISPMWR0",
+> +	[32+15][1] = "ISPYUVPWR",
+> +	[32+16][1] = "ISPMCSCWR",
+> +	[32+17][1] = "ISPGDCWR",
+> +	[32+18][1] = "ISPLMEWR",
+> +	[32+19][1] = "ISPMWR1",
+> +	[32+20][1] = "ISPMWR2",
+> +	[32+22][1] = "ISPXT1",
+> +	[32+23][1] = "ISPIXT1",
+> +	[32+26][1] = "JPEG1",
+> +	[32+27][1] = "VPE1",
+> +	[32+29][1] = "VCNU1",
+> +	[32+30][1] = "VCN1",
+> +};
+> +
+>   static uint32_t mmhub_v3_3_get_invalidate_req(unsigned int vmid,
+>   						uint32_t flush_type)
+>   {
+> @@ -102,12 +201,16 @@ mmhub_v3_3_print_l2_protection_fault_status(struct amdgpu_device *adev,
+>   
+>   	switch (amdgpu_ip_version(adev, MMHUB_HWIP, 0)) {
+>   	case IP_VERSION(3, 3, 0):
+> -	case IP_VERSION(3, 3, 1):
+>   	case IP_VERSION(3, 3, 2):
+>   		mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_v3_3) ?
+>   			    mmhub_client_ids_v3_3[cid][rw] :
+>   			    cid == 0x140 ? "UMSCH" : NULL;
+>   		break;
+> +	case IP_VERSION(3, 3, 1):
+> +		mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_v3_3_1) ?
+> +			    mmhub_client_ids_v3_3_1[cid][rw] :
+> +			    cid == 0x140 ? "UMSCH" : NULL;
+> +		break;
+>   	default:
+>   		mmhub_cid = NULL;
+>   		break;
+--------------lmbVRtVZ624RkotaACSy9WTu
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    I think there is one more change here <span data-teams="true">[32+5][1]
+      = &quot;ISPC<strong>IS</strong>WR&quot; =&gt; &quot;ISPC<strong>SIS</strong>WR&quot;.
+      <br>
+    </span>others look good for these 2 patches -&nbsp;&nbsp;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reviewed-by: David (Ming Qiang) Wu <a class="moz-txt-link-rfc2396E" href="mailto:David.Wu3@amd.com">&lt;David.Wu3@amd.com&gt;</a><br>
+    thanks,
+    <p>David</p>
+    <p>On 2025-07-29 17:07, Alex Deucher wrote:</p>
+    <blockquote type="cite" cite="mid:20250729210754.2304695-2-alexander.deucher@amd.com">
+      <pre wrap="" class="moz-quote-pre">Update the client id mapping so the correct clients
 get printed when there is a mmhub page fault.
 
 v2: fix typos spotted by David Wu.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Alex Deucher <a class="moz-txt-link-rfc2396E" href="mailto:alexander.deucher@amd.com">&lt;alexander.deucher@amd.com&gt;</a>
 ---
  drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c | 105 +++++++++++++++++++++++-
  1 file changed, 104 insertions(+), 1 deletion(-)
@@ -149,128 +370,128 @@ index bc3d6c2fc87a4..733bc76a0f3f8 100644
 @@ -40,30 +40,129 @@
  
  static const char *mmhub_client_ids_v3_3[][2] = {
- 	[0][0] = "VMC",
-+	[1][0] = "ISPXT",
-+	[2][0] = "ISPIXT",
- 	[4][0] = "DCEDMC",
- 	[6][0] = "MP0",
- 	[7][0] = "MP1",
- 	[8][0] = "MPM",
-+	[9][0] = "ISPPDPRD",
-+	[10][0] = "ISPCSTATRD",
-+	[11][0] = "ISPBYRPRD",
-+	[12][0] = "ISPRGBPRD",
-+	[13][0] = "ISPMCFPRD",
-+	[14][0] = "ISPMCFPRD1",
-+	[15][0] = "ISPYUVPRD",
-+	[16][0] = "ISPMCSCRD",
-+	[17][0] = "ISPGDCRD",
-+	[18][0] = "ISPLMERD",
-+	[22][0] = "ISPXT1",
-+	[23][0] = "ISPIXT1",
- 	[24][0] = "HDP",
- 	[25][0] = "LSDMA",
- 	[26][0] = "JPEG",
- 	[27][0] = "VPE",
-+	[28][0] = "VSCH",
- 	[29][0] = "VCNU",
- 	[30][0] = "VCN",
-+	[1][1] = "ISPXT",
-+	[2][1] = "ISPIXT",
- 	[3][1] = "DCEDWB",
- 	[4][1] = "DCEDMC",
-+	[5][1] = "ISPCSISWR",
- 	[6][1] = "MP0",
- 	[7][1] = "MP1",
- 	[8][1] = "MPM",
-+	[9][1] = "ISPPDPWR",
-+	[10][1] = "ISPCSTATWR",
-+	[11][1] = "ISPBYRPWR",
-+	[12][1] = "ISPRGBPWR",
-+	[13][1] = "ISPMCFPWR",
-+	[14][1] = "ISPMWR0",
-+	[15][1] = "ISPYUVPWR",
-+	[16][1] = "ISPMCSCWR",
-+	[17][1] = "ISPGDCWR",
-+	[18][1] = "ISPLMEWR",
-+	[20][1] = "ISPMWR2",
- 	[21][1] = "OSSSYS",
-+	[22][1] = "ISPXT1",
-+	[23][1] = "ISPIXT1",
- 	[24][1] = "HDP",
- 	[25][1] = "LSDMA",
- 	[26][1] = "JPEG",
- 	[27][1] = "VPE",
-+	[28][1] = "VSCH",
- 	[29][1] = "VCNU",
- 	[30][1] = "VCN",
+ 	[0][0] = &quot;VMC&quot;,
++	[1][0] = &quot;ISPXT&quot;,
++	[2][0] = &quot;ISPIXT&quot;,
+ 	[4][0] = &quot;DCEDMC&quot;,
+ 	[6][0] = &quot;MP0&quot;,
+ 	[7][0] = &quot;MP1&quot;,
+ 	[8][0] = &quot;MPM&quot;,
++	[9][0] = &quot;ISPPDPRD&quot;,
++	[10][0] = &quot;ISPCSTATRD&quot;,
++	[11][0] = &quot;ISPBYRPRD&quot;,
++	[12][0] = &quot;ISPRGBPRD&quot;,
++	[13][0] = &quot;ISPMCFPRD&quot;,
++	[14][0] = &quot;ISPMCFPRD1&quot;,
++	[15][0] = &quot;ISPYUVPRD&quot;,
++	[16][0] = &quot;ISPMCSCRD&quot;,
++	[17][0] = &quot;ISPGDCRD&quot;,
++	[18][0] = &quot;ISPLMERD&quot;,
++	[22][0] = &quot;ISPXT1&quot;,
++	[23][0] = &quot;ISPIXT1&quot;,
+ 	[24][0] = &quot;HDP&quot;,
+ 	[25][0] = &quot;LSDMA&quot;,
+ 	[26][0] = &quot;JPEG&quot;,
+ 	[27][0] = &quot;VPE&quot;,
++	[28][0] = &quot;VSCH&quot;,
+ 	[29][0] = &quot;VCNU&quot;,
+ 	[30][0] = &quot;VCN&quot;,
++	[1][1] = &quot;ISPXT&quot;,
++	[2][1] = &quot;ISPIXT&quot;,
+ 	[3][1] = &quot;DCEDWB&quot;,
+ 	[4][1] = &quot;DCEDMC&quot;,
++	[5][1] = &quot;ISPCSISWR&quot;,
+ 	[6][1] = &quot;MP0&quot;,
+ 	[7][1] = &quot;MP1&quot;,
+ 	[8][1] = &quot;MPM&quot;,
++	[9][1] = &quot;ISPPDPWR&quot;,
++	[10][1] = &quot;ISPCSTATWR&quot;,
++	[11][1] = &quot;ISPBYRPWR&quot;,
++	[12][1] = &quot;ISPRGBPWR&quot;,
++	[13][1] = &quot;ISPMCFPWR&quot;,
++	[14][1] = &quot;ISPMWR0&quot;,
++	[15][1] = &quot;ISPYUVPWR&quot;,
++	[16][1] = &quot;ISPMCSCWR&quot;,
++	[17][1] = &quot;ISPGDCWR&quot;,
++	[18][1] = &quot;ISPLMEWR&quot;,
++	[20][1] = &quot;ISPMWR2&quot;,
+ 	[21][1] = &quot;OSSSYS&quot;,
++	[22][1] = &quot;ISPXT1&quot;,
++	[23][1] = &quot;ISPIXT1&quot;,
+ 	[24][1] = &quot;HDP&quot;,
+ 	[25][1] = &quot;LSDMA&quot;,
+ 	[26][1] = &quot;JPEG&quot;,
+ 	[27][1] = &quot;VPE&quot;,
++	[28][1] = &quot;VSCH&quot;,
+ 	[29][1] = &quot;VCNU&quot;,
+ 	[30][1] = &quot;VCN&quot;,
  };
  
 +static const char *mmhub_client_ids_v3_3_1[][2] = {
-+	[0][0] = "VMC",
-+	[4][0] = "DCEDMC",
-+	[6][0] = "MP0",
-+	[7][0] = "MP1",
-+	[8][0] = "MPM",
-+	[24][0] = "HDP",
-+	[25][0] = "LSDMA",
-+	[26][0] = "JPEG0",
-+	[27][0] = "VPE0",
-+	[28][0] = "VSCH",
-+	[29][0] = "VCNU0",
-+	[30][0] = "VCN0",
-+	[32+1][0] = "ISPXT",
-+	[32+2][0] = "ISPIXT",
-+	[32+9][0] = "ISPPDPRD",
-+	[32+10][0] = "ISPCSTATRD",
-+	[32+11][0] = "ISPBYRPRD",
-+	[32+12][0] = "ISPRGBPRD",
-+	[32+13][0] = "ISPMCFPRD",
-+	[32+14][0] = "ISPMCFPRD1",
-+	[32+15][0] = "ISPYUVPRD",
-+	[32+16][0] = "ISPMCSCRD",
-+	[32+17][0] = "ISPGDCRD",
-+	[32+18][0] = "ISPLMERD",
-+	[32+22][0] = "ISPXT1",
-+	[32+23][0] = "ISPIXT1",
-+	[32+26][0] = "JPEG1",
-+	[32+27][0] = "VPE1",
-+	[32+29][0] = "VCNU1",
-+	[32+30][0] = "VCN1",
-+	[3][1] = "DCEDWB",
-+	[4][1] = "DCEDMC",
-+	[6][1] = "MP0",
-+	[7][1] = "MP1",
-+	[8][1] = "MPM",
-+	[21][1] = "OSSSYS",
-+	[24][1] = "HDP",
-+	[25][1] = "LSDMA",
-+	[26][1] = "JPEG0",
-+	[27][1] = "VPE0",
-+	[28][1] = "VSCH",
-+	[29][1] = "VCNU0",
-+	[30][1] = "VCN0",
-+	[32+1][1] = "ISPXT",
-+	[32+2][1] = "ISPIXT",
-+	[32+5][1] = "ISPCISWR",
-+	[32+9][1] = "ISPPDPWR",
-+	[32+10][1] = "ISPCSTATWR",
-+	[32+11][1] = "ISPBYRPWR",
-+	[32+12][1] = "ISPRGBPWR",
-+	[32+13][1] = "ISPMCFPWR",
-+	[32+14][1] = "ISPMWR0",
-+	[32+15][1] = "ISPYUVPWR",
-+	[32+16][1] = "ISPMCSCWR",
-+	[32+17][1] = "ISPGDCWR",
-+	[32+18][1] = "ISPLMEWR",
-+	[32+19][1] = "ISPMWR1",
-+	[32+20][1] = "ISPMWR2",
-+	[32+22][1] = "ISPXT1",
-+	[32+23][1] = "ISPIXT1",
-+	[32+26][1] = "JPEG1",
-+	[32+27][1] = "VPE1",
-+	[32+29][1] = "VCNU1",
-+	[32+30][1] = "VCN1",
++	[0][0] = &quot;VMC&quot;,
++	[4][0] = &quot;DCEDMC&quot;,
++	[6][0] = &quot;MP0&quot;,
++	[7][0] = &quot;MP1&quot;,
++	[8][0] = &quot;MPM&quot;,
++	[24][0] = &quot;HDP&quot;,
++	[25][0] = &quot;LSDMA&quot;,
++	[26][0] = &quot;JPEG0&quot;,
++	[27][0] = &quot;VPE0&quot;,
++	[28][0] = &quot;VSCH&quot;,
++	[29][0] = &quot;VCNU0&quot;,
++	[30][0] = &quot;VCN0&quot;,
++	[32+1][0] = &quot;ISPXT&quot;,
++	[32+2][0] = &quot;ISPIXT&quot;,
++	[32+9][0] = &quot;ISPPDPRD&quot;,
++	[32+10][0] = &quot;ISPCSTATRD&quot;,
++	[32+11][0] = &quot;ISPBYRPRD&quot;,
++	[32+12][0] = &quot;ISPRGBPRD&quot;,
++	[32+13][0] = &quot;ISPMCFPRD&quot;,
++	[32+14][0] = &quot;ISPMCFPRD1&quot;,
++	[32+15][0] = &quot;ISPYUVPRD&quot;,
++	[32+16][0] = &quot;ISPMCSCRD&quot;,
++	[32+17][0] = &quot;ISPGDCRD&quot;,
++	[32+18][0] = &quot;ISPLMERD&quot;,
++	[32+22][0] = &quot;ISPXT1&quot;,
++	[32+23][0] = &quot;ISPIXT1&quot;,
++	[32+26][0] = &quot;JPEG1&quot;,
++	[32+27][0] = &quot;VPE1&quot;,
++	[32+29][0] = &quot;VCNU1&quot;,
++	[32+30][0] = &quot;VCN1&quot;,
++	[3][1] = &quot;DCEDWB&quot;,
++	[4][1] = &quot;DCEDMC&quot;,
++	[6][1] = &quot;MP0&quot;,
++	[7][1] = &quot;MP1&quot;,
++	[8][1] = &quot;MPM&quot;,
++	[21][1] = &quot;OSSSYS&quot;,
++	[24][1] = &quot;HDP&quot;,
++	[25][1] = &quot;LSDMA&quot;,
++	[26][1] = &quot;JPEG0&quot;,
++	[27][1] = &quot;VPE0&quot;,
++	[28][1] = &quot;VSCH&quot;,
++	[29][1] = &quot;VCNU0&quot;,
++	[30][1] = &quot;VCN0&quot;,
++	[32+1][1] = &quot;ISPXT&quot;,
++	[32+2][1] = &quot;ISPIXT&quot;,
++	[32+5][1] = &quot;ISPCISWR&quot;,
++	[32+9][1] = &quot;ISPPDPWR&quot;,
++	[32+10][1] = &quot;ISPCSTATWR&quot;,
++	[32+11][1] = &quot;ISPBYRPWR&quot;,
++	[32+12][1] = &quot;ISPRGBPWR&quot;,
++	[32+13][1] = &quot;ISPMCFPWR&quot;,
++	[32+14][1] = &quot;ISPMWR0&quot;,
++	[32+15][1] = &quot;ISPYUVPWR&quot;,
++	[32+16][1] = &quot;ISPMCSCWR&quot;,
++	[32+17][1] = &quot;ISPGDCWR&quot;,
++	[32+18][1] = &quot;ISPLMEWR&quot;,
++	[32+19][1] = &quot;ISPMWR1&quot;,
++	[32+20][1] = &quot;ISPMWR2&quot;,
++	[32+22][1] = &quot;ISPXT1&quot;,
++	[32+23][1] = &quot;ISPIXT1&quot;,
++	[32+26][1] = &quot;JPEG1&quot;,
++	[32+27][1] = &quot;VPE1&quot;,
++	[32+29][1] = &quot;VCNU1&quot;,
++	[32+30][1] = &quot;VCN1&quot;,
 +};
 +
  static uint32_t mmhub_v3_3_get_invalidate_req(unsigned int vmid,
@@ -282,18 +503,21 @@ index bc3d6c2fc87a4..733bc76a0f3f8 100644
  	case IP_VERSION(3, 3, 0):
 -	case IP_VERSION(3, 3, 1):
  	case IP_VERSION(3, 3, 2):
- 		mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_v3_3) ?
+ 		mmhub_cid = cid &lt; ARRAY_SIZE(mmhub_client_ids_v3_3) ?
  			    mmhub_client_ids_v3_3[cid][rw] :
- 			    cid == 0x140 ? "UMSCH" : NULL;
+ 			    cid == 0x140 ? &quot;UMSCH&quot; : NULL;
  		break;
 +	case IP_VERSION(3, 3, 1):
-+		mmhub_cid = cid < ARRAY_SIZE(mmhub_client_ids_v3_3_1) ?
++		mmhub_cid = cid &lt; ARRAY_SIZE(mmhub_client_ids_v3_3_1) ?
 +			    mmhub_client_ids_v3_3_1[cid][rw] :
-+			    cid == 0x140 ? "UMSCH" : NULL;
++			    cid == 0x140 ? &quot;UMSCH&quot; : NULL;
 +		break;
  	default:
  		mmhub_cid = NULL;
  		break;
--- 
-2.50.1
+</pre>
+    </blockquote>
+  </body>
+</html>
 
+--------------lmbVRtVZ624RkotaACSy9WTu--
