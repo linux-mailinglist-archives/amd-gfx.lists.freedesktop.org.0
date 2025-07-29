@@ -2,45 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70002B14B9A
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Jul 2025 11:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6EE5B1592E
+	for <lists+amd-gfx@lfdr.de>; Wed, 30 Jul 2025 08:55:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D20CF10E1E3;
-	Tue, 29 Jul 2025 09:49:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 923A010E404;
+	Wed, 30 Jul 2025 06:55:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=free.fr header.i=@free.fr header.b="A7Q4pR8f";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=aladdin.ru header.i=@aladdin.ru header.b="kpFaaEiL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp3-g21.free.fr (smtp3-g21.free.fr [212.27.42.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CABE110E1E3
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Jul 2025 09:49:57 +0000 (UTC)
-Received: from zimbra39-e7.priv.proxad.net (unknown [172.20.243.189])
- by smtp3-g21.free.fr (Postfix) with ESMTP id 3845213F88D;
- Tue, 29 Jul 2025 11:49:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
- s=smtp-20201208; t=1753782596;
- bh=x7iMsG4KaHTbOhl7VPW4haaO7v8fmmoQfUnQctezWxk=;
- h=Date:From:To:Cc:In-Reply-To:Subject:From;
- b=A7Q4pR8f5XyVZXsKdWa1W2dt7RQY4+VZqztPJz6UucYdxCV5ea8mqeTGzggZ2+NdU
- 6fbQi/18PymrZVYM3VFGLYIOVq6eI45D2rP0xI2tHmpDaMc+WtprZp0vWfWPfkRg7+
- OVHe5M2K03hCrypjG3ePpIkb+b7HsEhKmLoiMf4tKq0SIyakxvA6YDvmEmUqBQKtWV
- xHZvrVbvXYZnVkRcOTsmyDXyeUQmyMX2iI5guEqDQEqgcSIKtxuVNhkDl6pHmvtnFU
- 0jMkztNoNJYL5I3D0DQRkotJbE162Id3Ux1R3D54M2z2X5KMHdHkxuywnKj6ZzqNqh
- 7M0V0MWMKToRA==
-Date: Tue, 29 Jul 2025 11:49:55 +0200 (CEST)
-From: Yann Dirson <ydirson@free.fr>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Message-ID: <2140760933.194259033.1753782595813.JavaMail.root@zimbra39-e7.priv.proxad.net>
-In-Reply-To: <CADnq5_Mbr_dU3Xg39wj_DiUU4pRbS_tx23eOw5SEEFvMi6ReBQ@mail.gmail.com>
-Subject: Re: Need help to dig into X11 display freezing (Renoir, Xen/QubesOS)
+Received: from mail-out.aladdin-rd.ru (mail-out.aladdin-rd.ru [91.199.251.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F423D10E12B;
+ Tue, 29 Jul 2025 11:49:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; d=aladdin.ru; s=mail; c=simple/simple;
+ t=1753789779; h=from:subject:to:date:message-id;
+ bh=Cc8ULeOyaFVbyiqOGp6lL8N5tLZAjBl15kqlBhidWg4=;
+ b=kpFaaEiLsDVxz2RTAJ4kNMe/rVBDPPoBR2eNnTrjVQQu65wTFxR3AiWS3CRnQWhpOsjx3XITVaq
+ QBLcSwE8mTPDcAva9iXVVMFpDge7J9O3GxwEWDicMOgtfAYAsGoDkIaVFhvOfb8TIzZp51kLQp/9b
+ QGzH3BfxtZ1KtCgVMursJs+W4wSnXA80tQ0l6m7vxv2s9SzuPR9+JMZbexyeL5/vY0dOkAjWmVX8o
+ YyPA36dS/oEcEnxiOvXjY80mdgsjDJkgvtQykUVfEP5CytA65+1lT3DaN0x23pLCJStsfgQz4+wkn
+ 22AFt9Xp+LrvA8NZkZq2HhQ1LUQEkcV+wmIw==
+From: Daniil Dulov <d.dulov@aladdin.ru>
+To: <stable@vger.kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Daniil Dulov <d.dulov@aladdin.ru>, Harry Wentland
+ <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira
+ <siqueira@igalia.com>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>, Tom Chung
+ <chiahsuan.chung@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ "Roman Li" <roman.li@amd.com>, Alex Hung <alex.hung@amd.com>, Aurabindo
+ Pillai <aurabindo.pillai@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ "Srinivasan Shanmugam" <srinivasan.shanmugam@amd.com>
+Subject: [PATCH 6.1/6.6] drm/amd/display: Add null check for head_pipe in
+ dcn32_acquire_idle_pipe_for_head_pipe_in_layer
+Date: Tue, 29 Jul 2025 14:49:24 +0300
+Message-ID: <20250729114924.138111-1-d.dulov@aladdin.ru>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Originating-IP: [88.120.94.119]
-X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - FF3.0 (Linux)/7.2.0-GA2598)
-X-Authenticated-User: ydirson@free.fr
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.0.122.7]
+X-ClientProxiedBy: EXCH-2016-02.aladdin.ru (192.168.1.102) To
+ EXCH-2016-01.aladdin.ru (192.168.1.101)
+X-Mailman-Approved-At: Wed, 30 Jul 2025 06:55:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,53 +62,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> De: "Alex Deucher" <alexdeucher@gmail.com>
-> =C3=80: "Yann Dirson" <ydirson@free.fr>
-> Cc: "amd-gfx list" <amd-gfx@lists.freedesktop.org>
-> Envoy=C3=A9: Lundi 28 Juillet 2025 19:20:13
-> Objet: Re: Need help to dig into X11 display freezing (Renoir, Xen/QubesO=
-S)
->=20
-> On Sun, Jul 20, 2025 at 10:39=E2=80=AFAM Yann Dirson <ydirson@free.fr> wr=
-ote:
-> >
-> > Hello there,
-> >
-> > For a few months I've been experiencing occasional freezes of the
-> > X11 display
-> > on my QubesOS RENOIR laptop.  The setup is pretty much standard for
-> > QubesOS,
-> > with both GPUs attached to dom0 and XFCE running there (and the
-> > dGPU being
-> > mostly not used).  Kernel is QubesOS' kernel-latest-6.15.4.
-> >
-> > Those freezes most often occur while the screen is blanked
-> > by xscreensaver (suspend options fully deactivated here, as suspend
-> > is broken
-> > on this platform): in this case moving the mouse does not get the
-> > unlock banner
-> > displayed, the screen stays black... except the mouse pointer is
-> > visible.  I can
-> > also switch to other virtual consoles and interact with the system,
-> > but was
-> > never able to collect any evidence of something wrong being
-> > detected.
-> >
-> > Occasionally it also happens (like yesterday) while I'm working,
-> > and the X11
-> > display just seems frozen, no clue if the input devices trigger
-> > anything in
-> > there.
-> >
-> > I guess something goes wrong but gets undetected by the driver.
-> >  Any suggestion
-> > as to extra logging/debug features to enable?
->=20
-> Is this specific to QubesOS or a general problem even on bare metal?
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 
-Actually this is my main machine so QubesOS is running most of the time.
-I'm only booting bare metal on this box for targeted tests, and
-never use it long enough then to see the problem trigger.
+commit ac2140449184a26eac99585b7f69814bd3ba8f2d upstream.
 
---=20
-Yann
+This commit addresses a potential null pointer dereference issue in the
+`dcn32_acquire_idle_pipe_for_head_pipe_in_layer` function. The issue
+could occur when `head_pipe` is null.
+
+The fix adds a check to ensure `head_pipe` is not null before asserting
+it. If `head_pipe` is null, the function returns NULL to prevent a
+potential null pointer dereference.
+
+Reported by smatch:
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn32/dcn32_resource.c:2690 dcn32_acquire_idle_pipe_for_head_pipe_in_layer() error: we previously assumed 'head_pipe' could be null (see line 2681)
+
+Cc: Tom Chung <chiahsuan.chung@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Roman Li <roman.li@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Reviewed-by: Tom Chung <chiahsuan.chung@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+[ Daniil: dcn32 was moved from drivers/gpu/drm/amd/display/dc to
+  drivers/gpu/drm/amd/display/dc/resource since commit
+  8b8eed05a1c6 ("drm/amd/display: Refactor resource into component directory").
+  The path is changed accordingly to apply the patch on 6.1.y. and 6.6.y ]
+Signed-off-by: Daniil Dulov <d.dulov@aladdin.ru>
+---
+Backport fix for CVE-2024-49918
+ drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
+index 1b1534ffee9f..591c3166a468 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
+@@ -2563,8 +2563,10 @@ struct pipe_ctx *dcn32_acquire_idle_pipe_for_head_pipe_in_layer(
+ 	struct resource_context *old_ctx = &stream->ctx->dc->current_state->res_ctx;
+ 	int head_index;
+ 
+-	if (!head_pipe)
++	if (!head_pipe) {
+ 		ASSERT(0);
++		return NULL;
++	}
+ 
+ 	/*
+ 	 * Modified from dcn20_acquire_idle_pipe_for_layer
+-- 
+2.34.1
+
