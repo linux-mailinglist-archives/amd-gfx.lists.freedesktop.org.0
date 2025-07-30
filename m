@@ -2,67 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2412B16CAE
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C334B16CAA
 	for <lists+amd-gfx@lfdr.de>; Thu, 31 Jul 2025 09:24:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5002110E711;
-	Thu, 31 Jul 2025 07:24:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE29D10E71F;
+	Thu, 31 Jul 2025 07:24:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nfraprado@collabora.com header.b="RSWTzA4Q";
+	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="A1WW7fok";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 874A810E387;
- Wed, 30 Jul 2025 21:42:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1753911753; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=ZUq4TMpmPLGCyyUN7vfBqrygD0X+BuKEPoWTDoreS4mYfiUv4ixBQOHmVuaOLd7kbXa6Hx/WsAF7AdGUWIJtBK+oKl8CFl4np5EVHte8w64gKhS00B8NzQFstRVmpnap74h3TmQMX3nvHTNyQInuTg4xeVp+klDdEqU7PPkULOk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1753911753;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=tDwqJNnbeCGx3m5FbRR2/yW5Q9kGf4UwpcQNheNkTlo=; 
- b=fkBRZG5k8wPnL/gwSDlKcMh3v8ewh3I9iVs3crjezs3K+WNZFZ+M2F/dajef1NlK3GiClKKM8AWJZw4Utyu9zz2qbjZ1VE/IDbM7ltRSdf5eJOIPcnlHsNmG0/rZKzd3luSAlAzETx0P2dafL9PTDc+ZjoLcVItyz/Cug63Oz2o=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nfraprado@collabora.com;
- dmarc=pass header.from=<nfraprado@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753911753; 
- s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
- bh=tDwqJNnbeCGx3m5FbRR2/yW5Q9kGf4UwpcQNheNkTlo=;
- b=RSWTzA4Qv+Lxrqd54eLeEr5oUZjZWiSjCuBoxXV527Lz5phCYSZi1SqHMXhOUUeo
- SXiTkFatVjZiLIFZ8h/1sX2/nc/yFXHcgzYh2+Sp9R7f6W/UPifQpCxQFs4foqGdVMc
- kpUCo1oIo+BK8FpH8mvzo0rc9p8sQ/xdOYf0o9U0=
-Received: by mx.zohomail.com with SMTPS id 17539117502288.545850020648345;
- Wed, 30 Jul 2025 14:42:30 -0700 (PDT)
-Message-ID: <9183e2effaf17f7d98fbb4f18d1c8e502d8f20e4.camel@collabora.com>
-Subject: Re: [PATCH V10 18/46] drm/vkms: add 3x4 matrix in color pipeline
-From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
-To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org
-Cc: wayland-devel@lists.freedesktop.org, harry.wentland@amd.com, 
- leo.liu@amd.com, ville.syrjala@linux.intel.com,
- pekka.paalanen@collabora.com, 	contact@emersion.fr, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com, 	shashank.sharma@amd.com,
- agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, 
- aleixpol@kde.org, xaver.hugl@gmail.com, victoria@system76.com,
- daniel@ffwll.ch, 	uma.shankar@intel.com, quic_naseer@quicinc.com,
- quic_cbraga@quicinc.com, 	quic_abhinavk@quicinc.com, marcan@marcan.st,
- Liviu.Dudau@arm.com, 	sashamcintosh@google.com,
- chaitanya.kumar.borah@intel.com, 	louis.chauvet@bootlin.com,
- arthurgrillo@riseup.net, Daniel Stone	 <daniels@collabora.com>
-Date: Wed, 30 Jul 2025 17:42:20 -0400
-In-Reply-To: <20250617041746.2884343-19-alex.hung@amd.com>
-References: <20250617041746.2884343-1-alex.hung@amd.com>
- <20250617041746.2884343-19-alex.hung@amd.com>
+Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACF1B10E45A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Jul 2025 22:20:16 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43]) (Authenticated sender: zamundaaa)
+ by letterbox.kde.org (Postfix) with ESMTPSA id 3429833AD35
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Jul 2025 23:20:14 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
+ t=1753914014; bh=VFe9p015ScIXFiUtnB4KEjmtx4DIA5kZoIwCWD6o93o=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=A1WW7fokFy0bwUQbkjuYBWxnvyUrcBNYS7dm4efRVXWyrBXcjUnN/tpFTNWVx/IwD
+ NRtwILD851gishy0dpV3MavPWDVOItzvqccuw2hyQryOj7iZeqLr2/u2g8GkcHoHc9
+ hYrhqkJhhfofeNJghjAKCXf2V/cPp5m85dLYeIVVRuYqUO91YRaY/MLKjcXWzZWnP8
+ 3GtlMjr/ZmH3aTgmUabV6BohwsvetfEaJQTzPu6ENrkmDK2zbEGHgZfMM50WPvRd9p
+ L+lK82Ij8Qws6wjRIDD2RbR38flWm8+XM746d6s9wxIwKtTd5ub1KmpwHLS1kuTbfB
+ 3R5AirlaCzj5g==
+Received: by mail-ej1-f43.google.com with SMTP id
+ a640c23a62f3a-ae401ebcbc4so50758066b.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 30 Jul 2025 15:20:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVA2Ppf+13K3NfXj4DI3UZQytMxYoLPz20XMf8XVECrlwbBslwvnG+1SMnd+OtN0leNWZxUVOjP@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzBUF+4Z8CwpU9+4kZxp6JAQzvKnKZNZ+fUdRfbOgTGE7kWXFQC
+ gUfJLCIzxI04T57Nr3f0rbkqCEcK0eoEPSsoRasklSBcIQ1LGjovSWjwr9llRlkq1FZFC07r7eS
+ TsyOZlnXcqlDVkofoG42/+Pff6lKY4Pw=
+X-Google-Smtp-Source: AGHT+IGrMBZGy5sXw9fDxKrPXXODpJH0qzo+VZMCFtIwn5IPDMz8rz35sNaVWierReo4AF8x++Fwmg7nTN20Hh3ZZTk=
+X-Received: by 2002:a17:906:dc94:b0:ae2:4630:7de4 with SMTP id
+ a640c23a62f3a-af8fd941362mr544215266b.34.1753914013595; Wed, 30 Jul 2025
+ 15:20:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <20250730080902.6849-1-michel@daenzer.net>
+In-Reply-To: <20250730080902.6849-1-michel@daenzer.net>
+From: Xaver Hugl <xaver.hugl@kde.org>
+Date: Thu, 31 Jul 2025 00:20:02 +0200
+X-Gmail-Original-Message-ID: <CAFZQkGy2m8OS-1FZdCT9tShs2soy5mtz4CVWfBhPW7dPWq_cZQ@mail.gmail.com>
+X-Gm-Features: Ac12FXxA7NtfqVWv0wU22D7MG4YZT1Y6xjAau-cKuTf8C2ffY4zU-r9J0BOWXMY
+Message-ID: <CAFZQkGy2m8OS-1FZdCT9tShs2soy5mtz4CVWfBhPW7dPWq_cZQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Add primary plane to commits for correct
+ VRR handling
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Alex Hung <alex.hung@amd.com>, amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
-MIME-Version: 1.0
-X-ZohoMailClient: External
-X-ZohoMail-Owner: <9183e2effaf17f7d98fbb4f18d1c8e502d8f20e4.camel@collabora.com>+zmo_0_nfraprado@collabora.com
 X-Mailman-Approved-At: Thu, 31 Jul 2025 07:24:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,106 +70,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-16 at 22:17 -0600, Alex Hung wrote:
-> From: Harry Wentland <harry.wentland@amd.com>
->=20
-> We add two 3x4 matrices into the VKMS color pipeline. The reason
-> we're adding matrices is so that we can test that application
-> of a matrix and its inverse yields an output equal to the input
-> image.
->=20
-> One complication with the matrix implementation has to do with
-> the fact that the matrix entries are in signed-magnitude fixed
-> point, whereas the drm_fixed.h implementation uses 2s-complement.
-> The latter one is the one that we want for easy addition and
-> subtraction, so we convert all entries to 2s-complement.
->=20
-> Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
-> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
-> Reviewed-by: Daniel Stone <daniels@collabora.com>
+I can confirm that this works. Thank you!
+
+- Xaver
+
+Am Mi., 30. Juli 2025 um 10:09 Uhr schrieb Michel D=C3=A4nzer <michel@daenz=
+er.net>:
+>
+> From: Michel D=C3=A4nzer <mdaenzer@redhat.com>
+>
+> amdgpu_dm_commit_planes calls update_freesync_state_on_stream only for
+> the primary plane. If a commit affects a CRTC but not its primary plane,
+> it would previously not trigger a refresh cycle or affect LFC, violating
+> current UAPI semantics.
+>
+> Fixes e.g. atomic commits affecting only the cursor plane being limited
+> to the minimum refresh rate.
+>
+> Don't do this for the legacy cursor ioctls though, it would break the
+> UAPI semantics for those.
+>
+> Suggested-by: Xaver Hugl <xaver.hugl@kde.org>
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3034
+> Signed-off-by: Michel D=C3=A4nzer <mdaenzer@redhat.com>
 > ---
-> V9:
-> =C2=A0- Update function names by _plane_ (Chaitanya Kumar Borah)
->=20
-> v8:
-> =C2=A0- Replace DRM_ERROR with drm_err (Louis Chauvet)
->=20
-> v7:
-> =C2=A0- Fix checkpatch warnings
-> =C2=A0 - Change kzalloc(sizeof(struct drm_colorop) ...) to
-> kzalloc(sizeof(*ops[i]) ...)
-> =C2=A0 - Change i-1to i - 1
-> =C2=A0 - Add a new line at EOF
->=20
-> v6:
-> =C2=A0- pre-compute colors (Louis Chauvet)
-> =C2=A0- round matrix output (Louis Chauvet)
->=20
-> =C2=A0drivers/gpu/drm/vkms/vkms_colorop.c=C2=A0 | 34
-> +++++++++++++++++++++++++++-
-> =C2=A0drivers/gpu/drm/vkms/vkms_composer.c | 33
-> +++++++++++++++++++++++++++
-> =C2=A02 files changed, 66 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/vkms/vkms_colorop.c
-> b/drivers/gpu/drm/vkms/vkms_colorop.c
-> index 2fb74b2bd001..70be35804ea9 100644
-> --- a/drivers/gpu/drm/vkms/vkms_colorop.c
-> +++ b/drivers/gpu/drm/vkms/vkms_colorop.c
-> @@ -12,7 +12,7 @@ static const u64 supported_tfs =3D
-> =C2=A0	BIT(DRM_COLOROP_1D_CURVE_SRGB_EOTF) |
-> =C2=A0	BIT(DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF);
-> =C2=A0
-> -#define MAX_COLOR_PIPELINE_OPS 2
-> +#define MAX_COLOR_PIPELINE_OPS 4
-> =C2=A0
-> =C2=A0static int vkms_initialize_color_pipeline(struct drm_plane *plane,
-> struct drm_prop_enum_list *list)
-> =C2=A0{
-> @@ -48,6 +48,38 @@ static int vkms_initialize_color_pipeline(struct
-> drm_plane *plane, struct drm_pr
-> =C2=A0		goto cleanup;
-> =C2=A0	}
-> =C2=A0
-
-This should also update the comment above as it still says "2nd op: 1d
-curve", but 2nd op is now a 3x4 matrix.
-
---=20
-Thanks,
-
-N=C3=ADcolas
-
-> +	ret =3D drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane);
-> +	if (ret)
-> +		goto cleanup;
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/dri=
+vers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> index 2551823382f8..010172f930ae 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> @@ -661,6 +661,15 @@ static int amdgpu_dm_crtc_helper_atomic_check(struct=
+ drm_crtc *crtc,
+>                 return -EINVAL;
+>         }
+>
+> +       if (!state->legacy_cursor_update && amdgpu_dm_crtc_vrr_active(dm_=
+crtc_state)) {
+> +               struct drm_plane_state *primary_state;
 > +
-> +	drm_colorop_set_next_property(ops[i - 1], ops[i]);
+> +               /* Pull in primary plane for correct VRR handling */
+> +               primary_state =3D drm_atomic_get_plane_state(state, crtc-=
+>primary);
+> +               if (IS_ERR(primary_state))
+> +                       return PTR_ERR(primary_state);
+> +       }
 > +
-> +	i++;
-> +
-> +	/* 3rd op: 3x4 matrix */
-> +	ops[i] =3D kzalloc(sizeof(*ops[i]), GFP_KERNEL);
-> +	if (!ops[i]) {
-> +		drm_err(dev, "KMS: Failed to allocate colorop\n");
-> +		ret =3D -ENOMEM;
-> +		goto cleanup;
-> +	}
-> +
-> +	ret =3D drm_plane_colorop_ctm_3x4_init(dev, ops[i], plane);
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	drm_colorop_set_next_property(ops[i - 1], ops[i]);
-> +
-> +	i++;
-> +
-> +	/* 4th op: 1d curve */
-> +	ops[i] =3D kzalloc(sizeof(*ops[i]), GFP_KERNEL);
-> +	if (!ops[i]) {
-> +		drm_err(dev, "KMS: Failed to allocate colorop\n");
-> +		ret =3D -ENOMEM;
-> +		goto cleanup;
-> +	}
-> +
+>         /* In some use cases, like reset, no stream is attached */
+>         if (!dm_crtc_state->stream)
+>                 return 0;
+> --
+> 2.50.0
+>
