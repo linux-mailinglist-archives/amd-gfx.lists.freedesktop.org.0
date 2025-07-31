@@ -2,81 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C38B16CAF
-	for <lists+amd-gfx@lfdr.de>; Thu, 31 Jul 2025 09:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0682AB16CB0
+	for <lists+amd-gfx@lfdr.de>; Thu, 31 Jul 2025 09:24:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1332310E721;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 786AD10E72C;
 	Thu, 31 Jul 2025 07:24:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SW9PqX71";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hXa7fcaW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B65F10E081;
- Thu, 31 Jul 2025 02:08:16 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-4561a4a8bf2so3984315e9.1; 
- Wed, 30 Jul 2025 19:08:16 -0700 (PDT)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37D9B10E702;
+ Thu, 31 Jul 2025 05:36:45 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-3b77b8750acso231883f8f.0; 
+ Wed, 30 Jul 2025 22:36:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753927694; x=1754532494; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ttbMdEkxoTUOprk+YRVdSAOn6EZRYe2hYPzeU8X5k20=;
- b=SW9PqX71VB9evoggmb1jkRxsUgij7wqGfFWcVLSKsnf69MIpVNAj2hMsXgnNAvTMay
- 5DXqp3fb0NdkVigMHzphsr4xvvlZANeeydFabc8GDJtNNlBk9vBXOduql7TeeQwvdnVu
- k057XmngSt1yGZXOwvABpw+dxwIvCJAnqLsxJG2mXqJVa/tYX5I5nCJXvU2noI19LVSI
- e83sUmuBU1KlPTsvIPMRXBA4mmBQhVIHxboGqUNbAL5roojJKNM/a5hxAtVNWiglf4Cd
- qU1ERcoWs2BTai27ssZ5cq8rc+xqOHRPRJ+RpS3sfB/n79YxsEdES3jsnsFLe3CUJ9fB
- dw6g==
+ d=gmail.com; s=20230601; t=1753940204; x=1754545004; darn=lists.freedesktop.org;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=9wjzRFN4mNt2Ahno1y82ZVBSbr4UOHx9K5gFPebp1jI=;
+ b=hXa7fcaWJ+2Qht1MzVCEU7Rlf6fr/ZUIIarTooDg/CZvhD+INQpPMytJiqlSKibBFp
+ RiZ6Z6aMBW1rawHdH79min+ripME/V/nAjW78jcZYQlwcrNxek3sE/CVje0GQwiii3m7
+ Vyo7XD5V4Kil5DlIeh/8iuU4gwWrXzOwxmQD3VxBdSZR83AHcgmWFgAZusVqFRDwVY/y
+ oZL65z7dsSXHmEY9vok09Z17gdY7ZpxgnkbzprRSw3xknz2/1a2MXBlnm9Pk2bLDr2m2
+ IF/b7p4378fl9/ZDuCfVevRU+q2RTJdIZNCPByFwfCf9zMwxEpbaRvvWFphmWChNO7IT
+ Sf2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753927694; x=1754532494;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ttbMdEkxoTUOprk+YRVdSAOn6EZRYe2hYPzeU8X5k20=;
- b=g+v5hoe64tyiOTDoRmahemCsS1FWyYAsBmiiYPeKr5ve2WSc9/rRel1UgssrZJG0X2
- PUM4kc1c1buluZHocpkW9MyVBMoZWzNoO+9w26P0byDu/ANzAmxvZIu4FXop4SCvga6x
- zHe9m2XA6RvD0WKs6hVed8RRero1LWAvw+7j7Rmwhp4FGZ2DsLSxbie9lHMWCnQucOdt
- cJOMjS6577nOXVViGys+IX+D0ihcp8tgPE4lsegbdN5M9p1Sg2xKb6gFNDHD8WmjhesN
- nYc2WfDpW+ZSTvBrJ4x7ZeedBVd9ykQ1fi/IUJGShz14KuqYqTALXmhWmrcZFPQLqkCQ
- andg==
+ d=1e100.net; s=20230601; t=1753940204; x=1754545004;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=9wjzRFN4mNt2Ahno1y82ZVBSbr4UOHx9K5gFPebp1jI=;
+ b=pcQF2de9YsOORmHCnlZvC/eB2/Le0dArO62Z2SrsAXNhBy6Uro7TX9pHksYrKS3twV
+ dPZfi08breew5Gqw78+S4z2cHkMYsIzlVybaT5cdZ5PDD4JPEze/s3SXdHQiFp2V5aiv
+ ysyWtnh0LKNV/rBc+ozcI8tR9eX63OYdWC3e2AqoUsb4WJNVvO/bDvqgItXBuzi7o3gK
+ SglPa3bD+tuopsx0ajjdiCpG3QQdJqGHwoucVJIBCAPQYEiYu7BJr1USKI6vknSsxjfU
+ RXtFQo6hCEX/7L18zNOTT0hWBTbB6LfWSFeQN+spWTmLhKmdm7i250UnwqVm2zTE7ICG
+ p05A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUaaLVPIQL5XrD5BbHdTRcK85nXvxjgD/sYx8ve+6mHhBe3YUu7uPKfLO+7OMWpxmV085xF4mxf@lists.freedesktop.org,
- AJvYcCX0e8CNp9HInF14X220TKP7mViOADbop6RxHH5js9OC+JSxlAMkvp6C05oCpiML33IUXwTlYwcTAnHI@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx+ZaQRDinxLp6Plo+bXpmM1mx0jxX/ct/o1H82f9kL3gnSjbZX
- dPhY9bzaRHXG9+oIBg6+OLIcSjNgKCmFL7HRjnS1M+bhNa0jLEuw6w/I
-X-Gm-Gg: ASbGnctnPvFdJUgtnzKRvYZG4fKGm+Z49Gg1Ed0r99FE2X2W/0s2VxO/4y1nTFBYydJ
- /d/RyYjqfJbtCo0gZPbr1VvoQ2CbQc0jrnpqfCj0FebqCzC41HZlv3w3q0rfSepjMtkWOmObGbz
- hS5PHZa+oTeS9QFhWAxZD6+pwZdWrYlwTuZdwZzx9wnFDBS7cdgNUQsZPshRX18qFuyR5qmNn4n
- wypxxjU0AZbbJSPLsfjQc0w9ONiUdCfAcwMHZAGwzA45DxgYIkIG80B9ClVqOb1lXCPr3X3pIgt
- PSeKkqS+XWk+vu1jhsOi6oKu8TpdOG/iLR9r/v4q4UmE0u7x7JqkAdCmRjW+2DhQ/0Ddq1ZZLHN
- x0LNvDkVGe+XC36nFeXQVqg==
-X-Google-Smtp-Source: AGHT+IHsylB7+NHRuBW9mU53rbrnh3rovtARDLzE2S2cbV7OlcCzjAu5Wxz6+1u5fMJj5KOTcLkQ5g==
-X-Received: by 2002:a05:600d:108:20b0:456:26ad:46d2 with SMTP id
- 5b1f17b1804b1-45893943cefmr25724855e9.6.1753927694491; 
- Wed, 30 Jul 2025 19:08:14 -0700 (PDT)
-Received: from pc ([165.51.119.21]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4589ee4f239sm7657055e9.21.2025.07.30.19.08.12
+ AJvYcCWtrCI352zMaYPfpc+KS3Z8QDCaXhlbHLkJ7nN3drTF0zpxwORW1eFy+CcqqiV4Jf8olnb9JRrAz8U=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxKRn+ZvqiOC6qT9s3zt5OSs0nJ4QnNt4g7KEOoM0nni+ZICg88
+ R8ZXaefawLd/Iy2+2efNiZDh5qJx8CfUsHnuC2JpuwWWxSGYhxR0+MkW
+X-Gm-Gg: ASbGncvnmfoC5RjVUmY6WaIrPUHzBalmgcxV7wPM6bVK0j30f0aI/9kIM9ToUije7M6
+ CSFE3LmKD/G6/t2tXMZ7oQBy7g87lGphP8lgvDIMI5+B1j/KOBqZMsOUx1A38Nuol16KqdXJkYU
+ mHKVCjRb8kKmKy5gwv5YKXAKce+0z9qRMit/i9nKcUycdjt95xDn48EnuCK0C7FLw8RC9vDmTBm
+ EDUP/d4LtwhfzG5Hnzv8A1+Q063pOA1gjz6lTG6HSj20R9CjRRFZT0JVI00VJs4YrD2V79TphvN
+ OWv9gqehYX1ltATRpOBiSR90WkVMiz4hvJAzWhxtYnbADoMbmqFeLUACgn8ZZGi4IO7rSXMIF9I
+ l/Ko7nzwftTeg2u4bcTf3iCDQe/gWjrCGKOVnJT4N/MKLouqVQa628gHVK4Ia
+X-Google-Smtp-Source: AGHT+IHZzT2X7dcyUlKwCrocUxoHjRp8HDiN+RWizQinctQQjrI6tN9tQPybT24AfCWIZ5kXsrV/ig==
+X-Received: by 2002:a05:6000:2dc2:b0:3b7:908e:e4ac with SMTP id
+ ffacd0b85a97d-3b79d42097dmr494133f8f.2.1753940203459; 
+ Wed, 30 Jul 2025 22:36:43 -0700 (PDT)
+Received: from [192.168.1.205]
+ (dynamic-176-005-138-071.176.5.pool.telefonica.de. [176.5.138.71])
+ by smtp.googlemail.com with ESMTPSA id
+ ffacd0b85a97d-3b79c3ac093sm1149137f8f.9.2025.07.30.22.36.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 30 Jul 2025 19:08:14 -0700 (PDT)
-Date: Thu, 31 Jul 2025 03:08:11 +0100
-From: Salah Triki <salah.triki@gmail.com>
-To: Markus Elfring <Markus.Elfring@web.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: salah.triki@gmail.com
-Subject: [PATCH V2] drm/amdgpu: check return value of xa_store()
-Message-ID: <aIrQC78VWg17Iqhf@pc>
+ Wed, 30 Jul 2025 22:36:41 -0700 (PDT)
+From: Philipp Zabel <philipp.zabel@gmail.com>
+Subject: [PATCH RFC 0/6] amdgpu: Avoid powering on the dGPU on
+ vkEnumeratePhysicalDevices()
+Date: Thu, 31 Jul 2025 07:36:33 +0200
+Message-Id: <20250731-b4-dont-wake-next-v1-0-e51bdc347fa3@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOEAi2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDc2MD3SQT3ZT8vBLd8sTsVN281IoSXUPztGQDI0NDE2NjQyWgvoKi1LT
+ MCrCZ0UpBbs5KsbW1ABBVMXpoAAAA
+X-Change-ID: 20250730-b4-dont-wake-next-17fc02114331
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Philipp Zabel <philipp.zabel@gmail.com>
+X-Mailer: b4 0.15-dev-a9b2a
 X-Mailman-Approved-At: Thu, 31 Jul 2025 07:24:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,59 +96,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The `xa_store()` function can fail due to memory allocation issues or other
-internal errors. Currently, the return value of `xa_store()` is not
-checked, which can lead to a memory leak if it fails to store `numa_info`.
+This is an attempt at fixing amd#2295 [1]:
 
-This patch checks the return value of `xa_store()`. If an error is
-detected, the allocated `numa_info` is freed, and NULL is returned to
-indicate the failure, preventing a memory leak and ensuring proper error
-handling.
+  On an AMD Rembrandt laptop with 680M iGPU and 6700S dGPU, calling
+  vkEnumeratePhysicalDevices() wakes up the sleeping dGPU, even if all
+  the application wants is to find and use the iGPU. This causes a delay
+  of about 2 seconds on this system, followed by a few seconds of
+  increased power draw until runtime PM turns the dGPU back off again.
 
-Signed-off-by: Salah Triki <salah.triki@gmail.com>
-Fixes: 1cc823011a23f ("drm/amdgpu: Store additional numa node information")
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
+[1] https://gitlab.freedesktop.org/drm/amd/-/issues/2295
+
+Patch 1 avoids power up on some ioctls that don't need it.
+Patch 2 avoids power up on open() by postponing fpriv initialization to
+the first ioctl() that wakes up the dGPU.
+Patches 3 and 4 add AMDGPU_INFO to the list of non-waking ioctls,
+returning cached values for some queries.
+Patch 5 works around an explicit register access from libdrm.
+Patch 6 shorts out the syncobj ioctls while fpriv is still
+uninitialized. This avoids waking up the dGPU during Vulkan syncobj
+feature detection.
+
+regards
+Philipp
+
+Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 ---
-Changes in v2:
-    - Improve description
-    - Add tags Fixes and Cc
+Alex Deucher (1):
+      drm/amdgpu: don't wake up the GPU for some IOCTLs
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Philipp Zabel (5):
+      drm/amdgpu: don't wake up the GPU when opening the device
+      drm/amdgpu: don't query xclk in AMDGPU_INFO_DEV_INFO
+      drm/amdgpu: don't wake up the GPU for some AMDGPU_INFO queries
+      drm/amdgpu: don't wake up the GPU for mmGB_ADDR_CONFIG register read
+      drm/amdgpu: don't wake up the GPU for syncobj feature detection
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index f5466c592d94..b4a3e4d3e957 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -876,7 +876,7 @@ static inline uint64_t amdgpu_acpi_get_numa_size(int nid)
- 
- static struct amdgpu_numa_info *amdgpu_acpi_get_numa_info(uint32_t pxm)
- {
--	struct amdgpu_numa_info *numa_info;
-+	struct amdgpu_numa_info *numa_info, *old;
- 	int nid;
- 
- 	numa_info = xa_load(&numa_info_xa, pxm);
-@@ -898,7 +898,11 @@ static struct amdgpu_numa_info *amdgpu_acpi_get_numa_info(uint32_t pxm)
- 		} else {
- 			numa_info->size = amdgpu_acpi_get_numa_size(nid);
- 		}
--		xa_store(&numa_info_xa, numa_info->pxm, numa_info, GFP_KERNEL);
-+		old = xa_store(&numa_info_xa, numa_info->pxm, numa_info, GFP_KERNEL);
-+		if (xa_is_err(old)) {
-+			kfree(numa_info);
-+			return NULL;
-+		}
- 	}
- 
- 	return numa_info;
--- 
-2.43.0
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         |   5 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c     |  80 +++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c  |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     | 137 +++++++++++++++++++++-------
+ 6 files changed, 194 insertions(+), 36 deletions(-)
+---
+base-commit: 6ac55eab4fc41e0ea80f9064945e4340f13d8b5c
+change-id: 20250730-b4-dont-wake-next-17fc02114331
+
+Best regards,
+--  
+Philipp Zabel <philipp.zabel@gmail.com>
 
