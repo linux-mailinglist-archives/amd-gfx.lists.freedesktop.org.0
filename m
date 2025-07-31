@@ -2,68 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684E7B18274
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 15:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A03AB18272
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 15:29:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5298E10E84E;
-	Fri,  1 Aug 2025 13:29:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nfraprado@collabora.com header.b="S7q0Dm1A";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D890310E84B;
+	Fri,  1 Aug 2025 13:29:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9447F10E107;
- Thu, 31 Jul 2025 22:11:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1753999900; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=FTQOke1wXXBsJp1pesALpiGt1rXkwXFv5K2Obk6GXM9rE0KZ9clM7HHJxwUG/mtMTlSZQkC0/Pn7lagbw+INNA92N7ezzjWJfNi5G8hBgSho+xH8WyhJrBvcRKxriz6Ix6T4WD+e9UQWvvwjH1H5wPtbypGHDWH0RR7HGt6iIJk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1753999900;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=SJekZKIs4xkWlDPe5Nspf1dfkuNrbOGVSx9x/miPPkw=; 
- b=iaK6aXf8S3oxMHUh0OwbHiBgUrFndo4NpranHjt9cNfD2UdXO6N565sylp5jZXqHQ8eG6h1zR/YEmmclONwT9xEK1R0M5SlXVINnjO02fvY3w4fP4ekDvbciy/5bhbVnlRZZe5+lPMOxVcfLrPgolTpB06fA0gchmtR+kJs9M14=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nfraprado@collabora.com;
- dmarc=pass header.from=<nfraprado@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753999900; 
- s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
- bh=SJekZKIs4xkWlDPe5Nspf1dfkuNrbOGVSx9x/miPPkw=;
- b=S7q0Dm1AFcNfkvM/eO9q+HKcZvPMw529SG3OTVxwNWAjFWzw5aoiqB9LHL10HP1J
- 3tELsT68TB9o0XmVDqEukW8Dol3RCpCKrswc5SIVlULDTxjyKr9DQyMTHtce/+HHdAO
- YxBKdDQcp0y07fwkaId/fdcXIPJyVae78AV305WM=
-Received: by mx.zohomail.com with SMTPS id 1753999896732929.7894287121911;
- Thu, 31 Jul 2025 15:11:36 -0700 (PDT)
-Message-ID: <07cd16202b742b37a0d4f70ff8d3a7a3ce3b1648.camel@collabora.com>
-Subject: Re: [PATCH V10 13/46] drm/colorop: Add destroy functions for color
- pipeline
-From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
-To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org
-Cc: wayland-devel@lists.freedesktop.org, harry.wentland@amd.com, 
- leo.liu@amd.com, ville.syrjala@linux.intel.com,
- pekka.paalanen@collabora.com, 	contact@emersion.fr, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com, 	shashank.sharma@amd.com,
- agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, 
- aleixpol@kde.org, xaver.hugl@gmail.com, victoria@system76.com,
- daniel@ffwll.ch, 	uma.shankar@intel.com, quic_naseer@quicinc.com,
- quic_cbraga@quicinc.com, 	quic_abhinavk@quicinc.com, marcan@marcan.st,
- Liviu.Dudau@arm.com, 	sashamcintosh@google.com,
- chaitanya.kumar.borah@intel.com, 	louis.chauvet@bootlin.com,
- arthurgrillo@riseup.net, Daniel Stone	 <daniels@collabora.com>
-Date: Thu, 31 Jul 2025 18:11:33 -0400
-In-Reply-To: <20250617041746.2884343-14-alex.hung@amd.com>
-References: <20250617041746.2884343-1-alex.hung@amd.com>
- <20250617041746.2884343-14-alex.hung@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE6610E7F8
+ for <amd-gfx@lists.freedesktop.org>; Thu, 31 Jul 2025 22:49:54 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-3b780bdda21so166150f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 31 Jul 2025 15:49:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754002193; x=1754606993;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Wc9ek6aaVKonfIPjNqyESsyoNzdJmvCzdh+JBlfPVC4=;
+ b=jIAxYhsmEXSflJLo258IsVj1k6cIscE0bLIUvSQcFP58zq3geymkl+jXqAUaXZIsOS
+ rZCMIFXz6hUYMPdgBE6r2h1fut8qg8AvqzAocAgn6mwWRHoHlNk4SL43lf5Me2sB50fg
+ fNeSJ+GFmZV/ndUk7aXXV6jt8BiTdvx+7kdlIrkCP5n/dEYgTjyTlM0YbiHob6ar76dF
+ FnAhpKlGCLRwE0gqRGXxYtN+x9J0Zeos5mqxTfJiv73huDDoUNMyS+bZYPDGkH4IFjwT
+ TvG2Vd6dJBED4Eb4KsLC5PsbNdrTBnWU8gkFtviquVYAzUOa56MEF/K3GQCZiE7zPsrY
+ uKEQ==
+X-Gm-Message-State: AOJu0YzN6bRJ7naTWWJABQkf6XTrt72J30sO/JiCJxJzWOTjuzv3N4NX
+ nIe98Q5OPBirNtPInj2ax41sC/4oTwC53aTdzFhoH2wyat92b/isA2+XOETLVEX4/W8=
+X-Gm-Gg: ASbGncvGWGB7ImgvyGDucFkBJon9Fof9wBf9jWv3YjNzsFLJhOYJzi9AbgKEup11ygH
+ eHkZJWZ7biGVEd8EupHBJn+hlWw7AtEuiLktkhdJ/VYJojlocH/HXGlvkGypz7rUcmRPOPFQ+lI
+ 6ppyi8fMhhvdi1segaDgXFQJx8pgq+BNACnE1++cEI9qn1Fclnua+NArvBA1wIIwAiRJnXhrly6
+ Z1RrR7sJWifA+B8I/0EfOhjerrQJjLtho2/QAkFKbs7ujoAE8eooNfL+kUMUHwoSokQUuZR+jS8
+ m8JFuE06AzIL5aVfeN17v4pHHMv44i8Hy2PH5UanIV64amgjojp0a213uc0kAamob8hs3kth80J
+ ccKgJsgY16OkBXTUzpum9J44Xpty2xWV23jfkCABdQIAF
+X-Google-Smtp-Source: AGHT+IH/QRfHUl0ze+TBD94j9NRq5TgwFo4oY5S1WrliB480E7I6ymna+pJOU1WNQcbWSpmQ/ifiSw==
+X-Received: by 2002:a05:6000:2585:b0:3b7:8b1b:a9d5 with SMTP id
+ ffacd0b85a97d-3b795018812mr6881190f8f.51.1754002193375; 
+ Thu, 31 Jul 2025 15:49:53 -0700 (PDT)
+Received: from xavers-framework.fritz.box
+ ([2a04:7d84:aac9:db50:f8c3:4ba6:f1c6:fef5])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b79c469582sm3692560f8f.52.2025.07.31.15.49.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 31 Jul 2025 15:49:52 -0700 (PDT)
+From: Xaver Hugl <xaver.hugl@kde.org>
+To: amd-gfx@lists.freedesktop.org
+Cc: xaver.hugl@kde.org,
+	alexdeucher@gmail.com,
+	stable@vger.kernel.org
+Subject: [PATCH] amdgpu/amdgpu_discovery: increase timeout limit for IFWI init
+Date: Fri,  1 Aug 2025 00:49:51 +0200
+Message-ID: <20250731224951.8631-1-xaver.hugl@kde.org>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-ZohoMail-Owner: <07cd16202b742b37a0d4f70ff8d3a7a3ce3b1648.camel@collabora.com>+zmo_0_nfraprado@collabora.com
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 01 Aug 2025 13:29:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,81 +72,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-16 at 22:16 -0600, Alex Hung wrote:
-> The functions are to clean up color pipeline when a device driver
-> fails to create its color pipeline.
->=20
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
-> Reviewed-by: Daniel Stone <daniels@collabora.com>
-> Reviewed-by: Simon Ser <contact@emersion.fr>
-> Reviewed-by: Melissa Wen <mwen@igalia.com>
-> ---
-> v9:
-> =C2=A0- Move from from latest commit to here, and
-> drm_colorop_pipeline_destroy
-> =C2=A0=C2=A0 is called in respective commits.
->=20
-> =C2=A0drivers/gpu/drm/drm_colorop.c | 36
-> +++++++++++++++++++++++++++++++++++
-> =C2=A0include/drm/drm_colorop.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
-> =C2=A02 files changed, 38 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_colorop.c
-> b/drivers/gpu/drm/drm_colorop.c
-> index 7b3ecf7ddd11..57a8c1063fdd 100644
-> --- a/drivers/gpu/drm/drm_colorop.c
-> +++ b/drivers/gpu/drm/drm_colorop.c
-> @@ -135,6 +135,42 @@ static int drm_plane_colorop_init(struct
-> drm_device *dev, struct drm_colorop *co
-> =C2=A0	return ret;
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * drm_colorop_cleanup - Cleanup a drm_colorop object in
-> color_pipeline
-> + *
-> + * @colorop: The drm_colorop object to be cleaned
-> + */
-> +static void drm_colorop_cleanup(struct drm_colorop *colorop)
-> +{
-> +	struct drm_device *dev =3D colorop->dev;
-> +	struct drm_mode_config *config =3D &dev->mode_config;
-> +
-> +	list_del(&colorop->head);
-> +	config->num_colorop--;
-> +
-> +	kfree(colorop->state);
-> +}
-> +
-> +/**
-> + * drm_colorop_pipeline_destroy - Helper for color pipeline
-> destruction
-> + *
-> + * @plane: - The drm_plane structure containing the color_pipeline
-> + *
-> + * Provides a default color pipeline destroy handler for a planes.
-> + */
-> +void drm_colorop_pipeline_destroy(struct drm_plane *plane)
-> +{
+With a timeout of only 1 second, my rx 5700XT fails to initialize,
+so this increases the timeout to 2s.
 
-This function implies it only cleans up the colorops in the color
-pipeline of a specific plane, but it actually cleans up all colorops in
-the drm_mode_config of a device.
+Closes https://gitlab.freedesktop.org/drm/amd/-/issues/3697
 
---=20
-Thanks,
+Signed-off-by: Xaver Hugl <xaver.hugl@kde.org>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-N=C3=ADcolas
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 6d34eac0539d..ae6908b57d78 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -275,7 +275,7 @@ static int amdgpu_discovery_read_binary_from_mem(struct amdgpu_device *adev,
+ 	int i, ret = 0;
+ 
+ 	if (!amdgpu_sriov_vf(adev)) {
+-		/* It can take up to a second for IFWI init to complete on some dGPUs,
++		/* It can take up to two seconds for IFWI init to complete on some dGPUs,
+ 		 * but generally it should be in the 60-100ms range.  Normally this starts
+ 		 * as soon as the device gets power so by the time the OS loads this has long
+ 		 * completed.  However, when a card is hotplugged via e.g., USB4, we need to
+@@ -283,7 +283,7 @@ static int amdgpu_discovery_read_binary_from_mem(struct amdgpu_device *adev,
+ 		 * continue.
+ 		 */
+ 
+-		for (i = 0; i < 1000; i++) {
++		for (i = 0; i < 2000; i++) {
+ 			msg = RREG32(mmMP0_SMN_C2PMSG_33);
+ 			if (msg & 0x80000000)
+ 				break;
+-- 
+2.50.1
 
-> +	struct drm_device *dev =3D plane->dev;
-> +	struct drm_mode_config *config =3D &dev->mode_config;
-> +	struct drm_colorop *colorop, *next;
-> +
-> +	list_for_each_entry_safe(colorop, next, &config-
-> >colorop_list, head) {
-> +		drm_colorop_cleanup(colorop);
-> +		kfree(colorop);
-> +	}
-> +}
-> +EXPORT_SYMBOL(drm_colorop_pipeline_destroy);
-> +
