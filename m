@@ -2,67 +2,156 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8188FB18273
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 15:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1E2B17403
+	for <lists+amd-gfx@lfdr.de>; Thu, 31 Jul 2025 17:37:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC57910E84D;
-	Fri,  1 Aug 2025 13:29:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF5E110E289;
+	Thu, 31 Jul 2025 15:37:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="FcZ/2Bah";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1095510E042;
- Thu, 31 Jul 2025 15:17:37 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-4538bc52a8dso4829395e9.2; 
- Thu, 31 Jul 2025 08:17:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753975055; x=1754579855;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=vG9n71NDhvvhpS5AF7y2C5d06t++b4vuCCmviXKpMXI=;
- b=HTMFOK71smMdI/lOXNi/Hr4ktK+TaIG6ZsEvt3KTXidDR46uEP3nMcNI4Zips7eOQc
- EGSsaBDvhKNQcqSVrrkkis+QeaC9XUpdtMze4oeXFKR8I6VgqhI8YhuPwwyiwNkvWckq
- S68sWOcbA1EAgy2V7kvq6ElD9EcH52cpstes6R2vpaLKud5UFNG6JrjA5YJZC9ixuW18
- XN/fQJEfbgQ9ayhVzbFYXB+NT641x5yOc7DMg+bDGS3NmaUjDOmMnWHa8x6onCfdQns+
- BCrHS3/A2AZdgWAmvgKf6xylktUpptjihKBxAT2SUgygcajhCKlyW2nu7mgZ318Txzok
- JRXg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUx+MifmkeI2PzBlChJrRYOL3doFB+LlqLPoqS76adkRz4EQyH6ntmGyEbk2efnSUXEOcE+8IpTgb3/@lists.freedesktop.org,
- AJvYcCXyypwoXs1QbHM1ekwLWv/ij6W/NN6WmjLtGmhQOJooJy9bkFpGliyDRSLi4R8jkg7RMQ9hiyJw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzo+WXHTXvY3q7O0a5YkCLvatDp4RmHno5dQ/yFulA6DatMWFqt
- g/v7F6W5M6kUF7eByOMAdxbS8u5tiixo6o+mX7wCWTAV0XJFuKIpVXJe0K6cg8vKn90=
-X-Gm-Gg: ASbGncuAXSwWVPA2VCSvjf2UL9TZqWbQ4mfMsN8xBdnEawsM/1rgYFrJ/Qg4wrCJTtf
- fXQrIeuTegwB2TdhM5pMCKRYn+Tv0P6cuKvp8QSs/htGrU2br47gHqtzp2mycZJ/V8DiJGdr6jL
- qVNKtDpWvhpnw3oP4Dbv+/YGpqtCpQpmMNNV0P/SRHzcaSxjg/unpA3HiAcYlawdXiKLroYFd2Y
- JuExHzKcbmjP/XPtlWCxrK1SPif/wtOzqy2NHRJCDtfnEp64th/0kYdl9akiQiXXQEOYB9ooHXn
- M0u3L2f6CLJyPpDvuy4a7xteuZWoLe1hdwZAybwb94VPW5k5F+SsjmnugGdgiP7H/Lr7c7Rf+zR
- gAX8xmEj3HUydyg14MEr297RjO5A0s/KE9+kqW9nf9Hiv
-X-Google-Smtp-Source: AGHT+IFLGMykw8L7Mi6+jHo4qQa+KzbEszEWWNjWZr6/HQ6oWJ9JrG/AadoKcKApGnU4fzd7e0ti+Q==
-X-Received: by 2002:a05:600c:1da8:b0:456:1006:5415 with SMTP id
- 5b1f17b1804b1-45892b92eb2mr65403925e9.6.1753975055303; 
- Thu, 31 Jul 2025 08:17:35 -0700 (PDT)
-Received: from xavers-framework.fritz.box
- ([2a04:7d84:aac9:db50:f8c3:4ba6:f1c6:fef5])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4589ee4f089sm33092425e9.20.2025.07.31.08.17.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 31 Jul 2025 08:17:34 -0700 (PDT)
-From: Xaver Hugl <xaver.hugl@kde.org>
-To: dri-devel@lists.freedesktop.org
-Cc: xaver.hugl@kde.org, andrealmeid@igalia.com, chris@kode54.net,
- naveen1.kumar@intel.com, ville.syrjala@linux.intel.com,
- mdaenzer@redhat.com, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, alexdeucher@gmail.com,
- arun.r.murthy@intel.com
-Subject: [PATCH v2] drm: don't run atomic_async_check for disabled planes
-Date: Thu, 31 Jul 2025 17:17:32 +0200
-Message-ID: <20250731151732.9295-1-xaver.hugl@kde.org>
-X-Mailer: git-send-email 2.50.1
-MIME-Version: 1.0
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2084.outbound.protection.outlook.com [40.107.237.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A53510E289
+ for <amd-gfx@lists.freedesktop.org>; Thu, 31 Jul 2025 15:37:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H966L1NL/Vjv8Xfk7S7Epemr0Tfj+2b2DzveJXgk6r+ebVCZqgEkrJpmQTMnhW3t52RU1QETduOfZLanppusIt/kPpHVdvrDxHjCkZkLPwZ9uAqJQzkAsZLAX+bQtg7+40hX9kkP4N+sPc1ol0Wss5TYBXxGkBGWKksGGhJogHscxLo7uogGwdX8Wl+Vs914N0qyJGg8hyVYXW72VVLXLc1Ohbbmg6WQ/OqQKJ7lPMP/Tmy6pa5a84Bn1A4d5oglxsZyQ87CvFwhVDfSkcU9PtghoWxPVDl0+3/bGRCOYMkIfX3JuxAJ7BlBFCAVHB9hfsYyBKglF8Dr6XX0NwKSDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G5HUMWZtb4N7Na4t506lYn4l7MKs6kcTgPQaq8pZ4LE=;
+ b=MzfMBxo96/KrrbweO8o1Yu0Te76s4sML4geFrur0ypLqd1mG9RudjxK414OlvpSzaC6WyEdt4d9vPdz6PYZGfDlOSWZgGK9Zt2NCKO+MkHVBchB3rb5mAyPRC1xiZJsQbhQs9ZdqkBg7eTgKNUAlO7Mr6cIPTuelhmnJZvLNDDGg4tGoQlnmMjQEMJHy8duuoN356e15gi6RNPhybtE1E8jPbluIBPxZBmghwEU0PNseNgj3EvtNblhXlzNgy+upHWhW+4Ku7CajmxWc3iWk8oBleVCWhnM8LWRxpiB+x2nE7k3P12sNIb1kPGc77nutTELIjGC5aBFbd30SCmbC5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=G5HUMWZtb4N7Na4t506lYn4l7MKs6kcTgPQaq8pZ4LE=;
+ b=FcZ/2Bahc1arlrCFo6n0oufjbApH/NOihD06lnhmi4wrn9Ubrubx5JKGNj+nWs4e/icThRvYmgNboA4o8uUKtdbYHyw78sx/PiwPiuzakcFNbg82McBjTu2k8TwkAB4yxtrTIkZ1gstUGyCSFbBEEIB31/z7idFx2sT7Wz5gc+s=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by PH0PR12MB7469.namprd12.prod.outlook.com (2603:10b6:510:1e9::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.11; Thu, 31 Jul
+ 2025 15:37:05 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::1c2f:5c82:2d9c:6062]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::1c2f:5c82:2d9c:6062%4]) with mapi id 15.20.8989.011; Thu, 31 Jul 2025
+ 15:37:05 +0000
+Message-ID: <7bae9003-933d-49bc-969d-abf45424b825@amd.com>
+Date: Thu, 31 Jul 2025 11:37:02 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/20] drm/amd/display: Don't use stereo sync and audio on
+ RGB signals
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20250723155813.9101-1-timur.kristof@gmail.com>
+ <20250723155813.9101-8-timur.kristof@gmail.com>
+ <1ef9ce5a-0b6d-4d0d-834d-d1f6b0dc12bd@amd.com>
+ <7d1df06a6b19dc2d8e78059efb6e26f00bdb280a.camel@gmail.com>
+ <714ca8d3-5da7-4266-b258-aba3fbed4a40@amd.com>
+ <ada40fc10d06f8b4699ac128a56e59263d30c6d9.camel@gmail.com>
+Content-Language: en-US
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <ada40fc10d06f8b4699ac128a56e59263d30c6d9.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 01 Aug 2025 13:29:30 +0000
+X-ClientProxiedBy: YQZPR01CA0126.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:87::6) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|PH0PR12MB7469:EE_
+X-MS-Office365-Filtering-Correlation-Id: 821709e8-66b5-4e0f-0dda-08ddd0481a2e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UnkvNTJpcEMzNGg4TFlBMnZDbGltTldzUHFURHJoTDJNNitYUGFJUEc3cFp0?=
+ =?utf-8?B?U3JpUTRmR2VRZ0EzMzRrSU1qbWNGS0p4WExOc2NoNXlWVFdyYU9jQ3REUlBH?=
+ =?utf-8?B?cm9CczMrUzBpZDFJTDRPUXFtUlc0eFBlelVJSVdHNlhmUTBNOVF5V1ZvWUR6?=
+ =?utf-8?B?OEhkNG9acW5neUY4R0RPR056T0QrT1B0bGJwODlaTnkrVXlNRHo0Yis0MmNN?=
+ =?utf-8?B?alptSDdNQ3Q5K2JxSS9QNzA5YkVRT1hkQ3ZRVGJHVDJTVlpNbkZ0a0VlR3JG?=
+ =?utf-8?B?VzAyVUtMa0gwdENMTkpDU3I0Q29NYnhSa295elc5aFljdEdzdTRLYnJiM3oy?=
+ =?utf-8?B?WVBORUYwMnlPeng3SG1wL2Rqd05RYndNSGxycDNpUnhydTQwZk85a0NoT2ty?=
+ =?utf-8?B?cXRSdmpldzFSNEZxRTJNQjRZeXNVdmdjVnlWVW9GazB1YTFWQ21GdHhVVFZy?=
+ =?utf-8?B?b3hPR2l1bDNZVUE4eTA2QUFDTUUzZ1RyTHZmM2VKTldsR29kTlBoOHZHb0xl?=
+ =?utf-8?B?ZWxOWmZKZ2R3K2ZQRnhyVUw4Z1FDZW5IblYxZUNNTCtxYWlydmxnUkVlRWFp?=
+ =?utf-8?B?b3FRZmdEVW8vS1NEcVJGR1NRSEx5b1pSdW42VFdzNlkyUFpKek5DRDBONU5C?=
+ =?utf-8?B?SjJHT2JCZDhQeU9YWC9IcFBjS1hlUWpSSGxFb20yYUxCVndZaVlXZVd0Nm4x?=
+ =?utf-8?B?ejdZMVFNODlrYWJ4MzZIMUZRdFFHbXRnc053S3JKb3NKWk1sVFpOaC82bW4y?=
+ =?utf-8?B?dVpydm5XelZmTXVqa01DNllQK3hsY3F2MjZNbVBCeThQdkQzS0E1RUZOZkgw?=
+ =?utf-8?B?SnJjL05DMjNjWXMwRU5UbnBvbmhXZEhhRHFRWk03d2Ezd1h2Qm5IQVRXMVhH?=
+ =?utf-8?B?MlZsZ0VwTnRzUjAxTEhzNDVZbWZVcFdWeXRmZDZtakdWVVpkeUh5eVAzWVda?=
+ =?utf-8?B?dXU4OEJBVTh5MFQ3cjZqTFpYVGJxUXMxMExGSkYrcEVNcmcrVG9DODJXdSs5?=
+ =?utf-8?B?SEx1THo0R0gvRWxhUWVwd2F3a29YOFRyU0ljSGFXclB5WG5tZmJXd0VWKys1?=
+ =?utf-8?B?NHp2RVdERm9TUDRsUkRHMTIwWHNhUWRUaGxjTnk1TjRPcEtVYk1MTGh3VlYy?=
+ =?utf-8?B?dmNZV0szS29Gd2JscS9EVmJleU9DeGptR1FhK3FxRGNVelBQV0RuVHdadUVY?=
+ =?utf-8?B?ZHFqc2cxZDBpZys5b1ZJcENkTS9CeDVnVlBjdGF4cENYTWFFMGUvdlUzOUhh?=
+ =?utf-8?B?QVlleWNUa21QUk9PMmFHLzdoNmxYMTR2YS9ENXhhN3JBVnZ1SnVIaW90WTNK?=
+ =?utf-8?B?ek9Cc0M1UXRyN2FUdXJNOW8wWWlSRXdTNWRhd2M4d2pab3VQWW11MEMrN0da?=
+ =?utf-8?B?YkFHMW1ienlkMmFaVThIdlFqRlhyZWs5OUpqYng2L2FVNHh4RldCSGZnVXJm?=
+ =?utf-8?B?a0NwOUNKR3JkYmJxbnkySVZJYkw4OG9qZVMzbnR2dXFFU00wekNXbE5WTHBi?=
+ =?utf-8?B?N1FzS2pBeG1Zb2xQQVZ4TElqRm5BajdiYTJPOGV2MjRJUEN6cUh2THhHd2hW?=
+ =?utf-8?B?UElyRVJOUURwREdTTGVzUjN0d2ZMRUw3N3pFc21nNC9WTkQ5VVJsN0hOcFZ0?=
+ =?utf-8?B?TmdoTFZidUVvZjVhWEVOVTVHWldXTFJnS3UwR0NBSThDYmFWMy9DYWlJNEVS?=
+ =?utf-8?B?NmZZUzRYbWZRc09MNjQ1UDBHREJSZUlEd3BRSUxEK3BiMmM0aEw3aUlldENL?=
+ =?utf-8?B?WHNLdnluRjR4ek1CMDE3NUF0R3ZDUUppMU9YbXNlMkVsbmtCbytPOWwxK3o5?=
+ =?utf-8?B?NEFnN2l6RkhyeXNzMmE1QzNIZ2xXZ2kyMlpBMHd2SWFMRExDcTdCL05KckFZ?=
+ =?utf-8?B?dVo2Y1pPeWZMQjVwYU9mSnlkQTk5T3FIRUZ1cnBBWnlxTUNmbHIwWVBhSjFS?=
+ =?utf-8?Q?v6BOJ7ASiYM=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cTZYQlFrMjRUcWZFaGZzRjlBVm9Nazh6czE4c3l3QUY5alVRRjFiZlcxTHU0?=
+ =?utf-8?B?SFpMU3NYVkNjOHJSZHZXZ21uSlhHYlZmYXIxWEhKSStrVkM3QURGT3VDc2lx?=
+ =?utf-8?B?Q3RVd2lWcXphUHRCZEYxR09jQm5xT1htRWt5SE1acEFxMnRmM3NEOHlLSG9j?=
+ =?utf-8?B?bmFaRzdOeDJEbVZxT0MwSjNQZ3hwQi9oUW1jb2N2S1JYWEpUSWtHM2VMbGp1?=
+ =?utf-8?B?YVRkTk1PeVhZTGNLUkNEWUVuNEdLZWlnTjl0N1M5WlZna05weWszTEVONFhR?=
+ =?utf-8?B?dXlWdGxVKzFzRU16SmdZRHdBSGVYcFd1YzdFWGdyWG11aGxiYWhNek0vOXRP?=
+ =?utf-8?B?UDkrNGlBZUxxUllBY3laQmx0N3JMZEh0UHF0UEhRZ3duaFBwRWZWRi9PenFJ?=
+ =?utf-8?B?Y0Q0VzluN0hFNlE5TWEwNThaOVZnZ3M3aW1jZmlsRHNqV3dNODA3alJsK1JM?=
+ =?utf-8?B?Y01MVDlnWjdLMHJsQ21hdXFmbi9VWkZNdWl1cFU1YmxrZHpiWGJEd0VzTVFx?=
+ =?utf-8?B?R1V2emU1NWF6UGFYTGlINksremgvUFI5L0poWE13aGZCWUxuQmxuK3pkd2g2?=
+ =?utf-8?B?TUoxa1dHNGpZLzFQc1MrRmhORGErb0xqbWg4QTFIN1ZWZkJFR2llMkE2dm8z?=
+ =?utf-8?B?S1R0bkJGd01odkQvR200cG5weWVqVDhKQjI3YXU4UUJiUnoyS0dORE9wd3pt?=
+ =?utf-8?B?SWFVVHNHMDZvUklFc0Z2U1AwTFhOV0RvRS9jREptMkM3NWRSQUZtMXVlZUEw?=
+ =?utf-8?B?dG5Dayt0aHI3VjN2SFFMQjNDVytCSXA4ZGxJVkd1S2xuUTVGdkMwajEzVXgr?=
+ =?utf-8?B?NUNYcEpIZ21kWGtCZVpTL2Zpak9SZm1zaTJPTzNBZ1J0SzZwZFZ1QVF4Wnoy?=
+ =?utf-8?B?dC94Qmd0QTFsbHd4T3FxNmNYeFRuZmlZNjhvVkFZTFNBTG0zNG1aVFdwRzQ0?=
+ =?utf-8?B?eHVPZjVYam0zVjR3UGw4d1pINHVqV1ZSR1lpYk9JamJULzhnenM3T1pSSjcw?=
+ =?utf-8?B?Y011YVVBWGEzcWlVakpPMG1WRllhNkg5RlBDRHl1azJSTEYrZGUyVFgrYjFG?=
+ =?utf-8?B?U3craFhwNHM2NnV2MDdqMVhPVzlwSDBMK0xtNnZzMmVzdmlzdHNlMTYzNlRR?=
+ =?utf-8?B?WVZRM2hibUtvRCtFKzlWYTd6KzFjOUZXdy85L1V5TFBuajliQWZkN0V6Zk94?=
+ =?utf-8?B?L0tURzZ6eHpYc0k5UG41NmUvMDVTOFJiUGh4aXNZWkxWZitnWHNkcWZmMSt5?=
+ =?utf-8?B?RmFWZXJUc2RHdjdXNGZTV2dmVTRSS2ZWb2FXSldWZkh0bTI2eUswK0RJVnll?=
+ =?utf-8?B?UzNhM1A5Ny9Sdi94TzZQYXY5Rmk2NS9BWjRQQkk1Y0wwVXdoL2diV29yMEhN?=
+ =?utf-8?B?M0dTVFgvMUtYcU1laHpXWllsWk1seGpUSnltZStaYVZjb0VZMWFZaEk0Y1Mv?=
+ =?utf-8?B?N0h3cUxhd0V4OUhzb0xxazlMN00wZFhqd2tOeFJHT0RZeGVMUkFDOU55Z2xY?=
+ =?utf-8?B?R0xycWU4UWo4bHUyRitNMUdkSUY2YnlYWHkvblYxa09vNHRDWVZLc0xFUEFT?=
+ =?utf-8?B?NzZtbXhJZHpOWjU2R0k0YkVoc0hzN2VTN0k4WEdoVTA2SUhmSjJaUU10cGFU?=
+ =?utf-8?B?eVNCSVIxMDNiWURQUDRHdTBqelFlQXBmR2hTUjZCZmVVVUhRUnBFK25sU0h5?=
+ =?utf-8?B?NW4zc2xIN21jZExoU2Y4c0NOWnVkdlJvVVRKZXFEYnp0cUlVTkpqMHhXSzQy?=
+ =?utf-8?B?OE9qTWRENWtPcGQvSGEwQXpxTUZCUkc5NGF3a1RsQ1dtaGZZUkJjK2M5VGlv?=
+ =?utf-8?B?a3oyZkNUeCtpTVVMQUpqVjFmbDUyK0hJaXpucWxVdUFrcTNPNHlNUzFQK3Qx?=
+ =?utf-8?B?R1d0dFR1clpSbElKTzhPSFRSUEVsb25Ha3o2SHpUbGRsL2FyRUpPWHNkTVNE?=
+ =?utf-8?B?OVZNQ0MybVBRam9Pek1vczEzRHNCRWpPNml5MUNWcndGVWZNelV4NERWNWN2?=
+ =?utf-8?B?UzV1ZUN0MEhiVmtOK1VPdnZKZDJCdHhtb3krTWJWSkhHMjg2K0Z6L0RlQ0tt?=
+ =?utf-8?B?WGRDOUMxcFByRmozOFVEMUJENWV0cTZLUi9rbG0yeGRSSlExbWxSRy8vRU9v?=
+ =?utf-8?Q?jwLVwS8R+m6RqHQ6kHPG2V/Tj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 821709e8-66b5-4e0f-0dda-08ddd0481a2e
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2025 15:37:05.3771 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: S+IpLQhXfCumGVO9CJcRROBlGYvfIh9C4zLOrIxl8tkyJPLfZ+Ish3/yw0gbQQYqryJoiNL7qzYEKzkMHBc9CQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7469
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,156 +166,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It's entirely valid and correct for compositors to include disabled
-planes in the atomic commit, and doing that should not prevent async
-flips from working. To fix that, this commit moves the plane check
-to after all the properties of the object have been set, and skips
-the async checks if the plane was and still is not visible.
 
-Fixes: fd40a63c drm/atomic (Let drivers decide which planes to async flip)
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4263
 
-Signed-off-by: Xaver Hugl <xaver.hugl@kde.org>
----
- drivers/gpu/drm/drm_atomic_uapi.c   | 51 +++++++++++++++++++----------
- drivers/gpu/drm/drm_crtc_internal.h |  3 +-
- drivers/gpu/drm/drm_mode_object.c   |  3 +-
- 3 files changed, 38 insertions(+), 19 deletions(-)
+On 2025-07-30 13:08, Timur Kristóf wrote:
+> On Wed, 2025-07-30 at 10:34 -0400, Harry Wentland wrote:
+>>
+>>
+>> On 2025-07-30 04:19, Timur Kristóf wrote:
+>>> On Tue, 2025-07-29 at 14:21 -0400, Harry Wentland wrote:
+>>>>
+>>>>
+>>>> On 2025-07-23 11:58, Timur Kristóf wrote:
+>>>>> Features like stereo sync and audio are not supported by RGB
+>>>>> signals, so don't try to use them.
+>>>>>
+>>>>
+>>>> Where does it say that?
+>>>>
+>>>> Harry
+>>>
+>>> 1. Audio
+>>>
+>>> VGA ports (and the analog part of DVI-I ports) simply cannot carry
+>>> audio. So there is no hardware to control any audio, therefore
+>>> there is
+>>> nothing for this code to enable, which is why I added those ifs to
+>>> not
+>>> even try to enable audio on analog video signals.
+>>>
+>>
+>> My bad, I was thinking RGB as opposed to YCbCr. Forgot that we use
+>> RGB signal to refer to VGA.
+> 
+> Sorry for the confusion.
+> 
+>>
+>>> As a side note, DVI-D ports (and the digital part of DVI-I ports)
+>>> may
+>>> have a non-standard extension to carry digital audio signals, but
+>>> that
+>>> is not revelant to supporting analog displays.
+>>>
+>>> 2. Stereo sync
+>>>
+>>> With regards to stereo sync, I didn't find any reference to this in
+>>> the
+>>> legacy display code, so I assumed either it is unsupported or the
+>>> VBIOS
+>>> already sets it up correctly. At least, considering that the legacy
+>>> code didn't bother setting it up, we don't lose any functionality
+>>> if we
+>>> leave it out of DC as well.
+>>>
+>>> That being said, upon some further digging in the DCE register
+>>> files, I
+>>> found a register called DAC_STEREOSYNC_SELECT so maybe I could
+>>> investigate using that. Maybe it would be better to work with the
+>>> registers directly instead of the VBIOS? Would it be okay to
+>>> investigate that further in a future patch series once this one is
+>>> merged?
+>>>
+>>
+>> I don't think DC supports stereo sync currently. I'm not sure there
+>> is
+>> much value in pursuing that.
+> 
+> If stereo sync is not supported, what does setup_stereo_sync() do?
+> 
 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index c2726af6698e..df298ac49dcd 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1011,7 +1011,8 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 			    struct drm_mode_object *obj,
- 			    struct drm_property *prop,
- 			    u64 prop_value,
--			    bool async_flip)
-+			    bool async_flip,
-+			    bool *needs_async_plane_check)
- {
- 	struct drm_mode_object *ref;
- 	u64 old_val;
-@@ -1068,7 +1069,6 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 		struct drm_plane *plane = obj_to_plane(obj);
- 		struct drm_plane_state *plane_state;
- 		struct drm_mode_config *config = &plane->dev->mode_config;
--		const struct drm_plane_helper_funcs *plane_funcs = plane->helper_private;
- 
- 		plane_state = drm_atomic_get_plane_state(state, plane);
- 		if (IS_ERR(plane_state)) {
-@@ -1084,22 +1084,14 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 				ret = drm_atomic_plane_get_property(plane, plane_state,
- 								    prop, &old_val);
- 				ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
-+				if (ret)
-+				    break;
- 			}
- 
--			/* ask the driver if this non-primary plane is supported */
--			if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
--				ret = -EINVAL;
--
--				if (plane_funcs && plane_funcs->atomic_async_check)
--					ret = plane_funcs->atomic_async_check(plane, state, true);
--
--				if (ret) {
--					drm_dbg_atomic(prop->dev,
--						       "[PLANE:%d:%s] does not support async flips\n",
--						       obj->id, plane->name);
--					break;
--				}
--			}
-+			/* Need to ask the driver if this non-primary plane is supported.
-+			 * Note that this can't happen here, as the full state of the plane
-+			 * is not known yet */
-+			*needs_async_plane_check |= plane->type != DRM_PLANE_TYPE_PRIMARY;
- 		}
- 
- 		ret = drm_atomic_plane_set_property(plane,
-@@ -1394,6 +1386,10 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
- 	int ret = 0;
- 	unsigned int i, j, num_fences;
- 	bool async_flip = false;
-+	bool needs_async_plane_check = false;
-+	struct drm_plane *plane;
-+	struct drm_plane_state *old_plane_state;
-+	struct drm_plane_state *new_plane_state;
- 
- 	/* disallow for drivers not supporting atomic: */
- 	if (!drm_core_check_feature(dev, DRIVER_ATOMIC))
-@@ -1450,6 +1446,7 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
- 	copied_props = 0;
- 	fence_state = NULL;
- 	num_fences = 0;
-+	needs_async_plane_check = false;
- 
- 	for (i = 0; i < arg->count_objs; i++) {
- 		uint32_t obj_id, count_props;
-@@ -1512,7 +1509,8 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
- 			}
- 
- 			ret = drm_atomic_set_property(state, file_priv, obj,
--						      prop, prop_value, async_flip);
-+						      prop, prop_value, async_flip,
-+						      &needs_async_plane_check);
- 			if (ret) {
- 				drm_mode_object_put(obj);
- 				goto out;
-@@ -1521,6 +1519,25 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
- 			copied_props++;
- 		}
- 
-+		if (needs_async_plane_check) {
-+			plane = obj_to_plane(obj);
-+			old_plane_state = drm_atomic_get_old_plane_state(state, plane);
-+			new_plane_state = drm_atomic_get_new_plane_state(state, plane);
-+			/* only do the check if the plane was or is enabled */
-+			if (old_plane_state->visible || new_plane_state->visible)
-+			    ret = -EINVAL;
-+			if (ret &&
-+			    plane->helper_private &&
-+			    plane->helper_private->atomic_async_check) {
-+				ret = plane->helper_private->atomic_async_check(plane, state, true);
-+			}
-+			if (ret) {
-+				drm_dbg_atomic(dev, "[PLANE:%d:%s] does not support async flips\n",
-+						obj->id, plane->name);
-+				break;
-+			}
-+		}
-+
- 		drm_mode_object_put(obj);
- 	}
- 
-diff --git a/drivers/gpu/drm/drm_crtc_internal.h b/drivers/gpu/drm/drm_crtc_internal.h
-index 89706aa8232f..111907a55d9b 100644
---- a/drivers/gpu/drm/drm_crtc_internal.h
-+++ b/drivers/gpu/drm/drm_crtc_internal.h
-@@ -260,7 +260,8 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 			    struct drm_file *file_priv,
- 			    struct drm_mode_object *obj,
- 			    struct drm_property *prop,
--			    u64 prop_value, bool async_flip);
-+			    u64 prop_value, bool async_flip,
-+			    bool *needs_async_plane_check);
- int drm_atomic_get_property(struct drm_mode_object *obj,
- 			    struct drm_property *property, uint64_t *val);
- 
-diff --git a/drivers/gpu/drm/drm_mode_object.c b/drivers/gpu/drm/drm_mode_object.c
-index e943205a2394..ec471536cfbc 100644
---- a/drivers/gpu/drm/drm_mode_object.c
-+++ b/drivers/gpu/drm/drm_mode_object.c
-@@ -540,7 +540,8 @@ static int set_property_atomic(struct drm_mode_object *obj,
- 						       obj_to_connector(obj),
- 						       prop_value);
- 	} else {
--		ret = drm_atomic_set_property(state, file_priv, obj, prop, prop_value, false);
-+		ret = drm_atomic_set_property(state, file_priv, obj, prop, prop_value,
-+					      false, NULL);
- 		if (ret)
- 			goto out;
- 		ret = drm_atomic_commit(state);
--- 
-2.50.1
+My bad. Not sure then. But no objection if you want to explore it.
+
+Harry
+
+>>
+>>>>> diff --git a/drivers/gpu/drm/amd/display/include/signal_types.h
+>>>>> b/drivers/gpu/drm/amd/display/include/signal_types.h
+>>>>> index a10d6b988aab..825a08fcb125 100644
+>>>>> --- a/drivers/gpu/drm/amd/display/include/signal_types.h
+>>>>> +++ b/drivers/gpu/drm/amd/display/include/signal_types.h
+>>>>> @@ -118,6 +118,11 @@ static inline bool dc_is_dvi_signal(enum
+>>>>> signal_type signal)
+>>>>>  	}
+>>>>>  }
+>>>>>  
+>>>>> +static inline bool dc_is_rgb_signal(enum signal_type signal)
+>>
+>> To avoid confusion with people that haven't worked on analog
+>> signals in years (or ever) it might be better to name this
+>> dc_is_analog_signal.
+>>
+>> Harry
+> 
+> Sounds good, I'll rename it in the next version of the series.
+> To further ease the confusion, what do you think about renaming
+> SIGNAL_TYPE_RGB to SIGNAL_TYPE_ANALOG?
+> 
+> Thanks,
+> Timur
+> 
+> 
+>>
+>>>>> +{
+>>>>> +	return (signal == SIGNAL_TYPE_RGB);
+>>>>> +}
+>>>>> +
+>>>>>  static inline bool dc_is_tmds_signal(enum signal_type signal)
+>>>>>  {
+>>>>>  	switch (signal) {
 
