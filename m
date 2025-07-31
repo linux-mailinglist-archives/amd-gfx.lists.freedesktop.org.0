@@ -2,84 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F109B16CA8
-	for <lists+amd-gfx@lfdr.de>; Thu, 31 Jul 2025 09:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE456B16BDA
+	for <lists+amd-gfx@lfdr.de>; Thu, 31 Jul 2025 08:09:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8BC610E71C;
-	Thu, 31 Jul 2025 07:24:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 432F810E24F;
+	Thu, 31 Jul 2025 06:09:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bh2IRQk2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Dhyv1Mt9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E547F10E702;
- Thu, 31 Jul 2025 05:36:53 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-3b7961cf660so385946f8f.1; 
- Wed, 30 Jul 2025 22:36:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753940212; x=1754545012; darn=lists.freedesktop.org;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=AMZpWfQTqvxub6EnV2WBq7DOhIOcnfoMYMkFRXtjCnQ=;
- b=bh2IRQk2jCs/AMk9UbOZCQ3577v3gWPclVotnlaL/fyDeHMZegAHAhWDfyV4YnsSAU
- zL+eTjgkKjOpsdxPApR6h4SfRNWOQZ2/VnhD9XOWOeHz5dvQNHCvURDeBfrVGgYqSegG
- Y93O57elqImaO3c2Ag5u+LL9TScNGRm73n5i+0FdfXrKqRBrIjpwM2oU7GjuzKFfReSo
- cvjq3uMSh6Hoe1RabLuO9hF3vPqiLRfHrIc6USMU4EX/GDygyILVDgXnPI2AE3hDAlNs
- 3cGlf/0XvLZxeeDc4iX3pH//cODw1RHCAWnbOxciDsjb76tksVT/wSUc+5YIRb+ujwP1
- rBwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753940212; x=1754545012;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=AMZpWfQTqvxub6EnV2WBq7DOhIOcnfoMYMkFRXtjCnQ=;
- b=wYLXH5TK998ULf7fd/m9KHvUsw9FaW8QUdWzVlgy1YxoHX8HLaoomDgMqcj/0ovB4N
- qu+s/cSr1QsGRjptOma/QMYCP5KyH8txG3BszbzSBEMflsmj2g6VedkFQOBiM93fAig9
- e0/nsp9NFBuixlCoB68/3pwXadgieukzVxkviEIJveaHy+yHNihPBEKG3CbTzNEKk4cI
- 8Ozf/Cq7qQ6MByXtRXdxkT1+JzjQtezFlJu+7fbdjrqQN1Xums7o/n58Kl3+J9SIZl+p
- +iS5fbKYdY5uUtwHSrBhB3vpWfwVtOQHursQWmqxdsNNWuRRBs+q/7zOZZaxpRP5IeuY
- x8xg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWbAanTNSNZfvRJ3jmLAwQxYGuk0ybaWAqF48HTAP4bLp7Vl2/KCk2sYjPX6D9GnWYlQBmW0lQHy3o=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxEsrvJfzSwAeF+u10I2szvlaXye63bLIOF6x3tfqXRNz7evjiz
- x4bjjmR70b/kLlqLWvuMEvuckPtJTe8bkB8j3L2A6TyVZfI8YCUaYSzc
-X-Gm-Gg: ASbGnct5dmXxRFiYeCr739TNjsCiBTCzx0uKIVG+WI0KgFQ3cThnX2nYU3EF/CzoOpz
- Xw5Vw0EoB4s5VC83htgfPGZCTdXLEdfZBHV/Tf4Cm1NPHL1oL6lLzLBwLnKCkKULUNHFVvXQwbA
- brjX0hSMGqraAff0+qp99aQi/0FQMqsCOj9A4I+SuypDazBY7cQVAgxBxKNsVe7rKnMDeaw/djp
- vB0/3TKz+oZrxCCOyW32Hpy7mxdTfh3d6KIwlDY9oyFVXRaWRgqTJwESFVyb7A42EFwyW3OuyvU
- TiR9/Gti4Comeg5PGeO5kvPC0Fo1d2fa0CedWaopkF+LfCvCza2p+oi3lWj5CCuRqrf8U6SeLV4
- EvZ0datceQYjmqM2M47Ab68yDxA7UrfRBFJM6KdBRCyLw1dtcW2YfzpnWCYrUWgoEtTduaoo=
-X-Google-Smtp-Source: AGHT+IHdfzXx9K06cb/UnitGjPmvC7D+NZDjqSkxgc5T7oHEjmuUebpFeyLmNYxu/axLoj3DiwsXzg==
-X-Received: by 2002:a05:6000:200e:b0:3b4:9721:2b31 with SMTP id
- ffacd0b85a97d-3b794fc2684mr4609111f8f.5.1753940212394; 
- Wed, 30 Jul 2025 22:36:52 -0700 (PDT)
-Received: from [192.168.1.205]
- (dynamic-176-005-138-071.176.5.pool.telefonica.de. [176.5.138.71])
- by smtp.googlemail.com with ESMTPSA id
- ffacd0b85a97d-3b79c3ac093sm1149137f8f.9.2025.07.30.22.36.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 30 Jul 2025 22:36:51 -0700 (PDT)
-From: Philipp Zabel <philipp.zabel@gmail.com>
-Date: Thu, 31 Jul 2025 07:36:39 +0200
-Subject: [PATCH RFC 6/6] drm/amdgpu: don't wake up the GPU for syncobj
- feature detection
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2057.outbound.protection.outlook.com [40.107.244.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7FD410E24F
+ for <amd-gfx@lists.freedesktop.org>; Thu, 31 Jul 2025 06:09:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Kq4tpqWOnaHYbc8pcZv+xkzPtdJ12cKHBv/IRv6rm3wKQ/3DunUUBxedI8FoufxhU3nPDybmTirDzh3YbceU+Dx8pVT4zXv9UYiPUl8N/EzeDEjKdLdhxY+8RFVhKEyaeEXgeTXfvg6Ut+JyA4TP7q5DqHQv/+Efnm9YrwnaSp5G/GHghof27i+paIGNbI1sAvOctjA4/vf8iFBdXg8Y+QJo92Owc/9GZ2QfLh7zPDfMS+qm0t6F2xsp9Qvea1GW9MV4rYHCUblCUEDCBeD7hDSd8t62YJcyTfVYOpLUwA/vEqCtFNldwxX+n5cIYzj2KdsCw5C1kO4Y+m1FsqUwCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w0GUcB24yqJV7f+rELz78yRTMo3dCdEPVodKgVHL0oU=;
+ b=i/4gaqvxytkfiNaHjVIYPvswe8mq7GR1PR6RHS1ecL2EsUr/xlIWGL7XopNh/EZOMULgp3pGrHAyE9X5T9mIJoGoTU1e+4oar3sfwU3ggR/PKmOR/TUpOGM8eQgaUmY18JxgYcM3XJiBATQwvgD5Tm2bqe83dT+IvUhdQfS4FIl+u3g6dydWCtWSFcDBGxh4zkgFfpLxfQ16sOIH/YHg0GlY/4s/SPX9k7yucg1nmZ8gFMLEG52kn5rrsTVMAeBFgaW/I/cTNSkyq7te6nHj7xjZ1coRUxYKSN9riNMqkluHvhUR3MDkqUF2uw3xZ5AHAzwQ00uOMdJu/TWhKLRuSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w0GUcB24yqJV7f+rELz78yRTMo3dCdEPVodKgVHL0oU=;
+ b=Dhyv1Mt9nAWbkKR2PF0+j9rt3Y/ALWivoTmdrfCaB3AvLlbRfbSYX2JKoUSPDEjRJwLO828FvcmsVaCMK3GT34SJ/3WdANWoJj5D/SapAbP4AAJIysniseei+mISi7sQ6A3vs64MqCkOEWxV8ETLtM45fvUlkp5wjxSZFwGRap8=
+Received: from SJ0PR03CA0166.namprd03.prod.outlook.com (2603:10b6:a03:338::21)
+ by SJ2PR12MB8717.namprd12.prod.outlook.com (2603:10b6:a03:53d::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.26; Thu, 31 Jul
+ 2025 06:09:49 +0000
+Received: from SJ1PEPF00002327.namprd03.prod.outlook.com
+ (2603:10b6:a03:338:cafe::a4) by SJ0PR03CA0166.outlook.office365.com
+ (2603:10b6:a03:338::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8989.12 via Frontend Transport; Thu,
+ 31 Jul 2025 06:09:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ1PEPF00002327.mail.protection.outlook.com (10.167.242.90) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8989.10 via Frontend Transport; Thu, 31 Jul 2025 06:09:49 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 31 Jul
+ 2025 01:09:46 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
+ <Asad.Kamal@amd.com>, <Ce.Sun@amd.com>, <kevinyang.wang@amd.com>
+Subject: [PATCH] drm/amd/pm: Add priority messages for SMU v13.0.6
+Date: Thu, 31 Jul 2025 11:39:20 +0530
+Message-ID: <20250731060920.1694915-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250731-b4-dont-wake-next-v1-6-e51bdc347fa3@gmail.com>
-References: <20250731-b4-dont-wake-next-v1-0-e51bdc347fa3@gmail.com>
-In-Reply-To: <20250731-b4-dont-wake-next-v1-0-e51bdc347fa3@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>, 
- Philipp Zabel <philipp.zabel@gmail.com>
-X-Mailer: b4 0.15-dev-a9b2a
-X-Mailman-Approved-At: Thu, 31 Jul 2025 07:24:00 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002327:EE_|SJ2PR12MB8717:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2b90febb-7594-4e21-5d0b-08ddcff8db32
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Hc2bA1kwn0u5in29aOfKU0GjUtSjXxjlVYV8rYbmW6y3VTD0tww3HwyDHRw5?=
+ =?us-ascii?Q?Ewij9CYv/n2LaEl4TZ3U3c6mUH0GvEurZT5fYGkZZxcJZPNHOnHeN4PHozk4?=
+ =?us-ascii?Q?lmdQT5ah1ySjxEtBqYHlCjew4QUt9CaIU47bwtKTg2hJFKTlxQ866HmU5wat?=
+ =?us-ascii?Q?G4R5ytBsyGx4+S7KVEBigm1a+l/4u1EECLARRslvywtc+ABS+lJiHJsBg2ju?=
+ =?us-ascii?Q?sq9IIcDp/ie62M8qxjI18guo0DKLuPeHNv0BZi1Tuio93homZFI8XhjbRKZW?=
+ =?us-ascii?Q?YeVD84mSDTqiA7TcYkeHZJ/1IEPcaXMSzo3p9tKDxKQcj3u7kmxLf8rePyAE?=
+ =?us-ascii?Q?Imm58F9h9O77kAJJo/1LZ7bVDj+RCTNHIWmPsXhpFhK28lmxeQ6wK5tfpHWz?=
+ =?us-ascii?Q?aVYtzFH9kpZuO7M6zs9UNusBxUo+kPd8YW1lkkYrWyPWyIQ7kukPC08z3yHf?=
+ =?us-ascii?Q?Yjh14DI6ZmJmpeeouBIm8hIQIbb4lHF7TDZhESTFa7Sacy2owIEkKa3+kF5V?=
+ =?us-ascii?Q?Yc1vGdtna0W53PCEoTGzSh7Xj419VaYQhpOMvBWcnfb4qgC2B4ZFnPr1e6rn?=
+ =?us-ascii?Q?AQ63JsSuZ01y+30OayLvonfesP9P7fRylg7+07sBbtCojJTR4QP+R5vqdGCG?=
+ =?us-ascii?Q?ygwXSmEdSHXsuXMujWTO8n1oqQzlVDThSkXbkt1nUXWZDQ829SQwbT+bMhZN?=
+ =?us-ascii?Q?OWiHrbiedUT6UXoxZie59EMR0ZPN0Qxp8u1UJYawrTbnOQ6GAItYITf3MOpx?=
+ =?us-ascii?Q?zqnetlGgp82MNGjb9BY3pZDK7o38k97a/knlfPs9iQgKW4vffKrC7zXQHC+t?=
+ =?us-ascii?Q?mNheXq02cKQegesMbMcC2n8dUqGEle48442qIlHpZtHxRNoVZvAD9EMby7JM?=
+ =?us-ascii?Q?OJHJ6s6qMgprrmFrzqNtE8MJ+kIuPfg1fSGjd1yf7qI6lA9XURh4kbSlmVAj?=
+ =?us-ascii?Q?iPmrdhGh3c417qN/YKZcsv0PvhjhH0dUvpOahXhIzH5sa4+5JefL7Pku74Mq?=
+ =?us-ascii?Q?PM+kNA0U/32XbrNmO4XLioZPObJwzpe1TeRkzbCDvj0zNvaGwjU2Iso/49OM?=
+ =?us-ascii?Q?1FrobSUo0/RCUQzsi/GPFIArKFMrw74U4FTiDs+vsrSPE7YHx+AoedXaH1ih?=
+ =?us-ascii?Q?bFnOW+pYIDFgtJddKOTYwLio4Jsdcf27PkZaro9BIw7BZSArrra+gDc97VIX?=
+ =?us-ascii?Q?RkVGSvjOQ9JNW/96rzmfssRUlt787BnKo3WVx+dcjnwwpyuUjzpbxeGtWlqZ?=
+ =?us-ascii?Q?M8fwNO8+6xG38ZlUW2R7WlWHAUvEdjGeRu79+FQVXm99/esfnVFdtxBBzK8k?=
+ =?us-ascii?Q?s/Vq2SXjz4C+AmlVTNsCZKpBEHJzPxbqVazou4cZ+OXEeAYDUdU4eelbjM9u?=
+ =?us-ascii?Q?rYow5j07ceGSdp+tTrdLnVb7iSF8eBrtWaQyQiGC48pwd8/kk7dMNKljDJgQ?=
+ =?us-ascii?Q?zUweENB+YDfkXTIEdZIhqrr/Hb0ZjYC1E2ZABb3RyaM2A25XwpKqeoZNdCOG?=
+ =?us-ascii?Q?ox2Cj8i8QT1tDZm4K4ZXhhHipbeyxevJFN5Q?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2025 06:09:49.1495 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b90febb-7594-4e21-5d0b-08ddcff8db32
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002327.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8717
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,35 +131,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Don't wake the GPU if the SYNCOBJ_CREATE/DESTROY/WAIT ioctls are used
-to detect syncobj features before the GPU is powered up.
+Certain messages will processed with high priority by PMFW even if it
+hasn't responded to a previous message. Send the priority message
+regardless of the success/fail status of the previous message. Add
+support on SMUv13.0.6 and SMUv13.0.12
 
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/2295
-Signed-off-by: Philipp Zabel <philipp.zabel@gmail.com>
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h       |  1 +
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c  |  2 +-
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c   |  2 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c             | 14 +++++++++-----
+ 4 files changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 79d31ac6a7b37..b12342e917193 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2981,6 +2981,14 @@ long amdgpu_drm_ioctl(struct file *filp,
- 		}
- 	}
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
+index d7a9e41820fa..aaf148591a98 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
+@@ -469,6 +469,7 @@ enum smu_feature_mask {
+ /* Message category flags */
+ #define SMU_MSG_VF_FLAG			(1U << 0)
+ #define SMU_MSG_RAS_PRI			(1U << 1)
++#define SMU_MSG_HI_PRI			(1U << 2)
  
-+	if (wake && unlikely(!fpriv->initialized)) {
-+		/* Allow syncobj feature detection before GPU wakeup */
-+		if (cmd == DRM_IOCTL_SYNCOBJ_CREATE ||
-+		    cmd == DRM_IOCTL_SYNCOBJ_DESTROY ||
-+		    cmd == DRM_IOCTL_SYNCOBJ_WAIT)
-+			wake = false;
+ /* Firmware capability flags */
+ #define SMU_FW_CAP_RAS_PRI		(1U << 0)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
+index 02a455a31c25..17e0303f603b 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
+@@ -106,7 +106,7 @@ const struct cmn2asic_msg_mapping smu_v13_0_12_message_map[SMU_MSG_MAX_COUNT] =
+ 	MSG_MAP(GetDpmFreqByIndex,		     PPSMC_MSG_GetDpmFreqByIndex,		1),
+ 	MSG_MAP(SetPptLimit,			     PPSMC_MSG_SetPptLimit,			0),
+ 	MSG_MAP(GetPptLimit,			     PPSMC_MSG_GetPptLimit,			1),
+-	MSG_MAP(GfxDeviceDriverReset,		     PPSMC_MSG_GfxDriverReset,			SMU_MSG_RAS_PRI),
++	MSG_MAP(GfxDeviceDriverReset,		     PPSMC_MSG_GfxDriverReset,			SMU_MSG_RAS_PRI | SMU_MSG_HI_PRI),
+ 	MSG_MAP(DramLogSetDramAddrHigh,		     PPSMC_MSG_DramLogSetDramAddrHigh,		0),
+ 	MSG_MAP(DramLogSetDramAddrLow,		     PPSMC_MSG_DramLogSetDramAddrLow,		0),
+ 	MSG_MAP(DramLogSetDramSize,		     PPSMC_MSG_DramLogSetDramSize,		0),
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+index 9cc294f4708b..c22b3f646355 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+@@ -145,7 +145,7 @@ static const struct cmn2asic_msg_mapping smu_v13_0_6_message_map[SMU_MSG_MAX_COU
+ 	MSG_MAP(GetDpmFreqByIndex,		     PPSMC_MSG_GetDpmFreqByIndex,		1),
+ 	MSG_MAP(SetPptLimit,			     PPSMC_MSG_SetPptLimit,			0),
+ 	MSG_MAP(GetPptLimit,			     PPSMC_MSG_GetPptLimit,			1),
+-	MSG_MAP(GfxDeviceDriverReset,		     PPSMC_MSG_GfxDriverReset,			SMU_MSG_RAS_PRI),
++	MSG_MAP(GfxDeviceDriverReset,		     PPSMC_MSG_GfxDriverReset,			SMU_MSG_RAS_PRI | SMU_MSG_HI_PRI),
+ 	MSG_MAP(DramLogSetDramAddrHigh,		     PPSMC_MSG_DramLogSetDramAddrHigh,		0),
+ 	MSG_MAP(DramLogSetDramAddrLow,		     PPSMC_MSG_DramLogSetDramAddrLow,		0),
+ 	MSG_MAP(DramLogSetDramSize,		     PPSMC_MSG_DramLogSetDramSize,		0),
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+index 59f9abd0f7b8..f1f5cd8c2cd9 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+@@ -256,11 +256,12 @@ static int __smu_cmn_ras_filter_msg(struct smu_context *smu,
+ {
+ 	struct amdgpu_device *adev = smu->adev;
+ 	uint32_t flags, resp;
+-	bool fed_status;
++	bool fed_status, pri;
+ 
+ 	flags = __smu_cmn_get_msg_flags(smu, msg);
+ 	*poll = true;
+ 
++	pri = !!(flags & SMU_MSG_HI_PRI);
+ 	/* When there is RAS fatal error, FW won't process non-RAS priority
+ 	 * messages. Don't allow any messages other than RAS priority messages.
+ 	 */
+@@ -272,15 +273,18 @@ static int __smu_cmn_ras_filter_msg(struct smu_context *smu,
+ 				smu_get_message_name(smu, msg));
+ 			return -EACCES;
+ 		}
 +	}
-+
- 	dev = file_priv->minor->dev;
- 	if (wake) {
- 		ret = pm_runtime_get_sync(dev->dev);
-
+ 
++	if (pri || fed_status) {
+ 		/* FW will ignore non-priority messages when a RAS fatal error
+-		 * is detected. Hence it is possible that a previous message
+-		 * wouldn't have got response. Allow to continue without polling
+-		 * for response status for priority messages.
++		 * or reset condition is detected. Hence it is possible that a
++		 * previous message wouldn't have got response. Allow to
++		 * continue without polling for response status for priority
++		 * messages.
+ 		 */
+ 		resp = RREG32(smu->resp_reg);
+ 		dev_dbg(adev->dev,
+-			"Sending RAS priority message %s response status: %x",
++			"Sending priority message %s response status: %x",
+ 			smu_get_message_name(smu, msg), resp);
+ 		if (resp == 0)
+ 			*poll = false;
 -- 
-2.50.1
+2.49.0
 
