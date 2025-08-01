@@ -2,134 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5437B183E9
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 16:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1E4B1838B
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 16:18:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2B6D10E88E;
-	Fri,  1 Aug 2025 14:33:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 354BB10E881;
+	Fri,  1 Aug 2025 14:18:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="cZHcldpM";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="b5vLNBts";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECF2D10E892;
- Fri,  1 Aug 2025 14:33:17 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
- [217.70.183.193])
- by mslow3.mail.gandi.net (Postfix) with ESMTP id 595375814F6;
- Fri,  1 Aug 2025 14:09:07 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 23704442F4;
- Fri,  1 Aug 2025 14:09:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1754057345;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=1eO26JKteHxuoy1a4A2nQ0PM4JCEHGZpVMXmkOKugo8=;
- b=cZHcldpMfzXVrQHo+B8lfp/Nuq2Ys5uQaJPLBUzlBEmzmlnkwj3uvOUYnb9NiK4CgX5dwi
- veszdP4Mwy+cHfar+TijKIBuor+xQf4qTF8PfdJ+Tx82dkL4+kfKO8/VctFzO3M5ixAUZg
- LhNfUTSJ+tUXsJZrcUdCCgzC98pKRK+wsL1ESkP6IBhdP58U+hcmb+ZVzS8t0HiZH0EKyk
- /chKpMSlhF3n639ltSSEfcRrzA7Bj4UvwuwYSSXLCnUKJx1ur0hbPJPCgHAVNlGk+uAk2s
- kzv8BWJ7nqnp5iWF2VVGi4NfDcljptURLzrTb7H7FMV5HwDf4AKr6bhWO6FtAA==
-Message-ID: <b9e2dae7-6cd6-4fd2-b7e0-8869647bd72f@bootlin.com>
-Date: Fri, 1 Aug 2025 16:09:02 +0200
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2071.outbound.protection.outlook.com [40.107.94.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD11E10E114
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 14:18:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Pve+MPjXbsy17YV2eFCAtntEFK2Z3XnrGI0kaJ6ppudpDA+jE6Y7tnejzR3ERIcU9t0uq6vRBbf17Da0MiVCWXM3c7IN6AUqwIFoyZcgDv03Qo1YuCR1ktU8pnP6j3wD7YFmc2qLpkGGcv/jv6J4Szv49PUlPciK3psrBvUjkofdSKFZYIJ2ttYbZhqpaTHob9toso6HiAbMBYXATAoMpAJ+qYL7RLS1NZiRJr+rh09qDV1gAVbwaBPrgPHEBHofAI5dA0O+UEhenJkyEnWL7eOpHHADBf6WdPnnGipK+LsGoNqYkoD4xR/IwTLM2KWsZmN9qkb4U8gXzrjuY56Btg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7Bvfvmv4F/OeGkCPsT5oDygMz3Tz53NlYLselRzo11c=;
+ b=S7DJvzNUZOei4styPYfHhaNvZJxZd1rq/+bwSwRm1flx2WlZo9fAhQNhWXyZ6hgofmKh6ZNjWucV0qEAh1a1AD0TnUqCPjad8D4o9qMdIe8q3p9gAX57nVNwL9wTFMxXkiNgTeicqF1AHOYf5D6pAqZO8S1VX1jMEGGeOvTwqi0jtWCZliR5zJR6vwWUkbWVK7V8fIjamgstSToE0GWp2jVpOJvRreJc7N46VMcdLndLrNBG48O+pWP2Ydun6zNZ2+cV/gcrC+2q802T11FHWfZhdoEzP2smS1e6AdwjK8QSJ7b3IlO2Nn0ncTT19/MmqeT8rXe/tHUmV2MEc1bihw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7Bvfvmv4F/OeGkCPsT5oDygMz3Tz53NlYLselRzo11c=;
+ b=b5vLNBts2hgQLFiCuLB+cX4ULyGuUxpIuf4mQinAJoq+eEvggf4hfcAUS89u+ZuAEv5PILMaRiUBzHCuMpCt4bzOXXCnsuKhhRLNDiHkFcSXrZB+swYktrEoWh8vADRByrKuQvtxeQACA46pc1p5OYfv5R6ROg9oIxI/i3NIoec=
+Received: from CH5PR05CA0021.namprd05.prod.outlook.com (2603:10b6:610:1f0::18)
+ by PH0PR12MB8176.namprd12.prod.outlook.com (2603:10b6:510:290::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.12; Fri, 1 Aug
+ 2025 14:18:20 +0000
+Received: from CH1PEPF0000AD75.namprd04.prod.outlook.com
+ (2603:10b6:610:1f0:cafe::7) by CH5PR05CA0021.outlook.office365.com
+ (2603:10b6:610:1f0::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.8 via Frontend Transport; Fri, 1
+ Aug 2025 14:18:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD75.mail.protection.outlook.com (10.167.244.54) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9009.8 via Frontend Transport; Fri, 1 Aug 2025 14:18:20 +0000
+Received: from amberlin-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 1 Aug
+ 2025 09:18:19 -0500
+From: Amber Lin <Amber.Lin@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <jinhuieric.huang@amd.com>
+CC: Amber Lin <Amber.Lin@amd.com>
+Subject: [PATCH] drm/amdkfd: Destroy KFD debugfs after destroy KFD wq
+Date: Fri, 1 Aug 2025 10:18:01 -0400
+Message-ID: <20250801141801.130397-1-Amber.Lin@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/8] drm/komeda: use drmm_writeback_connector_init()
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
-References: <20250801-wb-drop-encoder-v1-0-824646042f7d@oss.qualcomm.com>
- <20250801-wb-drop-encoder-v1-2-824646042f7d@oss.qualcomm.com>
-Content-Language: en-US
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
- 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
-In-Reply-To: <20250801-wb-drop-encoder-v1-2-824646042f7d@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddutdefkeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomhepnfhouhhishcuvehhrghuvhgvthcuoehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekieevtdefgedtkeehteehtddttdefhffhgeejleejjeeluddvhfdugedvkeehveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduledvrdduieekrddtrddvtdgnpdhmrghilhhfrhhomheplhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfeegpdhrtghpthhtohepughmihhtrhihrdgsrghrhihshhhkohhvsehoshhsrdhquhgrlhgtohhmmhdrtghomhdprhgtphhtthhopehjrghnihdrnhhikhhulhgrsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepshhurhgrjhdrkhgrnhguphgrlhesihhnthgvlhdrtghomhdprhgtphhtthhopehhrghrrhihrdifvghnt
- hhlrghnugesrghmugdrtghomhdprhgtphhtthhopehsuhhnphgvnhhgrdhlihesrghmugdrtghomhdprhgtphhtthhopehsihhquhgvihhrrgesihhgrghlihgrrdgtohhmpdhrtghpthhtoheprghlvgigrghnuggvrhdruggvuhgthhgvrhesrghmugdrtghomhdprhgtphhtthhopegthhhrihhsthhirghnrdhkohgvnhhighesrghmugdrtghomh
-X-GND-Sasl: louis.chauvet@bootlin.com
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|PH0PR12MB8176:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1397730-0768-442f-c072-08ddd1064458
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|82310400026|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?X2gaGo9THIu3/EPbx5GWI85sYJwwDjHwZqWtFbpW6P97RjGipJDFcm8/vVcJ?=
+ =?us-ascii?Q?5WsTzhED2hop2uF9cYRvzDd3E1EwiVVMcS3K6xPdxomI/2y+gq0ncqgOK/kn?=
+ =?us-ascii?Q?BpYw7t6v6rEho4e/97FZ8XDbKY3NpHlxrzpTmF28SFJc8BzRjJGuh3He6msK?=
+ =?us-ascii?Q?URBbNr6TpmrSp6KNxrDYUV9iMtkaRPWicUOfxlM2oHoN30Ptu1GbDu3tFXY8?=
+ =?us-ascii?Q?GdD1KNauuqxL4jedzu8BtY7QbMb/ozmoOV1qsZy87UNWW1YgfHZUKLSqM0zU?=
+ =?us-ascii?Q?DLRKOEshc9l6uC4jEyhRHnxk+iWg3/iA8qjKLg9PPXdUSTmdUJmvF5BJDbU/?=
+ =?us-ascii?Q?RfcwqXzl5Zs5nKekB1RzB3iLcueOP4G+mAlqnppc5Sk3+QGpu1GeaK+ChZd/?=
+ =?us-ascii?Q?neKybl+bOdQOQtwNutfAqva2kIkTnL+SrdsO3wTyUmh0nydkvbSwDNv4NAYa?=
+ =?us-ascii?Q?DiXO7eaceQk0PItu/IZlJk5sSiiQnZ2nnpr+ti5EaQs/cXuE1CTpdv0cO+aI?=
+ =?us-ascii?Q?tG23ul2IJuUygj/ncZje4tmLCCKv2hnLAQp8zk8cPMTCzIeCelpZ3OsromI+?=
+ =?us-ascii?Q?64h5TIGoczrQ4xJp1TwXd0zP2XDTAuWT1buX1dJUAvSO5dzyjAl97GpXFQiz?=
+ =?us-ascii?Q?USckqEIBEHnGSKVAm10YNp7ptViUPUulVZzmeLQoIfFA3iK7x2TrdkFPX65b?=
+ =?us-ascii?Q?/VYpcEde4S2R+m8llJo64eajKbCeHjKXiNAViy3by7Eepvt1FacpPql4eMA5?=
+ =?us-ascii?Q?77gZrQh0dDKsTYtCn+MtEhfiC/tBzzpAZGjLzXslKl4scGp5KEsNdj2hFtnh?=
+ =?us-ascii?Q?oE9Pk/CqjI4PhLhykyDXG9zQwU6BjALFIXT7Xqr8JUWY1ODdxop6eTtlCSn8?=
+ =?us-ascii?Q?2FK1HXF5QLUZsGsM2AqVOAWE2eZlrM5syvNxen8Qyrh/ozFE3oRE+cd/cl3+?=
+ =?us-ascii?Q?uy4FcTT9C5rCYdv8qipdHBahjgSQrV0soczTQR9TyBvIlHeXZWkNj9OgAkFA?=
+ =?us-ascii?Q?1mb9bCJ8GGmHo0ss/Z/ANkIB5nJRQ3G2haCDpLoOPKl6vefuIXnK88kpR0RF?=
+ =?us-ascii?Q?FecV1CqzwbbHkMNH3EcdA3Nil4JyX0sEqwV+s/unEHrkDl+BHEhuc2IDAnAH?=
+ =?us-ascii?Q?zjU08x1WqWwcImlg31lSAne/wYB/kz6i5Tvdf0yEe04ALX9w6/rMdJ05gDzG?=
+ =?us-ascii?Q?yw7uPW7eV6gkgdFznrfffvL+vJ5fRhTYbDt37wuzSuXBsP/xSwGQ/wq9zaBL?=
+ =?us-ascii?Q?iYT5DhC2GdY5plH51HytN+x+5nNt3eo3MX5ruibAmvf7HsnEaggEA/YPqlaj?=
+ =?us-ascii?Q?dLpJ8JjGr2JPbJAdOSHcJbkQwOLL+UIcivNBwBGtEszXf+PBzud0fMELUqTW?=
+ =?us-ascii?Q?uXRPZOOoouvcSmXg2SMVTM9cfh5XgUSEhVvle9jKpGZ9bsn+7Q0/gzBoeOs5?=
+ =?us-ascii?Q?rMFlwV7k9vM5FFpwVr8+uqpA4eR6JIrsE8tUcTq6xasEbCrJa0BDbqdOlED+?=
+ =?us-ascii?Q?vTD/ntSWkqIlLf+bu2y+5IhhaHHaFE31XKg5?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2025 14:18:20.2616 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1397730-0768-442f-c072-08ddd1064458
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD75.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8176
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,101 +130,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Since KFD proc content was moved to kernel debugfs, we can't destroy KFD
+debugfs before kfd_process_destroy_wq. Move kfd_process_destroy_wq prior
+to kfd_debugfs_fini to fix a kernel NULL pointer problem. It happens
+when /sys/kernel/debug/kfd was already destroyed in kfd_debugfs_fini but
+kfd_process_destroy_wq calls kfd_debugfs_remove_process. This line
+    debugfs_remove_recursive(entry->proc_dentry);
+tries to remove /sys/kernel/debug/kfd/proc/<pid> while
+/sys/kernel/debug/kfd is already gone. It hangs the kernel by kernel
+NULL pointer.
 
+Signed-off-by: Amber Lin <Amber.Lin@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_module.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Le 01/08/2025 à 15:51, Dmitry Baryshkov a écrit :
-> Use drmm_plain_encoder_alloc() to allocate simple encoder and
-> drmm_writeback_connector_init() in order to initialize writeback
-> connector instance.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->   .../drm/arm/display/komeda/komeda_wb_connector.c   | 30 ++++++++++++----------
->   1 file changed, 17 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> index 875cdbff18c9dc97e736049feaa8a1fe1bcc82ff..210841b4453abfe60cecc1cfc79a84298be3e684 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
-> @@ -5,6 +5,7 @@
->    *
->    */
->   #include <drm/drm_framebuffer.h>
-> +#include <drm/drm_managed.h>
->   #include "komeda_dev.h"
->   #include "komeda_kms.h"
->   
-> @@ -121,17 +122,10 @@ komeda_wb_connector_fill_modes(struct drm_connector *connector,
->   	return 0;
->   }
->   
-> -static void komeda_wb_connector_destroy(struct drm_connector *connector)
-> -{
-> -	drm_connector_cleanup(connector);
-> -	kfree(to_kconn(to_wb_conn(connector)));
-> -}
-> -
->   static const struct drm_connector_funcs komeda_wb_connector_funcs = {
->   	.reset			= drm_atomic_helper_connector_reset,
->   	.detect			= komeda_wb_connector_detect,
->   	.fill_modes		= komeda_wb_connector_fill_modes,
-> -	.destroy		= komeda_wb_connector_destroy,
->   	.atomic_duplicate_state	= drm_atomic_helper_connector_duplicate_state,
->   	.atomic_destroy_state	= drm_atomic_helper_connector_destroy_state,
->   };
-> @@ -143,13 +137,15 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
->   	struct komeda_wb_connector *kwb_conn;
->   	struct drm_writeback_connector *wb_conn;
->   	struct drm_display_info *info;
-> +	struct drm_encoder *encoder;
-> +
->   	u32 *formats, n_formats = 0;
->   	int err;
->   
->   	if (!kcrtc->master->wb_layer)
->   		return 0;
->   
-> -	kwb_conn = kzalloc(sizeof(*kwb_conn), GFP_KERNEL);
-> +	kwb_conn = drmm_kzalloc(&kms->base, sizeof(*kwb_conn), GFP_KERNEL);
->   	if (!kwb_conn)
->   		return -ENOMEM;
->   
-> @@ -165,11 +161,19 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
->   		return -ENOMEM;
->   	}
->   
-> -	err = drm_writeback_connector_init(&kms->base, wb_conn,
-> -					   &komeda_wb_connector_funcs,
-> -					   &komeda_wb_encoder_helper_funcs,
-> -					   formats, n_formats,
-> -					   BIT(drm_crtc_index(&kcrtc->base)));
-> +	encoder = drmm_plain_encoder_alloc(&kms->base, NULL,
-> +					   DRM_MODE_ENCODER_VIRTUAL, NULL);
-> +	if (IS_ERR(encoder))
-> +		return PTR_ERR(encoder);
-> +
-> +	drm_encoder_helper_add(encoder, &komeda_wb_encoder_helper_funcs);
-> +
-> +	encoder->possible_crtcs = BIT(drm_crtc_index(&kcrtc->base));
-
-Maybe use drm_crtc_mask?
-
-With this:
-
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-
-> +
-> +	err = drmm_writeback_connector_init(&kms->base, wb_conn,
-> +					    &komeda_wb_connector_funcs,
-> +					    encoder,
-> +					    formats, n_formats);
->   	komeda_put_fourcc_list(formats);
->   	if (err) {
->   		kfree(kwb_conn);
-> 
-
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_module.c b/drivers/gpu/drm/amd/amdkfd/kfd_module.c
+index aee2212e52f6..33aa23450b3f 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_module.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_module.c
+@@ -78,8 +78,8 @@ static int kfd_init(void)
+ static void kfd_exit(void)
+ {
+ 	kfd_cleanup_processes();
+-	kfd_debugfs_fini();
+ 	kfd_process_destroy_wq();
++	kfd_debugfs_fini();
+ 	kfd_procfs_shutdown();
+ 	kfd_topology_shutdown();
+ 	kfd_chardev_exit();
 -- 
-Louis Chauvet, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
 
