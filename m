@@ -2,145 +2,145 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC1A9B183B4
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 16:26:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0B3B1841F
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 16:43:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89A3910E886;
-	Fri,  1 Aug 2025 14:26:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6361110E88D;
+	Fri,  1 Aug 2025 14:43:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="Mv0TcpOl";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="M74jYSZV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DC4F10E886
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 14:26:14 +0000 (UTC)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 571CLVXt001820
- for <amd-gfx@lists.freedesktop.org>; Fri, 1 Aug 2025 14:26:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- EzvS1jMX5x8+R7F+NrDMwwT/fTPAvaYvo4kcmEWAh8w=; b=Mv0TcpOlW2B6528l
- q1fFdZ1HJ+9on7dRfi5X4/XNaFJsntPIpJbuj0G2513OWO2znFSjc+t6b7uC9o+1
- VgWUXg9WvZZN5zxQjlg0gTcchFScz8cc50Dt+K6fXBUL1DWQe8SaQzTWZTus0YGi
- R1qWeSYfHYHAirPrNlyE6VVp6RxqURJjpo+oKRp/rQI96e9dbpAuX212NleLRLP5
- KXuCWlVaCRpuW7bOfFIIHcqS23A7Ustp4WgBL7ut775P+EUW7F2W4DKjVJkigvXW
- OJMvoAuo1MT8bBv4Kw507RcOT9yjfguAMhUasvajj88LiKLnUvZGs+PziHVdqQCW
- 1r5ToA==
-Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com
- [209.85.217.69])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 488wgrraqn-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 14:26:13 +0000 (GMT)
-Received: by mail-vs1-f69.google.com with SMTP id
- ada2fe7eead31-4fd9730dfa2so13189137.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 07:26:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754058372; x=1754663172;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=EzvS1jMX5x8+R7F+NrDMwwT/fTPAvaYvo4kcmEWAh8w=;
- b=hm4w5AwVRfjSTinS4ChGNVDwQq0BRu9cPAdnGjbPzx+2XLUbtmElJua/maMzcEJO/+
- zZiWn8kWixZaJfKkM2biM+umxCRs7Cvnzt0arqSAy58/cseooTq8yhHqqm2WaaSJjLk6
- JSAKwTqN85pttDNQrTjQKx7PenJQSHOO9m1M1bMVGM8wLv6s+f9C7c2UkEdLUjydVaLE
- 7ytJtF3rpEJ4mtjSD8Y3ccpOU8ijmFvenKP7wRS5Iyi2FADWSaTWg2lCiWz180d5FwTf
- 4EERtU7OXiqOUm7vcitwpB9VtM8iV3a/gyfT0Ocj8TiamYtEbKBr4UXpxzHKWBrIvkZC
- m2GA==
-X-Gm-Message-State: AOJu0YzTNw9yMND9UK2q2+Dah9r9k+Q04XUfFm1tAtKlpB2oHjmdmH9C
- xpVYATayQdNNpWl9rcdXJIKQejxblT0KtUJbMHmYZr+JbogU3gj+uQrK+u9GjvgSh7ksWzM0WTg
- y7UDBf8/lcb/yN0iqmwJwFDqrK8e+vfmfExIeZ5IWIJHA3Zt86bgkDFIASO+ThjY2RfxW
-X-Gm-Gg: ASbGnctcP9YRMpKHrFqEBHsrKncwvQD4iiLHjG2CEpcVdUveEN5Q2Ud+yXwLCFy03mm
- V1r3+4fBv64FDkq5Yn2ydBnU74a4o8Uo9+XoJND9ezLDljdardxiDPxbZ6JTIBFRkcK7E9hrgj3
- CrVUahVoRz77xgWB+qMeHDbhqobyGBZNHWGjlaMhh7px3mnbtFnTr+Mv46Af60DosEo1QnJhdIi
- QsehmpnLEdi9IHakLjaa98oErxsX9MLbhe6FSTwQYsZs8KWYtd0x6BZCSVwlOXepeVL9N+SZbBS
- IWhZihr5lBxAwk6wEDPKv1t+JlNzffHYwIpQ/+q4wzDZqclYOM84KD6TViCQFeUK8/lO+jK+m9o
- /93dG7BLbWgAFItpRJQRUiVXUonx1yUk7/BGVboB/zdf6lpFF6Cpz38TgbeqdTTjwZqyFneIK9N
- fA7fQB/Kw/5DDXxhJxF1h7+g==
-X-Received: by 2002:a05:6102:3ca3:b0:4e5:9c06:39d8 with SMTP id
- ada2fe7eead31-4fbe7eede93mr8246379137.5.1754058372042; 
- Fri, 01 Aug 2025 07:26:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHtV8DSsj9RYUgiFZC2c162wgAzqi/wUqPBz85jhmoN0PI6WRYnMuJqyzF2EbQRO88PjZQP5g==
-X-Received: by 2002:a05:6102:3ca3:b0:4e5:9c06:39d8 with SMTP id
- ada2fe7eead31-4fbe7eede93mr8246299137.5.1754058371520; 
- Fri, 01 Aug 2025 07:26:11 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:11f:12ba:7035:8684:db73:a472?
- (2001-14bb-11f-12ba-7035-8684-db73-a472.rev.dnainternet.fi.
- [2001:14bb:11f:12ba:7035:8684:db73:a472])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-33238272f35sm6403761fa.3.2025.08.01.07.26.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 01 Aug 2025 07:26:10 -0700 (PDT)
-Message-ID: <7ea6294d-1958-4586-975b-beb3e5114a4b@oss.qualcomm.com>
-Date: Fri, 1 Aug 2025 17:26:08 +0300
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4BA110E88D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 14:43:24 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yZB4ZhjGAw6W2MVikLWL/7gCSrmZQJ0pPcuw9sG0pdLQJ7VwaqdNCnSAA4OOLnk+sI17EsqDosapzvXfrLZbeCk0BasYzSM9czHbOymm/0k/wVTDxHENFnYOGdk7KIjep7kJsTr9QeWFvoqgx8P/hyvmS+9BzqE0LqtYU5u5OAF+R03tdqqMUYpygSEltKsRtm0V/iaKKqbD7mPcl4ieYSsW1hWB4qsmmo7YV/qptOoLJ5/LOl+MJpCp5TyU4uVR8enLlZCLmYas9ulB7I64Awtfu/xMy3WUGyNqniBdoUM+R8ev4QpJa54sW5oMRdpaKYr4rgPuIEtd3TEzzPEIKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BjhEPkpk6ZhWRdhH2qdWjBdOuC3eAW4uaoaBQEFy1G4=;
+ b=Y23WDMzFERQSnxVISmupxitvCY3+Fwt2ayDSxsLx36WDB/a6vShxfg7dm9jIwkwkNc27RAqZvPwoykOfw8Jw5BKxsCDvNWjCyIv7com/AwNvIAaHB1EaDpTwTTMhXT+iM50peVAddkLb6/p555/cy47m+jaTANwdr4tGzRGo8mHef32YJStZVsymxedpp+FXiVS7i1kx+hgVpjkHfDFqxs6oUGXRxg9/YjJDIAr8z1WbTLPdtCnS6HVJsgRYnb03JFtY1OzaB28NwMc1RsFtxg6JX8pzoUMJ/2xubYHJNJr2+jfMfHh+5ygn/xYRis9Iip0NYZPp/BCfb60UWfGxQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BjhEPkpk6ZhWRdhH2qdWjBdOuC3eAW4uaoaBQEFy1G4=;
+ b=M74jYSZVs2Akuo9RHzw1Q6yHy5YKZ3ql1TyKUw4hOIdqaGZIdXNAQ1erihUGnRfdCO7F6Ct7JA8t0Dfl6CX9CT65o5ctDooCWGhqWVtMmK7FhpNpfX6nHG8CmNjeeTwThzDerzJqnLl+B0angAemPuFPtXikxgdfDWo+vmseaMk=
+Received: from BL1PR12MB5336.namprd12.prod.outlook.com (2603:10b6:208:314::8)
+ by DM4PR12MB7552.namprd12.prod.outlook.com (2603:10b6:8:10c::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.16; Fri, 1 Aug
+ 2025 14:43:21 +0000
+Received: from BL1PR12MB5336.namprd12.prod.outlook.com
+ ([fe80::a3de:b197:926d:e124]) by BL1PR12MB5336.namprd12.prod.outlook.com
+ ([fe80::a3de:b197:926d:e124%6]) with mapi id 15.20.8989.015; Fri, 1 Aug 2025
+ 14:43:21 +0000
+From: "Huang, JinHuiEric" <JinHuiEric.Huang@amd.com>
+To: "Lin, Amber" <Amber.Lin@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdkfd: Destroy KFD debugfs after destroy KFD wq
+Thread-Topic: [PATCH] drm/amdkfd: Destroy KFD debugfs after destroy KFD wq
+Thread-Index: AQHcAu8jJtcddO9BIEyTW8tV6bKv0bRN3ubk
+Date: Fri, 1 Aug 2025 14:43:21 +0000
+Message-ID: <BL1PR12MB53360CD154457CDFF209A4A48226A@BL1PR12MB5336.namprd12.prod.outlook.com>
+References: <20250801141801.130397-1-Amber.Lin@amd.com>
+In-Reply-To: <20250801141801.130397-1-Amber.Lin@amd.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-08-01T14:43:20.5640000Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5336:EE_|DM4PR12MB7552:EE_
+x-ms-office365-filtering-correlation-id: 4bc5158c-9dff-434f-8b90-08ddd109c2e8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|7053199007|8096899003|38070700018; 
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?xUEzN2DVij4m8tH3YUDeBSTT6Q1IGDYthljEn3QNTZbMS6IccWUBttq6Gy?=
+ =?iso-8859-1?Q?oWilHJsxvzq10vlmKEUT3V75TKKdwGMvD+lCjHLdgs2YdxxHsXtjgGQefS?=
+ =?iso-8859-1?Q?wjP5eILSWyG0e0xEMk5D9MkY+HtszVuyXKAX4j7SRjNfhQmApI3W1qu25m?=
+ =?iso-8859-1?Q?MRNtgHgKLV7hRFRKrjAnBSlZKzs0t7Ks1atNMjniRn13vaKynwDBqmgglL?=
+ =?iso-8859-1?Q?034aym4iZ2Mp+SN+2H4ptemMrSleQAYrWMt+Z5Z3fnD94JZWUWwjV0uq6T?=
+ =?iso-8859-1?Q?3O8R5noY9ACZbyzHd+IRW6pgTrDjmNk0Zh682F7POzTfyaA1fhaao2JI2N?=
+ =?iso-8859-1?Q?rGdVqUbvB1mMavzqb/T4GIsVjrW3jLg+V9FrwyQMPq0IiITDLgI8blWnWY?=
+ =?iso-8859-1?Q?6MHAqrbfaeGMUa/GEd50LiDZ2zsaKpyr+XRxZqNYw/GPTxEyYonDbJV5N8?=
+ =?iso-8859-1?Q?3oEd6+QI1PV6ArfCuITbyeL886lwdxl6+VqsHt3UPR8iwuFzgS6sYRMbxI?=
+ =?iso-8859-1?Q?KwgrCjL/VGOSQ0Fip5qk8qUZadEtsrApTkb4oHTbFsGx6yjYRJ7/7X4NrQ?=
+ =?iso-8859-1?Q?C43idQz7NzL9U45Surm+JLY0WyNS69fz4cI+BthXSCwv9I7moSkdcPInk7?=
+ =?iso-8859-1?Q?Qq3RNVnKrecbt7v9ZPIpeEmKD9Hm3tq/gkWyMsuc2qAWPrkSj2bmJgHrId?=
+ =?iso-8859-1?Q?QYOXEVQ69Pg9h1ppbwjCnaEbQOTD2fNos4vci06SVDN2/tJeiZ96z+urcg?=
+ =?iso-8859-1?Q?CPIZ+eKAHr8ByXUzEQl5FJLKnCggT+CTgSYTcJXdDK28yVEdp7tw/IRJzg?=
+ =?iso-8859-1?Q?h2kTzLUm+l4kkQB/Wfi5AUnf5xdQQJlntJeoQr6sMTWAdPVQfBZQ7xS5Up?=
+ =?iso-8859-1?Q?BkKl/7llD9B7QIgmovsO8nnqhdf3dvaLZCCS4bA6jCrEThf7a7t15uB1ld?=
+ =?iso-8859-1?Q?HgEOeSo4b4cMS/9xCiW0e7RN6VYwtQ81bq3JXpb/XiVPH7iyOGXl2ox013?=
+ =?iso-8859-1?Q?ZhKB/C+3b66jLhIFIsOnmSPS39Z45z4htv46jB8o/a77r3VSzDqMyMrRhF?=
+ =?iso-8859-1?Q?M4sOow+NZ/iEQU/mfu64KfLVQmZgONSqMi9et3SH6gvJtEG3Ro7J3a+xz1?=
+ =?iso-8859-1?Q?TBtxmhHY/SXuBh35AlASvjrxG7nTjMUzSV5iNkxpuvxIixBip83ozIpsKo?=
+ =?iso-8859-1?Q?eInco71Nz+Ou0wVUpNn8Gmjuu6jGYuRaeFbh1iQ0JOyMYWVrtrD4B4cRS/?=
+ =?iso-8859-1?Q?9LdXQN31zEVFXYAjNCVWAOxFmyP+c5YMeh9UuOoghVK2IFcieS7dXWUg/I?=
+ =?iso-8859-1?Q?Ziur3aNPjRIShWPs0EyTn9yRqPU5wa4kBqjo9Iv3nyLzVf0gLAjLq7CMw4?=
+ =?iso-8859-1?Q?OhgnykyUZic0M+T+Xdf6hl0obBsvOdlfEF+I6VG6kUgK+NbuIzjNvooRUQ?=
+ =?iso-8859-1?Q?JcnxuBFbaBpQ6tCbhnzQyqPQEFqeu2SvU40lG5XflCv0l3+t2acHKhyuOS?=
+ =?iso-8859-1?Q?EtP+Ot8JwkjUjoFdk1mT2zLLk7oLJ94G/B2xS4shed0A=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5336.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(8096899003)(38070700018);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?yjJLW7kyHiioZilF7NFMmlC0BxexGJEd4elEKwbxjJNzu3JyK33+u9A275?=
+ =?iso-8859-1?Q?gMMpX6K7wxdLcu1Nq6ex5/+ONarZ0TfZbcGWPkOWamLOotJeeXlF7FyiHo?=
+ =?iso-8859-1?Q?FVys7QzAuqY/uWirqwEN4lXccursjK8T6lw9DMV/pCZrlv4N/W7Rd1I/w1?=
+ =?iso-8859-1?Q?2iuHWKvRlIPHFGnoeTivGQKsY2qgBna7sy7jnX1NXKd/FsuFZiO4i73gTG?=
+ =?iso-8859-1?Q?NCXQNVaDpJxnePwZCzQ5HgC82KygrtgEMq9Efy+s1iFs6EOUKDHZcfMsuf?=
+ =?iso-8859-1?Q?KHMmQ/e29dQv4A6E7pVTIha6mypveSHveg3YMiNpyeFycDbu8CQQqsS6pv?=
+ =?iso-8859-1?Q?Cp85V6EE3y67wRDahN6EihFyc5GKVn+18+CNSC7iSMnEdmE1hvfRv1VHxr?=
+ =?iso-8859-1?Q?QwlWPByfbuDhZjEJBzvPz2r93/EDWvqELE6abVWJWeFH9FF7H0Va3VVDXl?=
+ =?iso-8859-1?Q?lbHe4eX5gYgse6n2rmJQnRAmXIRvVBJliU5t4trvnIDy6PEIlqlLLE2eG8?=
+ =?iso-8859-1?Q?QS41TrIp2E12ZfUM/pdub6pKHSHF2SUB2JGVxz/owTWq6X7MYcTQwHF+ip?=
+ =?iso-8859-1?Q?Zcuebdkf+YgY2r4H+kXK7Zqc5f07l7xnoPTI4aksSWRr50cSadoTdzCNiB?=
+ =?iso-8859-1?Q?X57kBktGAGlzgRF50spSRHZsjZe3ko4vAXX30jdcyjpq4/c+iLbGx5p2yw?=
+ =?iso-8859-1?Q?xVGqbuT+k1dgyRKPMNW+GH+mzOwvyNG9j5yWMhHWZ7Lw0app6BEfbOKugB?=
+ =?iso-8859-1?Q?v2w6TRkXr2wO1Yn0pvsxlb4bkFFJas7DhZ1dQHBQLMZQC38/QYwcoSf5xr?=
+ =?iso-8859-1?Q?GorxFkcHWvIPb/yGVyRYqGBIB20+WYdu59dzF1YBzoPaEvK2vAvGZ7XYEO?=
+ =?iso-8859-1?Q?jYTc2KxWeS9Mmk5MENcy8uzTeI5exZmWNLGiNy2srhwRm9DnmNweEgpvto?=
+ =?iso-8859-1?Q?p4mk8d/GN1f3YJftmEepolayNx0ZWc5QD+110oFU20YgeNhNEDh+02hgYz?=
+ =?iso-8859-1?Q?0MWBqlGjBYaJ9p1stsLjGnllfVDfulqufTDIes8/YsJb0Q8nMBKKg67ZA7?=
+ =?iso-8859-1?Q?AACuak0IXiMVEwzSV3wxF1WFC0MDchOjbJsBJo34RimbNCk8ikY9u9MCEj?=
+ =?iso-8859-1?Q?P0B8r/D7yxqFqUatR4eCh9oG/OGkhltjvnrbMYxnaPw4l2XVC0D8dVic/s?=
+ =?iso-8859-1?Q?W/Hh3RRbOJ54poBmQTtOK42xAFrSOr62/f97fkV6GkeFU3WJ5lXs2ndNje?=
+ =?iso-8859-1?Q?dwg83GndoMQd98OAq+i5Ex+92PMrAqdV6clkfDeDl9r1mg8mMnLlBiU72W?=
+ =?iso-8859-1?Q?6piusKxq/Kr1ODlD1wsgxHCNedlckyOCX4IYuJN+ymm4AMV11fQX+3Stb+?=
+ =?iso-8859-1?Q?nPmgCXDG2cP/rcjbCFJpCm5aVsbQa4S1zD/tcOopBWDW0aAKXfTl0k46+P?=
+ =?iso-8859-1?Q?zJ7mw4Q/yiQ2qUrjv3lMMVEQdWksqc4pZFiUunZP/7XyJwm4o238G+D2nf?=
+ =?iso-8859-1?Q?YmkcuenhtBqELESg+PuG/DUJoB2Q1UXUdiXrx7uSw3By5JVtoalNxXTROA?=
+ =?iso-8859-1?Q?55NCN918DIHluSHgd1xVodRT+uCua0PCt5SFXxAwtanYZhizWT5bwBv6Qy?=
+ =?iso-8859-1?Q?v1TWG+6PeSG6s=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BL1PR12MB53360CD154457CDFF209A4A48226ABL1PR12MB5336namp_"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] drm: writeback: drop excess connector initialization
- functions
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-References: <20250801-wb-drop-encoder-v1-0-824646042f7d@oss.qualcomm.com>
- <20250801-wb-drop-encoder-v1-7-824646042f7d@oss.qualcomm.com>
- <b92e89d2-5bd8-4228-872e-6e5ae9b4b054@bootlin.com>
- <DM3PPF208195D8D03E1F9D3E7EB4D07C1D6E326A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <DM3PPF208195D8D03E1F9D3E7EB4D07C1D6E326A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=fs7cZE4f c=1 sm=1 tr=0 ts=688cce85 cx=c_pps
- a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=2OwXVqhp2XgA:10 a=CdbOqKgfPjM6tkZZvDYA:9 a=QEXdDO2ut3YA:10
- a=gYDTvv6II1OnSo0itH1n:22
-X-Proofpoint-GUID: MOvQZNuyKZU_1muAFSkPJ-8_AVwZEEdT
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDEwOSBTYWx0ZWRfX3uhRhtP27fD5
- ulxepW3jr9uc+ZduevkMICzLd5kcFpCba48sAwHEM8ZFjMfceNqRqMYZSSybHAxIz78c6kCxcUw
- GtC2F4hq9zIq3b6PeIUfxK1KIDKwdDn2eR+OKfoSOD/CYckPGCfTg2LOfxXLsjifgWb7iY59/j3
- eVE8ow1hMBIPiTU0ZjQPL3Wo4xMGFVU1H9weH1BiBJXlk1jXLnWXOpuwDYyQkxqd+IfhMY6croo
- hAC40I/J6t0q1xux8DbZUCmg4rgBVlihmMFnwP7oh61b6JmOXBFGAOxIZUOkFCN94hfsNi1n9fc
- 91hwjPA6RUFBHNxroRMntw5RLqHAbBVe2d9v+uItHjRzBxhAUjYYrTZ9fDia8RG9f0vbbJyLsGX
- bhJSlLdrzmHK3FMOTcPiaCdd62qffU/CMek3CtM/Es1qjiVgpqEeQq8e4tSKNrjqQutuqPbJ
-X-Proofpoint-ORIG-GUID: MOvQZNuyKZU_1muAFSkPJ-8_AVwZEEdT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-01_04,2025-08-01_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 suspectscore=0 mlxscore=0 lowpriorityscore=0
- adultscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999 impostorscore=0
- bulkscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508010109
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5336.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bc5158c-9dff-434f-8b90-08ddd109c2e8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Aug 2025 14:43:21.0936 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3JFxAAa1KQqwtscUKvU3kf5+Yvxthaa1bE0OoiXsX7B8i3nZJyzOICIPdcZWigF68SbzQxz4FGT1hd9AXzPlxQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7552
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,47 +155,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 01/08/2025 17:22, Kandpal, Suraj wrote:
->> Subject: Re: [PATCH 7/8] drm: writeback: drop excess connector initialization
->> functions
-> 
-> This should be drm/writeback
+--_000_BL1PR12MB53360CD154457CDFF209A4A48226ABL1PR12MB5336namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-No:
-
-$ git log --oneline --no-merges next/master 
-drivers/gpu/drm/drm_writeback.c
-fb721b2c35b1 drm: writeback: Fix drm_writeback_connector_cleanup signature
-09cba36cc840 drm: Include <linux/export.h>
-ddd147d91d50 drm: writeback: Fix kernel doc name
-ff3881cc6a58 drm: writeback: Fix use after free in 
-drm_writeback_connector_cleanup()
-1914ba2b91ea drm: writeback: Create drmm variants for 
-drm_writeback_connector initialization
-2f3f4a73631b drm: writeback: Add missing cleanup in case of 
-initialization failure
-135d8fc7af44 drm: writeback: Create an helper for 
-drm_writeback_connector initialization
-02c50fa60ca5 drm/writeback: remove pointless enable_signaling implementation
-720cf96d8fec drm: Drop drm_framebuffer.h from drm_crtc.h
-7933aecffa28 drm: introduce drm_writeback_connector_init_with_encoder() API
-57b8280a0a41 drm: allow passing possible_crtcs to 
-drm_writeback_connector_init()
-38d6fd406aaa drm/writeback: don't set fence->ops to default
-b1066a123538 drm: Clear the fence pointer when writeback job signaled
-0500c04ea14a drm: drop use of drmP.h in drm/*
-9d2230dc1351 drm: writeback: Add job prepare and cleanup operations
-e482ae9b5fdc drm: writeback: Fix leak of writeback job
-97eb9eaeb95b drm: writeback: Cleanup job ownership handling when queuing job
-71a5cb3eb758 drm: writeback: Fix doc that says connector should be 
-disconnected
-cde4c44d8769 drm: drop _mode_ from drm_mode_connector_attach_encoder
-73915b2b1f25 drm/writeback: Fix the "overview" section of the doc
-b13cc8dd5884 drm: writeback: Add out-fences for writeback connectors
-935774cd71fe drm: Add writeback connector type
+[AMD Official Use Only - AMD Internal Distribution Only]
 
 
+Reviewed-by: Eric Huang <jinhuieric.huang@amd.com>
 
--- 
-With best wishes
-Dmitry
+________________________________
+From: Lin, Amber <Amber.Lin@amd.com>
+Sent: August 1, 2025 10:18 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Huang, J=
+inHuiEric <JinHuiEric.Huang@amd.com>
+Cc: Lin, Amber <Amber.Lin@amd.com>
+Subject: [PATCH] drm/amdkfd: Destroy KFD debugfs after destroy KFD wq
+
+Since KFD proc content was moved to kernel debugfs, we can't destroy KFD
+debugfs before kfd_process_destroy_wq. Move kfd_process_destroy_wq prior
+to kfd_debugfs_fini to fix a kernel NULL pointer problem. It happens
+when /sys/kernel/debug/kfd was already destroyed in kfd_debugfs_fini but
+kfd_process_destroy_wq calls kfd_debugfs_remove_process. This line
+    debugfs_remove_recursive(entry->proc_dentry);
+tries to remove /sys/kernel/debug/kfd/proc/<pid> while
+/sys/kernel/debug/kfd is already gone. It hangs the kernel by kernel
+NULL pointer.
+
+Signed-off-by: Amber Lin <Amber.Lin@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_module.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_module.c b/drivers/gpu/drm/amd/=
+amdkfd/kfd_module.c
+index aee2212e52f6..33aa23450b3f 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_module.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_module.c
+@@ -78,8 +78,8 @@ static int kfd_init(void)
+ static void kfd_exit(void)
+ {
+         kfd_cleanup_processes();
+-       kfd_debugfs_fini();
+         kfd_process_destroy_wq();
++       kfd_debugfs_fini();
+         kfd_procfs_shutdown();
+         kfd_topology_shutdown();
+         kfd_chardev_exit();
+--
+2.34.1
+
+
+--_000_BL1PR12MB53360CD154457CDFF209A4A48226ABL1PR12MB5336namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Calibri;font-size:10pt;color:#0000FF;margin:5pt;fon=
+t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+[AMD Official Use Only - AMD Internal Distribution Only]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Reviewed-by: Eric Huang &lt;jinhuieric.huang@amd.com&gt;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<hr style=3D"display: inline-block; width: 98%;">
+<div id=3D"divRplyFwdMsg">
+<div style=3D"direction: ltr; font-family: Calibri, sans-serif; font-size: =
+11pt; color: rgb(0, 0, 0);">
+<b>From:</b>&nbsp;Lin, Amber &lt;Amber.Lin@amd.com&gt;<br>
+<b>Sent:</b>&nbsp;August 1, 2025 10:18 AM<br>
+<b>To:</b>&nbsp;amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop=
+.org&gt;; Huang, JinHuiEric &lt;JinHuiEric.Huang@amd.com&gt;<br>
+<b>Cc:</b>&nbsp;Lin, Amber &lt;Amber.Lin@amd.com&gt;<br>
+<b>Subject:</b>&nbsp;[PATCH] drm/amdkfd: Destroy KFD debugfs after destroy =
+KFD wq</div>
+<div style=3D"direction: ltr;">&nbsp;</div>
+</div>
+<div style=3D"font-size: 11pt;">Since KFD proc content was moved to kernel =
+debugfs, we can't destroy KFD<br>
+debugfs before kfd_process_destroy_wq. Move kfd_process_destroy_wq prior<br=
+>
+to kfd_debugfs_fini to fix a kernel NULL pointer problem. It happens<br>
+when /sys/kernel/debug/kfd was already destroyed in kfd_debugfs_fini but<br=
+>
+kfd_process_destroy_wq calls kfd_debugfs_remove_process. This line<br>
+&nbsp;&nbsp;&nbsp; debugfs_remove_recursive(entry-&gt;proc_dentry);<br>
+tries to remove /sys/kernel/debug/kfd/proc/&lt;pid&gt; while<br>
+/sys/kernel/debug/kfd is already gone. It hangs the kernel by kernel<br>
+NULL pointer.<br>
+<br>
+Signed-off-by: Amber Lin &lt;Amber.Lin@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdkfd/kfd_module.c | 2 +-<br>
+&nbsp;1 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_module.c b/drivers/gpu/drm/amd/=
+amdkfd/kfd_module.c<br>
+index aee2212e52f6..33aa23450b3f 100644<br>
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_module.c<br>
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_module.c<br>
+@@ -78,8 +78,8 @@ static int kfd_init(void)<br>
+&nbsp;static void kfd_exit(void)<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_cleanup_processes();<b=
+r>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_debugfs_fini();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_process_destroy_wq();<=
+br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_debugfs_fini();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_procfs_shutdown();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_topology_shutdown();<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_chardev_exit();<br>
+--<br>
+2.34.1<br>
+<br>
+</div>
+</div>
+</body>
+</html>
+
+--_000_BL1PR12MB53360CD154457CDFF209A4A48226ABL1PR12MB5336namp_--
