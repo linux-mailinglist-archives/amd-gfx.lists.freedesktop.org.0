@@ -2,80 +2,124 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E50EB18279
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 15:29:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89BA9B17CDB
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Aug 2025 08:26:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CE6610E855;
-	Fri,  1 Aug 2025 13:29:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1472A10E0E7;
+	Fri,  1 Aug 2025 06:26:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kJYv3e+m";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BV3Pongz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
- [209.85.216.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C06D10E3AC;
- Fri,  1 Aug 2025 06:11:34 +0000 (UTC)
-Received: by mail-pj1-f42.google.com with SMTP id
- 98e67ed59e1d1-313910f392dso428156a91.2; 
- Thu, 31 Jul 2025 23:11:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754028694; x=1754633494; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=0ko16HVi9ZPbBwhIj2VqJyHD6N02PwGWvkY6qgm70FA=;
- b=kJYv3e+m5LH7ja9jT2lVIAln3PKjNqcriBeOjOvBDnD5AilXPhJg+XMyic0t75EaNq
- 2FV0L4rBBaoqZ98Hnz6UH1Y75qXArCzm1LFrugbiKgXAtej68s/YfHe/2WYtL1EhDE/h
- gRmHB7sGy1DU92gZuXoFaWECHtYR48NX5VzEyoisFYYOVHJvv2mCJpqt88YtZo+q/U3D
- +AIRjeMd5pH6KscFTpoMqL8s+NGZ033YPGmbRZua6NoRwm/2FMIXW4fHTDfb/i8hyXwU
- KZPXOC6cynHIWnNqUuLnXX73YQV4HZVdV+0Eac5/KPRlYMSot9cYb7SGDuM9TCIQ6BeA
- JZBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754028694; x=1754633494;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=0ko16HVi9ZPbBwhIj2VqJyHD6N02PwGWvkY6qgm70FA=;
- b=iGptHzp5/9A7p1tPBR2aVHSJ4KDOX1wuYtwZHfleeuSS05ZUPV5VjWICW5w5sRvjZo
- MllIXVGmc+J5c3U40njMwP5eC7z4OLxRLxeYL2MemH7mfaP/Dr7x75jPZmt8hGtMN93w
- fWEGK3xtTGTF7RyqRg7ZetpzxHbHLLmapHkO/0k8/2+BqA7jfxJQ2RhW4h43uiVXUTPg
- osbCViwoXNXvPOOO8S/l20m04gPNeHIKDmv1VrC9sQzJTRebr40ronhPy034uwdYuqnq
- BYmOBDohu5F/cvwzZnFM3FVA3kstWOe9OjAvpi+L8uTovWmVAmKzGgiKChvtOh3g3+X9
- tCHA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVMLjFtG83AT/pRpqqdFO5QvEy4uH1q/M77GjVqjTDGccqgl2cI/YwtmVmGBRITQeCeCaDKQBsg@lists.freedesktop.org,
- AJvYcCW+12S/+t/jCeN0o9H51xTBahGylMz1kBX7Yzb6IJWj9dzglEO3qfqnmDacE3eG/YH3sid71QpSR/22@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxbc8karcbXlCBLrmPnFa8iEyCUTYoDMxp9G2+oHAfM2WYEqWXJ
- hLqkweLFiQBM9ECojS+luiYYhRgB17vKUGUFsHOqWP92rXHeBxePZUf5YiffT0wUcO4Yz113gH7
- fWytxLddlb/hrJ2FuG/BmjNHVUYGKJWU=
-X-Gm-Gg: ASbGncv8gbanjVPJtujRaH6k8g/Xxo7w/VnL6RJKqhS5D9o8de1172lJDRDtSWe8MtT
- QZBd5twrZkw1pT6PhF9Slnk/Nu1P87nPLCCZa8oNFSFb7TI7WrRPs9qxtJv/V/BHBUzLOI3AHR4
- eqawd1ZewJlvbS88MZWkbZ7BHgDi5Ea9yw3ujtusV9BBEfCoITh7Hv4Km7KnzDlwNsWTdt7edCK
- JGzYJo=
-X-Google-Smtp-Source: AGHT+IHP5f0oXGiOrttrHBImpIiuQeP4ljVNIuB7tpCkUe7xYlaM0ikqTUnOdcQq1Ul7QI4J9HRPqfYROgBiKnI0g/k=
-X-Received: by 2002:a17:90b:2cc6:b0:312:2bb:aa89 with SMTP id
- 98e67ed59e1d1-31f5de34a48mr14645187a91.20.1754028693622; Thu, 31 Jul 2025
- 23:11:33 -0700 (PDT)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2085.outbound.protection.outlook.com [40.107.223.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6919D10E154
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 06:26:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eDRqzXlPvStDqpj3BI50dp9mV7vyrRhezffS3/y6OEAEheFTV8eZDMiwC7Ui9FfwpbPbJ0x3HSMWOItiTW6xegLCIsCm6OvS4aS7zElF29mj9CC67NhCi/XcH/QhWaXHPiU5RR97A+bFGC9Yw6xLBDVgmcUY43iQEf4cgHMngILAMNfOpvr8VHGTMyojp/IevP/C+B7sv/Y68aQaNaqokvMCc5QP/7SAH+xC7DedvZJR84yrvx8kUeigZiRR/yXoL0tzWto2z9iUBs/YMvZPu6bdM/IEmscqq5XVjzbl6Yjwshy4syfNT4Pi+Fx62r7v64JFdG7ly9fvVGZ1jI503w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gD+bLSxAEQkFIlpNJOL4yl8n2YnPpAufugwO4cbeZ4M=;
+ b=gUzzRENDzYuEWD1h+sQDCfkGX13onguk0+XyRCF8iuWuJ7FLVjM1m5tvRcEnqOlgb6VhY1QE2E4Wx+WYXCzMlK3iLwUIj6v71zykHRARhgP8YDS698IZl0Ys/FYv2iDKew3/oYnwmQayXk5i/g5ypQkEAhcbbIKPnVIzXCh6nM1dmKiPvnWf6jfDCVPNhrWtAIgqSyS9VGPnDttrZeKhRhq0rVblAFgQ5nKlQSZxoS2YQlEXBpoXtNFPZPCvybEpVLMSs9lE++gggf7nGKcYrarPRSNQTQcfD5/ZEdR90rUBanjlXW/fbZ6VeMNMOz/PkTGRRGHpVcHcYNS/9rT3UQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gD+bLSxAEQkFIlpNJOL4yl8n2YnPpAufugwO4cbeZ4M=;
+ b=BV3Pongz8b5a0jetkCMwqh6MDIR9YuJUvAknYZgz1f3vfM77njgyCcm6MeHTXywy1u1ZtuOMF3sHnmAD9d3qOZYZ80oa0vsWQwRU0pLuOrnBCU33r3Vwzll20Hp5WAAGjCGUXK4gdz7WDoPjozdUzKD2L4UHWQNKAAv5Zyp3MWM=
+Received: from BN7PR02CA0022.namprd02.prod.outlook.com (2603:10b6:408:20::35)
+ by IA0PPF8FC6E1236.namprd12.prod.outlook.com
+ (2603:10b6:20f:fc04::bda) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.11; Fri, 1 Aug
+ 2025 06:25:55 +0000
+Received: from BN1PEPF00004687.namprd05.prod.outlook.com
+ (2603:10b6:408:20:cafe::8f) by BN7PR02CA0022.outlook.office365.com
+ (2603:10b6:408:20::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8989.14 via Frontend Transport; Fri,
+ 1 Aug 2025 06:25:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN1PEPF00004687.mail.protection.outlook.com (10.167.243.132) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9009.8 via Frontend Transport; Fri, 1 Aug 2025 06:25:54 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 1 Aug
+ 2025 01:25:54 -0500
+Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
+ via Frontend Transport; Fri, 1 Aug 2025 01:25:48 -0500
+From: <Alexander.Deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>
+Subject: [v6 01/12] drm/amdgpu/mes: add front end for detect and reset hung
+ queue
+Date: Fri, 1 Aug 2025 14:20:59 +0800
+Message-ID: <20250801062547.4085580-1-Alexander.Deucher@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-References: <20250731-b4-dont-wake-next-v1-0-e51bdc347fa3@gmail.com>
- <20250731-b4-dont-wake-next-v1-5-e51bdc347fa3@gmail.com>
- <CADnq5_PG1Am4OGkfKo9o9cfnvSdzwRFeYudbvw220+P1AHO4xA@mail.gmail.com>
-In-Reply-To: <CADnq5_PG1Am4OGkfKo9o9cfnvSdzwRFeYudbvw220+P1AHO4xA@mail.gmail.com>
-From: Philipp Zabel <philipp.zabel@gmail.com>
-Date: Fri, 1 Aug 2025 08:11:21 +0200
-X-Gm-Features: Ac12FXy4Bp7cHwpfA3_SJEVsnOgcLffltweyrxbaKSDp7VKM1SkzOyKNjBrWNao
-Message-ID: <CA+gwMcc41Hh=or7NLMnG++miHj_dNLZ04iFYdf=U7_LLG1gSZw@mail.gmail.com>
-Subject: Re: [PATCH RFC 5/6] drm/amdgpu: don't wake up the GPU for
- mmGB_ADDR_CONFIG register read
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Content-Type: multipart/alternative; boundary="000000000000359306063b47a15a"
-X-Mailman-Approved-At: Fri, 01 Aug 2025 13:29:30 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: Alexander.Deucher@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004687:EE_|IA0PPF8FC6E1236:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1591104d-919c-429c-653f-08ddd0c44536
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CEn2mEeuk0z/7uDB7O4O2qKGMzF+Ri8Wa4cCpWu4NiZ160JJPAuajG6zkxBZ?=
+ =?us-ascii?Q?2zFDX/Cy6cHnWkxJ97loKxPDxJF4HdSaAcDtqFzI9pb6zEMBBe/UsSf72ie2?=
+ =?us-ascii?Q?0GfJtPv/OShePrKM7CGuW1TsuIWrslN9XJJOXPTXM7R6X3B8KBiXYc6/UCBk?=
+ =?us-ascii?Q?HwJ7Vabvne7u4UXUPWJ/+iGdQT2IN9EFuGQWvp17dYWz9Elbd78Xt3U50puA?=
+ =?us-ascii?Q?84sg/rmk6euzuYfWAc07tUmSgd9cG5qsF1o2igviGgOwEba3GH6oZCfsxBh4?=
+ =?us-ascii?Q?UeNPPWqOFTvHx569Q1s02rEnqVUFJ6yJyl/lOLCXPays3suW8SOZd7XdaWwJ?=
+ =?us-ascii?Q?G0oOTOlVCkLvyWr5G8pWFHS2vLkitlgP8uNvtScaR8qu7D3cBacNiHm/BsmT?=
+ =?us-ascii?Q?pHXkF24P1Rcat6utDhqG063Aqr/toKD9eoHNjnRI+BziTIOySWHLwvE1QdYV?=
+ =?us-ascii?Q?c1TLw/HRDBFZG92C/sNpR8tfkwrZeug8UsHxQQjG4lDTk8buNj4Uq+sk8IG/?=
+ =?us-ascii?Q?KSBmFL/8da8N2CBD6fERxnLeKhmSWOFRDmqaWG6agbl96TQkhBHIVcHs+FP3?=
+ =?us-ascii?Q?I6wNinkIzaizAYVQsl9IPw3UYfQrPEkP42M4ZX2gpuiaY1AKEiaHlqUxUjFI?=
+ =?us-ascii?Q?PqwzR4UG1hZ5Ue4My7TrY7B2U6A6bHC9paFw7+TptqPHjwKHNIulYAdZCnBE?=
+ =?us-ascii?Q?VJx8w4Q4xfTonUaBRvoR4kDAJwirpiLEBY+B1OyKUBw0R0Z02uDK9FgbTCgH?=
+ =?us-ascii?Q?+PIH+O6GaU63B9kKbEt+sqe22/gn5X8VWc57zvvVr0K5n7JT/EReYGCPvWgA?=
+ =?us-ascii?Q?JB9ehJT2y0+9uD7SGqIQQLHo2u4RlYnbnS9eacBBcDAuZ3uzjVSZ5Jx85cQm?=
+ =?us-ascii?Q?fwBSwEMoZ6phK/jdSJSzip336c3e8K1zUKk12vZ04j9g8ze+24q76A7fTsGB?=
+ =?us-ascii?Q?cCKnfP7+RksjD/ipu4gyDiQUOTD50e0mprEKHFKa5u/AkaR6k6AZZQ/q6Smt?=
+ =?us-ascii?Q?qNUUJsI0DvkzAzLucx/KZu8xtOZLQbR8H5SIZEJChWJ0E8MsbqnfSNaFR0Ns?=
+ =?us-ascii?Q?pEK5Urr6cCX2S5h1ld72MXoXmWAElrAYwgBSQ6+4bkdyuqRQsKJBXVTbKDI5?=
+ =?us-ascii?Q?nBGG7W42WDQGiYuOEZI+IIv7H1CdkY6IdY9VudBiLMy7bdw+XjiDwW42xh1A?=
+ =?us-ascii?Q?9BHbmlLMQnVTerANIy8EougwIcPMHLQC7e11iXonYv722qmy9rkFPtMNNmlI?=
+ =?us-ascii?Q?GiEuYnv9E3f8SiNi8wmg9FvW9s9HDSgZOsu3kY0ETlC3584NdKVTN/2lQ5BL?=
+ =?us-ascii?Q?Fq1CjKwK8jqK0t6BLvlahShiIFALO2WLU5ZFB0znLzzudn32P7gFpO/EjsN3?=
+ =?us-ascii?Q?w0lhlXMpmNmZinjGmBfesBo7ezWVekVM3lNc2V0Sh8YpnAIwJyNa+0tofPUZ?=
+ =?us-ascii?Q?bAiSZQndL9DWve1I+i3jESnSQEKv0BJErOcY9JvnjB0AtUYU75Nc/xy/ZyIy?=
+ =?us-ascii?Q?PyYLWC6xjdIfRuADQB9knBeUL8g1Yss7ndag?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2025 06:25:54.9421 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1591104d-919c-429c-653f-08ddd0c44536
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00004687.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PPF8FC6E1236
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,134 +134,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000359306063b47a15a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Alex Deucher <alexander.deucher@amd.com>
 
-On Thu, Jul 31, 2025 at 9:38=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com=
-> wrote:
+Helper function to detect and reset hung queues.  MES will
+return an array of doorbell indices of which queues are hung
+and were optionally reset.
 
-> On Thu, Jul 31, 2025 at 3:33=E2=80=AFAM Philipp Zabel <philipp.zabel@gmai=
-l.com>
-> wrote:
-> >
-> > Don't wake the GPU if libdrm queries the mmGB_ADDR_CONFIG register
-> > value during amdgpu_query_gpu_info_init(). Instead, return the already
-> > cached value adev->gfx.config.gb_addr_config.
-> >
-> > Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2295
-> > Signed-off-by: Philipp Zabel <philipp.zabel@gmail.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> > index fe1347a4075c4..ed4d7d72f2065 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> > @@ -883,6 +883,16 @@ int amdgpu_info_ioctl(struct drm_device *dev, void
-> *data, struct drm_file *filp)
-> >
-> >                 alloc_size =3D info->read_mmr_reg.count * sizeof(*regs)=
-;
-> >
-> > +               if (info->read_mmr_reg.dword_offset =3D=3D 0x263e &&
->
-> I think the offset of this register varies across chip families.
-> You'll need some way to determine what the offset is for each family.
->
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 62 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h | 19 ++++++++
+ 2 files changed, 81 insertions(+)
 
-Thank you. This workaround was specifically intended for the following call
-in libdrm [1]:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+index 135598502c8d..64c5cac9ad5b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+@@ -191,6 +191,20 @@ int amdgpu_mes_init(struct amdgpu_device *adev)
+ 	if (r)
+ 		goto error_doorbell;
+ 
++	if (adev->mes.hung_queue_db_array_size) {
++		r = amdgpu_bo_create_kernel(adev,
++					    adev->mes.hung_queue_db_array_size * sizeof(u32),
++					    PAGE_SIZE,
++					    AMDGPU_GEM_DOMAIN_GTT,
++					    &adev->mes.hung_queue_db_array_gpu_obj,
++					    &adev->mes.hung_queue_db_array_gpu_addr,
++					    &adev->mes.hung_queue_db_array_cpu_addr);
++		if (r) {
++			dev_warn(adev->dev, "failed to create MES hung db array buffer (%d)", r);
++			goto error_doorbell;
++		}
++	}
++
+ 	return 0;
+ 
+ error_doorbell:
+@@ -216,6 +230,10 @@ void amdgpu_mes_fini(struct amdgpu_device *adev)
+ {
+ 	int i;
+ 
++	amdgpu_bo_free_kernel(&adev->mes.hung_queue_db_array_gpu_obj,
++			      &adev->mes.hung_queue_db_array_gpu_addr,
++			      &adev->mes.hung_queue_db_array_cpu_addr);
++
+ 	amdgpu_bo_free_kernel(&adev->mes.event_log_gpu_obj,
+ 			      &adev->mes.event_log_gpu_addr,
+ 			      &adev->mes.event_log_cpu_addr);
+@@ -366,6 +384,50 @@ int amdgpu_mes_reset_legacy_queue(struct amdgpu_device *adev,
+ 	return r;
+ }
+ 
++int amdgpu_mes_get_hung_queue_db_array_size(struct amdgpu_device *adev)
++{
++	return adev->mes.hung_queue_db_array_size;
++}
++
++int amdgpu_mes_detect_and_reset_hung_queues(struct amdgpu_device *adev,
++					    int queue_type,
++					    bool detect_only,
++					    unsigned int *hung_db_num,
++					    u32 *hung_db_array)
++
++{
++	struct mes_detect_and_reset_queue_input input;
++	u32 *db_array = adev->mes.hung_queue_db_array_cpu_addr;
++	int r, i;
++
++	if (!hung_db_num || !hung_db_array)
++		return -EINVAL;
++
++	if ((queue_type != AMDGPU_RING_TYPE_GFX) &&
++	    (queue_type != AMDGPU_RING_TYPE_COMPUTE) &&
++	    (queue_type != AMDGPU_RING_TYPE_SDMA))
++		return -EINVAL;
++
++	input.queue_type = queue_type;
++	input.detect_only = detect_only;
++
++	r = adev->mes.funcs->detect_and_reset_hung_queues(&adev->mes,
++							  &input);
++	if (r) {
++		dev_err(adev->dev, "failed to detect and reset\n");
++	} else {
++		*hung_db_num = 0;
++		for (i = 0; i < adev->mes.hung_queue_db_array_size; i++) {
++			if (db_array[i] != AMDGPU_MES_INVALID_DB_OFFSET) {
++				hung_db_array[i] = db_array[i];
++				*hung_db_num += 1;
++			}
++		}
++	}
++
++	return r;
++}
++
+ uint32_t amdgpu_mes_rreg(struct amdgpu_device *adev, uint32_t reg)
+ {
+ 	struct mes_misc_op_input op_input;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+index c0d2c195fe2e..2c4568951edb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+@@ -41,6 +41,7 @@
+ #define AMDGPU_MES_API_VERSION_MASK	0x00fff000
+ #define AMDGPU_MES_FEAT_VERSION_MASK	0xff000000
+ #define AMDGPU_MES_MSCRATCH_SIZE	0x40000
++#define AMDGPU_MES_INVALID_DB_OFFSET	0xffffffff
+ 
+ enum amdgpu_mes_priority_level {
+ 	AMDGPU_MES_PRIORITY_LEVEL_LOW       = 0,
+@@ -147,6 +148,10 @@ struct amdgpu_mes {
+ 	uint64_t            resource_1_gpu_addr[AMDGPU_MAX_MES_PIPES];
+ 	void                *resource_1_addr[AMDGPU_MAX_MES_PIPES];
+ 
++	int				hung_queue_db_array_size;
++	struct amdgpu_bo		*hung_queue_db_array_gpu_obj;
++	uint64_t			hung_queue_db_array_gpu_addr;
++	void				*hung_queue_db_array_cpu_addr;
+ };
+ 
+ struct amdgpu_mes_gang {
+@@ -280,6 +285,11 @@ struct mes_reset_queue_input {
+ 	bool                               is_kq;
+ };
+ 
++struct mes_detect_and_reset_queue_input {
++	uint32_t                           queue_type;
++	bool                               detect_only;
++};
++
+ enum mes_misc_opcode {
+ 	MES_MISC_OP_WRITE_REG,
+ 	MES_MISC_OP_READ_REG,
+@@ -367,6 +377,8 @@ struct amdgpu_mes_funcs {
+ 
+ 	int (*reset_hw_queue)(struct amdgpu_mes *mes,
+ 			      struct mes_reset_queue_input *input);
++	int (*detect_and_reset_hung_queues)(struct amdgpu_mes *mes,
++					    struct mes_detect_and_reset_queue_input *input);
+ };
+ 
+ #define amdgpu_mes_kiq_hw_init(adev) (adev)->mes.kiq_hw_init((adev))
+@@ -390,6 +402,13 @@ int amdgpu_mes_reset_legacy_queue(struct amdgpu_device *adev,
+ 				  unsigned int vmid,
+ 				  bool use_mmio);
+ 
++int amdgpu_mes_get_hung_queue_db_array_size(struct amdgpu_device *adev);
++int amdgpu_mes_detect_and_reset_hung_queues(struct amdgpu_device *adev,
++					    int queue_type,
++					    bool detect_only,
++					    unsigned int *hung_db_num,
++					    u32 *hung_db_array);
++
+ uint32_t amdgpu_mes_rreg(struct amdgpu_device *adev, uint32_t reg);
+ int amdgpu_mes_wreg(struct amdgpu_device *adev,
+ 		    uint32_t reg, uint32_t val);
+-- 
+2.49.0
 
-        r =3D amdgpu_read_mm_registers(dev, 0x263e, 1, 0xffffffff, 0,
-                                             &dev->info.gb_addr_cfg);
-
-[1]
-https://gitlab.freedesktop.org/mesa/libdrm/-/blob/9ea8a8e93d542fe61d82716d1=
-a721e8d1d257405/amdgpu/amdgpu_gpu_info.c#L215-216
-
-which also seem to hard-code the dword_offset?
-
-The same is now copied into Mesa [2] as:
-
-   r =3D ac_drm_read_mm_registers(dev, 0x263e, 1, 0xffffffff, 0,
-&info->gb_addr_cfg);
-
-[2]
-https://gitlab.freedesktop.org/mesa/mesa/-/blob/c64c6a0c31f9cb1339bc700d236=
-932171f7444a3/src/amd/common/ac_linux_drm.c#L722
-
-regards
-Philipp
-
---000000000000359306063b47a15a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote gmail_quote_container"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Thu, Jul 31, 2025 at 9:38=E2=80=AFPM Alex =
-Deucher &lt;<a href=3D"mailto:alexdeucher@gmail.com">alexdeucher@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">O=
-n Thu, Jul 31, 2025 at 3:33=E2=80=AFAM Philipp Zabel &lt;<a href=3D"mailto:=
-philipp.zabel@gmail.com" target=3D"_blank">philipp.zabel@gmail.com</a>&gt; =
-wrote:<br>
-&gt;<br>
-&gt; Don&#39;t wake the GPU if libdrm queries the mmGB_ADDR_CONFIG register=
-<br>
-&gt; value during amdgpu_query_gpu_info_init(). Instead, return the already=
-<br>
-&gt; cached value adev-&gt;gfx.config.gb_addr_config.<br>
-&gt;<br>
-&gt; Link: <a href=3D"https://gitlab.freedesktop.org/drm/amd/-/issues/2295"=
- rel=3D"noreferrer" target=3D"_blank">https://gitlab.freedesktop.org/drm/am=
-d/-/issues/2295</a><br>
-&gt; Signed-off-by: Philipp Zabel &lt;<a href=3D"mailto:philipp.zabel@gmail=
-.com" target=3D"_blank">philipp.zabel@gmail.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 10 ++++++++++<br>
-&gt;=C2=A0 1 file changed, 10 insertions(+)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_kms.c<br>
-&gt; index fe1347a4075c4..ed4d7d72f2065 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br>
-&gt; @@ -883,6 +883,16 @@ int amdgpu_info_ioctl(struct drm_device *dev, voi=
-d *data, struct drm_file *filp)<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0alloc_siz=
-e =3D info-&gt;read_mmr_reg.count * sizeof(*regs);<br>
-&gt;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (info-&gt;r=
-ead_mmr_reg.dword_offset =3D=3D 0x263e &amp;&amp;<br>
-<br>
-I think the offset of this register varies across chip families.<br>
-You&#39;ll need some way to determine what the offset is for each family.<b=
-r></blockquote><div><br></div><div style=3D"font-family:courier new,monospa=
-ce" class=3D"gmail_default">Thank you. This workaround was specifically int=
-ended for the following call in libdrm [1]:<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 r =3D amdgpu_read_mm_registers(dev, 0x263e, 1, 0xffffffff, 0,<br>=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0&amp;dev-&gt;info.gb_addr_cfg);<br><br>[1] <a href=3D"https://gitlab.=
-freedesktop.org/mesa/libdrm/-/blob/9ea8a8e93d542fe61d82716d1a721e8d1d257405=
-/amdgpu/amdgpu_gpu_info.c#L215-216">https://gitlab.freedesktop.org/mesa/lib=
-drm/-/blob/9ea8a8e93d542fe61d82716d1a721e8d1d257405/amdgpu/amdgpu_gpu_info.=
-c#L215-216</a><br><br>which also seem to hard-code the dword_offset?</div><=
-div style=3D"font-family:courier new,monospace" class=3D"gmail_default"><br=
-></div><div style=3D"font-family:courier new,monospace" class=3D"gmail_defa=
-ult">The same is now copied into Mesa [2] as:<br><br>=C2=A0 =C2=A0r =3D ac_=
-drm_read_mm_registers(dev, 0x263e, 1, 0xffffffff, 0, &amp;info-&gt;gb_addr_=
-cfg);<br><br>[2] <a href=3D"https://gitlab.freedesktop.org/mesa/mesa/-/blob=
-/c64c6a0c31f9cb1339bc700d236932171f7444a3/src/amd/common/ac_linux_drm.c#L72=
-2">https://gitlab.freedesktop.org/mesa/mesa/-/blob/c64c6a0c31f9cb1339bc700d=
-236932171f7444a3/src/amd/common/ac_linux_drm.c#L722</a></div></div><div cla=
-ss=3D"gmail_quote gmail_quote_container"><br><div style=3D"font-family:cour=
-ier new,monospace" class=3D"gmail_default">regards</div><div style=3D"font-=
-family:courier new,monospace" class=3D"gmail_default">Philipp</div><br></di=
-v></div>
-
---000000000000359306063b47a15a--
