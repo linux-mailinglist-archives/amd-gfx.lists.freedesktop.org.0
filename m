@@ -2,65 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C12B1EE68
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 20:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 770EBB18F43
+	for <lists+amd-gfx@lfdr.de>; Sat,  2 Aug 2025 17:52:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D7E510E969;
-	Fri,  8 Aug 2025 18:36:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34FBD10E046;
+	Sat,  2 Aug 2025 15:52:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IaUKrCSd";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lOm3AIzU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
- [209.85.215.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4E310E90C
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Aug 2025 10:40:08 +0000 (UTC)
-Received: by mail-pg1-f177.google.com with SMTP id
- 41be03b00d2f7-b423b13e2c3so1499362a12.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 08 Aug 2025 03:40:08 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5912310E046
+ for <amd-gfx@lists.freedesktop.org>; Sat,  2 Aug 2025 15:52:01 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-455b00339c8so19022765e9.3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 02 Aug 2025 08:52:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754649607; x=1755254407; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=wZx0keWVViIV9SLy1ca+p/bVU2WsaFgNX4kxSM5zVTw=;
- b=IaUKrCSdORHByuw7bB9FPC4WjNieX2AG0wQU8eNF/rB66mTNYpTJspPSpTXsb82zuF
- Q4viJyhSnUtQyR1Jh11pK2A/MLByKapvDCr+x1TaC7A89o7nw7zuLp3pvLZsG5/oJAul
- S6eX3/B4NaJo3PKWlcWjjWgHzGBAclpz9fGPs0BxNu7c2zvSjbXTNKExnDWoXHrodoCA
- G+wOKxVAK1fiaamLOt12Aff/ta5o3DnP/lC8irPfjT3XBP0yBlZLJrNy4qGouvtHptGn
- LTN8QiiZ5Bd8jW6tF81aDSd4q8EuAU7O3M1Ty5qRK5N60HDXqvCI2y13EUtND0wbA4/4
- cq3w==
+ d=gmail.com; s=20230601; t=1754149920; x=1754754720; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=HWImIGeB7dT3EoNwaQLvUOg2NBOdzfKSQ4sb4n6zOgw=;
+ b=lOm3AIzUgwhf6vUZ1iFS8ghkW5NJVO6X/66vfUN+38+auEu00y1n9Y/c58Jh5UFjk2
+ TMo4WK2sFcEC0mBasUOzhZZvmUzpLYVtKXhnwffgCyvj6wOU7eAwFqGWI2T3bMvXQIsl
+ yJ8htyKXz3POWR/fm7HhCpVYfsjd4RESM/Hz8i89AhYv9JuPz3kq5nxJ44cF2lXO8uf5
+ TWV2MiriYi4y6MyWewx2ESvWNAynKWRb8yh4ok4+2wolg6eyCRS/UdwwsBDAzxwdN09H
+ 1f8rqMAZyf5KZJrwWSGFU9js89A9Ao3rq9QeQL0oSB9GzdF2G+NTVLonhNnwFXVH2HMw
+ yTcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754649607; x=1755254407;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=wZx0keWVViIV9SLy1ca+p/bVU2WsaFgNX4kxSM5zVTw=;
- b=dKuWdKMEooUt1VicWryaphdfTY5QU/1g1jdvVS5akGEboXzJhukg1z9NMgvUhvPl47
- 3pmojr88YH23j/G6dtPvcLem4Rn5KkWuM60VO6tH4eGflGczxMXt7SfETlHufEF8LPVr
- D4rdwf/jW3B/uGm3Hs5j/cNgK8GhA6B0/1c+oRB2+SLkwTrr5MK4V2tLX+i/DfeTyl/P
- JHQqNGP81CQheL5UkX6POjmSDG/BoPTgVOp+oBrQesh6FQf86yy11Ndw317q73XxlKts
- e3DyJSOGE1X4k8FuEoSgkM3BrDWsOotw/yPvyn0XnVALNc859cZ28VSeNL+OXoCwo2N6
- VEFw==
-X-Gm-Message-State: AOJu0Yy4jQ/Sn6LF+1Uk77vBZQt7SUiQmihz+o/F6ersyEbqy4fI5n8v
- Q96ueGMM5e2O0c1fcIYFo1dIFQqNOHoTuxBwLcZm9dcBAPZtAe2iz3N/aP0d0mXlTHmKqQLY3S6
- UnjA/9iT1eDIC3cojMGHsJXGb4LvCL7nLWw==
-X-Gm-Gg: ASbGnctgGpVJZssbup/vIAITcARKR4qsIV7+RrjpF3Eqm+3RvxFQBmG/DjQDW59LLQ/
- 1/anG4U9vHG52xwPjCreMrV5//BH0d+57SOU9XmbOrtgctxIYGZhgDoyp4BhjVCXJEz78l7yIjt
- iCk48I163cEzFVzTPOrrtsPBRVptsnreauKS1X60dDU7T5jgwaJw8UPqkevK5LQaZcxZV6xze+X
- exj6Dtn/ykhF3eD
-X-Google-Smtp-Source: AGHT+IFN06rLU8I5qcBl9G310i20RhUov5G/+2CRjs9zXcBYIy/5oN44zwI17Uc47P+JvUsfeYJ9vJF1c9iQbLN2u4o=
-X-Received: by 2002:a17:902:f708:b0:240:2bb6:d4ae with SMTP id
- d9443c01a7336-242c21fd174mr27888495ad.30.1754649606962; Fri, 08 Aug 2025
- 03:40:06 -0700 (PDT)
-MIME-Version: 1.0
-From: Varon Piongats <varonpiongats@gmail.com>
-Date: Sat, 2 Aug 2025 19:47:13 +1000
-X-Gm-Features: Ac12FXzBobLsMa05xz-SFV7Uu-cuf7HHwytJ4CfNTmXZHKzB70YIYVWw7iZssyc
-Message-ID: <CAOsdz83P6Oy08yJjy00O73aSyrGXh4RJi5HWnNb-P5zvTr__Kw@mail.gmail.com>
-Subject: Re: [PATCH 0/9] GMC 9.4.3 Support
+ d=1e100.net; s=20230601; t=1754149920; x=1754754720;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=HWImIGeB7dT3EoNwaQLvUOg2NBOdzfKSQ4sb4n6zOgw=;
+ b=v7++bopyBiCBNZJzO3pdzlLL5q1NVPJSFCOzOGU6U7Xy/5aJ/P/GGI6JzXHBi0rJgQ
+ 7Ql6gOFoeIegN4WLhVevq2EtTrlfHMM2VanMLrtswQ+Djjuy/YVhsVgsqwKSMRzsxiVv
+ mmqxyEGO/l3qGyr5OtWeycaVqkNEc0EfhetNYI8FHdbMQlfxDxL1PxNh8DYKAd9h2Ezk
+ n8lUcSuuA7x1y7SgnbkSMXHJYXSQREjt7ctuRBMANup4yTo1Zz42ugQzYn+z58+0V3jy
+ uQDswgRJSZTzXgM3n/38bpj1N+ucErYObQDd97BhM4FVOufKbxyTahOOfWsizPH5B6zp
+ Inlg==
+X-Gm-Message-State: AOJu0YwVOdBKo9++yVn6PjDVeLDFAmUMddJDtzXAfLp+yKIiFqQUvySC
+ RiEyuxR3KGCc+EoY8lS9LHCFb2jQXhlXJX82zPZTdq6hwNsrbmEz/62p+yl7Wg==
+X-Gm-Gg: ASbGncsriPlE5UFmUhYg2R3MLWCjWnxRp9i1iUDU/ty9s+Hx0DADKe8djlq2O9dnpB9
+ mt8Zt/v0rEvYY4ej0dkH2iDn28Mh2RtcCHJcXZG/P4QDxAI1h24SfB108tL/svvYEm8r40XhSIx
+ bxBBXfsJlu6UDglPRBFS1RFmR9xUvNJerqNBes3OZtLprBGnuo+ydAXD6dKpPRH1x+5PdEW+s+V
+ CTKy+WxiRTaac/ojW/TfXDjElOAeTd/nGhlIuoVI0c4eTmYfSVBkguokI+nmPWq+tq1c756ntkc
+ 5lxi07apZj7T7DF1y/9XcfsiHW60kfLMcxFde5ffpfqustChANhrF3REHQREHcMjHqEIVKR4spE
+ 7F2lVwqujcAhtjRiD1b5qVLS/lJnM0BvNr1O//k1v7Ic54zsjD3a4GMT5euy1QpIP9Nfy61SKqp
+ vOsRZJIBr4AlD7klnr5rHwmVaKqkdU4A==
+X-Google-Smtp-Source: AGHT+IHaJpMIloi/MYAqKpUicwL+gClcixhn9HPcFPObcZqst5TQ0FGXAheGqzit7waCPmhJ+36OgA==
+X-Received: by 2002:a05:600c:3112:b0:456:8eb:a35c with SMTP id
+ 5b1f17b1804b1-458b6b5707cmr33184155e9.31.1754149919471; 
+ Sat, 02 Aug 2025 08:51:59 -0700 (PDT)
+Received: from Timur-Hyperion
+ (20014C4E24DDB700267C66B850A0E369.dsl.pool.telekom.hu.
+ [2001:4c4e:24dd:b700:267c:66b8:50a0:e369])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b79c4818c1sm9451854f8f.65.2025.08.02.08.51.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 02 Aug 2025 08:51:58 -0700 (PDT)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000874526063bd832b4"
-X-Mailman-Approved-At: Fri, 08 Aug 2025 18:36:03 +0000
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+Subject: [PATCH] drm/amd/display: Fix DP audio DTO1 clock source on DCE 6.
+Date: Sat,  2 Aug 2025 17:51:53 +0200
+Message-ID: <20250802155153.6432-1-timur.kristof@gmail.com>
+X-Mailer: git-send-email 2.50.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,14 +86,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000874526063bd832b4
-Content-Type: text/plain; charset="UTF-8"
+On DCE 6, DP audio was not working. However, it worked when an
+HDMI monitor was also plugged in.
 
+Looking at dce_aud_wall_dto_setup it seems that the main
+difference is that we use DTO1 when only DP is plugged in.
 
+When programming DTO1, it uses audio_dto_source_clock_in_khz
+which is set from get_dp_ref_freq_khz
 
---000000000000874526063bd832b4
-Content-Type: text/html; charset="UTF-8"
+The dce60_get_dp_ref_freq_khz implementation looks incorrect,
+because DENTIST_DISPCLK_CNTL seems to be always zero on DCE 6,
+so it isn't usable.
+I compared dce60_get_dp_ref_freq_khz to the legacy display code,
+specifically dce_v6_0_audio_set_dto, and it turns out that in
+case of DCE 6, it needs to use the display clock. With that,
+DP audio started working on Pitcairn, Oland and Cape Verde.
 
-<div dir="auto"></div>
+However, it still didn't work on Tahiti. Despite having the
+same DCE version, Tahiti seems to have a different audio device.
+After some trial and error I realized that it works with the
+default display clock as reported by the VBIOS, not the current
+display clock.
 
---000000000000874526063bd832b4--
+The patch was tested on all four SI GPUs:
+
+* Pitcairn (DCE 6.0)
+* Oland (DCE 6.4)
+* Cape Verde (DCE 6.0)
+* Tahiti (DCE 6.0 but different)
+
+The testing was done on Samsung Odyssey G7 LS28BG700EPXEN on
+each of the above GPUs, at the following settings:
+
+* 4K 60 Hz
+* 1080p 60 Hz
+* 1080p 144 Hz
+
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+---
+ .../display/dc/clk_mgr/dce60/dce60_clk_mgr.c  | 21 ++++++-------------
+ 1 file changed, 6 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce60/dce60_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce60/dce60_clk_mgr.c
+index 0267644717b2..883591706db9 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce60/dce60_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce60/dce60_clk_mgr.c
+@@ -83,22 +83,13 @@ static const struct state_dependent_clocks dce60_max_clks_by_state[] = {
+ static int dce60_get_dp_ref_freq_khz(struct clk_mgr *clk_mgr_base)
+ {
+ 	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+-	int dprefclk_wdivider;
+-	int dp_ref_clk_khz;
+-	int target_div;
++	struct dc_context *ctx = clk_mgr_base->ctx;
++	int dp_ref_clk_khz = 0;
+ 
+-	/* DCE6 has no DPREFCLK_CNTL to read DP Reference Clock source */
+-
+-	/* Read the mmDENTIST_DISPCLK_CNTL to get the currently
+-	 * programmed DID DENTIST_DPREFCLK_WDIVIDER*/
+-	REG_GET(DENTIST_DISPCLK_CNTL, DENTIST_DPREFCLK_WDIVIDER, &dprefclk_wdivider);
+-
+-	/* Convert DENTIST_DPREFCLK_WDIVIDERto actual divider*/
+-	target_div = dentist_get_divider_from_did(dprefclk_wdivider);
+-
+-	/* Calculate the current DFS clock, in kHz.*/
+-	dp_ref_clk_khz = (DENTIST_DIVIDER_RANGE_SCALE_FACTOR
+-		* clk_mgr->base.dentist_vco_freq_khz) / target_div;
++	if (ASIC_REV_IS_TAHITI_P(ctx->asic_id.hw_internal_rev))
++		dp_ref_clk_khz = ctx->dc_bios->fw_info.default_display_engine_pll_frequency;
++	else
++		dp_ref_clk_khz = clk_mgr_base->clks.dispclk_khz;
+ 
+ 	return dce_adjust_dp_ref_freq_for_ss(clk_mgr, dp_ref_clk_khz);
+ }
+-- 
+2.50.1
+
