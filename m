@@ -2,71 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4178B18916
-	for <lists+amd-gfx@lfdr.de>; Sat,  2 Aug 2025 00:02:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DED5B18B57
+	for <lists+amd-gfx@lfdr.de>; Sat,  2 Aug 2025 10:28:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8615310E156;
-	Fri,  1 Aug 2025 22:02:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D01910E330;
+	Sat,  2 Aug 2025 08:28:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Sz7YQxVX";
+	dkim=pass (2048-bit key; unprotected) header.d=ethancedwards.com header.i=@ethancedwards.com header.b="2BUzz0mP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com
- [209.85.167.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8390110E156
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 22:02:42 +0000 (UTC)
-Received: by mail-oi1-f178.google.com with SMTP id
- 5614622812f47-433f1f9718dso207620b6e.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 15:02:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754085761; x=1754690561; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:references:in-reply-to
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=U0qkj/YHNoQXGHEyfzhgA9Nfmdq6qoiBrSk4EXetAKc=;
- b=Sz7YQxVXv3HxgOeRFPhQe49ZzBtFnlcIiFNaoQ7XCHar9iMxofT076Qjp7Mf9kJEeM
- hXYzZOF6Yi36Z+X7o+0rLNKPnMLuKGdwt1QaXJBPIlwss4cM4OxxicXFI66PVFytzcsn
- UhCfoZOOrJyaGyzAtutZ6Ykbu8mz4Y3kUsgEmCWsy4HtXUIArO7Q7jAChQw48rNCJeCV
- nzgDi2L9SZw/0FngWdK7wwK6aD9FSEB68fWlFb9uDe3ATrW/nDQOCOdnvoDOZzFM6Nqh
- cX3itwGPYGYnY2sjrDIOwHlaLxO0nhS5jbOe7WjEvBqIHywRc/8XDgJr/jRdxGt1tzPq
- OSOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754085761; x=1754690561;
- h=cc:to:subject:message-id:date:from:references:in-reply-to
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=U0qkj/YHNoQXGHEyfzhgA9Nfmdq6qoiBrSk4EXetAKc=;
- b=k6h9T5O5H2KomtsxvYZVOq9j5i/Z8BX2DEAWiXD6X+3zwbDQWH/eA8bAzEUT+OFbH3
- 3Xdnofmh5C9hlnCw+Vv04azyMkpUDQPjEjXsUm7DoDfIu7hlzI0JbuP5+VWCQjy/BiDy
- 3U1gCGO74Q0Q9QClwVonPw/+oi9AP+0nx8XHC7PHada/k8l64d1Xf8vyk3w0bc20JXY5
- sJ/s1CQexKEYFlX97aqolqLRkHUc9e6QlEMczkXlYgFkmOo44WsC/e5mGo3GiBMvxPbY
- 4JZ25L7ro1QrWWP8Xao0apHfvsKu9HOem3Z0ESUHsTGbvZtGw3SUsVmfmH5062oP0vuB
- U0Kw==
-X-Gm-Message-State: AOJu0YyWNdpSnxWIvNhBWmMFJdhBckIwENiwYeajxzvkFCBQFG+jLeHt
- 4oMyP3F/GMdOGWtTCex7Clc/7fnEDaQlxslwqBS8TYE+kXgfLlZzgl4YQuw5Djaue+bSHrNgjXF
- syvHd80Pbz1dsX6eDqLr1Wzc31bwL8p1/Lw==
-X-Gm-Gg: ASbGncs0DW2KepGGVgLbvXD3a/osJVFJNfeBX+559v8tw4hMCGW7CB4JfvMiT+V3Ci6
- n91ULwVYiKBV+fKxVhkNx6IrBvaQ4LXJZSlPa75FGG1AN4sh+d3YnhL8VlZyc3YmuXpnaryLiZ4
- t/YiplHwPH6MctRm1EAGFGMkRd5OPcMJhG3khwWt9/ODFb2b+A1NPXu4V4EfMfVS9sA6x++Ga5K
- xr4WzwvrgbdQj/EqIJ+QFtEzTic
-X-Google-Smtp-Source: AGHT+IE+z7lGXxgol+TrxzcAqS6ruztwK5FHjwax/ketDSJfifVLU9A95L4hbWfnW8OOTf8qUzsurscZ0yb4vPXWiGQ=
-X-Received: by 2002:a05:6808:4f6a:b0:42c:2c22:f360 with SMTP id
- 5614622812f47-433f02fe0d5mr864097b6e.25.1754085761462; Fri, 01 Aug 2025
- 15:02:41 -0700 (PDT)
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE42710E07E;
+ Sat,  2 Aug 2025 01:48:09 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bv57K4DLnz9sjY;
+ Sat,  2 Aug 2025 03:38:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ethancedwards.com;
+ s=MBO0001; t=1754098701;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rfkrPveYvBWrUoTk+3x/Gm8/fAfhVxdSxnNmYta/3AU=;
+ b=2BUzz0mPfFRiv93fjREkLONE/LzphDg6i7cdTQJ1TfqY5dBgTlidYiCn0RUwkI9PKiJXSi
+ 0yLtcy/IiblkuDSV3H8HiAcbQQGYv5eaiBkTdTQ/Ha+351EuUs0xgMzYJMunWAlSaCRr8O
+ sRMzt7yGtAaBOIfcbu0JEBcLoNNtyE2BV+h0kmCLdUmyXzBYAIr6Ym8BwyRFOUfcEk86Gv
+ EYh7HVmKUyBfNpc+kwV4wVf6gT3cYZeLetcQpX81EBS9toAOzSOAqrcH/f03+rdyqlWhjh
+ OlH/WWf+djA0dkZpY6gvk4o6W0oIbMjap8sRtc1j9ROrc8ULXue9TfAn6KE1lg==
+From: Ethan Carter Edwards <ethan@ethancedwards.com>
+Date: Fri, 01 Aug 2025 21:38:16 -0400
+Subject: [PATCH] drm/amdgpu/gfx9.4.3: remove redundant repeated null checks
 MIME-Version: 1.0
-Received: by 2002:a17:505:8bc5:b0:1cf4:f4df:c905 with HTTP; Fri, 1 Aug 2025
- 15:02:40 -0700 (PDT)
-In-Reply-To: <382a6232-c500-4d5e-96d4-0444947130ea@gmail.com>
-References: <20250723155813.9101-12-timur.kristof@gmail.com>
- <382a6232-c500-4d5e-96d4-0444947130ea@gmail.com>
-From: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-Date: Sat, 2 Aug 2025 00:02:40 +0200
-X-Gm-Features: Ac12FXx61lkGQPbCXlVTc8whdfGjVyQO9DQTBfGfzyA8UDYllYe69ggUkKAe-Vo
-Message-ID: <CAFF-SiX_FipFpaZyQaFEE5raFN2zz_yQPYUkBq2kRzLP1PHyZg@mail.gmail.com>
-Subject: Re: [PATCH 11/20] drm/amd/display: Implement DCE analog link encoders
-To: Alexandre Demers <alexandre.f.demers@gmail.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: multipart/alternative; boundary="000000000000b7b67e063b54ea57"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250801-uartlite-redundant-v1-1-6141b97a3c7f@ethancedwards.com>
+X-B4-Tracking: v=1; b=H4sIAAdsjWgC/x3MTQqAIBBA4avErBMsyqSrRAt/xhoIi9EiiO6et
+ PwW7z2QkAkTjNUDjBcl2mNBU1fgVhMXFOSLoZVtL7VsxGk4b5RRMPozehOzcJ2zKujBWqWhhAd
+ joPufTvP7fpSTyuRkAAAA
+X-Change-ID: 20250801-uartlite-redundant-c4cb6f87bb68
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org, 
+ Ethan Carter Edwards <ethan@ethancedwards.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1960;
+ i=ethan@ethancedwards.com; h=from:subject:message-id;
+ bh=xDkwf/R7sAObhLKaY0pjx6MvG2RHtOr1vU7eBDGzsac=;
+ b=LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgpvd0o0bkp2QXk4ekFKWGJEOXFoNThlVGp6e
+ GhQcXlVeFpQVG1jQmpWU2Mydlh2ajdoaFpIbTRVZTc4Nm02d2ZtClhxMTg4RnRsM3pSbW9kUHRY
+ dVVkcFN3TVlsd01zbUtLTFA5emxOTWVhczVRMlBuWHBRbG1EaXNUeUJBR0xrNEIKbU1pL013ei9
+ 2VUl1bUI1Y0ZtWEx3N2EyemtIajR2TFpsL2VWNXoxZy91ZitnaXM3K09kZkpVYUdiU3lOemFvYw
+ pCb3JiZ3hPRDUvTHNNZm44UXJBdjIreFIwTVBzYTg4WUhzcHhBd0R3cmt0QQo9VTJpcAotLS0tL
+ UVORCBQR1AgTUVTU0FHRS0tLS0tCg==
+X-Developer-Key: i=ethan@ethancedwards.com; a=openpgp;
+ fpr=2E51F61839D1FA947A7300C234C04305D581DBFE
+X-Mailman-Approved-At: Sat, 02 Aug 2025 08:28:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,87 +75,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000b7b67e063b54ea57
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The repeated checks on grbm_soft_reset are unnecessary. Remove them.
 
-2025. augusztus 1., p=C3=A9ntek d=C3=A1tummal Alexandre Demers <
-alexandre.f.demers@gmail.com> ezt =C3=ADrta:
->> We support two kinds of analog connections:
->>
->> 1. VGA, which only supports analog signals:
->> For VGA, we need to create a link encoder that only works with the
->> DAC without perturbing any digital transmitter functionality.
->> This is achieved by the new dce110_analog_link_encoder_construct.
->>
->> 2. DVI-I, which allows both digital and analog signals:
->> The DC code base only allows 1 encoder per connector, and the
->> preferred engine type is still going to be digital. So, for DVI-I
->> to work, we need to make sure the pre-existing link encoder can
->> also work with analog signals.
->>
->> Signed-off-by: Timur Krist=C3=B3f <timur.kristof at gmail.com>
->> ---
->> .../drm/amd/display/dc/dce/dce_link_encoder.c | 100 ++++++++++++++++++
->> .../drm/amd/display/dc/dce/dce_link_encoder.h | 21 ++--
->
-> I have the same comment about the use of "dce110_" prefix under
-general/global DCE code that I left on the previous patch.
->
-> For consistency with the current code, I understand why this prefix is
-used, but I'd gladly clean this up once the patches have landed in if there
-is a common agreement.
->
-> Alexandre
+Signed-off-by: Ethan Carter Edwards <ethan@ethancedwards.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 24 +++++++++++-------------
+ 1 file changed, 11 insertions(+), 13 deletions(-)
 
-Hi Alexandre,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index 51babf5c78c86c20ef806e31e9d0a4185ffda5b8..8ba66d4dfe86e96073f63e259177ca0ca2416a6d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -2461,19 +2461,17 @@ static int gfx_v9_4_3_soft_reset(struct amdgpu_ip_block *ip_block)
+ 		/* Disable MEC parsing/prefetching */
+ 		gfx_v9_4_3_xcc_cp_compute_enable(adev, false, 0);
+ 
+-		if (grbm_soft_reset) {
+-			tmp = RREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET);
+-			tmp |= grbm_soft_reset;
+-			dev_info(adev->dev, "GRBM_SOFT_RESET=0x%08X\n", tmp);
+-			WREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET, tmp);
+-			tmp = RREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET);
+-
+-			udelay(50);
+-
+-			tmp &= ~grbm_soft_reset;
+-			WREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET, tmp);
+-			tmp = RREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET);
+-		}
++		tmp = RREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET);
++		tmp |= grbm_soft_reset;
++		dev_info(adev->dev, "GRBM_SOFT_RESET=0x%08X\n", tmp);
++		WREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET, tmp);
++		tmp = RREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET);
++
++		udelay(50);
++
++		tmp &= ~grbm_soft_reset;
++		WREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET, tmp);
++		tmp = RREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET);
+ 
+ 		/* Wait a little for things to settle down */
+ 		udelay(50);
 
-With regards to the coding style. I already replied to your other thread
-about it, let's have that conversation there.
+---
+base-commit: b9ddaa95fd283bce7041550ddbbe7e764c477110
+change-id: 20250801-uartlite-redundant-c4cb6f87bb68
 
-With regards to the link encoders specifically. Due to DVI-I, we need
-dce110_link_encoder to handle analog signals in addition to digital, so the
-question about this part is, is there any need to have a separate
-dce110_analog_link_encoder? When I wrote the patch I felt yes, but now I
-feel maybe we should just let dce110_link_encoder handle VGA as well.
+Best regards,
+-- 
+Ethan Carter Edwards <ethan@ethancedwards.com>
 
-What do you think about that?
-
-Thanks,
-Timur
-
---000000000000b7b67e063b54ea57
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<br><br>2025. augusztus 1., p=C3=A9ntek d=C3=A1tummal Alexandre Demers &lt;=
-<a href=3D"mailto:alexandre.f.demers@gmail.com">alexandre.f.demers@gmail.co=
-m</a>&gt; ezt =C3=ADrta:<br>&gt;&gt; We support two kinds of analog connect=
-ions:<br>&gt;&gt;<br>&gt;&gt; 1. VGA, which only supports analog signals:<b=
-r>&gt;&gt; For VGA, we need to create a link encoder that only works with t=
-he<br>&gt;&gt; DAC without perturbing any digital transmitter functionality=
-.<br>&gt;&gt; This is achieved by the new dce110_analog_link_encoder_constr=
-uct.<br>&gt;&gt;<br>&gt;&gt; 2. DVI-I, which allows both digital and analog=
- signals:<br>&gt;&gt; The DC code base only allows 1 encoder per connector,=
- and the<br>&gt;&gt; preferred engine type is still going to be digital. So=
-, for DVI-I<br>&gt;&gt; to work, we need to make sure the pre-existing link=
- encoder can<br>&gt;&gt; also work with analog signals.<br>&gt;&gt;<br>&gt;=
-&gt; Signed-off-by: Timur Krist=C3=B3f &lt;timur.kristof at <a href=3D"http=
-://gmail.com">gmail.com</a>&gt;<br>&gt;&gt; ---<br>&gt;&gt; .../drm/amd/dis=
-play/dc/dce/dce_link_encoder.c | 100 ++++++++++++++++++<br>&gt;&gt; .../drm=
-/amd/display/dc/dce/dce_link_encoder.h | 21 ++--<br>&gt;<br>&gt; I have the=
- same comment about the use of &quot;dce110_&quot; prefix under general/glo=
-bal DCE code that I left on the previous patch.<br>&gt;<br>&gt; For consist=
-ency with the current code, I understand why this prefix is used, but I&#39=
-;d gladly clean this up once the patches have landed in if there is a commo=
-n agreement.<br>&gt;<br>&gt; Alexandre<br><br>Hi Alexandre,<br><br>With reg=
-ards to the coding style. I already replied to your other thread about it, =
-let&#39;s have that conversation there.<br><br>With regards to the link enc=
-oders specifically. Due to DVI-I, we need dce110_link_encoder to handle ana=
-log signals in addition to digital, so the question about this part is, is =
-there any need to have a separate dce110_analog_link_encoder? When I wrote =
-the patch I felt yes, but now I feel maybe we should just let dce110_link_e=
-ncoder handle VGA as well.<br><br>What do you think about that?<br><br>Than=
-ks,<br>Timur<br><br><br><br>
-
---000000000000b7b67e063b54ea57--
