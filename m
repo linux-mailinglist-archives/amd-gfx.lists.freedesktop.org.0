@@ -2,95 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4C2B1AF3A
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Aug 2025 09:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF87B1A70F
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Aug 2025 18:11:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9081110E5EA;
-	Tue,  5 Aug 2025 07:11:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68E4910E5B2;
+	Mon,  4 Aug 2025 16:09:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="jzSmbHar";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="aEX1VtAO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dXTgJF0w";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
- [85.215.255.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49F3F10E5B2
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 16:03:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1754323385; cv=none;
- d=strato.com; s=strato-dkim-0002;
- b=Mt5zmzsWKj7fxEHIt9QWfdDLcPDxN8An5wK6gex5ajSPfSrmmphu8PQoDzIVBpeSw4
- oS82h2PIQ7ucf4fq1u+NfrU9v3OKAAzgGEbLJlD2REo7eapRKikYyJHiGRBwd8EnkL/H
- wuXPPBCz4U2UY8jrOz4lU2E4e1+K1xc4iR6LsXJ6je6Zbyuh6ub2eqnbN81w3hSwgdaO
- NMsewAuRaB4yp2ZcWViwfwOoqbLP19u6iMvzzi/C0l6tTm1l0p0DMcJBUxHwjP7re//M
- IxDsB5GJNxahYYhJzoMSQ99eRj0/BFiivRM4fhUzlG8KDDHrRXie3BgqeNh8QWQsqPLD
- 2CLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1754323385;
- s=strato-dkim-0002; d=strato.com;
- h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
- From:Subject:Sender;
- bh=M56Whp0iiDJxqyvQ/vFIYTMbOneXnKVIV6eIN4usUKY=;
- b=VIEqkqOVSEYf2S7LNKL9yWpnWAu5Ylf381bfQU0vfhnPwoSsSkiGiTPuNRQIKmmxv9
- P2veAcSopU3+keozb8ef2XrVSlHr12C22lTJq49ahUsx1e0FkpS2J3q+aWJpbbj3JQq9
- 61vo+0H0BOSMwnPAXK58zn2y4Wt992fEB6NL1F36loRxBz+xVtLaIRCRN4kzwed+KNha
- 6ettixeMTSkFqXmz/L/Nll8NzdjgnZsuhKn9M5goD3OD4inQVRI8dfIXJinLECiYQLuU
- J7+tujicx7kRRDL9CgD8QFSusx4UwzM7/pOUbbkf2UnwYhVslzVGdllx1FPWN10eY4U6
- y+/g==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1754323385;
- s=strato-dkim-0002; d=xenosoft.de;
- h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
- From:Subject:Sender;
- bh=M56Whp0iiDJxqyvQ/vFIYTMbOneXnKVIV6eIN4usUKY=;
- b=jzSmbHarlJQf0Kjkum37/nYUBTJ4+E/vgOO0TSw6+n6cxfiXtV+J4G0273k6n/qkZR
- M7fitdr1labaUenQx5VZ08EXDE6g/+ktLGP2aci19TQ0woREE+whoOoJwAJqEAjbyhhu
- WdXG87255WHNxy6XOpyyuPHhz3WX5W5MBIRbfOKBA7Niitk+tzsWodzdcd4TiztPtflL
- rzdskf+2OqrtKGf889B+TYpUdEgjroQVWjNzoTEX1o19u0mJo6d63C1Wzs84FnZktJU9
- RdYZ19MU0NhrWxVvk0HzDV5mLvSWjL7n3KJjVybUgO+rGc5eI+EdKzmaFpfNUYodpVpM
- q/Zg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1754323385;
- s=strato-dkim-0003; d=xenosoft.de;
- h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
- From:Subject:Sender;
- bh=M56Whp0iiDJxqyvQ/vFIYTMbOneXnKVIV6eIN4usUKY=;
- b=aEX1VtAOCCqPqeh39irZzABAhoFmyHVEzT5A9OFuK6Q7jS+bFJhUiQxiMUccLbEDVb
- JBJtOIModOfmW67Wu4Bg==
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6P1rfO5KiO55fErqxeyEb6mwJICPXWVIboBgAwJC8PHVKCftd3qfPg=="
-Received: from [IPV6:2001:16b8:50e1:3200:c3cb:9020:d3e9:5d1d]
- by smtp.strato.de (RZmta 52.1.2 AUTH) with ESMTPSA id e6066c174G34t59
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
- (Client did not present a certificate);
- Mon, 4 Aug 2025 18:03:04 +0200 (CEST)
-Message-ID: <48b61c14-f83d-4e4a-b5d3-857099058eda@xenosoft.de>
-Date: Mon, 4 Aug 2025 18:05:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: radeon_fbdev_river_fbdev: failed to initialize framebuffer and setup
- emulation
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E15F10E5B2
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 16:09:45 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-3b78d337dd9so2202311f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 04 Aug 2025 09:09:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754323784; x=1754928584; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=3IvGO8Dt4fb7FV7FpEi0FYquDJy8Xo/Y2vFyXgO8ulA=;
+ b=dXTgJF0wVghWVC+K0UwanMpveXc+3hERoad4ayOLwheS+/Wouqw2zPqboqvzPHarwc
+ fBWhl2VTlLHqxuY1E3iJlzY3Jg74brZ+q7q9h5PytV7IXC07trfh9tYdNjID3Y1nHpoX
+ AXRR0AoP+ZcU0Xm90H3tUuZABWiyaVIL0sbux7nnW3O0aknnu1NqXTPzqJ3TzIwgB3e1
+ 1CTAO0WUE1TeH/GS1tTJ+HfLQalqKCOwJIVjTNyg2yw1weqF0df5SREcTuWH+BKDKipv
+ ReqDO7x4Q6v6gd8k9DUypXftsAv8C2xhlEvkFyDuWeJudbAvtXLv6ua8hHAYNrs/h0aS
+ V7Zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754323784; x=1754928584;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=3IvGO8Dt4fb7FV7FpEi0FYquDJy8Xo/Y2vFyXgO8ulA=;
+ b=LjxptdeaqlPhjJkvzdN61eAi1iQ7AASxnzlEc8FXNZNIIBM5pzq88htaQMwTdI5Xxu
+ tNJjjs1zGjYQAcymA/ifmNdG5ZFHLFfKGxhseQz4zPokhd+PWl7HzIw/aJ8903PwN4NI
+ ZgiSo+V94H3YtRnLgFyei0FdxG8NBI++TjbTSXOgYGOUM0/oLowHIG3PJV80D1S3p5AH
+ Q4OfhZm7DPGvF4fYE32hRW6LRZk+i//zN8SWeEpsbztU1OjPsU5rh1wIf22yh4sCNOWa
+ M3YxyblIkITJ2zNd7OItQ1bNAk7C2m5AgzJ/jOPv/VIAnerl0kcf3Gv994VzX3BOdd/N
+ TjCA==
+X-Gm-Message-State: AOJu0Yxc91No1EcGL1/wgP0Q0hVSziUSjq/iJMrou7oJHRGHUs3Hsdpl
+ 5syYkOrsraf5+vqIwGTaesM9g3EqzYqrLyKlTMfnNURv27Sd1GCYv3JR
+X-Gm-Gg: ASbGncvTgrOuhlaNbZSaK6E7ahShCmMQ+htN4kg4QPSEpTdSywlxmN7UldjG8qD8l8F
+ 079IRzl4lXz4XMFUnVQOjLHlpaEpHJW/AtZUu6nTbjHYBpJDjLzAhZ4vSec46Eg+yXRAFw1GVpN
+ aL/oz22RCiQ70olrZ58tPsFrwLSdFHCdUMfb2l7Xu60kpkLw/bFdwrqdDzsmHFOd40/890orwiH
+ YQEOh5OGCxWOSg6ubnds2pVh7TxuMLNkgyMKcVsmalHdbPPi3hVkk3Q2gb1Q/Xp2Vf/4+r9eYbD
+ M3SicNm5CVRVNHYrb1EtywpPi/hmqfAeiz4IWWeAqnTXy6f4Slf+1vnw/fDRwJQCoNn5IvSJ5Og
+ f4t+XiR0MThSd46ft0QZLLxeFRbHcha5uhCVIzhrFIPf0zodtA+jaF/HdXSaF2T3Scrw/6mYQzX
+ 2TneIytbS5Z+Zdnw/UPSdwyDzCIiuo/+KIyG8F4UYal2iS8YOXXd1NQ/E3OAafWg==
+X-Google-Smtp-Source: AGHT+IHoz8V8CH+7aCCT4edflCcA1/hf6k0jS2d71kbHagS8zXT77PiDPhFFHQxNaZ2xHl4G8XxBRw==
+X-Received: by 2002:a05:6000:2902:b0:3b7:895c:1562 with SMTP id
+ ffacd0b85a97d-3b8d94649f4mr8572795f8f.11.1754323782298; 
+ Mon, 04 Aug 2025 09:09:42 -0700 (PDT)
+Received: from ?IPv6:2001:4c4e:24da:bd00:a473:4c1d:2078:832b?
+ (20014C4E24DABD00A4734C1D2078832B.dsl.pool.telekom.hu.
+ [2001:4c4e:24da:bd00:a473:4c1d:2078:832b])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b79c47ca5fsm15760236f8f.63.2025.08.04.09.09.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 04 Aug 2025 09:09:41 -0700 (PDT)
+Message-ID: <2de9270e32cf9e69edd72f3f6ce284b07901fa86.camel@gmail.com>
+Subject: Re: [PATCH 3/6] drm/radeon: Disable ULV even if unsupported
+From: Timur =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
 To: Alex Deucher <alexdeucher@gmail.com>
-Cc: ville.syrjala@linux.intel.com, Jeff Johnson <quic_jjohnson@quicinc.com>,
- mad skateman <madskateman@gmail.com>,
- Darren Stevens <darren@stevens-zone.net>, hypexed@yahoo.com.au,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Christian Zigotzky <info@xenosoft.de>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
- amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- "R.T.Dickinson" <rtd2@xtra.co.nz>
-References: <CADnq5_PUi_2+kDYX8R_eanNF4iYN79MdXJ_PLcQbZKi6e4S8tg@mail.gmail.com>
- <87F47F04-EBAC-48D6-AD0A-4BBE39DF43CE@xenosoft.de>
- <1115cce7-cfdc-4c5b-b017-69cd32425650@xenosoft.de>
- <6ba8d730-52f9-421f-8d8a-887545f0ceac@xenosoft.de>
- <2cc83897-427d-47f4-b6a3-8db9682972cd@xenosoft.de>
- <CADnq5_OpJdbc4YKtV-9+5JyeKyqd4+irhT6OtFq_K9KJF24VSQ@mail.gmail.com>
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-In-Reply-To: <CADnq5_OpJdbc4YKtV-9+5JyeKyqd4+irhT6OtFq_K9KJF24VSQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 05 Aug 2025 07:11:43 +0000
+Cc: amd-gfx@lists.freedesktop.org
+Date: Mon, 04 Aug 2025 18:09:41 +0200
+In-Reply-To: <CADnq5_NoepbUzAczVq-t2P1jKweq6h2bOfHU9jqyupSszToXZg@mail.gmail.com>
+References: <20250804134154.95875-1-timur.kristof@gmail.com>
+ <20250804134154.95875-4-timur.kristof@gmail.com>
+ <CADnq5_NoepbUzAczVq-t2P1jKweq6h2bOfHU9jqyupSszToXZg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,105 +91,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 04 August 2025 at 04:42 pm, Alex Deucher wrote:
-> On Sun, Aug 3, 2025 at 11:28 AM Christian Zigotzky
-> <chzigotzky@xenosoft.de> wrote:
->>
->> Hello,
->>
->> I have the same issue on another machine either. Blank screen during the
->> boot. The Radeon graphics framebuffer device doesn't work anymore.
->>
->> Here is the modifed code from the DRM updates (drm-next-2025-07-30):
->>
->> -
->> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/drivers/gpu/drm/radeon/radeon_fbdev.c?id=260f6f4fda93c8485c8037865c941b42b9cba5d2
->> -
->> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/drivers/gpu/drm/radeon/radeon_drv.c?id=260f6f4fda93c8485c8037865c941b42b9cba5d2
-> 
-> This change just bumps the driver version it shouldn't affect the fbdev.
-> 
->> -
->> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/drivers/gpu/drm/radeon/radeon_display.c?id=260f6f4fda93c8485c8037865c941b42b9cba5d2
->> -
->> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/drivers/gpu/drm/radeon/evergreen_cs.c?id=260f6f4fda93c8485c8037865c941b42b9cba5d2
-> 
-> This only affects acceleration, it should not affect fbdev.
-> 
-> What chip are you using?  Can you attach your full dmesg output?  Can
-> you bisect?  This cultrit could be a core drm change.
-> 
+On Mon, 2025-08-04 at 11:24 -0400, Alex Deucher wrote:
+> On Mon, Aug 4, 2025 at 10:18=E2=80=AFAM Timur Krist=C3=B3f
+> <timur.kristof@gmail.com> wrote:
+> >=20
+> > Backport of the same commit to amdgpu.
+> > This commit fixes some instability on Tahiti.
+>=20
+> Have you tested this with radeon?
+>=20
 > Alex
-> 
->>
->> Do you have a patch for reverting these modifications? I would like to
->> revert these modifications for testing.
->>
->> Thanks in advance,
->> Christian
->>
->> On 03 August 2025 at 1:35 pm, Christian Zigotzky wrote:
->>> Hello,
->>>
->>> Xorg doesn't work after the DRM updates drm-next-2025-07-30.
->>>
->>> Error messages:
->>>
->>> [dr:.radeon_fbdev_river_fbdev_proe] *ERROR* failed to initialize
->>> framebuffer -22
->>> radeon 0000:01:0.0: [drm] *ERRO* fbdev: Failedto setup emulaton (ret=-22)
->>> brd module loadedm
->>> lop: module loadd
->>> mpt3ss version 52.10.00.00 loaded
->>> nve nvme0: pci fuction 0002:04:0.0
->>> fsl-sata ffe20000.sata: SataFSL Platform/CS Driver init
->>> scs host0: sata_fs
->>> ta1: SATA max DMA/133 irq 68 pm-pol 0
->>> ;21;39mfsl-sat ffe221000.sata Sata FSL Platfrm/CSB Driver iit
->>> ata1: Signatue Update detectd @ 0 msecs
->>> scsihost1: sata_fsl[0m
->>> ta2: SATA max UMA/133 irq 69 lm-pol 0
->>> nvme nvm0: 4/0/0 defaul/read/poll queus
->>> nvme0n1: p1 p p3 p4 p5 p6 p7[0m
->>> drm:.radeon_fbdv_driver_fbdev_robe] *ERROR* filed to initialze
->>> framebuffer 22
->>> fsl_dpaa_mac fe4e6000.ethernt: of_get_mac_adress(/soc@ffe00000/
->>> fman@40000/ethernet@e6000 failed
->>> radeon 000:01:00.0: [dr] *ERROR* fbdev Failed to setu emulation (ret-22)
->>> fsl_dpaa_ma ffe4e6000.ethenet: FMan MEMAC[0m
->>> sl_dpaa_mac ffee6000.ethernet:Using random MA address: 0e
->>>
->>> Could you please check the latest DRM updates?
->>>
->>> Thanks,
->>> Christian
->>>
->>
 
-Hello Alex,
+Considering that ULV is currently always marked as unsupported by both
+radeon and amdgpu, and that the same patch fixes a real issue on
+amdgpu, I assume it would improve stability on radeon too.
 
-Thanks for your answer.
+I leave it up to your judgement whether it's a good idea to apply this
+to radeon or not.
 
-I use a BARTS chip (Radeon HD6870). I would like to bisect but I don't 
-have time for it currently. Sorry
+That said, I haven't got a specific issue which this fixes on radeon.
+I only tested that Tahiti can boot with radeon with this patch
+included, but didn't do detailed testing other than that. Do you have
+something specific in mind that I should try?
 
-There are some other user reports:
+Timur
 
-- https://forum.hyperion-entertainment.com/viewtopic.php?p=60606#p60606
-- https://forum.hyperion-entertainment.com/viewtopic.php?p=60595#p60595
-
-They use other Radeon graphics chips.
-
-Bug report: https://github.com/chzigotzky/kernels/issues/15
-
-What do you think about the following commit?
-
-Link: 
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0e7d5874fb6b80c44be3cfbcf1cf356e81d91232
-
-@Hypex
-Could you please attach your full dmesg output?
-
-Thanks,
-Christian
+>=20
+> >=20
+> > Fixes: a9e61410921b ("drm/radeon/kms: add dpm support for SI (v7)")
+> > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/radeon/si_dpm.c | 7 +++++--
+> > =C2=A01 file changed, 5 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/radeon/si_dpm.c
+> > b/drivers/gpu/drm/radeon/si_dpm.c
+> > index 9deb91970d4d..47fba85436a7 100644
+> > --- a/drivers/gpu/drm/radeon/si_dpm.c
+> > +++ b/drivers/gpu/drm/radeon/si_dpm.c
+> > @@ -5073,10 +5073,13 @@ static int si_disable_ulv(struct
+> > radeon_device *rdev)
+> > =C2=A0{
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct si_power_info *si_pi =
+=3D si_get_pi(rdev);
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct si_ulv_param *ulv =3D=
+ &si_pi->ulv;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 PPSMC_Result r;
+> >=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r =3D si_send_msg_to_smc(rdev, PP=
+SMC_MSG_DisableULV);
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Only care about SMC reply when=
+ ULV is supported. */
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ulv->supported)
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 return (si_send_msg_to_smc(rdev,
+> > PPSMC_MSG_DisableULV) =3D=3D PPSMC_Result_OK) ?
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 : -EINVAL=
+;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 return (r =3D=3D PPSMC_Result_OK) ? 0 : -EINVAL;
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
+> > =C2=A0}
+> > --
+> > 2.50.1
+> >=20
