@@ -2,84 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640A6B1AF39
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Aug 2025 09:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E903B1A54E
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Aug 2025 16:55:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6FA10E607;
-	Tue,  5 Aug 2025 07:11:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D6910E00F;
+	Mon,  4 Aug 2025 14:55:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="jOmICTFZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XfcxO7cz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D4F010E58B
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 14:49:24 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-4589968e001so29444515e9.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 04 Aug 2025 07:49:24 -0700 (PDT)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5303610E00F
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 14:55:35 +0000 (UTC)
+Received: by mail-pg1-f177.google.com with SMTP id
+ 41be03b00d2f7-b350c85cf4eso509369a12.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 04 Aug 2025 07:55:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1754318962; x=1754923762; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=5MAh85Y0saa+euoszKw3nA4pGBPwcX9w5nxBz0NKd0A=;
- b=jOmICTFZDI18/jzZqAipD8SqJV3spTOLCUs7melJIJwhrwgE7D+SW5DIuBnqD9RAkN
- FGfG3yASw1tYAQvO0W2YW3FpPOWh43dWKOX4k2LsuDtFL3s33fJrn2bTRQG1wJ7dfdDC
- YPG/YfCbLqB9ZA7BhBleej6eFrbwSOkXe2aUTmd7KY/DqpMCzOEE4sjSVlqNNm4k7sG2
- yRH8g78UKgj2pn/e1E6h6MRTHnGLAJFgaJztfdh1gWq6xxS/uxTqG8tJcjzad9WGAUkb
- I9JRWeY/BWRdM1zhqFyImt6U5ScRsw/IFq8ozWHYOkXqgbCBKzOA+HttkGWtHX6b25cp
- BDcA==
+ d=gmail.com; s=20230601; t=1754319335; x=1754924135; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=L9ag/xvJNK9FJlxGchf91rK9nnb+w66rFV4LrQzA80Y=;
+ b=XfcxO7czRWrRT71Vw8oPeYjnGVIW+iqx/bCdAVxpPNesiZ56b8oHmk/GQvi9o/qP08
+ xo6+La/+mck/7dDXnHdWG3+CYQZWcYxuF1LJNbuB71o+PPIyiJC/BuYTAfYUZ+HY5E5U
+ 5mG1kJfh8b2IP4x5jAPdU1UezbV5gMyM+TIrX8ZIE7pT7AzD//0Aj8WZy/tNPQa0xzyE
+ knjpZ+guKA7sASn51cRXGlHONYAtiwwhl+/O0lN9UBBBLQmK1kcv818MqmUGJdWmk5VG
+ /uDCk3S5lc8Q8UFyXBARZAtwYLiuZB9Pv0cOsF+JvD8oDHNRJgDQXKJQzIgahorPhE3Y
+ cZJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754318962; x=1754923762;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=5MAh85Y0saa+euoszKw3nA4pGBPwcX9w5nxBz0NKd0A=;
- b=tIxYAitn8S5UjPBBgg0LBfrk7qxB7UGzHZQYeZiV/slFnI+sml8qShMLXriid8UhiC
- WqQeZeYOp4nmyY8TpsFF6VcOScpbgDiIOXpNB+eCyW69o/BV+1C5x7gNIGjz48Ri5ssE
- N72WUZzu6kEyo0IKl8bJwktFLTccAWbkThM/bi9TScCvwBr6ha5y8WXDfEsuByHfTxZG
- PvfNzM8frX7fMumeyGIHCJA9sj6eSKt4HXy4vp3HGhyAjDLV/vKopvU/NVut3GHa9rxh
- g5Qwdg7aY3qtHm5IErL7DnP3dBSTsE9j6Jj7nrTd7NvjoScuaMYn0xqSmRPMzEBGOxoY
- PWVw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVvrNvrubuM33dg2YZQhIKNccZ1hqvhXzTb2+OQ0KDrRt3ZNDOc1+jCqFCWqrAwU7lJixpNma/3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyc6IIQYb/1Ik/AG7r4dFFT0BDfkvGyuaK4lCtRLhSqdP0K5Ecj
- vA5XtiNAXmr5HXWbJsy1vAC4wxyPgyP6ICI7S1Y0Ner0DmPB0JSp8NmBMoIn5oUCqQ4=
-X-Gm-Gg: ASbGncs6w5nOhXfJlx5ANWEA5OJuILZh+EbKsHHl1roWNBe+I2CoFzisUe1Cd44/Q0e
- tEmoccMIkiDxBDGcCDHk8n0kw9aH0BeByrvQ1CTOWc4PjsQ1eFY2JPxheMLqUIM0+RA5wNJL4u1
- VUkssd+olBaMeBhnSSze2/xIdz1M/5cPvwNvqZoq1pvvx3eJP+hGujdma4mhzAtAudvatJZOD/1
- ldtvhb/aggn90eD6K6H7ndy6fuqrteVsFsL0gNrtuVb7LJkDK7L3Yi8NscVJOE0o3no7VM6LV/C
- VfKIxbHZmJ+/Srm20/jKgLGwiEIngL8nHuOLsktmXHPBaJx5UTtIrPll8jbqv5ENnKhcKnt9dFK
- sRmojmkvbOK+JIa1e0rsw/43YhiEWtuWCz+bTeA==
-X-Google-Smtp-Source: AGHT+IExUksj+hCR+gj7NMUPXAk78VVx0bqD4AGsjGqehS5x2aQlIlZBpW0rJUPuZBL200EPhOnGsQ==
-X-Received: by 2002:a05:600c:3b9f:b0:458:bc3f:6a72 with SMTP id
- 5b1f17b1804b1-458bc3f6d41mr61463425e9.4.1754318962444; 
- Mon, 04 Aug 2025 07:49:22 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-458a7c91c0esm150589255e9.11.2025.08.04.07.49.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Aug 2025 07:49:22 -0700 (PDT)
-Date: Mon, 4 Aug 2025 17:49:19 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Ethan Carter Edwards <ethan@ethancedwards.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH] drm/amdgpu/gfx10: remove redundant repeated null checks
-Message-ID: <c82931b5-0de2-4e45-a80b-3a90b0cc98a2@suswa.mountain>
-References: <20250801-amdgfx10-v1-1-e1dcbe18d84e@ethancedwards.com>
- <CADnq5_N+bQppUAD-qR8QC8M6nW+oRF8+7z=Qakcxc=a6Z8q4Gg@mail.gmail.com>
+ d=1e100.net; s=20230601; t=1754319335; x=1754924135;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=L9ag/xvJNK9FJlxGchf91rK9nnb+w66rFV4LrQzA80Y=;
+ b=bXnL1PcLiVQ2/+2btSfD7i3weonjqgPx7KvyBVuynJAfCnACv8Ksxqb8npI4L2Q5Kw
+ K7MB68SEkd8pk1Qjt6mYxpAWDiSS/Ige0LXfaSR8qdG1VcbtIcJ/u3O1QxgGj/gOiAJ/
+ ZHsoRq22LMv+Wkh5EvcDfFsxWBYaPcj/rluLJmv5GMKUOZibdiu4AnCoW5kIhSFm6vqu
+ 0mk7M0UcLoFaVS3Si8w6l0hGlwQ8/eoGz9ebVpVhZSQpE46om5WdwOitLJ9R85cAAH1+
+ doRHHTN1KxVoNc+jIepKpFn7B0u2JVluvQoVOGIrNsZxqvXIpPlAZM1qqwrhThipJTF+
+ LTZg==
+X-Gm-Message-State: AOJu0YzsKEOn49JjgEm/RaCKLNAGUMASsNjKZmqsS+sEqwkJp1a6W/hN
+ w9MFCmfhyQxCUb2kZaKJ2hkf+vYLaeBk1AUpHKS22tXS8YYYiP3qkxBOyGx569eoNd+mUwhIjjZ
+ 3ZIXoBY5R96bwrHAD3hIhZLdLZRk8KxQ=
+X-Gm-Gg: ASbGncs+qtj09hYOTCHVQUtmYpA4dYXMkJ6DGFQeZgpp8J1dhty56eoJVtmpPofojoo
+ w6Ng+LZsY3jX8PvXgstZCAHg1/jySNdmj7dc+MHCIV24uwdV7dO2+aOIH+LV7d+RzOOWe8gyLnU
+ WXIlvbCslftwFocza9kvUvfwyhoCdQFhOA+R0WPfqHy0UZM0GkfJivt2ULzg6HyrRtwz/vPSxCD
+ f2sPPus
+X-Google-Smtp-Source: AGHT+IHpcu4bIE/OBBqla+4XOCscN1zE2fLtU2gSprnY9n+DGQWTJ3mSU0569U91KAI+L2U7C7KV6SvlG+fHHKh4unc=
+X-Received: by 2002:a17:90b:1d03:b0:31f:ea:ca84 with SMTP id
+ 98e67ed59e1d1-321161e12c3mr6200233a91.2.1754319334648; Mon, 04 Aug 2025
+ 07:55:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CADnq5_N+bQppUAD-qR8QC8M6nW+oRF8+7z=Qakcxc=a6Z8q4Gg@mail.gmail.com>
-X-Mailman-Approved-At: Tue, 05 Aug 2025 07:11:43 +0000
+References: <20250803022731.2033153-1-alexandre.f.demers@gmail.com>
+In-Reply-To: <20250803022731.2033153-1-alexandre.f.demers@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 4 Aug 2025 10:55:22 -0400
+X-Gm-Features: Ac12FXwfPk0kxOzhfwYXf0lMRC_y8tJvCn3jQUFjgdxz5aw9MU1NSLJSdW-nIs0
+Message-ID: <CADnq5_MZ3pZxv2GwmzCiW3k8o8XweB8kYDR5o+EtgfC2=81fMw@mail.gmail.com>
+Subject: Re: [PATCH] amdgpu doc: Remove VCE support as OLAND's features
+To: Alexandre Demers <alexandre.f.demers@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,22 +80,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 04, 2025 at 10:32:43AM -0400, Alex Deucher wrote:
-> On Sat, Aug 2, 2025 at 4:22 AM Ethan Carter Edwards
-> <ethan@ethancedwards.com> wrote:
-> >
-> > The repeated checks on grbm_soft_reset are unnecessary. Remove them.
-> >
-> 
-> These are not NULL checks and they are necessary.  The code is
-> checking if any bits are set in that register.  If not, then we can
-> skip that code as there is nothing to do.
-> 
+Applied.  Thanks!
 
-It's not a null check, but it is a nested check and it's a local
-variable so the patch is correct enough.  At this point we know that
-grbm_soft_reset can't be zero.
+Alex
 
-regards,
-dan carpenter
-
+On Sat, Aug 2, 2025 at 10:38=E2=80=AFPM Alexandre Demers
+<alexandre.f.demers@gmail.com> wrote:
+>
+> OLAND doesn't support VCE at all, but it does support UVD (3 or 4,
+> depending of the sources).
+>
+> Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
+> ---
+>  Documentation/gpu/amdgpu/dgpu-asic-info-table.csv | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/gpu/amdgpu/dgpu-asic-info-table.csv b/Document=
+ation/gpu/amdgpu/dgpu-asic-info-table.csv
+> index d2f10ee69dfc..f4dde71b5654 100644
+> --- a/Documentation/gpu/amdgpu/dgpu-asic-info-table.csv
+> +++ b/Documentation/gpu/amdgpu/dgpu-asic-info-table.csv
+> @@ -1,7 +1,7 @@
+>  Product Name, Code Reference, DCN/DCE version, GC version, VCN version, =
+SDMA version
+>  AMD Radeon (TM) HD 8500M/ 8600M /M200 /M320 /M330 /M335 Series, HAINAN, =
+--,  6, --, --
+>  AMD Radeon HD 7800 /7900 /FireGL Series, TAHITI, DCE 6, 6, VCE 1 / UVD 3=
+, --
+> -AMD Radeon R7 (TM|HD) M265 /M370 /8500M /8600 /8700 /8700M, OLAND, DCE 6=
+, 6, VCE 1 / UVD 3, --
+> +AMD Radeon R7 (TM|HD) M265 /M370 /8500M /8600 /8700 /8700M, OLAND, DCE 6=
+, 6, -- / UVD 3, --
+>  AMD Radeon (TM) (HD|R7) 7800 /7970 /8800 /8970 /370/ Series, PITCAIRN, D=
+CE 6, 6, VCE 1 / UVD 3, --
+>  AMD Radeon (TM|R7|R9|HD) E8860 /M360 /7700 /7800 /8800 /9000(M) /W4100 S=
+eries, VERDE, DCE 6, 6, VCE 1 / UVD 3, --
+>  AMD Radeon HD M280X /M380 /7700 /8950 /W5100, BONAIRE, DCE 8, 7, VCE 2 /=
+ UVD 4.2, 1
+> --
+> 2.50.1
+>
