@@ -2,67 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 222EEB1AF37
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Aug 2025 09:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00132B1AF3C
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Aug 2025 09:11:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7719210E609;
-	Tue,  5 Aug 2025 07:11:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F40510E5EF;
+	Tue,  5 Aug 2025 07:11:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nfraprado@collabora.com header.b="CYDRNTlL";
+	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="S8hcJMbF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA67210E384;
- Mon,  4 Aug 2025 19:51:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1754337093; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Qo6ZYD5Zhao8z4Gg2R1lJVcBSxY8NlnozV4zwGF4X6EfRJtK/H9pWNumlvw7wJUJ++CSQNDIh6GqSqz9kdSp2DMMmuEHeYdPh4M9mzXIv4eY5chKeNhCA1t8H0jnsuTHw4+xZsLhUVxV9RpJeSde5EC/OEdibreFBNyH2z2ayVM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1754337093;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=CqiqV8sCny1E2rh73ue0AWfEmoU01Ps9EzAWXLaEJCE=; 
- b=md5ve6HrzrhwrICkKL7u3+Sws4cHiYrd0kW00e39MyUXelp3f77/IfYdlzrf1LHAnAkplDyf1TC5MZPwnVUJbOE0oVk22jnM7dJdLZKeioCdyiHf7WxpNG5IOrjVi8gh75b9mqA5DqmDXEyyyda57jyXHE9BAMY7A+MisQlnPww=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nfraprado@collabora.com;
- dmarc=pass header.from=<nfraprado@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1754337093; 
- s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
- bh=CqiqV8sCny1E2rh73ue0AWfEmoU01Ps9EzAWXLaEJCE=;
- b=CYDRNTlL1Rt6NJys858KbEYXn/JTNZ8kWZcCdtyh5ZFwrtU2XPn/MwHO4Td/OIQr
- EJccvbP32T5lfmc+7JX/7IBjRebEaYb6HHk3fp70PvOGA+L1m5CmrZ/wznsGrt+sGSZ
- KJBUWoKIfw3jHn/h8Hncf6kPMM+CQKMjN5CbNtEQ=
-Received: by mx.zohomail.com with SMTPS id 1754337085916196.59332435118563;
- Mon, 4 Aug 2025 12:51:25 -0700 (PDT)
-Message-ID: <df570128dd008a969885e82abf3644b302120170.camel@collabora.com>
-Subject: Re: [PATCH V10 43/46] drm/amd/display: add 3D LUT colorop
-From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
-To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org
-Cc: wayland-devel@lists.freedesktop.org, harry.wentland@amd.com, 
- leo.liu@amd.com, ville.syrjala@linux.intel.com,
- pekka.paalanen@collabora.com, 	contact@emersion.fr, mwen@igalia.com,
- jadahl@redhat.com, sebastian.wick@redhat.com, 	shashank.sharma@amd.com,
- agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, 
- aleixpol@kde.org, xaver.hugl@gmail.com, victoria@system76.com,
- daniel@ffwll.ch, 	uma.shankar@intel.com, quic_naseer@quicinc.com,
- quic_cbraga@quicinc.com, 	quic_abhinavk@quicinc.com, marcan@marcan.st,
- Liviu.Dudau@arm.com, 	sashamcintosh@google.com,
- chaitanya.kumar.borah@intel.com, 	louis.chauvet@bootlin.com,
- arthurgrillo@riseup.net, Daniel Stone	 <daniels@collabora.com>
-Date: Mon, 04 Aug 2025 15:51:16 -0400
-In-Reply-To: <20250617041746.2884343-44-alex.hung@amd.com>
-References: <20250617041746.2884343-1-alex.hung@amd.com>
- <20250617041746.2884343-44-alex.hung@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E297610E0F8;
+ Mon,  4 Aug 2025 21:32:47 +0000 (UTC)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41]) (Authenticated sender: zamundaaa)
+ by letterbox.kde.org (Postfix) with ESMTPSA id 886AC33C4C8;
+ Mon,  4 Aug 2025 22:32:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
+ t=1754343165; bh=ri6Z3M8MrO5vhZyfkInL7BZL2j6omfZd348uMVjNNiY=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=S8hcJMbFOaIWEbtqS8vzP/rsu3Sgc9IHa4nT1AiATnEr+G8SKR8iI75OKkbLlq45a
+ aP675LzQun0XSah6qnO08L2zp38G7ccApm7R2/g2sdb5gb7zWdbbHXS7uwqQytGxZY
+ l3DbTWvWpuRXi/Soh3mP3+F0poBm/HY70vIcCpCboY4ygCKBzHuFaW/kYKZ8i/wco3
+ /hSCbpi3sFSzMSLafGAkB3FVDZjHSERo/k9yytS0CMxBOlj6DcLeakkKV4m/IGQ6iv
+ f28NuJKJXYfrfItYoLk4fM9q0d1sQ5O1asa1fkgXlnlA3An4ALp1D6Ur86fDjGSIsM
+ vpD1xQxZT1lwQ==
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-af93bcaf678so415054266b.0; 
+ Mon, 04 Aug 2025 14:32:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVRxispOTn1jK86Q3JJfq1ZpJqUxFeFv8xyg2eCdwHTy00TXD2yfVcqRwXV0LnpqBW02bCBmH0QeKwk@lists.freedesktop.org,
+ AJvYcCXMVeMtRR4uNMs7Zg0pi1CmGQDMmsxZaMXu22QWNqJQ6cz+J4eEWyG9Onmes6BlQF9nCoQACjaa@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwOlJ09KJMbTk3aptLteDurCVhWYWunG8Rtu2ypwFZVa5xNFVwM
+ GkytTS2jY+8iEocyX5JMYr3Qc9hiW9DSqsAMMK8WVwH3JORrVnxjucjypW2VgLgrFfhA/HorLZj
+ soCswtV+3SHBvNiawsacpjfVb11HrOto=
+X-Google-Smtp-Source: AGHT+IF/ky9b0+aGyvxmzBA/wi9xesdjpkTkAbyZWzdSGALTO9Liu72BxrfMri8mIqXSnpI9VP4SMmyolONLGdwUBvM=
+X-Received: by 2002:a17:906:f59f:b0:ae3:6cc8:e426 with SMTP id
+ a640c23a62f3a-af93ffc9053mr941711966b.9.1754343162353; Mon, 04 Aug 2025
+ 14:32:42 -0700 (PDT)
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-ZohoMail-Owner: <df570128dd008a969885e82abf3644b302120170.camel@collabora.com>+zmo_0_nfraprado@collabora.com
+References: <20250801131053.6730-1-xaver.hugl@kde.org>
+ <ad9b68cc-4a33-406a-9512-ff5f5460bf99@intel.com>
+In-Reply-To: <ad9b68cc-4a33-406a-9512-ff5f5460bf99@intel.com>
+From: Xaver Hugl <xaver.hugl@kde.org>
+Date: Mon, 4 Aug 2025 23:32:31 +0200
+X-Gmail-Original-Message-ID: <CAFZQkGwviMAshk5gSF0pDmkqbfZT=6FHCfNq6PWj8srNEXjX7w@mail.gmail.com>
+X-Gm-Features: Ac12FXx3qnl-ZL78AY877KImUixgVXTZBRgwxLYn8JvgBzilUH_iYdJ6TeJ9kV4
+Message-ID: <CAFZQkGwviMAshk5gSF0pDmkqbfZT=6FHCfNq6PWj8srNEXjX7w@mail.gmail.com>
+Subject: Re: [PATCH v3] drm: don't run atomic_async_check for disabled planes
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: dri-devel@lists.freedesktop.org, andrealmeid@igalia.com, chris@kode54.net, 
+ naveen1.kumar@intel.com, ville.syrjala@linux.intel.com, mdaenzer@redhat.com,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ alexdeucher@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 05 Aug 2025 07:11:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,73 +72,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-16 at 22:17 -0600, Alex Hung wrote:
-> This adds support for a 3D LUT.
->=20
-> The color pipeline now consists of the following colorops:
-> 1. 1D curve colorop
-> 2. Multiplier
-> 3. 3x4 CTM
-> 4. 1D curve colorop
-> 5. 1D LUT
-> 6. 3D LUT
-> 7. 1D curve colorop
-> 8. 1D LUT
->=20
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
-> Reviewed-by: Daniel Stone <daniels@collabora.com>
-> ---
-[..]
-> +/* __set_colorop_3dlut - set DRM 3D LUT to DC stream
-> + * @drm_lut3d: user 3D LUT
-> + * @drm_lut3d_size: size of 3D LUT
-> + * @lut3d: DC 3D LUT
-> + *
-> + * Map user 3D LUT data to DC 3D LUT and all necessary bits to
-> program it
-> + * on DCN accordingly.
-> + */
-> +static void __set_colorop_3dlut(const struct drm_color_lut_32
-> *drm_lut3d,
-> +				uint32_t drm_lut3d_size,
-> +				struct dc_3dlut *lut)
-> +{
-> +	if (!drm_lut3d_size) {
-> +		lut->state.bits.initialized =3D 0;
-> +		return;
-> +	}
+Am Mo., 4. Aug. 2025 um 11:54 Uhr schrieb Murthy, Arun R
+<arun.r.murthy@intel.com>:
+>
+> On 01-08-2025 18:40, Xaver Hugl wrote:
+> > It's entirely valid and correct for compositors to include disabled
+> > planes in the atomic commit, and doing that should not prevent async
+> > flips from working. To fix that, this commit moves the plane check
+> > to after all the properties of the object have been set,
+> I dont think this is required. Again the plane states will have to be
+> fetched outside the set_prop()
+>
+> Alternate approach
+> @@ -1091,8 +1091,16 @@ int drm_atomic_set_property(struct
+> drm_atomic_state *state,
+>
+>                          /* ask the driver if this non-primary plane is
+> supported */
+>                          if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
+> -                               ret = -EINVAL;
+> +                               /*
+> +                                * continue if no change in prop on
+> non-supported async planes as well
+> +                                * or when disabling the plane
+> +                                */
+> +                               if (ret == 0 || (prop ==
+> config->prop_fb_id && prop_value == 0))
+This would allow disabling a plane in an async commit that was
+previously enabled, not sure that should be allowed? Also, if the
+property is fb_id, ret would be used uninitialized. But you're right,
+this should be fixable with smaller changes. Probably best to keep it
+minimal for the bugfix.
 
-IIUC this means that setting a 3D LUT colorop with BYPASS=3D0 but not
-passing in a DATA property will result in the 3D LUT being bypassed.
-Meanwhile, in __set_dm_plane_colorop_3x4_matrix() in patch 36
-"drm/amd/display: add 3x4 matrix colorop", when DATA is not set, an
-error code will be bubbled up to atomic_check.
+Looking more at this code, I also notice that it currently allows you
+to change *any* property on overlay planes in an async flip, which
+doesn't seem right.
 
-Given that this API is aimed at being prescriptive, I would expect the
-second case, bubbling up an error to atomic_check, to happen whenever a
-required DATA property is omitted, for all of the colorop types.
-
-This makes me think it would be good to have a colorop validator helper
-function that could be called from the driver's atomic_check to easily
-do all such checks, such as that DATA is supplied when expected, not
-only to remove the burden on every driver to check this, but also to
-ensure consistency across them all.
-
---=20
-Thanks,
-
-N=C3=ADcolas
-
-> +
-> +	/* Only supports 17x17x17 3D LUT (12-bit) now */
-> +	lut->lut_3d.use_12bits =3D true;
-> +	lut->lut_3d.use_tetrahedral_9 =3D false;
-> +
-> +	lut->state.bits.initialized =3D 1;
-> +	__drm_3dlut_32_to_dc_3dlut(drm_lut3d, drm_lut3d_size, &lut-
-> >lut_3d,
-> +				=C2=A0=C2=A0 lut->lut_3d.use_tetrahedral_9,
-> 12);
-> +
-> +}
-[..]
+> +  drm_dbg_atomic(prop->dev,
+> + "[PLANE:%d:%s] continue async as there is no prop change\n",
+> +                                                      obj->id,
+> plane->name);
+> +                               else
+> +                                       ret = -EINVAL;
+>
+>                                  if (plane_funcs &&
+> plane_funcs->atomic_async_check)
+>
+> Thanks and Regards,
+> Arun R Murthy
