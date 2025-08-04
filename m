@@ -2,89 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 151ADB1A32B
-	for <lists+amd-gfx@lfdr.de>; Mon,  4 Aug 2025 15:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD4BB19D82
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Aug 2025 10:21:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0E0010E094;
-	Mon,  4 Aug 2025 13:26:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37EEC10E41E;
+	Mon,  4 Aug 2025 08:21:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="q8bdhjPF";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="+Kw1nIp/";
+	dkim=pass (2048-bit key; unprotected) header.d=daenzer.net header.i=@daenzer.net header.b="hBrNqal8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
- [85.215.255.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AAEB10E417
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 08:13:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1754295074; cv=none;
- d=strato.com; s=strato-dkim-0002;
- b=pnIMpA3bf2NgT6NQFoqdEn1yIjZudPe6b6WcukNniL7uhOHX31KdJ5rIN35VsQ7LeF
- ru+B3O89gJOdk/8RJjXNZyxFTuHqbBwN/D3uhhhur3r6ayGAv7zyjKscPEwPDMlQYsvJ
- Yr7Chp1CtqzAY4kr0A1+z2aQXTdpvgFXQSdJPPYmBtecvqlwwEYWTEVKPJOIBAIxPAKb
- F2Mh4NmUjlP676/cT15lqh3OJvolc5RwTiJ5GtX5MudjCQzfHQNk+OvYtFqiZ+fzRBua
- x3GhSCQyOg1E3uVX+9DaKjix2+gZPWdAVchxgSHZHoN9HZSAAV0Mowz/hbEuJ9kqiprZ
- IZJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1754295074;
- s=strato-dkim-0002; d=strato.com;
- h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
- From:Subject:Sender;
- bh=ra0Wt+Dxo6dN2T5DbDVBqna+6dENDlFhPnbgbCnzFiM=;
- b=UsJpvlfiPf89m43zoCUi6DMd6D0uXp2H8LhF9vx+fWXcodqCLjOlvxKX9L4y8918wm
- pruqUyKLo93QJV3mgWDjCKoGxBwAEh6mYqKeTItN5xUscHnziZlQnPPxr8Ww7IHMbdCX
- SoxKu7jQxDSxh9VeZHZTU4BIjgz3O4nSnCwU07H/XyDy6cAZUH9xC7MP71hBiQHcNGwK
- 8fkGVt2ruFiZvZoAIq+SwnWZMFNslFyAwKtHv45YDxFi9N+CVKC8qrcgfLtvpd5v7dG5
- i9k9dzLOK+04l+i6Tmqrs31i3VULLCLkkqtU7CZlwSkRnJVA2lxQ7KWox9xuptqML0l7
- bWUw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1754295074;
- s=strato-dkim-0002; d=xenosoft.de;
- h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
- From:Subject:Sender;
- bh=ra0Wt+Dxo6dN2T5DbDVBqna+6dENDlFhPnbgbCnzFiM=;
- b=q8bdhjPFrddal6FTNmmwCl4Bs5bjdTns8MuOq0dLhJWvKNf8icHDtzX4+W+RK7B6Pg
- jzawM09kD+34OoV413PMuzDxU0LiONcT70Sj+rXYz/0RZuOzitMnNn3ZFrQKw14aVvO+
- KItlkC5GhjizybUMOGR1CrgpDVUvYt1Hl8D6YNCrTZthhNiqM0LWv4yKSabMKjmMZMZK
- 08dC8C0g7equdMy386GhX1H8TBiB7tHK8o2ijA6JwTpx0i6IEGoZtkq85xQSgb4i+O5/
- S/uWmervxGEDA+9P4nrhMcwOucHEPtcmhsy5Ia+E2UW2s4iWEhchpY8ni24HHqj9Bwdl
- w7TQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1754295074;
- s=strato-dkim-0003; d=xenosoft.de;
- h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
- From:Subject:Sender;
- bh=ra0Wt+Dxo6dN2T5DbDVBqna+6dENDlFhPnbgbCnzFiM=;
- b=+Kw1nIp/LKnvfyd/j4KkJntH3BWfFjJiXTYtn3UgdYqy/+LLg7rlDeJ+6o7dit+NvH
- 6QUtnHi3IGP2Jk6EntAg==
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5m3s3nEDSmjAPgVOZ6aPKEsRnJgfV7XkH5ksgU="
-Received: from smtpclient.apple by smtp.strato.de (RZmta 52.1.2 AUTH)
- with ESMTPSA id e6066c1748BDqkC
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
- (Client did not present a certificate);
- Mon, 4 Aug 2025 10:11:13 +0200 (CEST)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-Mime-Version: 1.0 (1.0)
-Subject: radeon_fbdev_river_fbdev: failed to initialize framebuffer and setup
- emulation
-Date: Mon, 4 Aug 2025 10:11:02 +0200
-Message-Id: <146D0876-852D-4BBD-AC77-D10245AA7E70@xenosoft.de>
-References: <2cc83897-427d-47f4-b6a3-8db9682972cd@xenosoft.de>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
- "R.T.Dickinson" <rtd@a-eon.com>, mad skateman <madskateman@gmail.com>,
- Darren Stevens <darren@stevens-zone.net>, hypexed@yahoo.com.au,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Christian Zigotzky <info@xenosoft.de>,
- =?utf-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
- amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
-In-Reply-To: <2cc83897-427d-47f4-b6a3-8db9682972cd@xenosoft.de>
-To: developers DRI <dri-devel@lists.freedesktop.org>
-X-Mailer: iPhone Mail (22G86)
-X-Mailman-Approved-At: Mon, 04 Aug 2025 13:26:01 +0000
+Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDA4F10E41C;
+ Mon,  4 Aug 2025 08:20:57 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256; t=1754295656; x=1754900456; s=webland;
+ d=daenzer.net; c=relaxed/relaxed; v=1;
+ bh=tVlaRrF455NeT0pqU2MICwd635g4QbHhsjdB3YKhO20=;
+ h=From:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:References;
+ b=hBrNqal8czifH5hyRyTlrX/2GTXZU+E4PwRQtWk7f8qOI0NDxYK1RWdouQcXBCE48pIxz4cIlhl60AjDq/rkXMWq+xbAw0sOU7L2ch23YTeQMd972AJsvTQMRiy8u4sK4twLhYjViUzSDAue7aFdYzROS0OSspP2ybyqTZ76nnpKpq9xA3MvZJi6ApbW1zMyaX+ObXPuLRAcxDltxSjVmVdFzY1YRJNjfQgEdCIMqt0HpFvxuyjvR5pUEdk5L9LOObBnP2y1CSkg1aU6xgBx81dSRxt3qvstdywl9ZS1XtWeKJYfcMOQ7EPZAfK7DKk78w7wUYiKRCr0Af5SmPKf+g==
+Received: from [192.168.1.137] ([213.144.156.170])
+ by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
+ 01202508041020555526; Mon, 04 Aug 2025 10:20:55 +0200
+Message-ID: <f6c82f73-cf3c-48b1-95e4-650297306636@daenzer.net>
+Date: Mon, 4 Aug 2025 10:20:54 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] drm/amd/display: Update HW_DONE_DEADLINE property
+ value on modeset
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Uma Shankar <uma.shankar@intel.com>,
+ Xaver Hugl <xaver.hugl@kde.org>, victoria@system76.com,
+ David Turner <david.turner@raspberrypi.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20250724165220.1189129-1-michel@daenzer.net>
+ <20250724165220.1189129-5-michel@daenzer.net>
+ <84a221e1-5675-4aca-a068-6f9408b96e40@amd.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
+Content-Language: en-CA
+Autocrypt: addr=michel@daenzer.net; keydata=
+ xsDiBDsehS8RBACbsIQEX31aYSIuEKxEnEX82ezMR8z3LG8ktv1KjyNErUX9Pt7AUC7W3W0b
+ LUhu8Le8S2va6hi7GfSAifl0ih3k6Bv1Itzgnd+7ZmSrvCN8yGJaHNQfAevAuEboIb+MaVHo
+ 9EMJj4ikOcRZCmQWw7evu/D9uQdtkCnRY9iJiAGxbwCguBHtpoGMxDOINCr5UU6qt+m4O+UD
+ /355ohBBzzyh49lTj0kTFKr0Ozd20G2FbcqHgfFL1dc1MPyigej2gLga2osu2QY0ObvAGkOu
+ WBi3LTY8Zs8uqFGDC4ZAwMPoFy3yzu3ne6T7d/68rJil0QcdQjzzHi6ekqHuhst4a+/+D23h
+ Za8MJBEcdOhRhsaDVGAJSFEQB1qLBACOs0xN+XblejO35gsDSVVk8s+FUUw3TSWJBfZa3Imp
+ V2U2tBO4qck+wqbHNfdnU/crrsHahjzBjvk8Up7VoY8oT+z03sal2vXEonS279xN2B92Tttr
+ AgwosujguFO/7tvzymWC76rDEwue8TsADE11ErjwaBTs8ZXfnN/uAANgPM0jTWljaGVsIERh
+ ZW56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD7CXgQTEQIAHgUCQFXxJgIbAwYLCQgHAwIDFQID
+ AxYCAQIeAQIXgAAKCRBaga+OatuyAIrPAJ9ykonXI3oQcX83N2qzCEStLNW47gCeLWm/QiPY
+ jqtGUnnSbyuTQfIySkLOwE0EOx6FRRAEAJZkcvklPwJCgNiw37p0GShKmFGGqf/a3xZZEpjI
+ qNxzshFRFneZze4f5LhzbX1/vIm5+ZXsEWympJfZzyCmYPw86QcFxyZflkAxHx9LeD+89Elx
+ bw6wT0CcLvSv8ROfU1m8YhGbV6g2zWyLD0/naQGVb8e4FhVKGNY2EEbHgFBrAAMGA/0VktFO
+ CxFBdzLQ17RCTwCJ3xpyP4qsLJH0yCoA26rH2zE2RzByhrTFTYZzbFEid3ddGiHOBEL+bO+2
+ GNtfiYKmbTkj1tMZJ8L6huKONaVrASFzLvZa2dlc2zja9ZSksKmge5BOTKWgbyepEc5qxSju
+ YsYrX5xfLgTZC5abhhztpcJGBBgRAgAGBQI7HoVFAAoJEFqBr45q27IAlscAnjICalDn2zB1
+ fXqoOkGsTwElvKa5AJ9FhyKJpysFRcejfdZwrwl9xb4oOg==
+In-Reply-To: <84a221e1-5675-4aca-a068-6f9408b96e40@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,69 +74,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-FYI: We are using PowerPC machines.
+On 31.07.25 22:51, Harry Wentland wrote:
+> Thanks for the series. It makes sense to me.
 
-+ dri-devel
+I'm glad to hear it, thanks for taking a look.
 
-> On 03 August 2025 at 05:28 pm, Christian Zigotzky <chzigotzky@xenosoft.de>=
- wrote:
->=20
-> =EF=BB=BFHello,
->=20
-> I have the same issue on another machine either. Blank screen during the b=
-oot. The Radeon graphics framebuffer device doesn't work anymore.
->=20
-> Here is the modifed code from the DRM updates (drm-next-2025-07-30):
->=20
-> - https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/d=
-iff/drivers/gpu/drm/radeon/radeon_fbdev.c?id=3D260f6f4fda93c8485c8037865c941=
-b42b9cba5d2
-> - https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/d=
-iff/drivers/gpu/drm/radeon/radeon_drv.c?id=3D260f6f4fda93c8485c8037865c941b4=
-2b9cba5d2
-> - https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/d=
-iff/drivers/gpu/drm/radeon/radeon_display.c?id=3D260f6f4fda93c8485c8037865c9=
-41b42b9cba5d2
-> - https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/d=
-iff/drivers/gpu/drm/radeon/evergreen_cs.c?id=3D260f6f4fda93c8485c8037865c941=
-b42b9cba5d2
->=20
-> Do you have a patch for reverting these modifications? I would like to rev=
-ert these modifications for testing.
->=20
-> Thanks in advance,
-> Christian
->=20
->> On 03 August 2025 at 1:35 pm, Christian Zigotzky wrote:
->> Hello,
->> Xorg doesn't work after the DRM updates drm-next-2025-07-30.
->> Error messages:
->> [dr:.radeon_fbdev_river_fbdev_proe] *ERROR* failed to initialize framebuf=
-fer -22
->> radeon 0000:01:0.0: [drm] *ERRO* fbdev: Failedto setup emulaton (ret=3D-2=
-2)
->> brd module loadedm
->> lop: module loadd
->> mpt3ss version 52.10.00.00 loaded
->> nve nvme0: pci fuction 0002:04:0.0
->> fsl-sata ffe20000.sata: SataFSL Platform/CS Driver init
->> scs host0: sata_fs
->> ta1: SATA max DMA/133 irq 68 pm-pol 0
->> ;21;39mfsl-sat ffe221000.sata Sata FSL Platfrm/CSB Driver iit
->> ata1: Signatue Update detectd @ 0 msecs
->> scsihost1: sata_fsl[0m
->> ta2: SATA max UMA/133 irq 69 lm-pol 0
->> nvme nvm0: 4/0/0 defaul/read/poll queus
->> nvme0n1: p1 p p3 p4 p5 p6 p7[0m
->> drm:.radeon_fbdv_driver_fbdev_robe] *ERROR* filed to initialze framebuffe=
-r 22
->> fsl_dpaa_mac fe4e6000.ethernt: of_get_mac_adress(/soc@ffe00000/ fman@4000=
-0/ethernet@e6000 failed
->> radeon 000:01:00.0: [dr] *ERROR* fbdev Failed to setu emulation (ret-22)
->> fsl_dpaa_ma ffe4e6000.ethenet: FMan MEMAC[0m
->> sl_dpaa_mac ffee6000.ethernet:Using random MA address: 0e
->> Could you please check the latest DRM updates?
->> Thanks,
->> Christian
->=20
+May I take this as R-b?
 
+
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> index 0b8ac9edc070..e78249b55345 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> @@ -10021,6 +10021,21 @@ static void dm_set_writeback(struct amdgpu_display_manager *dm,
+>>  	drm_writeback_queue_job(wb_conn, new_con_state);
+>>  }
+>>  
+>> +static void
+>> +update_hw_done_deadline(struct dm_crtc_state *dm_new_crtc_state)
+>> +{
+>> +	struct dc_stream_state *stream = dm_new_crtc_state->stream;
+>> +	struct dc_crtc_timing *timing = &stream->timing;
+>> +	struct drm_crtc *crtc = dm_new_crtc_state->base.crtc;
+>> +	uint32_t deadline_lines, deadline_us;
+>> +
+>> +	/* XXX: My guess, AMD display team to the rescue! */
+>> +	deadline_lines = timing->v_total - timing->v_addressable - timing->v_front_porch;
+> 
+> This works on DCE. On DCN we'll need to take the offset into account.
+> This diff on top of your changesshould do it, but it's not tested.
+> The dc_stream changes probably fit in their own patch.
+
+Thanks, I'll incorporate it.
+
+
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 629fd21a611f..314074527216 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -10082,11 +10082,19 @@ update_hw_done_deadline(struct dm_crtc_state *dm_new_crtc_state)
+>         struct dc_crtc_timing *timing = &stream->timing;
+>         struct drm_crtc *crtc = dm_new_crtc_state->base.crtc;
+>         uint32_t deadline_lines, deadline_us;
+> +       int vupdate_offset = dc_stream_get_vupdate_offset_from_vsync(stream);
+> +
+> +       /* note:
+> +        * vupdate_offset is non-existant on DCE and function will return 0
+> +        * vupdate_offset could be positive or negative on DCN
+> +        * vupdate_offset depends on timing and HW bandwidth requirements
+> +        */
+> +       deadline_lines = timing->v_total - timing->v_addressable -
+> +                        timing->v_front_porch - vupdate_offset;
+Hmm, if it depends on bandwidth, we'll need to recalculate it for all CRTCs after a modeset for any of them, right?
+
+
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
