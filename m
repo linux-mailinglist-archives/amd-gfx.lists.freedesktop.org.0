@@ -2,74 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63685B1A852
-	for <lists+amd-gfx@lfdr.de>; Mon,  4 Aug 2025 19:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E7DEB1AF38
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Aug 2025 09:11:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03B9B10E451;
-	Mon,  4 Aug 2025 17:05:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF4010E5F4;
+	Tue,  5 Aug 2025 07:11:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jSE3ppyC";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="LSExDwkA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
- [209.85.216.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D25510E451
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 17:05:16 +0000 (UTC)
-Received: by mail-pj1-f47.google.com with SMTP id
- 98e67ed59e1d1-31ef3e9f0adso378329a91.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 04 Aug 2025 10:05:16 -0700 (PDT)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69AA110E326
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 17:15:34 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-4589b3e3820so47514575e9.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 04 Aug 2025 10:15:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754327115; x=1754931915; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=rtdoVqAh+dOLnzDR3Iz9SNfPydbMYt149pEcpEMAt1w=;
- b=jSE3ppyC1Czw0dO0MjLeC0B4q8GBFa+ScUufOA5dCHMX4I5YUeE3xrgmQxAMoblqai
- n7iG1zrFjzXQnFgKf+9ssVon9lL+V1CWCjSYfEJyf5XznOFox3VQxI+MMfXmfJo22ZA+
- PDU4biePLslk6FB5U7nrQ8bovUY/NDz0CV7NhN78xMjpZc8Dtr0mkZJLp+hAKqpN9eEs
- T8abNZYg/Vr2cTXiQb5k7dmxJripB5qzZfAg8ozTDDwojstMzEf/iKHoAHRBIN8NoQgl
- Z8nRs+toFkabwtVU53a7e20+qsuCUagDUgOZV9F0JVOgIPaQt6StHzlXNJMOorFUPSSn
- Hw2Q==
+ d=linaro.org; s=google; t=1754327733; x=1754932533; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=NrTKl9K4+8vI5BzLuQ0RcuyJtwiyeqQNxpuwyBCjmjM=;
+ b=LSExDwkAq8Q8xMnIptvZ9zQ1cVVUQaKzO134Sah/CkephVgw6DKjgrhA/fMoYWJoSg
+ gPHDa1W9NIlqZpqVPV7JTzOqWp/M6/3e9iHiCTMfMwaX2SgKobFyrfU4b2nBitMsTpjr
+ 8poh1EujeI/3K0OAH6Rj0dsKO5PoInTVtOrUaNlX4Oz0pl71KrXlc44FfR9lfwx+LMZM
+ h8InnUc9ZqdpKngByDaWa5OYo+m0vvpZnvotgVVz8Fb4jAKJTgMzcr9Q1Yov/MwFfFzx
+ L8XmNMKQ6gdHp+GloBq8oQVqjZVkYvd7PbyxlSA9jsJZpEwML3F8Ww5AP74CRkmGhEGn
+ LNvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754327115; x=1754931915;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=rtdoVqAh+dOLnzDR3Iz9SNfPydbMYt149pEcpEMAt1w=;
- b=LFXUvj8wJMU7T8dy0WaidxB0mY5laohu+MJaJ94sLmypePJe1spL7Ikgjkk8y6WjZr
- yGUsvOic/aE+bjND+/v4cA8KIADbNLlF4lw35fvUFLKKqdqoYdTVLWCArjm8gFTBTqoU
- rbIpcBfOI3Dc1T3MlluOjLnA/bhtyGgtlTPaTs54fE6qSao69575gbobN4cTGjS6loyv
- Zpk1jhiCOYDWTsZD9V99XCJPFtJ9u4KrQW3jeOLCvVyLJbr0rGLANVxjglO6mmOsG2Q2
- l/y/CnHqtP3WvWK/Wk6L/juwK16JCTUUSSDX5dRfFqOLKIu3nrpgE/mb5zYHPkY82Q47
- T1QA==
-X-Gm-Message-State: AOJu0YyumKWqTtfGItVQOaaiKQ/yQdo7EvXfZS0GDI94JP6ZI/Nid1v5
- 0eKSn7W2xM4ua/8Qzaj7l5o7X/9YdaRi0N2oRCk7nmE3PrCUCjL9bUYWRvczDt5QSVa3KfGRGyd
- QAq9Az+H9hTg5i1g2QdZEr/bJSUSera79sQ==
-X-Gm-Gg: ASbGncvrj4vWFSKwMV3oFWnASa/+lj1L1pHYeOscNig4j5a3p0Y+AfnavqYR+hzyUnG
- KFtheOAXAT04l9XgTOzaQtPuswEymNg0eZaBCX+swcDsmVlp7RBxzxey6PuV/z+sAaeHIHPGonY
- 7seWmD134x5KDJ2ZHwwVtoA0QDhQxzlQ2aXJfQBN6ZQnEY43NjsISf22Mu0sUrBzMVDbj58x/26
- Pbs2wOS
-X-Google-Smtp-Source: AGHT+IFsCgZvlrTp6cJctNHyXdzabE3MUjlcVVvr5FpTC1PDm44I+45siZniTV9H3kRU9nxKHFrPRWanaiA4xVSwOEM=
-X-Received: by 2002:a17:90b:3e87:b0:311:9c9a:58e2 with SMTP id
- 98e67ed59e1d1-321162e37bcmr5568230a91.7.1754327115484; Mon, 04 Aug 2025
- 10:05:15 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1754327733; x=1754932533;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=NrTKl9K4+8vI5BzLuQ0RcuyJtwiyeqQNxpuwyBCjmjM=;
+ b=oi4EBUtlXsEGBRmzsWZDFNa5mL9OIthPMy/Q4CT+dQYQp7+h8/7tUU4x65b+qJuICP
+ FwXDm8I0Qr3OHWYgMye+Xy08LIexTIC+uHoesiOlSiyCkbU2iH0FNW6XBDCYDWUS5/u+
+ JV7mzBy/1URY4KSf6NQWNHMuODe/kWVZhw+a6YsRtQdg4IVfLdw1LgEYnZ0IrEIeqQC/
+ o+F5mTFW1Xf6jnrDSzlIoj8wKLsrlTDbZ3zdqvxfG38Mk+sJuGz5y8054iwv7qbi6Yre
+ JCeICDGe3kQK1GFI9+BpIzLPZfcksiLxANqS43rBMRBpkTUeTICaDduwjZUg5f3UoUFU
+ 6f1g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVoNtlgTGiljE2ybN1vb7hY0uHJ2U/GckjjHEif5fa33EowjZDyirW/7uRUuX9YaRt7Xwy7GkB2@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwxIrJ562EYjTn85sEFlHDnAh90QjuETsjwt5OlhPV9tfAazZo0
+ rBEp+B6RQkAuZUMl4HZOdzk+GyN4vyedlLjUMGZqlTqnfBPo+PJJk7zxhiGAsv07WN0=
+X-Gm-Gg: ASbGnctflI5/IBs3CzM1oKMdrQzJkFwT4y2LH3lq71ZpHQ6wjn0Nj9iTMTRY6VaDAiY
+ Up3eHd7V0YZ/B6Ari8ajd32blgAZGGN7/FL4/h2yFRWHbIeIOAYmVmKOoqFoxVaEiL1rw1NPN6S
+ pVbiPJ8LCJcw+Y38Sb9wgk1dmrWWTrS1OBwRL8hleyLtc8TzdrqA7hijL/VynK+3vpPuIxHp+bV
+ xqNSYeDRqQ7BicoezAhiMQf2a/fcgxcn7bvGrFIAgHzVdohDVPGDYEm2/9pMwiRyOgO6TW5WH9r
+ HLnJkqMQQrIBKO0EB5QcACIEr+6qZ5x42ep/pWf8WSCCfmzS8czr5cYI/QD8eFdKv99TlPDHFMt
+ BmGKkJRtcPnAn4XS8fMP7JqX0QGxNxt5eFMcK4w==
+X-Google-Smtp-Source: AGHT+IFGyZV3Lnqkd/Us0kr0C9bu01zWEPsZjgPddB7McgPHFiYC5RrBkxKNSmpQutG9nl15DFY5XA==
+X-Received: by 2002:a05:6000:1ac6:b0:3b7:8af8:b90f with SMTP id
+ ffacd0b85a97d-3b8d94c3f5dmr6949009f8f.40.1754327732649; 
+ Mon, 04 Aug 2025 10:15:32 -0700 (PDT)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b79c4a6f62sm15897981f8f.73.2025.08.04.10.15.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 04 Aug 2025 10:15:32 -0700 (PDT)
+Date: Mon, 4 Aug 2025 20:15:29 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Ethan Carter Edwards <ethan@ethancedwards.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Subject: Re: [PATCH] drm/amdgpu/gfx10: remove redundant repeated null checks
+Message-ID: <fda8103d-cac8-4c00-a78e-6eb27141d9ea@suswa.mountain>
+References: <20250801-amdgfx10-v1-1-e1dcbe18d84e@ethancedwards.com>
+ <CADnq5_N+bQppUAD-qR8QC8M6nW+oRF8+7z=Qakcxc=a6Z8q4Gg@mail.gmail.com>
+ <c82931b5-0de2-4e45-a80b-3a90b0cc98a2@suswa.mountain>
+ <CADnq5_Mk3FO_tvxFo+fJgqskVc7qtGv74VM6EStx_BcVpahXEQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20250804084029.863138-1-Jesse.Zhang@amd.com>
- <20250804084029.863138-5-Jesse.Zhang@amd.com>
-In-Reply-To: <20250804084029.863138-5-Jesse.Zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 4 Aug 2025 13:05:03 -0400
-X-Gm-Features: Ac12FXxnONkZjmSbjx4UejpESAiVU4lHCVBa4q9VrBxVHvHVHHz3IldsCzzQV-k
-Message-ID: <CADnq5_PW+5hqcB_Sc=j41+hdZODJ1OopDVeZcY2dGvHdr93PvA@mail.gmail.com>
-Subject: Re: [v6 05/13] drm/amdgpu: Implement active VMID detection in MES12
- queue reset for GFX
-To: "Jesse.Zhang" <Jesse.Zhang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Christian Koenig <christian.koenig@amd.com>,
- "kyle-hai.chau" <kyle-hai.chau@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CADnq5_Mk3FO_tvxFo+fJgqskVc7qtGv74VM6EStx_BcVpahXEQ@mail.gmail.com>
+X-Mailman-Approved-At: Tue, 05 Aug 2025 07:11:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,117 +96,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 4, 2025 at 4:48=E2=80=AFAM Jesse.Zhang <Jesse.Zhang@amd.com> wr=
-ote:
->
-> MES queue reset functionality for GFX queues. The changes include:
->
-> 1. Added detection of active VMIDs by reading CP_CNTX_STAT and CP_VMID
->    registers to properly identify contexts that need resetting
->
-> 2. Implemented fallback to HPD status method when no active VMIDs are
->    found, checking both pipe 0 and pipe 1 queues
->
-> 3. Extended the MES reset packet with:
->    - active_vmids bitmap
->    - connected_queue_index for pipe 0
->    - connected_queue_index_p1 for pipe 1
->
+On Mon, Aug 04, 2025 at 11:08:57AM -0400, Alex Deucher wrote:
+> On Mon, Aug 4, 2025 at 10:49 AM Dan Carpenter <dan.carpenter@linaro.org> wrote:
+> >
+> > On Mon, Aug 04, 2025 at 10:32:43AM -0400, Alex Deucher wrote:
+> > > On Sat, Aug 2, 2025 at 4:22 AM Ethan Carter Edwards
+> > > <ethan@ethancedwards.com> wrote:
+> > > >
+> > > > The repeated checks on grbm_soft_reset are unnecessary. Remove them.
+> > > >
+> > >
+> > > These are not NULL checks and they are necessary.  The code is
+> > > checking if any bits are set in that register.  If not, then we can
+> > > skip that code as there is nothing to do.
+> > >
+> >
+> > It's not a null check, but it is a nested check and it's a local
+> > variable so the patch is correct enough.  At this point we know that
+> > grbm_soft_reset can't be zero.
+> 
+> It can be 0 as far as I can see.  If none of the GRBM_STATUS bits are
+> set, then we never set any of the bits in grbm_soft_reset.
+> 
 
-Same comment as the gfx11 versions of these patches.
+You're missing the first check...
 
-Alex
+drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+  7657          if (grbm_soft_reset) {
+                    ^^^^^^^^^^^^^^^
+Checked.
 
-> Suggested-by: kyle-hai.chau <kyle-hai.chau@amd.com>
-> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/mes_v12_0.c | 51 ++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c b/drivers/gpu/drm/amd=
-/amdgpu/mes_v12_0.c
-> index 29d38aa1897e..579720695e9e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> @@ -885,6 +885,12 @@ static int mes_v12_0_detect_and_reset_hung_queues(st=
-ruct amdgpu_mes *mes,
->                                                   struct mes_detect_and_r=
-eset_queue_input *input)
->  {
->         union MESAPI__RESET mes_reset_queue_pkt;
-> +       struct amdgpu_device *adev =3D mes->adev;
-> +       uint32_t active_vmids =3D 0;
-> +       uint32_t connected_queue_index =3D 0;
-> +       uint32_t queue_status =3D 0;
-> +       uint32_t connected_queue_index_p1 =3D 0;
-> +       uint32_t queue_status_p1 =3D 0;
->         int pipe;
->
->         memset(&mes_reset_queue_pkt, 0, sizeof(mes_reset_queue_pkt));
-> @@ -898,6 +904,51 @@ static int mes_v12_0_detect_and_reset_hung_queues(st=
-ruct amdgpu_mes *mes,
->         mes_reset_queue_pkt.doorbell_offset_addr =3D
->                 mes->hung_queue_db_array_gpu_addr;
->
-> +       /* Add VMID detection for GFX queues */
-> +       if (input->queue_type =3D=3D AMDGPU_RING_TYPE_GFX) {
-> +               uint32_t cp_cntx_stat =3D RREG32_SOC15(GC, 0, regCP_CNTX_=
-STAT);
-> +               uint32_t cp_vmid, grbm_gfx_cntl;
-> +
-> +               /* Check active contexts in CP_CNTX_STAT */
-> +               for (uint32_t i =3D 0; i < 8; i++) {
-> +                       if ((cp_cntx_stat >> (0x14 + i)) & 0x1) {
-> +                               grbm_gfx_cntl =3D (i << 11);
-> +                               WREG32_SOC15(GC, 0, regGRBM_GFX_CNTL, grb=
-m_gfx_cntl);
-> +                               cp_vmid =3D RREG32_SOC15(GC, 0, regCP_CP_=
-VMID);
-> +                               active_vmids |=3D (1 << cp_vmid);
-> +                       }
-> +               }
-> +
-> +               /* Fallback to HPD status if no active VMIDs found */
-> +               if (active_vmids =3D=3D 0) {
-> +                       uint32_t hpd_status;
-> +
-> +                       /* Pipe 0 */
-> +                       WREG32_SOC15(GC, 0, regGRBM_GFX_CNTL, 0);
-> +                       hpd_status =3D RREG32_SOC15(GC, 0, regCP_GFX_HPD_=
-STATUS0);
-> +                       queue_status =3D hpd_status & 0x1F;
-> +                       connected_queue_index =3D (hpd_status & 0xE0) >> =
-5;
-> +
-> +                       /* Pipe 1 */
-> +                       WREG32_SOC15(GC, 0, regGRBM_GFX_CNTL, (1 << 6));
-> +                       hpd_status =3D RREG32_SOC15(GC, 0, regCP_GFX_HPD_=
-STATUS0);
-> +                       queue_status_p1 =3D hpd_status & 0x1F;
-> +                       connected_queue_index_p1 =3D (hpd_status & 0xE0) =
->> 5;
-> +               }
-> +
-> +               mes_reset_queue_pkt.active_vmids =3D active_vmids;
-> +               if (active_vmids =3D=3D 0) {
-> +                       if (queue_status !=3D 0) {
-> +                               mes_reset_queue_pkt.use_connected_queue_i=
-ndex =3D 1;
-> +                               mes_reset_queue_pkt.connected_queue_index=
- =3D connected_queue_index;
-> +                       }
-> +                       if (queue_status_p1 !=3D 0) {
-> +                               mes_reset_queue_pkt.use_connected_queue_i=
-ndex_p1 =3D 1;
-> +                               mes_reset_queue_pkt.connected_queue_index=
-_p1 =3D connected_queue_index_p1;
-> +                       }
-> +               }
-> +       }
-> +
->         if (input->detect_only)
->                 mes_reset_queue_pkt.hang_detect_only =3D 1;
->         else
-> --
-> 2.49.0
->
+  7658                  /* stop the rlc */
+  7659                  gfx_v10_0_rlc_stop(adev);
+  7660  
+  7661                  /* Disable GFX parsing/prefetching */
+  7662                  gfx_v10_0_cp_gfx_enable(adev, false);
+  7663  
+  7664                  /* Disable MEC parsing/prefetching */
+  7665                  gfx_v10_0_cp_compute_enable(adev, false);
+  7666  
+  7667                  if (grbm_soft_reset) {
+                            ^^^^^^^^^^^^^^^
+Unnecessary.
+
+  7668                          tmp = RREG32_SOC15(GC, 0, mmGRBM_SOFT_RESET);
+  7669                          tmp |= grbm_soft_reset;
+  7670                          dev_info(adev->dev, "GRBM_SOFT_RESET=0x%08X\n", tmp);
+  7671                          WREG32_SOC15(GC, 0, mmGRBM_SOFT_RESET, tmp);
+  7672                          tmp = RREG32_SOC15(GC, 0, mmGRBM_SOFT_RESET);
+  7673  
+  7674                          udelay(50);
+  7675  
+  7676                          tmp &= ~grbm_soft_reset;
+  7677                          WREG32_SOC15(GC, 0, mmGRBM_SOFT_RESET, tmp);
+  7678                          tmp = RREG32_SOC15(GC, 0, mmGRBM_SOFT_RESET);
+  7679                  }
+  7680  
+  7681                  /* Wait a little for things to settle down */
+  7682                  udelay(50);
+  7683          }
+  7684          return 0;
+
+regards,
+dan carpenter
+
