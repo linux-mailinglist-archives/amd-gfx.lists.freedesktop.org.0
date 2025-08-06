@@ -2,147 +2,157 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ABC3B1C6A2
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Aug 2025 15:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70161B1C6B0
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Aug 2025 15:17:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43FAD10E76C;
-	Wed,  6 Aug 2025 13:09:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 095F710E77B;
+	Wed,  6 Aug 2025 13:17:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="a8Uq/xA8";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="adxJZ7m1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2086.outbound.protection.outlook.com [40.107.244.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42AF010E76C
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Aug 2025 13:09:57 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2068.outbound.protection.outlook.com [40.107.101.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1C9610E77F;
+ Wed,  6 Aug 2025 13:17:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sNVv+u+7L7D07ChsQVbG1ItPQ9Cpo1BzXGhReNuoI3Cs64X74BfQM0QsolJgr8w9z66QfW2IpguaiCVA86vDvPJJbivZEhmjJFllIvbbkI1TbKHuUFJTZlIt2m9vt5pNE6DKvmwfCzuLKWYdqbog9+TXK+6XFPvLeiG30M8r0ViOSv5ST5o/Kg4sRfjHJq1Vh1ghJTErXZZ2Eg+9Zao6HSsSPditkhMed3pXZ6IGgNCELC5fsE0bRLwjodE24yoBCf+N4awVWcNr3SXAFQIVjpgd/oPBAdiR11FSzCSh11BRtWKMXqnCRsfQ+3tX6QGXgV1NFT5PRLN/trfzRwb6dA==
+ b=UCpAEQaGTObpXMDVR8VRprljkcnzl9P/sC21yv6q6FmKkZCznOvCAmxIDdyw/DQG27rwvhVYljXlmRQm13IYdDEJlSXEaR7Ona10DseYT/fx3BupQf4Ohkz9QsR1xIMWld4nkmlW9O2R4Rokjri76j//B9CDj+EJq+Ki6dswI6pAYVFUqmzYHOnBMn9HkVS6NNJg+Q6TXB+zWp89IdP1iykcTDBF2fgikH+EPyyA/o8pL4206KdrM384uRwh6glNO2aLZSs/iwx7ujVsjTfiBQhwbx2tz9F3YvLLXlfe0ctgCrLZlDmWPh7tIMIRW1/ogcAEDGUorlvdutR7iaUeAA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ls/1t4SDHNF6kP1B7NF8BcJ8zqQ2WLAfS8pzofHDNXI=;
- b=Wy8W39qxgYtTje+aPhW3xhgkIaVtLki7wYjK94UHU5BuUHVm0O3qOC/HvFvV0c0TTLUX0Ilnscmgry3G6z5ySuHd4ztqgES2dgzL0xACr/dfJl69Z24nkqLUIbmdeTxawsy0/TuRFm66uONT24FgFsmAG/orhlNS4mHwWqQflQe2UzRJrfrkite+lf6osIq843qo8pFlqruqJB019Oy11z6lWaOFa8COI9R4r+9SFxyBpY9mpS54WXIiS1cnVL/dw5dN1YhfqwoK/ZAPoFrJRA3D1OmnZGG3ErPSbDVBV7lBTD3J4tpH0E7YORCrjut3Cgmxc0NlSPS/EaTxdpAr3Q==
+ bh=AlY3MJpmStMAJBWMxjh8PRx/A6fiSbxuWSLcBmkK7d0=;
+ b=QrxudxTg7KVqj7LUNSDnNC9fkgaPw8/x5slnTJO1gey1k67YB1+1nEUF6Pz+AMx8a8fjQikZavNrBE4VfJ10vWGuPPgHjDaupYrRF+fGrWlKVfbYPp7dw2pZErTlfX/MT2MiT1JuabVpsXClmEsmbRrg+WHqdnCpAreqsPIZs1lz3yhlROZ8M5n9cYtF+peJKzuc7y88MyL3748ez4cUyz/ObUbFG/wdjNYpH3oBtIPUj1FwhVozTCgOm7XdOKN836hhJVWlnX32QLLcFNEjXBIvpNBEjv95YrWdEsYE4nQjG1VMApvlxlkDT9SEVh54vSual/7z8BQv6xTz03Yi9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ls/1t4SDHNF6kP1B7NF8BcJ8zqQ2WLAfS8pzofHDNXI=;
- b=a8Uq/xA8Hz0uJJS03ZtUVs9v0JRM+DmSdWuXpitAq0cSk3Vr4ePrqp3gjZijo5oPhcV5lAFtVcHewFr3qzJY6GGhIEJSMNihOGNSVlzU/7MuRmPkzalrsqUrtkr2gav8yY+GtoP2FobCotIu+HwX+/GzAmfL+/zUK6S9KsVImqo=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by LV8PR12MB9336.namprd12.prod.outlook.com (2603:10b6:408:208::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.15; Wed, 6 Aug
- 2025 13:09:54 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::c593:f43d:c798:e009]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::c593:f43d:c798:e009%7]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
- 13:09:54 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Min, Frank" <Frank.Min@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: Add PSP fw version check for fw reserve GFX
- command
-Thread-Topic: [PATCH] drm/amdgpu: Add PSP fw version check for fw reserve GFX
- command
-Thread-Index: AdwG0wC+py0ihZ1LSMOlNG6CWeWPuAAAFnCw
-Date: Wed, 6 Aug 2025 13:09:54 +0000
-Message-ID: <BN9PR12MB525795375DC3A7263AABF8C0FC2DA@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <PH7PR12MB69348D15141806A2D30FE097E92DA@PH7PR12MB6934.namprd12.prod.outlook.com>
-In-Reply-To: <PH7PR12MB69348D15141806A2D30FE097E92DA@PH7PR12MB6934.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-08-06T13:04:40.0000000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
+ bh=AlY3MJpmStMAJBWMxjh8PRx/A6fiSbxuWSLcBmkK7d0=;
+ b=adxJZ7m1Zo7Ju9lIY1LJ233GbmwuexXe0jtQC/w9aZv6IPsfZvC97kmtBZPi3l1m4vEtjWEQ2eQj6uL3Gu41m4Xbh7wOqC8d3qzb6n6xySNP1F5rq6VdxSzRzLjHjNZ9sqfqfZEeSV2Rnpp+dFlGNVD89R447TlJciG9OC8ukfU=
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|LV8PR12MB9336:EE_
-x-ms-office365-filtering-correlation-id: 3203e65c-14fb-4135-0fe6-08ddd4ea893b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|7053199007|8096899003|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?0zb/fekn/ct+F5piTFLAw6t4bnFiPIqxT7IhR8Y8paRQzWFUhwJUbPVzFPUK?=
- =?us-ascii?Q?FgSYtaR2lUndnovBv2A0ubpcU5lcjAlC+ntHNvhCH08d+GA6nJ3gcsNsnimQ?=
- =?us-ascii?Q?XKsWB2Gj6nMuMTMTw10BKYKxgvdr8OfW7S6zoxut0Vhj/MMmlknHbfJsbnG7?=
- =?us-ascii?Q?y6qvjzI11sTUERg7fmXwLtrVHTHYQgbAo1MyUe3eVM3eENb/xVw7YI6nGCxZ?=
- =?us-ascii?Q?HXtigEjYLnYW6qT9zSpU6xj2UjOwEfGEm4JM16d+L2zoWwmtrygAyy+pGT1w?=
- =?us-ascii?Q?xOAA6P8tJOITeS6zW6RbiVA6a+Z8v9wi8kslRRNyjEbaQqKrTBhHb4h/g63m?=
- =?us-ascii?Q?0gWpbnUKKt492w6oEPY0BDNFSuc+EUUOkpPJoRI4fsXXITZ+40D/5F8ctla5?=
- =?us-ascii?Q?TbfKjFYbnVGXdwM7P3akFFGF9novVAnuF3w4t1lSUwlacFn2PVL4DWhVhkBc?=
- =?us-ascii?Q?+pLqqrrffB91eyLQg26NhFjplHsbEa6afailu9NoH4Wr8gNZ1xYV+ptUR8yO?=
- =?us-ascii?Q?5tZT7lVdhrKQPAR7hTXeTwkGYm9sxfZW4osblnE6jngKj58cJAbB+KqawwtL?=
- =?us-ascii?Q?MchtAC1+SLcMyotfQy5/zhErGeGs0fgLzHxqIocKFtrhTMkw7UdCOurh9ljb?=
- =?us-ascii?Q?+unC3dUyqvz4WST3O64OJGh75sCw5uDduSmCW5IXy6TI4jnDOs/9bi5KHXgK?=
- =?us-ascii?Q?F8HAZJU0RO4I6XzZiqMt9+dHwSH95ZIQLRtoSHMhpbPEm1PgZL1Ca6l+8cZ+?=
- =?us-ascii?Q?xiFpuajfOQWLpflV+km2tM7YNjsjeb2UnyjsKWA0bF1TRg9XIGjn3SnUTTaH?=
- =?us-ascii?Q?McwUk50OWa+dg+i0Hywi8/T+ccFwAWZv80U8DvqQJ5c+KP7uk0g89d0FNOLO?=
- =?us-ascii?Q?eURyZFkSoCsASWJ1MptgiKDHB+82IubUxqVAhgTHzsMD4DrIwLO9pIYXTqYj?=
- =?us-ascii?Q?g+FO2uvIjlLWZ4Apgy4Z18GS4nf+R/MyOuguAjBkYwZ/2ARJk7zxTR6eo+Qb?=
- =?us-ascii?Q?D/zxJiVqjko/0FPKAbbYCgY6cyvO/qeqztkObWDZmHdTytmou62L9zXSYrXD?=
- =?us-ascii?Q?1qo4KkcIpLlqfTAqekaCMNyMk5pR1+33GAhj1Lu9b0B/KLMZ2C2NeXdaUML0?=
- =?us-ascii?Q?oXVKvrNBUPxzFgfF/eQovpPhGf1muiXSxYOLhqJ0hNO/MH6VPFNiX+PLaRVn?=
- =?us-ascii?Q?cFtptba6/z1C9hhBFoG1PrOvUxqpIeVF8eGoBVfdNu5bWJRtjdafblz90Bd0?=
- =?us-ascii?Q?e5124ULgLNsAxDDax5h8DzVv6/h6OhkOl5963r1aXXP6LVHpVk7dcDtYISm2?=
- =?us-ascii?Q?Tf70Fcaj/grCCtTrb5WUxhvfGOLv5g2wDLFhluzYsNy+UFLAjnrknkYUVLXV?=
- =?us-ascii?Q?+FzZ/bwbTB+LN1k1QjQRRDZRkP6xtGedbEwLEBM2W1GOHTwUtg+qjkhThy5A?=
- =?us-ascii?Q?aUpzjOErjvgXIRmtms/GGvTqmj0AxMdmSN4blNz35gG9+040cwZ1x+0xlHRN?=
- =?us-ascii?Q?A1tfL0ihTFiUKQg=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(7053199007)(8096899003)(38070700018);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?aieKK1Vy6e6ZrZ8ddO5a3bxhuISMNsz10SuBQaxCPdSWbg1+9akbRDGtVM7o?=
- =?us-ascii?Q?jgGRf0kdo46NA7MBoZkSHmO0avpzKKD9egm9oSkDBCp/sVPH5OR65ugae4F6?=
- =?us-ascii?Q?m3rjQYMust5Jrm4KQ5HeKcSKSds5iavllCZCjA6D3/xu88cV3Q2B1FoIAq9M?=
- =?us-ascii?Q?ck0XWsg3rZ+Hm0RS1eyTUiS+GXL4iW8X5UVrL3DM6uIAieNoZEa2zYFKZbD/?=
- =?us-ascii?Q?M9s1cwp+jmrfyT0YrR9RrUkLnL6Zc61MbwUGNGjzPBims7JYQAOdMmNYNlle?=
- =?us-ascii?Q?cRsBhewAzyVuhH6ZVscd9SSKM6GE+ZtxVbTBxnekwYDrQYCX0h6NBKFo/IFM?=
- =?us-ascii?Q?rc7Yd7G4PYWiYOZ0XJbxeIPmTdH06dvO1YW7cu8YvJaAaDEWycDfMC1asWZc?=
- =?us-ascii?Q?rUkXN0ppaAvNClIKN7BpM9UvtDi2OLaLHPFiKd4KIv9FVv2zZchjgAOpH3EP?=
- =?us-ascii?Q?TDX/oqZN872Ipk1u7c1UphDYpHWVz8x4iW5p4XMjtO/5OqYxsCCwpSgvMo5L?=
- =?us-ascii?Q?ceK6e4/tRzA9KEZVMtoU5jIYuji8dB1ArgdyXYrkirczXCmLqnf26UZAjCsj?=
- =?us-ascii?Q?hBaDez1DEHUJngxlFUsfXlTPsclUR+ZmR3LPVVVh0VYfSLqpH/COKKCrUZv9?=
- =?us-ascii?Q?xAgsW1r7BcqQJyhQdzE4GsgyB8xQIfyGFmt7t9ZCSylJDfGJa0usFX9pM/yK?=
- =?us-ascii?Q?eAzKEMht8AiGXUOWjLBJuupGc//4N85vZkf3hZcJuK18oNpufm8dWR1ezL8i?=
- =?us-ascii?Q?mUIOvpUAI/IC+bsqEerAFn7m1+xUSfu5xj2v70Wv2pl8IbOCzZKPn+bQmTlA?=
- =?us-ascii?Q?7XOA7Gw9LwmYF7Jj6pjZIu8dSiz3Z5PTOqQJq6VIqam+IHfJUpFG1fuDBUdw?=
- =?us-ascii?Q?lfnnCgNgYxbg0WMErQl4WhKg5aV94IT57Pdsezjc26IEW0VA8IY0eqQXhM+A?=
- =?us-ascii?Q?Z7T6wWQz8TA3v30SNQeGGA/Oi6DdQTe1bHN6zdBeUvgLBSKEg7QZ8fjH8GFZ?=
- =?us-ascii?Q?r6Quz++aTzOzkfDdKLg6hngJDifloipe4qYXUJjvlPGVj75hmPrm9isV3w1N?=
- =?us-ascii?Q?4rFwrxdolj+GbKYfxErJNeMUznWLVL0YUm6jZ6dapOEp2dPykOFVXp5yyLyv?=
- =?us-ascii?Q?OjBtIGWpCKDp4hGlbjtMyvXSrY4LF6b4CJbZVJy8X+tmRdpH7ObyfsEHV89v?=
- =?us-ascii?Q?Q63CVMpKD4F9oQYY764dcklvgk8j54oPqSDzP5RXqn/nHvUueZncmBbGDcoe?=
- =?us-ascii?Q?dJiDF8MzprESkbk5jY+yvpkSuwpnzdSB1eHV+mk+GeYIO09j3QgeUObu6lgD?=
- =?us-ascii?Q?kQOqYdBS8xchjjZfMhYizuSol0nH2+f96584/otI91muvkuSN4Li4LY9HeRU?=
- =?us-ascii?Q?RCFKwDUXWrxtxrWG6LtDXNTrjwOT1Qzgg83NBEY5ZSc6aUvaaZWq2GRbZk1m?=
- =?us-ascii?Q?6J99fJpIjuxPpdgCMCRBecEzPbP4yOQmobPW+YmiIPzOxrA83UIL/vMBeeCL?=
- =?us-ascii?Q?1S2/n1Yy/8cKy0ofLneJ6/+AlFHS84qv/rhg+CFmvmTXNCf7dalHxPUAoteI?=
- =?us-ascii?Q?XAHWD62SRiLwvFYMHX8=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_BN9PR12MB525795375DC3A7263AABF8C0FC2DABN9PR12MB5257namp_"
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CY8PR12MB7609.namprd12.prod.outlook.com (2603:10b6:930:99::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.13; Wed, 6 Aug
+ 2025 13:17:15 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8989.018; Wed, 6 Aug 2025
+ 13:17:14 +0000
+Message-ID: <ce732501-131d-420d-ad75-61ae987f51d0@amd.com>
+Date: Wed, 6 Aug 2025 15:17:09 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 0/6] amdgpu: Avoid powering on the dGPU on
+ vkEnumeratePhysicalDevices()
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+ Philipp Zabel <philipp.zabel@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ "Pelloux-Prayer, Pierre-Eric" <Pierre-eric.Pelloux-prayer@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20250731-b4-dont-wake-next-v1-0-e51bdc347fa3@gmail.com>
+ <601a40fd-e508-4e9d-8dd3-14329f3a637b@amd.com>
+ <41b37595c42e4f492704a31970936d52b96dae97.camel@pengutronix.de>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <41b37595c42e4f492704a31970936d52b96dae97.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0234.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e9::18) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY8PR12MB7609:EE_
+X-MS-Office365-Filtering-Correlation-Id: fa35d472-736a-4306-6e2d-08ddd4eb8f67
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?R2dkSkt0TzJNRGVLRU43OTlqQkFLS1N0WmFHbkRGOFQ4SEZtUEVyQncxNUJH?=
+ =?utf-8?B?Z0IwTGo1RWtTNDQrTmNNVzFvSmxXNHRJNTZ3U3JxQ1F2cm9RV2UxUGVwOHN0?=
+ =?utf-8?B?aHpERjhRRGRzS0M4bXpuWU9wdVJFUTBycU8xbUZkOG01dTNxRlllV0duaW8y?=
+ =?utf-8?B?MVphYzZPalU4UDUrb3FXdXRIdmtlV3J0Q1hzSzJzZXBXbDFMbHNUNjVNSUNS?=
+ =?utf-8?B?cTBFRWM4cmovcXRIWWZVdjNVODBjZUt1U25mTTNpN3VmeWpMc3ZBOEQ4TElE?=
+ =?utf-8?B?ZERzQUtoSjh6aytnS1RyQjBOZjRZNHMxS0xTZ1BDZXdhaElHcTExSXo2RFFK?=
+ =?utf-8?B?WmNBYnFFbm55enZrN0ltK0JHakFLWFpGakd5d1p2R2hBbHV4RXRtYm56ZCtr?=
+ =?utf-8?B?alhwYktKQXdvMzlyNGRURVZVNUdmS0V0VmYxRWN1VW9ZS3FxZDRubHpHQUFB?=
+ =?utf-8?B?NUpLb3BEaHVtcEhjLzU0WVVIZnREV2lJcWdDN2hMTlFHaWU4a2lYcnVLQUFY?=
+ =?utf-8?B?OGJ5Zml1Y3ZYNDcyZ3V0MkNYSGVoNDhxWHNmbnAxZ2E5VEtnQnkzd3QrNm1F?=
+ =?utf-8?B?dGxZT1FYODlUZ0VQNStPaVR5L2NTcFdJZTFBSjFxQyt4aTdSTUMzaW1KWEpq?=
+ =?utf-8?B?WnFwM2Rob0FzdEJLS1VkZSsrWStRdzdlc0Ezdk9NRGpYQ0NUd2NmT2tLT1hM?=
+ =?utf-8?B?TDBwNEd6YjZnUFFvaTRBQkxtMitZUEpYaWJ2c2l1QzhtZkhQWFpzanZNRWhT?=
+ =?utf-8?B?MFZhalJGc2RmM1BlMjZRcU9SUFhwRmVGay94L1JrVkwybjNrUVFFekJCMUNP?=
+ =?utf-8?B?REFvcjNZSU43R0FrcS85MjB1Y0VhN2o1YWRzZFRoRWNmTFBNVEJNT1pqSzIx?=
+ =?utf-8?B?RmFKdys1WkpubHljY1lBeXJCbDVpMzBtcnZzRGlNK29UUkdPUVFjc3A1ZzZm?=
+ =?utf-8?B?L3VOeDhmWUFGaFExalU4MFNsbi93TTRnWG1PWmM1aUJxVlE3aGNhVHkrS3Vh?=
+ =?utf-8?B?MnlJRXpXTEFmSTlFSzg4T2U2TnhJVnFCWjJ3VTQ2bi8ybkZLY1BwRlNsdDJh?=
+ =?utf-8?B?N3VzcE4rU0ZTUXVsTFd4RU5XNWNNUDNlRSsrS0l2dXkwSlZBTjZRV3B6VE0x?=
+ =?utf-8?B?amZZOFFiNEFyVXFpUERvVzZ4YXN5RWlRenV4bjhEek95ZnNUQW5zWVRhRklY?=
+ =?utf-8?B?N1lQSTJabERYUTRvT2FvSEhFVldsSXhsS2ZxMi9hdExuYmpwVnlBV1FZMlJj?=
+ =?utf-8?B?NEJtSTkyNTN6UFZxOUUrN0RJNmw0SDhFUGZablRWbStETlRtWjJMRE9wMnB0?=
+ =?utf-8?B?VEFmZUlUSDd3OW9VazEzZitTbkJjZ255WU5CSk5jRXU5L1FoM25yZi84QzJ3?=
+ =?utf-8?B?cGlCWWxlOHVEWUd1eWdSY1lGa2hCRnkydUM4RUJaNHVFdFpXMzgxRVVRS2c3?=
+ =?utf-8?B?bkdjY3hjRGV3L2hxelFkWVBLMmlBOXNKTjg4R2R0V2V3YUpqZnVPQm1McGNq?=
+ =?utf-8?B?dElueWhPb2FUZnRlZDBZbXlZeXFib29oNG0xZzNkbS9CVlZJVWpPVlplZmZq?=
+ =?utf-8?B?dDhqK3M0N0FuUjR2UndWUkE4SzlKSjgyRWlvOW9XRkxaR0JBcElyTmN1WFVl?=
+ =?utf-8?B?UzV5YjZmQTJMOE5CMEdFdGFVclpUY2I3UHdhSCtLMnJSNHBnY01sd29kaE1K?=
+ =?utf-8?B?SU1EcGVBQXl5Ym9sd1l2bWY3bG52TUMvUFV1b3l1dld6bVFERVRvTXQyS2Ur?=
+ =?utf-8?B?b0ZkV2JBYUp1OFNhMUxlSUxnL2hJWkxhYVhuSlRCMVJhMFRNWk9qTEJXRjdD?=
+ =?utf-8?B?NTFRU3NzalNOUFNpOEZwQ3krWllZdDNIVmpwbjFoTWdCZmE5cGowMVFRakNr?=
+ =?utf-8?Q?6CMtHL9HZr1pa?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SGtWQUs5alZJZkJaQjlKUTZOUjBrNWdvSWNHUUcyUUQ3VFBGS2hRRkNsWUJx?=
+ =?utf-8?B?dmxWOHlRU0VJTGR3bW4yNlBnbzFCaktudXpLTWxRR0tndEhNKzZsM0RyZldv?=
+ =?utf-8?B?WDNMSTN2M2xRRm40VlUvbGJLK0FXdkpCdTZ1NWF2SWxRYUxJdTJsSjJiRDVR?=
+ =?utf-8?B?QzdBaHF5akR6elRDZ2RQeFQ4S1dVeXhOVDA5cE1KMUxLUTJBQUl3dmFBL3pm?=
+ =?utf-8?B?cUZaT2pjYThtOEVuZ1FOQU1kUW52cTNQbENVT3ZTWEtCVHhiSmlqWUtOL1hN?=
+ =?utf-8?B?bjd6NktLVkphUWJ6ZG1iVkNvMnR3TjVrcy92eXJWU0hUYlhFQWRVUW5iUzYz?=
+ =?utf-8?B?eVFnaXZ2MlF2czU5TXd5bWZJRW53VDU5bHlMREpObEMzRVh4MytFelJFeFpw?=
+ =?utf-8?B?YXZDM2FsUFdjby9tK0xDaG94cTJHbitBMU5FRDF5MEh4dW14NWpTT3pSSzcv?=
+ =?utf-8?B?ek1NTmV2Vi9xUVRRdTd6OVlQeVhZZzQ1Y1B6SWJwVWtWY2xYdDFqYWpBWUhC?=
+ =?utf-8?B?Vk5QQzRQRjdZK1g4NUMyK3J1Y29PNlZOZk9DSHdDcHdUSEI4MmxkaEpFdmtl?=
+ =?utf-8?B?RzB6TFUxZUh5Uzl4TkhNV24wOGJnZzF4VVk0Y0Z4NVpCU3djZDJlYkVpWGRx?=
+ =?utf-8?B?MTZ5d25GWGNDUndlTUlBVHlBMGVSWE5WdEt5bzNNRzYrOGJlM3pzR256bldj?=
+ =?utf-8?B?L2NjUG1yWk9Lb0ZzQnNEclVPd2krckNiVzNHa1labDdpSERncFBVQXhGelN6?=
+ =?utf-8?B?VDN3RWNSVGNqVGdjU04rZzdJdDZIT0RYSkJtSGhPU1RXV3NEZzlMcWRpaC85?=
+ =?utf-8?B?WW5VM21KSVljQk5wY0w0YUlFc2EyWXgxN0JKQmVoc1l1L2trNmJBN0ZxVjBh?=
+ =?utf-8?B?RVkyTGJYeE5HT3VtZlN3MHNNVjcwZ3JPQmhrVXdrbDhKT0ZaS0d2MFNuM2FD?=
+ =?utf-8?B?RWV4NkNtMkp5U0ZtQkJwdEFab3JsckRrMFdkcGMydTE0akQzVWhucE5BazBM?=
+ =?utf-8?B?ZG5ISURtWUdiZ1ROVVpsWWNJOFFESWozNVE0R0pZMzU1aHo0ZEh2WTBLb3NW?=
+ =?utf-8?B?bXZRUnRlMnNQK2NKeHU2cVJNdktVaDBRVXdTM05IM2tyd21Sb1pLZU1SalVm?=
+ =?utf-8?B?TFV5TDl3VFJSTStxWG1QVC9CWGRKRTkzOTYvS2V5RVZkbFhVRjcrdWQ1Uk1J?=
+ =?utf-8?B?MTQ4U25tQmF5RzJXUGl1T0t4cXp0TzhlSGpBTHExQXRvSUpTSWc4eXdpak9H?=
+ =?utf-8?B?dGJCUDZQQmhwTnBGTy84U1lZN2FWT2Rwa28yZjFCWVgvY0FOeTRTTldJRTVS?=
+ =?utf-8?B?ZmtONHNrb1pXZTRLYVhabkkxNnR1Qm1NUWxSYXhicFlIQ3MwdUtPQnpwMzdI?=
+ =?utf-8?B?WmNzZ3lkQUk3SGJpSTVLVjVSdDJVbktlQnl0cHFmUDZjSHBudFdKN3BNTU5B?=
+ =?utf-8?B?NVNweVB1T1F5YUJ1RXBZQTlSMDgzVFNlbHRRNDhQKzY2Z0cxZzVIL0RKNTR0?=
+ =?utf-8?B?OVNQa0FZSjdQNlh2bEVKUUU4SWhQcWtCZ3RtcGxRcnRleTRBaGVlbU0xTHVt?=
+ =?utf-8?B?dmNBQi9BQlVybDVYdkhLZitGelV0Q3pTeHhhUTYzNHVxUVQzTlNzMHNtUUsw?=
+ =?utf-8?B?MkVOeTUvYzNJY3hYck01djlSV3VWbHBqNVI4eVpTQkRzaUYzeGVmREdDeEhR?=
+ =?utf-8?B?bFJOYmg0Z1UvMktIdjlvVi9JR1BjeVBvQmdCTnhsdnlBcWptdFlzT3NRVC9P?=
+ =?utf-8?B?NFI4MWU0OWk5N2ViWk5nZjgxQjY1R21xMGdnZ09wSUFTTjE2MU9ZWmh3OVZp?=
+ =?utf-8?B?Q3EvSFFJejl1WktDZTVKZXNPTmR1b0RwaEprWFFvalI5U0k5LzRpbU91bWFN?=
+ =?utf-8?B?STh5amF2aWNOLzNSdXJSYnhyVTJ2K2lSWkd3OE5JeFVkbXZxc3h3K2JSbU9u?=
+ =?utf-8?B?djNwbGtTV0FrYWNUdGcwb2FJS2xsQTJXem5GMXgxUzQ5SkRCR0tjRjhGYjlm?=
+ =?utf-8?B?OWJBNHpqdHNuR2x0TUZYSWpMMUlaSE9CN3prTEt0SDlQUWhpK1hDWjFIS1hw?=
+ =?utf-8?B?WE5yNHJyZGtjSGpnbVNuZ080Ry9DV2MzdExqUWZJcFE5YjZnRE96SmFhRFhv?=
+ =?utf-8?Q?BC9dJ0PS7vjyCL6EG5p0YiS0t?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa35d472-736a-4306-6e2d-08ddd4eb8f67
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3203e65c-14fb-4135-0fe6-08ddd4ea893b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2025 13:09:54.5885 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5TsFTzvGWzBmjSkOPm8/JyQdck/ulvPkSV0wQcU2LKC2RJDXohuw2Oi0gOsOmwiCitiPiriikOcL+RG/TvTPuA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9336
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2025 13:17:14.6912 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 107MWuntGa4n7F3i3W3hOZ9dMLJIkiE5WzVZEiJEjd4kTN0h4kybO02uc2+uGFlp
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7609
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,402 +167,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_BN9PR12MB525795375DC3A7263AABF8C0FC2DABN9PR12MB5257namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 06.08.25 12:15, Philipp Zabel wrote:
+> On Mi, 2025-08-06 at 10:58 +0200, Christian König wrote:
+>> On 31.07.25 07:36, Philipp Zabel wrote:
+>>> This is an attempt at fixing amd#2295 [1]:
+>>>
+>>>   On an AMD Rembrandt laptop with 680M iGPU and 6700S dGPU, calling
+>>>   vkEnumeratePhysicalDevices() wakes up the sleeping dGPU, even if all
+>>>   the application wants is to find and use the iGPU. This causes a delay
+>>>   of about 2 seconds on this system, followed by a few seconds of
+>>>   increased power draw until runtime PM turns the dGPU back off again.
+>>>
+>>> [1] https://gitlab.freedesktop.org/drm/amd/-/issues/2295
+>>>
+>>> Patch 1 avoids power up on some ioctls that don't need it.
+>>> Patch 2 avoids power up on open() by postponing fpriv initialization to
+>>> the first ioctl() that wakes up the dGPU.
+>>> Patches 3 and 4 add AMDGPU_INFO to the list of non-waking ioctls,
+>>> returning cached values for some queries.
+>>> Patch 5 works around an explicit register access from libdrm.
+>>> Patch 6 shorts out the syncobj ioctls while fpriv is still
+>>> uninitialized. This avoids waking up the dGPU during Vulkan syncobj
+>>> feature detection.
+>>
+>> This idea came up multiple times now but was never completed.
+>>
+>> IIRC Pierre-Eric last worked on it, it would probably be a good idea to dig up his patches from the mailing list.
+> 
+> Thank you, I wasn't aware of those patches [1]. Pierre-Eric did mention
+> them in https://gitlab.freedesktop.org/mesa/mesa/-/issues/13001, but I
+> didn't pick up on that back then.
+> 
+> [1] https://lore.kernel.org/all/20240618153003.146168-1-pierre-eric.pelloux-prayer@amd.com/
+> 
+> Is that the latest version?
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+I honestly don't know. @Pierre-Eric?
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+> It looks to me like the review stalled out
+> on a disagreement whether the GB_ADDR_CONFIG query should be a separate
+> ioctl or whether it should be added to drm_amdgpu_info_device. The
+> discussion was later continued at
+> https://gitlab.freedesktop.org/mesa/libdrm/-/merge_requests/368,
+> seemingly coming to the conclusion that keeping the register read (but
+> cached) is the way to go? I didn't find a newer series with that
+> implemented.
+
+Could be that Pierre-Eric dropped the work after that.
+
+But IIRC we already use a cached value for GB_ADDR_CONFIG because of GFXOFF.
 
 Regards,
-Hawking
-From: Min, Frank <Frank.Min@amd.com>
-Sent: Wednesday, August 6, 2025 21:07
-To: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@am=
-d.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: Add PSP fw version check for fw reserve GFX co=
-mmand
+Christian.
+
+> 
+>>>
+>>> regards
+>>> Philipp
+>>>
+>>> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+>>> ---
+>>> Alex Deucher (1):
+>>>       drm/amdgpu: don't wake up the GPU for some IOCTLs
+>>>
+>>> Philipp Zabel (5):
+>>>       drm/amdgpu: don't wake up the GPU when opening the device
+>>>       drm/amdgpu: don't query xclk in AMDGPU_INFO_DEV_INFO
+>>>       drm/amdgpu: don't wake up the GPU for some AMDGPU_INFO queries
+>>>       drm/amdgpu: don't wake up the GPU for mmGB_ADDR_CONFIG register read
+>>
+>> That is both unnecessary an insufficient. Unnecessary because we already have a mechanism to cache register values and insufficient because IIRC you need to add a bunch of more registers to the cached list.
+> 
+> This series was (just barely) sufficient for my purpose, which was only
+> to make vkEnumeratePhysicalDevices() not wake the dGPU on my Laptop.
+> I didn't realize there already was a caching mechanism in the lower
+> layers.
+> 
+>> See Pierre-Erics latest patch set, I think we already solved that but I'm not 100% sure.
+> 
+> If I found the correct version, it seems Sima's suggestion of pushing
+> runtime pm handling down from amdgpu_drm_ioctl into the amdgpu ioctl
+> callbacks [2] would be the best first next step?
+> 
+> [2] https://lore.kernel.org/amd-gfx/ZnvJHwnNAvDrRMVG@phenom.ffwll.local/
+> 
+> regards
+> Philipp
 
-
-[AMD Official Use Only - AMD Internal Distribution Only]
-
-
-From: Frank Min <Frank.Min@amd.com<mailto:Frank.Min@amd.com>>
-
-Date: Tue, 5 Aug 2025 22:30:54 +0800
-
-Subject: [PATCH] drm/amdgpu: Add PSP fw version check for fw reserve GFX
-
-command
-
-
-
-The fw reserved GFX command is only supported starting from PSP fw
-
-version 0x3a0e14 and 0x3b0e0d. Older versions do not support this command.
-
-
-
-Add a version guard to ensure the command is only used when the running
-
-PSP fw meets the minimum version requirement.
-
-
-
-This ensures backward compatibility and safe operation across fw
-
-revisions.
-
-
-
-Signed-off-by: Frank Min <Frank.Min@amd.com<mailto:Frank.Min@amd.com>>
-
----
-
-drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 19 ++++++++++++++++---
-
-1 file changed, 16 insertions(+), 3 deletions(-)
-
-
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_psp.c
-
-index 14121efb9d95..1acc1ffce31d 100644
-
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-
-@@ -1043,15 +1043,28 @@ int psp_update_fw_reservation(struct psp_context *p=
-sp)
-
-{
-
-        int ret;
-
-        uint64_t reserv_addr, reserv_addr_ext;
-
--       uint32_t reserv_size, reserv_size_ext;
-
-+       uint32_t reserv_size, reserv_size_ext, mp0_ip_ver;
-
-        struct amdgpu_device *adev =3D psp->adev;
-
-
-
-+       mp0_ip_ver =3D amdgpu_ip_version(adev, MP0_HWIP, 0);
-
-+
-
-        if (amdgpu_sriov_vf(psp->adev))
-
-                return 0;
-
-
-
--       if ((amdgpu_ip_version(adev, MP0_HWIP, 0) !=3D IP_VERSION(14, 0, 2)=
-) &&
-
--           (amdgpu_ip_version(adev, MP0_HWIP, 0) !=3D IP_VERSION(14, 0, 3)=
-))
-
-+       switch (mp0_ip_ver) {
-
-+       case IP_VERSION(14, 0, 2):
-
-+               if (adev->psp.sos.fw_version < 0x3b0e0d)
-
-+                       return 0;
-
-+               break;
-
-+
-
-+       case IP_VERSION(14, 0, 3):
-
-+               if (adev->psp.sos.fw_version < 0x3a0e14)
-
-+                       return 0;
-
-+               break;
-
-+
-
-+       default:
-
-                return 0;
-
-+       }
-
-
-
-        ret =3D psp_get_fw_reservation_info(psp, GFX_CMD_ID_FB_FW_RESERV_AD=
-DR, &reserv_addr, &reserv_size);
-
-        if (ret)
-
---
-
-2.43.0
-
---_000_BN9PR12MB525795375DC3A7263AABF8C0FC2DABN9PR12MB5257namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Aptos;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#467886;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	font-size:11.0pt;
-	font-family:"Arial",sans-serif;
-	mso-ligatures:standardcontextual;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Arial",sans-serif;}
-span.EmailStyle22
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
-break-word">
-<p style=3D"font-family:Calibri;font-size:10pt;color:#0000FF;margin:5pt;fon=
-t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
-[AMD Official Use Only - AMD Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif">Reviewed-by: Hawking Zhang &lt;Hawking.Zhang@amd.co=
-m&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif">Regards,<br>
-Hawking<o:p></o:p></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
-font-family:&quot;Calibri&quot;,sans-serif"> Min, Frank &lt;Frank.Min@amd.c=
-om&gt;
-<br>
-<b>Sent:</b> Wednesday, August 6, 2025 21:07<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org; Deucher, Alexander &lt;Alexander.=
-Deucher@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amdgpu: Add PSP fw version check for fw reserve=
- GFX command<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:5.0pt"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif;color:blue">[AMD Official Use Only - AMD Internal=
- Distribution Only]<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">From: Frank =
-Min &lt;<a href=3D"mailto:Frank.Min@amd.com">Frank.Min@amd.com</a>&gt;<o:p>=
-</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">Date: Tue, 5=
- Aug 2025 22:30:54 +0800<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">Subject: [PA=
-TCH] drm/amdgpu: Add PSP fw version check for fw reserve GFX<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">command<o:p>=
-</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">The fw reser=
-ved GFX command is only supported starting from PSP fw<o:p></o:p></span></p=
->
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">version 0x3a=
-0e14 and 0x3b0e0d. Older versions do not support this command.<o:p></o:p></=
-span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">Add a versio=
-n guard to ensure the command is only used when the running<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">PSP fw meets=
- the minimum version requirement.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">This ensures=
- backward compatibility and safe operation across fw<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">revisions.<o=
-:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">Signed-off-b=
-y: Frank Min &lt;<a href=3D"mailto:Frank.Min@amd.com">Frank.Min@amd.com</a>=
-&gt;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">---<o:p></o:=
-p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">drivers/gpu/=
-drm/amd/amdgpu/amdgpu_psp.c | 19 ++++++++++++++++---<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">1 file chang=
-ed, 16 insertions(+), 3 deletions(-)<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">diff --git a=
-/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgp=
-u_psp.c<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">index 14121e=
-fb9d95..1acc1ffce31d 100644<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">--- a/driver=
-s/gpu/drm/amd/amdgpu/amdgpu_psp.c<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+++ b/driver=
-s/gpu/drm/amd/amdgpu/amdgpu_psp.c<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">@@ -1043,15 =
-+1043,28 @@ int psp_update_fw_reservation(struct psp_context *psp)<o:p></o:=
-p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">{<o:p></o:p>=
-</span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t reserv_addr, reserv_addr_ext;<o:p><=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">-&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t reserv_size, reserv_size_ext;<o:p></o:p>=
-</span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t reserv_size, reserv_size_ext, mp0_ip_ver=
-;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D psp-&gt;adev;=
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; mp0_ip_ver =3D amdgpu_ip_version(adev, MP0_HWIP, =
-0);<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+<o:p></o:p>=
-</span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(psp-&gt;adev))<o:p></o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; return 0;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">-&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_ip_version(adev, MP0_HWIP, 0) !=3D IP=
-_VERSION(14, 0, 2)) &amp;&amp;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">-&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (amdgpu_ip_version(adev, =
-MP0_HWIP, 0) !=3D IP_VERSION(14, 0, 3)))<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; switch (mp0_ip_ver) {<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(14, 0, 2):<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i=
-f (adev-&gt;psp.sos.fw_version &lt; 0x3b0e0d)<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<o:p></o:p></span><=
-/p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b=
-reak;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+<o:p></o:p>=
-</span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(14, 0, 3):<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i=
-f (adev-&gt;psp.sos.fw_version &lt; 0x3a0e14)<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<o:p></o:p></span><=
-/p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b=
-reak;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+<o:p></o:p>=
-</span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; default:<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; return 0;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">+&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; }<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas"><o:p>&nbsp;<=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D psp_get_fw_reservation_info(psp, GFX=
-_CMD_ID_FB_FW_RESERV_ADDR, &amp;reserv_addr, &amp;reserv_size);<o:p></o:p><=
-/span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">--<o:p></o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:Consolas">2.43.0<o:p><=
-/o:p></span></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_BN9PR12MB525795375DC3A7263AABF8C0FC2DABN9PR12MB5257namp_--
