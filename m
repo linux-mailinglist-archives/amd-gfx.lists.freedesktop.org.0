@@ -2,60 +2,124 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E03CB1E34C
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 09:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE00B1D990
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 Aug 2025 16:01:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C882910E4D7;
-	Fri,  8 Aug 2025 07:32:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECD0010E855;
+	Thu,  7 Aug 2025 14:01:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="D7QTwNgN";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iFzoHies";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 15129 seconds by postgrey-1.36 at gabe;
- Thu, 07 Aug 2025 14:00:05 UTC
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
- by gabe.freedesktop.org (Postfix) with ESMTP id F25E010E857;
- Thu,  7 Aug 2025 14:00:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
- Content-Type; bh=9OMvaYlsQB9ei2gTa3pF2fpkA5fWBtdzVs9cRC7eYOU=;
- b=D7QTwNgNaOVe3GVLvX6AtSxJf5EqC4dpRGva/j5SLMNOAQ57kjYkgcwKSvTyDk
- UOtnjZy68TdNKh6FCGs8kzFRdcMBemiO5l3dMg80qj4rG70l0ZlQC7/Ni7VuGsnl
- 9qNA7doBwcY6UTk3IAB11qXC4vrbzf45zXgaWOXvppQTc=
-Received: from [192.168.124.10] (unknown [])
- by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id
- _____wAHFxRRsZRo5XRsAQ--.41128S2; 
- Thu, 07 Aug 2025 21:59:47 +0800 (CST)
-Message-ID: <ebff64f6-14dd-4f98-aac4-ad72a83db18b@163.com>
-Date: Thu, 7 Aug 2025 21:59:46 +0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2081.outbound.protection.outlook.com [40.107.93.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA61510E855
+ for <amd-gfx@lists.freedesktop.org>; Thu,  7 Aug 2025 14:01:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H1lihPmd1ibHv+vfSlTOmul7gFxDT0lbPYLZdyS1gkdU+R7Qn9dXgvXk2zu8wBtFfXJrQU2+CEFTAAXExyZX/1hcsnbWYnKNXuQp7tW03DD4uhsSTx93TMAwaIiU/xM3pGbYp8MR4QCqjFwCxkDaIUOfnCx/qn4iYCiq3P/l8rQrsYdjNtNc/onen3tIM92UMSBC9DAzIclK5LilZxMAGuacc7JROWQr9mHEQgYVG5fOgcVcVmVGvarO5BFJ77Xl9GmPc78krCydVrXjYMCulT0b32fUvc4dWi9usb6WQfrqIbGeowujTeiT7+8pbMb6ZiSFxK11d8KZqBEXbMfAJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qlOxP0cK/RUC8IJbHK9Guc8KayJ6pF1TCLSjNoQzSmM=;
+ b=eZJlxOABIHeR1Pq7XZIChTOqh0sh+fJ+ezNJBRD6qxs77Rtjs7CAHqH8zlDYOZir0vmo66xkHUMADHW6ElDnAgUzfFp6aHnzyHK0eMUpYujx4CK28FXozJdtCXsJrXL0ial1wI4/Ymbi0xxJWySIGPx9coijxJUG6yGjDUxT7St1ZTFKKWbR9WqY/x3tWJqi4Y7kXGpfzbNsht8Gf2LuFSijQdcE07f6WGLYzbO44U+IIAXNE4PNBoIJBZ+JX5FXDAGcT88N0T0HkMVKQK8j9a3n5seXupyTtWGb6leuegIVRpRMhtn9EjAu4ZeqQo2nZIoMz3MPC/fnH70VH0mQxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qlOxP0cK/RUC8IJbHK9Guc8KayJ6pF1TCLSjNoQzSmM=;
+ b=iFzoHieslTNEnbdGbIlytHUEE0FYUwMcubFlfGRmz/pLrVZq2wA7kI/+po82/50eNns3XLvlU1Zmyv9QTsSiVrJjInLyjeZyHaboIRMRtoDctnxf4ngFKUFu63gqjQn9bOjzqRc8C4Kd4nS2sot8XMvB0vlxLJYwuz/vgoXbiVI=
+Received: from BY3PR03CA0006.namprd03.prod.outlook.com (2603:10b6:a03:39a::11)
+ by DS7PR12MB5791.namprd12.prod.outlook.com (2603:10b6:8:76::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Thu, 7 Aug
+ 2025 14:01:08 +0000
+Received: from CY4PEPF0000EDD3.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a:cafe::63) by BY3PR03CA0006.outlook.office365.com
+ (2603:10b6:a03:39a::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.15 via Frontend Transport; Thu,
+ 7 Aug 2025 14:01:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000EDD3.mail.protection.outlook.com (10.167.241.199) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9009.8 via Frontend Transport; Thu, 7 Aug 2025 14:01:07 +0000
+Received: from fdavid-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 7 Aug
+ 2025 09:01:05 -0500
+From: David Francis <David.Francis@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <tvrtko.ursulin@igalia.com>, <Felix.Kuehling@amd.com>,
+ <David.YatSin@amd.com>, <Chris.Freehill@amd.com>, <Christian.Koenig@amd.com>, 
+ <dcostantino@meta.com>, <sruffell@meta.com>, <mripard@kernel.org>,
+ <tzimmermann@suse.de>, <Alexander.Deucher@amd.com>
+Subject: [PATCH v10] Add CRIU support for amdgpu dmabuf
+Date: Thu, 7 Aug 2025 10:00:48 -0400
+Message-ID: <20250807140051.2377470-1-David.Francis@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: skip disabling audio when device is unplugged
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sunil Khatri <sunil.khatri@amd.com>,
- Alexandre Demers <alexandre.f.demers@gmail.com>,
- Boyuan Zhang <boyuan.zhang@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Shixiong Ou <oushixiong@kylinos.cn>
-References: <20250807094719.56145-1-oushixiong1025@163.com>
- <9a632900-4ebb-40af-8bf8-bf55f8e25c7b@amd.com>
- <c6cc5a81-ed5a-474d-bd2f-29d1cfde34e2@163.com>
- <93561b1e-0410-4e21-804a-bcaa8f2585a7@amd.com>
-From: oushixiong <oushixiong1025@163.com>
-In-Reply-To: <93561b1e-0410-4e21-804a-bcaa8f2585a7@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wAHFxRRsZRo5XRsAQ--.41128S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZF1kJr1rWFyDAFyfGr4DJwb_yoWrWr1fpr
- 1rJ3WYkw4UZw4Uta1IvasrXFnYyay7W3WrurWxJr1fWayqyr95Xa48tF18uryDJrWq9F42
- q343Ary7ZFn0qF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U5DGOUUUUU=
-X-Originating-IP: [120.228.96.115]
-X-CM-SenderInfo: xrxvxxx0lr0wirqskqqrwthudrp/1tbiXBCiD2iUrr0pPAAAsb
-X-Mailman-Approved-At: Fri, 08 Aug 2025 07:32:07 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD3:EE_|DS7PR12MB5791:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1350a830-9a2a-456d-6f85-08ddd5badb39
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?B8NdiYtSvffAuOlmoA+puW9cqx6czeTjSJnNl958DnsxzvofHrGdXPCSQsga?=
+ =?us-ascii?Q?o4b1W98esGvqbrYU53yGlIxqbq1PXNUJYUQqQyRCUy23uppfnYdgb67lbYng?=
+ =?us-ascii?Q?GG1MLptVn/4p6i9VTrwj7Yei5Yit5+FxlvHrnNd3kl6YkOv4lklRQN2XNTEr?=
+ =?us-ascii?Q?Jzb0CDxkorD9J9z/V4LH/jmStjlN6nhMR39MMx+ViwBEWFURJE9WAkmmkQxn?=
+ =?us-ascii?Q?KAdB/Z391LAy1NX4/jceQQmBTalE2cLcb3mwiJUAHYZF2qwkG6E9ZxcN7qNe?=
+ =?us-ascii?Q?g6H3GcOENlC2Er8U5Ca3RU6HCZMZAZU7bbC4aCcOpPFoTQ6QDkT9FMZ6ikWI?=
+ =?us-ascii?Q?b+GiPVkpdAIhf6oe1DBdlt8gTk7VTjLnsPiDm2a0LXWqyyQhJR2OQS74fF8g?=
+ =?us-ascii?Q?1DNH3lCv4TOZ+WrsOyIfHAJL3rn4d00ol9I0IKNeKTxa+KaUzzB53bBPSKNi?=
+ =?us-ascii?Q?x3nLhO1zbFBDvMIIBdtyfbSly2pJmGD7jK3Z80EetF4GNw7ePqlOht1Nxdxl?=
+ =?us-ascii?Q?kpLnHKucZ3Nw8rx+9j8n2sIxE+CzIO29s1BaNRX4ZW68/tXfnaU7BuFpxtLK?=
+ =?us-ascii?Q?FELFdWcgvoFEPpE2a14m2ULzz2I0io9SEIgPN94iru840RN+7CX23MjlQ8Yc?=
+ =?us-ascii?Q?aSBwEF8nshRlTFs9AbE+IvlCnUARkVMB8+haQWMJcRZs/bwcu/ag4ApDvMV+?=
+ =?us-ascii?Q?mXmJRM2xa0m2ZH9/gAcmFaxwgqMr4VQzAhu0leYYEZKZ4DRgde7F/gkZaJ0n?=
+ =?us-ascii?Q?mRPpxCMezd1C8jo/dvlh5PFcPHd0mZIq4fDriobpVo2BTPGuBgNiBhslrwV0?=
+ =?us-ascii?Q?u2Dyr1/HuqHBOmyfJTtMOZqEAblxJGApsuCHIlxnlv4CBA9RgplGirPqdIS1?=
+ =?us-ascii?Q?fUAJ+ZJ5r0HSjoEputLIJwu7wnPBSWzQGccW6nG9VMj1Qof4CMR0X5LDJBii?=
+ =?us-ascii?Q?Ag9CC6rZhRiq3rf/WIHk1PD++rzSNu5hQHfaoVZzL3zizA5gswLxSQSNQpPZ?=
+ =?us-ascii?Q?tCq9MH90kKHl0VcGBlJK7Upw1N2bCfixT5p2asFZ1dgp1MuvEwmpTtQobm0R?=
+ =?us-ascii?Q?2+3iC8imi7ltxSL6hSO6dY/kFjSG0Nls6TU/Fd6Q6bgO8aLcYfb19DgQ6s74?=
+ =?us-ascii?Q?G/LPFJj3y8BVrrJeXsrM7gQQnqY7WM1IQ0swi11Qj14AM08phWBIJIkFivzW?=
+ =?us-ascii?Q?4wHuodPoqt3xI/fDS+AX3/a1REmucINZCpNDGQLwmEdsEM6Aa89RCAHjV8p9?=
+ =?us-ascii?Q?5oQWIeyNUiLbJXYpDnwzRWCJXbAFfqf5+ef++LtHqqvNWwX7Zwa+B5jAY/Px?=
+ =?us-ascii?Q?bCXUN/CIBpxkOfQ85HGtfqh98sQ/gB7IH+eKLIMwdhpwIGIR6w/5PbpnRyak?=
+ =?us-ascii?Q?QFzlnKFAIVxW/qNzk0aO3/lZo8z6BBZnj8ZzVWbo5k70PStsOCj4HS+JVU4w?=
+ =?us-ascii?Q?o/zp8mMexihF2ev7laA9PIy+OuNLENcvciFJdZ9kIipzZ0xUVPGDVuJwWHOT?=
+ =?us-ascii?Q?Ph7w8Mru/F0ZzI4mNyg61RlPvV+sKOVwjnw1AThpaW6fSkRXYW91H/ussQ?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2025 14:01:07.2668 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1350a830-9a2a-456d-6f85-08ddd5badb39
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD3.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5791
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,99 +134,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thanks, I get it.
+This patch series adds support for CRIU checkpointing of processes that
+share memory with the amdgpu dmabuf interface.
 
-Regards,
-Shixiong Ou
+This v10 moves the ioctls out of their own fie, and into amdgpu_gem.c
 
-在 2025/8/7 21:24, Christian König 写道:
-> On 07.08.25 15:01, oushixiong wrote:
->> Should we move audio disabling to hw_fini()?
-> Yes and when you look at the patch Alex pointed out that is pretty much exactly what it does.
->
-> So still good catch from your side, but a fix is already in the pipeline.
->
-> Regards,
-> Christian.
->
->> Regards,
->> Shixiong Ou.
->>
->>
->> 在 2025/8/7 18:03, Christian König 写道:
->>> On 07.08.25 11:47, oushixiong1025@163.com wrote:
->>>> From: Shixiong Ou <oushixiong@kylinos.cn>
->>>>
->>>> When Stopping lightdm and removing amdgpu driver are executed, the following
->>>> error is triggered probably:
->>>>
->>>> Unable to handle kernel paging request at virtual address 0000000000005e00
->>>> .....
->>>> [ 2] [T10084] Call trace:
->>>> [ 2] [T10084]  amdgpu_device_wreg.part.0+0x58/0x110 [amdgpu]
->>>> [ 2] [T10084]  amdgpu_device_wreg+0x20/0x38 [amdgpu]
->>>> [ 2] [T10084]  dce_v6_0_audio_endpt_wreg+0x64/0xd8 [amdgpu]
->>>> [ 2] [T10084]  dce_v6_0_sw_fini+0xa0/0x118 [amdgpu]
->>>> [ 2] [T10084]  amdgpu_device_ip_fini.isra.0+0xdc/0x1e8 [amdgpu]
->>>> [ 2] [T10084]  amdgpu_device_fini_sw+0x2c/0x220 [amdgpu]
->>>> [ 2] [T10084]  amdgpu_driver_release_kms+0x20/0x40 [amdgpu]
->>>> [ 2] [T10084]  devm_drm_dev_init_release+0x8c/0xc0 [drm]
->>>> [ 2] [T10084]  devm_action_release+0x18/0x28
->>>> [ 2] [T10084]  release_nodes+0x5c/0xc8
->>>> [ 2] [T10084]  devres_release_all+0xa0/0x130
->>>> [ 2] [T10084]  device_unbind_cleanup+0x1c/0x70
->>>> [ 2] [T10084]  device_release_driver_internal+0x1e4/0x228
->>>> [ 2] [T10084]  driver_detach+0x90/0x100
->>>> [ 2] [T10084]  bus_remove_driver+0x74/0x100
->>>> [ 2] [T10084]  driver_unregister+0x34/0x68
->>>> [ 2] [T10084]  pci_unregister_driver+0x24/0x108
->>>> [ 2] [T10084]  amdgpu_exit+0x1c/0x3270 [amdgpu]
->>>> [ 2] [T10084]  __do_sys_delete_module.constprop.0+0x1d0/0x330
->>>> [ 2] [T10084]  __arm64_sys_delete_module+0x18/0x28
->>>> [ 2] [T10084]  invoke_syscall+0x4c/0x120
->>>> [ 2] [T10084]  el0_svc_common.constprop.0+0xc4/0xf0
->>>> [ 2] [T10084]  do_el0_svc+0x24/0x38
->>>> [ 2] [T10084]  el0_svc+0x24/0x88
->>>> [ 2] [T10084]  el0t_64_sync_handler+0x134/0x150
->>>> [ 2] [T10084]  el0t_64_sync+0x14c/0x150
->>>> [ 2] [T10084] Code: f9401bf7 f9453e60 8b150000 d50332bf (b9000016)
->>>> [ 2] [T10084] ---[ end trace 0000000000000000 ]---
->>>>
->>>> The adev->rmmio has been unmmaped in amdgpu_device_fini_hw().
->>>>
->>>> So skip disabling audio when device is unplugged.
->>>>
->>>> Signed-off-by: Shixiong Ou <oushixiong@kylinos.cn>
->>>> ---
->>>>    drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 7 +++++--
->>>>    1 file changed, 5 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
->>>> index 276c025c4c03..48b29990da7f 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
->>>> @@ -23,6 +23,7 @@
->>>>      #include <linux/pci.h>
->>>>    +#include <drm/drm_drv.h>
->>>>    #include <drm/drm_edid.h>
->>>>    #include <drm/drm_fourcc.h>
->>>>    #include <drm/drm_modeset_helper.h>
->>>> @@ -1459,8 +1460,10 @@ static void dce_v6_0_audio_fini(struct amdgpu_device *adev)
->>>>        if (!adev->mode_info.audio.enabled)
->>>>            return;
->>>>    -    for (i = 0; i < adev->mode_info.audio.num_pins; i++)
->>>> -        dce_v6_0_audio_enable(adev, &adev->mode_info.audio.pin[i], false);
->>>> +    if (!drm_dev_is_unplugged(adev_to_drm(adev))) {
->>> Good catch, but that looks like a workaround for something done in the wrong place.
->>>
->>> A *_sw_fini() function should not enable/disable HW.
->>>
->>> Regards,
->>> Christian.
->>>
->>>> +        for (i = 0; i < adev->mode_info.audio.num_pins; i++)
->>>> +            dce_v6_0_audio_enable(adev, &adev->mode_info.audio.pin[i], false);
->>>> +    }
->>>>          adev->mode_info.audio.enabled = false;
->>>>    }
+Accompanying CRIU changes:
+https://github.com/checkpoint-restore/criu/pull/2613
+
 
