@@ -2,126 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84B8BB1D993
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Aug 2025 16:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A89D4B1E34B
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 09:32:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02DCF10E85D;
-	Thu,  7 Aug 2025 14:01:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A385210E4D1;
+	Fri,  8 Aug 2025 07:32:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ow8Gi/G0";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="UulJonZ9";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="65Jy9w0g";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2046.outbound.protection.outlook.com [40.107.92.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1134D10E858
- for <amd-gfx@lists.freedesktop.org>; Thu,  7 Aug 2025 14:01:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GUUmEqixn4mP7kjy0c7tdo84NvobFk5hMsI/as1kfPU/sLsnZVQMOSEt/3Q7X07wVIn77K+tiolCAv8yHa+6QC3amAOflLt5yExDZhz6/ZIZRJpRSjYXDTqoZrzBLS1UBRQtCHlGbsg8q37t0TIarDO5cZs2FdxXr0TcFqtYpiV1uwcgK32Utt7betKEgQOaqYKbaoq5E8f+r4qCTZJNbCfcys3cIZ5b7qnGECZNI2mXCP/ArUhCudBhKAe6EhMmpexBUUstjkp5OBF1k5yYdJCkhavWNtKIDU6SPP4POMdhs7LCojni4n0pW0Knyv43bJvaY+sl60mXZBcQ3qB1lw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uNwtEsxj6l/tgLpVAYjhf8yRSWDgsrpZCAh9++qajCE=;
- b=CBfUx5pYSfrxliKCbADpX1CTT/XwKKrkR3AVAC+0vYIPEu6pkYhCKB2G413mtkyYYETcso4wJhnXEhkWdUmuYdfpO7g7F+uBKLZqYbB0nXTQz08lEJ14deznZpc4o7St/E6TSmC3D1Yjio6TbwLUliDbfsYUYFhF0WgjbjUrIBWtwZuVh6J4b9EQBKBjQNh2eq2IHWHPtSda3/PQk5fVY008jFEOTWfLRMRSUH783XoQIay9AcWYfRpVItJaEVSJS3Ipt596rOgRRJU0AGzVP/amgPwo9h9+8WZIgk8XjhBHOKeiv+d7O4a+HgMjx9BXe4R3iWcU67HRxfsxG997xw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uNwtEsxj6l/tgLpVAYjhf8yRSWDgsrpZCAh9++qajCE=;
- b=Ow8Gi/G0m0zIjtrO72GxsIYWlIoCwRt2ghWOLli7WDqLrlmCSHv990F01J4Ql6Aux7gC78foTbLA3pPQKD6Z5Ld32ZQWbn0fnT7COUS1JO+4lCnMhaiNEQy/yPNAAUAtx2Zv1jhJkn17GOK2vYBd1yNI4UWoBUBRd/VX8vh22g0=
-Received: from BY3PR03CA0028.namprd03.prod.outlook.com (2603:10b6:a03:39a::33)
- by DM4PR12MB6447.namprd12.prod.outlook.com (2603:10b6:8:bf::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.17; Thu, 7 Aug
- 2025 14:01:12 +0000
-Received: from CY4PEPF0000EDD3.namprd03.prod.outlook.com
- (2603:10b6:a03:39a:cafe::97) by BY3PR03CA0028.outlook.office365.com
- (2603:10b6:a03:39a::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.15 via Frontend Transport; Thu,
- 7 Aug 2025 14:01:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000EDD3.mail.protection.outlook.com (10.167.241.199) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9009.8 via Frontend Transport; Thu, 7 Aug 2025 14:01:12 +0000
-Received: from fdavid-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 7 Aug
- 2025 09:01:11 -0500
-From: David Francis <David.Francis@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <tvrtko.ursulin@igalia.com>, <Felix.Kuehling@amd.com>,
- <David.YatSin@amd.com>, <Chris.Freehill@amd.com>, <Christian.Koenig@amd.com>, 
- <dcostantino@meta.com>, <sruffell@meta.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <Alexander.Deucher@amd.com>, David Francis
- <David.Francis@amd.com>, Felix Kuehling <felix.kuehling@amd.com>
-Subject: [PATCH v10 3/3] drm/amdgpu: Allow kfd CRIU with no buffer objects
-Date: Thu, 7 Aug 2025 10:00:51 -0400
-Message-ID: <20250807140051.2377470-4-David.Francis@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250807140051.2377470-1-David.Francis@amd.com>
-References: <20250807140051.2377470-1-David.Francis@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD3:EE_|DM4PR12MB6447:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ebf6cec-e825-46e1-7ea2-08ddd5bade16
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZRZ/UqIOTWceuyAkULVjNp7u/Hzpx++g1b240RgKhvAyBL/QiSlXfwu0palw?=
- =?us-ascii?Q?3pTcQ3b+faIcUqS6C4vdIa42cpeEYMKIpLEgebpehWaoRxVSz91En+HMMqH5?=
- =?us-ascii?Q?EQkxzoWn6W8W9Kx4Ve66uB4TWTpcGnI31qJgWjxfuHMXgem4HBa7f+Q/jtm2?=
- =?us-ascii?Q?8+/edRq5Fd2VywQ70EzuG11GKx3aaSwCZdVVKJoLf53jBGQkFy03qcLNykj/?=
- =?us-ascii?Q?1sl+ksWHmfOc9bb01yyWiiStQ54J03wuCJOwaNlbB2aSXbYmj8iAi8ibvtiX?=
- =?us-ascii?Q?G+MjWxqR9rMhQhDlTmXY4Cme30Ng9WZXNYVYVYo5KQ+FK+g4LcbaPm3ZZWdt?=
- =?us-ascii?Q?5SPOdsQ11Cj0lPpeqYdZZngisQ4yLlaN9p8t/AkYv2e7ySZCbf6IfEN1GLCy?=
- =?us-ascii?Q?CT/cz//EwzQ+mE8RRD6Dom0GyA5siRc8ZHwWrhUMCTtXmLEb4o/Vbu0nL3Rv?=
- =?us-ascii?Q?f7Fsq8c0qn/e/atRjuru2/u6PkvS+vtEUyqSB3k28AQhR/B45QBO+VK8ERs7?=
- =?us-ascii?Q?o+RKLbwyeJTK4jMdSFl8tGAaTWxRGXlKQqCQD0EYylif8EMNy+X4eP5LPM8i?=
- =?us-ascii?Q?Jd+AWGGFvi5HzqYEkIBXuACQ1SZotb60Mc7Nb8DBF0KbulLssDSc2FTO03Dc?=
- =?us-ascii?Q?GpuTMbVctkSCWt2uhR0ldn5docP4foJP0h6xkankjV3+sITpfUW3AfP261h1?=
- =?us-ascii?Q?fnfbt5c2oJ/gWqdP25jQCkD4Ik76VRq41yzdCU+90EVXROdnOsLrRRlnOO/9?=
- =?us-ascii?Q?/gELRmYqvZt7EJgvOK1VJMRSiywerUtFHKwjFZWil3bOFBG+qltdbHHPeyZM?=
- =?us-ascii?Q?obmnejuxIUV/lgEngoyDALBr/5JQXkfPrOSXqbn0K51fjVmxwblgM00o+B08?=
- =?us-ascii?Q?Ir0GXiYt+AbyKy5lT9ggJ/EECHdaZ+EY+nPivtVrnhlLpHECGcFhJU5pTT1a?=
- =?us-ascii?Q?JfAHY+IYzu7bsmcAleLGH+gDGB5xdLuvB6hkDM2urknQxi9uU6HCYykwh350?=
- =?us-ascii?Q?dqXY5TXN5GDf+jLP4CDCNFT+92lvlP0tt3ZbO8lxsN5DJD52hs18ZrH937CY?=
- =?us-ascii?Q?MyazyJOwu3N81Z072PG//a0XyOWhw6TaBCKaYDuRO4m8TY6/WXuf3g88H2g8?=
- =?us-ascii?Q?16/lrv2vcsz2S2yJH/3u2Fju0MWDo4toncPlVoIpcn4zsukHjditQv/8z/uC?=
- =?us-ascii?Q?y1KGgtVzwf82dxkaU21/CGNm7IWkOHDLihBIe2Y9Cb13wacz0TnA1aHJ0N2H?=
- =?us-ascii?Q?YGp0EBWI7SSkCnWm+DPX6cKfpGCjRF7KfoP8u/HJiNVhnNQ0qxgG+VcqogwU?=
- =?us-ascii?Q?I70fsWoM/6ZHRQrRw0tAoRcjuK9e3N40eTpl2z0W2rDDm6EJzKSpDDwUtpQX?=
- =?us-ascii?Q?4256uEHYBzlZeGR7l9FZ4ln0X9tkRiWE7WU6/tJxj2R2XY1xmsDni7zDjPHJ?=
- =?us-ascii?Q?u1oLV8dBMu9wyc1NJS3hscvzjr+/u2Lk4GHI19az0HSfdq3QErcKBjnwhXh9?=
- =?us-ascii?Q?/h8wkFZOkLVsIxkZtuxCXFt74wgj+UZDcHbw?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2025 14:01:12.2245 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ebf6cec-e825-46e1-7ea2-08ddd5bade16
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD3.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6447
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+ [85.215.255.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EEBA10E860;
+ Thu,  7 Aug 2025 14:12:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1754575863; cv=none;
+ d=strato.com; s=strato-dkim-0002;
+ b=GTCLAUlx1j4sBDnHpJvrTICj2PTgKxHOjoaajiTXmLvjhuds+R8gJXCKNYqQiHN0Vy
+ beKK9gS/xenWogwmK+/hzmRRjyCZGFjP7mDnN91buCiLzafQeAyEUeqAQwIoJpZNEZXp
+ cXDB6EOpR6ty6vXp1nPJkft+9jIpt+3xLAUQtAPVx0XaVWi8oGTHuPFEBU18IWwdxReR
+ y495tDexQKj6+gP1N6OjDvOXNkGMt90okplWfFQDxpCKlCerWupmcvasW00p8dy/dduV
+ E9t8l8mO8cQ0NIvgdDxlog1AtCgZp7X2iZmBIo3WEZZlyEFJU3rhAO03S7T+UAaOiK/k
+ FMJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1754575863;
+ s=strato-dkim-0002; d=strato.com;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=Fi7s1UkIuqw0mEFnNe9HGhSrdVwj64AYbKwdHjWG7vc=;
+ b=cR+kvaL/7IOKB0cVpcBkDPK7J7nFcEiQKjdbHNkWejL+LFmp3Q9ccLBZStDtMAnqQ1
+ Ol4vYPSh8TdEatPkfaYSzzs+xDvRpNfpzn4iY5hI2TgFH5vve1al3sjCpZqUVrbZgHNa
+ ZTgUH/9dO9xXjHKfEloykPfbrdHxfghKwZvRI1oitdPM3T0L/j9rfU5kBBanudRpGI3N
+ +mtBgqTGuMXFEn8weUXz9EQ4Edd6+MxR+akVevf2ExF1ophmqfoflC9AKx2khA74sSht
+ OkB0ePWpGTrU5U2gU5p7CdBRjU3SgE5JqtGIqBbHv1rJFUhJ+4UBHyyAB3NbykRFxkp3
+ SFaA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1754575863;
+ s=strato-dkim-0002; d=xenosoft.de;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=Fi7s1UkIuqw0mEFnNe9HGhSrdVwj64AYbKwdHjWG7vc=;
+ b=UulJonZ9uLMI0KbTW7Z/so0pOQkVcT7+lq7kOLPxv5OeEg8ctnXTiIMTQqXgHsfWiT
+ SANLS+DXhUgltTssh/GPAtdqcPZa1gjfTfw+bJn5a3kLhXITVH/SmOHra0gyGJjtc+sB
+ rg4/vWk393q1J6XkRWa9ABhhu4vXbYte1B4Psd6sOGXpLD/0wmy6r3/lXhCms52HYvXp
+ o4As5ThMZQzSQSoXezL+xINm0no8FuLFDHFkacBpDz2kUawnRoPOhLs1tJee509uoSY7
+ rP3mfrI76kftccAiZj9a87PP/pKQUvrdpKl4TH5XFLzdHsVVh6j6ThmL3l6xW/2iM2im
+ wryA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1754575863;
+ s=strato-dkim-0003; d=xenosoft.de;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=Fi7s1UkIuqw0mEFnNe9HGhSrdVwj64AYbKwdHjWG7vc=;
+ b=65Jy9w0gDriyzZ63kan5GMCxTcAcE3TftfWC+mymZMUey79YbuTAspvWg2pZPPX21/
+ q+CAhhT2uiO15uE8OABw==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5m2s3jFWinvWQAExapN1WKXrI0REZC0pX5emA=="
+Received: from smtpclient.apple by smtp.strato.de (RZmta 52.1.2 AUTH)
+ with ESMTPSA id e6066c177EB34EZ
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+ (Client did not present a certificate);
+ Thu, 7 Aug 2025 16:11:03 +0200 (CEST)
+Content-Type: multipart/alternative;
+ boundary=Apple-Mail-12B86B8C-A310-4918-BF15-0E45D471C480
+Content-Transfer-Encoding: 7bit
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+Mime-Version: 1.0 (1.0)
+Subject: radeon_fbdev_river_fbdev: failed to initialize framebuffer and setup
+ emulation
+Date: Thu, 7 Aug 2025 16:10:52 +0200
+Message-Id: <DA680712-472D-46BE-A2DF-9E923A4E6EE1@xenosoft.de>
+References: <CAHkrCmHKSR+3gCjs7E=Qnini_CCEa+wjx9gWNPMjSWWFOScQtw@mail.gmail.com>
+Cc: Alex Deucher <alexdeucher@gmail.com>, ville.syrjala@linux.intel.com,
+ Jeff Johnson <quic_jjohnson@quicinc.com>,
+ Darren Stevens <darren@stevens-zone.net>, hypexed@yahoo.com.au,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Christian Zigotzky <info@xenosoft.de>,
+ =?utf-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ "R.T.Dickinson" <rtd2@xtra.co.nz>, mario.limonciello@amd.com,
+ bhelgaas@google.com, benato.denis96@gmail.com, Yijun_Shen@Dell.com,
+ david.perry@amd.com, rafael@kernel.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <CAHkrCmHKSR+3gCjs7E=Qnini_CCEa+wjx9gWNPMjSWWFOScQtw@mail.gmail.com>
+To: mad skateman <madskateman@gmail.com>
+X-Mailer: iPhone Mail (22G86)
+X-Mailman-Approved-At: Fri, 08 Aug 2025 07:32:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,32 +103,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The kfd CRIU checkpoint ioctl would return an error if trying
-to checkpoint a process with no kfd buffer objects.
 
-This is a normal case and should not be an error.
+--Apple-Mail-12B86B8C-A310-4918-BF15-0E45D471C480
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
-Signed-off-by: David Francis <David.Francis@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"><div dir=3D"ltr">I bisecte=
+d today.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">git clone https://=
+gitlab.freedesktop.org/drm/kernel a</div><div dir=3D"ltr"><br></div><div dir=
+=3D"ltr">git bisect start</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">g=
+it bisect good 2f29b5c231011b94007d2c8a6d793992f2275db1</div><div dir=3D"ltr=
+">(Good: video: screen_info: Relocate framebuffers behind PCI bridges)</div>=
+<div dir=3D"ltr"><br></div><div dir=3D"ltr">git bisect bad f62408efc8669b825=
+41295a4611494c8c8c52684</div><div dir=3D"ltr">(Bad: drm/xe/vf: Disable CSC s=
+upport on VF)</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">4d4c10f763d78=
+08fbade28d83d237411603bca05 is the first bad commit</div><div dir=3D"ltr">co=
+mmit 4d4c10f763d7808fbade28d83d237411603bca05</div><div dir=3D"ltr">Author: M=
+ario Limonciello &lt;mario.limonciello@amd.com&gt;</div><div dir=3D"ltr">Dat=
+e: &nbsp; Wed Apr 23 23:31:32 2025 -0500</div><div dir=3D"ltr"><br></div><di=
+v dir=3D"ltr">&nbsp; &nbsp; PCI: Explicitly put devices into D0 when initial=
+izing</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">&nbsp; &nbsp; AMD BIO=
+S team has root caused an issue that NVMe storage failed to come</div><div d=
+ir=3D"ltr">&nbsp; &nbsp; back from suspend to a lack of a call to _REG when N=
+VMe device was probed.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">&nbs=
+p; &nbsp; 112a7f9c8edbf ("PCI/ACPI: Call _REG when transitioning D-states") a=
+dded</div><div dir=3D"ltr">&nbsp; &nbsp; support for calling _REG when trans=
+itioning D-states, but this only works</div><div dir=3D"ltr">&nbsp; &nbsp; i=
+f the device actually "transitions" D-states.</div><div dir=3D"ltr"><br></di=
+v><div dir=3D"ltr">&nbsp; &nbsp; 967577b062417 ("PCI/PM: Keep runtime PM ena=
+bled for unbound PCI devices")</div><div dir=3D"ltr">&nbsp; &nbsp; added sup=
+port for runtime PM on PCI devices, but never actually</div><div dir=3D"ltr"=
+>&nbsp; &nbsp; 'explicitly' sets the device to D0.</div><div dir=3D"ltr"><br=
+></div><div dir=3D"ltr">&nbsp; &nbsp; To make sure that devices are in D0 an=
+d that platform methods such as</div><div dir=3D"ltr">&nbsp; &nbsp; _REG are=
+ called, explicitly set all devices into D0 during initialization.</div><div=
+ dir=3D"ltr"><br></div><div dir=3D"ltr">&nbsp; &nbsp; Fixes: 967577b062417 (=
+"PCI/PM: Keep runtime PM enabled for unbound PCI devices")</div><div dir=3D"=
+ltr">&nbsp; &nbsp; Signed-off-by: Mario Limonciello &lt;mario.limonciello@am=
+d.com&gt;</div><div dir=3D"ltr">&nbsp; &nbsp; Signed-off-by: Bjorn Helgaas &=
+lt;bhelgaas@google.com&gt;</div><div dir=3D"ltr">&nbsp; &nbsp; Tested-by: De=
+nis Benato &lt;benato.denis96@gmail.com&gt;</div><div dir=3D"ltr">&nbsp; &nb=
+sp; Tested-By: Yijun Shen &lt;Yijun_Shen@Dell.com&gt;</div><div dir=3D"ltr">=
+&nbsp; &nbsp; Tested-By: David Perry &lt;david.perry@amd.com&gt;</div><div d=
+ir=3D"ltr">&nbsp; &nbsp; Reviewed-by: Rafael J. Wysocki &lt;rafael@kernel.or=
+g&gt;</div><div dir=3D"ltr">&nbsp; &nbsp; Link: https://patch.msgid.link/202=
+50424043232.1848107-1-superm1@kernel.org</div><div dir=3D"ltr"><br></div><di=
+v dir=3D"ltr">&nbsp;drivers/pci/pci-driver.c | &nbsp;6 ------</div><div dir=3D=
+"ltr">&nbsp;drivers/pci/pci.c &nbsp; &nbsp; &nbsp; &nbsp;| 13 ++++++++++---<=
+/div><div dir=3D"ltr">&nbsp;drivers/pci/pci.h &nbsp; &nbsp; &nbsp; &nbsp;| &=
+nbsp;1 +</div><div dir=3D"ltr">&nbsp;3 files changed, 11 insertions(+), 9 de=
+letions(-)</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">I bisected with a=
+ ATi Radeon 7000 / VE (-device ati-vga,model=3Drv100) :-)</div></div><div di=
+r=3D"ltr"><br><blockquote type=3D"cite">On 04 August 2025 at 06:26 pm, mad s=
+kateman &lt;madskateman@gmail.com&gt; wrote:<br><br></blockquote></div><bloc=
+kquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"auto">I am using t=
+he R580 chip which is the Radeon X1950 XT.<div dir=3D"auto"><br></div><div d=
+ir=3D"auto">The board i am using is a T1042 PowerPC based one with e5500 cor=
+e.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I also lost the abilit=
+y to start Xorg and therefore just a blank screen.</div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto">Dave</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div></di=
+v><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">Op ma 4 aug 2025, 18:04 schreef Christian Zigotzky &lt;<a h=
+ref=3D"mailto:chzigotzky@xenosoft.de">chzigotzky@xenosoft.de</a>&gt;:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex"><br>
+On 04 August 2025 at 04:42 pm, Alex Deucher wrote:<br>
+&gt; On Sun, Aug 3, 2025 at 11:28=E2=80=AFAM Christian Zigotzky<br>
+&gt; &lt;<a href=3D"mailto:chzigotzky@xenosoft.de" target=3D"_blank" rel=3D"=
+noreferrer">chzigotzky@xenosoft.de</a>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; Hello,<br>
+&gt;&gt;<br>
+&gt;&gt; I have the same issue on another machine either. Blank screen durin=
+g the<br>
+&gt;&gt; boot. The Radeon graphics framebuffer device doesn't work anymore.<=
+br>
+&gt;&gt;<br>
+&gt;&gt; Here is the modifed code from the DRM updates (drm-next-2025-07-30)=
+:<br>
+&gt;&gt;<br>
+&gt;&gt; -<br>
+&gt;&gt; <a href=3D"https://web.git.kernel.org/pub/scm/linux/kernel/git/torv=
+alds/linux.git/diff/drivers/gpu/drm/radeon/radeon_fbdev.c?id=3D260f6f4fda93c=
+8485c8037865c941b42b9cba5d2" rel=3D"noreferrer noreferrer" target=3D"_blank"=
+>https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff=
+/drivers/gpu/drm/radeon/radeon_fbdev.c?id=3D260f6f4fda93c8485c8037865c941b42=
+b9cba5d2</a><br>
+&gt;&gt; -<br>
+&gt;&gt; <a href=3D"https://web.git.kernel.org/pub/scm/linux/kernel/git/torv=
+alds/linux.git/diff/drivers/gpu/drm/radeon/radeon_drv.c?id=3D260f6f4fda93c84=
+85c8037865c941b42b9cba5d2" rel=3D"noreferrer noreferrer" target=3D"_blank">h=
+ttps://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/d=
+rivers/gpu/drm/radeon/radeon_drv.c?id=3D260f6f4fda93c8485c8037865c941b42b9cb=
+a5d2</a><br>
+&gt; <br>
+&gt; This change just bumps the driver version it shouldn't affect the fbdev=
+.<br>
+&gt; <br>
+&gt;&gt; -<br>
+&gt;&gt; <a href=3D"https://web.git.kernel.org/pub/scm/linux/kernel/git/torv=
+alds/linux.git/diff/drivers/gpu/drm/radeon/radeon_display.c?id=3D260f6f4fda9=
+3c8485c8037865c941b42b9cba5d2" rel=3D"noreferrer noreferrer" target=3D"_blan=
+k">https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/di=
+ff/drivers/gpu/drm/radeon/radeon_display.c?id=3D260f6f4fda93c8485c8037865c94=
+1b42b9cba5d2</a><br>
+&gt;&gt; -<br>
+&gt;&gt; <a href=3D"https://web.git.kernel.org/pub/scm/linux/kernel/git/torv=
+alds/linux.git/diff/drivers/gpu/drm/radeon/evergreen_cs.c?id=3D260f6f4fda93c=
+8485c8037865c941b42b9cba5d2" rel=3D"noreferrer noreferrer" target=3D"_blank"=
+>https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff=
+/drivers/gpu/drm/radeon/evergreen_cs.c?id=3D260f6f4fda93c8485c8037865c941b42=
+b9cba5d2</a><br>
+&gt; <br>
+&gt; This only affects acceleration, it should not affect fbdev.<br>
+&gt; <br>
+&gt; What chip are you using?&nbsp; Can you attach your full dmesg output?&n=
+bsp; Can<br>
+&gt; you bisect?&nbsp; This cultrit could be a core drm change.<br>
+&gt; <br>
+&gt; Alex<br>
+&gt; <br>
+&gt;&gt;<br>
+&gt;&gt; Do you have a patch for reverting these modifications? I would like=
+ to<br>
+&gt;&gt; revert these modifications for testing.<br>
+&gt;&gt;<br>
+&gt;&gt; Thanks in advance,<br>
+&gt;&gt; Christian<br>
+&gt;&gt;<br>
+&gt;&gt; On 03 August 2025 at 1:35 pm, Christian Zigotzky wrote:<br>
+&gt;&gt;&gt; Hello,<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Xorg doesn't work after the DRM updates drm-next-2025-07-30.<br=
+>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Error messages:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; [dr:.radeon_fbdev_river_fbdev_proe] *ERROR* failed to initializ=
+e<br>
+&gt;&gt;&gt; framebuffer -22<br>
+&gt;&gt;&gt; radeon 0000:01:0.0: [drm] *ERRO* fbdev: Failedto setup emulaton=
+ (ret=3D-22)<br>
+&gt;&gt;&gt; brd module loadedm<br>
+&gt;&gt;&gt; lop: module loadd<br>
+&gt;&gt;&gt; mpt3ss version 52.10.00.00 loaded<br>
+&gt;&gt;&gt; nve nvme0: pci fuction 0002:04:0.0<br>
+&gt;&gt;&gt; fsl-sata ffe20000.sata: SataFSL Platform/CS Driver init<br>
+&gt;&gt;&gt; scs host0: sata_fs<br>
+&gt;&gt;&gt; ta1: SATA max DMA/133 irq 68 pm-pol 0<br>
+&gt;&gt;&gt; ;21;39mfsl-sat ffe221000.sata Sata FSL Platfrm/CSB Driver iit<b=
+r>
+&gt;&gt;&gt; ata1: Signatue Update detectd @ 0 msecs<br>
+&gt;&gt;&gt; scsihost1: sata_fsl[0m<br>
+&gt;&gt;&gt; ta2: SATA max UMA/133 irq 69 lm-pol 0<br>
+&gt;&gt;&gt; nvme nvm0: 4/0/0 defaul/read/poll queus<br>
+&gt;&gt;&gt; nvme0n1: p1 p p3 p4 p5 p6 p7[0m<br>
+&gt;&gt;&gt; drm:.radeon_fbdv_driver_fbdev_robe] *ERROR* filed to initialze<=
+br>
+&gt;&gt;&gt; framebuffer 22<br>
+&gt;&gt;&gt; fsl_dpaa_mac fe4e6000.ethernt: of_get_mac_adress(/soc@ffe00000/=
+<br>
+&gt;&gt;&gt; fman@40000/ethernet@e6000 failed<br>
+&gt;&gt;&gt; radeon 000:01:00.0: [dr] *ERROR* fbdev Failed to setu emulation=
+ (ret-22)<br>
+&gt;&gt;&gt; fsl_dpaa_ma ffe4e6000.ethenet: FMan MEMAC[0m<br>
+&gt;&gt;&gt; sl_dpaa_mac ffee6000.ethernet:Using random MA address: 0e<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Could you please check the latest DRM updates?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Thanks,<br>
+&gt;&gt;&gt; Christian<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+<br>
+Hello Alex,<br>
+<br>
+Thanks for your answer.<br>
+<br>
+I use a BARTS chip (Radeon HD6870). I would like to bisect but I don't <br>
+have time for it currently. Sorry<br>
+<br>
+There are some other user reports:<br>
+<br>
+- <a href=3D"https://forum.hyperion-entertainment.com/viewtopic.php?p=3D6060=
+6#p60606" rel=3D"noreferrer noreferrer" target=3D"_blank">https://forum.hype=
+rion-entertainment.com/viewtopic.php?p=3D60606#p60606</a><br>
+- <a href=3D"https://forum.hyperion-entertainment.com/viewtopic.php?p=3D6059=
+5#p60595" rel=3D"noreferrer noreferrer" target=3D"_blank">https://forum.hype=
+rion-entertainment.com/viewtopic.php?p=3D60595#p60595</a><br>
+<br>
+They use other Radeon graphics chips.<br>
+<br>
+Bug report: <a href=3D"https://github.com/chzigotzky/kernels/issues/15" rel=3D=
+"noreferrer noreferrer" target=3D"_blank">https://github.com/chzigotzky/kern=
+els/issues/15</a><br>
+<br>
+What do you think about the following commit?<br>
+<br>
+Link: <br>
+<a href=3D"https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linu=
+x.git/commit/?id=3D0e7d5874fb6b80c44be3cfbcf1cf356e81d91232" rel=3D"noreferr=
+er noreferrer" target=3D"_blank">https://web.git.kernel.org/pub/scm/linux/ke=
+rnel/git/torvalds/linux.git/commit/?id=3D0e7d5874fb6b80c44be3cfbcf1cf356e81d=
+91232</a><br>
+<br>
+@Hypex<br>
+Could you please attach your full dmesg output?<br>
+<br>
+Thanks,<br>
+Christian<br>
+</blockquote></div>
+</div></blockquote></body></html>=
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 828a9ceef1e7..f7f34b710d3e 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -2566,8 +2566,8 @@ static int criu_restore(struct file *filep,
- 	pr_debug("CRIU restore (num_devices:%u num_bos:%u num_objects:%u priv_data_size:%llu)\n",
- 		 args->num_devices, args->num_bos, args->num_objects, args->priv_data_size);
- 
--	if (!args->bos || !args->devices || !args->priv_data || !args->priv_data_size ||
--	    !args->num_devices || !args->num_bos)
-+	if ((args->num_bos > 0 && !args->bos) || !args->devices || !args->priv_data ||
-+	    !args->priv_data_size || !args->num_devices)
- 		return -EINVAL;
- 
- 	mutex_lock(&p->mutex);
--- 
-2.34.1
-
+--Apple-Mail-12B86B8C-A310-4918-BF15-0E45D471C480--
