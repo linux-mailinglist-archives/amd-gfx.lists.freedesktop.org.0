@@ -2,99 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77054B1EE67
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 20:36:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A25D1B1EEB5
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 21:04:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60E1910E965;
-	Fri,  8 Aug 2025 18:36:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3C3310E971;
+	Fri,  8 Aug 2025 19:04:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com.au header.i=@yahoo.com.au header.b="AZ/HNkrk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MMYYQASd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sonic317-26.consmr.mail.bf2.yahoo.com
- (sonic317-26.consmr.mail.bf2.yahoo.com [74.6.129.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 812C710E965
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Aug 2025 16:01:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com.au; s=s2048;
- t=1754668917; bh=ZuO89GmtytgzWc6IU8wcFTYUedFni2KfhgSOdSCb36s=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To;
- b=AZ/HNkrkUDeoOj8zjlfo/vqNsIK0HLT2jzrQYh8IdVPe/PLHlNYgEXCZsz5YzFvgI/7Z+1SVHol/LHjT8LFhqOGLAiLWYm1urwOAJz3wcy/pfw8LfTLOVmClw0xcTjsy4Y08nxgPDUMbIjeHGCawGO/ui4fMf2Lb5ew8ety/H2Zfl1wKYxUw/55fx2nmeyCfPg7FsBUfTK79EyajoqsSIYKXb/71S1oWxW4B93bWE82j7xE+s3MqnsA0C4KOqnFCjbMrCEXsKnNILt7HwXZtPvFHZdDO8MKEE26Q9EFt4HmHVHuMqOFST58HHRuWC2Bc7YDQ4dThmyEGVisU4z4h6A==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1754668917; bh=4oQx52OL639rv6fFompwlB/B3iDXSaLB3C7B163eqX2=;
- h=X-Sonic-MF:Date:Subject:To:From:From:Subject;
- b=DKr80ooDmgWP8zVITJ0QTZJoejWF700NAR5r1xPBnzTw0VAkN5vGqdN6d10nFDpenBw6IsoH0LhUkzSz6Z9ADUWlCWwGtdBZNPiC4dGX6nuGuJsu/ZSrmCShNAVEUgsXIL/hz8/90LOBzxrovbEDvPk7Yri4EhHgRXAo1s6RSOPe0+eSdkumkyXN29ntqthcrBT1C/lVI/tKpSZ3gNCCRN5NWGa6tj7hC2DaZd/G489PubTCKrWIYpw9hBOZRx0w2n2vVHGo2CRR6lDUfB/vIxo4IxoMPXw599GBS24mild1xtsk9Iq4lScYhny9D6bp492uDYTuBE20qLNVCLbCGA==
-X-YMail-OSG: zqeLHdcVM1kz0n.mxcHVQzjLsmaKmUjsQNBteX69ndVsdEGw5uUlYYJGsstngNi
- ryPVQx8kA.TMAHCRXocf5jNBcWyp3cD0mrRDsqNS2NXfRf0QKP5aXpvYblIKgpx5R3_1WE_aDbRc
- HFWg0NvxE25bM_oJ4xEC9n3Qq.zOq9I2sCiaAUPhCNLgu9YVpyI5.6hFzOnnqs8GpnyYLAKmBSTq
- p18NiFykZm.GfDOPbf5MbXFQR3QzRT3MiskZBaAWgoCp9DBsBH30sEA6F80eU2tVvLg1eWAnAD2t
- WjkdDMANvc2W5wF4NoNtHyBmvmvTqbTE4wsBHZeUJPOrBebqI7n0eb6efJfVowSpC0v8E9H.Kg.x
- 7.AgJmiHWkj5A_SqFqct.l9Toa_9sHUgu7NMmwDp9Tqmq.PO8HICkmNGa6auKdmGPf7jihVXrcKd
- ZVQEYW6n_xLlXMEHzPJ4UcCU4AwdZ3RLDetaeU6JViWhReUaPZcIqUS4CNU2piN6gBFaJM8un56G
- LNBTbPU28KrloIMoVMLQ4K8c7.qQnBrcPLA7iGhPr5af3mpjVajmxr38D2kLSdiRoZDqekPSvH9L
- jtqxrMv03VvvvMMdtHCMcI3PmXJN6.mSWt2LylZUCVZJiAjiT65yvFIUNG_.aIHdTjMS832ca.4b
- pANbZJ.8sWnrleuNdUlWGl8nWPEh71QQZuE8VAVgUCqW1nD0KeexcL3pOzrfu.LGPtMQvIc8gxYX
- nNQDTv7QKzxOiKUAuP9fVG3QRcyaGKeilLaVyzv6_XraabSr9DsAh_mlJwenLanERW2GvufJkZuB
- hJrWlHoF24hX9JbZhGRwCDB75rvdMfYRzxVNTfSJkpFeufWPf5oJUDdA8pUN2q7eFeG_MvPwIFBb
- vWyYeFitDSwgz490pEqtVnKD3mAXD6Dx.rXuXRGAzG0MNr1lTUcAWLgZzJnyFjOQuthuqKutPB.6
- lqCSEFvWscfYE4MOEwTsYQCFdh9YTeOnkbebjfIbgQPH56g3OiE42vHytDVZtP8RxJgUFFDVfVS0
- iZTx_iu9Y9mqi0uoNYzq7gTxlnNokacm4pO40Ji_bZeyR7Qte9rGZTgCDHnEHIaAtXlhyCM6MhHC
- FWeKtadeBEUU.drT8sQypJuXZbMDALLq3R6GvFF0pf0y.N4AXQUvMWK7h7nFwrJUA823.wDWB0QA
- 467nmlbmIeemjnJkXtVLsYZGK7jdAB8DRXg7w79tZdNu.2fP6SRUH_yDJPLU_2IezXLHPz3_HMft
- OG6LOBj2jgniXsvsxIuenE6UMjsrJbtpYRJGFHVC_YvqNDBm0aTGZqS941jnlW6KP.bZwAV1ule1
- xZiUsrkuayjcJYkWItAKrqJKV7LZ77P8Xs9v1Q3n9HjhK.wpR_HIU9tQ1jr5VCdW6XyJSnwJf55w
- Ucwl067lR0MAoNyte1hh8gd6EW1F.6sOejSaYm9B32eVIoxU.1GGesDoxXcFL5ud4i9ktfCVlgZT
- jpqfj69Y86_PGF9nxCCZYUNCl3Gb2c34Fjv6f.3WqQRaE40pP615W3bW2B1PE0nSW0ltbWhAXFWf
- 9LrC6wr2YTthVu.qoeMPzHatHMPmvzwrx0kk.Lt5YHTSXy2Dg3.va2HtLx5XOLaJCWHQ2Em8sZx8
- lNAp2sZuSLjn5bxMsuXKThC8J0YQpzafynjmCydJK.B8_BaVaCvOS4RJFR9WcNAJerub8wBcZkdM
- 9tYSnbDi_awCUK1Tlg31HBc_F7zxHWHaRtSsJihLYtUVKfSmpZk_.n_LPOv017OVpxYN6.wFjoPK
- aGXqe2T_d27GyMT_E8T.g9398slDhusyevMsEjFEOlBRE76xyAM5c2TF3teXrg9_AaSPfSrSKcJ6
- CTXDZ0QE1z3PGcP3QeSUmFd5iK5a6xSMubv6WkBrV7_3qE9jtUePAy7.0SC.Y41XiL4JjGhGGpYZ
- GN0L5P4uuD7kLA6YIiWnb5leeawJ601b4HJKjeChBIDqkcQZJneGQa_MoOL2D_a5U79_cKx4482B
- A50VTyVI8pWR5sCuv65zPkElactxl69DsLwWcz3.pLm8svRi93sjfvABmtrEufaLNbMUQrvI6sR4
- AwyzZO8siN_mbzsf3QHPXo6K6AZRtir1rWX3SxL51nnN6ndimCeRQ27CFub77T07yDoaGCMsYJxh
- uE.UxDWtlM8PR8k_6Um8Ml0q5UU5b9Cq2D2wjTCG_WViV7y0Kg2EfMnEhSZ0Xd7aO.KPh9InuQW7
- UJAAY0oHKHB_Slgv3rZAnF_H3WmTX_oDA89AJDimhL_w_PLtFiz7JB6k_6N_9ilTgkX0rtOdrnGf
- foXCtpa_znVMX
-X-Sonic-MF: <hypexed@yahoo.com.au>
-X-Sonic-ID: 56f3f109-12cb-4467-9d3f-5d50eb9b7caa
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic317.consmr.mail.bf2.yahoo.com with HTTP; Fri, 8 Aug 2025 16:01:57 +0000
-Received: by hermes--production-gq1-74d64bb7d7-nccgl (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID 10dbf4c146e19dfc3266b14fa0044a38; 
- Fri, 08 Aug 2025 16:01:53 +0000 (UTC)
-Message-ID: <4bab7915-9739-4aea-be67-5ea122de1f5c@yahoo.com.au>
-Date: Sat, 9 Aug 2025 02:01:45 +1000
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+ [209.85.214.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5053710E971
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Aug 2025 19:04:15 +0000 (UTC)
+Received: by mail-pl1-f176.google.com with SMTP id
+ d9443c01a7336-23ff92d05acso4316085ad.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 08 Aug 2025 12:04:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754679855; x=1755284655; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=jWRVAGBe8pdgKFIn1c23sjWvCS8QGH2IExxZPsGUNOQ=;
+ b=MMYYQASdxewweezEtBHln/eGGBTX6Ug/n+oy3uwB8/l9bShnGY1XdEyKuAGlqn5t1H
+ NogVjwm1MVdmf4wB7XRnDqDm8KQwCJJ0BxG+ncAHyDr3nqEKl5zXWbZJURyuz1I/oUZV
+ gdNElobVOc2bRY0NQlMkL/Hp3Ux6MI76wo6lYvMunMNGDukHu44TH03bgvnNbFQXqzwv
+ uMfbZMuHpuU6/wfZfYo21V2JrQFFhW26O16NvpfRT0Q1uyu9My9rKpPT704cN1P5ok3z
+ AjEzZhLtU4eiey9Xy8PuTSIivDnjvD8gv+knp/aXjusODX4BRzHRqYUkaAvZUPOJ7xa+
+ mNWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754679855; x=1755284655;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=jWRVAGBe8pdgKFIn1c23sjWvCS8QGH2IExxZPsGUNOQ=;
+ b=ku7IgWX//LpEQuiGbFDE77wP7b66oAS+LIkwY/3AWOm3TIxiUnfAixeG+pRjKrctg/
+ ugpFpBPhVJKdPBn22B0GXrVQMP45/aEqxL+P76yLgu6DnvpSmqgJ/adD4HoZEYGbV3XY
+ GaV1EIDkcz4acFlJQ78AsqP8hYKNBlv+Ga2QnN/8o7HRwWrTx8i4AlJpQ0eI3lMmJAkT
+ NRWfXh9q2HFhyj3pb2Ev4otE7Mo8AnYUB1TYXMkWD4N4PPgTkzBNbjyv5XG9zzq4Gg9g
+ 2B333EhqDQEY5b+jKkHkcsvqqIOAjRH7In+jzjxfT4If6ThMyGx/YQFtRsESRgA2mE9I
+ rTaA==
+X-Gm-Message-State: AOJu0YwnAoNh+2GoB4WbWGJj1QDbk5LazP+xKa32/E2pE12PeckJyV0c
+ KSLqQeaLTck52Oz0n/5fOKvVvbO4YvBbl5oqkU2DqYAtkRfn2IGsalSLnrs2WegUz8IS0ZOUk5r
+ +LwP6Z+FNzaqQpigIZfQ1nZWNyq3udWY=
+X-Gm-Gg: ASbGncudXXPhUWlxr0vy3vk9r2WYYR6gjTsiY5MG9VyuGKwtzfRX5OJd9tKICHKQMS4
+ Ae173Ni4dl2de7FVWqM3/TX878NprWhR40xMHZuqsJh6EWC9H08rV4L2KgD9ZBc6LNHM3CxP+zH
+ SSfO0d7lUH1Jce/7OU8LpS75+933SF/ige7qa+SeoY7Mfwr5/hnxPoexs/dYLQhcFketol/gIkL
+ bgR8mu7qpcqaAOCiQ==
+X-Google-Smtp-Source: AGHT+IGkp+L5ANZthAdg4JCG57yHn2qf3f6h/oO1I/QRRJZ5qzG/Iba4qlt56+LU5uyC3GqlnA5B251wkHn9ErNo+4Q=
+X-Received: by 2002:a17:902:f548:b0:240:79df:48b0 with SMTP id
+ d9443c01a7336-242d35721f7mr485945ad.0.1754679854636; Fri, 08 Aug 2025
+ 12:04:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: radeon_fbdev_river_fbdev: failed to initialize framebuffer and
- setup emulation
-To: Christian Zigotzky <chzigotzky@xenosoft.de>,
- Alex Deucher <alexdeucher@gmail.com>
-Cc: ville.syrjala@linux.intel.com, Jeff Johnson <quic_jjohnson@quicinc.com>,
- mad skateman <madskateman@gmail.com>,
- Darren Stevens <darren@stevens-zone.net>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Christian Zigotzky <info@xenosoft.de>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
- amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- "R.T.Dickinson" <rtd2@xtra.co.nz>
-References: <CADnq5_PUi_2+kDYX8R_eanNF4iYN79MdXJ_PLcQbZKi6e4S8tg@mail.gmail.com>
- <87F47F04-EBAC-48D6-AD0A-4BBE39DF43CE@xenosoft.de>
- <1115cce7-cfdc-4c5b-b017-69cd32425650@xenosoft.de>
- <6ba8d730-52f9-421f-8d8a-887545f0ceac@xenosoft.de>
- <2cc83897-427d-47f4-b6a3-8db9682972cd@xenosoft.de>
- <CADnq5_OpJdbc4YKtV-9+5JyeKyqd4+irhT6OtFq_K9KJF24VSQ@mail.gmail.com>
- <48b61c14-f83d-4e4a-b5d3-857099058eda@xenosoft.de>
-Content-Language: en-US
-From: Damien Stewart <hypexed@yahoo.com.au>
-In-Reply-To: <48b61c14-f83d-4e4a-b5d3-857099058eda@xenosoft.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.24260
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Mailman-Approved-At: Fri, 08 Aug 2025 18:36:03 +0000
+References: <20250804134154.95875-1-timur.kristof@gmail.com>
+ <20250804134154.95875-5-timur.kristof@gmail.com>
+ <CADnq5_P6EsOrX8e8B3bRh_KEaPVisUAEWxZ9uXX62TY=a-dO3g@mail.gmail.com>
+ <4c002dfef88f033832d0be5221fed0019c0feaf0.camel@gmail.com>
+ <CADnq5_MSd5CeDwFH2n7fqNtmt9iiXaRrruSJJ887dG_CK=4jGQ@mail.gmail.com>
+ <11315cd2289dd111db673b0d3832f373d268c833.camel@gmail.com>
+In-Reply-To: <11315cd2289dd111db673b0d3832f373d268c833.camel@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 8 Aug 2025 15:04:02 -0400
+X-Gm-Features: Ac12FXyTTjV3-B-7sPIGLEuFMhF6JHhtr7bxGqt9rJm20LuCDDZ-nykI9vE_YME
+Message-ID: <CADnq5_NmfCoB-Bk+TC9WafXdvMhQr9sUyoodnhOf5__TY5mr5g@mail.gmail.com>
+Subject: Re: [PATCH 4/6] drm/amd/pm: Fix si_upload_smc_data
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,17 +85,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 5/8/25 2:05 am, Christian Zigotzky wrote:
+On Fri, Aug 8, 2025 at 4:22=E2=80=AFAM Timur Krist=C3=B3f <timur.kristof@gm=
+ail.com> wrote:
 >
-> @Hypex
-> Could you please attach your full dmesg output? 
+> On Mon, 2025-08-04 at 13:31 -0400, Alex Deucher wrote:
+> > On Mon, Aug 4, 2025 at 12:16=E2=80=AFPM Timur Krist=C3=B3f
+> > <timur.kristof@gmail.com> wrote:
+> > >
+> > > On Mon, 2025-08-04 at 11:32 -0400, Alex Deucher wrote:
+> > > > On Mon, Aug 4, 2025 at 9:42=E2=80=AFAM Timur Krist=C3=B3f
+> > > > <timur.kristof@gmail.com> wrote:
+> > > > >
+> > > > > The si_upload_smc_data function uses si_write_smc_soft_register
+> > > > > to set some register values in the SMC, and expects the result
+> > > > > to be PPSMC_Result_OK which is 1.
+> > > > >
+> > > > > The PPSMC_Result_OK / PPSMC_Result_Failed values are used for
+> > > > > checking the result of a command sent to the SMC.
+> > > > >
+> > > > > However, the si_write_smc_soft_register actually doesn't send
+> > > > > any commands to the SMC and returns zero on success,
+> > > > > so this check was incorrect.
+> > > > >
+> > > > > Fix that by correctly interpreting zero as success.
+> > > > > This seems to fix an SMC hang that happens in si_set_sw_state.
+> > > > >
+> > > > > Fixes: 841686df9f7d ("drm/amdgpu: add SI DPM support (v4)")
+> > > > > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 31 +++++++++++++-
+> > > > > ----
+> > > > > ----
+> > > > >  1 file changed, 19 insertions(+), 12 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> > > > > b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> > > > > index 33b9d4beec84..e9f034ade214 100644
+> > > > > --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> > > > > +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> > > > > @@ -5820,6 +5820,7 @@ static int si_upload_smc_data(struct
+> > > > > amdgpu_device *adev)
+> > > > >  {
+> > > > >         struct amdgpu_crtc *amdgpu_crtc =3D NULL;
+> > > > >         int i;
+> > > > > +       int ret;
+> > > > >
+> > > > >         if (adev->pm.dpm.new_active_crtc_count =3D=3D 0)
+> > > > >                 return 0;
+> > > > > @@ -5837,20 +5838,26 @@ static int si_upload_smc_data(struct
+> > > > > amdgpu_device *adev)
+> > > > >         if (amdgpu_crtc->line_time <=3D 0)
+> > > > >                 return 0;
+> > > > >
+> > > > > -       if (si_write_smc_soft_register(adev,
+> > > > > -
+> > > > > SI_SMC_SOFT_REGISTER_crtc_index,
+> > > > > -                                      amdgpu_crtc->crtc_id) !=3D
+> > > > > PPSMC_Result_OK)
+> > > > > -               return 0;
+> > > > > +       ret =3D si_write_smc_soft_register(
+> > > > > +               adev,
+> > > > > +               SI_SMC_SOFT_REGISTER_crtc_index,
+> > > > > +               amdgpu_crtc->crtc_id);
+> > > > > +       if (ret)
+> > > > > +               return ret;
+> > > > >
+> > > > > -       if (si_write_smc_soft_register(adev,
+> > > > > -
+> > > > > SI_SMC_SOFT_REGISTER_mclk_change_block_cp_min,
+> > > > > -                                      amdgpu_crtc->wm_high /
+> > > > > amdgpu_crtc->line_time) !=3D PPSMC_Result_OK)
+> > > > > -               return 0;
+> > > > > +       ret =3D si_write_smc_soft_register(
+> > > > > +               adev,
+> > > > > +               SI_SMC_SOFT_REGISTER_mclk_change_block_cp_min,
+> > > > > +               amdgpu_crtc->wm_high / amdgpu_crtc->line_time);
+> > > > > +       if (ret)
+> > > > > +               return ret;
+> > > > >
+> > > > > -       if (si_write_smc_soft_register(adev,
+> > > > > -
+> > > > > SI_SMC_SOFT_REGISTER_mclk_change_block_cp_max,
+> > > > > -                                      amdgpu_crtc->wm_low /
+> > > > > amdgpu_crtc->line_time) !=3D PPSMC_Result_OK)
+> > > > > -               return 0;
+> > > > > +       ret =3D si_write_smc_soft_register(
+> > > > > +               adev,
+> > > > > +               SI_SMC_SOFT_REGISTER_mclk_change_block_cp_max,
+> > > > > +               amdgpu_crtc->wm_low / amdgpu_crtc->line_time);
+> > > > > +       if (ret)
+> > > > > +               return ret;
+> > > >
+> > > > This patch changes the behavior of this function (i.e., it always
+> > > > returns 0 before this patch).  Not sure if that matters or not.
+> > > > I
+> > > > think this could be simplified to something like the following to
+> > > > retain the current behavior.
+> > >
+> > > Actually now that I think of it more, I think it may be entirely
+> > > unnecessary to check the return value.
+> > >
+> > > si_upload_smc_data calls:
+> > > si_write_smc_soft_register
+> > > amdgpu_si_write_smc_sram_dword
+> > > si_set_smc_sram_address
+> > >
+> > > This last one, si_set_smc_sram_address returns -EINVAL when its
+> > > smc_address parameter is not dword-aligned or out of bounds.
+> > > Otherwise
+> > > all of the above functions return 0 (success). Considering that all
+> > > of
+> > > the addresses passed by si_upload_smc_data are compile time
+> > > constants,
+> > > we know they are correct so there is no reason why any of those
+> > > functions would return an error.
+> > >
+> > > Looking at other callers of si_write_smc_soft_register, I see that
+> > > they
+> > > don't check the return value at all.
+> > >
+> > > So, I'd actually simplify this even more and just not check the
+> > > return
+> > > values. What do you think about that?
+> >
+> > Sure.  Works for me.
+> >
+> > Alex
+>
+> Alex, before I send a new version of this series, can you please
+> clarify what these registers are and verify that the actual programming
+> of these SMC registers is correct?
 
-Hi. Sorry just found this. Do you still need a dmesg? I collected a few 
-and can provide one for any broken version.
+This code was based on what the windows code did.
 
+>
+> The reason I ask is because due the the bug being fixed by these patch,
+> these registers were never actually written, which makes me wonder if
+> the value we program them to is actually correct.
+>
+> I mean the values that we program these registers to:
+>
+> SI_SMC_SOFT_REGISTER_crtc_index - we just program the index of the
+> first active CRTC, seems straightforward enough, but it's unclear what
+> the SMC uses this for. Why does the SMC care which crtc we use?
+>
+> SI_SMC_SOFT_REGISTER_mclk_change_block_cp_min - programmed to the high
+> display watermark divided by the line time. But I can't find any
+> information about what this information represents or what the SMC uses
+> it for. Judging by the name it has to do with mclk switching?
+>
+> SI_SMC_SOFT_REGISTER_mclk_change_block_cp_max - same concern as _min.
 
--- 
-My regards,
+For mclk switching, the mclk has to be changed during the display
+blanking period to avoid display artifacts.  This is presumably part
+of that, but I don't remember exactly what all of these do anymore.
 
-Damien Stewart.
+Alex
 
+>
+> Thanks,
+> Timur
+>
+>
+> >
+> > >
+> > >
+> > > >
+> > > > diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> > > > b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> > > > index 52e732be59e36..3dd0115aa15f8 100644
+> > > > --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> > > > +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> > > > @@ -5836,17 +5836,17 @@ static int si_upload_smc_data(struct
+> > > > amdgpu_device *adev)
+> > > >
+> > > >         if (si_write_smc_soft_register(adev,
+> > > >
+> > > > SI_SMC_SOFT_REGISTER_crtc_index,
+> > > > -                                      amdgpu_crtc->crtc_id) !=3D
+> > > > PPSMC_Result_OK)
+> > > > +                                      amdgpu_crtc->crtc_id))
+> > > >                 return 0;
+> > > >
+> > > >         if (si_write_smc_soft_register(adev,
+> > > >
+> > > > SI_SMC_SOFT_REGISTER_mclk_change_block_cp_min,
+> > > > -                                      amdgpu_crtc->wm_high /
+> > > > amdgpu_crtc->line_time) !=3D PPSMC_Result_OK)
+> > > > +                                      amdgpu_crtc->wm_high /
+> > > > amdgpu_crtc->line_time))
+> > > >                 return 0;
+> > > >
+> > > >         if (si_write_smc_soft_register(adev,
+> > > >
+> > > > SI_SMC_SOFT_REGISTER_mclk_change_block_cp_max,
+> > > > -                                      amdgpu_crtc->wm_low /
+> > > > amdgpu_crtc->line_time) !=3D PPSMC_Result_OK)
+> > > > +                                      amdgpu_crtc->wm_low /
+> > > > amdgpu_crtc->line_time))
+> > > >                 return 0;
+> > > >
+> > > >         return 0;
+> > > >
+> > > >
+> > > > >
+> > > > >         return 0;
+> > > > >  }
+> > > > > --
+> > > > > 2.50.1
+> > > > >
