@@ -2,78 +2,99 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1420B1EBD8
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 17:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77054B1EE67
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 20:36:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD3310E0CF;
-	Fri,  8 Aug 2025 15:28:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60E1910E965;
+	Fri,  8 Aug 2025 18:36:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bjOx2nIo";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com.au header.i=@yahoo.com.au header.b="AZ/HNkrk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44B9310E0CF;
- Fri,  8 Aug 2025 15:28:24 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-24286ed452fso3124815ad.1; 
- Fri, 08 Aug 2025 08:28:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754666904; x=1755271704; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xaFrKONgoeL4lo44H8m0yP1sT0L2wqE/7af3cuPE8mM=;
- b=bjOx2nIoL1/GdEfIXWpP3OCy4Yr1dsNhb9yBHvEvdpyFZwzODzdvWxSLGfDzjM0YwT
- 4ylC9nTK78WlUVmlAlF/6wJ+aYH62Ya3bqkUrU9z352pLBz02ArzdZwWBezvYSMhggri
- MtAMlJW05RaGMKETcqXW0/GglMZ5MNSRIaCDappFHCljuJiaxsJyFV1xxL+NJKajscNy
- ufWsi3ugjJCGcaFrqCf4p8xkWFH6d28VUIjoIlehvMyh3oOFJBB2oiSMEScmPSBAukPn
- SRtof48v0vamfUmg9qVU7NMMoMuyg82KYcZCr4TLyWDCsD2z4bH5HtQXeeiC89jpLqXM
- jnLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754666904; x=1755271704;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=xaFrKONgoeL4lo44H8m0yP1sT0L2wqE/7af3cuPE8mM=;
- b=hi1wV8rNTD+aOOAE9S9nX3J4godLxoLhxuE0MxiG5Gx/WCoPlb3We9f764vnGR6rSI
- gATpcy41pMlwMN+HWD4XwfXGiNC+13T5nj3Wum3xGp9e9WZWMSsP3vwr1ABhdVunEWUy
- Q1tDS4caK0EcHNfqaiAy72kX1hFnhe/omhnxCoChVLL8Qe88wW4i1cPJGZoMObzO70dH
- HXlxhqb9esafGXh6VjaNCxBCx+zbnrXopiZO1UdOYtKod4LpD1smDGxi4e3bCMXMPy3m
- Lk5mbEKITIrHU5m5P+We3B1PVf+ebpLic9WTCwkBTNvTSgwmHNSRWrMG9TyjG6VGRy4M
- veVA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVMLidq6YEXXrh+FweEcwbnEuEgXsR5B+8Jmbcek3/9w5R0yAaJzZNl4iTKPb84DFLxIA9kmLTG@lists.freedesktop.org,
- AJvYcCX4i3p6Wu921u00W06d3749zP51FYD/WLBjSj0yYPgpeLMOGjy0CVD99Acxwe3KhvtbnJCZKzLdZdeI@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx1Tr07thgsr0nOPhDl0AryKBtt2UDJB83lWxiCNhGzBWbpZ6C9
- hMONB5tb2il8AT2ItsT8C5IY0OL0Q6Pxrn7Yv2Vx/eO/qUqRvV4b188y/9YwwpIcLhhl+QMbjNA
- SIn9SHfjZ8K5PDvjgczEJqDZd6IGtII8=
-X-Gm-Gg: ASbGnctFOJtgWLVIA6kPAYfwTsRpl3SSh7eNUKpuD3EAsvbi5QW66tRU1U1n/JrTR1t
- mnrp8DkfGLTwNw+AIeQz0Y8VAipnK+fR8sPuxvxC2kkHTnu3nQ1wDJNGEvMpy+V+vhPC+ZoK6Ja
- 668/hLT8oIPwsNLkVfn27xDGiGPV+jaiu8lf8sg2b7KfTWw0nxbvgrpPl78ql2F5uz/8CgN4ujA
- v1b3E8=
-X-Google-Smtp-Source: AGHT+IFzRj3NfvXhNRMeD3rfS4OdzgKDkzQX8MeXfQwdZ7fG5fJW/ZicXqdjPbYU0XmStRk+Dm+B6kak+q+dt9nZcq4=
-X-Received: by 2002:a17:903:18c:b0:240:3e41:57a3 with SMTP id
- d9443c01a7336-242c19a673fmr25580745ad.0.1754666903728; Fri, 08 Aug 2025
- 08:28:23 -0700 (PDT)
+Received: from sonic317-26.consmr.mail.bf2.yahoo.com
+ (sonic317-26.consmr.mail.bf2.yahoo.com [74.6.129.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 812C710E965
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Aug 2025 16:01:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com.au; s=s2048;
+ t=1754668917; bh=ZuO89GmtytgzWc6IU8wcFTYUedFni2KfhgSOdSCb36s=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To;
+ b=AZ/HNkrkUDeoOj8zjlfo/vqNsIK0HLT2jzrQYh8IdVPe/PLHlNYgEXCZsz5YzFvgI/7Z+1SVHol/LHjT8LFhqOGLAiLWYm1urwOAJz3wcy/pfw8LfTLOVmClw0xcTjsy4Y08nxgPDUMbIjeHGCawGO/ui4fMf2Lb5ew8ety/H2Zfl1wKYxUw/55fx2nmeyCfPg7FsBUfTK79EyajoqsSIYKXb/71S1oWxW4B93bWE82j7xE+s3MqnsA0C4KOqnFCjbMrCEXsKnNILt7HwXZtPvFHZdDO8MKEE26Q9EFt4HmHVHuMqOFST58HHRuWC2Bc7YDQ4dThmyEGVisU4z4h6A==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1754668917; bh=4oQx52OL639rv6fFompwlB/B3iDXSaLB3C7B163eqX2=;
+ h=X-Sonic-MF:Date:Subject:To:From:From:Subject;
+ b=DKr80ooDmgWP8zVITJ0QTZJoejWF700NAR5r1xPBnzTw0VAkN5vGqdN6d10nFDpenBw6IsoH0LhUkzSz6Z9ADUWlCWwGtdBZNPiC4dGX6nuGuJsu/ZSrmCShNAVEUgsXIL/hz8/90LOBzxrovbEDvPk7Yri4EhHgRXAo1s6RSOPe0+eSdkumkyXN29ntqthcrBT1C/lVI/tKpSZ3gNCCRN5NWGa6tj7hC2DaZd/G489PubTCKrWIYpw9hBOZRx0w2n2vVHGo2CRR6lDUfB/vIxo4IxoMPXw599GBS24mild1xtsk9Iq4lScYhny9D6bp492uDYTuBE20qLNVCLbCGA==
+X-YMail-OSG: zqeLHdcVM1kz0n.mxcHVQzjLsmaKmUjsQNBteX69ndVsdEGw5uUlYYJGsstngNi
+ ryPVQx8kA.TMAHCRXocf5jNBcWyp3cD0mrRDsqNS2NXfRf0QKP5aXpvYblIKgpx5R3_1WE_aDbRc
+ HFWg0NvxE25bM_oJ4xEC9n3Qq.zOq9I2sCiaAUPhCNLgu9YVpyI5.6hFzOnnqs8GpnyYLAKmBSTq
+ p18NiFykZm.GfDOPbf5MbXFQR3QzRT3MiskZBaAWgoCp9DBsBH30sEA6F80eU2tVvLg1eWAnAD2t
+ WjkdDMANvc2W5wF4NoNtHyBmvmvTqbTE4wsBHZeUJPOrBebqI7n0eb6efJfVowSpC0v8E9H.Kg.x
+ 7.AgJmiHWkj5A_SqFqct.l9Toa_9sHUgu7NMmwDp9Tqmq.PO8HICkmNGa6auKdmGPf7jihVXrcKd
+ ZVQEYW6n_xLlXMEHzPJ4UcCU4AwdZ3RLDetaeU6JViWhReUaPZcIqUS4CNU2piN6gBFaJM8un56G
+ LNBTbPU28KrloIMoVMLQ4K8c7.qQnBrcPLA7iGhPr5af3mpjVajmxr38D2kLSdiRoZDqekPSvH9L
+ jtqxrMv03VvvvMMdtHCMcI3PmXJN6.mSWt2LylZUCVZJiAjiT65yvFIUNG_.aIHdTjMS832ca.4b
+ pANbZJ.8sWnrleuNdUlWGl8nWPEh71QQZuE8VAVgUCqW1nD0KeexcL3pOzrfu.LGPtMQvIc8gxYX
+ nNQDTv7QKzxOiKUAuP9fVG3QRcyaGKeilLaVyzv6_XraabSr9DsAh_mlJwenLanERW2GvufJkZuB
+ hJrWlHoF24hX9JbZhGRwCDB75rvdMfYRzxVNTfSJkpFeufWPf5oJUDdA8pUN2q7eFeG_MvPwIFBb
+ vWyYeFitDSwgz490pEqtVnKD3mAXD6Dx.rXuXRGAzG0MNr1lTUcAWLgZzJnyFjOQuthuqKutPB.6
+ lqCSEFvWscfYE4MOEwTsYQCFdh9YTeOnkbebjfIbgQPH56g3OiE42vHytDVZtP8RxJgUFFDVfVS0
+ iZTx_iu9Y9mqi0uoNYzq7gTxlnNokacm4pO40Ji_bZeyR7Qte9rGZTgCDHnEHIaAtXlhyCM6MhHC
+ FWeKtadeBEUU.drT8sQypJuXZbMDALLq3R6GvFF0pf0y.N4AXQUvMWK7h7nFwrJUA823.wDWB0QA
+ 467nmlbmIeemjnJkXtVLsYZGK7jdAB8DRXg7w79tZdNu.2fP6SRUH_yDJPLU_2IezXLHPz3_HMft
+ OG6LOBj2jgniXsvsxIuenE6UMjsrJbtpYRJGFHVC_YvqNDBm0aTGZqS941jnlW6KP.bZwAV1ule1
+ xZiUsrkuayjcJYkWItAKrqJKV7LZ77P8Xs9v1Q3n9HjhK.wpR_HIU9tQ1jr5VCdW6XyJSnwJf55w
+ Ucwl067lR0MAoNyte1hh8gd6EW1F.6sOejSaYm9B32eVIoxU.1GGesDoxXcFL5ud4i9ktfCVlgZT
+ jpqfj69Y86_PGF9nxCCZYUNCl3Gb2c34Fjv6f.3WqQRaE40pP615W3bW2B1PE0nSW0ltbWhAXFWf
+ 9LrC6wr2YTthVu.qoeMPzHatHMPmvzwrx0kk.Lt5YHTSXy2Dg3.va2HtLx5XOLaJCWHQ2Em8sZx8
+ lNAp2sZuSLjn5bxMsuXKThC8J0YQpzafynjmCydJK.B8_BaVaCvOS4RJFR9WcNAJerub8wBcZkdM
+ 9tYSnbDi_awCUK1Tlg31HBc_F7zxHWHaRtSsJihLYtUVKfSmpZk_.n_LPOv017OVpxYN6.wFjoPK
+ aGXqe2T_d27GyMT_E8T.g9398slDhusyevMsEjFEOlBRE76xyAM5c2TF3teXrg9_AaSPfSrSKcJ6
+ CTXDZ0QE1z3PGcP3QeSUmFd5iK5a6xSMubv6WkBrV7_3qE9jtUePAy7.0SC.Y41XiL4JjGhGGpYZ
+ GN0L5P4uuD7kLA6YIiWnb5leeawJ601b4HJKjeChBIDqkcQZJneGQa_MoOL2D_a5U79_cKx4482B
+ A50VTyVI8pWR5sCuv65zPkElactxl69DsLwWcz3.pLm8svRi93sjfvABmtrEufaLNbMUQrvI6sR4
+ AwyzZO8siN_mbzsf3QHPXo6K6AZRtir1rWX3SxL51nnN6ndimCeRQ27CFub77T07yDoaGCMsYJxh
+ uE.UxDWtlM8PR8k_6Um8Ml0q5UU5b9Cq2D2wjTCG_WViV7y0Kg2EfMnEhSZ0Xd7aO.KPh9InuQW7
+ UJAAY0oHKHB_Slgv3rZAnF_H3WmTX_oDA89AJDimhL_w_PLtFiz7JB6k_6N_9ilTgkX0rtOdrnGf
+ foXCtpa_znVMX
+X-Sonic-MF: <hypexed@yahoo.com.au>
+X-Sonic-ID: 56f3f109-12cb-4467-9d3f-5d50eb9b7caa
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic317.consmr.mail.bf2.yahoo.com with HTTP; Fri, 8 Aug 2025 16:01:57 +0000
+Received: by hermes--production-gq1-74d64bb7d7-nccgl (Yahoo Inc. Hermes SMTP
+ Server) with ESMTPA ID 10dbf4c146e19dfc3266b14fa0044a38; 
+ Fri, 08 Aug 2025 16:01:53 +0000 (UTC)
+Message-ID: <4bab7915-9739-4aea-be67-5ea122de1f5c@yahoo.com.au>
+Date: Sat, 9 Aug 2025 02:01:45 +1000
 MIME-Version: 1.0
-References: <20250806-amdgpu_typo-v1-1-b5a3cb84ce26@uniontech.com>
- <6e5b5c47-a97c-4757-ac0d-361c91fd5819@amd.com>
-In-Reply-To: <6e5b5c47-a97c-4757-ac0d-361c91fd5819@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 8 Aug 2025 11:28:12 -0400
-X-Gm-Features: Ac12FXzCfzGrH3JJl3Jc7p_DPcZK5W4BmsxzZKT8lvCDvMABrJkVyay7b_pzNV4
-Message-ID: <CADnq5_MXNfXfjKZo6VRXk8xBr=TRbQzHGq2-7HyHuBcCtF+KPA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: fix incorrect comment format
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: cryolitia@uniontech.com, Alex Deucher <alexander.deucher@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- wangyuli@uniontech.com, zhanjun@uniontech.com, guanwentao@uniontech.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: radeon_fbdev_river_fbdev: failed to initialize framebuffer and
+ setup emulation
+To: Christian Zigotzky <chzigotzky@xenosoft.de>,
+ Alex Deucher <alexdeucher@gmail.com>
+Cc: ville.syrjala@linux.intel.com, Jeff Johnson <quic_jjohnson@quicinc.com>,
+ mad skateman <madskateman@gmail.com>,
+ Darren Stevens <darren@stevens-zone.net>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Christian Zigotzky <info@xenosoft.de>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ "R.T.Dickinson" <rtd2@xtra.co.nz>
+References: <CADnq5_PUi_2+kDYX8R_eanNF4iYN79MdXJ_PLcQbZKi6e4S8tg@mail.gmail.com>
+ <87F47F04-EBAC-48D6-AD0A-4BBE39DF43CE@xenosoft.de>
+ <1115cce7-cfdc-4c5b-b017-69cd32425650@xenosoft.de>
+ <6ba8d730-52f9-421f-8d8a-887545f0ceac@xenosoft.de>
+ <2cc83897-427d-47f4-b6a3-8db9682972cd@xenosoft.de>
+ <CADnq5_OpJdbc4YKtV-9+5JyeKyqd4+irhT6OtFq_K9KJF24VSQ@mail.gmail.com>
+ <48b61c14-f83d-4e4a-b5d3-857099058eda@xenosoft.de>
+Content-Language: en-US
+From: Damien Stewart <hypexed@yahoo.com.au>
+In-Reply-To: <48b61c14-f83d-4e4a-b5d3-857099058eda@xenosoft.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.24260
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Mailman-Approved-At: Fri, 08 Aug 2025 18:36:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,54 +109,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
+On 5/8/25 2:05 am, Christian Zigotzky wrote:
+>
+> @Hypex
+> Could you please attach your full dmesg output? 
 
-Alex
+Hi. Sorry just found this. Do you still need a dmesg? I collected a few 
+and can provide one for any broken version.
 
-On Wed, Aug 6, 2025 at 8:38=E2=80=AFAM Christian K=C3=B6nig <christian.koen=
-ig@amd.com> wrote:
->
-> On 06.08.25 05:34, Cryolitia PukNgae via B4 Relay wrote:
-> > From: Cryolitia PukNgae <cryolitia@uniontech.com>
-> >
-> > Comments should not have a leading plus sign.
->
-> Good catch, potentially a left over from a merge conflict or similar.
->
-> >
-> > Signed-off-by: Cryolitia PukNgae <cryolitia@uniontech.com>
->
-> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
->
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c b/drivers/gpu/drm/a=
-md/amdgpu/nbio_v7_4.c
-> > index d5002ff931d841994ca2c70cdf5b989f5b3c59d6..860bc5cb03c81b5346743b5=
-fb46a7dcbe5a201a4 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
-> > @@ -151,9 +151,9 @@ static void nbio_v7_4_sdma_doorbell_range(struct am=
-dgpu_device *adev, int instan
-> >                *   BIF_SDMA0_DOORBELL_RANGE:  0x3bc0
-> >                *   BIF_SDMA1_DOORBELL_RANGE:  0x3bc4
-> >                *   BIF_SDMA2_DOORBELL_RANGE:  0x3bd8
-> > -+             *   BIF_SDMA4_DOORBELL_RANGE:
-> > -+             *     ARCTURUS:  0x3be0
-> > -+             *     ALDEBARAN: 0x3be4
-> > +              *   BIF_SDMA4_DOORBELL_RANGE:
-> > +              *     ARCTURUS:  0x3be0
-> > +              *     ALDEBARAN: 0x3be4
-> >                */
-> >               if (adev->asic_type =3D=3D CHIP_ALDEBARAN && instance =3D=
-=3D 4)
-> >                       reg =3D instance + 0x4 + 0x1 +
-> >
-> > ---
-> > base-commit: 6bcdbd62bd56e6d7383f9e06d9d148935b3c9b73
-> > change-id: 20250806-amdgpu_typo-80869b122c36
-> >
-> > Best regards,
->
+
+-- 
+My regards,
+
+Damien Stewart.
+
