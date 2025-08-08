@@ -2,70 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A12A2B1EE64
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 20:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF5AEB1EE66
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 20:36:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F79710E0BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1773410E14D;
 	Fri,  8 Aug 2025 18:36:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WbUwXiWF";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="kwe5RroF";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="z+GyQF24";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com
- [209.85.215.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63CFA10E12B;
- Fri,  8 Aug 2025 13:14:46 +0000 (UTC)
-Received: by mail-pg1-f176.google.com with SMTP id
- 41be03b00d2f7-b34a6d0c9a3so2424681a12.3; 
- Fri, 08 Aug 2025 06:14:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754658886; x=1755263686; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=iawHC1WUTHg8Q1cXEPmQw82NLULRa7+zvXxXpbCHsU4=;
- b=WbUwXiWFSKQl2qi7cnadzZh7QhHu4KmvV2GgjCYDkQYtZJmBFMOtgJq4jfD81Y40if
- 7Vn5lktmL3I0sb1gV7iRgUmLSX0kHyVx6YiHPT8PVmLfOW7AdsepvQI7LWZIh9l9q1fy
- IJI7gUCIUprlU/r/0WQU8Ya2D8u3BqnS4XSMqKcYAFQicv2BvgbHmQh0Me7nDy3PkwS6
- MhLjfTK7v7GCnPUTeUTwslFvXLshBYD+pAEedAVgbRBGh0zESaBbo7j/yn03oO+9ff+L
- Ht7jDdCsoNDTJ6IDoFuVYDkHm4wjGivmazwKHz8Mde8NHWpglf+26C6XFreQsuRgkvZi
- wpsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754658886; x=1755263686;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=iawHC1WUTHg8Q1cXEPmQw82NLULRa7+zvXxXpbCHsU4=;
- b=PK0BqFy7Bk07ZkqS5ki6F8B04Fu3jPtBFyn+6Dyo3k/hGyVCdFQQ0UqjE4Cy+NYOcV
- WAowVa+2z8eicB43RST2qHFuDWAOgMlxXbfZFhNiDf4t95jZCbkZqhM4pgCQU7b9Nere
- 19+RGTxbxJMEoJdMqAMuv3OHj/k4KoqtFDviXFGKSuyEqQKSHOITdz4SDLucxnRcedVC
- Prl4Jac3iLudlk3pwBWaf661LFkccL/dzqeyowzWfb7anNLACCPVc1suDA/i0OrX976S
- 7uY2EqfR7cZrfMIf+YCXjgzmZbT/dEcssc4NLprRVtcHGY+TwwwGbnfw02FQOZtmGGq+
- akRg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUp59Zj7efyQbOK+g/gw9Esl6TZCi5MkDAbHqS8iWqE/2rJjfyYAdTnEmYRDTZ/XdDoPga++u7/@lists.freedesktop.org,
- AJvYcCWX/epEHmpRTWAqjXi7FvgLLVQvID9PHyphWccC4xc1gzOzlFpaB5YoqgEqDaXg+bOcysvLJZbcUBdJ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx+KXH1Yg2SPL5jT/ThF6tbiNacCN8rcahcFvpZF0+nRXqRbHjC
- Jgjj99QbCiR4FvHglr+FegwqbKZZnsQZ2LQFIi8lYgYlB9zYlZRXUKw3zYKFuMdDCXvusHolNIh
- EKKQichLSmDTJ9jz3u3849QTGsLPomEY=
-X-Gm-Gg: ASbGncuFkGEM13/Cvx1q4ZNmoywgmhYzIz6sHyyXYnLu3O2YsRvqBgUUoBPa+zq8iA4
- tQBMJO49VhaenEN5cT791WlyVlfTXvIgT8SYuRNXcFH4+dookPjjdpw/nKA+73EWihixrD0TDgK
- pHmTz63MUTO7+oheCUsiY/1hcMP+a/uDtEHiSlIOJAaV2Oz5avN3wRqkbLkfNyl4yS39u3o/9aW
- +Jn/co=
-X-Google-Smtp-Source: AGHT+IE5B69vo+qtzdqrQ3DUHSvn6ONntAXNi5ew0A1UUjK2jQU3cn7X/PwXfy8EPU8TJl9/ldX9BWKqUwOEssBbTe4=
-X-Received: by 2002:a17:903:228f:b0:234:ed31:fca7 with SMTP id
- d9443c01a7336-242c22cb8abmr46205595ad.48.1754658885711; Fri, 08 Aug 2025
- 06:14:45 -0700 (PDT)
-MIME-Version: 1.0
-From: Abinash Singh <abinashsinghlalotra@gmail.com>
-Date: Fri, 8 Aug 2025 18:45:16 +0530
-X-Gm-Features: Ac12FXzRfdTGh3UkiWjvhnApGvuKIGi5zSWG1b8VaHhC3jJmLNLblI0mTB7_0K0
-Message-ID: <CAMV7Lq7hCuUpkgU6bjs6oCENb_OgFchzf7DywM7g=YjWDNYz2g@mail.gmail.com>
-Subject: [RFC][DRM][RADEON/AMDGPU] Starter TODO task: Convert dev_*() logging
- to drm_*() variants
-To: alexander.deucher@amd.com, christian.koenig@amd.com
-Cc: airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: multipart/alternative; boundary="00000000000095bd82063bda5b84"
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+ [85.215.255.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECF6310E938;
+ Fri,  8 Aug 2025 13:30:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1754659817; cv=none;
+ d=strato.com; s=strato-dkim-0002;
+ b=hep1b6AE477RjVcDGZUXoHkaTIIDTunHvYhalbdOwKMRBddWFV5v9AqUrcUacm+QVG
+ GdcEgyx8Xc16a+BByOwZK/9EjEFH3KMR1nRx3fgNott5tEEMRQdTepyvrTryHLpMQSW1
+ oKWsWPdEBq8xgjyY8iKNYlIslSfHaND4RW7YNMhl0mGCB8oX7t+SxujSxqK8xU26XPG2
+ NTJttXTG6euC0pDeNYg6PY0qtjdP9mFF2YEEcgXPUwx+AHuhXA42wZKz+3RftzhcNqk3
+ 5TksXo3HonVcnB+es415Siz4XAKu8pyRBGpMLVTM3m4+AgtmD157SXBVzgt+zWynPdvw
+ a2Bw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1754659817;
+ s=strato-dkim-0002; d=strato.com;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=szxC9HtsLathAsiBUge4AOh28xZOX235WGFzuZVindU=;
+ b=TEPKajmrokiXkQrTkDvh1XHhFugEzFYRFw5tjJdsQyiSTU5r7rydeGgkMBhm/GdOgv
+ 6Vo/qY9ePeL2Vd4A5Wummkp1uCYUtyaL6/fb4cgMjBiDwz0RYs8SZJsqN/s/jK1T4Wuc
+ 7cmevKXyQasFpZ9cn4Ed3XruHfxdB9gBA4qbJ8D+Uu1gUZyBjEo20A0aoAs9SMRQtdft
+ js4tPmJFdgacpxApBFadJ0+OlxRiGZEmoGhaFs2fJjgvS6nG4Ze/NJviPEaeHXDJIU5D
+ jm710w41q8u7DhScoK4yVcpayvECIiyRs/DI4eBjD4/ddKx1NqaJ45DewbFqE71id2aj
+ M/Ww==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1754659817;
+ s=strato-dkim-0002; d=xenosoft.de;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=szxC9HtsLathAsiBUge4AOh28xZOX235WGFzuZVindU=;
+ b=kwe5RroF6dj2gY0kv8G7NJGTAKEciD3aR7a1GfyiLRT7s/qVYYsXD4FN6Oy6XehDuN
+ aqo+IbH+qpF5CRThSaR/uhm+A7I+RpAl96m3HS1+20QwISoBwpkwvo9bePKbqUR3o07T
+ OIMVXOgR5oUOTT2G9T+KBWvX+XXn5JTgofP8Tne1884Y5tlEo7lsMjxcgOIWG9ppZ4Zu
+ RrLeBxnVEizyZxYECSKOzHyOK/Goaf/FMnZyW2eK25963X70mM8m/f98R0j0qdNDGrTD
+ f/i11c8kk/clapJ33a0h46uK0zpJfLeV+2N9OzicGolV9AHGcE6fmKH/9XQlotl0BTEy
+ UurQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1754659817;
+ s=strato-dkim-0003; d=xenosoft.de;
+ h=To:In-Reply-To:Cc:References:Message-Id:Date:Subject:From:Cc:Date:
+ From:Subject:Sender;
+ bh=szxC9HtsLathAsiBUge4AOh28xZOX235WGFzuZVindU=;
+ b=z+GyQF246kRXw4tvalcO3ZXLlp2olBKyTxJdGcxCDPT115MQNBndbckfB1Ilpt8Qh2
+ waHMUp+CYlwG92H0VAAA==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5m2s3nHCn4174Rhb0mYyao0unG2oENUO6LNlA=="
+Received: from smtpclient.apple by smtp.strato.de (RZmta 52.1.2 AUTH)
+ with ESMTPSA id e6066c178DUG7Dn
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+ (Client did not present a certificate);
+ Fri, 8 Aug 2025 15:30:16 +0200 (CEST)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+Mime-Version: 1.0 (1.0)
+Subject: Re: radeon_fbdev_river_fbdev: failed to initialize framebuffer and
+ setup emulation
+Date: Fri, 8 Aug 2025 15:30:05 +0200
+Message-Id: <DA926904-FB40-4826-B0F1-729DF181CE05@xenosoft.de>
+References: <CADnq5_PMu0tqCaGccdL2JDZuHqSb2Q2mgo12Cba-pDAL9bAmBw@mail.gmail.com>
+Cc: Mario Limonciello <superm1@kernel.org>,
+ mad skateman <madskateman@gmail.com>, ville.syrjala@linux.intel.com,
+ Jeff Johnson <quic_jjohnson@quicinc.com>,
+ Darren Stevens <darren@stevens-zone.net>, hypexed@yahoo.com.au,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Christian Zigotzky <info@xenosoft.de>,
+ =?utf-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
+ amd-gfx@lists.freedesktop.org,
+ Alexander Deucher <Alexander.Deucher@amd.com>,
+ "R.T.Dickinson" <rtd2@xtra.co.nz>, bhelgaas@google.com,
+ benato.denis96@gmail.com, Yijun_Shen@dell.com,
+ David Perry <David.Perry@amd.com>, rafael@kernel.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <CADnq5_PMu0tqCaGccdL2JDZuHqSb2Q2mgo12Cba-pDAL9bAmBw@mail.gmail.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+X-Mailer: iPhone Mail (22G86)
 X-Mailman-Approved-At: Fri, 08 Aug 2025 18:36:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,52 +105,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---00000000000095bd82063bda5b84
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
 
-I came across a "Starter" task listed on the DRM TODO list [1], which
-suggests converting logging in DRM drivers from dev_*() macros (like
-dev_info(), dev_err(), etc.) to the newer drm_*() variants that take a
-struct drm_device * parameter.
+> On 08 August 2025 at 02:56 pm, Alex Deucher <alexdeucher@gmail.com> wrote :=
 
-The rationale is to improve per-device logging clarity, especially for
-drivers supporting multiple instances.
+>=20
+> =EF=BB=BFOn Fri, Aug 8, 2025 at 7:48=E2=80=AFAM Christian Zigotzky
+> <chzigotzky@xenosoft.de> wrote:
+>>=20
+>>=20
+>>=20
+>>>> On 08 August 2025 um 01:23 pm, Mario Limonciello <superm1@kernel.org> w=
+rote:
+>>>=20
+>>> =EF=BB=BF
+>>>=20
+>>>> On 8/8/25 2:36 AM, Christian Zigotzky wrote:
+>>>> On 07 August 2025 at 04:21 pm, Limonciello, Mario <Mario.Limonciello@am=
+d.com> wrote:
+>>>> Does applying
+>>>> https://github.com/torvalds/linux/commit/907a7a2e5bf40c6a359b2f6cc53d6f=
+dca04009e0
+>>>> help?
+>>>> - - -
+>>>> Hello Mario,
+>>>> Thanks a lot for your patch.
+>>>> I tested it today but unfortunately it doesn=E2=80=99t solve the issue w=
+ith the Radeon framebuffer.
+>>>> I have created two kernels with and without the drm-next-2025-07-30 upd=
+ates [1] because of the issue with the Radeon graphics framebuffer device #1=
+5. [2]
+>>>> Download and further information: https://github.com/chzigotzky/kernels=
+/releases/tag/v6.17.0-alpha5
+>>>> I have tested both kernels this week and I can definitely confirm, that=
+ the issue is somewhere in the commit drm-next-2025-07-30 updates [1].
+>>>> The Radeon graphics framebuffer doesn't work with the kernel with the d=
+rm-next-2025-07-30 updates [1]. Without these updates, the framebuffer works=
+.
+>>>> I bisected yesterday. [2]
+>>>> There are some other user reports:
+>>>> - https://forum.hyperion-entertainment.com/viewtopic.php?p=3D60606#p606=
+06
+>>>> - https://forum.hyperion-entertainment.com/viewtopic.php?p=3D60595#p605=
+95
+>>>> They use other Radeon graphics chips.
+>>>> @All
+>>>> Please check the drm-next-2025-07-30 updates [1]
+>>>> Thanks,
+>>>> Christian
+>>>> [1] https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.=
+git/commit/?id=3D260f6f4fda93c8485c8037865c941b42b9cba5d2
+>>>> [2] https://github.com/chzigotzky/kernels/issues/15
+>>>=20
+>>> I think there is a mistake in your bisect, which I notice from looking a=
+t your other user reports.
+>>>=20
+>>> The original commit you identified in your bisect and thus CC'ed me came=
+ in 6.16-rc1.
+>>>=20
+>>> =E2=9D=AF git describe --contains 4d4c10f763d7808fbade28d83d237411603bca=
+05
+>>> v6.16-rc1~50^2~19^2
+>>>=20
+>>> There absolutely was a regression for that was raised, but this was fixe=
+d in 6.16-rc3.
+>>>=20
+>>> =E2=9D=AF git describe --contains 907a7a2e5bf40c6a359b2f6cc53d6fdca04009=
+e0
+>>> v6.16-rc3~13^2~1
+>>>=20
+>>> Users in your forums posts talk about 6.16 final working fine.  So I thi=
+nk that when you bisected you ran into multiple confounding issues and repli=
+cated in a similar fashion.  You should check every single bisect step to se=
+e if 4d4c10f763d7808fbade28d83d237411603bca05 is applied.  If it's applied b=
+ut 907a7a2e5bf40c6a359b2f6cc53d6fdca04009e0 is not applied in that step you s=
+hould apply 907a7a2e5bf40c6a359b2f6cc53d6fdca04009e0.
+>>>=20
+>>> Hopefully that will get you down to the real cause.
+>>=20
+>> Thanks for the hint. Unfortunately I don=E2=80=99t have more time for fig=
+uring out the issue.
+>=20
+> Does this patch help?
+> https://patchwork.kernel.org/project/dri-devel/patch/20250805175752.690504=
+-4-imre.deak@intel.com/
+>=20
+> Alex
 
-I=E2=80=99d like to work on this for the Radeon and AMDGPU DRM drivers. Bef=
-ore
-proceeding, I wanted to confirm whether this change is welcome for these
-drivers, and if there are any driver-specific considerations I should keep
-in mind.
+Yes, it helps. The Radeon framebuffer works again.
 
-If it=E2=80=99s acceptable, I=E2=80=99ll begin preparing a patch series for=
- review.
+Thank you=
 
-Thanks for your time, and looking forward to your guidance.
-
-Best regards,
-Abinash
-
-[1] https://docs.kernel.org/gpu/todo.html#todo
-
---00000000000095bd82063bda5b84
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<br><br>I came across a &quot;Starter&quot; task listed=
- on the DRM TODO list [1], which suggests converting logging in DRM drivers=
- from dev_*() macros (like dev_info(), dev_err(), etc.) to the newer drm_*(=
-) variants that take a struct drm_device * parameter.<br><br>The rationale =
-is to improve per-device logging clarity, especially for drivers supporting=
- multiple instances.<br><br>I=E2=80=99d like to work on this for the Radeon=
- and AMDGPU DRM drivers. Before proceeding, I wanted to confirm whether thi=
-s change is welcome for these drivers, and if there are any driver-specific=
- considerations I should keep in mind.<br><br>If it=E2=80=99s acceptable, I=
-=E2=80=99ll begin preparing a patch series for review.<br><br>Thanks for yo=
-ur time, and looking forward to your guidance.<br><br>Best regards, =C2=A0<=
-br>Abinash<br><br>[1] <a href=3D"https://docs.kernel.org/gpu/todo.html#todo=
-">https://docs.kernel.org/gpu/todo.html#todo</a><br></div>
-
---00000000000095bd82063bda5b84--
