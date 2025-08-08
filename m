@@ -2,45 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5C07B1FA87
-	for <lists+amd-gfx@lfdr.de>; Sun, 10 Aug 2025 16:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01621B1FA83
+	for <lists+amd-gfx@lfdr.de>; Sun, 10 Aug 2025 16:43:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDE9010E26D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 874E210E269;
 	Sun, 10 Aug 2025 14:43:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=listout.xyz header.i=@listout.xyz header.b="aXlq+E4G";
-	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF50D10E09B
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Aug 2025 23:15:44 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bzKdT4m8Mz9tCJ;
- Sat,  9 Aug 2025 01:15:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=listout.xyz; s=MBO0001;
- t=1754694941;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=e6Jw1zDVtjTA2grbtCPb82zxpM0vKtOPY3V4HAN/9GA=;
- b=aXlq+E4GuZQDVxVshkb1a47xbWzfnSNnuOWmTkYUuLeH7BHPYDEy3wL7jZoq7bBcpn2leT
- bVZiaM9r7tHWVgafy+917E08EuPBpnCUbgLt4bIic51TzfALx0lJ1Uwrn5PDoU366TVBiR
- P7wmQ3gMh6hY81C2ygLV/3nt3z4socOLGj2LzIhsMdcVlDBgMzW36qYTzroKhgktMe7stG
- mj6UJv8cymD6dqld4WgclI5XxK6BOsrHkFgN3hGP07D7i4KIQUB+Hpw74pLcVJmyJrDD4+
- Tv31nK5bx2crWqaEhlIoFGaq7H+whaSSYCjWJr7864a00i+sMwy8TXR+jsJ+5g==
-Date: Sat, 9 Aug 2025 04:45:38 +0530
-From: Brahmajit Das <listout@listout.xyz>
-To: linux-next@vger.kernel.org, amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com
-Subject: drm/radeon/r600_cs: Build failures with GCC 16
-Message-ID: <pqpvdwxmqler2mg4ou665v56g6qe36vwi5jeavqeszj2mrk5m7@io6dy7jsvuhe>
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D2F110E09B;
+ Fri,  8 Aug 2025 23:22:47 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-459ebb6bbdfso17175485e9.0; 
+ Fri, 08 Aug 2025 16:22:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754695366; x=1755300166;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=S7hoQOlH8hdbY5KjsDkardvJrN7xlW830kjw5KEZnS4=;
+ b=Rzq38VD9NNjafZryimk3Kh/qOQBFM9v2sh4sucgJirlVRuumr2ljpzAPQ5kDsBGHIq
+ APa+NbfiFWCedcCazu8SljT6om6X4ZcEkJxHVgt0qHTEChPGl8Y9srK7XnAQi+utgUZf
+ EVXueAxhRIzY3nHQemr7zvfK6lJtfn60d+qDF6zJSuTlWK9GEgLjLyfhNXHFu5xUAaDk
+ LsJBVrYP6qfsVOnt0IuDDKcAVazlb7vOPDSlEq3FY4n+FawT0O6hvQeqQBj4+sl6Toyu
+ 3x+XKHjCSCZkhiY3NYxl8zzrYBC4hZtukRqIZBfDiBUKQmfLyy8ZLPIYaG7uRoJrUEuG
+ 9erg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUhMWGBjY86t+2ZrQWqFldjg8HecKNgqFWZHqvy17h4YOPCgn+INiuC7mF3GUxnOkOOO81rNT/Uywi7@lists.freedesktop.org,
+ AJvYcCVa//PWLKBc8HDQhYwtdANBUBRD0KaZyu4iogROy587eEBQ5mpyoUIZ8E5jKMwuh1hACsDuv/Nm@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyC/G2QsSS6fTDnwW17qJUP5CV8Jd9lcthMARzptL/+vf1U2I/q
+ 89sDtrL3zGJm0Qx1OQrgyH+gAaeL2INBS42xJ7fBQyc+LSglkMGeY4isQiRHiIG6fCs=
+X-Gm-Gg: ASbGncvRQmOb2WjzzDIVsSc3T89M/9L0QDl4yV0JR643CsMOVXCsTTHr0t4AsRGp18h
+ RTqzOESIYiAt7bj8y1TYUMqSmPz9QJp3EMe5jEA+QPVCvCLoKUB2PNqJriHv8bqQfRAZKLcZhGG
+ ZtJK99BriSnCoIO4qHD1UgYVV53r8odrVwG/pJPKNixxYOP6u7GsO7Am24pPjZV4auj7yccujlz
+ i+MxCHdXCNYhUU2pYni5W+heXtC1oNIcUwIThTezRgvrUjAvofjQM59kpmzhXPhQ/Z8cUoZirGl
+ cEPve3Xs1aqtrmfL4DWBfTiD06brP+JtH+V1fYR9UXNAHVX0TxWBAGWmHphtsllNYfgk1qCgxPl
+ pjCFOcwC2VhXCX50HwAcE1tZLcTo0VRQZ8novxipPFuk=
+X-Google-Smtp-Source: AGHT+IGQMTo9SwesgTmq9YDU6U+20iLE8/0wLNPQ4nhjBDpCA5mQSaBryPBHNrEIgJou1IL0pvh8dw==
+X-Received: by 2002:a5d:5d0c:0:b0:3b8:b33c:b8b0 with SMTP id
+ ffacd0b85a97d-3b90092c9d2mr3675591f8f.7.1754695365632; 
+ Fri, 08 Aug 2025 16:22:45 -0700 (PDT)
+Received: from xavers-framework.fritz.box
+ ([2a04:7d84:aac5:f6d0:e6bd:56ed:1a58:b83])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b79c3abf0csm31142512f8f.14.2025.08.08.16.22.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 08 Aug 2025 16:22:45 -0700 (PDT)
+From: Xaver Hugl <xaver.hugl@kde.org>
+To: dri-devel@lists.freedesktop.org
+Cc: andrealmeid@igalia.com, chris@kode54.net, naveen1.kumar@intel.com,
+ ville.syrjala@linux.intel.com, mdaenzer@redhat.com,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ alexdeucher@gmail.com, arun.r.murthy@intel.com,
+ Xaver Hugl <xaver.hugl@kde.org>
+Subject: [PATCH v4] drm: re-allow no-op changes on non-primary planes in async
+ flips
+Date: Sat,  9 Aug 2025 01:22:08 +0200
+Message-ID: <20250808232208.7764-1-xaver.hugl@kde.org>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 10 Aug 2025 14:43:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -57,35 +78,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Developers,
+Commit fd40a63c63a1 unintentionally disallowed no-op changes on non-primary
+planes that the driver doesn't allow async flips on. This broke async flips
+for compositors that disable the cursor plane in every async atomic commit.
+This changes drm_atomic_set_property to again only run atomic_async_check
+if the plane would actually be changed by the atomic commit.
 
-Building linux-next with GCC 16 results in this following build error
+Fixes: fd40a63c63a1 ("drm/atomic: Let drivers decide which planes to async flip")
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4263
 
-$ make
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CC      drivers/gpu/drm/radeon/r600_cs.o
-drivers/gpu/drm/radeon/r600_cs.c: In function ‘r600_texture_size’:
-drivers/gpu/drm/radeon/r600_cs.c:1411:29: error: variable ‘level’ set but not used [-Werror=unused-but-set-variable=]
- 1411 |         unsigned offset, i, level;
-      |                             ^~~~~
-cc1: all warnings being treated as errors
-make[6]: *** [scripts/Makefile.build:287: drivers/gpu/drm/radeon/r600_cs.o] Error 1
-make[5]: *** [scripts/Makefile.build:556: drivers/gpu/drm/radeon] Error 2
-make[4]: *** [scripts/Makefile.build:556: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:556: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
-make[1]: *** [/home/listout/linux/Makefile:2011: .] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+Signed-off-by: Xaver Hugl <xaver.hugl@kde.org>
+---
+ drivers/gpu/drm/drm_atomic_uapi.c | 23 ++++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
 
-I'm not sure whether this is kernel bug or GCC bug at the moment. But
-building with GCC 15 does not give this error, hence I'm more inclined
-towards the latter.
-Planning to also report this on GCC side, wanted to get some
-opinion/feedback from kernel devs as well.
-I'm on GCC 16.0.0_p2025080.
-
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+index c2726af6698e..317303cf5b8c 100644
+--- a/drivers/gpu/drm/drm_atomic_uapi.c
++++ b/drivers/gpu/drm/drm_atomic_uapi.c
+@@ -1077,19 +1077,20 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 		}
+ 
+ 		if (async_flip) {
+-			/* check if the prop does a nop change */
+-			if ((prop != config->prop_fb_id &&
+-			     prop != config->prop_in_fence_fd &&
+-			     prop != config->prop_fb_damage_clips)) {
+-				ret = drm_atomic_plane_get_property(plane, plane_state,
+-								    prop, &old_val);
+-				ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
+-			}
++			/* no-op changes are always allowed */
++			ret = drm_atomic_plane_get_property(plane, plane_state,
++							    prop, &old_val);
++			ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
+ 
+-			/* ask the driver if this non-primary plane is supported */
+-			if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
+-				ret = -EINVAL;
++			/* fail everything that isn't no-op or a pure flip */
++			if (ret && prop != config->prop_fb_id &&
++			    prop != config->prop_in_fence_fd &&
++			    prop != config->prop_fb_damage_clips) {
++				break;
++			}
+ 
++			if (ret && plane->type != DRM_PLANE_TYPE_PRIMARY) {
++				/* ask the driver if this non-primary plane is supported */
+ 				if (plane_funcs && plane_funcs->atomic_async_check)
+ 					ret = plane_funcs->atomic_async_check(plane, state, true);
+ 
 -- 
-Regards,
-listout
+2.50.1
+
