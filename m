@@ -2,127 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E9AB1E89F
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 14:49:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22909B1E8B4
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Aug 2025 14:57:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E30510E021;
-	Fri,  8 Aug 2025 12:49:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3797C10E1DD;
+	Fri,  8 Aug 2025 12:56:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ohXw/EaQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RCkibLnV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2060.outbound.protection.outlook.com [40.107.212.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F110C10E021
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Aug 2025 12:49:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yfqtGXdLDM/OXkgQCepZ0AIFef05rQtKlrwZxJAva5SO/fyIDzzNPKK7fi7ItGMuAyl4CjPprPOjf8HxstlDKCqSCs1xzTVYChlWIfTbSCkPvwLJRAhLRsKJ8UBY0xAhmoJfsmSE2P/OTeGcQMVj4fHCl54BJsyVx/cw1ZA3fWumLTFdkmrp+3THh4kg75IECf8/NroTA+2IqS54mfOw3D+reQX5GcPYr6nfwEpnplOzEa0C+b23sXbZbShTHW9UB55v2xY5wPPH31DAxboLeHnerBYwptQNTv2qnoP/KPD3xyf3NnD4HVTMLExwv5CUSEJEHZrI6UCzn1w+DiMvlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IJ82YVgdzBs48lN1X1uOuGpw08uL/TPcBsQ7BnvVh1U=;
- b=go4KXcz5E0izZzSuCYqQ3JkK5BWf5j56ZG9MKAVNYfeoO3Q+TE/okqOKATklPzQJqOmdeJdx+rmgmiV24gxPs4pJHDny6OqW8NP2HQoAponn555N1xqXW7JskTRT7n+VTWkX60gL+NKP62u3CGuMMVJSxRNaZ8KorIorIqu3aiOWktJInNqexic6YTU514TBFltMDEOZnL4k6nrqXh7yxwc0sOgoiuXS10D4sYn8p/v6T2jwXK00ryQ85UiupJ4EFGnHMKtG9Z9MozNQsdhzC82t3OkATFfRaECxHSsi2NHsx1x8nYYvEC3F3oHA+PCNwMXDWnahP86DIsF0xTYfGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IJ82YVgdzBs48lN1X1uOuGpw08uL/TPcBsQ7BnvVh1U=;
- b=ohXw/EaQN11ZDGnEJD0hvONPkJD3J0aEgjFpp40cQ1xBaDhggMvzuIzzdoHQuEaWu7Ox8csvcOxLgRuOsphh+oK1JtWOZNnWQ/YWpZXvDRjRhre3YxX2UscFB+Tmtiw1X6n7ke7w/OSgyvyLFLViiMHwuDfOevEE5AJDKUC7l9g=
-Received: from CH2PR07CA0042.namprd07.prod.outlook.com (2603:10b6:610:5b::16)
- by LV5PR12MB9777.namprd12.prod.outlook.com (2603:10b6:408:2b7::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Fri, 8 Aug
- 2025 12:49:14 +0000
-Received: from CH3PEPF0000000E.namprd04.prod.outlook.com
- (2603:10b6:610:5b:cafe::da) by CH2PR07CA0042.outlook.office365.com
- (2603:10b6:610:5b::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.18 via Frontend Transport; Fri,
- 8 Aug 2025 12:49:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH3PEPF0000000E.mail.protection.outlook.com (10.167.244.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9009.8 via Frontend Transport; Fri, 8 Aug 2025 12:49:14 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 8 Aug
- 2025 07:49:13 -0500
-Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Fri, 8 Aug 2025 07:49:12 -0500
-From: Jesse.Zhang <Jesse.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- <Leo.Liu@amd.com>, Ruili Ji <ruiliji2@amd.com>, Jesse Zhang
- <Jesse.Zhang@amd.com>
-Subject: [PATCH 2/2] drm/amd/vcn: Add late_init callback for VCN v4.0.3 reset
- handling
-Date: Fri, 8 Aug 2025 20:48:36 +0800
-Message-ID: <20250808124909.1813022-2-Jesse.Zhang@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250808124909.1813022-1-Jesse.Zhang@amd.com>
-References: <20250808124909.1813022-1-Jesse.Zhang@amd.com>
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
+ [209.85.210.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8456410E1DD;
+ Fri,  8 Aug 2025 12:56:44 +0000 (UTC)
+Received: by mail-pf1-f170.google.com with SMTP id
+ d2e1a72fcca58-76bf9b25cbbso115874b3a.3; 
+ Fri, 08 Aug 2025 05:56:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754657804; x=1755262604; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=MZbNINpDtNwPAODLw/p25kVPu0hlXgpqeNAl0WAMF5Y=;
+ b=RCkibLnVirp9920Ed3n0mhy5kkaclv8PlHwZQm0WyCxHJWegJgPRwT1nWaGnZoMqET
+ oDONKAr4KvVbWQVqkR4G3ezWNRnRKEMDzY35DPY1/sgK9DZQZKUhWc/XSo5aZhZruKD6
+ 1v0FHc20hxYuQSIWfNcXaXCVeZifrthvNSE4x+lvZxRK35+jdsvKt8P1N2VUussKvIst
+ w14G1LA18UWSxNuhp0hFic8sxOVZHAxz3CSTQCGglhcsxmX9RzU53btY2GJMyeYihmce
+ 7wv89ydi2Ut5MpxCdC4XnkeyrRK5+httFmDEx2bbR1OgCsjqYIufAUp7TXcJgiLSUFMZ
+ EkXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754657804; x=1755262604;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=MZbNINpDtNwPAODLw/p25kVPu0hlXgpqeNAl0WAMF5Y=;
+ b=ix9tPs54KqmrBQsKtVfzXlTpze1WJ0p8Fyxt0BqPTQjxvUgbdiMJr8F6X2imPT9Gqt
+ mcXdVm6NeXDAAHD0/vpUv8HfYxA73W70M7XsFYFAA4yiddoD4qGIFKqEjEDDFPwxBXwo
+ H38DD1ZDHC5HcQVGnrKnSsjcyCN5nWEYcKXcf2a8M9684JHFDC0iV9OMFwLQE3El8j7q
+ HEeoXS4+YynQHpei5tTpztSZDCOAbZB//+iNNoVEwCCJGL4ETo0G0uZB3tHEDi+4gr7t
+ xYXz9fX0up0msv7jlkTPLNfip0ndH2UXB8cKuwGmYkFLQ0giZ0DDkImL3lYlHtspTjFH
+ FOIw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV7YmIH1iTfbbqAf31mLU2XoZqwlIZ66wy1ItwGKnF2MUBI8Jgrabd0Huvi1pFjHifpqxqyxXabYWCa@lists.freedesktop.org,
+ AJvYcCWHmbuqS/udrVKx3quPN899Q8CB+ce3V7hvN+W2Totrwd0lrtnY99Rn27aDr674sH0S+kUpTr/A@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yznru1zR55aIC4mOUgMKriMPKU4JDMCsC6MgCijfT9RWL6NGF0b
+ erKTzmK+uHji3qPEarOkhlr28rGRtS3J10OtfW7bbiR+LHWQQMjrEe/qFaPhaFcGnRDd4rlLWOr
+ MXj4wQITyLD0n2DUyvxCsw1ODGgVBFXg=
+X-Gm-Gg: ASbGncsAYWQ85mG8fz6LzhlEftLaxuKLT9uVHeLO9t3t3nlZ64Q/u5hoy6VJ4ERzd4n
+ 0CwSdlPV8+bBHyt7Q9Rx3lfjjVkMOJa/VZpKPGeDi/b7PR/h8eo5fADYweyZRfk1ntZt52iE6zr
+ YPwkq1a/rwW4NO5Rbf1kd2zysWIsJmSyp5R1B5p4hjBd2edp8Fk895Bhv0QIsukVmymNUK1qWim
+ uuUZdg=
+X-Google-Smtp-Source: AGHT+IFlSvcxbL5GPPyPwmiE/DsA4FgAwXz1H3jaR/ZIQGjKmn+Ihg0nha5JLpTZM0CwWNa5eQTwI/sGz45V76qqNk8=
+X-Received: by 2002:a17:902:d503:b0:240:58a7:892f with SMTP id
+ d9443c01a7336-242c202c051mr19191455ad.5.1754657803805; Fri, 08 Aug 2025
+ 05:56:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: Jesse.Zhang@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF0000000E:EE_|LV5PR12MB9777:EE_
-X-MS-Office365-Filtering-Correlation-Id: 60758be4-ba42-4da7-92e3-08ddd679faa5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/1hvWrHLcd9idVAji573cBYolnWhxl+L+Ammb5jSNJVjc6bPX46ltu8rtbcF?=
- =?us-ascii?Q?AjYQnh5ZBh3ox+Uk7WmMtY2utkIvzLBF0bKFZANZlaih0KIdZHiaK1pUGiJ2?=
- =?us-ascii?Q?KTacmHgTJgCP67Cs2zLt5JoR3OYY2jCQfGwanutpe5W7WPHdBLAl7/nplDI+?=
- =?us-ascii?Q?+XQw4P6bG7oGIFsP3cIzAJkVxfQDPiJydlpVG5PciCdztX986CfW38jPX/cw?=
- =?us-ascii?Q?DwkZ4zgloRauFHWaL7knYtx/CTZlo1ONzhCtgW6CzoSM14XfnIi28SSaXhNQ?=
- =?us-ascii?Q?z6tuiG+AKcdPMssVdqKJ26FC+hgrdIEoNZ+/7zU6ci6U4BKw3kt1iKUu6wBg?=
- =?us-ascii?Q?I+AXqWtkQeinwTBbIr2xRpdPRbN7dBtsPlK8pL4JgmjmW7iu15gI7ToYJWBp?=
- =?us-ascii?Q?kOAeyGbNaVNMfcEfMcQTA7KHpARiLshZO26ZdgiIWSV01iWwpYxe6TuMjw7N?=
- =?us-ascii?Q?8qbI23qsa3Yjcr4xz0cV765lev41/5/3ffz0INoxBSEMTVzKGOx3wigQwYr0?=
- =?us-ascii?Q?qaGsi4TC5IxIDsJA2uVsl5YHiNtTbQZgH8YgTpzCidR/YKGGy7rsrOcwSbA3?=
- =?us-ascii?Q?Ia56npne+aROvPwaVia21LkSk52UIqbEpDN5SeXf5yDhbRXbE7GoPPD9p7uD?=
- =?us-ascii?Q?zHa41fwUrNk7VUOxM2bY39Ji6VIVahhV6h/9Qf2pUgUB2Xi9UTGDhd/VVB4T?=
- =?us-ascii?Q?ZboMnJUm9gl64WI9zG0scsul3wKxy+LSn3jxDX4dQG3NGZrwkXRnNBN+0k0V?=
- =?us-ascii?Q?4XJ2bxVyXbBdXm3o0WpDBSP0TZwbMF3F7jBdApuAyo+ZuY1/i+ijpjL5NfyZ?=
- =?us-ascii?Q?51SyRwhySPmxd0TCsEc6JOVd4ypIXmcJODHXhNzbU+EgCDbUptwSBtulFZnG?=
- =?us-ascii?Q?NbOtgFTfvXfrkEIXfjNrlVlvkl17WhiB53DKPrLIMNyeJAEhgHO97Njk2i2V?=
- =?us-ascii?Q?xxaB4X8K1ksGcjQvdQBLUcpnWvwq2vhU6ybRZZT0/cVdZ4n7+REMfrE+rchv?=
- =?us-ascii?Q?07zdxsQPeuNypYfR3136WvUKYBpnqLVuqSYIwkKsF5jWruCUsw3Oj7V6agiS?=
- =?us-ascii?Q?jdgBYlN/Y0rECKa2qPRk4GBL3DxKeqYzIaF0bPaFTtt7500DNP4F7th32rGh?=
- =?us-ascii?Q?V1qC6mWPkbFP5kBvJ3o5++j2YDgUnAdM+iE1dgTUexKWi6ghsugkLrXp0Zfs?=
- =?us-ascii?Q?5ZYVX9bf0Pcwd746FxQBLw264FErWOVPUUMkiAFCtGPofBgdAPZDQ+PNMrsO?=
- =?us-ascii?Q?6qXLd13shK7RYVVNYb5PnJB4pnoTfRks0mwxrd4c4hzyzm7iKUY/uoCh4r4C?=
- =?us-ascii?Q?bOUkH/VYQgiKxTyYPCwpZyJxhVd0V9oovbJoj2tauExdhcJcjAtroskOY7kV?=
- =?us-ascii?Q?DqDnA43ee5owTJWecbVp7A0YUJQ+jGBRdwfb/wvT5HcdBOtLGNo9/0s9Plpe?=
- =?us-ascii?Q?KiwFcK0p7o2D/ZbpI6xT5SPHuBuFXA71LyxGRmpttQKr0rpx9FR3BSm/XluZ?=
- =?us-ascii?Q?rJrAbeeiILj/fwNQDfecahkt4v1He5jMc75a?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 12:49:14.0481 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60758be4-ba42-4da7-92e3-08ddd679faa5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF0000000E.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV5PR12MB9777
+References: <66083d23-e60c-4fce-bad0-81dbb9dcebde@kernel.org>
+ <0B029DD9-085A-4AD2-B3A0-4C427A1540EA@xenosoft.de>
+In-Reply-To: <0B029DD9-085A-4AD2-B3A0-4C427A1540EA@xenosoft.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 8 Aug 2025 08:56:31 -0400
+X-Gm-Features: Ac12FXwadau3sWLYns3mQnQjQQDJTmPDYbqhGMIZFHY0vTvoSi_qG5LusvZotvk
+Message-ID: <CADnq5_PMu0tqCaGccdL2JDZuHqSb2Q2mgo12Cba-pDAL9bAmBw@mail.gmail.com>
+Subject: Re: radeon_fbdev_river_fbdev: failed to initialize framebuffer and
+ setup emulation
+To: Christian Zigotzky <chzigotzky@xenosoft.de>
+Cc: Mario Limonciello <superm1@kernel.org>,
+ mad skateman <madskateman@gmail.com>, 
+ ville.syrjala@linux.intel.com, Jeff Johnson <quic_jjohnson@quicinc.com>, 
+ Darren Stevens <darren@stevens-zone.net>, hypexed@yahoo.com.au, 
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Christian Zigotzky <info@xenosoft.de>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ Hans de Goede <hdegoede@redhat.com>, Wu Hoi Pok <wuhoipok@gmail.com>,
+ amd-gfx@lists.freedesktop.org, 
+ Alexander Deucher <Alexander.Deucher@amd.com>,
+ "R.T.Dickinson" <rtd2@xtra.co.nz>, bhelgaas@google.com, 
+ benato.denis96@gmail.com, Yijun_Shen@dell.com, 
+ David Perry <David.Perry@amd.com>, rafael@kernel.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,75 +98,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ruili Ji <ruiliji2@amd.com>
+On Fri, Aug 8, 2025 at 7:48=E2=80=AFAM Christian Zigotzky
+<chzigotzky@xenosoft.de> wrote:
+>
+>
+>
+> > On 08 August 2025 um 01:23 pm, Mario Limonciello <superm1@kernel.org> w=
+rote:
+> >
+> > =EF=BB=BF
+> >
+> >> On 8/8/25 2:36 AM, Christian Zigotzky wrote:
+> >> On 07 August 2025 at 04:21 pm, Limonciello, Mario <Mario.Limonciello@a=
+md.com> wrote:
+> >> Does applying
+> >> https://github.com/torvalds/linux/commit/907a7a2e5bf40c6a359b2f6cc53d6=
+fdca04009e0
+> >> help?
+> >> - - -
+> >> Hello Mario,
+> >> Thanks a lot for your patch.
+> >> I tested it today but unfortunately it doesn=E2=80=99t solve the issue=
+ with the Radeon framebuffer.
+> >> I have created two kernels with and without the drm-next-2025-07-30 up=
+dates [1] because of the issue with the Radeon graphics framebuffer device =
+#15. [2]
+> >> Download and further information: https://github.com/chzigotzky/kernel=
+s/releases/tag/v6.17.0-alpha5
+> >> I have tested both kernels this week and I can definitely confirm, tha=
+t the issue is somewhere in the commit drm-next-2025-07-30 updates [1].
+> >> The Radeon graphics framebuffer doesn't work with the kernel with the =
+drm-next-2025-07-30 updates [1]. Without these updates, the framebuffer wor=
+ks.
+> >> I bisected yesterday. [2]
+> >> There are some other user reports:
+> >> - https://forum.hyperion-entertainment.com/viewtopic.php?p=3D60606#p60=
+606
+> >> - https://forum.hyperion-entertainment.com/viewtopic.php?p=3D60595#p60=
+595
+> >> They use other Radeon graphics chips.
+> >> @All
+> >> Please check the drm-next-2025-07-30 updates [1]
+> >> Thanks,
+> >> Christian
+> >> [1] https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux=
+.git/commit/?id=3D260f6f4fda93c8485c8037865c941b42b9cba5d2
+> >> [2] https://github.com/chzigotzky/kernels/issues/15
+> >
+> > I think there is a mistake in your bisect, which I notice from looking =
+at your other user reports.
+> >
+> > The original commit you identified in your bisect and thus CC'ed me cam=
+e in 6.16-rc1.
+> >
+> > =E2=9D=AF git describe --contains 4d4c10f763d7808fbade28d83d237411603bc=
+a05
+> > v6.16-rc1~50^2~19^2
+> >
+> > There absolutely was a regression for that was raised, but this was fix=
+ed in 6.16-rc3.
+> >
+> > =E2=9D=AF git describe --contains 907a7a2e5bf40c6a359b2f6cc53d6fdca0400=
+9e0
+> > v6.16-rc3~13^2~1
+> >
+> > Users in your forums posts talk about 6.16 final working fine.  So I th=
+ink that when you bisected you ran into multiple confounding issues and rep=
+licated in a similar fashion.  You should check every single bisect step to=
+ see if 4d4c10f763d7808fbade28d83d237411603bca05 is applied.  If it's appli=
+ed but 907a7a2e5bf40c6a359b2f6cc53d6fdca04009e0 is not applied in that step=
+ you should apply 907a7a2e5bf40c6a359b2f6cc53d6fdca04009e0.
+> >
+> > Hopefully that will get you down to the real cause.
+>
+> Thanks for the hint. Unfortunately I don=E2=80=99t have more time for fig=
+uring out the issue.
 
-This change reorganizes VCN reset capability detection by:
+Does this patch help?
+https://patchwork.kernel.org/project/dri-devel/patch/20250805175752.690504-=
+4-imre.deak@intel.com/
 
-1. Moving reset mask configuration from sw_init to new late_init phase
-2. Adding vcn_v4_0_3_late_init() to properly check for per-queue reset support
-3. Only setting soft full reset mask as fallback when per-queue reset isn't supported
-4. Removing TODO comment now that queue reset support is implemented
+Alex
 
-The late initialization allows proper evaluation of SMU capabilities after
-full system initialization, while maintaining the previous behavior when
-per-queue reset isn't available.
-
-Signed-off-by: Ruili Ji <ruiliji2@amd.com>
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 18 ++++++++++++++----
- 1 file changed, 14 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-index 019bd362edb2..55dd86061115 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-@@ -134,6 +134,18 @@ static int vcn_v4_0_3_early_init(struct amdgpu_ip_block *ip_block)
- 	return 0;
- }
- 
-+static int vcn_v4_0_3_late_init(struct amdgpu_ip_block *ip_block)
-+{
-+	struct amdgpu_device *adev = ip_block->adev;
-+
-+	if (amdgpu_dpm_reset_vcn_is_supported(adev))
-+		adev->vcn.supported_reset |= AMDGPU_RESET_TYPE_PER_QUEUE;
-+	else
-+		adev->vcn.supported_reset =
-+			amdgpu_get_soft_full_reset_mask(&adev->vcn.inst[0].ring_enc[0]);
-+	return 0;
-+}
-+
- static int vcn_v4_0_3_fw_shared_init(struct amdgpu_device *adev, int inst_idx)
- {
- 	struct amdgpu_vcn4_fw_shared *fw_shared;
-@@ -211,10 +223,6 @@ static int vcn_v4_0_3_sw_init(struct amdgpu_ip_block *ip_block)
- 			adev->vcn.inst[i].pause_dpg_mode = vcn_v4_0_3_pause_dpg_mode;
- 	}
- 
--	/* TODO: Add queue reset mask when FW fully supports it */
--	adev->vcn.supported_reset =
--		amdgpu_get_soft_full_reset_mask(&adev->vcn.inst[0].ring_enc[0]);
--
- 	if (amdgpu_sriov_vf(adev)) {
- 		r = amdgpu_virt_alloc_mm_table(adev);
- 		if (r)
-@@ -1871,6 +1879,7 @@ static void vcn_v4_0_3_set_irq_funcs(struct amdgpu_device *adev)
- static const struct amd_ip_funcs vcn_v4_0_3_ip_funcs = {
- 	.name = "vcn_v4_0_3",
- 	.early_init = vcn_v4_0_3_early_init,
-+	.late_init = vcn_v4_0_3_late_init,
- 	.sw_init = vcn_v4_0_3_sw_init,
- 	.sw_fini = vcn_v4_0_3_sw_fini,
- 	.hw_init = vcn_v4_0_3_hw_init,
-@@ -2073,6 +2082,7 @@ static int vcn_v4_0_3_ras_late_init(struct amdgpu_device *adev, struct ras_commo
- 
- 	r = amdgpu_ras_bind_aca(adev, AMDGPU_RAS_BLOCK__VCN,
- 				&vcn_v4_0_3_aca_info, NULL);
-+
- 	if (r)
- 		goto late_fini;
- 
--- 
-2.49.0
-
+>
+> Two facts:
+>
+> - The Radeon driver can no longer be used.
+> The Radeon driver is broken for us.
+>
+> - The issue is somewhere in the commit drm-next-2025-07-30 updates [1].
+>
+> I cannot provide any more due to time constraints.
+>
+> I've already spent time that I didn't actually have.
+>
+> Thanks for your help.
+>
+> Christian
+>
+>
