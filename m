@@ -2,69 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A1FB1FA82
-	for <lists+amd-gfx@lfdr.de>; Sun, 10 Aug 2025 16:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C07B1FA87
+	for <lists+amd-gfx@lfdr.de>; Sun, 10 Aug 2025 16:43:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71CFB10E122;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDE9010E26D;
 	Sun, 10 Aug 2025 14:43:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="XnWl9Ace";
+	dkim=pass (2048-bit key; unprotected) header.d=listout.xyz header.i=@listout.xyz header.b="aXlq+E4G";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63E5310E091;
- Fri,  8 Aug 2025 22:53:12 +0000 (UTC)
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id 08B8B33DDAD;
- Fri,  8 Aug 2025 23:53:11 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1754693591; bh=A8Lw8n1IVBtwkZR7h5aK6n+Rx2v/gD7XRYiG2a6qJzY=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=XnWl9AceZxoHIJHx23pk8Joivqps5OVUazrEOVKQwnIIG4e8oCZTRqNtT81TGx6c9
- pr9IcRKmiFbXfyTwGcUl6+jd1FLIU1I7mM7wCNc7ukoxgSx4EpPF2GoLNNO2YPMtDL
- XRiaNPaqe/mAl5g+PhkrS1uAVsuVjX1vkGtRtECEL6vF/fbjOVNJCBPrKJYoHaVCu8
- X6WfhwUCWK+/LFf3BB3jV31PalfXZnLEroGgez9syVQ/zp4nf2yByyewUvqUhvgm3h
- NKB7BtBf3/44hFTqqLrIrbyfXTIreBT8UaI56G8AzEE9Dfl3j/KPKoBXFxTUlF68Ul
- FU4dStY6qlygw==
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-ae0bde4d5c9so498299366b.3; 
- Fri, 08 Aug 2025 15:53:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUAl9pvlVLaGvQIeWaTXw+PE2PjYF4DQ8lzBE0DeUheG1jKHcjsArZY7ursESXauPp0L//oIooP@lists.freedesktop.org,
- AJvYcCXGLdO8j7Yja7mDHgoRfK5snRV7yyzR6mYG/S8QBlAKDsOiGZc5xFnYYtd0IxOOYQqQ2xTVY0OFNsAe@lists.freedesktop.org,
- AJvYcCXIgCt1gmhTmGVR/fniWPtVVpcjhiosRUs/ROIbKAkhK/CQIwAfhuFEN7C9zJqQugxSgo90rg+tQUbb@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwuktTXreHAcseFs+zgp7crdGV/PWEMGx455bAEQFmEbE99+Jhz
- vgzaRNMY+k477smjiRAhvpN2fkFxUobHaKJb6yGZp38PEfn7e46+phJMrufYghv/hfYDEYtW2dx
- 8zhJGdsEFGKUthVBqn7YCYFzHGcgiWHk=
-X-Google-Smtp-Source: AGHT+IGtYlZ5tumktZPMAHPpzXi2sV3memt8DCuUmS77VsedA/NOfqLPJBGofHGqEop0PZP4PViOqIa46ZOLRZSTFqA=
-X-Received: by 2002:a17:907:3cd3:b0:ae3:e378:159e with SMTP id
- a640c23a62f3a-af9c63d4a85mr400338766b.26.1754693590535; Fri, 08 Aug 2025
- 15:53:10 -0700 (PDT)
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF50D10E09B
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Aug 2025 23:15:44 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bzKdT4m8Mz9tCJ;
+ Sat,  9 Aug 2025 01:15:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=listout.xyz; s=MBO0001;
+ t=1754694941;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=e6Jw1zDVtjTA2grbtCPb82zxpM0vKtOPY3V4HAN/9GA=;
+ b=aXlq+E4GuZQDVxVshkb1a47xbWzfnSNnuOWmTkYUuLeH7BHPYDEy3wL7jZoq7bBcpn2leT
+ bVZiaM9r7tHWVgafy+917E08EuPBpnCUbgLt4bIic51TzfALx0lJ1Uwrn5PDoU366TVBiR
+ P7wmQ3gMh6hY81C2ygLV/3nt3z4socOLGj2LzIhsMdcVlDBgMzW36qYTzroKhgktMe7stG
+ mj6UJv8cymD6dqld4WgclI5XxK6BOsrHkFgN3hGP07D7i4KIQUB+Hpw74pLcVJmyJrDD4+
+ Tv31nK5bx2crWqaEhlIoFGaq7H+whaSSYCjWJr7864a00i+sMwy8TXR+jsJ+5g==
+Date: Sat, 9 Aug 2025 04:45:38 +0530
+From: Brahmajit Das <listout@listout.xyz>
+To: linux-next@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com
+Subject: drm/radeon/r600_cs: Build failures with GCC 16
+Message-ID: <pqpvdwxmqler2mg4ou665v56g6qe36vwi5jeavqeszj2mrk5m7@io6dy7jsvuhe>
 MIME-Version: 1.0
-References: <20250801131053.6730-1-xaver.hugl@kde.org>
- <ad9b68cc-4a33-406a-9512-ff5f5460bf99@intel.com>
- <CAFZQkGwviMAshk5gSF0pDmkqbfZT=6FHCfNq6PWj8srNEXjX7w@mail.gmail.com>
- <BN9PR11MB529028C2BFB87E7751ED42B7A722A@BN9PR11MB5290.namprd11.prod.outlook.com>
-In-Reply-To: <BN9PR11MB529028C2BFB87E7751ED42B7A722A@BN9PR11MB5290.namprd11.prod.outlook.com>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Sat, 9 Aug 2025 00:52:59 +0200
-X-Gmail-Original-Message-ID: <CAFZQkGx1RSZGAzZ5r2xYt2KruBvGBxagNO1J9qWV+_ip4CW6xQ@mail.gmail.com>
-X-Gm-Features: Ac12FXzkuKLZ0Xm2flbfGjDiUOoVJtLTmYudJ0B-halzCMekWKrKlnt9GxycFto
-Message-ID: <CAFZQkGx1RSZGAzZ5r2xYt2KruBvGBxagNO1J9qWV+_ip4CW6xQ@mail.gmail.com>
-Subject: Re: [PATCH v3] drm: don't run atomic_async_check for disabled planes
-To: "Kumar, Naveen1" <naveen1.kumar@intel.com>
-Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "andrealmeid@igalia.com" <andrealmeid@igalia.com>,
- "chris@kode54.net" <chris@kode54.net>, 
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "mdaenzer@redhat.com" <mdaenzer@redhat.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "alexdeucher@gmail.com" <alexdeucher@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 10 Aug 2025 14:43:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,22 +57,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> As I commented earlier in the gitlab issue [1], any change of property, including disabling a plane is not allowed in the async commit.
-> We must disable a plane (e.g. HW cursor) during the first (synchronized) flip, and allowing later flips to proceed asynchronously.
-> This change should be done in the compositor.
-No change is needed there, compositors already do that.
-> As per Ville's opinion in related series [2], kernel driver should reject all these disabled
-> Planes in the drm core and driver should only get the planes which is supported with async flip. Based on his comment, I have started
-> Working and will be addressing it in the next version of my series [3].
-As long as it only filters out planes that were and still are
-disabled, I think that could work out fine - in theory they shouldn't
-have any side effects.
-Note though that my patch intends to specifically fix a regression for
-amdgpu in 6.15, which I think we can do with fewer changes.
+Hello Developers,
 
-> [1]. https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13834#note_2994595
-> [2]. https://lore.kernel.org/all/aHAg2J-uFLLWINqp@intel.com/
-> [3]. https://patchwork.freedesktop.org/series/151280/
->
-> Regards,
-> Naveen Kumar
+Building linux-next with GCC 16 results in this following build error
+
+$ make
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC      drivers/gpu/drm/radeon/r600_cs.o
+drivers/gpu/drm/radeon/r600_cs.c: In function ‘r600_texture_size’:
+drivers/gpu/drm/radeon/r600_cs.c:1411:29: error: variable ‘level’ set but not used [-Werror=unused-but-set-variable=]
+ 1411 |         unsigned offset, i, level;
+      |                             ^~~~~
+cc1: all warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:287: drivers/gpu/drm/radeon/r600_cs.o] Error 1
+make[5]: *** [scripts/Makefile.build:556: drivers/gpu/drm/radeon] Error 2
+make[4]: *** [scripts/Makefile.build:556: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:556: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:556: drivers] Error 2
+make[1]: *** [/home/listout/linux/Makefile:2011: .] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+I'm not sure whether this is kernel bug or GCC bug at the moment. But
+building with GCC 15 does not give this error, hence I'm more inclined
+towards the latter.
+Planning to also report this on GCC side, wanted to get some
+opinion/feedback from kernel devs as well.
+I'm on GCC 16.0.0_p2025080.
+
+-- 
+Regards,
+listout
