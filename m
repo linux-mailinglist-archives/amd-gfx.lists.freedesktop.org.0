@@ -2,53 +2,128 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC21B204A9
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Aug 2025 11:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E89CB204FA
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Aug 2025 12:13:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAED610E400;
-	Mon, 11 Aug 2025 09:58:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE83E10E413;
+	Mon, 11 Aug 2025 10:13:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="X18oWMjQ";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="FDwP+B0O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9166E10E400
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 09:58:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=3uDkAlqi1YGy/EnVE3ilg3kzmpX6jwcYOexwxSIjSwM=; b=X18oWMjQb59Sg0CnlormsyuZby
- NEtCmizx37MaNkpOBNUCi/bLnejEvqn7J0H0nnKA2533Nv8DlzS4cmu/FMkm0/lcj3kcrVasPMD03
- scQNzwfoqMsp0gG5UvRmqBWjGvhxkVAgkIX61ilwqFlImIIT1Xgs9VJ26dNmfnaNwrdDvu2s+VcBs
- QhVRC0CLOSdpW6pC+0axTfc0ymjBxvcm+NgrlUWZdc5zmHPYNJR5F7TgEFXrECavKR935Lm9FeiYd
- sIyqQzCgxNBscCgTG9REpbikyhcpsgYe5v2Neppr5p/P6GoAROmWYrhexbPigSect0S1qTcmc7yqu
- QgDphB5g==;
-Received: from [84.66.36.92] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1ulPIR-00Ci5y-6Q; Mon, 11 Aug 2025 11:58:27 +0200
-Message-ID: <970a605c-32a6-4e3b-982f-69f57c5960b9@igalia.com>
-Date: Mon, 11 Aug 2025 10:58:26 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ABF010E303
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 10:13:40 +0000 (UTC)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57B9d9jE028799
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 10:13:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ tQBekwLY985lR0kL588BU9IYUYSsm3EJi76WLENqjaQ=; b=FDwP+B0OX5UBuh1A
+ yaBnSgBA4PZ6KYN6UyxgXDpyNLwikqLtNO6NVZchMnFrdq1fHAr9zI3JLW/AKlB5
+ nxIdKbXb87PbAZ2UiPni3kloNPTITgFmGv6lF1CH2AdwpxGy6DNhc7/lMRaa26ok
+ AXFCp45EK0v4y/nT5fwiGnPWYU5wcC6mTKy1VYu3ol63+TOPdiuiJhcv9r7YqKYs
+ RQyuqXukejuJ37d/tRE8V2Cn/2VVJ0n0OTxLwyvmy5rBgwi3p4b6oJM3S+Eqe5Zd
+ 9GSCTxs/jeBsJi5cJ0uWNqxOvHZKxGtVOz3gUSCF+MmelO9zM2JtUXFL9SlErhyO
+ 3BHiYQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dw9sm32v-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 10:13:39 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id
+ 6a1803df08f44-7074bad04efso94474616d6.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 03:13:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754907218; x=1755512018;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=tQBekwLY985lR0kL588BU9IYUYSsm3EJi76WLENqjaQ=;
+ b=NftEoteuneIOQTDWghlbYb89Q9uxmwU/F7guFKXUlcGAjdOyHr0HEDpZ9YKU597whk
+ 6zUE87vO8shg4wxpRYwHQEqJK0cG5NhCpHCWEcKRdBtRDFeoTXRipV9uNGA4O0e5NIy8
+ rbjrfB+sRn/+qbCQxrp2YJRkcNTKe8qo+9mp3iSUHg99fkemqEmwLDysAnhZ6vuFQ77I
+ I/vA8mFftQ3iymilc88AOSxX8/yL+Xw9ywAwiwwVH4yL6HdT9Ejtx9ljVHexYtJBQ6k5
+ A2bOH10eszwFvdCmDdMNHtMiV9D1UH0G2OC5qndOGxtul1LYQU13Km0WOAQo19RtPSOm
+ ymNg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUCZ4Kc+5x0rRERIL096/NwEuOahxJhddXovaEaTc0FVMZ6rNJeQgNDYTO3GQ4o0u5DufPxoqoL@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxg6odTCpqA5SOSDbfSvUvRuDy7JuHubNd7mc7fiNAFVJ3Wmwga
+ rr+UJfcXeAzLO7U589BoPaAEuf5cY5pIXE8AyrbRwTYjtwMMorR0adNpU9hXDyEKT7GJIuXsdl6
+ tq5ylEHbib7CfzVVVuGOdxfx2itQKVFgbCiMO3v8EHJ0ZH9EPl9lTqwFIG+bLUpzBnBSW
+X-Gm-Gg: ASbGncvXZD0ZWa7t6osZimqiZ3Q0mSqgqLWQUcZevZ6QDEGiBVIdDltOkZwTlmYxBaM
+ 86QWtriMsoSU5rlnSHMvmaTsVzuN4j5rvQ7xUqzAhqUDauuT9h0T9adkNKo3CnjYUYWu89YYZHl
+ c5TnG57PPkyLlJhEEh88sGMXXH3pUGyGbDGn8Akmoa9AiTs0KATCFMjZMqAVl89pCySrRZ5TNwM
+ ottq2FAryllrcsolioZSYVnH+P0lQahKrENB+eqJHaeqEt8Xb286x0gym8B+eg7dsjXjwr7jBxI
+ PsC1MyfPSMhTaJ9IHaIP4QXYY0YXofF/KJk6jAPzzEFVoLTv13a99i0Y9u1gF/IQlmAVEGFA8M9
+ XKsDpkaZzGiSZQYjGgwxhL0z+E0q0owXF5N596P9bLZHQGgBMbQsv
+X-Received: by 2002:a05:6214:2422:b0:707:6409:d001 with SMTP id
+ 6a1803df08f44-7098943a0camr242700466d6.21.1754907218071; 
+ Mon, 11 Aug 2025 03:13:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH9BY/zT1y+b3ji4GZxhC3ZVhQrv/r/mWPNZE1y3jpndTSli2Cjg/bMQSHGPbSf9yhMaetFWQ==
+X-Received: by 2002:a05:6214:2422:b0:707:6409:d001 with SMTP id
+ 6a1803df08f44-7098943a0camr242699906d6.21.1754907217606; 
+ Mon, 11 Aug 2025 03:13:37 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-332382a905fsm41770471fa.21.2025.08.11.03.13.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 Aug 2025 03:13:36 -0700 (PDT)
+Date: Mon, 11 Aug 2025 13:13:34 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: kernel-list@raspberrypi.com, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ arun.r.murthy@intel.com, uma.shankar@intel.com, jani.nikula@intel.com,
+ harry.wentland@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, robin.clark@oss.qualcomm.com,
+ abhinav.kumar@linux.dev, tzimmermann@suse.de,
+ jessica.zhang@oss.qualcomm.com, sean@poorly.run,
+ marijn.suijten@somainline.org,
+ laurent.pinchart+renesas@ideasonboard.com, mcanal@igalia.com,
+ dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com
+Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
+ structure
+Message-ID: <gvshpndrbnojzwewwa3icd5fjwecqj57jj6gfgoips5xq2oo3l@3dsebzcjwr7t>
+References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
+ <20250811092707.3986802-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 1/3] drm/amdgpu: Add ioctl to get all gem handles for
- a process
-To: David Francis <David.Francis@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Felix.Kuehling@amd.com, David.YatSin@amd.com, Chris.Freehill@amd.com,
- Christian.Koenig@amd.com, dcostantino@meta.com, sruffell@meta.com,
- mripard@kernel.org, tzimmermann@suse.de, Alexander.Deucher@amd.com
-References: <20250807202245.2970262-1-David.Francis@amd.com>
- <20250807202245.2970262-2-David.Francis@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250807202245.2970262-2-David.Francis@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250811092707.3986802-2-suraj.kandpal@intel.com>
+X-Authority-Analysis: v=2.4 cv=J+Wq7BnS c=1 sm=1 tr=0 ts=6899c253 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=2OwXVqhp2XgA:10 a=QyXUC8HyAAAA:8 a=JhAXgKmwuo5aGy_CkLIA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-ORIG-GUID: 7Z-YF90ZwAUjpuUtVbFmSFBgS3YJ6CQu
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxNSBTYWx0ZWRfX+Ro7V4bzKJfn
+ 7Bfhy+Yi2MoVNnGcHBWaecC4k/g0AD+kU0/x8d6kuij1P+VAy9D9TmJV3SLSRXRBGbeZZJT8JXt
+ KZlwFoWLmBOIbapK4/JvqGc2ciInZs4p/9fNQjctfSNb/ehpwAyj+2I994pvXi4/C59we8BIxa2
+ mU3BDosxunrNRRnJIm8oCm+1O96gt5Da0SWWr21ogZZmBnn4hAeLgFIxxej6BytJH47ymvAYR8L
+ UKL5MR0eMi2/onU/htPIMXljQauB0c6Ujt8ejzHvKzSbQeWda1oHTHBBZ6ZxYhOwxWmsB5STTR8
+ JtzrgM5WI/5lj66urjJ07mHkQQQVfrGoP8JNXx9w8OcLeYUyUZksBXiUwZ6UnhQsgeDoCcNXcZU
+ XceJH5pX
+X-Proofpoint-GUID: 7Z-YF90ZwAUjpuUtVbFmSFBgS3YJ6CQu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ phishscore=0 suspectscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090015
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,238 +138,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 07/08/2025 21:22, David Francis wrote:
-> Add new ioctl DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES.
+On Mon, Aug 11, 2025 at 02:57:00PM +0530, Suraj Kandpal wrote:
+> Some drivers cannot work with the current design where the connector
+> is embedded within the drm_writeback_connector such as intel and
+> some drivers that can get it working end up adding a lot of checks
+> all around the code to check if it's a writeback conenctor or not.
+> To solve this we move the drm_writeback_connector within the
+> drm_connector and remove the drm_connector base which was in
+> drm_writeback_connector. We do all other required
+> modifications that come with these changes along with addition
+> of new function which returns the drm_connector when
+> drm_writeback_connector is present.
+> All drivers will be expected to allocate the drm_connector.
 > 
-> This ioctl returns a list of bos with their handles, sizes,
-> and flags and domains.
-> 
-> This ioctl is meant to be used during CRIU checkpoint and
-> provide information needed to reconstruct the bos
-> in CRIU restore.
-> 
-> Signed-off-by: David Francis <David.Francis@amd.com>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  1 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 82 +++++++++++++++++++++++++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h |  2 +
->   include/uapi/drm/amdgpu_drm.h           | 33 ++++++++++
->   4 files changed, 118 insertions(+)
+>  drivers/gpu/drm/drm_writeback.c | 33 ++++++++++------
+>  include/drm/drm_connector.h     | 60 +++++++++++++++++++++++++++++
+>  include/drm/drm_writeback.h     | 68 ++++-----------------------------
+>  3 files changed, 89 insertions(+), 72 deletions(-)
+
+This patch breaks building of drivers:
+
+drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c: In function ‘dpu_encoder_phys_wb_prepare_for_kickoff’:
+drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c:487:36: error: ‘struct drm_writeback_connector’ has no member named ‘base’
+  487 |         drm_conn = &wb_enc->wb_conn->base;
+      |                                    ^~
+
+Please perform step-by-step modifications, making sure that on each
+step all the drivers can be built and function as expected.
+
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index 4ff3a2eaaf55..f19795dddf9d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -3031,6 +3031,7 @@ const struct drm_ioctl_desc amdgpu_ioctls_kms[] = {
->   	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ, amdgpu_userq_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->   	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_SIGNAL, amdgpu_userq_signal_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->   	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_WAIT, amdgpu_userq_wait_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
-> +	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_HANDLES, amdgpu_gem_list_handles_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->   };
->   
->   static const struct drm_driver amdgpu_kms_driver = {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> index e3f65977eeee..7f55e3b7d8a2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> @@ -1032,6 +1032,88 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
->   	return r;
->   }
->   
-> +/**
-> + * drm_amdgpu_gem_list_handles_ioctl - get information about a process' buffer objects
-> + *
-> + * @dev: drm device pointer
-> + * @data: drm_amdgpu_gem_list_handles
-> + * @filp: drm file pointer
-> + *
-> + * num_bos is set as an input to the size of the bo_buckets array.
-> + * num_bos is sent back as output as the number of bos in the process.
-> + * If that number is larger than the size of the array, the ioctl must
-> + * be retried.
-> + *
-> + * Returns:
-> + * 0 for success, -errno for errors.
-> + */
-> +int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
-> +			      struct drm_file *filp)
-> +{
-> +	struct drm_amdgpu_gem_list_handles *args = data;
-> +	struct drm_amdgpu_gem_list_handles_entry *bo_entries;
-> +	struct drm_gem_object *gobj;
-> +	int id, ret = 0;
-> +	int bo_index = 0;
-> +	int num_bos = 0;
+> @@ -2305,6 +2360,11 @@ struct drm_connector {
+>  	 * @cec: CEC-related data.
+>  	 */
+>  	struct drm_connector_cec cec;
 > +
-> +	spin_lock(&filp->table_lock);
-> +	idr_for_each_entry(&filp->object_idr, gobj, id)
-> +		num_bos += 1;
-> +	spin_unlock(&filp->table_lock);
-> +
-> +	if (args->num_entries < num_bos) {
-> +		args->num_entries = num_bos;
-> +		return 0;
-> +	}
-> +	args->num_entries = num_bos;
+> +	/**
+> +	 * @writeback: Writeback related valriables.
+> +	 */
+> +	struct drm_writeback_connector writeback;
 
-Looks like authoritative number is only obtained in the second iteration 
-so I think it should be assigned only there.
+I will respond to this in another thread.
 
-At least the uapi doc does not suggest ("OUT: Number of handles in 
-process (if larger than size of buffer, must retry)" that the count can 
-be larger than the actual number of handles, and that handles must also 
-be tested for being non-zero. If that is the intention it works as is 
-but needs to be documented in the uapi.
+>  };
+>  
+>  #define obj_to_connector(x) container_of(x, struct drm_connector, base)
 
-> +	if (num_bos == 0)
-> +		return 0;
-> +
-> +	bo_entries = kvcalloc(num_bos, sizeof(*bo_entries), GFP_KERNEL);
-> +	if (!bo_entries) {
-> +		ret = -ENOMEM;
-> +		goto exit_free;
-
-return -ENOMEM is enough here.
-
-> +	}
-> +
-> +	spin_lock(&filp->table_lock);
-> +	idr_for_each_entry(&filp->object_idr, gobj, id) {
-> +		struct amdgpu_bo *bo = gem_to_amdgpu_bo(gobj);
-> +		struct drm_amdgpu_gem_list_handles_entry *bo_entry;
-> +
-> +		if (bo_index >= num_bos) {
-> +			ret = -EINVAL;
-> +			break;
-> +		}
-> +
-> +		bo_entry = &bo_entries[bo_index];
-> +
-> +		bo_entry->size = amdgpu_bo_size(bo);
-> +		bo_entry->alloc_flags = bo->flags & (~AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE);
-
-Why is this flag special and why it is okay to not restore it?
-
-> +		bo_entry->preferred_domains = bo->preferred_domains;
-> +		bo_entry->gem_handle = id;
-> +
-> +		if (bo->tbo.base.import_attach)
-> +			bo_entry->flags |= AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT;
-
-Imported ones are only informative (since they will need a completely 
-different path to restore)? But it is required to list them? Do you have 
-the restore side implemented for reference?
-
-> +
-> +		bo_index += 1;
-> +	}
-> +	spin_unlock(&filp->table_lock);
-> +
-> +	if (!ret) {
-> +		ret = copy_to_user((void __user *)args->entries, bo_entries, num_bos * sizeof(*bo_entries));
-
-u64_to_user_ptr()
-
-> +		if (ret) {
-> +			pr_debug("Failed to copy BO information to user\n");
-
-I would be tempted to remove this pr_debug since -EFAULT is pretty clear 
-anyway. In which case this whole if (ret) block seems superflous.
-
-> +			ret = -EFAULT;
-> +		}
-> +	}
-> +exit_free:
-> +	kvfree(bo_entries);
-> +
-> +	return ret;
-> +}
-> +
-> +
->   static int amdgpu_gem_align_pitch(struct amdgpu_device *adev,
->   				  int width,
->   				  int cpp,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-> index b51e8f95ee86..7cdb6237bb92 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-> @@ -67,6 +67,8 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
->   			  struct drm_file *filp);
->   int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
->   			struct drm_file *filp);
-> +int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
-> +			      struct drm_file *filp);
->   
->   int amdgpu_gem_metadata_ioctl(struct drm_device *dev, void *data,
->   				struct drm_file *filp);
-> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> index bdedbaccf776..218a179818d4 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -57,6 +57,7 @@ extern "C" {
->   #define DRM_AMDGPU_USERQ		0x16
->   #define DRM_AMDGPU_USERQ_SIGNAL		0x17
->   #define DRM_AMDGPU_USERQ_WAIT		0x18
-> +#define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
->   
->   #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
->   #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
-> @@ -77,6 +78,7 @@ extern "C" {
->   #define DRM_IOCTL_AMDGPU_USERQ		DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ, union drm_amdgpu_userq)
->   #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
->   #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
-> +#define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
->   
->   /**
->    * DOC: memory domains
-> @@ -811,6 +813,37 @@ struct drm_amdgpu_gem_op {
->   	__u64	value;
->   };
->   
-> +#define AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT	(1 << 0)
-> +
-> +struct drm_amdgpu_gem_list_handles {
-> +	/* User pointer to array of drm_amdgpu_gem_bo_info_entry */
-> +	__u64   entries;
-> +
-> +	/* IN: Size of entries buffer. OUT: Number of handles in process (if larger than size of buffer, must retry) */
-> +	__u32   num_entries;
-> +
-> +	__u32 padding;
-> +};
-> +
-> +struct drm_amdgpu_gem_list_handles_entry {
-> +	/* gem handle of buffer object */
-> +	__u32 gem_handle;
-> +
-> +	/* Pending how to handle this; provides information needed to remake the buffer on restore */
-> +	__u32 preferred_domains;
-
-Hm, just as an observation, the width for these is not very well defined 
-in the uapi. Yes flags are just a few, but for example 
-drm_amdgpu_gem_create_in has them as u64 and also value via 
-AMDGPU_GEM_OP_SET_PLACEMENT. So maybe future proofing to __u64 wouldn't 
-harm here. It would also remove the need to pad the structure.
-
-Regards,
-
-Tvrtko
-
-> +
-> +	/* Size of bo */
-> +	__u64 size;
-> +
-> +	/* GEM_CREATE flags for re-creation of buffer */
-> +	__u64 alloc_flags;
-> +
-> +	/* Currently just one flag: IS_IMPORT */
-> +	__u32 flags;
-> +
-> +	__u32 padding;
-> +};
-> +
->   #define AMDGPU_VA_OP_MAP			1
->   #define AMDGPU_VA_OP_UNMAP			2
->   #define AMDGPU_VA_OP_CLEAR			3
-
+-- 
+With best wishes
+Dmitry
