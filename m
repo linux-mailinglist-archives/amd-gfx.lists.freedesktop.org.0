@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 986D0B20CFA
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Aug 2025 17:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 220CBB20D00
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Aug 2025 17:06:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D34310E4FB;
-	Mon, 11 Aug 2025 15:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B562D10E480;
+	Mon, 11 Aug 2025 15:06:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hWq2bRH5";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kJ1/kF6L";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2060.outbound.protection.outlook.com [40.107.220.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6438D10E114
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 15:05:55 +0000 (UTC)
+ (mail-co1nam11on2088.outbound.protection.outlook.com [40.107.220.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCC7A10E4F1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 15:06:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N5rIyrKyEYuit9K4ndCqSK6Jn8f1fp/e9pWjJsxq6D7i3v6MkR8Xeu88Ix7Exc3pba7x/8ApsW6+B8rEVflsWNMA8Ux0MzIb98rdco/3gHpN7rg3JhTOCJs6rg38veU1C0STqT+pC22gUqv8t+mDxyq1C32wRJA7vTGTtG5XZauBYMQ+i78JKbrVbXEbE+H1o7BPvztGBICMQYu/aHVeIXiOj67CgOyaN+BenrZ70s2Y0t71AkNs/pvaZi05M6PnjxxX6drCRzGQtDe5/ucJ7nh4JSpXYw+UIarh/rFGeZbMp++Zbwl/Dib6shNaCqH3dHk0tpi6eGz4lreYdFtyDA==
+ b=yHSHghhwwNTJfYMxAFjR/5G8zsnqhQo6cC8Z9tJt9M54iiMmG7VNkRNf/nkfB77eOIHepoBVEV/FAaKyD4apaEtIXrRA6t0kx/O/PqS/1EcpUu/z3eSt8zeu1XdzqfmuvXURFrgG1LZeFbf957oenVRhg9N4KfVQF6hz3HeKj+1OAcdsjIZDcCLUljINxrLUqfhmExRxMRUlq/HJyoZwPq2T2Xj/vx6DCFpAmRjxE/VL5rv9RdHSXtqga32FZr+4CN1cP7lnity/oF2I4vK2z2kHeZlJOZRfs1E9g9ORi95b31PKeQid1LynoOH+C7+LLLlxGZ2f80B8AYLygUsG0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qloid16LQIWs4kX2mvkaYBVlXN3wNMUM1zBWO+eZwNc=;
- b=u/r36/PKLh0phZQ3YteiVg4ToPvMJtbN9PI5L2zJE8As0ewu3NgRQr9VHB0uwmLVCajnGuR0fzE5DKUNT5nOOjDGYwEmRxOaCcH9H7iCE/wKwWb3H2JX1/VCjE5312eMBYHnY4iH3t6mKZs0xvafG+OHwfTgW6f3a7WHVrZT8GfywBjU7aKJds7FQgbZHSm1QdrUdZoZSQIQMGpufNpa2v6D1jIFZ8HNuvN3iR4287vrq0G0h5JnhP4mVuLA3f/KRAZ5nQCiwRsDAmmt6/Xju5BDpGCUqq4Inpr/KmpQFSS3GkC22CNifvDM0X0pHtNNsuRVFmmRNsTpX/3ASB9zzw==
+ bh=epu/aHVb+7Kic4Uas/7AebD+eeCp26AD66w+l53MapQ=;
+ b=yqWtxjmNI80zyrQMgC3a+qMQ7gC3GqYwMO8pJT87eJcExMJohqe4pArTomuWR5Hx4Cy/3uOuMYpaMTUOSDBnOVkfVrzs0Pk8hV/kOPLzUs1VCjmYhjXVtfBj/tC0SZf4Y0yxJWvtzEQr+0SRtApUTrqDhYnPvnW2GllapywwFJqeeJVeRJfGwtp7OM9Tuwz5RJD5eJmrvSFaN5UbGCqVbwb68C0wAffXzO7eJV14G8dVOpFHnG2jWX+BjHSujRRU3x6OQvB/KO5YujW4wSiTym5VvaAa0MHPMmOhAUjLecUdGqGVElYXftOLBZSKOfVKWw3L6PJ2FoH1C9Tw1cKHSw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qloid16LQIWs4kX2mvkaYBVlXN3wNMUM1zBWO+eZwNc=;
- b=hWq2bRH5KzqBNn/hrHquk52CfM8ZCxQN3+My9/+3dg7Cia4PP1+wLNVx/a2SPkbcDcGZwAlGZ2Mwebh6Ar0FRPsRN9SNRtdUxvWEYq8Z6/zEGo0SzaJqFHLB7mk809G6sSTCSqnrCYL3eRpUF4LURbQ8j2TMu3tFBBQMHFGoxOM=
-Received: from SJ0PR03CA0148.namprd03.prod.outlook.com (2603:10b6:a03:33c::33)
- by DS7PR12MB8275.namprd12.prod.outlook.com (2603:10b6:8:ec::19) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=epu/aHVb+7Kic4Uas/7AebD+eeCp26AD66w+l53MapQ=;
+ b=kJ1/kF6LGzfvrAoPIOYqMoZ0OUuHpQ3uiwT0XiplSvIqZMFyu/vjNM31dAnR0k2HKBMel7USjXtpcRDUji1VXN6alChsbInXWn3Y6EJa0/8WoPWRdiz61KLw9sHAPkHTzrXiOwlInzac4hGPpR/qGeTHhfavs+E+1kRNYKZ891s=
+Received: from SJ0PR03CA0134.namprd03.prod.outlook.com (2603:10b6:a03:33c::19)
+ by MN2PR12MB4062.namprd12.prod.outlook.com (2603:10b6:208:1d0::15)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.21; Mon, 11 Aug
- 2025 15:05:53 +0000
+ 2025 15:05:54 +0000
 Received: from SN1PEPF000397B3.namprd05.prod.outlook.com
- (2603:10b6:a03:33c:cafe::1e) by SJ0PR03CA0148.outlook.office365.com
- (2603:10b6:a03:33c::33) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:a03:33c:cafe::39) by SJ0PR03CA0134.outlook.office365.com
+ (2603:10b6:a03:33c::19) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.22 via Frontend Transport; Mon,
- 11 Aug 2025 15:05:52 +0000
+ 11 Aug 2025 15:05:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SN1PEPF000397B3.mail.protection.outlook.com (10.167.248.57) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9031.11 via Frontend Transport; Mon, 11 Aug 2025 15:05:52 +0000
+ 15.20.9031.11 via Frontend Transport; Mon, 11 Aug 2025 15:05:53 +0000
 Received: from fdavid-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 11 Aug
- 2025 10:05:51 -0500
+ 2025 10:05:52 -0500
 From: David Francis <David.Francis@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <tvrtko.ursulin@igalia.com>, <Felix.Kuehling@amd.com>,
@@ -62,10 +62,9 @@ CC: <tvrtko.ursulin@igalia.com>, <Felix.Kuehling@amd.com>,
  <dcostantino@meta.com>, <sruffell@meta.com>, <mripard@kernel.org>,
  <tzimmermann@suse.de>, <Alexander.Deucher@amd.com>, David Francis
  <David.Francis@amd.com>
-Subject: [PATCH v12 1/3] drm/amdgpu: Add ioctl to get all gem handles for a
- process
-Date: Mon, 11 Aug 2025 11:05:34 -0400
-Message-ID: <20250811150536.3394262-2-David.Francis@amd.com>
+Subject: [PATCH v12 2/3] drm/amdgpu: Add mapping info option for GEM_OP ioctl
+Date: Mon, 11 Aug 2025 11:05:35 -0400
+Message-ID: <20250811150536.3394262-3-David.Francis@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250811150536.3394262-1-David.Francis@amd.com>
 References: <20250811150536.3394262-1-David.Francis@amd.com>
@@ -77,52 +76,52 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B3:EE_|DS7PR12MB8275:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3c394f4-7fc9-4fe8-1d3e-08ddd8e89096
+X-MS-TrafficTypeDiagnostic: SN1PEPF000397B3:EE_|MN2PR12MB4062:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e910fe3-d248-4aa0-67f4-08ddd8e89123
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?c5jUILwfmZDgoxZLSmS5/WmXjvXa1cLGBKtTiZwtyI+A02wvJBN7rpR8OO68?=
- =?us-ascii?Q?64aydgW8fZjfx6v9QWiawvQyGo/eGsh8jRrbCH+idySEfY7p6b2gvUuWUBck?=
- =?us-ascii?Q?GWzzcNKppy/Ajzw6VPZTJYacXCh6VPE6O9XyqQHjv+Wdsgcyx/GYn8vFK4GT?=
- =?us-ascii?Q?lZYfUS/mGaC4UyGpBbz+AHjdbzMbLKtY/3wa8hZTTASvfhzyrlaApSi4hfxJ?=
- =?us-ascii?Q?H//XnWJcfkU7HzhIh24tSK/3Q0G4S4FPC708nc5WubH+3Gh2cRqKN/Z6hVX3?=
- =?us-ascii?Q?DXrffwW6Byhf97N6VGvUjbYmc3s2sGYHBagIZ7Encs6IJzzdubn5tpkv/JWo?=
- =?us-ascii?Q?BHha6rJrbexddI/B28vZ9UzuGiSknjV3nX3+rQ8+Fe0rySVy3TAUeOf/u+kY?=
- =?us-ascii?Q?EhwYSgUP0O8IkqW6/MyBgbBRnraH+Hjho3WNN2ljLOpFzyFXE+KX5X1zhx/v?=
- =?us-ascii?Q?ueKfKUWM6JTZJPYx4dGr8fgs0qInoXE5JJQuYolThNQ3ezM7efhznT/3JuDN?=
- =?us-ascii?Q?kw0WtRv1hZyY21l4SaBfITCP6XMuOs/kyf1hRwPrRGLSP8H870/7QYJBofWL?=
- =?us-ascii?Q?macZNjejl3JP2b+j7hWl+GLY6rNx3HC126B0RhosThwPfQdv6zqCOxcyTkAg?=
- =?us-ascii?Q?C6zRv7LJa8KrEn5TepHpN9jGEw3dCg0DSxl/x+g29o/TDZ+0H/4zCAlr55Tw?=
- =?us-ascii?Q?tkC1o7cZoS62FxD4va7qWiE8OQbjSRzyMW+srYFgDtMfsSBEb80oqv16YIck?=
- =?us-ascii?Q?tEFJ34kSsNBvUh9gzG3QpuLf9cSGJHWqzgfQyOVoZf2M3cIcGLMO0XYyP5Ko?=
- =?us-ascii?Q?HKzIwjUfSauj+DIotAbIfilPXP0cyXXs+MTT9JAh1PekzAqyL/TZuu0VdNBI?=
- =?us-ascii?Q?UF6g3m66MRzmJVGTz7JJbsd5AzX4h7MNSis270UqJcjqL2d4W8gOAXbC0hfR?=
- =?us-ascii?Q?ItFYo9na5R/DiopPIxQ2mWkgKkZCf6o5dBZ9XT3GhnWHfepPgfHH8S8U71Kt?=
- =?us-ascii?Q?yN8UTk2HFE8pFRZXXBf4zOd6vZNt0jez6K05Y9+VEjsFEpBn+EFtqLqel5n8?=
- =?us-ascii?Q?6bOO+6kafOCoj54KwFpAQDV8caO4YHLMNGWkT1Fqz3V/xdTsISCMtVC5220W?=
- =?us-ascii?Q?HSAHDtTZZpa/MbnMKuv+fIij8vEbb6jZc678tsFQk1gw1WX4KNSEoEuF0tot?=
- =?us-ascii?Q?/NSTFTdnNQRFO07CiFdf3d1wFUmcPmqUz4I8iLh7peF5TVLg+qODlbCJ13Ji?=
- =?us-ascii?Q?R+j2I62gPhW9yjpdGm77almAKb8JA006ixBE0VTVZHPhCLa0FkFkAIAmCsRz?=
- =?us-ascii?Q?fQyLPkZJnWmXuUwsxUYZqx//gjpLPY9Zp/9msiPm/R0rP9vl4uKIGjg2nhJU?=
- =?us-ascii?Q?vXyMUf0LM/Jjp8AAE4cAxmZwpxI9JsyD+3VbC+mgx3NUQhKQgLlAserQUWZY?=
- =?us-ascii?Q?21VxBW6yvlA/ExebgDJnxWYNLesc+fxxQO05GWUpN8DWTLUrX23CvWSBTU3K?=
- =?us-ascii?Q?YRNBKS0lFVmTvDanzUEy1PTU1rsLHYT/hKz7?=
+ ARA:13230040|1800799024|36860700013|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?6yBxE7W8E0Oj7xVcelo5nKk7SGbY4yvKBItv405OcpNoCOL5VtBneZG7vtx/?=
+ =?us-ascii?Q?Xvr4bIVXI5joaGsbHWc97DD4P5CNzrZ0HOBHksOUPrnLW5BMub4mP204xaA+?=
+ =?us-ascii?Q?1ZpEKh1uItRK9A45uvIQwii6ehEQ6Eqs7Dm+lh8gXy1z+hThqachEvespKpi?=
+ =?us-ascii?Q?RK7l38PLdwl6xu65wNVA+r8JHWopT6lNG4GppsOul4pasXUMtp2m0VP9u6D6?=
+ =?us-ascii?Q?g1TkJUqNk6lqmOj4hk3HyNC4HWiXpAK/h9gvvtPopGfrOx+AhhYyr5TzZoSC?=
+ =?us-ascii?Q?b6jolRmRijterSrMCsmc5K10NlnHDQhcNDsju5z6HHY3T1hEnOIsg4PYB7vo?=
+ =?us-ascii?Q?RAMnh1gOyl6Z0WTCABuH0SHHnWMlG0cyOGQlaItt864kVvQxBedL/m6pQkwn?=
+ =?us-ascii?Q?F8c27WUWuPb+P2+/gx8UfC8IKx7zHKRLy0B0Tem6Lbg47ZOMZU/cpv6u53VL?=
+ =?us-ascii?Q?bOhq7KdiO2FIXkFCY3UXh3hq+msqShzkk6MC4MgVoMgf0cxjgY9jSZ/SyEFB?=
+ =?us-ascii?Q?r+CDsP3nSt6KNt1wusBt/zF8US7hm4Q0YKtBTlPoIaT0h3IPPPpLv7o6Vb7T?=
+ =?us-ascii?Q?Yj3Na4u5SNOPBfzZKuIx2huo4c5eILe0zpitTxLSB7GdO2hdoVSb0z0T5rDN?=
+ =?us-ascii?Q?pNcZ0t8sB4/zMXP3OPQdWHtl1uUbJLZltW1DQhUdiPrVXDr4i0/ygdFz7vHg?=
+ =?us-ascii?Q?p9Mi8T23N4i9sKDucwVjnErDFFyVJ3UDyi1auclLf+BNJ/3k6fQtwUfPMnse?=
+ =?us-ascii?Q?1ASTz/zkTg/IVH0iTfZ884d1y5V3qiaBz2M8SpJvbAWUoXYPNo/ujrfUY/Tn?=
+ =?us-ascii?Q?B6wMHmGvgu7mTMoWLNnt6Hzwi10UHBFkPKnoLron5JOyHuUvjfP0mGmJReCS?=
+ =?us-ascii?Q?VZxHievYbPtwbaiOM5b2IWvoHKVbI07CfwqI/S9nzCinAw1PXyYLVOo2WbsM?=
+ =?us-ascii?Q?QZhgSIirKV4XeacidaOg7YVqMWXJaoL3E8s0nIdu/br0y9VtaVY///rSLQUW?=
+ =?us-ascii?Q?U8wm8HEOGLDpUFv2Mtx7bg1y7dUYkDZs6LJ9T1k2GlrieETbO4IQR2OSlo/i?=
+ =?us-ascii?Q?52HgG/JpyViA/SEvuy2hwLFWM97owv2eVT3HckqAFFv/cG/3Jpu4kbhrkHWw?=
+ =?us-ascii?Q?8/zPMEb8STH8FthMFJadk5HA8OgEdurEN+eyX42S73Tyx8LWYBViTb0EmhyA?=
+ =?us-ascii?Q?2yhisILXfCEhTGOtE0nY1fuVUbE9SriUW1KK5WwqNW76skv4J3zo1MIfwhHt?=
+ =?us-ascii?Q?zTVG1wGKwTgFCgXlevGOjAEEIGIUkZz+S5KbdSymGNb4TZptja6OS0eIBNu9?=
+ =?us-ascii?Q?C4UxrM93EAWoNRajx/po9n0yQY1m7v/7N56bxH4TWJQJW3xHZdAl+LGaESXL?=
+ =?us-ascii?Q?QFKz+Fw4OxIxwhIrdKw99/V7kSJpujL8YIbWB33y2TMNHfovmnpsLSiaD0jV?=
+ =?us-ascii?Q?S2erwMDEI+QA+cqnfs/mH/AC8wpJfjSFTPEC17TSl6vnL9AWcK83CTlFVXBe?=
+ =?us-ascii?Q?wqCPGsMyt/UVnteAMHS4MufNlCnlJKGlaUEN?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2025 15:05:52.5506 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3c394f4-7fc9-4fe8-1d3e-08ddd8e89096
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2025 15:05:53.4785 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e910fe3-d248-4aa0-67f4-08ddd8e89123
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B3.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8275
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4062
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,198 +136,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add new ioctl DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES.
-
-This ioctl returns a list of bos with their handles, sizes,
-and flags and domains.
-
-This ioctl is meant to be used during CRIU checkpoint and
-provide information needed to reconstruct the bos
-in CRIU restore.
+Add new GEM_OP_IOCTL option GET_MAPPING_INFO, which
+returns a list of mappings associated with a given bo, along with
+their positions and offsets.
 
 Signed-off-by: David Francis <David.Francis@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 83 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h |  2 +
- include/uapi/drm/amdgpu_drm.h           | 31 +++++++++
- 4 files changed, 117 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 86 ++++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  |  5 ++
+ include/uapi/drm/amdgpu_drm.h           | 18 ++++++
+ 3 files changed, 108 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 4ff3a2eaaf55..f19795dddf9d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -3031,6 +3031,7 @@ const struct drm_ioctl_desc amdgpu_ioctls_kms[] = {
- 	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ, amdgpu_userq_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_SIGNAL, amdgpu_userq_signal_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_WAIT, amdgpu_userq_wait_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_HANDLES, amdgpu_gem_list_handles_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
- };
- 
- static const struct drm_driver amdgpu_kms_driver = {
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index e3f65977eeee..3873d2c19b4b 100644
+index 3873d2c19b4b..1632460623b2 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -1032,6 +1032,89 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
+@@ -885,7 +885,7 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
+ 				goto error;
+ 		}
+ 
+-		r = amdgpu_vm_lock_pd(&fpriv->vm, &exec, 2);
++		r = amdgpu_vm_lock_pd(&fpriv->vm, &exec, 0);
+ 		drm_exec_retry_on_contention(&exec);
+ 		if (unlikely(r))
+ 			goto error;
+@@ -956,6 +956,86 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
  	return r;
  }
  
 +/**
-+ * drm_amdgpu_gem_list_handles_ioctl - get information about a process' buffer objects
++ * amdgpu_gem_list_mappings - get information about a buffer's mappings
 + *
-+ * @dev: drm device pointer
-+ * @data: drm_amdgpu_gem_list_handles
-+ * @filp: drm file pointer
++ * @gobj: gem object
++ * @args: gem_op arguments
++ * @fpriv: drm file pointer
 + *
-+ * num_bos is set as an input to the size of the bo_buckets array.
-+ * num_bos is sent back as output as the number of bos in the process.
++ * num_entries is set as an input to the size of the user-allocated array of
++ * drm_amdgpu_gem_vm_bucket stored at args->value.
++ * num_entries is sent back as output as the number of mappings the bo has.
 + * If that number is larger than the size of the array, the ioctl must
 + * be retried.
 + *
 + * Returns:
 + * 0 for success, -errno for errors.
 + */
-+int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
-+			      struct drm_file *filp)
++static int amdgpu_gem_list_mappings(struct drm_gem_object *gobj, struct amdgpu_fpriv *fpriv,
++					  struct drm_amdgpu_gem_op *args)
 +{
-+	struct drm_amdgpu_gem_list_handles *args = data;
-+	struct drm_amdgpu_gem_list_handles_entry *bo_entries;
-+	struct drm_gem_object *gobj;
-+	int id, ret = 0;
-+	int bo_index = 0;
-+	int num_bos = 0;
++	struct amdgpu_vm *avm = &fpriv->vm;
++	struct amdgpu_bo *bo = gem_to_amdgpu_bo(gobj);
++	struct amdgpu_bo_va *bo_va = amdgpu_vm_bo_find(avm, bo);
++	struct drm_amdgpu_gem_vm_bucket *vm_buckets;
++	struct amdgpu_bo_va_mapping *mapping;
++	struct drm_exec exec;
++	int num_mappings = 0;
++	int ret;
 +
-+	spin_lock(&filp->table_lock);
-+	idr_for_each_entry(&filp->object_idr, gobj, id)
-+		num_bos += 1;
-+	spin_unlock(&filp->table_lock);
-+
-+	if (args->num_entries < num_bos) {
-+		args->num_entries = num_bos;
-+		return 0;
-+	}
-+
-+	if (num_bos == 0) {
-+		args->num_entries = 0;
-+		return 0;
-+	}
-+
-+	bo_entries = kvcalloc(num_bos, sizeof(*bo_entries), GFP_KERNEL);
-+	if (!bo_entries)
++	vm_buckets = kvcalloc(args->num_entries, sizeof(*vm_buckets), GFP_KERNEL);
++	if (!vm_buckets)
 +		return -ENOMEM;
 +
-+	spin_lock(&filp->table_lock);
-+	idr_for_each_entry(&filp->object_idr, gobj, id) {
-+		struct amdgpu_bo *bo = gem_to_amdgpu_bo(gobj);
-+		struct drm_amdgpu_gem_list_handles_entry *bo_entry;
-+
-+		if (bo_index >= num_bos) {
-+			ret = -EAGAIN;
-+			break;
++	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT |
++			  DRM_EXEC_IGNORE_DUPLICATES, 0);
++	drm_exec_until_all_locked(&exec) {
++		if (gobj) {
++			ret = drm_exec_lock_obj(&exec, gobj);
++			drm_exec_retry_on_contention(&exec);
++			if (ret)
++				goto unlock_exec;
 +		}
 +
-+		bo_entry = &bo_entries[bo_index];
-+
-+		bo_entry->size = amdgpu_bo_size(bo);
-+		bo_entry->alloc_flags = bo->flags & (~AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE);
-+		/* WIPE_ON_RELEASE is set automatically in the driver; it is not permitted in
-+		 * BO creation. In the interest of giving the user exactly the flags they need
-+		 * to recreate the BO, clear it.
-+		 */
-+		bo_entry->preferred_domains = bo->preferred_domains;
-+		bo_entry->gem_handle = id;
-+
-+		if (bo->tbo.base.import_attach)
-+			bo_entry->flags |= AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT;
-+
-+		bo_index += 1;
++		ret = amdgpu_vm_lock_pd(&fpriv->vm, &exec, 2);
++		drm_exec_retry_on_contention(&exec);
++		if (ret)
++			goto unlock_exec;
 +	}
-+	spin_unlock(&filp->table_lock);
 +
-+	args->num_entries = bo_index;
++	amdgpu_vm_bo_va_for_each_valid_mapping(bo_va, mapping) {
++		if (num_mappings < args->num_entries) {
++			vm_buckets[num_mappings].start = mapping->start;
++			vm_buckets[num_mappings].last = mapping->last;
++			vm_buckets[num_mappings].offset = mapping->offset;
++			vm_buckets[num_mappings].flags = mapping->flags;
++		}
++		num_mappings += 1;
++	}
 +
-+	if (!ret)
-+		ret = copy_to_user(u64_to_user_ptr(args->entries), bo_entries, num_bos * sizeof(*bo_entries));
++	amdgpu_vm_bo_va_for_each_invalid_mapping(bo_va, mapping) {
++		if (num_mappings < args->num_entries) {
++			vm_buckets[num_mappings].start = mapping->start;
++			vm_buckets[num_mappings].last = mapping->last;
++			vm_buckets[num_mappings].offset = mapping->offset;
++			vm_buckets[num_mappings].flags = mapping->flags;
++		}
++		num_mappings += 1;
++	}
 +
-+	kvfree(bo_entries);
++	if (num_mappings > 0 && num_mappings <= args->num_entries)
++		ret = copy_to_user(u64_to_user_ptr(args->value), vm_buckets, num_mappings * sizeof(*vm_buckets));
++
++	args->num_entries = num_mappings;
++
++unlock_exec:
++	drm_exec_fini(&exec);
++	kvfree(vm_buckets);
 +
 +	return ret;
 +}
 +
-+
- static int amdgpu_gem_align_pitch(struct amdgpu_device *adev,
- 				  int width,
- 				  int cpp,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-index b51e8f95ee86..7cdb6237bb92 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-@@ -67,6 +67,8 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
- 			  struct drm_file *filp);
  int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *filp);
-+int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
-+			      struct drm_file *filp);
+ 			struct drm_file *filp)
+ {
+@@ -1022,6 +1102,10 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
  
- int amdgpu_gem_metadata_ioctl(struct drm_device *dev, void *data,
- 				struct drm_file *filp);
+ 		amdgpu_bo_unreserve(robj);
+ 		break;
++	case AMDGPU_GEM_OP_GET_MAPPING_INFO:
++		amdgpu_bo_unreserve(robj);
++		r = amdgpu_gem_list_mappings(gobj, filp->driver_priv, args);
++		break;
+ 	default:
+ 		amdgpu_bo_unreserve(robj);
+ 		r = -EINVAL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+index f9549f6b3d1f..5a63ae490b0e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -668,4 +668,9 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev,
+ 				 struct amdgpu_vm *vm,
+ 				 struct dma_fence **fence);
+ 
++#define amdgpu_vm_bo_va_for_each_valid_mapping(bo_va, mapping) \
++		list_for_each_entry(mapping, &bo_va->valids, list)
++#define amdgpu_vm_bo_va_for_each_invalid_mapping(bo_va, mapping) \
++		list_for_each_entry(mapping, &bo_va->invalids, list)
++
+ #endif
 diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-index bdedbaccf776..59b423883e91 100644
+index 59b423883e91..7072959103e6 100644
 --- a/include/uapi/drm/amdgpu_drm.h
 +++ b/include/uapi/drm/amdgpu_drm.h
-@@ -57,6 +57,7 @@ extern "C" {
- #define DRM_AMDGPU_USERQ		0x16
- #define DRM_AMDGPU_USERQ_SIGNAL		0x17
- #define DRM_AMDGPU_USERQ_WAIT		0x18
-+#define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
+@@ -802,6 +802,21 @@ union drm_amdgpu_wait_fences {
  
- #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
- #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
-@@ -77,6 +78,7 @@ extern "C" {
- #define DRM_IOCTL_AMDGPU_USERQ		DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ, union drm_amdgpu_userq)
- #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
- #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
-+#define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
+ #define AMDGPU_GEM_OP_GET_GEM_CREATE_INFO	0
+ #define AMDGPU_GEM_OP_SET_PLACEMENT		1
++#define AMDGPU_GEM_OP_GET_MAPPING_INFO		2
++
++struct drm_amdgpu_gem_vm_bucket {
++	/* Start of mapping (in number of pages) */
++	__u64 start;
++
++	/* End of mapping (in number of pages) */
++	__u64 last;
++
++	/* Mapping offset */
++	__u64 offset;
++
++	/* flags needed to recreate mapping */
++	__u64 flags;
++};
  
- /**
-  * DOC: memory domains
-@@ -811,6 +813,35 @@ struct drm_amdgpu_gem_op {
+ /* Sets or returns a value associated with a buffer. */
+ struct drm_amdgpu_gem_op {
+@@ -811,6 +826,9 @@ struct drm_amdgpu_gem_op {
+ 	__u32	op;
+ 	/** Input or return value */
  	__u64	value;
++	/** For MAPPING_INFO op: number of mappings (in/out) */
++	__u32	num_entries;
++	__u32	padding;
  };
  
-+#define AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT	(1 << 0)
-+
-+struct drm_amdgpu_gem_list_handles {
-+	/* User pointer to array of drm_amdgpu_gem_bo_info_entry */
-+	__u64   entries;
-+
-+	/* IN: Size of entries buffer. OUT: Number of handles in process (if larger than size of buffer, must retry) */
-+	__u32   num_entries;
-+
-+	__u32 padding;
-+};
-+
-+struct drm_amdgpu_gem_list_handles_entry {
-+	/* gem handle of buffer object */
-+	__u32 gem_handle;
-+
-+	/* Currently just one flag: IS_IMPORT */
-+	__u32 flags;
-+
-+	/* Size of bo */
-+	__u64 size;
-+
-+	/* Preferred domains for GEM_CREATE */
-+	__u64 preferred_domains;
-+
-+	/* GEM_CREATE flags for re-creation of buffer */
-+	__u64 alloc_flags;
-+};
-+
- #define AMDGPU_VA_OP_MAP			1
- #define AMDGPU_VA_OP_UNMAP			2
- #define AMDGPU_VA_OP_CLEAR			3
+ #define AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT	(1 << 0)
 -- 
 2.34.1
 
