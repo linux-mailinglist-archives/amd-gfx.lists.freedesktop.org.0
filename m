@@ -2,59 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D38B20933
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Aug 2025 14:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81899B20A17
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Aug 2025 15:26:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49A5510E460;
-	Mon, 11 Aug 2025 12:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CAE510E462;
+	Mon, 11 Aug 2025 13:26:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="A33YU2N3";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="p8f6b7Kw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B270A10E45F;
- Mon, 11 Aug 2025 12:49:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=C/ouciPejbKLferniMXIWd7m5vVLOMUZSc6dDmeKvLA=; b=A33YU2N3016jHl2pg9+J58I34w
- Juf2goOUa+yDYqfG/lbEa71pLiEVFfeZymppZtBvom9MgNKdNWHBks181gqGWGTwcWISk20XPrbnn
- u3nuAljzB5jLlcMv25Of1Cp2ALnkVNfoEFHuARkvNwfXz8hXgBRq+44lkJfHFHGqIdwWRED+1Sn0J
- Y9L/YkY1Ry7yD/uozyMH1C0oRcsH2Nbq+LkkF0h4Jgvih3Uz7zWKqX/5OsNYQqh8kERuLy5D6fPuv
- 6PnSGhx3WLioTy4FZp9tf0ZMA0l4qcN9gH4rAeJj/tX90nnx9YUqPzl+ZJ2Rnx7TEFmYLhCmmIRNE
- eMqKPyZQ==;
-Received: from [84.66.36.92] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1ulRxR-00CmFD-It; Mon, 11 Aug 2025 14:48:57 +0200
-Message-ID: <60cba603-7a18-4fc9-a1d7-376012ff30ec@igalia.com>
-Date: Mon, 11 Aug 2025 13:48:56 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88F7910E10E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 13:26:23 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57B9dBGb029216
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 13:26:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=vRikIynOffv5hukm3CKQ6SgT
+ vsP8Ryyr+lMrwvSQIzY=; b=p8f6b7KwJiYJ1X2hf94LyRPBUQyawbhk9VSvJzGE
+ DcS0zOtYY2HjC5TEq5XRYFGd5ZmWt2OniURI87DtmkMygR94tLhXxzwXev1O7sGM
+ wsnL8Uct1JMYVLGowrnGkSpgkpzztPyGRQ/l6RrB4EQ/ZU87Pfn4saIFdqqWNQvw
+ 0jmZ9nrljs7UUKQDs3hC5RJ71aqmfRcMwozM5IlDwOWBowpH9tKj/JmmgZrhQyqg
+ CutdLldAKoUXN5szorjHp7uTnYgn3AFufDl9qK7gZs3Cu+KcQp7ZWP+bD+kY3qHg
+ Xom/m64tqGBryAwEH7hMeuLe2b9WBcvSctNuyWxldJyHdQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dygmch1b-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 13:26:22 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-4af156a27b1so170765011cf.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 06:26:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754918781; x=1755523581;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vRikIynOffv5hukm3CKQ6SgTvsP8Ryyr+lMrwvSQIzY=;
+ b=DoCvlLNaUJ9DyER6LBmA60dz9oBh4rNYXPlCFXGEEbnI6HSO9VKYqvQ77Mlwe9Vd/i
+ DEk4NlLfZjlstcN/rcjf12k+s5PfHDlJSAlzlJu6d5Pa8vHJ2T8un3UxJjbRiWjcMb31
+ 40UG32rqQSPVm+irH1csgwjaPRUSajh8Ly5l+shx/douSvw4M//1zWwQHVj2zY5axLXO
+ VfQ8RoR0tz4Y404JHt4vvNmStmgD3wIcQSRxNGU1RAQlugONLzXmStFocze4fg37czK/
+ wwMk/CPWSO4VcxcGrWQwzO9XqBPa5TE6mUsBvGpRnu3uoHmG/fusjh7j/lxDzJsL26/J
+ umrw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWSLnesziVF8LEwox9uyFyvzCSxmOZoG/GYtYzWiqPygKwQZ4CHSyYqrg+mb7BidPh96+21J41F@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzxfQxujdKEqNLibLElOFXOFun0+kE785V8dlEvNj7MjXs1sBc8
+ TjeVXawEPngsHh/ntmscrZZ9l/19QEnA/VEaF9rCDmJdoQyMTSUCxs3QUMnXfFsWuzXrHS6N3Vb
+ CpPVTcvFQe1sqECefytkJzWjTR2IaK8ZgURVh5RCcvUpaxGfOl/pUsS6Pj7i+5TMiPIhQ
+X-Gm-Gg: ASbGncskEvibdtzne6PzNsxG1Pz2+5KkNGwyVjCS5rsUKmhiQ8JBPuqT8/Mr6MEPLWH
+ T1CNifXiq9i38XFPem/oRdb/lTZgshfQZLZD2kG3vinp7Emiork5WWVX5QogrFZDXbqhfNeEmqj
+ iSKMJ4ldpoJiuwjhWCfzlgTUKzQWQHO5Z8KVhYaS6bCL15txQL+hVdMzNnHHdHWIlJcXZIinuRM
+ jwH7ipPBR/H/qua3GUREuA7dFusP5YcnqOEOTsRU2zjDl28fCcdzlV1+sEgK65YfEefvnwycmiY
+ 9M09v9XUq9dQXVbBBIjuZtKr6mX/vXRzxAoFfpekyUzqbar/lhO236HuU1KNfmfAdtv0JJsNIwI
+ jKs1ObMUEcZqK4PZy7wieB72k5xX3NsNrcZiBTSGdzn9CzP1351ww
+X-Received: by 2002:a05:622a:58c6:b0:4b0:75f1:4cd5 with SMTP id
+ d75a77b69052e-4b0aed5ec14mr139029431cf.44.1754918780917; 
+ Mon, 11 Aug 2025 06:26:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH0wKTLCLx4/yIBgQvD8Ue94ZiVJ7wpTEfZ89QbuRpyBiuJsOKla4drlyaZDIdLWLJCAt0VIQ==
+X-Received: by 2002:a05:622a:58c6:b0:4b0:75f1:4cd5 with SMTP id
+ d75a77b69052e-4b0aed5ec14mr139028901cf.44.1754918780301; 
+ Mon, 11 Aug 2025 06:26:20 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-55cc7c67a5asm1192051e87.77.2025.08.11.06.26.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 Aug 2025 06:26:19 -0700 (PDT)
+Date: Mon, 11 Aug 2025 16:26:17 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>, kernel-list@raspberrypi.com,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
+ uma.shankar@intel.com, jani.nikula@intel.com, harry.wentland@amd.com,
+ siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, robin.clark@oss.qualcomm.com,
+ abhinav.kumar@linux.dev, tzimmermann@suse.de,
+ jessica.zhang@oss.qualcomm.com, sean@poorly.run,
+ marijn.suijten@somainline.org, mcanal@igalia.com,
+ dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com
+Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
+ structure
+Message-ID: <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
+References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
+ <20250811092707.3986802-2-suraj.kandpal@intel.com>
+ <20250811094429.GE21313@pendragon.ideasonboard.com>
+ <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
+ <20250811111546.GA30760@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v7 10/12] drm/sched: Break submission patterns with some
- randomness
-To: phasta@kernel.org, Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-References: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
- <20250724141921.75583-11-tvrtko.ursulin@igalia.com>
- <fe05e8fd-d56f-4b32-a65b-46c9ef6df9c7@damsy.net>
- <0312116d-b216-4afb-bf9f-210b553fed7f@igalia.com>
- <dda766b27e9a7035dee2f6368b882cc628a73772.camel@mailbox.org>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <dda766b27e9a7035dee2f6368b882cc628a73772.camel@mailbox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250811111546.GA30760@pendragon.ideasonboard.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzNSBTYWx0ZWRfX+O0picRjbJKS
+ c72OOJfe+AYRXJjQguh5okyWK9NhHC1uLBHw2Xq6LhpIHuUinNCuq4V0zDeVDkkpgMwo6TNcVuQ
+ +9v+OLoH4fNUItT/loyK6gtmqYHsxr0BCW5ZvgqSX//99cY4nH195tCFS8mlYYG+NBvmtboVwYl
+ 71wukwXbD2NFExh1uG5TNr619XGnSzhXw5EEjT2IUQsyMFtiBEr2Hx/JajBbuKtjQassOq15OuJ
+ RlgWkmCd1hteQLrzvc5a09H6VrO2LeMX1MGCGLnw1oevFlImjjPBoDmT7yf3sX+nO7pntwAfeCO
+ fhuv0p9B9Jom4D7EsISMZqW2Ql9igEjNV5qOxz5VCSQHESrhqnlFvTtr0SQ+v23i9b2TEFKaAo9
+ thp3EPg5
+X-Authority-Analysis: v=2.4 cv=FvMF/3rq c=1 sm=1 tr=0 ts=6899ef7e cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=QyXUC8HyAAAA:8 a=4yu1Or5Oec3-_3BIJ7kA:9 a=CjuIK1q_8ugA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: sf8CRenNHhhkNX9LSCE7Fp_XF9pyDoiL
+X-Proofpoint-ORIG-GUID: sf8CRenNHhhkNX9LSCE7Fp_XF9pyDoiL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-11_02,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090035
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,212 +139,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 30/07/2025 08:56, Philipp Stanner wrote:
-> On Mon, 2025-07-28 at 12:14 +0100, Tvrtko Ursulin wrote:
->>
->> On 28/07/2025 10:28, Pierre-Eric Pelloux-Prayer wrote:
->>> Le 24/07/2025 à 16:19, Tvrtko Ursulin a écrit :
->>>> GPUs generally don't implement preemption and DRM scheduler definitely
->>>> does not support it at the front end scheduling level. This means
->>>> execution quanta can be quite long and is controlled by userspace,
->>>> consequence of which is picking the "wrong" entity to run can have a
->>>> larger negative effect than it would have with a virtual runtime based
->>>> CPU
->>>> scheduler.
->>>>
->>>> Another important consideration is that rendering clients often have
->>>> shallow submission queues, meaning they will be entering and exiting the
->>>> scheduler's runnable queue often.
->>>>
->>>> Relevant scenario here is what happens when an entity re-joins the
->>>> runnable queue with other entities already present. One cornerstone of
->>>> the
->>>> virtual runtime algorithm is to let it re-join at the head and depend on
->>>> the virtual runtime accounting to sort out the order after an execution
->>>> quanta or two.
->>>>
->>>> However, as explained above, this may not work fully reliably in the GPU
->>>> world. Entity could always get to overtake the existing entities, or not,
->>>> depending on the submission order and rbtree equal key insertion
->>>> behaviour.
->>>>
->>>> We can break this latching by adding some randomness for this specific
->>>> corner case.
->>>>
->>>> If an entity is re-joining the runnable queue, was head of the queue the
->>>> last time it got picked, and there is an already queued different entity
->>>> of an equal scheduling priority, we can break the tie by randomly
->>>> choosing
->>>> the execution order between the two.
->>>>
->>>> For randomness we implement a simple driver global boolean which selects
->>>> whether new entity will be first or not. Because the boolean is global
->>>> and
->>>> shared between all the run queues and entities, its actual effect can be
->>>> loosely called random. Under the assumption it will not always be the
->>>> same
->>>> entity which is re-joining the queue under these circumstances.
->>>>
->>>> Another way to look at this is that it is adding a little bit of limited
->>>> random round-robin behaviour to the fair scheduling algorithm.
->>>>
->>>> Net effect is a significant improvemnt to the scheduling unit tests which
->>>> check the scheduling quality for the interactive client running in
->>>> parallel with GPU hogs.
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> Cc: Christian König <christian.koenig@amd.com>
->>>> Cc: Danilo Krummrich <dakr@kernel.org>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Philipp Stanner <phasta@kernel.org>
->>>> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
->>>> ---
->>>>    drivers/gpu/drm/scheduler/sched_rq.c | 10 ++++++++++
->>>>    1 file changed, 10 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/
->>>> scheduler/sched_rq.c
->>>> index d16ee3ee3653..087a6bdbb824 100644
->>>> --- a/drivers/gpu/drm/scheduler/sched_rq.c
->>>> +++ b/drivers/gpu/drm/scheduler/sched_rq.c
->>>> @@ -147,6 +147,16 @@ drm_sched_entity_restore_vruntime(struct
->>>> drm_sched_entity *entity,
->>>>                 * Higher priority can go first.
->>>>                 */
->>>>                vruntime = -us_to_ktime(rq_prio - prio);
->>>> +        } else {
->>>> +            static const int shuffle[2] = { -100, 100 };
->>>> +            static bool r = 0;
->>>> +
->>>> +            /*
->>>> +             * For equal priority apply some randomness to break
->>>> +             * latching caused by submission patterns.
->>>> +             */
->>>> +            vruntime = shuffle[r];
->>>> +            r ^= 1;
->>>
->>> I don't understand why this is needed at all?
->>>
->>> I suppose this is related to how drm_sched_entity_save_vruntime saves a
->>> relative vruntime (= entity rejoins with a 0 runtime would be impossible
->>> otherwise) but I don't understand this either.
->>
->> Two things (and a bit more) to explain here for the record. And as
->> agreed off-line I need to add some more code comments for this are in
->> the next respin.
->>
->> First the saving of "vruntime - min_runtime" when entity exits the
->> run-queue.
->>
->> That is a core CFS concept AFAIU which enables the relative position of
->> the entity to be restored once it re-enters the rq.
->>
->> It only applies on the scenario when the picked entity was not the head
->> of the queue, due the actual head being not runnable due a dependency.
->>
->> If the picked entity then leaves the queue and re-joins, this relative
->> vruntime is used to put it back where it was relative to the unready
->> entity (which may have became ready by now and so it needs to be picked
->> next and not overtaken so easily.)
+On Mon, Aug 11, 2025 at 02:15:46PM +0300, Laurent Pinchart wrote:
+> On Mon, Aug 11, 2025 at 01:22:30PM +0300, Dmitry Baryshkov wrote:
+> > On Mon, Aug 11, 2025 at 12:44:29PM +0300, Laurent Pinchart wrote:
+> > > On Mon, Aug 11, 2025 at 02:57:00PM +0530, Suraj Kandpal wrote:
+> > > > Some drivers cannot work with the current design where the connector
+> > > > is embedded within the drm_writeback_connector such as intel and
+> > > > some drivers that can get it working end up adding a lot of checks
+> > > > all around the code to check if it's a writeback conenctor or not.
+> > > > To solve this we move the drm_writeback_connector within the
+> > > > drm_connector and remove the drm_connector base which was in
+> > > > drm_writeback_connector. We do all other required
+> > > > modifications that come with these changes along with addition
+> > > > of new function which returns the drm_connector when
+> > > > drm_writeback_connector is present.
+> > > > All drivers will be expected to allocate the drm_connector.
+> > > > 
+> > > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_writeback.c | 33 ++++++++++------
+> > > >  include/drm/drm_connector.h     | 60 +++++++++++++++++++++++++++++
+> > > >  include/drm/drm_writeback.h     | 68 ++++-----------------------------
+> > > >  3 files changed, 89 insertions(+), 72 deletions(-)
+> > > > 
+> > > > @@ -2305,6 +2360,11 @@ struct drm_connector {
+> > > >  	 * @cec: CEC-related data.
+> > > >  	 */
+> > > >  	struct drm_connector_cec cec;
+> > > > +
+> > > > +	/**
+> > > > +	 * @writeback: Writeback related valriables.
+> > > > +	 */
+> > > > +	struct drm_writeback_connector writeback;
+> > > 
+> > > No, sorry, that's a bad idea. Most connectors have nothing to do with
+> > > writeback, you shouldn't introduce writeback-specific fields here.
+> > > drm_writeback_connector happens to be a drm_connector because of
+> > > historical reasons (it was decided to reuse the connector API exposed to
+> > > userspace instead of exposing a completely separate API in order to
+> > > simplify the implementation), but that does not mean that every
+> > > connector is related to writeback.
+> > > 
+> > > I don't know what issues the Intel driver(s) have with
+> > > drm_writeback_connector, but you shouldn't make things worse for
+> > > everybody due to a driver problem.
+> > 
+> > Suraj is trying to solve a problem that in Intel code every drm_connector
+> > must be an intel_connector too. His previous attempt resulted in a loose
+> > abstraction where drm_writeback_connector.base wasn't initialized in
+> > some cases (which is a bad idea IMO).
+> > 
+> > I know the historical reasons for drm_writeback_connector, but I think
+> > we can do better now.
+> > 
+> > So, I think, a proper approach would be:
+> > 
+> > struct drm_connector {
+> >     // other fields
+> > 
+> >     union {
+> >         struct drm_connector_hdmi hdmi; // we already have it
+> >         struct drm_connector_wb wb;  // this is new
+> >     };
+> > 
+> >     // rest of the fields.
+> > };
 > 
-> I'm afraid I also don't get it completely. So you're saying that with
-> this jitter-mechanism we can preserve the relative order of entities?
-> But the actual patch title says that it's about breaking such patterns,
-> or isn't it? "Break submission patterns"
+> I still don't like that. This really doesn't belong here. If anything,
+> the drm_connector for writeback belongs to drm_crtc.
+
+Why? We already have generic HDMI field inside drm_connector. I am
+really hoping to be able to land DP parts next to it. In theory we can
+have a DVI-specific entry there (e.g. with the subconnector type).
+The idea is not to limit how the drivers subclass those structures.
+
+I don't see a good case why WB should deviate from that design.
+
+> If the issue is that some drivers need a custom drm_connector subclass,
+> then I'd rather turn the connector field of drm_writeback_connector into
+> a pointer.
+
+Having a pointer requires additional ops in order to get drm_connector
+from WB code and vice versa. Having drm_connector_wb inside
+drm_connector saves us from those ops (which don't manifest for any
+other kind of structure). Nor will it take any more space since union
+will reuse space already taken up by HDMI part.
+
 > 
-> Maybe you can help improve my understanding by us reversing the
-> question:
-> 
-> If that jitter-mechanism is dropped, what will be the negative
-> consequence?
+> > I plan to add drm_connector_dp in a similar way, covering DP needs
+> > (currently WIP).
 
-Some workloads would suffer. Or to better say, make smaller gains 
-compared to the current FIFO. With this they can bridge the gap to RR 
-much more.
-
-> Entities with similar vruntimes would always run in the same order,
-> correct? So the patch is not so much about GPU time fairness, but about
-> response / delay fairness.
-
-Not similar vruntimes, but it is about the _identical_. This identical 
-case happens by CFS design when idle entity (re-)joins the run queue. It 
-inherits the current min vruntime of the rq and from then on CFS relies 
-on timeslicing (preemption) to balance them out. And because with GPUs 
-time slices are long, even controlled by userspace because preemption is 
-not universally present (not at all with DRM scheduler at the frontend 
-level), making a wrong choice of what to run first can hurt us much more 
-than in the CPU world.
-
-So for example when two entities enter the rq 1ns apart, and the second 
-one was picked from head of the queue in its last activity period, the 
-new pick order is determined by the rbtree traversal order for nodes 
-with identical keys. Whether in practice or by contract that ends up 
-being FIFO. Ie. above entities which entered the rq 1ns apart will 
-always run in FIFO order.
-
-And FIFO is quite bad with light to medium usage interactive clients 
-running in parallel to GPU hogs. Regardless if the hog as a queue depth 
-or more than one job deep, or just happened to submit its long single 
-job 1ns earlier than the interactive client.
-
-This patch therefore mixes things up a bit for this specific case and 
-that seems to work quite well in practice:
-
-https://people.igalia.com/tursulin/drm-sched-fair/4-heavy-vs-interactive.png
-
-https://people.igalia.com/tursulin/drm-sched-fair/4-very-heavy-vs-interactive.png
-
-With two competing clients it ends up a bit like RR (again, for this 
-specific set of pre-requisites, not RR for everyone and everything), 
-where the two alternate as to who gets to run first.
-
-With more than two clients it all becomes much more random (compared to 
-alternating) because the "randomizer" is a one bit toggle shared across 
-the whole system. So different GPU engines, different GPUs, different 
-entities, they all toggle it and combined with the time domain I think 
-is safer from any latching behaviour induced by submission timings, 
-patterns or interactions with the CPU scheduler.
-
-Regards,
-
-Tvrtko
-
->> It has to be the relative vruntime that is preserved, ie. entity which
->> re-enters cannot simply keep its previous vruntime, since by then that
->> could lag significantly behind the vruntime of other active entities,
->> which in turn would mean the re-joining entity could be head of the
->> queue for a long time.
->>
->> Second part is the special case from the quoted patch and that only
->> applies to entities which are re-joining the queue after having been
->> picked from the head _and_ there is another entity in the rq.
->>
->> By the nature of the CFS algorithm the re-joining entity continues with
->> the vruntime assigned from the current rq min_vruntime. Which puts two
->> entities with the same vruntime at the head of the queue and the actual
->> picking order influenced by the submit order (FIFO) and rbtree sort
->> order (did not check). But in any case it is not desirable for all the
->> description of GPU scheduling weaknesses from the commit text (this patch).
->>
->> For this special case there are three sub-paths:
->>
->>    1. Re-joining entity is higher scheduling prio -> we pull its vruntime
->> a tiny bit ahead of the min_vruntime so it runs first.
->>
->>    2. Lower re-joining prio -> the opposite of the above - we explicitly
->> prevent it overtaking the higher priority head.
->>
->>    3. Equal prio -> apply some randomness as to which one runs first.
->>
->> Idea being avoidance of any "latching" of the execution order based on
->> submission patterns. Which kind of applies a little bit of
->> round/random-robin for this very specific case of equal priority entity
->> re-joining at the top of the queue.
->>
->> Regards,
->>
->> Tvrtko
->>
-> 
-
+-- 
+With best wishes
+Dmitry
