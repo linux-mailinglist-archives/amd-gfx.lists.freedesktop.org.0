@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6DDB25351
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Aug 2025 20:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA07B25355
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Aug 2025 20:51:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05A7C10E0A6;
-	Wed, 13 Aug 2025 18:50:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1A9410E799;
+	Wed, 13 Aug 2025 18:51:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="yWT35eYI";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="dbGUy+K6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2043.outbound.protection.outlook.com [40.107.92.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06D6710E0A6
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Aug 2025 18:50:13 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2080.outbound.protection.outlook.com [40.107.244.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5D7410E799
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Aug 2025 18:51:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vAX+TJka3NhRhDKwxn+0XQFpBZAYYQRk1Esl91lMQspXLEID6m9Pcowny3OeHdyQkMkXBTEcloEnZr4mgO5az+cAll0eW9PbKTY8bNzi4Rnbo2rTKCia4fsrtxfdnE93062QEqijccKu9E/By5qWW/6oO8icHF5Hlae7B7MhtqeINCPxaYGFrc3o5Dvsg187nL+PR37b4xBVGdaG1fGjC7WFYmv8P3JyUYC8Nf1CNDt3rVjJM7zcifn0HovV0XBJ58UkX5p9i8g8Z4Lhh97SkNhJ88V5/3MR2VA8qd96hOMDx40ytz89jLrSyRn0+ISIL2iG6R56IXMqj4O9woiHKQ==
+ b=RAygvm9y98enay+3zqqUGHVoOKUyiBeT92FuRDHsMGlMYuy9WxyabwTEqCetFm1RG88bm3FAY896Azu05aXDHbLPzXJktNtz5dv0qoic29Vcl/9hgmYTwIXDApvvGYdx00cx8fgo2troUvcuvtEGinIcX81aocxC2qlEw8Dpus7rkpd0GR9ym/67WCNgBw46NQ4Eq0xDDA2E1WKdmu9jErov7LJxCOFsJs0q7wmNQQKaTllQNHGch8/srGD5+kelrqfg1VRR/SuFE+RSTPQNm7PL2Ck+hVnkoOk8qkNiFkwthQlzQuK0eUvqQsQ5vPnGG0fEvuWgKYbWvz136pFE+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9/1ZGHQkSawbmWwzbU7GPi5iA8bEvAnYFTUBFaEnCFc=;
- b=fPBnQIAY911UasgZjAX6BCwbQ2PtLhHi1m8YjcUxyWHjjROLkFTXQ8MLa82kj6gfIPBhlFPG7Qg5cVWX/VWUrjn5r0UXfnLwL/H600Vcq6CWiulkv8gJmD8QbZ+tKWcUMsvVgk2t68rsS9+/4w9lwL7dK9iFdcGlU6zFPnIIYfM78/93Efe0HOElaO+8Z70jgGf506vpqoS2xMnewn1wvgV+homeVd5kQ7Y1Owk5DTqpbt9q+x7hC6F1CAZEIW5QkWm9EEg/+oBiJ9duUaArTQusxX25T35hC67KvR9TuWHKvKXH1IZWuEYdwD9UC77+vu/9fibSg7DldH+zbV0zmw==
+ bh=JAWSuKBcNc+PfIJgE5gIdh4AV0oTBzRX7BzSMDoIGl4=;
+ b=LR/oD0Km2i7I/MsLQwE0em2pDuyB0ftPLmlsVd5hO9n/U9t9WhrpZ/hC3T29AbZ+57YYd6qUs8SWw6Alk7GCE9Pa3c5ymW/+/C5Gfp6xZwoEXEHJRpajAIbc1bwp7z9+tycAgdxdK19+jirOeOMkAwCTTAO+HhWK90rt5WG4FH3CyAdWGQKHJ8fLXgil9pesGaI3DzZ6Tk/7yHBbANy7tkyomo5ywbCzjwIsPy0Fpruz3FrdcrQiTmiRkE6RQif88C89Bar3dDnzguF2nQNHT+jYQwaI7qPRQ5GAy/+af8eC4W9RDEH0MnAiyy3spoESpeJ/JWFOajUMSNy468bnBg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9/1ZGHQkSawbmWwzbU7GPi5iA8bEvAnYFTUBFaEnCFc=;
- b=yWT35eYIum8nrvPLC1YwpVK56mMxnwllqK9rm44yUyZMn/k/rzDMu9ivF44IVh1koKu1+wYdRlFXfQmKvtY5vXJ7PxC3gYig5QQ5gjx1+cjZ1623DvmcvhqTbc/+z5Pfgd9FiG0Er/lMlHg6EHd+vpdkDDyVIW0NYuQ0eqyIkyc=
-Received: from SJ0PR03CA0332.namprd03.prod.outlook.com (2603:10b6:a03:39c::7)
- by IA1PR12MB6555.namprd12.prod.outlook.com (2603:10b6:208:3a1::20)
+ bh=JAWSuKBcNc+PfIJgE5gIdh4AV0oTBzRX7BzSMDoIGl4=;
+ b=dbGUy+K6gzSfYLzRVeWPfVRrnr+2vphm3E8ahsr+8hf1VApJ2/YfchC1opMF/5ePz+YRCHMwih/J14CXTSICW36ITFwRnxELuhqzyNjC4S45Iz4GLPSVBjF3KqUV9MLS6E1gd/ITW5UdjjM6x/Nav+PMNExHJTqewy+mJoaxL9c=
+Received: from SJ0PR05CA0016.namprd05.prod.outlook.com (2603:10b6:a03:33b::21)
+ by BL3PR12MB6572.namprd12.prod.outlook.com (2603:10b6:208:38f::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.15; Wed, 13 Aug
- 2025 18:50:09 +0000
-Received: from SJ5PEPF00000204.namprd05.prod.outlook.com
- (2603:10b6:a03:39c:cafe::41) by SJ0PR03CA0332.outlook.office365.com
- (2603:10b6:a03:39c::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.16 via Frontend Transport; Wed,
- 13 Aug 2025 18:50:09 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.13; Wed, 13 Aug
+ 2025 18:50:11 +0000
+Received: from SJ5PEPF00000209.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b:cafe::66) by SJ0PR05CA0016.outlook.office365.com
+ (2603:10b6:a03:33b::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.15 via Frontend Transport; Wed,
+ 13 Aug 2025 18:50:11 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,23 +48,26 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ5PEPF00000204.mail.protection.outlook.com (10.167.244.37) with Microsoft
+ SJ5PEPF00000209.mail.protection.outlook.com (10.167.244.42) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9031.11 via Frontend Transport; Wed, 13 Aug 2025 18:50:09 +0000
+ 15.20.9031.11 via Frontend Transport; Wed, 13 Aug 2025 18:50:10 +0000
 Received: from fdavid-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 13 Aug
- 2025 13:50:05 -0500
+ 2025 13:50:07 -0500
 From: David Francis <David.Francis@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <tvrtko.ursulin@igalia.com>, <Felix.Kuehling@amd.com>,
  <David.YatSin@amd.com>, <Chris.Freehill@amd.com>, <Christian.Koenig@amd.com>, 
  <dcostantino@meta.com>, <sruffell@meta.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <Alexander.Deucher@amd.com>
-Subject: [PATCH v14] Add CRIU support for amdgpu dmabuf
-Date: Wed, 13 Aug 2025 14:49:49 -0400
-Message-ID: <20250813184953.3666821-1-David.Francis@amd.com>
+ <tzimmermann@suse.de>, <Alexander.Deucher@amd.com>, David Francis
+ <David.Francis@amd.com>
+Subject: [PATCH v14 1/4] drm/amdgpu: Allow more flags to be set on gem create.
+Date: Wed, 13 Aug 2025 14:49:50 -0400
+Message-ID: <20250813184953.3666821-2-David.Francis@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250813184953.3666821-1-David.Francis@amd.com>
+References: <20250813184953.3666821-1-David.Francis@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -73,53 +76,52 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000204:EE_|IA1PR12MB6555:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b19dab0-26d2-4ba7-98ff-08ddda9a3a47
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000209:EE_|BL3PR12MB6572:EE_
+X-MS-Office365-Filtering-Correlation-Id: 478a49d6-9300-47a1-ea03-08ddda9a3b34
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?u+cqlSMU5sWcO9fAEwJ7LXl59LXsapi6CFYHfYVN3EcG3mE19qvyUVt3TS+K?=
- =?us-ascii?Q?Jdz0vwAEHUtfE8ebO9XTfTjPAcTI+ZO/MWxqcuhF4dJwYFxO4GLJRzlKvMLh?=
- =?us-ascii?Q?0WQ9+WiZLGmI09wAv1JrAGbcRfPCIscmSh8NqLX3EX5reNVVmYiZ5XpNrnLD?=
- =?us-ascii?Q?owS/4JLxlBZFq1lEV4FGNWRWZvCr+95QSzdQ4i+ed4Adj3uNQ/ANYHdh+WHU?=
- =?us-ascii?Q?2WLwTxqbmpgNVxa4HnOqcvIevuyRgu9pNrX6PYZWJvwzGHDmUBqVf4wjrunG?=
- =?us-ascii?Q?a9u//tpLlAROoO/TUq+6mQfgy5Gj/UUxW7bzfjIjZz0HC4mkBMng6XxwW47P?=
- =?us-ascii?Q?eVJcjqEcE4xAeUr/jD3P+WlkLq2Lka9JA2osk7bUpeQFLv6E+H121sFdcR9r?=
- =?us-ascii?Q?g/SXE750HUTv2AHrALoDFCLTtm5O2VavrMG8yF0ztYW9rguXV6GTglgQbS5F?=
- =?us-ascii?Q?uDbd9vkDVjS9HxQss+PuAQApEbFcFgSH5qzMpYSJn76lJsh1nJd2NJX+gOyZ?=
- =?us-ascii?Q?qMPTYG8XfVCeMFF2bCEY8Xso3x2d5Z4DEDtdg3/BmdI5GruZ3zXY2M7bDfkX?=
- =?us-ascii?Q?YE0bmpRDdxAy+CKhZLLQwTZDWJZSBxXIvOhq28j4dAW4s7O1LjnDYg4fqgwl?=
- =?us-ascii?Q?KebYMcHHoqwhtT/W8yPw3xbdN8yBLMEEaIYbq6JpoYE1lOXkQXeoHq+zljxh?=
- =?us-ascii?Q?m62PxNquil59EZO5AhlFIH8rbTGRnsXhstgQA7vxL8ALxpiPZlmAporuPbzd?=
- =?us-ascii?Q?DSpFjYbobsqD3EKKmCWDX6UwFIlzc6kcHWhpG/dVPpbu4Rf9P3Y6chW64dTm?=
- =?us-ascii?Q?8OEdc28iXM5HmJDOhkuNAKcePQNDyBC+vMxrnwV4hJHobzrXNuPeVmguUwWc?=
- =?us-ascii?Q?6ZWWv8jC/DAQvDlpXmNMaG+2l4HKdrKL5ZF4KUggkaIloEXT0W5tro1UpyYr?=
- =?us-ascii?Q?dAsI0SARd6O6BGvvL5sOp5D7HYqNLwmiwTdtS7+7To48RVXcJHy792odll2G?=
- =?us-ascii?Q?qrPSQR7Bn+52Vxh0si+TfYggs5rxrfe9QqvC7nxrRNNTHHyVA0f/mX8N/rYO?=
- =?us-ascii?Q?p1wEkW63phBfywgVPCYP1wYuFdHpcyrQnjW0xsosAu+JjBd2mdXLE0m/FFEU?=
- =?us-ascii?Q?JhKGfo7rpbcCBA1jc6fl7wxrA3Jxpak1kr7Dyn7Zbs/aH+g28eV/tUus5DaR?=
- =?us-ascii?Q?8MtNCZckex2vCmJj+VA9dNedXaULMmGwUdMJ3LaKNV/z+QdKzt+nzb0PXt0W?=
- =?us-ascii?Q?MrJfH1kjasVYBP+HXbelYIlWcgWeZKV/mnAx9JnKlPZ8eBRQL6Rn9w2pPz5b?=
- =?us-ascii?Q?F7sYUm3IYei1hkjAjTOInnRwpmTkK0IbrrlZg3XYVxhLbglIClEhRnYveebQ?=
- =?us-ascii?Q?jm7uc0zA6kdzu+eepMzxwDpVQnv8IKDnDRtNk6iNuG8JHEjUGsORdEGMVlb8?=
- =?us-ascii?Q?lJQkTaESjcKehGbGlm5eNxhH1tuzOy5ipKu2vi/iEFophHDSdPmNJF7bPk1h?=
- =?us-ascii?Q?Q2IbSYjkG412VKMrDxZlI2fP47+BVEhcKcH5ThlmN1kNWiW3ZebYyLZzHA?=
- =?us-ascii?Q?=3D=3D?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ltO5AE2JOpp38IJMOHxfeRbM/FXVyY1TTZdbdrGVtXAmIv5F878c5AQeD1Rw?=
+ =?us-ascii?Q?Ty76SZMKEEH9NRIbfo0ITQMhPnqVcI6d9b3B5Lo6fpcuC2ZiSYB+rEqJddSJ?=
+ =?us-ascii?Q?frff+hMkkspwEr6wIx4WFtbrnUdT8ts0xh7MAU9hCY2pzs7TEBVv+OGHle+t?=
+ =?us-ascii?Q?tWVvBQn4BqmLYF90u/vkP6jz/4lrmTqZP/1H4Pxhq8hbD7TLyirObfgBhGSe?=
+ =?us-ascii?Q?9hfpjKrXMpBGlQIw2kxLD7Jc8XcteMoea7ATIHs3o/mQT6XNDvWemwaoef0v?=
+ =?us-ascii?Q?PaMJLs5qh14JuiUVb+MtqmNDLaGmaG10lQKFy0yauplG8M0e00UyNA7zbB6R?=
+ =?us-ascii?Q?X6HE0r61Zh1ZmAD04Ar6uPRz+hPcE4yxoJGPzJvXe8mnxoPw4Ex8IbeY9932?=
+ =?us-ascii?Q?2hhP/b5UytUHfMsQ64ZRb5A/Gnh1wbvGMS2VcOU+MCsR+ZCZPUvIfDSB5Pb5?=
+ =?us-ascii?Q?p4ZhSrmcRmt61R3hxa8HD5Id8GKADUYPBagIYW06MkbINFFmzoAt6T3tOFdA?=
+ =?us-ascii?Q?ccmlOMYafWmsP6mxQMf8Lfc+db9uyYWnMrVzF0jVg0ueAlxsZXRYpx/n8z2c?=
+ =?us-ascii?Q?7fAcduajz4H3fTuQWqc+0ZGE9ljWWi2oSnfmzS+cbJVsegZeVkTYo06OukvO?=
+ =?us-ascii?Q?Cbm4H8I0ZZNvw7dt2JpEhAZ145dVYDUvcETH+OXNUKqoB09rU5lSMDqP22Nq?=
+ =?us-ascii?Q?upHV12IKjObO9U21kKM9pFVP/NU0AqCf6m1nebyJWcY5uaCphODLcNq38kLC?=
+ =?us-ascii?Q?gPiRBlOzYZKpyDKY6ae8DsfjO9WccQkFUWHzIDqLk02znLs7wugHmOvyVBK4?=
+ =?us-ascii?Q?L9umKQRwNnW+zjOt+SbcFBosWGLzI2kyhBQ+t/arHt+iawtltFViM0gPJILB?=
+ =?us-ascii?Q?tCYKKpV2yQF+TWYomrbLe3C1k6LtYRnKXx40MnL1+L5fUM9r3lNo5+XAOfBm?=
+ =?us-ascii?Q?QEKcAi7Wje3ZUfZ7D+a7oQFcEu3XucIv33PF5+WE7DIfP9u+mWW5+NKqyY0+?=
+ =?us-ascii?Q?tbNxl0S5fih7iCWR+8RLb5G2SyJg0jftk1a/dxWbiuXNeFsfboEZY75oJuBU?=
+ =?us-ascii?Q?laDYRaUZU7YQjZ4neExwUVcxsQXZuAagmXZ0vJ6J+gzIyDLOWQRd9EYXMk4Z?=
+ =?us-ascii?Q?cpEmHsL4m8G8e7dL2xAHlhKaDdq1XJt+B2gYlMjDJEVyQIUsj33S698PyEWi?=
+ =?us-ascii?Q?CpFF9XY5QI51MPyBJ07b+RbGSi7uNyzC5NDmHE7U8NqIpz0kgZwfQ+3TLgxb?=
+ =?us-ascii?Q?Nm7AbEeorjJiY1ZgqrswYwiLlUoV62QcCWPXabgdMLdTfKspyTXEFvP1fZJj?=
+ =?us-ascii?Q?lN+R0VjNBJWlvUuQWwacmly4GItw6AkttmNOmZ2PSsGGFWcj0znEWl1m9LSU?=
+ =?us-ascii?Q?jJMWuII9UiprheBb0oVcwrok8ByhvxCgTnHopNVpCYyAnR1/wnak9xMTyhbP?=
+ =?us-ascii?Q?wkP09LfwSc7qYBcK/CNjEkdzv9ItBdgummibzURGgwtmLE69cO6ABz3bB6AJ?=
+ =?us-ascii?Q?V/K2Wy+SHK6TJkj2Te4Ei6y5GrQqU/+vTNPM?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2025 18:50:09.1579 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b19dab0-26d2-4ba7-98ff-08ddda9a3a47
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2025 18:50:10.8276 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 478a49d6-9300-47a1-ea03-08ddda9a3b34
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000204.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000209.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6555
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6572
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,13 +136,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch series adds support for CRIU checkpointing of processes that
-share memory with the amdgpu dmabuf interface.
+AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE is a flag that
+specifies that gem memory contains sensitive information and
+should be cleared to prevent snooping.
 
-This v14 adds the coherence and uncached flags to gem create and fixes some
-formatting issues in amdgpu_drm.h
+The COHERENT and UNCACHED gem create flags enable memory
+features related to sharing memory across devices.
 
-Accompanying CRIU changes:
-https://github.com/checkpoint-restore/criu/pull/2613
+These should be settable in GEM_CREATE_IOCTL but weren't.
 
+Make a new define AMDGPU_GEM_CREATE_SETTABLE_MASK to
+track which gem flags can be used with gem create, and add
+these flags to it.
+
+Signed-off-by: David Francis <David.Francis@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 10 +---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h | 14 ++++++++++++++
+ 2 files changed, 15 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index e3f65977eeee..aefae3a9e6f4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -442,15 +442,7 @@ int amdgpu_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	int r;
+ 
+ 	/* reject invalid gem flags */
+-	if (flags & ~(AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED |
+-		      AMDGPU_GEM_CREATE_NO_CPU_ACCESS |
+-		      AMDGPU_GEM_CREATE_CPU_GTT_USWC |
+-		      AMDGPU_GEM_CREATE_VRAM_CLEARED |
+-		      AMDGPU_GEM_CREATE_VM_ALWAYS_VALID |
+-		      AMDGPU_GEM_CREATE_EXPLICIT_SYNC |
+-		      AMDGPU_GEM_CREATE_ENCRYPTED |
+-		      AMDGPU_GEM_CREATE_GFX12_DCC |
+-		      AMDGPU_GEM_CREATE_DISCARDABLE))
++	if (flags & ~AMDGPU_GEM_CREATE_SETTABLE_MASK)
+ 		return -EINVAL;
+ 
+ 	/* reject invalid gem domains */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
+index b51e8f95ee86..b3047d73fe07 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
+@@ -71,4 +71,18 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
+ int amdgpu_gem_metadata_ioctl(struct drm_device *dev, void *data,
+ 				struct drm_file *filp);
+ 
++#define AMDGPU_GEM_CREATE_SETTABLE_MASK	(AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED | \
++	AMDGPU_GEM_CREATE_NO_CPU_ACCESS | \
++	AMDGPU_GEM_CREATE_CPU_GTT_USWC | \
++	AMDGPU_GEM_CREATE_VRAM_CLEARED | \
++	AMDGPU_GEM_CREATE_VM_ALWAYS_VALID | \
++	AMDGPU_GEM_CREATE_EXPLICIT_SYNC | \
++	AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE | \
++	AMDGPU_GEM_CREATE_ENCRYPTED | \
++	AMDGPU_GEM_CREATE_GFX12_DCC | \
++	AMDGPU_GEM_CREATE_DISCARDABLE | \
++	AMDGPU_GEM_CREATE_COHERENT | \
++	AMDGPU_GEM_CREATE_UNCACHED | \
++	AMDGPU_GEM_CREATE_EXT_COHERENT)
++
+ #endif
+-- 
+2.34.1
 
