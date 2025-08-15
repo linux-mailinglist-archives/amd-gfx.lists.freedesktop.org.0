@@ -2,152 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6320DB28847
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Aug 2025 00:21:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 009B5B29317
+	for <lists+amd-gfx@lfdr.de>; Sun, 17 Aug 2025 14:39:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7650410E9BC;
-	Fri, 15 Aug 2025 22:21:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7B8F10E119;
+	Sun, 17 Aug 2025 12:39:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="KaywDozi";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MI5rG9F4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66D3910E9CA
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Aug 2025 22:20:59 +0000 (UTC)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57FEIqs7017540
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Aug 2025 22:20:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=xfIBhnpUDRVNIWjXRgxsYT8X
- VCA1w9Y6OWwHkBmVkwQ=; b=KaywDoziy0fxrA3uFl6uoMxKbTDM2EUGBAX26H/6
- XrWOSY4LPTflZg2g/TnAlXFBHwO6kx68lg6JJNk7KCiR1CaGE9cmaVkklrUmm11a
- 13DahpnZ+g2MPucq6ZyzW6iKpoME46KHivAIAQbCAWkq2hz9KHh7aBr3LBUEGG8a
- bEFwlFCKguKFzmoOJ7xMOhAh66SjDU0EDVgxCkLtTLDAX37TTFDEnrfSyvFykFnX
- 4NYol075SgWSBzrykyzqVX0kPELrmb6ZulQOLe2hvLlXbRzZCXumBkhxVkd/Vitx
- brnB3CNu4iWlsHLnn8xIwR+RtdGNgM5PK9KWRamu/xXEkQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48eqhxjgn2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Aug 2025 22:20:58 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-4b109be525eso64291921cf.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Aug 2025 15:20:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755296458; x=1755901258;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
+ [209.85.210.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8F0110E036;
+ Fri, 15 Aug 2025 23:21:04 +0000 (UTC)
+Received: by mail-pf1-f178.google.com with SMTP id
+ d2e1a72fcca58-76e2eb6ce24so2417846b3a.3; 
+ Fri, 15 Aug 2025 16:21:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755300064; x=1755904864; darn=lists.freedesktop.org;
+ h=in-reply-to:references:cc:to:from:subject:message-id:date
+ :content-transfer-encoding:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=xfIBhnpUDRVNIWjXRgxsYT8XVCA1w9Y6OWwHkBmVkwQ=;
- b=bYGkO9y3vuHYKzBUNAza2fzDFdUsAyGd73tevw6AkPugvKBlrAdUwN0aTnwGbijKKF
- kLejv8gkaZleMbVhVum3K3U7iIN+57j1W1jW7IPft0E8ajcm79PYwBEhwqMexLgDxfW4
- WbTVYlcWos9Sh6w4kg7ykq6s+xkZUSlMBj3rr2XHLU2kgVfGzHRi3QztyyRIhWeuv3mF
- KJaJc7SltehXv2koFBzK11Ps9l4OsxVYWkjtWBlwCsVXjcxDfoaRo+9vetsCcYTGmuQB
- 0d09McOEZok60n8xCWtT+B2+NZoHr03UHWA3y7EkqNnqxmStiDqz2x9GSgIwgMS72Cma
- OmQg==
+ bh=njADXc20sh/OCU5iT2CRpP+DigdW8OrQiBCgtQJIZO8=;
+ b=MI5rG9F4r8CrbQCEmN5TIyF216o7yHkg/cPgP54F9nMR7beceCWcElyWK1cDn6XYXM
+ qFdGB/3hOgjXlPRScKJZ11LhaMZLNq2cNyeXxwx1FccVvaD4yf5YJJsfsh8ykTX5yeq6
+ kINIrwq3CDz4WQtqiivBEOu0nWh141AO1w/IQOaYcfdihwmluvXgEeaT+t52zGhv4e3b
+ qafi2A+/FnrVEmk8hsD6vpeYn8PAxKM9KIhB4QQvmoUVcOM5F5jrV17mtC4O+uvJptex
+ TigdZeb6W70sT5ycXnpbd9pe9cmM434ERu1E5e5uVRKUnY7uE/Md5SRHYayZrcnM6k9f
+ Y0BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755300064; x=1755904864;
+ h=in-reply-to:references:cc:to:from:subject:message-id:date
+ :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=njADXc20sh/OCU5iT2CRpP+DigdW8OrQiBCgtQJIZO8=;
+ b=C20mypRoAhSkaNTZ6hb3+mMDb7ppk6Lhct2bkubRPf36EIJMm/Z+KO5brwUaTgEyD4
+ xtamn1byjihWvVbIY2AbBgR7OugnzU1NyG/b6bCubaYfcRCCdLpDiwnlGOdITPoDwPZy
+ VROinL2BdOjTgS99OGur3k3CZIWl613+6gNK7yMWm3xjKnesROsD2XMDC8UG7GUFy1Rc
+ k6xCVy6geiYKozrUU0wuL8ljcGhi/53D5jQf0jypPX/O/GvNj1T90OBYOLo4zmhWIHFI
+ +0lmkSpjtn5+2O0Rc2P5d/TO8VOi5MDbC+XimvsbVHgxYbsvKYSHok6Rea1kj1TyvjmX
+ AKoA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUUo1c5TKkz7Q0ZwEuG8mLlXcqzPqLOwSdsryfT/FC3NN/0VXUCAb27WVCgsC8jOJqhiyli4gob@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxEuhYvI4KOV6Efm2oU8t/kMmEOo6XbZD1yQkI3JwLTprhgkg/q
- 5tk0jf8Ar2HPuSP1Eoq1JhlL4w6pKkHAZz5YYiUcocOO+kjLZH9c+go50pqj4mUcv/Cm4v1EwWj
- srXiFTvCF94V+BRbPsG7bb1ZlQ6Mn3WYsrErpign8+a6uNojj/f6G8agoFGk6GSlbbtpW
-X-Gm-Gg: ASbGnctUEnm8N4o4cL3EYqDa9+8XzrqnEicosKxPHvTZLhALPe0zJCyQ+AHWDpQIjmr
- vKt38N3nphhEztvlf2mtpMZvT3iK22MzSY4CWnpxIjG29khOL0+6hDObfy/3O/XXet2mGPb6UxK
- b2xmDprIfPvC8BsQRZp1MSIByvvalnTnkhCt26so8xgHnOwqzJIlIrJmGq2kD7E8XFjFBWoZ7VW
- BI3w24NYu0mrA3ZRr21Ni8NkIB/imuMEqH/BvYx3Gjylj/H1/2vKYNdypAkHkrlRfRpJsO42QEQ
- iOMPmkZY7EqBie44Ww69UvyhCbYf0k0t3XPatQKNdaxRB3XDGPE952NoEZjnvl5VgD04WnskssK
- KCc8YnHq0jWEo4lIB13k+esAw71pLLdbgGk0vjJmwye7qbz5PYq91
-X-Received: by 2002:a05:6214:27c2:b0:709:82dc:b1b2 with SMTP id
- 6a1803df08f44-70bb064aab5mr7415136d6.48.1755296457510; 
- Fri, 15 Aug 2025 15:20:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF1+iZ0Ln0WZk9wKMEFeC3GuUiWeKAJqXs2A1a7u9zGnMDfpKmmxWgkIpmWbduQTZnYFsEO3A==
-X-Received: by 2002:a05:6214:27c2:b0:709:82dc:b1b2 with SMTP id
- 6a1803df08f44-70bb064aab5mr7414886d6.48.1755296457044; 
- Fri, 15 Aug 2025 15:20:57 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-55cef3cc9a6sm518362e87.78.2025.08.15.15.20.54
+ AJvYcCVPoQiKlKPefTo+Ysa2ck0pjuy8vcUOcSZOG4lpB1Gs6UH6UKS9P2kXMJlD4vjqiFADkgRDhIrRIfc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy5INXoAMtS0Bw9Aji9gV/3+tvLcVN10Wfb1aYL+oZndGY0yWRN
+ 5IQHpKNmFua7RT/Az/JuVOGVz9TnnT8WuaQf0usJRGEmFOeeZWFYTSX2
+X-Gm-Gg: ASbGncvOiVYwXoajv8HSL3WCHtUqHpiWJeB0fWCSuI1jiBjos21t01/dGDSyNsmRKCw
+ Oh05T24JCYbdCzolmHTrG62Z60mUndXtdJ5E6i14+oq4arlrcpjs/i9IbcqLVqaOyAPgLqIhiSc
+ Ug5MO3MTfS4BnIA4d65FGDRUJilyPQ1jdtRS7Mr3Tgxd+VMuby+i8gQwElklYU5Y7ZgYWF2ZpJy
+ AmKeBjs3jPI+gcAzfvzAWtM6UdNmoQwtesqWEmH8D2IVUavyG0EC80KNIcPksXX2IiB7heFJpUF
+ gFr19J02IVW0XkGZKUCyfmTPGmTWgKXHtoJsfd06mkf+x3lFVAVo4c1vfQdeVnlMorVAAHfFt93
+ rK4C1EIzsUMDD/Rew/iuWxGmtTFrqtV4ktpBvgM5m7l0tLoXanegJlA==
+X-Google-Smtp-Source: AGHT+IHQwblCtiW4OKod+oWI/UOjOgD4r99npyAbPInRuLkjKDCabLumlShODzC25BJStPQwRrNB5g==
+X-Received: by 2002:a05:6a21:9992:b0:23d:781f:1516 with SMTP id
+ adf61e73a8af0-240d2ecc63dmr7194836637.22.1755300063861; 
+ Fri, 15 Aug 2025 16:21:03 -0700 (PDT)
+Received: from localhost (syn-047-229-141-083.res.spectrum.com.
+ [47.229.141.83]) by smtp.gmail.com with UTF8SMTPSA id
+ 41be03b00d2f7-b472d74d477sm2195395a12.30.2025.08.15.16.21.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 Aug 2025 15:20:56 -0700 (PDT)
-Date: Sat, 16 Aug 2025 01:20:53 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: "liviu.dudau@arm.com" <liviu.dudau@arm.com>
-Cc: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "siqueira@igalia.com" <siqueira@igalia.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>,
- "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
- "sean@poorly.run" <sean@poorly.run>,
- "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
- "mcanal@igalia.com" <mcanal@igalia.com>,
- "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
- "tomi.valkeinen+renesas@ideasonboard.com"
- <tomi.valkeinen+renesas@ideasonboard.com>, 
- "kieran.bingham+renesas@ideasonboard.com"
- <kieran.bingham+renesas@ideasonboard.com>, 
- "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
-Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
- structure
-Message-ID: <hc6f6wgsnauh72cowocpm55tikejhiha5z4mgufeq7v6gb2qml@kmgfd26bigos>
-References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
- <20250811092707.3986802-2-suraj.kandpal@intel.com>
- <20250811094429.GE21313@pendragon.ideasonboard.com>
- <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
- <20250811111546.GA30760@pendragon.ideasonboard.com>
- <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
- <DM3PPF208195D8D0E55A761A3C16B87BAEEE32AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <aJ4LQvqli36TlETu@e110455-lin.cambridge.arm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aJ4LQvqli36TlETu@e110455-lin.cambridge.arm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODEwMDA1NyBTYWx0ZWRfXxQUnZov9O/LJ
- TNQQIC8hZftzvfsASMZD5qJoBvFOUKGaM1feD2o5uZjUMoCUJon4Qtwku/3aeMJSHR5gomJrbqR
- EnmcqoqMBOGXXxsKBrAeJycEDegVqubTF/SCPl6Tqhryxl5Zxh9gIYT81WR1atx73O5Z9pJPPst
- Tj4H4nRMde6r6wQEda9lSFEiBSQNszurWsjmPy62ipRESgL050/YGeHIBuDYYZXukDfrAZw2wYN
- voLl2ytTif1Z4yeoqMEdSVSiIswnt8pqxI6wUOYuXHHGW62T9Dd4vpa2CWDOndAfGNnt/1HnbZ5
- NOCegSWHDyPjdaEVnadUjViWgmlaZK5jmgMQvLI4EEYcv2q3k+BQGy56iLuv6yPdL5SYYNCem+/
- 7Ws2wl4z
-X-Proofpoint-GUID: bcO0l09bkIqr2O7cvuCrYVnMIbnEUaXd
-X-Authority-Analysis: v=2.4 cv=aYNhnQot c=1 sm=1 tr=0 ts=689fb2ca cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=7CQSdrXTAAAA:8 a=WdlRDaJtcICMsET58csA:9 a=CjuIK1q_8ugA:10
- a=dawVfQjAaf238kedN5IG:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-ORIG-GUID: bcO0l09bkIqr2O7cvuCrYVnMIbnEUaXd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-15_08,2025-08-14_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 priorityscore=1501 suspectscore=0 phishscore=0
- impostorscore=0 bulkscore=0 malwarescore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508100057
+ Fri, 15 Aug 2025 16:21:03 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 15 Aug 2025 16:21:02 -0700
+Message-Id: <DC3DXWOJ6E18.HVR7WZZCRV6F@gmail.com>
+Subject: Re: [RFC PATCH] drm/amdgpu: Enable async flip for cursor planes
+From: "Christopher Snowhill" <kode54@gmail.com>
+To: "Alex Deucher" <alexdeucher@gmail.com>, "Christopher Snowhill"
+ <chris@kode54.net>, "Wentland, Harry" <Harry.Wentland@amd.com>, "Leo
+ (Sunpeng) Li" <Sunpeng.Li@amd.com>
+Cc: <amd-gfx@lists.freedesktop.org>, "Alex Deucher"
+ <alexander.deucher@amd.com>, =?utf-8?q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250619125507.54384-1-kode54@gmail.com>
+ <DARA1U86AS72.QOIEVZWCFPYC@kode54.net>
+ <DATUOZZD8316.2INSL3KL5RA80@kode54.net>
+ <DATV4CAOHVGV.1UJ803EX21II6@gmail.com>
+ <DATYCMWH1X28.NE3M8KJ3SPV9@kode54.net>
+ <CADnq5_OjUp+YpXSdvWrYN+6ofFfyES9Jvwkswf3JmTTMGL=MVQ@mail.gmail.com>
+ <CADnq5_MdosN34TH=L3Zv1K2_Lroa8Y69JK1wy_zbBFRDT-Q=4Q@mail.gmail.com>
+In-Reply-To: <CADnq5_MdosN34TH=L3Zv1K2_Lroa8Y69JK1wy_zbBFRDT-Q=4Q@mail.gmail.com>
+X-Mailman-Approved-At: Sun, 17 Aug 2025 12:39:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,68 +103,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 14, 2025 at 05:13:54PM +0100, liviu.dudau@arm.com wrote:
-> Hi,
-> 
-> On Wed, Aug 13, 2025 at 10:04:22AM +0000, Kandpal, Suraj wrote:
-> > > > > };
-> > > >
-> > > > I still don't like that. This really doesn't belong here. If anything,
-> > > > the drm_connector for writeback belongs to drm_crtc.
-> > > 
-> > > Why? We already have generic HDMI field inside drm_connector. I am really
-> > > hoping to be able to land DP parts next to it. In theory we can have a DVI-
-> > > specific entry there (e.g. with the subconnector type).
-> > > The idea is not to limit how the drivers subclass those structures.
-> > > 
-> > > I don't see a good case why WB should deviate from that design.
-> > > 
-> > > > If the issue is that some drivers need a custom drm_connector
-> > > > subclass, then I'd rather turn the connector field of
-> > > > drm_writeback_connector into a pointer.
-> > > 
-> > > Having a pointer requires additional ops in order to get drm_connector from
-> > > WB code and vice versa. Having drm_connector_wb inside drm_connector
-> > > saves us from those ops (which don't manifest for any other kind of structure).
-> > > Nor will it take any more space since union will reuse space already taken up by
-> > > HDMI part.
-> > > 
-> > > >
-> > 
-> > Seems like this thread has died. We need to get a conclusion on the design.
-> > Laurent do you have any issue with the design given Dmitry's explanation as to why this
-> > Design is good for drm_writeback_connector.
-> 
-> I'm with Laurent here. The idea for drm_connector (and a lot of drm structures) are to
-> be used as base "classes" for extended structures. I don't know why HDMI connector ended
-> up inside drm_connector as not all connectors have HDMI functionality, but that's a cleanup
-> for another day.
+This may be a more appropriate patch:
 
-Maybe Maxime can better comment on it, but I think it was made exactly
-for the purpose of not limiting the driver's design. For example, a lot
-of drivers subclass drm_connector via drm_bridge_connector. If
-struct drm_connector_hdmi was a wrapper around struct drm_connector,
-then it would have been impossible to use HDMI helpers for bridge
-drivers, while current design freely allows any driver to utilize
-corresponding library code.
+https://lore.kernel.org/amd-gfx/20250723150413.18445-1-xaver.hugl@kde.org/
 
-> 
-> drm_writeback_connector uses the 'base' drm_connector only for a few things, mostly in
-> __drm_writeback_connector_init() and prepare_job()/cleanup_job(). In _init() we just setup
-> the properties and the encoder after we disable interlacing. prepare_job()/cleanup_job()
-> is another workaround to be to some custom ops some drivers might want for signalling. So
-> we should be able to convert the 'base' drm_connector to a pointer relatively easy. We shouldn't
-> need to get to the drm_connector from a drm_writeback_connector() outside drm_writeback.c.
-> 
-> Then it looks like what we need is a __drm_writeback_connector_init_with_connector() where we
-> can pass a base pointer and remember it. Maybe an extra parameter to existing init functions,
-> or a new one that skips the encoder initialisation entirely.
+On Fri Aug 15, 2025 at 6:17 AM PDT, Alex Deucher wrote:
+> @Wentland, Harry
+> , @Leo (Sunpeng) Li Can you guys take a look?  This patch fixes a regress=
+ion.
+>
+> Thanks,
+>
+> Alex
+>
+> On Mon, Jun 23, 2025 at 11:33=E2=80=AFAM Alex Deucher <alexdeucher@gmail.=
+com> wrote:
+>>
+>> + Harry, Leo
+>>
+>> On Mon, Jun 23, 2025 at 9:38=E2=80=AFAM Christopher Snowhill <chris@kode=
+54.net> wrote:
+>> >
+>> > On Mon Jun 23, 2025 at 4:06 AM PDT, Christopher Snowhill wrote:
+>> > > On Mon Jun 23, 2025 at 3:46 AM PDT, Christopher Snowhill wrote:
+>> > >> On Fri Jun 20, 2025 at 3:10 AM PDT, Christopher Snowhill wrote:
+>> > >>> Here's another alternative change, which may be more thorough. It =
+does
+>> > >>> seem to fix the issue, at least. The issue does indeed appear to b=
+e
+>> > >>> no-op plane changes sent to the cursor plane.
+>> > >>>
+>> > >>> If anyone wants to propose style changes, and suggest a proper com=
+mit
+>> > >>> message, if this is indeed a welcome fix for the problem, please l=
+et me
+>> > >>> know.
+>> > >>>
+>> > >>> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/d=
+rm_atomic_uapi.c
+>> > >>> index c2726af6698e..b741939698e8 100644
+>> > >>> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+>> > >>> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+>> > >>> @@ -1087,17 +1087,22 @@ int drm_atomic_set_property(struct drm_ato=
+mic_state *state,
+>> > >>>                     }
+>> > >>>
+>> > >>>                     /* ask the driver if this non-primary plane is=
+ supported */
+>> > >>> -                   if (plane->type !=3D DRM_PLANE_TYPE_PRIMARY) {
+>> > >>> -                           ret =3D -EINVAL;
+>> > >>> +                   else if (plane->type !=3D DRM_PLANE_TYPE_PRIMA=
+RY) {
+>> > >>> +                           ret =3D drm_atomic_plane_get_property(=
+plane, plane_state,
+>> > >>> +                                                               pr=
+op, &old_val);
+>> > >>> +
+>> > >>> +                           if (ret || old_val !=3D prop_value) {
+>> > >>> +                                   ret =3D -EINVAL;
+>> > >>>
+>> > >>> -                           if (plane_funcs && plane_funcs->atomic=
+_async_check)
+>> > >>> -                                   ret =3D plane_funcs->atomic_as=
+ync_check(plane, state, true);
+>> > >>> +                                   if (plane_funcs && plane_funcs=
+->atomic_async_check)
+>> > >>> +                                           ret =3D plane_funcs->a=
+tomic_async_check(plane, state, true);
+>> > >>>
+>> > >>> -                           if (ret) {
+>> > >>> -                                   drm_dbg_atomic(prop->dev,
+>> > >>> -                                                  "[PLANE:%d:%s] =
+does not support async flips\n",
+>> > >>> -                                                  obj->id, plane-=
+>name);
+>> > >>> -                                   break;
+>> > >>> +                                   if (ret) {
+>> > >>> +                                           drm_dbg_atomic(prop->d=
+ev,
+>> > >>> +                                                          "[PLANE=
+:%d:%s] does not support async flips\n",
+>> > >>> +                                                          obj->id=
+, plane->name);
+>> > >>> +                                           break;
+>> > >>> +                                   }
+>> > >>>                             }
+>> > >>>                     }
+>> > >>>             }
+>> > >>
+>> > >> Upon further testing and reflection, I have come to the conclusion =
+that
+>> > >> this is indeed best handled by a kernel fix, rather than breaking u=
+ser
+>> > >> space.
+>> > >>
+>> > >> I attempted to work around this in wlroots, adjusting 0.18, 0.19, a=
+nd
+>> > >> 0.20 git with similar patches. First I attempted to stash all the
+>> > >> written properties for the atomic code, storing an initial value of=
+ all
+>> > >> 0xFE so it was always likely to write the first time, and only sett=
+ing a
+>> > >> property if it changed from the last commit.
+>> > >>
+>> > >> This resulted in whole commits breaking for one or both framebuffer=
+s
+>> > >> until I ctrl-alt-fx switched to a tty and back again, and this woul=
+d
+>> > >> work again temporarily.
+>> > >>
+>> > >> So I went back to the drawing board and only withheld seemingly
+>> > >> duplicate plane properties. This "worked", until I attempted to pla=
+y a
+>> > >> game, and then it started glitching spectacularly, and not updating=
+ at
+>> > >> all if the game was doing direct scanout and vrr.
+>> > >>
+>> > >> Clearly this is wrong.
+>> > >>
+>> > >> The wlroots library queues up properties for each commit. On every
+>> > >> commit where the cursor is disabled, it queues up both fb_id=3D0 an=
+d
+>> > >> crtc_id=3D0. Every commit. Is this wrong? Should it only be queuein=
+g up
+>> > >> the disablement properties once? It also queues up the full plane a=
+nd
+>> > >> hotspot properties when enabled, even if the cursor doesn't change
+>> > >> position or appearance.
+>> > >
+>> > > Probably should have CC'd the drm misc maintainers when I started po=
+king
+>> > > drm misc instead of amdgpu. Pity there isn't a list for that...
+>> >
+>> > I am a dumbass, I didn't notice get_maintainer.pl. Added more people,
+>> > and the correct list. Not sure if I should remove amd-gfx, since this
+>> > affects them, somewhat...
+>> >
+>> > However, the intention of this thread was to seek commentary on the
+>> > situation as it is.
 
-I've refactored out drm_encoder, that's not a big problem. The bigger
-problem is the embedded 'drm_connector base' field. It's really use to
-overlook that it's not initialized / not used.
-
-
--- 
-With best wishes
-Dmitry
