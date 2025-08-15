@@ -2,141 +2,165 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FA37B28396
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Aug 2025 18:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E6B3B2931B
+	for <lists+amd-gfx@lfdr.de>; Sun, 17 Aug 2025 14:39:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B1010E068;
-	Fri, 15 Aug 2025 16:11:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B06F110E31B;
+	Sun, 17 Aug 2025 12:39:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sWLUPg1n";
+	dkim=pass (2048-bit key; unprotected) header.d=outlook.com header.i=@outlook.com header.b="l/1Emkos";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2050.outbound.protection.outlook.com [40.107.243.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D620A10E068;
- Fri, 15 Aug 2025 16:11:46 +0000 (UTC)
+Received: from TY3P286CU002.outbound.protection.outlook.com
+ (mail-japaneastazolkn19010003.outbound.protection.outlook.com [52.103.43.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9926910E27D;
+ Fri, 15 Aug 2025 17:54:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wa2Ju5D8+OyZdaBvDya51/pNULG2cmLi+YbVcRL5FtzwLGHiOZbn9cGBa7wwitjRK0c3WFVn2ZlFPHzh4nSfK6c2rb5ja1KPoU5/n70bCPUykoH4kTxTLqwa/SaVeAU0iBBb4VSjqgSgV1wYgfscFuaDdxVpYYyK8I2Pwu4nFl+lZn/WdcV19mOmzbhPnZT1nItn1Hy+Msuflfoa+2jY1zSvCeqDCE+6YqDZz0SWelZmq7X5INJVZ4j6pNkx8kCuPdsImhYvWtac4rlhh6lv7+nGeYfSPRjAUbPLs64+cWnoSwhaf86//cj8viccl4n3woNI1e1Xz6LTN9KMNvjIRA==
+ b=CQjA1HFhQUZ9cvbZJOQ3xyzaJbKqg7Lrnah2KHbFBemiihgBC5E4HLxOoZIHkgIj96a1UL3ibRuILqO0wBnpGieq0D2mtGIajMH9tUvmymB4hkHcJtus4CTachChRvnLvq5rGtnIrume738tlJZedOT9EP1T0v3yVjOdJCD3nRf07Xc9zXDJjUlP1/W20eCFCrIbP8ox9EPVYWxqOEQwOmvI0NMNefBF9m57wMOJBY4MXKnJjIYo8E7Cx8hvdi86VLdRI81QhWgCP/9N1fw0hOLcZ3U94YmX1NzRNL9GZktnta4pYb9NeYQkyTKiYTYu9+2mEsguhCRv7mdpTFIZGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fk6Kf/9Ca3TAlFi6uqG8aJjMi6uVfBgR0Q6U+rjcKHA=;
- b=NUrsJKCt4A7koHxN4CqkuyniDiesvfE/yieuTEveZfWmd45gptCVcRTmzz9jC7O/Xp5Tctf5+lxG67Pkt9rLx0LOhzZi+Zme420/EzUlvr6pSWDctB6AtnAVxI+F0aa+F1hr6jzg1qQmMQ4wCaHprexiTd+OAi1mFapfktdRZGoEeKj9vf+1mMNdVGeu41vwVHBPA2NzdLBhJ13fOt6k/nizlSg0dZgLZ+sKKJHf+DWa660JqBnoTNx4rn/9HldwydQ60ZrBP7gbRM6RF6kmmzybz5bF469t/KjcJ4TRXIWccBb/ujop8sdcnvutLdtVqnGp/8GpGT+17mPAUCsYFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kode54.net smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=pnAmOCxKFnnGzvPHCUoIgLkYpgT1auGN2E28YMivlEw=;
+ b=ckDvvLbMMm4O/PP+8vVE9u8uDjXNXsvLxqx5csMJV4rHwaBmKOjU3d3zmJsaSZdIt87gl0MhCepyuZIWO5xE6a0v0xPxopsPf9iS97+m+ZCoLxPzKgHrPM5HuylmKkjCieQ/+kbS1iwrwmMTWaBKtmNsR79o9HFzcIusLOkgDwwCxTXFxJ+3GWdJUS3h9Gcv2KRL8Xtx2Z8CZgHwWTF3Gok55pwibS3cdK/8D7wi1BK4wmtA6oyFrOxWS3h8Rzrdv2+rbZYLyHmD5uWouwsaMWXMBw1DhUFKfd0KPtN9vrAtXfl9R5umqWfXrvoce2WWedtZndyFDxmzHB+AdR339A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fk6Kf/9Ca3TAlFi6uqG8aJjMi6uVfBgR0Q6U+rjcKHA=;
- b=sWLUPg1nhZ/zggEJDBqZKcpRKl+H3KNHqN+lZG8lzH4ltZWeIxQzM8ghe+w7Rkbgmz8KArfsIR0cuRPolLvxklqCAHnrQzBnO9r+KO+u3crCJOkAaJYee7qeBiudmPE+tMRNS0terYh5n/rby76PqdgLSr95ZVcSJVM+xID57u8=
-Received: from DS7P220CA0003.NAMP220.PROD.OUTLOOK.COM (2603:10b6:8:1ca::17) by
- SJ5PPFABE38415D.namprd12.prod.outlook.com (2603:10b6:a0f:fc02::99e)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.16; Fri, 15 Aug
- 2025 16:11:43 +0000
-Received: from DS2PEPF0000343A.namprd02.prod.outlook.com
- (2603:10b6:8:1ca:cafe::38) by DS7P220CA0003.outlook.office365.com
- (2603:10b6:8:1ca::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.19 via Frontend Transport; Fri,
- 15 Aug 2025 16:11:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF0000343A.mail.protection.outlook.com (10.167.18.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9031.11 via Frontend Transport; Fri, 15 Aug 2025 16:11:43 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 15 Aug
- 2025 11:11:42 -0500
-Received: from [10.4.13.140] (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Fri, 15 Aug 2025 11:11:42 -0500
-Message-ID: <1b7fb3d2-1df4-42eb-90ae-d032feadaae2@amd.com>
-Date: Fri, 15 Aug 2025 12:11:42 -0400
+ bh=pnAmOCxKFnnGzvPHCUoIgLkYpgT1auGN2E28YMivlEw=;
+ b=l/1EmkosNsgikhJMvFY6FqjBuorhuOtXskfPY/56h/KrqP+u24eFqQIIVH1wcnDx2VNFKE0+JLH12t0XRkbg+ztEIZ1ZDHth2orzHWFxcLr1c7DKmgBXCETxvA7iGtir2tJecBXhm8UrW+18u+8HkMwKXgM0cod+1pxSjy5lf5zlY45VxF1xIoAHPK3qjdwCI69EMDVWY9Xo3jVKk05jkES/huZi65TFPm4kT7IEMv3+65SvPdaQG/O1RVynDqegT/mQ8vbaLP3vFgK2P+wru3kTG5QCLbL6lIzoBjHf1odmlr6FeyCzI9s8fxBQZYUzxNA60zUloMXladcxZzBoEg==
+Received: from TY4PR01MB14432.jpnprd01.prod.outlook.com
+ (2603:1096:405:235::10) by TYWPR01MB10630.jpnprd01.prod.outlook.com
+ (2603:1096:400:2a2::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.18; Fri, 15 Aug
+ 2025 17:54:43 +0000
+Received: from TY4PR01MB14432.jpnprd01.prod.outlook.com
+ ([fe80::7679:e9eb:aeb2:f12f]) by TY4PR01MB14432.jpnprd01.prod.outlook.com
+ ([fe80::7679:e9eb:aeb2:f12f%7]) with mapi id 15.20.9031.014; Fri, 15 Aug 2025
+ 17:54:43 +0000
+From: Qu Shengyu <wiagn233@outlook.com>
+To: Alex Hung <alex.hung@amd.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "wayland-devel@lists.freedesktop.org"
+ <wayland-devel@lists.freedesktop.org>, "harry.wentland@amd.com"
+ <harry.wentland@amd.com>, "alex.hung@amd.com" <alex.hung@amd.com>,
+ "leo.liu@amd.com" <leo.liu@amd.com>, "ville.syrjala@linux.intel.com"
+ <ville.syrjala@linux.intel.com>, "pekka.paalanen@collabora.com"
+ <pekka.paalanen@collabora.com>, "contact@emersion.fr" <contact@emersion.fr>,
+ "mwen@igalia.com" <mwen@igalia.com>, "jadahl@redhat.com" <jadahl@redhat.com>, 
+ "sebastian.wick@redhat.com" <sebastian.wick@redhat.com>,
+ "shashank.sharma@amd.com" <shashank.sharma@amd.com>, "agoins@nvidia.com"
+ <agoins@nvidia.com>, "joshua@froggi.es" <joshua@froggi.es>,
+ "mdaenzer@redhat.com" <mdaenzer@redhat.com>, "aleixpol@kde.org"
+ <aleixpol@kde.org>, "xaver.hugl@gmail.com" <xaver.hugl@gmail.com>,
+ "victoria@system76.com" <victoria@system76.com>, "daniel@ffwll.ch"
+ <daniel@ffwll.ch>, "uma.shankar@intel.com" <uma.shankar@intel.com>,
+ "quic_naseer@quicinc.com" <quic_naseer@quicinc.com>,
+ "quic_cbraga@quicinc.com" <quic_cbraga@quicinc.com>,
+ "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>, "marcan@marcan.st"
+ <marcan@marcan.st>, "Liviu.Dudau@arm.com" <Liviu.Dudau@arm.com>,
+ "sashamcintosh@google.com" <sashamcintosh@google.com>,
+ "chaitanya.kumar.borah@intel.com" <chaitanya.kumar.borah@intel.com>,
+ "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>, "mcanal@igalia.com"
+ <mcanal@igalia.com>, "nfraprado@collabora.com" <nfraprado@collabora.com>,
+ Daniel Stone <daniels@collabora.com>
+Subject: Re: [PATCH V11 31/47] drm/colorop: add BT2020/BT709 OETF and Inverse
+ OETF
+Thread-Topic: [PATCH V11 31/47] drm/colorop: add BT2020/BT709 OETF and Inverse
+ OETF
+Thread-Index: AQHcDcECURG+hvA2l0O++80PCL2lArRj/pjj
+Date: Fri, 15 Aug 2025 17:54:41 +0000
+Message-ID: <TY4PR01MB14432C77EDFD80D2075FFCC2A9834A@TY4PR01MB14432.jpnprd01.prod.outlook.com>
+References: <20250815035047.3319284-1-alex.hung@amd.com>
+ <20250815035047.3319284-32-alex.hung@amd.com>
+In-Reply-To: <20250815035047.3319284-32-alex.hung@amd.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-reactions: allow
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY4PR01MB14432:EE_|TYWPR01MB10630:EE_
+x-ms-office365-filtering-correlation-id: a40bf3ab-7aa2-4d65-7694-08dddc24cf76
+x-ms-exchange-slblob-mailprops: YfhX3sd/0TVWrg+fxRScxfg9v9HXnUFlDHpcWTKvP9hpsfY9wDplAGbA52ZQAA21x2VCR9hYSOXp0zEhN4y3NawjTTjJLp4pd3TQCEz3Pwk9D3oObo0ia6K1iruIH/oR98iIPuxYrN3RUvYlx7ihS4JY7O7LFNmMyGEGrG5qvvHwLElwGzXPrdionYa7/BOZnkS/wAtM4Kxhr7nQBjqPTpwJ6Q3upQuVayp39XPXnXTjVe0h5/4XqHhADAPjxgPXNZKcsN3M+EmXAghkYJL8zNAr+0fCSQz+w8XaRr4lW1o3390Yaq2b/UfMxlN5W9shfmAFywkGL08yQIu6F/I7lIRX2pcf9DeCKLSuGM/0sA1UwAAJyQLx5CurkOWO947DnDGyU+zGw0KjPlLROTYLJ8mtdXYpK+W4HW6/PjjyjiiLRh9JAlmKVmKTiEXStraydPWZ/tJH6t65dCSMiO7IBGNf2Kg3g2LBHDhbEbTBVEJCfZ9orD+Nigah8rZCqg0pbrlmkyInM0xe0XtpPUZkh0pUZ+jOfwlhh8qC/H1QautV/ttN7adY4LWkLcrjgElg9gW9ZL/AjpMVjMuNsd5iMfCtfqnvC0f/25qLhO7bRkbyh+yH+n15VUOpPY+47Injkd+DrhAxbi4v3P1IboKxGffUpyC1zAbTntPq8zW/gYfU65i8gF9yzAgmierEoVNp9F4njU+8LSzph2RyLGEQVWbnG7nKF+6byWlG/Y0pjIkrNown8SgSlx2kpUh7RGDhUqAwOrdKeclS0rB1irIGD0srBF+MPkR1aLZFwfX8tOc=
+x-microsoft-antispam: BCL:0;
+ ARA:14566002|15080799012|461199028|31061999003|19110799012|14030799003|8062599012|8060799015|3412199025|440099028|40105399003|26104999006|102099032;
+x-microsoft-antispam-message-info: =?gb2312?B?b21WQWprNVRMY3dweEc4UDRkNzc0VHpQWWtSaVdQU2Q5ZU9WTlV5OUtrdnZr?=
+ =?gb2312?B?VnRzMUFwU1lZZDYwT2paOXhCbHdWQTVKOTRrN3JKNVpjUHBLcmZRcWhCSnNo?=
+ =?gb2312?B?MUNhZmdoL2ZDOE0zZzJabW5yOWZYT1N3d083dktoUWdPZlJpMnBIMjZBRHhw?=
+ =?gb2312?B?Ny82RnJwV0U4YjRiNURFdVJ4TUc2MmE5ZUpXa2xDdVVNK3Z0ZkNqcmJTMUtJ?=
+ =?gb2312?B?cG1kMDRsME1QY1FjWWFJT2EyRXFCQUR5RVhieTgwWkVmaVRpZFI4bG50WkpL?=
+ =?gb2312?B?Uk15ZnZLM3VWamZGdU5YUkJvUFBZRGJBT1VYTHBjVmszVzhjNi93ZUZzczF1?=
+ =?gb2312?B?L3R2MWp0OFlGd0pTUEhUbzR3N1Jwamx5RWZWdXpGckdZVE9mbzJRb1Jsak04?=
+ =?gb2312?B?NXVFeURBMjRKc3JWVGNURHRDaXNNR1ZZZjlJbEp4c3hFUlVxRGVWTmNkc2xu?=
+ =?gb2312?B?YWJHWDFsV29rUStjSTZGLzlVZzhhSFpiaDBZeWNNTHUxcThJQXpyVnZtcW5z?=
+ =?gb2312?B?V09RRklVVktnck1FZE4xeXNTVm9ycCt3aG1WTXBFS280VU5ad0ZON0Z4TmR0?=
+ =?gb2312?B?TmxBOEhFK001YnY4WWlreWFpVkxONzdZTzBFYWI2L20yZGZncFlnZlJMNFlF?=
+ =?gb2312?B?aWFlbi9ZYkNFc2lNRzFxQTdEWjhWcGpnV043aENJbyttc0YwV3dVVE1WY1ll?=
+ =?gb2312?B?WlN0WU15MHJ2OVRzMUttN1VqeUhIdUNxUVBwNnpTM2NxaitFMzlpenlEb3lJ?=
+ =?gb2312?B?M1RCWjV4R1YwcEJVTTRCeTV3S2JJYnV4NXhxZ3JJOU1zTWgwYXFPMGI2cHN6?=
+ =?gb2312?B?dUUwbWNaY29HYmpoZmZVU20rVEhWVDZSMGNNSnRid2U2NyttUnhheFozOEFk?=
+ =?gb2312?B?akhmWGt2amIzZjlZMjVRMkw1WlNudDhLVmFWQnR5bVVGM0Ftek1oclcvR084?=
+ =?gb2312?B?cm9jdCtnanZaVWM3MVdXeHdhUzhrYmFyQUpjYWNYR0tsT0Q4L0VYYnZPQ1NY?=
+ =?gb2312?B?cytYdkVDcnBBd0VvUHhLQ09GVGY3MFF3bGxJSzZVNkcyVUl3RWZGZVpzWW01?=
+ =?gb2312?B?QUFlTVk4YTZzZHdnN1pwalZnTHdxWUxpTG10THBlOFc1T2E3a2RTWVZhU2Ju?=
+ =?gb2312?B?d3kwR1ZVa3RuRnB4TnFFWVRlcFA2b1djT3VndnhPa3ZUVDZab2RiOFRXMnVr?=
+ =?gb2312?B?MjlId1Z5V2tCY05HTDd6T0pJS2ppSEJvMWRLNGZxZlU1LzJYc216YitHRHFj?=
+ =?gb2312?B?dE1HWE5IRFNCZU9ROWJ2cGxxcmt3cC8xNlJUdUhQSWUrUDJjblQ0RDhGRm9T?=
+ =?gb2312?B?VExDZ0pSSEpqeE1IdnFyNUt4NFY2UWVzYkg2N1ZPckFQVXplaDJ6d0p2bGtX?=
+ =?gb2312?B?QXZjMkorNGJEeHJ4ODdaZEc0SU95R2Qrd25VNFRMMHhnSVE2OUNiY08reGpY?=
+ =?gb2312?B?Q2lZYU1OalNVVjhJT0tJekE3amlUeWJXOG4vZFBhdDY3WU83OTl3cWFrck5R?=
+ =?gb2312?B?YVR6UjhKTHR6ekEwNEZ2TE1hRHpySkdVRkxhL1ViaGw3Z1dDOXVGL3d3ZHlh?=
+ =?gb2312?B?V0NVMUlEd09VNEVwNzVucndabk02R1ZvanBoRTVlb2NrdG5lS2tKWThDaHUw?=
+ =?gb2312?B?UHlSQ0JLY0V4WStqMENNWHBmaHVPMkE9PQ==?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?gb2312?B?VDFJcThpNHBRV3FGV080NkFhMW5KbFpXcFRBbllwL09vVzBqZTh1NldKeXlN?=
+ =?gb2312?B?bjk1ODhoemRXcUR5N2xzbFVWN2oxc2pTcEluTVRoYzFyOGdJMHB3T3BoYjV1?=
+ =?gb2312?B?cmt2dmdteE5GcjRDaHZ4eTJDYklSeFJhVDh2b1lLeXRvamYrbVJMTXZodk8y?=
+ =?gb2312?B?bFlkVnhRRDZlWHNyREoyOHY5WlVmL2ZsTEdpVGMyeHpjZmpPT1BoL3RYb2g0?=
+ =?gb2312?B?clVqaUVrMDFDampKejdXVFlOQjNjejhLOWpvbjE4b2d4eHR3a2hSMktsSVgv?=
+ =?gb2312?B?M1pFKzhCeFdNMVI1NVRrMzFialMzM1kyTU5ndFJzNUhZM1VjdVRhaXZaTzJG?=
+ =?gb2312?B?UHVxc3JMNlBsVW5vazNCWW5PZitGTGdtS2s0RFlpV2g2eDl2ZkIvSEZ4Vi9D?=
+ =?gb2312?B?ZGFBc0gvR1M2VHFPMDRDcGN6bDM4dlZCOVJ6cGNTMElwRUFTWHpCd2QwYTJJ?=
+ =?gb2312?B?SWRYY0krUW5ZaXdIK3BlSFdENFJFbS9HU1B1a2o3ZmNiOFdTWXZ6RXJJK3Fl?=
+ =?gb2312?B?TzY3eVpGQ09NRi9BVnpjQ2x1YittYzlyMkxzUXgycHRGV0lsR1E4V2Radk5U?=
+ =?gb2312?B?QU9WWTduWnVDTmhteE1hSnNDeFpyYlpWQUpNK1VLdWN4OFZ2aDVYQWxYczBH?=
+ =?gb2312?B?NExmM0Y1dkJWaHo0TWtEV0tNSVljV2N0SDZsaG9ZdWg0NkorT1YvY2pwWTdQ?=
+ =?gb2312?B?Z0gxWEt0eDdZVUl3Qm1BYWl6dlJFMDQrV0dIa3Rya1BIZzJwTGhNaXRVc09I?=
+ =?gb2312?B?eUxwVEF0Uy8wcm8zK2RlVG1xNlZGdVJtN2VkQTB3SVpuY0Z5MjZ6ZlZkdDFZ?=
+ =?gb2312?B?S2s5Qm9VS2RwVmlOdTN3eklDSytNTDhYYnkxUmEvTTR3ZVU3M0JPbElnYWoz?=
+ =?gb2312?B?S0g4bzZtZmFQajk2a2YyTkgwUjNpU3hKd0FNZzkzWEJPbURYSGM4MTNEbmtl?=
+ =?gb2312?B?b0k1b3kwTGg1Z0R0TzRaK0VUN1pIQXRya25QV2M2T1dDYXZMdXBMS3FjYVFK?=
+ =?gb2312?B?NHcza3NyME0rdG1JU3BQc1BHYS9hT2p3QUEwYTUyWkhDOWVIZ3IyT3FhN0Ew?=
+ =?gb2312?B?ZzdwM014M0RWQXFLZnFJRWtVOEFQUUxCT0lyQmZaUnY4b1NCUXNYZWlEM0w0?=
+ =?gb2312?B?RFhxQnE5cEw1NWZEYkVxODhpa2g4MitMbm91cW9OL1M5MmtRckNrbHAzQ3B4?=
+ =?gb2312?B?d1ludklvbzlhd3crbThOOXZGY0c2MnVueHptamYvRCtwb08xMlE3TVl1ella?=
+ =?gb2312?B?THRzbmR0b05aVTFVZ1h0SGlzZmcrNmZCZW5HL0kzUVQ5RndXV3BwaGRaTk1t?=
+ =?gb2312?B?L2ZIdzZzVkV3ZEd2NmRqV1VuWnQzN1gybG03QlJ1QWI1elFlQXo3MTJibkhl?=
+ =?gb2312?B?c25IV1ZlZDFDOS9FS0dzOWVZbUs1WUFoaEYzMnhMZWpsKzRwM2NFODkrTnJ4?=
+ =?gb2312?B?S25admh3Z0F1Ujh5KzhoTFY5WXpINkxYRlpla1IrSlFDVzlnUXFjM0wwdU1v?=
+ =?gb2312?B?WHhCdFIrdThlVWR0eFlEd2tQaDFyRmdNTVBzZllBWHdVVXZDQk5sRXNQOXpz?=
+ =?gb2312?B?NjlwWVhHZUdraFRGdVlvUlpBYTN2Rllvelh5QlVGQkhndVVoWWJudThnZExC?=
+ =?gb2312?B?VGxYaHZqaFl1UnNuQ2tXZ1c0ZVluenEyOEdzQjQyRjR0QU9rbzROR2IrdlM3?=
+ =?gb2312?B?ME1yZGNRc3dtN2pPOUxia2kxZ0dzS3BlVWhmRm8wb2pxQ1U2VE5hRHVDN2xo?=
+ =?gb2312?Q?51I579PQmbUI3wl6yG4i/I3z1fr46cX3fkTtz3x?=
+Content-Type: multipart/alternative;
+ boundary="_000_TY4PR01MB14432C77EDFD80D2075FFCC2A9834ATY4PR01MB14432jp_"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] drm/amdgpu: Enable async flip for cursor planes
-To: Christopher Snowhill <chris@kode54.net>, Christopher Snowhill
- <kode54@gmail.com>, <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-References: <20250619125507.54384-1-kode54@gmail.com>
- <DARA1U86AS72.QOIEVZWCFPYC@kode54.net>
- <DATUOZZD8316.2INSL3KL5RA80@kode54.net>
- <DATV4CAOHVGV.1UJ803EX21II6@gmail.com> <DATYCMWH1X28.NE3M8KJ3SPV9@kode54.net>
-Content-Language: en-US
-From: Leo Li <sunpeng.li@amd.com>
-In-Reply-To: <DATYCMWH1X28.NE3M8KJ3SPV9@kode54.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Received-SPF: None (SATLEXMB04.amd.com: sunpeng.li@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343A:EE_|SJ5PPFABE38415D:EE_
-X-MS-Office365-Filtering-Correlation-Id: 500aebf1-37d2-4540-b9ab-08dddc166d2b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|42112799006|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TXRVT2tLQ1RPNnFONlZBcnRYem9XZWczVVNFNWNBK1EyaEZZWnpLbEV5U1JN?=
- =?utf-8?B?dDRGREIzbGIzMEoxNUxXZDZQZjdhL0lDaWtzUmQ5TllUSXdCTndSUTFzNTQ3?=
- =?utf-8?B?bmpaV20yamlJcU5PQlgycWhpRUhXaHN4NjdhRk1YMlc3ZC9ydFRUMzBzZjlQ?=
- =?utf-8?B?ODgxbmwxSUdMbXk1QjVKZHovUUNocnAzVm1YNzFwRlc0dEI2ci90aFJGN3JC?=
- =?utf-8?B?ZGlLb1FmZW1iRmZlc0RhdVhuUWM0ZXNnbFBGRXltNnlteldUdjhIM2tjNG1H?=
- =?utf-8?B?clZjUnEyTWYwbm5oNlM5bk1pbmZUeTBMeG95UENJNUVOV01LTGpwdWcvVDRh?=
- =?utf-8?B?UkNWaCtMaHMyZUFNTHAxV0hNYVZ3dDJjVkpQR01zd2MyaUt5ZGtuSVE4WExw?=
- =?utf-8?B?RE0rVUFKSzVGOVhIYWgwdTVSeUcyRGt1OGFDVW5iTndwUUhGRk90dG84a2tV?=
- =?utf-8?B?NkgreVA0SmN5MXdlUTNSdmF6a2d5clZWYTNLQWZmK01NZjh4S0NHTXdPSmw2?=
- =?utf-8?B?T2RXVHN5V2RhUHM3YnFxSkVKSzNnMG5VWk1ITkgwVmNHbXZSWS9sTjhGdktn?=
- =?utf-8?B?bFZHUkd0WCtCMUtSR0RnNmF5SEtVRlpiUC9TRS82bWZRU3R5MFZyQTBCMFg4?=
- =?utf-8?B?MEx1dnI0aDcvOVNBRVovbllzOExMTEExQlQxQWdqTy9KUjFxZ0phSE1sSmNx?=
- =?utf-8?B?WFgxcWZRd25xVENrNTlXS0cxc3lQVU9nZnp4d0R2YzdURUNMS3Jhd1ZheTdp?=
- =?utf-8?B?eFRrb3RlS3NiZEcxUm8reStKNWZVYlJHM2hrdC9WU0Zkb3RwS00wNjJnM2tQ?=
- =?utf-8?B?SlRmdDJBUTJRaW83VEhvMk8xK0ZmK0xoTGFlem1GUkhncmszM25VdTZrejJ5?=
- =?utf-8?B?Y0orbUhMSHdEOFJFRzhCYnNZbXFyR05ib1hZU202OGM1L2sxMlMxTTlDUDZ4?=
- =?utf-8?B?bVZ5eVh6eUhtbDFMaUs5UlJ4UXdWMUh4TEYrN2xFc2ZTcENZZkZqQloxQUlm?=
- =?utf-8?B?eTRycVB1dzVubGc1ZURuRUJSQU9jWGE3S3NXUncyOEY5YnpjSEpuMXhCakxF?=
- =?utf-8?B?Zms0blJtY0JMOUM5dmFDZkErMEtPb3dzOC9hSTZxaHRNK3hkSTNpZFJ6RUFZ?=
- =?utf-8?B?VVRjdkRhQnBQNGx4Y1daQjIvUlBsMU5BOU42VWowaFNpTU1WczJjNnR0c3pL?=
- =?utf-8?B?MUltZWk0L2Y1RWFKeHNqazBpdTluUjRvVE9sN2hXWHRodXlxVU5iR0pkUE1C?=
- =?utf-8?B?UVZ0SE5tYnI2VitXS3hRVEVoZUhWVXJNQVo1QnJ4WXdLRHEySE9GRHJqOTVG?=
- =?utf-8?B?YUtEWVE1Uk03ZzdjT1R6bW5ZUzVXL2NhTlZmUlJkQnlHR1FEVEllZlgvMlVE?=
- =?utf-8?B?c2Z4TytMa0t1OVl0Nkk2VUUrNzJubVJSSk5JVVh0MkQrbS9tbEkrbWtmajV1?=
- =?utf-8?B?Uk5TTUt4SU9Rcjh5cG5pR2lpNHVNSjFXM1lxaThKYU1QbEhBSTltV0V4T3Jn?=
- =?utf-8?B?NmNhVlFyVmNUT0NNUTRRZHlnVjFJcUVwa2hoR2EyZEZ6dXZZak9yVTlWV0tv?=
- =?utf-8?B?NGRkQkJvOVJnRExqVDFtR1g1N09qN1JEaWptMm9iY2k1dDBROGJ0UmJncmxI?=
- =?utf-8?B?UWxkaHhnV1ljazhjMkxrY1JoSUE2WjJxYVlYN0pFbmRaUlpVS1JiTDZTVm0w?=
- =?utf-8?B?bGlzU0dPV3llK2d6WEFIclI2M0tyZnA2UzZqTkNycU1JMm9tWW1lemk5dzBx?=
- =?utf-8?B?czFpdmxjVGhXaDZ5RmJyRnlEVFZsSDIxS2ZuMUpTQWZNYXA2TjFoSGRnWWs2?=
- =?utf-8?B?dzBPRXdjNklIaVo4czBTMCtaUVdKWWR5ZGRrQjlRZGRaMkp6MkpDTUhQSGp5?=
- =?utf-8?B?Nk9ZSXB1QjhPSzc3eW5YbFVTNFg5R1J3YUE5elNKSjNyRFF4TS82QXlNTW96?=
- =?utf-8?B?Ty9YTGxPZkNVMi9sZHNJaTdzZmhnT2xuZ0ZhSDUvRWIvNlVxVlVDNHlqU0Fp?=
- =?utf-8?Q?6lpkUkLt8e5ksMxeGmGR8pINEmaOWM=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(42112799006)(82310400026);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 16:11:43.4636 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 500aebf1-37d2-4540-b9ab-08dddc166d2b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343A.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFABE38415D
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY4PR01MB14432.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: a40bf3ab-7aa2-4d65-7694-08dddc24cf76
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Aug 2025 17:54:41.3554 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10630
+X-Mailman-Approved-At: Sun, 17 Aug 2025 12:39:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,147 +175,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--_000_TY4PR01MB14432C77EDFD80D2075FFCC2A9834ATY4PR01MB14432jp_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
+SGVsbG8sDQoNCldoYXQgYWN0dWFsbHkgaXMgdGhpcyBPRVRGPyBJcyBpdCBwb3dlciAxLzIuND8g
+T3IgcmV2ZXJzZWQgQlQuMTg4Nj8NCg0KQmVzdCByZWdhcmRzLA0KU2hlbmd5dQ0KDQpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXw0Kt6K8/sjLOiBhbWQtZ2Z4IDxhbWQtZ2Z4LWJvdW5j
+ZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiC0+rHtIEFsZXggSHVuZyA8YWxleC5odW5nQGFtZC5j
+b20+DQq3osvNyrG85DogRnJpZGF5LCBBdWd1c3QgMTUsIDIwMjUgMTE6NTA6MjAgQU0NCsrVvP7I
+yzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZyA8ZHJpLWRldmVsQGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZz47IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIDxhbWQtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZz4NCrOty806IHdheWxhbmQtZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnIDx3YXlsYW5kLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz47IGhhcnJ5LndlbnRsYW5k
+QGFtZC5jb20gPGhhcnJ5LndlbnRsYW5kQGFtZC5jb20+OyBhbGV4Lmh1bmdAYW1kLmNvbSA8YWxl
+eC5odW5nQGFtZC5jb20+OyBsZW8ubGl1QGFtZC5jb20gPGxlby5saXVAYW1kLmNvbT47IHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT47
+IHBla2thLnBhYWxhbmVuQGNvbGxhYm9yYS5jb20gPHBla2thLnBhYWxhbmVuQGNvbGxhYm9yYS5j
+b20+OyBjb250YWN0QGVtZXJzaW9uLmZyIDxjb250YWN0QGVtZXJzaW9uLmZyPjsgbXdlbkBpZ2Fs
+aWEuY29tIDxtd2VuQGlnYWxpYS5jb20+OyBqYWRhaGxAcmVkaGF0LmNvbSA8amFkYWhsQHJlZGhh
+dC5jb20+OyBzZWJhc3RpYW4ud2lja0ByZWRoYXQuY29tIDxzZWJhc3RpYW4ud2lja0ByZWRoYXQu
+Y29tPjsgc2hhc2hhbmsuc2hhcm1hQGFtZC5jb20gPHNoYXNoYW5rLnNoYXJtYUBhbWQuY29tPjsg
+YWdvaW5zQG52aWRpYS5jb20gPGFnb2luc0BudmlkaWEuY29tPjsgam9zaHVhQGZyb2dnaS5lcyA8
+am9zaHVhQGZyb2dnaS5lcz47IG1kYWVuemVyQHJlZGhhdC5jb20gPG1kYWVuemVyQHJlZGhhdC5j
+b20+OyBhbGVpeHBvbEBrZGUub3JnIDxhbGVpeHBvbEBrZGUub3JnPjsgeGF2ZXIuaHVnbEBnbWFp
+bC5jb20gPHhhdmVyLmh1Z2xAZ21haWwuY29tPjsgdmljdG9yaWFAc3lzdGVtNzYuY29tIDx2aWN0
+b3JpYUBzeXN0ZW03Ni5jb20+OyBkYW5pZWxAZmZ3bGwuY2ggPGRhbmllbEBmZndsbC5jaD47IHVt
+YS5zaGFua2FyQGludGVsLmNvbSA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPjsgcXVpY19uYXNlZXJA
+cXVpY2luYy5jb20gPHF1aWNfbmFzZWVyQHF1aWNpbmMuY29tPjsgcXVpY19jYnJhZ2FAcXVpY2lu
+Yy5jb20gPHF1aWNfY2JyYWdhQHF1aWNpbmMuY29tPjsgcXVpY19hYmhpbmF2a0BxdWljaW5jLmNv
+bSA8cXVpY19hYmhpbmF2a0BxdWljaW5jLmNvbT47IG1hcmNhbkBtYXJjYW4uc3QgPG1hcmNhbkBt
+YXJjYW4uc3Q+OyBMaXZpdS5EdWRhdUBhcm0uY29tIDxMaXZpdS5EdWRhdUBhcm0uY29tPjsgc2Fz
+aGFtY2ludG9zaEBnb29nbGUuY29tIDxzYXNoYW1jaW50b3NoQGdvb2dsZS5jb20+OyBjaGFpdGFu
+eWEua3VtYXIuYm9yYWhAaW50ZWwuY29tIDxjaGFpdGFueWEua3VtYXIuYm9yYWhAaW50ZWwuY29t
+PjsgbG91aXMuY2hhdXZldEBib290bGluLmNvbSA8bG91aXMuY2hhdXZldEBib290bGluLmNvbT47
+IG1jYW5hbEBpZ2FsaWEuY29tIDxtY2FuYWxAaWdhbGlhLmNvbT47IG5mcmFwcmFkb0Bjb2xsYWJv
+cmEuY29tIDxuZnJhcHJhZG9AY29sbGFib3JhLmNvbT47IERhbmllbCBTdG9uZSA8ZGFuaWVsc0Bj
+b2xsYWJvcmEuY29tPg0K1vfM4jogW1BBVENIIFYxMSAzMS80N10gZHJtL2NvbG9yb3A6IGFkZCBC
+VDIwMjAvQlQ3MDkgT0VURiBhbmQgSW52ZXJzZSBPRVRGDQoNCkZyb206IEhhcnJ5IFdlbnRsYW5k
+IDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPg0KDQpUaGUgQlQuNzA5IGFuZCBCVC4yMDIwIE9FVEZz
+IGFyZSB0aGUgc2FtZSwgdGhlIG9ubHkgZGlmZmVyZW5jZQ0KYmVpbmcgdGhhdCB0aGUgQlQuMjAy
+MCB2YXJpYW50IGlzIGRlZmluZWQgd2l0aCBtb3JlIHByZWNpc2lvbg0KZm9yIDEwIGFuZCAxMi1i
+aXQgcGVyIGNvbG9yIGVuY29kaW5ncy4NCg0KQm90aCBhcmUgdXNlZCBhcyBlbmNvZGluZyBmdW5j
+dGlvbnMgZm9yIHZpZGVvIGNvbnRlbnQsIGFuZCBhcmUNCnRoZXJlZm9yZSBkZWZpbmVkIGFzIE9F
+VEYgKG9wdG8tZWxlY3Ryb25pYyB0cmFuc2ZlciBmdW5jdGlvbikNCmluc3RlYWQgb2YgYXMgRU9U
+RiAoZWxlY3Ryby1vcHRpY2FsIHRyYW5zZmVyIGZ1bmN0aW9uKS4NCg0KU2lnbmVkLW9mZi1ieTog
+QWxleCBIdW5nIDxhbGV4Lmh1bmdAYW1kLmNvbT4NClNpZ25lZC1vZmYtYnk6IEhhcnJ5IFdlbnRs
+YW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPg0KUmV2aWV3ZWQtYnk6IERhbmllbCBTdG9uZSA8
+ZGFuaWVsc0Bjb2xsYWJvcmEuY29tPg0KUmV2aWV3ZWQtYnk6IFNpbW9uIFNlciA8Y29udGFjdEBl
+bWVyc2lvbi5mcj4NCi0tLQ0Kdjk6DQogLSBNb3ZlIERSTV9DT0xPUk9QXzFEX0NVUlZFX0JUMjAy
+MF8qIGZyb20gbWlkZGxlIHRvIGVuZCAoU2ltb24gU2VyKQ0KDQogZHJpdmVycy9ncHUvZHJtL2Ry
+bV9jb2xvcm9wLmMgfCAgMiArKw0KIGluY2x1ZGUvZHJtL2RybV9jb2xvcm9wLmggICAgIHwgMjMg
+KysrKysrKysrKysrKysrKysrKysrKysNCiAyIGZpbGVzIGNoYW5nZWQsIDI1IGluc2VydGlvbnMo
+KykNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fY29sb3JvcC5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2RybV9jb2xvcm9wLmMNCmluZGV4IDViYjQ1OTYzZmExZi4uYzI0NWEzZmY0NWQz
+IDEwMDY0NA0KLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9jb2xvcm9wLmMNCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9kcm1fY29sb3JvcC5jDQpAQCAtNzIsNiArNzIsOCBAQCBzdGF0aWMgY29uc3Qg
+Y2hhciAqIGNvbnN0IGNvbG9yb3BfY3VydmVfMWRfdHlwZV9uYW1lc1tdID0gew0KICAgICAgICAg
+W0RSTV9DT0xPUk9QXzFEX0NVUlZFX1NSR0JfSU5WX0VPVEZdID0gInNSR0IgSW52ZXJzZSBFT1RG
+IiwNCiAgICAgICAgIFtEUk1fQ09MT1JPUF8xRF9DVVJWRV9QUV8xMjVfRU9URl0gPSAiUFEgMTI1
+IEVPVEYiLA0KICAgICAgICAgW0RSTV9DT0xPUk9QXzFEX0NVUlZFX1BRXzEyNV9JTlZfRU9URl0g
+PSAiUFEgMTI1IEludmVyc2UgRU9URiIsDQorICAgICAgIFtEUk1fQ09MT1JPUF8xRF9DVVJWRV9C
+VDIwMjBfSU5WX09FVEZdID0gIkJULjIwMjAgSW52ZXJzZSBPRVRGIiwNCisgICAgICAgW0RSTV9D
+T0xPUk9QXzFEX0NVUlZFX0JUMjAyMF9PRVRGXSA9ICJCVC4yMDIwIE9FVEYiLA0KIH07DQoNCg0K
+ZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9jb2xvcm9wLmggYi9pbmNsdWRlL2RybS9kcm1f
+Y29sb3JvcC5oDQppbmRleCBhMzhjOTBmNjFkYzYuLmM2ZDJiMjg5ZTNjZiAxMDA2NDQNCi0tLSBh
+L2luY2x1ZGUvZHJtL2RybV9jb2xvcm9wLmgNCisrKyBiL2luY2x1ZGUvZHJtL2RybV9jb2xvcm9w
+LmgNCkBAIC04Myw2ICs4MywyOSBAQCBlbnVtIGRybV9jb2xvcm9wX2N1cnZlXzFkX3R5cGUgew0K
+ICAgICAgICAgICovDQogICAgICAgICBEUk1fQ09MT1JPUF8xRF9DVVJWRV9QUV8xMjVfSU5WX0VP
+VEYsDQoNCisgICAgICAgLyoqDQorICAgICAgICAqIEBEUk1fQ09MT1JPUF8xRF9DVVJWRV9CVDIw
+MjBfSU5WX09FVEY6DQorICAgICAgICAqDQorICAgICAgICAqIGVudW0gc3RyaW5nICJCVC4yMDIw
+IEludmVyc2UgT0VURiINCisgICAgICAgICoNCisgICAgICAgICogVGhlIGludmVyc2Ugb2YgJkRS
+TV9DT0xPUk9QXzFEX0NVUlZFX0JUMjAyMF9PRVRGDQorICAgICAgICAqLw0KKyAgICAgICBEUk1f
+Q09MT1JPUF8xRF9DVVJWRV9CVDIwMjBfSU5WX09FVEYsDQorDQorICAgICAgIC8qKg0KKyAgICAg
+ICAgKiBARFJNX0NPTE9ST1BfMURfQ1VSVkVfQlQyMDIwX09FVEY6DQorICAgICAgICAqDQorICAg
+ICAgICAqIGVudW0gc3RyaW5nICJCVC4yMDIwIE9FVEYiDQorICAgICAgICAqDQorICAgICAgICAq
+IFRoZSBCVC4yMDIwL0JULjcwOSB0cmFuc2ZlciBmdW5jdGlvbi4gVGhlIEJULjcwOSBhbmQgQlQu
+MjAyMA0KKyAgICAgICAgKiB0cmFuc2ZlciBmdW5jdGlvbnMgYXJlIHRoZSBzYW1lLCB0aGUgb25s
+eSBkaWZmZXJlbmNlIGlzIHRoYXQNCisgICAgICAgICogQlQuMjAyMCBpcyBkZWZpbmVkIHdpdGgg
+bW9yZSBwcmVjaXNpb24gZm9yIDEwIGFuZCAxMi1iaXQNCisgICAgICAgICogZW5jb2RpbmdzLg0K
+KyAgICAgICAgKg0KKyAgICAgICAgKg0KKyAgICAgICAgKi8NCisgICAgICAgRFJNX0NPTE9ST1Bf
+MURfQ1VSVkVfQlQyMDIwX09FVEYsDQorDQogICAgICAgICAvKioNCiAgICAgICAgICAqIEBEUk1f
+Q09MT1JPUF8xRF9DVVJWRV9DT1VOVDoNCiAgICAgICAgICAqDQotLQ0KMi40My4wDQoNCg==
 
-On 2025-06-23 09:38, Christopher Snowhill wrote:
-> On Mon Jun 23, 2025 at 4:06 AM PDT, Christopher Snowhill wrote:
->> On Mon Jun 23, 2025 at 3:46 AM PDT, Christopher Snowhill wrote:
->>> On Fri Jun 20, 2025 at 3:10 AM PDT, Christopher Snowhill wrote:
->>>> Here's another alternative change, which may be more thorough. It does
->>>> seem to fix the issue, at least. The issue does indeed appear to be
->>>> no-op plane changes sent to the cursor plane.
->>>>
->>>> If anyone wants to propose style changes, and suggest a proper commit
->>>> message, if this is indeed a welcome fix for the problem, please let me
->>>> know.
->>>>
->>>> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
->>>> index c2726af6698e..b741939698e8 100644
->>>> --- a/drivers/gpu/drm/drm_atomic_uapi.c
->>>> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
->>>> @@ -1087,17 +1087,22 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+--_000_TY4PR01MB14432C77EDFD80D2075FFCC2A9834ATY4PR01MB14432jp_
+Content-Type: text/html; charset="gb2312"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Christopher,
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
+</head>
+<body>
+<div style=3D"font-family: Aptos, -apple-system, HelveticaNeue, sans-serif;=
+font-size: 12pt">
+<div dir=3D"ltr" style=3D"font-family: Aptos, Aptos_MSFontService, -apple-s=
+ystem, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">
+Hello,</div>
+<div dir=3D"ltr" style=3D"font-family: Aptos, Aptos_MSFontService, -apple-s=
+ystem, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">
+<br>
+</div>
+<div dir=3D"ltr" style=3D"font-family: Aptos, Aptos_MSFontService, -apple-s=
+ystem, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">
+What actually is this OETF? Is it power 1/2.4? Or reversed BT.1886?</div>
+<div dir=3D"ltr" style=3D"font-family: Aptos, Aptos_MSFontService, -apple-s=
+ystem, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">
+<br>
+</div>
+<div dir=3D"ltr" style=3D"font-family: Aptos, Aptos_MSFontService, -apple-s=
+ystem, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">
+Best regards,</div>
+<div dir=3D"ltr" style=3D"font-family: Aptos, Aptos_MSFontService, -apple-s=
+ystem, Roboto, Arial, Helvetica, sans-serif; font-size: 12pt;">
+Shengyu&nbsp;</div>
+</div>
+<div id=3D"ms-outlook-mobile-body-separator-line" style=3D"font-family: Apt=
+os, -apple-system, HelveticaNeue, sans-serif;font-size: 12pt" dir=3D"auto">
+<br>
+</div>
+<div id=3D"ms-outlook-mobile-signature" style=3D"font-family: Aptos, -apple=
+-system, HelveticaNeue, sans-serif;font-size: 12pt">
+<div></div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>=B7=A2=BC=FE=C8=CB:</b> amd-gfx=
+ &lt;amd-gfx-bounces@lists.freedesktop.org&gt; =B4=FA=B1=ED Alex Hung &lt;a=
+lex.hung@amd.com&gt;<br>
+<b>=B7=A2=CB=CD=CA=B1=BC=E4:</b> Friday, August 15, 2025 11:50:20 AM<br>
+<b>=CA=D5=BC=FE=C8=CB:</b> dri-devel@lists.freedesktop.org &lt;dri-devel@li=
+sts.freedesktop.org&gt;; amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.fr=
+eedesktop.org&gt;<br>
+<b>=B3=AD=CB=CD:</b> wayland-devel@lists.freedesktop.org &lt;wayland-devel@=
+lists.freedesktop.org&gt;; harry.wentland@amd.com &lt;harry.wentland@amd.co=
+m&gt;; alex.hung@amd.com &lt;alex.hung@amd.com&gt;; leo.liu@amd.com &lt;leo=
+.liu@amd.com&gt;; ville.syrjala@linux.intel.com &lt;ville.syrjala@linux.int=
+el.com&gt;;
+ pekka.paalanen@collabora.com &lt;pekka.paalanen@collabora.com&gt;; contact=
+@emersion.fr &lt;contact@emersion.fr&gt;; mwen@igalia.com &lt;mwen@igalia.c=
+om&gt;; jadahl@redhat.com &lt;jadahl@redhat.com&gt;; sebastian.wick@redhat.=
+com &lt;sebastian.wick@redhat.com&gt;; shashank.sharma@amd.com
+ &lt;shashank.sharma@amd.com&gt;; agoins@nvidia.com &lt;agoins@nvidia.com&g=
+t;; joshua@froggi.es &lt;joshua@froggi.es&gt;; mdaenzer@redhat.com &lt;mdae=
+nzer@redhat.com&gt;; aleixpol@kde.org &lt;aleixpol@kde.org&gt;; xaver.hugl@=
+gmail.com &lt;xaver.hugl@gmail.com&gt;; victoria@system76.com &lt;victoria@=
+system76.com&gt;;
+ daniel@ffwll.ch &lt;daniel@ffwll.ch&gt;; uma.shankar@intel.com &lt;uma.sha=
+nkar@intel.com&gt;; quic_naseer@quicinc.com &lt;quic_naseer@quicinc.com&gt;=
+; quic_cbraga@quicinc.com &lt;quic_cbraga@quicinc.com&gt;; quic_abhinavk@qu=
+icinc.com &lt;quic_abhinavk@quicinc.com&gt;; marcan@marcan.st
+ &lt;marcan@marcan.st&gt;; Liviu.Dudau@arm.com &lt;Liviu.Dudau@arm.com&gt;;=
+ sashamcintosh@google.com &lt;sashamcintosh@google.com&gt;; chaitanya.kumar=
+.borah@intel.com &lt;chaitanya.kumar.borah@intel.com&gt;; louis.chauvet@boo=
+tlin.com &lt;louis.chauvet@bootlin.com&gt;; mcanal@igalia.com
+ &lt;mcanal@igalia.com&gt;; nfraprado@collabora.com &lt;nfraprado@collabora=
+.com&gt;; Daniel Stone &lt;daniels@collabora.com&gt;<br>
+<b>=D6=F7=CC=E2:</b> [PATCH V11 31/47] drm/colorop: add BT2020/BT709 OETF a=
+nd Inverse OETF</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">From: Harry Wentland &lt;harry.wentland@amd.com&gt=
+;<br>
+<br>
+The BT.709 and BT.2020 OETFs are the same, the only difference<br>
+being that the BT.2020 variant is defined with more precision<br>
+for 10 and 12-bit per color encodings.<br>
+<br>
+Both are used as encoding functions for video content, and are<br>
+therefore defined as OETF (opto-electronic transfer function)<br>
+instead of as EOTF (electro-optical transfer function).<br>
+<br>
+Signed-off-by: Alex Hung &lt;alex.hung@amd.com&gt;<br>
+Signed-off-by: Harry Wentland &lt;harry.wentland@amd.com&gt;<br>
+Reviewed-by: Daniel Stone &lt;daniels@collabora.com&gt;<br>
+Reviewed-by: Simon Ser &lt;contact@emersion.fr&gt;<br>
+---<br>
+v9:<br>
+&nbsp;- Move DRM_COLOROP_1D_CURVE_BT2020_* from middle to end (Simon Ser)<b=
+r>
+<br>
+&nbsp;drivers/gpu/drm/drm_colorop.c |&nbsp; 2 ++<br>
+&nbsp;include/drm/drm_colorop.h&nbsp;&nbsp;&nbsp;&nbsp; | 23 ++++++++++++++=
++++++++++<br>
+&nbsp;2 files changed, 25 insertions(+)<br>
+<br>
+diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c<=
+br>
+index 5bb45963fa1f..c245a3ff45d3 100644<br>
+--- a/drivers/gpu/drm/drm_colorop.c<br>
++++ b/drivers/gpu/drm/drm_colorop.c<br>
+@@ -72,6 +72,8 @@ static const char * const colorop_curve_1d_type_names[] =
+=3D {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DRM_COLOROP_1D_CURVE_SRGB=
+_INV_EOTF] =3D &quot;sRGB Inverse EOTF&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DRM_COLOROP_1D_CURVE_PQ_1=
+25_EOTF] =3D &quot;PQ 125 EOTF&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DRM_COLOROP_1D_CURVE_PQ_1=
+25_INV_EOTF] =3D &quot;PQ 125 Inverse EOTF&quot;,<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DRM_COLOROP_1D_CURVE_BT2020_INV_OETF=
+] =3D &quot;BT.2020 Inverse OETF&quot;,<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DRM_COLOROP_1D_CURVE_BT2020_OETF] =
+=3D &quot;BT.2020 OETF&quot;,<br>
+&nbsp;};<br>
+&nbsp;<br>
+&nbsp;<br>
+diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h<br>
+index a38c90f61dc6..c6d2b289e3cf 100644<br>
+--- a/include/drm/drm_colorop.h<br>
++++ b/include/drm/drm_colorop.h<br>
+@@ -83,6 +83,29 @@ enum drm_colorop_curve_1d_type {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_COLOROP_1D_CURVE_PQ_12=
+5_INV_EOTF,<br>
+&nbsp;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /**<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * @DRM_COLOROP_1D_CURVE_BT2020_=
+INV_OETF:<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * enum string &quot;BT.2020 Inv=
+erse OETF&quot;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * The inverse of &amp;DRM_COLOR=
+OP_1D_CURVE_BT2020_OETF<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_COLOROP_1D_CURVE_BT2020_INV_OETF,=
+<br>
++<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /**<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * @DRM_COLOROP_1D_CURVE_BT2020_=
+OETF:<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * enum string &quot;BT.2020 OET=
+F&quot;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * The BT.2020/BT.709 transfer f=
+unction. The BT.709 and BT.2020<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * transfer functions are the sa=
+me, the only difference is that<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * BT.2020 is defined with more =
+precision for 10 and 12-bit<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * encodings.<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_COLOROP_1D_CURVE_BT2020_OETF,<br>
++<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * @DRM_COLOROP_1D_CU=
+RVE_COUNT:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br>
+-- <br>
+2.43.0<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
 
-Adding some additional context lines here:
-
->>>>		if (async_flip) {
->>>>			/* check if the prop does a nop change */
->>>>			if ((prop != config->prop_fb_id &&
->>>>			     prop != config->prop_in_fence_fd &&
->>>>			     prop != config->prop_fb_damage_clips)) {
->>>>				ret = drm_atomic_plane_get_property(plane, plane_state,
->>>>								    prop, &old_val);
->>>>				ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);## end of additional context ##>>>>  			}
->>>>
->>>>  			/* ask the driver if this non-primary plane is supported */
->>>> -			if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
->>>> -				ret = -EINVAL;
-
-Firstly, apologies for the delay, and thanks for the patch.
-
-The original code definitely looks fishy. The value of `ret =
-drm_atomic_check_prop_changes` is not used afterwards and is ignored.
-
-Looking at the history (v6.14), it seems the original intention was:
-* For PRIMARY planes
-    * Allow modifying of properties fb_id, in_fence_fd, and fb_damage_clips
-    * Allow setting same value for all other properties
-* For OVERLAY and CURSOR planes :
-    * Allow setting same value for all properties
-
-(https://elixir.bootlin.com/linux/v6.14.11/source/drivers/gpu/drm/drm_atomic_uapi.c#L1078)
-
-
-Then, the behavior changed in v6.15:
-* For PRIMARY planes
-    * Allow modifying of (including setting same value for) **all** properties
-* For OVERLAY and CURSOR planes
-    * **Allow modifying of all properties** if `atomic_async_check` callback
-      exists and passes
-    * **Setting same value can fail**, as behavior is now driver-specific.
-
-(https://elixir.bootlin.com/linux/v6.15-rc1/source/drivers/gpu/drm/drm_atomic_uapi.c#L1081)
-
-
-But IIUC, the desired behavior is actually:
-* For PRIMARY planes
-    * Allow modifying of properties fb_id, in_fence_fd, and fb_damage_clips
-    * Allow setting same value for all other properties
-* For OVERLAY and CURSOR planes :
-    * **Allow setting same value on all properties**
-    * Allow modifying of all properties if `atomic_async_check` callback exists
-      and passes
-
-
-Is this the desired behavior? If so, I think it makes sense, but the existing
-conditions need some cleaning up.
-
-Thanks,
-Leo
-
->>>> +			else if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
->>>> +				ret = drm_atomic_plane_get_property(plane, plane_state,
->>>> +								    prop, &old_val);
->>>> +
->>>> +				if (ret || old_val != prop_value) {
->>>> +					ret = -EINVAL;
->>>>
->>>> -				if (plane_funcs && plane_funcs->atomic_async_check)
->>>> -					ret = plane_funcs->atomic_async_check(plane, state, true);
->>>> +					if (plane_funcs && plane_funcs->atomic_async_check)
->>>> +						ret = plane_funcs->atomic_async_check(plane, state, true);
->>>>
->>>> -				if (ret) {
->>>> -					drm_dbg_atomic(prop->dev,
->>>> -						       "[PLANE:%d:%s] does not support async flips\n",
->>>> -						       obj->id, plane->name);
->>>> -					break;
->>>> +					if (ret) {
->>>> +						drm_dbg_atomic(prop->dev,
->>>> +							       "[PLANE:%d:%s] does not support async flips\n",
->>>> +							       obj->id, plane->name);
->>>> +						break;
->>>> +					}
->>>>  				}
->>>>  			}
->>>>  		}
->>>
->>> Upon further testing and reflection, I have come to the conclusion that
->>> this is indeed best handled by a kernel fix, rather than breaking user
->>> space.
->>>
->>> I attempted to work around this in wlroots, adjusting 0.18, 0.19, and
->>> 0.20 git with similar patches. First I attempted to stash all the
->>> written properties for the atomic code, storing an initial value of all
->>> 0xFE so it was always likely to write the first time, and only setting a
->>> property if it changed from the last commit.
->>>
->>> This resulted in whole commits breaking for one or both framebuffers
->>> until I ctrl-alt-fx switched to a tty and back again, and this would
->>> work again temporarily.
->>>
->>> So I went back to the drawing board and only withheld seemingly
->>> duplicate plane properties. This "worked", until I attempted to play a
->>> game, and then it started glitching spectacularly, and not updating at
->>> all if the game was doing direct scanout and vrr.
->>>
->>> Clearly this is wrong.
->>>
->>> The wlroots library queues up properties for each commit. On every
->>> commit where the cursor is disabled, it queues up both fb_id=0 and
->>> crtc_id=0. Every commit. Is this wrong? Should it only be queueing up
->>> the disablement properties once? It also queues up the full plane and
->>> hotspot properties when enabled, even if the cursor doesn't change
->>> position or appearance.
->>
->> Probably should have CC'd the drm misc maintainers when I started poking
->> drm misc instead of amdgpu. Pity there isn't a list for that...
-> 
-> I am a dumbass, I didn't notice get_maintainer.pl. Added more people,
-> and the correct list. Not sure if I should remove amd-gfx, since this
-> affects them, somewhat...
-> 
-> However, the intention of this thread was to seek commentary on the
-> situation as it is.
-
+--_000_TY4PR01MB14432C77EDFD80D2075FFCC2A9834ATY4PR01MB14432jp_--
