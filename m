@@ -2,140 +2,151 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25D41B29315
-	for <lists+amd-gfx@lfdr.de>; Sun, 17 Aug 2025 14:39:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82669B28EDD
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Aug 2025 17:19:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B780A10E110;
-	Sun, 17 Aug 2025 12:39:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A29D10E384;
+	Sat, 16 Aug 2025 15:19:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="AxR0Kbiy";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="oCAgJmfF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com
- (mail-japaneastazon11012042.outbound.protection.outlook.com [52.101.126.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43AB010E37E;
- Sat, 16 Aug 2025 14:38:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YXXYMSLAQVOmAAl4sl2XzijQDxxQj/QegeBJGcX2Xm0G6hGGUE5c2SkyEQoOjCDw8CY/gKR2VuTxS7QWSYnsjz7p1GwRlJ2BlXnHtfzBDKr+XiI0vlChQ1x8ZLjbrF5ror/xId522N9FqNIf49pMV1Sr0AuzHeZrDKpkDvjorz7kKZuyTxwet8FjoxGqyLkpAxyGPu1L5/QqU3GtUksZk5qDXQUJsU4ygklVCDMXfZyfngRHmUarhty+NN2W1O7AcKT0rB6xsscp05e1y+qx2wEVJ4YI+L/BiG/lxl2cn4lT9ob+mAPiy3c7/mpmaWveOYwHBwXMtaU7bfcvNKyAug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YfzZxXYCpjOJ45++5AasoZftqQIskZvEeyMrFI+lQDg=;
- b=SHltsVOJcxHZfmPoOPIhy1bPkZtG05dS0fWEQxUwW58soqoO2jSqMyOuVxsaIjfWZaP7cRKG4Dh5Nu8m0UoubkaK30mVIgRViD7VIwICLoAG9AoFjQOMIGukJ7KOEuYh+vdMh00OIAadNIKXLvqemeJ6D3sgy8uAzQBkyeOS/AIJg6jxYuymvu0attTSC8Kv6gkNju4ZxXawdWPsPMNLVbZWvGXgWPVuw4HS9aeOEjJbIWg1d7JmkTR908sVEc5SgQM4FB955+shghCgm8HSk6dSE+/ee4Yzt1hEvgEt9WbdOyb++SX1UHiqQG11t6YZd5GDoTwQZ5AkJWXzBt+XMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YfzZxXYCpjOJ45++5AasoZftqQIskZvEeyMrFI+lQDg=;
- b=AxR0Kbiyd6i4DMh7eDtW1ivKdbdk5DCB9BKPMY4f4YtgY5lW+gtZfqn7bGqeJYxluESo+VQ5gQnbjRf9eA24IHyUCVdVaWr6+2QYggSO3h5OeunJCUej3fr+z0Td0KPvSLVThUPXyd29qNZWGThP1JhFhNcmgcbNQP8ud/LMC4we1fKPOpcU+CRtonwGXFmbInZ/RtsgaCc9ID2Bp68+rGjdVmvAnhtrN7aj39YEdD8k9NTrhK8t2VqeBppFMvYqRZ+6vAUuPbkqbdURd2++3jAFhw+xeyZi73HvMdrBILxD+EcTFV2QbnuDVnJb2u6miVBu6/e3b7UA+GmFOm3O0Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from SI2PR06MB5140.apcprd06.prod.outlook.com (2603:1096:4:1af::9) by
- TYZPR06MB6771.apcprd06.prod.outlook.com (2603:1096:400:459::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9031.18; Sat, 16 Aug 2025 14:38:07 +0000
-Received: from SI2PR06MB5140.apcprd06.prod.outlook.com
- ([fe80::468a:88be:bec:666]) by SI2PR06MB5140.apcprd06.prod.outlook.com
- ([fe80::468a:88be:bec:666%5]) with mapi id 15.20.9031.018; Sat, 16 Aug 2025
- 14:38:07 +0000
-From: Qianfeng Rong <rongqianfeng@vivo.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list)
-Cc: Qianfeng Rong <rongqianfeng@vivo.com>
-Subject: [PATCH 2/2] drm/radeon: Use vmalloc_array and vcalloc to simplify code
-Date: Sat, 16 Aug 2025 22:37:51 +0800
-Message-Id: <20250816143752.397973-3-rongqianfeng@vivo.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250816143752.397973-1-rongqianfeng@vivo.com>
-References: <20250816143752.397973-1-rongqianfeng@vivo.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0014.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::9) To SI2PR06MB5140.apcprd06.prod.outlook.com
- (2603:1096:4:1af::9)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA5D410E384
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Aug 2025 15:19:41 +0000 (UTC)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57GFFssF001347
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Aug 2025 15:19:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:message-id
+ :mime-version:subject:to; s=qcppdkim1; bh=5lryexlqd0cwKQzcmybpaI
+ +3EMl9PhbQcl2IWaTvkAM=; b=oCAgJmfFi/I2hzZFvUUpZcIkfXUtBg3UORsCZf
+ JW43oqB6fB7mnzKdW1JpGIZ9TtzLtE+W3jZ36ZMH0RXXf53Mhu96U37P8XUnxarY
+ oimPLzWmgJZFXbICcXB0HBA1w1gu09hc1CXhdn16cHauAmztii6bPGsJnEFJoSC3
+ aYiCb5CpR3aeAnly/872UnqG7qWifllQ4xar86OOnxToYp63YUVDlMLJ7cDGODHY
+ oH6TvRWa1VymRh1hvQ7/2Lbt+4Mcrs7mZQrgFZ+OPFp7MRkfVs3ANWt4JXNERfd9
+ 6AHTINJsBENxDPhLNKJRYyljl1ij1Dn+lNT1choVU6dt8tAQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48jjrfrs44-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Aug 2025 15:19:41 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id
+ af79cd13be357-7e86499748cso959410485a.1
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Aug 2025 08:19:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755357580; x=1755962380;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=5lryexlqd0cwKQzcmybpaI+3EMl9PhbQcl2IWaTvkAM=;
+ b=Q4Qds1NDF0qno17GMEZU0q0VXl0b+4jdtGXCT1bpm56zPvT5va2uFn10TjX+XlEvtH
+ iE04pD5iLkORbgkjxCcCP8+OytrfilHD3NT9Cblo4v5ZpNpgupT1om8oIEHL/3LGkoSh
+ DGjYsBAteafm4ytxRRKYc6Ub3sfILf3q9bcqPTjVUach4Sns1cGUG1vW1ZrW5DAqyGQm
+ NrmbLd5KFuvx1Rq4Z//4oQV2qB52pDNnPwmathb0WlmFr4sFhZShR5iZepD9wnGHX+bi
+ 2la4qWjPsdbw2+OjC/XxwbVyDraEE/GKihg69LE8SvsaltmZ4j4u7qnWzLaEXRTzwWfG
+ wGcw==
+X-Gm-Message-State: AOJu0YwXDFf08HD2iwjQ7NOcOdUiT6bOVFNndNDut/JyHx7mw2aLPQnM
+ x4cdqw35+sJpybZCZDOhtVgp6e8cyA1zITb66iICstlH6QwOjAo74ePfbAjXN1EBT+d2w5IV6xI
+ HSwYtLSsiBe1tzZuS6489k2gCi2yRSSAl8OfYKs4LeFXNKVObLpoV8DtohrKtu0zRwl6A
+X-Gm-Gg: ASbGncs1bM5s7cwN+HTQr+keJ7zwL8BlsSNvENFU1qp4GlO2z8uDPUThu4jXvc2rTPh
+ sQtW43GMKH5LyZOovUYji+/99e5KRPlXxqpppWn1C970UAbedcvIjtT+PyQhNPd+zLLRbT19Bv9
+ o11sApkCY/54WhCKm4G43v6AhBOZgUcLTJEhM05nQCfaDNDVlsi/eF8a+m568bvJoCs2ragmEIf
+ m7m/p8arroRf0wLlS8F4QYI09OEp2gSHRO5Sr5yYpq/UTkn7lX6wtC0g7YBzCKo52nfIEDaDSyA
+ pfvpBx0eTFiWN7f6P4ERqm/o7gwhtvyktNyha9u+CLoIfgnpZKIYWAxNpk2SdbI/aiDJVtCenUl
+ UWLW0FtDcjadbGgpPgBSgoSpXuvGCYKe3Ql7879aNEtlpcA6HxVKT
+X-Received: by 2002:ad4:5587:0:b0:70b:ae3b:4fcf with SMTP id
+ 6a1803df08f44-70bae3b53demr47856646d6.23.1755357579692; 
+ Sat, 16 Aug 2025 08:19:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHfelfomvA5wci6xz+3wi0J8SULNHFeOUuYXDPXJ1C+6Dag8vtfdR/Y+CaRJy4U66cTGuwdXA==
+X-Received: by 2002:ad4:5587:0:b0:70b:ae3b:4fcf with SMTP id
+ 6a1803df08f44-70bae3b53demr47856216d6.23.1755357579187; 
+ Sat, 16 Aug 2025 08:19:39 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-55cef35965fsm907579e87.37.2025.08.16.08.19.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 16 Aug 2025 08:19:38 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v2 0/8] drm: writeback: clean up writeback connector
+ initialization
+Date: Sat, 16 Aug 2025 18:19:34 +0300
+Message-Id: <20250816-wb-drop-encoder-v2-0-f951de04f4f9@oss.qualcomm.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SI2PR06MB5140:EE_|TYZPR06MB6771:EE_
-X-MS-Office365-Filtering-Correlation-Id: 21c1c786-5ec7-4c01-215b-08dddcd283f9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|52116014|376014|38350700014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SX0Bfishxi9eyUg4+ubDW8pXjJuHmLFGtjQF/y/tVBJYhtv7dd96mZ180vvs?=
- =?us-ascii?Q?ZvORZ5V0zXr1lwI8e9leiimbmbUOOm9b48wzjfiIayh7UwJmA9sEunRZFunr?=
- =?us-ascii?Q?/kUBHzBnPZGvQf4o4FLcZBL1fvbP6+/+1mFmoA7hJaVk9EZd1Hp4ewqHOzBL?=
- =?us-ascii?Q?qSyvMzhQWMvKaIWlf4xrcG2wsiwWx6BemNQcLvfiMEBlSgK+C1JjRO13NKFv?=
- =?us-ascii?Q?OammtT5Alk0oihIS6t4i4va7U0R8p8jlK3jDBsk2J7XBig/acTZptdmHxInS?=
- =?us-ascii?Q?VI5c621eQ4fF4pwftoQaaZ8neH4An8uACuVdIm/Xmc76htlE8TByQVKVWCnO?=
- =?us-ascii?Q?WpWCm+f+fIGe8nU+4qKwglUfK2aPr7JZHuKQXFA7WAg9Dce+8kl9cgprTqrf?=
- =?us-ascii?Q?JlP65AWgUZcYJ+yRirso9PGlhMXE//QO1UgNXKYEluH0NYNJc2Fl49PjTcC9?=
- =?us-ascii?Q?dRhr8fxq065yOGG+AF+UFZZcxrTCfyiBEfrs8qpdHGRDMY00a3qW6hmUC7FE?=
- =?us-ascii?Q?sNC8D4w+q2UHBodYAepm7TsQMc/cotIaahBpLxTqTXhix37h1mkdj46sImvB?=
- =?us-ascii?Q?cZwX4pstYahyUxTWDUw2DzmI14UCTtfzu2C8saaQcKLJuFav7wbmlE8gA/nn?=
- =?us-ascii?Q?YM2QDdKCRXzQ950eeT3j0yJK9PsMRnp/z+8ku9i2G6ZMUZ6O7Dj/73tWz0ib?=
- =?us-ascii?Q?hAhF5iZLxsgDqGN/Yy6qeHuKTs8gWjGT17RQblZBa9o/2WMHB874FbYrdevn?=
- =?us-ascii?Q?BgAXuscgzfgHBpH2/pz8w12Q3raK6+1wN1k0/opFTT6e9AtgMWbeYNW8f1lO?=
- =?us-ascii?Q?CEs1mwhjqlKBXAVXdbuhuo2PeKEi2KtXJpKtEoqdQOgeuf2R7m2Op9YK1Yhz?=
- =?us-ascii?Q?5JPeIBe2+xBJGFjbs9cgHY3/uDQ0tFuuN9liV2lsYhCISDh8fjN0HwyjEg7e?=
- =?us-ascii?Q?AUleocaCq+cvwjbgRlhGrKt8i+74fFY4BLF6nVo+xnzQYpHfyfDFIxXBeF5b?=
- =?us-ascii?Q?vPOsKNlpwMp1Bkum9Gyc55U/fBt2DASNtZBZ9cMcS5VEJBvE9BE70ocW4WGH?=
- =?us-ascii?Q?F3NkcIYNkwRT3i5SJvHKhx+5GSUThQiH2mavtaR/dsoDMCjT4ZWaHjuI+pPv?=
- =?us-ascii?Q?qmHfD1V3HVcDO8Bov/xApOQJ85IuEq9ebPW1vXE3yHk9C+wpGGAqha9ihh4K?=
- =?us-ascii?Q?MyPljCrZs8ivR6GQtatdZouE3OhxP0Oeg92gCTnI081OG04HTKt1AKvJQBWe?=
- =?us-ascii?Q?CPVFgFXkz8uLuPMRGXMhTJsvJo/QJW0sdlN5HHeJeaeIL4UQdKGxSlPFsq+Z?=
- =?us-ascii?Q?ZAebcUSjktOgU1TZ++5T+yAb+44YtkV9DxiB40N1p6wCA9f6WaghC632OxqV?=
- =?us-ascii?Q?Uqw6JvfmTzcotOWpM42XXoR6U/6qVHGu11G5Sz2SLCi5X0rAabuPw6qg4Zad?=
- =?us-ascii?Q?1liU07kztjtF2QCftyEq0119Z8mskZmxPzuZJp5RASTD39fb37eBTw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SI2PR06MB5140.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(52116014)(376014)(38350700014); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ql+wF2B527eBeCJr2XAlk8/t+xVeLwED0EvtrUi5zvlmyJzhP/K7Ma+MvZJc?=
- =?us-ascii?Q?Aa9Ie9wXk5fyxsGasAPHuHAi6AAfH5YwDg7lXZg2coHx2Rf7WPFFJaybJL+9?=
- =?us-ascii?Q?tP82U2HYWI8WwpVVA5Sq3itWHQYnDrUgLipgacORSCGIikJFRX7bCdXjUBaU?=
- =?us-ascii?Q?QOfNcR84upLzRUPGPpGak17q6wTqEpl+dgYEA/IbIS1Ph/AqwwYRyXSLttVd?=
- =?us-ascii?Q?upttEZVJLld6jCu/poFhAtbc90Nkvd32Wm4ebhMVbfgvW7Ab5zVsE1StyrtE?=
- =?us-ascii?Q?0kPTZdDjl8q4PXQUR2RcYUyBJBRWJU72k2rSLoxtSvg+ChKUV0bQGmvCP6S7?=
- =?us-ascii?Q?hjpSJZyw7Qsf0AD4NYp1EtAIfre7piFNTy/EKSP6TXwL+nWrmfjMtxFnNGZW?=
- =?us-ascii?Q?81FR/RuxesQH3wQzR5sF/pWWbUDa7QSjXubUmy0mJXFgnc7eW81CPdKCrImR?=
- =?us-ascii?Q?Hjij13hf5xqVGpbBZoE6PGiFmHOdPNKGDUL3zcEZWI7+84jp4dUlT9U1xpWV?=
- =?us-ascii?Q?xtCWgL+yJUIoSQEy9cRt+F3JMRSDM9ZrgwxyxbXQF1wrewfrisuPMHJXzmeh?=
- =?us-ascii?Q?812IOMVfOPEURVqiXXSR+E02bMQ8cXunavrY7Mz8FjYl18vwoTpgmHJPsiRy?=
- =?us-ascii?Q?fATzKDQn9BGBkST81vXRT9s/abrg5RtaDSKb6YbwSxPF9TeTEieRYArdDQ+5?=
- =?us-ascii?Q?4zWFqsG/MVpcdxuha8X0nJu+bROVuKOsBdGgSxh2C4zM4ymfOoSQx+VvXsUX?=
- =?us-ascii?Q?VJnlFZV7vxL9u3lTQd75l8I0+eZhFabBP9OU/mvwJvuIS/52sjeU5kciC5Sb?=
- =?us-ascii?Q?FwsKKR0L9rg0F0/suX2Rxr+UjrUoAAgmG2OJhwMJHp1sCYTkQBJqznj0Ogjm?=
- =?us-ascii?Q?RMs8W/pn2coZNi/1McFIGy6ujxB0rVfILOnol8wT+2ENoYlrHTAbrHQt/44V?=
- =?us-ascii?Q?p3815UusZbX8rkGVpphHVy0yMvWZUWLHp95A+aCRZQPv86XLXeAOJ2kt/I6L?=
- =?us-ascii?Q?RyltjhKovXthjH9HZ0ducf79PXpODTP8Ye2DOwj4i4aymtVexM2qssQ9RDbs?=
- =?us-ascii?Q?qld8eFO8MIHLShWWdDYqjbnOvc887KMkCjMF923mWd8369p4oB4yk663B8fu?=
- =?us-ascii?Q?Z/96QFm+QbV7bgcL1l6t2pQX3iU7x5chRGxJnCYYhWyGdsw8QIQqwvv9gMxM?=
- =?us-ascii?Q?GVlqN+ahiroJuPVkA3JAckPMNxqhyieRXqx/ykzGYKXaKXyuSNX2esY3FF0Q?=
- =?us-ascii?Q?yXjCq/kUTNfsZpa8a//t8FPApo1t6Y/7PiKJ7WMvTtuwcz4X5IMrJNSNYB0J?=
- =?us-ascii?Q?BdKkNAio7fjo78yIYXBZ3Jh3JLPNELplFEIsC40oXf0EpqalLWRhgdXjroVX?=
- =?us-ascii?Q?Uo//z+aQI3Fkq9l4FIMLJbq2pcaXsELTVLpmweduH3qNNuLjjpXaV8ctZSxN?=
- =?us-ascii?Q?vzowhso+6Sbqvk28fb+GeMD0k8WJHYUDjd+jpwJR2yAm5vXFd35ORuab87TJ?=
- =?us-ascii?Q?1mt2aOCp1jRJNPavGGgyYT+jAJqI0eQS9lnWtrRc9UaGEzxmpKe0ACX7IT+v?=
- =?us-ascii?Q?Iq5a25YPMtz57dVR5UPUwP4sfVp1As8A5gWmNQF+?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21c1c786-5ec7-4c01-215b-08dddcd283f9
-X-MS-Exchange-CrossTenant-AuthSource: SI2PR06MB5140.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2025 14:38:07.3463 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WSIciEVaW73pAhg6eIF9wremiGp5qe+o9opZ/sw79NasrANn9odo5eOnXUdoCepvsjHxXFg4IhbDLrUedaFXYA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6771
-X-Mailman-Approved-At: Sun, 17 Aug 2025 12:39:00 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIahoGgC/3WOwQ6DIBBEf8Vw7lokKtZT/6PxgLBWkioKaG2M/
+ 17U9NjLZmeyM29X4tBqdKSMVmJx1k6bPgh2iYhsRf9E0CpowijLaEETeNegrBkAe2kUWrhxQSX
+ PapUpTkJqsNjo5Wh8VEG32nljPwdgTnb3f9ecAIWCpXma05Q1XN2Nc/E4iZc0XReHQartZFgcp
+ /CsP0GkFg5hP9K+jJTtoNNOXn8L9Lj4EN2+MNFAzu8AAAA=
+X-Change-ID: 20250801-wb-drop-encoder-97a0c75bd5d7
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ Louis Chauvet <louis.chauvet@bootlin.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2260;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=A/d943iupZVCsxCU+H3jAnKd2fBEwptYqE3Wnl3fWfg=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBooKGIGMd13UWHpYiChLD84LKwc5yW7HTOFZ5Nc
+ BeTRdJYMi+JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaKChiAAKCRCLPIo+Aiko
+ 1VU2B/4olLxWynZ6yiMZ4UeXGeUOQWFTHVS0OmcvLMCYAz5OQG0aZQ8ccKIlHwyxoHSBsBg78Mr
+ 5QdHuJQEQDktITLER+XgXzSQGcAgijiinR/nhTa+NfpLIGR/EZrDmm2Pzno0MlDiSYg29IhxB4T
+ kEyqTv5mjfkGwilg9DYt3nua1zSszeQdW1SnwwmS2bJ5BNDrwFKw9Be1apeVE0V5bbt3gjV9cJ1
+ CTyH4/m6IJr1ZW1Z9GAeYcsmchIGnAeuuUGT6OENI6yZkiEVDemT5O54HW7bSXSXNU41/Le5fiv
+ QQeKwVTkV8cEZ7a13v/GM/cWDBTcehtOQTW4bxGUsGsKFDS6
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Proofpoint-GUID: nMspcmHhai3ikThrvA_DdCEf62XiGApt
+X-Authority-Analysis: v=2.4 cv=YrsPR5YX c=1 sm=1 tr=0 ts=68a0a18d cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=cFjmsF-WLDi_aLc5EnEA:9
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE2MDAzOSBTYWx0ZWRfXx4JGe33zcp19
+ VzDap46iNeWygQuxqbPZJBFLRZRysfk3vLCshK624a+m3Sp3pJnY4SEsLOqQc7E6EZ1xJqMAspI
+ A0Dp3b4OWkHNM+3iq+SXCHJMNDnjSGYaStVjVgAF+TEeoyuuuXJIT47WzKlq3a4LvZ/zG2HXhOh
+ CLuhJsWbQ3eE5pDPHJLBYHBg+RCWXpOC3td6i2O2gGbYlxRWMr9mDIPl4vC4TsvWLBk6xHmLKP1
+ 2e08HANuA5oxEOFII4f7ZgyWN45BqjmgzfO7zlw1+1xnC698jJTblRR0OCZVlF3umYwo9JWDf1d
+ 6dfgc1sKmmIXKHTo1H9ahVZsgED1d8nMaDtUdqup8uVmvu+hDe3IH3J7phxghrsPqsSFOHYmfw6
+ 5u4H++mv
+X-Proofpoint-ORIG-GUID: nMspcmHhai3ikThrvA_DdCEf62XiGApt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-16_04,2025-08-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 priorityscore=1501 phishscore=0
+ adultscore=0 bulkscore=0 clxscore=1015 impostorscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508160039
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,40 +161,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use vcalloc() and vmalloc_array() to simplify the functions
-radeon_gart_init().
+Drivers using drm_writeback_connector_init() / _with_encoder() don't
+perform cleanup in a manner similar to drmm_writeback_connector_init()
+(see drm_writeback_connector_cleanup()). Migrate all existing drivers
+to use drmm_writeback_connector_init(), drop
+drm_writeback_connector_init() and drm_writeback_connector::encoder
+(it's unused afterwards).
 
-vmalloc_array() is also optimized better, resulting in less instructions
-being used.
+This series leaves former drm_writeback_connector_init_with_encoder()
+(renamed to drm_writeback_connector_init as a non-managed counterpart
+for drmm_writeback_connector_init()). It is supposed to be used by
+drivers which can not use drmm functions (like Intel). However I think
+it would be better to drop it completely.
 
-Signed-off-by: Qianfeng Rong <rongqianfeng@vivo.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- drivers/gpu/drm/radeon/radeon_gart.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Changes in v2:
+- Switched to drm_crtc_mask() where applicable (Louis Chauvet)
+- Link to v1: https://lore.kernel.org/r/20250801-wb-drop-encoder-v1-0-824646042f7d@oss.qualcomm.com
 
-diff --git a/drivers/gpu/drm/radeon/radeon_gart.c b/drivers/gpu/drm/radeon/radeon_gart.c
-index 4bb242437ff6..acd89a20f272 100644
---- a/drivers/gpu/drm/radeon/radeon_gart.c
-+++ b/drivers/gpu/drm/radeon/radeon_gart.c
-@@ -346,14 +346,14 @@ int radeon_gart_init(struct radeon_device *rdev)
- 	DRM_INFO("GART: num cpu pages %u, num gpu pages %u\n",
- 		 rdev->gart.num_cpu_pages, rdev->gart.num_gpu_pages);
- 	/* Allocate pages table */
--	rdev->gart.pages = vzalloc(array_size(sizeof(void *),
--				   rdev->gart.num_cpu_pages));
-+	rdev->gart.pages = vcalloc(rdev->gart.num_cpu_pages,
-+				   sizeof(void *));
- 	if (rdev->gart.pages == NULL) {
- 		radeon_gart_fini(rdev);
- 		return -ENOMEM;
- 	}
--	rdev->gart.pages_entry = vmalloc(array_size(sizeof(uint64_t),
--						    rdev->gart.num_gpu_pages));
-+	rdev->gart.pages_entry = vmalloc_array(rdev->gart.num_gpu_pages,
-+					       sizeof(uint64_t));
- 	if (rdev->gart.pages_entry == NULL) {
- 		radeon_gart_fini(rdev);
- 		return -ENOMEM;
+---
+Dmitry Baryshkov (8):
+      drm/amd/display: use drmm_writeback_connector_init()
+      drm/komeda: use drmm_writeback_connector_init()
+      drm/mali: use drmm_writeback_connector_init()
+      drm/msm/dpu: use drmm_writeback_connector_init()
+      drm/msm/dpu: use drmm_writeback_connector_init()
+      drm/vc4: use drmm_writeback_connector_init()
+      drm: writeback: drop excess connector initialization functions
+      drm: writeback: rename drm_writeback_connector_init_with_encoder()
+
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  2 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c   | 18 ++++--
+ .../drm/arm/display/komeda/komeda_wb_connector.c   | 30 ++++++----
+ drivers/gpu/drm/arm/malidp_mw.c                    | 25 ++++----
+ drivers/gpu/drm/drm_writeback.c                    | 69 +++-------------------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c      | 10 +---
+ .../gpu/drm/renesas/rcar-du/rcar_du_writeback.c    | 23 +++++---
+ drivers/gpu/drm/vc4/vc4_txp.c                      |  9 ++-
+ include/drm/drm_writeback.h                        | 22 +------
+ 9 files changed, 77 insertions(+), 131 deletions(-)
+---
+base-commit: cb640b2ca54617f4a9d4d6efd5ff2afd6be11f19
+change-id: 20250801-wb-drop-encoder-97a0c75bd5d7
+
+Best regards,
 -- 
-2.34.1
+With best wishes
+Dmitry
 
