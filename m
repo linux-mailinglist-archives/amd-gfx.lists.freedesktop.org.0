@@ -2,48 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77036B2DC8D
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 14:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FDE0B2DC90
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 14:32:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD39C10E724;
-	Wed, 20 Aug 2025 12:32:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D92810E72D;
+	Wed, 20 Aug 2025 12:32:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=listout.xyz header.i=@listout.xyz header.b="h2fwKtog";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HWCvMIYB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE45810E211
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Aug 2025 20:42:24 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4c61jT4Q03z9t3B;
- Tue, 19 Aug 2025 22:42:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=listout.xyz; s=MBO0001;
- t=1755636141;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=f39+AAkAozC+X5tq/z57cuX92rwCgBeX91Rk3Y1dpJM=;
- b=h2fwKtogxfQac8+Jr/0dADySlaqMyPSf3kbo8NT1uaEeFhq/Mzg6++OqrzlCRS9RMUFzSk
- v/oES9S2P1xN9/BCGU9OI7K6+ZNraM5aSQ4glMNECeSbv8JBKcZl9RYMSo1v6QYZZ8yvJF
- ZjO6EP2Rxc3XX4NUPLpiEdA4UA6TDi+k5NE/4bwzPrZn2Ut3VQzdiPwGGr71fWhEG9TLiq
- Gy5zQ3wnJ6TXerrFqs9FfwieAbvDRAIpIbY461u6Gb9XcOPnp8vchelat0xCn2Ly7qtTdg
- 3wte85NQ3Z1QcWJVpw0xlpB6BC4e/itwl2EEKAcvKSzTJuySZwx9mh7/k7/wdg==
-From: Brahmajit Das <listout@listout.xyz>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>, Jun Lei <jun.lei@amd.com>,
- Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- listout@listout.xyz
-Subject: [PATCH] drm/amd/display: clean-up dead code in dml2_mall_phantom
-Date: Wed, 20 Aug 2025 02:12:07 +0530
-Message-ID: <20250819204207.14407-1-listout@listout.xyz>
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
+ [209.85.215.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B22F10E218
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Aug 2025 21:23:19 +0000 (UTC)
+Received: by mail-pg1-f181.google.com with SMTP id
+ 41be03b00d2f7-b47174c3817so4239215a12.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Aug 2025 14:23:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755638598; x=1756243398; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=PSmrBC1d6V94gjkuBfdG1y/aJoYUJfpUXKEMb53Azh4=;
+ b=HWCvMIYBL+nHKYdRvuAx9Bdui8y6JgCZjEAnyY1FUR06J9B2f8g5AmI20npX9y149v
+ jVS0LjFGd7JAHVQJ3sGmYd/4dHr02wu760xdPClj/DeJuQ3Ph8Isv6uppWUj+ASNWuXG
+ tCHf0VC7zX7R5v/gFABNQNjJlKZIe/4+GM3ajNYJ+J7U0FqL2wD7+95gnzAP+o328j1W
+ Rsx9lN5D0VwAlkeIOi9ZoQm8/ANgGpOqQJ/m0gEPHcQV989azmUF/sKfWgkgRmpgvknH
+ K/9jzvJDpLL+alqEZIeGvTpAdodDyirhqAPoh0Ue/5JrAA+9pf6cgMPdMuywP2s68YUZ
+ Olpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755638598; x=1756243398;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=PSmrBC1d6V94gjkuBfdG1y/aJoYUJfpUXKEMb53Azh4=;
+ b=GZXccVQN0EkDNXqjbDOivZVLwDBJUVybXED1GX/4lhsSS4JjYNPgV491CyhPOKMKCS
+ wC89SFUOI0FbeFQYFFZgD2eaLgEkJY/5INfCC3CEyNAWGUUyor4v0ZuIOaQo3KhfJjJ9
+ H0Zuu9WVX2QRlTVx0srXWIObxZITVzJZ3RmBnWu8bAicF9am8SwLpiWi/B79IxRG7dyP
+ bJVhg1YeaVXzQLhCWbxAP/pah7PuCay+MSSWSEJ0RTyAwWvTCR9wsAmy6MagF4vRwNy6
+ UZoO4nVqy7ub9zUsW1BQwm//HjHoKeh/uznma2ZLwYNTo8J4NED2gDjm8y1WXAvY+I1B
+ mDug==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVn6ZCcfIkxX+5WwdnU1TBVOcBviAnhkZ4jtA6ZMAlAUrf9vRvvlk/HzhbuzxIU8c3DNOzrWxkW@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzbzqnMH9jJW+uc8S38s4Xa/6Suy02+Hulnc9Dy+IUdW90UCXUA
+ 5ALv5iGpfDMqsrhRT6KX0edX4BgEL10Tc3mdfUP+3ELCiP05/erAG/X6
+X-Gm-Gg: ASbGncsJktv36RyFV2gS8Nsfn0I1w7xVRsIDammXqkH/Vhl/U2W1h6F0dZxUzCWZnuJ
+ +jd3dblihqLc73EP2Khaj3B8bQQYoe3oeI5sAfCiNtPiJfXbfCclmD+9cNLnANfzwjjYTsvckR8
+ YiIBM1wphm9EIPodT/JV029rrt+nXYROavQgP1Lh+alYDyxMnY3F/4ncVsGdSzcnQAoqq2j1kbP
+ R/qt6CenoK3Fy+VrNwNK7gWZTzEBWv1SXMqDtEC+NlKwcqHmtDgeZsmVc5SBjHfr4N8FrQlX07N
+ RVcxSVD8Uaq9E9+dc4JuopXibXzS0vTUP0zwkdaKZV3dnjBfPGnJMvQHxh/t1+K6qi707geGxim
+ ymXlMTF/zgRFpep21S0TNqQpVLmORX0U9RkJkfcg9zKZjR1CpRQ==
+X-Google-Smtp-Source: AGHT+IEh4Uka68y7Zj7GJebi6yM8KMmJWwpaYwlw+QFwbiPeXXdYTZC6/PqbjtfhSYD0c3fy30pHXw==
+X-Received: by 2002:a17:903:2ac4:b0:240:9cf:99a8 with SMTP id
+ d9443c01a7336-245ef0eedc7mr5753865ad.11.1755638598444; 
+ Tue, 19 Aug 2025 14:23:18 -0700 (PDT)
+Received: from localhost.localdomain ([202.164.136.133])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-245ed4e9bc2sm6364175ad.113.2025.08.19.14.23.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Aug 2025 14:23:17 -0700 (PDT)
+Received: (nullmailer pid 17994 invoked by uid 1000);
+ Tue, 19 Aug 2025 21:21:51 -0000
+From: Kathara Sasikumar <katharasasikumar007@gmail.com>
+To: skhan@linuxfoundation.org, corbet@lwn.net
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org,
+ Kathara Sasikumar <katharasasikumar007@gmail.com>
+Subject: [PATCH] Documentation/gpu/amdgpu: Fix duplicate word in
+ driver-core.rst
+Date: Tue, 19 Aug 2025 21:19:58 +0000
+Message-ID: <20250819211957.17871-2-katharasasikumar007@gmail.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 20 Aug 2025 12:32:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -60,49 +91,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-pipe_idx in function dml2_svp_validate_static_schedulabilit, although
-set is never actually used. While building with GCC 16 this gives a
-warning:
+Remove duplicate word 'and' in driver-core.rst.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_mall_phantom.c: In function ‘set_phantom_stream_timing’:
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_mall_phantom.c:657:25: warning: variable ‘pipe_idx’ set but not used [-Wunused-but-set-variable=]
-  657 |         unsigned int i, pipe_idx;
-      |                         ^~~~~~~~
-
-Signed-off-by: Brahmajit Das <listout@listout.xyz>
+Signed-off-by: Kathara Sasikumar <katharasasikumar007@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Hi,
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-index a56e75cdf712..1d0af0f8ffa1 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-@@ -654,14 +654,13 @@ static void set_phantom_stream_timing(struct dml2_context *ctx, struct dc_state
- 				     unsigned int svp_height,
- 				     unsigned int svp_vstartup)
- {
--	unsigned int i, pipe_idx;
- 	double line_time, fp_and_sync_width_time;
- 	struct pipe_ctx *pipe;
- 	uint32_t phantom_vactive, phantom_bp, pstate_width_fw_delay_lines;
- 	static const double cvt_rb_vblank_max = ((double) 460 / (1000 * 1000));
+This patch is part of my work for the LFX Linux Kernel Mentorship
+Program (LKMP). 
+I would appreciate any feedback.
+
+Thanks,
+Kathara
+
+ Documentation/gpu/amdgpu/driver-core.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/gpu/amdgpu/driver-core.rst b/Documentation/gpu/amdgpu/driver-core.rst
+index 81256318e93c..bd4be32f2725 100644
+--- a/Documentation/gpu/amdgpu/driver-core.rst
++++ b/Documentation/gpu/amdgpu/driver-core.rst
+@@ -65,7 +65,7 @@ SDMA (System DMA)
  
- 	// Find DML pipe index (pipe_idx) using dc_pipe_idx
--	for (i = 0, pipe_idx = 0; i < ctx->config.dcn_pipe_count; i++) {
-+	for (unsigned int i = 0; i < ctx->config.dcn_pipe_count; i++) {
- 		pipe = &state->res_ctx.pipe_ctx[i];
- 
- 		if (!pipe->stream)
-@@ -669,8 +668,6 @@ static void set_phantom_stream_timing(struct dml2_context *ctx, struct dc_state
- 
- 		if (i == dc_pipe_idx)
- 			break;
--
--		pipe_idx++;
- 	}
- 
- 	// Calculate lines required for pstate allow width and FW processing delays
+ GC (Graphics and Compute)
+     This is the graphics and compute engine, i.e., the block that
+-    encompasses the 3D pipeline and and shader blocks.  This is by far the
++    encompasses the 3D pipeline and shader blocks.  This is by far the
+     largest block on the GPU.  The 3D pipeline has tons of sub-blocks.  In
+     addition to that, it also contains the CP microcontrollers (ME, PFP, CE,
+     MEC) and the RLC microcontroller.  It's exposed to userspace for user mode
 -- 
-2.51.0
+2.47.2
 
