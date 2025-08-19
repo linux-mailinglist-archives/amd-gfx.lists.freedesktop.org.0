@@ -2,53 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA07DB2DC86
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 14:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE75BB2C50D
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Aug 2025 15:17:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95D1310E71C;
-	Wed, 20 Aug 2025 12:32:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7001210E5F0;
+	Tue, 19 Aug 2025 13:17:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A+Eq/JcV";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id A3A8510E18B;
- Tue, 19 Aug 2025 13:15:56 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0830C16A3;
- Tue, 19 Aug 2025 06:15:48 -0700 (PDT)
-Received: from [10.1.196.50] (e121345-lin.cambridge.arm.com [10.1.196.50])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 078263F58B;
- Tue, 19 Aug 2025 06:15:51 -0700 (PDT)
-Message-ID: <67a0d778-6e2c-4955-a7ce-56a10043ae8d@arm.com>
-Date: Tue, 19 Aug 2025 14:15:50 +0100
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+ [209.85.214.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1125C10E5F0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Aug 2025 13:17:06 +0000 (UTC)
+Received: by mail-pl1-f178.google.com with SMTP id
+ d9443c01a7336-24498e93b8fso2681245ad.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Aug 2025 06:17:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755609425; x=1756214225; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=SpWvlWapLEQh9xT7EisLgC/BexiUkkitroZ2vGUFE3g=;
+ b=A+Eq/JcVmOif6tc5bDcFgzdX2lR1DxokqCkgwHZQqmDITaJtMDVz+aCXhvyvtpzt6o
+ b9R6JnDuMFxJaehocG5w+5Ntnkc3xvbtE0EZP+j3Tuvusc6Y5nCxbwkM4htKrhgjO5jP
+ bMB9aEOJ+PEnsp1Nq5ITiR8RadkaAO/6RU3IG6KjFnqZBpG3zSNJ1KchtXMJ68bb8NVC
+ qo4VYKU/4HSXp2LIsmwPP2gtDmLag0WqcwfOXMKgLf4Ie54OIucmx750ijOioxoDZRGK
+ 1aqCcDM4cxLWfngeY0NmawUKGBVvazEhiVo5WvHqV/eAsLbzt5SPNuU3IppBw09pbtuj
+ ZvSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755609425; x=1756214225;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=SpWvlWapLEQh9xT7EisLgC/BexiUkkitroZ2vGUFE3g=;
+ b=vGEwaB2261GExisfDdDq5/ko+R03ppLg+46hJoUn9xHaE6S54qVC8xBJSCe9N4Er8p
+ 7Xdruwes+RmDPGL8lPx8L98NZAlFI4wPYqA2an3oZ+dK68aZy8SSTQjGsmxQGwvGEK/4
+ 5lVVAUQT4B4hpmdUVO12008UVOqLXO49Jyi3UAIoWEHWtBITNpDQ7L70NGbwkYgUZGbU
+ L3tmM89lk0A7H1T3sHDYsUT88Nqa6c37lM8Y5CpcQEVDdG6d2fYXAk4hWjDjknxPiFiA
+ HqjNKzyMGk8vX9I+X+/Ma2keXZ/O7QHu7mYXwt9sRiXAowJZw+Ydw0HjAhOlsB0ylyNX
+ knNw==
+X-Gm-Message-State: AOJu0YydpTmp0m+XbE1FAtvOSN3Q8uKEAFjeNI7441lPYzjHUhrqTcG4
+ alztLzYWGyoDcQHE0MiWTAiW6ZigI7rT8fkCJYyJ7EcqxwJxMQ76bkd6naMFw+9EiydMPkjfzGm
+ M/gdDcCBNpu+euv4IdBs9xgsim3NFgW91IQ==
+X-Gm-Gg: ASbGnctzh50ur6mwHcQfjGdoNzj7m/NyzxZI6sd7+rm5aZPj+F5q+X1tyz4SDkT4s3V
+ WZu2kglS0OOkCCIckwSwpdU8W2OK/wAKarttpaXn2jBGHSO6wfQWwM4yppou+7QDV8Vejywk06Q
+ 07Ke+blIP/7SOSnivNYmv2fvbEXdsTJLNx4fE3/Tvr+HhfgHWwUQpjCsaNikcfA+t1sEE4qUkJJ
+ 8LRQmHrbMo3nzITTA==
+X-Google-Smtp-Source: AGHT+IF7lh2ZJiruN36k2IQYhGJ2yx8MjRIrg2vIaNZWcNOZdvs5mm4M+UYhiIB6XTge3Z3mBNQFxuGXgRPw8kreICU=
+X-Received: by 2002:a17:902:f547:b0:240:1879:c2fd with SMTP id
+ d9443c01a7336-245e02ba0ecmr18641245ad.2.1755609425457; Tue, 19 Aug 2025
+ 06:17:05 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/19] perf: Introduce positive capability for raw events
-From: Robin Murphy <robin.murphy@arm.com>
-To: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
- mark.rutland@arm.com, acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com,
- adrian.hunter@intel.com, kan.liang@linux.intel.com
-Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <542787fd188ea15ef41c53d557989c962ed44771.1755096883.git.robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <542787fd188ea15ef41c53d557989c962ed44771.1755096883.git.robin.murphy@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Wed, 20 Aug 2025 12:32:38 +0000
+References: <20250819090056.444457-1-Jesse.Zhang@amd.com>
+In-Reply-To: <20250819090056.444457-1-Jesse.Zhang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 19 Aug 2025 09:16:54 -0400
+X-Gm-Features: Ac12FXy0z9l_w7mv9sb2lUdYF5UyYcCPE_ElguMozsu8llEen-h0PURLgoHM7lA
+Message-ID: <CADnq5_PdRi9yhi7zqmqMdWn2cRjFcErKy8O17SM4T9Pua068EQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/pm: Add VCN reset message support for SMU v13.0.12
+To: "Jesse.Zhang" <Jesse.Zhang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
+ Christian Koenig <christian.koenig@amd.com>, lijo.lazar@amd.com,
+ leo.liu@amd.com, sonny.jiang@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,141 +82,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 13/08/2025 6:01 pm, Robin Murphy wrote:
-> Only a handful of CPU PMUs accept PERF_TYPE_{RAW,HARDWARE,HW_CACHE}
-> events without registering themselves as PERF_TYPE_RAW in the first
-> place. Add an explicit opt-in for these special cases, so that we can
-> make life easier for every other driver (and probably also speed up the
-> slow-path search) by having perf_try_init_event() do the basic type
-> checking to cover the majority of cases.
-> 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+On Tue, Aug 19, 2025 at 5:08=E2=80=AFAM Jesse.Zhang <Jesse.Zhang@amd.com> w=
+rote:
+>
+> This commit adds support for VCN reset functionality in SMU v13.0.12 by:
+>
+> 1. Adding two new PPSMC messages in smu_v13_0_12_ppsmc.h:
+>    - PPSMC_MSG_ResetVCN (0x5E)
+>    - PPSMC_MSG_CPPipeReset (0x5F)
+>    - Updates PPSMC_Message_Count to 0x60 to account for new messages
+>
+> 2. Adding message mapping for ResetVCN in smu_v13_0_12_ppt.c:
+>    - Maps SMU_MSG_ResetVCN to PPSMC_MSG_ResetVCN
+>
+> These changes enable proper VCN reset handling through the SMU firmware
+> interface for compatible AMD GPUs.
+>
+> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
 > ---
-> 
-> A further possibility is to automatically add the cap to PERF_TYPE_RAW
-> PMUs in perf_pmu_register() to have a single point-of-use condition; I'm
-> undecided...
-> ---
->   arch/s390/kernel/perf_cpum_cf.c    |  1 +
->   arch/s390/kernel/perf_pai_crypto.c |  2 +-
->   arch/s390/kernel/perf_pai_ext.c    |  2 +-
->   arch/x86/events/core.c             |  2 +-
->   drivers/perf/arm_pmu.c             |  1 +
->   include/linux/perf_event.h         |  1 +
->   kernel/events/core.c               | 15 +++++++++++++++
->   7 files changed, 21 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/s390/kernel/perf_cpum_cf.c b/arch/s390/kernel/perf_cpum_cf.c
-> index 1a94e0944bc5..782ab755ddd4 100644
-> --- a/arch/s390/kernel/perf_cpum_cf.c
-> +++ b/arch/s390/kernel/perf_cpum_cf.c
-> @@ -1054,6 +1054,7 @@ static void cpumf_pmu_del(struct perf_event *event, int flags)
->   /* Performance monitoring unit for s390x */
->   static struct pmu cpumf_pmu = {
->   	.task_ctx_nr  = perf_sw_context,
-> +	.capabilities = PERF_PMU_CAP_RAW_EVENTS,
->   	.pmu_enable   = cpumf_pmu_enable,
->   	.pmu_disable  = cpumf_pmu_disable,
->   	.event_init   = cpumf_pmu_event_init,
-> diff --git a/arch/s390/kernel/perf_pai_crypto.c b/arch/s390/kernel/perf_pai_crypto.c
-> index a64b6b056a21..b5b6d8b5d943 100644
-> --- a/arch/s390/kernel/perf_pai_crypto.c
-> +++ b/arch/s390/kernel/perf_pai_crypto.c
-> @@ -569,7 +569,7 @@ static const struct attribute_group *paicrypt_attr_groups[] = {
->   /* Performance monitoring unit for mapped counters */
->   static struct pmu paicrypt = {
->   	.task_ctx_nr  = perf_hw_context,
-> -	.capabilities = PERF_PMU_CAP_SAMPLING,
-> +	.capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->   	.event_init   = paicrypt_event_init,
->   	.add	      = paicrypt_add,
->   	.del	      = paicrypt_del,
-> diff --git a/arch/s390/kernel/perf_pai_ext.c b/arch/s390/kernel/perf_pai_ext.c
-> index 1261f80c6d52..bcd28c38da70 100644
-> --- a/arch/s390/kernel/perf_pai_ext.c
-> +++ b/arch/s390/kernel/perf_pai_ext.c
-> @@ -595,7 +595,7 @@ static const struct attribute_group *paiext_attr_groups[] = {
->   /* Performance monitoring unit for mapped counters */
->   static struct pmu paiext = {
->   	.task_ctx_nr  = perf_hw_context,
-> -	.capabilities = PERF_PMU_CAP_SAMPLING,
-> +	.capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->   	.event_init   = paiext_event_init,
->   	.add	      = paiext_add,
->   	.del	      = paiext_del,
-> diff --git a/arch/x86/events/core.c b/arch/x86/events/core.c
-> index 789dfca2fa67..764728bb80ae 100644
-> --- a/arch/x86/events/core.c
-> +++ b/arch/x86/events/core.c
-> @@ -2697,7 +2697,7 @@ static bool x86_pmu_filter(struct pmu *pmu, int cpu)
->   }
->   
->   static struct pmu pmu = {
-> -	.capabilities		= PERF_PMU_CAP_SAMPLING,
-> +	.capabilities		= PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->   
->   	.pmu_enable		= x86_pmu_enable,
->   	.pmu_disable		= x86_pmu_disable,
-> diff --git a/drivers/perf/arm_pmu.c b/drivers/perf/arm_pmu.c
-> index 72d8f38d0aa5..bc772a3bf411 100644
-> --- a/drivers/perf/arm_pmu.c
-> +++ b/drivers/perf/arm_pmu.c
-> @@ -877,6 +877,7 @@ struct arm_pmu *armpmu_alloc(void)
->   		 * specific PMU.
->   		 */
->   		.capabilities	= PERF_PMU_CAP_SAMPLING |
-> +				  PERF_PMU_CAP_RAW_EVENTS |
->   				  PERF_PMU_CAP_EXTENDED_REGS |
->   				  PERF_PMU_CAP_EXTENDED_HW_TYPE,
->   	};
-> diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
-> index 183b7c48b329..c6ad036c0037 100644
-> --- a/include/linux/perf_event.h
-> +++ b/include/linux/perf_event.h
-> @@ -305,6 +305,7 @@ struct perf_event_pmu_context;
->   #define PERF_PMU_CAP_EXTENDED_HW_TYPE	0x0100
->   #define PERF_PMU_CAP_AUX_PAUSE		0x0200
->   #define PERF_PMU_CAP_AUX_PREFER_LARGE	0x0400
-> +#define PERF_PMU_CAP_RAW_EVENTS		0x0800
->   
->   /**
->    * pmu::scope
-> diff --git a/kernel/events/core.c b/kernel/events/core.c
-> index 71b2a6730705..2ecee76d2ae2 100644
-> --- a/kernel/events/core.c
-> +++ b/kernel/events/core.c
-> @@ -12556,11 +12556,26 @@ static inline bool has_extended_regs(struct perf_event *event)
->   	       (event->attr.sample_regs_intr & PERF_REG_EXTENDED_MASK);
->   }
->   
-> +static bool is_raw_pmu(const struct pmu *pmu)
-> +{
-> +	return pmu->type == PERF_TYPE_RAW ||
-> +	       pmu->capabilities & PERF_PMU_CAP_RAW_EVENTS;
-> +}
-> +
->   static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
->   {
->   	struct perf_event_context *ctx = NULL;
->   	int ret;
->   
-> +	/*
-> +	 * Before touching anything, we can safely skip:
-> +	 * - any event for a specific PMU which is not this one
-> +	 * - any common event if this PMU doesn't support them
-> +	 */
-> +	if (event->attr.type != pmu->type &&
-> +	    (event->attr.type >= PERF_TYPE_MAX || is_raw_pmu(pmu)))
-
-Ah, that should be "!is_raw_pmu(pmu)" there (although it's not entirely 
-the cause of the LKP report on the final patch.)
-
-Thanks,
-Robin.
-
-> +		return -ENOENT;
-> +
->   	if (!try_module_get(pmu->module))
->   		return -ENODEV;
->   
-
+>  drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_12_ppsmc.h | 4 +++-
+>  drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c         | 1 +
+>  2 files changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_12_ppsmc.=
+h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_12_ppsmc.h
+> index aff2776a8b6f..037529eb70bb 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_12_ppsmc.h
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_12_ppsmc.h
+> @@ -120,7 +120,9 @@
+>  #define PPSMC_MSG_GetBadPageSeverity                0x5B
+>  #define PPSMC_MSG_GetSystemMetricsTable             0x5C
+>  #define PPSMC_MSG_GetSystemMetricsVersion           0x5D
+> -#define PPSMC_Message_Count                         0x5E
+> +#define PPSMC_MSG_ResetVCN                          0x5E
+> +#define PPSMC_MSG_CPPipeReset                       0x5F
+> +#define PPSMC_Message_Count                         0x60
+>
+>  //PPSMC Reset Types for driver msg argument
+>  #define PPSMC_RESET_TYPE_DRIVER_MODE_1_RESET        0x1
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c b/driv=
+ers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
+> index 32fd0be05cff..a3eb19f702d0 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
+> @@ -136,6 +136,7 @@ const struct cmn2asic_msg_mapping smu_v13_0_12_messag=
+e_map[SMU_MSG_MAX_COUNT] =3D
+>         MSG_MAP(RmaDueToBadPageThreshold,            PPSMC_MSG_RmaDueToBa=
+dPageThreshold,        0),
+>         MSG_MAP(SetThrottlingPolicy,                 PPSMC_MSG_SetThrottl=
+ingPolicy,             0),
+>         MSG_MAP(ResetSDMA,                           PPSMC_MSG_ResetSDMA,=
+                       0),
+> +       MSG_MAP(ResetVCN,                            PPSMC_MSG_ResetVCN, =
+                       0),
+>         MSG_MAP(GetStaticMetricsTable,               PPSMC_MSG_GetStaticM=
+etricsTable,           1),
+>         MSG_MAP(GetSystemMetricsTable,               PPSMC_MSG_GetSystemM=
+etricsTable,           0),
+>  };
+> --
+> 2.49.0
+>
