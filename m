@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B614B2E656
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 22:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45FE4B2E65B
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 22:21:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98DF910E7E8;
-	Wed, 20 Aug 2025 20:21:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11C7110E7ED;
+	Wed, 20 Aug 2025 20:21:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JXiluoeZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iFmaGmT0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2076.outbound.protection.outlook.com [40.107.212.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41AA010E7E8
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 20:21:16 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2070.outbound.protection.outlook.com [40.107.94.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 954AC10E7E6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 20:21:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hgzcshwlnieApnWzFHFwPK0xKIudzVKoncanXFzRZvijyHjgwpb8yuEDSwvFlhCzW6lO9BURYevTdyQMVYY42d6ADdEnoQOqLyQxyhKcY71fa5Jiikhtcesiu3c+YqTfxkKjv1JVQ6in/ESRlMftpvgI1VI1i1Ylzu2JwUi/mmqeINwmY3ZjmJecFcw6E8hc19wkm03OToXUwqiSXJeRmBdDj10/O1u/34F+qZsdFBhV52u4qHyC2L6TGdSCbZQ1aDGMHnV8gQt3pD6v6wQL3gDYVMeOLrxAZHhRBxPK8ZtfjuVHPh2NllShQbCRYlito5YOlUpJA/F8e4I98aOsDA==
+ b=gvvVhNZ2hh8sAp+o4m2L5EjRhRI1yYd3p0ZJ8nQGko3w4tDhXOyWrdn3daHe9YHRBodp0HGk/sAr6WZr/Y3a1jVpNBVLd9GVyQfFe/iXN3xnIFUJ188cSS12VqbTs/vtUg7PBYP1KHyDCGFth4wPxJZL+TyqmA0JyQHpBWLOZAxzvM9ql0ph7ZyweB0EWZYvrvgQgQACry+Aiyz4/U68Q8i+y+RpFP9Rz3qG5ZW+OhUZ1Pdq8LsSaMp+iP1JayVe7Aybim/qIsx7KoFn8RIxGcoTpUptqaDaFXRynLAS4VP7v1vLkCfTK1LGzHWi3L6otaVy001cMi/wtsQ68ja6JQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bhqb2/GBpAJPU3dK2uGpc2R1cv6sy/QWVkbGSQzEwYI=;
- b=spU9lrxFUfHorOa/0/OqU7aEvxFUF53hQQCzStxP//DTVSj22y4VBSSVK58MLCbr9T3YLsJjF5SzRf7f80btWZEh+EFOBA0Zv0Sr1Nt+EvBJwZZn8bvLvb5HfbWbEXWWggqSjKplXsOf1HWiVTjowWjX5aQCJvlLwdEAOxo6alyjld2VNWJzs98MuSOafblrmpqVL7uPJEwBz+jTrt0r3BancAamJNHw/RX1D8pqcL1FqvSckq5yxVjDjHeUnAQg8WeOf0GIdZvRuT7u6vjPaZcqZw7DM7+5+IPopPHa0L1YgbeMfvvhEks7qDmPA5Mw+sdouM8OC0F6wksDBzueFA==
+ bh=4YSCM+2YS3heT9Qpf0zCxcDurzVTVSrouQXdk6qsY+8=;
+ b=rz+/xgJjomZkvlvAFVYO7U1qGTbAPSfKuMPI6HkOmV8FKyffgC6DZEgMJ8NwUc6C+BENtoMJ2FnUixB6GZFFMz0VMmZpRNzaF+DVbRtQtLSN84GpQ6ZUnQaQTPtXLHGbHHV9ByLvljNhe0QzPp79n8b90PSl2stEPJ8+diByNXv85ODlrX7w0k4tGTyD9NC7dhMErUdTcggvNzMY8aeFMxCRW5OCaredd9AIYbVh6FTuLC88SqAr/PFmeO1r6O2/hiemPV3RDaMHWdNN8sOo6256kpe3qdF4vJ7jaOTyk2zyv9f6BcMuMAl9gwdE+dYTLMgyOTSICfljK6erSKLCfg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bhqb2/GBpAJPU3dK2uGpc2R1cv6sy/QWVkbGSQzEwYI=;
- b=JXiluoeZg92LSfLncEq4y3UiIbPtged41gC9MF+OuXrEnen9L+NRN9bSoy9yw3nXwbz7at+62Z7cpClfo/7P2c5bIi04ZUNWJEC+ClWb4mpAXQ5NFyTCZ2ifZ3g2AHD1QdI0G8skkjnb4mIRk8SPdA8JW9AqqqmbIxfecvkMabw=
-Received: from DM6PR06CA0037.namprd06.prod.outlook.com (2603:10b6:5:54::14) by
- CY8PR12MB8068.namprd12.prod.outlook.com (2603:10b6:930:75::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9052.13; Wed, 20 Aug 2025 20:21:12 +0000
-Received: from CY4PEPF0000EE39.namprd03.prod.outlook.com
- (2603:10b6:5:54:cafe::23) by DM6PR06CA0037.outlook.office365.com
- (2603:10b6:5:54::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.14 via Frontend Transport; Wed,
+ bh=4YSCM+2YS3heT9Qpf0zCxcDurzVTVSrouQXdk6qsY+8=;
+ b=iFmaGmT0tkO6IUgnPFD+ESfHGjKSaUHb3jZ5iVuwXTUprTs03itAJi56SuD7cUs1gnODuCzUsANU32fngPRw96BsH65D2ll5wceCp2AaI99yS5DH0wnjgV99lAVxHvLjLOrEuCIR7oaCNakqBOWO7ZdI0gCzMD6JNSm3cWjuEDQ=
+Received: from CH0PR03CA0031.namprd03.prod.outlook.com (2603:10b6:610:b3::6)
+ by SN7PR12MB8131.namprd12.prod.outlook.com (2603:10b6:806:32d::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.14; Wed, 20 Aug
+ 2025 20:21:12 +0000
+Received: from DS2PEPF0000343B.namprd02.prod.outlook.com
+ (2603:10b6:610:b3:cafe::c4) by CH0PR03CA0031.outlook.office365.com
+ (2603:10b6:610:b3::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.13 via Frontend Transport; Wed,
  20 Aug 2025 20:21:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000EE39.mail.protection.outlook.com (10.167.242.11) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS2PEPF0000343B.mail.protection.outlook.com (10.167.18.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.9052.8 via Frontend Transport; Wed, 20 Aug 2025 20:21:12 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+Received: from Satlexmb09.amd.com (10.181.42.218) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 20 Aug
- 2025 15:21:09 -0500
+ 2025 15:21:10 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb09.amd.com
  (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1748.10; Wed, 20 Aug
- 2025 13:21:09 -0700
+ 2025 13:21:10 -0700
 Received: from aaurabin-tumbleweed.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Wed, 20 Aug 2025 15:21:08 -0500
+ via Frontend Transport; Wed, 20 Aug 2025 15:21:09 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -69,12 +69,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Yihan Zhu <Yihan.Zhu@amd.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 08/12] drm/amd/display: wait for otg update pending latch
- before clock optimization
-Date: Wed, 20 Aug 2025 16:19:58 -0400
-Message-ID: <20250820202103.1122706-9-aurabindo.pillai@amd.com>
+ <alex.hung@amd.com>, Clay King <clayking@amd.com>, Joshua Aberback
+ <joshua.aberback@amd.com>
+Subject: [PATCH 09/12] drm/amd/display: Array offset used before range check
+Date: Wed, 20 Aug 2025 16:19:59 -0400
+Message-ID: <20250820202103.1122706-10-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250820202103.1122706-1-aurabindo.pillai@amd.com>
 References: <20250820202103.1122706-1-aurabindo.pillai@amd.com>
@@ -83,52 +82,52 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|CY8PR12MB8068:EE_
-X-MS-Office365-Filtering-Correlation-Id: f68b469a-0909-4c8f-b32b-08dde0271b7a
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343B:EE_|SN7PR12MB8131:EE_
+X-MS-Office365-Filtering-Correlation-Id: 598efdd8-bae7-4436-3f02-08dde0271b51
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?NicfDsU/di+e7d24YSNhNls088XHfsvCUHrGJlbTbXQoUW+6jm3j+YC7UZ52?=
- =?us-ascii?Q?GMLawf7a8RiJDBYEGWZLTFdsVSGWxfwqPFU/hTkGlHTbFuYoFhuqL9Xr4xRE?=
- =?us-ascii?Q?njYtTxywBpLXs07CgH18y4Z63yt5AzDz5HluOkHgVeLD2XktShLX30X0fG6E?=
- =?us-ascii?Q?MmCf/I4tyP+9XvFaDdW/qqmld7AdOQ0AeL3IuFaO/u2I+FMRcvp+bleW9HaV?=
- =?us-ascii?Q?ogcJmhDql47nTxsGbiHL31yAF34TavTwRhzbFaxxcWMrYsHy5z/KR31K+Xin?=
- =?us-ascii?Q?BMtf2FyNZRBm8X+ihd+LxtivPFbeb53bnnS7qEzcJ8x7G/gBUDwhtliZJGnm?=
- =?us-ascii?Q?E3WMuhI5NmKL5tJsmWl56dqPF+cpQPv1lVXGN8ijpQECY7Dog4MOjEdKEN4Y?=
- =?us-ascii?Q?9QxviTsrwrfjNSY8IRSkS1XqwzlbgxLd280WYXc4EsLAv9aXSFe3Wkm1oHjH?=
- =?us-ascii?Q?i2UusIFcuXgvfk9nmpvitab3s0NKWoUPZ/84KvOU8S9KvNsydwz3UcODncBn?=
- =?us-ascii?Q?oUzqekvjZH3ue/s5Fne0uwydUiqb4ZrFuxoLOe1TcMWp3EmwaDL3OkZkZYpC?=
- =?us-ascii?Q?I/kEYzCsEkogH+Djw8oVN4W/mZZLu3v8z1FoxhMp/UxQGBVYtIrL9ah6Bjg4?=
- =?us-ascii?Q?eNzwBJ0NmN7rUz4xQ9JeCeX/0Nabp4RFs3I5EEzaKVJTK8R+i0I6XnPrVPKF?=
- =?us-ascii?Q?XogwPLCPUx4cbIyG2QTksOhr07yREURnNtQoxbAQJO5pPkVFWMFdAnQJtYXs?=
- =?us-ascii?Q?UbeYqk2lrG9yQTH1cTy/xFp1LoCEkRTKSTzrDfSXYzXHUqID17XN84i+GMGL?=
- =?us-ascii?Q?KdPYcSU9+PTuPANcie9JvPMQWE2DQJT6jkYOn4Ovr3Aci8UkVzkIFky7t8kT?=
- =?us-ascii?Q?NvHXZg+Y3oaPmCXCMZk1Iee0OlIeZpgKEFJCz2rIObfURbN+IpNnaAay9H9i?=
- =?us-ascii?Q?SxAIYNjbC3gjoHZgbhgGW5RfD6OKe+rISIUpS37+tWZHIISpVdq8vYgL/Pid?=
- =?us-ascii?Q?kekFJUZ/w+T+FexBO7DzWD5Ss2qzLOBhRUg0SV0F68pt2tcQH1R7KhXOSWCe?=
- =?us-ascii?Q?M6x3mDJAdavpIYGxUGloRFz79XUslbyM0FM/y+NdDzaSdX/+Ssw6XTOzunEI?=
- =?us-ascii?Q?faXqdvY0fXcLuQhDAUJ5ky6QfS00umn8iUDVyI4sPXlVMYRcWGszxAao6Aeg?=
- =?us-ascii?Q?F2J/HDTYwTVJKuHn7COlmZ8jH8rmiyqb5SFcPxfZkzr17uSfO2IrwWje61JK?=
- =?us-ascii?Q?LxmjN2TS21hnEZcTqZ6YxnJq5Aj7yCrwcIZNO3pathyZ9d1S8VH8P1Lb9Xeo?=
- =?us-ascii?Q?7GYyL0neB9KJSFKINF5+vjOaXA+3dSx4aEOs0+JSFLYYA/4wSNbPIu1aVjYf?=
- =?us-ascii?Q?GtFBgz4icP3Iu/U7azxGoIf52PgA8xZJYPrKBJr2rDiUe2hlcKFkjOxrRfkM?=
- =?us-ascii?Q?oe/t0NtYiU/8gSSBNESTHiWNU0cEd3mZKIKsG8+caTlKOTSlJMeyX9j2SoYn?=
- =?us-ascii?Q?tftfTLf0yLIVpLisw3BxumZ8wAoCj5fatmj0?=
+ ARA:13230040|1800799024|82310400026|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2BEHb1hcS9/F+5nqwdl2RSmPIjEKqKF6hh0UypsX0rZn+1RPHJh5j9ZKwObW?=
+ =?us-ascii?Q?riZo580SDV3oomQDneVPwwH0E7Wuv8ShDF0UzM89z1RHqhiXE8jbXXuKc1DW?=
+ =?us-ascii?Q?ksRMHJnvrJJPuUS3BBm3P60wxpfLQCHT4WXiZtYzn5kOKvYnS+TvZNJuZ9Ut?=
+ =?us-ascii?Q?eY0ea04XtstXGBBABeE8spa9lmyQu+h8BkHyVJ0GHDgX6Fp483Yh0RybnN1o?=
+ =?us-ascii?Q?8sCuK68DZ42vSvHszMKxrheAANTnZGCkRuGzhS1IQTHEymMzfcMnihZEexmh?=
+ =?us-ascii?Q?kNQl1+yW52Lg9HCGN1RUui+hKOKfI9VNoOgHb13ivXXUxGlIb3VDWz1FUxub?=
+ =?us-ascii?Q?UZDrJa5NTsZRROdml+EHAInAuHCPs5FtPPNPWFEkbX3EzkmDNfZ3TKKOEaqx?=
+ =?us-ascii?Q?XW4Cgl20i4PRBkbeCpdJOWfotxpRarnir6tMqtG5e4Hkp1sIuRZuHq3VhEp2?=
+ =?us-ascii?Q?PrVTHuBMqGFIqBJYaXA0dXBHYvAmoWyIt2lsZ399LTQNjC/nBbs16Kw5fjWy?=
+ =?us-ascii?Q?gdYVHZkhjKutGIEKnwhNxOZh2gzpdLvWMkp5IDkyjtDU6C9gvkWhO6QcX6kM?=
+ =?us-ascii?Q?PUCW/O3izptZFKxCOsGD4weY0X0RL9w4Kc3hVb7/jYlWhuy3LrQQ3rBMMpuH?=
+ =?us-ascii?Q?qK3zrxVfV9G+pRsZbiM9zI0G7E+6BPF9o/RTwQZNO/Ohle/ZCuP19FhQl5il?=
+ =?us-ascii?Q?CH9+7SMJnBR6t7Ix94+AIId5NXBIrqS3Pc4UROyzgf8vmpEd/5Py79eU1Qep?=
+ =?us-ascii?Q?QOXpdw1/gvMnOvkU6cevpkqe7hEPMXY0o+NiwBdUYnHmx9LajYg7OIgeWpTP?=
+ =?us-ascii?Q?H/ex0s9z+iVbdTiIaZ1TnnPrbh+4yj8butHMNjyiaVRdYP00BrfcZQ8Lv0NW?=
+ =?us-ascii?Q?jxIhx8UxPlJXypkb42k8D2oA0lKs6WmY/+BrKSfJHr9TsUWGeJRmup10mYrv?=
+ =?us-ascii?Q?NIgbB82o3yDahGGtkpHfMVJ2W4JMT7aWOWk9vmVqfcj8vL2cHKMlr8zOX1By?=
+ =?us-ascii?Q?dyALHfUsjphJYMxDJvbrf8ERNS4J/t0Ucjj158eaz25UbwFpBWgkO8XORQif?=
+ =?us-ascii?Q?R0t0RRTBxrfNJMG7zUoHV3mRcMIEH3qSEh1XS6DVh5hrPKorBO/4j/aiAPBV?=
+ =?us-ascii?Q?wAJzd8Cglr3UnOYFi4oPIOTXpZVIVjaQ0WjE6Ag6502vr8YHAxaTqXrykyqv?=
+ =?us-ascii?Q?uPcMgpN8RAVmaoAAQ9xDW9IpzQ5adh1CnFOh18P857Iy/kB9peYcaVDZm+F2?=
+ =?us-ascii?Q?oCzbK83Lj5722jpqqu1lAXq1b88WOB1ck6bocsJBHYbuLb0CBsu6AYs4Yy0W?=
+ =?us-ascii?Q?kvHVG1ByLLBMV9T25h2MVN7+Bmbwx6YntiNW5CVuDv+L/XXRw89XRdkeofG2?=
+ =?us-ascii?Q?jg+9kyDmD6a5e0RjmBg8bGU7X6pKKhGbJHcSbS25MsrXOnE5zTyzwps+ZBH4?=
+ =?us-ascii?Q?enh0qj4nW7NavqqWPwZBYCW/fuIpDYtvZpNZZi+CdZZG0NP2xE76XSqCY+PE?=
+ =?us-ascii?Q?etdmFw1KKE1YBkxRj/kF5kOqFLTGwT/ljpUF?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 20:21:12.4975 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f68b469a-0909-4c8f-b32b-08dde0271b7a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 20:21:12.2323 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 598efdd8-bae7-4436-3f02-08dde0271b51
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE39.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343B.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8068
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8131
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,102 +142,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yihan Zhu <Yihan.Zhu@amd.com>
+From: Clay King <clayking@amd.com>
 
-[WHY & HOW]
-OTG pending update unlatched will cause system fail, wait OTG fully disabled to
-avoid this error.
+Consolidating multiple CodeQL Fixes for alerts with rule id: cpp/offset-use-before-range-check
 
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Yihan Zhu <Yihan.Zhu@amd.com>
+Reviewed-by: Joshua Aberback <joshua.aberback@amd.com>
+Signed-off-by: Clay King <clayking@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../drm/amd/display/dc/core/dc_hw_sequencer.c  |  2 ++
- .../amd/display/dc/inc/hw/timing_generator.h   |  1 +
- .../drm/amd/display/dc/optc/dcn32/dcn32_optc.h |  1 +
- .../drm/amd/display/dc/optc/dcn35/dcn35_optc.c | 18 ++++++++++++++++++
- 4 files changed, 22 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c         | 2 +-
+ drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c         | 2 +-
+ drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c           | 2 +-
+ drivers/gpu/drm/amd/display/dc/dml/dcn321/dcn321_fpu.c         | 2 +-
+ drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index ec4e80e5b6eb..d82b1cb467f4 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -1177,6 +1177,8 @@ void hwss_wait_for_odm_update_pending_complete(struct dc *dc, struct dc_state *c
- 		tg = otg_master->stream_res.tg;
- 		if (tg->funcs->wait_odm_doublebuffer_pending_clear)
- 			tg->funcs->wait_odm_doublebuffer_pending_clear(tg);
-+		if (tg->funcs->wait_otg_disable)
-+			tg->funcs->wait_otg_disable(tg);
- 	}
- 
- 	/* ODM update may require to reprogram blank pattern for each OPP */
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h b/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
-index 267ace4eef8a..f2de2cf23859 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
-@@ -374,6 +374,7 @@ struct timing_generator_funcs {
- 	void (*wait_drr_doublebuffer_pending_clear)(struct timing_generator *tg);
- 	void (*set_long_vtotal)(struct timing_generator *optc, const struct long_vtotal_params *params);
- 	void (*wait_odm_doublebuffer_pending_clear)(struct timing_generator *tg);
-+	void (*wait_otg_disable)(struct timing_generator *optc);
- 	bool (*get_optc_double_buffer_pending)(struct timing_generator *tg);
- 	bool (*get_otg_double_buffer_pending)(struct timing_generator *tg);
- 	bool (*get_pipe_update_pending)(struct timing_generator *tg);
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.h
-index d159e3ed3bb3..ead92ad78a23 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.h
-@@ -62,6 +62,7 @@
- 	SF(OTG0_OTG_CONTROL, OTG_DISABLE_POINT_CNTL, mask_sh),\
- 	SF(OTG0_OTG_CONTROL, OTG_FIELD_NUMBER_CNTL, mask_sh),\
- 	SF(OTG0_OTG_CONTROL, OTG_OUT_MUX, mask_sh),\
-+	SF(OTG0_OTG_CONTROL, OTG_CURRENT_MASTER_EN_STATE, mask_sh),\
- 	SF(OTG0_OTG_STEREO_CONTROL, OTG_STEREO_EN, mask_sh),\
- 	SF(OTG0_OTG_STEREO_CONTROL, OTG_STEREO_SYNC_OUTPUT_LINE_NUM, mask_sh),\
- 	SF(OTG0_OTG_STEREO_CONTROL, OTG_STEREO_SYNC_OUTPUT_POLARITY, mask_sh),\
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c b/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c
-index 72bff94cb57d..52d5ea98c86b 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c
-@@ -162,6 +162,8 @@ static bool optc35_disable_crtc(struct timing_generator *optc)
- 	REG_WAIT(OTG_CLOCK_CONTROL,
- 			OTG_BUSY, 0,
- 			1, 100000);
-+	REG_WAIT(OTG_CONTROL, OTG_CURRENT_MASTER_EN_STATE, 0, 1, 100000);
-+
- 	optc1_clear_optc_underflow(optc);
- 
- 	return true;
-@@ -428,6 +430,21 @@ static void optc35_set_long_vtotal(
- 	}
- }
- 
-+static void optc35_wait_otg_disable(struct timing_generator *optc)
-+{
-+	struct optc *optc1;
-+	uint32_t is_master_en;
-+
-+	if (!optc || !optc->ctx)
-+		return;
-+
-+	optc1 = DCN10TG_FROM_TG(optc);
-+
-+	REG_GET(OTG_CONTROL, OTG_MASTER_EN, &is_master_en);
-+	if (!is_master_en)
-+		REG_WAIT(OTG_CLOCK_CONTROL, OTG_CURRENT_MASTER_EN_STATE, 0, 1, 100000);
-+}
-+
- static const struct timing_generator_funcs dcn35_tg_funcs = {
- 		.validate_timing = optc1_validate_timing,
- 		.program_timing = optc1_program_timing,
-@@ -479,6 +496,7 @@ static const struct timing_generator_funcs dcn35_tg_funcs = {
- 		.set_odm_bypass = optc32_set_odm_bypass,
- 		.set_odm_combine = optc35_set_odm_combine,
- 		.get_optc_source = optc2_get_optc_source,
-+		.wait_otg_disable = optc35_wait_otg_disable,
- 		.set_h_timing_div_manual_mode = optc32_set_h_timing_div_manual_mode,
- 		.set_out_mux = optc3_set_out_mux,
- 		.set_drr_trigger_window = optc3_set_drr_trigger_window,
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c
+index 8da97a96b1ce..8d7c59ec701d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c
+@@ -280,7 +280,7 @@ void dcn302_fpu_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_p
+ 		j = 0;
+ 		/* create the final dcfclk and uclk table */
+ 		while (i < num_dcfclk_sta_targets && j < num_uclk_states && num_states < DC__VOLTAGE_STATES) {
+-			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j] && i < num_dcfclk_sta_targets) {
++			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j]) {
+ 				dcfclk_mhz[num_states] = dcfclk_sta_targets[i];
+ 				dram_speed_mts[num_states++] = optimal_uclk_for_dcfclk_sta_targets[i++];
+ 			} else {
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c
+index e968870a4b81..b5d3fd4c3694 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c
+@@ -285,7 +285,7 @@ void dcn303_fpu_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_p
+ 		j = 0;
+ 		/* create the final dcfclk and uclk table */
+ 		while (i < num_dcfclk_sta_targets && j < num_uclk_states && num_states < DC__VOLTAGE_STATES) {
+-			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j] && i < num_dcfclk_sta_targets) {
++			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j]) {
+ 				dcfclk_mhz[num_states] = dcfclk_sta_targets[i];
+ 				dram_speed_mts[num_states++] = optimal_uclk_for_dcfclk_sta_targets[i++];
+ 			} else {
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+index 7cd7bddea423..18388fb00be8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -3229,7 +3229,7 @@ void dcn32_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_pa
+ 			j = 0;
+ 			// create the final dcfclk and uclk table
+ 			while (i < num_dcfclk_sta_targets && j < num_uclk_states && num_states < DC__VOLTAGE_STATES) {
+-				if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j] && i < num_dcfclk_sta_targets) {
++				if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j]) {
+ 					dcfclk_mhz[num_states] = dcfclk_sta_targets[i];
+ 					dram_speed_mts[num_states++] = optimal_uclk_for_dcfclk_sta_targets[i++];
+ 				} else {
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn321/dcn321_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn321/dcn321_fpu.c
+index 8839faf42207..e0a1dc89ce43 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn321/dcn321_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn321/dcn321_fpu.c
+@@ -779,7 +779,7 @@ void dcn321_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_p
+ 		j = 0;
+ 		// create the final dcfclk and uclk table
+ 		while (i < num_dcfclk_sta_targets && j < num_uclk_states && num_states < DC__VOLTAGE_STATES) {
+-			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j] && i < num_dcfclk_sta_targets) {
++			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j]) {
+ 				dcfclk_mhz[num_states] = dcfclk_sta_targets[i];
+ 				dram_speed_mts[num_states++] = optimal_uclk_for_dcfclk_sta_targets[i++];
+ 			} else {
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
+index 895349d9ca07..201ed863b69e 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
+@@ -2192,7 +2192,7 @@ void dcn30_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
+ 		j = 0;
+ 		// create the final dcfclk and uclk table
+ 		while (i < num_dcfclk_sta_targets && j < num_uclk_states && num_states < DC__VOLTAGE_STATES) {
+-			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j] && i < num_dcfclk_sta_targets) {
++			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j]) {
+ 				dcfclk_mhz[num_states] = dcfclk_sta_targets[i];
+ 				dram_speed_mts[num_states++] = optimal_uclk_for_dcfclk_sta_targets[i++];
+ 			} else {
 -- 
 2.50.1
 
