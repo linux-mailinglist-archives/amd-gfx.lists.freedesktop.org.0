@@ -2,88 +2,154 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27EB5B2DBEC
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 14:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0F28B2DD16
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 14:57:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBF0210E710;
-	Wed, 20 Aug 2025 12:01:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1D1910E713;
+	Wed, 20 Aug 2025 12:57:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VQ217N/b";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xpmCCTWa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47FFA10E710
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 12:01:12 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-3b9e418ba08so3497407f8f.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 05:01:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755691271; x=1756296071; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=nH/BRwI9Nur+Dl6z4fmwsyoHZY9cW+i3zOI3jfzrHLA=;
- b=VQ217N/bTqeAxKbMjXBE69ro1RgA7e7/oIgaC5jViMGH7+uMBq6V6MH1dpewgAQBls
- 841JNUFoKnxpETMXBXEapQtfSMgRJQ9+CNo3h0sG2hcDG3g0vVhcCzcSwASYoeS40YOv
- xcOxfEtQjAu+b8ejdFnMkNjn0bVZq4Q+HORPtmPf2Zwmp93M4IeCck7Vu2eK/fJ2AuMd
- Y1BEkyjpFsgF8mmSm63NWd96G/6NhfTGo7RDG02rQN3drt/XoMoh6SvjHu2jyiWRtuSf
- BeUE7v/KX6E3yBRSjkSKO9vnu1ss2tsGq84g4YF+8ukLRK5wIRpJZROLR4GPHsHBSdO0
- nJMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755691271; x=1756296071;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=nH/BRwI9Nur+Dl6z4fmwsyoHZY9cW+i3zOI3jfzrHLA=;
- b=HJ355FQHX/ij9CfrovznVHR5zlQa2OsjYAV7CWy8U7Giy44zZpu44J6EFl9sHlWLBF
- wYsif/7JCFUIRTaD4v/t1hc/Tdi3QhRDxwnxmRQbhySkgltRLGwVB/m7oBaD6spsZeDT
- mM30fxO70HiA6g43iQFau+F9jq67NhF/ve0g9qbU4nWC43aiM4NGW5+YCKPV5AoKeZ2j
- CQPl+1N8G9yT4y63lAxlzFR8e5um0BwAPDL2DfoMUwqlP7rQ853Np6VKltHocZjdSeaT
- r9MKRCEPPEzUhzUMjt3jX71sGkorvvpNcH07Ewplk7ZLzEPeDEOk/SthWwG3K8ug8kUX
- UHSQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWmni6y2LE0m8gpNOQyfzTdCMhSRXzBGkGpKfQWcceqVXYxUz5EVKft/A1bWPQLHAc6vIu4qgCn@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxkAr1g1qrV98lT9C0wtOGJO85HE47CShtN2/K/yTD0/lrDb6pa
- 84nCqNJv14+gcAYPrPyh4piC1qPKfNrrk7x/HIFCPEMA0g3HREJjlpB0
-X-Gm-Gg: ASbGncvZ3ZnV0zMIG+hsYvZRovUMht3dfY3547Kmaq+P6w9HevIIv6R3QAnMAFfDE8t
- kCQJzGK1SSGRGcIJLeo9CIvKozvy2PY0HnZPmTljY0oc+GQ3lKS5AbAwRPfaSP/+axQbikzKSCU
- G/g0lz8PkutpRzP2lIAKnTCXQbNc+oVfYZNyAekreAaWYqcOlmei+Gii5mr2Ub9WpdrC4Jghgu9
- VpaUIsqb62xvnssWQ7rxolCxCTWDfX4rD3nVIyBTu1vyxczYo4xd85s/oJvxeVulIyKJPcmDHYZ
- x2+jKcZYmMeEvs93wBt3933SCv9qs78j/auX2gFZna6N9cGLvjufDmrWXrghHfnFsL5MId9AHiY
- ciy7K7zZQzh+a4YHSQGcoxid/o5REtZQ7kJ6JbXFkPu+ZCf+aIYTTonps6VAyGftpjQgLGTMvzp
- 8+oSotZpctC+HeonkVPqm5bLv36DsqG3fWYp9sWRhxW3KdU0vzlrj571Pgq4M=
-X-Google-Smtp-Source: AGHT+IHkA8bAtbPH5lMGJ3fTraOsjxY7PQ3eknEJ1+FKKvqrQ+v6ohZ0SqH8pcQGm2eTMPwv1EjfmQ==
-X-Received: by 2002:a05:6000:2303:b0:3b8:dabe:bd78 with SMTP id
- ffacd0b85a97d-3c32e31f84emr2024964f8f.54.1755691270388; 
- Wed, 20 Aug 2025 05:01:10 -0700 (PDT)
-Received: from ?IPv6:2001:4c4e:24d9:d00:9fb6:4062:d31c:4e1b?
- (20014C4E24D90D009FB64062D31C4E1B.dsl.pool.telekom.hu.
- [2001:4c4e:24d9:d00:9fb6:4062:d31c:4e1b])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3c3c85efc57sm1500265f8f.40.2025.08.20.05.01.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Aug 2025 05:01:09 -0700 (PDT)
-Message-ID: <42a1a0c19252420c90c983ccde1c6c85978054da.camel@gmail.com>
-Subject: Re: [PATCH 13/20] drm/amd/display: Add analog link detection
-From: Timur =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
-To: "Wheeler, Daniel" <Daniel.Wheeler@amd.com>, "Wentland, Harry"
- <Harry.Wentland@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Date: Wed, 20 Aug 2025 14:01:09 +0200
-In-Reply-To: <DS0PR12MB653418F9D051FFB2E37C18B09C2FA@DS0PR12MB6534.namprd12.prod.outlook.com>
-References: <20250723155813.9101-1-timur.kristof@gmail.com>
- <20250723155813.9101-14-timur.kristof@gmail.com>
- <fd4adcc9-44bd-4f54-b37c-3eb4dc286b03@amd.com>
- <e68d8be2-4687-4a51-a2ac-1ecc73cef355@amd.com>
- <24b4249761d7edb8df8551350475fd6dce274d93.camel@gmail.com>
- <b06f9e54-c99e-4c4c-b310-ad043daa50ec@amd.com>
- <DS0PR12MB653418F9D051FFB2E37C18B09C2FA@DS0PR12MB6534.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2071.outbound.protection.outlook.com [40.107.237.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73EA310E25F;
+ Wed, 20 Aug 2025 12:56:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=G1X/ik3izdgkHU6eruBQ31NX8QvAUWWywztgcHSPLqj8xMoIliQOP3I+z+T3OUN23OyUqfrsrzvJTyqPbZ8r/ZR5J5Hqy9LA/XLGmm9PXpNyuEIy04eO0pDIa4Y8SRZc5UsBxUexorMYeUTzdM94+A+2TiGmXBTrZw2CfQbC0RDCxRr89DsCtzxEysZsPCIzYv5x6QrO++WGOY8WYjOXh3/Ak+fKlUUDAwQ4+EJLHWFZGaHcor20x89nIx+ynXzA6873MTN0TpcBQgbX6KH5wOTSe9H/GWq2AdFPRN2Dk7R2ePU9pdsm+iTVEKzABFDQYsHHZzsgd8LRJVVDUXTAFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T6i/JzjWGNyufqtvaBI5DsZmZ09Bq8Q0Me8NY2A6l88=;
+ b=GtK6DHnbVvX56tmz+ChoMB+pspkSzYfxA+jCKJG7woqStUumXl0a6a6ufAiozxHEsC4sNlOuHZTgZaxZB/8Dfgs3K9ysh/cdZ/aVNOVK5zg+owhKujd/HjT1+mx8uCM+n8KX7I8Iq6ZpOReyKg/EKwGP5ADOzExb53Sm3CB13BuU0MEmomYAjk48cc5WuUNxgukJLUF+y6aBQN7QE/xy9bb7iISmJ5TAtxpcn7lcHXYLV5tKKrUlu9cwyRRDtxV39V4uL94m/iw+s2oW47VzTWjK6b673/Z2ESsfFIyVVXlxROgSaUItEcctApQ93pHtAkDwjYtJYTOi+nEFyqUEYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T6i/JzjWGNyufqtvaBI5DsZmZ09Bq8Q0Me8NY2A6l88=;
+ b=xpmCCTWa0lGWZQSzLkuqZoGyXLYuRvIL/4Z+6VJhrio3VPUyGRB0nIQKeWMSHKe3jKZe/TWvi6GKEqwcJWXFL0QOrHbaxdjTYnPUzPOdzXCSibwhcNxn8j0aHYq/YEBLoiS9dH0XnThsyD4XvAFdUPmbKFq6jGHPCbpyDhfkqGE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
+ by SA1PR12MB8120.namprd12.prod.outlook.com (2603:10b6:806:331::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.14; Wed, 20 Aug
+ 2025 12:56:56 +0000
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::a929:e8eb:ef22:6350]) by PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::a929:e8eb:ef22:6350%6]) with mapi id 15.20.9031.023; Wed, 20 Aug 2025
+ 12:56:56 +0000
+Message-ID: <46e7434e-15c7-437f-9b9e-6959f14025ca@amd.com>
+Date: Wed, 20 Aug 2025 18:26:44 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/buddy: Separate clear and dirty free block
+ trees
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+References: <20250724104640.2319-1-Arunpravin.PaneerSelvam@amd.com>
+ <20250724104640.2319-2-Arunpravin.PaneerSelvam@amd.com>
+ <50c7331b-b945-4465-a7b4-0bf1b7565a96@intel.com>
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <50c7331b-b945-4465-a7b4-0bf1b7565a96@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BMXPR01CA0080.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:54::20) To PH8PR12MB7301.namprd12.prod.outlook.com
+ (2603:10b6:510:222::12)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|SA1PR12MB8120:EE_
+X-MS-Office365-Filtering-Correlation-Id: 15e8a1f8-5079-4c1e-fcd5-08dddfe90ab1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aWpVYXNwMXdVTGRGd01yWjduMlpoNFB2Q2djeTZPbUprQlVwdGpNVUd1Nzhp?=
+ =?utf-8?B?eDFWWVl4TS9RWEpTVEVGVldDWG1EZmVGemltZ0RFa2krNzhLcGw4NCtaVGJI?=
+ =?utf-8?B?MUhZcUVjRU0xZE9IVWJyUHozZWg0b09Gc1N4RkxTblFCYlFHTTNuRXd3UEto?=
+ =?utf-8?B?Q3NLQ1h6WFJsZXVROGdBaHd3ZUp6Q1JtUjF5dEVCQlM0VUNZd3haN2k5elFh?=
+ =?utf-8?B?bG5vYlR4Q09MdFV1QTc0VnIzQlNPdksrWDdNRld5Q0gwcEErYlZaNG9LSEgv?=
+ =?utf-8?B?T2pYQmhIMHNtRkNpMnZEWGRodXBRekpGem5aR0VKaldyWlk5V1hWc1Y3Sk5s?=
+ =?utf-8?B?RVdZSlplelp0M1VHNXM0U2ZZNUlKRTEyd2MxN1I5WVpFOTc5LzRMdzA0S3hU?=
+ =?utf-8?B?Qk55blJHZjB5WUlnYUYyRXdHMG5jaFBGV3BoTUpnYWdSQnNwamVtZ1lMTHl1?=
+ =?utf-8?B?OC9jcWMxRHJKa1lDcFZMNElQV0tmd3cvTnB4ZE9uRjJWak8vall3dnkzUmV4?=
+ =?utf-8?B?c2R6STR3bDVCbnR5VGwra2NvazZGK1RGQWdoa29WQUtaRUZiZDhUaUhGenNF?=
+ =?utf-8?B?bUkvVEN5UHlwTHVSN21Uc2hBTzJpTVBmYnNERWZlU0dWNUkyNUwwL1NXSG1H?=
+ =?utf-8?B?WVUxZlJhdmRFZ29EMnJWQ2ErdGZFRkMwMW5Obm1rRmxiSks2ZjEyQ3RTMTRn?=
+ =?utf-8?B?WDJlbkN3c051K3NlcFVjUEQ3SUdLNS83NXZEUXo0WXQ4dzhXZEUweE5TQzhE?=
+ =?utf-8?B?OEhsS2Q3OTJTQ00wU2NldlpjUXFrZElkUmVMRzdEM2hwSXZYemNBNmhkdzds?=
+ =?utf-8?B?UzVidzgweFRtOU5PellOaldtZWpkeW4zUFFHS1RsNzMzUDhDaTg1T0R6eUdT?=
+ =?utf-8?B?TUFzN0ZuNnlXV3djSkh5cjU3eC8zOEMvYndGSEVhRUwxcC9wZ0U1QndKbmFO?=
+ =?utf-8?B?WmJqWHh6dHpDMHlZeXpDWXpWb05hek9zV0xOK0xtSUNmOG0vd3BEc2lUUnVB?=
+ =?utf-8?B?Tml2VjAyU0t3VUUvb3VZK3FiU3hoMU1wNFhudmd2S0lrN3lVV0k2VFE5M3kv?=
+ =?utf-8?B?U3dKOFhxZDFIVGNxckRzYkVnOGlScndPNVhodmJMR1NER0NnbEcycWxBVHZW?=
+ =?utf-8?B?amk3dEsyOWhwYzZFSnFSZnNJTGZRYnZxeTJVZlQ0d0huTkZJaHN4T3EvSUNK?=
+ =?utf-8?B?ejZiM056bWVjdHJvRThGNUFZNGtwUlZrU0FkUkwxMGF0OXFUVHJSc2lvb0Vz?=
+ =?utf-8?B?cG5WY244TytkczI5ZjJMYStvN2R1eDgrTHF4SGRzbmd0U2dKUG5qYkptMGpi?=
+ =?utf-8?B?blQ2RWZXRXE1N25rZ1VEY1ZhZ3UvUHJXTDdlbFdsZmhKeHAzOCtneU53cmgr?=
+ =?utf-8?B?MC83YmxubXNxMFZhMHViQk9XKzNYNUJxTytmMG1mNGdvTk5kK0dJT3cwSi9W?=
+ =?utf-8?B?NWNxcUh5aEE1djh1WlJOeVJGNUVEUjZoZWtod3BvQ0N4bXZSc1hwclU0cjJp?=
+ =?utf-8?B?SFNBcjZJSWJHem5Gd3ltZzNiNU5kNFo4RXNFenpPWWVPZnV5VFR3aTFkWXVF?=
+ =?utf-8?B?d2hlMWFGODRrN3FGNFptQjNKTnBibGhaSjBRb2FmZW8wKzM5elphY2w0SUVF?=
+ =?utf-8?B?L0VBZmdnZ1NvNXFUTFlpT0I2QWhKTW4xSEF4Wjk3VDlRYmhrZStjMG92RDhv?=
+ =?utf-8?B?RndzbUlKMlJPbjhMUDhhNTRtUlpQNVdITDZwYnpZTkRhUDBsR2JnWWlLeVJG?=
+ =?utf-8?B?eFU1d2c4aVRLd3VycXhjRFd4OHljNmFWUUt4Z01FMnBrVTR2ZWhpb1BMYmlL?=
+ =?utf-8?B?VWN1RVZ0clA5NEhpQ2hMZ3hpM3dZZWJLQm14RWM3STJwMkxWQVlDRERoVGdL?=
+ =?utf-8?B?MlprRFlEWEt0YjZiT0h5bUJtOXRoTzVUNGpYTG1XZkUwWXplMXZSMnU2WDdT?=
+ =?utf-8?Q?MxOD+D6hdaM=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2NMN2lkWnJzM0FKNTBQQitkQnVSQWlZc2ViZkJNVVNyVUVxcFNGNkt5bmFz?=
+ =?utf-8?B?ZFhScDdrVjZNN2MwWVZXbFVYZ05CTllJUGVMTEhaQmZlNG11WHE3QlFxRTNZ?=
+ =?utf-8?B?TXp3NGdRZTVYWUNHbWlMZlhYcHdrU0srK0RXSlBEQk90V0Z0OWVPZkNIUlV3?=
+ =?utf-8?B?SzExR0QrOGJZQkRZMWU3UFFHUUE5RTNFdHV4aXEyVWk4ZjQ3dHBmLzdCelNw?=
+ =?utf-8?B?eU9TNmpqYWl5TkJHYzJzbHE1NG8zYUF1SmFqUUE4R1ZyWlRoaUVjbEEyTndB?=
+ =?utf-8?B?UmtrTlR1akp4VlpYMWJvLy9JajN4S1BCVlloUE1iYUwza3NqNUJXSXpjNXlC?=
+ =?utf-8?B?aG5UTVJOVWoweHhvRU5WbDRqZEVmbW9KR0QwQ2xmQWJ2b2duNFRxZExsU0Mr?=
+ =?utf-8?B?Q1h4b25NeFVUZVh5UEtwbk5kT3JJRDBYRGF2bHNpMGIvL0IrbmZjeTk4Mkwx?=
+ =?utf-8?B?aW9MUXkrR2U3eGNXRk0vbnI5Ui9zRjhYVXJqbGxkYlk4NHRwVEg0TitvbTla?=
+ =?utf-8?B?OGErajB2REtNT1NTaWRzQ1JwMG9xVTZ0Y1drQVJnUWVGb0Jydi8yQlFEOTF2?=
+ =?utf-8?B?emVVaFZ6Y0Z1cTMzSEhDbTdLNjNPTWFwcTY2eEMwWUJXU1VkZmVZU1BzRmFM?=
+ =?utf-8?B?eVNRWGhJS3BXQXUzQ1N3aVNzM1ByKzQvZ25ha2FQM1pMNklUQkt5WUVSdHFT?=
+ =?utf-8?B?TXVYcEdGeXYwd0FDWGhzODNzMUowSUU5WkRzU2puNGFHVG9xdCtjQ1FsVFNS?=
+ =?utf-8?B?N3RsMm5XTFM4NkpIOTFoaTd1QmNJMGpaM2VBMCtnYnNTbmdKUTEwODc0ZHp4?=
+ =?utf-8?B?Q2ZieEpiMUJRK3ZuZmhycUREUmx6VzN3QjR0U2pxaG91QjNkUWUyR3dKcFdF?=
+ =?utf-8?B?ZFp0WTRRNDVxWDUzRDFsOWsvRU4zUHMwZXpWblQ5R0w2UlBGVFRkSy9CYjVO?=
+ =?utf-8?B?bjhkRmNFcnBEd1dNUlU2bGRKck43NUErTHNnQU9HY3gzbWZqU053Unh2cFdU?=
+ =?utf-8?B?K2pLdE8vQWdMaTgzZmpwZkdBeCt3VzF5M1JQYU1KUHplNC9LNmc1b1VkUkdk?=
+ =?utf-8?B?N2dFSTlqd1NSbmRDRUIzN1pucW9TcnJMOTNJS2FDcjV4QlBZRm9qemErTlhE?=
+ =?utf-8?B?MjF1dlZNVTIwdTlKVDFraFFhU2VkWm9EV2dRR2oraFBid1lGM3ZwUzk2d0dT?=
+ =?utf-8?B?VHJ2ams3UVhyMzhHUVgwcjFud2o1NHIxODJIam94MXliK3VuWjRSRENNd1p3?=
+ =?utf-8?B?N2djR0lxZlhZczluNmROT0cyZ1NFSG15cXk3c2llaXloSnNpZ0xLU3ppa1V2?=
+ =?utf-8?B?L2cweHkyVnlKWFB6RUF0VkhjdEJqTmNZZllnMkdZQWZLZ0pFcnJXM2JGeWpR?=
+ =?utf-8?B?TElaSW5OWDcydURLOGVMQnBCaXloQmdpWUtqWE0xOWZGc29EQUMrR1ZaTXI0?=
+ =?utf-8?B?RlN2cm9OdDNGOWZHVDVvQXdzSmpSMUk1dWs2WXdGNkpMaG1QbFZldzdUTW5X?=
+ =?utf-8?B?UlFWeXpvM1diVGpCZWU5bWVHVmZjaTFSMVBZckR1bUVBRmxxVGFySlFVL1BZ?=
+ =?utf-8?B?YjlBOVB1alhUdG9pSVdYQW8wZU1ZS3JERTVoME1XMU5Rb2Mxb1ZIWGpOeVlt?=
+ =?utf-8?B?ZDk2U0tOQXRvc3cyTFQ0eGFWVHFOT2d5VjJBMVJHZFJIMkdZaGZiNGpHQmVl?=
+ =?utf-8?B?a2ExK1VQRDMwMUtYVUJ1ZjBJTENHeHM3eXBrWElMMXRYdWRiZ3ovRVF5R2Ja?=
+ =?utf-8?B?QUdoaEJsUFNXTkpiRjE3azJjUFZ0MkgrdEZFTDVPTEI1TXlzOFBaVEUrU3Vj?=
+ =?utf-8?B?MDY0QmptOUVVY3VWaWxHMGx0N3VMVklvK1YxenMrSHo1elV3anhrMEhGcEhO?=
+ =?utf-8?B?NE5FZVUvaitGaUMzMCtZUWI3VDUwMGFWaEMzenhMT1J0bmRxVkx0Z1hPelVI?=
+ =?utf-8?B?VFJ1RGxiUi9jSW9YS3N5c29TNnZQZjJoRWdTbk1Ub2xCbk5uNnNWWk5xNzk2?=
+ =?utf-8?B?YVN6VUQ4UXk5c0VxVkFpREFMSEdoOU5iZkYxYlJqcmdUdDVuZk9BdXVhMldH?=
+ =?utf-8?B?bnIvQk1CTzFrUnhTTXNEL0Nqdi9ic2pxSkFWKzhCM3M5d2JrQUtzeGtvOEZ5?=
+ =?utf-8?Q?qMGel2rzjrsdAbh010qDl6NZm?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15e8a1f8-5079-4c1e-fcd5-08dddfe90ab1
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 12:56:56.0176 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PqHqPpU8SYPzxGMAUkJmhPH0i/OsL2hNgJOOQ1KQzzx4sBCWYfuvkD2Zp7VnO0IlkMdYT9gnvL5fL1BAKrAihg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8120
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,473 +164,561 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2025-08-08 at 14:22 +0000, Wheeler, Daniel wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
->=20
-> The NULL pointer happens right after this error -> "[=C2=A0=C2=A0 10.0465=
-42]
-> amdgpu 0000:c4:00.0: amdgpu: [drm] *ERROR* KMS: Failed to detect
-> connector" and only happens with this error. When bisecting the
-> patchset I was getting just the error without the NULL pointer, and
-> after removing "drm/amd/display: Add analog link detection" there was
-> no NULL pointer or error. Probably just need to solve that error and
-> it'd be good to go.
->=20
->=20
-> It looks like it's an APU issue as I was able to reproduce this on a
-> system with an AMD Radeon 8060S and eDP or DP, and yes, the NULL
-> pointer happens at driver load.
->=20
-> Thank you,
->=20
-> Dan Wheeler
-> Sr. Technologist | AMD
-> SW Display
+Hi Matthew,
 
+On 8/14/2025 4:41 PM, Matthew Auld wrote:
+> On 24/07/2025 11:46, Arunpravin Paneer Selvam wrote:
+>> Maintain two separate RB trees per order - one for clear (zeroed) blocks
+>> and another for dirty (uncleared) blocks. This separation improves
+>> code clarity and makes it more obvious which tree is being searched
+>> during allocation. It also improves scalability and efficiency when
+>> searching for a specific type of block, avoiding unnecessary checks
+>> and making the allocator more predictable under fragmentation.
+>>
+>> The changes have been validated using the existing drm_buddy_test
+>> KUnit test cases, along with selected graphics workloads,
+>> to ensure correctness and avoid regressions.
+>>
+>> v2: Missed adding the suggested-by tag. Added it in v2.
+>>
+>> Signed-off-by: Arunpravin Paneer Selvam 
+>> <Arunpravin.PaneerSelvam@amd.com>
+>> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+>> ---
+>>   drivers/gpu/drm/drm_buddy.c | 316 ++++++++++++++++++++++--------------
+>>   include/drm/drm_buddy.h     |  15 +-
+>>   2 files changed, 204 insertions(+), 127 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>> index 19e9773b41be..0ffb68474b83 100644
+>> --- a/drivers/gpu/drm/drm_buddy.c
+>> +++ b/drivers/gpu/drm/drm_buddy.c
+>> @@ -43,27 +43,84 @@ static void drm_block_free(struct drm_buddy *mm,
+>>       kmem_cache_free(slab_blocks, block);
+>>   }
+>>   +static inline struct rb_root *
+>> +__get_root(struct drm_buddy *mm,
+>> +       unsigned int order,
+>> +       enum free_tree tree)
+>> +{
+>> +    if (tree == CLEAR_TREE)
+>> +        return &mm->clear_tree[order];
+>> +    else
+>> +        return &mm->dirty_tree[order];
+>> +}
+>> +
+>> +static inline enum free_tree
+>> +__get_tree_for_block(struct drm_buddy_block *block)
+>> +{
+>> +    return drm_buddy_block_is_clear(block) ? CLEAR_TREE : DIRTY_TREE;
+>> +}
+>> +
+>> +static inline enum free_tree
+>> +__get_tree_for_flags(unsigned long flags)
+>
+> Do we need all these double underscores?
+Not required, we can remove it.
+>
+>> +{
+>> +    return (flags & DRM_BUDDY_CLEAR_ALLOCATION) ? CLEAR_TREE : 
+>> DIRTY_TREE;
+>> +}
+>> +
+>> +static inline struct drm_buddy_block *
+>> +rbtree_get_entry(struct rb_node *node)
+>> +{
+>> +    return node ? rb_entry(node, struct drm_buddy_block, rb) : NULL;
+>> +}
+>> +
+>> +static inline struct drm_buddy_block *
+>> +rbtree_prev_entry(struct rb_node *node)
+>> +{
+>> +    return rbtree_get_entry(rb_prev(node));
+>> +}
+>> +
+>> +static inline struct drm_buddy_block *
+>> +rbtree_first_entry(struct rb_root *root)
+>> +{
+>> +    return rbtree_get_entry(rb_first(root));
+>> +}
+>> +
+>> +static inline struct drm_buddy_block *
+>> +rbtree_last_entry(struct rb_root *root)
+>> +{
+>> +    return rbtree_get_entry(rb_last(root));
+>> +}
+>> +
+>> +static inline bool rbtree_is_empty(struct rb_root *root)
+>> +{
+>> +    return RB_EMPTY_ROOT(root);
+>> +}
+>
+> Just wondering if these should have less generic names?
+>
+> rb_tree_first_free_block()
+> rb_tree_last_free_block()
+> ...
+Yes, I will modify to have less generic names.
+>
+>> +
+>>   static void rbtree_insert(struct drm_buddy *mm,
+>> -              struct drm_buddy_block *block)
+>> +              struct drm_buddy_block *block,
+>> +              enum free_tree tree)
+>>   {
+>> -    struct rb_root *root = 
+>> &mm->free_tree[drm_buddy_block_order(block)];
+>> -    struct rb_node **link = &root->rb_node;
+>> -    struct rb_node *parent = NULL;
+>> +    struct rb_node **link, *parent = NULL;
+>>       struct drm_buddy_block *node;
+>> -    u64 offset;
+>> +    struct rb_root *root;
+>> +    unsigned int order;
+>> +
+>> +    order = drm_buddy_block_order(block);
+>>   -    offset = drm_buddy_block_offset(block);
+>> +    root = __get_root(mm, order, tree);
+>> +    link = &root->rb_node;
+>>         while (*link) {
+>>           parent = *link;
+>> -        node = rb_entry(parent, struct drm_buddy_block, rb);
+>> +        node = rbtree_get_entry(parent);
+>>   -        if (offset < drm_buddy_block_offset(node))
+>> +        if (drm_buddy_block_offset(block) < 
+>> drm_buddy_block_offset(node))
+>>               link = &parent->rb_left;
+>>           else
+>>               link = &parent->rb_right;
+>>       }
+>>   +    block->tree = tree;
+>> +
+>>       rb_link_node(&block->rb, parent, link);
+>>       rb_insert_color(&block->rb, root);
+>>   }
+>> @@ -71,27 +128,15 @@ static void rbtree_insert(struct drm_buddy *mm,
+>>   static void rbtree_remove(struct drm_buddy *mm,
+>>                 struct drm_buddy_block *block)
+>>   {
+>> +    unsigned int order = drm_buddy_block_order(block);
+>>       struct rb_root *root;
+>>   -    root = &mm->free_tree[drm_buddy_block_order(block)];
+>> +    root = __get_root(mm, order, block->tree);
+>>       rb_erase(&block->rb, root);
+>>         RB_CLEAR_NODE(&block->rb);
+>>   }
+>>   -static inline struct drm_buddy_block *
+>> -rbtree_last_entry(struct drm_buddy *mm, unsigned int order)
+>> -{
+>> -    struct rb_node *node = rb_last(&mm->free_tree[order]);
+>> -
+>> -    return node ? rb_entry(node, struct drm_buddy_block, rb) : NULL;
+>> -}
+>> -
+>> -static bool rbtree_is_empty(struct drm_buddy *mm, unsigned int order)
+>> -{
+>> -    return RB_EMPTY_ROOT(&mm->free_tree[order]);
+>> -}
+>> -
+>>   static void clear_reset(struct drm_buddy_block *block)
+>>   {
+>>       block->header &= ~DRM_BUDDY_HEADER_CLEAR;
+>> @@ -114,10 +159,14 @@ static void mark_allocated(struct drm_buddy *mm,
+>>   static void mark_free(struct drm_buddy *mm,
+>>                 struct drm_buddy_block *block)
+>>   {
+>> +    enum free_tree tree;
+>> +
+>>       block->header &= ~DRM_BUDDY_HEADER_STATE;
+>>       block->header |= DRM_BUDDY_FREE;
+>>   -    rbtree_insert(mm, block);
+>> +    tree = __get_tree_for_block(block);
+>> +
+>> +    rbtree_insert(mm, block, tree);
+>>   }
+>>     static void mark_split(struct drm_buddy *mm,
+>> @@ -212,53 +261,52 @@ static int __force_merge(struct drm_buddy *mm,
+>>       if (min_order > mm->max_order)
+>>           return -EINVAL;
+>>   -    for (i = min_order - 1; i >= 0; i--) {
+>> -        struct drm_buddy_block *block, *prev_block, *first_block;
+>> -
+>> -        first_block = rb_entry(rb_first(&mm->free_tree[i]), struct 
+>> drm_buddy_block, rb);
+>> +    for_each_free_tree() {
+>> +        for (i = min_order - 1; i >= 0; i--) {
+>> +            struct rb_root *root = __get_root(mm, i, tree);
+>> +            struct drm_buddy_block *block, *prev_block;
+>>   -        for_each_rb_entry_reverse_safe(block, prev_block, 
+>> &mm->free_tree[i], rb) {
+>> -            struct drm_buddy_block *buddy;
+>> -            u64 block_start, block_end;
+>> +            for_each_rb_entry_reverse_safe(block, prev_block, root, 
+>> rb) {
+>> +                struct drm_buddy_block *buddy;
+>> +                u64 block_start, block_end;
+>>   -            if (RB_EMPTY_NODE(&block->rb))
+>> -                break;
+>> +                if (RB_EMPTY_NODE(&block->rb))
+>> +                    break;
+>>   -            if (!block->parent)
+>> -                continue;
+>> +                if (!block->parent)
+>> +                    continue;
+>>   -            block_start = drm_buddy_block_offset(block);
+>> -            block_end = block_start + drm_buddy_block_size(mm, 
+>> block) - 1;
+>> +                block_start = drm_buddy_block_offset(block);
+>> +                block_end = block_start + drm_buddy_block_size(mm, 
+>> block) - 1;
+>>   -            if (!contains(start, end, block_start, block_end))
+>> -                continue;
+>> +                if (!contains(start, end, block_start, block_end))
+>> +                    continue;
+>>   -            buddy = __get_buddy(block);
+>> -            if (!drm_buddy_block_is_free(buddy))
+>> -                continue;
+>> +                buddy = __get_buddy(block);
+>> +                if (!drm_buddy_block_is_free(buddy))
+>> +                    continue;
+>>   -            WARN_ON(drm_buddy_block_is_clear(block) ==
+>> -                drm_buddy_block_is_clear(buddy));
+>> +                WARN_ON(drm_buddy_block_is_clear(block) ==
+>> +                    drm_buddy_block_is_clear(buddy));
+>>   -            /*
+>> -             * If the prev block is same as buddy, don't access the
+>> -             * block in the next iteration as we would free the
+>> -             * buddy block as part of the free function.
+>> -             */
+>> -            if (prev_block && prev_block == buddy) {
+>> -                if (prev_block != first_block)
+>> -                    prev_block = rb_entry(rb_prev(&prev_block->rb),
+>> -                                  struct drm_buddy_block,
+>> -                                  rb);
+>> -            }
+>> +                /*
+>> +                 * If the prev block is same as buddy, don't access the
+>> +                 * block in the next iteration as we would free the
+>> +                 * buddy block as part of the free function.
+>> +                 */
+>> +                if (prev_block && prev_block == buddy) {
+>> +                    if (prev_block != rbtree_first_entry(root))
+>> +                        prev_block = 
+>> rbtree_prev_entry(&prev_block->rb);
+>> +                }
+>>   -            rbtree_remove(mm, block);
+>> -            if (drm_buddy_block_is_clear(block))
+>> -                mm->clear_avail -= drm_buddy_block_size(mm, block);
+>> +                rbtree_remove(mm, block);
+>> +                if (drm_buddy_block_is_clear(block))
+>> +                    mm->clear_avail -= drm_buddy_block_size(mm, block);
+>>   -            order = __drm_buddy_free(mm, block, true);
+>> -            if (order >= min_order)
+>> -                return 0;
+>> +                order = __drm_buddy_free(mm, block, true);
+>> +                if (order >= min_order)
+>> +                    return 0;
+>> +            }
+>>           }
+>>       }
+>>   @@ -301,14 +349,22 @@ int drm_buddy_init(struct drm_buddy *mm, u64 
+>> size, u64 chunk_size)
+>>         BUG_ON(mm->max_order > DRM_BUDDY_MAX_ORDER);
+>>   -    mm->free_tree = kmalloc_array(mm->max_order + 1,
+>> -                      sizeof(struct rb_root),
+>> -                      GFP_KERNEL);
+>> -    if (!mm->free_tree)
+>> +    mm->clear_tree = kmalloc_array(mm->max_order + 1,
+>> +                       sizeof(struct rb_root),
+>> +                       GFP_KERNEL);
+>> +    if (!mm->clear_tree)
+>> +        return -ENOMEM;
+>> +
+>> +    mm->dirty_tree = kmalloc_array(mm->max_order + 1,
+>> +                       sizeof(struct rb_root),
+>> +                       GFP_KERNEL);
+>> +    if (!mm->dirty_tree)
+>
+> goto out_free_tree
+>
+>>           return -ENOMEM;
+>>   -    for (i = 0; i <= mm->max_order; ++i)
+>> -        mm->free_tree[i] = RB_ROOT;
+>> +    for (i = 0; i <= mm->max_order; ++i) {
+>> +        mm->clear_tree[i] = RB_ROOT;
+>> +        mm->dirty_tree[i] = RB_ROOT;
+>> +    }
+>>         mm->n_roots = hweight64(size);
+>>   @@ -356,7 +412,8 @@ int drm_buddy_init(struct drm_buddy *mm, u64 
+>> size, u64 chunk_size)
+>>           drm_block_free(mm, mm->roots[i]);
+>>       kfree(mm->roots);
+>>   out_free_tree:
+>> -    kfree(mm->free_tree);
+>> +    kfree(mm->clear_tree);
+>> +    kfree(mm->dirty_tree);
+>>       return -ENOMEM;
+>>   }
+>>   EXPORT_SYMBOL(drm_buddy_init);
+>> @@ -393,7 +450,8 @@ void drm_buddy_fini(struct drm_buddy *mm)
+>>       WARN_ON(mm->avail != mm->size);
+>>         kfree(mm->roots);
+>> -    kfree(mm->free_tree);
+>> +    kfree(mm->clear_tree);
+>> +    kfree(mm->dirty_tree);
+>>   }
+>>   EXPORT_SYMBOL(drm_buddy_fini);
+>>   @@ -417,15 +475,15 @@ static int split_block(struct drm_buddy *mm,
+>>           return -ENOMEM;
+>>       }
+>>   -    mark_free(mm, block->left);
+>> -    mark_free(mm, block->right);
+>> -
+>>       if (drm_buddy_block_is_clear(block)) {
+>>           mark_cleared(block->left);
+>>           mark_cleared(block->right);
+>>           clear_reset(block);
+>>       }
+>>   +    mark_free(mm, block->left);
+>> +    mark_free(mm, block->right);
+>> +
+>>       mark_split(mm, block);
+>>         return 0;
+>> @@ -632,26 +690,22 @@ __drm_buddy_alloc_range_bias(struct drm_buddy *mm,
+>>   }
+>>     static struct drm_buddy_block *
+>> -get_maxblock(struct drm_buddy *mm, unsigned int order,
+>> -         unsigned long flags)
+>> +get_maxblock(struct drm_buddy *mm,
+>> +         unsigned int order,
+>> +         enum free_tree tree)
+>>   {
+>>       struct drm_buddy_block *max_block = NULL, *block = NULL;
+>> +    struct rb_root *root;
+>>       unsigned int i;
+>>         for (i = order; i <= mm->max_order; ++i) {
+>> -        struct drm_buddy_block *tmp_block;
+>> -
+>> -        for_each_rb_entry_reverse(tmp_block, &mm->free_tree[i], rb) {
+>> -            if (block_incompatible(tmp_block, flags))
+>> +        root = __get_root(mm, i, tree);
+>> +        if (!rbtree_is_empty(root)) {
+>> +            block = rbtree_last_entry(root);
+>> +            if (!block)
+>>                   continue;
+>> -
+>> -            block = tmp_block;
+>> -            break;
+>>           }
+>>   -        if (!block)
+>> -            continue;
+>> -
+>>           if (!max_block) {
+>>               max_block = block;
+>>               continue;
+>> @@ -672,36 +726,38 @@ alloc_from_freetree(struct drm_buddy *mm,
+>>               unsigned long flags)
+>>   {
+>>       struct drm_buddy_block *block = NULL;
+>> +    struct rb_root *root;
+>> +    enum free_tree tree;
+>>       unsigned int tmp;
+>>       int err;
+>>   +    tree = __get_tree_for_flags(flags);
+>> +
+>>       if (flags & DRM_BUDDY_TOPDOWN_ALLOCATION) {
+>> -        block = get_maxblock(mm, order, flags);
+>> +        block = get_maxblock(mm, order, tree);
+>>           if (block)
+>>               /* Store the obtained block order */
+>>               tmp = drm_buddy_block_order(block);
+>>       } else {
+>>           for (tmp = order; tmp <= mm->max_order; ++tmp) {
+>> -            struct drm_buddy_block *tmp_block;
+>> -
+>> -            for_each_rb_entry_reverse(tmp_block, 
+>> &mm->free_tree[tmp], rb) {
+>> -                if (block_incompatible(tmp_block, flags))
+>> -                    continue;
+>> -
+>> -                block = tmp_block;
+>> -                break;
+>> +            /* Get RB tree root for this order and tree */
+>> +            root = __get_root(mm, tmp, tree);
+>> +            if (!rbtree_is_empty(root)) {
+>> +                block = rbtree_last_entry(root);
+>> +                if (block)
+>> +                    break;
+>>               }
+>> -
+>> -            if (block)
+>> -                break;
+>>           }
+>>       }
+>>         if (!block) {
+>> -        /* Fallback method */
+>> +        /* Try allocating from the other tree */
+>> +        tree = (tree == CLEAR_TREE) ? DIRTY_TREE : CLEAR_TREE;
+>> +
+>>           for (tmp = order; tmp <= mm->max_order; ++tmp) {
+>> -            if (!rbtree_is_empty(mm, tmp)) {
+>> -                block = rbtree_last_entry(mm, tmp);
+>> +            root = __get_root(mm, tmp, tree);
+>> +            if (!rbtree_is_empty(root)) {
+>> +                block = rbtree_last_entry(root);
+>>                   if (block)
+>>                       break;
+>>               }
+>> @@ -859,34 +915,39 @@ static int __alloc_contig_try_harder(struct 
+>> drm_buddy *mm,
+>>       if (order == 0)
+>>           return -ENOSPC;
+>>   -    if (rbtree_is_empty(mm, order))
+>> +    if (rbtree_is_empty(__get_root(mm, order, CLEAR_TREE)) &&
+>> +        rbtree_is_empty(__get_root(mm, order, DIRTY_TREE)))
+>>           return -ENOSPC;
+>>   -    for_each_rb_entry_reverse(block, &mm->free_tree[order], rb) {
+>> -        /* Allocate blocks traversing RHS */
+>> -        rhs_offset = drm_buddy_block_offset(block);
+>> -        err =  __drm_buddy_alloc_range(mm, rhs_offset, size,
+>> -                           &filled, blocks);
+>> -        if (!err || err != -ENOSPC)
+>> -            return err;
+>> -
+>> -        lhs_size = max((size - filled), min_block_size);
+>> -        if (!IS_ALIGNED(lhs_size, min_block_size))
+>> -            lhs_size = round_up(lhs_size, min_block_size);
+>> -
+>> -        /* Allocate blocks traversing LHS */
+>> -        lhs_offset = drm_buddy_block_offset(block) - lhs_size;
+>> -        err =  __drm_buddy_alloc_range(mm, lhs_offset, lhs_size,
+>> -                           NULL, &blocks_lhs);
+>> -        if (!err) {
+>> -            list_splice(&blocks_lhs, blocks);
+>> -            return 0;
+>> -        } else if (err != -ENOSPC) {
+>> +    for_each_free_tree() {
+>> +        struct rb_root *root = __get_root(mm, order, tree);
+>> +
+>> +        for_each_rb_entry_reverse(block, root, rb) {
+>> +            /* Allocate blocks traversing RHS */
+>> +            rhs_offset = drm_buddy_block_offset(block);
+>> +            err =  __drm_buddy_alloc_range(mm, rhs_offset, size,
+>> +                               &filled, blocks);
+>> +            if (!err || err != -ENOSPC)
+>> +                return err;
+>> +
+>> +            lhs_size = max((size - filled), min_block_size);
+>> +            if (!IS_ALIGNED(lhs_size, min_block_size))
+>> +                lhs_size = round_up(lhs_size, min_block_size);
+>> +
+>> +            /* Allocate blocks traversing LHS */
+>> +            lhs_offset = drm_buddy_block_offset(block) - lhs_size;
+>> +            err =  __drm_buddy_alloc_range(mm, lhs_offset, lhs_size,
+>> +                               NULL, &blocks_lhs);
+>> +            if (!err) {
+>> +                list_splice(&blocks_lhs, blocks);
+>> +                return 0;
+>> +            } else if (err != -ENOSPC) {
+>> +                drm_buddy_free_list_internal(mm, blocks);
+>> +                return err;
+>> +            }
+>> +            /* Free blocks for the next iteration */
+>>               drm_buddy_free_list_internal(mm, blocks);
+>> -            return err;
+>>           }
+>> -        /* Free blocks for the next iteration */
+>> -        drm_buddy_free_list_internal(mm, blocks);
+>>       }
+>>         return -ENOSPC;
+>> @@ -1198,11 +1259,16 @@ void drm_buddy_print(struct drm_buddy *mm, 
+>> struct drm_printer *p)
+>>         for (order = mm->max_order; order >= 0; order--) {
+>>           struct drm_buddy_block *block;
+>> +        struct rb_root *root;
+>>           u64 count = 0, free;
+>>   -        for_each_rb_entry(block, &mm->free_tree[order], rb) {
+>> -            BUG_ON(!drm_buddy_block_is_free(block));
+>> -            count++;
+>> +        for_each_free_tree() {
+>> +            root = __get_root(mm, order, tree);
+>> +
+>> +            for_each_rb_entry(block, root, rb) {
+>> +                BUG_ON(!drm_buddy_block_is_free(block));
+>> +                count++;
+>> +            }
+>>           }
+>>             drm_printf(p, "order-%2d ", order);
+>> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+>> index a64d108a33b7..afaf62ee05e1 100644
+>> --- a/include/drm/drm_buddy.h
+>> +++ b/include/drm/drm_buddy.h
+>> @@ -14,6 +14,11 @@
+>>     #include <drm/drm_print.h>
+>>   +enum free_tree {
+>> +    CLEAR_TREE = 0,
+>> +    DIRTY_TREE,
+>> +};
+>> +
+>>   #define range_overflows(start, size, max) ({ \
+>>       typeof(start) start__ = (start); \
+>>       typeof(size) size__ = (size); \
+>> @@ -23,6 +28,9 @@
+>>       start__ >= max__ || size__ > max__ - start__; \
+>>   })
+>>   +#define for_each_free_tree() \
+>
+> I think rather give this an explicit 'tree' argument? Having it hidden 
+> is harder to read IMO.
+Sure, will add 'tree' argument to the macro.
+>
+>> +    for (enum free_tree tree = CLEAR_TREE; tree <= DIRTY_TREE; tree++)
+>> +
+>>   /*
+>>    * for_each_rb_entry() - iterate over an RB tree in order
+>>    * @pos:    the struct type * to use as a loop cursor
+>> @@ -89,9 +97,11 @@ struct drm_buddy_block {
+>>        * a list, if so desired. As soon as the block is freed with
+>>        * drm_buddy_free* ownership is given back to the mm.
+>>        */
+>> -    struct rb_node rb;
+>>       struct list_head link;
+>>       struct list_head tmp_link;
+>> +
+>> +    enum free_tree tree;
+>
+> We also have the existing dirty/free bit in the block itself. Would it 
+> make sense to re-use that instead, if possible?
+Yes, we can re-use the existing dirty/free bit in the block. I will 
+remove this field.
+>
+>> +    struct rb_node rb;
+>>   };
+>>     /* Order-zero must be at least SZ_4K */
+>> @@ -105,7 +115,8 @@ struct drm_buddy_block {
+>>    */
+>>   struct drm_buddy {
+>>       /* Maintain a free list for each order. */
+>> -    struct rb_root *free_tree;
+>> +    struct rb_root *clear_tree;
+>> +    struct rb_root *dirty_tree;
+>
+> Could potentially make this something like:
+>
+> struct rb_root free_trees[DIRTY_TREE + 1]
+>
+> Or define DIRTY_TREE + 1 as the last value in the enum and give it a 
+> special name. We can then just use the enum as the index directly, 
+> which might be cleaner?
 
-Hi Daniel,
+yeah, then we should access the rb_root of a specific order by 
+free_trees[tree][order].
 
-I've managed to take a deeper look at this. I think there were actually
-two problems in this patch:
+Regards,
 
-1. NULL pointer dereference:
+Arun.
 
-Seems to be caused by the link encoder not being initialized, although
-I'm not fully sure how that happens, but I changed the parts that
-accessed link_enc, and it no longer crashes now.
-
-2. HPD pin issue:
-
-In link_detect_connection_type() the DC code checks the status of the
-HPD pins and returns false when HPD isn't supported. My patch changed
-this to take the same code path as if the HPD pins were low. This seems
-to have broken something and resulted in a black screen on Rembrandt.
-
-It seems that some other part of the code expects that the link
-detection fails when HPD isn't supported. So I fixed this by special
-casing VGA connectors to allow link detection just on VGA to succeed
-when there are no HPD pins, but left the other code path as-is.
-
-Does that sound reasonable to you?
-
-Thanks & best regards,
-Timur
-
-
-
-> ---------------------------------------------------------------------
-> ---------------------------------------------
-> 1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
-> amd.com
->=20
->=20
-> -----Original Message-----
-> From: Wentland, Harry <Harry.Wentland@amd.com>
-> Sent: Friday, August 8, 2025 10:03 AM
-> To: Timur Krist=C3=B3f <timur.kristof@gmail.com>;
-> amd-gfx@lists.freedesktop.org; Wheeler, Daniel
-> <Daniel.Wheeler@amd.com>
-> Subject: Re: [PATCH 13/20] drm/amd/display: Add analog link detection
->=20
->=20
->=20
-> On 2025-08-07 17:32, Timur Krist=C3=B3f wrote:
-> > On Thu, 2025-08-07 at 16:34 -0400, Harry Wentland wrote:
-> > >=20
-> > >=20
-> > > On 2025-08-07 15:12, Harry Wentland wrote:
-> > > > On 2025-07-23 11:58, Timur Krist=C3=B3f wrote:
-> > > > > Analog displays typically have a DDC connection which can be
-> > > > > used
-> > > > > by the GPU to read EDID. This commit adds the capability to
-> > > > > probe
-> > > > > analog displays using DDC, reading the EDID header and
-> > > > > deciding
-> > > > > whether the analog link is connected based on the data that
-> > > > > was
-> > > > > read.
-> > > > >=20
-> > > > > As a reference, I used the following functions:
-> > > > > amdgpu_connector_vga_detect
-> > > > > amdgpu_display_ddc_probe
-> > > > >=20
-> > > > > DAC load detection will be implemented in a separate commit.
-> > > >=20
-> > > > Another regression in our internal testing with this patch,
-> > > > unfortunately only on not-yet released HW.
-> > > >=20
-> > >=20
-> > > While this shows on unreleased HW I wouldn't be surprised if it
-> > > repros on other (recent-ish) APUs (integrated GPUs). It's just
-> > > that this week's test was on currently unreleased HW.
-> > >=20
-> > > Harry
-> > >=20
-> > > > I wonder if pipe-ctx->stream could be NULL in some cases.
-> > > >=20
-> > > > Harry
-> > > >=20
-> >=20
-> > Hi Harry,
-> >=20
-> > Can you elaborate when / how it is valid for pipe->ctx->stream to
-> > be
-> > NULL when the code gets here? Maybe that would give me a hint how
-> > to
-> > resolve it.
-> >=20
->=20
-> I don't know. It was just a guess.
->=20
-> I should've mentioned... the NULL pointer access happens on driver
-> load.
->=20
-> Dan might have more info.
->=20
-> Harry
->=20
-> > Thanks,
-> > Timur
-> >=20
-> >=20
-> > > > >=20
-> > > > > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> > > > > ---
-> > > > > =C2=A0.../amd/display/dc/link/hwss/link_hwss_dio.c=C2=A0 | 16 ++-=
--
-> > > > > =C2=A0.../drm/amd/display/dc/link/link_detection.c=C2=A0 | 80
-> > > > > ++++++++++++++++++-
-> > > > > =C2=A0.../gpu/drm/amd/display/dc/link/link_dpms.c=C2=A0=C2=A0 |=
-=C2=A0 3 +
-> > > > > =C2=A0.../drm/amd/display/dc/link/link_factory.c=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 3 +
-> > > > > =C2=A04 files changed, 95 insertions(+), 7 deletions(-)
-> > > > >=20
-> > > > > diff --git
-> > > > > a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
-> > > > > b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
-> > > > > index f3470716734d..b9ebb992dc98 100644
-> > > > > ---
-> > > > > a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
-> > > > > +++
-> > > > > b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
-> > > > > @@ -58,8 +58,9 @@ void setup_dio_stream_encoder(struct
-> > > > > pipe_ctx
-> > > > > *pipe_ctx)
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 retu=
-rn;
-> > > > > =C2=A0=C2=A0 }
-> > > > >=20
-> > > > > -=C2=A0 link_enc->funcs->connect_dig_be_to_fe(link_enc,
-> > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pipe_ctx->stream_res.stream_enc->id=
-,
-> > > > > true);
-> > > > > +=C2=A0 if (!dc_is_rgb_signal(pipe_ctx->stream->signal))
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link_enc-=
->funcs->connect_dig_be_to_fe(link_enc,
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 pipe_ctx->stream_res.stream_enc-
-> > > > > > id, true);
-> > > > > =C2=A0=C2=A0 if (dc_is_dp_signal(pipe_ctx->stream->signal))
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pipe=
-_ctx->stream->ctx->dc->link_srv-
-> > > > > > dp_trace_source_sequence(pipe_ctx->stream->link,
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 DPCD_SOURCE_SEQ_AFTER_CONNECT_DI
-> > > > > G_FE_BE);
-> > > > > @@ -98,10 +99,13 @@ void reset_dio_stream_encoder(struct
-> > > > > pipe_ctx
-> > > > > *pipe_ctx)
-> > > > > =C2=A0=C2=A0 if (stream_enc->funcs->enable_stream)
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 stre=
-am_enc->funcs->enable_stream(stream_enc,
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 pipe_ctx->stream->signal,
-> > > > > false);
-> > > > > -=C2=A0 link_enc->funcs->connect_dig_be_to_fe(
-> > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link_enc,
-> > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pipe_ctx->stream_res.stream_enc->id=
-,
-> > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 false);
-> > > > > +
-> > > > > +=C2=A0 if (!dc_is_rgb_signal(pipe_ctx->stream->signal))
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link_enc-=
->funcs->connect_dig_be_to_fe(
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 link_enc,
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 pipe_ctx->stream_res.stream_enc-
-> > > > > > id,
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 false);
-> > > > > +
-> > > > > =C2=A0=C2=A0 if (dc_is_dp_signal(pipe_ctx->stream->signal))
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pipe=
-_ctx->stream->ctx->dc->link_srv-
-> > > > > > dp_trace_source_sequence(
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 pipe_ctx->stream->link,
-> > > > > diff --git
-> > > > > a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-> > > > > b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-> > > > > index 827b630daf49..fcabc83464af 100644
-> > > > > --- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-> > > > > +++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-> > > > > @@ -942,6 +942,12 @@ static bool
-> > > > > detect_link_and_local_sink(struct dc_link *link,
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > > > >=20
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case SIGN=
-AL_TYPE_RGB: {
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink_caps.transaction_type =3D
-> > > > > DDC_TRANSACTION_TYPE_I2C;
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink_caps.signal =3D SIGNAL_TYPE_RG=
-B;
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > > > > +
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 case=
- SIGNAL_TYPE_LVDS: {
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink_caps.transaction_type =
-=3D
-> > > > > DDC_TRANSACTION_TYPE_I2C;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink_caps.signal =3D SIGNAL_T=
-YPE_LVDS;
-> > > > > @@ -1133,9 +1139,17 @@ static bool
-> > > > > detect_link_and_local_sink(struct dc_link *link,
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 sink =3D prev_sink;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 prev_sink =3D NULL;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 query_hdcp_capability(sink->sink_si=
-gnal,
-> > > > > link);
-> > > > > +
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!sink->edid_caps.analog)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 query_hdcp_capability(sink-
-> > > > > > sink_signal, link);
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
-> > > > >=20
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* DVI-I =
-connector connected to analog display.
-> > > > > */
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if ((link=
-->link_enc->connector.id =3D=3D
-> > > > > CONNECTOR_ID_DUAL_LINK_DVII ||
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 link->link_enc->connector.id =3D=3D
-> > > > > CONNECTOR_ID_SINGLE_LINK_DVII) &&
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink->edid_caps.analog)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink->sink_signal =3D SIGNAL_TYPE_R=
-GB;
-> > > > > +
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* H=
-DMI-DVI Dongle */
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (=
-sink->sink_signal =3D=3D SIGNAL_TYPE_HDMI_TYPE_A
-> > > > > &&
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 !sink->edid_caps.edid_hdmi)
-> > > > > @@ -1228,6 +1242,64 @@ static bool
-> > > > > detect_link_and_local_sink(struct dc_link *link,
-> > > > > =C2=A0=C2=A0 return true;
-> > > > > =C2=A0}
-> > > > >=20
-> > > > > +/**
-> > > > > + * Evaluates whether an EDID header is acceptable,
-> > > > > + * for the purpose of determining a connection with a
-> > > > > display.
-> > > > > + */
-> > > > > +static bool link_detect_evaluate_edid_header(uint8_t
-> > > > > edid_header[8])
-> > > > > +{
-> > > > > +=C2=A0 int edid_header_score =3D 0;
-> > > > > +=C2=A0 int i;
-> > > > > +
-> > > > > +=C2=A0 for (i =3D 0; i < 8; ++i)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 edid_head=
-er_score +=3D edid_header[i] =3D=3D ((i =3D=3D 0
-> > > > > > > i =3D=3D 7) ? 0x00 : 0xff);
-> > > > > +
-> > > > > +=C2=A0 return edid_header_score >=3D 6;
-> > > > > +}
-> > > > > +
-> > > > > +/**
-> > > > > + * Tries to detect a connected display by probing the DDC
-> > > > > + * and reading the EDID header.
-> > > > > + * The probing is considered successful if we receive a
-> > > > > + * reply from the DDC over I2C and the EDID header matches.
-> > > > > + */
-> > > > > +static bool link_detect_ddc_probe(struct dc_link *link)
-> > > > > +{
-> > > > > +=C2=A0 if (!link->ddc)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return fa=
-lse;
-> > > > > +
-> > > > > +=C2=A0 uint8_t edid_header[8] =3D {0};
-> > > > > +=C2=A0 bool ddc_probed =3D i2c_read(link->ddc, 0x50, edid_header=
-,
-> > > > > sizeof(edid_header));
-> > > > > +
-> > > > > +=C2=A0 if (!ddc_probed)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return fa=
-lse;
-> > > > > +
-> > > > > +=C2=A0 if (!link_detect_evaluate_edid_header(edid_header))
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return fa=
-lse;
-> > > > > +
-> > > > > +=C2=A0 return true;
-> > > > > +}
-> > > > > +
-> > > > > +/**
-> > > > > + * Determines if there is an analog sink connected.
-> > > > > + */
-> > > > > +static bool link_detect_analog(struct dc_link *link, enum
-> > > > > dc_connection_type *type)
-> > > > > +{
-> > > > > +=C2=A0 /* Don't care about connectors that don't support an
-> > > > > analog signal. */
-> > > > > +=C2=A0 if (link->link_enc->connector.id !=3D CONNECTOR_ID_VGA &&
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link->lin=
-k_enc->connector.id !=3D
-> > > > > CONNECTOR_ID_SINGLE_LINK_DVII &&
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link->lin=
-k_enc->connector.id !=3D
-> > > > > CONNECTOR_ID_DUAL_LINK_DVII)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return fa=
-lse;
-> > > > > +
-> > > > > +=C2=A0 if (link_detect_ddc_probe(link)) {
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *type =3D=
- dc_connection_single;
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return tr=
-ue;
-> > > > > +=C2=A0 }
-> > > > > +
-> > > > > +=C2=A0 *type =3D dc_connection_none;
-> > > > > +=C2=A0 return true;
-> > > > > +}
-> > > > > +
-> > > > > =C2=A0/*
-> > > > > =C2=A0 * link_detect_connection_type() - Determine if there is a
-> > > > > sink
-> > > > > connected
-> > > > > =C2=A0 *
-> > > > > @@ -1238,6 +1310,7 @@ static bool
-> > > > > detect_link_and_local_sink(struct dc_link *link,
-> > > > > =C2=A0bool link_detect_connection_type(struct dc_link *link, enum
-> > > > > dc_connection_type *type)
-> > > > > =C2=A0{
-> > > > > =C2=A0=C2=A0 uint32_t is_hpd_high =3D 0;
-> > > > > +=C2=A0 bool supports_hpd =3D link->irq_source_hpd !=3D
-> > > > > DC_IRQ_SOURCE_INVALID;
-> > > > >=20
-> > > > > =C2=A0=C2=A0 if (link->connector_signal =3D=3D SIGNAL_TYPE_LVDS) =
-{
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *typ=
-e =3D dc_connection_single;
-> > > > > @@ -1261,6 +1334,8 @@ bool link_detect_connection_type(struct
-> > > > > dc_link *link, enum dc_connection_type *
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 retu=
-rn true;
-> > > > > =C2=A0=C2=A0 }
-> > > > >=20
-> > > > > +=C2=A0 if (!supports_hpd)
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return li=
-nk_detect_analog(link, type);
-> > > > >=20
-> > > > > =C2=A0=C2=A0 if (!query_hpd_status(link, &is_hpd_high))
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto=
- hpd_gpio_failure;
-> > > > > @@ -1269,6 +1344,9 @@ bool link_detect_connection_type(struct
-> > > > > dc_link *link, enum dc_connection_type *
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *typ=
-e =3D dc_connection_single;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* T=
-ODO: need to do the actual detection */
-> > > > > =C2=A0=C2=A0 } else {
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (link_=
-detect_analog(link, type))
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return true;
-> > > > > +
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *typ=
-e =3D dc_connection_none;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (=
-link->connector_signal =3D=3D SIGNAL_TYPE_EDP) {
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* eDP is not connected, powe=
-r down it
-> > > > > */
-> > > > > diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-> > > > > b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-> > > > > index d6b7347c6c11..ac25d89a4148 100644
-> > > > > --- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-> > > > > +++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-> > > > > @@ -2256,6 +2256,9 @@ static enum dc_status enable_link(
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enab=
-le_link_lvds(pipe_ctx);
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 stat=
-us =3D DC_OK;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 brea=
-k;
-> > > > > +=C2=A0 case SIGNAL_TYPE_RGB:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =
-=3D DC_OK;
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
-> > > > > =C2=A0=C2=A0 case SIGNAL_TYPE_VIRTUAL:
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 stat=
-us =3D enable_link_virtual(pipe_ctx);
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 brea=
-k;
-> > > > > diff --git
-> > > > > a/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-> > > > > b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-> > > > > index 71c10a1261b9..c9725fd316f6 100644
-> > > > > --- a/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-> > > > > +++ b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-> > > > > @@ -555,6 +555,9 @@ static bool construct_phy(struct dc_link
-> > > > > *link,
-> > > > > =C2=A0=C2=A0 case CONNECTOR_ID_DUAL_LINK_DVII:
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link=
-->connector_signal =3D
-> > > > > SIGNAL_TYPE_DVI_DUAL_LINK;
-> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 brea=
-k;
-> > > > > +=C2=A0 case CONNECTOR_ID_VGA:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link->con=
-nector_signal =3D SIGNAL_TYPE_RGB;
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
-> > > > > =C2=A0=C2=A0 case CONNECTOR_ID_DISPLAY_PORT:
-> > > > > =C2=A0=C2=A0 case CONNECTOR_ID_MXM:
-> > > > > =C2=A0=C2=A0 case CONNECTOR_ID_USBC:
-> > > >=20
+>
+>>         /*
+>>        * Maintain explicit binary tree(s) to track the allocation of the
+>
