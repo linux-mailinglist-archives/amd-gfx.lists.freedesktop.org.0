@@ -2,134 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9FFB2DB06
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 13:33:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62960B2DC85
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 14:32:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5722A10E702;
-	Wed, 20 Aug 2025 11:33:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1dq32emy";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5066010E71A;
+	Wed, 20 Aug 2025 12:32:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2056.outbound.protection.outlook.com [40.107.244.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92F9110E6FD
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 11:33:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tiBHpRxglRp/ZkgAD5NQBr/2oMoLHBpYl69GdsaeNXAixnK/mmVOBwQYxnlkKJNxM/4lbjcXb/DiEJhv1i2g9j1ZoM0DatXsG4IgIq2lcOu8IfDHaiwnFvpcIa64JHG8qBtQHql+Ol07+/bao4FuamtXLo9m0AvoGWcwDUTLpVIcljT4BkoMlrnZbieTMqBNPauKJBXFUwx5mxADOsdDoo17y9icuXlG9169j8T44jy8JmslEcCdNBexEP2se2UsyuxV0ndWrjG/LHVQw0GnxcmFv9PURksmvUfdydLjmgOHUDSG784b/8LFZtDr268LoiOC2Fhb6Tgjyw+fffzhdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a3smjigzHDofLS4xCd7ua6f5tD05PSj/pnLO65l+4tY=;
- b=aKg3QrTIb0fc6soFfFUyMNS9cy4iNuglC9RhMEOBw6BCHgp3jXUOdiP/NCsOCHnCeTeWTtZFWSrFZOeQImR4wlxOM6CeIO2+cerVTCZeQ/i3EOz/FJdzmbIWVi9n54up46dvPxofBHtWR/mP4E8v2FGrKQnmEyT/iPsoKXuMZcp9OPR2ILoDXsIy86D8fyZ8TJaTQLtgCXeaztaS7weQpn85Yuul6qdpwYOoObXHGeHoECF6U5YXHJgPMoEpuAzc0BV75yv+5mIe6McGWp2pEV8fxUs8LMUwzIRvGOjQMyQEqrAzqrLB7TuP4pwn1MO2RMy2utJaeRI73L2CQaDm3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a3smjigzHDofLS4xCd7ua6f5tD05PSj/pnLO65l+4tY=;
- b=1dq32emyDU/nxjKZVNdLYY0U/XlGHSD/9fD08HIHKEXAikm+PrBDxpBAj0hsR+C6UQ5YrBx1IfoTmGK+MsHRQdIwSoQfVHHftLkCK7ditjyofqGBxmfG9sTZzxdxwYl5AUOi4cqSAdKb4qEYtTItCiXAglxitnm74AZIdCnZvQ0=
-Received: from DS0PR17CA0009.namprd17.prod.outlook.com (2603:10b6:8:191::9) by
- MN2PR12MB4269.namprd12.prod.outlook.com (2603:10b6:208:1d4::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9031.24; Wed, 20 Aug 2025 11:33:34 +0000
-Received: from DS3PEPF000099DB.namprd04.prod.outlook.com (2603:10b6:8:191::4)
- by DS0PR17CA0009.outlook.office365.com (2603:10b6:8:191::9) with
- Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.14
- via Frontend Transport; Wed, 20 Aug 2025 11:33:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS3PEPF000099DB.mail.protection.outlook.com (10.167.17.197) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9052.8 via Frontend Transport; Wed, 20 Aug 2025 11:33:34 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 20 Aug 2025 06:33:32 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>
-Subject: [RFC PATCH 7/7] drm/amdgpu: Return Handle to MMIO_REMAP Singleton for
- GEM Create
-Date: Wed, 20 Aug 2025 17:02:54 +0530
-Message-ID: <20250820113254.3864753-8-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250820113254.3864753-1-srinivasan.shanmugam@amd.com>
-References: <20250820113254.3864753-1-srinivasan.shanmugam@amd.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B1D710E6FF;
+ Wed, 20 Aug 2025 11:39:39 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 582231D31;
+ Wed, 20 Aug 2025 04:39:30 -0700 (PDT)
+Received: from [10.57.3.97] (unknown [10.57.3.97])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B3B33F58B;
+ Wed, 20 Aug 2025 04:39:32 -0700 (PDT)
+Message-ID: <145e1021-d2c3-4ff3-aabb-fb7416848a97@arm.com>
+Date: Wed, 20 Aug 2025 12:39:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 18/19] perf: Introduce positive capability for raw events
+To: Thomas Richter <tmricht@linux.ibm.com>, peterz@infradead.org,
+ mingo@redhat.com, will@kernel.org, mark.rutland@arm.com, acme@kernel.org,
+ namhyung@kernel.org, alexander.shishkin@linux.intel.com, jolsa@kernel.org,
+ irogers@google.com, adrian.hunter@intel.com, kan.liang@linux.intel.com
+Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
+ linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
+ iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <cover.1755096883.git.robin.murphy@arm.com>
+ <542787fd188ea15ef41c53d557989c962ed44771.1755096883.git.robin.murphy@arm.com>
+ <67a0d778-6e2c-4955-a7ce-56a10043ae8d@arm.com>
+ <295ae4dd-4734-42a0-be63-2d322f00c799@linux.ibm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <295ae4dd-4734-42a0-be63-2d322f00c799@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF000099DB:EE_|MN2PR12MB4269:EE_
-X-MS-Office365-Filtering-Correlation-Id: c24c2427-922f-48b7-4005-08dddfdd65df
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WWR2ZmlrMzlRaWx1QnJPK1RxWS9SWmxiczV5TFdITldsalA4WjVVMFJreFNP?=
- =?utf-8?B?cEZieUFmUEdFUFRDc1BhZG9Xd0VQMlMwY3NUa1VrK1EzUE11d3ZqUVVNT3Zn?=
- =?utf-8?B?K3MweGtnWU1xWWgxZXRwcVJFSHFMcXlIb3ZtN3pobDZtUXpudmZtYThDNGZw?=
- =?utf-8?B?c1krdHdPUVlyOE8wZEdoL3oxSDZjQjg5MjJLQ3ZxWkg2M29tdFhCeXdZbXdF?=
- =?utf-8?B?UUUwdWFMb3A4QUNJRmR1cXc0MWkvNHhzSnFuUHJsc0VsYzNHOC9ocjZIMTdU?=
- =?utf-8?B?UGpOUzZUbDVsNXpjRCtSZlFrcFZsM3Y3Sm1SbGpURzM2dUtpOHZMR253R1FF?=
- =?utf-8?B?S1FBb1pnMitreUswVjN3Zyt3NjQxRnRNMGFuaTN3OVRvbWcvSEl2RW5WZTBB?=
- =?utf-8?B?ZTV3UVF6STJjc3ZjS1FsSDFmUTlaa1hjckxLZXMwc3ZGelYrQmtuSGVmOGlC?=
- =?utf-8?B?VEQ5UytiWW5mb3RHak5jNWRQcE5XRytxSTVyZjZVdVR5VnhzNy9Gc3lROStX?=
- =?utf-8?B?Y3FuNy92NkNPTXVHc3ZTdm9sa0F1NjFZMFVJVGFGbXJvMjdIbXhlSFdsVG43?=
- =?utf-8?B?N2F1Y08rYWkvSXVpcUhEb0grQ256VTE0R2ZmVVlWUUY4S1lpWndQK3VsU0gv?=
- =?utf-8?B?UlExTGRpWC9mTVIxc3htbTJRcm1OMnRWWFhyWGVOcmIrbTVYNU10QXRJOVEw?=
- =?utf-8?B?UjZmcko4bEhmZ2wxeGRkZHFpVjUzSWN0RGhJMDZFand1OEJMRU1nQVVrMWRY?=
- =?utf-8?B?SzRnZThoU2JFSWV1V0hXMElMOXMxTnpYN05rcWc2MmFhenJRWHFQMDJGRVFZ?=
- =?utf-8?B?QWMyU25NTWVtcWh0MmVQVm9TenFtcWVGb01XVVViTEF6WDVtWmlZTWcvRm0w?=
- =?utf-8?B?TEsyQWEzZWV2OHFOMkdqMEU4eU4xd3VnekxVeGh1cm5LSkNOZnRkNDdlcFd0?=
- =?utf-8?B?c01uajRCNVFaVGN4bHpmanF6RGcrUGJlTmpjNllJRUpWWU5nNEQ0MjZqeVhy?=
- =?utf-8?B?c1RBbkhhZjJoVDdjaWVxcytOR0t3WkJ6ZTJnWDNkRmovdjNYRk1rRDVXa2VF?=
- =?utf-8?B?YW5LZ053UGZjWFVSbGhSeVZ1aVlsN291U2RQcFBMeGx5aTFuSUtQSTN0Rk9B?=
- =?utf-8?B?aTNVS1VPT0NIMHJWNktiS3NzMEhsU3RvdVVwRUlobk9hMTcrdFdRajNmVEVh?=
- =?utf-8?B?R3g0RlJyTVp1bi9NY3hmeGZlcmFJWGE1Ymh3bGR4RjlMN0NKMWdRT3pkWmdP?=
- =?utf-8?B?UytINmJoVnNsUm9lazcxOVZzZFh2NzNPU0NLbm1Nb015OXk0K3RXVkt4bmNF?=
- =?utf-8?B?c1dVUUNLay84cUtXb2JUMTl5aWY4U1Z4NHZYbkgrbVRnWlRyWDJIV1FHdzNk?=
- =?utf-8?B?cU5DbFRpTFl1TWYyQkVMTjFDRzlGNVp4TG5CdHIzMVJYZTZDdnBHR3NGZ2sz?=
- =?utf-8?B?bEg1Nzl3bU5MbG53Z09YR2NVSXZ0OFNnVE5qY0JMd2VhUlVmRlc4cFU3cUJh?=
- =?utf-8?B?aHlvMTVRc1ZOcHNZNENLdG5xSnpWc2xpUEd0bFZ0ZXJuSk9KTjNJMGRZN2pl?=
- =?utf-8?B?MWJ0VDRaZ0Z6QXVnU2R5RkJjdmtSUGxxcjZHbGU2ZDVxM2FwK1NtWWV1U1NC?=
- =?utf-8?B?cHBpWlJmZ0J1RDVrYzM2NU9HdDgrcmlnZmVJL056SFNkcXREWHhKSUdBcmU2?=
- =?utf-8?B?Ty8xTHRXdmtwVmUvYWRROU5ublNHSGZGb25DNzBpZ3JwVjZRL0E0bDBvSHFn?=
- =?utf-8?B?dU5GR0JIeWRIdkthOVBCVmlSQ2JnNHZ3L1diWnBOSy8zSzVGMUt3SG1yLzll?=
- =?utf-8?B?RE8zNHFyOGpzMzNmK0hpa0JRT2gxd09ZZVZxMnMrR0ViWGtGODd2aG5HUkR6?=
- =?utf-8?B?b3FDMFlGeUFYZmJFckNBYTFSN1lSdlA2Qnh4NnFKMzE3WTQ0ZG0rekdzb04y?=
- =?utf-8?B?Wkh3d1ZwODBxd2FYQjBhWS9SQjFBMmk0YXFXK1U0ZWZwaE5XNjRJVVRxU3hq?=
- =?utf-8?B?R1FxYjVTei9PSGhldDVrVjJuWUFwaXlENEgyS1owVjFCTHorVXRaa1NxaXhQ?=
- =?utf-8?Q?ODjfTa?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 11:33:34.5574 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c24c2427-922f-48b7-4005-08dddfdd65df
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099DB.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4269
+X-Mailman-Approved-At: Wed, 20 Aug 2025 12:32:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,96 +65,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When userspace requests a GEM in AMDGPU_GEM_DOMAIN_MMIO_REMAP, return a
-handle to the kernel-owned singleton BO instead of allocating a new one.
+Hi Thomas,
 
-Validate inputs (exact PAGE_SIZE, alignment PAGE_SIZE, no extra flags)
-and zero the ioctl out-struct on success for a clean echo.
+On 2025-08-20 9:09 am, Thomas Richter wrote:
+> On 8/19/25 15:15, Robin Murphy wrote:
+>> On 13/08/2025 6:01 pm, Robin Murphy wrote:
+>>> Only a handful of CPU PMUs accept PERF_TYPE_{RAW,HARDWARE,HW_CACHE}
+>>> events without registering themselves as PERF_TYPE_RAW in the first
+>>> place. Add an explicit opt-in for these special cases, so that we can
+>>> make life easier for every other driver (and probably also speed up the
+>>> slow-path search) by having perf_try_init_event() do the basic type
+>>> checking to cover the majority of cases.
+>>>
+>>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+>>> ---
+>>>
+>>> A further possibility is to automatically add the cap to PERF_TYPE_RAW
+>>> PMUs in perf_pmu_register() to have a single point-of-use condition; I'm
+>>> undecided...
+>>> ---
+>>>    arch/s390/kernel/perf_cpum_cf.c    |  1 +
+>>>    arch/s390/kernel/perf_pai_crypto.c |  2 +-
+>>>    arch/s390/kernel/perf_pai_ext.c    |  2 +-
+>>>    arch/x86/events/core.c             |  2 +-
+>>>    drivers/perf/arm_pmu.c             |  1 +
+>>>    include/linux/perf_event.h         |  1 +
+>>>    kernel/events/core.c               | 15 +++++++++++++++
+>>>    7 files changed, 21 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/arch/s390/kernel/perf_cpum_cf.c b/arch/s390/kernel/perf_cpum_cf.c
+>>> index 1a94e0944bc5..782ab755ddd4 100644
+>>> --- a/arch/s390/kernel/perf_cpum_cf.c
+>>> +++ b/arch/s390/kernel/perf_cpum_cf.c
+>>> @@ -1054,6 +1054,7 @@ static void cpumf_pmu_del(struct perf_event *event, int flags)
+>>>    /* Performance monitoring unit for s390x */
+>>>    static struct pmu cpumf_pmu = {
+>>>        .task_ctx_nr  = perf_sw_context,
+>>> +    .capabilities = PERF_PMU_CAP_RAW_EVENTS,
+>>>        .pmu_enable   = cpumf_pmu_enable,
+>>>        .pmu_disable  = cpumf_pmu_disable,
+>>>        .event_init   = cpumf_pmu_event_init,
+>>> diff --git a/arch/s390/kernel/perf_pai_crypto.c b/arch/s390/kernel/perf_pai_crypto.c
+>>> index a64b6b056a21..b5b6d8b5d943 100644
+>>> --- a/arch/s390/kernel/perf_pai_crypto.c
+>>> +++ b/arch/s390/kernel/perf_pai_crypto.c
+>>> @@ -569,7 +569,7 @@ static const struct attribute_group *paicrypt_attr_groups[] = {
+>>>    /* Performance monitoring unit for mapped counters */
+>>>    static struct pmu paicrypt = {
+>>>        .task_ctx_nr  = perf_hw_context,
+>>> -    .capabilities = PERF_PMU_CAP_SAMPLING,
+>>> +    .capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
+>>>        .event_init   = paicrypt_event_init,
+>>>        .add          = paicrypt_add,
+>>>        .del          = paicrypt_del,
+>>> diff --git a/arch/s390/kernel/perf_pai_ext.c b/arch/s390/kernel/perf_pai_ext.c
+>>> index 1261f80c6d52..bcd28c38da70 100644
+>>> --- a/arch/s390/kernel/perf_pai_ext.c
+>>> +++ b/arch/s390/kernel/perf_pai_ext.c
+>>> @@ -595,7 +595,7 @@ static const struct attribute_group *paiext_attr_groups[] = {
+>>>    /* Performance monitoring unit for mapped counters */
+>>>    static struct pmu paiext = {
+>>>        .task_ctx_nr  = perf_hw_context,
+>>> -    .capabilities = PERF_PMU_CAP_SAMPLING,
+>>> +    .capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
+>>>        .event_init   = paiext_event_init,
+>>>        .add          = paiext_add,
+>>>        .del          = paiext_del,
+>>> diff --git a/arch/x86/events/core.c b/arch/x86/events/core.c
+>>> index 789dfca2fa67..764728bb80ae 100644
+>>> --- a/arch/x86/events/core.c
+>>> +++ b/arch/x86/events/core.c
+>>> @@ -2697,7 +2697,7 @@ static bool x86_pmu_filter(struct pmu *pmu, int cpu)
+>>>    }
+>>>      static struct pmu pmu = {
+>>> -    .capabilities        = PERF_PMU_CAP_SAMPLING,
+>>> +    .capabilities        = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
+>>>          .pmu_enable        = x86_pmu_enable,
+>>>        .pmu_disable        = x86_pmu_disable,
+>>> diff --git a/drivers/perf/arm_pmu.c b/drivers/perf/arm_pmu.c
+>>> index 72d8f38d0aa5..bc772a3bf411 100644
+>>> --- a/drivers/perf/arm_pmu.c
+>>> +++ b/drivers/perf/arm_pmu.c
+>>> @@ -877,6 +877,7 @@ struct arm_pmu *armpmu_alloc(void)
+>>>             * specific PMU.
+>>>             */
+>>>            .capabilities    = PERF_PMU_CAP_SAMPLING |
+>>> +                  PERF_PMU_CAP_RAW_EVENTS |
+>>>                      PERF_PMU_CAP_EXTENDED_REGS |
+>>>                      PERF_PMU_CAP_EXTENDED_HW_TYPE,
+>>>        };
+>>> diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
+>>> index 183b7c48b329..c6ad036c0037 100644
+>>> --- a/include/linux/perf_event.h
+>>> +++ b/include/linux/perf_event.h
+>>> @@ -305,6 +305,7 @@ struct perf_event_pmu_context;
+>>>    #define PERF_PMU_CAP_EXTENDED_HW_TYPE    0x0100
+>>>    #define PERF_PMU_CAP_AUX_PAUSE        0x0200
+>>>    #define PERF_PMU_CAP_AUX_PREFER_LARGE    0x0400
+>>> +#define PERF_PMU_CAP_RAW_EVENTS        0x0800
+>>>      /**
+>>>     * pmu::scope
+>>> diff --git a/kernel/events/core.c b/kernel/events/core.c
+>>> index 71b2a6730705..2ecee76d2ae2 100644
+>>> --- a/kernel/events/core.c
+>>> +++ b/kernel/events/core.c
+>>> @@ -12556,11 +12556,26 @@ static inline bool has_extended_regs(struct perf_event *event)
+>>>               (event->attr.sample_regs_intr & PERF_REG_EXTENDED_MASK);
+>>>    }
+>>>    +static bool is_raw_pmu(const struct pmu *pmu)
+>>> +{
+>>> +    return pmu->type == PERF_TYPE_RAW ||
+>>> +           pmu->capabilities & PERF_PMU_CAP_RAW_EVENTS;
+>>> +}
+>>> +
+>>>    static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
+>>>    {
+>>>        struct perf_event_context *ctx = NULL;
+>>>        int ret;
+>>>    +    /*
+>>> +     * Before touching anything, we can safely skip:
+>>> +     * - any event for a specific PMU which is not this one
+>>> +     * - any common event if this PMU doesn't support them
+>>> +     */
+>>> +    if (event->attr.type != pmu->type &&
+>>> +        (event->attr.type >= PERF_TYPE_MAX || is_raw_pmu(pmu)))
+>>
+>> Ah, that should be "!is_raw_pmu(pmu)" there (although it's not entirely the cause of the LKP report on the final patch.)
+>>
+>> Thanks,
+>> Robin.
+>>
+>>> +        return -ENOENT;
+>>> +
+>>>        if (!try_module_get(pmu->module))
+>>>            return -ENODEV;
+>>>    
+>>
+>>
+> 
+> Hi Robin,
+> 
+> what is the intention of that patch?
+> Can you explain that a bit more.
 
-This puts the userspace-visible behavior last, after all internal kernel
-plumbing and initialization are in place.
+The background here is that, in this context, we essentially have 3 
+distinct categories of PMU driver:
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 56 +++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+- Older/simpler CPU PMUs which register as PERF_TYPE_RAW and accept 
+raw/hardware events
+- Newer/heterogeneous CPU PMUs which register as a dynamic type, and 
+accept both raw/hardware events and events of their own type
+- Other (mostly uncore) PMUs which only accept events of their own type
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index e3f65977eeee..1345e81214e8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -424,6 +424,26 @@ const struct drm_gem_object_funcs amdgpu_gem_object_funcs = {
- 	.vm_ops = &amdgpu_gem_vm_ops,
- };
- 
-+/* ========= MMIO remap (HDP flush) GEM handle helper ========= */
-+static int amdgpu_gem_get_mmio_remap_handle(struct drm_file *file_priv,
-+					    struct amdgpu_device *adev,
-+					    u32 *handle)
-+{
-+	struct amdgpu_bo *bo = adev->mmio_remap_bo;
-+	struct drm_gem_object *gobj;
-+	int r;
-+
-+	if (!bo)
-+		return -ENODEV;
-+
-+	/* Take a temporary ref; the handle creation will hold its own ref. */
-+	bo = amdgpu_bo_ref(bo);
-+	gobj = &bo->tbo.base;
-+	r = drm_gem_handle_create(file_priv, gobj, handle);
-+	amdgpu_bo_unref(&bo);  /* drops our temporary ref */
-+	return r;
-+}
-+
- /*
-  * GEM ioctls.
-  */
-@@ -465,6 +485,42 @@ int amdgpu_gem_create_ioctl(struct drm_device *dev, void *data,
- 	/* always clear VRAM */
- 	flags |= AMDGPU_GEM_CREATE_VRAM_CLEARED;
- 
-+	/*
-+	 * === MMIO remap (HDP flush) fast-path ===
-+	 * If userspace asks for the MMIO_REMAP domain, don't allocate a new BO.
-+	 * Return a handle to the singleton BO created at device init.
-+	 */
-+	if (args->in.domains & AMDGPU_GEM_DOMAIN_MMIO_REMAP) {
-+		u32 mmio_handle;
-+		/* Enforce fixed size & alignment (exactly one page). */
-+		if (size && size != PAGE_SIZE)
-+			return -EINVAL;
-+		if (args->in.alignment && args->in.alignment != PAGE_SIZE)
-+			return -EINVAL;
-+		/* No extra domain flags for this special object. */
-+		if (args->in.domain_flags)
-+			return -EINVAL;
-+		/* Disallow flags that don't make sense for a fixed I/O page. */
-+		if (flags & (AMDGPU_GEM_CREATE_CPU_GTT_USWC |
-+			     AMDGPU_GEM_CREATE_ENCRYPTED |
-+			     AMDGPU_GEM_CREATE_DISCARDABLE))
-+			return -EINVAL;
-+
-+		/* Normalize inputs (optional, for user-visible echo/debug). */
-+		args->in.bo_size     = PAGE_SIZE;
-+		args->in.alignment   = PAGE_SIZE;
-+		args->in.domains     = AMDGPU_GEM_DOMAIN_MMIO_REMAP;
-+		args->in.domain_flags = 0;
-+
-+		r = amdgpu_gem_get_mmio_remap_handle(filp, adev, &mmio_handle);
-+		if (r)
-+			return r;
-+
-+		memset(args, 0, sizeof(*args));
-+		args->out.handle = mmio_handle;
-+		return 0;
-+	}
-+
- 	/* create a gem object to contain this object in */
- 	if (args->in.domains & (AMDGPU_GEM_DOMAIN_GDS |
- 	    AMDGPU_GEM_DOMAIN_GWS | AMDGPU_GEM_DOMAIN_OA)) {
--- 
-2.34.1
+These days that third one is by far the majority, so it seems 
+increasingly unreasonable and inefficient to always offer every kind of 
+event to every driver, and so force nearly all of them to have the same 
+boilerplate code to refuse events they don't want. The core code is 
+already in a position to be able to assume that a PERF_TYPE_RAW PMU 
+wants "raw" events and a typed PMU wants its own events, so the only 
+actual new thing we need is a way to discern the 5 drivers in the middle 
+category - where s390 dominates :) - from the rest in the third.
 
+The way the check itself ends up structured is that the only time we'll 
+now offer an event to a driver of a different type is if it's a "raw" 
+event and the driver has asked to be offered them (either by registering 
+as PERF_TYPE_RAW or with the new cap). Otherwise we can safely assume 
+that this PMU won't want this event, and so skip straight to trying the 
+next one. We can get away with the single PERF_TYPE_MAX check for all 
+"raw" events, since the drivers which do handle them already have to 
+consider the exact type to discern between RAW/HARDWARE/HW_CACHE, and 
+thus must reject SOFTWARE/TRACEPOINT/BREAKPOINT events anyway, but I 
+could of course make that more specific if people prefer. Conversely, 
+since the actual software/tracepoint/breakpoint PMUs won't pass the 
+is_raw_pmu() check either, and thus will only be given their own events, 
+I could remove the type checking from their event_init routines as well, 
+but I thought that might be perhaps a little too subtle as-is.
+
+BTW if the s390 drivers are intended to coexist then I'm not sure they 
+actually handle sharing PERF_TYPE_RAW events very well - what happens to 
+any particular event seems ultimately largely dependent on the order in 
+which the drivers happen to register - but that's a pre-existing issue 
+and this series shouldn't change anything in that respect. (As it 
+similarly shouldn't affect the trick of the first matching driver 
+rewriting the event type to "forward" it to another driver later in the 
+list.)
+
+Thanks,
+Robin.
