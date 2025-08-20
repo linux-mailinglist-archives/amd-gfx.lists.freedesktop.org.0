@@ -2,66 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5044DB2E657
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 22:21:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 302B7B2E65C
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 22:21:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4C8F10E7EA;
-	Wed, 20 Aug 2025 20:21:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FCEB10E7F0;
+	Wed, 20 Aug 2025 20:21:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cEY3LHVn";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="K2Or3aH3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2048.outbound.protection.outlook.com [40.107.94.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E172710E7E6
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 20:21:14 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2043.outbound.protection.outlook.com [40.107.220.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E653710E7F0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 20:21:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=r/6KFRqlymT9u5SmtTnqTDAOhCZ9onEnTqfixCT4Ltzxcp7pRa6ssDvOYJ1FyAZTdyEZYuLuIsxbt0Wme8P3NxikqXsiYXc+Gy7uKtlt+Xpfa/+dGUsaIbJtifh9wDJC/Bgc9G1biDXZWORBf020cagZlHJi5QrcG0ggKCe++hBLSRZUwf2xXnbBhLryY4znS0dRKcwEOjnqj6uoDcXsh2lp3dm/ok2vvbNQF8DTeaFW7+kb50LWiXBl00n7yod3g+UxzscwErsU/7e4IeWSUePVZRBDaGpe6nozlf8qkYPAPRulDT5eLTFqee8VCHb5flEm8oL8+tSb+li8ggoFEA==
+ b=hKsC8K2EFVFzVQzMdOtrIzwraMMYZ8/DiuUsrTzgtnVh2ZL+6JeHKXomwoKy1czL5Mw4xjEzKvarS78+z02+Wd4MiKrmk3Ry8J2rznz+thv3sWQ3OmH9yEnnBGgIYa5T9EsUNQ0QTeC0ZtxCcl/p6z7xoy3X/f5Wx3v39cLpp6KeIebNfVEaweNAa+DNBBA9321rUpDPjCHc0eCcuMfp4UvHt05sAIvtIfY1cnwq8GdbGuy++Z1B5laBoA/suHtKqw7z83yDgl8XtgodXpxRaHpLDVw2+YygnSfLVnkU+xkutENaA/BWqPeb6GDy1hOhBLbKEK8iTkBW9RKBnrspkQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ddeAEP1EG2nqd6eBiGuNbkf+cViF8Az7OljzX9cQuqA=;
- b=b4JE1j5XzLhwu/ChlmVkIJYWPwWLcBmRb8+RF28Q1mWMRHrF6eadDyHZ+DJosSq7O0UT34y7BMC+ZtWOCF5JCdwXz4uI3WkOpLceNrR1ozt1zbsxkQDBWeAQWfPDsGHRTJTdlpJLxksKUFZaURmTKBRFXAF5ILuWPLpfyOJKpghXCSrWPISktA/kuDwTqTMRBsSDtwO3iGD45ZwV4ShKNE1MwRbFy229u7y4RSMeyKr/wVmWFrObusy+PEBrNq6aefudKfIWqJ1zFQ5DNoEG6K9/AiGtbYxMNxKftF5v/S8asxhAKDiDFQHBeNhxxkpMqUTzweZrGt3HwhDC7hPG+A==
+ bh=UsyNoOuXjCWi7pUsbdpyjHAK2dSGPAV6qoFw5+hRvQU=;
+ b=tZAAPHPh3+8MnZ0wiiIa9aPekyHF2vbsLPzh6frJv3gJ5IrnNWewXGOaZ+CG+Wfwbb1HjgfHi3A5ZdH+e0uF/FWSgC1INcPalDUalIhhF/EUyjWl8mou2256KTOxiDXzpOB9ZCOrLu7dq1mvdsUPE5aAmHaXAHRYyF4FCxkloKMM95GLB9C+e8Jp0fmSDi2suNvcIq3Ar6P4Q4BuaikfbfIrhbE1iDk2RPhuShaHLTrPRQdAwKhEH3bBkE+cS9mdz2GVVmyXIL8Hz4kjksjMbVf5dYBwW1tNXy5Kk7ZX1J1oCs6R9lfJmkqNg2bFmugJXSU7wzCllsLbg8f79jufOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ddeAEP1EG2nqd6eBiGuNbkf+cViF8Az7OljzX9cQuqA=;
- b=cEY3LHVnvm7sO6BXDbvdPqhdJxC3xiE/AiP7oNgUo63WUVbxbHRSLd/hi3ZpIODhNo9H0sCBjT+RgMBNLSO8f+uoZN5qF/bRylhPh47HTrKq0oA648m7ScTfOhnnYFzTyqtWJXQ9Vw54cibYvbBHf67bD1Rb4gpQJWbgpLDeuAg=
-Received: from CH0PR03CA0055.namprd03.prod.outlook.com (2603:10b6:610:b3::30)
- by CH1PPF189669351.namprd12.prod.outlook.com
- (2603:10b6:61f:fc00::608) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Wed, 20 Aug
+ bh=UsyNoOuXjCWi7pUsbdpyjHAK2dSGPAV6qoFw5+hRvQU=;
+ b=K2Or3aH3rJep6RHnJCbPc4213j6QBm96ZYUw7XyqzosnLhtHEEdLmMGXHP1VcDcKZl8bdka51iQQakPTwyl6oUcCb8gaQ5KzF6wqYV0PwcL7fJvBta/hm/4L+/Zy6t1st+bRPjE6A8FZCNt1UZYjekKtP5m8Baf+yEzZx7QxXDU=
+Received: from DM6PR06CA0038.namprd06.prod.outlook.com (2603:10b6:5:54::15) by
+ IA1PR12MB8468.namprd12.prod.outlook.com (2603:10b6:208:445::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.14; Wed, 20 Aug
  2025 20:21:11 +0000
-Received: from DS2PEPF0000343B.namprd02.prod.outlook.com
- (2603:10b6:610:b3:cafe::3c) by CH0PR03CA0055.outlook.office365.com
- (2603:10b6:610:b3::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.13 via Frontend Transport; Wed,
+Received: from CY4PEPF0000EE39.namprd03.prod.outlook.com
+ (2603:10b6:5:54:cafe::d6) by DM6PR06CA0038.outlook.office365.com
+ (2603:10b6:5:54::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.14 via Frontend Transport; Wed,
  20 Aug 2025 20:21:11 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF0000343B.mail.protection.outlook.com (10.167.18.38) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CY4PEPF0000EE39.mail.protection.outlook.com (10.167.242.11) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.9052.8 via Frontend Transport; Wed, 20 Aug 2025 20:21:11 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 20 Aug
- 2025 15:21:07 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1748.10; Wed, 20 Aug
- 2025 13:21:07 -0700
+ 2025 15:21:08 -0500
 Received: from aaurabin-tumbleweed.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Wed, 20 Aug 2025 15:21:06 -0500
+ via Frontend Transport; Wed, 20 Aug 2025 15:21:07 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -69,65 +65,68 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 05/12] drm/amd/display: Support HW cursor 180 rot for any
- number of pipe splits
-Date: Wed, 20 Aug 2025 16:19:55 -0400
-Message-ID: <20250820202103.1122706-6-aurabindo.pillai@amd.com>
+ <alex.hung@amd.com>, Clay King <clayking@amd.com>, Joshua Aberback
+ <joshua.aberback@amd.com>
+Subject: [PATCH 06/12] drm/amd/display: Multiplication result converted to
+ larger type
+Date: Wed, 20 Aug 2025 16:19:56 -0400
+Message-ID: <20250820202103.1122706-7-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250820202103.1122706-1-aurabindo.pillai@amd.com>
 References: <20250820202103.1122706-1-aurabindo.pillai@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: aurabindo.pillai@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343B:EE_|CH1PPF189669351:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff698a80-b293-470e-d0a1-08dde0271aff
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|IA1PR12MB8468:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac11df5a-4b37-4630-86d7-08dde0271ae4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?rVQ1uPQZE6wL9Qky88fCEsi9hPLDjS+KwTGhQKxkO0HQNMRtK3dTSLG9Ajxi?=
- =?us-ascii?Q?9CqA9wENWfDBO//gP42szSWzboYe9solGe1IhhEiVQyJid3zsNSxg4BshXn4?=
- =?us-ascii?Q?67PG0DkPHl2Ln1jnTnL23UeeT7lUAH8ameK6FPT+HFSbWhO1HOk4/5+1THK2?=
- =?us-ascii?Q?v7Z1yMoQTtmz74VATlRXJAmAoDTJCM92qmi1OjZX05Bc3lWqZ9Ngc4TmZiND?=
- =?us-ascii?Q?NAHO7CT8Xnr0wB9hv/SsLvzqjzJ0gsVHpEY5cr8n/Y9EMDpZoONBoCIoHzbw?=
- =?us-ascii?Q?83Yz3aPyUcQBXSrxwGxHcS2tQWdUMOWwaU11SuxcavTeuCjk8JirKHrBa8bW?=
- =?us-ascii?Q?Uiy6dxq3/Om0vcROzkNEL6PrGXEpqN6f9FWpxHTnuQ8wpqnrO/My9UKJSp7b?=
- =?us-ascii?Q?KcY6A1kwXf9Z32HCHk9kFoTGK/mYzsINxIp3jWY/dWjFmzE+L9LXl3j2pn8k?=
- =?us-ascii?Q?rIUCHwF9X2IfXT+uTFbTHjVPaGJUc9RzEehRp7tZGszOsXFIPSS8JSDb5RJX?=
- =?us-ascii?Q?6Gv/Vkqu0A3ZeIFREUcvORTGelBtXEypBY2O49zAEJKrKpXWPkM2l5sbA055?=
- =?us-ascii?Q?DZl3h0tQenF1h5ROoePojhCXS0o66t3ml+Rgv9UR/N/k/7Uc8/Gdh0tORxq0?=
- =?us-ascii?Q?SoVq2c+uoeHxIwPnJ1nbvlmiJbTJJA6X/eI8578t0G3jO+Zli2D3tSEka4kC?=
- =?us-ascii?Q?MyQtbwtV025yy14cXColT1nJKyehGppb+o5UL6QRFbznJsG6pcvD50/ALXpW?=
- =?us-ascii?Q?cb7KaNQRyLKGIXQtKGUevFyEZvSsOhcwzK/TFko5kmIIs3sv4X+zmSWyufCu?=
- =?us-ascii?Q?lf56NxyAUeyVyY52TztNULo3IKf8khXiqoB/SOtF1LyoyAx6jcHHhXJC6Qqr?=
- =?us-ascii?Q?Woe1SCELjCpmJa9jfXkVaDpHryY5l9u//ytzEEMxvdwgTO89BiizUITSg7+a?=
- =?us-ascii?Q?DeRTuBxnXIpmlHy/JdFPxbxIv/7gi5LWp/PEc3RbUPRHRLaI94lPaF6OpV2n?=
- =?us-ascii?Q?+ohsi9iqyJde1Ojfzl9oBQuBVBso/dY9Dhr64v/mUHJIkMeDBaLF17FCTeQW?=
- =?us-ascii?Q?nAKwZv6Dbhoq5fcCxKfwOaCyI7LoBys20TqOPurQH7Rc68HMCUP/r2q9m75/?=
- =?us-ascii?Q?4KX+XS/gyDC/ou2tttyLzMIp2Mp9phfG7h5nD077Ywt2FVe/9XUNFFbiC1zU?=
- =?us-ascii?Q?XaQIrMMt7KsgQifXSLd3pJ9l2m47HojOScd67icuq2JMoiPWPJ7RGaLKUW7N?=
- =?us-ascii?Q?5KQ35ncJdkNhf/SUUOIqmttGPt1aB0jmsbk2MTBmAf2yY6h/NzPxXo7ycrzJ?=
- =?us-ascii?Q?tdEFkXXvMgGnbWX807t0ODwX6P4twVCptG11o8xwWYB6mIatBPqhGR7ERVZ7?=
- =?us-ascii?Q?UPZVMZnYtu/7BVJM9QH/0QI33t4n7IJwJqU/CccB6rJzVwCVYIxqdilY+nRx?=
- =?us-ascii?Q?EmDyI9TpkYZZyKGkZcKSM6k3VTUKgc5bh/FJv2c8mov49fhOsHZ5y33WMobg?=
- =?us-ascii?Q?NbNre5+RJBXQKtIFAV5fafYWfJ0yhIR4c0d7?=
+ ARA:13230040|30052699003|82310400026|376014|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?w24PvBUmXF5YWJAOVcidvJHl3yN+zmJkMAN+oJ8BRny1keNiATw6N3GSWUwy?=
+ =?us-ascii?Q?KPUuCqqsWmZbkiisjyNLFokuTp24VZhJG94CqEk1VDpLlK2YjFuU43v5Du6v?=
+ =?us-ascii?Q?0wdEMVcIGPH2Gk4p5iCVzgmUYWNPz3tmFjVlkBTnBeVdpRTE36IH3x2u0PIT?=
+ =?us-ascii?Q?/32M66dsZ6dNsHGFQJBAvzxMJsQIR439JPbeVLD2ozoryirVIwPnPjU3Nsp/?=
+ =?us-ascii?Q?q0CsSZlUC68MO5Oxk32Ya5sOk3rU17nK+o2D5+MfAwob4Eayz093vm364uz7?=
+ =?us-ascii?Q?SmlVTLF/rqWxHgbkRIBBOXwbutXyg56gJr6ZTgrzbaB2vuFdpIMXlKw28i/J?=
+ =?us-ascii?Q?duPSL2FIoM8DOYysFJ03BoUc6O4JuESz7/3StYiazJD3uGoTv8ey9o9wQwgo?=
+ =?us-ascii?Q?Ue9aoIW/SS+Q/HbNk3Qlw8BRkCEdq2479HCj6RpgkeZFIxniM9WgZxGQw6xw?=
+ =?us-ascii?Q?5FTtaoWfZwrQIbRFH+CvUFOimmUzaRJa4kkcVkkWlnDWf532GnmrdsV+PZPd?=
+ =?us-ascii?Q?YCLb3VH1jPjQvcUE/aXs4tGI+xxwPq9v0fYHUhHo10lqVqNjjzCZscDwXqV4?=
+ =?us-ascii?Q?KDh2Il4Kyf04M42CKooHhDT5zVpO1YcRJC1BX68WsLNE/PTIeVKK8jLLTU9q?=
+ =?us-ascii?Q?6unoeZ0aP6lIZIb9lzBQrl0ipMUL5OM6AzmFYqT9KfhqpG1d0ctfl6VdRRbK?=
+ =?us-ascii?Q?WZvWOEXfw4z9YXXnGVqEANCZRmUQPCRouw0EFmvY1nouPpyT/Y1IQodutJMl?=
+ =?us-ascii?Q?2WW79qlV7VsgQ/WG/BeU0cnKu8fbWQh5fuqd33+3rqXI/9ETsPIFuatE1DyG?=
+ =?us-ascii?Q?cuf74F8kbNB63jMLox8OxiITc+pHuvwZF9cnq9Nw9B+SqJW7mcMJ42crNoBD?=
+ =?us-ascii?Q?cMKf5TZGMbqv6nKQDwebFQkkyCP/sifIbyev/YoFgVx+BjfCtam23E8jtdWg?=
+ =?us-ascii?Q?FunJwi5Ii0xmdVrMrNKgShs+D1jew3VH5/LJDUtHbEFWeO3Vkcm9zCyqbJla?=
+ =?us-ascii?Q?fGk1TcLVfpsJkI1mZuwJeBygWzEvoHBRC6IOYDGUME0sTVPVcWux/TIaiDFN?=
+ =?us-ascii?Q?AgegZZKzTyumFb0Pk1JOHl8S+4eRywtAvPshebFore9Jr8MzG98PtbBe8aru?=
+ =?us-ascii?Q?5qmHR78bRVbIEtxtvQRTHH0OT04KUgOtUKmdiKe808iI8+hmM1tYMxwyNxdh?=
+ =?us-ascii?Q?QaTAQxS5WagpyaoTzYIULogX8qYclFHeyf4E/HyhsOQPp6frThZdLdmMRj/u?=
+ =?us-ascii?Q?1Xh4DTeaxTL4iGiac3liOXSaJqRTWGBscEY7kezdGopGsuBD+VkOJ4P5/Bvx?=
+ =?us-ascii?Q?bimu5DfUlNvxGRi2noQfLVj4linFVz8Pm5ULMLrUChiiAaWajNDAxS0NDzH7?=
+ =?us-ascii?Q?5bue3PcmQWTjtZpPz5pl0sUUVKg7Qv+IoELuK89kFyqfSmsRh9Ic21YpbPKF?=
+ =?us-ascii?Q?pPl0/Wk1MOHBEPLRm/BZrA5Ci0pr+5U9ht7cw89hp38Uf3DroM71Fe8hD5lD?=
+ =?us-ascii?Q?8O6l5INPX1Ew7IgYctGEaxPlKXK6n3W5eAfz?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(30052699003)(82310400026)(376014)(36860700013)(1800799024);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 20:21:11.6985 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff698a80-b293-470e-d0a1-08dde0271aff
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 20:21:11.5113 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac11df5a-4b37-4630-86d7-08dde0271ae4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343B.namprd02.prod.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE39.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PPF189669351
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8468
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,154 +141,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ivan Lipski <ivan.lipski@amd.com>
+From: Clay King <clayking@amd.com>
 
-[Why]
-For the HW cursor, its current position in the pipe_ctx->stream struct is
-not affected by the 180 rotation, i. e. the top left corner is still at
-0,0. However, the DPP & HUBP set_cursor_position functions require rotated
-position.
+Consolidating multiple CodeQL Fixes for alerts with rule id: cpp/integer-multiplication-cast-to-long
 
-The current approach is hard-coded for ODM 2:1, thus it's failing for
-ODM 4:1, resulting in a double cursor.
-
-[How]
-Instead of calculating the new cursor position relatively to the
-viewports, we calculate it using a viewavable clip_rect of each plane.
-
-The clip_rects are first offset and scaled to the same space as the
-src_rect, i. e. Stream space -> Plane space.
-
-In case of a pipe split, which divides the plane into 2 or more viewports,
-the clip_rect is the union of all the viewports of the given plane.
-
-With the assumption that the viewports in HUBP's set_cursor_position are
-in the Plane space as well, it should produce a correct cursor position
-for any number of pipe splits.
-
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
-Signed-off-by: Leo Li <sunpeng.li@amd.com>
+Reviewed-by: Joshua Aberback <joshua.aberback@amd.com>
+Signed-off-by: Clay King <clayking@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   | 73 +++++++------------
- 1 file changed, 27 insertions(+), 46 deletions(-)
+ drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c    |  2 +-
+ drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c   |  2 +-
+ drivers/gpu/drm/amd/display/dc/basics/vector.c       |  6 +++---
+ drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c |  2 +-
+ .../amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c   |  2 +-
+ .../amd/display/dc/resource/dce112/dce112_resource.c | 12 ++++++------
+ .../amd/display/dc/resource/dce120/dce120_resource.c |  6 +++---
+ 7 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-index d633033c98f2..506c3bbbf221 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-@@ -3663,6 +3663,8 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	int y_plane = pipe_ctx->plane_state->dst_rect.y;
- 	int x_pos = pos_cpy.x;
- 	int y_pos = pos_cpy.y;
-+	int clip_x = pipe_ctx->plane_state->clip_rect.x;
-+	int clip_width = pipe_ctx->plane_state->clip_rect.width;
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
+index d897f8a30ede..4da5adab799c 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
+@@ -1136,7 +1136,7 @@ static void calculate_bandwidth(
+ 			}
+ 		}
+ 	}
+-	data->total_dmifmc_urgent_trips = bw_ceil2(bw_div(data->total_requests_for_adjusted_dmif_size, (bw_add(dceip->dmif_request_buffer_size, bw_int_to_fixed(vbios->number_of_request_slots_gmc_reserves_for_dmif_per_channel * data->number_of_dram_channels)))), bw_int_to_fixed(1));
++	data->total_dmifmc_urgent_trips = bw_ceil2(bw_div(data->total_requests_for_adjusted_dmif_size, (bw_add(dceip->dmif_request_buffer_size, bw_int_to_fixed((uint64_t)vbios->number_of_request_slots_gmc_reserves_for_dmif_per_channel * data->number_of_dram_channels)))), bw_int_to_fixed(1));
+ 	data->total_dmifmc_urgent_latency = bw_mul(vbios->dmifmc_urgent_latency, data->total_dmifmc_urgent_trips);
+ 	data->total_display_reads_required_data = bw_int_to_fixed(0);
+ 	data->total_display_reads_required_dram_access_data = bw_int_to_fixed(0);
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c b/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
+index 452206b5095e..6073cadde76c 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
++++ b/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
+@@ -284,7 +284,7 @@ struct fixed31_32 dc_fixpt_cos(struct fixed31_32 arg)
+ 				dc_fixpt_mul(
+ 					square,
+ 					res),
+-				n * (n - 1)));
++				(long long)n * (n - 1)));
  
- 	if ((pipe_ctx->top_pipe != NULL) || (pipe_ctx->bottom_pipe != NULL)) {
- 		if ((pipe_ctx->plane_state->src_rect.width != pipe_ctx->plane_res.scl_data.viewport.width) ||
-@@ -3681,7 +3683,7 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
+ 		n -= 2;
+ 	} while (n != 0);
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/vector.c b/drivers/gpu/drm/amd/display/dc/basics/vector.c
+index 6d2924114a3e..b413a672c2c0 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/vector.c
++++ b/drivers/gpu/drm/amd/display/dc/basics/vector.c
+@@ -170,7 +170,7 @@ bool dal_vector_remove_at_index(
+ 		memmove(
+ 			vector->container + (index * vector->struct_size),
+ 			vector->container + ((index + 1) * vector->struct_size),
+-			(vector->count - index - 1) * vector->struct_size);
++			(size_t)(vector->count - index - 1) * vector->struct_size);
+ 	vector->count -= 1;
+ 
+ 	return true;
+@@ -219,7 +219,7 @@ bool dal_vector_insert_at(
+ 		memmove(
+ 			insert_address + vector->struct_size,
+ 			insert_address,
+-			vector->struct_size * (vector->count - position));
++			(size_t)vector->struct_size * (vector->count - position));
+ 
+ 	memmove(
+ 		insert_address,
+@@ -271,7 +271,7 @@ struct vector *dal_vector_clone(
+ 
+ 	/* copy vector's data */
+ 	memmove(vec_cloned->container, vector->container,
+-			vec_cloned->struct_size * vec_cloned->capacity);
++			(size_t)vec_cloned->struct_size * vec_cloned->capacity);
+ 
+ 	return vec_cloned;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+index 6160952245b4..7cd7bddea423 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -3401,7 +3401,7 @@ bool dcn32_allow_subvp_with_active_margin(struct pipe_ctx *pipe)
+ 		uint32_t height = subvp_active_margin_list.res[i].height;
+ 
+ 		refresh_rate = (pipe->stream->timing.pix_clk_100hz * (uint64_t)100 +
+-			pipe->stream->timing.v_total * pipe->stream->timing.h_total - (uint64_t)1);
++			(uint64_t)pipe->stream->timing.v_total * pipe->stream->timing.h_total - (uint64_t)1);
+ 		refresh_rate = div_u64(refresh_rate, pipe->stream->timing.v_total);
+ 		refresh_rate = div_u64(refresh_rate, pipe->stream->timing.h_total);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c b/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c
+index 259a98e4ee2c..2a422e223bf2 100644
+--- a/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c
++++ b/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c
+@@ -284,7 +284,7 @@ void mcifwb2_dump_frame(struct mcif_wb *mcif_wb,
+ 
+ 	REG_UPDATE(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_LOCK, 0xf);
+ 
+-	memcpy(dest_luma_buffer,   luma_buffer,   mcif_params->luma_pitch * dest_height);
++	memcpy(dest_luma_buffer,   luma_buffer,   (size_t)mcif_params->luma_pitch * dest_height);
+ 	memcpy(dest_chroma_buffer, chroma_buffer, mcif_params->chroma_pitch * dest_height / 2);
+ 
+ 	REG_UPDATE(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_LOCK, 0x0);
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
+index 164ba796f64c..869a8e515fc0 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
+@@ -1111,12 +1111,12 @@ static void bw_calcs_data_update_from_pplib(struct dc *dc)
+ 				&clks);
+ 
+ 		dc->bw_vbios->low_yclk = bw_frc_to_fixed(
+-			clks.clocks_in_khz[0] * memory_type_multiplier, 1000);
++			(int64_t)clks.clocks_in_khz[0] * memory_type_multiplier, 1000);
+ 		dc->bw_vbios->mid_yclk = bw_frc_to_fixed(
+-			clks.clocks_in_khz[clks.num_levels>>1] * memory_type_multiplier,
++			(int64_t)clks.clocks_in_khz[clks.num_levels>>1] * memory_type_multiplier,
+ 			1000);
+ 		dc->bw_vbios->high_yclk = bw_frc_to_fixed(
+-			clks.clocks_in_khz[clks.num_levels-1] * memory_type_multiplier,
++			(int64_t)clks.clocks_in_khz[clks.num_levels-1] * memory_type_multiplier,
+ 			1000);
+ 
+ 		return;
+@@ -1152,12 +1152,12 @@ static void bw_calcs_data_update_from_pplib(struct dc *dc)
+ 	 * YCLK = UMACLK*m_memoryTypeMultiplier
  	 */
+ 	dc->bw_vbios->low_yclk = bw_frc_to_fixed(
+-		mem_clks.data[0].clocks_in_khz * memory_type_multiplier, 1000);
++		(int64_t)mem_clks.data[0].clocks_in_khz * memory_type_multiplier, 1000);
+ 	dc->bw_vbios->mid_yclk = bw_frc_to_fixed(
+-		mem_clks.data[mem_clks.num_levels>>1].clocks_in_khz * memory_type_multiplier,
++		(int64_t)mem_clks.data[mem_clks.num_levels>>1].clocks_in_khz * memory_type_multiplier,
+ 		1000);
+ 	dc->bw_vbios->high_yclk = bw_frc_to_fixed(
+-		mem_clks.data[mem_clks.num_levels-1].clocks_in_khz * memory_type_multiplier,
++		(int64_t)mem_clks.data[mem_clks.num_levels-1].clocks_in_khz * memory_type_multiplier,
+ 		1000);
  
- 	/**
--	 * Translate cursor from stream space to plane space.
-+	 * Translate cursor and clip offset from stream space to plane space.
- 	 *
- 	 * If the cursor is scaled then we need to scale the position
- 	 * to be in the approximately correct place. We can't do anything
-@@ -3698,6 +3700,10 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 				pipe_ctx->plane_state->dst_rect.width;
- 		y_pos = (y_pos - y_plane) * pipe_ctx->plane_state->src_rect.height /
- 				pipe_ctx->plane_state->dst_rect.height;
-+		clip_x = (clip_x - x_plane) * pipe_ctx->plane_state->src_rect.width /
-+				pipe_ctx->plane_state->dst_rect.width;
-+		clip_width = clip_width * pipe_ctx->plane_state->src_rect.width /
-+				pipe_ctx->plane_state->dst_rect.width;
- 	}
+ 	/* Now notify PPLib/SMU about which Watermarks sets they should select
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
+index eb1e158d3436..2f23cc6df571 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
+@@ -990,12 +990,12 @@ static void bw_calcs_data_update_from_pplib(struct dc *dc)
+ 		memory_type_multiplier = MEMORY_TYPE_HBM;
  
- 	/**
-@@ -3744,30 +3750,18 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
+ 	dc->bw_vbios->low_yclk = bw_frc_to_fixed(
+-		mem_clks.data[0].clocks_in_khz * memory_type_multiplier, 1000);
++		(int64_t)mem_clks.data[0].clocks_in_khz * memory_type_multiplier, 1000);
+ 	dc->bw_vbios->mid_yclk = bw_frc_to_fixed(
+-		mem_clks.data[mem_clks.num_levels>>1].clocks_in_khz * memory_type_multiplier,
++		(int64_t)mem_clks.data[mem_clks.num_levels>>1].clocks_in_khz * memory_type_multiplier,
+ 		1000);
+ 	dc->bw_vbios->high_yclk = bw_frc_to_fixed(
+-		mem_clks.data[mem_clks.num_levels-1].clocks_in_khz * memory_type_multiplier,
++		(int64_t)mem_clks.data[mem_clks.num_levels-1].clocks_in_khz * memory_type_multiplier,
+ 		1000);
  
- 
- 	if (param.rotation == ROTATION_ANGLE_0) {
--		int viewport_width =
--			pipe_ctx->plane_res.scl_data.viewport.width;
--		int viewport_x =
--			pipe_ctx->plane_res.scl_data.viewport.x;
- 
- 		if (param.mirror) {
--			if (pipe_split_on || odm_combine_on) {
--				if (pos_cpy.x >= viewport_width + viewport_x) {
--					pos_cpy.x = 2 * viewport_width
--							- pos_cpy.x + 2 * viewport_x;
--				} else {
--					uint32_t temp_x = pos_cpy.x;
--
--					pos_cpy.x = 2 * viewport_x - pos_cpy.x;
--					if (temp_x >= viewport_x +
--						(int)hubp->curs_attr.width || pos_cpy.x
--						<= (int)hubp->curs_attr.width +
--						pipe_ctx->plane_state->src_rect.x) {
--						pos_cpy.x = 2 * viewport_width - temp_x;
--					}
--				}
--			} else {
--				pos_cpy.x = viewport_width - pos_cpy.x + 2 * viewport_x;
--			}
-+			/*
-+			 * The plane is split into multiple viewports.
-+			 * The combination of all viewports span the
-+			 * entirety of the clip rect.
-+			 *
-+			 * For no pipe_split, viewport_width is represents
-+			 * the full width of the clip_rect, so we can just
-+			 * mirror it.
-+			 */
-+			pos_cpy.x = clip_width - pos_cpy.x + 2 * clip_x;
- 		}
- 	}
- 	// Swap axis and mirror horizontally
-@@ -3837,30 +3831,17 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	}
- 	// Mirror horizontally and vertically
- 	else if (param.rotation == ROTATION_ANGLE_180) {
--		int viewport_width =
--			pipe_ctx->plane_res.scl_data.viewport.width;
--		int viewport_x =
--			pipe_ctx->plane_res.scl_data.viewport.x;
--
- 		if (!param.mirror) {
--			if (pipe_split_on || odm_combine_on) {
--				if (pos_cpy.x >= viewport_width + viewport_x) {
--					pos_cpy.x = 2 * viewport_width
--							- pos_cpy.x + 2 * viewport_x;
--				} else {
--					uint32_t temp_x = pos_cpy.x;
--
--					pos_cpy.x = 2 * viewport_x - pos_cpy.x;
--					if (temp_x >= viewport_x +
--						(int)hubp->curs_attr.width || pos_cpy.x
--						<= (int)hubp->curs_attr.width +
--						pipe_ctx->plane_state->src_rect.x) {
--						pos_cpy.x = temp_x + viewport_width;
--					}
--				}
--			} else {
--				pos_cpy.x = viewport_width - pos_cpy.x + 2 * viewport_x;
--			}
-+			/*
-+			 * The plane is split into multiple viewports.
-+			 * The combination of all viewports span the
-+			 * entirety of the clip rect.
-+			 *
-+			 * For no pipe_split, viewport_width is represents
-+			 * the full width of the clip_rect, so we can just
-+			 * mirror it.
-+			 */
-+			pos_cpy.x = clip_width - pos_cpy.x + 2 * clip_x;
- 		}
- 
- 		/**
+ 	/* Now notify PPLib/SMU about which Watermarks sets they should select
 -- 
 2.50.1
 
