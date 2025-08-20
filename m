@@ -2,143 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83290B2F8B5
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 Aug 2025 14:49:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA700B2E1A3
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 18:01:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE4C110E98E;
-	Thu, 21 Aug 2025 12:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6EC10E7AB;
+	Wed, 20 Aug 2025 16:01:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="eLcXVeQq";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="gbuHnsjF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D54A610E782
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 15:23:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755703392;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=MHMC0ytWt4UnbdQQ3ai3X6E6JH7mYxGupeQxLSXwMtc=;
- b=eLcXVeQq9scCqTXJvWZAJIAFdt2Emoff+IWyC6ot1sM4dBEX3ChCbEXHUq+h3BaiNKqPcY
- heVRM0D8elwGhjrFlWbJt6JLeWmsua5cOu5NGD3vxa8je/NIgqNLZlnW9vBJTaiFBGcNbV
- Ux/jTH1wYQU0N5UDQpGti0I85sGn7MU=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-621-1E5nZNx-M_OCuhP-pSiYlg-1; Wed, 20 Aug 2025 11:23:11 -0400
-X-MC-Unique: 1E5nZNx-M_OCuhP-pSiYlg-1
-X-Mimecast-MFC-AGG-ID: 1E5nZNx-M_OCuhP-pSiYlg_1755703390
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-45a1b0cfbafso41982895e9.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 08:23:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755703390; x=1756308190;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=MHMC0ytWt4UnbdQQ3ai3X6E6JH7mYxGupeQxLSXwMtc=;
- b=X7BUY10qG0hdB9GiyqBrFAUp7fm//atnsYxN358UQotvjZH/OTBAposN9g9pqHtCj2
- AhkX3lXXeuLGXr0cy4GVQbhdyiDRcE8061oVftrYfiEeOklgBJQOp7QlWOeGtCECbjwY
- jWSplc56plIOwObXHqmL6AnTLZhjKFLcXSbu1w+GIR5+gUN8vghfGLmb2wFL44Ox7RoW
- 1sw+VF2bXOBIrvXTtRc+rcLE/k38FgsbReZIc4t9Iu+R3uK1cbdecoElWHiyzBO4HSzb
- h/N2yo+53+T/h27vb9HSS3spqbtvBEw4BR9gdePlG4slTmlEPnrmyHknEv54GECaAEs8
- AR2A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXF8Al2rWWjwHTNRSWLHzM67xPjKx68x0pzIla4ZrwZlHwpLlT/iApRfFb314qiBDoaXqlngN9t@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwQU+kgAlcwlu4Bj8LI/+3u8k0bxNR0D2BK1L3lTUARzNeMcQH7
- whiuXDP4EwNdFbBW6CNxS/wy+HLYQO9Gq6z5/tYo+hX6Q0PVsTdvxA2Ur0NPNbebDUZ4Cpjsk0j
- H1jpfmrX6MEcvO7OlWv0zjgh/djd41cDNpEnJn+HSnRbwwA1a7c9v8avQHRtypPOWAFw=
-X-Gm-Gg: ASbGncuywDRribMYvTHhu1sjXUjoqJYZmXbsm8f9mEuBJSCMMe4teMlT/aXl6REq/e7
- eja3TekGVi2keLKC6/BM0LHL6jobbRvNAXFZk4HqJOTHen2Rxhs3iS76grGmP9T6K3sZ6djelfY
- XGCyxgJlwsZJ6X7KHnQx0SKOu11dGiv092t8xMYWcu2GQpdl4s4ITWslTPllWySGTYEeifK8FL2
- tZbOR9Al436jrw1Jvu+sEbltOO7ysHC7WQUEJPQ/4HX6VHFdJEXwASp0B9D681jn++lsSe00hxf
- HfbhLyZfMmoI5TZIcoQACWVNtdLsTyCLMM2aZpfAFBNaAnuUjWxy0I1WCjPv46JZq667WQyuKbQ
- Dq1h/xyRhFPBFZa+uQauykDzB8lARgZuws34EcmqxSguLx7IpZpBP9Ghxj4mW3ke3
-X-Received: by 2002:a05:600c:1c0f:b0:45b:47e1:f5ff with SMTP id
- 5b1f17b1804b1-45b47e1f78emr19926185e9.35.1755703389807; 
- Wed, 20 Aug 2025 08:23:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGhEZ/n8PZkcKynPCVdAwa7qiBMdV4if/4Cu2oXhVKYAe2TWTJLq5lgkm+j9KdvQrljPj3TIQ==
-X-Received: by 2002:a05:600c:1c0f:b0:45b:47e1:f5ff with SMTP id
- 5b1f17b1804b1-45b47e1f78emr19925905e9.35.1755703389377; 
- Wed, 20 Aug 2025 08:23:09 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f13:de00:e9f1:62b4:5bb:5d83?
- (p200300d82f13de00e9f162b405bb5d83.dip0.t-ipconnect.de.
- [2003:d8:2f13:de00:e9f1:62b4:5bb:5d83])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-45b47c64984sm36601325e9.23.2025.08.20.08.23.08
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 20 Aug 2025 08:23:08 -0700 (PDT)
-Message-ID: <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
-Date: Wed, 20 Aug 2025 17:23:07 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B4C610E78A;
+ Wed, 20 Aug 2025 16:01:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=PXFf5NUrRE2hsZJwNZ1X7sNIcwtonfdPr1NAIWbXTFw=; b=gbuHnsjFOu30aTkmxGx2nKoGdS
+ gt2KI7yBZ0e0PUpa1kw50TUf+4bNNdH4/xP1tZC8Y+vYGC8gsjzFPz0eFi/D123Z0/2NgA9DZWqRg
+ EYAK7uHqrnz79VE07rjkoCYBNUvC6H+SLLK/8riL3UQsKX7y/mlVEx1ki6vdMrXexFUIX7hL9wyGt
+ qoMjktUmrdI3t6FcaEnTx5H5Acgqr8bD1B+ieMkJ9oBrq2mlWX8xaROX+/Hlvsvb66NLVn2bIWin8
+ Ubv/MtgGaGOdMobhe2jQSyO6ePpPEQhFHwaDRtjjZw4GNhBPH1o50sLNLqrtUa3xF0Sf3LDhh6m6H
+ DouWcxYg==;
+Received: from [189.6.13.79] (helo=[192.168.31.42])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uolFA-00Gqnm-Gp; Wed, 20 Aug 2025 18:00:56 +0200
+Message-ID: <e3b1f1bb-eeee-4887-a0f9-d6aa1f725ff4@igalia.com>
+Date: Wed, 20 Aug 2025 13:00:49 -0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re:
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org
-Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20250820143739.3422-1-christian.koenig@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 4hZ6ZAgFAr7hBBhCRYlTkHXC1FlvXMf8LuQCeGj9hRs_1755703390
-X-Mimecast-Originator: redhat.com
+Subject: Re: [PATCH v2 2/2] drm/amd/display: fix leak of probed modes
+To: Fedor Pchelkin <pchelkin@ispras.ru>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Hans de Goede <hansg@kernel.org>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ lvc-project@linuxtesting.org, stable@vger.kernel.org
+References: <20250819184636.232641-1-pchelkin@ispras.ru>
+ <20250819184636.232641-3-pchelkin@ispras.ru>
 Content-Language: en-US
+From: Melissa Wen <mwen@igalia.com>
+In-Reply-To: <20250819184636.232641-3-pchelkin@ispras.ru>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 21 Aug 2025 12:48:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,51 +68,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CCing Lorenzo
 
-On 20.08.25 16:33, Christian König wrote:
-> Hi everyone,
-> 
-> sorry for CCing so many people, but that rabbit hole turned out to be
-> deeper than originally thought.
-> 
-> TTM always had problems with UC/WC mappings on 32bit systems and drivers
-> often had to revert to hacks like using GFP_DMA32 to get things working
-> while having no rational explanation why that helped (see the TTM AGP,
-> radeon and nouveau driver code for that).
-> 
-> It turned out that the PAT implementation we use on x86 not only enforces
-> the same caching attributes for pages in the linear kernel mapping, but
-> also for highmem pages through a separate R/B tree.
-> 
-> That was unexpected and TTM never updated that R/B tree for highmem pages,
-> so the function pgprot_set_cachemode() just overwrote the caching
-> attributes drivers passed in to vmf_insert_pfn_prot() and that essentially
-> caused all kind of random trouble.
-> 
-> An R/B tree is potentially not a good data structure to hold thousands if
-> not millions of different attributes for each page, so updating that is
-> probably not the way to solve this issue.
-> 
-> Thomas pointed out that the i915 driver is using apply_page_range()
-> instead of vmf_insert_pfn_prot() to circumvent the PAT implementation and
-> just fill in the page tables with what the driver things is the right
-> caching attribute.
 
-I assume you mean apply_to_page_range() -- same issue in patch subjects.
+On 19/08/2025 15:46, Fedor Pchelkin wrote:
+> amdgpu_dm_connector_ddc_get_modes() reinitializes a connector's probed
+> modes list without cleaning it up. First time it is called during the
+> driver's initialization phase, then via drm_mode_getconnector() ioctl.
+> The leaks observed with Kmemleak are as following:
+>
+> unreferenced object 0xffff88812f91b200 (size 128):
+>    comm "(udev-worker)", pid 388, jiffies 4294695475
+>    hex dump (first 32 bytes):
+>      ac dd 07 00 80 02 70 0b 90 0b e0 0b 00 00 e0 01  ......p.........
+>      0b 07 10 07 5c 07 00 00 0a 00 00 00 00 00 00 00  ....\...........
+>    backtrace (crc 89db554f):
+>      __kmalloc_cache_noprof+0x3a3/0x490
+>      drm_mode_duplicate+0x8e/0x2b0
+>      amdgpu_dm_create_common_mode+0x40/0x150 [amdgpu]
+>      amdgpu_dm_connector_add_common_modes+0x336/0x488 [amdgpu]
+>      amdgpu_dm_connector_get_modes+0x428/0x8a0 [amdgpu]
+>      amdgpu_dm_initialize_drm_device+0x1389/0x17b4 [amdgpu]
+>      amdgpu_dm_init.cold+0x157b/0x1a1e [amdgpu]
+>      dm_hw_init+0x3f/0x110 [amdgpu]
+>      amdgpu_device_ip_init+0xcf4/0x1180 [amdgpu]
+>      amdgpu_device_init.cold+0xb84/0x1863 [amdgpu]
+>      amdgpu_driver_load_kms+0x15/0x90 [amdgpu]
+>      amdgpu_pci_probe+0x391/0xce0 [amdgpu]
+>      local_pci_probe+0xd9/0x190
+>      pci_call_probe+0x183/0x540
+>      pci_device_probe+0x171/0x2c0
+>      really_probe+0x1e1/0x890
+>
+> Found by Linux Verification Center (linuxtesting.org).
+>
+> Fixes: acc96ae0d127 ("drm/amd/display: set panel orientation before drm_dev_register")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Fedor Pchelkin <pchelkin@ispras.ru>
+> ---
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +++
+>   1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index cd0e2976e268..7ec1f9afc081 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -8227,9 +8227,12 @@ static void amdgpu_dm_connector_ddc_get_modes(struct drm_connector *connector,
+>   {
+>   	struct amdgpu_dm_connector *amdgpu_dm_connector =
+>   			to_amdgpu_dm_connector(connector);
+> +	struct drm_display_mode *mode, *t;
+>   
+>   	if (drm_edid) {
+>   		/* empty probed_modes */
+> +		list_for_each_entry_safe(mode, t, &connector->probed_modes, head)
+> +			drm_mode_remove(connector, mode);
+>   		INIT_LIST_HEAD(&connector->probed_modes);
+>   		amdgpu_dm_connector->num_modes =
+>   				drm_edid_connector_add_modes(connector);
 
-Oh this sounds horrible. Why oh why do we have these hacks in core-mm 
-and have drivers abuse them :(
+What if you update the connector with the drm_edid data and skip the 
+INIT_LIST_HEAD instead?
 
-Honestly, apply_to_pte_range() is just the entry in doing all kinds of 
-weird crap to page tables because "you know better".
+Something like:
 
-All the sanity checks from vmf_insert_pfn(), gone.
+if (drm_edid) {
+    drm_edid_connector_update(connector, drm_edid);
+    amdgpu_drm_connector->num_modes = 
+drm_edid_connector_add_modes(connector);
+[...]
+}
 
-Can we please fix the underlying issue properly?
+Isn't it enough?
 
--- 
-Cheers
+Melissa
 
-David / dhildenb
 
