@@ -2,124 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD7B4B2DC84
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 14:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E27EAB2D5CC
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 10:13:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41B1810E719;
-	Wed, 20 Aug 2025 12:32:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2815D10E352;
+	Wed, 20 Aug 2025 08:13:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="Xixm2oi8";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rXRy8ODW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 028F110E248;
- Wed, 20 Aug 2025 08:09:30 +0000 (UTC)
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57JNmmLo017631;
- Wed, 20 Aug 2025 08:09:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=XyEp7P
- B6Crc5O/n3hDpRBdclhiXWepi7f2DlP7ISOnE=; b=Xixm2oi8D/e/+wAITPeDp3
- TALHrRG4EBVti1e3wM1Z6LnCfvINBVfhRGmgOPkipNfgbFhBD0MWSeZRRuGZ/NN+
- NKDq98HPciL4Zozeql4srzji2nvV3CzcZ3UlmCS5mUo4axD1CO9niYr/utY3r3nU
- R/k9YIllh44h9uoNOFLeppTj5ZpJGLc7EDb+zLBQQ5R2NO8ZqfzYF65N+NeIflzl
- gTcYt/B8t87ieiFU691ZjDHQqARPeaX+Fy6nA8Cm30nsgWe9R3Iis8b6CyGL5Xlw
- ovWuvSCaaobgeWwxqiRAGHpZnDDJ13JX7jkAK7240Uso3SZWpw/1sppbNb+XqHPQ
- ==
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48n38vhrww-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:13 +0000 (GMT)
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
- by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 57K89CuX005377;
- Wed, 20 Aug 2025 08:09:12 GMT
-Received: from ppma12.dal12v.mail.ibm.com
- (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48n38vhrwp-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:12 +0000 (GMT)
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
- by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 57K4xm2t015619;
- Wed, 20 Aug 2025 08:09:11 GMT
-Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
- by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 48my422cjr-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:11 +0000
-Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com
- [10.20.54.106])
- by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 57K899B961342160
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 20 Aug 2025 08:09:09 GMT
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id A734720043;
- Wed, 20 Aug 2025 08:09:09 +0000 (GMT)
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 407A620040;
- Wed, 20 Aug 2025 08:09:08 +0000 (GMT)
-Received: from [9.111.5.117] (unknown [9.111.5.117])
- by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTP;
- Wed, 20 Aug 2025 08:09:08 +0000 (GMT)
-Message-ID: <295ae4dd-4734-42a0-be63-2d322f00c799@linux.ibm.com>
-Date: Wed, 20 Aug 2025 10:09:07 +0200
-MIME-Version: 1.0
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2081.outbound.protection.outlook.com [40.107.237.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 984A510E352
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 08:13:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=F28APQMSCBGRZAVTtueh8AG+FkyHM8rgxmJ3nszcXY3B5OEMk4OhZlu4s9j6DRuGHBeITqm6vr6jTWgfR8+bJRenwZCX0q+akNiiI1gZ/qrX5Pa6Hq2I+GE3vhyG0Si59QBiJfBH3a4oWXnvYxoYt8OmPG1CTCyqmlSnGGQZVT4SCb9S5ro7Z5AonyC+ilY0g1fjsynQ/smyzsExMKflheCT1KL8cwrYXbuz4rRAXedbneVp2pRGQYwuHVcQrJus7fiSa4Vs8kqiqJk/UPbiGFV8uq0KtlahcQPeYb8BSsTB4LMIb3X3DBZc/EcGWy1ytUHigaQoFX0bl0QKH9Wv7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cxnKJjycqdJHhrGYzTbpoRFaXQgIDnOYe90e9ildy98=;
+ b=mJo3zBl4hgOkCM3YatADNkrGQXLTx1OPiMDLRvGs2iEv36a1DW+j7cMGEtXEBTFH4GWuH+tEbUQKyFB+PN6w2NmdZ+oDZExtl5vtUfM6FGGUqDk1icyao3M00rJdSQzrEMEupFjpCgAOsZlpzZPDTXTTjZhTiGSnkJwkETf1wnIL4B94b7llqLix52AY3+UrItX5kay7y61pGfafroPJQVkbNqRBtp0a1/NjS6HXm0wCeRQ5ysp7sxAjQagNM6lBSu0TaYvrteiqYjJh4EaIxmPXX48lD4t0nciONd5YZ2tmvLbl6mj4jZcP/Dh8whLWddU2IJyh0WSfW7jDa+ZYSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cxnKJjycqdJHhrGYzTbpoRFaXQgIDnOYe90e9ildy98=;
+ b=rXRy8ODWBb00WpycAe+UWMgZaG/nk1081Ial9ySBE8bOkvWp3ymZPb2aAnkzQmIeoB7fdLD5Mg3QZUs+ygnd2nL+ko5su5CvU05QUbafIop+8QCkFpMXhctBZ85z7yUbRFOdXQkfnmpQu7Iqzz0DwE8XO6KYTg0KKpZYj3hoh78=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by LV3PR12MB9355.namprd12.prod.outlook.com (2603:10b6:408:216::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Wed, 20 Aug
+ 2025 08:13:45 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.9031.023; Wed, 20 Aug 2025
+ 08:13:45 +0000
+Message-ID: <274e7416-371f-464d-8d66-f9d81414bd4f@amd.com>
+Date: Wed, 20 Aug 2025 10:13:41 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/19] perf: Introduce positive capability for raw events
-To: Robin Murphy <robin.murphy@arm.com>, peterz@infradead.org,
- mingo@redhat.com, will@kernel.org, mark.rutland@arm.com,
- acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org,
- irogers@google.com, adrian.hunter@intel.com, kan.liang@linux.intel.com
-Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <542787fd188ea15ef41c53d557989c962ed44771.1755096883.git.robin.murphy@arm.com>
- <67a0d778-6e2c-4955-a7ce-56a10043ae8d@arm.com>
+Subject: Re: [PATCH] drm/amdgpu: replace AMDGPU_HAS_VRAM with is_app_apu
+To: Yifan Zhang <yifan1.zhang@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alexander.Deucher@amd.com
+References: <20250820073100.3500205-1-yifan1.zhang@amd.com>
 Content-Language: en-US
-From: Thomas Richter <tmricht@linux.ibm.com>
-Organization: IBM
-In-Reply-To: <67a0d778-6e2c-4955-a7ce-56a10043ae8d@arm.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20250820073100.3500205-1-yifan1.zhang@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: rc1CmpHVUr4PjN6HeVNNaTAKVoWbVX32
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE5MDIyMiBTYWx0ZWRfX4xTzLYCTQsxG
- AGD1we0J4ezItB0ejTfm7DJNuDAARyH4VivdukTDV+G2c134zt0WbxSJSEE76uDxTym3DRzLeZX
- mOf6bUkLRc8HI2z83HLeSrLnCDaUzt6ctsGigqq+Yny6dHl56O82/ysxGcmIZx9UyZO+hyMZvb/
- ecuWa/hbBYOZ6yeacF65qy/00k1eAjO++Mj45cxXjqV85T1khiwKHAStutPkN05LIcWmzIOI2N6
- JcZUW/XH3ZbwPgzY20enHnuM+rxpiC2AXWamVYRgBgnxytZoHYJTbh5BurqPVICmyND/IQHxcAh
- w3J7un0oPnbnMNdQ3B2TA6VUHKYY82ln4UWEvFzI/Jn0XaQRTQr//JuEseTSCgQIqbo5FGoTW85
- ypKOH5UDXA9ip20lItNjpe1wLNO1nQ==
-X-Proofpoint-GUID: GZ2wu60A03msHy_JXXsuf0f5WSTi9QT-
-X-Authority-Analysis: v=2.4 cv=KPwDzFFo c=1 sm=1 tr=0 ts=68a582a9 cx=c_pps
- a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=7CQSdrXTAAAA:8 a=gUTjnckvcJroK4elFEgA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=a-qgeE7W1pNrGK8U0ZQC:22
- a=DXsff8QfwkrTrK3sU8N1:22 a=Z5ABNNGmrOfJ6cZ5bIyy:22 a=bWyr8ysk75zN3GCy5bjg:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-20_03,2025-08-20_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 spamscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
- bulkscore=0 priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508190222
-X-Mailman-Approved-At: Wed, 20 Aug 2025 12:32:38 +0000
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0448.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c6::15) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|LV3PR12MB9355:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ae1b539-72f7-406a-1695-08dddfc17b6c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?V0xTTDU3TkwydHF2SWpOZDFkT01XaUVCYks0V2YrM3Z1dUpRTjZtM3dQMGQv?=
+ =?utf-8?B?Qlp1MmhGdFdpbVRMRHJ5bms3eC84LzRVUnFRbWVSOGxPMEZETXVSKzdBK2ND?=
+ =?utf-8?B?dVVyejRzMkxjWHVaTFFnbVYvUVpWMG5uam02MXlvTFlkU2FFU2hya2M5TEYz?=
+ =?utf-8?B?NVRDWUp3VGJFS3l1ZVVWRjJDd2FyNjIxU0Z1R1BNYUlPa3B4MHlHN1hJSUxD?=
+ =?utf-8?B?bHF4eXpKaFQvUStEUTFWcDkzcTIyRTFlZ2twb1JodlJTaTNXNk11VHhQMStz?=
+ =?utf-8?B?L0hmZ2VwNjZqdXFscENpYkNYVHNmUVRrUThuWW81anFRdncwUHVmcEd3YnUr?=
+ =?utf-8?B?MFRqYmtwN2VuamoyQ2tFN0ZWRXhHL25TZ3IwT2djckdQc0RVTytIdWdhOCtw?=
+ =?utf-8?B?ODRJM21ha3k1K2RYUmJKdHluejlmTE9zcFgxcEsxU0oxWDBDWDdEUlg3NHVw?=
+ =?utf-8?B?VkVCbTdFZUh5Z2VYdjRna1g0RkFpTkY1WU95a2tZcERoOUY4SHBaUTJCR2dG?=
+ =?utf-8?B?NDdHOXNGTEtUNjBLUHJMSU1jTG5wOGwwcDgwNkxKMGZPNGpnV1ExMzJJRVNS?=
+ =?utf-8?B?enp1dkpMVENFVjdRNDdZdkQrQXVLM3JaNWRxaUtBRDEvd0pQVEkzMXdmbE9u?=
+ =?utf-8?B?RlVHcUI2bXNoK1JSMmVQNGQ5cWM3TkJCT2UySDZ3a3dXKzZGbzVqYW9BMDlv?=
+ =?utf-8?B?SjhtQUcvZ2JQWDNwU2F3QjhoOXV1MzlWSUV1YVMwRStqK3p2OTdyTGN0SjV4?=
+ =?utf-8?B?OUtnMzNDMEZTYXJYb05pT25tYUhibGtPNDduekZONi9zMndacE9PWll1NEMw?=
+ =?utf-8?B?c0J6YWNiY2lyeElVYkZvdFhMODFTSDBqdDU0ajJCL2dzYWVha2RxVndGa2VY?=
+ =?utf-8?B?VnRvRzlPdFRmaG9mRVBIbXkrbStCTTJlKzEwY0JqL0xudjhFZGdXQTRucXhk?=
+ =?utf-8?B?OGh6cnFRWkZPMGtOUXl2NUtIN2hhRUxybmsvN2VGTGE0QWdNRUJycXJ3Ymtz?=
+ =?utf-8?B?TXdoTExsWVZwQ2tSaitNb0htVU1ZaHJsczJ4SXBNNTRtL1NmK29kdmZJMGY5?=
+ =?utf-8?B?aUpCaGpkWlZ2RzZwcW5teXdnZUFJZTNvNllPZGptQTZvTFBJeXpBdEVPL3BJ?=
+ =?utf-8?B?eFp1Q3BEcDRMMVNSdnBCQ1llZk5ER0RidlFOWDZnQWJudHlUM1YzVFZDaExQ?=
+ =?utf-8?B?ay9QdE0xSU1lZmlqc2R2Y1lRMDRzQ3dPRVlFR3NBSkVPUjBVdzcxYW1FOVdI?=
+ =?utf-8?B?bWNOcy9BOFNaM2U4Y2w1Nm5DbTBVbTNSLzJkTDlEUWpJR0hzamI2d21UT0Jm?=
+ =?utf-8?B?N0h1YzJvOWhnelBuVHhxMUozNldKU1VmTWtoZnFjSVJHZVpBdVo1czBKZUs0?=
+ =?utf-8?B?TEdFbXZyQndrZUlWWkU3cFVpWkRIdGp2ampDaTh4N3BKZ2xMYzI2RXEwaTh4?=
+ =?utf-8?B?ZEtCSFdQUjdTRnFza1ZBM2o0UjV6eWdicjhkb0tRWmxjS2RiVDdkbkoxOGNC?=
+ =?utf-8?B?VVZ0UFFJS3doc2FOMUhMempTUWhaTVp2dlhBcXU4Q2tGRWVUVUszb1RPNTdE?=
+ =?utf-8?B?TjhkcWZqeERQckVsYm1nazFxaFUxYzBWWlhaa2x4ajJ6alc4dGZCYzJySUR3?=
+ =?utf-8?B?L0UraTQ5S3huM2hCY21MZEIraUN5WXhLMzJucnVseHkyc2JDcHI1Mmc5VzMx?=
+ =?utf-8?B?enp4SFp6RlovZlBmV2Y4NlI5RWpuM0NLM3VoUWp4SjdGSjJtSDBIM1lvckkw?=
+ =?utf-8?B?Y0ZvbEk1a3VvUUpNZXVYWWMybnh4cS9DSmNuSDQ4bDNGR3NaRnZENHJkNWsy?=
+ =?utf-8?B?OWplRXVoSTV2dlJObnFOdDlocEE3ci9ncjljS29kZnNrdmsrcWxpcFQyU1ZJ?=
+ =?utf-8?B?WkxLdXdqNUlGMEhPNkhXNTVBZlU0aVJFcWFJT1B1YTNpSklFV0EyZ29wb20x?=
+ =?utf-8?Q?4vI0rm3ECiQ=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFlmL0xvdEtnb1JFOHpWemNMdFpxLzd1OVdVUlZoYzQ0SnZ3blF4NzE5aEQ2?=
+ =?utf-8?B?SzE1d2VEaVhIb3ZKSkR1UjdOdzZVRTF0L3pvay9ablBEczNhaVZ0U0RwbTl2?=
+ =?utf-8?B?UFVFT1BhVFRsSGlUYm9zYmF3MGlxc1NNd2daRkpXbEJFRVI5eGpLUEkxaGpB?=
+ =?utf-8?B?VVBkNnVDRUhKZDBuMlR0VzZ6bDZBaWxsaVFRY1J3V0tuK0JVR2xFdHVWQUNk?=
+ =?utf-8?B?ZVd4R1Bobzk2NDllRk9VZm05aGhjTmhYWVVET2VzRTFGN0JNeUxySzh4SWVi?=
+ =?utf-8?B?ZFptYzFTUXZvR1c1RkZkN3ZEMHFrQ2FMMUo5K1ZsSmxKM0RxZ3ppeXdQT3ZT?=
+ =?utf-8?B?MHZiNmlES0c4U2tjb3RMYUJzVnZjd0R2cHd6ZzgyN3EwamJCSWlPRFpFMlZQ?=
+ =?utf-8?B?WUsvdDArR1hvNEhPMExZRVRXZ2tQMlA5dTlUd3JzZlk1UVBvOGpBRDRjbjd4?=
+ =?utf-8?B?YjVXOHR6S05sMDNPOHZLQkI4cjA2RFI5U2FLVHpKT2d2SkNGSE56OEFFcS9Q?=
+ =?utf-8?B?blFVWjNMdkRacm8wM1VURlVpdHdKNzhOaE50cE1uUWUrM1YvRWliQUluMUYx?=
+ =?utf-8?B?ZXpHRU10ckxnYndRRG5YTVJpS3lQM1g2dWJhajBwT2NCUGlnNG5KSE4yRngy?=
+ =?utf-8?B?VkRCUUhOTTFaMzN4TGhHSkduWWprVnJNSjFCd0lVK0x1MUJLV3p6Yjk0dHhu?=
+ =?utf-8?B?TzhCTGxPQmxmM2FMMmFJN2VPWEFtSUM5ZHhpUmwvMEI3cE4zMXdoUUdTalFL?=
+ =?utf-8?B?S2JIWFZjQWNuRlorK0E5VmtVSGw3OFpVVzNHcGxhazQ2YnMwSStDQ013UTBt?=
+ =?utf-8?B?elJweXE0OUo3WkhVZGp1NE9TTzU3MmNZTDkwK25Cc25tZFB2RHRvVldxRXZL?=
+ =?utf-8?B?U2JDZkpXRnhhc2tlK2RXOHlHM0NXUTZYT2dmVXFvRGlvNmxrVFpZYXNRRjVN?=
+ =?utf-8?B?TEJ6OHlNb1pJVEhEMU1iZHFCM2plNkhtVnluSllhYlBEeEtwaHBQd0lsaWtT?=
+ =?utf-8?B?ZHZxWCtkMDQzR3BMa2RnbnlkcUswcVJ5WEFiVGU0dFRCcXBZeUhFVjIyMkZk?=
+ =?utf-8?B?SUdrYTBxd0xjR2ljZkJRakhnWUo2dktCalI4VjQ2T3BEL01MWkhldmpNRkJM?=
+ =?utf-8?B?UGtkQlhma2F2dE5lYlRnaThScHNGcmZOc2pEdzcrSnkzZHJYWEQzUEQ0STBm?=
+ =?utf-8?B?Mks4eHN4L3dKZWJHbmJvMFRQVnZHb2k0cWVZblFWYUVEY0haaVFJZ2F0R1B2?=
+ =?utf-8?B?c1JUZVRqeXBtWFhhRUYzSTlOanJuUFJmTW9GaTNnMkg3MGpGczQ2ZVBtMDZI?=
+ =?utf-8?B?N0FJUFZwYjd2QnhJcjFheXI1TkZ3ZDRsNHJOeGJYWXBRWTFMTS96SGREeHh0?=
+ =?utf-8?B?Tm01bSt2eEJaTldaWVFxMEpJQyt0UU50MkFsZlViOGNnQ2EzQkFMVjRUN052?=
+ =?utf-8?B?MEJjMmQ1OG1TeWNCY3FrMDZDKzVaSTVtcVV5UElHY200a0IrMi9kUThDeEFj?=
+ =?utf-8?B?bG5CRHlUbVoyUiswTTVuSTIrYW1QUTNxeG5FRDJvTFJnM0lGZm1GeE5CbklE?=
+ =?utf-8?B?VXBWNENITEFTbmc5RUtYRXFkM04xTXVNYlhmZ3NnaUFmSDF3TkwvcEpUWmpp?=
+ =?utf-8?B?QWdiTFNYRXVGVzBWN0o0T3lNK1pzSGU4aFEwWmVnbFdKdHorb0t4YzZHS3hK?=
+ =?utf-8?B?bmNzTElUNUxIVmc2M0R5eHJsVE1lSm5vSlgvbkpWV3h1LzVzYXErcnI4UDR1?=
+ =?utf-8?B?OTc5MWZ5a0tMWVd3VkJJY1VlYmd6Znl5amlKUFpzVVNqZlR6RnB2Q3U1TEUv?=
+ =?utf-8?B?bnoxaVVBaG5rRnVuazU4WXpSQ1F5Rlk1QUkyV0JSd1IvUHVXSktZYUZXQmtD?=
+ =?utf-8?B?TmRlMW9GdDFlUDZ5SVFCSnM5L2lOUHJCellxQUV5bDYwRUJGV0pIaE5UVFJU?=
+ =?utf-8?B?bVVjSmJlNk1ISytBUHEyNll2S1haa3J1VzVmdlFZVzN2YjhRV1ptSzdML3pl?=
+ =?utf-8?B?aERXUnNHaXNjNDIwWmZJWjYwbVZBNG9ZSWFxQWpsTXpwU2x1WGk5OXZEOW1E?=
+ =?utf-8?B?SjJ6dlRRNWhMb1ZNVUpUTm1OQUpqeUtiWEgxWTRCKzBOaDRnQ01LUEN0SURZ?=
+ =?utf-8?Q?xmGbaTFsFEDyCRL6NIiFmOmYt?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ae1b539-72f7-406a-1695-08dddfc17b6c
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 08:13:45.2288 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QU1VRE47zGjIFNArUnd6t5tCJttrp/l+AM3UJrcPzAT+vliE3KKZ6e4WgjZq2ODF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9355
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,155 +160,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 8/19/25 15:15, Robin Murphy wrote:
-> On 13/08/2025 6:01 pm, Robin Murphy wrote:
->> Only a handful of CPU PMUs accept PERF_TYPE_{RAW,HARDWARE,HW_CACHE}
->> events without registering themselves as PERF_TYPE_RAW in the first
->> place. Add an explicit opt-in for these special cases, so that we can
->> make life easier for every other driver (and probably also speed up the
->> slow-path search) by having perf_try_init_event() do the basic type
->> checking to cover the majority of cases.
->>
->> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->> ---
->>
->> A further possibility is to automatically add the cap to PERF_TYPE_RAW
->> PMUs in perf_pmu_register() to have a single point-of-use condition; I'm
->> undecided...
->> ---
->>   arch/s390/kernel/perf_cpum_cf.c    |  1 +
->>   arch/s390/kernel/perf_pai_crypto.c |  2 +-
->>   arch/s390/kernel/perf_pai_ext.c    |  2 +-
->>   arch/x86/events/core.c             |  2 +-
->>   drivers/perf/arm_pmu.c             |  1 +
->>   include/linux/perf_event.h         |  1 +
->>   kernel/events/core.c               | 15 +++++++++++++++
->>   7 files changed, 21 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/s390/kernel/perf_cpum_cf.c b/arch/s390/kernel/perf_cpum_cf.c
->> index 1a94e0944bc5..782ab755ddd4 100644
->> --- a/arch/s390/kernel/perf_cpum_cf.c
->> +++ b/arch/s390/kernel/perf_cpum_cf.c
->> @@ -1054,6 +1054,7 @@ static void cpumf_pmu_del(struct perf_event *event, int flags)
->>   /* Performance monitoring unit for s390x */
->>   static struct pmu cpumf_pmu = {
->>       .task_ctx_nr  = perf_sw_context,
->> +    .capabilities = PERF_PMU_CAP_RAW_EVENTS,
->>       .pmu_enable   = cpumf_pmu_enable,
->>       .pmu_disable  = cpumf_pmu_disable,
->>       .event_init   = cpumf_pmu_event_init,
->> diff --git a/arch/s390/kernel/perf_pai_crypto.c b/arch/s390/kernel/perf_pai_crypto.c
->> index a64b6b056a21..b5b6d8b5d943 100644
->> --- a/arch/s390/kernel/perf_pai_crypto.c
->> +++ b/arch/s390/kernel/perf_pai_crypto.c
->> @@ -569,7 +569,7 @@ static const struct attribute_group *paicrypt_attr_groups[] = {
->>   /* Performance monitoring unit for mapped counters */
->>   static struct pmu paicrypt = {
->>       .task_ctx_nr  = perf_hw_context,
->> -    .capabilities = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>       .event_init   = paicrypt_event_init,
->>       .add          = paicrypt_add,
->>       .del          = paicrypt_del,
->> diff --git a/arch/s390/kernel/perf_pai_ext.c b/arch/s390/kernel/perf_pai_ext.c
->> index 1261f80c6d52..bcd28c38da70 100644
->> --- a/arch/s390/kernel/perf_pai_ext.c
->> +++ b/arch/s390/kernel/perf_pai_ext.c
->> @@ -595,7 +595,7 @@ static const struct attribute_group *paiext_attr_groups[] = {
->>   /* Performance monitoring unit for mapped counters */
->>   static struct pmu paiext = {
->>       .task_ctx_nr  = perf_hw_context,
->> -    .capabilities = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>       .event_init   = paiext_event_init,
->>       .add          = paiext_add,
->>       .del          = paiext_del,
->> diff --git a/arch/x86/events/core.c b/arch/x86/events/core.c
->> index 789dfca2fa67..764728bb80ae 100644
->> --- a/arch/x86/events/core.c
->> +++ b/arch/x86/events/core.c
->> @@ -2697,7 +2697,7 @@ static bool x86_pmu_filter(struct pmu *pmu, int cpu)
->>   }
->>     static struct pmu pmu = {
->> -    .capabilities        = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities        = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>         .pmu_enable        = x86_pmu_enable,
->>       .pmu_disable        = x86_pmu_disable,
->> diff --git a/drivers/perf/arm_pmu.c b/drivers/perf/arm_pmu.c
->> index 72d8f38d0aa5..bc772a3bf411 100644
->> --- a/drivers/perf/arm_pmu.c
->> +++ b/drivers/perf/arm_pmu.c
->> @@ -877,6 +877,7 @@ struct arm_pmu *armpmu_alloc(void)
->>            * specific PMU.
->>            */
->>           .capabilities    = PERF_PMU_CAP_SAMPLING |
->> +                  PERF_PMU_CAP_RAW_EVENTS |
->>                     PERF_PMU_CAP_EXTENDED_REGS |
->>                     PERF_PMU_CAP_EXTENDED_HW_TYPE,
->>       };
->> diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
->> index 183b7c48b329..c6ad036c0037 100644
->> --- a/include/linux/perf_event.h
->> +++ b/include/linux/perf_event.h
->> @@ -305,6 +305,7 @@ struct perf_event_pmu_context;
->>   #define PERF_PMU_CAP_EXTENDED_HW_TYPE    0x0100
->>   #define PERF_PMU_CAP_AUX_PAUSE        0x0200
->>   #define PERF_PMU_CAP_AUX_PREFER_LARGE    0x0400
->> +#define PERF_PMU_CAP_RAW_EVENTS        0x0800
->>     /**
->>    * pmu::scope
->> diff --git a/kernel/events/core.c b/kernel/events/core.c
->> index 71b2a6730705..2ecee76d2ae2 100644
->> --- a/kernel/events/core.c
->> +++ b/kernel/events/core.c
->> @@ -12556,11 +12556,26 @@ static inline bool has_extended_regs(struct perf_event *event)
->>              (event->attr.sample_regs_intr & PERF_REG_EXTENDED_MASK);
->>   }
->>   +static bool is_raw_pmu(const struct pmu *pmu)
->> +{
->> +    return pmu->type == PERF_TYPE_RAW ||
->> +           pmu->capabilities & PERF_PMU_CAP_RAW_EVENTS;
->> +}
->> +
->>   static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
->>   {
->>       struct perf_event_context *ctx = NULL;
->>       int ret;
->>   +    /*
->> +     * Before touching anything, we can safely skip:
->> +     * - any event for a specific PMU which is not this one
->> +     * - any common event if this PMU doesn't support them
->> +     */
->> +    if (event->attr.type != pmu->type &&
->> +        (event->attr.type >= PERF_TYPE_MAX || is_raw_pmu(pmu)))
+On 20.08.25 09:31, Yifan Zhang wrote:
+> AMDGPU_HAS_VRAM is redundant with is_app_apu, as both refer to
+> APUs with no carve-out. Since AMDGPU_HAS_VRAM only occurs once,
+> replace AMDGPU_HAS_VRAM with is_app_apu.
 > 
-> Ah, that should be "!is_raw_pmu(pmu)" there (although it's not entirely the cause of the LKP report on the final patch.)
+> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 6 ------
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 6 +++---
+>  2 files changed, 3 insertions(+), 9 deletions(-)
 > 
-> Thanks,
-> Robin.
-> 
->> +        return -ENOENT;
->> +
->>       if (!try_module_get(pmu->module))
->>           return -ENODEV;
->>   
-> 
-> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> index ddd472e56f69..01f53700694b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> @@ -946,12 +946,6 @@ enum amdgpu_enforce_isolation_mode {
+>  	AMDGPU_ENFORCE_ISOLATION_NO_CLEANER_SHADER = 3,
+>  };
+>  
+> -
+> -/*
+> - * Non-zero (true) if the GPU has VRAM. Zero (false) otherwise.
+> - */
+> -#define AMDGPU_HAS_VRAM(_adev) ((_adev)->gmc.real_vram_size)
+> -
+>  struct amdgpu_device {
+>  	struct device			*dev;
+>  	struct pci_dev			*pdev;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> index fa3e55700ad6..4125e73a0647 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> @@ -880,9 +880,9 @@ static int psp_tmr_init(struct psp_context *psp)
+>  		pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
+>  		ret = amdgpu_bo_create_kernel(psp->adev, tmr_size,
+>  					      PSP_TMR_ALIGNMENT,
+> -					      AMDGPU_HAS_VRAM(psp->adev) ?
+> -					      AMDGPU_GEM_DOMAIN_VRAM :
+> -					      AMDGPU_GEM_DOMAIN_GTT,
+> +					      psp->adev->gmc.is_app_apu ?
+> +					      AMDGPU_GEM_DOMAIN_GTT :
+> +					      AMDGPU_GEM_DOMAIN_VRAM,
 
-Hi Robin,
+Mhm the logic here is actually completely unnecessary. You can just specify AMDGPU_GEM_DOMAIN_VRAM | AMDGPU_GEM_DOMAIN_GTT and get VRAM if available and GTT otherwise.
 
-what is the intention of that patch?
-Can you explain that a bit more.
+The only reason I could come up with why we would need it is to have error handling if not enough VRAM is available for the TMR, but falling back to GTT is then probably still a good idea.
 
-Thanks.
+Regards,
+Christian.
 
--- 
-Thomas Richter, Dept 3303, IBM s390 Linux Development, Boeblingen, Germany
---
-IBM Deutschland Research & Development GmbH
 
-Vorsitzender des Aufsichtsrats: Wolfgang Wendt
+>  					      &psp->tmr_bo, &psp->tmr_mc_addr,
+>  					      pptr);
+>  	}
 
-Geschäftsführung: David Faller
-
-Sitz der Gesellschaft: Böblingen / Registergericht: Amtsgericht Stuttgart, HRB 243294
