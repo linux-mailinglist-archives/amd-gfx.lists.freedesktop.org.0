@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 302B7B2E65C
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 22:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D420B2E65F
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 22:21:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FCEB10E7F0;
-	Wed, 20 Aug 2025 20:21:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2F6910E7FC;
+	Wed, 20 Aug 2025 20:21:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="K2Or3aH3";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sp8P6f4A";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2043.outbound.protection.outlook.com [40.107.220.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E653710E7F0
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 20:21:17 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2060.outbound.protection.outlook.com [40.107.237.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB7410E7F0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 20:21:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hKsC8K2EFVFzVQzMdOtrIzwraMMYZ8/DiuUsrTzgtnVh2ZL+6JeHKXomwoKy1czL5Mw4xjEzKvarS78+z02+Wd4MiKrmk3Ry8J2rznz+thv3sWQ3OmH9yEnnBGgIYa5T9EsUNQ0QTeC0ZtxCcl/p6z7xoy3X/f5Wx3v39cLpp6KeIebNfVEaweNAa+DNBBA9321rUpDPjCHc0eCcuMfp4UvHt05sAIvtIfY1cnwq8GdbGuy++Z1B5laBoA/suHtKqw7z83yDgl8XtgodXpxRaHpLDVw2+YygnSfLVnkU+xkutENaA/BWqPeb6GDy1hOhBLbKEK8iTkBW9RKBnrspkQ==
+ b=KA+oqzXZPYFD7ZfPopRLnAiH4Tl7uPxMNEnJKYbSkxKgJmLtpIxJhoKBZ2tD/s5OZMMCvNCyN5J+0q2Qj29OfFg4Vg6lAVv9WR1i96hlt7b+uoZaprAQENvLYKJsUpd3qMleIGMu5ubIZ8z+LsoSgYxMSYSJkskl0VUXHxEsSRcADntwOZcUwZdhXbJJ4tal6GEJVwylZUQRrn1eKDaTTITQ3wfA3RjkQRHIEjuHE5V6Sa0HPy2On6xRM5ilcRRHzVW2VIpWAsXkeP2evNBUOw4Y7kofZGKKwtMFKOhBwxxGyzxTIYWIJM+ulos4BhM6khu26WlkYBwyt5hWzuuPsg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UsyNoOuXjCWi7pUsbdpyjHAK2dSGPAV6qoFw5+hRvQU=;
- b=tZAAPHPh3+8MnZ0wiiIa9aPekyHF2vbsLPzh6frJv3gJ5IrnNWewXGOaZ+CG+Wfwbb1HjgfHi3A5ZdH+e0uF/FWSgC1INcPalDUalIhhF/EUyjWl8mou2256KTOxiDXzpOB9ZCOrLu7dq1mvdsUPE5aAmHaXAHRYyF4FCxkloKMM95GLB9C+e8Jp0fmSDi2suNvcIq3Ar6P4Q4BuaikfbfIrhbE1iDk2RPhuShaHLTrPRQdAwKhEH3bBkE+cS9mdz2GVVmyXIL8Hz4kjksjMbVf5dYBwW1tNXy5Kk7ZX1J1oCs6R9lfJmkqNg2bFmugJXSU7wzCllsLbg8f79jufOA==
+ bh=oNGyHUFXjWylAUU4TL8SVtLnNBbR23uYFQ23Q/36z7I=;
+ b=GOxjn8dyGqgDjyJIdq6Y/WpKPd7qGj5+W4e1rVlL59tX7AGJB4DqSbCODJq2pSnUPYIJIZl65RoBN4igFbviM9mxJ54op3OXDgGKmhFuyUSWeRrZ1DXYFZpR+011s0LJ+5qL24rVvRvQ1t72wUyqyDuAK/r8PbU8SXU0o44h2pHDrDW2fFg8SiSRynxqjWYVirhhzgaWdBfRJfHiT936NLANulX78L/WmQRGC+37WbcL0a4C2bYFTci/gnPS6iXDwMhbtRcDeXsVd8I/asDhDDRjOEmly7SHJKCrX6Q68VqPfK4LV8JfGZXel47NePfKQnseAz0jaJXyl6EfOFxaFA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UsyNoOuXjCWi7pUsbdpyjHAK2dSGPAV6qoFw5+hRvQU=;
- b=K2Or3aH3rJep6RHnJCbPc4213j6QBm96ZYUw7XyqzosnLhtHEEdLmMGXHP1VcDcKZl8bdka51iQQakPTwyl6oUcCb8gaQ5KzF6wqYV0PwcL7fJvBta/hm/4L+/Zy6t1st+bRPjE6A8FZCNt1UZYjekKtP5m8Baf+yEzZx7QxXDU=
-Received: from DM6PR06CA0038.namprd06.prod.outlook.com (2603:10b6:5:54::15) by
- IA1PR12MB8468.namprd12.prod.outlook.com (2603:10b6:208:445::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.14; Wed, 20 Aug
- 2025 20:21:11 +0000
+ bh=oNGyHUFXjWylAUU4TL8SVtLnNBbR23uYFQ23Q/36z7I=;
+ b=sp8P6f4AW0VfizD2UTl5XE41+YvpEy1PW/3/URgsMrlvBYwqpANl6GedSgdRWNS/1RVUQ7sY78dUkBq3nY+GQd7DuKaSSotd2M1hBrf7DCkX45/hKkqMR1swM5RLx9oR4ISBeUI2K97NjGWax8KvdJGn/eH6hYdY5CS/8FiqJBw=
+Received: from DM6PR06CA0059.namprd06.prod.outlook.com (2603:10b6:5:54::36) by
+ DM4PR12MB8451.namprd12.prod.outlook.com (2603:10b6:8:182::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9031.25; Wed, 20 Aug 2025 20:21:12 +0000
 Received: from CY4PEPF0000EE39.namprd03.prod.outlook.com
- (2603:10b6:5:54:cafe::d6) by DM6PR06CA0038.outlook.office365.com
- (2603:10b6:5:54::15) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:5:54:cafe::d9) by DM6PR06CA0059.outlook.office365.com
+ (2603:10b6:5:54::36) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.14 via Frontend Transport; Wed,
- 20 Aug 2025 20:21:11 +0000
+ 20 Aug 2025 20:21:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,14 +50,14 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CY4PEPF0000EE39.mail.protection.outlook.com (10.167.242.11) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9052.8 via Frontend Transport; Wed, 20 Aug 2025 20:21:11 +0000
+ 15.20.9052.8 via Frontend Transport; Wed, 20 Aug 2025 20:21:12 +0000
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 20 Aug
  2025 15:21:08 -0500
 Received: from aaurabin-tumbleweed.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Wed, 20 Aug 2025 15:21:07 -0500
+ via Frontend Transport; Wed, 20 Aug 2025 15:21:08 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -67,10 +67,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, Clay King <clayking@amd.com>, Joshua Aberback
  <joshua.aberback@amd.com>
-Subject: [PATCH 06/12] drm/amd/display: Multiplication result converted to
- larger type
-Date: Wed, 20 Aug 2025 16:19:56 -0400
-Message-ID: <20250820202103.1122706-7-aurabindo.pillai@amd.com>
+Subject: [PATCH 07/12] drm/amd/display: Incorrect 'not' operator usage
+Date: Wed, 20 Aug 2025 16:19:57 -0400
+Message-ID: <20250820202103.1122706-8-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250820202103.1122706-1-aurabindo.pillai@amd.com>
 References: <20250820202103.1122706-1-aurabindo.pillai@amd.com>
@@ -81,52 +80,52 @@ Received-SPF: None (SATLEXMB03.amd.com: aurabindo.pillai@amd.com does not
  designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|IA1PR12MB8468:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac11df5a-4b37-4630-86d7-08dde0271ae4
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|DM4PR12MB8451:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54cf2612-5542-46a5-3910-08dde0271b51
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|30052699003|82310400026|376014|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?w24PvBUmXF5YWJAOVcidvJHl3yN+zmJkMAN+oJ8BRny1keNiATw6N3GSWUwy?=
- =?us-ascii?Q?KPUuCqqsWmZbkiisjyNLFokuTp24VZhJG94CqEk1VDpLlK2YjFuU43v5Du6v?=
- =?us-ascii?Q?0wdEMVcIGPH2Gk4p5iCVzgmUYWNPz3tmFjVlkBTnBeVdpRTE36IH3x2u0PIT?=
- =?us-ascii?Q?/32M66dsZ6dNsHGFQJBAvzxMJsQIR439JPbeVLD2ozoryirVIwPnPjU3Nsp/?=
- =?us-ascii?Q?q0CsSZlUC68MO5Oxk32Ya5sOk3rU17nK+o2D5+MfAwob4Eayz093vm364uz7?=
- =?us-ascii?Q?SmlVTLF/rqWxHgbkRIBBOXwbutXyg56gJr6ZTgrzbaB2vuFdpIMXlKw28i/J?=
- =?us-ascii?Q?duPSL2FIoM8DOYysFJ03BoUc6O4JuESz7/3StYiazJD3uGoTv8ey9o9wQwgo?=
- =?us-ascii?Q?Ue9aoIW/SS+Q/HbNk3Qlw8BRkCEdq2479HCj6RpgkeZFIxniM9WgZxGQw6xw?=
- =?us-ascii?Q?5FTtaoWfZwrQIbRFH+CvUFOimmUzaRJa4kkcVkkWlnDWf532GnmrdsV+PZPd?=
- =?us-ascii?Q?YCLb3VH1jPjQvcUE/aXs4tGI+xxwPq9v0fYHUhHo10lqVqNjjzCZscDwXqV4?=
- =?us-ascii?Q?KDh2Il4Kyf04M42CKooHhDT5zVpO1YcRJC1BX68WsLNE/PTIeVKK8jLLTU9q?=
- =?us-ascii?Q?6unoeZ0aP6lIZIb9lzBQrl0ipMUL5OM6AzmFYqT9KfhqpG1d0ctfl6VdRRbK?=
- =?us-ascii?Q?WZvWOEXfw4z9YXXnGVqEANCZRmUQPCRouw0EFmvY1nouPpyT/Y1IQodutJMl?=
- =?us-ascii?Q?2WW79qlV7VsgQ/WG/BeU0cnKu8fbWQh5fuqd33+3rqXI/9ETsPIFuatE1DyG?=
- =?us-ascii?Q?cuf74F8kbNB63jMLox8OxiITc+pHuvwZF9cnq9Nw9B+SqJW7mcMJ42crNoBD?=
- =?us-ascii?Q?cMKf5TZGMbqv6nKQDwebFQkkyCP/sifIbyev/YoFgVx+BjfCtam23E8jtdWg?=
- =?us-ascii?Q?FunJwi5Ii0xmdVrMrNKgShs+D1jew3VH5/LJDUtHbEFWeO3Vkcm9zCyqbJla?=
- =?us-ascii?Q?fGk1TcLVfpsJkI1mZuwJeBygWzEvoHBRC6IOYDGUME0sTVPVcWux/TIaiDFN?=
- =?us-ascii?Q?AgegZZKzTyumFb0Pk1JOHl8S+4eRywtAvPshebFore9Jr8MzG98PtbBe8aru?=
- =?us-ascii?Q?5qmHR78bRVbIEtxtvQRTHH0OT04KUgOtUKmdiKe808iI8+hmM1tYMxwyNxdh?=
- =?us-ascii?Q?QaTAQxS5WagpyaoTzYIULogX8qYclFHeyf4E/HyhsOQPp6frThZdLdmMRj/u?=
- =?us-ascii?Q?1Xh4DTeaxTL4iGiac3liOXSaJqRTWGBscEY7kezdGopGsuBD+VkOJ4P5/Bvx?=
- =?us-ascii?Q?bimu5DfUlNvxGRi2noQfLVj4linFVz8Pm5ULMLrUChiiAaWajNDAxS0NDzH7?=
- =?us-ascii?Q?5bue3PcmQWTjtZpPz5pl0sUUVKg7Qv+IoELuK89kFyqfSmsRh9Ic21YpbPKF?=
- =?us-ascii?Q?pPl0/Wk1MOHBEPLRm/BZrA5Ci0pr+5U9ht7cw89hp38Uf3DroM71Fe8hD5lD?=
- =?us-ascii?Q?8O6l5INPX1Ew7IgYctGEaxPlKXK6n3W5eAfz?=
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Pppwww7Kt5R7tT05feRIlve+x8HIuOBuVph7uJifb5R0YYOEewEOsNRS0YTQ?=
+ =?us-ascii?Q?0tLytBtUUvSJIgWMZR5Z3VkcG4RNauFHmR6jUvYPJbu4Oj62OhoLbJkZ7GBw?=
+ =?us-ascii?Q?XPRELdgV0UnuueVae24GyDinAgbzG7Orwjz/Og07mIyDy7YHJRmWkYnXVF0K?=
+ =?us-ascii?Q?e9lUf9bPZH+d9dpIQ5sdy4Rk6gPfgjJ6iFIq5qRddoTrzQBBx1YAw4dmexzq?=
+ =?us-ascii?Q?53EbTxPV1K+uOP+NVtwb/0eW0mlE7cJcgw52S+HlOBiaRb/r4bs9T4axnpSc?=
+ =?us-ascii?Q?jqt282A7BHhOtQhQKWsV23vtylyjM5BFOcCXfsijz1Bs91sIPW/NuzXqHyPe?=
+ =?us-ascii?Q?L1HPiN3aQrirmzbLTBDIqPBqqIemsPAF8zfq7WR1cYyS4IW3ez9nVDeLO199?=
+ =?us-ascii?Q?hiSWiQWRZTJcVXx4oJ64QBHCIudYZL/LAL/IxKgr5PZxMN/INn8PuKXZmdNQ?=
+ =?us-ascii?Q?NRRKcSO1ScrnJCbD8fE13IDJfx65JdUBtx26lOS8/Bw0TpXewND66SKhwj4m?=
+ =?us-ascii?Q?HHeWKifMcvuiJHxWTx6sW3q4UP659DQrcp9Hgwj73bO0XmBcs0otbSc3SpBg?=
+ =?us-ascii?Q?Ve3ZX3vvCKdDKd9wPo+1yEgAv7TyserSXsxl6JYGgI3robwuh4le9pRqKmee?=
+ =?us-ascii?Q?4ze8ZY99YpSd9b1CXlDDsPNXHft/wY4H8ETJ23/57ZJs04vOXpFgUJa9mYaO?=
+ =?us-ascii?Q?EReHkBhbExQqT6KgfQD/IxKZ1qpS9NJmZ1qgOopu6CEJFTK0CWBVAM2TI2by?=
+ =?us-ascii?Q?hLzOPJ2Zvis8yszhB4m6GpTA2JPCWC9dJwsiupp3KytktxCrtXhCsXLAkJt3?=
+ =?us-ascii?Q?FUJK2RhfXRWU04QJxuPko4qijJhtyQ3X5PP7dLbVx1L4DZdlurHLuFAYxWoo?=
+ =?us-ascii?Q?7nybTQ6VWyWmNQBqWru3a22WfCT42nMuZ4myewTUL73tGSh75c52Q28YR+vp?=
+ =?us-ascii?Q?zC0boygu4akv28seOMg4mr9H1W7HFVqoaNeolHXCfgcO2Slt3wXgNt+6FQMa?=
+ =?us-ascii?Q?Kkyf5tLEJclxCbEK+vYgSXXtm/NnWVE+NaqBzoJgFb6s16t9MCs8SlFzu3Ta?=
+ =?us-ascii?Q?iDw+WJ7dNve6sEftuAdbTgztzrfkJTLRcnEscE1qt4/3Diocapz0IxUdjNeq?=
+ =?us-ascii?Q?0YxJ1FUjLrhpHmiNNuqlMlzbM5DVAV1PEGRt9/wLflcurUBhzNSY65aI1Cly?=
+ =?us-ascii?Q?79UZusEePnm7R4Pfdv04IImLhrLDQqm9NNlqWH2mvVzRa0h+I8HBVVoB0IxD?=
+ =?us-ascii?Q?Ocev9YQF7JeadXr/vuiqFgybGxMJP1E/zOaHDOYiaLycs4aWqaUOnL0AFnNi?=
+ =?us-ascii?Q?jpVRu/7HerHLa8DDKRnKxUvY9ROwF/7dGTkicvlS3zn1mBjIWlmnNng0pDWr?=
+ =?us-ascii?Q?HDBqe2QPcoW1w5TrNrSeIyPdKcYU9ZJN9dHFeqbOU/mxdjZVL7Q+orGt50xw?=
+ =?us-ascii?Q?bxBA7f+NMlxoQ1QTDmE2SACtFMGwdIYB1eiEcmM8a2LJjTAK1qAFS6TNnZFY?=
+ =?us-ascii?Q?BBtoOUQkzvN15nNCdj05mkM9TtqK4DZqp57q?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(30052699003)(82310400026)(376014)(36860700013)(1800799024);
- DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 20:21:11.5113 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac11df5a-4b37-4630-86d7-08dde0271ae4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 20:21:12.2256 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54cf2612-5542-46a5-3910-08dde0271b51
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE39.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8468
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8451
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,160 +142,126 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Clay King <clayking@amd.com>
 
-Consolidating multiple CodeQL Fixes for alerts with rule id: cpp/integer-multiplication-cast-to-long
+Consolidating multiple CodeQL Fixes for alerts with rule id: cpp/incorrect-not-operator-usage
 
 Reviewed-by: Joshua Aberback <joshua.aberback@amd.com>
 Signed-off-by: Clay King <clayking@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c    |  2 +-
- drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c   |  2 +-
- drivers/gpu/drm/amd/display/dc/basics/vector.c       |  6 +++---
- drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c |  2 +-
- .../amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c   |  2 +-
- .../amd/display/dc/resource/dce112/dce112_resource.c | 12 ++++++------
- .../amd/display/dc/resource/dce120/dce120_resource.c |  6 +++---
- 7 files changed, 16 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c                 | 2 +-
+ drivers/gpu/drm/amd/display/dc/dce/dce_i2c_sw.c                 | 2 +-
+ .../gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c   | 2 +-
+ .../gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c | 2 +-
+ .../gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c   | 2 +-
+ .../gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c   | 2 +-
+ .../gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c   | 2 +-
+ .../gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c | 2 +-
+ 8 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
-index d897f8a30ede..4da5adab799c 100644
---- a/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
-@@ -1136,7 +1136,7 @@ static void calculate_bandwidth(
- 			}
- 		}
- 	}
--	data->total_dmifmc_urgent_trips = bw_ceil2(bw_div(data->total_requests_for_adjusted_dmif_size, (bw_add(dceip->dmif_request_buffer_size, bw_int_to_fixed(vbios->number_of_request_slots_gmc_reserves_for_dmif_per_channel * data->number_of_dram_channels)))), bw_int_to_fixed(1));
-+	data->total_dmifmc_urgent_trips = bw_ceil2(bw_div(data->total_requests_for_adjusted_dmif_size, (bw_add(dceip->dmif_request_buffer_size, bw_int_to_fixed((uint64_t)vbios->number_of_request_slots_gmc_reserves_for_dmif_per_channel * data->number_of_dram_channels)))), bw_int_to_fixed(1));
- 	data->total_dmifmc_urgent_latency = bw_mul(vbios->dmifmc_urgent_latency, data->total_dmifmc_urgent_trips);
- 	data->total_display_reads_required_data = bw_int_to_fixed(0);
- 	data->total_display_reads_required_dram_access_data = bw_int_to_fixed(0);
-diff --git a/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c b/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
-index 452206b5095e..6073cadde76c 100644
---- a/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/basics/fixpt31_32.c
-@@ -284,7 +284,7 @@ struct fixed31_32 dc_fixpt_cos(struct fixed31_32 arg)
- 				dc_fixpt_mul(
- 					square,
- 					res),
--				n * (n - 1)));
-+				(long long)n * (n - 1)));
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
+index 0421b267a0b5..365dd2e37aea 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
+@@ -591,7 +591,7 @@ static bool dce_i2c_hw_engine_submit_payload(struct dce_i2c_hw *dce_i2c_hw,
+ 			DCE_I2C_TRANSACTION_ACTION_I2C_WRITE;
  
- 		n -= 2;
- 	} while (n != 0);
-diff --git a/drivers/gpu/drm/amd/display/dc/basics/vector.c b/drivers/gpu/drm/amd/display/dc/basics/vector.c
-index 6d2924114a3e..b413a672c2c0 100644
---- a/drivers/gpu/drm/amd/display/dc/basics/vector.c
-+++ b/drivers/gpu/drm/amd/display/dc/basics/vector.c
-@@ -170,7 +170,7 @@ bool dal_vector_remove_at_index(
- 		memmove(
- 			vector->container + (index * vector->struct_size),
- 			vector->container + ((index + 1) * vector->struct_size),
--			(vector->count - index - 1) * vector->struct_size);
-+			(size_t)(vector->count - index - 1) * vector->struct_size);
- 	vector->count -= 1;
  
- 	return true;
-@@ -219,7 +219,7 @@ bool dal_vector_insert_at(
- 		memmove(
- 			insert_address + vector->struct_size,
- 			insert_address,
--			vector->struct_size * (vector->count - position));
-+			(size_t)vector->struct_size * (vector->count - position));
+-	request.address = (uint8_t) ((payload->address << 1) | !payload->write);
++	request.address = (uint8_t) ((payload->address << 1) | (payload->write ? 0 : 1));
+ 	request.length = payload->length;
+ 	request.data = payload->data;
  
- 	memmove(
- 		insert_address,
-@@ -271,7 +271,7 @@ struct vector *dal_vector_clone(
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_sw.c b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_sw.c
+index e188447c8156..2d73b94c515c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_sw.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_sw.c
+@@ -451,7 +451,7 @@ static bool dce_i2c_sw_engine_submit_payload(struct dce_i2c_sw *engine,
+ 			DCE_I2C_TRANSACTION_ACTION_I2C_WRITE_MOT :
+ 			DCE_I2C_TRANSACTION_ACTION_I2C_WRITE;
  
- 	/* copy vector's data */
- 	memmove(vec_cloned->container, vector->container,
--			vec_cloned->struct_size * vec_cloned->capacity);
-+			(size_t)vec_cloned->struct_size * vec_cloned->capacity);
+-	request.address = (uint8_t) ((payload->address << 1) | !payload->write);
++	request.address = (uint8_t) ((payload->address << 1) | (payload->write ? 0 : 1));
+ 	request.length = payload->length;
+ 	request.data = payload->data;
  
- 	return vec_cloned;
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-index 6160952245b4..7cd7bddea423 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-@@ -3401,7 +3401,7 @@ bool dcn32_allow_subvp_with_active_margin(struct pipe_ctx *pipe)
- 		uint32_t height = subvp_active_margin_list.res[i].height;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
+index 390c1a77fda6..9c58ff1069d6 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
+@@ -646,7 +646,7 @@ static void get_meta_and_pte_attr(struct display_mode_lib *mode_lib,
  
- 		refresh_rate = (pipe->stream->timing.pix_clk_100hz * (uint64_t)100 +
--			pipe->stream->timing.v_total * pipe->stream->timing.h_total - (uint64_t)1);
-+			(uint64_t)pipe->stream->timing.v_total * pipe->stream->timing.h_total - (uint64_t)1);
- 		refresh_rate = div_u64(refresh_rate, pipe->stream->timing.v_total);
- 		refresh_rate = div_u64(refresh_rate, pipe->stream->timing.h_total);
+ 	// the dpte_group_bytes is reduced for the specific case of vertical
+ 	// access of a tile surface that has dpte request of 8x1 ptes.
+-	if (!surf_linear & (log2_dpte_req_height_ptes == 0) & surf_vert) //reduced, in this case, will have page fault within a group
++	if (!surf_linear && (log2_dpte_req_height_ptes == 0) && surf_vert) //reduced, in this case, will have page fault within a group
+ 		rq_sizing_param->dpte_group_bytes = 512;
+ 	else
+ 		//full size
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
+index 843d6004258c..570e6e39eb45 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
+@@ -646,7 +646,7 @@ static void get_meta_and_pte_attr(struct display_mode_lib *mode_lib,
  
-diff --git a/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c b/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c
-index 259a98e4ee2c..2a422e223bf2 100644
---- a/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c
-@@ -284,7 +284,7 @@ void mcifwb2_dump_frame(struct mcif_wb *mcif_wb,
- 
- 	REG_UPDATE(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_LOCK, 0xf);
- 
--	memcpy(dest_luma_buffer,   luma_buffer,   mcif_params->luma_pitch * dest_height);
-+	memcpy(dest_luma_buffer,   luma_buffer,   (size_t)mcif_params->luma_pitch * dest_height);
- 	memcpy(dest_chroma_buffer, chroma_buffer, mcif_params->chroma_pitch * dest_height / 2);
- 
- 	REG_UPDATE(MCIF_WB_BUFMGR_SW_CONTROL, MCIF_WB_BUFMGR_SW_LOCK, 0x0);
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
-index 164ba796f64c..869a8e515fc0 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce112/dce112_resource.c
-@@ -1111,12 +1111,12 @@ static void bw_calcs_data_update_from_pplib(struct dc *dc)
- 				&clks);
- 
- 		dc->bw_vbios->low_yclk = bw_frc_to_fixed(
--			clks.clocks_in_khz[0] * memory_type_multiplier, 1000);
-+			(int64_t)clks.clocks_in_khz[0] * memory_type_multiplier, 1000);
- 		dc->bw_vbios->mid_yclk = bw_frc_to_fixed(
--			clks.clocks_in_khz[clks.num_levels>>1] * memory_type_multiplier,
-+			(int64_t)clks.clocks_in_khz[clks.num_levels>>1] * memory_type_multiplier,
- 			1000);
- 		dc->bw_vbios->high_yclk = bw_frc_to_fixed(
--			clks.clocks_in_khz[clks.num_levels-1] * memory_type_multiplier,
-+			(int64_t)clks.clocks_in_khz[clks.num_levels-1] * memory_type_multiplier,
- 			1000);
- 
- 		return;
-@@ -1152,12 +1152,12 @@ static void bw_calcs_data_update_from_pplib(struct dc *dc)
- 	 * YCLK = UMACLK*m_memoryTypeMultiplier
- 	 */
- 	dc->bw_vbios->low_yclk = bw_frc_to_fixed(
--		mem_clks.data[0].clocks_in_khz * memory_type_multiplier, 1000);
-+		(int64_t)mem_clks.data[0].clocks_in_khz * memory_type_multiplier, 1000);
- 	dc->bw_vbios->mid_yclk = bw_frc_to_fixed(
--		mem_clks.data[mem_clks.num_levels>>1].clocks_in_khz * memory_type_multiplier,
-+		(int64_t)mem_clks.data[mem_clks.num_levels>>1].clocks_in_khz * memory_type_multiplier,
- 		1000);
- 	dc->bw_vbios->high_yclk = bw_frc_to_fixed(
--		mem_clks.data[mem_clks.num_levels-1].clocks_in_khz * memory_type_multiplier,
-+		(int64_t)mem_clks.data[mem_clks.num_levels-1].clocks_in_khz * memory_type_multiplier,
- 		1000);
- 
- 	/* Now notify PPLib/SMU about which Watermarks sets they should select
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
-index eb1e158d3436..2f23cc6df571 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce120/dce120_resource.c
-@@ -990,12 +990,12 @@ static void bw_calcs_data_update_from_pplib(struct dc *dc)
- 		memory_type_multiplier = MEMORY_TYPE_HBM;
- 
- 	dc->bw_vbios->low_yclk = bw_frc_to_fixed(
--		mem_clks.data[0].clocks_in_khz * memory_type_multiplier, 1000);
-+		(int64_t)mem_clks.data[0].clocks_in_khz * memory_type_multiplier, 1000);
- 	dc->bw_vbios->mid_yclk = bw_frc_to_fixed(
--		mem_clks.data[mem_clks.num_levels>>1].clocks_in_khz * memory_type_multiplier,
-+		(int64_t)mem_clks.data[mem_clks.num_levels>>1].clocks_in_khz * memory_type_multiplier,
- 		1000);
- 	dc->bw_vbios->high_yclk = bw_frc_to_fixed(
--		mem_clks.data[mem_clks.num_levels-1].clocks_in_khz * memory_type_multiplier,
-+		(int64_t)mem_clks.data[mem_clks.num_levels-1].clocks_in_khz * memory_type_multiplier,
- 		1000);
- 
- 	/* Now notify PPLib/SMU about which Watermarks sets they should select
+ 	// the dpte_group_bytes is reduced for the specific case of vertical
+ 	// access of a tile surface that has dpte request of 8x1 ptes.
+-	if (!surf_linear & (log2_dpte_req_height_ptes == 0) & surf_vert) //reduced, in this case, will have page fault within a group
++	if (!surf_linear && (log2_dpte_req_height_ptes == 0) && surf_vert) //reduced, in this case, will have page fault within a group
+ 		rq_sizing_param->dpte_group_bytes = 512;
+ 	else
+ 		//full size
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
+index 5718000627b0..f549da082c01 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
+@@ -652,7 +652,7 @@ static void get_meta_and_pte_attr(
+ 	if (hostvm_enable)
+ 		rq_sizing_param->dpte_group_bytes = 512;
+ 	else {
+-		if (!surf_linear & (log2_dpte_req_height_ptes == 0) & surf_vert) //reduced, in this case, will have page fault within a group
++		if (!surf_linear && (log2_dpte_req_height_ptes == 0) && surf_vert) //reduced, in this case, will have page fault within a group
+ 			rq_sizing_param->dpte_group_bytes = 512;
+ 		else
+ 			//full size
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
+index 8d4873f80df0..4fb37df54d59 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
+@@ -620,7 +620,7 @@ static void get_meta_and_pte_attr(struct display_mode_lib *mode_lib,
+ 	if (hostvm_enable)
+ 		rq_sizing_param->dpte_group_bytes = 512;
+ 	else {
+-		if (!surf_linear & (log2_dpte_req_height_ptes == 0) & surf_vert) //reduced, in this case, will have page fault within a group
++		if (!surf_linear && (log2_dpte_req_height_ptes == 0) && surf_vert) //reduced, in this case, will have page fault within a group
+ 			rq_sizing_param->dpte_group_bytes = 512;
+ 		else
+ 			rq_sizing_param->dpte_group_bytes = 2048;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
+index c46bda2141ac..bfeb01477f0c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
+@@ -615,7 +615,7 @@ static void get_meta_and_pte_attr(
+ 	if (hostvm_enable)
+ 		rq_sizing_param->dpte_group_bytes = 512;
+ 	else {
+-		if (!surf_linear & (log2_dpte_req_height_ptes == 0) & surf_vert) //reduced, in this case, will have page fault within a group
++		if (!surf_linear && (log2_dpte_req_height_ptes == 0) && surf_vert) //reduced, in this case, will have page fault within a group
+ 			rq_sizing_param->dpte_group_bytes = 512;
+ 		else
+ 			rq_sizing_param->dpte_group_bytes = 2048;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
+index b7d2a0caec11..04df263ff65e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
+@@ -703,7 +703,7 @@ static void get_meta_and_pte_attr(
+ 	if (hostvm_enable)
+ 		rq_sizing_param->dpte_group_bytes = 512;
+ 	else {
+-		if (!surf_linear & (log2_dpte_req_height_ptes == 0) & surf_vert) //reduced, in this case, will have page fault within a group
++		if (!surf_linear && (log2_dpte_req_height_ptes == 0) && surf_vert) //reduced, in this case, will have page fault within a group
+ 			rq_sizing_param->dpte_group_bytes = 512;
+ 		else
+ 			rq_sizing_param->dpte_group_bytes = 2048;
 -- 
 2.50.1
 
