@@ -2,53 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BAA1B2F8AD
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 Aug 2025 14:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB5BB2E50E
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Aug 2025 20:33:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 483B710E984;
-	Thu, 21 Aug 2025 12:48:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10C6E10E7BF;
+	Wed, 20 Aug 2025 18:33:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="q/FjGWgG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FyIdVeR+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6124810E7C8;
- Wed, 20 Aug 2025 18:32:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=/IcasXGt5PbdoVVXgghzry42yNZ+BKaeuG0k8SwqEiE=; b=q/FjGWgGcZoyCpEvqzRf8l3Zr/
- JIlfqELevVDHITw5RFmNo9AMXsyBB/1XndCSGlTd09RzWkrSjxKUJIjufaLYz8yxfwKpy8ND60NJs
- 76hOsgpGJ+w0JikLmP6MoRsLeA1o9dfAEBPJvORLXkuEWebNamwm+TiBY4A3uaZ+rhmjKxj4UFaBg
- hZKIUQcipMHbmvUS2rvgor0hab0mUAzjR3Y34FzVMejhHia/4mMiFgK2cGU7j54FxNt8M8wez2KoO
- vyvtac4XHa1fdJm5170GVZz3r2HJ+QfgDdX+AwW+PcRxDvPmBvIDOlXXXC4jpx5TO5d5arqEghy9q
- ZHy/YFwA==;
-Received: from [50.53.25.54] (helo=[192.168.254.17])
- by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1uonbe-0000000EgzN-1F8t; Wed, 20 Aug 2025 18:32:18 +0000
-Message-ID: <1fc93d62-eb77-46a6-964f-c0bc7348d482@infradead.org>
-Date: Wed, 20 Aug 2025 11:32:17 -0700
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+ [209.85.214.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E1A410E7BF
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 18:33:52 +0000 (UTC)
+Received: by mail-pl1-f170.google.com with SMTP id
+ d9443c01a7336-244581fdfd8so206875ad.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 11:33:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755714831; x=1756319631; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=i8aRl9t5V6Q7AnpZxPp/thjhXQZ7yIoJiGvCzobrjvA=;
+ b=FyIdVeR+dtIkRyvIYexV1UHZb9YjrY8dVNG66vemQPv00wEicNNtHhHoo5vSH/i/HQ
+ LwOp/syatY8wX99Y7M1GMLw6jGM/uumN1Mqg6l8hZ6vwF+wcotenEcgOQ3offLLStSpH
+ JEb6w7gVPJ1dh4sMOm3Npr5oJURT8ku85EpmDvSl6Qh0wB0l6x3Jt0uA12pJttwoLX9i
+ JlNGosHBodpe9sK5mbn3lz9P4UBGEtmvsdBfs3aEfuyiRreyY+hjURIh7SzZW6Qa8TWl
+ T61SvqCQP70cKip+GWo6lfOZsbrRw0C+0CN+A/B7eXfEqv1MpRe0ejI49iTy6I7D+hLE
+ UhZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755714831; x=1756319631;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=i8aRl9t5V6Q7AnpZxPp/thjhXQZ7yIoJiGvCzobrjvA=;
+ b=a5lFTZDPm7h3NgozudItrT/LqyQq/6JaZtx9Gh52x3RYxLGO97ATIwV2emEURxXaR+
+ a9Bit+2cNLRzWWrjz+4Tc6s5+VYuIKVXhYwmWgXHCrGPd/n87Ahj6rt3MdXQj+UHFvys
+ KZVxhJ9pEvQvoSfaCpS/gZoex+aNUZwDn91uX3ZRy41comffFMmThZ3/+Aizi0/gULe3
+ uLqisSF/y0nlnHOhZH+tFMaY5c3QSV4zjbxM8D61auzNyxPQ/u4KMXzgUVpnT6DZ5zC+
+ ImOFpCnj1Xt3bAL9hYIiyy+8SO+bJtCgl8HZNsEBYSE1ep0lRt7p4Ht4kmCP1P5dW2h3
+ 1yuQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWj8rpgiEgW+2h+bN9oavy+/BZzeLgo0rjw82sa1XP0dNeRJYVHDLIVs6C5DmAsJ8H7buVpcPRz@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxjp41DfEJTkgOI2Ez5jgEnb68LBOzpwuP7vCwHF+RGOPz78cJ4
+ Udu9sxmcs+ElsCl3cbp+ZO59U2HQYDZOBXe8jvJ+48QdREGqpcB348xbxmR9cbzgnF5VbhIfRi8
+ C+3zcBcAQgkTc0n7XMhWwNDb7//70bp0=
+X-Gm-Gg: ASbGncsAOgjZ2ZE8+VqOaXpETAwXMoBmKS9BU+2AFnkq4+sMI7ilatSqMcfxmVaW5Sg
+ 2Zxy1nxikYQI2GTcjVO/hMFuR2Ol4RTGcYnEdpOtEZ2NBDDPw3Z/HRmk4Ov0BCoYt6EIcM9pAWG
+ +Lu2iJvO8nYdPUGLlas+hdPIpWntFg6lqkgPikIenO4K/dovdvmwF7cXQmmxVzqd5sdAJFM0Dic
+ /ePbXE=
+X-Google-Smtp-Source: AGHT+IHkAy3ca8+jtID/FoWqYaW09/zltQ/aw0SuoLJmcmEe6soi3YAyE7iSaLKvBR0EQAXgHSLAxz7i4pKA8GtkmY4=
+X-Received: by 2002:a17:902:c410:b0:240:3c1d:cbe3 with SMTP id
+ d9443c01a7336-245ef1117cfmr27184545ad.4.1755714831408; Wed, 20 Aug 2025
+ 11:33:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] docs: gpu: Fix spelling mistakes
-To: Rakuram Eswaran <rakuram.e96@gmail.com>, linux-doc@vger.kernel.org,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- corbet@lwn.net
-Cc: tzimmermann@suse.de, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, simona@ffwll.ch, siqueira@igalia.com,
- harry.wentland@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-kernel-mentees@lists.linuxfoundation.org, skhan@linuxfoundation.org
-References: <20250820182259.11227-1-rakuram.e96@gmail.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20250820182259.11227-1-rakuram.e96@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 21 Aug 2025 12:48:46 +0000
+References: <20250819211957.17871-2-katharasasikumar007@gmail.com>
+In-Reply-To: <20250819211957.17871-2-katharasasikumar007@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 20 Aug 2025 14:33:39 -0400
+X-Gm-Features: Ac12FXzaT8tBvm_ZbhXzy1ligYMWZLBJ-gPMSwG1SDqreVmeqsoG3xwj0dX_b9Q
+Message-ID: <CADnq5_NJdEtMqMfwW8ZN-nNyJD0dDnB3sYYGHeSb5JnwsUyPTQ@mail.gmail.com>
+Subject: Re: [PATCH] Documentation/gpu/amdgpu: Fix duplicate word in
+ driver-core.rst
+To: Kathara Sasikumar <katharasasikumar007@gmail.com>
+Cc: skhan@linuxfoundation.org, corbet@lwn.net, alexander.deucher@amd.com, 
+ christian.koenig@amd.com, linux-doc@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +85,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Applied.  Thanks!
 
-On 8/20/25 11:22 AM, Rakuram Eswaran wrote:
-> Fixed following typos reported by Codespell
-> 
-> 1. filp ==> flip
-> In Documentation/gpu/drm-mm.rst
-> 
+Alex
 
-No, that's a "struct file pointer". filp is correct.
-See include/drm/drm_gem.h
-
-The others look good.
-
-One more comment below.
-
-> 
-> Signed-off-by: Rakuram Eswaran <rakuram.e96@gmail.com>
+On Wed, Aug 20, 2025 at 8:32=E2=80=AFAM Kathara Sasikumar
+<katharasasikumar007@gmail.com> wrote:
+>
+> Remove duplicate word 'and' in driver-core.rst.
+>
+> Signed-off-by: Kathara Sasikumar <katharasasikumar007@gmail.com>
 > ---
->  Documentation/gpu/amdgpu/debugfs.rst                       | 4 ++--
->  Documentation/gpu/amdgpu/display/programming-model-dcn.rst | 2 +-
->  Documentation/gpu/amdgpu/process-isolation.rst             | 2 +-
->  Documentation/gpu/drm-mm.rst                               | 2 +-
->  Documentation/gpu/drm-uapi.rst                             | 2 +-
->  Documentation/gpu/todo.rst                                 | 4 ++--
->  6 files changed, 8 insertions(+), 8 deletions(-)
-> 
-
-> diff --git a/Documentation/gpu/amdgpu/process-isolation.rst b/Documentation/gpu/amdgpu/process-isolation.rst
-> index 6b6d70e357a7..c1297a9e4d09 100644
-> --- a/Documentation/gpu/amdgpu/process-isolation.rst
-> +++ b/Documentation/gpu/amdgpu/process-isolation.rst
-> @@ -26,7 +26,7 @@ Example of enabling enforce isolation on a GPU with multiple partitions:
->      $ cat /sys/class/drm/card0/device/enforce_isolation
->      1 0 1 0
->  
-> -The output indicates that enforce isolation is enabled on zeroth and second parition and disabled on first and fourth parition.
-> +The output indicates that enforce isolation is enabled on zeroth and second partition and disabled on first and fourth partition.
-It looks like "fourth" should be "third" here.
-
--- 
-~Randy
-
+> Hi,
+>
+> This patch is part of my work for the LFX Linux Kernel Mentorship
+> Program (LKMP).
+> I would appreciate any feedback.
+>
+> Thanks,
+> Kathara
+>
+>  Documentation/gpu/amdgpu/driver-core.rst | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/gpu/amdgpu/driver-core.rst b/Documentation/gpu=
+/amdgpu/driver-core.rst
+> index 81256318e93c..bd4be32f2725 100644
+> --- a/Documentation/gpu/amdgpu/driver-core.rst
+> +++ b/Documentation/gpu/amdgpu/driver-core.rst
+> @@ -65,7 +65,7 @@ SDMA (System DMA)
+>
+>  GC (Graphics and Compute)
+>      This is the graphics and compute engine, i.e., the block that
+> -    encompasses the 3D pipeline and and shader blocks.  This is by far t=
+he
+> +    encompasses the 3D pipeline and shader blocks.  This is by far the
+>      largest block on the GPU.  The 3D pipeline has tons of sub-blocks.  =
+In
+>      addition to that, it also contains the CP microcontrollers (ME, PFP,=
+ CE,
+>      MEC) and the RLC microcontroller.  It's exposed to userspace for use=
+r mode
+> --
+> 2.47.2
+>
