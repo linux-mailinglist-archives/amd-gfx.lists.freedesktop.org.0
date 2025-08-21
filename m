@@ -2,57 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EE1CB319DE
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Aug 2025 15:41:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E72B2F993
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 Aug 2025 15:11:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72C4310EB1E;
-	Fri, 22 Aug 2025 13:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44ABF10E995;
+	Thu, 21 Aug 2025 13:11:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=listout.xyz header.i=@listout.xyz header.b="s+jGAUic";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZU9OqlmK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D354310E37A
- for <amd-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:09:24 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4c73Yv1V1cz9tJx;
- Thu, 21 Aug 2025 15:09:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=listout.xyz; s=MBO0001;
- t=1755781763;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=52AW3vX2G/gONvQRliEmju8kdN4K7aQivHGiuzDOHmM=;
- b=s+jGAUic/ET4f3uS8kGl/sLr8obP/gvQlWLnXAU7A/5pRIpCSJuw48ObfQD4kqqOL2GWxy
- okDa/fq/dfTkmxuxZGxqfTW1YStwNU9pitzLoWRItb35yCYOeNZjMVn2U7C+KtwpKZgMAq
- SuG3NpGCf6zIegVozyX/xbCcj7kbngzhX3JZ1nmEgz8CTggPBDOYItayjbsGX6teJD2eKv
- NXl4JtrUYVAmDUkuKHWM28BE7A9uPGrsGUCpxXwCDGXkAuR79vu8/St1YARB8QhzRDcbPZ
- PTTLyADBSHraW+k936OhCXcYglKh8quexx+XSBhGvk4juDSYBxjSNqzk6W8jzg==
-Authentication-Results: outgoing_mbo_mout; dkim=none;
- spf=pass (outgoing_mbo_mout: domain of listout@listout.xyz designates
- 2001:67c:2050:b231:465::202 as permitted sender)
- smtp.mailfrom=listout@listout.xyz
-From: Brahmajit Das <listout@listout.xyz>
-To: alexander.deucher@amd.com
-Cc: Christian.Koenig@amd.com, Jun.Lei@amd.com, Qingqing.Zhuo@amd.com,
- alexdeucher@gmail.com, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, listout@listout.xyz
-Subject: [PATCH v2] drm/amd/display: clean-up dead code in dml2_mall_phantom
-Date: Thu, 21 Aug 2025 18:39:09 +0530
-Message-ID: <20250821130909.25428-1-listout@listout.xyz>
-In-Reply-To: <BL1PR12MB5144269A278EED9AC3CCEE7EF733A@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <BL1PR12MB5144269A278EED9AC3CCEE7EF733A@BL1PR12MB5144.namprd12.prod.outlook.com>
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6389310E995
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:11:12 +0000 (UTC)
+Received: by mail-pl1-f173.google.com with SMTP id
+ d9443c01a7336-2445813f6d1so1714025ad.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 06:11:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755781872; x=1756386672; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=J0hPr408HGc7lyp1MHbATyYq9vjBXYLpofyIRBWhZ/s=;
+ b=ZU9OqlmKl5/q5nSPeLQrq4q5sir6JM/eneD/bmgvAo60EnKF9kwjH5uya5Xj96stz0
+ SaCliFoGt9H7Qc8Ek2u5ooWgyiitGRXPH57wpFGb8VR0MtcRiJUqbPRE0C6Etw4Q1Sh1
+ 8Ss7+J3MFKgzLTgCQa9tBx7gWdXkx0+dTUrhNnHg1NorRK1WATu1QxcyoiFmg2OjEeVF
+ /fZezLWV+uH0wELxeGxNdXQyROPe9U9edsZ5OzCK3r3AYp696UaufUN/EfkfAtNcMy/z
+ pq1jPLbs77X74EQ8HYjRsPffmWw0ufwR85z941l/BThtfJjWSLY5mOOzg+5bVsaVVFbZ
+ pjZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755781872; x=1756386672;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=J0hPr408HGc7lyp1MHbATyYq9vjBXYLpofyIRBWhZ/s=;
+ b=TtwCV8+OdkgVWB/Y0wHnGxXXd4cISNIBBuqwHBPDvr5U0kmCBtFtFHb2E782+G565l
+ V2efEThlnVmjLQbTmzXnTrIUbuoa3hTJYFK4/1vdnEKn5Ps+wKWjBzlfjNZwsuT5GDqu
+ SYCP9Seow/DF9w071eY2w8cRxQpNisZRK1+oy0BKoWjtgdbuv3RFERB1K3KfnxD7xete
+ /JY5g7KpLDjwD5ps4y7q1lltY/V4Bi0oWeaECMIptGjIAnTEGm+wST8V38Ro9Vs4UZJT
+ zTC2Y1vZnnX1iQGYJmAJxeUxPZplFNAr/g59bsuTRE1MjepN1gn440s412xsGyS3W7fp
+ 0Scw==
+X-Gm-Message-State: AOJu0YwVnm0Gc7Zx4j5SQh3brRQJpjTqqVUkqumXS1yKSTJgIE4oJJ+g
+ cz3lr62nSVhvbxgKhcFhLZOVcaKtd4n27mjY5I9YywqT8woT9HOTlAWFrkdp49+UG2EdxStAAmc
+ eh2QIv67kBRs4v9sZh7hVZVeZoXaJyXz/sQ==
+X-Gm-Gg: ASbGnctN5xJnVs5+jmMZm8cyvHHVICBNJAkvxUQWoR7GiNqgQ277qq0KXJ70FLoP6Hx
+ FjEzk8tmNlPGDhf8kHEbuL9uN/rg6b0pJ7BvCb+uiQczVhHj0GikAbaj+K7sSKgz9Xw2QPiQ4Md
+ Q0XQ38sKrcYekJxZs/ROtYCYZNC/lhVKPZUySCMtWJehYAlYRZq2NmJKbTe+1T+8tehIqmu3wea
+ JLjrGeTBQ370+FG9Q==
+X-Google-Smtp-Source: AGHT+IHQyTRCgoOnypG5f4iz37j6Cy4hs4B0YJVwws2gEQdOUGgRar/xijGRrqO746Ad32NmTz92I5gFLKgLrC7QYPU=
+X-Received: by 2002:a17:902:d492:b0:245:f2c2:6504 with SMTP id
+ d9443c01a7336-245febf340bmr16929665ad.2.1755781871756; Thu, 21 Aug 2025
+ 06:11:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4c73Yv1V1cz9tJx
-X-Mailman-Approved-At: Fri, 22 Aug 2025 13:41:00 +0000
+References: <20250818073550.2074766-1-lijo.lazar@amd.com>
+In-Reply-To: <20250818073550.2074766-1-lijo.lazar@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 21 Aug 2025 09:11:00 -0400
+X-Gm-Features: Ac12FXz1a5HEpYvkCyuP3itViWvV9BvOD0wesNlv9dNQ5eMHlDsgS33XjjuDOqc
+Message-ID: <CADnq5_PqExwyc05YOv0b8ywE-_JUQHN1u3MNok0zn-GdDVBmQw@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amd/pm: Make use of __free for cleanup
+To: Lijo Lazar <lijo.lazar@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, 
+ Alexander.Deucher@amd.com, Asad.Kamal@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,51 +81,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-pipe_idx in funtion dml2_svp_validate_static_schedulabilit, although set
-is never actually used. While building with GCC 16 this gives a warning:
+On Mon, Aug 18, 2025 at 3:44=E2=80=AFAM Lijo Lazar <lijo.lazar@amd.com> wro=
+te:
+>
+> Use __free(kfree) for memory alloc cleanups in SMUv13.0.6
+>
+> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_mall_phantom.c: In function ‘set_phantom_stream_timing’:
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_mall_phantom.c:657:25: warning: variable ‘pipe_idx’ set but not used [-Wunused-but-set-variable=]
-  657 |         unsigned int i, pipe_idx;
-      |                         ^~~~~~~~
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-Signed-off-by: Brahmajit Das <listout@listout.xyz>
----
-v1 -> v2: leaving declaration above
----
- drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-index a56e75cdf712..c59f825cfae9 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-@@ -654,14 +654,14 @@ static void set_phantom_stream_timing(struct dml2_context *ctx, struct dc_state
- 				     unsigned int svp_height,
- 				     unsigned int svp_vstartup)
- {
--	unsigned int i, pipe_idx;
-+	unsigned int i;
- 	double line_time, fp_and_sync_width_time;
- 	struct pipe_ctx *pipe;
- 	uint32_t phantom_vactive, phantom_bp, pstate_width_fw_delay_lines;
- 	static const double cvt_rb_vblank_max = ((double) 460 / (1000 * 1000));
- 
- 	// Find DML pipe index (pipe_idx) using dc_pipe_idx
--	for (i = 0, pipe_idx = 0; i < ctx->config.dcn_pipe_count; i++) {
-+	for (i = 0; i < ctx->config.dcn_pipe_count; i++) {
- 		pipe = &state->res_ctx.pipe_ctx[i];
- 
- 		if (!pipe->stream)
-@@ -669,8 +669,6 @@ static void set_phantom_stream_timing(struct dml2_context *ctx, struct dc_state
- 
- 		if (i == dc_pipe_idx)
- 			break;
--
--		pipe_idx++;
- 	}
- 
- 	// Calculate lines required for pstate allow width and FW processing delays
--- 
-2.51.0
-
+> ---
+> v2: Use __free in metrics related functions also.
+>
+>  .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c  | 63 ++++++++-----------
+>  1 file changed, 25 insertions(+), 38 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drive=
+rs/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+> index 627a8188d868..b5d1b2427c3c 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+> @@ -535,6 +535,9 @@ static int smu_v13_0_6_tables_init(struct smu_context=
+ *smu)
+>  {
+>         struct smu_table_context *smu_table =3D &smu->smu_table;
+>         struct smu_table *tables =3D smu_table->tables;
+> +       void *gpu_metrics_table __free(kfree) =3D NULL;
+> +       void *driver_pptable __free(kfree) =3D NULL;
+> +       void *metrics_table __free(kfree) =3D NULL;
+>         struct amdgpu_device *adev =3D smu->adev;
+>         int gpu_metrcs_size =3D METRICS_TABLE_SIZE;
+>         int ret;
+> @@ -553,37 +556,32 @@ static int smu_v13_0_6_tables_init(struct smu_conte=
+xt *smu)
+>                        PAGE_SIZE,
+>                        AMDGPU_GEM_DOMAIN_VRAM | AMDGPU_GEM_DOMAIN_GTT);
+>
+> -       smu_table->metrics_table =3D kzalloc(METRICS_TABLE_SIZE, GFP_KERN=
+EL);
+> -       if (!smu_table->metrics_table)
+> +       metrics_table =3D kzalloc(METRICS_TABLE_SIZE, GFP_KERNEL);
+> +       if (!metrics_table)
+>                 return -ENOMEM;
+>         smu_table->metrics_time =3D 0;
+>
+>         smu_table->gpu_metrics_table_size =3D sizeof(struct gpu_metrics_v=
+1_8);
+> -       smu_table->gpu_metrics_table =3D
+> +       gpu_metrics_table =3D
+>                 kzalloc(smu_table->gpu_metrics_table_size, GFP_KERNEL);
+> -       if (!smu_table->gpu_metrics_table) {
+> -               kfree(smu_table->metrics_table);
+> +       if (!gpu_metrics_table)
+>                 return -ENOMEM;
+> -       }
+>
+> -       smu_table->driver_pptable =3D
+> -               kzalloc(sizeof(struct PPTable_t), GFP_KERNEL);
+> -       if (!smu_table->driver_pptable) {
+> -               kfree(smu_table->metrics_table);
+> -               kfree(smu_table->gpu_metrics_table);
+> +       driver_pptable =3D kzalloc(sizeof(struct PPTable_t), GFP_KERNEL);
+> +       if (!driver_pptable)
+>                 return -ENOMEM;
+> -       }
+>
+>         if (amdgpu_ip_version(smu->adev, MP1_HWIP, 0) =3D=3D
+>             IP_VERSION(13, 0, 12)) {
+>                 ret =3D smu_v13_0_12_tables_init(smu);
+> -               if (ret) {
+> -                       kfree(smu_table->metrics_table);
+> -                       kfree(smu_table->gpu_metrics_table);
+> +               if (ret)
+>                         return ret;
+> -               }
+>         }
+>
+> +       smu_table->gpu_metrics_table =3D no_free_ptr(gpu_metrics_table);
+> +       smu_table->metrics_table =3D no_free_ptr(metrics_table);
+> +       smu_table->driver_pptable =3D no_free_ptr(driver_pptable);
+> +
+>         return 0;
+>  }
+>
+> @@ -2619,9 +2617,9 @@ static ssize_t smu_v13_0_6_get_xcp_metrics(struct s=
+mu_context *smu, int xcp_id,
+>         const u8 num_jpeg_rings =3D AMDGPU_MAX_JPEG_RINGS_4_0_3;
+>         int version =3D smu_v13_0_6_get_metrics_version(smu);
+>         struct amdgpu_partition_metrics_v1_0 *xcp_metrics;
+> +       MetricsTableV0_t *metrics_v0 __free(kfree) =3D NULL;
+>         struct amdgpu_device *adev =3D smu->adev;
+>         int ret, inst, i, j, k, idx;
+> -       MetricsTableV0_t *metrics_v0;
+>         MetricsTableV1_t *metrics_v1;
+>         MetricsTableV2_t *metrics_v2;
+>         struct amdgpu_xcp *xcp;
+> @@ -2646,17 +2644,14 @@ static ssize_t smu_v13_0_6_get_xcp_metrics(struct=
+ smu_context *smu, int xcp_id,
+>                 return -ENOMEM;
+>
+>         ret =3D smu_v13_0_6_get_metrics_table(smu, metrics_v0, false);
+> -       if (ret) {
+> -               kfree(metrics_v0);
+> +       if (ret)
+>                 return ret;
+> -       }
+>
+>         if (amdgpu_ip_version(smu->adev, MP1_HWIP, 0) =3D=3D
+>                     IP_VERSION(13, 0, 12) &&
+> -           smu_v13_0_6_cap_supported(smu, SMU_CAP(STATIC_METRICS))) {
+> -               ret =3D smu_v13_0_12_get_xcp_metrics(smu, xcp, table, met=
+rics_v0);
+> -               goto out;
+> -       }
+> +           smu_v13_0_6_cap_supported(smu, SMU_CAP(STATIC_METRICS)))
+> +               return smu_v13_0_12_get_xcp_metrics(smu, xcp, table,
+> +                                                   metrics_v0);
+>
+>         metrics_v1 =3D (MetricsTableV1_t *)metrics_v0;
+>         metrics_v2 =3D (MetricsTableV2_t *)metrics_v0;
+> @@ -2727,8 +2722,6 @@ static ssize_t smu_v13_0_6_get_xcp_metrics(struct s=
+mu_context *smu, int xcp_id,
+>                         idx++;
+>                 }
+>         }
+> -out:
+> -       kfree(metrics_v0);
+>
+>         return sizeof(*xcp_metrics);
+>  }
+> @@ -2739,31 +2732,26 @@ static ssize_t smu_v13_0_6_get_gpu_metrics(struct=
+ smu_context *smu, void **table
+>         struct gpu_metrics_v1_8 *gpu_metrics =3D
+>                 (struct gpu_metrics_v1_8 *)smu_table->gpu_metrics_table;
+>         int version =3D smu_v13_0_6_get_metrics_version(smu);
+> +       MetricsTableV0_t *metrics_v0 __free(kfree) =3D NULL;
+>         int ret =3D 0, xcc_id, inst, i, j, k, idx;
+>         struct amdgpu_device *adev =3D smu->adev;
+> -       MetricsTableV0_t *metrics_v0;
+>         MetricsTableV1_t *metrics_v1;
+>         MetricsTableV2_t *metrics_v2;
+>         struct amdgpu_xcp *xcp;
+>         u16 link_width_level;
+> -       ssize_t num_bytes;
+>         u8 num_jpeg_rings;
+>         u32 inst_mask;
+>         bool per_inst;
+>
+>         metrics_v0 =3D kzalloc(METRICS_TABLE_SIZE, GFP_KERNEL);
+>         ret =3D smu_v13_0_6_get_metrics_table(smu, metrics_v0, false);
+> -       if (ret) {
+> -               kfree(metrics_v0);
+> +       if (ret)
+>                 return ret;
+> -       }
+>
+> -       if (amdgpu_ip_version(smu->adev, MP1_HWIP, 0) =3D=3D IP_VERSION(1=
+3, 0, 12) &&
+> -           smu_v13_0_6_cap_supported(smu, SMU_CAP(STATIC_METRICS))) {
+> -               num_bytes =3D smu_v13_0_12_get_gpu_metrics(smu, table, me=
+trics_v0);
+> -               kfree(metrics_v0);
+> -               return num_bytes;
+> -       }
+> +       if (amdgpu_ip_version(smu->adev, MP1_HWIP, 0) =3D=3D
+> +                   IP_VERSION(13, 0, 12) &&
+> +           smu_v13_0_6_cap_supported(smu, SMU_CAP(STATIC_METRICS)))
+> +               return smu_v13_0_12_get_gpu_metrics(smu, table, metrics_v=
+0);
+>
+>         metrics_v1 =3D (MetricsTableV1_t *)metrics_v0;
+>         metrics_v2 =3D (MetricsTableV2_t *)metrics_v0;
+> @@ -2949,7 +2937,6 @@ static ssize_t smu_v13_0_6_get_gpu_metrics(struct s=
+mu_context *smu, void **table
+>         gpu_metrics->firmware_timestamp =3D GET_METRIC_FIELD(Timestamp, v=
+ersion);
+>
+>         *table =3D (void *)gpu_metrics;
+> -       kfree(metrics_v0);
+>
+>         return sizeof(*gpu_metrics);
+>  }
+> --
+> 2.49.0
+>
