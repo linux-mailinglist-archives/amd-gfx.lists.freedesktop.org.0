@@ -2,73 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262B1B2F8B1
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 Aug 2025 14:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19EEDB2F8A7
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 Aug 2025 14:48:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A22E810E98C;
-	Thu, 21 Aug 2025 12:48:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE53C10E97F;
+	Thu, 21 Aug 2025 12:48:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fkb7eDh4";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fSTxZLmh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 172CC10E2FE;
- Thu, 21 Aug 2025 12:18:36 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-afcb78da8a7so141357366b.1; 
- Thu, 21 Aug 2025 05:18:35 -0700 (PDT)
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
+ [209.85.208.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DBDF10E305;
+ Thu, 21 Aug 2025 12:23:22 +0000 (UTC)
+Received: by mail-ed1-f50.google.com with SMTP id
+ 4fb4d7f45d1cf-618b62dbb21so1889669a12.2; 
+ Thu, 21 Aug 2025 05:23:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755778714; x=1756383514; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1755779000; x=1756383800; darn=lists.freedesktop.org;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=8gvnVtPuDeVRwkHWJ+lsQaKYEu509p2WMuBoS0uoPnw=;
- b=Fkb7eDh4i7Tr2jWGn+hUq8eW+nhJwwNAwOyfA4n24pNRZ2WcxWP/+BMN2fm/+7n1Vv
- AbjbTD9qEusvfTGwJ9pceLB/yfOmWPk2Tah+Zj8e7DsNyY8/lK1egzLgd56cBMlK7lT2
- fVbdR0rVb3CKc/4cYTy/FHf3O7I+tF6AHCTV6AxC0iE1rkQDQLfhp95OfXpsGCFVahVS
- JtHTAQN43kGSjWcZuoE6xRm7jmuhGPEj193OVg+BAVTTVVPqa7nWyEuMxh88BUNCq02j
- QUXDfW6x/6hquAH+cRscfkqok/OCxavxknhXswP+KOe2nefNHEADWFg4jGbp8OSQrMNC
- lNwQ==
+ bh=YkIublQ/eqiUCiu+XpWtfC+rwKoguUEIypN5U97kiZo=;
+ b=fSTxZLmhHNyObn1qyXYO64BB15m3UX7JVdfh3K6EBhtWW1zV2zGbBtBwOQmZlb+SyR
+ oSJhMqAa8eLw6S1tjbyM0hLkTjI1xkNJAu7rZorjyCnaucMmdQNq2mXv1riYt9FIe8pz
+ 8XW9UAT+QEgd4cJwed6lFg4L83a1alUq9ovOz2JRYf9SFZkIPd7Wvm0bDDviX66fs4+h
+ hRqIcs+3/drcMgjLwXUg9cFXwnk28tRtPO9F2M+Iied5iQYEeng5F6P04ZikiFhy4Ul3
+ F003nS44pkNhp/9kKh3Nc2lSwAcWWrIeeKZl9JCF3Qz2coCUQaG98nllBUcGG6CJrRDM
+ urgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755778714; x=1756383514;
+ d=1e100.net; s=20230601; t=1755779000; x=1756383800;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=8gvnVtPuDeVRwkHWJ+lsQaKYEu509p2WMuBoS0uoPnw=;
- b=l3pyuouYQQl+F2F6z5LARjqqkhusJmPMHGX0L6Nj9Wd8/zOnYRMDt1zKww4F7KnEYY
- ZJup5UngT/czLE28JtCkco5vD5cmXf+kaNID1DgqetjXz1q179TxZgCAZdB4yZwJ0cm5
- 9JdNRtotMjrSQgTPBQPX8g1+xIN3aekQNj4M6KJfUrMENjhkcdin36AqWkHdDAN77yZ8
- 2sJWGBROJnppkGY2Cn4/E+ObJtOQCZ0xgZa+TwnclqCy17fBqPjh77Pmh9E8rLYws83c
- NiUBqRibXR26G+C/nSpvIck+AXr1ZGARaeLmm/SrVxkXd15vg2z/REDCHDs72gbs1kp8
- yuHQ==
+ bh=YkIublQ/eqiUCiu+XpWtfC+rwKoguUEIypN5U97kiZo=;
+ b=DvH4tT+BOhbcDG+6iwQs0wByDN6/ZTbzMuHzTnDb2xo/7uFuraBAtzP2+I4/faB80B
+ cQ1FRxQkxusdidpYK7NrPCBaP2SSkacYVe9kiRg1GC2C6lHbC0FexYP5ZzWFLL9ZNJ/8
+ EcgadXlZMiLmhK77LWh1O2gUn3TQ8j0weYlPvodrGYielQDRvFF3rT/XE/RMN7AXIQ9m
+ agjqH+XPV+Skzfm65SxXWfT1nfMQWWsUadYjohEOoLkNXavbXOHlKQ02LRr8wCaiBOpu
+ /RqPZ5A+8xHe/gk49FXgrpXqIqXVx3REwUA3EsN0QNTkJPToYTNO5LJgGWgQnGXC/kgm
+ 9GfA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUycAe+FV+1t4E76j50Y7b/y0UpM9C6xTu5+QlfFehw0icZAT9Vgx39U0ZUS33JNzzpINTmX0FU@lists.freedesktop.org,
- AJvYcCW5xEnhYlazbHvoIHCeqcXackCiXBU1Fp6d/+/dLmWr4KKSKkJLnBgWO30BhDCb214cyCc+iuBNARSh@lists.freedesktop.org,
- AJvYcCWEYsvibKFfVy7ZGud2oYotFWLnVfirKicd0DXGfk71RVSK7q+c5y43ywRn+5S4kQ4NZaAtHOnn7lUsbSd34g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwC6bwkcy0vzQVDcrCovXPGmzCJ8KXJzhpO4xHWIvnN06idfxK0
- wAZA9wHQns8tAEGV51fwanTV0ak64qIsKwbSOSZsw3XVnXmPkLaI5dQWfTc5F9dbZ8c2ZjrSE6q
- ElG0VYB91KiGJWNLEYo/zHTo06AAYC/8=
-X-Gm-Gg: ASbGncvJ3I7/MAVOjsLpmIyjJsJOhZb6NfFvLxlEK0uRXiHl8slqPqeXYIPkQhF8QLw
- T4HY5JtVXoBOf4Kt1+Va1UmBM3io6PfCZrVJjB1IcpyV51GCubc7uzZONU1ChCnenY39qTk0v+M
- fIXWjW+bH4z2tflU/aqCHkSBvVWzQoyrY161+07nG9ACyLBYAaV5xjVMeJuHl+7zjVL95HCEEvm
- VrDSjuThJKEIis1KwDhvPv6Gfb7zCYJrbFtY9oQPAluzKdLEFxi
-X-Google-Smtp-Source: AGHT+IFvy+yYv52L7K1uoUHRrZkGMeN0/je1OaNi3qH+IRYdlFgxHqgh/BwnDh9DP2pLFnXQmvGhLOp0ihdwBA49/5Y=
-X-Received: by 2002:a17:907:6ea5:b0:af9:479b:8caf with SMTP id
- a640c23a62f3a-afe07c2cb96mr207477366b.51.1755778714321; Thu, 21 Aug 2025
- 05:18:34 -0700 (PDT)
+ AJvYcCWz2yqZLphvtM+8k4m5YYL8sX/LXR39wLrIWNkRRGB5m1k2+KWjuO6+IE+ysTq9098hkunvKtqR@lists.freedesktop.org,
+ AJvYcCXogV7AMUs2Z9rMj/q1wYOhSP8nCx0y30dCF0iWDioyobkZjf4GsRrWkkLzNdOqRYlCZSbUimS6ICQx@lists.freedesktop.org,
+ AJvYcCXzF8q29mObR01ElnNWLMoeuLKcbpKEY4io3tLTWaE9DOdhtYDePLXLtfX65b5MUMKG25V1Iz3IvDZ7ZLArmA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxdJPK0gZGRXXVKBu+Y99QBmYJecmc+5nxicr/yP7V5aDYTmGCr
+ v5OHKHB/RT1DabcFbPqn25nFS6yNXfyhyYyMt3zWYzqPtNNITmWkBkhRAQ/U8nvYpawbiFQ581r
+ 0ywMRRiQvnfcCiHKaUlZj+59Hj3pIhmo=
+X-Gm-Gg: ASbGncu/dUZaB7SRG37eL5RzfuCq6NZZU1wO0jgsFxAh5dKMEkqQ45ym9an+IVaCdJJ
+ cvV6kCSML0x35vBp9MOC3X70eHnoTiqF4fO6A6ka13FjrUSthNUjxSDEK++I9sFD8t4JgBYbIqC
+ tILNisEH3MNRZ9Ou9MSf/yojTkvxO93siMGBly6baRplKg5zeIpEtngk850RgpsuyJMMV9k61df
+ rI/lkSjRinuIzhjMs9M+LorOiVvEDO9nkinUB16OA==
+X-Google-Smtp-Source: AGHT+IEbN0A42or/Hu8eOkEJWeEhHF4z6xSP9IzZ03A1WNjXBpEguUIAfJQ+bJj33Sqoc/AJ56S5IKHN+pbAP+xUl8E=
+X-Received: by 2002:a17:907:7ba1:b0:ad8:9645:798c with SMTP id
+ a640c23a62f3a-afe07e1cc40mr192183266b.51.1755779000280; Thu, 21 Aug 2025
+ 05:23:20 -0700 (PDT)
 MIME-Version: 1.0
 References: <20250815035047.3319284-1-alex.hung@amd.com>
- <20250815035047.3319284-36-alex.hung@amd.com>
- <DC6IG8LQAIF4.6KM7AM5JD3J3@redhat.com>
- <f3061c6f-5a73-4890-92b0-90f153e8dcc0@amd.com>
- <DC7IDWLAGEOW.HQVRVJNBTLXI@redhat.com>
-In-Reply-To: <DC7IDWLAGEOW.HQVRVJNBTLXI@redhat.com>
+ <20250815035047.3319284-7-alex.hung@amd.com>
+ <DC6I12RMKGXL.1L8KAEE0UBNNW@redhat.com>
+In-Reply-To: <DC6I12RMKGXL.1L8KAEE0UBNNW@redhat.com>
 From: Xaver Hugl <xaver.hugl@gmail.com>
-Date: Thu, 21 Aug 2025 14:18:22 +0200
-X-Gm-Features: Ac12FXwW9OQ335wgyGuumLyW6QXyY_7nwDU0vHlhJ7ra3fV3Sp6_aN9HkujANJ4
-Message-ID: <CAFZQkGxxf2w+x4xZ-aY5YDnuS14Ys-gi=zro0Z4BE2RJESLoYQ@mail.gmail.com>
-Subject: Re: [PATCH V11 35/47] drm/colorop: Add 1D Curve Custom LUT type
+Date: Thu, 21 Aug 2025 14:23:08 +0200
+X-Gm-Features: Ac12FXxXUmXfij7_Cb15CrcAq6XTbNXhFA9bfTHfwscyDT14jsTxHx-7YMJhWTQ
+Message-ID: <CAFZQkGyXbD_x0V6KBdR4vaunF+bG+HKOYAA7y6aVWfeTQ3cLzA@mail.gmail.com>
+Subject: Re: [PATCH V11 06/47] drm/colorop: Add 1D Curve subtype
 To: Sebastian Wick <sebastian.wick@redhat.com>
 Cc: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org, wayland-devel@lists.freedesktop.org, 
@@ -97,6 +95,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> Yes! I would prefer "SIZE" as I can see other color op types which use
-> the "DATA" prop to require this as well.
-+1, no need to make it specific to luts.
+> We user space folks have been convinced at this point that the sRGB EOTF
+> is actually gamma 2.2, and not the piece-wise function. Now, if the
+> hardware is actually the piece-wise, then that's what should be exposed,
+> but I'm a bit unsure if we should do that under the name sRGB EOTF.
+Maybe simply rename the enum string to "sRGB piece-wise EOTF"? In
+hindsight, the naming of "srgb" in the Wayland protocol caused a lot
+of confusion, it's better to be explicit about it where possible.
