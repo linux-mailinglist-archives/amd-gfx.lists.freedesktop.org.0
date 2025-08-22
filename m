@@ -2,72 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FF5FB323C9
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Aug 2025 22:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D072B32820
+	for <lists+amd-gfx@lfdr.de>; Sat, 23 Aug 2025 12:11:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F191C10E13E;
-	Fri, 22 Aug 2025 20:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 287F110E1D1;
+	Sat, 23 Aug 2025 10:11:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NfZ0fuMK";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="IQb3uoCx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
- [209.85.215.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C361710E13E
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Aug 2025 20:50:01 +0000 (UTC)
-Received: by mail-pg1-f171.google.com with SMTP id
- 41be03b00d2f7-b4741e1cde5so350441a12.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Aug 2025 13:50:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755895801; x=1756500601; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=LPUvpN6c2O95TJZIqAZj870OiRfT7nV17BzOY3qLepo=;
- b=NfZ0fuMKJwTkPHMDLIvHDuJFDIlnXpnLeapUUqcbjhIovZaEJOH4UWQKnTJDukhZkU
- r8dOr8N637HqIDNwjoCd0nKLFHs4/iPyesZ9AYX5uQb6N8fCNi+8OYpBeuS/sf4m9HNE
- fV7SW8lGMBsvYxvZ1og6hSQ1tSH7KsTocL/OrfSfzv7iYwVGiMI9groZud9XqrWjQjan
- l6mzuwdDTtJlltTPX/oPKxiw4AzB9E55YwBVTJGVqSRHKF0OsfpOXi3DO8t1Yao6D3BB
- TwzpCBgW7d8ICqilgJs/5szosW2KYxq213k7WoB1qlL0CgJ3wwU7U8WdVlbgbRnNDA3f
- frgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755895801; x=1756500601;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=LPUvpN6c2O95TJZIqAZj870OiRfT7nV17BzOY3qLepo=;
- b=OFMCwZ/oAjFiut+4jAJQd0zrz/FRCp1qRGIqzi6gOp05ycYmJZ36dsVM5cn/OwkUyM
- cy7sdxO08Je78f81+DwWFEJ+GfGRtMZfWyHVeyL/oVt05BwRQ9lbpppRY8Zi0byiL6P4
- sfmX8y82PMOFVKYg/GNhZYQb07CNZw8hvszpjW3u/H0Y9/lqmiveJxQv0pqQYyQT16Dp
- kOsmkktbjwVeupdafgdLXq35GnzCZXHlBH03WwV0c1mtoTTR6wC/dwKMVg/OG9XOnls8
- gtaF0mMfoNqszfKtE96PDTFsPw2LgWPpIPnY+khvjkYXDCcOT0QIIM9ed4wtN9O6ChiQ
- JNYg==
-X-Gm-Message-State: AOJu0YyfAXvpazjR7jrasiJI2qkjI5OIudX0CaS9WNA0/NkVfWk6wqCl
- Zx5OhkaNRqydw9/Xrxh/nzgZ6Utcc92W+AWb56cejYjTurOWI2n5EFkQK3jKuC8NBwlxvbN7AZl
- XvhG2pYOIkvBt6dcGio2rWkgQE8RIWwp3Z5a6
-X-Gm-Gg: ASbGnctdErVEM2pLHZ/0uv2FDk7VImi5cCxOhv2Sp88JZ6fi75rKImO9fpnkyOr2YKS
- PU/+IytwUm0Rdkj/Mzl66LBz/bWnV0lhN4Y0F84JRjQbGaBO4B1uCCe4DKxl8/KCAoyOFKAVV88
- t4dcc+lYw5lb0PyZazSkzNlKMWI3t+baz5w/IPA1F+2RgCt7u6yEjPZC9Y4y498wE7/TwjM2FTK
- Epddfc=
-X-Google-Smtp-Source: AGHT+IEXwiMdRR3bu24yj39UsU3m7QDXsgJuRsvQKhaA3XWSGjM7vkx0I87CVS4w2615xQL5M4MhF+1Wfm4rDa5uBJ4=
-X-Received: by 2002:a17:902:d48b:b0:246:5253:6dfc with SMTP id
- d9443c01a7336-24652537015mr16987905ad.7.1755895801084; Fri, 22 Aug 2025
- 13:50:01 -0700 (PDT)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACB7110EBB6;
+ Fri, 22 Aug 2025 21:11:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1755897108;
+ bh=akdSKAL7tVI8pIQYJXa6n3Pb4+YuTDZ9DIiQXpW+W1o=;
+ h=From:Date:Subject:To:Cc:From;
+ b=IQb3uoCxgz9EJgxgtyL9YBHM6u3VY1izwzCzUz0KK2cwUAPbTU0kSYamyGVroOLP5
+ DxJ28/l3zj531dJw1MlvxyCo0V5m9980qVJ14TOdjnXtk+lcd+ytXTvyP12HkUmSvI
+ rY2pE3G9hq/tJquJDoZpM7xBaZ01bo12pyW+hZ04oZGgiPPIsmArVuUKMNLW7VH1TB
+ hIbFcSmratRRLpyOq0AIJjfPzu4ZkQR7NER2RReOMUpI7G41rWkdqkfGxbVfKaeOXD
+ PlG5KvHts0xf2LoNziU84xmFxKaU+nbCP9RE65xhWN1WW3uwigy5ZXxmj5bkY8DPjb
+ JTnxxf/74/NQw==
+Received: from localhost (unknown [82.79.138.60])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: cristicc)
+ by bali.collaboradmins.com (Postfix) with UTF8SMTPSA id 35A3D17E0C54;
+ Fri, 22 Aug 2025 23:11:48 +0200 (CEST)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Date: Sat, 23 Aug 2025 00:11:35 +0300
+Subject: [PATCH] drm/amdgpu: Fix kernel-doc comments for some LUT
+ properties
 MIME-Version: 1.0
-References: <20250822085434.970798-1-Jesse.Zhang@amd.com>
- <20250822085434.970798-2-Jesse.Zhang@amd.com>
-In-Reply-To: <20250822085434.970798-2-Jesse.Zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 22 Aug 2025 16:49:49 -0400
-X-Gm-Features: Ac12FXxeyje-zBSIu7yVn3jNzIAj-EBcZF-bzUH1vgKxwfynV-tafVhP4WuMYbI
-Message-ID: <CADnq5_P-oGF3gh1XpCvKWhOFL7bHU3zaOpJgTh7K4yt44bRGqg@mail.gmail.com>
-Subject: Re: [v10 02/11] drm/amdgpu: adjust MES API used for suspend and resume
-To: "Jesse.Zhang" <Jesse.Zhang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Christian Koenig <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250823-amdgpu-fix-kdoc-lut-v1-1-306bcad41267@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAAbdqGgC/x2MWwqAIBAArxL73UIZonSV6KN0s6UnWhGId0/6H
+ IaZCIE8U4C2iODp4cDHnqEuCzDzsDtCtplBVEJWWjQ4bNadN0784mIPg+t9YSOVHfUo1UQEuTw
+ 9Zf9fuz6lDwwD8VhlAAAA
+X-Change-ID: 20250823-amdgpu-fix-kdoc-lut-357db8b57fee
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Mailman-Approved-At: Sat, 23 Aug 2025 10:11:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,212 +67,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 22, 2025 at 6:13=E2=80=AFAM Jesse.Zhang <Jesse.Zhang@amd.com> w=
-rote:
->
-> From: Alex Deucher <alexander.deucher@amd.com>
->
-> Use the suspend and resume API rather than remove queue
-> and add queue API.  The former just preempts the queue
-> while the latter remove it from the scheduler completely.
-> There is no need to do that, we only need preemption
-> in this case.
->
-> V2: replace queue_active with queue state
-> v3: set the suspend_fence_addr
-> v4: allocate another per queue buffer for the suspend fence, and  set the=
- sequence number.
->     also wait for the suspend fence. (Alex)
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  2 +
->  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 96 ++++++++++++++++++++++
->  2 files changed, 98 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_userq.h
-> index 5111d7dce86f..d58cf48b456b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-> @@ -65,6 +65,8 @@ struct amdgpu_usermode_queue {
->         struct dma_fence        *last_fence;
->         u32                     xcp_id;
->         int                     priority;
-> +       struct amdgpu_userq_obj suspend_fence;
-> +       uint64_t suspend_fence_seq;
->  };
->
->  struct amdgpu_userq_funcs {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm=
-/amd/amdgpu/mes_userqueue.c
-> index d6f50b13e2ba..ce5ac8c2f7e1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> @@ -28,6 +28,8 @@
->
->  #define AMDGPU_USERQ_PROC_CTX_SZ PAGE_SIZE
->  #define AMDGPU_USERQ_GANG_CTX_SZ PAGE_SIZE
-> +#define AMDGPU_USERQ_SUSPEND_FENCE_SZ PAGE_SIZE
-> +#define AMDGPU_USERQ_FENCE_TIMEOUT (1000000000)
->
->  static int
->  mes_userq_map_gtt_bo_to_gart(struct amdgpu_bo *bo)
-> @@ -347,9 +349,103 @@ mes_userq_mqd_destroy(struct amdgpu_userq_mgr *uq_m=
-gr,
->         amdgpu_userq_destroy_object(uq_mgr, &queue->mqd);
->  }
->
-> +static int mes_userq_wait_fence(struct amdgpu_userq_mgr *uq_mgr,
-> +                               struct amdgpu_userq_obj *fence_obj,
-> +                               uint64_t fence_value,
-> +                               uint64_t timeout)
-> +{
-> +       /* This would typically involve polling the fence value in memory
-> +        * until it matches the expected value or timeout occurs
-> +        */
-> +       uint64_t start_time =3D ktime_get_ns();
-> +       uint64_t *fence_addr =3D fence_obj->cpu_ptr;
-> +
-> +       while (*fence_addr !=3D fence_value) {
-> +               if (ktime_get_ns() - start_time > timeout) {
-> +                       return -ETIMEDOUT;
-> +               }
-> +               udelay(10);
-> +       }
-> +       return 0;
-> +}
+The following members of struct amdgpu_mode_info do not have valid
+references in the related kernel-doc sections:
 
-This can be simplified:
+ - plane_shaper_lut_property
+ - plane_shaper_lut_size_property,
+ - plane_lut3d_size_property
 
-signed long amdgpu_userq_fence_wait_polling(uint64_t *fence_addr,
-                                      uint64_t wait_seq,
-                                  signed long timeout)
-{
+Correct all affected comment blocks.
 
-        while ((int64_t)(wait_seq - *fence_addr) > 0 && timeout > 0) {
-                udelay(2);
-                timeout -=3D 2;
-        }
-        return timeout > 0 ? timeout : 0;
-}
+Fixes: f545d82479b4 ("drm/amd/display: add plane shaper LUT and TF driver-specific properties")
+Fixes: 671994e3bf33 ("drm/amd/display: add plane 3D LUT driver-specific properties")
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
+index 6da4f946cac008ac865cd6d8a06fb0bd84d646d5..c3ad371658065388c10b7cfc45377b0465bd24ca 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
+@@ -366,15 +366,15 @@ struct amdgpu_mode_info {
+ 
+ 	struct drm_property *plane_ctm_property;
+ 	/**
+-	 * @shaper_lut_property: Plane property to set pre-blending shaper LUT
+-	 * that converts color content before 3D LUT. If
+-	 * plane_shaper_tf_property != Identity TF, AMD color module will
++	 * @plane_shaper_lut_property: Plane property to set pre-blending
++	 * shaper LUT that converts color content before 3D LUT.
++	 * If plane_shaper_tf_property != Identity TF, AMD color module will
+ 	 * combine the user LUT values with pre-defined TF into the LUT
+ 	 * parameters to be programmed.
+ 	 */
+ 	struct drm_property *plane_shaper_lut_property;
+ 	/**
+-	 * @shaper_lut_size_property: Plane property for the size of
++	 * @plane_shaper_lut_size_property: Plane property for the size of
+ 	 * pre-blending shaper LUT as supported by the driver (read-only).
+ 	 */
+ 	struct drm_property *plane_shaper_lut_size_property;
+@@ -398,10 +398,10 @@ struct amdgpu_mode_info {
+ 	 */
+ 	struct drm_property *plane_lut3d_property;
+ 	/**
+-	 * @plane_degamma_lut_size_property: Plane property to define the max
+-	 * size of 3D LUT as supported by the driver (read-only). The max size
+-	 * is the max size of one dimension and, therefore, the max number of
+-	 * entries for 3D LUT array is the 3D LUT size cubed;
++	 * @plane_lut3d_size_property: Plane property to define the max size
++	 * of 3D LUT as supported by the driver (read-only). The max size is
++	 * the max size of one dimension and, therefore, the max number of
++	 * entries for 3D LUT array is the 3D LUT size cubed.
+ 	 */
+ 	struct drm_property *plane_lut3d_size_property;
+ 	/**
 
-> +
-> +static int mes_userq_preempt(struct amdgpu_userq_mgr *uq_mgr,
-> +                            struct amdgpu_usermode_queue *queue)
-> +{
-> +       struct amdgpu_device *adev =3D uq_mgr->adev;
-> +       struct mes_suspend_gang_input queue_input;
-> +       struct amdgpu_userq_obj *ctx =3D &queue->fw_obj;
-> +       int r;
-> +
-> +       if (queue->state !=3D AMDGPU_USERQ_STATE_MAPPED)
-> +               return 0;
-> +       if (queue->state =3D=3D AMDGPU_USERQ_STATE_PREEMPTED)
-> +               return 0;
-> +
-> +       /* Allocate suspend fence buffer if not already allocated */
-> +       if (!queue->suspend_fence.obj) {
-> +               r =3D amdgpu_userq_create_object(uq_mgr, &queue->suspend_=
-fence, AMDGPU_USERQ_SUSPEND_FENCE_SZ);
-> +               if (r) {
-> +                       DRM_ERROR("Failed to allocate suspend fence buffe=
-r\n");
-> +                       return r;
-> +               }
-> +               queue->suspend_fence_seq =3D 0;
-> +       }
+---
+base-commit: 0f4c93f7eb861acab537dbe94441817a270537bf
+change-id: 20250823-amdgpu-fix-kdoc-lut-357db8b57fee
 
-We only need a little bit of memory.  It's probably more efficient to
-just grab a wb slot.  Also this current code leaks memory because we
-never free this.
-
-Something like:
-
-u32 fence_offset;
-u64 *fence_ptr;
-
-r =3D amdgpu_device_wb_get(adev, &fence_offset);
-if (r)
-        return r;
-
-fence_gpu_addr =3D adev->wb.gpu_addr + (fence_offset * 4);
-fence_ptr =3D (u64 *)&adev->wb.wb[fence_offset];
-*fence_ptr =3D 0;
-
-then later when you are done with it at the end of the function:
-
-amdgpu_device_wb_free(adev, fence_offset);
-
-> +
-> +       memset(&queue_input, 0x0, sizeof(struct mes_suspend_gang_input));
-> +       queue_input.gang_context_addr =3D ctx->gpu_addr + AMDGPU_USERQ_PR=
-OC_CTX_SZ;
-> +       queue_input.suspend_fence_addr =3D queue->suspend_fence.gpu_addr;
-> +       queue_input.suspend_fence_value =3D ++queue->suspend_fence_seq;
-
-queue_input.suspend_fence_addr =3D fence_gpu_addr;
-queue_input.suspend_fence_value =3D 1;
-
-Alex
-
-> +       amdgpu_mes_lock(&adev->mes);
-> +       r =3D adev->mes.funcs->suspend_gang(&adev->mes, &queue_input);
-> +       amdgpu_mes_unlock(&adev->mes);
-> +
-> +       if (r) {
-> +               DRM_ERROR("Failed to suspend gang: %d\n", r);
-> +               return r;
-> +       }
-> +
-> +       /* Wait for suspend fence to be signaled */
-> +       r =3D mes_userq_wait_fence(uq_mgr, &queue->suspend_fence,
-> +                               queue_input.suspend_fence_value,
-> +                               AMDGPU_USERQ_FENCE_TIMEOUT);
-> +       if (r) {
-> +               DRM_ERROR("Suspend fence timeout\n");
-> +               return r;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int mes_userq_restore(struct amdgpu_userq_mgr *uq_mgr,
-> +                           struct amdgpu_usermode_queue *queue)
-> +{
-> +       struct amdgpu_device *adev =3D uq_mgr->adev;
-> +       struct mes_resume_gang_input queue_input;
-> +       struct amdgpu_userq_obj *ctx =3D &queue->fw_obj;
-> +       int r;
-> +
-> +       if (queue->state =3D=3D AMDGPU_USERQ_STATE_HUNG)
-> +               return -EINVAL;
-> +       if (queue->state !=3D AMDGPU_USERQ_STATE_PREEMPTED)
-> +               return 0;
-> +
-> +       memset(&queue_input, 0x0, sizeof(struct mes_resume_gang_input));
-> +       queue_input.gang_context_addr =3D ctx->gpu_addr + AMDGPU_USERQ_PR=
-OC_CTX_SZ;
-> +
-> +       amdgpu_mes_lock(&adev->mes);
-> +       r =3D adev->mes.funcs->resume_gang(&adev->mes, &queue_input);
-> +       amdgpu_mes_unlock(&adev->mes);
-> +       if (r)
-> +               dev_err(adev->dev, "Failed to resume queue, err (%d)\n", =
-r);
-> +       return r;
-> + }
-> +
->  const struct amdgpu_userq_funcs userq_mes_funcs =3D {
->         .mqd_create =3D mes_userq_mqd_create,
->         .mqd_destroy =3D mes_userq_mqd_destroy,
->         .unmap =3D mes_userq_unmap,
->         .map =3D mes_userq_map,
-> +       .preempt =3D mes_userq_preempt,
-> +       .restore =3D mes_userq_restore,
->  };
-> --
-> 2.49.0
->
