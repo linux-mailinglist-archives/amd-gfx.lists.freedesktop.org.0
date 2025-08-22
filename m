@@ -2,71 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5979B31DB6
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Aug 2025 17:12:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52250B32825
+	for <lists+amd-gfx@lfdr.de>; Sat, 23 Aug 2025 12:11:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 804D810EB48;
-	Fri, 22 Aug 2025 15:12:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="J2z0fWoa";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E388710E323;
+	Sat, 23 Aug 2025 10:11:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
- [209.85.214.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02FF910EB48
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Aug 2025 15:12:41 +0000 (UTC)
-Received: by mail-pl1-f172.google.com with SMTP id
- d9443c01a7336-244581eab34so4281145ad.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Aug 2025 08:12:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755875560; x=1756480360; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=bpsX0PGd0T1a1+a++5mhrdOULUeXvI0DhFzwCflk2ww=;
- b=J2z0fWoaJWaZ96XZ7FDv16VZ5d1aWd8VCZ3rgPShQ/AGkXx1z4NZVdC4hBcHZl6FTC
- 9izkCgV7QCQ8rp+vjS24gzZAW9R7bGr4w//KaETDZ2FopuFCKX6V/9oMNQYphZnqFD0h
- l/wqN8W3KyTJ/rfjvYa2t6bAxvBAeAeIhTCKn3enAYW0f7ET5uUmOtmR6/2KQrKdGEwE
- 66G3SiPrFtlWrN2bARpmyWgKWqFe8aHLeJUNeImb8hMzise0bs3mulH+j6xH3d8OOLZH
- jivwoasqDe3N2+kFKTASucCf37bop4JAB6KMmQ5z8h2L2OFT3HwgAFv8HnfoSzHJQ5wY
- s0CA==
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD3310EB56;
+ Fri, 22 Aug 2025 15:29:24 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-3b9d41d2a5cso1863112f8f.0; 
+ Fri, 22 Aug 2025 08:29:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755875560; x=1756480360;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=bpsX0PGd0T1a1+a++5mhrdOULUeXvI0DhFzwCflk2ww=;
- b=BnCc+hn+QK2qCLqTXYZS/QT5PMe7P/wBxgGkkwl3zM/eo2c3fJFqDa+U1kLQa/W2sU
- 5cILcqGFHOCznEgi219kB2CQfUGsDOyuOjtPU1L3ahSNht/VxPl89SdZrCrrXbnmHKn1
- 7U8lzbhQn3DbZIoUOUz2F4sDOcS5kEpZnqb6/dh2+hSHJlo7AZzZ7m0nJFiwz8lxHyZA
- psdnt9Eao9BZh9WT2Cob/eYFiEMs1KuQxWnLkRIOQJ+gHIII44bldvU9YwrCGGxYdQUB
- IwHs1pXVzdePKz1SJtJvWwSD15HgTQBJJlMO9plUaxYG6nln16QP+HNKnNYjtqU7Sd6R
- Gm4g==
-X-Gm-Message-State: AOJu0Yx7dEGrgMz+vv6e/2c9AhHijb+yHIyGg+fPrngjuJ03/v/nJCoH
- xFVv2pobwTz6eqZ/oDsqDhqiKQCxOAZ6tArwQ9ysWcF1CXPb03VaKEKTLrNQqtkgCXDNWfsebqM
- 351qQ7XUEPYEfwldIwWdhz6gzQGzOCJd5ZQ==
-X-Gm-Gg: ASbGncv2rf1X5DFj879KkbbqQlN1E3WZeED8mAbspWeuK6kCSWkQ5/cdHTmgHun361d
- awhwKG3ru9wl0ydalsSpGVVTihFcEvEQiD1RnPz7NuzuTM1EqpE9aaTrIOfs0xFdPg0MoWOe3Zw
- 3tQJttw91rSAWs339MOxJAEYD+P1u1d3OnUbcdBOzfWfjhKPn9jn5KZOP/+iyOdNSve3oWWj8HW
- +vBV20=
-X-Google-Smtp-Source: AGHT+IG4M4g1F45Bi1LYqI0Pbq1Sb9QCn/Wr10mdoMf5Y5IFX+BLyIzxQDMtA/kW4JAQLTtE1zGc1kA9O3O1IqVG5VM=
-X-Received: by 2002:a17:903:2448:b0:240:63bd:2701 with SMTP id
- d9443c01a7336-2462ef0831fmr25725395ad.6.1755875560313; Fri, 22 Aug 2025
- 08:12:40 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1755876563; x=1756481363;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=gJgKLDUPdXVCUlCaSiGVYunhzBERjuDsUpRK5nlbwuM=;
+ b=ml3VSLVQS9z0LNyySRoLaNbwaevpJ1fLqfH86UpFbU4950WyV9DJLGMZKN6k9BHXS5
+ RyOgHw/tNauVXG8j8Z5v0TivH33HJp3TnBrrmS0EtDfnti/om5LVw63TFQEEJS7K0Snt
+ BrHj+Wme5q83yIDE97biGiKwjSRC95Ydt5GxU0oXRHb5+8j/v+nk+BuNaDPpAdcD7zI5
+ VTRGhRRB48q3OkuQbO7skJFP5x6jsy5zG035gG6romtJgT34YaV6Yk/GXbGICkjRO7L8
+ EsQGwteP8OQc7CXduspC24+RsRmtCWFPHN5ZIhJQyHlxZqiHXzKMCEuzKTSjm/7FwDTe
+ 3Pzg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU24iAdK+x0YuhX8ghoL/Ss7HdQ4stdE/Piit9RvCqZBmPkcadLP1/nJx3YfZbVgZKlHa2TLQ48BdsP@lists.freedesktop.org,
+ AJvYcCWC7qFnxkpN/fAYaeNgfiQ6gb5+ci7yw/tdv2EvvC+csWnWU7wKz33oxoeVRBgtkGQ0Sy5RzqVA@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxG98cJHdzCJBgRTPoCyle0OIiML+mYqiZH7zuha6aajqNuV4B/
+ W7yWVFN4nK3j5mAus26Fsg583lIa+DmNMUuX7ZKHEsgXChmK92O5qYkIovDV/IOT
+X-Gm-Gg: ASbGncsiS46vppiFXFk7WUE4g5bRy4nZe6HrndHjaX4e9FyQ0JU2Z7qbSmqWrdFnAQM
+ i+PswgMUOnfyuCZrbYvUSof+DZJb7bjcRe6pizk7fjmSz6Lxky2D6zH5MW42upuCJHSYe1ncXcn
+ JyIsHrVH8eHbwZGczu7Ae9IqQ8LKMHrDPAbEQF3aAw/ldc5odN/jB9c7aN86fR8kpIVSrJ1EHp0
+ ldAO+BJ1NiG6+G7VA5voHF94cU8Y1CGSwjLAi+eVApg49IDugDDLhzi+DTmF2FKlypHgFg2CPuS
+ TuP3j82y3785u4zkHnFaHvJoZ56k5XSV7pA1Gqj74PAOS5cWXmIbif/yxo0mP+WPkhqWynewmlB
+ beYhgAUik5ChtYtzqQ89xzwv+kAs/X3ijdFOyNvVPeA==
+X-Google-Smtp-Source: AGHT+IEZeUqnk+C2nBdmGBlUSORXPpPFtZzw9ZapY7b13xyWG8wBDtZLMVt/coy2IqS3RfPDnB6WNg==
+X-Received: by 2002:a05:6000:430b:b0:3c6:9e21:f61b with SMTP id
+ ffacd0b85a97d-3c69e21f717mr1243368f8f.3.1755876562803; 
+ Fri, 22 Aug 2025 08:29:22 -0700 (PDT)
+Received: from xavers-framework.fritz.box
+ ([2a04:7d84:aac8:dfc0:164b:fd3:2e86:21ca])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3c684524163sm1661402f8f.61.2025.08.22.08.29.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 22 Aug 2025 08:29:22 -0700 (PDT)
+From: Xaver Hugl <xaver.hugl@kde.org>
+To: dri-devel@lists.freedesktop.org
+Cc: andrealmeid@igalia.com, chris@kode54.net, naveen1.kumar@intel.com,
+ ville.syrjala@linux.intel.com, mdaenzer@redhat.com,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ alexdeucher@gmail.com, arun.r.murthy@intel.com,
+ Xaver Hugl <xaver.hugl@kde.org>
+Subject: [PATCH v5] drm: re-allow no-op changes on non-primary planes in async
+ flips
+Date: Fri, 22 Aug 2025 17:28:49 +0200
+Message-ID: <20250822152849.87843-1-xaver.hugl@kde.org>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-References: <20250822150211.796535-1-shaoyun.liu@amd.com>
-In-Reply-To: <20250822150211.796535-1-shaoyun.liu@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 22 Aug 2025 11:12:28 -0400
-X-Gm-Features: Ac12FXxxquMrrqBLOSNA63GZsX_bgEnNF5OZ5c-aWBdUF-KD21XRDyxbIHEssG4
-Message-ID: <CADnq5_NCyhGohTG-Vfp=p8ALc+1+W7UM7ajCgehv4XQArkSniQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amd/amdgpu : Use the MES INV_TLBS API for tlb
- invalidation on gfx12
-To: Shaoyun Liu <shaoyun.liu@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 23 Aug 2025 10:11:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,162 +79,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 22, 2025 at 11:02=E2=80=AFAM Shaoyun Liu <shaoyun.liu@amd.com> =
-wrote:
->
-> From MES version 0x81, it provide the new API INV_TLBS that support
-> invalidate tlbs with PASID.
->
-> Signed-off-by: Shaoyun Liu <shaoyun.liu@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h | 10 ++++++
->  drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c  | 16 +++++++++
->  drivers/gpu/drm/amd/amdgpu/mes_v12_0.c  | 43 +++++++++++++++++++++++++
->  3 files changed, 69 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_mes.h
-> index c0d2c195fe2e..489a4a0f0610 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-> @@ -280,6 +280,13 @@ struct mes_reset_queue_input {
->         bool                               is_kq;
->  };
->
-> +struct mes_inv_tlbs_pasid_input {
-> +       uint32_t        xcc_id;
-> +       uint16_t        pasid;
-> +       uint8_t         hub_id;
-> +       uint8_t         flush_type;
-> +};
-> +
->  enum mes_misc_opcode {
->         MES_MISC_OP_WRITE_REG,
->         MES_MISC_OP_READ_REG,
-> @@ -367,6 +374,9 @@ struct amdgpu_mes_funcs {
->
->         int (*reset_hw_queue)(struct amdgpu_mes *mes,
->                               struct mes_reset_queue_input *input);
-> +
-> +       int (*invalidate_tlbs_pasid)(struct amdgpu_mes *mes,
-> +                             struct mes_inv_tlbs_pasid_input *input);
->  };
->
->  #define amdgpu_mes_kiq_hw_init(adev) (adev)->mes.kiq_hw_init((adev))
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gmc_v12_0.c
-> index feb92e107af8..eed62e9a9b96 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> @@ -339,6 +339,22 @@ static void gmc_v12_0_flush_gpu_tlb_pasid(struct amd=
-gpu_device *adev,
->         uint16_t queried;
->         int vmid, i;
->
-> +       if (adev->enable_uni_mes && adev->mes.ring[AMDGPU_MES_SCHED_PIPE]=
-.sched.ready &&
-> +           (adev->mes.sched_version & AMDGPU_MES_VERSION_MASK) >=3D 0x81=
-) {
-> +               struct mes_inv_tlbs_pasid_input input =3D {0};
-> +               input.pasid =3D pasid;
-> +               input.flush_type =3D flush_type;
-> +               input.hub_id =3D AMDGPU_GFXHUB(0);
-> +               /* MES will invalidate all gc_hub for the device from mas=
-ter */
-> +               adev->mes.funcs->invalidate_tlbs_pasid(&adev->mes, &input=
-);
-> +               if (all_hub) {
-> +                       /* Only need to invalidate mm_hub now, gfx12 only=
- support one mmhub */
-> +                       input.hub_id =3D AMDGPU_MMHUB(0);
-> +                       adev->mes.funcs->invalidate_tlbs_pasid(&adev->mes=
-, &input);
-> +               }
-> +               return;
-> +       }
-> +
->         for (vmid =3D 1; vmid < 16; vmid++) {
->                 bool valid;
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c b/drivers/gpu/drm/amd=
-/amdgpu/mes_v12_0.c
-> index 6b222630f3fa..d0b5deed245d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> @@ -108,6 +108,7 @@ static const char *mes_v12_0_opcodes[] =3D {
->         "SET_SE_MODE",
->         "SET_GANG_SUBMIT",
->         "SET_HW_RSRC_1",
-> +       "INVALIDATE_TLBS",
->  };
->
->  static const char *mes_v12_0_misc_opcodes[] =3D {
-> @@ -879,6 +880,47 @@ static int mes_v12_0_reset_hw_queue(struct amdgpu_me=
-s *mes,
->                         offsetof(union MESAPI__RESET, api_status));
->  }
->
-> +static int mes_v12_inv_tlb_convert_hub_id(enum amdgpu_mes_hub_id id)
-> +{
-> +       int mes_hub_id =3D id;
+Commit fd40a63c63a1 unintentionally disallowed no-op changes on non-primary
+planes that the driver doesn't allow async flips on. This broke async flips
+for compositors that disable the cursor plane in every async atomic commit.
+To fix that, change drm_atomic_set_property to again only run atomic_async_check
+if the plane would actually be changed by the atomic commit.
 
-Leftover unused variable.  with that dropped, the patch is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Fixes: fd40a63c63a1 ("drm/atomic: Let drivers decide which planes to async flip")
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4263
 
-> +       /*
-> +        * MES doesn't support invalidate gc_hub on slave xcc individuall=
-y
-> +        * master xcc will invalidate all gc_hub for the partition
-> +        */
-> +       if (AMDGPU_IS_GFXHUB(id))
-> +               return 0;
-> +       else if (AMDGPU_IS_MMHUB0(id))
-> +               return 1;
-> +       else
-> +               return -EINVAL;
-> +
-> +}
-> +
-> +static int mes_v12_0_inv_tlbs_pasid(struct amdgpu_mes *mes,
-> +                                   struct mes_inv_tlbs_pasid_input *inpu=
-t)
-> +{
-> +       union MESAPI__INV_TLBS mes_inv_tlbs;
-> +
-> +       memset(&mes_inv_tlbs, 0, sizeof(mes_inv_tlbs));
-> +
-> +       mes_inv_tlbs.header.type =3D MES_API_TYPE_SCHEDULER;
-> +       mes_inv_tlbs.header.opcode =3D MES_SCH_API_INV_TLBS;
-> +       mes_inv_tlbs.header.dwsize =3D API_FRAME_SIZE_IN_DWORDS;
-> +
-> +       mes_inv_tlbs.invalidate_tlbs.inv_sel =3D 0;
-> +       mes_inv_tlbs.invalidate_tlbs.flush_type =3D input->flush_type;
-> +       mes_inv_tlbs.invalidate_tlbs.inv_sel_id =3D input->pasid;
-> +
-> +       /*convert amdgpu_mes_hub_id to mes expected hub_id */
-> +       mes_inv_tlbs.invalidate_tlbs.hub_id =3D mes_v12_inv_tlb_convert_h=
-ub_id(input->hub_id);
-> +       if (mes_inv_tlbs.invalidate_tlbs.hub_id < 0)
-> +               return -EINVAL;
-> +       return mes_v12_0_submit_pkt_and_poll_completion(mes, AMDGPU_MES_K=
-IQ_PIPE,
-> +                       &mes_inv_tlbs, sizeof(mes_inv_tlbs),
-> +                       offsetof(union MESAPI__INV_TLBS, api_status));
-> +
-> +}
-> +
->  static const struct amdgpu_mes_funcs mes_v12_0_funcs =3D {
->         .add_hw_queue =3D mes_v12_0_add_hw_queue,
->         .remove_hw_queue =3D mes_v12_0_remove_hw_queue,
-> @@ -888,6 +930,7 @@ static const struct amdgpu_mes_funcs mes_v12_0_funcs =
-=3D {
->         .resume_gang =3D mes_v12_0_resume_gang,
->         .misc_op =3D mes_v12_0_misc_op,
->         .reset_hw_queue =3D mes_v12_0_reset_hw_queue,
-> +       .invalidate_tlbs_pasid =3D mes_v12_0_inv_tlbs_pasid,
->  };
->
->  static int mes_v12_0_allocate_ucode_buffer(struct amdgpu_device *adev,
-> --
-> 2.34.1
->
+Signed-off-by: Xaver Hugl <xaver.hugl@kde.org>
+Reviewed-by: André Almeida <andrealmeid@igalia.com>
+---
+ drivers/gpu/drm/drm_atomic_uapi.c | 23 ++++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+index c2726af6698e..317303cf5b8c 100644
+--- a/drivers/gpu/drm/drm_atomic_uapi.c
++++ b/drivers/gpu/drm/drm_atomic_uapi.c
+@@ -1077,19 +1077,20 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 		}
+ 
+ 		if (async_flip) {
+-			/* check if the prop does a nop change */
+-			if ((prop != config->prop_fb_id &&
+-			     prop != config->prop_in_fence_fd &&
+-			     prop != config->prop_fb_damage_clips)) {
+-				ret = drm_atomic_plane_get_property(plane, plane_state,
+-								    prop, &old_val);
+-				ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
+-			}
++			/* no-op changes are always allowed */
++			ret = drm_atomic_plane_get_property(plane, plane_state,
++							    prop, &old_val);
++			ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
+ 
+-			/* ask the driver if this non-primary plane is supported */
+-			if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
+-				ret = -EINVAL;
++			/* fail everything that isn't no-op or a pure flip */
++			if (ret && prop != config->prop_fb_id &&
++			    prop != config->prop_in_fence_fd &&
++			    prop != config->prop_fb_damage_clips) {
++				break;
++			}
+ 
++			if (ret && plane->type != DRM_PLANE_TYPE_PRIMARY) {
++				/* ask the driver if this non-primary plane is supported */
+ 				if (plane_funcs && plane_funcs->atomic_async_check)
+ 					ret = plane_funcs->atomic_async_check(plane, state, true);
+ 
+-- 
+2.50.1
+
