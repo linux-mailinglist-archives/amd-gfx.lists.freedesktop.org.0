@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A965EB3334E
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Aug 2025 01:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56749B3334A
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Aug 2025 01:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A02710E2A8;
-	Sun, 24 Aug 2025 23:32:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC9B10E224;
+	Sun, 24 Aug 2025 23:32:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="dSTU4KoH";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="IRaYyN8y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B242710E224
- for <amd-gfx@lists.freedesktop.org>; Sun, 24 Aug 2025 23:32:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2817010E225
+ for <amd-gfx@lists.freedesktop.org>; Sun, 24 Aug 2025 23:32:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,25 +22,25 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=3Jp9ts4yBRWEZ0anX08DiSQakhNmKN7jZkPVys0ln9U=; b=dSTU4KoHaCAhM0fcq0rEXAshL+
- omF3aV/7K0WDfN0OG04Y3IIeN/jajVe+vHpZNnH6wovGny+rb4xJlB7j97ZVb2le2MWVn2pC8IejT
- BcoDotqHmZW5SPjqYlyPIdNTpXavyYxMAfJ8x/TziND8j25ljfBjNcZlWA3l0vRDOdmeuFAxKDVEj
- nUllbHmfUUsHiybreQXIWGz8SvaTcrT9NflnBism2T8gR1YRCejByO0E+BKn9/PSlcehks6Id5icw
- Z9L51n/9Mqg+ZY0Xdb3ZCnB1SrAQJG3Wn6EG+v/1H6f0ZbZcZfzNTbdMUxVIoNGJuTPjs6ZTxvxgT
- tgFyES8w==;
+ bh=pNZs7hOktvmdxDM6MYCdmGk6Xj03qAZgywxwMDe+JvM=; b=IRaYyN8y3bpGQOFMQVFoD8Ccmr
+ Razex0SQ/uhcjI83lKL05DisxlmFqRl//H3sYl2xYeBA3M8QqTrlv5AemMduLbXQNUt2SRVn75+sl
+ gl78JQLtrb9j5vu8qnBEkjVoViXJn8XDWfhN0V6F16QUo1L3OZLw/ziKQwCFfZsE87+p9enxdUcdq
+ +4KXXEiIdt5kHLuavkUrYMDYuoD4wI/nu0XuiAa+sHaPE9aIsb7boDc+dbum0ZeVpNHGy0Y7PgOSx
+ kF3NkeagOovTEu8GxS/B7pttTEiYit8zJtJlsPNKWoWPEca+IP7AyUOspNv46BlM9pdpOFjzqV9hC
+ WB1XW3nQ==;
 Received: from [104.193.135.201] (helo=debian.lan)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uqKCc-00198j-J1; Mon, 25 Aug 2025 01:32:46 +0200
+ id 1uqKCe-00198j-Fp; Mon, 25 Aug 2025 01:32:48 +0200
 From: Rodrigo Siqueira <siqueira@igalia.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH v2 1/5] drm/amdgpu: Expand kernel-doc in amdgpu_ring
-Date: Sun, 24 Aug 2025 17:29:41 -0600
-Message-ID: <20250824233149.3780127-2-siqueira@igalia.com>
+Subject: [PATCH v2 2/5] Documentation/gpu: Add new glossary entries from UMR
+Date: Sun, 24 Aug 2025 17:29:42 -0600
+Message-ID: <20250824233149.3780127-3-siqueira@igalia.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250824233149.3780127-1-siqueira@igalia.com>
 References: <20250824233149.3780127-1-siqueira@igalia.com>
@@ -61,62 +61,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Expand the kernel-doc about amdgpu_ring and add some tiny improvements.
+When using UMR, a dashboard is available that displays the CPC, CPF,
+CPG, TCP, and UTCL utilization. This commit introduces the meanings of
+those acronyms (and others) to the glossary to improve the comprehension
+of the UMR dashboard.
 
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Timur Kristóf <timur.kristof@gmail.com>
 Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 14 +++++++++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  2 ++
- 2 files changed, 13 insertions(+), 3 deletions(-)
+ Documentation/gpu/amdgpu/amdgpu-glossary.rst | 21 ++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index 6379bb25bf5c..80dd6f58a53b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -75,8 +75,15 @@ unsigned int amdgpu_ring_max_ibs(enum amdgpu_ring_type type)
-  * @ring: amdgpu_ring structure holding ring information
-  * @ndw: number of dwords to allocate in the ring buffer
-  *
-- * Allocate @ndw dwords in the ring buffer (all asics).
-- * Returns 0 on success, error on failure.
-+ * Allocate @ndw dwords in the ring buffer (it works in all ASICs). When
-+ * inspecting the code, you may encounter places where this function is called
-+ * amdgpu_ring_alloc(ring, X + Y + Z), where X, Y, and Z are integer numbers.
-+ * This indicates the number of dword operations to be inserted into the ring
-+ * per operation.
-+ *
-+ * Returns:
-+ * 0 on success, otherwise -ENOMEM if it tries to allocate more than the
-+ * maximum dword allowed for one submission.
-  */
- int amdgpu_ring_alloc(struct amdgpu_ring *ring, unsigned int ndw)
- {
-@@ -122,7 +129,8 @@ static void amdgpu_ring_alloc_reemit(struct amdgpu_ring *ring, unsigned int ndw)
- 		ring->funcs->begin_use(ring);
- }
+diff --git a/Documentation/gpu/amdgpu/amdgpu-glossary.rst b/Documentation/gpu/amdgpu/amdgpu-glossary.rst
+index 30812d9d53c6..eb72e6f6d4f1 100644
+--- a/Documentation/gpu/amdgpu/amdgpu-glossary.rst
++++ b/Documentation/gpu/amdgpu/amdgpu-glossary.rst
+@@ -30,6 +30,15 @@ we have a dedicated glossary for Display Core at
+     CP
+       Command Processor
  
--/** amdgpu_ring_insert_nop - insert NOP packets
-+/**
-+ * amdgpu_ring_insert_nop - insert NOP packets
-  *
-  * @ring: amdgpu_ring structure holding ring information
-  * @count: the number of NOP packets to insert
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index 7670f5d82b9e..d27dbb3c109f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -62,6 +62,8 @@ enum amdgpu_ring_priority_level {
- #define AMDGPU_FENCE_FLAG_64BIT         (1 << 0)
- #define AMDGPU_FENCE_FLAG_INT           (1 << 1)
- #define AMDGPU_FENCE_FLAG_TC_WB_ONLY    (1 << 2)
++    CPC
++      Command Processor Compute
 +
-+/* Ensure the execution in case of preemption or reset */
- #define AMDGPU_FENCE_FLAG_EXEC          (1 << 3)
++    CPF
++      Command Processor Fetch
++
++    CPG
++      Command Processor Graphics
++
+     CPLIB
+       Content Protection Library
  
- #define to_amdgpu_ring(s) container_of((s), struct amdgpu_ring, sched)
+@@ -78,6 +87,9 @@ we have a dedicated glossary for Display Core at
+     GMC
+       Graphic Memory Controller
+ 
++    GPR
++      General Purpose Register
++
+     GPUVM
+       GPU Virtual Memory.  This is the GPU's MMU.  The GPU supports multiple
+       virtual address spaces that can be in flight at any given time.  These
+@@ -92,6 +104,9 @@ we have a dedicated glossary for Display Core at
+       table for use by the kernel driver or into per process GPUVM page tables
+       for application usage.
+ 
++    GWS
++      Global Wave Syncs
++
+     IH
+       Interrupt Handler
+ 
+@@ -206,12 +221,18 @@ we have a dedicated glossary for Display Core at
+     TC
+       Texture Cache
+ 
++    TCP (AMDGPU)
++      Texture Cache Processing
++
+     TOC
+       Table of Contents
+ 
+     UMSCH
+       User Mode Scheduler
+ 
++    UTCL
++      Universal Texture Cache Line
++
+     UVD
+       Unified Video Decoder
+ 
 -- 
 2.47.2
 
