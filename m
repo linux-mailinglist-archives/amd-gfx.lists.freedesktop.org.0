@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E096B33367
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Aug 2025 02:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0866B33369
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Aug 2025 02:48:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EBFE10E057;
-	Mon, 25 Aug 2025 00:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8548310E226;
+	Mon, 25 Aug 2025 00:48:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="P38A3BK0";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lC/FBdKJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F1F910E225
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 00:48:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FDDF10E226
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 00:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,26 +22,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=LSp8VctIGv5Xp5/rRgBGavhNc1pBk2vg4RlkDIQfjaQ=; b=P38A3BK0ZTI1FYRH5krE0bX+a9
- R9OcrCRJyd5vIUYQtPSW6J2mvG1ZYHnM63O9B/qW3So+5ciw5wFoqXiBzMJrFQ4qqXyQrIN+q/cek
- 2YOUZmYLudNzYaG0lBXJnuPzZDn9gRWAq23HZ+XPhnKzCzBu3zjVKl3JcHWVqjFSEQbiIW4HoFh2j
- F7wktSO9U6WPdnUlqyAbaRTR4EHWMW3PlGonk8gQxtrGqFNMjNm+ArmxtwPdVPdPERQlyzjR6fvB9
- N0JqU9KiokDluWSvvfI6JvNwKDNKpZch+qYGDoum/l6o7aDMvK1VHZnYt4iD9zqCtqY6Fot5teoLU
- 5gJChLhg==;
+ bh=5cm4ZlFPff2FAtv2mdQBNSTJFoMiekuhqO56f8Y7mxA=; b=lC/FBdKJoqo6sXaiTjpG8r7sKR
+ WCJSkjeIjhKfh+wLPnzEB44tc+l2dl0wPPZ3k6w75RadJflDWC6CzPUOHMXlCIPmrM91h8lbLMf7x
+ GLNsGGPLe9Fdv1GfC4OVu8gXN4/vU1Yg5d8TuapdcwgKXMFpmzGGNA+xP0u1sfq7k0XDYpvWv4Xi8
+ js/ES4OCRIc5zHMpS4+iLZuWyGUp0jaYbbISfZDbFEkvBmxcNuPHszcTKttzYi1SBG21IbQjc53mm
+ 3gqwNQJPF1nXTLZc2wMdJYeDwJVweaccRgPHYphQvNFi/jvfFLIcvyHJVW4lNOP0gaut89oQws2W0
+ mor3yR9Q==;
 Received: from [104.193.135.201] (helo=debian.lan)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uqLNf-001AML-9l; Mon, 25 Aug 2025 02:48:15 +0200
+ id 1uqLNh-001AML-BG; Mon, 25 Aug 2025 02:48:17 +0200
 From: Rodrigo Siqueira <siqueira@igalia.com>
 To: Alex Deucher <alexander.deucher@amd.com>, James Zhu <James.Zhu@amd.com>,
  Jesse Zhang <jesse.zhang@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH v2 1/2] drm/amdgpu/vcn: Document IRQ per-instance irq behavior
- for VCN 4.0.3
-Date: Sun, 24 Aug 2025 18:46:40 -0600
-Message-ID: <20250825004800.3851474-2-siqueira@igalia.com>
+Subject: [PATCH v2 2/2] drm/amdgpu/vcn: Change amdgpu_vcn_sw_fini return to
+ void
+Date: Sun, 24 Aug 2025 18:46:41 -0600
+Message-ID: <20250825004800.3851474-3-siqueira@igalia.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250825004800.3851474-1-siqueira@igalia.com>
 References: <20250825004800.3851474-1-siqueira@igalia.com>
@@ -61,35 +61,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When examining the VCN function init, it is common to find a loop that
-initializes VCN rings, which uses one IRQ per instance. However, VCN
-4.0.3 deviates from this pattern, as it includes a distinct field to
-differentiate instances, which results in a slightly different ring
-init. This commit makes this difference explicit by using a fixed index
-when initializing the ring buffer and also adds a comment.
+The function amdgpu_vcn_sw_fini() returns an integer, but this number is
+always 0. This commit changes the amdgpu_vcn_sw_fini() return to void,
+and eliminates all checks to this return across different VCNs.
 
 Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 6 ++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h | 2 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c   | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   | 4 +---
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   | 4 +---
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   | 7 ++-----
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 7 ++-----
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 4 +---
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c | 7 ++-----
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c | 9 +++------
+ 11 files changed, 19 insertions(+), 39 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+index 9a76e11d1c18..4ceb67febaae 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+@@ -257,12 +257,12 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev, int i)
+ 	return 0;
+ }
+ 
+-int amdgpu_vcn_sw_fini(struct amdgpu_device *adev, int i)
++void amdgpu_vcn_sw_fini(struct amdgpu_device *adev, int i)
+ {
+ 	int j;
+ 
+ 	if (adev->vcn.harvest_config & (1 << i))
+-		return 0;
++		return;
+ 
+ 	amdgpu_bo_free_kernel(
+ 		&adev->vcn.inst[i].dpg_sram_bo,
+@@ -292,8 +292,6 @@ int amdgpu_vcn_sw_fini(struct amdgpu_device *adev, int i)
+ 
+ 	mutex_destroy(&adev->vcn.inst[i].vcn_pg_lock);
+ 	mutex_destroy(&adev->vcn.inst[i].vcn1_jpeg1_workaround);
+-
+-	return 0;
+ }
+ 
+ bool amdgpu_vcn_is_disabled_vcn(struct amdgpu_device *adev, enum vcn_ring_type type, uint32_t vcn_instance)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+index b3fb1d0e43fc..e2911eb915ab 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+@@ -516,7 +516,7 @@ enum vcn_ring_type {
+ 
+ int amdgpu_vcn_early_init(struct amdgpu_device *adev, int i);
+ int amdgpu_vcn_sw_init(struct amdgpu_device *adev, int i);
+-int amdgpu_vcn_sw_fini(struct amdgpu_device *adev, int i);
++void amdgpu_vcn_sw_fini(struct amdgpu_device *adev, int i);
+ int amdgpu_vcn_suspend(struct amdgpu_device *adev, int i);
+ int amdgpu_vcn_resume(struct amdgpu_device *adev, int i);
+ void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring);
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+index c74947705d77..66dc3b5d01eb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+@@ -230,11 +230,11 @@ static int vcn_v1_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ 
+ 	jpeg_v1_0_sw_fini(ip_block);
+ 
+-	r = amdgpu_vcn_sw_fini(adev, 0);
++	amdgpu_vcn_sw_fini(adev, 0);
+ 
+ 	kfree(adev->vcn.ip_dump);
+ 
+-	return r;
++	return 0;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+index b115137ab2d6..c4e2659f8933 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+@@ -267,9 +267,9 @@ static int vcn_v2_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ 
+ 	amdgpu_vcn_sysfs_reset_mask_fini(adev);
+ 
+-	r = amdgpu_vcn_sw_fini(adev, 0);
++	amdgpu_vcn_sw_fini(adev, 0);
+ 
+-	return r;
++	return 0;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+index 3a7c137a83ef..748351e2da7e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+@@ -465,9 +465,7 @@ static int vcn_v2_5_sw_fini(struct amdgpu_ip_block *ip_block)
+ 		r = amdgpu_vcn_suspend(adev, i);
+ 		if (r)
+ 			return r;
+-		r = amdgpu_vcn_sw_fini(adev, i);
+-		if (r)
+-			return r;
++		amdgpu_vcn_sw_fini(adev, i);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+index 95173156f956..a615d6a0a698 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+@@ -349,9 +349,7 @@ static int vcn_v3_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ 		if (r)
+ 			return r;
+ 
+-		r = amdgpu_vcn_sw_fini(adev, i);
+-		if (r)
+-			return r;
++		amdgpu_vcn_sw_fini(adev, i);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+index 1785786a72f8..7e425cda388f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+@@ -302,11 +302,8 @@ static int vcn_v4_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ 
+ 	amdgpu_vcn_sysfs_reset_mask_fini(adev);
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		r = amdgpu_vcn_sw_fini(adev, i);
+-		if (r)
+-			return r;
+-	}
++	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
++		amdgpu_vcn_sw_fini(adev, i);
+ 
+ 	return 0;
+ }
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-index 7b93a275ec4f..bae1ad4484ed 100644
+index bae1ad4484ed..5fbd755fc24c 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-@@ -212,7 +212,11 @@ static int vcn_v4_0_3_sw_init(struct amdgpu_ip_block *ip_block)
+@@ -283,11 +283,8 @@ static int vcn_v4_0_3_sw_fini(struct amdgpu_ip_block *ip_block)
  
- 		ring->vm_hub = AMDGPU_MMHUB0(adev->vcn.inst[i].aid_id);
- 		sprintf(ring->name, "vcn_unified_%d", adev->vcn.inst[i].aid_id);
--		r = amdgpu_ring_init(adev, ring, 512, &adev->vcn.inst->irq, 0,
-+
-+		/* There are no per-instance irq source IDs on 4.0.3, the IH
-+		 * packets use a separate field to differentiate instances.
-+		 */
-+		r = amdgpu_ring_init(adev, ring, 512, &adev->vcn.inst[0].irq, 0,
- 				     AMDGPU_RING_PRIO_DEFAULT,
- 				     &adev->vcn.inst[i].sched_score);
+ 	amdgpu_vcn_sysfs_reset_mask_fini(adev);
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		r = amdgpu_vcn_sw_fini(adev, i);
+-		if (r)
+-			return r;
+-	}
++	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
++		amdgpu_vcn_sw_fini(adev, i);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
+index 75c884a8f556..514c4e7e806e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
+@@ -270,9 +270,7 @@ static int vcn_v4_0_5_sw_fini(struct amdgpu_ip_block *ip_block)
  		if (r)
+ 			return r;
+ 
+-		r = amdgpu_vcn_sw_fini(adev, i);
+-		if (r)
+-			return r;
++		amdgpu_vcn_sw_fini(adev, i);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
+index 455f829b8bb9..92da911a5e4c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
+@@ -232,11 +232,8 @@ static int vcn_v5_0_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ 
+ 	amdgpu_vcn_sysfs_reset_mask_fini(adev);
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		r = amdgpu_vcn_sw_fini(adev, i);
+-		if (r)
+-			return r;
+-	}
++	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
++		amdgpu_vcn_sw_fini(adev, i);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
+index 7cb21e2b4eb0..b8097718882c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
+@@ -245,14 +245,11 @@ static int vcn_v5_0_1_sw_fini(struct amdgpu_ip_block *ip_block)
+ 			return r;
+ 	}
+ 
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		r = amdgpu_vcn_sw_fini(adev, i);
+-		if (r)
+-			return r;
+-	}
+-
+ 	amdgpu_vcn_sysfs_reset_mask_fini(adev);
+ 
++	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
++		amdgpu_vcn_sw_fini(adev, i);
++
+ 	return 0;
+ }
+ 
 -- 
 2.47.2
 
