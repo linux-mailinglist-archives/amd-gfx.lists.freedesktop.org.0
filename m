@@ -2,46 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7094B33368
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Aug 2025 02:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E096B33367
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Aug 2025 02:48:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC1510E225;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EBFE10E057;
 	Mon, 25 Aug 2025 00:48:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="c+R+ADoJ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="P38A3BK0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0975910E057
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 00:48:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F1F910E225
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 00:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=/r9LAkYPK+vHMBzLDptuNIpNrYn1ubBGAGKuMYwCkCA=; b=c+R+ADoJJN3OIrLv9ptfWA3Rbn
- M7ofG7fRzsjDHnvA+O/z2sO5ry3MZfJM17jiljyluFXTLotnd2p8D8Uz2IppwNfar0A4AUVuyD0eB
- sooqDJEbJibh8T9ttuVT2aiEw6JyWtBYBqHQlBBSKr+xpCT1RyxGr3KVwE8TrFU7I9ehyEHRjyt9H
- c6876tKJDhO15QZoOfk05gAnDx392RKd33r2f7GS6H6Zjodq6mxy3WMO8HX8W+lzM89CKsmHG/eei
- /QkpcYWa3cJnp8SSDoJMsKQJVT9Nn1p2nqZyM90JM5r9ksR1xs33l0F0W0IXjKuozpY5kgpPfDv/7
- 3b4dMzig==;
+ bh=LSp8VctIGv5Xp5/rRgBGavhNc1pBk2vg4RlkDIQfjaQ=; b=P38A3BK0ZTI1FYRH5krE0bX+a9
+ R9OcrCRJyd5vIUYQtPSW6J2mvG1ZYHnM63O9B/qW3So+5ciw5wFoqXiBzMJrFQ4qqXyQrIN+q/cek
+ 2YOUZmYLudNzYaG0lBXJnuPzZDn9gRWAq23HZ+XPhnKzCzBu3zjVKl3JcHWVqjFSEQbiIW4HoFh2j
+ F7wktSO9U6WPdnUlqyAbaRTR4EHWMW3PlGonk8gQxtrGqFNMjNm+ArmxtwPdVPdPERQlyzjR6fvB9
+ N0JqU9KiokDluWSvvfI6JvNwKDNKpZch+qYGDoum/l6o7aDMvK1VHZnYt4iD9zqCtqY6Fot5teoLU
+ 5gJChLhg==;
 Received: from [104.193.135.201] (helo=debian.lan)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uqLNd-001AML-8C; Mon, 25 Aug 2025 02:48:13 +0200
+ id 1uqLNf-001AML-9l; Mon, 25 Aug 2025 02:48:15 +0200
 From: Rodrigo Siqueira <siqueira@igalia.com>
 To: Alex Deucher <alexander.deucher@amd.com>, James Zhu <James.Zhu@amd.com>,
  Jesse Zhang <jesse.zhang@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH v2 0/2] Add some adjustment for VCN 4.0.3 and 5.0.1
-Date: Sun, 24 Aug 2025 18:46:39 -0600
-Message-ID: <20250825004800.3851474-1-siqueira@igalia.com>
+Subject: [PATCH v2 1/2] drm/amdgpu/vcn: Document IRQ per-instance irq behavior
+ for VCN 4.0.3
+Date: Sun, 24 Aug 2025 18:46:40 -0600
+Message-ID: <20250825004800.3851474-2-siqueira@igalia.com>
 X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250825004800.3851474-1-siqueira@igalia.com>
+References: <20250825004800.3851474-1-siqueira@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -58,37 +61,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-While I was looking into the ring buffer interface, I noticed some minor
-issues in the VCN 4.0.3 and 5.0.1. This series has some code
-improvements in those two components.
+When examining the VCN function init, it is common to find a loop that
+initializes VCN rings, which uses one IRQ per instance. However, VCN
+4.0.3 deviates from this pattern, as it includes a distinct field to
+differentiate instances, which results in a slightly different ring
+init. This commit makes this difference explicit by using a fixed index
+when initializing the ring buffer and also adds a comment.
 
-Changes since V1:
-After Alex's feedback, this second version changed a lot, but I decided
-to send this as a V2 to make it easy to follow the series evolution.
-Follows the change summary:
-- Patch 1: Rewrite the patch to describe VCN 4.0.3-specific behavior.
-- Patch 2: Change amdgpu_vcn_sw_fini() return to void, and add the required modification.
-Link to V1: https://patchwork.freedesktop.org/series/153016/
+Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
+---
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Thanks
-
-Rodrigo Siqueira (2):
-  drm/amdgpu/vcn: Document IRQ per-instance irq behavior for VCN 4.0.3
-  drm/amdgpu/vcn: Change amdgpu_vcn_sw_fini return to void
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c |  6 ++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h |  2 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c   |  4 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   |  4 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   |  4 +---
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   |  4 +---
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   |  7 ++-----
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 13 +++++++------
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c |  4 +---
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c |  7 ++-----
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c |  9 +++------
- 11 files changed, 24 insertions(+), 40 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+index 7b93a275ec4f..bae1ad4484ed 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+@@ -212,7 +212,11 @@ static int vcn_v4_0_3_sw_init(struct amdgpu_ip_block *ip_block)
+ 
+ 		ring->vm_hub = AMDGPU_MMHUB0(adev->vcn.inst[i].aid_id);
+ 		sprintf(ring->name, "vcn_unified_%d", adev->vcn.inst[i].aid_id);
+-		r = amdgpu_ring_init(adev, ring, 512, &adev->vcn.inst->irq, 0,
++
++		/* There are no per-instance irq source IDs on 4.0.3, the IH
++		 * packets use a separate field to differentiate instances.
++		 */
++		r = amdgpu_ring_init(adev, ring, 512, &adev->vcn.inst[0].irq, 0,
+ 				     AMDGPU_RING_PRIO_DEFAULT,
+ 				     &adev->vcn.inst[i].sched_score);
+ 		if (r)
 -- 
 2.47.2
 
