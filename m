@@ -2,89 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A97B3560D
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Aug 2025 09:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 504CAB34D48
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Aug 2025 23:01:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 959D010E605;
-	Tue, 26 Aug 2025 07:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F31410E568;
+	Mon, 25 Aug 2025 21:01:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="IfCbuxvx";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="k4/jfr2C";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay10.grserver.gr (relay10.grserver.gr [37.27.248.198])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99E7710E565;
- Mon, 25 Aug 2025 21:00:27 +0000 (UTC)
-Received: from relay10 (localhost.localdomain [127.0.0.1])
- by relay10.grserver.gr (Proxmox) with ESMTP id 337D246DE1;
- Tue, 26 Aug 2025 00:00:25 +0300 (EEST)
-Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by relay10.grserver.gr (Proxmox) with ESMTPS id D5C1346C89;
- Tue, 26 Aug 2025 00:00:23 +0300 (EEST)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
- [209.85.208.181])
- by linux3247.grserver.gr (Postfix) with ESMTPSA id 2008F2066B8;
- Tue, 26 Aug 2025 00:00:23 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
- s=default; t=1756155623;
- bh=D8ifD12m19pxSkPj+MjJNcpSuPpQyZX3/Aoffcw+wLc=;
- h=Received:From:Subject:To;
- b=IfCbuxvx6ZRXXfPOild/vJ8o5gjLbLOmr/g9DFbRiJKcsOZOzl1sCFeWWRDmIZ19G
- Erm88DVQ/9eb9kHkWc1UPhX/fuBLmDR9X3biTqE2/cff71+zKa/4JAKNhf39XYKjaS
- QNB6dd0mrx6RZuxr4ZDkpVlY9/XzTdVze9RnRl/gs7P0jXrSG+3sk7uv8fsm6zY2J4
- PlSDdDLv0u0D5Sg2LU6J2Lgn1sWX0yBro/A7wzyslNladqIshry+2yQBd3KlTRWzNP
- nPczIj87I7+5G9NEslTnMBO0BsIfoY05p067DOP1D0Q+FX6horyQ5ecZ3Zif4Qvop0
- s0NS23/oU0f1A==
-Authentication-Results: linux3247.grserver.gr;
- spf=pass (sender IP is 209.85.208.181) smtp.mailfrom=lkml@antheas.dev
- smtp.helo=mail-lj1-f181.google.com
-Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
-Received: by mail-lj1-f181.google.com with SMTP id
- 38308e7fff4ca-333f92a69d4so35506611fa.2;
- Mon, 25 Aug 2025 14:00:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCV18EPxEvBaIdxyaV2n36MAW/kwYQiqRRD7BBpHc1kr5cK4bvBK/ikcYAViOYAJwvnHfhlBXJ4NHJyH@lists.freedesktop.org,
- AJvYcCWjZbF7YWJsnDuCuQ70p+J6bmJN4jj7MC3yVnroFAkb5510HUlgEjE1GQpYFukQ3W1yG2q5Nj/H@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxajeK41b2ZwMy+eHFa+UqX8Weg8TSL0UNZhY/9uKTmhTN3bhEX
- C3A5dpt2kmB5pV1oP79DW7RfGRAMVkAgWD4iOK5PEH3OhSyY4Lgpb2ZuOn0dOIboWdTJL93FSg1
- zOc+iQkNcOpApPfKLlug7qeEiaVXpGx8=
-X-Google-Smtp-Source: AGHT+IERDdc4cuaeqaeEoP6lBRc2LBCb+njMj/3wEbhTSDngQdBT7xq2OL7FygmjAFEfwtTTTMJNxulrEjvcqsG4xXo=
-X-Received: by 2002:a2e:ae16:0:b0:334:d4b:4965 with SMTP id
- 38308e7fff4ca-33650ffde38mr32898911fa.31.1756155622487; Mon, 25 Aug 2025
- 14:00:22 -0700 (PDT)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43A0410E56C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 21:01:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ci3uOBdd2eeHj1MK5+RAjulIdUbfUnCWv1KJz92+uDcqL9CjCfk39Zun2tN8FwhqYgu6Nu5HNrL5ZyXUH6PZHnC0WcCesUHueokqroWEh/gU5nDfYanirLAzbNJrRcAWAzr8TSHsBEIaTZamtfKyInvo/U2/RpKjfytI9bQ8sQCvvTSBsvgnYaD/t6uefvIIsY++GD2ojUrkQsLIWAfVhKORzVwvxQA/kn1GLIddFtXr8gTlU+vhM1GjQGNd2GyQb97/FqTXF2oWTQoE1VydsRsFoPbQ/YapqidvVmaOp4MtPN0sK34D/K76ibHnZhzguF7fRgi70PuTjtvvDf72zw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZYqnMq+s4bsCGqe0RC3fCTRC0A+dtW7XZ8MYaybrQ2Q=;
+ b=DDA8SeZz1dMqpmg6lSpvRdOkBsc2HYOUXUGbRRGDuYozuGkESWogDqusXA4GMoSEBDP3tnv6VOpE+/HfOwBt234bnRVP1SVGXgA8nLDw+Y7fyap7ayStGzL4i+canPJyesT7v6Akc4sOP6bvp4BiS7SIIbyiIZ7Dffxugw1F9QXWj0IcjNZEoV0zlRyErn/FJu2LH/7BqUtvScIE+Wz63r95k4MFOIFXfYExnpZgH3UYvDDcvExOvkwWbcg1+72xKnEB9PLWZ7NILAt1cvZ6S08fS0QCf87cbuS2hcoyjbESeBFyjTv3yjF2O4w7BnqmWUytm3xI2ov6fd4I3tWtVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZYqnMq+s4bsCGqe0RC3fCTRC0A+dtW7XZ8MYaybrQ2Q=;
+ b=k4/jfr2CquSoput0iQ3bnZ8XjFbOLpBMnJQEHyC0WMFMFdS7KoNgn4DXs5ENT2hvbCZvd5FLqKLVGQ70ETCjPmyoVmPjmY6aUdu/CLGHCmYAFDOVwlgxA6+GaZxga9YpsFYZ0lWCQO7fJHAUrJ3rASAvToNXQIijJ5ZpNvFQ7hA=
+Received: from BL0PR0102CA0038.prod.exchangelabs.com (2603:10b6:208:25::15) by
+ CH2PR12MB4039.namprd12.prod.outlook.com (2603:10b6:610:a8::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9052.20; Mon, 25 Aug 2025 21:01:25 +0000
+Received: from BL02EPF0001A105.namprd05.prod.outlook.com
+ (2603:10b6:208:25:cafe::3f) by BL0PR0102CA0038.outlook.office365.com
+ (2603:10b6:208:25::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.20 via Frontend Transport; Mon,
+ 25 Aug 2025 21:02:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A105.mail.protection.outlook.com (10.167.241.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9073.11 via Frontend Transport; Mon, 25 Aug 2025 21:01:24 +0000
+Received: from david-B650-PG-Lightning.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 25 Aug 2025 16:01:23 -0500
+From: "David (Ming Qiang) Wu" <David.Wu3@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 0/3] remove unused code and add instance number to VCN
+Date: Mon, 25 Aug 2025 17:01:10 -0400
+Message-ID: <20250825210113.182727-1-David.Wu3@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20250824085351.454619-1-lkml@antheas.dev>
- <CADnq5_MEhMha47V25SK4cZkd8TLcizR_y0si2n9jSDjJTXeoRQ@mail.gmail.com>
- <CAGwozwF=UKhG0HU_cxaY8957rscY=W4_VK+z==3vkKJJWZehzQ@mail.gmail.com>
- <CAGwozwFmfBrnZBO6JRZPnPyHLrKycdnoMRtOkK+KpwkdQ4Fw=w@mail.gmail.com>
- <425162fe-aeb7-4ff5-9a84-e7f6da20225e@kernel.org>
-In-Reply-To: <425162fe-aeb7-4ff5-9a84-e7f6da20225e@kernel.org>
-From: Antheas Kapenekakis <lkml@antheas.dev>
-Date: Mon, 25 Aug 2025 23:00:11 +0200
-X-Gmail-Original-Message-ID: <CAGwozwHdQu0K-dgnh72P=ms-ory2bZr-6rtCtWM2QP0u8NqXng@mail.gmail.com>
-X-Gm-Features: Ac12FXyzqiebyPhIvIZHh18pCxRjmJRazAsv4y3o_K7o71Is36skq1VQ6cWjOak
-Message-ID: <CAGwozwHdQu0K-dgnh72P=ms-ory2bZr-6rtCtWM2QP0u8NqXng@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] drm/amdgpu/vpe: increase VPE_IDLE_TIMEOUT to fix
- hang on Strix Halo
-To: Mario Limonciello <superm1@kernel.org>
-Cc: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Peyton Lee <peytolee@amd.com>, Lang Yu <lang.yu@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-PPP-Message-ID: <175615562334.2864339.5517262997455263356@linux3247.grserver.gr>
-X-PPP-Vhost: antheas.dev
-X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
-X-Virus-Status: Clean
-X-Mailman-Approved-At: Tue, 26 Aug 2025 07:49:33 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A105:EE_|CH2PR12MB4039:EE_
+X-MS-Office365-Filtering-Correlation-Id: b7eefdc9-fac0-414d-0f6a-08dde41a8cf6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2Ovq33P+xESZV0ek3V7tChWRJkeGoinWUzFtyCSYpABmKBWWVFRqiZebQ4uV?=
+ =?us-ascii?Q?g87B7APBMQsm2LaweT9F+QaniVse7lWDn0Jg8C8lK2ZgjHlqhfaNwpGWfxlc?=
+ =?us-ascii?Q?BbSj1DBqJXmV06BFCom0MJl7TVrzIyGdODmW2CA8iQL+PEwVyIcQDAAmS8QR?=
+ =?us-ascii?Q?pvvQO59ZfBhLW/qAMbeANuLJcdw/1twxFlswKbic48xyNddKUDfjRVYsOPcY?=
+ =?us-ascii?Q?zNxUirGFDynaOBS2Jx3wNkvNAOC+OJDwWJx6KQ1rMQQvcl47nI3BsAHEwcym?=
+ =?us-ascii?Q?fproAxUsNKrAPxLETq/KphFRdnfQ7hmt8Mmk4AcjXvUXECkYREcndKRC603M?=
+ =?us-ascii?Q?p3x3xZ46Hghp9MDv27EyEqfesTE3uXdG8nO2LgicyLBiIq3H884ZYlQiVR06?=
+ =?us-ascii?Q?3alHktZvaI0UEeM51bJI8YfNKz0v/0okbikLeoZksU5Hkmia+eC2rytywIGP?=
+ =?us-ascii?Q?eUXnLVEbh+4AZbptbbC77ACeN+C5a0yp6/lMlZawRB2bL6T/T8sYsaYy6kCt?=
+ =?us-ascii?Q?BtyG4JzpB7Jtdj6LqxFj+RNPnD+KrLJZXwA65AJITk3O3kT3G3tpO3Aza1Au?=
+ =?us-ascii?Q?3qCSWVCfYgewkDuYxVM4szpBRJr1t2ZE/M1FLOkLFUMT1eE+MEKfhBgj07Zo?=
+ =?us-ascii?Q?rfH7ZKtkL1c3YeE8dXf8fZpOTI0CVnv7AKD624N4+CATu1nCuf3d2Zzze6N+?=
+ =?us-ascii?Q?gkE50LZCQtot1SNbEJ1LVPyTGMgjK8GpczdgYVZmo6M2+ntq+WFW1zQw05LV?=
+ =?us-ascii?Q?TeVqmLOQJlkjhMOGyWQNj1I+y4ZhKndnjZgImzqomn1q3zHKkABIFM3PMng0?=
+ =?us-ascii?Q?cLiPCa1V42zeXtngNirbx+06IBAJoQHrQQ+tncjHqAH9k3EJ2xdW+SbUP4TP?=
+ =?us-ascii?Q?G5/reVp6UkxZkHrHiuFBNRFwOQG2P/8ClErCfrbJaq3l/WSy6h1LuUqY0ltJ?=
+ =?us-ascii?Q?0xNlWDSiT206d2+om5eVnLL4BYd6pbm075V9TL8O8yweFrYNOdPRPpep5LBK?=
+ =?us-ascii?Q?SZ+HV30k7uJIqHwulX2j8JY8Tv7yNT/sQYZ5W8rG52XwCuTMxM2IjrBvnoNu?=
+ =?us-ascii?Q?kDDyDGNuQXbrdGo/Or4RijPeUW4oVFsQREHLXCtNYD9BowkVSbyKPqpnBOwj?=
+ =?us-ascii?Q?Py5ZrYQIdOCCElbYqFbgXpezP/vz571+l5Zths9VvAq/hW2jAAufvAUHnIt/?=
+ =?us-ascii?Q?T64+p8FEn6kRJFvrkvtGMgT0Uueb7ea3oN3w0x+xrQSjWUMuLEKGiQmK2S6Q?=
+ =?us-ascii?Q?J1oS8lG8xIGjdjBlSP32t6QJg+pUKgqcNAQpazWlmPrVFo4kWQvG3kjgidbi?=
+ =?us-ascii?Q?C2YjkAvdS+hHwt1K7McNwO/hWDMwp24NKkJNh46qU8MSK72kkod6m+yfKDsS?=
+ =?us-ascii?Q?unWAcCnaV5VQzhP0IFPoHby2R7CMu8S6DmdXNh3JCfRq9wZ7iUz6TmYQKqNj?=
+ =?us-ascii?Q?2eWeiWR00RZ7x1lu7SzX59xSr+DA+5aRQZpCLQkL6ddETKc1vm5c7Yscvkmk?=
+ =?us-ascii?Q?Rv9MPpgbFcr7VzwxbjEGXYc7zqglrpdb6NsH?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2025 21:01:24.0593 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7eefdc9-fac0-414d-0f6a-08dde41a8cf6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A105.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4039
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,191 +129,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 25 Aug 2025 at 18:41, Mario Limonciello <superm1@kernel.org> wrote:
->
-> On 8/25/2025 9:01 AM, Antheas Kapenekakis wrote:
-> > On Mon, 25 Aug 2025 at 15:33, Antheas Kapenekakis <lkml@antheas.dev> wr=
-ote:
-> >>
-> >> On Mon, 25 Aug 2025 at 15:20, Alex Deucher <alexdeucher@gmail.com> wro=
-te:
-> >>>
-> >>> On Mon, Aug 25, 2025 at 3:13=E2=80=AFAM Antheas Kapenekakis <lkml@ant=
-heas.dev> wrote:
-> >>>>
-> >>>> On the Asus Z13 2025, which uses a Strix Halo platform, around 8% of=
- the
-> >>>> suspend resumes result in a soft lock around 1 second after the scre=
-en
-> >>>> turns on (it freezes). This happens due to power gating VPE when it =
-is
-> >>>> not used, which happens 1 second after inactivity.
-> >>>>
-> >>>> Specifically, the VPE gating after resume is as follows: an initial
-> >>>> ungate, followed by a gate in the resume process. Then,
-> >>>> amdgpu_device_delayed_init_work_handler with a delay of 2s is schedu=
-led
-> >>>> to run tests, one of which is testing VPE in vpe_ring_test_ib. This
-> >>>> causes an ungate, After that test, vpe_idle_work_handler is schedule=
-d
-> >>>> with VPE_IDLE_TIMEOUT (1s).
-> >>>>
-> >>>> When vpe_idle_work_handler runs and tries to gate VPE, it causes the
-> >>>> SMU to hang and partially freezes half of the GPU IPs, with the thre=
-ad
-> >>>> that called the command being stuck processing it.
-> >>>>
-> >>>> Specifically, after that SMU command tries to run, we get the follow=
-ing:
-> >>>>
-> >>>> snd_hda_intel 0000:c4:00.1: Refused to change power state from D0 to=
- D3hot
-> >>>> ...
-> >>>> xhci_hcd 0000:c4:00.4: Refused to change power state from D0 to D3ho=
-t
-> >>>> ...
-> >>>> amdgpu 0000:c4:00.0: amdgpu: SMU: I'm not done with your previous co=
-mmand: SMN_C2PMSG_66:0x00000032 SMN_C2PMSG_82:0x00000000
-> >>>> amdgpu 0000:c4:00.0: amdgpu: Failed to power gate VPE!
-> >>>> [drm:vpe_set_powergating_state [amdgpu]] *ERROR* Dpm disable vpe fai=
-led, ret =3D -62.
-> >>>> amdgpu 0000:c4:00.0: [drm] *ERROR* [CRTC:93:crtc-0] flip_done timed =
-out
-> >>>> amdgpu 0000:c4:00.0: amdgpu: SMU: I'm not done with your previous co=
-mmand: SMN_C2PMSG_66:0x00000032 SMN_C2PMSG_82:0x00000000
-> >>>> amdgpu 0000:c4:00.0: amdgpu: Failed to power gate JPEG!
-> >>>> [drm:jpeg_v4_0_5_set_powergating_state [amdgpu]] *ERROR* Dpm disable=
- jpeg failed, ret =3D -62.
-> >>>> amdgpu 0000:c4:00.0: amdgpu: SMU: I'm not done with your previous co=
-mmand: SMN_C2PMSG_66:0x00000032 SMN_C2PMSG_82:0x00000000
-> >>>> amdgpu 0000:c4:00.0: amdgpu: Failed to power gate VCN instance 0!
-> >>>> [drm:vcn_v4_0_5_stop [amdgpu]] *ERROR* Dpm disable uvd failed, ret =
-=3D -62.
-> >>>> thunderbolt 0000:c6:00.5: 0: timeout reading config space 1 from 0xd=
-3
-> >>>> thunderbolt 0000:c6:00.5: 0: timeout reading config space 2 from 0x5
-> >>>> thunderbolt 0000:c6:00.5: Refused to change power state from D0 to D=
-3hot
-> >>>> amdgpu 0000:c4:00.0: [drm] *ERROR* [CRTC:97:crtc-1] flip_done timed =
-out
-> >>>> amdgpu 0000:c4:00.0: amdgpu: SMU: I'm not done with your previous co=
-mmand: SMN_C2PMSG_66:0x00000032 SMN_C2PMSG_82:0x00000000
-> >>>> amdgpu 0000:c4:00.0: amdgpu: Failed to power gate VCN instance 1!
-> >>>>
-> >>>> In addition to e.g., kwin errors in journalctl. 0000:c4.00.0 is the =
-GPU.
-> >>>> Interestingly, 0000:c4.00.6, which is another HDA block, 0000:c4.00.=
-5,
-> >>>> a PCI controller, and 0000:c4.00.2, resume normally. 0x00000032 is t=
-he
-> >>>> PowerDownVpe(50) command which is the common failure point in all
-> >>>> failed resumes.
-> >>>>
-> >>>> On a normal resume, we should get the following power gates:
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerDownVpe(50) para=
-m: 0x00000000, resp: 0x00000001
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerDownJpeg0(33) pa=
-ram: 0x00000000, resp: 0x00000001
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerDownJpeg1(38) pa=
-ram: 0x00010000, resp: 0x00000001
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerDownVcn1(4) para=
-m: 0x00010000, resp: 0x00000001
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerDownVcn0(6) para=
-m: 0x00000000, resp: 0x00000001
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerUpVcn0(7) param:=
- 0x00000000, resp: 0x00000001
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerUpVcn1(5) param:=
- 0x00010000, resp: 0x00000001
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerUpJpeg0(34) para=
-m: 0x00000000, resp: 0x00000001
-> >>>> amdgpu 0000:c4:00.0: amdgpu: smu send message: PowerUpJpeg1(39) para=
-m: 0x00010000, resp: 0x00000001
-> >>>>
-> >>>> To fix this, increase VPE_IDLE_TIMEOUT to 2 seconds. This increases
-> >>>> reliability from 4-25 suspends to 200+ (tested) suspends with a cycl=
-e
-> >>>> time of 12s sleep, 8s resume. The suspected reason here is that 1s t=
-hat
-> >>>> when VPE is used, it needs a bit of time before it can be gated and
-> >>>> there was a borderline delay before, which is not enough for Strix H=
-alo.
-> >>>> When the VPE is not used, such as on resume, gating it instantly doe=
-s
-> >>>> not seem to cause issues.
-> >>>
-> >>> This doesn't make much sense.  The VPE idle timeout is arbitrary.  Th=
-e
-> >>> VPE idle work handler checks to see if the block is idle before it
-> >>> powers gates the block. If it's not idle, then the delayed work is
-> >>> rescheduled so changing the timing should not make a difference.  We
-> >>> are no powering down VPE while it still has active jobs.  It sounds
-> >>> like there is some race condition somewhere else.
-> >>
-> >> On resume, the vpe is ungated and gated instantly, which does not
-> >> cause any crashes, then the delayed work is scheduled to run two
-> >> seconds later. Then, the tests run and finish, which start the gate
-> >> timer. After the timer lapses and the kernel tries to gate VPE, it
-> >> crashes. I logged all SMU commands and there is no difference between
-> >> the ones in a crash and not, other than the fact the VPE gate command
-> >> failed. Which becomes apparent when the next command runs. I will also
-> >> note that until the idle timer lapses, the system is responsive
-> >>
-> >> Since the VPE is ungated to run the tests, I assume that in my setup
-> >> it is not used close to resume.
-> >
-> > I should also add that I forced a kernel panic and dumped all CPU
-> > backtraces in multiple logs. After the softlock, CPUs were either
-> > parked in the scheduler, powered off, or stuck executing an SMU
-> > command by e.g., a userspace usage sensor graph. So it is not a
-> > deadlock.
-> >
->
-> Can you please confirm if you are on the absolute latest linux-firmware
-> when you reproduced this issue?
+1 Remove unused code in vcn_v1_0.c and vcn_v4_0.c - found by Coverity scan
+2 improve log message by adding instance number. It's more useful for
+  multiple VCN instances case. 
 
-I was on the latest at the time built from source. I think it was
-commit 08ee93ff8ffa. There was an update today though it seems.
+David (Ming Qiang) Wu (3):
+  drm/amdgpu/vcn: remove unused code in vcn_v1_0.c
+  drm/amdgpu/vcn: remove unused code in vcn_v4_0.c
+  drm/amdgpu/vcn: add instance number to VCN version message
 
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 8 ++++----
+ drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c   | 2 --
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   | 1 -
+ 3 files changed, 4 insertions(+), 7 deletions(-)
 
-> Can you please share the debugfs output for amdgpu_firmware_info.
-
-Here is the information from it:
-VCE feature version: 0, firmware version: 0x00000000
-UVD feature version: 0, firmware version: 0x00000000
-MC feature version: 0, firmware version: 0x00000000
-ME feature version: 35, firmware version: 0x0000001f
-PFP feature version: 35, firmware version: 0x0000002c
-CE feature version: 0, firmware version: 0x00000000
-RLC feature version: 1, firmware version: 0x11530505
-RLC SRLC feature version: 0, firmware version: 0x00000000
-RLC SRLG feature version: 0, firmware version: 0x00000000
-RLC SRLS feature version: 0, firmware version: 0x00000000
-RLCP feature version: 1, firmware version: 0x11530505
-RLCV feature version: 0, firmware version: 0x00000000
-MEC feature version: 35, firmware version: 0x0000001f
-IMU feature version: 0, firmware version: 0x0b352300
-SOS feature version: 0, firmware version: 0x00000000
-ASD feature version: 553648366, firmware version: 0x210000ee
-TA XGMI feature version: 0x00000000, firmware version: 0x00000000
-TA RAS feature version: 0x00000000, firmware version: 0x00000000
-TA HDCP feature version: 0x00000000, firmware version: 0x17000044
-TA DTM feature version: 0x00000000, firmware version: 0x12000018
-TA RAP feature version: 0x00000000, firmware version: 0x00000000
-TA SECUREDISPLAY feature version: 0x00000000, firmware version: 0x00000000
-SMC feature version: 0, program: 0, firmware version: 0x00647000 (100.112.0=
-)
-SDMA0 feature version: 60, firmware version: 0x0000000e
-VCN feature version: 0, firmware version: 0x0911800b
-DMCU feature version: 0, firmware version: 0x00000000
-DMCUB feature version: 0, firmware version: 0x09002600
-TOC feature version: 0, firmware version: 0x0000000b
-MES_KIQ feature version: 6, firmware version: 0x0000006c
-MES feature version: 1, firmware version: 0x0000007c
-VPE feature version: 60, firmware version: 0x00000016
-VBIOS version: 113-STRXLGEN-001
-
-I see there was an update today though
-
-Antheas
->
+-- 
+2.43.0
 
