@@ -2,121 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FCF9B34D44
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Aug 2025 23:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E3FB3560F
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 Aug 2025 09:49:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50CE110E571;
-	Mon, 25 Aug 2025 21:01:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFBCE10E607;
+	Tue, 26 Aug 2025 07:49:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xii4thfo";
+	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="Bz3lMLUn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2054.outbound.protection.outlook.com [40.107.92.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4D6C10E56C
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 21:01:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Gj76JTDHVtiSBrr1AtRfR2HEWLAOdfKcHTlE5YdFz9ghB7wDinQkCCflZvVNaXdom0WYesBlicxSovwnfQhmE3h2cJg6ifPc2xEEKBdPObmylDp0mhHgYCEiKf5TCxhZTPL6XQ4rBZNE6ULu0ZkReQqbLbpTqq6yN2OS9yZ1I5vPaHbB0z4J7X1vQKG+S7/PozC8Xtydf4Fn4oOs37OJlM5qssHHydrt1X9K9LZMuPPfw6x3HCl2FxuotO4v/wwbEeMvwIq6yaLbnBrWJAtGAtfPfn6pX+ierEHFteGBxYcyScNdr9FUH5HpimkvriG2FwaIhPfBv64lFz2iAKFwFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=THoTVYwPDeB4q9gDU7B/B4CfVClt5h/L7U9lmGu6r1U=;
- b=YH1/hB3RBBq1jOryYfQkl2LRQ9VSVneZ2j/EZHfzjAYQaFkBDsf/8OoQp83vOixNMBe42ZSZBDzgrjS3oVTAww5oAEQCSb0Q9TTso+S96mTLXr+Hf/WO1Tz+b3/bbr71X2QkxduTrbMM8ucnqaK3Oa65mC9o5XBPtc9IId5EMBbXr/6oMGKRtF+nCeMlfJ4MmngL4mIY3mBFgzbyhOcFlecs63EfSBwHohFxT6tps3C7zQ+LgRTpVEjuBFy9Yuesq/lNYCwo9xID1BkMIJbQMNEE2AETLbT3FQGZwj+x+EoiwHBjRYZFEsZtOa0bEh+LR0JD/KuEXa9qorY0G8xSvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=THoTVYwPDeB4q9gDU7B/B4CfVClt5h/L7U9lmGu6r1U=;
- b=xii4thfoL9+dDXtCuawkr2wkpVEyMv29ZtZkAqE56uL5/dtgOBsuQBSyyCua3FGso+XL9+1YMi6Lj2QAJIw5gEEEuP20f/VXapX1c00KZzH96Rj4mKBlMHyH7vwPYIIWcCkCpRopvpALQsLLI6X94FS+RJckvCYwOzHZI6Urfog=
-Received: from BN9PR03CA0235.namprd03.prod.outlook.com (2603:10b6:408:f8::30)
- by DS4PR12MB9681.namprd12.prod.outlook.com (2603:10b6:8:281::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.21; Mon, 25 Aug
- 2025 21:01:25 +0000
-Received: from BL02EPF0001A107.namprd05.prod.outlook.com
- (2603:10b6:408:f8:cafe::d8) by BN9PR03CA0235.outlook.office365.com
- (2603:10b6:408:f8::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9052.21 via Frontend Transport; Mon,
- 25 Aug 2025 21:01:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0001A107.mail.protection.outlook.com (10.167.241.136) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9073.11 via Frontend Transport; Mon, 25 Aug 2025 21:01:25 +0000
-Received: from david-B650-PG-Lightning.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 25 Aug 2025 16:01:24 -0500
-From: "David (Ming Qiang) Wu" <David.Wu3@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amdgpu/vcn: add instance number to VCN version message
-Date: Mon, 25 Aug 2025 17:01:13 -0400
-Message-ID: <20250825210113.182727-4-David.Wu3@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250825210113.182727-1-David.Wu3@amd.com>
-References: <20250825210113.182727-1-David.Wu3@amd.com>
+Received: from relay12.grserver.gr (relay12.grserver.gr [88.99.38.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 866FC10E574;
+ Mon, 25 Aug 2025 21:02:22 +0000 (UTC)
+Received: from relay12 (localhost [127.0.0.1])
+ by relay12.grserver.gr (Proxmox) with ESMTP id B8CB0BDC89;
+ Tue, 26 Aug 2025 00:02:20 +0300 (EEST)
+Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by relay12.grserver.gr (Proxmox) with ESMTPS id DCF94BDC08;
+ Tue, 26 Aug 2025 00:02:19 +0300 (EEST)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
+ [209.85.208.171])
+ by linux3247.grserver.gr (Postfix) with ESMTPSA id 6DF552066DE;
+ Tue, 26 Aug 2025 00:02:19 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
+ s=default; t=1756155739;
+ bh=W0T4c7wIznaXFr65JiL2TAkOouKcXe26zlH/IosZRlc=;
+ h=Received:From:Subject:To;
+ b=Bz3lMLUnqt+cnRbUZ+61T1RRyN/4eQWXleOftvZvYuhoq+OzasPIsox5MLIkGJAjQ
+ VK6SE2o9CPt1+kuqA5eXep2/dgwCwE6gENQmFHI9qvMa/d9JoO51O1R8e5KVVjCZJ4
+ DYUghCjK3Wx/A+vCJ+AkaFdvIWm+QW8h08L/5ydXIOcuUuIERhxtT2MzqiaQTJIRyB
+ X0cyf/lxY5oi2Z6iUvJAnUOcDOUQKi8O8KSRk4sC1/ezdb3QUNp7IBtLe2Wtq6vEwR
+ /HJHRjT7d4Dz6xJsWjeQ1WjrVH4w5y9iOHGvq3OdYX9U61mXE7Qn+RsSWY6KbuBICx
+ x1Mfr+dUqVxaw==
+Authentication-Results: linux3247.grserver.gr;
+ spf=pass (sender IP is 209.85.208.171) smtp.mailfrom=lkml@antheas.dev
+ smtp.helo=mail-lj1-f171.google.com
+Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
+Received: by mail-lj1-f171.google.com with SMTP id
+ 38308e7fff4ca-333f7ebc44dso48046821fa.0;
+ Mon, 25 Aug 2025 14:02:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWz0PhMmaLgCdNpMLsYt4UcH4NaOXjfhEVz2ZDEuCBito3JJg4I61SyVnKSGwIgTE2GBVX/gqIngBA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwGLPoyx29w2YzfJDJk4PGatwLMefR/Z9KRWsqJs+AopqVOjBZQ
+ XygZ67SqziuwcFdxdEqCAIxw9DSt8InaA37v7k1cZwLqDVz/ocCVzZJ2WcgAuywPGl5ffs44atL
+ 2kJEjiFnrfW4kEg0coSPM7WvvhbkxEWw=
+X-Google-Smtp-Source: AGHT+IGAIFX+PrXtfL6Ko9yXggy6VtoQWqQWALKlpgU6/rjpp88x2VKFAiY5L8puK4F28TxM+ZaoasYW/0Nckeghy4Q=
+X-Received: by 2002:a2e:b54e:0:b0:335:2d26:1408 with SMTP id
+ 38308e7fff4ca-336857c6469mr2002221fa.21.1756155738919; Mon, 25 Aug 2025
+ 14:02:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A107:EE_|DS4PR12MB9681:EE_
-X-MS-Office365-Filtering-Correlation-Id: 91123ec4-cddf-4df0-d206-08dde41a8d89
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9ZBh3aG7AhOBjQglG5qr8uDrJ1QNmOfQ/+I+6iXcqLXwExsYx0jRDECUGP7p?=
- =?us-ascii?Q?CxfUDNtxQkq/f3RuJtHj9nugZ1N6z55m47nwWVUA0YWX9SISjTs5kXN6gXi9?=
- =?us-ascii?Q?EPSqxPL09O/TXZ6kY7obzsV5hqMu1IMB84IyxtPvIY1aN9kulb/cdjTFtlur?=
- =?us-ascii?Q?P3lUYOL4nm5SF0oUbpvLVbEWaGUEe/OcqEIhToTBui83fFyXx9MpgQSgOoYj?=
- =?us-ascii?Q?mYKII3fYDnB1UD19rcMuxQJOF6MolIu2czTtZfWQZRWF1EI423A5q/aKmRFa?=
- =?us-ascii?Q?DxpDP4F1qurR7yCDnYOoOKeNJHHs2NymitCjBGqoGEFRTQMbMJwpjx9zD0RC?=
- =?us-ascii?Q?JY8JK6JUSj+vivHqDbHIN7gn1hjwx0tFa4Wp5auVir70RLzqH6GvmkKQE0Xg?=
- =?us-ascii?Q?dLp4IYNmvTyAlz4HfAE8pT3a6Jfydb5uZkdEleDySxKsZTOG/hNnuiFBaZK+?=
- =?us-ascii?Q?dSOVSKLIr8uf+1UwISqa5su7MsxpBfuUEPwcIj0T4nE6lolVbM9MAFH7+mhu?=
- =?us-ascii?Q?IdXuPNeHpBnroJEB0UUKQRGW3x5Jo0bjPAVkzOmKKRAlgSrLgpnfkcxlXPBV?=
- =?us-ascii?Q?OLmW5oL7nXL4Tg33JeM2kErHK5BoYRw0gFDxkzYM3fl97qUEiLNZ8VEE6mxA?=
- =?us-ascii?Q?zk3wWb09g1M0DDh8ZV6QUjX5pOMQBZTWMiU2e9HfbNb8ndbkYLy0PlZ76rZp?=
- =?us-ascii?Q?V9StBGaMSE4k54kBbyx680y7rfg5iOh+2fvBFRw1tkgYZiUMcpv+5pCHI2Ey?=
- =?us-ascii?Q?JWT+SVpQ/nZu5Z5J6d04Qk08SKK6qd2dpPel2YOJ4NmD2d0fcBNC1DgyjnH8?=
- =?us-ascii?Q?QWxQooEVveNfRsusGL0urCZpH6ip3chMXkjrDGSQUU//Sob+yGpRgdrdtNPU?=
- =?us-ascii?Q?Y7F66YzIAd4mRdi/SjhkcfgdhsZSZ8PNjUsCogp6iqT2Uq/R4X6IGNIGMZbU?=
- =?us-ascii?Q?ZtVhq2SiUzN/DIEzWcH4fwPNeWH69JylaylMlCUfF3ow31zJ5jHOtF6FBnCq?=
- =?us-ascii?Q?kD44vgAXCedcTrMVDhddYWKVfUA34qFSP0ilgYXw7vsiOKCExMT52u0DVF1x?=
- =?us-ascii?Q?XXBxd+S6YhSPDYnnBNmD9+/EhgvjKLRt+N4paYmDcPpXIj4acE2hs+5iWq1M?=
- =?us-ascii?Q?YhPAEur5wxF5l2o2r8rt7dATBsOf2YpB9vrVRBk+NZRLtQgyBgxJKuz7AfFv?=
- =?us-ascii?Q?KkpXCHc7mJ+1j84vTszajGxiBO5R9WhjZrkzfWTxljExsCB47VObiXimB4H9?=
- =?us-ascii?Q?qhmMkwC5nGJFuN6DOXjFNIC49k9h8bzb10gl+gvRMjYcxDyaktR8ohxin4FV?=
- =?us-ascii?Q?MzjV61GAdVlyPLyKRSXUvmgXYiBt3cqw1luia93+66xDMzbCVx1axflUti5K?=
- =?us-ascii?Q?Rb6Cszz70CQKAW7PiNTxECmEby8Hj6qw1X1PQSQRACAHRZ1w4ZWNt6J7WJJA?=
- =?us-ascii?Q?eF2cpU0xWvIgq81eAHkzpKtqa/+95GDGSrvuA9BuCyLU0yLCryf2hyQA7tZN?=
- =?us-ascii?Q?f4rVZa5LGn5eDnERew1Fp/5lhAB3cdWkWWNY?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2025 21:01:25.0944 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91123ec4-cddf-4df0-d206-08dde41a8d89
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A107.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9681
+References: <20250824200202.1744335-1-lkml@antheas.dev>
+ <20250824200202.1744335-6-lkml@antheas.dev>
+ <f1ba9808-64a5-4d64-a4ef-b2a95cebae94@amd.com>
+In-Reply-To: <f1ba9808-64a5-4d64-a4ef-b2a95cebae94@amd.com>
+From: Antheas Kapenekakis <lkml@antheas.dev>
+Date: Mon, 25 Aug 2025 23:02:06 +0200
+X-Gmail-Original-Message-ID: <CAGwozwEGdcyFnOADrCTb2cUDvq8H0kxtA+KRb_Kz5De1eFXztQ@mail.gmail.com>
+X-Gm-Features: Ac12FXygWR7T4ywts3rdl4fy2UMP-foC85evJaRePzdbfPmGm8w1BIpkhTtTtX0
+Message-ID: <CAGwozwEGdcyFnOADrCTb2cUDvq8H0kxtA+KRb_Kz5De1eFXztQ@mail.gmail.com>
+Subject: Re: [PATCH v1 5/5] drm: panel-backlight-quirks: Add Steam Decks
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, philm@manjaro.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+X-PPP-Message-ID: <175615573962.2875691.6911107963172446849@linux3247.grserver.gr>
+X-PPP-Vhost: antheas.dev
+X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
+X-Virus-Status: Clean
+X-Mailman-Approved-At: Tue, 26 Aug 2025 07:49:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,45 +90,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-For multiple VCN instances case we get multiple lines of the same
-message like below:
+On Mon, 25 Aug 2025 at 18:47, Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+> On 8/24/2025 3:02 PM, Antheas Kapenekakis wrote:
+> > On the SteamOS kernel, Valve universally makes minimum brightness 0
+> > for all devices. SteamOS is (was?) meant for the Steam Deck, so
+> > enabling it universally is reasonable. However, it causes issues in
+> > certain devices. Therefore, introduce it just for the Steam Deck here.
+> >
+> > SteamOS kernel does not have a public mirror, but this replaces commit
+> > 806dd74bb225 ("amd/drm: override backlight min value from 12 -> 0")
+> > in the latest, as of this writing, SteamOS kernel (6.11.11-valve24).
+> > See unofficial mirror reconstructed from sources below.
+> >
+> > Link: https://gitlab.com/evlaV/linux-integration/-/commit/806dd74bb225
+> > Signed-off-by: Antheas Kapenekakis <lkml@antheas.dev>
+> > ---
+>
+> Directionally I agree with this commit in favor of what the downstream
+> kernel tree has that you linked above.
+>
+> But I would rather see it sent alone and not tied to a series to
+> overhaul how quirks work.  If it's sent alone we should be able to get
+> it reviewed pretty easily and in drm-misc-fixes.
 
-  amdgpu 0000:43:00.0: amdgpu: Found VCN firmware Version ENC: 1.24 DEC: 9 VEP: 0 Revision: 11
-  amdgpu 0000:43:00.0: amdgpu: Found VCN firmware Version ENC: 1.24 DEC: 9 VEP: 0 Revision: 11
+That's a good idea. However, this commit relies on patch 1 and 3, as
+it has no edid information and uses a second match.
 
-By adding instance number to the log message for multiple VCN instances,
-each line will clearly indicate which VCN instance it refers to.
+Antheas
 
-Signed-off-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index fd8ebf4b5a824..5a90abcea0ac1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -185,16 +185,16 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev, int i)
- 		dec_ver = (le32_to_cpu(hdr->ucode_version) >> 24) & 0xf;
- 		vep = (le32_to_cpu(hdr->ucode_version) >> 28) & 0xf;
- 		dev_info(adev->dev,
--			 "Found VCN firmware Version ENC: %u.%u DEC: %u VEP: %u Revision: %u\n",
--			 enc_major, enc_minor, dec_ver, vep, fw_rev);
-+			 "[VCN instance %d] Found VCN firmware Version ENC: %u.%u DEC: %u VEP: %u Revision: %u\n",
-+			 i, enc_major, enc_minor, dec_ver, vep, fw_rev);
- 	} else {
- 		unsigned int version_major, version_minor, family_id;
- 
- 		family_id = le32_to_cpu(hdr->ucode_version) & 0xff;
- 		version_major = (le32_to_cpu(hdr->ucode_version) >> 24) & 0xff;
- 		version_minor = (le32_to_cpu(hdr->ucode_version) >> 8) & 0xff;
--		dev_info(adev->dev, "Found VCN firmware Version: %u.%u Family ID: %u\n",
--			 version_major, version_minor, family_id);
-+		dev_info(adev->dev, "[VCN instance %d] Found VCN firmware Version: %u.%u Family ID: %u\n",
-+			 i, version_major, version_minor, family_id);
- 	}
- 
- 	bo_size = AMDGPU_VCN_STACK_SIZE + AMDGPU_VCN_CONTEXT_SIZE;
--- 
-2.43.0
+> >   drivers/gpu/drm/drm_panel_backlight_quirks.c | 17 ++++++++++++++++-
+> >   1 file changed, 16 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_panel_backlight_quirks.c b/drivers/gpu/drm/drm_panel_backlight_quirks.c
+> > index 78c430b07d6a..5c24f4a86519 100644
+> > --- a/drivers/gpu/drm/drm_panel_backlight_quirks.c
+> > +++ b/drivers/gpu/drm/drm_panel_backlight_quirks.c
+> > @@ -73,7 +73,22 @@ static const struct drm_get_panel_backlight_quirk drm_panel_min_backlight_quirks
+> >               .dmi_match_other.field = DMI_PRODUCT_NAME,
+> >               .dmi_match_other.value = "ONEXPLAYER F1 EVA-02",
+> >               .quirk = { .brightness_mask = 3, },
+> > -     }
+> > +     },
+> > +     /* Steam Deck models */
+> > +     {
+> > +             .dmi_match.field = DMI_SYS_VENDOR,
+> > +             .dmi_match.value = "Valve",
+> > +             .dmi_match_other.field = DMI_PRODUCT_NAME,
+> > +             .dmi_match_other.value = "Jupiter",
+> > +             .quirk = { .min_brightness = 1, },
+> > +     },
+> > +     {
+> > +             .dmi_match.field = DMI_SYS_VENDOR,
+> > +             .dmi_match.value = "Valve",
+> > +             .dmi_match_other.field = DMI_PRODUCT_NAME,
+> > +             .dmi_match_other.value = "Galileo",
+> > +             .quirk = { .min_brightness = 1, },
+> > +     },
+> >   };
+> >
+> >   static bool drm_panel_min_backlight_quirk_matches(
+>
+>
 
