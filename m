@@ -2,72 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA79B36D9B
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Aug 2025 17:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF55B37C64
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Aug 2025 09:57:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3110710E10E;
-	Tue, 26 Aug 2025 15:22:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DKI6IUP9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7604310E744;
+	Wed, 27 Aug 2025 07:56:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
- [209.85.214.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DFBB10E10E
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 15:22:23 +0000 (UTC)
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-2463d76f04aso6211455ad.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 08:22:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756221743; x=1756826543; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=x1KuZQX0mm+dpN3YsJbo+XWXmujvsOltiYN1iY02Q9k=;
- b=DKI6IUP9PXfdTloNDPIQAx8/wTi+Nkv6weTvnTXJpA6DuncI5cpW77JRlx/3VIrylJ
- R3V6QeKaubZ9QHL5/D4+RZNtPvlk1Xebk8HR0h/DDF70y4VoS6NR+nQeHaDrEMGXBTSN
- iFarJ9qqBhGq1ovJcgO2tZ55RiZC4L+bEBikWeqnWnElzg8cLe/1cmzWs4rpouprcu5T
- 6MiLc9OIbqdD5c9I4VjvnankdbcsZg2BTmCgfKLeqJJh3Cm8TSfbZ6fftO9Rw3lk3SxC
- 3AvLoWGKwN+XFq5FP+PLuwu16MLAxuTov1+05cnPUuiqv4mfWikCTRku8duCveFPusBG
- qiEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756221743; x=1756826543;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=x1KuZQX0mm+dpN3YsJbo+XWXmujvsOltiYN1iY02Q9k=;
- b=Gse6bf5KrdwMnkF2ms5QgEYqUVOY/XB1MAF1hjVSFt1KdbRsNqOPAT2hg9pkz0Rh4A
- A1HiEV6FAAZnE8Ldcnf7oluw9OV2tKp97QDidfDNPr8NJkvEp2nqpuA37ZQkVsZHZHxC
- 2ebXaVJDl6PBHxlbeHu6gkLbu0fjOy6oq5frRTrNSLD9OyNALxqxUdKifnFsYPdTzjt9
- zKhHRNHKaquD0kprhFF0VnQEFnWn30COebcfjrmxg5uXYDg4e5Bk1QyrYuffd0kgAKpX
- 431N/s7X/4SO/hoZGvDyVCYCs511FB64lejSxKToaN5VeSXCFzmkEcOPX70hN9gB0iP8
- LqZg==
-X-Gm-Message-State: AOJu0Ywn4PFE6dR/FgpDKShr+hUjruZZ4w1dbAG+gBGfc+RoUuSkLOoY
- TLlu2igczd71HKZ4YPQnOzal7P3HHF8S9vYNfz1GVlxOQlQMZD3xsOrwxkoa7gr7zUZ0CF+dTcc
- FzFuBifeli/kwM+mV7/jU6te3RzzSumkR5A==
-X-Gm-Gg: ASbGncsCbgZBLNxgUtJmCCOusgws4UoApgx8fiWoCuRj2X+OOzOW5QPoIM18KYxzwxE
- SHRad8FaylGSp5lVpsBaDAjV8rIiPo/NwP4ZG9PVitdtvW0dlupSD0nPy7kUZfKVRjObCZjv7qE
- DAbDLcCMuF7Y3tBZONSRSyyutijdNxnFmYGRqqaFvh9pYBfPwQaEGAH0gUuhlL418l5DUlvHFRk
- taU7c94+Wcy7qtRZJ/ubxC6Uopd
-X-Google-Smtp-Source: AGHT+IH+EaeHESwhXK3qNMk4iodRdplFTqWuUn2WEqR8rBRHfc/NywPKFBtvf2MtzHHduPn4zOKpIdTQq/hEhFfLtUg=
-X-Received: by 2002:a17:903:22c8:b0:246:a93c:aa0d with SMTP id
- d9443c01a7336-246a93cacc7mr78058625ad.11.1756221742943; Tue, 26 Aug 2025
- 08:22:22 -0700 (PDT)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CF1A310E684;
+ Tue, 26 Aug 2025 15:31:32 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 04F3A169E;
+ Tue, 26 Aug 2025 08:31:24 -0700 (PDT)
+Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 376B93F63F;
+ Tue, 26 Aug 2025 08:31:26 -0700 (PDT)
+Date: Tue, 26 Aug 2025 16:31:23 +0100
+From: Mark Rutland <mark.rutland@arm.com>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
+ acme@kernel.org, namhyung@kernel.org,
+ alexander.shishkin@linux.intel.com, jolsa@kernel.org,
+ irogers@google.com, adrian.hunter@intel.com,
+ kan.liang@linux.intel.com, linux-perf-users@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
+ linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
+ iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 02/19] perf/hisilicon: Fix group validation
+Message-ID: <aK3TS3s5_Pczx1nu@J2N7QTR9R3>
+References: <cover.1755096883.git.robin.murphy@arm.com>
+ <c7b877e66ba0d34d8558c5af8bbb620e8c0e47d9.1755096883.git.robin.murphy@arm.com>
+ <aK2XS_GhLw1EQ2ml@J2N7QTR9R3>
+ <ab80cb84-42b2-4ce8-aa6c-4ce6be7a12b7@arm.com>
 MIME-Version: 1.0
-References: <20250826074646.1775241-1-Prike.Liang@amd.com>
- <20250826074646.1775241-8-Prike.Liang@amd.com>
-In-Reply-To: <20250826074646.1775241-8-Prike.Liang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 26 Aug 2025 11:22:11 -0400
-X-Gm-Features: Ac12FXxbKa-sz-N1TjUswYSxDM88T12axA73YCDocGdWlsXhFbOXcDCNaUE-i-Q
-Message-ID: <CADnq5_PDwsgY-sjkeCQ=eiiCF4Z4XXcGN3Q5d5D05obr6BXeZQ@mail.gmail.com>
-Subject: Re: [PATCH v9 08/14] drm/amdgpu: add userq object va track helpers
-To: Prike Liang <Prike.Liang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Christian.Koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ab80cb84-42b2-4ce8-aa6c-4ce6be7a12b7@arm.com>
+X-Mailman-Approved-At: Wed, 27 Aug 2025 07:56:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,305 +65,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 26, 2025 at 3:47=E2=80=AFAM Prike Liang <Prike.Liang@amd.com> w=
-rote:
->
-> Add the userq object virtual address get(),mapped() and put()
-> helpers for tracking the userq obj va address usage.
->
-> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  | 172 ++++++++++++++++++++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  14 ++
->  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c |   4 +
->  3 files changed, 189 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_userq.c
-> index 0aeb7a96ccbf..562d12f9d0d2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -76,6 +76,174 @@ int amdgpu_userq_input_va_validate(struct amdgpu_vm *=
-vm, u64 addr,
->         return r;
->  }
->
-> +int amdgpu_userq_buffer_va_get(struct amdgpu_vm *vm, u64 addr)
-> +{
-> +       struct amdgpu_bo_va_mapping *mapping;
-> +       u64 user_addr;
-> +       int r;
-> +
-> +       user_addr =3D (addr & AMDGPU_GMC_HOLE_MASK) >> AMDGPU_GPU_PAGE_SH=
-IFT;
-> +       r =3D amdgpu_bo_reserve(vm->root.bo, false);
-> +       if (r)
-> +               return r;
-> +
-> +       mapping =3D amdgpu_vm_bo_lookup_mapping(vm, user_addr);
-> +       if (!mapping)
-> +               goto out_err;
-> +
-> +       /*
-> +        * Need to unify the following userq va reference.
-> +        *  mqd  bo
-> +        *  rptr bo
-> +        *  wptr bo
-> +        *  eop  bo
-> +        *  shadow bo
-> +        *  csa bo
-> +        */
-> +       /*amdgpu_bo_ref(mapping->bo_va->base.bo);*/
-> +       mapping->bo_va->queue_refcount++;
-> +
-> +       amdgpu_bo_unreserve(vm->root.bo);
-> +       return 0;
-> +
-> +out_err:
-> +       amdgpu_bo_unreserve(vm->root.bo);
-> +       return -EINVAL;
-> +}
-> +
-> +bool amdgpu_userq_buffer_va_mapped(struct amdgpu_vm *vm, u64 addr)
-> +{
-> +       struct amdgpu_bo_va_mapping *mapping;
-> +       u64 user_addr;
-> +       bool r;
-> +
-> +       user_addr =3D (addr & AMDGPU_GMC_HOLE_MASK) >> AMDGPU_GPU_PAGE_SH=
-IFT;
-> +
-> +       if (amdgpu_bo_reserve(vm->root.bo, false))
-> +               return false;
-> +
-> +       mapping =3D amdgpu_vm_bo_lookup_mapping(vm, user_addr);
-> +       if (!IS_ERR_OR_NULL(mapping) && mapping->bo_va->queue_refcount > =
-0)
-> +               r =3D true;
-> +       else
-> +               r =3D false;
-> +       amdgpu_bo_unreserve(vm->root.bo);
-> +
-> +       return r;
-> +}
-> +
-> +bool amdgpu_userq_buffer_vas_mapped(struct amdgpu_vm *vm,
-> +                       struct amdgpu_usermode_queue *queue)
-> +{
-> +
-> +       switch (queue->queue_type) {
-> +       case AMDGPU_HW_IP_GFX:
-> +               if (amdgpu_userq_buffer_va_mapped(vm, queue->queue_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->rptr_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->wptr_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->shadow_va) |=
-|
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->csa_va))
-> +                       return true;
-> +               break;
-> +       case AMDGPU_HW_IP_COMPUTE:
-> +               if (amdgpu_userq_buffer_va_mapped(vm, queue->queue_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->rptr_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->wptr_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->eop_va))
-> +                       return true;
-> +               break;
-> +       case AMDGPU_HW_IP_DMA:
-> +               if (amdgpu_userq_buffer_va_mapped(vm, queue->queue_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->rptr_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->wptr_va) ||
-> +                   amdgpu_userq_buffer_va_mapped(vm, queue->csa_va))
-> +                       return true;
-> +               break;
-> +       default:
-> +               break;
-> +       }
-> +
-> +       return false;
-> +}
-> +
-> +int amdgpu_userq_buffer_va_put(struct amdgpu_vm *vm, u64 addr)
-> +{
-> +       struct amdgpu_bo_va_mapping *mapping;
-> +       u64 user_addr;
-> +       int r;
-> +
-> +       user_addr =3D (addr & AMDGPU_GMC_HOLE_MASK) >> AMDGPU_GPU_PAGE_SH=
-IFT;
-> +       r =3D amdgpu_bo_reserve(vm->root.bo, false);
-> +       if (r)
-> +               return r;
-> +
-> +       mapping =3D amdgpu_vm_bo_lookup_mapping(vm, user_addr);
-> +       if (!mapping)
-> +               goto out_err;
-> +       /*
-> +        * TODO: It requires figuring out the root cause of userq va mapp=
-ing
-> +        * reference imbalance issue.
-> +        */
-> +       /*amdgpu_bo_unref(&mapping->bo_va->base.bo);*/
-> +       mapping->bo_va->queue_refcount--;
-> +
-> +       amdgpu_bo_unreserve(vm->root.bo);
-> +       return 0;
-> +
-> +out_err:
-> +       amdgpu_bo_unreserve(vm->root.bo);
-> +       return -EINVAL;
-> +}
-> +
-> +static void amdgpu_userq_buffer_vas_get(struct amdgpu_vm *vm,
-> +                       struct amdgpu_usermode_queue *queue)
-> +{
-> +
-> +
-> +       amdgpu_userq_buffer_va_get(vm, queue->queue_va);
-> +       amdgpu_userq_buffer_va_get(vm, queue->rptr_va);
-> +       amdgpu_userq_buffer_va_get(vm, queue->wptr_va);
-> +
-> +       switch (queue->queue_type) {
-> +       case AMDGPU_HW_IP_GFX:
-> +               amdgpu_userq_buffer_va_get(vm, queue->shadow_va);
-> +               amdgpu_userq_buffer_va_get(vm, queue->csa_va);
-> +               break;
-> +       case AMDGPU_HW_IP_COMPUTE:
-> +               amdgpu_userq_buffer_va_get(vm, queue->eop_va);
-> +               break;
-> +       case AMDGPU_HW_IP_DMA:
-> +               amdgpu_userq_buffer_va_get(vm, queue->csa_va);
-> +               break;
-> +       default:
-> +               break;
-> +       }
-> +}
-> +
-> +int amdgpu_userq_buffer_vas_put(struct amdgpu_vm *vm,
-> +                       struct amdgpu_usermode_queue *queue)
-> +{
-> +       amdgpu_userq_buffer_va_put(vm, queue->queue_va);
-> +       amdgpu_userq_buffer_va_put(vm, queue->rptr_va);
-> +       amdgpu_userq_buffer_va_put(vm, queue->wptr_va);
-> +
-> +       switch (queue->queue_type) {
-> +       case AMDGPU_HW_IP_GFX:
-> +               amdgpu_userq_buffer_va_put(vm, queue->shadow_va);
-> +               amdgpu_userq_buffer_va_put(vm, queue->csa_va);
-> +               break;
-> +       case AMDGPU_HW_IP_COMPUTE:
-> +               amdgpu_userq_buffer_va_put(vm, queue->eop_va);
-> +               break;
-> +       case AMDGPU_HW_IP_DMA:
-> +               amdgpu_userq_buffer_va_put(vm, queue->csa_va);
-> +               break;
-> +       default:
-> +               break;
-> +       }
-> +       return 0;
-> +}
-> +
->  static int
->  amdgpu_userq_unmap_helper(struct amdgpu_userq_mgr *uq_mgr,
->                           struct amdgpu_usermode_queue *queue)
-> @@ -445,6 +613,9 @@ amdgpu_userq_create(struct drm_file *filp, union drm_=
-amdgpu_userq *args)
->         queue->vm =3D &fpriv->vm;
->         queue->priority =3D priority;
->         queue->generation =3D amdgpu_vm_generation(adev, &fpriv->vm);
-> +       queue->queue_va =3D args->in.queue_va;
-> +       queue->rptr_va =3D args->in.rptr_va;
-> +       queue->wptr_va =3D args->in.wptr_va;
->
->         db_info.queue_type =3D queue->queue_type;
->         db_info.doorbell_handle =3D queue->doorbell_handle;
-> @@ -475,7 +646,6 @@ amdgpu_userq_create(struct drm_file *filp, union drm_=
-amdgpu_userq *args)
->                 goto unlock;
->         }
->
-> -
->         qid =3D idr_alloc(&uq_mgr->userq_idr, queue, 1, AMDGPU_MAX_USERQ_=
-COUNT, GFP_KERNEL);
->         if (qid < 0) {
->                 drm_file_err(uq_mgr->file, "Failed to allocate a queue id=
-\n");
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_userq.h
-> index 0eb2a9c2e340..30067f80eadf 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-> @@ -54,6 +54,13 @@ struct amdgpu_usermode_queue {
->         enum amdgpu_userq_state state;
->         uint64_t                doorbell_handle;
->         uint64_t                doorbell_index;
-> +       uint64_t                queue_va;
-> +       uint64_t                rptr_va;
-> +       uint64_t                wptr_va;
-> +       uint64_t                eop_va;
-> +       uint64_t                shadow_va;
-> +       uint64_t                csa_va;
+On Tue, Aug 26, 2025 at 03:35:48PM +0100, Robin Murphy wrote:
+> On 2025-08-26 12:15 pm, Mark Rutland wrote:
+> > On Wed, Aug 13, 2025 at 06:00:54PM +0100, Robin Murphy wrote:
+> > > The group validation logic shared by the HiSilicon HNS3/PCIe drivers is
+> > > a bit off, in that given a software group leader, it will consider that
+> > > event *in place of* the actual new event being opened. At worst this
+> > > could theoretically allow an unschedulable group if the software event
+> > > config happens to look like one of the hardware siblings.
+> > > 
+> > > The uncore framework avoids that particular issue,
+> > 
+> > What is "the uncore framework"? I'm not sure exactly what you're
+> > referring to, nor how that composes with the problem described above.
+> 
+> Literally that hisi_uncore_pmu.c is actually a framework for half a dozen
+> individual sub-drivers rather than a "driver" itself per se, but I suppose
+> that detail doesn't strictly matter at this level.
 
-Just store a list of critical virtual addresses.  Otherwise we are
-going to have a ton of IP specific things in here.  For each critical
-address, just push the address on the list.  Then in the VM unmap
-code, just walk the list for each queue and if the user tries to umap
-a critical buffer, preempt the queue and set an error on it.
+I see. My concern was just that I couldn't figure out what "the uncore
+framework" was, since it sounded more generic. If you say something like
+"the shared code in hisi_uncore_pmu.c", I think that would be clearer.
 
-Alex
+> > > but all 3 also share the common issue of not preventing racy access to
+> > > the sibling list,
+> > 
+> > Can you please elaborate on this racy access to the silbing list? I'm
+> > not sure exactly what you're referring to.
+> 
+> Hmm, yes, I guess an actual race is probably impossible since if we're still
+> in the middle of opening the group leader event then we haven't yet
+> allocated the fd that userspace would need to start adding siblings, even if
+> it tried to guess. I leaned on "racy" as a concise way to infer "when it
+> isn't locked (even though the reasons for that are more subtle)" repeatedly
+> over several patches - after all, the overall theme of this series is that I
+> dislike repetitive boilerplate :)
+> 
+> I'll dedicate some time for polishing commit messages for v2, especially the
+> common context for these "part 1" patches per your feedback on patch #1.
 
-> +
->         uint64_t                flags;
->         struct amdgpu_mqd_prop  *userq_prop;
->         struct amdgpu_userq_mgr *userq_mgr;
-> @@ -137,4 +144,11 @@ int amdgpu_userq_start_sched_for_enforce_isolation(s=
-truct amdgpu_device *adev,
->
->  int amdgpu_userq_input_va_validate(struct amdgpu_vm *vm, u64 addr,
->                         u64 expected_size);
-> +int amdgpu_userq_buffer_va_get(struct amdgpu_vm *vm, u64 addr);
-> +bool amdgpu_userq_buffer_va_mapped(struct amdgpu_vm *vm, u64 addr);
-> +bool amdgpu_userq_buffer_vas_mapped(struct amdgpu_vm *vm,
-> +                       struct amdgpu_usermode_queue *queue);
-> +int amdgpu_userq_buffer_va_put(struct amdgpu_vm *vm, u64 addr);
-> +int amdgpu_userq_buffer_vas_put(struct amdgpu_vm *vm,
-> +                       struct amdgpu_usermode_queue *queue);
->  #endif
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm=
-/amd/amdgpu/mes_userqueue.c
-> index 6e29e85bbf9f..42d6cd90be59 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> @@ -262,6 +262,7 @@ static int mes_userq_mqd_create(struct amdgpu_userq_m=
-gr *uq_mgr,
->                 userq_props->hqd_active =3D false;
->                 userq_props->tmz_queue =3D
->                         mqd_user->flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE=
-_SECURE;
-> +               queue->eop_va =3D compute_mqd->eop_va;
->                 kfree(compute_mqd);
->         } else if (queue->queue_type =3D=3D AMDGPU_HW_IP_GFX) {
->                 struct drm_amdgpu_userq_mqd_gfx11 *mqd_gfx_v11;
-> @@ -283,6 +284,8 @@ static int mes_userq_mqd_create(struct amdgpu_userq_m=
-gr *uq_mgr,
->                 userq_props->csa_addr =3D mqd_gfx_v11->csa_va;
->                 userq_props->tmz_queue =3D
->                         mqd_user->flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE=
-_SECURE;
-> +               queue->shadow_va =3D mqd_gfx_v11->shadow_va;
-> +               queue->csa_va =3D mqd_gfx_v11->csa_va;
->
->                 if (amdgpu_userq_input_va_validate(queue->vm, mqd_gfx_v11=
-->shadow_va,
->                                         shadow_info.shadow_size)) {
-> @@ -314,6 +317,7 @@ static int mes_userq_mqd_create(struct amdgpu_userq_m=
-gr *uq_mgr,
->                 }
->
->                 userq_props->csa_addr =3D mqd_sdma_v11->csa_va;
-> +               queue->csa_va =3D mqd_sdma_v11->csa_va;
->                 kfree(mqd_sdma_v11);
->         }
->
-> --
-> 2.34.1
->
+Thanks!
+
+> > > and some redundant checks which can be cleaned up.
+> > > 
+> > > Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> > > ---
+> > >   drivers/perf/hisilicon/hisi_pcie_pmu.c   | 17 ++++++-----------
+> > >   drivers/perf/hisilicon/hisi_uncore_pmu.c | 23 +++++++----------------
+> > >   drivers/perf/hisilicon/hns3_pmu.c        | 17 ++++++-----------
+> > >   3 files changed, 19 insertions(+), 38 deletions(-)
+> > > 
+> > > diff --git a/drivers/perf/hisilicon/hisi_pcie_pmu.c b/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> > > index c5394d007b61..3b0b2f7197d0 100644
+> > > --- a/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> > > +++ b/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> > > @@ -338,21 +338,16 @@ static bool hisi_pcie_pmu_validate_event_group(struct perf_event *event)
+> > >   	int counters = 1;
+> > >   	int num;
+> > > -	event_group[0] = leader;
+> > > -	if (!is_software_event(leader)) {
+> > > -		if (leader->pmu != event->pmu)
+> > > -			return false;
+> > > +	if (leader == event)
+> > > +		return true;
+> > > -		if (leader != event && !hisi_pcie_pmu_cmp_event(leader, event))
+> > > -			event_group[counters++] = event;
+> > > -	}
+> > > +	event_group[0] = event;
+> > > +	if (leader->pmu == event->pmu && !hisi_pcie_pmu_cmp_event(leader, event))
+> > > +		event_group[counters++] = leader;
+> > 
+> > Looking at this, the existing logic to share counters (which
+> > hisi_pcie_pmu_cmp_event() is trying to permit) looks to be bogus, given
+> > that the start/stop callbacks will reprogram the HW counters (and hence
+> > can fight with one another).
+> 
+> Yeah, this had a dodgy smell when I first came across it, but after doing
+> all the digging I think it does actually work out - the trick seems to be
+> the group_leader check in hisi_pcie_pmu_get_event_idx(), with the
+> implication the PMU is going to be stopped while scheduling in/out the whole
+> group, so assuming hisi_pcie_pmu_del() doesn't clear the counter value in
+> hardware (even though the first call nukes the rest of the event
+> configuration), then the events should stay in sync.
+
+I don't think that's sufficient. If nothing else, overflow is handled
+per-event, and for a group of two identical events, upon overflow
+hisi_pcie_pmu_irq() will reprogram the shared HW counter when handling
+the first event, and the second event will see an arbitrary
+discontinuity. Maybe no-one has spotted that due to the 2^63 counter
+period that we program, but this is clearly bogus.
+
+In addition, AFAICT the IRQ handler doesn't stop the PMU, so in general
+groups aren't handled atomically, and snapshots of the counters won't be
+atomic.
+
+> It does seem somewhat nonsensical to have multiple copies of the same event
+> in the same group, but I imagine it could happen with some sort of scripted
+> combination of metrics, and supporting it at this level saves needing
+> explicit deduplication further up. So even though my initial instinct was to
+> rip it out too, in the end I concluded that that doesn't seem justified.
+
+As above, I think it's clearly bogus. I don't think we should have
+merged it as-is and it's not something I'd like to see others copy.
+Other PMUs don't do this sort of event deduplication, and in general it
+should be up to the user or userspace software to do that rather than
+doing that badly in the kernel.
+
+Given it was implemented with no rationale I think we should rip it out.
+If that breaks someone's scripting, then we can consider implementing
+something that actually works.
+
+Mark.
