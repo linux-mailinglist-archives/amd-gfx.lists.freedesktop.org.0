@@ -2,148 +2,125 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11644B37C6D
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Aug 2025 09:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BEEB358C3
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 Aug 2025 11:25:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E95210E74A;
-	Wed, 27 Aug 2025 07:57:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39F6B10E2E0;
+	Tue, 26 Aug 2025 09:25:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="SCOZDbWF";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xgOeoysr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A10410E281
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 09:17:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756199831;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=zwLG8TC2DRqYuer8IhxBaiMazzrcoUe2P5hs7V1jY0M=;
- b=SCOZDbWFx27nOgjAV1A4KGb00VhOXhel22otlw9x8RaaN2fn/7DQDtmpXlhBeoyOnH77rd
- 0X/I9mG7pleEUGAD0rs6kvJXre7lCpwvRbaM4X09X22cM/Q8cKLPHV2C3tzRcIHLfw0e/0
- 5H8dO/cMuPSoabHpXIyTY1r0MTr/Zmk=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-374-fh2N9C27O8-Li3NbB4uNiA-1; Tue, 26 Aug 2025 05:17:09 -0400
-X-MC-Unique: fh2N9C27O8-Li3NbB4uNiA-1
-X-Mimecast-MFC-AGG-ID: fh2N9C27O8-Li3NbB4uNiA_1756199828
-Received: by mail-wr1-f69.google.com with SMTP id
- ffacd0b85a97d-3c79f0a5feaso1857781f8f.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 02:17:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756199828; x=1756804628;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=zwLG8TC2DRqYuer8IhxBaiMazzrcoUe2P5hs7V1jY0M=;
- b=ppdArD6H5je8RCRk0rVP3nqAdoQE9nyuIRUo9kSPQM3QLhHDquix7PBkkH1RPouIgo
- fWF1nmD99abjAxwoA/dFdtkw30kr7WJ+I5kUNe2rANjNWqK+myuNW0Mmncg4vAVoVLDE
- mlrK1MkydLj7LBup/pYxq5yvOi0TCPmtvHRb9ZfkVSy7PKUikwSGCgGXrysOk2thkTTk
- 8M/wYX31ruIAEZrMrtdxDjfeZHCRGPWB9zglXUZqFDC2jaO42oiaYjFPC/ROmdg1Jxib
- N96GqGRGmglPCNHMoSmdD7GQH6SMYt6ZEglNkK+sqoFCqxBb17Xe8U4h36xJfFJt2SLz
- IWVg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVvvV2JOQYeRXN1a2gKsx/XXBoOVZMA75exKSr58jKOlgQZxYgKUxGRztXZKQPMyuxabLlAidlk@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxsNmWKj/RP2Q2nkGMxsCv734gKmcAgfVGQMrTacf88d7WF9VgY
- INPh6lWB0rGeD4MfRRVt1Nk4w4C/A7kwgAzKZul6MCEcXA5HzyBis9dr8fFTR87YvbUTAPkQEvo
- gNHle/JBRuYTcAQoOSYGenCLdayIe3i9LTvv9fDMfbwJI0fATsbBccF2w50e3RBuxYMM=
-X-Gm-Gg: ASbGncubnOmEqRs5xKzCbUgTBe8h7DqMnPKCasllTyRguVNkgq1C5LjFuMuLwgOVS8b
- cPJp0ParViHRHazFtSHWdrH7AwN7EhNNl2fjV/cXWouZQeH83WIxwMsYgWRMP/hefNW7GYXVLdi
- 57gL45AoprcJ81rsy6iGK3a20wQYD4fQy3YDIlRhMQ7bheT5ee5KMwGR8Hcz2ggR8J5/7q+cAwr
- 9XL84eAhvgjdaZBbU2v9JuIVa82eska2B37SoIGhllG7RtkLZg08x4anz2WNWYM9IEelBs+zco/
- QRGfo4SMzZ0psL0YuvFFKbevzUSI1s8iGvl1zUKi7AXaCyjYYhZK27Hdx0o99nUPwVKqAgvZ0A=
- =
-X-Received: by 2002:a05:6000:18a2:b0:3c8:dc75:e9ea with SMTP id
- ffacd0b85a97d-3c8dc75eddbmr4761276f8f.28.1756199828224; 
- Tue, 26 Aug 2025 02:17:08 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE+MyBSfXuhBHgtjTf8j/yDEGP6bQtFzkEyIMLeJsu+pMxh6G3ReZyVuhqCWzlEPKRzHWfERQ==
-X-Received: by 2002:a05:6000:18a2:b0:3c8:dc75:e9ea with SMTP id
- ffacd0b85a97d-3c8dc75eddbmr4761246f8f.28.1756199827698; 
- Tue, 26 Aug 2025 02:17:07 -0700 (PDT)
-Received: from ?IPV6:2a09:80c0:192:0:5dac:bf3d:c41:c3e7?
- ([2a09:80c0:192:0:5dac:bf3d:c41:c3e7])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3c70e98d41bsm15714711f8f.16.2025.08.26.02.17.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 26 Aug 2025 02:17:07 -0700 (PDT)
-Message-ID: <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
-Date: Tue, 26 Aug 2025 11:17:06 +0200
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2061.outbound.protection.outlook.com [40.107.223.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C456110E2E0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 09:25:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IeIoI/2jCQsSspybIyNkUFwyAqi2poVREZy/IajtANkEOQzGbTuQcmQhPqxEP8ZrjRf60Q8ULzgpdAeIxc1DSDS11UufZK2JtL1JWq0r8CjZ4rjapqWh7Z/JRNXQ/GKhIxXEwelt3CrczP42hUW7YXuf4hqQPZxMCZRpZhrykco5uuuCurpenxIcoyu7OPr+hFpupPwnzy+AsZZUpNxzJWuBvbuxymQ2769hr001NN4+wFUv6MJM++ToI609gcZbtwrKUaI9oWazXYzTxioYJTEFXggnvYkPqr9Gx+W0MxhPkPRFV0rlkpA+IVanV9ddVdlSDhMFUg0m2cCSop+MhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eZdyraiVYJsIEnPcvvib4j4f21MiPnu+1/XJ5UOAkWA=;
+ b=bo4PMPyDnhQg6P2dRNEZDd5x/0uEAq8Efg8USuG3ordFQIXFaADjqejfpur6GvLeaeNu2roTuw58S/274YyMvNTuqqJyhGOzv3x2RlZ/LjTZ01S6XiCN/WRJDqA8I82UBZvofW1Oslib0bp3GEkknsWrLsgWQ8u1BrTvfgAEiM7lRwWmr8mj8+a22V2jKKAz/pIGj8pY7l8L/obgv3Wk5nW4be2B0QQ4tvMP458MkF9rnjA0obt1E7LK/tJvH44zNTx8A756kpsd8tNBDBpnBSqI0uYWGoDFT0SH4fRsvNRDmf1OlMez/H4Dw009SzpejDliOP+BdZCmOLhLIu+gbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eZdyraiVYJsIEnPcvvib4j4f21MiPnu+1/XJ5UOAkWA=;
+ b=xgOeoysrwdANZY4anSlbvDGeQCYUV9It4OtSqengQIrk/cczuIgHCMiRLLDKDPDqonSP/MNq6iUvKdJgXjszM2qjM7jrtxCyaKputQfREDwn2hlipa5+AjEf8fw3oL7tfnomk+8IucA20z3RUpUvX4OSt7QEOobPeZ/FSlVG8C0=
+Received: from CH0PR13CA0040.namprd13.prod.outlook.com (2603:10b6:610:b2::15)
+ by SN7PR12MB7954.namprd12.prod.outlook.com (2603:10b6:806:344::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.15; Tue, 26 Aug
+ 2025 09:25:20 +0000
+Received: from CH2PEPF0000009B.namprd02.prod.outlook.com
+ (2603:10b6:610:b2:cafe::b9) by CH0PR13CA0040.outlook.office365.com
+ (2603:10b6:610:b2::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9073.11 via Frontend Transport; Tue,
+ 26 Aug 2025 09:25:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH2PEPF0000009B.mail.protection.outlook.com (10.167.244.23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9052.8 via Frontend Transport; Tue, 26 Aug 2025 09:25:20 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 26 Aug
+ 2025 04:25:20 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1748.10; Tue, 26 Aug
+ 2025 02:25:19 -0700
+Received: from lcaoubuntu-server.amd.com (10.180.168.240) by
+ SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39
+ via Frontend Transport; Tue, 26 Aug 2025 04:25:18 -0500
+From: Lin.Cao <lincao12@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Deucher
+ Alexander" <Alexander.Deucher@amd.com>, Lin.Cao <lincao12@amd.com>
+Subject: [PATCH] drm/amdgpu: fix memleak of ring sched and fence driver
+Date: Tue, 26 Aug 2025 17:25:16 +0800
+Message-ID: <20250826092516.3607290-1-lincao12@amd.com>
+X-Mailer: git-send-email 2.46.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re:
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org
-Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
- <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
- <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
- <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
- <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: PlrDtJS6Ct5mod7PF8nNaR2klUuAUauWG8RCXrDhlmQ_1756199828
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 27 Aug 2025 07:56:57 +0000
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000009B:EE_|SN7PR12MB7954:EE_
+X-MS-Office365-Filtering-Correlation-Id: 13eb2276-5328-4caa-7e3e-08dde4827a51
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|376014|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CICgWDP5Fwygbl6oX1GXNOiGu3TYTgF1d4lYNeF/I4Na7Yqr41Uhd0XG+nCe?=
+ =?us-ascii?Q?13rO6D9CfSGgyM/xMqRffSE0vfYXyJA0tGdxb1OeXEojI4CneQ+peps50BOo?=
+ =?us-ascii?Q?k8yribChNbw/bqadsdTKiZQ6S9PtRjgG+qPsfxVeT55R7sE4GZZtQCrfpBK3?=
+ =?us-ascii?Q?k1LalGBQgdsjlBC3A8FWQr8cjtXyeQLhS1L+k1bIQydlGliUKBFo9bZX7Ffd?=
+ =?us-ascii?Q?D/PDSHm7UIVVtUFZdwTKQyubWqEfr49y3IqIfA+GagfTMNQ005ki6JC6z75+?=
+ =?us-ascii?Q?s/KnWSJ6o5XcKOwXevLrmohlSotq1SQ3Enz1fHAI5ad1o8eApETNmx+wHUAG?=
+ =?us-ascii?Q?UZkys7zSCsbfRzGbCWAwaiOxxG6NT9CqgOYdKciHo6xU1iGvPIhD9ZFO65Q1?=
+ =?us-ascii?Q?LbdUmrrYrU1XXdkwc0dOCIe8Fv1PfvPh+ladY42ruYTBDqWDzDZ6pF0Yb+/j?=
+ =?us-ascii?Q?Q35Uw1I3VJeSM1KGubeFOObMqAZYUIhw+YhaBk1EoHtgfPVtEPKcSUFE3bNJ?=
+ =?us-ascii?Q?pi5QCp0IwFr5Hz2DgcZWpaG7FQ9LdBxsBC0SMTOAvAGEbBVKTfhO6f4NyBFa?=
+ =?us-ascii?Q?CqaOF1ufMjYk38kHcIAoyL6zE34r82KjvJyU1JdxRytG3Bt9OcP1FafT/4r+?=
+ =?us-ascii?Q?23vJYur12jBaK3XNRPU/vxcwCpgLtq2Nh0HzaTbiP/74bj7775W62REmNCtD?=
+ =?us-ascii?Q?MJS8duZ1G0/SF0Q91n5O2EiTI2DFFq1odux/XDwF92cz6UKnd+/nR8z8bGms?=
+ =?us-ascii?Q?h/i0TA6xCdeb/3Rg1nILMkG9Bv0xTInA1C0mjo8Qm1qwrZLQp6d3R+crc2pf?=
+ =?us-ascii?Q?hRQQZ1WqNnQe7aOtPJ+6HsmBeF9uVivd9wQesbfJbqaSMU3OFVA3nddaaqra?=
+ =?us-ascii?Q?0tYcwTs2H0ghQ/Vbv/QTyGR2mosy5dCqIeUrmmBXPs5ac0Z83sQruZkY+srH?=
+ =?us-ascii?Q?UmhqyRryw36eWtHDgi6Ot7WeFsNmoMohgxo6qhQzWq1gkBwk9ekmwh9p9g43?=
+ =?us-ascii?Q?cFNTQ/y7A11NmkC7byMuz92bQIT7uWo0kDQhBllolpgmu+G+i6lVUb2ihvJw?=
+ =?us-ascii?Q?f5dRoWxlR0FKnbpB6epkflg/DkmIVDHtxGVAHagrgFaFldGyAhoOCvt1SRkE?=
+ =?us-ascii?Q?Wh8qzXgj2UZocmbfrztEJIEaHvn+Q2HAQdfUOS7b4UYVFY3CENziDgq7jnjs?=
+ =?us-ascii?Q?75Xi96Egz98nV3LjDUumcq3Dyi6Lo29IABYNIrr5Wlco1nnCft/RxjsDNf0z?=
+ =?us-ascii?Q?quOAAwUtYAxUkR2KKwQiVfOxOZsFA2lBPkv81Vp2tqWX4Fwf2AQOBOJ8piBW?=
+ =?us-ascii?Q?KrL6Dn8W4paaiSlgYP38bpNe1YqLUXGuIt+IxQLuQ+RKo0CqZvhWeyw+fgrd?=
+ =?us-ascii?Q?TInhK9QQinvvItqfPrwVdRp41+XMfLdIoTCMoFweW7qnOSo1Zm2EIRsTIRBZ?=
+ =?us-ascii?Q?WIsUU7zrZOgQu39o0m0v8z5LIv4AaisjH28+sjWrRagSbJzXGykcvhU8Mi0P?=
+ =?us-ascii?Q?0Vbnue5ddDz1QCIEiKLEe7bOnG3VVOchvWP8?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2025 09:25:20.4976 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13eb2276-5328-4caa-7e3e-08dde4827a51
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000009B.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7954
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,73 +135,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 26.08.25 11:00, Christian König wrote:
-> On 26.08.25 10:46, David Hildenbrand wrote:
->>>> So my assumption would be that that is missing for the drivers here?
->>>
->>> Well yes and no.
->>>
->>> See the PAT is optimized for applying specific caching attributes to ranges [A..B] (e.g. it uses an R/B tree). But what drivers do here is that they have single pages (usually for get_free_page or similar) and want to apply a certain caching attribute to it.
->>>
->>> So what would happen is that we completely clutter the R/B tree used by the PAT with thousands if not millions of entries.
->>>
->>
->> Hm, above you're saying that there is no direct map, but now you are saying that the pages were obtained through get_free_page()?
-> 
-> The problem only happens with highmem pages on 32bit kernels. Those pages are not in the linear mapping.
+commit 4220d2c7c41b ("drm/amdgpu: remove is_mes_queue flag") set
+ring->adev->ring[ring-idx] as NULL at the end of function amdgpu_ring_fini()
+which will cause function amdgpu_fence_driver_sw_fini() skip
+drm_sched_fini() and free fence_drv.fence then cause memory leak.
 
-Right, in the common case there is a direct map.
+Release these resource at the beginning of amdgpu_ring_fini() to fix
+this issue.
 
-> 
->> I agree that what you describe here sounds suboptimal. But if the pages where obtained from the buddy, there surely is a direct map -- unless we explicitly remove it :(
->>
->> If we're talking about individual pages without a directmap, I would wonder if they are actually part of a bigger memory region that can just be reserved in one go (similar to how remap_pfn_range()) would handle it.
->>
->> Can you briefly describe how your use case obtains these PFNs, and how scattered tehy + their caching attributes might be?
-> 
-> What drivers do is to call get_free_page() or alloc_pages_node() with the GFP_HIGHUSER flag set.
-> 
-> For non highmem pages drivers then calls set_pages_wc/uc() which changes the caching of the linear mapping, but for highmem pages there is no linear mapping so set_pages_wc() or set_pages_uc() doesn't work and drivers avoid calling it.
-> 
-> Those are basically just random system memory pages. So they are potentially scattered over the whole memory address space.
+Fixes: 4220d2c7c41b ("drm/amdgpu: remove is_mes_queue flag")
+Signed-off-by: Lin.Cao <lincao12@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Thanks, that's valuable information.
-
-So essentially these drivers maintain their own consistency and PAT is 
-not aware of that.
-
-And the real problem is ordinary system RAM.
-
-There are various ways forward.
-
-1) We use another interface that consumes pages instead of PFNs, like a
-    vm_insert_pages_pgprot() we would be adding.
-
-    Is there any strong requirement for inserting non-refcounted PFNs?
-
-2) We add another interface that consumes PFNs, but explicitly states
-    that it is only for ordinary system RAM, and that the user is
-    required for updating the direct map.
-
-    We could sanity-check the direct map in debug kernels.
-
-3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating this
-    system RAM differently.
-
-
-There is also the option for a mixture between 1 and 2, where we get 
-pages, but we map them non-refcounted in a VM_PFNMAP.
-
-In general, having pages makes it easier to assert that they are likely 
-ordinary system ram pages, and that the interface is not getting abused 
-for something else.
-
-We could also perform the set_pages_wc/uc() from inside that function, 
-but maybe it depends on the use case whether we want to do that whenever 
-we map them into a process?
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 6379bb25bf5c..cf6f19a122df 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -406,6 +406,19 @@ void amdgpu_ring_fini(struct amdgpu_ring *ring)
+ 
+ 	ring->sched.ready = false;
+ 
++	if (ring->fence_drv.initialized) {
++		int i = 0;
++
++		if (ring->sched.ops)
++			drm_sched_fini(&ring->sched);
++
++		for (i = 0; i <= ring->fence_drv.num_fences_mask; ++i)
++			dma_fence_put(ring->fence_drv.fences[i]);
++		kfree(ring->fence_drv.fences);
++		ring->fence_drv.fences = NULL;
++		ring->fence_drv.initialized = false;
++	}
++
+ 	amdgpu_device_wb_free(ring->adev, ring->rptr_offs);
+ 	amdgpu_device_wb_free(ring->adev, ring->wptr_offs);
+ 
 -- 
-Cheers
-
-David / dhildenb
+2.46.1
 
