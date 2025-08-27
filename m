@@ -2,125 +2,126 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BDEB37C8A
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Aug 2025 09:57:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CDE5B379F6
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Aug 2025 07:43:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6214310E760;
-	Wed, 27 Aug 2025 07:57:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8D2610E6FA;
+	Wed, 27 Aug 2025 05:43:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="fFfa87uM";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UU8/2hiW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF72E10E062;
- Wed, 27 Aug 2025 05:27:20 +0000 (UTC)
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57QJuQZo029875;
- Wed, 27 Aug 2025 05:27:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=jxijss
- tmEiNGZJKG6yltOja4dBZKrqMyUi/HgZLz1Sk=; b=fFfa87uMu8acvDC8OVnLiF
- 3Gw7T94UM/oONEZ9FfO6ESJm9dykU5EYEWzJ6thKl8AEybeSnU7jVczC+OsbSmIg
- U1DTm1ikvBxQhtMsBkqiirIjOSbWdtCJnpSDht3JKVzPoBOjH3KPPIjRZwjgIoz4
- PIz+4T0pathmf8bjMQQcBo9Nngpp8r0YuSt99tds0+EviRwkVU+5p0dMPKzJ5SJZ
- NqSby3CqAv1CiFuqsjN+UtUj0P6MofPcWemNISQn5nz/ZN8twBsE28xbYF1o/y5D
- T+rxMTdyXFQiS1FQNk9wuoFsc0iqqXm08NakEBDb3JoIMWYZ+sB++DfGZXvYi8bQ
- ==
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48q42j2cs9-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 27 Aug 2025 05:27:07 +0000 (GMT)
-Received: from m0353725.ppops.net (m0353725.ppops.net [127.0.0.1])
- by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 57R5K8Rl017639;
- Wed, 27 Aug 2025 05:27:06 GMT
-Received: from ppma23.wdc07v.mail.ibm.com
- (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48q42j2cs6-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 27 Aug 2025 05:27:06 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 57R3lXEH029924;
- Wed, 27 Aug 2025 05:27:05 GMT
-Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
- by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 48qsfmpe9d-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 27 Aug 2025 05:27:05 +0000
-Received: from smtpav06.fra02v.mail.ibm.com (smtpav06.fra02v.mail.ibm.com
- [10.20.54.105])
- by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 57R5R1oh53739874
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 27 Aug 2025 05:27:01 GMT
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 6821520049;
- Wed, 27 Aug 2025 05:27:01 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id A772520040;
- Wed, 27 Aug 2025 05:27:00 +0000 (GMT)
-Received: from [9.152.212.92] (unknown [9.152.212.92])
- by smtpav06.fra02v.mail.ibm.com (Postfix) with ESMTP;
- Wed, 27 Aug 2025 05:27:00 +0000 (GMT)
-Message-ID: <ac6dfaec-38ea-486d-89a0-ab02768cee42@linux.ibm.com>
-Date: Wed, 27 Aug 2025 07:27:00 +0200
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2085.outbound.protection.outlook.com [40.107.223.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48C1610E6FA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 05:43:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oaeXCdQhMH0qWddAfSsycbKx9aWMIxtPSfolOi3epxqT/yHDZsHYGV1nkUvumkD/XLqXzOqWuTG6w1ucc32zz1iUnl5fKCQCOAPZnjgk8RHlb6LzhJ+Q0NxwM0As131qcYL8nWkQcPfiznhbAMkSPwJBSEIutTcL08X0x7EBXqn300PCrY/1dbjCpQNnGGLOSC8ffcu3n1hOlrRcUc/5c+/bh1JYN4EwP+h3IAgVWi9UW0cgOwi3J5XRkDySxK2V0snR3GlZRb3FAPRcGTTbKYHP3VRJx1dm8meKfKCkcxqmpzR2W1Q6CKaY9elxhcEhAwWFN8Bq9T/twiDTaeMcUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CLIb/H/+ekzl+ljKXxoBwbz4wkEvMmlLpRO6Z24aHYQ=;
+ b=RzmCdbkM6yJlq4p+YZoP3PO6SpMWigw+jP9dmfqqNnoGbfF9HBZrnb/im4j2YfbAjDQJkxPqCX7BrtWS0gqebn4Xxi50jxwYYaKrJ4xF2UbB5rBNLyhGnUwu+pW2l1MOdaiqHL8reBms1uFoOv27VAqmXr8cHl+0xuwNBaEDxF252983LwCqdQmGfXEf2qWSEO4hRSL4o6bXxwYL0GOpY/PLz/IzvfpJZrvvAVrdNoVOm6s/uWmT1Zx3BllUHJm+lj1cKhrwbnu0qt2+Odn/ugrw6Pakv1JiQNtqrOj5CSKLjJ29ZfLdtYBXdfVVF1/ZgMJDvqqQHlzJLLqUwa3AKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CLIb/H/+ekzl+ljKXxoBwbz4wkEvMmlLpRO6Z24aHYQ=;
+ b=UU8/2hiWYPWMr2IyHZBS4Rrjg62gf/+cwGOiKKBkMj/aB3L76wyDRaztG0bmsuDEaOU29NJcwMCon1gsI5eSyKJrg6yP9H19SbI46lQ5YUUEhMafJ+40cl9V0ZOiWDdVdhsb0Mstd9wdNcmFjVpaZrCD8TDjnuTW3T6kOYcnZkM=
+Received: from CH0PR03CA0323.namprd03.prod.outlook.com (2603:10b6:610:118::6)
+ by CYYPR12MB8921.namprd12.prod.outlook.com (2603:10b6:930:c7::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.13; Wed, 27 Aug
+ 2025 05:43:38 +0000
+Received: from CH2PEPF00000147.namprd02.prod.outlook.com
+ (2603:10b6:610:118:cafe::6e) by CH0PR03CA0323.outlook.office365.com
+ (2603:10b6:610:118::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9073.13 via Frontend Transport; Wed,
+ 27 Aug 2025 05:43:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CH2PEPF00000147.mail.protection.outlook.com (10.167.244.104) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9052.8 via Frontend Transport; Wed, 27 Aug 2025 05:43:38 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 27 Aug
+ 2025 00:43:37 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1748.10; Tue, 26 Aug
+ 2025 22:43:37 -0700
+Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39
+ via Frontend Transport; Wed, 27 Aug 2025 00:43:36 -0500
+From: Jesse.Zhang <Jesse.Zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
+ Jesse.Zhang <Jesse.Zhang@amd.com>
+Subject: [PATCH] drm/amdgpu/sdma: bump firmware version checks for user queue
+ support
+Date: Wed, 27 Aug 2025 13:43:05 +0800
+Message-ID: <20250827054330.1791207-1-Jesse.Zhang@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/19] perf: Introduce positive capability for raw events
-To: Mark Rutland <mark.rutland@arm.com>, Robin Murphy <robin.murphy@arm.com>, 
- Sumanth Korikkar <sumanthk@linux.ibm.com>,
- Jan Polensky <japo@linux.ibm.com>
-Cc: peterz@infradead.org, mingo@redhat.com, will@kernel.org, acme@kernel.org, 
- namhyung@kernel.org, alexander.shishkin@linux.intel.com,
- jolsa@kernel.org, irogers@google.com, adrian.hunter@intel.com,
- kan.liang@linux.intel.com, linux-perf-users@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <542787fd188ea15ef41c53d557989c962ed44771.1755096883.git.robin.murphy@arm.com>
- <aK259PrpyxguQzdN@J2N7QTR9R3>
-Content-Language: en-US
-From: Thomas Richter <tmricht@linux.ibm.com>
-Organization: IBM
-In-Reply-To: <aK259PrpyxguQzdN@J2N7QTR9R3>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAxMCBTYWx0ZWRfXx7bT3ieVYWZ1
- FvRIJn/6odyl76gPtjq2fdUI3+ddgoyBguazv17xAc0h1PWPsciO7Io1+yf38004HJX48EZKQe4
- jjqa2jsZ613Il7PEWWZLmHVXl0DVElauSgaXsW2jrn5unNTZZAgCkgP5ixkSnbssGkUA98RWoHK
- 6CllyViFj8nmb4/kmZamtgDzlo/xirMdIPTqK1ytIy748E4TyQcONzfTAVM6cDoHbAMLdYuTHtD
- UT6EmBwE8Tz6Ajw1M3OeNTbMk21jMwITf/ouwlMB6Q/Hm12FuudC6E2iwfSIPWm8nU5cvD4JBmw
- ghpRUxLnbbdBrU5mCsCpBm2H2yjaVRWCqCxRNsBxe1xCwhV1Oev6PUoPQ5TLoGumXLZUFEfuXwo
- /BJHYr+T
-X-Proofpoint-ORIG-GUID: Z1OBCqtS81HxjTSNcENNGRKeOQ0QzPO9
-X-Proofpoint-GUID: 4pnWswYamnTcgbcPVqCp3LQWR1ph9h16
-X-Authority-Analysis: v=2.4 cv=evffzppX c=1 sm=1 tr=0 ts=68ae972b cx=c_pps
- a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=7CQSdrXTAAAA:8 a=KByoUL483hSIROooWq4A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-26_02,2025-08-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 malwarescore=0 spamscore=0 bulkscore=0
- impostorscore=0 clxscore=1015 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230010
-X-Mailman-Approved-At: Wed, 27 Aug 2025 07:56:57 +0000
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000147:EE_|CYYPR12MB8921:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4749ce37-35d0-4a44-bf4e-08dde52cabf8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bavZg2LOC1+SiIuP0UmmqQTanKXhdCdyNCE4OXzZoiH2tmTmof0yJMNR7yCa?=
+ =?us-ascii?Q?njuSNfAm8PoHovTN7NCLHEimt68YUKf6Nyi1rZGcOxnB/bh8axCtntBLrMLZ?=
+ =?us-ascii?Q?Zo08HnSkAtcs+1WB6iQFEmfmPlEQG1DH2rKp9bdVYDqHxHdKq0Co17fQup4P?=
+ =?us-ascii?Q?v7/5wGCfQSZcJzJX+3tj3W10lo1FnDcNh5F31plz6EmkeXla3s0voYIOAOt7?=
+ =?us-ascii?Q?+b+kJ8Tc9Aac6BgJ/+fIyWYcp8ief1N/RrrI2dDFfjxzYfpTBl0Sj5oA/unQ?=
+ =?us-ascii?Q?XLuwTzerGZIXK3at7BqKi2G6GL8oEYrmifcXOegU63P4p1yKMiqzxlfkNART?=
+ =?us-ascii?Q?9ftEDaxBSCN28C9YpdZ951W7i/1cGbKUNJ+Kf9d3AAsxmzP7rmc7WyPq29/o?=
+ =?us-ascii?Q?IVXibXDuDmv30eIDurt6N8v5x9Sq9gD1rER2L320sYTqfBFA5SbgQDplVeYN?=
+ =?us-ascii?Q?z1tn7MEYaXtdd4h726PLDSAU6QY9v/VQYfohZQnk4TmKmM2WlefqyBW/DRqH?=
+ =?us-ascii?Q?e/zgQdWpfuuhYk/NxsHEdnkTD/cJmycVzc0qxImgczd5csIcdHSQamUzFraz?=
+ =?us-ascii?Q?MyzhOZATckTSS809J5ATDQdGX+2VmkAaVBJVynOmGVmmgWTZ1XNSRuOPtd/X?=
+ =?us-ascii?Q?ViDjqJa7q+ra/q4/HzjdlYBJDZuUL/NuupP5vqw5qh1tkUGarXH4m03aN3oL?=
+ =?us-ascii?Q?XayQguHw96BYduSqgOAf5z3gnYZmsNEmV+1jVZs1eMFyBeDZRdCxpS7Z6rH9?=
+ =?us-ascii?Q?STwgmnTHk2gXQQszNDtc2NCvnGJy14uuJwLbJFUyzEv8Fvrof4WIAyG0tTeB?=
+ =?us-ascii?Q?tJjTkiDRu/1I+ztt8o4jnIx1b4YmEhEF6ajuRES1WqZTiXVkIybKgr7z4MQB?=
+ =?us-ascii?Q?JrKyFCSuCiMG0eTC0u77aSczVr4bQUz+ZpyKnDCDUpUhSuA4AFFJuDp8/AB/?=
+ =?us-ascii?Q?2rm2fLAy2fwEobLlQxEBPen4+pgV2sCZlJ39Ays+PKLWoasdcvKjjSeNNfdr?=
+ =?us-ascii?Q?V7JExq92kLSDrUUxoZYR//nWDbyfj/0sNRDIWMX62rIvQLkX5d97LdekZILM?=
+ =?us-ascii?Q?hhodFf/qCJ3HMxpgi+zCnByvmYDMkME4aSsXhTEiXcoNg+M2WnfrVx5v3NVZ?=
+ =?us-ascii?Q?iRPL49iSEbhboXf64pcj5hSWFiUdv2ZchfdGvwRoTQND/t4eJ/WU5fzXn45d?=
+ =?us-ascii?Q?O0/k2QiZtrOxoOc1+2Xs6JwmZNUbsS0Abvg1eav/cHGY7r4TkLaY1Ya6uKYq?=
+ =?us-ascii?Q?zyAOCX0C8qSg0D1P8FN5sOnuD2iV7tOiwD6blDdA0JEpDsHdF0GpE1os+uA3?=
+ =?us-ascii?Q?2O3r23DzV2Dqmx95NKoHbzUpJGU6FcPZY2uBbczhhSvMNECj7Ek5lQTC1v8V?=
+ =?us-ascii?Q?PMJf7CiC9/fGjopsPJzTl31XkVuBsMyoH23GSvNn4eBPHFtaNRObN6NUBYhd?=
+ =?us-ascii?Q?w7ZARM/BjNeFCEo44ZRx21OxMbfg7lrrsJkZDf3sBxqiu9jVlble/Zylz5on?=
+ =?us-ascii?Q?VCxabj0b6ytU2/O2bpJenhGXvNG5jykXTpiG?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 05:43:38.2450 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4749ce37-35d0-4a44-bf4e-08dde52cabf8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000147.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8921
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,79 +136,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 8/26/25 15:43, Mark Rutland wrote:
-> On Wed, Aug 13, 2025 at 06:01:10PM +0100, Robin Murphy wrote:
->> Only a handful of CPU PMUs accept PERF_TYPE_{RAW,HARDWARE,HW_CACHE}
->> events without registering themselves as PERF_TYPE_RAW in the first
->> place. Add an explicit opt-in for these special cases, so that we can
->> make life easier for every other driver (and probably also speed up the
->> slow-path search) by having perf_try_init_event() do the basic type
->> checking to cover the majority of cases.
->>
->> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> 
-> 
-> To bikeshed a little here, I'm not keen on the PERF_PMU_CAP_RAW_EVENTS
-> name, because it's not clear what "RAW" really means, and people will
-> definitely read that to mean something else.
-> 
-> Could we go with something like PERF_PMU_CAP_COMMON_CPU_EVENTS, to make
-> it clear that this is about opting into CPU-PMU specific event types (of
-> which PERF_TYPE_RAW is one of)?
-> 
-> Likewise, s/is_raw_pmu()/pmu_supports_common_cpu_events()/.
-> 
->> ---
->>
->> A further possibility is to automatically add the cap to PERF_TYPE_RAW
->> PMUs in perf_pmu_register() to have a single point-of-use condition; I'm
->> undecided...
-> 
-> I reckon we don't need to automagically do that, but I reckon that
-> is_raw_pmu()/pmu_supports_common_cpu_events() should only check the cap,
-> and we don't read anything special into any of
-> PERF_TYPE_{RAW,HARDWARE,HW_CACHE}.
-> 
->> ---
->>  arch/s390/kernel/perf_cpum_cf.c    |  1 +
->>  arch/s390/kernel/perf_pai_crypto.c |  2 +-
->>  arch/s390/kernel/perf_pai_ext.c    |  2 +-
->>  arch/x86/events/core.c             |  2 +-
->>  drivers/perf/arm_pmu.c             |  1 +
->>  include/linux/perf_event.h         |  1 +
->>  kernel/events/core.c               | 15 +++++++++++++++
->>  7 files changed, 21 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/s390/kernel/perf_cpum_cf.c b/arch/s390/kernel/perf_cpum_cf.c
->> index 1a94e0944bc5..782ab755ddd4 100644
->> --- a/arch/s390/kernel/perf_cpum_cf.c
->> +++ b/arch/s390/kernel/perf_cpum_cf.c
->> @@ -1054,6 +1054,7 @@ static void cpumf_pmu_del(struct perf_event *event, int flags)
->>  /* Performance monitoring unit for s390x */
->>  static struct pmu cpumf_pmu = {
->>  	.task_ctx_nr  = perf_sw_context,
->> +	.capabilities = PERF_PMU_CAP_RAW_EVENTS,
->>  	.pmu_enable   = cpumf_pmu_enable,
->>  	.pmu_disable  = cpumf_pmu_disable,
->>  	.event_init   = cpumf_pmu_event_init,
-> 
-> Tangential, but use of perf_sw_context here looks bogus.
-> 
+Using the previous firmware could lead to problems with
+PROTECTED_FENCE_SIGNAL commands, specifically causing register
+conflicts between MCU_DBG0 and MCU_DBG1.
 
-It might look strange, but it was done on purpose. For details see
-commit 9254e70c4ef1 ("s390/cpum_cf: use perf software context for hardware counters")
+The updated firmware versions ensure proper alignment
+and unification of the SDMA_SUBOP_PROTECTED_FENCE_SIGNAL value with SDMA 7.x,
+resolving these hardware coordination issues
 
-Background was a WARN_ON() statement which fired, because several PMU device drivers
-existed in parallel on s390x platform.
-Not sure if this condition is still true after all these years...
+Fixes: 604d44879707 ("drm/amdgpu/sdma6: add ucode version checks for userq support")
 
+Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+index e6d8eddda2bf..db6e41967f12 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+@@ -1377,7 +1377,7 @@ static int sdma_v6_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 
+ 	switch (amdgpu_ip_version(adev, SDMA0_HWIP, 0)) {
+ 	case IP_VERSION(6, 0, 0):
+-		if ((adev->sdma.instance[0].fw_version >= 24) && !adev->sdma.disable_uq)
++		if ((adev->sdma.instance[0].fw_version >= 27) && !adev->sdma.disable_uq)
+ 			adev->userq_funcs[AMDGPU_HW_IP_DMA] = &userq_mes_funcs;
+ 		break;
+ 	case IP_VERSION(6, 0, 1):
+@@ -1385,11 +1385,11 @@ static int sdma_v6_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 			adev->userq_funcs[AMDGPU_HW_IP_DMA] = &userq_mes_funcs;
+ 		break;
+ 	case IP_VERSION(6, 0, 2):
+-		if ((adev->sdma.instance[0].fw_version >= 21) && !adev->sdma.disable_uq)
++		if ((adev->sdma.instance[0].fw_version >= 23) && !adev->sdma.disable_uq)
+ 			adev->userq_funcs[AMDGPU_HW_IP_DMA] = &userq_mes_funcs;
+ 		break;
+ 	case IP_VERSION(6, 0, 3):
+-		if ((adev->sdma.instance[0].fw_version >= 25) && !adev->sdma.disable_uq)
++		if ((adev->sdma.instance[0].fw_version >= 27) && !adev->sdma.disable_uq)
+ 			adev->userq_funcs[AMDGPU_HW_IP_DMA] = &userq_mes_funcs;
+ 		break;
+ 	case IP_VERSION(6, 1, 0):
 -- 
-Thomas Richter, Dept 3303, IBM s390 Linux Development, Boeblingen, Germany
---
-IBM Deutschland Research & Development GmbH
+2.49.0
 
-Vorsitzender des Aufsichtsrats: Wolfgang Wendt
-
-Geschäftsführung: David Faller
-
-Sitz der Gesellschaft: Böblingen / Registergericht: Amtsgericht Stuttgart, HRB 243294
