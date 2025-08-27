@@ -2,56 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D46B39460
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Aug 2025 08:56:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A635CB384C8
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Aug 2025 16:19:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3112810E6A7;
-	Thu, 28 Aug 2025 06:56:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4247510E139;
+	Wed, 27 Aug 2025 14:19:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="COS2rfgd";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 54C8110E110;
- Wed, 27 Aug 2025 14:03:45 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 417AD2720;
- Wed, 27 Aug 2025 07:03:36 -0700 (PDT)
-Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 662DB3F738;
- Wed, 27 Aug 2025 07:03:37 -0700 (PDT)
-Date: Wed, 27 Aug 2025 15:03:22 +0100
-From: Mark Rutland <mark.rutland@arm.com>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
- acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org,
- irogers@google.com, adrian.hunter@intel.com,
- kan.liang@linux.intel.com, linux-perf-users@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 02/19] perf/hisilicon: Fix group validation
-Message-ID: <aK8QKlGsjB4WWg2e@J2N7QTR9R3>
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <c7b877e66ba0d34d8558c5af8bbb620e8c0e47d9.1755096883.git.robin.murphy@arm.com>
- <aK2XS_GhLw1EQ2ml@J2N7QTR9R3>
- <ab80cb84-42b2-4ce8-aa6c-4ce6be7a12b7@arm.com>
- <aK3TS3s5_Pczx1nu@J2N7QTR9R3>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2045.outbound.protection.outlook.com [40.107.237.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0466610E0AE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 14:19:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UmQh8ebF5m/lEUoCDfFIFqEydNteW3yizKLvkxmpgXnGDTMsyn3F6U9rXmoPaG5Tle+OSUN/AfCHXtOe213WRaqzaeschlx1NVH5YNOD5O9FKusKnPOxxL3PuvYY+K40ALEwvU8E3n14nWpCZYINvvEhKkrn6bj2qnm6KPyfh+ZuN30qqX6Ohlms4VXvZSlhewfktArFfBhGRkwgUr2ZtMMLhEGFOcoptOmxywbTq/u0K6nd4xeE8bknScqwyP+4fK4DU4K2eTm75l2Z2toyLkVrzMeeF4C0gQdsVOJBqq3i/miaSPLu8QFrLhgvVNV6sXl0U38dBfTO1m9fZGjqdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o1NOIr/Z7b4oHql3BTAmfPIDU9HmoGMc/xQYsDlROrQ=;
+ b=oWCj8cfMQm2HEEmpsNn4skLARYok7MKjJNJxqGYBZtJJWN/bjvyr3EKXNVOjSOCxCXN+Y6sI0QV5MWOF6GPVv+eCoSC5mGUfDLC0DXiWZ8EKSV0PS/rKSsaapahnDN67EqiYu6b2/FhXxleVuiLbADHXlsJINxu3tXbWsu3Zpsm48NNRMlg3TqdRUQJ5y2Rx/3ND8FpW5BzpSu9mUTj2ZsTCetFyurgP2hhcyeBr7SrDiJxIGDtNyhxnaCpH8324BAN9ZRbojCgH8cBEuU5F5jRk/nn76HuSk+dZyCF5B+ny0ajJe8FOTsxSfTAtFZmkuTnz4AbaMU7C2X+idJN9PQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o1NOIr/Z7b4oHql3BTAmfPIDU9HmoGMc/xQYsDlROrQ=;
+ b=COS2rfgdMsFfzT2HKPRkRdKk+9wKwpXjdMjpxzj4ryG7NAjFxToRLF/0PLnuZke5px/oyXMQk/tQSvjSmUfE+ngXNtD8JDqAte0a0vCXNX9X2Bw+CY7taABpnDluLzAqt+Jhbngqns7BaFQYzpxXQe/5K30YCFjS2XcdmsrJEpE=
+Received: from SA1P222CA0079.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:35e::16)
+ by CH3PR12MB9146.namprd12.prod.outlook.com (2603:10b6:610:19c::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.20; Wed, 27 Aug
+ 2025 14:19:47 +0000
+Received: from SA2PEPF00003F63.namprd04.prod.outlook.com
+ (2603:10b6:806:35e:cafe::cd) by SA1P222CA0079.outlook.office365.com
+ (2603:10b6:806:35e::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9073.17 via Frontend Transport; Wed,
+ 27 Aug 2025 14:19:46 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF00003F63.mail.protection.outlook.com (10.167.248.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9073.11 via Frontend Transport; Wed, 27 Aug 2025 14:19:46 +0000
+Received: from kevin-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 27 Aug
+ 2025 09:19:44 -0500
+From: Yang Wang <kevinyang.wang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, Asad Kamal <asad.kamal@amd.com>
+Subject: [PATCH v2] drm/amd/amdgpu: unified amdgpu ip block name
+Date: Wed, 27 Aug 2025 22:19:33 +0800
+Message-ID: <20250827141933.626717-1-kevinyang.wang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aK3TS3s5_Pczx1nu@J2N7QTR9R3>
-X-Mailman-Approved-At: Thu, 28 Aug 2025 06:55:55 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F63:EE_|CH3PR12MB9146:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0e4855b-1da2-4f99-d41a-08dde574c646
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|376014|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8c0X/UMM98ktY2VktP0HmYv63tFaCV854yvicN7jdqxRqXo0+KvG4B27iXq1?=
+ =?us-ascii?Q?NWddJ+KEa6si8C3WZQpa/jBtY5s/UlS0wdrbuK8mhx2Xh3o/NvYLAyI1yE9H?=
+ =?us-ascii?Q?sr1MBi2j/UAZKKh37H794hWjwUdl4wJydWxrP8L5DI7CVdWecYhlPzn+rYPr?=
+ =?us-ascii?Q?YewQZsB9wm0dbi+dguTGOeuSG6E+k0xb7KJAmnaakhNI+agOAcRA8X7eytpg?=
+ =?us-ascii?Q?Va11eRdt6p4BPXHsKav6RtimO94PGk06/8RoZYK76oo7ui+A5Ws5IRcqU8q5?=
+ =?us-ascii?Q?Jv0jEyy/WrluNiSyeyNkQmZ2XAefxQB06HPZNkFWCP0hXIsZklCx9z6I0EPK?=
+ =?us-ascii?Q?rE+GnBb0Q9daUQaIto/zMkTnKv65IPP+siikSIJ3tWBpWws3le+Ad8PIUgkK?=
+ =?us-ascii?Q?KZOdIDXvVTPpqW/9CTvBs8zETwO1lttBQ5RPD4spIUhIIomMIZIbaNZkcJmh?=
+ =?us-ascii?Q?VU4CKih3g7e0271niooglXHaMbf6crnQlPE791wETZEywv8D5HX0824Oav5z?=
+ =?us-ascii?Q?dkU9XmNpeSO/sn1ormTkU+c7lE8To+CBA9THfDkPzI25loMQP4Xd0yLkvk0f?=
+ =?us-ascii?Q?urcinEsCEysdcKx9VRkhW8w3sNB8JcSEzEIGccGcvUARWw8vb89grL0fKawg?=
+ =?us-ascii?Q?/38mGxubsL8QO/9eoyLjDxTTCQToKw126FUxTmngHvReLNwBMM7pIYzxg4ml?=
+ =?us-ascii?Q?7oFHnHajCeMKJVq3nn/1Ujxa3acUWD1r7QvfwEK7T5F4IqYC1F48Udz81oFU?=
+ =?us-ascii?Q?8XR+xoAvhlCuDVBHeAmdDbOmj1SdB94sPoRI40gnd+oMl0RQ2pS61/EmJMAw?=
+ =?us-ascii?Q?FDZkl47zS/lhzKBLL9PfOO7ZxJ+vCa1Ph3YTNmCwF1hdZ0qm0qfjBwAIWwt0?=
+ =?us-ascii?Q?G8mosPT5p0Uv9fqiVa+cYX5UiXmiCV7Y2sgkLP6gvcDbz5LwrxUFviZQEd8/?=
+ =?us-ascii?Q?wtVpTaJtahy7Io7+B1+Vm2W+Mp/MgjAkek+km8TZGJ2v8XdPHnbD0Jpx7Jud?=
+ =?us-ascii?Q?Mq8UXJKAHw/xbp8wCJjgAh1CXW3MJcJl9Dnm+vYHGiEP5EDbi8DXt+Zu/skb?=
+ =?us-ascii?Q?iGlIWY4GvUGkyYZMo7McObxy+2Fq+7MsrDTGdrjUWAQVcdHsBtIfyXkH49mM?=
+ =?us-ascii?Q?RLkZwu95Ua3LmECHestILl8IugqltVbYkpSVmx+apkbeNj0bjXuxSm2XMMpX?=
+ =?us-ascii?Q?G4GG6x11OKaZyBtet5eark6VmN4Pu6oXiKHYkCU3j2mBue/6yXqQQoqe4ZTs?=
+ =?us-ascii?Q?y30Dll5zKvGIEgnC+GseQUHpSdHgdyQolCP0uC/2DzMhlNKhf1TUAySPEgRt?=
+ =?us-ascii?Q?LluAUBVlllhVRjXPwGs62UKx3QAacmyHf4RyOOY9A2C4m/iJmCIqnPwAsysh?=
+ =?us-ascii?Q?GkCdomHlAOVoUjomIvBep6NNILTcGEPVZhEsAf+2ElRkStgE8cWi/hrCjea+?=
+ =?us-ascii?Q?7k1EVidQVPsyNEs+ZF6d7U7W5jS5lp0yylF0nof3BImTIcUuvJMuAXDz+oBJ?=
+ =?us-ascii?Q?2srsbh9/q6uT9e9A3WFjGjSCefKYAvaaHUQ4?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 14:19:46.1323 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0e4855b-1da2-4f99-d41a-08dde574c646
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F63.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9146
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,60 +130,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 26, 2025 at 04:31:23PM +0100, Mark Rutland wrote:
-> On Tue, Aug 26, 2025 at 03:35:48PM +0100, Robin Murphy wrote:
-> > On 2025-08-26 12:15 pm, Mark Rutland wrote:
-> > > On Wed, Aug 13, 2025 at 06:00:54PM +0100, Robin Murphy wrote:
+v1:
+1. Unified amdgpu ip block name print with format
+   "{ip_type}_v{major}_{minor}_{rev}"
 
-> > > > diff --git a/drivers/perf/hisilicon/hisi_pcie_pmu.c b/drivers/perf/hisilicon/hisi_pcie_pmu.c
-> > > > index c5394d007b61..3b0b2f7197d0 100644
-> > > > --- a/drivers/perf/hisilicon/hisi_pcie_pmu.c
-> > > > +++ b/drivers/perf/hisilicon/hisi_pcie_pmu.c
-> > > > @@ -338,21 +338,16 @@ static bool hisi_pcie_pmu_validate_event_group(struct perf_event *event)
-> > > >   	int counters = 1;
-> > > >   	int num;
-> > > > -	event_group[0] = leader;
-> > > > -	if (!is_software_event(leader)) {
-> > > > -		if (leader->pmu != event->pmu)
-> > > > -			return false;
-> > > > +	if (leader == event)
-> > > > +		return true;
-> > > > -		if (leader != event && !hisi_pcie_pmu_cmp_event(leader, event))
-> > > > -			event_group[counters++] = event;
-> > > > -	}
-> > > > +	event_group[0] = event;
-> > > > +	if (leader->pmu == event->pmu && !hisi_pcie_pmu_cmp_event(leader, event))
-> > > > +		event_group[counters++] = leader;
-> > > 
-> > > Looking at this, the existing logic to share counters (which
-> > > hisi_pcie_pmu_cmp_event() is trying to permit) looks to be bogus, given
-> > > that the start/stop callbacks will reprogram the HW counters (and hence
-> > > can fight with one another).
+2. Avoid IP block name conflicts for SMU/PSP ip block
 
-> > It does seem somewhat nonsensical to have multiple copies of the same event
-> > in the same group, but I imagine it could happen with some sort of scripted
-> > combination of metrics, and supporting it at this level saves needing
-> > explicit deduplication further up. So even though my initial instinct was to
-> > rip it out too, in the end I concluded that that doesn't seem justified.
-> 
-> As above, I think it's clearly bogus. I don't think we should have
-> merged it as-is and it's not something I'd like to see others copy.
-> Other PMUs don't do this sort of event deduplication, and in general it
-> should be up to the user or userspace software to do that rather than
-> doing that badly in the kernel.
-> 
-> Given it was implemented with no rationale I think we should rip it out.
-> If that breaks someone's scripting, then we can consider implementing
-> something that actually works.
+v2:
+Update IP block print format to keep legacy IP block name (Alex)
+"{ip_type}_v{major}_{minor}_{rev} ({funcs->name})"
 
-Having dug some more, I see that this was intended to handle the way
-the hardware shares a single config register between pairs of counter
-and counter_ext registers, with the idea being that two related events
-could be allocated into the same counter pair (but would only occupy a
-single counter each).
+Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+Reviewed-by: Asad Kamal <asad.kamal@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 36 ++++++++++++++++++++--
+ 1 file changed, 34 insertions(+), 2 deletions(-)
 
-I still think the code is wrong, but it is more complex than I made it
-out to be, and you're right that we should leave it as-is for now. I can
-follow up after we've got this series in.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index e117494e8054..d869226b2fa9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2447,6 +2447,33 @@ int amdgpu_device_ip_block_version_cmp(struct amdgpu_device *adev,
+ 	return 1;
+ }
+ 
++static const char *ip_block_names[] = {
++	[AMD_IP_BLOCK_TYPE_COMMON] =  "common",
++	[AMD_IP_BLOCK_TYPE_GMC] = "gmc",
++	[AMD_IP_BLOCK_TYPE_IH] = "ih",
++	[AMD_IP_BLOCK_TYPE_SMC] = "smu",
++	[AMD_IP_BLOCK_TYPE_PSP] = "psp",
++	[AMD_IP_BLOCK_TYPE_DCE] = "dce",
++	[AMD_IP_BLOCK_TYPE_GFX] = "gfx",
++	[AMD_IP_BLOCK_TYPE_SDMA] = "sdma",
++	[AMD_IP_BLOCK_TYPE_UVD] = "uvd",
++	[AMD_IP_BLOCK_TYPE_VCE] = "vce",
++	[AMD_IP_BLOCK_TYPE_ACP] = "acp",
++	[AMD_IP_BLOCK_TYPE_VCN] = "vcn",
++	[AMD_IP_BLOCK_TYPE_MES] = "mes",
++	[AMD_IP_BLOCK_TYPE_JPEG] = "jpeg",
++	[AMD_IP_BLOCK_TYPE_VPE] = "vpe",
++	[AMD_IP_BLOCK_TYPE_UMSCH_MM] = "umsch_mm",
++	[AMD_IP_BLOCK_TYPE_ISP] = "isp",
++};
++
++static const char *ip_block_name(struct amdgpu_device *adev, enum amd_ip_block_type type)
++{
++	int idx = (int)type;
++
++	return idx < ARRAY_SIZE(ip_block_names) ? ip_block_names[idx] : "unknown";
++}
++
+ /**
+  * amdgpu_device_ip_block_add
+  *
+@@ -2475,8 +2502,13 @@ int amdgpu_device_ip_block_add(struct amdgpu_device *adev,
+ 		break;
+ 	}
+ 
+-	dev_info(adev->dev, "detected ip block number %d <%s>\n",
+-		 adev->num_ip_blocks, ip_block_version->funcs->name);
++	dev_info(adev->dev, "detected ip block number %d <%s_v%d_%d_%d> (%s)\n",
++		 adev->num_ip_blocks,
++		 ip_block_name(adev, ip_block_version->type),
++		 ip_block_version->major,
++		 ip_block_version->minor,
++		 ip_block_version->rev,
++		 ip_block_version->funcs->name);
+ 
+ 	adev->ip_blocks[adev->num_ip_blocks].adev = adev;
+ 
+-- 
+2.34.1
 
-Mark.
