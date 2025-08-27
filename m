@@ -2,81 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D38CB38523
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Aug 2025 16:40:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9593DB39455
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Aug 2025 08:55:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E24810E82E;
-	Wed, 27 Aug 2025 14:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B060E10E624;
+	Thu, 28 Aug 2025 06:55:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="L42I57fO";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="ZBMoJHCm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6C4E10E82E
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 14:39:52 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-3cbe70a7923so1212401f8f.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 07:39:52 -0700 (PDT)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9210610E856
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 15:15:44 +0000 (UTC)
+Received: by mail-pl1-f175.google.com with SMTP id
+ d9443c01a7336-24611734e50so164705ad.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 08:15:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756305591; x=1756910391; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=voiiV6hakwk7d6qVZDjf2PRdAjU2uNUIGApEH3OcVa8=;
- b=L42I57fO+rYavxPSxAtfFbFTg5Vplf3VbI3VD9B62oz0MzBe2aYHmuVmIaw1o1DAUk
- 6euoHiv4uYDjDhhZp2Y4ag3BEq0Rj5nXXs9GIlPGiWWCqulpyRCDoGmcQaELZbYg0Qrn
- 2ZqryTa3mqWESYF+I2YTLZ+BYiW+Wv+NfV/vv9+yA+9nq0yu8rXOFqrxU2fdDEKAa+uM
- fv/IlEdmCIVr4KjYQ4U5g/WKKQnHoyArg0lMvMHtLCF1yABwASmtDrScfTFSjhzZomQJ
- 6oB+zfFkH1iO+4dJPi/Z+0o2GX4m3UmJbq5dXAgd5CQ4+oWH1VmPZIyKtkjBaNPW+6zi
- O+qg==
+ d=google.com; s=20230601; t=1756307744; x=1756912544;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=aGPhYDWt388RttmicU0o24RVsxY/twdNMb4O/vzImCs=;
+ b=ZBMoJHCmvH533bFWAtNe5mKHHxZhqTxSJ2VjCOENxZ6RLmD0kq9peCqeZsg1MnDCL7
+ dy6Ir0MApbFSdf3gXwtXFKwI9NmpwAYbD5UkA7kdDAdRJK0qjN3cTT1HCVOQLbV/+Uqk
+ vx+FT90wVC+uoDf5feRQYkg9wiM2liXu6U+P/nTIKXyOGAZ/2QKIWyQ0Imx9xcrLAbrc
+ RZ42Pbm8O4ykoDhpvxKDJZUu/7ddsC/Br+1lqFPcMurnBGkBQSwMjv/fjvOUl1pEN8pm
+ diUCI7Ups8OWqHrtV6VxeFQq00nwYV0akSiNAcWHwVUk33MQ9WsY491bCE/C1aYwPEQI
+ AYnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756305591; x=1756910391;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=voiiV6hakwk7d6qVZDjf2PRdAjU2uNUIGApEH3OcVa8=;
- b=UuHqGkusWJlZmnfBR/BpC4mpJqekR6KPRvlqKBcNO4BBdXcoN4TPkPe4UA14cDIDRD
- EnCX77XxKjGGoWo3AGfbkZIsIP2LrW3d4uh+KPuHlktvFpv+dU4NBMfQ7MhVzJDyWOiJ
- rOmp4Mpw8cOMshaTNRIAqyeUFEFr7TsTX8C0MGFbVfeYTxoKCUGTgs8dXIY1J7oGlQgM
- V3s9lTkWg5Wp2LKqKzxx/Fthkv/qwMEV9P0LdqJiLiX5Tkk7ff+FUAlzBpIyjBLs9ycP
- RcHCN9J0W0JIlIDtxkpvKkXy8U/abhUibN2G/V4NyhM+G7sYzia594lJ/Gx4Th9QVUjS
- bmdA==
-X-Gm-Message-State: AOJu0YwzW1CVS7K+tzyxabcDAoEJUiLljCAq7rwH1BdJUZz7lMlnj/sB
- 7z1GSZ19BmWO/1voxjqr2akNwvdvi8HqVtSByrusMnl5aAh2soahPA69
-X-Gm-Gg: ASbGncsClCXiuhzYwDzXVhBhCqR18u13EnTeUlcKfN4NcAq1PSuijyMEfJOayKHARxI
- Fx/MLT4uJryevlLjUn87CN6e7X5IKeOhndyQ8I2C2G7Xi0xz8MEFP2tTc8veLd/HSksjejU5DWI
- DvzgvNuW6bEpX0TF0MuwNZQprdsguqFKU/wDsxvE3eDsopdxJ4LAB2VnR1LvxzAdDTh1s3tVJH3
- t1DKiXCpR0RA4Obbe0iswk3gOAd2hu0ZbFEvqhYkI0nLwAtXpFfPsC34aCGwaXay/7bK4n4e17n
- lZECeRSJQDTVyu0/L9VSba3J2upK+KP1VmEyijzlgknSqt+1mBKn2F/ubyyaRp6lrOGCCl01IlF
- jn6LPsmObZFrRHla5g3d+GcvDgci6seex+CUQd+ch+MpPC+DuMioJANpDtmcf41SE87rUnCwAiD
- PwUayD0H9kWT3F6RLbvFvGSSj/e8NDf/BFX5ycoevnaaqi4GV3nS+ZXAwafgxUYQ==
-X-Google-Smtp-Source: AGHT+IFXpzts2RxwheG9b3wCJ5zzWq0AqurQD4My2jnG2Yax400899ahsqsHMMlWy4cszH4vK/oyWw==
-X-Received: by 2002:a05:6000:430c:b0:3c7:a2d5:b299 with SMTP id
- ffacd0b85a97d-3c7a2e4fee4mr11370795f8f.17.1756305591013; 
- Wed, 27 Aug 2025 07:39:51 -0700 (PDT)
-Received: from ?IPv6:2001:4c4e:24e3:6900:f46e:206e:80c6:1890?
- (20014C4E24E36900F46E206E80C61890.dsl.pool.telekom.hu.
- [2001:4c4e:24e3:6900:f46e:206e:80c6:1890])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cca0dd7014sm3279420f8f.13.2025.08.27.07.39.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Aug 2025 07:39:50 -0700 (PDT)
-Message-ID: <24bbe97b3a2f97ed1f4dfde727ba6939831bf35f.camel@gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Fix DVI-D/HDMI adapters
-From: Timur =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, 
- harry.wentland@amd.com, alex.hung@amd.com
-Date: Wed, 27 Aug 2025 16:39:49 +0200
-In-Reply-To: <CADnq5_NwQCGgsgVZ1T3ofxrLJhDkq0FO3GKOViWtn8JhFC+vfw@mail.gmail.com>
-References: <20250825213333.612600-1-timur.kristof@gmail.com>
- <CADnq5_NwQCGgsgVZ1T3ofxrLJhDkq0FO3GKOViWtn8JhFC+vfw@mail.gmail.com>
+ d=1e100.net; s=20230601; t=1756307744; x=1756912544;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=aGPhYDWt388RttmicU0o24RVsxY/twdNMb4O/vzImCs=;
+ b=sVtFwxqj9v0YzBKehZgfatTUjWGS/v6JAsRb9aampW1vh8hAUACQYc2VzXFdiFQq+F
+ 90G+97kUrx3MZC4HvnMO70fJmUizftqSVzxcFZNVe4MVzDPxZJA4FHTOWeIYrlvG+/FK
+ MEpqqFrLMdJVFyjanjWRSG4FtMGFxiHvUNyLIVBUc97PIHcKHyLBKU2utlpQDUpumhpo
+ AoX00YcVfDken5hBF7ERLT2wp/zHoN+vImS6ui/UddIcCaEE6t9LTOj4vtfHrhnPsBuz
+ vItxG+M9KmV0LpsC14ckGQwdzzJHa3E78DI9sf+tqftHvRA3sQHuRqZuGhgQhn99cSYs
+ euMA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWm9g4RVNn/1O7HZFof3k4Ovq0CkLQeg5l0D5jPzBcoSB40Fx2L1h86vBW26QNH7vmdqncwOiuC@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzmrurxc8mXdqxOl8B1jEeA8zZvYCwjpIUJTmjv3DTDZXsJIT13
+ l2zIPwGD6vbK2Cw9Y6iUz5FUYjegPKRBpp2uRsIUdZTHgffWeg5ZXZd2CawsDZ1uYU5kk7NN65J
+ plF+prGEiz48YMAcf0ve7uKu9UWYmRW1runCHYK4P
+X-Gm-Gg: ASbGncsMriHiEadOTFP1o2G94xawtzNnAHUslWu9HJu1nZWrbgtLQ1szF8wkdBXkoYH
+ FHqjJb5oVjXZvrBPcthabQyV+7kQLd1mzsAgZnQ5WFVeaYsuU294s7dlJgzBJsFzXp8T382BK71
+ WyFwr9dbHrvmtXWfHikLkyB0KPH3Mq/BQv6SWhFBfrLGknW9rgO+J+jjpjTcCtZPi75wSljbt+K
+ vUl+dy+Eh/OWKcoGIirgt0qd66nOKYYZt8JsB+l6tM=
+X-Google-Smtp-Source: AGHT+IExi0QgPJP/5AblrVahQdACSVklatzIIhzDoM8PROF9H/mRXxhxpv9GhjknP28Wz6ljzGsei6gbP7f3oTXJLVM=
+X-Received: by 2002:a17:902:ec87:b0:246:a8ac:1a36 with SMTP id
+ d9443c01a7336-2485ba5311amr9397575ad.2.1756307741849; Wed, 27 Aug 2025
+ 08:15:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1755096883.git.robin.murphy@arm.com>
+ <d6cda4e2999aba5794c8178f043c91068fa8080c.1755096883.git.robin.murphy@arm.com>
+ <20250826130329.GX4067720@noisy.programming.kicks-ass.net>
+ <6080e45d-032e-48c2-8efc-3d7e5734d705@arm.com>
+ <CAP-5=fXF2x3hW4Sk+A362T-50cBbw6HVd7KY+QEUjFwT+JL37Q@mail.gmail.com>
+ <aK6_XrA_OaLnoFkr@J2N7QTR9R3>
+In-Reply-To: <aK6_XrA_OaLnoFkr@J2N7QTR9R3>
+From: Ian Rogers <irogers@google.com>
+Date: Wed, 27 Aug 2025 08:15:29 -0700
+X-Gm-Features: Ac12FXwUZ4TrRSXyzgr8XTQRkesJ87wwMtoKHvx086ZRlV4GbvgOq2WSyedNfZ4
+Message-ID: <CAP-5=fU0-QDMP-VG3O1qBvJ8uzHHYCQ8j1Vrzy9a0YUk=UMvHw@mail.gmail.com>
+Subject: Re: [PATCH 12/19] perf: Ignore event state for group validation
+To: Mark Rutland <mark.rutland@arm.com>
+Cc: Robin Murphy <robin.murphy@arm.com>, Peter Zijlstra <peterz@infradead.org>,
+ mingo@redhat.com, will@kernel.org, acme@kernel.org, namhyung@kernel.org, 
+ alexander.shishkin@linux.intel.com, jolsa@kernel.org, adrian.hunter@intel.com, 
+ kan.liang@linux.intel.com, linux-perf-users@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org, 
+ linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ imx@lists.linux.dev, linux-csky@vger.kernel.org, loongarch@lists.linux.dev, 
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
+ sparclinux@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org, 
+ linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, coresight@lists.linaro.org, 
+ iommu@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+ linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
-MIME-Version: 1.0
+X-Mailman-Approved-At: Thu, 28 Aug 2025 06:55:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,88 +105,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2025-08-26 at 10:06 -0400, Alex Deucher wrote:
-> On Mon, Aug 25, 2025 at 5:33=E2=80=AFPM Timur Krist=C3=B3f
-> <timur.kristof@gmail.com> wrote:
-> >=20
-> > When the EDID has the HDMI bit, we should simply select
-> > the HDMI signal type even on DVI ports.
-> >=20
-> > For reference see, the legacy amdgpu display code:
-> > amdgpu_atombios_encoder_get_encoder_mode
-> > which selects ATOM_ENCODER_MODE_HDMI for the same case.
-> >=20
-> > This commit fixes DVI connectors to work with DVI-D/HDMI
-> > adapters so that they can now produce output over these
-> > connectors for HDMI monitors with higher bandwidth modes.
-> > With this change, even HDMI audio works through DVI.
-> >=20
-> > For testing, I used a CAA-DMDHFD3 DVI-D/HDMI adapter
-> > with the following GPUs:
-> >=20
-> > Tahiti (DCE 6) - DC can now output 4K 30 Hz over DVI
-> > Polaris 10 (DCE 11.2) - DC can now output 4K 60 Hz over DVI
-> >=20
-> > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
->=20
-> Makes sense to me, but would be good to get input from display team
-> in
-> case there is anything I'm missing.
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+On Wed, Aug 27, 2025 at 1:18=E2=80=AFAM Mark Rutland <mark.rutland@arm.com>=
+ wrote:
+>
+> On Tue, Aug 26, 2025 at 11:48:48AM -0700, Ian Rogers wrote:
+> > On Tue, Aug 26, 2025 at 8:32=E2=80=AFAM Robin Murphy <robin.murphy@arm.=
+com> wrote:
+> > >
+> > > On 2025-08-26 2:03 pm, Peter Zijlstra wrote:
+> > > > On Wed, Aug 13, 2025 at 06:01:04PM +0100, Robin Murphy wrote:
+> > > >> It may have been different long ago, but today it seems wrong for =
+these
+> > > >> drivers to skip counting disabled sibling events in group validati=
+on,
+> > > >> given that perf_event_enable() could make them schedulable again, =
+and
+> > > >> thus increase the effective size of the group later. Conversely, i=
+f a
+> > > >> sibling event is truly dead then it stands to reason that the whol=
+e
+> > > >> group is dead, so it's not worth going to any special effort to tr=
+y to
+> > > >> squeeze in a new event that's never going to run anyway. Thus, we =
+can
+> > > >> simply remove all these checks.
+> > > >
+> > > > So currently you can do sort of a manual event rotation inside an
+> > > > over-sized group and have it work.
+> > > >
+> > > > I'm not sure if anybody actually does this, but its possible.
+> > > >
+> > > > Eg. on a PMU that supports only 4 counters, create a group of 5 and
+> > > > periodically cycle which of the 5 events is off.
+> >
+> > I'm not sure this is true, I thought this would fail in the
+> > perf_event_open when adding the 5th event and there being insufficient
+> > counters for the group.
+>
+> We're talking specifically about cases where the logic in a pmu's
+> pmu::event_init() callback doesn't count events in specific states, and
+> hence the 5th even doesn't get rejected when it is initialised.
+>
+> For example, in arch/x86/events/core.c, validate_group() uses
+> collect_events(), which has:
+>
+>         for_each_sibling_event(event, leader) {
+>                 if (!is_x86_event(event) || event->state <=3D PERF_EVENT_=
+STATE_OFF)
+>                         continue;
+>
+>                 if (collect_event(cpuc, event, max_count, n))
+>                         return -EINVAL;
+>
+>                 n++;
+>         }
+>
+> ... and so where an event's state is <=3D PERF_EVENT_STATE_OFF at init
+> time, that event is not counted to see if it fits into HW counters.
 
-Thank you!
+Hmm.. Thinking out loud. So it looked like perf with weak groups could
+be broken then:
+```
+$ sudo perf stat -vv -e '{instructions,cycles}:W' true
+...
+perf_event_attr:
+ type                             0 (PERF_TYPE_HARDWARE)
+ size                             136
+ config                           0x400000001
+(cpu_core/PERF_COUNT_HW_INSTRUCTIONS/)
+ sample_type                      IDENTIFIER
+ read_format                      TOTAL_TIME_ENABLED|TOTAL_TIME_RUNNING|ID|=
+GROUP
+ disabled                         1
+ inherit                          1
+ enable_on_exec                   1
+------------------------------------------------------------
+sys_perf_event_open: pid 3337764  cpu -1  group_fd -1  flags 0x8 =3D 5
+------------------------------------------------------------
+perf_event_attr:
+ type                             0 (PERF_TYPE_HARDWARE)
+ size                             136
+ config                           0x400000000
+(cpu_core/PERF_COUNT_HW_CPU_CYCLES/)
+ sample_type                      IDENTIFIER
+ read_format                      TOTAL_TIME_ENABLED|TOTAL_TIME_RUNNING|ID|=
+GROUP
+ inherit                          1
+------------------------------------------------------------
+sys_perf_event_open: pid 3337764  cpu -1  group_fd 5  flags 0x8 =3D 7
+...
+```
+Note, the group leader (instructions) is disabled because of:
+https://web.git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.gi=
+t/tree/tools/perf/util/stat.c?h=3Dperf-tools-next#n761
+```
+/*
+* Disabling all counters initially, they will be enabled
+* either manually by us or by kernel via enable_on_exec
+* set later.
+*/
+if (evsel__is_group_leader(evsel)) {
+        attr->disabled =3D 1;
+```
+but the checking of being disabled (PERF_EVENT_STATE_OFF) is only done
+on siblings in the code you show above. So yes, you can disable the
+group events to allow the perf_event_open to succeed but not on the
+leader which is always checked (no PERF_EVENT_STATE_OFF check):
+https://web.git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.gi=
+t/tree/arch/x86/events/core.c?h=3Dperf-tools-next#n1204
+```
+if (is_x86_event(leader)) {
+        if (collect_event(cpuc, leader, max_count, n))
+                return -EINVAL;
+```
 
-I just want to add that the code path without audio for both DVI-D and
-HDMI seems to be broken and probably needs further investigation.
-
-I might come back to this problem later when/if I have an opportunity
-to test with a display that actually uses DVI-D. Right now I only have
-the DVI/HDMI adapter which seems to work differently (as noted in the
-above patch).
-
-Timur
-
-
->=20
-> > ---
-> > =C2=A0drivers/gpu/drm/amd/display/dc/link/link_detection.c | 4 ++++
-> > =C2=A01 file changed, 4 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-> > b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-> > index 827b630daf49..42180e6aca91 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-> > +++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-> > @@ -1140,6 +1140,10 @@ static bool
-> > detect_link_and_local_sink(struct dc_link *link,
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 if (sink->sink_signal =3D=3D SIGNAL_TYPE_HDMI_TYPE_A =
-&&
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 !sink->edid_caps.edid_hdmi)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink-=
->sink_signal =3D
-> > SIGNAL_TYPE_DVI_SINGLE_LINK;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 else if (dc_is_dvi_signal(sink->sink_signal) &&
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 aud_support=
-->hdmi_audio_native &&
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink->edid_=
-caps.edid_hdmi)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink->sink_=
-signal =3D
-> > SIGNAL_TYPE_HDMI_TYPE_A;
-> >=20
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 if (link->local_sink &&
-> > dc_is_dp_signal(sink_caps.signal))
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dp_tr=
-ace_init(link);
-> > --
-> > 2.50.1
-> >=20
+Thanks,
+Ian
