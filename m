@@ -2,81 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22311B3945B
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Aug 2025 08:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1D33B38A01
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Aug 2025 21:03:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 183AE10E645;
-	Thu, 28 Aug 2025 06:55:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28FB710E16B;
+	Wed, 27 Aug 2025 19:02:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="QYRo/op8";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mSLlSVVM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay11.grserver.gr (relay11.grserver.gr [78.46.171.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39E1710E0FA;
- Wed, 27 Aug 2025 18:41:33 +0000 (UTC)
-Received: from relay11 (localhost.localdomain [127.0.0.1])
- by relay11.grserver.gr (Proxmox) with ESMTP id 97A38CB498;
- Wed, 27 Aug 2025 21:41:31 +0300 (EEST)
-Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by relay11.grserver.gr (Proxmox) with ESMTPS id C78CCCB47E;
- Wed, 27 Aug 2025 21:41:30 +0300 (EEST)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
- [209.85.167.43])
- by linux3247.grserver.gr (Postfix) with ESMTPSA id 3F86E201A63;
- Wed, 27 Aug 2025 21:41:30 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
- s=default; t=1756320090;
- bh=h/xwF0KGq3gWr9pBxJyflxpPHXZc98CA4hW7pDTkw2U=;
- h=Received:From:Subject:To;
- b=QYRo/op8RVr9M6QgyvKRSmcuZrGtmAq5RnrGNTMnAaIFqXouoMcIKjdmaDV4xERn5
- kEQNUja8J0H2N2froJT3gVXlkLbfzFjKTgO1VFzM7oV6js8XwYtP/q6Fjq+TdyN2xp
- ZWlgx+AFXaIYD1tIPBsc/YfJkNjQfY8CarmEaeHGaS3X9iBvZdF27KOl2EAft3v1sc
- ZspWf+ZEhxSzzTLi63Nr5tGk1tXZGHo+JEOyBvFwEEmBop+C3UsLq6RBNrbIhuFa+X
- bSoLDTl+VdNo4oKrz0DQIq2lveJqsrh4fjPKFMJMak8WoZXvwK7rGkeLnuLqOha42Q
- L/la1DrTXZNcg==
-Authentication-Results: linux3247.grserver.gr;
- spf=pass (sender IP is 209.85.167.43) smtp.mailfrom=lkml@antheas.dev
- smtp.helo=mail-lf1-f43.google.com
-Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
-Received: by mail-lf1-f43.google.com with SMTP id
- 2adb3069b0e04-55f4bcceed0so175159e87.1;
- Wed, 27 Aug 2025 11:41:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXi2cNRUmPNGwF6bA0YMPUS7sdSuif1o0t/fAnwoAqKcPD5UMqETdjYuUO4ANAaiGxn5PG17G+zWGU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzFEIjTH1Ts6vxm87RwYZxMe1B3PF8bRc0jBwlCyxiymI2M6ClL
- hjXdHrFQmOyF33EBR8OpiOBLxGkCjxb5gbcOVUpD9OreL9bRwmZ+y7YZoXNSUA33yPZyWzrdH/j
- WpNTYJiLDqhxLUgOuABpRlH2/RspPasc=
-X-Google-Smtp-Source: AGHT+IFowAHaq81ABZaML4u4gPHxCp/F5971pDuQNrnE6hyA8KydV5GiZxPbrmTwchwoaJKakcXNjrp/jNeC1+Vo5qs=
-X-Received: by 2002:a05:6512:438d:b0:55f:4e8a:19ad with SMTP id
- 2adb3069b0e04-55f4e8a1b62mr1685248e87.13.1756320089546; Wed, 27 Aug 2025
- 11:41:29 -0700 (PDT)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2051.outbound.protection.outlook.com [40.107.92.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C443710E16B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 19:02:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=N3QjQso1ZiQhnwNUQoFqASbGyeo0G8qwIq4DTTjwWelWO91kh3hE+mWt+HLIjG30fxD2zAQM7pPj/bU6NGmUl+JO8yyb61g526UY1puS+qojpe7N2yhrBWZAWMYGutTfDEWeQKoR+zcAn8iBr4BBgXgTdecnFrs4d4yngoyzNDpZn5X/fTtsAI9T7kRPEObgxYuk+kEaIQfHaRDR8FlEvAyI0I6rGwBIopGl6AWV9iC+Ya1sIHRj3XyxBQike9lkSUzxR8FByznoQDIiG9rido3wqmCd8oUYvgTNJWcOUzcWIaTgSsnvQDN47uAksnAGvd9Y3bgveCWxjTkzzJSnKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Y3g7DOcRLPnjOdCqNrcqqDv7tDNWUX7mDw6zsrrqOLE=;
+ b=lg72MzFA/jbAmGv51PnlC8xqJwQKoNO9MBOdzXKR4KHNUYRYVA+ERzWEUqbHvlqZZLkOuOW/FnFDxCOc9R2X2jrD9YbBkGGY4vnCNtwDgoPYA/LzIvTKQYlKyp8qsF0nnkdLH7TYxg0Ofao5fJrzbxWdXYQIKHzgqoGxov16yBtu80iWMrgGs0DxnEhnlpXPFQaSYXt082IXfrSJq/u8FUQI3sRzjwbrfYWNhO4GpSby55z1do6A9r2EaTNAFKSQN179Z9wGJlr35D6EmTVS4BlaI/XuSbygmAqxndAk2+kLZQjJKpg1UtSfD8/kyvHJ9Gfc24m2fU55s+0tJg/lMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Y3g7DOcRLPnjOdCqNrcqqDv7tDNWUX7mDw6zsrrqOLE=;
+ b=mSLlSVVMm0nEiBrfaNN87AYAKIKNkD4dJk7l4aMYUZxjVBMw00T7l/c+XP3P8vVFX1Y4ZsZHqBQwuQlXuNzTV0VpIkLQ7ClAdD/zZALfpi6S6KDqygFsf4NWIoelTQ6Pu+FeisoULYDVccJjaHeE/tylk3YGvetz8t+aMHOGB/E=
+Received: from BL0PR05CA0007.namprd05.prod.outlook.com (2603:10b6:208:91::17)
+ by PH7PR12MB8594.namprd12.prod.outlook.com (2603:10b6:510:1b3::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.19; Wed, 27 Aug
+ 2025 19:02:49 +0000
+Received: from BN3PEPF0000B072.namprd04.prod.outlook.com
+ (2603:10b6:208:91:cafe::a2) by BL0PR05CA0007.outlook.office365.com
+ (2603:10b6:208:91::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9073.12 via Frontend Transport; Wed,
+ 27 Aug 2025 19:02:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN3PEPF0000B072.mail.protection.outlook.com (10.167.243.117) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9073.11 via Frontend Transport; Wed, 27 Aug 2025 19:02:48 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 27 Aug
+ 2025 14:02:47 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>, <shaoyun.Liu@amd.com>
+Subject: [PATCH] drm/amdgpu/mes11: make MES_MISC_OP_CHANGE_CONFIG failure
+ non-fatal
+Date: Wed, 27 Aug 2025 15:02:35 -0400
+Message-ID: <20250827190235.1784506-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-References: <20250827174400.3692549-1-lkml@antheas.dev>
- <607d5062-1734-46c4-b851-782bd7ad3ec7@amd.com>
-In-Reply-To: <607d5062-1734-46c4-b851-782bd7ad3ec7@amd.com>
-From: Antheas Kapenekakis <lkml@antheas.dev>
-Date: Wed, 27 Aug 2025 20:41:18 +0200
-X-Gmail-Original-Message-ID: <CAGwozwF-7Z_Yy8-w+EJxcJJ-1dKCtTMY356PR--EqWfyVHt+rA@mail.gmail.com>
-X-Gm-Features: Ac12FXxVD93_TcP1vy6NnC0zXLOoeVeltkj1_FC6_57yxmPfrnK8qD9vTRAr9oQ
-Message-ID: <CAGwozwF-7Z_Yy8-w+EJxcJJ-1dKCtTMY356PR--EqWfyVHt+rA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] drm: panel-backlight-quirks: Do partial refactor
- and apply OLED fix
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, philm@manjaro.org,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Robert Beckett <bob.beckett@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-PPP-Message-ID: <175632009049.1615478.6730903780175231445@linux3247.grserver.gr>
-X-PPP-Vhost: antheas.dev
-X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
-X-Virus-Status: Clean
-X-Mailman-Approved-At: Thu, 28 Aug 2025 06:55:55 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B072:EE_|PH7PR12MB8594:EE_
+X-MS-Office365-Filtering-Correlation-Id: c5b6b135-178b-484d-4b4d-08dde59c509a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|1800799024|82310400026|13003099007; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4V/nWp5S3UMq+DqxRaXIoQ2T+3/Wo/ZphLhdwtPMogpLb3vyKn5V33X6Y98b?=
+ =?us-ascii?Q?RP7a2iPRKH9nTdTWP4jogZPR4mNlY1H/96O/U7viUMIeKY8Ic2Ws9XVgXA4H?=
+ =?us-ascii?Q?hhv/I1k773FM7nMpdhAffiJO3nNjCP6f8HYeCALFW3IIMUqKXjyrK/9CrfW4?=
+ =?us-ascii?Q?uREPb8i3/JEKLjM2EQOrITC173bcL8Yje1EgsITQXOAnpdVUvgkPR380V8L6?=
+ =?us-ascii?Q?QBBHwPkjzPlx1Q6rZUTmzqRZitoNBzbY3ijiJVUeC7JLlFcEWIM3klHF6Q2E?=
+ =?us-ascii?Q?li78Wus35yQr/Vl6uAArJOFsGMMZa2uiOVnYgIahHZZJ+P44kiQ056Ct3jXf?=
+ =?us-ascii?Q?CaSCz6MtE2yi6ev8p1kcFFaCPruw/eocmzdFAKPOhzlZ9aW4wQUsBIWMAsSa?=
+ =?us-ascii?Q?R6u41XAHEuWiW02cTwq5lCwzYDpsg+PdkS15d0sKVh0C7Bx9rNDeNQoMfm5G?=
+ =?us-ascii?Q?OjRxHNVRaCOYNvNYBwNzDph+QMWqolBYE9/K3KjkAHnwAzw4icN5Boqnf+vg?=
+ =?us-ascii?Q?cRArJbkIomPcwJfpqueMIpS+c4+EcqRC21Q8b+mHrQ1ytNo7m63UGsGGUWw5?=
+ =?us-ascii?Q?+FYLXz786Buwis0zQAUpvdw2QB7CcAmQ+n4lD1briHpQ7ehp+t3J40ODprGm?=
+ =?us-ascii?Q?z0HeUzRzVdqjP/BZqIbHbP2rvwLglAEt/DMf7oERzNujj/JXV7fEwF2LOgSj?=
+ =?us-ascii?Q?jnFrgs7TudxlqEq1W0nzkDW/tUu4tFcN2umJiu5UzLewhAXmxGTc1gjesyIK?=
+ =?us-ascii?Q?9IXtXXmBpF4S6APTpCVmQqrtGzhrmwcMLrtNkVVcnx2WrEJY8cPncBHaj2Ye?=
+ =?us-ascii?Q?J4YALAIN8ADP6V4slJWl2ogVtyE1cYs9KV9GFe4oMco2yLKCGmNmoufpb6rJ?=
+ =?us-ascii?Q?jAAdIoUwMiWrHhu4lgwkFnbueCOMVaa41XXFXU0JIxPL8LkiIDpD+fbTUDVF?=
+ =?us-ascii?Q?IMof2mpF3chCurtFuj8ioCHJmnjWAoDlfN+JHtHTXaTsZo3vAjIqUdWBDkKE?=
+ =?us-ascii?Q?TSSpwnPXyu8IW4iRhLUaunP4fia3bGsooTh7n2ruD6NFF6IJBTERkZYFygij?=
+ =?us-ascii?Q?YJm0xYgHub5w3bMAXrxrybg8/UXbqSw93/I0WUmFb+WR/7bLwhud9YVX/e32?=
+ =?us-ascii?Q?Uj7H3Hxgu8MTgwJel2UtL2822ZGEft8RJ8R0FYgmFM1HEsCM7iNroe0N4Bop?=
+ =?us-ascii?Q?CKBbkOucr5G/c864/lAyBYTTTk7GyrwF+DMuJCk9UKHaCIAYySqhS4151EHQ?=
+ =?us-ascii?Q?k/5NzAkDiwks8YQj91Mm4htmYtii737VIRUvhNLIAB6DD1xqMOuWK9O2xjNU?=
+ =?us-ascii?Q?ncVicRAnfLTs3zY7t+e7tie+OSl1u7i21FHE0uLqMgrT4FpnaSQB6ckBytEk?=
+ =?us-ascii?Q?TyNFfMaF+fOldBe29YoMmdBWf3weJOp+pMRziYfdTlYmaECehBvQk3tWc3hS?=
+ =?us-ascii?Q?nqnwjBOS7RFj18cfskirzHP5kNMODzVAxJW6m5iMAFQJw1ftBa1nGQ=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026)(13003099007);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 19:02:48.5995 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5b6b135-178b-484d-4b4d-08dde59c509a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B072.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8594
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,96 +130,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 27 Aug 2025 at 20:38, Mario Limonciello
-<mario.limonciello@amd.com> wrote:
->
-> On 8/27/2025 12:43 PM, Antheas Kapenekakis wrote:
-> > This is an alternative to [1], since Phil found out there are still invalid
-> > values. We need to reconsider the other patch in that series anyway because
-> > the latest AMD firmware update might have fixed the Z13.
-> >
-> > This series refactors the panel-backlight-quirks code to make it easier to
-> > add new quirks. Specifically, it adds the ability to bind to a secondary
-> > DMI match so that the make of a device can be specified. Then, it makes
-> > EDID optional, for devices we know the value should be applied universally.
-> >
-> > This is then used to add a quirk for OLED panels that have an issue
-> > when their backlight is set with a value that contains a 0/1 value in their
-> > minor byte. This issue affects four handhelds from three different vendors,
-> > three of which are in the field. This quirk applies a |3 mask to the
-> > backlight value, which avoids this issue. In addition, the value change
-> > is minor enough so that it is essentially a NOOP. There is no need for
-> > ensuring it runs only on panels with faulty firmwares.
-> >
-> > Finally, since allowed by this refactor, a quirk for Steam Decks is added
-> > that lowers their minimum brightness to 0, matching SteamOS. This is
-> > a nicety commit, which allows for mildly lower minimum brightness, so
-> > there is no time sensitivity for having it merged. Mario noted that if
-> > that quirk was refactored to use an EDID match via the current interface,
-> > it could go through the fixes tree and land sooner, but perhaps it is not
-> > worth the effort.
-> >
-> > [1] https://lore.kernel.org/all/20250824085351.454619-2-lkml@antheas.dev/
-> >
-> > ---
-> > V1: https://lore.kernel.org/all/20250824200202.1744335-1-lkml@antheas.dev/
-> >
-> > Changes since v1:
-> > - Remove leftover quirk from patch 3 (refactor)
-> > - Add dangling comma in patch 4 (oled quirk)
-> > - Add the next generation Zotac Zone in patch 4 (currently unreleased)
->
-> Can you double check with Phil?  I thought there are two affected Zotac
-> devices, but I could be wrong.  If we can get both in a single go let's
-> do it.
+If the firmware is too old, just warn and return success.
 
-Indeed. V1 already included the released model. Hopefully I did not
-get the ID wrong on this one.
+Fixes: 27b791514789 ("drm/amdgpu/mes: keep enforce isolation up to date")
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4414
+Cc: shaoyun.Liu@amd.com
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-> > - Reword patch 1 and 5 subjects
-> >
-> > Antheas Kapenekakis (5):
-> >    drm: panel-backlight-quirks: Make EDID match optional
-> >    drm: panel-backlight-quirks: Convert brightness quirk to generic
-> >      structure
-> >    drm: panel-backlight-quirks: Add secondary DMI match
-> >    drm: panel-backlight-quirks: Add brightness mask quirk
-> >    drm: panel-backlight-quirks: Add Steam Deck brightness quirk
-> >
-> >   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  19 ++-
-> >   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   6 +
-> >   drivers/gpu/drm/drm_panel_backlight_quirks.c  | 113 ++++++++++++++----
-> >   include/drm/drm_utils.h                       |   8 +-
-> >   4 files changed, 115 insertions(+), 31 deletions(-)
-> >
-> >
-> > base-commit: 1b237f190eb3d36f52dffe07a40b5eb210280e00
->
-> The series looks fine to me.
->
-> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
->
-> I have two small nits though:
->
-> 1) Because this is "effectively" going to limit the amount of brightness
-> values available I think there should be a message when a the brightness
-> mask quirk is in use that we can get in the logs so that the changed
-> behavior isn't totally surprising.  We have some similar messages for
-> DMI detected quirks in amdgpu already.
->
->                 drm_info(dev, "support_edp0_on_dp1 attached\n");
->                 drm_info(dev, "aux_hpd_discon_quirk attached\n");
->
-> Can you add one for this new quirk?
->
-> 2) The comment for 'brightness_mask' in patch 4 should have 'or' as 'OR'
-> so it's obvious that it's logical OR to the casual reader and not a
-> typographical error.
->
-> IE "After deriving brightness, OR it with this mask."
->
-
-Ack. I will give it 1-2 days for more feedback and resend.
-
-Antheas
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+index 28eb846280dd4..3f6a828cad8ad 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -641,8 +641,9 @@ static int mes_v11_0_misc_op(struct amdgpu_mes *mes,
+ 		break;
+ 	case MES_MISC_OP_CHANGE_CONFIG:
+ 		if ((mes->adev->mes.sched_version & AMDGPU_MES_VERSION_MASK) < 0x63) {
+-			dev_err(mes->adev->dev, "MES FW version must be larger than 0x63 to support limit single process feature.\n");
+-			return -EINVAL;
++			dev_warn_once(mes->adev->dev,
++				      "MES FW version must be larger than 0x63 to support limit single process feature.\n");
++			return 0;
+ 		}
+ 		misc_pkt.opcode = MESAPI_MISC__CHANGE_CONFIG;
+ 		misc_pkt.change_config.opcode =
+-- 
+2.51.0
 
