@@ -2,74 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D93CB3A3AE
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Aug 2025 17:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13628B3A3B1
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Aug 2025 17:11:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C39CC10EA16;
-	Thu, 28 Aug 2025 15:11:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8321010EA17;
+	Thu, 28 Aug 2025 15:11:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AInNYD/a";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kBS9q3M1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E18310EA16
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 15:11:20 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-45b49f7aaf5so6271905e9.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 08:11:20 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6B310EA17
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 15:11:21 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-45a1b05fe23so6617455e9.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 08:11:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756393879; x=1756998679; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1756393880; x=1756998680; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=6VcBRB5r+o395RQ21tXpVQBli8ohQDty4HTq3PJjEsM=;
- b=AInNYD/a0x4B38Q0ew6WqLw33zv9rdc66+la4negPq9ftw+by6LDIBxPINCXXYAi1o
- OK3C24s5tiriYzqUP63U0pX3jpb6UbjELkXldHr8ZeFIDqBt96ee9iE/BNFRT5t+5bp2
- Smqh5MzCtSCB8McAJXBRqeJQRP3dR5yLpPFKOvhxUZH9zNkPfuw+5MeJCQs0zWxcWaaM
- 3swpBWbpnul/CUfyHEotWJs/5PBwk2Mi42pRBwZwPwdioDBrKmBpumFhZHUkdJx6jPjW
- DvG03vbpDXOkYjzYSupJkqJtbKZz9csDTNr3naovJr51eCOsLBDp290EaN0PKgKzZTsD
- Jp2w==
+ bh=MkAy+O06uP+l1LGw0YUe810GdMpRjvBJxSQG0McCjVY=;
+ b=kBS9q3M1nTzpBQ331TAugQ/17/3fwHgPpfgCoRbLI/jJc06WxSy0yR0kH4+VMA9m8o
+ 2GE7m/ht+JL55ouLpZnohS8yQ2hDOMqbrKpDZ+v+CUJ6CfMGCNznRaQ2JW/5eGKnFyGs
+ QLY3kpXJzNccZHGlPWQplDxmJssqCFDxi13wNSLL2e+mlhOSMzyjxkGwA6ay1DYtp5oe
+ 9KuoTmjfXEJNcSWTl8rgTXGFR9457dDJv45ix0k4l01QTWoh3afcUTANk70E9yNBJWRn
+ KrS5A7OqJP9NYrxlzJfE5s7oYMt8jnuZc58ObKHxF1bvy6CFTGnOwfBCiQBLU0TKeg9l
+ Ri+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756393879; x=1756998679;
+ d=1e100.net; s=20230601; t=1756393880; x=1756998680;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=6VcBRB5r+o395RQ21tXpVQBli8ohQDty4HTq3PJjEsM=;
- b=sBIgP6QjfMpFZaWyiqmABEIUR7IFU0sRGXz5lbQdmseOsqC4AuFfoZm5pPmFVearM9
- ZP+VhHDA0dvqo4PiEjnQ94GVaJHDKdMJtBLt9h9Qm8pUwhaNyGv9+OzPxapKcpyAFaxu
- hw1Ys8ABsdhdGxxbcJoQHTY1rSx7Hm2mPS5u4Rq5c7OICMJ1WjkguPkbehTRwAt0XoGI
- 7ths5NcysGcl7mpBau3FgV97Ii0Nv1pV/Z5M5HkoStGazUfGolvUYsICN8YVfqN8QT0n
- 5oaQeakzgAOihcIeUOWKjHoZvcIbvXYe0/e2goXH1Cx6Gzkr60Nkzdtw3njc/5XPuc4/
- uHSg==
-X-Gm-Message-State: AOJu0Yyg/0WcOBPgQGVcTgmtIBAOylUZ7GfKu+g4FHgaIADplFLueSSU
- hDj4+4/7nBBUouYdBX5SvJ6fhtmQMTGTjQnokml2sK/orcP+OFkhm2yiZUqb+A==
-X-Gm-Gg: ASbGncvxTzElNM7CR4QYm5EPTAEgkwKFdvUjtXZLbOXwBB8ANEfJoALHG7O3kQFOU6W
- MxD8sFJMPf+FBoqij281iMWKTkmyo7HRDBbjXPw7Q5Vna4G2O42i4sKY8meCZK3F007unUJEdhO
- JY+Gj4SpysvnYpVZnlqrICBVKh5k+ooBdM+T1sYVc/ccbrup0DCFY827zCkbju0reP0ekkBlepa
- VlWkDMGNIE3T7EA8Ew61zXgH0kXDpXiBoMcZLWJbLZRvDbtwlzjijuTX93WqgGnq7rGvTwvpZOv
- GzO9Svd2Bi9HjlF8DxNILyx3W1Kl5FmmmPc4NkXEsXThySBtQ8FSQKkNaL9RcudIrxi5vCZbq1y
- +1ELMIP6LUJ13WGv5LkmgN9+DjPYA4F+f6mN2UK7zcbCvIpujkHoEudUHQioN9JSolGkIXg9Pkk
- MX5IyvL5ZRsOr7R2DKAO5VVEJ0q7Rsg5P4zHk2
-X-Google-Smtp-Source: AGHT+IH/NWCWcdkkUIWvvo8tUwVEf5TWZU2HszO5VRM3DYzRRNzoNSezcaTGxk8MqGGFmzC8zIom5g==
-X-Received: by 2002:a05:600c:1f88:b0:45b:67e9:121f with SMTP id
- 5b1f17b1804b1-45b67e91509mr122187755e9.16.1756393878505; 
- Thu, 28 Aug 2025 08:11:18 -0700 (PDT)
+ bh=MkAy+O06uP+l1LGw0YUe810GdMpRjvBJxSQG0McCjVY=;
+ b=sCJMjTMFA0PTl7iR/oROLcXEHIWGny3cTwrkthzIwnrDQzuRP8h1ie5MIAoGe2xq3z
+ N2wfZqq7kWbpDFFuhyNpX6CpuvRda8eYj38pZdIEztlWaBWcPhZvOvzIdV5Q1N9ZVBLn
+ c9f56Y2yEfmzxnySAocDnw7mSnFcr2bUP6YMXHo0kWAcOt7/tA/6CH+J3ZQ25P1kwZYe
+ pwucrzOTc1waQvrUDtop68P6pjl6B1SjcjlQkQZZWnucAlf87YVQbsJCBJCRm8HqcfSp
+ M2AqXuEujqHrGolG3cNkTi4QQZFTfpj1sf5u16lb6I6mROtHVxNupS58Z0ZtOiZEgf1N
+ pPIw==
+X-Gm-Message-State: AOJu0YzmGNhFAoQ/ZaUv/BCSUATlvEKT1+13CcTe00Kig3g17LmMKj1K
+ lasuGho1AXtYujs1tgBQrgNDXKdnxFF8XNJVsMKjrvpc9Jk48GnQEPs8Ib1bdw==
+X-Gm-Gg: ASbGncu+tK2h9huBTnzw7SfhcGJr1FrP7SLTBDENmi6rgSbUj1AXawsP7l5u28+iyKP
+ jihKsYqLb2UHgYoSeqrZMgX4IAja3tUNeOHP+JEeoPZpbEydvNRY7rvOyk8rc5DTJgXuDQoLcvC
+ NTJLyAiTGQFNAoA/PnwWFiayZkeMwtsHV6TkRkPnSofX4y3iLCyENwLe/xT0Qn4+fBQpIHuOi0M
+ qkoYPaezKaR4napwPEfn0Jl5Z26atQEIXdClsrNe2nH7eIjJVozcfKTnyqWfLf3UfPWNEXKMFD0
+ AkB5Pte9PJAdhifcKTz+K7ww4TMA1zrt01DbmJQvsnn5rKfZVoiZw1GjcydPhij3ZT+at5INQz2
+ tGwbZCU4mdYQNqXVdDWCJY6pFanF08JP/Z6iiS3pReOHc1Fs1mYm7ZIz1LWLnzbL9+8MQiE9mR6
+ eCBasTO7vy7Sq4Sbx13XXJ9K80JA==
+X-Google-Smtp-Source: AGHT+IHbf71w2EXVhA/Go4YC0Nmm3AQB6AmNoW1QuopsFtFAZV5WdpEr8bVUr4Qh5QaQarKk/UGVyw==
+X-Received: by 2002:a05:600c:1e8b:b0:45b:47e1:ef6f with SMTP id
+ 5b1f17b1804b1-45b517fabfbmr191265705e9.34.1756393879556; 
+ Thu, 28 Aug 2025 08:11:19 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4E24E36900D571F3015BAFEA47.dsl.pool.telekom.hu.
  [2001:4c4e:24e3:6900:d571:f301:5baf:ea47])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-45b6f306bffsm77448875e9.16.2025.08.28.08.11.17
+ 5b1f17b1804b1-45b6f306bffsm77448875e9.16.2025.08.28.08.11.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Thu, 28 Aug 2025 08:11:18 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 04/10] drm/amd/pm: Fix si_upload_smc_data (v3)
-Date: Thu, 28 Aug 2025 17:11:06 +0200
-Message-ID: <20250828151112.15965-5-timur.kristof@gmail.com>
+Subject: [PATCH 05/10] drm/amd/pm: Adjust si_upload_smc_data register
+ programming (v3)
+Date: Thu, 28 Aug 2025 17:11:07 +0200
+Message-ID: <20250828151112.15965-6-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250828151112.15965-1-timur.kristof@gmail.com>
 References: <20250828151112.15965-1-timur.kristof@gmail.com>
@@ -90,94 +91,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The si_upload_smc_data function uses si_write_smc_soft_register
-to set some register values in the SMC, and expects the result
-to be PPSMC_Result_OK which is 1.
+Based on some comments in dm_pp_display_configuration
+above the crtc_index and line_time fields, these values
+are programmed to the SMC to work around an SMC hang
+when it switches MCLK.
 
-The PPSMC_Result_OK / PPSMC_Result_Failed values are used for
-checking the result of a command sent to the SMC.
-However, the si_write_smc_soft_register actually doesn't send
-any commands to the SMC and returns zero on success,
-so this check was incorrect.
+According to Alex, the Windows driver programs them to:
+mclk_change_block_cp_min = 200 / line_time
+mclk_change_block_cp_max = 100 / line_time
+Let's use the same for the sake of consistency.
 
-Fix that by not checking the return value, just like other
-calls to si_write_smc_soft_register.
+Previously we used the watermark values, but it seemed buggy
+as the code was mixing up low/high and A/B watermarks, and
+was not saving a low watermark value on DCE 6, so
+mclk_change_block_cp_max would be always zero previously.
 
-v3:
-Additionally, when no display is plugged in, there is no need
-to restrict MCLK switching, so program the registers to zero.
+Split this change off from the previous si_upload_smc_data
+to make it easier to bisect, in case it causes any issues.
 
 Fixes: 841686df9f7d ("drm/amdgpu: add SI DPM support (v4)")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 43 ++++++++++++----------
- 1 file changed, 24 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-index e71070a23b91..6736c592dfdc 100644
+index 6736c592dfdc..fb008c5980d6 100644
 --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
 +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-@@ -5813,9 +5813,9 @@ static int si_upload_smc_data(struct amdgpu_device *adev)
- {
- 	struct amdgpu_crtc *amdgpu_crtc = NULL;
- 	int i;
--
--	if (adev->pm.dpm.new_active_crtc_count == 0)
--		return 0;
-+	u32 crtc_index = 0;
-+	u32 mclk_change_block_cp_min = 0;
-+	u32 mclk_change_block_cp_max = 0;
+@@ -5833,8 +5833,8 @@ static int si_upload_smc_data(struct amdgpu_device *adev)
+ 		crtc_index = amdgpu_crtc->crtc_id;
  
- 	for (i = 0; i < adev->mode_info.num_crtc; i++) {
- 		if (adev->pm.dpm.new_active_crtcs & (1 << i)) {
-@@ -5824,26 +5824,31 @@ static int si_upload_smc_data(struct amdgpu_device *adev)
+ 		if (amdgpu_crtc->line_time) {
+-			mclk_change_block_cp_min = amdgpu_crtc->wm_high / amdgpu_crtc->line_time;
+-			mclk_change_block_cp_max = amdgpu_crtc->wm_low / amdgpu_crtc->line_time;
++			mclk_change_block_cp_min = 200 / amdgpu_crtc->line_time;
++			mclk_change_block_cp_max = 100 / amdgpu_crtc->line_time;
  		}
  	}
  
--	if (amdgpu_crtc == NULL)
--		return 0;
-+	/* When a display is plugged in, program these so that the SMC
-+	 * performs MCLK switching when it doesn't cause flickering.
-+	 * When no display is plugged in, there is no need to restrict
-+	 * MCLK switching, so program them to zero.
-+	 */
-+	if (adev->pm.dpm.new_active_crtc_count && amdgpu_crtc) {
-+		crtc_index = amdgpu_crtc->crtc_id;
- 
--	if (amdgpu_crtc->line_time <= 0)
--		return 0;
-+		if (amdgpu_crtc->line_time) {
-+			mclk_change_block_cp_min = amdgpu_crtc->wm_high / amdgpu_crtc->line_time;
-+			mclk_change_block_cp_max = amdgpu_crtc->wm_low / amdgpu_crtc->line_time;
-+		}
-+	}
- 
--	if (si_write_smc_soft_register(adev,
--				       SI_SMC_SOFT_REGISTER_crtc_index,
--				       amdgpu_crtc->crtc_id) != PPSMC_Result_OK)
--		return 0;
-+	si_write_smc_soft_register(adev,
-+		SI_SMC_SOFT_REGISTER_crtc_index,
-+		crtc_index);
- 
--	if (si_write_smc_soft_register(adev,
--				       SI_SMC_SOFT_REGISTER_mclk_change_block_cp_min,
--				       amdgpu_crtc->wm_high / amdgpu_crtc->line_time) != PPSMC_Result_OK)
--		return 0;
-+	si_write_smc_soft_register(adev,
-+		SI_SMC_SOFT_REGISTER_mclk_change_block_cp_min,
-+		mclk_change_block_cp_min);
- 
--	if (si_write_smc_soft_register(adev,
--				       SI_SMC_SOFT_REGISTER_mclk_change_block_cp_max,
--				       amdgpu_crtc->wm_low / amdgpu_crtc->line_time) != PPSMC_Result_OK)
--		return 0;
-+	si_write_smc_soft_register(adev,
-+		SI_SMC_SOFT_REGISTER_mclk_change_block_cp_max,
-+		mclk_change_block_cp_max);
- 
- 	return 0;
- }
 -- 
 2.51.0
 
