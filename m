@@ -2,153 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25135B3B429
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Aug 2025 09:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F64B3AC42
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Aug 2025 23:01:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C32010EB63;
-	Fri, 29 Aug 2025 07:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF39D10EAD9;
+	Thu, 28 Aug 2025 21:01:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="a5w9AR+n";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QaZuOJmF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5ABB10EAD7
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 21:01:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756414877;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=iesHPe3095uz1hg1RS4IEYFmUcjEO4H8uiojPv6Z2C8=;
- b=a5w9AR+nPOR/oacKdoJzTz2TliBIk802VhAUh0YFUJrgpZ3n42V3JoVFchoqbr+LBoQymk
- M60emUaysPi2jG8p/A3LxWA7MO0krc/kJuoGJI5cJ9amX+SJatkwRTznfvUycyZb4Nsbra
- KEQwvZpL62+MXi3nWfdXIUR4r6OqoXY=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-344-gOCNN8VYOwub1Fnz9anz8A-1; Thu, 28 Aug 2025 17:01:16 -0400
-X-MC-Unique: gOCNN8VYOwub1Fnz9anz8A-1
-X-Mimecast-MFC-AGG-ID: gOCNN8VYOwub1Fnz9anz8A_1756414875
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-45b467f5173so10644475e9.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 14:01:16 -0700 (PDT)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C27210EAD9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 21:01:39 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-248e3eade89so1779515ad.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 14:01:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1756414899; x=1757019699; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=pglFtRkMtvCVnJoaqBJK2iHCLlOvGzvFnjXGfZxIBD8=;
+ b=QaZuOJmFj+774NZRINQeNFpjfh83n9nayny1V/iZpkwjIepkLa1jnGKJJnurJun+cQ
+ V+R7efIx5kYALNiFhtH9MPDAn2sMtYI38UXyeOdZT6cpI8Pf9+0yDd/C8hONZtgtjcZY
+ UYT05aWzECGD4Tpl7XM78CrEAxrBnCvEqxc+DA1HQyKDbgOthMhAAsAitaBr6q68N7bu
+ v/cgWYzDkqxAqZMeorrRRjZHjAE0abKLZaP0zVGrCOoNnJx/NAhAoS1bDt+4hkK1AVPn
+ 7xnuAgfi6CoS5YdPsIjtYXDv62sFytuC6A6NsDYKYr+oePkeQc1YLXLVR/Vl3WKl317O
+ oPLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756414875; x=1757019675;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=iesHPe3095uz1hg1RS4IEYFmUcjEO4H8uiojPv6Z2C8=;
- b=mu3UfQu0RR2ESdotHoq5YeaQ5spjg4Jqs+Dj0NSjjp4LzBovnbfwqL6WPQ9R3V52JH
- 6aRyg7a/i6+VS+TaFFOFR3QOgyde7KxUakAV93EQ2UKBxmS5U+tHoXL97hI/eaF3RYoM
- uGUQgx1CsPTh4IalpP3N0/zmODuBCQl3F6eVMS2uUEZfhrUMKgBW7JrLAR45XCb3+E8Y
- sUhO6XClHCWWaeYcy8jGEOVi1Qy5k+TM/dlHvK6f4XCIDKBR8SPtv23A5nhRnzNTUw9H
- V92mHfjs1SHurv1bVgjvlloPRbqi0z0SknkW8JZXNaCpZy2RsnUriLC2DXJ/1xvyxoIp
- hdJw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWqJormrTcd8TJn2KaHKGjX+N06MkxqG+1zD1heAhZ3QZeXLVXxdGtifo5NqJIISF55lWe2v3jS@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyaNXpwKhdIULcHwOCYX+t4CL9Oa8y1THdX60kdhPDdsuOk7NOW
- 3LlfrwbwzxRCV1bmkfhAdGZgEJFTqSyDMS5L19gQ/+vwmrm6Sv5ky0dtzhZ5COT8ufgXMToKM/J
- FtGLmM5uSBPJFuqrAI7RqDPkYqmIdOWto3y6LNSSlYK+GbWQmpjxN3CRFBmZfqa8n1XU=
-X-Gm-Gg: ASbGnct/uSBjsvGJ2Jf/6VXgqDrtbnFkB4q+ppCQIDnIuR65hnVlN0l2EYLu7c81DTq
- 27CZQHPzyhDTrDucy0yyvQ6x0aBsm64CHRKfy8GYjXcLkgVATGV2xYZuPvl3yVc/Zvqs0Ls6Sc0
- KMkTtR6YlufQp9J1lvDlDTTtkdebGpfC5YkNFWkrRtjmNFMUVZGZ02qBKHNKlH3OUV0tbhLrkFc
- X/zdNHTU3zwLg5gOXAodO3yazeiE1lzn/XtqxvoQnMHO16niErJb0gu9S5uOta/E0GFS+Mp5xzq
- cs3rjwilK0hFoDqiLL8eOVUCYES87mBhpYi5WR2TIemsYzuN8MIlq7y8kddrv1i8B372ePvEPEd
- 5Hko0SSFBiq0lnEgmSUVq2Kb063CdYmuoy7WOUKbw5BFSST7yiVgpZoHYiS7hV9JhC7U=
-X-Received: by 2002:a05:6000:1a8d:b0:3ca:2bc7:e821 with SMTP id
- ffacd0b85a97d-3ca2bc7ef61mr12602367f8f.53.1756414874939; 
- Thu, 28 Aug 2025 14:01:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IELkWMXHF95PsTcVdmFjM8EzCAM7gzseZtqGs+N0bJROmmnC1culcus9SRn7U0k/o9W/T4AXg==
-X-Received: by 2002:a05:6000:1a8d:b0:3ca:2bc7:e821 with SMTP id
- ffacd0b85a97d-3ca2bc7ef61mr12602341f8f.53.1756414874375; 
- Thu, 28 Aug 2025 14:01:14 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f28:c100:2225:10aa:f247:7b85?
- (p200300d82f28c100222510aaf2477b85.dip0.t-ipconnect.de.
- [2003:d8:2f28:c100:2225:10aa:f247:7b85])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cf270fd2dfsm685916f8f.3.2025.08.28.14.01.12
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 28 Aug 2025 14:01:13 -0700 (PDT)
-Message-ID: <f0338ec0-b093-4ba7-a26a-a3668587e334@redhat.com>
-Date: Thu, 28 Aug 2025 23:01:12 +0200
+ d=1e100.net; s=20230601; t=1756414899; x=1757019699;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=pglFtRkMtvCVnJoaqBJK2iHCLlOvGzvFnjXGfZxIBD8=;
+ b=K1kA484/t2vZQubgkiBbhBMcrEFpSJRJ15Vrk0ezeJzt7PhxCPbXpB2Ayh+/i0YAoG
+ Kr2xKWJTQd7VY1+P2tzL38S4Aujz5uns13LJ/LPunKCRPnBSWMFURUxdS29encm165+w
+ nsEaJy7VezFRrSGGHgzjvKDpycC9is/MRBz5tWC3HruLclwoivbU3Koy8e3TiyvVSPly
+ HkbH4H84xIilr9B4IVr/Dx8wj83ys71bcH2k8ppDMRFJR96HhRfF5Bo7ryx/iRjb5sGf
+ /Eehb2OM0kl8dkoKaSFayyfLQAwmXSHfrFKKteUJDs+P7OlJjxjy4gj0dnz0AqkLdbQP
+ C4HQ==
+X-Gm-Message-State: AOJu0YykCdZS1tDYoWv50mhVoanBN205lI9C9nFD8o7Ni7OJbAVf5f5l
+ Svj4JvAP3ck+LoC/cuJwKVbU7guWod6jFzgHQKQ9cCNERwYVj9qPTiz1yqzVbhsVFJwKVInTq3b
+ eE31e1YFCpRyAiCV92IxFOwZCCpPTt90=
+X-Gm-Gg: ASbGncs3IVGSRx26SloLr4pSNfeS8XeHtDNOPMOLEybXCGUwX461kBfhNgkr3c3N2wC
+ AchfFSHuqv9rMaqCmtoTecXNQF407sU9zMUe/YKIevaWkN1aC42pQSOLC7F1rWkhvVxZVuaNObm
+ JPnXgKwZMAdATsasOU6eh6HYn7SQck72aICfYBuMU69hZkNTDpTjvbcsL09PR9qcO6ozmLF92Q6
+ Y/y9JZgkoqUYRDKlg==
+X-Google-Smtp-Source: AGHT+IHqDI0OabTNl88iPCsxbpfFr6hCgIaDA8CRmswaHH/BFc5mwr3uLBPu7j9sgRUC9C3qj4gi6redf1Iq2Q4lQpo=
+X-Received: by 2002:a17:902:e78f:b0:240:4d65:508f with SMTP id
+ d9443c01a7336-2462ef99564mr158780035ad.6.1756414898397; Thu, 28 Aug 2025
+ 14:01:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: stupid PAT :)
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org
-Cc: airlied@gmail.com, matthew.brost@intel.com, dave.hansen@linux.intel.com,
- luto@kernel.org, peterz@infradead.org,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
- <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
- <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
- <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
- <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
- <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
- <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
- <b297fb4289ceaf36e8a9a237a7b2ac8d5f373158.camel@linux.intel.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <b297fb4289ceaf36e8a9a237a7b2ac8d5f373158.camel@linux.intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: ZwimUKLfNb3r7PDdViszouBflvb8Vsigy46EVNtp_b8_1756414875
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 29 Aug 2025 07:20:15 +0000
+References: <20250826014648.1711926-1-Jesse.Zhang@amd.com>
+ <20250826014648.1711926-11-Jesse.Zhang@amd.com>
+ <CADnq5_N6EyJ-sk6DUjiAF=DoujCM1Bg-Pce58w7=w3UQZ9zo2A@mail.gmail.com>
+ <DM4PR12MB51528395FF9873F98604F5C1E33BA@DM4PR12MB5152.namprd12.prod.outlook.com>
+ <DM4PR12MB5152BAD955B5FC2B0C3FAD43E33BA@DM4PR12MB5152.namprd12.prod.outlook.com>
+In-Reply-To: <DM4PR12MB5152BAD955B5FC2B0C3FAD43E33BA@DM4PR12MB5152.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 28 Aug 2025 17:01:26 -0400
+X-Gm-Features: Ac12FXypHOUPB37uDyFZQHzieNSchl2PdGDc_lvPoDmbLWSFSpCSLvfyghRocEY
+Message-ID: <CADnq5_OxawtsABS=1GCQ_2j-P+P2XLgJCncVGNXRX2is+RChow@mail.gmail.com>
+Subject: Re: [v12 11/11] drm/amdgpu: Implement user queue reset functionality
+To: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,129 +86,609 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 26.08.25 16:27, Thomas Hellström wrote:
-> Hi, Christian,
-> 
-> On Tue, 2025-08-26 at 11:56 +0200, Christian König wrote:
->> On 26.08.25 11:17, David Hildenbrand wrote:
->>> On 26.08.25 11:00, Christian König wrote:
->>>> On 26.08.25 10:46, David Hildenbrand wrote:
->>>>>>> So my assumption would be that that is missing for the
->>>>>>> drivers here?
->>>>>>
->>>>>> Well yes and no.
->>>>>>
->>>>>> See the PAT is optimized for applying specific caching
->>>>>> attributes to ranges [A..B] (e.g. it uses an R/B tree). But
->>>>>> what drivers do here is that they have single pages (usually
->>>>>> for get_free_page or similar) and want to apply a certain
->>>>>> caching attribute to it.
->>>>>>
->>>>>> So what would happen is that we completely clutter the R/B
->>>>>> tree used by the PAT with thousands if not millions of
->>>>>> entries.
->>>>>>
->>>>>
->>>>> Hm, above you're saying that there is no direct map, but now
->>>>> you are saying that the pages were obtained through
->>>>> get_free_page()?
->>>>
->>>> The problem only happens with highmem pages on 32bit kernels.
->>>> Those pages are not in the linear mapping.
->>>
->>> Right, in the common case there is a direct map.
->>>
->>>>
->>>>> I agree that what you describe here sounds suboptimal. But if
->>>>> the pages where obtained from the buddy, there surely is a
->>>>> direct map -- unless we explicitly remove it :(
->>>>>
->>>>> If we're talking about individual pages without a directmap, I
->>>>> would wonder if they are actually part of a bigger memory
->>>>> region that can just be reserved in one go (similar to how
->>>>> remap_pfn_range()) would handle it.
->>>>>
->>>>> Can you briefly describe how your use case obtains these PFNs,
->>>>> and how scattered tehy + their caching attributes might be?
->>>>
->>>> What drivers do is to call get_free_page() or alloc_pages_node()
->>>> with the GFP_HIGHUSER flag set.
->>>>
->>>> For non highmem pages drivers then calls set_pages_wc/uc() which
->>>> changes the caching of the linear mapping, but for highmem pages
->>>> there is no linear mapping so set_pages_wc() or set_pages_uc()
->>>> doesn't work and drivers avoid calling it.
->>>>
->>>> Those are basically just random system memory pages. So they are
->>>> potentially scattered over the whole memory address space.
->>>
->>> Thanks, that's valuable information.
->>>
->>> So essentially these drivers maintain their own consistency and PAT
->>> is not aware of that.
->>>
->>> And the real problem is ordinary system RAM.
->>>
->>> There are various ways forward.
->>>
->>> 1) We use another interface that consumes pages instead of PFNs,
->>> like a
->>>     vm_insert_pages_pgprot() we would be adding.
->>>
->>>     Is there any strong requirement for inserting non-refcounted
->>> PFNs?
->>
->> Yes, there is a strong requirement to insert non-refcounted PFNs.
->>
->> We had a lot of trouble with KVM people trying to grab a reference to
->> those pages even if the VMA had the VM_PFNMAP flag set.
->>
->>> 2) We add another interface that consumes PFNs, but explicitly
->>> states
->>>     that it is only for ordinary system RAM, and that the user is
->>>     required for updating the direct map.
->>>
->>>     We could sanity-check the direct map in debug kernels.
->>
->> I would rather like to see vmf_insert_pfn_prot() fixed instead.
->>
->> That function was explicitly added to insert the PFN with the given
->> attributes and as far as I can see all users of that function expect
->> exactly that.
->>
->>>
->>> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating
->>> this
->>>     system RAM differently.
->>>
->>>
->>> There is also the option for a mixture between 1 and 2, where we
->>> get pages, but we map them non-refcounted in a VM_PFNMAP.
->>>
->>> In general, having pages makes it easier to assert that they are
->>> likely ordinary system ram pages, and that the interface is not
->>> getting abused for something else.
->>
->> Well, exactly that's the use case here and that is not abusive at all
->> as far as I can see.
->>
->> What drivers want is to insert a PFN with a certain set of caching
->> attributes regardless if it's system memory or iomem. That's why
->> vmf_insert_pfn_prot() was created in the first place.
->>
->> That drivers need to call set_pages_wc/uc() for the linear mapping on
->> x86 manually is correct and checking that is clearly a good idea for
->> debug kernels.
-> 
-> So where is this trending? Is the current suggestion to continue
-> disallowing aliased mappings with conflicting caching modes and enforce
-> checks in debug kernels?
+On Thu, Aug 28, 2025 at 4:54=E2=80=AFAM Zhang, Jesse(Jie) <Jesse.Zhang@amd.=
+com> wrote:
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Zhang,=
+ Jesse(Jie)
+> Sent: Thursday, August 28, 2025 4:16 PM
+> To: Alex Deucher <alexdeucher@gmail.com>
+> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@=
+amd.com>; Koenig, Christian <Christian.Koenig@amd.com>
+> Subject: RE: [v12 11/11] drm/amdgpu: Implement user queue reset functiona=
+lity
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> -----Original Message-----
+> From: Alex Deucher <alexdeucher@gmail.com>
+> Sent: Tuesday, August 26, 2025 10:49 PM
+> To: Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@=
+amd.com>; Koenig, Christian <Christian.Koenig@amd.com>
+> Subject: Re: [v12 11/11] drm/amdgpu: Implement user queue reset functiona=
+lity
+>
+> On Mon, Aug 25, 2025 at 10:43=E2=80=AFPM Jesse.Zhang <Jesse.Zhang@amd.com=
+> wrote:
+> >
+> > From: Alex Deucher <alexander.deucher@amd.com>
+> >
+> > This patch adds robust reset handling for user queues (userq) to
+> > improve recovery from queue failures. The key components include:
+> >
+> > 1. Queue detection and reset logic:
+> >    - amdgpu_userq_detect_and_reset_queues() identifies failed queues
+> >    - Per-IP detect_and_reset callbacks for targeted recovery
+> >    - Falls back to full GPU reset when needed
+> >
+> > 2. Reset infrastructure:
+> >    - Adds userq_reset_work workqueue for async reset handling
+> >    - Implements pre/post reset handlers for queue state management
+> >    - Integrates with existing GPU reset framework
+> >
+> > 3. Error handling improvements:
+> >    - Enhanced state tracking with HUNG state
+> >    - Automatic reset triggering on critical failures
+> >    - VRAM loss handling during recovery
+> >
+> > 4. Integration points:
+> >    - Added to device init/reset paths
+> >    - Called during queue destroy, suspend, and isolation events
+> >    - Handles both individual queue and full GPU resets
+> >
+> > The reset functionality works with both compute and graphics queues,
+> > providing better resilience against queue failures while minimizing
+> > disruption to unaffected queues.
+> >
+> > v2: Separate SDMA and GFX/COMPUTE queue reset handling
+> >
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu.h        |   1 +
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   8 +
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  | 215 +++++++++++++++++++--
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |   5 +
+> >  4 files changed, 216 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > index ef3af170dda4..9db05cdc7304 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -1302,6 +1302,7 @@ struct amdgpu_device {
+> >         struct list_head                userq_mgr_list;
+> >         struct mutex                    userq_mutex;
+> >         bool                            userq_halt_for_enforce_isolatio=
+n;
+> > +       struct work_struct              userq_reset_work;
+> >  };
+> >
+> >  static inline uint32_t amdgpu_ip_version(const struct amdgpu_device
+> > *adev, diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > index 3757634613c3..1dc88b0055dd 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -4475,6 +4475,7 @@ int amdgpu_device_init(struct amdgpu_device *adev=
+,
+> >         }
+> >
+> >         INIT_WORK(&adev->xgmi_reset_work,
+> > amdgpu_device_xgmi_reset_func);
+> > +       INIT_WORK(&adev->userq_reset_work, amdgpu_userq_reset_work);
+> >
+> >         adev->gfx.gfx_off_req_count =3D 1;
+> >         adev->gfx.gfx_off_residency =3D 0; @@ -5880,6 +5881,10 @@ int
+> > amdgpu_device_reinit_after_reset(struct amdgpu_reset_context *reset_con=
+text)
+> >                                 if (r)
+> >                                         goto out;
+> >
+> > +                               r =3D amdgpu_userq_post_reset(tmp_adev,=
+ vram_lost);
+> > +                               if (r)
+> > +                                       goto out;
+> > +
+> >
+> > drm_client_dev_resume(adev_to_drm(tmp_adev), false);
+> >
+> >                                 /*
+> > @@ -6102,6 +6107,7 @@ static inline void amdgpu_device_stop_pending_res=
+ets(struct amdgpu_device *adev)
+> >         if (!amdgpu_sriov_vf(adev))
+> >                 cancel_work(&adev->reset_work);  #endif
+> > +       cancel_work(&adev->userq_reset_work);
+> >
+> >         if (adev->kfd.dev)
+> >                 cancel_work(&adev->kfd.reset_work);
+> > @@ -6232,6 +6238,8 @@ static void amdgpu_device_halt_activities(struct =
+amdgpu_device *adev,
+> >                       amdgpu_device_ip_need_full_reset(tmp_adev))
+> >                         amdgpu_ras_suspend(tmp_adev);
+> >
+> > +               amdgpu_userq_pre_reset(tmp_adev);
+> > +
+> >                 for (i =3D 0; i < AMDGPU_MAX_RINGS; ++i) {
+> >                         struct amdgpu_ring *ring =3D tmp_adev->rings[i]=
+;
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> > index decedf8057ac..996c7397a57f 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> > @@ -25,8 +25,10 @@
+> >  #include <drm/drm_auth.h>
+> >  #include <drm/drm_exec.h>
+> >  #include <linux/pm_runtime.h>
+> > +#include <drm/drm_drv.h>
+> >
+> >  #include "amdgpu.h"
+> > +#include "amdgpu_reset.h"
+> >  #include "amdgpu_vm.h"
+> >  #include "amdgpu_userq.h"
+> >  #include "amdgpu_userq_fence.h"
+> > @@ -44,6 +46,102 @@ u32 amdgpu_userq_get_supported_ip_mask(struct amdgp=
+u_device *adev)
+> >         return userq_ip_mask;
+> >  }
+> >
+> > +static void amdgpu_userq_gpu_reset(struct amdgpu_device *adev) {
+> > +
+> > +       if (amdgpu_device_should_recover_gpu(adev)) {
+> > +               amdgpu_reset_domain_schedule(adev->reset_domain,
+> > +                                            &adev->userq_reset_work);
+> > +               /* Wait for the reset job to complete */
+> > +               flush_work(&adev->userq_reset_work);
+> > +       }
+> > +}
+> > +
+> > +static int
+> > +amdgpu_userq_detect_and_reset_sdma(struct amdgpu_userq_mgr *uq_mgr) {
+> > +       struct amdgpu_device *adev =3D uq_mgr->adev;
+> > +       const struct amdgpu_userq_funcs *userq_sdma_funcs =3D
+> > +                       adev->userq_funcs[AMDGPU_RING_TYPE_SDMA];
+> > +       struct amdgpu_usermode_queue *userq;
+> > +       bool has_sdma =3D false;
+> > +       bool gpu_reset =3D false;
+> > +       int id, r =3D 0;
+> > +
+> > +       /* Detect if SDMA queues are present */
+> > +       idr_for_each_entry(&uq_mgr->userq_idr, userq, id) {
+> > +               if (userq->queue_type =3D=3D AMDGPU_RING_TYPE_SDMA) {
+> > +                       has_sdma =3D true;
+> > +                       break;
+> > +               }
+> > +       }
+> > +
+> > +       if (has_sdma && userq_sdma_funcs && userq_sdma_funcs->detect_an=
+d_reset) {
+> > +               r =3D userq_sdma_funcs->detect_and_reset(adev, AMDGPU_R=
+ING_TYPE_SDMA);
+> > +               if (r)
+> > +                       gpu_reset =3D true;
+> > +       }
+> > +
+> > +       if (gpu_reset)
+> > +               amdgpu_userq_gpu_reset(adev);
+> > +
+> > +       return r;
+> > +}
+> > +
+> > +static int
+> > +amdgpu_userq_detect_and_reset_gfx_compute(struct amdgpu_userq_mgr
+> > +*uq_mgr) {
+> > +       struct amdgpu_device *adev =3D uq_mgr->adev;
+> > +       const struct amdgpu_userq_funcs *userq_gfx_funcs =3D
+> > +                       adev->userq_funcs[AMDGPU_RING_TYPE_GFX];
+> > +       const struct amdgpu_userq_funcs *userq_compute_funcs =3D
+> > +                       adev->userq_funcs[AMDGPU_RING_TYPE_COMPUTE];
+> > +       struct amdgpu_usermode_queue *userq;
+> > +       bool has_gfx =3D false, has_compute =3D false;
+> > +       bool gpu_reset =3D false;
+> > +       int id, r =3D 0;
+> > +
+> > +       /* Detect which types of queues are present (excluding SDMA) */
+> > +       idr_for_each_entry(&uq_mgr->userq_idr, userq, id) {
+> > +               switch (userq->queue_type) {
+> > +               case AMDGPU_RING_TYPE_GFX:
+> > +                       has_gfx =3D true;
+> > +                       break;
+> > +               case AMDGPU_RING_TYPE_COMPUTE:
+> > +                       has_compute =3D true;
+> > +                       break;
+> > +               default:
+> > +                       break;
+> > +               }
+> > +       }
+> > +
+> > +       if (unlikely(adev->debug_disable_gpu_ring_reset)) {
+> > +               dev_err(adev->dev, "userq reset disabled by debug mask\=
+n");
+> > +       } else if (amdgpu_gpu_recovery) {
+> > +               if (has_compute && userq_compute_funcs->detect_and_rese=
+t) {
+> > +                       r =3D userq_compute_funcs->detect_and_reset(ade=
+v, AMDGPU_RING_TYPE_COMPUTE);
+> > +                       if (r) {
+> > +                               gpu_reset =3D true;
+> > +                               goto gpu_reset;
+> > +                       }
+> > +               }
+> > +
+> > +               if (has_gfx && userq_gfx_funcs->detect_and_reset) {
+> > +                       r =3D userq_gfx_funcs->detect_and_reset(adev, A=
+MDGPU_RING_TYPE_GFX);
+> > +                       if (r) {
+> > +                               gpu_reset =3D true;
+> > +                               goto gpu_reset;
+> > +                       }
+> > +               }
+> > +       }
+> > +
+> > +gpu_reset:
+> > +       if (gpu_reset)
+> > +               amdgpu_userq_gpu_reset(adev);
+> > +
+> > +       return r;
+> > +}
+>
+> > Why split these into two functions?  I think it would be more
+> efficient to just have a single function
+> (amdgpu_userq_detect_and_reset()) that works at the device level and chec=
+ks to see what types of user queues are present and then calls
+> detect_and_reset() for each queue type that is present and then have that=
+ function update the queue state of all queues that are hung.
+> Then just call this function in all the places we call preempt or unmap. =
+ E.g.,
+>
+> > amdgpu_userq_detect_and_reset()
+> idr_for_each_entry(&uq_mgr->userq_idr, queue, queue_id) {
+>     /* evict, unmap, */
+> }
+>
+> > We probably also need some way to determine whether the queue reset
+> was successful or not because we ultimately need to decide when to do a f=
+ull adapter reset.
+>
+> Thanks Alex.
+> You are right, I would revert the changes and call it everywhere we call =
+preempt and unmap, including when preempt/unmap fails.
 
-Not sure, it's a mess. The big question is to find out when it is really 
-ok to bypass PAT and when to better let it have a saying.
+How about if we have a per device userq counter for each user queue
+type.  It would get incremented when a queue is created and
+decremented when it's destroyed.  Then we can just check the counters
+and call detect_and_reset for all queue types where the counter is
+non-0.  Update the state of any affected queues. Take all the locks.
 
--- 
-Cheers
+Then do whatever preempt/umap is requested and update the queue state.
 
-David / dhildenb
+Then afterwards, call detect_and_reset() again with all the locks.
 
+At this point we can do a full adapter reset if necessary.  I'm not
+clear on how we determine whether we need to or not.
+
+Alex
+
+>
+> Jesse
+>
+> >Hi Alex,
+>
+> For SDMA, preemption on the GFX12 always succeeds even if the SDMA queue =
+is pending. Therefore, we must detect the hung queues before preempting/unm=
+apping.
+>
+> For compute/GFX queues, the API does not detect the hung queues before pr=
+eempting/unmapping.
+> However, if a GFX/compute queue is hung, preemption will fail. After pree=
+mption/unmapping fails, we call the detection and reset API, and MES resets=
+ the unmapped queue.
+>
+> For this reason, I've split these into two functions.
+>
+> Thanks
+> Jesse
+>
+>
+> Alex
+>
+> > +
+> >  static int
+> >  amdgpu_userqueue_preempt_helper(struct amdgpu_userq_mgr *uq_mgr,
+> >                           struct amdgpu_usermode_queue *queue) @@
+> > -56,6 +154,7 @@ amdgpu_userqueue_preempt_helper(struct amdgpu_userq_mgr=
+ *uq_mgr,
+> >         if (queue->state =3D=3D AMDGPU_USERQ_STATE_MAPPED) {
+> >                 r =3D userq_funcs->preempt(uq_mgr, queue);
+> >                 if (r) {
+> > +
+> > + amdgpu_userq_detect_and_reset_gfx_compute(uq_mgr);
+> >                         queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+> >                 } else {
+> >                         queue->state =3D AMDGPU_USERQ_STATE_PREEMPTED;
+> > @@ -72,17 +171,21 @@ amdgpu_userqueue_restore_helper(struct amdgpu_user=
+q_mgr *uq_mgr,
+> >         struct amdgpu_device *adev =3D uq_mgr->adev;
+> >         const struct amdgpu_userq_funcs *userq_funcs =3D
+> >                 adev->userq_funcs[queue->queue_type];
+> > +       bool gpu_reset =3D false;
+> >         int r =3D 0;
+> >
+> >         if (queue->state =3D=3D AMDGPU_USERQ_STATE_PREEMPTED) {
+> >                 r =3D userq_funcs->restore(uq_mgr, queue);
+> >                 if (r) {
+> >                         queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+> > +                       gpu_reset =3D true;
+> >                 } else {
+> >                         queue->state =3D AMDGPU_USERQ_STATE_MAPPED;
+> >                 }
+> >         }
+> >
+> > +       if (gpu_reset)
+> > +               amdgpu_userq_gpu_reset(adev);
+> >         return r;
+> >  }
+> >
+> > @@ -98,11 +201,14 @@ amdgpu_userq_unmap_helper(struct amdgpu_userq_mgr =
+*uq_mgr,
+> >         if ((queue->state =3D=3D AMDGPU_USERQ_STATE_MAPPED) ||
+> >                 (queue->state =3D=3D AMDGPU_USERQ_STATE_PREEMPTED)) {
+> >                 r =3D userq_funcs->unmap(uq_mgr, queue);
+> > -               if (r)
+> > +               if (r) {
+> > +
+> > + amdgpu_userq_detect_and_reset_gfx_compute(uq_mgr);
+> >                         queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+> > -               else
+> > +               } else {
+> >                         queue->state =3D AMDGPU_USERQ_STATE_UNMAPPED;
+> > +               }
+> >         }
+> > +
+> >         return r;
+> >  }
+> >
+> > @@ -113,16 +219,22 @@ amdgpu_userq_map_helper(struct amdgpu_userq_mgr *=
+uq_mgr,
+> >         struct amdgpu_device *adev =3D uq_mgr->adev;
+> >         const struct amdgpu_userq_funcs *userq_funcs =3D
+> >                 adev->userq_funcs[queue->queue_type];
+> > +       bool gpu_reset =3D false;
+> >         int r =3D 0;
+> >
+> >         if (queue->state =3D=3D AMDGPU_USERQ_STATE_UNMAPPED) {
+> >                 r =3D userq_funcs->map(uq_mgr, queue);
+> >                 if (r) {
+> >                         queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+> > +                       gpu_reset =3D true;
+> >                 } else {
+> >                         queue->state =3D AMDGPU_USERQ_STATE_MAPPED;
+> >                 }
+> >         }
+> > +
+> > +       if (gpu_reset)
+> > +               amdgpu_userq_gpu_reset(adev);
+> > +
+> >         return r;
+> >  }
+> >
+> > @@ -361,6 +473,7 @@ amdgpu_userq_destroy(struct drm_file *filp, int que=
+ue_id)
+> >                 amdgpu_bo_unreserve(queue->db_obj.obj);
+> >         }
+> >         amdgpu_bo_unref(&queue->db_obj.obj);
+> > +       amdgpu_userq_detect_and_reset_sdma(uq_mgr);
+> >         r =3D amdgpu_userq_unmap_helper(uq_mgr, queue);
+> >         amdgpu_userq_cleanup(uq_mgr, queue, queue_id);
+> >         mutex_unlock(&uq_mgr->userq_mutex);
+> > @@ -734,6 +847,7 @@ amdgpu_userq_evict_all(struct amdgpu_userq_mgr *uq_=
+mgr)
+> >         int queue_id;
+> >         int ret =3D 0, r;
+> >
+> > +       amdgpu_userq_detect_and_reset_sdma (uq_mgr);
+> >         /* Try to unmap all the queues in this process ctx */
+> >         idr_for_each_entry(&uq_mgr->userq_idr, queue, queue_id) {
+> >                 r =3D amdgpu_userqueue_preempt_helper(uq_mgr, queue); @=
+@
+> > -746,6 +860,23 @@ amdgpu_userq_evict_all(struct amdgpu_userq_mgr *uq_mg=
+r)
+> >         return ret;
+> >  }
+> >
+> > +void amdgpu_userq_reset_work(struct work_struct *work) {
+> > +       struct amdgpu_device *adev =3D container_of(work, struct amdgpu=
+_device,
+> > +                                                 userq_reset_work);
+> > +       struct amdgpu_reset_context reset_context;
+> > +
+> > +       memset(&reset_context, 0, sizeof(reset_context));
+> > +
+> > +       reset_context.method =3D AMD_RESET_METHOD_NONE;
+> > +       reset_context.reset_req_dev =3D adev;
+> > +       reset_context.src =3D AMDGPU_RESET_SRC_USERQ;
+> > +       set_bit(AMDGPU_NEED_FULL_RESET, &reset_context.flags);
+> > +       /*set_bit(AMDGPU_SKIP_COREDUMP, &reset_context.flags);*/
+> > +
+> > +       amdgpu_device_gpu_recover(adev, NULL, &reset_context); }
+> > +
+> >  static int
+> >  amdgpu_userq_wait_for_signal(struct amdgpu_userq_mgr *uq_mgr)  { @@
+> > -772,22 +903,19 @@ void  amdgpu_userq_evict(struct amdgpu_userq_mgr
+> > *uq_mgr,
+> >                    struct amdgpu_eviction_fence *ev_fence)  {
+> > -       int ret;
+> >         struct amdgpu_fpriv *fpriv =3D uq_mgr_to_fpriv(uq_mgr);
+> >         struct amdgpu_eviction_fence_mgr *evf_mgr =3D &fpriv->evf_mgr;
+> > +       struct amdgpu_device *adev =3D uq_mgr->adev;
+> > +       int ret;
+> >
+> >         /* Wait for any pending userqueue fence work to finish */
+> >         ret =3D amdgpu_userq_wait_for_signal(uq_mgr);
+> > -       if (ret) {
+> > -               drm_file_err(uq_mgr->file, "Not evicting userqueue, tim=
+eout waiting for work\n");
+> > -               return;
+> > -       }
+> > +       if (ret)
+> > +               dev_err(adev->dev, "Not evicting userqueue, timeout
+> > + waiting for work\n");
+> >
+> >         ret =3D amdgpu_userq_evict_all(uq_mgr);
+> > -       if (ret) {
+> > -               drm_file_err(uq_mgr->file, "Failed to evict userqueue\n=
+");
+> > -               return;
+> > -       }
+> > +       if (ret)
+> > +               dev_err(adev->dev, "Failed to evict userqueue\n");
+> >
+> >         /* Signal current eviction fence */
+> >         amdgpu_eviction_fence_signal(evf_mgr, ev_fence); @@ -828,6
+> > +956,7 @@ void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr
+> > *userq_mgr)
+> >
+> >         mutex_lock(&adev->userq_mutex);
+> >         mutex_lock(&userq_mgr->userq_mutex);
+> > +       amdgpu_userq_detect_and_reset_sdma(userq_mgr);
+> >         idr_for_each_entry(&userq_mgr->userq_idr, queue, queue_id) {
+> >                 amdgpu_userq_wait_for_last_fence(userq_mgr, queue);
+> >                 amdgpu_userq_unmap_helper(userq_mgr, queue); @@
+> > -861,10 +990,13 @@ int amdgpu_userq_suspend(struct amdgpu_device *adev)
+> >         list_for_each_entry_safe(uqm, tmp, &adev->userq_mgr_list, list)=
+ {
+> >                 cancel_delayed_work_sync(&uqm->resume_work);
+> >                 mutex_lock(&uqm->userq_mutex);
+> > +               amdgpu_userq_detect_and_reset_sdma(uqm);
+> >                 idr_for_each_entry(&uqm->userq_idr, queue, queue_id) {
+> >                         r =3D amdgpu_userq_unmap_helper(uqm, queue);
+> > -                       if (r)
+> > +                       if (r) {
+> > +
+> > + amdgpu_userq_detect_and_reset_gfx_compute(uqm);
+> >                                 ret =3D r;
+> > +                       }
+> >                 }
+> >                 mutex_unlock(&uqm->userq_mutex);
+> >         }
+> > @@ -917,13 +1049,16 @@ int amdgpu_userq_stop_sched_for_enforce_isolatio=
+n(struct amdgpu_device *adev,
+> >         list_for_each_entry_safe(uqm, tmp, &adev->userq_mgr_list, list)=
+ {
+> >                 cancel_delayed_work_sync(&uqm->resume_work);
+> >                 mutex_lock(&uqm->userq_mutex);
+> > +               amdgpu_userq_detect_and_reset_sdma(uqm);
+> >                 idr_for_each_entry(&uqm->userq_idr, queue, queue_id) {
+> >                         if (((queue->queue_type =3D=3D AMDGPU_HW_IP_GFX=
+) ||
+> >                              (queue->queue_type =3D=3D AMDGPU_HW_IP_COM=
+PUTE)) &&
+> >                             (queue->xcp_id =3D=3D idx)) {
+> >                                 r =3D amdgpu_userq_unmap_helper(uqm, qu=
+eue);
+> > -                               if (r)
+> > +                               if (r) {
+> > +
+> > + amdgpu_userq_detect_and_reset_gfx_compute(uqm);
+> >                                         ret =3D r;
+> > +                               }
+> >                         }
+> >                 }
+> >                 mutex_unlock(&uqm->userq_mutex); @@ -965,3 +1100,57 @@
+> > int amdgpu_userq_start_sched_for_enforce_isolation(struct amdgpu_device=
+ *adev,
+> >         mutex_unlock(&adev->userq_mutex);
+> >         return ret;
+> >  }
+> > +
+> > +void amdgpu_userq_pre_reset(struct amdgpu_device *adev) {
+> > +       const struct amdgpu_userq_funcs *userq_funcs;
+> > +       struct amdgpu_usermode_queue *queue;
+> > +       struct amdgpu_userq_mgr *uqm, *tmp;
+> > +       int queue_id;
+> > +
+> > +       list_for_each_entry_safe(uqm, tmp, &adev->userq_mgr_list, list)=
+ {
+> > +               cancel_delayed_work_sync(&uqm->resume_work);
+> > +               idr_for_each_entry(&uqm->userq_idr, queue, queue_id) {
+> > +                       if (queue->state =3D=3D AMDGPU_USERQ_STATE_MAPP=
+ED) {
+> > +                               amdgpu_userq_wait_for_last_fence(uqm, q=
+ueue);
+> > +                               userq_funcs =3D adev->userq_funcs[queue=
+->queue_type];
+> > +                               userq_funcs->unmap(uqm, queue);
+> > +                               /* just mark all queues as hung at this=
+ point.
+> > +                                * if unmap succeeds, we could map agai=
+n
+> > +                                * in amdgpu_userq_post_reset() if vram=
+ is not lost
+> > +                                */
+> > +                               queue->state =3D AMDGPU_USERQ_STATE_HUN=
+G;
+> > +                               amdgpu_userq_fence_driver_force_complet=
+ion(queue);
+> > +                       }
+> > +               }
+> > +       }
+> > +}
+> > +
+> > +int amdgpu_userq_post_reset(struct amdgpu_device *adev, bool
+> > +vram_lost) {
+> > +       /* if any queue state is AMDGPU_USERQ_STATE_UNMAPPED
+> > +        * at this point, we should be able to map it again
+> > +        * and continue if vram is not lost.
+> > +        */
+> > +       struct amdgpu_userq_mgr *uqm;
+> > +       struct amdgpu_usermode_queue *queue;
+> > +       const struct amdgpu_userq_funcs *userq_funcs;
+> > +       int queue_id, r =3D 0;
+> > +
+> > +       list_for_each_entry(uqm, &adev->userq_mgr_list, list) {
+> > +               idr_for_each_entry(&uqm->userq_idr, queue, queue_id) {
+> > +                       if (queue->state =3D=3D AMDGPU_USERQ_STATE_HUNG=
+ && !vram_lost) {
+> > +                               userq_funcs =3D adev->userq_funcs[queue=
+->queue_type];
+> > +                               /* re-map queue */
+> > +                               r =3D userq_funcs->map(uqm, queue);
+> > +                               if (r) {
+> > +                                       dev_err(adev->dev, "Failed to r=
+emap queue %d\n", queue_id);
+> > +                                       continue;
+> > +                               }
+> > +                               queue->state =3D AMDGPU_USERQ_STATE_MAP=
+PED;
+> > +                       }
+> > +               }
+> > +       }
+> > +
+> > +       return r;
+> > +}
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+> > index 9fa0d1a88d71..e68bb144b26f 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+> > @@ -138,4 +138,9 @@ int
+> > amdgpu_userq_stop_sched_for_enforce_isolation(struct amdgpu_device *ade=
+v,  int amdgpu_userq_start_sched_for_enforce_isolation(struct amdgpu_device=
+ *adev,
+> >                                                    u32 idx);
+> >
+> > +void amdgpu_userq_reset_work(struct work_struct *work);
+> > +
+> > +void amdgpu_userq_pre_reset(struct amdgpu_device *adev); int
+> > +amdgpu_userq_post_reset(struct amdgpu_device *adev, bool vram_lost);
+> > +
+> >  #endif
+> > --
+> > 2.49.0
+> >
