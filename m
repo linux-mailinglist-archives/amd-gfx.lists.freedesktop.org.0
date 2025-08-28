@@ -2,75 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB4CB3A3B8
+	by mail.lfdr.de (Postfix) with ESMTPS id 62198B3A3B7
 	for <lists+amd-gfx@lfdr.de>; Thu, 28 Aug 2025 17:11:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8709C10EA23;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67FF810EA22;
 	Thu, 28 Aug 2025 15:11:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JB+NfOcU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Wf+78k7K";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DC8D10EA1A
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B48F110EA1C
  for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 15:11:24 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-45a1b05fe23so6617985e9.1
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-45a1b00f23eso7111865e9.0
  for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 08:11:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1756393883; x=1756998683; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=C6Hsh/FIJ/nn1TxvDUsCcf7pWg9Y7hVjMQb7MQr91HA=;
- b=JB+NfOcU9DEaagRTbpRPqhrOvcNoqVdAAttsiu3XmiZin01V/cjAlxjL1TWLQ/WhVW
- ncOTKHLXrO9p3jU+Ha+f4gsdNaQtqHsxLjkhUwIg7gPoWI1pZZxvyASUe9zHqRPrTFYN
- 2dzvv5ELARJc4ap859FFIevigTqaJdiNMuyYGZz0K4QrTw0zXPhVwYsvrE7fu8QBT/gc
- XuT7oHP4z+Mi+WseV08EbHDQQfkrHQ432r2f39/e+Z3pe8oPfDbcwXgM4vboiuKbl0tZ
- qUN+gIiw6bOpkfuj1qDxsIyOrG3sEZwm+XkfkPSeNo+EcCJ3aRCnx2UJJQ1ZEzbSsPyN
- yFHQ==
+ bh=53viYgtRqQv0yJiNv8NKHp//Sbxzv10FH5H48TVizqk=;
+ b=Wf+78k7KAV/SO4XcJGfUiSEHFfURhEpWBhZhSlzDkxDr12AjrM3zjKMecQEwSX9LUs
+ V/CkVhqKCRwyaTRonE3eME3Rkt7n9icFn4MM521mZtDc3D12n9zCiCHiORSbCFwjE8Li
+ +f3JRzLs+87hJeMRnXztl2GV9jYHUtllwII/vWr7KsC90DuabyITbjc4OGYDLD2my7Nu
+ mOkXdrC1h4VdlRbtLghmFYQgD0jzIciGaqKb9tHDzSs+k+6QIDxwI2113OBuOiIT9/Fl
+ v44hM1b5L0Syz0NrHV/vkpFwi2HRpYpFuS7eRebTu/pB+xIDnZZsVBZJ9l/Lm6/GC/IA
+ jp5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1756393883; x=1756998683;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=C6Hsh/FIJ/nn1TxvDUsCcf7pWg9Y7hVjMQb7MQr91HA=;
- b=wkq0YNEMBLPqU+3HE4fj5bAcXh0/3AWEYWNaU5/1Q7mUibCLj7r5kEb3RNP8bVooNF
- VtlKtwGYP0e/cs9E4hyevdQhstceLpzqmphPpMikf6npV47i1V2SGMiset5CJIjL5oYN
- MWHL/tatMaBax2DviX+zKlh6J+uQDv/4aBjsdkV/aLBfLpO2tyzdaNIxolgNSiZf4ofW
- NHE6nMIyKjXT/m20mdJmUyA4jmmqvY+bItIsqVKr6H3LcuwS5xp0wQopQAM1mnGe47g/
- +nVtkZ0JZLofnHKXmNJm98CzKlDD4EAgvNzfEakuUY8jAVLTO/f7gNUof4PUz4yEVgJU
- tqtw==
-X-Gm-Message-State: AOJu0YyNucmxVh/QXkIqZ+EcxxMtaFVv0voaIx9jkl6zXUeDm4B1PPrZ
- Otpc0mCISA2+z8JeedTDAjFmwlg9lgNHX6s1V+spl8XnW96Sv+31trWLykKdXw==
-X-Gm-Gg: ASbGnctXraF/zPdMuazh1nsQas85PQzfRGBwgVLFQfsv4i9JKheyjWmbPi+kYXrRFYn
- YKJV1+IGvTu0vVZ94JQZRGyN9i/Y+h1f2sZL8dXhC8UD32hmuj+9CnM0GiCQz8LAhrYvkasON8W
- A3FB1NeTfXj/AaRVx1ktK7Im5HigDsCoYLfWTdQ22ZtFufI1ZWADoorZXj2g5yRKcdDjG3R0DB8
- hYBdY2LFlDdO921RiIQwYii9dbuGqCc14XGn+dd80/w8tVN9CsO1Uus45UqNI9Uui/EIH6uVpGV
- KDNQQafHDACvBDrKfb23IFtbRrDbcD/HtrBDLVlPffoFr8TapZggfRHk7SmIGsIiBuszHIEsJ7/
- X31MXCaM+1sD1p2neIWfss2eLCmRnu70QoUTMUqDw/0DHZx2bB7MSIYw77opIAMDYV4M3SXlk3s
- xMWk3pWQfcuqH2sgzixW970A7HljCZ+7HmiHsII9AbtegAvxk=
-X-Google-Smtp-Source: AGHT+IFFdDVhTaCbDiRxK0pYTfL7RzDHRT4gdaG6n3Hxv6cE84wvC7I56pE0Y6bqBxRLFD/LhPyq9Q==
-X-Received: by 2002:a05:600c:4447:b0:456:27a4:50ad with SMTP id
- 5b1f17b1804b1-45b517ea940mr217134195e9.33.1756393882266; 
- Thu, 28 Aug 2025 08:11:22 -0700 (PDT)
+ bh=53viYgtRqQv0yJiNv8NKHp//Sbxzv10FH5H48TVizqk=;
+ b=NYXkuKVUqBdIMnC6Djl46YUoRjrsI5xTdtyfaC17qzEwmLOoj0H+EXySAhxm7W8mJs
+ rPQx14QbZszWY027VvjrDgDcFqOLkc+dNZXRQ72seT2KNFjGEVW7aeiUoQ/T7Edb6kAN
+ yT04K+QjjHUY0y3KTe+tewrDCRbxk+6i5JqstEPerswSNVO0xnq+edlj9AhRCu+mtLMc
+ z58k3UOC9TS/+oxywmZZ9Ge0cvj8Jbq+2wEAlPgp+848oT8PtleDYHBVFHvYtT5Hqyz6
+ DTQt8Z0SRVM9H3jfQfYrZUbMXOWg25EENmqX281QRPnErs8bYsqDoW7zHrViVl8VNJic
+ aopw==
+X-Gm-Message-State: AOJu0YyLtJeHPNRZraLpBklxXQ7Xw3DZQoSN0B3qFzBafZ5qxGzHb6Sl
+ GFVGkSofjwrODX2y8cdiA16AQ3Y6F/kiPpsDB8vXLxhm2xnj4RcTHUpqEGEjEg==
+X-Gm-Gg: ASbGnctkGH/qlicBIKMKXo9I2GokCXPh4AFcojYI3jGfE9CC/BePPcponrP5feF0daC
+ Rm1zqCSIkP6+gqN06J5kU7RnnkA4lcSEXPKUlIrL1X/odWay2PfiwsQTgVB2YsmwxUmhs2XnQII
+ nqnnogkI6IPg6w+MrLUqcPJioCq3MGeb/dGwgdmIfebhPJzVMo2M1uoqHk/dNueh2jhB1LWdwaF
+ 2x965qHpaCJSr5riGtNh2LjGj66TxYTvvHdK+Tw3Q+oAyvfVdUn+JUaYnpJBa0PATInmzMEuzO0
+ tp+P00LK+MycXWaJAWLuNyJXDg00j/NDUx5ImZ7fRyzmCuafcV/srfh62kOHQcE1Fdx/yiXp/qJ
+ eFEZZv+wgXkIhLGHhWfYCquq+/W0jgzU8Vn3qnPSUQWU5eGd4tz+Vl6Rz5sSNzp3sv+wVp/trxv
+ dCG62kA9PoKJfoRoARj1xY+ryLFZNxkXZaQa+T
+X-Google-Smtp-Source: AGHT+IHO3HS2lH5uC0gJWA5iPbDhtowEXhdGLnpiPqjpK0AXhUJDRMy3PlvRMmuqZXmR/FdZ/hmCQA==
+X-Received: by 2002:a05:600c:45ca:b0:45b:47e1:f5fa with SMTP id
+ 5b1f17b1804b1-45b517d8e37mr197573615e9.35.1756393883063; 
+ Thu, 28 Aug 2025 08:11:23 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4E24E36900D571F3015BAFEA47.dsl.pool.telekom.hu.
  [2001:4c4e:24e3:6900:d571:f301:5baf:ea47])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-45b6f306bffsm77448875e9.16.2025.08.28.08.11.21
+ 5b1f17b1804b1-45b6f306bffsm77448875e9.16.2025.08.28.08.11.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Aug 2025 08:11:21 -0700 (PDT)
+ Thu, 28 Aug 2025 08:11:22 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 08/10] drm/amd/pm: Disable SCLK switching on Oland with high
- pixel clocks (v3)
-Date: Thu, 28 Aug 2025 17:11:10 +0200
-Message-ID: <20250828151112.15965-9-timur.kristof@gmail.com>
+Subject: [PATCH 09/10] drm/amd/pm: Remove wm_low and wm_high fields from
+ amdgpu_crtc (v2)
+Date: Thu, 28 Aug 2025 17:11:11 +0200
+Message-ID: <20250828151112.15965-10-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250828151112.15965-1-timur.kristof@gmail.com>
 References: <20250828151112.15965-1-timur.kristof@gmail.com>
@@ -91,86 +91,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Port of commit 227545b9a08c ("drm/radeon/dpm: Disable sclk
-switching on Oland when two 4K 60Hz monitors are connected")
+These fields were only used by si_dpm and are not necessary
+anymore. They also may have been incorrect because:
+- wm_high was set to the LOW_WATERMARK field of watermark A.
+- wm_low was not set on DCE 6 and was always zero.
 
-This is an ad-hoc DPM fix, necessary because we don't have
-proper bandwidth calculation for DCE 6.
-
-We define "high pixelclock" for SI as higher than necessary
-for 4K 30Hz. For example, 4K 60Hz and 1080p 144Hz fall into
-this category.
-
-When two high pixel clock displays are connected to Oland,
-additionally disable shader clock switching, which results in
-a higher voltage, thereby addressing some visible flickering.
-
-v2:
-Add more comments.
-v3:
-Split into two commits for easier review.
-
-Fixes: 841686df9f7d ("drm/amdgpu: add SI DPM support (v4)")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h | 2 --
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c   | 3 +--
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c   | 3 +--
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c    | 1 -
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c    | 3 +--
+ 5 files changed, 3 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-index c11c4cc111df..4236700fc1ad 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-@@ -3449,12 +3449,14 @@ static void si_apply_state_adjust_rules(struct amdgpu_device *adev,
- {
- 	struct  si_ps *ps = si_get_ps(rps);
- 	struct amdgpu_clock_and_voltage_limits *max_limits;
-+	struct amdgpu_connector *conn;
- 	bool disable_mclk_switching = false;
- 	bool disable_sclk_switching = false;
- 	u32 mclk, sclk;
- 	u16 vddc, vddci, min_vce_voltage = 0;
- 	u32 max_sclk_vddc, max_mclk_vddci, max_mclk_vddc;
- 	u32 max_sclk = 0, max_mclk = 0;
-+	u32 high_pixelclock_count = 0;
- 	int i;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
+index 6da4f946cac0..20460cfd09bc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
+@@ -496,8 +496,6 @@ struct amdgpu_crtc {
+ 	struct drm_connector *connector;
+ 	/* for dpm */
+ 	u32 line_time;
+-	u32 wm_low;
+-	u32 wm_high;
+ 	u32 lb_vblank_lead_lines;
+ 	struct drm_display_mode hw_mode;
+ 	/* for virtual dce */
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+index bf7c22f81cda..c7b104222a97 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+@@ -1141,8 +1141,7 @@ static void dce_v10_0_program_watermarks(struct amdgpu_device *adev,
  
- 	if (adev->asic_type == CHIP_HAINAN) {
-@@ -3482,6 +3484,35 @@ static void si_apply_state_adjust_rules(struct amdgpu_device *adev,
- 		}
- 	}
+ 	/* save values for DPM */
+ 	amdgpu_crtc->line_time = line_time;
+-	amdgpu_crtc->wm_high = latency_watermark_a;
+-	amdgpu_crtc->wm_low = latency_watermark_b;
++
+ 	/* Save number of lines the linebuffer leads before the scanout */
+ 	amdgpu_crtc->lb_vblank_lead_lines = lb_vblank_lead_lines;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+index 47e05783c4a0..fe8a4f70414a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+@@ -1173,8 +1173,7 @@ static void dce_v11_0_program_watermarks(struct amdgpu_device *adev,
  
-+	/* We define "high pixelclock" for SI as higher than necessary for 4K 30Hz.
-+	 * For example, 4K 60Hz and 1080p 144Hz fall into this category.
-+	 * Find number of such displays connected.
-+	 */
-+	for (i = 0; i < adev->mode_info.num_crtc; i++) {
-+		if (!(adev->pm.dpm.new_active_crtcs & (1 << i)) ||
-+			!adev->mode_info.crtcs[i]->enabled)
-+			continue;
+ 	/* save values for DPM */
+ 	amdgpu_crtc->line_time = line_time;
+-	amdgpu_crtc->wm_high = latency_watermark_a;
+-	amdgpu_crtc->wm_low = latency_watermark_b;
 +
-+		conn = to_amdgpu_connector(adev->mode_info.crtcs[i]->connector);
+ 	/* Save number of lines the linebuffer leads before the scanout */
+ 	amdgpu_crtc->lb_vblank_lead_lines = lb_vblank_lead_lines;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+index 276c025c4c03..8ab1f08afcef 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+@@ -1034,7 +1034,6 @@ static void dce_v6_0_program_watermarks(struct amdgpu_device *adev,
+ 
+ 	/* save values for DPM */
+ 	amdgpu_crtc->line_time = line_time;
+-	amdgpu_crtc->wm_high = latency_watermark_a;
+ 
+ 	/* Save number of lines the linebuffer leads before the scanout */
+ 	amdgpu_crtc->lb_vblank_lead_lines = lb_vblank_lead_lines;
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+index e62ccf9eb73d..47ed5f1840fc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+@@ -1096,8 +1096,7 @@ static void dce_v8_0_program_watermarks(struct amdgpu_device *adev,
+ 
+ 	/* save values for DPM */
+ 	amdgpu_crtc->line_time = line_time;
+-	amdgpu_crtc->wm_high = latency_watermark_a;
+-	amdgpu_crtc->wm_low = latency_watermark_b;
 +
-+		if (conn->pixelclock_for_modeset > 297000)
-+			high_pixelclock_count++;
-+	}
-+
-+	/* These are some ad-hoc fixes to some issues observed with SI GPUs.
-+	 * They are necessary because we don't have something like dce_calcs
-+	 * for these GPUs to calculate bandwidth requirements.
-+	 */
-+	if (high_pixelclock_count) {
-+		/* On Oland, we observe some flickering when two 4K 60Hz
-+		 * displays are connected, possibly because voltage is too low.
-+		 * Raise the voltage by requiring a higher SCLK.
-+		 * (Voltage cannot be adjusted independently without also SCLK.)
-+		 */
-+		if (high_pixelclock_count > 1 && adev->asic_type == CHIP_OLAND)
-+			disable_sclk_switching = true;
-+	}
-+
- 	if (rps->vce_active) {
- 		rps->evclk = adev->pm.dpm.vce_states[adev->pm.dpm.vce_level].evclk;
- 		rps->ecclk = adev->pm.dpm.vce_states[adev->pm.dpm.vce_level].ecclk;
+ 	/* Save number of lines the linebuffer leads before the scanout */
+ 	amdgpu_crtc->lb_vblank_lead_lines = lb_vblank_lead_lines;
+ }
 -- 
 2.51.0
 
