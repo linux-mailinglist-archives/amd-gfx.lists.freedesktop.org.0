@@ -2,75 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449FDB3A3B4
+	by mail.lfdr.de (Postfix) with ESMTPS id A096FB3A3B5
 	for <lists+amd-gfx@lfdr.de>; Thu, 28 Aug 2025 17:11:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9C1310EA1E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFA9910EA1F;
 	Thu, 28 Aug 2025 15:11:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EasFOzsU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dolC7QO/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1411B10EA19
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F33D010EA17
  for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 15:11:22 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-45b627ea5f3so4430195e9.1
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-45b5d49ae47so6068745e9.0
  for <amd-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 08:11:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756393880; x=1756998680; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1756393881; x=1756998681; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=clDKvhDkKqOaOBoqXISRVs8YKQ3C2mgywSnWHCIn/jg=;
- b=EasFOzsUHyx2nesYIvql3VlC5jcmMCYPt0Q8Izg0mAMWfWr09PGW9TNC1hUP9xYUIp
- cJEfaz4w1QjRGDmZ9s6znqxLktrl//zf9ANJCAJM9OQW1j7KzlTsx2kiV6PSKa8oy1+m
- bGc5+VPJKj1zimZykTvIujCiRFmFmCRfHXfxMheTEVB0A0KLaIikk0k2LZZx4R7Q9bUz
- LpFoc0isZKcj1vb4VJ/8ZFXx31c+y+T204v0YCx0SPzs4vnovwXZ1xstjFiwwGfsnniu
- 4hqco23d53fGyaraAO4CSj+dn6Lhgh4Pd0Rc9/KdDzxHproAfsEzniGOLcmNpRHYN9Dy
- dISw==
+ bh=FDSMijh/NAFBh0hDVazhF7DL4bKbJcgYA2X+s2rm1oM=;
+ b=dolC7QO/OeUMs1OP/ayNyNSG1EUKdL3NImjD6CifSoAXjGo9bYAxDCZp6LRCFH//RK
+ pSa38zrLO76H25Ej3Npku3sCJvzw+UBZfGlvh5F4Kwhp2eHdawIlJnKT5/om+F37wxqw
+ jFZ/uQVeUfcU05JpH2seYzvRcxcpUTPpdYF9lqDt6LQVCOG2pVjzFbOwL/NQaXroLUk2
+ L9wGB8tZU3DRnVda6MstwaMADAClfLRCyVmnUmGGTX3IpHlyuGB/QzH/uoXH0kaqytWf
+ sbHV86AL4r2gtRMDincrWRpkWMdpNwprBEZet1MA2u0ZtRVct7hzZE+B3uYn5Fqjb0e+
+ 9r0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756393880; x=1756998680;
+ d=1e100.net; s=20230601; t=1756393881; x=1756998681;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=clDKvhDkKqOaOBoqXISRVs8YKQ3C2mgywSnWHCIn/jg=;
- b=ND3Bve7WUeC689cTXT6m5grtE6q9VEsSZoSrZP2bmhorPLEOOsM9KTTf9qgYcgb38d
- 8VsWAuToup1K5rds5aG3qGf+a7RTWofSeMFJRFEI/oo4KsQhRspoj7vW/6dov1dAACSI
- 9/zXsuKca1NgApJfSJcxu2tjhd+/uf/BDbA9KghhZrnBSp6RVOhQEhZYwxslv6/+0Nfy
- VD7whPgeZynTniYj4yvUq0HF/M5pSsuzlp9Npa4NzrGLyGKoI1L+LYF+l66YDs6yZkIF
- wrbjiv2kVuq2zjlVEywYVrRQFelJxyYWQz/GCot7YcAxb2QHEpT1nP43BNelVEYu121o
- XC5g==
-X-Gm-Message-State: AOJu0YwEL5AMgfTCXGWHcvPm+b9u2gX+uztYHC5nBKv09ybakTlHTeGn
- gae4F+jNzbJK4ySeWfHTk5fBN6zp+aLLrUW2e0E08alI68vGgD2OsagkJlnWxg==
-X-Gm-Gg: ASbGncsoAHSQ0EgIVQUin4kEZ8pIhab+m9jFNSW5RsajAyLMAYqH1AkHzPawYMuyYKY
- vsWq5dFKpNHEsJJRdKeFIW5y024FEMtGhbPkhyIxrd3Jd58digXZyQBQxWEn+YgDAK1fzMjIGtv
- +oxk2KaDOkacE1TTmWIDtCkgAd/7upWVCSP0gqLeXSmT3AidtYZdGgb3FunXTwGdvBLuBeV/HlF
- d62137I1FeE/oJHmDaOfblvx46s3Xc3plMd+FQttjVeCt72kPoY36mR3onfpmEE0vle7OrVsKMq
- x5sGuyxzM6gZWink6OCYtCs88Ijg1kWK4TJqhViiw8Go2Yv760P964Pvmpsxw1P5kPei3r1VTaG
- vZpal6SB0Aw09MzRdgkShschtYP6sgK6Ftot9qWcBtloA53A8KYnf+IS9aHLAEURF0vInUEij2d
- 76dbQbvzkRPtJRlNfDNMn5Nbz67FEvyY0OTXxG
-X-Google-Smtp-Source: AGHT+IHYC9ST7d+uitdnUBiAD0FXxNkoeYMoV4g4pTUGiTScY20gmee9YTmJg9XgfEj3TP9BkTdYPg==
-X-Received: by 2002:a05:600c:1d23:b0:459:ddd6:1ca3 with SMTP id
- 5b1f17b1804b1-45b604673bemr125730275e9.0.1756393880487; 
- Thu, 28 Aug 2025 08:11:20 -0700 (PDT)
+ bh=FDSMijh/NAFBh0hDVazhF7DL4bKbJcgYA2X+s2rm1oM=;
+ b=TrLIFPeHHjpKN93ytvPkb7Pj1teLe9iH7mRtHmYCpqtvfNhWr6OT8Flw1cmQspHg28
+ 4LOwmjsHlKDwRqTbmTBjUDBdMUsCf9T7mEG/oVY/rwo6qlzPS0x3aWABG9qzj7iIoX9r
+ gUtH6+NFsR6GQ2I/4GhB+jG2pzcXgOUPibR1k9bQyQRbT0fIGqD68j5YSmmbmZ6lE/GF
+ yRMiYsQDn9uDdRJTmNNPGMkyPuFNhUdwwiwBqinE8SDm/DnDMSoDFjtt2cohoSsJyBbx
+ gXWL+rSVE87GFP2CK3HGtvUZV2CqNAPgk+KeG0lf3GquVR5kGZchaLTRfUYXUaiKCv+x
+ cWOw==
+X-Gm-Message-State: AOJu0YwUDwdXsRSGVa/kykCjPZltOrrEqFpTLsr2Bs0LXHi5ncSr3aqf
+ QgjcLv4MwavsO4dTKK29xwBNT6jR7XcRyNDTkaxkV9h69O3fsJxL4Dp8CshuoA==
+X-Gm-Gg: ASbGncvorJgFbF1bhx2ybty3bmhtmSHbze9In9CSkJq+OG9GIMu1NwJV3TfXJY44Y6K
+ Alm4Tu6bumZGMGqLIHag89B1W1bZG0TqVpllBKmXYkVrigXLJSDjBwA5XjHFU7WFw4xnXVzg86R
+ zmroAFRR2c94i+f5mCGRT/mEJ2bXUm16cLWMu2R3v8PD5gPnSQ135AnP95Jjos0YlR+2wJDpz2A
+ q/ACMC7pehV9POqdRb5hX/hsxge6w2TZtwQZ3VXqImWG73kJfLdbAJwg9jhPw9BqV2XGyM2LsB6
+ lAuy+y7Z+hTUbYPUDC02XecrF0yeI3pBDyqjA7pr5VublMtcgJGV4cRApSnZ15giLPVYeniBdhx
+ WWFEJFmi4vPtymtpvaZYEN2x9wBnBz6Ygw1xHRVxPe9iBSmZ//Om8gdUk4QJm4cNPux4BvSC6pX
+ QEuVH5t7dmnTkushnTQq7+Q9RgMr5b6feir/sBb17BAtUfQlc=
+X-Google-Smtp-Source: AGHT+IEgbXJ0ajtMvOiOh7ZgheuM6GaxupfVsUjvVDCSIum/O7JzXB9kpm67oEd+sa7ESFemDhkHXQ==
+X-Received: by 2002:a05:600c:3b1e:b0:45b:7a21:9e96 with SMTP id
+ 5b1f17b1804b1-45b7a21a19fmr28886945e9.37.1756393881313; 
+ Thu, 28 Aug 2025 08:11:21 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4E24E36900D571F3015BAFEA47.dsl.pool.telekom.hu.
  [2001:4c4e:24e3:6900:d571:f301:5baf:ea47])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-45b6f306bffsm77448875e9.16.2025.08.28.08.11.19
+ 5b1f17b1804b1-45b6f306bffsm77448875e9.16.2025.08.28.08.11.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Thu, 28 Aug 2025 08:11:20 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 06/10] drm/amd/pm: Treat zero vblank time as too short in
- si_dpm (v3)
-Date: Thu, 28 Aug 2025 17:11:08 +0200
-Message-ID: <20250828151112.15965-7-timur.kristof@gmail.com>
+Subject: [PATCH 07/10] drm/amd/pm: Disable MCLK switching with non-DC at 120
+ Hz+ (v2)
+Date: Thu, 28 Aug 2025 17:11:09 +0200
+Message-ID: <20250828151112.15965-8-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250828151112.15965-1-timur.kristof@gmail.com>
 References: <20250828151112.15965-1-timur.kristof@gmail.com>
@@ -91,41 +91,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Some parts of the code base expect that MCLK switching is turned
-off when the vblank time is set to zero.
+According to pp_pm_compute_clocks the non-DC display code
+has "issues with mclk switching with refresh rates over 120 hz".
+The workaround is to disable MCLK switching in this case.
 
-According to pp_pm_compute_clocks the non-DC code has issues
-with MCLK switching with refresh rates over 120 Hz.
+Do the same for legacy DPM.
 
-v3:
-Add code comment to explain this better.
-Add an if statement instead of changing the switch_limit.
-
-Fixes: 841686df9f7d ("drm/amdgpu: add SI DPM support (v4)")
+Fixes: 6ddbd37f1074 ("drm/amd/pm: optimize the amdgpu_pm_compute_clocks() implementations")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-index fb008c5980d6..c11c4cc111df 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-@@ -3085,7 +3085,13 @@ static bool si_dpm_vblank_too_short(void *handle)
- 	/* we never hit the non-gddr5 limit so disable it */
- 	u32 switch_limit = adev->gmc.vram_type == AMDGPU_VRAM_TYPE_GDDR5 ? 450 : 0;
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c
+index 42efe838fa85..2d2d2d5e6763 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c
+@@ -66,6 +66,13 @@ u32 amdgpu_dpm_get_vblank_time(struct amdgpu_device *adev)
+ 					(amdgpu_crtc->v_border * 2));
  
--	if (vblank_time < switch_limit)
-+	/* Consider zero vblank time too short and disable MCLK switching.
-+	 * Note that the vblank time is set to maximum when no displays are attached,
-+	 * so we'll still enable MCLK switching in that case.
-+	 */
-+	if (vblank_time == 0)
-+		return true;
-+	else if (vblank_time < switch_limit)
- 		return true;
- 	else
- 		return false;
+ 				vblank_time_us = vblank_in_pixels * 1000 / amdgpu_crtc->hw_mode.clock;
++
++				/* we have issues with mclk switching with
++				 * refresh rates over 120 hz on the non-DC code.
++				 */
++				if (drm_mode_vrefresh(&amdgpu_crtc->hw_mode) > 120)
++					vblank_time_us = 0;
++
+ 				break;
+ 			}
+ 		}
 -- 
 2.51.0
 
