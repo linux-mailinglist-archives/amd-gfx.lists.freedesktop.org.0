@@ -2,71 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1E2CB3BE11
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Aug 2025 16:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A43B3CCC9
+	for <lists+amd-gfx@lfdr.de>; Sat, 30 Aug 2025 18:16:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CA8210EBDD;
-	Fri, 29 Aug 2025 14:39:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63F5310E33E;
+	Sat, 30 Aug 2025 16:16:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GjwlCS1j";
+	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="V9wEVqS7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
- [209.85.215.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A02210EBDD
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Aug 2025 14:39:15 +0000 (UTC)
-Received: by mail-pg1-f174.google.com with SMTP id
- 41be03b00d2f7-b471741b839so388466a12.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Aug 2025 07:39:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756478354; x=1757083154; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Z0CCcFAbhZqkf6kaSJ1QLgMW22n9afFjavrt6Vdej4c=;
- b=GjwlCS1jsHfkqX1jxNVqDr+sSksKU0TbRCB7+JAQdKEcPaKLktwncepk1MnElUnFgI
- DPUxaghNBPM0nVbT7u8ua9oDMgwJk6CkaYC+C5n+IkaU3CjUyAKN09nVTXP1LQNL2P7U
- 9fuGJGXxjbMdAj2uE9zE4jIUIQ4zX3WaeWOYx5wn4BSrJAP9LWEDb2v2QdCoh6Vfvtt2
- oEKHd1uYrHI5iGkOpjAl7Df57vyuOa+UWFQkBybSfi3SpKAbXeaxIUQ5Za8kYAuPVyEF
- YmGVBKYoky1tW8mm/LVxQwz8bmrvQ4B8d3sI2OxtfjbAHhlI/I5bC7Ndz10bzvWfZ6aY
- 7yoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756478354; x=1757083154;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Z0CCcFAbhZqkf6kaSJ1QLgMW22n9afFjavrt6Vdej4c=;
- b=BM/DIhkn08Z/qViSQt6c2KQRXL4T6sRpgUF1zthcx+WvF1VFpgISuJnBiASV18xibm
- dkIllGso1nQImx+aVmXaVLIRXS30xH0uHo53UeFhBZvqLEL9XUzWdCdmKw/2DxLIvVby
- sCRtrWjyig73lZz044RYbg4nGEDSAP3rAGWbYDHCHBwWzMXgcabc3smxK0IvXiDzJR0C
- 9Ee1LsOgZ/kt3N201gqxIc5jTMsOLQGYOzNYd4TVV/AuLnYXBcssQq+MBke8rQ6xwBG0
- A5jxSC7U2uCce3U0SkCu0rDoAUMo+o0ITW/w2XkHeYeHUh3HnSk9b4E0VrzlVKWjfzuG
- 6z1w==
-X-Gm-Message-State: AOJu0Yweu5w05RjcnzBH+xzYnolTT4cstBv6/oQt9nTO6WdiYqUHCIfK
- YyASzxwaohXdtlBheMRGSF15ln05oTVD63YV4Npf5pMX4q/p/Au38JKUb1x/GatbDOGyZNn8IEb
- fngUPwIMCLJ+5fe/Mmnmd6Z7RwVjQaHU=
-X-Gm-Gg: ASbGncuOLjzMzIPkQ3OzPRzGZnhPOpRq5yuk3CRolRqtCPzlXZsT5qHcAzGpVenaBCu
- t3L6a03yxHpK8Ur7oRi7R35wN/y9fJQgxswuLx3K0bXPmqJeFS8LiOqCNJhJ+tbkdQFToNUokgt
- zj6FSTmBXGjPiP0nKoHmrQK8S74Js/oK46YD2Cb8RZcRQ+AW8Cm/Guzlcm6EfkSqikpdOl/BT/W
- wZQMj8=
-X-Google-Smtp-Source: AGHT+IEVz7+PiA4W9OBVnDqbFel8Byn3rs7WPjLr+tHQz8pZootDGRs6liIuQbD+gcCS2gzON5mvLLva6hMm6XFohfc=
-X-Received: by 2002:a17:903:181:b0:248:8bf9:dc4c with SMTP id
- d9443c01a7336-2491be7d295mr13030355ad.0.1756478354387; Fri, 29 Aug 2025
- 07:39:14 -0700 (PDT)
+Received: from relay12.grserver.gr (relay12.grserver.gr [88.99.38.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3632B10EBEA;
+ Fri, 29 Aug 2025 14:57:49 +0000 (UTC)
+Received: from relay12 (localhost [127.0.0.1])
+ by relay12.grserver.gr (Proxmox) with ESMTP id BB223BDDBA;
+ Fri, 29 Aug 2025 17:57:46 +0300 (EEST)
+Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by relay12.grserver.gr (Proxmox) with ESMTPS id E01D9BDC09;
+ Fri, 29 Aug 2025 17:57:45 +0300 (EEST)
+Received: from antheas-z13 (x5996a855.customers.hiper-net.dk [89.150.168.85])
+ by linux3247.grserver.gr (Postfix) with ESMTPSA id EF4772018C2;
+ Fri, 29 Aug 2025 17:57:44 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
+ s=default; t=1756479465;
+ bh=JgmfI1Y9LsFCqusqOxgMzWxU37dtVABhLBzbIPfJIyE=; h=From:To:Subject;
+ b=V9wEVqS7/Yz6UJR03zxZrIHWocGUk+s54GAeHozJfkG9Y+rcnPRVc0LbmSbIghwV9
+ vidu/wKB+JcR0eBr6xZxBZu+DEVNZkShh14p2Aei6ThnHkUnG9+FSd0XRtVVuVIoOH
+ pMoUPYWdSc/kh90pNCiF3iu6SAxVr1lIIS7CGJ7aG0yOZfcd8pjosCMfUNWMIDHHz5
+ vi8dgt3nkogAuNMw02gOOTpiTNMGqLBuK5G5xYCVzSFBJzYcnL+ClaFiLvSrV7vR6U
+ 06dAXqDqKAFYDExFJbF4kwTVwpuEFDVlNb3QuKv1YYvxB+wBUBexEMzP5le++K0Rh0
+ EVSqeu/EUuxQw==
+Authentication-Results: linux3247.grserver.gr;
+ spf=pass (sender IP is 89.150.168.85) smtp.mailfrom=lkml@antheas.dev
+ smtp.helo=antheas-z13
+Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
+From: Antheas Kapenekakis <lkml@antheas.dev>
+To: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ philm@manjaro.org, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Robert Beckett <bob.beckett@collabora.com>,
+ Antheas Kapenekakis <lkml@antheas.dev>
+Subject: [PATCH v3 0/6] drm: panel-backlight-quirks: Do partial refactor and
+ apply OLED fix
+Date: Fri, 29 Aug 2025 16:55:35 +0200
+Message-ID: <20250829145541.512671-1-lkml@antheas.dev>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-References: <20250828154828.2263644-1-lijo.lazar@amd.com>
-In-Reply-To: <20250828154828.2263644-1-lijo.lazar@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 29 Aug 2025 10:39:02 -0400
-X-Gm-Features: Ac12FXyuWyaqOeJ200nx-qg27fO2DG_JPFN6_s_L5nL_DBIGIcPTjZXl9dsqBtQ
-Message-ID: <CADnq5_OMB0SdGTqdv9rcHjsH6kbZeeo_KqGHg5P4cqspDRTunA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Add vbios build number interface
-To: Lijo Lazar <lijo.lazar@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, 
- Alexander.Deucher@amd.com, Asad.Kamal@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <175647946550.277909.764430967015112844@linux3247.grserver.gr>
+X-PPP-Vhost: antheas.dev
+X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
+X-Virus-Status: Clean
+X-Mailman-Approved-At: Sat, 30 Aug 2025 16:16:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,146 +75,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 28, 2025 at 11:49=E2=80=AFAM Lijo Lazar <lijo.lazar@amd.com> wr=
-ote:
->
-> Fetch VBIOS build number from atom rom image. Add a sysfs interface to
-> read the build number.
->
-> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+This is an alternative to [1], since Phil found out there are still invalid
+values. We need to reconsider the other patch in that series anyway because
+the latest AMD firmware update might have fixed the Z13.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+This series refactors the panel-backlight-quirks code to make it easier to
+add new quirks. Specifically, it adds the ability to bind to a secondary
+DMI match so that the make of a device can be specified. Then, it makes
+EDID optional, for devices we know the value should be applied universally.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 33 ++++++++++++++++++--
->  drivers/gpu/drm/amd/amdgpu/atom.c            | 22 +++++++++++++
->  drivers/gpu/drm/amd/amdgpu/atom.h            |  2 ++
->  3 files changed, 54 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_atombios.c
-> index e476e45b996a..9dfdc08cc887 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-> @@ -1816,16 +1816,43 @@ static ssize_t amdgpu_atombios_get_vbios_version(=
-struct device *dev,
->         return sysfs_emit(buf, "%s\n", ctx->vbios_pn);
->  }
->
-> +static ssize_t amdgpu_atombios_get_vbios_build(struct device *dev,
-> +                                              struct device_attribute *a=
-ttr,
-> +                                              char *buf)
-> +{
-> +       struct drm_device *ddev =3D dev_get_drvdata(dev);
-> +       struct amdgpu_device *adev =3D drm_to_adev(ddev);
-> +       struct atom_context *ctx =3D adev->mode_info.atom_context;
-> +
-> +       return sysfs_emit(buf, "%s\n", ctx->build_num);
-> +}
-> +
->  static DEVICE_ATTR(vbios_version, 0444, amdgpu_atombios_get_vbios_versio=
-n,
->                    NULL);
-> +static DEVICE_ATTR(vbios_build, 0444, amdgpu_atombios_get_vbios_build, N=
-ULL);
->
->  static struct attribute *amdgpu_vbios_version_attrs[] =3D {
-> -       &dev_attr_vbios_version.attr,
-> -       NULL
-> +       &dev_attr_vbios_version.attr, &dev_attr_vbios_build.attr, NULL
->  };
->
-> +static umode_t amdgpu_vbios_version_attrs_is_visible(struct kobject *kob=
-j,
-> +                                                    struct attribute *at=
-tr,
-> +                                                    int index)
-> +{
-> +       struct device *dev =3D kobj_to_dev(kobj);
-> +       struct drm_device *ddev =3D dev_get_drvdata(dev);
-> +       struct amdgpu_device *adev =3D drm_to_adev(ddev);
-> +       struct atom_context *ctx =3D adev->mode_info.atom_context;
-> +
-> +       if (attr =3D=3D &dev_attr_vbios_build.attr && !strlen(ctx->build_=
-num))
-> +               return 0;
-> +
-> +       return attr->mode;
-> +}
-> +
->  const struct attribute_group amdgpu_vbios_version_attr_group =3D {
-> -       .attrs =3D amdgpu_vbios_version_attrs
-> +       .attrs =3D amdgpu_vbios_version_attrs,
-> +       .is_visible =3D amdgpu_vbios_version_attrs_is_visible,
->  };
->
->  int amdgpu_atombios_sysfs_init(struct amdgpu_device *adev)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdg=
-pu/atom.c
-> index 427b073de2fc..1c994d0cc50b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/atom.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/atom.c
-> @@ -1494,6 +1494,27 @@ static void atom_get_vbios_version(struct atom_con=
-text *ctx)
->         }
->  }
->
-> +static void atom_get_vbios_build(struct atom_context *ctx)
-> +{
-> +       unsigned char *atom_rom_hdr;
-> +       unsigned char *str;
-> +       uint16_t base;
-> +
-> +       base =3D CU16(ATOM_ROM_TABLE_PTR);
-> +       atom_rom_hdr =3D CSTR(base);
-> +
-> +       str =3D CSTR(CU16(base + ATOM_ROM_CFG_PTR));
-> +       /* Skip config string */
-> +       while (str < atom_rom_hdr && *str++)
-> +               ;
-> +       /* Skip change list string */
-> +       while (str < atom_rom_hdr && *str++)
-> +               ;
-> +
-> +       if ((str + STRLEN_NORMAL) < atom_rom_hdr)
-> +               strscpy(ctx->build_num, str, STRLEN_NORMAL);
-> +}
-> +
->  struct atom_context *amdgpu_atom_parse(struct card_info *card, void *bio=
-s)
->  {
->         int base;
-> @@ -1554,6 +1575,7 @@ struct atom_context *amdgpu_atom_parse(struct card_=
-info *card, void *bios)
->         atom_get_vbios_pn(ctx);
->         atom_get_vbios_date(ctx);
->         atom_get_vbios_version(ctx);
-> +       atom_get_vbios_build(ctx);
->
->         return ctx;
->  }
-> diff --git a/drivers/gpu/drm/amd/amdgpu/atom.h b/drivers/gpu/drm/amd/amdg=
-pu/atom.h
-> index b807f6639a4c..825ff28731f5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/atom.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/atom.h
-> @@ -37,6 +37,7 @@ struct drm_device;
->  #define ATOM_ROM_MAGIC         "ATOM"
->  #define ATOM_ROM_MAGIC_PTR     4
->
-> +#define ATOM_ROM_CFG_PTR 0xC
->  #define ATOM_ROM_MSG_PTR       0x10
->  #define ATOM_ROM_CMD_PTR       0x1E
->  #define ATOM_ROM_DATA_PTR      0x20
-> @@ -151,6 +152,7 @@ struct atom_context {
->         uint32_t version;
->         uint8_t vbios_ver_str[STRLEN_NORMAL];
->         uint8_t date[STRLEN_NORMAL];
-> +       uint8_t build_num[STRLEN_NORMAL];
->  };
->
->  extern int amdgpu_atom_debug;
-> --
-> 2.49.0
->
+This is then used to add a quirk for OLED panels that have an issue
+when their backlight is set with a value that contains a 0/1 value in their
+minor byte. This issue affects four handhelds from three different vendors,
+three of which are in the field. This quirk applies a |3 mask to the
+backlight value, which avoids this issue. In addition, the value change
+is minor enough so that it is essentially a NOOP. There is no need for
+ensuring it runs only on panels with faulty firmwares.
+
+Finally, since allowed by this refactor, a quirk for Steam Decks is added
+that lowers their minimum brightness to 0, matching SteamOS. This is
+a nicety commit, which allows for mildly lower minimum brightness, so
+there is no time sensitivity for having it merged. Mario noted that if
+that quirk was refactored to use an EDID match via the current interface,
+it could go through the fixes tree and land sooner, but perhaps it is not
+worth the effort.
+
+[1] https://lore.kernel.org/all/20250824085351.454619-2-lkml@antheas.dev/
+
+---
+V2: https://lore.kernel.org/all/20250827174400.3692549-1-lkml@antheas.dev/
+V1: https://lore.kernel.org/all/20250824200202.1744335-1-lkml@antheas.dev/
+
+Changes since V2:
+- Apply SD quirks at the middle so that backlight quirks stay together
+- Add log when quirks are applied. Has to be separate because we need
+  to grab a reference to the drm_device first and add it to min
+  brightness first.
+- Capitalize OR in patch 4
+
+Changes since v1:
+- Remove leftover quirk from patch 3 (refactor)
+- Add dangling comma in patch 4 (oled quirk)
+- Add the next generation Zotac Zone in patch 4 (currently unreleased)
+- Reword patch 1 and 5 subjects
+
+Antheas Kapenekakis (6):
+  drm: panel-backlight-quirks: Make EDID match optional
+  drm: panel-backlight-quirks: Convert brightness quirk to generic
+    structure
+  drm: panel-backlight-quirks: Add secondary DMI match
+  drm: panel-backlight-quirks: Add brightness mask quirk
+  drm: panel-backlight-quirks: Add Steam Deck brightness quirk
+  drm: panel-backlight-quirks: Log applied panel brightness quirks
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  31 ++++-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   5 +
+ drivers/gpu/drm/drm_panel_backlight_quirks.c  | 113 ++++++++++++++----
+ include/drm/drm_utils.h                       |   8 +-
+ 4 files changed, 125 insertions(+), 32 deletions(-)
+
+
+base-commit: 1b237f190eb3d36f52dffe07a40b5eb210280e00
+-- 
+2.51.0
+
+
