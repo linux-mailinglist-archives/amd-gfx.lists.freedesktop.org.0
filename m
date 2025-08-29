@@ -2,85 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E012B3CCCB
-	for <lists+amd-gfx@lfdr.de>; Sat, 30 Aug 2025 18:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA64B3C263
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Aug 2025 20:27:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B02810E33A;
-	Sat, 30 Aug 2025 16:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2556310EC27;
+	Fri, 29 Aug 2025 18:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Emvt37c2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gIr+Ifi0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 817E810EC1A;
- Fri, 29 Aug 2025 17:43:01 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-246aef91e57so32282165ad.1; 
- Fri, 29 Aug 2025 10:43:01 -0700 (PDT)
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
+ [209.85.215.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 614C710EC27;
+ Fri, 29 Aug 2025 18:27:02 +0000 (UTC)
+Received: by mail-pg1-f174.google.com with SMTP id
+ 41be03b00d2f7-b47174b335bso369405a12.2; 
+ Fri, 29 Aug 2025 11:27:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756489381; x=1757094181; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1756492022; x=1757096822; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=CVgM7Tyu00zzsMBseHOctXjMN0Os3f8IXfyGMpQmnqE=;
- b=Emvt37c2Bdh4EUHdz8Mka2DkuQ42p14ciiK6JzvAnDB6zyiLHNdKZuRT0HV4T+ukFy
- x+c/c1EhVfkpQuwFTc4Bxcq5ns8CML+rxK5HGhN8GkLVr6d6d9dIaQryux/+HuMpdOgq
- fc9j9PRLgBwB2aB3gWHMnVRVBW5xjhir+VUAAZSJXh/ryuEUYdqzgRfIgUDx4v7RoiQL
- NrMLzqK/na48j2OCICH33kv+zySVPIJOwDprgG1WRMwW4bNCZyTDQG56dAuhQAhhL7kT
- HQ4tM+7opxu3YIjwpv++nEA4qJplMSG3rMy/vKedsh8bVxiyuL189SGD337nPKITh+6e
- pjRQ==
+ bh=DkDLHFzMwhGrjPg06GqQv0+K8YzczfW4YoD6Re0s0a0=;
+ b=gIr+Ifi05O3HWHrIFvnCj2FQZ7ffMZq8jkQRCFpXiwxY0MvnB/ux9NNgxSJ81DEZUk
+ E3F5fYMKEj8q4+ibKu+2w+KZwHNt0vjWkAOQ9yEd/PnBq040/z8HQlPMdrOMkn3jzRfn
+ KaG6mnqINzIJyKznv6EX9xwsoP//Ro/Y4uBSlO6dUzegr7Pp5lN7Yk1kr/CtJk7/Kwov
+ joxGF7fCK614gjFsFZ8PTdNTlkhf9rzWyna8Ea2AVfvv1zBIY5Ty2PxMSJnoYuBgJFQF
+ nYpVUm9UOlqe9rN+XyIuC3T4BJoRI5hMdbtMb/LtmMvX37+4yis75udw70+yZ4a6Qep4
+ xthQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756489381; x=1757094181;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1756492022; x=1757096822;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=CVgM7Tyu00zzsMBseHOctXjMN0Os3f8IXfyGMpQmnqE=;
- b=Vi0yDms+lSlPXFXLpmpU1+De0gVqw0u5ZBl+kR7gkMAT4wfl8+n4uklo0B3HHcFzn5
- yXzHvBz3g//zniXOWmJfizHXzBqjZ6DT6Qw6nlItLG/cH4pHusrc/G3qbAmIVJ8PckUV
- xHXzcbQRISVnRups1i0BDwCHl6ke1fcdr+XKNFPlMR9QEmJFP/tm1/Wnz2MsDSZ47uGO
- HWVwagbmp19LyT6qrI/2e4sNy8q8TDeY/Rp7/v0nG8oosotOZyUs1Bhk+/+cFVOXr3a+
- Wnslbai7Ks82QtrphbHRjHhMrwgsyBrjHrkR55EbNvRMx8dixuZxiD+atTCGCLlxCOOf
- mF6Q==
+ bh=DkDLHFzMwhGrjPg06GqQv0+K8YzczfW4YoD6Re0s0a0=;
+ b=eNrbTjdlg9+cAE+nHaqwEekrx7Ad6M5gMnVcn4+qM3zmf7sOVwd4nOBDwWyqXkeuCm
+ hDIoAdZHNW2YPUyrKYkAoaAyzZ7zmiXTmGlpGZvIkXelIjWv7bWMCaBbE/8RPQUbTSQ1
+ rwr0xLADGWf9X1U1YQrGSPb+KCc4e9161vZKsvsj3ItiJBbwVccT8hWNpE9wYSeO/+Nb
+ 6KLLHwyofpEn+qwqsvcRBJVJ8x86+Vuc06wZFv87ikfdYJEmJIe7fmMnkmTlk1RhQ/oI
+ uCwnfQJLzZb6q8ZwNrVpzFO3QkK81hTWboBs0YacetR/oZFi5mw2jzZTVeNjpij5pZ79
+ rjGA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUYZIcKh5Nlh1I/gWQe9aHg9uIWBMuYbpgfUehYUTTF0jwpfTm43jXMmYhg5gfZW9Oa2UYiypbvV4s8@lists.freedesktop.org,
- AJvYcCUvZhy6rYj7swNQTyc0P9ZByQrhv64+3Lo9HRss3pr3de9OnS6cYb2pelCi/MGYU1LLuLM+jmTa@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx4A7wqEYUawedmV1Mq9xje5oRBrTdES9OMG7loD+qTYMsAsK2M
- 1kQBYpUZCdlRecQ1wlvEDnRArolveE6LX5vFaDKbckGiMG9h0NQZjkfq
-X-Gm-Gg: ASbGncuWsRcuag6hVIjoQacUPsQXkAv3/oGVHFf10tDCmn4ela39j3dEnPCYXMtD+5R
- wuti4I7/I/ycfV+xT21govMlS5OZRA9xym3/zhTna8WXnS3DbbgpcwCt1IyauI5ttUyXSbn2VfV
- u9SaMI8hP7c9ad5xJ8keK3zIgfxO3uwVlgYs40WznEgZlg7A6UNa23tWCwwQXGfUQ6/zw13kFbu
- v2OGWB0IJlgCTv2RL7hQsdkEXEqiVw3IGca0DWLDa8Y8EcywNP1VQlltQbyX85jda+OI7j1Gjyi
- cxzBcAkHGuOqK2ZrP/rmjwTnkTiBkXGsqbVFYNLDVQHnCTElzFoV3JJtudhiEJ7ZMZi/wD/swut
- puu7bDU569177C7iELUPoJMHpXXkW0hO3tLL7NQtalU54wV5CM7eB0v56qUW/rTe8XajK+gxqvQ
- ==
-X-Google-Smtp-Source: AGHT+IE23KRcGDR/kd3c4g0abkgFnf3oFZxhdeRn83CjGT1YO9Cgs7wU0MlSqxAutRWSDpZp8ltIBw==
-X-Received: by 2002:a17:903:1205:b0:248:79d4:93b5 with SMTP id
- d9443c01a7336-24879d497a4mr160522795ad.33.1756489380684; 
- Fri, 29 Aug 2025 10:43:00 -0700 (PDT)
-Received: from lkmp.. ([157.51.63.166]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-b4cd347db1fsm2727833a12.47.2025.08.29.10.42.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 Aug 2025 10:43:00 -0700 (PDT)
-From: Rakuram Eswaran <rakuram.e96@gmail.com>
-To: rakuram.e96@gmail.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de
-Cc: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- christian.koenig@amd.com, corbet@lwn.net, dri-devel@lists.freedesktop.org,
- harry.wentland@amd.com, linux-doc@vger.kernel.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- linux-kernel@vger.kernel.org, rdunlap@infradead.org, siqueira@igalia.com,
- skhan@linuxfoundation.org
-Subject: Re: [PATCH v2 2/2] docs: gpu: Fix spelling in gpu documentation 
-Date: Fri, 29 Aug 2025 23:12:43 +0530
-Message-ID: <20250829174244.13864-1-rakuram.e96@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250821025957.22546-3-rakuram.e96@gmail.com>
-References: <20250821025957.22546-3-rakuram.e96@gmail.com>
+ AJvYcCV8OWnaPFXUfxux6lRKUSUSSudViGITcQjvcZDO+LNbIl7OdNXWU5p09cOIDPF8eIz/salig3ugoOI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxxgjHzcNwXTfxRXE53dmAbclexlVbVLeZc1fTma92Ahs9TNnXU
+ 0zWPlVhBFRGZqYxOuyQO8L1AlGVINSoSPL8/0vMMcEtuk32g/B9QfuHEUPMB1hepb6xNJIkCDHz
+ 0VNhCo2vmN3X2Ei5sZxcYBH7daIe5lc2/jA==
+X-Gm-Gg: ASbGnctvdMAgSB/useb33B9zmemCi+/InXVhbWDsM8rw4A2qj39cWFVHwwrov0C2R1m
+ HnE7j3us56yzODlpgDGjIKQjoZFWbkftQtwwqaat4Nf183BtbASFi6RR0o9ynNTdyaO5q0Mc5L9
+ dpz0WHstcRr+WDleyDMx7HkqUm35ZRmE1zDZdcrO2w86Cpf89+oGQCa+tRoElDIdF4nDsF+/7jj
+ RIPjlM=
+X-Google-Smtp-Source: AGHT+IFaWgOD9by+SQ/8OLiq6kJGXw7bUcexKwbwE1tkiknVjzj0JvoqLxDv5KO9XTlV8qM2PQy9fxP6box6128CsLk=
+X-Received: by 2002:a17:90b:1d92:b0:327:e34e:eb01 with SMTP id
+ 98e67ed59e1d1-327f5b87d56mr1856537a91.1.1756492021824; Fri, 29 Aug 2025
+ 11:27:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 30 Aug 2025 16:16:32 +0000
+References: <20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local>
+In-Reply-To: <20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 29 Aug 2025 14:26:50 -0400
+X-Gm-Features: Ac12FXwPhh5l0LhWYYCLOfE636IYJClXvYP9fxX_dVOB1qxyhYB1RRM4ov0IJYA
+Message-ID: <CADnq5_Oqonrth+5T-83dnFBZ67GvykkPt-9aUepJd+fUMwnupw@mail.gmail.com>
+Subject: Re: evergreen_packet3_check:... radeon 0000:1d:00.0: vbo resource
+ seems too big for the bo
+To: Borislav Petkov <bp@alien8.de>
+Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,9 +85,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
+On Fri, Aug 29, 2025 at 1:53=E2=80=AFPM Borislav Petkov <bp@alien8.de> wrot=
+e:
+>
+> Heya folks,
+>
+> this flood happens with plain 6.16 on my workstation - haven't done any h=
+w
+> changes:
 
-This is a gentle follow-up on this patch. Please let me know if any further
-changes are required.
+Have you updated mesa?  Looks like a userspace change.
 
-Regards
+Alex
+
+>
+> [   29.094609] evergreen_packet3_check: 115 callbacks suppressed
+> [   29.094615] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106737] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106740] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106742] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106745] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106747] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106750] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106752] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106754] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   29.106757] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.579786] evergreen_packet3_check: 29 callbacks suppressed
+> [   52.579792] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591825] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591829] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591832] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591835] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591838] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591840] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591843] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591846] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+> [   52.591849] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+>
+> --
+> Regards/Gruss,
+>     Boris.
+>
+> https://people.kernel.org/tglx/notes-about-netiquette
