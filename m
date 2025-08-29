@@ -2,78 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD524B3CCC2
-	for <lists+amd-gfx@lfdr.de>; Sat, 30 Aug 2025 18:16:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71E17B3CCC0
+	for <lists+amd-gfx@lfdr.de>; Sat, 30 Aug 2025 18:16:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F09210E32D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C9B10E2B0;
 	Sat, 30 Aug 2025 16:16:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="TqUuHgBs";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="EhF7Aplf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay12.grserver.gr (relay12.grserver.gr [88.99.38.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 360FB10EBF6;
- Fri, 29 Aug 2025 15:01:36 +0000 (UTC)
-Received: from relay12 (localhost [127.0.0.1])
- by relay12.grserver.gr (Proxmox) with ESMTP id D1E8ABDD1C;
- Fri, 29 Aug 2025 18:01:34 +0300 (EEST)
-Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59E3110E09A;
+ Fri, 29 Aug 2025 17:17:08 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id D775C40E0185; 
+ Fri, 29 Aug 2025 17:17:05 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id 2uBgxehETMd4; Fri, 29 Aug 2025 17:17:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1756487822; bh=25wZ+JH5mg8MQj9ElsXO9yrBDNK5dg8ZFEJmzubRlhs=;
+ h=Date:From:To:Cc:Subject:From;
+ b=EhF7Aplf5WBtuTdSiDZN1t8L3lS6eeS+L/A+prwlKw36GsgrlQ/LLi5tWhBjq93on
+ ndDQytjQFwUtDikpcmC0XAPhJWMA8qWdpZFsv8BVLtgMjgIKPS9JoSo6s4nbvGBQ6K
+ 2cW8bhWn4HMnS0bVcLMCGwLh+znQquMxJ/bqC6mir/XrHDifbgzUj9bfl1T7xB7enZ
+ CoMIa8Sfns0HP203IaNszyqXInAHcjtZG1jEMlgTgW1+CuqcANftPLe9ZzmcMWDb8K
+ MCoJx86VyGdVumAONbofH/nn80s+ZfICiNhXOj0WEx9+vgMKL9C1OFG0Ffhx7zoX7j
+ ODQyB48qJlK8J4hvASUJNZf8FwM2Xbpu+Ob4wFrq2Li0cO2c58EkBUguoOcrYJi7rs
+ VEkWtQ0mJtul1KAq93QX7xJLl7/l0KmwRQ5cSy96nrKFCybGhwM23JnseXEU9HwE29
+ /va+VqaVcSxOg/TvGr9T1vCdwpPkcz7gaR2EdNSZlfCRZc2WO2KHGJx7y53/QhJ2+W
+ nrodQ1Usd40JFGSLZqwXjzlG60y5oCYxMsYLCAfgDQqH2mG10i2ti62kjyy6J6KRlm
+ ZZsLbO18WDt71P9hfImObmMnpWQGCBo99chH4npXvfzdZvG6z1Y13f0Lp8octTw9vb
+ AQNJUbfSfo7SAJZNI8MVKRnA=
+Received: from zn.tnic (pd953092e.dip0.t-ipconnect.de [217.83.9.46])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by relay12.grserver.gr (Proxmox) with ESMTPS id 0961FBDCDE;
- Fri, 29 Aug 2025 18:01:34 +0300 (EEST)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
- [209.85.208.171])
- by linux3247.grserver.gr (Postfix) with ESMTPSA id 72FD2206A57;
- Fri, 29 Aug 2025 18:01:33 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
- s=default; t=1756479693;
- bh=1U1DVmXJsHIcYVFTEM7DLCbaTODSc/fo7E8poybOfSY=;
- h=Received:From:Subject:To;
- b=TqUuHgBsKB68zeDa7u9hG2gNOYhoYFqchDtCi+s9f2baST7FdnvOKutzqdg34SBX1
- HZvoK8i4/q0QvKfT6kqL7YID3+UW8iiC3+aydjXYCqJwk4Ppe5a/vG9tzYz0fXMu5E
- 68HTppw15c9GTADLjS738IElPHei9qmnKTStK8bfWJgzrECs9DVk8cfzOH6p2urTpw
- eWv9dUfRJkC683P1ZK+pHkQRsokipzSjN0MywUi0/1oCdIIBpqVpnCVQFWd83t8vm9
- VmAPyEypbxRKqJE3E3mBIxAWps3Df8qAv9E50giXN2Ry7D6VpRTCHeWIsCOnFemVHf
- c/OA4sm2zCSNg==
-Authentication-Results: linux3247.grserver.gr;
- spf=pass (sender IP is 209.85.208.171) smtp.mailfrom=lkml@antheas.dev
- smtp.helo=mail-lj1-f171.google.com
-Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
-Received: by mail-lj1-f171.google.com with SMTP id
- 38308e7fff4ca-336b63d2e56so7910931fa.2;
- Fri, 29 Aug 2025 08:01:33 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yy2/pqNBGJciDzyTOkHdsWQ3xSzJnYjL8xWscGE/ItpQc6w933n
- BviqgvdT1rmXKIEWMxQd3CcGH82ArKrmPBIjAx9cYlHILnuI0XrTrJFRlNWLO70JuCc1yjgPKLg
- ewQNrbqQhEBNxWflWI7u0JFMMd7xq02I=
-X-Google-Smtp-Source: AGHT+IHRhoVyBnlmRNxs8S4Qk6bIkWtYHJDTpiDTM7YphEyV8RPt1frLfQbtcxA0P5mt9fmdAI2jSHQkivKLQ3CsG7M=
-X-Received: by 2002:a2e:be03:0:b0:336:7eed:2f8f with SMTP id
- 38308e7fff4ca-3367eed3c67mr53490721fa.32.1756479693034; Fri, 29 Aug 2025
- 08:01:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250829145541.512671-1-lkml@antheas.dev>
- <20250829145541.512671-7-lkml@antheas.dev>
-In-Reply-To: <20250829145541.512671-7-lkml@antheas.dev>
-From: Antheas Kapenekakis <lkml@antheas.dev>
-Date: Fri, 29 Aug 2025 17:01:21 +0200
-X-Gmail-Original-Message-ID: <CAGwozwHaWPwy6_LTvTy4ybdrN27fEXc-GbhYEt4_cM88_VGYPA@mail.gmail.com>
-X-Gm-Features: Ac12FXwc-70TdRRuQwuWkUdiF-RAPppFFl03l0G0vTZarpoHRqwXFyxp5Symuao
-Message-ID: <CAGwozwHaWPwy6_LTvTy4ybdrN27fEXc-GbhYEt4_cM88_VGYPA@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] drm: panel-backlight-quirks: Log applied panel
- brightness quirks
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id
+ 4BB6440E0177; Fri, 29 Aug 2025 17:16:56 +0000 (UTC)
+Date: Fri, 29 Aug 2025 19:16:55 +0200
+From: Borislav Petkov <bp@alien8.de>
 To: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- philm@manjaro.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Robert Beckett <bob.beckett@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-PPP-Message-ID: <175647969370.293109.2353577295138115310@linux3247.grserver.gr>
-X-PPP-Vhost: antheas.dev
-X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
-X-Virus-Status: Clean
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: evergreen_packet3_check:... radeon 0000:1d:00.0: vbo resource seems
+ too big for the bo
+Message-ID: <20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 X-Mailman-Approved-At: Sat, 30 Aug 2025 16:16:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,67 +72,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 29 Aug 2025 at 16:57, Antheas Kapenekakis <lkml@antheas.dev> wrote:
->
-> Currently, when a panel brightness quirk is applied, there is no log
-> indicating that a quirk was applied. Unwrap the drm device on its own
-> and use drm_info() to log when a quirk is applied.
->
-> Suggested-by: Mario Limonciello <mario.limonciello@amd.com>
-> Signed-off-by: Antheas Kapenekakis <lkml@antheas.dev>
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    | 16 +++++++++++++---
->  1 file changed, 13 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 263f15f6fdea..2a3e17d83d6e 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -3617,13 +3617,15 @@ static void update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
->         struct drm_connector *conn_base;
->         struct amdgpu_device *adev;
->         struct drm_luminance_range_info *luminance_range;
-> +       struct drm_device *drm;
->
->         if (aconnector->bl_idx == -1 ||
->             aconnector->dc_link->connector_signal != SIGNAL_TYPE_EDP)
->                 return;
->
->         conn_base = &aconnector->base;
-> -       adev = drm_to_adev(conn_base->dev);
-> +       drm = conn_base->dev;
-> +       adev = drm_to_adev(drm);
->
->         caps = &adev->dm.backlight_caps[aconnector->bl_idx];
->         caps->ext_caps = &aconnector->dc_link->dpcd_sink_ext_caps;
-> @@ -3659,12 +3661,20 @@ static void update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
->         panel_backlight_quirk =
->                 drm_get_panel_backlight_quirk(aconnector->drm_edid);
->         if (!IS_ERR_OR_NULL(panel_backlight_quirk)) {
-> -               if (panel_backlight_quirk->min_brightness)
-> +               if (panel_backlight_quirk->min_brightness) {
-> +                       drm_info(drm,
-> +                                "Applying panel backlight quirk, min_brightness: %d\n",
-> +                                panel_backlight_quirk->min_brightness);
+Heya folks,
 
-mmm, needs a -1 here
+this flood happens with plain 6.16 on my workstation - haven't done any hw
+changes:
 
->                         caps->min_input_signal =
->                                 panel_backlight_quirk->min_brightness - 1;
-> -               if (panel_backlight_quirk->brightness_mask)
-> +               }
-> +               if (panel_backlight_quirk->brightness_mask) {
-> +                       drm_info(drm,
-> +                                "Applying panel backlight quirk, brightness_mask: 0x%X\n",
-> +                                panel_backlight_quirk->brightness_mask);
->                         caps->brightness_mask =
->                                 panel_backlight_quirk->brightness_mask;
-> +               }
->         }
->  }
->
-> --
-> 2.51.0
->
->
+[   29.094609] evergreen_packet3_check: 115 callbacks suppressed
+[   29.094615] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106737] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106740] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106742] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106745] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106747] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106750] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106752] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106754] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   29.106757] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.579786] evergreen_packet3_check: 29 callbacks suppressed
+[   52.579792] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591825] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591829] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591832] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591835] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591838] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591840] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591843] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591846] radeon 0000:1d:00.0: vbo resource seems too big for the bo
+[   52.591849] radeon 0000:1d:00.0: vbo resource seems too big for the bo
 
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
