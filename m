@@ -2,65 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E66CB3CCC7
-	for <lists+amd-gfx@lfdr.de>; Sat, 30 Aug 2025 18:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79501B3CD1F
+	for <lists+amd-gfx@lfdr.de>; Sat, 30 Aug 2025 18:30:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60C5C10E339;
-	Sat, 30 Aug 2025 16:16:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE77410E344;
+	Sat, 30 Aug 2025 16:30:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="Cks1foIN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XkCPMLya";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3D0F10E28E;
- Fri, 29 Aug 2025 20:49:00 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 9917D40E0176; 
- Fri, 29 Aug 2025 20:48:58 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
- header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
- by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id 1HIo8XtwEOWj; Fri, 29 Aug 2025 20:48:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
- t=1756500535; bh=kkuOsSBk0lMyzox1zOeLQPDxcRHJN+ocAuOHBc3PZP4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Cks1foINE6OFW+Tiv7M8/BbnxobBbsjbjNcWwVO+MlyUQxZ1tFIoWXMyesIn93wvH
- 5TfexEGy+7nMu/JY23HtB54MW1wTXBNMUSAoY19toCfivVOudSyZjtC8ri0faCnMiy
- N5uIvbyifLq+IxOOOrZ64hxFaJhLsf/Tm5b4BGvheerF5VsjTl6WVuanrfJFAyuSks
- 05QGSpei7pU5Ecz5RxCbkR2UDsG3IgZVPZ9XqkRB2/prSoO47P41j92ojKavCiAHGV
- TVV0PG3dVYMlnxI5QquqVgEPBqHkG+U9IFRf/jAUjrwQFyAFrY1yzaWuSvRxPAFthn
- f9OzvjKrRWxxPrhOwhq4bzOUhuIZbmfGO1LR0of0+5ZIl/j0V2/Wr0woTsuM0U9j0U
- vAUZknYZ8Eycp7NCTijxciAQdE/gjQTk+wxX1ypak0OStd/ZWadkMFDgc6+riwD76N
- TxDHQmMxs+6xnS35tw0Y6vJUtmC7wF12CXX6pzgefok6MeNtPGeDBmt1BTt1RIi4Ep
- zQuuIgwLnPfy4E3JO5QyTpe53bAu6/jyHdqxt12S1ltQHO/HlclBp+QX67lxAjM733
- OsqIOKSjVGMJdnkv/dkdqPPO5F/N/GtmXwB787FuDcc4RcI00FizNRKYwmk/eah/pG
- Mpk/90nsCbpfrts5uqD9Eb5U=
-Received: from zn.tnic (pd953092e.dip0.t-ipconnect.de [217.83.9.46])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
- SHA256) (No client certificate requested)
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id
- 2884440E016E; Fri, 29 Aug 2025 20:48:49 +0000 (UTC)
-Date: Fri, 29 Aug 2025 22:48:40 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: evergreen_packet3_check:... radeon 0000:1d:00.0: vbo resource
- seems too big for the bo
-Message-ID: <20250829204840.GEaLISKGTwuScnDF8Y@fat_crate.local>
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+ [209.85.214.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D16C10E22D;
+ Sat, 30 Aug 2025 16:30:21 +0000 (UTC)
+Received: by mail-pl1-f172.google.com with SMTP id
+ d9443c01a7336-2488be81066so7917415ad.1; 
+ Sat, 30 Aug 2025 09:30:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1756571421; x=1757176221; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=i6vQxSWpXv081OJaX5WpHyCgAtx4LnI6eb9ZG6e+nyI=;
+ b=XkCPMLyavz5J9Er9wm/q6EmZwVnzQ+2V4NbnlemA2KDPR966LOOe+fwMky4eYtdv1g
+ Zcx6hfQ6V1yd6lu1bWw69RBVV0Vv/ux+9gTWpTTXbCVRYxfQANkDfh/qRhJOSksXWVfx
+ oONuZLIdDeV7gxeFLG2HSf8L0uYQqBKyn6yZbUpauxQjvNtbjB+pUcdoC4ivZDo16CMK
+ poztxoDoKSq9MzLg6EwMZLRir2AfkNsC2hwKsjJ8ASSoUlBtmt4/u9vZnCVXgTjrgA+9
+ EW11QBs8xk62ZiMGfWGq11PjsiHaRjcxa545ofxHG2kyniR5ZN4iJs9sK83/sRFIJmN1
+ 7T3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756571421; x=1757176221;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=i6vQxSWpXv081OJaX5WpHyCgAtx4LnI6eb9ZG6e+nyI=;
+ b=vEIy3QozG6jaB2eJbIh/43HT3WzROWhsw4+Zefi1CxWE8SkpDUtrHVOK1AkJR0hyiD
+ 1tDmxI3Nx0FyLwNR0XayGMvu43BxXZ6lZHD8rap2l1QPdlnPT5dFMRw6zAkqrrvd0SK9
+ 8O+ehB60FbRGKYZU4fQVbGs7+dg2HhfqISuhmv19VpgkXs7FRgRkNXP2BA191JRiMr//
+ EvdTVfRJb3Jm1LPo/4QXOFympgfbvs+XMsey4WiXSNltmp+SYofMKJ0fS8Irb+wCTtjc
+ TwE+gGFIu1S8h/xWj61ie6mXlU0p6AsyZFQSpVCinuJTp9K2YU86qGpqQ02+m+5gZMtp
+ HRYg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVSGvOuGMWFBj6WrStxI0Q28vuVfiRkWbT7HdzDyGiwFqzXzmQXX7AoxBnF716/7Ikm6qk82ujSQzw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwxSDRhiBI0pnF/eyHHrgDQzrI687orOlEOU6wXbSRYf+w0pj0b
+ 7f9HV51J4OI3lCVYrknpqAHJBoGs8BEmPzv22UiZ7fQszW+2IGXU2+Piba7x8VKGjy0P5cAceqP
+ p56oFRgt090jeHvXB05iiZxWRhENKvik=
+X-Gm-Gg: ASbGncuUNdDUfjKsTaNbGhHsMjJUXPWuC6Ylm9zDtmHxMVC3fgiSm96cymiD+N0SJPL
+ rIJBh3r+noaVl1J6kAfYu56yqlcQZuMzGwPXafyPHuWddlzuOCnJZ1yHSjbHqcG1BsGEap6pC5A
+ TH0e8gI8f6wQGEU+i6UKJDV1Dx2llQkV7lT2cYilSRdDX3EBJasXPDg6PPSfQvHDyOnshwnFMik
+ Y96F/xIHeY0F23nBg==
+X-Google-Smtp-Source: AGHT+IEnp0d/ox7MyiexYDelNlGYh7sEMDDp2slpUX07DsrohYDyYv1UbHQ45FvZIJGo0w2AJujwM103aJpmxC+Kyc4=
+X-Received: by 2002:a17:902:f687:b0:246:b3cc:f854 with SMTP id
+ d9443c01a7336-2490f6bd83dmr45834285ad.2.1756571420577; Sat, 30 Aug 2025
+ 09:30:20 -0700 (PDT)
+MIME-Version: 1.0
 References: <20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local>
  <CADnq5_Oqonrth+5T-83dnFBZ67GvykkPt-9aUepJd+fUMwnupw@mail.gmail.com>
  <20250829194044.GCaLICPKJcGJRYdSfO@fat_crate.local>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250829194044.GCaLICPKJcGJRYdSfO@fat_crate.local>
-X-Mailman-Approved-At: Sat, 30 Aug 2025 16:16:32 +0000
+ <20250829204840.GEaLISKGTwuScnDF8Y@fat_crate.local>
+In-Reply-To: <20250829204840.GEaLISKGTwuScnDF8Y@fat_crate.local>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Sat, 30 Aug 2025 12:30:09 -0400
+X-Gm-Features: Ac12FXyuwaIKIrWWofmEszUvdbPoKCSxiOPEGd_tAh18Vtmvke3NVvLJZETkRRI
+Message-ID: <CADnq5_MbpYmC2PSyOr0gQk7F8mVz0-LG3dZtUZS2HhV8LTgDww@mail.gmail.com>
+Subject: Re: evergreen_packet3_check:... radeon 0000:1d:00.0: vbo resource
+ seems too big for the bo
+To: Borislav Petkov <bp@alien8.de>
+Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,93 +88,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 29, 2025 at 09:40:44PM +0200, Borislav Petkov wrote:
-> On Fri, Aug 29, 2025 at 02:26:50PM -0400, Alex Deucher wrote:
-> > Have you updated mesa?  Looks like a userspace change.
-> 
-> Yeah, I did a long overdue OS upgrade today:
-> 
-> $ grep -i mesa /var/log/dpkg.log
+On Fri, Aug 29, 2025 at 4:48=E2=80=AFPM Borislav Petkov <bp@alien8.de> wrot=
+e:
+>
+> On Fri, Aug 29, 2025 at 09:40:44PM +0200, Borislav Petkov wrote:
+> > On Fri, Aug 29, 2025 at 02:26:50PM -0400, Alex Deucher wrote:
+> > > Have you updated mesa?  Looks like a userspace change.
+> >
+> > Yeah, I did a long overdue OS upgrade today:
+> >
+> > $ grep -i mesa /var/log/dpkg.log
+>
+> Btw, this thing:
+>
+>                                 if (p->rdev && (size + offset) > radeon_b=
+o_size(reloc->robj)) {
+>                                         /* force size to size of the buff=
+er */
+>                                         dev_warn_ratelimited(p->dev, "vbo=
+ resource seems too big for the bo\n");
+>                                         ib[idx+1+(i*8)+1] =3D radeon_bo_s=
+ize(reloc->robj) - offset;
+>                                 }
+>
+> is yet another example of useless flooding of dmesg.
+>
+> It's not like I can do anything about it except report it. And that thing
+> fires every 5s or so.
+>
+> You could consider turning that into a _once thing and be done with it.
+>
+> And someone already ratelimited them:
+>
+> 59d76d6bc206 ("drm/radeon: ratelimit bo warnings")
+>
+> but it ain't enough.
+>
+> $ dmesg | grep "vbo resource" | wc -l
+> 22393
+>
+> So even if I go and find which commit added it:
+>
+>   cb5fcbd540b4 ("drm/radeon/kms/evergreen: add initial CS parser")
+>
+> I'm still none the wiser. And I'm not even a normal user - I have seen ke=
+rnel
+> code in the past :-)
+>
+> Hell, I don't even know what CS is...
+>
+> /me goes and searches the web a bit...
+>
+> Aha, it could be a command submission parser or so. Still have no clue wh=
+at
+> this warning is telling me.
+>
+> Going back to searching the web...
+>
+> ok, so it looks like this is validating some packet3 set resource thing a=
+nd
+> when the resource type? is a SQ_TEX_VTX_VALID_BUFFER - perhaps a valid ve=
+rtex
+> buffer? Vertex buffer I understand. But texture vertex buffer?
+>
+> Anyway, it checks whether the vbo (vertex buffer object?) resource is
+> too big for the buffer object which has gotten as some sort of a relocati=
+on
+> packet 3 thing...
+>
+> And I still have no clue what is going on. Perhaps the new MESA is sendin=
+g
+> wrong command types, who knows.
+>
+> I absolutely cannot fix it - that's for sure.
+>
+> And so this rambling of mine confirms my old theory that the warning and =
+error
+> messages we put in the kernel are not really useful. Especially to users.
+>
+> Because there isn't a whole lot they can do about them except reporting t=
+hem
+> to those who can actually do something about.
+>
+> I.e., those messages might as well be hashes which we can stick into a lo=
+okup
+> table to fish out a longer string which tells us what is going on.
+>
+> So I *think* you should make this a once message or *at* *least* ratelimi=
+t the
+> hell of it so that it appears very seldomly. The rule of thumb should be =
+what
+> you want this message to do?
+>
+> To make a user report it to you?
+>
+> Or something else?
+>
+> In any case, I am already very picky with the error messages visible to u=
+sers
+> in the code I'm maintaining, this'll make me be even stricter.
+>
+> Oh well.
 
-Btw, this thing:
+Yes, I agree these should be warn_once().  If you send a patch I'll
+apply it, otherwise, I'll take a look next week.  For some background,
+older GPUs did not support memory protection, so the kernel driver
+validates all of the command submissions (CS) from userspace to make
+sure the commands would not access any memory they shouldn't.  In your
+case it's a vertex buffer object (VBO) which contains vertex data for
+the 3D engine on the GPU.  So newer mesa code is sending a command
+submission with an invalid vbo size.  As such the kernel driver
+rejects the command submission.  This may result in subtle rendering
+issues as the invalid command submission does not get sent to the
+hardware.  I would suggest filing a mesa bug report:
+https://gitlab.freedesktop.org/mesa/mesa/-/issues/
 
-                                if (p->rdev && (size + offset) > radeon_bo_size(reloc->robj)) {
-                                        /* force size to size of the buffer */
-                                        dev_warn_ratelimited(p->dev, "vbo resource seems too big for the bo\n");
-                                        ib[idx+1+(i*8)+1] = radeon_bo_size(reloc->robj) - offset;
-                                }
-
-is yet another example of useless flooding of dmesg.
-
-It's not like I can do anything about it except report it. And that thing
-fires every 5s or so.
-
-You could consider turning that into a _once thing and be done with it.
-
-And someone already ratelimited them:
-
-59d76d6bc206 ("drm/radeon: ratelimit bo warnings")
-
-but it ain't enough.
-
-$ dmesg | grep "vbo resource" | wc -l
-22393
-
-So even if I go and find which commit added it:
-
-  cb5fcbd540b4 ("drm/radeon/kms/evergreen: add initial CS parser")
-
-I'm still none the wiser. And I'm not even a normal user - I have seen kernel
-code in the past :-)
-
-Hell, I don't even know what CS is...
-
-/me goes and searches the web a bit...
-
-Aha, it could be a command submission parser or so. Still have no clue what
-this warning is telling me.
-
-Going back to searching the web...
-
-ok, so it looks like this is validating some packet3 set resource thing and
-when the resource type? is a SQ_TEX_VTX_VALID_BUFFER - perhaps a valid vertex
-buffer? Vertex buffer I understand. But texture vertex buffer?
-
-Anyway, it checks whether the vbo (vertex buffer object?) resource is
-too big for the buffer object which has gotten as some sort of a relocation
-packet 3 thing...
-
-And I still have no clue what is going on. Perhaps the new MESA is sending
-wrong command types, who knows.
-
-I absolutely cannot fix it - that's for sure.
-
-And so this rambling of mine confirms my old theory that the warning and error
-messages we put in the kernel are not really useful. Especially to users.
-
-Because there isn't a whole lot they can do about them except reporting them
-to those who can actually do something about.
-
-I.e., those messages might as well be hashes which we can stick into a lookup
-table to fish out a longer string which tells us what is going on.
-
-So I *think* you should make this a once message or *at* *least* ratelimit the
-hell of it so that it appears very seldomly. The rule of thumb should be what
-you want this message to do?
-
-To make a user report it to you?
-
-Or something else?
-
-In any case, I am already very picky with the error messages visible to users
-in the code I'm maintaining, this'll make me be even stricter.
-
-Oh well.
-
-Thanks for listening. :-)
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+Alex
