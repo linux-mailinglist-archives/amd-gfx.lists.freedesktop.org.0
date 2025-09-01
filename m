@@ -2,72 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9396BB4012C
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 Sep 2025 14:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9698BB3DFDA
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Sep 2025 12:13:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E44E10E6C1;
-	Tue,  2 Sep 2025 12:49:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 090AD10E40F;
+	Mon,  1 Sep 2025 10:13:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="L0GpEZAd";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="a1hcQ268";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C72A510E40B;
- Mon,  1 Sep 2025 10:10:32 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 6E82340E019E; 
- Mon,  1 Sep 2025 10:10:30 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=fail (4096-bit key)
- reason="fail (body has been altered)"
- header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
- by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id BfKmIhEDODP7; Mon,  1 Sep 2025 10:10:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
- t=1756721426; bh=CuDkbBHaOkz3S6dxH5sofEzQV09UxorXmN0sQT3iX1k=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=L0GpEZAdUljQTEMv7mxmRwOoYWcAUqok6js/WWsircC3BXT47ypAXYme4KN5uNCgF
- SCSDPWvgHMYmsGN0xKnHqLNKfCNKESGObmD2B+CwuOqTnrtxGU7Qb2D+Amvscr75pM
- sFcd4z7lpbM6p6a5D+WNqgnkAHxeOv+kVj2QZsuVvW1ZCJd0mi1kjoGOW6q0lw7I4U
- C8A3RLFd12tBytBL+LcUJs66qjN1ph2YTA5tnB6VfqnqSEPEP9eYIzVXBFR3VjrvIn
- hF+09kr/5x9kQQ4TpvFkuMkvS9A28jnSvDPEDfX6gkF4t+EFGH+h61AMMLe5QszwPI
- 0zOx7beM379x1l57qw/6aQEjRFLrx80Brn/+TS6/ezwfyyBj7i5pGB34lKAJGS/tp7
- +5QCK4CES8WCZF+ZP3ua+NELQQ2fvFRMbwT8YmtPn2GPzKCi70wa0fqCBmwv8pFNzu
- XkzWlJgUZa0TEGkPBtKIRPUWE9LULcxs7m20x6XZLqK0JPdfm7inaDwY+TbQeMDDFV
- +7tjqndQ+uVW6v9bd63A+XNHv5VgMzU+kgKbRbR8anj+90dpBqjFVQ9rozFyv2mMwu
- HN82cmBWgBBuypmAGU/2tZjo9j1YRYdYd2NIeD3Gp/1FvLPbcd1NqYX2STEn5Bjiyv
- LmQSHCllJg7I2k/z3VOx6xNs=
-Received: from zn.tnic (p5de8ed27.dip0.t-ipconnect.de [93.232.237.39])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
- SHA256) (No client certificate requested)
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id
- DA82840E01A2; Mon,  1 Sep 2025 10:10:18 +0000 (UTC)
-Date: Mon, 1 Sep 2025 12:10:11 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Michel =?utf-8?Q?D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Cc: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: evergreen_packet3_check:... radeon 0000:1d:00.0: vbo resource
- seems too big for the bo
-Message-ID: <20250901101011.GAaLVxA_Ax0R-Wy2IX@fat_crate.local>
-References: <20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local>
- <CADnq5_Oqonrth+5T-83dnFBZ67GvykkPt-9aUepJd+fUMwnupw@mail.gmail.com>
- <20250829194044.GCaLICPKJcGJRYdSfO@fat_crate.local>
- <20250829204840.GEaLISKGTwuScnDF8Y@fat_crate.local>
- <CADnq5_MbpYmC2PSyOr0gQk7F8mVz0-LG3dZtUZS2HhV8LTgDww@mail.gmail.com>
- <20250830174810.GAaLM5WkiFc2BtQ6kW@fat_crate.local>
- <51ae551b-6708-4fcd-84f9-fc1400f02427@mailbox.org>
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E09D710E40F
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Sep 2025 10:13:48 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-45b869d35a0so10162355e9.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Sep 2025 03:13:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1756721627; x=1757326427;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=81d5joX+qr1QpDIakoIkCPcwgxBYkYKdo9qnYzZJgXI=;
+ b=a1hcQ268hwDguyfvLvWVNmj0ABHeW5gnxOydsDqlbJOi8EcSJqbYqcn/I2govcLA+H
+ P16UAcXTHqf8slKC1qWZm+o5/M7q8P5C0/Wo0uB7pkcHVhikoIH7dyApBfat/Lp4wybs
+ //wBZo07wCqsxtEO51itmtO1NZhigqYUn3dgDO0HtzCSEdWSHeczj8ghY+lp61I82icv
+ l3VUSH7/KGh+YfUBvNbUtnnhAwYlFx9nUW1YvB0/X2hnBAQsMc+KrENlDxCBbMUf31Hs
+ AtbES+LAtEjEnm9mCGMnF08wsIXu/nMzxVm8pnzl/g9lT7BbR07On8vVwptu2muC0V7a
+ 1T+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756721627; x=1757326427;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=81d5joX+qr1QpDIakoIkCPcwgxBYkYKdo9qnYzZJgXI=;
+ b=U9o/Ty9VbtY+nh8TQPnIOokQUJhDLdzW7i8kC7jd1UGZ8rr8HU9VIn7X9xCZsKisY2
+ 7skOP/Ay2+qOTK5dodqWHDvKQsvwveZ7Z9RBfAzdqdd2tyo+6JeLAEF2djDGVOfJgnFv
+ 04U1uu7CeBf7mf+CLcF0amnuCC8h3KwD2i3/I3KtJwJa9xKHker1AAY27qAaNKZaVXib
+ 9DtTqqsas0STZtMhzMJcFxMEhRMU8QUnHg153kYhNog6B6rLTrcNIKC9ukBDZ7zDbX9g
+ K0rfDREWMRKYK6tCQ4yR4VmQaxd2Cr5iRMKqZLsr7kYuX1+7exlvpvXaZ+iYBgDkgTgK
+ j6kA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW2iF1ZrbBFP9aeB1O4vz7O/1BG1e6Ddsomb57YCCCKa17g/HX0iZlJMOt3JvtB7zY61UKmyQuE@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxHhX7CLTuyqXwZgTr9Fo7DcyOZbN2BHhSM6YSSOg+18N/89oAR
+ HZtrjStcgdY8P42KJ5cmgG3a/L5XhxWK4ZlQXmZ6fCQLAkxly6pp1SRtwWgRP3d4HVw=
+X-Gm-Gg: ASbGncuSmozMvCIPw1q3CvQAh2QUPUY1jSu1BT9J5bW3NinS5L/sxB4jqVUQaIihJ/I
+ Fz/Zz9QTXMWdlKFKQ73Wsh+nxA70qByAx/1K1bMOHPvNNbD/QYxT6FE6PwMlaIv3XE9G/N++mej
+ WUTbxzjUNoyQmuArtgNiY97spOEFzkbNWYwv62iMW5YUZg8iR0D9by6UqkgM50V1D7d9r29F1ci
+ ghyQ6huY263gh31sNATJCWXPwq0AhmplxfpeAuOGi9GJT2XTt21CoxQ6ZIJ5YhhNlHqLHd22TGH
+ iyBNKkI56VcfyTC6EfHuU7SDxqpZ81pm550tBS0vdEwTAoyAR6Ki5PRB4V6G72lm9f7LJI8ax70
+ FoUUQnu2nmq9AoKcaWjOSBvpXtvGii5E5QRQc/G0UZyfxUw==
+X-Google-Smtp-Source: AGHT+IHCM7ACgR36Q9+XI3NFO9MiztrpT+qHGLVtJuizYwM/L+cN1AElgDtN8nDTxTFjIoUp4qZelQ==
+X-Received: by 2002:a05:600c:3b28:b0:456:201a:99f with SMTP id
+ 5b1f17b1804b1-45b8730d443mr53857735e9.18.1756721627071; 
+ Mon, 01 Sep 2025 03:13:47 -0700 (PDT)
+Received: from [192.168.0.101] ([84.66.36.92])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-45b6f0c72f8sm232212565e9.3.2025.09.01.03.13.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 01 Sep 2025 03:13:46 -0700 (PDT)
+Message-ID: <9d3566f4-9ede-4d4c-8849-2ccac3fa65a6@ursulin.net>
+Date: Mon, 1 Sep 2025 11:13:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <51ae551b-6708-4fcd-84f9-fc1400f02427@mailbox.org>
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 02 Sep 2025 12:49:12 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] drm/amdgpu: Fill extra dwords with NOPs
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com
+References: <20250901100012.439155-1-timur.kristof@gmail.com>
+ <20250901100012.439155-3-timur.kristof@gmail.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20250901100012.439155-3-timur.kristof@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,36 +92,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 01, 2025 at 11:27:01AM +0200, Michel D=C3=A4nzer wrote:
-> use some kind of debug output API which doesn't hit dmesg by default
 
-You still want to be enabled by default so that normal users can see it a=
-nd
-actually report it.
+Hi,
 
-> (can be a non-once variant instead, that's more useful for user-space
-> developers).
+On 01/09/2025 11:00, Timur Kristóf wrote:
+> Technically not necessary, but clear the extra dwords too,
+> so that the command processors don't read uninitialized memory.
+> 
+> Fixes: c8c1a1d2ef04 ("drm/amdgpu: define and add extra dword for jpeg ring")
+> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> index 7670f5d82b9e..6a55a85744a9 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> @@ -474,6 +474,11 @@ static inline void amdgpu_ring_clear_ring(struct amdgpu_ring *ring)
+>   	while (i <= ring->buf_mask)
+>   		ring->ring[i++] = ring->funcs->nop;
+>   
+> +	/* Technically not necessary, but clear the extra dwords too,
+> +	 * so that the command processors don't read uninitialized memory.
+> +	 */
+> +	for (i = 0; i < ring->funcs->extra_dw; i++)
+> +		ring->ring[ring->ring_size / 4 + i] = ring->funcs->nop;
 
-I don't see how a non-once variant can tell you anything new - it is repe=
-ating
-one cryptic message to most users so what's the point of parroting it mor=
-e
-than once?
+Should I resend this maybe?
 
-IMO, that message should be beefed up to have more information, dump it o=
-nce
-and encourage users to report it.
+commit 11b0b5d942fe46bfb01f021cdb0616c8385d5ea8
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Thu Dec 26 16:12:37 2024 +0000
 
-Then, whoever gets to debug it, will ask for a reproducer and then do the=
-ir
-own kernel patching to add more info and make the message more useful to =
-them
-when debugging the thing.
+     drm/amdgpu: Use memset32 for ring clearing
 
-At least this is how I would do it...
+     Use memset32 instead of open coding it, just because it is
+     a tiny bit nicer.
 
---=20
-Regards/Gruss,
-    Boris.
+     Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+     Cc: Christian König <christian.koenig@amd.com>
+     Cc: Sunil Khatri <sunil.khatri@amd.com>
 
-https://people.kernel.org/tglx/notes-about-netiquette
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h 
+b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index dee5a1b4e572..96bfc0c23413 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -369,10 +369,7 @@ static inline void 
+amdgpu_ring_set_preempt_cond_exec(struct amdgpu_ring *ring,
+
+  static inline void amdgpu_ring_clear_ring(struct amdgpu_ring *ring)
+  {
+-       int i = 0;
+-       while (i <= ring->buf_mask)
+-               ring->ring[i++] = ring->funcs->nop;
+-
++       memset32(ring->ring, ring->funcs->nop, ring->buf_mask + 1);
+  }
+
+  static inline void amdgpu_ring_write(struct amdgpu_ring *ring, uint32_t v)
+
+Looks like with two loops it would made even more sense to consolidate.
+
+Regards,
+
+Tvrtko
+
+>   }
+>   
+>   static inline void amdgpu_ring_write(struct amdgpu_ring *ring, uint32_t v)
+
+
