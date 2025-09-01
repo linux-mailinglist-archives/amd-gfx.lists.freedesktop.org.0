@@ -2,74 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63167B3DF56
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Sep 2025 12:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 803A1B3DF58
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Sep 2025 12:00:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE32E10E321;
-	Mon,  1 Sep 2025 10:00:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBD2F10E3F9;
+	Mon,  1 Sep 2025 10:00:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="J7yIvaD5";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Pcgdshkm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
- [209.85.221.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8603E10E321
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Sep 2025 10:00:17 +0000 (UTC)
-Received: by mail-wr1-f49.google.com with SMTP id
- ffacd0b85a97d-3cdfb1ff7aeso2037439f8f.2
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 140B810E321
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Sep 2025 10:00:18 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-45b7d485173so25106015e9.0
  for <amd-gfx@lists.freedesktop.org>; Mon, 01 Sep 2025 03:00:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1756720816; x=1757325616; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=0W6YselyomSH3e7kgh1viyUyyFPEVUff9OsopCMlUUY=;
- b=J7yIvaD5UQqODqLQl1zUWV4XWHU+y8SWitTprhE2sSuI3N2odgF7nn2My5ZmsqTi98
- dHy9/A6TFg2jCD0M1MLxBWXnIO1kpPNWWmkiQhflSEnyhREp2uxfxTtJZKPMIN1JeMiK
- qJhP/GPx3XixR99H/7vZgSRMdLJ/61VXDQNBkhqu41OddpUbwOB1DX/6wk54npBo8dzy
- 448yFn/zcM0su/FClLhSCQ4Q7pbVStE7rtKYffqoiv0i04AGDC9bf1XdvE2n/GHyRSIT
- aBJLSKTORxaaCLHCaGpzKFgxPAp/uLiYp0OWxxeJjdvZB2b/fR6PgO32lsymiB/kIB71
- bPCQ==
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=D5SR5ZwYZOxoDwuZPs+pNZtEqoTB1LOlj3R7AWro2UE=;
+ b=PcgdshkmgfPenbiRsedOzWGKbhE/haecsAb67OEcwJtALFcjenIwYmX3u7p3J8b42K
+ FVdIqJN+9IKaeYCumciclvkb8UXzCMIQAxxvXICG+yeBq5nzT6//454hjZiCwdMcp7Xl
+ giZgCV0vA4oDx2z8XLPVCbTRIW4B8ZVT8sdn/RulmDGHAT1GTxckEDVTwWG5Y9LjP81i
+ 16GNZLHDQqh/aaa3BEPM/WhMJZFARoZNgjdxU+6bV3SvhkWo4wHG6+kV1Oe6pOSVfK2J
+ k7mHXA8YtaxGNvmIMUfZ6H2Z6eU1MGKTGq4rQdVJspKjnP051Os+fn3CuGQJxf14ng4g
+ jlMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1756720816; x=1757325616;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=0W6YselyomSH3e7kgh1viyUyyFPEVUff9OsopCMlUUY=;
- b=dxwVz1QD33Lf8+3RtPKbrY5njKayVbUDu35UW/r7Dc4UJk2V32dPhT4ljo4EGAJqgD
- jWn2Fjb7hkPAllgUKlLDCZDljQrExDQDEcGxcm4yMJpZWu08FPuwLAk8Sb3aN2VA6jZH
- yCS4na9n4ufzcT2fzxV2aIzbEgqPEnNFOz8N+SBr216upIp7tAk8BL2TPZUqUdQAoFZS
- A17Pgh5GMLcy6cPGBemcbPMAgOhAOuzalVkb7xGwogsxKdZhiNG7EY8Qmjv8pU2cG9Zf
- GejbbFv9Q9E+yecHYLdfH8zpJaPeq878rgY5WsYDa6azN53Eb/Gb64Y4c8kHU1UA9bj8
- YHug==
-X-Gm-Message-State: AOJu0Yzka3S0Jg1qmmSKa0ZVWc31psH2X9LRAs7ojP2Z6lDda99lMvg9
- w0k4cN0ctuxqbFQswv4kpC6Gu8wbFMeE8T7yBT82YTfr8NSk3c4U2k8eUOg9tg==
-X-Gm-Gg: ASbGnctPgEkB9+/vP0WdE67vUuhRMJ8TbKRt53kQuR9v5Dvqz2qekIhRR3T+FtY3EBH
- QneGkG2PZrE50exjCbM8DRO6QFR1CzjLTYwB5b3dfuktYUifZTcuL1tFGrqZf/9XS+1IOy4W0MS
- tYN24eNlCIrxo7fioy5s6Ia2K+16GbWq6pYdxdy3E/zHakZGt/tLfFBIdKlnv5Pn19CxWkeP+Q9
- Jl7KWf1fg2bS6hQ8EEtRwG1dO/gGlHAfsBM48nNvCfs/iKs7RaqUUBlntWSnOTpjx7DgVpSci1w
- 73sYRfPNAK6kYT5TtueQ3+gVDNANZWL4tKAQpfycvupzTDN+RXuLbFFAQpUifKzzXp4Zel/nkLR
- gF4TkmGYEP8ZEMHZqvU1mITdxMgmSHT4PBZsaiqfGmixHGLoC3BbIl6WE4aLEtHifl/MezKLeen
- O8sxhBip7TKpw7awMZn0f7Iir/BQaVsOoH3Roe
-X-Google-Smtp-Source: AGHT+IEG1O4ZkB8hkEf9fCwOa6+2gZ8XtZIoWobcJMtJ0yssmSp/nm50TB3r6fUkAfx1gL9xzpmEWQ==
-X-Received: by 2002:a05:6000:1a8c:b0:3cf:74e0:55ac with SMTP id
- ffacd0b85a97d-3d1dfb108b2mr5922046f8f.38.1756720815201; 
- Mon, 01 Sep 2025 03:00:15 -0700 (PDT)
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=D5SR5ZwYZOxoDwuZPs+pNZtEqoTB1LOlj3R7AWro2UE=;
+ b=cOoHBzDavVuGWq3A+OjPnQPAb3cVEbws649RhVgok/Z+2fEj6/5qTDqzaz9l1QYMSX
+ 4xuY1JcnG8b3NYiaUBonsGRQCqlrgTDBjwzn9miQU4i8SaaS+g04OP66pNaUeoXfWeu3
+ GC5wLjvazDqRjCNcerE1Fd/MHFDAUHkd7A9G6D/wqrCSnOhthA013ICF/8IcM45ALOEu
+ Xiv9vz8JZ5gMb6UxYun0BgQZECXn+rd6UnLkiGffdQVS5gQnn8Yu94JMBLVYkiOmckl0
+ muxBREehLVfEpYVhfbyuof67GZ9/nr0lmDr0gwOYL/6B/NJK0xfOGhcf1mToONJNKG15
+ 0XnA==
+X-Gm-Message-State: AOJu0Yw8jyzED4JyFVU5VDSwRI/xZGQaYMeceRgezv/44AFctvkiYjH7
+ ZkFiMXB0GbjNTUurn4SfA1Xektk8FUhDEqyGvd8GxPm1XReAtqr4vY5xN1J11g==
+X-Gm-Gg: ASbGncu9/1D+y4ER/ACsg/kEulScaJmaFOCwqYD6nMAMa+kMJl1P77cEd+uNj0DZscJ
+ kKNfTRLidE2ApYBJ4hTBRMjdo0rQIroANwbre8Edxlx/bQZJjm9Y/a5iB+diDNesBkKTaVtjyrq
+ o+DE06Zt3HGz1zuFSdoL+A76ksJGGWBsyxPWeb8YBL72Mr7+pcGk1nQ5S0xo6BhNLPdz4xbg1vf
+ bneHfy8GSZTzOTvT5N1bAdZzidqFIHvpoQj5AVfebA/pg2LP29hXJB8K77032+YkDeLLVt68HP/
+ /1SD5yGiWmtseZqs902PMiyj/wpE4VL01HLRhOHJv2pqFvWk+VDTqPQ1eaXyOvE9RmfeQKb8L2M
+ JsLh2GvnyD8JXKoIKoCyBgol6gX2j5lZMda3EDHS0qdRXw89Je4JwQFKC3UIs5q6jCwPHu/2aHL
+ ZTIkmm85LmKIHuCfbDkJWXmcm+rw==
+X-Google-Smtp-Source: AGHT+IG9aR4JspO8ANY5nBtXRvEW4dOdc41e3Q/WkFBajQlNWEcvnZzyAv0aDKctT2qVFggQJdjckQ==
+X-Received: by 2002:a05:6000:402c:b0:3d1:54de:f4b3 with SMTP id
+ ffacd0b85a97d-3d1dc5a395fmr5494442f8f.6.1756720816021; 
+ Mon, 01 Sep 2025 03:00:16 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4E24C19400D6AB39BC9D60A351.dsl.pool.telekom.hu.
  [2001:4c4e:24c1:9400:d6ab:39bc:9d60:a351])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cf3458a67esm14679142f8f.62.2025.09.01.03.00.14
+ ffacd0b85a97d-3cf3458a67esm14679142f8f.62.2025.09.01.03.00.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Sep 2025 03:00:14 -0700 (PDT)
+ Mon, 01 Sep 2025 03:00:15 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 1/4] drm/amdgpu: Fix allocating extra dwords for rings
-Date: Mon,  1 Sep 2025 12:00:09 +0200
-Message-ID: <20250901100012.439155-1-timur.kristof@gmail.com>
+Subject: [PATCH 2/4] drm/amdgpu: Clarify that BO size is in bytes in comments
+Date: Mon,  1 Sep 2025 12:00:10 +0200
+Message-ID: <20250901100012.439155-2-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250901100012.439155-1-timur.kristof@gmail.com>
+References: <20250901100012.439155-1-timur.kristof@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -87,38 +90,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The amdgpu_bo_create_kernel function takes a byte count,
-so we need to multiply the extra dword count by four.
-(The ring_size is already in bytes so that one is correct here.)
+To avoid confusion with dwords.
 
-Fixes: c8c1a1d2ef04 ("drm/amdgpu: define and add extra dword for jpeg ring")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index 6379bb25bf5c..13f0f0209cbe 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -364,11 +364,12 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
- 
- 	/* Allocate ring buffer */
- 	if (ring->ring_obj == NULL) {
--		r = amdgpu_bo_create_kernel(adev, ring->ring_size + ring->funcs->extra_dw, PAGE_SIZE,
--					    AMDGPU_GEM_DOMAIN_GTT,
--					    &ring->ring_obj,
--					    &ring->gpu_addr,
--					    (void **)&ring->ring);
-+		r = amdgpu_bo_create_kernel(adev, ring->ring_size + ring->funcs->extra_dw * 4,
-+						PAGE_SIZE,
-+						AMDGPU_GEM_DOMAIN_GTT,
-+						&ring->ring_obj,
-+						&ring->gpu_addr,
-+						(void **)&ring->ring);
- 		if (r) {
- 			dev_err(adev->dev, "(%d) ring create failed\n", r);
- 			kvfree(ring->ring_backup);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 122a88294883..9ffadc029ef8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -220,7 +220,7 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
+  * amdgpu_bo_create_reserved - create reserved BO for kernel use
+  *
+  * @adev: amdgpu device object
+- * @size: size for the new BO
++ * @size: size for the new BO in bytes
+  * @align: alignment for the new BO
+  * @domain: where to place it
+  * @bo_ptr: used to initialize BOs in structures
+@@ -317,7 +317,7 @@ int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
+  * amdgpu_bo_create_kernel - create BO for kernel use
+  *
+  * @adev: amdgpu device object
+- * @size: size for the new BO
++ * @size: size for the new BO in bytes
+  * @align: alignment for the new BO
+  * @domain: where to place it
+  * @bo_ptr:  used to initialize BOs in structures
 -- 
 2.51.0
 
