@@ -2,80 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68AA9B3DF59
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Sep 2025 12:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9396BB4012C
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 Sep 2025 14:49:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D379410E3FB;
-	Mon,  1 Sep 2025 10:00:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E44E10E6C1;
+	Tue,  2 Sep 2025 12:49:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vjg/gRuR";
+	dkim=fail reason="signature verification failed" (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="L0GpEZAd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F77210E3F2
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Sep 2025 10:00:19 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id
- ffacd0b85a97d-3d3f46e231fso830897f8f.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Sep 2025 03:00:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756720818; x=1757325618; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=TTY/7V+u1Zf1MbiYH6GnmoJBA/B/ZovnZ5bMMwwETXw=;
- b=Vjg/gRuRGJ1qRrJ9VcyuyHx6A+meZZNMmEo2Giq8MaBhwvGm6z0IXuOba6fOUU7t+O
- 6fz4LFUDCJeuc/zhHJSkH5niWJFRaCBWZcHQ1A+7ZhqtuPTYbPYHUuaNVPXc6DqQ9Y7c
- nDNJju3QjEnoqOvDSEAFPhpftKRFPmQdcXDaA1IAGV4BqY5FcxZ2uOa4yzPUopn9V4ih
- JBpczO6/qCidOhgfbOOwZw6nVcpYREa2oeRsVyRWOkNAu6FJKJaKPplo1iw3OAabAI1q
- VENv3l+gmKj+698Rd2r43xeBOTXgWHP7FvhvaFyXdjlMvNxVA6HLWnN7iA/x5+AP1v/4
- qE6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756720818; x=1757325618;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TTY/7V+u1Zf1MbiYH6GnmoJBA/B/ZovnZ5bMMwwETXw=;
- b=Txu6SVYxA8yEk4/JM4QUZnvjm274XNGZD3+yUVf+29lrPWRb6/i20N7XbaT2TaBiwB
- zH8Gt4170WYZylPa4Bfxt4DIcLykjkN+MZkN714kObE0038zMgqk5FFKbiK/hNup9ZV0
- ez6bHctA17pA5bc5LsLLdVELpydUefRCv8p8rShUq3L02rLGGiu8CY+T74SARBWaJr8O
- IhZFGvA1weXJ5l6MWCityecD7ydsQyJ9Ryl4NCKOxrngv77dzcDhNrziwq44a7Houd/2
- bd8nXT8+pn4M/gYniMS9E/m/oi0SAEGyAzJtjPuWTt7jMGLm+f8O+OmlJxl4DTMzp/ss
- GKHw==
-X-Gm-Message-State: AOJu0Yzppw02xWySps1LlgcJjSj6GRTfIOv2MGLGAagXwOmMChTQPTlQ
- mFezJKbIqaW2oeMOTr4WovlpYxjIiux8wKWPMr/kx/mG6WjNLdasEOW3dPerjA==
-X-Gm-Gg: ASbGncs4Pc+YM8pZOU6Q2nFRj56lKzgSse+UrQjV6MAvYVYClq0gj9tfJYRCxIi2VLX
- BBZtAE0Q96fnplyH4QyK4uSBbXb1OkMyny4nUTGC1h+tWjLNxqchkslrVrBOJ6srtpyDxvjOZJH
- P1OMFFSz1Fx/yyKN8oRMOStzLv5+MOheHXTS3tx0aahRp+nOV733o02Z3sQNTmoUlt6ob/JPgGs
- jkMnJIvFVvDiaBiqBE4TnLMB5gNwTSXoz3dXIewqCz5IyVChgWmP7E32hTyoH/Pvj5Ujrho7kEo
- 0PSzAqjdIc5mXUseNMbOEud0UaacncIv1r6ovHOKX9vGL0Wqg9wuHj9m+P8x7f6xARpUqo3x/TL
- 7QZW1Hp6kbrFB6PPADL4AQ29QU5qTmltalfV0yVd2XW6cNf4LbA6K7hecJOpOANIIeWD6SEGKP7
- cYrIoduaKlIA0IZih4cPEW8A/sHrxDfVr/mddN
-X-Google-Smtp-Source: AGHT+IHLoH6qju34pctBMnd8+td/SpPFooSSXypOHx+Px7bnqJZRT7IhGHezQfPmMzmTHfJOep8X1g==
-X-Received: by 2002:a05:6000:290d:b0:3cf:3f1:acdd with SMTP id
- ffacd0b85a97d-3d1dcb781ffmr5640977f8f.17.1756720817619; 
- Mon, 01 Sep 2025 03:00:17 -0700 (PDT)
-Received: from Timur-Hyperion.home
- (20014C4E24C19400D6AB39BC9D60A351.dsl.pool.telekom.hu.
- [2001:4c4e:24c1:9400:d6ab:39bc:9d60:a351])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cf3458a67esm14679142f8f.62.2025.09.01.03.00.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Sep 2025 03:00:17 -0700 (PDT)
-From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 4/4] drm/amdgpu: Set	SDMA v3 copy_max_bytes to 0x3fff00
-Date: Mon,  1 Sep 2025 12:00:12 +0200
-Message-ID: <20250901100012.439155-4-timur.kristof@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250901100012.439155-1-timur.kristof@gmail.com>
-References: <20250901100012.439155-1-timur.kristof@gmail.com>
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C72A510E40B;
+ Mon,  1 Sep 2025 10:10:32 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 6E82340E019E; 
+ Mon,  1 Sep 2025 10:10:30 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=fail (4096-bit key)
+ reason="fail (body has been altered)"
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id BfKmIhEDODP7; Mon,  1 Sep 2025 10:10:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1756721426; bh=CuDkbBHaOkz3S6dxH5sofEzQV09UxorXmN0sQT3iX1k=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=L0GpEZAdUljQTEMv7mxmRwOoYWcAUqok6js/WWsircC3BXT47ypAXYme4KN5uNCgF
+ SCSDPWvgHMYmsGN0xKnHqLNKfCNKESGObmD2B+CwuOqTnrtxGU7Qb2D+Amvscr75pM
+ sFcd4z7lpbM6p6a5D+WNqgnkAHxeOv+kVj2QZsuVvW1ZCJd0mi1kjoGOW6q0lw7I4U
+ C8A3RLFd12tBytBL+LcUJs66qjN1ph2YTA5tnB6VfqnqSEPEP9eYIzVXBFR3VjrvIn
+ hF+09kr/5x9kQQ4TpvFkuMkvS9A28jnSvDPEDfX6gkF4t+EFGH+h61AMMLe5QszwPI
+ 0zOx7beM379x1l57qw/6aQEjRFLrx80Brn/+TS6/ezwfyyBj7i5pGB34lKAJGS/tp7
+ +5QCK4CES8WCZF+ZP3ua+NELQQ2fvFRMbwT8YmtPn2GPzKCi70wa0fqCBmwv8pFNzu
+ XkzWlJgUZa0TEGkPBtKIRPUWE9LULcxs7m20x6XZLqK0JPdfm7inaDwY+TbQeMDDFV
+ +7tjqndQ+uVW6v9bd63A+XNHv5VgMzU+kgKbRbR8anj+90dpBqjFVQ9rozFyv2mMwu
+ HN82cmBWgBBuypmAGU/2tZjo9j1YRYdYd2NIeD3Gp/1FvLPbcd1NqYX2STEn5Bjiyv
+ LmQSHCllJg7I2k/z3VOx6xNs=
+Received: from zn.tnic (p5de8ed27.dip0.t-ipconnect.de [93.232.237.39])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id
+ DA82840E01A2; Mon,  1 Sep 2025 10:10:18 +0000 (UTC)
+Date: Mon, 1 Sep 2025 12:10:11 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Michel =?utf-8?Q?D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Cc: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: evergreen_packet3_check:... radeon 0000:1d:00.0: vbo resource
+ seems too big for the bo
+Message-ID: <20250901101011.GAaLVxA_Ax0R-Wy2IX@fat_crate.local>
+References: <20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local>
+ <CADnq5_Oqonrth+5T-83dnFBZ67GvykkPt-9aUepJd+fUMwnupw@mail.gmail.com>
+ <20250829194044.GCaLICPKJcGJRYdSfO@fat_crate.local>
+ <20250829204840.GEaLISKGTwuScnDF8Y@fat_crate.local>
+ <CADnq5_MbpYmC2PSyOr0gQk7F8mVz0-LG3dZtUZS2HhV8LTgDww@mail.gmail.com>
+ <20250830174810.GAaLM5WkiFc2BtQ6kW@fat_crate.local>
+ <51ae551b-6708-4fcd-84f9-fc1400f02427@mailbox.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <51ae551b-6708-4fcd-84f9-fc1400f02427@mailbox.org>
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 02 Sep 2025 12:49:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,41 +82,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SDMA v3-v5 can copy almost 4 MiB in a single copy operation.
-Use the	same value as PAL and Mesa for copy_max_bytes.
+On Mon, Sep 01, 2025 at 11:27:01AM +0200, Michel D=C3=A4nzer wrote:
+> use some kind of debug output API which doesn't hit dmesg by default
 
-For reference, see oss2DmaCmdBuffer.cpp	in PAL:
-"Due to HW limitation, the maximum count may not be 2^n-1,
-can only be 2^n - 1 - start_addr[4:2]"
+You still want to be enabled by default so that normal users can see it a=
+nd
+actually report it.
 
-See also sid.h in Mesa:
-"There is apparently an undocumented HW limitation that
-prevents the HW from copying the last 255 bytes of (1 << 22) - 1"
+> (can be a non-once variant instead, that's more useful for user-space
+> developers).
 
-Fixes: dfe5c2b76b2a ("drm/amdgpu: Correct bytes limit for SDMA 3.0 copy and fill")
-Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I don't see how a non-once variant can tell you anything new - it is repe=
+ating
+one cryptic message to most users so what's the point of parroting it mor=
+e
+than once?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-index 1c076bd1cf73..9302cf0b5e4b 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-@@ -1659,11 +1659,11 @@ static void sdma_v3_0_emit_fill_buffer(struct amdgpu_ib *ib,
- }
- 
- static const struct amdgpu_buffer_funcs sdma_v3_0_buffer_funcs = {
--	.copy_max_bytes = 0x3fffe0, /* not 0x3fffff due to HW limitation */
-+	.copy_max_bytes = 0x3fff00, /* not 0x3fffff due to HW limitation */
- 	.copy_num_dw = 7,
- 	.emit_copy_buffer = sdma_v3_0_emit_copy_buffer,
- 
--	.fill_max_bytes = 0x3fffe0, /* not 0x3fffff due to HW limitation */
-+	.fill_max_bytes = 0x3fff00, /* not 0x3fffff due to HW limitation */
- 	.fill_num_dw = 5,
- 	.emit_fill_buffer = sdma_v3_0_emit_fill_buffer,
- };
--- 
-2.51.0
+IMO, that message should be beefed up to have more information, dump it o=
+nce
+and encourage users to report it.
 
+Then, whoever gets to debug it, will ask for a reproducer and then do the=
+ir
+own kernel patching to add more info and make the message more useful to =
+them
+when debugging the thing.
+
+At least this is how I would do it...
+
+--=20
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
