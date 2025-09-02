@@ -2,60 +2,125 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5668EB42104
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Sep 2025 15:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 084E4B40D8E
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 Sep 2025 21:05:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281E810E87D;
-	Wed,  3 Sep 2025 13:20:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E01710E824;
+	Tue,  2 Sep 2025 19:05:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="TWawbMf1";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="f5E4TTRn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C524E10E1E8;
- Tue,  2 Sep 2025 18:37:39 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 6EF2340E01C9; 
- Tue,  2 Sep 2025 18:37:37 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
- header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
- by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id i4uTVl8a0PKQ; Tue,  2 Sep 2025 18:37:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
- t=1756838252; bh=RTRfd7zofb3PyMli/Euz+uhWWmQAjhsGgILAjsKlJ0E=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=TWawbMf18i5u5MtOtR6SOLwpkPRE+ctEIzWYobBNSKiJVb2YSyGdT7V+zWZlTVW0F
- 3DlxUGmbrGlT2AHxos6UuTrTiFvCH5bJRIT6rhWQaEqYZRsCCGAqWAYchQyOpwynSC
- z4KNgIpNzfHySYnPkpFa8p+wW69Hr0Tpaj/fAR8LsxbYn2txgA4eshS/rPerDDtvYl
- dZfNlYem7ayDtZP+lH1PUSShjqYKp/WkbikW0CM0Erh/P3A0FJHwMMY3YvAA9/rtTO
- Hs5+K3Lt7Lt665OgbiIwZ3A/PPaHIyK5L5OXqCD2PFdPQ5g0KD2r3hetUh4gyLds3b
- UOcyrkodcVrhzjYTzcTb/Ik5cGKm++dvFej7tP5yZHtMkWGphBzXdXauBrZJShsSOa
- BFhDJ48G/JAyRXHHpjr6woxJyekPB/1MLKc9gojZ9IUJx2MMy1FBxNReT3rgvHTZRx
- 4zJIqzt0YhjFLqc40FL4DxLm20p6VOhlm87KucGIy8HINUeLK70rLFI4U0jJkolSXa
- qFkOV3iUz0X+1vexTlyEJGbAudT0JYBLDMJosjzp2HSnRAPstKPUkxps99DzQVZW7R
- YEvdVp8iYoQQ8hvQPh3dnTNG/xu16P+zpnvhVhzC5Fav3Y246yWZCekDFzEwsBVAVU
- HUD+fZChyV8VABdc7fhatVjw=
-Received: from zn.tnic (p5de8ed27.dip0.t-ipconnect.de [93.232.237.39])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
- SHA256) (No client certificate requested)
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id
- 993B440E01AC; Tue,  2 Sep 2025 18:37:29 +0000 (UTC)
-Date: Tue, 2 Sep 2025 20:37:21 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/radeon: use dev_warn_once() in CS parsers
-Message-ID: <20250902183721.GHaLc5YbyeypFWJePU@fat_crate.local>
-References: <20250902165332.2388864-1-alexander.deucher@amd.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2088.outbound.protection.outlook.com [40.107.243.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61EFF10E824
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Sep 2025 19:05:24 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sg8EnbyG2mxPssiztYEBmdUB8DuuCqYS6oro4XtrCkzdn2OniYeuF70SYCDriRCNCTlOglHLASDBlJu2tLLZe2h5QOWnEKztVvKVYT+S/9JlsrtG0mgrzbo740G0zwUp+4D1btzpY+4x85PlRQH92fsITQ/d1E1zpvaOO9DyWgK78cE+9axN6m91qzQJLyjs2ckdNHN0J0er5aviTkL5oSajMVY4U5t0Wo8Zfrl68EPqDFBM4gN6PCEiJlqU8dM/UYiyf/fbAAYRjuNISr9m5QqZAe+5DPK1HaRpwf6XmQnTBA7gn4+piHFKhAPjf+/PCSmUKLWtnlYgnsPqZU8AtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OCGP0NuxfVXfadgxT103TkNa7Z9fQ/St1E58e8s22+I=;
+ b=Zz4pn+zgte/6Gz6KJA0B/thyXLOylHKPB9igs9zYnTdE/HKkm77xQ39JhtwpPG2a4HOSyAS6RY0nIvCX/zLSPLvXEc8eIX3VT/yE0poP4ZT5jSqQxwhOHNInmk7RIRfsi2Pat4Zv3i2Flncer5tbkt4Z99+EkF1oQ0dSE79nwwuV9wUH18vhf5p3LUqN41UCH9lPeaq2zwnJBG6yRfrAFBjLeO81suxT0uJ1SwrdN7K5SIxg2Mt7XRCivPjZ3wnQarq1ZT1ibLQg0BYYl7FQVmK+8JxL6lWYynEWnF1nqIORk8LkFpXaLKTExBvEavOxSx0HT3HGQhNfH1k/TtN6Lg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OCGP0NuxfVXfadgxT103TkNa7Z9fQ/St1E58e8s22+I=;
+ b=f5E4TTRnjjiSAKA/EuSYsoSQVBJ1VZPfgodB6MshUUz2KJf3jfOT67xUwxx980l/OKa9EupfdL8CM69/ntWTke7rAR8eX11hX8VOST8C02ko08nS0esnRjkzz5rF8+GMQbTkvOEHO49xKtb16CZPENX8G52ovD/etq8HsPjJZvU=
+Received: from BL1PR13CA0376.namprd13.prod.outlook.com (2603:10b6:208:2c0::21)
+ by MN2PR12MB4336.namprd12.prod.outlook.com (2603:10b6:208:1df::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Tue, 2 Sep
+ 2025 19:05:18 +0000
+Received: from BL6PEPF0001AB76.namprd02.prod.outlook.com
+ (2603:10b6:208:2c0:cafe::68) by BL1PR13CA0376.outlook.office365.com
+ (2603:10b6:208:2c0::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9094.14 via Frontend Transport; Tue,
+ 2 Sep 2025 19:05:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BL6PEPF0001AB76.mail.protection.outlook.com (10.167.242.169) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9094.14 via Frontend Transport; Tue, 2 Sep 2025 19:05:18 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 2 Sep
+ 2025 14:05:18 -0500
+Received: from fdavid-dev.amd.com (10.180.168.240) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1748.10; Tue, 2 Sep
+ 2025 12:05:18 -0700
+From: David Francis <David.Francis@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: David Francis <David.Francis@amd.com>
+Subject: [PATCH v2] drm/amdgpu: Increment drm driver minor version for list
+ handles ioctl
+Date: Tue, 2 Sep 2025 15:05:03 -0400
+Message-ID: <20250902190503.1649105-1-David.Francis@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250902165332.2388864-1-alexander.deucher@amd.com>
-X-Mailman-Approved-At: Wed, 03 Sep 2025 13:20:17 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To satlexmb09.amd.com
+ (10.181.42.218)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB76:EE_|MN2PR12MB4336:EE_
+X-MS-Office365-Filtering-Correlation-Id: 427bf65b-913d-4255-1ea0-08ddea53a898
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JHf3sEKqGKRlKew0eYL+Hk3jaCzrUPiIhrXz+XacVvZD7Y6VYK+IQaftsLq1?=
+ =?us-ascii?Q?97x+EE0fhmNdT1fbHcvAQcqNN5MoQPRcufFaMj/45y3yILleSbHnZUB5DNWA?=
+ =?us-ascii?Q?tDwvf+rHNVZo9xe5a9qeNghTdMF66p/f4VDGaOmozI8ZRQSfaAU0nA/D+rmv?=
+ =?us-ascii?Q?KE8uPSqX1yYfg1dQzi4eHy3148DM5EeFHFQxp2u81+kMO5iIMqSjwv1VNi5a?=
+ =?us-ascii?Q?QdDb6XB2/Ab4BDdtzDoqYT/TONZQBo4ZHRqtHT4x3isafa8hCKxyZffW862g?=
+ =?us-ascii?Q?4XnDvUw+fV+suljf44YHvqjj/ZP2noqmpEAKkr4g6JFAkTqUK8xDPfR7aeua?=
+ =?us-ascii?Q?KLxt8AVBPDaRzOvz9XGcFWNYtqG26F8Fw3pl1/Bbuq6tsyhrrqb3csHiIfpj?=
+ =?us-ascii?Q?4rhIOm6V/0r5n6PsVHEQVpwmnbCewc069FlqIKlRQg6VzFkD9MbXbzX/dyXy?=
+ =?us-ascii?Q?BZPNBkkqhYSTBQy57osqtT2ZIlZ8xzJMCSU6+six/esGBNGBYnsGmB4hsM+V?=
+ =?us-ascii?Q?AJ8GKBtbhpimBjkze6MPL41y3Czm+bKUm9rCsVoVWLKF1DjuA049JoG+L+kG?=
+ =?us-ascii?Q?QyNgEWUSD/zdKH1Zq6CPrAVctb6H/U3VWYrTZChYlM/O5BO1l5zRFypiQKnM?=
+ =?us-ascii?Q?Z/VwyujDkSOmVHXl1mazoBoY0m4+uxHYwBWz1qU5SEuTqsrJl5Cd4oKi/Q0b?=
+ =?us-ascii?Q?owfFgWOSqfbNd3+Ug7CyKqKKvgc+WltqIvyKGzbHXqcyHgSG9u+VHgd//kDJ?=
+ =?us-ascii?Q?pN2q+2sbTPlmB7mck+q3vqZpUkpmjoprKdqo9oekvUl7OQxyec7WaF3d0baS?=
+ =?us-ascii?Q?8QKvocNpiUdYvCF5IZsi+IkYpwu9CYu4NUWz4LDmoN4MDdB9CA8nDVr0OhC/?=
+ =?us-ascii?Q?16l8liHtw6V1i6SvzLY8id5pMvzimOZYVynxMhohjHcwgMvM+OsCZdC5skED?=
+ =?us-ascii?Q?C6JkTWKBTzcRubeYNJU+mq5rV1/imDpfQ/9nnJXj+rozCD0Ta6UB6k4NhccZ?=
+ =?us-ascii?Q?R3aSMG05I2wPrn0mQSSWzQk9NV1C4is/DhS+qPGIcL6hOECSHU3cC8CJQ+wZ?=
+ =?us-ascii?Q?FUNooS32MtV0eovWL8Em1ged7XMlnA5DFaQ7dO14QuJkRTUPzL2O0e5NDRub?=
+ =?us-ascii?Q?7EpUHSN+Pqk4khtURQGA6DJ5D9cIfOJdNJ9kNg3Cf3K9G8iuyxDv7Pss4CZt?=
+ =?us-ascii?Q?zmRcAgcf3kplNGnNiZH3Cizu40nKuEZIy4cLSmrKND789WTpYYfouOhblsSc?=
+ =?us-ascii?Q?PZZPDqVeNOMuVlPCsUmXv8YF2odi0K+ErXc7G6ENnfvW+3E7amQUXI9kGmLx?=
+ =?us-ascii?Q?sG0rJnAfubIa8fGdZlRLjbwY0jZZwpIv654B7mH9p6IGGV5ZQFrJLc/Na+T1?=
+ =?us-ascii?Q?NA2ll9OzL/8vIoObGMjQpezXDR21aKxTjBHVyoWfH/eVuPqidebkorZleK37?=
+ =?us-ascii?Q?FJZl4Sof8QAF9oQAltAOlRsGn2gNXscJ/CSeg8LPr1gEcNdIKgfdW1lysDg3?=
+ =?us-ascii?Q?m4vd50uBI/oyTz5K/HaBU8BwOmvtjdEH1jRA?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2025 19:05:18.7771 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 427bf65b-913d-4255-1ea0-08ddea53a898
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB76.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4336
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,30 +135,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 02, 2025 at 12:53:32PM -0400, Alex Deucher wrote:
-> Older GPUs did not support memory protection, so the kernel
-> driver would validate the command submissions (CS) from userspace
-> to avoid the GPU accessing any memory it shouldn't.
-> 
-> Change any error messages in that validatio to dev_warn_once() to
+With the addition of the drm ioctl
+DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES,
+the drm driver version should be incremented (to 65)
 
-validation
+Signed-off-by: David Francis <David.Francis@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> avoid spamming the kernel log in the event of a bad CS.  If users
-> see any of these messages they should report them to the user space
-> component, which in most cases is mesa
-> (https://gitlab.freedesktop.org/mesa/mesa/-/issues).
-> 
-> Cc: Borislav Petkov (AMD) <bp@alien8.de>
-> Link: https://lore.kernel.org/r/20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-
-Acked-by: Borislav Petkov (AMD) <bp@alien8.de>
-
-Thx.
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index b42a2a32b0b7..fba38e9ef92e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -126,9 +126,10 @@
+  * - 3.62.0 - Add AMDGPU_IDS_FLAGS_MODE_PF, AMDGPU_IDS_FLAGS_MODE_VF & AMDGPU_IDS_FLAGS_MODE_PT
+  * - 3.63.0 - GFX12 display DCC supports 256B max compressed block size
+  * - 3.64.0 - Userq IP support query
++ * - 3.65.0 - Add GEM_LIST_HANDLES ioctl and mapping info option on GEM_OP ioctl
+  */
+ #define KMS_DRIVER_MAJOR	3
+-#define KMS_DRIVER_MINOR	64
++#define KMS_DRIVER_MINOR	65
+ #define KMS_DRIVER_PATCHLEVEL	0
+ 
+ /*
 -- 
-Regards/Gruss,
-    Boris.
+2.34.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
