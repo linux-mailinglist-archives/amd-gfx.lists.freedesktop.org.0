@@ -2,141 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A41B43CBD
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Sep 2025 15:12:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 632F0B43B12
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Sep 2025 14:09:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A9C210EA39;
-	Thu,  4 Sep 2025 13:12:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FDBF10EA0E;
+	Thu,  4 Sep 2025 12:09:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="OBMW2Ckz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Doy2IVcQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com
- (mail-koreacentralazon11013069.outbound.protection.outlook.com
- [40.107.44.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C43310EA0A;
- Thu,  4 Sep 2025 11:32:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IZnTh0jymAxaxHmyUbUGmofTrzbytu0KGSiJlFhE9FzITPXCpkU3kncxgSn1i6mImGc38ndqbxqR0YsP8IbWwgElzpGQiCDDq2SPZYtwfk0is19pngXLy0dIjLv9ATa09SmL9wwKDOdRsqdHprG6ihQbBSGjGke5Y+KwMiHmJsYw5m7AVXdM/1a/L37rsiKn2pdj2ym+2CkX7+SAI5LZos2EXw3gFIwiAk+2zSzjRZHWZ2o+giCA7V7t+x2kGeEIqWnuNFPqIHn6CbGDfef66UUS8nHbleCc8+HlPuyh2V9BGi4BjLEOyICq137LPfdFo1MI8tFdccRED+1jt+aQOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t6VcH3d6zZZPhUSNk2x0irKWmEbTRpebc8z1g9kGJkQ=;
- b=lsIoMwnliw0/T7SWrjg+0Bwh5TY3jWFacbYnzFeJI9TFHDq5bIobnTctNC4Cc0nD/awv8scMHfs41P3f6SOrUP+1qMmnl2lM1DNtOLn7mVMib+NdeGC9lIfBFkPHSzgdCa+6RskfLgr4G6qH1sc3Aelqxw2P9QiOx93RuzLfOteNbCzm66nUHGyEiQHsmmllSpA0GRlWE5efgbgdvAl6fGprvNlzQa1bMWXkWRJE+NWVMLocHLezX19PraSXttptPkudmXtu8biI4DX/KDS0E6CZhOU2kNRtKwRZhk7bzffHkfIbGEngjYax6EZbZX4tsOfHLpBHt0C5huxFsWrlZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t6VcH3d6zZZPhUSNk2x0irKWmEbTRpebc8z1g9kGJkQ=;
- b=OBMW2Ckz72HysZHhZdYFxmagIZ5pMwRGM5Nf92IM9+Te6IZ8CRAhsPBaPpQJ+LkT2Y8ZNM/L8cn9XHYktRBK+iqKqnIhM0TnGxgoO8aX9SHeimEv0B5L96MFzisbs5YR95HRuojoRf8kPrlEHB3c5w6Ksfu2MgSEWSYsEZGgLChjYxD7hR/pc90UcBSGQ0Pc19BQoakQBSkXtSv6d8QjLZBb2OMINO6mI84Izs3U7q0xYrLR1fmfLI1EljP4lPuRrfkS+d8M6P9JJibk/mBjZQa78HMlpyUt6ZxS1Tn3e5pkVdfyfbvIAiyHjsOcjUQsGxQcREc2RZ6TxX1VVoJiEQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from SEZPR06MB5576.apcprd06.prod.outlook.com (2603:1096:101:c9::14)
- by KL1PR06MB6233.apcprd06.prod.outlook.com (2603:1096:820:d8::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Thu, 4 Sep
- 2025 11:32:26 +0000
-Received: from SEZPR06MB5576.apcprd06.prod.outlook.com
- ([fe80::5c0a:2748:6a72:99b6]) by SEZPR06MB5576.apcprd06.prod.outlook.com
- ([fe80::5c0a:2748:6a72:99b6%7]) with mapi id 15.20.9094.016; Thu, 4 Sep 2025
- 11:32:26 +0000
-From: Liao Yuanhong <liaoyuanhong@vivo.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list)
-Cc: Liao Yuanhong <liaoyuanhong@vivo.com>
-Subject: [PATCH 4/4] drm/radeon/pm: Remove redundant ternary operators
-Date: Thu,  4 Sep 2025 19:32:00 +0800
-Message-Id: <20250904113201.352187-5-liaoyuanhong@vivo.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250904113201.352187-1-liaoyuanhong@vivo.com>
-References: <20250904113201.352187-1-liaoyuanhong@vivo.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0042.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::17) To SEZPR06MB5576.apcprd06.prod.outlook.com
- (2603:1096:101:c9::14)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C8F610E9F4;
+ Thu,  4 Sep 2025 12:08:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Zq0zttv8W9LftJSDoTWI4vEahxxZ/eDadaO2lGU9frI=; b=Doy2IVcQPHNkqDcO8iZuikICP4
+ jkpIXDdn4+zROswF5n31UFc9JSxN735+O/84PZPd/Z0rUnNx9ySQV4Gh0xJzoCXNYSg80Cz7E245H
+ fruFNdhBk150qROe486hg/IygRQTiNOAymr6xRT9Unr2fr1Ts9FZ3fiNKa34lwlyuJVJdTHyXuBCY
+ fFd3oqajvwbQyPXp71P8dHJ/ANLuhM3Encjvvxbdqk2U3g+rRr5GWaJv1ne/mv9xk1tcXW64JT4Cn
+ bva1scV3a68EdytM8cobyaelkuOXX6NjEPj6JlIDJNpyVUVjJcWIGMhCZq04bVJ7XAai0t/d+d1QD
+ CfxyRKxQ==;
+Received: from [84.66.36.92] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uu8lt-006lVT-Iu; Thu, 04 Sep 2025 14:08:57 +0200
+Message-ID: <58866bb5-9fee-4709-9350-70b978feaed4@igalia.com>
+Date: Thu, 4 Sep 2025 13:08:56 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB5576:EE_|KL1PR06MB6233:EE_
-X-MS-Office365-Filtering-Correlation-Id: 38407ad3-d343-44c0-964d-08ddeba6b952
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|52116014|1800799024|366016|38350700014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?YgpeJk+YIFf3sBpCRjpu7m4P1/OrS1Zq9lwq7kGbMAJxcrmV69u8g/YId9iC?=
- =?us-ascii?Q?QhwzpCX3LkdoOEkgZOefpXUqXttYR8HqZFw4NRiL+aK5hSjPOGCJtG49wwe4?=
- =?us-ascii?Q?RxNUJ13bhk6iCSk+4RyU804N8U29O5H1XxKYM8fZBB5hVWSacNvegSYLDq07?=
- =?us-ascii?Q?2KHEsbRQjHnqahYk85RaHDHsWKSSof5FTXZZHvrLrgRn+piMdO9gDABeBM6E?=
- =?us-ascii?Q?4LHue1xOPNph4mFesjDNBqCMDVtCcFOlXQ4xO1jis6XIen15V669kk11kbLx?=
- =?us-ascii?Q?vJOuJqpbWUa3pe377mfeOxTje09xvINRCBmuvGYGmNBMk/ZYh6OGkwJI2G+F?=
- =?us-ascii?Q?wVfVc1pKMX2S6gxQMVhv0sl52Y4ak8uExYHAQc2aUb8IsBIJjTfbWI9/kt7c?=
- =?us-ascii?Q?6QmXmhpRSKU77Y/cDpXQoGVVryuPj1x/In6WxLNoKv5wHMZOkAgbA3uPBlpY?=
- =?us-ascii?Q?Pb4H6yzQji0Hfq2rprcQTop/ZkR9jxvzZOYjJN97wucfD9+m35nkavQpBb2N?=
- =?us-ascii?Q?G9V1Vtoh/xMuA2M1V73dgO12zzPUI2Qcb2ODoiF3gbIa8gW4/j/+/Oye4SHO?=
- =?us-ascii?Q?/x1DXzKAxWMUdXmIGI6ZhdcHNWmvSKH4bjpdsPzwp4pX/ZxAP9s+3tHmT8eq?=
- =?us-ascii?Q?5dTVEZXVglbD/cjs6pr3qPpEoegKpG/9YD0rAkHvO8yMSwx+0/4ZG+FFsec7?=
- =?us-ascii?Q?vMDXLhuLuZIWtfWxi9d6ygE77TIUMY118J7sZM67mNNqKbqhV6McGTqKyRo1?=
- =?us-ascii?Q?DGVxpkUmIYZvJ/Zs/Mw5w+cRMETxUH8JBmTYWgXag2UWKprCgN8br5kCeB2u?=
- =?us-ascii?Q?CyXW7AnednJwo3svQkf7T8S2393dPMl0/iJiRSM3AGR8E2q6oWc/c8Q77hf4?=
- =?us-ascii?Q?2HbwLfhKlFuN6hJdioQI6IcF/fmie2Xsj75yA+hoSGZmbPv2mSBT9dlYu5Xm?=
- =?us-ascii?Q?DU6rvhz1fEA0/X2A9rDrs2jpaccuzGUWitPCRsHqaaV6YQylbSBZmPrsED6r?=
- =?us-ascii?Q?+HBTL854WbtxQ55I43r0Z7blpfE6aK8Hbp4vwzP8scMf1dlAnNdEQJgI7fG5?=
- =?us-ascii?Q?Bga9Xs/dYLsPj4tT04E6HprDwX+1uK44piJTgqjIWUCA2xWFQx1ysGYMyNLP?=
- =?us-ascii?Q?OpoN8MHXuHBFtOz3L1tgMvId89B8ilj5jrfrend64i2MTkF2Yb56vpS7Bole?=
- =?us-ascii?Q?M1lM78JB0thwWSAPmGzF9oTJ9qWpopHXzVKT4DB3mL6ezNGnmeFH7VxMggVk?=
- =?us-ascii?Q?+zl98+cZHnFyW/V79VKLbqK3E6OA2q38HYKs6pKVusdsy/EqRqVvFYUNbnVA?=
- =?us-ascii?Q?4Bn3dIQgu2/OgbwRYawAzr9yu6bF5AEuFeOP075xDiQN7wU21TZ4o6IS/Xpi?=
- =?us-ascii?Q?n9oLpfk7IHb56u2JyKFw0X8JKf6/YOi3TgGqC3n6tgzjZ0JfSyAEgyGsK4gx?=
- =?us-ascii?Q?EQPl/LzMEgUt0GVuoL3tFj10azPblv634mvE4dKfv/DHi3kZ42woQQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SEZPR06MB5576.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(52116014)(1800799024)(366016)(38350700014); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QU4RT5A5nQVp0n7/d0mrr/8SY3ivOyc7X7hbUt8c/FTq1uvkXRkm7AhmoKca?=
- =?us-ascii?Q?ngNJn2niCtXcWEv5x7cLaT6QNNHmDSw20A8JajX4rwSaT2rbsnqJ3ZwEsGgB?=
- =?us-ascii?Q?eVM1Ko2WkDKpDIzFIjpY5bVHk2HV/DDeBA7uJkXwsEvLu0qDFiqGuerN+rJk?=
- =?us-ascii?Q?zMKH5Umbt6CcV2GfvGR0cTNb+rm04n6QgyMGMbbMXRUCzqIpPsXX9NC02NEU?=
- =?us-ascii?Q?FbAz4+2185Uo7v+RrdQMi/HjiOCd/ct8mzWYn3apsoPbLO1XWoiFh0P9fBIW?=
- =?us-ascii?Q?17TXyxlKAIawWQIgypVCAGCgEJSfxZZh/j9EWID34aFc4hUGFHO7oHasbP36?=
- =?us-ascii?Q?Sw7ICP5b5I5RpyZpGpbQ7NMHcXfsSlwSEZOpvxallFAmzOLEvexfPlV1SD47?=
- =?us-ascii?Q?ZZt6LzGJ9S096hz29cIpOXIm3MIL4pqXY7wL0Zdz73fTAOG346E+9thLqSH9?=
- =?us-ascii?Q?nPNsSwzGr8+CBZYWFmMXKKjBZraLlxyr5XNzM+ps+dcGUqpp7pNZ/VTsPg2x?=
- =?us-ascii?Q?8CGW4JTD4FImqCP4M7wCvYpu4Keuuk/mdT99KkJP9z2W91ZxoCh7KpVxDHig?=
- =?us-ascii?Q?j+FpuxltDc9MVic+vgrSspsuZHje9xaW8MEqozLxI9L/FuWTzeyfXczjnWEs?=
- =?us-ascii?Q?yQojKepkAo4PSur6y3m2eIxkS/y6YZEinDHxE6myK9NtM00kn3+m9oiHydCR?=
- =?us-ascii?Q?4+OUwOOFS17QhoPLDyA2Ojf7SbiOknIUNhGeqjetRSH+aTGfhr6vocdV5f5g?=
- =?us-ascii?Q?UYSyP8CE1bB8y0h/ts3PXJJvXZnuJBlnBFM20t/RVtyJ+BGsdPbRfw5CBCvp?=
- =?us-ascii?Q?cEeZC1qetS6pejHutHviVkOXb1OD2AsMqY0Dv8v38zaDXCjJ5pnbkpgiuhZg?=
- =?us-ascii?Q?KhC/enG5PqS83/LmkX8b6FuebMco6Sm5Yy8UyoY8eTwutVDWgOVb0aNfEB/b?=
- =?us-ascii?Q?cL3ayvmwZCULuAM4Rue1X8lzchlQMjPE1Lgf8lh/mz91cFKvptA1qWYTimP5?=
- =?us-ascii?Q?nO/A/ofDXt2d1fs2s+7zJZYOnlx7pJ+x7B6yhhFg6N4c+jkOlG/Bl/eVqa5z?=
- =?us-ascii?Q?f7Koa3bae5u1TnwgBi6wO41RJpu1Sbee1i2tcjJZpNPlzzu/I7mjp7l6hUub?=
- =?us-ascii?Q?2ZieirF09iue45b+FXtcHf8m1nng3scpKp0e+2doeS7gI4YEHtvq6Rbv22lN?=
- =?us-ascii?Q?TxUUVRrtNoGRTklIqdkJEG1zvLFIOo22oMS3sRTYG2DwhXSDaHtLJ1rXB5KU?=
- =?us-ascii?Q?3M7gTT/eA+oxj4evx5hmINvgiP/lgpdDxrfYmgs9wa8X7P2in49Gpryus8L1?=
- =?us-ascii?Q?2S52AsBj8RGStEBC9PW4vGOfrmxvQHD0n+FnwjcwTCQRkDSoyesTwJ5bnwTh?=
- =?us-ascii?Q?4sSqiWryrUFXpEQ8nsUlew29rGWmGC7nxAEyYUhZ3nr8EPUJ7OCPOcf0swqM?=
- =?us-ascii?Q?9eh2+VWWSQxsD+ezMiUlPL4tOWbnyi7hWPXMIt4qkMKf64d2kwzc/bRopkPl?=
- =?us-ascii?Q?H+TZSBRyXa+N/GduA5QwIz4Iff/G8EVp8dYianKmFToal1kt51/YmIy4WvQa?=
- =?us-ascii?Q?9LTE31SUTTT/cDX6YzZjR6dGwBA+C6aTLvcyd66s?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38407ad3-d343-44c0-964d-08ddeba6b952
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5576.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 11:32:26.4773 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pHA5j3RCTDRSFZQQJLM3TVjahE7XBdgD8mSoGPBl/KMBz0WHV7Bq4Zq2I1biZXZpt+oVGM+j4r2p5ttETK/dsw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6233
-X-Mailman-Approved-At: Thu, 04 Sep 2025 13:12:51 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 21/21] drm/xe: Register with the DRM scheduling cgroup
+ controller
+To: dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ intel-xe@lists.freedesktop.org, cgroups@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250903152327.66002-1-tvrtko.ursulin@igalia.com>
+ <20250903152327.66002-22-tvrtko.ursulin@igalia.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250903152327.66002-22-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,29 +63,288 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-For ternary operators in the form of "a ? true : false", if 'a' itself
-returns a boolean result, the ternary operator can be omitted. Remove
-redundant ternary operators to clean up the code.
 
-Signed-off-by: Liao Yuanhong <liaoyuanhong@vivo.com>
----
- drivers/gpu/drm/radeon/radeon_pm.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+On 03/09/2025 16:23, Tvrtko Ursulin wrote:
+> Wire up the scheduling weight notification into the driver.
+> 
+> DRM cgroup controller will notify the driver of scheduling weights for
+> each DRM client, which the driver will map into the three GuC scheduling
+> priorities by giving the lowest weight client the low priority, and
+> respectively the highest one high. The other clients will not be changed
+> as will not be the ones which have individually specified a priority other
+> than normal.
+> 
+> The priority changes are done from a delayed worker to coalesce
+> potentially numerous updates and also to allow taking the mutexes from a
+> callback which runs with preemption disabled.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> ---
+>   drivers/gpu/drm/xe/xe_device.c       | 18 +++++++
+>   drivers/gpu/drm/xe/xe_device_types.h | 15 ++++++
+>   drivers/gpu/drm/xe/xe_exec_queue.c   | 80 ++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_exec_queue.h   |  5 ++
+>   drivers/gpu/drm/xe/xe_guc_submit.c   |  8 ++-
+>   drivers/gpu/drm/xe/xe_pm.c           |  4 ++
+>   6 files changed, 129 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 9e2952c9c06a..9fef10c50868 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -112,6 +112,10 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+>   		put_task_struct(task);
+>   	}
+>   
+> +#ifdef CONFIG_CGROUP_DRM
+> +	xef->cg.prio = XE_EXEC_QUEUE_PRIORITY_NORMAL; // TODO: inherit current cgroup priority
+> +#endif
 
-diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/radeon_pm.c
-index b4fb7e70320b..a855a96dd2ea 100644
---- a/drivers/gpu/drm/radeon/radeon_pm.c
-+++ b/drivers/gpu/drm/radeon/radeon_pm.c
-@@ -907,8 +907,7 @@ static void radeon_dpm_thermal_work_handler(struct work_struct *work)
- 
- static bool radeon_dpm_single_display(struct radeon_device *rdev)
- {
--	bool single_display = (rdev->pm.dpm.new_active_crtc_count < 2) ?
--		true : false;
-+	bool single_display = rdev->pm.dpm.new_active_crtc_count < 2;
- 
- 	/* check if the vblank period is too short to adjust the mclk */
- 	if (single_display && rdev->asic->dpm.vblank_too_short) {
--- 
-2.34.1
+For the record from the updated branch this TODO is addressed like this:
+
+#ifdef CONFIG_CGROUP_DRM
+	/*
+	 * Set the initial values to valid ones but note that both will get set
+	 * and updated as the DRM core will soon notify the cgroup controller
+	 * that the new client has entered the group via
+	 * drmcgroup_client_open(). That in turn will trigger the weight
+	 * notifications and then xe_drm_cgroup_notify_weight() will update both
+	 * shortly.
+	 */
+	atomic_set(&xef->cg.weight, CGROUP_WEIGHT_DFL);
+	xef->cg.prio = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+#endif
+
+Regards,
+
+Tvrtko
+
+> +
+>   	return 0;
+>   }
+>   
+> @@ -368,6 +372,12 @@ static const struct file_operations xe_driver_fops = {
+>   	.fop_flags = FOP_UNSIGNED_OFFSET,
+>   };
+>   
+> +#ifdef CONFIG_CGROUP_DRM
+> +static const struct drm_cgroup_ops xe_drm_cgroup_ops = {
+> +	.notify_weight = xe_drm_cgroup_notify_weight,
+> +};
+> +#endif
+> +
+>   static struct drm_driver driver = {
+>   	/* Don't use MTRRs here; the Xserver or userspace app should
+>   	 * deal with them for Intel hardware.
+> @@ -386,6 +396,10 @@ static struct drm_driver driver = {
+>   #ifdef CONFIG_PROC_FS
+>   	.show_fdinfo = xe_drm_client_fdinfo,
+>   #endif
+> +
+> +#ifdef CONFIG_CGROUP_DRM
+> +	.cg_ops = &xe_drm_cgroup_ops,
+> +#endif
+>   	.ioctls = xe_ioctls,
+>   	.num_ioctls = ARRAY_SIZE(xe_ioctls),
+>   	.fops = &xe_driver_fops,
+> @@ -500,6 +514,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+>   	if (err)
+>   		goto err;
+>   
+> +#ifdef CONFIG_CGROUP_DRM
+> +	INIT_DELAYED_WORK(&xe->cg.work, xe_drm_cgroup_work);
+> +#endif
+> +
+>   	return xe;
+>   
+>   err:
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 092004d14db2..dbc65a4aa08d 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -19,6 +19,7 @@
+>   #include "xe_oa_types.h"
+>   #include "xe_platform_types.h"
+>   #include "xe_pmu_types.h"
+> +#include "xe_exec_queue_types.h"
+>   #include "xe_pt_types.h"
+>   #include "xe_sriov_pf_types.h"
+>   #include "xe_sriov_types.h"
+> @@ -34,6 +35,7 @@
+>   struct dram_info;
+>   struct intel_display;
+>   struct intel_dg_nvm_dev;
+> +struct xe_file;
+>   struct xe_ggtt;
+>   struct xe_i2c;
+>   struct xe_pat_ops;
+> @@ -624,6 +626,12 @@ struct xe_device {
+>   		unsigned int czclk_freq;
+>   	};
+>   #endif
+> +
+> +#ifdef CONFIG_CGROUP_DRM
+> +	struct {
+> +		struct delayed_work	work;
+> +	} cg;
+> +#endif
+>   };
+>   
+>   /**
+> @@ -685,6 +693,13 @@ struct xe_file {
+>   
+>   	/** @refcount: ref count of this xe file */
+>   	struct kref refcount;
+> +
+> +#ifdef CONFIG_CGROUP_DRM
+> +	struct {
+> +		atomic_t weight;
+> +		enum xe_exec_queue_priority prio;
+> +	} cg;
+> +#endif
+>   };
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 063c89d981e5..2f072d2a0117 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -1139,3 +1139,83 @@ void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q)
+>   	}
+>   	spin_unlock(&sched->base.job_list_lock);
+>   }
+> +
+> +#ifdef CONFIG_CGROUP_DRM
+> +void xe_drm_cgroup_work(struct work_struct *work)
+> +{
+> +	struct xe_device *xe = container_of(work, typeof(*xe), cg.work.work);
+> +	unsigned int weight, min = UINT_MAX, max = 0;
+> +	struct drm_device *dev = &xe->drm;
+> +	struct drm_file *file;
+> +	struct xe_file *xef;
+> +
+> +	mutex_lock(&dev->filelist_mutex);
+> +
+> +	list_for_each_entry(file, &dev->filelist, lhead) {
+> +		xef = to_xe_file(file);
+> +		weight = atomic_read(&xef->cg.weight);
+> +
+> +		if (!weight)
+> +			continue;
+> +
+> +		if (weight < min)
+> +			min = weight;
+> +
+> +		if (weight > max)
+> +			max = weight;
+> +	}
+> +
+> +	list_for_each_entry(file, &dev->filelist, lhead) {
+> +		enum xe_exec_queue_priority new_prio;
+> +		struct xe_exec_queue *q;
+> +		unsigned long i;
+> +
+> +		xef = to_xe_file(file);
+> +		weight = atomic_read(&xef->cg.weight);
+> +
+> +		if (max == min)
+> +			new_prio = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+> +		else if (weight == max)
+> +			new_prio = XE_EXEC_QUEUE_PRIORITY_HIGH;
+> +		else if (weight == min)
+> +			new_prio = XE_EXEC_QUEUE_PRIORITY_LOW;
+> +		else
+> +			new_prio = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+> +
+> +		if (new_prio == xef->cg.prio)
+> +			continue;
+> +
+> +		mutex_lock(&xef->exec_queue.lock);
+> +		xa_for_each(&xef->exec_queue.xa, i, q) {
+> +			if (q->sched_props.priority !=
+> +			    XE_EXEC_QUEUE_PRIORITY_NORMAL)
+> +				continue;
+> +
+> +			xe_exec_queue_get(q);
+> +			mutex_unlock(&xef->exec_queue.lock);
+> +
+> +			q->ops->set_priority(q, new_prio);
+> +
+> +			mutex_lock(&xef->exec_queue.lock);
+> +			xe_exec_queue_put(q);
+> +		}
+> +		mutex_unlock(&xef->exec_queue.lock);
+> +
+> +		xef->cg.prio = new_prio;
+> +	}
+> +
+> +	mutex_unlock(&dev->filelist_mutex);
+> +}
+> +
+> +void xe_drm_cgroup_notify_weight(struct drm_file *file_priv,
+> +				 unsigned int weight)
+> +{
+> +	struct xe_file *xef = to_xe_file(file_priv);
+> +	struct xe_device *xe = xef->xe;
+> +
+> +	atomic_set(&xef->cg.weight, weight);
+> +
+> +	queue_delayed_work(system_unbound_wq, &xe->cg.work,
+> +			   msecs_to_jiffies(100));
+> +}
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+> index 15ec852e7f7e..5f6b42c74086 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+> @@ -95,4 +95,9 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+>   void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q);
+>   
+>   struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
+> +
+> +void xe_drm_cgroup_notify_weight(struct drm_file *file_priv,
+> +				 unsigned int weight);
+> +void xe_drm_cgroup_work(struct work_struct *work);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 86daf6f4728f..df1252f4cd62 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -427,13 +427,19 @@ static const int xe_exec_queue_prio_to_guc[] = {
+>   static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
+>   {
+>   	struct exec_queue_policy policy;
+> -	enum xe_exec_queue_priority prio = q->sched_props.priority;
+> +	enum xe_exec_queue_priority prio;
+>   	u32 timeslice_us = q->sched_props.timeslice_us;
+>   	u32 slpc_exec_queue_freq_req = 0;
+>   	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
+>   
+>   	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+>   
+> +	prio = q->sched_props.priority;
+> +#ifdef CONFIG_CGROUP_DRM
+> +	if (prio == XE_EXEC_QUEUE_PRIORITY_NORMAL && q->xef)
+> +		prio = q->xef->cg.prio;
+> +#endif
+> +
+>   	if (q->flags & EXEC_QUEUE_FLAG_LOW_LATENCY)
+>   		slpc_exec_queue_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index a2e85030b7f4..67291f19213b 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -124,6 +124,10 @@ int xe_pm_suspend(struct xe_device *xe)
+>   	drm_dbg(&xe->drm, "Suspending device\n");
+>   	trace_xe_pm_suspend(xe, __builtin_return_address(0));
+>   
+> +#ifdef CONFIG_CGROUP_DRM
+> +	cancel_delayed_work_sync(&xe->cg.work);
+> +#endif
+> +
+>   	err = xe_pxp_pm_suspend(xe->pxp);
+>   	if (err)
+>   		goto err;
 
