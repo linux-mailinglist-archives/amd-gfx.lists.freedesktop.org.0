@@ -2,74 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE8EB4590A
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Sep 2025 15:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A932B4851F
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Sep 2025 09:27:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5934210E2E0;
-	Fri,  5 Sep 2025 13:32:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE3CF10E46B;
+	Mon,  8 Sep 2025 07:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UExCGbHE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bsDe8uhh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
- [209.85.216.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BC4610E2E0
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Sep 2025 13:32:02 +0000 (UTC)
-Received: by mail-pj1-f52.google.com with SMTP id
- 98e67ed59e1d1-32ba1f9c87cso120389a91.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 05 Sep 2025 06:32:02 -0700 (PDT)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20ACF10EBAA
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Sep 2025 13:49:16 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id
+ a640c23a62f3a-b0418f6fc27so341713966b.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 05 Sep 2025 06:49:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757079122; x=1757683922; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9YMepFXjYwhEQ7IA6bwJGUi9Ejy/qNIJucKvgMEsIGs=;
- b=UExCGbHEx2i2Zef+crshYDyENcMYBuEN2Qa5dP+43lgNAoGs3812e/f0Lm0LvfBUNf
- JifWMM/PltyvP31+bPqbmMIgd+7xKRMk+9U3PMWdsycaSmFjDEkAblpPqdxeH83DiqL3
- mTlDwcrlhPRDBUAuG7iU02tbcAFfUfyxE3t6FBw8RuCmCe7JDMv6zHpudRQJSics6hR4
- 6Dz8N6oyGP1nmetibLbXQIg5gAqlmnFGAoUarmU3urSvSHJtAuGudAyKwsHbbUi3fROt
- 4fcHehcIDie+a0a4RHziP3OabBbnXFGEfwpC9LE8sapNzAAD8Sr6vIk98uDw/h+ZgmjB
- J6cQ==
+ d=gmail.com; s=20230601; t=1757080155; x=1757684955; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:autocrypt:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=2v3SNAvl9c4lDwixvSiurUh+pklIj8Im2YiYVg2Us6U=;
+ b=bsDe8uhhiZuWRSTAR6vT6si2eYfkEBXKE4hKt9P+Q5tbSvQQFsThQx/fjZcfSedEj5
+ 7UOMIYwLFNNrtGGYulMmvwHAeF4vU4TZ8LzKNBRX2LlHwCzpBHavh6RvHdrsEk4ndwO5
+ nQS4EEC2eeM4i8qFW3FpFal1QfQGK1yBqgglygfZrZaqUFdv/pDYVCF1nUPLs512Aagx
+ ZKlrfEUHEr/+KpDcbYe7LUjrJGYDbkMcIO8CKIg1BZ2hIS9hT5gv8oH8CDuXlx73blYC
+ 1cAMZAvg9wBsn3/6447O9v2JuAxzy3JM+jaCWvinb2KvDh+6v5U5aAm2KZRdFjcD9u9h
+ 5TmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757079122; x=1757683922;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=9YMepFXjYwhEQ7IA6bwJGUi9Ejy/qNIJucKvgMEsIGs=;
- b=kDSfSHVSo7x4mUcsIHxFVt2/llabVvxtbLZ7Yt0zp5FvVUwh/Qr187G+3KS7XJt+rP
- SRefU5Yx6Pv5cwtk4CZ6xpUE7auk77T9H0U9FTRgL+lQC7GUk+EkCNm5UtDRfjzQVStg
- Bwps+82t3LDSglw1W3nbLD6EAds3eqn4OY049dmJMGy5jOxJwMq9uQ9EU9djzhe++zZx
- PgvKcqAPmGWxASdI9SqgI3AH/E8roUlm57nq5vcr76ljMsy3INI4QtvEJnXY7m2jt8AY
- 1kjHKGf0wdkW8y4yNjy8emwbBgAdRpEPbGQxYoOMjOYMaB59H7xX1yI+3TYQ+phsq4fx
- XtLg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWx9Af6WGtgCUQ8AFrnNnVojxtV5BhKkNv+MZ5wbq+0P2kRogQfVWaHrr1RMbJ1g4qarpgQNDNJ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxrlIbxOuS3ycG7oFsnpM+YGwV7y2X+eYsO1GWg3V7nm8OsqZvB
- jp9+PzilAE5tGejAlEfdg5njzXw+37/OCvbQQN26ep4N4YAFEsIc8wb1roAeTyMJv7cr8oVEdz0
- EjsKE/augQf8ZXub9Ha1v4NGYWU4OEVg=
-X-Gm-Gg: ASbGncvxZvZ2+zLR5vLpITY/bQss+fGckOsot3cquBkd0qsIyYWe2xId4rAZr6CW7JS
- mlox1exb3yXSvA5JBfLKziVLakMnRNRg28ebQbqrRWGLLBfJXqgfUkcQuLMrX7Tou+yZ/hkAIIi
- X4oxsq0LOcpbWFWiqN/Pf7UyQ9pbKPSxget5GmwqyFFkkbw2TI5bk/LFsPyM72+GQyp+sS4LiRj
- KcdivDskXMH2XmnTA==
-X-Google-Smtp-Source: AGHT+IEe/wvRuuKle4+6VbzmKgT1ji4WT150x/ihFkC6UCxZULavQR0kaeTT8ntYFML2h6au4qiXi8Spz36fdnMcEyE=
-X-Received: by 2002:a17:90b:1d08:b0:32a:8b55:5b82 with SMTP id
- 98e67ed59e1d1-32a8b557332mr8674375a91.0.1757079121612; Fri, 05 Sep 2025
- 06:32:01 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1757080155; x=1757684955;
+ h=content-transfer-encoding:in-reply-to:autocrypt:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2v3SNAvl9c4lDwixvSiurUh+pklIj8Im2YiYVg2Us6U=;
+ b=tq+HGSFvB3fWYmRg/VCS6OGo/wV6qPhTt7+7f4R3xAe3pZWXnYJdXIcJamahPIQDii
+ 246v3iFApYeZ/Strps4xs1vFk4Qwnft9yHdp6WUrZzMxY+jwXYJGTo8cAcmpf9uImgPN
+ xpzmRNqibKuD7/Ji9aq0gA2S4g2Nby4a8I+jAzusEDBNZsWTs7LqppMggwnTZIW/QRib
+ zpXx/9Fhok63J5QE212+ZJfCVuqTJQgnvhMO+fO7Ki3s2nHn47vccmnRmXCWN5GjyiGw
+ EoHy3WROSQaOf+S9ISlV42fZhIPHtxWqb1JQZBHr/oQBkWOxdYLgYBe4BTCv7NyMB7TR
+ ws+A==
+X-Gm-Message-State: AOJu0Yx23/y7taj/TSK/+jfDtn5kvvxCnkkDWr1ejqhSa80yQCRkLu0h
+ 8pSy2RR2YqmFDPNSDx9uEmK1wcJlmGVBmlgSFOpB14qZj/IjPu9xg0BDWMFsPlF3
+X-Gm-Gg: ASbGncsigJHRBHEfeyUF8Q2hHlV0IHQ/qRbHyTHN6aXWJ6jpk1/fkaKJlT0f7HmS2V0
+ p8EVSfclTLAsVH+8hVCk4eKk7XILuzNyJW1U9lSbsv8mvDh0jxQ6sigX4rbA5DYAaQ0q9tBlhnU
+ THUxB6ltO07Fp9lqZ6WRHWbl8I+2KqAV8/4SMA7RbNdO1vEuVoSKRBvm8wontPyM//YQXXE7jZv
+ b8b5yLE4kz8Bt9OrGcwIk+rIckR9ZFEh4vodKsYfiL+OyYntOQq9yO+PdMjjLAnL0guMHsNyR9a
+ WnC2it5KYOWRmFTkXkSm4gaXnMq54kG2x0/G5cah7B6/gLsXNyV7X/XVZO6ApWcuH/ICzBYHU+l
+ VHYlAmwsOEitvVTzBVRqn6kCDlaje/1XmETwshpICXz7amqlMjYZjuq/mWlEKlNs=
+X-Google-Smtp-Source: AGHT+IErHNrCAl8p+9K0a2P+vS64qDYb8mhvPuDjaW8iM2bQbYhhD9CaMGnIeGhymE553tU+qiTieA==
+X-Received: by 2002:a17:907:1ca0:b0:b04:6cf7:75d4 with SMTP id
+ a640c23a62f3a-b046cf77727mr941612766b.49.1757080154388; 
+ Fri, 05 Sep 2025 06:49:14 -0700 (PDT)
+Received: from [192.168.0.20] (89-66-79-203.dynamic.play.pl. [89.66.79.203])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-aff138a8c1dsm1703494666b.99.2025.09.05.06.49.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 05 Sep 2025 06:49:14 -0700 (PDT)
+Message-ID: <86e351f7-c0ce-449d-9b30-25f667c834d4@gmail.com>
+Date: Fri, 5 Sep 2025 15:49:13 +0200
 MIME-Version: 1.0
-References: <20250905124742.11305-1-christian.koenig@amd.com>
- <20250905124742.11305-2-christian.koenig@amd.com>
-In-Reply-To: <20250905124742.11305-2-christian.koenig@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 5 Sep 2025 09:31:50 -0400
-X-Gm-Features: Ac12FXwpATvdcDvAHHCLAY1AtUt2RrF4JX5n_PZ0f8SGSsluuxQ6AXSK2cwIxME
-Message-ID: <CADnq5_OmQkYaYSu-QYCXV7YcPLtbVsKqwsjwWt=coPoRcrvadg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu: reject gang submissions under SRIOV
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org, 
- timur.kristof@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REGRESSION] AMD HDMI/DP audio broken after suspend since commit
+ 50e0bae34fa6
+To: Mario Limonciello <superm1@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+References: <967d5380-1db1-4252-a3b5-cfa283cf960d@gmail.com>
+ <637bdb82-ca3b-4e11-8c59-d8fc75e6837e@kernel.org>
+ <6fd5d5e1-2f4a-4640-a88b-8fc66bf54f75@gmail.com>
+ <b033c364-476f-4cdd-8823-2a3bbddd9de4@kernel.org>
+ <48206da8-c4a6-4b66-bcc9-7599fc891342@gmail.com>
+ <13cba029-8c3d-48df-9f76-8b2ed0fff85d@gmail.com>
+ <1cea0d56-7739-4ad9-bf8e-c9330faea2bb@kernel.org>
+Content-Language: pl-PL, en-GB-large
+From: =?UTF-8?Q?Przemys=C5=82aw_Kopa?= <prz.kopa@gmail.com>
+Autocrypt: addr=prz.kopa@gmail.com; keydata=
+ xjMEZbtqRhYJKwYBBAHaRw8BAQdAGojMeKfRebJC5+U3Pk20jCWmOv/wtj0kK+7SRlSeasPN
+ JVByemVteXPFgmF3IEtvcGEgPHByei5rb3BhQGdtYWlsLmNvbT7CkwQTFgoAOxYhBDwLVsMk
+ 0R41tYJQaRDBtFqhE5HJBQJlu2pGAhsDBQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJ
+ EBDBtFqhE5HJnxgBAJ2HbntRTvOAMMDWU0h0Gu8Vxn4MMuyKivIcYXX/mXTlAQCE8c1I1bVI
+ 5ottwyoAcQIYZz8JhiZu/PMW3YID7iMtD844BGW7akYSCisGAQQBl1UBBQEBB0BfitF05Bez
+ rVGUMKVNceXhQOEAzBYPQG2t09xWbwuAWQMBCAfCeAQYFgoAIBYhBDwLVsMk0R41tYJQaRDB
+ tFqhE5HJBQJlu2pGAhsMAAoJEBDBtFqhE5HJ9YcA/i/SOJkwwYoWJp+sKFOcrPZSVMPvQ9ry
+ wk5oemiTzoJVAP0dYnuEMP3N7zP1I5XkS1TToezcTX5Pc/ytafL+1js+Bw==
+In-Reply-To: <1cea0d56-7739-4ad9-bf8e-c9330faea2bb@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 08 Sep 2025 07:27:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,59 +106,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 5, 2025 at 8:47=E2=80=AFAM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Gang submission means that the kernel driver guarantees that multiple
-> submissions are executed on the HW at the same time on different engines.
->
-> Background is that those submissions then depend on each other and each
-> can't finish stand alone.
->
-> SRIOV now uses world switch to preempt submissions on the engines to allo=
-w
-> sharing the HW resources between multiple VFs.
->
-> The problem is now that the SRIOV world switch can't know about such inte=
-r
-> dependencies and will cause a timeout if it waits for a partially running
-> gang submission.
->
-> To conclude SRIOV and gang submissions are fundamentally incompatible at
-> the moment. For now just disable them.
+On 9/5/25 05:37, Mario Limonciello wrote:
 
-Are you sure about this?  Thinking about this more, most gang
-submissions are between gfx and compute.  The entire GC block (gfx,
-compute, and sdma on gfx10+) gets preempted on world switch so all of
-the active queues would be preempted.  Everything gets resumed when
-the VF gets switched back.  VCN/JPEG gets switched independently so
-that could be a problem if you have a gang with VCN and GC, but I
-think all gangs within GC should in theory be ok.
+> Have a try with this diff on 6.17-rc4.
 
-Alex
-
->
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_cs.c
-> index 2ac9729e4c86..434a551365c7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -286,7 +286,7 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p=
-,
->                 }
->         }
->
-> -       if (!p->gang_size) {
-> +       if (!p->gang_size || (amdgpu_sriov_vf(p->adev) && p->gang_size > =
-1)) {
->                 ret =3D -EINVAL;
->                 goto free_all_kdata;
->         }
-> --
-> 2.43.0
->
+I confirm that the issue goes away after applying this patch.
