@@ -2,76 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85B9BB45433
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Sep 2025 12:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B95B4585F
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Sep 2025 15:04:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C710310EB66;
-	Fri,  5 Sep 2025 10:12:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 006FD10EB9E;
+	Fri,  5 Sep 2025 13:03:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Bsmt9GfS";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="O5F5DqGC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
- [209.85.222.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCD4110EB66
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Sep 2025 10:12:53 +0000 (UTC)
-Received: by mail-qk1-f170.google.com with SMTP id
- af79cd13be357-8080a88a32aso203080985a.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 05 Sep 2025 03:12:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757067173; x=1757671973; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=NewwMVaLbnIa4fJGnIXjeDAy1/vDsin+IJMIPV9C0rc=;
- b=Bsmt9GfSLVL7pPbf1tXlcTVJKgueEGeMf+KWH++9OrQeplzHweT6GrnRymAQoEyfDd
- JshqzFlrGmJm3DY/09F8/O4USK9AgrT+8p9nd/3mWh7TC+DLj98Pv0pBXROkWn/glkeG
- 7UroWD8LGhUJkjIcd6IMuq92JXp6Vq9pdu8p8LbP48+4Ho+crWIdUwbGBEf7Mvn7Fuc6
- m29I7erS0eJ5lRN4G4QMMWSwzAcBQJZyeUF2mm0NvPPuWgZx/1/7qOj0Tm901PRZi2eW
- pL3u5LNbUqUWhGUwF9K0bvzKh0YJC4B8FDoVwo6EyXU7erhPxOKkYlw7qIMgfJaT6PVr
- OmMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757067173; x=1757671973;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=NewwMVaLbnIa4fJGnIXjeDAy1/vDsin+IJMIPV9C0rc=;
- b=kdPOoMkcM33of3ytH6hJ+fOqfNmcQFZS4c0QQS0AZ2VIV3JpHnUiv87Bz3eJ4wwuIt
- aNo7kD3QQeDWKVkLrbcPcyUOUytGPJMrueyKhhtVTzRIgmLh4z1xp1Wbmk8NCe+/AGjv
- 81jhVXv7WoYdnGy0QW1bngGHfgi7G26eOtdQxceGHYlP3jukeaNHRl8nSZUJkpdsg608
- rMnTsVWF28wKr4NyJVuLRAqWe9tnUyTA/EdMgrUDqSHvKW+uuNJ0j4jJeRWX8MyWBlcy
- 49mTsKCmgA/+D2wQkcn/CRTeB+ZnCKHNQoLBYdgWvcXUk3MjFN1BZM24Ul9PqEevwQ1W
- k6rw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUofjbDzS9gfQtfO2QD1OMpK0iYxYeF5trpEgzjCF7cpU5TSzQWNh/H20IBvLJGo4M8cvMgTZ+V@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy76KLIOrZfZW/l2myBe3CiS6i+BriR6Jys9q+V2msSXpsIeKZf
- WTGTrlNG4TzRag+A0crxDOv3BKau2aZhtXrXHPIUcleysDd55E6EQhw6
-X-Gm-Gg: ASbGncs5wDcnpvsedsMk4Pk30Ckm5e4tfiIWS8lpSRbSr3K99jrhAFDjQvymjM5BQEJ
- dbbiwmmX4Irnv+YiuzvtInUEkKcHTqxl5ira/Ni+xnOI1HrPmetp9jvgo/r1Af6PYTJvEUQFf3t
- /8qb6W9XoVjLU4YN8OvKZ4Ar42NQY61IEi4lk4eL5gmK7VBjcWREuckHcEKsCTziRQ4nXTCWj+l
- ZmtqVPlj4H/eMFsTUC6GlFNSA/SGr6p9psGQ5cC2d/GjOMnIkE4PnGX5RGU8lfMsr8KGidpiBwl
- 8FgukmELU0X07qezbf7BzmpxH4uwfbsD0f8JBpyIPllWFOV5lRt6244WB+bvG7SRBwf+qSlzJjs
- PfzM9sdkw5dZ854mT/B8+ClMYTjtSvWZe
-X-Google-Smtp-Source: AGHT+IEQiYWUBVqc0B1QdpxfEzvGinfpogrxCM22uhPtpp6Ac4rI/HLXEw8yO4M/hLvhc77eTWBTOQ==
-X-Received: by 2002:a05:620a:45a8:b0:812:be4:670e with SMTP id
- af79cd13be357-8120be48073mr62609385a.43.1757067172478; 
- Fri, 05 Sep 2025 03:12:52 -0700 (PDT)
-Received: from johnnyzero.szero ([32.220.111.111])
- by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4b48f660361sm44317711cf.17.2025.09.05.03.12.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Sep 2025 03:12:52 -0700 (PDT)
-From: John Olender <john.olender@gmail.com>
-To: KevinYang.Wang@amd.com, Lijo.Lazar@amd.com, amd-gfx@lists.freedesktop.org
-Cc: Hawking.Zhang@amd.com, Alexander.Deucher@amd.com, Ce.Sun@amd.com,
- John Olender <john.olender@gmail.com>
-Subject: [PATCH] drm/amdgpu: Fix NULL ptr deref in
- amdgpu_device_cache_switch_state()
-Date: Fri,  5 Sep 2025 06:11:28 -0400
-Message-ID: <20250905101128.3058191-1-john.olender@gmail.com>
-X-Mailer: git-send-email 2.47.2
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8A8E10EB68;
+ Fri,  5 Sep 2025 10:14:40 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 84CDF40E016E; 
+ Fri,  5 Sep 2025 10:14:38 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id 3sLuUFXyEEJq; Fri,  5 Sep 2025 10:14:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1757067272; bh=sRVEq78yhQX8mJR2jOK3VXC8p7w5NsQwrzj6XNVd9Kk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=O5F5DqGCSXLzXfMyz2ZOlaefPXa/T4kku2ojaVLjSJW8qcOoEvt7dhNgHdfH3C8pD
+ 4tjyzrmGsfGYCcJ57pUVqRGfx02+I/nSMkXrW+GX3KVq42y+Dze5CiXRCkVpDHVjDz
+ 2N2B9MuufaBqwYDu7eYA2F8nv1EM2R0KRdhDfel1lh4AUi7AAHr0tS7QzmyRLuZWLp
+ +dOVJYOmhtComKpbUAORMez25F4TJ0yjHxMSR2X750FXHMr3wyiC9OFbnXWTpKtcJQ
+ z1sP/PPzwxSwFRVo9IKMlIeHPnYgToDJAol9AatRKLyM5Bj2YPVla2qqoRkeeK/NGy
+ 02CrRh/YbHKHO95kVWi7ivyizdtBaLs9azQmkDnmT5vVp7lpsd1bb+ssEISwl1eEwu
+ is5o5djyizpelfLeMf4lYjYsWH3wnfsFwzVFDq19XF7f3pOgS6F8Qc0Qy7ySmXhAh2
+ 1LtXwFP3FOGT5w7yyUi5iYtbUaRzY04uvehZLfhMTGaPolDlTiQFKvF8Asnyyw5mlz
+ kt1qCd3ERXNp8B2BYnCheX4E+mo4EU0hYRpG02Z0J48col/cwrXiJo9GiK2BKv5GhX
+ VBHK6lNXnrD/SfLneraum6RaQneqiBpODAVRmzUEIVe8trnSWV5Q+3kAikE5LhGIBZ
+ 7oVl4MCHihvho2vagYkKrh/E=
+Received: from zn.tnic (p5de8ed27.dip0.t-ipconnect.de [93.232.237.39])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id
+ C5F4040E00DE; Fri,  5 Sep 2025 10:14:29 +0000 (UTC)
+Date: Fri, 5 Sep 2025 12:14:22 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] drm/radeon: use dev_warn_once() in CS parsers
+Message-ID: <20250905101422.GAaLq3_kDePySD36Ma@fat_crate.local>
+References: <20250902165332.2388864-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250902165332.2388864-1-alexander.deucher@amd.com>
+X-Mailman-Approved-At: Fri, 05 Sep 2025 13:03:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,42 +70,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Kaveri has no upstream bridge, therefore parent is NULL.
+On Tue, Sep 02, 2025 at 12:53:32PM -0400, Alex Deucher wrote:
+> Older GPUs did not support memory protection, so the kernel
+> driver would validate the command submissions (CS) from userspace
+> to avoid the GPU accessing any memory it shouldn't.
+> 
+> Change any error messages in that validatio to dev_warn_once() to
+> avoid spamming the kernel log in the event of a bad CS.  If users
+> see any of these messages they should report them to the user space
+> component, which in most cases is mesa
+> (https://gitlab.freedesktop.org/mesa/mesa/-/issues).
+> 
+> Cc: Borislav Petkov (AMD) <bp@alien8.de>
+> Link: https://lore.kernel.org/r/20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/radeon/evergreen_cs.c | 520 +++++++++++++-------------
+>  drivers/gpu/drm/radeon/r100.c         | 215 +++++------
+>  drivers/gpu/drm/radeon/r200.c         |  34 +-
+>  drivers/gpu/drm/radeon/r300.c         |  66 ++--
+>  drivers/gpu/drm/radeon/r600_cs.c      | 445 +++++++++++-----------
+>  drivers/gpu/drm/radeon/radeon_cs.c    |   2 +-
+>  6 files changed, 648 insertions(+), 634 deletions(-)
 
-$ lspci -PP
-...
-00:01.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Kaveri [Radeon R7 Graphics] (rev d4)
+Btw, now that I had to reboot the workstation, I thought I'll apply yours to
+test it. You've missed one spot, see below. :-)
 
-For comparison, Raphael:
+With that additional debug added, I see now:
 
-$ lspci -PP
-...
-00:08.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Raphael/Granite Ridge Internal GPP Bridge to Bus [C:A]
-...
-00:08.1/0e:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Raphael (rev c5)
+[   25.877593] radeon 0000:1d:00.0: vbo resource seems too big (524289) for the bo (524288)
 
-Fixes: e5e203e0cd53 ("drm/amdgpu: Save and restore switch state")
-Link: https://lore.kernel.org/amd-gfx/38fe6513-f8a9-4669-8e86-89c54c465611@gmail.com/
-Signed-off-by: John Olender <john.olender@gmail.com>
+which looks like some buffer limits mis-counting. The bo is obviously of 1^19
+buffer size while one of those "size" and "offset" things are off by one.
+
+If anyone wants to debug, the program which causes this is conky version:
+1.11.6-2 in debian. It starts spewing the warnings when I start it and since
+it.
+
+Thx.
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 7783272a7930..ca58cde66446 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -7148,7 +7148,7 @@ static void amdgpu_device_cache_switch_state(struct amdgpu_device *adev)
- 	struct pci_dev *parent = pci_upstream_bridge(adev->pdev);
- 	int r;
+diff --git a/drivers/gpu/drm/radeon/evergreen_cs.c b/drivers/gpu/drm/radeon/evergreen_cs.c
+index d49e59626e39..1162cb5d75ed 100644
+--- a/drivers/gpu/drm/radeon/evergreen_cs.c
++++ b/drivers/gpu/drm/radeon/evergreen_cs.c
+@@ -2418,7 +2418,8 @@ static int evergreen_packet3_check(struct radeon_cs_parser *p,
+ 				size = radeon_get_ib_value(p, idx+1+(i*8)+1);
+ 				if (p->rdev && (size + offset) > radeon_bo_size(reloc->robj)) {
+ 					/* force size to size of the buffer */
+-					dev_warn_ratelimited(p->dev, "vbo resource seems too big for the bo\n");
++					dev_warn_once(p->dev, "vbo resource seems too big (%d) for the bo (%ld)\n",
++						      size + offset, radeon_bo_size(reloc->robj));
+ 					ib[idx+1+(i*8)+1] = radeon_bo_size(reloc->robj) - offset;
+ 				}
  
--	if (parent->vendor != PCI_VENDOR_ID_ATI)
-+	if (!parent || parent->vendor != PCI_VENDOR_ID_ATI)
- 		return;
- 
- 	/* If already saved, return */
-
-base-commit: 035edba1e204b302ae74269d4f09e355153a79ac
 -- 
-2.47.2
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
