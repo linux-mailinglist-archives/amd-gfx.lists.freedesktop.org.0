@@ -2,96 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A932B4851F
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Sep 2025 09:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA55B459CA
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Sep 2025 15:56:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE3CF10E46B;
-	Mon,  8 Sep 2025 07:27:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 989EB10EBAE;
+	Fri,  5 Sep 2025 13:56:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bsDe8uhh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bn8Pcc1n";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20ACF10EBAA
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Sep 2025 13:49:16 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-b0418f6fc27so341713966b.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 05 Sep 2025 06:49:16 -0700 (PDT)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 561B310EBAD;
+ Fri,  5 Sep 2025 13:56:37 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-24c95f20117so4672065ad.3; 
+ Fri, 05 Sep 2025 06:56:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757080155; x=1757684955; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=2v3SNAvl9c4lDwixvSiurUh+pklIj8Im2YiYVg2Us6U=;
- b=bsDe8uhhiZuWRSTAR6vT6si2eYfkEBXKE4hKt9P+Q5tbSvQQFsThQx/fjZcfSedEj5
- 7UOMIYwLFNNrtGGYulMmvwHAeF4vU4TZ8LzKNBRX2LlHwCzpBHavh6RvHdrsEk4ndwO5
- nQS4EEC2eeM4i8qFW3FpFal1QfQGK1yBqgglygfZrZaqUFdv/pDYVCF1nUPLs512Aagx
- ZKlrfEUHEr/+KpDcbYe7LUjrJGYDbkMcIO8CKIg1BZ2hIS9hT5gv8oH8CDuXlx73blYC
- 1cAMZAvg9wBsn3/6447O9v2JuAxzy3JM+jaCWvinb2KvDh+6v5U5aAm2KZRdFjcD9u9h
- 5TmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757080155; x=1757684955;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1757080597; x=1757685397; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=2v3SNAvl9c4lDwixvSiurUh+pklIj8Im2YiYVg2Us6U=;
- b=tq+HGSFvB3fWYmRg/VCS6OGo/wV6qPhTt7+7f4R3xAe3pZWXnYJdXIcJamahPIQDii
- 246v3iFApYeZ/Strps4xs1vFk4Qwnft9yHdp6WUrZzMxY+jwXYJGTo8cAcmpf9uImgPN
- xpzmRNqibKuD7/Ji9aq0gA2S4g2Nby4a8I+jAzusEDBNZsWTs7LqppMggwnTZIW/QRib
- zpXx/9Fhok63J5QE212+ZJfCVuqTJQgnvhMO+fO7Ki3s2nHn47vccmnRmXCWN5GjyiGw
- EoHy3WROSQaOf+S9ISlV42fZhIPHtxWqb1JQZBHr/oQBkWOxdYLgYBe4BTCv7NyMB7TR
- ws+A==
-X-Gm-Message-State: AOJu0Yx23/y7taj/TSK/+jfDtn5kvvxCnkkDWr1ejqhSa80yQCRkLu0h
- 8pSy2RR2YqmFDPNSDx9uEmK1wcJlmGVBmlgSFOpB14qZj/IjPu9xg0BDWMFsPlF3
-X-Gm-Gg: ASbGncsigJHRBHEfeyUF8Q2hHlV0IHQ/qRbHyTHN6aXWJ6jpk1/fkaKJlT0f7HmS2V0
- p8EVSfclTLAsVH+8hVCk4eKk7XILuzNyJW1U9lSbsv8mvDh0jxQ6sigX4rbA5DYAaQ0q9tBlhnU
- THUxB6ltO07Fp9lqZ6WRHWbl8I+2KqAV8/4SMA7RbNdO1vEuVoSKRBvm8wontPyM//YQXXE7jZv
- b8b5yLE4kz8Bt9OrGcwIk+rIckR9ZFEh4vodKsYfiL+OyYntOQq9yO+PdMjjLAnL0guMHsNyR9a
- WnC2it5KYOWRmFTkXkSm4gaXnMq54kG2x0/G5cah7B6/gLsXNyV7X/XVZO6ApWcuH/ICzBYHU+l
- VHYlAmwsOEitvVTzBVRqn6kCDlaje/1XmETwshpICXz7amqlMjYZjuq/mWlEKlNs=
-X-Google-Smtp-Source: AGHT+IErHNrCAl8p+9K0a2P+vS64qDYb8mhvPuDjaW8iM2bQbYhhD9CaMGnIeGhymE553tU+qiTieA==
-X-Received: by 2002:a17:907:1ca0:b0:b04:6cf7:75d4 with SMTP id
- a640c23a62f3a-b046cf77727mr941612766b.49.1757080154388; 
- Fri, 05 Sep 2025 06:49:14 -0700 (PDT)
-Received: from [192.168.0.20] (89-66-79-203.dynamic.play.pl. [89.66.79.203])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-aff138a8c1dsm1703494666b.99.2025.09.05.06.49.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 05 Sep 2025 06:49:14 -0700 (PDT)
-Message-ID: <86e351f7-c0ce-449d-9b30-25f667c834d4@gmail.com>
-Date: Fri, 5 Sep 2025 15:49:13 +0200
+ bh=HGnaeu/cP/UXodcMji+4vLk+3A0VAW3i5eSwd8SsyXQ=;
+ b=bn8Pcc1nMvlpraJbf0DtURU7wvjdV7FXHc2qn3ssIrpEfmnVlnSljpnIYyiC0rguQu
+ pk6HeZfjSsrDwXazn9BrYrJmCDRWlCJCmR2OIunKhNaoE1VeHjcwWYkQygwLRQpZz5Pr
+ j+giBZUyVk4NgK94wuHQ4l4OdoHNFV3SB++uxBNM6qwppdkAVuyLNIw7OvqYMDs8OxfH
+ sUc/9Lztc/v5j/aIsQeHvmLOuy5SiZ7YBudUSfeJolqy2qBMFKNVvNb1khi3o2A0t7th
+ QbrOkglcOi4CUAot2cAAwVxf0eMfeUSSjiD6kvtyTCskr/iESoHMXZEyZdzE1abhKPNu
+ AzWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757080597; x=1757685397;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=HGnaeu/cP/UXodcMji+4vLk+3A0VAW3i5eSwd8SsyXQ=;
+ b=QEXBN9UJe454lFfsHQUESXwrk1ZBdYekagXzqo7QqqaFhz1C/n+IwPei2M5d7iLKYp
+ JvhsG6N7vQ7AhblEcYHK5HREcNCaPD6uPNu46TDNGsY22grRl+HVd1XtK8P+aFiVzF1a
+ kTezgAeo9687jITKl5xg1UloKh3BPVTO7uCE3GMivJ29SR5ZZwo1+0/Q2EZTmbNhLgjI
+ CaRWlWXsVABjoxlFPrP0bK+G8rYfB4FCm78crsTRddgb5s6hd+LzocXIesE1biejJx+H
+ S3cLY7aOQGCHricMt3fVdof32O7cRjomSLywcQthbon81fwuy+mVQtyGt2Ikxd3P/Chf
+ wMQA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV1yEglMceZ3x+/MkCc70o73pFe8AKXJZRg3L4NBUa1fmUHWUxcdacr0Z5hehT7BfQZpX8Y2GW82H45@lists.freedesktop.org,
+ AJvYcCW5YlAMIx0TPlGFVR9H5b4M6LCmjsHM1oPSr4DH+OsANnxRrQjygzB3Zg2t/yg14/gKLXerwsQo@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzgzUHhd/XTKt+XO26QBGkcRQWN3jaTs+3Ak2Pl3KFnQcBd5jDa
+ 4mFrok88q/FAbd3KyJs5sWtqIVWevJRCIBY4pL/xCKuN1hsLHbXlyb9o8zCXuPMRRDU0emi2Y/s
+ TYakJlfakgiXW0MTFLDbZUZaSypeHfh8=
+X-Gm-Gg: ASbGncunoUDE0Ps3vEkCgnqJ172XryW9psQw4DTCGVhfU/dmcmkv31S5NMaCoVdSCnY
+ rgGT5OpP8sWOyeue+rlHuG/FubYqotlAwLMP+S2qDYkD13nodn1LzpvLsgf+RR4BeRHy5PQPnkt
+ bmE7e9fQoW8A0nxv7Ymsd/pzjQnJgJy9XQhDVZwwJG2vXXrfP80Nr8aPrpWYCDGvxK/K3098foZ
+ y3fRIY=
+X-Google-Smtp-Source: AGHT+IFcUgtHn38A9MmTtlHXLaDHz29J5EnIOqSxCPcUl8S3cozWt1ExCnTMJDYkH56Uy3MwKleQ4qFrkKRqe5R1LCs=
+X-Received: by 2002:a17:903:22c1:b0:24d:f198:7d7a with SMTP id
+ d9443c01a7336-24df19880a2mr14157585ad.11.1757080596677; Fri, 05 Sep 2025
+ 06:56:36 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] AMD HDMI/DP audio broken after suspend since commit
- 50e0bae34fa6
-To: Mario Limonciello <superm1@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <967d5380-1db1-4252-a3b5-cfa283cf960d@gmail.com>
- <637bdb82-ca3b-4e11-8c59-d8fc75e6837e@kernel.org>
- <6fd5d5e1-2f4a-4640-a88b-8fc66bf54f75@gmail.com>
- <b033c364-476f-4cdd-8823-2a3bbddd9de4@kernel.org>
- <48206da8-c4a6-4b66-bcc9-7599fc891342@gmail.com>
- <13cba029-8c3d-48df-9f76-8b2ed0fff85d@gmail.com>
- <1cea0d56-7739-4ad9-bf8e-c9330faea2bb@kernel.org>
-Content-Language: pl-PL, en-GB-large
-From: =?UTF-8?Q?Przemys=C5=82aw_Kopa?= <prz.kopa@gmail.com>
-Autocrypt: addr=prz.kopa@gmail.com; keydata=
- xjMEZbtqRhYJKwYBBAHaRw8BAQdAGojMeKfRebJC5+U3Pk20jCWmOv/wtj0kK+7SRlSeasPN
- JVByemVteXPFgmF3IEtvcGEgPHByei5rb3BhQGdtYWlsLmNvbT7CkwQTFgoAOxYhBDwLVsMk
- 0R41tYJQaRDBtFqhE5HJBQJlu2pGAhsDBQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJ
- EBDBtFqhE5HJnxgBAJ2HbntRTvOAMMDWU0h0Gu8Vxn4MMuyKivIcYXX/mXTlAQCE8c1I1bVI
- 5ottwyoAcQIYZz8JhiZu/PMW3YID7iMtD844BGW7akYSCisGAQQBl1UBBQEBB0BfitF05Bez
- rVGUMKVNceXhQOEAzBYPQG2t09xWbwuAWQMBCAfCeAQYFgoAIBYhBDwLVsMk0R41tYJQaRDB
- tFqhE5HJBQJlu2pGAhsMAAoJEBDBtFqhE5HJ9YcA/i/SOJkwwYoWJp+sKFOcrPZSVMPvQ9ry
- wk5oemiTzoJVAP0dYnuEMP3N7zP1I5XkS1TToezcTX5Pc/ytafL+1js+Bw==
-In-Reply-To: <1cea0d56-7739-4ad9-bf8e-c9330faea2bb@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 08 Sep 2025 07:27:03 +0000
+References: <20250902165332.2388864-1-alexander.deucher@amd.com>
+ <20250905101422.GAaLq3_kDePySD36Ma@fat_crate.local>
+In-Reply-To: <20250905101422.GAaLq3_kDePySD36Ma@fat_crate.local>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 5 Sep 2025 09:56:25 -0400
+X-Gm-Features: Ac12FXzQL9W887aCNpyvGtm5a9px92QvBxCT98Spkr9bCd8Wg7WsUXk1LHhlldk
+Message-ID: <CADnq5_OZ585tA6nf95jU2RD0odLi8jt+qzLbnDCh9289Cy_hAQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/radeon: use dev_warn_once() in CS parsers
+To: Borislav Petkov <bp@alien8.de>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,8 +85,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 9/5/25 05:37, Mario Limonciello wrote:
+On Fri, Sep 5, 2025 at 6:54=E2=80=AFAM Borislav Petkov <bp@alien8.de> wrote=
+:
+>
+> On Tue, Sep 02, 2025 at 12:53:32PM -0400, Alex Deucher wrote:
+> > Older GPUs did not support memory protection, so the kernel
+> > driver would validate the command submissions (CS) from userspace
+> > to avoid the GPU accessing any memory it shouldn't.
+> >
+> > Change any error messages in that validatio to dev_warn_once() to
+> > avoid spamming the kernel log in the event of a bad CS.  If users
+> > see any of these messages they should report them to the user space
+> > component, which in most cases is mesa
+> > (https://gitlab.freedesktop.org/mesa/mesa/-/issues).
+> >
+> > Cc: Borislav Petkov (AMD) <bp@alien8.de>
+> > Link: https://lore.kernel.org/r/20250829171655.GBaLHgh3VOvuM1UfJg@fat_c=
+rate.local
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > ---
+> >  drivers/gpu/drm/radeon/evergreen_cs.c | 520 +++++++++++++-------------
+> >  drivers/gpu/drm/radeon/r100.c         | 215 +++++------
+> >  drivers/gpu/drm/radeon/r200.c         |  34 +-
+> >  drivers/gpu/drm/radeon/r300.c         |  66 ++--
+> >  drivers/gpu/drm/radeon/r600_cs.c      | 445 +++++++++++-----------
+> >  drivers/gpu/drm/radeon/radeon_cs.c    |   2 +-
+> >  6 files changed, 648 insertions(+), 634 deletions(-)
+>
+> Btw, now that I had to reboot the workstation, I thought I'll apply yours=
+ to
+> test it. You've missed one spot, see below. :-)
+>
 
-> Have a try with this diff on 6.17-rc4.
+Whoops.  thanks.  I've squashed this into the original patch.
 
-I confirm that the issue goes away after applying this patch.
+> With that additional debug added, I see now:
+>
+> [   25.877593] radeon 0000:1d:00.0: vbo resource seems too big (524289) f=
+or the bo (524288)
+>
+> which looks like some buffer limits mis-counting. The bo is obviously of =
+1^19
+> buffer size while one of those "size" and "offset" things are off by one.
+>
+> If anyone wants to debug, the program which causes this is conky version:
+> 1.11.6-2 in debian. It starts spewing the warnings when I start it and si=
+nce
+> it.
+
+The size and offset come from userspace, so it's likely a mesa issue.
+I've reported it here:
+https://gitlab.freedesktop.org/mesa/mesa/-/issues/13838
+
+Alex
+
+>
+> Thx.
+>
+> ---
+> diff --git a/drivers/gpu/drm/radeon/evergreen_cs.c b/drivers/gpu/drm/rade=
+on/evergreen_cs.c
+> index d49e59626e39..1162cb5d75ed 100644
+> --- a/drivers/gpu/drm/radeon/evergreen_cs.c
+> +++ b/drivers/gpu/drm/radeon/evergreen_cs.c
+> @@ -2418,7 +2418,8 @@ static int evergreen_packet3_check(struct radeon_cs=
+_parser *p,
+>                                 size =3D radeon_get_ib_value(p, idx+1+(i*=
+8)+1);
+>                                 if (p->rdev && (size + offset) > radeon_b=
+o_size(reloc->robj)) {
+>                                         /* force size to size of the buff=
+er */
+> -                                       dev_warn_ratelimited(p->dev, "vbo=
+ resource seems too big for the bo\n");
+> +                                       dev_warn_once(p->dev, "vbo resour=
+ce seems too big (%d) for the bo (%ld)\n",
+> +                                                     size + offset, rade=
+on_bo_size(reloc->robj));
+>                                         ib[idx+1+(i*8)+1] =3D radeon_bo_s=
+ize(reloc->robj) - offset;
+>                                 }
+>
+> --
+> Regards/Gruss,
+>     Boris.
+>
+> https://people.kernel.org/tglx/notes-about-netiquette
