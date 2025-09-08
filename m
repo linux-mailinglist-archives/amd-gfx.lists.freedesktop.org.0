@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F078B48AF7
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Sep 2025 13:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE0E2B48AF9
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Sep 2025 13:03:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1414910E268;
-	Mon,  8 Sep 2025 11:03:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D70910E4BD;
+	Mon,  8 Sep 2025 11:03:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QhYKuNpo";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="guWTYuaO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D5FF10E268
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 11:02:59 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2064.outbound.protection.outlook.com [40.107.236.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3058F10E3D3
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 11:03:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k1iJywc5I5ueSFcpp3ixzp7sfUdzRHt5r4G7mMJ7NUA3f3srWqNZx5xX9A+12xdCNI9FEKRo7Q4r2LngcyPUCznD0vh7kRmcEhEycyokZQ9xtJ94i6noguwdJkS+glQ4pv+SHuyD0b9s3gkEFdZtmAdvp+BJOQL9zUXLYkmIJ9RLEY+iSmH5ds7oNQbMikG1lhloMSwUmVYzmyy+04/qRyvbgrCYNRe05aMdv7uXa/wU3F4UXWqbgaO3cf/c7dZ6aaAIdmGoKwPdf7bMjYB0pMiIb6+zBmO/m32lskDoqLbWkapUJzjDfpeTg0Qr5ivY/olXS19lCGkkW3AMmHkWsQ==
+ b=Bp6esqR7ViGJyWw68Nbmea3upMKEyY6QqKiT3JDMmwjDxg1UrThrMWJ5AUhZblqhgNqb6YcA0pYyTNyu5qYvwjSIK8XAkziAan9CGFhjm5KQ4jLSkmnJaWYXtaaJGNfxhrbLBV/s41aJR3p4D7h6qlzPEhSqGvSJYyYm6Mf+kGF5J/mECmTp9XJFIppv9de8wpZKO/lyqY7gkI2QnX2MD9eEB+7XIFvSyA+JNIUBrBy6ZX4752dB95adtmXH5Jit1be9T7/FYcIYUMYyGTCTBK7dBTsooSMVXAdiuVV7HqQjTfhAjiZg8quwfHdbu4WtScjU/ABAtpYysAj1nniOww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SkDI5VgH234w+iX00WytSDY0V8QW1sQxPmWihAu+1fc=;
- b=LuwLFHKIGAblO3h+47jbE2h318/d0Gb8Vzt3YNeOodml8HMKfwgySgP7RbIxqmTaq7Iczzs7FE39xEsB0UVi8I1N6CW2Jxe4AxcmQpE5ua42n1uP7mpWrAjLlBuY9a91CmcX8X9nyMN5k92Lcnh127InoIuVJLgDTsBgFi1vydCmjG8QrzA1aqIAuWYsdP25BVls1wCMkWeVxihRWGFYI/5sHon8MzZITDycrHJLc2WwasgDraWRi6dPU3ZdJQd+93DS1ZXhO5Y5aoGXoPvCg7yD/r316uvHu9hAGnzJjgdXQnNaMqSQ8sufuYB0b7avKvQ9kMF94ngZbN6QUUR9uA==
+ bh=FRC7PiWkdS2U6LEq/Zapxoyuc/OUZh7AZDiY6pbZGlc=;
+ b=PFYQASTuuBks+/ndHrq++KACrGapnTxbFsEm10WgulH0LUNm6IG4NrAu4OhAYIGv+WCKqeDrDNepwLmQy49WGFAIsn3649GsDE3/K87aE1kEah2ogUmrjDE2qZQ2DC4KyoxW6sDjAeZjzayHonXB5OV24wcbszMtrarDRKb8cJW8yiWVV/41njL1W6f43oYbKxvOO0I+6zIZi9/v90Li3kBZbA4W6AOyxpzdaJHeb+lO3EhMVu/dhbHcYmJaJbJj/THWCc86WV0zZsH4MMTHZoqTMRTPG1eZC4Dq/r+HRtJLw0TAsAx7aigwXq5FHI2VJ7PbHMCNcvDpeVLgfKlipg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SkDI5VgH234w+iX00WytSDY0V8QW1sQxPmWihAu+1fc=;
- b=QhYKuNpoeMPgwL7ObonlEJjVTMm3SdA8n4NB93EPKY5FGdlmRZU57ZTswY9bjssX7xfhzZ4L7PuFKNNoHrmKU1nOhToWk/x4xG9zH2CERYISMo1wHba8pmHm282TJ17xglqrOhSWlDNUk9fjhmtIoy2XlFuQ4Uq9r27vkpJcuOM=
-Received: from BN8PR04CA0062.namprd04.prod.outlook.com (2603:10b6:408:d4::36)
- by PH8PR12MB7133.namprd12.prod.outlook.com (2603:10b6:510:22e::16)
+ bh=FRC7PiWkdS2U6LEq/Zapxoyuc/OUZh7AZDiY6pbZGlc=;
+ b=guWTYuaOJCO0bq8T5kfnBLScf8XlfUWXlXFbqWsQMk3n1D1SApoGAjyzEKqsmb1pkGDAPHPvMOXtu40/TgCVS05GvKTNkEcEHwF6G5x+bwMMXRMKBMzdMzh50la7PldlKzz0JUeavexrm1XR0XDHdHGdyRmhEWdolpOB9NCr5AM=
+Received: from BN8PR04CA0053.namprd04.prod.outlook.com (2603:10b6:408:d4::27)
+ by BY5PR12MB4257.namprd12.prod.outlook.com (2603:10b6:a03:20f::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.19; Mon, 8 Sep
- 2025 11:02:55 +0000
+ 2025 11:02:58 +0000
 Received: from BN2PEPF000044A6.namprd04.prod.outlook.com
- (2603:10b6:408:d4:cafe::10) by BN8PR04CA0062.outlook.office365.com
- (2603:10b6:408:d4::36) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:408:d4:cafe::4e) by BN8PR04CA0053.outlook.office365.com
+ (2603:10b6:408:d4::27) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9094.22 via Frontend Transport; Mon,
- 8 Sep 2025 11:02:55 +0000
+ 8 Sep 2025 11:02:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,17 +50,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  BN2PEPF000044A6.mail.protection.outlook.com (10.167.243.100) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9115.13 via Frontend Transport; Mon, 8 Sep 2025 11:02:55 +0000
+ 15.20.9115.13 via Frontend Transport; Mon, 8 Sep 2025 11:02:57 +0000
 Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 8 Sep
- 2025 04:02:53 -0700
+ 2025 04:02:55 -0700
 From: Lijo Lazar <lijo.lazar@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, <Asad.Kamal@amd.com>
-Subject: [PATCH v2 1/7] drm/amdgpu/pm: Add definition for gpu_metrics v1.9
-Date: Mon, 8 Sep 2025 16:31:12 +0530
-Message-ID: <20250908110231.2888628-2-lijo.lazar@amd.com>
+Subject: [PATCH v2 2/7] drm/amd/pm: Add helper functions for gpu metrics
+Date: Mon, 8 Sep 2025 16:31:13 +0530
+Message-ID: <20250908110231.2888628-3-lijo.lazar@amd.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250908110231.2888628-1-lijo.lazar@amd.com>
 References: <20250908110231.2888628-1-lijo.lazar@amd.com>
@@ -72,52 +72,52 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044A6:EE_|PH8PR12MB7133:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2c00639-e8a8-4698-d24c-08ddeec74375
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044A6:EE_|BY5PR12MB4257:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2207a65d-c74e-457d-32ab-08ddeec744ea
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?P0oGOS2mZb1w1+8P428U/9OApgVEWleQ2zSXSwQoKxjAoUS26MUo8IgZDIm1?=
- =?us-ascii?Q?awzn9/nBQKi72eOzLI2CJj+CnQwDDR2Ov8KaUD73ibY3CI8qDoBw6Ap6s25j?=
- =?us-ascii?Q?BONNCqPtG/MRSXGWcsRRi3PvHJWLNYjMxq2G2HrtM/HU7zpGrTzUb04RgYuz?=
- =?us-ascii?Q?juDjr9dOsqLU2Xtw7t3XfIA2DicCPM4azOANCuF7y4qXPfWlryWJY4XRYsKk?=
- =?us-ascii?Q?QEcKHd0SUqWzZZFWd++0MGZkE2H8co5sqpEgTaMguPGaij/VjmqTeAWm+6nV?=
- =?us-ascii?Q?4p43Wxi96vKK2U4z5gFTaJ8Z3CDOJ1mT22fCYvDCdGNkc0dUMp+8kQUpCLF1?=
- =?us-ascii?Q?nOWHX7J6oS6WmVZLBMJ5b1GELw2AFYRTgHnzER3HTBds3n8UEdYKjQRlluoF?=
- =?us-ascii?Q?PApmqFz6OaNCgPxX54P3AGqS54zpLkxRPa2Tk4gUvP8mmYLEZ8rBcnDgmkty?=
- =?us-ascii?Q?6/yAWCW7nAgaGUbWIXlG76fOjdvkomDShGUwElRxSah+QbMoWJMb7dP58NL5?=
- =?us-ascii?Q?Ti/coQpBumGhkryNcT9gUL7KaaaVJ/E2MOOyjWnbQ3c1nDsN7TKQK8vEXGbM?=
- =?us-ascii?Q?DnVfqH/yEx9S64/JYt83cEKKvAINu5uIOC0MHKQ+EAxMKTFBu5zTnJNy5v9u?=
- =?us-ascii?Q?7O1PmT+GxU0tDO4nr4+WxQm50SmkKm4n4/345Z/98ESCarqvmadsXfVSaqRZ?=
- =?us-ascii?Q?W1d3Y7AtLTU3chvRJJIYWt3roePZWAbtv3t6xjejYTEgL0Hx6wSIXdJ2cEls?=
- =?us-ascii?Q?5Rp+aNMXx6aGcDgZ1mqI2TrGGp2ZIHKNnEfGnC/vuV6qU7wL8gmK3SyVZgwT?=
- =?us-ascii?Q?tAhg1AWivnM6C9gw5dO6Pc0KQDE607FEmJ04QKTwmRlSu1o2nA/pAPuIL7I0?=
- =?us-ascii?Q?oG+PMhgypzhrxR50L2gbWlTLa1ywLexleXr3GlIxA6ChCUy1Gdg75uNKwB69?=
- =?us-ascii?Q?ks9EOYvw8m3BCFNkAd3BKcEK5sq8S0ISAvBMZ5f4jBslQfjkqdjztLHJqDwd?=
- =?us-ascii?Q?fLkAk0St4YwjlvMyR4GQYlTnzxDKaIDUj5Hw4k9TMJ14HDMJo38q8Yo30q2t?=
- =?us-ascii?Q?R8p/qnDNb2pJ9IKD9iHc40DZ5hKYNYNy0ztiYNk7RtkerSoLiKLZS3f8qoE1?=
- =?us-ascii?Q?1D4ubTs3gf8BSRkqTIR5kXHFw0ROIwhAzwWMqiciC4/Lf1Hciu/e6XMOpYQL?=
- =?us-ascii?Q?Bb7o5dTHsEiMAWGCf54e8G7QmJzvHCDInTsyU/2gd4F6QaTIlsPp043q/RG3?=
- =?us-ascii?Q?lj8dESEa7x8GZozV5ul6SL7DEkIx/qUmqCGcS+xlu02N9T/dx1Wuyyslc6SF?=
- =?us-ascii?Q?M5sd+6md36u2UVDjO0/EXFPdWlNY6IsdLsitxGo10nXg/VmtbwmOJuzCHwp8?=
- =?us-ascii?Q?iRHZWtEOwilaStAvKaahQD7/3YSXNtpkpJsjfLRIBbBUB4PVOw50i4kPjgGx?=
- =?us-ascii?Q?2G/ns1hFOwwPDQHb0yoeshOk+7MLHFG/zvJZgcLJ3li+zICVBqQy4NvODdu0?=
- =?us-ascii?Q?EM29YN4e6l9zzFgAc0q5rUlZWnLbTUmtUi50?=
+ ARA:13230040|1800799024|376014|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?VOzCrqQbWbI2wTE1BL0EyLzPmph1qFWFIkKkk4oq85U6QSkEZJUag2h/kdWj?=
+ =?us-ascii?Q?IOeDwWqp38j/5OfcLojGXpQabdgq5+VT/UXTJMiaUaKfdu2NNoAFZVY9fScW?=
+ =?us-ascii?Q?CdFIt4BhRBzfKvgO4927iDWkj6wl2vDFYacTDk45MlC8gND8JpeqLBZybFpc?=
+ =?us-ascii?Q?+GVDynjCNQMK7r48zWSK3CvYGbRQMXVb8danDQhV6k+QInqC194mgqbJ806O?=
+ =?us-ascii?Q?O+IlHwpnUk+/Fr3JK3zWSXblFYGT867ZpuXp96DScbk0Z/8jDmLYt6CXl69I?=
+ =?us-ascii?Q?HtyEB/zFh5Owg+M2ES23u0IGRky2pCvTbA4Pxv2ReqJXs1HiQErmbVGoUi+f?=
+ =?us-ascii?Q?GakiUXjqKznyUQlFY1NAcJtd1/Tgqhx0ttxjAc2joPu18HpOa40EKH5nVqHY?=
+ =?us-ascii?Q?lVsg1WoEsi47LYmKl1/cXzDxcHno48iKtDtgF5/NmqWHDlvopIQkLJMgm0jT?=
+ =?us-ascii?Q?iCHAqQq48sMLePni6drjFbkLCllA5aHzxF4d9uDHa3oHM0WzdjXWglMuWoRO?=
+ =?us-ascii?Q?Qpent0RkJC0EVJOofXHMlNQtSLB2paecZgykc03Au6/mBgOE2Xj8DUnwE+vO?=
+ =?us-ascii?Q?NloGyDlnOoX48TIP+tif3Kj+0azJ8JNlIxipYWX1PG69bjWg8AnGKecPbgWp?=
+ =?us-ascii?Q?IjPdn3EGqASm/2PQRa0zYWn5W3IgIvXciDDlDozTBEyQubAC1O2UbufqB+7h?=
+ =?us-ascii?Q?tYTe/K2oOqfqTaiH7nY3l+kqVGDKncEQrzzdw9pmf18XtTIr3pUfRD8hAfY1?=
+ =?us-ascii?Q?bb5DJ4lbSKZLCDOIWjex1swm94r1LewcDOM7NPuzxJ7y9kKvXaF9OvTf2mhZ?=
+ =?us-ascii?Q?3VQusWlCb9TWmHJyTT92XNc8H9OXCmCrTWcXytPatbOCx9oFyApm2xMalMzR?=
+ =?us-ascii?Q?0FVCjlaCxxz7avwm5jfLaHzmCnhel3VjrW9to/G09ZX3yoS790l9p4hjA6XL?=
+ =?us-ascii?Q?83nWYKLcqpgwdAgQ9jjqskuKR4KY/RteIfQLgSSTPx8tqOzeMkqoAWYkRJAp?=
+ =?us-ascii?Q?6ltHGp/qX0SyQPgnpbW28vmU/Lu0k555LSvWPZxCAXZpPUu7Z06jV8Fg9lpO?=
+ =?us-ascii?Q?KL08eUjLXx+Vo1182t57l1EcsrRTNZ6q3fEJ9QvjFLwHad1xrxT80TMNkyBy?=
+ =?us-ascii?Q?DPUqKb1Nw773JWg8wd4lrlV76J7UCpUc2VWFYCkQ5x782D3e8AoAsH94zIxx?=
+ =?us-ascii?Q?IbppgPfHv3c2lgzvTDx0B70SXQxCch/vlfU2jWl6qdrxXYJTq/sw5YVm2BUu?=
+ =?us-ascii?Q?LRElE7jmi4XOb8ty0M2+SxH/bd87//o8VED5rQMbc3F2wQcJ5z2js960xoKu?=
+ =?us-ascii?Q?oybHUsZpvaNzS6wnYB77OZXKdY59aQCyX6Ri4WVf/J1XQYIMN9U84TsPZIaB?=
+ =?us-ascii?Q?Z1HUe8rm8Vdz5jAcHhAHOLBCQBjYP9lBURoJG6tLemPOeGLSU9/MRMwNeVl3?=
+ =?us-ascii?Q?cLPgCOfkqzfCXC+3D5Iicslv8o0i6NUqxkX0WpqitZq/jnlXJCWJDjmHAmlY?=
+ =?us-ascii?Q?6CWuvtr9WfPaiRJ2tdmyjMYmqk8blkFnRjtx?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2025 11:02:55.3761 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2c00639-e8a8-4698-d24c-08ddeec74375
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2025 11:02:57.8152 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2207a65d-c74e-457d-32ab-08ddeec744ea
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044A6.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7133
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4257
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,149 +132,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add gpu metrics definition which is only a set of gpu metrics
-attributes. A field is encoded by its id, type and number of instances.
+Add helper macros to define metrics struct definitions. It will define
+structs with field type followed by actual field. A helper macro is also
+added to initialize the field encoding for all fields and to initialize
+the field members to 0xFFs.
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- .../gpu/drm/amd/include/kgd_pp_interface.h    | 117 ++++++++++++++++++
- 1 file changed, 117 insertions(+)
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h | 62 ++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-index 2f7e4b5bebf3..424fd2f0cd51 100644
---- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-+++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-@@ -528,6 +528,110 @@ struct metrics_table_header {
- 	uint8_t				content_revision;
- };
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+index d588f74b98de..92eaf13680b3 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+@@ -200,5 +200,67 @@ void smu_cmn_get_backend_workload_mask(struct smu_context *smu,
+ 				       u32 workload_mask,
+ 				       u32 *backend_workload_mask);
  
-+enum amdgpu_metrics_attr_id {
-+	AMDGPU_METRICS_ATTR_TEMPERATURE_HOTSPOT,
-+	AMDGPU_METRICS_ATTR_TEMPERATURE_MEM,
-+	AMDGPU_METRICS_ATTR_TEMPERATURE_VRSOC,
-+	AMDGPU_METRICS_ATTR_CURR_SOCKET_POWER,
-+	AMDGPU_METRICS_ATTR_AVERAGE_GFX_ACTIVITY,
-+	AMDGPU_METRICS_ATTR_AVERAGE_UMC_ACTIVITY,
-+	AMDGPU_METRICS_ATTR_MEM_MAX_BANDWIDTH,
-+	AMDGPU_METRICS_ATTR_ENERGY_ACCUMULATOR,
-+	AMDGPU_METRICS_ATTR_SYSTEM_CLOCK_COUNTER,
-+	AMDGPU_METRICS_ATTR_ACCUMULATION_COUNTER,
-+	AMDGPU_METRICS_ATTR_PROCHOT_RESIDENCY_ACC,
-+	AMDGPU_METRICS_ATTR_PPT_RESIDENCY_ACC,
-+	AMDGPU_METRICS_ATTR_SOCKET_THM_RESIDENCY_ACC,
-+	AMDGPU_METRICS_ATTR_VR_THM_RESIDENCY_ACC,
-+	AMDGPU_METRICS_ATTR_HBM_THM_RESIDENCY_ACC,
-+	AMDGPU_METRICS_ATTR_GFXCLK_LOCK_STATUS,
-+	AMDGPU_METRICS_ATTR_PCIE_LINK_WIDTH,
-+	AMDGPU_METRICS_ATTR_PCIE_LINK_SPEED,
-+	AMDGPU_METRICS_ATTR_XGMI_LINK_WIDTH,
-+	AMDGPU_METRICS_ATTR_XGMI_LINK_SPEED,
-+	AMDGPU_METRICS_ATTR_GFX_ACTIVITY_ACC,
-+	AMDGPU_METRICS_ATTR_MEM_ACTIVITY_ACC,
-+	AMDGPU_METRICS_ATTR_PCIE_BANDWIDTH_ACC,
-+	AMDGPU_METRICS_ATTR_PCIE_BANDWIDTH_INST,
-+	AMDGPU_METRICS_ATTR_PCIE_L0_TO_RECOV_COUNT_ACC,
-+	AMDGPU_METRICS_ATTR_PCIE_REPLAY_COUNT_ACC,
-+	AMDGPU_METRICS_ATTR_PCIE_REPLAY_ROVER_COUNT_ACC,
-+	AMDGPU_METRICS_ATTR_PCIE_NAK_SENT_COUNT_ACC,
-+	AMDGPU_METRICS_ATTR_PCIE_NAK_RCVD_COUNT_ACC,
-+	AMDGPU_METRICS_ATTR_XGMI_READ_DATA_ACC,
-+	AMDGPU_METRICS_ATTR_XGMI_WRITE_DATA_ACC,
-+	AMDGPU_METRICS_ATTR_XGMI_LINK_STATUS,
-+	AMDGPU_METRICS_ATTR_FIRMWARE_TIMESTAMP,
-+	AMDGPU_METRICS_ATTR_CURRENT_GFXCLK,
-+	AMDGPU_METRICS_ATTR_CURRENT_SOCCLK,
-+	AMDGPU_METRICS_ATTR_CURRENT_VCLK0,
-+	AMDGPU_METRICS_ATTR_CURRENT_DCLK0,
-+	AMDGPU_METRICS_ATTR_CURRENT_UCLK,
-+	AMDGPU_METRICS_ATTR_NUM_PARTITION,
-+	AMDGPU_METRICS_ATTR_PCIE_LC_PERF_OTHER_END_RECOVERY,
-+	AMDGPU_METRICS_ATTR_GFX_BUSY_INST,
-+	AMDGPU_METRICS_ATTR_JPEG_BUSY,
-+	AMDGPU_METRICS_ATTR_VCN_BUSY,
-+	AMDGPU_METRICS_ATTR_GFX_BUSY_ACC,
-+	AMDGPU_METRICS_ATTR_GFX_BELOW_HOST_LIMIT_PPT_ACC,
-+	AMDGPU_METRICS_ATTR_GFX_BELOW_HOST_LIMIT_THM_ACC,
-+	AMDGPU_METRICS_ATTR_GFX_LOW_UTILIZATION_ACC,
-+	AMDGPU_METRICS_ATTR_GFX_BELOW_HOST_LIMIT_TOTAL_ACC,
-+	AMDGPU_METRICS_ATTR_MAX,
-+};
++/*SMU gpu metrics */
 +
-+enum amdgpu_metrics_attr_type {
-+	AMDGPU_METRICS_TYPE_U8,
-+	AMDGPU_METRICS_TYPE_S8,
-+	AMDGPU_METRICS_TYPE_U16,
-+	AMDGPU_METRICS_TYPE_S16,
-+	AMDGPU_METRICS_TYPE_U32,
-+	AMDGPU_METRICS_TYPE_S32,
-+	AMDGPU_METRICS_TYPE_U64,
-+	AMDGPU_METRICS_TYPE_S64,
-+	AMDGPU_METRICS_TYPE_MAX,
-+};
++/* Attribute ID mapping */
++#define SMU_MATTR(X) AMDGPU_METRICS_ATTR_##X
++/* Type ID mapping */
++#define SMU_MTYPE(X) AMDGPU_METRICS_TYPE_##X
++/* Unit ID mapping */
++#define SMU_MUNIT(X) AMDGPU_METRICS_UNIT_##X
 +
-+enum amdgpu_metrics_attr_unit {
-+	/* None */
-+	AMDGPU_METRICS_UNIT_NONE,
-+	/* MHz*/
-+	AMDGPU_METRICS_UNIT_CLOCK_1,
-+	/* Degree Celsius*/
-+	AMDGPU_METRICS_UNIT_TEMP_1,
-+	/* Watts*/
-+	AMDGPU_METRICS_UNIT_POWER_1,
-+	/* In nanoseconds*/
-+	AMDGPU_METRICS_UNIT_TIME_1,
-+	/* In 10 nanoseconds*/
-+	AMDGPU_METRICS_UNIT_TIME_2,
-+	/* Speed in GT/s */
-+	AMDGPU_METRICS_UNIT_SPEED_1,
-+	/* Speed in 0.1 GT/s */
-+	AMDGPU_METRICS_UNIT_SPEED_2,
-+	/* Bandwidth GB/s */
-+	AMDGPU_METRICS_UNIT_BW_1,
-+	/* Data in KB */
-+	AMDGPU_METRICS_UNIT_DATA_1,
-+	/* Percentage */
-+	AMDGPU_METRICS_UNIT_PERCENT,
-+	AMDGPU_METRICS_UNIT_MAX,
-+};
++/* Map TYPEID to C type */
++#define SMU_CTYPE(TYPEID) SMU_CTYPE_##TYPEID
 +
-+#define AMDGPU_METRICS_ATTR_UNIT_MASK 0xFF000000
-+#define AMDGPU_METRICS_ATTR_UNIT_SHIFT 24
-+#define AMDGPU_METRICS_ATTR_TYPE_MASK 0x00F00000
-+#define AMDGPU_METRICS_ATTR_TYPE_SHIFT 20
-+#define AMDGPU_METRICS_ATTR_ID_MASK 0x000FFC00
-+#define AMDGPU_METRICS_ATTR_ID_SHIFT 10
-+#define AMDGPU_METRICS_ATTR_INST_MASK 0x000003FF
-+#define AMDGPU_METRICS_ATTR_INST_SHIFT 0
++#define SMU_CTYPE_AMDGPU_METRICS_TYPE_U8 u8
++#define SMU_CTYPE_AMDGPU_METRICS_TYPE_S8 s8
++#define SMU_CTYPE_AMDGPU_METRICS_TYPE_U16 u16
++#define SMU_CTYPE_AMDGPU_METRICS_TYPE_S16 s16
++#define SMU_CTYPE_AMDGPU_METRICS_TYPE_U32 u32
++#define SMU_CTYPE_AMDGPU_METRICS_TYPE_S32 s32
++#define SMU_CTYPE_AMDGPU_METRICS_TYPE_U64 u64
++#define SMU_CTYPE_AMDGPU_METRICS_TYPE_S64 s64
 +
-+#define AMDGPU_METRICS_ENC_ATTR(unit, type, id, inst) \
-+	((unit) << AMDGPU_METRICS_ATTR_TYPE_SHIFT |   \
-+	 (type) << AMDGPU_METRICS_ATTR_TYPE_SHIFT |   \
-+	 (id) << AMDGPU_METRICS_ATTR_ID_SHIFT | (inst))
++/* struct members */
++#define SMU_METRICS_SCALAR(ID, UNIT, TYPEID, NAME) \
++	u32 NAME##_ftype;                          \
++	SMU_CTYPE(TYPEID) NAME;
 +
- /*
-  * gpu_metrics_v1_0 is not recommended as it's not naturally aligned.
-  * Use gpu_metrics_v1_1 or later instead.
-@@ -1217,6 +1321,19 @@ struct gpu_metrics_v1_8 {
- 	uint32_t			pcie_lc_perf_other_end_recovery;
- };
- 
-+struct gpu_metrics_attr {
-+	/* Field type encoded with AMDGPU_METRICS_ENC_ATTR */
-+	uint64_t attr_encoding;
-+	/* Attribute value, depends on attr_encoding */
-+	void *attr_value;
-+};
++#define SMU_METRICS_ARRAY(ID, UNIT, TYPEID, NAME, SIZE) \
++	u32 NAME##_ftype;                               \
++	SMU_CTYPE(TYPEID) NAME[SIZE];
 +
-+struct gpu_metrics_v1_9 {
-+	struct metrics_table_header common_header;
-+	int attr_count;
-+	struct gpu_metrics_attr metrics_attrs[];
-+};
++/* Init functions for scalar/array fields - init to 0xFFs */
++#define SMU_METRICS_INIT_SCALAR(ID, UNIT, TYPEID, NAME)                   \
++	obj->NAME##_ftype = AMDGPU_METRICS_ENC_ATTR(UNIT, TYPEID, ID, 1); \
++	obj->NAME = (SMU_CTYPE(TYPEID)) ~0;                               \
++	count++;
 +
- /*
-  * gpu_metrics_v2_0 is not recommended as it's not naturally aligned.
-  * Use gpu_metrics_v2_1 or later instead.
++#define SMU_METRICS_INIT_ARRAY(ID, UNIT, TYPEID, NAME, SIZE)                 \
++	obj->NAME##_ftype = AMDGPU_METRICS_ENC_ATTR(UNIT, TYPEID, ID, SIZE); \
++	memset(obj->NAME, 0xFF, sizeof(obj->NAME));                          \
++	count++;
++
++/* Declare Metrics Class and Template object */
++#define DECLARE_SMU_METRICS_CLASS(CLASSNAME, SMU_METRICS_FIELD_LIST)          \
++	struct __packed CLASSNAME {                                           \
++		struct metrics_table_header header;                           \
++		int attr_count;                                               \
++		SMU_METRICS_FIELD_LIST(SMU_METRICS_SCALAR, SMU_METRICS_ARRAY) \
++	};                                                                    \
++                                                                              \
++	static inline void CLASSNAME##_init(struct CLASSNAME *obj,            \
++					    uint8_t frev, uint8_t crev)       \
++	{                                                                     \
++		int count = 0;                                                \
++		memset(obj, 0xFF, sizeof(*obj));                              \
++		obj->header.format_revision = frev;                           \
++		obj->header.content_revision = crev;                          \
++		obj->header.structure_size = sizeof(*obj);                    \
++		SMU_METRICS_FIELD_LIST(SMU_METRICS_INIT_SCALAR,               \
++				       SMU_METRICS_INIT_ARRAY)                \
++		obj->attr_count = count;                                      \
++	}
++
+ #endif
+ #endif
 -- 
 2.49.0
 
