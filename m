@@ -2,69 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34467B5104F
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 10:01:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B32B51058
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 10:01:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E6310E88A;
-	Wed, 10 Sep 2025 08:01:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A39510E890;
+	Wed, 10 Sep 2025 08:01:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Ip98w3po";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="SZVNXgjb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 534 seconds by postgrey-1.36 at gabe;
- Mon, 08 Sep 2025 21:18:09 UTC
-Received: from smtp.smtpout.orange.fr (smtp-74.smtpout.orange.fr
- [80.12.242.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E79B10E5DD;
- Mon,  8 Sep 2025 21:18:09 +0000 (UTC)
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
- by smtp.orange.fr with ESMTPA
- id vj6puzqdeoTLUvj6puozOR; Mon, 08 Sep 2025 23:09:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1757365753;
- bh=6ltswrdyQEQpMWiYuSVRDKy5ajUU0upafr0DRYZj5dU=;
- h=Message-ID:Date:MIME-Version:Subject:From:To;
- b=Ip98w3po82tDFo78WFreoHDqqSTKQUvoEDNszK2zWi2rPiCt36agSQ7A+d4ZvaSwP
- RamEvrAl303pcRErS0TjhS5RHHA6iZh1+gQFULZB4LPDlN6GQkKqpR25DMe4h4xHc+
- 5RKsqzcnWD5B2tj8gbMs467I/v47QnQV5QSnh7TXb+5fliGMc4NinF060yTtb7QGzG
- DglYg7jNHH6qr3PNyWaGhASvBsDuHa0poldyMxkZZNIC3Un7MzxkFR1ZCVXJKCav6K
- PkWFuHBzk0GpBkZfbbkSvQDRC0e42JJd9EGFhKs16fNEWSn/bvGwXuv1HhZDuS1UTG
- Ali2P3MY8035g==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Mon, 08 Sep 2025 23:09:13 +0200
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <78c764b8-44cf-4db5-88e7-807a85954518@wanadoo.fr>
-Date: Mon, 8 Sep 2025 23:09:07 +0200
+X-Greylist: delayed 470 seconds by postgrey-1.36 at gabe;
+ Mon, 08 Sep 2025 21:24:48 UTC
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com
+ [91.218.175.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02E7610E5DD
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 21:24:47 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1757366205;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=QZs1MddN1kGIVjCYk+noKB3uCgeYjjNDvqCYGlqZzmg=;
+ b=SZVNXgjb9TnYg2XcQ9CFKP0Qu82TKnE8YlVs6g7p/R22Jgq8Qo+SV+ZfhhqZpjaZqo0qNZ
+ /R0b/0VH1oYOuCXUORdj8Dfm56YLe4zAzueii2cJh9+BVjt6/zY/l1tOeZVQS2U33/oBMt
+ SzkZIe7g6277KvWd5pyPN44fgBO8zyk=
+From: Thorsten Blum <thorsten.blum@linux.dev>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: Thorsten Blum <thorsten.blum@linux.dev>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: Replace kzalloc + copy_from_user with memdup_user
+Date: Mon,  8 Sep 2025 23:15:54 +0200
+Message-ID: <20250908211559.519892-1-thorsten.blum@linux.dev>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/8] drm/msm/dpu: use drmm_writeback_connector_init()
-References: <20250819-wb-drop-encoder-v3-0-b48a6af7903b@oss.qualcomm.com>
- <20250819-wb-drop-encoder-v3-4-b48a6af7903b@oss.qualcomm.com>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Content-Language: en-US, fr-FR
-To: "dmitry.baryshkov@oss.qualcomm.com >> Dmitry Baryshkov"
- <dmitry.baryshkov@oss.qualcomm.com>
-Cc: abhinav.kumar@linux.dev, airlied@gmail.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
- dave.stevenson@raspberrypi.com, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, geert+renesas@glider.be,
- harry.wentland@amd.com, jani.nikula@linux.intel.com,
- jessica.zhang@oss.qualcomm.com, kernel-list@raspberrypi.com,
- kieran.bingham+renesas@ideasonboard.com,
- laurent.pinchart+renesas@ideasonboard.com, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- liviu.dudau@arm.com, louis.chauvet@bootlin.com, lumag@kernel.org,
- maarten.lankhorst@linux.intel.com, magnus.damm@gmail.com,
- marijn.suijten@somainline.org, mcanal@igalia.com, mripard@kernel.org,
- robin.clark@oss.qualcomm.com, sean@poorly.run, simona@ffwll.ch,
- siqueira@igalia.com, sunpeng.li@amd.com, suraj.kandpal@intel.com,
- tomi.valkeinen+renesas@ideasonboard.com, tzimmermann@suse.de
-In-Reply-To: <20250819-wb-drop-encoder-v3-4-b48a6af7903b@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Wed, 10 Sep 2025 08:01:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,61 +56,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Le 19/08/2025 à 22:32, Dmitry Baryshkov a écrit :
-> Use drmm_plain_encoder_alloc() to allocate simple encoder and
-> drmm_writeback_connector_init() in order to initialize writeback
-> connector instance.
-> 
-> Reviewed-by: Louis Chauvet <louis.chauvet-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
-> Reviewed-by: Suraj Kandpal <suraj.kandpal-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-> Reviewed-by: Jessica Zhang <jessica.zhang-5oFBVzJwu8Ry9aJCnZT0Uw@public.gmane.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov-5oFBVzJwu8Ry9aJCnZT0Uw@public.gmane.org>
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c | 10 +++-------
->   1 file changed, 3 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
-> index 8ff496082902b1ee713e806140f39b4730ed256a..cd73468e369a93c50303db2a7d4499bcb17be5d1 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
-> @@ -80,7 +80,6 @@ static int dpu_wb_conn_atomic_check(struct drm_connector *connector,
->   static const struct drm_connector_funcs dpu_wb_conn_funcs = {
->   	.reset = drm_atomic_helper_connector_reset,
->   	.fill_modes = drm_helper_probe_single_connector_modes,
-> -	.destroy = drm_connector_cleanup,
->   	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
->   	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->   };
-> @@ -131,12 +130,9 @@ int dpu_writeback_init(struct drm_device *dev, struct drm_encoder *enc,
->   
->   	drm_connector_helper_add(&dpu_wb_conn->base.base, &dpu_wb_conn_helper_funcs);
->   
-> -	/* DPU initializes the encoder and sets it up completely for writeback
-> -	 * cases and hence should use the new API drm_writeback_connector_init_with_encoder
-> -	 * to initialize the writeback connector
-> -	 */
-> -	rc = drm_writeback_connector_init_with_encoder(dev, &dpu_wb_conn->base, enc,
-> -			&dpu_wb_conn_funcs, format_list, num_formats);
-> +	rc = drmm_writeback_connector_init(dev, &dpu_wb_conn->base,
-> +					   &dpu_wb_conn_funcs, enc,
-> +					   format_list, num_formats);
->   
->   	if (!rc)
->   		dpu_wb_conn->wb_enc = enc;
-> 
+Replace kzalloc() followed by copy_from_user() with memdup_user() to
+improve and simplify ta_if_load_debugfs_write() and
+ta_if_invoke_debugfs_write().
 
-dpu_wb_conn is allocated a few lines above using devm_kzalloc().
+No functional changes intended.
 
-Based on [1], mixing devm_ and drmm_ is not safe and can lead to a uaf.
+Signed-off-by: Thorsten Blum <thorsten.blum@linux.dev>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c | 20 ++++++--------------
+ 1 file changed, 6 insertions(+), 14 deletions(-)
 
-Is it correct here?
-If the explanation at [1] is correct, then &dpu_wb_conn->base would 
-point to some released memory, IIUC.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+index 38face981c3e..6e8aad91bcd3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+@@ -171,13 +171,9 @@ static ssize_t ta_if_load_debugfs_write(struct file *fp, const char *buf, size_t
+ 
+ 	copy_pos += sizeof(uint32_t);
+ 
+-	ta_bin = kzalloc(ta_bin_len, GFP_KERNEL);
+-	if (!ta_bin)
+-		return -ENOMEM;
+-	if (copy_from_user((void *)ta_bin, &buf[copy_pos], ta_bin_len)) {
+-		ret = -EFAULT;
+-		goto err_free_bin;
+-	}
++	ta_bin = memdup_user(&buf[copy_pos], ta_bin_len);
++	if (IS_ERR(ta_bin))
++		return PTR_ERR(ta_bin);
+ 
+ 	/* Set TA context and functions */
+ 	set_ta_context_funcs(psp, ta_type, &context);
+@@ -327,13 +323,9 @@ static ssize_t ta_if_invoke_debugfs_write(struct file *fp, const char *buf, size
+ 		return -EFAULT;
+ 	copy_pos += sizeof(uint32_t);
+ 
+-	shared_buf = kzalloc(shared_buf_len, GFP_KERNEL);
+-	if (!shared_buf)
+-		return -ENOMEM;
+-	if (copy_from_user((void *)shared_buf, &buf[copy_pos], shared_buf_len)) {
+-		ret = -EFAULT;
+-		goto err_free_shared_buf;
+-	}
++	shared_buf = memdup_user(&buf[copy_pos], shared_buf_len);
++	if (IS_ERR(shared_buf))
++		return PTR_ERR(shared_buf);
+ 
+ 	set_ta_context_funcs(psp, ta_type, &context);
+ 
+-- 
+2.51.0
 
-
-just my 2c.
-
-CJ
-
-[1]: 
-https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/xe/xe_hwmon.c?id=3a13c2de442d6bfaef9c102cd1092e6cae22b753
