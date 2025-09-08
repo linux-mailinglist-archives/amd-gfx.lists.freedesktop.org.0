@@ -2,76 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A50B49B27
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Sep 2025 22:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34467B5104F
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 10:01:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 416EA10E5DE;
-	Mon,  8 Sep 2025 20:42:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25E6310E88A;
+	Wed, 10 Sep 2025 08:01:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XL+q3MZW";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Ip98w3po";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77B3810E5D6
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Sep 2025 20:42:33 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-45decc9e83dso1683935e9.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 08 Sep 2025 13:42:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757364151; x=1757968951; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=SHu+39NCL3M5+f2JERBRiaCBa9DhGxQBszDvow8SwaY=;
- b=XL+q3MZWsQ11EfOMdQkrUKt2F6i9y6ReKaSX+g0Ms0ejZ4prwlPT1llHFMr+mXr4wA
- 1uayfn/EY5MhnC24O2p6/0Ll/X61QZIvLj5U29yDLBc2OxC+ShyZJrNHs31NlBOAI8Ar
- lTgkVBBdHMp1vdZpc5ePM1LKaNwgB0wiQJxqYArWGM5mByPTaITJWZqBeAgPcEKJY60L
- LniGKVvDl2VhvmX6N2vzr2Z2nadfP1SBaxriOtsRQ+SoiQPArtQ8R6WlZ0N40oS1g+Ak
- xcYhT+L0ie/qpJ2Ce8WtBiNu7PCjrX7C4sNRXOOKKgH5uYFyI/lVy4jCtG0GK0q7j6Ch
- bt3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757364151; x=1757968951;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=SHu+39NCL3M5+f2JERBRiaCBa9DhGxQBszDvow8SwaY=;
- b=SSu31zloZHgpfD4acfxhNPZdPv7nwSKdlQK0A29gGRY7UOvEpWw6u1IEZqO1NoFA8c
- H9BQzO8HPbd+iyAjX61UEBjw48C0PgAcVS1fd+WEemLY596108BE+djN+a403cV05aB8
- cPooKIxkjw3TVJSgDYv23mIBD4RmsZSFs3m2WJVw/JQQbdZXBYoaZcE5NbRKTT5OMKvH
- ePO+Xed0K+OYmfbfTxZ3eGxhaS00f2jcUT5rYczo+zxF1Z6aVJus4H0L/jklyWfjRHYz
- eY9s3ujIQPp9HJKfWutOZJ3leE3/gx/HKCd+qq4keJeiKD8HkmHG0cRyC+iXG7VEWLni
- RiCA==
-X-Gm-Message-State: AOJu0YyezYmpb7s/PqHJWSjJQmSXZNmBo1CmQ5NtWe2jUI2lBJYqcCQO
- SHDLDt2V2MbtwDN2Owpvwud1kl2J1V1UDgNdjbMYdldvJWosZuu9Gi9bzZl3s4hEa3k=
-X-Gm-Gg: ASbGncuHcHbV6peCj4QJ+renqXvTzg1IV4pOcdpgSmWAYHFv+hfZmOq9vl3tMCEv6z7
- CzdNpW7kyA/cAWwqXRrM7eAtTJ0Tay6FqNe38vCZ7tlbguoTCRhp591TubV8VVu6DKeECDa7Klp
- m6ATFtNgR0PKAuq3AbMf3Yfs1/TLvhJp3z7jQ4Cv1ofKhPmYlx6ob1JpkHz0+BaHSwzFupwL76L
- /ZkjJ8cI/5FIzlGtFDjy+ZnMnmwBKv44wOpicsrithd11Oz1ogQ/BCktw2fcye22GVCi+FpaDE5
- M8YmcSHVgU1ZIKAz4p43VUFmHwbPFD/JE4WFo+kYlpOXLFcvPxtuyiEri0AEtw58oGgMuoeFkyr
- iLgBmrBeEtRvblTgxdWnAeF+uPQYV7uJbPPI5QGOzMsIl2Nvbh2ND94PJTgsiK/uEbSJcZQ==
-X-Google-Smtp-Source: AGHT+IH6SrZ4rnHz0SdQjRvMg220svsa62ersD74iIWzyBzDtpmxdRORV5rrl2PO7nx/xzcW3ICpEQ==
-X-Received: by 2002:a05:600c:5247:b0:45d:e285:c4d7 with SMTP id
- 5b1f17b1804b1-45de285c731mr56026195e9.9.1757364151243; 
- Mon, 08 Sep 2025 13:42:31 -0700 (PDT)
-Received: from localhost ([2a02:2f0c:5904:b700:1ac0:4dff:fe61:eea8])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-3cf34491a65sm42026135f8f.56.2025.09.08.13.42.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 08 Sep 2025 13:42:30 -0700 (PDT)
-From: =?UTF-8?q?Silviu-Alexandru=20=C8=98tefan?=
- <stefan.silviu.alexandru@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- =?UTF-8?q?Silviu-Alexandru=20=C8=98tefan?= <stefan.silviu.alexandru@gmail.com>
-Subject: [PATCH] drm/amd/display: Register DP aux only if used
-Date: Mon,  8 Sep 2025 23:42:07 +0300
-Message-ID: <20250908204207.8397-1-stefan.silviu.alexandru@gmail.com>
-X-Mailer: git-send-email 2.51.0
+X-Greylist: delayed 534 seconds by postgrey-1.36 at gabe;
+ Mon, 08 Sep 2025 21:18:09 UTC
+Received: from smtp.smtpout.orange.fr (smtp-74.smtpout.orange.fr
+ [80.12.242.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E79B10E5DD;
+ Mon,  8 Sep 2025 21:18:09 +0000 (UTC)
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+ by smtp.orange.fr with ESMTPA
+ id vj6puzqdeoTLUvj6puozOR; Mon, 08 Sep 2025 23:09:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+ s=t20230301; t=1757365753;
+ bh=6ltswrdyQEQpMWiYuSVRDKy5ajUU0upafr0DRYZj5dU=;
+ h=Message-ID:Date:MIME-Version:Subject:From:To;
+ b=Ip98w3po82tDFo78WFreoHDqqSTKQUvoEDNszK2zWi2rPiCt36agSQ7A+d4ZvaSwP
+ RamEvrAl303pcRErS0TjhS5RHHA6iZh1+gQFULZB4LPDlN6GQkKqpR25DMe4h4xHc+
+ 5RKsqzcnWD5B2tj8gbMs467I/v47QnQV5QSnh7TXb+5fliGMc4NinF060yTtb7QGzG
+ DglYg7jNHH6qr3PNyWaGhASvBsDuHa0poldyMxkZZNIC3Un7MzxkFR1ZCVXJKCav6K
+ PkWFuHBzk0GpBkZfbbkSvQDRC0e42JJd9EGFhKs16fNEWSn/bvGwXuv1HhZDuS1UTG
+ Ali2P3MY8035g==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Mon, 08 Sep 2025 23:09:13 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <78c764b8-44cf-4db5-88e7-807a85954518@wanadoo.fr>
+Date: Mon, 8 Sep 2025 23:09:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/8] drm/msm/dpu: use drmm_writeback_connector_init()
+References: <20250819-wb-drop-encoder-v3-0-b48a6af7903b@oss.qualcomm.com>
+ <20250819-wb-drop-encoder-v3-4-b48a6af7903b@oss.qualcomm.com>
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Content-Language: en-US, fr-FR
+To: "dmitry.baryshkov@oss.qualcomm.com >> Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>
+Cc: abhinav.kumar@linux.dev, airlied@gmail.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ dave.stevenson@raspberrypi.com, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, geert+renesas@glider.be,
+ harry.wentland@amd.com, jani.nikula@linux.intel.com,
+ jessica.zhang@oss.qualcomm.com, kernel-list@raspberrypi.com,
+ kieran.bingham+renesas@ideasonboard.com,
+ laurent.pinchart+renesas@ideasonboard.com, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ liviu.dudau@arm.com, louis.chauvet@bootlin.com, lumag@kernel.org,
+ maarten.lankhorst@linux.intel.com, magnus.damm@gmail.com,
+ marijn.suijten@somainline.org, mcanal@igalia.com, mripard@kernel.org,
+ robin.clark@oss.qualcomm.com, sean@poorly.run, simona@ffwll.ch,
+ siqueira@igalia.com, sunpeng.li@amd.com, suraj.kandpal@intel.com,
+ tomi.valkeinen+renesas@ideasonboard.com, tzimmermann@suse.de
+In-Reply-To: <20250819-wb-drop-encoder-v3-4-b48a6af7903b@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 10 Sep 2025 08:01:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,95 +80,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The aux channel is always registered if the connector is DP,
-even when the link doesn't contain DP. When using the DisplayPort
-connector in DP++ mode, the I2C is done directly over the pins,
-not over an aux channel. The practical effect is the creation of
-2 I2C devices for DDC, one from the actual pins, and another from
-the aux channel.
+Le 19/08/2025 à 22:32, Dmitry Baryshkov a écrit :
+> Use drmm_plain_encoder_alloc() to allocate simple encoder and
+> drmm_writeback_connector_init() in order to initialize writeback
+> connector instance.
+> 
+> Reviewed-by: Louis Chauvet <louis.chauvet-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+> Reviewed-by: Jessica Zhang <jessica.zhang-5oFBVzJwu8Ry9aJCnZT0Uw@public.gmane.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov-5oFBVzJwu8Ry9aJCnZT0Uw@public.gmane.org>
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c | 10 +++-------
+>   1 file changed, 3 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+> index 8ff496082902b1ee713e806140f39b4730ed256a..cd73468e369a93c50303db2a7d4499bcb17be5d1 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+> @@ -80,7 +80,6 @@ static int dpu_wb_conn_atomic_check(struct drm_connector *connector,
+>   static const struct drm_connector_funcs dpu_wb_conn_funcs = {
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> -	.destroy = drm_connector_cleanup,
+>   	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+>   	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+>   };
+> @@ -131,12 +130,9 @@ int dpu_writeback_init(struct drm_device *dev, struct drm_encoder *enc,
+>   
+>   	drm_connector_helper_add(&dpu_wb_conn->base.base, &dpu_wb_conn_helper_funcs);
+>   
+> -	/* DPU initializes the encoder and sets it up completely for writeback
+> -	 * cases and hence should use the new API drm_writeback_connector_init_with_encoder
+> -	 * to initialize the writeback connector
+> -	 */
+> -	rc = drm_writeback_connector_init_with_encoder(dev, &dpu_wb_conn->base, enc,
+> -			&dpu_wb_conn_funcs, format_list, num_formats);
+> +	rc = drmm_writeback_connector_init(dev, &dpu_wb_conn->base,
+> +					   &dpu_wb_conn_funcs, enc,
+> +					   format_list, num_formats);
+>   
+>   	if (!rc)
+>   		dpu_wb_conn->wb_enc = enc;
+> 
 
-This generates duplicate results from tools like ddcutil, for
-example using a cheap passive DP-to-DVI cable:
+dpu_wb_conn is allocated a few lines above using devm_kzalloc().
 
-Display 1
-   I2C bus:  /dev/i2c-3
-   DRM_connector:           card1-DP-1
-...
-Display 3
-   I2C bus:  /dev/i2c-7
-   DRM_connector:           card1-DP-1
-...
+Based on [1], mixing devm_ and drmm_ is not safe and can lead to a uaf.
 
-The "real" bus is i2c-3, while the aux i2c-7 doesn't work.
+Is it correct here?
+If the explanation at [1] is correct, then &dpu_wb_conn->base would 
+point to some released memory, IIUC.
 
-Any read on the aux channel succeeds, but always returns an all-zero
-buffer, further confusing ddcutil which just says "Maximum retries
-exceeded", even if it will never work.
 
-The dc_link->aux_mode is true if the link actually intends to use
-aux for DDC I2C, so skip registering aux unless the link is
-actually in aux mode.
+just my 2c.
 
-i2cdetect -y 3:
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:                         -- -- -- -- -- -- -- --
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-30: -- -- -- -- -- -- -- 37 -- -- 3a -- -- -- -- --
-40: 40 41 -- -- -- -- -- -- -- 49 -- -- -- -- -- --
-50: 50 -- -- -- -- -- -- -- -- 59 -- -- -- -- -- --
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-70: -- -- -- -- -- -- -- --
+CJ
 
-i2cdetect -y 7:
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:                         -- -- -- -- -- -- -- --
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-70: -- -- -- -- -- -- -- --
-
-Signed-off-by: Silviu-Alexandru Ștefan <stefan.silviu.alexandru@gmail.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index fadc6098eae..1759071e02a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7429,6 +7429,16 @@ amdgpu_dm_connector_atomic_duplicate_state(struct drm_connector *connector)
- 	return &new_state->base;
- }
- 
-+static inline bool amdgpu_dm_should_register_dp_aux(
-+	struct amdgpu_dm_connector *amdgpu_dm_connector)
-+{
-+	int connector_type = amdgpu_dm_connector->base.connector_type;
-+
-+	return ((connector_type == DRM_MODE_CONNECTOR_DisplayPort) ||
-+		(connector_type == DRM_MODE_CONNECTOR_eDP)) &&
-+	       amdgpu_dm_connector->dc_link->aux_mode;
-+}
-+
- static int
- amdgpu_dm_connector_late_register(struct drm_connector *connector)
- {
-@@ -7445,8 +7455,7 @@ amdgpu_dm_connector_late_register(struct drm_connector *connector)
- 
- 	amdgpu_dm_register_backlight_device(amdgpu_dm_connector);
- 
--	if ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) ||
--	    (connector->connector_type == DRM_MODE_CONNECTOR_eDP)) {
-+	if (amdgpu_dm_should_register_dp_aux(amdgpu_dm_connector)) {
- 		amdgpu_dm_connector->dm_dp_aux.aux.dev = connector->kdev;
- 		r = drm_dp_aux_register(&amdgpu_dm_connector->dm_dp_aux.aux);
- 		if (r)
-
-base-commit: 837f3abbfebdb355ed049c2b06b54108e2bbdf35
--- 
-2.51.0
-
+[1]: 
+https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/xe/xe_hwmon.c?id=3a13c2de442d6bfaef9c102cd1092e6cae22b753
