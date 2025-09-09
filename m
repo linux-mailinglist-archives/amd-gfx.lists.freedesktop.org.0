@@ -2,79 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA62B4FD5D
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Sep 2025 15:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B71D9B51055
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 10:01:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13ACD10E739;
-	Tue,  9 Sep 2025 13:37:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75EA110E87F;
+	Wed, 10 Sep 2025 08:01:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VmtMQXX4";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="K3+M3w31";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF36A10E739
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Sep 2025 13:37:12 +0000 (UTC)
-Received: by mail-pg1-f170.google.com with SMTP id
- 41be03b00d2f7-b4fc0249e41so238910a12.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Sep 2025 06:37:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757425032; x=1758029832; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=tObwF+Z08H79MDMKWC6zGt+hFazMP8SQpHHt/ZJ99zc=;
- b=VmtMQXX4qXGn134aInSfe4TdJ/khsOPs2piUgIcNYfQuMilR8yHAaJst6lEpsIJfff
- Xnp8dn//wdJfQfgECwzCCMqM0uFQ8jbNDQBbrYtcJDNS5HjoWxr0JaUZsSfcQ3vmzt8e
- gKs+ebJkNBdOBD/aKHZ630Cp38vZ8teKPJaITus00xhWVaccQ4jTLg9HrG1oWf1LM2Tz
- RaO4Fkt8vl0l1DTu+vvn0h8fO2EeXciwHuyESfFASTnewHkNvfKK06K8kmmMrU33BzYa
- 2BvieKyD27a8vzGfnO4lL5vnGPfrgtSzXSlSVWeBhUR9ug9ltDvLiQjwOgN5UJjYzgc8
- owbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757425032; x=1758029832;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=tObwF+Z08H79MDMKWC6zGt+hFazMP8SQpHHt/ZJ99zc=;
- b=MdyNl2hSbWf/UToIqUwG2ELy/Ai7WTDQv4iRKqMlAg2jmBkkmznOrb8tDSzgEUmkju
- FbkLKimizijHNSXEX2WEryY9T6AS1BI6h/PwvsXaQSM4iRL1bckLZ1iTq2qcKFc1qoB/
- 0ZtTim5NopHtSAwEym0RVZtNoh2hQnVsbgsIma7R98ycViqns4qwV4CQY0BnyJGTr+lb
- Fif1Dm3NRmR+vsJIemCegmQym/haGtOcVUXt3ngsoepe952pR2D2L6+V2Jcs0xbyh9Og
- btH60cCkYw+Lv3BsMHwIr0Ok+g/9B38F3A/Udw0v1kKOQyviklQ0k814Ow/t7/STrvZ0
- C+nQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWs/vS88MOUWl3mM1oScmOrFSK45Tb6j+Pr6c2I6luSoALEO9+HfEyChyQDUMRcgMTaenS0HyK3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxPObgwgqTN9YCtWhXmDpt0OZFS6+910Hnh9axj5TyaxeeN1MCu
- WZXoGxyRYApHlSHIXR8eTXe641Tc9pVlABHsVdeOwxOJbAfmJbf2lORxIkdkwXu7zrwB7dZsSa9
- 5p9vaYWIuBSc9+QBHINyYT6TfFrY21/g=
-X-Gm-Gg: ASbGnctdXE8/x7AsEpPhrFR3sPxRVzworbJcCF/FvvtOn6ML7T20cE6Uq1EY6+YXiWv
- DoSnwxIeeK0NlFbDM41RZYZ9g7NO8ez5tH1lYQmEUv9aRMmO2a7Vdb5VM4XflPabEXGZw1fCvEk
- W3EyitYddVLM18G2zO9OlWQmSgcQ56GUWqlRuV30aPay4DwgxPwXiv26tjfRCs+qcM4rdL/LsnR
- jYMOWNwijQJ/y08OA==
-X-Google-Smtp-Source: AGHT+IHOvEUNBPtasBBqDVGrC3boG1QFPoLsPBUKZG/vU4sKHUOzXJ8cpzdtz7sFr+UjNvP3nBS1m8FRoIPx0JfHBlk=
-X-Received: by 2002:a17:902:f682:b0:24c:b6b6:e54c with SMTP id
- d9443c01a7336-2516e4b07f1mr82434165ad.3.1757425032140; Tue, 09 Sep 2025
- 06:37:12 -0700 (PDT)
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3BE410E78D;
+ Tue,  9 Sep 2025 15:22:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Transfer-Encoding:
+ Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=2bJb9r9WRkh2TAMgOyJeg6yuzlP1Z0g5WcvmBSdw5jw=; b=K3+M3w31oZcBuYI9a7tM1Wo4ID
+ BPiBqB+/2QDy58bY7Sc9535axphYxgvKiFquwU0TlajgwlRtUwRspA0xVmD9BAHJLz/l+jeRZjyjR
+ Unw1uOLgfY+EjPa0Itj9WptPWEi19neifkYJniy3Wf2hlEbdwOSuG2acrNEVToC0OeJ1sZs5T1nnK
+ gXGBKfpb0jyqvC2yHxEbiNlRGTIi8PdJLlcATpL1HoYOoKskBQ4MjK5mFv/WtG5JC72p01/TzMbra
+ BkITS1U0QdkexZxcKSJB91r2uD2hrSHqab+CbXgy+JPrmtyOmqb15KRnsWDBSvIaUTLwYUljo7s4o
+ cH/Dx2Kw==;
+Received: from 77-249-17-252.cable.dynamic.v4.ziggo.nl ([77.249.17.252]
+ helo=noisy.programming.kicks-ass.net)
+ by desiato.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1uw0Aa-00000005OZD-2Xxf; Tue, 09 Sep 2025 15:22:09 +0000
+Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 3D7323002EB; Tue, 09 Sep 2025 16:05:19 +0200 (CEST)
+Date: Tue, 9 Sep 2025 16:05:19 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ matthew.auld@intel.com, jani.nikula@linux.intel.com,
+ samuel.pitoiset@gmail.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, alexander.deucher@amd.com,
+ stable@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] drm/buddy: Optimize free block management with RB
+ tree
+Message-ID: <20250909140519.GK4067720@noisy.programming.kicks-ass.net>
+References: <20250909095621.489833-1-Arunpravin.PaneerSelvam@amd.com>
+ <6f6841a7-57bd-49de-9b55-b5b0514a2749@amd.com>
 MIME-Version: 1.0
-References: <20250908211559.519892-1-thorsten.blum@linux.dev>
- <4005498b-d866-4e41-a8a4-d8228b2062e7@ursulin.net>
-In-Reply-To: <4005498b-d866-4e41-a8a4-d8228b2062e7@ursulin.net>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 9 Sep 2025 09:36:59 -0400
-X-Gm-Features: Ac12FXw7muqg4kVuUdM_LumdYu1y5udy9p_-qPeA0dWyuOGO6hI58DbsamVKYbk
-Message-ID: <CADnq5_NDrq_S7rcpr6_MY-USfVGr8-QcJ2hqnai7VEm5D_OyxQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Replace kzalloc + copy_from_user with
- memdup_user
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Thorsten Blum <thorsten.blum@linux.dev>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6f6841a7-57bd-49de-9b55-b5b0514a2749@amd.com>
+X-Mailman-Approved-At: Wed, 10 Sep 2025 08:01:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,86 +65,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 9, 2025 at 4:17=E2=80=AFAM Tvrtko Ursulin <tursulin@ursulin.net=
-> wrote:
->
->
-> On 08/09/2025 22:15, Thorsten Blum wrote:
-> > Replace kzalloc() followed by copy_from_user() with memdup_user() to
-> > improve and simplify ta_if_load_debugfs_write() and
-> > ta_if_invoke_debugfs_write().
-> >
-> > No functional changes intended.
-> >
-> > Signed-off-by: Thorsten Blum <thorsten.blum@linux.dev>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c | 20 ++++++--------------
-> >   1 file changed, 6 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_psp_ta.c
-> > index 38face981c3e..6e8aad91bcd3 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
-> > @@ -171,13 +171,9 @@ static ssize_t ta_if_load_debugfs_write(struct fil=
-e *fp, const char *buf, size_t
-> >
-> >       copy_pos +=3D sizeof(uint32_t);
-> >
-> > -     ta_bin =3D kzalloc(ta_bin_len, GFP_KERNEL);
-> > -     if (!ta_bin)
-> > -             return -ENOMEM;
-> > -     if (copy_from_user((void *)ta_bin, &buf[copy_pos], ta_bin_len)) {
-> > -             ret =3D -EFAULT;
-> > -             goto err_free_bin;
-> > -     }
-> > +     ta_bin =3D memdup_user(&buf[copy_pos], ta_bin_len);
-> > +     if (IS_ERR(ta_bin))
-> > +             return PTR_ERR(ta_bin);
-> >
-> >       /* Set TA context and functions */
-> >       set_ta_context_funcs(psp, ta_type, &context);
-> > @@ -327,13 +323,9 @@ static ssize_t ta_if_invoke_debugfs_write(struct f=
-ile *fp, const char *buf, size
-> >               return -EFAULT;
-> >       copy_pos +=3D sizeof(uint32_t);
-> >
-> > -     shared_buf =3D kzalloc(shared_buf_len, GFP_KERNEL);
-> > -     if (!shared_buf)
-> > -             return -ENOMEM;
-> > -     if (copy_from_user((void *)shared_buf, &buf[copy_pos], shared_buf=
-_len)) {
-> > -             ret =3D -EFAULT;
-> > -             goto err_free_shared_buf;
-> > -     }
-> > +     shared_buf =3D memdup_user(&buf[copy_pos], shared_buf_len);
-> > +     if (IS_ERR(shared_buf))
-> > +             return PTR_ERR(shared_buf);
-> >
-> >       set_ta_context_funcs(psp, ta_type, &context);
-> >
->
-> More complete than the one I sent in June^1.
+On Tue, Sep 09, 2025 at 02:04:30PM +0200, Christian König wrote:
+> Hi Arun,
+> 
+> On 09.09.25 11:56, Arunpravin Paneer Selvam wrote:
+> [SNIP]
+> 
+> > +/**
+> > + * rbtree_for_each_entry_safe - iterate in-order over rb_root safe against removal
+> > + *
+> > + * @pos:	the 'type *' to use as a loop cursor
+> > + * @n:		another 'type *' to use as temporary storage
+> > + * @root:	'rb_root *' of the rbtree
+> > + * @member:	the name of the rb_node field within 'type'
+> > + */
+> > +#define rbtree_for_each_entry_safe(pos, n, root, member) \
+> > +	for ((pos) = rb_entry_safe(rb_first(root), typeof(*(pos)), member), \
+> > +	     (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member) : NULL; \
+> > +	     (pos); \
+> > +	     (pos) = (n), \
+> > +	     (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member) : NULL)
+> 
+> As far as I know exactly that operation does not work on an R/B tree.
+> 
+> See the _safe() variants of the for_each_ macros are usually used to iterate over a container while being able to remove entries.
+> 
+> But because of the potential re-balance storing just the next entry is not sufficient for an R/B tree to do that as far as I know.
+> 
+> Please explain how exactly you want to use this macro.
 
-I never received this series.  I didn't see it in patchwork either.
-Seems it never made it to amd-gfx.  Sorry I missed it. I've applied
-the applicable patches now.
+So I don't much like these iterators; I've said so before. Either we
+should introduce a properly threaded rb-tree (where the NULL child
+pointers encode a linked list), or simply keep a list_head next to the
+rb_node and use that.
 
->
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+The rb_{next,prev}() things are O(ln n), in the worst case they do a
+full traversal up the tree and a full traversal down the other branch.
 
-Applied.  Thanks!
+That said; given 'next' will remain an existing node, only the 'pos'
+node gets removed, rb_next() will still work correctly, even in the face
+of rebalance.
 
-Alex
 
->
-> I had some other in that series, not sure if you caught those.
->
-> Regards,
->
-> Tvrtko
->
-> 1)
-> https://lore.kernel.org/amd-gfx/20250612104430.41169-1-tvrtko.ursulin@iga=
-lia.com/
->
