@@ -2,64 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5969BB4A5B3
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Sep 2025 10:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A867B51057
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 10:01:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EED3910E2BA;
-	Tue,  9 Sep 2025 08:43:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2297210E887;
+	Wed, 10 Sep 2025 08:01:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="cqKp2gZk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q36jG4Q5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C281010E2BA;
- Tue,  9 Sep 2025 08:43:53 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cLcmk3Zybz9tPJ;
- Tue,  9 Sep 2025 10:43:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1757407430;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EaY/kealtZvFpNFt6fUyL37ikAIiwkIr3pKJQ+3EQjw=;
- b=cqKp2gZkoXmHMVfyuVUNbB1AnUsKy3A/wuZ2WhXODSwOWG6N9G4f6mkKpOv85ygyKE9NrA
- /NS0PXVwjLhSt4edvYJ3MReZ4DDY4rAEDiWLh/BY29CAYIfIc+uVBw2Yd1Y51dTSnhxqAA
- pOoa/Z/ZzV1QM1JE3kUepGo7DMGOqFOsmWC7asRWHDhFPmTdvnANIW87Enj23PwTV61l5q
- q7NyZzxDKybtulcgd7PhUXdg+eISlcSq9+a+kk3uXDKPU0M9DHf+k1UghZkAiIb+eXJYFK
- 17ypjFLgS/vXLBakz2WRETspdDoaUDUzYNrUhVfmkGibk+G1rMtAcW5csVdURw==
-Message-ID: <63b7c020-e589-4644-887e-3922af939009@mailbox.org>
-Date: Tue, 9 Sep 2025 10:43:47 +0200
-MIME-Version: 1.0
-Subject: Re: evergreen_packet3_check:... radeon 0000:1d:00.0: vbo resource
- seems too big for the bo
-To: Borislav Petkov <bp@alien8.de>
-Cc: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACE3810E66B;
+ Tue,  9 Sep 2025 09:09:40 +0000 (UTC)
+Received: by mail-pf1-f173.google.com with SMTP id
+ d2e1a72fcca58-7725de6b57dso6158663b3a.0; 
+ Tue, 09 Sep 2025 02:09:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1757408980; x=1758013780; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=kqPc2XyEx7hJaGX2RHm1jVlEm9h0J3/vXED5Ck3jL34=;
+ b=Q36jG4Q5C5Zzwyo6PROQhxJOR2bucCt93eu5Ugzmc6kRsSzLFLfAyguPwepx6OtNX7
+ JSkskIXOcTwr8UixpPOs2inKsm8bhKTTZ7oQ6Vm7QsgNfsOsgA+IzH3rY/KyD7u+np/h
+ D8irLU3LGLskqpxJ8tQzJ7bppF4TW1EJUfyzstzUKuFYp1j5K+xlD3pEvVS5TWkevuuc
+ wykzepotqD6Qj3n+1Gs59gqWrtumSnSy1TKVfPFMsyl/dWXpBkXXLfVgWXt+03MTu4xS
+ x0tyKe/tgnI+ZtaLWgD8QVUqzpzR83bygF2byppecxSOMLlh6/Uf2FS0ekFbew67Cyn+
+ 1kHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757408980; x=1758013780;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=kqPc2XyEx7hJaGX2RHm1jVlEm9h0J3/vXED5Ck3jL34=;
+ b=fMyYKjfTK1TGFnPUU+j8uGTCduirCjq0UD5WKwvJtIFW0nRffKOIBGWnCPn6O7jIb4
+ hoYTq7fDU12fO64AiqvxN/JDPQlmENj5cz1MNj8D8TMCpmzs1Vm3DVgDBPBqccj22kEQ
+ DSqtb9lvXbhlxSq963Rhh9rt7taKVLIgaAnXdS3h5uimkxriyzVJt/hIGpt9KIXdTMfZ
+ wn1EUl93X4JeUI2YyRvOVMIF/l5acuiZK95vLvXgu6ShUdaXmrRYR+ms/0SLl1i5BVYL
+ Zoy/8T/1RpeBxKUt0olfCqV1nCEer6HRhzAjQgqVQJTVc5JPIh8bVptrt9pGGciAixr9
+ GP9A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWJpU098XEDfNsZbwaaOqR17VDaYCGXSo6e3ZCTzrbgvwZ2DgIPtjNc19N5QsOUxHBYXxQOfijF@lists.freedesktop.org,
+ AJvYcCWXlnRWSyTySBKB0RcLXqQZOZYeWAmzb8mIyK8S6/4eiVT84R8wNsZd/VB3Zdq+7CXyJ2BftDnWdMYc@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwjpWdBPsRm9QCTtbkIMo4daygmSuFamKuxMPh90bmpuaHGdjsF
+ pMD2CRg2LB0ZzwB+kxXqhLB6I/5475iM8pilF5TCitWWNtFfaO0vA+so
+X-Gm-Gg: ASbGncubHENIHKe/DsTitUU0beFttqbdttr8NhFn6nwq70bmp52TnL1JByBT3oYgiiQ
+ DAvAQDgoN9T88+egvhkZ5LUBiUCnSpSHvEMhRoodPi32EfxrLdWGt2D5258dgCz7RhXJ1EQ8END
+ Q/iALeER9tJGVFLAJweGOb9I+bdBpww0b+OXmOUER2FOJejEgxuFp9aMnzDctoUO4tBzOcfLxKQ
+ aNlsHFqvLOLKV3oEWAgrcL0W5vVmd5nCciebsywDSWu/n+PGcM5q1w0Y28QdcLeCvmsDD2u4bB8
+ FjblTOLS3hINc66Beb0Feye0+x9+/bCkzPY5K3SB+5H9+egj9i6M7HNDLcBkRgz0/QotDPJ2Lvg
+ tckFkQ9NqD4rO2cJqZn2NkW/Vk2hAW1FIut2ciAvUPWqrN0CCwuFy0IsLZF0oBI9ajnKc+FI=
+X-Google-Smtp-Source: AGHT+IGLMvgR09TtpXV6LHI+sqDFZWwyxmCEyzU7IJEVMiPIwQK0Li50mUmwwWRucDIt6KYIn3TMog==
+X-Received: by 2002:a05:6a00:2191:b0:76b:f7af:c47d with SMTP id
+ d2e1a72fcca58-7742dd60109mr14646722b3a.4.1757408980074; 
+ Tue, 09 Sep 2025 02:09:40 -0700 (PDT)
+Received: from visitorckw-System-Product-Name ([140.113.216.168])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-774660e4dcfsm1469549b3a.18.2025.09.09.02.09.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 09 Sep 2025 02:09:39 -0700 (PDT)
+Date: Tue, 9 Sep 2025 17:09:35 +0800
+From: Kuan-Wei Chiu <visitorckw@gmail.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>, austin.zheng@amd.com, jun.lei@amd.com,
+ harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ zaeem.mohamed@amd.com, wenjing.liu@amd.com, chiahsuan.chung@amd.com,
+ Natanel.Roizenman@amd.com, Daniel.Sa@amd.com,
+ jserv@ccns.ncku.edu.tw, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20250829171655.GBaLHgh3VOvuM1UfJg@fat_crate.local>
- <CADnq5_Oqonrth+5T-83dnFBZ67GvykkPt-9aUepJd+fUMwnupw@mail.gmail.com>
- <20250829194044.GCaLICPKJcGJRYdSfO@fat_crate.local>
- <20250829204840.GEaLISKGTwuScnDF8Y@fat_crate.local>
- <CADnq5_MbpYmC2PSyOr0gQk7F8mVz0-LG3dZtUZS2HhV8LTgDww@mail.gmail.com>
- <20250830174810.GAaLM5WkiFc2BtQ6kW@fat_crate.local>
- <51ae551b-6708-4fcd-84f9-fc1400f02427@mailbox.org>
- <20250901101011.GAaLVxA_Ax0R-Wy2IX@fat_crate.local>
- <2764782f-d411-4142-aa56-f1af0968ecd5@mailbox.org>
- <20250908180022.GHaL8Zto-PsVsPa0e0@fat_crate.local>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Content-Language: en-CA
-In-Reply-To: <20250908180022.GHaL8Zto-PsVsPa0e0@fat_crate.local>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 1/2] drm/amd/display: Optimize reserved time candidates
+ sorting using standard sort()
+Message-ID: <aL/uz16tMybHTeYD@visitorckw-System-Product-Name>
+References: <20250824182359.142050-1-visitorckw@gmail.com>
+ <20250824182359.142050-2-visitorckw@gmail.com>
+ <c28df8a2-9ec1-41d0-afe4-4ee047290d27@amd.com>
+ <655a009a-0b69-4e11-949e-ff0f47b424d5@amd.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: f89cfc3521c7b81e5ef
-X-MBO-RS-META: 3t8pstzkshjkqsm3uqswjhq43agsk8i9
+In-Reply-To: <655a009a-0b69-4e11-949e-ff0f47b424d5@amd.com>
+X-Mailman-Approved-At: Wed, 10 Sep 2025 08:01:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,40 +100,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 08.09.25 20:00, Borislav Petkov wrote:
-> On Mon, Sep 08, 2025 at 07:05:17PM +0200, Michel DÃ¤nzer wrote:
->> These messages are primarily intended for developers, not users
+On Mon, Sep 08, 2025 at 07:35:08PM +0200, Christian König wrote:
+> On 08.09.25 19:05, Alex Hung wrote:
+> > 
+> > 
+> > On 8/24/25 12:23, Kuan-Wei Chiu wrote:
+> >> Replace the custom bubble sort used for sorting reserved time
+> >> candidates in with the kernel's standard sort() helper. The previous
+> >> code had O(N^2) time complexity, while the generic kernel sort runs in
+> >> O(N log N). This improves efficiency and removes the need for a local
+> >> sorting implementation, while keeping functionality unchanged.
+> >>
+> >> Signed-off-by: Kuan-Wei Chiu <visitorckw@gmail.com>
+> >> ---
+> >> Compile test only.
+> >>
+> >>   .../dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c   | 23 +++++++++++--------
+> >>   1 file changed, 13 insertions(+), 10 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c
+> >> index e763c8e45da8..2b13a5e88917 100644
+> >> --- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c
+> >> +++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c
+> >> @@ -2,19 +2,21 @@
+> >>   //
+> >>   // Copyright 2024 Advanced Micro Devices, Inc.
+> >>   +#include <linux/sort.h>
+> >> +
+> > 
+> > Thanks for working on this, but this file is shared with another OS and it is not possible to replace sort function with Linux-only sort.
 > 
-> But everybody sees them! And they're flooding the console.
-
-There's no question that dev_warn_ratelimited is wrong here, I'm just saying dev_warn_once isn't quite right either.
-
-
-BTW, the same arguments apply to the other dev_warn calls in evergreen_cs.c. Their conditions can be controlled by user space, so they must not generate any dmesg output by default.
-
-
-> And if those messages are only for developers, they better be not visible by
-> default but behind a CONFIG_DEBUG or a similar switch.
-
-Hence my suggestion to use a dbg variant, which isn't visible by default but can be enabled (and disabled again) at runtime.
-
-
-> And developers don't have every hw to test on. So you need to rely on users to
-> report issues to you. Because those messages probably don't fire on your hw
-> but someone else would hit them. And the chances are high that someone else is
-> a user.
-
-Then the developer needs to tell the user how to enable the debugging output and get it to them. That's pretty standard.
-
-
->> (which will notice and report the corresponding user-space issues instead).
+> That's not a valid argument. Linux code must be solely written for Linux, you can't reject a valid patch because it breaks sharing code with other operating systems.
 > 
-> The case due to which we're having this conversation didn't manifest itself
-> into anything - it was only flooding my dmesg.
+Hi Alex and Christian,
 
-The message is logged if the kernel needs to fix up invalid data passed in by user space. That may have had no noticeable effect in your case, it certainly could in other cases though.
+Thanks for your feedback.
+Based on the discussion, I plan to keep this patch in my v2.
 
+Regards,
+Kuan-Wei
 
--- 
-Earthling Michel DÃ¤nzer       \        GNOME / Xwayland / Mesa developer
-https://redhat.com             \               Libre software enthusiast
