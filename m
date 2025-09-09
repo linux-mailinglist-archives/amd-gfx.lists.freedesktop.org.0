@@ -2,65 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0780FB51051
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 10:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54CBAB51056
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 10:01:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5D610E88E;
-	Wed, 10 Sep 2025 08:01:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA23A10E884;
+	Wed, 10 Sep 2025 08:01:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dUgpkKGm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hj5ND5jP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEF0C10E1AA
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Sep 2025 09:21:05 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-2518a38e7e4so31961685ad.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Sep 2025 02:21:05 -0700 (PDT)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E79B710E1AA
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Sep 2025 09:21:09 +0000 (UTC)
+Received: by mail-pg1-f177.google.com with SMTP id
+ 41be03b00d2f7-b4c53892a56so4765348a12.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 09 Sep 2025 02:21:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757409665; x=1758014465; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=aUvugBs/HfbP8FSUc7ieLlf7fcudHbkwsA+MFyocDa4=;
- b=dUgpkKGmvsdD5UPoknshSo9qW2gKs7ioAWZptpgM8N+776V+6jdgvuFOJHZR1JfepK
- mlpq23ZOLP5ex8l4xYTjUeNNLyLr/sdu5EvTYTSifqpRq+0l77g9C+Jt7hrY+IEugl9K
- 93zedwe9RHlKNJC/X8T6UvBafceeGx9bofQZgfOWJXOm+2xYYcl34fxr8gxcebR3jgy3
- aIZx6ir7ME4tN+WQndH+7daKNONRgBMVnSftE4yISeNMbm7oDIv3y0iAZH7zlrElpM4C
- 4Ps88WfGu4akgSUGMMvlpnJq1Fvyht3Yi80jZkprPGxogzV3ZcAX+1iizOQe6FWP+LZL
- tQvA==
+ d=gmail.com; s=20230601; t=1757409669; x=1758014469; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=EKDAJyjAQ049TwS7OG7Kz3OMIFj6KbuH8cGsBEe0hLg=;
+ b=hj5ND5jPEiLw/3NJzx6wd9ecLR1h2XLbljjC/CNoK1T3leSJC8h01FYEjBWHqlpHG6
+ ZgMURHYOqxelRMsHWY/HJGpbPId9DO3pbUGsmJ8ohY2FL73QAZsRypsyVcJoHZjDNOq5
+ 3uDzsRqUi1h0WCjDicDli1QRBdFuJWq1v5whv+pFnEgOlT9oRxMqIYAUz0KF9BdyVU+O
+ 52EjHvSKIKQJfC3+rNdePPKRm/05lk0nC5rBLVpjQ9KKlt3fhdLSzM+wDM3cebnVDTpW
+ cFJ2kslCAZ9Hh6C554Y5m//M2luv7777j2j17PwmJaGuygWSR7lXjNcDevUUMFmDbAp2
+ eQ6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757409665; x=1758014465;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=aUvugBs/HfbP8FSUc7ieLlf7fcudHbkwsA+MFyocDa4=;
- b=UkysjZjkuyDFUtd0stVLQEOElYADv3E29PtMi8N0xdNeUs+xyW1qzaAqRFIv3d10xG
- oB//esq2WJxeJBRWnB+35TPRQN6h/23YP4DVR1QJKb2t+nCmfjOvVa1Gw6/K6SBCQjB+
- rAo6S5Dxd5YoheFj+E9CBGLJh3L0hFoDdrNxe5bE+jY2bTKMKyVt7kJ8SnlM5OYuKJ1y
- 3qA6DXHZAD0YQNyQkSxbrp4CIuwrwHR6Zt8n67mXY2bTOjLa2t0ysNCJWojRK/ymNWgT
- 02acasd57Gi3/fg6BqsMY1b5P04Zfmmf++rjMhf0os81hIUHA/eCKl+v+J5UhasIQTX0
- oCfQ==
+ d=1e100.net; s=20230601; t=1757409669; x=1758014469;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=EKDAJyjAQ049TwS7OG7Kz3OMIFj6KbuH8cGsBEe0hLg=;
+ b=Wc+gDFYcHdj05Y4tPeIoldmpqqmOqhRlgQngZDTkLTNAinpJozS6m6lPSiuv+ReQgm
+ IEIW/sv5oLT/eGPHdZgUE+LzAY2tkGLkHP5o6bf4lSl0//cQfmwq9iS1DPxwsTYIdQHs
+ Mo6x0oGKd3YWZe5iTDCWu5qTp33qxT1uqujY+Lc13tOrLUvJeCq/7pzITbQxfJywv4IT
+ vIolGXYkYN4zVgaWnMjWyhjvUlQODuXuOrp9b+KN9BpkrvDiQyiL0CH8W7qFEzXUiF/3
+ HgtVmzUid83Ufp3HWjCWqzHRZYjCzRmEGW4mZz1F6T6EiOVs7M4mZQyttgVS+u1ahWgm
+ eiqg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXSE9z9S7yYTwu6oi2SRUcSzZ/QTusbr8NdFW5BpOBM1wTG1VWykPne6528OxTMeklMCa9Dw00N@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyAcaBxE95SeJ5amhpzGjV3yacNN/W00ij6mllZ6DId5/rDbXOX
- FyzMh88UX/RfJxyIP0kOhMWcbnAxY3Yyvz9SzchV/0l/xCqk3TFpIDi9mCY8Mw==
-X-Gm-Gg: ASbGncuspyKz3vbAZA05BW2d6+RGYh0ZuRcVSm2ioSB2/qaAu9M0u61X1ry2uKbS4T4
- 4yD02fcoZJoJk8oVN7zsQYa4ZfkCQM6+/m2WZZvG5qk17ya9QWJDD8HEPXsm/F02nopyyTonrm1
- +3WOkanu/xJ9bng7oLZYx9ejqgVfygrbulHdqH3Ckb2RH0Inkp5V2HeETUwyHGRajMj0YhH62+W
- JSbybsuK9cQ1ERWNevHLh2kksYI8lmnLTolC1G+/8+gTqaKhOsKuHLVnpBy2TJV0Xk//UxR6O5V
- yNZ06klGhmj0XUSf7caoJeIPH7h9r6RpnaqVMsisNsOsmRUfDV/+vIKKDndxc/N6WulV/vaIrhU
- oRDOXs34pdrX79JVUqArtE1B+fcHX8WsPn0+ughIIioW0YT9c3IRl0IUKhLu6dFU=
-X-Google-Smtp-Source: AGHT+IFUMNr3rKpEQQ4QGJsgn1vIVkRQMGZf6cJe/JnOFgXmQnPwtOeK007JtOsHgeUS+Rg3hE+J+w==
-X-Received: by 2002:a17:903:986:b0:240:417d:8166 with SMTP id
- d9443c01a7336-251788fd271mr132869335ad.19.1757409665016; 
- Tue, 09 Sep 2025 02:21:05 -0700 (PDT)
+ AJvYcCUNdAVdCJP564v7YDR+Ic5n7MutwQ3AS6uWVnVxWBd1f+DRSi+Kj0Ofzw8U/IQAXbc8yI/DEWUd@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywhlp4+It/9mmdAHQRQTc6ik38D1V0NKJ0WeP4Pfc2+p6VYxq6e
+ fYl6b2DUv236NxoHcTsUZpXJPwFC8DS4gWxIdkg663gpVeAP95ohZEYk
+X-Gm-Gg: ASbGncvbjMxFPeEJeEVQ9tG3zU4RU+jdnE2HfjvxDBMx5RxcRwy18yHNvjl5X5NmgIz
+ qbayfZEQs3gjEj3mwhAhBpddZEy02la/43+q1VEOLpH0jFgx0ugyKVxsuH0dbzU234jbpuFEKnd
+ lIComEkqHVZ78sOhTb7YtaHpz7wmTzNCeqKVnEs2rIgbvZCG1p1puLdLihEpDMHnE57/oWoEd3F
+ Gauy4c2/zcw98M2K1+clvB8u0LEB5D4QKCGZzuozmmjNomXp7SL96dOnzApyHYIoOUcjSbhBDGH
+ r/aOpZYD8ZZQ3tlMbjX9/EoYCRK+63RyRMt465f1hc70N9TIuyFuTTUD0SWEO3i0dDU080sBGaA
+ A3EfacH1bZXomHoAYZ7TZK9/Zdq8+xMAPrfct3JG3IdFoGaiPvwGSlu4tnlSWhjE=
+X-Google-Smtp-Source: AGHT+IGaOl1wQ4PxTl5LanHyvvod2ptDH/j57RDM1rdkSlxdHYHqnMJKyWpfZPuecG3QE0g5+Xjegg==
+X-Received: by 2002:a17:902:dad0:b0:24c:e3bf:b469 with SMTP id
+ d9443c01a7336-2516fbdb555mr171735475ad.15.1757409669303; 
+ Tue, 09 Sep 2025 02:21:09 -0700 (PDT)
 Received: from visitorckw-System-Product-Name.. ([140.113.216.168])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-25125d76218sm88522165ad.119.2025.09.09.02.21.02
+ d9443c01a7336-25125d76218sm88522165ad.119.2025.09.09.02.21.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Sep 2025 02:21:04 -0700 (PDT)
+ Tue, 09 Sep 2025 02:21:08 -0700 (PDT)
 From: Kuan-Wei Chiu <visitorckw@gmail.com>
 To: austin.zheng@amd.com, jun.lei@amd.com, harry.wentland@amd.com,
  sunpeng.li@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
@@ -69,11 +70,13 @@ To: austin.zheng@amd.com, jun.lei@amd.com, harry.wentland@amd.com,
 Cc: chiahsuan.chung@amd.com, nicholas.kazlauskas@amd.com, wenjing.liu@amd.com,
  jserv@ccns.ncku.edu.tw, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, Kuan-Wei Chiu <visitorckw@gmail.com>
-Subject: [PATCH v2 0/2] drm/amd/display: optimize reserved time candidates
- handling
-Date: Tue,  9 Sep 2025 17:20:55 +0800
-Message-Id: <20250909092057.473907-1-visitorckw@gmail.com>
+Subject: [PATCH v2 1/2] drm/amd/display: Optimize reserved time candidates
+ sorting using standard sort()
+Date: Tue,  9 Sep 2025 17:20:56 +0800
+Message-Id: <20250909092057.473907-2-visitorckw@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250909092057.473907-1-visitorckw@gmail.com>
+References: <20250909092057.473907-1-visitorckw@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 10 Sep 2025 08:01:12 +0000
@@ -91,27 +94,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Optimize the handling of reserved time candidates by replacing the
-custom bubble sort with the kernel's standard sort() and rewriting
-duplicate removal with a linear-time fast/slow pointer method. The
-changes improve sorting from O(N^2) to O(N log N) and duplicate removal
-from O(N^2) to O(N), reducing computational overhead and eliminating
-hand-rolled implementations, while correctness has been verified with
-simple unit tests.
+Replace the custom bubble sort used for sorting reserved time
+candidates in with the kernel's standard sort() helper. The previous
+code had O(N^2) time complexity, while the generic kernel sort runs in
+O(N log N). This improves efficiency and removes the need for a local
+sorting implementation, while keeping functionality unchanged.
+
+Signed-off-by: Kuan-Wei Chiu <visitorckw@gmail.com>
 ---
 Changes from v1:
-- Add early return when *list_a_size = 0 to fix a corner case.
+- No changes.
 
-v1: https://lore.kernel.org/lkml/20250824182359.142050-1-visitorckw@gmail.com
+Compile test only.
 
-Kuan-Wei Chiu (2):
-  drm/amd/display: Optimize reserved time candidates sorting using
-    standard sort()
-  drm/amd/display: Optimize remove_duplicates() from O(N^2) to O(N)
+ .../dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c   | 23 +++++++++++--------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
- .../dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c   | 44 ++++++++++---------
- 1 file changed, 24 insertions(+), 20 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c
+index e763c8e45da8..2b13a5e88917 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c
+@@ -2,19 +2,21 @@
+ //
+ // Copyright 2024 Advanced Micro Devices, Inc.
+ 
++#include <linux/sort.h>
++
+ #include "dml2_pmo_factory.h"
+ #include "dml2_pmo_dcn3.h"
+ 
+-static void sort(double *list_a, int list_a_size)
++static int cmp_double(const void *a, const void *b)
+ {
+-	// For all elements b[i] in list_b[]
+-	for (int i = 0; i < list_a_size - 1; i++) {
+-		// Find the first element of list_a that's larger than b[i]
+-		for (int j = i; j < list_a_size - 1; j++) {
+-			if (list_a[j] > list_a[j + 1])
+-				swap(list_a[j], list_a[j + 1]);
+-		}
+-	}
++	double da = *(const double *)a;
++	double db = *(const double *)b;
++
++	if (da < db)
++		return -1;
++	if (da > db)
++		return 1;
++	return 0;
+ }
+ 
+ static double get_max_reserved_time_on_all_planes_with_stream_index(struct display_configuation_with_meta *config, unsigned int stream_index)
+@@ -634,7 +636,8 @@ bool pmo_dcn3_init_for_pstate_support(struct dml2_pmo_init_for_pstate_support_in
+ 
+ 		// Finally sort the array of candidates
+ 		sort(pmo->scratch.pmo_dcn3.reserved_time_candidates[stream_index],
+-			pmo->scratch.pmo_dcn3.reserved_time_candidates_count[stream_index]);
++		     pmo->scratch.pmo_dcn3.reserved_time_candidates_count[stream_index],
++		     sizeof(double), cmp_double, NULL);
+ 
+ 		remove_duplicates(pmo->scratch.pmo_dcn3.reserved_time_candidates[stream_index],
+ 			&pmo->scratch.pmo_dcn3.reserved_time_candidates_count[stream_index]);
 -- 
 2.34.1
 
