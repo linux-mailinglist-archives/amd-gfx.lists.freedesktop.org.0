@@ -2,134 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09464B50D6C
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 07:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C80C2B5104E
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Sep 2025 10:01:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A327710E856;
-	Wed, 10 Sep 2025 05:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7649310E88B;
+	Wed, 10 Sep 2025 08:01:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rGKSDPhh";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="scLhUfFo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2053.outbound.protection.outlook.com [40.107.101.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8EEC10E856
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Sep 2025 05:33:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gNzcVBIF+tn9qkev8bRQ4TH3AJXP3VYegfC4T4nBwKj9qWwHZuinDK6EwDyBrj66XskM+ss782VJo8CU5SKfoBgKOHeSZ4mMrCLxYf3Db4BuiwN8FYSTEEgOQYkkGIXmHH8XDC6ZxkT1hmTg5fyrROzztMHu0iZTQ0BBne6pEL8wUDDHBh327R1phSev5XYahw1cTkPhBb9SHiJ8wRALBIRg3F4AWI5B+LhNikLApZbhe7+2KKb1mCNWS43O4O3YRuDiBhY4v3X3pqNhqqJeIXe7zhP67XhmioJd+jNkGIxqYss4oFP3p9TMH954Xz8jAxZA1XNhyWopUqUjE6pfgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HX2lzheraoOGwccS4AltJp50dUuWxR56J78j5ky/2E0=;
- b=hqBk0n9o3V5AsIqma9XSk1fBypKhc2TB6lHllJQWbOGgI8UyYF/if5EJ3FOFQQQ+NfIbJNol4qVJgzxSwhMW8emT6FqCrSTq4USVGPBcOkyUHAR09OiMwtoBgTI3j9n2PldWZI4Ciygcfxe6kRZvTYeUPffKXScZG+g886BozPf1QdLjqKx1qBfGc4ztVEmqh54XDkno680PGLjz7U6c93eaEDG1EAvJNwMMj0T28fpdwJvi+uAhmeR4eSnIg6k5oSXMkXm+XARqMJ173F08+HChDo+UA4B6Pts7855fjQx0UMH02ShDD0lWXTaAJpWY1R7C3hYdW4FGQ9CsLF3v+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HX2lzheraoOGwccS4AltJp50dUuWxR56J78j5ky/2E0=;
- b=rGKSDPhhOMX4l5/g33cog0vtk+/33zHgDKiRJcaBKF3ORIQJmXXirTkuh4iRJ8rASCofHYkls5IP4HrPvJiFgc+6dUXqiYMOiDmPYe2UCky/DflaYTvF512B7Vzzk+Wfq7juCMxstuUkwMBLTGWg5GxlmpwhtdFrC/UhWaUfrZY=
-Received: from DS7PR05CA0057.namprd05.prod.outlook.com (2603:10b6:8:2f::21) by
- PH7PR12MB5594.namprd12.prod.outlook.com (2603:10b6:510:134::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
- 2025 05:33:49 +0000
-Received: from DS3PEPF0000C37D.namprd04.prod.outlook.com
- (2603:10b6:8:2f:cafe::b8) by DS7PR05CA0057.outlook.office365.com
- (2603:10b6:8:2f::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.14 via Frontend Transport; Wed,
- 10 Sep 2025 05:33:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- DS3PEPF0000C37D.mail.protection.outlook.com (10.167.23.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9115.13 via Frontend Transport; Wed, 10 Sep 2025 05:33:49 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Tue, 9 Sep
- 2025 22:33:49 -0700
-Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Sep
- 2025 00:33:48 -0500
-Received: from ray-Ubuntu.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 9 Sep 2025 22:33:40 -0700
-From: Ray Wu <ray.wu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
- Zuo" <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, "Daniel
- Wheeler" <daniel.wheeler@amd.com>, Alex Hung <alex.hung@amd.com>, "Taimur
- Hassan" <Syed.Hassan@amd.com>, Wayne Lin <Wayne.Lin@amd.com>, Ray Wu
- <ray.wu@amd.com>
-Subject: [PATCH 15/15] drm/amd/display: Promote DC to 3.2.350
-Date: Wed, 10 Sep 2025 13:30:38 +0800
-Message-ID: <20250910053222.2884632-16-ray.wu@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250910053222.2884632-1-ray.wu@amd.com>
-References: <20250910053222.2884632-1-ray.wu@amd.com>
+Received: from smtp.smtpout.orange.fr (smtp-81.smtpout.orange.fr
+ [80.12.242.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7F5610E84E;
+ Wed, 10 Sep 2025 05:32:58 +0000 (UTC)
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+ by smtp.orange.fr with ESMTPA
+ id wDRrubswWjg72wDRruzgJz; Wed, 10 Sep 2025 07:32:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+ s=t20230301; t=1757482376;
+ bh=9Zxhr99Mmj2vi+RoG0QYHKDA21udjWwSg+ONMdgzCn0=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From;
+ b=scLhUfFoPPETEBlKDeYO4eO7wZgRtPVhphiC7OmOMFzDYHu9GvObRMACfrNWi/KIx
+ gY11BSWHJTs+Vx+I+fdGujCrkd2Fsk5AAq8TatnEkrpOSCQIBRWb/0UZgV1iKLKC2z
+ 93/J1JAaUY8xi+jJ91wcg2vtSz16SmaqA7v7EcPq5tnFCp3egn3VCszpmdf8EcXB4N
+ GEtbRS5twEctwPo2mvNq6yg4LI5RtbQLcDWsyzhri4+LtdOrhoV2BNuRGTbP+L7yjj
+ WSeOe7RBOmfdiyZu8jxrYD6BC6qWZVsscbGqbU2NTlhuQYdtPubekBfSUaGmNwro4u
+ /GvsPCIq3XNOw==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Wed, 10 Sep 2025 07:32:56 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <ae40f623-4cfc-4a49-9eed-affb08efdfd1@wanadoo.fr>
+Date: Wed, 10 Sep 2025 07:32:51 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/8] drm/msm/dpu: use drmm_writeback_connector_init()
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: abhinav.kumar@linux.dev, airlied@gmail.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ christophe.jaillet@wanadoo.fr, dave.stevenson@raspberrypi.com,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ geert+renesas@glider.be, harry.wentland@amd.com,
+ jani.nikula@linux.intel.com, jessica.zhang@oss.qualcomm.com,
+ kernel-list@raspberrypi.com, kieran.bingham+renesas@ideasonboard.com,
+ laurent.pinchart+renesas@ideasonboard.com, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ liviu.dudau@arm.com, louis.chauvet@bootlin.com, lumag@kernel.org,
+ maarten.lankhorst@linux.intel.com, magnus.damm@gmail.com,
+ marijn.suijten@somainline.org, mcanal@igalia.com, mripard@kernel.org,
+ robin.clark@oss.qualcomm.com, sean@poorly.run, simona@ffwll.ch,
+ siqueira@igalia.com, sunpeng.li@amd.com, suraj.kandpal@intel.com,
+ tomi.valkeinen+renesas@ideasonboard.com, tzimmermann@suse.de
+References: <20250819-wb-drop-encoder-v3-0-b48a6af7903b@oss.qualcomm.com>
+ <20250819-wb-drop-encoder-v3-4-b48a6af7903b@oss.qualcomm.com>
+ <78c764b8-44cf-4db5-88e7-807a85954518@wanadoo.fr>
+ <zw23hgjduxgijown52jyiomungxx4cjyv63qixtnx5nbm3w7xb@2yy65777ydnj>
+ <654e04e3-d80e-4d34-a1a0-21f66d43875b@wanadoo.fr>
+ <75tzn4xg2k2zxdqko4b3xsplbtnolhrxzbowisdqogoo2qhfkl@szr3ar5dg5zd>
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Content-Language: en-US, fr-FR
+In-Reply-To: <75tzn4xg2k2zxdqko4b3xsplbtnolhrxzbowisdqogoo2qhfkl@szr3ar5dg5zd>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: ray.wu@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37D:EE_|PH7PR12MB5594:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d7be861-6e8c-4a45-eedd-08ddf02b9ee0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?s/V5wL9vJ0j/B6lM604xRXFCJzIn7zF2QJbCiKx6SVVvA74RH+q20XemZqla?=
- =?us-ascii?Q?E0r8pJNZc/ykMn8zWSIC0BJo5iffbniqKDUiKciSNl4rLIzU6D5z3ly7R2M3?=
- =?us-ascii?Q?TNFSDIF9MfOhb69fcvHKe/PWpCo/KkRi90Dq38iyv/qlaXWIfsYRcSCqG6FH?=
- =?us-ascii?Q?patS6XpGbvRiM2T+P8BTgu4qIM6SlaBj3P2cwMgn2EEdYNf38O91nHz5Gzqx?=
- =?us-ascii?Q?6AdxM+W/y77eYhZmibuftJQZLLYZAtuI+MC5qXxl0lzfdh0HF/LgWTxVrWCH?=
- =?us-ascii?Q?IiiYFFdSz/uUdFHoWY561UePI8InXRBQ49hcimXrLOq3Uu5l2vZWPr7BD+QT?=
- =?us-ascii?Q?DyphXZKTfN+la4tzK53SAF+mRk4p2VpqUaxCY0Ylyg+FbScGZvVLWRSG3nQm?=
- =?us-ascii?Q?HON1X+cXTt+zYf9tSZVr8+sY7SEYnJrSbuGrDQ6j0C7ZmNMCbFKR/CJrLvqh?=
- =?us-ascii?Q?OQMgRfYTpuCOk0n1aWgIVLdfKwl1h13haGypYJDOSb1sEk8shLqDW0/hwteK?=
- =?us-ascii?Q?0Lfbo/OSXLUNnfqhXtFBOvSYOoNye1etmppf/LQvLPIqwLkLFPwDKHCwrvSG?=
- =?us-ascii?Q?OkDMGo6o0/gE9Jb+FhQc5P0PN/iD5Ryi2bwBZKGkP6tk6NFafZmLqfORQg8F?=
- =?us-ascii?Q?rM3NRWgirG46YlwuybqftB0XhzBRqYvMuAlNBEYly2IHeRyynYjGHITdNLg+?=
- =?us-ascii?Q?E51vqVrmHchKMthuJXUbFJVzqsEgSs2nWNGjGtMUS7GqyIh/C98+Fc8V/NJI?=
- =?us-ascii?Q?xiiNwTedcLWSZBoKBHVqJQGoc/yDeQ0wReEcnPyeDjikzOrRsavjwZ35RSNq?=
- =?us-ascii?Q?Ggv3C64Y7w+FSa/EoZdFGcgdi9YpzN/aKlhf/R3800n5hmmu+tYYGphS+CZm?=
- =?us-ascii?Q?EihVhn9HYga367+icnbalhXFQDpPDxBRr+Zigoqj7ClzrYhTb/TpQlbP9x+i?=
- =?us-ascii?Q?d7CmPdjSsw4p4frbbjhdYdQYDZOTgK+9ThYo0mhM+WvBQT+qGxW76ttpLXYR?=
- =?us-ascii?Q?LAo4XN18FwQoBGPwTdiAKuUFVr/DGz/KI9Z/ph0O7Izmv1NvQXULDAFlgOXD?=
- =?us-ascii?Q?MoGRYlLraOpdiN+NoaXjBcJeJrBKDEScWk586hxDc7P3KRdZ0jwKBsae6XPb?=
- =?us-ascii?Q?hDPLgKw8BnoVQtGODwjpGKeTBfGL08PZJmZcCabEEIH0iFvzcFaPiXxv5CDx?=
- =?us-ascii?Q?igicdbeCZbdywKgvo+drrttCzRYs9WEO3iLgovZEZHQqOTdMuWXMFZX0y8yQ?=
- =?us-ascii?Q?jmXYMpYuLopsXBSlUkSA92nCV+a6fIdQQYHOuGBC2sbRvq8Ia8BvR6z5sWI1?=
- =?us-ascii?Q?KDKuDrXNf/e01E896sL8c1iXUZDqIUyfV6snGWuovYDIgovxwYBw69bfywhJ?=
- =?us-ascii?Q?HUzA07GV2nrgTrKTEnitellR9iAofKCH5hAKOHickQqEDoQAfA+POu2PUSLy?=
- =?us-ascii?Q?Bo6uLrQw2/JAhLKNR/pBusn9ANxqqEG7S9V6YArhEOc3H5dZQ/tMaE8s8S9R?=
- =?us-ascii?Q?Z77EUoSAuEe0Rhscykdmhgs1DQr6ld0buTD7?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 05:33:49.5479 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d7be861-6e8c-4a45-eedd-08ddf02b9ee0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37D.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5594
+X-Mailman-Approved-At: Wed, 10 Sep 2025 08:01:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,36 +81,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Taimur Hassan <Syed.Hassan@amd.com>
+Le 10/09/2025 à 05:47, Dmitry Baryshkov a écrit :
+> On Mon, Sep 08, 2025 at 11:38:44PM +0200, Christophe JAILLET wrote:
+>> Le 08/09/2025 à 23:26, Dmitry Baryshkov a écrit :
+>>> On Mon, Sep 08, 2025 at 11:09:07PM +0200, Christophe JAILLET wrote:
+>>>> Le 19/08/2025 à 22:32, Dmitry Baryshkov a écrit :
+>>>>> Use drmm_plain_encoder_alloc() to allocate simple encoder and
+>>>>> drmm_writeback_connector_init() in order to initialize writeback
+>>>>> connector instance.
+>>>>>
+>>>>> Reviewed-by: Louis Chauvet <louis.chauvet-LDxbnhwyfcJBDgjK7y7TUQ-XMD5yJDbdMReXY1tMh2IBg-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org>
+>>>>> Reviewed-by: Suraj Kandpal <suraj.kandpal-ral2JQCrhuEAvxtiuMwx3w-XMD5yJDbdMReXY1tMh2IBg-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org>
+>>>>> Reviewed-by: Jessica Zhang <jessica.zhang-5oFBVzJwu8Ry9aJCnZT0Uw-XMD5yJDbdMReXY1tMh2IBg-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org>
+>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov-5oFBVzJwu8Ry9aJCnZT0Uw-XMD5yJDbdMReXY1tMh2IBg-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org>
+>>>>> ---
+>>>>>     drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c | 10 +++-------
+>>>>>     1 file changed, 3 insertions(+), 7 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+>>>>> index 8ff496082902b1ee713e806140f39b4730ed256a..cd73468e369a93c50303db2a7d4499bcb17be5d1 100644
+>>>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+>>>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+>>>>> @@ -80,7 +80,6 @@ static int dpu_wb_conn_atomic_check(struct drm_connector *connector,
+>>>>>     static const struct drm_connector_funcs dpu_wb_conn_funcs = {
+>>>>>     	.reset = drm_atomic_helper_connector_reset,
+>>>>>     	.fill_modes = drm_helper_probe_single_connector_modes,
+>>>>> -	.destroy = drm_connector_cleanup,
+>>>>>     	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+>>>>>     	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+>>>>>     };
+>>>>> @@ -131,12 +130,9 @@ int dpu_writeback_init(struct drm_device *dev, struct drm_encoder *enc,
+>>>>>     	drm_connector_helper_add(&dpu_wb_conn->base.base, &dpu_wb_conn_helper_funcs);
+>>>>> -	/* DPU initializes the encoder and sets it up completely for writeback
+>>>>> -	 * cases and hence should use the new API drm_writeback_connector_init_with_encoder
+>>>>> -	 * to initialize the writeback connector
+>>>>> -	 */
+>>>>> -	rc = drm_writeback_connector_init_with_encoder(dev, &dpu_wb_conn->base, enc,
+>>>>> -			&dpu_wb_conn_funcs, format_list, num_formats);
+>>>>> +	rc = drmm_writeback_connector_init(dev, &dpu_wb_conn->base,
+>>>>> +					   &dpu_wb_conn_funcs, enc,
+>>>>> +					   format_list, num_formats);
+>>>>>     	if (!rc)
+>>>>>     		dpu_wb_conn->wb_enc = enc;
+>>>>>
+>>>>
+>>>> dpu_wb_conn is allocated a few lines above using devm_kzalloc().
+>>>
+>>> That's a valid point, thanks!
+>>
+>> I've not analyzed in details all the patches of the serie, but at least
+>> patch 2/8 and 6/8 seems to have the same pattern.
+> 
+> Not quite, 2/8 and 6/8 use drmm_kzalloc(), it is fine to be used with
+> drmm_writeback_connector_init(). This one is indeed incorrect.
+> 
 
-This version brings along following updates:
-- Add DSC padding for OVT support
-- Setup pixel encoding for YCBCR422
-- Fix dml ms order
-- Rename header file link.h to link_service.h
-- Fix DMUB loading sequence
-- Modify link training policy
+Hmm, for patch 2/8, I looked at the source, not what was changes by your 
+patch... Sorry. :(
 
-Signed-off-by: Taimur Hassan <Syed.Hassan@amd.com>
-Acked-by: Wayne Lin <Wayne.Lin@amd.com>
-Signed-off-by: Ray Wu <ray.wu@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+For 6/8, I agree with you.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index fec056d43535..19c74f56aa5e 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -55,7 +55,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
- 
--#define DC_VER "3.2.349"
-+#define DC_VER "3.2.350"
- 
- /**
-  * MAX_SURFACES - representative of the upper bound of surfaces that can be piped to a single CRTC
--- 
-2.43.0
+For patch 1/8, I think there is a issue too, becasue of [1], IIUC.
+
+CJ
+
+
+[1]: 
+https://elixir.bootlin.com/linux/v6.17-rc5/source/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c#L5257
+
+>>
+>> CJ
+>>
+>>>
+>>>>
+>>>> Based on [1], mixing devm_ and drmm_ is not safe and can lead to a uaf.
+>>>>
+>>>> Is it correct here?
+>>>> If the explanation at [1] is correct, then &dpu_wb_conn->base would point to
+>>>> some released memory, IIUC.
+>>>>
+>>>>
+>>>> just my 2c.
+>>>>
+>>>> CJ
+>>>>
+>>>> [1]: https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/xe/xe_hwmon.c?id=3a13c2de442d6bfaef9c102cd1092e6cae22b753
+>>>
+>>
+> 
 
