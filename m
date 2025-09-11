@@ -2,70 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0319EB53A5A
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Sep 2025 19:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 149F5B53A6F
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Sep 2025 19:33:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AB3910E3B5;
-	Thu, 11 Sep 2025 17:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7112210E3F3;
+	Thu, 11 Sep 2025 17:33:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hpqegs/N";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="coUJkSYe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB9610E3B5
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Sep 2025 17:26:55 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-24aacdf40a2so1860655ad.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Sep 2025 10:26:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757611615; x=1758216415; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=4FHdkLhA6/NPnT5RD0ZkGc66iVURNbqLzYVVRGjfT6o=;
- b=hpqegs/NVW5GJ1RsbkCiyUOfTo39Av5IseJpvsVZAkQfs2oB1blGx/czRg2xWj4utw
- v2n4bA0tasXrwZVE89S2/MkndCjojkrW2nEM8KRnLKotVDp0W+uqreWiSdztbXveLSae
- EBR+i3XblZfmmeYpA2UzM05Vr7nCr8vP18ZbWIpIN/SVjH6FKqHYi6RKFCUDO2kMhvep
- MAeuz3PXsgp7eUUfHDe8ikD/ygJ8i5Jkqgdd5NYyIfsHyeBigxG2wjcYnYDUT+OpiV7v
- f5YZvhdmCxmTgwG4ZbSsr6pYwrPgYmG7b3bgxTYWz8w5LBXblusknz7Nu2OPOhpNFNo8
- kleA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757611615; x=1758216415;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=4FHdkLhA6/NPnT5RD0ZkGc66iVURNbqLzYVVRGjfT6o=;
- b=M7bAAh5+xTa9dfoY+tfMeK4ekLXzUOg0WoYhkEFpuszYIQU19eRYPhwCi+uN34IuLL
- wyVwk3fvL1acO5RooTRIlnsTlKpsIMx8F8Hl7MJqSOfWKDryVczepZ5vQEdaCuDDsJRx
- lCyfy669y/kYfQGWoLXyZShttHp/9a/eIg8QpIeR6v6yx3RxlrkgcyNLiqalf2zb0Sws
- zeVkuWIa2DNdPxTfRlDJJLAVbpWHcTbGn6qxkxD1Tm1w2N6sm+dUEAu10IeKpFePbXRT
- lO6SBM1RvyZvtC9zwNfDnbRQBjsALXBtiYbgZOxtp7UMX7WLPDg0JJVq0GJ7ZGh/XH3L
- w8Ow==
-X-Gm-Message-State: AOJu0YyxwX9mn/HMQAqxOYu34zsZ+A2D2iuZqkbNtZj3IP7lXmSgvibO
- 1dpEG8qF5zMywOMe9851SRgUQzCOBvesiHR1kBq1M7ka9csKrY23Uag8Pzj5BlMtksZJ+YRcuFV
- v46vx7z3Y0EbQEeDh+gVMEZNF2qHkneLx+mqU
-X-Gm-Gg: ASbGncstIUVe9dm61OvnBBrBuskiDzAraNVRQdwzyy8jzofPBnou1XDJ7oAWuZM2/Nj
- 1pE3G72suON41QzQ/5S4LHXNo1EgldangYnRecvXEK0SAcdVFxBUzovuPBSMMHPRpH4w/IVpMxd
- AsAWq6A95PetSoGczhgWsXbRbRjTFGrUv/N2oIRBz/yTRSO8Vr22t074CW/llmiDi1UsxDvAXMi
- Z9V8jGTBooMVfc2og==
-X-Google-Smtp-Source: AGHT+IFObieo4nt9QUALlh1NyB3k732hAOTGiVv7PAvyE0bDxRBt2EAR1KyZVXw1OpVFC03KjSIt1+iYPi3oR8RGDro=
-X-Received: by 2002:a17:903:1a8b:b0:25a:4437:dbb7 with SMTP id
- d9443c01a7336-25d25e85badmr966965ad.4.1757611614838; Thu, 11 Sep 2025
- 10:26:54 -0700 (PDT)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4F6F10E3DE;
+ Thu, 11 Sep 2025 17:33:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=26n9lvvSYlWMqqmSC/rnZ7hs25WEL/9yPvBSKXN0v1U=; b=coUJkSYeyDAia/mpiIoSuykysE
+ +oJw9bmcBqu0gPAzyPBdKTug+uWoFDJ8QT6h2qU0dwOCY/GF05IVDn87mFZef9CEVVmm9L+kwi/dJ
+ McWivSTRXzyUms8hffWL0kmsMcT4aUj327WPAhom5HV6YjlDImqaa+puYoAVGIRT2y3zfcqeQrxGU
+ MBbIw3UcmnsetDBF5eBYp1m9xqMCJO9hjQ+/hpI4TOfAa+ZZ1cIS7QB7kurmrpxRIA+eiStpT2Rvx
+ dRtA4QhuoMF/TYolYlTKZd1OQ+0ROEjMgZgMl6TIWjhhiNcIy8YuI+mVF2jlRSfQvcLA/vIzXFJji
+ RBux3abA==;
+Received: from [189.6.16.239] (helo=[192.168.31.42])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uwlB3-009uHT-B8; Thu, 11 Sep 2025 19:33:45 +0200
+Message-ID: <7e677e50-334e-41f7-8511-d859d0620385@igalia.com>
+Date: Thu, 11 Sep 2025 14:33:38 -0300
 MIME-Version: 1.0
-References: <20250911170658.584379-1-shaoyun.liu@amd.com>
-In-Reply-To: <20250911170658.584379-1-shaoyun.liu@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 11 Sep 2025 13:26:42 -0400
-X-Gm-Features: Ac12FXxawBWOa0tpUxXJY7tLweSjO15CuJ-VqfYaxAr_DR5nV3E2BLEx2JRWeTI
-Message-ID: <CADnq5_NaDW0U3riWjK_jBqaeMBVbyymKhbLQJJDxvK3vNVwc+Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/amdgpu: Fix the mes version that support inv_tlbs
-To: Shaoyun Liu <shaoyun.liu@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/amd/display: change dc stream color settings
+ only in atomic commit
+To: Harry Wentland <harry.wentland@amd.com>, sunpeng.li@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: Xaver Hugl <xaver.hugl@gmail.com>, =?UTF-8?Q?Michel_D=C3=A4nzer?=
+ <mdaenzer@redhat.com>, Christopher Snowhill <kode54@gmail.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel-dev@igalia.com
+References: <20250901214413.12675-1-mwen@igalia.com>
+ <20250901214413.12675-3-mwen@igalia.com>
+ <d3bc5c52-345a-420a-bf92-dc4b56c5cc97@amd.com>
+Content-Language: en-US
+From: Melissa Wen <mwen@igalia.com>
+In-Reply-To: <d3bc5c52-345a-420a-bf92-dc4b56c5cc97@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,45 +67,217 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 11, 2025 at 1:14=E2=80=AFPM Shaoyun Liu <shaoyun.liu@amd.com> w=
-rote:
->
-> MES pipe0 will do VM invalidation with engine set 5 when assign VMID to a=
- process,
-> driver will submit inv_tlb package to mes pipe1. It might run into race c=
-ondition
-> if both pipes use the same invalidate engine set. From MES version 0x83 i=
-t will use
-> invalidate engine set 6 for pipe1 to fix the issue
->
-> Signed-off-by: Shaoyun Liu <shaoyun.liu@amd.com>
 
-Fixes: 87e65052616c ("drm/amd/amdgpu : Use the MES INV_TLBS API for
-tlb invalidation on gfx12")
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On 09/09/2025 12:00, Harry Wentland wrote:
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gmc_v12_0.c
-> index 76d3c40735b0..7cc16af1868b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> @@ -337,7 +337,7 @@ static void gmc_v12_0_flush_gpu_tlb_pasid(struct amdg=
-pu_device *adev,
->         int vmid, i;
+> On 2025-09-01 17:33, Melissa Wen wrote:
+>> Don't update DC stream color components during atomic check. The driver
+>> will continue validating the new CRTC color state but will not change DC
+>> stream color components. The DC stream color state will only be
+>> programmed at commit time in the `atomic_setup_commit` stage.
+>>
+>> It fixes gamma LUT loss reported by KDE users when changing brightness
+>> quickly or changing Display settings (such as overscan) with nightlight
+>> on and HDR. As KWin can do a test commit with color settings different
+>> from those that should be applied in a non-test-only commit, if the
+>> driver changes DC stream color state in atomic check, this state can be
+>> eventually HW programmed in commit tail, instead of the respective state
+>> set by the non-blocking commit.
+>>
+>> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/4444
+>> Reported-by: Xaver Hugl <xaver.hugl@gmail.com>
+>> Signed-off-by: Melissa Wen <mwen@igalia.com>
+>> ---
+>>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   2 +-
+>>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   1 +
+>>   .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 105 +++++++++++++++++-
+>>   3 files changed, 104 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> index 9bd82e04fe5c..ba40346eaf95 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> @@ -11125,7 +11125,7 @@ static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
+>>   	if (dm_new_crtc_state->base.color_mgmt_changed ||
+>>   	    dm_old_crtc_state->regamma_tf != dm_new_crtc_state->regamma_tf ||
+>>   	    drm_atomic_crtc_needs_modeset(new_crtc_state)) {
+>> -		ret = amdgpu_dm_update_crtc_color_mgmt(dm_new_crtc_state);
+>> +		ret = amdgpu_dm_check_crtc_color_mgmt(dm_new_crtc_state);
+>>   		if (ret)
+>>   			goto fail;
+>>   	}
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+>> index ce74125c713e..1cc3d83e377a 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+>> @@ -1041,6 +1041,7 @@ void amdgpu_dm_init_color_mod(void);
+>>   int amdgpu_dm_create_color_properties(struct amdgpu_device *adev);
+>>   int amdgpu_dm_verify_lut_sizes(const struct drm_crtc_state *crtc_state);
+>>   int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc);
+>> +int amdgpu_dm_check_crtc_color_mgmt(struct dm_crtc_state *crtc);
+>>   int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
+>>   				      struct drm_plane_state *plane_state,
+>>   				      struct dc_plane_state *dc_plane_state);
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+>> index c7387af725d6..a7cfcdba1fc9 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+>> @@ -566,12 +566,11 @@ static int __set_output_tf(struct dc_transfer_func *func,
+>>   	return res ? 0 : -ENOMEM;
+>>   }
+>>   
+>> -static int amdgpu_dm_set_atomic_regamma(struct dc_stream_state *stream,
+>> +static int amdgpu_dm_set_atomic_regamma(struct dc_transfer_func *out_tf,
+>>   					const struct drm_color_lut *regamma_lut,
+>>   					uint32_t regamma_size, bool has_rom,
+>>   					enum dc_transfer_func_predefined tf)
+>>   {
+>> -	struct dc_transfer_func *out_tf = &stream->out_transfer_func;
+>>   	int ret = 0;
+>>   
+>>   	if (regamma_size || tf != TRANSFER_FUNCTION_LINEAR) {
+>> @@ -969,7 +968,7 @@ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc)
+>>   			return r;
+>>   	} else {
+>>   		regamma_size = has_regamma ? regamma_size : 0;
+>> -		r = amdgpu_dm_set_atomic_regamma(stream, regamma_lut,
+>> +		r = amdgpu_dm_set_atomic_regamma(&stream->out_transfer_func, regamma_lut,
+>>   						 regamma_size, has_rom, tf);
+>>   		if (r)
+>>   			return r;
+>> @@ -1008,6 +1007,106 @@ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc)
+>>   	return 0;
+>>   }
+>>   
+>> +/**
+>> + * amdgpu_dm_check_crtc_color_mgmt: Check if DRM color props are programmable by DC.
+>> + * @crtc: amdgpu_dm crtc state
+>> + *
+>> + * This function just verifies CRTC LUT sizes, if there is enough space for
+>> + * output transfer function and if its parameters can be calculated by AMD
+>> + * color module. It also adjusts some settings for programming CRTC degamma at
+>> + * plane stage, using plane DGM block.
+>> + *
+>> + * The RGM block is typically more fully featured and accurate across
+>> + * all ASICs - DCE can't support a custom non-linear CRTC DGM.
+>> + *
+>> + * For supporting both plane level color management and CRTC level color
+>> + * management at once we have to either restrict the usage of some CRTC
+>> + * properties or blend adjustments together.
+>> + *
+>> + * Returns:
+>> + * 0 on success. Error code if validation fails.
+>> + */
+>> +
+>> +int amdgpu_dm_check_crtc_color_mgmt(struct dm_crtc_state *crtc)
+> This function is almost a duplicate of amdgpu_dm_update_crtc_color_mgmt,
+> without the part that sets the stream->out_transfer_func and without
+> the "Setup CRTC CTM" bits. I wonder whether it would make sense to
+> combine them in a way where the "update" function would look like:
 >
->         if (adev->enable_uni_mes && adev->mes.ring[AMDGPU_MES_SCHED_PIPE]=
-.sched.ready &&
-> -           (adev->mes.sched_version & AMDGPU_MES_VERSION_MASK) >=3D 0x81=
-) {
-> +           (adev->mes.sched_version & AMDGPU_MES_VERSION_MASK) >=3D 0x83=
-) {
->                 struct mes_inv_tlbs_pasid_input input =3D {0};
->                 input.pasid =3D pasid;
->                 input.flush_type =3D flush_type;
-> --
-> 2.34.1
+> int amdgpu_dm_update_crtc_color_mgmt(...)
+> {
+>      amdgpu_dm_check_crtc_color_mgmt(...);
 >
+>      update stream->out_transfer_func based on out_tf computed in check
+>
+>      do the "Setup CRTC CTM bits
+> }
+Makes sense. I just sent a v3 implementing this proposal and fixing some 
+issues in v2.
+Can you double check?
+
+https://lore.kernel.org/amd-gfx/20250911173101.1960156-1-mwen@igalia.com
+
+Thanks for reviewing!
+
+Melissa
+> Either way, great find, and really good change. The series is
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+>
+> Harry
+>
+>> +{
+>> +	struct amdgpu_device *adev = drm_to_adev(crtc->base.state->dev);
+>> +	bool has_rom = adev->asic_type <= CHIP_RAVEN;
+>> +	const struct drm_color_lut *degamma_lut, *regamma_lut;
+>> +	uint32_t degamma_size, regamma_size;
+>> +	bool has_regamma, has_degamma;
+>> +	struct dc_transfer_func *out_tf;
+>> +	enum dc_transfer_func_predefined tf = TRANSFER_FUNCTION_LINEAR;
+>> +	bool is_legacy;
+>> +	int r;
+>> +
+>> +	tf = amdgpu_tf_to_dc_tf(crtc->regamma_tf);
+>> +
+>> +	r = amdgpu_dm_verify_lut_sizes(&crtc->base);
+>> +	if (r)
+>> +		return r;
+>> +
+>> +	degamma_lut = __extract_blob_lut(crtc->base.degamma_lut, &degamma_size);
+>> +	regamma_lut = __extract_blob_lut(crtc->base.gamma_lut, &regamma_size);
+>> +
+>> +	has_degamma =
+>> +		degamma_lut && !__is_lut_linear(degamma_lut, degamma_size);
+>> +
+>> +	has_regamma =
+>> +		regamma_lut && !__is_lut_linear(regamma_lut, regamma_size);
+>> +
+>> +	is_legacy = regamma_size == MAX_COLOR_LEGACY_LUT_ENTRIES;
+>> +
+>> +	/* Reset all adjustments. */
+>> +	crtc->cm_has_degamma = false;
+>> +	crtc->cm_is_degamma_srgb = false;
+>> +
+>> +	out_tf = kzalloc(sizeof(*out_tf), GFP_KERNEL);
+>> +	if (!out_tf)
+>> +		return -ENOMEM;
+>> +
+>> +	/* Setup regamma and degamma. */
+>> +	if (is_legacy) {
+>> +		/*
+>> +		 * Legacy regamma forces us to use the sRGB RGM as a base.
+>> +		 * This also means we can't use linear DGM since DGM needs
+>> +		 * to use sRGB as a base as well, resulting in incorrect CRTC
+>> +		 * DGM and CRTC CTM.
+>> +		 *
+>> +		 * TODO: Just map this to the standard regamma interface
+>> +		 * instead since this isn't really right. One of the cases
+>> +		 * where this setup currently fails is trying to do an
+>> +		 * inverse color ramp in legacy userspace.
+>> +		 */
+>> +		crtc->cm_is_degamma_srgb = true;
+>> +		out_tf->type = TF_TYPE_DISTRIBUTED_POINTS;
+>> +		out_tf->tf = TRANSFER_FUNCTION_SRGB;
+>> +		/*
+>> +		 * Note: although we pass has_rom as parameter here, we never
+>> +		 * actually use ROM because the color module only takes the ROM
+>> +		 * path if transfer_func->type == PREDEFINED.
+>> +		 *
+>> +		 * See more in mod_color_calculate_regamma_params()
+>> +		 */
+>> +		r = __set_legacy_tf(out_tf, regamma_lut,
+>> +				    regamma_size, has_rom);
+>> +	} else {
+>> +		regamma_size = has_regamma ? regamma_size : 0;
+>> +		r = amdgpu_dm_set_atomic_regamma(out_tf, regamma_lut,
+>> +						 regamma_size, has_rom, tf);
+>> +	}
+>> +
+>> +	/*
+>> +	 * CRTC DGM goes into DGM LUT. It would be nice to place it
+>> +	 * into the RGM since it's a more featured block but we'd
+>> +	 * have to place the CTM in the OCSC in that case.
+>> +	 */
+>> +	crtc->cm_has_degamma = has_degamma;
+>> +	dc_transfer_func_release(out_tf);
+>> +
+>> +	return r;
+>> +}
+>> +
+>> +
+>>   static int
+>>   map_crtc_degamma_to_dc_plane(struct dm_crtc_state *crtc,
+>>   			     struct dc_plane_state *dc_plane_state,
+
