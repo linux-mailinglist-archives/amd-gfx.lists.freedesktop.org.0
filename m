@@ -2,72 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA02B55703
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Sep 2025 21:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E34FB55E92
+	for <lists+amd-gfx@lfdr.de>; Sat, 13 Sep 2025 07:31:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F286410ECD6;
-	Fri, 12 Sep 2025 19:39:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7F7D10E0D5;
+	Sat, 13 Sep 2025 05:31:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YJwTomgd";
+	dkim=pass (2048-bit key; unprotected) header.d=fastmail.com header.i=@fastmail.com header.b="nDCInszP";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="PotKFIAz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
- [209.85.214.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C89810ECD6
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Sep 2025 19:39:01 +0000 (UTC)
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-24cb6c57a16so2775425ad.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Sep 2025 12:39:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757705941; x=1758310741; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3QEMk3cXOihtUvDdnlEvnXSOqVkqHxyd9IdOgCtXsvc=;
- b=YJwTomgdCKza/mj+r5b2IjSXRCeo7EnbaeOww2b7AbI327Ra+9EL5IYDcVh2hwGLLb
- C6sKg58/Vw0FXD9Al1bwk4kO4LG+URXDFOSLtCrlupMrwPD7JhU2dGB1T7K7sTH4mXpk
- 4K9YcxpDty9G5cZ5qou+EMPZx94Wfkch+fVxPwTZLs4tPTk/h0NT8R59Vc9DtClMbm3k
- 9vPv1/Iu23DRBx6Braa2s56Si6TowcH/3cWvSmoEyIfqWn/MaBMQIe8pkaZ1gZ8dZl0t
- jF0oIFhUMwoicMBqPuB1NCKeVdUN81kP8S5FwL4yjYSaEdvii4C+fNkDYF7JPIJDNmZL
- 4PUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757705941; x=1758310741;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3QEMk3cXOihtUvDdnlEvnXSOqVkqHxyd9IdOgCtXsvc=;
- b=M7w5VKRkyX6dRPT/hffNvq7haNYae1GU9/D0usq6Aq1nIrIX4zVQMQof82BMHa84Sj
- Cl6HzlhchgpUOclBAdZ04bwtH10DQujW1NDRRaQSkn310ADfGvUdhDKVwfPLJTko/Nac
- fGHr5WLbkNxPdCT+GwsjLSGlUlW2fn9aGhydTmmRF76S72HPhoflOHHnbjtpJ0U8ez99
- CcJrgUjFg3iXS0Iq/qjXFt/TpFfItBn+pQjbgbe9Ro87m7ayjs/esBozL903UaKcUY0a
- ZE3PJjqI0QJyXfOQNqyxgPKU+OOX+FJiB23wSKK7l+V8tEgY+GV7cg1PVA7aFp5AgSNZ
- n3PA==
-X-Gm-Message-State: AOJu0Yy5LeuC2Dd60jR9y40YwIXowNQREKkBGyg4DrNCPlD1AnvNggbT
- ZRhBydH081Y9ME8jbANszOX9/j2TU2oj6/csv1/5ZMsFXhMimPTaT2ryq3yIY6mkVTng5xYHpqg
- 5Qs8hUzHq4oMkklz5Qj+v3UbF2fJap97JiQ==
-X-Gm-Gg: ASbGnctDKYu8eWdP/EcA2wSCl6YzIL1DX90rHBsKyY3A2fO5GNqcEZ9YHt36ipSt1Yu
- /8xMOyZ5QxFrMvnbaUIoaQhv6dJNC2ndfCCMFS1G0Sr7aYyIF8UzZYgyiZm3CkIiTyz2A3fEdxF
- 21kEV4srTXA1SkCPBMJyHXi+wbybaTeN4Sl78B5LLtNAxru/1Y/URVf+wrSQACQGpBxS1QgQH1N
- xCuqkN/H98jS83lmw==
-X-Google-Smtp-Source: AGHT+IHL5T0EwD3WpEYDNMY6BN7bGJUcLMF3+Hgxtq28IUyAD6oSiBF+1yw4tIGyK/qZQaBig/5O/MYkTOc0dcGn6d4=
-X-Received: by 2002:a17:903:120d:b0:24e:af92:70de with SMTP id
- d9443c01a7336-25d26764222mr24813895ad.7.1757705940943; Fri, 12 Sep 2025
- 12:39:00 -0700 (PDT)
+X-Greylist: delayed 554 seconds by postgrey-1.36 at gabe;
+ Sat, 13 Sep 2025 05:31:12 UTC
+Received: from fout-a7-smtp.messagingengine.com
+ (fout-a7-smtp.messagingengine.com [103.168.172.150])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B49310E0D5;
+ Sat, 13 Sep 2025 05:31:12 +0000 (UTC)
+Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
+ by mailfout.phl.internal (Postfix) with ESMTP id 1E7E2EC01DD;
+ Sat, 13 Sep 2025 01:21:58 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+ by phl-compute-01.internal (MEProxy); Sat, 13 Sep 2025 01:21:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.com; h=
+ cc:cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+ :to; s=fm1; t=1757740918; x=1757827318; bh=cktaq3vi6+QiWEhOgyfud
+ QrPSODKg6pOr7hfniZrmPA=; b=nDCInszP3qlTONwSl+o1k2WggCNFldeqwQX/I
+ qhy036AdXI6l+B3NDFA1HPye76TpP8G3kOL8A0cKrUUwezolWz65bRQN0/622yLF
+ cig+EZaGdNArbTidaSGbZQ8j0wZQH6dVwNJTfwamqg9tV2PhIJvYA87JUE9BJRiZ
+ ZyCNG14xFESjNMPD4xj+uNcX9KjA79toBg1edahcbuCW2qkuBqxZnMrL5mhAuhAb
+ pwruJtU/AddAzwZr1SuC5wPrpGjQtyjyV15ULIkehWUQe0c91rxzT+q8dh4cVilj
+ Wpy2vQnoN7rh3OEB4PySEqjMuiFecSnIw1Yc4VDY3kDhx6CtA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+ :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+ 1757740918; x=1757827318; bh=cktaq3vi6+QiWEhOgyfudQrPSODKg6pOr7h
+ fniZrmPA=; b=PotKFIAzHkCqBRaxewaROMabGVHPnw9CzHn6CIwzfzIHpqaophi
+ /W1rVi3qkUP+krKtbKNDv7o7oIO6NxfX6nHWKSTVPKkeyDvicun9O/2lTDZV9xzH
+ PzxzIRdTKy+GavRUGVYH2b7nqTXmJv3obQYZkZXo1rLgpOxv18mEeWdxqNQfi0kr
+ KKzvhJqd2KHENxdXoIec9OeUokEow5UDs5XykfMta3FU5uu5ItPY2klH+HjudR5H
+ 9MhvzBBm0TqFT3pKo2GTw8Grt9fFCMRrZZRvt0p3f0g2xCwb7q/Ke3TrTKaDvHym
+ bW7plyMvdhPdc0aNuQgjXbot52eT5UjMY0w==
+X-ME-Sender: <xms:df_EaETEC2ZxHUmZJDRMaGzwYJpg0kOIwU5ujwTf1N_DKolHIXx7FA>
+ <xme:df_EaCYZ60wDaxwlket6mK-QhtJQ6OD0Tsh62-E0qBb0-koH9Ri7Ion5RZZmx5_Vb
+ PZgr_gxclWXrdPDjnw>
+X-ME-Received: <xmr:df_EaM-oS3JmKBKEOggUm1Prkv-eCFwO8t4k7jg2MjrxuGlgrqkksSbOCwAWtTf3Y4RzQIoQ6xd7j2kq7GnjmDQvzPxo8Hs0W83DGZbzN0ujeco1>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdefuddtkecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+ ihhlohhuthemuceftddtnecunecujfgurhephffvvefufffkofgggfestdekredtredttd
+ enucfhrhhomheplfgrmhgvshcuhfhlohifvghrshcuoegsohhlugdriihonhgvvdefjeef
+ sehfrghsthhmrghilhdrtghomheqnecuggftrfgrthhtvghrnhephfevgfekiedutdduhf
+ eggfeivdeuhfehtdffjedttdefkeeifeeijeevtefhgeehnecuvehluhhsthgvrhfuihii
+ vgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsgholhgurdiiohhnvgdvfeejfeesfh
+ grshhtmhgrihhlrdgtohhmpdhnsggprhgtphhtthhopeduhedpmhhouggvpehsmhhtphho
+ uhhtpdhrtghpthhtohephhgrrhhrhidrfigvnhhtlhgrnhgusegrmhgurdgtohhmpdhrtg
+ hpthhtohepshhunhhpvghnghdrlhhisegrmhgurdgtohhmpdhrtghpthhtohepshhiqhhu
+ vghirhgrsehighgrlhhirgdrtghomhdprhgtphhtthhopegrlhgvgigrnhguvghrrdguvg
+ hutghhvghrsegrmhgurdgtohhmpdhrtghpthhtoheptghhrhhishhtihgrnhdrkhhovghn
+ ihhgsegrmhgurdgtohhmpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomh
+ dprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprhhomhgr
+ nhdrlhhisegrmhgurdgtohhmpdhrtghpthhtoheprghlvhhinhdrlhgvvgdvsegrmhgurd
+ gtohhm
+X-ME-Proxy: <xmx:df_EaMnkX9_BzM1hn7sVx7e7J8h7FzBTpPjZwE7Mkw9nxaw3IcRu9g>
+ <xmx:df_EaBZfYC6HwZDogcSAPTk8aQD2nQTzmAq_wHb990HPYZvUqDV1cg>
+ <xmx:df_EaEPIDyXRVfS9JhHrL0CyyQQWmUcl-aPx6-xuEJLqYixY9Cp5Ag>
+ <xmx:df_EaJe07oxiZKvc0aqTCgKB-oPbczexXkXqZCRW8LZAVzYWn67bqw>
+ <xmx:dv_EaB-2Kp6Y4uGFk_hB7uVwUzSqzWlZSkXuX_xmPUP2LHAerFQrotjl>
+Feedback-ID: ibd7e4881:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 13 Sep 2025 01:21:54 -0400 (EDT)
+From: James Flowers <bold.zone2373@fastmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, roman.li@amd.com, alvin.lee2@amd.com,
+ skhan@linuxfoundation.org
+Cc: James Flowers <bold.zone2373@fastmail.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-kernel-mentees@lists.linux.dev
+Subject: [PATCH] drm/amd/display: Use kmalloc_array() instead of kmalloc()
+Date: Fri, 12 Sep 2025 22:19:52 -0700
+Message-ID: <20250913052109.2638-1-bold.zone2373@fastmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-References: <20250911172449.3340848-1-alexander.deucher@amd.com>
- <20250911172449.3340848-3-alexander.deucher@amd.com>
- <CADnq5_PNL_-YjyYQgNtz5xQKBxxXWdrvKzM6YT4wYZCOE=ooNQ@mail.gmail.com>
-In-Reply-To: <CADnq5_PNL_-YjyYQgNtz5xQKBxxXWdrvKzM6YT4wYZCOE=ooNQ@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 12 Sep 2025 15:38:49 -0400
-X-Gm-Features: Ac12FXzSZW0ae-TEPXWbCIxeU7q9-sZC3K_D0gsgCuqH_JxbZg6KDVUEtGgu8tM
-Message-ID: <CADnq5_OgyiAZJudNfbx9Xt5uiXAXZV1Pe7d2bZPaaD4RdE0GSQ@mail.gmail.com>
-Subject: Re: [PATCH 3/5] drm/amdgpu/sdma5.2: adjust SDMA limits
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, christian.koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,52 +102,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 11, 2025 at 2:18=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com=
-> wrote:
->
-> On Thu, Sep 11, 2025 at 1:25=E2=80=AFPM Alex Deucher <alexander.deucher@a=
-md.com> wrote:
-> >
-> > SDMA 5.2.x has increased transfer limits.
-> >
-> > v2: fix harder, use shifts to make it more obvious
-> >
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/a=
-md/amdgpu/sdma_v5_2.c
-> > index a8e39df29f343..bf227eadbe487 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > @@ -2065,11 +2065,11 @@ static void sdma_v5_2_emit_fill_buffer(struct a=
-mdgpu_ib *ib,
-> >  }
-> >
-> >  static const struct amdgpu_buffer_funcs sdma_v5_2_buffer_funcs =3D {
-> > -       .copy_max_bytes =3D 0x400000,
-> > +       .copy_max_bytes =3D 1 << 30,
-> >         .copy_num_dw =3D 7,
-> >         .emit_copy_buffer =3D sdma_v5_2_emit_copy_buffer,
-> >
-> > -       .fill_max_bytes =3D 0x400000,
-> > +       .fill_max_bytes =3D 1 << 30,
->
-> The hw docs and PAL differ here.  I've asked the hw designers to clarify.
+Documentation/process/deprecated.rst recommends against the use of kmalloc
+with dynamic size calculations due to the risk of overflow and smaller
+allocation being made than the caller was expecting. This could lead to
+buffer overflow in code similar to the memcpy in
+amdgpu_dm_plane_add_modifier().
 
-The HW team verified that the hardware supports the extended range for
-both copies and fills.
+Signed-off-by: James Flowers <bold.zone2373@fastmail.com>
+---
+I see that in amdgpu_dm_plane_get_plane_modifiers, capacity is initialized to 
+only 128, but it is probably preferable to refactor.
+ 
+Tested on a Steam Deck OLED with no apparent regressions using these test suites from
+igt-gpu-tools: 
+1) kms_plane
+2) amd_plane
+3) amd_fuzzing
+4) testdisplay 
 
-Alex
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
->
-> Alex
->
-> >         .fill_num_dw =3D 5,
-> >         .emit_fill_buffer =3D sdma_v5_2_emit_fill_buffer,
-> >  };
-> > --
-> > 2.51.0
-> >
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index b7c6e8d13435..b587d2033f0b 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -146,7 +146,7 @@ static void amdgpu_dm_plane_add_modifier(uint64_t **mods, uint64_t *size, uint64
+ 
+ 	if (*cap - *size < 1) {
+ 		uint64_t new_cap = *cap * 2;
+-		uint64_t *new_mods = kmalloc(new_cap * sizeof(uint64_t), GFP_KERNEL);
++		uint64_t *new_mods = kmalloc_array(new_cap, sizeof(uint64_t), GFP_KERNEL);
+ 
+ 		if (!new_mods) {
+ 			kfree(*mods);
+@@ -732,7 +732,7 @@ static int amdgpu_dm_plane_get_plane_modifiers(struct amdgpu_device *adev, unsig
+ 	if (adev->family < AMDGPU_FAMILY_AI)
+ 		return 0;
+ 
+-	*mods = kmalloc(capacity * sizeof(uint64_t), GFP_KERNEL);
++	*mods = kmalloc_array(capacity, sizeof(uint64_t), GFP_KERNEL);
+ 
+ 	if (plane_type == DRM_PLANE_TYPE_CURSOR) {
+ 		amdgpu_dm_plane_add_modifier(mods, &size, &capacity, DRM_FORMAT_MOD_LINEAR);
+-- 
+2.51.0
+
