@@ -2,82 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F0D6B55E91
-	for <lists+amd-gfx@lfdr.de>; Sat, 13 Sep 2025 07:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C62B571AE
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Sep 2025 09:39:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F36C910E0A9;
-	Sat, 13 Sep 2025 05:28:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86E0110E2BE;
+	Mon, 15 Sep 2025 07:39:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="meufiD28";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kOTj8Lbj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF90C10E0A9
- for <amd-gfx@lists.freedesktop.org>; Sat, 13 Sep 2025 05:28:01 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-24c89867a17so26036605ad.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Sep 2025 22:28:01 -0700 (PDT)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BFF310E045
+ for <amd-gfx@lists.freedesktop.org>; Sun, 14 Sep 2025 17:25:39 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-b042eb09948so728130566b.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 14 Sep 2025 10:25:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757741281; x=1758346081; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=W3ldCaMOX0+OX6qHc0Svc9c9K0kmyDROUTAoueH9CdA=;
- b=meufiD28pNUvYA2i1jzvJsOJxyIoPuwoGXOAd3gInG3SPAlzGSxqpkTM+7ecAb6UJD
- 2RWufSnH3538hlVZF+EvWvhuWA6XWp3R6xX88VAMRpM5zZFVeJX6vmEOf/PBlKUshekC
- EAQBmslunPN/nmCs7r6I16t1m6FcRt4AbhfghE4g9teXduqyGptt13d+tjHyae+AZMSv
- EyVw1BswX/cPdkaT6biYxGsJrA+0NO4sMZN07nxxB2oiWV8o2eUlQKUdxq4AMxzJdplK
- Q/ikUs4ozNlVHqW3t+BdldFVG2Qi8nhq+Sb7+xmUQ/Eep/eTFIPaojO1o02sxXiIVq+3
- 00Iw==
+ d=gmail.com; s=20230601; t=1757870738; x=1758475538; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:from:content-language
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=G1e+KbGXFu9VcGvJSdmZ1O17Fz6KR5HDN0NkR/H9+bk=;
+ b=kOTj8Lbjbew5+4pc2Mads2i4CNXZ/bRcjeR+YPXcTDAcqsRAl9aTH6mqc7CWEbmBpJ
+ 6KeTJbdXC13YEq7nowH9/Xtab1ZVGbmTCoQwd0bXQEdoRVYrfsn5hDIwi81eE/xVIGrs
+ ycDb3X0maiX2aGDebQ8YT67a5kQL+ARNy9jbntkIVGBJjtu//8rALnA0FTxFnphiCha3
+ XYgTMz7d00Uzw7TNlKYlXA7ETI/bSjWrcvDPPbLHkXAORZPKGEfByYx5W06jRbd8iWrI
+ 9dq8GZT1WVhVbOrfZH3rq5PT31zbQ6KDQ6NvrPaXbyq8Un2OuYWTHmMvOgZTJi8QjZrY
+ MfoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757741281; x=1758346081;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=W3ldCaMOX0+OX6qHc0Svc9c9K0kmyDROUTAoueH9CdA=;
- b=jpmXw9k4vYvZ10TDxg31pm2PoYPGap7aEdTBxKrTHZlnIUkSuJLstTY6RXFOGaeM8w
- IyLojMOXAV87+rXhxJcqWp9H8OtADjKH+v49BlU1crmn5Z3ubQp3hSAG457J2YuTbIiL
- 4c52mT0TTht+JS3rM4rlA7jeQiOCJGnrf7oUZwEzey0+EboYv6/qFi6gzkYRb2rO8y5I
- prOylyl50DIHbXpo/yJ3TWzyR/lgfq0v74YaErPthgyuZZJGSTch2PgHqtWTVvG1YUV4
- 0QvlBh1YVl2Vhx5xR56ZdqdMcbvTUYBEy2dfDoeeSAarUcLYO9lm/dvV3lJBeGJP/e1t
- arFA==
-X-Gm-Message-State: AOJu0YxAxUCCLxHWJE4M8o/Fm8cANHvEZJy/GTxzNMWxBXdtEChYay2i
- OfpF4K3/eMljZX9PhY4BtCP6vUa1MfAaD4rfFrJ2MIzrAf9c9Psis0x0
-X-Gm-Gg: ASbGncsZfoIuUi8ouh4SRvPcKVs8oF94NAT6LI9iF2kk0n7OMy9sKD5l+8EILRXKHCM
- yvbtZ945GgRnXBEdbyflpkuw1cuFs+qRY6etnDFlw6YBSvPLiXFo9SA+nho0Hks+rB1fvHyobUg
- vL8xAGNCY9W4oeDLuo5LcGeNv65zyplu3/6XbC78meR0/y9YqkDRNyED15uk4EEpGdpGjbON/WQ
- iO19vwjOfgywjIPuGSXWd6rYNz0S4opaQAlwk7U654VKKKTTraj/AH2s9WjjcCQxr1z4o0OnYtj
- eCZZuWgJGc0afwVQ2MMdEn+pd+wBeBNXMkTy785BYEDRowU8MX6DUzDioEOJUYLN7LmrhzhpHtj
- FhoGUMIhp73Chf8IOiFul6EdGXmhDrpJEyX6M/RpN7wv46bPW36Bxts1Oj9cw+OAlQlOs3bffZw
- BU1g==
-X-Google-Smtp-Source: AGHT+IFHLW00Z/OxGUErCreVPjbmJv2gg8gctX10HT2F7QMLNdhCALyKsOaoYhqLd53lORdWH7WIlw==
-X-Received: by 2002:a17:902:d48a:b0:24c:7b94:2f57 with SMTP id
- d9443c01a7336-25d26865814mr57222315ad.36.1757741281058; 
- Fri, 12 Sep 2025 22:28:01 -0700 (PDT)
-Received: from ?IPv6:2001:4c4e:24d7:a100:a3f1:d8a2:d12f:314d?
- ([2001:4c4e:24d7:a100:a3f1:d8a2:d12f:314d])
+ d=1e100.net; s=20230601; t=1757870738; x=1758475538;
+ h=content-transfer-encoding:cc:to:subject:from:content-language
+ :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=G1e+KbGXFu9VcGvJSdmZ1O17Fz6KR5HDN0NkR/H9+bk=;
+ b=GO711CDjkkOec8e5mHohk5UNAIzIMheEKKquoefND+eCsHptMoZV2+1brZzDpuRoD5
+ q7z9/QZHiaj18o2eFieNjFlQhEbM3geTPResFlbdnD/Foku6qGnduQpnICTfVKaGMDDw
+ Ft0txma7nwBiNg5V97JS/igMJpZouQtJ6mS81Kk7M/4NjXXqLWAjxpHB+oE/l9YkBUHj
+ Z7cis4Wg+/BRfNPDLTycX+xXWrMCMyOZ3o33mwNV/Pvi8Hgw+uz4UMth6yS3RZsvOEjG
+ DshjQR1adgxFo80n/PNZzyjH7bwZLjL4iTVbZ4mk42kYnjlW6yt8n+joL4YNp8HFMEpt
+ 8pUQ==
+X-Gm-Message-State: AOJu0YyzUfk1zDtk/0qorg+HwLlvydRg4iTqWUBEWuWZv/+mhLx9jPSI
+ d1d0WeTZLevFgRMQ+nuZtK4pcw1FimpMRoWI2zIw136U4liE1N76Kh2x
+X-Gm-Gg: ASbGncuCuqpRd9qaE57Wn8GZ+Re/JJqAOtwlgVd9iypxnFFgn0SA1W0KuN61Q77XF1i
+ 3c/onKgx/9phWJVm3PI9XEidiU75KCQPQmYg/4WlMBmi14xUsLJEi9F1UVWh7GRhOgqzyKryedz
+ 3FJ6E/Qd3amfk1lvGBs6mC2uH45tYX51NKWiQHm+MfVnWuxVYEy7OSBKobz/dCtKI2BjAR78YjP
+ S8lVa1a1PMNWMfs0gr6DsBrmEYGnDhb4b5KF8kp8Ask/uR131/5cc9xBi+kxKNtoihzck0rUDCl
+ 0kTEaRnIb62w6yBQgQjIbTo3MAaYol06EDyVIlkerzhBN30JeiisvbBC86r1upGmUn7DoPabndb
+ 3z/O5JLZ/VBQ5efp3Zp/J4wyQawXeR+c1suIzkN4CTXOPwge8bfQvprMpJ7rXJ8TswsRG2zhva5
+ GwG9Ktbv3j4rOfMqkdyJrOpQ==
+X-Google-Smtp-Source: AGHT+IGXXVdrVK0u4cCSFNgAfQf47ACkyGsAKEWoSv4adQsY/7oMdFXgo5U3XdkN5Q1lPFbogG7ihQ==
+X-Received: by 2002:a17:907:9617:b0:b04:c7c5:499d with SMTP id
+ a640c23a62f3a-b07c3833a41mr894320266b.47.1757870737739; 
+ Sun, 14 Sep 2025 10:25:37 -0700 (PDT)
+Received: from ?IPV6:2607:fa49:655f:db00:25c1:6b2c:46ab:8758?
+ ([2607:fa49:655f:db00:25c1:6b2c:46ab:8758])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-25c3a84a744sm64511285ad.74.2025.09.12.22.27.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Sep 2025 22:28:00 -0700 (PDT)
-Message-ID: <8acbb3b27a933b60b17b06a03454cc171f1cefc8.camel@gmail.com>
-Subject: Re: [PATCH 3/5] drm/amdgpu/sdma5.2: adjust SDMA limits
-From: timur.kristof@gmail.com
-To: Alex Deucher <alexdeucher@gmail.com>, Alex Deucher
- <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, christian.koenig@amd.com
-Date: Sat, 13 Sep 2025 07:27:53 +0200
-In-Reply-To: <CADnq5_OgyiAZJudNfbx9Xt5uiXAXZV1Pe7d2bZPaaD4RdE0GSQ@mail.gmail.com>
-References: <20250911172449.3340848-1-alexander.deucher@amd.com>
- <20250911172449.3340848-3-alexander.deucher@amd.com>
- <CADnq5_PNL_-YjyYQgNtz5xQKBxxXWdrvKzM6YT4wYZCOE=ooNQ@mail.gmail.com>
- <CADnq5_OgyiAZJudNfbx9Xt5uiXAXZV1Pe7d2bZPaaD4RdE0GSQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+ 4fb4d7f45d1cf-62edb7d9cbbsm5693360a12.15.2025.09.14.10.25.36
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 14 Sep 2025 10:25:37 -0700 (PDT)
+Message-ID: <12e266b6-b708-43c0-8ff3-db0058c35742@gmail.com>
+Date: Sun, 14 Sep 2025 13:25:34 -0400
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US, fr
+From: =?UTF-8?B?SsOpcsO0bWUgTMOpY3V5ZXI=?= <jerome.4a4c@gmail.com>
+Subject: [REGRESSION] AMD GPU not detected since 6.16.4 commit c97636cc83d4
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 15 Sep 2025 07:39:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,74 +88,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2025-09-12 at 15:38 -0400, Alex Deucher wrote:
-> On Thu, Sep 11, 2025 at 2:18=E2=80=AFPM Alex Deucher <alexdeucher@gmail.c=
-om>
-> wrote:
-> >=20
-> > On Thu, Sep 11, 2025 at 1:25=E2=80=AFPM Alex Deucher
-> > <alexander.deucher@amd.com> wrote:
-> > >=20
-> > > SDMA 5.2.x has increased transfer limits.
-> > >=20
-> > > v2: fix harder, use shifts to make it more obvious
-> > >=20
-> > > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 4 ++--
-> > > =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > > b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > > index a8e39df29f343..bf227eadbe487 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > > @@ -2065,11 +2065,11 @@ static void
-> > > sdma_v5_2_emit_fill_buffer(struct amdgpu_ib *ib,
-> > > =C2=A0}
-> > >=20
-> > > =C2=A0static const struct amdgpu_buffer_funcs sdma_v5_2_buffer_funcs =
-=3D
-> > > {
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .copy_max_bytes =3D 0x400000,
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .copy_max_bytes =3D 1 << 30,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .copy_num_dw =3D 7,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .emit_copy_buffer =3D sdma=
-_v5_2_emit_copy_buffer,
-> > >=20
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .fill_max_bytes =3D 0x400000,
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .fill_max_bytes =3D 1 << 30,
-> >=20
-> > The hw docs and PAL differ here.=C2=A0 I've asked the hw designers to
-> > clarify.
->=20
-> The HW team verified that the hardware supports the extended range
-> for
-> both copies and fills.
->=20
-> Alex
+Since 6.16.4, I am no longer able to use my dGPU.
 
-Hi Alex,
+It is visible in nvtop for a brief moment after the system boots,
+but once it is D3cold, it can't wake up (not in nvtop anymore).
 
-This is still pretty confusing.
-According to PAL, only SDMA v6 has the extended range for fills, and it
-can do 4 bytes fewer.
+Specifications:
+Laptop with
+AMD Ryzen 5 4600H (iGPU)
+AMD Radeon RX 5500M (dGPU), not overclocked (at least manually), goes to 
+D3cold often
+~Arch Linux, KDE, Wayland, tried multiple kernels before and after 6.16.4.
 
-Are you sure that PAL is wrong about this?
+Kernel versions:
+dGPU works fine in 6.16.3 and before.
+The issue started appearing in 6.16.4 and persists with 6.16.7 and 6.17-rc5.
+Bisect using aur/linux-git remote torvalds/linux found: 
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=c97636cc83d4591c0c91b6f80eaca3434d7d3e3a
 
-For reference:
-https://github.com/GPUOpen-Drivers/pal/blob/dev/src/core/hw/gfxip/sdma/gfx1=
-0/gfx10DmaCmdBuffer.cpp
-https://github.com/GPUOpen-Drivers/pal/blob/dev/src/core/hw/gfxip/sdma/gfx1=
-2/gfx12DmaCmdBuffer.cpp
+dmesg after starting nvtop:
 
-MaxCopySize on GFX10: 1 << 22
-MaxCopySize on GFX10.3+: 1 << 30
+[   32.931442] [drm] PCIE GART of 512M enabled (table at 
+0x0000008000000000).
+[   32.931460] amdgpu 0000:03:00.0: amdgpu: PSP is resuming...
+[   33.086921] amdgpu 0000:03:00.0: amdgpu: reserve 0x900000 from 
+0x80fd000000 for PSP TMR
+[   33.130797] amdgpu 0000:03:00.0: amdgpu: RAS: optional ras ta ucode 
+is not available
+[   33.136900] amdgpu 0000:03:00.0: amdgpu: RAP: optional rap ta ucode 
+is not available
+[   33.136903] amdgpu 0000:03:00.0: amdgpu: SECUREDISPLAY: optional 
+securedisplay ta ucode is not available
+[   33.136907] amdgpu 0000:03:00.0: amdgpu: SMU is resuming...
+[   33.167904] amdgpu 0000:03:00.0: amdgpu: OverDrive is not enabled!
+[   33.167909] amdgpu 0000:03:00.0: amdgpu: resume of IP block <smu> 
+failed -22
+[   33.167912] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_resume 
+failed (-22).
 
-MaxFillSize on GFX10-10.3: (1 << 22 - 1) & ~3
-MaxFillSize on GFX11+: (1 << 30 - 1) & ~3
-This makes sense because they program the count field in the packet
-using the byte count minus four.
+OverDrive is a warning. The two last logs are errors.
+
+
+Building with this change on top of commit 22f20375f5b7 fixed the issue.
+https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/22f20375f5b71f30c0d6896583b93b6e4bba7279
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c 
+b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index b47cb4a5f488..408f05dfab90 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -2236,7 +2236,7 @@ static int smu_resume(struct amdgpu_ip_block 
+*ip_block)
+                         return ret;
+         }
+
+-       if (smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
++       if (smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL && 
+smu->od_enabled) {
+                 ret = smu_od_edit_dpm_table(smu, 
+PP_OD_COMMIT_DPM_TABLE, NULL, 0);
+                 if (ret)
+                         return ret;
+
+
+dGPU behaves normally now.
+
+...
+[  275.490129] amdgpu 0000:03:00.0: amdgpu: SMU is resuming...
+[  275.521159] amdgpu 0000:03:00.0: amdgpu: SMU is resumed successfully!
+[  275.522179] amdgpu 0000:03:00.0: amdgpu: kiq ring mec 2 pipe 1 q 0
+[  275.525009] amdgpu 0000:03:00.0: [drm] Cannot find any crtc or sizes
+[  275.525023] amdgpu 0000:03:00.0: amdgpu: ring gfx_0.0.0 uses VM inv 
+eng 0 on hub 0
+...
+
 
 Thanks,
-Timur
+Jérôme
+
