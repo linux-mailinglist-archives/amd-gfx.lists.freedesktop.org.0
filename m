@@ -2,73 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD018B57BFD
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Sep 2025 14:55:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCCFFB576CB
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Sep 2025 12:42:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FC4F10E494;
-	Mon, 15 Sep 2025 12:55:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3C110E443;
+	Mon, 15 Sep 2025 10:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AnADh7kL";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KPVVWAEr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 263AF10E3BD;
- Mon, 15 Sep 2025 09:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757927808; x=1789463808;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CMC8x2eBSJ4UoaxkrrTOqREVcL7ID4H/ORR4uPkIaKs=;
- b=AnADh7kL0Z6Y9dUgxb//Hgk/g5oah9T4FLyVaJ5KCCZ15jRKJ1Xhj3BG
- 9OTEzMfH1zUELSUgQxyaXSq2UBj5b+rH7YB0SMYUbKwkq6SgjNKPUX7TV
- zGIaLlmU4F7YFFlv+t1Cx2jx9cM3Yx68Hli3VEMvJzu+0Q84GcXTm5W9h
- nXKRYB+4iBA938zy03M9hSyz3dyMmAmwBL+Y3rQ7acAwM1VYOXYktN7zl
- 6F9rCEsVQinf/63MuOVNtsijwE6DKJU5Bom4Xg4W0DyDi5C8POQveCK/Q
- NZJGyk1Zas389jgS6uIQQmMRZMdX6jXsPHjNtNS1fD8NE9xqB+8xougt8 Q==;
-X-CSE-ConnectionGUID: soG3mojCRjW5RdwFZiH9LQ==
-X-CSE-MsgGUID: TIZnINDzQIKMKwaE46MjFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11553"; a="70857641"
-X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="70857641"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 02:16:47 -0700
-X-CSE-ConnectionGUID: 0w9WvEPQRPa+8YXnCTITGQ==
-X-CSE-MsgGUID: SJZwvFJSQ4O4aV07xwZEpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="174392724"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.39])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 02:16:39 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Michael J . Ruhl" <mjruhl@habana.ai>, linux-kernel@vger.kernel.org
-Cc: linux-doc@vger.kernel.org,
- =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH v2 11/11] PCI: Convert BAR sizes bitmasks to u64
-Date: Mon, 15 Sep 2025 12:13:58 +0300
-Message-Id: <20250915091358.9203-12-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
-References: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013004.outbound.protection.outlook.com
+ [40.93.196.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC28810E443
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 10:42:21 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=F0tiQf+cAWr0vy6lHAjGB0B04rB9M+FlPtruUtDZZqXngd799KiMWrYM+/kuK614jFGJLPJT4xXlpnU+lnrVGDweGB1OyqDHTG4tp4fpu2Z7mstRgR85Lso493XZX5U7dAHGVQeB8foHnFfd3KfuEoJDtcLYsSWUp7qAESOExL8QoPgkHwM5SPPVYtvwNodFUBHWYEcnhx0SYJCEu5xYB+QOEzPXJWanNfd5VYw5KsDL48WX8SXQmqawrheOov8y/FVLrbWW72UOS4bjyMIZLmFYwDLuD0FOhm+t6BrLUNCCu2IPeWQz1bgQ2GaCC3EjJhdNcU5hP6+FoHCpOwWcgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VjdGq8tjGWHIps/ou2jSjYxcdCn+q95QQfKdrGdrOlE=;
+ b=ThenJbcHIbYL896Uy8+69Pk3qnbXJ+fz9BeLBm29u6SeS69zOLfWawstnoCHIeXCo/2fwchRPRrRCGogVEPz+9C1H4L4BwIDz6y3a4n8peibOPVWW1Eait8PguY4tCDOlwks4kzVNQx90mDYMEybvnDTTtz9mf+JUYBSeLLOX2Irbw9eUdwG3xl8DXkPe7KhzReAHnsOJ3jMwrBeTL5NdbGad7cswklliOsSgyJKKIYC0XG8UN+dRIw67FD5MGMPiihbDZ8WXywVPwD/rTbxpPq3eb9r0m7+OJBuNOT9xvEiIC11ANVPlpfgCzMmOWykdAoGp+6FHedg8h+LJoYesw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VjdGq8tjGWHIps/ou2jSjYxcdCn+q95QQfKdrGdrOlE=;
+ b=KPVVWAErDupWt/qSwWWJcKrM4lOL/9tlawZOaaaZKzxme5qakGqjI8h9mJ+qcrIW/Y8RVo8Qy8H3X2i8GT5P0w422Dsz8Wi/h1UC1Okr4CgWyt/Wh77qT+Cmc7F+7aVmn93DwUu4R6dBzRtrqR0Jd1ohJGl64s5RUho3q3W10qo=
+Received: from BN8PR15CA0012.namprd15.prod.outlook.com (2603:10b6:408:c0::25)
+ by BN5PR12MB9511.namprd12.prod.outlook.com (2603:10b6:408:2a9::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Mon, 15 Sep
+ 2025 10:42:17 +0000
+Received: from BL6PEPF0001AB4D.namprd04.prod.outlook.com
+ (2603:10b6:408:c0:cafe::6c) by BN8PR15CA0012.outlook.office365.com
+ (2603:10b6:408:c0::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.20 via Frontend Transport; Mon,
+ 15 Sep 2025 10:42:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF0001AB4D.mail.protection.outlook.com (10.167.242.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9137.12 via Frontend Transport; Mon, 15 Sep 2025 10:42:17 +0000
+Received: from work.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 15 Sep
+ 2025 03:42:12 -0700
+From: David Rosca <david.rosca@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: David Rosca <david.rosca@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu/userq: Add syncobj_points to signal ioctl
+Date: Mon, 15 Sep 2025 12:41:46 +0200
+Message-ID: <20250915104146.11185-2-david.rosca@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 15 Sep 2025 12:55:07 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4D:EE_|BN5PR12MB9511:EE_
+X-MS-Office365-Filtering-Correlation-Id: f2f4d79d-574e-493c-930b-08ddf4448a68
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?NjSW3AFtuwTNLYKK1mXdldRFjxmmqTtC2LQ3gOxzlBgKorSSpqyIQM7LOA2X?=
+ =?us-ascii?Q?KL23/uGbV/qqiDL+6lqHRMR9y/XsBSalXGyUbo9EYJjA1wQNibShOp8hdQ1H?=
+ =?us-ascii?Q?2ciGUoUXR2CXG68HZMhY/w3Az6VLM5iLRIIrVD/+QHG5aW0//lBu+AftQjWl?=
+ =?us-ascii?Q?QlE6Yqd5DaoBzDOU7RHQBfd2q/gTd+oQM7pJoF5fJ3fBSZkbSWPm2od0Huwk?=
+ =?us-ascii?Q?aijEKuOZYkiijaYBoAkT+cb82iX6HEIT8aYgwJNWL6ayv78QsR0vytP346QP?=
+ =?us-ascii?Q?a2jtTp79eRy2S7V2edyUIjBi0WhbXgauGsJdsNp4nbCxvgV2avppdgfoSGc9?=
+ =?us-ascii?Q?LDVEPOndMvCvdZShilzk03bGCCFJvuDph0QKDyRdPn4f0afSnsOOoWf8o2wi?=
+ =?us-ascii?Q?FfvWu3jsX2UnPhMHGIPT8yvjk3yqG9QYbr0ZHpH5wy7R8rbI62BerVoiXlso?=
+ =?us-ascii?Q?BjknhIetz//cLNC0d0XFL+aVSZrQF8yxJR32D9DMoKjwo0kwueHAk5PFKzai?=
+ =?us-ascii?Q?w8L0ppSRpDqwNyPhBJj/OqlNqa+xcpSc7CiI+NTqBP4faZpBslF3ZA2bIh8F?=
+ =?us-ascii?Q?e7PaOc/fOnTWd7Xjhzzj9BVzmvvlhrbYVLPjOuTpJPZydajdL0RqVbORX382?=
+ =?us-ascii?Q?yEfOwr/sqZcFwSBzWHwxfsPSNm4rTZZ/LX5UhgoD6fZJZkLT5/hsMeO/xwRm?=
+ =?us-ascii?Q?rFA9C+uqrmiCHhVnlGpbq32z3vmOD6vlmj+En6U/de1XpOa6Nj+tmwUbop4s?=
+ =?us-ascii?Q?QFB7PtU0gA+iJ8g+E4LKSa/n1KIkR8J5kVT3RrsdMH4YL/iBXlr4xcO0mem3?=
+ =?us-ascii?Q?GU7iD7NbXvKH53GY22s2AmqAJYeIroM9DwI3xnGDWSqghsoMLxj0s5T/ENFg?=
+ =?us-ascii?Q?FXywFboXEiHh5fvW6bI/qDSoFcqB58ya0KV+59/4o3K0rw04zMROKomqPTW4?=
+ =?us-ascii?Q?0mCXHfyu7RfOHL74XKEYaxClfuvOS7xKHIEWJoEntMtUpBz/58dHygJMFKei?=
+ =?us-ascii?Q?mFhNwGOvmSsoe9Jhpg/1mBxqq0Y0Rthh2fs14F39Z04QP8WCJ6tRDRBmB4/k?=
+ =?us-ascii?Q?3jq+AC555HkAqkUHC6rRfsmeF+JO8cT+GwxzQaepAW10IJzmWRsQSYpXfO/y?=
+ =?us-ascii?Q?6ekPzcb9qVBcSiBvzB0Uu725F/wZ1KJb/j7g3HNeCSefPylZb+qYKYNWKZN5?=
+ =?us-ascii?Q?efbmsmnQ/lpdswhPbNm9Xmb2DvoHOOB5zgXWBlO8xe+NpreEk277cGfODiS4?=
+ =?us-ascii?Q?24Arx46M68Ji0CAUg6ntFIeIQn6P5giO5zn5R4iE7Vu+sacbz4U3gpc0fjyo?=
+ =?us-ascii?Q?SWtFGkgtS7LUBa/c4wbD3BUllNRmiDgoWl0EOAyuuKioWiBVuqTK8jbzh4H2?=
+ =?us-ascii?Q?dZaIhNqgQjmgnFsGLCwk8MX1UiyZwKYOCe3kQx3lf1+SqC0SoI/VHeg0TbV8?=
+ =?us-ascii?Q?EmaATsTOb2oUndOxyd845C+SjFhutNU7UhSVkl70RhYQph9HCN+rcX6PHJX1?=
+ =?us-ascii?Q?UI87P8q+34jMJnf1SyJSIVYfLv/Q9ibG1TpO?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2025 10:42:17.3105 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2f4d79d-574e-493c-930b-08ddf4448a68
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB4D.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN5PR12MB9511
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,100 +131,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PCIe r6.2 section 7.8.6 defines resizable BAR sizes beyond the
-currently supported maximum of 128TB which will require more than u32
-to store the entire bitmask.
-
-Convert Resizable BAR related functions to use u64 bitmask for BAR
-sizes to make the typing more future-proof.
-
-The support for the larger BAR sizes themselves is not added at this
-point.
-
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: David Rosca <david.rosca@amd.com>
 ---
- drivers/gpu/drm/xe/xe_vram.c | 2 +-
- drivers/pci/iov.c            | 2 +-
- drivers/pci/pci-sysfs.c      | 2 +-
- drivers/pci/rebar.c          | 4 ++--
- include/linux/pci.h          | 2 +-
- 5 files changed, 6 insertions(+), 6 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 49 +++++++++++++++----
+ include/uapi/drm/amdgpu_drm.h                 |  5 ++
+ 2 files changed, 45 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index ca02744fb369..22b998727eb2 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -70,7 +70,7 @@ static void resize_vram_bar(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+index 95e91d1dc58a..5b2cdc49a28c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+@@ -460,10 +460,11 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_gem_object **gobj_read = NULL;
+ 	struct amdgpu_usermode_queue *queue;
+ 	struct amdgpu_userq_fence *userq_fence;
+-	struct drm_syncobj **syncobj = NULL;
++	struct amdgpu_cs_post_dep *syncobj = NULL;
+ 	u32 *bo_handles_write, num_write_bo_handles;
+ 	u32 *syncobj_handles, num_syncobj_handles;
+ 	u32 *bo_handles_read, num_read_bo_handles;
++	u64 *syncobj_points = NULL;
+ 	int r, i, entry, rentry, wentry;
+ 	struct dma_fence *fence;
+ 	struct drm_exec exec;
+@@ -475,19 +476,37 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
+ 	if (IS_ERR(syncobj_handles))
+ 		return PTR_ERR(syncobj_handles);
  
- 		if (!pci_rebar_size_supported(pdev, LMEM_BAR, rebar_size)) {
- 			drm_info(&xe->drm,
--				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%x. Leaving default: %lluMiB\n",
-+				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%llx. Leaving default: %lluMiB\n",
- 				 (u64)pci_rebar_size_to_bytes(rebar_size) >> 20,
- 				 pci_rebar_get_possible_sizes(pdev, LMEM_BAR),
- 				 (u64)current_size >> 20);
-diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-index 51844a9176a0..d2741c4f3315 100644
---- a/drivers/pci/iov.c
-+++ b/drivers/pci/iov.c
-@@ -1370,7 +1370,7 @@ EXPORT_SYMBOL_GPL(pci_iov_vf_bar_set_size);
- u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs)
- {
- 	u64 vf_len = pci_resource_len(dev, resno);
--	u32 sizes;
-+	u64 sizes;
++	if (args->syncobj_points) {
++		syncobj_points = memdup_user(u64_to_user_ptr(args->syncobj_points),
++					     sizeof(u64) * num_syncobj_handles);
++		if (IS_ERR(syncobj_points)) {
++			r = PTR_ERR(syncobj_points);
++			goto free_syncobj_handles;
++		}
++	}
++
+ 	/* Array of pointers to the looked up syncobjs */
+ 	syncobj = kmalloc_array(num_syncobj_handles, sizeof(*syncobj), GFP_KERNEL);
+ 	if (!syncobj) {
+ 		r = -ENOMEM;
+-		goto free_syncobj_handles;
++		goto free_syncobj_points;
+ 	}
  
- 	if (!num_vfs)
- 		return 0;
-diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
-index 5eea14c1f7f5..b6920114d538 100644
---- a/drivers/pci/pci-sysfs.c
-+++ b/drivers/pci/pci-sysfs.c
-@@ -1544,7 +1544,7 @@ static ssize_t __resource_resize_show(struct device *dev, int n, char *buf)
- 	pci_config_pm_runtime_get(pdev);
+ 	for (entry = 0; entry < num_syncobj_handles; entry++) {
+-		syncobj[entry] = drm_syncobj_find(filp, syncobj_handles[entry]);
+-		if (!syncobj[entry]) {
++		syncobj[entry].chain = NULL;
++		syncobj[entry].syncobj = drm_syncobj_find(filp, syncobj_handles[entry]);
++		if (!syncobj[entry].syncobj) {
+ 			r = -ENOENT;
+ 			goto free_syncobj;
+ 		}
++		if (syncobj_points && syncobj_points[entry]) {
++			syncobj[entry].point = syncobj_points[entry];
++			syncobj[entry].chain = dma_fence_chain_alloc();
++			if (!syncobj[entry].chain) {
++				r = -ENOMEM;
++				goto free_syncobj;
++			}
++		}
+ 	}
  
- 	ret = sysfs_emit(buf, "%016llx\n",
--			 (u64)pci_rebar_get_possible_sizes(pdev, n));
-+			 pci_rebar_get_possible_sizes(pdev, n));
+ 	num_read_bo_handles = args->num_bo_read_handles;
+@@ -603,8 +622,15 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
+ 	}
  
- 	pci_config_pm_runtime_put(pdev);
+ 	/* Add the created fence to syncobj/BO's */
+-	for (i = 0; i < num_syncobj_handles; i++)
+-		drm_syncobj_replace_fence(syncobj[i], fence);
++	for (i = 0; i < num_syncobj_handles; i++) {
++		if (syncobj[i].chain) {
++			drm_syncobj_add_point(syncobj[i].syncobj, syncobj[i].chain,
++							      fence, syncobj[i].point);
++			syncobj[i].chain = NULL;
++		} else {
++			drm_syncobj_replace_fence(syncobj[i].syncobj, fence);
++		}
++	}
  
-diff --git a/drivers/pci/rebar.c b/drivers/pci/rebar.c
-index 27185892ada4..ea8620e4bc18 100644
---- a/drivers/pci/rebar.c
-+++ b/drivers/pci/rebar.c
-@@ -105,7 +105,7 @@ static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
-  * Return: A bitmask of possible sizes (bit 0=1MB, bit 31=128TB), or %0 if
-  *	   BAR isn't resizable.
-  */
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
- {
- 	int pos;
- 	u32 cap;
-@@ -155,7 +155,7 @@ EXPORT_SYMBOL_GPL(pci_rebar_size_supported);
-  */
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar)
- {
--	u32 sizes;
-+	u64 sizes;
+ 	/* drop the reference acquired in fence creation function */
+ 	dma_fence_put(fence);
+@@ -624,10 +650,15 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
+ free_bo_handles_read:
+ 	kfree(bo_handles_read);
+ free_syncobj:
+-	while (entry-- > 0)
+-		if (syncobj[entry])
+-			drm_syncobj_put(syncobj[entry]);
++	while (entry-- > 0) {
++		if (syncobj[entry].syncobj)
++			drm_syncobj_put(syncobj[entry].syncobj);
++		if (syncobj[entry].chain)
++			dma_fence_chain_free(syncobj[entry].chain);
++	}
+ 	kfree(syncobj);
++free_syncobj_points:
++	kfree(syncobj_points);
+ free_syncobj_handles:
+ 	kfree(syncobj_handles);
  
- 	sizes = pci_rebar_get_possible_sizes(pdev, bar);
- 	if (!sizes)
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index a4236aafad24..bb10c7eb49e2 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1422,7 +1422,7 @@ void pci_release_resource(struct pci_dev *dev, int resno);
- /* Resizable BAR related routines */
- int pci_rebar_bytes_to_size(u64 bytes);
- resource_size_t pci_rebar_size_to_bytes(int size);
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
- bool pci_rebar_size_supported(struct pci_dev *pdev, int bar, int size);
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar);
- int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size);
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+index 85b3ca14f81e..197ea3bfb559 100644
+--- a/include/uapi/drm/amdgpu_drm.h
++++ b/include/uapi/drm/amdgpu_drm.h
+@@ -504,6 +504,11 @@ struct drm_amdgpu_userq_signal {
+ 	 * @bo_write_handles.
+ 	 */
+ 	__u32	num_bo_write_handles;
++	/**
++	 * @syncobj_points: The list of syncobj points submitted by the user queue job
++	 * for the corresponding @syncobj_handles.
++	 */
++	__u64	syncobj_points;
+ };
+ 
+ struct drm_amdgpu_userq_fence_info {
 -- 
-2.39.5
+2.43.0
 
