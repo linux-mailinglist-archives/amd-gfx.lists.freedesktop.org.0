@@ -2,123 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C3AB57233
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Sep 2025 10:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02096B57C02
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Sep 2025 14:55:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FC0B10E33A;
-	Mon, 15 Sep 2025 08:02:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC03810E49A;
+	Mon, 15 Sep 2025 12:55:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YLjGsuVq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZJiLwPX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2041.outbound.protection.outlook.com [40.107.92.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE6B10E33A
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 08:02:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=brrNr3GBTcwxknJ5GS1diliRyIdo46O++WMZYUcSRL8N18Ap9cqXXF1MA0jD1zrSLc3OMj77y/2vWcA4begZsqzwM+g/nBE3jPUKUnNYkNFnbI86TbuBVEq1T+4r1YN5KuDeMnGlxKIEdEfdWYgX4oyCpkDlqEhcaf/fPTC3DFEjKQuAdkjb0OCg1zBJlFEv5DT6cmR7tnQDmDvoz4yvkeim5BpUgmhq2fgDaTqaMSsMaZWNiRgxR6qZxsGUHRPRcDdPyKt/GEgkRlCznlSPMLaYUXegW/Z0TAIYXk1Co/pErmx/pCbvNKUjk01GR69Dwf3Ug8wic1SDvIlS1HbjQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HXYkKeT5lICZWznz0SBR1vgAhdIjjpUL4zR7IdNA/4o=;
- b=tm+q+p6YHxaWDoexteHv1cAIpSaTFKNVcwWDdgswT3HHLUKvyvo7KNxI7gsiAh0gpgMjzOusn+knkVh+P8N6tO0gWQsma9VB6w1AGx5uXg9tdqhpoK4M6+5nn5bML3zYXdpfu2wRAnLAl8HnAy8CAHTzbKrVTqKhGWK3cB2DpbSDB+Peg4GjxZl0oL7mVIGqcROELopMBA0WnZWsEIUWpM/xrHE7eE4Qr0081xpk0mKtNF7J5xFIcJAxYk2L9AmxrdhB/jxs9661rNZTf/p0Y6OdqpItypEMvEYapmGDbWtFvhJnYYopiRjUCJeB/ln2XWZXsspWK/wdbBmC/w8cEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HXYkKeT5lICZWznz0SBR1vgAhdIjjpUL4zR7IdNA/4o=;
- b=YLjGsuVq6cTMEN4NyJthCYvGWooeOM2XkEB7u9dx85LBORjRywektEF2ZCq97xIoVf7gvX36RnZl8dXm+huyjbfpvDC3vHk6Z7r5Be7PAawHSvvhJuiATezhMvkQBeHT/7ysFqZbrVKO6nNauE7lDhX1fKje1gB2Ik9OCokXMWE=
-Received: from SJ0PR13CA0062.namprd13.prod.outlook.com (2603:10b6:a03:2c4::7)
- by IA1PR12MB7735.namprd12.prod.outlook.com (2603:10b6:208:421::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.21; Mon, 15 Sep
- 2025 08:02:20 +0000
-Received: from SJ1PEPF00001CEA.namprd03.prod.outlook.com
- (2603:10b6:a03:2c4:cafe::b0) by SJ0PR13CA0062.outlook.office365.com
- (2603:10b6:a03:2c4::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.11 via Frontend Transport; Mon,
- 15 Sep 2025 08:02:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF00001CEA.mail.protection.outlook.com (10.167.242.26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.12 via Frontend Transport; Mon, 15 Sep 2025 08:02:19 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 15 Sep
- 2025 01:02:16 -0700
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, Asad Kamal
- <asad.kamal@amd.com>
-Subject: [PATCH v4 7/7] drm/amd/pm: Update SMUv13.0.12 partition metrics
-Date: Mon, 15 Sep 2025 13:26:36 +0530
-Message-ID: <20250915080123.3024297-8-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250915080123.3024297-1-lijo.lazar@amd.com>
-References: <20250915080123.3024297-1-lijo.lazar@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D58610E340;
+ Mon, 15 Sep 2025 09:14:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757927653; x=1789463653;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AxVnpcaVMfU77Gl4c7H9h18KifP1c77MUN1TjexI22g=;
+ b=KZJiLwPXjjrU9YiojYZMehYaH+rYeufVTwNiAm9SIUPN92sZNvOLfOlY
+ J4HDYv2Kc+ndi6uUXl5VM28Yak9FH4CliVZkGXdcKs58etBbUDQyBsvZY
+ sH3Ozrkp45BKcMv3uZuvU60gWWS1yHzexvEy4sE2Ow3OE0m2uz8d/oUBp
+ tcgjsdvqoEcFEbkBs93odL1vm0UvFoz/SKEko2nCaYd/4YsJljr1zEk9v
+ ebHwejjAOZTKkJ6Yo8orDlwiSPFPhADF9AkoI8u0o89PApeRsMqko9pgQ
+ YK6PaW/Pr92NufIsKWNUoepQ6f/REvEOk/dZS3NxfvqzxDRS4qwiFIhlI w==;
+X-CSE-ConnectionGUID: CIWKMpW4S/yYqmxUYu+Zmg==
+X-CSE-MsgGUID: ohCVrwt+QKq11xfV0qrg8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11553"; a="85610441"
+X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="85610441"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2025 02:14:13 -0700
+X-CSE-ConnectionGUID: d9gd8qNIQe2edfK9Cn3AtQ==
+X-CSE-MsgGUID: LGbc/gSNTj2vnhflODtAAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="174497118"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.39])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2025 02:14:05 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Michael J . Ruhl" <mjruhl@habana.ai>
+Cc: linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v2 00/11] PCI: Resizable BAR improvements
+Date: Mon, 15 Sep 2025 12:13:47 +0300
+Message-Id: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CEA:EE_|IA1PR12MB7735:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2b49d67d-25bd-453c-a8d1-08ddf42e31b3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SFTTs19VXNeV1utT7KXIAtVEmTLJDet9szT05Pbq8PiWlkBV0snbSIaXoa0O?=
- =?us-ascii?Q?+/txBxmKAZpg4cH/5DfijSTYADWwtcvka3ojo3KmgbtnusLQT64xPgxxlc9J?=
- =?us-ascii?Q?lH8IgPUjsDIqyjbL+EXXRt58Rl0mA7u7ejKvatRracpFbSnGOyAvuWClf0AB?=
- =?us-ascii?Q?zpRLRjFtFNa8r4fE+H3DfSibpA12bL1osBhTfi82pTjrWJYv7kL75xIN92XS?=
- =?us-ascii?Q?MTwnHSUsQwi792AmTvCSvFM3Rw99dZ/HrrPJ9Pv05eVVkleeMx3vdxpQ3179?=
- =?us-ascii?Q?KtVYH4bwlkbE2zUQY/eQAaaJRgKE8jgPoiXgDChrTh3x/CKFrEIV/QfyW2b3?=
- =?us-ascii?Q?pvQ3zWJUjAGmUrHuvuNRa1aN5oXK2KK9hJn10YJ7pxBGJLmp8DOrOanRgmyz?=
- =?us-ascii?Q?/mBFgGrXTaPBfQCkaejRXTmWDZmdzfnBoqMKCRS8afaROOgVHLwOWUerLvcz?=
- =?us-ascii?Q?u0uhpVV5eLeVyDHvYqMY9ZNuk/gZaoDwSK2SdWpP7p5txDczSQ7PhpHBJwe+?=
- =?us-ascii?Q?1kh8EO+1lMEvXAqqKzkLIiAAlcSpK5UtJ31IZCiC3Ru+Mfs1lvXUbiHkC6nE?=
- =?us-ascii?Q?8RTKOanXonvkPKgMLBU89xZ+WTUyOLreY1HCF7IHeJRaGViU8mgHwdacaOcj?=
- =?us-ascii?Q?mIvHFCWqpKVf6V/+kdiMuH6b/eR8GVJSu5estI7OJ0pJe6fDv+Sv6jciW0y9?=
- =?us-ascii?Q?2Z0Kc8JFsY7tHkuci2kylEy2UQiEQa1p1IkeIGyjq/9JTiRNBQZMXl+0zTSn?=
- =?us-ascii?Q?B2E/koegxq4Ne4SCoAM4RT3q4L9CqWQpr0UCvnoC+1xd7PEoRFZJ1Wy/P2Zc?=
- =?us-ascii?Q?kpnTZVA72y/aPaoHE46pwHTWQptj0i1xqMmKlH0qGWdswyFC1Pfz9B+H8bnu?=
- =?us-ascii?Q?qh3fAJkdsnUnkV0jRVtsYLyPeO2tjxgUIZyHJDbUSyi3I4UgGgwPzuZ+Lvog?=
- =?us-ascii?Q?+yFcw7tvMXrlSoBQLGCLq1+IwcsyI2xxThgxI+9P5xvnGtoqdQ1D+duXQL75?=
- =?us-ascii?Q?aTKAJKnXrKXMY0xsfkygbPCgqVloN+PHPmG3eYjJTVwZRpgEBCq5u/tVXiLU?=
- =?us-ascii?Q?7CFcPnWtexg80cxzvVMcb72CXO1OkCSFefgEuCN3hrdGGkfYs3m8jwKZ1K78?=
- =?us-ascii?Q?rnPMMJjUPeLuqVTQ1holuAJc6/vx4WoZoUwnBtNyvcM7r0N7jWEyFKTFJulQ?=
- =?us-ascii?Q?M/STk1HnrWfmibeekNcdVXltlXoNRbnGVEudc863xf+2/QNNRLcbx38P89de?=
- =?us-ascii?Q?yc7dzfXhvXti6hhDp7MlGQ38AmryuDskphfc/Q2fI9gvwIpry/WaRFXWqbgD?=
- =?us-ascii?Q?/PxT9dZQ/KdRmkplmI4+RWDa5/4bvxurf7jiHiTsUxDRfNkvAJfO+FelqMH8?=
- =?us-ascii?Q?FxGznBer4kl92MGZSi08fM841Ya4PeBVBK53gX6WKMZwxFR4uqTiaZJipp8F?=
- =?us-ascii?Q?irRJJDBvvHpsdu32UJQY1rLo50m5+uaPXpm+DClj17kb3tsqqTb03DjPhJqt?=
- =?us-ascii?Q?SZDT85OiJ82fXU8siRWdvyOcznnqoIr7SpvW?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2025 08:02:19.4598 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b49d67d-25bd-453c-a8d1-08ddf42e31b3
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CEA.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7735
+X-Mailman-Approved-At: Mon, 15 Sep 2025 12:55:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,36 +81,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Update SMUv13.0.12 partition metrics to partition metrics v1.1 schema.
+pci.c has been used as catch everything that doesn't fits elsewhere
+within PCI core and thus resizable BAR code has been placed there as
+well. Move Resizable BAR related code to a newly introduced rebar.c to
+reduce size of pci.c. After move, there are no pci_rebar_*() calls from
+pci.c indicating this is indeed well-defined subset of PCI core.
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Asad Kamal <asad.kamal@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Endpoint drivers perform Resizable BAR related operations which could
+well be performed by PCI core to simplify driver-side code. This
+series adds a few new API functions to that effect and converts the
+drivers to use the new APIs (in separate patches).
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
-index 09f1e4072db6..2cfc221dc3bf 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c
-@@ -671,15 +671,14 @@ static ssize_t smu_v13_0_12_get_temp_metrics(struct smu_context *smu,
- ssize_t smu_v13_0_12_get_xcp_metrics(struct smu_context *smu, struct amdgpu_xcp *xcp, void *table, void *smu_metrics)
- {
- 	const u8 num_jpeg_rings = NUM_JPEG_RINGS_FW;
--	struct amdgpu_partition_metrics_v1_0 *xcp_metrics;
-+	struct smu_v13_0_6_partition_metrics *xcp_metrics;
- 	struct amdgpu_device *adev = smu->adev;
- 	MetricsTable_t *metrics;
- 	int inst, j, k, idx;
- 	u32 inst_mask;
- 
- 	metrics = (MetricsTable_t *)smu_metrics;
--	xcp_metrics = (struct amdgpu_partition_metrics_v1_0 *) table;
--	smu_cmn_init_partition_metrics(xcp_metrics, 1, 0);
-+	xcp_metrics = (struct smu_v13_0_6_partition_metrics *)table;
- 	amdgpu_xcp_get_inst_details(xcp, AMDGPU_XCP_VCN, &inst_mask);
- 	idx = 0;
- 	for_each_inst(k, inst_mask) {
+While at it, also convert BAR sizes bitmask to u64 as PCIe spec already
+specifies more sizes than what will fit u32 to make the API typing more
+future-proof. The extra sizes beyond 128TB are not added at this point.
+
+These are based on pci/main plus a simple "adapter" patch to add the
+include for xe_vram_types.h that was added by a commit in drm-tip.
+Hopefully that is enough to avoid the within context conflict with
+BAR_SIZE_SHIFT removal to let the xe CI tests to be run for this
+series.
+
+There are two minor conflicts with the work in pci/resource but I'm
+hesitant to base this on top of it as this is otherwise entirely
+independent (and would likely prevent GPU CI tests as well). If we end
+up having to pull the bridge window select changes, there should be no
+reason why this does have to become collateral damage (so my
+suggestion, if this is good to go in this cycle, to take this into a
+separate branch than pci/resource and deal with those small conflicts
+while merging into pci/next).
+
+I've tested sysfs resize, i915, and xe BAR resizing functionality. In
+the case of xe, I did small hack patch as its resize is anyway broken
+as is because BAR0 pins the bridge window so resizing BAR2 fails. My
+hack caused other problems further down the road (likely because BAR0
+is in use by the driver so releasing it messed assumptions xe driver
+has) but the BAR resize itself was working which was all I was
+interested to know. I'm not planning to pursue fixing the pinning
+problem within xe driver because the core changes to consider maximum
+size of the resizable BARs should take care of the main problem by
+different means.
+
+Some parts of this are to be used by the resizable BAR changes into the
+resource fitting/assingment logic but these seem to stand on their own
+so sending these out now to reduce the size of the other patch series.
+
+v2:
+- Kerneldoc:
+  - Improve formatting of errno returns
+  - Open "ctrl" -> "control"
+  - Removed mislead "bit" words (when referring to BAR size)
+  - Rewrote pci_rebar_get_possible_sizes() kernel doc to not claim the
+    returned bitmask is defined in PCIe spec as the capability bits now
+    span across two registers in the spec and are not continuous (we
+    don't support the second block of bits yet, but this API is expected
+    to return the bits without the hole so it will not be matching with
+    the spec layout).
+- Dropped superfluous zero check from pci_rebar_size_supported()
+- Small improvement to changelog of patch 7
+
+Ilpo Järvinen (11):
+  PCI: Move Resizable BAR code into rebar.c
+  PCI: Cleanup pci_rebar_bytes_to_size() and move into rebar.c
+  PCI: Move pci_rebar_size_to_bytes() and export it
+  PCI: Improve Resizable BAR functions kernel doc
+  PCI: Add pci_rebar_size_supported() helper
+  drm/i915/gt: Use pci_rebar_size_supported()
+  drm/xe/vram: Use PCI rebar helpers in resize_vram_bar()
+  PCI: Add pci_rebar_get_max_size()
+  drm/xe/vram: Use pci_rebar_get_max_size()
+  drm/amdgpu: Use pci_rebar_get_max_size()
+  PCI: Convert BAR sizes bitmasks to u64
+
+ Documentation/driver-api/pci/pci.rst        |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   8 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c |  10 +-
+ drivers/gpu/drm/xe/xe_vram.c                |  32 +-
+ drivers/pci/Makefile                        |   2 +-
+ drivers/pci/iov.c                           |   9 +-
+ drivers/pci/pci-sysfs.c                     |   2 +-
+ drivers/pci/pci.c                           | 145 ---------
+ drivers/pci/pci.h                           |   5 +-
+ drivers/pci/rebar.c                         | 314 ++++++++++++++++++++
+ drivers/pci/setup-res.c                     |  78 -----
+ include/linux/pci.h                         |  15 +-
+ 12 files changed, 350 insertions(+), 273 deletions(-)
+ create mode 100644 drivers/pci/rebar.c
+
+
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+prerequisite-patch-id: 35bd3cd7a60ff7d887450a7fdde73b055a76ae24
 -- 
-2.49.0
+2.39.5
 
