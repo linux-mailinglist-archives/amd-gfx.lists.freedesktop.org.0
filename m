@@ -2,88 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C17B57CE3
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Sep 2025 15:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B98B57D31
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Sep 2025 15:32:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21F6210E4AF;
-	Mon, 15 Sep 2025 13:27:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73FF810E4BA;
+	Mon, 15 Sep 2025 13:32:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eZKEojRG";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zF+A2yx3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
- [209.85.218.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5B1E10E4AF
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 13:27:01 +0000 (UTC)
-Received: by mail-ej1-f47.google.com with SMTP id
- a640c23a62f3a-b04271cfc3eso527488966b.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 06:27:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757942820; x=1758547620; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=mC3uJEYtRWw4J5xGhnxA1nw054/s9vUZBftezMIIGsQ=;
- b=eZKEojRGa0osVm1IQAksCG/lpk7nw0irYmxZzEMKTR5/XM4gQ+qpgeZdBtFPAcaixr
- BBRuhhIVF6fZ20rsitCUeGfjiRmtHluFmeXMFD42B4NLFnaqLEAA2uS0NR5bMPrRN+UH
- jkUPzg3pP5rEwdMZi3FixUsC3irbq1dPJWVYdBtecnnwdB/qFsofH5qfQIe4FdkfzRKQ
- +D7fJNP4jxNoAYSJn1qzeLHS72TB+Nch3OfeuOqaaOzwmy1UFnrVthOqxby/KxQMQZkj
- UCtYfZ7QgF18fdjiSI16CL8NjOWtJK2xEMvGBALS0EUfgmy8H5XaLBosML5Vp9k0z4Ek
- iSng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757942820; x=1758547620;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=mC3uJEYtRWw4J5xGhnxA1nw054/s9vUZBftezMIIGsQ=;
- b=b6epDhs1y3rO8PUQYScR/yH9WkYuKY1t1gaDxVyr7Trk3z+R9XlcNOBIcLOWgcQIXT
- uUEfm5cdo7zCYs+xSGAoV7wFxRpyf9VjMxubYkUNlm5qWJf3VF/XN+6RwMlt3xOnbR7f
- vDCXS2dsqa8ijiFaqbgrg9HTqKj7kxNmfg4klgNh6Rh1knBG2pj2HNZrf0MGukG8098s
- a0YEqzDxjWx8SaiZ1RzKUQM1Pz0L1d8xqYMThuSftZkPW9RqIlmvIqFU6QBfRYoenPtH
- iBQJ38JiAQgxMAsvcf1Yl4s8MZ7i3wqRdMqEdmQ7z9Pxn6btqBUgWlh7vgPAIyp2j4Mz
- 4rxQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWfNcsf7M1G0qeJVeupu0aArCqAHzzDRViVhAeyDAFemXjaRri2rcvBZF3POzlaPFK7BLIk4SiU@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx0AzAnGTrtncCUjoDyUzNPizuqN76GPXUlHKTm8F/IKheHm0s6
- s+Spuyl5o0Tsc0teFflmiQVhVO7LrBJYIPLPFLE5Zp7lSsR4EVOYOXnl
-X-Gm-Gg: ASbGncvzo+eyGe1elBgHxSy5DXr3ez6KR1C53ce/Fh4uGmF8Y2FSUtKRCQ5LvpIrKHa
- LlhcHYOLsijaJTBasogXdsPrBSzMtsWL4Kbg0XtBl56RGnV5hiVQXYdDunWXx/xvtq1E+JlOY2s
- XVAPDHKMDXZDIpLuAQKsaRrnryr8NgfSTYeYhAwNbKlTiWWjOIHdQXwbQqQiPuJL1X1wQyIwoW2
- ij/qIW1yO0qFIXpgQAQA2jzNC/eO3h4WUXI/L2Yhpf8ZJ617En6+3QI3YLulQwCmXkWw3E9Ax0r
- 4OivjtQWtqgxYH1uUREgUFf2GJ1ei1JdcixiCTz0UKqx88/Rbn+LYmJql7F1khHZnxyY/VKD31f
- 4Q9y3J9WjwzjhA/8Dg8lNGAMmn7brvuEfAUIZC1EaKy5nzEMeG8tmXY/YozaYBGofO2SqMhqTeS
- 8aSVkfgh4dxx2FQg==
-X-Google-Smtp-Source: AGHT+IHW9DAjESKzStY1QTDNosbFpUWZGiFtvT3kHZ+QxedmmvYvrx2ixbXLFnf28b6SBqcTuaM8Cw==
-X-Received: by 2002:a17:906:7951:b0:b04:61aa:6adc with SMTP id
- a640c23a62f3a-b07c353e8acmr1288725466b.7.1757942820130; 
- Mon, 15 Sep 2025 06:27:00 -0700 (PDT)
-Received: from ?IPv6:2a0a:f640:1501:b1db:c5c6:e8a1:c6ef:dac9?
- ([2a0a:f640:1501:b1db:c5c6:e8a1:c6ef:dac9])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b07b32dd5a9sm935845066b.57.2025.09.15.06.26.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Sep 2025 06:26:59 -0700 (PDT)
-Message-ID: <f0daeb2ed2fb50641c1f99780f4b24910a9ecd94.camel@gmail.com>
-Subject: Re: [PATCH 3/5] drm/amdgpu/sdma5.2: adjust SDMA limits
-From: timur.kristof@gmail.com
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- christian.koenig@amd.com
-Date: Mon, 15 Sep 2025 15:26:57 +0200
-In-Reply-To: <CADnq5_MP84wSK2d1MWXhO9A0ow43Fqbv6DU8ykESNZA0q3648Q@mail.gmail.com>
-References: <20250911172449.3340848-1-alexander.deucher@amd.com>
- <20250911172449.3340848-3-alexander.deucher@amd.com>
- <CADnq5_PNL_-YjyYQgNtz5xQKBxxXWdrvKzM6YT4wYZCOE=ooNQ@mail.gmail.com>
- <CADnq5_OgyiAZJudNfbx9Xt5uiXAXZV1Pe7d2bZPaaD4RdE0GSQ@mail.gmail.com>
- <8acbb3b27a933b60b17b06a03454cc171f1cefc8.camel@gmail.com>
- <CADnq5_Ny2WpNtZGSSNY7VtcH8vysgmNOvNCYrNR4efzLAuqVzQ@mail.gmail.com>
- <8d3396b17fddc8f192c12878b6d01cff8ec7af76.camel@gmail.com>
- <CADnq5_MP84wSK2d1MWXhO9A0ow43Fqbv6DU8ykESNZA0q3648Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011023.outbound.protection.outlook.com [52.101.52.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 413A810E4B7
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Sep 2025 13:32:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TFJNBPlV83/qSR+/9wbu5YtllVz0mpHiRAMzhfn03yKzrB0y9gyoNugDCWLgkfnLxEyMQPJWwflpXRGWRR/JIE0g8WjVeK+mlwjctZyZP9a9FmHD3+vP9Sm16NUt7g7q+VdO81LYrKtRinGAP23rQXtmmFFmxIM++X1qlCI9aSwJrJlGIM9pqnbUnpus9ZVVTwthwiMJCtd+0eub0GD47dC2G1GZ9OWH+/2Wfj9kK3gGUIWoUG3jonFG+6uwJg1sU56eAvFd+tHB4/P4sTxgjAqIsLuwYib5qD27tVsH4wHlbIBmvA6S9qRWAqMLSjeYv0kpIqWNhefpWz8P6HgSEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LpgM45ajqApsQnVSiR3QCHMoceYa0UtyMI62NIaVzCE=;
+ b=BZ1lgUCsURm+Eg/oJAvtBxnQLjYZMLr4TfQTlcf7o+4EpGJawKUTDjvu9JcADVVQCedV9CKH1HBOfLwBhBsycDmEIwpHYOCKzjZo4SUkrqz4c6sFM1hr5LrB7Nma8nsJiE5Gkq05lQdIaQ0lhYMmMx30KxyEvtnc9kN+WkIIaTYNwMVyuGQeJ1p1WWHe+XWhCRDJjRz5Q0tkQFbzcXdSyTtxSXsUgaV5m2YTeFlkSKv792fQ/v1Rp+aKa9BeLnkceRgG1nY924GYrYv4x8Bh9rT038uuWqh+dvX8v5O+c0Uzq/VARVBsYC5mCyla2dcrBzyDLdfN73sYnSWwg5YuAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LpgM45ajqApsQnVSiR3QCHMoceYa0UtyMI62NIaVzCE=;
+ b=zF+A2yx3YhS8htc3XG55ux87b4ygr7XkGd/VKzOlYtW8AGpVe9dD9Pu44Bkf6IwiLoBA8aJjllltJ466cAplHLRmw7FsIHuEqpXrWKKSBujaIzDtsPRRj+GLl/dHLgZvyOZgvJ8tx/FFBYAzXwyKl4k6/WQg5QwrmgBeWW7ywoc=
+Received: from BYAPR08CA0031.namprd08.prod.outlook.com (2603:10b6:a03:100::44)
+ by SJ2PR12MB7963.namprd12.prod.outlook.com (2603:10b6:a03:4c1::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.19; Mon, 15 Sep
+ 2025 13:32:14 +0000
+Received: from CO1PEPF000066EC.namprd05.prod.outlook.com
+ (2603:10b6:a03:100:cafe::57) by BYAPR08CA0031.outlook.office365.com
+ (2603:10b6:a03:100::44) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.21 via Frontend Transport; Mon,
+ 15 Sep 2025 13:32:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CO1PEPF000066EC.mail.protection.outlook.com (10.167.249.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9137.12 via Frontend Transport; Mon, 15 Sep 2025 13:32:13 +0000
+Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 15 Sep
+ 2025 06:32:13 -0700
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 1/5] drm/amdgpu/sdma4.0: adjust SDMA limits
+Date: Mon, 15 Sep 2025 09:31:57 -0400
+Message-ID: <20250915133201.3547033-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000066EC:EE_|SJ2PR12MB7963:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2851656f-70a0-4b99-34e2-08ddf45c480d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?aDrHkTyAd3T+Qbxz6ZGswakemqTDfbDGTMnqLYM/InTMCS6yikaYT18TsJLn?=
+ =?us-ascii?Q?qd3BKe/oDdPw2us9aW3gLcjSNGKdzqJtbN+S5SgfWyK2u/uKKIxiGsLVhoiK?=
+ =?us-ascii?Q?KsMtSUmQYu7WUYfdDinoai+RGQ5wVZvEzOC6+p8/2lxtLMHe9qXxIDELuJkc?=
+ =?us-ascii?Q?HqIZOIZk85vc8Ei2xCmi05kKD5X3ZajXdnhIJawfFkPhS7LOxnvwZXsmfoRu?=
+ =?us-ascii?Q?p3I0LuSXimqRoBLvbf5ZmMuGGcLoddC+64QyLx19Tm8vVUITECcwDUhXO3RB?=
+ =?us-ascii?Q?9aeWr4kvK4WFUaNezM/HLrAY8dMEl0Ewl/ZWmtTYXJ2ZEeVQuWH+NqSuYqjm?=
+ =?us-ascii?Q?PEAgawZtSQMpWWXd0E+YSO3dcgNZX/cfNtgFMRqkbYzDhphj1521ZTFUKkJC?=
+ =?us-ascii?Q?P+Oz6Fdf+uWjugdM7H+IVQeBCdRQ20RiyKjMgZ8sG3GlVxSYaXgHeC91LtTt?=
+ =?us-ascii?Q?FXPY1ep8OVYFZQVkcS64aytyNB8Uh9641ZZfoLoAys/IBN1Zy8UysliqhyL8?=
+ =?us-ascii?Q?46Nm2lggFjjNcD6nXmsy+uVcPSsXTMpfoZ7y5RQYyyUysnoqixQ3zuRSPL7t?=
+ =?us-ascii?Q?/AVoJDGPAGlKlYRV9VxXrhuA2DzP7zsvD+SFG5VKS1V3PYM/Og6Ns1YFJGzY?=
+ =?us-ascii?Q?KahWMy4YV+UpvKpa9aDXHI7JHVQHYrm3Ct5MHLNRHmdsuKjJQVF2wCi15Kyh?=
+ =?us-ascii?Q?w6wh51Lg7wMbzfp+vBriLuC3iYFi+FW0QDkjV5WVb4fVctDrRCqFoIP3iYdz?=
+ =?us-ascii?Q?6uEjGva5Jvof7b4i1k08rr8BHxVbnsuk57KSi9pOe8j0bn4lgwUY4EFEvP56?=
+ =?us-ascii?Q?4esHr1Su5IKp5yAgyS04Ht3yCFzZZYJ4y4OmG2xtDaYf0HXjNRqXBpdYsNmb?=
+ =?us-ascii?Q?vgyNO0lCT/QqJYe/+/TzJGAMOAkzEirG3v4ccmLWNRk2Msg1St2TqygWeA9t?=
+ =?us-ascii?Q?oLaSztFeSKnko+YvkUhy8zRWnl9taHd83KjhRxzeEfBpSVXBN7oZ/i1JIZga?=
+ =?us-ascii?Q?igqTzZVFF0Tdu7md5IW65139oAXUZ15aJ6U+FcgRkxGvvbXZ4g3jmGSwmZbq?=
+ =?us-ascii?Q?TsvC+BJDUVNFcUMgUJgl72EiTIdgSK+j4AWXASf90GumZrUmZ2pPvGOAWx96?=
+ =?us-ascii?Q?4Ne/ZMoOb5iL2+1h6ASS5T8Y5ytnZQE0JMeuJ3iNdMxKv55F3AMxzozoj6j8?=
+ =?us-ascii?Q?ILotkel2WfSVg3utMzedaQjYsuJ4X+0wRoaYGrI0AhD2yJjdCWgL/QlxvZYh?=
+ =?us-ascii?Q?BCOhHs0R4xYoKS7YFSiSXYE1pV44MTMYPqlv4TpLUJeXeTOTvrowYOXfWMpW?=
+ =?us-ascii?Q?7O8shTRaPd2Fd10TLPtZ8odUlm5DWWW335SSdU6FZLQrWPAvEMgD31OJvGiv?=
+ =?us-ascii?Q?5YqD9DI9gqEwatUgEMUvjoVLSk1Xzgu8cJjKiK6QNkWDsJu0MA4lLN9KZaPt?=
+ =?us-ascii?Q?PUB7VoEsit8Kico858MUr1AcXYUbboAB99vFBo7eE1Kfua5QWy0sFolOAEiJ?=
+ =?us-ascii?Q?PAdLwvv7Qw76VgCyA43fCb1ERB830gqVDixy?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2025 13:32:13.8135 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2851656f-70a0-4b99-34e2-08ddf45c480d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000066EC.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7963
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,129 +130,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-09-15 at 09:25 -0400, Alex Deucher wrote:
-> On Mon, Sep 15, 2025 at 9:23=E2=80=AFAM <timur.kristof@gmail.com> wrote:
-> >=20
-> > On Mon, 2025-09-15 at 09:07 -0400, Alex Deucher wrote:
-> > > On Sat, Sep 13, 2025 at 1:28=E2=80=AFAM <timur.kristof@gmail.com> wro=
-te:
-> > > >=20
-> > > > On Fri, 2025-09-12 at 15:38 -0400, Alex Deucher wrote:
-> > > > > On Thu, Sep 11, 2025 at 2:18=E2=80=AFPM Alex Deucher
-> > > > > <alexdeucher@gmail.com>
-> > > > > wrote:
-> > > > > >=20
-> > > > > > On Thu, Sep 11, 2025 at 1:25=E2=80=AFPM Alex Deucher
-> > > > > > <alexander.deucher@amd.com> wrote:
-> > > > > > >=20
-> > > > > > > SDMA 5.2.x has increased transfer limits.
-> > > > > > >=20
-> > > > > > > v2: fix harder, use shifts to make it more obvious
-> > > > > > >=20
-> > > > > > > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > > > > > > ---
-> > > > > > > =C2=A0drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 4 ++--
-> > > > > > > =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
-> > > > > > >=20
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > > > > > > b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > > > > > > index a8e39df29f343..bf227eadbe487 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> > > > > > > @@ -2065,11 +2065,11 @@ static void
-> > > > > > > sdma_v5_2_emit_fill_buffer(struct amdgpu_ib *ib,
-> > > > > > > =C2=A0}
-> > > > > > >=20
-> > > > > > > =C2=A0static const struct amdgpu_buffer_funcs
-> > > > > > > sdma_v5_2_buffer_funcs =3D
-> > > > > > > {
-> > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .copy_max_bytes =3D 0x4=
-00000,
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .copy_max_bytes =3D 1 <=
-< 30,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .copy_num_dw =3D 7=
-,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .emit_copy_buffer =
-=3D sdma_v5_2_emit_copy_buffer,
-> > > > > > >=20
-> > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .fill_max_bytes =3D 0x4=
-00000,
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .fill_max_bytes =3D 1 <=
-< 30,
-> > > > > >=20
-> > > > > > The hw docs and PAL differ here.=C2=A0 I've asked the hw
-> > > > > > designers
-> > > > > > to
-> > > > > > clarify.
-> > > > >=20
-> > > > > The HW team verified that the hardware supports the extended
-> > > > > range
-> > > > > for
-> > > > > both copies and fills.
-> > > > >=20
-> > > > > Alex
-> > > >=20
-> > > > Hi Alex,
-> > > >=20
-> > > > This is still pretty confusing.
-> > > > According to PAL, only SDMA v6 has the extended range for
-> > > > fills,
-> > > > and it
-> > > > can do 4 bytes fewer.
-> > > >=20
-> > > > Are you sure that PAL is wrong about this?
-> > >=20
-> > > I can talk to the PAL team as well.=C2=A0 I talked to the hardware
-> > > designers and they verified that the hardware has the higher
-> > > limit.
-> > > It's the same underlying hardware so it makes sense that both
-> > > copies
-> > > and fills would have the same limit.
-> >=20
-> > I am worried that they found some issues with it and that's why
-> > they
-> > didn't enable it.
->=20
-> No objections from me.
->=20
-> >=20
-> > >=20
-> > > >=20
-> > > > For reference:
-> > > > https://github.com/GPUOpen-Drivers/pal/blob/dev/src/core/hw/gfxip/s=
-dma/gfx10/gfx10DmaCmdBuffer.cpp
-> > > > https://github.com/GPUOpen-Drivers/pal/blob/dev/src/core/hw/gfxip/s=
-dma/gfx12/gfx12DmaCmdBuffer.cpp
-> > > >=20
-> > > > MaxCopySize on GFX10: 1 << 22
-> > > > MaxCopySize on GFX10.3+: 1 << 30
-> > > >=20
-> > > > MaxFillSize on GFX10-10.3: (1 << 22 - 1) & ~3
-> > > > MaxFillSize on GFX11+: (1 << 30 - 1) & ~3
-> > > > This makes sense because they program the count field in the
-> > > > packet
-> > > > using the byte count minus four.
-> > >=20
-> > > They are setting up the packet for dword fill rather than byte
-> > > fill
-> > > so
-> > > count becomes dword aligned:
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0 // Because we will set fillsize =3D 2, the low two=
- bits of our
-> > > "count" are ignored, but we still program
-> > > =C2=A0=C2=A0=C2=A0 // this in terms of bytes.
-> >=20
-> > Yes. I thought we would prefer to use dword fill in the kernel as
-> > well,
-> > isn't that the case? I thought dword fill is faster and everything
-> > that
-> > the kernel fills would be already dword aligned. Am I missing
-> > something?
->=20
-> Yes, the kernel could be switched to use dword fills as well.
->=20
+SDMA 4.4.x has increased transfer limits.
 
-Oh, I see.
-I thought the kernel already used dword fills.
-If it doesn't, I can write a patch to do so.
+v2: fix harder, use shifts to make it more obvious
+
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
+index f38004e6064e5..627c4bef443b3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
+@@ -2597,18 +2597,31 @@ static void sdma_v4_0_emit_fill_buffer(struct amdgpu_ib *ib,
+ }
+ 
+ static const struct amdgpu_buffer_funcs sdma_v4_0_buffer_funcs = {
+-	.copy_max_bytes = 0x400000,
++	.copy_max_bytes = 1 << 22,
+ 	.copy_num_dw = 7,
+ 	.emit_copy_buffer = sdma_v4_0_emit_copy_buffer,
+ 
+-	.fill_max_bytes = 0x400000,
++	.fill_max_bytes = 1 << 22,
++	.fill_num_dw = 5,
++	.emit_fill_buffer = sdma_v4_0_emit_fill_buffer,
++};
++
++static const struct amdgpu_buffer_funcs sdma_v4_4_buffer_funcs = {
++	.copy_max_bytes = 1 << 30,
++	.copy_num_dw = 7,
++	.emit_copy_buffer = sdma_v4_0_emit_copy_buffer,
++
++	.fill_max_bytes = 1 << 30,
+ 	.fill_num_dw = 5,
+ 	.emit_fill_buffer = sdma_v4_0_emit_fill_buffer,
+ };
+ 
+ static void sdma_v4_0_set_buffer_funcs(struct amdgpu_device *adev)
+ {
+-	adev->mman.buffer_funcs = &sdma_v4_0_buffer_funcs;
++	if (amdgpu_ip_version(adev, SDMA0_HWIP, 0) >= IP_VERSION(4, 4, 0))
++		adev->mman.buffer_funcs = &sdma_v4_4_buffer_funcs;
++	else
++		adev->mman.buffer_funcs = &sdma_v4_0_buffer_funcs;
+ 	if (adev->sdma.has_page_queue)
+ 		adev->mman.buffer_funcs_ring = &adev->sdma.instance[0].page;
+ 	else
+-- 
+2.51.0
+
