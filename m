@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8989B5A10E
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Sep 2025 21:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 901B5B5A113
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Sep 2025 21:12:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF35310E55E;
-	Tue, 16 Sep 2025 19:12:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 028E210E7A7;
+	Tue, 16 Sep 2025 19:12:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TxgtSxSI";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="otKqxgXP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010018.outbound.protection.outlook.com [52.101.201.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB29210E3F5
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 19:12:20 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010005.outbound.protection.outlook.com [52.101.46.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2226010E563
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 19:12:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HPUAXN7Wh4TWlZa3UtRSsTKz3xfncA9aYUpNzbQHqLIUuHvl7JoXbZS7QwtqCr2mdRMLyYsW6qG0wNrDA4SMpN0BCI1AYo/bjYW+clm3vFm3JAWJO3wxkUb3Q54IjuPlFy8rIeLV3fyJGfrciia5bqRZFGVoI7372XiKx5aRPJ8cPceqW6Ju5gXH+xgx7PNkAM363+kXOfJL6J3gTDFZ3BictFguQ5AEBMPcPohFAVhke7yTn4K3cixACq90wuy+vMgKS9omu+NwKpWOHI136mq66p1ajVnKk4kymgSMCCiTgqrvFdZ+iwvbM2OyFlhvA4i+JVIWVDt2f5mNlkLpWg==
+ b=lBP/5GSHeHLbS/WGICUj/QQVTjBClfpjKrnyX0yl14sCy6La9hwsxDSTfr8X+3RKDvHInTrSzEP8Av8Y1xFfMLELl2EdqTBbD5qJm9Eiqfx+ODcDQq+jJHG1lBBS7uBEStd1738dS6IIfJEjYBCaqejG5FZHmr3u6KRZV2LOQ6RwFwaxxhRPivU+hYYR6KYYAIf30EqTGaWCX8rf9WjZQmtP9eCVQpRVbL87AAZSkASJTO/nn1Jpwk67zv2BX6rfPiIRgStJO5eHA8sCdGqU5RbbVl3vPB2m6PUdV66nr9BbS2W8Op2MyTrxkafgvNUThz/Y5zv4YGgrJRHjMVGGYg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cstgD494b7b3fLvhnh0jF1iVNFW8RRKR9qis7yF+AcM=;
- b=lpxZ7FxM2XOl+Mir5r9/eiHF26rNQIuOOFS990mooZc61nNRPbXz13wjQtC0FcQGtPxfdW0p6GZvUqOD/t2fZfJYSz7PaOs1B31B4XZFkRIinxfl4JKolXDLEUnpvOEaksMlF4EK7zvv6r3Sab33YButdvfM+2pe8AJ88HE+lmrDrR3zIqLmBV1Q1jSwJg0pu5eC2F8NNCVagAectSijuvRZr6lgaRjOusPIWlz72JxS7Y+29fyclbxUn9ajkeSGzGURIxfhjH/nKCPsOldUi6ZnRBxLJe67fiqfSK74y//B2raMV29TOaBEwwlHvYcrTTRIKC+pYgrNusMHPJ6DVw==
+ bh=DIgCBAjWXk2lkZRvhxifB9wl4mJvVzF5hAO2GI10BMU=;
+ b=GSk2HT0/ZJOL+2KG4D8ZrXAHsyFOsX8kc+MeLVRzs6nfMWd5ywvhbepqRTcNBDBqGoUhEGZsDLQzFXnvPrtmpYKQzhs+eo4rbzUfO87474QT/bqIDTRRLJG9Xavq3+IZn1S9avEElT+toP4z/tCo9qpMZTIktl+ufxqO7v1BVo3et+8eXtxSmsNQdle52Hdrq4tJxzAwclD1r29wR3xcjoqWS/HW73mwqafjTo5cp53KtR8IMyveLKR77G6daHySNJilkSdCP1viSi/IGpYxdAvsPL56DXGn+V4fzM/koB+n/tK99WnrUtPXA2Eu8rTJbKfzhZwU03p9m1q6CUINIg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cstgD494b7b3fLvhnh0jF1iVNFW8RRKR9qis7yF+AcM=;
- b=TxgtSxSIXFvPC32HmIiO0dP58aQ1H2SoVtAbpa13EyWlhjQyl4Y6K2wdcbBXKfHnNK7XIwJpBxT5PYNHl8mSsGg8HORV6TwYLl/AQAiUKtr35dR1BeedY8PzlcNhbYh5cf8UbchN4DYmMd6sL1azxMz5HR9YAk1NlcKmgbsAYok=
-Received: from DSZP220CA0006.NAMP220.PROD.OUTLOOK.COM (2603:10b6:5:280::14) by
- IA0PR12MB8301.namprd12.prod.outlook.com (2603:10b6:208:40b::13) with
+ bh=DIgCBAjWXk2lkZRvhxifB9wl4mJvVzF5hAO2GI10BMU=;
+ b=otKqxgXPTpd5V1ZrED7UiBgyzCj2vb1ISJRu/7LSQg5eV1JYjApgDakbZNIPfe8PlaZcwaGa5Tg8HRToHEEGgIuHED1yT5P90mYSsVNXSc0v1b2L7PXaEdxHacVyECgj6vmTVj3ptLF1AnuxGagsdmNTnbELlv+X0wikyPIuBWc=
+Received: from BN9PR03CA0124.namprd03.prod.outlook.com (2603:10b6:408:fe::9)
+ by DS7PR12MB5885.namprd12.prod.outlook.com (2603:10b6:8:78::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.21; Tue, 16 Sep
- 2025 19:12:18 +0000
-Received: from DS2PEPF00003445.namprd04.prod.outlook.com
- (2603:10b6:5:280:cafe::73) by DSZP220CA0006.outlook.office365.com
- (2603:10b6:5:280::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.13 via Frontend Transport; Tue,
- 16 Sep 2025 19:12:18 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Tue, 16 Sep
+ 2025 19:12:19 +0000
+Received: from MN1PEPF0000ECD6.namprd02.prod.outlook.com (2603:10b6:408:fe::4)
+ by BN9PR03CA0124.outlook.office365.com (2603:10b6:408:fe::9) with
+ Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.13
+ via Frontend Transport; Tue, 16 Sep 2025 19:12:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- DS2PEPF00003445.mail.protection.outlook.com (10.167.17.72) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD6.mail.protection.outlook.com (10.167.242.135) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.12 via Frontend Transport; Tue, 16 Sep 2025 19:12:17 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Sep
- 2025 12:12:12 -0700
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Sep
- 2025 12:12:12 -0700
+ 15.20.9137.12 via Frontend Transport; Tue, 16 Sep 2025 19:12:18 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Tue, 16 Sep
+ 2025 12:12:13 -0700
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 16 Sep
+ 2025 14:12:12 -0500
 Received: from box-0.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 16 Sep 2025 12:12:11 -0700
+ Transport; Tue, 16 Sep 2025 12:12:12 -0700
 From: <IVAN.LIPSKI@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -69,12 +69,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>, Dillon Varone
- <dillon.varone@amd.com>
-Subject: [PATCH 09/20] drm/amd/display: Use mpc.preblend flag to indicate
- preblend
-Date: Tue, 16 Sep 2025 15:09:29 -0400
-Message-ID: <20250916191142.3504643-10-IVAN.LIPSKI@amd.com>
+ <alex.hung@amd.com>, Allen Li <wei-guang.li@amd.com>, Robin Chen
+ <robin.chen@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Subject: [PATCH 10/20] drm/amd/display: Add fast sync field in ultra sleep
+ more for DMUB
+Date: Tue, 16 Sep 2025 15:09:30 -0400
+Message-ID: <20250916191142.3504643-11-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250916191142.3504643-1-IVAN.LIPSKI@amd.com>
 References: <20250916191142.3504643-1-IVAN.LIPSKI@amd.com>
@@ -83,52 +83,52 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003445:EE_|IA0PR12MB8301:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac309b5b-62ad-425c-bdfc-08ddf554f406
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD6:EE_|DS7PR12MB5885:EE_
+X-MS-Office365-Filtering-Correlation-Id: 84420524-bb81-4a38-fbb4-08ddf554f4d4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?R17GMbLYlmuY0Buq1iJ/x5W4FrQYa5GXUuXh3XAl/CrlVBenKwdhvYLARn64?=
- =?us-ascii?Q?gcOt5HwjMNccX5R+/bL6x/NMPG4OnkNpJKiczyCuOLvejp54Ed3dn86jsi6D?=
- =?us-ascii?Q?pHSLz+6wvHP38bLlpiFhEY4hgK4kVh8fCC42uiuwDO3wy31GsZeGi2Cvr7J3?=
- =?us-ascii?Q?MtzFJPetSwuk7Ekmq3tlF/Xq27MLz/qGRJrf+eCVrZt1mZnwkQK0QpH6c3Qd?=
- =?us-ascii?Q?NZw86OWGuA9XLIMlGdymKTp9+0P1ktQ0kPK5SZ2gqOQk/Sqn2go54ABBTvco?=
- =?us-ascii?Q?/Whs/t1mQxxt8mHBBI5cGmHELPPJA+5TWIvEHbuXQrHMfFitpRDCW3mTQKF/?=
- =?us-ascii?Q?pG7qQ1rJAkNAWmcH8QBteWWXe2sKXBkPb5NfI6V7qinpabraZFJAvFYytA+0?=
- =?us-ascii?Q?9aRQPMjif93IUopgUIn3pWfWOH/Nfu/vFmhAZFoNXQ6Pq6kRZULlKrQ/5KcA?=
- =?us-ascii?Q?euoZc3+3WZhPJlJdgbucEhC6AoF2aCPMHTjz6DIYeejbESNbb9hdsnE7WUYN?=
- =?us-ascii?Q?WIkgyWgr1+9fsm0w2B47gb0XbQwbYRT3VVhO+lu8jVTCMXwAOTrL4wCptfKC?=
- =?us-ascii?Q?XTNd9MBXfWyrAR2cpsITLei0djYkQa4Zr8blAuWggz6GLxUyPj2jaqw7gUmM?=
- =?us-ascii?Q?W1P4mqSMIehNGPsWNLtyNvE2Qk9QaGAv3qMLTeho53ozc5IG+EVvveaAodQN?=
- =?us-ascii?Q?AEoKKPN9QE+Z77YJZUzQjdPVfyFEW6xCgw+T8IVsDZ+Zork9BG/nVR6G512B?=
- =?us-ascii?Q?Du5lkeXQWPea+uBMp/7+3RfQ65w+ekJwJLTqf/Rs5jgFNrQfb+oaD5VaPbr3?=
- =?us-ascii?Q?0gCjcIi/QJrCCH8PP2LpdbM9ABECDJdrcxkEQPzLGBuzMOxxsPS0Fn/uOoeT?=
- =?us-ascii?Q?yRv10ok0k+cnsTZUh0PYTqDvSNx/ocMyah/qBt08u1QVGUBa/3hXXqVWkxlw?=
- =?us-ascii?Q?xubnTlfAG8EULMbsVs3eN8NArydVACnl8fOvNDLxprxf48YRoKllxouXpWA4?=
- =?us-ascii?Q?sjbmlVrZw0hE8PIRgSHW9IMKRhaofauE5sLv3oR0b7sm761YqgIsKiqxjZTv?=
- =?us-ascii?Q?igQTeshtXtH+JVLJn7/O2M7bs4Qg9KZn0Ku19a6KheKS2gCdh5pxqJ1PgYQ4?=
- =?us-ascii?Q?cV1PpvsfGnnKr6e483xDS7chExPeR4AuTMPUgagyuQCt779ExTAguI7+Egt4?=
- =?us-ascii?Q?ReXneTSz8kWpqkXgDauzNVes6tjQ681o+WweNBFcZXBPjnUhdKo1AC4DWA50?=
- =?us-ascii?Q?JzxglkkyoVbetYZHHQFRF3mlT/if0THqOBi12/aZ1bcHNJX6rK0xZhlT/kT8?=
- =?us-ascii?Q?8mTJ3W+hoGF557jeAlbjsQ9ilOI3sWEiAwnSaIR7HQ8+4gv5HP4Baw+Qr8qO?=
- =?us-ascii?Q?yD00/5T17khl2SV5jcRbg1eobYSSdNYabBJFC5XSvLp0ozkuEd99dUn0FhRk?=
- =?us-ascii?Q?C/i6xNBYFQua6ef6BbQ3ApGKMaiwbnf7QDz+NF296srWfeLlg/V/DxkqwzQV?=
- =?us-ascii?Q?KYmBu+QQrwsi5PWrEMBezUnBUFeym7ZbE6M0?=
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pHRtMMyaGLFF2cs4o5m7xp+AT1Ad7gVpEZo66kWcCbclYqX3yK03j4IfjgdS?=
+ =?us-ascii?Q?6aD8QU0iC2S15kC/BNY/nmVW3mLrH2/dwEWKmTywWxIMwAAPV8QOrLf1e5X7?=
+ =?us-ascii?Q?jrOF65yTneb1kHaDK4K9rGyEh88ad+4+UD+/s4U3pgwJHebUPPcU5BAPGCsc?=
+ =?us-ascii?Q?wh1yI6cKji/n5l7Hzh2tCHK8HotG4PfOQ43YNWNshK+dvboyN93wVzqesSdo?=
+ =?us-ascii?Q?ctmj8Wb4WPakx8iUOi+kzz8XWixYq1vmQlXvO7KJ8eHhy9fptxcK4n5ajEYd?=
+ =?us-ascii?Q?B8VOleis2XtMahGcH7mCv/ikoxNayLmDf4gt8tLYa5Kp0dEP2h2m7+OkAMXu?=
+ =?us-ascii?Q?Aif2swkWliIrh1zVKyHSqL8H9dTCn0ADdB0u/YCNWFKeyVP3t6Q+XAgPg/2o?=
+ =?us-ascii?Q?j48xhEbRJJCDvTX5ba/ABaj4J8dhnJSV8XE7D8vkK0+oD3nDw+M/z9i/8m7G?=
+ =?us-ascii?Q?hHs1g/2j4Ir/be+xrvxkq36cRetzVq0l8ZOlvifRj+8kZEfI/KBUjV4eP2og?=
+ =?us-ascii?Q?pdWSupP6w7Ly78QLtbqRLKIrxRwbAElNRuuqYXaegMChsvwIrSUvSFrPbQCL?=
+ =?us-ascii?Q?um0Jl53XFOh3jfvxEk0qTcSuKZnqXZ7xDNgQsjbNPlggb0qAqMd5Ohekizgt?=
+ =?us-ascii?Q?H7Ts/eRDPJrKe3feTITGKBXgYRHC8z1zDupdgK4aI+uf7re7zajb8IzJahZ8?=
+ =?us-ascii?Q?h5gBansR8ch/nq555BSBeVzNuTvXs7UCKVZJ5QUDguni2CKJ1nOvx1caWZy/?=
+ =?us-ascii?Q?qD/vl3cRFcxL+9OmYTOdpC1t1AIttMuho10o7YYgLpjITWN9SYNRSrS0uRy4?=
+ =?us-ascii?Q?HuvwU3m2+aYHJ618lp1r3kAcetOqMMtzpgBM1uOvlpwvK8qIH7jlsLfd9vRM?=
+ =?us-ascii?Q?mgK2kUsfix8DdaRYQq1WMh2gZ9t3h7bVrJFxatF8lTX69BAKwlYaw3GWayE/?=
+ =?us-ascii?Q?yE3UcUWRqjxQMPj7rnPvIdGnnFl24RYGxgI1DDpj5eS9pvl6PnF9S0bg1Cj+?=
+ =?us-ascii?Q?DiGbzyousM/lPlZTsUbGrjBxABmXey8vv2Y4rQ7UY4ILwWSkabD+oFmbyah1?=
+ =?us-ascii?Q?BCOcOJ//hauA1vnIR3dsmBcu3ejH024E0dLS9QOnP6Q5cCsp8eEs6KBFizp1?=
+ =?us-ascii?Q?YqxG8wZb8i+UzRYX33tIvBftPz1T2DIEisaApT0w6HsO2n/kBAn6tVPapKgo?=
+ =?us-ascii?Q?s/or5uciIbNRGvl4zKUYiVS7wdZOqmTiS2peP+/VfD/tRHi94EQjaV/Gpyjl?=
+ =?us-ascii?Q?0PogqI6iKJa9JM/h4xbXWBAPlvELmrL9en9ySMkAyzSMNNRYIV8AGg1q+73f?=
+ =?us-ascii?Q?emfA/I1Da25wgZ1v+gYZMdoFnNuP5N1ixkzD1FygJYd0RBhU2Omi7XF94xfI?=
+ =?us-ascii?Q?jVwH8VXhF8+aOuoZ2UMn0D2HaqlkVWfgGhyfU9vf4ZmQotVYXnEpU1/qhl7/?=
+ =?us-ascii?Q?HRqjkAAWWvT6I8SGwPoJYE+V6vVXVj+Ft9Nt/pd6rSjgOXucwnRm4KZvhM0W?=
+ =?us-ascii?Q?kAjlkPCibVxaAmOE5MkrgonmQZ7Arj69BT1O?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 19:12:17.5811 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac309b5b-62ad-425c-bdfc-08ddf554f406
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 19:12:18.9684 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 84420524-bb81-4a38-fbb4-08ddf554f4d4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003445.namprd04.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD6.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8301
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5885
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,46 +143,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: Allen Li <wei-guang.li@amd.com>
 
-[Description]
-Modifications in per asic capability means mpc.preblend flag should be used
-to indicate preblend. Update relevant paths to use this flag.
+[Why&How]
+We need to inform DMUB whether fast sync in ultra sleep mode is supported,
+so that it can disable desync error detection when the it is not enabled.
+This helps prevent unexpected desync errors when transitioning out of
+ultra sleep mode.
 
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+Add fast sync in ultra sleep mode field in replay copy setting command.
+
+Reviewed-by: Robin Chen <robin.chen@amd.com>
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Allen Li <wei-guang.li@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c | 2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c | 1 +
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h  | 6 +++++-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index c7387af725d6..b0ef157f1333 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -821,7 +821,7 @@ int amdgpu_dm_verify_lut3d_size(struct amdgpu_device *adev,
- 	struct dm_plane_state *dm_plane_state = to_dm_plane_state(plane_state);
- 	const struct drm_color_lut *shaper = NULL, *lut3d = NULL;
- 	uint32_t exp_size, size, dim_size = MAX_COLOR_3DLUT_SIZE;
--	bool has_3dlut = adev->dm.dc->caps.color.dpp.hw_3d_lut;
-+	bool has_3dlut = adev->dm.dc->caps.color.dpp.hw_3d_lut || adev->dm.dc->caps.color.mpc.preblend;
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
+index 9e2a473a8852..f9542edff14b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
+@@ -169,6 +169,7 @@ static bool dmub_replay_copy_settings(struct dmub_replay *dmub,
+ 	copy_settings_data->max_deviation_line			= link->dpcd_caps.pr_info.max_deviation_line;
+ 	copy_settings_data->smu_optimizations_en		= link->replay_settings.replay_smu_opt_enable;
+ 	copy_settings_data->replay_timing_sync_supported = link->replay_settings.config.replay_timing_sync_supported;
++	copy_settings_data->replay_support_fast_resync_in_ultra_sleep_mode = link->replay_settings.config.replay_support_fast_resync_in_ultra_sleep_mode;
  
- 	/* shaper LUT is only available if 3D LUT color caps */
- 	exp_size = has_3dlut ? MAX_COLOR_LUT_ENTRIES : 0;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index b7c6e8d13435..96914f372d53 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -1633,7 +1633,7 @@ dm_atomic_plane_attach_color_mgmt_properties(struct amdgpu_display_manager *dm,
- 		drm_object_attach_property(&plane->base,
- 					   dm->adev->mode_info.plane_ctm_property, 0);
+ 	copy_settings_data->debug.bitfields.enable_ips_visual_confirm = dc->dc->debug.enable_ips_visual_confirm;
  
--	if (dpp_color_caps.hw_3d_lut) {
-+	if (dpp_color_caps.hw_3d_lut || dm->dc->caps.color.mpc.preblend) {
- 		drm_object_attach_property(&plane->base,
- 					   mode_info.plane_shaper_lut_property, 0);
- 		drm_object_attach_property(&plane->base,
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index 02a4a20e3560..ef8510bab32c 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -4142,10 +4142,14 @@ struct dmub_cmd_replay_copy_settings_data {
+ 	 * @hpo_link_enc_inst: HPO link encoder instance
+ 	 */
+ 	uint8_t hpo_link_enc_inst;
++	/**
++	 * Determines if fast sync in ultra sleep mode is enabled/disabled.
++	 */
++	uint8_t replay_support_fast_resync_in_ultra_sleep_mode;
+ 	/**
+ 	 * @pad: Align structure to 4 byte boundary.
+ 	 */
+-	uint8_t pad[2];
++	uint8_t pad[1];
+ };
+ 
+ 
 -- 
 2.43.0
 
