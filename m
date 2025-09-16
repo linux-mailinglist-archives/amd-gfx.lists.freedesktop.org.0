@@ -2,64 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A88B5A107
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Sep 2025 21:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0638B5A10A
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Sep 2025 21:12:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF70210E3D4;
-	Tue, 16 Sep 2025 19:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4170610E3E3;
+	Tue, 16 Sep 2025 19:12:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="l2uEe2gd";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="j4oTNhiU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013036.outbound.protection.outlook.com
- [40.93.201.36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33F3310E3D0
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 19:12:13 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010036.outbound.protection.outlook.com [52.101.201.36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D59410E3E3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 19:12:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XlkoqobPZC9vZOqRqd3nEVafcrgG2qs6GdJxBoMRzMZBcW7ecT9yYTg36a6gn8rbt7HXXLnPU4WyiSq6HWMcHx2ffgK40cS5vrE5wRGAF2dBWrzfTJ3uaojfW29Kt/Ek8Qf1u3PCAGio2zyXcNG/f9SkyWTjiz+exj0MQYBuBShUvXEVKegntuXfshvXJAE9e5ElYcMEWxwHg5IujYcZjPpM0ZZsIUvif4Aso+fJXC9jhfPjakdG7Xmszl+faOWC23sNqZAep0zcf//i8jlC9+2pgSBEuV+4wEbmCQyi+OWaZwKNKnE3kpmqokpf3qaUY0MIjIEZHI0w5ncZlXNOBg==
+ b=rQZTQkADjdEfJSHt4fGWSBcseZ3fIwU1zyN5WRAIGPaWWOaZ1jtQ14a1qNje0oj5uS/SHXE8ijrLF+vPIuMw5NRtfAz0nyXsLay2T6rX3rzAa7HLcERn4gA99NO2cdS00y/oS/EJkT6VC1N6mVSCXeh8LXXWWof69Ny1WmeEjUhPqbpeZ0tuFN/IdUxI9lsIz7gtRaoVHycGMcRBm6RYQVydyai+5YF4CMBR9Z0nMl2aFsgeovA5EM9nc8al11w3FrK4F6pZ1LzgBXddXlaJqe4vJU4Y5cB/+L8sEHXuCntKqHor4ePss+IM9EkGEnFttzZIz4WpGf3WoybcWngDUg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xqXJQjuAVSrlZILxNQkysZsjFnLhmvRBoZ9KxlxKGjU=;
- b=Bpe/mkIp+Pap3SpOMhhOyk3ifdC3AKpJlYGHjxPWvhQ0E/4aJTQQ7I/YElHVXRNxmO42S8GkSI44lXp/z5jgdgU8QZ5ZNuogVlKWXj9UAUtsrOORCBq4U/hTn9CLttjykdXOtYgBJ0F4vIsjUBE3SefAyYVDJ/YeiYPjGKM0z/FvLB8hLpMnDBQkWPGIjdZvtkcHLNrDF7AYUdZwvJCzfwMt1TFNoE0BlkoP65l4rx8yD7D1SJSJ5lpOlT42xzRXD/qx76L5I2iMMHiYBU2FBPdxlKThJKw5WaQ3oMiaBnF9S5h0ud4YvEOICIbNjX0ScIlWbQZYHJJ7qz0XBVmdyQ==
+ bh=kdxtTm0I/VhvMl5tDoay83eEh6cBJMDP3pc63vQvh6Q=;
+ b=rmC5ylCLDh/GZDXZPnXgF+VJtDzEHn6C0WfQm2RRdUqw2v2CQTowV1yAr8Kf27h2V5ea+/4GvVPyM3cjk+M68T/wOne/MvklCNcnNQJviI/EE8foXsvOoIfvJYeRfRfOjHrM9z7bCTYX4CIjd0YZhB7/dn0c/bAUAHL+sDEeJvtvJWdaLcHllOSmRNmepDlzNrNKIGqMLyPOYFF101zYMoB3E2gngbWt5ksf2s4FWUbGDYbQjv5+9xBQyKzVBKbmUXGyoZZo81nnowd0gZAISqT3ks3kh3uFybYsMqMU/L/FS8T3OLOp5hsQkevZKxFe1qF0er++8rPhL4JEGctLJQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xqXJQjuAVSrlZILxNQkysZsjFnLhmvRBoZ9KxlxKGjU=;
- b=l2uEe2gdIhGBlj0M4OwCp0lQG0r2S1UpcvPvW8uwELkNCDRhRFsxcW3Hlw9pOcNJAHrwks8CySHhigsUJI98yv35sIFvyuuxdtiQupkSjo7yvEP5fUSwOxvoxzAvQJ1I1EbwvozGV+4n5r+PNae1Cyi1w5c9/N711AC8otoglOo=
-Received: from DS7PR03CA0333.namprd03.prod.outlook.com (2603:10b6:8:55::15) by
- DM4PR12MB8572.namprd12.prod.outlook.com (2603:10b6:8:17d::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9115.22; Tue, 16 Sep 2025 19:12:07 +0000
-Received: from DS2PEPF00003442.namprd04.prod.outlook.com
- (2603:10b6:8:55:cafe::af) by DS7PR03CA0333.outlook.office365.com
- (2603:10b6:8:55::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.13 via Frontend Transport; Tue,
- 16 Sep 2025 19:12:07 +0000
+ bh=kdxtTm0I/VhvMl5tDoay83eEh6cBJMDP3pc63vQvh6Q=;
+ b=j4oTNhiU4dkqJuAvubu7BS/6nBM434XH1nK4++i7xWKXaS+veX22WTMfKi6LNXhJdc9JuWJCDV9wT3f6fyHhsIlCjbDH1xlPjabV5cevNlzR3NX1UFq6N/5w+kHsZnNu/FkhNBLby7KGXNg7vaZk+e6ZNJMwzQ1+kKp9Bx5VNCE=
+Received: from BL1PR13CA0331.namprd13.prod.outlook.com (2603:10b6:208:2c6::6)
+ by SJ1PR12MB6243.namprd12.prod.outlook.com (2603:10b6:a03:456::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Tue, 16 Sep
+ 2025 19:12:09 +0000
+Received: from MN1PEPF0000ECD8.namprd02.prod.outlook.com
+ (2603:10b6:208:2c6:cafe::aa) by BL1PR13CA0331.outlook.office365.com
+ (2603:10b6:208:2c6::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.10 via Frontend Transport; Tue,
+ 16 Sep 2025 19:12:08 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD8.mail.protection.outlook.com (10.167.242.137) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.12 via Frontend Transport; Tue, 16 Sep 2025 19:12:07 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9137.12 via Frontend Transport; Tue, 16 Sep 2025 19:12:08 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Sep
- 2025 12:12:06 -0700
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 12:12:07 -0700
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Sep
- 2025 12:12:06 -0700
+ 2025 12:12:07 -0700
 Received: from box-0.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
  Transport; Tue, 16 Sep 2025 12:12:06 -0700
@@ -70,71 +69,66 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>
-Subject: [PATCH 00/20] DC Patches September 15, 2025
-Date: Tue, 16 Sep 2025 15:09:20 -0400
-Message-ID: <20250916191142.3504643-1-IVAN.LIPSKI@amd.com>
+ <alex.hung@amd.com>, Dillon Varone <Dillon.Varone@amd.com>, Alvin Lee
+ <Alvin.Lee2@amd.com>
+Subject: [PATCH 01/20] drm/amd/display: Disable stutter when programming
+ watermarks on dcn32
+Date: Tue, 16 Sep 2025 15:09:21 -0400
+Message-ID: <20250916191142.3504643-2-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250916191142.3504643-1-IVAN.LIPSKI@amd.com>
+References: <20250916191142.3504643-1-IVAN.LIPSKI@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|DM4PR12MB8572:EE_
-X-MS-Office365-Filtering-Correlation-Id: a02fc699-e818-4129-becc-08ddf554edbe
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD8:EE_|SJ1PR12MB6243:EE_
+X-MS-Office365-Filtering-Correlation-Id: be2faf60-1637-4d52-bacc-08ddf554ee97
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QnpNU0N2cm5FR3VaNHR3SGNZNGtYTjJCTWRMaE5CMUNFWmU4S2JpRGxYL0pm?=
- =?utf-8?B?OFhqYlNaMjVKdGUwYUVyWHQrclFzOFppc0pzbGpKR3VOVFBDSWp2dTEwZU9C?=
- =?utf-8?B?bDZCQjdHVXQxRWJKamdPVi9QcGNaZWQ3bExtOWlZd3ZEREkzaGMyV3FDNTY5?=
- =?utf-8?B?M2UrU294QkUzSXFxOU83a1FhcG5KV0dzVnloSisyenNCNTh2ak90RThSK2ww?=
- =?utf-8?B?aVp6aVFMM2dReHBVaDlSNjdBVUJ4VU1wWG91WS9EOXFkS21zVzVmUlBSN0NX?=
- =?utf-8?B?THB1TmtET3dtRGVpakdhdVlmTm01WWRqaURZSmR4R0x4UnZzSDh6dm1ubkhH?=
- =?utf-8?B?c0thYXV6d2hyMVBzVjVuRm1BbmhYcWwzL0hnSVY1dUZ1d0FFV1A2aVE0R3Nh?=
- =?utf-8?B?UVArOEpPdXdCYW5VekRCVkpTZ3ZVeXYzLzFVL21NZU5WUzhCUmFTNEpla2lP?=
- =?utf-8?B?MTQ4aXY1UUQyeEh3TVAxU044bkNUdi9meDFvZU9PU05wYkUzWWNEMnBYNHIy?=
- =?utf-8?B?ZkVLVjQvUDkzVzBidHlIenI2SCs4dklRNmJpVWFKc204QXdUWEZQWWgxY1l1?=
- =?utf-8?B?RzQwNFdqc04rSFNWNFJlKzZLZEE2QTlQclBMTlFWN2R4RStNMUV2MGFDSnZM?=
- =?utf-8?B?ejhxR1ZWU3Buc0VLditpUnpzdHRITjROTWlJbC9Td0lqQnVGZ1FQcWIzbGho?=
- =?utf-8?B?WlZzVkpESVRIb05leGdFZUk3YWdVem9Ca3VDOWR6U0RBSnJWKzR5NnVCZnVP?=
- =?utf-8?B?cFpJMUx5OTNPQlJrMGJiTXA0ZS9OUkhRekNuUzNMZmxwNWY4cGM0Y1B1c1NK?=
- =?utf-8?B?eGowdWlTdHJRWjlpTVVsQVUwVXBxejJYYjkydmFSdnpyZ0dJZmZ0ajA2TjJK?=
- =?utf-8?B?R2FGQzA2OExmd0R2NnVpZExGQ09VSGt3cWkrRTdBZkJtVWNVOVRmWndialFz?=
- =?utf-8?B?b2NBR1JJYmxCUmNESGIvMnpqUnRGV3UvZm5aeDRqNmxUWVZJUzZsRXNoTXVV?=
- =?utf-8?B?NGhNVTUwd2RsRTVXZ25jZ0tHVjZPWlBqTUhxWEt5a2VFaTR6d1ppVUtLa3JM?=
- =?utf-8?B?dTJKVWVCTUJjTmhtOEZVOHNPMjZBTUlHeklOZEJkdXJtaVRSYnNhVEVaSGJ2?=
- =?utf-8?B?aG5pakJyQVRCaHlDdUZET2xueGJpUDU0b3VLc212aFkwWkZHR0c2QXpMdmdz?=
- =?utf-8?B?NC9ZOE9FSTFYdHB3c1hKMStXRGM5bjMwelcvREtnaDJNdEVId0k3M2tYTGxD?=
- =?utf-8?B?VjIzVWRUWTlBZlpJeTBHQlVlZWM0UUFXTkdZMEdHdFlTeDBLUW5xUmVLOEJu?=
- =?utf-8?B?bitBTSszMzUrak9rMEdqSXU2SWQxQTdCWktTV2xxUFU1QlN4N0gwK1k1S3ht?=
- =?utf-8?B?d0ZUcktHSGpOYm5vWWRMdDQyUGlUSEFTbzlycUZrSWZISkg0VTd5WUUvQS9S?=
- =?utf-8?B?Zjg1MWZnYlRwQkRyRjlLZmhKTnlnZGFxTFZsMC9HWWRjTWJtTlFLNTFQaUpB?=
- =?utf-8?B?RjhwRDJsenZzT1ZUSmJBR2VFcERBa3A0WDV2czFvdDZVUk1LN2JMelVkdjg3?=
- =?utf-8?B?U0VXQStOZ0hXZkV2WHBxSUZaa1l5c2N3YzlMT3UyTitoeU5kYWRvamcyMzlm?=
- =?utf-8?B?Wnp0Z2Z3T0lNOVVXWktTa3IyK0FJU2F3R3hLZDhPS3d5emxqSWZ6ZVFtaTIy?=
- =?utf-8?B?ZmJFTW14cWk0bDR0QjZReWE0alI2ZFN0aHoyYWdpZENpWm0wT0RMT0MwOVI0?=
- =?utf-8?B?Q09YOWN1K1EzbXpIS2pOS0NkUkRuQVQxZjhsemF4UTh3WjJrR1YySUxzZFJr?=
- =?utf-8?B?akJhTnp0cGRmQks5NHErUVVGWk1nQk5jeHh1UlVlaXBlcFhySjh0aTQ2cXFS?=
- =?utf-8?B?NURYa0t0UUVJdzBVSHNFaXdiSlJVcldkbndxUEUyZjZKYVZ1K3RZaUhNQ3RM?=
- =?utf-8?B?N205ZWo0SzhIejN4azJwWjlxZlQzWmdsdDFwWUlSbzBabWwrYUYxdGJJeVEy?=
- =?utf-8?B?QTZiTTg5OCtkUVB1RDZ3NjBoTTQ3WG9rTGdLdnZjTHIwMEhCOEJuTXRQMWhm?=
- =?utf-8?Q?qo7dB8?=
+ ARA:13230040|82310400026|36860700013|1800799024|30052699003|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oxhbBXa+CAOCO5u8U/ar6FHfWyJn3bOyxEDvGtuYc/a16rn09y6XrgMT69ye?=
+ =?us-ascii?Q?lqt3i9N3BrP5mAxp1mr0ZHtX5PmHbhwV6SqwyChXCunzLrU4OJKlPiOPA0/8?=
+ =?us-ascii?Q?qwa/8TDPKnhocGG2BxJaKL+2msotDmOgpKucoihIS2TT1jD9gwJz77YL4RJV?=
+ =?us-ascii?Q?y7Y14GZ8bp+SN6zANnfz1bBoagjrprFN9J0f2ekuGkcZNcnv1/XWQmbVwCSG?=
+ =?us-ascii?Q?iRBebtFjsbRnAw3SoKw9WPpewiZaPc1JurP2l+8FhaeWLEYnreBndB96sl56?=
+ =?us-ascii?Q?zg3zkT1xIbIzLCNrBeIZkzJ7e/SL989NyiuF34ognlUGTQsU0jn/CQSICI9Z?=
+ =?us-ascii?Q?/Fs43Gr10n8a7VbooNbf0XR8d2JrtEseS2rZElw1GVL6VtkZraliGPaR73QK?=
+ =?us-ascii?Q?56TMhNPQ57HtT3uButubYxArbGNpwOanBUhBNJxW/DhRl5YL5Ciu55SjG7fs?=
+ =?us-ascii?Q?gs2VhDMhI6Cr6gnJn4kl//A60fPsAWYPP0OKw6EnDJdvP1KA91Wgwf2wZB5c?=
+ =?us-ascii?Q?tn5oWDIgZ2WQjcVIcO+lKDAU+s9KyJIjM7ZktDI6DWtDyKESA6OGmN+T+Jqo?=
+ =?us-ascii?Q?lMIZJwofeEUtALlzijYbbh4yd4QeOltfLew+hDsFfWklfw7sGO6v97hZ879g?=
+ =?us-ascii?Q?idkBDXTuUbiVFrIEl4N9gjX2N+TBjad5MzAPhmyY7xE9FXwmbNA73GWhLYq5?=
+ =?us-ascii?Q?wneNPFYj73HVn59ZuDMFUNQZC9PuZeTEHoEc9eFvPdm/DbVnIsCQxKztFRMG?=
+ =?us-ascii?Q?LW2Nmgb9ArWu/421MIjtBwKWZ7aveBF6Aec3reXQZC1X9tlmY82DAqqv4YWt?=
+ =?us-ascii?Q?LHiGEd9qphzT7HbtDzbnN8E8m7y4yN9+zOH15jIi064UzuFXVLU6shlNGeDH?=
+ =?us-ascii?Q?t8P5kNxoWU33SUgGwV2WiQS3f6Zz6N4gXTLCeb2P+EZjJCVfi0cssXesqQYE?=
+ =?us-ascii?Q?lxzcFkwCKegu5hC5ynrnBJvZiOsO8eoQxYm1/buXcsydH4UGIZ8WRYH80zLP?=
+ =?us-ascii?Q?3kPNuSbzGE6NbFlc3RWfj6p5g+t7YJa2ee0aFshC6xBw4JwA8sK3pOpIqHEk?=
+ =?us-ascii?Q?IKJDWZraVv8FqZVVJ8x3oW8lXRQwrN2uTjqj73D1B4dBSgjhbhZ9SsxfUF85?=
+ =?us-ascii?Q?oUWVbegmkyEtGmizTHb3EszcdXLUhcZrKbq7zG8ep51nCPFkNeeKA4lFZ0q5?=
+ =?us-ascii?Q?QhV1VuzNv6vMoSV/jraJtNOOZJjT0NmypwAMWeuCjblzaf27Ntwmdqtl4SfF?=
+ =?us-ascii?Q?fp2LEd0JInKTzsK6Ne14oOqWROTs4960GYvQFW9l4yC7z55rFIqiNrzFZmz8?=
+ =?us-ascii?Q?jGKa7YwTfCWSfVF0ZHwNlmtMeaCoBI9YrMI6bxLF3oDUK+3DmdfJeFfK1Da6?=
+ =?us-ascii?Q?5E37/Ezb61upTNFKY9X4Ge4hM8CcE23NWiAdSXtURvDFI2wvjDk/CQY/Lrwk?=
+ =?us-ascii?Q?Huhl4oXAVS0CQ0q+3rj+uwL0grWh899V+EC5QwpyRLJfVpfkX+YSko1j5S/H?=
+ =?us-ascii?Q?+sT+Tx+0CR+RTPjSTbvdHSk37TmOd8Q0vwnW?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
- SFP:1101; 
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700013)(1800799024)(30052699003)(376014);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 19:12:07.0429 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a02fc699-e818-4129-becc-08ddf554edbe
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 19:12:08.5016 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: be2faf60-1637-4d52-bacc-08ddf554ee97
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003442.namprd04.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD8.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8572
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6243
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,101 +143,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ivan Lipski <ivan.lipski@amd.com>
+From: Dillon Varone <Dillon.Varone@amd.com>
 
-This DC patchset brings improvements in multiple areas. In summary, we highlight:
+[WHY&HOW]
+Reprogramming watermarks with stutter allowed can cause instability on
+some ASICs. Disable it prior to raising watermarks (prepare bandwidth),
+then re-enable after lowering (optimize bandwidth).
 
-    - Disable stutter when programming watermarks on dcn32
-    - Improve brightness calculations
-    - Fix saving vbios clocks during init for DCN314
-    - Enable DTM 3 on DCN3.1+ dGPUs
-    - Add new ultra sleep field in DMUB
-    - Isolate DCN401 SMU functions
-    - Refactor and add logging of SMU functions.
-    - Add dccg logging
-    - Fix DCN35 clocks initialization
+Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: Dillon Varone <Dillon.Varone@amd.com>
+Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ .../display/dc/hubbub/dcn32/dcn32_hubbub.c    | 37 ++++++++++++++++---
+ .../dc/resource/dcn32/dcn32_resource.c        |  1 +
+ .../dc/resource/dcn32/dcn32_resource.h        |  3 +-
+ 4 files changed, 36 insertions(+), 6 deletions(-)
 
-Cc: Dan Wheeler <daniel.wheeler@amd.com>
-
-Allen Li (1):
-  drm/amd/display: Add fast sync field in ultra sleep more for DMUB
-
-Alvin Lee (1):
-  drm/amd/display: Use mpc.preblend flag to indicate preblend
-
-Charlene Liu (3):
-  drm/amd/display: Insert dccg log for easy debug
-  drm/amd/display: Correct sw cache timing to ensure dispclk ramping
-  drm/amd/display: Revert "correct sw cache timing to ensure dispclk
-    ramping"
-
-Dillon Varone (6):
-  drm/amd/display: Disable stutter when programming watermarks on dcn32
-  drm/amd/display: Add missing post flip calls
-  drm/amd/display: Isolate dcn401 SMU functions
-  drm/amd/display: Refactor SMU tracing
-  drm/amd/display: Set wm_pending when disable stutter w/a used
-  drm/amd/display: Remove wm_optimized_required
-
-Ivan Lipski (1):
-  drm/amd/display: Enable DTM v3 on dGPUs with DCN 3.1+
-
-Karthi Kandasamy (1):
-  drm/amd/display: Add AVI infoframe copy in
-    copy_stream_update_to_stream
-
-Leo Li (1):
-  drm/amd/display: Init DCN35 clocks from pre-os HW values
-
-Lo-an Chen (1):
-  drm/amd/display: Init dispclk from bootup clock for DCN314
-
-Mario Limonciello (1):
-  drm/amd/display: Handle interpolation for first data point
-
-Paul Hsieh (1):
-  drm/amd/display: Add monitor patch to read psr cap again
-
-Sridevi Arvindekar (1):
-  drm/amd/display: Fix for test crash due to power gating
-
-Taimur Hassan (2):
-  drm/amd/display: [FW Promotion] Release 0.1.28.0
-  drm/amd/display: Promote DC to 3.2.351
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  13 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |   2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |   8 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |  12 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |   2 +-
- .../display/amdgpu_dm/amdgpu_dm_services.c    |   4 +-
- .../dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c  |   2 +-
- .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        | 142 +++++++++++++++++-
- .../dc/clk_mgr/dcn314/dcn314_clk_mgr.h        |   5 +
- .../dc/clk_mgr/dcn32/dcn32_clk_mgr_smu_msg.c  |   5 +-
- .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 121 ++++++++++++++-
- .../dc/clk_mgr/dcn401/dcn401_clk_mgr.c        |  26 ++--
- .../clk_mgr/dcn401/dcn401_clk_mgr_smu_msg.c   | 130 +++++++++++++++-
- .../clk_mgr/dcn401/dcn401_clk_mgr_smu_msg.h   |  10 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  12 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |   6 +
- drivers/gpu/drm/amd/display/dc/dc.h           |   4 +-
- drivers/gpu/drm/amd/display/dc/dc_stream.h    |   3 +
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   1 +
- .../amd/display/dc/dccg/dcn35/dcn35_dccg.c    |  24 ++-
- .../gpu/drm/amd/display/dc/dce/dmub_replay.c  |   1 +
- drivers/gpu/drm/amd/display/dc/dm_services.h  |  11 +-
- .../display/dc/hubbub/dcn32/dcn32_hubbub.c    |  38 ++++-
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   |   2 +-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  11 +-
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |   8 +-
- .../link/protocols/link_edp_panel_control.c   |  14 ++
- .../dc/resource/dcn314/dcn314_resource.c      |   1 +
- .../dc/resource/dcn32/dcn32_resource.c        |   1 +
- .../dc/resource/dcn32/dcn32_resource.h        |   3 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   6 +-
- 31 files changed, 556 insertions(+), 72 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 8bee44cd4609..19c74f56aa5e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1163,6 +1163,7 @@ struct dc_debug_options {
+ 	unsigned int auxless_alpm_lfps_t1t2_us;
+ 	short auxless_alpm_lfps_t1t2_offset_us;
+ 	bool enable_pg_cntl_debug_logs;
++	bool disable_stutter_for_wm_program;
+ };
+ 
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/hubbub/dcn32/dcn32_hubbub.c b/drivers/gpu/drm/amd/display/dc/hubbub/dcn32/dcn32_hubbub.c
+index 92957398ac0a..3b71bfaca291 100644
+--- a/drivers/gpu/drm/amd/display/dc/hubbub/dcn32/dcn32_hubbub.c
++++ b/drivers/gpu/drm/amd/display/dc/hubbub/dcn32/dcn32_hubbub.c
+@@ -28,6 +28,7 @@
+ #include "dcn32_hubbub.h"
+ #include "dm_services.h"
+ #include "reg_helper.h"
++#include "dal_asic_id.h"
+ 
+ 
+ #define CTX \
+@@ -72,6 +73,14 @@ static void dcn32_init_crb(struct hubbub *hubbub)
+ 	REG_UPDATE(DCHUBBUB_DEBUG_CTRL_0, DET_DEPTH, 0x47F);
+ }
+ 
++static void hubbub32_set_sdp_control(struct hubbub *hubbub, bool dc_control)
++{
++	struct dcn20_hubbub *hubbub2 = TO_DCN20_HUBBUB(hubbub);
++
++	REG_UPDATE(DCHUBBUB_SDPIF_CFG0,
++			SDPIF_PORT_CONTROL, dc_control);
++}
++
+ void hubbub32_set_request_limit(struct hubbub *hubbub, int memory_channel_count, int words_per_channel)
+ {
+ 	struct dcn20_hubbub *hubbub2 = TO_DCN20_HUBBUB(hubbub);
+@@ -754,8 +763,17 @@ static bool hubbub32_program_watermarks(
+ 		unsigned int refclk_mhz,
+ 		bool safe_to_lower)
+ {
++	struct dc *dc = hubbub->ctx->dc;
+ 	bool wm_pending = false;
+ 
++	if (!safe_to_lower && dc->debug.disable_stutter_for_wm_program &&
++			(ASICREV_IS_GC_11_0_0(dc->ctx->asic_id.hw_internal_rev) ||
++			ASICREV_IS_GC_11_0_3(dc->ctx->asic_id.hw_internal_rev))) {
++		/* before raising watermarks, SDP control give to DF, stutter must be disabled */
++		hubbub32_set_sdp_control(hubbub, false);
++		hubbub1_allow_self_refresh_control(hubbub, false);
++	}
++
+ 	if (hubbub32_program_urgent_watermarks(hubbub, watermarks, refclk_mhz, safe_to_lower))
+ 		wm_pending = true;
+ 
+@@ -786,10 +804,20 @@ static bool hubbub32_program_watermarks(
+ 	REG_UPDATE(DCHUBBUB_ARB_DF_REQ_OUTSTAND,
+ 			DCHUBBUB_ARB_MIN_REQ_OUTSTAND, 0x1FF);*/
+ 
+-	if (safe_to_lower || hubbub->ctx->dc->debug.disable_stutter)
+-		hubbub1_allow_self_refresh_control(hubbub, !hubbub->ctx->dc->debug.disable_stutter);
++	if (safe_to_lower) {
++		/* after lowering watermarks, stutter setting is restored, SDP control given to DC */
++		hubbub1_allow_self_refresh_control(hubbub, !dc->debug.disable_stutter);
++
++		if (dc->debug.disable_stutter_for_wm_program &&
++				(ASICREV_IS_GC_11_0_0(dc->ctx->asic_id.hw_internal_rev) ||
++				ASICREV_IS_GC_11_0_3(dc->ctx->asic_id.hw_internal_rev))) {
++			hubbub32_set_sdp_control(hubbub, true);
++		}
++	} else if (dc->debug.disable_stutter) {
++		hubbub1_allow_self_refresh_control(hubbub, !dc->debug.disable_stutter);
++	}
+ 
+-	hubbub32_force_usr_retraining_allow(hubbub, hubbub->ctx->dc->debug.force_usr_allow);
++	hubbub32_force_usr_retraining_allow(hubbub, dc->debug.force_usr_allow);
+ 
+ 	return wm_pending;
+ }
+@@ -974,8 +1002,7 @@ void hubbub32_init(struct hubbub *hubbub)
+ 	ignore the "df_pre_cstate_req" from the SDP port control.
+ 	only the DCN will determine when to connect the SDP port
+ 	*/
+-	REG_UPDATE(DCHUBBUB_SDPIF_CFG0,
+-			SDPIF_PORT_CONTROL, 1);
++	hubbub32_set_sdp_control(hubbub, true);
+ 	/*Set SDP's max outstanding request to 512
+ 	must set the register back to 0 (max outstanding = 256) in zero frame buffer mode*/
+ 	REG_UPDATE(DCHUBBUB_SDPIF_CFG1,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+index 8f80ccb846d7..3965a7f1b64b 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+@@ -739,6 +739,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 	.fpo_vactive_min_active_margin_us = 200,
+ 	.fpo_vactive_max_blank_us = 1000,
+ 	.enable_legacy_fast_update = false,
++	.disable_stutter_for_wm_program = true
+ };
+ 
+ static struct dce_aux *dcn32_aux_engine_create(
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.h b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.h
+index 20d714596021..99f0432288b4 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.h
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.h
+@@ -1230,7 +1230,8 @@ unsigned int dcn32_get_max_hw_cursor_size(const struct dc *dc,
+       SR(DCHUBBUB_ARB_MALL_CNTL),                                              \
+       SR(DCN_VM_FAULT_ADDR_MSB), SR(DCN_VM_FAULT_ADDR_LSB),                    \
+       SR(DCN_VM_FAULT_CNTL), SR(DCN_VM_FAULT_STATUS),                          \
+-      SR(SDPIF_REQUEST_RATE_LIMIT)
++      SR(SDPIF_REQUEST_RATE_LIMIT),                                            \
++      SR(DCHUBBUB_SDPIF_CFG0)
+ 
+ /* DCCG */
+ 
 -- 
 2.43.0
 
