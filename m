@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DECC5B5A106
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Sep 2025 21:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE13BB5A108
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Sep 2025 21:12:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D4E610E3D0;
-	Tue, 16 Sep 2025 19:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6B910E3D5;
+	Tue, 16 Sep 2025 19:12:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="x+bq1sS5";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qxFQ4zzn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011023.outbound.protection.outlook.com [52.101.57.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C081D10E3D0
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 19:12:11 +0000 (UTC)
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010001.outbound.protection.outlook.com [52.101.85.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D988B10E3D5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Sep 2025 19:12:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XkM6w5icQbADM7B9DX4wEJX9g9ldLTeP5sV3vfE4QgS6+tGZ9ibzV3Uxycdb+MsyyX3cHqXA6uMjwneK3d8CwJLaArkgKgr93cipubovxpxiTFSs5kuHKXwCZS2jZa6tCuAO1ZlmakyDB9p9fY6SU0Zmi3wM3LMRr2MPViveZreIfPsOY5eSHHMsIxWqx8ym6XDPCk/hsAHX49WhlX++4j4TfOQpz133NHhrA9RyZoyOKKVX1kXpX71oueLC1opA8XTeD44JrdZWeRvcuZinXhQ0+YBMqsLIkDPrxHqL5vE8A/TNxw+2G9zFo+/g19I8gaf+wSsdhpg+JqGzeZ7fBg==
+ b=EYPIOg3anRcfEL+aGJ9E9Q09XFGn3G17vV7Jw7KsGJbecPGvabeARH8PWxD9aPguAsc2+xKoXKSjDmO1VBDBtKpEibV6UnQQbY5yqMG6p/cq1hAyHuUjQSjwnH2O2goH2BaatzUtSbPw6otVdoa8OtvZ5LNm4h8dsSlds905a0hJ024CIa4XTuaRAXyJZtXqjDJt60tOWqwoTgb9hS850qt/yuAW5U5aJ1yfl4VvSjmIPt9A9M7ZnOjaDf9Q10K9rixL7kIntcJZtZgd6f+dYZWPZdNumufNigCa9FMDJByfxNVlYk1REw75svoH5enZrazR7qlFVDEhR1UhaOIezw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=in2cN2TcFdJXCVeolHCH0h4Zw7EHsmI7d5XkvcTwC4k=;
- b=GGYKh8jGVrt6r6pZGMMjSbalihTPOhigkcRaP53oO4iJpmvT2ghtkZYKjfZSJQcFK6pNPOwDBDfdZ5nYNuOFJDv67OVreVrW0Ado0fkD1m0V9tkAeHbx4Gp4AJuWBuiqIBnSF00aIIauak7OccdfezhJM6f+Y1gIbT0yc+9uuR/49RhN43W57zgOdSleghTKp7nPAGCY39Jl2YlBAjJNM66mTu5R8MD/Xx/ij8e+QuVkW9/wq+CHNlDJkTVIcoU82J42ny406rA87HH+40HStLT7p3bbR5p+1RcHISxxXN9dSqdsNAeBvPbfknCdSxltHeK7x+EDGIOppuDvMX0DWQ==
+ bh=3ahsi/6G82ux1dkDM272m+junMKNetN/GDP+JOf1GQY=;
+ b=KB+riQK0m5vte1NBJFyYRhes8Y84UD5ScneFZ8gX5mj7sbQssTWolUYP0tQ8C/3eouu062WQhLpvsUgms0uN6nUBNIHBbo52PZ0r3NmXACbktGl0y00PoJwpJOEfIAfI5iovF7Aqa/MgAfYfZzrWFjJEpzcEn3mezixJnS+e/Yg4dIEJ8K4+KiRuUc/mlqNF18jdGijsi+PgVO7qLm4oCT5QbbW6b/RlkOEOn9cOIowr/xA5j6copBPgG2zdOFjJgdbr2RHPbSOncjdPdXHyLfCUAa6/+NG1XuKojn6YhPp5IFWsAEQuuP5A95tkpn6jRbQkQqfk8zwVvFrGg2mU1Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=in2cN2TcFdJXCVeolHCH0h4Zw7EHsmI7d5XkvcTwC4k=;
- b=x+bq1sS5CxYDYgQkqamNFN7DghkDHRXljP5Dfm1bHNGCDXGHptoHNbia287WGTE7ICqvCbv4HIFW4BMZywWEmA6Di8q+s5wnoKnYUtRRsNXqzNhdhgu8JHfLStcLb76xoI1hWJVn+hUdQKN0PJj9PHYQJ9sWKZu5OQDe0iNPoW0=
-Received: from DS7PR03CA0343.namprd03.prod.outlook.com (2603:10b6:8:55::17) by
- LV3PR12MB9166.namprd12.prod.outlook.com (2603:10b6:408:19c::13) with
+ bh=3ahsi/6G82ux1dkDM272m+junMKNetN/GDP+JOf1GQY=;
+ b=qxFQ4zznG95KChEvcXtV9XlI0TaqfPAP883hClN1qB2Ff03zr1G7UdGF6oWQ8zXrUXBDfAmNlM3KzXzzBM0FBopHZVO+nmqA6oo2XvTuL56lbvzdziESSiTEG19kUe85MpoXGaCoA6R8SS1SpVrW/gYqHyr0Nxsep5oG/29hv/A=
+Received: from DS7PR03CA0338.namprd03.prod.outlook.com (2603:10b6:8:55::31) by
+ SA3PR12MB7808.namprd12.prod.outlook.com (2603:10b6:806:31b::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Tue, 16 Sep
  2025 19:12:08 +0000
 Received: from DS2PEPF00003442.namprd04.prod.outlook.com
- (2603:10b6:8:55:cafe::8e) by DS7PR03CA0343.outlook.office365.com
- (2603:10b6:8:55::17) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:8:55:cafe::1e) by DS7PR03CA0338.outlook.office365.com
+ (2603:10b6:8:55::31) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.22 via Frontend Transport; Tue,
- 16 Sep 2025 19:12:00 +0000
+ 16 Sep 2025 19:11:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,10 +51,14 @@ Received: from satlexmb08.amd.com (165.204.84.17) by
  DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.9137.12 via Frontend Transport; Tue, 16 Sep 2025 19:12:08 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Sep
- 2025 12:12:07 -0700
+ 2025 12:12:08 -0700
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Sep
+ 2025 12:12:08 -0700
 Received: from box-0.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
  Transport; Tue, 16 Sep 2025 12:12:07 -0700
@@ -65,10 +69,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Dillon Varone <Dillon.Varone@amd.com>
-Subject: [PATCH 02/20] drm/amd/display: Add missing post flip calls
-Date: Tue, 16 Sep 2025 15:09:22 -0400
-Message-ID: <20250916191142.3504643-3-IVAN.LIPSKI@amd.com>
+ <alex.hung@amd.com>, Karthi Kandasamy <karthi.kandasamy@amd.com>, Aric Cyr
+ <aric.cyr@amd.com>
+Subject: [PATCH 03/20] drm/amd/display: Add AVI infoframe copy in
+ copy_stream_update_to_stream
+Date: Tue, 16 Sep 2025 15:09:23 -0400
+Message-ID: <20250916191142.3504643-4-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250916191142.3504643-1-IVAN.LIPSKI@amd.com>
 References: <20250916191142.3504643-1-IVAN.LIPSKI@amd.com>
@@ -77,52 +83,52 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|LV3PR12MB9166:EE_
-X-MS-Office365-Filtering-Correlation-Id: 16d50c92-6029-4685-11a8-08ddf554ee61
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|SA3PR12MB7808:EE_
+X-MS-Office365-Filtering-Correlation-Id: 89287b62-364e-42b6-e303-08ddf554eecb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Ug8aElYQGxEsADMooDQ0vxhbDucZmg26T/M8/K05eGwq4/zdtIQJEYWjskNs?=
- =?us-ascii?Q?t6uYQF3QT99Cncr5tglDNw41wWYbjxn2ncMD3oRPR9+kXgTgd7E5XIs6UyDc?=
- =?us-ascii?Q?JV35/VCcq4ImAvaTNrnSVdZA6ok+1Cf6KE2zFpN0TifTsZ4DrVukju67bfK6?=
- =?us-ascii?Q?OJk+c4I4ON9bZNHe6g1+b0cHoM3RDVu3uqlBRxnMbqsjjpe+7t9CPMSQtWZb?=
- =?us-ascii?Q?P/rwOwI9vVj/NCRNVDfxf/m+cOoRUqEe6lU9qsffhEbjJOeESY9dkIstpjtW?=
- =?us-ascii?Q?NwlM99D2dG1sOAM83ydgC6nSDxIrOot/g+RsmtT5eOJ/FC0U2JBnzQdJ/uI+?=
- =?us-ascii?Q?h1E7UvzMb9Gub6LlYXo61IICymQzZd2+WrokzZ21d5JuLmDJ/n+ielCJcR5y?=
- =?us-ascii?Q?AWsLIgaRuPIcQ3q8jQAS9Sjn+uuyrEIx4S6n4fr++K7xxt5P1qHbFjl81DfD?=
- =?us-ascii?Q?ckxKlhEyc8bIG9bi0+4yHJFKuhldd/x1FC4pwzyDyPJGKX79HmoKCpsI2Zqq?=
- =?us-ascii?Q?mVPkNXjffyOFljVo7kal2IJiKJEp/4DtspcORT7QoKR5v1EpQyHhLVyI+WwZ?=
- =?us-ascii?Q?zL73k7WR1E5lb7bAiGyRcpXk6UfyE5ID8cOnueQAN28IgIWZNGd4PbPz8Erd?=
- =?us-ascii?Q?aUdF79pxcbkjJa8PbW1T04rz96tlwC57R4WbuyfBUZUn2TqGwFjQWSD5DsK+?=
- =?us-ascii?Q?R18sS/yFJIOUE4XR6060GYK4E8wjKvKkZkUJc0IL7F55RJmcs0f7YOGWTOut?=
- =?us-ascii?Q?Qy03/VcFhiNmOtS/bUVtQTUGjHVLqVeuFCge1caFw8BhKYV98ysC2tnK4nlE?=
- =?us-ascii?Q?moj69XzMfBdogJb64eCoeIdx9KVtLaFCgnh/YwJdafkySXpUXreHMzIwRQ+F?=
- =?us-ascii?Q?uyIYAY78E/CeBp9fZhHun7mhPzVfpb7yFvh8wmK5Q8Q8OwMQk8Bo8bOIAiE6?=
- =?us-ascii?Q?AeBCUO4Ym7CEaIFCDKKh+eEsZecSbqs7JRauU6+mgaVBX2YQZtxzHSWd0B9v?=
- =?us-ascii?Q?3k5SBTh3GpxWPVt8Vnb/CsSQRutPQlJQRBVbjlHuYa0XdEwhm500vmPi7KQV?=
- =?us-ascii?Q?lhMc+LH/RQIPI7DX5ow9m9OEoVEUBtCAVRd/4yuZrQERzrUySf//ASdf4PuA?=
- =?us-ascii?Q?Kc60eeAnHZhcKjNQ9VCFQYmW2J9SBb2dXpSxCFyyQs+/C2uv5/pRXdxPIaMY?=
- =?us-ascii?Q?59O/YSbHfDYUmu1N6c6qRzZBg/4HNm5Zp7/Tg+t7KmRi0qc+q5pwWH28jyq8?=
- =?us-ascii?Q?l5CnLNAwDXFu3VYvYBtvdcfmyQaUzVnSN/XI7nCO9C0r2CGh0qEa6C933j0M?=
- =?us-ascii?Q?wDoagyLRvntJv1sxQXH8pWuB4ZBmm+XkeONh9Tna5zPCvQrUOdAlabEyrmxe?=
- =?us-ascii?Q?4urBenoF3EHn5N/tN5vS5aPI6soMm3JyWiMOerNog2r6wqTKVA+J7SdO+Ts5?=
- =?us-ascii?Q?Yk6BRS8wuZBN9s43osmeZb8/wyOzEmqWgxXyl3Fgncdr69ivbarz9lBySEiH?=
- =?us-ascii?Q?VfMwFSxCqopbqvzDXsusT69uVVJ2mJ4kuo5u?=
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?A7WY5Zpyo/XaCaIcvI8Q3KuxxLtck1nWnOcW0liNDl2Yvx43gB+fs0Hxt8W6?=
+ =?us-ascii?Q?PI/hIUax1WNES4vp2nUYgtvKzlD6pifVBk/7P0TbNZP2I9+M+wpKRRXFMLfN?=
+ =?us-ascii?Q?CAK6qoIRObKeGQBtzHE06XG10TBE0O+sV3qWjV80oEOJ9L185WJSyu0H8rkW?=
+ =?us-ascii?Q?gxcOPZ7Oab3MPafv6x969GROF/4lHSAsrHHb0SpVlyFDfpakMhtp0QyHTupg?=
+ =?us-ascii?Q?owkhbnl70+isDi9A1Yz+AMTlvqCg/StdRZzAjh4blnND25/qdZwcBX706RYr?=
+ =?us-ascii?Q?j108+hlYYRyfAQmQGP15M5oywd08V0YXVpnFMD6MdzvR8h9wAve06m8tJOcX?=
+ =?us-ascii?Q?cNejqXkAuauMFv7CNnprwwOFekt4S9WnhtHcVkJP7YXXc3XNDFojnZ26j4/X?=
+ =?us-ascii?Q?jxCW/P8Icbp3bbfRwTgm14BHhpilVsoa1vjGsuZ/ZS4vfGD47LctO0gaOOq4?=
+ =?us-ascii?Q?y9XxmA5cKlmZbiKmnNRCRhJ32ypivG6zF1E/KM+n/HOKyNj3iM4VhHW3a/co?=
+ =?us-ascii?Q?1Cr2aJDMFjX7kRv9u3NUmp2QS1kIo3IfZZ+5azeIjKpwfvuD6h4KXCVzHJ5A?=
+ =?us-ascii?Q?IeeK2lKri+Oq4XVdBQzdWeMNqK3nktIlJey9Cyylv0zItTQJbOxzcJkAHetC?=
+ =?us-ascii?Q?YAs4ZzdRTgMuflrnetGIEmi/NT8brMVBgrF8DN/3e65ivcTKFcuqyHmrthPG?=
+ =?us-ascii?Q?zJHZUUNaDSXC0Be+Xl2qH2UBo9yEh6jSt6WVnh6FGWHaN23C/MUsM4K1yQff?=
+ =?us-ascii?Q?rcpdxlpbKL6hv6GICqRR5jEaZuQdK/NsrT28Mqa801KQdK+FurOgP0Bb6BSy?=
+ =?us-ascii?Q?L31PvOA58C0zf7ZJAmLb/GC82utO3SlJlPzVR+BWsvylNeOmawQSEFHAgy6O?=
+ =?us-ascii?Q?u813UAZbWmQz6mkuMB9tXIBTOpb2fbDdZuy6zEyMh8rVeCMOw1sm6Tk+TIEt?=
+ =?us-ascii?Q?iIBlRZNDAZQf5TdgnrmrHCy5r7YQ6mewnXbyJ7FahWexDIviua6HoPxd7Xan?=
+ =?us-ascii?Q?IjMFfS8CnUzVn8QycQCkKXum+vfzSOiE365reKmCmqej7pfPT1w9wMKmpEGr?=
+ =?us-ascii?Q?sEOV3KDZT0HM2oAYg9s+OYPX3QJIW4MOXPOqVpJaZqNvH7UMFTpdlnRYH3A4?=
+ =?us-ascii?Q?OaGKpvMh5Qwr3QMpJopenyIyLBYmfjqhwRh1Q872W1iFmUqQwx92ibW1gAQ0?=
+ =?us-ascii?Q?bA+tY+ngcSiLAYuYxmPHhJuz7qPi5RnuClQwRmIhzrT0eegm0C903xn16U29?=
+ =?us-ascii?Q?CPsAxwJzXXCcS8rsoAdPf+vSINh2Rab9itVHhktiv/iZUadZf2x9mDDejUeh?=
+ =?us-ascii?Q?MxD8niKffal7lqa65SFhpEtHs29HwqQ/mXyNeqjJLcL7FtDGxX3oYG8yLIMF?=
+ =?us-ascii?Q?+tLR7OhAnMVrAy6LgyQw0pSm92qzCh03DqVjKVPU6ygzUzcXtzCrSYsu0d99?=
+ =?us-ascii?Q?eZng4IW7G8x+Szq/ydryq7jo+3VBN51iRe2CyxBdRrVQteYUR+oS6kY7JJGV?=
+ =?us-ascii?Q?iuReXTtnd+cxL4rlUm6v3oCryFosmgBLHfZk?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 19:12:08.1076 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16d50c92-6029-4685-11a8-08ddf554ee61
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 19:12:08.8068 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89287b62-364e-42b6-e303-08ddf554eecb
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003442.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9166
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7808
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,63 +143,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dillon Varone <Dillon.Varone@amd.com>
+From: Karthi Kandasamy <karthi.kandasamy@amd.com>
 
-[WHY&HOW]
-dc_post_update_surfaces_to_stream needs to be called after a full update
-completes in order to optimize clocks and watermarks for power. Add
-missing calls before idle entry is requested to ensure optimal power.
+[WHY]
+Ensure AVI infoframe updates from stream updates are applied to the active
+stream so OS overrides are not lost.
 
-Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Dillon Varone <Dillon.Varone@amd.com>
+[HOW]
+Copy avi_infopacket to stream when valid flag is set.
+Follow existing infopacket copy pattern and perform a basic validity check before assignment.
+
+Reviewed-by: Aric Cyr <aric.cyr@amd.com>
+Signed-off-by: Karthi Kandasamy <karthi.kandasamy@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c      | 3 +--
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 8 ++++++--
- 2 files changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c          | 7 ++++++-
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 6 ++++++
+ drivers/gpu/drm/amd/display/dc/dc_stream.h        | 3 +++
+ 3 files changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 9dd2d1ed674d..b7b933a33316 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -417,8 +417,7 @@ static inline bool update_planes_and_stream_adapter(struct dc *dc,
- 	/*
- 	 * Previous frame finished and HW is ready for optimization.
- 	 */
--	if (update_type == UPDATE_TYPE_FAST)
--		dc_post_update_surfaces_to_stream(dc);
-+	dc_post_update_surfaces_to_stream(dc);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index c4dd52ed377d..974d63af1c70 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -3313,6 +3313,9 @@ static void copy_stream_update_to_stream(struct dc *dc,
+ 	if (update->adaptive_sync_infopacket)
+ 		stream->adaptive_sync_infopacket = *update->adaptive_sync_infopacket;
  
- 	return dc_update_planes_and_stream(dc,
- 					   array_of_surface_update,
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-index 466dccb355d7..1ec9d03ad747 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-@@ -218,8 +218,10 @@ static void amdgpu_dm_idle_worker(struct work_struct *work)
- 			break;
- 		}
++	if (update->avi_infopacket)
++		stream->avi_infopacket = *update->avi_infopacket;
++
+ 	if (update->dither_option)
+ 		stream->dither_option = *update->dither_option;
  
--		if (idle_work->enable)
-+		if (idle_work->enable) {
-+			dc_post_update_surfaces_to_stream(idle_work->dm->dc);
- 			dc_allow_idle_optimizations(idle_work->dm->dc, true);
-+		}
- 		mutex_unlock(&idle_work->dm->dc_lock);
- 	}
- 	idle_work->dm->idle_workqueue->running = false;
-@@ -273,8 +275,10 @@ static void amdgpu_dm_crtc_vblank_control_worker(struct work_struct *work)
- 			vblank_work->acrtc->dm_irq_params.allow_sr_entry);
- 	}
+@@ -3607,7 +3610,8 @@ static void commit_planes_do_stream_update(struct dc *dc,
+ 					stream_update->vsp_infopacket ||
+ 					stream_update->hfvsif_infopacket ||
+ 					stream_update->adaptive_sync_infopacket ||
+-					stream_update->vtem_infopacket) {
++					stream_update->vtem_infopacket ||
++					stream_update->avi_infopacket) {
+ 				resource_build_info_frame(pipe_ctx);
+ 				dc->hwss.update_info_frame(pipe_ctx);
  
--	if (dm->active_vblank_irq_count == 0)
-+	if (dm->active_vblank_irq_count == 0) {
-+		dc_post_update_surfaces_to_stream(dm->dc);
- 		dc_allow_idle_optimizations(dm->dc, true);
+@@ -5079,6 +5083,7 @@ static bool full_update_required(struct dc *dc,
+ 			stream_update->hfvsif_infopacket ||
+ 			stream_update->vtem_infopacket ||
+ 			stream_update->adaptive_sync_infopacket ||
++			stream_update->avi_infopacket ||
+ 			stream_update->dpms_off ||
+ 			stream_update->allow_freesync ||
+ 			stream_update->vrr_active_variable ||
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index cbca3c67f439..bc5dedf5f60c 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -4410,8 +4410,14 @@ static void set_avi_info_frame(
+ 	unsigned int fr_ind = pipe_ctx->stream->timing.fr_index;
+ 	enum dc_timing_3d_format format;
+ 
++	if (stream->avi_infopacket.valid) {
++		*info_packet = stream->avi_infopacket;
++		return;
 +	}
++
+ 	memset(&hdmi_info, 0, sizeof(union hdmi_info_packet));
  
- 	mutex_unlock(&dm->dc_lock);
- 
++
+ 	color_space = pipe_ctx->stream->output_color_space;
+ 	if (color_space == COLOR_SPACE_UNKNOWN)
+ 		color_space = (stream->timing.pixel_encoding == PIXEL_ENCODING_RGB) ?
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+index 5fc6fea211de..76cf9fdedab0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+@@ -203,6 +203,7 @@ struct dc_stream_state {
+ 	struct dc_info_packet hfvsif_infopacket;
+ 	struct dc_info_packet vtem_infopacket;
+ 	struct dc_info_packet adaptive_sync_infopacket;
++	struct dc_info_packet avi_infopacket;
+ 	uint8_t dsc_packed_pps[128];
+ 	struct rect src; /* composition area */
+ 	struct rect dst; /* stream addressable area */
+@@ -335,6 +336,8 @@ struct dc_stream_update {
+ 	struct dc_info_packet *hfvsif_infopacket;
+ 	struct dc_info_packet *vtem_infopacket;
+ 	struct dc_info_packet *adaptive_sync_infopacket;
++	struct dc_info_packet *avi_infopacket;
++
+ 	bool *dpms_off;
+ 	bool integer_scaling_update;
+ 	bool *allow_freesync;
 -- 
 2.43.0
 
