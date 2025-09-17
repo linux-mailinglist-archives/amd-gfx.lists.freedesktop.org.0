@@ -2,48 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8C33B804AB
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Sep 2025 16:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5F1B819CE
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Sep 2025 21:27:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12B8010E88F;
-	Wed, 17 Sep 2025 14:55:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DC3010E583;
+	Wed, 17 Sep 2025 19:27:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="H6ef2BQo";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nfraprado@collabora.com header.b="B1Lgtxo2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E5FD10E888
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Sep 2025 14:55:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=cCNRHuT/6Zbdjo7ZLYmryTB8Ec7b3k1AiEQLTYoZa80=; b=H6ef2BQolQiBXbvkol7MwdNDeG
- mI1HC3d9AqHInL78FXGSNQKdOCDcKnGtdLEA1s98uelxPbM0VzEnMs8+9DecbPCNUDPyNGhIoMvCk
- 5KL8LXa6T8Y7llinWwmw2VocbMiofI5sdMg/xuOWRkKBsjepuya/1I8dzCpKQ4XnITjLRqSeBHFqY
- iE6vh/OMYnOEl7LWG3F3TBtB5a6UwZjlgM8R8dSswduPZXWR78AZMDkZ6SKtgcx9jXtmiyLxAiawf
- DaIKkDg0AvNXfeNxUFwXOJlGm7UYh/WSxF9LwkZtY/F4DPqI+cXuooYqBm2pacWryJhUUEs6o30zO
- XvZimRxw==;
-Received: from [84.66.36.92] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uytYi-00Ckfg-La; Wed, 17 Sep 2025 16:55:00 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com,
-	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC 6/6] drm/amd/pm: Use common helper for parsing sysfs writes
-Date: Wed, 17 Sep 2025 15:54:49 +0100
-Message-ID: <20250917145450.3000-7-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250917145450.3000-1-tvrtko.ursulin@igalia.com>
-References: <20250917145450.3000-1-tvrtko.ursulin@igalia.com>
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4FEF10E577;
+ Wed, 17 Sep 2025 15:31:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1758123079; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=UuWe0R862mYBDNK4zKUo6G/vNL3Ap8kkqwL+8/eehzbjH5nlQlSikO+WrTeETPx+tuHPZ3itRgmUO+ORw0jPZwYii/A47YeYMdoxkUA9JznlHt8wFNmF6ofRjBWhickwZj1yJtFX4GOhPTPVZEgsiKQ8QvSJAJO+a/NewAizNsE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1758123079;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=jIqoacxs9ki9nTZ6Q1FeaTJMMaiRjGlrrARraBiu5+o=; 
+ b=No6BQtVkwYJzcMISTa0+oFjwB7bXlW2vwpkCJbpmRqbui6/YsKHPnfasxzOU1F0wY2gXCXnZJV2pxwIf2JRY748Cqic4E0rAIaSNxSFs1mesWboj7z1KdcoIY+HuFmHLG4kIIXFklSwfc3tt//M23n7Ewdqr2o1N9hZ6AvyyEO0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nfraprado@collabora.com;
+ dmarc=pass header.from=<nfraprado@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758123079; 
+ s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+ bh=jIqoacxs9ki9nTZ6Q1FeaTJMMaiRjGlrrARraBiu5+o=;
+ b=B1Lgtxo2BKhTT6TH2o9kBYMhpLgVGLhTV9b9f/8dtmlaTeOJyUsBrReafgoAtZJl
+ sNT8o0LPhffT53MkuudLBGEWy8IoAkLqi6JbH6bUU83Gpkn2d5cWng/2qufmAydV2rP
+ zRNB9aTIuSguDuyJU/XC92MDuqULg7j3/MUVc6CE=
+Received: by mx.zohomail.com with SMTPS id 1758123076994704.9119805128295;
+ Wed, 17 Sep 2025 08:31:16 -0700 (PDT)
+Message-ID: <6a9ce6f7db556a7b2a3ea60a4765075a4f0073cb.camel@collabora.com>
+Subject: Re: [PATCH V11 13/47] drm/colorop: Add destroy functions for color
+ pipeline
+From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
+To: Alex Hung <alex.hung@amd.com>, Louis Chauvet
+ <louis.chauvet@bootlin.com>, 	dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: wayland-devel@lists.freedesktop.org, harry.wentland@amd.com, 
+ leo.liu@amd.com, ville.syrjala@linux.intel.com,
+ pekka.paalanen@collabora.com, 	contact@emersion.fr, mwen@igalia.com,
+ jadahl@redhat.com, sebastian.wick@redhat.com, 	shashank.sharma@amd.com,
+ agoins@nvidia.com, joshua@froggi.es, mdaenzer@redhat.com, 
+ aleixpol@kde.org, xaver.hugl@gmail.com, victoria@system76.com,
+ daniel@ffwll.ch, 	uma.shankar@intel.com, quic_naseer@quicinc.com,
+ quic_cbraga@quicinc.com, 	quic_abhinavk@quicinc.com, marcan@marcan.st,
+ Liviu.Dudau@arm.com, 	sashamcintosh@google.com,
+ chaitanya.kumar.borah@intel.com, mcanal@igalia.com,  Daniel Stone
+ <daniels@collabora.com>
+Date: Wed, 17 Sep 2025 11:31:14 -0400
+In-Reply-To: <73c5ddcf-885c-4c90-9393-6ee6e2fdd984@amd.com>
+References: <20250815035047.3319284-1-alex.hung@amd.com>
+ <20250815035047.3319284-14-alex.hung@amd.com>
+ <59910838-4ae7-42f1-9226-3845b3a4ab52@bootlin.com>
+ <73c5ddcf-885c-4c90-9393-6ee6e2fdd984@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+b1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-ZohoMail-Owner: <6a9ce6f7db556a7b2a3ea60a4765075a4f0073cb.camel@collabora.com>+zmo_0_nfraprado@collabora.com
+X-Mailman-Approved-At: Wed, 17 Sep 2025 19:27:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,386 +82,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use the previously added common helper for parsing sysfs writes into
-arrays of longs.
+On Tue, 2025-09-16 at 20:01 -0600, Alex Hung wrote:
+>=20
+>=20
+> On 9/5/25 11:12, Louis Chauvet wrote:
+> >=20
+> >=20
+> > Le 15/08/2025 =C3=A0 05:50, Alex Hung a =C3=A9crit=C2=A0:
+> > > The functions are to clean up color pipeline when a device driver
+> > > fails to create its color pipeline.
+> > >=20
+> > > Signed-off-by: Alex Hung <alex.hung@amd.com>
+> > > Reviewed-by: Daniel Stone <daniels@collabora.com>
+> > > Reviewed-by: Simon Ser <contact@emersion.fr>
+> > > Reviewed-by: Melissa Wen <mwen@igalia.com>
+> > > ---
+> > > v11:
+> > > =C2=A0 - destroy function takes drm_device *dev instead of drm_plane
+> > > *plane
+> > > =C2=A0=C2=A0=C2=A0 (N=C3=ADcolas Prado)
+> > >=20
+> > > v9:
+> > > =C2=A0 - Move from from latest commit to here, and=20
+> > > drm_colorop_pipeline_destroy
+> > > =C2=A0=C2=A0=C2=A0 is called in respective commits.
+> > >=20
+> > > =C2=A0 drivers/gpu/drm/drm_colorop.c | 35
+> > > +++++++++++++++++++++++++++++++++++
+> > > =C2=A0 include/drm/drm_colorop.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
+> > > =C2=A0 2 files changed, 37 insertions(+)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/=20
+> > > drm_colorop.c
+> > > index 7b3ecf7ddd11..6930d39c8ad3 100644
+> > > --- a/drivers/gpu/drm/drm_colorop.c
+> > > +++ b/drivers/gpu/drm/drm_colorop.c
+> > > @@ -135,6 +135,41 @@ static int drm_plane_colorop_init(struct=20
+> > > drm_device *dev, struct drm_colorop *co
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ret;
+> > > =C2=A0 }
+> > > +/**
+> > > + * drm_colorop_cleanup - Cleanup a drm_colorop object in
+> > > color_pipeline
+> > > + *
+> > > + * @colorop: The drm_colorop object to be cleaned
+> > > + */
+> > > +static void drm_colorop_cleanup(struct drm_colorop *colorop)
+> > > +{
+> > > +=C2=A0=C2=A0=C2=A0 struct drm_device *dev =3D colorop->dev;
+> > > +=C2=A0=C2=A0=C2=A0 struct drm_mode_config *config =3D &dev->mode_con=
+fig;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 list_del(&colorop->head);
+> > > +=C2=A0=C2=A0=C2=A0 config->num_colorop--;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 kfree(colorop->state);
+> > > +}
+> > > +
+> > > +/**
+> > > + * drm_colorop_pipeline_destroy - Helper for color pipeline
+> > > destruction
+> > > + *
+> > > + * @dev: - The drm_device containing the drm_planes with the=20
+> > > color_pipelines
+> > > + *
+> > > + * Provides a default color pipeline destroy handler for
+> > > drm_device.
+> > > + */
+> > > +void drm_colorop_pipeline_destroy(struct drm_device *dev)
+> > > +{
+> > > +=C2=A0=C2=A0=C2=A0 struct drm_mode_config *config =3D &dev->mode_con=
+fig;
+> > > +=C2=A0=C2=A0=C2=A0 struct drm_colorop *colorop, *next;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 list_for_each_entry_safe(colorop, next, &config-
+> > > >colorop_list,=20
+> > > head) {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_colorop_cleanup(color=
+op);
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 kfree(colorop);
+> >=20
+> > This free here seems a bit strange. I don't see any requirement on
+> > the=20
+> > colorop pointer in the init function, so we can expect it to be
+> > embedded=20
+> > in a bigger structure, so this kfree may affect a non-allocated
+> > pointer.
+> >=20
+> > I would expect one of:
+> >=20
+> > - a clear documentation in drm_plane_colorop_*_init documentation
+> > that=20
+> > explicitly says that you need to pass a kzalloc pointer =3D> very
+> > error=20
+> > prone, if the user don't read carefully the documentation it may
+> > lead to=20
+> > undefined behavior
+> >=20
+> > - that drm_plane_colorop_*_init will do the kzalloc itself (so we=20
+> > garantee that the pointer is always a kzalloc pointer) =3D> it will
+> > forbid=20
+> > to embed colorop structure in bigger structure. I don't think this
+> > is=20
+> > the case today, but I don't know if this can become a limitation
+> > for=20
+> > other drivers.
+>=20
+> Yes it makes to have kzalloc and kfree done both in vkms/amdgpu or
+> both=20
+> in drm_*.
+>=20
+> Does the following change make sense to you?
+>=20
+> diff --git a/drivers/gpu/drm/drm_colorop.c
+> b/drivers/gpu/drm/drm_colorop.c
+> index 1551b86471ce..67aa443e53e7 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+>=20
+> @@ -214,6 +216,13 @@ int drm_plane_colorop_curve_1d_init(struct=20
+> drm_device *dev, struct drm_colorop *
+> =C2=A0=C2=A0	struct drm_property *prop;
+> =C2=A0=C2=A0	int ret;
+>=20
+> +	colorop =3D kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
+> +	if (!colorop) {
+> +		drm_err(dev, "KMS: Failed to allocate colorop\n");
+> +		ret =3D -ENOMEM;
+> +		goto cleanup;
+> +	}
+> +
+> =C2=A0=C2=A0	if (!supported_tfs) {
+> =C2=A0=C2=A0		drm_err(dev,
+> =C2=A0=C2=A0			"No supported TFs for new 1D curve colorop
+> on [PLANE:%d:%s]\n",
+> diff --git a/drivers/gpu/drm/vkms/vkms_colorop.c=20
+> b/drivers/gpu/drm/vkms/vkms_colorop.c
+> index 0191ac44dec0..f11dca61b5ce 100644
+> --- a/drivers/gpu/drm/vkms/vkms_colorop.c
+> +++ b/drivers/gpu/drm/vkms/vkms_colorop.c
+> @@ -24,12 +24,6 @@ static int vkms_initialize_color_pipeline(struct=20
+> drm_plane *plane, struct drm_pr
+> =C2=A0=C2=A0	memset(ops, 0, sizeof(ops));
+>=20
+> =C2=A0=C2=A0	/* 1st op: 1d curve */
+> -	ops[i] =3D kzalloc(sizeof(*ops[i]), GFP_KERNEL);
+> -	if (!ops[i]) {
+> -		drm_err(dev, "KMS: Failed to allocate colorop\n");
+> -		ret =3D -ENOMEM;
+> -		goto cleanup;
+> -	}
+>=20
+> =C2=A0=C2=A0	ret =3D drm_plane_colorop_curve_1d_init(dev, ops[i], plane,
+> supported_tfs,
+> =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> DRM_COLOROP_FLAG_ALLOW_BYPASS);
+>=20
+>=20
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
----
- drivers/gpu/drm/amd/pm/amdgpu_pm.c | 236 ++++++++++-------------------
- 1 file changed, 83 insertions(+), 153 deletions(-)
+Well, as Louis mentions, this doesn't play well with embedding a
+colorop into a larger struct, which is something I'm relying on to
+track additional bits for post-blend colorops in the MediaTek driver in
+[1].
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 4503220c09aa..9154c75fd95a 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -751,16 +751,14 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(struct device *dev,
- {
- 	struct drm_device *ddev = dev_get_drvdata(dev);
- 	struct amdgpu_device *adev = drm_to_adev(ddev);
--	int ret;
--	uint32_t parameter_size = 0;
--	long parameter[64];
--	char buf_cpy[128];
--	char *tmp_str;
--	char *sub_str;
--	const char delimiter[3] = {' ', '\n', '\0'};
-+	unsigned int num_args;
-+	char copy[128];
-+	long args[64];
- 	uint32_t type;
-+	char *tmp;
-+	int ret;
- 
--	if (count > 127 || count == 0)
-+	if (count >= sizeof(copy) || count == 0)
- 		return -EINVAL;
- 
- 	if (*buf == 's')
-@@ -780,60 +778,47 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(struct device *dev,
- 	else
- 		return -EINVAL;
- 
--	memcpy(buf_cpy, buf, count);
--	buf_cpy[count] = 0;
--
--	tmp_str = buf_cpy;
-+	memcpy(copy, buf, count);
-+	copy[count] = 0;
- 
-+	/* Skip command characters. */
-+	tmp = &copy[1];
- 	if ((type == PP_OD_EDIT_VDDC_CURVE) ||
- 	     (type == PP_OD_EDIT_VDDGFX_OFFSET))
--		tmp_str++;
--	while (isspace(*++tmp_str));
-+		tmp++;
- 
--	while ((sub_str = strsep(&tmp_str, delimiter)) != NULL) {
--		if (strlen(sub_str) == 0)
--			continue;
--		ret = kstrtol(sub_str, 0, &parameter[parameter_size]);
--		if (ret)
--			return -EINVAL;
--		parameter_size++;
--
--		if (!tmp_str)
--			break;
--
--		while (isspace(*tmp_str))
--			tmp_str++;
--	}
-+	ret = amdgpu_parse_buffer_l(tmp, 0, " \n", args, ARRAY_SIZE(args));
-+	if (ret < 0)
-+		return ret;
-+	num_args = ret;
- 
- 	ret = amdgpu_pm_get_access(adev);
- 	if (ret < 0)
- 		return ret;
- 
--	if (amdgpu_dpm_set_fine_grain_clk_vol(adev,
--					      type,
--					      parameter,
--					      parameter_size))
--		goto err_out;
-+	if (amdgpu_dpm_set_fine_grain_clk_vol(adev, type, args, num_args)) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
- 
--	if (amdgpu_dpm_odn_edit_dpm_table(adev, type,
--					  parameter, parameter_size))
--		goto err_out;
-+	if (amdgpu_dpm_odn_edit_dpm_table(adev, type, args, num_args)) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
- 
- 	if (type == PP_OD_COMMIT_DPM_TABLE) {
- 		if (amdgpu_dpm_dispatch_task(adev,
- 					     AMD_PP_TASK_READJUST_POWER_STATE,
--					     NULL))
--			goto err_out;
-+					     NULL)) {
-+			ret = -EINVAL;
-+			goto out;
-+		}
- 	}
- 
-+out:
- 	amdgpu_pm_put_access(adev);
- 
--	return count;
--
--err_out:
--	amdgpu_pm_put_access(adev);
--
--	return -EINVAL;
-+	return ret ?: count;
- }
- 
- static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
-@@ -1367,17 +1352,14 @@ static ssize_t amdgpu_set_pp_power_profile_mode(struct device *dev,
- 		const char *buf,
- 		size_t count)
- {
--	int ret;
- 	struct drm_device *ddev = dev_get_drvdata(dev);
- 	struct amdgpu_device *adev = drm_to_adev(ddev);
--	uint32_t parameter_size = 0;
--	long parameter[64];
--	char *sub_str, buf_cpy[128];
--	char *tmp_str;
--	uint32_t i = 0;
--	char tmp[2];
-+	unsigned int num_args;
- 	long int profile_mode;
--	const char delimiter[3] = {' ', '\n', '\0'};
-+	char copy[128];
-+	long args[64];
-+	char tmp[2];
-+	int ret;
- 
- 	tmp[0] = *(buf);
- 	tmp[1] = '\0';
-@@ -1386,39 +1368,29 @@ static ssize_t amdgpu_set_pp_power_profile_mode(struct device *dev,
- 		return -EINVAL;
- 
- 	if (profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
--		if (count < 2 || count > 127)
-+		if (count < 2 || count >= sizeof(copy))
- 			return -EINVAL;
--		while (isspace(*++buf))
--			i++;
--		memcpy(buf_cpy, buf, count-i);
--		tmp_str = buf_cpy;
--		while ((sub_str = strsep(&tmp_str, delimiter)) != NULL) {
--			if (strlen(sub_str) == 0)
--				continue;
--			ret = kstrtol(sub_str, 0, &parameter[parameter_size]);
--			if (ret)
--				return -EINVAL;
--			parameter_size++;
--			if (!tmp_str)
--				break;
--			while (isspace(*tmp_str))
--				tmp_str++;
--		}
-+
-+		memcpy(copy, &buf[1], count - 1);
-+
-+		ret = amdgpu_parse_buffer_l(copy, 0, " \n",
-+					    args, ARRAY_SIZE(args));
-+		if (ret < 0)
-+			return ret;
-+
-+		num_args = ret;
- 	}
--	parameter[parameter_size] = profile_mode;
-+	args[num_args] = profile_mode;
- 
- 	ret = amdgpu_pm_get_access(adev);
- 	if (ret < 0)
- 		return ret;
- 
--	ret = amdgpu_dpm_set_power_profile_mode(adev, parameter, parameter_size);
-+	ret = amdgpu_dpm_set_power_profile_mode(adev, args, num_args);
- 
- 	amdgpu_pm_put_access(adev);
- 
--	if (!ret)
--		return count;
--
--	return -EINVAL;
-+	return ret ?: count;
- }
- 
- static int amdgpu_hwmon_get_sensor_generic(struct amdgpu_device *adev,
-@@ -2277,32 +2249,18 @@ static ssize_t amdgpu_set_pm_policy_attr(struct device *dev,
- 	struct drm_device *ddev = dev_get_drvdata(dev);
- 	struct amdgpu_device *adev = drm_to_adev(ddev);
- 	struct amdgpu_pm_policy_attr *policy_attr;
--	int ret, num_params = 0;
--	char delimiter[] = " \n\t";
--	char tmp_buf[128];
--	char *tmp, *param;
-+	char copy[128];
- 	long val;
-+	int ret;
- 
--	count = min(count, sizeof(tmp_buf));
--	memcpy(tmp_buf, buf, count);
--	tmp_buf[count - 1] = '\0';
--	tmp = tmp_buf;
-+	count = min(count, sizeof(copy));
-+	memcpy(copy, buf, count);
-+	copy[count - 1] = '\0';
- 
--	tmp = skip_spaces(tmp);
--	while ((param = strsep(&tmp, delimiter))) {
--		if (!strlen(param)) {
--			tmp = skip_spaces(tmp);
--			continue;
--		}
--		ret = kstrtol(param, 0, &val);
--		if (ret)
--			return -EINVAL;
--		num_params++;
--		if (num_params > 1)
--			return -EINVAL;
--	}
--
--	if (num_params != 1)
-+	ret = amdgpu_parse_buffer_l(copy, 0, " \t\n", &val, 1);
-+	if (ret < 0)
-+		return ret;
-+	else if (ret != 1)
- 		return -EINVAL;
- 
- 	policy_attr =
-@@ -2316,10 +2274,7 @@ static ssize_t amdgpu_set_pm_policy_attr(struct device *dev,
- 
- 	amdgpu_pm_put_access(adev);
- 
--	if (ret)
--		return ret;
--
--	return count;
-+	return ret ?: count;
- }
- 
- #define AMDGPU_PM_POLICY_ATTR(_name, _id)                                  \
-@@ -3728,58 +3683,43 @@ static int amdgpu_retrieve_od_settings(struct amdgpu_device *adev,
- 	return size;
- }
- 
--static int parse_input_od_command_lines(const char *buf,
--					size_t count,
-+static int parse_input_od_command_lines(const char *buf, size_t count,
- 					u32 *type,
--					long *params,
--					uint32_t *num_of_params)
-+					long *args, unsigned int *num_args)
- {
--	const char delimiter[3] = {' ', '\n', '\0'};
--	uint32_t parameter_size = 0;
--	char buf_cpy[128] = {0};
--	char *tmp_str, *sub_str;
-+	const unsigned int max_args = *num_args;
-+	char copy[128], *p = copy;
- 	int ret;
- 
--	if (count > sizeof(buf_cpy) - 1)
-+	if (count > sizeof(copy) - 1)
- 		return -EINVAL;
- 
--	memcpy(buf_cpy, buf, count);
--	tmp_str = buf_cpy;
-+	*num_args = 0;
-+
-+	memcpy(copy, buf, count);
- 
- 	/* skip heading spaces */
--	while (isspace(*tmp_str))
--		tmp_str++;
-+	while (isspace(*p))
-+		p++;
- 
--	switch (*tmp_str) {
-+	switch (*p) {
- 	case 'c':
- 		*type = PP_OD_COMMIT_DPM_TABLE;
- 		return 0;
- 	case 'r':
--		params[parameter_size] = *type;
--		*num_of_params = 1;
-+		args[0] = *type;
-+		*num_args = 1;
- 		*type = PP_OD_RESTORE_DEFAULT_TABLE;
- 		return 0;
- 	default:
- 		break;
- 	}
- 
--	while ((sub_str = strsep(&tmp_str, delimiter)) != NULL) {
--		if (strlen(sub_str) == 0)
--			continue;
-+	ret = amdgpu_parse_buffer_l(p, 0, " \n", args, max_args);
-+	if (ret < 0)
-+		return ret;
- 
--		ret = kstrtol(sub_str, 0, &params[parameter_size]);
--		if (ret)
--			return -EINVAL;
--		parameter_size++;
--
--		if (!tmp_str)
--			break;
--
--		while (isspace(*tmp_str))
--			tmp_str++;
--	}
--
--	*num_of_params = parameter_size;
-+	*num_args = ret;
- 
- 	return 0;
- }
-@@ -3790,15 +3730,12 @@ amdgpu_distribute_custom_od_settings(struct amdgpu_device *adev,
- 				     const char *in_buf,
- 				     size_t count)
- {
--	uint32_t parameter_size = 0;
--	long parameter[64];
-+	long args[64];
-+	unsigned int max_args = ARRAY_SIZE(args);
- 	int ret;
- 
--	ret = parse_input_od_command_lines(in_buf,
--					   count,
--					   &cmd_type,
--					   parameter,
--					   &parameter_size);
-+	ret = parse_input_od_command_lines(in_buf, count, &cmd_type, args,
-+					   &max_args);
- 	if (ret)
- 		return ret;
- 
-@@ -3806,29 +3743,22 @@ amdgpu_distribute_custom_od_settings(struct amdgpu_device *adev,
- 	if (ret < 0)
- 		return ret;
- 
--	ret = amdgpu_dpm_odn_edit_dpm_table(adev,
--					    cmd_type,
--					    parameter,
--					    parameter_size);
-+	ret = amdgpu_dpm_odn_edit_dpm_table(adev, cmd_type, args, max_args);
- 	if (ret)
--		goto err_out;
-+		goto out;
- 
- 	if (cmd_type == PP_OD_COMMIT_DPM_TABLE) {
- 		ret = amdgpu_dpm_dispatch_task(adev,
- 					       AMD_PP_TASK_READJUST_POWER_STATE,
- 					       NULL);
- 		if (ret)
--			goto err_out;
-+			goto out;
- 	}
- 
-+out:
- 	amdgpu_pm_put_access(adev);
- 
--	return count;
--
--err_out:
--	amdgpu_pm_put_access(adev);
--
--	return ret;
-+	return ret ?: count;
- }
- 
- /**
--- 
-2.48.0
+I don't see an issue with the existing solution. From the function's
+documentation: "Provides a default color pipeline destroy handler for
+drm_device.", "default" is the key word here, each driver is currently
+responsible for allocating every colorop and cleaning it up, and this
+function is a helper for the common case where a drm_colorop is not
+embedded into another struct. For the cases where it is, the driver
+should create its own destroy() that properly frees the pointer for the
+container struct, which is exactly what I'm doing in [1]. Perhaps we
+should just add to the destroy() documentation that it frees the
+pointer and so drivers embedding the struct should implement their own
+helper.
 
+On that train of thought, I think it would make sense to make
+drm_colorop_cleanup() public [2] as part of this series so that those
+drivers can reuse it.
+
+[1]
+https://lore.kernel.org/dri-devel/20250822-mtk-post-blend-color-pipeline-v1=
+-0-a9446d4aca82@collabora.com/T/#ma6b44d451ed84c9c6b32d26e6192ad951612444d
+[2]
+https://lore.kernel.org/dri-devel/20250822-mtk-post-blend-color-pipeline-v1=
+-0-a9446d4aca82@collabora.com/T/#m15e8f52a03d711a4d3ab9cecc7b9cafb2954c489
+
+>=20
+--=20
+Thanks,
+
+N=C3=ADcolas
