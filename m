@@ -2,120 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1426B802D8
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Sep 2025 16:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38394B819CD
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Sep 2025 21:27:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BAEA10E85B;
-	Wed, 17 Sep 2025 14:46:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AF6710E581;
+	Wed, 17 Sep 2025 19:27:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DitEB5cr";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nfraprado@collabora.com header.b="G0Jh+q/X";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013060.outbound.protection.outlook.com
- [40.93.201.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17A9410E858
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Sep 2025 14:46:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MmPEc9muosoyegJZerbXjrdT8kPMjNUe9XaTkplW7m0JLKrdqMXNuIU+eMlGG6Mdl7FocH+6mrqoVA+Ywv99ZRGxFtju6CJrl6ffTI5hi1JSUZaEcCA8FAE4PlNlGvFrgprIxrefBvNv1YOVVZSSIh8YnzMQ10GpUYqgVB9g20Fy2uvqX2FbBYk1zxjPRGQP6bDSIo9/wYG3HE73Aa9sOCIGmZWSTW0fJHgs1PtS2kzpBTpUXxEB91HEzHlvAEpOXCneGYH/uXNiK5i0BAyVrNnPKlyinLgBZ9hgrFp8951le5/ZncmSF5LAneE7tTsWmztjpox8Ww+PeJYIJmrafw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S+Bfbzu7I4s9VYV4ETQG1opK3JaRQwrAehY+wko4YTM=;
- b=mHUWhxFe9TlNl+fwU4tnJ/vx0kUPbOWV5i+paHB1ookyKFI9iVymzhOeK5btAYcvzAIITMbBbIrcgfcWX9674ody3mu3DXjLyXqpZN/8ktoOvwUFLMBirPmE32vDPuKtInHZsRXAo5BFKBCJRQXmy90VYZA13fMZi4TV64qNVSWnSOeumDlou/u8SWc6GLUfGIkuvDjRDWFynhYpJh9jfIcGbQEeOeF1iLwrYU7bKIjfCkEntcF6wlf3TNho93cYA+w2Sor0Mb5bQDOyKR/v33cEvid0Pe8kKHb4FHpbia4Xqvk2Qf+xTCF+pyFpaFJxwZG5OKwwBv5q75YXk4lXuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S+Bfbzu7I4s9VYV4ETQG1opK3JaRQwrAehY+wko4YTM=;
- b=DitEB5crRaGx8Epx3+bCeadewhgu5NeN2YTn6FMIR5NGK6skXNsbfxlkfHyBmHTRDLBukXmJ34DLOkJ1Jk6uuRLGBCzSZOGALr8twMt22164ERUagwwXkOENwDGXYKcsPPU1txbprckr/l2kSv5h76el1lHvKZVGEWZmYoz0jJo=
-Received: from CH5P221CA0003.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:1f2::22)
- by IA1PR12MB9738.namprd12.prod.outlook.com (2603:10b6:208:465::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Wed, 17 Sep
- 2025 14:46:11 +0000
-Received: from CH3PEPF0000000C.namprd04.prod.outlook.com
- (2603:10b6:610:1f2:cafe::c8) by CH5P221CA0003.outlook.office365.com
- (2603:10b6:610:1f2::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.14 via Frontend Transport; Wed,
- 17 Sep 2025 14:46:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH3PEPF0000000C.mail.protection.outlook.com (10.167.244.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.12 via Frontend Transport; Wed, 17 Sep 2025 14:46:10 +0000
-Received: from dogwood-dvt-marlim.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 17 Sep 2025 07:46:07 -0700
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <mario.limonciello@amd.com>, <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3] drm/amd: Run KFD/userq suspend and resume routines for s0ix
-Date: Wed, 17 Sep 2025 09:45:44 -0500
-Message-ID: <20250917144544.299678-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.50.1
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F181D10E87F;
+ Wed, 17 Sep 2025 14:48:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1758120476; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=kExb06QfGO5wGi4tn95OHJVEbc779HG2jWFpn5MAUrF+Ht+Z93XO6ITrezk1pS42PqckAZ8w3O54JkERSYq1cb9RmJ/W9714Z2IyCTPfhj+n39QAhvIJsa+LIEHFjaBHAwlA00Dmm72mMGooUrPX+Rrm8wff0jCHHm9JH5+PnbM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1758120476;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=eF1Nte+KoyVaFu3UgvgV2Z8Dq7qzOgXxpPaBwAQaie8=; 
+ b=Wm31mSLaNHA5JL/bYzEu3hQrZdYX/LDe3YFbd7SAWe7q1m9doALg8QaI3Yeo82EARNgulOCjeWRJvWJcxe21UWJ1e64uRr7w7eOnVmHgSUGTZoguofyE4YUgFqBuitobPD7DRboJBNd0cfJcx8DgrXo2dftxZKk64aes/gjRb0Y=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nfraprado@collabora.com;
+ dmarc=pass header.from=<nfraprado@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758120476; 
+ s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+ bh=eF1Nte+KoyVaFu3UgvgV2Z8Dq7qzOgXxpPaBwAQaie8=;
+ b=G0Jh+q/Xe8890RFMMGqplZFoUjijmEp27SkVrR0Sk+OmH4/sWp8fecuP3AQhqePq
+ hv73AZJ3wT3DqRUUiEMd/IdFfWv/hkE6yNsfHjtIQzPN/IlprKcdtj72V8D6DeI361p
+ /D0RZyziaMZH50ZTncXen/nYjdPJWKgzTEipUj4Q=
+Received: by mx.zohomail.com with SMTPS id 1758120474604133.2092327581646;
+ Wed, 17 Sep 2025 07:47:54 -0700 (PDT)
+Message-ID: <3fecacf2e1ea9b9e071cbb95e315a75a1cfb3b3d.camel@collabora.com>
+Subject: Re: [PATCH V11 14/47] drm/vkms: Add enumerated 1D curve colorop
+From: =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" <nfraprado@collabora.com>
+To: Alex Hung <alex.hung@amd.com>, Louis Chauvet
+ <louis.chauvet@bootlin.com>, 	dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Simon Ser	 <contact@emersion.fr>,
+ harry.wentland@amd.com
+Cc: wayland-devel@lists.freedesktop.org, leo.liu@amd.com, 
+ ville.syrjala@linux.intel.com, pekka.paalanen@collabora.com,
+ mwen@igalia.com, 	jadahl@redhat.com, sebastian.wick@redhat.com,
+ shashank.sharma@amd.com, 	agoins@nvidia.com, joshua@froggi.es,
+ mdaenzer@redhat.com, aleixpol@kde.org, 	xaver.hugl@gmail.com,
+ victoria@system76.com, daniel@ffwll.ch, 	uma.shankar@intel.com,
+ quic_naseer@quicinc.com, quic_cbraga@quicinc.com, 
+ quic_abhinavk@quicinc.com, marcan@marcan.st, Liviu.Dudau@arm.com, 
+ sashamcintosh@google.com, chaitanya.kumar.borah@intel.com,
+ mcanal@igalia.com,  Daniel Stone <daniels@collabora.com>
+Date: Wed, 17 Sep 2025 10:47:51 -0400
+In-Reply-To: <c1a1044e-dd05-4bf0-a903-9e13bfbf0de6@amd.com>
+References: <20250815035047.3319284-1-alex.hung@amd.com>
+ <20250815035047.3319284-15-alex.hung@amd.com>
+ <87a2f6ca-c398-4222-8b23-d683c5fe6024@bootlin.com>
+ <c1a1044e-dd05-4bf0-a903-9e13bfbf0de6@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+b1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF0000000C:EE_|IA1PR12MB9738:EE_
-X-MS-Office365-Filtering-Correlation-Id: f165205f-f6c2-4adb-25e8-08ddf5f8f16f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pednJeHRflV8obmCvlrTLPmsDdGX13z2/A8XgJSp/BsddezoenJeCdPo5xAC?=
- =?us-ascii?Q?qPGsCIPeSexGaEo0MY5RUj1WiOjdBVOil0fQ8RwN8yn5YX/dDcbiadKmi+vX?=
- =?us-ascii?Q?26J/4BvJuxewSUQOoz+y/x/cpMYdGQC7ehS8ipF+CIjX86GkZXhzjZSpblrj?=
- =?us-ascii?Q?Z7QYimRmH5591y9R4yry3+UjWysbHY+nLE4vXVWJV0cYc2Ft8GyzajJmWJ6G?=
- =?us-ascii?Q?X0kbwQ+BgDgugLnR6vdFo4//sWNvvp9/DmvTVOWLJEFimPjKORTMLJkadIUp?=
- =?us-ascii?Q?8A+2Nh0t9FrImy7qs0kAPEQrKgsrL6plRPfqie5g3TNm2wdaclJZiwDAd7bu?=
- =?us-ascii?Q?lUqAZAlkkg1Teb9QLk6QnJefVkmFxVeThLa3NtTID2FsQ4DuVsxIwgWieMpJ?=
- =?us-ascii?Q?roY4oE/6mlnvFpcbDorV4UwcI8krziMs+RRxWzInFqZmNnIsTws82B3pjh9A?=
- =?us-ascii?Q?WRr2ocUROUzzH/lsvSHYqNpzbJ9q8HlJo0rv+TkX2qKojjvxqdbPmJUNPIHp?=
- =?us-ascii?Q?bm7I5pOKeXvGKFfC26DVTJGTrd5KYbbpuYz0Qkeq/UGNUaXC2Eeavl93EVSA?=
- =?us-ascii?Q?UfGBatdlyFgQBPNEf4SgIFS+K51zhfzaAl0zsOElkacGX2j/dZTr0YmL/0bp?=
- =?us-ascii?Q?0x0xSRji+9cRktsorGTBlisBxawn9fIpDbb2/kTxIU6TxCRCR59kPHF2/fLY?=
- =?us-ascii?Q?T/vX4d05XZNW7QajeyK73zYnmBRasvgsVo5AhdNjq583M/yTCPNhNQAf6jRN?=
- =?us-ascii?Q?VqKWPnb2vcATu+rhZFAeSjMnJBSfATCQCal7k37lR5Mx4chvmbI704lgQ8f9?=
- =?us-ascii?Q?YqSLOh8jzGw+c8+eerXX4AOPTJmmfE2Lu7IwrtT9mvALxAY7qaS6J226uCLw?=
- =?us-ascii?Q?r1rFQYLf0b6n8IONLM4Uj5otVY/+OGwZ4idrAA9atV+Hye7/lT5tYgvoW79o?=
- =?us-ascii?Q?LnRnY9vFD7lrT47DR7QBNwSHUgLUR/oWrtc87kDatS69vgQp8soY/DhRm56q?=
- =?us-ascii?Q?kKhM8PWdKNWbJkfCNF/t0/3UO69KMqAe1LmPhfc1NHgK4F8Kt9npsbhr+wdX?=
- =?us-ascii?Q?Aqss/AePiIh86u5gy/YOW/9urBSkYOC+S0yx4FD+Q5hbvm7aderW0iNv0RYn?=
- =?us-ascii?Q?FXwhZqHH2p4Kz6trDUJo5OkMUb+bst+ziUEfdF07jB8cgB9BvieGu08xqeHF?=
- =?us-ascii?Q?78LqIuqoZhs/3xpNhEJ39D4lVApMPzdwQvsv6sAYnsp1VKDF9G1n2g4IU3Ej?=
- =?us-ascii?Q?6exFkIFcMMoYFAQvBtVmP30A/H6xTETG111cSiJx4uBE2CISLqhAqZcQTPnd?=
- =?us-ascii?Q?sEJOFf1YVMh7oVX/vqvV0ySyn/OOEMXJpMAz/es/X7WCgk2/NVsXE8sunkVd?=
- =?us-ascii?Q?D9J2Je/r+8vSA26izpxJuCULdzdi9rGaegNdVRGZZpeNItfr9Yx34n/hJz96?=
- =?us-ascii?Q?J1OXESpWAd0hQlbOxPv6bSaAZ3xPnogxdtOHQhFGcM3QH/PQ6O7NiJiV6aQZ?=
- =?us-ascii?Q?fUj3gMmS1BlpHfXXYmsXrfqsP6CCXha0wbLc?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2025 14:46:10.7222 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f165205f-f6c2-4adb-25e8-08ddf5f8f16f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF0000000C.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB9738
+X-ZohoMailClient: External
+X-ZohoMail-Owner: <3fecacf2e1ea9b9e071cbb95e315a75a1cfb3b3d.camel@collabora.com>+zmo_0_nfraprado@collabora.com
+X-Mailman-Approved-At: Wed, 17 Sep 2025 19:27:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,49 +81,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-KFD suspend and resume routines have been disabled since commit
-5d3a2d95224da ("drm/amdgpu: skip kfd suspend/resume for S0ix") which
-made sense at that time.  However there is a problem that if there is
-any compute work running there may still be active fences.  Running
-suspend without draining them can cause the system to hang.
+On Tue, 2025-09-16 at 19:54 -0600, Alex Hung wrote:
+>=20
+>=20
+> On 9/5/25 11:12, Louis Chauvet wrote:
+> >=20
+> >=20
+> > Le 15/08/2025 =C3=A0 05:50, Alex Hung a =C3=A9crit=C2=A0:
+> > > From: Harry Wentland <harry.wentland@amd.com>
+> > >=20
+> > > This patch introduces a VKMS color pipeline that includes two
+> > > drm_colorops for named transfer functions. For now the only ones
+> > > supported are sRGB EOTF, sRGB Inverse EOTF, and a Linear TF.
+> > > We will expand this in the future but I don't want to do so
+> > > without accompanying IGT tests.
+> > >=20
+> > > We introduce a new vkms_luts.c file that hard-codes sRGB EOTF,
+> > > sRGB Inverse EOTF, and a linear EOTF LUT. These have been
+> > > generated with 256 entries each as IGT is currently testing
+> > > only 8 bpc surfaces. We will likely need higher precision
+> > > but I'm reluctant to make that change without clear indication
+> > > that we need it. We'll revisit and, if necessary, regenerate
+> > > the LUTs when we have IGT tests for higher precision buffers.
+> > >=20
+> > > Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> > > Signed-off-by: Alex Hung <alex.hung@amd.com>
+> > > Reviewed-by: Daniel Stone <daniels@collabora.com>
+> > > ---
+> > > v11:
+> > > =C2=A0 - Update drm_colorop_pipeline_destroy from plane to dev
+> > > (N=C3=ADcolas Prado)
+> > > =C2=A0 - Fix undefined errors by EXPORT_SYMBOL symbols (kernel test
+> > > robot)
+> > >=20
+> > > v9:
+> > > =C2=A0 - Replace cleanup code by drm_colorop_pipeline_destroy (Simon
+> > > Ser)
+> > > =C2=A0 - Update function names by _plane_ (Chaitanya Kumar Borah)
+> > >=20
+> > > v8:
+> > > =C2=A0 - Replace DRM_ERROR by drm_err (Louis Chauvet)
+> > > =C2=A0 - Replace DRM_WARN_ONCE by drm_WARN_ONCE (Louis Chauvet)
+> > > =C2=A0 - Fix conflicts with upstream VKMS (Louis Chauvet)
+> > > =C2=A0 - Add comments for drm_color_lut linear_array (Louis Chauvet)
+> > >=20
+> > > v7:
+> > > =C2=A0 - Fix checkpatch warnings (Louis Chauvet)
+> > > =C2=A0=C2=A0 - Change kzalloc(sizeof(struct drm_colorop) ...) to=20
+> > > kzalloc(sizeof(*ops[i]) ...)
+> > > =C2=A0=C2=A0 - Remove if (ops[i]) before kfree(ops[i])
+> > > =C2=A0=C2=A0 - Fix styles by adding and removing spaces (new lines, t=
+abs
+> > > and so on)
+> > >=20
+> > > v6:
+> > > =C2=A0 - drop 'len' var (Louis Chauvet)
+> > > =C2=A0 - cleanup if colorop alloc or init fails (Louis Chauvet)
+> > > =C2=A0 - switch loop in pre_blend_transform (Louis Chauvet)
+> > > =C2=A0 - drop extraneous if (colorop) inside while (colorop) (Louis
+> > > Chauvet)
+> > >=20
+> > > v5:
+> > > =C2=A0 - Squash with "Pull apply_colorop out of
+> > > pre_blend_color_transform"
+> > > =C2=A0=C2=A0=C2=A0 (Sebastian)
+> > > =C2=A0 - Fix warnings
+> > > =C2=A0 - Fix include
+> > > =C2=A0 - Drop TODOs
+> > >=20
+> > > v4:
+> > > =C2=A0 - Drop _tf_ from color_pipeline init function
+> > > =C2=A0 - Pass supported TFs into colorop init
+> > > =C2=A0 - Create bypass pipeline in DRM helper (Pekka)
+> > >=20
+> > > v2:
+> > > =C2=A0 - Add commit description
+> > > =C2=A0 - Fix sRGB EOTF LUT definition
+> > > =C2=A0 - Add linear and sRGB inverse EOTF LUTs
+> > >=20
+> > > =C2=A0 drivers/gpu/drm/vkms/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> > > =C2=A0 drivers/gpu/drm/vkms/vkms_colorop.c=C2=A0 |=C2=A0 81 +++
+> > > =C2=A0 drivers/gpu/drm/vkms/vkms_composer.c |=C2=A0 51 +-
+> > > =C2=A0 drivers/gpu/drm/vkms/vkms_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+|=C2=A0=C2=A0 3 +
+> > > =C2=A0 drivers/gpu/drm/vkms/vkms_luts.c=C2=A0=C2=A0=C2=A0=C2=A0 | 811
+> > > +++++++++++++++++++++++++++
+> > > =C2=A0 drivers/gpu/drm/vkms/vkms_luts.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 12 +
+> > > =C2=A0 drivers/gpu/drm/vkms/vkms_plane.c=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 2 +
+> > > =C2=A0 7 files changed, 962 insertions(+), 2 deletions(-)
+> > > =C2=A0 create mode 100644 drivers/gpu/drm/vkms/vkms_colorop.c
+> > > =C2=A0 create mode 100644 drivers/gpu/drm/vkms/vkms_luts.c
+> > > =C2=A0 create mode 100644 drivers/gpu/drm/vkms/vkms_luts.h
+> > >=20
+> > > diff --git a/drivers/gpu/drm/vkms/Makefile
+> > > b/drivers/gpu/drm/vkms/=20
+> > > Makefile
+> > > index d657865e573f..0b8936674f69 100644
+> > > --- a/drivers/gpu/drm/vkms/Makefile
+> > > +++ b/drivers/gpu/drm/vkms/Makefile
+> > > @@ -8,7 +8,9 @@ vkms-y :=3D \
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vkms_composer.o \
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vkms_writeback.o \
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vkms_connector.o \
+> > > -=C2=A0=C2=A0=C2=A0 vkms_config.o
+> > > +=C2=A0=C2=A0=C2=A0 vkms_config.o \
+> > > +=C2=A0=C2=A0=C2=A0 vkms_colorop.o \
+> > > +=C2=A0=C2=A0=C2=A0 vkms_luts.o
+> > > =C2=A0 obj-$(CONFIG_DRM_VKMS) +=3D vkms.o
+> > > =C2=A0 obj-$(CONFIG_DRM_VKMS_KUNIT_TEST) +=3D tests/
+> > > diff --git a/drivers/gpu/drm/vkms/vkms_colorop.c
+> > > b/drivers/gpu/drm/=20
+> > > vkms/vkms_colorop.c
+> > > new file mode 100644
+> > > index 000000000000..f955ffb0ac84
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/vkms/vkms_colorop.c
+> > > @@ -0,0 +1,81 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +
+> > > +#include <linux/slab.h>
+> > > +#include <drm/drm_colorop.h>
+> > > +#include <drm/drm_print.h>
+> > > +#include <drm/drm_property.h>
+> > > +#include <drm/drm_plane.h>
+> > > +
+> > > +#include "vkms_drv.h"
+> > > +
+> > > +static const u64 supported_tfs =3D
+> > > +=C2=A0=C2=A0=C2=A0 BIT(DRM_COLOROP_1D_CURVE_SRGB_EOTF) |
+> > > +=C2=A0=C2=A0=C2=A0 BIT(DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF);
+> > > +
+> > > +#define MAX_COLOR_PIPELINE_OPS 2
+> > > +
+> > > +static int vkms_initialize_color_pipeline(struct drm_plane
+> > > *plane,=20
+> > > struct drm_prop_enum_list *list)
+> > > +{
+> > > +=C2=A0=C2=A0=C2=A0 struct drm_colorop *ops[MAX_COLOR_PIPELINE_OPS];
+> > > +=C2=A0=C2=A0=C2=A0 struct drm_device *dev =3D plane->dev;
+> > > +=C2=A0=C2=A0=C2=A0 int ret;
+> > > +=C2=A0=C2=A0=C2=A0 int i =3D 0;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 memset(ops, 0, sizeof(ops));
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 /* 1st op: 1d curve */
+> > > +=C2=A0=C2=A0=C2=A0 ops[i] =3D kzalloc(sizeof(*ops[i]), GFP_KERNEL);
+> > > +=C2=A0=C2=A0=C2=A0 if (!ops[i]) {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_err(dev, "KMS: Failed=
+ to allocate colorop\n");
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D -ENOMEM;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto cleanup;
+> > > +=C2=A0=C2=A0=C2=A0 }
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 ret =3D drm_plane_colorop_curve_1d_init(dev, ops[=
+i], plane,=20
+> > > supported_tfs);
+> > > +=C2=A0=C2=A0=C2=A0 if (ret)
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto cleanup;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 list->type =3D ops[i]->base.id;
+> > > +=C2=A0=C2=A0=C2=A0 list->name =3D kasprintf(GFP_KERNEL, "Color Pipel=
+ine %d",
+> > > ops[i]-=20
+> > > > base.id);
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 i++;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 /* 2nd op: 1d curve */
+> > > +=C2=A0=C2=A0=C2=A0 ops[i] =3D kzalloc(sizeof(*ops[i]), GFP_KERNEL);
+> > > +=C2=A0=C2=A0=C2=A0 if (!ops[i]) {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_err(dev, "KMS: Failed=
+ to allocate colorop\n");
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D -ENOMEM;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto cleanup;
+> > > +=C2=A0=C2=A0=C2=A0 }
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 ret =3D drm_plane_colorop_curve_1d_init(dev, ops[=
+i], plane,=20
+> > > supported_tfs);
+> > > +=C2=A0=C2=A0=C2=A0 if (ret)
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto cleanup;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 drm_colorop_set_next_property(ops[i - 1], ops[i])=
+;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0 return 0;
+> > > +
+> > > +cleanup:
+> > > +=C2=A0=C2=A0=C2=A0 drm_colorop_pipeline_destroy(dev);
+> >=20
+> > If it take a device, it means that it deletes everything, which is
+> > not=20
+> > what I would expect here: you are curently allocating a specific
+> > plane=20
+> > pipeline, and deleting all colorop for other planes because of one=20
+> > failure is counterintuitive.
+> > In this situation I would expect either:
+> > - error propagation to vkms_create or vkms_output_init (it is
+> > already=20
+> > the case) and "device-wide" cleanup in
+> > vkms_create/vkms_output_init;
+> > - "local" cleanup (i.e only this specific pipeline)
+>=20
+> Hi Louis,
+>=20
+> Does it make sense to make drm_colorop_pipeline_destroy(drm_plane),
+> i.e.=20
+> in PATCH 13 as in previously V10?
+>=20
+> and then drm_colorop_pipeline_destroy should limit to the pipeline in
+> a=20
+> drm_plane and should do something like
+>=20
+> =C2=A0=C2=A0 drm_colorop_cleanup(colorop);
+> =C2=A0=C2=A0 free(colorop)
+> =C2=A0=C2=A0 drm_plane->colorop =3D NULL;
+>=20
+> We can have same behaviours accross device drivers like amdgpu too.
+>=20
+> Hi Simon and Nicolas,
+>=20
+> Do you have comments on above proposal?
 
-The same problem can also occur with user queues too.
+Hi,
 
-So run KFD and user queue suspend/resume routines even in s0ix on GFX11 or
-newer.
+indeed that would make more sense to me.
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
-v3:
- * only apply to GC 11.0.1 and later
- * drop tags
+--=20
+Thanks,
 
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 0fdfde3dcb9f..70b61c1a0a15 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5220,7 +5220,7 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
- 
- 	amdgpu_device_ip_suspend_phase1(adev);
- 
--	if (!adev->in_s0ix) {
-+	if (!adev->in_s0ix || (adev->in_s0ix && amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(11, 0, 1))) {
- 		amdgpu_amdkfd_suspend(adev, !amdgpu_sriov_vf(adev) && !adev->in_runpm);
- 		amdgpu_userq_suspend(adev);
- 	}
-@@ -5318,7 +5318,7 @@ int amdgpu_device_resume(struct drm_device *dev, bool notify_clients)
- 		goto exit;
- 	}
- 
--	if (!adev->in_s0ix) {
-+	if (!adev->in_s0ix || (adev->in_s0ix && amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(11, 0, 1))) {
- 		r = amdgpu_amdkfd_resume(adev, !amdgpu_sriov_vf(adev) && !adev->in_runpm);
- 		if (r)
- 			goto exit;
--- 
-2.50.1
-
+N=C3=ADcolas
