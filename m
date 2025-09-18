@@ -2,81 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439D4B86F79
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Sep 2025 22:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABD27B86F88
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Sep 2025 22:58:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C95C010E8FF;
-	Thu, 18 Sep 2025 20:58:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B4AD10E8FC;
+	Thu, 18 Sep 2025 20:58:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DvsXjSgO";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="Qjpf0K7t";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
- [209.85.216.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B56010E051
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 14:59:36 +0000 (UTC)
-Received: by mail-pj1-f48.google.com with SMTP id
- 98e67ed59e1d1-32e715cbad3so1061761a91.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 07:59:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758207576; x=1758812376; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=beNHBIORwWdI6jz0Xklt4Z8Y7brA2iCv2EEwx022pAc=;
- b=DvsXjSgOOIWxENpXoOP/Ghd0xaAwZmzGVR2Gse8naJls+XHIllPCVu8/EFD8giE71v
- /531G207dDQErsXZvacqrkMe+TpbPgpXqeYmyOtWStGZOmVpMDyqnJusKf1Y8/IeUCZe
- rPA67gfp04C9UfR2/TNBkfp2KKjpDxwuhODvzU/54DdrQHvQdnIt+BQaJwjKTpASNRtE
- +SwzCjdOF/qJMTi3xwl6z/bkSWYVCpGz+1HsPCYMM+lUdUOoW7IcGJotu6hBv2pDzciE
- 4TGVStmZgLkDTsVslukCLGP0ZOTLvHLTrveq2LR8J5pw16Doia6rCQI2ef1pCgUPm/wc
- q7eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758207576; x=1758812376;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=beNHBIORwWdI6jz0Xklt4Z8Y7brA2iCv2EEwx022pAc=;
- b=AWeJgAazMqzbpW3knADC4HlHiYX3OcDikykeXffHxPSZDbV+5KZ0W39w9lag5rzTV1
- ZWs4gun/CmVupFcJ1WxgeL1yeJYGJvRRgJPW0dfZqcb6oowtU8YHdxDzokiDt2j80Ig1
- dDv4uCYReYKEKXmlgeBTyg693GOXwaXgG1+N6VtR4piXrDEx03jqzwliak+l2N2jblFh
- VrOl+J6Qb4CapnFP4c4lJK/RwiU9efhebjZTFwY+ZvTYR92+3h+R/lxCCP8EPULodadE
- WbkOvvijf6InyLLkcvBu/7+TKmCwEvgHvAm/0U5yaL9vafYDtP257Y6qqEwII/INo+/D
- J+kg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUM7kkmsPLlxru9/rggKft1auZDXBnVo/y2YVj7G7LqWOILniK9N6WamnGcVq4rLOGnv9N05m/b@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzPaUl122JJ3Edm4Oe7kwzdFoZvH2NlYxW4UPEhu8cqrG/lQWOQ
- e/rUop8CV8u7f92wvJQ3LDN0Dm+MDPSxzgvPJ3t8iJNhRftHtss0al7lARLeWoExWL0=
-X-Gm-Gg: ASbGncs89b/QDHJlWi3x3iOaYWPrtUpCsNfdHWkwDvk+PAP4V00ePCjaehQ/shjgWHE
- vsF443wVgfLTCKXn3O+LlWu4hSkaTdkm0qy0PSa+87vcfB+e5JKS9FKSIrPYGsMexZICkEiguut
- wXPmKVw/AFwVqduhkOie1qfV8WZ9z9ENietc3hWYiD58Sxd2kuvD7GflBKgfJmRsVwKpT7vDvL8
- kp1/PJ78FgzOWvA5daF1LYuxCN9wJRHNoMWBu8YvLvmPfCBLCfr9ATBPUZKVUH3cemiezgISu8O
- kZ/cjeyBEjenBU0oMyb+P6WDkZ7CcHOefMosQevOCAMbIirl86z/bFiVlYJkt8BzxvdV5hdpfag
- dgVI5iFHWv/sGN7QREjYn1YLBAqfXg1b405gpRXF65A==
-X-Google-Smtp-Source: AGHT+IGIvBO3xzseHmX1P7b9dSF7ElctZYn/Sd/EuikFaigeHUhCCsSkueAeH62n8Nrlv3YnRL44AQ==
-X-Received: by 2002:a17:903:187:b0:24e:593b:d107 with SMTP id
- d9443c01a7336-268137f2459mr75365495ad.32.1758200706397; 
- Thu, 18 Sep 2025 06:05:06 -0700 (PDT)
-Received: from lgs.. ([2408:8417:e00:1e5d:c81b:8d5e:98f2:8322])
- by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-b55138043b6sm424564a12.26.2025.09.18.06.04.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Sep 2025 06:05:05 -0700 (PDT)
-From: Guangshuo Li <lgs201920130244@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Guangshuo Li <lgs201920130244@gmail.com>,
- Al Viro <viro@zeniv.linux.org.uk>, Kees Cook <kees@kernel.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH] drm/amdgpu/atom: Check kcalloc() for WS buffer in
- amdgpu_atom_execute_table_locked()
-Date: Thu, 18 Sep 2025 21:04:33 +0800
-Message-ID: <20250918130434.3547068-1-lgs201920130244@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com
+ [91.218.175.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C631B10E078
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 16:37:16 +0000 (UTC)
+Message-ID: <8f1143f0-e70f-4187-9a2c-4e825ed9c63f@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1758213434;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XO454g9fUgdATXAdxjgdUn+MLRq0EbRhxsOv4dkvFzY=;
+ b=Qjpf0K7taskmFHjCc8lNG67rAi0v4ikc3zUW9yLfeNiqXFwBqiWeguz9gIdigUTcpJtFln
+ 0sWHDX78CdAQdLvmVOlGhxN1Vw4bpDGmvbKJL1a80qTVrkVLIVubnZrTobvnliRGWr0hT6
+ uglWMRKVdfKJlI2an+VCXtcVIhGD/xY=
+Date: Thu, 18 Sep 2025 09:37:07 -0700
 MIME-Version: 1.0
+Subject: Re: [PATCH v2] drm/amd/display: Only restore backlight after
+ amdgpu_dm_init or dm_resume
+To: Mario Limonciello <mario.limonciello@amd.com>, chiahsuan.chung@amd.com,
+ alexander.deucher@amd.com, harry.wentland@amd.com, simona@ffwll.ch,
+ airlied@gmail.com, sunpeng.li@amd.com
+Cc: amd-gfx@lists.freedesktop.org, zaeem.mohamed@amd.com, misyl@froggi.es,
+ linux-kernel@vger.kernel.org
+References: <20250911174851.2767335-1-matthew.schwartz@linux.dev>
+ <ccdc6dda-8341-4b77-a571-e0642499e3f7@amd.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Matthew Schwartz <matthew.schwartz@linux.dev>
+In-Reply-To: <ccdc6dda-8341-4b77-a571-e0642499e3f7@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Thu, 18 Sep 2025 20:58:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,34 +61,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-kcalloc() may fail. When WS is non-zero and allocation fails, ectx.ws
-remains NULL while ectx.ws_size is set, leading to a potential NULL
-pointer dereference in atom_get_src_int() when accessing WS entries.
+On 9/11/25 10:55 AM, Mario Limonciello wrote:
+> On 9/11/25 12:48 PM, Matthew Schwartz wrote:
+>> On clients that utilize AMD_PRIVATE_COLOR properties for HDR support,
+>> brightness sliders can include a hardware controlled portion and a
+>> gamma-based portion. This is the case on the Steam Deck OLED when using
+>> gamescope with Steam as a client.
+>>
+>> When a user sets a brightness level while HDR is active, the gamma-based
+>> portion and/or hardware portion are adjusted to achieve the desired
+>> brightness. However, when a modeset takes place while the gamma-based
+>> portion is in-use, restoring the hardware brightness level overrides the
+>> user's overall brightness level and results in a mismatch between what
+>> the slider reports and the display's current brightness.
+>>
+>> To avoid overriding gamma-based brightness, only restore HW backlight
+>> level after boot or resume. This ensures that the backlight level is
+>> set correctly after the DC layer resets it while avoiding interference
+>> with subsequent modesets.
+>>
+>> Fixes: 7875afafba84 ("drm/amd/display: Fix brightness level not retained over reboot")
+>> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4551
+>> Signed-off-by: Matthew Schwartz <matthew.schwartz@linux.dev>
+> 
+> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+> 
+> Haven't picked it up, will wait a few days for more comments.
 
-Return -ENOMEM on allocation failure to avoid the NULL dereference.
+Was this applied somewhere or still waiting on more comments?
 
-Fixes: 6396bb221514 ("treewide: kzalloc() -> kcalloc()")
-Cc: stable@vger.kernel.org
-Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/atom.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Thanks
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdgpu/atom.c
-index 81d195d366ce..bed3083f317b 100644
---- a/drivers/gpu/drm/amd/amdgpu/atom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/atom.c
-@@ -1246,6 +1246,10 @@ static int amdgpu_atom_execute_table_locked(struct atom_context *ctx, int index,
- 	ectx.last_jump_jiffies = 0;
- 	if (ws) {
- 		ectx.ws = kcalloc(4, ws, GFP_KERNEL);
-+		if (!ectx.ws) {
-+			ret = -ENOMEM;
-+			goto free;
-+		}
- 		ectx.ws_size = ws;
- 	} else {
- 		ectx.ws = NULL;
--- 
-2.43.0
+> 
+>> ---
+>> v2: Drop set_backlight_level and use dm->restore_backlight in
+>> amdgpu_dm_commit_streams
+>> ---
+>>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 ++++++++----
+>>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  7 +++++++
+>>   2 files changed, 15 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> index 7808a647a306c..2a5fa85505e84 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> @@ -2037,6 +2037,8 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
+>>         dc_hardware_init(adev->dm.dc);
+>>   +    adev->dm.restore_backlight = true;
+>> +
+>>       adev->dm.hpd_rx_offload_wq = hpd_rx_irq_create_workqueue(adev);
+>>       if (!adev->dm.hpd_rx_offload_wq) {
+>>           drm_err(adev_to_drm(adev), "failed to create hpd rx offload workqueue.\n");
+>> @@ -3407,6 +3409,7 @@ static int dm_resume(struct amdgpu_ip_block *ip_block)
+>>           dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D0);
+>>             dc_resume(dm->dc);
+>> +        adev->dm.restore_backlight = true;
+>>             amdgpu_dm_irq_resume_early(adev);
+>>   @@ -9802,7 +9805,6 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
+>>       bool mode_set_reset_required = false;
+>>       u32 i;
+>>       struct dc_commit_streams_params params = {dc_state->streams, dc_state->stream_count};
+>> -    bool set_backlight_level = false;
+>>         /* Disable writeback */
+>>       for_each_old_connector_in_state(state, connector, old_con_state, i) {
+>> @@ -9922,7 +9924,6 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
+>>               acrtc->hw_mode = new_crtc_state->mode;
+>>               crtc->hwmode = new_crtc_state->mode;
+>>               mode_set_reset_required = true;
+>> -            set_backlight_level = true;
+>>           } else if (modereset_required(new_crtc_state)) {
+>>               drm_dbg_atomic(dev,
+>>                          "Atomic commit: RESET. crtc id %d:[%p]\n",
+>> @@ -9979,13 +9980,16 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
+>>        * to fix a flicker issue.
+>>        * It will cause the dm->actual_brightness is not the current panel brightness
+>>        * level. (the dm->brightness is the correct panel level)
+>> -     * So we set the backlight level with dm->brightness value after set mode
+>> +     * So we set the backlight level with dm->brightness value after initial
+>> +     * set mode. Use restore_backlight flag to avoid setting backlight level
+>> +     * for every subsequent mode set.
+>>        */
+>> -    if (set_backlight_level) {
+>> +    if (dm->restore_backlight) {
+>>           for (i = 0; i < dm->num_of_edps; i++) {
+>>               if (dm->backlight_dev[i])
+>>                   amdgpu_dm_backlight_set_level(dm, i, dm->brightness[i]);
+>>           }
+>> +        dm->restore_backlight = false;
+>>       }
+>>   }
+>>   diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+>> index b937da0a4e4a0..6aae51c1beb36 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+>> @@ -610,6 +610,13 @@ struct amdgpu_display_manager {
+>>        */
+>>       u32 actual_brightness[AMDGPU_DM_MAX_NUM_EDP];
+>>   +    /**
+>> +     * @restore_backlight:
+>> +     *
+>> +     * Flag to indicate whether to restore backlight after modeset.
+>> +     */
+>> +    bool restore_backlight;
+>> +
+>>       /**
+>>        * @aux_hpd_discon_quirk:
+>>        *
+> 
 
