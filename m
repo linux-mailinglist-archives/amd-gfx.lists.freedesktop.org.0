@@ -2,45 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDA7B82864
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Sep 2025 03:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4262AB82868
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Sep 2025 03:37:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E736210E625;
-	Thu, 18 Sep 2025 01:37:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D42E710E624;
+	Thu, 18 Sep 2025 01:37:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NlRP66Xf";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TSEVeuP2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012071.outbound.protection.outlook.com [52.101.53.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04B6910E60D
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 01:37:01 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010002.outbound.protection.outlook.com
+ [40.93.198.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E44A10E619
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Sep 2025 01:37:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FDGriGrai9Qh7o5dB0CmVUOwDQd53f+rgGIdQlfZ7d+w8Q7/TOoBgXu5eEmws11c4dMyY53QwqJUu3ER3enKLnz84Vlyfmkxu8COWPOAy1ZWJ7aHw4lywgbfVLbnAAML+wgqKLjtFoLDIALRvLYKXfjNftBnHCWFYPtz0TJGZvMv4THbHcGmmmo7CAom71fE6PdTZ/h8XmdgMuXeLV5ypC5TeiYPNGz+H1oXluJcwwQNvdLmBHphLK6UegUgnIgq+fma07oAYs3Zonmmbakw8gdn3FxvuU9MsW9OvhKFYEZi9Kxq6e62mAlnbhb+qFNz99jqLZzLgDJkXz9+um/5PQ==
+ b=OFLn7VbOjgRYoWb1kEBjLn+9YEuLlIO0VcBfcrC8S7GOKTbw/eGGtsMkGJ/Upob52avrheT7Bs0jcX//f+tdvhol1bklROubfBTUS6FjeBr+9mhHlPLq0BuJKyusg0bVRCI++ri8H7j/Z45YVuKxwyIuiJQMpljlMtqMIbJMIpWGTUADqtqhjYqWZgFPSa1yAyiX25d6/PcOm5ATlB/D+OivhlivwZJEFskH3LJ7/Gl+EDBD0ZTEmN+DD8J8aQLJwnYpPA/HlPYseOD0kddBqJJG2az6m6ofRmR6sO7MAF9dNhVSG8J1bMeydm94vXjGogBLjtqn18YNs29PfeuIZA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F+x8FR76V9lTlZjRvyQB7KP+Zj7PUJGTLpbIwP+ohrQ=;
- b=Kf+KZ3i02p+L4PFCNPM1IJyCXYAeB3hPoUsWn2CUrZByWoqqAze1Vcg5D4oIbH3NlcQsTAr+6PJ8zPjUf0EiFDOpjMR+eNuV1R+QTtyVpl+niS3dNZRsKJV3Qd2sWpL1zG33XDZEoq+ifOPzDwVxBRbOWpYxgroffa3k7g+RYFnb09Ieq0Kml3Nk6SF4YwJsn3Jh0LYby12ifIhCX60jv3zjHnua1z5KKmGXlhKA7nWh0sEnUY3lAlP6hljlrCJhIpKRthlh95BL4TK7EQTPmip/AWXprJsn3FTm0vRJZn0LTRlS2Ixs2SnI7V3322d6rvwQG3fucEAkE4oTU1pBwA==
+ bh=Rg898yVvQbLBUxFfpRC8lQ4P1EgJV2NFvn/TjR/lgfU=;
+ b=VNK3iZV5gNfy8YhFuOwspcbLCZ04vlU4Cmb+xjdLNv/LOwLMokgb+S5ahmEkbsOY67pHlsQrblXYWEpV2DjG/TNsCI2ccfQDDBt6y3AZdwyrHzLLCbhkWBwv6+yrap3i2ixCYDwZRKfObFxBWZxVBEqb9WOTJL7wMCdBCd/5BdcsOGZEikcTDnDyjRx+oI64+mgw6wPgcrWCh7feFBPw8uRu3TZ7Qk8mq83JMjZl6QmAJGRx4zUXGIDsoQXHaMYR/jJi/HVdalv/RCbxH1TkpCL1pDHWCT+4QJuLW331us89f53HrXt9Iymo23mRHHY9DqTiYfIeSORptORzS0plmw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F+x8FR76V9lTlZjRvyQB7KP+Zj7PUJGTLpbIwP+ohrQ=;
- b=NlRP66XfcpLDPFigxHNa6bD8bNMS+05ftK9O3rG88IxEaZaLV0GHZ9j0mLGuYAtu3QLTSh5tWT51CZ13asj6ZZpisEIeIBxGug1FlcbSMbq/TLo+EAwe1UrDO1UHjnncNHwkPtOqrhWIW+AkdlDvp+q96FeA9lrYHZ8UU/H4BHg=
-Received: from SA1PR03CA0006.namprd03.prod.outlook.com (2603:10b6:806:2d3::19)
- by MN0PR12MB6270.namprd12.prod.outlook.com (2603:10b6:208:3c2::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.23; Thu, 18 Sep
- 2025 01:36:57 +0000
+ bh=Rg898yVvQbLBUxFfpRC8lQ4P1EgJV2NFvn/TjR/lgfU=;
+ b=TSEVeuP2KbNYQ0HDMiPhT8rexwqo49zEKbx6U3DOLCnsIL1cpQ9OTlfktmSKwvJhBiHchTl9sBjVB+Ca8PPWqEojWbfJZWzL9RGB5AmrdOxi334gG1DYImCZytc3O5cbJfpqgL06GKffiC1oIkSecZdpsZX6e3TZTrAKijyrfBw=
+Received: from SA1PR03CA0023.namprd03.prod.outlook.com (2603:10b6:806:2d3::28)
+ by DS7PR12MB5886.namprd12.prod.outlook.com (2603:10b6:8:79::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9137.13; Thu, 18 Sep 2025 01:37:00 +0000
 Received: from SA2PEPF00001508.namprd04.prod.outlook.com
- (2603:10b6:806:2d3:cafe::95) by SA1PR03CA0006.outlook.office365.com
- (2603:10b6:806:2d3::19) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:806:2d3:cafe::e1) by SA1PR03CA0023.outlook.office365.com
+ (2603:10b6:806:2d3::28) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.14 via Frontend Transport; Thu,
- 18 Sep 2025 01:36:56 +0000
+ 18 Sep 2025 01:37:00 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,19 +51,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SA2PEPF00001508.mail.protection.outlook.com (10.167.242.40) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.12 via Frontend Transport; Thu, 18 Sep 2025 01:36:56 +0000
+ 15.20.9137.12 via Frontend Transport; Thu, 18 Sep 2025 01:37:00 +0000
 Received: from amd-02.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 17 Sep
- 2025 18:36:54 -0700
+ 2025 18:36:56 -0700
 From: YiPeng Chai <YiPeng.Chai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Tao.Zhou1@amd.com>, <Candice.Li@amd.com>,
  <Stanley.Yang@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>, Tao Zhou
  <tao.zhou1@amd.com>
-Subject: [PATCH 07/10] drm/amd/ras: Amdgpu preprocesses ras interrupts
-Date: Thu, 18 Sep 2025 09:35:04 +0800
-Message-ID: <20250918013507.2629620-7-YiPeng.Chai@amd.com>
+Subject: [PATCH 08/10] drm/amd/ras: Add amdgpu ras management function.
+Date: Thu, 18 Sep 2025 09:35:05 +0800
+Message-ID: <20250918013507.2629620-8-YiPeng.Chai@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250918013507.2629620-1-YiPeng.Chai@amd.com>
 References: <20250918013507.2629620-1-YiPeng.Chai@amd.com>
@@ -74,52 +75,52 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001508:EE_|MN0PR12MB6270:EE_
-X-MS-Office365-Filtering-Correlation-Id: 777caa3b-5874-4794-d177-08ddf653da93
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001508:EE_|DS7PR12MB5886:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ab75ce9-4f3d-4716-06a2-08ddf653dcb7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WxtOAF/f/BU3CnYZm+vPUZpDVc4jYoByRz6jIzOaIzFbgEbm1VyyiSvNbm9Z?=
- =?us-ascii?Q?vFB+LfP9bCq7vDfODYghulyySFUlDfIZ3QlJpQQqqw8PLJV97WipDmwl14gG?=
- =?us-ascii?Q?vuCs0ovEYNvaPMcu7MKibZGnhrAMtgJbMpscS74g9qpPXXFMnMwWVjnf+vzi?=
- =?us-ascii?Q?JNeLube00b0/PbiS/UWHNCF6j352ei8xAztjJZMepxmLSJ5VPf32g5u02KnN?=
- =?us-ascii?Q?fBFOq+NtAfkJUOtOT47AA6zhrtHmOhszLgFJ6bzAoxqFZd06ObIDBZgB/Yr4?=
- =?us-ascii?Q?sAr58zyjtL7IH8W+0P48ts6VszWYeMaXhJw4UgCMNP90MGUP+dvNJogKji8e?=
- =?us-ascii?Q?TOdz5mxYwwxgTnh9/UKn49rG65qil4+pzdFKp4MpFeJ9cj7dZ/bKwuirUG/N?=
- =?us-ascii?Q?3g8qOmeka0rpGHTnojFTEgnAmA9mcvG9Oxz7IVHVJsrXhhMnHeix6Yx2UbF/?=
- =?us-ascii?Q?GLcUjPyLE8Nh0mzYgsOF+IdhFBju9JfJgBey7lL9FxWm5BCByv0FZY7smQew?=
- =?us-ascii?Q?9PL1qimpnrnSmVEDHZslge9PwD/GbISknHw/0Sxx9K7TsBrKgqEjz8ZUSpZm?=
- =?us-ascii?Q?kkJiK+kDg77tF2wr8Jnjj4U9fxv9IVOImdoGmT5s7MNRjaGdtfnuVm9edrxg?=
- =?us-ascii?Q?2ty6KHtebXQrrkxuPq67wMnOH+Z0atvawknQ+3FDPJDg1qG5xrU43L2ovZ2C?=
- =?us-ascii?Q?ahnckzoX2FDaKy24XVE/im5fKTd8E/oNAfZcpUWHLZIkujJMtyRj8/Rkfesz?=
- =?us-ascii?Q?v2vhhAvW5wDqtuEMBLDO9J8ioEX00QIfw+iqVGCiuL2a02YZEb7qIiIvA+9j?=
- =?us-ascii?Q?C8NbqEfCYnBEGNZ8+65yqb/e9wuhEH2csQdR8eV+Okp7+JN+KfLkIdnFuqOM?=
- =?us-ascii?Q?q+BAE4495xw5sIMdIun/SwYA0e/8lmrQAyOMhKB8Sg10hE5xwt3oizw8EtRP?=
- =?us-ascii?Q?tzZ4ZXELdp7Cgz973EFHpZZGyESGy6CEevWBH/r1+3ycAE0K5LP4Dt6Whhi1?=
- =?us-ascii?Q?ycCES98fZUTNdoKv/QlstoUAK2CznoANgIlZXzSSZXFWHJaW/c1RHM4ISOUL?=
- =?us-ascii?Q?JPlz5IYYLyuep+p9kcmMhtMDRq6+ZyPaEN2EN7WfY67rv0MgKP5Vb57GQOyM?=
- =?us-ascii?Q?4YnCFZaAEyRkGciyBFGQmqPinh6TtRujcm3Ssjkuwr5/TN7v2mTOrF83KRnp?=
- =?us-ascii?Q?GaQnNVeb3/xfaXIpQHZKoYheP8oCs5MxNvlVIKaH3mtWxOcj3AhX85SUK3Iz?=
- =?us-ascii?Q?jKfdfK+egZRz4bC2Vd4kDYuEX9fMrHx2qT/rc1oqGy4CNl2DC0XXHw6fu+tu?=
- =?us-ascii?Q?jZtvWhbv9MHqdasckCPMqMXTjAuAh1b1kRXHT5/pu32ep5hQHPgWVtc/GsOS?=
- =?us-ascii?Q?bLq4ClPJl91JwD6G38dTAoO16IXBVJv6POqwVCY1RHJwUiuAteDCU87rNrE/?=
- =?us-ascii?Q?ksiin3ScVJv9ZzuTGHFrYmGXKfLNcJTCXCMCiIUwTgnOTpdgsbBuXLXDv3c6?=
- =?us-ascii?Q?7H+h0sUVx5/B8RBM2LpPscublrSqshj3Sdmh?=
+ ARA:13230040|82310400026|36860700013|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?AinMNlVouwlDcSuCiuOH2WBp9HpaCUpZO1oI5iIPpBD9uh98wH6PeTJFVBP1?=
+ =?us-ascii?Q?qNqdk868xS8hHNrSmemTA1C8ixFSfY4iVYmvKIX2ejWewceppbOSRY10Wg+5?=
+ =?us-ascii?Q?CpD/ziwLWJMjt3tcrb9XiOFEOlMzmplBzqyxOMM0W2N3QuiL1UDbYTAnrbhQ?=
+ =?us-ascii?Q?rN2MkJoywcO2NpyfcO2YVhRh7ytF0pN47mg2GSLEqu6aSJCqr2sSPUjbc9zk?=
+ =?us-ascii?Q?xhtZZ/mGu7ZQ1jb/J24SApROIGYJHuWyxK9QJyTe1ZcsnOUL8SAcQ6ZRjI9Q?=
+ =?us-ascii?Q?VM4sxpNxDzS4biUfHZFvaWKofOoTeImXlZWYXuysuqJx314HeTpxb6YeCnE4?=
+ =?us-ascii?Q?HISx9eGrZIyJErC9oUNQ+6j6PqMJkqD5El0oiwHrlVR478YB1sw+2qskbi+7?=
+ =?us-ascii?Q?x/n7PmAGaXH/n2185FOsOkDCxUl+FFOq2bwowfuS7le6+PjPmytdutFA9U4S?=
+ =?us-ascii?Q?r8k5tl/Sljfz4MUTzVWF5QUx/SKGs9o5Eg6y2pC4s6X75GEpifgizLJlVBpe?=
+ =?us-ascii?Q?QrPBBrt9QktYZwuxhvuVSWAMwA45GFwbWt+8YBjAjn9q4kNreVSdo27xED7V?=
+ =?us-ascii?Q?VH4Bh3rFwO/64ZGuh8XiZU+ARRc9+C+1P7LiUaxrRskeMRcxd1ztd0Ke6sJr?=
+ =?us-ascii?Q?ri74tCZ4mP44+rWRt0KAYoLJEBvXd/nbl3QbZ7tcoRl0BwIOyv0kyLKPI/dv?=
+ =?us-ascii?Q?Vlxpl7gNVl06yUnxIrFc06WCWIcOfwCg1jjzG46qKtcfc2APUg94f4yM1VLB?=
+ =?us-ascii?Q?N3+I/G/PlKRym1rVQk+toOqJ59UHUwkCD0EuZrpGgVC6IiQz9TD+hlRiYbwM?=
+ =?us-ascii?Q?lIvz6SOnWqwDvgerS1uWcvWG3stvDStaSUa9g3LyujgSfWeYhKxYaj11YpK7?=
+ =?us-ascii?Q?pRyHb6ywBiblopfjCNAJEYj6icN2tx5YytMpy9SoLM69Ud6NdoVEJnr0ShOY?=
+ =?us-ascii?Q?qO7beqwO0XLOwGlQcbjyNeW+F5vpE8T64YGwjeA2uHH9XeOufZKmC69kRHH8?=
+ =?us-ascii?Q?USeLn9FKcwcPo6N2T2GDEO8SDbI29t2UwH3rPpPoytREy23v46bZUhC/6Kg/?=
+ =?us-ascii?Q?BTbgf71Csc98XIp7ofYMiuPCcXKTHYeB/4PQxi/jqkatMFYo7TT++EvfgBn/?=
+ =?us-ascii?Q?t0F0rVvEBKaqQH+aHIYZ17cnJHCwCbi6+XGS+HCjY1U4PpWxTtdjPw9mP83d?=
+ =?us-ascii?Q?uaDm4K63p5LeAtO+tt2c8JIGDHrEDq+CE/4Wwywi6whBrkDxadbfRgHbnsPp?=
+ =?us-ascii?Q?mCY1EcM2NpSPWpklNj8L0uGzaqGrjrLTEEVrATCklkNjp50HnUUj182cIvgw?=
+ =?us-ascii?Q?at6jm+vWbefdKYZgrGxhpGD0OyZp1IdPZq4ZYH/xQ0DZzu1wvePY+VihUGqc?=
+ =?us-ascii?Q?YkzH/eOkyJbU2XYmcti0wytpY+28mcwiDVg8FzxmWzIytldY8chyTBmAwyzE?=
+ =?us-ascii?Q?puLQmaAQ5YI6ZEmiAZ7GEFpagrYyHcU5CpGZwWkb8iWl6dpB3zaXaomq4AFn?=
+ =?us-ascii?Q?NtWaC75QdDXRg6RGPcZPf0j/MmJ39N0a0BwS?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2025 01:36:56.5678 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 777caa3b-5874-4794-d177-08ddf653da93
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2025 01:37:00.1533 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ab75ce9-4f3d-4716-06a2-08ddf653dcb7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001508.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6270
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5886
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,155 +135,590 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Amdgpu preprocesses ras interrupts.
+Add amdgpu system configuration parameters and
+functions needed by rascore.
 
 Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
 Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 ---
- .../drm/amd/ras/ras_mgr/amdgpu_ras_process.c  | 126 ++++++++++++++++++
- .../drm/amd/ras/ras_mgr/amdgpu_ras_process.h  |  37 +++++
- 2 files changed, 163 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.c
- create mode 100644 drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.h
+ .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c  | 560 ++++++++++++++++++
+ .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h  |  73 +++
+ 2 files changed, 633 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
+ create mode 100644 drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h
 
-diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.c b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.c
+diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
 new file mode 100644
-index 000000000000..6727fc9a2b9b
+index 000000000000..a038c87c045d
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.c
-@@ -0,0 +1,126 @@
++++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
+@@ -0,0 +1,560 @@
 +// SPDX-License-Identifier: MIT
 +/*
-+ * Copyright (c) 2025 Advanced Micro Devices, Inc. All rights reserved.
++ * Copyright 2025 Advanced Micro Devices, Inc.
 + *
-+ * Permission is hereby granted, free of charge, to any person obtaining a copy
-+ * of this software and associated documentation files (the "Software"), to deal
-+ * in the Software without restriction, including without limitation the rights
-+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-+ * copies of the Software, and to permit persons to whom the Software is
-+ * furnished to do so, subject to the following conditions:
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
 + *
 + * The above copyright notice and this permission notice shall be included in
 + * all copies or substantial portions of the Software.
 + *
 + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
-+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-+ * THE SOFTWARE.
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
 + */
-+
 +#include "amdgpu.h"
 +#include "amdgpu_reset.h"
 +#include "amdgpu_xgmi.h"
 +#include "ras_sys.h"
 +#include "amdgpu_ras_mgr.h"
++#include "amdgpu_ras_cmd.h"
 +#include "amdgpu_ras_process.h"
++#include "amdgpu_ras_eeprom_i2c.h"
++#include "amdgpu_ras_mp1_v13_0.h"
++#include "amdgpu_ras_nbio_v7_9.h"
 +
-+#define RAS_MGR_RETIRE_PAGE_INTERVAL  100
++#define MAX_SOCKET_NUM_PER_HIVE		8
++#define MAX_AID_NUM_PER_SOCKET		4
++#define MAX_XCD_NUM_PER_AID			2
 +
-+static void ras_process_retire_page_dwork(struct work_struct *work)
++/* typical ECC bad page rate is 1 bad page per 100MB VRAM */
++#define ESTIMATE_BAD_PAGE_THRESHOLD(size)         ((size)/(100 * 1024 * 1024ULL))
++
++#define COUNT_BAD_PAGE_THRESHOLD(size) (((size) >> 21) << 4)
++
++/* Reserve 8 physical dram row for possible retirement.
++ * In worst cases, it will lose 8 * 2MB memory in vram domain
++ */
++#define RAS_RESERVED_VRAM_SIZE_DEFAULT	(16ULL << 20)
++
++
++static void ras_mgr_init_event_mgr(struct ras_event_manager *mgr)
 +{
-+	struct amdgpu_ras_mgr *ras_mgr =
-+		container_of(work, struct amdgpu_ras_mgr, retire_page_dwork.work);
-+	struct amdgpu_device *adev = ras_mgr->adev;
-+	int ret;
++	struct ras_event_state *event_state;
++	int i;
 +
-+	if (amdgpu_ras_is_rma(adev))
-+		return;
++	memset(mgr, 0, sizeof(*mgr));
++	atomic64_set(&mgr->seqno, 0);
 +
-+	/* If gpu reset is ongoing, delay retiring the bad pages */
-+	if (amdgpu_in_reset(adev) || amdgpu_ras_in_recovery(adev)) {
-+		schedule_delayed_work(&ras_mgr->retire_page_dwork,
-+			msecs_to_jiffies(RAS_MGR_RETIRE_PAGE_INTERVAL * 3));
-+		return;
++	for (i = 0; i < ARRAY_SIZE(mgr->event_state); i++) {
++		event_state = &mgr->event_state[i];
++		event_state->last_seqno = RAS_EVENT_INVALID_ID;
++		atomic64_set(&event_state->count, 0);
++	}
++}
++
++static void amdgpu_ras_mgr_init_event_mgr(struct ras_core_context *ras_core)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)ras_core->dev;
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++	struct ras_event_manager *event_mgr;
++	struct amdgpu_hive_info *hive;
++
++	hive = amdgpu_get_xgmi_hive(adev);
++	event_mgr = hive ? &hive->event_mgr : &ras_mgr->ras_event_mgr;
++
++	/* init event manager with node 0 on xgmi system */
++	if (!amdgpu_reset_in_recovery(adev)) {
++		if (!hive || adev->gmc.xgmi.node_id == 0)
++			ras_mgr_init_event_mgr(event_mgr);
 +	}
 +
-+	ret = ras_umc_handle_bad_pages(ras_mgr->ras_core, NULL);
-+	if (!ret)
-+		schedule_delayed_work(&ras_mgr->retire_page_dwork,
-+			msecs_to_jiffies(RAS_MGR_RETIRE_PAGE_INTERVAL));
++	if (hive)
++		amdgpu_put_xgmi_hive(hive);
 +}
 +
-+int amdgpu_ras_process_init(struct amdgpu_device *adev)
++static int amdgpu_ras_mgr_init_aca_config(struct amdgpu_device *adev,
++		struct ras_core_config *config)
 +{
-+	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++	struct ras_aca_config *aca_cfg = &config->aca_cfg;
 +
-+	INIT_DELAYED_WORK(&ras_mgr->retire_page_dwork, ras_process_retire_page_dwork);
++	aca_cfg->socket_num_per_hive = MAX_SOCKET_NUM_PER_HIVE;
++	aca_cfg->aid_num_per_socket = MAX_AID_NUM_PER_SOCKET;
++	aca_cfg->xcd_num_per_aid = MAX_XCD_NUM_PER_AID;
 +
 +	return 0;
 +}
 +
-+int amdgpu_ras_process_fini(struct amdgpu_device *adev)
++static int amdgpu_ras_mgr_init_eeprom_config(struct amdgpu_device *adev,
++		struct ras_core_config *config)
 +{
-+	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++	struct ras_eeprom_config *eeprom_cfg = &config->eeprom_cfg;
 +
-+	/* Save all cached bad pages to eeprom */
-+	flush_delayed_work(&ras_mgr->retire_page_dwork);
-+	cancel_delayed_work_sync(&ras_mgr->retire_page_dwork);
++	eeprom_cfg->eeprom_sys_fn = &amdgpu_ras_eeprom_i2c_sys_func;
++	eeprom_cfg->eeprom_i2c_adapter = adev->pm.ras_eeprom_i2c_bus;
++	if (eeprom_cfg->eeprom_i2c_adapter) {
++		const struct i2c_adapter_quirks *quirks =
++			((struct i2c_adapter *)eeprom_cfg->eeprom_i2c_adapter)->quirks;
++
++		if (quirks) {
++			eeprom_cfg->max_i2c_read_len = quirks->max_read_len;
++			eeprom_cfg->max_i2c_write_len = quirks->max_write_len;
++		}
++	}
++
++	/*
++	 * amdgpu_bad_page_threshold is used to config
++	 * the threshold for the number of bad pages.
++	 * -1:  Threshold is set to default value
++	 *      Driver will issue a warning message when threshold is reached
++	 *      and continue runtime services.
++	 * 0:   Disable bad page retirement
++	 *      Driver will not retire bad pages
++	 *      which is intended for debugging purpose.
++	 * -2:  Threshold is determined by a formula
++	 *      that assumes 1 bad page per 100M of local memory.
++	 *      Driver will continue runtime services when threhold is reached.
++	 * 0 < threshold < max number of bad page records in EEPROM,
++	 *      A user-defined threshold is set
++	 *      Driver will halt runtime services when this custom threshold is reached.
++	 */
++	if (amdgpu_bad_page_threshold == NONSTOP_OVER_THRESHOLD)
++		eeprom_cfg->eeprom_record_threshold_count =
++				ESTIMATE_BAD_PAGE_THRESHOLD(adev->gmc.mc_vram_size);
++	else if (amdgpu_bad_page_threshold == WARN_NONSTOP_OVER_THRESHOLD)
++		eeprom_cfg->eeprom_record_threshold_count =
++				COUNT_BAD_PAGE_THRESHOLD(RAS_RESERVED_VRAM_SIZE_DEFAULT);
++	else
++		eeprom_cfg->eeprom_record_threshold_count = amdgpu_bad_page_threshold;
++
++	eeprom_cfg->eeprom_record_threshold_config = amdgpu_bad_page_threshold;
++
 +	return 0;
 +}
 +
-+int amdgpu_ras_process_handle_umc_interrupt(struct amdgpu_device *adev, void *data)
++static int amdgpu_ras_mgr_init_mp1_config(struct amdgpu_device *adev,
++		struct ras_core_config *config)
 +{
-+	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++	struct ras_mp1_config *mp1_cfg = &config->mp1_cfg;
++	int ret = 0;
 +
-+	if (!ras_mgr->ras_core)
++	switch (config->mp1_ip_version) {
++	case IP_VERSION(13, 0, 6):
++	case IP_VERSION(13, 0, 14):
++	case IP_VERSION(13, 0, 12):
++		mp1_cfg->mp1_sys_fn = &amdgpu_ras_mp1_sys_func_v13_0;
++		break;
++	default:
++		RAS_DEV_ERR(adev,
++			"The mp1(0x%x) ras config is not right!\n",
++			config->mp1_ip_version);
++		ret = -EINVAL;
++		break;
++	}
++
++	return ret;
++}
++
++static int amdgpu_ras_mgr_init_nbio_config(struct amdgpu_device *adev,
++		struct ras_core_config *config)
++{
++	struct ras_nbio_config *nbio_cfg = &config->nbio_cfg;
++	int ret = 0;
++
++	switch (config->nbio_ip_version) {
++	case IP_VERSION(7, 9, 0):
++		nbio_cfg->nbio_sys_fn = &amdgpu_ras_nbio_sys_func_v7_9;
++		break;
++	default:
++		RAS_DEV_ERR(adev,
++			"The nbio(0x%x) ras config is not right!\n",
++			config->mp1_ip_version);
++		ret = -EINVAL;
++		break;
++	}
++
++	return ret;
++}
++
++static int amdgpu_ras_mgr_get_ras_psp_system_status(struct ras_core_context *ras_core,
++			struct ras_psp_sys_status *status)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)ras_core->dev;
++	struct ta_context *context = &adev->psp.ras_context.context;
++
++	status->initialized = context->initialized;
++	status->session_id = context->session_id;
++	status->psp_cmd_mutex = &adev->psp.mutex;
++
++	return 0;
++}
++
++static int amdgpu_ras_mgr_get_ras_ta_init_param(struct ras_core_context *ras_core,
++	struct ras_ta_init_param *ras_ta_param)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)ras_core->dev;
++	uint32_t nps_mode;
++
++	if (amdgpu_ras_is_poison_mode_supported(adev))
++		ras_ta_param->poison_mode_en = 1;
++
++	if (!adev->gmc.xgmi.connected_to_cpu && !adev->gmc.is_app_apu)
++		ras_ta_param->dgpu_mode = 1;
++
++	ras_ta_param->xcc_mask = adev->gfx.xcc_mask;
++	ras_ta_param->channel_dis_num = hweight32(adev->gmc.m_half_use) * 2;
++
++	ras_ta_param->active_umc_mask = adev->umc.active_mask;
++
++	if (!amdgpu_ras_mgr_get_curr_nps_mode(adev, &nps_mode))
++		ras_ta_param->nps_mode = nps_mode;
++
++	return 0;
++}
++
++const struct ras_psp_sys_func amdgpu_ras_psp_sys_func = {
++	.get_ras_psp_system_status = amdgpu_ras_mgr_get_ras_psp_system_status,
++	.get_ras_ta_init_param = amdgpu_ras_mgr_get_ras_ta_init_param,
++};
++
++static int amdgpu_ras_mgr_init_psp_config(struct amdgpu_device *adev,
++	struct ras_core_config *config)
++{
++	struct ras_psp_config *psp_cfg = &config->psp_cfg;
++
++	psp_cfg->psp_sys_fn = &amdgpu_ras_psp_sys_func;
++
++	return 0;
++}
++
++static int amdgpu_ras_mgr_init_umc_config(struct amdgpu_device *adev,
++	struct ras_core_config *config)
++{
++	struct ras_umc_config *umc_cfg = &config->umc_cfg;
++
++	umc_cfg->umc_vram_type = adev->gmc.vram_type;
++
++	return 0;
++}
++
++static struct ras_core_context *amdgpu_ras_mgr_create_ras_core(struct amdgpu_device *adev)
++{
++	struct ras_core_config init_config;
++
++	memset(&init_config, 0, sizeof(init_config));
++
++	init_config.umc_ip_version = amdgpu_ip_version(adev, UMC_HWIP, 0);
++	init_config.mp1_ip_version = amdgpu_ip_version(adev, MP1_HWIP, 0);
++	init_config.gfx_ip_version = amdgpu_ip_version(adev, GC_HWIP, 0);
++	init_config.nbio_ip_version = amdgpu_ip_version(adev, NBIO_HWIP, 0);
++	init_config.psp_ip_version = amdgpu_ip_version(adev, MP1_HWIP, 0);
++
++	if (init_config.umc_ip_version == IP_VERSION(12, 0, 0))
++		init_config.aca_ip_version = IP_VERSION(1, 0, 0);
++
++	init_config.sys_fn = &amdgpu_ras_sys_fn;
++	init_config.ras_eeprom_supported = true;
++	init_config.poison_supported =
++		amdgpu_ras_is_poison_mode_supported(adev);
++
++	amdgpu_ras_mgr_init_aca_config(adev, &init_config);
++	amdgpu_ras_mgr_init_eeprom_config(adev, &init_config);
++	amdgpu_ras_mgr_init_mp1_config(adev, &init_config);
++	amdgpu_ras_mgr_init_nbio_config(adev, &init_config);
++	amdgpu_ras_mgr_init_psp_config(adev, &init_config);
++	amdgpu_ras_mgr_init_umc_config(adev, &init_config);
++
++	return ras_core_create(&init_config);
++}
++
++static int amdgpu_ras_mgr_sw_init(struct amdgpu_ip_block *ip_block)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
++	struct amdgpu_ras_mgr *ras_mgr;
++	int ret = 0;
++
++	ras_mgr = kzalloc(sizeof(*ras_mgr), GFP_KERNEL);
++	if (!ras_mgr)
 +		return -EINVAL;
 +
-+	return ras_process_add_interrupt_req(ras_mgr->ras_core, NULL, true);
++	con->ras_mgr = ras_mgr;
++	ras_mgr->adev = adev;
++
++	ras_mgr->ras_core = amdgpu_ras_mgr_create_ras_core(adev);
++	if (!ras_mgr->ras_core) {
++		RAS_DEV_ERR(adev, "Failed to create ras core!\n");
++		ret = -EINVAL;
++		goto err;
++	}
++
++	ras_mgr->ras_core->dev = adev;
++
++	amdgpu_ras_process_init(adev);
++	ras_core_sw_init(ras_mgr->ras_core);
++	amdgpu_ras_mgr_init_event_mgr(ras_mgr->ras_core);
++	return 0;
++
++err:
++	kfree(ras_mgr);
++	return ret;
 +}
 +
-+int amdgpu_ras_process_handle_unexpected_interrupt(struct amdgpu_device *adev, void *data)
++static int amdgpu_ras_mgr_sw_fini(struct amdgpu_ip_block *ip_block)
 +{
-+	amdgpu_ras_set_fed(adev, true);
-+	return amdgpu_ras_mgr_reset_gpu(adev, AMDGPU_RAS_GPU_RESET_MODE1_RESET);
++	struct amdgpu_device *adev = ip_block->adev;
++	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
++	struct amdgpu_ras_mgr *ras_mgr = (struct amdgpu_ras_mgr *)con->ras_mgr;
++
++	if (!ras_mgr)
++		return 0;
++
++	amdgpu_ras_process_fini(adev);
++	ras_core_sw_fini(ras_mgr->ras_core);
++	ras_core_destroy(ras_mgr->ras_core);
++	ras_mgr->ras_core = NULL;
++
++	kfree(con->ras_mgr);
++	con->ras_mgr = NULL;
++
++	return 0;
 +}
 +
-+int amdgpu_ras_process_handle_consumption_interrupt(struct amdgpu_device *adev, void *data)
++static int amdgpu_ras_mgr_hw_init(struct amdgpu_ip_block *ip_block)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++	int ret;
++
++	if (!ras_mgr || !ras_mgr->ras_core)
++		return -EINVAL;
++
++	ret = ras_core_hw_init(ras_mgr->ras_core);
++	if (ret) {
++		RAS_DEV_ERR(adev, "Failed to initialize ras core!\n");
++		return ret;
++	}
++
++	ras_mgr->ras_is_ready = true;
++
++	RAS_DEV_INFO(adev, "AMDGPU RAS Is Ready.\n");
++	return 0;
++}
++
++static int amdgpu_ras_mgr_hw_fini(struct amdgpu_ip_block *ip_block)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (!ras_mgr || !ras_mgr->ras_core)
++		return -EINVAL;
++
++	ras_core_hw_fini(ras_mgr->ras_core);
++
++	ras_mgr->ras_is_ready = false;
++
++	return 0;
++}
++
++struct amdgpu_ras_mgr *amdgpu_ras_mgr_get_context(struct amdgpu_device *adev)
++{
++	if (!adev || !adev->psp.ras_context.ras)
++		return NULL;
++
++	return (struct amdgpu_ras_mgr *)adev->psp.ras_context.ras->ras_mgr;
++}
++
++static const struct amd_ip_funcs ras_v1_0_ip_funcs = {
++	.name = "ras_v1_0",
++	.sw_init = amdgpu_ras_mgr_sw_init,
++	.sw_fini = amdgpu_ras_mgr_sw_fini,
++	.hw_init = amdgpu_ras_mgr_hw_init,
++	.hw_fini = amdgpu_ras_mgr_hw_fini,
++};
++
++int amdgpu_enable_unified_ras(struct amdgpu_device *adev, bool enable)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (!ras_mgr || !ras_mgr->ras_core)
++		return -EPERM;
++
++	if (amdgpu_sriov_vf(adev))
++		return -EPERM;
++
++	RAS_DEV_INFO(adev, "Enable amdgpu unified ras!");
++	return ras_core_set_status(ras_mgr->ras_core, enable);
++}
++
++bool amdgpu_unified_ras_enabled(struct amdgpu_device *adev)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (!ras_mgr || !ras_mgr->ras_core)
++		return false;
++
++	if (amdgpu_sriov_vf(adev))
++		return false;
++
++	return ras_core_is_enabled(ras_mgr->ras_core);
++}
++
++static bool amdgpu_ras_mgr_is_ready(struct amdgpu_device *adev)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (ras_mgr && ras_mgr->ras_core && ras_mgr->ras_is_ready &&
++	    ras_core_is_ready(ras_mgr->ras_core))
++		return true;
++
++	return false;
++}
++
++int amdgpu_ras_mgr_handle_fatal_interrupt(struct amdgpu_device *adev, void *data)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (!amdgpu_ras_mgr_is_ready(adev))
++		return -EPERM;
++
++	return ras_core_handle_nbio_irq(ras_mgr->ras_core, data);
++}
++
++uint64_t amdgpu_ras_mgr_gen_ras_event_seqno(struct amdgpu_device *adev,
++			enum ras_seqno_type seqno_type)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++	int ret;
++	uint64_t seq_no;
++
++	if (!amdgpu_ras_mgr_is_ready(adev) ||
++	    (seqno_type >= RAS_SEQNO_TYPE_COUNT_MAX))
++		return 0;
++
++	seq_no = ras_core_gen_seqno(ras_mgr->ras_core, seqno_type);
++
++	if ((seqno_type == RAS_SEQNO_TYPE_DE) ||
++	    (seqno_type == RAS_SEQNO_TYPE_POISON_CONSUMPTION)) {
++		ret = ras_core_put_seqno(ras_mgr->ras_core, seqno_type, seq_no);
++		if (ret)
++			RAS_DEV_WARN(adev, "There are too many ras interrupts!");
++	}
++
++	return seq_no;
++}
++
++int amdgpu_ras_mgr_handle_controller_interrupt(struct amdgpu_device *adev, void *data)
 +{
 +	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
 +	struct ras_ih_info *ih_info = (struct ras_ih_info *)data;
-+	struct ras_event_req req;
-+	uint64_t seqno;
++	uint64_t seq_no = 0;
++	int ret = 0;
 +
-+	if (!ih_info)
++	if (!amdgpu_ras_mgr_is_ready(adev))
++		return -EPERM;
++
++	if (ih_info && (ih_info->block == AMDGPU_RAS_BLOCK__UMC)) {
++		if (ras_mgr->ras_core->poison_supported) {
++			seq_no = amdgpu_ras_mgr_gen_ras_event_seqno(adev, RAS_SEQNO_TYPE_DE);
++			RAS_DEV_INFO(adev,
++				"{%llu} RAS poison is created, no user action is needed.\n",
++				seq_no);
++		}
++
++		ret = amdgpu_ras_process_handle_umc_interrupt(adev, ih_info);
++	} else if (ras_mgr->ras_core->poison_supported) {
++		ret = amdgpu_ras_process_handle_unexpected_interrupt(adev, ih_info);
++	} else {
++		RAS_DEV_WARN(adev,
++			"No RAS interrupt handler for non-UMC block with poison disabled.\n");
++	}
++
++	return ret;
++}
++
++int amdgpu_ras_mgr_handle_consumer_interrupt(struct amdgpu_device *adev, void *data)
++{
++	if (!amdgpu_ras_mgr_is_ready(adev))
++		return -EPERM;
++
++	return amdgpu_ras_process_handle_consumption_interrupt(adev, data);
++}
++
++int amdgpu_ras_mgr_update_ras_ecc(struct amdgpu_device *adev)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (!amdgpu_ras_mgr_is_ready(adev))
++		return -EPERM;
++
++	return ras_core_update_ecc_info(ras_mgr->ras_core);
++}
++
++int amdgpu_ras_mgr_reset_gpu(struct amdgpu_device *adev, uint32_t flags)
++{
++	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
++
++	if (!amdgpu_ras_mgr_is_ready(adev))
++		return -EPERM;
++
++	con->gpu_reset_flags |= flags;
++	return amdgpu_ras_reset_gpu(adev);
++}
++
++bool amdgpu_ras_mgr_check_eeprom_safety_watermark(struct amdgpu_device *adev)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (!amdgpu_ras_mgr_is_ready(adev))
++		return false;
++
++	return ras_eeprom_check_safety_watermark(ras_mgr->ras_core);
++}
++
++int amdgpu_ras_mgr_get_curr_nps_mode(struct amdgpu_device *adev,
++	uint32_t *nps_mode)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++	uint32_t mode;
++
++	if (!amdgpu_ras_mgr_is_ready(adev))
 +		return -EINVAL;
 +
-+	memset(&req, 0, sizeof(req));
-+	req.block = ih_info->block;
-+	req.data = ih_info->data;
-+	req.pasid = ih_info->pasid;
-+	req.pasid_fn = ih_info->pasid_fn;
-+	req.reset = ih_info->reset;
++	mode = ras_core_get_curr_nps_mode(ras_mgr->ras_core);
++	if (!mode || mode > AMDGPU_NPS8_PARTITION_MODE)
++		return -EINVAL;
 +
-+	seqno = ras_core_get_seqno(ras_mgr->ras_core,
-+				RAS_SEQNO_TYPE_POISON_CONSUMPTION, false);
++	*nps_mode = mode;
 +
-+	/* When the ACA register cannot be read from FW, the poison
-+	 * consumption seqno in the fifo will not pop up, so it is
-+	 * necessary to check whether the seqno is the previous seqno.
-+	 */
-+	if (seqno == ras_mgr->last_poison_consumption_seqno) {
-+		/* Pop and discard the previous seqno */
-+		ras_core_get_seqno(ras_mgr->ras_core,
-+				RAS_SEQNO_TYPE_POISON_CONSUMPTION, true);
-+		seqno = ras_core_get_seqno(ras_mgr->ras_core,
-+					RAS_SEQNO_TYPE_POISON_CONSUMPTION, false);
-+	}
-+	ras_mgr->last_poison_consumption_seqno = seqno;
-+	req.seqno = seqno;
-+
-+	return ras_process_add_interrupt_req(ras_mgr->ras_core, &req, false);
++	return 0;
 +}
-diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.h b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.h
++
++bool amdgpu_ras_mgr_check_retired_addr(struct amdgpu_device *adev,
++			uint64_t addr)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (!amdgpu_ras_mgr_is_ready(adev))
++		return false;
++
++	return ras_umc_check_retired_addr(ras_mgr->ras_core, addr);
++}
++
++bool amdgpu_ras_mgr_is_rma(struct amdgpu_device *adev)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++
++	if (!ras_mgr || !ras_mgr->ras_core || !ras_mgr->ras_is_ready)
++		return false;
++
++	return ras_core_gpu_is_rma(ras_mgr->ras_core);
++}
+diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h
 new file mode 100644
-index 000000000000..b9502bd21beb
+index 000000000000..fa761de381c1
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_process.h
-@@ -0,0 +1,37 @@
++++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h
+@@ -0,0 +1,73 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright (c) 2025 Advanced Micro Devices, Inc.
@@ -305,20 +741,56 @@ index 000000000000..b9502bd21beb
 + * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 + * THE SOFTWARE.
 + */
-+#ifndef __AMDGPU_RAS_PROCESS_H__
-+#define __AMDGPU_RAS_PROCESS_H__
-+#include "ras_process.h"
-+#include "amdgpu_ras_mgr.h"
++#ifndef __AMDGPU_RAS_MGR_H__
++#define __AMDGPU_RAS_MGR_H__
++#include "ras.h"
++#include "amdgpu_ras_process.h"
 +
-+enum ras_ih_type;
-+int amdgpu_ras_process_init(struct amdgpu_device *adev);
-+int amdgpu_ras_process_fini(struct amdgpu_device *adev);
-+int amdgpu_ras_process_handle_umc_interrupt(struct amdgpu_device *adev,
-+		void *data);
-+int amdgpu_ras_process_handle_unexpected_interrupt(struct amdgpu_device *adev,
-+		void *data);
-+int amdgpu_ras_process_handle_consumption_interrupt(struct amdgpu_device *adev,
-+		void *data);
++enum ras_ih_type {
++	RAS_IH_NONE,
++	RAS_IH_FROM_BLOCK_CONTROLLER,
++	RAS_IH_FROM_CONSUMER_CLIENT,
++	RAS_IH_FROM_FATAL_ERROR,
++};
++
++struct ras_ih_info {
++	uint32_t block;
++	union {
++		struct amdgpu_iv_entry iv_entry;
++		struct {
++			uint16_t pasid;
++			uint32_t reset;
++			pasid_notify pasid_fn;
++			void *data;
++		};
++	};
++};
++
++struct amdgpu_ras_mgr {
++	struct amdgpu_device *adev;
++	struct ras_core_context *ras_core;
++	struct delayed_work retire_page_dwork;
++	struct ras_event_manager ras_event_mgr;
++	uint64_t last_poison_consumption_seqno;
++	bool ras_is_ready;
++};
++
++struct amdgpu_ras_mgr *amdgpu_ras_mgr_get_context(
++			struct amdgpu_device *adev);
++int amdgpu_enable_unified_ras(struct amdgpu_device *adev, bool enable);
++bool amdgpu_unified_ras_enabled(struct amdgpu_device *adev);
++int amdgpu_ras_mgr_handle_fatal_interrupt(struct amdgpu_device *adev, void *data);
++int amdgpu_ras_mgr_handle_controller_interrupt(struct amdgpu_device *adev, void *data);
++int amdgpu_ras_mgr_handle_consumer_interrupt(struct amdgpu_device *adev, void *data);
++int amdgpu_ras_mgr_update_ras_ecc(struct amdgpu_device *adev);
++int amdgpu_ras_mgr_reset_gpu(struct amdgpu_device *adev, uint32_t flags);
++uint64_t amdgpu_ras_mgr_gen_ras_event_seqno(struct amdgpu_device *adev,
++			enum ras_seqno_type seqno_type);
++bool amdgpu_ras_mgr_check_eeprom_safety_watermark(struct amdgpu_device *adev);
++int amdgpu_ras_mgr_get_curr_nps_mode(struct amdgpu_device *adev, uint32_t *nps_mode);
++bool amdgpu_ras_mgr_check_retired_addr(struct amdgpu_device *adev,
++			uint64_t addr);
++bool amdgpu_ras_mgr_is_rma(struct amdgpu_device *adev);
 +#endif
 -- 
 2.34.1
