@@ -2,163 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA69B91124
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Sep 2025 14:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FAB3B9139E
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Sep 2025 14:52:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0915F10E4E2;
-	Mon, 22 Sep 2025 12:11:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC1110E479;
+	Mon, 22 Sep 2025 12:52:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1IFwwi6h";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="auHdNGKd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010004.outbound.protection.outlook.com [52.101.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D7EA10E462
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Sep 2025 12:11:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dNPbtxB7lP+kCT39yhwb3ZOVCUOD8HntITre8mudd+NhQhbY6qxVhbXRElnvdg3y1En0uFqf4lm7BO82vN4HtcLipJYoSqw6+EGibcLk/ax+AXzRMNQAKgK5/IzBKJrtJrbAD4Hl1aNYhFHXl4GggPhiPYO/rqikI7QGKHfUzm99WbbbjEhRRCFTF4LmmI1LLF/7Drs2xUL/ULOhRhepwcAzytKeW3l0AbZ/njmv1FCKgz01U0n+MllzdMZMktBq8fppQuGtaSZeEok/PQ8gRxu+bKRhH3jPiVfVOOf7lxB8heStXVnjrrICS0rANxpmPspZRR8sTo0oDpD9+eup1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XdHaQChoFfwNFcQT25mQs9Lwo84vGOY6n4K69NFf+fw=;
- b=YrXC6T2FtWiAdiElaPNZzI85C6svNNiRVTBLg/jSAc61xkmJ03cLu6LvnduuFNreMtsXHZqnx/SfQ2j+EeAJoAqknTofRtigFFs/2+u2NPWI6OnHKt5YPPw7yhjf+5jmN1FvUhZJ9uGWOIAlU43OHipU3HLiNgNeRBSzlurqrXoSXCSUKNwsOF4a+i91x0rZcplkgYEPg+yTm5VZWmHqjsATGR+S1kXeUUEqbbpS70NlRX7AaDD1ST8UfdJRx3kHibULiQCSCWVd12zWKYYLRMS97l+72kpAH6Xi48fNxkHLJ2lFuYSuDzem/0oYpHL0XApWbPxH7XTjY7h/VPrzjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XdHaQChoFfwNFcQT25mQs9Lwo84vGOY6n4K69NFf+fw=;
- b=1IFwwi6hqdmfOJDBwCbEM1Lmmkm+DMWRBDecefD6PA3FO+bT5JdsSC1GXbah6U8I/SMwGsONGyumkoe5bTo8l1oIFrT3IErQc3CGMMqDYQWsri2q0uI5TxU+lylLFSQx5XBPsLYbPa4JDziOKHps51fiiUxdynkhm9md5t+Gb5M=
-Received: from DS7PR12MB6005.namprd12.prod.outlook.com (2603:10b6:8:7c::17) by
- SA3PR12MB7807.namprd12.prod.outlook.com (2603:10b6:806:304::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Mon, 22 Sep
- 2025 12:11:42 +0000
-Received: from DS7PR12MB6005.namprd12.prod.outlook.com
- ([fe80::4dc0:f34c:9e7e:ccb]) by DS7PR12MB6005.namprd12.prod.outlook.com
- ([fe80::4dc0:f34c:9e7e:ccb%4]) with mapi id 15.20.9137.018; Mon, 22 Sep 2025
- 12:11:42 +0000
-From: "Liang, Prike" <Prike.Liang@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Subject: RE: [PATCH v4 02/10] drm/amdgpu: add userq object va track helpers
-Thread-Topic: [PATCH v4 02/10] drm/amdgpu: add userq object va track helpers
-Thread-Index: AQHcKT0As50E+I/930q7j5O0xVH+qbSaLe0AgATvpsA=
-Date: Mon, 22 Sep 2025 12:11:41 +0000
-Message-ID: <DS7PR12MB6005889CCDB9493F039B7247FB12A@DS7PR12MB6005.namprd12.prod.outlook.com>
-References: <20250919081113.2797985-1-Prike.Liang@amd.com>
- <20250919081113.2797985-2-Prike.Liang@amd.com>
- <5b347c07-9c99-43cc-a7f2-21d43343028d@amd.com>
-In-Reply-To: <5b347c07-9c99-43cc-a7f2-21d43343028d@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-09-22T11:57:17.0000000Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS7PR12MB6005:EE_|SA3PR12MB7807:EE_
-x-ms-office365-filtering-correlation-id: 71e6a5e8-c6a4-4ce1-4df8-08ddf9d130d7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|7053199007|38070700021; 
-x-microsoft-antispam-message-info: =?utf-8?B?eDdyMXMwQ2xTTnpmdnFpd1htVW1RSkc2TlJoeDd3ekhvREZlZjVleklaUGtz?=
- =?utf-8?B?aFBJZWJTNmxyRlhQbEpmZGdIS1dwTW9VaVZjQmE1TmlNaC9DSTArSExSWTVT?=
- =?utf-8?B?VUQ5aG5TdUt1UUpCYVdPR0t4L3JMd3MwQ3pLSThhcVc1cjRCSDB1WWl0dTVH?=
- =?utf-8?B?ZFB4RGxidmVFR3FodWd3ZmlJWlF1SndHVFVqeTBRb2VQdzE4bjlkZzA2MXd1?=
- =?utf-8?B?UVNyTGZMM1FPczl6dWs5NTRMZHR0aUxvbGRMSGFtT2xVWE5LNlNDTCtqTkQ1?=
- =?utf-8?B?emFQTSswLzVSMFc1cm5rSG1IQjA2Z3c3d1dnNnpEYVQ4cjhtbVNEWTRyMU1u?=
- =?utf-8?B?TGpVcFJEY3hEN0psQlpNVGV0S0RTR2FxTm1YRVByUVN0OVhxS3o4ajFkSStP?=
- =?utf-8?B?NnFES05GWnFScG9lQzdSb1pkSTlwK3FGQkM5SEpBTFVCeWdxRFZaT0tsdFJG?=
- =?utf-8?B?emdXZGdVRmNvZm9zL0ppbzlpL0pQZklaUThmbVJmNlVYUGRlREtUcW40NTdv?=
- =?utf-8?B?ck9MZk4wN1BWVW1VN2VTbkpCWGxsazRaNWRCSVpJZUUydDVHQ1dUSWtDQUE1?=
- =?utf-8?B?alpWQnJZTUlmUVdES2Nzbit4RVg5Y3E5MkdBZXVnYk1EbmVFUHd3K2UvWU5Y?=
- =?utf-8?B?bmpjWnRUTmNuTjlKZ2xtYzZad2VESmJMS25YYWVUNTFqb3YxWDZLcUlFdVM3?=
- =?utf-8?B?VHpmUDU2QjVwWndoWUNka08yVFRIVkQ1dGJxMFNIZWsvaHJHTmJkcEJ0NHJF?=
- =?utf-8?B?a2h0Zy9HUUd3WEh5bFhMdjNtK08zUGtJc29tOE8zMGVDQWR2QW9BYUZvOGYv?=
- =?utf-8?B?NjQvNVRJbUxLTUV6QWdZTC8yZk1LR05ZY3gxUFpSOHBROHRZNmxzWTJrWlJv?=
- =?utf-8?B?Y1VpL1hleFlHSTYwM1lpRG10RXZpTWlWcngyeFg1UjVRU2hjQ2VMWTI5TTRk?=
- =?utf-8?B?dWVOQkRSUzJNSVh2UURGVWJpeUVnZzVSN3N0eE56OWFBQ3hTMWdYTzFkc3hk?=
- =?utf-8?B?NC9lMmRmWFhmNUNmYVIxbHZIUjd0WFMwRTRDTmJnZmZJU3JUZ1NCWHdYSTZP?=
- =?utf-8?B?YlVrTitxYWdEQzBwWHFTREFvVTBONy83LzA3cndUOEpoVEZjcjNRaG5FWWRo?=
- =?utf-8?B?UmMxbUtyRnBWUmtiYXk0a09FWkdQS0tDZG90a3F3MHIxaW5tbENCUGlPQ3Jj?=
- =?utf-8?B?Y1FDbzhaZ2wrS1BzdG02bmNESVo0UVRQZW1YR213Qi8vUml3S3kyZHR1SE5H?=
- =?utf-8?B?Wk1XcUN4VVlMQ20xZVZQajZPbHJpRDhiVTVsRG5WNzMvU294dkwwRmcwY20w?=
- =?utf-8?B?V2RWSzNrNG9UaTZsbXFEOGtCRzdoeHlJRjZaaVZHazQ1UFUwZkNpUG56TnV4?=
- =?utf-8?B?eDhzMU5jMUoyTU5hc2h6MzA1c0FxZjd0dHpzbHFXbkM2RWhhWC85VTJtTUVO?=
- =?utf-8?B?QWVicGErc3VYUGIwYWVOZGVKSlBqUFpQZXBhaFlQbmlzNmNERTg4UHhrYUlS?=
- =?utf-8?B?OG8zS2pxS1N5cjRyZU80ZzlyaytGSDV6UExOT1d6QlhHdjBDYTZxb2xPNkkx?=
- =?utf-8?B?TW5BaEp5eEVueDJhT1poaHhHUXYyVGhYOFpnZDQ5WTdOM3NudVpFQ2duMG5t?=
- =?utf-8?B?WVBYenFnckFNb2loMFB1WDRySnJWckZEbmhXZXpFZ2doeVV6NEpKcEpYSjB6?=
- =?utf-8?B?d2Npcm5WUlErR2FGM1dPcU9OT2xDN1llOVZKcWFrd2d3OTdCWmJNT05Tc2M1?=
- =?utf-8?B?Qnp0a0xtTzRKeSsrU0s0Z21Md2dkWkJ4eDc5UlYzQnRHTUpEWWl3c2ppNWxR?=
- =?utf-8?B?RDlSTS9xUWNBTFdxbkd6cmduU0ZVZ3lScENRWVU2OXpRZ3lyTkl2UzVBZTVi?=
- =?utf-8?B?YmdiUGRUVE51YVhZYmdWU2k2cE9vc3l2MC9jd2tjcnNFL1I2TUpJb2VBNE1T?=
- =?utf-8?B?TGh3Z2pWcCt5MGRCblZLNHlSQmo5RURuazkwSENPWStTRU5sYXJFZ3lLVDY5?=
- =?utf-8?Q?fvAMs4RXf+ObgvCVr3YX6L3oisjBL0=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR12MB6005.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700021); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M2xma25GUTF5Qng5K3U5NVh1cXlNMUJzUFcxcmhxa01UWFlsY2Q3SDBmZCtp?=
- =?utf-8?B?Y0Y2ZG9nT05qUDlodmo0U2N2NHlrZ05lVy9xWE5YaS9JYzREcnNGc0ZBeVJU?=
- =?utf-8?B?L2lsdHplTFRBb1ZaV1ZrcnJiUkdwa05OcGZXUGw5Rk1mWTF3RkNxSnlTblJX?=
- =?utf-8?B?dUdBMkFQdWx3bGY3NDhDUkFiOFNqR3VmWUs0aGJFNU42QmRtZE0wOUFHVGdU?=
- =?utf-8?B?Nzc1dmF3R1dyZVFBSFZmWC95UjJJT3NqLzNVaCtqdVlhOWJSd2hhRWVidkRm?=
- =?utf-8?B?TUVhajM3UlU0bkVmM3ZxTTM4N2RuU215NXhXUWJiRVM4eXNrd25qcDVWYXQ5?=
- =?utf-8?B?b3BhN3p3dkIvaHpFbTRDRFBGcFBGTU85bXZOWkZ6Vkh3TnFXbFRHZHdtcyta?=
- =?utf-8?B?b2g4UTNUMTlReSthRFllMUZMK3pXTm03WWxkV0Q4YmlVc2pKYzVMd1M4dGpV?=
- =?utf-8?B?aGNIdUw5UENZM3hHdmw2M3g1ZXVsZlZKWnBlRzdMN1FGZE1KaCtjaWhWSjlU?=
- =?utf-8?B?RlErdTdzMmdkSWVlNEhWWW1qVTFleHNxbU5sczZHVzZaOWUyQ285dzV0Vms0?=
- =?utf-8?B?MndmVk1XeXlMMkxVL0ZTdnhPRUFhK0kvSk5ucjdvbkI1ekxZSlE5czhZeXY3?=
- =?utf-8?B?MXFqY1IyOGZsVFRJMVcwVjJ5QWxKbEFTY0tDbUdlS1dCRlZzeHJWOEcyMndk?=
- =?utf-8?B?ejE4TVQydU9IM2hrWmpLZE9vMWM4WmpuUUlTOW5raURsTDdEQWZTOGJzNXVP?=
- =?utf-8?B?QmpNM2lsU2x6UFpzanA1T0dSRXVJWmFyWXdRc0RWMDV1cVNSNmlickJ5Z0RN?=
- =?utf-8?B?NnJOVlFpLzZOTi95aVBlTlMvRmtOak5uQlhqT3kyTzFSdlpsVzcyYTJCSk9S?=
- =?utf-8?B?YVBRK3ZSVkI1OWErN1lBTUZ4Y3RXV0xzVzlwdFEydXNtbDRZR0tLS2loR2I5?=
- =?utf-8?B?R3IzaW1iTlYvdVVLODZrdDI4MWdWZHVLKy90bktaV3NPYW0xc2xSdVQrcmdL?=
- =?utf-8?B?V21mTFI1Z2ZBRmM1dTBySVprT1A5SUY1VGVCeHJwQU5aMGt0YldFdkVyVU1D?=
- =?utf-8?B?V25ZNHNDcDA3cUg5ZHdtOFNFTkZyWHJvays0TjlLTWU5djdZOFlTcTJjS1FQ?=
- =?utf-8?B?U0N1Vzh6NFVQYWNMaVQzSDV6ZVEvalAyQnhmN3R4bDg0aTdXVWVQZEh4cFFy?=
- =?utf-8?B?elRVMW1LdTl6KzI1M1dFRXJncnlHK3E4NEJOaEwyQTZ2V3FwdHdGdWxDb29K?=
- =?utf-8?B?dnUyOG5aMVZmQmRkajUxTWxaZC9IRGJYRWJWazRRZHRON0R6cS9GNm5RU0V0?=
- =?utf-8?B?bjE3RWE1OFo3Y0dpV0tTMTZVaUhFQjFyRCtoMDZGY1pZTCs0dll5VE9ZTWJu?=
- =?utf-8?B?SnUvb3F2WnQ3TU9uSEszai9hNFpEVkNoMFBvUXdlNkhmWlJhd25CRE82Nmlu?=
- =?utf-8?B?YTR1TVlkY3Jyc1NJVysyM2o1OXc5aUk5Sm5RN2dtcEZKSHJmZGNaQStUOThi?=
- =?utf-8?B?cVlMU0N3RGVma0NCUjR1bkMyeExJa0NWVVYybERLdlVlcGw3MWNLUFptS3VF?=
- =?utf-8?B?dktCYlJzcFQrWkhNR0dac0l5Rm5MbXZRc3FLdW9BL3RzV0E3QkRaWjVWR2Mw?=
- =?utf-8?B?b1BwQk5yR2xwYmg0TGdBYUlWMmhwb3lMYXhUbXJTd2hOQzcvYTFjT2pKWVJE?=
- =?utf-8?B?VWVicGdzRkF0NUNMUThIZFM2RndyZ2ZQNUsybVJhRTMyelhYWDZYVUpFVWJ6?=
- =?utf-8?B?R0dUUW4wUUZXTnR3NTdhUUlBZWdIcWJnRmcyK3V6dDB1Y2Q1alQ5d3VBY2Zq?=
- =?utf-8?B?ODJJaCtyb1R6R0RzVTJSSTNaTkRQa0U3WlhiWkh0TzQ5MHVxWmhBRncwenBC?=
- =?utf-8?B?cVNXK2hhcjlCbVJ0U2xvaDVDdXlPWnhRL0k2UG9Da3hVTkw3TmhNMVpSSmtS?=
- =?utf-8?B?T05sWHM0QWxXVG8yWVY4RW9OVTNOQlljR0txbUZSMzhGZkdRV1I2QzE0UldN?=
- =?utf-8?B?QjErUFBaelI1eXl3L1YvL2tqMU9Iazk0QzFrK2QxK0dtVFJ4R0tKN1k2N2h3?=
- =?utf-8?B?WmhJL2NMQTUvMWMzWHJ6eG4wTGpJTUVDamczZzd5WmxpUlhNS1lhSWhrRkNF?=
- =?utf-8?Q?MKyM=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB1BA10E462;
+ Mon, 22 Sep 2025 12:27:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id B091144F90;
+ Mon, 22 Sep 2025 12:27:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 883EFC4CEF7;
+ Mon, 22 Sep 2025 12:27:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1758544042;
+ bh=ZMR+XjDau2hHGL69Sn0X04f7J8RJUFy2i3TYGZCRJNA=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:From;
+ b=auHdNGKdLIfbwYh8NdP2suujfhPJ8YS6L5inxw+Jk7nRnEB4aHUltR4l5O9CmTBSx
+ 9egeOmiAOoV1ay8sAFv1kwXo/Hbhod87chikVjzqb4FCdyVDa0vFcGxKVGRIi3cmDb
+ OXUShv+pw1mOimuwtjJLHjrROezM5uFdfappdGfg=
+Subject: Patch "minmax: improve macro expansion and type checking" has been
+ added to the 6.6-stable tree
+To: David.Laight@ACULAB.COM, David.Laight@aculab.com,
+	Rodrigo.Siqueira@amd.com, Xinhui.Pan@amd.com, agk@redhat.com,
+	airlied@gmail.com, akpm@linux-foundation.org,
+	alexander.deucher@amd.com, alexandre.torgue@foss.st.com,
+	amd-gfx@lists.freedesktop.org, andriy.shevchenko@linux.intel.com,
+	anton.ivanov@cambridgegreys.com, arnd@kernel.org,
+	artur.paszkiewicz@intel.com, bp@alien8.de, christian.koenig@amd.com,
+	clm@fb.com, daniel@ffwll.ch, dave.hansen@linux.intel.com,
+	davem@davemloft.net, dm-devel@lists.linux.dev,
+	dmitry.torokhov@gmail.com, dri-devel@lists.freedesktop.org,
+	dsahern@kernel.org, dsterba@suse.com, edumazet@google.com,
+	evan.quan@amd.com, farbere@amazon.com, gregkh@linuxfoundation.org,
+	harry.wentland@amd.com, hdegoede@redhat.com, hpa@zytor.com,
+	ilpo.jarvinen@linux.intel.com, james.morse@arm.com,
+	jdelvare@suse.com, jejb@linux.ibm.com, jernej.skrabec@gmail.com,
+	joabreu@synopsys.com, johannes@sipsolutions.net,
+	josef@toxicpanda.com, keescook@chromium.org,
+	krzysztof.kozlowski@linaro.org, kuba@kernel.org,
+	linus.walleij@linaro.org, l@freedesktop.org,
+	inux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
+	linux-staging@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev, linux-um@lists.infradead.org,
+	linux@rasmusvillemoes.dk, linux@roeck-us.net,
+	lorenzo.stoakes@oracle.com, luc.vanoostenryck@gmail.com,
+	luto@kernel.org, maarten.lankhorst@linux.intel.com,
+	mailhol.vincent@wanadoo.fr, malattia@linux.it, markgross@kernel.org,
+	martin.petersen@oracle.com, mchehab@kernel.org,
+	mcoquelin.stm32@gmail.com, mhiramat@kernel.org, minchan@kernel.org,
+	mingo@redhat.com, mkl@pengutronix.de, mripard@kernel.org,
+	pabeni@redhat.com, peterz@infradead.org, pmladek@suse.com,
+	qiuxu.zhuo@intel.com, richard@nod.at, rostedt@goodmis.org,
+	rric@kernel.org, sakari.ailus@linux.intel.com, samuel@sholland.org,
+	senozhatsky@chromium.org, shuah@kernel.org, snitzer@kernel.org,
+	sunpeng.li@amd.com, tglx@linutronix.de, tony.luck@intel.com,
+	torvalds@linux-foundation.org, tzimmermann@suse.de, wad@chromium.org,
+	wens@csie.org, wg@grandegger.com, x86@kernel.org
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Mon, 22 Sep 2025 14:26:59 +0200
+In-Reply-To: <20250922103241.16213-8-farbere@amazon.com>
+Message-ID: <2025092259-dill-okay-e80c@gregkh>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB6005.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71e6a5e8-c6a4-4ce1-4df8-08ddf9d130d7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2025 12:11:41.9305 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LgL4Dv3JfBWz8Cxkc46KbnsezBmdjXa9XOvYF2Vr32Gfxjz5VQ3mguiFM3gO/I2y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7807
+Content-Type: text/plain; charset=ANSI_X3.4-1968
+Content-Transfer-Encoding: 8bit
+X-stable: commit
+X-Patchwork-Hint: ignore
+X-Mailman-Approved-At: Mon, 22 Sep 2025 12:52:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,194 +91,235 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W1B1YmxpY10NCg0KUmVnYXJkcywNCiAgICAgIFByaWtlDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNz
-YWdlLS0tLS0NCj4gRnJvbTogS29lbmlnLCBDaHJpc3RpYW4gPENocmlzdGlhbi5Lb2VuaWdAYW1k
-LmNvbT4NCj4gU2VudDogRnJpZGF5LCBTZXB0ZW1iZXIgMTksIDIwMjUgNDozNCBQTQ0KPiBUbzog
-TGlhbmcsIFByaWtlIDxQcmlrZS5MaWFuZ0BhbWQuY29tPjsgYW1kLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcNCj4gQ2M6IERldWNoZXIsIEFsZXhhbmRlciA8QWxleGFuZGVyLkRldWNoZXJAYW1k
-LmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NCAwMi8xMF0gZHJtL2FtZGdwdTogYWRkIHVz
-ZXJxIG9iamVjdCB2YSB0cmFjayBoZWxwZXJzDQo+DQo+DQo+DQo+IE9uIDE5LjA5LjI1IDEwOjEx
-LCBQcmlrZSBMaWFuZyB3cm90ZToNCj4gPiBBZGQgdGhlIHVzZXJxIG9iamVjdCB2aXJ0dWFsIGFk
-ZHJlc3MgbGlzdF9hZGQoKSxtYXBwZWQoKSBhbmQNCj4gPiBsaXN0X2RlbCgpIGhlbHBlcnMgZm9y
-IHRyYWNraW5nIHRoZSB1c2VycSBvYmogdmEgYWRkcmVzcyB1c2FnZS4NCj4gPg0KPiA+IFNpZ25l
-ZC1vZmYtYnk6IFByaWtlIExpYW5nIDxQcmlrZS5MaWFuZ0BhbWQuY29tPg0KPiA+IC0tLQ0KPiA+
-ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfb2JqZWN0LmggfCAgMSArDQo+ID4g
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3VzZXJxLmMgIHwgNzEgKysrKysrKysr
-KysrKysrKysrKy0tLQ0KPiA+IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91c2Vy
-cS5oICB8IDEyICsrKy0NCj4gPiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tZXNfdXNlcnF1
-ZXVlLmMgfCAxMyArKy0tDQo+ID4gIDQgZmlsZXMgY2hhbmdlZCwgNzcgaW5zZXJ0aW9ucygrKSwg
-MjAgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvYW1kZ3B1X29iamVjdC5oDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfb2JqZWN0LmgNCj4gPiBpbmRleCA2NTZiOGE5MzFkYWUuLjUyYzJkMTczMWFhYiAx
-MDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfb2JqZWN0
-LmgNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfb2JqZWN0LmgN
-Cj4gPiBAQCAtOTYsNiArOTYsNyBAQCBzdHJ1Y3QgYW1kZ3B1X2JvX3ZhIHsNCj4gPiAgICAgICog
-aWYgbm9uLXplcm8sIGNhbm5vdCB1bm1hcCBmcm9tIEdQVSBiZWNhdXNlIHVzZXIgcXVldWVzIG1h
-eSBzdGlsbA0KPiBhY2Nlc3MgaXQNCj4gPiAgICAgICovDQo+ID4gICAgIHVuc2lnbmVkIGludCAg
-ICAgICAgICAgICAgICAgICAgcXVldWVfcmVmY291bnQ7DQo+ID4gKyAgIGF0b21pY190ICAgICAg
-ICAgICAgICAgICAgICAgICAgdXNlcnFfdmFfbWFwcGVkOw0KPg0KPiBGb3Igbm93IHRoYXQgd29y
-a3MsIGJ1dCBJIHRoaW5rIHdlIHNob3VsZCBqdXN0IG1ha2UgdGhhdCBhIGZsYWcgd2hpY2ggaXMg
-c2V0IHdoZW5ldmVyDQo+IGFuIHVzZXJxZXVlIG5lZWRzIHRvIGJ1ZmZlciBhbmQgbmV2ZXIgY2xl
-YXJlZC4NCknigJltIG5vdCBzdXJlIEkgZnVsbHkgZm9sbG93LiBBcmUgeW91IHN1Z2dlc3Rpbmcg
-d2Ugc2hvdWxkbuKAmXQgZXhwbGljaXRseSBjbGVhciB0aGUgZmxhZyBkdXJpbmcgdXNlcnEgZGVz
-dHJ1Y3Rpb24sDQphbmQgaW5zdGVhZCByZWx5IG9uIGl0IGJlaW5nIGNsZWFyZWQgd2hlbiB0aGUg
-bWFwcGVkIEJPcyBhcmUgZnJlZWQ/IEFsc28sIGRvIHdlIHN0aWxsIG5lZWQgdG8gd2FsayB0aGUg
-dXNlcnEgVkENCmxpc3QgdG8gY2hlY2sgdGhlIGZsYWcgYmVmb3JlIHJlc3RvcmluZyB0aGUgdXNl
-cnE/DQoNClRoYW5rcywNClByaWtlDQo+IFJlZ2FyZHMsDQo+IENocmlzdGlhbi4NCj4NCj4NCj4g
-PiAgfTsNCj4gPg0KPiA+ICBzdHJ1Y3QgYW1kZ3B1X2JvIHsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3VzZXJxLmMNCj4gPiBiL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91c2VycS5jDQo+ID4gaW5kZXggYWY3NzUzYmZhMjdkLi45
-OWU1MWE4ZmY2MmEgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-YW1kZ3B1X3VzZXJxLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfdXNlcnEuYw0KPiA+IEBAIC00NCwxMCArNDQsMzAgQEAgdTMyIGFtZGdwdV91c2VycV9nZXRf
-c3VwcG9ydGVkX2lwX21hc2soc3RydWN0DQo+IGFtZGdwdV9kZXZpY2UgKmFkZXYpDQo+ID4gICAg
-IHJldHVybiB1c2VycV9pcF9tYXNrOw0KPiA+ICB9DQo+ID4NCj4gPiAtaW50IGFtZGdwdV91c2Vy
-cV9pbnB1dF92YV92YWxpZGF0ZShzdHJ1Y3QgYW1kZ3B1X3ZtICp2bSwgdTY0IGFkZHIsDQo+ID4g
-LSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHU2NCBleHBlY3RlZF9zaXplKQ0KPiA+ICtz
-dGF0aWMgaW50IGFtZGdwdV91c2VycV9idWZmZXJfdmFfbGlzdF9hZGQoc3RydWN0IGFtZGdwdV91
-c2VybW9kZV9xdWV1ZQ0KPiAqcXVldWUsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgc3RydWN0IGFtZGdwdV9ib192YV9tYXBwaW5nICp2YV9tYXAsDQo+IHU2NCBh
-ZGRyKSB7DQo+ID4gKyAgIHN0cnVjdCBhbWRncHVfdXNlcnFfdmFfY3Vyc29yICp2YV9jdXJzb3I7
-DQo+ID4gKyAgIHN0cnVjdCB1c2VycV92YV9saXN0Ow0KPiA+ICsNCj4gPiArICAgdmFfY3Vyc29y
-ID0ga3phbGxvYyhzaXplb2YoKnZhX2N1cnNvciksIEdGUF9LRVJORUwpOw0KPiA+ICsgICBpZiAo
-IXZhX2N1cnNvcikNCj4gPiArICAgICAgICAgICByZXR1cm4gLUVOT01FTTsNCj4gPiArDQo+ID4g
-KyAgIElOSVRfTElTVF9IRUFEKCZ2YV9jdXJzb3ItPmxpc3QpOw0KPiA+ICsgICB2YV9jdXJzb3It
-PmdwdV9hZGRyID0gYWRkcjsNCj4gPiArICAgYXRvbWljX3NldCgmdmFfbWFwLT5ib192YS0+dXNl
-cnFfdmFfbWFwcGVkLCAxKTsNCj4gPiArICAgbGlzdF9hZGQoJnZhX2N1cnNvci0+bGlzdCwgJnF1
-ZXVlLT51c2VycV92YV9saXN0KTsNCj4gPiArDQo+ID4gKyAgIHJldHVybiAwOw0KPiA+ICsNCj4g
-PiArfQ0KPiA+ICsNCj4gPiAraW50IGFtZGdwdV91c2VycV9pbnB1dF92YV92YWxpZGF0ZShzdHJ1
-Y3QgYW1kZ3B1X3VzZXJtb2RlX3F1ZXVlICpxdWV1ZSwNCj4gPiArICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgdTY0IGFkZHIsIHU2NCBleHBlY3RlZF9zaXplKQ0KPiA+ICB7DQo+ID4gICAg
-IHN0cnVjdCBhbWRncHVfYm9fdmFfbWFwcGluZyAqdmFfbWFwOw0KPiA+ICsgICBzdHJ1Y3QgYW1k
-Z3B1X3ZtICp2bSA9IHF1ZXVlLT52bTsNCj4gPiAgICAgdTY0IHVzZXJfYWRkcjsNCj4gPiAgICAg
-dTY0IHNpemU7DQo+ID4gICAgIGludCByID0gMDsNCj4gPiBAQCAtNjcsMTUgKzg3LDQzIEBAIGlu
-dCBhbWRncHVfdXNlcnFfaW5wdXRfdmFfdmFsaWRhdGUoc3RydWN0IGFtZGdwdV92bQ0KPiAqdm0s
-IHU2NCBhZGRyLA0KPiA+ICAgICAvKiBPbmx5IHZhbGlkYXRlIHRoZSB1c2VycSB3aGV0aGVyIHJl
-c2lkZW50IGluIHRoZSBWTSBtYXBwaW5nIHJhbmdlICovDQo+ID4gICAgIGlmICh1c2VyX2FkZHIg
-Pj0gdmFfbWFwLT5zdGFydCAgJiYNCj4gPiAgICAgICAgIHZhX21hcC0+bGFzdCAtIHVzZXJfYWRk
-ciArIDEgPj0gc2l6ZSkgew0KPiA+ICsgICAgICAgICAgIGFtZGdwdV91c2VycV9idWZmZXJfdmFf
-bGlzdF9hZGQocXVldWUsIHZhX21hcCwgdXNlcl9hZGRyKTsNCj4gPiAgICAgICAgICAgICBhbWRn
-cHVfYm9fdW5yZXNlcnZlKHZtLT5yb290LmJvKTsNCj4gPiAgICAgICAgICAgICByZXR1cm4gMDsN
-Cj4gPiAgICAgfQ0KPiA+DQo+ID4gKyAgIHIgPSAtRUlOVkFMOw0KPiA+ICBvdXRfZXJyOg0KPiA+
-ICAgICBhbWRncHVfYm9fdW5yZXNlcnZlKHZtLT5yb290LmJvKTsNCj4gPiAgICAgcmV0dXJuIHI7
-DQo+ID4gIH0NCj4gPg0KPiA+ICtzdGF0aWMgYm9vbCBhbWRncHVfdXNlcnFfYnVmZmVyX3ZhX21h
-cHBlZChzdHJ1Y3QgYW1kZ3B1X3ZtICp2bSwgdTY0DQo+ID4gK2FkZHIpIHsNCj4gPiArICAgc3Ry
-dWN0IGFtZGdwdV9ib192YV9tYXBwaW5nICptYXBwaW5nOw0KPiA+ICsgICBib29sIHI7DQo+ID4g
-Kw0KPiA+ICsgICBpZiAoYW1kZ3B1X2JvX3Jlc2VydmUodm0tPnJvb3QuYm8sIGZhbHNlKSkNCj4g
-PiArICAgICAgICAgICByZXR1cm4gZmFsc2U7DQo+ID4gKw0KPiA+ICsgICBtYXBwaW5nID0gYW1k
-Z3B1X3ZtX2JvX2xvb2t1cF9tYXBwaW5nKHZtLCBhZGRyKTsNCj4gPiArICAgaWYgKCFJU19FUlJf
-T1JfTlVMTChtYXBwaW5nKSAmJiBhdG9taWNfcmVhZCgmbWFwcGluZy0+Ym9fdmEtDQo+ID51c2Vy
-cV92YV9tYXBwZWQpKQ0KPiA+ICsgICAgICAgICAgIHIgPSB0cnVlOw0KPiA+ICsgICBlbHNlDQo+
-ID4gKyAgICAgICAgICAgciA9IGZhbHNlOw0KPiA+ICsgICBhbWRncHVfYm9fdW5yZXNlcnZlKHZt
-LT5yb290LmJvKTsNCj4gPiArDQo+ID4gKyAgIHJldHVybiByOw0KPiA+ICt9DQo+ID4gKw0KPiA+
-ICtzdGF0aWMgdm9pZCBhbWRncHVfdXNlcnFfYnVmZmVyX3ZhX2xpc3RfZGVsKHN0cnVjdCBhbWRn
-cHVfYm9fdmFfbWFwcGluZw0KPiAqbWFwcGluZywNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICBzdHJ1Y3QgYW1kZ3B1X3VzZXJxX3ZhX2N1cnNvciAqdmFfY3Vyc29y
-KQ0KPiB7DQo+ID4gKyAgIGF0b21pY19zZXQoJm1hcHBpbmctPmJvX3ZhLT51c2VycV92YV9tYXBw
-ZWQsIDApOw0KPiA+ICsgICBsaXN0X2RlbCgmdmFfY3Vyc29yLT5saXN0KTsNCj4gPiArICAga2Zy
-ZWUodmFfY3Vyc29yKTsNCj4gPiArfQ0KPiA+ICsNCj4gPiAgc3RhdGljIGludA0KPiA+ICBhbWRn
-cHVfdXNlcnFfcHJlZW1wdF9oZWxwZXIoc3RydWN0IGFtZGdwdV91c2VycV9tZ3IgKnVxX21nciwN
-Cj4gPiAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGFtZGdwdV91c2VybW9kZV9xdWV1ZSAq
-cXVldWUpIEBAIC0xODQsNg0KPiArMjMyLDcgQEANCj4gPiBhbWRncHVfdXNlcnFfY2xlYW51cChz
-dHJ1Y3QgYW1kZ3B1X3VzZXJxX21nciAqdXFfbWdyLA0KPiA+ICAgICB1cV9mdW5jcy0+bXFkX2Rl
-c3Ryb3kodXFfbWdyLCBxdWV1ZSk7DQo+ID4gICAgIGFtZGdwdV91c2VycV9mZW5jZV9kcml2ZXJf
-ZnJlZShxdWV1ZSk7DQo+ID4gICAgIGlkcl9yZW1vdmUoJnVxX21nci0+dXNlcnFfaWRyLCBxdWV1
-ZV9pZCk7DQo+ID4gKyAgIGxpc3RfZGVsKCZxdWV1ZS0+dXNlcnFfdmFfbGlzdCk7DQo+ID4gICAg
-IGtmcmVlKHF1ZXVlKTsNCj4gPiAgfQ0KPiA+DQo+ID4gQEAgLTUwNCwxMyArNTUzLDcgQEAgYW1k
-Z3B1X3VzZXJxX2NyZWF0ZShzdHJ1Y3QgZHJtX2ZpbGUgKmZpbHAsIHVuaW9uDQo+IGRybV9hbWRn
-cHVfdXNlcnEgKmFyZ3MpDQo+ID4gICAgICAgICAgICAgZ290byB1bmxvY2s7DQo+ID4gICAgIH0N
-Cj4gPg0KPiA+IC0gICAvKiBWYWxpZGF0ZSB0aGUgdXNlcnEgdmlydHVhbCBhZGRyZXNzLiovDQo+
-ID4gLSAgIGlmIChhbWRncHVfdXNlcnFfaW5wdXRfdmFfdmFsaWRhdGUoJmZwcml2LT52bSwgYXJn
-cy0+aW4ucXVldWVfdmEsIGFyZ3MtDQo+ID5pbi5xdWV1ZV9zaXplKSB8fA0KPiA+IC0gICAgICAg
-YW1kZ3B1X3VzZXJxX2lucHV0X3ZhX3ZhbGlkYXRlKCZmcHJpdi0+dm0sIGFyZ3MtPmluLnJwdHJf
-dmEsDQo+IEFNREdQVV9HUFVfUEFHRV9TSVpFKSB8fA0KPiA+IC0gICAgICAgYW1kZ3B1X3VzZXJx
-X2lucHV0X3ZhX3ZhbGlkYXRlKCZmcHJpdi0+dm0sIGFyZ3MtPmluLndwdHJfdmEsDQo+IEFNREdQ
-VV9HUFVfUEFHRV9TSVpFKSkgew0KPiA+IC0gICAgICAgICAgIGtmcmVlKHF1ZXVlKTsNCj4gPiAt
-ICAgICAgICAgICBnb3RvIHVubG9jazsNCj4gPiAtICAgfQ0KPiA+ICsgICBJTklUX0xJU1RfSEVB
-RCgmcXVldWUtPnVzZXJxX3ZhX2xpc3QpOw0KPiA+ICAgICBxdWV1ZS0+ZG9vcmJlbGxfaGFuZGxl
-ID0gYXJncy0+aW4uZG9vcmJlbGxfaGFuZGxlOw0KPiA+ICAgICBxdWV1ZS0+cXVldWVfdHlwZSA9
-IGFyZ3MtPmluLmlwX3R5cGU7DQo+ID4gICAgIHF1ZXVlLT52bSA9ICZmcHJpdi0+dm07DQo+ID4g
-QEAgLTUyMSw2ICs1NjQsMTUgQEAgYW1kZ3B1X3VzZXJxX2NyZWF0ZShzdHJ1Y3QgZHJtX2ZpbGUg
-KmZpbHAsIHVuaW9uDQo+IGRybV9hbWRncHVfdXNlcnEgKmFyZ3MpDQo+ID4gICAgIGRiX2luZm8u
-ZGJfb2JqID0gJnF1ZXVlLT5kYl9vYmo7DQo+ID4gICAgIGRiX2luZm8uZG9vcmJlbGxfb2Zmc2V0
-ID0gYXJncy0+aW4uZG9vcmJlbGxfb2Zmc2V0Ow0KPiA+DQo+ID4gKyAgIC8qIFZhbGlkYXRlIHRo
-ZSB1c2VycSB2aXJ0dWFsIGFkZHJlc3MuKi8NCj4gPiArICAgaWYgKGFtZGdwdV91c2VycV9pbnB1
-dF92YV92YWxpZGF0ZShxdWV1ZSwgYXJncy0+aW4ucXVldWVfdmEsIGFyZ3MtDQo+ID5pbi5xdWV1
-ZV9zaXplKSB8fA0KPiA+ICsgICAgICAgYW1kZ3B1X3VzZXJxX2lucHV0X3ZhX3ZhbGlkYXRlKHF1
-ZXVlLCBhcmdzLT5pbi5ycHRyX3ZhLA0KPiBBTURHUFVfR1BVX1BBR0VfU0laRSkgfHwNCj4gPiAr
-ICAgICAgIGFtZGdwdV91c2VycV9pbnB1dF92YV92YWxpZGF0ZShxdWV1ZSwgYXJncy0+aW4ud3B0
-cl92YSwNCj4gQU1ER1BVX0dQVV9QQUdFX1NJWkUpKSB7DQo+ID4gKyAgICAgICAgICAgciA9IC1F
-SU5WQUw7DQo+ID4gKyAgICAgICAgICAga2ZyZWUocXVldWUpOw0KPiA+ICsgICAgICAgICAgIGdv
-dG8gdW5sb2NrOw0KPiA+ICsgICB9DQo+ID4gKw0KPiA+ICAgICAvKiBDb252ZXJ0IHJlbGF0aXZl
-IGRvb3JiZWxsIG9mZnNldCBpbnRvIGFic29sdXRlIGRvb3JiZWxsIGluZGV4ICovDQo+ID4gICAg
-IGluZGV4ID0gYW1kZ3B1X3VzZXJxX2dldF9kb29yYmVsbF9pbmRleCh1cV9tZ3IsICZkYl9pbmZv
-LCBmaWxwKTsNCj4gPiAgICAgaWYgKGluZGV4ID09ICh1aW50NjRfdCktRUlOVkFMKSB7DQo+ID4g
-QEAgLTU0Niw3ICs1OTgsNiBAQCBhbWRncHVfdXNlcnFfY3JlYXRlKHN0cnVjdCBkcm1fZmlsZSAq
-ZmlscCwgdW5pb24NCj4gZHJtX2FtZGdwdV91c2VycSAqYXJncykNCj4gPiAgICAgICAgICAgICBn
-b3RvIHVubG9jazsNCj4gPiAgICAgfQ0KPiA+DQo+ID4gLQ0KPiA+ICAgICBxaWQgPSBpZHJfYWxs
-b2MoJnVxX21nci0+dXNlcnFfaWRyLCBxdWV1ZSwgMSwNCj4gQU1ER1BVX01BWF9VU0VSUV9DT1VO
-VCwgR0ZQX0tFUk5FTCk7DQo+ID4gICAgIGlmIChxaWQgPCAwKSB7DQo+ID4gICAgICAgICAgICAg
-ZHJtX2ZpbGVfZXJyKHVxX21nci0+ZmlsZSwgIkZhaWxlZCB0byBhbGxvY2F0ZSBhIHF1ZXVlIGlk
-XG4iKTsgZGlmZg0KPiA+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
-X3VzZXJxLmgNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91c2VycS5o
-DQo+ID4gaW5kZXggZGVkMzNmZTc2ZTFjLi5mMTk0MTZmZWI3ZWYgMTAwNjQ0DQo+ID4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3VzZXJxLmgNCj4gPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdXNlcnEuaA0KPiA+IEBAIC00OCw2ICs0OCwx
-MSBAQCBzdHJ1Y3QgYW1kZ3B1X3VzZXJxX29iaiB7DQo+ID4gICAgIHN0cnVjdCBhbWRncHVfYm8g
-Km9iajsNCj4gPiAgfTsNCj4gPg0KPiA+ICtzdHJ1Y3QgYW1kZ3B1X3VzZXJxX3ZhX2N1cnNvciB7
-DQo+ID4gKyAgIHVpbnQ2NF90ICAgICAgICAgICAgICAgIGdwdV9hZGRyOw0KPiA+ICsgICBzdHJ1
-Y3QgbGlzdF9oZWFkICAgICAgICBsaXN0Ow0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAgc3RydWN0IGFt
-ZGdwdV91c2VybW9kZV9xdWV1ZSB7DQo+ID4gICAgIGludCAgICAgICAgICAgICAgICAgICAgIHF1
-ZXVlX3R5cGU7DQo+ID4gICAgIGVudW0gYW1kZ3B1X3VzZXJxX3N0YXRlIHN0YXRlOw0KPiA+IEBA
-IC02Nyw2ICs3Miw4IEBAIHN0cnVjdCBhbWRncHVfdXNlcm1vZGVfcXVldWUgew0KPiA+ICAgICB1
-MzIgICAgICAgICAgICAgICAgICAgICB4Y3BfaWQ7DQo+ID4gICAgIGludCAgICAgICAgICAgICAg
-ICAgICAgIHByaW9yaXR5Ow0KPiA+ICAgICBzdHJ1Y3QgZGVudHJ5ICAgICAgICAgICAqZGVidWdm
-c19xdWV1ZTsNCj4gPiArDQo+ID4gKyAgIHN0cnVjdCBsaXN0X2hlYWQgICAgICAgIHVzZXJxX3Zh
-X2xpc3Q7DQo+ID4gIH07DQo+ID4NCj4gPiAgc3RydWN0IGFtZGdwdV91c2VycV9mdW5jcyB7DQo+
-ID4gQEAgLTEzNyw3ICsxNDQsNiBAQCBpbnQNCj4gYW1kZ3B1X3VzZXJxX3N0b3Bfc2NoZWRfZm9y
-X2VuZm9yY2VfaXNvbGF0aW9uKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LA0KPiA+ICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1MzIgaWR4KTsNCj4gPiAg
-aW50IGFtZGdwdV91c2VycV9zdGFydF9zY2hlZF9mb3JfZW5mb3JjZV9pc29sYXRpb24oc3RydWN0
-IGFtZGdwdV9kZXZpY2UNCj4gKmFkZXYsDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICB1MzIgaWR4KTsNCj4gPiAtDQo+ID4gLWludCBhbWRncHVfdXNl
-cnFfaW5wdXRfdmFfdmFsaWRhdGUoc3RydWN0IGFtZGdwdV92bSAqdm0sIHU2NCBhZGRyLA0KPiA+
-IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1NjQgZXhwZWN0ZWRfc2l6ZSk7DQo+ID4g
-K2ludCBhbWRncHVfdXNlcnFfaW5wdXRfdmFfdmFsaWRhdGUoc3RydWN0IGFtZGdwdV91c2VybW9k
-ZV9xdWV1ZSAqcXVldWUsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHU2NCBh
-ZGRyLCB1NjQgZXhwZWN0ZWRfc2l6ZSk7DQo+ID4gICNlbmRpZg0KPiA+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9tZXNfdXNlcnF1ZXVlLmMNCj4gPiBiL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L21lc191c2VycXVldWUuYw0KPiA+IGluZGV4IDJkYjliMmM2MzY5
-My4uNjczZGZiYmQ5NWU0IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L21lc191c2VycXVldWUuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L21lc191c2VycXVldWUuYw0KPiA+IEBAIC0yOTgsOCArMjk4LDggQEAgc3RhdGljIGludCBtZXNf
-dXNlcnFfbXFkX2NyZWF0ZShzdHJ1Y3QNCj4gYW1kZ3B1X3VzZXJxX21nciAqdXFfbWdyLA0KPiA+
-ICAgICAgICAgICAgICAgICAgICAgZ290byBmcmVlX21xZDsNCj4gPiAgICAgICAgICAgICB9DQo+
-ID4NCj4gPiAtICAgICAgICAgICBpZiAoYW1kZ3B1X3VzZXJxX2lucHV0X3ZhX3ZhbGlkYXRlKHF1
-ZXVlLT52bSwgY29tcHV0ZV9tcWQtDQo+ID5lb3BfdmEsDQo+ID4gLSAgICAgICAgICAgICAgIG1h
-eF90KHUzMiwgUEFHRV9TSVpFLCBBTURHUFVfR1BVX1BBR0VfU0laRSkpKQ0KPiA+ICsgICAgICAg
-ICAgIGlmIChhbWRncHVfdXNlcnFfaW5wdXRfdmFfdmFsaWRhdGUocXVldWUsIGNvbXB1dGVfbXFk
-LT5lb3BfdmEsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWF4X3Qo
-dTMyLCBQQUdFX1NJWkUsDQo+IEFNREdQVV9HUFVfUEFHRV9TSVpFKSkpDQo+ID4gICAgICAgICAg
-ICAgICAgICAgICBnb3RvIGZyZWVfbXFkOw0KPiA+DQo+ID4gICAgICAgICAgICAgdXNlcnFfcHJv
-cHMtPmVvcF9ncHVfYWRkciA9IGNvbXB1dGVfbXFkLT5lb3BfdmE7IEBAIC0zMzAsOA0KPiArMzMw
-LDgNCj4gPiBAQCBzdGF0aWMgaW50IG1lc191c2VycV9tcWRfY3JlYXRlKHN0cnVjdCBhbWRncHVf
-dXNlcnFfbWdyICp1cV9tZ3IsDQo+ID4gICAgICAgICAgICAgdXNlcnFfcHJvcHMtPnRtel9xdWV1
-ZSA9DQo+ID4gICAgICAgICAgICAgICAgICAgICBtcWRfdXNlci0+ZmxhZ3MgJg0KPiBBTURHUFVf
-VVNFUlFfQ1JFQVRFX0ZMQUdTX1FVRVVFX1NFQ1VSRTsNCj4gPg0KPiA+IC0gICAgICAgICAgIGlm
-IChhbWRncHVfdXNlcnFfaW5wdXRfdmFfdmFsaWRhdGUocXVldWUtPnZtLCBtcWRfZ2Z4X3YxMS0N
-Cj4gPnNoYWRvd192YSwNCj4gPiAtICAgICAgICAgICAgICAgc2hhZG93X2luZm8uc2hhZG93X3Np
-emUpKQ0KPiA+ICsgICAgICAgICAgIGlmIChhbWRncHVfdXNlcnFfaW5wdXRfdmFfdmFsaWRhdGUo
-cXVldWUsIG1xZF9nZnhfdjExLQ0KPiA+c2hhZG93X3ZhLA0KPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIHNoYWRvd19pbmZvLnNoYWRvd19zaXplKSkNCj4gPiAgICAgICAg
-ICAgICAgICAgICAgIGdvdG8gZnJlZV9tcWQ7DQo+ID4NCj4gPiAgICAgICAgICAgICBrZnJlZSht
-cWRfZ2Z4X3YxMSk7DQo+ID4gQEAgLTM1MCw5ICszNTAsOCBAQCBzdGF0aWMgaW50IG1lc191c2Vy
-cV9tcWRfY3JlYXRlKHN0cnVjdA0KPiBhbWRncHVfdXNlcnFfbWdyICp1cV9tZ3IsDQo+ID4gICAg
-ICAgICAgICAgICAgICAgICByID0gLUVOT01FTTsNCj4gPiAgICAgICAgICAgICAgICAgICAgIGdv
-dG8gZnJlZV9tcWQ7DQo+ID4gICAgICAgICAgICAgfQ0KPiA+IC0NCj4gPiAtICAgICAgICAgICBp
-ZiAoYW1kZ3B1X3VzZXJxX2lucHV0X3ZhX3ZhbGlkYXRlKHF1ZXVlLT52bSwgbXFkX3NkbWFfdjEx
-LQ0KPiA+Y3NhX3ZhLA0KPiA+IC0gICAgICAgICAgICAgICBzaGFkb3dfaW5mby5jc2Ffc2l6ZSkp
-DQo+ID4gKyAgICAgICAgICAgaWYgKGFtZGdwdV91c2VycV9pbnB1dF92YV92YWxpZGF0ZShxdWV1
-ZSwgbXFkX3NkbWFfdjExLQ0KPiA+Y3NhX3ZhLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHNoYWRvd19pbmZvLmNzYV9zaXplKSkNCj4gPiAgICAgICAgICAgICAgICAg
-ICAgIGdvdG8gZnJlZV9tcWQ7DQo+ID4NCj4gPiAgICAgICAgICAgICB1c2VycV9wcm9wcy0+Y3Nh
-X2FkZHIgPSBtcWRfc2RtYV92MTEtPmNzYV92YTsNCg0K
+
+This is a note to let you know that I've just added the patch titled
+
+    minmax: improve macro expansion and type checking
+
+to the 6.6-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+
+The filename of the patch is:
+     minmax-improve-macro-expansion-and-type-checking.patch
+and it can be found in the queue-6.6 subdirectory.
+
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
+
+
+From prvs=353d6d59a=farbere@amazon.com Mon Sep 22 12:36:39 2025
+From: Eliav Farber <farbere@amazon.com>
+Date: Mon, 22 Sep 2025 10:32:33 +0000
+Subject: minmax: improve macro expansion and type checking
+To: <richard@nod.at>, <anton.ivanov@cambridgegreys.com>, <johannes@sipsolutions.net>, <dave.hansen@linux.intel.com>, <luto@kernel.org>, <peterz@infradead.org>, <tglx@linutronix.de>, <mingo@redhat.com>, <bp@alien8.de>, <x86@kernel.org>, <hpa@zytor.com>, <tony.luck@intel.com>, <qiuxu.zhuo@intel.com>, <james.morse@arm.com>, <mchehab@kernel.org>, <rric@kernel.org>, <harry.wentland@amd.com>, <sunpeng.li@amd.com>, <Rodrigo.Siqueira@amd.com>, <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>, <evan.quan@amd.com>, <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>, <tzimmermann@suse.de>, <jdelvare@suse.com>, <linux@roeck-us.net>, <linus.walleij@linaro.org>, <dmitry.torokhov@gmail.com>, <wens@csie.org>, <jernej.skrabec@gmail.com>, <samuel@sholland.org>, <agk@redhat.com>, <snitzer@kernel.org>, <dm-devel@lists.linux.dev>, <mailhol.vincent@wanadoo.fr>, <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>, <edu
+ mazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <alexandre.torgue@foss.st.com>, <joabreu@synopsys.com>, <mcoquelin.stm32@gmail.com>, <krzysztof.kozlowski@linaro.org>, <malattia@linux.it>, <hdegoede@redhat.com>, <ilpo.jarvinen@linux.intel.com>, <markgross@kernel.org>, <artur.paszkiewicz@intel.com>, <jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <sakari.ailus@linux.intel.com>, <gregkh@linuxfoundation.org>, <clm@fb.com>, <josef@toxicpanda.com>, <dsterba@suse.com>, <luc.vanoostenryck@gmail.com>, <rostedt@goodmis.org>, <mhiramat@kernel.org>, <pmladek@suse.com>, <andriy.shevchenko@linux.intel.com>, <linux@rasmusvillemoes.dk>, <senozhatsky@chromium.org>, <minchan@kernel.org>, <akpm@linux-foundation.org>, <dsahern@kernel.org>, <shuah@kernel.org>, <keescook@chromium.org>, <wad@chromium.org>, <farbere@amazon.com>, <David.Laight@ACULAB.COM>, <arnd@kernel.org>, <linux-um@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>, <amd-gfx@lists.freedeskto
+ p.org>, <dri-devel@lists.freedesktop.org>, <linux-hwmon@vger.kernel.org>, <linux-input@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>, <linux-media@vger.kernel.org>, <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>, <platform-driver-x86@vger.kernel.org>, <linux-scsi@vger.kernel.org>, <linux-staging@lists.linux.dev>, <linux-btrfs@vger.kernel.org>, <linux-sparse@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>, <linux-mm@kvack.org>, <linux-kselftest@vger.kernel.org>, <bpf@vger.kernel.org>, <stable@vger.kernel.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, David Laight <David.Laight@aculab.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Message-ID: <20250922103241.16213-8-farbere@amazon.com>
+
+From: Linus Torvalds <torvalds@linux-foundation.org>
+
+[ Upstream commit 22f5468731491e53356ba7c028f0fdea20b18e2c ]
+
+This clarifies the rules for min()/max()/clamp() type checking and makes
+them a much more efficient macro expansion.
+
+In particular, we now look at the type and range of the inputs to see
+whether they work together, generating a mask of acceptable comparisons,
+and then just verifying that the inputs have a shared case:
+
+ - an expression with a signed type can be used for
+    (1) signed comparisons
+    (2) unsigned comparisons if it is statically known to have a
+        non-negative value
+
+ - an expression with an unsigned type can be used for
+    (3) unsigned comparison
+    (4) signed comparisons if the type is smaller than 'int' and thus
+        the C integer promotion rules will make it signed anyway
+
+Here rule (1) and (3) are obvious, and rule (2) is important in order to
+allow obvious trivial constants to be used together with unsigned
+values.
+
+Rule (4) is not necessarily a good idea, but matches what we used to do,
+and we have extant cases of this situation in the kernel.  Notably with
+bcachefs having an expression like
+
+	min(bch2_bucket_sectors_dirty(a), ca->mi.bucket_size)
+
+where bch2_bucket_sectors_dirty() returns an 's64', and
+'ca->mi.bucket_size' is of type 'u16'.
+
+Technically that bcachefs comparison is clearly sensible on a C type
+level, because the 'u16' will go through the normal C integer promotion,
+and become 'int', and then we're comparing two signed values and
+everything looks sane.
+
+However, it's not entirely clear that a 'min(s64,u16)' operation makes a
+lot of conceptual sense, and it's possible that we will remove rule (4).
+After all, the _reason_ we have these complicated type checks is exactly
+that the C type promotion rules are not very intuitive.
+
+But at least for now the rule is in place for backwards compatibility.
+
+Also note that rule (2) existed before, but is hugely relaxed by this
+commit.  It used to be true only for the simplest compile-time
+non-negative integer constants.  The new macro model will allow cases
+where the compiler can trivially see that an expression is non-negative
+even if it isn't necessarily a constant.
+
+For example, the amdgpu driver does
+
+	min_t(size_t, sizeof(fru_info->serial), pia[addr] & 0x3F));
+
+because our old 'min()' macro would see that 'pia[addr] & 0x3F' is of
+type 'int' and clearly not a C constant expression, so doing a 'min()'
+with a 'size_t' is a signedness violation.
+
+Our new 'min()' macro still sees that 'pia[addr] & 0x3F' is of type
+'int', but is smart enough to also see that it is clearly non-negative,
+and thus would allow that case without any complaints.
+
+Cc: Arnd Bergmann <arnd@kernel.org>
+Cc: David Laight <David.Laight@aculab.com>
+Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+Signed-off-by: Eliav Farber <farbere@amazon.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ include/linux/compiler.h |    9 +++++
+ include/linux/minmax.h   |   78 ++++++++++++++++++++++++++++++++++++-----------
+ 2 files changed, 70 insertions(+), 17 deletions(-)
+
+--- a/include/linux/compiler.h
++++ b/include/linux/compiler.h
+@@ -245,6 +245,15 @@ static inline void *offset_to_ptr(const
+ #define is_unsigned_type(type) (!is_signed_type(type))
+ 
+ /*
++ * Useful shorthand for "is this condition known at compile-time?"
++ *
++ * Note that the condition may involve non-constant values,
++ * but the compiler may know enough about the details of the
++ * values to determine that the condition is statically true.
++ */
++#define statically_true(x) (__builtin_constant_p(x) && (x))
++
++/*
+  * This is needed in functions which generate the stack canary, see
+  * arch/x86/kernel/smpboot.c::start_secondary() for an example.
+  */
+--- a/include/linux/minmax.h
++++ b/include/linux/minmax.h
+@@ -26,19 +26,63 @@
+ #define __typecheck(x, y) \
+ 	(!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
+ 
+-/* is_signed_type() isn't a constexpr for pointer types */
+-#define __is_signed(x) 								\
+-	__builtin_choose_expr(__is_constexpr(is_signed_type(typeof(x))),	\
+-		is_signed_type(typeof(x)), 0)
+-
+-/* True for a non-negative signed int constant */
+-#define __is_noneg_int(x)	\
+-	(__builtin_choose_expr(__is_constexpr(x) && __is_signed(x), x, -1) >= 0)
+-
+-#define __types_ok(x, y, ux, uy) 				\
+-	(__is_signed(ux) == __is_signed(uy) ||			\
+-	 __is_signed((ux) + 0) == __is_signed((uy) + 0) ||	\
+-	 __is_noneg_int(x) || __is_noneg_int(y))
++/*
++ * __sign_use for integer expressions:
++ *   bit #0 set if ok for unsigned comparisons
++ *   bit #1 set if ok for signed comparisons
++ *
++ * In particular, statically non-negative signed integer
++ * expressions are ok for both.
++ *
++ * NOTE! Unsigned types smaller than 'int' are implicitly
++ * converted to 'int' in expressions, and are accepted for
++ * signed conversions for now. This is debatable.
++ *
++ * Note that 'x' is the original expression, and 'ux' is
++ * the unique variable that contains the value.
++ *
++ * We use 'ux' for pure type checking, and 'x' for when
++ * we need to look at the value (but without evaluating
++ * it for side effects! Careful to only ever evaluate it
++ * with sizeof() or __builtin_constant_p() etc).
++ *
++ * Pointers end up being checked by the normal C type
++ * rules at the actual comparison, and these expressions
++ * only need to be careful to not cause warnings for
++ * pointer use.
++ */
++#define __signed_type_use(x,ux) (2+__is_nonneg(x,ux))
++#define __unsigned_type_use(x,ux) (1+2*(sizeof(ux)<4))
++#define __sign_use(x,ux) (is_signed_type(typeof(ux))? \
++	__signed_type_use(x,ux):__unsigned_type_use(x,ux))
++
++/*
++ * To avoid warnings about casting pointers to integers
++ * of different sizes, we need that special sign type.
++ *
++ * On 64-bit we can just always use 'long', since any
++ * integer or pointer type can just be cast to that.
++ *
++ * This does not work for 128-bit signed integers since
++ * the cast would truncate them, but we do not use s128
++ * types in the kernel (we do use 'u128', but they will
++ * be handled by the !is_signed_type() case).
++ *
++ * NOTE! The cast is there only to avoid any warnings
++ * from when values that aren't signed integer types.
++ */
++#ifdef CONFIG_64BIT
++  #define __signed_type(ux) long
++#else
++  #define __signed_type(ux) typeof(__builtin_choose_expr(sizeof(ux)>4,1LL,1L))
++#endif
++#define __is_nonneg(x,ux) statically_true((__signed_type(ux))(x)>=0)
++
++#define __types_ok(x,y,ux,uy) \
++	(__sign_use(x,ux) & __sign_use(y,uy))
++
++#define __types_ok3(x,y,z,ux,uy,uz) \
++	(__sign_use(x,ux) & __sign_use(y,uy) & __sign_use(z,uz))
+ 
+ #define __cmp_op_min <
+ #define __cmp_op_max >
+@@ -53,8 +97,8 @@
+ 
+ #define __careful_cmp_once(op, x, y, ux, uy) ({		\
+ 	__auto_type ux = (x); __auto_type uy = (y);	\
+-	static_assert(__types_ok(x, y, ux, uy),		\
+-		#op "(" #x ", " #y ") signedness error, fix types or consider u" #op "() before " #op "_t()"); \
++	BUILD_BUG_ON_MSG(!__types_ok(x,y,ux,uy),	\
++		#op"("#x", "#y") signedness error");	\
+ 	__cmp(op, ux, uy); })
+ 
+ #define __careful_cmp(op, x, y) \
+@@ -70,8 +114,8 @@
+ 	static_assert(__builtin_choose_expr(__is_constexpr((lo) > (hi)), 	\
+ 			(lo) <= (hi), true),					\
+ 		"clamp() low limit " #lo " greater than high limit " #hi);	\
+-	static_assert(__types_ok(uval, lo, uval, ulo), "clamp() 'lo' signedness error");	\
+-	static_assert(__types_ok(uval, hi, uval, uhi), "clamp() 'hi' signedness error");	\
++	BUILD_BUG_ON_MSG(!__types_ok3(val,lo,hi,uval,ulo,uhi),			\
++		"clamp("#val", "#lo", "#hi") signedness error");		\
+ 	__clamp(uval, ulo, uhi); })
+ 
+ #define __careful_clamp(val, lo, hi) \
+
+
+Patches currently in stable-queue which might be from farbere@amazon.com are
+
+queue-6.6/minmax-don-t-use-max-in-situations-that-want-a-c-constant-expression.patch
+queue-6.6/minmax-make-generic-min-and-max-macros-available-everywhere.patch
+queue-6.6/minmax-fix-up-min3-and-max3-too.patch
+queue-6.6/minmax-add-a-few-more-min_t-max_t-users.patch
+queue-6.6/minmax-improve-macro-expansion-and-type-checking.patch
+queue-6.6/minmax-avoid-overly-complicated-constant-expressions-in-vm-code.patch
+queue-6.6/minmax-simplify-min-max-clamp-implementation.patch
+queue-6.6/minmax-simplify-and-clarify-min_t-max_t-implementation.patch
