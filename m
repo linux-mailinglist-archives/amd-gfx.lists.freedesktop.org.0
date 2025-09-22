@@ -2,80 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2452CB9139C
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Sep 2025 14:52:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF91CB913E7
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Sep 2025 14:52:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 723EA10E478;
-	Mon, 22 Sep 2025 12:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8254A10E494;
+	Mon, 22 Sep 2025 12:52:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="vR10fA4F";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ozGcCAjU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E55010E465;
- Mon, 22 Sep 2025 12:27:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A90A10E0DC;
+ Mon, 22 Sep 2025 12:40:56 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 24F4A419B7;
- Mon, 22 Sep 2025 12:27:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D4CDC113D0;
- Mon, 22 Sep 2025 12:27:31 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6964B44352;
+ Mon, 22 Sep 2025 12:40:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 133B5C4CEF0;
+ Mon, 22 Sep 2025 12:40:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1758544052;
- bh=rRfLqX/zR5w+ifwG90F2/vKyrmETA1lsBOrPDyyqAEM=;
- h=Subject:To:Cc:From:Date:In-Reply-To:From;
- b=vR10fA4FmZ4v7KaHCZIyLcLXELsAbPUAD5lYraSzHLR8SUfcT7fvuaVAfns1d40qo
- ntIYtwcGsPGn6qaY9unY9gkWp6CxSXcCwRRsXp2js5R/wunwsZ0apFhkBqd5cHpQeH
- 1Is19V8BQwQKhQvN6kPToNslukgQ2UAJ+ojqTKAY=
-Subject: Patch "minmax: simplify min()/max()/clamp() implementation" has been
- added to the 6.6-stable tree
-To: David.Laight@ACULAB.COM, David.Laight@aculab.com,
-	Rodrigo.Siqueira@amd.com, Xinhui.Pan@amd.com, agk@redhat.com,
-	airlied@gmail.com, akpm@linux-foundation.org,
-	alexander.deucher@amd.com, alexandre.torgue@foss.st.com,
-	amd-gfx@lists.freedesktop.org, andriy.shevchenko@linux.intel.com,
-	anton.ivanov@cambridgegreys.com, arnd@kernel.org,
-	artur.paszkiewicz@intel.com, bp@alien8.de, christian.koenig@amd.com,
-	clm@fb.com, daniel@ffwll.ch, dave.hansen@linux.intel.com,
-	davem@davemloft.net, dm-devel@lists.linux.dev,
-	dmitry.torokhov@gmail.com, dri-devel@lists.freedesktop.org,
-	dsahern@kernel.org, dsterba@suse.com, edumazet@google.com,
-	evan.quan@amd.com, farbere@amazon.com, gregkh@linuxfoundation.org,
-	harry.wentland@amd.com, hdegoede@redhat.com, hpa@zytor.com,
-	ilpo.jarvinen@linux.intel.com, james.morse@arm.com,
-	jdelvare@suse.com, jejb@linux.ibm.com, jernej.skrabec@gmail.com,
-	joabreu@synopsys.com, johannes@sipsolutions.net,
-	josef@toxicpanda.com, keescook@chromium.org,
-	krzysztof.kozlowski@linaro.org, kuba@kernel.org,
-	linus.walleij@linaro.org, l@freedesktop.org,
-	inux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
-	linux-staging@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev, linux-um@lists.infradead.org,
-	linux@rasmusvillemoes.dk, linux@roeck-us.net,
-	lorenzo.stoakes@oracle.com, luc.vanoostenryck@gmail.com,
-	luto@kernel.org, maarten.lankhorst@linux.intel.com,
-	mailhol.vincent@wanadoo.fr, malattia@linux.it, markgross@kernel.org,
-	martin.petersen@oracle.com, mchehab@kernel.org,
-	mcoquelin.stm32@gmail.com, mhiramat@kernel.org, minchan@kernel.org,
-	mingo@redhat.com, mkl@pengutronix.de, mripard@kernel.org,
-	pabeni@redhat.com, peterz@infradead.org, pmladek@suse.com,
-	qiuxu.zhuo@intel.com, richard@nod.at, rostedt@goodmis.org,
-	rric@kernel.org, sakari.ailus@linux.intel.com, samuel@sholland.org,
-	senozhatsky@chromium.org, shuah@kernel.org, snitzer@kernel.org,
-	sunpeng.li@amd.com, tglx@linutronix.de, tony.luck@intel.com,
-	torvalds@linux-foundation.org, tzimmermann@suse.de, wad@chromium.org,
-	wens@csie.org, wg@grandegger.com, x86@kernel.org
-Cc: <stable-commits@vger.kernel.org>
-From: <gregkh@linuxfoundation.org>
-Date: Mon, 22 Sep 2025 14:27:00 +0200
-In-Reply-To: <20250922103241.16213-6-farbere@amazon.com>
-Message-ID: <2025092200-bullfrog-resolved-b3bd@gregkh>
+ s=korg; t=1758544855;
+ bh=9EnrkUTRC3WbuAFf4lnbSzwEyBeWACdeCsxOYAwx2mg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ozGcCAjUuLnf1RgOGckV6AH965oAp/K1TY2eSbmKl/C4fNB3qo4dlWtmlSINDjjOP
+ knEuUlp18RwYdjWTm6QWnSR+v+UHtYkNhp60v4aYebb3MOmMXSuvvJNHmE5LFQXLaU
+ 0/BlWu+1DnvN/JJh+naIMq1n1GDWeuu66LQM7q98=
+Date: Mon, 22 Sep 2025 14:40:48 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: David.Laight@aculab.com, Rodrigo.Siqueira@amd.com, Xinhui.Pan@amd.com,
+ agk@redhat.com, airlied@gmail.com, akpm@linux-foundation.org,
+ alexander.deucher@amd.com, alexandre.torgue@foss.st.com,
+ amd-gfx@lists.freedesktop.org, andriy.shevchenko@linux.intel.com,
+ anton.ivanov@cambridgegreys.com, arnd@kernel.org,
+ artur.paszkiewicz@intel.com, bp@alien8.de, christian.koenig@amd.com,
+ clm@fb.com, daniel@ffwll.ch, dave.hansen@linux.intel.com,
+ davem@davemloft.net, dm-devel@lists.linux.dev,
+ dmitry.torokhov@gmail.com, dri-devel@lists.freedesktop.org,
+ dsahern@kernel.org, dsterba@suse.com, edumazet@google.com,
+ evan.quan@amd.com, farbere@amazon.com, harry.wentland@amd.com,
+ hdegoede@redhat.com, hpa@zytor.com, ilpo.jarvinen@linux.intel.com,
+ james.morse@arm.com, jdelvare@suse.com, jejb@linux.ibm.com,
+ jernej.skrabec@gmail.com, joabreu@synopsys.com,
+ johannes@sipsolutions.net, josef@toxicpanda.com,
+ keescook@chromium.org, krzysztof.kozlowski@linaro.org,
+ kuba@kernel.org, linus.walleij@linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
+ linux-staging@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
+ linux-sunxi@lists.linux.dev, linux-um@lists.infradead.org,
+ linux@rasmusvillemoes.dk, linux@roeck-us.net,
+ lorenzo.stoakes@oracle.com, luc.vanoostenryck@gmail.com,
+ luto@kernel.org, maarten.lankhorst@linux.intel.com,
+ mailhol.vincent@wanadoo.fr, malattia@linux.it, markgross@kernel.org,
+ martin.petersen@oracle.com, mchehab@kernel.org,
+ mcoquelin.stm32@gmail.com, mhiramat@kernel.org, minchan@kernel.org,
+ mingo@redhat.com, mkl@pengutronix.de, mripard@kernel.org,
+ pabeni@redhat.com, peterz@infradead.org, pmladek@suse.com,
+ qiuxu.zhuo@intel.com, richard@nod.at, rostedt@goodmis.org,
+ rric@kernel.org, sakari.ailus@linux.intel.com, samuel@sholland.org,
+ senozhatsky@chromium.org, shuah@kernel.org, snitzer@kernel.org,
+ sunpeng.li@amd.com, tglx@linutronix.de, tony.luck@intel.com,
+ torvalds@linux-foundation.org, tzimmermann@suse.de,
+ wad@chromium.org, wens@csie.org, wg@grandegger.com, x86@kernel.org
+Cc: stable-commits@vger.kernel.org
+Subject: Re: Patch "minmax: make generic MIN() and MAX() macros available
+ everywhere" has been added to the 6.6-stable tree
+Message-ID: <2025092209-owl-whisking-03e3@gregkh>
+References: <20250922103241.16213-5-farbere@amazon.com>
+ <2025092200-reverb-stumble-8578@gregkh>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
-Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <2025092200-reverb-stumble-8578@gregkh>
 X-Mailman-Approved-At: Mon, 22 Sep 2025 12:52:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,173 +89,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Sep 22, 2025 at 02:27:00PM +0200, gregkh@linuxfoundation.org wrote:
+>=20
+> This is a note to let you know that I've just added the patch titled
+>=20
+>     minmax: make generic MIN() and MAX() macros available everywhere
+>=20
+> to the 6.6-stable tree which can be found at:
+>     http://www.kernel.org/git/?p=3Dlinux/kernel/git/stable/stable-queue.g=
+it;a=3Dsummary
+>=20
+> The filename of the patch is:
+>      minmax-make-generic-min-and-max-macros-available-everywhere.patch
+> and it can be found in the queue-6.6 subdirectory.
+>=20
+> If you, or anyone else, feels it should not be added to the stable tree,
+> please let <stable@vger.kernel.org> know about it.
+>=20
+>=20
+> >From prvs=3D353d6d59a=3Dfarbere@amazon.com Mon Sep 22 12:35:15 2025
+> From: Eliav Farber <farbere@amazon.com>
+> Date: Mon, 22 Sep 2025 10:32:30 +0000
+> Subject: minmax: make generic MIN() and MAX() macros available everywhere
+> To: <richard@nod.at>, <anton.ivanov@cambridgegreys.com>, <johannes@sipsol=
+utions.net>, <dave.hansen@linux.intel.com>, <luto@kernel.org>, <peterz@infr=
+adead.org>, <tglx@linutronix.de>, <mingo@redhat.com>, <bp@alien8.de>, <x86@=
+kernel.org>, <hpa@zytor.com>, <tony.luck@intel.com>, <qiuxu.zhuo@intel.com>=
+, <james.morse@arm.com>, <mchehab@kernel.org>, <rric@kernel.org>, <harry.we=
+ntland@amd.com>, <sunpeng.li@amd.com>, <Rodrigo.Siqueira@amd.com>, <alexand=
+er.deucher@amd.com>, <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <air=
+lied@gmail.com>, <daniel@ffwll.ch>, <evan.quan@amd.com>, <maarten.lankhorst=
+@linux.intel.com>, <mripard@kernel.org>, <tzimmermann@suse.de>, <jdelvare@s=
+use.com>, <linux@roeck-us.net>, <linus.walleij@linaro.org>, <dmitry.torokho=
+v@gmail.com>, <wens@csie.org>, <jernej.skrabec@gmail.com>, <samuel@sholland=
+=2Eorg>, <agk@redhat.com>, <snitzer@kernel.org>, <dm-devel@lists.linux.dev>=
+, <mailhol.vincent@wanadoo.fr>, <wg@grandegger.com>, <mkl@pengutronix.de>, =
+<davem@davemloft.net>, <edu
+>  mazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <alexandre.to=
+rgue@foss.st.com>, <joabreu@synopsys.com>, <mcoquelin.stm32@gmail.com>, <kr=
+zysztof.kozlowski@linaro.org>, <malattia@linux.it>, <hdegoede@redhat.com>, =
+<ilpo.jarvinen@linux.intel.com>, <markgross@kernel.org>, <artur.paszkiewicz=
+@intel.com>, <jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <sakari.ai=
+lus@linux.intel.com>, <gregkh@linuxfoundation.org>, <clm@fb.com>, <josef@to=
+xicpanda.com>, <dsterba@suse.com>, <luc.vanoostenryck@gmail.com>, <rostedt@=
+goodmis.org>, <mhiramat@kernel.org>, <pmladek@suse.com>, <andriy.shevchenko=
+@linux.intel.com>, <linux@rasmusvillemoes.dk>, <senozhatsky@chromium.org>, =
+<minchan@kernel.org>, <akpm@linux-foundation.org>, <dsahern@kernel.org>, <s=
+huah@kernel.org>, <keescook@chromium.org>, <wad@chromium.org>, <farbere@ama=
+zon.com>, <David.Laight@ACULAB.COM>, <arnd@kernel.org>, <linux-um@lists.inf=
+radead.org>, <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>, =
+<amd-gfx@lists.freedeskto
+>  p.org>, <dri-devel@lists.freedesktop.org>, <linux-hwmon@vger.kernel.org>=
+, <linux-input@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <l=
+inux-sunxi@lists.linux.dev>, <linux-media@vger.kernel.org>, <linux-can@vger=
+=2Ekernel.org>, <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormr=
+eply.com>, <platform-driver-x86@vger.kernel.org>, <linux-scsi@vger.kernel.o=
+rg>, <linux-staging@lists.linux.dev>, <linux-btrfs@vger.kernel.org>, <linux=
+-sparse@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>, <linux-mm@k=
+vack.org>, <linux-kselftest@vger.kernel.org>, <bpf@vger.kernel.org>, <stabl=
+e@vger.kernel.org>
+> Cc: Linus Torvalds <torvalds@linux-foundation.org>, David Laight <David.L=
+aight@aculab.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+> Message-ID: <20250922103241.16213-5-farbere@amazon.com>
+>=20
+> From: Linus Torvalds <torvalds@linux-foundation.org>
+>=20
+> [ Upstream commit 1a251f52cfdc417c84411a056bc142cbd77baef4 ]
+>=20
+> This just standardizes the use of MIN() and MAX() macros, with the very
+> traditional semantics.  The goal is to use these for C constant
+> expressions and for top-level / static initializers, and so be able to
+> simplify the min()/max() macros.
+>=20
+> These macro names were used by various kernel code - they are very
+> traditional, after all - and all such users have been fixed up, with a
+> few different approaches:
+>=20
+>  - trivial duplicated macro definitions have been removed
+>=20
+>    Note that 'trivial' here means that it's obviously kernel code that
+>    already included all the major kernel headers, and thus gets the new
+>    generic MIN/MAX macros automatically.
+>=20
+>  - non-trivial duplicated macro definitions are guarded with #ifndef
+>=20
+>    This is the "yes, they define their own versions, but no, the include
+>    situation is not entirely obvious, and maybe they don't get the
+>    generic version automatically" case.
+>=20
+>  - strange use case #1
+>=20
+>    A couple of drivers decided that the way they want to describe their
+>    versioning is with
+>=20
+> 	#define MAJ 1
+> 	#define MIN 2
+> 	#define DRV_VERSION __stringify(MAJ) "." __stringify(MIN)
+>=20
+>    which adds zero value and I just did my Alexander the Great
+>    impersonation, and rewrote that pointless Gordian knot as
+>=20
+> 	#define DRV_VERSION "1.2"
+>=20
+>    instead.
+>=20
+>  - strange use case #2
+>=20
+>    A couple of drivers thought that it's a good idea to have a random
+>    'MIN' or 'MAX' define for a value or index into a table, rather than
+>    the traditional macro that takes arguments.
+>=20
+>    These values were re-written as C enum's instead. The new
+>    function-line macros only expand when followed by an open
+>    parenthesis, and thus don't clash with enum use.
+>=20
+> Happily, there weren't really all that many of these cases, and a lot of
+> users already had the pattern of using '#ifndef' guarding (or in one
+> case just using '#undef MIN') before defining their own private version
+> that does the same thing. I left such cases alone.
+>=20
+> Cc: David Laight <David.Laight@aculab.com>
+> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+> Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+> Signed-off-by: Eliav Farber <farbere@amazon.com>
+> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> ---
+>  arch/um/drivers/mconsole_user.c                                       | =
+   2=20
+>  drivers/edac/skx_common.h                                             | =
+   1=20
+>  drivers/gpu/drm/amd/display/modules/hdcp/hdcp_ddc.c                   | =
+   2=20
+>  drivers/gpu/drm/amd/pm/powerplay/hwmgr/ppevvmath.h                    | =
+  14 ++++-
 
-This is a note to let you know that I've just added the patch titled
+Oops, nope, this patch breaks the amd driver's build :(
 
-    minmax: simplify min()/max()/clamp() implementation
+I'll drop this patch and stop here on this patch series.  Please fix
+this up and resend the remaining ones after it builds properly.
 
-to the 6.6-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+thanks,
 
-The filename of the patch is:
-     minmax-simplify-min-max-clamp-implementation.patch
-and it can be found in the queue-6.6 subdirectory.
-
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
-
-
-From stable+bounces-180928-greg=kroah.com@vger.kernel.org Mon Sep 22 12:37:49 2025
-From: Eliav Farber <farbere@amazon.com>
-Date: Mon, 22 Sep 2025 10:32:31 +0000
-Subject: minmax: simplify min()/max()/clamp() implementation
-To: <richard@nod.at>, <anton.ivanov@cambridgegreys.com>, <johannes@sipsolutions.net>, <dave.hansen@linux.intel.com>, <luto@kernel.org>, <peterz@infradead.org>, <tglx@linutronix.de>, <mingo@redhat.com>, <bp@alien8.de>, <x86@kernel.org>, <hpa@zytor.com>, <tony.luck@intel.com>, <qiuxu.zhuo@intel.com>, <james.morse@arm.com>, <mchehab@kernel.org>, <rric@kernel.org>, <harry.wentland@amd.com>, <sunpeng.li@amd.com>, <Rodrigo.Siqueira@amd.com>, <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>, <evan.quan@amd.com>, <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>, <tzimmermann@suse.de>, <jdelvare@suse.com>, <linux@roeck-us.net>, <linus.walleij@linaro.org>, <dmitry.torokhov@gmail.com>, <wens@csie.org>, <jernej.skrabec@gmail.com>, <samuel@sholland.org>, <agk@redhat.com>, <snitzer@kernel.org>, <dm-devel@lists.linux.dev>, <mailhol.vincent@wanadoo.fr>, <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>, <edu
- mazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <alexandre.torgue@foss.st.com>, <joabreu@synopsys.com>, <mcoquelin.stm32@gmail.com>, <krzysztof.kozlowski@linaro.org>, <malattia@linux.it>, <hdegoede@redhat.com>, <ilpo.jarvinen@linux.intel.com>, <markgross@kernel.org>, <artur.paszkiewicz@intel.com>, <jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <sakari.ailus@linux.intel.com>, <gregkh@linuxfoundation.org>, <clm@fb.com>, <josef@toxicpanda.com>, <dsterba@suse.com>, <luc.vanoostenryck@gmail.com>, <rostedt@goodmis.org>, <mhiramat@kernel.org>, <pmladek@suse.com>, <andriy.shevchenko@linux.intel.com>, <linux@rasmusvillemoes.dk>, <senozhatsky@chromium.org>, <minchan@kernel.org>, <akpm@linux-foundation.org>, <dsahern@kernel.org>, <shuah@kernel.org>, <keescook@chromium.org>, <wad@chromium.org>, <farbere@amazon.com>, <David.Laight@ACULAB.COM>, <arnd@kernel.org>, <linux-um@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>, <amd-gfx@lists.freedeskto
- p.org>, <dri-devel@lists.freedesktop.org>, <linux-hwmon@vger.kernel.org>, <linux-input@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>, <linux-media@vger.kernel.org>, <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>, <platform-driver-x86@vger.kernel.org>, <linux-scsi@vger.kernel.org>, <linux-staging@lists.linux.dev>, <linux-btrfs@vger.kernel.org>, <linux-sparse@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>, <linux-mm@kvack.org>, <linux-kselftest@vger.kernel.org>, <bpf@vger.kernel.org>, <stable@vger.kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, David Laight <David.Laight@aculab.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Message-ID: <20250922103241.16213-6-farbere@amazon.com>
-
-From: Linus Torvalds <torvalds@linux-foundation.org>
-
-[ Upstream commit dc1c8034e31b14a2e5e212104ec508aec44ce1b9 ]
-
-Now that we no longer have any C constant expression contexts (ie array
-size declarations or static initializers) that use min() or max(), we
-can simpify the implementation by not having to worry about the result
-staying as a C constant expression.
-
-So now we can unconditionally just use temporary variables of the right
-type, and get rid of the excessive expansion that used to come from the
-use of
-
-   __builtin_choose_expr(__is_constexpr(...), ..
-
-to pick the specialized code for constant expressions.
-
-Another expansion simplification is to pass the temporary variables (in
-addition to the original expression) to our __types_ok() macro.  That
-may superficially look like it complicates the macro, but when we only
-want the type of the expression, expanding the temporary variable names
-is much simpler and smaller than expanding the potentially complicated
-original expression.
-
-As a result, on my machine, doing a
-
-  $ time make drivers/staging/media/atomisp/pci/isp/kernels/ynr/ynr_1.0/ia_css_ynr.host.i
-
-goes from
-
-	real	0m16.621s
-	user	0m15.360s
-	sys	0m1.221s
-
-to
-
-	real	0m2.532s
-	user	0m2.091s
-	sys	0m0.452s
-
-because the token expansion goes down dramatically.
-
-In particular, the longest line expansion (which was line 71 of that
-'ia_css_ynr.host.c' file) shrinks from 23,338kB (yes, 23MB for one
-single line) to "just" 1,444kB (now "only" 1.4MB).
-
-And yes, that line is still the line from hell, because it's doing
-multiple levels of "min()/max()" expansion thanks to some of them being
-hidden inside the uDIGIT_FITTING() macro.
-
-Lorenzo has a nice cleanup patch that makes that driver use inline
-functions instead of macros for sDIGIT_FITTING() and uDIGIT_FITTING(),
-which will fix that line once and for all, but the 16-fold reduction in
-this case does show why we need to simplify these helpers.
-
-Cc: David Laight <David.Laight@aculab.com>
-Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
-Signed-off-by: Eliav Farber <farbere@amazon.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- include/linux/minmax.h |   43 ++++++++++++++++++++-----------------------
- 1 file changed, 20 insertions(+), 23 deletions(-)
-
---- a/include/linux/minmax.h
-+++ b/include/linux/minmax.h
-@@ -35,10 +35,10 @@
- #define __is_noneg_int(x)	\
- 	(__builtin_choose_expr(__is_constexpr(x) && __is_signed(x), x, -1) >= 0)
- 
--#define __types_ok(x, y) 					\
--	(__is_signed(x) == __is_signed(y) ||			\
--		__is_signed((x) + 0) == __is_signed((y) + 0) ||	\
--		__is_noneg_int(x) || __is_noneg_int(y))
-+#define __types_ok(x, y, ux, uy) 				\
-+	(__is_signed(ux) == __is_signed(uy) ||			\
-+	 __is_signed((ux) + 0) == __is_signed((uy) + 0) ||	\
-+	 __is_noneg_int(x) || __is_noneg_int(y))
- 
- #define __cmp_op_min <
- #define __cmp_op_max >
-@@ -51,34 +51,31 @@
- #define __cmp_once(op, type, x, y) \
- 	__cmp_once_unique(op, type, x, y, __UNIQUE_ID(x_), __UNIQUE_ID(y_))
- 
--#define __careful_cmp_once(op, x, y) ({			\
--	static_assert(__types_ok(x, y),			\
-+#define __careful_cmp_once(op, x, y, ux, uy) ({		\
-+	__auto_type ux = (x); __auto_type uy = (y);	\
-+	static_assert(__types_ok(x, y, ux, uy),		\
- 		#op "(" #x ", " #y ") signedness error, fix types or consider u" #op "() before " #op "_t()"); \
--	__cmp_once(op, __auto_type, x, y); })
-+	__cmp(op, ux, uy); })
- 
--#define __careful_cmp(op, x, y)					\
--	__builtin_choose_expr(__is_constexpr((x) - (y)),	\
--		__cmp(op, x, y), __careful_cmp_once(op, x, y))
-+#define __careful_cmp(op, x, y) \
-+	__careful_cmp_once(op, x, y, __UNIQUE_ID(x_), __UNIQUE_ID(y_))
- 
- #define __clamp(val, lo, hi)	\
- 	((val) >= (hi) ? (hi) : ((val) <= (lo) ? (lo) : (val)))
- 
--#define __clamp_once(val, lo, hi, unique_val, unique_lo, unique_hi) ({		\
--	typeof(val) unique_val = (val);						\
--	typeof(lo) unique_lo = (lo);						\
--	typeof(hi) unique_hi = (hi);						\
-+#define __clamp_once(val, lo, hi, uval, ulo, uhi) ({				\
-+	__auto_type uval = (val);						\
-+	__auto_type ulo = (lo);							\
-+	__auto_type uhi = (hi);							\
- 	static_assert(__builtin_choose_expr(__is_constexpr((lo) > (hi)), 	\
- 			(lo) <= (hi), true),					\
- 		"clamp() low limit " #lo " greater than high limit " #hi);	\
--	static_assert(__types_ok(val, lo), "clamp() 'lo' signedness error");	\
--	static_assert(__types_ok(val, hi), "clamp() 'hi' signedness error");	\
--	__clamp(unique_val, unique_lo, unique_hi); })
--
--#define __careful_clamp(val, lo, hi) ({					\
--	__builtin_choose_expr(__is_constexpr((val) - (lo) + (hi)),	\
--		__clamp(val, lo, hi),					\
--		__clamp_once(val, lo, hi, __UNIQUE_ID(__val),		\
--			     __UNIQUE_ID(__lo), __UNIQUE_ID(__hi))); })
-+	static_assert(__types_ok(uval, lo, uval, ulo), "clamp() 'lo' signedness error");	\
-+	static_assert(__types_ok(uval, hi, uval, uhi), "clamp() 'hi' signedness error");	\
-+	__clamp(uval, ulo, uhi); })
-+
-+#define __careful_clamp(val, lo, hi) \
-+	__clamp_once(val, lo, hi, __UNIQUE_ID(v_), __UNIQUE_ID(l_), __UNIQUE_ID(h_))
- 
- /**
-  * min - return minimum of two values of the same or compatible types
-
-
-Patches currently in stable-queue which might be from farbere@amazon.com are
-
-queue-6.6/minmax-don-t-use-max-in-situations-that-want-a-c-constant-expression.patch
-queue-6.6/minmax-make-generic-min-and-max-macros-available-everywhere.patch
-queue-6.6/minmax-fix-up-min3-and-max3-too.patch
-queue-6.6/minmax-add-a-few-more-min_t-max_t-users.patch
-queue-6.6/minmax-improve-macro-expansion-and-type-checking.patch
-queue-6.6/minmax-avoid-overly-complicated-constant-expressions-in-vm-code.patch
-queue-6.6/minmax-simplify-min-max-clamp-implementation.patch
-queue-6.6/minmax-simplify-and-clarify-min_t-max_t-implementation.patch
+greg k-h
