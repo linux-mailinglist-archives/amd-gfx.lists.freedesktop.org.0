@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18317B913DA
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Sep 2025 14:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B357B913C0
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Sep 2025 14:52:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E486210E493;
-	Mon, 22 Sep 2025 12:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37CBC10E48C;
+	Mon, 22 Sep 2025 12:52:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="agDI/ejC";
+	dkim=pass (2048-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="Jrw0bJAw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fra-out-014.esa.eu-central-1.outbound.mail-perimeter.amazon.com
- (fra-out-014.esa.eu-central-1.outbound.mail-perimeter.amazon.com
- [18.199.210.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4797810E414
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Sep 2025 10:39:09 +0000 (UTC)
+Received: from fra-out-002.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ (fra-out-002.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ [3.65.3.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1893E89FCE
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Sep 2025 10:39:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
- t=1758537549; x=1790073549;
+ t=1758537592; x=1790073592;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FhepguEQ0VZAS3etCeAAj5D/xXUqupnQ1wf0VPifqWY=;
- b=agDI/ejCKOqkscY8Hl56/cWKlNPQF5YXuhImUo09+oJyLmQbMgdZjtZ3
- pw0fy0rQMmi0dJe9ZWnecps7H707wuWMtquSTDFmy/XABZDQ1qfD8porl
- PWw9hdMZjqwoTxb1/ZFygw0gUq7s7lzgT/Bag5+nm6svJ05Xnczxi4HU1
- wdQ35GpxT1GmURrOsFlWOWjhJjAEJAx52gHRgb4oBa/KpRwD3KPY3iCCt
- nis53hGrFLQLToFhyoqiQY9RhoOf7GybmCJvygpd0vyvHlJu0yM7grjTD
- viowYV1Ov7/J4t84JjtxMagNtXLUzeyxPRcl1TycOxw4IjzwOuDwpVV41 Q==;
-X-CSE-ConnectionGUID: uGxwBSJvRBKtEuGCgIl8/Q==
-X-CSE-MsgGUID: epatIJGfRMexu6K+eTJT7A==
+ bh=U4cCFbpHvYq8yWCMIbT6T5sZXi6GGX+iNVIOVWCWFxY=;
+ b=Jrw0bJAw9w4K04k73O4Rl8oNF/Y9VIhb1sNPsYOxFsC413gdifdPzjxB
+ Jtm6OEvvK3tntogHWWC4rOzGmYrBJbNFoNz8KnDTzIKc7dsGKMNaFFadw
+ bX7JGN3eZgxfQqgTW6cJ+XOriWDVbdHx//JdfoP82ADHNF9c8EFiacY1O
+ CEhcAB9Z6/Gq8puLAamONk9TYDkHWNkYn+ZsjQhwfwCb9LcphHYJ42H6n
+ JxM/mBwtCL4O4N2nHhubzctZ/20snyEN2O8OGxwvuCwGrHnuYwgyCpOWl
+ 9DuURQshpjtiLal8sKAywAy1CW0PtFGPRuCyjfr2NafhWyC80J1PkTRN5 Q==;
+X-CSE-ConnectionGUID: owhNvlqEQxadzw1bRCWbUA==
+X-CSE-MsgGUID: c6ZUERYjR8C8fbak1gXtSA==
 X-IronPort-AV: E=Sophos;i="6.18,284,1751241600"; 
-   d="scan'208";a="2371225"
-Received: from ip-10-6-11-83.eu-central-1.compute.internal (HELO
- smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.11.83])
- by internal-fra-out-014.esa.eu-central-1.outbound.mail-perimeter.amazon.com
- with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2025 10:39:06 +0000
-Received: from EX19MTAEUB001.ant.amazon.com [54.240.197.226:5905]
- by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.1.3:2525]
+   d="scan'208";a="2482352"
+Received: from ip-10-6-3-216.eu-central-1.compute.internal (HELO
+ smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.3.216])
+ by internal-fra-out-002.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2025 10:39:42 +0000
+Received: from EX19MTAEUB002.ant.amazon.com [54.240.197.232:19495]
+ by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.39.25:2525]
  with esmtp (Farcaster)
- id e6e5d0c2-d81e-4905-acef-b1882ccb4dfb; Mon, 22 Sep 2025 10:39:05 +0000 (UTC)
-X-Farcaster-Flow-ID: e6e5d0c2-d81e-4905-acef-b1882ccb4dfb
+ id e3d2d577-e80e-4205-9e14-4868262fcaf6; Mon, 22 Sep 2025 10:39:42 +0000 (UTC)
+X-Farcaster-Flow-ID: e3d2d577-e80e-4205-9e14-4868262fcaf6
 Received: from EX19D018EUA004.ant.amazon.com (10.252.50.85) by
- EX19MTAEUB001.ant.amazon.com (10.252.51.26) with Microsoft SMTP Server
+ EX19MTAEUB002.ant.amazon.com (10.252.51.79) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20;
- Mon, 22 Sep 2025 10:38:51 +0000
+ Mon, 22 Sep 2025 10:39:41 +0000
 Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
  (172.19.116.181) by EX19D018EUA004.ant.amazon.com (10.252.50.85) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20; Mon, 22 Sep 2025
- 10:38:24 +0000
+ 10:39:14 +0000
 From: Eliav Farber <farbere@amazon.com>
 To: <richard@nod.at>, <anton.ivanov@cambridgegreys.com>,
  <johannes@sipsolutions.net>, <dave.hansen@linux.intel.com>,
@@ -98,10 +98,10 @@ CC: Christoph Hellwig <hch@infradead.org>, Dan Carpenter
  Axboe" <axboe@kernel.dk>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
  Mateusz Guzik <mjguzik@gmail.com>, Matthew Wilcox <willy@infradead.org>,
  Pedro Falcato <pedro.falcato@gmail.com>
-Subject: [PATCH 11/15 6.6.y] minmax.h: reduce the #define expansion of min(),
- max() and clamp()
-Date: Mon, 22 Sep 2025 10:32:37 +0000
-Message-ID: <20250922103241.16213-12-farbere@amazon.com>
+Subject: [PATCH 12/15 6.6.y] minmax.h: use BUILD_BUG_ON_MSG() for the lo < hi
+ test in clamp()
+Date: Mon, 22 Sep 2025 10:32:38 +0000
+Message-ID: <20250922103241.16213-13-farbere@amazon.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20250922103241.16213-1-farbere@amazon.com>
 References: <20250922103241.16213-1-farbere@amazon.com>
@@ -109,7 +109,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [172.19.116.181]
-X-ClientProxiedBy: EX19D033UWA003.ant.amazon.com (10.13.139.42) To
+X-ClientProxiedBy: EX19D040UWB004.ant.amazon.com (10.13.138.91) To
  EX19D018EUA004.ant.amazon.com (10.252.50.85)
 X-Mailman-Approved-At: Mon, 22 Sep 2025 12:52:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -128,15 +128,13 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: David Laight <David.Laight@ACULAB.COM>
 
-[ Upstream commit b280bb27a9f7c91ddab730e1ad91a9c18a051f41 ]
+[ Upstream commit a5743f32baec4728711bbc01d6ac2b33d4c67040 ]
 
-Since the test for signed values being non-negative only relies on
-__builtion_constant_p() (not is_constexpr()) it can use the 'ux' variable
-instead of the caller supplied expression.  This means that the #define
-parameters are only expanded twice.  Once in the code and once quoted in
-the error message.
+Use BUILD_BUG_ON_MSG(statically_true(ulo > uhi), ...) for the sanity check
+of the bounds in clamp().  Gives better error coverage and one less
+expansion of the arguments.
 
-Link: https://lkml.kernel.org/r/051afc171806425da991908ed8688a98@AcuMS.aculab.com
+Link: https://lkml.kernel.org/r/34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com
 Signed-off-by: David Laight <david.laight@aculab.com>
 Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Arnd Bergmann <arnd@kernel.org>
@@ -151,74 +149,23 @@ Cc: Pedro Falcato <pedro.falcato@gmail.com>
 Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
 Signed-off-by: Eliav Farber <farbere@amazon.com>
 ---
- include/linux/minmax.h | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ include/linux/minmax.h | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/include/linux/minmax.h b/include/linux/minmax.h
-index 24e4b372649a..6f7ea669d305 100644
+index 6f7ea669d305..91aa1b90c1bb 100644
 --- a/include/linux/minmax.h
 +++ b/include/linux/minmax.h
-@@ -46,10 +46,10 @@
-  * comparison, and these expressions only need to be careful to not cause
-  * warnings for pointer use.
-  */
--#define __signed_type_use(x, ux) (2 + __is_nonneg(x, ux))
--#define __unsigned_type_use(x, ux) (1 + 2 * (sizeof(ux) < 4))
--#define __sign_use(x, ux) (is_signed_type(typeof(ux)) ? \
--	__signed_type_use(x, ux) : __unsigned_type_use(x, ux))
-+#define __signed_type_use(ux) (2 + __is_nonneg(ux))
-+#define __unsigned_type_use(ux) (1 + 2 * (sizeof(ux) < 4))
-+#define __sign_use(ux) (is_signed_type(typeof(ux)) ? \
-+	__signed_type_use(ux) : __unsigned_type_use(ux))
- 
- /*
-  * Check whether a signed value is always non-negative.
-@@ -71,13 +71,13 @@
- #else
-   #define __signed_type(ux) typeof(__builtin_choose_expr(sizeof(ux) > 4, 1LL, 1L))
- #endif
--#define __is_nonneg(x, ux) statically_true((__signed_type(ux))(x) >= 0)
-+#define __is_nonneg(ux) statically_true((__signed_type(ux))(ux) >= 0)
- 
--#define __types_ok(x, y, ux, uy) \
--	(__sign_use(x, ux) & __sign_use(y, uy))
-+#define __types_ok(ux, uy) \
-+	(__sign_use(ux) & __sign_use(uy))
- 
--#define __types_ok3(x, y, z, ux, uy, uz) \
--	(__sign_use(x, ux) & __sign_use(y, uy) & __sign_use(z, uz))
-+#define __types_ok3(ux, uy, uz) \
-+	(__sign_use(ux) & __sign_use(uy) & __sign_use(uz))
- 
- #define __cmp_op_min <
- #define __cmp_op_max >
-@@ -92,7 +92,7 @@
- 
- #define __careful_cmp_once(op, x, y, ux, uy) ({		\
- 	__auto_type ux = (x); __auto_type uy = (y);	\
--	BUILD_BUG_ON_MSG(!__types_ok(x, y, ux, uy),	\
-+	BUILD_BUG_ON_MSG(!__types_ok(ux, uy),		\
- 		#op"("#x", "#y") signedness error");	\
- 	__cmp(op, ux, uy); })
- 
-@@ -109,7 +109,7 @@
- 	static_assert(__builtin_choose_expr(__is_constexpr((lo) > (hi)), 	\
- 			(lo) <= (hi), true),					\
+@@ -106,8 +106,7 @@
+ 	__auto_type uval = (val);						\
+ 	__auto_type ulo = (lo);							\
+ 	__auto_type uhi = (hi);							\
+-	static_assert(__builtin_choose_expr(__is_constexpr((lo) > (hi)), 	\
+-			(lo) <= (hi), true),					\
++	BUILD_BUG_ON_MSG(statically_true(ulo > uhi),				\
  		"clamp() low limit " #lo " greater than high limit " #hi);	\
--	BUILD_BUG_ON_MSG(!__types_ok3(val, lo, hi, uval, ulo, uhi),		\
-+	BUILD_BUG_ON_MSG(!__types_ok3(uval, ulo, uhi),				\
+ 	BUILD_BUG_ON_MSG(!__types_ok3(uval, ulo, uhi),				\
  		"clamp("#val", "#lo", "#hi") signedness error");		\
- 	__clamp(uval, ulo, uhi); })
- 
-@@ -149,7 +149,7 @@
- 
- #define __careful_op3(op, x, y, z, ux, uy, uz) ({			\
- 	__auto_type ux = (x); __auto_type uy = (y);__auto_type uz = (z);\
--	BUILD_BUG_ON_MSG(!__types_ok3(x, y, z, ux, uy, uz),		\
-+	BUILD_BUG_ON_MSG(!__types_ok3(ux, uy, uz),			\
- 		#op"3("#x", "#y", "#z") signedness error");		\
- 	__cmp(op, ux, __cmp(op, uy, uz)); })
- 
 -- 
 2.47.3
 
