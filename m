@@ -2,127 +2,161 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A2CB951F4
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Sep 2025 11:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C0AB953AF
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Sep 2025 11:23:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14EC310E5BF;
-	Tue, 23 Sep 2025 09:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9EDE10E5CC;
+	Tue, 23 Sep 2025 09:23:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ud5072bY";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="EIGmxjcp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011011.outbound.protection.outlook.com [40.107.208.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2C410E5B3;
- Tue, 23 Sep 2025 09:04:52 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010003.outbound.protection.outlook.com [52.101.201.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EAE710E5C9;
+ Tue, 23 Sep 2025 09:23:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c8sdMk81QrJ52VGHUyS6+IPw02nOxy9ne8BnEfKNoRn4h0wuHLTyEibsbsW5SvftHtnGFwI5aPuJQ+/OkDAyeXWrYwr9AjkibS5csKmxsXCN5epLPpixpu+jauFaHUBPDzz/P6Tm4p8N5W+XLTnoBq53znBlS8X9IeW0DIvTO1KE3PTvNIoCNkAY2xQf9MmHqzhT1shuNCfSJUeFr78uVFVbnPrhFDYTgsFMlKsqXYg4atw4bT/B4vgiRFxKf8gqVcx401pQReKNErMbe1sYfARbHfPGQY9JbWxrlEwH1nZt72RETr0kLAA+HEml0O5DtLlTstdUeeOaraFhxy1Saw==
+ b=Xo8cpiZeQRM4uU0qYZV0BWOJIO1qtdh/VnVom2HkD9COT5EPfCnugKwVhqXiciWpNRujmuV0X988lqt6DOr+R6O5qCYu4iJPoBd5BIovXDcXA2anDyKrYbp1wc0XUCkW/7e2B7Su9yE+vBRgw0PQKrN+RxSArFWiEJSxS6cWrCf/a6OjY1pqi76+mPkAcjanG9OAG7eOrvSzlVYsKxG9pcvcwDX/SSaf/v7fgzX65KIBxwVQcXaW0I/+sitBEC+9decRvzr9RM0FJBIXkH+JLCVYDs3UUk8H/YJuHudMcE17O8QzmJHQ+2mn0Ai670LBkmVchvu0OFuT7c+X9ubDvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AaO2TSbV2cSfE+O6WnDquomBLyaI6Cp/1o1rrMiZ/ls=;
- b=PgHQcT2f3RoIeoLmIUDLcgdYwSL1QjozhxKEu+tx2hIhgI5JezvOLpsTvRCWjDQLMGxbVIfPVkAXc3gL7bbCCusCTcFThCCsBKdUe1Snl8JfUj8x6b5syx3xH7ndUo29wzr17wHnAawObp8MZkVJWP3zRAcfZFI/enmCOCr3zGLjjRUFEFXdl8eHIlLklhBHQXfx779A93OXkb4yPdXbtPdunPS3m2yzdlHxsBzk7FPbxTcpwfKCP0HXniECUGoyfq9n3xzKa0KO7HZdQFew4VN8iCNodASR5VCHqD+2VBTPpP8bpH8OCJDPsbsf7B00Y0W+OjA2TWIjoiw31v9Rzw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
+ bh=5NQ83y4SxXtpHpzumeXO0rq7wJ/nZj3FtuF//Hiyxoc=;
+ b=wYKL2EfcZSiNmjjpKKmquaYA9GMWyddtq7AJq16mT44TNkANDYaRFFmEv7BZn0cVzxme2yTE/kwEJvLca98woNR3aMjdgxBEHezPMM3VvsUlDgNIt+7hg1hc2R5JcEBWgCAAW2p9O8MxZsIv3u+vH4piirv38h64L/lCTROWVcNAg/hoW3nGKQkcYOdyVUNXuMYpx5K+mBoTDpr1oYYVlcgqN4RKpt/4sHqqcSh4jm2Lu32bKlbjX/hCQbPkc8ZyI2+1Pq5CfFDekviN3DebpexGYLO7Bd/0OG3ud46EjBo/fo7ifFT05ezTGiVm0ecJ2nFm1wMZjop6odRlgf0Zcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AaO2TSbV2cSfE+O6WnDquomBLyaI6Cp/1o1rrMiZ/ls=;
- b=Ud5072bY91KpsCLdYvFf5/k6X9PP0b7PZuw9ZI170FFvl9PDQwBVwteaTIClTt3Ch3TYb0W8zpejYhDIIwH7kg9z0GlH8Hb+BZWCQ/6GbVToIFWfCL0bmTu87b+bW5jD7Df44j2oE8VzX0l5HOulc6dspmrgZfNvY8Upcv2QKBg=
-Received: from BN0PR03CA0060.namprd03.prod.outlook.com (2603:10b6:408:e7::35)
- by CH3PR12MB9342.namprd12.prod.outlook.com (2603:10b6:610:1cb::10)
+ bh=5NQ83y4SxXtpHpzumeXO0rq7wJ/nZj3FtuF//Hiyxoc=;
+ b=EIGmxjcploiiNS8VTp4VTTq4SEUAsSrrtpUu4lYdzC3rArDOVLjYmLEr6eLPB3oDubzMkjWXSho5HjxnSbt/p1I3Y+qJrqyqBKhEHtltYiS2g8g2x7uIBVuTM/oVU4Q86gNWwhf4c4jZkxvQe2liUGiD7sV3aYQpAWLX84bjh5U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
+ by BN5PR12MB9538.namprd12.prod.outlook.com (2603:10b6:408:2ac::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Tue, 23 Sep
- 2025 09:04:49 +0000
-Received: from BL6PEPF0001AB58.namprd02.prod.outlook.com
- (2603:10b6:408:e7:cafe::32) by BN0PR03CA0060.outlook.office365.com
- (2603:10b6:408:e7::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.20 via Frontend Transport; Tue,
- 23 Sep 2025 09:04:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL6PEPF0001AB58.mail.protection.outlook.com (10.167.241.10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.12 via Frontend Transport; Tue, 23 Sep 2025 09:04:49 +0000
-Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 23 Sep
- 2025 02:04:40 -0700
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <christian.koenig@amd.com>, <matthew.auld@intel.com>,
- <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, <jani.nikula@linux.intel.com>,
- <peterz@infradead.org>, <samuel.pitoiset@gmail.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH v7 3/3] drm/buddy: Add KUnit tests for allocator performance
- under fragmentation
-Date: Tue, 23 Sep 2025 14:32:42 +0530
-Message-ID: <20250923090242.60649-3-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250923090242.60649-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20250923090242.60649-1-Arunpravin.PaneerSelvam@amd.com>
+ 2025 09:23:14 +0000
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::a929:e8eb:ef22:6350]) by PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::a929:e8eb:ef22:6350%5]) with mapi id 15.20.9137.018; Tue, 23 Sep 2025
+ 09:23:14 +0000
+Content-Type: multipart/alternative;
+ boundary="------------kNN5iUB82B09LYQ54sEHvbSt"
+Message-ID: <6ead49fb-9420-4831-a1ab-96594ab399d3@amd.com>
+Date: Tue, 23 Sep 2025 14:53:07 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] drm/buddy: Optimize free block management with RB
+ tree
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Peter Zijlstra <peterz@infradead.org>
+Cc: matthew.auld@intel.com, jani.nikula@linux.intel.com,
+ samuel.pitoiset@gmail.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, alexander.deucher@amd.com,
+ stable@vger.kernel.org
+References: <20250909095621.489833-1-Arunpravin.PaneerSelvam@amd.com>
+ <6f6841a7-57bd-49de-9b55-b5b0514a2749@amd.com>
+ <20250909140519.GK4067720@noisy.programming.kicks-ass.net>
+ <106c1a36-c104-4eb8-b928-d11b8ca9b599@amd.com>
+ <fcbf6ae8-f9ab-4723-8df4-16d2f0f62c3f@amd.com>
+ <12f56eda-a6a5-47bf-b89e-0cfa8443a439@amd.com>
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <12f56eda-a6a5-47bf-b89e-0cfa8443a439@amd.com>
+X-ClientProxiedBy: PN4PR01CA0068.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:26c::7) To PH8PR12MB7301.namprd12.prod.outlook.com
+ (2603:10b6:510:222::12)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB58:EE_|CH3PR12MB9342:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1644f8ce-c5b5-48b0-1e04-08ddfa80403f
+X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|BN5PR12MB9538:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7082c28c-859d-44be-b371-08ddfa82d278
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xcrHgyy+baPjmH1vaSum+ouxM8yG8umc6b+wziDvY+3sK3TkubAN5FAykYSm?=
- =?us-ascii?Q?PKPyOCf+zfAjBvSDnkPG7fC1CPnCCg1znRFX0TQcuR2Rth1nvRGq4/jPT/po?=
- =?us-ascii?Q?WkmZLcGFsYZuSWw3C0c5JxLhlg83dWJFoc6oPbUHNsUaQWHkxEazEfNQzUBC?=
- =?us-ascii?Q?EQklc+MbwCaKlLUQgapzuHyFbNF2iNEzHaIRT1wf57EjDHDSzqvug1oRaMmu?=
- =?us-ascii?Q?wx9elduwwjczYHeEGepA4ND+q4EYdoK2BAqA5A4MulfQFfRgkP5KPdgjul1v?=
- =?us-ascii?Q?SF54sI0hQJNjWtIwctpLcZDnE594BQr7ZEFN+ROvymWS5LKK1vFblWB8ilV3?=
- =?us-ascii?Q?7roZTbkSzLLXnoDr+Ye2Qq/AgTzfdlqbQU0NYOv/EaAMXhqfWyo93aE2PqsB?=
- =?us-ascii?Q?4oaBfVzoP8w1isjWDYEZy35EZrBZBz53/O0l6r6jUmbhh8HUaX5lVeJMldNX?=
- =?us-ascii?Q?NFaOW6i8tvjjX/jt2wUJBnPmkmmEDMZSkfYO+AuPGYh/URFnCnzZUcjRC5sY?=
- =?us-ascii?Q?fBURRCTRJMTn7gj4XzMtv/bn2TbeXWM2M4SzVPR1I2KUvOulzxFpXZdCMCnh?=
- =?us-ascii?Q?Jz7sCWP2yiVpvAW1Eliyy5EUgYir5Cpd5t2xqcXNIj8YQq2GCSHAlI4M81pb?=
- =?us-ascii?Q?N477p9gVZMrOc3qGEBA/BVhg6pAN60l9zta0BqDegPL3PCcEwsSfH8M02lc0?=
- =?us-ascii?Q?cm5RydjKkzd47EFC+M+H9FHyx/1RU7ax8RYpIw+bPAKBdb8V1dbBAIB0Tdot?=
- =?us-ascii?Q?FPxDYI3repk/DIsQvbzPKPNQTN6fG9XUIDkU+dItPz9YGmNE/X0potdwseQJ?=
- =?us-ascii?Q?nYk12udLQtBdpDcJDmPTj1EV4/QE8F4XVyxjHlFa34tcdQrOx+UVAZJbbVNp?=
- =?us-ascii?Q?jbOCcgTRAX4licWNAOYpz5J9FBqdVRYInqUAahiegmfqMndpxFFKHKlepkAs?=
- =?us-ascii?Q?D0otZARS++W2E6raXu2257yRHpejxvw8iR6iG9r2ZehZUms4H4oqD78pOa1K?=
- =?us-ascii?Q?wwy/JxNsVp2ep4QW7sqtMzvVy41wnQY3SHF4u9rAKvAqPxJSX6SppaEOD0N3?=
- =?us-ascii?Q?qHF24Ky/qtyyWi6qEqz6vlUPb76vdIhNuVOybO4Pp/ETOdwUJICU1Re0YaOq?=
- =?us-ascii?Q?fQ0TE7gL852V31K1668HrDzQh/QCszb2z14wrrlrPYY8Yd5kvqe6/QjS/JzM?=
- =?us-ascii?Q?pwVCYbI8mih/g6rgnvRTW0hZ7nDg5h5fggDyQINbB0TlN6esp0AX9hQ6i3lI?=
- =?us-ascii?Q?4PTf/zHBJMs9SytxAC2VBNXw6qrl+Sp4fLPqcsCS6QCXlUn1qSqpavtRQKmr?=
- =?us-ascii?Q?+9VGeTd9scYFjPVAJJjvhB6wcWy1pXekFXhvIc+S3/DLp5p4heh+MpG5bHZf?=
- =?us-ascii?Q?nySvtN7kY7h4KBzmsw25QKfhBbQmPWsl4mq5h/jM3StLPOqE+scGerME3jYg?=
- =?us-ascii?Q?chgXW4vbybnATtpnEdUSGVeJTAkrC15N5r/vgddoe4ARCJAQN/TZUSVysP94?=
- =?us-ascii?Q?mjUzKiFbgjnSqdKwyTEuQDt+hcp9yprO6M4q?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?T1NRWkFES1doZzVVWFNxdXFhS2lseERlR2diVW0yMjVsTU9EajNTSU5KVnN2?=
+ =?utf-8?B?ZFNEN2hzTytuZVhBeTJlVWxQSHl6Y1dYcE9JRTlqUnoxRkl6R0xzdVNiQlVM?=
+ =?utf-8?B?YjBLeHdyT2R3OWw2TGRoVWMrSjZSZm15emJ0S3RmRG1mcDhxeCtxNGUrU2ly?=
+ =?utf-8?B?a1Zac3l3YXZGcVQ0MDBROUFiSVQ5YVVYU2tYTXdObURrditXajN1SVJGR25J?=
+ =?utf-8?B?ZkVQUzVkUk1GSzlYaVl2UWI0cUVkVVlqU1JvRFRwM3ZvZVc1dm9mbmc5aUlS?=
+ =?utf-8?B?UE0wemdoeEdST2tGcVBIWFMvRDF3NWhyMlgxa3ZLYmNhQ0Y3L2FLNEw3MTVj?=
+ =?utf-8?B?cTJibHJLVkxvRndHODlKSmJmOFJSVlFpZm02ZlpJTUVCRmRLdDkxR2RSMnJB?=
+ =?utf-8?B?NEcxVDZCYTdaK2dvcEwwZ2Jjelk5RVJLb2ViMXVnRTZuMkNzaDluaXdhTmQz?=
+ =?utf-8?B?NjRGWEFjZUQ4ekEzMWlOVlBOVzdYK25SWW5MTDNhQUVGamlQcXdyQ3FJL3I3?=
+ =?utf-8?B?eVdNSDFydGluU2dPdHBUYjZNRUNOaXIxdWxnY05PNTVMVXUyWXlJQnFDUjNF?=
+ =?utf-8?B?dWpIOE5VaE94RlhuaVl5M20zSXVNbzhxc3h4T1dwUXF1TWFsRUxoMXlRL0Er?=
+ =?utf-8?B?a0hYUThiMUxZdGlGYjI2SG9NWHpnL3gwS2o5TFBZeGt6MGZvRXVCbXh2U0VB?=
+ =?utf-8?B?ZmUzcGxZN2E3Q0RtM1Jsc2ErSzN0NFI0QzNYMEZwRFAzSEpSMVNqcHVnUWZS?=
+ =?utf-8?B?L0ZHVk1TdHVTVlozb3M3bzRXcTNtN0l2UHN5Z0dMQXBBazNKUVRFMDFCeEFE?=
+ =?utf-8?B?dStKd1hHQlA4dkJJcFRWdGt0UHNMdm5TT2VIVVJmd0hHYkxsTExjTXBoUndy?=
+ =?utf-8?B?eXFBWEJaZWVDcFh5L0U3Ym9Ic0Mxc0tGVGRpRWh0R3FTYTF1QnMzV2FqRXcr?=
+ =?utf-8?B?THVIVDltMnZ2QlNNbmVnQTZlZEFhSU1BVldpVTArTWdNNGxkNmdXVUY4NGNq?=
+ =?utf-8?B?N0phRjMvQ0hHY1JOL1loemUwUGRvNlU5RDB2dGhRcXhDeWRpVkd6UDgyeW9r?=
+ =?utf-8?B?TTVPZjZIV1hGTXloMVBCT3RORGZ4K0JFVFZvZE5nckxsMzVXcGQyYUJqNWRq?=
+ =?utf-8?B?NTd1Z01DZS9jNkFEaUdxNjZ0UmU0MFhnUEpMVDREUmh4SW9Ta08xa1lyUEdn?=
+ =?utf-8?B?S1ZSOWtNYmhZYzhHUG5XK2Y0dktJM09MK1dQcGU2SzJrcmUxUnFveHFvRVZ2?=
+ =?utf-8?B?TVRtdlFLQWNKdEM0ZXVLT0tqVW1jMkkrbXBFNXE1cjhEbjdGaFZTdjBSZ0hk?=
+ =?utf-8?B?RFlhYllxYVREZEVSbFJtQmZnYVZId25JN3NMcm9VUWozZ2VUTkNQUTBhVytv?=
+ =?utf-8?B?S051eDVHc3YzbENuWEFYRndPTWNuK09ybVpyemp2YllCelY3aWZoL3lWdEV6?=
+ =?utf-8?B?YlZycEF4RWdYakxIL1lMakdad0IzSE82WmVJVTV3OWdIMFZWenpzNlFFY0dw?=
+ =?utf-8?B?U2htQmliMTBnallYODNGSjRObHJwckYvODlzTFIvcW53TVpDR0ZDT0RqbjZW?=
+ =?utf-8?B?VW9ydjZRVzNqNWNvbFlQV29QaVMvdGhRVFdHaXd1RlJIanQ0b2FKSE5va1NC?=
+ =?utf-8?B?eGp5Y0tZRDVIVFNhWEFWMW96MmlnSXp4QUdMN010eWVXU1pkTHJXOXFOUVpH?=
+ =?utf-8?B?c3lXem5QVzN6R3lsRVc0VGhZbldHWmRPN0NlbzU4NEVkT1ZaMVB4VnNCR2VG?=
+ =?utf-8?B?UUEwbFZJeTNsK21XdmVWeTZQZld5bXdmbzJ2SEVDb1BWVERBNFNLMHlUd09u?=
+ =?utf-8?B?bmZXdTQ3Zzhjcm1kZmNBVjlpeUlxZ0RTUjNtc3JlMjRrTjNockFoL0paeTJy?=
+ =?utf-8?B?OUFWTWUyb1dRVHpKYnc0amFIZVFWTGZ2elFIclNza3ZNdmtPZnUyOEhseWpj?=
+ =?utf-8?Q?M58TlAkwt1Y=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?azhZaWUvYnFHNzBsemFKaEhNQ0JFSlM1bkZUN1NtMWpudFNjTUJ3bDRYaHJn?=
+ =?utf-8?B?OTd1akFQZXIzcWl3cXEvZnNKSFIxM2FTK0MrcnFnTk14ZmZRNXRnWTNxRkhX?=
+ =?utf-8?B?Z3p5bFBTanIyUXhLakNNTEd6eXB5cmlUemFTd2JJdlVYTnh0cnFGUVJTVkhG?=
+ =?utf-8?B?V1R4Zm1ZMk5HQUk3bFBwOVRnRG1oWnNWQlBYUEdRbXZ5VUNadTh6eGs2bHBj?=
+ =?utf-8?B?RXkwQXVveHFKWXQzWGRLZ09CdHppaUR3Qm1BbkFDM1NmcUkzelRMaHpWUnhj?=
+ =?utf-8?B?SHNRK0NZdFNhY3N2SDNSeW1wTVA1a1lDMEpLZXFZWWtMczlVYk1rRUVLcFhi?=
+ =?utf-8?B?b3dzcDd1elRZK1VvTzNDeVEwczN1cjlNUVBSaFdKMkJVRE55c09GSXdKbDNI?=
+ =?utf-8?B?YjVYVXJzenhvTWh4UlZXYk9TSFV5aTMwTDJTMklybzNCeC9scGMreWRkVkly?=
+ =?utf-8?B?MWZENE9sVjZQQVFXV25UU3R6R0pXWmp2UjJhakJGYmhJSlo0OVlZcTdDRy9F?=
+ =?utf-8?B?RnVoMzA1TmErYVlmTFdZWW5SMnltcnUrb1hlaVp1SWpWWFlMR0paSitrVGlo?=
+ =?utf-8?B?MGRmNThNYjY1a2VBTk4xOFl2WDdLUVNwUGt2c3UzNUl5S3p3UTZpOGxrMy9U?=
+ =?utf-8?B?cVAzUVU4L1BnK0Mxekx5UW5WekpXTEVZanUxTWNCLzBVajQzalpjcWZkODRW?=
+ =?utf-8?B?WGpvbGNWRTArZ1huaGlyN0hQYTNicS9yNnhkWEQrRFBoYWF4cnF4bU9PKzht?=
+ =?utf-8?B?amVmK1lVUU1NVHpiZkdiTUUxV1lGRGlvMzNKQ3NaTGxQMjRveEEyTzkybUw2?=
+ =?utf-8?B?bnpzcFdwYWRNZkVkelFUamw3L3ZuSHZiK3hFejNnS3ZxbEZKNWxPUElHM3hG?=
+ =?utf-8?B?N2xHZDdvN0E5emIzR0lHTEozbithY01QUlZvNDRxeXN2NzNFMkFtMCt1QWs3?=
+ =?utf-8?B?OEUzSC9XcHVTQ0RSWkNROXdSdjNJTmQ3bVEzK3BnQ3pibFVMOGgzanZrREZE?=
+ =?utf-8?B?V0wzOE94NjYwdmt4cTJPWXVodXJpTW4yaWR2L3lDRnh6WXMyVjEzR0dPVzhj?=
+ =?utf-8?B?WTgwSFZNbGFpU05tSHFGdTUwbGxsVWFoUThlWm00ck1KYXRld3h3WCtvK0pO?=
+ =?utf-8?B?Z21JZi9HU1hIc2YzYWFYbE8vbDl5V0YwUnN4VlJsS2htUlRaK2U5MXc2TFdz?=
+ =?utf-8?B?YUxTemVRRElxVjl5dk9KSjlGQlZMRjNCWFVmSWMzNjFXeHkxb3J4Zm5DNmw2?=
+ =?utf-8?B?WUd0NklFcG1MVHFCLzExSjU3NmRRN25GM3cxOGtONzZ6QjFzRFMzaTZNQ0NN?=
+ =?utf-8?B?MHZsNUJRemRCRUJZcFUwb01QL1ZNampGSWp6SFkrUVJJQ251YzhXbC9nWnZQ?=
+ =?utf-8?B?TFNoZ1hrM1p0bHI1V3RnNGRvK3VSTm9nV3poWlp3OHlUWHZSY1dSblJNK0Rv?=
+ =?utf-8?B?TS9mU1hhem5UYzU5TGdWeUt3S0o4NGFESFhkN2twcHRMRUtTbjY5MHRMMVdJ?=
+ =?utf-8?B?TjhrOUcxV0VXbkF3TVI5dElyMUh6cG4vaTFXQU5hNGM0a3hsOEhiN0xHbVNL?=
+ =?utf-8?B?RzNxVTdMamQ0aVE1b3dZNjhqK3F2ZFRwQzNhR05Zb0pHelA2QlpBeWtwVTZ1?=
+ =?utf-8?B?RC9oK1VTcTJjR1hESVoxOGRqcGpPWnN1cUNLVjEzUVdWL0tpbFU0dG9HZTA5?=
+ =?utf-8?B?Q1NMOTRzUHkyaTMwd04rT21BREVqVkhjdXF1SnJjaXI0Q0Z0QmZBYVpRWHl4?=
+ =?utf-8?B?Q0FadWtVLzZUcWYyeVA0RFFRUFZ2UlNPdVFtczFaVCtTdGF1M211ZkhONkdl?=
+ =?utf-8?B?NndzTlIwaTZSclJJWmFhOFg4bUZ0OFdiLy9maWl3YmVzRDFlOGdsQzJwYjlj?=
+ =?utf-8?B?VHFIN3Nsak51MGRBWlVpL0FxNWdsRVJOaEkvVnVpYU95VjlsSlpxQy8reFFr?=
+ =?utf-8?B?RThFYTZxTXhqSnR1UDVYYTV0Z1hUWDJILytCSjVTRExmTlZCdVhHMi91OFdw?=
+ =?utf-8?B?SWtLRTlzL1ZYYy9WK0hVblNhV3l3OURnRmtZeHp6QjN6UUVRNi9PTVJyRkxM?=
+ =?utf-8?B?SGFhd25WVFVrSzN0TUVGMU5ZN251TmVOSVA4dExnQkVFL1hDUXczMTU0Zk1O?=
+ =?utf-8?Q?/tsYKeTqpodHZev6UJWqDeZXG?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 09:04:49.6689 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1644f8ce-c5b5-48b0-1e04-08ddfa80403f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7082c28c-859d-44be-b371-08ddfa82d278
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 09:23:14.3690 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB58.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9342
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FBSPM4PmZs6qs6zFOc5NLVnvnsGgfgnOGvx8CgObqwhloa+gd8l/M1ugNQP5XhCVveJyjFzpcO1T+p3I2pyaRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN5PR12MB9538
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,157 +171,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add KUnit test cases that create severe memory fragmentation and
-measure allocation/free performance.
+--------------kNN5iUB82B09LYQ54sEHvbSt
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The tests simulate two scenarios -
+Hi Christian,
 
-1. Allocation under severe fragmentation
-   - Allocate the entire 4 GiB space as 8 KiB blocks with 64 KiB alignment,
-     split them into two groups and free with mixed flags to block coalescing.
-   - Repeatedly allocate and free 64 KiB blocks while timing the loop.
-   - Freelist runtime: 76475 ms(76.5 seconds), soft-lockup triggered.
-     RB-tree runtime: 186 ms.
+On 9/10/2025 7:52 PM, Christian König wrote:
+>> In drm_buddy_fini(), force_merge() is called to ensure all blocks are merged before tearing down the allocator. This guarantees that all
+>> mm->roots are freed and not held by the driver at shutdown. If any blocks remain allocated, drm_buddy_fini() will issue a warning.
+>>
+>> In drm_buddy_reset_clear(), which is invoked at device suspend/resume, it is an ideal place to call force_merge(). This ensures that all
+>> possible blocks are merged before resetting the clear state, thereby reducing fragmentation and improving allocation efficiency after resume.
+> That's where rbtree_postorder_for_each_entry_safe() should be used.
+Sure, I have replaced with the existing 
+rbtree_postorder_for_each_entry_safe() macro in places where the 
+traversal order is not important such as debug print
+and reset clear functions.
 
-2. Reverse free order under fragmentation
-   - Create a similarly fragmented space, free half the blocks, reverse
-     the order of the remainder, and release them with the cleared flag.
-   - Freelist runtime: 85620 ms(85.6 seconds).
-     RB-tree runtime: 114 ms.
+Thanks,
+Arun.
+>
+>
 
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/drm/tests/drm_buddy_test.c | 110 +++++++++++++++++++++++++
- 1 file changed, 110 insertions(+)
+--------------kNN5iUB82B09LYQ54sEHvbSt
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-diff --git a/drivers/gpu/drm/tests/drm_buddy_test.c b/drivers/gpu/drm/tests/drm_buddy_test.c
-index 7a0e523651f0..19b49fb6ec19 100644
---- a/drivers/gpu/drm/tests/drm_buddy_test.c
-+++ b/drivers/gpu/drm/tests/drm_buddy_test.c
-@@ -21,6 +21,115 @@ static inline u64 get_size(int order, u64 chunk_size)
- 	return (1 << order) * chunk_size;
- }
- 
-+static void drm_test_buddy_fragmentation_performance(struct kunit *test)
-+{
-+	const unsigned long max_acceptable_time_ms = 1000;
-+	struct drm_buddy_block *block, *tmp;
-+	int num_blocks, i, ret, count = 0;
-+	LIST_HEAD(allocated_blocks);
-+	unsigned long elapsed_ms;
-+	LIST_HEAD(reverse_list);
-+	LIST_HEAD(test_blocks);
-+	LIST_HEAD(clear_list);
-+	LIST_HEAD(dirty_list);
-+	LIST_HEAD(free_list);
-+	struct drm_buddy mm;
-+	u64 mm_size = SZ_4G;
-+	ktime_t start, end;
-+
-+	/*
-+	 * Allocation under severe fragmentation
-+	 *
-+	 * Create severe fragmentation by allocating the entire 4 GiB address space
-+	 * as tiny 8 KiB blocks but forcing a 64 KiB alignment. The resulting pattern
-+	 * leaves many scattered holes. Split the allocations into two groups and
-+	 * return them with different flags to block coalescing, then repeatedly
-+	 * allocate and free 64 KiB blocks while timing the loop. This stresses how
-+	 * quickly the allocator can satisfy larger, aligned requests from a pool of
-+	 * highly fragmented space.
-+	 */
-+	KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_init(&mm, mm_size, SZ_4K),
-+			       "buddy_init failed\n");
-+
-+	num_blocks = mm_size / SZ_64K;
-+
-+	start = ktime_get();
-+	/* Allocate with maximum fragmentation - 8K blocks with 64K alignment */
-+	for (i = 0; i < num_blocks; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, mm_size, SZ_8K, SZ_64K,
-+								    &allocated_blocks, 0),
-+					"buddy_alloc hit an error size=%u\n", SZ_8K);
-+
-+	list_for_each_entry_safe(block, tmp, &allocated_blocks, link) {
-+		if (count % 4 == 0 || count % 4 == 3)
-+			list_move_tail(&block->link, &clear_list);
-+		else
-+			list_move_tail(&block->link, &dirty_list);
-+		count++;
-+	}
-+
-+	/* Free with different flags to ensure no coalescing */
-+	drm_buddy_free_list(&mm, &clear_list, DRM_BUDDY_CLEARED);
-+	drm_buddy_free_list(&mm, &dirty_list, 0);
-+
-+	for (i = 0; i < num_blocks; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, mm_size, SZ_64K, SZ_64K,
-+								    &test_blocks, 0),
-+					"buddy_alloc hit an error size=%u\n", SZ_64K);
-+	drm_buddy_free_list(&mm, &test_blocks, 0);
-+
-+	end = ktime_get();
-+	elapsed_ms = ktime_to_ms(ktime_sub(end, start));
-+	/* Performance validation */
-+	KUNIT_EXPECT_LT_MSG(test, elapsed_ms, max_acceptable_time_ms,
-+			    "Fragmented allocation took %lu ms (max acceptable: %lu ms)",
-+			    elapsed_ms, max_acceptable_time_ms);
-+	drm_buddy_fini(&mm);
-+
-+	/*
-+	 * Reverse free order under fragmentation
-+	 *
-+	 * Construct a fragmented 4 GiB space by allocating every 8 KiB block with
-+	 * 64 KiB alignment, creating a dense scatter of small regions. Half of the
-+	 * blocks are selectively freed to form sparse gaps, while the remaining
-+	 * allocations are preserved, reordered in reverse, and released back with
-+	 * the cleared flag. This models a pathological reverse-ordered free pattern
-+	 * and measures how quickly the allocator can merge and reclaim space when
-+	 * deallocation occurs in the opposite order of allocation, exposing the
-+	 * cost difference between a linear freelist scan and an ordered tree lookup.
-+	 */
-+	ret = drm_buddy_init(&mm, mm_size, SZ_4K);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+
-+	start = ktime_get();
-+	/* Allocate maximum fragmentation */
-+	for (i = 0; i < num_blocks; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test, drm_buddy_alloc_blocks(&mm, 0, mm_size, SZ_8K, SZ_64K,
-+								    &allocated_blocks, 0),
-+					"buddy_alloc hit an error size=%u\n", SZ_8K);
-+
-+	list_for_each_entry_safe(block, tmp, &allocated_blocks, link) {
-+		if (count % 2 == 0)
-+			list_move_tail(&block->link, &free_list);
-+		count++;
-+	}
-+	drm_buddy_free_list(&mm, &free_list, DRM_BUDDY_CLEARED);
-+
-+	list_for_each_entry_safe_reverse(block, tmp, &allocated_blocks, link)
-+		list_move(&block->link, &reverse_list);
-+	drm_buddy_free_list(&mm, &reverse_list, DRM_BUDDY_CLEARED);
-+
-+	end = ktime_get();
-+	elapsed_ms = ktime_to_ms(ktime_sub(end, start));
-+
-+	/* Performance validation */
-+	KUNIT_EXPECT_LT_MSG(test, elapsed_ms, max_acceptable_time_ms,
-+			    "Reverse-ordered free took %lu ms (max acceptable: %lu ms)",
-+			    elapsed_ms, max_acceptable_time_ms);
-+
-+	drm_buddy_fini(&mm);
-+}
-+
- static void drm_test_buddy_alloc_range_bias(struct kunit *test)
- {
- 	u32 mm_size, size, ps, bias_size, bias_start, bias_end, bias_rem;
-@@ -772,6 +881,7 @@ static struct kunit_case drm_buddy_tests[] = {
- 	KUNIT_CASE(drm_test_buddy_alloc_contiguous),
- 	KUNIT_CASE(drm_test_buddy_alloc_clear),
- 	KUNIT_CASE(drm_test_buddy_alloc_range_bias),
-+	KUNIT_CASE(drm_test_buddy_fragmentation_performance),
- 	{}
- };
- 
--- 
-2.34.1
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    Hi Christian,<br>
+    <br>
+    <div class="moz-cite-prefix">On 9/10/2025 7:52 PM, Christian König
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:12f56eda-a6a5-47bf-b89e-0cfa8443a439@amd.com"><span style="white-space: pre-wrap">
+</span>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+In drm_buddy_fini(), force_merge() is called to ensure all blocks are merged before tearing down the allocator. This guarantees that all
+mm-&gt;roots are freed and not held by the driver at shutdown. If any blocks remain allocated, drm_buddy_fini() will issue a warning.
 
+In drm_buddy_reset_clear(), which is invoked at device suspend/resume, it is an ideal place to call force_merge(). This ensures that all
+possible blocks are merged before resetting the clear state, thereby reducing fragmentation and improving allocation efficiency after resume.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+That's where rbtree_postorder_for_each_entry_safe() should be used.</pre>
+    </blockquote>
+    Sure, I have replaced with the existing
+    rbtree_postorder_for_each_entry_safe() macro in places where the
+    traversal order is not important such as debug print<br>
+    and reset clear functions.<br>
+    <br>
+    Thanks,<br>
+    Arun.<br>
+    <blockquote type="cite" cite="mid:12f56eda-a6a5-47bf-b89e-0cfa8443a439@amd.com">
+      <pre class="moz-quote-pre" wrap="">
+
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------kNN5iUB82B09LYQ54sEHvbSt--
