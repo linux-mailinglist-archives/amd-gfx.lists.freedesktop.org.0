@@ -2,164 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 806A7B9897B
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 09:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84E8DB98FF4
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 10:56:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24FEC10E6AB;
-	Wed, 24 Sep 2025 07:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B0F810E22A;
+	Wed, 24 Sep 2025 08:56:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="eyuaEgBj";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="DFc8y+2Y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012064.outbound.protection.outlook.com [40.107.209.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 014FF10E6AB
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 07:45:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IjTr4wIBR5sSbTvS7tw5KvY5BhM3BU0WXeNp/Oui/nNh50Kra2NXVtR+bxyY9WookV7nVWc37rzIyUEju53XLlpUIbZ+heU55Lvcg2SBhIvYsgsqgnY+01j3Vcok5WoEnbgkTq1F+ySb//ysdqMU0I50P4oXw+85L4h9+2P1tGhFOHbeGXLBEoBoAIHs9jovXRfVKKtv1N1dcHUzqOarorl0Ei0EgCaq5ZBXxyshvhaTkw52+zYwNnpo+uCJN9GOHsVYO7wCjyJYdW2IdJlV2ieEJBr6iUzqbF7PtW0ue3tvgaCNw6kJ/vkMeX8f7AsruQ8scWo9Em4nnl5QE94Jlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sHZ541+LS62JMLBv8mlatvmnOww0xZbJc64OGsaK/zE=;
- b=COTwhnLwQ44nb/woZ6FY1WUPK8I8N7v/On0W3AkK2PCPpmFa1K720IFaqpXB2pqiJGnPazZ50Ve8SbjZteJRWd4eGvExPuZddH/bxP6ibYsBW4oZEZXJHL/CZot7u3hSvsxzgCCIwS732OY+gG76Wj5CndKWtvKtWSMg11yr+ig/9i2ERuGUcM8vkPcla8lpvXnFbf7yD75uorfmJaCPK7PmPOSZXazijODbeJklSi6fe9Rd0kEu8BMlO5uQOKQobY/1c9v+0RyfhR+QoqfpK2dCYFqW9lY4FaOtSB4F3WUsKL9mDWeWWC6Q3N7UjZzlHCCFRz01eSADlyTgWl9C0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sHZ541+LS62JMLBv8mlatvmnOww0xZbJc64OGsaK/zE=;
- b=eyuaEgBjAlQXhed9XRSQfym88/tm5iYyfbcrhvr/Eox/FoSIXBbQRvBAeLM4i5Po+ft6crPVAvXgLfOcuCmVZPQ47ou3gUZ08R/Bf7+LpA7kv5tBF3BHrOVgVKlMqK0cBfYEpq+93XesBp60+ep1250tEzMXN5iIyIS5ghPoFVg=
-Received: from BL1PR12MB5753.namprd12.prod.outlook.com (2603:10b6:208:390::15)
- by MW6PR12MB8736.namprd12.prod.outlook.com (2603:10b6:303:244::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.21; Wed, 24 Sep
- 2025 07:45:38 +0000
-Received: from BL1PR12MB5753.namprd12.prod.outlook.com
- ([fe80::81e6:908a:a59b:87e2]) by BL1PR12MB5753.namprd12.prod.outlook.com
- ([fe80::81e6:908a:a59b:87e2%6]) with mapi id 15.20.9137.018; Wed, 24 Sep 2025
- 07:45:38 +0000
-From: "Khatri, Sunil" <Sunil.Khatri@amd.com>
-To: "Khatri, Sunil" <Sunil.Khatri@amd.com>, "Koenig, Christian"
- <Christian.Koenig@amd.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: kernel test robot <lkp@intel.com>
-Subject: RE: [PATCH] drm/amdgpu: add missing comment for the new argument
-Thread-Topic: [PATCH] drm/amdgpu: add missing comment for the new argument
-Thread-Index: AQHcLSE1CtptLAQtBEKuLvNF9te53rSh9BuQ
-Date: Wed, 24 Sep 2025 07:45:37 +0000
-Message-ID: <BL1PR12MB575321BF07CA3F028F23C075931CA@BL1PR12MB5753.namprd12.prod.outlook.com>
-References: <20250924070228.3159438-1-sunil.khatri@amd.com>
-In-Reply-To: <20250924070228.3159438-1-sunil.khatri@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-09-24T07:45:23.0000000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5753:EE_|MW6PR12MB8736:EE_
-x-ms-office365-filtering-correlation-id: a3bf6b1f-4518-4eea-1d72-08ddfb3e5a66
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?utf-8?B?RVpicmVBbGdiWEJMUlo3dEVMVUVPNW1IcGZWZnVrZHl0VVJ5RU4yeXp6cXoy?=
- =?utf-8?B?emdQanRqbGdBbWl6empxRHhnTFJ2NHBvRWsrd1EwSmhLRmg5cWVDQXJlcEVq?=
- =?utf-8?B?WFQxbFVrTGgyZHlGcWFBYldYelBwaUwyU01qQzZscVppTU9kY3ErZFBGQnNt?=
- =?utf-8?B?UlhoNWpPSFh4UXBPSGVKd1p5T2tFdE9sNjNRSnhFRk5leGsyTXVna2xqQm5h?=
- =?utf-8?B?NU8rTkU1K1FFMTdxekFQZ2RRZWdrU09ITVZIOXd6dlVuQnkzQmtjc2gzd083?=
- =?utf-8?B?M0pIRzlscFNNcnh5RElkVTBNaC8vdHhyeU43Q0srUGR1Y1A0UERnRmV4VEZO?=
- =?utf-8?B?SUJlZXRCWUFHclYyRGVsT0dXWXJBVXVkR3owWU8yTGpCaUVkY3A0UXFxWThJ?=
- =?utf-8?B?a2xIREhjWWFuNnlHeGtBTVRmRmdtN3poeUVvUzJ5N3ZOTUYxNmlPWmdRY1Fk?=
- =?utf-8?B?cEtQRHM3TG1TbDNnandhRDdvZ0I3RkR1ek9nL0xIbDdEM1RpdGpLQVVXR1li?=
- =?utf-8?B?M21vUHU5Y3JVWkN5Qk9SSW5DV2ZlckFtZm8vYlVTMkNIdklwQm5Ud3FsZFR0?=
- =?utf-8?B?Njg5WloxNzNnMTBXeFVyMXhFVXpubW8xaDk3TTQ3Z1Q3SGRDR2w0bWRqMzFn?=
- =?utf-8?B?WXM0b3R0MEVUWlQvNUpmRUttUFAxVHIxeUkzMXpkMTRkb0RKREpsYldvdVFS?=
- =?utf-8?B?OHBzYXZza09WMkxBRGpjSWxMV0pDN1NDYWRMSnYxTEFaOWp0NHVXRWZrVmlL?=
- =?utf-8?B?RnE3VWQvd2lrYk0vR1FMeFh3SlNPZTVWc212U2FhVDhBNVMwVFpCVy9OSEJn?=
- =?utf-8?B?M2V3b2duRHVHWFlPQlBOYWtKaEMxVEZMUG5qRXFEN2FOZDczUU1wdG9kK1NF?=
- =?utf-8?B?bUNjUXMxLzNKOTVWaWpvRjlMdmJjR0NjaHU0b0trK1JFdWw1TVdsZlY3YnRQ?=
- =?utf-8?B?WmdYQndWb0l6dElyY1FvNlZsU2pDZzF0RUptMWh6MmFaTWMxY1huNnMraWF6?=
- =?utf-8?B?VlE2SmkwZ3MyeE0rSGluWUI1UDhCa210Q1RkVkVqVzdBNnlFUkJVS20wUUNs?=
- =?utf-8?B?YW5DcmRuWmZaRHVPOCtKOVpHR2h3M2hOa2dzbFpxOWJXeDd2Q3RjNVFLbDBk?=
- =?utf-8?B?T2hMSGVCUXZOb1U3Rm1ncXV4ZVE4WmxldEpWQjNrOEhTM09SZ21kWXdEbGJE?=
- =?utf-8?B?akYxaFVCZExKeTJUWnRQSVdaaDNFb3MyWjU1Qm1hNXllbVlJWGVCVEtRRGg4?=
- =?utf-8?B?Z3FNemYxdHNTdmtZSHFDNENHaWQ1NnRoOFYyQTM3RDJiODRrcGlLNW1hN1ZB?=
- =?utf-8?B?S1k2NFBHVnM0REhiaEtrT2JEdlNxd1dmR3V3ck5JdVp6VHpIZHgrWkljTlUv?=
- =?utf-8?B?RlN5MGVvcHQvanhWMTBSQXZsYTd3OVNHTDN0QUY0aU5hMVBPeU5CbkV4ZVJk?=
- =?utf-8?B?Lzg2bVdKbzJBbXJHZVZJYTNSSWhzcmt5T2I1RE5TZEJkcUVucndnTjE5R1lq?=
- =?utf-8?B?a3h3Z2dIU0xLUGp6U25KcS9udHhmRkJYRjFmQ0dNY2ZVQ0VEdjFHYW9HVVMw?=
- =?utf-8?B?VnR1WS9SaXVsTlUvR2FRZ2d5L0NPeG5sU1dKUDBUK1d5WFFISWVneFlGSG1D?=
- =?utf-8?B?aDdiNldpRTJKUVFuYTAvcWZTVVlTcWQyWUdiQlRUWVBEc1R6NzVPa0JEOTk4?=
- =?utf-8?B?d0xSaS9GcjNaZmRnZkVqWGNmSUU1VEV6RzdJS2p5WTRBTEx6U3ZDa0h2QVVD?=
- =?utf-8?B?d3VPQ01wMFIrL2ptYmpIdG81NzdrM3lURDBsYjJBeEE4ZnEreEdQRVo4em42?=
- =?utf-8?B?bEZjWEFEU2dPdTYwS3VNc3VtZnFQWEEwTlBPMUZSQWp3R29MZ1lYbyswNkRr?=
- =?utf-8?B?Mld5Q29Cc292SkdFL3ZoMkV3dU83OHY4ZXplQzNIeHUzUm9mdTRtMmVHMWEv?=
- =?utf-8?B?UDhWaFhuN1FRN2NySzZ3UGF4MzFWMnNXWkp4dmtpNkNielErSkg5V01mOUgw?=
- =?utf-8?Q?RqP+3D9yufUGl04ywwhm2lJRPfI76E=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5753.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QzlacVlUdVpEZVRGdU5uU0dOblh5cVFLRkZTOEl6c1dwdkNlUU0yY2JoY2pi?=
- =?utf-8?B?WmxCa3JxRkI3Y2dhbkJKZVJsVkxuOHkvSjd2cnl6YWE0ZWV3M3BqMHB1MTBZ?=
- =?utf-8?B?c0RHMGtJNzVWVUlndGNxOVJSenNuYnZ2dkxKYnk3MDNHM3lkZGg5TnBlTXB6?=
- =?utf-8?B?d0VnaFRYdm4vRmd0cnRRcDgrTk55dWk0TENZb3U0TUI0MElFSmYyZWdBUk9E?=
- =?utf-8?B?L2I1SGFhOUoxRG1saTlaYXF2dEx5WXBqMTVtdDZDRmx4K2N4MDZPdE1kTkFG?=
- =?utf-8?B?ODVPTE1Ybm5FNElKTzhwaGtnOUUrQ3hEU21hU0piMnFkNGwvU0MvSHdRUldR?=
- =?utf-8?B?SzJXMXNKUkJwZ21Jb2lPcDdqK0FmYmhrUU50YXhvM2RIWVBvY2M3OGFDWEdj?=
- =?utf-8?B?VlIzSlBoN3NjK2VUVHJWcUxHaUpOU1RKNUZOOUg0TUNJYUhYcjgxdXU0MUtr?=
- =?utf-8?B?aHo2TXBTK1laOUdGSFJTZEFrVXhDQlAxaHo2VEZPTGZsYWc3aGdyaEhSUVIz?=
- =?utf-8?B?VjAzRFpHU0pGRE1yUnNhUXMvOUREYzN4RDlnTlNrL1I3Szk4NGRTWDdwRDVa?=
- =?utf-8?B?SGE1bXBmWDNZQnFGeW8xVFBsZWpzaHowWEk5c2FTNDBWcTRvcGgxdGNWSmFq?=
- =?utf-8?B?QUY3eHFaclk1Q0RxbXVaWjdZRWlDMUUrMTFKMDRuanB4U0tDYld2VXZnNW1k?=
- =?utf-8?B?YkltdUpFUHQwdGpxY2ZQOVdkZHM0V2p5cTdDTGlOSFdpeEdERjJzYm5jMU1E?=
- =?utf-8?B?dWtNdWU0a0Q0Z25ORi9vZDcwYmgwaGdXVW9MRTVoR0pTNzFxcmhwQ1hLazZu?=
- =?utf-8?B?SUhMR20yNnhnT3M1TDlabzc0cVA3aWVuZzl2UHVWWmJwYW12WXJkcHZWMlE4?=
- =?utf-8?B?M0RQT09neDN5Y3RORHAxbmNvSkQyc1ZUczlpakY4ZFZGVEtYL0hCaFN2eHVp?=
- =?utf-8?B?MnpEVk5YVnREVVIzcjBYeExrUUhUNlVDRTVsakRBd0RGemxhOTE0bE0wYlpv?=
- =?utf-8?B?UjBLNHBjZVk2WElod1lzN0I2YUxnV0JMNTI4OHNZejFMUjFJcGxVVHNneUMy?=
- =?utf-8?B?SWhvUkxmSGhTcjFFWjlUL0RPQ1JBM2JLVGRSdzRCakVEaExBc2ZxOU9xU252?=
- =?utf-8?B?b2tteXhWY253dEFYQlR1T09qc0lSMXd0RUFEVTZpM0FjL25EODRpRE96MS94?=
- =?utf-8?B?R2srRUlQQm1KUitlSFlHUld6azhQQ1ZyQkN6TVh1OGRIY0FnNVZZQkc4SzJr?=
- =?utf-8?B?cE9jT3FENW5rR0R3RldvcENOelhhbXZ6R0JZcTJnMDlmZWlmdEVla3NyU0xp?=
- =?utf-8?B?VWFXUWF4andhWUtuOUlac2VxRWZqczR2a05oNkpSUEFKSk00clVtMzV3NTA1?=
- =?utf-8?B?aUpDSDBPSHVheERmcnMzYmxaTDdVSTIxcG9OUjNISnNjZ3h4RWxpbjhqZXZk?=
- =?utf-8?B?Ti82L0hzaFZHR0ZFaVVFeURoNUZCZlVldlFLa0VrdkxBdHZjMEpaU1hpUCtU?=
- =?utf-8?B?dUdyTjBCamsreFNTVWRNV1J4MTg1R1hubm5jR1hzQnRCUExMZEoyVXNvVDNy?=
- =?utf-8?B?K0o1VWJ4SEdYNHVXcEQrNWhmRG92OHAwc1NJY3BPVkNPOHZxdlVLdHNvWDRW?=
- =?utf-8?B?bzYvMTNWZE1wTU1yTnA5R1VlL1RmTFRsbDEya3haVW1tc1VJMkE2QW9iMkdR?=
- =?utf-8?B?RTFmVUl3WDdrU3VWQWZMWGdRRmprOHFQTk9YOGVBUzVUeTFocDBuMi9FQ3A2?=
- =?utf-8?B?a2VlakxSQ2VYeS9XRVgvdWZvZVl5c2h4VUtvc0Z5Z2tmUjdRMG91dGVsamMz?=
- =?utf-8?B?b0cyVmowR08wQ0xjR1dKQVk2OXY5NXhMN0RXZzhWVnYwN2dIVHZ4WXNDU2w2?=
- =?utf-8?B?T29aZlZZRE04bEluZEEwU3ppbWF2NTdSeWd0amNFeVljVW80RCsvWmJQKzZt?=
- =?utf-8?B?YnhKbUtnRGJIeDdqTG0waWtmQ3ZUTVpyTVZ6eHhvQ3RGcXptVkFIMTVYL29u?=
- =?utf-8?B?TTBnN3BzYzFLLzNiUUp3T1ZjSjZrZVhncHZPQ1Q3dFY2NDhrMEN5YWsyejBy?=
- =?utf-8?B?SWNiNW1Sd1hUajlVcUhncnJ3QUdaOURTd0g0Vm9jSFBicFE2UWNQNmpmZCts?=
- =?utf-8?Q?63rk=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B6589F35;
+ Tue, 23 Sep 2025 13:01:18 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cWKqH3FmSz9tLJ;
+ Tue, 23 Sep 2025 15:01:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1758632475; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=dRDeMSap27+z/eNpDe7Tuc7bdUEnsZ4fotL1hWW8w4A=;
+ b=DFc8y+2YWgvO0lMY+yyCECIgG04gVdZhLqKqw0pU4dTGWHBtB3SSgpWsBgnZ7+tqivQyTV
+ V7KgB71ka0MSCHCLNF4wkspG+zDZ0L01+MPQlWAx8AFrEx+fDg9tWHzqZ3zDTkH/XC7vzt
+ j8ce6F1URU0pyBBeU+cb9Bad/rEczAIXUOJFT1BQoxd0cI+4mw40s+EF0v9RsC76bvfk+W
+ u8sp9e7oICG9vk/kquAKdfIXT/TAcNvh3sMNx1AsLi1PYaXdlio3cQ90UkZ7IMb7A2r58j
+ pJHr/OOIZgbx9zs0OdccwuI18cDN1SuetOX05sLENkF73OKmjKi1w4rLhOrwFg==
+Message-ID: <9bfd7f644ce9d94ece95970c326afab53b6a7ff8.camel@mailbox.org>
+Subject: Re: [RFC v8 01/12] drm/sched: Add some scheduling quality unit tests
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo Krummrich
+ <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
+ <phasta@kernel.org>, Pierre-Eric Pelloux-Prayer
+ <pierre-eric.pelloux-prayer@amd.com>
+Date: Tue, 23 Sep 2025 15:01:10 +0200
+In-Reply-To: <20250903101820.63032-2-tvrtko.ursulin@igalia.com>
+References: <20250903101820.63032-1-tvrtko.ursulin@igalia.com>
+ <20250903101820.63032-2-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5753.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3bf6b1f-4518-4eea-1d72-08ddfb3e5a66
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2025 07:45:37.9645 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: c0CQR/7mn6lLNJqLnAtsiH+2XdtDGUDIx65YOvAIgBMJuczmB2qrJQ6NACQCT8iWYPoaC81yIe3wMFihgS3baA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8736
+X-MBO-RS-META: jd1dn97ee3xjuzt5o77rp5ug8t7nxcor
+X-MBO-RS-ID: a3c8985a14c685624fb
+X-Mailman-Approved-At: Wed, 24 Sep 2025 08:55:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,32 +65,999 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEFNRCBJbnRlcm5hbCBEaXN0cmlidXRpb24gT25seV0N
-Cg0KSWdub3JlIHBsZWFzZS4NCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFN1
-bmlsIEtoYXRyaSA8c3VuaWwua2hhdHJpQGFtZC5jb20+DQpTZW50OiBXZWRuZXNkYXksIFNlcHRl
-bWJlciAyNCwgMjAyNSAxMjozMiBQTQ0KVG86IEtvZW5pZywgQ2hyaXN0aWFuIDxDaHJpc3RpYW4u
-S29lbmlnQGFtZC5jb20+OyBLdWVobGluZywgRmVsaXggPEZlbGl4Lkt1ZWhsaW5nQGFtZC5jb20+
-OyBEZXVjaGVyLCBBbGV4YW5kZXIgPEFsZXhhbmRlci5EZXVjaGVyQGFtZC5jb20+OyBhbWQtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KQ2M6IEtoYXRyaSwgU3VuaWwgPFN1bmlsLktoYXRyaUBh
-bWQuY29tPjsga2VybmVsIHRlc3Qgcm9ib3QgPGxrcEBpbnRlbC5jb20+DQpTdWJqZWN0OiBbUEFU
-Q0hdIGRybS9hbWRncHU6IGFkZCBtaXNzaW5nIGNvbW1lbnQgZm9yIHRoZSBuZXcgYXJndW1lbnQN
-Cg0KSW4gZnVuY3Rpb24gJ2FtZGdwdV92bV9sb2NrX2RvbmVfbGlzdCcgdXBkYXRlIHRoZSBjb21t
-ZW50IGZvciB0aGUgbmV3IGFyZ3VtZW50ICd2bScuDQoNClJlcG9ydGVkLWJ5OiBrZXJuZWwgdGVz
-dCByb2JvdCA8bGtwQGludGVsLmNvbT4NCkNsb3NlczogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
-b2Uta2J1aWxkLWFsbC8yMDI1MDkxODAyMTEuVUFxTUUwemotbGtwQGludGVsLmNvbS8NClNpZ25l
-ZC1vZmYtYnk6IFN1bmlsIEtoYXRyaSA8c3VuaWwua2hhdHJpQGFtZC5jb20+DQpSZXZpZXdlZC1i
-eTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPg0KLS0tDQogZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMgfCAxICsNCiAxIGZpbGUgY2hhbmdl
-ZCwgMSBpbnNlcnRpb24oKykNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2FtZGdwdV92bS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMN
-CmluZGV4IGQwYzk1ZmIwZWY4MS4uMWNjZDM0OGJmNDhiIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMNCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV92bS5jDQpAQCAtNDg2LDYgKzQ4Niw3IEBAIGludCBhbWRncHVfdm1fbG9j
-a19wZChzdHJ1Y3QgYW1kZ3B1X3ZtICp2bSwgc3RydWN0IGRybV9leGVjICpleGVjLA0KDQogLyoq
-DQogICogYW1kZ3B1X3ZtX2xvY2tfZG9uZV9saXN0IC0gbG9jayBhbGwgQk9zIG9uIHRoZSBkb25l
-IGxpc3QNCisgKiBAdm06IHZtIHByb3ZpZGluZyB0aGUgQk9zDQogICogQGV4ZWM6IGRybSBleGVj
-dXRpb24gY29udGV4dA0KICAqIEBudW1fZmVuY2VzOiBudW1iZXIgb2YgZXh0cmEgZmVuY2VzIHRv
-IHJlc2VydmUNCiAgKg0KLS0NCjIuMzQuMQ0KDQo=
+On Wed, 2025-09-03 at 11:18 +0100, Tvrtko Ursulin wrote:
+> To make evaluating different scheduling policies easier (no need for
+> external benchmarks) and perfectly repeatable, lets add some synthetic
+> workloads built upon mock scheduler unit test infrastructure.
+>=20
+> Focus is on two parallel clients (two threads) submitting different job
+> patterns and logging their progress and some overall metrics. This is
+> repeated for both scheduler credit limit 1 and 2.
+>=20
+> Example test output:
+>=20
+> =C2=A0 Normal and low:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pct1 cps1 qd1;=C2=A0 pct2 cps2 q=
+d2
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0=C2=A0=C2=A0 0ms:=
+=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0 0;=C2=A0=C2=A0 0=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 104ms: 100=C2=A0=
+ 1240=C2=A0 112; 100=C2=A0 1240=C2=A0 125
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 209ms: 100=C2=A0=
+=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 99; 100=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 12=
+5
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 313ms: 100=C2=A0=
+=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 86; 100=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 12=
+5
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 419ms: 100=C2=A0=
+=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 73; 100=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 12=
+5
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 524ms: 100=C2=A0=
+=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 60; 100=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 12=
+5
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 628ms: 100=C2=A0=
+=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 47; 100=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 12=
+5
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 731ms: 100=C2=A0=
+=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 34; 100=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 12=
+5
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 836ms: 100=C2=A0=
+=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 21; 100=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 12=
+5
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 939ms: 100=C2=A0=
+=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0 8; 100=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=
+=A0 125
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1043ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 120
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1147ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0 107
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1252ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 94
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1355ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 81
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1459ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 68
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1563ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 55
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1667ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 42
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1771ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 29
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1875ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0 16
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1979ms:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; 100=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0 3
+> =C2=A0=C2=A0=C2=A0 0: prio=3Dnormal sync=3D0 elapsed_ms=3D1015ms (ideal_m=
+s=3D1000ms) cycle_time(min,avg,max)=3D134,222,978 us latency_time(min,avg,m=
+ax)=3D134,222,978
+> us
+> =C2=A0=C2=A0=C2=A0 1: prio=3Dlow sync=3D0 elapsed_ms=3D2009ms (ideal_ms=
+=3D1000ms) cycle_time(min,avg,max)=3D134,215,806 us latency_time(min,avg,ma=
+x)=3D134,215,806 us
+>=20
+> There we have two clients represented in the two respective columns, with
+> their progress logged roughly every 100 milliseconds. The metrics are:
+>=20
+> =C2=A0- pct - Percentage progress of the job submit part
+> =C2=A0- cps - Cycles per second
+> =C2=A0- qd=C2=A0 - Queue depth - number of submitted unfinished jobs
+>=20
+> The cycles per second metric is inherent to the fact that workload
+> patterns are a data driven cycling sequence of:
+>=20
+> =C2=A0- Submit 1..N jobs
+> =C2=A0- Wait for Nth job to finish (optional)
+> =C2=A0- Sleep (optional)
+> =C2=A0- Repeat from start
+>=20
+> In this particular example we have a normal priority and a low priority
+> clients both spamming the scheduler with 8ms jobs with no sync and no
+> sleeping. Hence they build a very deep queues and we can see how the low
+> priority client is completely starved until the normal finishes.
+>=20
+> Note that the PCT and CPS metrics are irrelevant for "unsync" clients
+> since they manage to complete all of their cycles instantaneously.
+>=20
+> A different example would be:
+>=20
+> =C2=A0 Heavy and interactive:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pct1 cps1 qd1;=C2=A0 pct2 cps2 q=
+d2
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0=C2=A0=C2=A0 0ms:=
+=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0 0;=C2=A0=C2=A0 0=
+=C2=A0=C2=A0=C2=A0=C2=A0 0=C2=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 106ms:=C2=A0=C2=
+=A0 5=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 3;=C2=A0=C2=A0 5=C2=A0=C2=A0=
+=C2=A0 40=C2=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 209ms:=C2=A0=C2=
+=A0 9=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 0;=C2=A0=C2=A0 9=C2=A0=C2=A0=
+=C2=A0 40=C2=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 314ms:=C2=A0 14=
+=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0 3;=C2=A0 14=C2=A0=C2=A0=C2=A0 50=C2=
+=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 417ms:=C2=A0 18=
+=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 0;=C2=A0 18=C2=A0=C2=A0=C2=A0 40=C2=
+=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 522ms:=C2=A0 23=
+=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0 3;=C2=A0 23=C2=A0=C2=A0=C2=A0 50=C2=
+=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 625ms:=C2=A0 27=
+=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 0;=C2=A0 27=C2=A0=C2=A0=C2=A0 40=C2=
+=A0=C2=A0=C2=A0 1
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 729ms:=C2=A0 32=
+=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0 0;=C2=A0 32=C2=A0=C2=A0=C2=A0 50=C2=
+=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 833ms:=C2=A0 36=
+=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 1;=C2=A0 36=C2=A0=C2=A0=C2=A0 40=C2=
+=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0=C2=A0 937ms:=C2=A0 40=
+=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 0;=C2=A0 40=C2=A0=C2=A0=C2=A0 40=C2=
+=A0=C2=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1041ms:=C2=A0 45=C2=A0=
+=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0 0;=C2=A0 45=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1146ms:=C2=A0 49=C2=A0=
+=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 1;=C2=A0 49=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=
+=A0=C2=A0 1
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1249ms:=C2=A0 54=C2=A0=
+=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0 0;=C2=A0 54=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1353ms:=C2=A0 58=C2=A0=
+=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 1;=C2=A0 58=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1457ms:=C2=A0 62=C2=A0=
+=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 0;=C2=A0 62=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=
+=A0=C2=A0 1
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1561ms:=C2=A0 67=C2=A0=
+=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0 0;=C2=A0 67=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1665ms:=C2=A0 71=C2=A0=
+=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 1;=C2=A0 71=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1772ms:=C2=A0 76=C2=A0=
+=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0 0;=C2=A0 76=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1877ms:=C2=A0 80=C2=A0=
+=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 1;=C2=A0 80=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 1981ms:=C2=A0 84=C2=A0=
+=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 0;=C2=A0 84=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 2085ms:=C2=A0 89=C2=A0=
+=C2=A0=C2=A0 50=C2=A0=C2=A0=C2=A0 0;=C2=A0 89=C2=A0=C2=A0=C2=A0 50=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 2189ms:=C2=A0 93=C2=A0=
+=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 1;=C2=A0 93=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=
+=A0=C2=A0 0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=C2=A0 2293ms:=C2=A0 97=C2=A0=
+=C2=A0=C2=A0 40=C2=A0=C2=A0=C2=A0 0;=C2=A0 97=C2=A0=C2=A0=C2=A0 40=C2=A0=C2=
+=A0=C2=A0 1
+>=20
+> In this case client one is submitting 3x 2.5ms jobs, waiting for the 3rd
+> and then sleeping for 2.5ms (in effect causing 75% GPU load, minus the
+> overheads). Second client is submitting 1ms jobs, waiting for each to
+> finish and sleeping for 9ms (effective 10% GPU load). Here we can see
+> the PCT and CPS reflecting real progress.
+>=20
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+> =C2=A0drivers/gpu/drm/scheduler/tests/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0.../gpu/drm/scheduler/tests/tests_scheduler.c | 640 +++++++++++++++=
++++
+> =C2=A02 files changed, 642 insertions(+), 1 deletion(-)
+> =C2=A0create mode 100644 drivers/gpu/drm/scheduler/tests/tests_scheduler.=
+c
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/tests/Makefile b/drivers/gpu/drm/s=
+cheduler/tests/Makefile
+> index 5bf707bad373..9ec185fbbc15 100644
+> --- a/drivers/gpu/drm/scheduler/tests/Makefile
+> +++ b/drivers/gpu/drm/scheduler/tests/Makefile
+> @@ -2,6 +2,7 @@
+> =C2=A0
+> =C2=A0drm-sched-tests-y :=3D \
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mock_scheduler.o \
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tests_basic.o
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tests_basic.o \
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tests_scheduler.o
+> =C2=A0
+> =C2=A0obj-$(CONFIG_DRM_SCHED_KUNIT_TEST) +=3D drm-sched-tests.o
+> diff --git a/drivers/gpu/drm/scheduler/tests/tests_scheduler.c b/drivers/=
+gpu/drm/scheduler/tests/tests_scheduler.c
+> new file mode 100644
+> index 000000000000..15c898966ef0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/scheduler/tests/tests_scheduler.c
+> @@ -0,0 +1,640 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (c) 2025 Valve Corporation */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/kthread.h>
+> +#include <linux/ktime.h>
+> +#include <linux/math64.h>
+> +
+> +#include "sched_tests.h"
+> +
+> +/*
+> + * DRM scheduler scheduler tests exercise load balancing decisions ie. e=
+ntity
+> + * selection logic.
+> + */
+> +
+> +static int drm_sched_scheduler_init(struct kunit *test)
+> +{
+> +	struct drm_mock_scheduler *sched;
+> +
+> +	sched =3D drm_mock_sched_new(test, MAX_SCHEDULE_TIMEOUT);
+> +	sched->base.credit_limit =3D 1;
+> +
+> +	test->priv =3D sched;
+> +
+> +	return 0;
+> +}
+> +
+> +static int drm_sched_scheduler_init2(struct kunit *test)
+
+I'm not very convinced of the naming prefixes in this file. They're all
+static, but people might find them through Bootlin or similar and be
+confused.
+
+in tests_basic.c we call all functions drm_sched_basic.
+
+So I'd propose to go for drm_sched_quality here.
+
+> +{
+> +	struct drm_mock_scheduler *sched;
+> +
+> +	sched =3D drm_mock_sched_new(test, MAX_SCHEDULE_TIMEOUT);
+> +	sched->base.credit_limit =3D 2;
+> +
+> +	test->priv =3D sched;
+> +
+> +	return 0;
+> +}
+> +
+> +static void drm_sched_scheduler_exit(struct kunit *test)
+> +{
+> +	struct drm_mock_scheduler *sched =3D test->priv;
+> +
+> +	drm_mock_sched_fini(sched);
+> +}
+> +
+> +static void drm_sched_scheduler_queue_overhead(struct kunit *test)
+
+What queue's overhead is this, actually? Seems to me that it's more the
+scheduler overhead for processing jobs in general.
+
+> +{
+> +	struct drm_mock_scheduler *sched =3D test->priv;
+> +	struct drm_mock_sched_entity *entity;
+> +	const unsigned int job_us =3D 1000;
+> +	const unsigned int jobs =3D 1000;
+> +	const unsigned int total_us =3D jobs * job_us;
+> +	struct drm_mock_sched_job *job, *first;
+> +	ktime_t start, end;
+> +	bool done;
+> +	int i;
+> +
+> +	/*
+> +	 * Deep queue job at a time processing (single credit).
+
+"Measure job-by-job processing overhead time"?
+
+> +	 *
+> +	 * This measures the overhead of picking and processing a job at a time
+> +	 * by comparing the ideal total "GPU" time of all submitted jobs versus
+> +	 * the time actually taken.
+> +	 */
+> +
+> +	KUNIT_ASSERT_EQ(test, sched->base.credit_limit, 1);
+> +
+> +	entity =3D drm_mock_sched_entity_new(test,
+> +					=C2=A0=C2=A0 DRM_SCHED_PRIORITY_NORMAL,
+> +					=C2=A0=C2=A0 sched);
+> +
+> +	for (i =3D 0; i <=3D jobs; i++) {
+> +		job =3D drm_mock_sched_job_new(test, entity);
+> +		if (i =3D=3D 0)
+> +			first =3D job; /* Extra first job blocks the queue */
+
+"Extra"?
+
+> +		else
+> +			drm_mock_sched_job_set_duration_us(job, job_us);
+> +		drm_mock_sched_job_submit(job);
+> +	}
+> +
+> +	done =3D drm_mock_sched_job_wait_scheduled(first, HZ);
+> +	KUNIT_ASSERT_TRUE(test, done);
+> +
+> +	start =3D ktime_get();
+> +	i =3D drm_mock_sched_advance(sched, 1); /* Release the queue */
+> +	KUNIT_ASSERT_EQ(test, i, 1);
+> +
+> +	done =3D drm_mock_sched_job_wait_finished(job,
+> +						usecs_to_jiffies(total_us) * 5);
+
+Why 5?
+
+> +	end =3D ktime_get();
+> +	KUNIT_ASSERT_TRUE(test, done);
+> +
+> +	pr_info("Expected %uus, actual %lldus\n",
+> +		total_us,
+> +		ktime_to_us(ktime_sub(end, start)));
+> +
+> +	drm_mock_sched_entity_free(entity);
+> +}
+> +
+> +static void drm_sched_scheduler_ping_pong(struct kunit *test)
+
+Interesting idea for a test!
+
+> +{
+> +	struct drm_mock_sched_job *job, *first, *prev =3D NULL;
+> +	struct drm_mock_scheduler *sched =3D test->priv;
+> +	struct drm_mock_sched_entity *entity[2];
+
+Setting a define saves you the ARRAY_SIZE. But I don't have a strong
+opinion on that.
+
+> +	const unsigned int job_us =3D 1000;
+> +	const unsigned int jobs =3D 1000;
+> +	const unsigned int total_us =3D jobs * job_us;
+> +	ktime_t start, end;
+> +	bool done;
+> +	int i;
+> +
+> +	/*
+> +	 * Two entitites in inter-dependency chain.
+> +	 *
+> +	 * This measures the overhead of picking and processing a job at a time=
+,
+> +	 * where each job depends on the previous one from the diffferent
+> +	 * entity, by comparing the ideal total "GPU" time of all submitted job=
+s
+> +	 * versus the time actually taken.
+> +	 */
+> +
+> +	KUNIT_ASSERT_EQ(test, sched->base.credit_limit, 1);
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(entity); i++)
+> +		entity[i] =3D drm_mock_sched_entity_new(test,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DRM_SCHED_PRIORITY_NORMAL,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sched);
+> +
+> +	for (i =3D 0; i <=3D jobs; i++) {
+> +		job =3D drm_mock_sched_job_new(test, entity[i & 1]);
+> +		if (i =3D=3D 0)
+> +			first =3D job; /* Extra first job blocks the queue */
+> +		else
+> +			drm_mock_sched_job_set_duration_us(job, job_us);
+> +		if (prev)
+> +			drm_sched_job_add_dependency(&job->base,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0 dma_fence_get(&prev->base.s_fence->finish=
+ed));
+> +		drm_mock_sched_job_submit(job);
+> +		prev =3D job;
+> +	}
+> +
+> +	done =3D drm_mock_sched_job_wait_scheduled(first, HZ);
+> +	KUNIT_ASSERT_TRUE(test, done);
+> +
+> +	start =3D ktime_get();
+> +	i =3D drm_mock_sched_advance(sched, 1); /* Release the queue */
+> +	KUNIT_ASSERT_EQ(test, i, 1);
+> +
+> +	done =3D drm_mock_sched_job_wait_finished(job,
+> +						usecs_to_jiffies(total_us) * 5);
+
+Same. I guess 5 is just "long enough to be finished for sure".
+
+
+> +	end =3D ktime_get();
+> +	KUNIT_ASSERT_TRUE(test, done);
+> +
+> +	pr_info("Expected %uus, actual %lldus\n",
+> +		total_us,
+> +		ktime_to_us(ktime_sub(end, start)));
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(entity); i++)
+> +		drm_mock_sched_entity_free(entity[i]);
+> +}
+> +
+> +static struct kunit_case drm_sched_scheduler_overhead_tests[] =3D {
+> +	KUNIT_CASE_SLOW(drm_sched_scheduler_queue_overhead),
+> +	KUNIT_CASE_SLOW(drm_sched_scheduler_ping_pong),
+> +	{}
+> +};
+> +
+> +static struct kunit_suite drm_sched_scheduler_overhead =3D {
+> +	.name =3D "drm_sched_scheduler_overhead_tests",
+> +	.init =3D drm_sched_scheduler_init,
+> +	.exit =3D drm_sched_scheduler_exit,
+> +	.test_cases =3D drm_sched_scheduler_overhead_tests,
+> +};
+> +
+> +struct drm_sched_client_params {
+> +	enum drm_sched_priority priority;
+> +	unsigned int job_cnt;
+> +	unsigned int job_us;
+> +	unsigned int wait_us;
+> +	bool sync;
+> +};
+
+Struct documentation would be neat. cnt is obvious.. job_us is the
+"payload time" and "wait_us" is.. the time you wait until submitting a
+job? And sync is whether you submit synchronously? Doesn't that then
+imply wait_us =3D=3D 0?
+
+I'm reading as I write; I guess it gets clearer below. But you get the
+point, a few words of docu would help new programmers / reviewers.
+
+> +
+> +struct drm_sched_test_params {
+> +	const char *description;
+> +	struct drm_sched_client_params client[2];
+> +};
+> +
+> +static const struct drm_sched_test_params drm_sched_cases[] =3D {
+> +	{
+> +		.description =3D "Normal and normal",
+
+s/normal/normal prio/
+
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 8000,
+> +			.wait_us =3D 0,
+> +			.sync =3D false,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 8000,
+> +			.wait_us =3D 0,
+> +			.sync =3D false,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "Normal and low",
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 8000,
+> +			.wait_us =3D 0,
+> +			.sync =3D false,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_LOW,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 8000,
+> +			.wait_us =3D 0,
+> +			.sync =3D false,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "High and normal",
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_HIGH,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 8000,
+> +			.wait_us =3D 0,
+> +			.sync =3D false,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 8000,
+> +			.wait_us =3D 0,
+> +			.sync =3D false,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "High and low",
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_HIGH,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 8000,
+> +			.wait_us =3D 0,
+> +			.sync =3D false,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_LOW,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 8000,
+> +			.wait_us =3D 0,
+> +			.sync =3D false,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "50 and 50",
+
+Hm? 50 normal and 50 normal?
+
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 1500,
+> +			.wait_us =3D 1500,
+> +			.sync =3D true,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 2500,
+> +			.wait_us =3D 2500,
+> +			.sync =3D true,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "50 and 50 low",
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 1500,
+> +			.wait_us =3D 1500,
+> +			.sync =3D true,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_LOW,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 2500,
+> +			.wait_us =3D 2500,
+> +			.sync =3D true,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "50 high and 50",
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_HIGH,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 1500,
+> +			.wait_us =3D 1500,
+> +			.sync =3D true,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 2500,
+> +			.wait_us =3D 2500,
+> +			.sync =3D true,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "Low hog and interactive",
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_LOW,
+> +			.job_cnt =3D 3,
+> +			.job_us =3D 2500,
+> +			.wait_us =3D 500,
+> +			.sync =3D false,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 500,
+> +			.wait_us =3D 10000,
+> +			.sync =3D true,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "Heavy and interactive",
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 3,
+> +			.job_us =3D 2500,
+> +			.wait_us =3D 2500,
+> +			.sync =3D true,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 1000,
+> +			.wait_us =3D 9000,
+> +			.sync =3D true,
+> +		},
+> +	},
+> +	{
+> +		.description =3D "Very heavy and interactive",
+> +		.client[0] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 4,
+> +			.job_us =3D 50000,
+> +			.wait_us =3D 1,
+> +			.sync =3D true,
+> +		},
+> +		.client[1] =3D {
+> +			.priority =3D DRM_SCHED_PRIORITY_NORMAL,
+> +			.job_cnt =3D 1,
+> +			.job_us =3D 1000,
+> +			.wait_us =3D 9000,
+> +			.sync =3D true,
+> +		},
+> +	},
+> +};
+> +
+> +static void
+> +drm_sched_desc(const struct drm_sched_test_params *params, char *desc)
+> +{
+> +	strscpy(desc, params->description, KUNIT_PARAM_DESC_SIZE);
+> +}
+> +
+> +KUNIT_ARRAY_PARAM(drm_sched_scheduler_two_clients,
+> +		=C2=A0 drm_sched_cases,
+> +		=C2=A0 drm_sched_desc);
+> +
+> +struct test_client_stats {
+> +	unsigned int min_us;
+> +	unsigned int max_us;
+> +	unsigned long tot_us;
+> +};
+> +
+> +struct test_client {
+> +	struct kunit *test;
+> +
+> +	struct drm_mock_sched_entity	*entity;
+> +
+> +	struct kthread_worker	*worker;
+> +	struct kthread_work	work;
+> +
+> +	unsigned int id;
+> +	ktime_t duration;
+> +
+> +	struct drm_sched_client_params params;
+> +
+> +	ktime_t ideal_duration;
+> +	unsigned int cycles;
+> +	unsigned int cycle;
+> +	ktime_t	start;
+> +	ktime_t	end;
+> +	bool done;
+> +
+> +	struct test_client_stats cycle_time;
+> +	struct test_client_stats latency_time;
+> +};
+
+Same here, docu would be helpful. Especially regarding "cycles". It
+seems to be "cycles per second", if I read the code below correctly.
+
+> +
+> +static void
+> +update_stats(struct test_client_stats *stats, unsigned int us)
+> +{
+> +	if (us > stats->max_us)
+> +		stats->max_us =3D us;
+> +	if (us < stats->min_us)
+
+Won't min_us be initialized to 0? So how could 'us' ever be smaller?
+
+> +		stats->min_us =3D us;
+> +	stats->tot_us +=3D us;
+> +}
+> +
+> +static unsigned int
+> +get_stats_avg(struct test_client_stats *stats, unsigned int cycles)
+> +{
+> +	return div_u64(stats->tot_us, cycles);
+> +}
+> +
+> +static void drm_sched_client_work(struct kthread_work *work)
+
+Why's this called "client_work"? Is it representing the userspace
+client?
+
+> +{
+> +	struct test_client *client =3D container_of(work, typeof(*client), work=
+);
+> +	const long sync_wait =3D MAX_SCHEDULE_TIMEOUT;
+> +	unsigned int cycle, work_us, period_us;
+> +	struct drm_mock_sched_job *job =3D NULL;
+> +
+> +	work_us =3D client->params.job_cnt * client->params.job_us;
+> +	period_us =3D work_us + client->params.wait_us;
+> +	client->cycles =3D
+> +		DIV_ROUND_UP((unsigned int)ktime_to_us(client->duration),
+> +			=C2=A0=C2=A0=C2=A0=C2=A0 period_us);
+> +	client->ideal_duration =3D us_to_ktime(client->cycles * period_us);
+> +
+> +	client->start =3D ktime_get();
+> +
+> +	for (cycle =3D 0; cycle < client->cycles; cycle++) {
+> +		unsigned int batch;
+> +		unsigned long us;
+> +		ktime_t t;
+
+'t' is used at a couple of places below, including when firing the
+WARN_ON_ONCE. I think the name should reveal more clearly what time is
+actually measured here, so that it gets more obvious for what
+conditions you're checking below.
+
+> +
+> +		if (READ_ONCE(client->done))
+> +			break;
+> +
+> +		t =3D ktime_get();
+> +		for (batch =3D 0; batch < client->params.job_cnt; batch++) {
+> +			job =3D drm_mock_sched_job_new(client->test,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0 client->entity);
+> +			drm_mock_sched_job_set_duration_us(job,
+> +							=C2=A0=C2=A0 client->params.job_us);
+> +			drm_mock_sched_job_submit(job);
+> +		}
+> +
+> +		if (client->params.sync)
+> +			drm_mock_sched_job_wait_finished(job, sync_wait);
+> +
+> +		t =3D ktime_sub(ktime_get(), t);
+> +		us =3D ktime_to_us(t);
+> +		update_stats(&client->cycle_time, us);
+> +		if (ktime_to_us(t) >=3D (long)work_us)
+> +			us =3D ktime_to_us(t) - work_us;
+> +		else if (WARN_ON_ONCE(client->params.sync))
+
+See above. For me as a new reader it reads like this:
+
+"if it did not take longer than it should have taken, and if this is
+synchronous, then that's a bug"
+
+> +			us =3D 0;
+> +		update_stats(&client->latency_time, us);
+> +		WRITE_ONCE(client->cycle, cycle);
+> +
+> +		if (READ_ONCE(client->done))
+> +			break;
+> +
+> +		if (client->params.wait_us)
+> +			fsleep(client->params.wait_us);
+> +		else
+> +			cond_resched();
+
+This if-else definitely needs a comment explaining what is being done
+and why. Why do you volunteer the CPU here? The function is about to
+end anyways.
+
+> +	}
+> +
+> +	client->done =3D drm_mock_sched_job_wait_finished(job, sync_wait);
+> +	client->end =3D ktime_get();
+> +}
+> +
+> +static const char *prio_str(enum drm_sched_priority prio)
+> +{
+> +	switch (prio) {
+> +	case DRM_SCHED_PRIORITY_KERNEL:
+> +		return "kernel";
+> +	case DRM_SCHED_PRIORITY_LOW:
+> +		return "low";
+> +	case DRM_SCHED_PRIORITY_NORMAL:
+> +		return "normal";
+> +	case DRM_SCHED_PRIORITY_HIGH:
+> +		return "high";
+> +	default:
+> +		return "???";
+
+s/???/INVALID
+
+> +	}
+> +}
+> +
+> +static void drm_sched_scheduler_two_clients_test(struct kunit *test)
+> +{
+> +	const struct drm_sched_test_params *params =3D test->param_value;
+> +	struct drm_mock_scheduler *sched =3D test->priv;
+> +	struct test_client client[2] =3D { };
+> +	unsigned int prev_cycle[2] =3D { };
+> +	unsigned int i, j;
+> +	ktime_t start;
+> +
+> +	/*
+> +	 * Same job stream from from two clients.
+
+Typo, "from from"
+
+btw it's not super clear what's being tested here by the description /
+names alone. You did test with two entities above in the ping-pong
+example already. So I suppose a "client" is a party owning multiple
+entities?
+
+> +	 */
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(client); i++)
+> +		client[i].entity =3D
+> +			drm_mock_sched_entity_new(test,
+> +						=C2=A0 params->client[i].priority,
+> +						=C2=A0 sched);
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(client); i++) {
+> +		client[i].test =3D test;
+> +		client[i].id =3D i;
+> +		client[i].duration =3D ms_to_ktime(1000);
+> +		client[i].params =3D params->client[i];
+> +		client[i].cycle_time.min_us =3D ~0U;
+> +		client[i].latency_time.min_us =3D ~0U;
+> +		client[i].worker =3D
+> +			kthread_create_worker(0, "%s-%u", __func__, i);
+> +		if (IS_ERR(client[i].worker)) {
+> +			for (j =3D 0; j < i; j++)
+> +				kthread_destroy_worker(client[j].worker);
+> +			KUNIT_FAIL(test, "Failed to create worker!\n");
+> +		}
+> +
+> +		kthread_init_work(&client[i].work, drm_sched_client_work);
+> +	}
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(client); i++)
+> +		kthread_queue_work(client[i].worker, &client[i].work);
+> +
+> +	/*
+> +	 * The clients (workers) can be a mix of async (deep submission queue),
+> +	 * sync (one job at a time), or something in between. Therefore it is
+> +	 * difficult to display a single metric representing their progress.
+> +	 *
+> +	 * Each struct drm_sched_client_params describes the actual submission
+> +	 * pattern which happens in the following steps:
+> +	 *=C2=A0 1. Submit N jobs
+> +	 *=C2=A0 2. Wait for last submitted job to finish
+> +	 *=C2=A0 3. Sleep for U micro-seconds
+> +	 *=C2=A0 4. Goto 1. for C cycles
+
+OK, so this is simulating clients submitting in a burst-like pattern.
+Could it make sense to name the test something with "burst"?
+
+> +	 *
+> +	 * Where number of cycles is calculated to match the target client
+> +	 * duration from the respective struct drm_sched_test_params.
+> +	 *
+> +	 * To asses scheduling behaviour what we output for both clients is:
+> +	 *=C2=A0 - pct: Percentage progress of the jobs submitted
+> +	 *=C2=A0 - cps: "Cycles" per second (where one cycle is one 1.-4. above=
+)
+
+"is one complete submission pattern from the list above"
+
+> +	 *=C2=A0 -=C2=A0 qd: Number of outstanding jobs in the client/entity
+> +	 */
+> +
+> +	start =3D ktime_get();
+> +	pr_info("%s:\n\t=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 pct1 cps1 qd1;=C2=A0 pct2 cps2 qd2\n",
+> +		params->description);
+> +	while (!READ_ONCE(client[0].done) || !READ_ONCE(client[1].done)) {
+
+You probably want write in the documentation of struct test_client what
+'done' does and who sets and reads it. Then it becomes more obvious why
+a READ_ONCE is necessary.
+
+> +		unsigned int pct[2], qd[2], cycle[2], cps[2];
+> +
+> +		for (i =3D 0; i < ARRAY_SIZE(client); i++) {
+> +			qd[i] =3D spsc_queue_count(&client[i].entity->base.job_queue);
+> +			cycle[i] =3D READ_ONCE(client[i].cycle);
+> +			cps[i] =3D DIV_ROUND_UP(1000 * (cycle[i] - prev_cycle[i]),
+
+Now you've lost me. All numbers so far always were microseconds (us).
+To get the cycles per second, don't you have to multiply by 1,000,000?
+
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 100);
+> +			if (client[i].cycles)
+> +				pct[i] =3D DIV_ROUND_UP(100 * (1 + cycle[i]),
+
+Why 100 (here and above) and why +1?
+
+
+--
+
+I want to go through the other patches this week, too. I guess I'll get
+up to speed with the code better in general.
+
+
+P.
+
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 client[i].cycles);
+> +			else
+> +				pct[i] =3D 0;
+> +			prev_cycle[i] =3D cycle[i];
+> +		}
+> +
+> +		if (READ_ONCE(client[0].done))
+> +			pr_info("\t+%6lldms:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ; %3u %5u %4u\n",
+> +				ktime_to_ms(ktime_sub(ktime_get(), start)),
+> +				pct[1], cps[1], qd[1]);
+> +		else if (READ_ONCE(client[1].done))
+> +			pr_info("\t+%6lldms: %3u %5u %4u;\n",
+> +				ktime_to_ms(ktime_sub(ktime_get(), start)),
+> +				pct[0], cps[0], qd[0]);
+> +		else
+> +			pr_info("\t+%6lldms: %3u %5u %4u; %3u %5u %4u\n",
+> +				ktime_to_ms(ktime_sub(ktime_get(), start)),
+> +				pct[0], cps[0], qd[0],
+> +				pct[1], cps[1], qd[1]);
+> +		msleep(100);
+> +	}
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(client); i++) {
+> +		kthread_flush_work(&client[i].work);
+> +		kthread_destroy_worker(client[i].worker);
+> +	}
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(client); i++)
+> +		KUNIT_ASSERT_TRUE(test, client[i].done);
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(client); i++) {
+> +		pr_info("=C2=A0=C2=A0=C2=A0 %u: prio=3D%s sync=3D%u elapsed_ms=3D%lldm=
+s (ideal_ms=3D%lldms) cycle_time(min,avg,max)=3D%u,%u,%u us latency_time(mi=
+n,avg,max)=3D%u,%u,%u us",
+> +			i,
+> +			prio_str(params->client[i].priority),
+> +			params->client[i].sync,
+> +			ktime_to_ms(ktime_sub(client[i].end, client[i].start)),
+> +			ktime_to_ms(client[i].ideal_duration),
+> +			client[i].cycle_time.min_us,
+> +			get_stats_avg(&client[i].cycle_time, client[i].cycles),
+> +			client[i].cycle_time.max_us,
+> +			client[i].latency_time.min_us,
+> +			get_stats_avg(&client[i].latency_time, client[i].cycles),
+> +			client[i].latency_time.max_us);
+> +		drm_mock_sched_entity_free(client[i].entity);
+> +	}
+> +}
+> +
+> +static const struct kunit_attributes drm_sched_scheduler_two_clients_att=
+r =3D {
+> +	.speed =3D KUNIT_SPEED_SLOW,
+> +};
+> +
+> +static struct kunit_case drm_sched_scheduler_two_clients_tests[] =3D {
+> +	KUNIT_CASE_PARAM_ATTR(drm_sched_scheduler_two_clients_test,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_scheduler_two_clients_gen_pa=
+rams,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_scheduler_two_clients_attr),
+> +	{}
+> +};
+> +
+> +static struct kunit_suite drm_sched_scheduler_two_clients1 =3D {
+> +	.name =3D "drm_sched_scheduler_two_clients_one_credit_tests",
+> +	.init =3D drm_sched_scheduler_init,
+> +	.exit =3D drm_sched_scheduler_exit,
+> +	.test_cases =3D drm_sched_scheduler_two_clients_tests,
+> +};
+> +
+> +static struct kunit_suite drm_sched_scheduler_two_clients2 =3D {
+> +	.name =3D "drm_sched_scheduler_two_clients_two_credits_tests",
+> +	.init =3D drm_sched_scheduler_init2,
+> +	.exit =3D drm_sched_scheduler_exit,
+> +	.test_cases =3D drm_sched_scheduler_two_clients_tests,
+> +};
+> +
+> +kunit_test_suites(&drm_sched_scheduler_overhead,
+> +		=C2=A0 &drm_sched_scheduler_two_clients1,
+> +		=C2=A0 &drm_sched_scheduler_two_clients2);
+
