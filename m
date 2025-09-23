@@ -2,79 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F37B95155
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Sep 2025 10:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35CDDB9514F
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Sep 2025 10:54:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CB3910E5A1;
-	Tue, 23 Sep 2025 08:54:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 518C610E5A2;
+	Tue, 23 Sep 2025 08:54:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GaBPtu0S";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="uz4sypnU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94BAF10E4DD
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Sep 2025 18:56:50 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-4694ac46ae0so32164215e9.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Sep 2025 11:56:50 -0700 (PDT)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5142510E397
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Sep 2025 07:17:19 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-46c889b310dso21963505e9.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Sep 2025 00:17:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758567409; x=1759172209; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=eyJq43O++KjLnjYoBP21Xp+znz9y7wC4OFS1xU5rHgk=;
- b=GaBPtu0SyYInqmLNWXilFhM26EIrNv/4IlFajwFcflk+1P6ABZzBg51vfCQFGpdlfi
- sMN4/CFf2kgap0hNUxWFQJUBwil7R3Zd9slDqV+Fvu+vo/39TLdjvWre885t3U83d3Ob
- iIIkVsC605tkh9GsBOb4WaljT//OYcC+uzOMPNVmDgwM9Z6xjIbB4wq/3H4JhR4B4w5c
- fdEfegoLrh2o9ozVwiHQ4EAFDkqQjP84+RTXzPyvqfOFRmbvz5TafwcewZ4IG+qqm6nN
- Drx36Bxunp25tNLd4jOXKMWQ5aUKIXWYJklX/YDd5it+N9ajMoeRYdFtwg0juOSQmwYL
- KkQw==
+ d=linaro.org; s=google; t=1758611838; x=1759216638; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-disposition:mime-version
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Tk1KTmjEF/StHtYaAYWhX1PfLqSHlgVwzyClU3JT/gg=;
+ b=uz4sypnUfBH1NoJVF9wnipPHFaFY/tXXogPaipUll8/iPjkc3pKU7uEnt+6p6I/G4G
+ aKFmtuyl3Xx63sOjhrXrgbQBoFt6p9p/UBz7Ux3EgevNtL5pBuzB4UMZsPPgZIXvTCO2
+ 7h9/ht1V0zTiiyUDClpsPLnHALA5joyDwXb/vLXfdYNVlzEHx/9V+vMqarIs63uJfMAi
+ kQDTVNKG10VgmOBXLfVvF01gRfmDpvpI3zttDZbCAIRp5Os1d5mjsI17wOsObtQ95+sh
+ fuJ2AgWKgQLb9IkBzYDDYU159b+9g3pBRdiLSI0NsZV6rqA2BJSDOtr/+jD/ZQgbQIGi
+ zcKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758567409; x=1759172209;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=eyJq43O++KjLnjYoBP21Xp+znz9y7wC4OFS1xU5rHgk=;
- b=TyyqjOuQFAEWAeUkQvmWNP4dgTLOeVM/acF+92ghONdh0nWr0JnRX6XEx6bj+F5mS4
- mooKGXsc8GGkF5TmvxoJXiTDjTPR6cW4OPYrMWcoqwACVXEMC+m62Ke2g2gJKuGELurZ
- +wq0v8+SGWSgGuCCUAjqAJuUNTDhZvOC6xCpd32pEBDdt5cfNoKvpAbdHWOw61gl4wiM
- zKILWa+0XzqYrFyDPouR8rVWB+so5GR/dejqNna+YP1JQb70f+x9GM+RXRw0HpQs6+34
- JBd8GpqbmGFGHziDpiN4ETIKNRtSTcUwspmVkymCHefSzkKF2dBxuzm8vHwkqejtFjgb
- PyCg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXuh0t3YmUBuq8DvL7QlX6qnXOPwGwZvljocClcY+qG9j/ReIRC8kG+d032uKH7oU6qEo5A0Pno@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwHxqFg1g0NJ1OQkVVnRikV5epdDd1fuEjgM6IjIGBk+YZUHVr4
- 3DNSc6zo+nk8uaP2h4rBSBIa/OVC318xkn+EbkYjCXuZjZhhyW2OWedh
-X-Gm-Gg: ASbGnctz/zt79CMMpn3rD7l+T33xkDmJfpkcNYsaujhGU2i7ZuDTFiJWwr2842qxMk5
- pdalUxrfLaje4r7QTRtky2TkOqVP/jfA76ppM5jUsZdBLlyG0M6IQ0zUXZPW/Zj02S3+0lngcl2
- rC7youssHXcwnaV+uxRD9HgAyYOCQBL99KUBvGQGQ7iWUlVM0gblMaF0HObuStSLyZ4r0MZPYe6
- M1wBZRpkV1DTKHL1HR7Oru8r4NgMC5Gu0omjbPXY/1OUFFf4gW8qRTzJfGjJ2oaS/ZxBR0OuoFN
- TjsccMhDH4XpzXArrM05Uxn25a6/Wf0qN/ZChFlNQ4tYpumHxAprip8uTcrbwTuDScqx884ke9w
- qGvLjnq/Z79SmnD0AaWwWUFT4u039zeE=
-X-Google-Smtp-Source: AGHT+IE2hNAByN1u+WlmeKvdGqq3iQsBllgNjf2IKG0z3jtosjk7L/KvCjfFpn/X7tEHILQPO5GNNQ==
-X-Received: by 2002:a05:600c:45c9:b0:45d:d1a3:ba6a with SMTP id
- 5b1f17b1804b1-467f15d405emr134177295e9.33.1758567408745; 
- Mon, 22 Sep 2025 11:56:48 -0700 (PDT)
-Received: from moktar-desktop.. ([102.31.181.245])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-464f0aac439sm241209755e9.5.2025.09.22.11.56.47
+ d=1e100.net; s=20230601; t=1758611838; x=1759216638;
+ h=content-transfer-encoding:content-disposition:mime-version
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Tk1KTmjEF/StHtYaAYWhX1PfLqSHlgVwzyClU3JT/gg=;
+ b=h0Z/xZBVvpsB4FKMkDl2qYDdMunbntXkQ28NsSXr+QENmh/WxcGH7tM8w7NqZlDJz4
+ jt7PR2gSQ+ASHnhGm0WA0jUDQ3xwh5KsGmsitq8oQZAwJRW5u1ylFyCzVAX8rYq07P9t
+ D8T99quMjE8eNj4BWCrMfcKr6M6v1edOpyxj6l+XxHEVWJMF5xoQtgJuV9U9ixrgRMmC
+ Na1dvfRcN5MJuTQX1oitC+0fcFye6eMkb+nuV8P5M53GtetszY8rqRXMfnGK/IF6VqXc
+ ERL+S6ja3XuEHcQI9ASrq/W1fTemDiDC3OYVpsdoH0FRcKQbFgxdSbuPkdJR+BjsnZHE
+ Qnww==
+X-Gm-Message-State: AOJu0YzufB417FujoEV74e+ws+ihpmy4RETtFF0vlz8lgA5rMOROOuOs
+ S41naivjncTiicc0BtMDPfERNaaEP7b6I5ETaRZfu8eZR5TVUozmyjj7z/7AUBPHYYA=
+X-Gm-Gg: ASbGncs4DbXEKW4ga7lIB9junz4wNTuDOk9cQvdsnrggp7cHY6qwdj6ASBTuSlEyxWN
+ is0wEmz3q5//YuCseM7m+ttZtvrWaG2W8DzdRAO725hmw/r/07blbjXTNrpL5G6fd/iLfZvSaLX
+ HRLidRMiA5WHrh6S0sF5rcCFJPCiUSbOX7y02/kbH0gun8TWtQst0DNVXchvPgyD+e+Hb8WzTz3
+ nYq5UENYqSIHzxWQlQHymzoFT/gBeW5BOJmLXViHITClwE88b4/STVKFhqGgPz+T43cpeNUNj5t
+ jmOPtlUrReYhs3nFY8FDCwQ7DupRDtSUbs+M9Kurw8uX5Y1N5bEcSwPa+dYTpjwLjQdL1Xz7baM
+ WM2VTZSxXbKyghP6rAlg+PlJ2hTxmRWGqTfjRFdM=
+X-Google-Smtp-Source: AGHT+IFAUtJd8NiOdlEVrwVQcpatUx15uopcPJTVP1bCIm7iZyssgPHWNf2VYqBMiJtjfGmTLM2SvQ==
+X-Received: by 2002:a05:600c:470f:b0:458:b8b0:6338 with SMTP id
+ 5b1f17b1804b1-46e1e120c41mr13913665e9.6.1758611837595; 
+ Tue, 23 Sep 2025 00:17:17 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-3ee0740841dsm22760340f8f.23.2025.09.23.00.17.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Sep 2025 11:56:48 -0700 (PDT)
-From: Moktar SELLAMI <smokthar925@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch, Hawking.Zhang@amd.com, tao.zhou1@amd.com,
- lijo.lazar@amd.com, ganglxie@amd.com, victor.skvortsov@amd.com,
- candice.li@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-kernel-mentees@lists.linuxfoundation.org, skhan@linuxfoundation.org,
- david.hunter.linux@gmail.com
-Cc: Moktar SELLAMI <smokthar925@gmail.com>
-Subject: [PATCH] drm/amd/amdgpu: use kmalloc_array instead of kmalloc
-Date: Mon, 22 Sep 2025 19:56:35 +0100
-Message-Id: <20250922185635.50828-1-smokthar925@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ Tue, 23 Sep 2025 00:17:17 -0700 (PDT)
+Date: Tue, 23 Sep 2025 10:17:13 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amdgpu: revert to old status lock handling v3
+Message-ID: <aNJJea-N2V4p-r3z@stanley.mountain>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 23 Sep 2025 08:54:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -91,30 +86,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Replace kmalloc -> kmalloc_array in drm/amd/amdgpu/amdgpu_ras.c .
+Hello Christian König,
 
-As per said in the Documentation/process/deprecated.rst, dynamic size
-calculation should not be performed in memory allocator function
-arguments due to the risk of overflow.
+Commit 59e4405e9ee2 ("drm/amdgpu: revert to old status lock handling
+v3") from Aug 27, 2025 (linux-next), leads to the following Smatch
+static checker warning:
 
-Signed-off-by: Moktar SELLAMI <smokthar925@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+	drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:310 amdgpu_vm_bo_reset_state_machine()
+	warn: iterator used outside loop: 'vm_bo'
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 540817e296da..8dbb9e349a8e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -2566,7 +2566,7 @@ static int amdgpu_ras_badpages_read(struct amdgpu_device *adev,
- 		goto out;
- 	}
- 
--	*bps = kmalloc(sizeof(struct ras_badpage) * data->count, GFP_KERNEL);
-+	*bps = kmalloc_array(data->count, sizeof(struct ras_badpage), GFP_KERNEL);
- 	if (!*bps) {
- 		ret = -ENOMEM;
- 		goto out;
--- 
-2.34.1
+drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+    300 static void amdgpu_vm_bo_reset_state_machine(struct amdgpu_vm *vm)
+    301 {
+    302         struct amdgpu_vm_bo_base *vm_bo, *tmp;
+    303 
+    304         spin_lock(&vm->invalidated_lock);
+    305         list_splice_init(&vm->done, &vm->invalidated);
+    306         list_for_each_entry(vm_bo, &vm->invalidated, vm_status)
+    307                 vm_bo->moved = true;
+    308         spin_unlock(&vm->invalidated_lock);
+    309 
+--> 310         amdgpu_vm_assert_locked(vm_bo->vm);
+                                        ^^^^^
+vm_bo is an invalid pointer at this point.  We exited the loop without
+hitting a break.
 
+    311         list_for_each_entry_safe(vm_bo, tmp, &vm->idle, vm_status) {
+    312                 struct amdgpu_bo *bo = vm_bo->bo;
+    313 
+    314                 vm_bo->moved = true;
+    315                 if (!bo || bo->tbo.type != ttm_bo_type_kernel)
+    316                         list_move(&vm_bo->vm_status, &vm_bo->vm->moved);
+    317                 else if (bo->parent)
+    318                         list_move(&vm_bo->vm_status, &vm_bo->vm->relocated);
+    319         }
+    320 }
+
+regards,
+dan carpenter
