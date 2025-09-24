@@ -2,46 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02F77B9AD48
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 18:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E39AAB9AD4E
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 18:16:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27EF910E140;
-	Wed, 24 Sep 2025 16:16:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87AE810E76D;
+	Wed, 24 Sep 2025 16:16:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BkN2j02z";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IAUQo4Ob";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010071.outbound.protection.outlook.com
- [52.101.193.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 649B610E140
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 16:16:47 +0000 (UTC)
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012018.outbound.protection.outlook.com [40.107.209.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BFEC10E248
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 16:16:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xGN/yN1xXudIkaIKLAkIaOY/a4TwRSkfcqAy1UOFtJn3Ac/Q5XS4YXXzHolTNlC0AcLd39+iwwr1JlhzQfRunDJ5XckvK3RC4GR0YjphvpOJjp9dV0hasqMm/7umR0rD8/Ru9N1dDwYBUHHty2Py78KeMflxiBoVcqBLYpTakEYtQMgYFCHRAUviJL8Hxmnyht7D7liich8kX5BU84yh5o+g/QKblHZSGlzugY2ToHGK/z17w9upLHd9/r3F0/aGHts/QoU49SZQgSszRm8vJK73X07OuGC8Q9HoqvgrmZTvr1q5s/dYhQgGPQBh+NLbvtKs/zjLTcDQ1L9xeQoLFg==
+ b=IBANbzWOQz8lPnlGhNz5PYkZG4Vbxw+xjfc0oyvE6lCyPuSt8wlnaZ12Gt6meZC7xuCvpVxMKsehiOUiGELGHqx6cqI+h9NiC4MU0gm3W+wUNGI+AHuoQReAp6lAQJUCsNr6kog7BshgcJJEZbwIJsYFUmV5B3BPUy+5f8W5pkTrln0tnqzlVDNkMiukwLUc6rJlFrSDDA+oxxmkCyyOrrYoKXVE6oAsl49g8xbmsQ+uDSmzZFsW2iYlxJbdhdxYFWvuS2bBkzlW8AwLXsCHDVwpkG6EX72jg8a+obMD7VpoD7KqL8KApIQfzPB2aIcf/J4SOxPizbxTMC4wpEh8OQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JCOHtNnBk7tV+VCzQY4btxXnSAHAXLa4y72E+4DxBtI=;
- b=xJM3ZHS23TAM+6dO7WteYnvWcZzjUj/1rczaunp7ei5infH5SS8wzHQD21lxszUkTAD1YopOHV2WsMFzk820fx15Ja29xBwVv7eiNbtFQa/X1hfV4DMj/ozzjll9mkxLiEM17evBDJzC1B3IkLKyM8DjAfIPpSXwOjMxmQM9vkQ+pfl7DzRkRxf9svMWXsmkpTitmOtRjkO9Lae0YDWwJIuxeo83FgtJhYHOk4rGmGK0yY4u7NnkrLPwag69AO6txv2B8nAUmKS2RPkMY/QzbMGKzQ0pSFnsYNz+YRfCzdcwWJ/6/9v8ClcLVuRbzWFv01Jy33aYwKFHrY2kBxBUZA==
+ bh=ckDq/M7HUtucSNsfjgUWt2aUpSKH5yvVwG3NvVe4E90=;
+ b=jE6RekCwE3RfUYKlI3oVGViYtc22u+Tkz74NBmrk0rvcJDYY2HYk4bZ98mehAIpleYWrR6tRhqhorRzcuBHX1rDpWQcjIRRO2jiXqbbYp/EbYIG98VWrUpCvCG2zAAxSXRaDAp1ALkCRxhu/qD4RQIorfUDLueX+I8gX6cdjFfUDHrNd/UszOCph/dJKVmyyiwDb9lPC2KgMZ+ub/0kQXXBNvdryGWcEJKEHdCfvSJu8KitXckIWt0nW1ZutEITcX43LE59/0Pu1KMZUGTUEm9kg7974DCn95pYWPQiumb29jMIuhPPEldPssJYl8Qo29ah3UbccDU1bjzmZ5u00Lg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JCOHtNnBk7tV+VCzQY4btxXnSAHAXLa4y72E+4DxBtI=;
- b=BkN2j02zgBeTx7EV9qH8gv9pW55y6v6QudgKQZpWPH0woUM6H21tlhJEz7hc8DsgTrwb9KugGCsQ8R6Y+3faaNeKVI+M//i4gytGUvLA4QJ2nkqdwJv3LgnlqesKzVVLtKXIthanfbTVJJSShv/P9z2QPhotcfHOdzrk2syfQls=
-Received: from CYZPR11CA0021.namprd11.prod.outlook.com (2603:10b6:930:8d::17)
- by CH1PPFC8B3B7859.namprd12.prod.outlook.com
- (2603:10b6:61f:fc00::622) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.23; Wed, 24 Sep
- 2025 16:16:44 +0000
+ bh=ckDq/M7HUtucSNsfjgUWt2aUpSKH5yvVwG3NvVe4E90=;
+ b=IAUQo4ObaeWishZuyd2PO1w//ORN2rdWzxOBoPtmlgSh4A/m1EmjGc3YWNHBsVf8up1pxMOZ9RGKeSo2HLaYqUCXI2QnJCY3YrMeYkX/obbYW90IoHv24gksIUhey+7l68JPF+sV07/6Ehl2lxQ9Xo/20XxwRzZjeo+rT36BoP0=
+Received: from CYZPR11CA0007.namprd11.prod.outlook.com (2603:10b6:930:8d::29)
+ by MN0PR12MB5859.namprd12.prod.outlook.com (2603:10b6:208:37a::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Wed, 24 Sep
+ 2025 16:16:45 +0000
 Received: from CY4PEPF0000EE39.namprd03.prod.outlook.com
- (2603:10b6:930:8d:cafe::6b) by CYZPR11CA0021.outlook.office365.com
- (2603:10b6:930:8d::17) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:930:8d:cafe::ff) by CYZPR11CA0007.outlook.office365.com
+ (2603:10b6:930:8d::29) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.21 via Frontend Transport; Wed,
- 24 Sep 2025 16:16:43 +0000
+ 24 Sep 2025 16:16:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,7 +50,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  CY4PEPF0000EE39.mail.protection.outlook.com (10.167.242.11) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9160.9 via Frontend Transport; Wed, 24 Sep 2025 16:16:43 +0000
+ 15.20.9160.9 via Frontend Transport; Wed, 24 Sep 2025 16:16:45 +0000
 Received: from dogwood-dvt-marlim.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -59,10 +58,12 @@ Received: from dogwood-dvt-marlim.amd.com (10.180.168.240) by
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <mario.limonciello@amd.com>, <amd-gfx@lists.freedesktop.org>
 CC: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 0/5] Adjustments to common mode behavior
-Date: Wed, 24 Sep 2025 11:16:19 -0500
-Message-ID: <20250924161624.1975819-1-mario.limonciello@amd.com>
+Subject: [PATCH 1/5] drm/amd/display: Only enable common modes for eDP and LVDS
+Date: Wed, 24 Sep 2025 11:16:20 -0500
+Message-ID: <20250924161624.1975819-2-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250924161624.1975819-1-mario.limonciello@amd.com>
+References: <20250924161624.1975819-1-mario.limonciello@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
@@ -71,61 +72,61 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|CH1PPFC8B3B7859:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f34a3b9-62aa-473e-202e-08ddfb85c03e
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|MN0PR12MB5859:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c3e7fa2-51b0-4364-0166-08ddfb85c195
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?c2JEOW15WEMvdzFMdkl3MGQvQzdoclRVTzVQOE9HbGI4OWV6amRQNkRyd0VW?=
- =?utf-8?B?eUQ3UGZaMnZVMVBlaWVMRkQ0OSt2alZNRS9LN3JDUzl0bzhSYm1CK3Y0cWgr?=
- =?utf-8?B?ZjQ5ZGQwUk9uc3d6c2MrU0d4bittRHRRVkxGM2JOanI5UEg5VXViVWpqUDhp?=
- =?utf-8?B?NVNYWDFnMHB6ekk3anlYKzgyTTBaeG1tUlhaUzhEeEZxUEFOUGhXL1hpMWpv?=
- =?utf-8?B?UlMzNlFJVE8yWlVoSi8zZUVPc1Z6bjVZK1V2RElIaUtJYlYrbUNHR1hPVjda?=
- =?utf-8?B?Y04yMCtpNXBPdXBsQXRJUEZTSlpQczNxNXlXb05WZHdjRU5lekZVYnFSZFRl?=
- =?utf-8?B?OU1FQVlRbGdOdFJkVTFlczV2Z0lkYnBNQXM4U1EyN0x4RkhCRHMvSUFUMnJt?=
- =?utf-8?B?Rm1BY0JoaUNPYVR2RXFLVjBrMEpYOTdTQVU5cjNSMys4Sk8yWHJHdnhZelN0?=
- =?utf-8?B?dW9PV25sRTRaUXU4aFBvUTRIMkl2NXhMcXBCZHRaUjZ1dFN4MjVLUGUyWnhY?=
- =?utf-8?B?NXlXdDI4QWZWYzExNVE5TG5MZXc1dkFockxmOHpIa0pMS0lzeFFIL0thQTdZ?=
- =?utf-8?B?QlMzdUFJVUJCM1lHNnZ1WEdGTWFUS2NjY3NncExkNURDSy9nbENzcVJha0tu?=
- =?utf-8?B?OUdJVlUrRG9URnN1Nmg3ZWpwYkphUzhpbElzY3pDUFRwOXVoS0kxOXRjZlBW?=
- =?utf-8?B?N0N4NU8weEJsM2hwZUp0ODI3VWxXZWRFN0V6cHR5WEc5UHladG1SNjVtSHh6?=
- =?utf-8?B?T3h0SFRmekYwOWtDaUxKUUhWeHFnS2creVloOUdWYUVnaFJPUXR2UmtPN3Qx?=
- =?utf-8?B?Q0ExYXNTRzNYZWlrZ0ZtcVhTNE5DNU5MWWhkdEVyOXUzRWhNazdFTWJ3blB4?=
- =?utf-8?B?ZVp1cm52RmozNUl2V3Q2U2FJSTdncld1UVZmaTVveWNlNEE5QzZiNFhOeHAz?=
- =?utf-8?B?TkxOUkJLYzNqWGwrZW9Cc20wWm14bnlERjdiOFhVOVZQRjJadVVnaytiS0cx?=
- =?utf-8?B?elJIZ2szZmEydHl5L3JyekFnZ2U5bGZSZnhuaHVXK3VIWkNCc2pPYlBZQ0tp?=
- =?utf-8?B?d2RNaWVFV3o5K2x6UkllejR3aEMxV0ZYRUxDUkNIc1FEUWRpR01iYk5tSG9S?=
- =?utf-8?B?TXorYUNRK3NOUXY3SnBWV3prRzZPMVo4Wk1NVmtKS2pVUlBPNytHeGhBaWpN?=
- =?utf-8?B?QVgzQVliNDJwNmxVN1VXZ3dNQ3lvazlpbjhwYnlWWnI5UnNNd3NFMm5Mem5k?=
- =?utf-8?B?Nm1TTWkyYnBzeXlOditiUTlXMTlRcTNtVVNLQk0xVUNUYlp4UCtSQUluVzlt?=
- =?utf-8?B?Zy9zKzhaREtZUVNWQ0cyZEp0clppaDBrTFZyM2dRUnV3NW42WEVScTBKZ1FT?=
- =?utf-8?B?dFN3djVaWXJZSFZjeEpCNzlpM3BWenNVWnEwQ0o4eStxSFdTN3pIWXhRanhP?=
- =?utf-8?B?ZDJwdFN5ZDBnOG1NUUpzT2hscFdQdnc4Q2ZQeHk0S0twVFJYOEUwaDFiN1Yr?=
- =?utf-8?B?Y1QxdDUxYndtVVFOZFpnRkpTeFFvQVJobFhXMm1vZ042Ty9hTXAyQnljWkVm?=
- =?utf-8?B?K21kS1RuNlRWK1pwUDZIYW4xclRnb0greCtmRHVzT2I3aCtXNW9DNW1aRGJD?=
- =?utf-8?B?ZEtweVZ3ODNjSzlPUXBrTXhGb01HcFN0NUVsajdSVkxmYm4xSm5mTnJEd0pt?=
- =?utf-8?B?TjRHMzN1L3FEUTU1YmlaMlc1bjl1anhuSG5Uajk2RXJzNDR3WlFJdTJob2Q0?=
- =?utf-8?B?a3g1cmQyMFpzMVJzekVGaWpRd3E0czBoVXRHOTNwOEQrQVFxS3E1a3B6VUds?=
- =?utf-8?B?R0F0VG1tZ09FRzUrQ2ZhenJKcUY3eXRFMjFaSDlUTUNiUXF6aHp5dThSVEx1?=
- =?utf-8?B?UklSdUFOSUdyQzlwTmhvS2svbk9RSmRUYTdNOExieXhxL2lLWCtLbHp2cjZ6?=
- =?utf-8?B?dHVtZm9IMWNDVDBlWm5Wa3JJemg5OFZDWnpaYWpLRkoyTUhjZEVIa0Z5Q3Jn?=
- =?utf-8?B?OUNqRzJqMlcyNktEYnIra1lnN3R0ZW9jNlUyaE82bjgwMGJqUWNUb1VKSEU1?=
- =?utf-8?Q?R14zyn?=
+ ARA:13230040|82310400026|376014|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dDdQQjlSbTQweFNVQ0ovZVZkc054RHVrRDh6Z0VHdm85K1FhZEFVVXlCbmZ2?=
+ =?utf-8?B?Q1p1SDJhanY1bkJFc2ppOXJHMUVRQnB5Q1R4NFBkcy95QllNMG9CQ1F3MUpo?=
+ =?utf-8?B?elRGNVVKUW9KT2x1UWNGSVNTaU1lVTJyV2FNVmJPaW9pNzZ5K1NEWFBzNzd6?=
+ =?utf-8?B?b2JRblprSGppdUY1RWFxSlhpbDRBU3RtNUZpK2h4OGpSTCttVjVLdjVXUlhY?=
+ =?utf-8?B?ZDRDYkNxeXZrNUdhTXNOWndYSU11TjBZS01zcGdmaG1HLzE0SEJaVitadnVx?=
+ =?utf-8?B?Ym5rMEh3dlZjK3NTeU5vbjVDMWxSa0JYa1VwTnZtZUtlMjlQbXhHRE5JaGY4?=
+ =?utf-8?B?M0FET0tvdkxnVjFMNTJyOTRCOGZ5THd3bDY4SnZlZFh6cG9YdmJNRlhuUVEr?=
+ =?utf-8?B?SUdkVjVreWtqU2tYWGhaU3NOcXNOSTZ0azFyZTVzMENUWUZzVjFMbTVpSHhE?=
+ =?utf-8?B?T05Qb3ptd2VabU5STm1DNU43ZzdjMzg1VVc2Nkc0MWRZWmtneFFCVHQ2ek15?=
+ =?utf-8?B?NmF3SFc3UWNKdE9TWEtlVmlveVRiRXVTYVN2V0lzdnZySWtBemF1Yk9sZGRQ?=
+ =?utf-8?B?aCtSN0dYOUd3SElxeG1LVVdoM0ZpaE94OVkvQkQvTTIzMlplVStSZUxacVR4?=
+ =?utf-8?B?QitRWktjZXFxS1Fzb1ZXUExad2dUOVZ4UFRNc0wveEZDZXY4aEcrdENtczc2?=
+ =?utf-8?B?aFNYRlNQUEh3aXUxekdIeEJ6M0t3V0xoWGRpbUFWZDRWVmJ6TVZwbWZSdXli?=
+ =?utf-8?B?aDBHRFEyNXZBbWx0Q2ZSOWdYU3VKWGp6alpBek13aXZzQitLM0FZeXozMW9s?=
+ =?utf-8?B?aEptZ0syV0hrRE9NYVplRUJkTDNIZGVOWlF6KzdHelhRclJaSFpRN09CVVg3?=
+ =?utf-8?B?YW8yYUVsZTJJd01mU2NZcHphZEVyOGtrcHNWWXY5bGI3L0FYSHRBT1VqMUhH?=
+ =?utf-8?B?OXhnWW1wVVM5d0RENXFFOEJsYjNnWmQwWmNNd1FCbngrd0pWUTQybmJwbThS?=
+ =?utf-8?B?dGREYUJ4Wm5TM0hqVmpENTgrTDJSbGRCdVZ4WDBWYkJiU05UVm8zQXl1eFMx?=
+ =?utf-8?B?N1M2Y1gvcGpKK0daQjJBRy9aMVpoNmZpMmJ5b1dwbzhDTmp2aWVpL3p6eWZq?=
+ =?utf-8?B?S1B6NTh6OWhqWEhLczVvRjJtSmFYb0x3V0ZTNmJDWmtobHZHUjc3bFAvKyth?=
+ =?utf-8?B?N2RwR3FVaWNOUDJQN2d6dE1aNFJpRmlNTTJhbmJMK3B3dmx1QVNRdndjY0t2?=
+ =?utf-8?B?cmpIUm5BemRMS3lJNEhsVzZCZDZ5dGZJS1Z4YnBsclJmbWRCWEtCTGwyUWcr?=
+ =?utf-8?B?cFFhZ1Y1Zm9NbG1XcThvazdGRFdvM05aVk9KdUtiTlczSTBIeWlkcVFKOFhT?=
+ =?utf-8?B?dnJwRjYrZUF6cUNzVGhTZXpTL2xPNUozeTN4NjdwaUJ2RGhBTDZId1Jhaks5?=
+ =?utf-8?B?TWZkMDVtWXZqYitTRDFtNVRMbHpsa2gySDkyZTBhZmVaUHNLSWh0T3JFbVhC?=
+ =?utf-8?B?SGhqT1o0VW5vWElITW1VNXBSUzAvRGZieVpxVUFUbDJ4U2dEOHVIbWlnTFo4?=
+ =?utf-8?B?azRQMXpFNlNtMmU1T0NMNEJJNTR5a2NBOUtuYW0xUTVGaHdGSEg3LzhwdUlO?=
+ =?utf-8?B?VlJET2ZFRllqUGNvZjBlaFIyQU9NNWtqb0tUTWZsOGtiUGxZbWRubDVLUG1v?=
+ =?utf-8?B?Q3l3eUhkbjl4WTdrdUx6Wkw1ckZ2NUN2YTA4aFJPS05GeStPRlVmRFdhc2JL?=
+ =?utf-8?B?eDl4NTBMc1dxTmpTdmxjUFBaTDlwbjFWeC9EdGszMHVnMk9RaG56TEx2WkVs?=
+ =?utf-8?B?NnNNcytqQWNBWFVjME0wdlZkNzBaVHZnNnUxbWdlTXVaZGF6L09KRUxQY3ho?=
+ =?utf-8?B?OXlpZ1duV1VYMXh2SENjTUpON3R0bllSbDk1MytwWVNBbG51bmlycm5tR21l?=
+ =?utf-8?B?TTFpaExVUHpEZEVmZm1RM1lYK1UwTnY1UWhBM1NMcldMOTQ0elg0cmxJSG5p?=
+ =?utf-8?B?RnBRRUowWUxrdkVwdU9OaDNiNnMxZktHUUdVMjlNa3gwYWlNYjIvUXpvejVH?=
+ =?utf-8?Q?+WtbL2?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2025 16:16:43.0126 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f34a3b9-62aa-473e-202e-08ddfb85c03e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2025 16:16:45.2601 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c3e7fa2-51b0-4364-0166-08ddfb85c195
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE39.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PPFC8B3B7859
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5859
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,26 +141,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As part of enablement for SI and CIK in DC Timur pointed out some
-differences in behavior for common mode handling for DC vs non DC
-code paths. This series lines up the behavior between the two
-implementations.
+[Why]
+The main reason common modes are added is for compatibility with
+clone mode when a laptop is connected to a projector or external
+monitor.  Since commit 978fa2f6d0b12 ("drm/amd/display: Use scaling
+for non-native resolutions on eDP") when non-native modes are picked
+for eDP the GPU scalar will be used.  This is because it is inconsistent
+whether eDP panels have the capability to actually drive non-native
+resolutions. With panels connected to other connectors this limitation
+generally doesn't exist as we the EDID will advertise support for a
+number of resolutions and monitors will use built in scaling hardware.
 
-Cc: Timur Kristóf <timur.kristof@gmail.com>
+Comparing DC and non-DC code paths the non-DC code path only adds
+common modes for LVDS and eDP whereas the DC codepath does it for
+all connector types.
 
-Mario Limonciello (5):
-  drm/amd/display: Only enable common modes for eDP and LVDS
-  drm/amd: Drop unnecessary check in amdgpu_connector_add_common_modes()
-  drm/amd: Use dynamic array size declaration for
-    amdgpu_connector_add_common_modes()
-  drm/amd: Drop some common modes from
-    amdgpu_connector_add_common_modes()
-  drm/amd: Add name to modes from amdgpu_connector_add_common_modes()
+In the past there was an experiment done to disable common mode adding
+for eDP and LVDS from commit 6d396e7ac1ce3 ("drm/amd/display: Disable
+common modes for LVDS") and commit 7948afb46af92 ("drm/amd/display:
+Disable common modes for eDP") but this was reverted in
+commit a8b79b09185de ("drm/amd: Re-enable common modes for eDP and
+LVDS") because it caused problems with Xorg.
 
- .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 41 +++++++++----------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 ++
- 2 files changed, 23 insertions(+), 22 deletions(-)
+[How]
+Only add common modes for eDP and LVDS for DC, matching the behavior
+of non-DC.
 
+Suggested-by: Timur Kristóf <timur.kristof@gmail.com>
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 97d9eba17963..5a05ee6746af 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -8151,6 +8151,10 @@ static void amdgpu_dm_connector_add_common_modes(struct drm_encoder *encoder,
+ 		{"1920x1200", 1920, 1200}
+ 	};
+ 
++	if ((connector->connector_type != DRM_MODE_CONNECTOR_eDP) &&
++	    (connector->connector_type != DRM_MODE_CONNECTOR_LVDS))
++		return;
++
+ 	n = ARRAY_SIZE(common_modes);
+ 
+ 	for (i = 0; i < n; i++) {
 -- 
 2.51.0
 
