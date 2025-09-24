@@ -2,34 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 317D4B9C322
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 22:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF2A2B9C331
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 22:52:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8532A10E7EA;
-	Wed, 24 Sep 2025 20:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9267C10E7EC;
+	Wed, 24 Sep 2025 20:52:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aMGd07aQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GQUxsUrr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0E2710E7EA
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 20:52:21 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D83E10E7EA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 20:52:22 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 332E6602A1;
+ by sea.source.kernel.org (Postfix) with ESMTP id EAD3D44F28;
  Wed, 24 Sep 2025 20:52:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 325FAC113CF;
- Wed, 24 Sep 2025 20:52:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26627C4CEF4;
+ Wed, 24 Sep 2025 20:52:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758747140;
- bh=1Y660VnpdTnvypQovi/8hf/y/7qhkU6Jm967mJShmfI=;
+ s=k20201202; t=1758747141;
+ bh=zgIesB5VznBypz3VkissfWZh/qWJnK9VZ6cGxonMczo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=aMGd07aQfrE5B+Xw9W6d5XwXycDSludKA/eYhNBflJsIwXM3Yo5zHNRHfiwyK3n8a
- dJantFjbHLN9pVEJI4TKdCm1W1fd7KjYeQrl/guOUim5Wx89LDMZBxBnvxCnZ6MebF
- bY7wu+fAJ3rMMU+V+H9HOZnBR3FUrLSzqTKEDNSgb6IFjsMmBq+mnlvqf0oyOCFbEY
- pW57459neXCPUgNzSl5tgr+bRUHPnqUaOFW2tzbn7h99fRZEWd+m7vXhxyl6byYkox
- 3DqmM7OpzvkchJ5YSL1O4SpjWW9O/KEmMZX7N4v9p4lw6rJvlrefi5ZiTBjvScFYmW
- 96Ip3Te0m3I0Q==
+ b=GQUxsUrrkU0H8zKKfk1JwOQHiDQWqxdAO3JYu//TMICRitobcgj5bxDJp4Lp6/Cqv
+ jyUg6mF/1O2jaTSg4mp4kzHjItkiOvrqrOO1kX/P+vq/enihrkkh/Rro+WFev3uHmc
+ 8MrbWdxs5RmZxp+6dVzSVoVHCzpwYfW2eBYAxdWdXQAUBUkrrJr8QtBKWI5dWnLfb3
+ q1wxB9jEHCiKpsTSlQ0bu4hfh27P2RZ1jf18EcjAHhDRQsU/Ty/YucbUNzlkrb1oGY
+ 12jqhPg1uJ0YgOws/S+hxm41RuqCCjBP0t3fBDnN/GsbJ8h5Ptl2INZuqeLoSbFkFk
+ dOrqxB4D+wHcQ==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: Alex Deucher <alexander.deucher@amd.com>,
  "Rafael J . Wysocki" <rafael@kernel.org>
@@ -38,9 +38,9 @@ Cc: Samuel Zhang <guoqing.zhang@amd.com>,
  linux-pm@vger.kernel.org (open list:HIBERNATION (aka Software Suspend,
  aka swsusp)), Mario Limonciello <superm1@kernel.org>,
  Ionut Nechita <ionut_n2001@yahoo.com>
-Subject: [PATCH 2/3] PM: hibernate: Add pm_hibernation_mode_is_suspend()
-Date: Wed, 24 Sep 2025 15:52:10 -0500
-Message-ID: <20250924205211.1059571-3-superm1@kernel.org>
+Subject: [PATCH 3/3] drm/amd: Fix hybrid sleep
+Date: Wed, 24 Sep 2025 15:52:11 -0500
+Message-ID: <20250924205211.1059571-4-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250924205211.1059571-1-superm1@kernel.org>
 References: <20250924205211.1059571-1-superm1@kernel.org>
@@ -60,60 +60,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Some drivers have different flows for hibernation and suspend. If
-the driver opportunistically will skip thaw() then it needs a hint
-to know what is happening after the hibernate.
+[Why]
+commit 530694f54dd5e ("drm/amdgpu: do not resume device in thaw for
+normal hibernation") optimized the flow for systems that are going
+into S4 where the power would be turned off.  Basically the thaw()
+callback wouldn't resume the device if the hibernation image was
+successfully created since the system would be powered off.
 
-Introduce a new symbol pm_hibernation_mode_is_suspend() that drivers
-can call to determine if suspending the system for this purpose.
+This however isn't the correct flow for a system entering into
+s0i3 after the hibernation image is created.  Some of the amdgpu
+callbacks have different behavior depending upon the intended
+state of the suspend.
 
+[How]
+Use pm_hibernation_mode_is_suspend() as an input to decide whether
+to run resume during thaw() callback.
+
+Reported-by: Ionut Nechita <ionut_n2001@yahoo.com>
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4573
 Tested-by: Ionut Nechita <ionut_n2001@yahoo.com>
+Fixes: 530694f54dd5e ("drm/amdgpu: do not resume device in thaw for normal hibernation")
 Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
- include/linux/suspend.h  | 2 ++
- kernel/power/hibernate.c | 9 +++++++++
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/linux/suspend.h b/include/linux/suspend.h
-index 317ae31e89b3..4b11efd68729 100644
---- a/include/linux/suspend.h
-+++ b/include/linux/suspend.h
-@@ -479,6 +479,7 @@ extern void unlock_system_sleep(unsigned int);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 395c6be901ce..dcea66aadfa3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -2665,7 +2665,7 @@ static int amdgpu_pmops_thaw(struct device *dev)
+ 	struct drm_device *drm_dev = dev_get_drvdata(dev);
  
- extern bool pm_sleep_transition_in_progress(void);
- bool pm_hibernate_is_recovering(void);
-+bool pm_hibernation_mode_is_suspend(void);
+ 	/* do not resume device if it's normal hibernation */
+-	if (!pm_hibernate_is_recovering())
++	if (!pm_hibernate_is_recovering() && !pm_hibernation_mode_is_suspend())
+ 		return 0;
  
- #else /* !CONFIG_PM_SLEEP */
- 
-@@ -513,6 +514,7 @@ static inline void unlock_system_sleep(unsigned int flags) {}
- 
- static inline bool pm_sleep_transition_in_progress(void) { return false; }
- static inline bool pm_hibernate_is_recovering(void) { return false; }
-+static inline bool pm_hibernation_mode_is_suspend(void) { return false; }
- 
- #endif /* !CONFIG_PM_SLEEP */
- 
-diff --git a/kernel/power/hibernate.c b/kernel/power/hibernate.c
-index 1defe8081e64..a991a1362d77 100644
---- a/kernel/power/hibernate.c
-+++ b/kernel/power/hibernate.c
-@@ -80,6 +80,15 @@ static const struct platform_hibernation_ops *hibernation_ops;
- 
- static atomic_t hibernate_atomic = ATOMIC_INIT(1);
- 
-+/**
-+ * pm_hibernation_mode_is_suspend - Check if hibernation has been set to suspend
-+ */
-+bool pm_hibernation_mode_is_suspend(void)
-+{
-+	return hibernation_mode == HIBERNATION_SUSPEND;
-+}
-+EXPORT_SYMBOL_GPL(pm_hibernation_mode_is_suspend);
-+
- bool hibernate_acquire(void)
- {
- 	return atomic_add_unless(&hibernate_atomic, -1, 0);
+ 	return amdgpu_device_resume(drm_dev, true);
 -- 
 2.51.0
 
