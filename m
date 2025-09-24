@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A53B9B6F1
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 20:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D27F2B9B70C
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 20:22:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3292510E0B8;
-	Wed, 24 Sep 2025 18:22:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E67E10E7B7;
+	Wed, 24 Sep 2025 18:22:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kBH0h6GR";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="F94IuvHG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010037.outbound.protection.outlook.com [52.101.46.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6899610E0B8
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 18:22:27 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010015.outbound.protection.outlook.com [52.101.61.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 961B710E7B5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 18:22:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=noy0mZr8mCcXIfps7LBhBbWvDxWwyBYveaK9ITkDGWkY1o/C/gRy/VoFmE8oHhE/uwzKC3mLMiboA3bUynFCiHJ/fUyLyAXDCI/voVMvuZorBekP6VOOtA7QGJgeowgWJwJjzDhqIJ3zg1o8opfmjbS7TwaTBggqQU+jI6ocN50bI9u+BYc4bU56FyK2aqm5ZOiGdQDvOZ1i4k5yBo1XAZd2d6k0XuMz3nbk4lShGDVPdJzHJdi7rvNVfWNsrdiJRroqxzQo+d6hFONVmHv2vPBzTvmzIOaOXKaIhuJmRoSDWNtN38QrDPkRoqXFI3OGsQ1xHX2y8JZJSas0XBgzzA==
+ b=s2W4IgmzbG1cAXA0OKzLDKnnRWLDeB6zeJLmS5XjURHvglINbmJG7jz8R4rxWMW937rFftTW1pnoeJbJzgfuoeM31/hnsxYGi57inhwlUzpX7AtcCWkXJvudN3zNjG+phGQj1DDDLa/9WY9rGEPHRvw7RuBjWNJz4JP1yXzUGX7LDEZOyDNZSByZ25P9U9nFA2JGNNXWgKpXuJ5Jh1qwXGnjXY1IGJ58orruuXsUY3dxpDYFZqHOfeMaWfu+86S37+TejnjtT0Y/ML1ej0Os6DRzGfV/fjxOnCdSCntNBNU+0AChWZowwnp0uYtHurH0hs0dRrjs84QOHBihnikAow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QbhAROYTNNZU9duWSWBpYzKowc1KxKcv14iGYmgPKaY=;
- b=PzDoRRi1F0DY7m9E9+9C3rmVwy5ZwcgFBbHydnybEfLe7Dx5nzqWnvQrIPcMSF4HFAYMiKdcIIIu/z4rMAdbk89nrZOy8zMzVhQ+l8rL/YZ6w/pNYIul+OuNLlCUwmY4ANDjmnAhq+CAuTGb/I6Bt2Qs0cxf8pjqIlEp6dYs42VNeiILw9WV+uWD8puNWtYtxN+D5tyjMlFVdvm1vykSw+p6pnfR6tiFqZMOmMihijB4FoD7AiLvcxvMTMSos89ibW10rhgrpeyn2AmKFQ1crLCeLSPzPiRLPNqXjC0S87CzXreYPxOaO+xAU3D//wvkc7uG7vv+1PqALnglOIp0kw==
+ bh=jiCMDG5jAJwMXGpHZbHMLZnzivyTZHfUCMeEHejr0RY=;
+ b=GvAbphWo+tAhoQSEfV3etInnfN7hyMKfJ6Zuja2MylqIdx8VUvhj30rI6Rzvkr/9v6KddQR4vD38pEn5spcCFeV9w/kZ1aSMh2lUOp9xOZP+DXAq4FPk5AmQYwD80y0VT83swRwPCAtD86GwgNuMY1sndkOQJAMbxcGnagnRKAe0G7oPSbN1Nrwtgo1DOlYKYi4Ph1pedQKdFSnov3xjA4FLJXOb/ICHMucpeO6UTFF+Xh+wkECkf0g8x5vz+uQ+MWOhNE0NvQv5xJwQ/0G60waXi32WSkwD91aRfEQLHlGPlBXg5XLaaRPZD91S99fAc24dTtrsF/NlGNMjoMgRkg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QbhAROYTNNZU9duWSWBpYzKowc1KxKcv14iGYmgPKaY=;
- b=kBH0h6GR+TuEDxaqzaRDdWsEy63GyaaF1f2HjHo4I+XTZnCIN6s7IQB6gvSoWUBBs5ieuNToMRBp30Gxn29EzYiZR6tiDFY5PajAY+D9hh7ZII4i6bHGGCJySo7q/a6nILt+uKlz9X/FwA7q+r9m3R+eLwPbptnlv0El7t4aQdk=
-Received: from CH0PR13CA0018.namprd13.prod.outlook.com (2603:10b6:610:b1::23)
- by SJ2PR12MB9115.namprd12.prod.outlook.com (2603:10b6:a03:55c::21)
+ bh=jiCMDG5jAJwMXGpHZbHMLZnzivyTZHfUCMeEHejr0RY=;
+ b=F94IuvHGV9J+YO36icr9UbiKw/6FafheSWiotnOu5Qkd+ppNVt8qr63iBh+jB6cDPvAVo1nGjqhUyUXKVpyBz6hanMV2zFsWaJFrxB8hkrmakTjlxEkbkH5vrKJtx+OBjbSrcQ4cHeECcoTnK8LJ+8p8i2BKctcOiWjzhA/dMdc=
+Received: from CH0PR13CA0005.namprd13.prod.outlook.com (2603:10b6:610:b1::10)
+ by SJ2PR12MB7944.namprd12.prod.outlook.com (2603:10b6:a03:4c5::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Wed, 24 Sep
- 2025 18:22:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Wed, 24 Sep
+ 2025 18:22:35 +0000
 Received: from CH1PEPF0000A349.namprd04.prod.outlook.com
- (2603:10b6:610:b1:cafe::e8) by CH0PR13CA0018.outlook.office365.com
- (2603:10b6:610:b1::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.20 via Frontend Transport; Wed,
- 24 Sep 2025 18:22:23 +0000
+ (2603:10b6:610:b1:cafe::bf) by CH0PR13CA0005.outlook.office365.com
+ (2603:10b6:610:b1::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9160.9 via Frontend Transport; Wed,
+ 24 Sep 2025 18:22:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,15 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb08.amd.com (165.204.84.17) by
  CH1PEPF0000A349.mail.protection.outlook.com (10.167.244.9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9160.9 via Frontend Transport; Wed, 24 Sep 2025 18:22:23 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by satlexmb08.amd.com
+ 15.20.9160.9 via Frontend Transport; Wed, 24 Sep 2025 18:22:35 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 24 Sep
- 2025 11:22:22 -0700
-Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 24 Sep
- 2025 13:22:22 -0500
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 24 Sep
+ 2025 11:22:23 -0700
 Received: from roman-vdev.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
  Transport; Wed, 24 Sep 2025 11:22:22 -0700
@@ -69,12 +65,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, Alvin
- Lee <alvin.lee2@amd.com>
-Subject: [PATCH 04/10] drm/amd/display: Support possibly NULL link for
- should_use_dmub_lock
-Date: Wed, 24 Sep 2025 14:21:55 -0400
-Message-ID: <20250924182201.1049389-5-Roman.Li@amd.com>
+ <alex.hung@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ "Alvin Lee" <alvin.lee2@amd.com>
+Subject: [PATCH 05/10] drm/amd/display: Rename should_use_dmub_lock to reflect
+ inbox1 usage
+Date: Wed, 24 Sep 2025 14:21:56 -0400
+Message-ID: <20250924182201.1049389-6-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924182201.1049389-1-Roman.Li@amd.com>
 References: <20250924182201.1049389-1-Roman.Li@amd.com>
@@ -83,52 +79,52 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A349:EE_|SJ2PR12MB9115:EE_
-X-MS-Office365-Filtering-Correlation-Id: d158c4e2-1505-4780-05da-08ddfb974e89
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000A349:EE_|SJ2PR12MB7944:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5cf5dc3e-1e80-42c8-a068-08ddfb9755d4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?PJgVT7v7IDbI9iGmmXB6LcML2seLABFIAd0LCjIN+HUkqI3CfJrI9IRn68ae?=
- =?us-ascii?Q?e+md4XTVl9ktbJvLGHicklOfhJzJRtDfwoDoK1tPpYnikHPX1acNHdlvKUC7?=
- =?us-ascii?Q?kieaN8Rm2AolzOACVVrs7kW8aomt6mldPl9ax9uX7oOlagJ2s2s+1hsSMVpS?=
- =?us-ascii?Q?3KI7zpPQ8FQhvNMrVYip4JY7BfceVJIc/xq8HojRIAXBDYf9AXkNfpYZ1Ahh?=
- =?us-ascii?Q?wQU4u2hokL36Y8IrbQwlsuEBS2pjRitTbAtT/r1utkRPJq4C4d/woZEjy53m?=
- =?us-ascii?Q?wq7COs3D3/P4bTDGhW4AjQNSJ0TDLZRf94NOGc+iOgZ7N+pdLn9DFFnGMsny?=
- =?us-ascii?Q?pdqt8GWnY8KoQTIiO2NI28eqH+sepHRjKoRPOtKQ9YN5JFcwhHQRi1BQ2WFF?=
- =?us-ascii?Q?QXHpET0vKi9twyyO5NLYMYzwBtxH2MVkC/a2hHGof7rmGvHiuHAN1/X+AHoT?=
- =?us-ascii?Q?QLJfgJdqH5C+DM2nbbr4cCgGpJaB2THPGBSh7aG9FwVgVkID8JQYKJk36uXY?=
- =?us-ascii?Q?lnKhmGhhfcDXviQJNoiSRI7TMLyaAm7FZMdtHEDr2TH0QkGomqsF5RK1Rpqe?=
- =?us-ascii?Q?uCxlzhvmY10CqRjkFLP3DSx3zIphKCKOYLei8N7dNTGVOjNFaSXJE/msOyWJ?=
- =?us-ascii?Q?Xn5hGSejnL3WL2c1EfQm5MT9nxHCwzXsiiMw4ltcNa+bi6lBf0egAj5AeVdA?=
- =?us-ascii?Q?59JMYi74dnVK+mJXr1FdKc2PSyLFMBJzftN1aFKZwUOsSbZfH69SduqkkMxl?=
- =?us-ascii?Q?HDuWsM/+o/zOsGY2RBNxHOb7Y/rfPY+FWaecGB014riBMeP/S2QoksvHwLpv?=
- =?us-ascii?Q?iiNAXLaIxBUBSZskcydGmuVPXbJb4CUS4uAqxf6brNq2iIX8MLgon1LUJkG+?=
- =?us-ascii?Q?/WLNkGJo+6Z9YkctIJWhSGaoBchU8NyNdo1rpz0+3eDyPVqJe1RVG/98XCIj?=
- =?us-ascii?Q?BTkNk7SXk+88alchq+k2umkeDD5/ea6PVQYLfGYWHi7D0wLPEU7dL2Oy0fFL?=
- =?us-ascii?Q?JTJa5I9rxE+8Je5FBOrBNQFXimKiufw1DWFzzEMRwtK0hDMKp5k8GYLcAB9J?=
- =?us-ascii?Q?pu+nad8aDQT48xrU+oHyyarI6sCgp3Q/z3lorwwwA6pE/TDCYrJhnso4U72R?=
- =?us-ascii?Q?o1/9++tXVMX7M79KqnwXjcFAR6cL6q88tnno7Qt8xlRlUSltvVQFVphUQA90?=
- =?us-ascii?Q?PRRzzoFmMPhSgcKBSsC8pokKFM3Jq96QK1amb3S4NophpYvnja7/KKLis6RY?=
- =?us-ascii?Q?QbkCwdLm0uQB1L+4Q6QGH0MYa0SpovJwV9wUz20uW6xzhSAPK9IfMWsPgajm?=
- =?us-ascii?Q?uDdBtUpXw0fHom53UvUcftTLnVfdUYUOOTW9qJjlQP5C6VDhaVpAGWO1DRun?=
- =?us-ascii?Q?bJ4kZ69YATLL/X/Nl+EQN0yklSTIZdDHAeWB6wuKfUPFNHF+SWnPArLk3vQi?=
- =?us-ascii?Q?mV+mXPIBdvOKQoAQdx27D2kil8vaK5y7BTlWWNnBo6TcMFVXOzwQHURfm8b2?=
- =?us-ascii?Q?b1Frn8naakt93WqG23usnad/NTGKUnsqFpZn?=
+ ARA:13230040|36860700013|1800799024|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Uth8yu7on5CvnCzhfkWNcIpcUFVmL8Yi+GlLHtofRN0+WiYbPCFjydjSS28h?=
+ =?us-ascii?Q?PL/12gzp31IoFM7X7yEIrQqugtzSb7vV7C5P5Ey8bDcoWZt+DnNps/3K7/wd?=
+ =?us-ascii?Q?eAd2eXObpea3FIB4o4ObYvIGrpuLG6CfpbNxLEdWe+ue/BREf/cFXYSmZF5A?=
+ =?us-ascii?Q?4ChvSmw/g2eGr4HZm4bfmNB2Y+tMGKRlc+bMCiMSp/dKAVBRg7GbPVPdAKC7?=
+ =?us-ascii?Q?Xc37idZbm9CbK6Xfe5h6wPf5fQBcqBkposHGFRui/zEHkHc2FbfOX0FZoR6+?=
+ =?us-ascii?Q?Zj+3GK+BEAKAIhZ4sdafKllGt3lbHTnySqvOwdIqx6sS1DdZU4mcAZfMZ93n?=
+ =?us-ascii?Q?1KWWQRVDXUiDYg8PdPTTQQnnfYlYWUi+vqK4JALtHJL6H9cVTkHP4prOZgxk?=
+ =?us-ascii?Q?afvfUvBFTO9p2cIDLpq1Tm1ACH7h4Cub1t1jF3JvkLAWNkopw+HbEcnplroj?=
+ =?us-ascii?Q?lN6YR2SQkdZf1urnkKsG3Ijo0VH0UO7Lz6JALkN6GojBu4OT2O/agbdkoPog?=
+ =?us-ascii?Q?c7w5OrlAYtdp/AFIfe+3jiJFnUABMSPaRQ/VqyV/J8xMRCkh32xRyTGRyYp+?=
+ =?us-ascii?Q?vtjyUXz9wMAYGLqJd2DUrXYJCyEIZ23IvrF3fhTEQPziyXGsqrv89T/btTAZ?=
+ =?us-ascii?Q?1FQPPFYvZC1FwotZ7iVUy5q0MjJpLFY2sRTo6RP2chWt/Ex6SvGQiLDg9O9Q?=
+ =?us-ascii?Q?HC5bWCbyy1kyJ1q/uGRci2en4O2XuTa45p26MLT3pLfCAiW4S+Ded0JpUvRn?=
+ =?us-ascii?Q?TTnEMSoo6D1/ECu5Cy94a1L0HTY1cxLEJdAYoWaLhFMg6F93BCwlFGza1XQd?=
+ =?us-ascii?Q?w+yZvl/c/g4Z/8JQtzNO1AkSnMGPo3UhOfeVV0Pp9druOoE2rfY2L/ns3z2q?=
+ =?us-ascii?Q?waaEvR5troV37vbqUEyWE8KlFKXo8OxDna4ODm5PEsvQW6pgk9g/hZwnk80e?=
+ =?us-ascii?Q?MQyPzFiu4wn/lra2be+lgaiDjLMeeVTJTTtxMes6tEZlSlHiqZcWjA12Qlti?=
+ =?us-ascii?Q?CUPNYtmrkyTlVrxlnfWoCq+Oc+h2CLWYaTN1bAIORvPmeix87irQ7msT8n5l?=
+ =?us-ascii?Q?GgkKY4Nkz+FMyui4OqbuXinDe03tPscJQ7irK4MDe03d/CRs8E+L2umB/O4Y?=
+ =?us-ascii?Q?ugzxSs6b5VBKtEHt3H9MsxLfrtox2ZRT3o+nJbHdRkdj7G6OW5fpE+t8jJLv?=
+ =?us-ascii?Q?8pWlmu+SPwAClrID+GmmOnXDjTLWM8tszbwkr0Wm6QbAolefM3jYeloTGI5e?=
+ =?us-ascii?Q?ZtbC/MvbpV82dJFNnNKu9FBgChpfl9FG68Ujqay9B4cSbxcMWsdLskGUd6AI?=
+ =?us-ascii?Q?Vgb+rldjDfNp1hPet6o8Ln12Du7CE8CsLekiVh6jMZIzsfZYNEvB7Osque7p?=
+ =?us-ascii?Q?4cU+x/yCKvFXD/2GCl3BfrArXYa27qQRRwcUaP4HQulTyawwN11/c99DPeYh?=
+ =?us-ascii?Q?Uq2BtAbqvrjrfdO0ryjLB0rWvX3REF6l1yj1OUK0XPE5YH+1XdSoV1CICcGI?=
+ =?us-ascii?Q?vMuzslmBo5i7QfmMSPLASPFr7Qn55lbZ5T9s?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2025 18:22:23.2169 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d158c4e2-1505-4780-05da-08ddfb974e89
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2025 18:22:35.4528 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5cf5dc3e-1e80-42c8-a068-08ddfb9755d4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A349.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9115
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7944
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,46 +142,37 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-It's possible to have a stream enabled without a link or link encoder.
+Newer DCN use the DMCUB HW lock via inbox0 for performance reasons while
+older ones will use inbox1.
 
-There are cases where we'd still like to interlock the driver
-programming from firmware programming to ensure that we don't put the
-hardware in an undefined (or error) state if two programming sequences
-are simultaneously executed on the same hardware blocks.
+The should_use_dmub_lock() function does not describe whether the lock
+in general should be used, but whether it should be used via inbox1.
 
 [How]
-Add an explicit DC parameter to should_use_dmub_lock().
-
-Make pointers to should_use_dmub_lock() const since it's a checker
-function that shouldn't modify state.
-
-Update the callsites to pass in DC explicitly.
-
-Check that the link is non-NULL before deferencing and performing link
-based checks.
+Rename the function to should_use_dmub_inbox1_lock() to reflect this.
 
 Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Signed-off-by: Roman Li <roman.li@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  4 +--
- .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.c | 29 ++++++++++---------
- .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.h |  2 +-
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   |  2 +-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  2 +-
- .../display/dc/link/accessories/link_dp_cts.c |  4 +--
- 6 files changed, 23 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c               |  4 ++--
+ drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c  |  2 +-
+ drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h  | 10 +++++++++-
+ .../gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c    |  2 +-
+ .../gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c    |  2 +-
+ .../drm/amd/display/dc/link/accessories/link_dp_cts.c  |  4 ++--
+ 6 files changed, 16 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 5f2d5638c819..3f5ec076da1c 100644
+index 3f5ec076da1c..be885801a9ed 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
 @@ -4149,7 +4149,7 @@ static void commit_planes_for_stream(struct dc *dc,
  	if ((update_type != UPDATE_TYPE_FAST) && stream->update_flags.bits.dsc_changed)
  		if (top_pipe_to_program &&
  			top_pipe_to_program->stream_res.tg->funcs->lock_doublebuffer_enable) {
--			if (should_use_dmub_lock(stream->link)) {
-+			if (should_use_dmub_lock(dc, stream->link)) {
+-			if (should_use_dmub_lock(dc, stream->link)) {
++			if (should_use_dmub_inbox1_lock(dc, stream->link)) {
  				union dmub_hw_lock_flags hw_locks = { 0 };
  				struct dmub_hw_lock_inst_flags inst_flags = { 0 };
  
@@ -193,107 +180,80 @@ index 5f2d5638c819..3f5ec076da1c 100644
  				top_pipe_to_program->stream_res.tg,
  				CRTC_STATE_VACTIVE);
  
--			if (should_use_dmub_lock(stream->link)) {
-+			if (should_use_dmub_lock(dc, stream->link)) {
+-			if (should_use_dmub_lock(dc, stream->link)) {
++			if (should_use_dmub_inbox1_lock(dc, stream->link)) {
  				union dmub_hw_lock_flags hw_locks = { 0 };
  				struct dmub_hw_lock_inst_flags inst_flags = { 0 };
  
 diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
-index d37ecfdde4f1..17c30c5b1679 100644
+index 17c30c5b1679..39f5fa73c43e 100644
 --- a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
 +++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
-@@ -61,27 +61,30 @@ void dmub_hw_lock_mgr_inbox0_cmd(struct dc_dmub_srv *dmub_srv,
+@@ -61,7 +61,7 @@ void dmub_hw_lock_mgr_inbox0_cmd(struct dc_dmub_srv *dmub_srv,
  	dc_dmub_srv_wait_for_inbox0_ack(dmub_srv);
  }
  
--bool should_use_dmub_lock(struct dc_link *link)
-+bool should_use_dmub_lock(const struct dc *dc, const struct dc_link *link)
+-bool should_use_dmub_lock(const struct dc *dc, const struct dc_link *link)
++bool should_use_dmub_inbox1_lock(const struct dc *dc, const struct dc_link *link)
  {
  	/* ASIC doesn't support DMUB */
--	if (!link->ctx->dmub_srv)
-+	if (!dc->ctx->dmub_srv)
- 		return false;
- 
--	if (link->psr_settings.psr_version == DC_PSR_VERSION_SU_1)
--		return true;
-+	if (link) {
- 
--	if (link->replay_settings.replay_feature_enabled)
--		return true;
-+		if (link->psr_settings.psr_version == DC_PSR_VERSION_SU_1)
-+			return true;
-+
-+		if (link->replay_settings.replay_feature_enabled)
-+			return true;
- 
--	/* only use HW lock for PSR1 on single eDP */
--	if (link->psr_settings.psr_version == DC_PSR_VERSION_1) {
--		struct dc_link *edp_links[MAX_NUM_EDP];
--		int edp_num;
-+			/* only use HW lock for PSR1 on single eDP */
-+		if (link->psr_settings.psr_version == DC_PSR_VERSION_1) {
-+			struct dc_link *edp_links[MAX_NUM_EDP];
-+			int edp_num;
- 
--		dc_get_edp_links(link->dc, edp_links, &edp_num);
-+			dc_get_edp_links(dc, edp_links, &edp_num);
- 
--		if (edp_num == 1)
--			return true;
-+			if (edp_num == 1)
-+				return true;
-+		}
- 	}
- 
- 	return false;
+ 	if (!dc->ctx->dmub_srv)
 diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h
-index 5a72b168fb4a..6e8863877686 100644
+index 6e8863877686..9f53d2ea5fa5 100644
 --- a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h
 +++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h
-@@ -37,6 +37,6 @@ void dmub_hw_lock_mgr_cmd(struct dc_dmub_srv *dmub_srv,
+@@ -37,6 +37,14 @@ void dmub_hw_lock_mgr_cmd(struct dc_dmub_srv *dmub_srv,
  void dmub_hw_lock_mgr_inbox0_cmd(struct dc_dmub_srv *dmub_srv,
  		union dmub_inbox0_cmd_lock_hw hw_lock_cmd);
  
--bool should_use_dmub_lock(struct dc_link *link);
-+bool should_use_dmub_lock(const struct dc *dc, const struct dc_link *link);
+-bool should_use_dmub_lock(const struct dc *dc, const struct dc_link *link);
++/**
++ * should_use_dmub_inbox1_lock() - Checks if the DMCUB hardware lock via inbox1 should be used.
++ *
++ * @dc: pointer to DC object
++ * @link: optional pointer to the link object to check for enabled link features
++ *
++ * Return: true if the inbox1 lock should be used, false otherwise
++ */
++bool should_use_dmub_inbox1_lock(const struct dc *dc, const struct dc_link *link);
  
  #endif /*_DMUB_HW_LOCK_MGR_H_ */
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-index e9fe97f0c4ea..cb915abac15a 100644
+index cb915abac15a..c88781de6d18 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
 @@ -2245,7 +2245,7 @@ void dcn10_cursor_lock(struct dc *dc, struct pipe_ctx *pipe, bool lock)
  	if (lock)
  		delay_cursor_until_vupdate(dc, pipe);
  
--	if (pipe->stream && should_use_dmub_lock(pipe->stream->link)) {
-+	if (pipe->stream && should_use_dmub_lock(dc, pipe->stream->link)) {
+-	if (pipe->stream && should_use_dmub_lock(dc, pipe->stream->link)) {
++	if (pipe->stream && should_use_dmub_inbox1_lock(dc, pipe->stream->link)) {
  		union dmub_hw_lock_flags hw_locks = { 0 };
  		struct dmub_hw_lock_inst_flags inst_flags = { 0 };
  
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index 717d2c4daa88..57343b08a3f0 100644
+index 57343b08a3f0..27a23ce45ec6 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
 @@ -1449,7 +1449,7 @@ void dcn20_pipe_control_lock(
  		!flip_immediate)
  	    dcn20_setup_gsl_group_as_lock(dc, pipe, false);
  
--	if (pipe->stream && should_use_dmub_lock(pipe->stream->link)) {
-+	if (pipe->stream && should_use_dmub_lock(dc, pipe->stream->link)) {
+-	if (pipe->stream && should_use_dmub_lock(dc, pipe->stream->link)) {
++	if (pipe->stream && should_use_dmub_inbox1_lock(dc, pipe->stream->link)) {
  		union dmub_hw_lock_flags hw_locks = { 0 };
  		struct dmub_hw_lock_inst_flags inst_flags = { 0 };
  
 diff --git a/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c b/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-index 9e33bf937a69..3c8eb1510226 100644
+index 3c8eb1510226..1593412354cf 100644
 --- a/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
 +++ b/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
 @@ -876,7 +876,7 @@ bool dp_set_test_pattern(
  			return false;
  
  		if (pipe_ctx->stream_res.tg->funcs->lock_doublebuffer_enable) {
--			if (should_use_dmub_lock(pipe_ctx->stream->link)) {
-+			if (should_use_dmub_lock(pipe_ctx->stream->link->dc, pipe_ctx->stream->link)) {
+-			if (should_use_dmub_lock(pipe_ctx->stream->link->dc, pipe_ctx->stream->link)) {
++			if (should_use_dmub_inbox1_lock(pipe_ctx->stream->link->dc, pipe_ctx->stream->link)) {
  				union dmub_hw_lock_flags hw_locks = { 0 };
  				struct dmub_hw_lock_inst_flags inst_flags = { 0 };
  
@@ -301,8 +261,8 @@ index 9e33bf937a69..3c8eb1510226 100644
  				CRTC_STATE_VACTIVE);
  
  		if (pipe_ctx->stream_res.tg->funcs->lock_doublebuffer_disable) {
--			if (should_use_dmub_lock(pipe_ctx->stream->link)) {
-+			if (should_use_dmub_lock(pipe_ctx->stream->link->dc, pipe_ctx->stream->link)) {
+-			if (should_use_dmub_lock(pipe_ctx->stream->link->dc, pipe_ctx->stream->link)) {
++			if (should_use_dmub_inbox1_lock(pipe_ctx->stream->link->dc, pipe_ctx->stream->link)) {
  				union dmub_hw_lock_flags hw_locks = { 0 };
  				struct dmub_hw_lock_inst_flags inst_flags = { 0 };
  
