@@ -2,125 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51C5B9BE4A
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 22:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F089CB9C31F
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 22:52:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8A7E10E7D9;
-	Wed, 24 Sep 2025 20:26:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8340610E7E9;
+	Wed, 24 Sep 2025 20:52:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="YLJPYFsA";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jziuuazt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fra-out-010.esa.eu-central-1.outbound.mail-perimeter.amazon.com
- (fra-out-010.esa.eu-central-1.outbound.mail-perimeter.amazon.com
- [63.178.143.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33E110E7D5;
- Wed, 24 Sep 2025 20:25:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
- t=1758745548; x=1790281548;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=/92zpxyjeHvGlOVhJoOGNENC+jRdBRPJKKvWmFCfMhU=;
- b=YLJPYFsAQ2oP4/1OP0d9us45Wuv7YF5PrQQDRZvG60F20zDm2fnHWxRC
- XAbhN5klhdNfuVtee6D/UJmCtDExMPYI2XMrtH8neFReIBvvPKA6nLmeb
- D4Tmt2JixtOvN643itgfatBhbw8RgIvK21JvETfeJ+4HObARz/1fe1GiA
- BZaafaVpZa16pRX/bZMzlZM/rNUwyDL86Z3AUFxH74UPxcEinciJ/e8vi
- Bdc84aJejeAGWZcuo9Vu1rYzss4ukekwGMJe/UGH2slRfcrKKGk7Qoku/
- ZR+mMY+66Y0booyRnLyn+1GFHV8D0uwUYd6tSSCrJc52mbRT+6trDIKmV w==;
-X-CSE-ConnectionGUID: oouYGm3aRoqGoHtWUGdqSw==
-X-CSE-MsgGUID: EOnuYXiASKiRqlUO40vVig==
-X-IronPort-AV: E=Sophos;i="6.18,291,1751241600"; 
-   d="scan'208";a="2525132"
-Received: from ip-10-6-3-216.eu-central-1.compute.internal (HELO
- smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.3.216])
- by internal-fra-out-010.esa.eu-central-1.outbound.mail-perimeter.amazon.com
- with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2025 20:25:44 +0000
-Received: from EX19MTAEUB002.ant.amazon.com [54.240.197.232:23628]
- by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.10.226:2525]
- with esmtp (Farcaster)
- id dcc177e1-9bc7-482f-9822-8d08804a2071; Wed, 24 Sep 2025 20:25:44 +0000 (UTC)
-X-Farcaster-Flow-ID: dcc177e1-9bc7-482f-9822-8d08804a2071
-Received: from EX19D018EUA004.ant.amazon.com (10.252.50.85) by
- EX19MTAEUB002.ant.amazon.com (10.252.51.59) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20;
- Wed, 24 Sep 2025 20:25:43 +0000
-Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
- (172.19.116.181) by EX19D018EUA004.ant.amazon.com (10.252.50.85) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20; Wed, 24 Sep 2025
- 20:25:09 +0000
-From: Eliav Farber <farbere@amazon.com>
-To: <linux@armlinux.org.uk>, <richard@nod.at>,
- <anton.ivanov@cambridgegreys.com>, <johannes@sipsolutions.net>,
- <dave.hansen@linux.intel.com>, <luto@kernel.org>, <peterz@infradead.org>,
- <tglx@linutronix.de>, <mingo@redhat.com>, <bp@alien8.de>, <x86@kernel.org>,
- <hpa@zytor.com>, <tony.luck@intel.com>, <qiuxu.zhuo@intel.com>,
- <mchehab@kernel.org>, <james.morse@arm.com>, <rric@kernel.org>,
- <harry.wentland@amd.com>, <sunpeng.li@amd.com>, <Rodrigo.Siqueira@amd.com>,
- <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
- <evan.quan@amd.com>, <james.qian.wang@arm.com>, <liviu.dudau@arm.com>,
- <mihail.atanassov@arm.com>, <brian.starkey@arm.com>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <robdclark@gmail.com>, <quic_abhinavk@quicinc.com>,
- <dmitry.baryshkov@linaro.org>, <sean@poorly.run>, <jdelvare@suse.com>,
- <linux@roeck-us.net>, <linus.walleij@linaro.org>,
- <dmitry.torokhov@gmail.com>, <maz@kernel.org>, <wens@csie.org>,
- <jernej.skrabec@gmail.com>, <samuel@sholland.org>, <agk@redhat.com>,
- <snitzer@kernel.org>, <dm-devel@redhat.com>, <rajur@chelsio.com>,
- <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
- <pabeni@redhat.com>, <peppe.cavallaro@st.com>,
- <alexandre.torgue@foss.st.com>, <joabreu@synopsys.com>,
- <mcoquelin.stm32@gmail.com>, <krzysztof.kozlowski@linaro.org>,
- <malattia@linux.it>, <hdegoede@redhat.com>, <markgross@kernel.org>,
- <artur.paszkiewicz@intel.com>, <jejb@linux.ibm.com>,
- <martin.petersen@oracle.com>, <sakari.ailus@linux.intel.com>,
- <gregkh@linuxfoundation.org>, <fei1.li@intel.com>, <clm@fb.com>,
- <josef@toxicpanda.com>, <dsterba@suse.com>, <jack@suse.com>, <tytso@mit.edu>, 
- <adilger.kernel@dilger.ca>, <dushistov@mail.ru>,
- <luc.vanoostenryck@gmail.com>, <rostedt@goodmis.org>, <mhiramat@kernel.org>,
- <pmladek@suse.com>, <senozhatsky@chromium.org>,
- <andriy.shevchenko@linux.intel.com>, <linux@rasmusvillemoes.dk>,
- <minchan@kernel.org>, <ngupta@vflare.org>, <akpm@linux-foundation.org>,
- <yoshfuji@linux-ipv6.org>, <dsahern@kernel.org>, <pablo@netfilter.org>,
- <kadlec@netfilter.org>, <fw@strlen.de>, <jmaloy@redhat.com>,
- <ying.xue@windriver.com>, <andrii@kernel.org>, <mykolal@fb.com>,
- <ast@kernel.org>, <daniel@iogearbox.net>, <martin.lau@linux.dev>,
- <song@kernel.org>, <yhs@fb.com>, <john.fastabend@gmail.com>,
- <kpsingh@kernel.org>, <sdf@google.com>, <haoluo@google.com>,
- <jolsa@kernel.org>, <shuah@kernel.org>, <keescook@chromium.org>,
- <wad@chromium.org>, <willy@infradead.org>, <farbere@amazon.com>,
- <sashal@kernel.org>, <ruanjinjie@huawei.com>, <quic_akhilpo@quicinc.com>,
- <David.Laight@ACULAB.COM>, <herve.codina@bootlin.com>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <linux-um@lists.infradead.org>, <linux-edac@vger.kernel.org>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
- <linux-hwmon@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-sunxi@lists.linux.dev>, <linux-media@vger.kernel.org>,
- <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
- <platform-driver-x86@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
- <linux-staging@lists.linux.dev>, <linux-btrfs@vger.kernel.org>,
- <linux-ext4@vger.kernel.org>, <linux-sparse@vger.kernel.org>,
- <linux-mm@kvack.org>, <netfilter-devel@vger.kernel.org>,
- <coreteam@netfilter.org>, <tipc-discussion@lists.sourceforge.net>,
- <bpf@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
- <stable@vger.kernel.org>
-Subject: [PATCH 03/19 v6.1.y] minmax: deduplicate __unconst_integer_typeof()
-Date: Wed, 24 Sep 2025 20:23:04 +0000
-Message-ID: <20250924202320.32333-4-farbere@amazon.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20250924202320.32333-1-farbere@amazon.com>
-References: <20250924202320.32333-1-farbere@amazon.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D51D10E7E9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 20:52:19 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 23A874400C;
+ Wed, 24 Sep 2025 20:52:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43BDAC4CEF8;
+ Wed, 24 Sep 2025 20:52:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1758747139;
+ bh=hY8KOOIdcLFeStFpDPUnr30X+UWyB7hNIoqZgjHszoQ=;
+ h=From:To:Cc:Subject:Date:From;
+ b=jziuuaztodkxEWwbzJvPzU9L1hkTITklU3j8ZBab0HOFzgjHNqcDS74Mxshzgz6ov
+ VX2RTUDI3IczqfPVzyf8sx6sbM2z2Sk4qw2dujH0P/MsG9YDb3tNy+E7ska97rorYU
+ Cyxt+ylCZfy6uqDPaF4C3alA1Nlm+e69cMTBagzOwv6Zj2mr90Xe5pLSea6c4O2WMj
+ J5qAG+t6DONqsAoBawpVB/mWuKt7xgyJ6UelzSxQmrOiU77bn55c0mgipcYImggawR
+ wSD6dO9486KTMQ2SNL07Kw845SHsgUeeERbLZyemCeziISSfd2shuTRjjF9Z35Rrik
+ FPas4J9tTeZ8A==
+From: "Mario Limonciello (AMD)" <superm1@kernel.org>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>
+Cc: Samuel Zhang <guoqing.zhang@amd.com>,
+ amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
+ linux-pm@vger.kernel.org (open list:HIBERNATION (aka Software Suspend,
+ aka swsusp)), Mario Limonciello <superm1@kernel.org>,
+ Ionut Nechita <ionut_n2001@yahoo.com>
+Subject: [PATCH 0/3] Fixes for hybrid sleep
+Date: Wed, 24 Sep 2025 15:52:08 -0500
+Message-ID: <20250924205211.1059571-1-superm1@kernel.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.19.116.181]
-X-ClientProxiedBy: EX19D043UWC004.ant.amazon.com (10.13.139.206) To
- EX19D018EUA004.ant.amazon.com (10.252.50.85)
-X-Mailman-Approved-At: Wed, 24 Sep 2025 20:26:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,71 +58,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Ionut Nechita reported recently a hibernate failure, but in debugging
+the issue it's actually not a hibernate failure; but a hybrid sleep
+failure.
 
-[ Upstream commit 5e57418a2031cd5e1863efdf3d7447a16a368172 ]
+Multiple changes related to the change of when swap is disabled in
+the suspend sequence contribute to the failure.  See the individual
+patches for details.
 
-It appears that compiler_types.h already have an implementation of the
-__unconst_integer_typeof() called __unqual_scalar_typeof().  Use it
-instead of the copy.
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/4573
 
-Link: https://lkml.kernel.org/r/20230911154913.4176033-1-andriy.shevchenko@linux.intel.com
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Acked-by: Herve Codina <herve.codina@bootlin.com>
-Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
-Signed-off-by: Eliav Farber <farbere@amazon.com>
----
- include/linux/minmax.h | 25 ++-----------------------
- 1 file changed, 2 insertions(+), 23 deletions(-)
+NOTE: I realize this is super late in the cycle, so sorry about that,
+but I debugged it as fast as I could as soon as I heard about it.
+If it needs to push out to the next cycle it is what it is.
 
-diff --git a/include/linux/minmax.h b/include/linux/minmax.h
-index aac0b7d23768..62b0c0a3cf30 100644
---- a/include/linux/minmax.h
-+++ b/include/linux/minmax.h
-@@ -168,27 +168,6 @@
-  */
- #define max_t(type, x, y)	__careful_cmp(max, (type)(x), (type)(y))
- 
--/*
-- * Remove a const qualifier from integer types
-- * _Generic(foo, type-name: association, ..., default: association) performs a
-- * comparison against the foo type (not the qualified type).
-- * Do not use the const keyword in the type-name as it will not match the
-- * unqualified type of foo.
-- */
--#define __unconst_integer_type_cases(type)	\
--	unsigned type:  (unsigned type)0,	\
--	signed type:    (signed type)0
--
--#define __unconst_integer_typeof(x) typeof(			\
--	_Generic((x),						\
--		char: (char)0,					\
--		__unconst_integer_type_cases(char),		\
--		__unconst_integer_type_cases(short),		\
--		__unconst_integer_type_cases(int),		\
--		__unconst_integer_type_cases(long),		\
--		__unconst_integer_type_cases(long long),	\
--		default: (x)))
--
- /*
-  * Do not check the array parameter using __must_be_array().
-  * In the following legit use-case where the "array" passed is a simple pointer,
-@@ -203,13 +182,13 @@
-  * 'int *buff' and 'int buff[N]' types.
-  *
-  * The array can be an array of const items.
-- * typeof() keeps the const qualifier. Use __unconst_integer_typeof() in order
-+ * typeof() keeps the const qualifier. Use __unqual_scalar_typeof() in order
-  * to discard the const qualifier for the __element variable.
-  */
- #define __minmax_array(op, array, len) ({				\
- 	typeof(&(array)[0]) __array = (array);				\
- 	typeof(len) __len = (len);					\
--	__unconst_integer_typeof(__array[0]) __element = __array[--__len]; \
-+	__unqual_scalar_typeof(__array[0]) __element = __array[--__len];\
- 	while (__len--)							\
- 		__element = op(__element, __array[__len]);		\
- 	__element; })
+As it touches two subsystems it either needs to go through linux-pm
+or drm.  I would suggest linux-pm with an Ack from Alex on the 3rd
+patch.
+
+Cc: Ionut Nechita <ionut_n2001@yahoo.com>
+Mario Limonciello (3):
+  PM: hibernate: Fix hybrid-sleep
+  PM: hibernate: Add pm_hibernation_mode_is_suspend()
+  drm/amd: Fix hybrid sleep
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  2 +-
+ include/linux/suspend.h                 |  2 ++
+ kernel/power/hibernate.c                | 13 ++++++++++++-
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+
 -- 
-2.47.3
+2.51.0
 
