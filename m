@@ -2,34 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F089CB9C31F
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 22:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11B9FB9C325
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 22:52:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8340610E7E9;
-	Wed, 24 Sep 2025 20:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 891D910E7EB;
+	Wed, 24 Sep 2025 20:52:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jziuuazt";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rDLltrMr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D51D10E7E9
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 20:52:19 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC5E510E7E9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 20:52:20 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 23A874400C;
+ by tor.source.kernel.org (Postfix) with ESMTP id 419FC6029D;
+ Wed, 24 Sep 2025 20:52:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4059DC116B1;
  Wed, 24 Sep 2025 20:52:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43BDAC4CEF8;
- Wed, 24 Sep 2025 20:52:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758747139;
- bh=hY8KOOIdcLFeStFpDPUnr30X+UWyB7hNIoqZgjHszoQ=;
- h=From:To:Cc:Subject:Date:From;
- b=jziuuaztodkxEWwbzJvPzU9L1hkTITklU3j8ZBab0HOFzgjHNqcDS74Mxshzgz6ov
- VX2RTUDI3IczqfPVzyf8sx6sbM2z2Sk4qw2dujH0P/MsG9YDb3tNy+E7ska97rorYU
- Cyxt+ylCZfy6uqDPaF4C3alA1Nlm+e69cMTBagzOwv6Zj2mr90Xe5pLSea6c4O2WMj
- J5qAG+t6DONqsAoBawpVB/mWuKt7xgyJ6UelzSxQmrOiU77bn55c0mgipcYImggawR
- wSD6dO9486KTMQ2SNL07Kw845SHsgUeeERbLZyemCeziISSfd2shuTRjjF9Z35Rrik
- FPas4J9tTeZ8A==
+ s=k20201202; t=1758747140;
+ bh=EWCxrLxglxq/G+xYlkXSA22/IJeat/PFPXgrltaJZqM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=rDLltrMrPnCeJYUgfOgpgN4QcGaKFS6WjMLSItmd+UEx2aKpS9hknhTblxpIxkofo
+ DrCTdMKPwADzzHB+cHTOJ2QUg+JuG9HRxzCI+15qJNkl5q0/HrfFU9fWk0OF4U+D4D
+ LS80qWoJ0RdAr87goB+Q/D1J0xsPb9lkCEHxP6zet0iGtAdBMX6AqBFFd4YPJIM16H
+ Hiy1R5vWR7z2u6a1xC/XjmBrDYrDtfL/YD9rXNyB84xusJkZsDQWy+nTPqDz1xVVEi
+ OWbKAdTB93swpAGXqYCckZYwrg6JdQRQkR9+kL7lMqQkF8l2KTl2OKYIuXfNX80GoD
+ zwvIMWsaYCJRg==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: Alex Deucher <alexander.deucher@amd.com>,
  "Rafael J . Wysocki" <rafael@kernel.org>
@@ -38,10 +38,12 @@ Cc: Samuel Zhang <guoqing.zhang@amd.com>,
  linux-pm@vger.kernel.org (open list:HIBERNATION (aka Software Suspend,
  aka swsusp)), Mario Limonciello <superm1@kernel.org>,
  Ionut Nechita <ionut_n2001@yahoo.com>
-Subject: [PATCH 0/3] Fixes for hybrid sleep
-Date: Wed, 24 Sep 2025 15:52:08 -0500
-Message-ID: <20250924205211.1059571-1-superm1@kernel.org>
+Subject: [PATCH 1/3] PM: hibernate: Fix hybrid-sleep
+Date: Wed, 24 Sep 2025 15:52:09 -0500
+Message-ID: <20250924205211.1059571-2-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250924205211.1059571-1-superm1@kernel.org>
+References: <20250924205211.1059571-1-superm1@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -58,35 +60,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Ionut Nechita reported recently a hibernate failure, but in debugging
-the issue it's actually not a hibernate failure; but a hybrid sleep
-failure.
+Hybrid sleep will hibernate the system followed by running through
+the suspend routine.  Since both the hibernate and the suspend routine
+will call pm_restrict_gfp_mask(), pm_restore_gfp_mask() must be called
+before starting the suspend sequence.
 
-Multiple changes related to the change of when swap is disabled in
-the suspend sequence contribute to the failure.  See the individual
-patches for details.
+Add an explicit call to pm_restore_gfp_mask() to power_down() before
+the suspend sequence starts. Don't call pm_restore_gfp_mask() when
+exiting suspend sequence it is already called:
 
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/4573
+```
+power_down()
+->suspend_devices_and_enter()
+-->dpm_resume_end()
+```
 
-NOTE: I realize this is super late in the cycle, so sorry about that,
-but I debugged it as fast as I could as soon as I heard about it.
-If it needs to push out to the next cycle it is what it is.
+Reported-by: Ionut Nechita <ionut_n2001@yahoo.com>
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4573
+Tested-by: Ionut Nechita <ionut_n2001@yahoo.com>
+Fixes: 12ffc3b1513eb ("PM: Restrict swap use to later in the suspend sequence")
+Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
+---
+ kernel/power/hibernate.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-As it touches two subsystems it either needs to go through linux-pm
-or drm.  I would suggest linux-pm with an Ack from Alex on the 3rd
-patch.
-
-Cc: Ionut Nechita <ionut_n2001@yahoo.com>
-Mario Limonciello (3):
-  PM: hibernate: Fix hybrid-sleep
-  PM: hibernate: Add pm_hibernation_mode_is_suspend()
-  drm/amd: Fix hybrid sleep
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  2 +-
- include/linux/suspend.h                 |  2 ++
- kernel/power/hibernate.c                | 13 ++++++++++++-
- 3 files changed, 15 insertions(+), 2 deletions(-)
-
+diff --git a/kernel/power/hibernate.c b/kernel/power/hibernate.c
+index 2f66ab453823..1defe8081e64 100644
+--- a/kernel/power/hibernate.c
++++ b/kernel/power/hibernate.c
+@@ -695,6 +695,7 @@ static void power_down(void)
+ 
+ #ifdef CONFIG_SUSPEND
+ 	if (hibernation_mode == HIBERNATION_SUSPEND) {
++		pm_restore_gfp_mask();
+ 		error = suspend_devices_and_enter(mem_sleep_current);
+ 		if (error) {
+ 			hibernation_mode = hibernation_ops ?
+@@ -862,7 +863,8 @@ int hibernate(void)
+ 				power_down();
+ 		}
+ 		in_suspend = 0;
+-		pm_restore_gfp_mask();
++		if (hibernation_mode != HIBERNATION_SUSPEND)
++			pm_restore_gfp_mask();
+ 	} else {
+ 		pm_pr_dbg("Hibernation image restored successfully.\n");
+ 	}
 -- 
 2.51.0
 
