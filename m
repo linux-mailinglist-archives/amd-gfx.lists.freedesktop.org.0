@@ -2,157 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD78B9BCA9
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 22:00:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77294B9BE5B
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Sep 2025 22:26:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E81110E068;
-	Wed, 24 Sep 2025 20:00:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88D6D10E7E2;
+	Wed, 24 Sep 2025 20:26:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="AF749eCV";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="TSmx1LoF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010071.outbound.protection.outlook.com
- [40.93.198.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEA3710E068
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Sep 2025 20:00:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SPr8h0vxchSumxPZI81eX1MndRM8FZrVxQsQ4vSj7//EUMRNuCjXnnXILWXQdVduENgKOYlSAHWiHw506sQ/zFK4fcqLnpjP0HrdldMe7NFp2GZhB6um7o9zAHgeyve6ahey2Nms7xY2o5bRiIXK9zfBktbM+fYY4Um0UEwwsZEUeg3yoUAZ2DyYiems6y6Rxq5rOtFjwRFVCj/Bi9cPUfIvflKJL3EvgobIGVET81WTt53FXT1IsTZ4VdrgLmQARzWG37yvpAtgkX9A0X29c30dCzSxMXIL4ljTHPD9Gff1Ods1S5Fvmk1pBDQ8LDzijE8r/5YLDf65X+R54bgbYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lm/+5Wkjd4hbgyqepIowbvEwZeHmm3kEGdCAbmhEkCI=;
- b=r/vyY7tK3tz9Uxp58K90j618IbbCNNyVQ+EFVYxM+L0bGlm4CD/7eJ7ESr82urEZAkIhP9X62kK+RZ2LJLzlUbydvhFGxHysqwsEZ6akY7+0dIoW65x/bytaFjfOON6z1/+QJpyODzPiinTddm03Qh0lX0hyZGcd+XTLDyQkN4pisINFS4Tf8jhLTt+uGNw4zXI2ncJcp762X47X7L0+VdRbY0joGMRNLq94/cbkpomKoasQT4ke6g3ADfQzCjHuIPd7wqVBxWfk2Ps04QV1hHkJhff2vpm6D3Ze8Z5tT//3/jxbzmaJZww6e1gcsreARhLGKN6NrUVlQsZhkSKy4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lm/+5Wkjd4hbgyqepIowbvEwZeHmm3kEGdCAbmhEkCI=;
- b=AF749eCVca9FEj+OfqoEJHv6bQMWpynfreRpY87nGrsJh3Qbw1iMTcOwqcp3Ah7RGUx8kbk1Yzd09p9+MsygrXzgGk0EaZTMtPnHdeo9C8ykL8VfMWOGuQ2/4M7k8G1NXHldV7UHiXn+z741Oy5qICGkzCqwGnN8meYPQGew0Fk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by MN0PR12MB5740.namprd12.prod.outlook.com (2603:10b6:208:373::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Wed, 24 Sep
- 2025 20:00:34 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::9e93:67dd:49ac:bc14]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::9e93:67dd:49ac:bc14%6]) with mapi id 15.20.9137.012; Wed, 24 Sep 2025
- 20:00:33 +0000
-Message-ID: <c46d08ae-1cb6-412a-a135-c4974974eb12@amd.com>
-Date: Wed, 24 Sep 2025 16:00:29 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Adjustments to common mode behavior
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, Alex Hung <alex.hung@amd.com>
-References: <20250924161624.1975819-1-mario.limonciello@amd.com>
- <29cbab3f-083a-41a8-81a1-b0234f36152f@gmail.com>
- <cc2094c5-3cc2-476e-8d6f-72fc61ebab90@amd.com>
- <bebbe919-0c5d-4399-a211-c7cf744febdc@gmail.com>
- <68bff33a-46ef-4518-8b1e-d9d1b3087f2a@amd.com>
- <ff564617-e261-466f-a686-81e96725b4d7@amd.com>
- <CADnq5_P6UUKSSO64r0zfyj+TsG+vzzP=Cci=EMhAru0GHNLgvw@mail.gmail.com>
-Content-Language: en-US
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <CADnq5_P6UUKSSO64r0zfyj+TsG+vzzP=Cci=EMhAru0GHNLgvw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQZPR01CA0103.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:83::12) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52ACB10E6C3;
+ Wed, 24 Sep 2025 09:11:36 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cWrgm2X9Fz9tBF;
+ Wed, 24 Sep 2025 11:11:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1758705092; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XwEskpjIn5D22Nu1O3GezZNjLkrMB3AoiTZaoemM8/8=;
+ b=TSmx1LoFJx3v3vfZdmoIk4Iqt5ZdZE21vuRgXNnib7jJZjwpB/NqrZoWaxfBtwOFLh8x0G
+ parD0re5mTyhCWbTA2+tqccKNmbYqSNMeGCV6hW1LcG9GtDSfwr63f0TREemQNN7BD7sEt
+ yn/3iGzLnUTchTN97ph5JnXSBhht7CyRmzfF2OS2JjqlwNO9phzi3OXnghej9NV7mo5TaE
+ LZAyUDUw2hgUedKvit/JYz4g7ti9S03llZAjiPpkVwaoLkugZ+nDiNBeVo2DXzpoRDUJPr
+ H5n+5tne8l2L7SQGmf+hxL2Yx9YkVpJ3w8oeG2TTCJVA2qzIT3CtWJ/e3PJy9g==
+Message-ID: <6d5be3ab8413d44a360ebe7a34771ead6687c989.camel@mailbox.org>
+Subject: Re: [RFC v8 07/12] drm/sched: Account entity GPU time
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
+ dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo Krummrich
+ <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
+ <phasta@kernel.org>
+Date: Wed, 24 Sep 2025 11:11:24 +0200
+In-Reply-To: <20250903101820.63032-8-tvrtko.ursulin@igalia.com>
+References: <20250903101820.63032-1-tvrtko.ursulin@igalia.com>
+ <20250903101820.63032-8-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|MN0PR12MB5740:EE_
-X-MS-Office365-Filtering-Correlation-Id: aabf226f-b5f0-48b7-86f5-08ddfba50562
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WGNvK2o1RVYyUUsyOVJZVkNaWHpXeUZQaXYxRGNyZTl4cEEyVlJFSFJ6V2pw?=
- =?utf-8?B?NFFBaHBmRCs1Zk9aaTErSndFdW1SNmJPVlo0Rm1mKzEzMlRMaktLNXlLMmNJ?=
- =?utf-8?B?ZitOb3ozTHNGcUx3Z1g4YVIzckxuSHpyc2w5VjNIVlJoaFZRR01RQTlrQUh1?=
- =?utf-8?B?akJnTVlHTktITkd5WWFqZWNDenZ5a1Z6MHBQZm1Mb2l1Vy9NM2cyNm9tVWRp?=
- =?utf-8?B?bUhPU0FkTWZoTmFOUUhZOXZnclc3dFJJdEoxSkU5TVR4cDkvWS9OR0tldU85?=
- =?utf-8?B?d1QwOE55R1cyTUcrNStwN3ZQOTljRytrdk5LenN3NmR1RzJvMGkvQXorTWlX?=
- =?utf-8?B?QSs2a3Nrc1BFU3NMendicGZRL0pTalJqM0VJUTQvRFpqSFBCT0FwVjRtNncv?=
- =?utf-8?B?TkdpZXZoTTJNclVSTSsxcEJRWTcyWXFSZTNFMWF5UTR1Unp1cnNpdDVaMUFP?=
- =?utf-8?B?ZnZJTEZzejl1Zi93bGFOWXZ3Zm5LSXNaeFZNbWVBQ2srT0U4V2Y1aGdQRGhT?=
- =?utf-8?B?N1pXTzZ2TjVrYk5KMEdiSmNDbklMU2lDWjNqYTBXek9iWXFqUHlNVExLa0l3?=
- =?utf-8?B?cUVHMTFtTVZSK1l2NXBSSllTeXVCOVcxR3lSY29XWlBlZU11bnc3b1N2R1BP?=
- =?utf-8?B?c3dsOTRyMmlpOFN1blF5bWRRaXFvcHZHUm9SRWZLQ29VeE5GR2hMS0VBZWpF?=
- =?utf-8?B?TFZzbnIwb2xoYTREc2xwejB4RnlPRnhWN0RXTEtnQVhhYjhBdzFEZEYwTzZm?=
- =?utf-8?B?ZWUwY1BUSHYwcG84amxOUDhtdGsrTDVNMHB0YWtOTkVZSS9WK29Qd3ZMTlR3?=
- =?utf-8?B?N0hyamg3eTF1NFh6cy9JR3VDdGdZQUo2Rk9Bc3l2L0lBdWNWWGxqQWRuMEpH?=
- =?utf-8?B?NmZ5MStyUEJ2WjB5ZlZ6MCt5YnN1dmNPb0RVbll5ODdxT2RvSm1wQWtOVThp?=
- =?utf-8?B?REJkMmpGSVRRWE5oTFIwbGJ6R1ZMSXZjUDdpbmRIQ1hsYk9lZStyQS9SMEgy?=
- =?utf-8?B?NS9jVEVFc3NzdjBJOGtoWTcvak9LdlA4cVhmN0xhK1FnWUp0cXVIR3BaVW9Y?=
- =?utf-8?B?U1dpYm05ZVRFaVR3K1J1NjIyRmFiNk5hQkpWaFFJT1AzazJqNzNFUVhuY0lF?=
- =?utf-8?B?cHBqL1llUkNZTzR5WkpJaFY5dWtkeUpTbTBGdzZQQUgyajNHTDhPTmpsd0du?=
- =?utf-8?B?VWpuZ1Btd1VybGsxNTl6eHpvUlVsNGtZZ2dRMzI4TGRHZGJObUF2RitENkgz?=
- =?utf-8?B?UW5ZZm1xa0g2TThSYWFZMCtLanNFNTBkMGtFQlM2MC9Cd00vQnZVcEVGYStL?=
- =?utf-8?B?R2w0blJUSXVkSGRFV1JhYVJuTnZONGFXUmlibnFuejVHd3FKeFdVZ1BaNFlT?=
- =?utf-8?B?ZU5NT3Y0VU1paVAxbDRhY243MFRZZU5yUThHRjNXZnRQeUpicGQ1cnZ0emh2?=
- =?utf-8?B?VGpUcDFxOGNtd08zbnVZenJ0Z0VKWUFCTm1wWkJVVW4rdGhua0Y0dHBlVVRC?=
- =?utf-8?B?YmZHbmQ1MUJsbVQyeWtNTU5JYTVkdVQ2Nk8rZDZhbmdIZHU2RlRzQ0FzZ3Bn?=
- =?utf-8?B?QkJQVHZNV05WbGJ2RTA1TFJFNDFkSUx1b25XUHRjZm9MM1hWUy9VOXM5ZkF2?=
- =?utf-8?B?U0ptbXA5cmR2MjF6bUFzbkFObC9MaCs0UG9FRE9kMjdSUXJDRC9CMlZMKzVr?=
- =?utf-8?B?VEJoYVVOdWJKdXVZNFFMbmZwV1QxTDdNa0NkbzViT1lIM3dicUlrNStUQTBE?=
- =?utf-8?B?Z0hiR1MwU1BZRi9NRXg1b0RIb1NtS1FVQVluU2F2ZEtmdUswZURVL3IyOE9N?=
- =?utf-8?Q?l8F0rEkbi3Nw56ROIaRlOAAEVuovHhJYA0qW0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MW85UHlydTd4NVVNQUlOcHYwMFY5MU5TOFNaZ2V6bnlSeTBIZUovOXpmTHlM?=
- =?utf-8?B?Z25wTE1ZT25vZjh1Y21ZSGNvU1g2c3lpck4vM3Izb3JTQ09pRnNhVVFwMk5L?=
- =?utf-8?B?N0dDWWx6Vmc4TWtRM1NQZkpFczE2UlJ6bWZIbEQ4NUxCSmVpK1hzcGUwbmdo?=
- =?utf-8?B?dFRmZ1lNbVBjOGNQVTIrQ1JjVG8xcDZJZU1HTkpnUlpMMGt0R2UweDR4M0xs?=
- =?utf-8?B?Mm1qaDFFWEt0VGt6dmc3ZXhldFhkK21VQkxKTmwvQ0p4RUwvWElNV2ZucXRk?=
- =?utf-8?B?a280VzJ5RmhXZStwTjZUK2JOcE93NkQ4RGJGTnJnMWUrMkFIK2h1dHNack45?=
- =?utf-8?B?SVJVR21GY2R1ajl6eGJ4eHlKd1RncW1xSitXUytoU1RiZnJyNjBIWG04Qk8x?=
- =?utf-8?B?WlkrVHJreDl4Sng4QnJiVnFXajg5TS90U2N4N01xdUVtZWdWeG51VGNpbEln?=
- =?utf-8?B?RERqT21raS9QdVNKU3NzU1RJTnYreTNkbExnZjVldG0zWWJSQzZzd1JOZ0JO?=
- =?utf-8?B?K0RIVnpESGJyZUFLenU3SnZOVXBmQzNsNzdFdnl5YW5iY1VnSy9yNm41VnFS?=
- =?utf-8?B?a3RON1VPMitSSlZXdHV6MjFKdjVyRUFsZDB1RW92SG95ZUpRUG13eGpIVnJK?=
- =?utf-8?B?bFdjZThRSUFpVW9rN3RYbkFzUkYzbWc1MjdRaVYwcm1hQjZqNU5pNjR4MHg0?=
- =?utf-8?B?K1RFM1o3NERDdzl5SFJmbldIUlpicjg3YnduQTdTcDg3UC9ubTAvSFVteDlC?=
- =?utf-8?B?N3lJMHVxVFNvRytnTTVrU2YyZFJ0MW9xRUs2eTRpRlJxYWMxOXBWdTcwRENh?=
- =?utf-8?B?cmZMbnBEZUNTaUliM1NJdmIvb3FqVldhQ0JXd2U1eE5Yd3JmdDhwVUxsMWdI?=
- =?utf-8?B?elpEdklzSUNIaE1tYVl1U0FxRGxLd0JZK2lNaGdCaXdPZ3pSRXZtNjYvS3Ny?=
- =?utf-8?B?eTMvUlJuUDNSc0Q2Umwxakc3dmdGZHQ0YTVydjAwNS9NOGJqMGtlZ1NLZkJE?=
- =?utf-8?B?OVJQeGhNRGxhb3NLNzJUbVRmMXcyT3lpZlVXQ2hTSExkbUlBZG9DNk5hWHJ2?=
- =?utf-8?B?amwxeDhOUHZaQk1DaVJlbzJsQlNyajIyQWQ4cHAyYTF2ZzdERWVoVnJvb2FH?=
- =?utf-8?B?OWVzV1BWcDBTWXZCdXAxM3JGT0xnbHR4dG9EdDVoS2hXK1RqS1VkSmN2NmdF?=
- =?utf-8?B?TXpOc1F3LzhBUHZpeEFpQloydyttT3BUczBlYlRNeHM2OTE3d2pVVXdoanky?=
- =?utf-8?B?M091d0VSQ3IyeHBNeGNSbk1BWmNJaWNMM3lwVkhMckdqMlVuRDkrempzRjYy?=
- =?utf-8?B?UlNucXROU0Z1QzIxdWdNZFJTNjh4U3NCUTdvNXRFS25uWVhVRjdFdHpzMXdD?=
- =?utf-8?B?YVZTd1ZrMXg0R3p2YXRlY3kzV0lJNFN1RmNTZ2hHOVZNdGZwQVFFZldLY1U3?=
- =?utf-8?B?Y0hxVlVieWNDc0tocWdRZVkzYXRSUjgySWpHUnF6ODBQcmhpN3JVZEdnRjVa?=
- =?utf-8?B?WitCQm9nektscWh6WU9RdE1SM055MUlteE1TR1BmU1BJZ2Z6OHVZUnA2LzZO?=
- =?utf-8?B?ZGx4RkNrY21vUk5mSktleVVaRTZHUmt5eVhVUERidzlBL3IrcEowWHNLdU1k?=
- =?utf-8?B?T3pwKzJmUkp4SVNydnl3bUE0czdwdGY2VitmaDc2dGtnK09VM0h1OS9lNmFG?=
- =?utf-8?B?WEpUTVJhWmNaVVkzQmhtUmR1cm5qYlpzVlJIdUx0QVM1MGVFWEE4RGMyUWlT?=
- =?utf-8?B?dnRvbEFUZW9jalVMdDBXZ1Jjbko4Tm1DMGdQNHdBRlRsZlJWWjM1dVc3VEpj?=
- =?utf-8?B?YnNhampxSWdiZ1JNWTFuYUhTa2JscmdCcnNRMkVHbkU2QnllcTdraGREdlpM?=
- =?utf-8?B?S0V2elkyUVVxOGl5UE9hdDVKY0QrV08ybkVFZ252Z215d20xbmxReExaalFV?=
- =?utf-8?B?YldvTVNKY3dNNit0bUtocEJDMUxxSThzZzBmUndxQS9tV09qT2xEaEdrc2I5?=
- =?utf-8?B?MGNlSm9sVm5aaDVuTnhQWkFoVkVkaXovT2dMNjBLaExQdWJLZE5ZVGJZOE9k?=
- =?utf-8?B?NEMvTVBIUEZwMjNEVGFDWXg0a0VqLzAwOVhWZ3k1c05RYU1zck9MUjErT1Iz?=
- =?utf-8?Q?3G+uSBE84KSJWn1ecCF5Vpwhd?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aabf226f-b5f0-48b7-86f5-08ddfba50562
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2025 20:00:33.7849 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Rx/WqihRKAHBd0W6NJuu01Ba/QUeUgXi7fOSfo25sjIxDqBsPrmfH0h4Hw6pxz+i+ODY/noeh3Zuyj5FRw1MAQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5740
+X-MBO-RS-META: iz1e3iw1xqfgcxkyam9k3gfqmyr1s38z
+X-MBO-RS-ID: 6d1e5c485274634c9d3
+X-Mailman-Approved-At: Wed, 24 Sep 2025 20:26:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,110 +65,305 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 2025-09-03 at 11:18 +0100, Tvrtko Ursulin wrote:
+> To implement fair scheduling we need a view into the GPU time consumed by
+> entities. Problem we have is that jobs and entities objects have decouple=
+d
+> lifetimes, where at the point we have a view into accurate GPU time, we
+> cannot link back to the entity any longer.
+>=20
+> Solve this by adding a light weight entity stats object which is referenc=
+e
+> counted by both entity and the job and hence can safely be used from
+> either side.
+>=20
+> With that, the only other thing we need is to add a helper for adding the
+> job's GPU time into the respective entity stats object, and call it once
+> the accurate GPU time has been calculated.
+
+This in general also looks reasonable and clean to me. Some comments
+below.
+
+btw I've got many nit-comments for all patches, but will wait with
+those until a v1 is posted.
+
+>=20
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+> ---
+> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0 | 39 +++++++++=
+++++
+> =C2=A0drivers/gpu/drm/scheduler/sched_internal.h | 66 +++++++++++++++++++=
++++
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 6 +-
+> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12 ++++
+> =C2=A04 files changed, 122 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/s=
+cheduler/sched_entity.c
+> index 7a0a52ba87bf..04ce8b7d436b 100644
+> --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> @@ -32,6 +32,39 @@
+> =C2=A0
+> =C2=A0#include "gpu_scheduler_trace.h"
+> =C2=A0
+> +
+> +/**
+> + * drm_sched_entity_stats_release - Entity stats kref release function
+> + *
+> + * @kref: Entity stats embedded kref pointer
+> + */
+> +void drm_sched_entity_stats_release(struct kref *kref)
+> +{
+> +	struct drm_sched_entity_stats *stats =3D
+> +		container_of(kref, typeof(*stats), kref);
+> +
+> +	kfree(stats);
+> +}
+> +
+> +/**
+> + * drm_sched_entity_stats_alloc - Allocate a new struct drm_sched_entity=
+_stats object
+> + *
+> + * Returns: Pointer to newly allocated struct drm_sched_entity_stats obj=
+ect.
+> + */
+> +static struct drm_sched_entity_stats *drm_sched_entity_stats_alloc(void)
+> +{
+> +	struct drm_sched_entity_stats *stats;
+> +
+> +	stats =3D kzalloc(sizeof(*stats), GFP_KERNEL);
+> +	if (!stats)
+> +		return NULL;
+> +
+> +	kref_init(&stats->kref);
+> +	spin_lock_init(&stats->lock);
+> +
+> +	return stats;
+> +}
+> +
+> =C2=A0/**
+> =C2=A0 * drm_sched_entity_init - Init a context entity used by scheduler =
+when
+> =C2=A0 * submit to HW ring.
+> @@ -65,6 +98,11 @@ int drm_sched_entity_init(struct drm_sched_entity *ent=
+ity,
+> =C2=A0		return -EINVAL;
+> =C2=A0
+> =C2=A0	memset(entity, 0, sizeof(struct drm_sched_entity));
+> +
+> +	entity->stats =3D drm_sched_entity_stats_alloc();
+> +	if (!entity->stats)
+> +		return -ENOMEM;
+> +
+> =C2=A0	INIT_LIST_HEAD(&entity->list);
+> =C2=A0	entity->rq =3D NULL;
+> =C2=A0	entity->guilty =3D guilty;
+> @@ -338,6 +376,7 @@ void drm_sched_entity_fini(struct drm_sched_entity *e=
+ntity)
+> =C2=A0
+> =C2=A0	dma_fence_put(rcu_dereference_check(entity->last_scheduled, true))=
+;
+> =C2=A0	RCU_INIT_POINTER(entity->last_scheduled, NULL);
+> +	drm_sched_entity_stats_put(entity->stats);
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(drm_sched_entity_fini);
+> =C2=A0
+> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm=
+/scheduler/sched_internal.h
+> index 703ee48fbc58..27c8460a3601 100644
+> --- a/drivers/gpu/drm/scheduler/sched_internal.h
+> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
+> @@ -3,6 +3,22 @@
+> =C2=A0#ifndef _DRM_GPU_SCHEDULER_INTERNAL_H_
+> =C2=A0#define _DRM_GPU_SCHEDULER_INTERNAL_H_
+> =C2=A0
+> +#include <linux/ktime.h>
+> +#include <linux/kref.h>
+> +#include <linux/spinlock.h>
+> +
+> +/**
+> + * struct drm_sched_entity_stats - execution stats for an entity.
+> + *
+> + * @kref: reference count for the object.
+> + * @lock: lock guarding the @runtime updates.
+> + * @runtime: time entity spent on the GPU.
+> + */
+> +struct drm_sched_entity_stats {
+
+Cool docu.
+
+Though, considering that awkward refcounting patterns are one of the
+more relevant scheduler problems, I believe it makes sense to add to
+the docu here a sentence or two about who refcounts this object for
+what reason.
+
+> +	struct kref	kref;
+> +	spinlock_t	lock;
+> +	ktime_t		runtime;
+> +};
+> =C2=A0
+> =C2=A0/* Used to choose between FIFO and RR job-scheduling */
+> =C2=A0extern int drm_sched_policy;
+> @@ -93,4 +109,54 @@ drm_sched_entity_is_ready(struct drm_sched_entity *en=
+tity)
+> =C2=A0	return true;
+> =C2=A0}
+> =C2=A0
+> +void drm_sched_entity_stats_release(struct kref *kref);
+> +
+> +/**
+> + * drm_sched_entity_stats_get - Obtain a reference count on struct drm_s=
+ched_entity_stats object
+> + *
+> + * @stats: struct drm_sched_entity_stats pointer
+> + *
+> + * Returns: struct drm_sched_entity_stats pointer
+> + */
+> +static inline struct drm_sched_entity_stats *
+> +drm_sched_entity_stats_get(struct drm_sched_entity_stats *stats)
+> +{
+> +	kref_get(&stats->kref);
+> +
+> +	return stats;
+> +}
+> +
+> +/**
+> + * drm_sched_entity_stats_put - Release a reference count on struct drm_=
+sched_entity_stats object
+> + *
+> + * @stats: struct drm_sched_entity_stats pointer
+> + */
+> +static inline void
+> +drm_sched_entity_stats_put(struct drm_sched_entity_stats *stats)
+> +{
+> +	kref_put(&stats->kref, drm_sched_entity_stats_release);
+> +}
+> +
+> +/**
+> + * drm_sched_entity_stats_job_add_gpu_time - Account job execution time =
+to entity
+> + *
+> + * @job: Scheduler job to account.
+> + *
+> + * Accounts the execution time of @job to its respective entity stats ob=
+ject.
+> + */
+> +static inline void
+> +drm_sched_entity_stats_job_add_gpu_time(struct drm_sched_job *job)
+> +{
+> +	struct drm_sched_entity_stats *stats =3D job->entity_stats;
+> +	struct drm_sched_fence *s_fence =3D job->s_fence;
+> +	ktime_t start, end;
+> +
+> +	start =3D dma_fence_timestamp(&s_fence->scheduled);
+> +	end =3D dma_fence_timestamp(&s_fence->finished);
+> +
+> +	spin_lock(&stats->lock);
+> +	stats->runtime =3D ktime_add(stats->runtime, ktime_sub(end, start));
+> +	spin_unlock(&stats->lock);
+> +}
+> +
+> =C2=A0#endif
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/sch=
+eduler/sched_main.c
+> index 9411676e772a..a5d7706efbea 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -658,6 +658,7 @@ void drm_sched_job_arm(struct drm_sched_job *job)
+> =C2=A0
+> =C2=A0	job->sched =3D sched;
+> =C2=A0	job->s_priority =3D entity->priority;
+> +	job->entity_stats =3D drm_sched_entity_stats_get(entity->stats);
+> =C2=A0
+> =C2=A0	drm_sched_fence_init(job->s_fence, job->entity);
+> =C2=A0}
+> @@ -846,6 +847,7 @@ void drm_sched_job_cleanup(struct drm_sched_job *job)
+> =C2=A0		 * been called.
+> =C2=A0		 */
+> =C2=A0		dma_fence_put(&job->s_fence->finished);
+> +		drm_sched_entity_stats_put(job->entity_stats);
+> =C2=A0	} else {
+> =C2=A0		/* The job was aborted before it has been committed to be run;
+> =C2=A0		 * notably, drm_sched_job_arm() has not been called.
+> @@ -997,8 +999,10 @@ static void drm_sched_free_job_work(struct work_stru=
+ct *w)
+> =C2=A0		container_of(w, struct drm_gpu_scheduler, work_free_job);
+> =C2=A0	struct drm_sched_job *job;
+> =C2=A0
+> -	while ((job =3D drm_sched_get_finished_job(sched)))
+> +	while ((job =3D drm_sched_get_finished_job(sched))) {
+> +		drm_sched_entity_stats_job_add_gpu_time(job);
+> =C2=A0		sched->ops->free_job(job);
+> +	}
+
+The biggest question I'm wondering about is whether the reference
+should be put in drm_sched_job_cleanup() or drm_sched_free_job_work().
+The primer is semantically more correct, probably, but the latter is
+always controlled by the scheduler.
+
+Hypothetically a driver could just not call drm_sched_job_cleanup() in
+its free_job() callback =E2=80=93 but then other stuff would leak as well a=
+nd
+everything would be broken anyways.
+
+I probably should change the docu for drm_sched_job_cleanup(), which
+currently says drivers "should" call it in free_job(), instead of
+"must".
 
 
-On 2025-09-24 15:11, Alex Deucher wrote:
-> On Wed, Sep 24, 2025 at 2:44 PM Harry Wentland <harry.wentland@amd.com> wrote:
->>
->>
->>
->> On 2025-09-24 13:48, Mario Limonciello wrote:
->>> On 9/24/25 12:33 PM, Timur Kristóf wrote:
->>>>
->>>>
->>>> On 9/24/25 19:21, Mario Limonciello wrote:
->>>>>
->>>>> On 9/24/25 12:13 PM, Timur Kristóf wrote:
->>>>>>
->>>>>>
->>>>>> On 9/24/25 18:16, Mario Limonciello wrote:
->>>>>>> As part of enablement for SI and CIK in DC Timur pointed out some
->>>>>>> differences in behavior for common mode handling for DC vs non DC
->>>>>>> code paths. This series lines up the behavior between the two
->>>>>>> implementations.
->>>>>>>
->>>>>> Reviewed-by: Timur Kristóf <timur.kristof@gmail.com>
->>>>>>
->>>>>> Thank you Mario, this series makes good sense to me.
->>>>>> My only worry is this: is it possible that removing the common modes from connectors like DP, HDMI, etc. will regress somebody's setup?
->>>>>
->>>>> Possibly.  We're not going to know until we try.  I generally prefer not to add common modes (hence why I tried to drop them before until we hit the Xorg bug report).
->>>>>
->>>>> If someone complains about this then I see two other directions we can go.
->>>>
->>>> Sounds good.
->>>>
->>>> Considering the non-DC code already didn't add those common modes, I think it's reasonable to assume that we would have already heard about it if somebody had issues with it.
->>>>
->>>>>
->>>>> 1) to make both DC and non-DC paths apply common modes to eDP,LVDS, DP, HDMI.  Make them not apply common modes to VGA and DVI
->>>>>
->>>>> 2) Enabling common modes /across the board/ but anything not in the EDID gets the GPU scalar turned on.
->>
->> I was surprised the previous approach failed, which seems
->> to indicate GPU scaling isn't already happening. I wonder
->> why. I think this would make a better default behavior
->> instead of relying on monitor scalers to deal with
->> non-advertised modes.
-> 
-> My thinking with the original logic in radeon and the amdgpu non-DC
-> code was to only add the common modes to eDP/LVDS because the EDIDs
-> for those panels usually only had one mode in them and users almost
-> always wanted to do clone mode with an external monitor.  For external
-> monitors they often supported multiple modes already so there was less
-> incentive to add additional modes.  The default setting of the scaler
-> property was also different on eDP/LVDS (on) and external displays
-> (off).  If a user wanted to use the GPU scaler on an external display,
-> they could enable the scaler property and then manually add whatever
-> mode they wanted.  If they wanted to use the modes from the EDID, they
-> would just disable the scaler property and pick the mode from the
-> EDID.
-> 
+P.
 
-Makes sense. I forgot usermode controls scaling via the "scaling mode"
-property.
-
-Harry
-
-> Alex
-> 
->>
->> Harry
->>
->>>>
->>>> I guess we'll see if any of those are necessary. For now, I'd propose to just consider adding the common modes if there are 0 modes probed. But I'm also OK with leaving that for later if you feel it isn't necessary.
->>>>
->>>
->>> Yeah if something comes up and we need to weight it out we have this thread to refer back to for our ideas on what to do.
->>>
->>>> A slightly related question, would you be OK with changing the link detection code to return dc_connection_none when DDC cannot read an EDID header on digital signals, similar to how the non-DC code does it?
->>>>
->>>
->>> I personally think lining up all these nuances that are different between the two is a good idea.e e
->>>
->>> But for that specific question that's probably more of a Harry/Alex Hung question.
->>>
->>>>>>
->>>>>> Two possible cases come to mind:
->>>>>> 1. When we are unable to read the EDID for some reason
->>>>>> 2. When the EDID is buggy and/or doesn't contain any modes
->>>>>> Are these issues real or am I overthinking it?
->>>>>>
->>>>>> Thanks & best regards,
->>>>>> Timur
->>>>>
->>>>> Failing to read EDID has happened in the past, but I think with the deferred aux message handling that should be cleared up now.
->>>>
->>>> I was actually curious about that. I saw that issue while I was working on something else. How is it deferred now? Can you point me to the series that fixed it?
->>>>
->>>
->>> There's more patches than this one, but I believe this was the 💰 patch.
->>>
->>> https://lore.kernel.org/amd-gfx/20250428135514.20775-27-ray.wu@amd.com/
->>>
->>>
->>
+> =C2=A0
+> =C2=A0	drm_sched_run_job_queue(sched);
+> =C2=A0}
+> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+> index 802a0060db55..f33c78473867 100644
+> --- a/include/drm/gpu_scheduler.h
+> +++ b/include/drm/gpu_scheduler.h
+> @@ -71,6 +71,8 @@ enum drm_sched_priority {
+> =C2=A0	DRM_SCHED_PRIORITY_COUNT
+> =C2=A0};
+> =C2=A0
+> +struct drm_sched_entity_stats;
+> +
+> =C2=A0/**
+> =C2=A0 * struct drm_sched_entity - A wrapper around a job queue (typicall=
+y
+> =C2=A0 * attached to the DRM file_priv).
+> @@ -110,6 +112,11 @@ struct drm_sched_entity {
+> =C2=A0	 */
+> =C2=A0	struct drm_sched_rq		*rq;
+> =C2=A0
+> +	/**
+> +	 * @stats: Stats object reference held by the entity and jobs.
+> +	 */
+> +	struct drm_sched_entity_stats	*stats;
+> +
+> =C2=A0	/**
+> =C2=A0	 * @sched_list:
+> =C2=A0	 *
+> @@ -365,6 +372,11 @@ struct drm_sched_job {
+> =C2=A0	struct drm_sched_fence		*s_fence;
+> =C2=A0	struct drm_sched_entity=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 *entity;
+> =C2=A0
+> +	/**
+> +	 * @entity_stats: Stats object reference held by the job and entity.
+> +	 */
+> +	struct drm_sched_entity_stats	*entity_stats;
+> +
+> =C2=A0	enum drm_sched_priority		s_priority;
+> =C2=A0	u32				credits;
+> =C2=A0	/** @last_dependency: tracks @dependencies as they signal */
 
