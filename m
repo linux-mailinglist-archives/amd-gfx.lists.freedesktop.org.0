@@ -2,53 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38C8FB9F014
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Sep 2025 13:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 246E0B9F5A6
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Sep 2025 14:51:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81C2010E2B7;
-	Thu, 25 Sep 2025 11:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE1610E906;
+	Thu, 25 Sep 2025 12:51:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lEsa2CSp";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="eTMxrMfr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3A4F10E8F8;
- Thu, 25 Sep 2025 11:52:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=bFg2ngKv10DvJ4WCp75LyojWJ3G2AL1j2gRoH85cFCE=; b=lEsa2CSpYX9i1zjB6L6WzBBEhd
- UWokmfWOr5tRCkgNZi7ftrotB83gXy8Y0LyjnwPFZY+vdLHbE7/j7+bvGSDBYwoIrglVsdCqciTd5
- v+lacWgdt2QxZ3u5qatjF0X8aDJnCmBiGL8Ttc1S7awDsGAm+4FdbZmTHshWlvQSLDZeVJVwYadP/
- huNQ3bHOVJP9/5P3PM52zjGM7rbuHIBWKge0jOJrZMuUIoqyFMAQNj51X9f8HOOn6xVaoIh9PSBw7
- BXnJBz9+w6JHDOvW7VtfnE61RPQy+f8h8P8DCpLvkbH/I7HGoCgeMJF4tVkbqJj2rt3ixDAG4vTvC
- JPL2TeNg==;
-Received: from [84.66.36.92] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1v1kWp-00HKhL-JZ; Thu, 25 Sep 2025 13:52:51 +0200
-Message-ID: <743fa52d-f643-4102-9c56-24dca4359f82@igalia.com>
-Date: Thu, 25 Sep 2025 12:52:50 +0100
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B71210E880;
+ Thu, 25 Sep 2025 08:12:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1758787924;
+ bh=9B5Yz8ZIVg94icgQC5VlcqN0NKZl5hlh3O3RV3Lza3k=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=eTMxrMfr9ZvM8ZutKyszMimmLTA1vi/E084b+mpZ+TrY5poGWE2AgXWoW1xyhewAw
+ Y/5E//FBusMj8GMyxEGb4+6uZ0HY81jgdpe8EbID2/K3S+45VLarCJeKS/7hpyhHVX
+ uZ0s7/FC5sd8Y4FcYP1W9QjjpYqkpL/FXu5ZzqUWrTNU+R2pqniuAF8t0/WRR6QHGy
+ YYP9bdrSTOpcmi8NALJHQlHY1K94njGVZRAMDuxyiHuZfKCqKgmHQpqrec4fT8N/Vh
+ fduWDlHaY97epf/SSKgpP38MmTpLF2J8Ff3yqp5y2EmRWkLGqMw9dVbQ8nLmbFkGm8
+ fwrYwp1bTO8qw==
+Received: from eldfell (unknown [194.136.85.206])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 8058017E12C9;
+ Thu, 25 Sep 2025 10:12:03 +0200 (CEST)
+Date: Thu, 25 Sep 2025 11:11:36 +0300
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Alex Hung <alex.hung@amd.com>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>, Sebastian Wick
+ <sebastian.wick@redhat.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, wayland-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, leo.liu@amd.com, ville.syrjala@linux.intel.com,
+ contact@emersion.fr, mwen@igalia.com, jadahl@redhat.com,
+ shashank.sharma@amd.com, agoins@nvidia.com, joshua@froggi.es,
+ mdaenzer@redhat.com, aleixpol@kde.org, victoria@system76.com,
+ daniel@ffwll.ch, uma.shankar@intel.com, quic_naseer@quicinc.com,
+ quic_cbraga@quicinc.com, quic_abhinavk@quicinc.com, marcan@marcan.st,
+ Liviu.Dudau@arm.com, sashamcintosh@google.com,
+ chaitanya.kumar.borah@intel.com, louis.chauvet@bootlin.com,
+ mcanal@igalia.com, nfraprado@collabora.com, Daniel Stone
+ <daniels@collabora.com>
+Subject: Re: [PATCH V11 06/47] drm/colorop: Add 1D Curve subtype
+Message-ID: <20250925110238.5f872e69@eldfell>
+In-Reply-To: <b8abcab1-3953-410a-b639-5a74f9d2819e@amd.com>
+References: <20250815035047.3319284-1-alex.hung@amd.com>
+ <20250815035047.3319284-7-alex.hung@amd.com>
+ <DC6I12RMKGXL.1L8KAEE0UBNNW@redhat.com>
+ <CAFZQkGyXbD_x0V6KBdR4vaunF+bG+HKOYAA7y6aVWfeTQ3cLzA@mail.gmail.com>
+ <4eef4157-cad5-4399-9bc9-c5c2f005d472@amd.com>
+ <20250826120306.618c275f@eldfell>
+ <610215a0-50ad-45b8-b60a-a52441619c73@amd.com>
+ <20250918114036.454735e9@eldfell>
+ <7abe9596-1d85-4b14-94ab-97bd4dfe0977@amd.com>
+ <20250923105918.41f832c2@eldfell>
+ <1c7158fc-db72-4ba0-81d2-8bfecf36a2c2@amd.com>
+ <b8abcab1-3953-410a-b639-5a74f9d2819e@amd.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v8 07/12] drm/sched: Account entity GPU time
-To: phasta@kernel.org, dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>
-References: <20250903101820.63032-1-tvrtko.ursulin@igalia.com>
- <20250903101820.63032-8-tvrtko.ursulin@igalia.com>
- <6d5be3ab8413d44a360ebe7a34771ead6687c989.camel@mailbox.org>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <6d5be3ab8413d44a360ebe7a34771ead6687c989.camel@mailbox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/KXiq_KWo/kqRPCHvIVV_=48";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Thu, 25 Sep 2025 12:51:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,295 +83,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--Sig_/KXiq_KWo/kqRPCHvIVV_=48
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 24/09/2025 10:11, Philipp Stanner wrote:
-> On Wed, 2025-09-03 at 11:18 +0100, Tvrtko Ursulin wrote:
->> To implement fair scheduling we need a view into the GPU time consumed by
->> entities. Problem we have is that jobs and entities objects have decoupled
->> lifetimes, where at the point we have a view into accurate GPU time, we
->> cannot link back to the entity any longer.
->>
->> Solve this by adding a light weight entity stats object which is reference
->> counted by both entity and the job and hence can safely be used from
->> either side.
->>
->> With that, the only other thing we need is to add a helper for adding the
->> job's GPU time into the respective entity stats object, and call it once
->> the accurate GPU time has been calculated.
-> 
-> This in general also looks reasonable and clean to me. Some comments
-> below.
+On Tue, 23 Sep 2025 11:41:24 -0600
+Alex Hung <alex.hung@amd.com> wrote:
 
-Thanks!
+> On 9/23/25 10:16, Alex Hung wrote:
+> >=20
+> >=20
+> > On 9/23/25 01:59, Pekka Paalanen wrote: =20
+> >> On Mon, 22 Sep 2025 21:16:45 -0600
+> >> Alex Hung <alex.hung@amd.com> wrote:
+> >> =20
+> >>> On 9/18/25 02:40, Pekka Paalanen wrote: =20
 
-> btw I've got many nit-comments for all patches, but will wait with
-> those until a v1 is posted.
+...
 
-Lets try and strike a balance please. :)
+> >> The problem is that "H.273 TransferCharacteristics code point 13" a.k.a
+> >> the sRGB curve means different things for different people (two-piece
+> >> vs. power-2.2).
+> >>
+> >> The difference is minor but visible, and therefore I would not make
+> >> two-piece and power-2.2 equivalent nor have one approximated by the
+> >> other.
+> >>
+> >> They both need their own entries in the enum. Let's leave any decision
+> >> about whether substituting one for the other is ok to the userspace.
+> >> =20
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DRM_COLOROP_1D=
+_CURVE_SRGB_EOTF,
+> >>>
+> >>>
+> >>> It is also possible to add GAMMA 2.2 in addition to sRGB piece-wise
+> >>> EOTF. But if I understand correctly, DRM_COLOROP_1D_CURVE_SRGB_EOTF m=
+ay
+> >>> not be used at all, right? =20
+> >>
+> >> If hardware implements the two-piece curve, then there is reason to
+> >> expose it, especially when it does not implement power-2.2. Userspace
+> >> can choose to use it as an approximation when that is appropriate.
+> >>
+> >>
+> >> Thanks,
+> >> pq
+> >> =20
+> >=20
+> > Does the following diff make sense?
 
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Danilo Krummrich <dakr@kernel.org>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Philipp Stanner <phasta@kernel.org>
->> ---
->>   drivers/gpu/drm/scheduler/sched_entity.c   | 39 +++++++++++++
->>   drivers/gpu/drm/scheduler/sched_internal.h | 66 ++++++++++++++++++++++
->>   drivers/gpu/drm/scheduler/sched_main.c     |  6 +-
->>   include/drm/gpu_scheduler.h                | 12 ++++
->>   4 files changed, 122 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
->> index 7a0a52ba87bf..04ce8b7d436b 100644
->> --- a/drivers/gpu/drm/scheduler/sched_entity.c
->> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
->> @@ -32,6 +32,39 @@
->>   
->>   #include "gpu_scheduler_trace.h"
->>   
->> +
->> +/**
->> + * drm_sched_entity_stats_release - Entity stats kref release function
->> + *
->> + * @kref: Entity stats embedded kref pointer
->> + */
->> +void drm_sched_entity_stats_release(struct kref *kref)
->> +{
->> +	struct drm_sched_entity_stats *stats =
->> +		container_of(kref, typeof(*stats), kref);
->> +
->> +	kfree(stats);
->> +}
->> +
->> +/**
->> + * drm_sched_entity_stats_alloc - Allocate a new struct drm_sched_entity_stats object
->> + *
->> + * Returns: Pointer to newly allocated struct drm_sched_entity_stats object.
->> + */
->> +static struct drm_sched_entity_stats *drm_sched_entity_stats_alloc(void)
->> +{
->> +	struct drm_sched_entity_stats *stats;
->> +
->> +	stats = kzalloc(sizeof(*stats), GFP_KERNEL);
->> +	if (!stats)
->> +		return NULL;
->> +
->> +	kref_init(&stats->kref);
->> +	spin_lock_init(&stats->lock);
->> +
->> +	return stats;
->> +}
->> +
->>   /**
->>    * drm_sched_entity_init - Init a context entity used by scheduler when
->>    * submit to HW ring.
->> @@ -65,6 +98,11 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
->>   		return -EINVAL;
->>   
->>   	memset(entity, 0, sizeof(struct drm_sched_entity));
->> +
->> +	entity->stats = drm_sched_entity_stats_alloc();
->> +	if (!entity->stats)
->> +		return -ENOMEM;
->> +
->>   	INIT_LIST_HEAD(&entity->list);
->>   	entity->rq = NULL;
->>   	entity->guilty = guilty;
->> @@ -338,6 +376,7 @@ void drm_sched_entity_fini(struct drm_sched_entity *entity)
->>   
->>   	dma_fence_put(rcu_dereference_check(entity->last_scheduled, true));
->>   	RCU_INIT_POINTER(entity->last_scheduled, NULL);
->> +	drm_sched_entity_stats_put(entity->stats);
->>   }
->>   EXPORT_SYMBOL(drm_sched_entity_fini);
->>   
->> diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
->> index 703ee48fbc58..27c8460a3601 100644
->> --- a/drivers/gpu/drm/scheduler/sched_internal.h
->> +++ b/drivers/gpu/drm/scheduler/sched_internal.h
->> @@ -3,6 +3,22 @@
->>   #ifndef _DRM_GPU_SCHEDULER_INTERNAL_H_
->>   #define _DRM_GPU_SCHEDULER_INTERNAL_H_
->>   
->> +#include <linux/ktime.h>
->> +#include <linux/kref.h>
->> +#include <linux/spinlock.h>
->> +
->> +/**
->> + * struct drm_sched_entity_stats - execution stats for an entity.
->> + *
->> + * @kref: reference count for the object.
->> + * @lock: lock guarding the @runtime updates.
->> + * @runtime: time entity spent on the GPU.
->> + */
->> +struct drm_sched_entity_stats {
-> 
-> Cool docu.
-> 
-> Though, considering that awkward refcounting patterns are one of the
-> more relevant scheduler problems, I believe it makes sense to add to
-> the docu here a sentence or two about who refcounts this object for
-> what reason.
+Yes.
 
-Good idea - it is often not completely easy to find the commit message 
-from git blame.
 
-> 
->> +	struct kref	kref;
->> +	spinlock_t	lock;
->> +	ktime_t		runtime;
->> +};
->>   
->>   /* Used to choose between FIFO and RR job-scheduling */
->>   extern int drm_sched_policy;
->> @@ -93,4 +109,54 @@ drm_sched_entity_is_ready(struct drm_sched_entity *entity)
->>   	return true;
->>   }
->>   
->> +void drm_sched_entity_stats_release(struct kref *kref);
->> +
->> +/**
->> + * drm_sched_entity_stats_get - Obtain a reference count on struct drm_sched_entity_stats object
->> + *
->> + * @stats: struct drm_sched_entity_stats pointer
->> + *
->> + * Returns: struct drm_sched_entity_stats pointer
->> + */
->> +static inline struct drm_sched_entity_stats *
->> +drm_sched_entity_stats_get(struct drm_sched_entity_stats *stats)
->> +{
->> +	kref_get(&stats->kref);
->> +
->> +	return stats;
->> +}
->> +
->> +/**
->> + * drm_sched_entity_stats_put - Release a reference count on struct drm_sched_entity_stats object
->> + *
->> + * @stats: struct drm_sched_entity_stats pointer
->> + */
->> +static inline void
->> +drm_sched_entity_stats_put(struct drm_sched_entity_stats *stats)
->> +{
->> +	kref_put(&stats->kref, drm_sched_entity_stats_release);
->> +}
->> +
->> +/**
->> + * drm_sched_entity_stats_job_add_gpu_time - Account job execution time to entity
->> + *
->> + * @job: Scheduler job to account.
->> + *
->> + * Accounts the execution time of @job to its respective entity stats object.
->> + */
->> +static inline void
->> +drm_sched_entity_stats_job_add_gpu_time(struct drm_sched_job *job)
->> +{
->> +	struct drm_sched_entity_stats *stats = job->entity_stats;
->> +	struct drm_sched_fence *s_fence = job->s_fence;
->> +	ktime_t start, end;
->> +
->> +	start = dma_fence_timestamp(&s_fence->scheduled);
->> +	end = dma_fence_timestamp(&s_fence->finished);
->> +
->> +	spin_lock(&stats->lock);
->> +	stats->runtime = ktime_add(stats->runtime, ktime_sub(end, start));
->> +	spin_unlock(&stats->lock);
->> +}
->> +
->>   #endif
->> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->> index 9411676e772a..a5d7706efbea 100644
->> --- a/drivers/gpu/drm/scheduler/sched_main.c
->> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->> @@ -658,6 +658,7 @@ void drm_sched_job_arm(struct drm_sched_job *job)
->>   
->>   	job->sched = sched;
->>   	job->s_priority = entity->priority;
->> +	job->entity_stats = drm_sched_entity_stats_get(entity->stats);
->>   
->>   	drm_sched_fence_init(job->s_fence, job->entity);
->>   }
->> @@ -846,6 +847,7 @@ void drm_sched_job_cleanup(struct drm_sched_job *job)
->>   		 * been called.
->>   		 */
->>   		dma_fence_put(&job->s_fence->finished);
->> +		drm_sched_entity_stats_put(job->entity_stats);
->>   	} else {
->>   		/* The job was aborted before it has been committed to be run;
->>   		 * notably, drm_sched_job_arm() has not been called.
->> @@ -997,8 +999,10 @@ static void drm_sched_free_job_work(struct work_struct *w)
->>   		container_of(w, struct drm_gpu_scheduler, work_free_job);
->>   	struct drm_sched_job *job;
->>   
->> -	while ((job = drm_sched_get_finished_job(sched)))
->> +	while ((job = drm_sched_get_finished_job(sched))) {
->> +		drm_sched_entity_stats_job_add_gpu_time(job);
->>   		sched->ops->free_job(job);
->> +	}
-> 
-> The biggest question I'm wondering about is whether the reference
-> should be put in drm_sched_job_cleanup() or drm_sched_free_job_work().
-> The primer is semantically more correct, probably, but the latter is
-> always controlled by the scheduler.
-> 
-> Hypothetically a driver could just not call drm_sched_job_cleanup() in
-> its free_job() callback – but then other stuff would leak as well and
-> everything would be broken anyways.
+> >=20
+> > 1. Change "sRGB EOTF" -> "Piece-wise EOTF"
+> > 2. Add "Gamma 2.2"
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_coloro=
+p.c
+> > index e1b2b446faf2..823e39b8f3fe 100644
+> > --- a/drivers/gpu/drm/drm_colorop.c
+> > +++ b/drivers/gpu/drm/drm_colorop.c
+> > @@ -71,12 +71,13 @@ static const struct drm_prop_enum_list=20
+> > drm_colorop_type_enum_list[] =3D {
+> >  =C2=A0};
+> >=20
+> >  =C2=A0static const char * const colorop_curve_1d_type_names[] =3D {
+> > -=C2=A0=C2=A0=C2=A0 [DRM_COLOROP_1D_CURVE_SRGB_EOTF] =3D "sRGB EOTF",
+> > +=C2=A0=C2=A0=C2=A0 [DRM_COLOROP_1D_CURVE_SRGB_EOTF] =3D "Piece-wise EO=
+TF",
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 [DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF] =3D "sRG=
+B Inverse EOTF",
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 [DRM_COLOROP_1D_CURVE_PQ_125_EOTF] =3D "PQ 12=
+5 EOTF",
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 [DRM_COLOROP_1D_CURVE_PQ_125_INV_EOTF] =3D "P=
+Q 125 Inverse EOTF",
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 [DRM_COLOROP_1D_CURVE_BT2020_INV_OETF] =3D "B=
+T.2020 Inverse OETF",
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 [DRM_COLOROP_1D_CURVE_BT2020_OETF] =3D "BT.20=
+20 OETF",
+> > +=C2=A0=C2=A0=C2=A0 [DRM_COLOROP_1D_CURVE_GAMMA22] =3D "Gamma 2.2",
 
-I think drm_sched_entity_stats_put() from drm_sched_job_cleanup() makes 
-sense because latter is where other actions done by drm_sched_job_arm() 
-are cleaned up. And drm_sched_job_arm() is where I placed 
-drm_sched_entity_stats_get(). So that all looks nicely aligned to me.
+If I wanted to really nitpick, I'd propose "Power 2.2" instead of
+"Gamma 2.2", but I suppose it's clear anyway. And Wayland already went
+with GAMMA22.
 
-> I probably should change the docu for drm_sched_job_cleanup(), which
-> currently says drivers "should" call it in free_job(), instead of
-> "must".
+> >  =C2=A0};
+> >=20
+> >  =C2=A0static const struct drm_prop_enum_list=20
+> > drm_colorop_lut1d_interpolation_list[] =3D {
+> > diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+> > index 3e70f66940e0..3428a27cd9ad 100644
+> > --- a/include/drm/drm_colorop.h
+> > +++ b/include/drm/drm_colorop.hsRGB EOTF
+> > @@ -43,12 +43,9 @@ enum drm_colorop_curve_1d_type {
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 /**
+> >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * @DRM_COLOROP_1D_CURVE_SRGB_EOTF:
+> >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
+> > -=C2=A0=C2=A0=C2=A0=C2=A0 * enum string "sRGB EOTF"
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 * enum string "Piece-wise EOTF"
+> >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
+> > -=C2=A0=C2=A0=C2=A0=C2=A0 * sRGB piece-wise electro-optical transfer fu=
+nction. Transfer
+> > -=C2=A0=C2=A0=C2=A0=C2=A0 * characteristics as defined by IEC 61966-2-1=
+ sRGB. Equivalent
+> > -=C2=A0=C2=A0=C2=A0=C2=A0 * to H.273 TransferCharacteristics code point=
+ 13 with
+> > -=C2=A0=C2=A0=C2=A0=C2=A0 * MatrixCoefficients set to 0.
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 * sRGB piece-wise electro-optical transfer fu=
+nction.
+> >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 DRM_COLOROP_1D_CURVE_SRGB_EOTF,
+> >=20
+> > @@ -108,6 +105,16 @@ enum drm_colorop_curve_1d_type {
+> >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 DRM_COLOROP_1D_CURVE_BT2020_OETF,
+> >=20
+> > +=C2=A0=C2=A0=C2=A0 /**
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 * @DRM_COLOROP_1D_CURVE_GAMMA22:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 *
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 * enum string "Gamma 2.2"
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 *
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 * A gamma 2.2 power function. This applies a =
+power curve with
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 * gamma value of 2.2 to the input values.
 
-Yeah I agree s/should/must/ is in order.
+I'd prefer "exponent" rather than "gamma value" to be more explicit.
+Just in case. There is quite some confusion around the term "gamma".
+I've used to call this function a "pure power-low with exponent 2.2" to
+explain that there are no offsets or multipliers or anything else.
 
-Regards,
+For documentation it would best to write down the mathematical formula
+rather than describe it in words. I understand that may be problematic
+in kerneldoc, and we didn't do it in Wayland XML either but in a
+proposed Gitlab-Markdown appendix.
 
-Tvrtko
 
->>   
->>   	drm_sched_run_job_queue(sched);
->>   }
->> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
->> index 802a0060db55..f33c78473867 100644
->> --- a/include/drm/gpu_scheduler.h
->> +++ b/include/drm/gpu_scheduler.h
->> @@ -71,6 +71,8 @@ enum drm_sched_priority {
->>   	DRM_SCHED_PRIORITY_COUNT
->>   };
->>   
->> +struct drm_sched_entity_stats;
->> +
->>   /**
->>    * struct drm_sched_entity - A wrapper around a job queue (typically
->>    * attached to the DRM file_priv).
->> @@ -110,6 +112,11 @@ struct drm_sched_entity {
->>   	 */
->>   	struct drm_sched_rq		*rq;
->>   
->> +	/**
->> +	 * @stats: Stats object reference held by the entity and jobs.
->> +	 */
->> +	struct drm_sched_entity_stats	*stats;
->> +
->>   	/**
->>   	 * @sched_list:
->>   	 *
->> @@ -365,6 +372,11 @@ struct drm_sched_job {
->>   	struct drm_sched_fence		*s_fence;
->>   	struct drm_sched_entity         *entity;
->>   
->> +	/**
->> +	 * @entity_stats: Stats object reference held by the job and entity.
->> +	 */
->> +	struct drm_sched_entity_stats	*entity_stats;
->> +
->>   	enum drm_sched_priority		s_priority;
->>   	u32				credits;
->>   	/** @last_dependency: tracks @dependencies as they signal */
-> 
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > +=C2=A0=C2=A0=C2=A0 DRM_COLOROP_1D_CURVE_GAMMA22,
+> > +
+> >  =C2=A0=C2=A0=C2=A0=C2=A0 /**
+> >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * @DRM_COLOROP_1D_CURVE_COUNT:
+> >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
+> >  =20
+>=20
+> Both DRM_COLOROP_1D_CURVE_SRGB_EOTF and DRM_COLOROP_1D_CURVE_GAMMA22 are=
+=20
+> defined and it should be clear that sRGB EOTF are piece-wise TF and=20
+> Gamma 2.2 is for power 2.2. Is it still a concern of using "sRGB" for as=
+=20
+> the original patch?
 
+Not enough of a concern for me to continue nagging about it. :-)
+
+> More precisely, adding DRM_COLOROP_1D_CURVE_GAMMA22 with "Gamma 2.2"=20
+> string without touching "sRGB EOTF" should be sufficient. If a userspace=
+=20
+> need to choose one or another it can precisely do so.
+>=20
+
+As long as everyone reads the documentation, and the documentation is
+clear. I failed at clarity in Wayland, so I'm perhaps a bit paranoid
+here.
+
+
+Thanks,
+pq
+
+--Sig_/KXiq_KWo/kqRPCHvIVV_=48
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmjU+TgACgkQI1/ltBGq
+qqclkQ/9GW/21Ro7P9Bm9MrLqirGgcU/yg+nkK5Ht2IrFBViXdCUGgDTUnG9ZyFS
+N/RBmwI9PKtWnFTuRGNOypySZLtWXcaPYOj6azqzEfLZKL4xakr+VBqpI2Pai+le
+Ez0OOKa1/QFvl8d2DXLt2C/1Ch2iUxN4qZ8p11esJk46DigRaQNjrEaOa8NydxGF
+U6wS0U4pwd/TodT+ETREFs2eJNYYZQ984UmsDJofATAbuIP42q1Role5dDzuAQN+
+wgw7Fsxz93XcWd+uvLkHi74dkFMJNJJBiBy/s73xxUbXssROLL8kcyjfnmqoGmzl
+AkgtuKed8Sc3FzoCLhGEDePDZHF/bi9fxEj1CFJ+oGMVvEAOuoU/HD9DdpZlwwur
+GXoN9dwkFZEP5h6BbxunRLMCtDfhA5L6WLKTCnCp+8rMCGIe2fHGZlRFUYtSQScw
+4ykb+Ny0oLkMwqscxnYdyaDE7HYyNa5VAtLEPJkfdWrBHd8rPid+aPTlR0xn4k7d
+Wz08oHayx2MJK2lMWsbQMTpDnMbs41Ouox7OBwU4jhZGitqRam7mD0FtwS3vwnGW
+Oz4V4XA5UyCILrQQEz4qL0KXnemDYn80Yzkqzi3lGVRYq5zYMVrv6BGOVy3lLRW0
+/YN3GCZSZ5fNOV9+i+kwCiX/SfBYbhxpthHV+x0M3KcJU08iE1Q=
+=hUI4
+-----END PGP SIGNATURE-----
+
+--Sig_/KXiq_KWo/kqRPCHvIVV_=48--
