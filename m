@@ -2,154 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E579DBA4377
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Sep 2025 16:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C11BBA4419
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Sep 2025 16:39:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 623B710EA6E;
-	Fri, 26 Sep 2025 14:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B38B810EA7C;
+	Fri, 26 Sep 2025 14:39:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nK77n1NF";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="tQLxhFhz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010050.outbound.protection.outlook.com [52.101.61.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEA8210EA6E
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Sep 2025 14:33:21 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012056.outbound.protection.outlook.com [52.101.48.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8303710EA82;
+ Fri, 26 Sep 2025 14:39:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KGXiXZKbMMWiLtLymIelR0QPM5u0jL9sT2ZfEiMtkrO2R6g7WBR7n92RyUatgv/ns/cobxrssQAsNBppQkrF136sN8wFkmMgFm7goSzIVaeyYsWioKZN/tFcYIcGpneAnMIyQs9SaDY0GGNrCOXkfPHOELl5uk7cP+OB+XbVBHWHpzrRMDXEj3VGrhXsQIvk+b1TOUtJKmhyUI5ffD0gGJJ2e+QL0dsHAq4R6gRh3Nc/dQyttnCMeRo49cCi2xzi+AnTYId1UDqClztfzBwtX4mckeMoFYIS1drkRMtJGVRz8WkTo2Eu1jXvF6/j8RtciLJbaoQh6eetydjSJbJ+vw==
+ b=kypDRSweT8rNY0cPIA70npc87R1l5uOHxTkJv6SLXJFzt2SpC5uPK3awRSJr/77I7KMn71GA8RrHAE6BiuPyEAkEWAWIFdwUXKd40agji3ljhj6M6eGxcwM3kRTCOX7G/1Lv3fL62HZBEpN/JdI7w+RyBxc3nYX1xWXQ1QQJ/WkLAcswmG4NVzURN5dcetPdBJtFJhBzB1F5OXKroOaYswvPAVM2bzuaL9RIZwC+3QlZzPeG+I/xvOQENfR2DavGHRwUtljmJm1CX0Z9ehuua97dnpd4N/Gx5fTS3QCs/rPjhaFhRTPUigIsUKZKRTbMobSeuvQzOls5ISzWaDmFjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=w1Npyu+j/DcSWxd5TZSPxCkgAzmUAFXs4E5043DD/YE=;
- b=cSG2MAvLYawpaKlulRcSpwdIgWFn8bDRie3OcaS1GfnSxZJwvZYQzCezi9mem6lbuMyp5z/52cNfIGckO3WOdBpdaNWY5Zhk57JL3FThzfyyaiFEBU5Vr0x68zZRi6S6KrGquHzxR1yiZOdpwxnbDkgigvBtqUObfVY5tjhJ1aa5AbfmEouKdoZxfo/1sd/j55lKzBA/LqqL9CCyvGTBSw2Gh6kAhv+wcGJd3qZHwRp8kvw8jb2YYKAxtuEDljQA8SmSd8pqLj+VM39Ck6iRy9LqNs6mgpgPi2oH/D0BK7FjL2yS+1frhz8OJc6ZUXjwW2A8R2PltuSHim6B/JDwUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=K01SJkIAmWQO2IjREM8iqYuagSX2x0qqopwjZVNjztI=;
+ b=HjnKgxpgmWumloqFOwrc23qbmAqyh2WZwMIn8jvNlhp0/++HUi1UTMbudcTzIfALvn2DqTpatGfQWu7iyktgEqvRg7IkaGhQJsOUg9aLKffRw6nUH8Cvfbv4zcx0Lqbs/fo0OspkO0wHsWFGLgbErjgC7eSTTnjuJohI+h4Fop2G1KrnJ0BcRcNv0l8SrW54FHMxjcPXQbiu8ptL2f9I6qRDhBFsKRAOFfteIpxYSv89YHYolJ7gLyCLkuyYggY/owpfqXPRhS+ld/JvMR45bu3krkWuvI69Ycob0pCnvABt66N2EVHSYeGnnoMvH17TLPpImCK3n4gMQ3jDjRSDyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=w1Npyu+j/DcSWxd5TZSPxCkgAzmUAFXs4E5043DD/YE=;
- b=nK77n1NFecRmVhnTvNLI2ImQSnmnRGWlszT/Aay22Hl17CPJC0FCg8McpPHiI5gOZ0PhPEnYfDDtT6yhGvIheZ3h2iMWt3YYXkhnN0KaukP04UDM/M1yFZv+AJhUUi456Q6laRRLtcnLhc7OH9eh1KIkTbvanfOBhjBAZH/HrEw=
-Received: from CY5PR12MB6369.namprd12.prod.outlook.com (2603:10b6:930:21::10)
- by PH7PR12MB9223.namprd12.prod.outlook.com (2603:10b6:510:2f2::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.10; Fri, 26 Sep
- 2025 14:33:13 +0000
-Received: from CY5PR12MB6369.namprd12.prod.outlook.com
- ([fe80::d4c1:1fcc:3bff:eea6]) by CY5PR12MB6369.namprd12.prod.outlook.com
- ([fe80::d4c1:1fcc:3bff:eea6%4]) with mapi id 15.20.9160.008; Fri, 26 Sep 2025
- 14:33:13 +0000
-From: "Zhang, Yifan" <Yifan1.Zhang@amd.com>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "Yang, Philip" <Philip.Yang@amd.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Kuehling, Felix"
- <Felix.Kuehling@amd.com>
-Subject: Re: [PATCH v4 1/2] amd/amdkfd: resolve a race in
- amdgpu_amdkfd_device_fini_sw
-Thread-Topic: [PATCH v4 1/2] amd/amdkfd: resolve a race in
- amdgpu_amdkfd_device_fini_sw
-Thread-Index: AQHcLWgTnPLagjuNFECF58wZePJndLSi7+WAgAB93wCAAAFusIAACZwAgAACGgCAAB/uwIABbd4AgAB/Z74=
-Date: Fri, 26 Sep 2025 14:33:13 +0000
-Message-ID: <CY5PR12MB63697295FA82372B5759A1CFC11EA@CY5PR12MB6369.namprd12.prod.outlook.com>
-References: <20250924152929.2234747-1-yifan1.zhang@amd.com>
- <ccc729b8-640e-6e71-3522-7208413990f0@amd.com>
- <DS0PR12MB7804DBACD17E1583644F9430971FA@DS0PR12MB7804.namprd12.prod.outlook.com>
- <CY5PR12MB6369FE21B3A3079D6E658701C11FA@CY5PR12MB6369.namprd12.prod.outlook.com>
- <DS0PR12MB7804B2A1338FC3E91E37F1D9971FA@DS0PR12MB7804.namprd12.prod.outlook.com>
- <DS0PR12MB7804A33F5341A416484C66EC971FA@DS0PR12MB7804.namprd12.prod.outlook.com>
- <CY5PR12MB6369DC6E20631567D14F9DD0C11FA@CY5PR12MB6369.namprd12.prod.outlook.com>
- <DS0PR12MB780409C0BBADEE1F73A64B07971EA@DS0PR12MB7804.namprd12.prod.outlook.com>
-In-Reply-To: <DS0PR12MB780409C0BBADEE1F73A64B07971EA@DS0PR12MB7804.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-09-26T14:33:12.571Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=1;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Standard; 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR12MB6369:EE_|PH7PR12MB9223:EE_
-x-ms-office365-filtering-correlation-id: f17f1eea-5c6b-4a4b-2853-08ddfd099fe6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|38070700021|8096899003; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?qmSN1cmCCLJAG5j0td26deLscI76gGNlhZ6xYyrvoJF4WRPDCI02MKyX6/nc?=
- =?us-ascii?Q?kTholGm9GtxRx9H6YuX4b3Wz64Vo8aPmYqO/Orju9XZWgXZQrb9ezwhIhORm?=
- =?us-ascii?Q?4uNRCZhjrjvqgtbPt1H0dz5olNTt4fbfNjN4kSDqXzE+5C+u6LUubpX0q50q?=
- =?us-ascii?Q?kwzeyJzj4pYZpaYT2lDrUEiB1K21b4H4PFLkoMtzr/GHQrziNkS0x7XmzbUN?=
- =?us-ascii?Q?1xP3ca5Vi9pw3Wda3JLJhXkSTx15jICdrM4LxF0KCoC+5mza9ZkswWAJEDn6?=
- =?us-ascii?Q?tyth8cfJ8Apa1qtCtT9h53fz3ZBHPgGHh+R/vU6YWQu2dnT8nvzvvH488xdw?=
- =?us-ascii?Q?xBOz/wFjZv8/qBzijcrWXas6v35BKQ8zCiqlGN8K98XGJD/0RXNSE21iSjCV?=
- =?us-ascii?Q?cBARQqEXqGmnSbUhIM2WC5TRPM+dze62yph3EBv9wEj1LtvC7htFJaWfRi+9?=
- =?us-ascii?Q?mLxA4EQEy+eqFv5w93RaSCONwVrlMJM1nbOU6q7/783Rdsljode7K4fxc2aM?=
- =?us-ascii?Q?UO/5UOv/xjaznOT2Gk/bmoa+DHdhx0GoMOEHG1RDxAA7pIobTDjA4DexI2xY?=
- =?us-ascii?Q?+6UO7Xy8ffz+m5TGfmNfbyzu9DgHf/n0Corl/KSS6aVihX+SQJsh/oy7o9Gw?=
- =?us-ascii?Q?XVkOf08IKKrE4KmX2T5LCGfGLQWk9THmLZjJQUG1vVnK8dirtWS15BYEY+yV?=
- =?us-ascii?Q?Dh4IaMMR7CK/dB/t4ChvRTVLnrFC0hRGQMfcbHg3hSCYaMzZ2P4GtR9nMYBD?=
- =?us-ascii?Q?Ux3ZiZeeSA84AcBYOOkiH5KDP52ORM/ks1FCEkrUi5x7GafYKl2iamWSsbP1?=
- =?us-ascii?Q?z+p0HWm86ge2XEinlmIbJfC3JUqSl2254LtP/0ERGJJ5EmmoI4Pncxh+SUUa?=
- =?us-ascii?Q?hjyeKuv02sVu/BQsEMTcteDAG/FNXIQPKXixRvg/aE/WSEzBhX7ZLvMkJXVk?=
- =?us-ascii?Q?ZOEeSqbXqi4H6wLa7xILa1ie0nMBNBBoAjN10lm1lLTrw1Go8FvbPd+yMBBf?=
- =?us-ascii?Q?2JTyjc+SgW9cR+AU5y/rlYdxhypghFllbX+c0eM2qZFWgGHO52t+6bT0rDzx?=
- =?us-ascii?Q?BOp3eXDpk3W0BSAU00nRIxr9giZBlcbJKYpV6/me7FO2Z/66j74JKscblpS4?=
- =?us-ascii?Q?kg1Bx64egaumIQDiLCrdmPzwxR0qRIyhyruEehDu2FCAIZwvHi6mNJpAeeMJ?=
- =?us-ascii?Q?vT9FvFjo4GBgu9MJu8v24DXD5YdcQAD1Tr7OH3tuJThZT2REOYY2LkSgvuDm?=
- =?us-ascii?Q?Twp4CZJefZpTF7UOD4JMOQtpfYwnkYx1t05mqypXPdZZFtyfSXcKSTgYBm10?=
- =?us-ascii?Q?zCb4Z8wSVUcMF5PRD2GNj8AKDPyWNOR+5By/Oxrtw5t3vB+xoystf24ELiLL?=
- =?us-ascii?Q?xe8EMw7vvsFsfM6Tv7TOaGkAyMunlFa3hLCapcS4C54dNLtTwnXhfeEv+lsr?=
- =?us-ascii?Q?TpytpEcPsqnYDpd+WNuKJwXbSFP5bwuOHrTCTK4NFVadRBV/PFPSNtcaiRJH?=
- =?us-ascii?Q?tuhHb20SL4yXSFc=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR12MB6369.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700021)(8096899003); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eUePOw736JNBx+oc307SPCfBkKDxFDaMg+hoBOdmaNYX2g5pLaB49cm6s3dw?=
- =?us-ascii?Q?4LI2Elxk5CODGDPzcYTljqSwp76FRiijdiN7tNF1umk3dkT83bcU/oxjGadJ?=
- =?us-ascii?Q?BEHnzxlM4CvH+E7p5iVeyTMd7/9DJTDWgHN4K13MLbAJfHNFMuo16Wwi7z2m?=
- =?us-ascii?Q?6F2avMy+Q7nP7sVpB0w/hXCWDsGiML7nbAPMZjp4uFtwsy4MZs9xcGL0LKxf?=
- =?us-ascii?Q?UCAbxT1WqaZsPPMRo/uk4bAHBv2qBwRSuijFu+++/KdVSnm0xn6WI7XRnLZr?=
- =?us-ascii?Q?AfJympRs/tgQJvFgw3ClPBINPs9LToRqA/2mBxpB/528EJHiiYSjFUxsrKR9?=
- =?us-ascii?Q?S5+mhv3s7YhrIL688uZ+udzuQqjVNN7+lcx6dhShBunuAOFPlW+PJ4YqyL8X?=
- =?us-ascii?Q?870bO0mZwNYsj3XQl9dwWtpHiC8c/fy45f2fGzjqaNT+xXwu4nQKU37q+2yR?=
- =?us-ascii?Q?OFhaUNCXkoaWXn+DOop7WTiCE1FN+MjYXiRcsnA/CCr+Mx3OMbJBKDS1j3Xj?=
- =?us-ascii?Q?QgpHre5mVJZm5mHZN0lKoQADu0nO+pWkGlRe39gp9fjjUWpv9YW24xlWROWa?=
- =?us-ascii?Q?l5cE2wqKQb73RswRHQiOK6iJno71aRwXUjmKgpOhd4Et38n0YYLQvjbyhEEw?=
- =?us-ascii?Q?XKmbftahosdwGdGfu9wjYlNxpA7A27RjxBadAxHTOFIxLeTrtxnM81EIXSaq?=
- =?us-ascii?Q?SyMOSGmdOD8PCP52Sv6WpmdAipTWieRdN+x5yGVsHMRzsLhJw3Ll6wk6ZdOH?=
- =?us-ascii?Q?WLPQn8bAow5leYzw7Ib3E42zMnkCHHGvcYR4Pg/DbCKSnpAPTvvUoCRgi9gz?=
- =?us-ascii?Q?ciMlOumUchS0JHzIPMN6Z5o7ZG/OCrmSYIBvdl656mOFLwwrPPkST5NVqTpm?=
- =?us-ascii?Q?e0torBJSKCtOH1oh5ppLarWxLDcGjOgBM1WY9pFLRiWiQ+ngH5HPzAw+fp9k?=
- =?us-ascii?Q?4r9sxtnTP+DpNAZBiEicZd5CegtMYYnw7T+9YIwN2RstDzULeUn9ADXws6Pe?=
- =?us-ascii?Q?cnOvRvyZszGJokcDmltRCewRliPla1P35oWNU/T3Z8ES4m92MtC8YUxwixQd?=
- =?us-ascii?Q?Xzu7yLMKtHNl29OCHzcK3YoajybiKcmsp4lPqjO8Brwek3sxin7aczJaoHqA?=
- =?us-ascii?Q?TdtzGuuSMVkvEdGSZnJo74WumVHpkoDrV69ZTBa5qpvRoF4+faW8rCKmW3XQ?=
- =?us-ascii?Q?tCRWNO0nwsa7dSuHG9SQvtBsIpMYMRY7Q1eS5giOW2EJ8SLhw3tW5Bt1Wr7B?=
- =?us-ascii?Q?jSWoAN6ooknM9f9cAbGxYJ4nSVxPDLorv2Fvs2I9hLxiqI9Eyp48CzQ9J8ZR?=
- =?us-ascii?Q?5gpkyOZhCQDmzCamrCNL52OT+98t0im+mhHMZxWLGu+vRftGIzmP4GCjeOZe?=
- =?us-ascii?Q?SBxy04bB6BqVAcnYsqNyxvWIjFRVpSBSE245PdjG0wnuPHqjFnzzwtan9G3e?=
- =?us-ascii?Q?cQxjM9YvRVETI0jUzUILrLPUEVJcpTsmuwLQQ1+98vQeN1L7QTELi5m6OV0G?=
- =?us-ascii?Q?HHLVz4/ev3G31W/xB0lbCYkGZzzYLIM9o1qoqEvnmquoI5Cz/zy8EWNqayad?=
- =?us-ascii?Q?SJpzoMcDLQPiu130uJQ=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_CY5PR12MB63697295FA82372B5759A1CFC11EACY5PR12MB6369namp_"
+ bh=K01SJkIAmWQO2IjREM8iqYuagSX2x0qqopwjZVNjztI=;
+ b=tQLxhFhztXA1mu8/EJxUfsM5bEl0BXlhIkcIfEP0B3SjvXX0u8hXcFZH6bOPVOos//9ZtV+7GqyvuYkGhoifhWxHsf5t/q5XuR5ryCQyDykRn1tfbftjKHcpP37aW5FhG0714ebqUAi53/tlkvwVz18FngDtXPY26k0nDH7rjKo=
+Received: from PH3PEPF00004099.namprd05.prod.outlook.com (2603:10b6:518:1::45)
+ by BN7PPF862C85B20.namprd12.prod.outlook.com
+ (2603:10b6:40f:fc02::6d7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.16; Fri, 26 Sep
+ 2025 14:39:35 +0000
+Received: from CY4PEPF0000E9CE.namprd03.prod.outlook.com
+ (2a01:111:f403:f912::4) by PH3PEPF00004099.outlook.office365.com
+ (2603:1036:903:49::3) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.15 via Frontend Transport; Fri,
+ 26 Sep 2025 14:39:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000E9CE.mail.protection.outlook.com (10.167.241.133) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9160.9 via Frontend Transport; Fri, 26 Sep 2025 14:39:34 +0000
+Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 26 Sep
+ 2025 07:39:32 -0700
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <airlied@gmail.com>, <simona.vetter@ffwll.ch>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [pull] amdgpu, amdkfd drm-next-6.18
+Date: Fri, 26 Sep 2025 10:39:18 -0400
+Message-ID: <20250926143918.2030854-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CE:EE_|BN7PPF862C85B20:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24d63ab8-1cb5-4dca-ddf6-08ddfd0a82bd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|376014|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?YlFEY1RCWFoxbXd5K2NKMTZweDhpWk5QYnJEdjNTSlJwNzF1SXErNnJESVZB?=
+ =?utf-8?B?T1JYbUdzMjg5TlJUQVZuTnFtVGxKSjhRTVNrOVcvOXovQmxQWE9ubFp5R2Rt?=
+ =?utf-8?B?M0RoOFlNRmtEZTNDKy9RRlFXVnNnTFRxK25QWTliQzIxalprUFVqN0hhemFp?=
+ =?utf-8?B?aXZ0Vnc0RXhiTkdienVSSzRSL0IwWTRDMzhyY1lGTmNoTTRyUVBDTHBTQ2Jw?=
+ =?utf-8?B?ZUxIRGRzV05zbzZ2WThmT0hxa1VkejNPNytEaXIxT0YzbDdKa3RNdTZwazlQ?=
+ =?utf-8?B?SkZ6Nkt5ZVNGeXhhekJNOGszaEVzL2Vyd0NOYnlLUFpXODBBU3I3dzhXWXJs?=
+ =?utf-8?B?THZ6Q1lWRnNIclA2ZUlwTDdwR21aQ2RobCs3NVhtMEROVFJaK3RLOFY1cmN6?=
+ =?utf-8?B?b0piM1Juc2hoWXNqL0tBLzVCWmxyMHRwT0FmS3ZCaW9NY0lwTklSMGNBT21o?=
+ =?utf-8?B?SWpseGRFRUxrbmNORmJleVlYV0EzNEZudTE2L0pZVXpYWmpCZ2FMTVJpU2tn?=
+ =?utf-8?B?S3J6djlyVndvWkJEZHl4dDdwaEdKSE5BUXlIdTJsa3Q1YkpWWHZrcFVlQWFa?=
+ =?utf-8?B?TjlEd3NhbWpLRWNzR3lSMlo0T0Z1d3hlUTRCeVB6amVtdTBwZjVhZzNia1hK?=
+ =?utf-8?B?TnZEZUE4WTlPd2Q3dGxwb0lyVDd4N3VaOXplWm16Um02ekdOU1ZvOVhxWWho?=
+ =?utf-8?B?SmRXamRVOXBnK2NIZGlCZXRsT1JrK2x1NHpDWlJLamJCa2tYcGFKc3VNdjh0?=
+ =?utf-8?B?dGhKN2grOWFqcmQvOEJ0cG84V2xFS0dZd0g3YnFWRzVWb2wxVmd6aTZSdlh4?=
+ =?utf-8?B?UkhDZmxDMFhsVkYvY3BkUVpmc0tHYTJJS2Y0dm5WZWE1Si9tVkh2dzh1bm4w?=
+ =?utf-8?B?S2ZQRmxwelNXUUlXM1VHZFcwZmJkTFI0TVdVenBxQmtyR3JHZXdabjhOTGpY?=
+ =?utf-8?B?NzNTcDNHM09uR2VLWDFUdnp4OStpTkVhdHE0UDVleWJ6UkJXMEkvektzZ25H?=
+ =?utf-8?B?TTM1Q1N5R2pHZ0hud0tuNkhTbmYyMllZYnZkajZhaHpBK2I0WDNpaU5mejUx?=
+ =?utf-8?B?ODFNYzVqeHVpRGUzMVV4NDJxb2M1TDhURzdWbEwvKzFHSEFwc21Hb1U2ZFlj?=
+ =?utf-8?B?S1N3S2drNmZWTVdpeGZQalZJclhqY1dVdkVpTDcrcFJxT3NpZHo1aGVxZHdt?=
+ =?utf-8?B?Rmhwc2J1bTVUeXArTnpMT1hMUHdRWkdhOU9HdGxybW9DYjFIOGNVK2dQakpY?=
+ =?utf-8?B?TUxUYndWWW9yaDY5cEV6SFNsSGZzYU84eUpYR2lkYjNjc05Bc1V6MUo4RVlm?=
+ =?utf-8?B?TG1XL3B4NlJWLzRUVkNvUGdMQjFJUDI0VWVhZ0UzOUh0SnZkNVpJclFNM1B0?=
+ =?utf-8?B?NTVCNVFDZU8wT3Q2TGFiRHphYkJFdkp1MDlkVzVrTEQ3WXFEVnZRRmZUd2o5?=
+ =?utf-8?B?bnozNHJNUGk0KzNnS3lBV3JzOCtxbWJ1YmVYUEErSml2WXVveSs1S3A2ZnhX?=
+ =?utf-8?B?T1phdFV4MmtnZG1qcnhtUjhEUlVPbzY2M29yeHlEOURSL2VjM09sb3lsa1hU?=
+ =?utf-8?B?d2diRDJHSGF6TzcxYml2RWJ3ekxqTUI0UW5IYTQwWGlCUVExUGdTVDhlUnk4?=
+ =?utf-8?B?NFJiOStUT1hUYWdrZlJLNndvTFBSSmt5S0hqb2JkYUtoSEE2b2pXemM0dk5Y?=
+ =?utf-8?B?bVJvY1o4RkxLUmRwaG5oaUxPZ0VySTBvZE5DTWhOcEJGVzdndXNBSkVLc2VZ?=
+ =?utf-8?B?MGlKTHVIRlhwenJwNTdqUTVJeVEvUWFrVlFyZzM0em8xMlEwVUZ4K0RFRVRh?=
+ =?utf-8?B?MHVzZ2tFMW9qQWxrRGNsaHVzMmluMU5PU3FDcjJoM2ZWbXRLUFVmclhDc1BG?=
+ =?utf-8?B?NWcxSXBMSzVrbkxwSDFpd2pBUE9GWjlWd2FzaEY2RjFjYys1WVRBNXhCVDE3?=
+ =?utf-8?B?Y0k1L1V3VDFWMUNNVjN5R2NpTi92Y21rMHFsM0JIM2ZQNHczb1k3Z1MyRnZ0?=
+ =?utf-8?Q?6fmoYv2knIR5nnIkBEMtgtJc4D9u3g=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6369.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f17f1eea-5c6b-4a4b-2853-08ddfd099fe6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2025 14:33:13.5404 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: g398vroRalXWKeA5WFoZmy/E5tgdD/qBGmY8Jq0e6/OVJEvQUa0AJ6IlrIqJ3xu4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9223
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2025 14:39:34.0580 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24d63ab8-1cb5-4dca-ddf6-08ddfd0a82bd
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9CE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPF862C85B20
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,1182 +139,241 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_CY5PR12MB63697295FA82372B5759A1CFC11EACY5PR12MB6369namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Dave, Simona,
 
-[Public]
+Fixes for 6.18.
 
-  kfd_interrupt_exit needs to break to two parts, because knode->ih_fifo is=
- still needed by flush ih_wq.  Change like this:
+The following changes since commit 342f141ba9f4c9e39de342d047a5245e8f4cda19:
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
-amdkfd/kfd_device.c
-index e9cfb80bd436..270459826147 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -655,19 +655,33 @@ static void kfd_cleanup_nodes(struct kfd_dev *kfd, un=
-signed int num_nodes)
- {
-        struct kfd_node *knode;
-        unsigned int i;
-+       unsigned long flags;
+  Merge tag 'amd-drm-next-6.18-2025-09-19' of https://gitlab.freedesktop.org/agd5f/linux into drm-next (2025-09-22 08:45:51 +1000)
 
-        /*
-         * flush_work ensures that there are no outstanding
-         * work-queue items that will access interrupt_ring. New work items
-         * can't be created because we stopped interrupt handling above.
-         */
-+       for (i =3D 0; i < num_nodes; i++) {
-+               knode =3D kfd->nodes[i];
-+               spin_lock_irqsave(&knode->interrupt_lock, flags);
-+               knode->interrupts_active =3D false;
-+               spin_unlock_irqrestore(&knode->interrupt_lock, flags);
-+       }
-+
-        flush_workqueue(kfd->ih_wq);
-        destroy_workqueue(kfd->ih_wq);
+are available in the Git repository at:
 
-+       for (i =3D 0; i < num_nodes; i++) {
-+               spin_lock_irqsave(&knode->interrupt_lock, flags);
-+               knode->kfd->ih_wq =3D NULL;
-+               spin_unlock_irqrestore(&knode->interrupt_lock, flags);
-+               kfifo_free(&knode->ih_fifo);
-+       }
-+
-        for (i =3D 0; i < num_nodes; i++) {
-                knode =3D kfd->nodes[i];
-                device_queue_manager_uninit(knode->dqm);
--               kfd_interrupt_exit(knode);
-                kfd_topology_remove_device(knode);
-                if (knode->gws)
-                        amdgpu_amdkfd_free_gws(knode->adev, knode->gws);
-@@ -1125,7 +1139,8 @@ void kgd2kfd_interrupt(struct kfd_dev *kfd, const voi=
-d *ih_ring_entry)
-        unsigned long flags;
-        struct kfd_node *node;
+  https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-next-6.18-2025-09-26
 
--       if (!kfd->init_complete)
-+       if (!kfd->init_complete || !kfd->ih_wq)
-                return;
+for you to fetch changes up to df2ba5709416ac6ce8dab1d141fc246b79549e78:
 
-        if (kfd->device_info.ih_ring_entry_size > sizeof(patched_ihre)) {
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c b/drivers/gpu/drm/a=
-md/amdkfd/kfd_interrupt.c
-index 783c2f5a04e4..be10c0a9d391 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
-@@ -87,21 +87,6 @@ int kfd_interrupt_init(struct kfd_node *node)
-        return 0;
- }
+  drm/amd: Add name to modes from amdgpu_connector_add_common_modes() (2025-09-25 15:54:22 -0400)
 
--void kfd_interrupt_exit(struct kfd_node *node)
--{
--       /*
--        * Stop the interrupt handler from writing to the ring and scheduli=
-ng
--        * workqueue items. The spinlock ensures that any interrupt running
--        * after we have unlocked sees interrupts_active =3D false.
--        */
--       unsigned long flags;
--
--       spin_lock_irqsave(&node->interrupt_lock, flags);
--       node->interrupts_active =3D false;
--       spin_unlock_irqrestore(&node->interrupt_lock, flags);
--       kfifo_free(&node->ih_fifo);
--}
--
+----------------------------------------------------------------
+amd-drm-next-6.18-2025-09-26:
 
+amdgpu:
+- Misc fixes
+- Misc cleanups
+- SMU 13.x fixes
+- MES fix
+- VCN 5.0.1 reset fixes
+- DCN 3.2 watermark fixes
+- AVI infoframe fixes
+- PSR fix
+- Brightness fixes
+- DCN 3.1.4 fixes
+- DCN 3.1+ DTM fixes
+- DCN powergating fixes
+- DMUB fixes
+- DCN/SMU cleanup
+- DCN stutter fixes
+- DCN 3.5 fixes
+- GAMMA_LUT fixes
+- Add UserQ documentation
+- GC 9.4 reset fixes
+- Enforce isolation cleanups
+- UserQ fixes
+- DC/non-DC common modes cleanup
+- DCE6-10 fixes
 
+amdkfd:
+- Fix a race in sw_fini
+- Switch partition fix
 
+----------------------------------------------------------------
+Alex Deucher (2):
+      Documentation: add initial documenation for user queues
+      drm/amdgpu: update MODULE_PARM_DESC for freesync_video
 
-________________________________
-From: Lazar, Lijo <Lijo.Lazar@amd.com>
-Sent: Friday, September 26, 2025 2:49 PM
-To: Zhang, Yifan <Yifan1.Zhang@amd.com>; Yang, Philip <Philip.Yang@amd.com>=
-; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.=
-Kuehling@amd.com>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw
+Allen Li (1):
+      drm/amd/display: Add fast sync field in ultra sleep more for DMUB
 
-[Public]
+Alvin Lee (1):
+      drm/amd/display: Use mpc.preblend flag to indicate preblend
 
-The intention is to let kgd2kfd_interrupt thread know that KFD is done with=
- interrupt handling and exit at the earliest (that is even without going th=
-rough kfd node loop). I was thinking of checking ih_wq NULL value, but sinc=
-e that value is not under lock, it's not necessary that kgd2kfd_interrupt t=
-hread sees the NULL value immediately.
+Charlene Liu (3):
+      drm/amd/display: Insert dccg log for easy debug
+      drm/amd/display: Correct sw cache timing to ensure dispclk ramping
+      drm/amd/display: Revert "correct sw cache timing to ensure dispclk ramping"
 
-> if (!kfd->init_complete && !kfd->ih_wq)
+Christian König (2):
+      drm/amdgpu: remove leftover from enforcing isolation by VMID
+      drm/amdgpu: revert "rework reserved VMID handling" v2
 
-I think this should be  if (!kfd->ih_wq || !kfd->init_complete)
+Dillon Varone (6):
+      drm/amd/display: Disable stutter when programming watermarks on dcn32
+      drm/amd/display: Add missing post flip calls
+      drm/amd/display: Isolate dcn401 SMU functions
+      drm/amd/display: Refactor SMU tracing
+      drm/amd/display: Set wm_pending when disable stutter w/a used
+      drm/amd/display: Remove wm_optimized_required
 
-For this - kfd_interrupt_exit(knode) - it's better to keep it before flush_=
-workqueue. That indicates no more queueing is allowed from any node.
+Ivan Lipski (1):
+      drm/amd/display: Enable DTM v3 on dGPUs with DCN 3.1+
 
-Thanks,
-Lijo
+Jesse.Zhang (6):
+      drm/amdgpu: Refactor VCN v5.0.1 HW init into separate instance function
+      drm/amdgpu: Add ring reset support for VCN v5.0.1
+      drm/amdgpu: Move VCN reset mask setup to late_init for VCN 5.0.1
+      drm/amd/pm: Add VCN reset message support for SMU v13.0.12
+      drm/amdgpu: Add fallback to pipe reset if KCQ ring reset fails
+      drm/amdgpu: Fix fence signaling race condition in userqueue
 
------Original Message-----
-From: Zhang, Yifan <Yifan1.Zhang@amd.com>
-Sent: Thursday, September 25, 2025 3:25 PM
-To: Lazar, Lijo <Lijo.Lazar@amd.com>; Yang, Philip <Philip.Yang@amd.com>; a=
-md-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.=
-Kuehling@amd.com>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw
+Karthi Kandasamy (1):
+      drm/amd/display: Add AVI infoframe copy in copy_stream_update_to_stream
 
-[Public]
+Kuan-Wei Chiu (1):
+      drm/amd/display: Optimize remove_duplicates() from O(N^2) to O(N)
 
-Hi Lijo, Do you mean a change like below ? Besides readability, is there fu=
-nctional improvement ?
+Leo Li (1):
+      drm/amd/display: Init DCN35 clocks from pre-os HW values
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
-amdkfd/kfd_device.c
-index e9cfb80bd436..86676acd9cbe 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -663,6 +663,7 @@ static void kfd_cleanup_nodes(struct kfd_dev *kfd, unsi=
-gned int num_nodes)
-         */
-        flush_workqueue(kfd->ih_wq);
-        destroy_workqueue(kfd->ih_wq);
-+       kfd->ih_wq =3D NULL;
+Lijo Lazar (1):
+      drm/amdgpu: Fix vbios build number parsing logic
 
-        for (i =3D 0; i < num_nodes; i++) {
-                knode =3D kfd->nodes[i];
-@@ -1125,7 +1126,7 @@ void kgd2kfd_interrupt(struct kfd_dev *kfd, const voi=
-d *ih_ring_entry)
-        unsigned long flags;
-        struct kfd_node *node;
+Lo-an Chen (1):
+      drm/amd/display: Init dispclk from bootup clock for DCN314
 
--       if (!kfd->init_complete)
-+       if (!kfd->init_complete && !kfd->ih_wq)
-                return;
+Mario Limonciello (7):
+      drm/amdgpu: Enable MES lr_compute_wa by default
+      drm/amd/display: Handle interpolation for first data point
+      drm/amd/display: Only enable common modes for eDP and LVDS
+      drm/amd: Drop unnecessary check in amdgpu_connector_add_common_modes()
+      drm/amd: Use dynamic array size declaration for amdgpu_connector_add_common_modes()
+      drm/amd: Drop some common modes from amdgpu_connector_add_common_modes()
+      drm/amd: Add name to modes from amdgpu_connector_add_common_modes()
 
-        if (kfd->device_info.ih_ring_entry_size > sizeof(patched_ihre)) {
+Melissa Wen (3):
+      drm/amd/display: update color on atomic commit time
+      drm/amd/display: change dc stream color settings only in atomic commit
+      drm/amd/display: remove output_tf_change flag
 
+Paul Hsieh (1):
+      drm/amd/display: Add monitor patch to read psr cap again
 
-Regarding the destroy_workqueue(kfd->ih_wq) and queue_work(node->kfd->ih_wq=
-, &node->interrupt_work) sync, it looks like another issue, should set node=
-->interrupts_active =3D false before  destroy_workqueue(kfd->ih_wq) is call=
-ed. I think something like below:
+Prike Liang (1):
+      drm/amdgpu/userq: assign an error code for invalid userq va
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
-amdkfd/kfd_device.c
-index e9cfb80bd436..92d9fa99e954 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -662,6 +662,9 @@ static void kfd_cleanup_nodes(struct kfd_dev *kfd, unsi=
-gned int num_nodes)
-         * can't be created because we stopped interrupt handling above.
-         */
-        flush_workqueue(kfd->ih_wq);
-+       for (i =3D 0; i < num_nodes; i++) {
-+               kfd_interrupt_exit(knode);
-+       }
-        destroy_workqueue(kfd->ih_wq);
+Rahul Kumar (1):
+      drm/amdgpu: Use kmalloc_array() instead of kmalloc()
 
-        for (i =3D 0; i < num_nodes; i++) {
+Sonny Jiang (1):
+      drm/amdgpu: Update amdgpu_vcn5_fw_shared for vcn_5_0_1
 
+Sridevi Arvindekar (1):
+      drm/amd/display: Fix for test crash due to power gating
 
------Original Message-----
-From: Lazar, Lijo <Lijo.Lazar@amd.com>
-Sent: Thursday, September 25, 2025 3:06 PM
-To: Lazar, Lijo <Lijo.Lazar@amd.com>; Zhang, Yifan <Yifan1.Zhang@amd.com>; =
-Yang, Philip <Philip.Yang@amd.com>; amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.=
-Kuehling@amd.com>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw
+Sunil Khatri (2):
+      drm/amdgpu: use hmm_pfns instead of array of pages
+      drm/amdgpu: remove the redeclaration of variable i
 
-[Public]
+Taimur Hassan (2):
+      drm/amd/display: [FW Promotion] Release 0.1.28.0
+      drm/amd/display: Promote DC to 3.2.351
 
-On a second thought, probably this will require some locking. For ex: it's =
-quite possible that destroy_workqueue(kfd->ih_wq) and queue_work(node->kfd-=
->ih_wq, &node->interrupt_work) could be happening back-to-back. Node is not=
- yet deleted.
+Timur Kristóf (3):
+      drm/amd/display: Reject modes with too high pixel clock on DCE6-10
+      drm/amd/display: Share dce100_validate_bandwidth with DCE6-8
+      drm/amd/display: Share dce100_validate_global with DCE6-8
 
-Thanks,
-Lijo
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Lazar, L=
-ijo
-Sent: Thursday, September 25, 2025 12:29 PM
-To: Zhang, Yifan <Yifan1.Zhang@amd.com>; Yang, Philip <Philip.Yang@amd.com>=
-; amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.=
-Kuehling@amd.com>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw
+Yang Wang (1):
+      drm/amd/pm: place the smu 13.0.0 pptable header into the correct folder
 
-[Public]
+YiPeng Chai (1):
+      drm/amd/ras: Add rascore status definition
 
-I meant something like this.
+Yifan Zhang (2):
+      amd/amdkfd: resolve a race in amdgpu_amdkfd_device_fini_sw
+      amd/amdkfd: enhance kfd process check in switch partition
 
-destroy_workqueue(kfd->ih_wq);
-kfd->ih_wq =3D NULL;
-
-Then check for NULL at the beginning of kgd2kfd_interrupt. If there is no I=
-H workqueue, then there is no interrupt handling capability.
-
-May also be within the loop. Not sure if that is really required; if some w=
-ork is already scheduled previously, it should be inside flush_workqueue() =
-of cleanup_nodes.
-
-        for (i =3D 0; kfd->ih_wq && i < kfd->num_nodes; i++)
-
-Thanks,
-Lijo
-
------Original Message-----
-From: Zhang, Yifan <Yifan1.Zhang@amd.com>
-Sent: Thursday, September 25, 2025 12:11 PM
-To: Lazar, Lijo <Lijo.Lazar@amd.com>; Yang, Philip <Philip.Yang@amd.com>; a=
-md-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.=
-Kuehling@amd.com>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw
-
-[Public]
-
-The interrupts are from KGD, still active after flush ih_wq and kfd_dev is =
-freed. And after knode is freed, node->interrupts_active is also inaccessib=
-le. The race condition is as below:
-
-Interrupt handling                                              switch part=
-ition process
-                                                        |
-                                                                |       flu=
-sh_workqueue(kfd->ih_wq);
-                                                                |       des=
-troy_workqueue(kfd->ih_wq);
-amdgpu_irq_dispatch                                                |
-amdgpu_amdkfd_interrupt                         |
-kgd2kfd_interrupt                                       |
-                                                        |       kfd_cleanup=
-_nodes
-                                                        |       kfree(knode=
-);
-spin_lock_irqsave(&node->interrupt_lock, flags);        |
-//NULL Pointer
-
-
------Original Message-----
-From: Lazar, Lijo <Lijo.Lazar@amd.com>
-Sent: Thursday, September 25, 2025 2:19 PM
-To: Yang, Philip <Philip.Yang@amd.com>; Zhang, Yifan <Yifan1.Zhang@amd.com>=
-; amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.=
-Kuehling@amd.com>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw
-
-[Public]
-
-> Race if another thread in b/w kfd_cleanup_nodes
-
-This code is there before cleanup of nodes.
-        flush_workqueue(kfd->ih_wq);
-        destroy_workqueue(kfd->ih_wq);
-
-Shouldn't the interrupt handling code check if interrupt handling is enable=
-d rather than checking individual node NULL pointers?
-
-Thanks,
-Lijo
-
------Original Message-----
-From: Yang, Philip <Philip.Yang@amd.com>
-Sent: Thursday, September 25, 2025 4:19 AM
-To: Zhang, Yifan <Yifan1.Zhang@amd.com>; amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.=
-Kuehling@amd.com>; Yang, Philip <Philip.Yang@amd.com>; Lazar, Lijo <Lijo.La=
-zar@amd.com>
-Subject: Re: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw
-
-
-On 2025-09-24 11:29, Yifan Zhang wrote:
-> There is race in amdgpu_amdkfd_device_fini_sw and interrupt.
-> if amdgpu_amdkfd_device_fini_sw run in b/w kfd_cleanup_nodes and
->    kfree(kfd), and KGD interrupt generated.
->
-> kernel panic log:
->
-> BUG: kernel NULL pointer dereference, address: 0000000000000098 amdgpu
-> 0000:c8:00.0: amdgpu: Requesting 4 partitions through PSP
->
-> PGD d78c68067 P4D d78c68067
->
-> kfd kfd: amdgpu: Allocated 3969056 bytes on gart
->
-> PUD 1465b8067 PMD @
->
-> Oops: @002 [#1] SMP NOPTI
->
-> kfd kfd: amdgpu: Total number of KFD nodes to be created: 4
-> CPU: 115 PID: @ Comm: swapper/115 Kdump: loaded Tainted: G S W OE K
->
-> RIP: 0010:_raw_spin_lock_irqsave+0x12/0x40
->
-> Code: 89 e@ 41 5c c3 cc cc cc cc 66 66 2e Of 1f 84 00 00 00 00 00 OF
-> 1f 40 00 Of 1f 44% 00 00 41 54 9c 41 5c fa 31 cO ba 01 00 00 00 <fO>
-> OF b1 17 75 Ba 4c 89 e@ 41 Sc
->
-> 89 c6 e8 07 38 5d
->
-> RSP: 0018: ffffc90@1a6b0e28 EFLAGS: 00010046
->
-> RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000018
-> 0000000000000001 RSI: ffff8883bb623e00 RDI: 0000000000000098
-> ffff8883bb000000 RO8: ffff888100055020 ROO: ffff888100055020
-> 0000000000000000 R11: 0000000000000000 R12: 0900000000000002
-> ffff888F2b97da0@ R14: @000000000000098 R15: ffff8883babdfo00
->
-> CS: 010 DS: 0000 ES: 0000 CRO: 0000000080050033
->
-> CR2: 0000000000000098 CR3: 0000000e7cae2006 CR4: 0000000002770ce0
-> 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> 0000000000000000 DR6: 00000000fffeO7FO DR7: 0000000000000400
->
-> PKRU: 55555554
->
-> Call Trace:
->
-> <IRQ>
->
-> kgd2kfd_interrupt+@x6b/0x1f@ [amdgpu]
->
-> ? amdgpu_fence_process+0xa4/0x150 [amdgpu]
->
-> kfd kfd: amdgpu: Node: 0, interrupt_bitmap: 3 YcpxFl Rant tErace
->
-> amdgpu_irq_dispatch+0x165/0x210 [amdgpu]
->
-> amdgpu_ih_process+0x80/0x100 [amdgpu]
->
-> amdgpu: Virtual CRAT table created for GPU
->
-> amdgpu_irq_handler+0x1f/@x60 [amdgpu]
->
-> __handle_irq_event_percpu+0x3d/0x170
->
-> amdgpu: Topology: Add dGPU node [0x74a2:0x1002]
->
-> handle_irq_event+0x5a/@xcO
->
-> handle_edge_irq+0x93/0x240
->
-> kfd kfd: amdgpu: KFD node 1 partition @ size 49148M
->
-> asm_call_irq_on_stack+0xf/@x20
->
-> </IRQ>
->
-> common_interrupt+0xb3/0x130
->
-> asm_common_interrupt+0x1le/0x40
->
-> 5.10.134-010.a1i5000.a18.x86_64 #1
->
-> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
-Reviewed-by: Philip Yang<Philip.Yang@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdkfd/kfd_device.c | 10 +++++++++-
->   1 file changed, 9 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> index 349c351e242b..051a00152b08 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> @@ -1133,7 +1133,15 @@ void kgd2kfd_interrupt(struct kfd_dev *kfd, const =
-void *ih_ring_entry)
->       }
->
->       for (i =3D 0; i < kfd->num_nodes; i++) {
-> -             node =3D kfd->nodes[i];
-> +             /* Race if another thread in b/w
-> +              * kfd_cleanup_nodes and kfree(kfd),
-> +              * when kfd->nodes[i] =3D NULL
-> +              */
-> +             if (kfd->nodes[i])
-> +                     node =3D kfd->nodes[i];
-> +             else
-> +                     return;
-> +
->               spin_lock_irqsave(&node->interrupt_lock, flags);
->
->               if (node->interrupts_active
-
-
-
-
-
---_000_CY5PR12MB63697295FA82372B5759A1CFC11EACY5PR12MB6369namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div>
-<div style=3D"font-family: Calibri; text-align: left; color: rgb(0, 128, 0)=
-; margin-left: 5pt; font-size: 10pt;">
-[Public]</div>
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; kfd_interrupt_exit needs to break to two parts, because knode-&gt;ih=
-_fifo is still needed by flush ih_wq.&nbsp; Change like this:</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
-amdkfd/kfd_device.c</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-index e9cfb80bd436..270459826147 100644</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-@@ -655,19 +655,33 @@ static void kfd_cleanup_nodes(struct kfd_dev *kfd, un=
-signed int num_nodes)</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp;{</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; struct kfd_node *knode;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; unsigned int i;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; unsigned long flags;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; /*</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* flush_work ensures that there are no ou=
-tstanding</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* work-queue items that will access inter=
-rupt_ring. New work items</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* can't be created because we stopped int=
-errupt handling above.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*/</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; for (i =3D 0; i &lt; num_nodes; i++) {</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; knode =3D kfd-&gt;nodes[=
-i];</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; spin_lock_irqsave(&amp;k=
-node-&gt;interrupt_lock, flags);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; knode-&gt;interrupts_act=
-ive =3D false;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; spin_unlock_irqrestore(&=
-amp;knode-&gt;interrupt_lock, flags);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; }</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; flush_workqueue(kfd-&gt;ih_wq);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; destroy_workqueue(kfd-&gt;ih_wq);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; for (i =3D 0; i &lt; num_nodes; i++) {</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; spin_lock_irqsave(&amp;k=
-node-&gt;interrupt_lock, flags);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; knode-&gt;kfd-&gt;ih_wq =
-=3D NULL;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; spin_unlock_irqrestore(&=
-amp;knode-&gt;interrupt_lock, flags);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; kfifo_free(&amp;knode-&g=
-t;ih_fifo);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; }</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; for (i =3D 0; i &lt; num_nodes; i++) {</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; knode =3D kfd-&gt;n=
-odes[i];</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; device_queue_manage=
-r_uninit(knode-&gt;dqm);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; kfd_interrupt_exit(knode=
-);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; kfd_topology_remove=
-_device(knode);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (knode-&gt;gws)<=
-/div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; amdgpu_amdkfd_free_gws(knode-&gt;adev, knode-&gt;gws);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-@@ -1125,7 +1139,8 @@ void kgd2kfd_interrupt(struct kfd_dev *kfd, const voi=
-d *ih_ring_entry)</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; unsigned long flags;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; struct kfd_node *node;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; if (!kfd-&gt;init_complete)</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+ &nbsp; &nbsp; &nbsp; if (!kfd-&gt;init_complete || !kfd-&gt;ih_wq)</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; if (kfd-&gt;device_info.ih_ring_entry_size &gt;=
- sizeof(patched_ihre)) {</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c b/drivers/gpu/drm/a=
-md/amdkfd/kfd_interrupt.c</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-index 783c2f5a04e4..be10c0a9d391 100644</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
---- a/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-@@ -87,21 +87,6 @@ int kfd_interrupt_init(struct kfd_node *node)</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp; &nbsp; &nbsp; &nbsp; return 0;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-&nbsp;}</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
--void kfd_interrupt_exit(struct kfd_node *node)</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
--{</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; /*</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; &nbsp;* Stop the interrupt handler from writing to t=
-he ring and scheduling</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; &nbsp;* workqueue items. The spinlock ensures that a=
-ny interrupt running</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; &nbsp;* after we have unlocked sees interrupts_activ=
-e =3D false.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; &nbsp;*/</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; unsigned long flags;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
--</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; spin_lock_irqsave(&amp;node-&gt;interrupt_lock, flag=
-s);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; node-&gt;interrupts_active =3D false;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; spin_unlock_irqrestore(&amp;node-&gt;interrupt_lock,=
- flags);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-- &nbsp; &nbsp; &nbsp; kfifo_free(&amp;node-&gt;ih_fifo);</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
--}</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
--</div>
-<div id=3D"Signature">
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<p style=3D"margin-top: 1em; margin-bottom: 1em;">&nbsp;</p>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Lazar, Lijo &lt;Lijo.=
-Lazar@amd.com&gt;<br>
-<b>Sent:</b> Friday, September 26, 2025 2:49 PM<br>
-<b>To:</b> Zhang, Yifan &lt;Yifan1.Zhang@amd.com&gt;; Yang, Philip &lt;Phil=
-ip.Yang@amd.com&gt;; amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freede=
-sktop.org&gt;<br>
-<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Kuehling, =
-Felix &lt;Felix.Kuehling@amd.com&gt;<br>
-<b>Subject:</b> RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amd=
-kfd_device_fini_sw</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font face=3D"Times New Roman" size=3D"3"><span=
- style=3D"font-size:12pt;"><a name=3D"BM_BEGIN"></a>
-<div><font size=3D"2"><span style=3D"font-size:11pt;">[Public]<br>
-<br>
-The intention is to let kgd2kfd_interrupt thread know that KFD is done with=
- interrupt handling and exit at the earliest (that is even without going th=
-rough kfd node loop). I was thinking of checking ih_wq NULL value, but sinc=
-e that value is not under lock,
- it's not necessary that kgd2kfd_interrupt thread sees the NULL value immed=
-iately.<br>
-<br>
-&gt; if (!kfd-&gt;init_complete &amp;&amp; !kfd-&gt;ih_wq)<br>
-<br>
-I think this should be&nbsp; if (!kfd-&gt;ih_wq || !kfd-&gt;init_complete)<=
-br>
-<br>
-For this - kfd_interrupt_exit(knode) - it's better to keep it before flush_=
-workqueue. That indicates no more queueing is allowed from any node.<br>
-<br>
-Thanks,<br>
-Lijo<br>
-<br>
------Original Message-----<br>
-From: Zhang, Yifan &lt;Yifan1.Zhang@amd.com&gt;<br>
-Sent: Thursday, September 25, 2025 3:25 PM<br>
-To: Lazar, Lijo &lt;Lijo.Lazar@amd.com&gt;; Yang, Philip &lt;Philip.Yang@am=
-d.com&gt;; amd-gfx@lists.freedesktop.org<br>
-Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Kuehling, Felix &=
-lt;Felix.Kuehling@amd.com&gt;<br>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw<br>
-<br>
-[Public]<br>
-<br>
-Hi Lijo, Do you mean a change like below ? Besides readability, is there fu=
-nctional improvement ?<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
-amdkfd/kfd_device.c<br>
-index e9cfb80bd436..86676acd9cbe 100644<br>
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
-@@ -663,6 +663,7 @@ static void kfd_cleanup_nodes(struct kfd_dev *kfd, unsi=
-gned int num_nodes)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flush_workqueue(kfd-&gt;ih_wq);<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; destroy_workqueue(kfd-&gt;ih_wq)=
-;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd-&gt;ih_wq =3D NULL;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; num_nodes; =
-i++) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; knode =3D kfd-&gt;nodes[i];<br>
-@@ -1125,7 +1126,7 @@ void kgd2kfd_interrupt(struct kfd_dev *kfd, const voi=
-d *ih_ring_entry)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned long flags;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct kfd_node *node;<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!kfd-&gt;init_complete)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!kfd-&gt;init_complete &amp;&amp;=
- !kfd-&gt;ih_wq)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (kfd-&gt;device_info.ih_ring_=
-entry_size &gt; sizeof(patched_ihre)) {<br>
-<br>
-<br>
-Regarding the destroy_workqueue(kfd-&gt;ih_wq) and queue_work(node-&gt;kfd-=
-&gt;ih_wq, &amp;node-&gt;interrupt_work) sync, it looks like another issue,=
- should set node-&gt;interrupts_active =3D false before&nbsp; destroy_workq=
-ueue(kfd-&gt;ih_wq) is called. I think something like below:<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
-amdkfd/kfd_device.c<br>
-index e9cfb80bd436..92d9fa99e954 100644<br>
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
-@@ -662,6 +662,9 @@ static void kfd_cleanup_nodes(struct kfd_dev *kfd, unsi=
-gned int num_nodes)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * can't be created because=
- we stopped interrupt handling above.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flush_workqueue(kfd-&gt;ih_wq);<=
-br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; num_nodes; i++) =
-{<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; kfd_interrupt_exit(knode);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; destroy_workqueue(kfd-&gt;ih_wq)=
-;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; num_nodes; =
-i++) {<br>
-<br>
-<br>
------Original Message-----<br>
-From: Lazar, Lijo &lt;Lijo.Lazar@amd.com&gt;<br>
-Sent: Thursday, September 25, 2025 3:06 PM<br>
-To: Lazar, Lijo &lt;Lijo.Lazar@amd.com&gt;; Zhang, Yifan &lt;Yifan1.Zhang@a=
-md.com&gt;; Yang, Philip &lt;Philip.Yang@amd.com&gt;; amd-gfx@lists.freedes=
-ktop.org<br>
-Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Kuehling, Felix &=
-lt;Felix.Kuehling@amd.com&gt;<br>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw<br>
-<br>
-[Public]<br>
-<br>
-On a second thought, probably this will require some locking. For ex: it's =
-quite possible that destroy_workqueue(kfd-&gt;ih_wq) and queue_work(node-&g=
-t;kfd-&gt;ih_wq, &amp;node-&gt;interrupt_work) could be happening back-to-b=
-ack. Node is not yet deleted.<br>
-<br>
-Thanks,<br>
-Lijo<br>
------Original Message-----<br>
-From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; On Behalf Of La=
-zar, Lijo<br>
-Sent: Thursday, September 25, 2025 12:29 PM<br>
-To: Zhang, Yifan &lt;Yifan1.Zhang@amd.com&gt;; Yang, Philip &lt;Philip.Yang=
-@amd.com&gt;; amd-gfx@lists.freedesktop.org<br>
-Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Kuehling, Felix &=
-lt;Felix.Kuehling@amd.com&gt;<br>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw<br>
-<br>
-[Public]<br>
-<br>
-I meant something like this.<br>
-<br>
-destroy_workqueue(kfd-&gt;ih_wq);<br>
-kfd-&gt;ih_wq =3D NULL;<br>
-<br>
-Then check for NULL at the beginning of kgd2kfd_interrupt. If there is no I=
-H workqueue, then there is no interrupt handling capability.<br>
-<br>
-May also be within the loop. Not sure if that is really required; if some w=
-ork is already scheduled previously, it should be inside flush_workqueue() =
-of cleanup_nodes.<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; kfd-&gt;ih_wq &amp=
-;&amp; i &lt; kfd-&gt;num_nodes; i++)<br>
-<br>
-Thanks,<br>
-Lijo<br>
-<br>
------Original Message-----<br>
-From: Zhang, Yifan &lt;Yifan1.Zhang@amd.com&gt;<br>
-Sent: Thursday, September 25, 2025 12:11 PM<br>
-To: Lazar, Lijo &lt;Lijo.Lazar@amd.com&gt;; Yang, Philip &lt;Philip.Yang@am=
-d.com&gt;; amd-gfx@lists.freedesktop.org<br>
-Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Kuehling, Felix &=
-lt;Felix.Kuehling@amd.com&gt;<br>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw<br>
-<br>
-[Public]<br>
-<br>
-The interrupts are from KGD, still active after flush ih_wq and kfd_dev is =
-freed. And after knode is freed, node-&gt;interrupts_active is also inacces=
-sible. The race condition is as below:<br>
-<br>
-Interrupt handling&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch part=
-ition process<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flush_workqueue(kfd-&gt;ih_wq);<b=
-r>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; destroy_workqueue(kfd-&gt;ih_wq);=
-<br>
-amdgpu_irq_dispatch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; |<br>
-amdgpu_amdkfd_interrupt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; |<br>
-kgd2kfd_interrupt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; |<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_cl=
-eanup_nodes<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfree(=
-knode);<br>
-spin_lock_irqsave(&amp;node-&gt;interrupt_lock, flags);&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; |<br>
-//NULL Pointer<br>
-<br>
-<br>
------Original Message-----<br>
-From: Lazar, Lijo &lt;Lijo.Lazar@amd.com&gt;<br>
-Sent: Thursday, September 25, 2025 2:19 PM<br>
-To: Yang, Philip &lt;Philip.Yang@amd.com&gt;; Zhang, Yifan &lt;Yifan1.Zhang=
-@amd.com&gt;; amd-gfx@lists.freedesktop.org<br>
-Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Kuehling, Felix &=
-lt;Felix.Kuehling@amd.com&gt;<br>
-Subject: RE: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw<br>
-<br>
-[Public]<br>
-<br>
-&gt; Race if another thread in b/w kfd_cleanup_nodes<br>
-<br>
-This code is there before cleanup of nodes.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flush_workqueue(kfd-&gt;ih_wq);<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; destroy_workqueue(kfd-&gt;ih_wq)=
-;<br>
-<br>
-Shouldn't the interrupt handling code check if interrupt handling is enable=
-d rather than checking individual node NULL pointers?<br>
-<br>
-Thanks,<br>
-Lijo<br>
-<br>
------Original Message-----<br>
-From: Yang, Philip &lt;Philip.Yang@amd.com&gt;<br>
-Sent: Thursday, September 25, 2025 4:19 AM<br>
-To: Zhang, Yifan &lt;Yifan1.Zhang@amd.com&gt;; amd-gfx@lists.freedesktop.or=
-g<br>
-Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Kuehling, Felix &=
-lt;Felix.Kuehling@amd.com&gt;; Yang, Philip &lt;Philip.Yang@amd.com&gt;; La=
-zar, Lijo &lt;Lijo.Lazar@amd.com&gt;<br>
-Subject: Re: [PATCH v4 1/2] amd/amdkfd: resolve a race in amdgpu_amdkfd_dev=
-ice_fini_sw<br>
-<br>
-<br>
-On 2025-09-24 11:29, Yifan Zhang wrote:<br>
-&gt; There is race in amdgpu_amdkfd_device_fini_sw and interrupt.<br>
-&gt; if amdgpu_amdkfd_device_fini_sw run in b/w kfd_cleanup_nodes and<br>
-&gt;&nbsp;&nbsp;&nbsp; kfree(kfd), and KGD interrupt generated.<br>
-&gt;<br>
-&gt; kernel panic log:<br>
-&gt;<br>
-&gt; BUG: kernel NULL pointer dereference, address: 0000000000000098 amdgpu=
-<br>
-&gt; 0000:c8:00.0: amdgpu: Requesting 4 partitions through PSP<br>
-&gt;<br>
-&gt; PGD d78c68067 P4D d78c68067<br>
-&gt;<br>
-&gt; kfd kfd: amdgpu: Allocated 3969056 bytes on gart<br>
-&gt;<br>
-&gt; PUD 1465b8067 PMD @<br>
-&gt;<br>
-&gt; Oops: @002 [#1] SMP NOPTI<br>
-&gt;<br>
-&gt; kfd kfd: amdgpu: Total number of KFD nodes to be created: 4<br>
-&gt; CPU: 115 PID: @ Comm: swapper/115 Kdump: loaded Tainted: G S W OE K<br=
->
-&gt;<br>
-&gt; RIP: 0010:_raw_spin_lock_irqsave+0x12/0x40<br>
-&gt;<br>
-&gt; Code: 89 e@ 41 5c c3 cc cc cc cc 66 66 2e Of 1f 84 00 00 00 00 00 OF<b=
-r>
-&gt; 1f 40 00 Of 1f 44% 00 00 41 54 9c 41 5c fa 31 cO ba 01 00 00 00 &lt;fO=
-&gt;<br>
-&gt; OF b1 17 75 Ba 4c 89 e@ 41 Sc<br>
-&gt;<br>
-&gt; 89 c6 e8 07 38 5d<br>
-&gt;<br>
-&gt; RSP: 0018: ffffc90@1a6b0e28 EFLAGS: 00010046<br>
-&gt;<br>
-&gt; RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000018<br>
-&gt; 0000000000000001 RSI: ffff8883bb623e00 RDI: 0000000000000098<br>
-&gt; ffff8883bb000000 RO8: ffff888100055020 ROO: ffff888100055020<br>
-&gt; 0000000000000000 R11: 0000000000000000 R12: 0900000000000002<br>
-&gt; ffff888F2b97da0@ R14: @000000000000098 R15: ffff8883babdfo00<br>
-&gt;<br>
-&gt; CS: 010 DS: 0000 ES: 0000 CRO: 0000000080050033<br>
-&gt;<br>
-&gt; CR2: 0000000000000098 CR3: 0000000e7cae2006 CR4: 0000000002770ce0<br>
-&gt; 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000<br>
-&gt; 0000000000000000 DR6: 00000000fffeO7FO DR7: 0000000000000400<br>
-&gt;<br>
-&gt; PKRU: 55555554<br>
-&gt;<br>
-&gt; Call Trace:<br>
-&gt;<br>
-&gt; &lt;IRQ&gt;<br>
-&gt;<br>
-&gt; kgd2kfd_interrupt+@x6b/0x1f@ [amdgpu]<br>
-&gt;<br>
-&gt; ? amdgpu_fence_process+0xa4/0x150 [amdgpu]<br>
-&gt;<br>
-&gt; kfd kfd: amdgpu: Node: 0, interrupt_bitmap: 3 YcpxFl Rant tErace<br>
-&gt;<br>
-&gt; amdgpu_irq_dispatch+0x165/0x210 [amdgpu]<br>
-&gt;<br>
-&gt; amdgpu_ih_process+0x80/0x100 [amdgpu]<br>
-&gt;<br>
-&gt; amdgpu: Virtual CRAT table created for GPU<br>
-&gt;<br>
-&gt; amdgpu_irq_handler+0x1f/@x60 [amdgpu]<br>
-&gt;<br>
-&gt; __handle_irq_event_percpu+0x3d/0x170<br>
-&gt;<br>
-&gt; amdgpu: Topology: Add dGPU node [0x74a2:0x1002]<br>
-&gt;<br>
-&gt; handle_irq_event+0x5a/@xcO<br>
-&gt;<br>
-&gt; handle_edge_irq+0x93/0x240<br>
-&gt;<br>
-&gt; kfd kfd: amdgpu: KFD node 1 partition @ size 49148M<br>
-&gt;<br>
-&gt; asm_call_irq_on_stack+0xf/@x20<br>
-&gt;<br>
-&gt; &lt;/IRQ&gt;<br>
-&gt;<br>
-&gt; common_interrupt+0xb3/0x130<br>
-&gt;<br>
-&gt; asm_common_interrupt+0x1le/0x40<br>
-&gt;<br>
-&gt; 5.10.134-010.a1i5000.a18.x86_64 #1<br>
-&gt;<br>
-&gt; Signed-off-by: Yifan Zhang &lt;yifan1.zhang@amd.com&gt;<br>
-Reviewed-by: Philip Yang&lt;Philip.Yang@amd.com&gt;<br>
-&gt; ---<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdkfd/kfd_device.c | 10 +++++++++-<br=
->
-&gt;&nbsp;&nbsp; 1 file changed, 9 insertions(+), 1 deletion(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
-&gt; b/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
-&gt; index 349c351e242b..051a00152b08 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c<br>
-&gt; @@ -1133,7 +1133,15 @@ void kgd2kfd_interrupt(struct kfd_dev *kfd, con=
-st void *ih_ring_entry)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i &lt; kfd-&gt;num_n=
-odes; i++) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; node =3D kfd-&gt;nodes[i];<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; /* Race if another thread in b/w<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; * kfd_cleanup_nodes and kfree(kfd),<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; * when kfd-&gt;nodes[i] =3D NULL<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; */<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; if (kfd-&gt;nodes[i])<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; node =3D kfd-&gt;nodes[=
-i];<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; else<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
-&gt; +<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; spin_lock_irqsave(&amp;node-&gt;interrupt_lock, flags);<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; if (node-&gt;interrupts_active<br>
-<br>
-<br>
-<br>
-<br>
-</span></font></div>
-</span></font></div>
-</body>
-</html>
-
---_000_CY5PR12MB63697295FA82372B5759A1CFC11EACY5PR12MB6369namp_--
+ Documentation/gpu/amdgpu/index.rst                 |   1 +
+ Documentation/gpu/amdgpu/userq.rst                 | 203 +++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c |   4 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c   |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v12.c |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c   |  10 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h        |   1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c     |  41 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |  31 +---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c            |  11 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.h            |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c            |  66 ++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h            |  11 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h            |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c          |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c    |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h            |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |  17 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h             |   2 +-
+ drivers/gpu/drm/amd/amdgpu/atom.c                  |   7 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c            |  12 ++
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c             |   6 +
+ drivers/gpu/drm/amd/amdgpu/mes_v12_0.c             |   5 +
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c            |  78 ++++++--
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c            |  20 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h              |   2 +
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c           |   4 +
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c               |   2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  55 +++++-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |   2 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_color.c    |  88 ++++++---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c |   8 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c |  12 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    |   2 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_services.c |   4 +-
+ .../amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c    |   3 +
+ .../amd/display/dc/clk_mgr/dce60/dce60_clk_mgr.c   |   5 +
+ .../dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c       |   2 +-
+ .../amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c | 142 +++++++++++++-
+ .../amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.h |   5 +
+ .../dc/clk_mgr/dcn32/dcn32_clk_mgr_smu_msg.c       |   5 +-
+ .../amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c   | 121 +++++++++++-
+ .../amd/display/dc/clk_mgr/dcn401/dcn401_clk_mgr.c |  26 +--
+ .../dc/clk_mgr/dcn401/dcn401_clk_mgr_smu_msg.c     | 130 ++++++++++++-
+ .../dc/clk_mgr/dcn401/dcn401_clk_mgr_smu_msg.h     |  10 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c           |  12 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c  |   6 +
+ drivers/gpu/drm/amd/display/dc/dc.h                |   5 +-
+ drivers/gpu/drm/amd/display/dc/dc_stream.h         |   3 +
+ drivers/gpu/drm/amd/display/dc/dc_types.h          |   1 +
+ .../gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c |  24 ++-
+ drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c   |   1 +
+ drivers/gpu/drm/amd/display/dc/dm_services.h       |  11 +-
+ .../dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.c     |  21 ++-
+ .../drm/amd/display/dc/hubbub/dcn32/dcn32_hubbub.c |  38 +++-
+ .../drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c    |   2 +-
+ .../drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c    |  17 +-
+ .../drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c  |  14 +-
+ .../dc/link/protocols/link_edp_panel_control.c     |  14 ++
+ .../display/dc/resource/dce100/dce100_resource.c   |  25 ++-
+ .../display/dc/resource/dce100/dce100_resource.h   |   9 +
+ .../amd/display/dc/resource/dce60/dce60_resource.c |  69 +------
+ .../amd/display/dc/resource/dce80/dce80_resource.c |  60 +-----
+ .../display/dc/resource/dcn314/dcn314_resource.c   |   1 +
+ .../amd/display/dc/resource/dcn32/dcn32_resource.c |   1 +
+ .../amd/display/dc/resource/dcn32/dcn32_resource.h |   3 +-
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h    |   6 +-
+ drivers/gpu/drm/amd/include/mes_v11_api_def.h      |   3 +-
+ drivers/gpu/drm/amd/include/mes_v12_api_def.h      |   3 +-
+ .../amd/pm/swsmu/inc/pmfw_if/smu_v13_0_12_ppsmc.h  |   3 +-
+ .../amd/pm/{ => swsmu}/inc/smu_v13_0_0_pptable.h   |   0
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c  |   1 +
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c   |   3 +
+ drivers/gpu/drm/amd/ras/rascore/Makefile           |   0
+ drivers/gpu/drm/amd/ras/rascore/ras_core_status.h  |  37 ++++
+ 79 files changed, 1195 insertions(+), 392 deletions(-)
+ create mode 100644 Documentation/gpu/amdgpu/userq.rst
+ rename drivers/gpu/drm/amd/pm/{ => swsmu}/inc/smu_v13_0_0_pptable.h (100%)
+ create mode 100644 drivers/gpu/drm/amd/ras/rascore/Makefile
+ create mode 100644 drivers/gpu/drm/amd/ras/rascore/ras_core_status.h
