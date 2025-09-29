@@ -2,37 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87059BB617E
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Oct 2025 09:03:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B107BB615B
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Oct 2025 09:03:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5CC10E8C4;
-	Fri,  3 Oct 2025 07:03:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE6AE10E887;
+	Fri,  3 Oct 2025 07:03:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="CZzLp8Cw";
+	dkim=pass (2048-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="YfipFpxI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fra-out-005.esa.eu-central-1.outbound.mail-perimeter.amazon.com
  (fra-out-005.esa.eu-central-1.outbound.mail-perimeter.amazon.com
  [63.176.194.123])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8641A89C5E;
- Mon, 29 Sep 2025 17:22:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC85A10E0B8;
+ Mon, 29 Sep 2025 18:39:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
- t=1759166533; x=1790702533;
+ t=1759171148; x=1790707148;
  h=from:to:cc:date:message-id:references:in-reply-to:
  content-transfer-encoding:mime-version:subject;
- bh=gKvaxmrs9uqyIGzbajJ1O5Hd1/ndu7xAtdLZV5bBh5k=;
- b=CZzLp8Cw5FgGMOd+O9ugZE5OTrE+zNIBb8GpJ8oKhbAygHRWImy9IIiB
- RZZ1xP9OETdRVev89YHnq2M/PCi7/N71pUKpxzejv2v/mjbScAkH1Juet
- vsHYox2LwBcjyDrCziuv6eSQJPrQBrGUYCuh/7PROKKw7jXqu7H0434xA
- sf7Ya4v5Hp+ZrxtsRvTPUXqrAIqYQ2yytRn3VSSAZUROS8ZyuwMDul8bM
- 29GS995wLHen2GB0xU7fURW2kn41JumgwwtkaMcoAc049oZfr0qdY1hsA
- bGgpkXA4iYAAxqe74rORpahG8ArDojV2ML/eXIwG5kwxAVLz9XwidXfzQ A==;
-X-CSE-ConnectionGUID: IafcEd3hQO6oGZOiLnLKqg==
-X-CSE-MsgGUID: Itl7dVAmRv28mSSF4DAfeA==
+ bh=vJ7eD2nV/4N7AIUA9/+6epf2vjH4s0akBoFco89HihE=;
+ b=YfipFpxIC/e1n3yjrMPoWpMkEBFkVJTMzSAG0OyFVzGehrd1NhR/tshe
+ fPaFS52DyfaoziwdtLyGgrt1v1goVdwcKtGVLK2R5suFC4fHOG7GSjrRA
+ 3s2+Kztu6mKzASZCElWWZQZtoQwQSFEyO+G+FxGMHslGWhhXUqq4xBObD
+ /G3/W9LezAKi5XP4G1mN7sJ5lO/UhJD5O0Hx4/qLYFgvF2owGyiNgFEuk
+ sPIFbFy9ad15FvPsRsWaSQd7OQZ/H0/uF4pE/VQvPEoQD2GhIQZlOet0c
+ s0C05HxOGCNh9Z6xV80euF6T6QpHrbPBC50sbpdHbKBOJLqkulaTvNNPU Q==;
+X-CSE-ConnectionGUID: EC85rEzURZ+CERFt3YJdKA==
+X-CSE-MsgGUID: tnl/cymrQVqCkLCX53HUhQ==
 X-IronPort-AV: E=Sophos;i="6.18,302,1751241600"; 
-   d="scan'208";a="2841710"
+   d="scan'208";a="2844874"
 Subject: RE: [PATCH 07/19 v6.1.y] minmax: make generic MIN() and MAX() macros
  available everywhere
 Thread-Topic: [PATCH 07/19 v6.1.y] minmax: make generic MIN() and MAX() macros
@@ -40,23 +40,23 @@ Thread-Topic: [PATCH 07/19 v6.1.y] minmax: make generic MIN() and MAX() macros
 Received: from ip-10-6-6-97.eu-central-1.compute.internal (HELO
  smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.6.97])
  by internal-fra-out-005.esa.eu-central-1.outbound.mail-perimeter.amazon.com
- with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2025 17:22:02 +0000
-Received: from EX19MTAEUA002.ant.amazon.com [54.240.197.232:7433]
+ with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2025 18:39:02 +0000
+Received: from EX19MTAEUB002.ant.amazon.com [54.240.197.232:4036]
  by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.19.222:2525]
  with esmtp (Farcaster)
- id 39c95fb2-68e2-4279-8b5a-834631637cab; Mon, 29 Sep 2025 17:22:01 +0000 (UTC)
-X-Farcaster-Flow-ID: 39c95fb2-68e2-4279-8b5a-834631637cab
+ id a320107e-9e0a-4760-b3dc-26c5d986714d; Mon, 29 Sep 2025 18:39:01 +0000 (UTC)
+X-Farcaster-Flow-ID: a320107e-9e0a-4760-b3dc-26c5d986714d
 Received: from EX19D018EUA004.ant.amazon.com (10.252.50.85) by
- EX19MTAEUA002.ant.amazon.com (10.252.50.126) with Microsoft SMTP Server
+ EX19MTAEUB002.ant.amazon.com (10.252.51.59) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20;
- Mon, 29 Sep 2025 17:21:59 +0000
+ Mon, 29 Sep 2025 18:39:00 +0000
 Received: from EX19D018EUA004.ant.amazon.com (10.252.50.85) by
  EX19D018EUA004.ant.amazon.com (10.252.50.85) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20;
- Mon, 29 Sep 2025 17:21:59 +0000
+ Mon, 29 Sep 2025 18:39:00 +0000
 Received: from EX19D018EUA004.ant.amazon.com ([fe80::e53:84f8:3456:a97d]) by
  EX19D018EUA004.ant.amazon.com ([fe80::e53:84f8:3456:a97d%3]) with mapi id
- 15.02.2562.020; Mon, 29 Sep 2025 17:21:59 +0000
+ 15.02.2562.020; Mon, 29 Sep 2025 18:39:00 +0000
 From: "Farber, Eliav" <farbere@amazon.com>
 To: Greg KH <gregkh@linuxfoundation.org>
 CC: "linux@armlinux.org.uk" <linux@armlinux.org.uk>, "richard@nod.at"
@@ -165,15 +165,13 @@ CC: "linux@armlinux.org.uk" <linux@armlinux.org.uk>, "richard@nod.at"
  <linux-kselftest@vger.kernel.org>, "stable@vger.kernel.org"
  <stable@vger.kernel.org>, Linus Torvalds <torvalds@linux-foundation.org>,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Thread-Index: AQHcLZHEroQ9W2lH4EW9XJumD1KlZrSqNL0AgAAM8ACAAAMmgIAAKtlA
-Date: Mon, 29 Sep 2025 17:21:58 +0000
-Message-ID: <e754fed7d53040fb92e1ef9b64c64f6e@amazon.com>
+Thread-Index: AQHcLZHEroQ9W2lH4EW9XJumD1KlZrSqNL0AgABQRkA=
+Date: Mon, 29 Sep 2025 18:39:00 +0000
+Message-ID: <f32d53131d0a4b61a7be4862c7a7f237@amazon.com>
 References: <20250924202320.32333-1-farbere@amazon.com>
  <20250924202320.32333-8-farbere@amazon.com>
  <2025092923-stove-rule-a00f@gregkh>
- <85a995bb59474300aa3d5f973d279a13@amazon.com>
- <2025092955-module-landfall-ed45@gregkh>
-In-Reply-To: <2025092955-module-landfall-ed45@gregkh>
+In-Reply-To: <2025092923-stove-rule-a00f@gregkh>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -197,30 +195,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> On Mon, Sep 29, 2025 at 02:39:26PM +0000, Farber, Eliav wrote:
-> > > On Wed, Sep 24, 2025 at 08:23:08PM +0000, Eliav Farber wrote:
-> > > > From: Linus Torvalds <torvalds@linux-foundation.org>
-> > > >
-> > > > [ Upstream commit 1a251f52cfdc417c84411a056bc142cbd77baef4 ]
-> > >
-> > > <snip>
-> > >
-> > > As this didn't go into 6.6.y yet, I'll stop here on this series for n=
-ow.
-> > > Please fix up for newer kernels first and then resend these.
-> >
-> > For 6.6.y I backported 15 commits:
-> > https://lore.kernel.org/stable/20250922103241.16213-1-farbere@amazon.co=
-m/T/#t
-> >
-> > Why weren't all of them picked?
+On Wed, Sep 24, 2025 at 08:23:08PM +0000, Eliav Farber wrote:
+> From: Linus Torvalds <torvalds@linux-foundation.org>
 >
-> Because one of them broke the build, as I wrote a week ago here:
->         https://lore.kernel.org/all/2025092209-owl-whisking-03e3@gregkh/
+> [ Upstream commit 1a251f52cfdc417c84411a056bc142cbd77baef4 ]
 
-Fixed:
-https://lore.kernel.org/stable/20250929171733.20671-1-farbere@amazon.com/T/=
-#t
+<snip>
+
+As this didn't go into 6.6.y yet, I'll stop here on this series for now.
+Please fix up for newer kernels first and then resend these.
+
+The fix for 6.6.y was applied also on 6.1.y:
+https://lore.kernel.org/stable/20250929183358.18982-1-farbere@amazon.com/
 
 ---
-Thanks, Eliav
+Regards, Eliav
