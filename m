@@ -2,62 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8961BB617B
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Oct 2025 09:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B333BB615C
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Oct 2025 09:03:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69F3F10E8B6;
-	Fri,  3 Oct 2025 07:03:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD31510E109;
+	Fri,  3 Oct 2025 07:03:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="kbD6Zxx4";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="nHp3Iqcn";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="bSO6IffR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DF0910E28C;
- Tue, 30 Sep 2025 07:07:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1759216075;
- bh=otM6iP4yEGo0zjb88ZOEX8uXJrV14+4cIodesPrg2IU=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=kbD6Zxx4Q6bzLXCAKUCGs0+FTcp52cqk0bd9sUWzJIH4vSK1zbEB8rwa5NSEK3q0h
- f9cyIyEcwaVCthzx6u2MGSSOqmPO+4P4/X3SkhIFksYGYoZuIcmWDhdOBFbR70b/Vk
- YIa6izAWLadhrH2bR22ja0c/MEQ0YkwwFmAgB4d7B38cQgy3L+1d6rbASw214h14j6
- aHG+tHmNU282xQON8oXaNVd/yVcFZaUBm+pzv4vohPu2pMRdGLQn9XAvHeX+p4LmPq
- mIE8zXwTThXqO3ZABzVjFsc0bfsTdv73sa0oh84paX0uxCAbKUoqR9Ek4okHpga0R/
- zCTI2hGU233Cg==
-Received: from eldfell (unknown [194.136.85.206])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A4F610E293;
+ Tue, 30 Sep 2025 09:00:40 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id C6CAE17E12E5;
- Tue, 30 Sep 2025 09:07:54 +0200 (CEST)
-Date: Tue, 30 Sep 2025 10:07:40 +0300
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Alex Hung <alex.hung@amd.com>
-Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <wayland-devel@lists.freedesktop.org>, <harry.wentland@amd.com>,
- <leo.liu@amd.com>, <ville.syrjala@linux.intel.com>, <contact@emersion.fr>,
- <mwen@igalia.com>, <jadahl@redhat.com>, <sebastian.wick@redhat.com>,
- <shashank.sharma@amd.com>, <agoins@nvidia.com>, <joshua@froggi.es>,
- <mdaenzer@redhat.com>, <aleixpol@kde.org>, <xaver.hugl@gmail.com>,
- <victoria@system76.com>, <daniel@ffwll.ch>, <uma.shankar@intel.com>,
- <quic_naseer@quicinc.com>, <quic_cbraga@quicinc.com>,
- <quic_abhinavk@quicinc.com>, <marcan@marcan.st>, <Liviu.Dudau@arm.com>,
- <sashamcintosh@google.com>, <chaitanya.kumar.borah@intel.com>,
- <louis.chauvet@bootlin.com>, <mcanal@igalia.com>,
- <nfraprado@collabora.com>, Daniel Stone <daniels@collabora.com>
-Subject: Re: [PATCH V11 17/47] drm/vkms: Use s32 for internal color pipeline
- precision
-Message-ID: <20250930100740.40b718bb@eldfell>
-In-Reply-To: <20250815035047.3319284-18-alex.hung@amd.com>
-References: <20250815035047.3319284-1-alex.hung@amd.com>
- <20250815035047.3319284-18-alex.hung@amd.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cbX8P6LPCz9ttD;
+ Tue, 30 Sep 2025 11:00:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1759222837; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=U892Esd5mTj/d5tmho52j6cdCEfSjQZJiBCIwYm4Eqo=;
+ b=nHp3IqcnvbreOZc3OzulvC0i3d3NSiJcd0pCNkdKLzgChgANiDCaIFIHrrSraFbz88obvY
+ vWUbERulvbsWPTd6n6DMWPyclCe4TxnC7uMh6WVyVuxjEORtXY5UOM8g53jWBwgMsWOu7V
+ g1dkh6m2vjxHSNGwrSVHfGZNahe37BLJoP82ol8dm4Guj9FjSi9FsfyV6jauE8VfXhpXcN
+ i+ZQUZuBhdAdfB7ids8lhfHg8lcVa8p/LHu9u0TTm4dKGMQWeryKXHObLXOl5tbUY3+c+A
+ m5LAILorzuL3c6qjQ9/ckXcQrY2RuIG/zgZJcDRODFGOBhO+0KuG1EOhxuLhHA==
+Message-ID: <4453e5989b38e99588efd53af674b69016b2c420.camel@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1759222835; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=U892Esd5mTj/d5tmho52j6cdCEfSjQZJiBCIwYm4Eqo=;
+ b=bSO6IffRMsKMfrWE4WksV2egg/AdsOdKcTyElsfS4oISvSwRGOOW93aUMveSOG0rjkRBKZ
+ 8PPEowKvBC4mDwsXsIDBH/+4hRb9ZTPgIOff66KQra6p2+PtECJs03s2SngMG5vaGtmePA
+ lznDHFbnBdjhqFie87d43A9cq7Vrc/ai6cHDTSsv+Ej4ObjfEupmywM6vJDuyY6XG0qfp1
+ /Fci7+7JEhC/WXMfFYc7s39KRPheF9umg+XA4lqRCj2pyIgiYQbLWU9bn4WDzB41NInUiY
+ 0j4VK3p4zunEX1jXUTc1gklny9621t6Nh4Xz8ZY895Tkx4vsbd4lqiHH8NEQLA==
+Subject: Re: [RFC v8 00/21] DRM scheduling cgroup controller
+From: Philipp Stanner <phasta@mailbox.org>
+To: Danilo Krummrich <dakr@kernel.org>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
+ cgroups@vger.kernel.org,  linux-kernel@vger.kernel.org, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Leo Liu
+ <Leo.Liu@amd.com>,  =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
+ Matthew Brost <matthew.brost@intel.com>, Michal =?ISO-8859-1?Q?Koutn=FD?=
+ <mkoutny@suse.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
+ <michel.daenzer@mailbox.org>, Philipp Stanner <phasta@kernel.org>, 
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, Rob Clark
+ <robdclark@gmail.com>, Tejun Heo <tj@kernel.org>, Alexandre Courbot
+ <acourbot@nvidia.com>, Alistair Popple <apopple@nvidia.com>, John Hubbard
+ <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi
+ <ttabi@nvidia.com>, Alex Deucher <alexander.deucher@amd.com>, Lucas De
+ Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, Rob Herring
+ <robh@kernel.org>, Steven Price <steven.price@arm.com>,  Liviu Dudau
+ <liviu.dudau@arm.com>, Daniel Almeida <daniel.almeida@collabora.com>, Alice
+ Ryhl <aliceryhl@google.com>, Boqun Feng <boqunf@netflix.com>, 
+ =?ISO-8859-1?Q?Gr=E9goire_P=E9an?= <gpean@netflix.com>, Simona Vetter
+ <simona@ffwll.ch>, airlied@gmail.com
+Date: Tue, 30 Sep 2025 11:00:00 +0200
+In-Reply-To: <DD5CCG4MIODH.1718JI1Z7GH8T@kernel.org>
+References: <20250903152327.66002-1-tvrtko.ursulin@igalia.com>
+ <DD5CCG4MIODH.1718JI1Z7GH8T@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/MSnf5_FiI7lMAh/1C811xoZ";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+X-MBO-RS-META: zm9rtuzamubk7iurtkm9beynczfjwck6
+X-MBO-RS-ID: adb1f3886a0592d9927
 X-Mailman-Approved-At: Fri, 03 Oct 2025 07:03:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,176 +95,114 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/MSnf5_FiI7lMAh/1C811xoZ
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
++Cc Sima, Dave
 
-On Thu, 14 Aug 2025 21:50:06 -0600
-Alex Hung <alex.hung@amd.com> wrote:
-
-> From: Harry Wentland <harry.wentland@amd.com>
+On Mon, 2025-09-29 at 16:07 +0200, Danilo Krummrich wrote:
+> On Wed Sep 3, 2025 at 5:23 PM CEST, Tvrtko Ursulin wrote:
+> > This is another respin of this old work^1 which since v7 is a total rew=
+rite and
+> > completely changes how the control is done.
 >=20
-> Certain operations require us to preserve values below 0.0 and
-> above 1.0 (0x0 and 0xffff respectively in 16 bpc unorm). One
-> such operation is a BT709 encoding operation followed by its
-> decoding operation, or the reverse.
+> I only got some of the patches of the series, can you please send all of =
+them
+> for subsequent submissions? You may also want to consider resending if yo=
+u're
+> not getting a lot of feedback due to that. :)
 >=20
-> We'll use s32 values as intermediate in and outputs of our
-> color operations, for the operations where it matters.
+> > On the userspace interface side of things it is the same as before. We =
+have
+> > drm.weight as an interface, taking integers from 1 to 10000, the same a=
+s CPU and
+> > IO cgroup controllers.
 >=20
-> For now this won't apply to LUT operations. We might want to
-> update those to work on s32 as well, but it's unclear how
-> that should work for unorm LUT definitions. We'll revisit
-> that once we add LUT + CTM tests.
+> In general, I think it would be good to get GPU vendors to speak up to wh=
+at kind
+> of interfaces they're heading to with firmware schedulers and potential f=
+irmware
+> APIs to control scheduling; especially given that this will be a uAPI.
 >=20
-> In order to allow for this we'll also invert the nesting of our
-> colorop processing loops. We now use the pixel iteration loop
-> on the outside and the colorop iteration on the inside.
-
-Hi Alex,
-
-is this an out-dated paragraph in the commit message?
-
-I don't see the patch inverting the nesting of loops.
-
-That statement worried me, because changing the loop structures has
-tanked the performance before.
-
-
-Thanks,
-pq
-
+> (Adding a couple of folks to Cc.)
 >=20
-> Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
-> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
-> Reviewed-by: Daniel Stone <daniels@collabora.com>
-> ---
-> v7:
->  - Fix checkpatch warnings
->   - Add a commit messages
->   - Fix code styles by adding and removing spaces (new lines, tabs and so=
- on)
+> Having that said, I think the basic drm.weight interface is fine and shou=
+ld work
+> in any case; i.e. with the existing DRM GPU scheduler in both modes, the
+> upcoming DRM Jobqueue efforts and should be generic enough to work with
+> potential firmware interfaces we may see in the future.
 >=20
-> v6:
->  - use clamp_val instead of manual clamping (Louis Chauvet)
+> Philipp should be talking about the DRM Jobqueue component at XDC (probab=
+ly just
+> in this moment).
 >=20
-> v4:
->  - Clarify that we're packing 16-bit UNORM into s32, not
->    converting values to a different representation (Pekka)
+> --
 >=20
-> v3:
->  - Use new colorop->next pointer
+> Some more thoughts on the DRM Jobqueue and scheduling:
 >=20
->  drivers/gpu/drm/vkms/vkms_composer.c | 27 +++++++++++++++++++++++++--
->  drivers/gpu/drm/vkms/vkms_drv.h      |  4 ++++
->  2 files changed, 29 insertions(+), 2 deletions(-)
+> The idea behind the DRM Jobqueue is to be, as the name suggests, a compon=
+ent
+> that receives jobs from userspace, handles the dependencies (i.e. dma fen=
+ces),
+> and executes the job, e.g. by writing to a firmware managed software ring=
+.
 >=20
-> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/=
-vkms_composer.c
-> index 0f3fcd6a5925..6630dccd68a4 100644
-> --- a/drivers/gpu/drm/vkms/vkms_composer.c
-> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
-> @@ -128,7 +128,7 @@ static void apply_lut(const struct vkms_crtc_state *c=
-rtc_state, struct line_buff
->  	}
->  }
-> =20
-> -static void apply_colorop(struct pixel_argb_u16 *pixel, struct drm_color=
-op *colorop)
-> +static void apply_colorop(struct pixel_argb_s32 *pixel, struct drm_color=
-op *colorop)
->  {
->  	struct drm_colorop_state *colorop_state =3D colorop->state;
->  	struct drm_device *dev =3D colorop->dev;
-> @@ -157,9 +157,26 @@ static void apply_colorop(struct pixel_argb_u16 *pix=
-el, struct drm_colorop *colo
->  static void pre_blend_color_transform(const struct vkms_plane_state *pla=
-ne_state,
->  				      struct line_buffer *output_buffer)
->  {
-> +	struct pixel_argb_s32 pixel;
-> +
->  	for (size_t x =3D 0; x < output_buffer->n_pixels; x++) {
->  		struct drm_colorop *colorop =3D plane_state->base.base.color_pipeline;
-> =20
-> +		/*
-> +		 * Some operations, such as applying a BT709 encoding matrix,
-> +		 * followed by a decoding matrix, require that we preserve
-> +		 * values above 1.0 and below 0.0 until the end of the pipeline.
-> +		 *
-> +		 * Pack the 16-bit UNORM values into s32 to give us head-room to
-> +		 * avoid clipping until we're at the end of the pipeline. Clip
-> +		 * intentionally at the end of the pipeline before packing
-> +		 * UNORM values back into u16.
-> +		 */
-> +		pixel.a =3D output_buffer->pixels[x].a;
-> +		pixel.r =3D output_buffer->pixels[x].r;
-> +		pixel.g =3D output_buffer->pixels[x].g;
-> +		pixel.b =3D output_buffer->pixels[x].b;
-> +
->  		while (colorop) {
->  			struct drm_colorop_state *colorop_state;
-> =20
-> @@ -169,10 +186,16 @@ static void pre_blend_color_transform(const struct =
-vkms_plane_state *plane_state
->  				return;
-> =20
->  			if (!colorop_state->bypass)
-> -				apply_colorop(&output_buffer->pixels[x], colorop);
-> +				apply_colorop(&pixel, colorop);
-> =20
->  			colorop =3D colorop->next;
->  		}
-> +
-> +		/* clamp values */
-> +		output_buffer->pixels[x].a =3D clamp_val(pixel.a, 0, 0xffff);
-> +		output_buffer->pixels[x].r =3D clamp_val(pixel.r, 0, 0xffff);
-> +		output_buffer->pixels[x].g =3D clamp_val(pixel.g, 0, 0xffff);
-> +		output_buffer->pixels[x].b =3D clamp_val(pixel.b, 0, 0xffff);
->  	}
->  }
-> =20
-> diff --git a/drivers/gpu/drm/vkms/vkms_drv.h b/drivers/gpu/drm/vkms/vkms_=
-drv.h
-> index 30941714cd0f..55440ec6db52 100644
-> --- a/drivers/gpu/drm/vkms/vkms_drv.h
-> +++ b/drivers/gpu/drm/vkms/vkms_drv.h
-> @@ -45,6 +45,10 @@ struct vkms_frame_info {
->  	unsigned int rotation;
->  };
-> =20
-> +struct pixel_argb_s32 {
-> +	s32 a, r, g, b;
-> +};
-> +
->  /**
->   * struct pixel_argb_u16 - Internal representation of a pixel color.
->   * @a: Alpha component value, stored in 16 bits, without padding, using
+> It basically does what the GPU scheduler does in 1:1 entity-scheduler mod=
+e,
+> just without all the additional complexity of moving job ownership from o=
+ne
+> component to another (i.e. from entity to scheduler, etc.).
+>=20
+> With just that, there is no scheduling outside the GPU's firmware schedul=
+er of
+> course. However, additional scheduler capabilities, e.g. to support hardw=
+are
+> rings, or manage firmware schedulers that only support a limited number o=
+f
+> software rings (like some Mali GPUs), can be layered on top of that:
+>=20
+> In contrast to the existing GPU scheduler, the idea would be to keep lett=
+ing the
+> DRM Jobqueue handle jobs submitted by userspace from end to end (i.e. let=
+ the
+> push to the hardware (or software) ring buffer), but have an additional
+> component, whose only purpose is to orchestrate the DRM Jobqueues, by man=
+aging
+> when they are allowed to push to a ring and which ring they should push t=
+o.
+>=20
+> This way we get rid of one of the issue that the existing GPU scheduler m=
+oves
+> job ownership between components of different lifetimes (entity and sched=
+uler),
+> which is one of the fundamental hassles to deal with.
 
 
---Sig_/MSnf5_FiI7lMAh/1C811xoZ
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+So just a few minutes ago I had a long chat with Sima.
 
------BEGIN PGP SIGNATURE-----
+Sima (and I, too, I think) thinks that the very few GPUs that have a
+reasonably low limit of firmware rings should just resource-limit
+userspace users once the limit of firmware rings is reached.
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmjbgbwACgkQI1/ltBGq
-qqfqpQ/9EZLOoqVMV29vKrbbVrUKvfkWh5vKI0kGwrimngoXip8jMpSJXz2ZA2Hz
-dWpELMpwhZjEDGIkGlU7T7qCMbTO5fZiTFjiUpOW56SqjXq6xQU2N0FGx4bKOzSV
-7z/KEMWvkU4cnHSg2mlhz2sGML08FXQNQ1Yx3cqnSScR9b8OgqEhV2knP4A70jps
-4s4XW9+YDCTTtattiQD139RxOjlR7l9UngZihYXtyH7RlIqDYgzPYxt5j8nWUkug
-XO5iZgyrY99E2AqY8q936MOfTyuPZu70MQqQh1Sewu6ntUqtX86+7Iw9VtmXrUoH
-BLYxUwbBEupdXZlZx9y62h3Yr7/qZYmZsfsQ86FlG0Ih6n3b42ar/jlXGy5K2TOk
-CAHRSZBmWZ+X98lH9OjpFs5+s90ja/o2/MvsouzxhknfKrlU4DfTBKjo4JZQ5fTC
-Rq/0J0AKhEQG7ov5YAOCpAzmK2TCF284ZNBYsJRFowEXfOEfybV3VEnVmzvSaFEw
-uWhBRdJGrKFFlkZxQ9cxMVqLpxD7pTIr1ebkRYx9Z6PMdRi0psOPMX3I3gDGFPg5
-d9R2Sp2mAYC9t+fm1gKoTDgq9BvEB9IE2mapF8FDRtScV+/oY5VUWc4yfRJAmiIB
-Bi2QaZbeBuozMJpJeZ3LHwJUv0rmlHkPlkA1aERqj9HO7oTxQF4=
-=ECLi
------END PGP SIGNATURE-----
+Basically like with VRAM.
 
---Sig_/MSnf5_FiI7lMAh/1C811xoZ--
+Apparently Sima had suggested that to Panthor in the past? But Panthor
+still seems to have implemented yet another scheduler mechanism on top
+of the 1:1 entity-scheduler drm_sched setup?
+
+@Boris: Why was that done?
+
+So far I tend to prefer Sima's proposal because I'm currently very
+unsure how we could deal with shared firmware rings =E2=80=93 because then =
+we'd
+need to resubmit jobs, and the currently intended Rust ownership model
+would then be at danger, because the Jobqueue would need a:
+pending_list.
+
+So we'd be running danger of redesigning drm_sched, whereas with Sima's
+idea there'd never be a scheduler anywhere anymore anyways.
+
+
+P.
+
