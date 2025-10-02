@@ -2,88 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B333BB615C
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Oct 2025 09:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EA39BB61BA
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Oct 2025 09:03:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD31510E109;
-	Fri,  3 Oct 2025 07:03:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26E7210E8D4;
+	Fri,  3 Oct 2025 07:03:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="nHp3Iqcn";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="bSO6IffR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="co5RWL4Y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A4F610E293;
- Tue, 30 Sep 2025 09:00:40 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cbX8P6LPCz9ttD;
- Tue, 30 Sep 2025 11:00:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1759222837; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=U892Esd5mTj/d5tmho52j6cdCEfSjQZJiBCIwYm4Eqo=;
- b=nHp3IqcnvbreOZc3OzulvC0i3d3NSiJcd0pCNkdKLzgChgANiDCaIFIHrrSraFbz88obvY
- vWUbERulvbsWPTd6n6DMWPyclCe4TxnC7uMh6WVyVuxjEORtXY5UOM8g53jWBwgMsWOu7V
- g1dkh6m2vjxHSNGwrSVHfGZNahe37BLJoP82ol8dm4Guj9FjSi9FsfyV6jauE8VfXhpXcN
- i+ZQUZuBhdAdfB7ids8lhfHg8lcVa8p/LHu9u0TTm4dKGMQWeryKXHObLXOl5tbUY3+c+A
- m5LAILorzuL3c6qjQ9/ckXcQrY2RuIG/zgZJcDRODFGOBhO+0KuG1EOhxuLhHA==
-Message-ID: <4453e5989b38e99588efd53af674b69016b2c420.camel@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1759222835; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=U892Esd5mTj/d5tmho52j6cdCEfSjQZJiBCIwYm4Eqo=;
- b=bSO6IffRMsKMfrWE4WksV2egg/AdsOdKcTyElsfS4oISvSwRGOOW93aUMveSOG0rjkRBKZ
- 8PPEowKvBC4mDwsXsIDBH/+4hRb9ZTPgIOff66KQra6p2+PtECJs03s2SngMG5vaGtmePA
- lznDHFbnBdjhqFie87d43A9cq7Vrc/ai6cHDTSsv+Ej4ObjfEupmywM6vJDuyY6XG0qfp1
- /Fci7+7JEhC/WXMfFYc7s39KRPheF9umg+XA4lqRCj2pyIgiYQbLWU9bn4WDzB41NInUiY
- 0j4VK3p4zunEX1jXUTc1gklny9621t6Nh4Xz8ZY895Tkx4vsbd4lqiHH8NEQLA==
-Subject: Re: [RFC v8 00/21] DRM scheduling cgroup controller
-From: Philipp Stanner <phasta@mailbox.org>
-To: Danilo Krummrich <dakr@kernel.org>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
- cgroups@vger.kernel.org,  linux-kernel@vger.kernel.org, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Leo Liu
- <Leo.Liu@amd.com>,  =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>, Michal =?ISO-8859-1?Q?Koutn=FD?=
- <mkoutny@suse.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <michel.daenzer@mailbox.org>, Philipp Stanner <phasta@kernel.org>, 
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, Rob Clark
- <robdclark@gmail.com>, Tejun Heo <tj@kernel.org>, Alexandre Courbot
- <acourbot@nvidia.com>, Alistair Popple <apopple@nvidia.com>, John Hubbard
- <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi
- <ttabi@nvidia.com>, Alex Deucher <alexander.deucher@amd.com>, Lucas De
- Marchi <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Boris Brezillon <boris.brezillon@collabora.com>, Rob Herring
- <robh@kernel.org>, Steven Price <steven.price@arm.com>,  Liviu Dudau
- <liviu.dudau@arm.com>, Daniel Almeida <daniel.almeida@collabora.com>, Alice
- Ryhl <aliceryhl@google.com>, Boqun Feng <boqunf@netflix.com>, 
- =?ISO-8859-1?Q?Gr=E9goire_P=E9an?= <gpean@netflix.com>, Simona Vetter
- <simona@ffwll.ch>, airlied@gmail.com
-Date: Tue, 30 Sep 2025 11:00:00 +0200
-In-Reply-To: <DD5CCG4MIODH.1718JI1Z7GH8T@kernel.org>
-References: <20250903152327.66002-1-tvrtko.ursulin@igalia.com>
- <DD5CCG4MIODH.1718JI1Z7GH8T@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+ [209.85.210.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 605AD10E155
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Oct 2025 02:23:03 +0000 (UTC)
+Received: by mail-pf1-f176.google.com with SMTP id
+ d2e1a72fcca58-789fb76b466so597147b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 01 Oct 2025 19:23:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1759371783; x=1759976583; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=mF3LfHpef/3mN9CeEleeS0pHSg8cp/5+RdXD9b+jUXQ=;
+ b=co5RWL4Y/jvvEyf5oE01LaASHguRWrX/rxO9RuS8A2v7hGRs2hr6aD0Dps2K8u/09f
+ zf0/BfS2xFp0PU63nj2Wo2bAF+e8xXb7+dCB40iwCN1AiMOJs6uBuh8gqY5nF/YBDRUU
+ U66Y9cJtpzMKeKVqLN8hee5k70VklIRnF/qSW9TT1JVlt88ifMZU8lSMu9xNwkfnLqJo
+ quI8bXEMC2LQx1ujFb5b0IX7L9QMIy5qNTSF3oA70kGb8Rg0Saq5NYxlhephdKCZHIrN
+ Fzg+dgN3QmmNQC05Y0uV3eAUNpvIpoef+NSQgNgQby1lJ1HArKiWmV+WDYVmnI4QZi0V
+ hnTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1759371783; x=1759976583;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=mF3LfHpef/3mN9CeEleeS0pHSg8cp/5+RdXD9b+jUXQ=;
+ b=HH1gFkRH8Unung6CUMS5v/64tDdRIX7f6n1FU2BEZrFstxVbSs1vnXsW6U7npRNgMs
+ Xmu7GHJK/W8lIQvk06gpLm+zEOZOoACZI60ADACYnFCQdyA5U0Vq+IPAgmKA3aBUxWHO
+ d92b9PrgmzOZf4P0+5NgZY7GmHSeJrfHDgtWaqPLYLPS/P/JiYatF8tD4a03f2suy/Xc
+ C0s9bo4K2rhM7on7chIwQX3FZ1YM652JG3hxYpv24MZwkmdgJ1WDzb58+Gmtc7Qk3u0V
+ CLk+OtAUjpxmR9/2FjV6IBUqjjOv97BN6oSWoCvASIDDYKN6H0nwIGXkXYtU+KTPQdh5
+ 7JBQ==
+X-Gm-Message-State: AOJu0YwF6oH6ud5lAyqCgNfwJDCuhkTheRgtwPpApyxyr8flrPMfzzBT
+ tfniZgAVSqTsTnWhMUBCr3sXXgJC3Xk2faIoOWC8tIwHQXwfyv3Fl2Wp
+X-Gm-Gg: ASbGncs0I7uyBenptvP63F8JImsen0rPfSw7VoGsJBnJfY1T+REMRxWxuINZBNwaLAf
+ Gzid5VTrdZoI/7eiZhD9Nyj/kZ1T3xQWl19jX5Gkz+AECqtRvw2S38QKBPT+hpceFQbCzvujPx2
+ HgPh4H3LBy+jaf9L8GIaB3mX1Yh6MO1cP3J2xe0dUOJnw7CfsMgN8SLYVXOOxCxZKbqx7pAuM1B
+ qz/Gz8+13dG0tP0s26M4AO1F7tPxuWqTYxo00O/ByOsIy4nr5wiyqqltlxo0WwQrp0I5ibJo29E
+ 33033sZ2D2DNAFZ29kr9QnPz08zA/lFfesWqxGDYKArJ674PqBtwiKoH5mGyFargBANd0kGIwga
+ eoMqZaRj//kLKFkbXnz0lzJXYCTZcdHLU0zLLjw7bh6UMVC+BdzWKeqN9At+yaGdYdaRzCYolGJ
+ ImF13DoO/jHw==
+X-Google-Smtp-Source: AGHT+IHxLShFCm76xin7rHm8qNL6ADQW6sxwH14YEVEejbEnDXp8CfZFyeDbyzek8/KKOZq8n0qs+g==
+X-Received: by 2002:a05:6a00:17a6:b0:781:556:f33 with SMTP id
+ d2e1a72fcca58-78af3fe8bcbmr6233829b3a.5.1759371782828; 
+ Wed, 01 Oct 2025 19:23:02 -0700 (PDT)
+Received: from ti-am64x-sdk.. ([157.50.91.136])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-78b01f99acesm1046229b3a.5.2025.10.01.19.22.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 01 Oct 2025 19:23:02 -0700 (PDT)
+From: Bhanu Seshu Kumar Valluri <bhanuseshukumar@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>, Tao Zhou <tao.zhou1@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, ganglxie <ganglxie@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Candice Li <candice.li@amd.com>,
+ Victor Skvortsov <victor.skvortsov@amd.com>, Roman Li <roman.li@amd.com>,
+ Alvin Lee <Alvin.Lee2@amd.com>,
+ Karthi Kandasamy <karthi.kandasamy@amd.com>,
+ David Rosca <david.rosca@amd.com>,
+ =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>,
+ Jocelyn Falempe <jfalempe@redhat.com>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, khalid@kernel.org,
+ linux-kernel-mentees@lists.linuxfoundation.org, skhan@linuxfoundation.org,
+ david.hunter.linux@gmail.com, bhanuseshukumar@gmail.com
+Subject: [PATCH] drm: amd: Use kmalloc_array to prevent overflow of dynamic
+ size calculation
+Date: Thu,  2 Oct 2025 07:52:41 +0530
+Message-Id: <20251002022241.77823-1-bhanuseshukumar@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MBO-RS-META: zm9rtuzamubk7iurtkm9beynczfjwck6
-X-MBO-RS-ID: adb1f3886a0592d9927
-X-Mailman-Approved-At: Fri, 03 Oct 2025 07:03:32 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 03 Oct 2025 07:03:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,114 +99,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-+Cc Sima, Dave
+Use kmalloc_array to avoid potential overflow during dynamic size calculation
+inside kmalloc.
 
-On Mon, 2025-09-29 at 16:07 +0200, Danilo Krummrich wrote:
-> On Wed Sep 3, 2025 at 5:23 PM CEST, Tvrtko Ursulin wrote:
-> > This is another respin of this old work^1 which since v7 is a total rew=
-rite and
-> > completely changes how the control is done.
->=20
-> I only got some of the patches of the series, can you please send all of =
-them
-> for subsequent submissions? You may also want to consider resending if yo=
-u're
-> not getting a lot of feedback due to that. :)
->=20
-> > On the userspace interface side of things it is the same as before. We =
-have
-> > drm.weight as an interface, taking integers from 1 to 10000, the same a=
-s CPU and
-> > IO cgroup controllers.
->=20
-> In general, I think it would be good to get GPU vendors to speak up to wh=
-at kind
-> of interfaces they're heading to with firmware schedulers and potential f=
-irmware
-> APIs to control scheduling; especially given that this will be a uAPI.
->=20
-> (Adding a couple of folks to Cc.)
->=20
-> Having that said, I think the basic drm.weight interface is fine and shou=
-ld work
-> in any case; i.e. with the existing DRM GPU scheduler in both modes, the
-> upcoming DRM Jobqueue efforts and should be generic enough to work with
-> potential firmware interfaces we may see in the future.
->=20
-> Philipp should be talking about the DRM Jobqueue component at XDC (probab=
-ly just
-> in this moment).
->=20
-> --
->=20
-> Some more thoughts on the DRM Jobqueue and scheduling:
->=20
-> The idea behind the DRM Jobqueue is to be, as the name suggests, a compon=
-ent
-> that receives jobs from userspace, handles the dependencies (i.e. dma fen=
-ces),
-> and executes the job, e.g. by writing to a firmware managed software ring=
-.
->=20
-> It basically does what the GPU scheduler does in 1:1 entity-scheduler mod=
-e,
-> just without all the additional complexity of moving job ownership from o=
-ne
-> component to another (i.e. from entity to scheduler, etc.).
->=20
-> With just that, there is no scheduling outside the GPU's firmware schedul=
-er of
-> course. However, additional scheduler capabilities, e.g. to support hardw=
-are
-> rings, or manage firmware schedulers that only support a limited number o=
-f
-> software rings (like some Mali GPUs), can be layered on top of that:
->=20
-> In contrast to the existing GPU scheduler, the idea would be to keep lett=
-ing the
-> DRM Jobqueue handle jobs submitted by userspace from end to end (i.e. let=
- the
-> push to the hardware (or software) ring buffer), but have an additional
-> component, whose only purpose is to orchestrate the DRM Jobqueues, by man=
-aging
-> when they are allowed to push to a ring and which ring they should push t=
-o.
->=20
-> This way we get rid of one of the issue that the existing GPU scheduler m=
-oves
-> job ownership between components of different lifetimes (entity and sched=
-uler),
-> which is one of the fundamental hassles to deal with.
+Signed-off-by: Bhanu Seshu Kumar Valluri <bhanuseshukumar@gmail.com>
+---
+ Note:
+ Patch is verified for compilation.
+ 
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c                 | 4 ++--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-
-So just a few minutes ago I had a long chat with Sima.
-
-Sima (and I, too, I think) thinks that the very few GPUs that have a
-reasonably low limit of firmware rings should just resource-limit
-userspace users once the limit of firmware rings is reached.
-
-Basically like with VRAM.
-
-Apparently Sima had suggested that to Panthor in the past? But Panthor
-still seems to have implemented yet another scheduler mechanism on top
-of the 1:1 entity-scheduler drm_sched setup?
-
-@Boris: Why was that done?
-
-So far I tend to prefer Sima's proposal because I'm currently very
-unsure how we could deal with shared firmware rings =E2=80=93 because then =
-we'd
-need to resubmit jobs, and the currently intended Rust ownership model
-would then be at danger, because the Jobqueue would need a:
-pending_list.
-
-So we'd be running danger of redesigning drm_sched, whereas with Sima's
-idea there'd never be a scheduler anywhere anymore anyways.
-
-
-P.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 540817e296da..642addf70466 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -2566,7 +2566,7 @@ static int amdgpu_ras_badpages_read(struct amdgpu_device *adev,
+ 		goto out;
+ 	}
+ 
+-	*bps = kmalloc(sizeof(struct ras_badpage) * data->count, GFP_KERNEL);
++	*bps = kmalloc_array(sizeof(struct ras_badpage), data->count, GFP_KERNEL);
+ 	if (!*bps) {
+ 		ret = -ENOMEM;
+ 		goto out;
+@@ -2722,7 +2722,7 @@ static int amdgpu_ras_realloc_eh_data_space(struct amdgpu_device *adev,
+ 	unsigned int old_space = data->count + data->space_left;
+ 	unsigned int new_space = old_space + pages;
+ 	unsigned int align_space = ALIGN(new_space, 512);
+-	void *bps = kmalloc(align_space * sizeof(*data->bps), GFP_KERNEL);
++	void *bps = kmalloc_array(align_space, sizeof(*data->bps), GFP_KERNEL);
+ 
+ 	if (!bps) {
+ 		return -ENOMEM;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 3d2f8eedeef2..e027798ece03 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -146,7 +146,7 @@ static void amdgpu_dm_plane_add_modifier(uint64_t **mods, uint64_t *size, uint64
+ 
+ 	if (*cap - *size < 1) {
+ 		uint64_t new_cap = *cap * 2;
+-		uint64_t *new_mods = kmalloc(new_cap * sizeof(uint64_t), GFP_KERNEL);
++		uint64_t *new_mods = kmalloc_array(new_cap, sizeof(uint64_t), GFP_KERNEL);
+ 
+ 		if (!new_mods) {
+ 			kfree(*mods);
+@@ -732,7 +732,7 @@ static int amdgpu_dm_plane_get_plane_modifiers(struct amdgpu_device *adev, unsig
+ 	if (adev->family < AMDGPU_FAMILY_AI)
+ 		return 0;
+ 
+-	*mods = kmalloc(capacity * sizeof(uint64_t), GFP_KERNEL);
++	*mods = kmalloc_array(capacity, sizeof(uint64_t), GFP_KERNEL);
+ 
+ 	if (plane_type == DRM_PLANE_TYPE_CURSOR) {
+ 		amdgpu_dm_plane_add_modifier(mods, &size, &capacity, DRM_FORMAT_MOD_LINEAR);
+-- 
+2.34.1
 
