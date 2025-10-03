@@ -2,144 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4866EBB63E5
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Oct 2025 10:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C62BBB6B4E
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Oct 2025 15:01:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E42710E10F;
-	Fri,  3 Oct 2025 08:36:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D551C10E8FD;
+	Fri,  3 Oct 2025 13:01:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="x86tozOA";
+	dkim=pass (2048-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="iODA/Xv+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013026.outbound.protection.outlook.com
- [40.93.196.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E71510E10F
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Oct 2025 08:36:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lQwIVwZLLqgT1d/pzPc4tOVB+ibjue3emFll3ZHePsTCgy3th0eecxTT2ci6HnI/AD626751c9sTuE4LR05vqObivHbHWmXz2J2Hg9PX3DQm0qeMXDJdCh9Xfi/kwA4UHRyiZtwaiu6Js+4l1YsxEOOa+NZtZP6ujURXmzinFu9OAVCrYobRI69NYPiJgZ5un0l3JuM7Tzokatihw1RjWyUmsWSwAw/ZAW1VZX3cof+mV4zTyEEI7rLqM/zSmjdMEUMEhWJwrAHPQTHf7+gQbCzyVjU/AAiNFQqOey+KyTwXtY9bwTZ1Q2krI2mP2jzKegcU6cJtNxpAARc0qgvi5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UbOL7ObFTMws+/6fu8IIA6iyFGYfASOAatsDx6Gz39Q=;
- b=dk2LsgzUpKPh+Qc+oLjxJOstzLuNfp+CFeyeLwNyZvJ5gurwDCvordDWx6qtoc0E0QpQqkGcjbO4OHCUP9NEtybhrsAUsQjL44KSSi63TGuiLsQW09qTeDf0N1/8Z4NTdo39PTu4DHq7o/3k9em0bIVJagmG8T3XSCJLmUv9X6YhOQgz8TS7IgasmGB9W9h+FcHnYbFtZzH0LE94A9D8LwDwfj3V7KNXHkaeDbpc7J+greTJDUcSfi6qI7XyVaLUYagvUhDvWXMjaLyh14yymoH5fTeFYUfj1DTWTCYjhA49oGfpsIMpsPm/JfdLtGJPjPz4+Psedb1jwboH0mV1nA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UbOL7ObFTMws+/6fu8IIA6iyFGYfASOAatsDx6Gz39Q=;
- b=x86tozOAJneX0UH72KF7peBCH2ccKTgueKl5nm5b86HN1mW9ZjCyM4C7XtNVpxzt8SUfzsPqOazQYxMwZJvKR0zu6Q0cfAMy2qh0GWNiIxQIvCojhVCV1Hm/R/4xVGGttUls3SeVeQdhmon+cJ5uOGJhfnR0+KRxZ0vbDHPmtRg=
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- PH7PR12MB6489.namprd12.prod.outlook.com (2603:10b6:510:1f7::21) with
+Received: from fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ (fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ [52.28.197.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4DF10E380;
+ Fri,  3 Oct 2025 12:15:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
+ t=1759493749; x=1791029749;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TqblJqfbXrrmCzEUxWga4pPKLpbgkCtwFBWjaGRMyg4=;
+ b=iODA/Xv+fzLZVdYchbgWxIiERM+NrjlD5siKrHJuQoSliD0i30sRlGyw
+ EnNuze4ltx3M+F7gvduT6LV2gqEb/9soKU9TChF1T3++BbHW6SSHxfstB
+ RSQvcciX03urDRcWpQeS8CE+Zwsh3COog5IDjAtmghHePOzyq0B8Uem8E
+ uPjeqidBUCJTZNVcnps1tr9Xc8jSGxTmusxO2s4lTvfuRy2d5zUKJC5Z5
+ JevVascl1JDQPrf0sNHX0QB+DiHl8OJvgEJjIOF4fdEdwmRERkNSpRg1M
+ 3I99QoVJyBF/s7CZ+snDYDOb824bVRlsjK5Tl0hSYTUwKsHMSaZq6+wea Q==;
+X-CSE-ConnectionGUID: MPRaiQ9mQMGHc/f2hmpJPw==
+X-CSE-MsgGUID: EATtKZGOSduCjCv28xmVFQ==
+X-IronPort-AV: E=Sophos;i="6.18,312,1751241600"; 
+   d="scan'208";a="2957925"
+Received: from ip-10-6-6-97.eu-central-1.compute.internal (HELO
+ smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.6.97])
+ by internal-fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2025 12:15:38 +0000
+Received: from EX19MTAEUB001.ant.amazon.com [54.240.197.234:5820]
+ by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.21.15:2525]
+ with esmtp (Farcaster)
+ id 965d80e9-c758-4875-b5c1-af6f5c12ff0a; Fri, 3 Oct 2025 12:15:38 +0000 (UTC)
+X-Farcaster-Flow-ID: 965d80e9-c758-4875-b5c1-af6f5c12ff0a
+Received: from EX19D018EUA004.ant.amazon.com (10.252.50.85) by
+ EX19MTAEUB001.ant.amazon.com (10.252.51.28) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20;
+ Fri, 3 Oct 2025 12:15:37 +0000
+Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
+ (172.19.116.181) by EX19D018EUA004.ant.amazon.com (10.252.50.85) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.13; Fri, 3 Oct
- 2025 08:36:22 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::e71b:4ec9:237f:24ea]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::e71b:4ec9:237f:24ea%5]) with mapi id 15.20.9182.015; Fri, 3 Oct 2025
- 08:36:22 +0000
-From: "Lazar, Lijo" <Lijo.Lazar@amd.com>
-To: "Limonciello, Mario" <Mario.Limonciello@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amd: Drop superfluous call to set_power_limit()
-Thread-Topic: [PATCH] drm/amd: Drop superfluous call to set_power_limit()
-Thread-Index: AQHcMvbM9UL6cCRMR0ieG+i/6M/yJLSwGv7A
-Date: Fri, 3 Oct 2025 08:36:22 +0000
-Message-ID: <DS0PR12MB7804768DA193EA233BA32C7F97E4A@DS0PR12MB7804.namprd12.prod.outlook.com>
-References: <20251001171340.561444-1-mario.limonciello@amd.com>
-In-Reply-To: <20251001171340.561444-1-mario.limonciello@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-10-03T08:34:05.0000000Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB7804:EE_|PH7PR12MB6489:EE_
-x-ms-office365-filtering-correlation-id: 1d1790f9-7394-4fa5-96af-08de0257eea4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?CNUL9aLdi7WclLM4eklu2xvKqwWHRR/OjK9jdGNls3QHYRIPKiw/MfYvOMpZ?=
- =?us-ascii?Q?lidCOoG5nSgv8nKCxCAX4JVqKIWv7D7BJq849OxJyz7pX1tvCyi3E5BcW3GG?=
- =?us-ascii?Q?sxVr4YwxLj2Ir/MZdTALfjWGXScJF+UvUTwingHc4OwVY1vQR1y/zdlGIjAP?=
- =?us-ascii?Q?9LsVtk7amp9KeZu2NwHDUY5CIuMC8HgWbgtUEzLfyDa6Bx1PkyIZsEW8ny1U?=
- =?us-ascii?Q?4Y5SqhGA7Qn67U8PhKOoB3ETGtBlqY8mIbG2/5M4QIYDUuPdFNDm6FNFTwO0?=
- =?us-ascii?Q?ZTh6fBQ2d2+h0g1SlUdYd9sIrlfVRqRyzbxRBZtugJm1ioEOO1/JMRgv6rD3?=
- =?us-ascii?Q?84yLMikG7XLwJcjaDoI3jVxay+Z6ljG+uBoytQQKa+eTpftM8smCgxjSiLjK?=
- =?us-ascii?Q?fmw9mRbKmzGBMZK1mbHMkQ4xaiBpAfBoDCZqzcuDlYilACL5UniA6xNC49nP?=
- =?us-ascii?Q?BEJTBSzJgpsSzB8RiVrRg7GKfpPx9qgZypUYPfvgnXzlqcfwNRgKu0ztumC5?=
- =?us-ascii?Q?aRstVF5Prv2k3nUy67r2q/zreLytOgwAQk1OcDg7I9f6xZopnyB/E27uBOyN?=
- =?us-ascii?Q?jYsNyexafjUSKBqR2JgHHTTDWQCs96Y7yBp+Ke3siJfibGCTGjYFrVqQzKYS?=
- =?us-ascii?Q?mNfAq1lqIctA9MVJq1w4nDjav3CUJpmxDKo2vN3ABiJCOODwC+rwBsHQPtfH?=
- =?us-ascii?Q?JbdjWwL2QbLyD+y/tALUPta+Kt+ePWHWSdX/qInYcZ3WtKCM+OVX82xXWhPS?=
- =?us-ascii?Q?aFomewIzO8iR4BPT9aMnGQLjHZCJeicz+A3K06fSeou8GdWCsRlJtsBg8k4q?=
- =?us-ascii?Q?ygVZ6vI7Rp/bbnCm0Car5/02LP0zX+7YJtd9172kOwYN87xt5i2p3I5iV3yk?=
- =?us-ascii?Q?yjGBN7XNxBG6NepKn0qWQZY2kCdtIgpCdrdsyrJ3J3xACRLpVprs7Y1/0Q7p?=
- =?us-ascii?Q?0aqMm7u5uZw7gd+5pQvflDqzlZJyoMu++pdeDnSSqECgyMyxprtKM7jrl2Kx?=
- =?us-ascii?Q?4Pj/3Z1ypUAxJO9NHN8Sxe6o7NgSm0pO8zGwaiLFaNL6AVQgNFeAn6usSBa/?=
- =?us-ascii?Q?KvspB2xtaxeFp3Os0zVNCgPf6mK7HoBcthDBDGGHPGkTdHdl+zwmj9Vy04AW?=
- =?us-ascii?Q?gCQLU5HLSdjSg7NY1AX+J86rV6q2l8z6oz1LOuMPynML7tiV5uuWGtq7Dj2U?=
- =?us-ascii?Q?zWmN821bb7nDEm6+x8fCUlGYnK4VZBgcTyvT6IM6gGapAXmnKUTBPKEHl80h?=
- =?us-ascii?Q?ASaHRLIqMkv8U7lPS6aIp7FBeqxqnzH8NrwVrzSrr28C43yALQp9HmPgH8Ws?=
- =?us-ascii?Q?WscFfUtHMo6GvpGdC9zvRhHCq+pilnMu4iV+jcWsj15eksbKjJ5hWQjFKwmR?=
- =?us-ascii?Q?L999iIdikZ/92Iio+S0mGIkLy/Cu8TEhDkLlDQcubu5aP3827wVINyrvCEJW?=
- =?us-ascii?Q?WBb8yXHAmR3LT7tlRLs4O2ihZPeHMoVvhegLM042yGkS9V5Z4GfZiF1ZAbJG?=
- =?us-ascii?Q?s0WMaOb/igQp4cZTu57twNsyrWtWy6uixV8r?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2ocxOuU3xcXXmJSQBqnYsUJdJfAIfrQHD6yTEOSYMOCuZ2VtgHkt5q/k5/tO?=
- =?us-ascii?Q?xRcIocrMLb25pMha8+/s7uS+RHahpvdsRA+EhvFDa+VQb1NZjdnjIiXjysmx?=
- =?us-ascii?Q?FtOzv1KZ8knzoB9giwEyME2tM2500AAmbJzW6KStDQZRkhtfh8xGN740VunJ?=
- =?us-ascii?Q?FdmreTC8pUhvqpPsv5CQiTuT8cZMdH5iA0a2PMgpNcBb++JWL6TzJy6S4Ni3?=
- =?us-ascii?Q?dV+1uNHUAMoMtIfsSVuv4xsRvzzNIuiKhBPnlzT0kzuNDFiOJXiGeaBvPhV6?=
- =?us-ascii?Q?lTof0t6skEmlZhMzh0Bb0dmKWxT912Id48YT4TuRX5KolsnDM8lt91uPzNrC?=
- =?us-ascii?Q?xLHUA5rvmNKgyAJhF7qF8pwE8tKtvBviSkK1sDLi6+xDqxbE8Fc6FcaH5Ulu?=
- =?us-ascii?Q?wZ0Tiu3IrGGueWTj3Vn6ZJSBLHSv3o6CIZHPqJ+OR9iZpUpn71rV0oKGuOG5?=
- =?us-ascii?Q?9wW+B+TkVgQMw3IiR95zvOqkJHsPqqroCNDJT3O49kkXEqI8pNrsLRY8ADf0?=
- =?us-ascii?Q?ZWWGzEG2ryaa+6/6wSPZoPesXl0w1AFknrPhfTlfxAvu1rNrbYDjCzvbTO8W?=
- =?us-ascii?Q?h6g89J25hRa9eoS51bX8HhSBLnrzJCtUkGBq6dDaKBI+iCYJOJgFGDhtljBY?=
- =?us-ascii?Q?8zmqBu5GH+F7dU+xxKmkU2oMo2EHoXw1/gBcME9NwFQOTkEixlXlfFVlNTVF?=
- =?us-ascii?Q?Te4oFAW2+49g/J/IkGRNR3Zz3UF816VxBzslITYYjiGi1w8AKUaNXqOCU149?=
- =?us-ascii?Q?iz31dX4SxAxRV2JhazEBzny99WBhLp40uinb706EtQ9ZAqqWnxlxLAe+3mcI?=
- =?us-ascii?Q?pM23yQP7Ih0oJr2T7O7up7VD7YfFbFj09lR9Z85a2Y+EohI3q6xXIFCDqVWn?=
- =?us-ascii?Q?5GwqOtNy0ndrdNgZHAKaYarlwrzqZF75/hKN4TAKNx+36gFZtNKeQoz1rlvx?=
- =?us-ascii?Q?A4USFVkaFiaViB3jg3/rwP7k1ipMcb5RIVW1hiiXBTp/aJUJHSFO+k2fgShV?=
- =?us-ascii?Q?alYET2ed81FKH6bUsFJKHVcS7iv5Qjda0CMAjMqdCnJm7qAyandyusGOM9UG?=
- =?us-ascii?Q?yRCDZsM9cYoMwp5eyB8ak4PEQVvWuXa+FQcue3w1XnQTXegzgKpfYEs+al9w?=
- =?us-ascii?Q?NSX8pmYQfdeELcUQG3qBCXiNT0Nlk9PfPILBpktS4hIwhGWxfNiOXozzPXrD?=
- =?us-ascii?Q?uS4hpOtVOBagXWbDqsewoqV+/BIeqXMWhUXAFJmHjh+oaR1b8aU7yVkgIc1u?=
- =?us-ascii?Q?/5/loDMVZ6Pp78NvZU03kb/JG0yFuK09t+hF/kX0AGZKeW3C5r0KKfrdKBhJ?=
- =?us-ascii?Q?Ic90s8OJ6msL8LoxcdX6pPdAvN3B6sbzA17o/MsL0jWaug2DYrbdOdDkBj1k?=
- =?us-ascii?Q?gdfYdiafcZ61f42ANi8Ld5mUv3ho9ils/gcP1BS7pF/H0XrKP4kTli0HPJgI?=
- =?us-ascii?Q?SWUhQbCz4jm7HROuJNxnFPPD8UCBkCjUZmm7IB+pzZjb7KzveisiPZoZ3wBX?=
- =?us-ascii?Q?1UZcp5EU95lo6wD9yeayBo6E2BXX5db6uxP/OeGRN3Dlp0hFiEDhCsotY2eJ?=
- =?us-ascii?Q?160hTRrmHt6cA1RYeL8=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20; Fri, 3 Oct 2025
+ 12:15:27 +0000
+From: Eliav Farber <farbere@amazon.com>
+To: <gregkh@linuxfoundation.org>, <kenneth.feng@amd.com>,
+ <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@gmail.com>, 
+ <simona@ffwll.ch>, <linus.walleij@linaro.org>, <dmitry.torokhov@gmail.com>,
+ <tglx@linutronix.de>, <wens@csie.org>, <jernej.skrabec@gmail.com>,
+ <samuel@sholland.org>, <agk@redhat.com>, <snitzer@kernel.org>,
+ <mpatocka@redhat.com>, <clm@fb.com>, <dsterba@suse.com>,
+ <luc.vanoostenryck@gmail.com>, <pmladek@suse.com>, <rostedt@goodmis.org>,
+ <andriy.shevchenko@linux.intel.com>, <linux@rasmusvillemoes.dk>,
+ <senozhatsky@chromium.org>, <akpm@linux-foundation.org>,
+ <lijo.lazar@amd.com>, <asad.kamal@amd.com>, <kevinyang.wang@amd.com>,
+ <David.Laight@ACULAB.COM>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <linux-input@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-sunxi@lists.linux.dev>, <dm-devel@lists.linux.dev>,
+ <linux-btrfs@vger.kernel.org>, <linux-sparse@vger.kernel.org>,
+ <stable@vger.kernel.org>, <farbere@amazon.com>
+Subject: [PATCH v4 00/11 6.1.y] Backport minmax.h updates from v6.17-rc7
+Date: Fri, 3 Oct 2025 12:15:09 +0000
+Message-ID: <20251003121520.8176-1-farbere@amazon.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d1790f9-7394-4fa5-96af-08de0257eea4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2025 08:36:22.1911 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RSIyKLFlUNS7jKe8w7yeESeqxT23X4AP2SE3FYq4aAEUoKyBPz/cfcUpDMUxZ503
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6489
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.19.116.181]
+X-ClientProxiedBy: EX19D032UWA004.ant.amazon.com (10.13.139.56) To
+ EX19D018EUA004.ant.amazon.com (10.252.50.85)
+X-Mailman-Approved-At: Fri, 03 Oct 2025 13:01:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,54 +93,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+This series backports 11 patches to update minmax.h in the 6.1.y branch,
+aligning it with v6.17-rc7.
 
-This is because currently only Vangogh has Fast PPT limit. The limit for th=
-at is not the same as default one. It will be higher than the max_power_lim=
-it. Since this is Vangogh-only, it's left to the implementation to handle t=
-hat check.
+The ultimate goal is to synchronize all longterm branches so that they
+include the full set of minmax.h changes (6.12.y and 6.6.y were already
+backported by me and are now aligned).
 
-Thanks,
-Lijo
------Original Message-----
-From: Limonciello, Mario <Mario.Limonciello@amd.com>
-Sent: Wednesday, October 1, 2025 10:44 PM
-To: Limonciello, Mario <Mario.Limonciello@amd.com>; amd-gfx@lists.freedeskt=
-op.org
-Cc: Lazar, Lijo <Lijo.Lazar@amd.com>
-Subject: [PATCH] drm/amd: Drop superfluous call to set_power_limit()
+The key motivation is to bring in commit d03eba99f5bf ("minmax: allow
+min()/max()/clamp() if the arguments have the same signedness"), which
+is missing in older kernels.
 
-smu_set_power_limit() will call set_power_limit() if the limit type isn't d=
-efault ppt, but after a bound check will call set_power_limit() regardless.
+In mainline, this change enables min()/max()/clamp() to accept mixed
+argument types, provided both have the same signedness. Without it,
+backported patches that use these forms may trigger compiler warnings,
+which escalate to build failures when -Werror is enabled.
 
-The first callpath is not necessary, remove it and do the bounds check for =
-all calls.
+Changes in v4:
+- Just swap the order of the first 2 patches in this chain, because
+  commit cb04e8b1d2f2 ("minmax: don't use max() in situations that want
+  a C constant expression") should come before commit dc1c8034e31b
+  ("minmax: simplify min()/max()/clamp() implementation").
 
-Cc: Lijo Lazar <Lijo.Lazar@amd.com>
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 4 ----
- 1 file changed, 4 deletions(-)
+Changes in v3:
+- v2 included 13 patches:
+  https://lore.kernel.org/stable/20250929183358.18982-1-farbere@amazon.com/
+- First 2 were accepted and are part of 6.1.155.
+- 3rd caused build in drivers/md/ to fail:
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/am=
-d/pm/swsmu/amdgpu_smu.c
-index ac99bb7e2e7b..431333060b72 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -2939,10 +2939,6 @@ static int smu_set_power_limit(void *handle, uint32_=
-t limit)
-                return -EOPNOTSUPP;
+In file included from ./include/linux/container_of.h:5,
+                 from ./include/linux/list.h:5,
+                 from ./include/linux/wait.h:7,
+                 from ./include/linux/mempool.h:8,
+                 from ./include/linux/bio.h:8,
+                 from drivers/md/dm-bio-record.h:10,
+                 from drivers/md/dm-integrity.c:9:
+drivers/md/dm-integrity.c: In function ‘integrity_metadata’:
+drivers/md/dm-integrity.c:131:105: error: ISO C90 forbids variable length array ‘checksums_onstack’ [-Werror=vla]
+  131 | #define MAX_TAG_SIZE                    (JOURNAL_SECTOR_DATA - JOURNAL_MAC_PER_SECTOR - offsetof(struct journal_entry, last_bytes[MAX_SECTORS_PER_BLOCK]))
+      |                                                                                                         ^~~~~~~~~~~~~
+./include/linux/build_bug.h:78:56: note: in definition of macro ‘__static_assert’
+   78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+      |                                                        ^~~~
+./include/linux/minmax.h:56:9: note: in expansion of macro ‘static_assert’
+   56 |         static_assert(__types_ok(x, y, ux, uy),         \
+      |         ^~~~~~~~~~~~~
+./include/linux/minmax.h:41:31: note: in expansion of macro ‘__is_noneg_int’
+   41 |          __is_noneg_int(x) || __is_noneg_int(y))
+      |                               ^~~~~~~~~~~~~~
+./include/linux/minmax.h:56:23: note: in expansion of macro ‘__types_ok’
+   56 |         static_assert(__types_ok(x, y, ux, uy),         \
+      |                       ^~~~~~~~~~
+./include/linux/minmax.h:61:9: note: in expansion of macro ‘__careful_cmp_once’
+   61 |         __careful_cmp_once(op, x, y, __UNIQUE_ID(x_), __UNIQUE_ID(y_))
+      |         ^~~~~~~~~~~~~~~~~~
+./include/linux/minmax.h:92:25: note: in expansion of macro ‘__careful_cmp’
+   92 | #define max(x, y)       __careful_cmp(max, x, y)
+      |                         ^~~~~~~~~~~~~
+drivers/md/dm-integrity.c:1797:40: note: in expansion of macro ‘max’
+ 1797 |                 char checksums_onstack[max((size_t)HASH_MAX_DIGESTSIZE, MAX_TAG_SIZE)];
+      |                                        ^~~
+drivers/md/dm-integrity.c:131:89: note: in expansion of macro ‘offsetof’
+  131 | #define MAX_TAG_SIZE                    (JOURNAL_SECTOR_DATA - JOURNAL_MAC_PER_SECTOR - offsetof(struct journal_entry, last_bytes[MAX_SECTORS_PER_BLOCK]))
+      |                                                                                         ^~~~~~~~
+drivers/md/dm-integrity.c:1797:73: note: in expansion of macro ‘MAX_TAG_SIZE’
+ 1797 |                 char checksums_onstack[max((size_t)HASH_MAX_DIGESTSIZE, MAX_TAG_SIZE)];
+      |                                                                         ^~~~~~~~~~~~
 
-        limit &=3D (1<<24)-1;
--       if (limit_type !=3D SMU_DEFAULT_PPT_LIMIT)
--               if (smu->ppt_funcs->set_power_limit)
--                       return smu->ppt_funcs->set_power_limit(smu, limit_t=
-ype, limit);
--
-        if ((limit > smu->max_power_limit) || (limit < smu->min_power_limit=
-)) {
-                dev_err(smu->adev->dev,
-                        "New power limit (%d) is out of range [%d,%d]\n",
---
-2.51.0
+- The build was fixed in the second patch of this series.
+
+Changes in v2:
+- v1 included 19 patches:
+  https://lore.kernel.org/stable/20250924202320.32333-1-farbere@amazon.com/
+- First 6 were pushed to the stable-tree.
+- 7th cauded amd driver's build to fail.
+- This change fixes it.
+- Modified files:
+   drivers/gpu/drm/amd/amdgpu/amdgpu.h
+   drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+   drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+
+David Laight (7):
+  minmax.h: add whitespace around operators and after commas
+  minmax.h: update some comments
+  minmax.h: reduce the #define expansion of min(), max() and clamp()
+  minmax.h: use BUILD_BUG_ON_MSG() for the lo < hi test in clamp()
+  minmax.h: move all the clamp() definitions after the min/max() ones
+  minmax.h: simplify the variants of clamp()
+  minmax.h: remove some #defines that are only expanded once
+
+Linus Torvalds (4):
+  minmax: don't use max() in situations that want a C constant
+    expression
+  minmax: simplify min()/max()/clamp() implementation
+  minmax: improve macro expansion and type checking
+  minmax: fix up min3() and max3() too
+
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c   |   2 +-
+ drivers/input/touchscreen/cyttsp4_core.c |   2 +-
+ drivers/irqchip/irq-sun6i-r.c            |   2 +-
+ drivers/md/dm-integrity.c                |   2 +-
+ fs/btrfs/tree-checker.c                  |   2 +-
+ include/linux/compiler.h                 |   9 +
+ include/linux/minmax.h                   | 222 +++++++++++++----------
+ lib/vsprintf.c                           |   2 +-
+ 8 files changed, 143 insertions(+), 100 deletions(-)
+
+-- 
+2.47.3
 
