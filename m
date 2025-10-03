@@ -2,128 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38E8BB9376
-	for <lists+amd-gfx@lfdr.de>; Sun, 05 Oct 2025 03:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45307BB9541
+	for <lists+amd-gfx@lfdr.de>; Sun, 05 Oct 2025 11:54:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 620F210E24F;
-	Sun,  5 Oct 2025 01:34:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E29E510E32F;
+	Sun,  5 Oct 2025 09:54:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ISAQBzDA";
+	dkim=pass (2048-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="rFgeTOSl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010021.outbound.protection.outlook.com [52.101.56.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 487CD10E24F
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Oct 2025 01:34:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vNZnAVq2upygCtIqPYLAFu7vKPC1SDGsS2EbYKukCzR8QLnwhGmmFbrjSxsWBTEkSHOaKDM2F7ap806els6r4jRzFtI8fZFzZ7jDpoP1Z/Zr6TmWnOZFZfgJzYY0y+qJVyXewylQVC71odX7KCznt3bAD3KHE3US2mOsR5d0RRFRHHK3yD/CQJ71dJvZ2cN1oXRvQ6eOzp0I6HdCqOxW/W96JFxTEClNYH+nzm7gtOkCxqG8BYh+D1NgVSOb4BhAIESk/5Wt9+h5KccEoPUj0JgmyfRuXjGJSfvsqYexGLUYWFf9OaX10K/UgXiEub/UFGtGik97td5jdXhglTtjaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PnYmLNAcVrdXd09+cOo07GSAIbrSR53FbcFSS/PIo34=;
- b=M3kFqKJnJGSbR7RFC46UxaaDwpRK0mWX1pdB0/KEAIPrV//LjcYNioBorcawHUtpXgev7gM0QuJtMTPx8NyCH35UrCzLQX8eGNaas0G+CbZEhTRvqL17FeoDzaVGx/rf96mi4PhRLRnIM0FVVoFkKQmIY5yOXAArKSwdamP0O4Ait6P4iqpO4FNfXfBaKdqsisumNyN/eCD7jHvtrlp4AfHFGG/FYNtIdtjp0ToNUW3h73pmYXoYppjvqg8nKwUexBdqhJQ8ynMuQ7PieIw9db70GJ9jfZL5xMm8EBV0mmRZ/w/y5ZUcIKHFAHw8lTtnwtMJJ3DLbjpVwvcuio25MQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PnYmLNAcVrdXd09+cOo07GSAIbrSR53FbcFSS/PIo34=;
- b=ISAQBzDAjFcZOtNeEcG4GRoGtcnGmM+w0e9ISfP2oiG00SW8CI6/4rl+8VQHIIIF8AZVAIoYEGkpYMIGRJIKKy0T1FR74RdLGHuxldm6vTfA2lRROp/BvpuAYvIaRouG+x2yAWuT2CzabhVQqPLeeBUGIqsz4f/hhTVWm9W/3Yw=
-Received: from BN8PR07CA0026.namprd07.prod.outlook.com (2603:10b6:408:ac::39)
- by IA0PR12MB7776.namprd12.prod.outlook.com (2603:10b6:208:430::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.18; Sun, 5 Oct
- 2025 01:34:42 +0000
-Received: from BL6PEPF00020E64.namprd04.prod.outlook.com
- (2603:10b6:408:ac:cafe::27) by BN8PR07CA0026.outlook.office365.com
- (2603:10b6:408:ac::39) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9182.18 via Frontend Transport; Sun,
- 5 Oct 2025 01:34:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL6PEPF00020E64.mail.protection.outlook.com (10.167.249.25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9203.9 via Frontend Transport; Sun, 5 Oct 2025 01:34:42 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Sat, 4 Oct
- 2025 18:34:41 -0700
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Sat, 4 Oct
- 2025 18:34:41 -0700
-Received: from JesseDEV.guestwireless.amd.com (10.180.168.240) by
- satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17
- via Frontend Transport; Sat, 4 Oct 2025 18:34:34 -0700
-From: Jesse.Zhang <Jesse.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- <lijo.lazar@amd.com>, Jesse.Zhang <Jesse.Zhang@amd.com>, Jesse Zhang
- <jesse.zhang@amd.com>
-Subject: [PATCH] drm/amd/pm: Disable VCN queue reset on SMU v13.0.6 due to
- regression
-Date: Sun, 5 Oct 2025 09:34:20 +0800
-Message-ID: <20251005013434.3801595-1-Jesse.Zhang@amd.com>
-X-Mailer: git-send-email 2.49.0
+Received: from fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ (fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ [52.28.197.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB9B310E903;
+ Fri,  3 Oct 2025 13:01:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
+ t=1759496508; x=1791032508;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=CCU0o8wSJQJX56U4+pnGKdTopFZ/0WcuCtYzGhhpTrQ=;
+ b=rFgeTOSlcusPoAUfwdMPbuP091UQ6yp3Q1u81W5lqXsI29vaLZpAgUXj
+ P6/CA5WnrkqLLKIuILGx07CfT9RcKYjbwT4xbwR4CuClEp2BXmnkvZ521
+ holLfrZAz1RPc5Xo7gducgC/kZqE/Mwi0nF6iZoS6DS3I+mYMJJLFx1DQ
+ TbzeBbImdv+UKTk3GSX0ppvhC+im6BDrtdKwOxybqeV+45QB21aWbo1in
+ m3zCzXXNaF+l6sdJ7rJpEr7vk39LAO0t9qUoMg+qATkTWRTVedKDp+mU8
+ 1a5hMrOXNYI2qWibyO+9yPyF4UqgDzRuuVP9xNboHi8L5RtOzi3yXnlxw g==;
+X-CSE-ConnectionGUID: tfF0uA3NT9Wv7xRjl6BuWg==
+X-CSE-MsgGUID: qc8tbCehSsiKPhY3WYGIPA==
+X-IronPort-AV: E=Sophos;i="6.18,312,1751241600"; 
+   d="scan'208";a="2960400"
+Received: from ip-10-6-11-83.eu-central-1.compute.internal (HELO
+ smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.11.83])
+ by internal-fra-out-011.esa.eu-central-1.outbound.mail-perimeter.amazon.com
+ with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2025 13:01:36 +0000
+Received: from EX19MTAEUC002.ant.amazon.com [54.240.197.228:13481]
+ by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.22.27:2525]
+ with esmtp (Farcaster)
+ id 3dc9ed1a-be3b-484d-8c8a-735ffa6b2136; Fri, 3 Oct 2025 13:01:36 +0000 (UTC)
+X-Farcaster-Flow-ID: 3dc9ed1a-be3b-484d-8c8a-735ffa6b2136
+Received: from EX19D018EUA004.ant.amazon.com (10.252.50.85) by
+ EX19MTAEUC002.ant.amazon.com (10.252.51.245) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20;
+ Fri, 3 Oct 2025 13:01:28 +0000
+Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
+ (172.19.116.181) by EX19D018EUA004.ant.amazon.com (10.252.50.85) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20; Fri, 3 Oct 2025
+ 13:01:03 +0000
+From: Eliav Farber <farbere@amazon.com>
+To: <gregkh@linuxfoundation.org>, <jdike@addtoit.com>, <richard@nod.at>,
+ <anton.ivanov@cambridgegreys.com>, <dave.hansen@linux.intel.com>,
+ <luto@kernel.org>, <peterz@infradead.org>, <tglx@linutronix.de>,
+ <mingo@redhat.com>, <bp@alien8.de>, <x86@kernel.org>, <hpa@zytor.com>,
+ <tony.luck@intel.com>, <qiuxu.zhuo@intel.com>, <james.morse@arm.com>,
+ <rric@kernel.org>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+ <tzimmermann@suse.de>, <robdclark@gmail.com>, <sean@poorly.run>,
+ <jdelvare@suse.com>, <linux@roeck-us.net>, <linus.walleij@linaro.org>,
+ <dmitry.torokhov@gmail.com>, <maz@kernel.org>, <wens@csie.org>,
+ <jernej.skrabec@gmail.com>, <agk@redhat.com>, <snitzer@redhat.com>,
+ <dm-devel@redhat.com>, <davem@davemloft.net>, <kuba@kernel.org>,
+ <mcoquelin.stm32@gmail.com>, <krzysztof.kozlowski@canonical.com>,
+ <malattia@linux.it>, <hdegoede@redhat.com>, <mgross@linux.intel.com>,
+ <jejb@linux.ibm.com>, <martin.petersen@oracle.com>,
+ <sakari.ailus@linux.intel.com>, <clm@fb.com>, <josef@toxicpanda.com>,
+ <dsterba@suse.com>, <jack@suse.com>, <tytso@mit.edu>,
+ <adilger.kernel@dilger.ca>, <dushistov@mail.ru>,
+ <luc.vanoostenryck@gmail.com>, <rostedt@goodmis.org>, <pmladek@suse.com>,
+ <senozhatsky@chromium.org>, <andriy.shevchenko@linux.intel.com>,
+ <linux@rasmusvillemoes.dk>, <minchan@kernel.org>, <ngupta@vflare.org>,
+ <akpm@linux-foundation.org>, <yoshfuji@linux-ipv6.org>, <dsahern@kernel.org>, 
+ <pablo@netfilter.org>, <kadlec@netfilter.org>, <fw@strlen.de>,
+ <jmaloy@redhat.com>, <ying.xue@windriver.com>, <shuah@kernel.org>,
+ <willy@infradead.org>, <farbere@amazon.com>, <sashal@kernel.org>,
+ <quic_akhilpo@quicinc.com>, <ruanjinjie@huawei.com>,
+ <David.Laight@ACULAB.COM>, <herve.codina@bootlin.com>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-um@lists.infradead.org>, <linux-edac@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
+ <linux-hwmon@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-sunxi@lists.linux.dev>, <linux-media@vger.kernel.org>,
+ <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+ <platform-driver-x86@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+ <linux-staging@lists.linux.dev>, <linux-btrfs@vger.kernel.org>,
+ <linux-ext4@vger.kernel.org>, <linux-sparse@vger.kernel.org>,
+ <linux-mm@kvack.org>, <netfilter-devel@vger.kernel.org>,
+ <coreteam@netfilter.org>, <tipc-discussion@lists.sourceforge.net>,
+ <linux-kselftest@vger.kernel.org>, <stable@vger.kernel.org>
+CC: Andy Shevchenko <andy.shevchenko@gmail.com>, Christophe Leroy
+ <christophe.leroy@csgroup.eu>
+Subject: [PATCH v2 02/19 5.15.y] minmax: Introduce {min,max}_array()
+Date: Fri, 3 Oct 2025 12:59:49 +0000
+Message-ID: <20251003130006.41681-3-farbere@amazon.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20251003130006.41681-1-farbere@amazon.com>
+References: <20251003130006.41681-1-farbere@amazon.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E64:EE_|IA0PR12MB7776:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ca7d2db-70d4-4c43-b920-08de03af5b88
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?f1S7OsBXy6xHYpJX9i9xHwPL5mwtgW2rIhk9mzVKClT9e4mfcaTEnqqvus/2?=
- =?us-ascii?Q?xuFNG8knU2+9cTvh5RwIz/YguQ61jkNcvIGyAsKB+D9sfAtySxik76194nSE?=
- =?us-ascii?Q?k2OR3KB794eekEPzRRE+LgISaGABF6kEB9knirhyoEMApEgbh/LFpPZwyEx6?=
- =?us-ascii?Q?G/bniRJvozU0DuThS/9shynNkNfojDiWS937B1kQq5KVwVToSj5jQcGyOSTY?=
- =?us-ascii?Q?WbdaEDbYpUYxsT5+3PybpgGXCFRMiiHfdWc4tHMtI+UVuLymx173t7Vi/U0O?=
- =?us-ascii?Q?IrQSuihuGVA7f2K1U86XQzrX0TlFWCQHeJLRNn1r2STK5u6UCk7mzoLGeihI?=
- =?us-ascii?Q?2cKkq7Y/Qm5ERH8lqJ5hd5o70pUtC6JIkvZoY82U1EWZTY0cgxtktYjSgnnM?=
- =?us-ascii?Q?aCp3urLXSlWd57wCcWbvVgtIbcWzTf1XzfmPXiMJkyFkL1IBTYZ3V5XWC74l?=
- =?us-ascii?Q?1yRw+tIA+T2B6s2e+d+aTYWv/6R+ktR/FWQlFtptfmtpqtYwB7hwKLecqy6U?=
- =?us-ascii?Q?K6DPST7HvR7mUae1B4WABUZjomS9uqpysVffhkzi3uZdZO7pWGJlNs29Bd22?=
- =?us-ascii?Q?xWHhoPWWnlsTyYTndjG9XsjnbWMVGjIDkb0idGX/agthMVK0EUazrVBWrKCb?=
- =?us-ascii?Q?0GFTrww5eQhRySaKpSqDY55/MhKKrswskyGGIMPjMbY8yp9i1FUOG1uPZksY?=
- =?us-ascii?Q?hbRwkB3DBxb519KeXDpMuTclxZHogjnE5gUCQXCnnattNjxDqgik27dFkE3L?=
- =?us-ascii?Q?niMWWOBkEJpznpTTbh8tI0kquTi7ihCoF8vXUJNaK0KyAa/CAgmh3IxQdp3L?=
- =?us-ascii?Q?x09B2Fhs0g93pHlqW8kt6azHmzoMJJuBHRk2+uy87BSXrT1JIWvimoEDs+P4?=
- =?us-ascii?Q?2XgZTRGxPZnR5qFnY2U3VOJc4BS6BTzZVpztRTNQAURxtIIBh50+2OxFzcbI?=
- =?us-ascii?Q?mJ+PhuI00ixTENnGsNyJWzGOrRU4uB5OMjSKt6F1zDhzT1edI/aDeIzqvrfb?=
- =?us-ascii?Q?Z71mZN/ob/PpvUdJSQbGFCVrdNWimNHOLs4d+c/ln1tMawKctT2pSUMZytr7?=
- =?us-ascii?Q?r1s4icB//xh1QAdgskKMjIuWR/yKWLXmWhDuezlLQhBc0q/71ACDOHzBdNKu?=
- =?us-ascii?Q?nzlMp1/7pbNdHy5cbm4yH5VcyrQLcrKeaAC0Ste2mTz/osk/Kmy7j1Pe9dMc?=
- =?us-ascii?Q?c//r7yeEz8BkAQCSpMr20jdbI92zEitZJYn+CnzR6BuxDeER6AZp6z/gKYRn?=
- =?us-ascii?Q?rLY5pdT88H/6yISDvrx1uxkc+32yThV/lgFY4byt1EOcOU1dLQ0Bos85WEtz?=
- =?us-ascii?Q?SDccHoAhCwMAw1I7QV7DiBKn+M1f+99N+LxUyLAiq2xyhHM617+1YQUNDrRQ?=
- =?us-ascii?Q?LyH/9DaQAy8d9rcWLXLlLG/cqeDiPNUVmAWJKmYPPlVqsJvHQplyJc90hgcD?=
- =?us-ascii?Q?/pPoHTClMLdl/XlTKrdGTP+QTZChjtCjbFbFc2cVuQaY0y7CH+Z7oYG2oy4f?=
- =?us-ascii?Q?4j3SSBY9u5BL0ff6y2M6Dd2wpymDdoH+jqCw6rnuJh7nPBgXnBnBJKIw+6sP?=
- =?us-ascii?Q?uue8xQ+AtQwPiejJiP4=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2025 01:34:42.2605 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ca7d2db-70d4-4c43-b920-08de03af5b88
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E64.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7776
+X-Originating-IP: [172.19.116.181]
+X-ClientProxiedBy: EX19D032UWA002.ant.amazon.com (10.13.139.81) To
+ EX19D018EUA004.ant.amazon.com (10.252.50.85)
+X-Mailman-Approved-At: Sun, 05 Oct 2025 09:54:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,28 +121,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Disable VCN reset capability for the program 4 as it's
-causing regressions.
+From: Herve Codina <herve.codina@bootlin.com>
 
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+[ Upstream commit c952c748c7a983a8bda9112984e6f2c1f6e441a5 ]
+
+Introduce min_array() (resp max_array()) in order to get the
+minimal (resp maximum) of values present in an array.
+
+Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+Link: https://lore.kernel.org/r/20230623085830.749991-8-herve.codina@bootlin.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+Signed-off-by: Eliav Farber <farbere@amazon.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ include/linux/minmax.h | 64 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 64 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-index 72ca6302da63..285cf7979693 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-@@ -450,8 +450,7 @@ static void smu_v13_0_6_init_caps(struct smu_context *smu)
- 	    ((pgm == 4) && (fw_ver >= 0x4557000)))
- 		smu_v13_0_6_cap_set(smu, SMU_CAP(SDMA_RESET));
+diff --git a/include/linux/minmax.h b/include/linux/minmax.h
+index d4bc394b449e..aac0b7d23768 100644
+--- a/include/linux/minmax.h
++++ b/include/linux/minmax.h
+@@ -168,6 +168,70 @@
+  */
+ #define max_t(type, x, y)	__careful_cmp(max, (type)(x), (type)(y))
  
--	if (((pgm == 0) && (fw_ver >= 0x00558200)) ||
--	    ((pgm == 4) && (fw_ver >= 0x04557100)))
-+	if ((pgm == 0) && (fw_ver >= 0x00558200))
- 		smu_v13_0_6_cap_set(smu, SMU_CAP(VCN_RESET));
- }
- 
++/*
++ * Remove a const qualifier from integer types
++ * _Generic(foo, type-name: association, ..., default: association) performs a
++ * comparison against the foo type (not the qualified type).
++ * Do not use the const keyword in the type-name as it will not match the
++ * unqualified type of foo.
++ */
++#define __unconst_integer_type_cases(type)	\
++	unsigned type:  (unsigned type)0,	\
++	signed type:    (signed type)0
++
++#define __unconst_integer_typeof(x) typeof(			\
++	_Generic((x),						\
++		char: (char)0,					\
++		__unconst_integer_type_cases(char),		\
++		__unconst_integer_type_cases(short),		\
++		__unconst_integer_type_cases(int),		\
++		__unconst_integer_type_cases(long),		\
++		__unconst_integer_type_cases(long long),	\
++		default: (x)))
++
++/*
++ * Do not check the array parameter using __must_be_array().
++ * In the following legit use-case where the "array" passed is a simple pointer,
++ * __must_be_array() will return a failure.
++ * --- 8< ---
++ * int *buff
++ * ...
++ * min = min_array(buff, nb_items);
++ * --- 8< ---
++ *
++ * The first typeof(&(array)[0]) is needed in order to support arrays of both
++ * 'int *buff' and 'int buff[N]' types.
++ *
++ * The array can be an array of const items.
++ * typeof() keeps the const qualifier. Use __unconst_integer_typeof() in order
++ * to discard the const qualifier for the __element variable.
++ */
++#define __minmax_array(op, array, len) ({				\
++	typeof(&(array)[0]) __array = (array);				\
++	typeof(len) __len = (len);					\
++	__unconst_integer_typeof(__array[0]) __element = __array[--__len]; \
++	while (__len--)							\
++		__element = op(__element, __array[__len]);		\
++	__element; })
++
++/**
++ * min_array - return minimum of values present in an array
++ * @array: array
++ * @len: array length
++ *
++ * Note that @len must not be zero (empty array).
++ */
++#define min_array(array, len) __minmax_array(min, array, len)
++
++/**
++ * max_array - return maximum of values present in an array
++ * @array: array
++ * @len: array length
++ *
++ * Note that @len must not be zero (empty array).
++ */
++#define max_array(array, len) __minmax_array(max, array, len)
++
+ /**
+  * clamp_t - return a value clamped to a given range using a given type
+  * @type: the type of variable to use
 -- 
-2.49.0
+2.47.3
 
