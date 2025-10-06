@@ -2,33 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F7BBBE104
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Oct 2025 14:41:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA131BBE11D
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Oct 2025 14:41:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1F8F10E03B;
-	Mon,  6 Oct 2025 12:41:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CED3310E36A;
+	Mon,  6 Oct 2025 12:41:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="kLbtyo9m";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="OOf862lf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C7C810E3F5;
- Mon,  6 Oct 2025 10:40:27 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E7F510E3F9;
+ Mon,  6 Oct 2025 10:40:21 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id BF41960443;
- Mon,  6 Oct 2025 10:40:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0E4AC4CEF7;
- Mon,  6 Oct 2025 10:40:25 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id E74E840A9C;
+ Mon,  6 Oct 2025 10:40:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 397D1C116B1;
+ Mon,  6 Oct 2025 10:40:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1759747226;
- bh=jottSYuILhhIhnTAN/GvvK6KN32O5VgD8nH/WSRCBrs=;
+ s=korg; t=1759747220;
+ bh=UZd8mSj+P8o7+STIAEWducjgalzbkmk1G4WRf5AY+nE=;
  h=Subject:To:Cc:From:Date:In-Reply-To:From;
- b=kLbtyo9mEUeDR2xImeOXARXfN6Zy17ivIecZKiZzIkhtv1aG6GxW1oaoSjPJaEda4
- G8igVo+Yw8qEnZQgilUUPZS5KhlMP22Pylldd7JGMgHIgr/lZeV50Sq4fKYKCeMNEn
- nU3VhwZMlwA0CEF2BFg3Hron1tpXMH1vOqyoUo/I=
-Subject: Patch "minmax.h: move all the clamp() definitions after the min/max()
- ones" has been added to the 6.1-stable tree
+ b=OOf862lfjAeVRWs4lOCJURV4StCANVXcjYaP7FUAOKwiHmw6TCJaYHQrM96cHygAi
+ 6sei7cQh1gAu8Q1t9kVZ3G71mWfx4IrHe9VaBpUgm1+lNIsWzhMZMtKqgQ1v0h2owB
+ ofJ8qyE2qMPnn2A4O7DBuht4aNGiz69/Pdphy/II=
+Subject: Patch "minmax.h: reduce the #define expansion of min(),
+ max() and clamp()" has been added to the 6.1-stable tree
 To: David.Laight@ACULAB.COM, Jason@zx2c4.com, agk@redhat.com, airlied@gmail.com,
  akpm@linux-foundation.org, alexander.deucher@amd.com,
  amd-gfx@lists.freedesktop.org, andriy.shevchenko@linux.intel.com,
@@ -48,8 +48,8 @@ To: David.Laight@ACULAB.COM, Jason@zx2c4.com, agk@redhat.com, airlied@gmail.com,
 Cc: <stable-commits@vger.kernel.org>
 From: <gregkh@linuxfoundation.org>
 Date: Mon, 06 Oct 2025 12:39:11 +0200
-In-Reply-To: <20251003121520.8176-10-farbere@amazon.com>
-Message-ID: <2025100611-kettle-bounding-4639@gregkh>
+In-Reply-To: <20251003121520.8176-8-farbere@amazon.com>
+Message-ID: <2025100611-overreact-purge-2205@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
@@ -73,37 +73,39 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 This is a note to let you know that I've just added the patch titled
 
-    minmax.h: move all the clamp() definitions after the min/max() ones
+    minmax.h: reduce the #define expansion of min(), max() and clamp()
 
 to the 6.1-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
-     minmax.h-move-all-the-clamp-definitions-after-the-min-max-ones.patch
+     minmax.h-reduce-the-define-expansion-of-min-max-and-clamp.patch
 and it can be found in the queue-6.1 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
 
 
-From stable+bounces-183180-greg=kroah.com@vger.kernel.org Fri Oct  3 14:29:47 2025
+From stable+bounces-183178-greg=kroah.com@vger.kernel.org Fri Oct  3 14:19:15 2025
 From: Eliav Farber <farbere@amazon.com>
-Date: Fri, 3 Oct 2025 12:15:18 +0000
-Subject: minmax.h: move all the clamp() definitions after the min/max() ones
+Date: Fri, 3 Oct 2025 12:15:16 +0000
+Subject: minmax.h: reduce the #define expansion of min(), max() and clamp()
 To: <gregkh@linuxfoundation.org>, <kenneth.feng@amd.com>, <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@gmail.com>, <simona@ffwll.ch>, <linus.walleij@linaro.org>, <dmitry.torokhov@gmail.com>, <tglx@linutronix.de>, <wens@csie.org>, <jernej.skrabec@gmail.com>, <samuel@sholland.org>, <agk@redhat.com>, <snitzer@kernel.org>, <mpatocka@redhat.com>, <clm@fb.com>, <dsterba@suse.com>, <luc.vanoostenryck@gmail.com>, <pmladek@suse.com>, <rostedt@goodmis.org>, <andriy.shevchenko@linux.intel.com>, <linux@rasmusvillemoes.dk>, <senozhatsky@chromium.org>, <akpm@linux-foundation.org>, <lijo.lazar@amd.com>, <asad.kamal@amd.com>, <kevinyang.wang@amd.com>, <David.Laight@ACULAB.COM>, <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>, <dm-devel@lists.linux.dev>, <linux-btrfs@vger.kernel.org>, <linux-sparse@vger.kernel.org>, <stable@vger.
  kernel.org>, <farbere@amazon.com>
 Cc: Arnd Bergmann <arnd@kernel.org>, Christoph Hellwig <hch@infradead.org>, Dan Carpenter <dan.carpenter@linaro.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>, Jens Axboe <axboe@kernel.dk>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Mateusz Guzik <mjguzik@gmail.com>, "Matthew Wilcox" <willy@infradead.org>, Pedro Falcato <pedro.falcato@gmail.com>
-Message-ID: <20251003121520.8176-10-farbere@amazon.com>
+Message-ID: <20251003121520.8176-8-farbere@amazon.com>
 
 From: David Laight <David.Laight@ACULAB.COM>
 
-[ Upstream commit c3939872ee4a6b8bdcd0e813c66823b31e6e26f7 ]
+[ Upstream commit b280bb27a9f7c91ddab730e1ad91a9c18a051f41 ]
 
-At some point the definitions for clamp() got added in the middle of the
-ones for min() and max().  Re-order the definitions so they are more
-sensibly grouped.
+Since the test for signed values being non-negative only relies on
+__builtion_constant_p() (not is_constexpr()) it can use the 'ux' variable
+instead of the caller supplied expression.  This means that the #define
+parameters are only expanded twice.  Once in the code and once quoted in
+the error message.
 
-Link: https://lkml.kernel.org/r/8bb285818e4846469121c8abc3dfb6e2@AcuMS.aculab.com
+Link: https://lkml.kernel.org/r/051afc171806425da991908ed8688a98@AcuMS.aculab.com
 Signed-off-by: David Laight <david.laight@aculab.com>
 Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Arnd Bergmann <arnd@kernel.org>
@@ -119,160 +121,72 @@ Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
 Signed-off-by: Eliav Farber <farbere@amazon.com>
 Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- include/linux/minmax.h |  109 ++++++++++++++++++++++---------------------------
- 1 file changed, 51 insertions(+), 58 deletions(-)
+ include/linux/minmax.h |   24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
 --- a/include/linux/minmax.h
 +++ b/include/linux/minmax.h
-@@ -99,22 +99,6 @@
- #define __careful_cmp(op, x, y) \
- 	__careful_cmp_once(op, x, y, __UNIQUE_ID(x_), __UNIQUE_ID(y_))
- 
--#define __clamp(val, lo, hi)	\
--	((val) >= (hi) ? (hi) : ((val) <= (lo) ? (lo) : (val)))
--
--#define __clamp_once(val, lo, hi, uval, ulo, uhi) ({				\
--	__auto_type uval = (val);						\
--	__auto_type ulo = (lo);							\
--	__auto_type uhi = (hi);							\
--	BUILD_BUG_ON_MSG(statically_true(ulo > uhi),				\
--		"clamp() low limit " #lo " greater than high limit " #hi);	\
--	BUILD_BUG_ON_MSG(!__types_ok3(uval, ulo, uhi),				\
--		"clamp("#val", "#lo", "#hi") signedness error");		\
--	__clamp(uval, ulo, uhi); })
--
--#define __careful_clamp(val, lo, hi) \
--	__clamp_once(val, lo, hi, __UNIQUE_ID(v_), __UNIQUE_ID(l_), __UNIQUE_ID(h_))
--
- /**
-  * min - return minimum of two values of the same or compatible types
-  * @x: first value
-@@ -171,6 +155,22 @@
- 	__careful_op3(max, x, y, z, __UNIQUE_ID(x_), __UNIQUE_ID(y_), __UNIQUE_ID(z_))
- 
- /**
-+ * min_t - return minimum of two values, using the specified type
-+ * @type: data type to use
-+ * @x: first value
-+ * @y: second value
-+ */
-+#define min_t(type, x, y) __cmp_once(min, type, x, y)
-+
-+/**
-+ * max_t - return maximum of two values, using the specified type
-+ * @type: data type to use
-+ * @x: first value
-+ * @y: second value
-+ */
-+#define max_t(type, x, y) __cmp_once(max, type, x, y)
-+
-+/**
-  * min_not_zero - return the minimum that is _not_ zero, unless both are zero
-  * @x: value1
-  * @y: value2
-@@ -180,6 +180,22 @@
- 	typeof(y) __y = (y);			\
- 	__x == 0 ? __y : ((__y == 0) ? __x : min(__x, __y)); })
- 
-+#define __clamp(val, lo, hi)	\
-+	((val) >= (hi) ? (hi) : ((val) <= (lo) ? (lo) : (val)))
-+
-+#define __clamp_once(val, lo, hi, uval, ulo, uhi) ({				\
-+	__auto_type uval = (val);						\
-+	__auto_type ulo = (lo);							\
-+	__auto_type uhi = (hi);							\
-+	BUILD_BUG_ON_MSG(statically_true(ulo > uhi),				\
-+		"clamp() low limit " #lo " greater than high limit " #hi);	\
-+	BUILD_BUG_ON_MSG(!__types_ok3(uval, ulo, uhi),				\
-+		"clamp("#val", "#lo", "#hi") signedness error");		\
-+	__clamp(uval, ulo, uhi); })
-+
-+#define __careful_clamp(val, lo, hi) \
-+	__clamp_once(val, lo, hi, __UNIQUE_ID(v_), __UNIQUE_ID(l_), __UNIQUE_ID(h_))
-+
- /**
-  * clamp - return a value clamped to a given range with strict typechecking
-  * @val: current value
-@@ -191,28 +207,30 @@
+@@ -46,10 +46,10 @@
+  * comparison, and these expressions only need to be careful to not cause
+  * warnings for pointer use.
   */
- #define clamp(val, lo, hi) __careful_clamp(val, lo, hi)
- 
--/*
-- * ..and if you can't take the strict
-- * types, you can specify one yourself.
-- *
-- * Or not use min/max/clamp at all, of course.
-- */
--
- /**
-- * min_t - return minimum of two values, using the specified type
-- * @type: data type to use
-- * @x: first value
-- * @y: second value
-+ * clamp_t - return a value clamped to a given range using a given type
-+ * @type: the type of variable to use
-+ * @val: current value
-+ * @lo: minimum allowable value
-+ * @hi: maximum allowable value
-+ *
-+ * This macro does no typechecking and uses temporary variables of type
-+ * @type to make all the comparisons.
-  */
--#define min_t(type, x, y) __cmp_once(min, type, x, y)
-+#define clamp_t(type, val, lo, hi) __careful_clamp((type)(val), (type)(lo), (type)(hi))
- 
- /**
-- * max_t - return maximum of two values, using the specified type
-- * @type: data type to use
-- * @x: first value
-- * @y: second value
-+ * clamp_val - return a value clamped to a given range using val's type
-+ * @val: current value
-+ * @lo: minimum allowable value
-+ * @hi: maximum allowable value
-+ *
-+ * This macro does no typechecking and uses temporary variables of whatever
-+ * type the input argument @val is.  This is useful when @val is an unsigned
-+ * type and @lo and @hi are literals that will otherwise be assigned a signed
-+ * integer type.
-  */
--#define max_t(type, x, y) __cmp_once(max, type, x, y)
-+#define clamp_val(val, lo, hi) clamp_t(typeof(val), val, lo, hi)
+-#define __signed_type_use(x, ux) (2 + __is_nonneg(x, ux))
+-#define __unsigned_type_use(x, ux) (1 + 2 * (sizeof(ux) < 4))
+-#define __sign_use(x, ux) (is_signed_type(typeof(ux)) ? \
+-	__signed_type_use(x, ux) : __unsigned_type_use(x, ux))
++#define __signed_type_use(ux) (2 + __is_nonneg(ux))
++#define __unsigned_type_use(ux) (1 + 2 * (sizeof(ux) < 4))
++#define __sign_use(ux) (is_signed_type(typeof(ux)) ? \
++	__signed_type_use(ux) : __unsigned_type_use(ux))
  
  /*
-  * Do not check the array parameter using __must_be_array().
-@@ -257,31 +275,6 @@
-  */
- #define max_array(array, len) __minmax_array(max, array, len)
+  * Check whether a signed value is always non-negative.
+@@ -71,13 +71,13 @@
+ #else
+   #define __signed_type(ux) typeof(__builtin_choose_expr(sizeof(ux) > 4, 1LL, 1L))
+ #endif
+-#define __is_nonneg(x, ux) statically_true((__signed_type(ux))(x) >= 0)
++#define __is_nonneg(ux) statically_true((__signed_type(ux))(ux) >= 0)
  
--/**
-- * clamp_t - return a value clamped to a given range using a given type
-- * @type: the type of variable to use
-- * @val: current value
-- * @lo: minimum allowable value
-- * @hi: maximum allowable value
-- *
-- * This macro does no typechecking and uses temporary variables of type
-- * @type to make all the comparisons.
-- */
--#define clamp_t(type, val, lo, hi) __careful_clamp((type)(val), (type)(lo), (type)(hi))
--
--/**
-- * clamp_val - return a value clamped to a given range using val's type
-- * @val: current value
-- * @lo: minimum allowable value
-- * @hi: maximum allowable value
-- *
-- * This macro does no typechecking and uses temporary variables of whatever
-- * type the input argument @val is.  This is useful when @val is an unsigned
-- * type and @lo and @hi are literals that will otherwise be assigned a signed
-- * integer type.
-- */
--#define clamp_val(val, lo, hi) clamp_t(typeof(val), val, lo, hi)
--
- static inline bool in_range64(u64 val, u64 start, u64 len)
- {
- 	return (val - start) < len;
+-#define __types_ok(x, y, ux, uy) \
+-	(__sign_use(x, ux) & __sign_use(y, uy))
++#define __types_ok(ux, uy) \
++	(__sign_use(ux) & __sign_use(uy))
+ 
+-#define __types_ok3(x, y, z, ux, uy, uz) \
+-	(__sign_use(x, ux) & __sign_use(y, uy) & __sign_use(z, uz))
++#define __types_ok3(ux, uy, uz) \
++	(__sign_use(ux) & __sign_use(uy) & __sign_use(uz))
+ 
+ #define __cmp_op_min <
+ #define __cmp_op_max >
+@@ -92,7 +92,7 @@
+ 
+ #define __careful_cmp_once(op, x, y, ux, uy) ({		\
+ 	__auto_type ux = (x); __auto_type uy = (y);	\
+-	BUILD_BUG_ON_MSG(!__types_ok(x, y, ux, uy),	\
++	BUILD_BUG_ON_MSG(!__types_ok(ux, uy),		\
+ 		#op"("#x", "#y") signedness error");	\
+ 	__cmp(op, ux, uy); })
+ 
+@@ -109,7 +109,7 @@
+ 	static_assert(__builtin_choose_expr(__is_constexpr((lo) > (hi)), 	\
+ 			(lo) <= (hi), true),					\
+ 		"clamp() low limit " #lo " greater than high limit " #hi);	\
+-	BUILD_BUG_ON_MSG(!__types_ok3(val, lo, hi, uval, ulo, uhi),		\
++	BUILD_BUG_ON_MSG(!__types_ok3(uval, ulo, uhi),				\
+ 		"clamp("#val", "#lo", "#hi") signedness error");		\
+ 	__clamp(uval, ulo, uhi); })
+ 
+@@ -149,7 +149,7 @@
+ 
+ #define __careful_op3(op, x, y, z, ux, uy, uz) ({			\
+ 	__auto_type ux = (x); __auto_type uy = (y);__auto_type uz = (z);\
+-	BUILD_BUG_ON_MSG(!__types_ok3(x, y, z, ux, uy, uz),		\
++	BUILD_BUG_ON_MSG(!__types_ok3(ux, uy, uz),			\
+ 		#op"3("#x", "#y", "#z") signedness error");		\
+ 	__cmp(op, ux, __cmp(op, uy, uz)); })
+ 
 
 
 Patches currently in stable-queue which might be from farbere@amazon.com are
