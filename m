@@ -2,77 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77941BBDC1F
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Oct 2025 12:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6039DBBE120
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Oct 2025 14:42:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16B7210E312;
-	Mon,  6 Oct 2025 10:47:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8184A10E3C9;
+	Mon,  6 Oct 2025 12:41:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CBxSHz+i";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ySCttw3i";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3A6310E312
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Oct 2025 10:47:22 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id
- ffacd0b85a97d-42557c5cedcso2436012f8f.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 06 Oct 2025 03:47:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759747641; x=1760352441; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Zfexq9Nz8eX4F9FqVUiF23fIPTyGryU+7xs9lxmiydY=;
- b=CBxSHz+iKVybvDO2wGJotxTasRokTVWG8Eqa56dHIWn3LOwAkjovS94dONVwrqbMfC
- 8QMlO2BoXl3puuW96Ddw5RU7iSN/Vg9Aqe5JC6B7TBNXntjaxci+ebgGIHqgZDj936h2
- zWwovVMMwDvhNNiqRLfNLChIu8RSJ088L2xP6PIH/dyw3Fuo+QOckBlRVTqPBKFGt2vl
- fUCop92W1sfcU7lhGz6xF//jibandmAqCxI86ufmBYQ8S1mhsEhP/BEo2M/RDblYf7wT
- K8yr+rJwMGuXQSjqsOufP3IpVcylrfpZ/vv/OUltJsLE8xp6KXp2jP7vOMkWJIEvQQm6
- rEPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759747641; x=1760352441;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Zfexq9Nz8eX4F9FqVUiF23fIPTyGryU+7xs9lxmiydY=;
- b=fHCZhe01MFdivzZP5Fb9EL+oUj/fFL3mC8d8aHF47K9ULqwcCVbbFESt5Du/1V0nr1
- HF4yR5Le9i+mejNkqxvKeRMperGKeHZ76tcCHUGXEnifgMHz/1BVwt6ayNWVrjIiMsMP
- E3hs1m9ye2SgiGJt7YcqzIW5c34McEGkOT1sE6pKO7b5krxBx9SSTEAGCsK4Z0kVv5qp
- hC9GCFo9xoZgABDEjz4RvI8GO8oFzxkiv9K7QsVD7xNGWaCNfLI1yQbHhGIZWEWR9xHV
- bAfFecL7gUyL7QU+4boxL/od8/mR4EaRWueD12uVq+i7x+DUTXTs1X8fSLKkaa0o6GUr
- /zCg==
-X-Gm-Message-State: AOJu0YzZaNFWk8aMbbGE9PiKW+Slux5YbVtvEz9HHLp7Bfz32/K1rv0p
- RiMyyMmM016EVLwoQuaK71Jtr57C26GXlt/K/uzAx6YCGb3/KkNf+u9Z
-X-Gm-Gg: ASbGncscRCamhqGfCKd1XlVEXkAHHNASipcuUxnqp+036sVHPOrG41hJjZ6L1Qj1JX1
- Bu5pwCFib17d0+NYyEkwbFD5DfgYiny+OTxGqPNKUnv8B6fVjS2+MeHcpD9qF2EMbNZkMecKLPA
- wuJWun8GVktcbgq5SIzmp/QhbGgTLrrONjB1Li1ClB09ox3TphaSWOXND9jPhuPeSMsVh/KAr35
- B0z2kLqO2bfkNHrsQ6kdIzRQJfuZccNkh0Hwp0bb9PnEd898gfCBYuF6zqMKBN+t3/0PVnctma/
- IMUfKyiYWNbcw20O4Fmbuj4n8EaRiBcp1WaxVQoVJM2rwEQdAFOKMMs4mgb5CTWjZBPSHD+Hzbh
- ERNCPCZ9q9BSIho4vEtO5+yN3HfcHUF9cMumvk397xeE7Aj7aKnqmm3nAntc=
-X-Google-Smtp-Source: AGHT+IFkm9DUTL859emdc3XL89RJF6j7ZTSgw/bt7sG6ils9YvdDpZMadyq6BSoLuJI1Rtrf9X6E8g==
-X-Received: by 2002:a05:6000:2f87:b0:3ef:42fe:8539 with SMTP id
- ffacd0b85a97d-4256714c910mr8149595f8f.25.1759747640921; 
- Mon, 06 Oct 2025 03:47:20 -0700 (PDT)
-Received: from able.fritz.box ([2a00:e180:1585:c600:44c9:2de3:62f5:da07])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-46e5b5f3015sm145288235e9.1.2025.10.06.03.47.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Oct 2025 03:47:20 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: alexander.deucher@amd.com,
-	Kenny.Ho@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: partially revert "revert to old status lock
- handling v3"
-Date: Mon,  6 Oct 2025 12:47:19 +0200
-Message-ID: <20251006104719.12886-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0DE10E3F2;
+ Mon,  6 Oct 2025 10:40:09 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id D9A0D4510F;
+ Mon,  6 Oct 2025 10:40:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 346CBC4CEF5;
+ Mon,  6 Oct 2025 10:40:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1759747208;
+ bh=d1RJmttUV9SjcOAsVtow8qlwV+/r9oLBzb7vHACoeo4=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:From;
+ b=ySCttw3iKtUdz14zeF6gQ3oefYcuO9oOADNkNFojp78IzUfnplDE08EqFSSO/zLOG
+ GqG1a9bYik9nfslkZukaQwjUM+I11bqwgLWLbtkPEzcvjoTHkEBNRkeWwDVbq1WFMG
+ 3QMoie9KF+F/o10TsV6ItsoK4d2vwflCNxd0tJzY=
+Subject: Patch "minmax: don't use max() in situations that want a C constant
+ expression" has been added to the 6.1-stable tree
+To: David.Laight@ACULAB.COM, David.Laight@aculab.com, agk@redhat.com,
+ airlied@gmail.com, akpm@linux-foundation.org, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, andriy.shevchenko@linux.intel.com,
+ asad.kamal@amd.com, christian.koenig@amd.com, clm@fb.com,
+ dm-devel@lists.linux.dev, dmitry.torokhov@gmail.com,
+ dri-devel@lists.freedesktop.org, dsterba@suse.com, farbere@amazon.com,
+ gregkh@linuxfoundation.org, jernej.skrabec@gmail.com, kenneth.feng@amd.com,
+ kevinyang.wang@amd.com, lijo.lazar@amd.com, linus.walleij@linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux@rasmusvillemoes.dk, lorenzo.stoakes@oracle.com,
+ luc.vanoostenryck@gmail.com, mpatocka@redhat.com, pmladek@suse.com,
+ rostedt@goodmis.org, samuel@sholland.org, senozhatsky@chromium.org,
+ simona@ffwll.ch, snitzer@kernel.org, tglx@linutronix.de,
+ torvalds@linux-foundation.org, wens@csie.org
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Mon, 06 Oct 2025 12:39:09 +0200
+In-Reply-To: <20251003121520.8176-2-farbere@amazon.com>
+Message-ID: <2025100609-sacred-breach-69da@gregkh>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
+X-stable: commit
+X-Patchwork-Hint: ignore 
+X-Mailman-Approved-At: Mon, 06 Oct 2025 12:41:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,583 +68,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The CI systems are pointing out list corruptions, so we still need to
-fix something here.
 
-Keep the asserts, but revert the lock changes for now.
+This is a note to let you know that I've just added the patch titled
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+    minmax: don't use max() in situations that want a C constant expression
+
+to the 6.1-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+
+The filename of the patch is:
+     minmax-don-t-use-max-in-situations-that-want-a-c-constant-expression.patch
+and it can be found in the queue-6.1 subdirectory.
+
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
+
+
+From stable+bounces-183172-greg=kroah.com@vger.kernel.org Fri Oct  3 14:16:33 2025
+From: Eliav Farber <farbere@amazon.com>
+Date: Fri, 3 Oct 2025 12:15:10 +0000
+Subject: minmax: don't use max() in situations that want a C constant expression
+To: <gregkh@linuxfoundation.org>, <kenneth.feng@amd.com>, <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@gmail.com>, <simona@ffwll.ch>, <linus.walleij@linaro.org>, <dmitry.torokhov@gmail.com>, <tglx@linutronix.de>, <wens@csie.org>, <jernej.skrabec@gmail.com>, <samuel@sholland.org>, <agk@redhat.com>, <snitzer@kernel.org>, <mpatocka@redhat.com>, <clm@fb.com>, <dsterba@suse.com>, <luc.vanoostenryck@gmail.com>, <pmladek@suse.com>, <rostedt@goodmis.org>, <andriy.shevchenko@linux.intel.com>, <linux@rasmusvillemoes.dk>, <senozhatsky@chromium.org>, <akpm@linux-foundation.org>, <lijo.lazar@amd.com>, <asad.kamal@amd.com>, <kevinyang.wang@amd.com>, <David.Laight@ACULAB.COM>, <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>, <dm-devel@lists.linux.dev>, <linux-btrfs@vger.kernel.org>, <linux-sparse@vger.kernel.org>, <stable@vger.
+ kernel.org>, <farbere@amazon.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, David Laight <David.Laight@aculab.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Message-ID: <20251003121520.8176-2-farbere@amazon.com>
+
+From: Linus Torvalds <torvalds@linux-foundation.org>
+
+[ Upstream commit cb04e8b1d2f24c4c2c92f7b7529031fc35a16fed ]
+
+We only had a couple of array[] declarations, and changing them to just
+use 'MAX()' instead of 'max()' fixes the issue.
+
+This will allow us to simplify our min/max macros enormously, since they
+can now unconditionally use temporary variables to avoid using the
+argument values multiple times.
+
+Cc: David Laight <David.Laight@aculab.com>
+Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+Signed-off-by: Eliav Farber <farbere@amazon.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c |   8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    | 146 ++++++++++++++--------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h    |  15 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c |   4 +
- 4 files changed, 105 insertions(+), 68 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c   |    2 +-
+ drivers/input/touchscreen/cyttsp4_core.c |    2 +-
+ drivers/irqchip/irq-sun6i-r.c            |    2 +-
+ drivers/md/dm-integrity.c                |    2 +-
+ fs/btrfs/tree-checker.c                  |    2 +-
+ lib/vsprintf.c                           |    2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 3bbe1001fda1..8dc12064da49 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -724,12 +724,12 @@ amdgpu_userq_bo_validate(struct amdgpu_device *adev, struct drm_exec *exec,
- 	struct amdgpu_bo *bo;
- 	int ret;
- 
--	spin_lock(&vm->invalidated_lock);
-+	spin_lock(&vm->status_lock);
- 	while (!list_empty(&vm->invalidated)) {
- 		bo_va = list_first_entry(&vm->invalidated,
- 					 struct amdgpu_bo_va,
- 					 base.vm_status);
--		spin_unlock(&vm->invalidated_lock);
-+		spin_unlock(&vm->status_lock);
- 
- 		bo = bo_va->base.bo;
- 		ret = drm_exec_prepare_obj(exec, &bo->tbo.base, 2);
-@@ -746,9 +746,9 @@ amdgpu_userq_bo_validate(struct amdgpu_device *adev, struct drm_exec *exec,
- 		if (ret)
- 			return ret;
- 
--		spin_lock(&vm->invalidated_lock);
-+		spin_lock(&vm->status_lock);
- 	}
--	spin_unlock(&vm->invalidated_lock);
-+	spin_unlock(&vm->status_lock);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 86c8288c665f..100cb6cc0cff 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -153,10 +153,12 @@ static void amdgpu_vm_bo_evicted(struct amdgpu_vm_bo_base *vm_bo)
- 
- 	vm_bo->moved = true;
- 	amdgpu_vm_assert_locked(vm);
-+	spin_lock(&vm_bo->vm->status_lock);
- 	if (bo->tbo.type == ttm_bo_type_kernel)
- 		list_move(&vm_bo->vm_status, &vm->evicted);
- 	else
- 		list_move_tail(&vm_bo->vm_status, &vm->evicted);
-+	spin_unlock(&vm_bo->vm->status_lock);
- }
- /**
-  * amdgpu_vm_bo_moved - vm_bo is moved
-@@ -169,7 +171,9 @@ static void amdgpu_vm_bo_evicted(struct amdgpu_vm_bo_base *vm_bo)
- static void amdgpu_vm_bo_moved(struct amdgpu_vm_bo_base *vm_bo)
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+@@ -700,7 +700,7 @@ static const char *smu_get_feature_name(
+ size_t smu_cmn_get_pp_feature_mask(struct smu_context *smu,
+ 				   char *buf)
  {
- 	amdgpu_vm_assert_locked(vm_bo->vm);
-+	spin_lock(&vm_bo->vm->status_lock);
- 	list_move(&vm_bo->vm_status, &vm_bo->vm->moved);
-+	spin_unlock(&vm_bo->vm->status_lock);
- }
+-	int8_t sort_feature[max(SMU_FEATURE_COUNT, SMU_FEATURE_MAX)];
++	int8_t sort_feature[MAX(SMU_FEATURE_COUNT, SMU_FEATURE_MAX)];
+ 	uint64_t feature_mask;
+ 	int i, feature_index;
+ 	uint32_t count = 0;
+--- a/drivers/input/touchscreen/cyttsp4_core.c
++++ b/drivers/input/touchscreen/cyttsp4_core.c
+@@ -871,7 +871,7 @@ static void cyttsp4_get_mt_touches(struc
+ 	struct cyttsp4_touch tch;
+ 	int sig;
+ 	int i, j, t = 0;
+-	int ids[max(CY_TMA1036_MAX_TCH, CY_TMA4XX_MAX_TCH)];
++	int ids[MAX(CY_TMA1036_MAX_TCH, CY_TMA4XX_MAX_TCH)];
  
- /**
-@@ -183,7 +187,9 @@ static void amdgpu_vm_bo_moved(struct amdgpu_vm_bo_base *vm_bo)
- static void amdgpu_vm_bo_idle(struct amdgpu_vm_bo_base *vm_bo)
+ 	memset(ids, 0, si->si_ofs.tch_abs[CY_TCH_T].max * sizeof(int));
+ 	for (i = 0; i < num_cur_tch; i++) {
+--- a/drivers/irqchip/irq-sun6i-r.c
++++ b/drivers/irqchip/irq-sun6i-r.c
+@@ -270,7 +270,7 @@ static const struct irq_domain_ops sun6i
+ 
+ static int sun6i_r_intc_suspend(void)
  {
- 	amdgpu_vm_assert_locked(vm_bo->vm);
-+	spin_lock(&vm_bo->vm->status_lock);
- 	list_move(&vm_bo->vm_status, &vm_bo->vm->idle);
-+	spin_unlock(&vm_bo->vm->status_lock);
- 	vm_bo->moved = false;
- }
+-	u32 buf[BITS_TO_U32(max(SUN6I_NR_TOP_LEVEL_IRQS, SUN6I_NR_MUX_BITS))];
++	u32 buf[BITS_TO_U32(MAX(SUN6I_NR_TOP_LEVEL_IRQS, SUN6I_NR_MUX_BITS))];
+ 	int i;
  
-@@ -197,9 +203,9 @@ static void amdgpu_vm_bo_idle(struct amdgpu_vm_bo_base *vm_bo)
-  */
- static void amdgpu_vm_bo_invalidated(struct amdgpu_vm_bo_base *vm_bo)
- {
--	spin_lock(&vm_bo->vm->invalidated_lock);
-+	spin_lock(&vm_bo->vm->status_lock);
- 	list_move(&vm_bo->vm_status, &vm_bo->vm->invalidated);
--	spin_unlock(&vm_bo->vm->invalidated_lock);
-+	spin_unlock(&vm_bo->vm->status_lock);
- }
+ 	/* Wake IRQs are enabled during system sleep and shutdown. */
+--- a/drivers/md/dm-integrity.c
++++ b/drivers/md/dm-integrity.c
+@@ -1794,7 +1794,7 @@ static void integrity_metadata(struct wo
+ 		struct bio *bio = dm_bio_from_per_bio_data(dio, sizeof(struct dm_integrity_io));
+ 		char *checksums;
+ 		unsigned int extra_space = unlikely(digest_size > ic->tag_size) ? digest_size - ic->tag_size : 0;
+-		char checksums_onstack[max((size_t)HASH_MAX_DIGESTSIZE, MAX_TAG_SIZE)];
++		char checksums_onstack[MAX(HASH_MAX_DIGESTSIZE, MAX_TAG_SIZE)];
+ 		sector_t sector;
+ 		unsigned int sectors_to_process;
  
- /**
-@@ -212,9 +218,10 @@ static void amdgpu_vm_bo_invalidated(struct amdgpu_vm_bo_base *vm_bo)
-  */
- static void amdgpu_vm_bo_evicted_user(struct amdgpu_vm_bo_base *vm_bo)
- {
--	amdgpu_vm_assert_locked(vm_bo->vm);
- 	vm_bo->moved = true;
-+	spin_lock(&vm_bo->vm->status_lock);
- 	list_move(&vm_bo->vm_status, &vm_bo->vm->evicted_user);
-+	spin_unlock(&vm_bo->vm->status_lock);
- }
- 
- /**
-@@ -228,10 +235,13 @@ static void amdgpu_vm_bo_evicted_user(struct amdgpu_vm_bo_base *vm_bo)
- static void amdgpu_vm_bo_relocated(struct amdgpu_vm_bo_base *vm_bo)
- {
- 	amdgpu_vm_assert_locked(vm_bo->vm);
--	if (vm_bo->bo->parent)
-+	if (vm_bo->bo->parent) {
-+		spin_lock(&vm_bo->vm->status_lock);
- 		list_move(&vm_bo->vm_status, &vm_bo->vm->relocated);
--	else
-+		spin_unlock(&vm_bo->vm->status_lock);
-+	} else {
- 		amdgpu_vm_bo_idle(vm_bo);
-+	}
- }
- 
- /**
-@@ -245,7 +255,9 @@ static void amdgpu_vm_bo_relocated(struct amdgpu_vm_bo_base *vm_bo)
- static void amdgpu_vm_bo_done(struct amdgpu_vm_bo_base *vm_bo)
- {
- 	amdgpu_vm_assert_locked(vm_bo->vm);
-+	spin_lock(&vm_bo->vm->status_lock);
- 	list_move(&vm_bo->vm_status, &vm_bo->vm->done);
-+	spin_unlock(&vm_bo->vm->status_lock);
- }
- 
- /**
-@@ -259,13 +271,13 @@ static void amdgpu_vm_bo_reset_state_machine(struct amdgpu_vm *vm)
- {
- 	struct amdgpu_vm_bo_base *vm_bo, *tmp;
- 
--	spin_lock(&vm->invalidated_lock);
-+	amdgpu_vm_assert_locked(vm);
-+
-+	spin_lock(&vm->status_lock);
- 	list_splice_init(&vm->done, &vm->invalidated);
- 	list_for_each_entry(vm_bo, &vm->invalidated, vm_status)
- 		vm_bo->moved = true;
--	spin_unlock(&vm->invalidated_lock);
- 
--	amdgpu_vm_assert_locked(vm);
- 	list_for_each_entry_safe(vm_bo, tmp, &vm->idle, vm_status) {
- 		struct amdgpu_bo *bo = vm_bo->bo;
- 
-@@ -275,13 +287,14 @@ static void amdgpu_vm_bo_reset_state_machine(struct amdgpu_vm *vm)
- 		else if (bo->parent)
- 			list_move(&vm_bo->vm_status, &vm_bo->vm->relocated);
- 	}
-+	spin_unlock(&vm->status_lock);
- }
- 
- /**
-  * amdgpu_vm_update_shared - helper to update shared memory stat
-  * @base: base structure for tracking BO usage in a VM
-  *
-- * Takes the vm stats_lock and updates the shared memory stat. If the basic
-+ * Takes the vm status_lock and updates the shared memory stat. If the basic
-  * stat changed (e.g. buffer was moved) amdgpu_vm_update_stats need to be called
-  * as well.
-  */
-@@ -294,7 +307,7 @@ static void amdgpu_vm_update_shared(struct amdgpu_vm_bo_base *base)
- 	bool shared;
- 
- 	dma_resv_assert_held(bo->tbo.base.resv);
--	spin_lock(&vm->stats_lock);
-+	spin_lock(&vm->status_lock);
- 	shared = drm_gem_object_is_shared_for_memory_stats(&bo->tbo.base);
- 	if (base->shared != shared) {
- 		base->shared = shared;
-@@ -306,7 +319,7 @@ static void amdgpu_vm_update_shared(struct amdgpu_vm_bo_base *base)
- 			vm->stats[bo_memtype].drm.private += size;
- 		}
- 	}
--	spin_unlock(&vm->stats_lock);
-+	spin_unlock(&vm->status_lock);
- }
- 
- /**
-@@ -331,11 +344,11 @@ void amdgpu_vm_bo_update_shared(struct amdgpu_bo *bo)
-  *        be bo->tbo.resource
-  * @sign: if we should add (+1) or subtract (-1) from the stat
-  *
-- * Caller need to have the vm stats_lock held. Useful for when multiple update
-+ * Caller need to have the vm status_lock held. Useful for when multiple update
-  * need to happen at the same time.
-  */
- static void amdgpu_vm_update_stats_locked(struct amdgpu_vm_bo_base *base,
--					  struct ttm_resource *res, int sign)
-+			    struct ttm_resource *res, int sign)
- {
- 	struct amdgpu_vm *vm = base->vm;
- 	struct amdgpu_bo *bo = base->bo;
-@@ -359,8 +372,7 @@ static void amdgpu_vm_update_stats_locked(struct amdgpu_vm_bo_base *base,
+--- a/fs/btrfs/tree-checker.c
++++ b/fs/btrfs/tree-checker.c
+@@ -608,7 +608,7 @@ static int check_dir_item(struct extent_
  		 */
- 		if (bo->flags & AMDGPU_GEM_CREATE_DISCARDABLE)
- 			vm->stats[res_memtype].drm.purgeable += size;
--		if (!(bo->preferred_domains &
--		      amdgpu_mem_type_to_domain(res_memtype)))
-+		if (!(bo->preferred_domains & amdgpu_mem_type_to_domain(res_memtype)))
- 			vm->stats[bo_memtype].evicted += size;
- 	}
- }
-@@ -379,9 +391,9 @@ void amdgpu_vm_update_stats(struct amdgpu_vm_bo_base *base,
- {
- 	struct amdgpu_vm *vm = base->vm;
+ 		if (key->type == BTRFS_DIR_ITEM_KEY ||
+ 		    key->type == BTRFS_XATTR_ITEM_KEY) {
+-			char namebuf[max(BTRFS_NAME_LEN, XATTR_NAME_MAX)];
++			char namebuf[MAX(BTRFS_NAME_LEN, XATTR_NAME_MAX)];
  
--	spin_lock(&vm->stats_lock);
-+	spin_lock(&vm->status_lock);
- 	amdgpu_vm_update_stats_locked(base, res, sign);
--	spin_unlock(&vm->stats_lock);
-+	spin_unlock(&vm->status_lock);
- }
+ 			read_extent_buffer(leaf, namebuf,
+ 					(unsigned long)(di + 1), name_len);
+--- a/lib/vsprintf.c
++++ b/lib/vsprintf.c
+@@ -1082,7 +1082,7 @@ char *resource_string(char *buf, char *e
+ #define FLAG_BUF_SIZE		(2 * sizeof(res->flags))
+ #define DECODED_BUF_SIZE	sizeof("[mem - 64bit pref window disabled]")
+ #define RAW_BUF_SIZE		sizeof("[mem - flags 0x]")
+-	char sym[max(2*RSRC_BUF_SIZE + DECODED_BUF_SIZE,
++	char sym[MAX(2*RSRC_BUF_SIZE + DECODED_BUF_SIZE,
+ 		     2*RSRC_BUF_SIZE + FLAG_BUF_SIZE + RAW_BUF_SIZE)];
  
- /**
-@@ -407,10 +419,10 @@ void amdgpu_vm_bo_base_init(struct amdgpu_vm_bo_base *base,
- 	base->next = bo->vm_bo;
- 	bo->vm_bo = base;
- 
--	spin_lock(&vm->stats_lock);
-+	spin_lock(&vm->status_lock);
- 	base->shared = drm_gem_object_is_shared_for_memory_stats(&bo->tbo.base);
- 	amdgpu_vm_update_stats_locked(base, bo->tbo.resource, +1);
--	spin_unlock(&vm->stats_lock);
-+	spin_unlock(&vm->status_lock);
- 
- 	if (!amdgpu_vm_is_bo_always_valid(vm, bo))
- 		return;
-@@ -469,10 +481,10 @@ int amdgpu_vm_lock_done_list(struct amdgpu_vm *vm, struct drm_exec *exec,
- 	int ret;
- 
- 	/* We can only trust prev->next while holding the lock */
--	spin_lock(&vm->invalidated_lock);
-+	spin_lock(&vm->status_lock);
- 	while (!list_is_head(prev->next, &vm->done)) {
- 		bo_va = list_entry(prev->next, typeof(*bo_va), base.vm_status);
--		spin_unlock(&vm->invalidated_lock);
-+		spin_unlock(&vm->status_lock);
- 
- 		bo = bo_va->base.bo;
- 		if (bo) {
-@@ -480,10 +492,10 @@ int amdgpu_vm_lock_done_list(struct amdgpu_vm *vm, struct drm_exec *exec,
- 			if (unlikely(ret))
- 				return ret;
- 		}
--		spin_lock(&vm->invalidated_lock);
-+		spin_lock(&vm->status_lock);
- 		prev = prev->next;
- 	}
--	spin_unlock(&vm->invalidated_lock);
-+	spin_unlock(&vm->status_lock);
- 
- 	return 0;
- }
-@@ -579,7 +591,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		       void *param)
- {
- 	uint64_t new_vm_generation = amdgpu_vm_generation(adev, vm);
--	struct amdgpu_vm_bo_base *bo_base, *tmp;
-+	struct amdgpu_vm_bo_base *bo_base;
- 	struct amdgpu_bo *bo;
- 	int r;
- 
-@@ -592,7 +604,13 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 			return r;
- 	}
- 
--	list_for_each_entry_safe(bo_base, tmp, &vm->evicted, vm_status) {
-+	spin_lock(&vm->status_lock);
-+	while (!list_empty(&vm->evicted)) {
-+		bo_base = list_first_entry(&vm->evicted,
-+					   struct amdgpu_vm_bo_base,
-+					   vm_status);
-+		spin_unlock(&vm->status_lock);
-+
- 		bo = bo_base->bo;
- 
- 		r = validate(param, bo);
-@@ -605,21 +623,26 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 			vm->update_funcs->map_table(to_amdgpu_bo_vm(bo));
- 			amdgpu_vm_bo_relocated(bo_base);
- 		}
-+		spin_lock(&vm->status_lock);
- 	}
-+	while (ticket && !list_empty(&vm->evicted_user)) {
-+		bo_base = list_first_entry(&vm->evicted_user,
-+					   struct amdgpu_vm_bo_base,
-+					   vm_status);
-+		spin_unlock(&vm->status_lock);
- 
--	if (ticket) {
--		list_for_each_entry_safe(bo_base, tmp, &vm->evicted_user,
--					 vm_status) {
--			bo = bo_base->bo;
--			dma_resv_assert_held(bo->tbo.base.resv);
-+		bo = bo_base->bo;
-+		dma_resv_assert_held(bo->tbo.base.resv);
- 
--			r = validate(param, bo);
--			if (r)
--				return r;
-+		r = validate(param, bo);
-+		if (r)
-+			return r;
- 
--			amdgpu_vm_bo_invalidated(bo_base);
--		}
-+		amdgpu_vm_bo_invalidated(bo_base);
-+
-+		spin_lock(&vm->status_lock);
- 	}
-+	spin_unlock(&vm->status_lock);
- 
- 	amdgpu_vm_eviction_lock(vm);
- 	vm->evicting = false;
-@@ -648,7 +671,9 @@ bool amdgpu_vm_ready(struct amdgpu_vm *vm)
- 	ret = !vm->evicting;
- 	amdgpu_vm_eviction_unlock(vm);
- 
-+	spin_lock(&vm->status_lock);
- 	ret &= list_empty(&vm->evicted);
-+	spin_unlock(&vm->status_lock);
- 
- 	spin_lock(&vm->immediate.lock);
- 	ret &= !vm->immediate.stopped;
-@@ -939,13 +964,18 @@ int amdgpu_vm_update_pdes(struct amdgpu_device *adev,
- 			  struct amdgpu_vm *vm, bool immediate)
- {
- 	struct amdgpu_vm_update_params params;
--	struct amdgpu_vm_bo_base *entry, *tmp;
-+	struct amdgpu_vm_bo_base *entry;
- 	bool flush_tlb_needed = false;
-+	LIST_HEAD(relocated);
- 	int r, idx;
- 
- 	amdgpu_vm_assert_locked(vm);
- 
--	if (list_empty(&vm->relocated))
-+	spin_lock(&vm->status_lock);
-+	list_splice_init(&vm->relocated, &relocated);
-+	spin_unlock(&vm->status_lock);
-+
-+	if (list_empty(&relocated))
- 		return 0;
- 
- 	if (!drm_dev_enter(adev_to_drm(adev), &idx))
-@@ -960,7 +990,7 @@ int amdgpu_vm_update_pdes(struct amdgpu_device *adev,
- 	if (r)
- 		goto error;
- 
--	list_for_each_entry(entry, &vm->relocated, vm_status) {
-+	list_for_each_entry(entry, &relocated, vm_status) {
- 		/* vm_flush_needed after updating moved PDEs */
- 		flush_tlb_needed |= entry->moved;
- 
-@@ -976,7 +1006,9 @@ int amdgpu_vm_update_pdes(struct amdgpu_device *adev,
- 	if (flush_tlb_needed)
- 		atomic64_inc(&vm->tlb_seq);
- 
--	list_for_each_entry_safe(entry, tmp, &vm->relocated, vm_status) {
-+	while (!list_empty(&relocated)) {
-+		entry = list_first_entry(&relocated, struct amdgpu_vm_bo_base,
-+					 vm_status);
- 		amdgpu_vm_bo_idle(entry);
- 	}
- 
-@@ -1202,9 +1234,9 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- void amdgpu_vm_get_memory(struct amdgpu_vm *vm,
- 			  struct amdgpu_mem_stats stats[__AMDGPU_PL_NUM])
- {
--	spin_lock(&vm->stats_lock);
-+	spin_lock(&vm->status_lock);
- 	memcpy(stats, vm->stats, sizeof(*stats) * __AMDGPU_PL_NUM);
--	spin_unlock(&vm->stats_lock);
-+	spin_unlock(&vm->status_lock);
- }
- 
- /**
-@@ -1571,24 +1603,29 @@ int amdgpu_vm_handle_moved(struct amdgpu_device *adev,
- 			   struct amdgpu_vm *vm,
- 			   struct ww_acquire_ctx *ticket)
- {
--	struct amdgpu_bo_va *bo_va, *tmp;
-+	struct amdgpu_bo_va *bo_va;
- 	struct dma_resv *resv;
- 	bool clear, unlock;
- 	int r;
- 
--	list_for_each_entry_safe(bo_va, tmp, &vm->moved, base.vm_status) {
-+	spin_lock(&vm->status_lock);
-+	while (!list_empty(&vm->moved)) {
-+		bo_va = list_first_entry(&vm->moved, struct amdgpu_bo_va,
-+					 base.vm_status);
-+		spin_unlock(&vm->status_lock);
-+
- 		/* Per VM BOs never need to bo cleared in the page tables */
- 		r = amdgpu_vm_bo_update(adev, bo_va, false);
- 		if (r)
- 			return r;
-+		spin_lock(&vm->status_lock);
- 	}
- 
--	spin_lock(&vm->invalidated_lock);
- 	while (!list_empty(&vm->invalidated)) {
- 		bo_va = list_first_entry(&vm->invalidated, struct amdgpu_bo_va,
- 					 base.vm_status);
- 		resv = bo_va->base.bo->tbo.base.resv;
--		spin_unlock(&vm->invalidated_lock);
-+		spin_unlock(&vm->status_lock);
- 
- 		/* Try to reserve the BO to avoid clearing its ptes */
- 		if (!adev->debug_vm && dma_resv_trylock(resv)) {
-@@ -1620,9 +1657,9 @@ int amdgpu_vm_handle_moved(struct amdgpu_device *adev,
- 		     bo_va->base.bo->tbo.resource->mem_type == TTM_PL_SYSTEM))
- 			amdgpu_vm_bo_evicted_user(&bo_va->base);
- 
--		spin_lock(&vm->invalidated_lock);
-+		spin_lock(&vm->status_lock);
- 	}
--	spin_unlock(&vm->invalidated_lock);
-+	spin_unlock(&vm->status_lock);
- 
- 	return 0;
- }
-@@ -2151,9 +2188,9 @@ void amdgpu_vm_bo_del(struct amdgpu_device *adev,
- 		}
- 	}
- 
--	spin_lock(&vm->invalidated_lock);
-+	spin_lock(&vm->status_lock);
- 	list_del(&bo_va->base.vm_status);
--	spin_unlock(&vm->invalidated_lock);
-+	spin_unlock(&vm->status_lock);
- 
- 	list_for_each_entry_safe(mapping, next, &bo_va->valids, list) {
- 		list_del(&mapping->list);
-@@ -2261,10 +2298,10 @@ void amdgpu_vm_bo_move(struct amdgpu_bo *bo, struct ttm_resource *new_mem,
- 	for (bo_base = bo->vm_bo; bo_base; bo_base = bo_base->next) {
- 		struct amdgpu_vm *vm = bo_base->vm;
- 
--		spin_lock(&vm->stats_lock);
-+		spin_lock(&vm->status_lock);
- 		amdgpu_vm_update_stats_locked(bo_base, bo->tbo.resource, -1);
- 		amdgpu_vm_update_stats_locked(bo_base, new_mem, +1);
--		spin_unlock(&vm->stats_lock);
-+		spin_unlock(&vm->status_lock);
- 	}
- 
- 	amdgpu_vm_bo_invalidate(bo, evicted);
-@@ -2532,12 +2569,11 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	INIT_LIST_HEAD(&vm->relocated);
- 	INIT_LIST_HEAD(&vm->moved);
- 	INIT_LIST_HEAD(&vm->idle);
--	spin_lock_init(&vm->invalidated_lock);
- 	INIT_LIST_HEAD(&vm->invalidated);
-+	spin_lock_init(&vm->status_lock);
- 	INIT_LIST_HEAD(&vm->freed);
- 	INIT_LIST_HEAD(&vm->done);
- 	INIT_KFIFO(vm->faults);
--	spin_lock_init(&vm->stats_lock);
- 
- 	r = amdgpu_vm_init_entities(adev, vm);
- 	if (r)
-@@ -3013,6 +3049,7 @@ void amdgpu_debugfs_vm_bo_info(struct amdgpu_vm *vm, struct seq_file *m)
- 
- 	amdgpu_vm_assert_locked(vm);
- 
-+	spin_lock(&vm->status_lock);
- 	seq_puts(m, "\tIdle BOs:\n");
- 	list_for_each_entry_safe(bo_va, tmp, &vm->idle, base.vm_status) {
- 		if (!bo_va->base.bo)
-@@ -3050,13 +3087,11 @@ void amdgpu_debugfs_vm_bo_info(struct amdgpu_vm *vm, struct seq_file *m)
- 	id = 0;
- 
- 	seq_puts(m, "\tInvalidated BOs:\n");
--	spin_lock(&vm->invalidated_lock);
- 	list_for_each_entry_safe(bo_va, tmp, &vm->invalidated, base.vm_status) {
- 		if (!bo_va->base.bo)
- 			continue;
- 		total_invalidated += amdgpu_bo_print_info(id++,	bo_va->base.bo, m);
- 	}
--	spin_unlock(&vm->invalidated_lock);
- 	total_invalidated_objs = id;
- 	id = 0;
- 
-@@ -3066,6 +3101,7 @@ void amdgpu_debugfs_vm_bo_info(struct amdgpu_vm *vm, struct seq_file *m)
- 			continue;
- 		total_done += amdgpu_bo_print_info(id++, bo_va->base.bo, m);
- 	}
-+	spin_unlock(&vm->status_lock);
- 	total_done_objs = id;
- 
- 	seq_printf(m, "\tTotal idle size:        %12lld\tobjs:\t%d\n", total_idle,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-index 556d0483c6bc..77207f4e448e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -203,11 +203,11 @@ struct amdgpu_vm_bo_base {
- 	/* protected by bo being reserved */
- 	struct amdgpu_vm_bo_base	*next;
- 
--	/* protected by vm reservation and invalidated_lock */
-+	/* protected by vm status_lock */
- 	struct list_head		vm_status;
- 
- 	/* if the bo is counted as shared in mem stats
--	 * protected by vm BO being reserved */
-+	 * protected by vm status_lock */
- 	bool				shared;
- 
- 	/* protected by the BO being reserved */
-@@ -343,8 +343,10 @@ struct amdgpu_vm {
- 	bool			evicting;
- 	unsigned int		saved_flags;
- 
--	/* Memory statistics for this vm, protected by stats_lock */
--	spinlock_t		stats_lock;
-+	/* Lock to protect vm_bo add/del/move on all lists of vm */
-+	spinlock_t		status_lock;
-+
-+	/* Memory statistics for this vm, protected by status_lock */
- 	struct amdgpu_mem_stats stats[__AMDGPU_PL_NUM];
- 
- 	/*
-@@ -352,8 +354,6 @@ struct amdgpu_vm {
- 	 * PDs, PTs or per VM BOs. The state transits are:
- 	 *
- 	 * evicted -> relocated (PDs, PTs) or moved (per VM BOs) -> idle
--	 *
--	 * Lists are protected by the root PD dma_resv lock.
- 	 */
- 
- 	/* Per-VM and PT BOs who needs a validation */
-@@ -374,10 +374,7 @@ struct amdgpu_vm {
- 	 * state transits are:
- 	 *
- 	 * evicted_user or invalidated -> done
--	 *
--	 * Lists are protected by the invalidated_lock.
- 	 */
--	spinlock_t		invalidated_lock;
- 
- 	/* BOs for user mode queues that need a validation */
- 	struct list_head	evicted_user;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-index f57c48b74274..30022123b0bf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-@@ -541,7 +541,9 @@ static void amdgpu_vm_pt_free(struct amdgpu_vm_bo_base *entry)
- 	entry->bo->vm_bo = NULL;
- 	ttm_bo_set_bulk_move(&entry->bo->tbo, NULL);
- 
-+	spin_lock(&entry->vm->status_lock);
- 	list_del(&entry->vm_status);
-+	spin_unlock(&entry->vm->status_lock);
- 	amdgpu_bo_unref(&entry->bo);
- }
- 
-@@ -585,6 +587,7 @@ static void amdgpu_vm_pt_add_list(struct amdgpu_vm_update_params *params,
- 	struct amdgpu_vm_pt_cursor seek;
- 	struct amdgpu_vm_bo_base *entry;
- 
-+	spin_lock(&params->vm->status_lock);
- 	for_each_amdgpu_vm_pt_dfs_safe(params->adev, params->vm, cursor, seek, entry) {
- 		if (entry && entry->bo)
- 			list_move(&entry->vm_status, &params->tlb_flush_waitlist);
-@@ -592,6 +595,7 @@ static void amdgpu_vm_pt_add_list(struct amdgpu_vm_update_params *params,
- 
- 	/* enter start node now */
- 	list_move(&cursor->entry->vm_status, &params->tlb_flush_waitlist);
-+	spin_unlock(&params->vm->status_lock);
- }
- 
- /**
--- 
-2.43.0
+ 	char *p = sym, *pend = sym + sizeof(sym);
 
+
+Patches currently in stable-queue which might be from farbere@amazon.com are
+
+queue-6.1/minmax-improve-macro-expansion-and-type-checking.patch
+queue-6.1/minmax.h-simplify-the-variants-of-clamp.patch
+queue-6.1/minmax.h-move-all-the-clamp-definitions-after-the-min-max-ones.patch
+queue-6.1/minmax-don-t-use-max-in-situations-that-want-a-c-constant-expression.patch
+queue-6.1/minmax.h-remove-some-defines-that-are-only-expanded-once.patch
+queue-6.1/minmax.h-use-build_bug_on_msg-for-the-lo-hi-test-in-clamp.patch
+queue-6.1/minmax-simplify-min-max-clamp-implementation.patch
+queue-6.1/minmax.h-add-whitespace-around-operators-and-after-commas.patch
+queue-6.1/minmax-fix-up-min3-and-max3-too.patch
+queue-6.1/minmax.h-reduce-the-define-expansion-of-min-max-and-clamp.patch
+queue-6.1/minmax.h-update-some-comments.patch
