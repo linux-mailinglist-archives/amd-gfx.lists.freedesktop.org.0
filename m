@@ -2,119 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4973BC0772
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Oct 2025 09:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B3EBC0D7B
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Oct 2025 11:19:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B041710E069;
-	Tue,  7 Oct 2025 07:16:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CFA310E0BD;
+	Tue,  7 Oct 2025 09:19:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NXQjiirT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ipYlpZgq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE1D210E466
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Oct 2025 20:35:08 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-46e326e4e99so33435785e9.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 06 Oct 2025 13:35:08 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 056DD10E0BD
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Oct 2025 09:19:27 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-421851bca51so3933014f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 07 Oct 2025 02:19:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759782907; x=1760387707; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=w8A8mrbjHOp4I+EQv9aLZuINyxZFXeZgTqLUL4/gbts=;
- b=NXQjiirTziM4GL/2lfBmuUp0adFwprijXfzOl0ZAiEVXZ29L8cisscUqlj9xIx92nF
- a3yKLcat+la9Y5+kAtioSEITq9KtcYEkxvgM/broLvif/ig8aqRmWRUlGNoN9Kdm8B1e
- D/7O6ZlP9tzxB8cvHdKyRDQqxGVn6wTYLF4oY12I/Oh5Flr2cnUUpzDNWZiLL09NmG5E
- 2VScnPfrI2RYfbIqtBX5dRU+pZyW6uYUYrGtUEpwqlGS2jE7uOXhmLEcpCRVfOe42DuD
- LWWTTc3gHywb3Hab2mSXb9pTj5MJRgRnW8t90dQDb02Y5bxpEFhJ9LfUvYfCMIyhXly5
- JEjg==
+ d=gmail.com; s=20230601; t=1759828766; x=1760433566; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=BPkl515EsnIKg0Df2zWTb2emVnJ2l7gKbYwmwDGoWNg=;
+ b=ipYlpZgqw5QuoPSC/fvddyn4WLHiy5NY/5sKydAiXZbp85BKqMy96OqJsa6kSxH84L
+ WtdHv/BRLzYNf8rZ7NfYXyYgTycH+Xqqt2dlRLGml6oVnkP1rdghTorN5l+VAWr7nn8O
+ rWBpvfxvbv1OF7t42gBttgFzQ14+2o4/u2m2xt0ToeKNQA+EYvV3X4EgsdmpTjUlxFsD
+ r4MG33PSi7FwEGDc5H8QvIpsZHFZanCd3mQXgm9HfA3ZQTEaK/vnSlanT5oLU8vC+oqr
+ wtxR3/W2WHTjrShtWBxEzd085qSu9+Hxk1b7bXMdqkucpiMFUcYfo5eX/mxiK0deXcr1
+ nK3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759782907; x=1760387707;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=w8A8mrbjHOp4I+EQv9aLZuINyxZFXeZgTqLUL4/gbts=;
- b=urxCCgKpv2zL7FbI3qpBBl+rVQtu5CW+BwxdKeRoTJOrCT39FTRHpLhYZtk4pH9apx
- F0NUgWsOBzuWrg5M1EN3J1ErjjzmbYbB2f+wZqvtzfEDQomtL4I0+F+os1fB/gclkgvf
- d6yUXYYshD/WqLIUlwsUsT47lfhb731rKi0hZgfz5TNawH8QNcgUq2dmYfc5sk6czLb7
- cYL6LKpO2sIkH0g/p53Q/OsnIX11pElkJ9os+jX74gWNZyhyoT0UY/wHM2swCT2qIO/Y
- D4Q3mpmg6l8S968ZhG0SRatAosrND+07E4x5imRTMqwl5LyuoDgL1VXx5fqjI17OnBDp
- sNdA==
+ d=1e100.net; s=20230601; t=1759828766; x=1760433566;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=BPkl515EsnIKg0Df2zWTb2emVnJ2l7gKbYwmwDGoWNg=;
+ b=aXguY69fC1hkoAWQ0X+V+z/eUxYo3KFgj5VB/8qx4H/YWrHetxFFRqsXlqLDP3k02j
+ Rb7dGSk7Mda6M8wdFmoED90INFlvT2mhQ0HtMWSUvWDXhlP18Az+IBerFrrK1q7ANXs3
+ ToP8JMnTjLuht+3at+u7J78dsByfHkEH2/d2dM45ca29bNRozbkt1MEMmHCDkCAcDUV7
+ JiRxNI0Efm2itW6ZaFT3me+NkBXfb8eafSuUQbpmBfenui4QrVZRbKq2h29zZ/WB5b7m
+ A0/t+HBcs+h+SOqvolncQ+qPmoO+Rwp52kvkhb8l/5L1mXsoRtplgS5n3u8y56qF6Y/L
+ sXuw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUfa9CsJu7Pba4ORJLMpF3VceUzY+NdVLfukluHDQxKvsqdNyBy6bMZQnwKMx+VmN/AOVfX3vun@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz4oKLC2lPitlNYRrK1NwyhZNQUmKIRayFrMmbZFTULlzLQ2yLm
- 83ba4CefGmdOLlJe/F0ZGaya8q8vyuQ5CF825g0ufFVeX0uCTJCJBeOB
-X-Gm-Gg: ASbGncv1mNf9ZxkK5yieKThNLDRDDV7P8yIIRov69InU80FARBA+AQcr2j7ltVziysC
- +Rs4UvKniNkDRLJcsRIEX/U3B6kJ8vywQlf808TauDDZ/HMzTJTeen1jEbdrMxG+HxIqQIYMOPv
- rDCHpHDba2HfobZOeILQZhNSdLM35YrCLH24YEpbaQPb7ul52IYkVpgBP0U3ofPTQIvvRuAh38h
- rAmsxNh1zfA53u9oze8Mu/wxEehES8MwvZcd/rI0mbnELlMqvqKOfbZ1hL/f7wqVyOHI4LWL/kp
- 97f3Ueza8XnjOXpsGWxvSDhh1BAH6MPyFrnQ9ZMn5J5J6XdnbBgDstsWguOcFSYVQ3FDp6Qv34z
- HwIPVVMevakoIAKfDo5L8y6IEqUDARUMcJX62D7U7tnUfeGPQpTyw27YKC3d7VNKmU0nsLCBmfE
- /LbpDJEaL9DrHe
-X-Google-Smtp-Source: AGHT+IEnzSpQE+ROtayFnE2b4dPjTQF2CaZO9TdUfVNFcX6ejR4aNYCswD7XdVH/ajIMwYylIXY+YQ==
-X-Received: by 2002:a05:600c:2287:b0:45d:d86b:b386 with SMTP id
- 5b1f17b1804b1-46fa29f13dfmr4596085e9.14.1759782906754; 
- Mon, 06 Oct 2025 13:35:06 -0700 (PDT)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ AJvYcCVTepJZAlCxEI3XE09S9h9FPinAyA5ZuqD2AHbzZDV9j5xehxKPaO18ZED1zAPku0pifSupdPNF@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwEphsd8FKCDtAyulGskhMHtrCRU8kVvgUCse4MaB2loKFGcG1f
+ oMx57PAlGL4iYJ2dPz7P7zOl5TUNvpmdTIMPPLkCELnNWpoixMgY8hEdGbOHv/vC
+X-Gm-Gg: ASbGnctt3Uix1UymDtBkXsTHXDYK/y2sLbVnC7VtSzXNTAmEwSksVd80CXuG5kPWbY7
+ z7mgTQzRImOv3B0opsUZeA9/ICu14jbmvKhEyne4JGBV39/R9zx+wDwjMZT8vEY5g24b89B+Njz
+ irIZnzMFH5ipThqEE1UUUElUW1PTRbBUSlVDUC4S16PWK0Sq0YVFdiEtLVRDyM9glnaSJ4JaLZ2
+ FAIqlb+91z9tOVCFbbW3/RURcIsw14Cy6SKan5GptfDKJiFfNgfTNhVg5TaJQPIzlVRN3IITNAr
+ bFBvMRF80425UKsRPcqgIHlVkq714k0VhL24HfCqa88K0/7dzYvgwZcve4seVee+4idvGERKH1n
+ IBO6GpXYfSzfQC6a9/Tn3na+RLVTxpicW7/cfoR5LrHHVLzJpv6NOHGoMFNZH
+X-Google-Smtp-Source: AGHT+IH+K6mKLQRuYKZZl47v9fV2CegvRWQiZMj75b4G16uAkLgB7FIsCNg1TDzdeOI4EKFUrCDH2Q==
+X-Received: by 2002:a05:6000:26cf:b0:3ec:e277:288c with SMTP id
+ ffacd0b85a97d-425671a8d51mr9846151f8f.31.1759828766336; 
+ Tue, 07 Oct 2025 02:19:26 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:1599:6100:d279:6e09:af3a:1bf4])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-46e723591fcsm172334545e9.10.2025.10.06.13.35.05
+ ffacd0b85a97d-4255d8abe9bsm24865684f8f.22.2025.10.07.02.19.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Oct 2025 13:35:06 -0700 (PDT)
-Date: Mon, 6 Oct 2025 21:35:03 +0100
-From: David Laight <david.laight.linux@gmail.com>
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: Eliav Farber <farbere@amazon.com>, dave.hansen@linux.intel.com,
- peterz@infradead.org, tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
- x86@kernel.org, hpa@zytor.com, james.morse@arm.com, rric@kernel.org,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, sean@poorly.run, jdelvare@suse.com,
- linux@roeck-us.net, linus.walleij@linaro.org, dmitry.torokhov@gmail.com,
- maz@kernel.org, wens@csie.org, jernej.skrabec@gmail.com, agk@redhat.com,
- snitzer@redhat.com, dm-devel@redhat.com, davem@davemloft.net,
- kuba@kernel.org, mcoquelin.stm32@gmail.com,
- krzysztof.kozlowski@canonical.com, malattia@linux.it, hdegoede@redhat.com,
- mgross@linux.intel.com, jejb@linux.ibm.com, martin.petersen@oracle.com,
- sakari.ailus@linux.intel.com, clm@fb.com, josef@toxicpanda.com,
- dsterba@suse.com, jack@suse.com, tytso@mit.edu, adilger.kernel@dilger.ca,
- dushistov@mail.ru, luc.vanoostenryck@gmail.com, rostedt@goodmis.org,
- pmladek@suse.com, senozhatsky@chromium.org,
- andriy.shevchenko@linux.intel.com, linux@rasmusvillemoes.dk,
- minchan@kernel.org, ngupta@vflare.org, akpm@linux-foundation.org,
- yoshfuji@linux-ipv6.org, dsahern@kernel.org, pablo@netfilter.org,
- kadlec@netfilter.org, fw@strlen.de, jmaloy@redhat.com,
- ying.xue@windriver.com, shuah@kernel.org, willy@infradead.org,
- sashal@kernel.org, quic_akhilpo@quicinc.com, ruanjinjie@huawei.com,
- David.Laight@aculab.com, herve.codina@bootlin.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-um@lists.infradead.org, linux-edac@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
- linux-sunxi@lists.linux.dev, linux-media@vger.kernel.org,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- platform-driver-x86@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-btrfs@vger.kernel.org,
- linux-ext4@vger.kernel.org, linux-sparse@vger.kernel.org,
- linux-mm@kvack.org, netfilter-devel@vger.kernel.org,
- coreteam@netfilter.org, tipc-discussion@lists.sourceforge.net,
- linux-kselftest@vger.kernel.org, stable@vger.kernel.org, Linus Torvalds
- <torvalds@linux-foundation.org>, Lorenzo Stoakes
- <lorenzo.stoakes@oracle.com>
-Subject: Re: [PATCH v2 07/19 5.15.y] minmax: simplify and clarify
- min_t()/max_t() implementation
-Message-ID: <20251006213242.3462e746@pumpkin>
-In-Reply-To: <2025100648-capable-register-101b@gregkh>
-References: <20251003130006.41681-1-farbere@amazon.com>
- <20251003130006.41681-8-farbere@amazon.com>
- <2025100648-capable-register-101b@gregkh>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+ Tue, 07 Oct 2025 02:19:25 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: alexander.deucher@amd.com,
+	amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: hide VRAM sysfs attributes on GPUs without VRAM
+Date: Tue,  7 Oct 2025 11:19:25 +0200
+Message-ID: <20251007091925.18470-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 07 Oct 2025 07:16:13 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,86 +86,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 6 Oct 2025 12:47:45 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
+Otherwise accessing them can cause a crash.
 
-(I've had to trim the 'To' list to send this...)
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> On Fri, Oct 03, 2025 at 12:59:54PM +0000, Eliav Farber wrote:
-> > From: Linus Torvalds <torvalds@linux-foundation.org>
-> >=20
-> > [ Upstream commit 017fa3e89187848fd056af757769c9e66ac3e93d ]
-> >=20
-> > This simplifies the min_t() and max_t() macros by no longer making them
-> > work in the context of a C constant expression.
-> >=20
-> > That means that you can no longer use them for static initializers or
-> > for array sizes in type definitions, but there were only a couple of
-> > such uses, and all of them were converted (famous last words) to use
-> > MIN_T/MAX_T instead.
-> >=20
-> > Cc: David Laight <David.Laight@aculab.com>
-> > Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> > Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
-> > Signed-off-by: Eliav Farber <farbere@amazon.com> =20
->=20
-> Eliav, your testing infrastructure needs some work, this patch breaks
-> the build on this kernel tree:
->=20
-> In file included from ./include/linux/kernel.h:16,
->                  from ./include/linux/list.h:9,
->                  from ./include/linux/wait.h:7,
->                  from ./include/linux/wait_bit.h:8,
->                  from ./include/linux/fs.h:6,
->                  from fs/erofs/internal.h:10,
->                  from fs/erofs/zdata.h:9,
->                  from fs/erofs/zdata.c:6:
-> fs/erofs/zdata.c: In function =E2=80=98z_erofs_decompress_pcluster=E2=80=
-=99:
-> fs/erofs/zdata.h:185:61: error: ISO C90 forbids variable length array =E2=
-=80=98pages_onstack=E2=80=99 [-Werror=3Dvla]
->   185 |         min_t(unsigned int, THREAD_SIZE / 8 / sizeof(struct page =
-*), 96U)
->       |                                                             ^~~~
-
-That constant seems to get (renamed and) changed to 32 in a later patch.
-I'm not sure of the rational for the min() at all.
-I think THREAD_SIZE is the size of the kernel stack? Or at least related to=
- it.
-The default seems to be 8k on x86-64 and 4k or 8k on i386.
-So it is pretty much always going to be 96.
-
-Linus added MIN() that can be used for array sizes.
-But I'd guess this could just be changed to 32 - need to ask the erofs guys.
-
-	David
-
-
-> ./include/linux/minmax.h:49:23: note: in definition of macro =E2=80=98__c=
-mp_once_unique=E2=80=99
->    49 |         ({ type ux =3D (x); type uy =3D (y); __cmp(op, ux, uy); })
->       |                       ^
-> ./include/linux/minmax.h:164:27: note: in expansion of macro =E2=80=98__c=
-mp_once=E2=80=99
->   164 | #define min_t(type, x, y) __cmp_once(min, type, x, y)
->       |                           ^~~~~~~~~~
-> fs/erofs/zdata.h:185:9: note: in expansion of macro =E2=80=98min_t=E2=80=
-=99
->   185 |         min_t(unsigned int, THREAD_SIZE / 8 / sizeof(struct page =
-*), 96U)
->       |         ^~~~~
-> fs/erofs/zdata.c:847:36: note: in expansion of macro =E2=80=98Z_EROFS_VMA=
-P_ONSTACK_PAGES=E2=80=99
->   847 |         struct page *pages_onstack[Z_EROFS_VMAP_ONSTACK_PAGES];
->       |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
-> cc1: all warnings being treated as errors
->=20
->=20
-> I'll drop this whole series, please do a bit more testing before sending
-> out a new version.
->=20
-> thanks,
->=20
-> greg k-h
->=20
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+index a5adb2ed9b3c..9d934c07fa6b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+@@ -234,6 +234,9 @@ static umode_t amdgpu_vram_attrs_is_visible(struct kobject *kobj,
+ 	    !adev->gmc.vram_vendor)
+ 		return 0;
+ 
++	if (!ttm_resource_manager_used(&adev->mman.vram_mgr.manager))
++		return 0;
++
+ 	return attr->mode;
+ }
+ 
+-- 
+2.43.0
 
