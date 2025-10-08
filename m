@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF4C2BC66F8
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 21:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8370EBC6702
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 21:12:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0051010E8CD;
-	Wed,  8 Oct 2025 19:12:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0015810E8CF;
+	Wed,  8 Oct 2025 19:12:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cxtaSgc6";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2ndtCXb/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011066.outbound.protection.outlook.com
- [40.93.194.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD6D10E8CD
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 19:12:31 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013003.outbound.protection.outlook.com
+ [40.107.201.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2989910E8CF
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 19:12:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JRDdGVtFjxhWvMphacUmflJ5MR/VrK09DZotl4TARPMyV/+s65OxpXWaUq8dQ49bHLJWHVFwLr5tsnlP0yFFlHpOFgtNM140jyGeQpo4Gd5S0m0tH8Vnrl4tTcZsLSEw/9gUWrc0fIl1cM70CWXdGrMIMKWeo21tS87tL+EFYiH18HMtPvBeykXqn0CksMTQ18GsEWYHkY/vclL0GZcz/SAJNTXwPt1CrofJZTidzVhwbENeAJdkDk3jGKELcCnuHXsTuM8yIwjV0o//ef+0QigDo+TyLfsTow4fytUWeyN+vejnhMHvP/aes8V817W+aYrpwqwZSzX5/kUIJWtSEg==
+ b=juAxywVIOdBcWegesAQpN4p3TVYDdfQIHRWB8bBEn3BncBnNC/X7M4bJal6pvMUyj8vWzULbGb04jFHazK04+SHPLyCwN0VVYnAcb+GQczFfir1fSxwkY95b5aOWmDPyn8PxW4YD31dgJu1VJjaU1JfneAusapSkuQiLFGxONmA637OydvPik3+1dPjdiH0J/FaUlFWBS5TQAWVpHmpSQf/+a2yl4EvaeRD/9TUxhrqfdjYx5IKRCURtEEvXSSDJ4wZ7b1chmmgcUZVeAOiuwrMml+DQwPtl6SpDgiT6chP/zni0Sw52N4OAHKLtcCJb56fFbmEEpUkLrOhpxwOnuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gxA4w/zTI9hvpu3IZRmNQ9RF8bgBVRfmNQkMjtwtG1s=;
- b=eu+0xI9eK5al1ROGZaYx5U4S2NT8klsB1SnjIPT4Z8zBUr5RGWptJKZQV0hwHhYIYmmghpW+Ppv4DxKUV2C3juI/+6VHnSEcivwGpebzc4/1p9FIxPJ4SM/+Q1dfSpFbxznJFjwp/6DmX563XGUgSVX8BiFj5u5cDHgZu4Dqnz0HGgKPZIuL5tiqL0WnBfXXQa04nON+82exWmtX/9xLoTCeJe2yvD6OCzhc8Z1MX9j9aBDzvc8GdP8ajmkTlNjViy2KEQ2DbV2Taf1n7WIo9CRx1WPVbBE1/X/0LnL4US3FjnnZwjQN+RO487POzjWN6ggqb6RwDw8j6XNEfPP0Qg==
+ bh=F4VvdSBwojSgjFt+5P3lTwtd4XjMTrTtR/TohTdGEIk=;
+ b=wvEEpjeAcy4i1ZZs+GMJIdLpvjXFYdbPhlDebAlhoZPsfPzSagqOx2v+nRIdAaKLHSKms0qoUyjubRxFd2JCrRo1ItGR/iXc/fsO7g5LeZ3nomPDmREYL2njUuiiEt9L4B97G5dOvUnlklB+V6XB93MahqM++W8PBOdaM9uP3pf+L8bfZ3GBNHyKLDibBIuFi4AxVRrB+YSyK5uCkNBph7C6PB71qipZh5ioUNhjZHY7iSwHb4FeSFeyb30wWFC7GUlU5O2AfReg3ji+5yX4prRaeCnx3WFDB+KIzz7Kvm2L2h3A3UALxwF7wQDJIb7Z0SgflCGPev969e9cfBXfeQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gxA4w/zTI9hvpu3IZRmNQ9RF8bgBVRfmNQkMjtwtG1s=;
- b=cxtaSgc61gt/p4QSKQyZ0YcJ2HvtSB+xZ54CKOV0NAPBdReWO9nFs55qOAotVjksnXq+99ddwbvRhvV9Szb28CZy+HEdB+ikTsaojxTTBggVIzQxEUd9swYn51pa3u/KiWwZKCxRsz6m1mAh5SSLYLAhCAPySfmJI5kMCcsjakQ=
-Received: from BN0PR08CA0015.namprd08.prod.outlook.com (2603:10b6:408:142::31)
- by SJ0PR12MB6806.namprd12.prod.outlook.com (2603:10b6:a03:478::7)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=F4VvdSBwojSgjFt+5P3lTwtd4XjMTrTtR/TohTdGEIk=;
+ b=2ndtCXb/5HPF++anYSoxIKkmyrG/eA9AgO+BWZvId+dOD39cfrWHFbJfium2m9Vj5b7jG60sKPypDbMpP2m7l2K/0ptodJYmd5e/5reymfJhJgKTLVUwDb4Vizd7mRMPW5R6Xjl5Tm3+nDnkZI9bRlFE/o7qw1hvJaouJ3KLsLs=
+Received: from BN0PR08CA0014.namprd08.prod.outlook.com (2603:10b6:408:142::23)
+ by DS0PR12MB9445.namprd12.prod.outlook.com (2603:10b6:8:1a1::19) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Wed, 8 Oct
- 2025 19:12:23 +0000
+ 2025 19:12:29 +0000
 Received: from BN2PEPF000055E1.namprd21.prod.outlook.com
- (2603:10b6:408:142:cafe::79) by BN0PR08CA0015.outlook.office365.com
- (2603:10b6:408:142::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9203.9 via Frontend Transport; Wed, 8
- Oct 2025 19:12:23 +0000
+ (2603:10b6:408:142:cafe::56) by BN0PR08CA0014.outlook.office365.com
+ (2603:10b6:408:142::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9182.19 via Frontend Transport; Wed,
+ 8 Oct 2025 19:12:29 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,7 +51,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  BN2PEPF000055E1.mail.protection.outlook.com (10.167.245.11) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9228.3 via Frontend Transport; Wed, 8 Oct 2025 19:12:22 +0000
+ 15.20.9228.3 via Frontend Transport; Wed, 8 Oct 2025 19:12:29 +0000
 Received: from dogwood-dvt-marlim.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -59,9 +59,9 @@ Received: from dogwood-dvt-marlim.amd.com (10.180.168.240) by
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <mario.limonciello@amd.com>, <amd-gfx@lists.freedesktop.org>
 CC: Robert Beckett <bob.beckett@collabora.com>, Lijo Lazar <lijo.lazar@amd.com>
-Subject: [PATCH v4 1/6] drm/amd: Remove some unncessary header includes
-Date: Wed, 8 Oct 2025 14:11:48 -0500
-Message-ID: <20251008191153.3145554-2-mario.limonciello@amd.com>
+Subject: [PATCH v4 2/6] drm/amd: Stop overloading power limit with limit type
+Date: Wed, 8 Oct 2025 14:11:49 -0500
+Message-ID: <20251008191153.3145554-3-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251008191153.3145554-1-mario.limonciello@amd.com>
 References: <20251008191153.3145554-1-mario.limonciello@amd.com>
@@ -73,53 +73,53 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055E1:EE_|SJ0PR12MB6806:EE_
-X-MS-Office365-Filtering-Correlation-Id: 72fa61e7-9e5a-4c39-1a27-08de069e9c2e
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055E1:EE_|DS0PR12MB9445:EE_
+X-MS-Office365-Filtering-Correlation-Id: 612ab65a-3fe0-47f9-01cb-08de069e9ff4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?a4TAox82OTEn4Om3BtjnS5Pw67PYVer4CRbvjuk5+/gDmmisoxjdrOV0wzMg?=
- =?us-ascii?Q?yvAWE153U5zpFu+dleLUthmW6TLjSMQtGaurv5eCHYTGHrtei6KEohzw3yHe?=
- =?us-ascii?Q?69zwK3RRsnZC3gyva8iE0RCc4+kgGUxZJG5UKHSLrDdq8gGHwoAI81HMc2y4?=
- =?us-ascii?Q?6eG96ZTvWx+KdqIr4ZdH9ue56TBrXcUOT+7cnVOC+KQHvuoD79vfIcQDeC21?=
- =?us-ascii?Q?Yw8QqiiV4encY+wNMrBvCj18FJKpGSZZtlgkUjzKc71e2ADwYIvgb1ZKxn+x?=
- =?us-ascii?Q?fBWSUHxJUWvEvgIE1vN9ushw9zE09rJzhQofIUlzkWmxn7EJsNWp97ioCRVl?=
- =?us-ascii?Q?hNZvqs65q6typ5N6nurTZE9O/Xi/u9ue6gW6TW/F3Eyq00EpPMwOCYJmMPdq?=
- =?us-ascii?Q?L5fgZAijE6evwnAoBX98G2/QrU/uA5/YiHjrG7XPzHXq+0Ltyq0egMjQPlzh?=
- =?us-ascii?Q?N29fM04YWu5JI/6JywbuWt7NTVUW0TFir/C6ebQ30m4lL91uw3iQtmabYvpA?=
- =?us-ascii?Q?V3eXXd2l1f1g/6mud3MTfu60weB8M310b92Cmkvo8QuTFkcT3ls5s3UvXR/E?=
- =?us-ascii?Q?GVH4FDrJmtjdQ7/CYwd4Enpr1cs6sFuWZBij89Qjj5fbNuyVo1T/wLnD5gdm?=
- =?us-ascii?Q?ZSdoEsxe7tB6hjqAgAJ6SAq7E/bqG9sxir+AdHee5wIf9rZrnWY3d+JtyJ9d?=
- =?us-ascii?Q?N3A/28AcAbNHqA7EJA8guTXOMpwXBwMzGaNl444OaN96ZzYRgvCZcCyGVbmK?=
- =?us-ascii?Q?UvAzx9IvFTD+fGLP7B8xvLICGs1LZ0BMggixWk/VDyGvB9L1yapzci5edvZV?=
- =?us-ascii?Q?uv0Liz4rXglbj93Sk6JKqZfXJNXlwToIpYTPnfa3UJKQx8g6m4CkGWCjV1/k?=
- =?us-ascii?Q?YYXbQwxsbplUjyJIWymFEcbOOwGGOtNmtj4Bkv8ZyrqYeL/JdfOZJUgF+eS7?=
- =?us-ascii?Q?sexMhq6YLuX5b7bHbgPKgnfBbqDa1wk+XBMoa11eFN6L5SCaIHDjSUtl+nXL?=
- =?us-ascii?Q?Q7A1cPKMdUcS8uohiAn1WHzKh3WaxfENK28qyfslxt3zA2dCMRpuMq+gmk9Q?=
- =?us-ascii?Q?orocDCgYRfe/Qf9cyMvafv1ElxpGDlBHSFSKEukHVutGamSXtVXLadDL4ypX?=
- =?us-ascii?Q?DhdkC0xiH4aMeSEfbNjC2ok2M+m3ztah/m2xNZmEEq9pwaI53W5CHFnQoTEg?=
- =?us-ascii?Q?hkc66JFOdLZL7ptYO1rQrCD+j+5hLm5Y0GDV0ME+5gAp29P+nEeaqPv4uY+V?=
- =?us-ascii?Q?jCeSM1Y2YYJRG/uG9Cc2uRsY/Ya4FXwe6hiGwXyQiBXJv53uIN3UjIo94qSs?=
- =?us-ascii?Q?AZ5q83qGxybj8Ckn5A5mpWtGDd8c64Tpx4CkoNsOb8QLHowZOT9p3kNLSIlw?=
- =?us-ascii?Q?iIArkUcN7GIvPlBErn6jedFPVNiraIaUrOhLFAH2qL4kOwSLCsZOMQWUh8Gv?=
- =?us-ascii?Q?ckCYrDeFS4/ojnL6/k83WCwDfxzMJVIsuEeoOMgIluFC+ptZ0VwTrVVuJ9fg?=
- =?us-ascii?Q?uNeGolALqLyvtHT3vsw2A5c5RQ8MbF0TVYl6dRBtu2MzcNXc0PMyNAzCc+XQ?=
- =?us-ascii?Q?XAwLTEB7mjGcjFtN6pI=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zHQeKdDiOJOvqJU/ldQz4b2SXSc8rSXApAzvpmlpWbbwq3RBFENCZVWQrnqv?=
+ =?us-ascii?Q?cArK3JeePtjmaJvq191dOe1/vQRKXgzdozQ/Igyik5JN8mx5yIH/T76yqopO?=
+ =?us-ascii?Q?Omar8YSqEZPFleIZRVHWGRmGT4HD8eMJWXJp4cd7V94CVk5SaRymB5VQ/Rxx?=
+ =?us-ascii?Q?wl/R/wbm9rZSjDDl+bVeU4+PQ3+g7U6G/jHAbKqPxvwapYLdQqHPfwYQK5sE?=
+ =?us-ascii?Q?An6TLCaVlM40sFKavckV2Eqyv5upR798Mpc39UjEGf/myfSyl3ZH59ilzFWy?=
+ =?us-ascii?Q?ZuNT1fZmjnm4C7tVfRcoUbfmEf/dEW04Q+UcydXH3b+07bVS2mJiO2jyQsh+?=
+ =?us-ascii?Q?zET/u1dwWsMz2Roe67yyTkgHsOAjRpxETw03dCGgpUHcEz7KAI7/g4BkAC+B?=
+ =?us-ascii?Q?TREDcnRetgiC0VPqwYHZDM9a6lNuyzk4HSyTEaoJtsYgE1MP2Tp1P9rPNTAp?=
+ =?us-ascii?Q?wFz62PDLTRSMWW8CBJEh6DhWpSw55+mIsBMnTB1e4ApxJHCvn2Xp+zkxZlsi?=
+ =?us-ascii?Q?Zlz0SGfnwnaOFlEDbzpuox3Hsj5uDMRR0hUFpDm3/XyrdoR0DjaR84oH1bZG?=
+ =?us-ascii?Q?NXUXyWwULUScpgXIa809iQPyYFY7iq1fsxzvkcuIGbFGy/6KL2C7PKQ0AGfg?=
+ =?us-ascii?Q?MWA6ChrbBPlNS7NOptm0iOxeQhJRQ30OSvnuZ/09PFoNmmPZxfHL5TCbWEh1?=
+ =?us-ascii?Q?J69D87+jH0+swDatxEvnJlDkX2fEalIhSCkDVWjuq3B0XTkp0L4QYF2Hr3fg?=
+ =?us-ascii?Q?NSbIGtvsiL714svqPdeSIRsifSyGi1UG8AqGGur0W5h5RZUkjNlY8DZmgv5i?=
+ =?us-ascii?Q?EAkpwarnZ0097SmKtS5BkhKEFvWtxh2uezhUpLy3mRNAV7PZ9VoS6K4F0mzl?=
+ =?us-ascii?Q?eL3mefxyS7y1TTqo2B8R7Izil3LJ23VHFjFGApdv8woo+GujPm0LTJDlWD7R?=
+ =?us-ascii?Q?BeOM35fntbYtnAM2+GZcdqu9nPYWZ4uNedl0SmhKppBZ3P1b02ldim1kKcFo?=
+ =?us-ascii?Q?SasFs8pikaJw/0GscICnjJ1IwdYPYro9tOA7GXJHTjyGhAenVyYYwcYP90Wc?=
+ =?us-ascii?Q?lhCZRGHL6KxkWHe62EULC3+ZTJcoKzOc/PZQUqfL8m6hMm9s1LMPxMVbf82v?=
+ =?us-ascii?Q?yB64IVfNaxPDWHCQ5DQs9FEgtUfWTSmnrQRAEkS9zix/n3AHxrAxNzPJD46r?=
+ =?us-ascii?Q?s4QBlFBCjLqsJe2KP35M/pqxdV0x0Ph13DiolmGr7lxrNX1dDeXqAReVM8Pw?=
+ =?us-ascii?Q?ztEI4aYDRpGswGMKo/gK1xlUNN2eHyBrxWC7KOXnZGqMVg0zvjyM0giDWo1/?=
+ =?us-ascii?Q?uAC8l+QidHZlo5yfpYNLP3nchIYNbxYUFHEDqzVY95OXBoJoUBJ0nlMxRVhW?=
+ =?us-ascii?Q?bFqmuL9CIXa+WqXFTZRGg0j/XuSkpUGwoIld9TkPrbmERnF3nDbi+8Rxq1Mk?=
+ =?us-ascii?Q?7SA6b5FlqdiVdrgRkiZG1XDyPJ8CRkX6NmH8wNj8hrQDDzQszloKwvhoiXfv?=
+ =?us-ascii?Q?pOX0X4poTeYvT50j9LoPm+hNXtWBBWuM4G/R7Toh3kLuIQWz6wpvZ/XCt5OY?=
+ =?us-ascii?Q?FDuVAuQQzmPvhxupWus=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 19:12:22.7637 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72fa61e7-9e5a-4c39-1a27-08de069e9c2e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 19:12:29.0937 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 612ab65a-3fe0-47f9-01cb-08de069e9ff4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000055E1.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6806
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9445
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,41 +134,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Unnecessary headers can slow down the build, drop em.
-
-No intended functional changes.
+When passed around internally the upper 8 bits of power limit include
+the limit type. This is non-obvious without digging into the nuances
+of each function. Instead pass the limit type as an argument to all
+applicable layers.
 
 Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/amd/include/kgd_pp_interface.h   |  2 +-
+ drivers/gpu/drm/amd/pm/amdgpu_dpm.c              |  3 ++-
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c               |  3 +--
+ drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h          |  2 +-
+ drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c |  2 +-
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c        | 10 ++++------
+ drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c |  1 -
+ 7 files changed, 10 insertions(+), 13 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+index 2b0cdb2a2775..87814c2b526e 100644
+--- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
++++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+@@ -454,7 +454,7 @@ struct amd_pm_funcs {
+ 				bool gate,
+ 				int inst);
+ 	int (*set_clockgating_by_smu)(void *handle, uint32_t msg_id);
+-	int (*set_power_limit)(void *handle, uint32_t n);
++	int (*set_power_limit)(void *handle, uint32_t limit_type, uint32_t n);
+ 	int (*get_power_limit)(void *handle, uint32_t *limit,
+ 			enum pp_power_limit_level pp_limit_level,
+ 			enum pp_power_type power_type);
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+index 518d07afc7df..5d08dc3b7110 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+@@ -1616,6 +1616,7 @@ int amdgpu_dpm_get_power_limit(struct amdgpu_device *adev,
+ }
+ 
+ int amdgpu_dpm_set_power_limit(struct amdgpu_device *adev,
++			       uint32_t limit_type,
+ 			       uint32_t limit)
+ {
+ 	const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
+@@ -1626,7 +1627,7 @@ int amdgpu_dpm_set_power_limit(struct amdgpu_device *adev,
+ 
+ 	mutex_lock(&adev->pm.mutex);
+ 	ret = pp_funcs->set_power_limit(adev->powerplay.pp_handle,
+-					limit);
++					limit_type, limit);
+ 	mutex_unlock(&adev->pm.mutex);
+ 
+ 	return ret;
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+index b5fbb0fd1dc0..6bdf185c6b60 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+@@ -3390,13 +3390,12 @@ static ssize_t amdgpu_hwmon_set_power_cap(struct device *dev,
+ 		return err;
+ 
+ 	value = value / 1000000; /* convert to Watt */
+-	value |= limit_type << 24;
+ 
+ 	err = amdgpu_pm_get_access(adev);
+ 	if (err < 0)
+ 		return err;
+ 
+-	err = amdgpu_dpm_set_power_limit(adev, value);
++	err = amdgpu_dpm_set_power_limit(adev, limit_type, value);
+ 
+ 	amdgpu_pm_put_access(adev);
+ 
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+index 65c1d98af26c..3bce74f8bb0a 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+@@ -553,7 +553,7 @@ int amdgpu_dpm_get_power_limit(struct amdgpu_device *adev,
+ 			       enum pp_power_limit_level pp_limit_level,
+ 			       enum pp_power_type power_type);
+ int amdgpu_dpm_set_power_limit(struct amdgpu_device *adev,
+-			       uint32_t limit);
++			       uint32_t limit_type, uint32_t limit);
+ int amdgpu_dpm_is_cclk_dpm_supported(struct amdgpu_device *adev);
+ int amdgpu_dpm_debugfs_print_current_performance_level(struct amdgpu_device *adev,
+ 						       struct seq_file *m);
 diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-index 554492dfa3c0..fb595a70bbd1 100644
+index fb595a70bbd1..76a5353d7f4a 100644
 --- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
 +++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-@@ -20,7 +20,6 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  *
-  */
--#include "pp_debug.h"
- #include <linux/types.h>
- #include <linux/kernel.h>
- #include <linux/gfp.h>
-@@ -28,12 +27,10 @@
- #include <linux/firmware.h>
- #include <linux/reboot.h>
- #include "amd_shared.h"
--#include "amd_powerplay.h"
- #include "power_state.h"
- #include "amdgpu.h"
- #include "hwmgr.h"
- #include "amdgpu_dpm_internal.h"
--#include "amdgpu_display.h"
+@@ -952,7 +952,7 @@ static int pp_dpm_switch_power_profile(void *handle,
+ 	return 0;
+ }
  
- static const struct amd_pm_funcs pp_dpm_funcs;
+-static int pp_set_power_limit(void *handle, uint32_t limit)
++static int pp_set_power_limit(void *handle, uint32_t limit_type, uint32_t limit)
+ {
+ 	struct pp_hwmgr *hwmgr = handle;
+ 	uint32_t max_power_limit;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index fb8086859857..1c5f37cd5b75 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -68,7 +68,7 @@ static int smu_handle_task(struct smu_context *smu,
+ static int smu_reset(struct smu_context *smu);
+ static int smu_set_fan_speed_pwm(void *handle, u32 speed);
+ static int smu_set_fan_control_mode(void *handle, u32 value);
+-static int smu_set_power_limit(void *handle, uint32_t limit);
++static int smu_set_power_limit(void *handle, uint32_t limit_type, uint32_t limit);
+ static int smu_set_fan_speed_rpm(void *handle, uint32_t speed);
+ static int smu_set_gfx_cgpg(struct smu_context *smu, bool enabled);
+ static int smu_set_mp1_state(void *handle, enum pp_mp1_state mp1_state);
+@@ -510,7 +510,7 @@ static void smu_restore_dpm_user_profile(struct smu_context *smu)
  
+ 	/* set the user dpm power limit */
+ 	if (smu->user_dpm_profile.power_limit) {
+-		ret = smu_set_power_limit(smu, smu->user_dpm_profile.power_limit);
++		ret = smu_set_power_limit(smu, SMU_DEFAULT_PPT_LIMIT, smu->current_power_limit);
+ 		if (ret)
+ 			dev_err(smu->adev->dev, "Failed to set power limit value\n");
+ 	}
+@@ -2258,7 +2258,7 @@ static int smu_resume(struct amdgpu_ip_block *ip_block)
+ 	adev->pm.dpm_enabled = true;
+ 
+ 	if (smu->current_power_limit) {
+-		ret = smu_set_power_limit(smu, smu->current_power_limit);
++		ret = smu_set_power_limit(smu, SMU_DEFAULT_PPT_LIMIT, smu->current_power_limit);
+ 		if (ret && ret != -EOPNOTSUPP)
+ 			return ret;
+ 	}
+@@ -2958,16 +2958,14 @@ int smu_get_power_limit(void *handle,
+ 	return ret;
+ }
+ 
+-static int smu_set_power_limit(void *handle, uint32_t limit)
++static int smu_set_power_limit(void *handle, uint32_t limit_type, uint32_t limit)
+ {
+ 	struct smu_context *smu = handle;
+-	uint32_t limit_type = limit >> 24;
+ 	int ret = 0;
+ 
+ 	if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled)
+ 		return -EOPNOTSUPP;
+ 
+-	limit &= (1<<24)-1;
+ 	if (limit_type != SMU_DEFAULT_PPT_LIMIT)
+ 		if (smu->ppt_funcs->set_power_limit)
+ 			return smu->ppt_funcs->set_power_limit(smu, limit_type, limit);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+index 2c9869feba61..81077a3969e9 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+@@ -2399,7 +2399,6 @@ static int vangogh_set_power_limit(struct smu_context *smu,
+ 		smu->current_power_limit = ppt_limit;
+ 		break;
+ 	case SMU_FAST_PPT_LIMIT:
+-		ppt_limit &= ~(SMU_FAST_PPT_LIMIT << 24);
+ 		if (ppt_limit > power_context->max_fast_ppt_limit) {
+ 			dev_err(smu->adev->dev,
+ 				"New power limit (%d) is over the max allowed %d\n",
 -- 
 2.51.0
 
