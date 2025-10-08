@@ -2,72 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB8D0BC7C2C
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:45:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D02FBBC7C19
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:45:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C40A10E955;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 005CC10E94F;
 	Thu,  9 Oct 2025 07:45:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eHNIYW4k";
+	dkim=pass (2048-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="EkdX5s2t";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C78210E836;
- Wed,  8 Oct 2025 14:39:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759934372; x=1791470372;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=G+qiQDHHViVNMPeYGuH1bOozVLR4PAcdtEr/vJX0luA=;
- b=eHNIYW4kJcBfGw7RYUR/v7bPEWYg/n2p+THZjq01JoqSov3ADgvnT1ll
- U6JC+v1OCUpRrG4FURtnnmmgiQhEAbpES15cftKO7OiKrPXhDaIg4idf2
- bpQogalWZkepLS7+ZVsTaQRuajqyb+cqxHBz5bJB77reHxzGn2bEHiolQ
- jG5ZA70ZaWB56TUOnLJNb/M/fcLPD7tWacQiU31veiN/RJrSE+60+99eM
- uh34OCBfw/LubIliXlnomKdM48kJIE64YS0fDgoZNTvTinqKxQmqccWM2
- Nbz4PFbTafCK/i6WE+M1PdeuQvexxA0mLzYDtZxq0TtvY36uGGkLftUL7 A==;
-X-CSE-ConnectionGUID: 7ekhOoH6TNeeLNBBJhkXig==
-X-CSE-MsgGUID: F7WJAOmzR0iSBkzpTHi+mw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="72392567"
-X-IronPort-AV: E=Sophos;i="6.19,213,1754982000"; d="scan'208";a="72392567"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 07:39:31 -0700
-X-CSE-ConnectionGUID: ZJe75O3iTiegst/SvmbQAQ==
-X-CSE-MsgGUID: OsZW+6fuRHC13BchAqT1wg==
-X-ExtLoop1: 1
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.126])
- ([10.245.244.126])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 07:39:27 -0700
-Message-ID: <45973012f925dbbfdf0636c10f9d051c34f97e2e.camel@linux.intel.com>
-Subject: Re: [PATCH v3 0/5] Improving the worst case TTM large allocation
- latency
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Tvrtko
- Ursulin <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org, Lucas
- De Marchi	 <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi	 <rodrigo.vivi@intel.com>
-Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>, Danilo
- Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>, Gerd
- Hoffmann <kraxel@redhat.com>,  Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Lyude Paul <lyude@redhat.com>, Maarten
- Lankhorst	 <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Sui Jingfeng <suijingfeng@loongson.cn>, Thadeu Lima
- de Souza Cascardo <cascardo@igalia.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Zack Rusin <zack.rusin@broadcom.com>
-Date: Wed, 08 Oct 2025 16:39:25 +0200
-In-Reply-To: <9bb3c06e-25c1-43d8-a4e8-e529c53ff77d@amd.com>
-References: <20251008115314.55438-1-tvrtko.ursulin@igalia.com>
- <6bba6d25-91f3-49a6-81fc-7a03d891cd1d@amd.com>
- <22228578-a03c-4fc1-85b2-d281525a2b6f@igalia.com>
- <9bb3c06e-25c1-43d8-a4e8-e529c53ff77d@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+Received: from pdx-out-014.esa.us-west-2.outbound.mail-perimeter.amazon.com
+ (pdx-out-014.esa.us-west-2.outbound.mail-perimeter.amazon.com
+ [35.83.148.184])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BDD910E843;
+ Wed,  8 Oct 2025 15:30:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
+ t=1759937409; x=1791473409;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6cTKEV+ZWAzAeKhYDhuZKam17XzSPB7XFB7f4qhxTuM=;
+ b=EkdX5s2tLbOjIdVoBR/fdVIPdFmvTQ3HokleyTqmIIYAbQFb7xCp0EBS
+ ToyPi1EjghnPvrsB0QYA7H1RD3x1nlutb+vK8PiEVpTaLZtHJiquwa3D7
+ uASWKsPHvPteR9CD0Kq+pqP7GdThtycTgk+Yx93hqAxKKB1hyukWCF1L4
+ dqQjwr66JDWab9yTMFxGRx+dVYO6f+4Gk7rix5/u0Oe2/TaScMZOjqs3s
+ FBcL2iaJ26yWluRRSB2ITJJbHPtBU9k/Zqowjrj4/EqhxJyXXk0O/yqgs
+ kXb4X1ttPos/wzZiRgUS69mvbAl0C9DmbAdfeh3NsngYP/BoXp1s2UtS5 g==;
+X-CSE-ConnectionGUID: +r/ORJCDT3mdkeM9bLhVCA==
+X-CSE-MsgGUID: 5xwXbkFvQYqm5UYp+BBs7A==
+X-IronPort-AV: E=Sophos;i="6.19,213,1754956800"; 
+   d="scan'208";a="4330400"
+Received: from ip-10-5-6-203.us-west-2.compute.internal (HELO
+ smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.6.203])
+ by internal-pdx-out-014.esa.us-west-2.outbound.mail-perimeter.amazon.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2025 15:30:06 +0000
+Received: from EX19MTAUWC002.ant.amazon.com [10.0.38.20:22420]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.27.3:2525] with
+ esmtp (Farcaster)
+ id 93ca9f84-9d14-4911-90f5-a97300a639c2; Wed, 8 Oct 2025 15:30:06 +0000 (UTC)
+X-Farcaster-Flow-ID: 93ca9f84-9d14-4911-90f5-a97300a639c2
+Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
+ EX19MTAUWC002.ant.amazon.com (10.250.64.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20;
+ Wed, 8 Oct 2025 15:30:05 +0000
+Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
+ (172.19.116.181) by EX19D001UWA001.ant.amazon.com (10.13.138.214) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.20; Wed, 8 Oct 2025
+ 15:29:52 +0000
+From: Eliav Farber <farbere@amazon.com>
+To: <gregkh@linuxfoundation.org>, <jdike@addtoit.com>, <richard@nod.at>,
+ <anton.ivanov@cambridgegreys.com>, <dave.hansen@linux.intel.com>,
+ <luto@kernel.org>, <peterz@infradead.org>, <tglx@linutronix.de>,
+ <mingo@redhat.com>, <bp@alien8.de>, <x86@kernel.org>, <hpa@zytor.com>,
+ <tony.luck@intel.com>, <qiuxu.zhuo@intel.com>, <james.morse@arm.com>,
+ <rric@kernel.org>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+ <tzimmermann@suse.de>, <robdclark@gmail.com>, <sean@poorly.run>,
+ <jdelvare@suse.com>, <linux@roeck-us.net>, <linus.walleij@linaro.org>,
+ <dmitry.torokhov@gmail.com>, <maz@kernel.org>, <wens@csie.org>,
+ <jernej.skrabec@gmail.com>, <agk@redhat.com>, <snitzer@redhat.com>,
+ <dm-devel@redhat.com>, <davem@davemloft.net>, <kuba@kernel.org>,
+ <mcoquelin.stm32@gmail.com>, <krzysztof.kozlowski@canonical.com>,
+ <malattia@linux.it>, <hdegoede@redhat.com>, <mgross@linux.intel.com>,
+ <jejb@linux.ibm.com>, <martin.petersen@oracle.com>,
+ <sakari.ailus@linux.intel.com>, <clm@fb.com>, <josef@toxicpanda.com>,
+ <dsterba@suse.com>, <jack@suse.com>, <tytso@mit.edu>,
+ <adilger.kernel@dilger.ca>, <dushistov@mail.ru>,
+ <luc.vanoostenryck@gmail.com>, <rostedt@goodmis.org>, <pmladek@suse.com>,
+ <senozhatsky@chromium.org>, <andriy.shevchenko@linux.intel.com>,
+ <linux@rasmusvillemoes.dk>, <minchan@kernel.org>, <ngupta@vflare.org>,
+ <akpm@linux-foundation.org>, <yoshfuji@linux-ipv6.org>, <dsahern@kernel.org>, 
+ <pablo@netfilter.org>, <kadlec@netfilter.org>, <fw@strlen.de>,
+ <jmaloy@redhat.com>, <ying.xue@windriver.com>, <shuah@kernel.org>,
+ <willy@infradead.org>, <farbere@amazon.com>, <sashal@kernel.org>,
+ <quic_akhilpo@quicinc.com>, <ruanjinjie@huawei.com>,
+ <David.Laight@ACULAB.COM>, <herve.codina@bootlin.com>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-um@lists.infradead.org>, <linux-edac@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
+ <linux-hwmon@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-sunxi@lists.linux.dev>, <linux-media@vger.kernel.org>,
+ <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+ <platform-driver-x86@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+ <linux-staging@lists.linux.dev>, <linux-btrfs@vger.kernel.org>,
+ <linux-ext4@vger.kernel.org>, <linux-sparse@vger.kernel.org>,
+ <linux-mm@kvack.org>, <netfilter-devel@vger.kernel.org>,
+ <coreteam@netfilter.org>, <tipc-discussion@lists.sourceforge.net>,
+ <linux-kselftest@vger.kernel.org>, <stable@vger.kernel.org>
+Subject: [PATCH v3 00/19 5.15.y] Backport minmax.h updates from v6.17-rc7
+Date: Wed, 8 Oct 2025 15:29:25 +0000
+Message-ID: <20251008152946.29285-1-farbere@amazon.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.19.116.181]
+X-ClientProxiedBy: EX19D032UWA001.ant.amazon.com (10.13.139.62) To
+ EX19D001UWA001.ant.amazon.com (10.13.138.214)
 X-Mailman-Approved-At: Thu, 09 Oct 2025 07:45:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,103 +117,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2025-10-08 at 16:02 +0200, Christian K=C3=B6nig wrote:
-> On 08.10.25 15:50, Tvrtko Ursulin wrote:
-> >=20
-> > On 08/10/2025 13:35, Christian K=C3=B6nig wrote:
-> > > On 08.10.25 13:53, Tvrtko Ursulin wrote:
-> > > > Disclaimer:
-> > > > Please note that as this series includes a patch which touches
-> > > > a good number of
-> > > > drivers I will only copy everyone in the cover letter and the
-> > > > respective patch.
-> > > > Assumption is people are subscribed to dri-devel so can look at
-> > > > the whole series
-> > > > there. I know someone is bound to complain for both the case
-> > > > when everyone is
-> > > > copied on everything for getting too much email, and also for
-> > > > this other case.
-> > > > So please be flexible.
-> > > >=20
-> > > > Description:
-> > > >=20
-> > > > All drivers which use the TTM pool allocator end up requesting
-> > > > large order
-> > > > allocations when allocating large buffers. Those can be slow
-> > > > due memory pressure
-> > > > and so add latency to buffer creation. But there is often also
-> > > > a size limit
-> > > > above which contiguous blocks do not bring any performance
-> > > > benefits. This series
-> > > > allows drivers to say when it is okay for the TTM to try a bit
-> > > > less hard.
-> > > >=20
-> > > > We do this by allowing drivers to specify this cut off point
-> > > > when creating the
-> > > > TTM device and pools. Allocations above this size will skip
-> > > > direct reclaim so
-> > > > under memory pressure worst case latency will improve.
-> > > > Background reclaim is
-> > > > still kicked off and both before and after the memory pressure
-> > > > all the TTM pool
-> > > > buckets remain to be used as they are today.
-> > > >=20
-> > > > This is especially interesting if someone has configured
-> > > > MAX_PAGE_ORDER to
-> > > > higher than the default. And even with the default, with amdgpu
-> > > > for example,
-> > > > the last patch in the series makes use of the new feature by
-> > > > telling TTM that
-> > > > above 2MiB we do not expect performance benefits. Which makes
-> > > > TTM not try direct
-> > > > reclaim for the top bucket (4MiB).
-> > > >=20
-> > > > End result is TTM drivers become a tiny bit nicer mm citizens
-> > > > and users benefit
-> > > > from better worst case buffer creation latencies. As a side
-> > > > benefit we get rid
-> > > > of two instances of those often very unreadable mutliple
-> > > > nameless booleans
-> > > > function signatures.
-> > > >=20
-> > > > If this sounds interesting and gets merge the invidual drivers
-> > > > can follow up
-> > > > with patches configuring their thresholds.
-> > > >=20
-> > > > v2:
-> > > > =C2=A0 * Christian suggested to pass in the new data by changing th=
-e
-> > > > function signatures.
-> > > >=20
-> > > > v3:
-> > > > =C2=A0 * Moved ttm pool helpers into new ttm_pool_internal.h.
-> > > > (Christian)
-> > >=20
-> > > Patch #3 is Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>=
-.
-> > >=20
-> > > The rest is Reviewed-by: Christian K=C3=B6nig
-> > > <christian.koenig@amd.com>
-> >=20
-> > Thank you!
-> >=20
-> > So I think now I need acks to merge via drm-misc for all the
-> > drivers which have their own trees. Which seems to be just xe.
->=20
-> I think you should ping the XE guys for their opinion, but since
-> there shouldn't be any functional change for them you can probably go
-> ahead and merge the patches to drm-misc-next when there is no reply
-> in time.
+This series backports 19 patches to update minmax.h in the 5.15.y branch,
+aligning it with v6.17-rc7.
 
-I will try to do a review tonight. One thing that comes up though, is
-the change to ttm_device_init() where you add pool_flags. I had another
-patch series a number of months ago that added a struct with flags
-there instead to select the return value given when OOM. Now that we're
-adding an argument, should we try to use a struct instead so that we
-can use it for more that pool behavior?
+The ultimate goal is to synchronize all longterm branches so that they
+include the full set of minmax.h changes.
 
+6.12.y was already backported and changes are part of v6.12.49.
+6.6.y was already backported and changes are part of v6.6.109.
+6.1.y was already backported and changes are currently in the 6.1-stable
+tree.
 
-I'll be able to find a pointer to that series later today.
+The key motivation is to bring in commit d03eba99f5bf ("minmax: allow
+min()/max()/clamp() if the arguments have the same signedness"), which
+is missing in kernel 5.10.y.
 
-/Thomas
+In mainline, this change enables min()/max()/clamp() to accept mixed
+argument types, provided both have the same signedness. Without it,
+backported patches that use these forms may trigger compiler warnings,
+which escalate to build failures when -Werror is enabled.
+
+Changes in v3:
+- Fix fs/erofs/zdata.h in patch 06/19 to use MIN_T instead of min_t to
+  fix build on the following patch (07/19):
+In file included from ./include/linux/kernel.h:16,
+                 from ./include/linux/list.h:9,
+                 from ./include/linux/wait.h:7,
+                 from ./include/linux/wait_bit.h:8,
+                 from ./include/linux/fs.h:6,
+                 from fs/erofs/internal.h:10,
+                 from fs/erofs/zdata.h:9,
+                 from fs/erofs/zdata.c:6:
+fs/erofs/zdata.c: In function ‘z_erofs_decompress_pcluster’:
+fs/erofs/zdata.h:185:61: error: ISO C90 forbids variable length array ‘pages_onstack’ [-Werror=vla]
+  185 |         min_t(unsigned int, THREAD_SIZE / 8 / sizeof(struct page *), 96U)
+      |                                                             ^~~~
+./include/linux/minmax.h:49:23: note: in definition of macro ‘__cmp_once_unique’
+   49 |         ({ type ux = (x); type uy = (y); __cmp(op, ux, uy); })
+      |                       ^
+./include/linux/minmax.h:164:27: note: in expansion of macro ‘__cmp_once’
+  164 | #define min_t(type, x, y) __cmp_once(min, type, x, y)
+      |                           ^~~~~~~~~~
+fs/erofs/zdata.h:185:9: note: in expansion of macro ‘min_t’
+  185 |         min_t(unsigned int, THREAD_SIZE / 8 / sizeof(struct page *), 96U)
+      |         ^~~~~
+fs/erofs/zdata.c:847:36: note: in expansion of macro ‘Z_EROFS_VMAP_ONSTACK_PAGES’
+  847 |         struct page *pages_onstack[Z_EROFS_VMAP_ONSTACK_PAGES];
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+
+- Increase test coverage using `make allyesconfig` and
+  `make allmodconfig` for arm64, arm, x86_64 and i386 architectures.
+
+Changes in v2:
+- Fix the order of patches 6 - 10 according to order in mainline branch.
+- Use same style of [ Upstream commit <HASH> ] in all patches.
+
+Andy Shevchenko (1):
+  minmax: deduplicate __unconst_integer_typeof()
+
+David Laight (8):
+  minmax: fix indentation of __cmp_once() and __clamp_once()
+  minmax.h: add whitespace around operators and after commas
+  minmax.h: update some comments
+  minmax.h: reduce the #define expansion of min(), max() and clamp()
+  minmax.h: use BUILD_BUG_ON_MSG() for the lo < hi test in clamp()
+  minmax.h: move all the clamp() definitions after the min/max() ones
+  minmax.h: simplify the variants of clamp()
+  minmax.h: remove some #defines that are only expanded once
+
+Herve Codina (1):
+  minmax: Introduce {min,max}_array()
+
+Linus Torvalds (8):
+  minmax: avoid overly complicated constant expressions in VM code
+  minmax: add a few more MIN_T/MAX_T users
+  minmax: simplify and clarify min_t()/max_t() implementation
+  minmax: make generic MIN() and MAX() macros available everywhere
+  minmax: don't use max() in situations that want a C constant
+    expression
+  minmax: simplify min()/max()/clamp() implementation
+  minmax: improve macro expansion and type checking
+  minmax: fix up min3() and max3() too
+
+Matthew Wilcox (Oracle) (1):
+  minmax: add in_range() macro
+
+ arch/arm/mm/pageattr.c                        |   6 +-
+ arch/um/drivers/mconsole_user.c               |   2 +
+ arch/x86/mm/pgtable.c                         |   2 +-
+ drivers/edac/sb_edac.c                        |   4 +-
+ drivers/edac/skx_common.h                     |   1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   2 +
+ .../drm/amd/display/modules/hdcp/hdcp_ddc.c   |   2 +
+ .../drm/amd/pm/powerplay/hwmgr/ppevvmath.h    |  14 +-
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |   2 +
+ .../drm/arm/display/include/malidp_utils.h    |   2 +-
+ .../display/komeda/komeda_pipeline_state.c    |  24 +-
+ drivers/gpu/drm/drm_color_mgmt.c              |   2 +-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c         |   6 -
+ drivers/gpu/drm/radeon/evergreen_cs.c         |   2 +
+ drivers/hwmon/adt7475.c                       |  24 +-
+ drivers/input/touchscreen/cyttsp4_core.c      |   2 +-
+ drivers/irqchip/irq-sun6i-r.c                 |   2 +-
+ drivers/md/dm-integrity.c                     |   4 +-
+ drivers/media/dvb-frontends/stv0367_priv.h    |   3 +
+ .../net/ethernet/chelsio/cxgb3/cxgb3_main.c   |  18 +-
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c |   2 +-
+ drivers/net/fjes/fjes_main.c                  |   4 +-
+ drivers/nfc/pn544/i2c.c                       |   2 -
+ drivers/platform/x86/sony-laptop.c            |   1 -
+ drivers/scsi/isci/init.c                      |   6 +-
+ .../pci/hive_isp_css_include/math_support.h   |   5 -
+ drivers/virt/acrn/ioreq.c                     |   4 +-
+ fs/btrfs/misc.h                               |   2 -
+ fs/btrfs/tree-checker.c                       |   2 +-
+ fs/erofs/zdata.h                              |   2 +-
+ fs/ext2/balloc.c                              |   2 -
+ fs/ext4/ext4.h                                |   2 -
+ fs/ufs/util.h                                 |   6 -
+ include/linux/compiler.h                      |   9 +
+ include/linux/minmax.h                        | 264 +++++++++++++-----
+ kernel/trace/preemptirq_delay_test.c          |   2 -
+ lib/btree.c                                   |   1 -
+ lib/decompress_unlzma.c                       |   2 +
+ lib/logic_pio.c                               |   3 -
+ lib/vsprintf.c                                |   2 +-
+ lib/zstd/zstd_internal.h                      |   2 -
+ mm/zsmalloc.c                                 |   1 -
+ net/ipv4/proc.c                               |   2 +-
+ net/ipv6/proc.c                               |   2 +-
+ net/netfilter/nf_nat_core.c                   |   6 +-
+ net/tipc/core.h                               |   2 +-
+ net/tipc/link.c                               |  10 +-
+ tools/testing/selftests/vm/mremap_test.c      |   2 +
+ 48 files changed, 290 insertions(+), 184 deletions(-)
+
+-- 
+2.47.3
 
