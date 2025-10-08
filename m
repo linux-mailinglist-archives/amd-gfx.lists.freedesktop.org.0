@@ -2,59 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05699BC64BC
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 20:31:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB6BBC6555
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 20:48:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99D3710E8BD;
-	Wed,  8 Oct 2025 18:31:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6AA410E899;
+	Wed,  8 Oct 2025 18:48:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=bob.beckett@collabora.com header.b="KGATDjkr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cN4KhcoF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
- [136.143.188.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D63F210E8BD
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 18:31:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1759948285; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=BscNQKanofZ5lwG3BGO6vS/Qz1naKrt1SIV2MAE4Q0TIFp+WQTEnjSUCEcGbdQ6q4hExBr5eeoWVQgQq8GeA3YHV/QVSvOJMuDfuonpx32Sejt4Hm4hyAABHCOAYjVEn21VEporLfKnx8lFSLl3HSOEhJoJgEBFZm3MZNmTnxG8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1759948285;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=lvXGdnVgonOgdLvbhWQEUEgbN6LIn7iY2LpSfjGokF0=; 
- b=IxXPGfe4jxyoi4ktcpeo9ZDk0Ka3eP0hqW1XMnicIUNSsg46Wkdp2uB/eeMRgDSpkfbm5Eqermig182sesZwJEQrqsDWLaFUDgbmpSIjYFhe8rR0WXhbktxlHRzDXYLTOAQT7XgCouED3EY19UngI6i8YH8xLAmEyBzGwOI6moU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=bob.beckett@collabora.com;
- dmarc=pass header.from=<bob.beckett@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759948285; 
- s=zohomail; d=collabora.com; i=bob.beckett@collabora.com;
- h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=lvXGdnVgonOgdLvbhWQEUEgbN6LIn7iY2LpSfjGokF0=;
- b=KGATDjkrrXUzDHnA/G2uVFE1nHenxiXQcXKmaKoFeX9dvC0OmetWwk4vAiHFy6LG
- CCLyenf+xNjSlBaqI1hrdKV5KaCxF/ZNYiRutGpbDRlNDlMBn6xdkXSOp/tYLCcOEcc
- U3XI3PKeEUL6rPLCsWGK8PWuU+wDg6/sHqL+mpnE=
-Received: from mail.zoho.com by mx.zohomail.com
- with SMTP id 1759948253449207.8309816630358;
- Wed, 8 Oct 2025 11:30:53 -0700 (PDT)
-Date: Wed, 08 Oct 2025 19:30:53 +0100
-From: Robert Beckett <bob.beckett@collabora.com>
-To: "Mario Limonciello" <superm1@kernel.org>
-Cc: "amd-gfx" <amd-gfx@lists.freedesktop.org>,
- "Lijo Lazar" <Lijo.Lazar@amd.com>
-Message-ID: <199c51728f5.778006f5430494.3779269787170457909@collabora.com>
-In-Reply-To: <76272528-5167-445d-9a71-5c693323da8d@kernel.org>
-References: <20251007164116.371340-1-bob.beckett@collabora.com>
- <20251007193110.763709-1-bob.beckett@collabora.com>
- <76272528-5167-445d-9a71-5c693323da8d@kernel.org>
-Subject: Re: [PATCH v2 0/5] Adjustment to power limit setting
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012067.outbound.protection.outlook.com
+ [40.93.195.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DED7510E894
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 18:48:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Y+ZOfrgcGup/QMHMLbAuooFO4cC2A/9i0pqOCU2BwnZa0yenAR7lszsLL7v6Jna18hK+q5I0m2VDB+4JyAZ8AJ5iRsoxKhMsDHI83rF0AehdOtwnbrvKbyWbBYRgK/RxD7kdtK4XkIsPmifNl+oYJcUDZpqc6coF9dn3Hi5pQ8lBW26YtNZoFUMO6nqRdrirR/It68OXHpUUkui1JONhdJ4lsxSOUm1RnegI3Gj9rYG2DtS4T+3mWz73l2hY+q/TjH+MQ9APl/1DDWMYAy6oa+yx8r2Opya+VP1a8rxZ+XZu/f7JMJB++VpIlMCiO9fSvlK14wJSAnENYjuVIDC7Lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ckaUdv/uWiADMgpsByAWC2W7Ri2awpNv1odIqciNkBM=;
+ b=UTp7gWmwZGyyxzNpDI+wXQ0/0eQvyS/jk98nCh0WnJntxtbSSWqiTz0I/rmoEZ1lR/oHhvS29z43mNtUq4ibClju8yzIPEWywhc1KfSExL3HXpgGhvcrxwQ6Sjq4prTM749+Cup0TrGnvlFniic8Z06mA8GynsMezif6A/bHSa0WaWNpiFBKCmGDbEqJEWFA2n/1VAihKeq1lIdXpVf/CLkeB1LqfvAIllVuV7KgjADcxV7oi4DDJHZuSQ2cZ68IJZsUWkuJ8w3C9H+3FjN9U362nn8mxMTv53OOFWljSFm+EDyDgYd15isT5D4XPL9sy6hzV3f87+f2n3fN2dEitA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ckaUdv/uWiADMgpsByAWC2W7Ri2awpNv1odIqciNkBM=;
+ b=cN4KhcoF/LUeEGX+r90gAXXCxx6kyPuLOlQVrmfb8PTyUiIaf3rkDKBsvwGPnfx9AfekM2l27bW4fkMjA3Gu5xLs25FlEXQ0PLhlYwYaVNtgjZPQ5YsdiOkVEf21qwPcSRaSLEC/YvLIb+/eUOvkLMvDM5PI2GJIAAknvZaNsV8=
+Received: from SJ0PR05CA0128.namprd05.prod.outlook.com (2603:10b6:a03:33d::13)
+ by BN7PPFFC4F04B28.namprd12.prod.outlook.com
+ (2603:10b6:40f:fc02::6ea) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Wed, 8 Oct
+ 2025 18:48:47 +0000
+Received: from SJ5PEPF00000203.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d:cafe::40) by SJ0PR05CA0128.outlook.office365.com
+ (2603:10b6:a03:33d::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9203.9 via Frontend Transport; Wed, 8
+ Oct 2025 18:48:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ5PEPF00000203.mail.protection.outlook.com (10.167.244.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9203.9 via Frontend Transport; Wed, 8 Oct 2025 18:48:42 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 8 Oct
+ 2025 11:48:39 -0700
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 8 Oct
+ 2025 11:48:39 -0700
+Received: from aaurabin-tumbleweed.amd.com (10.180.168.240) by
+ satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17
+ via Frontend Transport; Wed, 8 Oct 2025 11:48:39 -0700
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
+ Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
+ <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
+ <alex.hung@amd.com>
+Subject: [PATCH 00/22] DC Patches for 13 Oct 2025
+Date: Wed, 8 Oct 2025 14:46:54 -0400
+Message-ID: <20251008184839.78916-1-aurabindo.pillai@amd.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Importance: Medium
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000203:EE_|BN7PPFFC4F04B28:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2b57856b-7285-487e-6c8f-08de069b4da4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vx+fUoB7OlmwCib5dAyBDoNPatJLMDVV2/vFDvmnnNdFTfp0PkkZYilM/Bwn?=
+ =?us-ascii?Q?n6aF8ZAzff8Jc0a6TyvY3YuGufIJ2h630m8GrKyy7HyhLZnM5PW9DK1N/q/u?=
+ =?us-ascii?Q?exaVrrtMWAx2MCwNISvzCq5DGibL7Ix5j8p6kc/kR5/qIEVcf5YipNJNc+3V?=
+ =?us-ascii?Q?qJhi0nc3zWderxayTU8pk9UqcH9dyvEW0oDZj6iSBQEydWI5YLGMen9neusm?=
+ =?us-ascii?Q?JULg3Z3zMkNTAag4MpbbNvMXyB0fG4AFavYdHqLwEcJHf+NYzfIPPvwAPCet?=
+ =?us-ascii?Q?M3hzgNnT+7CZ+WS4+d4x5DqYvTpcaQRlSGeieu9LQdQ3qMBtUH6JA8KLpwbH?=
+ =?us-ascii?Q?M8qPZXFJ13cY7VY1/MXgfX0MdjhvVcLRorhKVN4d/1soJpNH/gyNSsLEZD4a?=
+ =?us-ascii?Q?OlBIc5k8svF5UFiQV46lEIvAfByD0yXdhi0ZusDI6i6jfFwHTsOaoA3N1zru?=
+ =?us-ascii?Q?ujF4te13N9SfTSr27YxYXHZ8SHrOEVJLDo5zHkZ+rehhe8wVg9jfcyK7Puio?=
+ =?us-ascii?Q?GlSD382zwnQaY0buDoPHs90EjNbx2CNTHGHjKdbRHr7xEjpNPboDKwjE8tFu?=
+ =?us-ascii?Q?zAicGMIOInjs8gXKnwmJfr+nKws/vyHgoZtEuLnUaRDTdLutuQzEWcZuFbaH?=
+ =?us-ascii?Q?Qr3Bhu8rgxpVdDc/UHO8fF1nSDlFFPJHPVudz8Z9qVdKsbgyPaDuAaGdf4Sc?=
+ =?us-ascii?Q?Sur2Xvpa93/DEtWGJ5sKtTiJXfjMsb0QRIr/TX/UQiVuozI+z/o5rfyj6J76?=
+ =?us-ascii?Q?oDPflLrWDnO18y9WjaI7l35kKimQ+d4QF2B3CR6QUztZ8m8q0vR1Fy+fHaN5?=
+ =?us-ascii?Q?IPtYNq2C87qiCVnOf6n8BYK6taKCR/zEZpKQBDyykYaRGVEbwtO+PBnUI4Q3?=
+ =?us-ascii?Q?PhTOT9zIs2EZFr72K1YXyywtGE+K2/s5xKohZ7cGDzseP77ZdST6ayvGaFkH?=
+ =?us-ascii?Q?NxF9UaVVRF/XW6h4rpcVjxdZn6Oq/JO38gnwJWj9NeryJ1eGpFFoVGw8BhpS?=
+ =?us-ascii?Q?83au6nLA+zkOCeJcluXzPFCTCw5USeTQTetdieDBDD2sh/9sdHtTwazuvUW2?=
+ =?us-ascii?Q?6yG3GSzjIoVB9LhFf3jFA1AaWtfJKNQkgh0eA8BECYnXQBqBGtUtR8LN+ASx?=
+ =?us-ascii?Q?XYoEBm1SZOZmdDO29UtRGeFo+5HMMsydlVMAp3mfEKa65JqhDqEoGzyPrymq?=
+ =?us-ascii?Q?VeNXAByQd05q+u6X9D6Aqsg2DaHLODY0sx/shD+ScUM4a+cQkeuPchm7Nnii?=
+ =?us-ascii?Q?frVL+tV2JkafV497KeJXqmZYT/7E/hKZLhMcyBPkDx+ZGRhYMF672CSRXNQg?=
+ =?us-ascii?Q?URIWLKRgw9ARFY8xX4F86PhXQ9w4NaWEpEZ1pDZS/oPIUAGKOtUGGfjZHoX7?=
+ =?us-ascii?Q?ygjFPuTQMeMu92qOv1KGGEHRxoBRpC578Vn7rscYTxPvvBwRCNybTJTtTgyv?=
+ =?us-ascii?Q?yNMYUndUV+4UzKwnalvBtK8O71hEKsfU5J+VIcHOuyfQfD+XIlW6BTqRvDFN?=
+ =?us-ascii?Q?Q8Xs2avLNe56QRbG0Jf+ZMLO0Q3S1Ww26a2FVrX7itxmNpckeOj7U4dD40JA?=
+ =?us-ascii?Q?Cxs37esE6Xp4DdxE4zU=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 18:48:42.4166 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b57856b-7285-487e-6c8f-08de069b4da4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000203.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPFFC4F04B28
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,58 +141,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Display Core v3.2.354 release highlights:
+    
+    * DCN35 dispclk, dppclk & other fixes
+    * DCN401 cursor offload fix
+    * Add new block seqeunce-building/executing functions
+    * null ptr fixes
+    * DPIA hpd fix
+    * debug improvements
+    * Fix performance regression from full updates
+    * Firmware Release 0.1.31.0
 
- ---- On Tue, 07 Oct 2025 20:40:43 +0100  Mario Limonciello <superm1@kernel.org> wrote --- 
- > On 10/7/25 2:31 PM, Bob Beckett wrote:
- > > --- quoted message ---
- > >> From: Robert Beckett <bob.beckett@collabora.com>
- > >>> Lijo pointed out to me that
- > >>> commit ed4efe426a49 ("drm/amd: Restore cached power limit during resume")
- > >>> commit 796ff8a7e01b ("drm/amd: Restore cached manual clock settings during resume")
- > >>> both should be unnecessary because smu_restore_dpm_user_profile() already
- > >>> restores them.  However in looking at the code there is a case that isn't
- > >>> properly restored - the FAST PPT limits supported by Van Gogh. The nuance
- > >>> isn't immediately obvious because the limit variable is overloaded with
- > >>> limit type.
- > >>> This series attempts to address that issue by passing limit type around
- > >>> and saving/restoring both types.
- > >>> Cc: Lijo Lazar <Lijo.Lazar@amd.com>
- > >>> Mario Limonciello (5):
- > >>>    drm/amd: Remove some unncessary header includes
- > >>>    drm/amd: Stop overloading power limit with limit type
- > >>>    drm/amd: Save and restore all limit types
- > >>>    drm/amd: Drop calls to restore power limit and clock from smu_resume()
- > >>>    drm/amd: Adjust whitespace for vangogh_ppt
- > >>>   .../gpu/drm/amd/include/kgd_pp_interface.h    |  2 +-
- > >>>   drivers/gpu/drm/amd/pm/amdgpu_dpm.c           |  3 +-
- > >>>   drivers/gpu/drm/amd/pm/amdgpu_pm.c            |  3 +-
- > >>>   drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h       |  2 +-
- > >>>   .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  |  5 +--
- > >>>   drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 40 ++++++++-----------
- > >>>   drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  3 +-
- > >>>   .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  | 13 +++---
- > >>>   8 files changed, 29 insertions(+), 42 deletions(-)
- > >>> -- 
- > >>> 2.51.0
- > >> entire series
- > >> Tested-by: Robert Beckett <bob.beckett@collabora.com>
- > > 
- > > apologies, I need to retract this Tested-by.
- > > I inadvertently tested v1. v2 looks like it still has the restore issue.
- > > I'll debug and get back to you.
- > 
- > Oh thanks for getting back.  Let me hold up our merge on the patches 
- > then too.
- > 
+Cc: Dan Wheeler <daniel.wheeler@amd.com>
 
-The issue with v2 turned out to be quite simple in the end.
-You dropped 
+---
 
-drm/amd: Drop superfluous call to set_power_limit()
+Alvin Lee (3):
+  drm/amd/display: Remove unused field in DML
+  drm/amd/display: Update DCN401 path for cursor offload
+  drm/amd/display: Update spacing in struct
 
-from v1.
-picking that on top of v2 series makes it work again, so assuming v3 adds this back, have another:
+Aurabindo Pillai (2):
+  drm/amd/display: Add sink/link debug logs
+  drm/amd/display: use GFP_NOWAIT for allocation in interrupt handler
 
-entire series
-Tested-by: Robert Beckett <bob.beckett@collabora.com>
+Charlene Liu (3):
+  drm/amd/display: add dispclk ramping to dcn35.
+  drm/amd/display: add dccg dfs mask def
+  drm/amd/display: increase max link count and fix link->enc NULL
+    pointer access
+
+Dominik Kaszewski (2):
+  drm/amd/display: Remove dc state from check_update
+  drm/amd/display: Fix performance regression from full updates
+
+Harry VanZyllDeJong (1):
+  drm/amd/display: fix duplicate aux command with AMD aux backlight
+
+Ilya Bakoulin (1):
+  drm/amd/display: add new block sequence-building/executing functions
+
+Meenakshikumar Somasundaram (1):
+  drm/amd/display: Fix NULL pointer dereference
+
+Ovidiu Bunea (1):
+  drm/amd/display: Move all DCCG RCG into HWSS root_clock_control
+
+Peichen Huang (1):
+  drm/amd/display: not skip hpd irq for bw alloc mode
+
+Relja Vojvodic (1):
+  drm/amd/display: Rework HDMI data channel reads
+
+Samson Tam (1):
+  drm/amd/display: Add debug option to override EASF scaler taps
+
+Taimur Hassan (2):
+  drm/amd/display: [FW Promotion] Release 0.1.31.0
+  drm/amd/display: Promote DC to 3.2.354
+
+Wenjing Liu (2):
+  drm/amd/display: update perfmon measurement interfaces
+  drm/amd/display: add additional hdcp traces
+
+Yihan Zhu (1):
+  drm/amd/display: fix dppclk rcg poweron check
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   77 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  131 +-
+ .../drm/amd/display/dc/core/dc_hw_sequencer.c | 3161 ++++++++++++++++-
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |    6 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |    3 +-
+ .../gpu/drm/amd/display/dc/dc_spl_translate.c |    2 +
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |    1 +
+ .../amd/display/dc/dccg/dcn35/dcn35_dccg.c    |   23 +-
+ .../amd/display/dc/dccg/dcn35/dcn35_dccg.h    |    8 +
+ .../dml2/dml21/inc/dml_top_dchub_registers.h  |    1 -
+ .../amd/display/dc/hubp/dcn32/dcn32_hubp.c    |   70 +-
+ .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |    3 +-
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |    5 -
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 1356 ++++++-
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.h |   98 +
+ .../amd/display/dc/hwss/dcn401/dcn401_init.c  |   17 +
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    | 1409 +++++++-
+ .../display/dc/hwss/hw_sequencer_private.h    |   36 +
+ .../amd/display/dc/inc/hw/cursor_reg_cache.h  |    6 +-
+ .../gpu/drm/amd/display/dc/inc/hw/dchubbub.h  |   36 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |    1 +
+ .../gpu/drm/amd/display/dc/inc/hw/hw_shared.h |    8 +-
+ .../display/dc/link/accessories/link_dp_cts.c |    3 +-
+ .../drm/amd/display/dc/link/link_detection.c  |    4 +
+ .../amd/display/dc/link/protocols/link_ddc.c  |    3 +-
+ .../dc/link/protocols/link_dp_dpia_bw.c       |   19 +-
+ .../dc/link/protocols/link_dp_irq_handler.c   |    4 +-
+ drivers/gpu/drm/amd/display/dc/sspl/dc_spl.c  |   15 +
+ .../drm/amd/display/dc/sspl/dc_spl_types.h    |    1 +
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |    3 +-
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.c   |    6 +-
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.h   |    2 +-
+ .../display/modules/hdcp/hdcp1_execution.c    |   13 +-
+ .../display/modules/hdcp/hdcp2_execution.c    |   19 +-
+ .../drm/amd/display/modules/hdcp/hdcp_log.h   |    6 +
+ .../drm/amd/display/modules/inc/mod_hdcp.h    |   14 +
+ 36 files changed, 6245 insertions(+), 325 deletions(-)
+
+-- 
+2.51.0
 
