@@ -2,86 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02BFBC4F66
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 14:49:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0AC6BC4F6C
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 14:49:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5169710E7FC;
-	Wed,  8 Oct 2025 12:49:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA27E10E3B5;
+	Wed,  8 Oct 2025 12:49:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WvyH8B/e";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RzLtpaF/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F47710E0F3
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Oct 2025 22:46:03 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-3f44000626bso4418883f8f.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 07 Oct 2025 15:46:03 -0700 (PDT)
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+ [209.85.214.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B1E610E743
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 03:43:55 +0000 (UTC)
+Received: by mail-pl1-f178.google.com with SMTP id
+ d9443c01a7336-269af38418aso83778135ad.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 07 Oct 2025 20:43:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759877161; x=1760481961; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1759895034; x=1760499834; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=3pQQY2keBFswywTklmwxwyGGVpvzk59ZMACKy3TjyoA=;
- b=WvyH8B/eMRguMiSUiNHuTOhuiMctOqFVPJKQEbOs/YxXGZMaXLSn3OIHtUYiBBQ5G+
- jff4k9jAK1N/MBWGwGPSyHuOaxagXRgoAs/HIaQN3qW7tL+DU6fVyHjRX/ArTXMarFbc
- 6iyTfOmobTdoQitqgDbjcNafZxhFYkWuWiOWF8G6TJn65T4x7SnbbFhoLM7RAgZR64rs
- dlGFePP/tmn7de4PrBOQ4MqbeBSm1tobbfQukcuDFzyPsKxES8u7IQswKGvOkrs0acxT
- 8OVxv6eXUGGqW2oBE4Mt7PnJihm9V32kbXjuRUnyPYFfujfzBWipQuhGK3bVqE0iPhDd
- iMmA==
+ bh=VInhF7vun+ADbuDP4f7RWZ7/1hOQvgwkDekOvwy950Y=;
+ b=RzLtpaF/gvGic+vswu1mIWUsdRlliGZ4UyNS/OVTfHMDEBhhjVu8KQVE5ZSBsIpFMQ
+ opQq+1nZV3YiH4yRr9I3Wj1+ZUhR9zS2E7+kglWpjKWeUPRs42weFq7cF3ueueDonhLf
+ VuK100TLokb6SC4XP3P63zlOgG5vIqdJ23CmXjEjfzHqHcDbN/ATMxC0C0UF7c+L+uyY
+ Y/Qe/dNbnLkbPNvJgXLe6M2BbNKGlGOVaAGw15H7FJ0XmfycS3c5vZUyarbMcn6qAxtL
+ AWjZqok53aMb6WQgZLPTeyYiojQSGhuWHmkai/yPpuYCBZbzygVrhsvJnrI1FLY2DCS7
+ i7RA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759877161; x=1760481961;
+ d=1e100.net; s=20230601; t=1759895034; x=1760499834;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=3pQQY2keBFswywTklmwxwyGGVpvzk59ZMACKy3TjyoA=;
- b=Fp8HFzon10sfVxYPDb27saNXM9ZPRqscJXtv2G5t3MCSHanLtd8EeNmBAwOQQ+P5ap
- HoXzb6k9IrbOgkXs3B26pcVf2GVcOg1ywm+IjZbo9Oluaq4WJPrTSXVAMd0z8pG2RupV
- iap0ku0o78oO41bpXWujX3NVBvf4A6SRz65RntdLbzrj4Rw7VL9M6S1jWckUwbicY4vI
- 7zDURkUpx3TCtpxJ1Z/scOlo5XmCCBKbMjCeodEuUuWQ60eoSDWSvd9nMXhlBuUsQoLu
- z8/iSvej7Y20SfuKaAMvxSRB2MM/LThwBCUI98IPWueXRBCmQ4iHseWIwg2wVHSwencr
- z+1A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW7di84QWe2adIHuFck7RhI8ZG3OreauBctQEvp4cBl8aSCDufhKBYn/UzLgptI2dkl/5CY1CIM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx8+V4YIeSma4S7NdeuphkR6vMGngCTIlhMM2AqO8sOSTKg7/rX
- Khrx9Xje31NSKHENDRbjfCZd1wPhm69EguhMu8fqNH9K7o3inLdNDrSZ
-X-Gm-Gg: ASbGncsN/qn4jXm++LGc0JorFnv8EdfBXEy+ZBC6QVTzi1z92JxURSiOTZgaIznK246
- D0Dp/3eeSWXqxQUT2+qseDp+Fw+UD12TdxaeChDfGHzz81zrzzG/7mGc6WRC5+64qxSjj/O2LMx
- jEWvyJe5ZTP+ldAMvOnsKIA+VqhY4u73fXR0CiHdmiDp87qX+E6bYRPmoUZWPrOXYZ8ampzg7SF
- VYQrVoWBI7v1NoOVR1zve5IAp5cOFb4X2iwEF3Ph1hf7fANgguDrzpJUFDOaPU+LIG7Vf6dNj62
- 6ri1Go4+pamkXgjMVmHA6BtTw7wwyc7LmQoOOZ+sLEmkxkfgnJQrjwgg0Mn29Ujs7Nr6KP8n6bt
- pAkSYpYZ86XHSWrUJUEj7Ev0VSb9dpQwgfw/yp/agFHa2IgUDGKgnMiocJ/Nm5cQ=
-X-Google-Smtp-Source: AGHT+IGpUoeWYYfKgtD3wk2UP4YLDCFnN42FiNw3j98CkNvoabTKCMcEKd8fM1WEcK58BkjWgmbiLQ==
-X-Received: by 2002:a05:6000:1a8e:b0:3ff:17ac:a34c with SMTP id
- ffacd0b85a97d-4266e8e46b1mr536653f8f.59.1759877161371; 
- Tue, 07 Oct 2025 15:46:01 -0700 (PDT)
-Received: from ekhafagy-ROG-Strix.. ([41.37.1.171])
+ bh=VInhF7vun+ADbuDP4f7RWZ7/1hOQvgwkDekOvwy950Y=;
+ b=hHMdQ8D4RK/GCxva0Sku6rwJ/nFqy/l6d/rstYFfrC2k8ChDZW5DyhRwoOY3LMiswg
+ Jf/yCrIWDOqauMt21iHffDYtTnaXb5FI0vEz2L78tpykcxX9/465kwM1mq4KR3AFBtfe
+ K3TV+phNf2J3c/DgZQoF6jQcumBRJXA8i7Cov8Y1JSFADDvbNPZeJxcsC8/PEaQooeKF
+ sJauE3vCSx1D14XXAY0m7d8tTbO0FotfG3qz/+ktQ8sSy2BvRqA9uzqxPl+kvClY2V3G
+ CUwYqC/l/u+aAsq5BOA3fVGIDjIOxyjKADf//pldrBr7R8A9CKbSVtg5T5dSMqEE2zBY
+ tHbw==
+X-Gm-Message-State: AOJu0YycCE0oOsBN4TtopSUPK10y4EhskbGahpW+8OM+BjT8g0ziN9FV
+ y1vBb9gTGVj19eJy6uqFTjGzxYQLGB0aKqmidlbkHrMxJQMkS6yruHJWN/abUa8yMi/img==
+X-Gm-Gg: ASbGncv8CzyKsvnw3RBXqcgfH7lC+XY8EyRPQ2skbFGJRA0Js+symwzhIZthKwVfQWc
+ OK1QUKCDOOGXlg9I9PFoeNeg5EGgLfTUHFFQJr02+2aLpEzWdEv3iSe0QmeWWjQtX4zAi0uVClf
+ I2UH7wd4GEavE/GUlW7RCCOF9WkAatwWkLw8JX+S3mzZ/H2QVSqH7hc0azUuCh7jS+map721OC6
+ UUZqXRqaUz/dV3npsNAarkhMC/rxqbVhzKxalnrDH8G+ak5Vr/XhugWO0BK9xOC114DHbVqzqci
+ A6pdtUnr+PHHmzge8J2hUyDT1E8Ityiq1ADfH/QBGS2eDg0lVS8HKRuRjLxxUrDTeu7RCI8ea7W
+ /f0GDyp1qSJXE//s4kyKzlPLp1wMxz+EoxIWjt708sI1jtn8iNDrL5avvfmfMGVPtXkh31hUszH
+ IqzxhjCAFbJApmi8nsE29gIwai3DwjS+xwcs93AQ==
+X-Google-Smtp-Source: AGHT+IG54xKXiUdy0DJwzKQZzIjcR2wGAtdfxZQRffoyREgsAb1SOl9FlsAzbJO0UqlUtTWKuOGgcw==
+X-Received: by 2002:a17:902:ce0d:b0:26b:da03:60db with SMTP id
+ d9443c01a7336-29027373dabmr24286355ad.13.1759895034268; 
+ Tue, 07 Oct 2025 20:43:54 -0700 (PDT)
+Received: from localhost.localdomain ([155.117.84.221])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4255d8f01a0sm26925335f8f.48.2025.10.07.15.45.59
+ d9443c01a7336-28e8d1280c9sm182813505ad.53.2025.10.07.20.43.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Oct 2025 15:46:01 -0700 (PDT)
-From: Eslam Khafagy <eslam.medhat1993@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>,
- Yilin Chen <Yilin.Chen@amd.com>,
- amd-gfx@lists.freedesktop.org (open list:AMD DISPLAY CORE),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list)
-Cc: eslam.medhat1993@gmail.com
-Subject: [PATCH RESEND] drm/amd/display: Initialize return value in
- dm_cache_state()
-Date: Wed,  8 Oct 2025 01:45:44 +0300
-Message-ID: <20251007224549.87548-1-eslam.medhat1993@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ Tue, 07 Oct 2025 20:43:53 -0700 (PDT)
+From: Gui-Dong Han <hanguidong02@gmail.com>
+To: Felix.Kuehling@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, baijiaju1990@gmail.com,
+ Gui-Dong Han <hanguidong02@gmail.com>, stable@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: use atomic functions with memory barriers for vm
+ fault info
+Date: Wed,  8 Oct 2025 03:43:27 +0000
+Message-Id: <20251008034327.2475547-1-hanguidong02@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 08 Oct 2025 12:49:35 +0000
@@ -99,30 +88,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Initialize the return variable "r" to 0 in dm_cache_state() to fix
-a potential use of uninitialized variable warning.
+The atomic variable vm_fault_info_updated is used to synchronize access to
+adev->gmc.vm_fault_info between the interrupt handler and
+get_vm_fault_info().
 
-The return value for this function might not be a PTR_ERR, in casse if
-condition fails. In that case we ensure predictable reutrn.
+The default atomic functions like atomic_set() and atomic_read() do not
+provide memory barriers. This allows for CPU instruction reordering,
+meaning the memory accesses to vm_fault_info and the vm_fault_info_updated
+flag are not guaranteed to occur in the intended order. This creates a
+race condition that can lead to inconsistent or stale data being used.
 
-Signed-off-by: Eslam Khafagy <eslam.medhat1993@gmail.com>
+The previous implementation, which used an explicit mb(), was incomplete
+and inefficient. It failed to account for all potential CPU reorderings,
+such as the access of vm_fault_info being reordered before the atomic_read
+of the flag. This approach is also more verbose and less performant than
+using the proper atomic functions with acquire/release semantics.
+
+Fix this by switching to atomic_set_release() and atomic_read_acquire().
+These functions provide the necessary acquire and release semantics,
+which act as memory barriers to ensure the correct order of operations.
+It is also more efficient and idiomatic than using explicit full memory
+barriers.
+
+Fixes: b97dfa27ef3a ("drm/amdgpu: save vm fault information for amdkfd")
+Cc: stable@vger.kernel.org
+Signed-off-by: Gui-Dong Han <hanguidong02@gmail.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 5 ++---
+ drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c            | 7 +++----
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c            | 7 +++----
+ 3 files changed, 8 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 8e1622bf7a42..6b4f3eb9ce48 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3115,7 +3115,7 @@ static void hpd_rx_irq_work_suspend(struct amdgpu_display_manager *dm)
- 
- static int dm_cache_state(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index b16cce7c22c3..ac09bbe51634 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -2325,10 +2325,9 @@ void amdgpu_amdkfd_gpuvm_unmap_gtt_bo_from_kernel(struct kgd_mem *mem)
+ int amdgpu_amdkfd_gpuvm_get_vm_fault_info(struct amdgpu_device *adev,
+ 					  struct kfd_vm_fault_info *mem)
  {
--	int r;
-+	int r = 0;
+-	if (atomic_read(&adev->gmc.vm_fault_info_updated) == 1) {
++	if (atomic_read_acquire(&adev->gmc.vm_fault_info_updated) == 1) {
+ 		*mem = *adev->gmc.vm_fault_info;
+-		mb(); /* make sure read happened */
+-		atomic_set(&adev->gmc.vm_fault_info_updated, 0);
++		atomic_set_release(&adev->gmc.vm_fault_info_updated, 0);
+ 	}
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+index a8d5795084fc..cf30d3332050 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+@@ -1066,7 +1066,7 @@ static int gmc_v7_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 					GFP_KERNEL);
+ 	if (!adev->gmc.vm_fault_info)
+ 		return -ENOMEM;
+-	atomic_set(&adev->gmc.vm_fault_info_updated, 0);
++	atomic_set_release(&adev->gmc.vm_fault_info_updated, 0);
  
- 	adev->dm.cached_state = drm_atomic_helper_suspend(adev_to_drm(adev));
- 	if (IS_ERR(adev->dm.cached_state)) {
+ 	return 0;
+ }
+@@ -1288,7 +1288,7 @@ static int gmc_v7_0_process_interrupt(struct amdgpu_device *adev,
+ 	vmid = REG_GET_FIELD(status, VM_CONTEXT1_PROTECTION_FAULT_STATUS,
+ 			     VMID);
+ 	if (amdgpu_amdkfd_is_kfd_vmid(adev, vmid)
+-		&& !atomic_read(&adev->gmc.vm_fault_info_updated)) {
++		&& !atomic_read_acquire(&adev->gmc.vm_fault_info_updated)) {
+ 		struct kfd_vm_fault_info *info = adev->gmc.vm_fault_info;
+ 		u32 protections = REG_GET_FIELD(status,
+ 					VM_CONTEXT1_PROTECTION_FAULT_STATUS,
+@@ -1304,8 +1304,7 @@ static int gmc_v7_0_process_interrupt(struct amdgpu_device *adev,
+ 		info->prot_read = protections & 0x8 ? true : false;
+ 		info->prot_write = protections & 0x10 ? true : false;
+ 		info->prot_exec = protections & 0x20 ? true : false;
+-		mb();
+-		atomic_set(&adev->gmc.vm_fault_info_updated, 1);
++		atomic_set_release(&adev->gmc.vm_fault_info_updated, 1);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+index b45fa0cea9d2..0d4c93ff6f74 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+@@ -1179,7 +1179,7 @@ static int gmc_v8_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 					GFP_KERNEL);
+ 	if (!adev->gmc.vm_fault_info)
+ 		return -ENOMEM;
+-	atomic_set(&adev->gmc.vm_fault_info_updated, 0);
++	atomic_set_release(&adev->gmc.vm_fault_info_updated, 0);
+ 
+ 	return 0;
+ }
+@@ -1474,7 +1474,7 @@ static int gmc_v8_0_process_interrupt(struct amdgpu_device *adev,
+ 	vmid = REG_GET_FIELD(status, VM_CONTEXT1_PROTECTION_FAULT_STATUS,
+ 			     VMID);
+ 	if (amdgpu_amdkfd_is_kfd_vmid(adev, vmid)
+-		&& !atomic_read(&adev->gmc.vm_fault_info_updated)) {
++		&& !atomic_read_acquire(&adev->gmc.vm_fault_info_updated)) {
+ 		struct kfd_vm_fault_info *info = adev->gmc.vm_fault_info;
+ 		u32 protections = REG_GET_FIELD(status,
+ 					VM_CONTEXT1_PROTECTION_FAULT_STATUS,
+@@ -1490,8 +1490,7 @@ static int gmc_v8_0_process_interrupt(struct amdgpu_device *adev,
+ 		info->prot_read = protections & 0x8 ? true : false;
+ 		info->prot_write = protections & 0x10 ? true : false;
+ 		info->prot_exec = protections & 0x20 ? true : false;
+-		mb();
+-		atomic_set(&adev->gmc.vm_fault_info_updated, 1);
++		atomic_set_release(&adev->gmc.vm_fault_info_updated, 1);
+ 	}
+ 
+ 	return 0;
 -- 
-2.43.0
+2.25.1
 
