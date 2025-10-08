@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 969B8BC6592
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 20:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A3F6BC6598
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 20:49:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32C4C10E8CE;
-	Wed,  8 Oct 2025 18:49:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE3DF10E88E;
+	Wed,  8 Oct 2025 18:49:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YopfEUR5";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NCHPE2cO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013010.outbound.protection.outlook.com
- [40.93.196.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 169A310E8CD
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 18:49:27 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011051.outbound.protection.outlook.com
+ [40.93.194.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00F0F10E88E
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 18:49:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wzLoe9jy3fz/ZploMGYd/YIsFKg5UT9tyFE4SxYBGEDXp2hRNxuxXV4gCG7cdMtPRfW8LPOxkN9BD/1nkjgqeYUDz2VoA0XHqW/Th2g9aIoyEKyn+LepA8edmfSPrNNw2GDJzEz8Wo+5vwE1uFQBmHIYBlOGE10vWBaq2oDe7j9o9xwlnWCFDYQlol63vLYV0zwczdXDg8IY73QpXlDAzyHqWUOiwrcOqHKq8P/iyOxndUfyUarlmvzQknjKFV2I+/5fBTmmFM3T1cqdRYnQj6YbenZc2utXsRBC2FDQHVrXjvuEWmkn6wub6F4lvQYBzFRbtCE0qOP1kgdSDVh1Fw==
+ b=uh2XsnUnimCHv301pNSwGG3DPr+eh/uCxDfGA8Rz7x633Lt4uJY+Ra8wUPlEC0L1QvBPwc5Laqqr9AMxpn0AR2DbbTLdAz6f4TumUts9O4Pv5vZQx4ttyTPcSIUW013k+GK6Q9xRaGRSQCp3e881208RZ/1/aXmSvkJ+XnI5kZNNZSo41Rr5b2KZWMPo1hE9OAuyzfbqbmas59eXybLR8FPI9D7HO1t2pbjVncYuo+MxI9e33/AA8cC213I1ggmexeMdpoaIU5+QC9EfzkL/ysY7jXZyhT4wcilv7QNgBz9BOydRqoTNFWOML7hgx/z6UFGuj8FOWXlbU4/03IIBZA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b9Mo/fv/f9tI+r5RgUCLtkugtFLrh+QmeJcOzxQ2tvk=;
- b=ebYybGz3lnq09WE4fIhTUc/WiqINfI3z6UJeyR6boll+plis/Lhzb45mwkO/LSC6k202sHB/JXTTwUm4VWpeFL4qo6Rklf/hBtAwY9n9ah141nOH1WnQ+zfSZGNjvYgbIAvO+YhInzvlxZ0SjGsnD+yFBVe+nrsnEGeNWZbVJ7jocnz9eATGYtGL/H+N8Xip8ho5oT4gRrbOidT2RSM+wArD8FwAVwnl53tNEFRtpArb2YujGu2cNFGVthwg2qLAouIcpvM+Ew2ZAyFIfpneVGMsoFxeZZgxp5/0XqiPqKt2hsVQfWjJrLmM1iyPTpB+KVEm1gp3oWSjgLxSaBdmBQ==
+ bh=6AAIjN+X8k5oVf8JqzBfvGjebFNpAOtZNGpioVxPlgA=;
+ b=jSL4SnXrC0OIbInGB2b+evht3+HdiMYj87Q6ouBjVjl4PPL8QJWFP2hnt3WUgq0hkwGvDXhpnLq1mg8LLvVTajHMkmIZtIEnnt7juKY+6x3wxCMImNqxwybfb3yPbaqxUA7aCYf/nx61VL/DAE3JgBUIK1C0X/7k8S3+TcynupZC7bpqsLAwo42LW6EwheNhG5IHMk13/o3q2SLcPEutBVzrVX6l8/McXI4H1i/PtdGprK3YUcZqVrAh6SnfnirZjSpR5qZEHqJpesImQlS0bKPDvI7U6Fep7TvRjxfEpTzX9tsxI5/KEaNduR/0+XfolY7wtRI/OQvOSak8fap8fw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b9Mo/fv/f9tI+r5RgUCLtkugtFLrh+QmeJcOzxQ2tvk=;
- b=YopfEUR5BU+sDh781rccj+nycGwDbxxOK3G+dQLGF1kK89bve/292zxUY6gANRDHAYWe+CSlKmosTuI8c2rjTVTp4Txh4Kc7kunHfLRKJTrQ/QZWeM5GQrN97xiTeVqV9BlbyCz6GXhEmczh1anFnZUHnHowOKeYZUFoPINSLnw=
-Received: from SJ0PR03CA0037.namprd03.prod.outlook.com (2603:10b6:a03:33e::12)
- by BL4PR12MB9507.namprd12.prod.outlook.com (2603:10b6:208:58d::18)
+ bh=6AAIjN+X8k5oVf8JqzBfvGjebFNpAOtZNGpioVxPlgA=;
+ b=NCHPE2cOtEzWYvtKJCJIFLrrt9eef+PnAfe6ppmBFR9CVRNwwTEWGTzR7DvFqSXL6RuDh9L39xGjhqXqsTsYCnjbgEbFYCkz++giOHtvfZqQX5njyV4bXX3S3O4a2xyahNbeVuKmKRMfzXebu5EeY5MXXi9YhK71nQ60ANwvo5g=
+Received: from SJ0PR03CA0060.namprd03.prod.outlook.com (2603:10b6:a03:33e::35)
+ by LV8PR12MB9643.namprd12.prod.outlook.com (2603:10b6:408:297::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Wed, 8 Oct
- 2025 18:49:22 +0000
+ 2025 18:49:23 +0000
 Received: from SJ1PEPF000023D2.namprd02.prod.outlook.com
- (2603:10b6:a03:33e:cafe::9f) by SJ0PR03CA0037.outlook.office365.com
- (2603:10b6:a03:33e::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9182.20 via Frontend Transport; Wed,
- 8 Oct 2025 18:49:22 +0000
+ (2603:10b6:a03:33e:cafe::42) by SJ0PR03CA0060.outlook.office365.com
+ (2603:10b6:a03:33e::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9203.9 via Frontend Transport; Wed, 8
+ Oct 2025 18:49:14 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,18 +51,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb08.amd.com (165.204.84.17) by
  SJ1PEPF000023D2.mail.protection.outlook.com (10.167.244.9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9203.9 via Frontend Transport; Wed, 8 Oct 2025 18:49:22 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ 15.20.9203.9 via Frontend Transport; Wed, 8 Oct 2025 18:49:23 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 8 Oct
- 2025 11:48:53 -0700
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 8 Oct
- 2025 11:48:53 -0700
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 8 Oct
+ 2025 11:48:54 -0700
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 8 Oct
+ 2025 13:48:53 -0500
 Received: from aaurabin-tumbleweed.amd.com (10.180.168.240) by
  satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17
- via Frontend Transport; Wed, 8 Oct 2025 11:48:52 -0700
+ via Frontend Transport; Wed, 8 Oct 2025 11:48:53 -0700
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -70,67 +70,68 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Dominik Kaszewski <dominik.kaszewski@amd.com>, "Nicholas
- Kazlauskas" <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 19/22] drm/amd/display: Fix performance regression from full
- updates
-Date: Wed, 8 Oct 2025 14:47:13 -0400
-Message-ID: <20251008184839.78916-20-aurabindo.pillai@amd.com>
+ <alex.hung@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, Sung Lee
+ <sung.lee@amd.com>
+Subject: [PATCH 20/22] drm/amd/display: add additional hdcp traces
+Date: Wed, 8 Oct 2025 14:47:14 -0400
+Message-ID: <20251008184839.78916-21-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251008184839.78916-1-aurabindo.pillai@amd.com>
 References: <20251008184839.78916-1-aurabindo.pillai@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: aurabindo.pillai@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D2:EE_|BL4PR12MB9507:EE_
-X-MS-Office365-Filtering-Correlation-Id: a5d921e9-736c-441d-abb7-08de069b6578
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D2:EE_|LV8PR12MB9643:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9c198546-bd61-4e4f-201e-08de069b65f8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?E2ZuBVI1hI7NQTTjuXDPkvh/6jWwU9qgImniikneAM35WprYh7G1iPjdoChJ?=
- =?us-ascii?Q?r06UdaBbUAdBOde+CDZA++trYuiBlqQmWLn7egR4FTB2dDSXdXNqhCyvHmS+?=
- =?us-ascii?Q?BvEu9gyjYC7vOayJmY2g5LetNw2m4dNhz/UI/4mbTXeShp9Y+uT782WhErEu?=
- =?us-ascii?Q?zLra1CCzzIBHtBEw2pWbdeVnes+HVhWBw8WwHGFWwSSPGm/jsEukeB8Eo3Uv?=
- =?us-ascii?Q?j7W5byPHQhB0w6gExuznlkVIXb963WBLzsWJQ/5RRNKFJMhoMsmJAxMVxKTv?=
- =?us-ascii?Q?DQCwcyUbDOl3SGlPhR88nSSkfoxQM0iQfDjNCoWu2SuyjE6CqJBRVDBKmNop?=
- =?us-ascii?Q?l44Omztk/MCgENRQhpjhrpIsIroFD77KdL8zldLjNtGqAwYbOYZ3XJi06yJ4?=
- =?us-ascii?Q?oFUn8TEWK+i+4tKfES4TiSvRRwymxLM93IOoV9Xb1qw8zLlsVbWdEXeRES5K?=
- =?us-ascii?Q?do6Ob1maBzoRHBpmYhjYiCZc7OZb2bEj02gL6PigpOYHNMpW6n3HZeg+Z967?=
- =?us-ascii?Q?0zaAEgxUBpqeboV7SZ9dp9eeBzcL3npK9kQrNFxZ2wW6xIeNdd8K9ltZ2NRJ?=
- =?us-ascii?Q?jBIF/xAbar0iABw8Ppkh1FNEARyann4aCIozKu0xAsUPlp65vdxykw9r79Cd?=
- =?us-ascii?Q?1/9rtO7KOOlFE9smNMCFzL6v0l7bv4nAI7r0X07U7TtNnKuCZM8uLtSWm+Kt?=
- =?us-ascii?Q?S97s6ylp7z/bhyTV0MiOkyVCbmxJrZWfM4mKt1ivYrjVNfEZP9bEjDHxqoMS?=
- =?us-ascii?Q?V6pHTweXtQA+7gK7NX5JjS/rW3LdLG9PJ8YE/wpNnqSUoIhzf8exlZtnGifD?=
- =?us-ascii?Q?35JwESJJdOB60nNkB7WXr+zERYvO5PpfONdeohL3rcUbAO+F/7CmNWPCbCB7?=
- =?us-ascii?Q?nC/5x5DJeEajPPojWWkarCT72TrboXKpjJd8RnyRe+7xYNNiuxa9BBCGRGba?=
- =?us-ascii?Q?4lrFUoTLuU8J0ZOKDIfqPUAkywia6uTM905YWft76+h732yT5L4TfUsi7QaQ?=
- =?us-ascii?Q?YMipoUble4VWdcMzXeLtTayFTREgmtVbW10skCuYP/GgAjay2rrOhH0NN1Qk?=
- =?us-ascii?Q?5lezOwYpksHqFVhJ7fwtY8BhRLQfv/KR/8hhsVkZinTyXvwBZA6bKUndmC2T?=
- =?us-ascii?Q?F7VaJ5FDcL3buJpTbm5ZSF/QH//eLeP0sWBDqTuVUNgimRVULQx05ZPzeC4J?=
- =?us-ascii?Q?jm4O0lB2xSWGj+s9OPAn3AiX41Wfis9Yyopnjdfw7QRFgClcHidipxeB2ewg?=
- =?us-ascii?Q?wlaMWCrmYW3t7MPDFpRbOXE+iI0Y8kdJXBPru1Q1JPl/j+c2dj1/8R3Vu03f?=
- =?us-ascii?Q?/fs4+vqMXyjZzOQXaBbbV5h9YGhyZXOdgiojD/1j/XTgla/BRzwxFGVQqvx7?=
- =?us-ascii?Q?FZR05JVBgb7na1SM62ZwXAum8T9t+K3xH2+vQvYMaG9ftljf1sPt+JhluXr/?=
- =?us-ascii?Q?1VdRyt2TplQl6o3NM20F+XvD/aoCSSKUYs78oTZdVHjdlkeHqO2d5v7g8mrl?=
- =?us-ascii?Q?BdJ+hq4BVCzt+FJUZkeWfH+fQoTMSQ420SeQAx3gkx7SwA1YECqfY6asrGyy?=
- =?us-ascii?Q?l1gFMyAtKIaxyMfZ1iI=3D?=
+ ARA:13230040|1800799024|36860700013|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hLfSrz4eseBs+01jVqStsnqrkusGSJuJ1T/Opfwl9VcpAQjI6M2jHZttURvg?=
+ =?us-ascii?Q?QifmLd4nSE7dHqE9Rreea0ypw1337q0FNws+qt1wTj2oIns9++YluP7ggvw1?=
+ =?us-ascii?Q?LJKxPtPTk6MDzw89TY1KDqZP8U3wVK5JFba4zyYUlrhdQvoN+w8l+riIoBFS?=
+ =?us-ascii?Q?bKISo17H+JKAoexkWpLo9mfArfaMah+/LTci6KEBBDHaHZ+zHjUsszsHJOfY?=
+ =?us-ascii?Q?1VgySb1YOLO+7q/kC6DlNeVCCg23b2F8GvX7F8tg43ndjlsbFgQKVr9/yiUb?=
+ =?us-ascii?Q?QL++VgHNhRu4n0fiaiC1aMhG3bDnTO5ZU07ZvlRM4OMoRNiwUBnvLTwVuADV?=
+ =?us-ascii?Q?YtWXjSvZCY4VWXDwXlVvfcMCkMkgokHL3nwTPqkSGH2ebygY3D28tRCH1XDf?=
+ =?us-ascii?Q?9uhlo8GvBFX/LGqMeGExxMS6g0WQ048vV5mH9sTu+345Wipm+0rZhCbPCR01?=
+ =?us-ascii?Q?tuLPSSEOtKtme1qCsloFY4VwEIQAAIImQbPHaeL+0X4I7zqaUzHapE+h7vU6?=
+ =?us-ascii?Q?iWEXHjZH5f0hINRFv6bt0+XVL2eba1db3O4ZPA/llaB8OUhPTVW4waSL2O8Y?=
+ =?us-ascii?Q?3hUniZNPhgEaXi8+O7IfTVsDLh/llScMAzeOGFV5ImgpI+doEctnVtsEmMtq?=
+ =?us-ascii?Q?FhBkCcMsolPGKZtg+UnGKYn4KzX1/wobHzCbP0M1WWEbyProJw08PtdoeK5i?=
+ =?us-ascii?Q?8Sg3SiGOPR3gPJbnx8Eh2GjT3ORA4OFt4Yg86TLNrqiPjPu1bwTUmIA1oKLh?=
+ =?us-ascii?Q?a/7RIm7qKPG7Sk3b7TSBTFQXYSg/3UoWeb0T2SbwTjZnFAoabCmdLoG6sF93?=
+ =?us-ascii?Q?D0xUfwB7+fPjN+BsefHEKGR5ugUTizgPKuRHVCX68d2Tpr5xsExX8YfSYNBU?=
+ =?us-ascii?Q?1LWGsZEhtbErSjwt4S+E91WigXo+7sibHOHTJQdQzooe+ggSz6fg4KC1EODR?=
+ =?us-ascii?Q?f2agc9kQX4G3CtVeAsmNJQGs6a6I8UOrd7My9ue0mjOLqscJJKEMf8fZxcbo?=
+ =?us-ascii?Q?qGKAjW67VF5QyC/yOe7CI19rSWX4WLAxrxd1RlbUIzgKqeNEhWqjXLlRtZCA?=
+ =?us-ascii?Q?bqF1b2ekIpWbPTSCu5uN95TQwcgydM//mMPqFXWEvoZI9QKKmHhjmO/U4O8q?=
+ =?us-ascii?Q?fd0XhtLTwNDBuhIy7dtKUYY8irKeYri4dhzxkuck2GpVZF6ZgdgAhgd2jfMV?=
+ =?us-ascii?Q?drzzfjZiwMq6XN6/gQfbQ4rhMJuGPEJqL78HKy5lgWOaevD0FFhhKI2W0tUp?=
+ =?us-ascii?Q?mtSRWBSn6xvs2TRqdlI85ZwZi4cwMIpdAZrcoKA5ocPJRdXtjzHg+gQ9L02d?=
+ =?us-ascii?Q?VnFh7bZUWSsfHUTa7GAuBKVpyF4b+29g+divJdHwIXkxCSOwWausE3A13Ius?=
+ =?us-ascii?Q?WRXFqDWjwhqlKwYhm3HyaDUBYnD2HN3/8Y+4X5W+ZSLTUdttd3svhoMfgsfs?=
+ =?us-ascii?Q?IgK7bqFj8KJ+uvd6/hei/vPHJZCTK29SMPd2HbkGWNtX1zmUSnvB9on3ekHd?=
+ =?us-ascii?Q?f5ENmjOm8KPRnw+HN3f+qk1UC6WdJmrQWNYl43tqz3G0kAwzGXsum29qbnDB?=
+ =?us-ascii?Q?J40yDFe5Ru0HNdYkkOg=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
+ SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 18:49:22.3959 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5d921e9-736c-441d-abb7-08de069b6578
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 18:49:23.2304 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c198546-bd61-4e4f-201e-08de069b65f8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D2.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR12MB9507
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9643
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,124 +146,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dominik Kaszewski <dominik.kaszewski@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[Why]
-full_update_required is too strict at update_planes_and_stream_state,
-causing a performance regression due to too many updates being full.
+[why]
+Current hdcp trace only tracks hdcp errors. We need to expand the trace
+structure for more tracing information.
 
-[How]
-* Carve out weak version of full_update_required for use inside
-update_planes_and_stream_state.
+[how]
+Add following traces for hdcp1:
+- attempt_count
+- downstream_device_count
+Add following traces for hdcp2:
+- attempt_count
+- downstream_device_count
+- hdcp1_device_downstream
+- hdcp2_legacy_device_downstream
 
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Dominik Kaszewski <dominik.kaszewski@amd.com>
+Reviewed-by: Sung Lee <sung.lee@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 54 +++++++++++++++---------
- 1 file changed, 34 insertions(+), 20 deletions(-)
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.c   |  6 +++---
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.h   |  2 +-
+ .../display/modules/hdcp/hdcp1_execution.c    | 13 +++++++++++--
+ .../display/modules/hdcp/hdcp2_execution.c    | 19 ++++++++++++++++---
+ .../drm/amd/display/modules/hdcp/hdcp_log.h   |  6 ++++++
+ .../drm/amd/display/modules/inc/mod_hdcp.h    | 14 ++++++++++++++
+ 6 files changed, 51 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 34e417a12304..36b046611d02 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3419,7 +3419,7 @@ static void update_seamless_boot_flags(struct dc *dc,
- 	}
- }
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
+index c760216a6240..ca402ddcdacc 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
+@@ -354,7 +354,7 @@ enum mod_hdcp_status mod_hdcp_add_display(struct mod_hdcp *hdcp,
+ 	/* reset retry counters */
+ 	reset_retry_counts(hdcp);
  
--static bool full_update_required(struct dc *dc,
-+static bool full_update_required_weak(struct dc *dc,
- 		struct dc_surface_update *srf_updates,
- 		int surface_count,
- 		struct dc_stream_update *stream_update,
-@@ -3472,8 +3472,10 @@ static bool update_planes_and_stream_state(struct dc *dc,
- 	context = dc->current_state;
- 	update_type = dc_check_update_surfaces_for_stream(
- 			dc, srf_updates, surface_count, stream_update, stream_status);
--	if (full_update_required(dc, srf_updates, surface_count, stream_update, stream))
-+
-+	if (full_update_required_weak(dc, srf_updates, surface_count, stream_update, stream))
- 		update_type = UPDATE_TYPE_FULL;
-+
- 	/* It is possible to receive a flip for one plane while there are multiple flip_immediate planes in the same stream.
- 	 * E.g. Desktop and MPO plane are flip_immediate but only the MPO plane received a flip
- 	 * Force the other flip_immediate planes to flip so GSL doesn't wait for a flip that won't come.
-@@ -5047,18 +5049,42 @@ bool fast_nonaddr_updates_exist(struct dc_fast_update *fast_update, int surface_
- 	return false;
- }
+-	/* reset error trace */
++	/* reset trace */
+ 	memset(&hdcp->connection.trace, 0, sizeof(hdcp->connection.trace));
  
--static bool full_update_required(struct dc *dc,
-+static bool full_update_required_weak(struct dc *dc,
- 		struct dc_surface_update *srf_updates,
- 		int surface_count,
- 		struct dc_stream_update *stream_update,
- 		struct dc_stream_state *stream)
+ 	/* add display to connection */
+@@ -400,7 +400,7 @@ enum mod_hdcp_status mod_hdcp_remove_display(struct mod_hdcp *hdcp,
+ 	/* clear retry counters */
+ 	reset_retry_counts(hdcp);
+ 
+-	/* reset error trace */
++	/* reset trace */
+ 	memset(&hdcp->connection.trace, 0, sizeof(hdcp->connection.trace));
+ 
+ 	/* remove display */
+@@ -464,7 +464,7 @@ enum mod_hdcp_status mod_hdcp_update_display(struct mod_hdcp *hdcp,
+ 	/* clear retry counters */
+ 	reset_retry_counts(hdcp);
+ 
+-	/* reset error trace */
++	/* reset trace */
+ 	memset(&hdcp->connection.trace, 0, sizeof(hdcp->connection.trace));
+ 
+ 	/* set new adjustment */
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+index a37634942b07..b883d626f1c3 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+@@ -508,7 +508,7 @@ static inline void set_auth_complete(struct mod_hdcp *hdcp,
+ 		struct mod_hdcp_output *output)
  {
--
--	int i;
--	struct dc_stream_status *stream_status;
- 	const struct dc_state *context = dc->current_state;
-+	if (srf_updates)
-+		for (int i = 0; i < surface_count; i++)
-+			if (!is_surface_in_context(context, srf_updates[i].surface))
-+				return true;
- 
--	for (i = 0; i < surface_count; i++) {
-+	if (stream) {
-+		const struct dc_stream_status *stream_status = dc_stream_get_status(stream);
-+		if (stream_status == NULL || stream_status->plane_count != surface_count)
-+			return true;
-+	}
-+	if (dc->idle_optimizations_allowed)
-+		return true;
-+
-+	if (dc_can_clear_cursor_limit(dc))
-+		return true;
-+
-+	return false;
-+}
-+
-+static bool full_update_required(struct dc *dc,
-+		struct dc_surface_update *srf_updates,
-+		int surface_count,
-+		struct dc_stream_update *stream_update,
-+		struct dc_stream_state *stream)
-+{
-+	if (full_update_required_weak(dc, srf_updates, surface_count, stream_update, stream))
-+		return true;
-+
-+	for (int i = 0; i < surface_count; i++) {
- 		if (srf_updates &&
- 				(srf_updates[i].plane_info ||
- 				srf_updates[i].scaling_info ||
-@@ -5074,8 +5100,7 @@ static bool full_update_required(struct dc *dc,
- 				srf_updates[i].flip_addr->address.tmz_surface != srf_updates[i].surface->address.tmz_surface) ||
- 				(srf_updates[i].cm2_params &&
- 				 (srf_updates[i].cm2_params->component_settings.shaper_3dlut_setting != srf_updates[i].surface->mcm_shaper_3dlut_setting ||
--				  srf_updates[i].cm2_params->component_settings.lut1d_enable != srf_updates[i].surface->mcm_lut1d_enable)) ||
--				!is_surface_in_context(context, srf_updates[i].surface)))
-+				  srf_updates[i].cm2_params->component_settings.lut1d_enable != srf_updates[i].surface->mcm_lut1d_enable))))
- 			return true;
- 	}
- 
-@@ -5111,17 +5136,6 @@ static bool full_update_required(struct dc *dc,
- 			stream_update->hw_cursor_req))
- 		return true;
- 
--	if (stream) {
--		stream_status = dc_stream_get_status(stream);
--		if (stream_status == NULL || stream_status->plane_count != surface_count)
--			return true;
--	}
--	if (dc->idle_optimizations_allowed)
--		return true;
--
--	if (dc_can_clear_cursor_limit(dc))
--		return true;
--
- 	return false;
+ 	output->auth_complete = 1;
+-	mod_hdcp_log_ddc_trace(hdcp);
++	HDCP_AUTH_COMPLETE_TRACE(hdcp);
  }
  
+ /* connection topology helpers */
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+index 8bc377560787..1bbd728d4345 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+@@ -29,6 +29,7 @@ static inline enum mod_hdcp_status validate_bksv(struct mod_hdcp *hdcp)
+ {
+ 	uint64_t n = 0;
+ 	uint8_t count = 0;
++	enum mod_hdcp_status status;
+ 	u8 bksv[sizeof(n)] = { };
+ 
+ 	memcpy(bksv, hdcp->auth.msg.hdcp1.bksv, sizeof(hdcp->auth.msg.hdcp1.bksv));
+@@ -38,8 +39,14 @@ static inline enum mod_hdcp_status validate_bksv(struct mod_hdcp *hdcp)
+ 		count++;
+ 		n &= (n - 1);
+ 	}
+-	return (count == 20) ? MOD_HDCP_STATUS_SUCCESS :
+-			MOD_HDCP_STATUS_HDCP1_INVALID_BKSV;
++
++	if (count == 20) {
++		hdcp->connection.trace.hdcp1.attempt_count++;
++		status = MOD_HDCP_STATUS_SUCCESS;
++	} else {
++		status = MOD_HDCP_STATUS_HDCP1_INVALID_BKSV;
++	}
++	return status;
+ }
+ 
+ static inline enum mod_hdcp_status check_ksv_ready(struct mod_hdcp *hdcp)
+@@ -135,6 +142,8 @@ static inline enum mod_hdcp_status check_device_count(struct mod_hdcp *hdcp)
+ 	if (get_device_count(hdcp) == 0)
+ 		return MOD_HDCP_STATUS_HDCP1_DEVICE_COUNT_MISMATCH_FAILURE;
+ 
++	hdcp->connection.trace.hdcp1.downstream_device_count = get_device_count(hdcp);
++
+ 	/* Some MST display may choose to report the internal panel as an HDCP RX.
+ 	 * To update this condition with 1(because the immediate repeater's internal
+ 	 * panel is possibly not included in DEVICE_COUNT) + get_device_count(hdcp).
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+index bb8ae80b37f8..5628f0ef73fd 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+@@ -48,6 +48,7 @@ static inline enum mod_hdcp_status check_receiver_id_list_ready(struct mod_hdcp
+ static inline enum mod_hdcp_status check_hdcp2_capable(struct mod_hdcp *hdcp)
+ {
+ 	enum mod_hdcp_status status;
++	struct mod_hdcp_trace *trace = &hdcp->connection.trace;
+ 
+ 	if (is_dp_hdcp(hdcp))
+ 		status = (hdcp->auth.msg.hdcp2.rxcaps_dp[0] == HDCP_2_2_RX_CAPS_VERSION_VAL) &&
+@@ -55,9 +56,14 @@ static inline enum mod_hdcp_status check_hdcp2_capable(struct mod_hdcp *hdcp)
+ 				MOD_HDCP_STATUS_SUCCESS :
+ 				MOD_HDCP_STATUS_HDCP2_NOT_CAPABLE;
+ 	else
+-		status = (hdcp->auth.msg.hdcp2.hdcp2version_hdmi & HDCP_2_2_HDMI_SUPPORT_MASK) ?
+-				MOD_HDCP_STATUS_SUCCESS :
+-				MOD_HDCP_STATUS_HDCP2_NOT_CAPABLE;
++		status = (hdcp->auth.msg.hdcp2.hdcp2version_hdmi
++				 & HDCP_2_2_HDMI_SUPPORT_MASK)
++				? MOD_HDCP_STATUS_SUCCESS
++				: MOD_HDCP_STATUS_HDCP2_NOT_CAPABLE;
++
++	if (status == MOD_HDCP_STATUS_SUCCESS)
++		trace->hdcp2.attempt_count++;
++
+ 	return status;
+ }
+ 
+@@ -201,10 +207,17 @@ static inline uint8_t get_device_count(struct mod_hdcp *hdcp)
+ 
+ static enum mod_hdcp_status check_device_count(struct mod_hdcp *hdcp)
+ {
++	struct mod_hdcp_trace *trace = &hdcp->connection.trace;
++
+ 	/* Avoid device count == 0 to do authentication */
+ 	if (get_device_count(hdcp) == 0)
+ 		return MOD_HDCP_STATUS_HDCP1_DEVICE_COUNT_MISMATCH_FAILURE;
+ 
++	trace->hdcp2.downstream_device_count = get_device_count(hdcp);
++	trace->hdcp2.hdcp1_device_downstream =
++			HDCP_2_2_HDCP1_DEVICE_CONNECTED(hdcp->auth.msg.hdcp2.rx_id_list[2]);
++	trace->hdcp2.hdcp2_legacy_device_downstream =
++			HDCP_2_2_HDCP_2_0_REP_CONNECTED(hdcp->auth.msg.hdcp2.rx_id_list[2]);
+ 	/* Some MST display may choose to report the internal panel as an HDCP RX.   */
+ 	/* To update this condition with 1(because the immediate repeater's internal */
+ 	/* panel is possibly not included in DEVICE_COUNT) + get_device_count(hdcp). */
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.h
+index 1d83c1b9da10..26553aa4c5ca 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.h
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_log.h
+@@ -31,6 +31,7 @@
+ #define HDCP_LOG_FSM(hdcp, ...) DRM_DEBUG_KMS(__VA_ARGS__)
+ #define HDCP_LOG_TOP(hdcp, ...) pr_debug("[HDCP_TOP]:"__VA_ARGS__)
+ #define HDCP_LOG_DDC(hdcp, ...) pr_debug("[HDCP_DDC]:"__VA_ARGS__)
++#define HDCP_LOG_TRA(hdcp) do {} while (0)
+ 
+ /* default logs */
+ #define HDCP_ERROR_TRACE(hdcp, status) \
+@@ -131,4 +132,9 @@
+ 		HDCP_LOG_TOP(hdcp, "[Link %d] %s display %d", hdcp->config.index, __func__, i); \
+ } while (0)
+ 
++#define HDCP_AUTH_COMPLETE_TRACE(hdcp) do { \
++		mod_hdcp_log_ddc_trace(hdcp); \
++		HDCP_LOG_TRA(hdcp); \
++} while (0)
++
+ #endif // MOD_HDCP_LOG_H_
+diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
+index b51ddf2846df..46e52fb3a118 100644
+--- a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
++++ b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
+@@ -230,9 +230,23 @@ struct mod_hdcp_error {
+ 	uint8_t state_id;
+ };
+ 
++struct mod_hdcp1_trace {
++	uint8_t attempt_count;
++	uint8_t downstream_device_count;
++};
++
++struct mod_hdcp2_trace {
++	uint8_t attempt_count;
++	uint8_t downstream_device_count;
++	uint8_t hdcp1_device_downstream;
++	uint8_t hdcp2_legacy_device_downstream;
++};
++
+ struct mod_hdcp_trace {
+ 	struct mod_hdcp_error errors[MAX_NUM_OF_ERROR_TRACE];
+ 	uint8_t error_count;
++	struct mod_hdcp1_trace hdcp1;
++	struct mod_hdcp2_trace hdcp2;
+ };
+ 
+ enum mod_hdcp_encryption_status {
 -- 
 2.51.0
 
