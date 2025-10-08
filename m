@@ -2,161 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DFC2BC4D76
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 14:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6E5BC5247
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Oct 2025 15:11:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA94B10E7F8;
-	Wed,  8 Oct 2025 12:36:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BEB510E32A;
+	Wed,  8 Oct 2025 13:11:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="OTGvk7aY";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CvR2V9C7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010011.outbound.protection.outlook.com [52.101.46.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F4710E380;
- Wed,  8 Oct 2025 12:36:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xjx6g0Q55ra0Imm+y6e/54Xn459kW/W/6BgEPLPh/A0HWo5gx6kuarsOEKWBoncZg2nnzMNZpd7qphpzsUGpn/G2arVS44r1ab2e0qNJG/ym8oLm1V0YqdyqKMR+9ybUGm7oIvqxjNoHzK1sfK9UsYxv6pb2TTzib0Yoo2kfNsJYZXnH32jeG9CLUReNftSIIYQU9NWTQKAZZuRU/N5qA1STQIV60V/r3iVWUIYya9AahKh8em+aYPs8NplSc+ke5yvUhsGoLeKi1ZdnpaiiikSGkuP55kcDzv7cAtzlFhUWqqpR+yHMyCHFHj9lQqsvJ3OqY9q3p7cBx27rdiALxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nmmvU5tqFjQenZXnEnmnMr8vhjtV++K3y3gg1+K0DTw=;
- b=zMLofgkgfa+Gm5WLSDM131Dydpgp1ZRNJvyqAbvf2MVVUFAzYt+I+Rij0VvjTjTuUtRHmQL0K5G0JYMmQCIS9zBqDrnQbp/ZmezGO/27hFRtj3yB+W8s9AYD/qqVSPIgsLBSB1Ll1M4zh3Unbf3xhyu+iIYEf4kJoGKZGDfFDl1aT7k1iT03AIV3Q3ukxD5eTsgqeRDU1NsQ5rjuZXWYyuSK5RLrWrrgIeiQFXDdnBXrZl1rme2RpAdS3xBhoKs57Sai6gWBer4/BVCQnaG9uXdsOz7ABJDRtIT/7XYtEjoTbEBDRl0U6U48YnyJ23SdfNTyNVroBWgbqs4kDjdbmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nmmvU5tqFjQenZXnEnmnMr8vhjtV++K3y3gg1+K0DTw=;
- b=OTGvk7aYEv1EBNztxF98S1z+KZzdRC4/iTsGaN1cS7CvzUjOWLd+9MbtIBMktETMh9KQiakceVamftz/dglo4RKrve7FWY/yFmFMeK8SRhAQ7xJnE7R0LVUGrICkqcEqx7WQce3U3yw92Dev4j6KAMU55tN5DxxrcMuoPE7rzTo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DM6PR12MB4418.namprd12.prod.outlook.com (2603:10b6:5:28e::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Wed, 8 Oct
- 2025 12:36:04 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9182.017; Wed, 8 Oct 2025
- 12:36:04 +0000
-Message-ID: <6bba6d25-91f3-49a6-81fc-7a03d891cd1d@amd.com>
-Date: Wed, 8 Oct 2025 14:35:58 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Improving the worst case TTM large allocation
- latency
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Sui Jingfeng <suijingfeng@loongson.cn>,
- Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Zack Rusin <zack.rusin@broadcom.com>
-References: <20251008115314.55438-1-tvrtko.ursulin@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20251008115314.55438-1-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0046.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:cc::9) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47A9C10E32A;
+ Wed,  8 Oct 2025 13:11:48 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 362F261FE6;
+ Wed,  8 Oct 2025 13:11:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F5B4C4CEF4;
+ Wed,  8 Oct 2025 13:11:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1759929106;
+ bh=Rjxnb9v8OPdRmchJHGE4ToAHqtgpWsjRyLajQl5ctos=;
+ h=From:Date:Subject:To:Cc:From;
+ b=CvR2V9C7Oh+kS3sJN1+u6DuzWtq1byguoOwq0sfOn1xd9iB4yD9U90I3W9UhEyc9R
+ I7Maw9f3tCpvB0h7UEMDpl/KiPiJ8HOQKeb+jpzIyoNnV8mt4bEoVPPi/KkRJ/6iQO
+ xl2MB5FR6IhkeHwqtoPvVLnMKNK7Kjegcax8BsWBaYoDp0WhD7IusBqPEjlbbI0pLc
+ 1xO0ldYE/RKs4/Owh8r9NDu8kdsRfxt0KOelYbmTY/eqyzY2nm52kdTc4lCJ9WTMmj
+ 5wsotfhTdV6OktU6LOXZ4VdodBLPuVsAItGU+/9o3NLUR2pWwSNhw6DQY1CYJeOM18
+ 2GEIgUPGmahRw==
+From: Maxime Ripard <mripard@kernel.org>
+Date: Wed, 08 Oct 2025 15:11:42 +0200
+Subject: [PATCH v2] drm/atomic: Change state pointers to a more meaningful name
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM6PR12MB4418:EE_
-X-MS-Office365-Filtering-Correlation-Id: fca2ddbc-96a5-4e60-67e6-08de06673eab
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NjIzWjVEUXNSNHk4RUJiUTkxcEtCOVNuL0twM1VJcFQ1UmZZNGRHcWdWdjA5?=
- =?utf-8?B?WVMvSGpnUWJPeWZTMzNLNXQ2SXF5OFh2YXoyaTdnT0M3ZzZXVXI4bzBOdWhr?=
- =?utf-8?B?dkdiZHJZeExzdlVieEtRdFV1ZThKemtlcExSNjNGSkE3a0U0SnQ4SHY5N0cz?=
- =?utf-8?B?QnZNZlJWeVBvVG1qdFUwQnpTb2VXOGtwa3hqS0t5bUNOZWI2cUl0OU03amlT?=
- =?utf-8?B?WkRzdTFURUFKOXA5WG93bG5Fd0lxL0ttU0pkQlpBZ1BmUXVDVmFNUmxXR2JN?=
- =?utf-8?B?bWY2cGo0Q2JZZXRQdzVsR01vZDFWZzlZMk9sUEZNZkVGOFc3Y0VrdW5PRmNL?=
- =?utf-8?B?ZGFyVHlmL2FlWVFTNGJlT2xJRGl5bXNKbS9XQ2JUTEo2MTlDbk4wbS9FYm1r?=
- =?utf-8?B?K2hNdVMrTkkzMFU5d2tmcjVWWUZoakJ5NnJYRmV6NEt0cG95dFo3RXdhQW9t?=
- =?utf-8?B?bXZxRVBWT2IyekNCNU4ycDJGa0JEVUk2VHl6TGxmMnZrUnorVjBwT281Tnht?=
- =?utf-8?B?TmwwSFJTMFhZckJsdityTytEOHJhc3pwb3lVQWV4WEtXWjlEa0tvOUN5YkVX?=
- =?utf-8?B?VUNkb0sxT3hTL2RMZXR0WW9EbnU0Q0IybjQ0UEtSaEV5QUtBYW4yUnZJT2Fp?=
- =?utf-8?B?akRIYmNERWFnUTRONTZWbW1UL1gxbjVEa2doc2g2ZXEzRFR0azgxdTRXN3pq?=
- =?utf-8?B?QzQwSGlXUFJwbTVHdFUyRGhEc2JMcVl5T01BT1JuNTRlaHZCL1pHTi9xVjJ0?=
- =?utf-8?B?eEQwOTRzSlN6U2hscWN0SDZsY2pjaHJDMzF3WGhIbFB3R0cyWG5KcjBlYlRV?=
- =?utf-8?B?SHRWN0kzYW83V01lMUJmeEFXbFdiODhaNVdpdzBhMnVENFBMT0lqQk01bmN6?=
- =?utf-8?B?YXEvN1NvWElJWm15Y0FKamh2NGtpenFZZ2lMai9MZ1ZEUUJsR2QxcUhhelkz?=
- =?utf-8?B?aFh0UStqREw3aEdLWHpvVzlRTG51Y05VQlVRZUw4anE2Z24ySGxSRCtFTk9m?=
- =?utf-8?B?akMrUFRUQnhjWXZvMnh4dlNSYWZmbEhGMDRITW54WDJ2dUJXdy9jYmFtYUlo?=
- =?utf-8?B?RHpFNmhWSU95cm1CRHJFRk11eXdoVmZGN082QklnM2k2ZXB1ZHBCMkZGNXY4?=
- =?utf-8?B?WGZsUmFzWlVwbUJJcm40d05TNTZlZ1BkaTVWRU85bjRvVE9OQXF2TENEa2hB?=
- =?utf-8?B?MGVjVW9yamJpdGZENDlyTFFVam9QeG16V2VNeWliYXVCekt1WUwyT0RSWWp0?=
- =?utf-8?B?RmppU3c4UXBMMGhodmE2L2ZnYldpK2IrdTI1WDdZSDlNK0I5M0JObWw3eG81?=
- =?utf-8?B?UjFOSElRNkVCZGVQMkdZN1FvMVRvU1VHRlQySks4eXV2MnArTi8rTk8vdm5u?=
- =?utf-8?B?U0M2OTd6NDA4TzFIY050YWNHSWVScXFPakZ6aTRjQTg1aGZmU1FpVzJxdWx4?=
- =?utf-8?B?aXg0QkZpTXZOVURsNis0NmdraHVYNmtKNXhJWk02eU5ZMGZoeHB3NGFKanBu?=
- =?utf-8?B?dDc5N1VhMkNraisvREg4aXJqMmtMbzZVc3hCdFo1cUtRd1lpSUlhUmVUdDJk?=
- =?utf-8?B?eU9yVmlkdjJDUGJMY052cjhVTjFBK0NBQU9FUll5MkRVdzVKVmpHQTNQN2R5?=
- =?utf-8?B?M3JSZnNiVkZMZDhYUHB0M2kyZG1BOHg1ZnIwaEtsaU5vdXdpUVE3WWp3bGlv?=
- =?utf-8?B?MUtHWVczaHVtM21UMk83L3NETkU5VHNTcGtiSmpIQ25QWjU3ZGxaTm5WYUdr?=
- =?utf-8?B?eitrWXBubDRSZldTNDFETEE4WE9XRHM4bnJRdmowa1FhaE52V25VeXQ5SGJ6?=
- =?utf-8?B?bXFyWXlEWU1tRDRHVGorak9vdGE5VTVvQTVkOC9xRFlxYTBwQ0tkdEYvTUFI?=
- =?utf-8?B?bGRucU9JR2xvVnRodWlsaTh4U08wOFZRdzY3a0JFdkppUUE9PQ==?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OE1qbm9Sdzl4bmdlSkNFM1hGZTNYNmZrWjhkMWR3YnlOZWxmOStxcnVDN29U?=
- =?utf-8?B?WjFZRzVyaSszaFpuMXFPamtWYTFYRS84bjJaMEo4SWV6bnhPam1BMlNEaG11?=
- =?utf-8?B?Wmp1VmRYb0VaVW9YeDZ4N3J0U2h4b3JWMGUwZkFuSDBQM3FvSWw0TlNob1pR?=
- =?utf-8?B?cjdMZlNuZEQvUzNQdmI2U0tpczRsVDdTNjRSRkRzMkNwU0NydEtRS3R2amky?=
- =?utf-8?B?ZDlidE1OMWVlWG9VbUtZK0k0Y2UvQkpuVXViZndWbGQ5OGpXb0FLbS9VUjBx?=
- =?utf-8?B?ZGlzKzI3Ly8zcUFIQXRaMHFacSswTFIvbHRvSVdpYUxiZUdiWU1LVzI4M0Nl?=
- =?utf-8?B?NlF2MVBBbnJ3aUo1ZXBRQ0Z1dVVJYnR1VEwva1hteXZ3d0MrZEd2R3UzcWkv?=
- =?utf-8?B?VGZXOE0zYTRZMGJBVmFRanpPT0ZjSGtVU1M5SUNvVWlmQTdacTNQdkg5Q2wv?=
- =?utf-8?B?cWNqOXBSZDB3eUtDMlNXZ0NPdXhpNG5OVDdPS0k1dFNrSXNUKzVZNkY0bTVj?=
- =?utf-8?B?bkJPK1NWakRLTnlCc0tSTGxQcWJON0Fkc1Y1OWdNZkJ2d3ltYnl1NlE4K0FE?=
- =?utf-8?B?R3BsSlVtVE9kZDM1bmllVTBldmEwR1ViaTdSekptOXlBMGljcWlzSVNZSEFO?=
- =?utf-8?B?NlpGdHNoL2NPZStIbU85OGRyWE5VbFhtdHpXb2lPbzJkQVFsbnhsTGpIQlBR?=
- =?utf-8?B?dHdoS1dpRnRSTU4yNGIwMXNIN29RT1N5MWF2OGRmK2N3WUZxN0g5R2ZkT2Zl?=
- =?utf-8?B?VGRocXNIWVFuTFkyS0ZuNUV0MkZlaFZ5eE44R05pSGp4WTduZVNKU2VWT041?=
- =?utf-8?B?Y3pWM1ZnRE1rVVNmOGhMUndURmtkWU5sdisxOGhLTWp2NFQyaFl6Y3o3ajVZ?=
- =?utf-8?B?bUNIM1RQYWZmVHBmSnJjZklVK0F0M0F4YlByRzdUUWNBZVptOEVSdGx4Y1FL?=
- =?utf-8?B?eEt1dGd0d2xYQlVacGtHQlVCd2pMMmNtdnQ1TXVoK2M5aDA4L1dsUjl3d2F0?=
- =?utf-8?B?d2U0UUM0WW02dUEvRUc2aTNnbFRiMUhkaEo3VVlRMUtweS9SS2lMNkFmMnRH?=
- =?utf-8?B?YTVkNnVOQm9nZGE5V1FreWlKQURxMTJrWDJjTHNKckVsUUtTYVBRNFZzaUZv?=
- =?utf-8?B?clVSbjNaNktGOWUwYzM1aXVjbzBRRGtrOEt2V0RTeVlHMXkzcGNlWDllcmlu?=
- =?utf-8?B?Zkdnc3NtY3lDSVZQWmdhU2tDTHFJVzVXc0drNDBEUE4xRmpxRHJMaklwMnVp?=
- =?utf-8?B?WDZhbU9FV0ZDOGdibmIrSzZjZERrTXZJZTJrOTh5MXZnTU9TSkZNNTB3ZGx6?=
- =?utf-8?B?eno3bUpkTWJucEJTWGxaTVNqdW4yRGJTdW1PbEN1VDZDZTFrcmM3MXNKT0Q0?=
- =?utf-8?B?alVNZWhuNVFrVzNtRjVMTElwU1FVZzVEaTRQL2hOWkZxNTlUZXh0QkNwcEEv?=
- =?utf-8?B?Qks1Mm4yeEZKZmd5bHVNaHVzZ0ZXSEN3UVVUNU5wZUFOcmhCeHF1akJxQXVB?=
- =?utf-8?B?SFR4bUZJTGpEc2d2YmRvOXgzaU9BeDFtV0swbHVSUVp3OHZaamlXU1NvbkJa?=
- =?utf-8?B?cVlWeTJpcUZQdU5RVWZSRmZ6VytFWkEzb0FGTnBaaWZRTFVsN016ck1YNTVZ?=
- =?utf-8?B?czRubTlBM2NqRFp4T2t3U0p3RHlocW42ZXZ0K0R4a3lCV3p6RWx0VEpObjRq?=
- =?utf-8?B?MnZnVG1HMHNaQ0dVWjFGcG4vY3lyUWlIN2hLK3FORFQ5NW11ZkVjSXhNMG41?=
- =?utf-8?B?ellKeVVialBCWGNxUmd6V2hoNXhDdmlpSDIvZzg5UkJzVjhzdE50NU5xdWkz?=
- =?utf-8?B?YW16RjFzYjg2SHhFWll4TFJ3SDJjeFRCd0x1aFVWdHM0QzJOTHpJWGRPT0pH?=
- =?utf-8?B?TDFaQVpwamlBa1ljcHRCSnovQTR0eFVqSFNsYi9hWnVIeHhXcEVyMEVGV2ky?=
- =?utf-8?B?MTF5S3dycmJEMXpYcXhQUnpEQTRnellkTHg1SjBrUFBmb0Y3akpsMUxSMWpH?=
- =?utf-8?B?RkRpUHFFNWRxMVloUWtTWE9abGVNOHdJbmw4eUlVS0R2cHYzT0hhVFRqaDYx?=
- =?utf-8?B?OUNhL25lT0JreFF1UCtzM2VscFBibllWOE5ZQlVuVVBBV1N3TXVwL2NQZ1c5?=
- =?utf-8?Q?bYYjLyeHAC5Gueypr/SHdHiSd?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fca2ddbc-96a5-4e60-67e6-08de06673eab
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 12:36:03.9605 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rAN3qz2GGMBfuiDdOQnP18tXNkGKJsnJ9Fw/t4Yv8OM+clneCjHuScSSsXNJP4xH
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4418
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251008-drm-rename-state-v2-1-49b490b2676a@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAA1j5mgC/32NQQ6CMBBFr0Jm7Zh2QsW48h6GRQsDNEoh04ZoS
+ O9u5QAu30v++ztEFs8RbtUOwpuPfgkF6FRBN9kwMvq+MJAio5W6YC8zCgc7M8ZkE6MjpwbulRm
+ uBGW2Cg/+fSQfbeHJx7TI53jY9M/+iW0aNRrXdLU2ddOQuz9ZAr/Oi4zQ5py/MIx2QbEAAAA=
+X-Change-ID: 20251006-drm-rename-state-b2b0fed05f82
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11832; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=Rjxnb9v8OPdRmchJHGE4ToAHqtgpWsjRyLajQl5ctos=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDBnPkvlzWjyua9/S2DL9pb2PzC1dNgO9a99a9vhf2M71V
+ LT/3ZzOjqksDMKcDLJiiixPZMJOL29fXOVgv/IHzBxWJpAhDFycAjCR7bcYG9YKfyyOc68T7X6V
+ nGK0tzbT+Iy0JJ/mFi+/ALGth1MntdXfduhdL5Qo9iJ3XfnvM4GujPWe0bLH364WMShhjlF2c5h
+ 081sN/7c7Rjd1Da6bNxza8UYwXX3xxSdrUrhOnzpab9008zsA
+X-Developer-Key: i=mripard@kernel.org; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,106 +73,339 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 08.10.25 13:53, Tvrtko Ursulin wrote:
-> Disclaimer:
-> Please note that as this series includes a patch which touches a good number of
-> drivers I will only copy everyone in the cover letter and the respective patch.
-> Assumption is people are subscribed to dri-devel so can look at the whole series
-> there. I know someone is bound to complain for both the case when everyone is
-> copied on everything for getting too much email, and also for this other case.
-> So please be flexible.
-> 
-> Description:
-> 
-> All drivers which use the TTM pool allocator end up requesting large order
-> allocations when allocating large buffers. Those can be slow due memory pressure
-> and so add latency to buffer creation. But there is often also a size limit
-> above which contiguous blocks do not bring any performance benefits. This series
-> allows drivers to say when it is okay for the TTM to try a bit less hard.
-> 
-> We do this by allowing drivers to specify this cut off point when creating the
-> TTM device and pools. Allocations above this size will skip direct reclaim so
-> under memory pressure worst case latency will improve. Background reclaim is
-> still kicked off and both before and after the memory pressure all the TTM pool
-> buckets remain to be used as they are today.
-> 
-> This is especially interesting if someone has configured MAX_PAGE_ORDER to
-> higher than the default. And even with the default, with amdgpu for example,
-> the last patch in the series makes use of the new feature by telling TTM that
-> above 2MiB we do not expect performance benefits. Which makes TTM not try direct
-> reclaim for the top bucket (4MiB).
-> 
-> End result is TTM drivers become a tiny bit nicer mm citizens and users benefit
-> from better worst case buffer creation latencies. As a side benefit we get rid
-> of two instances of those often very unreadable mutliple nameless booleans
-> function signatures.
-> 
-> If this sounds interesting and gets merge the invidual drivers can follow up
-> with patches configuring their thresholds.
-> 
-> v2:
->  * Christian suggested to pass in the new data by changing the function signatures.
-> 
-> v3:
->  * Moved ttm pool helpers into new ttm_pool_internal.h. (Christian)
+The state pointer found in the struct drm_atomic_state internals for
+most object is a bit ambiguous, and confusing when those internals also
+have old state and new state.
 
-Patch #3 is Acked-by: Christian König <christian.koenig@amd.com>.
+After the recent cleanups, the state pointer only use is to point to the
+state we need to free when destroying the atomic state.
 
-The rest is Reviewed-by: Christian König <christian.koenig@amd.com>
+We can thus rename it something less ambiguous, and hopefully more
+meaningful.
 
-Thanks,
-Christian.
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+Changes in v2:
+- Switch from freeable_state to state_to_destroy
+- Link to v1: https://lore.kernel.org/r/20251006-drm-rename-state-v1-1-5b7c4154772b@kernel.org
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 ++--
+ drivers/gpu/drm/drm_atomic.c                      | 24 +++++++++++------------
+ drivers/gpu/drm/drm_atomic_helper.c               |  8 ++++----
+ include/drm/drm_atomic.h                          | 16 +++++++--------
+ 4 files changed, 26 insertions(+), 26 deletions(-)
 
-> 
-> v1 thread:
-> https://lore.kernel.org/dri-devel/20250919131127.90932-1-tvrtko.ursulin@igalia.com/
-> 
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Sui Jingfeng <suijingfeng@loongson.cn>
-> Cc: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Zack Rusin <zack.rusin@broadcom.com>
-> 
-> Tvrtko Ursulin (5):
->   drm/ttm: Add getter for some pool properties
->   drm/ttm: Replace multiple booleans with flags in pool init
->   drm/ttm: Replace multiple booleans with flags in device init
->   drm/ttm: Allow drivers to specify maximum beneficial TTM pool size
->   drm/amdgpu: Configure max beneficial TTM pool allocation order
-> 
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  7 +--
->  drivers/gpu/drm/drm_gem_vram_helper.c         |  2 +-
->  drivers/gpu/drm/i915/intel_region_ttm.c       |  2 +-
->  drivers/gpu/drm/loongson/lsdc_ttm.c           |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_ttm.c         |  4 +-
->  drivers/gpu/drm/qxl/qxl_ttm.c                 |  2 +-
->  drivers/gpu/drm/radeon/radeon_ttm.c           |  4 +-
->  drivers/gpu/drm/ttm/tests/ttm_bo_test.c       | 16 +++----
->  .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |  2 +-
->  drivers/gpu/drm/ttm/tests/ttm_device_test.c   | 31 +++++--------
->  drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c | 22 ++++-----
->  drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.h |  7 +--
->  drivers/gpu/drm/ttm/tests/ttm_pool_test.c     | 23 +++++-----
->  drivers/gpu/drm/ttm/ttm_device.c              |  7 ++-
->  drivers/gpu/drm/ttm/ttm_pool.c                | 45 +++++++++++--------
->  drivers/gpu/drm/ttm/ttm_pool_internal.h       | 24 ++++++++++
->  drivers/gpu/drm/ttm/ttm_tt.c                  | 10 +++--
->  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |  4 +-
->  drivers/gpu/drm/xe/xe_device.c                |  2 +-
->  include/drm/ttm/ttm_device.h                  |  2 +-
->  include/drm/ttm/ttm_pool.h                    | 13 +++---
->  21 files changed, 125 insertions(+), 106 deletions(-)
->  create mode 100644 drivers/gpu/drm/ttm/ttm_pool_internal.h
-> 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 62defeccbb5ca09c89523fc4112d2085bbdbb0a9..275e237c1058b76640c8dd36443b034c6c71f84f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -12335,22 +12335,22 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+ 
+ 			if (obj->funcs == adev->dm.atomic_obj.funcs) {
+ 				int j = state->num_private_objs-1;
+ 
+ 				dm_atomic_destroy_state(obj,
+-						state->private_objs[i].state);
++						state->private_objs[i].state_to_destroy);
+ 
+ 				/* If i is not at the end of the array then the
+ 				 * last element needs to be moved to where i was
+ 				 * before the array can safely be truncated.
+ 				 */
+ 				if (i != j)
+ 					state->private_objs[i] =
+ 						state->private_objs[j];
+ 
+ 				state->private_objs[j].ptr = NULL;
+-				state->private_objs[j].state = NULL;
++				state->private_objs[j].state_to_destroy = NULL;
+ 				state->private_objs[j].old_state = NULL;
+ 				state->private_objs[j].new_state = NULL;
+ 
+ 				state->num_private_objs = j;
+ 				break;
+diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+index 0fda567c390057b10bce691d9ddc11308088d92e..be2cb6e43cb07fbe553d1ab875911253be628d1a 100644
+--- a/drivers/gpu/drm/drm_atomic.c
++++ b/drivers/gpu/drm/drm_atomic.c
+@@ -205,13 +205,13 @@ void drm_atomic_state_default_clear(struct drm_atomic_state *state)
+ 
+ 		if (!connector)
+ 			continue;
+ 
+ 		connector->funcs->atomic_destroy_state(connector,
+-						       state->connectors[i].state);
++						       state->connectors[i].state_to_destroy);
+ 		state->connectors[i].ptr = NULL;
+-		state->connectors[i].state = NULL;
++		state->connectors[i].state_to_destroy = NULL;
+ 		state->connectors[i].old_state = NULL;
+ 		state->connectors[i].new_state = NULL;
+ 		drm_connector_put(connector);
+ 	}
+ 
+@@ -220,14 +220,14 @@ void drm_atomic_state_default_clear(struct drm_atomic_state *state)
+ 
+ 		if (!crtc)
+ 			continue;
+ 
+ 		crtc->funcs->atomic_destroy_state(crtc,
+-						  state->crtcs[i].state);
++						  state->crtcs[i].state_to_destroy);
+ 
+ 		state->crtcs[i].ptr = NULL;
+-		state->crtcs[i].state = NULL;
++		state->crtcs[i].state_to_destroy = NULL;
+ 		state->crtcs[i].old_state = NULL;
+ 		state->crtcs[i].new_state = NULL;
+ 
+ 		if (state->crtcs[i].commit) {
+ 			drm_crtc_commit_put(state->crtcs[i].commit);
+@@ -240,24 +240,24 @@ void drm_atomic_state_default_clear(struct drm_atomic_state *state)
+ 
+ 		if (!plane)
+ 			continue;
+ 
+ 		plane->funcs->atomic_destroy_state(plane,
+-						   state->planes[i].state);
++						   state->planes[i].state_to_destroy);
+ 		state->planes[i].ptr = NULL;
+-		state->planes[i].state = NULL;
++		state->planes[i].state_to_destroy = NULL;
+ 		state->planes[i].old_state = NULL;
+ 		state->planes[i].new_state = NULL;
+ 	}
+ 
+ 	for (i = 0; i < state->num_private_objs; i++) {
+ 		struct drm_private_obj *obj = state->private_objs[i].ptr;
+ 
+ 		obj->funcs->atomic_destroy_state(obj,
+-						 state->private_objs[i].state);
++						 state->private_objs[i].state_to_destroy);
+ 		state->private_objs[i].ptr = NULL;
+-		state->private_objs[i].state = NULL;
++		state->private_objs[i].state_to_destroy = NULL;
+ 		state->private_objs[i].old_state = NULL;
+ 		state->private_objs[i].new_state = NULL;
+ 	}
+ 	state->num_private_objs = 0;
+ 
+@@ -359,11 +359,11 @@ drm_atomic_get_crtc_state(struct drm_atomic_state *state,
+ 
+ 	crtc_state = crtc->funcs->atomic_duplicate_state(crtc);
+ 	if (!crtc_state)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	state->crtcs[index].state = crtc_state;
++	state->crtcs[index].state_to_destroy = crtc_state;
+ 	state->crtcs[index].old_state = crtc->state;
+ 	state->crtcs[index].new_state = crtc_state;
+ 	state->crtcs[index].ptr = crtc;
+ 	crtc_state->state = state;
+ 
+@@ -544,11 +544,11 @@ drm_atomic_get_plane_state(struct drm_atomic_state *state,
+ 
+ 	plane_state = plane->funcs->atomic_duplicate_state(plane);
+ 	if (!plane_state)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	state->planes[index].state = plane_state;
++	state->planes[index].state_to_destroy = plane_state;
+ 	state->planes[index].ptr = plane;
+ 	state->planes[index].old_state = plane->state;
+ 	state->planes[index].new_state = plane_state;
+ 	plane_state->state = state;
+ 
+@@ -856,11 +856,11 @@ drm_atomic_get_private_obj_state(struct drm_atomic_state *state,
+ 
+ 	obj_state = obj->funcs->atomic_duplicate_state(obj);
+ 	if (!obj_state)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	state->private_objs[index].state = obj_state;
++	state->private_objs[index].state_to_destroy = obj_state;
+ 	state->private_objs[index].old_state = obj->state;
+ 	state->private_objs[index].new_state = obj_state;
+ 	state->private_objs[index].ptr = obj;
+ 	obj_state->state = state;
+ 
+@@ -1159,11 +1159,11 @@ drm_atomic_get_connector_state(struct drm_atomic_state *state,
+ 	connector_state = connector->funcs->atomic_duplicate_state(connector);
+ 	if (!connector_state)
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	drm_connector_get(connector);
+-	state->connectors[index].state = connector_state;
++	state->connectors[index].state_to_destroy = connector_state;
+ 	state->connectors[index].old_state = connector->state;
+ 	state->connectors[index].new_state = connector_state;
+ 	state->connectors[index].ptr = connector;
+ 	connector_state->state = state;
+ 
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index d5ebe6ea0acbc5a08aef7fa41ecb9ed5d8fa8e80..5a473a274ff06d7ab83039e0a6328e1372b80a00 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -3234,21 +3234,21 @@ int drm_atomic_helper_swap_state(struct drm_atomic_state *state,
+ 		WARN_ON(connector->state != old_conn_state);
+ 
+ 		old_conn_state->state = state;
+ 		new_conn_state->state = NULL;
+ 
+-		state->connectors[i].state = old_conn_state;
++		state->connectors[i].state_to_destroy = old_conn_state;
+ 		connector->state = new_conn_state;
+ 	}
+ 
+ 	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+ 		WARN_ON(crtc->state != old_crtc_state);
+ 
+ 		old_crtc_state->state = state;
+ 		new_crtc_state->state = NULL;
+ 
+-		state->crtcs[i].state = old_crtc_state;
++		state->crtcs[i].state_to_destroy = old_crtc_state;
+ 		crtc->state = new_crtc_state;
+ 
+ 		if (new_crtc_state->commit) {
+ 			spin_lock(&crtc->commit_lock);
+ 			list_add(&new_crtc_state->commit->commit_entry,
+@@ -3264,22 +3264,22 @@ int drm_atomic_helper_swap_state(struct drm_atomic_state *state,
+ 		WARN_ON(plane->state != old_plane_state);
+ 
+ 		old_plane_state->state = state;
+ 		new_plane_state->state = NULL;
+ 
+-		state->planes[i].state = old_plane_state;
++		state->planes[i].state_to_destroy = old_plane_state;
+ 		plane->state = new_plane_state;
+ 	}
+ 	drm_panic_unlock(state->dev, flags);
+ 
+ 	for_each_oldnew_private_obj_in_state(state, obj, old_obj_state, new_obj_state, i) {
+ 		WARN_ON(obj->state != old_obj_state);
+ 
+ 		old_obj_state->state = state;
+ 		new_obj_state->state = NULL;
+ 
+-		state->private_objs[i].state = old_obj_state;
++		state->private_objs[i].state_to_destroy = old_obj_state;
+ 		obj->state = new_obj_state;
+ 	}
+ 
+ 	return 0;
+ }
+diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
+index c8ab2163bf658cd06b12a8dabada7c088a328654..155e82f87e4d47161475b57fc28762d7ba8fd206 100644
+--- a/include/drm/drm_atomic.h
++++ b/include/drm/drm_atomic.h
+@@ -159,11 +159,11 @@ struct drm_crtc_commit {
+ 
+ struct __drm_planes_state {
+ 	struct drm_plane *ptr;
+ 
+ 	/**
+-	 * @state:
++	 * @state_to_destroy:
+ 	 *
+ 	 * Used to track the @drm_plane_state we will need to free when
+ 	 * tearing down the associated &drm_atomic_state in
+ 	 * $drm_mode_config_funcs.atomic_state_clear or
+ 	 * drm_atomic_state_default_clear().
+@@ -171,20 +171,20 @@ struct __drm_planes_state {
+ 	 * Before a commit, and the call to
+ 	 * drm_atomic_helper_swap_state() in particular, it points to
+ 	 * the same state than @new_state. After a commit, it points to
+ 	 * the same state than @old_state.
+ 	 */
+-	struct drm_plane_state *state;
++	struct drm_plane_state *state_to_destroy;
+ 
+ 	struct drm_plane_state *old_state, *new_state;
+ };
+ 
+ struct __drm_crtcs_state {
+ 	struct drm_crtc *ptr;
+ 
+ 	/**
+-	 * @state:
++	 * @state_to_destroy:
+ 	 *
+ 	 * Used to track the @drm_crtc_state we will need to free when
+ 	 * tearing down the associated &drm_atomic_state in
+ 	 * $drm_mode_config_funcs.atomic_state_clear or
+ 	 * drm_atomic_state_default_clear().
+@@ -192,11 +192,11 @@ struct __drm_crtcs_state {
+ 	 * Before a commit, and the call to
+ 	 * drm_atomic_helper_swap_state() in particular, it points to
+ 	 * the same state than @new_state. After a commit, it points to
+ 	 * the same state than @old_state.
+ 	 */
+-	struct drm_crtc_state *state;
++	struct drm_crtc_state *state_to_destroy;
+ 
+ 	struct drm_crtc_state *old_state, *new_state;
+ 
+ 	/**
+ 	 * @commit:
+@@ -214,11 +214,11 @@ struct __drm_crtcs_state {
+ 
+ struct __drm_connnectors_state {
+ 	struct drm_connector *ptr;
+ 
+ 	/**
+-	 * @state:
++	 * @state_to_destroy:
+ 	 *
+ 	 * Used to track the @drm_connector_state we will need to free
+ 	 * when tearing down the associated &drm_atomic_state in
+ 	 * $drm_mode_config_funcs.atomic_state_clear or
+ 	 * drm_atomic_state_default_clear().
+@@ -226,11 +226,11 @@ struct __drm_connnectors_state {
+ 	 * Before a commit, and the call to
+ 	 * drm_atomic_helper_swap_state() in particular, it points to
+ 	 * the same state than @new_state. After a commit, it points to
+ 	 * the same state than @old_state.
+ 	 */
+-	struct drm_connector_state *state;
++	struct drm_connector_state *state_to_destroy;
+ 
+ 	struct drm_connector_state *old_state, *new_state;
+ 
+ 	/**
+ 	 * @out_fence_ptr:
+@@ -391,11 +391,11 @@ struct drm_private_state {
+ 
+ struct __drm_private_objs_state {
+ 	struct drm_private_obj *ptr;
+ 
+ 	/**
+-	 * @state:
++	 * @state_to_destroy:
+ 	 *
+ 	 * Used to track the @drm_private_state we will need to free
+ 	 * when tearing down the associated &drm_atomic_state in
+ 	 * $drm_mode_config_funcs.atomic_state_clear or
+ 	 * drm_atomic_state_default_clear().
+@@ -403,11 +403,11 @@ struct __drm_private_objs_state {
+ 	 * Before a commit, and the call to
+ 	 * drm_atomic_helper_swap_state() in particular, it points to
+ 	 * the same state than @new_state. After a commit, it points to
+ 	 * the same state than @old_state.
+ 	 */
+-	struct drm_private_state *state;
++	struct drm_private_state *state_to_destroy;
+ 
+ 	struct drm_private_state *old_state, *new_state;
+ };
+ 
+ /**
+
+---
+base-commit: 7a031e8d3528ba0860d282ffd3c88fbda4bf8c4c
+change-id: 20251006-drm-rename-state-b2b0fed05f82
+
+Best regards,
+-- 
+Maxime Ripard <mripard@kernel.org>
 
