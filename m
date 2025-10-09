@@ -2,91 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C2B8BC7C52
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18449BC7C2F
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:45:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1657910E952;
-	Thu,  9 Oct 2025 07:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C206310E95B;
+	Thu,  9 Oct 2025 07:45:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KBR3T3Tl";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TosnUF6l";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC7F10E8F2
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Oct 2025 22:00:20 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id
- ffacd0b85a97d-42557c5cedcso253796f8f.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Oct 2025 15:00:20 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1888E10E18B
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 02:18:01 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-3ece1102998so274677f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Oct 2025 19:18:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759960819; x=1760565619; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id:from
- :to:cc:subject:date:message-id:reply-to;
- bh=5GU1Xl1K6+Pk8hlhPh8Orqtx3Ns4/PlbjU1PHpUk8BI=;
- b=KBR3T3Tl9JIbMb6VLILtMh6+fTmQSghS0zK8Hn/vR+QaooTPUrYx1+TaKmHvNfpMuP
- AV6qLS/UnUx2Wbf6sFf224pxyq8CbBJZQ7ci56PLQP2t8wQ+WSVh7OQFngUf8RvNl4mQ
- R8AZo03XbaGrCbYFzMcl/kEEVoPSyaPT0K0eCZqfEnt5rJ4RUxdNch3Emonn2xUYcLHE
- kRQJa6VuiFF78nuasSLCculsamDa1rs4YDK4+nPT9F0dmHF3kTp9KFqLWdZYerS9eRtY
- MBKfEb04MmT/lEa3qEkJnHFx3HBGYUoAEkswmkTgh2rf+6ml55wN6uHS6Y9y92B1DQK3
- t6qA==
+ d=gmail.com; s=20230601; t=1759976280; x=1760581080; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ZMwXLPH27WuiEOjKg3ccYDptKtMt8Wlr4nTnNsdwDvo=;
+ b=TosnUF6lk8VXc/kQC0zUCqJ06YBjP9XV56059ROpXuNlHZFj/ldLGl3ZdAJ8jKML0X
+ qtLUGCoHLbXXcS6fHlQXyM6VzPA8o0IJgU6naSMLPeZTEnqEnE6OXFRstl/lkSsaI7g2
+ qLx/1F6j+A+63xNGgOPIEJwkkbzDGj28IAWGIw4wdqE+jw0JtP2rA+kG3JCOSqG29/md
+ b87vBuawwFNpWkefF5R/TuPaizj/VV0DQEDL6XaeZK4/xDrxvqHbFez4BEmJ9kAuWW8S
+ a727jhOqRb87UypyfHvgIVkH8OtQA2+/XSL5HOosY9/IHDPJFkmB4bCas4vB9bNGdujR
+ gFAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759960819; x=1760565619;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=5GU1Xl1K6+Pk8hlhPh8Orqtx3Ns4/PlbjU1PHpUk8BI=;
- b=uiUnEdP6ASFvIsbq/YViZ4xt0d3thdf2w/jHhQ4USnrIcEpKu168rQ58s8nJstO+s3
- j3gFKGBGIURXwgC7Zs2Ahk+7KfWAKUAYfUeNnZFyqxfeiPSqKX53t7qnF5WgWIon6FhN
- 6jAGu1U3LkWeo19NirG50FaLRviY1dxNNhVGVn2vpgRayb9+cfgUYcFE3DMuWFppUl3m
- AvDglWuFOUXRWIRkNKsokibD1UGLBYONiuX/bzfjjXFxty1Vf8nbFxiAqRUsd0qoTm47
- 5PFosSPxHPwdOPSRyoiLurAhaq1roYxyFNsIVIClVNx1o2aLQxFDiHQqfdtARnBAJLvn
- 7dxQ==
+ d=1e100.net; s=20230601; t=1759976280; x=1760581080;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ZMwXLPH27WuiEOjKg3ccYDptKtMt8Wlr4nTnNsdwDvo=;
+ b=eP0kwTp3LFQ9MhruRlGjFVrBl+7Yg3pqqfoUG1VXazG6kle1jnoamjgOQ+4yHAuCbw
+ U6eg8vfWBNf+Xt/xUo0mwgWLDu5xUHiu680NdVSEN9DDaBta3FJcldspx/veGvVfFUsi
+ ufR5C9fKVvdUmFVA0Hw0Xe/c1/pdFwDfIt/dvQgaW3MrRVnJn+g657wOng2i7A/WMth+
+ V+liY1HT7ioxKZzyolaoQSH/EkVjBdKLvWJouLzJ2WjJg0WsqVVTI1SkesHpTWmDFCyO
+ VEPJFcRYsO5cAwi37HTrPO6LsV6+55F2veOqHdSObuWX2AHaE9G9EwpIx4ivQbuO/QPs
+ GMtg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWNZW/xIftka7U7dFmqzKoCdp49HRt5sSdUGdg5mjAm0y0cVxB3akB/FJEuSm27dSd+eJhVHoRE@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxxMYDs9kLkKdJvSmLizwM6WYkVyRvOGVpRmRGXUa8hSngZOpXC
- QKj+7+9731p5JXUqLhF4LpitkExAn8Ynzy0skDuDuZeu002+/Eyaj6Mg
-X-Gm-Gg: ASbGncvch4b01wI6NSyPPHWpUocx8cbuZ0aySXubS9D96qeORym7qjV1W0+AZuPxeae
- MNaXIGpeAkoFzR/MxKpAXmJLysHV5rLDWudS5Xlu3pASHXlPzy4bgM3DgEO0bvBENkw6fadMJz/
- zaGYv11NgqpFAv9BjN8Ud8Rhw38t+KPJMGp1kAhBCWfJBf4JmK+y+8gcOqhQFR8XQk2JikVys5q
- EOXASxrZ7vpzV3MfpQXYpu6O5kGt+A9KgHfy19T2wSjtrZ7phovgSg3dDzoj5z0+s9cKEa3guWu
- lfe7tNE4V/WDTxnYdWgcgxbJksVNY3+ug7BjcUlgAY44TmlVU5HftF9P+3EVv5lt+uXWPRdeeUX
- fzvG70GxYvJQR+LUOOcypaZftx7sh9DuNBDiqieYmgRkowcxszZw4Vkc=
-X-Google-Smtp-Source: AGHT+IGM/GqujYDl21bAoN2Inkzb/Y4dx34wMexePnZgIwLqQp6UnyIsYIhpOwJWA7nmUp+t5SFi0g==
-X-Received: by 2002:a05:6000:2388:b0:425:8255:fedf with SMTP id
- ffacd0b85a97d-4266726c31fmr3138290f8f.23.1759960818430; 
- Wed, 08 Oct 2025 15:00:18 -0700 (PDT)
-Received: from [192.168.1.12] ([41.37.1.171]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4255d8e9762sm32013820f8f.38.2025.10.08.15.00.16
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 08 Oct 2025 15:00:18 -0700 (PDT)
-Message-ID: <ca29530d-f890-47b5-b254-20c4ef301f7d@gmail.com>
-Date: Thu, 9 Oct 2025 01:00:16 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] drm/amd/display: Initialize return value in
- dm_cache_state()
-To: Mario Limonciello <mario.limonciello@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>,
- Yilin Chen <Yilin.Chen@amd.com>,
- "open list:AMD DISPLAY CORE" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>
-References: <20251007224549.87548-1-eslam.medhat1993@gmail.com>
- <6f24d0cb-ce14-4e56-990b-00ad579bc282@amd.com>
-Content-Language: en-US
+ AJvYcCWgV4D/IADz4B6NpJUvudGVJ1VxWGIWutu/Vm1M5OAmrh+bd/YjEigBluvWudc22lvbPadP0qbL@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwElp+6avvpTZy/J5ccvED2pLs3TeXSZbi374CaKVjUeAg4tWi4
+ B2hDcv3hxiNbKW6uVa9hZMunynfTGvKk/tu0JcrmK6J3od1D31ABE2kr
+X-Gm-Gg: ASbGncvH3VzejRylE93rRDkjEvak/8L6OV9JGw2VK3bFZc9eSq3uB8myZ+XclARy8uL
+ Eirdqx27fMhBrrrKIx+YMStJPuQEva3mM5G+4arHtBrgeEf9aAW+E7hh8BOoLsfjbbNNtbXbCBz
+ G47OHRb8Bvwxb9jDnm+nh3r78YUVAAQvMVrSFjZ3NyU9QPoTfUPDtFDobS5BVmPZoZdVDayIdrI
+ mO6wKbmnUjsP9mAxDAGV+5OejD+fvIe4820Hrju45teuiRimAQo0kszBWqaLSe6b/8MtVFhfKS5
+ XGct90Vy+eh90ccXXCjynNbNw4ps9i5t6y/G1rU/JGamVJcHzRtG6QthV3mLinVwA1Vt6DBdcWt
+ dtN0dS0oj5Vz7PvC1h/wwyDCTIU6vnYaa5/sZzp02TUcuJ9pC+fLpEkyp2gKwAck=
+X-Google-Smtp-Source: AGHT+IGkF8cnCg0NUgJr87v3b6RBEHWZZ8L7rvOevRDn7+hjom4Wb24Qm/GEl5r+wlLmW+LXsMv0Yw==
+X-Received: by 2002:a05:6000:4025:b0:403:8cc:db66 with SMTP id
+ ffacd0b85a97d-4266e7df9c6mr3333203f8f.32.1759976279696; 
+ Wed, 08 Oct 2025 19:17:59 -0700 (PDT)
+Received: from ekhafagy-ROG-Strix.. ([41.37.1.171])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-46fa9d7f91esm60094215e9.20.2025.10.08.19.17.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Oct 2025 19:17:59 -0700 (PDT)
 From: Eslam Khafagy <eslam.medhat1993@gmail.com>
-In-Reply-To: <6f24d0cb-ce14-4e56-990b-00ad579bc282@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: gregkh@linuxfoundation.org,
+	sashal@kernel.org,
+	stable@vger.kernel.org
+Cc: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
+ mario.kleiner.de@gmail.com, hersenxs.wu@amd.com, Igor.A.Artemiev@mcst.ru,
+ nikola.cornij@amd.com, srinivasan.shanmugam@amd.com, roman.li@amd.com,
+ amd-gfx@lists.freedesktop.org, eslam.medhat1993@gmail.com
+Subject: [PATCH 5.10.y 0/2] drm/amd/display: Fix potential null dereference
+Date: Thu,  9 Oct 2025 05:17:10 +0300
+Message-ID: <cover.1759974167.git.eslam.medhat1993@gmail.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 09 Oct 2025 07:45:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -103,51 +91,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This series backports commit [52f1783ff414 ("drm/amd/display: Fix potential null dereference")]
+to stable branch 5.10.y. However to apply this i had to backport commit
+[3beac533b8da ("drm/amd/display: Remove redundant safeguards for dmub-srv destroy()")] first.
 
-On 10/8/25 05:15, Mario Limonciello wrote:
->
->
-> On 10/7/2025 5:45 PM, Eslam Khafagy wrote:
->> Initialize the return variable "r" to 0 in dm_cache_state() to fix
->> a potential use of uninitialized variable warning.
->>
->> The return value for this function might not be a PTR_ERR, in casse if
->> condition fails. In that case we ensure predictable reutrn.
->
-> Can you walk me through your thought process?  I looked at all 
-> possible returns for drm_atomic_helper_suspend() and they all return 
-> ERR_PTR() or a state.
->
-> So I don't see how the IS_ERR() clause could have a problem.
-Hello ,
+Igor Artemiev (1):
+  drm/amd/display: Fix potential null dereference
 
-Thank you for the response. Initially i was working on warnings via 
-coverity scan.
-Initially my thinking was just by following the sequence of 
-dm_cache_state you can see that there was a potential issue if
-drm_atomic_helper_suspend returned a non valid pointer that is not PTR_ERR.
+Roman Li (1):
+  drm/amd/display: Remove redundant safeguards for dmub-srv destroy()
 
-But having a second look after your response, indeed it shouldn't be the 
-case. so please feel free to drop this patch.
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
->>
->> Signed-off-by: Eslam Khafagy <eslam.medhat1993@gmail.com>
->> ---
->>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c 
->> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> index 8e1622bf7a42..6b4f3eb9ce48 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> @@ -3115,7 +3115,7 @@ static void hpd_rx_irq_work_suspend(struct 
->> amdgpu_display_manager *dm)
->>     static int dm_cache_state(struct amdgpu_device *adev)
->>   {
->> -    int r;
->> +    int r = 0;
->>         adev->dm.cached_state = 
->> drm_atomic_helper_suspend(adev_to_drm(adev));
->>       if (IS_ERR(adev->dm.cached_state)) {
->
+--
+2.43.0
+
