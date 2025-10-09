@@ -2,72 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9F0BC9200
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 14:52:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E92BBC943B
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 15:22:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A1B610EA2E;
-	Thu,  9 Oct 2025 12:52:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1982110E227;
+	Thu,  9 Oct 2025 13:22:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I2Nkz2Bb";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="awaNgI7/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cwrjkfKR";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="awaNgI7/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cwrjkfKR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F19210EA2F
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 12:52:28 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-2699ef1b4e3so1413365ad.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 05:52:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760014347; x=1760619147; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Z5BEOLvlpOfJhDc2Lt1Jld+zRE1vBLBVpw7uOvdBKvk=;
- b=I2Nkz2Bbeeh6ZvLDxs8iChMHjuga/Aj45y00T+j7ssuuTTD0/04bfiKPFEA2NCXswm
- PraEBZnmNJiOV5eBmnqhrFbXYgc+HKYXhvFYTewoV/kZJdqgCTkzWkOFgVXl0p09MGnL
- Ikl8pnJjKk4DaO9Z2J1gHapA/UckFog6mw3n6pNkwHSNNWwY9a3KVB6FtOAlCb1bWzhb
- RDbMqf84mCP/GgAK0inaFGXXx9aLV+q9ekJE+4vTIwAhyzTZUBysrSO8GA3B5mlkmvzO
- AZMCz6QNck/QnZZg8twn1aL17j6eyF5RtHYZwMloTRRo+12h7A64M0tJuaLhGZMELUq4
- VP9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760014347; x=1760619147;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Z5BEOLvlpOfJhDc2Lt1Jld+zRE1vBLBVpw7uOvdBKvk=;
- b=X1u1wkpXcfRx+jGl3501Tu0HLNAzSTH+YbuFMFoT3UAYULv3i/P75xv1LWKj0sR6Rm
- 9B/ui6Sb+0c3AMMpgFqUtv95ACI2RQKMLNLgBBKRka57AdRl5Qpa/ZMgHL+rBsUoc+Sn
- 90pDPohX3LXSDvWhW3JqYhGVQILniCLcyU3hcQ+xRkjwNzEhHHURG4YzdccAM9VZNxER
- BQjK/HbnOF/zkx+gqB84kqj5QXZSg55SjBG6lo5wVkdNrf9jlNbuMQFItEMB42/zxrHp
- 0LFRY0guNIiKxax/QBTgx6ZMaoSL6jheSRycatjfyIuMBlxdvJGcl1Z2Ph3LmIr8Y++v
- XM0w==
-X-Gm-Message-State: AOJu0Ywu2VDDCQUjCAxw+V3Fz7E5fs5h7TGLJpSLm4X6gnTB/rXGnq1i
- yRGBdkunvHSNYkypOyAFpWfvtn7vYRk+kpq/yJon3ubhDPpWdDTovUgQeeehIQnLc/pV6HtVRfU
- f26Bjvgg4jw+r1vscvAOiofnGDppqDQ8=
-X-Gm-Gg: ASbGnctuy7sc0I5KSPvKlyYjdjxgy6KFe0qFYGU7wGoWro3tszUX2eNWjJUDegj0OAN
- K/qErZ1ZhPskusYb3z9f6LUmPVM0SnQTDYanhfI0lYg95i/YXPZSrqSB8jaSaEXYzKq9L0/7ic7
- 9W0wXTTPqJeJ3Gp8COjDgYxgJa1awq16h8MMrjHMsRtMcsOAvRQ++x/vGxs5kQd8WHT89vaspjx
- zXD6jrPgmpStxNlSdaqSWK9oaIIWBpETbraXyXGlw==
-X-Google-Smtp-Source: AGHT+IHuWxkOrtMlj+WCMWLhDfuLiG8tgkakwimVIr1WqrwKb2cY0F7hc5trcEhUDQD9eVl73rttmFyQvrXDEahYKaw=
-X-Received: by 2002:a17:902:c40b:b0:267:b312:9cd8 with SMTP id
- d9443c01a7336-290273038efmr46907085ad.8.1760014347504; Thu, 09 Oct 2025
- 05:52:27 -0700 (PDT)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0413C10E227
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 13:22:56 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id AAC411F74A;
+ Thu,  9 Oct 2025 13:22:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1760016174; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nxbzPBH17ar9K23CahzAe5b30MTmOO7lOdw/AEZcP0U=;
+ b=awaNgI7/B8kYXqIFwTWq0bTxrrbbQgWzmYQL40a/KGIHLfrwsJezjNSwwQ5oBaRko8yH3L
+ zJnopVUZRPGe8w1zUAsf23kKmnS2KVtb0P/nZd+/paWDRlBXL6/LUOufHd7EJ3p5of4rMm
+ knVtAwJkGpGdK5RPUY0VgX03PRAagL8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1760016174;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nxbzPBH17ar9K23CahzAe5b30MTmOO7lOdw/AEZcP0U=;
+ b=cwrjkfKRUzslGnFAMfnZN+BbuuRHgp8fiGPsw7EQNL51euzvgDiBbRojNyLdDUzWltIC1j
+ NbG6hac4zQvJojCg==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1760016174; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nxbzPBH17ar9K23CahzAe5b30MTmOO7lOdw/AEZcP0U=;
+ b=awaNgI7/B8kYXqIFwTWq0bTxrrbbQgWzmYQL40a/KGIHLfrwsJezjNSwwQ5oBaRko8yH3L
+ zJnopVUZRPGe8w1zUAsf23kKmnS2KVtb0P/nZd+/paWDRlBXL6/LUOufHd7EJ3p5of4rMm
+ knVtAwJkGpGdK5RPUY0VgX03PRAagL8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1760016174;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nxbzPBH17ar9K23CahzAe5b30MTmOO7lOdw/AEZcP0U=;
+ b=cwrjkfKRUzslGnFAMfnZN+BbuuRHgp8fiGPsw7EQNL51euzvgDiBbRojNyLdDUzWltIC1j
+ NbG6hac4zQvJojCg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5308A13A61;
+ Thu,  9 Oct 2025 13:22:54 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 0EDeEi6352iECAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 09 Oct 2025 13:22:54 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com, javierm@redhat.com, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 0/4] drm/client: Implement free callback for fbdev and log
+Date: Thu,  9 Oct 2025 15:16:27 +0200
+Message-ID: <20251009132006.45834-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-References: <20251009033047.25004-1-yunru.pan@amd.com>
-In-Reply-To: <20251009033047.25004-1-yunru.pan@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 9 Oct 2025 08:52:16 -0400
-X-Gm-Features: AS18NWBclIZ8C9lt1ez-qpKOr2kjwOSux_icVQiLMcT5Ayc1HohD1kFzq5IfQaw
-Message-ID: <CADnq5_PmGaNfZKTOT0okjtOPz4KA_YWxu0YFoez-q3AzgNkFBQ@mail.gmail.com>
-Subject: Re: [PATCH 4/6] drm/amdgpu: Reuse fw_vram_usage_* for dynamic
- critical region in SRIOV
-To: Ellen Pan <yunru.pan@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Christian.Koenig@amd.com, Shravankumar.Gande@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
+ R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
+ MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FROM_HAS_DN(0.00)[]; ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
+ RCPT_COUNT_TWELVE(0.00)[14];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[]
+X-Spam-Flag: NO
+X-Spam-Score: -2.80
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,100 +105,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 8, 2025 at 11:46=E2=80=AFPM Ellen Pan <yunru.pan@amd.com> wrote=
-:
->
-> - During guest driver init, asa VFs receive PF msg to
->         init dynamic critical region(v2), VFs reuse fw_vram_usage_*
->          from ttm to store critical region tables in a 5MB chunk.
->
-> Signed-off-by: Ellen Pan <yunru.pan@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c  | 33 +++++++++++++-----------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c |  8 ++++++
->  2 files changed, 26 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_ttm.c
-> index 96bd0185f936..4ba34ba74671 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> @@ -1943,23 +1943,26 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
->         if (r)
->                 return r;
->
-> -       /*
-> -        *The reserved vram for driver must be pinned to the specified
-> -        *place on the VRAM, so reserve it early.
-> -        */
-> -       r =3D amdgpu_ttm_drv_reserve_vram_init(adev);
-> -       if (r)
-> -               return r;
-> -
-> -       /*
-> -        * only NAVI10 and onwards ASIC support for IP discovery.
-> -        * If IP discovery enabled, a block of memory should be
-> -        * reserved for IP discovey.
-> -        */
-> -       if (adev->mman.discovery_bin) {
-> -               r =3D amdgpu_ttm_reserve_tmr(adev);
-> +       /* VFs using dynamic critical regions(v2) won't need to reserve f=
-or below memory */
-> +       if (!amdgpu_sriov_vf(adev) || (adev->virt.req_init_data_ver !=3D =
-GPU_CRIT_REGION_V2)) {
-> +               /*
-> +                *The reserved vram for driver must be pinned to the spec=
-ified
-> +                *place on the VRAM, so reserve it early.
-> +                */
-> +               r =3D amdgpu_ttm_drv_reserve_vram_init(adev);
->                 if (r)
->                         return r;
-> +
-> +               /*
-> +                * only NAVI10 and onwards ASIC support for IP discovery.
-> +                * If IP discovery enabled, a block of memory should be
-> +                * reserved for IP discovey.
-> +                */
-> +               if (adev->mman.discovery_bin) {
-> +                       r =3D amdgpu_ttm_reserve_tmr(adev);
-> +                       if (r)
-> +                               return r;
-> +               }
->         }
->
->         /* allocate memory as required for VGA
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_virt.c
-> index 46c19e96086a..e9dbab53cb06 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-> @@ -931,6 +931,14 @@ int amdgpu_virt_init_critical_region(struct amdgpu_d=
-evice *adev)
->                 adev->virt.crit_region_sizes_kb[AMD_SRIOV_MSG_BAD_PAGE_IN=
-FO_TABLE_ID] =3D
->                         init_data_hdr->bad_page_size_in_kb;
->
-> +               /* reserved memory starts from crit region base offset wi=
-th the size of 5MB */
-> +               adev->mman.fw_vram_usage_start_offset =3D adev->virt.crit=
-_region_base_offset;
-> +               adev->mman.fw_vram_usage_size =3D adev->virt.crit_region_=
-size_in_kb << 10;
-> +               DRM_INFO("critical region v%d requested to reserve memory=
- start at %08x with %d KB.\n",
+Add struct drm_client_funcs.free and release the memory fbdev and
+log clients from its implementations. Also fix the locking in the
+log's unregister code.
 
-Please use dev_info() here so we have proper multi-gpu support.
+Resolves several corner cases in the current clients and avoids
+duplicated code.
 
-Alex
+Thomas Zimmermann (4):
+  drm/client: Add client free callback to unprepare fb_helper
+  drm/log: Do not hold lock across drm_client_release()
+  drm/log: Add free callback
+  drm/client: Do not free client memory by default
 
-> +                         init_data_hdr->version,
-> +                         adev->mman.fw_vram_usage_start_offset,
-> +                         adev->mman.fw_vram_usage_size >> 10);
-> +
->                 adev->virt.init_data_done =3D true;
->                 break;
->         default:
-> --
-> 2.34.1
->
+ drivers/gpu/drm/armada/armada_fbdev.c      |  2 --
+ drivers/gpu/drm/clients/drm_fbdev_client.c | 17 +++++++++++++++--
+ drivers/gpu/drm/clients/drm_log.c          | 16 ++++++++++++----
+ drivers/gpu/drm/drm_client.c               |  4 ++++
+ drivers/gpu/drm/drm_client_event.c         |  9 +++++----
+ drivers/gpu/drm/drm_fbdev_dma.c            |  4 ----
+ drivers/gpu/drm/drm_fbdev_shmem.c          |  2 --
+ drivers/gpu/drm/drm_fbdev_ttm.c            |  2 --
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  2 --
+ drivers/gpu/drm/gma500/fbdev.c             |  3 ---
+ drivers/gpu/drm/i915/display/intel_fbdev.c |  2 --
+ drivers/gpu/drm/msm/msm_fbdev.c            |  2 --
+ drivers/gpu/drm/omapdrm/omap_fbdev.c       |  2 --
+ drivers/gpu/drm/radeon/radeon_fbdev.c      |  2 --
+ drivers/gpu/drm/tegra/fbdev.c              |  2 --
+ include/drm/drm_client.h                   | 10 ++++++++++
+ 16 files changed, 46 insertions(+), 35 deletions(-)
+
+-- 
+2.51.0
+
