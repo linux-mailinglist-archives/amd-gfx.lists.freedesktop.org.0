@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDAAABCC073
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Oct 2025 10:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 915DEBCC096
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Oct 2025 10:03:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E1A610EB52;
-	Fri, 10 Oct 2025 08:03:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C72510EB5D;
+	Fri, 10 Oct 2025 08:03:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kvku9NrO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CBPSMXuu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com
- [209.85.166.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E347110EAD9
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 17:59:00 +0000 (UTC)
-Received: by mail-il1-f169.google.com with SMTP id
- e9e14a558f8ab-42486ed0706so7397305ab.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 10:59:00 -0700 (PDT)
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com
+ [209.85.166.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7D0110EAD9
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 17:59:01 +0000 (UTC)
+Received: by mail-io1-f54.google.com with SMTP id
+ ca18e2360f4ac-91524f5e6a8so118553139f.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 10:59:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760032740; x=1760637540; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1760032741; x=1760637541; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=FcE2j/B1mQgeocNkBmpDERPavffRGmULzplmDVYobd8=;
- b=kvku9NrOswRYsjlEgn1sl/NcjwrnxTEipeGx4frB/0HfVzZBIOZqHPdPVxLXt8PxFN
- tSyNiCe/vEgCGQBV1t2hEMHlomml4NPp6EAZm0SdjFY8Gj17luL16jIzW3OY5cSyGSpe
- aJh7eh68zGIs/FiLwk/b1NEgDmtZuGF5jNY0Fe2g1nVFVqlRczsCNqiwoiBpm8qhHgRp
- E32p4UMlIb1e9BnZpjrUp3j2xD7tMaVOxKgoyeKt5p6y7Hl7jzo6+IqK77KTqHeaqRrO
- rFu/6BwONCJ8UIWGGwtB8NnO84X5SZ2bf6imzkYKEddt+F/kHR2P4SssdfE3LQb8pTqF
- eEMQ==
+ bh=PUjBG8W7JviM3Ypn5iExypGYjiK1aXkryX0lsVYOg2Q=;
+ b=CBPSMXuu4fAKhJeGjQVMCqkP6aT5Dbb3J4gxQYHaST9KKvaBvPvsttFUYULUyV4Avq
+ zsVi2jP/lENzfbCpyX2V6wfe/vmnIb1XV5/QpkRpd0DGbS/VbmvVjwGvus455kCUTA7h
+ RBfG9BlkwcwBleo8ROXFC8qq2mSXAYt8QkC5MD/4JG9gvWiLXKN4wd09VHdSJwmWVFr7
+ gOijB4eLERNW5W8Ha8oA+Wf8L2UgEMYwHVrJIqaE98272G8zdUROWVIxGo4hFkag13QV
+ D3p+1CrpZxbM/33tYRTsIN1K0YUmaFotyuiBkfaZE2lW2sPG98FBvlvsti3QOjyEw2Bn
+ VDGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760032740; x=1760637540;
+ d=1e100.net; s=20230601; t=1760032741; x=1760637541;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=FcE2j/B1mQgeocNkBmpDERPavffRGmULzplmDVYobd8=;
- b=hjkryYOUqhubcZ0d8DUyyM08WKTxANDDyvF5aoPSbDPkpahk3Ln6Ma/9UpPVrtZ1ED
- QtovtXe9Napsf/Cik5/gG3xJNh52Mp8ZK+ERk/rT+yHKRPRBZM7N1KaZtljKa0ysdw58
- kQR3QUGCIJe8VtBBsMEnD0ZYGB2+FxXaeg5CrN2jnQ8iJrvN9poCA7G2us96Yqz82WQn
- J4e1st66SxDrjtWF+Eheg7LLciTQAAY+D3xh3QTmk6yscvE8/pBPcDpOyWEIcG6x9PNy
- 53xVs/sggGtLXasxHqKQT7v4lnaJKsSgpn5jxYARcB3SpQUV4E46BYQsGDJi/tMaQFD3
- 4LNA==
+ bh=PUjBG8W7JviM3Ypn5iExypGYjiK1aXkryX0lsVYOg2Q=;
+ b=I9kvqydRaG4JAnkDUtxOF9vQmn7wwT8NXiqRCOKc7d1nZ/lrHflWY7lNVHpV8VdaB+
+ Gm8FgXWlK1LDY7Z4ZvWpYlPT2p5L3HjIH4hih7D+ypsLfZV7uid8fm6KgeIm4AO0SeMM
+ 4XCdb4EYmHaeA3PKHDP6T6qDg/ZBcbib+sS5UeHQYRr/oflI+6OtatwMXqbHeNzHIvW3
+ /0+kp+uLUq89Y8XKNzu5R1w0eRSu/qe8Y7nrX5BAl892t2z6eAVfLLeX14dtpmZr5bvy
+ Ix/QhYqRNTc/nODKTK1CLolKIKNAp+SNFEss3MDPlZmSyNg6BOyKUo2PCGa5ROnsEKxb
+ mS7w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVntpd7tIk+hmJHxfN8neOZZXtfrg2ICZyYcIUC4tye7VQJmHew1bvMPTM6pNZbPe8RD/LsIMBl@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywzz0zGFBZBMnBwxi1zPhw1U7gAcM6LsqGUUvHKGYpuYmmFQ5J/
- +UE6villR+jPubc3PQV+1zo/4nZnBZlwSVw3/mwTYbvbEwnicAkVlZXd
-X-Gm-Gg: ASbGnctcMaY0RJnArJ0oUmsJYb5itXw4DDyHp8D7jpvSCFc+eQpV+ptTTHCL2H60WQC
- 7bSq7GMIBOd9EwZ1cZIIXeSL3z76UrunkBvr0CVJsGl+AQscFo1YRlV7OE7Dtt3B8MwPCeI6ked
- 2wIIVsoiJnHLj3ixzB5gB/ZwfcMglyg2BcwWtCRB6bYhBj05ttGB7EcroCRtGLrJq5d35j1GH0Z
- R26pApPLbaLSvXOolI0qTaMKlGsIhkiTT9N1x1Lt0BKGtJk8p+cmUr0BKV7OdIZfF+HmowlFfYr
- 4LMjo5/Bodk/szZKSWIRBkd+2WHhcLEcv1KWn7QuV8br6Hm1xb6EGklWLYD9nAwINQCGDLDESS2
- 07Kf3rCFHgyxUpqMnxqKsQ0MuEyJoV+Liof3yx+vHhTaVRNddy9x3Qj0j5pycHUEYNwlWTIK2Lp
- eWfG18wAfKiewLsPJKIZiNF76cnp8=
-X-Google-Smtp-Source: AGHT+IHjqP+G+vhE18sYwPA5Xq+a2h4s4Xorq9ruFfYudOUTjoHfdl8X+oo47RIuEgvRTTKzlg/Fzg==
-X-Received: by 2002:a05:6e02:2305:b0:426:7dd6:decd with SMTP id
- e9e14a558f8ab-42f873f4705mr67420995ab.28.1760032739929; 
- Thu, 09 Oct 2025 10:58:59 -0700 (PDT)
+ AJvYcCXUbNEO8qfpeFY2zImteiK0COL36aSq7Yc/2K5/qUqBSJDiCsupQXjOMPVkjGD2kdJsPDr+2ePD@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yww02YE2Q3SppNHMmjJdNiseHHfLlRNGCU2ASDjo6zM2e9GW6wB
+ VOSyjnFyjb3NJchQ9rODtYRfASYBjqpvS+a1Hdjc7H1t9Ik1rNmeZ7IK
+X-Gm-Gg: ASbGnctphwvfDHEOf0YDbKYMp/TC5RoQMfEvrI0FL79rdopeoluC1SGqh2RAFGny20Q
+ QI9aw5TdnwNEfJ9RWkXPvTAhdk4Pyvu4aCvSdP80FFDYEKulWCRlapmJZ7mHLE7Kydg8cU+xHZY
+ 2Sv7auDTZ9HoNjrXUFK1tQ7NpV8UCousSY75BonJFqRFsZI1tA9SJ/u/8lWvNTi1z7Xh90sbwUa
+ Ig/UvW97VwTO5EteqMhW8KsWqyE1DR1DzDS9KD8gfrAwxv3TvadPQzwfKGbHHQE3/Ygu4uVaM/j
+ fLGrlevlALGgbOZbBVi8swhVkNrgjmEjRofqHcJyZAvlB5c1QnH0qARMKvpjkgrCZk73Mne/vlL
+ TE79snSrzSEEzocDiVC0yTsJqWzjVSPh4bDU7MMYrO/BoQWtVct68wICGHsSSzmD91N/BMGXRCF
+ cwtxpT24NAmb7Y3gZ7x5jjZDE5e+wJVm94/pqr1Q==
+X-Google-Smtp-Source: AGHT+IEs4KDkEu/Tkx7PA7Q0xJUK7cMMLKchJ3R9IgY6/hfuRIJ7D8MjEdR+TiVWsfUwI1oIJ916bw==
+X-Received: by 2002:a05:6e02:1fc4:b0:427:d82b:1f36 with SMTP id
+ e9e14a558f8ab-42f874010aemr82928145ab.32.1760032740923; 
+ Thu, 09 Oct 2025 10:59:00 -0700 (PDT)
 Received: from godzilla.raven-morpho.ts.net
  (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 8926c6da1cb9f-58f7200c4afsm30256173.35.2025.10.09.10.58.58
+ 8926c6da1cb9f-58f7200c4afsm30256173.35.2025.10.09.10.59.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Oct 2025 10:58:59 -0700 (PDT)
+ Thu, 09 Oct 2025 10:59:00 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: jbaron@akamai.com
 Cc: gregkh@linuxfoundation.org, ukaszb@chromium.org, louis.chauvet@bootlin.com,
@@ -72,9 +72,9 @@ Cc: gregkh@linuxfoundation.org, ukaszb@chromium.org, louis.chauvet@bootlin.com,
  intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
  tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
  ville.syrjala@linux.intel.com, Jim Cromie <jim.cromie@gmail.com>
-Subject: [PATCH v5 12/30] dyndbg: macrofy a 2-index for-loop pattern
-Date: Thu,  9 Oct 2025 11:58:16 -0600
-Message-ID: <20251009175834.1024308-13-jim.cromie@gmail.com>
+Subject: [PATCH v5 13/30] dyndbg: DECLARE_DYNDBG_CLASSMAP needs stub defn
+Date: Thu,  9 Oct 2025 11:58:17 -0600
+Message-ID: <20251009175834.1024308-14-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251009175834.1024308-1-jim.cromie@gmail.com>
 References: <20251009175834.1024308-1-jim.cromie@gmail.com>
@@ -95,64 +95,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-dynamic-debug has several __sections, each with <vecname>,
-num_<vecname>, and it iterates over these with a 2-index for-loop.
-These loops are fiddly with the 2 names.
-
-We have only 2 such loops now, but are getting more soon; lets
-embed/abstract the fiddlyness in the for_subvec() macro, and avoid
-repeating it going forward.
+Add a DECLARE_DYNDBG_CLASSMAP stub/do-nothing defn, so that callers
+will compile properly with CONFIG_DYNAMIC_DEBUG=n
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 ---
- lib/dynamic_debug.c | 19 ++++++++++++++++---
- 1 file changed, 16 insertions(+), 3 deletions(-)
+ include/linux/dynamic_debug.h | 39 ++++++++++++++++++-----------------
+ 1 file changed, 20 insertions(+), 19 deletions(-)
 
-diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index 283926530a43..ddcaa87f3b02 100644
---- a/lib/dynamic_debug.c
-+++ b/lib/dynamic_debug.c
-@@ -128,6 +128,20 @@ do {								\
- #define v3pr_info(fmt, ...)	vnpr_info(3, fmt, ##__VA_ARGS__)
- #define v4pr_info(fmt, ...)	vnpr_info(4, fmt, ##__VA_ARGS__)
+diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
+index e458d4b838ac..2a6ebc3c1459 100644
+--- a/include/linux/dynamic_debug.h
++++ b/include/linux/dynamic_debug.h
+@@ -91,25 +91,6 @@ struct ddebug_class_map {
+ 	enum class_map_type map_type;
+ };
  
-+/*
-+ * simplify a repeated for-loop pattern walking N steps in a T _vec
-+ * member inside a struct _box.  It expects int i and T *_sp to be
-+ * declared in the caller.
-+ * @_i:  caller provided counter.
-+ * @_sp: cursor into _vec, to examine each item.
-+ * @_box: ptr to a struct containing @_vec member
-+ * @_vec: name of a sub-struct member in _box, with array-ref and length
-+ */
-+#define for_subvec(_i, _sp, _box, _vec)				       \
-+	for ((_i) = 0, (_sp) = (_box)->_vec;			       \
-+	     (_i) < (_box)->num_##_vec;				       \
-+	     (_i)++, (_sp)++)
-+
- static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
- {
- 	/* trim any trailing newlines */
-@@ -155,7 +169,7 @@ static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table cons
- 	struct ddebug_class_map *map;
- 	int i, idx;
- 
--	for (map = dt->classes, i = 0; i < dt->num_classes; i++, map++) {
-+	for_subvec(i, map, dt, classes) {
- 		idx = match_string(map->class_names, map->length, class_string);
- 		if (idx >= 0) {
- 			*class_id = idx + map->base;
-@@ -1220,8 +1234,7 @@ static void ddebug_attach_module_classes(struct ddebug_table *dt, struct _ddebug
- 	 * the builtin/modular classmap vector/section.  Save the start
- 	 * and length of the subrange at its edges.
- 	 */
--	for (cm = di->classes, i = 0; i < di->num_classes; i++, cm++) {
+-/**
+- * DECLARE_DYNDBG_CLASSMAP - declare classnames known by a module
+- * @_var:   a struct ddebug_class_map, passed to module_param_cb
+- * @_type:  enum class_map_type, chooses bits/verbose, numeric/symbolic
+- * @_base:  offset of 1st class-name. splits .class_id space
+- * @classes: class-names used to control class'd prdbgs
+- */
+-#define DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, ...)		\
+-	static const char *_var##_classnames[] = { __VA_ARGS__ };	\
+-	static struct ddebug_class_map __aligned(8) __used		\
+-		__section("__dyndbg_classes") _var = {			\
+-		.mod = THIS_MODULE,					\
+-		.mod_name = KBUILD_MODNAME,				\
+-		.base = _base,						\
+-		.map_type = _maptype,					\
+-		.length = ARRAY_SIZE(_var##_classnames),		\
+-		.class_names = _var##_classnames,			\
+-	}
 -
-+	for_subvec(i, cm, di, classes) {
- 		if (!strcmp(cm->mod_name, dt->mod_name)) {
- 			if (!nc) {
- 				v2pr_info("start subrange, class[%d]: module:%s base:%d len:%d ty:%d\n",
+ /* encapsulate linker provided built-in (or module) dyndbg data */
+ struct _ddebug_info {
+ 	struct _ddebug *descs;
+@@ -134,6 +115,25 @@ struct ddebug_class_param {
+ #if defined(CONFIG_DYNAMIC_DEBUG) || \
+ 	(defined(CONFIG_DYNAMIC_DEBUG_CORE) && defined(DYNAMIC_DEBUG_MODULE))
+ 
++/**
++ * DECLARE_DYNDBG_CLASSMAP - declare classnames known by a module
++ * @_var:   a struct ddebug_class_map, passed to module_param_cb
++ * @_type:  enum class_map_type, chooses bits/verbose, numeric/symbolic
++ * @_base:  offset of 1st class-name. splits .class_id space
++ * @classes: class-names used to control class'd prdbgs
++ */
++#define DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, ...)		\
++	static const char *_var##_classnames[] = { __VA_ARGS__ };	\
++	static struct _ddebug_class_map __aligned(8) __used		\
++		__section("__dyndbg_classes") _var = {			\
++		.mod = THIS_MODULE,					\
++		.mod_name = KBUILD_MODNAME,				\
++		.base = _base,						\
++		.map_type = _maptype,					\
++		.length = ARRAY_SIZE(_var##_classnames),		\
++		.class_names = _var##_classnames,			\
++	}
++
+ extern __printf(2, 3)
+ void __dynamic_pr_debug(struct _ddebug *descriptor, const char *fmt, ...);
+ 
+@@ -300,6 +300,7 @@ void __dynamic_ibdev_dbg(struct _ddebug *descriptor,
+ 
+ #define DEFINE_DYNAMIC_DEBUG_METADATA(name, fmt)
+ #define DYNAMIC_DEBUG_BRANCH(descriptor) false
++#define DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, ...)
+ 
+ #define dynamic_pr_debug(fmt, ...)					\
+ 	no_printk(KERN_DEBUG pr_fmt(fmt), ##__VA_ARGS__)
 -- 
 2.51.0
 
