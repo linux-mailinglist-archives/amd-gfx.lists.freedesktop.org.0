@@ -2,65 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18449BC7C2F
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A1DBC7C0E
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:45:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C206310E95B;
-	Thu,  9 Oct 2025 07:45:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F37710E943;
+	Thu,  9 Oct 2025 07:45:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TosnUF6l";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dUg9lcM8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1888E10E18B
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 02:18:01 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-3ece1102998so274677f8f.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Oct 2025 19:18:01 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA0E610E18B
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 02:18:17 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-3fa528f127fso377013f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Oct 2025 19:18:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759976280; x=1760581080; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ZMwXLPH27WuiEOjKg3ccYDptKtMt8Wlr4nTnNsdwDvo=;
- b=TosnUF6lk8VXc/kQC0zUCqJ06YBjP9XV56059ROpXuNlHZFj/ldLGl3ZdAJ8jKML0X
- qtLUGCoHLbXXcS6fHlQXyM6VzPA8o0IJgU6naSMLPeZTEnqEnE6OXFRstl/lkSsaI7g2
- qLx/1F6j+A+63xNGgOPIEJwkkbzDGj28IAWGIw4wdqE+jw0JtP2rA+kG3JCOSqG29/md
- b87vBuawwFNpWkefF5R/TuPaizj/VV0DQEDL6XaeZK4/xDrxvqHbFez4BEmJ9kAuWW8S
- a727jhOqRb87UypyfHvgIVkH8OtQA2+/XSL5HOosY9/IHDPJFkmB4bCas4vB9bNGdujR
- gFAg==
+ d=gmail.com; s=20230601; t=1759976296; x=1760581096; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=JJfaOf0LMlbdtGGDx/Ijf4csp3yPAQB4jZH4m4DLONE=;
+ b=dUg9lcM8foVxRfQ5U2rdJrYx4bFSkqiB0NJFZLZaDEym1Bnc2WupjCLN/9TwoNzDkg
+ HOau4oY5Fm3/kyJpfa2GjH+ReBThF9MB4ML0ap1xCDIq6bENOI6+5n9Ach6izqZhWH+Y
+ ndtGcoGGl/RQTX+e6kvizrP2ZRTuOaAVIwD5XnDu6MnTycIX5qkho/LuEYY2WNx6O0q+
+ 6iKHkRW7pBk6QgxoSS87mxmymu+5rf/QeL2FdsVGgORD0Ip81VtsvtqQtHD+SNmcEgwe
+ dc/xLcKHxWSw3Sb+cw2dkGC+uNpe8ist1gRdoDBsvwWwWXORrDjjz0MhRy93FCgGeXEz
+ gZ6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759976280; x=1760581080;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=ZMwXLPH27WuiEOjKg3ccYDptKtMt8Wlr4nTnNsdwDvo=;
- b=eP0kwTp3LFQ9MhruRlGjFVrBl+7Yg3pqqfoUG1VXazG6kle1jnoamjgOQ+4yHAuCbw
- U6eg8vfWBNf+Xt/xUo0mwgWLDu5xUHiu680NdVSEN9DDaBta3FJcldspx/veGvVfFUsi
- ufR5C9fKVvdUmFVA0Hw0Xe/c1/pdFwDfIt/dvQgaW3MrRVnJn+g657wOng2i7A/WMth+
- V+liY1HT7ioxKZzyolaoQSH/EkVjBdKLvWJouLzJ2WjJg0WsqVVTI1SkesHpTWmDFCyO
- VEPJFcRYsO5cAwi37HTrPO6LsV6+55F2veOqHdSObuWX2AHaE9G9EwpIx4ivQbuO/QPs
- GMtg==
+ d=1e100.net; s=20230601; t=1759976296; x=1760581096;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=JJfaOf0LMlbdtGGDx/Ijf4csp3yPAQB4jZH4m4DLONE=;
+ b=rwzaIl6Aau1L44BhG6uOJqzgQOqpZZPO6OtQiLHYNGl5HysalU5XmM4FbUoVxOI6Dd
+ SpBF088yWAyTgU3FfQ0g1uG8fehKGSHeWI5Ajw+ND1CEUMb5gxfrXKCNfERxqWsj7QDe
+ 4Fik39m0u3YUBHvmZB3USKtALAfvW04lAc86fhaoDXwG07+Gs+LZaoht5smnHkksKaxI
+ uPzFpFwO4vmWq6JgJd8zHAfusE1DcPL6greI5j6/fGHu+9H9whWgt7gayDunpL5VrlOM
+ 4wYlba+YCnKwVAzvn77a0wssbI63G1PvunBUIFmVg/LFt3YRBJv5R8OeexFtQid7skV8
+ WPhA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWgV4D/IADz4B6NpJUvudGVJ1VxWGIWutu/Vm1M5OAmrh+bd/YjEigBluvWudc22lvbPadP0qbL@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwElp+6avvpTZy/J5ccvED2pLs3TeXSZbi374CaKVjUeAg4tWi4
- B2hDcv3hxiNbKW6uVa9hZMunynfTGvKk/tu0JcrmK6J3od1D31ABE2kr
-X-Gm-Gg: ASbGncvH3VzejRylE93rRDkjEvak/8L6OV9JGw2VK3bFZc9eSq3uB8myZ+XclARy8uL
- Eirdqx27fMhBrrrKIx+YMStJPuQEva3mM5G+4arHtBrgeEf9aAW+E7hh8BOoLsfjbbNNtbXbCBz
- G47OHRb8Bvwxb9jDnm+nh3r78YUVAAQvMVrSFjZ3NyU9QPoTfUPDtFDobS5BVmPZoZdVDayIdrI
- mO6wKbmnUjsP9mAxDAGV+5OejD+fvIe4820Hrju45teuiRimAQo0kszBWqaLSe6b/8MtVFhfKS5
- XGct90Vy+eh90ccXXCjynNbNw4ps9i5t6y/G1rU/JGamVJcHzRtG6QthV3mLinVwA1Vt6DBdcWt
- dtN0dS0oj5Vz7PvC1h/wwyDCTIU6vnYaa5/sZzp02TUcuJ9pC+fLpEkyp2gKwAck=
-X-Google-Smtp-Source: AGHT+IGkF8cnCg0NUgJr87v3b6RBEHWZZ8L7rvOevRDn7+hjom4Wb24Qm/GEl5r+wlLmW+LXsMv0Yw==
-X-Received: by 2002:a05:6000:4025:b0:403:8cc:db66 with SMTP id
- ffacd0b85a97d-4266e7df9c6mr3333203f8f.32.1759976279696; 
- Wed, 08 Oct 2025 19:17:59 -0700 (PDT)
+ AJvYcCVjVgN9leLgneXZ1E7QxnWagd4qcsl7fxrSLq6t7vnP8MhP/cfJzpdy4t1PNmGF6O9JU4qrQwef@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzwP9rFOlWu7InnoEo4sxORwHDoN2pciS8d6ieymGDWRdr9QORw
+ YJwetMROZXhLUbZOiyp9/cNMysBkumc308Shlq0pQPoY08Ftfl6sUHXz
+X-Gm-Gg: ASbGnctjJK3c8pcIAE6LvLb9sZYcit9Olv+k2+AxfoILjke3/8Q7O09GhBD10k7iZEf
+ 6dCrtWOa2QY+/hhmKdASYqmUMMwa+ffAWrJqCs5M67YGngQORyHQbKGIU6v98rwwDPKKlqZdXFg
+ A8xi0ln9JDlK0xVqP8Q/ums3WMIfJZdJKmNRQRb5URTNggLTUoiVzzYpzRScU/GAopMEI7zXDHv
+ 8wbBjQ2QOX3+/ZvB5AVKjY0uhlM5+f/OtO7OrOTQ4sV/BbB4fJa4i4uGTslSEg118nDcecvZGtS
+ 75xgnsRCtWI36qjfTJE8UwBy0zEdw+g9zAkRzpJXl1xmLZomC2WRd4Zn/4SvWsBto2T8iVUxWHg
+ 9RlK8otWUIFm/9M7LAJjDY6iPhr5Al2Nct3lTtMWs7ajCVjouv5GW+OEhp3v2IVk=
+X-Google-Smtp-Source: AGHT+IFDWwCsyIH3udntapEMeZKsjzc8YDWsB8IzrNKOcKADqGXbJI8EsYvL5lJPVkIkMFPSMByYZw==
+X-Received: by 2002:a5d:5d13:0:b0:3e9:4ae9:9f1 with SMTP id
+ ffacd0b85a97d-42582a058bfmr6587708f8f.31.1759976296131; 
+ Wed, 08 Oct 2025 19:18:16 -0700 (PDT)
 Received: from ekhafagy-ROG-Strix.. ([41.37.1.171])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-46fa9d7f91esm60094215e9.20.2025.10.08.19.17.57
+ 5b1f17b1804b1-46fa9d7f91esm60094215e9.20.2025.10.08.19.18.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Oct 2025 19:17:59 -0700 (PDT)
+ Wed, 08 Oct 2025 19:18:15 -0700 (PDT)
 From: Eslam Khafagy <eslam.medhat1993@gmail.com>
 To: gregkh@linuxfoundation.org,
 	sashal@kernel.org,
@@ -69,11 +70,18 @@ Cc: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
  christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
  mario.kleiner.de@gmail.com, hersenxs.wu@amd.com, Igor.A.Artemiev@mcst.ru,
  nikola.cornij@amd.com, srinivasan.shanmugam@amd.com, roman.li@amd.com,
- amd-gfx@lists.freedesktop.org, eslam.medhat1993@gmail.com
-Subject: [PATCH 5.10.y 0/2] drm/amd/display: Fix potential null dereference
-Date: Thu,  9 Oct 2025 05:17:10 +0300
-Message-ID: <cover.1759974167.git.eslam.medhat1993@gmail.com>
+ amd-gfx@lists.freedesktop.org, eslam.medhat1993@gmail.com,
+ Lang Yu <Lang.Yu@amd.com>,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>
+Subject: [PATCH 5.10.y 1/2] drm/amd/display: Remove redundant safeguards for
+ dmub-srv destroy()
+Date: Thu,  9 Oct 2025 05:17:11 +0300
+Message-ID: <40a1a37aab140b0b0f444f8435b17dee5eae31f2.1759974167.git.eslam.medhat1993@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1759974167.git.eslam.medhat1993@gmail.com>
+References: <cover.1759974167.git.eslam.medhat1993@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 09 Oct 2025 07:45:21 +0000
@@ -91,19 +99,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This series backports commit [52f1783ff414 ("drm/amd/display: Fix potential null dereference")]
-to stable branch 5.10.y. However to apply this i had to backport commit
-[3beac533b8da ("drm/amd/display: Remove redundant safeguards for dmub-srv destroy()")] first.
+From: Roman Li <roman.li@amd.com>
 
-Igor Artemiev (1):
-  drm/amd/display: Fix potential null dereference
+[ Upstream commit 3beac533b8daa18358dabbe5059c417d192b2a93 ]
 
-Roman Li (1):
-  drm/amd/display: Remove redundant safeguards for dmub-srv destroy()
+[Why]
+dc_dmub_srv_destroy() has internal null-check and null assignment.
+No need to duplicate them externally.
 
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+[How]
+Remove redundant safeguards.
 
---
+Signed-off-by: Lang Yu <Lang.Yu@amd.com>
+Signed-off-by: Roman Li <roman.li@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Eslam Khafagy <eslam.medhat1993@gmail.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 45420968e5f1..b698d652d41f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -1141,10 +1141,8 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
+ 	if (adev->dm.dc)
+ 		dc_deinit_callbacks(adev->dm.dc);
+ #endif
+-	if (adev->dm.dc->ctx->dmub_srv) {
+-		dc_dmub_srv_destroy(&adev->dm.dc->ctx->dmub_srv);
+-		adev->dm.dc->ctx->dmub_srv = NULL;
+-	}
++
++	dc_dmub_srv_destroy(&adev->dm.dc->ctx->dmub_srv);
+ 
+ 	if (adev->dm.dmub_bo)
+ 		amdgpu_bo_free_kernel(&adev->dm.dmub_bo,
+-- 
 2.43.0
 
