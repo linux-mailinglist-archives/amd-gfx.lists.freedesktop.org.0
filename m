@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39A1DBC7C0E
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A162BC7C47
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:45:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F37710E943;
-	Thu,  9 Oct 2025 07:45:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9486910E966;
+	Thu,  9 Oct 2025 07:45:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dUg9lcM8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="G/CdmGhB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA0E610E18B
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 02:18:17 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-3fa528f127fso377013f8f.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Oct 2025 19:18:17 -0700 (PDT)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDD9B10E18B
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 02:18:20 +0000 (UTC)
+Received: by mail-wr1-f50.google.com with SMTP id
+ ffacd0b85a97d-3f44000626bso363360f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Oct 2025 19:18:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759976296; x=1760581096; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1759976299; x=1760581099; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=JJfaOf0LMlbdtGGDx/Ijf4csp3yPAQB4jZH4m4DLONE=;
- b=dUg9lcM8foVxRfQ5U2rdJrYx4bFSkqiB0NJFZLZaDEym1Bnc2WupjCLN/9TwoNzDkg
- HOau4oY5Fm3/kyJpfa2GjH+ReBThF9MB4ML0ap1xCDIq6bENOI6+5n9Ach6izqZhWH+Y
- ndtGcoGGl/RQTX+e6kvizrP2ZRTuOaAVIwD5XnDu6MnTycIX5qkho/LuEYY2WNx6O0q+
- 6iKHkRW7pBk6QgxoSS87mxmymu+5rf/QeL2FdsVGgORD0Ip81VtsvtqQtHD+SNmcEgwe
- dc/xLcKHxWSw3Sb+cw2dkGC+uNpe8ist1gRdoDBsvwWwWXORrDjjz0MhRy93FCgGeXEz
- gZ6g==
+ bh=gqgyYd4Mgcg6Fw8yS9ue0bFgfT1RMe7FZ2RNvXUjHH8=;
+ b=G/CdmGhBR8a1+aHP5IdNbdI+JPf336ResRn70gF5x6ZOuf+B+hZkUJP8lxAQDlWKHR
+ 0RwVrrktfEhgUacEjrfK9Ov6AVuCHwxZGD7MfUhwzMc47NjTOn9yD/JXJARFFnoxm1pb
+ aWHjEMP8auCrJ0JwIvCZ72WE5UuSczTGxs1AhN6pQswvNfplAvg7rK+enARG1QFcAtzb
+ 7EW3FIQCIffVIiWoJxx0JlFNzboCv5PY8KtT4AqF5k3urggqYFbaswSNU34SjX5DfXZz
+ tKW3fQsYgN6rJ0ve+zPEzgmCJzGoEyNs1sroO4cjuhwSoVJVGguHwSQd9+XYszPfYviS
+ bjiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759976296; x=1760581096;
+ d=1e100.net; s=20230601; t=1759976299; x=1760581099;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=JJfaOf0LMlbdtGGDx/Ijf4csp3yPAQB4jZH4m4DLONE=;
- b=rwzaIl6Aau1L44BhG6uOJqzgQOqpZZPO6OtQiLHYNGl5HysalU5XmM4FbUoVxOI6Dd
- SpBF088yWAyTgU3FfQ0g1uG8fehKGSHeWI5Ajw+ND1CEUMb5gxfrXKCNfERxqWsj7QDe
- 4Fik39m0u3YUBHvmZB3USKtALAfvW04lAc86fhaoDXwG07+Gs+LZaoht5smnHkksKaxI
- uPzFpFwO4vmWq6JgJd8zHAfusE1DcPL6greI5j6/fGHu+9H9whWgt7gayDunpL5VrlOM
- 4wYlba+YCnKwVAzvn77a0wssbI63G1PvunBUIFmVg/LFt3YRBJv5R8OeexFtQid7skV8
- WPhA==
+ bh=gqgyYd4Mgcg6Fw8yS9ue0bFgfT1RMe7FZ2RNvXUjHH8=;
+ b=i4TEcMa/cKL3IiPKl7qDpL68ElO3gkswkOffkLrn/j0ulSStS7M1MOcvU4HrCRMxDw
+ q+gBJr8WTSMU/8Bd2sPDxPIY+g4o5L0j4NtdfHsHuomwQfbIngNL1HQpf/AmHy65IRDj
+ ZKa8wk/DEHhu6INmsSa0xssMx5Jx7Z0xMxFF9NMMd0Cf6guxpapiTDnsKtUoBfqOnYFC
+ MLAybDvxsa8IsncRRWKlDagF0wCFM37Sa8z9cDOo6+L/51CDZPi2ZMdnrUO0X9iB2FPJ
+ HbxGgZrUh+YYbhu+o0b6fd10LOBy2Q2Hg5uT1rqhB+A+eUiRmsig1FpJfaz/1Anrbo2v
+ ASTw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVjVgN9leLgneXZ1E7QxnWagd4qcsl7fxrSLq6t7vnP8MhP/cfJzpdy4t1PNmGF6O9JU4qrQwef@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzwP9rFOlWu7InnoEo4sxORwHDoN2pciS8d6ieymGDWRdr9QORw
- YJwetMROZXhLUbZOiyp9/cNMysBkumc308Shlq0pQPoY08Ftfl6sUHXz
-X-Gm-Gg: ASbGnctjJK3c8pcIAE6LvLb9sZYcit9Olv+k2+AxfoILjke3/8Q7O09GhBD10k7iZEf
- 6dCrtWOa2QY+/hhmKdASYqmUMMwa+ffAWrJqCs5M67YGngQORyHQbKGIU6v98rwwDPKKlqZdXFg
- A8xi0ln9JDlK0xVqP8Q/ums3WMIfJZdJKmNRQRb5URTNggLTUoiVzzYpzRScU/GAopMEI7zXDHv
- 8wbBjQ2QOX3+/ZvB5AVKjY0uhlM5+f/OtO7OrOTQ4sV/BbB4fJa4i4uGTslSEg118nDcecvZGtS
- 75xgnsRCtWI36qjfTJE8UwBy0zEdw+g9zAkRzpJXl1xmLZomC2WRd4Zn/4SvWsBto2T8iVUxWHg
- 9RlK8otWUIFm/9M7LAJjDY6iPhr5Al2Nct3lTtMWs7ajCVjouv5GW+OEhp3v2IVk=
-X-Google-Smtp-Source: AGHT+IFDWwCsyIH3udntapEMeZKsjzc8YDWsB8IzrNKOcKADqGXbJI8EsYvL5lJPVkIkMFPSMByYZw==
-X-Received: by 2002:a5d:5d13:0:b0:3e9:4ae9:9f1 with SMTP id
- ffacd0b85a97d-42582a058bfmr6587708f8f.31.1759976296131; 
- Wed, 08 Oct 2025 19:18:16 -0700 (PDT)
+ AJvYcCXhKYNZcaG0hyON74VuDM3rMI1OhKMGvSs5lRY/ySolkQTZZC02V0cLZKTX/W70gqorlgsE61rL@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwgI/DlT6E7eQr66JvP4kYwQhgZVZ4DFO0rTDWeI8omBtbIUUXp
+ tBVFfOIrY/Ly5CsgbFVfHizv30+wLIa1cd0cTCJzYvkNtU1gQvRszlpS
+X-Gm-Gg: ASbGncsSCKHtWiJyYe5E3GvgPk3Z33BZB9ckotc5JA1RzYC9YUiYkSWzXOpnkwdOgxm
+ E+RWsB+z55R7+U5hhPCbOMnddHao6FzNA9VyFbM45i+IwK/CSrBF3fDSnbwZgUe6TTGWq+P6Xx9
+ T4XoYyu6s0yznklo3If2tO1bzhhXkkd0tsBb5cWdp05RbxnodFgk5bl43AnCJGUDyUopaSjXlg0
+ k0iB87dLFwWjBKmWfSPiMGXClJkvmBsMF/la45ttQWddSFA5oZ/e+rVMF/rgakg7YZjmNYUM1bt
+ eCs0R2OgR1uM1Nt3LWOOVgKGFMd53mHAwinCoFeXnp3yT61XsKZbx7/EYU0pWueAYEdgjAr/nWv
+ GTGsWPjHDfhDQptGa4S6Nr9CCXeusWyZhlRo9QXA9iNQRBYPwEcjsb57JAZv7mKw=
+X-Google-Smtp-Source: AGHT+IEm5kdnFG09dYVzwvY+GYBWGh2ZZck+203z4lbF02DASvHUzeCJVzSdR5m2k47thehYE31uPA==
+X-Received: by 2002:a05:6000:26cc:b0:3dc:1a8c:e878 with SMTP id
+ ffacd0b85a97d-42667177b8emr2951904f8f.18.1759976299330; 
+ Wed, 08 Oct 2025 19:18:19 -0700 (PDT)
 Received: from ekhafagy-ROG-Strix.. ([41.37.1.171])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-46fa9d7f91esm60094215e9.20.2025.10.08.19.18.14
+ 5b1f17b1804b1-46fa9d7f91esm60094215e9.20.2025.10.08.19.18.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Oct 2025 19:18:15 -0700 (PDT)
+ Wed, 08 Oct 2025 19:18:18 -0700 (PDT)
 From: Eslam Khafagy <eslam.medhat1993@gmail.com>
 To: gregkh@linuxfoundation.org,
 	sashal@kernel.org,
@@ -71,14 +71,10 @@ Cc: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
  mario.kleiner.de@gmail.com, hersenxs.wu@amd.com, Igor.A.Artemiev@mcst.ru,
  nikola.cornij@amd.com, srinivasan.shanmugam@amd.com, roman.li@amd.com,
  amd-gfx@lists.freedesktop.org, eslam.medhat1993@gmail.com,
- Lang Yu <Lang.Yu@amd.com>,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Daniel Wheeler <daniel.wheeler@amd.com>
-Subject: [PATCH 5.10.y 1/2] drm/amd/display: Remove redundant safeguards for
- dmub-srv destroy()
-Date: Thu,  9 Oct 2025 05:17:11 +0300
-Message-ID: <40a1a37aab140b0b0f444f8435b17dee5eae31f2.1759974167.git.eslam.medhat1993@gmail.com>
+ Hamza Mahfooz <hamza.mahfooz@amd.com>
+Subject: [PATCH 5.10.y 2/2] drm/amd/display: Fix potential null dereference
+Date: Thu,  9 Oct 2025 05:17:12 +0300
+Message-ID: <1c15fc3dd25c509faa95cf8805a64c30b62529b2.1759974167.git.eslam.medhat1993@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1759974167.git.eslam.medhat1993@gmail.com>
 References: <cover.1759974167.git.eslam.medhat1993@gmail.com>
@@ -99,42 +95,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <roman.li@amd.com>
+From: Igor Artemiev <Igor.A.Artemiev@mcst.ru>
 
-[ Upstream commit 3beac533b8daa18358dabbe5059c417d192b2a93 ]
+[ Upstream commit 52f1783ff4146344342422c1cd94fcb4ce39b6fe ]
 
-[Why]
-dc_dmub_srv_destroy() has internal null-check and null assignment.
-No need to duplicate them externally.
+The adev->dm.dc pointer can be NULL and dereferenced in amdgpu_dm_fini()
+without checking.
 
-[How]
-Remove redundant safeguards.
+Add a NULL pointer check before calling dc_dmub_srv_destroy().
 
-Signed-off-by: Lang Yu <Lang.Yu@amd.com>
-Signed-off-by: Roman Li <roman.li@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
-Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
+
+Fixes: 9a71c7d31734 ("drm/amd/display: Register DMUB service with DC")
+Signed-off-by: Igor Artemiev <Igor.A.Artemiev@mcst.ru>
+Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Eslam Khafagy <eslam.medhat1993@gmail.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 45420968e5f1..b698d652d41f 100644
+index b698d652d41f..0aa681939b7e 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1141,10 +1141,8 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
- 	if (adev->dm.dc)
+@@ -1142,7 +1142,8 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
  		dc_deinit_callbacks(adev->dm.dc);
  #endif
--	if (adev->dm.dc->ctx->dmub_srv) {
--		dc_dmub_srv_destroy(&adev->dm.dc->ctx->dmub_srv);
--		adev->dm.dc->ctx->dmub_srv = NULL;
--	}
-+
-+	dc_dmub_srv_destroy(&adev->dm.dc->ctx->dmub_srv);
+ 
+-	dc_dmub_srv_destroy(&adev->dm.dc->ctx->dmub_srv);
++	if (adev->dm.dc)
++		dc_dmub_srv_destroy(&adev->dm.dc->ctx->dmub_srv);
  
  	if (adev->dm.dmub_bo)
  		amdgpu_bo_free_kernel(&adev->dm.dmub_bo,
