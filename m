@@ -2,146 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F69BC7BA4
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 09:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B7CBBC8139
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Oct 2025 10:41:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5BA10E947;
-	Thu,  9 Oct 2025 07:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3E0210E3A5;
+	Thu,  9 Oct 2025 08:41:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="isER4eJX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kV6+JiOC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010071.outbound.protection.outlook.com [52.101.61.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D05210E952
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 07:31:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PLVLYc6j25FydXummU2+C37PxefwqTQuM8y3boc6JsV6hIvrcwwcXj/vHz+dmxIoN8+3XBsYX2wl6/ogO7/Y8HWkJCHTJmGwPKBh0teFyVamQZtBp/tZ2HUaQn+TvO59pj6260+59U2KrC42y7flQngnneP+d5fpz7uPhzmQhAsJgaIhQL95DO7aKZLRAA3DWlAZkOgACfGV5p9nrpF9ar6PJV7TGzXX2C85/C4AAd8RfRvfJ3tRwQ2fqudG37cJ6i1agBDOZNHtmc5lPl6S0rEaWgTS3fKFiMw0/toQBsLesy5N12o38Z7pcay9rFSpM6kDwqPhPBuB0lSd2jwvKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qk0itmVyN5MjRNzEJdPdnlGxzzRG448iFPOoJpj1MgE=;
- b=Xe2l0g/WiZzcFXJCx9xOsnvNoDQuWs6r07+PcfamDImg+RLOJw9f4aaH5Yi9/s98TFXQrFm2Sk2g2Z2M877b1lAf3Ileyh+lSZfaOG/x3PS/w4nTrs4pyA/yEiztpGKxtFikBNG1VF8yKNj5Q5jGtR5pL8FiJQAKT6QcULf2l10GYqDmyuVxUmi75Ysje1+RUtNBnQGz2DiVX0LdzmBUyjy/tNvs8eiuqKBs1DnN+a4opmmohPz48bd6N1JMMw6ozIAMGaV0cpurlyA5yEJluR0qfeZdfqtEJ2QbQIl1hjmwSzDTBJvePhAfqdUNuTaiqk1xtHMOmbyYkcO4Kt+waw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qk0itmVyN5MjRNzEJdPdnlGxzzRG448iFPOoJpj1MgE=;
- b=isER4eJXLhX979YCxFHX5YXnQn97e9paH+RSREgjPYJc7JDg6eMSqVA5zWDFWH+xgEmt8tYgQYKb7q+EXsiNKC7sAciIVhXuFXMtKezWeDKtMTCn/DxE0p9AeNP1SxRTwC3Q28YM35X6cRTmAyG/0z0YKpFNxRtzPTE5F4uDnoU=
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- DS7PR12MB8292.namprd12.prod.outlook.com (2603:10b6:8:e2::21) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9203.9; Thu, 9 Oct 2025 07:30:58 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::e71b:4ec9:237f:24ea]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::e71b:4ec9:237f:24ea%5]) with mapi id 15.20.9182.017; Thu, 9 Oct 2025
- 07:30:58 +0000
-From: "Lazar, Lijo" <Lijo.Lazar@amd.com>
-To: "Zhao, Victor" <Victor.Zhao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Chang, HaiJun" <HaiJun.Chang@amd.com>, "Zhao, Victor"
- <Victor.Zhao@amd.com>
-Subject: RE: [PATCH 2/2] drm/amdgpu: use GPU_HDP_FLUSH for sriov
-Thread-Topic: [PATCH 2/2] drm/amdgpu: use GPU_HDP_FLUSH for sriov
-Thread-Index: AQHcOMdCN3Yiu//KtEyG5niJw4Hj+7S5Z/Tg
-Date: Thu, 9 Oct 2025 07:30:58 +0000
-Message-ID: <DS0PR12MB78048E7EAD08BE665E5FF5A197EEA@DS0PR12MB7804.namprd12.prod.outlook.com>
-References: <20251009024822.3973163-1-Victor.Zhao@amd.com>
- <20251009024822.3973163-2-Victor.Zhao@amd.com>
-In-Reply-To: <20251009024822.3973163-2-Victor.Zhao@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-10-09T07:17:34.0000000Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB7804:EE_|DS7PR12MB8292:EE_
-x-ms-office365-filtering-correlation-id: a0e5672e-f975-4a1c-de20-08de0705ca49
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?GumXrjeRsGSHRKwtOmFPuZ/LazPtJPz0qh6wn26UVBPCrzpjqG/rBAAdhyfw?=
- =?us-ascii?Q?9EbTKCwAAH0Tr/rJHIphI+fzgwhm0WYFMVJ45BtCAjWRVV+rbWuTAGPoKEv4?=
- =?us-ascii?Q?R+9Smcl1Rf1neJBwb7MHI+JCGVoEs4pqKYS2sjxdRPX7iVq+z3TDuJU/FweZ?=
- =?us-ascii?Q?Pu0JjpR9dcM32/HLaTw2AOnoQwjFY9DlQqReEemRe/a94Abbv5sNLnLVO6cL?=
- =?us-ascii?Q?t/kf6rVHee1m0dd6JfixAtRBmRDhq2yqRU/hF2Alhu3/I7tOmdYusQo236Qp?=
- =?us-ascii?Q?82cmnzZ4VI4GEutDAYQmz6jed0aSUxKoWy/jKX9aakPfeMBDK6nMzv+QIcZy?=
- =?us-ascii?Q?ZudOO9wwDrsDxuLn3+tct48TIOG+qbQBOMKVX8bAduqVAccNDW6ktz/fw81Y?=
- =?us-ascii?Q?Tl20OE/FkmUg+/cIlzdq3pKzrQUs1ZRMCmwbKMlN23at0/RtBF9AYxfr+I+C?=
- =?us-ascii?Q?d4q4X40iXXu88zHZJdBWFN5Ft/2jaV+0v5aoPcR+2THTAqFaq2xwDiwRPeD/?=
- =?us-ascii?Q?P76cOrcya4EdmfAVK7pC3MRZFnaUYkc4ERsa+N6HiDdeVMaKg+Bx/u7m0F2b?=
- =?us-ascii?Q?6R/hmWigDHeJtOQpF+UF+xIAJS5jKP1VnT0RhJjXCNLYUuQLQBlItWABdbAE?=
- =?us-ascii?Q?z+OxqcAmfrGzvVDEa++J6uFT2E7jHSvN88eZPGnMYovlmJgPl5rR0q03Kk4G?=
- =?us-ascii?Q?PvRkhrzqCOtt72R8BFtkyf/IN17xmtSSx2Of9OQO1wPtPE7T0VAdKrScFDdQ?=
- =?us-ascii?Q?hfO7CB8sCej+ZyH/dLUZ9Z8uV70fdV/oWPfQIfcNuuYzuRWJ8ghZM1wRReQd?=
- =?us-ascii?Q?Bukd8nTQ4fN+/jfE7q26hG300dG9m1ljlPNka1+Npy/DcQNLwlGJ/m+JWq11?=
- =?us-ascii?Q?/C3RVmkVJrf4YZ3vh8VEchDKUToNfU0FCmeBbSvpSp6svdl2WmUe8KY70jL8?=
- =?us-ascii?Q?6d8CdYlA4R1oZKPZe6ytmNanZav/uR1lQQypJ5sRuaCrtVtqujaEKtDeoT6H?=
- =?us-ascii?Q?WvRmaf8hLEGb/0YNZMrPaHPbRtiMJB2iKa38TggHSPMewLWXV2pBJIwCpyvY?=
- =?us-ascii?Q?MLZWpYKUFn4ypctWD0K9Pq2ohLilBRMuzGWAqRGuJbDlceIo9eGF1GXjqhaB?=
- =?us-ascii?Q?cglIIFm7itploQ28G8HYBOZZnWWnyJCA+YpSR62QVwRstz/oMuqruMBJkQF/?=
- =?us-ascii?Q?EOWxgszinCUHUjrOshr2QpYwqv7mWjO7TzY0i9TYQcY1dXpAEDlRj6BgKjkM?=
- =?us-ascii?Q?fY85rF5tw17YkojfdjV+P1LGiVrBfCEZdFM8vQgQrhmPpI7SSZ3BtW0StWrX?=
- =?us-ascii?Q?TjdOErchUwcc4GGJIn7Bg1bXu67dh4fBm5CmWG034m0CAWXPDJFAjdqq6F8x?=
- =?us-ascii?Q?IP4DrUvgF78Hc6VrY2Ss76ebD+o6fAOByDUlk1VYm8aLmOaAPDZ33EtFBaFy?=
- =?us-ascii?Q?/LJqO5PUCXW0dIaDxRKaMqEluoxbKM9pJ8P7fxd0+tb3qTBJm3AgjdkBTFbv?=
- =?us-ascii?Q?iMs7zCmg2+GXwLL6ekcUauele+DqK+7rRNDk?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iFv6tZG+1AoBoedjg1CfqH0tvM7/QbVzyhHS32StfDL8N+YDCDk/jtWgMSct?=
- =?us-ascii?Q?01UHr+fTtwrDqY9T+e7fPnIJlMvL+Uq4IPQs7nb6/DI1gDfgbSqQ+GTuEn8V?=
- =?us-ascii?Q?pgN1q723+vyYHUQwXrOnjHLRYGpYD0KHK6xxxzxf/fk/oIJJ9C7HHjBGWlUG?=
- =?us-ascii?Q?AH0nZ/18D3eBZMLgOuFF9AdDiARBolAPyAnd/0q6chRUabWy9xPD1heAt3iT?=
- =?us-ascii?Q?hj749EbWUXwiloHh4pMxSa5pioYjOnDLUstWbbnABykNKboYvRDGgcYoank4?=
- =?us-ascii?Q?VQ7qWrROGIHQkl20oBbmOD2hdsaFuMnK9EW6A6qGt+JBhr9BMAGajO/l7oHk?=
- =?us-ascii?Q?Xo8AFp+gKM02wLgm+/oxKuiDrXN4Oivjt+lrnEDc1hLmrIQ4MnOCI/PsajHb?=
- =?us-ascii?Q?QP9JUAue9IC8/bLn2SUyMuv9FMpMnj2DOXHNvhj0o8fWeGk0nxKv33mKL57b?=
- =?us-ascii?Q?dZMFYrkEHdG/L9ZHEXupYpAHGbsx1dzEcLM6AaQzh0+bZxa4Aev1s29wM49n?=
- =?us-ascii?Q?jeQU4VH1ayKoanFqDS/vtGhQGedyi+uXKWcqj0BnhOm65LA4C/GygUe1WcWM?=
- =?us-ascii?Q?uJ9m3HseH0vy8HDAEUN1GnSL/Op4iZW2aomfkDEsdzmkNpt6t/ORpC/NnefN?=
- =?us-ascii?Q?M51KgQi791k+7QFw0V9g3LY00XxD5tQj1qoFsWgh6k7vVt2KHVbTqNsgCvq5?=
- =?us-ascii?Q?urFZvMhEV44iQyk0mcDMbfa0wQCYZ55v3PMU7BMrnuoSLsEDLl8+M+Et2+no?=
- =?us-ascii?Q?ar83gDBMFX2EvJ4Rt8eO3c35Obs7EGYZFa5Qe2ElTy44l6mlynC/3vZKebDs?=
- =?us-ascii?Q?847RDbi1ygSsp7+S6Dk+tWaqRl4TECfBAHnuKkqjZkQhjvbVvDBvjNmScYVd?=
- =?us-ascii?Q?VnEzO2y5ohY0NZmO9O2XEmkozxXAO+1vcIfVhtWFG+vMdZyA6KMoEw6/qgxG?=
- =?us-ascii?Q?kZFRZrpuEpQrzjZEKPO6BLuHh/wyXVDdgHxcNN/fCGC8yilN2L2AFFthuc/b?=
- =?us-ascii?Q?LzwpDjGmqO9IdUFgPgRW5xMPvf+LnQcG5LrUiBHdPaE4lr0CCEGVX2GDTnzz?=
- =?us-ascii?Q?qziV2sjFFSK/WbolLIf0BSagmmRHnaNp9Y3iEu2YD7Pimxp8nJV9CQD9KRuS?=
- =?us-ascii?Q?YlF4wb3An75gQXzZcyh8fjSB3Ow0A0IPkJ/diiu5a91B9NZWvgP2L1bF3Fbd?=
- =?us-ascii?Q?pYbnM1lep6GGOdwb8WXXxP8X9dYznxy/vZKrXn281cWQ2RRxL9zWWldBrR81?=
- =?us-ascii?Q?OSWlWivjwCNx6k1Otm9gNM1pkZWNYgtB4Sm6NEooCKZoyRXjQTVm8Q0+RVdR?=
- =?us-ascii?Q?dvSfweGlRvrs+JUyGyR68mTWyc5FXXX2XkldtpcMH4zOx3hAk+8VbuaDRn8M?=
- =?us-ascii?Q?/LIAaYbYAJ4tIMreM8gZin7MwtWfKukxmtSQ0hUKkkeLPFA9WtlQXFlSMDn6?=
- =?us-ascii?Q?ipFNXMoVhYCpqZTDmPSncY5TdqteFp8JAk3P6P3RV2MXxPYhKXggVyu3cIBV?=
- =?us-ascii?Q?lAHv6kU0ZFULajledUI3xAOCLZQim9+fpI6C6yAWO5SuSmZcCgfacnqsFkKu?=
- =?us-ascii?Q?ySgABbpn2Qg3dFYWFO4=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EB3010E3A5;
+ Thu,  9 Oct 2025 08:41:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=KI8uRmmfqGOWp/w2THZwVCQfpnxvfCgEqP5k1maGyb4=; b=kV6+JiOCULHNZ6P7Fip+6YPcQ+
+ FiJP3hstnuKyNaI6pUCXbaekd++Zeyar7hAkskBbFd524hoCO0f91EsVyfe1WbqWV56KxXxobJShF
+ JurnGP32VkHNwYM7BFsP+FKPD28htaltYNiVO/ObHTf/7cAm2QFpj1OJ/SGQS9xboJjX3kNHe8uAP
+ l8akDzEMiHMoVxW3Jd6Z91tLvWNms1omSuyrmkx3WoyDTNPatjJzCZS9W1M3wG/nzzl/mEz6FI7Lh
+ Wi0TSoeUYuLOvN8OVutTDbraTMVl4E3Y46/qS2zI7UiWIxf8WCfuNLOSB7utNC9gdfn3l4TBrWMwA
+ TYa6PY5A==;
+Received: from [84.66.36.92] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1v6mDA-007N5p-7c; Thu, 09 Oct 2025 10:41:20 +0200
+Message-ID: <887248b2-98ff-4a04-869a-7a1668771251@igalia.com>
+Date: Thu, 9 Oct 2025 09:41:18 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0e5672e-f975-4a1c-de20-08de0705ca49
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2025 07:30:58.3214 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JjIt7pN3V1foGOzlpU5KU1QouWm6yzWJDChGFyTJ+UGLWG6n3Rz/XPbtmJpmFZwe
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8292
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Improving the worst case TTM large allocation
+ latency
+To: Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Sui Jingfeng <suijingfeng@loongson.cn>,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Zack Rusin <zack.rusin@broadcom.com>
+References: <20251008115314.55438-1-tvrtko.ursulin@igalia.com>
+ <6bba6d25-91f3-49a6-81fc-7a03d891cd1d@amd.com>
+ <22228578-a03c-4fc1-85b2-d281525a2b6f@igalia.com>
+ <fe98edc2-cc18-4c44-a4cb-5c41b60834e6@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <fe98edc2-cc18-4c44-a4cb-5c41b60834e6@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,179 +75,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
 
->-----Original Message-----
->From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Victor
->Zhao
->Sent: Thursday, October 9, 2025 8:18 AM
->To: amd-gfx@lists.freedesktop.org
->Cc: Chang, HaiJun <HaiJun.Chang@amd.com>; Zhao, Victor
-><Victor.Zhao@amd.com>
->Subject: [PATCH 2/2] drm/amdgpu: use GPU_HDP_FLUSH for sriov
->
->Currently SRIOV runtime will use kiq to write HDP_MEM_FLUSH_CNTL for hdp
->flush. This register need to be write from CPU for nbif to aware, otherwis=
-e it will
->not work.
->
-[lijo]
-I think this may be related to routing in mult-xcc-SOCs. You may keep the o=
-riginal path as fallback for SOCs without multi-xcc.
+On 08/10/2025 15:34, Matthew Auld wrote:
+> On 08/10/2025 14:50, Tvrtko Ursulin wrote:
+>>
+>> On 08/10/2025 13:35, Christian König wrote:
+>>> On 08.10.25 13:53, Tvrtko Ursulin wrote:
+>>>> Disclaimer:
+>>>> Please note that as this series includes a patch which touches a 
+>>>> good number of
+>>>> drivers I will only copy everyone in the cover letter and the 
+>>>> respective patch.
+>>>> Assumption is people are subscribed to dri-devel so can look at the 
+>>>> whole series
+>>>> there. I know someone is bound to complain for both the case when 
+>>>> everyone is
+>>>> copied on everything for getting too much email, and also for this 
+>>>> other case.
+>>>> So please be flexible.
+>>>>
+>>>> Description:
+>>>>
+>>>> All drivers which use the TTM pool allocator end up requesting large 
+>>>> order
+>>>> allocations when allocating large buffers. Those can be slow due 
+>>>> memory pressure
+>>>> and so add latency to buffer creation. But there is often also a 
+>>>> size limit
+>>>> above which contiguous blocks do not bring any performance benefits. 
+>>>> This series
+>>>> allows drivers to say when it is okay for the TTM to try a bit less 
+>>>> hard.
+>>>>
+>>>> We do this by allowing drivers to specify this cut off point when 
+>>>> creating the
+>>>> TTM device and pools. Allocations above this size will skip direct 
+>>>> reclaim so
+>>>> under memory pressure worst case latency will improve. Background 
+>>>> reclaim is
+>>>> still kicked off and both before and after the memory pressure all 
+>>>> the TTM pool
+>>>> buckets remain to be used as they are today.
+>>>>
+>>>> This is especially interesting if someone has configured 
+>>>> MAX_PAGE_ORDER to
+>>>> higher than the default. And even with the default, with amdgpu for 
+>>>> example,
+>>>> the last patch in the series makes use of the new feature by telling 
+>>>> TTM that
+>>>> above 2MiB we do not expect performance benefits. Which makes TTM 
+>>>> not try direct
+>>>> reclaim for the top bucket (4MiB).
+>>>>
+>>>> End result is TTM drivers become a tiny bit nicer mm citizens and 
+>>>> users benefit
+>>>> from better worst case buffer creation latencies. As a side benefit 
+>>>> we get rid
+>>>> of two instances of those often very unreadable mutliple nameless 
+>>>> booleans
+>>>> function signatures.
+>>>>
+>>>> If this sounds interesting and gets merge the invidual drivers can 
+>>>> follow up
+>>>> with patches configuring their thresholds.
+>>>>
+>>>> v2:
+>>>>   * Christian suggested to pass in the new data by changing the 
+>>>> function signatures.
+>>>>
+>>>> v3:
+>>>>   * Moved ttm pool helpers into new ttm_pool_internal.h. (Christian)
+>>>
+>>> Patch #3 is Acked-by: Christian König <christian.koenig@amd.com>.
+>>>
+>>> The rest is Reviewed-by: Christian König <christian.koenig@amd.com>
+>>
+>> Thank you!
+>>
+>> So I think now I need acks to merge via drm-misc for all the drivers 
+>> which have their own trees. Which seems to be just xe.
+>>
+>> Also interesting for other drivers is that when this lands folks can 
+>> start passing in their "max size which leads to performance gains" via 
+>> TTM_POOL_BENEFICIAL_ORDER and get the worst case allocation latency 
+>> improvements.
+>>
+>> I am thinking xe also maxes out at 2MiB pages, for others I don't know.
+> 
+> Yeah, next level up from 2M GTT page is still 1G GTT page. I think we 
+> especially need 64K/2M system memory pages on igpu to get some perf back 
+> when enabling iommu on some platforms IIRC. Not aware of really needing 
+>  > 2M so sounds like we might also benefit by maxing out at 2M, if it 
+> reduces allocation latency in some cases.
 
->Implement amdgpu_kiq_hdp_flush and use kiq to do gpu hdp flush during
->sriov runtime.
->
->Signed-off-by: Victor Zhao <Victor.Zhao@amd.com>
->---
-> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +
-> drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c    | 73
->++++++++++++++++++++++
-> drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h    |  1 +
-> 3 files changed, 76 insertions(+)
->
->diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->index 7a899fb4de29..eff43757f983 100644
->--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->@@ -7281,6 +7281,8 @@ void amdgpu_device_flush_hdp(struct
->amdgpu_device *adev,
->
->       if (ring && ring->funcs->emit_hdp_flush)
->               amdgpu_ring_emit_hdp_flush(ring);
->+      else if (!ring && amdgpu_sriov_runtime(adev))
->+              amdgpu_kiq_hdp_flush(adev, 0);
-[lijo]
+To clarify a bit, the current semantics of the series is not to max out 
+at the order specified by the driver as the "max beneficial", but to 
+just skip doing direct reclaim above it. Otherwise TTM pool allocator 
+keeps the current behaviour of trying from MAX_PAGE_ORDER and down. As 
+that is 4MB by default on x86 (and configurable on some platforms via 
+Kconfig), idea is not to pay the latency cost of direct reclaim for 
+sizes which bring no additional performance benefit to the GPU. And 
+since it will kick off background reclaim, both past and future 
+allocation can still get the larger order blocks.
 
-If there is no use case of passing a different xcc_id, the extra parameter =
-may be removed and always be assumed that logical xcc 0 will be used.
+If in the future we want to actually max out at the driver specified 
+size that could be discussed. But for now I wanted to have the smallest 
+change in behaviour possible.
 
->       else
->               amdgpu_asic_flush_hdp(adev, ring);
-> }
->diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
->b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
->index 7f02e36ccc1e..ecd7908590de 100644
->--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
->+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
->@@ -1194,6 +1194,78 @@ void amdgpu_kiq_wreg(struct amdgpu_device
->*adev, uint32_t reg, uint32_t v, uint3
->       dev_err(adev->dev, "failed to write reg:%x\n", reg);  }
->
->+void amdgpu_kiq_hdp_flush(struct amdgpu_device *adev, uint32_t xcc_id)
->+{
->+      signed long r, cnt =3D 0;
->+      unsigned long flags;
->+      uint32_t seq;
->+      uint32_t hdp_flush_req_offset, hdp_flush_done_offset,
->ref_and_mask;
->+      struct amdgpu_kiq *kiq =3D &adev->gfx.kiq[xcc_id];
->+      struct amdgpu_ring *ring =3D &kiq->ring;
->+
->+      BUG_ON(!ring->funcs->emit_hdp_flush);
-[lijo]
+Regards,
 
-This may be kept as a warning. It's not necessary to bring-down the system.
+Tvrtko
 
->+
->+      if (amdgpu_device_skip_hw_access(adev))
->+              return;
->+
->+      if (adev->enable_mes_kiq && adev->mes.ring[0].sched.ready) {
->+              hdp_flush_req_offset =3D adev->nbio.funcs-
->>get_hdp_flush_req_offset(adev);
->+              hdp_flush_done_offset =3D adev->nbio.funcs-
->>get_hdp_flush_done_offset(adev);
->+              ref_and_mask =3D adev->nbio.hdp_flush_reg-
->>ref_and_mask_cp0; /* Use CP0
->+for KIQ */
->+
->+              amdgpu_mes_reg_write_reg_wait(adev, hdp_flush_req_offset,
->hdp_flush_done_offset,
->+                                            ref_and_mask, ref_and_mask);
->+              return;
->+      }
-[lijo]
-
-This part may be kept as amdgpu_mes_hdp_flush and moved inside amdgpu_mes.c
-
-Thanks,
-Lijo
-
->+
->+      spin_lock_irqsave(&kiq->ring_lock, flags);
->+      r =3D amdgpu_ring_alloc(ring, 32);
->+      if (r)
->+              goto failed_unlock;
->+
->+      amdgpu_ring_emit_hdp_flush(ring);
->+      r =3D amdgpu_fence_emit_polling(ring, &seq, MAX_KIQ_REG_WAIT);
->+      if (r)
->+              goto failed_undo;
->+
->+      amdgpu_ring_commit(ring);
->+      spin_unlock_irqrestore(&kiq->ring_lock, flags);
->+
->+      r =3D amdgpu_fence_wait_polling(ring, seq, MAX_KIQ_REG_WAIT);
->+
->+      /* don't wait anymore for gpu reset case because this way may
->+       * block gpu_recover() routine forever, e.g. this virt_kiq_rreg
->+       * is triggered in TTM and ttm_bo_lock_delayed_workqueue() will
->+       * never return if we keep waiting in virt_kiq_rreg, which cause
->+       * gpu_recover() hang there.
->+       *
->+       * also don't wait anymore for IRQ context
->+       * */
->+      if (r < 1 && (amdgpu_in_reset(adev) || in_interrupt()))
->+              goto failed_kiq_hdp_flush;
->+
->+      might_sleep();
->+      while (r < 1 && cnt++ < MAX_KIQ_REG_TRY) {
->+              if (amdgpu_in_reset(adev))
->+                      goto failed_kiq_hdp_flush;
->+
->+              msleep(MAX_KIQ_REG_BAILOUT_INTERVAL);
->+              r =3D amdgpu_fence_wait_polling(ring, seq,
->MAX_KIQ_REG_WAIT);
->+      }
->+
->+      if (cnt > MAX_KIQ_REG_TRY)
->+              goto failed_kiq_hdp_flush;
->+
->+      return;
->+
->+failed_undo:
->+      amdgpu_ring_undo(ring);
->+failed_unlock:
->+      spin_unlock_irqrestore(&kiq->ring_lock, flags);
->+failed_kiq_hdp_flush:
->+      dev_err(adev->dev, "failed to flush HDP via KIQ\n"); }
->+
-> int amdgpu_gfx_get_num_kcq(struct amdgpu_device *adev)  {
->       if (amdgpu_num_kcq =3D=3D -1) {
->@@ -2484,3 +2556,4 @@ void
->amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev)
->                           &amdgpu_debugfs_compute_sched_mask_fops);
-> #endif
-> }
->+
->diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
->b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
->index fb5f7a0ee029..5bccd2cc9518 100644
->--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
->+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
->@@ -615,6 +615,7 @@ int amdgpu_gfx_cp_ecc_error_irq(struct
->amdgpu_device *adev,
->                                 struct amdgpu_iv_entry *entry);
-> uint32_t amdgpu_kiq_rreg(struct amdgpu_device *adev, uint32_t reg,
->uint32_t xcc_id);  void amdgpu_kiq_wreg(struct amdgpu_device *adev,
->uint32_t reg, uint32_t v, uint32_t xcc_id);
->+void amdgpu_kiq_hdp_flush(struct amdgpu_device *adev, uint32_t xcc_id);
-> int amdgpu_gfx_get_num_kcq(struct amdgpu_device *adev);  void
->amdgpu_gfx_cp_init_microcode(struct amdgpu_device *adev, uint32_t
->ucode_id);
->
->--
->2.25.1
+>>>> v1 thread:
+>>>> https://lore.kernel.org/dri-devel/20250919131127.90932-1- 
+>>>> tvrtko.ursulin@igalia.com/
+>>>>
+>>>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>> Cc: Danilo Krummrich <dakr@kernel.org>
+>>>> Cc: Dave Airlie <airlied@redhat.com>
+>>>> Cc: Gerd Hoffmann <kraxel@redhat.com>
+>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>> Cc: Lyude Paul <lyude@redhat.com>
+>>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>>> Cc: Maxime Ripard <mripard@kernel.org>
+>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>> Cc: Sui Jingfeng <suijingfeng@loongson.cn>
+>>>> Cc: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>>>> Cc: Zack Rusin <zack.rusin@broadcom.com>
+>>>>
+>>>> Tvrtko Ursulin (5):
+>>>>    drm/ttm: Add getter for some pool properties
+>>>>    drm/ttm: Replace multiple booleans with flags in pool init
+>>>>    drm/ttm: Replace multiple booleans with flags in device init
+>>>>    drm/ttm: Allow drivers to specify maximum beneficial TTM pool size
+>>>>    drm/amdgpu: Configure max beneficial TTM pool allocation order
+>>>>
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  7 +--
+>>>>   drivers/gpu/drm/drm_gem_vram_helper.c         |  2 +-
+>>>>   drivers/gpu/drm/i915/intel_region_ttm.c       |  2 +-
+>>>>   drivers/gpu/drm/loongson/lsdc_ttm.c           |  2 +-
+>>>>   drivers/gpu/drm/nouveau/nouveau_ttm.c         |  4 +-
+>>>>   drivers/gpu/drm/qxl/qxl_ttm.c                 |  2 +-
+>>>>   drivers/gpu/drm/radeon/radeon_ttm.c           |  4 +-
+>>>>   drivers/gpu/drm/ttm/tests/ttm_bo_test.c       | 16 +++----
+>>>>   .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |  2 +-
+>>>>   drivers/gpu/drm/ttm/tests/ttm_device_test.c   | 31 +++++--------
+>>>>   drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c | 22 ++++-----
+>>>>   drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.h |  7 +--
+>>>>   drivers/gpu/drm/ttm/tests/ttm_pool_test.c     | 23 +++++-----
+>>>>   drivers/gpu/drm/ttm/ttm_device.c              |  7 ++-
+>>>>   drivers/gpu/drm/ttm/ttm_pool.c                | 45 ++++++++++ 
+>>>> +--------
+>>>>   drivers/gpu/drm/ttm/ttm_pool_internal.h       | 24 ++++++++++
+>>>>   drivers/gpu/drm/ttm/ttm_tt.c                  | 10 +++--
+>>>>   drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |  4 +-
+>>>>   drivers/gpu/drm/xe/xe_device.c                |  2 +-
+>>>>   include/drm/ttm/ttm_device.h                  |  2 +-
+>>>>   include/drm/ttm/ttm_pool.h                    | 13 +++---
+>>>>   21 files changed, 125 insertions(+), 106 deletions(-)
+>>>>   create mode 100644 drivers/gpu/drm/ttm/ttm_pool_internal.h
+>>>>
+>>>
+>>
+> 
 
