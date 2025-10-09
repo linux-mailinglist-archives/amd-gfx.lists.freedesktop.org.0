@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3D1BCC071
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Oct 2025 10:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3ABFBCC06E
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Oct 2025 10:03:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78CDE10EB51;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5121B10EB4E;
 	Fri, 10 Oct 2025 08:03:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R8Im8tds";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MxdBUltC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com
- [209.85.166.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0088310EAD0
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 17:58:48 +0000 (UTC)
-Received: by mail-il1-f179.google.com with SMTP id
- e9e14a558f8ab-42f7a4bf805so13342145ab.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 10:58:48 -0700 (PDT)
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com
+ [209.85.166.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5B5210EAD2
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Oct 2025 17:58:50 +0000 (UTC)
+Received: by mail-io1-f52.google.com with SMTP id
+ ca18e2360f4ac-92c781fd73aso115607639f.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Oct 2025 10:58:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760032728; x=1760637528; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1760032730; x=1760637530; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=upmZ+84nb0PGLfZ0odEvQVtU0YnnK5GejiW4j5Z157Q=;
- b=R8Im8tdsv2zzqASIRywI5B236infNfWjEGa4pwGA7nhPyqZMtWw3Jv8JtMbXv6phpp
- i4MlAtADR4S4M3OMN7kXgSN1gT2Sl2W2odc9BLV4GQx+BMrjsQdJbqBT3gGbh3ONPww/
- wME6y5Vg52qe/zJSjuF7ql6wR7Yil0CMA3pBDW4YOl9nugC8rtbvcn95hXwfSRJqoh/N
- ge4kGDUaaXrg52YOs1Ybj//tjmWgQxi1r5ubaB88NdudJvY9ddt+MUaRbqzX5JhxYSVX
- 6z9DLaLbM/H4abE0PyQW9Q4MCED0qdjYbqA3Q8P1WTW5QmOKV+tWWxdiop8G9inA4FHs
- e5xQ==
+ bh=cTjH4sGVjFOYrHuOXXQp8+DmE+GbVi2pPpgMotQBb8c=;
+ b=MxdBUltCGjYtzDyl5bwKvwl0amAdd8y6+7zVYo3CyUCyUu2Kb38wRgYidUt3vQM0DI
+ ZjQuQ858S+iAZ683+p5GL8hIUUbX2CPceLV6g7QGiwRVkGW17EqWYm7xwOJxyGDOflMl
+ Zp7AI2N6J4SMvMF8AvVd271F0B5bLATpqKVF/swIi0GNdTgZYHtKKilIRKDnjooZwn8r
+ xWGUF9cz1hUmveMIcYRQ2OxaG/bAmHDMbFEJNvIPKXRCrGfO9wna505NtL6ARagcIcXW
+ Ttc7lrS3qwjuptzZcq9HAYiFvl3j1KyE8TObJKSe1qRh5UZTtOgcha/JnQ4JS8V3/tuf
+ 9g5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760032728; x=1760637528;
+ d=1e100.net; s=20230601; t=1760032730; x=1760637530;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=upmZ+84nb0PGLfZ0odEvQVtU0YnnK5GejiW4j5Z157Q=;
- b=eUlF+Upbt9nP0pmMme9A+2AoDLtIydSvV8jva+6wOCfOOIar+PmYQiyTBAvmAiJBEa
- bxS5TTzYiKsvtWWPQKsKdYeobAF8m/QvWAHWuXFaJDwy2aRw4TPgn2RV9jH6TJITH66I
- qlHopLAupaybsTbjHIPxN+TYL9EoMnEjsTSrdtdXNTVPGQLT3UKeb26zIiXr1cQOSj5n
- 5isHNOkH/KPSnETC9N8hsq1IzYmkn5IM237uyoYQW2CFDMUxxDLeh7XQLzkbKhcVij16
- Khi0q+v0AdS4tXUW+TiZjc/ZdqCjeqvbQKyZFZCbQbIBbVb2I7FTfBP7c2suEKSUn7nd
- 0Qmg==
+ bh=cTjH4sGVjFOYrHuOXXQp8+DmE+GbVi2pPpgMotQBb8c=;
+ b=Njg04OxQ10hMxlcjY7BK2Tjhvlf285Oo+qWcR7zgdWbQENqDoP7oWfBvSc6I1hzoIO
+ sjSqI09g1KZebC/9eqzCG67dNWMOR34Ans+qtCLWBTtxzgk6fx5u7WQp2nU5ZMRWA/Cd
+ U0Nm2rcG0q2xmhRhST7hnXclswtgHlcZLi8gk5N9l/APXuO/8GldHTtZBC7cax5YEox7
+ Ieq/XSQEWIse7WmkVKEAfNUd+467byt9ky2wfIPJvdL6KIDlP6ZOUBNICypZRS4KPENt
+ kvF3ksG9gUORhBaxhzIA09mHT2FoDZKIwenNIkRDh6a5tnkiXu7CbcUlDWgpJQquGh6n
+ 3cPA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVcY7mRV9DG+CY784Eyv2EFDsJ1OM9wsg2Df7ZaPav+h5wt2RD+X4yQOSqjypysntaiaKJfTrlX@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy7uvMUm9RkEnqbOB8i4T9t4A3Sz6H76OOilfmsjPL0EuuneQuO
- RTVFRJt2xZa2gPMb60mmXJ+OzcozSAfp0icysHz/EmPwTsYrBDe/xs/K
-X-Gm-Gg: ASbGncui7e39B6oipN6pyIYJWq4g3rwHiDEvpvGimyY3VRYFrlvQYZScdv65evcLicA
- ZpnRNa8GV+vMDNKR0l6k9FVivtBD1Kc1wQjVMi7BpDyWU57NrqJayKyRtfcNpvQu2XoKNjB6okd
- q9r/aS1PXGhde66VPYKFF/V4/bJVUwcO5SLIOmj3TlN/gBPxkjeW2YW+qFmXNJeYtb9KewdMSos
- +Fcvby9WXOQQrwvFtveIcugBUl+u1Qks9wnbbNZj0VfVtm1VS+X1YZ/Zzs4bdaao1AhNehKCqxg
- dVqydx/dMuv8SFcmYOGjrnlO4YJOX20YZ7YctScYt/L6kBXlcVhlFNRdxtOUxXx8IQ2uazQTfz5
- 4JkiEbhwVdhRxn1XI2Cuhcf+jibUHDHl491xTOdvUZtfLGpBLF9E1Rzq5NUAlEgYK8I+Lt+sl5Y
- I0/sFui/IP264ZvhNLcIJfUKzaRERA7gZh3Q+PwlOIufaRdJSz
-X-Google-Smtp-Source: AGHT+IEP/KYeFsU48bhRAsguavBTqOpW4JiVNFuGMdDXElpSwlucCVx3RZG6w7iiJpXxsucAPDZNmA==
-X-Received: by 2002:a05:6e02:18cf:b0:42e:73f7:79c4 with SMTP id
- e9e14a558f8ab-42f873fb613mr81674845ab.27.1760032728078; 
- Thu, 09 Oct 2025 10:58:48 -0700 (PDT)
+ AJvYcCUitQp2A5kzplp1hZGV2WAjNWh8e6Cy2AAroEHORn1uYrwIocyLN0sR8eG0Dqdo5qwJsVwNRgpU@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxCqS+v5p37rs0DYzIpHIGXpS9cmwHVrUfy4AT8s3H8y4eFb3Mw
+ pRPZE3cKD10m03wdWT9Qwl/CfmvQkUsaKZjiSBzq7XO0ZNhmMKue295d
+X-Gm-Gg: ASbGncs1Ku7YTjyjSPQtxEfdrKfm0UlWe0eUIrhYs1D0j5CLsDn0FVx6qCs1rlZi5Wt
+ M6aVAzkrolAKdqYRLPLkZIBaocFZa+f9UNG71OdMBMfM3vj0f5Wq4T6TpsBSmxl/1Wl3UBGUb68
+ gidJjLafnU/TXZCyS6M7d313BZrUKNKSUTTGBe1wZ8rMis5uZD/prxaVq1pAJNc31tqSHLGYTLi
+ 3Ufa/MvgS+vVauLV4Zon+EP5OIjAsrtCkrtS2Ev6v0oPDwvKIpv3MGtPNPPIUltaAoT0PicReni
+ QF7PCtTsdwRPr/gqtS+UpcMSRj+7uXOl9pEOa31ETMKEba4VmXL57L3dycSBz2RntJjRzXfBuj4
+ fe6nhFcjHDIbMZFjI/5xZeV5b8Asgz59S6tU7cKGNvV+DWKEeUT10XC604HS63FFNvScTn9GQXB
+ LXeJWA548CiGGER00jxzQ4W6gnvnpEHXElcNX3og==
+X-Google-Smtp-Source: AGHT+IGqp7iPYqC+hSmWS9kXElNlvxppUNSCrpXp6d0YnM0eWjcHcBKQts/HVhk5zAlEdOdTjEStJw==
+X-Received: by 2002:a05:6e02:1a44:b0:42f:8b94:c128 with SMTP id
+ e9e14a558f8ab-42f8b94e60dmr60429525ab.28.1760032729943; 
+ Thu, 09 Oct 2025 10:58:49 -0700 (PDT)
 Received: from godzilla.raven-morpho.ts.net
  (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 8926c6da1cb9f-58f7200c4afsm30256173.35.2025.10.09.10.58.46
+ 8926c6da1cb9f-58f7200c4afsm30256173.35.2025.10.09.10.58.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Oct 2025 10:58:47 -0700 (PDT)
+ Thu, 09 Oct 2025 10:58:49 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: jbaron@akamai.com
 Cc: gregkh@linuxfoundation.org, ukaszb@chromium.org, louis.chauvet@bootlin.com,
@@ -71,11 +71,10 @@ Cc: gregkh@linuxfoundation.org, ukaszb@chromium.org, louis.chauvet@bootlin.com,
  amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
  tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com, Jim Cromie <jim.cromie@gmail.com>,
- linux-doc@vger.kernel.org
-Subject: [PATCH v5 02/30] docs/dyndbg: explain flags parse 1st
-Date: Thu,  9 Oct 2025 11:58:06 -0600
-Message-ID: <20251009175834.1024308-3-jim.cromie@gmail.com>
+ ville.syrjala@linux.intel.com, Jim Cromie <jim.cromie@gmail.com>
+Subject: [PATCH v5 03/30] test-dyndbg: fixup CLASSMAP usage error
+Date: Thu,  9 Oct 2025 11:58:07 -0600
+Message-ID: <20251009175834.1024308-4-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251009175834.1024308-1-jim.cromie@gmail.com>
 References: <20251009175834.1024308-1-jim.cromie@gmail.com>
@@ -96,45 +95,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When writing queries to >control, flags are parsed 1st, since they are
-the only required field, and they require specific compositions.  So
-if the flags draw an error (on those specifics), then keyword errors
-aren't reported.  This can be mildly confusing/annoying, so explain it
-instead.
+commit 6ea3bf466ac6 ("dyndbg: test DECLARE_DYNDBG_CLASSMAP, sysfs nodes")
 
-cc: linux-doc@vger.kernel.org
+A closer look at test_dynamic_debug.ko logging output reveals a macro
+usage error:
+
+lib/test_dynamic_debug.c:105 [test_dynamic_debug]do_cats =p "LOW msg\n" class:MID
+lib/test_dynamic_debug.c:106 [test_dynamic_debug]do_cats =p "MID msg\n" class:HI
+lib/test_dynamic_debug.c:107 [test_dynamic_debug]do_cats =_ "HI msg\n" class unknown, _id:13
+
+107 says: HI is unknown, and 105,106 have a LOW/MID and MID/HI skew.
+
+DECLARE_DYNDBG_CLASSMAP() _base arg must equal the enum's 1st value,
+in this case it was _base + 1.  This leaves HI class un-selectable.
+
+NB: the macro could better validate its arguments.
+
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+Tested-by: Louis Chauvet<louis.chauvet@bootlin.com>
 ---
- Documentation/admin-guide/dynamic-debug-howto.rst | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ lib/test_dynamic_debug.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
-index 4ac18c0a1d95..63a511f2337b 100644
---- a/Documentation/admin-guide/dynamic-debug-howto.rst
-+++ b/Documentation/admin-guide/dynamic-debug-howto.rst
-@@ -109,9 +109,18 @@ The match-spec's select *prdbgs* from the catalog, upon which to apply
- the flags-spec, all constraints are ANDed together.  An absent keyword
- is the same as keyword "*".
+diff --git a/lib/test_dynamic_debug.c b/lib/test_dynamic_debug.c
+index 77c2a669b6af..396144cf351b 100644
+--- a/lib/test_dynamic_debug.c
++++ b/lib/test_dynamic_debug.c
+@@ -75,7 +75,7 @@ DD_SYS_WRAP(disjoint_bits, p);
+ DD_SYS_WRAP(disjoint_bits, T);
  
--
--A match specification is a keyword, which selects the attribute of
--the callsite to be compared, and a value to compare against.  Possible
-+Note: because the match-spec can be empty, the flags are checked 1st,
-+then the pairs of keyword values.  Flag errs will hide keyword errs:
-+
-+  bash-5.2# ddcmd mod bar +foo
-+  dyndbg: read 13 bytes from userspace
-+  dyndbg: query 0: "mod bar +foo" mod:*
-+  dyndbg: unknown flag 'o'
-+  dyndbg: flags parse failed
-+  dyndbg: processed 1 queries, with 0 matches, 1 errs
-+
-+So a match-spec is a keyword, which selects the attribute of the
-+callsite to be compared, and a value to compare against.  Possible
- keywords are:::
- 
-   match-spec ::= 'func' string |
+ /* symbolic input, independent bits */
+-enum cat_disjoint_names { LOW = 11, MID, HI };
++enum cat_disjoint_names { LOW = 10, MID, HI };
+ DECLARE_DYNDBG_CLASSMAP(map_disjoint_names, DD_CLASS_TYPE_DISJOINT_NAMES, 10,
+ 			"LOW", "MID", "HI");
+ DD_SYS_WRAP(disjoint_names, p);
 -- 
 2.51.0
 
