@@ -2,46 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDAB1BCBA71
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Oct 2025 06:43:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A5DDBCBA77
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Oct 2025 06:43:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7824210E26A;
-	Fri, 10 Oct 2025 04:43:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A439110E31C;
+	Fri, 10 Oct 2025 04:43:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mNRMf4c2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fsjXntHr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013050.outbound.protection.outlook.com
- [40.107.201.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9515A10E267
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Oct 2025 04:43:35 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010045.outbound.protection.outlook.com [52.101.201.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3694E10E267
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Oct 2025 04:43:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W4z5t6vJJJ/DPix0hUjGTcx0niz7S0rZkLTzS04ezeNh0Gp55SjtkS/Q0JhTtyL/Ghvbb61X95WElWm1h0cGhEfPdS8JwBTR/H9xF+Wq3s54TNkEHtvc2s0j714YRQ+BEmAtP6yuyKBsknCdq8tHn62JMbhinS2RyMrOo08bcSSJ083DwVTpI+5qVRgCk0f9ODihJyWxorNbSfeCaih8oVRe8X3dcaAV5lI3wUyf+XVUX8w8ojsP0Re92W7lU2euJ7rmIzioTkunaqSBsIvBNTQymPpwubYZpYEpLWO5jHBFAMAdMvZCh2I4g9eA9J/npj1bBLaRPI0KHrDfjQ/xLQ==
+ b=kMl6/0heT28QhO3O3Ckvtd3+5I5dr30FRuwRafYnFPlXJFwSi+AGzJgTyfnfRoIODA6A1Bkq9WgJ7K0eT2qdH3OqS+377RJtX6WsSXEjwo8JaQJiteyhYv2pIB2CCfvklbCpvWmRIurOZGai1WjLV7J3z/qPKISJwztX1x/nEseZ+5+Xe+3aWsj5y34ubQBVbL2lUDtB80maek8r60WjFdL8/D7YMXCLc3Vfmh9qAN+SMxBUy6zMaPq3P6XGbZIg8r2czWEyDoXaMH66bnCXopQ9Zal1te3i93oliLuymTUNM4Cii3H6LmFME58K+Utiq4YGP/S+a7jPZXpXr/PaaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H1K6KLbhVS/cbC5KdHuNKZtujZJbyKqMwkXhN8m2WEw=;
- b=YAqJ7ivEfg8qqFjz2DIW20SHYA8x1ThQ0p7lnxlFGTIUff5F9yxOoCrB+PV8MbCPLYDZNXX8kpYNubWOZu3S8aT9Du6DXCLUCWdXO+Aj452Kt9J4MvQTl1+ce7YJ1/wdAFZg2DYmCN3nDxeTqqm6NWFQ8RQC70ueapDqs1q1VGzq+q93X6bBb/cwW7AyDiohrDv2hspLHY3NvOOkx0bNZZ5bIaYohpWC5dJ5xHXJJ/TGfLdAtmlEgk1jDhrBPxPale8ykuHAfCoFAxLQLGSR0vedfO0FUd+l+JYrEImXwjpBtXTZX+vqCLN7SSoSy3LAfbzDz9dt+crjIktyX/gHoQ==
+ bh=nIn4eO3eMZ8oiJo76xHNEoflXNqJ0W4EkyM0mmF0QW4=;
+ b=RuGM1lw9ewSqtlqux8sQLTIGbmqd7uq0JhI3F0IJJVo6mJQxaIV7ZUYA+1ZncR94dMsAARbPTu+vnHmstkWeUNvo9fEzdxRburfrghN5N/4wKBD3ZmjPartA74Xyyo08SbfV5MPXP156L/mopNFcBK0B9ZmL3b2B9XiDl7YYmjNW9mx0zMVOx3R1soexgZB99FNY5yukGN0PQtetT1ke2kYwAheIlp3ZFpN79Sv7s3LJyZbJddcelTIcQ/RpZls2CVq2chtmCMyWTn+Dof2oaULWXJqsmXtLTQDLhqhy23KcEQ/LlHN6w9MbCbqCrFOKhytTw5QKlKdPJXsWt0yP7A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H1K6KLbhVS/cbC5KdHuNKZtujZJbyKqMwkXhN8m2WEw=;
- b=mNRMf4c2y/coJkWuCBZRcADfTFo7YZGOjNwwKsy2RS+BvFuUGi0GiVD5YihtLMYdKgdkbEpaDXx8jQ50uemQ+9H31T0iUJGQ9cu8L1F+f9pZtHgrL/Pqlhkp6mlqOHGy5b/0vrUTuGQXwZPGTur3lbLZYEFr9dLSDsxGeAJErAM=
-Received: from BN9PR03CA0337.namprd03.prod.outlook.com (2603:10b6:408:f6::12)
- by LV2PR12MB5872.namprd12.prod.outlook.com (2603:10b6:408:173::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Fri, 10 Oct
- 2025 04:43:29 +0000
-Received: from MN1PEPF0000F0DE.namprd04.prod.outlook.com
- (2603:10b6:408:f6:cafe::35) by BN9PR03CA0337.outlook.office365.com
- (2603:10b6:408:f6::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9182.20 via Frontend Transport; Fri,
- 10 Oct 2025 04:43:29 +0000
+ bh=nIn4eO3eMZ8oiJo76xHNEoflXNqJ0W4EkyM0mmF0QW4=;
+ b=fsjXntHrgkjGykYzkYZcsbylDHTo74kq9HLkrkBKo9/F88QEFPRRfSjS5bT8Id8Rbe/kChmek0PxFM3jrEfmp007N2jyVDqzx14D0tz7tiVpcpb1pdNPN2sCq1a16OFTigyvszz1BMhCQbpr1SgxMFJHUMKw7CDqPF05BA4+j24=
+Received: from BL0PR0102CA0037.prod.exchangelabs.com (2603:10b6:208:25::14) by
+ IA1PR12MB7495.namprd12.prod.outlook.com (2603:10b6:208:419::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.10; Fri, 10 Oct
+ 2025 04:43:30 +0000
+Received: from MN1PEPF0000F0E2.namprd04.prod.outlook.com
+ (2603:10b6:208:25:cafe::72) by BL0PR0102CA0037.outlook.office365.com
+ (2603:10b6:208:25::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9203.9 via Frontend Transport; Fri,
+ 10 Oct 2025 04:44:13 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -49,21 +48,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- MN1PEPF0000F0DE.mail.protection.outlook.com (10.167.242.36) with Microsoft
+ MN1PEPF0000F0E2.mail.protection.outlook.com (10.167.242.40) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9203.9 via Frontend Transport; Fri, 10 Oct 2025 04:43:29 +0000
+ 15.20.9203.9 via Frontend Transport; Fri, 10 Oct 2025 04:43:30 +0000
 Received: from cv350-ccs-aus-h13-08.cs-aus.dcgpu (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 9 Oct 2025 21:43:28 -0700
+ 15.2.2562.17; Thu, 9 Oct 2025 21:43:29 -0700
 From: Ellen Pan <yunru.pan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>,
  <Lijo.Lazar@amd.com>, <Jeffrey.Chan@amd.com>, Ellen Pan <yunru.pan@amd.com>
-Subject: [PATCH 5/6] drm/amdgpu: Add logic for VF ipd and VF bios to init from
- dynamic crit_region offsets
-Date: Thu, 9 Oct 2025 23:43:08 -0500
-Message-ID: <20251010044309.11822-5-yunru.pan@amd.com>
+Subject: [PATCH 6/6] drm/amdgpu: Add logic for VF data exchange region to init
+ from dynamic crit_region offsets
+Date: Thu, 9 Oct 2025 23:43:09 -0500
+Message-ID: <20251010044309.11822-6-yunru.pan@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251010044309.11822-1-yunru.pan@amd.com>
 References: <20251010044309.11822-1-yunru.pan@amd.com>
@@ -75,53 +74,53 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|LV2PR12MB5872:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b5c2248-81c1-4b6f-94d3-08de07b78f1c
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E2:EE_|IA1PR12MB7495:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75d5ec97-0e1c-4dbc-0b2d-08de07b78fc8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?yGuEcDVYX090NejQGSNtsP/FHT2+WE22ZDotw3VDmPX5l7ND47OhClQiOUJf?=
- =?us-ascii?Q?LoP3a96IgAIXA1PomlavFaPqVaj1SW2zrdHmcyJGWor833nNf4YCr7KuSlp8?=
- =?us-ascii?Q?7mFiPqNV+wmJCLXq1dpZ5C4W2a7U3Y2+Mi7OmV/qXYa7QS+BytX4ll8cJas5?=
- =?us-ascii?Q?MvjvYA9ATsIJFtblXXkq2xzBh9VCbuFtlo9gjjSgbhlDNI22jFog7vJ6xk3G?=
- =?us-ascii?Q?/ZBrKg7UeP2bvNSckFv6LTPTYyUnh39ERRGS4DGiyUBPS0qka40BqvZqj1mY?=
- =?us-ascii?Q?gD9Oa0kreSrUZOfMYD5kkVmfdkypBrtx3R00L64GTH35B2e81boqAkXArKfi?=
- =?us-ascii?Q?rcS89saa0EziYGSyKpesFJYHlonAXgeXMjHQLPCWj20gPbUCaUXPwdaZ5WQS?=
- =?us-ascii?Q?Q6W8RpouJhWph36uv5RqKbW81wgMAPp2rBfX8RXtiEO6TJELcrbVddzPDph8?=
- =?us-ascii?Q?uVSdwnt185L2Xvg5LMvA2BXvFDp/FuDqZELL5WvnxaP2z/wZLID2i6tgNUj1?=
- =?us-ascii?Q?doGd2qkavmSRdUDypy3fy/bv1O2tAQRX94qL7k1KmsTdzHg/gokyar2UuuJ6?=
- =?us-ascii?Q?8/J1QLvkbelvWcNNvEVepqlv91D+TsuCfRokre2LifupN/milaZ+uIVROlzo?=
- =?us-ascii?Q?3psFWuCTeQtirv3ULx/bR03UQABMQ3IV4ghv7H7R1FrG/hshARJHKg9fiGH3?=
- =?us-ascii?Q?AkaRbDMJ9kJyGB9+tLwX24fHA5rvVAQBblo05tqMgAQywyWkZVwGEvxzya4Z?=
- =?us-ascii?Q?kIEkKBXkU1i5M9lDg3DM+1Wj/k8JFKDmQr+bpa8XEchlinVnbJ205Ths1nfb?=
- =?us-ascii?Q?eRVYHs3BraYqdTXPSGAUHqpjEXjL+tokpx86fbuyLpljVuPl2J5fVMPrR94e?=
- =?us-ascii?Q?uOoh9QZJjj2+ekhiCrpKcNbPjgi5I6k6PWQFQ6pYY2g7153lP0Sm/nQxNCir?=
- =?us-ascii?Q?OMCsEtQu8GWdXHKjPVOC4B68ontFL5HgO1Y417iLgB1VM9tD/ghYEVDLefS9?=
- =?us-ascii?Q?EYtsNkYWns2w7QnqlNPkmVhgljZu0rwXymWQb9NHte+JI4MBPtZkfp4h4Y05?=
- =?us-ascii?Q?tBmk7Jx7xaUVXohjaj18raiB8q0n2mLyrXfjBPc4NvnTpy3CIy4z8EFtp/9p?=
- =?us-ascii?Q?dS5nzSyLvqWau1NKHRwtC821TF7y3zNyoSYft9ejbL1LxiaAQup7cWw88IhV?=
- =?us-ascii?Q?7Io1vOMdqQt3g9yRhgtpcm2LP4/MnzqTWSBS7F/Pg8wdtGPEdauuv2v7eyNn?=
- =?us-ascii?Q?zx9jPsh20ja1gBUJ4XsZWHPXIlZGWQ5tDIfMO3D9k4chCHisdwtNijbLcL3j?=
- =?us-ascii?Q?KK7rvzgxsaz/Qp9pE7SFVS+Z5Qwy1SzN7GDlhFJghxbCIaZsBsm8SbTVl+aA?=
- =?us-ascii?Q?aYPZqCy2b81Ocqnj/4smwqaq6cUbNSAqskGj2JztpfyRhgLwYREW90JA3mS4?=
- =?us-ascii?Q?jid6/K5C2z8/x8Fikz5uJT/uklUistoSoITMNtn7qyRdwotsRLLeNFrcK8Xf?=
- =?us-ascii?Q?7xhO5MKYa8MfcjD7DreL1Tghg5SiUrf5ui+yiPNci3OwPuJeZjq6X75TMAUV?=
- =?us-ascii?Q?ik0RRhDFiD9xo4v3Ewk=3D?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?E8TVheRuBFjrFAjyW+6zFAQvEYeU1HJZcwnZM8f/Xi/OsXm2XpxVAoSJHk5m?=
+ =?us-ascii?Q?0nWnojuHo8XRDhhtPmN/SqVDtjzp6wNGi083gCY0IULXfHUwQ8As5wPvJFx3?=
+ =?us-ascii?Q?DlG/F5C1NN+FLdVv28BjsuRPk41+1KpTTbRDtL2T2jd6VFb+lxfIS0RKikeC?=
+ =?us-ascii?Q?yiqHUhpF/GkA/gDWWOuRHCFn83ccsM8oHcqoxjuqjP6+Royjnyb5Ip+qbk9O?=
+ =?us-ascii?Q?CiHSDzPrNFtwxPONXLQnSMYUlsyKvnXogBy6RZMOX8Dg7R1+LgzKA7gsegyh?=
+ =?us-ascii?Q?1B/MVBvdYS05kDvRhvAPfDAqsuZHmGh4f+5aMUoV/CyimK1zEm98BiULjXib?=
+ =?us-ascii?Q?b1Z2mhPPITzmlDIl9mQ+NEkVFHP8Fumd01oOO1daeLtz3lPFWFqZ0xqAMSX0?=
+ =?us-ascii?Q?GdiqRXbx2O4X/TEINn1DgT/iCsmBasr9P7HEeoxmH+bXuSmzVzrVsKbnKhhM?=
+ =?us-ascii?Q?3Mj4RbJNFtzznHP46PqwEiiXAW9L4kPM/xCFDsb2iIEbgGAOzF8p5ZjPzJDR?=
+ =?us-ascii?Q?Ryy1PWy6FQUlQksDJd6Qa1bwJ0cDys8IJGo5vUZvHutrnIUFTZ5bVN8oUTKT?=
+ =?us-ascii?Q?uuvrr3gk/lVGetNg+wRFVSMbjSWqXJrvrtZh+JQ8jFGkXoPMfLoo8nIJqp0z?=
+ =?us-ascii?Q?E+1LA9oN6J9jnPbLwxCuDjv07qdhNKLA4JpcoOHsDU4mgR1cRVSrO1ZTp8LI?=
+ =?us-ascii?Q?XpoMPKme+OYv0GwFjBZH569pJQfKTkzKWpNqPCwr09Y1+uhQeDHwBwDfXA/5?=
+ =?us-ascii?Q?5kXa3AdfzLL/WVI506xOuA6kLC1ACykCPgpbcw572XtvURFvp+zYJnNhZPbW?=
+ =?us-ascii?Q?Cw3S8Hw4rhB9jVNtbvlFQKxPpLhsqB0TW46HBWQyOyHZiGUF6S9KifQCTUNS?=
+ =?us-ascii?Q?I7nq3HLzX4IH5o89sthA3dCwZ9HOK+PqOIFlPnmmx13yu9/rTgRrTWGSQISO?=
+ =?us-ascii?Q?9gD9NKQpFyjpJjVajAuRmkiV7PpMov2NjWjPoBVEOb7EMZ2P2VWLkXR1HiUf?=
+ =?us-ascii?Q?e4rvBlPALNVGz9kOOcsM8ApsbUTRqktwOa/k468xZiWZGGCNLZu1IM+M1dbr?=
+ =?us-ascii?Q?cspKOtZgRLelxpUDqvXDZMvKpCyhDfCfFBDH//Ge+rXrU2/pNk+eVe+XLciE?=
+ =?us-ascii?Q?M8csTT/rbwpn0TpdxciFPYq7XdP07+D/bViHVc3vj+JBh1OmWcosxDrf3DwX?=
+ =?us-ascii?Q?8sNS9ZSemgoZSEa/mev8h+gW8FEbv3AHXhD97up+p4oL2wyO82PLGerx0RsE?=
+ =?us-ascii?Q?aMh5vK4wEjj5uyd72hnxyXuJdQnczoDe0UtLzJ+F7r7JXCYr4PA+R0V19NUp?=
+ =?us-ascii?Q?nY7KLo+kibKhuW/lPBICpcCHafFqu74y7/RcnmW/ZwVxxHlHgPe2O+7fUfuI?=
+ =?us-ascii?Q?nAjj8w+pI9q+AKql59Tm6m0mz9tuHxr+ItQIYDZC4sF1Gpn2msecqpWIlImj?=
+ =?us-ascii?Q?FIct4LLcQpNmgcuV6CeVOn3gDNbOhE39f88uUc29+vmf04JuuTihiKf700DF?=
+ =?us-ascii?Q?lvQR+GICOQ+0K74+V6SP44Nrttvot1Mdkm2RHuqA3kUBzdCDJNbWbDsrDtZ0?=
+ =?us-ascii?Q?Vzn5SWS9s6bjGEZTBV8=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2025 04:43:29.4174 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b5c2248-81c1-4b6f-94d3-08de07b78f1c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2025 04:43:30.5413 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75d5ec97-0e1c-4dbc-0b2d-08de07b78fc8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0DE.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E2.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5872
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7495
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,303 +135,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-1. Added VF logic in amdgpu_virt to init IP discovery using the offsets from dynamic(v2) critical regions;
-2. Added VF logic in amdgpu_virt to init bios image using the offsets from dynamic(v2) critical regions;
+1. Added VF logic to init data exchange region using the offsets from dynamic(v2) critical regions;
 
 Signed-off-by: Ellen Pan <yunru.pan@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c      |  26 +++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  33 +++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c      | 107 ++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h      |   2 +
- 5 files changed, 142 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 88 ++++++++++++++++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h |  1 +
+ 2 files changed, 77 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 2a0df4cabb99..d320118858bc 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -416,6 +416,7 @@ int amdgpu_device_ip_block_add(struct amdgpu_device *adev,
- /*
-  * BIOS.
-  */
-+bool amdgpu_check_atom_bios(struct amdgpu_device *adev, size_t size);
- bool amdgpu_get_bios(struct amdgpu_device *adev);
- bool amdgpu_read_bios(struct amdgpu_device *adev);
- bool amdgpu_soc15_read_bios_from_rom(struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index 00e96419fcda..787584956214 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -47,7 +47,7 @@
- /* Check if current bios is an ATOM BIOS.
-  * Return true if it is ATOM BIOS. Otherwise, return false.
-  */
--static bool check_atom_bios(struct amdgpu_device *adev, size_t size)
-+bool amdgpu_check_atom_bios(struct amdgpu_device *adev, size_t size)
- {
- 	uint16_t tmp, bios_header_start;
- 	uint8_t *bios = adev->bios;
-@@ -96,7 +96,8 @@ void amdgpu_bios_release(struct amdgpu_device *adev)
-  * part of the system bios.  On boot, the system bios puts a
-  * copy of the igp rom at the start of vram if a discrete card is
-  * present.
-- * For SR-IOV, the vbios image is also put in VRAM in the VF.
-+ * For SR-IOV, if dynamic critical region is not enabled,
-+ * the vbios image is also put at the start of VRAM in the VF.
-  */
- static bool amdgpu_read_bios_from_vram(struct amdgpu_device *adev)
- {
-@@ -127,7 +128,7 @@ static bool amdgpu_read_bios_from_vram(struct amdgpu_device *adev)
- 	memcpy_fromio(adev->bios, bios, size);
- 	iounmap(bios);
- 
--	if (!check_atom_bios(adev, size)) {
-+	if (!amdgpu_check_atom_bios(adev, size)) {
- 		amdgpu_bios_release(adev);
- 		return false;
- 	}
-@@ -155,7 +156,7 @@ bool amdgpu_read_bios(struct amdgpu_device *adev)
- 	memcpy_fromio(adev->bios, bios, size);
- 	pci_unmap_rom(adev->pdev, bios);
- 
--	if (!check_atom_bios(adev, size)) {
-+	if (!amdgpu_check_atom_bios(adev, size)) {
- 		amdgpu_bios_release(adev);
- 		return false;
- 	}
-@@ -195,7 +196,7 @@ static bool amdgpu_read_bios_from_rom(struct amdgpu_device *adev)
- 	/* read complete BIOS */
- 	amdgpu_asic_read_bios_from_rom(adev, adev->bios, len);
- 
--	if (!check_atom_bios(adev, len)) {
-+	if (!amdgpu_check_atom_bios(adev, len)) {
- 		amdgpu_bios_release(adev);
- 		return false;
- 	}
-@@ -225,7 +226,7 @@ static bool amdgpu_read_platform_bios(struct amdgpu_device *adev)
- 	memcpy_fromio(adev->bios, bios, romlen);
- 	iounmap(bios);
- 
--	if (!check_atom_bios(adev, romlen))
-+	if (!amdgpu_check_atom_bios(adev, romlen))
- 		goto free_bios;
- 
- 	adev->bios_size = romlen;
-@@ -334,7 +335,7 @@ static bool amdgpu_atrm_get_bios(struct amdgpu_device *adev)
- 			break;
- 	}
- 
--	if (!check_atom_bios(adev, size)) {
-+	if (!amdgpu_check_atom_bios(adev, size)) {
- 		amdgpu_bios_release(adev);
- 		return false;
- 	}
-@@ -399,7 +400,7 @@ static bool amdgpu_acpi_vfct_bios(struct amdgpu_device *adev)
- 					     vhdr->ImageLength,
- 					     GFP_KERNEL);
- 
--			if (!check_atom_bios(adev, vhdr->ImageLength)) {
-+			if (!amdgpu_check_atom_bios(adev, vhdr->ImageLength)) {
- 				amdgpu_bios_release(adev);
- 				return false;
- 			}
-@@ -467,9 +468,14 @@ static bool amdgpu_get_bios_dgpu(struct amdgpu_device *adev)
- 	}
- 
- 	/* this is required for SR-IOV */
--	if (amdgpu_read_bios_from_vram(adev)) {
--		dev_info(adev->dev, "Fetched VBIOS from VRAM BAR\n");
-+	if (amdgpu_sriov_vf(adev) && amdgpu_virt_read_bios_from_vram(adev)) {
-+		dev_info(adev->dev, "Fetched VBIOS from dynamic VRAM BAR\n");
- 		goto success;
-+	} else {
-+		if (amdgpu_read_bios_from_vram(adev)) {
-+			dev_info(adev->dev, "Fetched VBIOS from VRAM BAR\n");
-+			goto success;
-+		}
- 	}
- 
- 	if (amdgpu_prefer_rom_resource(adev)) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 73401f0aeb34..de8676d6ff9c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -275,21 +275,18 @@ static int amdgpu_discovery_read_binary_from_mem(struct amdgpu_device *adev,
- 	int i, ret = 0;
- 	u32 msg;
- 
--	if (!amdgpu_sriov_vf(adev)) {
--		/* It can take up to two second for IFWI init to complete on some dGPUs,
--		 * but generally it should be in the 60-100ms range.  Normally this starts
--		 * as soon as the device gets power so by the time the OS loads this has long
--		 * completed.  However, when a card is hotplugged via e.g., USB4, we need to
--		 * wait for this to complete.  Once the C2PMSG is updated, we can
--		 * continue.
--		 */
--
--		for (i = 0; i < 2000; i++) {
--			msg = RREG32(mmMP0_SMN_C2PMSG_33);
--			if (msg & 0x80000000)
--				break;
--			msleep(1);
--		}
-+	/* It can take up to two second for IFWI init to complete on some dGPUs,
-+	 * but generally it should be in the 60-100ms range.  Normally this starts
-+	 * as soon as the device gets power so by the time the OS loads this has long
-+	 * completed.  However, when a card is hotplugged via e.g., USB4, we need to
-+	 * wait for this to complete.  Once the C2PMSG is updated, we can
-+	 * continue.
-+	 */
-+	for (i = 0; i < 2000; i++) {
-+		msg = RREG32(mmMP0_SMN_C2PMSG_33);
-+		if (msg & 0x80000000)
-+			break;
-+		msleep(1);
- 	}
- 
- 	vram_size = RREG32(mmRCC_CONFIG_MEMSIZE);
-@@ -467,8 +464,10 @@ static int amdgpu_discovery_init(struct amdgpu_device *adev)
- 			goto out;
- 	} else {
- 		drm_dbg(&adev->ddev, "use ip discovery information from memory");
--		r = amdgpu_discovery_read_binary_from_mem(
--			adev, adev->mman.discovery_bin);
-+		if (amdgpu_sriov_vf(adev))
-+			r = amdgpu_virt_init_discovery_from_mem(adev, adev->mman.discovery_bin);
-+		else
-+			r = amdgpu_discovery_read_binary_from_mem(adev, adev->mman.discovery_bin);
- 		if (r)
- 			goto out;
- 	}
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-index 461e83728594..67d5f15a72a1 100644
+index 67d5f15a72a1..f96382fb0070 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -965,6 +965,113 @@ int amdgpu_virt_init_critical_region(struct amdgpu_device *adev)
- 	return r;
+@@ -670,6 +670,8 @@ void amdgpu_virt_fini_data_exchange(struct amdgpu_device *adev)
+ 
+ void amdgpu_virt_init_data_exchange(struct amdgpu_device *adev)
+ {
++	uint32_t *pfvf_data = NULL;
++
+ 	adev->virt.fw_reserve.p_pf2vf = NULL;
+ 	adev->virt.fw_reserve.p_vf2pf = NULL;
+ 	adev->virt.vf2pf_update_interval_ms = 0;
+@@ -685,11 +687,34 @@ void amdgpu_virt_init_data_exchange(struct amdgpu_device *adev)
+ 		schedule_delayed_work(&(adev->virt.vf2pf_work), msecs_to_jiffies(adev->virt.vf2pf_update_interval_ms));
+ 	} else if (adev->bios != NULL) {
+ 		/* got through this logic in early init stage to get necessary flags, e.g. rlcg_acc related*/
+-		adev->virt.fw_reserve.p_pf2vf =
+-			(struct amd_sriov_msg_pf2vf_info_header *)
+-			(adev->bios + (AMD_SRIOV_MSG_PF2VF_OFFSET_KB_V1 << 10));
++		if (adev->virt.req_init_data_ver == GPU_CRIT_REGION_V2) {
++			pfvf_data =
++				kzalloc(adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_DATAEXCHANGE_TABLE_ID].size_kb << 10,
++					GFP_KERNEL);
++			if (!pfvf_data) {
++				DRM_ERROR("Failed to allocate memory for pfvf_data\n");
++				return;
++			}
+ 
+-		amdgpu_virt_read_pf2vf_data(adev);
++			if (amdgpu_virt_read_exchange_data_from_mem(adev, pfvf_data))
++				goto free_pfvf_data;
++
++			adev->virt.fw_reserve.p_pf2vf =
++				(struct amd_sriov_msg_pf2vf_info_header *)pfvf_data;
++
++			amdgpu_virt_read_pf2vf_data(adev);
++
++free_pfvf_data:
++			kfree(pfvf_data);
++			pfvf_data = NULL;
++			adev->virt.fw_reserve.p_pf2vf = NULL;
++		} else {
++			adev->virt.fw_reserve.p_pf2vf =
++				(struct amd_sriov_msg_pf2vf_info_header *)
++				(adev->bios + (AMD_SRIOV_MSG_PF2VF_OFFSET_KB_V1 << 10));
++
++			amdgpu_virt_read_pf2vf_data(adev);
++		}
+ 	}
  }
  
-+int amdgpu_virt_init_discovery_from_mem(struct amdgpu_device *adev, uint8_t *binary)
+@@ -702,14 +727,29 @@ void amdgpu_virt_exchange_data(struct amdgpu_device *adev)
+ 
+ 	if (adev->mman.fw_vram_usage_va || adev->mman.drv_vram_usage_va) {
+ 		if (adev->mman.fw_vram_usage_va) {
+-			adev->virt.fw_reserve.p_pf2vf =
+-				(struct amd_sriov_msg_pf2vf_info_header *)
+-				(adev->mman.fw_vram_usage_va + (AMD_SRIOV_MSG_PF2VF_OFFSET_KB_V1 << 10));
+-			adev->virt.fw_reserve.p_vf2pf =
+-				(struct amd_sriov_msg_vf2pf_info_header *)
+-				(adev->mman.fw_vram_usage_va + (AMD_SRIOV_MSG_VF2PF_OFFSET_KB_V1 << 10));
+-			adev->virt.fw_reserve.ras_telemetry =
+-				(adev->mman.fw_vram_usage_va + (AMD_SRIOV_MSG_RAS_TELEMETRY_OFFSET_KB_V1 << 10));
++			if (adev->virt.req_init_data_ver == GPU_CRIT_REGION_V2) {
++				adev->virt.fw_reserve.p_pf2vf =
++					(struct amd_sriov_msg_pf2vf_info_header *)
++					(adev->mman.fw_vram_usage_va +
++					adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_DATAEXCHANGE_TABLE_ID].offset);
++				adev->virt.fw_reserve.p_vf2pf =
++					(struct amd_sriov_msg_vf2pf_info_header *)
++					(adev->mman.fw_vram_usage_va +
++					adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_DATAEXCHANGE_TABLE_ID].offset +
++					(AMD_SRIOV_MSG_SIZE_KB_V1 << 10));
++				adev->virt.fw_reserve.ras_telemetry =
++					(adev->mman.fw_vram_usage_va +
++					adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_RAS_TELEMETRY_TABLE_ID].offset);
++			} else {
++				adev->virt.fw_reserve.p_pf2vf =
++					(struct amd_sriov_msg_pf2vf_info_header *)
++					(adev->mman.fw_vram_usage_va + (AMD_SRIOV_MSG_PF2VF_OFFSET_KB_V1 << 10));
++				adev->virt.fw_reserve.p_vf2pf =
++					(struct amd_sriov_msg_vf2pf_info_header *)
++					(adev->mman.fw_vram_usage_va + (AMD_SRIOV_MSG_VF2PF_OFFSET_KB_V1 << 10));
++				adev->virt.fw_reserve.ras_telemetry =
++					(adev->mman.fw_vram_usage_va + (AMD_SRIOV_MSG_RAS_TELEMETRY_OFFSET_KB_V1 << 10));
++			}
+ 		} else if (adev->mman.drv_vram_usage_va) {
+ 			adev->virt.fw_reserve.p_pf2vf =
+ 				(struct amd_sriov_msg_pf2vf_info_header *)
+@@ -1072,6 +1112,30 @@ bool amdgpu_virt_read_bios_from_vram(struct amdgpu_device *adev)
+ 	return true;
+ }
+ 
++int amdgpu_virt_read_exchange_data_from_mem(struct amdgpu_device *adev, uint32_t *pfvf_data)
 +{
-+	uint64_t vram_size;
-+	uint32_t ip_discovery_offset, ip_discovery_size;
++	uint32_t dataexchange_offset =
++		adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_DATAEXCHANGE_TABLE_ID].offset;
++	uint32_t dataexchange_size =
++		adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_DATAEXCHANGE_TABLE_ID].size_kb << 10;
 +	uint64_t pos = 0;
 +
-+	/* Get dynamic offset for IPD if dynamic critical region is enabled */
-+	if (adev->virt.is_dynamic_crit_regn_enabled) {
-+		ip_discovery_offset =
-+			adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_IPD_TABLE_ID].offset;
-+		ip_discovery_size =
-+			adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_IPD_TABLE_ID].size_kb << 10;
++	dev_info(adev->dev,
++			"Got data exchange info from dynamic crit_region_table at offset 0x%x with size of 0x%x bytes.\n",
++			dataexchange_offset, dataexchange_size);
 +
-+		dev_info(adev->dev,
-+			"Got IPD info from dynamic crit_region at offset 0x%x with size of 0x%x bytes.\n",
-+			ip_discovery_offset, ip_discovery_size);
-+
-+		if (!IS_ALIGNED(ip_discovery_offset, 4) || !IS_ALIGNED(ip_discovery_size, 4)) {
-+			dev_err(adev->dev, "IP discovery data not aligned to 4 bytes\n");
-+			return -EINVAL;
-+		}
-+
-+		if (ip_discovery_size > DISCOVERY_TMR_SIZE) {
-+			dev_err(adev->dev, "Invalid IP discovery size: 0x%x\n", ip_discovery_size);
-+			return -EINVAL;
-+		}
-+
-+		pos = (uint64_t)ip_discovery_offset;
-+		amdgpu_device_vram_access(adev, pos, (uint32_t *)binary,
-+					ip_discovery_size, false);
-+	} else {
-+		vram_size = RREG32(mmRCC_CONFIG_MEMSIZE);
-+		if (!vram_size || vram_size == U32_MAX)
-+			return -EINVAL;
-+
-+		vram_size <<= 20;
-+
-+		pos = vram_size - DISCOVERY_TMR_OFFSET;
-+		amdgpu_device_vram_access(adev, pos, (uint32_t *)binary,
-+					adev->mman.discovery_tmr_size, false);
++	if (!IS_ALIGNED(dataexchange_offset, 4) || !IS_ALIGNED(dataexchange_size, 4)) {
++		DRM_ERROR("Data exchange data not aligned to 4 bytes\n");
++		return -EINVAL;
 +	}
++
++	pos = (uint64_t)dataexchange_offset;
++	amdgpu_device_vram_access(adev, pos, pfvf_data,
++					dataexchange_size, false);
 +
 +	return 0;
-+}
-+
-+/* For SR-IOV, if dynamic critical region is enabled,
-+ * the vbios image is put at a dynamic offset of VRAM in the VF.
-+ * If dynamic critical region is disabled, exit early to proceed
-+ * the same seq as on baremetal.
-+ */
-+bool amdgpu_virt_read_bios_from_vram(struct amdgpu_device *adev)
-+{
-+	uint8_t __iomem *bios;
-+	resource_size_t vram_base;
-+	resource_size_t size = 256 * 1024; /* ??? */
-+	uint32_t vbios_offset = 0;
-+	uint32_t vbios_size = 0;
-+
-+	/* Exit early if it's not initialized */
-+	if (!adev->virt.is_dynamic_crit_regn_enabled)
-+		return false;
-+
-+	if (amdgpu_device_need_post(adev))
-+		return false;
-+
-+	/* FB BAR not enabled */
-+	if (pci_resource_len(adev->pdev, 0) == 0)
-+		return false;
-+
-+	adev->bios = NULL;
-+	vram_base = pci_resource_start(adev->pdev, 0);
-+
-+	vbios_offset = adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_VBIOS_IMG_TABLE_ID].offset;
-+	vbios_size =
-+		adev->virt.crit_regn_tbl[AMD_SRIOV_MSG_VBIOS_IMG_TABLE_ID].size_kb << 10;
-+	if (vbios_size > size) {
-+		dev_err(adev->dev, "Invalid vbios size: 0x%x\n", vbios_size);
-+		return false;
-+	}
-+
-+	dev_info(adev->dev,
-+		"Got bios info from dynamic crit_region_table at offset 0x%x with size of 0x%x bytes.\n",
-+		vbios_offset, vbios_size);
-+
-+	size = vbios_size;
-+
-+	bios = ioremap_wc(vram_base + vbios_offset, size);
-+	if (!bios)
-+		return false;
-+
-+	adev->bios = kmalloc(size, GFP_KERNEL);
-+	if (!adev->bios) {
-+		iounmap(bios);
-+		return false;
-+	}
-+	adev->bios_size = size;
-+	memcpy_fromio(adev->bios, bios, size);
-+	iounmap(bios);
-+
-+	if (!check_atom_bios(adev, size)) {
-+		amdgpu_bios_release(adev);
-+		return false;
-+	}
-+
-+	return true;
 +}
 +
  void amdgpu_virt_init(struct amdgpu_device *adev)
  {
  	bool is_sriov = false;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-index bc1fc1c6daba..f2aa306f4192 100644
+index f2aa306f4192..ae456bde6a5a 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-@@ -438,6 +438,8 @@ void amdgpu_virt_fini_data_exchange(struct amdgpu_device *adev);
- void amdgpu_virt_init(struct amdgpu_device *adev);
- 
+@@ -440,6 +440,7 @@ void amdgpu_virt_init(struct amdgpu_device *adev);
  int amdgpu_virt_init_critical_region(struct amdgpu_device *adev);
-+int amdgpu_virt_init_discovery_from_mem(struct amdgpu_device *adev, uint8_t *binary);
-+bool amdgpu_virt_read_bios_from_vram(struct amdgpu_device *adev);
+ int amdgpu_virt_init_discovery_from_mem(struct amdgpu_device *adev, uint8_t *binary);
+ bool amdgpu_virt_read_bios_from_vram(struct amdgpu_device *adev);
++int amdgpu_virt_read_exchange_data_from_mem(struct amdgpu_device *adev, uint32_t *pfvf_data);
  
  bool amdgpu_virt_can_access_debugfs(struct amdgpu_device *adev);
  int amdgpu_virt_enable_access_debugfs(struct amdgpu_device *adev);
