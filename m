@@ -2,72 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C30E5BCDF30
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Oct 2025 18:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F95EBCDF7E
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Oct 2025 18:33:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36E0B10E2B1;
-	Fri, 10 Oct 2025 16:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CEFE10EC5A;
+	Fri, 10 Oct 2025 16:33:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OOeg+oLP";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XvP9mYF/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E6DE10E2B1
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Oct 2025 16:23:24 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-2698d47e6e7so3842415ad.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Oct 2025 09:23:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760113403; x=1760718203; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Z8YXC3dFlL0HU0PxRH8qSo2dG3/+fXnFfyjEzg6ZND0=;
- b=OOeg+oLPYni2VEz9PcoVr9TtAqicuZvK/avH8el9DRKaofgQFk4zEVUbKIIHLTtFIg
- bhhWNUWr8XbtOYBvqB4TydDBa4ACyHwXE8u9PmeT0oY1hoSAa6YX40xfMpAuBT/ze/jZ
- 827NcXxtWwa+7DT0rwhBg3YhoL35PJoJKSX1mefBfafF2cbNesFEBl1WkmNdYGnbAqqH
- Q3NyghAzzAmFSk5i5+wdUquo5viCrFcNG/WIRokmRJ/ZgRvTQj1gKJenrJUY/J+M7cBo
- DeYP31JYH18J82z/jKQYa2+swtSzXo4vpfaXh3wpsyh5nm8LBCIRdAWY9YbEH2c0kgjf
- SVLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760113403; x=1760718203;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Z8YXC3dFlL0HU0PxRH8qSo2dG3/+fXnFfyjEzg6ZND0=;
- b=siXxLq8J064cnQuEddksYQOa/rteOcBUoZC5EMTiNXWf78KsgCBkuRvhDzkp9Yg6qM
- bZgmO+XPVKT4EVtyc37G6nhOft7mC9nkGtz7XlabGV3hxoDHVCVbwDA1gzlNQoggbwsF
- ssWVHTg8HJeLkfgf/8c/BbPS05l1Hxi+7kiC8VdfQyI7+dxQJtt83Wm3GMTA0acBzBLU
- pS4EGHxOuCTix4TQ3jCwomaSt1hlRFIj/H5qDWBGlwA+qFnPM8P9XZAWoAOExQFcycGk
- V5bAvXaHSaBg/i3JfXgDR8lJNbCJ3i7cnm2jfLvaUaIDvfwaDMkMaBJsaG4HZU2mkxbv
- WagQ==
-X-Gm-Message-State: AOJu0Yz5HX5z/k0tppLt9OGYZdWOn2F0c5U766yE6tCflp1G4O+eFc/D
- tK+gfLwrbtrqjtSiPafNlGzG7BJZKldjNAzIAYdjcRA3fiVlXw4B6QQelIJR0NZ68Lkvv2rm2Br
- v3rxMEmEkf+UVzXMuRalOOYwtmzmhhYM=
-X-Gm-Gg: ASbGncv/pDmAQUI/JigRommKS6zpzfFLVRsoEvsFC0TLQ90IacHB6A6bZFmclxpjySZ
- YHMbAag1ZPZtrXcxyR59fKwDW4csF/70LSMB1IyUh8AaRdLLoPG0F1rekZuZ98HPo/astCa2UBl
- XDQ16Xbsy7ImFefeVQA9KDHm4AQBoq1pHlDs932lXDN6O1GO5z8VEVeyLB0EhZuR0CDBabH9wt2
- Ct0P+bQ0eog7yWnuA6EdvD51A==
-X-Google-Smtp-Source: AGHT+IHDkzd0S9tDDF1IfMYbc40ahTe9GA7m05+5mQfba3X6F2kSmNPr2sYuWS6c9wqczwE9+bGI+OTjc0wqLDBwLqo=
-X-Received: by 2002:a17:902:ecc5:b0:24e:af92:70de with SMTP id
- d9443c01a7336-2902743ae83mr90672245ad.7.1760113403397; Fri, 10 Oct 2025
- 09:23:23 -0700 (PDT)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011068.outbound.protection.outlook.com [40.107.208.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5649710EC57
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Oct 2025 16:33:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=I8C31LKvakj93nP5NjrLX3myN4Ov1+YnH1W+RqPey7aZDLKKAMZM4Xnw3iX0lH/oLek5bC4kbAhSZ7n9OoAYqm8RxbiRFwHAiMOKrB6XyOnDKabv2hxhnzK6sHkXsED/wFKlrkEFDBVJkaXEK+Z11NcwfNtmrtNceoRJhCm0x1ntT2I6RFaRNuJFoVC4sq6pSmEmtRjQuObdR3lseRRBRtlrSxHznLc4VArqjZGn1rLJsN1IbGHrm8VT8OQoPSoBbeHwKIw5bpF31FUW7xneteOHW5hXrcF9fEkcYv1u74P4QSYTf0R9TXQVUDe7Rgm4a8R9WBiwvyhwdlcMzlzC8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7RXqpf/bwNDaY6K6eEgAWjxQELBZhPn1mv/aKqWRAEo=;
+ b=dTb52yUkudCAHRYelAEAe0SNexsJ3OOEmmQIKsEOgFbcFRohqtwPPYPXJsyFNfa+YGuvu5fRCMd7UZbKxBgnP5sj2K4E+VYQkskrOfBUjSaiQCbn21oLC5uhmp0cp9kk27oSv1Z5rSbQ/a9xN8Ltwdk5m+o2SLjLUAIEhKw7LWTFmYzUsXq4QMFx5Pie1uc9mrvO/vN8raF8yUm86mNEcuVqSBQcB3ZIBM4Ezudm6LEhFLlq/Iuoa7I2EOhjf6iuqJESVOumYI0ghZnXdv+kIDdRA2qfleKZwM/l3ErLJW+07Ihy4jUVbNJ8bJTNy5bSBhk4bjMv2ewTwewlaP+oCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7RXqpf/bwNDaY6K6eEgAWjxQELBZhPn1mv/aKqWRAEo=;
+ b=XvP9mYF/agW62DSsY1nlfoCEjwmDnJpXKLYO81HK0kirfNjT5kDVz/OQCqEB6Pg7ctQNuScvRPJm8fmHI65YT3IM9oTZ0R/fRs9MaD4bRrXJs67SoG4JxwF5Tj59qzv+Jp7t4aGsZzaEcrH/Z/hTHpDAtnxINvDh6v3TvlQowMQ=
+Received: from BN9PR03CA0509.namprd03.prod.outlook.com (2603:10b6:408:130::34)
+ by IA0PR12MB9048.namprd12.prod.outlook.com (2603:10b6:208:408::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Fri, 10 Oct
+ 2025 16:33:36 +0000
+Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
+ (2603:10b6:408:130:cafe::55) by BN9PR03CA0509.outlook.office365.com
+ (2603:10b6:408:130::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9203.10 via Frontend Transport; Fri,
+ 10 Oct 2025 16:33:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL02EPF0001A0F9.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9228.7 via Frontend Transport; Fri, 10 Oct 2025 16:33:36 +0000
+Received: from jonathan-KFD.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 10 Oct
+ 2025 09:33:34 -0700
+From: Jonathan Kim <jonathan.kim@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, <alexdeucher@gmail.com>, Jonathan Kim
+ <jonathan.kim@amd.com>
+Subject: [PATCH 1/3] drm/amdgpu: fix gfx12 mes packet status return check
+Date: Fri, 10 Oct 2025 12:33:12 -0400
+Message-ID: <20251010163314.1105768-1-jonathan.kim@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20251010145814.3514884-1-lijo.lazar@amd.com>
- <20251010145814.3514884-2-lijo.lazar@amd.com>
-In-Reply-To: <20251010145814.3514884-2-lijo.lazar@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 10 Oct 2025 12:23:11 -0400
-X-Gm-Features: AS18NWByKpuxAvhljH0wDBQeng_lCwvAOd2jHVv2O_iQi_a7SPoGoF4K1fnXleY
-Message-ID: <CADnq5_N6_a+OqkpGtOms6etTxAu=Yd-bfGHD7uDdUobuBbsnZA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drm/amdgpu: Reserve discovery TMR only if needed
-To: Lijo Lazar <lijo.lazar@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, 
- Alexander.Deucher@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|IA0PR12MB9048:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93e2c822-4334-4716-da82-08de081ac2c7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/2DFGw+SrUIq70sE9jG0vOraYRSTWQ06KEYuAq1UJLPTJpQcQEk8n+bIWGcN?=
+ =?us-ascii?Q?Lg+ZFRLBx7WHCNve9P6Lesf2L3jYUWPyXle0AnCE/o56qPlInCmTC+w1QRRU?=
+ =?us-ascii?Q?r/KqoeUyGPJokO6J5okN4UoRALiMImNjo1/VP4W2YI/wqRuywWgcre3yeSsu?=
+ =?us-ascii?Q?FcIG8a5+W29ZrM0KhPS4qaNHB4mSpPVag5WZVWf/+TfsRTwhNrgOhAIvxgmn?=
+ =?us-ascii?Q?5wp6FeX+qDdiD/n+KqCQXAeeIWeG2HT6BFOm21LU5Sy6x33cJrr1/LHTnKqv?=
+ =?us-ascii?Q?SHsDYCbyXe8Oo7hLqs1JAoVnHyfq2lbDHEZHqfptMbW573Ve2pwB9XPL7Xgm?=
+ =?us-ascii?Q?0LfSh5l22DuJMxhEVPzPqd0rcrWkml4uuSbfCBOCBRUi2vXC4EEcHmBJqzIV?=
+ =?us-ascii?Q?K94aROMV4Jrt+hdU/OOnFoNJDPIuRO4T5yJ7MwHOfDCHe2bTqCLD65LCStqt?=
+ =?us-ascii?Q?a7dLiUiKWWR+SwNJ0iMR3hLcYmK1VQdArxBT9VORoRZ/seqD+6AOFOQ4ZUzU?=
+ =?us-ascii?Q?mX8+FsCl0tAf5fkyHV8ndtBHXORKj7tkOHRyxXNrBnt7w01i1dEfVMUphe/o?=
+ =?us-ascii?Q?xCZBGex7b9Tm0GTnUHQSAM5nVd6mF8FGmO/v3+txxJNJnz6arLeqlZjUxKCA?=
+ =?us-ascii?Q?xtv58/lFb5Fk8i8NDBjF7VojKJmQQaLlGqkE8Qn+yd/wZ1kA5VHeF/AmyTPs?=
+ =?us-ascii?Q?ld323yj+O86hjONxOaPxi778y0MRTRIFs3ELr3YBvMskpENgQ7pK6EOOrgLq?=
+ =?us-ascii?Q?SyIFV7ULG9yku8D1w8gFH40AcCwPp7CXEml2hQjylfhxbxTngwGp22M86JiO?=
+ =?us-ascii?Q?Q9mQ7xjRWooRKNzQaNB9gdDfbdfi8gCq5qrF25y5ul+WsXqUpNfK6IQeWQHE?=
+ =?us-ascii?Q?kJTbDKE0BTapqJP5TQWxSZvhQomB+yobO9YbtdlNtGAz7QzaVoPYDmXEsCpS?=
+ =?us-ascii?Q?be5isPSABjHHDm9ukmvS0sO1SsBfl5xov1WJs+QjWEelrNH8vDbDPQrXSWoM?=
+ =?us-ascii?Q?zIYmFupTALEjr/hbvLda7plG6Fmd89CtOnCTL7M1tvSDP+5PSVG9sZ1W38lU?=
+ =?us-ascii?Q?Yp2sWummpdeOKVmLpxuHwQVVZgxguLsqKH1GdqleuTxYGYfB0xOUGQ8XxcrA?=
+ =?us-ascii?Q?Vcp65a9MZTB7KV/4U/3q1Cyr98tjQpwJsc6Dz7BE5wwFVe0Si55rso4vuVgS?=
+ =?us-ascii?Q?gmpo39XVMXWHCG1WYunpOi9v1s8ANog5jM4swoWDeYIFBieTUBT6Bg6LcDWO?=
+ =?us-ascii?Q?ysT0XjGrTMQq7pmdYJyQUYtUhcchMcf/v0ackkFqnDL6pzDlnJSbx3tJ7WvG?=
+ =?us-ascii?Q?H/EPRxYkYnLDsMCfq5TyvNIo1KCxUqKXQ7wf5fseHOCSBXynA6uBQM0Q++6D?=
+ =?us-ascii?Q?nBKbYNbvhwGsjGSl0rQ76IqJz1oNp35XtBOqkP3FXeWce9YrjSjGLvNeDRgx?=
+ =?us-ascii?Q?BXsJ85P7Jfn/sByZZDREx7FjeteKE9kpTHcN/sOLUhlYvqT3W79sYJoTEnP7?=
+ =?us-ascii?Q?DqvzDQ1f9Uo3g/mUhuiClzuLrziIJd4KPb5P1XPsgoG25zN6+JxI4DeoQNTt?=
+ =?us-ascii?Q?xG0ZjCeg/DSpbUhdmy0=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2025 16:33:36.2797 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93e2c822-4334-4716-da82-08de081ac2c7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0F9.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB9048
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,124 +132,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 10, 2025 at 11:06=E2=80=AFAM Lijo Lazar <lijo.lazar@amd.com> wr=
-ote:
->
-> For legacy SOCs, discovery binary is sideloaded. Instead of checking for
-> binary blob, use a flag to determine if discovery region needs to be
-> reserved.
->
-> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+GFX12 MES uses low 32 bits of status return for success (1 or 0)
+and high bits for debug information if low bits are 0.
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+GFX11 MES doesn't do this so checking full 64-bit status return
+for 1 or 0 is still valid.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 10 ++++++++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h |  1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 22 ++++++++-----------
->  3 files changed, 19 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_discovery.c
-> index 02b661232db8..478cbfcc5b5d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -298,10 +298,15 @@ static int amdgpu_discovery_read_binary_from_mem(st=
-ruct amdgpu_device *adev,
->         else
->                 vram_size <<=3D 20;
->
-> +       /*
-> +        * If in VRAM, discovery TMR is marked for reservation. If it is =
-in system mem,
-> +        * then it is not required to be reserved.
-> +        */
->         if (sz_valid) {
->                 uint64_t pos =3D vram_size - DISCOVERY_TMR_OFFSET;
->                 amdgpu_device_vram_access(adev, pos, (uint32_t *)binary,
->                                           adev->discovery.size, false);
-> +               adev->discovery.reserve_tmr =3D true;
->         } else {
->                 ret =3D amdgpu_discovery_read_binary_from_sysmem(adev, bi=
-nary);
->         }
-> @@ -418,8 +423,11 @@ static int amdgpu_discovery_verify_npsinfo(struct am=
-dgpu_device *adev,
->
->  static const char *amdgpu_discovery_get_fw_name(struct amdgpu_device *ad=
-ev)
->  {
-> -       if (amdgpu_discovery =3D=3D 2)
-> +       if (amdgpu_discovery =3D=3D 2) {
-> +               /* Assume there is valid discovery TMR in VRAM even if bi=
-nary is sideloaded */
-> +               adev->discovery.reserve_tmr =3D true;
->                 return "amdgpu/ip_discovery.bin";
-> +       }
->
->         switch (adev->asic_type) {
->         case CHIP_VEGA10:
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_discovery.h
-> index b1eec3af3c4a..4ce04486cc31 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
-> @@ -36,6 +36,7 @@ struct amdgpu_discovery_info {
->         struct ip_discovery_top *ip_top;
->         uint32_t size;
->         uint8_t *bin;
-> +       bool reserve_tmr;
->  };
->
->  void amdgpu_discovery_fini(struct amdgpu_device *adev);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_ttm.c
-> index 5bf6bb3b2faa..d0a7379255e8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> @@ -1767,18 +1767,14 @@ static int amdgpu_ttm_reserve_tmr(struct amdgpu_d=
-evice *adev)
->                 ctx->init =3D PSP_MEM_TRAIN_RESERVE_SUCCESS;
->         }
->
-> -       if (!adev->gmc.is_app_apu) {
-> -               ret =3D amdgpu_bo_create_kernel_at(
-> -                       adev, adev->gmc.real_vram_size - reserve_size,
-> -                       reserve_size, &adev->mman.fw_reserved_memory, NUL=
-L);
-> -               if (ret) {
-> -                       dev_err(adev->dev, "alloc tmr failed(%d)!\n", ret=
-);
-> -                       amdgpu_bo_free_kernel(&adev->mman.fw_reserved_mem=
-ory,
-> -                                             NULL, NULL);
-> -                       return ret;
-> -               }
-> -       } else {
-> -               DRM_DEBUG_DRIVER("backdoor fw loading path for PSP TMR, n=
-o reservation needed\n");
-> +       ret =3D amdgpu_bo_create_kernel_at(
-> +               adev, adev->gmc.real_vram_size - reserve_size, reserve_si=
-ze,
-> +               &adev->mman.fw_reserved_memory, NULL);
-> +       if (ret) {
-> +               dev_err(adev->dev, "alloc tmr failed(%d)!\n", ret);
-> +               amdgpu_bo_free_kernel(&adev->mman.fw_reserved_memory, NUL=
-L,
-> +                                     NULL);
-> +               return ret;
->         }
->
->         return 0;
-> @@ -1955,7 +1951,7 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
->          * If IP discovery enabled, a block of memory should be
->          * reserved for IP discovey.
->          */
-> -       if (adev->discovery.bin) {
-> +       if (adev->discovery.reserve_tmr) {
->                 r =3D amdgpu_ttm_reserve_tmr(adev);
->                 if (r)
->                         return r;
-> --
-> 2.49.0
->
+v2: user lower_32_bits to check status and write some inline comments to
+explain the status pointer value.
+
+Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/mes_v12_0.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
+index aff06f06aeee..e3149196143e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
+@@ -228,7 +228,12 @@ static int mes_v12_0_submit_pkt_and_poll_completion(struct amdgpu_mes *mes,
+ 			pipe, x_pkt->header.opcode);
+ 
+ 	r = amdgpu_fence_wait_polling(ring, seq, timeout);
+-	if (r < 1 || !*status_ptr) {
++
++	/*
++	 * status_ptr[31:0] == 0 (fail) or status_ptr[63:0] == 1 (success).
++	 * If status_ptr[31:0] == 0 then status_ptr[63:32] will have debug error information.
++	 */
++	if (r < 1 || !(lower_32_bits(*status_ptr))) {
+ 
+ 		if (misc_op_str)
+ 			dev_err(adev->dev, "MES(%d) failed to respond to msg=%s (%s)\n",
+-- 
+2.34.1
+
