@@ -2,71 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51F0FBD1D53
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 09:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E0C0BD1D4E
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 09:35:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE89D10E3E6;
-	Mon, 13 Oct 2025 07:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E26F510E3E5;
+	Mon, 13 Oct 2025 07:35:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kXPFHSPE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XyOL7CU3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
- [209.85.208.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2918310E2ED
- for <amd-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 13:48:03 +0000 (UTC)
-Received: by mail-ed1-f43.google.com with SMTP id
- 4fb4d7f45d1cf-63994113841so5249914a12.3
- for <amd-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 06:48:03 -0700 (PDT)
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62D3810E308
+ for <amd-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 13:48:18 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-63a10267219so5001269a12.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 06:48:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760190481; x=1760795281; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=O170WPdulyrU1Gecp4KBZecpJyTKM3vtAtwxUA+waHs=;
- b=kXPFHSPELsJgscQnpSrp4cFL95PbFidn7A9iztQpfblHb4YuUhJA15JA+SHxJf8EIi
- a/w3SHkQis5EQ42m1bHRMq3779wQXKb56+GI4yosANF76KG7vVkmbcmmiA+QgbD+qmzy
- mnDV5LJfPS6L2gr25xlbodcvdqyb2rMgI0Kkbq/WQSTKazmRHeJXxcB7Aqv36bfwFCC1
- JxEJCdDt5X8G3DdWTEaHM6F4PbxteHnP49EfmkUzrWm9Jgmr9qXy2nFPr0DaG02YxfZl
- /ki65dH8phddDPb41RMuIqt6GKb1Qh1p0zDdd9pr3OPkJcK2JYJkFfSKnuzvJwZvh8ie
- V0YQ==
+ d=gmail.com; s=20230601; t=1760190497; x=1760795297; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Pjqs9wgfMLcWCndiSjwHua4WA/TvCS8N/LIbzNyweH4=;
+ b=XyOL7CU3/WCr4HV7ImXmgYLbzFYL9V5HkW92ylOgX6DhwNW9zWfnG11F3lHiZGg5M4
+ yG934aIOFxRu7wdPBvN2CwvqIQIL8fGfCqhoh76oCfaNC0w0dVClhPWZNp2CbNJYdnTS
+ ANygNUKpM3zARCesIFGgj+vWD2Rqwp4aui+h3WzDoUkPlIX89it9RZRPTBSvTY3JNhZI
+ nf1YbykKgwz2OzBLFeCkxeLrRTx9uHYBC8nABBhcu5Zgk3tPNrxJPZRqVFgToM+VG1sJ
+ jpluVy5FpMvJohU468lXxOPbTwN8ig9SYzJ/RWSz70Cfe0AkPzFAqKZcrurnsKfRUEwd
+ mdKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760190481; x=1760795281;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=O170WPdulyrU1Gecp4KBZecpJyTKM3vtAtwxUA+waHs=;
- b=GqY3oZDwtvK4eVvwHkE4yAXnhNDPc1Lbcxtnh1AgqxH/enrMHY5NPRFzDOx2JD+6G2
- InYbtDEDrdE8Y2TrgkQScbW6JjnY3OIKDW7eia+muFC5CcVEkKMP2xPQsFh1SVWut595
- HesfGwSVB/h4kdq+kthycFpNRk1G8pDLuie4sfxPtzVLLvAPjaczZ0qSfHIRbuatemr4
- j3ww/0wfdFF25YpltbVhqk0cXLH6GUxZ06/ODiJoAVmOowctg2vdtrBmxT1XJzaFeSKQ
- ZoQlV7apwB01PtcubpIuZauXH1ZXrF1FUEpVYmWXGb5WNysp+oY3JvCpgQhD4zz0uGxE
- tLtQ==
-X-Gm-Message-State: AOJu0Yy1AY3+bhbQ9PH65xBk1J8KrEIssf76DihPIXa0K96m32NIFWMC
- XxXql8Uk/PgLZbxyHMzhraVC98AhagOXecKc/Y848bQcL8xRTRzDV4n2cRq03w==
-X-Gm-Gg: ASbGncsmdMcjm/YpmcXQ/md6ME4Ms90UxTCCHrNZSaKM+27iOTMqpLf5TDHanM4vdKZ
- S9eyPfe4ryurJhhIwv4/eRIDfnnNCM6JJBhso4ZiVB+nfkGD7for4+7S44fcGsNjIIMhOVmlivP
- EXPLkzjPIV5O8rSYyED79d63+uyuBmFbDEBkqgkqzyjitTDb9Uscn56D8lAIlwXSrwN6dbQ5yGx
- 0iT6f+t0rYF9WS2lieLURfZkcjrl+fiHPCVRdfXLA2I7n4PYt+X+jkJkyeTYM8qmDR4iOXknD7U
- 9ARJNMktEZiMiZgafwnHt7+d2+FfDPdVOntsCL/mI6LBpR+tERIE4qqMmsP3faTZHLcp4Tk12V3
- Xs/8qXeXp0q0PfpfP0cdHwoMM16sx1BisDJdKrVu1t429SCzsjPh+FU0aPZtIJjrmdF/C1pK49W
- cpMNsHdo9/
-X-Google-Smtp-Source: AGHT+IEQsF2Ypz3aZgq7vr9l1MjmT7HUR2XeUPXWtppftAPb5DJGKpoMtRfa1ePlENcCgPNAAe9GUQ==
-X-Received: by 2002:a05:6402:5216:b0:632:1faa:3a38 with SMTP id
- 4fb4d7f45d1cf-639d5c4dc4emr13476747a12.29.1760190481318; 
- Sat, 11 Oct 2025 06:48:01 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1760190497; x=1760795297;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Pjqs9wgfMLcWCndiSjwHua4WA/TvCS8N/LIbzNyweH4=;
+ b=QwgspTeLrXna/JcJ0yfEhsa/S81IISYF/w1JZwB/b5gvRtFS3vuFkLZ2YdMQcN1B1S
+ S9bdjuX4Q3QZaM5FXSWD27dx5RuNmUQCrowzUlkkkhvpNAvh82WiilYF6YwoGqMe8QXA
+ RFQfS05/fLGiDAnkLEKf7RC5nCwhBm7F74CBCGSAolntuJnNG5Zm2DPnVUs90Nwv/WbS
+ aO0Gn1RKzfu2cgPd3Ww3W9+TxeuzDiMYH9C+y/5spl5hJ3BoIhgwjxxdkKagHHjy47Wr
+ IkebTc8x34k/rVgdphum6q9l8+brtPDZyufaNLB0wR4bfiKaEHmFOu9O0rRHHO14Xf2p
+ ybsg==
+X-Gm-Message-State: AOJu0Yyqc79tVMUK1kbmrVfDTf/eyjR5oyj2AKajIRZfUM1bMBINCEkE
+ PqqD6b1Qd5WxQ+Lu/dY/HABQ3aqIoSkt2oMeEsey+xTPaKLZrEeSQv7BMpN9nw==
+X-Gm-Gg: ASbGncuNh80EaYhhB1Nloqz+e+S2bjOqzvvT04ejULkMQOUbOj0Bdrn9tG7raVwZeKd
+ JPTqoyl/Q+LO1xyWD4D4H4iQy8qNk102ssj7rct+k+nMrPbI97ZeUEsN2V+3DPqz9MwfyCpcPu5
+ BOB0A63ugBOLrwV2yIjunVuaqxg4BizKRmorSJlsSnRAn7GGOw8AXOps+6S4xF+LQwK9GNOY6Ny
+ jC6B1AD6AMxcOaobh42vFYr+46uc7mqHxi/1g0bh8bs8tkZ0veHpM5h06yhUmTeFUFSQy5V+vhi
+ QKhcufIctGmERAsJXJf2alLOeNjs4sfqkOxq/1UZpNoBIjPvVuecAcYXOCIqNHkNM2DCjV5m94P
+ pcahejl2mglC7q53MdpuMk7ZZfwMs1rgFTDEc4Ij2UVlmk5FfmSrUxk0z6KHFiFEv95NG+oxDSy
+ cI9UXEWO764ngyuwYta6M=
+X-Google-Smtp-Source: AGHT+IH14oHAw0CalUuYIULI5L7U7H1/KBeQfoHEvrB9wZdb15C9h5IeZt9kELIaqkXoEVuE3vIm8A==
+X-Received: by 2002:a05:6402:13d0:b0:639:f648:1093 with SMTP id
+ 4fb4d7f45d1cf-639f6481364mr10994493a12.4.1760190496172; 
+ Sat, 11 Oct 2025 06:48:16 -0700 (PDT)
 Received: from hyron-desktop (host-176-36-64-50.b024.la.net.ua. [176.36.64.50])
  by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-63a52b0f358sm4788016a12.10.2025.10.11.06.47.59
+ 4fb4d7f45d1cf-63a52b0f358sm4788016a12.10.2025.10.11.06.48.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 11 Oct 2025 06:48:00 -0700 (PDT)
+ Sat, 11 Oct 2025 06:48:15 -0700 (PDT)
 From: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
-Subject: [PATCH 0/2] drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage`
-Date: Sat, 11 Oct 2025 16:47:14 +0300
-Message-ID: <20251011134716.83214-1-ilya.zlobintsev@gmail.com>
+Subject: [PATCH 1/2] drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage`
+ (SMU11)
+Date: Sat, 11 Oct 2025 16:47:15 +0300
+Message-ID: <20251011134716.83214-2-ilya.zlobintsev@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251011134716.83214-1-ilya.zlobintsev@gmail.com>
+References: <20251011134716.83214-1-ilya.zlobintsev@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 13 Oct 2025 07:35:45 +0000
@@ -84,71 +88,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Previously, reading from the `pp_od_clk_voltage` sysfs file would
-include lots of null bytes between the sections, e.g.:
-
-$ cat -v /sys/class/drm/card0/device/pp_od_clk_voltage
-OD_SCLK:
-0: 500Mhz
-1: 2514Mhz
-OD_MCLK:
-0: 97Mhz
-1: 1000MHz
-^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@OD_VDDGFX_OFFSET:
-0mV
-^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@OD_RANGE:
-SCLK:     500Mhz       3000Mhz
-MCLK:     674Mhz       1075Mhz
-
-The reason for this is that calling `smu_cmn_get_sysfs_buf` aligns the
-offset used for `sysfs_emit_at` to the current page boundary, and then
-gets returned from the various `print_clk_levels` implementations to be
-directly added to the buffer position. Instead, only the relative offset
-showing how much was written to the buffer should be returned,
-regardless of how it was changed for alignment purposes.
-
-Now, the file is clean without any garbage data:
-
-$ cat -v /sys/class/drm/card0/device/pp_od_clk_voltage
-OD_SCLK:
-0: 500Mhz
-1: 2519Mhz
-OD_MCLK:
-0: 97Mhz
-1: 1000MHz
-OD_VDDGFX_OFFSET:
-0mV
-OD_RANGE:
-SCLK:     500Mhz       3000Mhz
-MCLK:     674Mhz       1075Mhz
-
-I have changed this for SMU11, SMU13 and SMU14 as there have been user
-reports of this issue on all three, and the code is the same between them.
-However, I only have access to a 6900XT (SMU11), so the newer ones are
-untested. I've split the change into separate patches for
-SMU11 (tested) and SMU13/14 (untested), in case you believe that this
-change is risky and could break something.
-
-Sidenote: This is also my first time submitting patches to a mailing list, so
-please tell me if there are any issues with the patch or email
-formatting.
-
 Signed-off-by: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
-
-Ilya Zlobintsev (2):
-  drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage` (SMU11)
-  drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage` (SMU13/SMU14)
-
+---
  drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 5 +++--
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c    | 5 +++--
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c    | 5 +++--
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c    | 5 +++--
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c    | 5 +++--
- drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c    | 5 +++--
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c    | 5 +++--
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c    | 5 +++--
- 8 files changed, 24 insertions(+), 16 deletions(-)
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index 31c2c0386b1f..774283ac7827 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -1281,7 +1281,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+ 	struct smu_11_0_7_overdrive_table *od_settings = smu->od_settings;
+ 	OverDriveTable_t *od_table =
+ 		(OverDriveTable_t *)table_context->overdrive_table;
+-	int i, size = 0, ret = 0;
++	int i, size = 0, ret = 0, start_offset = 0;
+ 	uint32_t cur_value = 0, value = 0, count = 0;
+ 	uint32_t freq_values[3] = {0};
+ 	uint32_t mark_index = 0;
+@@ -1289,6 +1289,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+ 	uint32_t min_value, max_value;
+ 
+ 	smu_cmn_get_sysfs_buf(&buf, &size);
++	start_offset = size;
+ 
+ 	switch (clk_type) {
+ 	case SMU_GFXCLK:
+@@ -1434,7 +1435,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+ 	}
+ 
+ print_clk_out:
+-	return size;
++	return size - start_offset;
+ }
+ 
+ static int sienna_cichlid_force_clk_levels(struct smu_context *smu,
 -- 
 2.51.0
 
