@@ -2,53 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B4FEBD1931
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 08:03:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51F0FBD1D53
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 09:35:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 878E710E383;
-	Mon, 13 Oct 2025 06:02:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE89D10E3E6;
+	Mon, 13 Oct 2025 07:35:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="TAFlBh2a";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kXPFHSPE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87ABC10E37A;
- Mon, 13 Oct 2025 06:02:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1760335360;
- bh=gCTdPchWuc1xiR4tpvlqqw30LOOS9lTJyDFe5on17HM=;
- h=From:To:Cc:Subject:Date:From;
- b=TAFlBh2aNv23DXPQ8OmreZbzQmFTLIEjl9J0KbxvbjC5MtwEDNbXW5ujofaTRW+XL
- KO2ISTQK6VLqg6gIt8eK01iUC61DOl72IhIbVAd8Uh2RUP0MV+1sbBup1PxcUL3Udr
- rNFUwfDC3qq0kgUl0qUdx5t3dkfn+cHIOCN7SIWrLYmNfGvL7Dar5Jx6QYWjcHmEpA
- ZmH/LzM1ZfJ5fjq8ANRpuElYt405PKG/Rru0AscGlyxSihbzvzzmy/vF0/u9uZL1Io
- 7KVmdMeZ3vp1bYNvsFVYPV/gZX1Wn7B/AL6tw4uOItj3wuAmFt97FfOZiW9LFpAlDN
- ltp9kK/V6HuoA==
-Received: from debian (unknown [171.76.80.157])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id BC90217E0CA3;
- Mon, 13 Oct 2025 08:02:36 +0200 (CEST)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com, helen.fornazier@gmail.com, airlied@gmail.com,
- simona.vetter@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com,
- lumag@kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v1] drm/ci: disable broken MR check in sanity job
-Date: Mon, 13 Oct 2025 11:32:10 +0530
-Message-ID: <20251013060212.14583-1-vignesh.raman@collabora.com>
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
+ [209.85.208.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2918310E2ED
+ for <amd-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 13:48:03 +0000 (UTC)
+Received: by mail-ed1-f43.google.com with SMTP id
+ 4fb4d7f45d1cf-63994113841so5249914a12.3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 11 Oct 2025 06:48:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1760190481; x=1760795281; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=O170WPdulyrU1Gecp4KBZecpJyTKM3vtAtwxUA+waHs=;
+ b=kXPFHSPELsJgscQnpSrp4cFL95PbFidn7A9iztQpfblHb4YuUhJA15JA+SHxJf8EIi
+ a/w3SHkQis5EQ42m1bHRMq3779wQXKb56+GI4yosANF76KG7vVkmbcmmiA+QgbD+qmzy
+ mnDV5LJfPS6L2gr25xlbodcvdqyb2rMgI0Kkbq/WQSTKazmRHeJXxcB7Aqv36bfwFCC1
+ JxEJCdDt5X8G3DdWTEaHM6F4PbxteHnP49EfmkUzrWm9Jgmr9qXy2nFPr0DaG02YxfZl
+ /ki65dH8phddDPb41RMuIqt6GKb1Qh1p0zDdd9pr3OPkJcK2JYJkFfSKnuzvJwZvh8ie
+ V0YQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1760190481; x=1760795281;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=O170WPdulyrU1Gecp4KBZecpJyTKM3vtAtwxUA+waHs=;
+ b=GqY3oZDwtvK4eVvwHkE4yAXnhNDPc1Lbcxtnh1AgqxH/enrMHY5NPRFzDOx2JD+6G2
+ InYbtDEDrdE8Y2TrgkQScbW6JjnY3OIKDW7eia+muFC5CcVEkKMP2xPQsFh1SVWut595
+ HesfGwSVB/h4kdq+kthycFpNRk1G8pDLuie4sfxPtzVLLvAPjaczZ0qSfHIRbuatemr4
+ j3ww/0wfdFF25YpltbVhqk0cXLH6GUxZ06/ODiJoAVmOowctg2vdtrBmxT1XJzaFeSKQ
+ ZoQlV7apwB01PtcubpIuZauXH1ZXrF1FUEpVYmWXGb5WNysp+oY3JvCpgQhD4zz0uGxE
+ tLtQ==
+X-Gm-Message-State: AOJu0Yy1AY3+bhbQ9PH65xBk1J8KrEIssf76DihPIXa0K96m32NIFWMC
+ XxXql8Uk/PgLZbxyHMzhraVC98AhagOXecKc/Y848bQcL8xRTRzDV4n2cRq03w==
+X-Gm-Gg: ASbGncsmdMcjm/YpmcXQ/md6ME4Ms90UxTCCHrNZSaKM+27iOTMqpLf5TDHanM4vdKZ
+ S9eyPfe4ryurJhhIwv4/eRIDfnnNCM6JJBhso4ZiVB+nfkGD7for4+7S44fcGsNjIIMhOVmlivP
+ EXPLkzjPIV5O8rSYyED79d63+uyuBmFbDEBkqgkqzyjitTDb9Uscn56D8lAIlwXSrwN6dbQ5yGx
+ 0iT6f+t0rYF9WS2lieLURfZkcjrl+fiHPCVRdfXLA2I7n4PYt+X+jkJkyeTYM8qmDR4iOXknD7U
+ 9ARJNMktEZiMiZgafwnHt7+d2+FfDPdVOntsCL/mI6LBpR+tERIE4qqMmsP3faTZHLcp4Tk12V3
+ Xs/8qXeXp0q0PfpfP0cdHwoMM16sx1BisDJdKrVu1t429SCzsjPh+FU0aPZtIJjrmdF/C1pK49W
+ cpMNsHdo9/
+X-Google-Smtp-Source: AGHT+IEQsF2Ypz3aZgq7vr9l1MjmT7HUR2XeUPXWtppftAPb5DJGKpoMtRfa1ePlENcCgPNAAe9GUQ==
+X-Received: by 2002:a05:6402:5216:b0:632:1faa:3a38 with SMTP id
+ 4fb4d7f45d1cf-639d5c4dc4emr13476747a12.29.1760190481318; 
+ Sat, 11 Oct 2025 06:48:01 -0700 (PDT)
+Received: from hyron-desktop (host-176-36-64-50.b024.la.net.ua. [176.36.64.50])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-63a52b0f358sm4788016a12.10.2025.10.11.06.47.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 11 Oct 2025 06:48:00 -0700 (PDT)
+From: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
+Subject: [PATCH 0/2] drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage`
+Date: Sat, 11 Oct 2025 16:47:14 +0300
+Message-ID: <20251011134716.83214-1-ilya.zlobintsev@gmail.com>
 X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 13 Oct 2025 07:35:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,32 +84,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-GitLab recently changed the required permissions for the
-are-developers-allowed-to-push-to-my-MR check:
-https://gitlab.freedesktop.org/freedesktop/ci-templates/-/issues/81
+Previously, reading from the `pp_od_clk_voltage` sysfs file would
+include lots of null bytes between the sections, e.g.:
 
-Until that’s resolved, disable the check - it’s mostly obsolete anyway.
+$ cat -v /sys/class/drm/card0/device/pp_od_clk_voltage
+OD_SCLK:
+0: 500Mhz
+1: 2514Mhz
+OD_MCLK:
+0: 97Mhz
+1: 1000MHz
+^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@OD_VDDGFX_OFFSET:
+0mV
+^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@OD_RANGE:
+SCLK:     500Mhz       3000Mhz
+MCLK:     674Mhz       1075Mhz
 
-Based on https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/37782
+The reason for this is that calling `smu_cmn_get_sysfs_buf` aligns the
+offset used for `sysfs_emit_at` to the current page boundary, and then
+gets returned from the various `print_clk_levels` implementations to be
+directly added to the buffer position. Instead, only the relative offset
+showing how much was written to the buffer should be returned,
+regardless of how it was changed for alignment purposes.
 
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
- drivers/gpu/drm/ci/gitlab-ci.yml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Now, the file is clean without any garbage data:
 
-diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
-index d502d146b177..56638814bb28 100644
---- a/drivers/gpu/drm/ci/gitlab-ci.yml
-+++ b/drivers/gpu/drm/ci/gitlab-ci.yml
-@@ -280,7 +280,7 @@ sanity:
-     GIT_STRATEGY: none
-   script:
-     # ci-fairy check-commits --junit-xml=check-commits.xml
--    - ci-fairy check-merge-request --require-allow-collaboration --junit-xml=check-merge-request.xml
-+    # - ci-fairy check-merge-request --require-allow-collaboration --junit-xml=check-merge-request.xml
-     - |
-       set -eu
-       image_tags=(
+$ cat -v /sys/class/drm/card0/device/pp_od_clk_voltage
+OD_SCLK:
+0: 500Mhz
+1: 2519Mhz
+OD_MCLK:
+0: 97Mhz
+1: 1000MHz
+OD_VDDGFX_OFFSET:
+0mV
+OD_RANGE:
+SCLK:     500Mhz       3000Mhz
+MCLK:     674Mhz       1075Mhz
+
+I have changed this for SMU11, SMU13 and SMU14 as there have been user
+reports of this issue on all three, and the code is the same between them.
+However, I only have access to a 6900XT (SMU11), so the newer ones are
+untested. I've split the change into separate patches for
+SMU11 (tested) and SMU13/14 (untested), in case you believe that this
+change is risky and could break something.
+
+Sidenote: This is also my first time submitting patches to a mailing list, so
+please tell me if there are any issues with the patch or email
+formatting.
+
+Signed-off-by: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
+
+Ilya Zlobintsev (2):
+  drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage` (SMU11)
+  drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage` (SMU13/SMU14)
+
+ drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c    | 5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c    | 5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c    | 5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c    | 5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c    | 5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c    | 5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c    | 5 +++--
+ 8 files changed, 24 insertions(+), 16 deletions(-)
+
 -- 
 2.51.0
 
