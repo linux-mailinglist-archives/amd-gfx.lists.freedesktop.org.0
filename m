@@ -2,54 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAB2CBD3545
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 16:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B51DBBD38D6
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 16:35:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DFFA10E475;
-	Mon, 13 Oct 2025 14:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35D0E10E461;
+	Mon, 13 Oct 2025 14:35:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="S7Obeeh3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WgcBJWS6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66E0710E471
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 14:03:56 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 0C09D43772;
- Mon, 13 Oct 2025 14:03:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78768C4CEE7;
- Mon, 13 Oct 2025 14:03:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1760364235;
- bh=BAmJtqvfittnIApXdZARrikYv/k7r/sGm0zU8XFguWo=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=S7Obeeh3KgLFptOwLHxv/CeHRlj7OxSHR/eaNRIFtu28JDTxq7nvah0C/e+yey92h
- 5UObY5TRx3uISp8SPIxDjlUWEoqpnmIUe+j+gBLn350BL6l7HexHziP7YTo3g/IQhj
- ctb4uqFPr/7saVC/ZKpvU+ZOocU3mr0v1xhMvpjox5Uw0MvqrbtfAap8Uhu6RtVPTG
- fTxHXgm00CeD+knRqs84DCwRba5xlvBo9gcZ7ZfW+wPYkAgm6RrK0H+m92WtGASjgn
- 28oXJZ6vovfaqNTNiCH/naICctbIClD/krVqN1vkrW/EBSTy1gKpDGc4bEqg9URlpZ
- /QuHlxizmGoTQ==
-Message-ID: <944a8da2-7b01-4a0c-846e-66e5ba908e51@kernel.org>
-Date: Mon, 13 Oct 2025 09:03:54 -0500
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
+ [209.85.208.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00B1810E45E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 14:35:06 +0000 (UTC)
+Received: by mail-ed1-f49.google.com with SMTP id
+ 4fb4d7f45d1cf-6364eb29e74so7569552a12.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 07:35:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1760366105; x=1760970905; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=YZPF3TsDwqw3Z9G6KN4eJ0Uvl8lh/hd0MSmrorlao90=;
+ b=WgcBJWS6h/lVC/GDbc6ki7knfNyGmIZQtKRshklVlt9wl2DARcmuk2o3gWLcMTpp8e
+ D/km8fpUy6+ogx+AUVY2GJkvnZRZ1l+8zBD0fJl/cwrRQ2Wz1PtyaxjJGTUb6SZO5UhE
+ OE14lt72ShXpAL1etB7hp1wCLNkY1nn+iOXzWPbJhyIP8uBOrFigR1OnvyHjZYIBP6wX
+ t8U/Cr7NX7pCuOq+DsQojpixkfrPWfMtHTsfT7d1v0bb04TJqq3vbnHZSPi5D2bmCf9l
+ lEx+HppzYpq9tK/cZPZir757LGr6zRQlQlN+jjVUKlRtGzN/rIX4qGM4oLl5If7w1VV+
+ PmfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1760366105; x=1760970905;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=YZPF3TsDwqw3Z9G6KN4eJ0Uvl8lh/hd0MSmrorlao90=;
+ b=ocm8aGwE4Qd1iKHp75gGcs3m+LEySOVEAYO+UzM4SMjhW817C8YrlsVUN/aozWZyMB
+ hN/TqEWWzgZHJXcACmpQHy1LezGGJB1gh7gHpvSpAhbp0xXGheV8Zgs7XBbKHUq5tOmz
+ Th4u+cYATiRVSGJMS+vRDTF6f4n5hP4WRFTpZKICqF47+TN1iKw77rCBnwccB9kBkDWS
+ KiGLsJ45JOW2LbfAcgpIkWNvtjxFx6wfB9fN8ntpiLLWD4vPsDAApa1H+qXpQ5al4YMt
+ VuUs0JAmIB1fBWWgBN+tBI4VIM1HLhbJjNS3XOnR8RKu5XGHnEzg3L+KQPovSNqdwslu
+ pQ7w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVEY5a8KM1ItB23ry41x8b5ECrs97NOVKM/+/uDIiXLLm/twxho9iR/uLg+eOjI/JM1SJQ7k7xZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz3q2Ad7Z3ya0iTVYrKJ02p1BVVpzrVfGkTpY9hsDH9bVr8VWTe
+ 9lJ+T/lT3UaRJqo0tUhg+u5s7/GuajVknf2TnkKy2W3ag23MARMqyO50
+X-Gm-Gg: ASbGncsnv9AAZqIN2DtNK9qDBPxJDs21Zt1JO8ce8X0YY/67uW3Ul+xDt0HqxGskBMP
+ PR14DQusL4g55HxdtbYObztLWLujR0ZWBTeifdgqV+c7lND0hAYnsu+QloPK0utRSPNtIYYtPDl
+ KJLYTJTVCIllS1z5JW3o46E4kLwMPZrQMrrJgAv4f8nliK/4U2+8i88OX9svssc/u1/vwc/FDbk
+ P0EzSBrlaxb6RrJ7+Dv6zeyFgpglF2ShqlbRXeQezvgaPI4BsQpoE/nIK03RPDSGzjJHkkx1Kii
+ M5EKkQBed2MohrMgzVTLfMJqgw3baArDynH0P3bdApKmiwTnUVfOHMMwsXo3ttLO62h3ec9uXiE
+ o6ccNkRwGU3xWI+7RsEWDhFY/RQFo/Gbe2Edk2f/bVZwGj5H2zaGsIfA6IBzcnvK+3w==
+X-Google-Smtp-Source: AGHT+IGs/aNwZAUk3NKcgSt1hAEhaNDM53lJclve2de3HSTb59YjSiCLEeLKHZJKg92EZaBGz33KPA==
+X-Received: by 2002:a05:6402:1453:b0:639:fefb:996a with SMTP id
+ 4fb4d7f45d1cf-639fefc0db9mr14527206a12.12.1760366105193; 
+ Mon, 13 Oct 2025 07:35:05 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:151b:dc00:15d1:ebc5:76e6:730f])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-63a5c321453sm8942037a12.39.2025.10.13.07.35.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Oct 2025 07:35:04 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: phasta@mailbox.org, alexdeucher@gmail.com, simona.vetter@ffwll.ch,
+ tursulin@ursulin.net
+Cc: dri-devel@lists.freedesktop.org,
+	amd-gfx@lists.freedesktop.org
+Subject: Independence for dma_fences!
+Date: Mon, 13 Oct 2025 15:48:27 +0200
+Message-ID: <20251013143502.1655-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/amd: Check that VPE has reached DPM0 in idle
- handler
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Cc: "Limonciello, Mario" <Mario.Limonciello@amd.com>,
- "Lee, Peyton" <Peyton.Lee@amd.com>, Sultan Alsawaf <sultan@kerneltoast.com>
-References: <20251012191823.856295-1-superm1@kernel.org>
- <DS0PR12MB78042769FD23A8C5346A561497EAA@DS0PR12MB7804.namprd12.prod.outlook.com>
- <46350316-9b32-4495-8e8c-c9672da34156@kernel.org>
- <DS0PR12MB7804BA493A16EFD092EB6A9897EAA@DS0PR12MB7804.namprd12.prod.outlook.com>
-Content-Language: en-US
-From: Mario Limonciello <superm1@kernel.org>
-In-Reply-To: <DS0PR12MB7804BA493A16EFD092EB6A9897EAA@DS0PR12MB7804.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,127 +88,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 10/13/25 8:59 AM, Lazar, Lijo wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-> 
->> -----Original Message-----
->> From: Mario Limonciello <superm1@kernel.org>
->> Sent: Monday, October 13, 2025 7:21 PM
->> To: Lazar, Lijo <Lijo.Lazar@amd.com>; amd-gfx@lists.freedesktop.org
->> Cc: Limonciello, Mario <Mario.Limonciello@amd.com>; Lee, Peyton
->> <Peyton.Lee@amd.com>; Sultan Alsawaf <sultan@kerneltoast.com>
->> Subject: Re: [PATCH v3] drm/amd: Check that VPE has reached DPM0 in idle
->> handler
->>
->> On 10/12/25 11:54 PM, Lazar, Lijo wrote:
->>> [Public]
->>>
->>> Doesn't this translate to just a higher idle timeout (VPE_IDLE_TIMEOUT ) for
->> the particular VPE version?
->>>
->>> Thanks,
->>> Lijo
->>
->> Yes if the VPE microcode adjusts DPM at runtime this makes sure that it has
->> settled when workload is complete.
->>
->> I expect that a higher VPE_IDLE_TIMEOUT would work too, but it seems less
->> scalable to me.
->>
-> [lijo]
-> 
-> I guess VPE firmware behavior could vary across generations. For ex: even if it doesn't lower the clocks in this generation, it could do so after seeing a power gate (any handshake with PMFW). Or, even if it doesn't lower the clock, it may adjust the clocks after powering up.
-> 
-> So probably just keeping vpe.idle_timeout as a variable based on IP version may be good enough for the current issue.
+Hi everyone,
 
-"Ideally" PMFW would lower clocks before turning off VPE, but that's not 
-the case right now on Strix Halo.  We just get lucky with older VPE 
-microcode that it doesn't change this.
+dma_fences have ever lived under the tyranny dictated by the module
+lifetime of their issuer, leading to crashes should anybody still holding
+a reference to a dma_fence when the module of the issuer was unloaded.
 
-My thought was this current solution will work properly on all microcode 
-version on all products.  If PMFW changes behavior we could add 
-conditional code later to only do this check for DPM level if on older PMFW.
+But those days are over! The patch set following this mail finally
+implements a way for issuers to release their dma_fence out of this
+slavery and outlive the module who originally created them.
 
-Alex,
+Previously various approaches have been discussed, including changing the
+locking semantics of the dma_fence callbacks (by me) as well as using the
+drm scheduler as intermediate layer (by Sima) to disconnect dma_fences
+from their actual users.
 
-What do you want to see here?
-> 
-> Thanks,
-> Lijo
-> 
->>>> -----Original Message-----
->>>> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
->>>> Mario Limonciello (AMD)
->>>> Sent: Monday, October 13, 2025 12:48 AM
->>>> To: amd-gfx@lists.freedesktop.org
->>>> Cc: Limonciello, Mario <Mario.Limonciello@amd.com>; Lee, Peyton
->>>> <Peyton.Lee@amd.com>; Sultan Alsawaf <sultan@kerneltoast.com>
->>>> Subject: [PATCH v3] drm/amd: Check that VPE has reached DPM0 in idle
->>>> handler
->>>>
->>>> From: Mario Limonciello <mario.limonciello@amd.com>
->>>>
->>>> [Why]
->>>> Newer VPE microcode has functionality that will decrease DPM level
->>>> only when a workload has run for 2 or more seconds.  If VPE is turned
->>>> off before this DPM decrease, the SOC can get stuck with a higher DPM level.
->>>>
->>>> This can happen from amdgpu's ring buffer test because it's a short
->>>> quick workload for VPE and VPE is turned off after 1s.
->>>>
->>>> [How]
->>>> In idle handler besides checking fences are drained check that VPE
->>>> DPM level is really is at DPM0. If not, schedule delayed work again until it is.
->>>>
->>>> Cc: Peyton.Lee@amd.com
->>>> Reported-by: Sultan Alsawaf <sultan@kerneltoast.com>
->>>> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4615
->>>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
->>>> ---
->>>> v3:
->>>> * Use label to avoid a register read if fences active
->>>> ---
->>>> drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c | 15 ++++++++++++---
->>>> 1 file changed, 12 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
->>>> index 474bfe36c0c2f..e8e512de5992a 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
->>>> @@ -326,14 +326,23 @@ static void vpe_idle_work_handler(struct
->>>> work_struct *work)  {
->>>>         struct amdgpu_device *adev =
->>>>                 container_of(work, struct amdgpu_device,
->>>> vpe.idle_work.work);
->>>> +      struct amdgpu_vpe *vpe = &adev->vpe;
->>>>         unsigned int fences = 0;
->>>> +      uint32_t dpm_level;
->>>>
->>>>         fences += amdgpu_fence_count_emitted(&adev->vpe.ring);
->>>> +      if (fences)
->>>> +              goto reschedule;
->>>>
->>>> -      if (fences == 0)
->>>> +      dpm_level = adev->pm.dpm_enabled ?
->>>> +                  RREG32(vpe_get_reg_offset(vpe, 0, vpe-
->>>>> regs.dpm_request_lv)) : 0;
->>>> +      if (!dpm_level) {
->>>>                 amdgpu_device_ip_set_powergating_state(adev,
->>>> AMD_IP_BLOCK_TYPE_VPE, AMD_PG_STATE_GATE);
->>>> -      else
->>>> -              schedule_delayed_work(&adev->vpe.idle_work,
->>>> VPE_IDLE_TIMEOUT);
->>>> +              return;
->>>> +      }
->>>> +
->>>> +reschedule:
->>>> +      schedule_delayed_work(&adev->vpe.idle_work, VPE_IDLE_TIMEOUT);
->>>> }
->>>>
->>>> static int vpe_common_init(struct amdgpu_vpe *vpe)
->>>> --
->>>> 2.43.0
->>>
-> 
+Changing the locking semantics turned out to be much more trickier than
+originally thought because especially on older drivers (nouveau, radeon,
+but also i915) this locking semantics is actually needed for correct
+operation.
+
+Using the drm_scheduler as intermediate layer is still a good idea and
+should probably be implemented to make live simpler for some drivers, but
+doesn't work for all use cases. Especially TLB flush fences, preemption
+fences and userqueue fences don't go through the drm scheduler because it
+doesn't make sense for them.
+
+Tvrtko did some really nice prerequisite work by protecting the returned
+strings of the dma_fence_ops by RCU. This way dma_fence creators where
+able to just wait for an RCU grace period after fence signaling before
+they could be save to free those data structures.
+
+Now this patch set here goes a step further and protects the whole
+dma_fence_ops structure by RCU, so that after the fence signals the
+pointer to the dma_fence_ops is set to NULL when there is no wait nor
+release callback given. All functionality which use the dma_fence_ops
+reference are put inside an RCU critical section, except for the
+deprecated issuer specific wait and of course the optional release
+callback.
+
+Additional to the RCU changes the lock protecting the dma_fence state
+previously had to be allocated external. This set here now changes the
+functionality to make that external lock optional and allows dma_fences
+to use an inline lock and be self contained.
+
+The new approach is then applied to amdgpu allowing the module to be
+unloaded even when dma_fences issued by it are still around.
+
+Please review and comment,
+Christian.
 
