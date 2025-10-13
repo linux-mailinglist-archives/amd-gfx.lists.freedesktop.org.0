@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19EECBD393A
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 16:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF94BD3921
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 16:35:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C8CD10E48B;
-	Mon, 13 Oct 2025 14:35:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F43510E477;
+	Mon, 13 Oct 2025 14:35:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RVBUAbNG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cNoYKg0C";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
- [209.85.208.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A086410E47F
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 14:35:15 +0000 (UTC)
-Received: by mail-ed1-f43.google.com with SMTP id
- 4fb4d7f45d1cf-63a10267219so1364130a12.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 07:35:15 -0700 (PDT)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
+ [209.85.208.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4146610E47C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 14:35:16 +0000 (UTC)
+Received: by mail-ed1-f47.google.com with SMTP id
+ 4fb4d7f45d1cf-639e1e8c8c8so8180945a12.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 07:35:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760366114; x=1760970914; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1760366115; x=1760970915; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=0Is8QZraj0UZR9B5lS7sUfkvx3WgTUsZAN2+odc02EU=;
- b=RVBUAbNGcVm4d3tHGZ09+m5xA2qh+3BWoj1IUfeHBOLD+0HMss14isH6SHxkJk6KqX
- Is6sV6wOkj1FE6bCWEhS9dZGy1omsj+6njMDIbOamcG2AsUheqV7YHqLWoIYyh5iEDYA
- 5v/uVTNe7duX6SsWe+vnSiUTD8trWth5Wkmt8/MLGixDLLOTwZSPneJG3dK2NzU39xp+
- a23TIVRCOFnMl329WOb6BSDdQ0v26pcqWyYmL11KpXQsN7mXjp0rdo+7+gBTdSKzIlPc
- vfcANxaFZhfJyR/GLxbrI6GPVGsMCvyCMfrTvUPlT9aJtarmferBejD2qt2MQ+xec+Fk
- awng==
+ bh=R0CSe+Vq+fu1du/WruIHtASks3BoMmFt7VrBHSdFdfY=;
+ b=cNoYKg0CnrewyRNlWAemzWTLYblYOZufbohV6sjqL5VnBymL8IbttL7++KMsD1KM3V
+ RW+eNuhjnuDX3Lz46RSZzaJlS9I3milF5kjaozywEURaLNSh1hepEcnesd6N0ciQByWQ
+ kh58pkpsZI2xJtbirb1fXDLPtdxKfPzvDMrbAopterINQNe+YN0SsxvcnCgdhyX7sCow
+ j+17IjANHh9qFQsYXhDEWbK6l3857xeA9a3Qg3tNgFFyb4+PCNrB5UCUV8TdGx3j8ymn
+ t30FiWzbSoEmKLrngIUvVRfXN9i8BsWb7V2l9tksuIyR/suBZOcrJTmT7V2eq7NeQ5vN
+ Anow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760366114; x=1760970914;
+ d=1e100.net; s=20230601; t=1760366115; x=1760970915;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=0Is8QZraj0UZR9B5lS7sUfkvx3WgTUsZAN2+odc02EU=;
- b=JHfWBNWNeTiV7Q5IJ5R6neXe7XXkOkDnuAjwHJq4In5VB1q7SyOqDhDAuUPq5XMa+D
- SWXDjzHeO8MjHzR87xFIsxoLo+IUkTPq6Y9EIjMIZsPAdbW3ckH2nh6p83PTH8O2ncAK
- 5kVKZaTEpF6zvVc7NarBOouLsO9tgJ8rrlRs5ZAoaNuB+Gu3kg6dpqzy5CmODKVYAsrr
- u1PXU7Uv5WrOZ8AePTiP9o2ltzwFo0p9NqyrfmU8JytyS1XRYH7GacUc8Z4qwYEW7LVp
- kOdLXj909XO+Ago/VqdlXAT36xW0h6aT04StZhNxjq/sXd4Mtz+V904njHqUCOzxgWEa
- B7dA==
+ bh=R0CSe+Vq+fu1du/WruIHtASks3BoMmFt7VrBHSdFdfY=;
+ b=VjY6H7Y/nIP6ltU0H68LbmfEn1sA18hWlb1apR9B5pO4OAqvUeJBKiOaRvVYl7jAtD
+ sVrpym5oDID1V1uL260TCCNr0recb/S3iqLq5REzJcdO4KQogc86f2JKL2z3b2mOol2b
+ sS3LG35oryiOG+l1eBtRxEyiBIJE+MNx1H5ZeaIbnBwPrGu8M9HvkcTXMEslagAmpUZj
+ XQaH/XfYTynRW02dh+9hSIih8FfI1brKIs86Gxf6h3jqqXu9YJXmSTQNIjNZDCGbPOQL
+ RY9tDtHuJs24mCLWGRxM9VDDprh4pwsKmbgLDA/1/texuCNulnCY23bE0cXQX7HiGiUT
+ BupQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUPVXNCBaIuc64j8SUmpcWDnZCU9kVj+z5RyC4+greDH8CHCvXj8lpgvmcxz2pyu28Gi2C8hWIM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzr7Xa6S6rsQM7Csc2E4gSfP3jIKuWjlCIydJYgudhB6yJPWJsH
- GH6vJRtWQclS8bHto5ZPSwOl1UuklH/hLR9ch1tkZ0pSJlvEZjep2jfx
-X-Gm-Gg: ASbGnctYvqpyeGZ/2JKpNfALZMOs48ohbcVdeu7MH//g8gc0js3WdmwJ1V8w7/sOkZU
- 4mRw7kU0VBQguQD9sslTGkUOokwo6QFWqjRxZm3t+v6mZqcCGw6ZFYzgPRpmF5hNi2tpiTtrlD1
- N+rY9HDsR41Gf19XLS/HxdI4Tl923l93lfluVYccMeGiO5AkN16ijgerN82rLnQHfsMGbBaF9nA
- f2tXr/Jt06UdkOic6a/8moBFDpPC4wTmUpP+OOu6tnL3zAZUPuqalZi40FU/FGSx5oWcElPJYYi
- TJwFl8luYQdDtxlCH9dTtq4bimFkwNSiiF54JGzoebk1DQPUTXaLfpcDQWlRPH0ChQQJNCvDXHM
- RPvrBHXZ6cg3Xl2GuxIk8PHUNGgMeGI+J89ci7DeNasqGcVw3Xy3KAMGDMIQjY6S1+Q==
-X-Google-Smtp-Source: AGHT+IEHkjewj8JA1w5ONaRwGzsRRsO2qleReikOPcD9Iw8BZ1OG14hM7qC5770R/LT9jH/Mbzod6g==
-X-Received: by 2002:a05:6402:202f:b0:634:bff4:524c with SMTP id
- 4fb4d7f45d1cf-639bb134f57mr17333324a12.9.1760366114086; 
+ AJvYcCVRf76+XcOK0kl5aGBsCLLuqpuEF5QbXD+m0FgpX7yAOaFTwgEkw46W3btNVj8P+RSQB46WdlgS@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyAIGy9+WKYgw9B1mJrdaVSkIKwJqIbebAPaJHe/uPvEayiwm43
+ KmoxbB7WbUlMqxt+kV0DweOec+AGeao6SlCY0wim59JAISYbMwDtZwsV
+X-Gm-Gg: ASbGnct3Mq28WDVvwvpjuNaGak0Zll0GaykAgXqCHUoxP8g0xDN0m1EEkJgyDZBD7kU
+ BVseK/upY92x8IUsigg5FdaufjWN4Yzcfoqu6vHAbL+KRCzDPPkcAIvROWjyMSaa00EJHsz50Iu
+ PPn8A5TrGNFKqkStGmmm61Mp+6Cq6MuSy7c8GlSZLi1lRdzP0rHms/GARSguAooRGdAiv7XLtc5
+ DINyXIR0/9BdnLzA2nW2pmhN0Oo439Xyp960RlbIh/vaPDb5hnkRDckAtil03+U4Byu1sGeoget
+ BZA8xd1ncGCc+N00LvZUZ+v6O5MArhfoWy89EWSNW2rV20tMBga9hm8wu5GyKQ+gTH8qiyztCAv
+ HVafCwFDUqixkd9g/8bE41gEDVHDojHuNbHUZRU/6dIDDbZEIgQ+jk3k=
+X-Google-Smtp-Source: AGHT+IFyPfcbbuza955t3CZkwiaWRYXDIgxI8rg6290fvp/qHcZzB7/xefEdgV0gcu+fEZ2xRGv1gQ==
+X-Received: by 2002:a05:6402:23c9:b0:634:c03f:c605 with SMTP id
+ 4fb4d7f45d1cf-639d5c75dbfmr19259428a12.36.1760366114700; 
  Mon, 13 Oct 2025 07:35:14 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:151b:dc00:15d1:ebc5:76e6:730f])
  by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-63a5c321453sm8942037a12.39.2025.10.13.07.35.13
+ 4fb4d7f45d1cf-63a5c321453sm8942037a12.39.2025.10.13.07.35.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Oct 2025 07:35:13 -0700 (PDT)
+ Mon, 13 Oct 2025 07:35:14 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -69,9 +69,9 @@ To: phasta@mailbox.org, alexdeucher@gmail.com, simona.vetter@ffwll.ch,
  tursulin@ursulin.net
 Cc: dri-devel@lists.freedesktop.org,
 	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 13/15] drm/amdgpu: independence for the amdgpu_vm_tlb_fence!
-Date: Mon, 13 Oct 2025 15:48:40 +0200
-Message-ID: <20251013143502.1655-14-christian.koenig@amd.com>
+Subject: [PATCH 14/15] drm/amdgpu: independence for the amdkfd_fence!
+Date: Mon, 13 Oct 2025 15:48:41 +0200
+Message-ID: <20251013143502.1655-15-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251013143502.1655-1-christian.koenig@amd.com>
 References: <20251013143502.1655-1-christian.koenig@amd.com>
@@ -92,36 +92,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This should allow amdgpu_vm_tlb_fences to outlive the amdgpu module.
+This should allow amdkfd_fences to outlive the amdgpu module.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  6 ++++
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c  | 36 +++++++------------
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  7 ++--
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |  4 +--
+ 4 files changed, 24 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-index 5d26797356a3..27bf1f569830 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-@@ -33,7 +33,6 @@ struct amdgpu_tlb_fence {
- 	struct amdgpu_device	*adev;
- 	struct dma_fence	*dependency;
- 	struct work_struct	work;
--	spinlock_t		lock;
- 	uint16_t		pasid;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index 9e120c934cc1..35c59c784b7b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -196,6 +196,7 @@ int kfd_debugfs_kfd_mem_limits(struct seq_file *m, void *data);
+ #endif
+ #if IS_ENABLED(CONFIG_HSA_AMD)
+ bool amdkfd_fence_check_mm(struct dma_fence *f, struct mm_struct *mm);
++void amdkfd_fence_signal(struct dma_fence *f);
+ struct amdgpu_amdkfd_fence *to_amdgpu_amdkfd_fence(struct dma_fence *f);
+ void amdgpu_amdkfd_remove_all_eviction_fences(struct amdgpu_bo *bo);
+ int amdgpu_amdkfd_evict_userptr(struct mmu_interval_notifier *mni,
+@@ -210,6 +211,11 @@ bool amdkfd_fence_check_mm(struct dma_fence *f, struct mm_struct *mm)
+ 	return false;
+ }
  
++static inline
++void amdkfd_fence_signal(struct dma_fence *f)
++{
++}
++
+ static inline
+ struct amdgpu_amdkfd_fence *to_amdgpu_amdkfd_fence(struct dma_fence *f)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
+index 09c919f72b6c..69bca4536326 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
+@@ -127,29 +127,9 @@ static bool amdkfd_fence_enable_signaling(struct dma_fence *f)
+ 		if (!svm_range_schedule_evict_svm_bo(fence))
+ 			return true;
+ 	}
+-	return false;
+-}
+-
+-/**
+- * amdkfd_fence_release - callback that fence can be freed
+- *
+- * @f: dma_fence
+- *
+- * This function is called when the reference count becomes zero.
+- * Drops the mm_struct reference and RCU schedules freeing up the fence.
+- */
+-static void amdkfd_fence_release(struct dma_fence *f)
+-{
+-	struct amdgpu_amdkfd_fence *fence = to_amdgpu_amdkfd_fence(f);
+-
+-	/* Unconditionally signal the fence. The process is getting
+-	 * terminated.
+-	 */
+-	if (WARN_ON(!fence))
+-		return; /* Not an amdgpu_amdkfd_fence */
+-
+ 	mmdrop(fence->mm);
+-	kfree_rcu(f, rcu);
++	fence->mm = NULL;
++	return false;
+ }
+ 
+ /**
+@@ -174,9 +154,19 @@ bool amdkfd_fence_check_mm(struct dma_fence *f, struct mm_struct *mm)
+ 	return false;
+ }
+ 
++void amdkfd_fence_signal(struct dma_fence *f)
++{
++	struct amdgpu_amdkfd_fence *fence = to_amdgpu_amdkfd_fence(f);
++
++	if (fence) {
++		mmdrop(fence->mm);
++		fence->mm = NULL;
++	}
++	dma_fence_signal(f);
++}
++
+ static const struct dma_fence_ops amdkfd_fence_ops = {
+ 	.get_driver_name = amdkfd_fence_get_driver_name,
+ 	.get_timeline_name = amdkfd_fence_get_timeline_name,
+ 	.enable_signaling = amdkfd_fence_enable_signaling,
+-	.release = amdkfd_fence_release,
  };
-@@ -98,9 +97,8 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
- 	f->dependency = *fence;
- 	f->pasid = vm->pasid;
- 	INIT_WORK(&f->work, amdgpu_tlb_fence_work);
--	spin_lock_init(&f->lock);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index ddfe30c13e9d..779d7701bac9 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -1177,7 +1177,7 @@ static void kfd_process_wq_release(struct work_struct *work)
+ 	synchronize_rcu();
+ 	ef = rcu_access_pointer(p->ef);
+ 	if (ef)
+-		dma_fence_signal(ef);
++		amdkfd_fence_signal(ef);
  
--	dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
-+	dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, NULL,
- 			 vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
+ 	kfd_process_remove_sysfs(p);
+ 	kfd_debugfs_remove_process(p);
+@@ -1986,7 +1986,6 @@ kfd_process_gpuid_from_node(struct kfd_process *p, struct kfd_node *node,
+ static int signal_eviction_fence(struct kfd_process *p)
+ {
+ 	struct dma_fence *ef;
+-	int ret;
  
- 	/* TODO: We probably need a separate wq here */
+ 	rcu_read_lock();
+ 	ef = dma_fence_get_rcu_safe(&p->ef);
+@@ -1994,10 +1993,10 @@ static int signal_eviction_fence(struct kfd_process *p)
+ 	if (!ef)
+ 		return -EINVAL;
+ 
+-	ret = dma_fence_signal(ef);
++	amdkfd_fence_signal(ef);
+ 	dma_fence_put(ef);
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ static void evict_process_worker(struct work_struct *work)
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+index 91609dd5730f..01ce2d853602 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+@@ -428,7 +428,7 @@ static void svm_range_bo_release(struct kref *kref)
+ 
+ 	if (!dma_fence_is_signaled(&svm_bo->eviction_fence->base))
+ 		/* We're not in the eviction worker. Signal the fence. */
+-		dma_fence_signal(&svm_bo->eviction_fence->base);
++		amdkfd_fence_signal(&svm_bo->eviction_fence->base);
+ 	dma_fence_put(&svm_bo->eviction_fence->base);
+ 	amdgpu_bo_unref(&svm_bo->bo);
+ 	kfree(svm_bo);
+@@ -3628,7 +3628,7 @@ static void svm_range_evict_svm_bo_worker(struct work_struct *work)
+ 	mmap_read_unlock(mm);
+ 	mmput(mm);
+ 
+-	dma_fence_signal(&svm_bo->eviction_fence->base);
++	amdkfd_fence_signal(&svm_bo->eviction_fence->base);
+ 
+ 	/* This is the last reference to svm_bo, after svm_range_vram_node_free
+ 	 * has been called in svm_migrate_vram_to_ram
 -- 
 2.43.0
 
