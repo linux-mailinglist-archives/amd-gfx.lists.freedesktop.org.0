@@ -2,143 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B26D2BD4C4B
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 18:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48377BD4D7C
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 18:14:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A0BA10E146;
-	Mon, 13 Oct 2025 16:07:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B626D10E493;
+	Mon, 13 Oct 2025 16:14:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="MMWjWAah";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="dKqOnFjR";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Qdw8Wev+";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="G2LHIx4O";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="V6NOB37H";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5009C10E149
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 16:07:40 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 825F21F445;
- Mon, 13 Oct 2025 16:07:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1760371659; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=IkAXYdRxDr55JV0wUx5wV3ob9S1p82suedygpB3krnQ=;
- b=MMWjWAahzw4h4K4b7BB0nwXsz9KU5VAL+2hqM9b0MSzJCNGxxkzaX4vKnowitMjd7tKaCL
- A7P/H1ps9MoiU/KI3JLeGx8w+v9x+XAki2sx8iwUQWG13xern6ep2Ouk7TzfLf3woDdoh/
- gj0cpBqCr8g97TgjomdE+7eZIFzji7U=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1760371659;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=IkAXYdRxDr55JV0wUx5wV3ob9S1p82suedygpB3krnQ=;
- b=dKqOnFjR+uQBWHsQcB4w+VMAV4mAaNDSN/HQz7PJP1KZXAwwXwhSbFEu3An3ok5f7yuMvM
- JXx8BsEjeb+n29Cw==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Qdw8Wev+;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=G2LHIx4O
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1760371658; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=IkAXYdRxDr55JV0wUx5wV3ob9S1p82suedygpB3krnQ=;
- b=Qdw8Wev+le1d2fcwARwSBvFXWim2Q/s3nTCwN4+REA7XDCNoCce7ouG/ZXynETCM94vbVn
- C68RLCoKLzl18LReFuYxj3JUm5h3j8vimm2tTpnzdcM/BTjqopiqZVlRk/VGjcjFnz01Mx
- N9eB3PdXmw0wjQMEzvJ5B+lADJRlpqk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1760371658;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=IkAXYdRxDr55JV0wUx5wV3ob9S1p82suedygpB3krnQ=;
- b=G2LHIx4OOWF2/vHvD1znHHv7YBIp1X+bWT7IheQ8ipbHS1oBKGZefNsX4GIy/iHQf+585H
- Wf8RI/N9dvPuDzAQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 094CD13874;
- Mon, 13 Oct 2025 16:07:38 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id Z3QLAcoj7WhAewAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 13 Oct 2025 16:07:38 +0000
-Message-ID: <6f88eec9-f814-43b0-b3be-602cc58fa0c4@suse.de>
-Date: Mon, 13 Oct 2025 18:07:37 +0200
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011025.outbound.protection.outlook.com [52.101.52.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3FFF10E466
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 16:14:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WsrOADyXQb2PMnDVORbP8SJvU02c7bZfJtNQBCKQ9FbHoaWzTCHIf01m0gBWnQ9Awh+HVF3ZpCTVf7Xa1OXfxcdxJB+SdvFAjNl7OrV2EKaWs49/kURZVG6MV8U9I210P02lXGLzyZtF1iPofRt0gLzzbBWwARXdZz+YqGxRooam1USP87/0iB+QwHZC68qzhyGPUMBrU54JIpXbLfwfmtDLMgEdS0q3r5Rxl8aiwZkmM0pUpVfapMgQ4eiguvwPxA/oztC4sQzqwhLZF2dEKfEEx+s8TEPAfXJ3D+gH+l/40Vytx8suPGB4Vf5SQHHbw+tBiG9/lkijJjsEIY/vzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L6DckX1tUy+T6nICuJkJ86S/2HsUc92L0Mpy8Xvvvv4=;
+ b=urQnBf2/dKKtPZwv421m5E4D3jYoWHsagekmlZuphoibBJWUQHpgm9Rymwl0Qy3XLijCQgoS4CLJREez7VmS/WfoSwM7zIWPLOTgmdABQRbDkXE5qKIsnvc+0F7U6fKJVrdqJFK3pH1OVxehEs0nLrsXCwDNn3nBPlAMbM1fnrIPyVbzVg0rvjXCpDEe7MLg8LYoPZP9DLyJ6zMGz1dhpSQHso0wo6dKkJwf/MNMygWcNOJumVCCIMx99LieSb4isoSh70D6ndbwUPRE+MzFq+zJ/lVuvW94UO8IJDleKqFN4OsHuuEQyLLjBlPzvbTNaW9RfCW0UP5pQ8QJInzo9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L6DckX1tUy+T6nICuJkJ86S/2HsUc92L0Mpy8Xvvvv4=;
+ b=V6NOB37HtqiGV4V115y+bQUL7XsE+J2fHnWEBp8hg7qwqWOoCEGZR8QhFIBjXNQSLtUHzC0+bsmKyeq++22JTxu+1nmPLf5z5qLhhmdrMZv/MGbmJiDu5cxtQH8jSIxWKZw6fNnlgv4uhIMNLok8pDYtWMSpuSYqhYCp9pCP/8U=
+Received: from CYXPR03CA0046.namprd03.prod.outlook.com (2603:10b6:930:d2::19)
+ by SA3PR12MB8811.namprd12.prod.outlook.com (2603:10b6:806:312::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Mon, 13 Oct
+ 2025 16:14:08 +0000
+Received: from CY4PEPF0000EE33.namprd05.prod.outlook.com
+ (2603:10b6:930:d2:cafe::2d) by CYXPR03CA0046.outlook.office365.com
+ (2603:10b6:930:d2::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9203.13 via Frontend Transport; Mon,
+ 13 Oct 2025 16:14:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000EE33.mail.protection.outlook.com (10.167.242.39) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9228.7 via Frontend Transport; Mon, 13 Oct 2025 16:14:07 +0000
+Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 13 Oct
+ 2025 09:14:07 -0700
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 1/6] drm/amdgpu/userq: fix SDMA and compute validation
+Date: Mon, 13 Oct 2025 12:13:47 -0400
+Message-ID: <20251013161352.1628044-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/client: Remove holds_console_lock parameter from
- suspend/resume
-To: alexander.deucher@amd.com, christian.koenig@amd.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, lyude@redhat.com,
- dakr@kernel.org, lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- jfalempe@redhat.com, javierm@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20251001143709.419736-1-tzimmermann@suse.de>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20251001143709.419736-1-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 825F21F445
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_TLS_ALL(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MID_RHS_MATCH_FROM(0.00)[]; RCPT_COUNT_TWELVE(0.00)[17];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[people.freedesktop.org:url,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,patchwork.freedesktop.org:url,suse.de:email,suse.de:mid,suse.de:dkim];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- TO_DN_NONE(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Action: no action
-X-Spam-Flag: NO
-X-Spam-Score: -4.51
-X-Spam-Level: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE33:EE_|SA3PR12MB8811:EE_
+X-MS-Office365-Filtering-Correlation-Id: 179e34a3-5d7d-4661-7528-08de0a73899d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9ObEnDiQ3Llr4XQb5noEfndGQOtQqdPGW5MrP7DdjL7YZZLt6Ofgb95kC+4B?=
+ =?us-ascii?Q?4CJHOceYTlML0NARfSww1yPOUfprko5KmSpireJK51vzOffFk6u6Vk5Smioz?=
+ =?us-ascii?Q?vdFxfYEl1F3zmW4BTBAAZ1nv4rwOp6WSt7kr39agVFgwx84Ti/NS68sddNPQ?=
+ =?us-ascii?Q?eWi+JbPk31kxCmgWi2jc4qo4LGLHYSiNthISRIPQiQvt9umyiqzKxdLKz4i+?=
+ =?us-ascii?Q?gEKq0GNib2Ipd+iuLSJ+cLqZr7vdEu+MDeEiYB4F9VladFxs5hgSQDsf85Xt?=
+ =?us-ascii?Q?QPSSFZrDaQJa13Y9nP0j/w6mwBJT7lJCr99i3JEISl7jIcsVl44KuZzq9OW2?=
+ =?us-ascii?Q?84D1GVrqUN3W0NZMUnuQJNjeIq1cLFPRlqguXh2dx/iQGik3myJ36fZcvzxW?=
+ =?us-ascii?Q?5zewZIOlky40QNLL2gcoPcvWREzUG0NSdvFvWXH7O5lse55I9NJjGxOWXTrF?=
+ =?us-ascii?Q?GA/+zTMmbVUp5QZKI2n3naFSBC14gtZ0Hj7k5xU5myrgV3vx7rC8MHRcPUIU?=
+ =?us-ascii?Q?5V1g1ZOBgT1wIw/D03yFfrhlVr69Gbj5VreKcQSYia5hoOSg6YONWIGRPyJg?=
+ =?us-ascii?Q?4UO1Gdz5Yg9XAhsrDZIgDUH3D55miZFpNBXiAiz7HcqTps5mrgnlzgMuiTZr?=
+ =?us-ascii?Q?yE+Iw9uHuNzVlFtJ4lOCFaFeexT/lXVcqIhpWLnAl0edKPHT6P45xxQI9Cyk?=
+ =?us-ascii?Q?mSh230DYgGiNk0dfxDn6ylkvTJ+GmFH7FatTJfD7Jhe2EMt/nXAQAD1yhfvh?=
+ =?us-ascii?Q?QN3DaQhQsd6LSN0zEG5ES+TE46GQ4eQrDIA3iyZpyYT6g3MyoqUtxoLKsc68?=
+ =?us-ascii?Q?fufM2SBLrTXugY8iq4Iz/neBfQErWle838Z8kr5LR2gnSVYj5FNeQm4MZFPP?=
+ =?us-ascii?Q?j643I1Xlb7Jk7gT0+qWXLUQt75kFNORGqVgkOwcKC0Aled6ie2e8e5/u5cc+?=
+ =?us-ascii?Q?7LWrzq/wJqytxeEf5yQ+fR0Bf7jXxtHpTgbFqX+/TAogHsYz0uqACCgivHxw?=
+ =?us-ascii?Q?kJgkZm45Q15PawrLKZLfo2A/WCePpgmVLc3kJ3i7jjPq0BbgdhMSRgJ3MxVP?=
+ =?us-ascii?Q?jbAtEq9HCuQbz0RYO39TS/R+adL/LL3nI+aOEdVLn1VCOiyJOpqdUyMzKxL7?=
+ =?us-ascii?Q?4xDr9kRhfqBdep785iObigCgpdw7EW20VD9vij8yDa4bPZs53rX4FWYJQaSU?=
+ =?us-ascii?Q?y+pZchklN0bEp1V2ibJcG8oxyA9PYknsckF/1UBjQaEYL2JIW56NShmTdG67?=
+ =?us-ascii?Q?9DUwFxWqamSZXlbu6a+XMQzaQ41ijAR5Ajtr0dC+fThn8apqadhQxU0H/H+n?=
+ =?us-ascii?Q?HFEq1wSCQxMj2RbjXV0kTGdZ0WbFVM3iQ4cNUah0sT+gax0I/6l2QMK4yNyl?=
+ =?us-ascii?Q?TzJCCQuZrW5UpvRxm7kXF9+ggXXLXpibnNRx39gZPKUUt6FnR5+VcydoafmJ?=
+ =?us-ascii?Q?1kTIc2VJywMfl64M9jByH+VvRiDYxdczmd4TUVvmLt/oAWVrxwiBIWSfGAl0?=
+ =?us-ascii?Q?gn5Xt3dlQtiEa0kNEUSI7mYr0ZzRhTjEOmUyvhC7Vhd7YailrifYF9MH3/QN?=
+ =?us-ascii?Q?kenjeEUiqn6ZGZ+rpd4=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 16:14:07.8621 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 179e34a3-5d7d-4661-7528-08de0a73899d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE33.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8811
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,405 +131,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+The CSA and EOP buffers have different alignement requirements.
+Hardcode them for now as a bug fix.  A proper query will be added in
+a subsequent patch.
 
-via irc: 
-https://people.freedesktop.org/~cbrill/dri-log/?channel=nouveau&highlight_names=&date=2025-10-13&show_html=true
+v2: verify gfx shadow helper callback (Prike)
 
-Am 01.10.25 um 16:37 schrieb Thomas Zimmermann:
-> No caller of the client resume/suspend helpers holds the console
-> lock. The last such cases were removed from radeon in the patch
-> series at [1]. Now remove the related parameter and the TODO items.
->
-> v2:
-> - update placeholders for CONFIG_DRM_CLIENT=n
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Link: https://patchwork.freedesktop.org/series/151624/ # [1]
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  8 ++++----
->   drivers/gpu/drm/clients/drm_fbdev_client.c | 14 ++++----------
->   drivers/gpu/drm/clients/drm_log.c          |  4 ++--
->   drivers/gpu/drm/drm_client_event.c         | 16 ++++++++--------
->   drivers/gpu/drm/drm_modeset_helper.c       |  6 +++---
->   drivers/gpu/drm/i915/i915_driver.c         |  6 +++---
->   drivers/gpu/drm/nouveau/nouveau_display.c  |  4 ++--
->   drivers/gpu/drm/radeon/radeon_device.c     |  4 ++--
->   drivers/gpu/drm/xe/display/xe_display.c    |  6 +++---
->   include/drm/drm_client.h                   | 14 ++------------
->   include/drm/drm_client_event.h             |  8 ++++----
->   11 files changed, 37 insertions(+), 53 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index a77000c2e0bb..f068e26d5080 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -5212,7 +5212,7 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
->   		dev_warn(adev->dev, "smart shift update failed\n");
->   
->   	if (notify_clients)
-> -		drm_client_dev_suspend(adev_to_drm(adev), false);
-> +		drm_client_dev_suspend(adev_to_drm(adev));
->   
->   	cancel_delayed_work_sync(&adev->delayed_init_work);
->   
-> @@ -5346,7 +5346,7 @@ int amdgpu_device_resume(struct drm_device *dev, bool notify_clients)
->   	flush_delayed_work(&adev->delayed_init_work);
->   
->   	if (notify_clients)
-> -		drm_client_dev_resume(adev_to_drm(adev), false);
-> +		drm_client_dev_resume(adev_to_drm(adev));
->   
->   	amdgpu_ras_resume(adev);
->   
-> @@ -5951,7 +5951,7 @@ int amdgpu_device_reinit_after_reset(struct amdgpu_reset_context *reset_context)
->   				if (r)
->   					goto out;
->   
-> -				drm_client_dev_resume(adev_to_drm(tmp_adev), false);
-> +				drm_client_dev_resume(adev_to_drm(tmp_adev));
->   
->   				/*
->   				 * The GPU enters bad state once faulty pages
-> @@ -6286,7 +6286,7 @@ static void amdgpu_device_halt_activities(struct amdgpu_device *adev,
->   		 */
->   		amdgpu_unregister_gpu_instance(tmp_adev);
->   
-> -		drm_client_dev_suspend(adev_to_drm(tmp_adev), false);
-> +		drm_client_dev_suspend(adev_to_drm(tmp_adev));
->   
->   		/* disable ras on ALL IPs */
->   		if (!need_emergency_restart && !amdgpu_reset_in_dpc(adev) &&
-> diff --git a/drivers/gpu/drm/clients/drm_fbdev_client.c b/drivers/gpu/drm/clients/drm_fbdev_client.c
-> index f894ba52bdb5..ec5ab9f30547 100644
-> --- a/drivers/gpu/drm/clients/drm_fbdev_client.c
-> +++ b/drivers/gpu/drm/clients/drm_fbdev_client.c
-> @@ -62,26 +62,20 @@ static int drm_fbdev_client_hotplug(struct drm_client_dev *client)
->   	return ret;
->   }
->   
-> -static int drm_fbdev_client_suspend(struct drm_client_dev *client, bool holds_console_lock)
-> +static int drm_fbdev_client_suspend(struct drm_client_dev *client)
->   {
->   	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
->   
-> -	if (holds_console_lock)
-> -		drm_fb_helper_set_suspend(fb_helper, true);
-> -	else
-> -		drm_fb_helper_set_suspend_unlocked(fb_helper, true);
-> +	drm_fb_helper_set_suspend_unlocked(fb_helper, true);
->   
->   	return 0;
->   }
->   
-> -static int drm_fbdev_client_resume(struct drm_client_dev *client, bool holds_console_lock)
-> +static int drm_fbdev_client_resume(struct drm_client_dev *client)
->   {
->   	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
->   
-> -	if (holds_console_lock)
-> -		drm_fb_helper_set_suspend(fb_helper, false);
-> -	else
-> -		drm_fb_helper_set_suspend_unlocked(fb_helper, false);
-> +	drm_fb_helper_set_suspend_unlocked(fb_helper, false);
->   
->   	return 0;
->   }
-> diff --git a/drivers/gpu/drm/clients/drm_log.c b/drivers/gpu/drm/clients/drm_log.c
-> index d239f1e3c456..fd8556dd58ed 100644
-> --- a/drivers/gpu/drm/clients/drm_log.c
-> +++ b/drivers/gpu/drm/clients/drm_log.c
-> @@ -319,7 +319,7 @@ static int drm_log_client_hotplug(struct drm_client_dev *client)
->   	return 0;
->   }
->   
-> -static int drm_log_client_suspend(struct drm_client_dev *client, bool _console_lock)
-> +static int drm_log_client_suspend(struct drm_client_dev *client)
->   {
->   	struct drm_log *dlog = client_to_drm_log(client);
->   
-> @@ -328,7 +328,7 @@ static int drm_log_client_suspend(struct drm_client_dev *client, bool _console_l
->   	return 0;
->   }
->   
-> -static int drm_log_client_resume(struct drm_client_dev *client, bool _console_lock)
-> +static int drm_log_client_resume(struct drm_client_dev *client)
->   {
->   	struct drm_log *dlog = client_to_drm_log(client);
->   
-> diff --git a/drivers/gpu/drm/drm_client_event.c b/drivers/gpu/drm/drm_client_event.c
-> index c83196ad8b59..c3baeb4d4e6b 100644
-> --- a/drivers/gpu/drm/drm_client_event.c
-> +++ b/drivers/gpu/drm/drm_client_event.c
-> @@ -122,7 +122,7 @@ void drm_client_dev_restore(struct drm_device *dev)
->   	mutex_unlock(&dev->clientlist_mutex);
->   }
->   
-> -static int drm_client_suspend(struct drm_client_dev *client, bool holds_console_lock)
-> +static int drm_client_suspend(struct drm_client_dev *client)
->   {
->   	struct drm_device *dev = client->dev;
->   	int ret = 0;
-> @@ -131,7 +131,7 @@ static int drm_client_suspend(struct drm_client_dev *client, bool holds_console_
->   		return 0;
->   
->   	if (client->funcs && client->funcs->suspend)
-> -		ret = client->funcs->suspend(client, holds_console_lock);
-> +		ret = client->funcs->suspend(client);
->   	drm_dbg_kms(dev, "%s: ret=%d\n", client->name, ret);
->   
->   	client->suspended = true;
-> @@ -139,20 +139,20 @@ static int drm_client_suspend(struct drm_client_dev *client, bool holds_console_
->   	return ret;
->   }
->   
-> -void drm_client_dev_suspend(struct drm_device *dev, bool holds_console_lock)
-> +void drm_client_dev_suspend(struct drm_device *dev)
->   {
->   	struct drm_client_dev *client;
->   
->   	mutex_lock(&dev->clientlist_mutex);
->   	list_for_each_entry(client, &dev->clientlist, list) {
->   		if (!client->suspended)
-> -			drm_client_suspend(client, holds_console_lock);
-> +			drm_client_suspend(client);
->   	}
->   	mutex_unlock(&dev->clientlist_mutex);
->   }
->   EXPORT_SYMBOL(drm_client_dev_suspend);
->   
-> -static int drm_client_resume(struct drm_client_dev *client, bool holds_console_lock)
-> +static int drm_client_resume(struct drm_client_dev *client)
->   {
->   	struct drm_device *dev = client->dev;
->   	int ret = 0;
-> @@ -161,7 +161,7 @@ static int drm_client_resume(struct drm_client_dev *client, bool holds_console_l
->   		return 0;
->   
->   	if (client->funcs && client->funcs->resume)
-> -		ret = client->funcs->resume(client, holds_console_lock);
-> +		ret = client->funcs->resume(client);
->   	drm_dbg_kms(dev, "%s: ret=%d\n", client->name, ret);
->   
->   	client->suspended = false;
-> @@ -172,14 +172,14 @@ static int drm_client_resume(struct drm_client_dev *client, bool holds_console_l
->   	return ret;
->   }
->   
-> -void drm_client_dev_resume(struct drm_device *dev, bool holds_console_lock)
-> +void drm_client_dev_resume(struct drm_device *dev)
->   {
->   	struct drm_client_dev *client;
->   
->   	mutex_lock(&dev->clientlist_mutex);
->   	list_for_each_entry(client, &dev->clientlist, list) {
->   		if  (client->suspended)
-> -			drm_client_resume(client, holds_console_lock);
-> +			drm_client_resume(client);
->   	}
->   	mutex_unlock(&dev->clientlist_mutex);
->   }
-> diff --git a/drivers/gpu/drm/drm_modeset_helper.c b/drivers/gpu/drm/drm_modeset_helper.c
-> index 988735560570..a57f6a10ada4 100644
-> --- a/drivers/gpu/drm/drm_modeset_helper.c
-> +++ b/drivers/gpu/drm/drm_modeset_helper.c
-> @@ -203,10 +203,10 @@ int drm_mode_config_helper_suspend(struct drm_device *dev)
->   	if (dev->mode_config.poll_enabled)
->   		drm_kms_helper_poll_disable(dev);
->   
-> -	drm_client_dev_suspend(dev, false);
-> +	drm_client_dev_suspend(dev);
->   	state = drm_atomic_helper_suspend(dev);
->   	if (IS_ERR(state)) {
-> -		drm_client_dev_resume(dev, false);
-> +		drm_client_dev_resume(dev);
->   
->   		/*
->   		 * Don't enable polling if it was never initialized
-> @@ -252,7 +252,7 @@ int drm_mode_config_helper_resume(struct drm_device *dev)
->   		DRM_ERROR("Failed to resume (%d)\n", ret);
->   	dev->mode_config.suspend_state = NULL;
->   
-> -	drm_client_dev_resume(dev, false);
-> +	drm_client_dev_resume(dev);
->   
->   	/*
->   	 * Don't enable polling if it is not initialized
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 95165e45de74..162e50315beb 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -978,7 +978,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
->   	intel_runtime_pm_disable(&i915->runtime_pm);
->   	intel_power_domains_disable(display);
->   
-> -	drm_client_dev_suspend(&i915->drm, false);
-> +	drm_client_dev_suspend(&i915->drm);
->   	if (intel_display_device_present(display)) {
->   		drm_kms_helper_poll_disable(&i915->drm);
->   		intel_display_driver_disable_user_access(display);
-> @@ -1060,7 +1060,7 @@ static int i915_drm_suspend(struct drm_device *dev)
->   	/* We do a lot of poking in a lot of registers, make sure they work
->   	 * properly. */
->   	intel_power_domains_disable(display);
-> -	drm_client_dev_suspend(dev, false);
-> +	drm_client_dev_suspend(dev);
->   	if (intel_display_device_present(display)) {
->   		drm_kms_helper_poll_disable(dev);
->   		intel_display_driver_disable_user_access(display);
-> @@ -1257,7 +1257,7 @@ static int i915_drm_resume(struct drm_device *dev)
->   
->   	intel_opregion_resume(display);
->   
-> -	drm_client_dev_resume(dev, false);
-> +	drm_client_dev_resume(dev);
->   
->   	intel_power_domains_enable(display);
->   
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-> index 54aed3656a4c..00515623a2cc 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -765,7 +765,7 @@ nouveau_display_suspend(struct drm_device *dev, bool runtime)
->   {
->   	struct nouveau_display *disp = nouveau_display(dev);
->   
-> -	drm_client_dev_suspend(dev, false);
-> +	drm_client_dev_suspend(dev);
->   
->   	if (drm_drv_uses_atomic_modeset(dev)) {
->   		if (!runtime) {
-> @@ -796,7 +796,7 @@ nouveau_display_resume(struct drm_device *dev, bool runtime)
->   		}
->   	}
->   
-> -	drm_client_dev_resume(dev, false);
-> +	drm_client_dev_resume(dev);
->   }
->   
->   int
-> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-> index 9e35b14e2bf0..60afaa8e56b4 100644
-> --- a/drivers/gpu/drm/radeon/radeon_device.c
-> +++ b/drivers/gpu/drm/radeon/radeon_device.c
-> @@ -1635,7 +1635,7 @@ int radeon_suspend_kms(struct drm_device *dev, bool suspend,
->   	}
->   
->   	if (notify_clients)
-> -		drm_client_dev_suspend(dev, false);
-> +		drm_client_dev_suspend(dev);
->   
->   	return 0;
->   }
-> @@ -1739,7 +1739,7 @@ int radeon_resume_kms(struct drm_device *dev, bool resume, bool notify_clients)
->   		radeon_pm_compute_clocks(rdev);
->   
->   	if (notify_clients)
-> -		drm_client_dev_resume(dev, false);
-> +		drm_client_dev_resume(dev);
->   
->   	return 0;
->   }
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 19e691fccf8c..d3cc6181842c 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -324,7 +324,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
->   	 * properly.
->   	 */
->   	intel_power_domains_disable(display);
-> -	drm_client_dev_suspend(&xe->drm, false);
-> +	drm_client_dev_suspend(&xe->drm);
->   
->   	if (intel_display_device_present(display)) {
->   		drm_kms_helper_poll_disable(&xe->drm);
-> @@ -356,7 +356,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
->   		return;
->   
->   	intel_power_domains_disable(display);
-> -	drm_client_dev_suspend(&xe->drm, false);
-> +	drm_client_dev_suspend(&xe->drm);
->   
->   	if (intel_display_device_present(display)) {
->   		drm_kms_helper_poll_disable(&xe->drm);
-> @@ -481,7 +481,7 @@ void xe_display_pm_resume(struct xe_device *xe)
->   
->   	intel_opregion_resume(display);
->   
-> -	drm_client_dev_resume(&xe->drm, false);
-> +	drm_client_dev_resume(&xe->drm);
->   
->   	intel_power_domains_enable(display);
->   }
-> diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
-> index bdd845e383ef..3556928d3938 100644
-> --- a/include/drm/drm_client.h
-> +++ b/include/drm/drm_client.h
-> @@ -70,13 +70,8 @@ struct drm_client_funcs {
->   	 * Called when suspending the device.
->   	 *
->   	 * This callback is optional.
-> -	 *
-> -	 * FIXME: Some callers hold the console lock when invoking this
-> -	 *        function. This interferes with fbdev emulation, which
-> -	 *        also tries to acquire the lock. Push the console lock
-> -	 *        into the callback and remove 'holds_console_lock'.
->   	 */
-> -	int (*suspend)(struct drm_client_dev *client, bool holds_console_lock);
-> +	int (*suspend)(struct drm_client_dev *client);
->   
->   	/**
->   	 * @resume:
-> @@ -84,13 +79,8 @@ struct drm_client_funcs {
->   	 * Called when resuming the device from suspend.
->   	 *
->   	 * This callback is optional.
-> -	 *
-> -	 * FIXME: Some callers hold the console lock when invoking this
-> -	 *        function. This interferes with fbdev emulation, which
-> -	 *        also tries to acquire the lock. Push the console lock
-> -	 *        into the callback and remove 'holds_console_lock'.
->   	 */
-> -	int (*resume)(struct drm_client_dev *client, bool holds_console_lock);
-> +	int (*resume)(struct drm_client_dev *client);
->   };
->   
->   /**
-> diff --git a/include/drm/drm_client_event.h b/include/drm/drm_client_event.h
-> index 1d544d3a3228..985d6f02a4c4 100644
-> --- a/include/drm/drm_client_event.h
-> +++ b/include/drm/drm_client_event.h
-> @@ -11,8 +11,8 @@ struct drm_device;
->   void drm_client_dev_unregister(struct drm_device *dev);
->   void drm_client_dev_hotplug(struct drm_device *dev);
->   void drm_client_dev_restore(struct drm_device *dev);
-> -void drm_client_dev_suspend(struct drm_device *dev, bool holds_console_lock);
-> -void drm_client_dev_resume(struct drm_device *dev, bool holds_console_lock);
-> +void drm_client_dev_suspend(struct drm_device *dev);
-> +void drm_client_dev_resume(struct drm_device *dev);
->   #else
->   static inline void drm_client_dev_unregister(struct drm_device *dev)
->   { }
-> @@ -20,9 +20,9 @@ static inline void drm_client_dev_hotplug(struct drm_device *dev)
->   { }
->   static inline void drm_client_dev_restore(struct drm_device *dev)
->   { }
-> -static inline void drm_client_dev_suspend(struct drm_device *dev, bool holds_console_lock)
-> +static inline void drm_client_dev_suspend(struct drm_device *dev)
->   { }
-> -static inline void drm_client_dev_resume(struct drm_device *dev, bool holds_console_lock)
-> +static inline void drm_client_dev_resume(struct drm_device *dev)
->   { }
->   #endif
->   
+Fixes: 9e46b8bb0539 ("drm/amdgpu: validate userq buffer virtual address and size")
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index 5c63480dda9c4..f5aa83ff57f35 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -254,7 +254,6 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ 	struct amdgpu_mqd *mqd_hw_default = &adev->mqds[queue->queue_type];
+ 	struct drm_amdgpu_userq_in *mqd_user = args_in;
+ 	struct amdgpu_mqd_prop *userq_props;
+-	struct amdgpu_gfx_shadow_info shadow_info;
+ 	int r;
+ 
+ 	/* Structure to initialize MQD for userqueue using generic MQD init function */
+@@ -280,8 +279,6 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ 	userq_props->doorbell_index = queue->doorbell_index;
+ 	userq_props->fence_address = queue->fence_drv->gpu_addr;
+ 
+-	if (adev->gfx.funcs->get_gfx_shadow_info)
+-		adev->gfx.funcs->get_gfx_shadow_info(adev, &shadow_info, true);
+ 	if (queue->queue_type == AMDGPU_HW_IP_COMPUTE) {
+ 		struct drm_amdgpu_userq_mqd_compute_gfx11 *compute_mqd;
+ 
+@@ -299,7 +296,7 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ 		}
+ 
+ 		r = amdgpu_userq_input_va_validate(queue, compute_mqd->eop_va,
+-						   max_t(u32, PAGE_SIZE, AMDGPU_GPU_PAGE_SIZE));
++						   2048);
+ 		if (r)
+ 			goto free_mqd;
+ 
+@@ -312,6 +309,14 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ 		kfree(compute_mqd);
+ 	} else if (queue->queue_type == AMDGPU_HW_IP_GFX) {
+ 		struct drm_amdgpu_userq_mqd_gfx11 *mqd_gfx_v11;
++		struct amdgpu_gfx_shadow_info shadow_info;
++
++		if (adev->gfx.funcs->get_gfx_shadow_info) {
++			adev->gfx.funcs->get_gfx_shadow_info(adev, &shadow_info, true);
++		} else {
++			r = -EINVAL;
++			goto free_mqd;
++		}
+ 
+ 		if (mqd_user->mqd_size != sizeof(*mqd_gfx_v11) || !mqd_user->mqd) {
+ 			DRM_ERROR("Invalid GFX MQD\n");
+@@ -335,6 +340,10 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ 						   shadow_info.shadow_size);
+ 		if (r)
+ 			goto free_mqd;
++		r = amdgpu_userq_input_va_validate(queue, mqd_gfx_v11->csa_va,
++						   shadow_info.csa_size);
++		if (r)
++			goto free_mqd;
+ 
+ 		kfree(mqd_gfx_v11);
+ 	} else if (queue->queue_type == AMDGPU_HW_IP_DMA) {
+@@ -353,7 +362,7 @@ static int mes_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ 			goto free_mqd;
+ 		}
+ 		r = amdgpu_userq_input_va_validate(queue, mqd_sdma_v11->csa_va,
+-						   shadow_info.csa_size);
++						   32);
+ 		if (r)
+ 			goto free_mqd;
+ 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+2.51.0
 
