@@ -2,52 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54F4FBD95F6
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Oct 2025 14:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C019BD95D9
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Oct 2025 14:36:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0E5210E5DE;
-	Tue, 14 Oct 2025 12:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A4AC10E5E3;
+	Tue, 14 Oct 2025 12:36:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="cYdDTdXg";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XKcrttqY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C30510E11E;
- Mon, 13 Oct 2025 14:54:44 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4clgNx2Q5Jz9t8m;
- Mon, 13 Oct 2025 16:54:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1760367281; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ni/5KqpXbxH47lZi6KXS7u0qGXwD7ao9vWL4UHhOhg4=;
- b=cYdDTdXgnGUaNJpWgD00j/ERXPvl2F/TGp4wh48TUjxv6X5piLvr4Qz9vn6HtV2TW5+3/j
- 8BU8fk1e3LF1FyXzn+QDEV00lA2XYa6uogfih88Nzeien2SgPcidUkGwiTrps8z+IBnSFJ
- YY1G1+YKOpPUIpQJ5MxOjNBKTHIC1J7c9v3f0B2c4axhADxCyob/9Ta+1Lv5TXtDfg4f28
- t+ycRoQ2zDHTrfJ32BS6U/emGpBJ3+8CMvo+do4g7e5dphfx2Tnmg35knkKA6IB2Kw/l/p
- EHerx4kvvyxBCOUr27kiX8M0uBROLvhD8iBiNCY4mxnrcVzKXDeb02oBlaaLQg==
-Message-ID: <15b2f86e8d6cb1df93edf73001fda2c378926016.camel@mailbox.org>
-Subject: Re: Independence for dma_fences!
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- alexdeucher@gmail.com, simona.vetter@ffwll.ch, tursulin@ursulin.net
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Date: Mon, 13 Oct 2025 16:54:39 +0200
-In-Reply-To: <20251013143502.1655-1-christian.koenig@amd.com>
-References: <20251013143502.1655-1-christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
+ [209.85.218.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EC5410E4A5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 16:30:46 +0000 (UTC)
+Received: by mail-ej1-f51.google.com with SMTP id
+ a640c23a62f3a-b48d8deaef9so790540966b.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 09:30:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1760373044; x=1760977844; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=7qvGVqJFxFczgbamjnghg7Ab7JKXWCZEKnWkyxV0YaM=;
+ b=XKcrttqY/bxMSjm+NV14rmpmA/MorYWbRNitV/nDMnbHG+Xab7Yl5oHaWOzeT85uYQ
+ Kb1vIMS28iDEifj1kZXHhwQbCV65TpwD6b6JZszuIjSKXMgtsnXGi4qwSt1Et7dgjm8j
+ 65yJgi9hEAPHpE6kVG0TunJmZA3KOYbOqTlSRUR66Tm1Oc5g9N6yPWCIHB/OKzRxWhd0
+ knfWEc9WJ4dFaADSXzmksVqGtrd7Vp4IY2RKcdSncs0Cjk1SqOW5gOXJIFqtdzgoVheR
+ 4G92Nh1ClMwZ/9POjqaTVfsIX/T0/HRNnl52KHP1QGcX/9RsSfuVzm3xN1oR0tyaMtTM
+ oRgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1760373044; x=1760977844;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=7qvGVqJFxFczgbamjnghg7Ab7JKXWCZEKnWkyxV0YaM=;
+ b=t2UnQhEF0+3jvSqK00sdjTIB+nXzZGLBfbYA5EijiNyhyXwRkjEPvHORA4aCZSQUJ0
+ KWMoeONJ15v0R7kPAlKsdNLkM+J+8qxlXp+/G6MEycIg/8P3M0KCBHvWBeOyYBFsFodb
+ /W3R/2eOURWNyBziVUeHPmHvLiDapvRCawStME0LYpINuTiI+HzCtpzrADfsS6l8dc+9
+ J/CxgcI9J+/iFY0Rs499QTtEhFVTP3qlmkJ+/4j+JtT5+RbRuSQIBR9nzMdNApwIF7Vw
+ 9QSoxVkIde/VMyNgo9DtIqXyAxKL0zaJCq/+sej3ARpwdwQqUUBAIM2qI0ygd+U4itje
+ EGuw==
+X-Gm-Message-State: AOJu0Yzg9HbQ2p89cG82ZWP8Ybk3bBAYmXnA8+3xxetKXh97gJb47L5j
+ C/mob7avmzHiJH79Gx1dACsMF5otsnyKTD76f5MiyNibY0JrtV36nqxtW9ZjyLmR
+X-Gm-Gg: ASbGnctLhfuXJPbqn2E9hkuharj1Qax+faC014H/2bbk9YEPw8rdp2Gtl5dHuZn2qil
+ KoxC5iwXiK/4R6d6MQcvnS9zzmsF0eu5yldMAwRN0IAlmJpzFR5js9xdMXC8GecnQZwIGJqDa6w
+ RdbkKZefQZdX8f2FJf+cbsdht4Z4BAkrnsVJOMpC3IfrRFnl6EaOtSEocn/4M0yMFPn9f6Ys2dJ
+ XqoNP0kRgTSwHPBT+XucH6hc30AbwHzkLhuXMd8i0yMil+VtpCRvIwPo6gZZVDrr77kPRor5y+E
+ RWw+LtXZ+f2ntIumvnP7bQ6KBBy8NbZYh17SDPb+0vBy5w4hzB1E81yaxDpEMWZk27tL5jPlhfB
+ HBhk07LMEhdMxN1NWGc3WK8ywP4Z9CjOPJRHjC4KcztET1bXtu94ObpCgDsfnVUVAPHX4Cl1DBl
+ GqMsDMnFCYeZclLg33+DE=
+X-Google-Smtp-Source: AGHT+IHODEmylhGzCAPUpTOFw0a3UEbWCPw5rNPAHm8InX0V1A5YN2zfj4hNnnDkZAtGYds+WHd9dw==
+X-Received: by 2002:a17:906:c104:b0:b2e:e87e:ef2e with SMTP id
+ a640c23a62f3a-b50ac2d593bmr2270486566b.39.1760373044216; 
+ Mon, 13 Oct 2025 09:30:44 -0700 (PDT)
+Received: from hyron-desktop (host-176-36-64-50.b024.la.net.ua. [176.36.64.50])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b55d8c12b9dsm959166066b.45.2025.10.13.09.30.43
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Oct 2025 09:30:43 -0700 (PDT)
+From: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH v2 0/1] drm/amd/pm: Avoid writing nulls into
+ `pp_od_clk_voltage`
+Date: Mon, 13 Oct 2025 19:30:41 +0300
+Message-ID: <20251013163042.531225-1-ilya.zlobintsev@gmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-X-MBO-RS-ID: d655a16cd48717b4852
-X-MBO-RS-META: qheqit5ht6re8ixxgjj3ot88nzr6jhm8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 14 Oct 2025 12:36:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,71 +81,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-10-13 at 15:48 +0200, Christian K=C3=B6nig wrote:
-> Hi everyone,
->=20
-> dma_fences have ever lived under the tyranny dictated by the module
-> lifetime of their issuer, leading to crashes should anybody still holding
-> a reference to a dma_fence when the module of the issuer was unloaded.
->=20
-> But those days are over! The patch set following this mail finally
-> implements a way for issuers to release their dma_fence out of this
-> slavery and outlive the module who originally created them.
->=20
-> Previously various approaches have been discussed, including changing the
-> locking semantics of the dma_fence callbacks (by me) as well as using the
-> drm scheduler as intermediate layer (by Sima) to disconnect dma_fences
-> from their actual users.
->=20
-> Changing the locking semantics turned out to be much more trickier than
-> originally thought because especially on older drivers (nouveau, radeon,
-> but also i915) this locking semantics is actually needed for correct
-> operation.
->=20
-> Using the drm_scheduler as intermediate layer is still a good idea and
-> should probably be implemented to make live simpler for some drivers, but
-> doesn't work for all use cases. Especially TLB flush fences, preemption
-> fences and userqueue fences don't go through the drm scheduler because it
-> doesn't make sense for them.
->=20
-> Tvrtko did some really nice prerequisite work by protecting the returned
-> strings of the dma_fence_ops by RCU. This way dma_fence creators where
-> able to just wait for an RCU grace period after fence signaling before
-> they could be save to free those data structures.
->=20
-> Now this patch set here goes a step further and protects the whole
-> dma_fence_ops structure by RCU, so that after the fence signals the
-> pointer to the dma_fence_ops is set to NULL when there is no wait nor
-> release callback given. All functionality which use the dma_fence_ops
-> reference are put inside an RCU critical section, except for the
-> deprecated issuer specific wait and of course the optional release
-> callback.
->=20
-> Additional to the RCU changes the lock protecting the dma_fence state
-> previously had to be allocated external. This set here now changes the
-> functionality to make that external lock optional and allows dma_fences
-> to use an inline lock and be self contained.
+Previously, reading from the `pp_od_clk_voltage` sysfs file would
+include lots of null bytes between the sections, e.g.:
 
-Allowing for an embedded lock, is that actually necessary for the goals
-of this series, or is it an optional change / improvement?
+$ cat -v /sys/class/drm/card0/device/pp_od_clk_voltage
+OD_SCLK:
+0: 500Mhz
+1: 2514Mhz
+OD_MCLK:
+0: 97Mhz
+1: 1000MHz
+^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@OD_VDDGFX_OFFSET:
+0mV
+^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@OD_RANGE:
+SCLK:     500Mhz       3000Mhz
+MCLK:     674Mhz       1075Mhz
 
-If I understood you correctly at XDC you wanted to have an embedded
-lock because it improves the memory footprint and because an external
-lock couldn't achieve some goals about fence-signaling-order originally
-intended. Can you elaborate on that?
+The reason for this is that calling `smu_cmn_get_sysfs_buf` aligns the
+offset used for `sysfs_emit_at` to the current page boundary, and then
+gets returned from the various `print_clk_levels` implementations to be
+directly added to the buffer position. Instead, only the relative offset
+showing how much was written to the buffer should be returned,
+regardless of how it was changed for alignment purposes.
 
-P.
+Now, the file is clean without any garbage data:
 
+$ cat -v /sys/class/drm/card0/device/pp_od_clk_voltage
+OD_SCLK:
+0: 500Mhz
+1: 2519Mhz
+OD_MCLK:
+0: 97Mhz
+1: 1000MHz
+OD_VDDGFX_OFFSET:
+0mV
+OD_RANGE:
+SCLK:     500Mhz       3000Mhz
+MCLK:     674Mhz       1075Mhz
 
->=20
-> The new approach is then applied to amdgpu allowing the module to be
-> unloaded even when dma_fences issued by it are still around.
->=20
-> Please review and comment,
-> Christian.
->=20
+Note that I am only able to test this on a 6900XT (SMU11), so the rest of
+the changes are untested.
+
+Changes in V2: 
+- As per the original patch review, I've added the fix to the rest of
+  the devices that use `smu_cmn_get_sysfs_buf` (Navi10, Renior and VanGogh
+  and some others were not covered).
+- Also, I've previously missed some early returns were still returning
+  the incorrect size, they are now fixed as well.
+
+Ilya Zlobintsev (1):
+  drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage`
+
+ .../drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c   |  5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 15 ++++++++-------
+ .../drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  5 +++--
+ drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  | 10 ++++++----
+ drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   |  7 ++++---
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  |  7 ++++---
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c  |  5 +++--
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_5_ppt.c  |  5 +++--
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c  |  7 ++++---
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  |  7 ++++---
+ .../gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  |  5 +++--
+ .../gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c  |  5 +++--
+ .../gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  |  7 ++++---
+ 13 files changed, 52 insertions(+), 38 deletions(-)
+
+-- 
+2.51.0
 
