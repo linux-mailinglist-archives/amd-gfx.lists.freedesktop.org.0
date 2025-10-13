@@ -2,143 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9C4DBD2CFE
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 13:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB72CBD3275
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 15:15:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25FBD10E43A;
-	Mon, 13 Oct 2025 11:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB1D10E397;
+	Mon, 13 Oct 2025 13:15:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="I0JvFmw7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JRH6lrvS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010061.outbound.protection.outlook.com [52.101.61.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14D1910E431
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 11:42:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EZeSCxrcE73Gt4IcpITGIMGIBgKc/LiUhkgiEHyAZ0qSjcaSrxEY8PSi+9JClf9WPPGZpnXyhqohFsIbz6dCua6J8lQc3K7r13n/5xsDWqxVQrrU3cRPmkubNDmmaaiamV89+TsueVRYTENY3I0hNURO/B3XR/deBQ3xE3YEAgo6S4Sbq7KabH/ZH9SoHShYApW7Snu78t5iLbVzlLEv+XmsDJAZEAV/HuCuVWkdh93zN7VzTnCWNrIZZ6NvNSTyUKkknVbB/DJlrGoiQ5MfqdMyfHW9+o6ZE+pwLLj3Ad0RbQvvIDc/9lNPScATCupvIWB7xQGUWDuysLvL6occoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BIJGh00BZcdmx9JCktDPPWl+k4dqFLyWRCsIGwZFmcg=;
- b=F7BQjIZw6qBrl2OJxgW0OTA1UWoAR0HxV4P/3tfb0Z5m27CyDu4OYJNzeWvkUGSlqwlC3jmbfbpbALP/hGleRWWsd52x6Sm4T+kf3eSRK3m24KYtpU3U68L2QNSuN9uettETFun3SmekoAQ+BqksLK0krgbgSFXYZUaIzJgRv/wUYk7ajZRMdUhr6UnX7nB6cZs1PenRQuzl8pIiCT1msMMO654Y8toeGsk0ua5bhy2Rl8Mx+jHs0bCdxu++ybVUMCeEB9+l1fDW7aIHeMgMRL+LvgB+QGp6fOzhff1Y3F0YCoqI65Tyeh+Be4IAB22qQqYf1R0sd9CD2Xxlp1pH6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BIJGh00BZcdmx9JCktDPPWl+k4dqFLyWRCsIGwZFmcg=;
- b=I0JvFmw7AaGonCdDGDX39mRsWlsD/jNHrS8u0/jGHxLLO3GuaWNVqIj8GzQAglvCWNPHnzNCOUajCZhtv8inAS504nnHJDaI6/Ea9kM66FYFh7x/Zqn0iq7IN/oyy+E9KLRsR+rMsuPd9zcW3Rl4eHSrdXagADuN0dn9cBZ7hF4=
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- CH2PR12MB4295.namprd12.prod.outlook.com (2603:10b6:610:a7::20) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9203.13; Mon, 13 Oct 2025 11:41:57 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::e71b:4ec9:237f:24ea]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::e71b:4ec9:237f:24ea%5]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
- 11:41:57 +0000
-From: "Lazar, Lijo" <Lijo.Lazar@amd.com>
-To: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 0/2] drm/amd/pm: Avoid writing nulls into
- `pp_od_clk_voltage`
-Thread-Topic: [PATCH 0/2] drm/amd/pm: Avoid writing nulls into
- `pp_od_clk_voltage`
-Thread-Index: AQHcPBQE5DETxm8lCkqJ4yx/Khi+eLS/zZvg
-Date: Mon, 13 Oct 2025 11:41:57 +0000
-Message-ID: <DS0PR12MB78045FDBDBE3D3557AA8E92897EAA@DS0PR12MB7804.namprd12.prod.outlook.com>
-References: <20251011134716.83214-1-ilya.zlobintsev@gmail.com>
-In-Reply-To: <20251011134716.83214-1-ilya.zlobintsev@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-10-13T09:22:30.0000000Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB7804:EE_|CH2PR12MB4295:EE_
-x-ms-office365-filtering-correlation-id: 8ae0f564-10d8-481e-8ea2-08de0a4d83ea
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?vQwdTYNZudkM4IZH/w8tRDKP2nBNhytBvDmmeo1HzySDG+b3f2LQiZmAvSIM?=
- =?us-ascii?Q?lj86UXWzk3q9JKIviOuD2jZqFY5mwaEo/yEwibg0NjvGAN2CecDiP29UiF3b?=
- =?us-ascii?Q?RRU/72bjC5sKnmYa4TyEmrefA0ACVowcbcCaAcpHsroz3JsYF2tV2YudgtS0?=
- =?us-ascii?Q?L9qUpS6V6hvS3mk18fQzUuGELJDLK76TRxVv7CyYwnsoRLOmnjQhGWYgFtlh?=
- =?us-ascii?Q?JTNktVRKffOdaTkVRfjfVnbV234CB7pK84bX0MiHK5rz80BsxbbFZ6K0ZMuW?=
- =?us-ascii?Q?lc9QSH3gMUp9ZpAZyJ3067+E6EFu4hHup7YHx9JXQvTAXs9cnSUTxsADCEld?=
- =?us-ascii?Q?uKDRFOk/lM65w8v5MsrnrSDZbLPpuyo57J8RrFwwcgdR9pX0NlfWnV+0W2wQ?=
- =?us-ascii?Q?ke9013imS4GWCs9Dc4PhGnje+s5fxLX3Swn+F7FxbwMZBoc3tNG2dkpyuArK?=
- =?us-ascii?Q?quzMlNykv3lRvuym37YOHxsF2oiHM2jZ8C9AuuZ+I+ea4MCim2hXrC2BlpIk?=
- =?us-ascii?Q?BJrboUBwmhotWWAHi8/elcLBMuDOZELIjzSZIv6Lk2qq0J5AJbQ5HBcBN/t3?=
- =?us-ascii?Q?CgB/kEyImI9F60ZZ3sUeKRTtLDm7e8qaX1HBRQZKA9BdTr7vCF4or7H1NhmO?=
- =?us-ascii?Q?slbrT9see9Dw8rX+jEmYZxZIy7i/rL0JF7UEBUatFIuweXHu29lAZ+OOYViv?=
- =?us-ascii?Q?G2+F6sGQjFzsTOcwZDgglFj8s2crTmVhaDs9Xqc4MwlfPS57r3wRTZxYX6zu?=
- =?us-ascii?Q?2GYyG9VhlkzAveWAWmS5VL2OCpJdgyOwfPBzjNazc5aEW2EqoVV04zudK8Eq?=
- =?us-ascii?Q?p/+kbzqUT0DmamGStMW1uG92EyxgdbvMHJ5Ib84mYfyg3jV2OzWp5FOdBE8P?=
- =?us-ascii?Q?B3Lvt3lfvnEd9yRE+GriHs+NDM/ehBqTsxn7z77VgiHkyhdi3lWLD5QcLcB0?=
- =?us-ascii?Q?2Iup16yrOmpH06tq+rlLznP+lfmQfTKtEaotleXhg8Yaij5oOXe18gQGUCWW?=
- =?us-ascii?Q?TzpIuM6sNt/gcjF4C1o2LwL1kN+mJW0Rg3AJxZd7AtpyfyRmgqwoRBT/EL02?=
- =?us-ascii?Q?fioSOSKGv7pbhbNuY98UmRpGNbHIq0wecwZr17jN72LWPjWe/iTgFTV0C+8H?=
- =?us-ascii?Q?BitmtWgMyQCskIXzpxLFOM5Fp1bAznA1hBBfGtuWmhJRWe1QJqoUmvk487lJ?=
- =?us-ascii?Q?DZEZQmnpo3gumgGr6J4N/dgcWzrHdb/7YNWVTtRc1/LxcFUSiC8Gxv318NEI?=
- =?us-ascii?Q?RGoAQzCiiEGsJWMTmJR9D4eL/srrGY/RnjLPOMM2hWtv3tP4kIXeEcy4jJA3?=
- =?us-ascii?Q?Ogi5lnHBbljTWz2u1g12CMMn421s2J23Nv+7YS7E6Aayl4SzZC53n97ItYXZ?=
- =?us-ascii?Q?Wo5S5aU57MevM/tNLt0RR+6E0RG3kokzVa6pVifqKyxXyZ/o9MV70/OeCmnG?=
- =?us-ascii?Q?lex1Qs627sRv7+vyntGnVkN8W8BDQ7AjBBU2/r7XNale/K04plYuahsb44ey?=
- =?us-ascii?Q?D4HneATsO88v30UP1VQdY2OfCpv/kEPfkZuz?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bntVSx73hmdP0xO+Woq0Dc5qtrKyn2lhkHd8Ftewp/94igE7bAksw71NLEuc?=
- =?us-ascii?Q?CxDFsLGIGTGxMGfOIBT6h45Cmc+SXIrZXX9oRlzH0XMurJ0qSkD53H5m2vf8?=
- =?us-ascii?Q?edXRf9ax3Wi2ZLrgEQyKCYKDF6nhw7KC8cqfMD9omhRoHizvvgssebYPqR7/?=
- =?us-ascii?Q?EtK+SQsFzwFrNCYUoH1770CTHcHWE1PH6229SQCzCRCfY3z6HYxyigNDYPep?=
- =?us-ascii?Q?LakSE8e4+GGYlqqlRt4TkDOFAcpIfpC05zLAI30nxz9LLMGUVuLTSeIRcCdO?=
- =?us-ascii?Q?Ci9l801oGDs1KxtK1B+FZX9D5NLglT0YW6L67k/Zp7DfUR/0z6ardkC91m8+?=
- =?us-ascii?Q?E8qGsbXg68tZsbM90h6hX8S5RXhJY1G6hBUcp7J/arToWcBTVAiGDlEJc5lG?=
- =?us-ascii?Q?nmek1HrWkkVqT0lUSXybLShGy6utbIJrH//9a78Viw7aY21EBK96hGWuqq53?=
- =?us-ascii?Q?LfWLlmqXQGfXev/mA+6cRluKBY56F3+C1tmbctqZ0+/JX2FUeRGYBRdZo1cB?=
- =?us-ascii?Q?LjBcJXKlfgQ1Y14srpfpTn5iDS5PgVX+1Rx9HQ0tSAe6blwpPY9LJI+h3VEz?=
- =?us-ascii?Q?drVIEwjvDhNd7i9IJw2BORDho4vPPtosGCJ8bC0ZarMahThooGQin38SIjtq?=
- =?us-ascii?Q?uh3N83BxHz4ioNmKZG9ZRSKJfDcyBrhCZ2eEiPwDd7/Qgy71ETR2w4jmBgPv?=
- =?us-ascii?Q?4yxV4rEss1vI+u5/9YDC/KdwBaG5lEsBV1v3a3uULsLgtt71FxvQwsdSjqT6?=
- =?us-ascii?Q?GMRx5O6GqcMGf/h3jnM8hFMHQX1OkBeJ9naRUhTGBk27jLa5ApuEhozF9Ztb?=
- =?us-ascii?Q?NrFrN1MT1Lo+N4BbqTLxIeBUSEWpK6hN7ax0ASuwYT/h7CePjh2SH4uiE7Pl?=
- =?us-ascii?Q?FRErUwi7RcR7v8AFUVVCiFuF5HXVKimuLlXJYBt2rRkjHsdIHW3Q9lHoEJHk?=
- =?us-ascii?Q?W8SLgHW268Osk08YZXY7CWJsOZlXDxHXEP5/Nk8O+6hiUKVx4lfYNxbFzIMg?=
- =?us-ascii?Q?GHdLGKEpBR5CSxLOK9jI8QZl6gf43an0GmqQTm9GKu0qUF6hNTRWNV2+UVJg?=
- =?us-ascii?Q?HMkp7A97FKeZZRs4Qg8Sh5dKt1EjJe8vPcZ1tJUOSV8TLijOBFhvoGx/+wxz?=
- =?us-ascii?Q?xf6IArn9hPCp6js+puPmsZpQsiYjc+xYCsUlOB07yMlSghPHr5powxlFzBkW?=
- =?us-ascii?Q?l5xWSYXMUHvIXU/ALH60zN++d/FAdJvHhNJUNuto4CGtVSXpbfsJspLtx1BN?=
- =?us-ascii?Q?GpjReDlgMP42bHm6m1YNOUgcEHezTXuwFPK7NLlKcPe4CuH/X/HA7SioXmyg?=
- =?us-ascii?Q?D9tuNdEFrlZSFsWDpu2HaU4X4bxVZqJq3P9ZqxhfugkGF17LoEm9WFuosX2h?=
- =?us-ascii?Q?lii7RkqW4BFT/w617eupCvqNAKNGd4SjrMLgzVCGo3eB6kBcVOAWBqsKlBma?=
- =?us-ascii?Q?NIrmIo/bDgIu7x0+jtIWSyH2jfu/bHaTAjNuwYWqBncYhm6l2JWOPJTWTb+/?=
- =?us-ascii?Q?Idfp6cYe4717H+miIb65FGc8Xs+VOWLCLXJe5fADhbsV72d9d4aIqotNAfui?=
- =?us-ascii?Q?Fqg3deRwQU9kSbQeUPQ=3D?=
-Content-Type: text/plain; charset="us-ascii"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9170C10E1E3;
+ Mon, 13 Oct 2025 08:49:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760345346; x=1791881346;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=r+MPMRJY/aF4Q1mjygThXbzbTjg7DdkJ//V0KplO9/Q=;
+ b=JRH6lrvSQ1+Le3IMieGzq4BbSmb0XaUaEUlZ+nkR8umOPcIBvB/HLGAJ
+ Fo/IYSRwVrDV0RwLaZOyrSw0wGf5Y1ZEBaoPr3DU8IZBodKC2wkwhyaFo
+ 7plJzTON2iTX8tfwMYV0xWbEacBKhF1+lnrq9nm/ia3QsGCe/FHDHM9WA
+ jVjjQlW17RoOPNyUV/Tu8FF+TEJwOkEoK3FTnX8ffnyKxpG/esa+fdYaJ
+ 9g2zxp2EYYTZE9hkTEG5EaWrz7iochMMqbLw0MUq7/CwjUrN1fFOFSiYD
+ zzQ9sHMtzKQcXS4x+4Tw+zzL2Cwjgr5ntKcIUQroGS2v+RjH1E4DgWlnJ Q==;
+X-CSE-ConnectionGUID: VRN69HqUSZi7K31FSUhoGQ==
+X-CSE-MsgGUID: cIAkXw5NR/eUi4PLWthGdw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="72735970"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="72735970"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 01:49:05 -0700
+X-CSE-ConnectionGUID: vnbBbYx1ReWI+f+nqUrw7w==
+X-CSE-MsgGUID: 1ll9Y6HsSzKnNUeY+EIFYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="186838467"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.244.64])
+ ([10.245.244.64])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 01:49:01 -0700
+Message-ID: <a0ff3751a71eab1f8f1c105e84b88b12cd43d65f.camel@linux.intel.com>
+Subject: Re: [PATCH v3 0/5] Improving the worst case TTM large allocation
+ latency
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org, Lucas De Marchi
+ <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>, Danilo
+ Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>, Gerd
+ Hoffmann <kraxel@redhat.com>,  Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Lyude Paul <lyude@redhat.com>, Maarten
+ Lankhorst	 <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Sui Jingfeng <suijingfeng@loongson.cn>, Thadeu Lima
+ de Souza Cascardo <cascardo@igalia.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Zack Rusin <zack.rusin@broadcom.com>
+Date: Mon, 13 Oct 2025 10:48:57 +0200
+In-Reply-To: <69279852-e1ed-4caf-a92b-a352ba4b613b@igalia.com>
+References: <20251008115314.55438-1-tvrtko.ursulin@igalia.com>
+ <6bba6d25-91f3-49a6-81fc-7a03d891cd1d@amd.com>
+ <22228578-a03c-4fc1-85b2-d281525a2b6f@igalia.com>
+ <9bb3c06e-25c1-43d8-a4e8-e529c53ff77d@amd.com>
+ <45973012f925dbbfdf0636c10f9d051c34f97e2e.camel@linux.intel.com>
+ <a300e417-c9df-4e2b-a75f-319aab384b44@igalia.com>
+ <d3c56f60ab638891d3d78200876ea11780f5ec21.camel@linux.intel.com>
+ <69279852-e1ed-4caf-a92b-a352ba4b613b@igalia.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ae0f564-10d8-481e-8ea2-08de0a4d83ea
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2025 11:41:57.4526 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +p03w+ZuR654DQ9JCbheXGGGGxO6QL3PgwX+Hfe3Tol8LCOqm9UHNbBu2lgpAREy
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4295
+X-Mailman-Approved-At: Mon, 13 Oct 2025 13:15:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,107 +89,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+Hi, Tvrtko,
 
->-----Original Message-----
->From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Ilya
->Zlobintsev
->Sent: Saturday, October 11, 2025 7:17 PM
->To: amd-gfx@lists.freedesktop.org
->Cc: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
->Subject: [PATCH 0/2] drm/amd/pm: Avoid writing nulls into
->`pp_od_clk_voltage`
->
->Previously, reading from the `pp_od_clk_voltage` sysfs file would include =
-lots of
->null bytes between the sections, e.g.:
->
->$ cat -v /sys/class/drm/card0/device/pp_od_clk_voltage
->OD_SCLK:
->0: 500Mhz
->1: 2514Mhz
->OD_MCLK:
->0: 97Mhz
->1: 1000MHz
->^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^
->@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@
->^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^
->@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@
->^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^
->@^@OD_VDDGFX_OFFSET:
->0mV
->^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^
->@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@
->^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^
->@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@
->^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^
->@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@
->^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^
->@^@^@^@^@^@^@^@^@^@^@^@^@^@OD_RANGE:
->SCLK:     500Mhz       3000Mhz
->MCLK:     674Mhz       1075Mhz
->
->The reason for this is that calling `smu_cmn_get_sysfs_buf` aligns the off=
-set
->used for `sysfs_emit_at` to the current page boundary, and then gets retur=
-ned
->from the various `print_clk_levels` implementations to be directly added t=
-o the
->buffer position. Instead, only the relative offset showing how much was wr=
-itten
->to the buffer should be returned, regardless of how it was changed for
->alignment purposes.
->
->Now, the file is clean without any garbage data:
->
->$ cat -v /sys/class/drm/card0/device/pp_od_clk_voltage
->OD_SCLK:
->0: 500Mhz
->1: 2519Mhz
->OD_MCLK:
->0: 97Mhz
->1: 1000MHz
->OD_VDDGFX_OFFSET:
->0mV
->OD_RANGE:
->SCLK:     500Mhz       3000Mhz
->MCLK:     674Mhz       1075Mhz
->
->I have changed this for SMU11, SMU13 and SMU14 as there have been user
->reports of this issue on all three, and the code is the same between them.
->However, I only have access to a 6900XT (SMU11), so the newer ones are
->untested. I've split the change into separate patches for
->SMU11 (tested) and SMU13/14 (untested), in case you believe that this
->change is risky and could break something.
->
->Sidenote: This is also my first time submitting patches to a mailing list,=
- so please
->tell me if there are any issues with the patch or email formatting.
->
->Signed-off-by: Ilya Zlobintsev <ilya.zlobintsev@gmail.com>
->
->Ilya Zlobintsev (2):
->  drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage` (SMU11)
->  drm/amd/pm: Avoid writing nulls into `pp_od_clk_voltage` (SMU13/SMU14)
->
-> drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 5 +++--
-> drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c    | 5 +++--
-> drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c    | 5 +++--
-> drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c    | 5 +++--
-> drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c    | 5 +++--
-> drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c    | 5 +++--
-> drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c    | 5 +++--
-> drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c    | 5 +++--
-> 8 files changed, 24 insertions(+), 16 deletions(-)
-[lijo]
+On Sat, 2025-10-11 at 09:00 +0100, Tvrtko Ursulin wrote:
+>=20
+> On 10/10/2025 15:11, Thomas Hellstr=C3=B6m wrote:
+> > On Thu, 2025-10-09 at 09:53 +0100, Tvrtko Ursulin wrote:
+> > >=20
+> > > On 08/10/2025 15:39, Thomas Hellstr=C3=B6m wrote:
+> > > > On Wed, 2025-10-08 at 16:02 +0200, Christian K=C3=B6nig wrote:
+> > > > > On 08.10.25 15:50, Tvrtko Ursulin wrote:
+> > > > > >=20
+> > > > > > On 08/10/2025 13:35, Christian K=C3=B6nig wrote:
+> > > > > > > On 08.10.25 13:53, Tvrtko Ursulin wrote:
+> > > > > > > > Disclaimer:
+> > > > > > > > Please note that as this series includes a patch which
+> > > > > > > > touches
+> > > > > > > > a good number of
+> > > > > > > > drivers I will only copy everyone in the cover letter
+> > > > > > > > and
+> > > > > > > > the
+> > > > > > > > respective patch.
+> > > > > > > > Assumption is people are subscribed to dri-devel so can
+> > > > > > > > look at
+> > > > > > > > the whole series
+> > > > > > > > there. I know someone is bound to complain for both the
+> > > > > > > > case
+> > > > > > > > when everyone is
+> > > > > > > > copied on everything for getting too much email, and
+> > > > > > > > also
+> > > > > > > > for
+> > > > > > > > this other case.
+> > > > > > > > So please be flexible.
+> > > > > > > >=20
+> > > > > > > > Description:
+> > > > > > > >=20
+> > > > > > > > All drivers which use the TTM pool allocator end up
+> > > > > > > > requesting
+> > > > > > > > large order
+> > > > > > > > allocations when allocating large buffers. Those can be
+> > > > > > > > slow
+> > > > > > > > due memory pressure
+> > > > > > > > and so add latency to buffer creation. But there is
+> > > > > > > > often
+> > > > > > > > also
+> > > > > > > > a size limit
+> > > > > > > > above which contiguous blocks do not bring any
+> > > > > > > > performance
+> > > > > > > > benefits. This series
+> > > > > > > > allows drivers to say when it is okay for the TTM to
+> > > > > > > > try a
+> > > > > > > > bit
+> > > > > > > > less hard.
+> > > > > > > >=20
+> > > > > > > > We do this by allowing drivers to specify this cut off
+> > > > > > > > point
+> > > > > > > > when creating the
+> > > > > > > > TTM device and pools. Allocations above this size will
+> > > > > > > > skip
+> > > > > > > > direct reclaim so
+> > > > > > > > under memory pressure worst case latency will improve.
+> > > > > > > > Background reclaim is
+> > > > > > > > still kicked off and both before and after the memory
+> > > > > > > > pressure
+> > > > > > > > all the TTM pool
+> > > > > > > > buckets remain to be used as they are today.
+> > > > > > > >=20
+> > > > > > > > This is especially interesting if someone has
+> > > > > > > > configured
+> > > > > > > > MAX_PAGE_ORDER to
+> > > > > > > > higher than the default. And even with the default,
+> > > > > > > > with
+> > > > > > > > amdgpu
+> > > > > > > > for example,
+> > > > > > > > the last patch in the series makes use of the new
+> > > > > > > > feature
+> > > > > > > > by
+> > > > > > > > telling TTM that
+> > > > > > > > above 2MiB we do not expect performance benefits. Which
+> > > > > > > > makes
+> > > > > > > > TTM not try direct
+> > > > > > > > reclaim for the top bucket (4MiB).
+> > > > > > > >=20
+> > > > > > > > End result is TTM drivers become a tiny bit nicer mm
+> > > > > > > > citizens
+> > > > > > > > and users benefit
+> > > > > > > > from better worst case buffer creation latencies. As a
+> > > > > > > > side
+> > > > > > > > benefit we get rid
+> > > > > > > > of two instances of those often very unreadable
+> > > > > > > > mutliple
+> > > > > > > > nameless booleans
+> > > > > > > > function signatures.
+> > > > > > > >=20
+> > > > > > > > If this sounds interesting and gets merge the invidual
+> > > > > > > > drivers
+> > > > > > > > can follow up
+> > > > > > > > with patches configuring their thresholds.
+> > > > > > > >=20
+> > > > > > > > v2:
+> > > > > > > > =C2=A0=C2=A0=C2=A0 * Christian suggested to pass in the new=
+ data by
+> > > > > > > > changing the
+> > > > > > > > function signatures.
+> > > > > > > >=20
+> > > > > > > > v3:
+> > > > > > > > =C2=A0=C2=A0=C2=A0 * Moved ttm pool helpers into new
+> > > > > > > > ttm_pool_internal.h.
+> > > > > > > > (Christian)
+> > > > > > >=20
+> > > > > > > Patch #3 is Acked-by: Christian K=C3=B6nig
+> > > > > > > <christian.koenig@amd.com>.
+> > > > > > >=20
+> > > > > > > The rest is Reviewed-by: Christian K=C3=B6nig
+> > > > > > > <christian.koenig@amd.com>
+> > > > > >=20
+> > > > > > Thank you!
+> > > > > >=20
+> > > > > > So I think now I need acks to merge via drm-misc for all
+> > > > > > the
+> > > > > > drivers which have their own trees. Which seems to be just
+> > > > > > xe.
+> > > > >=20
+> > > > > I think you should ping the XE guys for their opinion, but
+> > > > > since
+> > > > > there shouldn't be any functional change for them you can
+> > > > > probably go
+> > > > > ahead and merge the patches to drm-misc-next when there is no
+> > > > > reply
+> > > > > in time.
+> > > >=20
+> > > > I will try to do a review tonight. One thing that comes up
+> > > > though,
+> > > > is
+> > > > the change to ttm_device_init() where you add pool_flags. I had
+> > > > another
+> > > > patch series a number of months ago that added a struct with
+> > > > flags
+> > > > there instead to select the return value given when OOM. Now
+> > > > that
+> > > > we're
+> > > > adding an argument, should we try to use a struct instead so
+> > > > that
+> > > > we
+> > > > can use it for more that pool behavior?
+> > > >=20
+> > > >=20
+> > > > I'll be able to find a pointer to that series later today.
+> > >=20
+> > > Found it:
+> > > https://lore.kernel.org/dri-devel/20241002122422.287276-1-thomas.hell=
+strom@linux.intel.com/
+> > >=20
+> > > Glad to see in that thread it isn't just me permanently slowed
+> > > down
+> > > by
+> > > "false, false" and similar. :)
+> > >=20
+> > > I considered using a struct too and I guess there wasn't too much
+> > > of
+> > > a
+> > > sway that I went with flags. I thought not to overcomplicate with
+> > > the
+> > > on
+> > > stack struct which is mostly not needed for something so low
+> > > level,
+> > > and
+> > > to stick with the old school C visual patterns.
+> > >=20
+> > > Since you only needed a single boolean in your series I suppose
+> > > you
+> > > could just follow up on my series if you find it acceptable. Or I
+> > > can
+> > > go
+> > > with yours, no problem either.
+> >=20
+> > It seems yours has the most momentum ATM. I can follow up on yours.
+> > It
+> > would be great if we could perhaps change the naming of
+> > "pool_flags" to
+> > something more generic.
+>=20
+> Do you have a name in mind? For ttm_device_init pool_flags made sense
+> to=20
+> signify they relate only to the poll.
 
-Unfortunately, there are a few more. A grep of smu_cmn_get_sysfs_buf will s=
-how the files. Would you mind fixing them as well?
+Well, what I had in mind would have been "flags" or
+"device_init_flags".
+
+Really one could change this once flags starts to have other meanings
+as well, like the return value change I was proposing.
+But the reason I was suggesting to do this now is to avoid yet another
+added parameter to ttm_device_init, since obtaining an ack from all TTM
+driver maintainers is typically time-consuming if at all possible.
+
+When adding functionality to allocation functions, for example the use
+of the ttm_allocation_ctx has proven easier to use since it's easily
+extendible typically without changes to drivers.
 
 Thanks,
-Lijo
+Thomas
 
->
->--
->2.51.0
+
+
+>=20
+> I need to respin anyway since I forgot to include the new header from
+> unit tests.
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
 
