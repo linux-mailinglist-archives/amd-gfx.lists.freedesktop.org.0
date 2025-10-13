@@ -2,157 +2,156 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB4CBD1C7F
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 09:29:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D2EBD1D7A
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 09:38:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE87210E3D8;
-	Mon, 13 Oct 2025 07:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2474B10E3E7;
+	Mon, 13 Oct 2025 07:38:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wks/i2YZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KyNmTQpO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010033.outbound.protection.outlook.com [52.101.61.33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C7CB10E3D8;
- Mon, 13 Oct 2025 07:28:58 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012026.outbound.protection.outlook.com
+ [40.107.200.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 397D610E3E7
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 07:38:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Nur5BJerzXJNksEwTTlb0Lr00V+9fHKajjSy7Tp25toXTioOBun6EfFhDgpXVKFHqRvKpn5dUG4I/WcMzKx4J6jZUTt/Ch9n9cHcxXZZBE0Izvklci4L88tbkNscIl1v9GaBX+EC1hIv1k/ERRKkgJnm2TPoFjc80POb0Er8CR20gx4sp3oYn9Eo2T6L1Rr184sa0p2A4GA1FKAiNi/n6glpHPW2LYz58jZcjk5vNG/4OKckgEYlWd7onHsuK9jrGhxsjP9yEc8cD7+at8Bruo8nJpwzkhYaEynW6ri7xn7Ygphv7FG4VZsTu2NYr0XEV84hGZo+oNa08Y9xh/eVrA==
+ b=uqjXnNfQT3hdSEaKUPV8Yrkf/mwa2ZCI+AhkNYYaKLu0Y7qjQSv+XxOSl46n2NGMYzQdKS7B5N4xT4+pzMNPJFqH3fiY2HD2C/pf3OnINS6WvfGBSUpKQ17PUbCP8v76/vQIhk1iqH9gnXRDubPQR+0KGdCHWkn4u+dddNRmJtLBBZzhAeyQ0ZFV8r33uhTiiDMqRV4HhEK1UH3o/09Y8wbnIzaTNOY4nVmTAVE96jzw01jYhTNl+8An0W5PjGkD7bqsRmoVi1ZBsH7P8mANZFtzB++qNROS0hmstQjI/sxv8Ndrbx/pFjkFB8eP7u7vEZ/G1Z3rW4gfz2/nPb1vnA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7t0/ghDLOdwjVaQJybLYZy56tfNj5ERhCpxI0+IUt/g=;
- b=gJ3V2jjXi0v7yr5nmzyQMHwZwUUeJWdMdAMubL6RSX9rFuuGPGRp1cgm7uZWbCkgbvw5kpmnDfQ8/OBhBe445tIcCF2IXFFeQ9NRLmCo1DtpvVIc4QPvjqd+7QUz0HQsV79eSTD0nqgKf0BMp/2y9QEZVjLdqqLPv7PVW5ubHS20sPvXVnbA7RXJl3V64yWaW/su1iiOAr9aRhzLDYimwUnFfAX7z3rEB6+giyTwzykYat7aPHVhGxH1exDysH+3ZUKpDooRHazhqBxf+k41uWtU3OClM8ReyfuCSiYl/vMTU3y4rtAU0wU0+dzrjRMtgRJwGuEgICymFaS3OE+SAw==
+ bh=vPYOMZJDT5SRrcecetA5yIk/G2AHc1d5XP4KpR0lxz4=;
+ b=e3YDlb+PjqegPDc1Lmq/a3Wwuvi0VnBrwGs5CbycEGZ711hzfYLwom6KT/MOGB5JM/8iYRUV5i9x+4jvTryPRkOkOjVfxMd5j7tJdLuKPnKBAcwr4yaaKOkxEkn1NGb8Ctspw+4ofxE7kDN3nB08XCCyUjsGVfxoN6YeOVsPzSP/ZHvmTwur7ien95v+sCQe3f/M6b6Pe+5IAYwB8+ii09/ZpX61BdMwBMDZtGkScABWK/M/gt/aE9c0HN42jYyIZOckNIOIyttfmpMRQ8rN4w0A32PgxPs3B98N3YzvUr7t6sm9k5bdDoDuP9tcHk+pvv07rtJ+CjuV7akIHyBOFA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7t0/ghDLOdwjVaQJybLYZy56tfNj5ERhCpxI0+IUt/g=;
- b=wks/i2YZYH6jwphogcEkFsfttuHUS0eoa437Csyo7ypRQcxFWuBd4SuQIkhIS3woT0gzJUg6djAUTzAaxRP++tFLx+Ts50raVdg3tuGyCTQXwjlJcBmF7JNrYvhJW68tydXoDs0CHfEghXiq/ScdVShPTgIcf7R7h880W6q+M+g=
+ bh=vPYOMZJDT5SRrcecetA5yIk/G2AHc1d5XP4KpR0lxz4=;
+ b=KyNmTQpOKd+tklLpyU0Olu31pVf9gCWzdO1FAtK91w6m6Sg444MEcbLthGZggTTK1Z56KcCjozZV92POt+kKKROKe3LjzMao6KRHdFPxgW4ZIwrV5n3u7gkKu8X+VkqbZDpm3CnHw89I6+TcegdeaCLSsNMmR7hLDA/F4a3CIBo=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DM6PR12MB4202.namprd12.prod.outlook.com (2603:10b6:5:219::22) with
+Received: from BL1PR12MB5753.namprd12.prod.outlook.com (2603:10b6:208:390::15)
+ by DM4PR12MB5721.namprd12.prod.outlook.com (2603:10b6:8:5c::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Mon, 13 Oct
- 2025 07:28:54 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
- 07:28:54 +0000
-Message-ID: <d2001388-bf0d-452d-b8ec-da45f557dd2b@amd.com>
-Date: Mon, 13 Oct 2025 09:28:46 +0200
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Mon, 13 Oct
+ 2025 07:38:34 +0000
+Received: from BL1PR12MB5753.namprd12.prod.outlook.com
+ ([fe80::81e6:908a:a59b:87e2]) by BL1PR12MB5753.namprd12.prod.outlook.com
+ ([fe80::81e6:908a:a59b:87e2%6]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
+ 07:38:34 +0000
+Content-Type: multipart/alternative;
+ boundary="------------ZgGMOv7GRlPxI4x7peKjSKcH"
+Message-ID: <56764bcc-faf1-4cdc-949c-be6eedba2aa1@amd.com>
+Date: Mon, 13 Oct 2025 13:08:27 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/ttm: Add NULL check in ttm_resource_manager_usage
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>,
- "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Yang, Philip" <Philip.Yang@amd.com>
-References: <20251013015550.1317222-1-Jesse.Zhang@amd.com>
- <DS0PR12MB780437771222808EBEB675D797EAA@DS0PR12MB7804.namprd12.prod.outlook.com>
- <DM4PR12MB515282926AA157011BF319C5E3EAA@DM4PR12MB5152.namprd12.prod.outlook.com>
- <DS0PR12MB780447BC946BAB3EBD54B7CC97EAA@DS0PR12MB7804.namprd12.prod.outlook.com>
+Subject: Re: [Patch v4 2/2] drm/amdgpu/userqueue: validate userptrs for
+ userqueues
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Sunil Khatri <sunil.khatri@amd.com>, Felix Kuehling
+ <felix.kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20251010140712.3983709-1-sunil.khatri@amd.com>
+ <20251010140712.3983709-2-sunil.khatri@amd.com>
+ <b3655417-7b6e-472b-9a71-834361c4ac22@amd.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <DS0PR12MB780447BC946BAB3EBD54B7CC97EAA@DS0PR12MB7804.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BN9PR03CA0575.namprd03.prod.outlook.com
- (2603:10b6:408:10d::10) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+From: "Khatri, Sunil" <sukhatri@amd.com>
+In-Reply-To: <b3655417-7b6e-472b-9a71-834361c4ac22@amd.com>
+X-ClientProxiedBy: PN3PR01CA0056.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:99::20) To BL1PR12MB5753.namprd12.prod.outlook.com
+ (2603:10b6:208:390::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM6PR12MB4202:EE_
-X-MS-Office365-Filtering-Correlation-Id: 439c2182-4e09-4576-d18f-08de0a2a29a9
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5753:EE_|DM4PR12MB5721:EE_
+X-MS-Office365-Filtering-Correlation-Id: 882dfe5b-e69e-42f7-e3a4-08de0a2b8397
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?M051cXAwUFpTaGpIZkdTdG1TUkNNaU1ZaVQ3ZWZxT3QvSXFwelVlKzdaSzNJ?=
- =?utf-8?B?dlZNbjE5VGc0OTQyOGkweXRjclZUSGRxeTdKdkZaQ2VNMDhJSXZJMHlodmNF?=
- =?utf-8?B?WCtKRTBMVDQrZ05oMURIenJLLzZFczBKYXF6bFZ1aEkzWWtJbzdZaGZTdXB1?=
- =?utf-8?B?SVZFanVCcGV3TjN0YjJabit4SVpTNHo5b1Q0WWpRdm1QbldWcGJjVThZNyt3?=
- =?utf-8?B?Y1prb2VqaVp3VEo5aGlzdllzZE5sRGZoeGpqdVBIQlZnUmdHbkFPdEVENmRE?=
- =?utf-8?B?SEp0Z1BWZWtJL3JsUkZScHFibFhuRzJZYVBOZEQvRXBIcTJOdVRSQmx0YUww?=
- =?utf-8?B?b0VBU0JWb0szOTZIRHR4OWpyN0FkWDlobCtpWit2Tm43dk9XUEh5M3czS3k5?=
- =?utf-8?B?bGJrd2k5TXZYT2t6RUxoYmJFMWFYdHJ1dXl4NjJ5Z0NlZVRFVzViSFp5alQ0?=
- =?utf-8?B?aHZkcENlZnNiSWFIWXB0Qy9reUh4em5hV3RtN0p3WW1MOStLcDY5VmZESUlC?=
- =?utf-8?B?WjMwL3AxdjcxQU9GRGlyRVlNZTVpYW1jL0pmZjFaclpiRjllV3ArS2hjU2Zm?=
- =?utf-8?B?N1Q5dWJLQ1ZJM0h1UXArS0ZzRmVTZ0p6TmVPaUVBNWVQalF0cS9wblV2eFBk?=
- =?utf-8?B?M1NQZjNXT3RTZ0J1MW50OWlNK05mVjEwS2xGeStxRHo5RzRKa0xlZHlOdHkr?=
- =?utf-8?B?aWtNSEtRaFA5Zlcvbm1VWVN3dFJ6ZTNFUVhvZFVua2NhcmlCRnV6ZFN1VS9l?=
- =?utf-8?B?czlTbmhuYU9KQUlJYWV1LzI5T0lGSU5QbmxZL0NBSUFiTXB5U01SNzg4Y2hV?=
- =?utf-8?B?SkJNY1VJVzhhaUxvOEdwWXBmRlBITlVIRm43ZE5MMnhsVjdHU1N3ckdLV1pz?=
- =?utf-8?B?NGFGUUNraFpiSG5xdVJXQ3oxWUxUREJMMWVoTE1lV1VKUlR5L2tQV3c2c3RK?=
- =?utf-8?B?K1B1Y0d6RU1kVDY5R1d3K2JoSjRTNjdhMDZwcHcrcEN1cFJmOTNKZnA3L0Y3?=
- =?utf-8?B?WXlPcHRIU3JlQ1JmMHB0bm9CSzhMOWlxRWRLTVFKMWpma3ZqUEh5ckxUdXFJ?=
- =?utf-8?B?SU9MRVoyU01ueTNUN1ZpbzA0Y2QwU2Rqb1Q0WkRCcGhrMERtL0Nnakozb2Y3?=
- =?utf-8?B?dHNsYXpkVTk0OVRTL0UzUk1YOFU1T1hRM3hweW9kL25hUVJIZGlReHF6M0h4?=
- =?utf-8?B?c3hadjhZSW5nSUMxU0F2eEhveVlMY0pUbDJMV2crZmRkajIzNGVCK0kyQUw2?=
- =?utf-8?B?MzBDKzU2NThtL25vT21CRDNPOW9abWdnMk85SWNiSVlvMk9PVmNSOXpKMUdV?=
- =?utf-8?B?QTE1NVEveTBsUEJWV1RjWVJjaGVSbFNYUGxUaDRYL2pxUlByYUZrSjI5NlNW?=
- =?utf-8?B?eENZZ25ZalEzMWpNMUVaYXF3andDanB5Z0JTcElnV3JCc3RsTWxTVjhCNFQy?=
- =?utf-8?B?QkRqWnBocmxsWHU0VnBoSFA5aGhwQXpiSE52Skp3cnNrRUhCMy9jZkFESDFa?=
- =?utf-8?B?RTNpY3ZEenZwOEU3L3ZtZGNrYStBbG80eU14dU0yczZlemJNVERMME1xd0or?=
- =?utf-8?B?QU1nbENyZ1F3Wi9NZXAzV0JJMmEyUld3UUptYmtMSExNNlEvbGpnbjRrV3d6?=
- =?utf-8?B?NExDMnkzWVdDZUg1WWJQSUd1ZElKSjBndWhuS1dFZ2c2NktuY3gzWThxeFdz?=
- =?utf-8?B?SU1YVENWakgzRzNCTVhSRW1XNFRMSkxTeFk4ODVYeTVCQkhtZ1NKTGhwWEU1?=
- =?utf-8?B?QmFqczRTTVhWc00wN0ZBRmk2eElXd0ZqTThiejR5M25kbmhEdzlRaFVzdnNB?=
- =?utf-8?B?M3hnV3BNdlZ6YzBjZ3ZBTFZlOW9UVTRnVkVTTXNucCs1SHdBdzNRT1JtN1JR?=
- =?utf-8?B?dUhJWldjaGtJSHV4TE9tZ2tjM3ZPU2R1dWVFVk5FejNheWZGUURNSzhkSGNu?=
- =?utf-8?Q?YyeyXbD7OSYo4kRqEAI14vCm4/aCPg6y?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UTlTYWI2NFI4U1VzYXQ0SzNMTk9hYjlONUhVaWtrODAzaEVaVHhSclVIaGVB?=
+ =?utf-8?B?NmVHaVRxeS83VVBjQ0RmZVFiRlc1TWwyRWI1QzkxYU5BWnFDb3ZjNkpHKzJJ?=
+ =?utf-8?B?UnpPVnNJSGZjRXJ2dnJvWXQrTGVTcDE1ZzNrdU1sVVl0L2NzbjlVVG9nSjBF?=
+ =?utf-8?B?QWtUUDBnWUFtTSt2N1YyMnVnemFlbDZJNHNYbVFBLzg1RlpHZXd5QlRrUnRj?=
+ =?utf-8?B?UmVFVHFIeWN3dXAzU0FsM243VzNWQk1Bb2NkMEc1eWxtZW51TC9NdWVGamRZ?=
+ =?utf-8?B?REV2Q2lIdit3T21jTE85emFiczhvWXZRUWVrdXVKSFYyd2JPc1d1UzI3T1gz?=
+ =?utf-8?B?N0NjemoySmtGeTdYMkNlN2hSYlBuVmtmSmdzRXNIRXp6WUNJMnNJT1BCOEJa?=
+ =?utf-8?B?ZHFKSDUweldFR2lVVHdORjBVWWc2b1hEQWtsUFNuTHorZnJ4eFAyWkxEd2dE?=
+ =?utf-8?B?WVV2UWgwTDBMS25kcFM1NGljWjExb0U5M0t3WnRWWUxzV2ZCRkVuTFZON0k4?=
+ =?utf-8?B?SG1VVENta0NXd1JPZThEQlpwR3M4SGwrTDB6NFMxeFBXLzRFQ250NGNvWTlV?=
+ =?utf-8?B?QWRiQnNCR0c5N2dPd2s4MFpGTmsrTzF1VlFKenhmeWNYMUFBODBFaWdIRk8y?=
+ =?utf-8?B?WmpHZHhGVExlY2FkSnIwd2VRL3I0amJYSjdiUE92ajRFekRXSHFzcmtEdGRu?=
+ =?utf-8?B?MkdjQjd6UFp5QUIrelh4dy80VE81NU83aXN5THZmaUVDelhldzRtYmU5QjVU?=
+ =?utf-8?B?eWhSNGttb3g1d01QUGd6OExCN0RGZDVpWW1XRStLTFdpY2pWa0dhM01WMFVu?=
+ =?utf-8?B?YkJteVJRN2huZWk4Y1hqMXZFNW1oSWVpb0RpK2JDSFVWV0xIb2s5bTRlVm44?=
+ =?utf-8?B?UkpvVStCc1BiQWo4bUs2NHhHcHNGM2ltb0U0MW84aWkzcWVmSzJFVVF6VnpI?=
+ =?utf-8?B?NmZKdnc1bFR3Sld0a0xCeHZwZGlKNVJVSnFyUlorelFPRmFpSU9sR24rQ1hl?=
+ =?utf-8?B?SVp4OHhualJ0M1lUTkIvWHhJY25Bbm1KTlJDNTdlcnd2TXVETWtxYitDVHl5?=
+ =?utf-8?B?UkdUSEtTWTkzYWpMbU83akoxYVBFSlNwWUFDVlBYcSticU10K09hemNaNjBW?=
+ =?utf-8?B?Y3ZQM1RYMTJkbjF6dGNVOXV1NlVYTTRwdDJnRy9HVXB4YlA2aC80cE9DTEZB?=
+ =?utf-8?B?RVVnVzRWNDZpb3ExYWk2ZUZvZ0pCMTlJZXVKei9BbjBXMTF4am96UXRBVWht?=
+ =?utf-8?B?MUdEMWtQUVFBYzE5MGxBZXhYTTJZVlkycjduNktubFgrb01CNmVGZGMzUENJ?=
+ =?utf-8?B?cjhPQnVTLzBmQ1FsM0pxWmpMYUZuTFB1OW9DdU5WMlhjOSszR1NxZHl3UklE?=
+ =?utf-8?B?dmtsMUFEOGR5RkYyQ2NnelhGczJLMkNLT3kwMng3WXZ1QzJYUk5OaVlwcUd3?=
+ =?utf-8?B?SkxBa0szU1hPQ2dqRUx0SXlTYUZxWmxDUEUzbFFCd3JpbUFXQWlNOVVhSitu?=
+ =?utf-8?B?anlxU205N3l5aEpkWGM4enRWY3BQTCtlTGFyUUdlTTRpaUJzVXZESHFidGNm?=
+ =?utf-8?B?UDJFWkZNaXQ0Um1kb3drTjBCSXhSeWhJQlNUUlpuVElaOWJNVVpxMkF5RWxx?=
+ =?utf-8?B?ZlRNNWl5OWxsOUF6RzVWZEd6SE5hOERCdkRQTm9wYkVhRkNjL2trQjFQU29Y?=
+ =?utf-8?B?c1VEKytPZWx4eGJYUVNaeUdjaWhnbXp1aGxJMEQ3S29mTmNxcE5UcUZJUmd2?=
+ =?utf-8?B?bEljMURPM21yTnFKQ3BJaHNndE85UkF6d2Q0dVNrMTVWUGg4MkJVdStaWnNK?=
+ =?utf-8?B?QVdoampsbWhWcVNNOEtzck9rUHhNazliYksvdUU4ZDI5ZWtaS0N0d0llVXF3?=
+ =?utf-8?B?UTcxQTVxU3NIUmFMWTBWdHpNd1hmaDQzTjhoc3liVlN0dmJJaTB5T1RGYUVV?=
+ =?utf-8?Q?+k2LveW3qr1HYo8D8yiWx+dW/rRwzXaG?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5753.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SjIycGRONkVhdWtnY0d2NG14M1RLTS9wVjByaTB0Ymp1QjgrN252THNxWi9r?=
- =?utf-8?B?RjRMb2pQSjI2L3hNQWJkS2Nqd3pWSDFFek9jYWs3NW8yOUpzRkM5SnlDL0NQ?=
- =?utf-8?B?eFhSQ00ya1ZvdzR3eWJndWp0QkhnbDFwVWJmdHo3eGFUMld5RU1tODZRTit1?=
- =?utf-8?B?bTdUM0loNE4vR1lDSlRFVHFDZzFNR0JhVzZMbk4wbkZPL0dMS0gvWVZ5RlpX?=
- =?utf-8?B?RXkzWHpHUERMWTVwM2wvenhWMjV1QlRRR3BQM01qVytLckIyVC93b01DMzVm?=
- =?utf-8?B?ZDhPVjR3ZDh0cVRmMjJMZldoeHJzazczeTE4N0NlRHF1b0NUVG5FWm0wMEdm?=
- =?utf-8?B?SUI0akp1MXZieC8yc1pLRTRNYlBBSEpDRE4xRDk1QzMwVkRPZDhQM2hYbTNz?=
- =?utf-8?B?OVkrOHdDMDdpM3p5OHRxV2w4cVpkSURjV0V0UU0wTlhqeVY4T0tySWcyM3U1?=
- =?utf-8?B?Rm9XRC8ycVRPbGlibDd5VVFRSWRhbFkyM1dEZ1ZrTVRGUjM0d3FvWkVvWk1T?=
- =?utf-8?B?SHRmMUEzWlAreFp4c0NacDhrdHFpUjQ2eDRuSkFjVWs2czVSUUxuSkcwVDRD?=
- =?utf-8?B?RFE1TWZrQ1U3Y0xRdmhJWEJIRG0vbUtxK0IwWlRkOGtRUEZramR1czRyV3dO?=
- =?utf-8?B?TTlaTjhUMjQvQng1ZDVYUDR1VGZjQmVRaGNyTS9VODkzdGpFMmlhL2JURzg1?=
- =?utf-8?B?d21vZ0NDbWFWNnNDOTRpU2VENkpoR2RGYjduQmhzemU2azFUK2NhQ1luQ3pm?=
- =?utf-8?B?ODAzVGVOdjBZT2duM3lpdVoyNnRMc0o2M21meEJHejRCbEkwWUk1emw3SlVl?=
- =?utf-8?B?QTBjK3AwUmFiMm1ISHVJQzRTM3d1MnJoY1JjRm12aENVV21BMXV6MVZDUkxx?=
- =?utf-8?B?dHhoUnR1YmJ3R0tuNWhFWnZWeEJOeGUycFcvNXJWTzZQZVFUUzJyTXBGM1g4?=
- =?utf-8?B?V2IrcENGeHgrWUZBQThYajQxZjBOMWs2Q1hRS01PUEtXY3hrTGV0ZllzYXBy?=
- =?utf-8?B?ZXlhd1pnRUI4ZlpPeWFoelVoako5bGJMNUhNeHZRa012dEpNcmIzd0V0QlJL?=
- =?utf-8?B?UDJUcVE4US8yOS9ZSVdnMHlrSUFDbnIrQ0tzRUlOREhtczFQcVFpU0k0T0w2?=
- =?utf-8?B?OVdMQmNCb2tWblp0NlNiUlJtL2JZYndUUWN5UzhKOGhjZXZZeDlQSzhvQ1dm?=
- =?utf-8?B?d0J1dElpNnJBL0dZWjU0N2NLV3QzMHVqMEdhMkdVekJmeURIQmFIT2oxVldI?=
- =?utf-8?B?Z1NOTGlpY2xuYXdqRUFZRFpSYTduYWl6cC9kcEVoRG1ycFk4L09VL1o2bVpJ?=
- =?utf-8?B?UXFyemJ1UGE4Zm1Wa0FsWlBSTmtEN1RJZXQyYityR3RqSExNZmlXNmQrSlpa?=
- =?utf-8?B?b09tRnl3eUVsL01uRGF4ak03UmJ3NjdLWnBjQ0ZpSWFGbk50dERBcHFyY2pL?=
- =?utf-8?B?a0NRNktWVjNKdlEvZ3JpRUJkelU0bGk3M2FJYmEySlc5UEE0YzlqdTNaMGVv?=
- =?utf-8?B?Nk85bDR1em9GOHo3dHRpbDRoQXJzY1lXQnIrZ3JDaTlTR0MvV2UxakVWb2RZ?=
- =?utf-8?B?V1lBTy9QdXhaS1V2R1Q2L1dmdk5tcklPK0xHT0liTjdWWThBMnY0VnVuZ094?=
- =?utf-8?B?SUgvSnV1TUE4eDE3RnNDeDJhOXg4N2xBa203N2ZUU0RqZmJSU2JrUU1YK05G?=
- =?utf-8?B?OUFITlo5VGp1UTFlcFExeWZUdzBxU1U0SnVDeDFacFNTR0UrZkUvTzJ1K1Jv?=
- =?utf-8?B?REhkcEUvUklIMVZZNVpOU21IN1J6aDZBTlZDWnFOOTVIWUxmS1J5bXkxQ29j?=
- =?utf-8?B?OFozcWw4amlxWWdJeWQ3M2NFbHVaMnRKSDRzcEl1blFMVE93RjBtZXpLaEVm?=
- =?utf-8?B?bGsxQ3hVMGR1V2JneThWTmJ4bUJpcU9xaWpUaml0ekMzT29CQW5Ya3R5UkVV?=
- =?utf-8?B?ejFLSEFoQU9uT2svVUtrUFJYTTZVeWJTUGZoTk0wNkppMENTb1Q4cnYyd3hU?=
- =?utf-8?B?ZkVpbVBQM0ZCVXF6OEpTcTJ6N3gyVU1JY01LM2Rod3RuSlRuYjB3NXc1aUJY?=
- =?utf-8?B?U1ViRUpFZG80VzhtUzdqMi85b0lRaVNmTkpmZUkrWnBEYkJueHJhWlVrSEo0?=
- =?utf-8?Q?1gIHQQPyM33D/Fya96Cpk0PYP?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cTk1WVhEdEV0RWN5eUxzeDlFVGd5cEhVL2pUMWFFRktDQXAvdGdZZE1Mdy9L?=
+ =?utf-8?B?M0hMc0YvNHlqdm12NEROVEhIWkhhY1hWdWVFY3lNeGllTWJueHFLZFpyZGhC?=
+ =?utf-8?B?K2p4aVI3bGM5Y2RNSmZRZ0JaT2ZqSk9jNTdFcUNONjIrTGlsS3kvaGlEWjZC?=
+ =?utf-8?B?YWhGZTArcXhsYVRMUmhrZnR1Uy94emRSRkR2bVVVeTI5eGJyYnYxSnVMNjM4?=
+ =?utf-8?B?a3RoOStubjB1SVg4NGdlRVYrcTdnSWYzQlFDV1J2d0l4YnFDY3RDcWt5L3NS?=
+ =?utf-8?B?Q1R4RHY4ZTB3YWxteC9TbCtyakQwaXl6MjJKSWJObUZoeVA1L1UyYytrZlBt?=
+ =?utf-8?B?QUJHR21sb3BhQkpqd2QybGVKeFVmdVowNy9NaUxZa1A3S0dSQnJpSWkvTWtz?=
+ =?utf-8?B?d3pRWTliWHFIQ3FlcFA2TGhwMmlib1A5RCt3SlcwNitRMmszQzc5dGVSSjNE?=
+ =?utf-8?B?ZC9IVS83dHYxVktXNDBlNjNqVTRLVlViUGFtQWxPTy9LcEpTSnZFZW1jcVFY?=
+ =?utf-8?B?Y3ZrS2FPQzRCTHVQZHVYUUNGY0dUK0ZqTEFsWG9FejBlUkgwdGYxSzZQL2Fy?=
+ =?utf-8?B?WCtGWE84R3JaMWJGREtPN3lmSDJ6dWJ0WEFzWDgzOWw2dDY5a3dJc0x0by9X?=
+ =?utf-8?B?U2pIVkN6T0NPcWUrQUVIWFhSeC8vMWp4VlJrQzNYOU9RQm41WitocDM3REg4?=
+ =?utf-8?B?TURIOFpYQXJBRkZQMHcwcTdqNUh0TzRpM3d1NEJHaWZOOE1vZldZRHl2bERh?=
+ =?utf-8?B?WkIyUUdlS3pQVlB3Nlk5Ty80clBaS0dpbWovTUk1bm1LVHVHV29jaUpDY1hW?=
+ =?utf-8?B?eHNBdU12QjZUejZMa1VGTVBkTFdZT1MyUjl2L2N5UkZyZjRwVmdRNHlJam9p?=
+ =?utf-8?B?WXNkcERYTzFPNUllNlVQdmhFazlZaUxRVk9tL2VxV2V1Rjg5UXZHdlhGZ1dz?=
+ =?utf-8?B?bERnSmpZSG5MMTNZYllEWGI0Y1BLdHZ0YkJ2d0ZEN3pMc0pQcStKMi9ESVg0?=
+ =?utf-8?B?Skk4TlRQc1lSTXN2TitLU2YvVG9FRUtwNVBYUTZqWitQMjNNbmxUa1FnRkdZ?=
+ =?utf-8?B?QlpBdzBIaTVPRFh6ZUhyWGVWTUpHY1RGRnF3K3N1amd5MEpCY1I5NklBdTZL?=
+ =?utf-8?B?VHZlUGc0aUtTWUZqb3RRaWd5MWJvNHgyR1BHL3RTaEFQWnY1NURvNXo3TmFl?=
+ =?utf-8?B?ZUYzQkxMOFZlV1p2L1M0R0RMSCtwdmZGdWl0SytJVkI2UURIQk11QUVsMUVY?=
+ =?utf-8?B?bi81QUlEc3Jxam45YllselBEbFBNSHgxRXY2MXpIZ2NiR3cyeFNwSEpGMTVa?=
+ =?utf-8?B?UmlHYmpjUVNueWVSdlREZ0FjWUl5bnpMbXNiOUtuUFFwekF3SnYzaVdMN2Q3?=
+ =?utf-8?B?UGJvOUZkcGNXU1pNQnVnVFJlalBuRHp2S0ZPaTZjbHROclNrV3orQVp2ZXdr?=
+ =?utf-8?B?T1VOeUFzZ1gwK0ZPeW1jVkJpbitsQTBnUEMvL25KY3RLVllaNzAzSmNMamFS?=
+ =?utf-8?B?UWxrWEpHakVHTnZVY0lxWC9Ka1hsUXdFakttQ1hMK3J5MmxmbmQyUmJtcWoz?=
+ =?utf-8?B?MXNVVmhodU5CUTgrWXNrck5rclpXQVVNWlBXcC93ckVkakpSbk1ZQ2QxTWFN?=
+ =?utf-8?B?OStUU0xmVmhVeVY1cnlCNnh5YlFiUzNpNVBSZEU0aVF2RmxYM3BwdTJlSG1G?=
+ =?utf-8?B?NzhkbzlMMzRHM2tBNjV6T2doL0NoL2JhR1lGbWI5TzlEc2pNTytrZjlUbUY4?=
+ =?utf-8?B?Y0RMaWN0TmRUZWp1MlI3Rll3SWcrdWpFajdhQ0RPMVF6MGNnWGFzREs3UXFY?=
+ =?utf-8?B?UDAvczhHSDdhVkduaVhuY1RMcjlTK0xBdkxwQXFkNnBzbVUwWWRtRENtOHZp?=
+ =?utf-8?B?ZDdPdjR6NHoydHZwU1JJSSt6MWdFRlM0RkkweTFaTkF3OTFEcnF2d1kwbm9v?=
+ =?utf-8?B?N25Halo1ZElMTFJRZUpja2t1cVh1b1BQeElPZ05zdi8rSFlxbzFmaEVjZ3ly?=
+ =?utf-8?B?R1FzZkxST2U4VEJ4NUJuTE1qd0h2K1RMTnk2cTZPaVN2ZFBxZHM1dHlqTXZl?=
+ =?utf-8?B?R2xoN1hUUzJaTFZRL2pGOXNsTVZ2TThyZm9yZ1IyUXQ2NjVYK00ydGtiTHdJ?=
+ =?utf-8?Q?xICjLOKLcHjU25SwBHlkGm6oD?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 439c2182-4e09-4576-d18f-08de0a2a29a9
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 882dfe5b-e69e-42f7-e3a4-08de0a2b8397
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5753.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 07:28:53.9161 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 07:38:34.5037 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 310DasXqrM0REktX04QVXwjwKgyZ5fdxLjKLB8a7kyQmFd6N5F5opq8ouIOY5riT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4202
+X-MS-Exchange-CrossTenant-UserPrincipalName: jEKeMkHF8xFwf2nqMEhk3unu2zcAQ+iXf6HgfKEBfGbbLIQbEtqHVNgvJUNCJMbj5jqu3ul7AOjXExdiQGVv/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5721
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,131 +166,382 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 13.10.25 09:09, Lazar, Lijo wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-> 
->> -----Original Message-----
->> From: Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>
->> Sent: Monday, October 13, 2025 11:25 AM
->> To: Lazar, Lijo <Lijo.Lazar@amd.com>; amd-gfx@lists.freedesktop.org; dri-
->> devel@lists.freedesktop.org
->> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
->> <Christian.Koenig@amd.com>; Yang, Philip <Philip.Yang@amd.com>
->> Subject: RE: [PATCH] drm/ttm: Add NULL check in
->> ttm_resource_manager_usage
->>
->> [AMD Official Use Only - AMD Internal Distribution Only]
->>
->>> -----Original Message-----
->>> From: Lazar, Lijo <Lijo.Lazar@amd.com>
->>> Sent: Monday, October 13, 2025 12:37 PM
->>> To: Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>;
->>> amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
->>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
->>> <Christian.Koenig@amd.com>; Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>;
->>> Yang, Philip <Philip.Yang@amd.com>; Zhang, Jesse(Jie)
->>> <Jesse.Zhang@amd.com>
->>> Subject: RE: [PATCH] drm/ttm: Add NULL check in
->>> ttm_resource_manager_usage
->>>
->>> [AMD Official Use Only - AMD Internal Distribution Only]
->>>
->>> The specific issue of trace with amdgpu_mem_info_vram_used_show should
->>> be fixed with this one - "drm/amdgpu: hide VRAM sysfs attributes on
->>> GPUs without VRAM"
->> Thanks @Lazar, Lijo,  maybe we still can use this patch to fix  this crash when
->> calling  AMDGPU_CS and  query AMDGPU_INFO_VRAM_USAGE.
->> or add check like the previous patch.
->>
-> [lijo]
-> 
-> Agree, there are indeed multiple places of ttm_resource_manager_usage call. You may follow the same check as in the hide VRAM patch - ttm_resource_manager_used - in case ttm doesn't take this change.
+--------------ZgGMOv7GRlPxI4x7peKjSKcH
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Yeah, agree.
 
-When the VRAM manager isn't initialized we shouldn't be calling any of its functions in the first place.
+On 10/13/2025 12:48 PM, Christian König wrote:
+> On 10.10.25 16:07, Sunil Khatri wrote:
+>> userptrs could be changed by the user at any time and
+>> hence while locking all the bos before GPU start processing
+>> validate all the userptr bos.
+>>
+>> Signed-off-by: Sunil Khatri<sunil.khatri@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 74 +++++++++++++++++++++++
+>>   1 file changed, 74 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> index 8dc12064da49..e9f423cf11b5 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> @@ -29,6 +29,7 @@
+>>   #include "amdgpu.h"
+>>   #include "amdgpu_vm.h"
+>>   #include "amdgpu_userq.h"
+>> +#include "amdgpu_hmm.h"
+>>   #include "amdgpu_userq_fence.h"
+>>   
+>>   u32 amdgpu_userq_get_supported_ip_mask(struct amdgpu_device *adev)
+>> @@ -758,12 +759,21 @@ static int
+>>   amdgpu_userq_vm_validate(struct amdgpu_userq_mgr *uq_mgr)
+>>   {
+>>   	struct amdgpu_fpriv *fpriv = uq_mgr_to_fpriv(uq_mgr);
+>> +	bool invalidated = false, new_addition = false;
+> That could potentially be only a single variable, but that is up to you.
+>
+>> +	struct ttm_operation_ctx ctx = { true, false };
+>>   	struct amdgpu_device *adev = uq_mgr->adev;
+>> +	struct amdgpu_hmm_range *range;
+>>   	struct amdgpu_vm *vm = &fpriv->vm;
+>> +	unsigned long key = 0, tmp_key;
+>>   	struct amdgpu_bo_va *bo_va;
+> Initialising key here is superflous as far as I can see and some automated tools started to complain about that IIRC.
+Yeah i will double check this
+>
+>> +	struct amdgpu_bo *bo;
+>>   	struct drm_exec exec;
+>> +	struct xarray xa;
+>>   	int ret;
+>>   
+>> +	xa_init(&xa);
+>> +
+>> +retry_lock:
+>>   	drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
+>>   	drm_exec_until_all_locked(&exec) {
+>>   		ret = amdgpu_vm_lock_pd(vm, &exec, 1);
+>> @@ -794,6 +804,63 @@ amdgpu_userq_vm_validate(struct amdgpu_userq_mgr *uq_mgr)
+>>   	if (ret)
+>>   		goto unlock_all;
+>>   
+>> +	if (invalidated) {
+>> +		xa_for_each(&xa, tmp_key, range) {
+>> +			bo = range->bo;
+>> +			amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_CPU);
+>> +			ret = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
+>> +			if (ret)
+>> +				goto unlock_all;
+>> +
+>> +			amdgpu_ttm_tt_set_user_pages(bo->tbo.ttm, range);
+>> +		}
+>> +		invalidated = false;
+>> +	}
+> Please make sure that this step comes before we validated all the BOs, otherwise we won't go from CPU->GTT placement again and the GPU would crash on access.
+Should keeping the loop after locking the pd sounds good or the first 
+thing just after this
+drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
 
-Maybe it is a good idea to add something like "if (WARN_ON_ONCE(!man)) return 0;" to prevent the crashes and only get a nice warning into the system log.
++	if (invalidated) {
++		xa_for_each(&xa, tmp_key, range) {
++			bo = range->bo;
++			amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_CPU);
++			ret = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
++			if (ret)
++				goto unlock_all;
++
++			amdgpu_ttm_tt_set_user_pages(bo->tbo.ttm, range);
++		}
++		invalidated = false;
++	}
+
+
+>
+> Apart from that the logic looks good to me.
+>
+> You might want to think about moving the loops into new functions in amdgpu_vm.c.
+
+I do have this in mind but i want to take that activity as separate to 
+integrate it some way to both kernelq/userq but needs brainstorming as 
+its not that simple and clear too.
+
+Regards,
+Sunil khatri
+
+>
+> Regards,
+> Christian.
+>
+>> +
+>> +	key = 0;
+>> +	/* Validate User Ptr BOs */
+>> +	list_for_each_entry(bo_va, &vm->done, base.vm_status) {
+>> +		bo = bo_va->base.bo;
+>> +
+>> +		if (!amdgpu_ttm_tt_is_userptr(bo->tbo.ttm))
+>> +			continue;
+>> +
+>> +		range = xa_load(&xa, key);
+>> +		if (range && range->bo != bo) {
+>> +			xa_erase(&xa, key);
+>> +			amdgpu_hmm_range_free(range);
+>> +			range = NULL;
+>> +		}
+>> +
+>> +		if (!range) {
+>> +			range = amdgpu_hmm_range_alloc(bo);
+>> +			if (!range) {
+>> +				ret = -ENOMEM;
+>> +				goto unlock_all;
+>> +			}
+>> +
+>> +			xa_store(&xa, key, range, GFP_KERNEL);
+>> +			new_addition = true;
+>> +		}
+>> +		key++;
+>> +	}
+>> +
+>> +	if (new_addition) {
+>> +		drm_exec_fini(&exec);
+>> +		xa_for_each(&xa, tmp_key, range) {
+>> +			if (!range)
+>> +				continue;
+>> +			bo = range->bo;
+>> +			ret = amdgpu_ttm_tt_get_user_pages(bo, range);
+>> +			if (ret)
+>> +				goto unlock_all;
+>> +		}
+>> +
+>> +		invalidated = true;
+>> +		new_addition = false;
+>> +		goto retry_lock;
+>> +	}
+>> +
+>>   	ret = amdgpu_vm_update_pdes(adev, vm, false);
+>>   	if (ret)
+>>   		goto unlock_all;
+>> @@ -813,6 +880,13 @@ amdgpu_userq_vm_validate(struct amdgpu_userq_mgr *uq_mgr)
+>>   
+>>   unlock_all:
+>>   	drm_exec_fini(&exec);
+>> +	xa_for_each(&xa, tmp_key, range) {
+>> +		if (!range)
+>> +			continue;
+>> +		bo = range->bo;
+>> +		amdgpu_hmm_range_free(range);
+>> +	}
+>> +	xa_destroy(&xa);
+>>   	return ret;
+>>   }
+>>   
+--------------ZgGMOv7GRlPxI4x7peKjSKcH
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 10/13/2025 12:48 PM, Christian König
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:b3655417-7b6e-472b-9a71-834361c4ac22@amd.com">
+      <pre wrap="" class="moz-quote-pre">On 10.10.25 16:07, Sunil Khatri wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">userptrs could be changed by the user at any time and
+hence while locking all the bos before GPU start processing
+validate all the userptr bos.
+
+Signed-off-by: Sunil Khatri <a class="moz-txt-link-rfc2396E" href="mailto:sunil.khatri@amd.com">&lt;sunil.khatri@amd.com&gt;</a>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 74 +++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 8dc12064da49..e9f423cf11b5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -29,6 +29,7 @@
+ #include &quot;amdgpu.h&quot;
+ #include &quot;amdgpu_vm.h&quot;
+ #include &quot;amdgpu_userq.h&quot;
++#include &quot;amdgpu_hmm.h&quot;
+ #include &quot;amdgpu_userq_fence.h&quot;
+ 
+ u32 amdgpu_userq_get_supported_ip_mask(struct amdgpu_device *adev)
+@@ -758,12 +759,21 @@ static int
+ amdgpu_userq_vm_validate(struct amdgpu_userq_mgr *uq_mgr)
+ {
+ 	struct amdgpu_fpriv *fpriv = uq_mgr_to_fpriv(uq_mgr);
++	bool invalidated = false, new_addition = false;
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+That could potentially be only a single variable, but that is up to you.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+	struct ttm_operation_ctx ctx = { true, false };
+ 	struct amdgpu_device *adev = uq_mgr-&gt;adev;
++	struct amdgpu_hmm_range *range;
+ 	struct amdgpu_vm *vm = &amp;fpriv-&gt;vm;
++	unsigned long key = 0, tmp_key;
+ 	struct amdgpu_bo_va *bo_va;
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Initialising key here is superflous as far as I can see and some automated tools started to complain about that IIRC.</pre>
+    </blockquote>
+    Yeah i will double check this
+    <blockquote type="cite" cite="mid:b3655417-7b6e-472b-9a71-834361c4ac22@amd.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+	struct amdgpu_bo *bo;
+ 	struct drm_exec exec;
++	struct xarray xa;
+ 	int ret;
+ 
++	xa_init(&amp;xa);
++
++retry_lock:
+ 	drm_exec_init(&amp;exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
+ 	drm_exec_until_all_locked(&amp;exec) {
+ 		ret = amdgpu_vm_lock_pd(vm, &amp;exec, 1);
+@@ -794,6 +804,63 @@ amdgpu_userq_vm_validate(struct amdgpu_userq_mgr *uq_mgr)
+ 	if (ret)
+ 		goto unlock_all;
+ 
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+	if (invalidated) {
++		xa_for_each(&amp;xa, tmp_key, range) {
++			bo = range-&gt;bo;
++			amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_CPU);
++			ret = ttm_bo_validate(&amp;bo-&gt;tbo, &amp;bo-&gt;placement, &amp;ctx);
++			if (ret)
++				goto unlock_all;
++
++			amdgpu_ttm_tt_set_user_pages(bo-&gt;tbo.ttm, range);
++		}
++		invalidated = false;
++	}
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Please make sure that this step comes before we validated all the BOs, otherwise we won't go from CPU-&gt;GTT placement again and the GPU would crash on access.</pre>
+    </blockquote>
+    Should keeping the loop after locking the pd sounds good or the
+    first thing just after this
+    <div style="color: #cccccc;background-color: #1f1f1f;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #dcdcaa;">drm_exec_init</span><span style="color: #cccccc;">(</span><span style="color: #d4d4d4;">&amp;</span><span style="color: #9cdcfe;">exec</span><span style="color: #cccccc;">, DRM_EXEC_IGNORE_DUPLICATES, </span><span style="color: #b5cea8;">0</span><span style="color: #cccccc;">);</span></div><div><pre wrap="" class="moz-quote-pre">+	if (invalidated) {
++		xa_for_each(&amp;xa, tmp_key, range) {
++			bo = range-&gt;bo;
++			amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_CPU);
++			ret = ttm_bo_validate(&amp;bo-&gt;tbo, &amp;bo-&gt;placement, &amp;ctx);
++			if (ret)
++				goto unlock_all;
++
++			amdgpu_ttm_tt_set_user_pages(bo-&gt;tbo.ttm, range);
++		}
++		invalidated = false;
++	}</pre>
+</div></div>
+    <br>
+    <blockquote type="cite" cite="mid:b3655417-7b6e-472b-9a71-834361c4ac22@amd.com">
+      <pre wrap="" class="moz-quote-pre">
+
+Apart from that the logic looks good to me.
+
+You might want to think about moving the loops into new functions in amdgpu_vm.c.</pre>
+    </blockquote>
+    <p>I do have this in mind but i want to take that activity as
+      separate to integrate it some way to both kernelq/userq but needs
+      brainstorming as its not that simple and clear too.</p>
+    <p>Regards,<br>
+      Sunil khatri</p>
+    <blockquote type="cite" cite="mid:b3655417-7b6e-472b-9a71-834361c4ac22@amd.com">
+      <pre wrap="" class="moz-quote-pre">
 
 Regards,
 Christian.
 
-> 
-> Thanks,
-> Lijo
-> 
->> Regards
->> Jesse
->>
->> [  911.954646] BUG: kernel NULL pointer dereference, address:
->> 00000000000008f8 [  911.962437]
->> #PF: supervisor write access in kernel mode [  912.007045] RIP:
->> 0010:_raw_spin_lock+0x1e/0x40  [  912.105151]
->> amdttm_resource_manager_usage+0x1f/0x40
->> [amdttm] [  912.111579]  amdgpu_cs_parser_bos.isra.0+0x543/0x800
->> [amdgpu]
->>
->>>
->>> Thanks,
->>> Lijo
->>>> -----Original Message-----
->>>> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
->>>> Jesse.Zhang
->>>> Sent: Monday, October 13, 2025 7:25 AM
->>>> To: amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
->>>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
->>>> <Christian.Koenig@amd.com>; Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>;
->>>> Yang, Philip <Philip.Yang@amd.com>; Zhang, Jesse(Jie)
->>>> <Jesse.Zhang@amd.com>
->>>> Subject: [PATCH] drm/ttm: Add NULL check in
->>>> ttm_resource_manager_usage
->>>>
->>>> Add a NULL pointer check in ttm_resource_manager_usage() to prevent
->>>> kernel NULL pointer dereferences when the function is called with an
->>>> uninitialized resource manager.
->>>>
->>>> This fixes a kernel OOPS observed on APU devices where the VRAM
->>>> resource manager is not fully initialized, but various sysfs and
->>>> debug interfaces still attempt to query VRAM usage statistics.
->>>>
->>>> The crash backtrace showed:
->>>>    BUG: kernel NULL pointer dereference, address: 00000000000008f8
->>>>    Call Trace:
->>>>     amdttm_resource_manager_usage+0x1f/0x40 [amdttm]
->>>>     amdgpu_mem_info_vram_used_show+0x1e/0x40 [amdgpu]
->>>>     dev_attr_show+0x1d/0x40
->>>>     kernfs_seq_show+0x27/0x30
->>>>
->>>> By returning 0 for NULL managers, we allow callers to safely query
->>>> usage information even when the underlying resource manager is not
->>>> available, which is the expected behavior for devices without
->>>> dedicated VRAM like
->>> APUs.
->>>>
->>>> Suggested-by: Philip Yang <Philip.Yang@amd.com>
->>>> Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
->>>> ---
->>>> drivers/gpu/drm/ttm/ttm_resource.c | 3 +++
->>>> 1 file changed, 3 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c
->>>> b/drivers/gpu/drm/ttm/ttm_resource.c
->>>> index e2c82ad07eb4..e4d45f75e40a 100644
->>>> --- a/drivers/gpu/drm/ttm/ttm_resource.c
->>>> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
->>>> @@ -587,6 +587,9 @@ uint64_t ttm_resource_manager_usage(struct
->>>> ttm_resource_manager *man)  {
->>>>       uint64_t usage;
->>>>
->>>> +      if (!man)
->>>> +              return 0;
->>>> +
->>>>       spin_lock(&man->bdev->lru_lock);
->>>>       usage = man->usage;
->>>>       spin_unlock(&man->bdev->lru_lock);
->>>> --
->>>> 2.49.0
->>>
->>
-> 
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+
++	key = 0;
++	/* Validate User Ptr BOs */
++	list_for_each_entry(bo_va, &amp;vm-&gt;done, base.vm_status) {
++		bo = bo_va-&gt;base.bo;
++
++		if (!amdgpu_ttm_tt_is_userptr(bo-&gt;tbo.ttm))
++			continue;
++
++		range = xa_load(&amp;xa, key);
++		if (range &amp;&amp; range-&gt;bo != bo) {
++			xa_erase(&amp;xa, key);
++			amdgpu_hmm_range_free(range);
++			range = NULL;
++		}
++
++		if (!range) {
++			range = amdgpu_hmm_range_alloc(bo);
++			if (!range) {
++				ret = -ENOMEM;
++				goto unlock_all;
++			}
++
++			xa_store(&amp;xa, key, range, GFP_KERNEL);
++			new_addition = true;
++		}
++		key++;
++	}
++
++	if (new_addition) {
++		drm_exec_fini(&amp;exec);
++		xa_for_each(&amp;xa, tmp_key, range) {
++			if (!range)
++				continue;
++			bo = range-&gt;bo;
++			ret = amdgpu_ttm_tt_get_user_pages(bo, range);
++			if (ret)
++				goto unlock_all;
++		}
++
++		invalidated = true;
++		new_addition = false;
++		goto retry_lock;
++	}
++
+ 	ret = amdgpu_vm_update_pdes(adev, vm, false);
+ 	if (ret)
+ 		goto unlock_all;
+@@ -813,6 +880,13 @@ amdgpu_userq_vm_validate(struct amdgpu_userq_mgr *uq_mgr)
+ 
+ unlock_all:
+ 	drm_exec_fini(&amp;exec);
++	xa_for_each(&amp;xa, tmp_key, range) {
++		if (!range)
++			continue;
++		bo = range-&gt;bo;
++		amdgpu_hmm_range_free(range);
++	}
++	xa_destroy(&amp;xa);
+ 	return ret;
+ }
+ 
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
 
+--------------ZgGMOv7GRlPxI4x7peKjSKcH--
