@@ -2,33 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28BDBD9219
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Oct 2025 13:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54F4FBD95F6
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Oct 2025 14:36:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ACC510E5B2;
-	Tue, 14 Oct 2025 11:54:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E5210E5DE;
+	Tue, 14 Oct 2025 12:36:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="cYdDTdXg";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 438C510E5B5
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Oct 2025 11:54:27 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 59EBsMcW522621; Tue, 14 Oct 2025 17:24:22 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 59EBsLkB522614;
- Tue, 14 Oct 2025 17:24:21 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Sunil Khatri <sunil.khatri@amd.com>
-Subject: [Patch v2] drm/amdgpu: add the kernel docs for alloc/free/valid range
-Date: Tue, 14 Oct 2025 17:24:20 +0530
-Message-Id: <20251014115420.522595-1-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C30510E11E;
+ Mon, 13 Oct 2025 14:54:44 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4clgNx2Q5Jz9t8m;
+ Mon, 13 Oct 2025 16:54:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1760367281; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ni/5KqpXbxH47lZi6KXS7u0qGXwD7ao9vWL4UHhOhg4=;
+ b=cYdDTdXgnGUaNJpWgD00j/ERXPvl2F/TGp4wh48TUjxv6X5piLvr4Qz9vn6HtV2TW5+3/j
+ 8BU8fk1e3LF1FyXzn+QDEV00lA2XYa6uogfih88Nzeien2SgPcidUkGwiTrps8z+IBnSFJ
+ YY1G1+YKOpPUIpQJ5MxOjNBKTHIC1J7c9v3f0B2c4axhADxCyob/9Ta+1Lv5TXtDfg4f28
+ t+ycRoQ2zDHTrfJ32BS6U/emGpBJ3+8CMvo+do4g7e5dphfx2Tnmg35knkKA6IB2Kw/l/p
+ EHerx4kvvyxBCOUr27kiX8M0uBROLvhD8iBiNCY4mxnrcVzKXDeb02oBlaaLQg==
+Message-ID: <15b2f86e8d6cb1df93edf73001fda2c378926016.camel@mailbox.org>
+Subject: Re: Independence for dma_fences!
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ alexdeucher@gmail.com, simona.vetter@ffwll.ch, tursulin@ursulin.net
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Date: Mon, 13 Oct 2025 16:54:39 +0200
+In-Reply-To: <20251013143502.1655-1-christian.koenig@amd.com>
+References: <20251013143502.1655-1-christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: d655a16cd48717b4852
+X-MBO-RS-META: qheqit5ht6re8ixxgjj3ot88nzr6jhm8
+X-Mailman-Approved-At: Tue, 14 Oct 2025 12:36:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,79 +60,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-add kernel docs for the functions related to hmm_range.
+On Mon, 2025-10-13 at 15:48 +0200, Christian K=C3=B6nig wrote:
+> Hi everyone,
+>=20
+> dma_fences have ever lived under the tyranny dictated by the module
+> lifetime of their issuer, leading to crashes should anybody still holding
+> a reference to a dma_fence when the module of the issuer was unloaded.
+>=20
+> But those days are over! The patch set following this mail finally
+> implements a way for issuers to release their dma_fence out of this
+> slavery and outlive the module who originally created them.
+>=20
+> Previously various approaches have been discussed, including changing the
+> locking semantics of the dma_fence callbacks (by me) as well as using the
+> drm scheduler as intermediate layer (by Sima) to disconnect dma_fences
+> from their actual users.
+>=20
+> Changing the locking semantics turned out to be much more trickier than
+> originally thought because especially on older drivers (nouveau, radeon,
+> but also i915) this locking semantics is actually needed for correct
+> operation.
+>=20
+> Using the drm_scheduler as intermediate layer is still a good idea and
+> should probably be implemented to make live simpler for some drivers, but
+> doesn't work for all use cases. Especially TLB flush fences, preemption
+> fences and userqueue fences don't go through the drm scheduler because it
+> doesn't make sense for them.
+>=20
+> Tvrtko did some really nice prerequisite work by protecting the returned
+> strings of the dma_fence_ops by RCU. This way dma_fence creators where
+> able to just wait for an RCU grace period after fence signaling before
+> they could be save to free those data structures.
+>=20
+> Now this patch set here goes a step further and protects the whole
+> dma_fence_ops structure by RCU, so that after the fence signals the
+> pointer to the dma_fence_ops is set to NULL when there is no wait nor
+> release callback given. All functionality which use the dma_fence_ops
+> reference are put inside an RCU critical section, except for the
+> deprecated issuer specific wait and of course the optional release
+> callback.
+>=20
+> Additional to the RCU changes the lock protecting the dma_fence state
+> previously had to be allocated external. This set here now changes the
+> functionality to make that external lock optional and allows dma_fences
+> to use an inline lock and be self contained.
 
-functions:
-amdgpu_hmm_range_valid
-amdgpu_hmm_range_alloc
-amdgpu_hmm_range_free
+Allowing for an embedded lock, is that actually necessary for the goals
+of this series, or is it an optional change / improvement?
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c | 33 +++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+If I understood you correctly at XDC you wanted to have an embedded
+lock because it improves the memory footprint and because an external
+lock couldn't achieve some goals about fence-signaling-order originally
+intended. Can you elaborate on that?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-index 04f02e0c8bb3..d6f903a2d573 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-@@ -227,6 +227,19 @@ int amdgpu_hmm_range_get_pages(struct mmu_interval_notifier *notifier,
- 	return r;
- }
- 
-+/**
-+ * amdgpu_hmm_range_valid - check if an HMM range is still valid
-+ * @range: pointer to the &struct amdgpu_hmm_range to validate
-+ *
-+ * Determines whether the given HMM range @range is still valid by
-+ * checking for invalidations via the MMU notifier sequence. This is
-+ * typically used to verify that the range has not been invalidated
-+ * by concurrent address space updates before it is accessed.
-+ *
-+ * Return:
-+ * * true if @range is valid and can be used safely
-+ * * false if @range is NULL or has been invalidated
-+ */
- bool amdgpu_hmm_range_valid(struct amdgpu_hmm_range *range)
- {
- 	if (!range)
-@@ -236,6 +249,17 @@ bool amdgpu_hmm_range_valid(struct amdgpu_hmm_range *range)
- 					range->hmm_range.notifier_seq);
- }
- 
-+/**
-+ * amdgpu_hmm_range_alloc - allocate and initialize an AMDGPU HMM range
-+ * @bo: optional buffer object to associate with this HMM range
-+ *
-+ * Allocates memory for amdgpu_hmm_range and associates it with the @bo passed.
-+ * The reference count of the @bo is incremented.
-+ *
-+ * Return:
-+ * Pointer to a newly allocated struct amdgpu_hmm_range on success,
-+ * or NULL if memory allocation fails.
-+ */
- struct amdgpu_hmm_range *amdgpu_hmm_range_alloc(struct amdgpu_bo *bo)
- {
- 	struct amdgpu_hmm_range *range;
-@@ -248,6 +272,15 @@ struct amdgpu_hmm_range *amdgpu_hmm_range_alloc(struct amdgpu_bo *bo)
- 	return range;
- }
- 
-+/**
-+ * amdgpu_hmm_range_free - release an AMDGPU HMM range
-+ * @range: pointer to the range object to free
-+ *
-+ * Releases all resources held by @range, including the associated
-+ * hmm_pfns and the dropping reference of associated bo if any.
-+ *
-+ * Return: void
-+ */
- void amdgpu_hmm_range_free(struct amdgpu_hmm_range *range)
- {
- 	if (!range)
--- 
-2.34.1
+P.
+
+
+>=20
+> The new approach is then applied to amdgpu allowing the module to be
+> unloaded even when dma_fences issued by it are still around.
+>=20
+> Please review and comment,
+> Christian.
+>=20
 
