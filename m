@@ -2,78 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE547BD1D47
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 09:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B06BD1961
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Oct 2025 08:06:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DA9410E3DD;
-	Mon, 13 Oct 2025 07:35:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A49A882D0;
+	Mon, 13 Oct 2025 06:06:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="S7n1eJUx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jHpUhuya";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
- [209.85.210.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86EAF10E194
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Oct 2025 19:13:30 +0000 (UTC)
-Received: by mail-pf1-f179.google.com with SMTP id
- d2e1a72fcca58-781997d195aso2510953b3a.3
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Oct 2025 12:13:30 -0700 (PDT)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
+ [209.85.208.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E56910E38A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Oct 2025 06:06:49 +0000 (UTC)
+Received: by mail-ed1-f47.google.com with SMTP id
+ 4fb4d7f45d1cf-639e1e8c8c8so7310687a12.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 12 Oct 2025 23:06:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760296410; x=1760901210; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1760335608; x=1760940408; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=cJyjShr1i4+1ahYehZ/S4z65QdfAA6uxL/qAaZtcMo0=;
- b=S7n1eJUxrmRIwuw8wal+pu1UCv3PWKDsSKQMOSHOtuKTUY4CNCMJ+BTBjxGyzba3HR
- fmadkwuFDA9Xk1yVQfIJhAY1CW51Ffjd5YTklwBCU43iseK27c6ER6yo08Z69t9+CcZx
- 5/ivbg+lUjlRRqcnVhsbNpadVsDMEV1bDoTqISvEWEQEF1m9S41IcOuDzJxxtWf9S2l+
- /wyGf+ZQSd6uxp0B8xpsh7XZUY9bSvmHLZbRPLknPz2mHdSGM6u9Pen2dJAv4Zmbx3Iw
- Dh+ZgWmBVIT6D+nvJCB1TJWpq+3LJpgQ+orsGq7RCAkfjGaI5uQlmrJIbS+v8WkM746/
- QRSg==
+ bh=JHA6KwZbQiiAgTRoW1HYymYTZA9lMYrF5vKG1BYuqdI=;
+ b=jHpUhuyao2Kgw3Dms+HT/STad241FcussMIr4OnhcapQFFJoa9eG6NBdoY5TjoOJcV
+ fijcdrEevW8YBshtSnsItRlVtBdZzsk1WThYYb/9/+od8Sck9l98app9kkY0/+RkHTn0
+ qqsSDqFsR4MCoGhk3kmbzYdbU02MfpQfli1noX5YrkMEaw2ZLqjwKtRl7kXA8zIwlKLq
+ oZdkARfoML5s2arjKQhVCzwxoAS8SztwOFvMYbe/FCOssfZgxm04M9wXpk/BWKFBF1zj
+ Fbbs/NiYDBaL05I5HcMtrb+aNEhW+YvUWjZj5ncNHyo7zvOQAmLrnIv4bV4AMkiBYXmV
+ Wa0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760296410; x=1760901210;
+ d=1e100.net; s=20230601; t=1760335608; x=1760940408;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=cJyjShr1i4+1ahYehZ/S4z65QdfAA6uxL/qAaZtcMo0=;
- b=bu+SYehJd4U2YGRFNJcGt00JoTMEnpg+dNzYWl+yPLRdl0oI6YVZnWLkjtrL108hkC
- ghCvtey7XJbv5fE/crOyNBu7kLyfFg8wGtDPoFB08pGu8dRnxqHKtbmmTOs7UkY67s8I
- qqRWU/VdS1Q+MxhI1cskVj2AoyZa+95/aglgAA1Ah82Nr5Lvv6VATNFWmZrzUuFMgs62
- yS7T+O4E3bVVTj9TlhdxDUS80TC6gQYUxXFCMXWACIyG1UF4JznzfG8fDqfmqz47gNh4
- QAhXc1URQTBDgqdMyNjc6/fvE6ViJH6pqbkNnF1bRdeNLmFj3DRv10RKeZ+DvGstu2qT
- Vq2A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUUjen1HB7Qlw5x3vwBpOS1ckGiiv9N3jOUcBqzkPNEoJ0yszYnmJEUxPCMy3jtqBHl9V0d1rfr@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywr2kw3LN3o/rN2GKLg/p51+uTqHn0YT+MGTmI1t0WGqqZGIRW1
- GrZ6YMI9lKwluQvh3o9K2LWwUJNmV507gRUNFbymROdn9xluxngVVyHz
-X-Gm-Gg: ASbGnct/e2B1mLqn1bEknnRPt7kbiDzO2X4GLU4y8IAkbfFgIDz0bnW8rg8N9vVGCf1
- Sb1Xv+QbxYAsQp5zVeNcqFRXtQn4Ppgi2o8RiDG1QEUo1amKDGKqN1d0kQK/DsDGTtwEnVXLP2Z
- K25yRoEtQWFz8QfNB6d2WPZlQ3B7AMnn2gXpXU6v/mBrPGVJOXP/r7l5kvJKilfOvIlPeg8qaEX
- pfp+fOijEYEZFWC/YrP7cW0U3LDDcGFvFLBFq9p8HlrzIkN9h/ApL20YxMopMeSG1u4P86YRGhp
- BtWPMtX02V2n1zCoN5h8PbTXwcXnoBt9WueTDIiqzvHmz7soO/+t/FJsCK8kjXHR6uk2RDgVr1S
- BUysmfmo5pyq8cD+nyKxChvYc6Vg9zpHw9r52ry1ULK48S0vdvUbwon07lSo6KOI1lM3Z+MU8PV
- noZwt0b3QiUvrxH9TC/gfvjwqW+FADteuKxyXz80Az/g==
-X-Google-Smtp-Source: AGHT+IEAYVnUkYlyXFyELMBmp9hn0QU0m0/phIOjfHeyi4BZTIDLCyxOo9zX5iCKuem03RJMyzRu1A==
-X-Received: by 2002:a05:6a20:2443:b0:2bd:d83a:d1a5 with SMTP id
- adf61e73a8af0-32da845e45fmr25164575637.42.1760296409944; 
- Sun, 12 Oct 2025 12:13:29 -0700 (PDT)
-Received: from linux-dev.. (174-21-182-191.tukw.qwest.net. [174.21.182.191])
+ bh=JHA6KwZbQiiAgTRoW1HYymYTZA9lMYrF5vKG1BYuqdI=;
+ b=cGRc1HNxrZPSr8GEJaAosergbIgbHv5qrNvzKqXwk0m0qOtoieW4FIU19OgaVuFv+U
+ 8IPgasavCjFZ21oJSiYEDGfpg6n+/ZPUPieoKOAcvn4qNzf0+uN7NxxxWJ7eix7CeLIL
+ H0r8xdW0ZR20Qp/IIjPJ2xHYcoL3llN8fGSDKyUbzfyGfWzQ2pX6SpddsA7y2krG+qEu
+ uKsMUP0hXBSjaMgM8bx56VMcZWZDIFLCqnbm/4NJpKA/0CqLWD+uCW68LOSKUmvQhhKB
+ lzOedNKebmHwwgtJmolaCIFRw8E/7ZvASjo0gtrMtj9Qpv/HS4iYRvhDICwwF2UuaUEt
+ OZKw==
+X-Gm-Message-State: AOJu0YwfpEOXwu5JdYkrfoFFGeMHijaFIur9/CGoRyDaDxcqLNnX8XUW
+ TcF88uPHcf4JCwojaDL91oVUlcJHZTfRbz7S3T1h+X5CPlz+4JEZxiUz7oCLWQ==
+X-Gm-Gg: ASbGncsGrDFW0Jsw/4IApcLKD740C7TvkK1KZ33r7pitOPH2MAoZgB9D93RewiDYqk1
+ O6vqY8vxZiiIYnKZGY9Dn3GRjwLfklYBGMhJjdDaf7ET4B4mVwcBbcs8m8snmkhp3WQgaulSkAQ
+ aH2+X4vvzoTtiY3Ivy4xXojeEXu5Cn9WiAiyo6k4FU8J2ZnjDWNMuRj9aq0kUNKIFXCpyFwKvGN
+ 6e2gFAqM+BQo99yL+WDD1skB1YcO2ObT4gch9zQSpdfVshZBlDO1lQYWNC2QZbiYta921n9o7kw
+ Z6ik95KGbN/DLcMIiDpUe/PMhTp8j4RsGrD+YRSuQlmhPCQ0fZef6Kep3/KztxTzTjx8ZMfaWlG
+ Vol33ZJrp2ro1mVJFMNzHy5HkhwB4T5XRMHq8PClePAAd6Yk6LkCEKqctKEk+fKg8irq5s414q6
+ QRpyhTAyxECrZgGZHNkULdPpxLoU5LHyLkOmolT8dOdkNx6A==
+X-Google-Smtp-Source: AGHT+IFfKoGhq3hegjhBV+LQsU9gcUUWXYFKHv0y2HqH2chTUZXQ7w9auu0+3eNtiuZph5+4+1Ck5A==
+X-Received: by 2002:a05:6402:1453:b0:639:fefb:996a with SMTP id
+ 4fb4d7f45d1cf-639fefc0db9mr13206974a12.12.1760335607871; 
+ Sun, 12 Oct 2025 23:06:47 -0700 (PDT)
+Received: from Timur-Hyperion.home
+ (20014C4E24F25600946431E697F050A9.dsl.pool.telekom.hu.
+ [2001:4c4e:24f2:5600:9464:31e6:97f0:50a9])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7992b639cc8sm9115199b3a.20.2025.10.12.12.13.28
+ 4fb4d7f45d1cf-63a5c133f58sm8209921a12.30.2025.10.12.23.06.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 12 Oct 2025 12:13:29 -0700 (PDT)
-From: Aditya Gollamudi <adigollamudi@gmail.com>
-To: austin.zheng@amd.com
-Cc: jun.lei@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com,
- siqueira@igalia.com, amd-gfx@lists.freedesktop.org,
- Adi Gollamudi <adigollamudi@gmail.com>
-Subject: [PATCH] drm/amd/display: fix typo in display_mode_core_structs.h
-Date: Sun, 12 Oct 2025 12:13:19 -0700
-Message-Id: <20251012191319.40046-1-adigollamudi@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ Sun, 12 Oct 2025 23:06:46 -0700 (PDT)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, mario.limonciello@amd.com,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+Subject: [PATCH] drm/amd/powerplay: Fix CIK shutdown temperature
+Date: Mon, 13 Oct 2025 08:06:42 +0200
+Message-ID: <20251013060642.21269-1-timur.kristof@gmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 13 Oct 2025 07:35:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,29 +87,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Adi Gollamudi <adigollamudi@gmail.com>
+Remove extra multiplication.
 
-Fix a typo in a comment, change "enviroment" to "environment" in
-drivers/gpu/drm/amd/display/dc/dml2/display_mode_core_structs.h
+CIK GPUs such as Hawaii appear to use PP_TABLE_V0 in which case
+the shutdown temperature is hardcoded in smu7_init_dpm_defaults
+and is already multiplied by 1000. The value was mistakenly
+multiplied another time by smu7_get_thermal_temperature_range.
 
-Signed-off-by: Aditya Gollamudi <adigollamudi@gmail.com>
+Fixes: 4ba082572a42 ("drm/amd/powerplay: export the thermal ranges of VI asics (V2)")
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/1676
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml2/display_mode_core_structs.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core_structs.h b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core_structs.h
-index dbeb08466092..d57717b023eb 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core_structs.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core_structs.h
-@@ -1894,7 +1894,7 @@ struct display_mode_lib_scratch_st {
- 	struct CalculatePrefetchSchedule_params_st CalculatePrefetchSchedule_params;
- };
-
--/// @brief Represent the overall soc/ip enviroment. It contains data structure represent the soc/ip characteristic and also structures that hold calculation output
-+/// @brief Represent the overall soc/ip environment. It contains data structure represent the soc/ip characteristic and also structures that hold calculation output
- struct display_mode_lib_st {
- 	dml_uint_t project;
-
---
-2.34.1
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+index 8da882c51856..9b28c0728269 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+@@ -5444,8 +5444,7 @@ static int smu7_get_thermal_temperature_range(struct pp_hwmgr *hwmgr,
+ 		thermal_data->max = table_info->cac_dtp_table->usSoftwareShutdownTemp *
+ 			PP_TEMPERATURE_UNITS_PER_CENTIGRADES;
+ 	else if (hwmgr->pp_table_version == PP_TABLE_V0)
+-		thermal_data->max = data->thermal_temp_setting.temperature_shutdown *
+-			PP_TEMPERATURE_UNITS_PER_CENTIGRADES;
++		thermal_data->max = data->thermal_temp_setting.temperature_shutdown;
+ 
+ 	thermal_data->sw_ctf_threshold = thermal_data->max;
+ 
+-- 
+2.51.0
 
