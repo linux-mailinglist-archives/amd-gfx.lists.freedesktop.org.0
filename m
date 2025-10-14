@@ -2,155 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A35C2BDB06E
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Oct 2025 21:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB5E9BDB0F6
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Oct 2025 21:31:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBC010E67C;
-	Tue, 14 Oct 2025 19:16:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0241710E6AC;
+	Tue, 14 Oct 2025 19:31:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pNUj2Z8e";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="upW4Uh9D";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010038.outbound.protection.outlook.com [52.101.201.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A66A810E67C
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Oct 2025 19:16:27 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010000.outbound.protection.outlook.com [52.101.61.0])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48FB710E6A7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Oct 2025 19:31:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NAz3fLVzYKHZ33pqxiDO/4dQFCqsZr0ZzFSadGrdMzvFYOBo+XqxBy+fYZdOiNfe8D1he936DpLUVu+rXfgXtJhgXUZRNitEYZV5o98sA9pxyzBfodbwLPMv/tOtuggreBCcYLUo1Z9myx8YQ2jDFa/ecU4myecCOFgcsGlP8W65LPZPMfJZyYCHseqeyvPs5U2IOjcILNbpBkBvOoAZLAKKlwA07Bt4b+jUrsdBfXNahN2uIUZVhhFDHtSCbAuf96cozA6560NEMNqE+OGc3sgO7viWRz3cBb7KyY6SXOdwNs2PYGt1ZvM2dwU96L/v9Kfiv02gvpeVuvNEc+61/Q==
+ b=lSFj4s593XrgdQEDQsQpGwIjQ+t5q+6qQ3OLdXy9O0ELAIMNJm9NBWLfM8Tziee8UUGkOpcAcQ0eUw/JLOtVFvAmDo6eBDgxslclKySKERXAciwFRm2/+okSyyqqJcC+Eh/bE7uAyIsVcFOkGpuB8BKVb0GgF45lWOR47gwb/dbp5uPV0Wq2icjut/iuWEZfkph6Ff3dbu6YTBXJ7MjLMt4LYf4drELsBLsWjCW7ncBVvDpB2PlwDTaolvRzareS1PLKVPeLG0S3Rp7xfw86q+BJey8b1e80VXhI4KBtWv9d7d+N9pwopSDANCKOJJBSUFqS23CCRqnQgR2VyjrXbw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hlMAHalAbbiym0DccKMPBeZ/xv/1XzGLCWrP/LnYO+0=;
- b=WAiNDgw3V/2vx4Y28PLcUfTspzsk2Pkj3H+71PkgwEiUpYl9lIQUeNf5V6ejMaDuz0Z0aeK/OTvxxa653s0rJ6uYo7R453lJJ7xHCr5eR7N/jxPNC9i1MIRf72NqMvUCNROeKhQbuort9XBu4JGfrEzvYLbALDCs6xDf3Ak1NQLZbSVOnaCbpmImUtWgcM65MJbyJm0XJ1YmYxvtJfkjbiImWsupbelhuu+KusmrfrS4PGwkbks82WmyV2CHiuKQ+tjUtRRmSMV/g1oR+1JwumSiFwfbGffMFwkgTNXeO/oop0p73cDhAhViqhzxWjcUzeTRfDFLzVLOlkaePJNjbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=0bdl18CHd8BqbOUpsIUyvv6+7j8M8XrYcTNqQQFqHHA=;
+ b=j456nlEsPHxTVDhaI/p+bBOZwwP9fab9MnqjJSFcPj68c5DREoAuuvjiuCbG4fHaW93Yj+XbulCrM+IcQ2rNGAy4dPCDfz+5vN6X6ZkWWnx5gvvJAETnQAmXx5kEC8DqikMRSxUkJbG6dy6pwS66/IabpOeC4xGwIPOLxykAYQso2r6zrca/0OEyWAw3E0gl1Z9zbaLDxcF2YD0X+mT0yx6fNghK3dCK1J1TzqfOZTcsAHceCLixfmvGYTS1mVreZE/yoK4EL/eWIJuqzSB4RmZ97xK3BnVS/mdqQ0lozJgpsFq0xE2PG4WDvCwl8B1nlmVWoEbIx96Ietde8thEwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hlMAHalAbbiym0DccKMPBeZ/xv/1XzGLCWrP/LnYO+0=;
- b=pNUj2Z8eLJIr5ZjP1mqAYaskMP1LuUmdRhDOKu1n1S6FKXZXHMKucHqKAhRZHqodotDNb/XWyO2IySoc6NsRu+UgT8iE0F+JpfVXg7lyP7gzGxGYBwib69phQ/bAgkq5875eE+8y4sfCLjlQ9ObNy2TGJvN8YobqHJZu32pyDqs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by MN0PR12MB6200.namprd12.prod.outlook.com (2603:10b6:208:3c3::18)
+ bh=0bdl18CHd8BqbOUpsIUyvv6+7j8M8XrYcTNqQQFqHHA=;
+ b=upW4Uh9D8d8G8Q2gIRoj8wMRrrCiWOJwyBzKZxWrfwMf/NqCXpG0rqJSNeNLc7hzR8NwN57qGiQV9gs9Ovvll5Xy0qwg3cTOHZlukbq45ttNbDQd3By/qtSi98kFfBpB/UrHXgQfsrjt+8eN2Bz8rgwnqyohFjqKnRu0Vq/orLE=
+Received: from BN9PR03CA0939.namprd03.prod.outlook.com (2603:10b6:408:108::14)
+ by PH7PR12MB7988.namprd12.prod.outlook.com (2603:10b6:510:26a::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.10; Tue, 14 Oct
- 2025 19:16:21 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9269:317f:e85:cf81]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9269:317f:e85:cf81%6]) with mapi id 15.20.9228.005; Tue, 14 Oct 2025
- 19:16:21 +0000
-Content-Type: multipart/alternative;
- boundary="------------OAXt9sqKp8EPmzH02TN00O6e"
-Message-ID: <df3db4b0-7dbb-4800-80b5-5e09ddb9f73d@amd.com>
-Date: Tue, 14 Oct 2025 15:16:19 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Fix vram_usage underflow
-To: "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>,
- "Liu, Alysa" <Alysa.Liu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20251014134317.5081-1-Alysa.Liu@amd.com>
- <CY8PR12MB70997A8CD69749C0FCB2CACA8CEBA@CY8PR12MB7099.namprd12.prod.outlook.com>
-Content-Language: en-US
-From: Felix Kuehling <felix.kuehling@amd.com>
-Organization: AMD Inc.
-In-Reply-To: <CY8PR12MB70997A8CD69749C0FCB2CACA8CEBA@CY8PR12MB7099.namprd12.prod.outlook.com>
-X-ClientProxiedBy: YQBPR01CA0038.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:2::10) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.13; Tue, 14 Oct
+ 2025 19:30:54 +0000
+Received: from MN1PEPF0000F0E0.namprd04.prod.outlook.com
+ (2603:10b6:408:108:cafe::c0) by BN9PR03CA0939.outlook.office365.com
+ (2603:10b6:408:108::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9160.14 via Frontend Transport; Tue,
+ 14 Oct 2025 19:30:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF0000F0E0.mail.protection.outlook.com (10.167.242.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9228.7 via Frontend Transport; Tue, 14 Oct 2025 19:30:53 +0000
+Received: from dogwood-dvt-marlim.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 14 Oct 2025 12:30:51 -0700
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <mario.limonciello@amd.com>, <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>
+Subject: [PATCH v2 1/2] drm/amd: Add a helper to tell whether an IP block HW
+ is enabled
+Date: Tue, 14 Oct 2025 14:30:35 -0500
+Message-ID: <20251014193036.595453-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|MN0PR12MB6200:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc1e6bc9-d63b-4467-2235-08de0b5628b5
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E0:EE_|PH7PR12MB7988:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49850f81-c2ba-4259-145a-08de0b5830b4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|7053199007|8096899003; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?My9MMksrZGxwNGVQb3NKZEc0eFp5Z3BIczJmVkQ5ODhMbVRZcmxuR0pnbmFj?=
- =?utf-8?B?N3VSTGZhMDUxejQxRVZNQnhtdHdyc3piL1ovS21pR0w3eUFYNERNYWlGdkJr?=
- =?utf-8?B?djhmdWhMU253ZGluVTEyblhkcW1hNThyZFVLSUE2bDZqUXh1eW4rNEwxcDQy?=
- =?utf-8?B?OGpaa3RqVDhoem4yR2k4ajd6WkllNGUwZkhiZFlQamNyOGNobDdSMVE1aEJk?=
- =?utf-8?B?QUh3eDAyWkJaZ29tTXRWdXJVdExtYllGZldaQUZoWkM1VkVybk8zT0g5YzYw?=
- =?utf-8?B?THJPd1lMMVFCc3Z2ZENVU0VmcWFONGU2UGptbVB6U0ZzcHlWemNWd0txcmJS?=
- =?utf-8?B?UjJMZm11R0F0WVJBSVlpcE1jVm16T2U1V205M0xpUFFEOTl2T0h5S0I0SXFw?=
- =?utf-8?B?aW5ibzZKZ0ZnUVJ3MVpmSzA1c1YwV0c3b2MrZW4wUjdSbWJpMm0vcWVKYkhw?=
- =?utf-8?B?eXBGRVJhdWJTV1VWR3ZRSU5Sc25ZYVp5dW9ocWNtZ2RSSVQ3SElaUHZpSlVn?=
- =?utf-8?B?L1lQbHpZZTVhUnhFVGNTdVdiSjNpRVAxQ1duN2VtZVRPaTlqN2pHZUowVUxB?=
- =?utf-8?B?OElZelI1UThJYXZxVTdkN1R3TW9NZ3RpUVcyZHZ1aEd2U1NCZEhsRCtIcjFC?=
- =?utf-8?B?Zzl0N200OXF0M0tTcldpRHRER1NXZGM2SlV1SnRNSklHMXduVjVqOTcvWW1h?=
- =?utf-8?B?ZTFYa2JQK0RNNlNBZ1Z0OSsxUFdsWUlSUE0yQVVFL0pWSitvM1BZTHNRWWo3?=
- =?utf-8?B?ZC9XYmsrQUo4cmFoTDQxUGNBc2poNkh0WDhJMUlSZEtXN1RMUnVEYlNzeGVw?=
- =?utf-8?B?SkFqTWl0MXlaVTBFZFozQ2h2cDV3SC9uSHdZTU10SGI4dVRRdnBjZG9mNHdT?=
- =?utf-8?B?Z2pFOGp5YjZiRVlUMGZhbTcwclpDbFpGcGRYcUhBMERHbHRoS1VnWm9UNWNo?=
- =?utf-8?B?VlVQcEE0ckdsRVdaamJ1aGRaTWdZejZVVHd4SmpnVUdTUEg1Y3greWZ5ZjRJ?=
- =?utf-8?B?UTBNZVR3Risxa2Q0bThHalNsZ1czcUxqNFRIQi82ZWkyeHFTN3dhMnlqTXE4?=
- =?utf-8?B?RTNUSVpJZi9tMkR6TVcyMnRwbW5GeGI1ZTExOWV4Qlp0QmFNcEZkdFdBbkh4?=
- =?utf-8?B?ZSt2YWpWUmJNTE5OVTJkekhUUFRtczhGbXVWTWhzQmMwdTNXeFZpTmYzWG9O?=
- =?utf-8?B?SGFPS2RRTGRiekRPTHZ0Tmp3QitPKzFsdWtHNGNEcHRHSG1BTlBoakZURktU?=
- =?utf-8?B?L2pLcXVhY0c3eUlJYlJSb0o4VFoxc1hGam5SeVJwTXdSRGJXTG5iVk5uRmdK?=
- =?utf-8?B?eFJxcWQxVXVLVnArWWMzVGZSc2piR1IxaVR5cWhQY2RJeThzNWFnSFF1STF0?=
- =?utf-8?B?ZEdNaGFDaDQzdG1zOXQ2MnRLdkh2Uy82THhkNXNuMHdpMFpSUVBweXBFeHYw?=
- =?utf-8?B?TlJnMnlKb012UzVOVmRXTFNlL25RU0ZubzV0UnlNK2RHYlNEekZ3R01XOXVX?=
- =?utf-8?B?NG56Vm9oRCtwbzRONHp5ckowOEZjM1dCeDdkQllQbmg0ODh5S0tVeDlhNVFK?=
- =?utf-8?B?c1paTGFueFBCSzhGNERRb3FMRkJZOHgzd2lwTVJRSCtMd0V0aytHdDhmMkx0?=
- =?utf-8?B?cTlLUlVBbWk0OUJlaXNmNDZQWENIeGdGaGk5emRZVlVzMTByYkJtYkkwNjZM?=
- =?utf-8?B?dGNkY3pHc09wUitrZWhXaHdNRk81dTd4V3VzWG10RVljWUVZdndXcGxNcmR1?=
- =?utf-8?B?ekYwR2ZoWktxejVwU2hwM1VwTnA2alZSMmI3cEdNSit4dmplK0pjOVNWU055?=
- =?utf-8?B?Y3pudEJEZ1lxMVBuUjg2cFJxcXd5VDVxY2NBRmFCSmRORWZMUTFodlJnRW5D?=
- =?utf-8?B?WWZuVW1LcEo2ZXptdy9NTHdNWWFXTG5jY0hvMHNPTXEyNWhTbktPb29lMzdZ?=
- =?utf-8?Q?eHIYvbxp+9hZIieprKhvh9xZ1yfvlZSW?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7053199007)(8096899003); DIR:OUT;
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?VGVzha3wsmcvJIikGrJlT4F33pp2lzqUwhB+LGB0LyGR5TihKIf2nOC8euRy?=
+ =?us-ascii?Q?a5S3WSokbUZv7BKlK0CCT7D00MuciP9Uv/hfiePU085JhcxomdEGGCb1zFNE?=
+ =?us-ascii?Q?p0AzZjYc545/S0upl3s/uWHBELnn2nvHKbjyNZHPx/0KAeK0q4HovpY8+Sym?=
+ =?us-ascii?Q?ed7W8ZLKYOWCDglXnaW/8/rwp/RCOKXB3mKfQWp/G+L7Cdo5khYh9NU/6b56?=
+ =?us-ascii?Q?FUiPE69pVQ+Hja5gT5rCs+35g1w7V1Bp3FoyY374QcWnVDUKI+ZvGaJKAql1?=
+ =?us-ascii?Q?tYXNypBf7P+CIQf8AR9iNxc3pSarY1x/eh6bSw2Tk7wnAed/qvsnRgxnWAgi?=
+ =?us-ascii?Q?j9//FPiX6ifKpg2PQiMI3omnqhYWpYZqx3xdJ6lhYK7se4UkK6pljTOpwe5J?=
+ =?us-ascii?Q?D+uWPiWin6ndPahGjIdiMTta2xhQkyxzRdkxZasDcQCXYZcvpRL0WzLfxA5+?=
+ =?us-ascii?Q?oFQ/SJjtjJ+LJBIz8SkPdPfIFTaw8ccjzRVH8a3BtJqamLWRSj4JAPtItnm2?=
+ =?us-ascii?Q?mKn17vp+Al84AegqswHWEL0QQHljCsTue7fSZkCezD+HOGUHE8zdIVCB98Ho?=
+ =?us-ascii?Q?F9bdRJwWJzf52NsZOfwyH+nSGu2EL1EvJJ5ray1vWA8R4v0ltl4uOoSX5K4b?=
+ =?us-ascii?Q?B1TowZy7KknrUmt2xYIH2JfDW1T4iqBt7Jz6Q3f6+nU/rKNYJtAmu1ShadJv?=
+ =?us-ascii?Q?5y084NkyXat9CmZKGGtU3n29QeOM+XLd/702NinJqiMeLSbdcbQdS9lh+5s3?=
+ =?us-ascii?Q?IPD2P4hI58Ip1uyO51p8eVMsrCC33f7IfKnA5DOP9hv5B5dzaxxF6WyLGkSD?=
+ =?us-ascii?Q?VOuHVFWi2+ENY5WXvRdRVfBJyo8p48So39xmjH7oLkjyu80DmfGK9Y8G+o6q?=
+ =?us-ascii?Q?Bg3+4BweZmMzNHv50Cun9C/4gCb/nI+4cYuMMqnMjV71CnmFFJYCsJq4DUpP?=
+ =?us-ascii?Q?AMlrv1EWvJg+jW6hN9uFG0+KUWen3FvlteFHUJO7i9r+1UnjvzBC1WDHe24Z?=
+ =?us-ascii?Q?Ft30SENHTLNOs0D68N6+phVPhb3IP62J3ThJv/Un3HI4YzK7vl3LkTl97R//?=
+ =?us-ascii?Q?7Zaczbfl7Fk5Savn/DvkeAX2BikNif9x6fwQP1HjsEkwlziBq8v8ojmjTp+0?=
+ =?us-ascii?Q?xq9Q3tflf/9qMlG3518MTWXYrsL0ZsImxpBIzA3tUJEQwSiOtkF8JKPxzvpp?=
+ =?us-ascii?Q?wAHvm9vcbfacd7rhfzwff0TjitkuETySj3BxQobxqhjrt/s3WlznDYiUT7CI?=
+ =?us-ascii?Q?FJKVgrEA7aOgW15cJl2qh/GYB3vlHnMeyHTRGsmpwHjzM5Uqm+vpkaTLlS5I?=
+ =?us-ascii?Q?6t34b7Bdq9jEJyra6JPg99/3rs9VU6BPy30nnksbWD1yU70a0wKlXXjZLt8Y?=
+ =?us-ascii?Q?UobdBY/Sy0Ci2+U3PEH0o+Ci9fKBTJ5wMr5VOxHxm8+NkZxwCyRMY+a0XQum?=
+ =?us-ascii?Q?yHVmnakckjK8+AK3UXoJwYpatFnMdEEVyXustUyG9QBYZOuj/8hyFtob0+Kq?=
+ =?us-ascii?Q?CDeB0VUEeSVkx0QqI+tzLY6J7uOUDz+l0BFhEI9Avp+8I8gFg7E0GKCvGjyT?=
+ =?us-ascii?Q?3ZIhoNHnkUr7A27fdCg=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?LzRaMHh2NmVDTFJMbE8zc1ZIV0xKc2U4WnpEdU5TNTQ4V1lJR0VxaGl3SDR6?=
- =?utf-8?B?M3RmRlllaW1jTWt1Q05ZOVlQemZ6UTJtTnAxVzhXTWcwcTA0MFY5amtOWS8r?=
- =?utf-8?B?R0dXSkhDd01pVk9GczhSaHJFZUdUWi8rUUNmQTMzd0lqUW5PcVpsYUxJdlh0?=
- =?utf-8?B?MlY1Zmd1Rlo3TmtjenJ0L2d2TXFHNWVTT1B0QU50QlAyejhlK3ZpS1B5K3do?=
- =?utf-8?B?aUxoWUplYmFJaWhpMHJ5L1FYVlpBZTM5OFZGeDFmWlNOSVVXazlBUUJ6bmx6?=
- =?utf-8?B?TURXZEQ1V3lzZDY3U0puWEU3UmlVRi85eVRyQWdrNUxRSkJUYzhid296anJs?=
- =?utf-8?B?M0xncWlmTTBBS2xvTS9naTNBRHNvWWtPdWFqSlBWT1JIRTJjN1Y1VFd1Qlhp?=
- =?utf-8?B?T2l1Q1d1bkE1MUxBY21FY3l3OWdnbzVPRGZvSnd3NVQwaTR3TVdlYm5YbHBk?=
- =?utf-8?B?V3BoaFBOUERJMS85dWlZaVNML2FrWENtNG55eXRxbDhVS3BOeFFTUXZneWc1?=
- =?utf-8?B?dXVXSndmVVRhQ0ZZNjNrUUxvRDdHMCtlOXE2OVVOTkFEMlhsNGFpT2FmUW13?=
- =?utf-8?B?Um1jNHdoTk0xUFFkdG1ubmQxMXhndVdsV3grQ3A5YkhnaGpQR3U5dkZaci8v?=
- =?utf-8?B?UmNFbGUydmYxdzZmSzhJb29BSTlDaVhJd2hETDM4VFRqTHJ6czlIVEVmc1ZI?=
- =?utf-8?B?YzlLNmFibHpxRkVYK282eGNjaHlJWlV6em9HcU5tSWY3S2RoMDNmSWZ1NFEz?=
- =?utf-8?B?bVBMUWNxTVVFT3lhRm8xSXJGeFJtZmE0b3M3V3dWN3FTNDU0MXlBNHJmV211?=
- =?utf-8?B?S1crVm53YnhEMk9PWFo0UUZYVDgzQmtvY3hrU1gxRHp6TGVHZHQ1ZXBzYTls?=
- =?utf-8?B?S1ZGRG5LU1UybFIraElEYlFPYmk1TjY4c29sZFBESjhESnVlYWZzVXRSRW9z?=
- =?utf-8?B?YXg1NzlaNy83azR5Vm45N3JRbUxic0grNXdqSjRibFVQeEV0cWVXazBxdXdZ?=
- =?utf-8?B?eTAyVFduaWduaFNVa1cxalI5WnhwNWhIRUJBWkdkUStkRVhwd215ZnhQNVVK?=
- =?utf-8?B?Z1BXUWFsa0VxdWJ4OThDWUEzazFBbWJXckd5blFwUzNudThPeVdEWXBFVUxW?=
- =?utf-8?B?L3MyenUrbGNhWDloNzRUV1dmS1dsVXlQM1A3M24vUWh0ZSt1eWNxczVxbFRZ?=
- =?utf-8?B?cWdYeTdkdzVHRlZ2MG1hWTJpbnM4ZlkwNXNYQjRqSERHRFQwdGxBaW5Wc2ZH?=
- =?utf-8?B?VEtEZUdCV3puY3o5U21LYTc3aUpwK0xJeFN6ZTB4VEFSQXFwS043SldNeFI1?=
- =?utf-8?B?ZmU2S20vZ0d3eG82WEd2eWQrNVBPMEhWUHIyQjl4Ujh0NTZVS2E3OWo0cVNK?=
- =?utf-8?B?aWtzK3U5S0NxZlRzbzlsSjVZV2JTZlpGUW0zRDlhVTh2ZmUxbjE2MXJiSjBI?=
- =?utf-8?B?VG12d3V5ckhONG9ESjdoZG8xWG4yVWRKTUdDVDl0STBiT1VKOWtsRWFtSXp2?=
- =?utf-8?B?d0JFem94VjNjZUJqb1lIT2IrQXJNUlI5dnRibFdpTkhWS3FCRjhPM29vZ2tI?=
- =?utf-8?B?WllYNzVLa0RWQi9mQWkycjYzeDVYRFY1b3RBZElPd0ptZEc1dGpSRTduTnE5?=
- =?utf-8?B?YmNxWGVqTmNGUmVqTzBGZ3VWTlpRRHIyN0NGY0ZDQTdYdkNXeEVGbXFCOEdB?=
- =?utf-8?B?Y3hmbVJYUFJmbnJSQXNDRlAwa0xFOEtwNG1IcFBna2R2QUl5WXBsbjJ2ZzZM?=
- =?utf-8?B?c3RybDFLdldkb0dlVW1QeVNvbjJBNFVNcXNyV3VteXM2QkhneGlHRXBERGVP?=
- =?utf-8?B?c2EvMStHd0tPbm5UTElrMm9FU2Q0aWx1L1pOZnYyeGdRZ3I0a1h3blVCdG1p?=
- =?utf-8?B?bXpZRVp0S3hTN2tXaUVFMGFPNndVTmZISzA0cmtRaHZGbkJ3Slgzc2hzTkU3?=
- =?utf-8?B?Z1lzTTlyTTJ1MDJlWWg2UytodTNlWWpDOS9sbkV0djZ4cE03M2RJRjg0VER1?=
- =?utf-8?B?Tkl6dFlmOEdXTFdacnNqbjZoKzdZcHNoeVQvV2JtQy9zUWU1dENEdE1YbTB5?=
- =?utf-8?B?UHZJckhueHg2SVB1RU1MSGMvdWV2bmpxY01SUDVNZXBWM0hlUHg4YlozcVJh?=
- =?utf-8?Q?qMmXeaKAuA0tNk2mYkANWY3Gh?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc1e6bc9-d63b-4467-2235-08de0b5628b5
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2025 19:16:21.3628 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2025 19:30:53.4897 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49850f81-c2ba-4259-145a-08de0b5830b4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QwWtMbhPr6o2FmOJYW/ZoWVioQB6/+FK4tJOWnNhGa0dYCLFtHMw17q9dH4MUFYErW38Xl4mzS3ayBZtxQd1jA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6200
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E0.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7988
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,154 +132,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---------------OAXt9sqKp8EPmzH02TN00O6e
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+There is already a helper for telling if a block is valid, but if
+IP handling wants to check if it's HW is enabled no such helper
+exists.
 
-On 2025-10-14 13:52, Kasiviswanathan, Harish wrote:
-> [Public]
->
-> Reviewed-by: Harish Kasiviswanathan<Harish.Kasiviswanathan@amd.com>
-
-This patch seems to effectively revert your earlier patch
-
-commit f915f3af9984464c308787102990d85d4e988d2c
-Author: Harish Kasiviswanathan<Harish.Kasiviswanathan@amd.com>
-Date:   Fri Apr 28 14:20:00 2023 -0400
-
-     drm/amdgpu: For GFX 9.4.3 APU fix vram_usage value
-     
-     For GFX 9.4.3 APP APU VRAM is allocated in GTT domain. While freeing
-     memory check for GTT domain instead of VRAM if it is APP APU
-     
-     Signed-off-by: Harish Kasiviswanathan<Harish.Kasiviswanathan@amd.com>
-     Reviewed-by: Felix Kuehling<Felix.Kuehling@amd.com>
-     Signed-off-by: Alex Deucher<alexander.deucher@amd.com>
-
-Are you sure that's the right thing to do? Are the original reasons for 
-your patch no longer valid?
-
-Regards,
-   Felix
-
-
->
->
-> -----Original Message-----
-> From: Liu, Alysa<Alysa.Liu@amd.com>
-> Sent: Tuesday, October 14, 2025 9:43 AM
-> To:amd-gfx@lists.freedesktop.org
-> Cc: Kasiviswanathan, Harish<Harish.Kasiviswanathan@amd.com>; Liu, Alysa<Alysa.Liu@amd.com>
-> Subject: [PATCH] drm/amdgpu: Fix vram_usage underflow
->
-> From: Alysa Liu<Alysa.Liu@amd.com>
->
-> vram_usage was subtracting non-vram memory size,
-> which caused it to become negative.
->
-> Signed-off-by: Alysa Liu<Alysa.Liu@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 4 +---
->   1 file changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> index 22c1bdc53d2e..c2fa330ff78b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> @@ -1961,9 +1961,7 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
->           */
->          if (size) {
->                  if (!is_imported &&
-> -                  (mem->bo->preferred_domains == AMDGPU_GEM_DOMAIN_VRAM ||
-> -                  (adev->apu_prefer_gtt &&
-> -                   mem->bo->preferred_domains == AMDGPU_GEM_DOMAIN_GTT)))
-> +                  mem->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM)
->                          *size = bo_size;
->                  else
->                          *size = 0;
-> --
-> 2.34.1
->
---------------OAXt9sqKp8EPmzH02TN00O6e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 2025-10-14 13:52, Kasiviswanathan,
-      Harish wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:CY8PR12MB70997A8CD69749C0FCB2CACA8CEBA@CY8PR12MB7099.namprd12.prod.outlook.com">
-      <pre wrap="" class="moz-quote-pre">[Public]
-
-Reviewed-by: Harish Kasiviswanathan <a class="moz-txt-link-rfc2396E" href="mailto:Harish.Kasiviswanathan@amd.com">&lt;Harish.Kasiviswanathan@amd.com&gt;</a></pre>
-    </blockquote>
-    <p>This patch seems to effectively revert your earlier patch <br>
-    </p>
-    <pre>commit f915f3af9984464c308787102990d85d4e988d2c
-Author: Harish Kasiviswanathan <a class="moz-txt-link-rfc2396E" href="mailto:Harish.Kasiviswanathan@amd.com">&lt;Harish.Kasiviswanathan@amd.com&gt;</a>
-Date:   Fri Apr 28 14:20:00 2023 -0400
-
-    drm/amdgpu: For GFX 9.4.3 APU fix vram_usage value
-    
-    For GFX 9.4.3 APP APU VRAM is allocated in GTT domain. While freeing
-    memory check for GTT domain instead of VRAM if it is APP APU
-    
-    Signed-off-by: Harish Kasiviswanathan <a class="moz-txt-link-rfc2396E" href="mailto:Harish.Kasiviswanathan@amd.com">&lt;Harish.Kasiviswanathan@amd.com&gt;</a>
-    Reviewed-by: Felix Kuehling <a class="moz-txt-link-rfc2396E" href="mailto:Felix.Kuehling@amd.com">&lt;Felix.Kuehling@amd.com&gt;</a>
-    Signed-off-by: Alex Deucher <a class="moz-txt-link-rfc2396E" href="mailto:alexander.deucher@amd.com">&lt;alexander.deucher@amd.com&gt;</a>
-</pre>
-    <p>Are you sure that's the right thing to do? Are the original
-      reasons for your patch no longer valid?</p>
-    <p>Regards,<br>
-      &nbsp; Felix<br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite" cite="mid:CY8PR12MB70997A8CD69749C0FCB2CACA8CEBA@CY8PR12MB7099.namprd12.prod.outlook.com">
-      <pre wrap="" class="moz-quote-pre">
-
-
------Original Message-----
-From: Liu, Alysa <a class="moz-txt-link-rfc2396E" href="mailto:Alysa.Liu@amd.com">&lt;Alysa.Liu@amd.com&gt;</a>
-Sent: Tuesday, October 14, 2025 9:43 AM
-To: <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
-Cc: Kasiviswanathan, Harish <a class="moz-txt-link-rfc2396E" href="mailto:Harish.Kasiviswanathan@amd.com">&lt;Harish.Kasiviswanathan@amd.com&gt;</a>; Liu, Alysa <a class="moz-txt-link-rfc2396E" href="mailto:Alysa.Liu@amd.com">&lt;Alysa.Liu@amd.com&gt;</a>
-Subject: [PATCH] drm/amdgpu: Fix vram_usage underflow
-
-From: Alysa Liu <a class="moz-txt-link-rfc2396E" href="mailto:Alysa.Liu@amd.com">&lt;Alysa.Liu@amd.com&gt;</a>
-
-vram_usage was subtracting non-vram memory size,
-which caused it to become negative.
-
-Signed-off-by: Alysa Liu <a class="moz-txt-link-rfc2396E" href="mailto:Alysa.Liu@amd.com">&lt;Alysa.Liu@amd.com&gt;</a>
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Cc: Harry Wentland <harry.wentland@amd.com>
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 23 +++++++++++++++++++++-
+ 2 files changed, 24 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index 22c1bdc53d2e..c2fa330ff78b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -1961,9 +1961,7 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
-         */
-        if (size) {
-                if (!is_imported &amp;&amp;
--                  (mem-&gt;bo-&gt;preferred_domains == AMDGPU_GEM_DOMAIN_VRAM ||
--                  (adev-&gt;apu_prefer_gtt &amp;&amp;
--                   mem-&gt;bo-&gt;preferred_domains == AMDGPU_GEM_DOMAIN_GTT)))
-+                  mem-&gt;alloc_flags &amp; KFD_IOC_ALLOC_MEM_FLAGS_VRAM)
-                        *size = bo_size;
-                else
-                        *size = 0;
---
-2.34.1
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index d8bb339d4ebd..17b3f00af756 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -372,6 +372,8 @@ void amdgpu_device_ip_get_clockgating_state(struct amdgpu_device *adev,
+ 					    u64 *flags);
+ int amdgpu_device_ip_wait_for_idle(struct amdgpu_device *adev,
+ 				   enum amd_ip_block_type block_type);
++bool amdgpu_device_ip_is_hw(struct amdgpu_device *adev,
++			    enum amd_ip_block_type block_type);
+ bool amdgpu_device_ip_is_valid(struct amdgpu_device *adev,
+ 			      enum amd_ip_block_type block_type);
+ int amdgpu_ip_block_suspend(struct amdgpu_ip_block *ip_block);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index c7c999ae2a28..a431ddeb540a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2387,7 +2387,7 @@ int amdgpu_device_ip_wait_for_idle(struct amdgpu_device *adev,
+ }
+ 
+ /**
+- * amdgpu_device_ip_is_valid - is the hardware IP enabled
++ * amdgpu_device_ip_is_hw - is the hardware IP enabled
+  *
+  * @adev: amdgpu_device pointer
+  * @block_type: Type of hardware IP (SMU, GFX, UVD, etc.)
+@@ -2395,6 +2395,27 @@ int amdgpu_device_ip_wait_for_idle(struct amdgpu_device *adev,
+  * Check if the hardware IP is enable or not.
+  * Returns true if it the IP is enable, false if not.
+  */
++bool amdgpu_device_ip_is_hw(struct amdgpu_device *adev,
++			    enum amd_ip_block_type block_type)
++{
++	int i;
++
++	for (i = 0; i < adev->num_ip_blocks; i++) {
++		if (adev->ip_blocks[i].version->type == block_type)
++			return adev->ip_blocks[i].status.hw;
++	}
++	return false;
++}
++
++/**
++ * amdgpu_device_ip_is_valid - is the hardware IP valid
++ *
++ * @adev: amdgpu_device pointer
++ * @block_type: Type of hardware IP (SMU, GFX, UVD, etc.)
++ *
++ * Check if the hardware IP is valid or not.
++ * Returns true if it the IP is valid, false if not.
++ */
+ bool amdgpu_device_ip_is_valid(struct amdgpu_device *adev,
+ 			       enum amd_ip_block_type block_type)
+ {
+-- 
+2.49.0
 
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------OAXt9sqKp8EPmzH02TN00O6e--
