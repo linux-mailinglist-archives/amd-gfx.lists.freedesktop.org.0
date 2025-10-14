@@ -2,59 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB6CEBD95DE
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Oct 2025 14:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E245EBD95EA
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Oct 2025 14:36:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7926710E5E5;
-	Tue, 14 Oct 2025 12:36:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAEA210E5E0;
+	Tue, 14 Oct 2025 12:36:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=rong.moe header.i=i@rong.moe header.b="p1SWyS1t";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="mgbwXATM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com
- [136.143.188.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7363210E190;
- Mon, 13 Oct 2025 16:47:55 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1760374071; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=CcSvilBHdOmvFLGUeUyw2QLYn3G0RaJrwCaFRfp6vPZZ938nNva1t/ta87MWRrbO4fqeut2EkrmrrJyuE+++TNc/PN3cO5RcBSf0V6jbmJTkagKq735iYz/zPZnMnWhSJSCXmy3+5U71RFZC7BUD65ns59imFr0kE8BwoHROVHk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1760374071;
- h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=TOda1Z7snsIxBjSh27hmk/EzkMek96gsqlQJrQUA3Xs=; 
- b=ehDNHq7pBuHZIkhUALDvXwG0l5irSAbnnNwqzDyxdQID6wN2eSd7xIuupYwMAq58xmecd/YNKqgP5L/pDfn9L5EPSERe3qYGl8yonbAkeb0XhmLQVdZwEvMw2NGaXSTcR/XqevmVmyehDQbEPXGg+PAo4BdG5gs1pHO5XSookQU=
-ARC-Authentication-Results: i=1; mx.zohomail.com; dkim=pass  header.i=rong.moe;
- spf=pass  smtp.mailfrom=i@rong.moe;
- dmarc=pass header.from=<i@rong.moe>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1760374071; 
- s=zmail; d=rong.moe; i=i@rong.moe;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=TOda1Z7snsIxBjSh27hmk/EzkMek96gsqlQJrQUA3Xs=;
- b=p1SWyS1t745pjsHRmNZ+K8zyrrD+RrFLlUn4nfcl2WdPT7OPlXa5lO5auXA7/NDR
- TxeRxk6H2Yb9weORUekS3xrrgk3uohDRld5sgU0PR7H06kX+GDQNZEWprPG0SBx4uKp
- +Z9WIS8bL+GXHW5+pb9j5XNXbLwnoqdv3TCT0GWc=
-Received: by mx.zohomail.com with SMTPS id 1760374068043429.87704175723024;
- Mon, 13 Oct 2025 09:47:48 -0700 (PDT)
-From: Rong Zhang <i@rong.moe>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: Rong Zhang <i@rong.moe>, Wenjing Liu <wenjing.liu@amd.com>,
- Hamza Mahfooz <hamzamahfooz@linux.microsoft.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Fix NULL deref in debugfs
- odm_combine_segments
-Date: Tue, 14 Oct 2025 00:47:35 +0800
-Message-ID: <20251013164742.24660-1-i@rong.moe>
-X-Mailer: git-send-email 2.51.0
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B427010E543;
+ Tue, 14 Oct 2025 06:40:45 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cm4NV4RDDz9stw;
+ Tue, 14 Oct 2025 08:40:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1760424042; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ao1QYnXl0afaQE4jJtwt+ZNZZQ0pjGw7Wn9YrrZMLeU=;
+ b=mgbwXATMiScfw2R1jTEnEjTXWNUJGBh7cKbsfzXHtobSWECnpPwbPRsOJlFdL+Ov3kIG2M
+ Vo4iV959TlGTxcNSA96J+fkzxJl2+Zw3dK9FHT6vPFdyFw6lDfwm9Mar+mMMMXN+1aklZy
+ TUZEv0MmknieiCWHA9vvUlPKHqU/fMwc4y8W+PLnR4we+kQMQbLzS2s/K0LGggy0nQUrS1
+ QTxeehx27acBF3QEAS1GxGyYoBtPKo6sGlIUNgdH8Z1hKIagFd4KuAwIljxRriyPzJAiqY
+ 2gHLTRgULsewLxx+3aPIh3PcRRO16e8lQyWIEnQArsDqXk1VMnyX7UxWimF/EA==
+Message-ID: <a96ee6f1fd195edfc2e0999ef6a9c212466e4ddc.camel@mailbox.org>
+Subject: Re: [PATCH 04/28] drm/sched: Implement RR via FIFO
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, phasta@kernel.org, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
+ Brost <matthew.brost@intel.com>
+Date: Tue, 14 Oct 2025 08:40:39 +0200
+In-Reply-To: <88775f5a-780a-4030-8750-1461fd22b501@igalia.com>
+References: <20251008085359.52404-1-tvrtko.ursulin@igalia.com>
+ <20251008085359.52404-5-tvrtko.ursulin@igalia.com>
+ <d5dc0f456835f86a6b67791e535f69ae72c7dff0.camel@mailbox.org>
+ <88775f5a-780a-4030-8750-1461fd22b501@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+X-MBO-RS-META: i3fidhb9gb463nta41apapqt8bgf8dwt
+X-MBO-RS-ID: c51949855d8a431754c
 X-Mailman-Approved-At: Tue, 14 Oct 2025 12:36:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,100 +66,370 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When a connector is connected but inactive (e.g., disabled by desktop
-environments), pipe_ctx->stream_res.tg will be destroyed. Then, reading
-odm_combine_segments causes kernel NULL pointer dereference.
+On Sat, 2025-10-11 at 14:30 +0100, Tvrtko Ursulin wrote:
+>=20
+> On 10/10/2025 11:18, Philipp Stanner wrote:
+> > On Wed, 2025-10-08 at 09:53 +0100, Tvrtko Ursulin wrote:
+> > > Round-robin being the non-default policy and unclear how much it is u=
+sed,
+> > > we can notice that it can be implemented using the FIFO data structur=
+es if
+> > > we only invent a fake submit timestamp which is monotonically increas=
+ing
+> > > inside drm_sched_rq instances.
+> > >=20
+> > > So instead of remembering which was the last entity the scheduler wor=
+ker
+> > > picked we can simply bump the picked one to the bottom of the tree, w=
+hich
+> > > ensures round-robin behaviour between all active queued jobs.
+> > >=20
+> > > If the picked job was the last from a given entity, we remember the
+> > > assigned fake timestamp and use it to re-insert the job once it re-jo=
+ins
+> > > the queue. This ensures job neither overtakes all already queued jobs=
+,
+> >=20
+> > s/job/the job
+>=20
+> Done.
+>=20
+> >=20
+> > > neither it goes last. Instead it keeps the position after the current=
+ly
+> > > queued jobs and before the ones which haven't yet been queued at the =
+point
+> > > the entity left the queue.
+> >=20
+> > I think I got how it works. If you want you can phrase it a bit more
+> > direct that the "last_entity" field is only needed for RR.
+>=20
+> I assume you mean rq->current_entity. I chose not to mention that since=
+=20
+> it only got replaced with rq->rr_ts. So I think focusing only on the=20
+> code removal (the next paragraph) is clearer.
 
- BUG: kernel NULL pointer dereference, address: 0000000000000000
- #PF: supervisor read access in kernel mode
- #PF: error_code(0x0000) - not-present page
- PGD 0 P4D 0
- Oops: Oops: 0000 [#1] SMP NOPTI
- CPU: 16 UID: 0 PID: 26474 Comm: cat Not tainted 6.17.0+ #2 PREEMPT(lazy)  e6a17af9ee6db7c63e9d90dbe5b28ccab67520c6
- Hardware name: LENOVO 21Q4/LNVNB161216, BIOS PXCN25WW 03/27/2025
- RIP: 0010:odm_combine_segments_show+0x93/0xf0 [amdgpu]
- Code: 41 83 b8 b0 00 00 00 01 75 6e 48 98 ba a1 ff ff ff 48 c1 e0 0c 48 8d 8c 07 d8 02 00 00 48 85 c9 74 2d 48 8b bc 07 f0 08 00 00 <48> 8b 07 48 8b 80 08 02 00>
- RSP: 0018:ffffd1bf4b953c58 EFLAGS: 00010286
- RAX: 0000000000005000 RBX: ffff8e35976b02d0 RCX: ffff8e3aeed052d8
- RDX: 00000000ffffffa1 RSI: ffff8e35a3120800 RDI: 0000000000000000
- RBP: 0000000000000000 R08: ffff8e3580eb0000 R09: ffff8e35976b02d0
- R10: ffffd1bf4b953c78 R11: 0000000000000000 R12: ffffd1bf4b953d08
- R13: 0000000000040000 R14: 0000000000000001 R15: 0000000000000001
- FS:  00007f44d3f9f740(0000) GS:ffff8e3caa47f000(0000) knlGS:0000000000000000
- CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
- CR2: 0000000000000000 CR3: 00000006485c2000 CR4: 0000000000f50ef0
- PKRU: 55555554
- Call Trace:
-  <TASK>
-  seq_read_iter+0x125/0x490
-  ? __alloc_frozen_pages_noprof+0x18f/0x350
-  seq_read+0x12c/0x170
-  full_proxy_read+0x51/0x80
-  vfs_read+0xbc/0x390
-  ? __handle_mm_fault+0xa46/0xef0
-  ? do_syscall_64+0x71/0x900
-  ksys_read+0x73/0xf0
-  do_syscall_64+0x71/0x900
-  ? count_memcg_events+0xc2/0x190
-  ? handle_mm_fault+0x1d7/0x2d0
-  ? do_user_addr_fault+0x21a/0x690
-  ? exc_page_fault+0x7e/0x1a0
-  entry_SYSCALL_64_after_hwframe+0x6c/0x74
- RIP: 0033:0x7f44d4031687
- Code: 48 89 fa 4c 89 df e8 58 b3 00 00 8b 93 08 03 00 00 59 5e 48 83 f8 fc 74 1a 5b c3 0f 1f 84 00 00 00 00 00 48 8b 44 24 10 0f 05 <5b> c3 0f 1f 80 00 00 00 00>
- RSP: 002b:00007ffdb4b5f0b0 EFLAGS: 00000202 ORIG_RAX: 0000000000000000
- RAX: ffffffffffffffda RBX: 00007f44d3f9f740 RCX: 00007f44d4031687
- RDX: 0000000000040000 RSI: 00007f44d3f5e000 RDI: 0000000000000003
- RBP: 0000000000040000 R08: 0000000000000000 R09: 0000000000000000
- R10: 0000000000000000 R11: 0000000000000202 R12: 00007f44d3f5e000
- R13: 0000000000000003 R14: 0000000000000000 R15: 0000000000040000
-  </TASK>
- Modules linked in: tls tcp_diag inet_diag xt_mark ccm snd_hrtimer snd_seq_dummy snd_seq_midi snd_seq_oss snd_seq_midi_event snd_rawmidi snd_seq snd_seq_device x>
-  snd_hda_codec_atihdmi snd_hda_codec_realtek_lib lenovo_wmi_helpers think_lmi snd_hda_codec_generic snd_hda_codec_hdmi snd_soc_core kvm snd_compress uvcvideo sn>
-  platform_profile joydev amd_pmc mousedev mac_hid sch_fq_codel uinput i2c_dev parport_pc ppdev lp parport nvme_fabrics loop nfnetlink ip_tables x_tables dm_cryp>
- CR2: 0000000000000000
- ---[ end trace 0000000000000000 ]---
- RIP: 0010:odm_combine_segments_show+0x93/0xf0 [amdgpu]
- Code: 41 83 b8 b0 00 00 00 01 75 6e 48 98 ba a1 ff ff ff 48 c1 e0 0c 48 8d 8c 07 d8 02 00 00 48 85 c9 74 2d 48 8b bc 07 f0 08 00 00 <48> 8b 07 48 8b 80 08 02 00>
- RSP: 0018:ffffd1bf4b953c58 EFLAGS: 00010286
- RAX: 0000000000005000 RBX: ffff8e35976b02d0 RCX: ffff8e3aeed052d8
- RDX: 00000000ffffffa1 RSI: ffff8e35a3120800 RDI: 0000000000000000
- RBP: 0000000000000000 R08: ffff8e3580eb0000 R09: ffff8e35976b02d0
- R10: ffffd1bf4b953c78 R11: 0000000000000000 R12: ffffd1bf4b953d08
- R13: 0000000000040000 R14: 0000000000000001 R15: 0000000000000001
- FS:  00007f44d3f9f740(0000) GS:ffff8e3caa47f000(0000) knlGS:0000000000000000
- CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
- CR2: 0000000000000000 CR3: 00000006485c2000 CR4: 0000000000f50ef0
- PKRU: 55555554
+OK, fine by me.
 
-Fix this by checking pipe_ctx->stream_res.tg before dereferencing.
+Thx
+P.
 
-Fixes: 07926ba8a44f ("drm/amd/display: Add debugfs interface for ODM combine info")
-Cc: stable@vger.kernel.org
-Signed-off-by: Rong Zhang <i@rong.moe>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index f263e1a4537e1..00dac862b665a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -1302,7 +1302,8 @@ static int odm_combine_segments_show(struct seq_file *m, void *unused)
- 	if (connector->status != connector_status_connected)
- 		return -ENODEV;
- 
--	if (pipe_ctx != NULL && pipe_ctx->stream_res.tg->funcs->get_odm_combine_segments)
-+	if (pipe_ctx && pipe_ctx->stream_res.tg &&
-+	    pipe_ctx->stream_res.tg->funcs->get_odm_combine_segments)
- 		pipe_ctx->stream_res.tg->funcs->get_odm_combine_segments(pipe_ctx->stream_res.tg, &segments);
- 
- 	seq_printf(m, "%d\n", segments);
-
-base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
--- 
-2.51.0
+> > > Advantage is that we can consolidate to a single code path and remove=
+ a
+> > > bunch of code. Downside is round-robin mode now needs to lock on the =
+job
+> > > pop path but that should not be visible.
+> >=20
+> > s/visible/have a measurable performance impact
+> Done.
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > Cc: Danilo Krummrich <dakr@kernel.org>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Philipp Stanner <phasta@kernel.org>
+> > > ---
+> > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_entity.c | 51 ++++++++++-=
+-----
+> > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0 | 76 +=
++----------------------
+> > > =C2=A0=C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 16 +++--
+> > > =C2=A0=C2=A03 files changed, 51 insertions(+), 92 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/d=
+rm/scheduler/sched_entity.c
+> > > index 5a4697f636f2..4852006f2308 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > @@ -456,9 +456,24 @@ drm_sched_job_dependency(struct drm_sched_job *j=
+ob,
+> > > =C2=A0=C2=A0	return NULL;
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > +static ktime_t
+> > > +drm_sched_rq_get_rr_ts(struct drm_sched_rq *rq, struct drm_sched_ent=
+ity *entity)
+> > > +{
+> > > +	ktime_t ts;
+> > > +
+> > > +	lockdep_assert_held(&entity->lock);
+> > > +	lockdep_assert_held(&rq->lock);
+> > > +
+> > > +	ts =3D ktime_add_ns(rq->rr_ts, 1);
+> > > +	entity->rr_ts =3D ts;
+> > > +	rq->rr_ts =3D ts;
+> >=20
+> > This also updates / set the time stamp. Any idea for a better function
+> > name?
+>=20
+> I renamed it to drm_sched_rq_next_rr_ts() wit the rationale that there=
+=20
+> is more "prior art" for "next" in function names to change some internal=
+=20
+> state.
+>=20
+> > > +
+> > > +	return ts;
+> > > +}
+> > > +
+> > > =C2=A0=C2=A0struct drm_sched_job *drm_sched_entity_pop_job(struct drm=
+_sched_entity *entity)
+> > > =C2=A0=C2=A0{
+> > > -	struct drm_sched_job *sched_job;
+> > > +	struct drm_sched_job *sched_job, *next_job;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	sched_job =3D drm_sched_entity_queue_peek(entity);
+> > > =C2=A0=C2=A0	if (!sched_job)
+> > > @@ -491,21 +506,21 @@ struct drm_sched_job *drm_sched_entity_pop_job(=
+struct drm_sched_entity *entity)
+> > > =C2=A0=C2=A0	 * Update the entity's location in the min heap accordin=
+g to
+> > > =C2=A0=C2=A0	 * the timestamp of the next job, if any.
+> > > =C2=A0=C2=A0	 */
+> > > -	if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO) {
+> > > -		struct drm_sched_job *next;
+> > > +	next_job =3D drm_sched_entity_queue_peek(entity);
+> > > +	if (next_job) {
+> > > +		struct drm_sched_rq *rq;
+> > > +		ktime_t ts;
+> > > =C2=A0=20
+> > > -		next =3D drm_sched_entity_queue_peek(entity);
+> > > -		if (next) {
+> > > -			struct drm_sched_rq *rq;
+> > > -
+> > > -			spin_lock(&entity->lock);
+> > > -			rq =3D entity->rq;
+> > > -			spin_lock(&rq->lock);
+> > > -			drm_sched_rq_update_fifo_locked(entity, rq,
+> > > -							next->submit_ts);
+> > > -			spin_unlock(&rq->lock);
+> > > -			spin_unlock(&entity->lock);
+> > > -		}
+> > > +		spin_lock(&entity->lock);
+> > > +		rq =3D entity->rq;
+> > > +		spin_lock(&rq->lock);
+> > > +		if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
+> > > +			ts =3D next_job->submit_ts;
+> > > +		else
+> > > +			ts =3D drm_sched_rq_get_rr_ts(rq, entity);
+> > > +		drm_sched_rq_update_fifo_locked(entity, rq, ts);
+> > > +		spin_unlock(&rq->lock);
+> > > +		spin_unlock(&entity->lock);
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	/* Jobs and entities might have different lifecycles. Si=
+nce we're
+> > > @@ -612,9 +627,9 @@ void drm_sched_entity_push_job(struct drm_sched_j=
+ob *sched_job)
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0		spin_lock(&rq->lock);
+> > > =C2=A0=C2=A0		drm_sched_rq_add_entity(rq, entity);
+> > > -
+> > > -		if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
+> > > -			drm_sched_rq_update_fifo_locked(entity, rq, submit_ts);
+> > > +		if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_RR)
+> > > +			submit_ts =3D entity->rr_ts;
+> > > +		drm_sched_rq_update_fifo_locked(entity, rq, submit_ts);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0		spin_unlock(&rq->lock);
+> > > =C2=A0=C2=A0		spin_unlock(&entity->lock);
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm=
+/scheduler/sched_main.c
+> > > index 8b8c55b25762..8e62541b439a 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > @@ -185,7 +185,6 @@ static void drm_sched_rq_init(struct drm_sched_rq=
+ *rq,
+> > > =C2=A0=C2=A0	spin_lock_init(&rq->lock);
+> > > =C2=A0=C2=A0	INIT_LIST_HEAD(&rq->entities);
+> > > =C2=A0=C2=A0	rq->rb_tree_root =3D RB_ROOT_CACHED;
+> > > -	rq->current_entity =3D NULL;
+> > > =C2=A0=C2=A0	rq->sched =3D sched;
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > @@ -231,74 +230,13 @@ void drm_sched_rq_remove_entity(struct drm_sche=
+d_rq *rq,
+> > > =C2=A0=C2=A0	atomic_dec(rq->sched->score);
+> > > =C2=A0=C2=A0	list_del_init(&entity->list);
+> > > =C2=A0=20
+> > > -	if (rq->current_entity =3D=3D entity)
+> > > -		rq->current_entity =3D NULL;
+> > > -
+> > > -	if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
+> > > -		drm_sched_rq_remove_fifo_locked(entity, rq);
+> > > +	drm_sched_rq_remove_fifo_locked(entity, rq);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	spin_unlock(&rq->lock);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0/**
+> > > - * drm_sched_rq_select_entity_rr - Select an entity which could prov=
+ide a job to run
+> > > - *
+> > > - * @sched: the gpu scheduler
+> > > - * @rq: scheduler run queue to check.
+> > > - *
+> > > - * Try to find the next ready entity.
+> > > - *
+> > > - * Return an entity if one is found; return an error-pointer (!NULL)=
+ if an
+> > > - * entity was ready, but the scheduler had insufficient credits to a=
+ccommodate
+> > > - * its job; return NULL, if no ready entity was found.
+> > > - */
+> > > -static struct drm_sched_entity *
+> > > -drm_sched_rq_select_entity_rr(struct drm_gpu_scheduler *sched,
+> > > -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_rq *rq)
+> > > -{
+> > > -	struct drm_sched_entity *entity;
+> > > -
+> > > -	spin_lock(&rq->lock);
+> > > -
+> > > -	entity =3D rq->current_entity;
+> > > -	if (entity) {
+> > > -		list_for_each_entry_continue(entity, &rq->entities, list) {
+> > > -			if (drm_sched_entity_is_ready(entity))
+> > > -				goto found;
+> > > -		}
+> > > -	}
+> > > -
+> > > -	list_for_each_entry(entity, &rq->entities, list) {
+> > > -		if (drm_sched_entity_is_ready(entity))
+> > > -			goto found;
+> > > -
+> > > -		if (entity =3D=3D rq->current_entity)
+> > > -			break;
+> > > -	}
+> > > -
+> > > -	spin_unlock(&rq->lock);
+> > > -
+> > > -	return NULL;
+> > > -
+> > > -found:
+> > > -	if (!drm_sched_can_queue(sched, entity)) {
+> > > -		/*
+> > > -		 * If scheduler cannot take more jobs signal the caller to not
+> > > -		 * consider lower priority queues.
+> > > -		 */
+> > > -		entity =3D ERR_PTR(-ENOSPC);
+> > > -	} else {
+> > > -		rq->current_entity =3D entity;
+> > > -		reinit_completion(&entity->entity_idle);
+> > > -	}
+> > > -
+> > > -	spin_unlock(&rq->lock);
+> > > -
+> > > -	return entity;
+> > > -}
+> > > -
+> > > -/**
+> > > - * drm_sched_rq_select_entity_fifo - Select an entity which provides=
+ a job to run
+> > > + * drm_sched_rq_select_entity - Select an entity which provides a jo=
+b to run
+> > > =C2=A0=C2=A0 *
+> > > =C2=A0=C2=A0 * @sched: the gpu scheduler
+> > > =C2=A0=C2=A0 * @rq: scheduler run queue to check.
+> > > @@ -310,8 +248,8 @@ drm_sched_rq_select_entity_rr(struct drm_gpu_sche=
+duler *sched,
+> > > =C2=A0=C2=A0 * its job; return NULL, if no ready entity was found.
+> > > =C2=A0=C2=A0 */
+> > > =C2=A0=C2=A0static struct drm_sched_entity *
+> > > -drm_sched_rq_select_entity_fifo(struct drm_gpu_scheduler *sched,
+> > > -				struct drm_sched_rq *rq)
+> > > +drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
+> > > +			=C2=A0=C2=A0 struct drm_sched_rq *rq)
+> > > =C2=A0=C2=A0{
+> > > =C2=A0=C2=A0	struct rb_node *rb;
+> > > =C2=A0=20
+> > > @@ -1093,15 +1031,13 @@ void drm_sched_wakeup(struct drm_gpu_schedule=
+r *sched)
+> > > =C2=A0=C2=A0static struct drm_sched_entity *
+> > > =C2=A0=C2=A0drm_sched_select_entity(struct drm_gpu_scheduler *sched)
+> > > =C2=A0=C2=A0{
+> > > -	struct drm_sched_entity *entity;
+> > > +	struct drm_sched_entity *entity =3D NULL;
+> > > =C2=A0=C2=A0	int i;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	/* Start with the highest priority.
+> > > =C2=A0=C2=A0	 */
+> > > =C2=A0=C2=A0	for (i =3D DRM_SCHED_PRIORITY_KERNEL; i < sched->num_rqs=
+; i++) {
+> > > -		entity =3D drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO ?
+> > > -			drm_sched_rq_select_entity_fifo(sched, sched->sched_rq[i]) :
+> > > -			drm_sched_rq_select_entity_rr(sched, sched->sched_rq[i]);
+> > > +		entity =3D drm_sched_rq_select_entity(sched, sched->sched_rq[i]);
+> > > =C2=A0=C2=A0		if (entity)
+> > > =C2=A0=C2=A0			break;
+> > > =C2=A0=C2=A0	}
+> > > diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.=
+h
+> > > index fb88301b3c45..8992393ed200 100644
+> > > --- a/include/drm/gpu_scheduler.h
+> > > +++ b/include/drm/gpu_scheduler.h
+> > > @@ -94,7 +94,8 @@ struct drm_sched_entity {
+> > > =C2=A0=C2=A0	 * @lock:
+> > > =C2=A0=C2=A0	 *
+> > > =C2=A0=C2=A0	 * Lock protecting the run-queue (@rq) to which this ent=
+ity belongs,
+> > > -	 * @priority and the list of schedulers (@sched_list, @num_sched_li=
+st).
+> > > +	 * @priority, the list of schedulers (@sched_list, @num_sched_list)=
+ and
+> > > +	 * the @rr_ts field.
+> > > =C2=A0=C2=A0	 */
+> > > =C2=A0=C2=A0	spinlock_t			lock;
+> > > =C2=A0=20
+> > > @@ -142,6 +143,13 @@ struct drm_sched_entity {
+> > > =C2=A0=C2=A0	 */
+> > > =C2=A0=C2=A0	enum drm_sched_priority=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 priority;
+> > > =C2=A0=20
+> > > +	/**
+> > > +	 * @rr_ts:
+> > > +	 *
+> > > +	 * Fake timestamp of the last popped job from the entity.
+> > > +	 */
+> > > +	ktime_t				rr_ts;
+> > > +
+> > > =C2=A0=C2=A0	/**
+> > > =C2=A0=C2=A0	 * @job_queue: the list of jobs of this entity.
+> > > =C2=A0=C2=A0	 */
+> > > @@ -239,8 +247,8 @@ struct drm_sched_entity {
+> > > =C2=A0=C2=A0 * struct drm_sched_rq - queue of entities to be schedule=
+d.
+> > > =C2=A0=C2=A0 *
+> > > =C2=A0=C2=A0 * @sched: the scheduler to which this rq belongs to.
+> > > - * @lock: protects @entities, @rb_tree_root and @current_entity.
+> > > - * @current_entity: the entity which is to be scheduled.
+> > > + * @lock: protects @entities, @rb_tree_root and @rr_ts.
+> > > + * @rr_ts: monotonically incrementing fake timestamp for RR mode
+> >=20
+> > nit: add a full stop '.', as most other docu lines have one
+>=20
+> Done.
+>=20
+> Regards,
+>=20
+> Tvrtko
+> > > =C2=A0=C2=A0 * @entities: list of the entities to be scheduled.
+> > > =C2=A0=C2=A0 * @rb_tree_root: root of time based priority queue of en=
+tities for FIFO scheduling
+> > > =C2=A0=C2=A0 *
+> > > @@ -253,7 +261,7 @@ struct drm_sched_rq {
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	spinlock_t			lock;
+> > > =C2=A0=C2=A0	/* Following members are protected by the @lock: */
+> > > -	struct drm_sched_entity		*current_entity;
+> > > +	ktime_t				rr_ts;
+> > > =C2=A0=C2=A0	struct list_head		entities;
+> > > =C2=A0=C2=A0	struct rb_root_cached		rb_tree_root;
+> > > =C2=A0=C2=A0};
+> >=20
+>=20
 
