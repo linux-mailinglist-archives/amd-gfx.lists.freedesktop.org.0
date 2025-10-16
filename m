@@ -2,151 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5EDABE1C80
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Oct 2025 08:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E86BE1DC5
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Oct 2025 09:06:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 089F110E964;
-	Thu, 16 Oct 2025 06:41:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="U/jg9ZUV";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D05DB10E976;
+	Thu, 16 Oct 2025 07:06:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011001.outbound.protection.outlook.com [52.101.62.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 268B010E963
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Oct 2025 06:41:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cJOFSbYnpV8eGJAdmlU0R1IRVmRdO279pmO2RDAWrHwhWbMGfe0c0qib575Y65ACi4oBQZghWyTw4n9B19iVPesY3wz2Hgy2LQy+8ZgKQBl9IDPdCL9l5pRZ/xAItJjIOaPSATdveelJeML4/5jwqWJrTSUWdvri1blfHi1Q4QOW2Tya9MxH/MDBTq+W8I3duYWhfUWcAj+bk9ylXIZjxU/ouo1V7NoKwvd+VGZpIQ4CkJ7hJFm3a4gVjoGZVjCr/WfiqrvSOVW0m+9VlfOnmkpdHggJH4TmsvslfoRRwnPPH7mcF7qsnFtGdrEc/EfcL8u1nR37LYTpZae57faJFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/ygtv2kVKzmifZazoBQMxpMelsoN9iT9fF1fMH4kt0o=;
- b=Ph+XrKBGb/H9lq1ZU1vtavOJzxzJsv6BUVVH9Yjw6Vu4UxUcH3CQW5kBMZseEHV7rMomNaN6IXXXxfqqev51xnLaeCUEkGCKvcl4TJFBlPClJ50X1POTT5TEvP/PhE7VJXzRtD0XtSoCY/IUlHZ+1cGI2rg3nQLezNBe1tqZoJxN6bndfp2bQ/WbPU1KcnWpbXf/pIUjAI3T/LTt2ec52of52NUyd1ptYMpDArjZFCWypneB83Bw9g7rvW6AJ1/5hcC+oXkb+Zn2VfWEEhNlF2zIO5XxptybLK4T1ABPEGO5CAnDzuQiaomJ44mOUosUglPljycsZT6x4Qw8HYrEyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/ygtv2kVKzmifZazoBQMxpMelsoN9iT9fF1fMH4kt0o=;
- b=U/jg9ZUVDmre24Z0Dje+lDZov0R0vDGhIVDtWrJJ84cY5S5csAfA5su7o8V5nHpjLVoIZM/ILHBaaD58XrwoKOXFNZYNUf8A8CfWy2yLiKWI3PHapM+lNVNcBdx1MleEfo05qSu2Zm3ds1xHrXRghyRqGTxnh8SXYuZhRtFDchg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- DS0PR12MB6655.namprd12.prod.outlook.com (2603:10b6:8:d0::12) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9228.11; Thu, 16 Oct 2025 06:41:10 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::e71b:4ec9:237f:24ea]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::e71b:4ec9:237f:24ea%5]) with mapi id 15.20.9228.010; Thu, 16 Oct 2025
- 06:41:10 +0000
-Message-ID: <b319a8c7-5478-49cd-afc2-2184d126a2f8@amd.com>
-Date: Thu, 16 Oct 2025 12:11:04 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] drm/amd: Check that VPE has reached DPM0 in idle
- handler
-To: Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org
-Cc: Peyton.Lee@amd.com, Sultan Alsawaf <sultan@kerneltoast.com>
-References: <20251015021305.624573-1-mario.limonciello@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20251015021305.624573-1-mario.limonciello@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4P287CA0087.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:268::10) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+X-Greylist: delayed 503 seconds by postgrey-1.36 at gabe;
+ Thu, 16 Oct 2025 06:59:47 UTC
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E47810E165
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Oct 2025 06:59:47 +0000 (UTC)
+Received: from loongson.cn (unknown [113.200.148.30])
+ by gateway (Coremail) with SMTP id _____8DxM9DnlfBo6cQWAA--.49245S3;
+ Thu, 16 Oct 2025 14:51:20 +0800 (CST)
+Received: from linux.localdomain (unknown [113.200.148.30])
+ by front1 (Coremail) with SMTP id qMiowJAxusDllfBoAX3pAA--.33076S2;
+ Thu, 16 Oct 2025 14:51:18 +0800 (CST)
+From: Tiezhu Yang <yangtiezhu@loongson.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] drm/amd: Fix set but not used warnings
+Date: Thu, 16 Oct 2025 14:51:17 +0800
+Message-ID: <20251016065117.2797-1-yangtiezhu@loongson.cn>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|DS0PR12MB6655:EE_
-X-MS-Office365-Filtering-Correlation-Id: 453bb654-ca00-427b-1e4a-08de0c7efdfb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eHVHVi9CRVNHYXBrVXMvMmZZS1BweFJ0eDRiM2dVTXJ2cTc0cURjRENmRTY2?=
- =?utf-8?B?enp5VHdnUURNSkMvejFMc0R3L2UxVVM1aFNwSGpGeFZSdlhtbEZJVDBDdU1R?=
- =?utf-8?B?RjA5NVFNWXNqTURxMTljNkJ0QkFZOVQvK0pxWDFPa0dpUjRiRWNQZmFUN2JX?=
- =?utf-8?B?NmgwQ1BDS3k0ZWZlbkpnYW9lMnk4YWwvM09ibzBVMkVTMGd1eHhVZnRvYllF?=
- =?utf-8?B?Z1V3Wk51c1ZyUytKMDFZTnkxd2U0UFU4M2lqNHZHK3Bic21UaWRZSjl3T09G?=
- =?utf-8?B?NnBqSE51YnY4aWZmRHU2a1UxN0R5RE0yZU5PTlNLMCtpbVV6bTNPSG9BejVo?=
- =?utf-8?B?OC8wenFJeElaNWtXRnl0UURTcjE5OURIVXY1amZhWHJtVWV5c2VDbVFFM0lB?=
- =?utf-8?B?bVJDdURFVFRNS3BFdUpzY2NUQnBFMnp3U1hDOGVoT2F2VTcyb2MrSWRxNUpG?=
- =?utf-8?B?bTRhOW1TczdOczl6OUNURmFSVTZIaVNtdjhJcjBCR0dFVVdCSU1YQ0Uxa2p0?=
- =?utf-8?B?THVTbzRXOGJCYmp1TkttUDdqdDJPeW84T3FPbVQ0ajMzNmgyQkRtWGVhcDgw?=
- =?utf-8?B?aGN2Q2p2UDdiV1lzQWxyNjdqQ25IWnZkUWV4VzB6OW5tdU5xbnNrdWVXaVdU?=
- =?utf-8?B?ZVZoZUVMdnlKZDNTUlprK0tsa0hobmJTMnBrRTdOSDdsZDFYeFVyaUdyeGpS?=
- =?utf-8?B?RmtpS0pHcE5XTWsxYjNnRTd3U0g3Sm5RQmN5YXFaRWkrSVNKNWFFYlFUK0NF?=
- =?utf-8?B?NkJpSUplanQwK2VmSzhyejUyQjBjWnFjRVNzYk9KbkRxMmRUYjNScTRqZjlv?=
- =?utf-8?B?RGpjQ2ZXVmMxMTl0cGRhOW5DZEJKYVBRYmFRbDF6KzBwY0hmcXVYbEsyODMr?=
- =?utf-8?B?aTg0M1lqMEtoeGtxWTlXSHY1LzFMVDZVVEVNRjdiaTlsaWQwVUExYTZTR2lN?=
- =?utf-8?B?RTJHNkxCUWlWTWFqUXhyZzY5b2UxVWhsbCtSTG1nc01DdlBjKzR1TDNCLzQx?=
- =?utf-8?B?eU9ibWtldDlBcjV4Vk1QUWMwZkw0RFlTQzFPRlBIcElUMUswTkJUa0hwc2tt?=
- =?utf-8?B?TGRLbFFFUEcxallmYVhXM3BYTnZacUtjZnQ5dXlxZGxkQkNCbFFSM3Ntcjk5?=
- =?utf-8?B?Y21xTmNpUXJ4aDhKWjZLYW0xdGQxckZnZDE5dk0vb1V3bEdFWWVCTkhWTlg5?=
- =?utf-8?B?cE1DeWZEaUtwa2dwVGx0TmpNc3VFSXRlY3JhRUJOMkJYVDJ5UjZLM2lwZUJP?=
- =?utf-8?B?SW0rVGRvQm9XMkhpTEJxdjcrMEZIa0orMEp1dDRrVUtiQTlVUlZmY3N3UFRU?=
- =?utf-8?B?Vlg4TDRGQndPSG5VSG9TZE9Majgwb3EvQytUSmkzREFrNnI4REJhS2w4aFhQ?=
- =?utf-8?B?NEwzYXZSR2VMb05pWVNBZWdaZUphVXFoeHJRQ1hTcmxRamJUWWpTdjN1a0Zm?=
- =?utf-8?B?SGJoWEVLaUFFalZwVDlNVFBzUzdSR1V6M3RyRDZ6NkQvRmxqWUZVQksxWldv?=
- =?utf-8?B?UUUzYTVCd1pJdmZpQmJDQTNKS3VIVVpudDVXVkZSdDV4V1l3dEN2ZDVOU3NP?=
- =?utf-8?B?WDh3bFVDVThDVDZaam1UT3dOa011eW1SNzFkb04zWGUwbk1RS2ZxOEdybzc0?=
- =?utf-8?B?TU56RlB6RU5jWkJ6N3U4bys4MTZFcEtIa0hmMXphYW4yOGhjQzZva2JmWENj?=
- =?utf-8?B?MUZjSVFRVFh3bHhUam1zWjFvR3BRaXYxQUVSZzN5UE9veEVkWUI2SXJFSUI2?=
- =?utf-8?B?ajdwTjVadTZEZWRwazFIcmxpMHFUbEtHczMvVjhiN09sbXBxUE1Vb2lkRDJq?=
- =?utf-8?B?TXoyWDJKSkFLRnhtVHhXaGZHQ09UQjRBN0svY0N2L1BCK0tKQi9NYVVBUHI4?=
- =?utf-8?B?NVhOWlpsNlhjL0F4TjBXVGxOa2JQMDRjUkREYm5xN0YwV2c9PQ==?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z2IwaWdUSjdCYTRUWmJETlF5K0ozYVFGdDk5cE1sWkN3dWVsVDN6MTFqN1Iy?=
- =?utf-8?B?N2Frcmh2QWNHUmpHZ0NnbTFSc0N4QnV4ZXFJaTJhSkhnL0EvSHpNUlg3U1FG?=
- =?utf-8?B?Y3Vkd2RlS0NIQTliMUE2cHlGSCtWcGRtTzhBSTN5Zlg1S3RMYXFUV3JyUjdm?=
- =?utf-8?B?M2l1NXA0N0ovYXRJb3dzaFVZU0xFaW4zTS95N0FpbWZNVzNKWFdRa1dWM2xK?=
- =?utf-8?B?a25ZcmlQRjNOd2g0VGw3K1VmRDlKTEtNU2tWbDlSS3VIZUQ4VTlJTVFwcm1w?=
- =?utf-8?B?ejR0dUJZZmJSVWdoK1RxdFZvdENxdElFU3JDSkRZR0NJcFpsY296TzF3RDRk?=
- =?utf-8?B?d3FaRUdqVDJpRDRsSzNQTnpQWW5xNGl5eWJFdTkvS1NIVERNWEh1MERHQU1j?=
- =?utf-8?B?ejdWOU9jdExiUk9YeFpFMlcvLzRKQzk3cXVPb2NtUHRjRWtRZEpYVDRGQU12?=
- =?utf-8?B?MWJPWkFUWEdCUnh5Lyt4V1ArdzF1alEvbS9abVZPSXBvdnNlYndaYndUaHE1?=
- =?utf-8?B?cjdVZ2JsNTUrcFA3RUk4T1ZUVWh6cjc5dk5LTy9vYktJNTJuN05FV0JRUTdu?=
- =?utf-8?B?c3VDc0xYV1hpVit5TS9WNGtvNWVJdzdtV3VFNXllRTAyeXFQamFWeVdQa1N0?=
- =?utf-8?B?bmp0ZXUzK2lheHB3LzlReTdPdVNwVEoyS1p5QWJpV3BEYXZCMlVUam9GcEVB?=
- =?utf-8?B?ZHZrVUFJZVZBRmJzRkVxM2FxcTY5ZERvVGcwWUlOMkQ1V1VYcXJkQjJESE9G?=
- =?utf-8?B?TFBpUndxOGpDZncvbDc2bFU5MklKZlNFT2hHZDNTbnZhVEYwNGMwaFkvQzhl?=
- =?utf-8?B?VVIxREQwR1kvN2FoMHQ4SUgyWDMxZzFWMEJFbmRFZmZxS1RaWEJpM0FvOXZh?=
- =?utf-8?B?alM1eFR2ZzN6RmZhQmlsaTA4cnUzRFhqdU0xeEh3RlJQZlRTTmdKYit2YlpL?=
- =?utf-8?B?ZFN1VEhPdUF0M1pIaXlvaHBHNldtK3I3UGlkV1V1bndyMHdkM0owdUd4Z0RN?=
- =?utf-8?B?U3ozaXNBckF2YW96NjZXYXFPNDZPaU13VjdZUTA2bDkzczNnWFcxUWFySWsv?=
- =?utf-8?B?eFdoTnNXT3ZMTnVWdE1PNTM5Nk9Kblo1OUFkMlJ2ak0wbUk5QldVWVpVMVps?=
- =?utf-8?B?eVNIU3liWDhVSTJHYnVYVFVocU5UdzhCNzdFSHFFRUFMUFp2UklUUDRTTE00?=
- =?utf-8?B?RDU2aVI0QSs0VUpNMHlJWncyZEVUMEZvZzYyOHNCL1NpUGozUlBOeTFxcGdr?=
- =?utf-8?B?bWg3Zk9UaHVDcUlHVEdSY09oUHRhbTZ2KzVuNXlkMm5SczJrUFhFdDZjZHFR?=
- =?utf-8?B?R3BvcjJyS2pKSHE5NTZkalp4aDJVV1orWGtNb2hKL1RZeVVaTytmTjR5a2VD?=
- =?utf-8?B?Z0pScEJpcWNvZXNYQmFnNUNCQUU0YmhpUytMdlp6czRFSmRTRDRGWllrQlRV?=
- =?utf-8?B?VDBxVUFRUVlxRDNXTVY3NGhVMkJiR2VrNkhLL2FxZGFFbk1yUi9qVGplRjNV?=
- =?utf-8?B?eEVxam4zM0pYamNUbWlJMm1WR0FTRVdTOVBZNU5DYVRnb1Vsd3pwWjZUblB6?=
- =?utf-8?B?ak5wWFBZOXU1NEpxc2g3UUFHTFJFUTlOOWkySVRJcGZWOFIvSU12bTBvYm5S?=
- =?utf-8?B?TFJ5SHdFWi9FUDNHcXRuSTJrU25MT3hDbENOZER3SUpKY3A0Y3hBRncxZHNT?=
- =?utf-8?B?UlV4UnJmQUxYSzN6UGNuVkpqandFN3JKM1g0RmRJQnZLWWpYSU10QVg3K3Np?=
- =?utf-8?B?NGdTN0xJVjEvN3JKZElxUXBxVEIzZjhtWXZ5K0VrREd5ZlZXZUVhODI0b0w2?=
- =?utf-8?B?dVZ2K1NEcVZ3QXU5ZzJXd2loQTI4Y3Jua0tCWlRxRXQ0NnZIcmdIVVVzanNj?=
- =?utf-8?B?WTUrYXRyQ1VBdHJBZ21tYnV1a3Fsd1FSMWJ6blpUTmI5OHVrYzVWU05WeEtV?=
- =?utf-8?B?WnA0UUs2ZnRmTXljZ21ydEx0S21PdGhLZ3FscUZmNkk5cEx4Tjc5cjEvZEZV?=
- =?utf-8?B?UUZ6dm1TRFZtOEZxZGZRa2F2YzdoQStuWFdvZ08wYTVWSG9DL21PcTgxMXIz?=
- =?utf-8?B?eWhtalZHMnVzYmw3amNBZEk2d3FoSWh3bkhZMTdpMjRFZmFmRXpoS2dNbDU0?=
- =?utf-8?Q?RLsX8aGJCkaGeR1oPWEpcb2u2?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 453bb654-ca00-427b-1e4a-08de0c7efdfb
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2025 06:41:10.3677 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DWzRWbj24RCd0pzK1+O0sgY7QYcP2Z1hydv+oCYP9YcqZyZAnAkl7hmuAtmS6HDN
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6655
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qMiowJAxusDllfBoAX3pAA--.33076S2
+X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBj93XoWxtw47Zr15Cry7Kw1xZr4DKFX_yoW7Aw1rpF
+ WkJFyY9r18ZF47t347Aa4xWr98Jwn3XFWxKrZ7GasI9a15Ar93Ca17AryUGryDWFsrAF43
+ ZFs3X3yUX3ZFvrcCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUv0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+ GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4
+ xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v2
+ 6r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxV
+ WUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E
+ 14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw1lIx
+ kGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAF
+ wI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r
+ 4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU1RBT5UU
+ UUU==
+X-Mailman-Approved-At: Thu, 16 Oct 2025 07:06:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,100 +67,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+There are many set but not used warnings under drivers/gpu/drm/amd when
+compiling with the latest upstream mainline GCC:
 
+  drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c:305:18: warning: variable ‘p’ set but not used [-Wunused-but-set-variable=]
+  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h:103:26: warning: variable ‘internal_reg_offset’ set but not used [-Wunused-but-set-variable=]
+  ...
+  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h:164:26: warning: variable ‘internal_reg_offset’ set but not used [-Wunused-but-set-variable=]
+  ...
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:445:13: warning: variable ‘pipe_idx’ set but not used [-Wunused-but-set-variable=]
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:875:21: warning: variable ‘pipe_idx’ set but not used [-Wunused-but-set-variable=]
 
-On 10/15/2025 7:43 AM, Mario Limonciello wrote:
-> [Why]
-> Newer VPE microcode has functionality that will decrease DPM level
-> only when a workload has run for 2 or more seconds.  If VPE is turned
-> off before this DPM decrease, the SOC can get stuck with a higher
-> DPM level.
-> 
-> This can happen from amdgpu's ring buffer test because it's a short
-> quick workload for VPE and VPE is turned off after 1s.
-> 
-> [How]
-> In idle handler besides checking fences are drained check that VPE DPM
-> level is really is at DPM0. If not, schedule delayed work again until
-> it is.
-> 
-> Cc: Peyton.Lee@amd.com
-> Reported-by: Sultan Alsawaf <sultan@kerneltoast.com>
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4615
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
-> v4:
->   * only apply to Strix Halo (VPE 6.1.1)
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c | 31 ++++++++++++++++++++++---
->   1 file changed, 28 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-> index 474bfe36c0c2..95d0badeb479 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-> @@ -322,6 +322,26 @@ static int vpe_early_init(struct amdgpu_ip_block *ip_block)
->   	return 0;
->   }
->   
-> +/*
-> + * vpe_wait_dpm0: whether to reschedule idle work waiting for IP to reach DPM0
-> + */
-> +static int vpe_wait_dpm0(struct amdgpu_device *adev)
-> +{
+Remove the variables actually not used or add __maybe_unused attribute for
+the variables actually used to fix them, compile tested only.
 
-This is not really a wait, may be renamed as vpe_get_req_dpm_level()
+Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c     | 4 +---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h      | 6 ++++--
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 9 +++------
+ 3 files changed, 8 insertions(+), 11 deletions(-)
 
-> +	struct amdgpu_vpe *vpe = &adev->vpe;
-> +
-> +	if (!adev->pm.dpm_enabled)
-> +		return 0;
-> +
-> +	switch (amdgpu_ip_version(adev, VPE_HWIP, 0)) {
-> +	case IP_VERSION(6, 1, 1):
-> +		break;
-> +	default:
-> +		return 0;
-> +	}
-
-These checks could be in a separate function like - 
-vpe_need_dpm0_at_power_down(adev). It could return false once pmfw 
-carries the fix for IP version.
-> +
-> +	return RREG32(vpe_get_reg_offset(vpe, 0, vpe->regs.dpm_request_lv));
-> +}
-> +
->   static void vpe_idle_work_handler(struct work_struct *work)
->   {
->   	struct amdgpu_device *adev =
-> @@ -329,11 +349,16 @@ static void vpe_idle_work_handler(struct work_struct *work)
->   	unsigned int fences = 0;
->   
->   	fences += amdgpu_fence_count_emitted(&adev->vpe.ring);
-> +	if (fences)
-> +		goto reschedule;
->   
-> -	if (fences == 0)
-> +	if (!vpe_wait_dpm0(adev)) {
-
-This may be,
-
-	if (vpe_need_dpm0_at_power_down(adev) && vpe_get_req_dpm_level() != 0)
-		goto rechedule
-	else
-		power_gate()
-
-Thanks,
-Lijo
->   		amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VPE, AMD_PG_STATE_GATE);
-> -	else
-> -		schedule_delayed_work(&adev->vpe.idle_work, VPE_IDLE_TIMEOUT);
-> +		return;
-> +	}
-> +
-> +reschedule:
-> +	schedule_delayed_work(&adev->vpe.idle_work, VPE_IDLE_TIMEOUT);
->   }
->   
->   static int vpe_common_init(struct amdgpu_vpe *vpe)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+index b2033f8352f5..83f3b94ed975 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+@@ -302,7 +302,6 @@ void amdgpu_gart_unbind(struct amdgpu_device *adev, uint64_t offset,
+ 			int pages)
+ {
+ 	unsigned t;
+-	unsigned p;
+ 	int i, j;
+ 	u64 page_base;
+ 	/* Starting from VEGA10, system bit must be 0 to mean invalid. */
+@@ -316,8 +315,7 @@ void amdgpu_gart_unbind(struct amdgpu_device *adev, uint64_t offset,
+ 		return;
+ 
+ 	t = offset / AMDGPU_GPU_PAGE_SIZE;
+-	p = t / AMDGPU_GPU_PAGES_IN_CPU_PAGE;
+-	for (i = 0; i < pages; i++, p++) {
++	for (i = 0; i < pages; i++) {
+ 		page_base = adev->dummy_page_addr;
+ 		if (!adev->gart.ptr)
+ 			continue;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+index dc8a17bcc3c8..82624b44e661 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+@@ -100,7 +100,8 @@
+ 
+ #define SOC15_DPG_MODE_OFFSET(ip, inst_idx, reg) 						\
+ 	({											\
+-		uint32_t internal_reg_offset, addr;						\
++		/* To avoid a -Wunused-but-set-variable warning. */				\
++		uint32_t internal_reg_offset __maybe_unused, addr;				\
+ 		bool video_range, video1_range, aon_range, aon1_range;				\
+ 												\
+ 		addr = (adev->reg_offset[ip##_HWIP][inst_idx][reg##_BASE_IDX] + reg);		\
+@@ -161,7 +162,8 @@
+ 
+ #define SOC24_DPG_MODE_OFFSET(ip, inst_idx, reg)						\
+ 	({											\
+-		uint32_t internal_reg_offset, addr;						\
++		/* To avoid a -Wunused-but-set-variable warning. */				\
++		uint32_t internal_reg_offset __maybe_unused, addr;				\
+ 		bool video_range, video1_range, aon_range, aon1_range;				\
+ 												\
+ 		addr = (adev->reg_offset[ip##_HWIP][inst_idx][reg##_BASE_IDX] + reg);		\
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+index 53a088ebddef..6518d5639d66 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+@@ -442,7 +442,6 @@ bool dc_dmub_srv_p_state_delegate(struct dc *dc, bool should_manage_pstate, stru
+ 	int i = 0, k = 0;
+ 	int ramp_up_num_steps = 1; // TODO: Ramp is currently disabled. Reenable it.
+ 	uint8_t visual_confirm_enabled;
+-	int pipe_idx = 0;
+ 	struct dc_stream_status *stream_status = NULL;
+ 
+ 	if (dc == NULL)
+@@ -457,7 +456,7 @@ bool dc_dmub_srv_p_state_delegate(struct dc *dc, bool should_manage_pstate, stru
+ 	cmd.fw_assisted_mclk_switch.config_data.visual_confirm_enabled = visual_confirm_enabled;
+ 
+ 	if (should_manage_pstate) {
+-		for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
++		for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 			struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
+ 
+ 			if (!pipe->stream)
+@@ -472,7 +471,6 @@ bool dc_dmub_srv_p_state_delegate(struct dc *dc, bool should_manage_pstate, stru
+ 				cmd.fw_assisted_mclk_switch.config_data.vactive_stretch_margin_us = dc->debug.fpo_vactive_margin_us;
+ 				break;
+ 			}
+-			pipe_idx++;
+ 		}
+ 	}
+ 
+@@ -872,7 +870,7 @@ void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
+ 		bool enable)
+ {
+ 	uint8_t cmd_pipe_index = 0;
+-	uint32_t i, pipe_idx;
++	uint32_t i;
+ 	uint8_t subvp_count = 0;
+ 	union dmub_rb_cmd cmd;
+ 	struct pipe_ctx *subvp_pipes[2];
+@@ -899,7 +897,7 @@ void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
+ 
+ 	if (enable) {
+ 		// For each pipe that is a "main" SUBVP pipe, fill in pipe data for DMUB SUBVP cmd
+-		for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
++		for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 			struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
+ 			pipe_mall_type = dc_state_get_pipe_subvp_type(context, pipe);
+ 
+@@ -922,7 +920,6 @@ void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
+ 				populate_subvp_cmd_vblank_pipe_info(dc, context, &cmd, pipe, cmd_pipe_index++);
+ 
+ 			}
+-			pipe_idx++;
+ 		}
+ 		if (subvp_count == 2) {
+ 			update_subvp_prefetch_end_to_mall_start(dc, context, &cmd, subvp_pipes);
+-- 
+2.42.0
 
