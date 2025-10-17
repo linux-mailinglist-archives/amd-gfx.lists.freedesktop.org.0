@@ -2,89 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20F2EBECB52
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D267BECBDF
+	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:52:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1B2410E3EE;
-	Sat, 18 Oct 2025 08:50:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAE3F10ED07;
+	Sat, 18 Oct 2025 08:52:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="QQvl9e40";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="cfRFPNFK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68DBC10EC3D;
- Fri, 17 Oct 2025 13:50:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC4D10EC62;
+ Fri, 17 Oct 2025 15:36:18 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 3D4834B446;
- Fri, 17 Oct 2025 13:50:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFC21C19422;
- Fri, 17 Oct 2025 13:50:07 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 8326644B08;
+ Fri, 17 Oct 2025 15:36:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D86D7C4CEE7;
+ Fri, 17 Oct 2025 15:36:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1760709009;
- bh=aJ1FeCzYiHnuirC7SjoyZ/906lDvAeKCgeUR/M/OHDA=;
- h=Subject:To:Cc:From:Date:In-Reply-To:From;
- b=QQvl9e40eoJIz5OjPU38kmBnM8TABl/ks1uGA0/Mhxs7sVliFqw8W1LB50FVBJdKi
- bGf6SNHiQ88bIg7HeKY30IT1f9Xcp5Tw2VAZcxDk1ygRl673ogyf5L3c4fxHgrUv2z
- 07TRdIQHMElduF3J7/HcjTst+VJJcuKv7p6HT+Ps=
-Subject: Patch "minmax.h: use BUILD_BUG_ON_MSG() for the lo < hi test in
- clamp()" has been added to the 5.10-stable tree
-To: David.Laight@ACULAB.COM, Jason@zx2c4.com,
-	adilger.kernel@dilger.ca, agk@redhat.com, airlied@linux.ie,
-	akpm@linux-foundation.org, alexander.deucher@amd.com,
-	alexandre.torgue@st.com, amd-gfx@lists.freedesktop.org,
-	andriy.shevchenko@linux.intel.com, anton.ivanov@cambridgegreys.com,
-	arnd@kernel.org, artur.paszkiewicz@intel.com, axboe@kernel.dk,
-	bp@alien8.de, brian.starkey@arm.com, bvanassche@acm.org,
-	chao@kernel.org, christian.koenig@amd.com, clm@fb.com,
-	coreteam@netfilter.org, dan.carpenter@linaro.org, daniel@ffwll.ch,
-	dave.hansen@linux.intel.com, davem@davemloft.net,
-	david.laight@aculab.com, dm-devel@redhat.com,
-	dmitry.torokhov@gmail.com, dri-devel@lists.freedesktop.org,
-	dsterba@suse.com, dushistov@mail.ru, evan.quan@amd.com,
-	farbere@amazon.com, fery@cypress.com,
-	freedreno@lists.freedesktop.org, fw@strlen.de,
-	gregkh@linuxfoundation.org, harry.wentland@amd.com,
-	hch@infradead.org, hdegoede@redhat.com, herve.codina@bootlin.com,
-	hpa@zytor.com, intel-linux-scu@intel.com, jack@suse.com,
-	james.morse@arm.com, james.qian.wang@arm.com, jdelvare@suse.com,
-	jdike@addtoit.com, jejb@linux.ibm.com, jmaloy@redhat.com,
-	joabreu@synopsys.com, josef@toxicpanda.com, kadlec@netfilter.org,
-	kbusch@kernel.org, keescook@chromium.org, kuba@kernel.org,
-	kuznet@ms2.inr.ac.ru, linux-arm-kernel@lists.infradead.org,
-	linux-erofs@lists.ozlabs.org, linux-mm@kvack.org,
-	linux-staging@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-um@lists.infradead.org, linux@armlinux.org.uk,
-	linux@rasmusvillemoes.dk, linux@roeck-us.net, liviu.dudau@arm.com,
-	lorenzo.stoakes@oracle.com, luc.vanoostenryck@gmail.com,
-	luto@kernel.org, maarten.lankhorst@linux.intel.com,
-	malattia@linux.it, martin.petersen@oracle.com, mchehab@kernel.org,
-	mcoquelin.stm32@gmail.com, mgross@linux.intel.com,
-	mihail.atanassov@arm.com, minchan@kernel.org, mingo@redhat.com,
-	mjguzik@gmail.com, mripard@kernel.org, nathan@kernel.org,
-	ndesaulniers@google.com, ngupta@vflare.org, pablo@netfilter.org,
-	pedro.falcato@gmail.com, peppe.cavallaro@st.com,
-	peterz@infradead.org, pmladek@suse.com, qiuxu.zhuo@intel.com,
-	rajur@chels, io.com@freedesktop.org, richard@nod.at,
-	robdclark@gmail.com, rostedt@goodmis.org, rric@kernel.org,
-	ruanjinjie@huawei.com, sakari.ailus@linux.intel.com,
-	sashal@kernel.org, sean@poorly.run, sergey.senozhatsky@gmail.com,
-	snitzer@redhat.com, sunpeng.li@amd.com, tglx@linutronix.de,
-	tipc-discussion@lists.sourceforge.net, tony.luck@intel.com,
-	tytso@mit.edu, tzimmermann@suse.de, willy@infradead.org,
-	x86@kernel.org, xiang@kernel.org, ying.xue@windriver.com,
-	yoshfuji@linux-ipv6.org
-Cc: <stable-commits@vger.kernel.org>
-From: <gregkh@linuxfoundation.org>
-Date: Fri, 17 Oct 2025 15:48:34 +0200
-In-Reply-To: <20251017090519.46992-25-farbere@amazon.com>
-Message-ID: <2025101734-evaporate-tipper-a41f@gregkh>
+ s=korg; t=1760715378;
+ bh=Hq+8/ysaV8V252nitXpGyaXDbSLVyqEz+z/kM/77Mz0=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=cfRFPNFKK4jUScmQ8SvYjeRLof6f4vtOfpinxij3zxuQ/G+gdwIwvpumyRrBFS/y3
+ SP8sqDCrp/WY3yA9nAhkXZaB514r1djTzJTdlqgFmSYWjkkyKK5D0hE/gKYhi2Dgch
+ cAvupFcApQLnX1H3qqdcXxciOHT1EV8Sou+4hRvc=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ Austin Zheng <austin.zheng@amd.com>, Jun Lei <jun.lei@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Ard Biesheuvel <ardb@kernel.org>
+Subject: [PATCH 6.17 194/371] drm/amd/display: Fix unsafe uses of kernel mode
+ FPU
+Date: Fri, 17 Oct 2025 16:52:49 +0200
+Message-ID: <20251017145208.946507573@linuxfoundation.org>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251017145201.780251198@linuxfoundation.org>
+References: <20251017145201.780251198@linuxfoundation.org>
+User-Agent: quilt/0.69
+X-stable: review
+X-Patchwork-Hint: ignore
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
 X-Mailman-Approved-At: Sat, 18 Oct 2025 08:50:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,100 +65,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+6.17-stable review patch.  If anyone has any objections, please let me know.
 
-This is a note to let you know that I've just added the patch titled
+------------------
 
-    minmax.h: use BUILD_BUG_ON_MSG() for the lo < hi test in clamp()
+From: Ard Biesheuvel <ardb@kernel.org>
 
-to the 5.10-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+commit ddbfac152830e38d488ff8e45ab7eaf5d72f8527 upstream.
 
-The filename of the patch is:
-     minmax.h-use-build_bug_on_msg-for-the-lo-hi-test-in-clamp.patch
-and it can be found in the queue-5.10 subdirectory.
+The point of isolating code that uses kernel mode FPU in separate
+compilation units is to ensure that even implicit uses of, e.g., SIMD
+registers for spilling occur only in a context where this is permitted,
+i.e., from inside a kernel_fpu_begin/end block.
 
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
+This is important on arm64, which uses -mgeneral-regs-only to build all
+kernel code, with the exception of such compilation units where FP or
+SIMD registers are expected to be used. Given that the compiler may
+invent uses of FP/SIMD anywhere in such a unit, none of its code may be
+accessible from outside a kernel_fpu_begin/end block.
 
+This means that all callers into such compilation units must use the
+DC_FP start/end macros, which must not occur there themselves. For
+robustness, all functions with external linkage that reside there should
+call dc_assert_fp_enabled() to assert that the FPU context was set up
+correctly.
 
-From prvs=378230090=farbere@amazon.com Fri Oct 17 11:13:15 2025
-From: Eliav Farber <farbere@amazon.com>
-Date: Fri, 17 Oct 2025 09:05:16 +0000
-Subject: minmax.h: use BUILD_BUG_ON_MSG() for the lo < hi test in clamp()
-To: <gregkh@linuxfoundation.org>, <stable@vger.kernel.org>, <linux@armlinux.org.uk>, <jdike@addtoit.com>, <richard@nod.at>, <anton.ivanov@cambridgegreys.com>, <dave.hansen@linux.intel.com>, <luto@kernel.org>, <peterz@infradead.org>, <tglx@linutronix.de>, <mingo@redhat.com>, <bp@alien8.de>, <x86@kernel.org>, <hpa@zytor.com>, <tony.luck@intel.com>, <qiuxu.zhuo@intel.com>, <mchehab@kernel.org>, <james.morse@arm.com>, <rric@kernel.org>, <harry.wentland@amd.com>, <sunpeng.li@amd.com>, <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>, <evan.quan@amd.com>, <james.qian.wang@arm.com>, <liviu.dudau@arm.com>, <mihail.atanassov@arm.com>, <brian.starkey@arm.com>, <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>, <tzimmermann@suse.de>, <robdclark@gmail.com>, <sean@poorly.run>, <jdelvare@suse.com>, <linux@roeck-us.net>, <fery@cypress.com>, <dmitry.torokhov@gmail.com>, <agk@redhat.com>, <snitzer@redhat.com>, <dm-devel@redhat.com>, <rajur@chelsio
- .com>, <davem@davemloft.net>, <kuba@kernel.org>, <peppe.cavallaro@st.com>, <alexandre.torgue@st.com>, <joabreu@synopsys.com>, <mcoquelin.stm32@gmail.com>, <malattia@linux.it>, <hdegoede@redhat.com>, <mgross@linux.intel.com>, <intel-linux-scu@intel.com>, <artur.paszkiewicz@intel.com>, <jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <sakari.ailus@linux.intel.com>, <clm@fb.com>, <josef@toxicpanda.com>, <dsterba@suse.com>, <xiang@kernel.org>, <chao@kernel.org>, <jack@suse.com>, <tytso@mit.edu>, <adilger.kernel@dilger.ca>, <dushistov@mail.ru>, <luc.vanoostenryck@gmail.com>, <rostedt@goodmis.org>, <pmladek@suse.com>, <sergey.senozhatsky@gmail.com>, <andriy.shevchenko@linux.intel.com>, <linux@rasmusvillemoes.dk>, <minchan@kernel.org>, <ngupta@vflare.org>, <akpm@linux-foundation.org>, <kuznet@ms2.inr.ac.ru>, <yoshfuji@linux-ipv6.org>, <pablo@netfilter.org>, <kadlec@netfilter.org>, <fw@strlen.de>, <jmaloy@redhat.com>, <ying.xue@windriver.com>, <willy@infradead.org>, <farbere@amazon.com>,
-  <sashal@kernel.org>, <ruanjinjie@huawei.com>, <David.Laight@ACULAB.COM>, <herve.codina@bootlin.com>, <Jason@zx2c4.com>, <keescook@chromium.org>, <kbusch@kernel.org>, <nathan@kernel.org>, <bvanassche@acm.org>, <ndesaulniers@google.com>, <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <linux-um@lists.infradead.org>, <linux-edac@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>, <linux-hwmon@vger.kernel.org>, <linux-input@vger.kernel.org>, <linux-media@vger.kernel.org>, <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>, <platform-driver-x86@vger.kernel.org>, <linux-scsi@vger.kernel.org>, <linux-staging@lists.linux.dev>, <linux-btrfs@vger.kernel.org>, <linux-erofs@lists.ozlabs.org>, <linux-ext4@vger.kernel.org>, <linux-sparse@vger.kernel.org>, <linux-mm@kvack.org>, <netfilter-devel@vger.kernel.org>, <coreteam@netfilter.org>, <tipc-discussion@
- lists.sourceforge.net>
-Cc: Arnd Bergmann <arnd@kernel.org>, Christoph Hellwig <hch@infradead.org>, Dan Carpenter <dan.carpenter@linaro.org>, Jens Axboe <axboe@kernel.dk>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Mateusz Guzik <mjguzik@gmail.com>, Pedro Falcato <pedro.falcato@gmail.com>
-Message-ID: <20251017090519.46992-25-farbere@amazon.com>
+Fix this for the DCN35, DCN351 and DCN36 implementations.
 
-From: David Laight <David.Laight@ACULAB.COM>
-
-[ Upstream commit a5743f32baec4728711bbc01d6ac2b33d4c67040 ]
-
-Use BUILD_BUG_ON_MSG(statically_true(ulo > uhi), ...) for the sanity check
-of the bounds in clamp().  Gives better error coverage and one less
-expansion of the arguments.
-
-Link: https://lkml.kernel.org/r/34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com
-Signed-off-by: David Laight <david.laight@aculab.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Arnd Bergmann <arnd@kernel.org>
-Cc: Christoph Hellwig <hch@infradead.org>
-Cc: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Jason A. Donenfeld <Jason@zx2c4.com>
-Cc: Jens Axboe <axboe@kernel.dk>
-Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Mateusz Guzik <mjguzik@gmail.com>
-Cc: Matthew Wilcox <willy@infradead.org>
-Cc: Pedro Falcato <pedro.falcato@gmail.com>
-Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
-Signed-off-by: Eliav Farber <farbere@amazon.com>
+Cc: Austin Zheng <austin.zheng@amd.com>
+Cc: Jun Lei <jun.lei@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- include/linux/minmax.h |    3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c             |    4 ++
+ drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c             |    6 ++-
+ drivers/gpu/drm/amd/display/dc/dml/dcn351/dcn351_fpu.c           |    4 +-
+ drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c   |   16 ++++++++-
+ drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c |   17 +++++++++-
+ drivers/gpu/drm/amd/display/dc/resource/dcn36/dcn36_resource.c   |   16 ++++++++-
+ 6 files changed, 56 insertions(+), 7 deletions(-)
 
---- a/include/linux/minmax.h
-+++ b/include/linux/minmax.h
-@@ -106,8 +106,7 @@
- 	__auto_type uval = (val);						\
- 	__auto_type ulo = (lo);							\
- 	__auto_type uhi = (hi);							\
--	static_assert(__builtin_choose_expr(__is_constexpr((lo) > (hi)), 	\
--			(lo) <= (hi), true),					\
-+	BUILD_BUG_ON_MSG(statically_true(ulo > uhi),				\
- 		"clamp() low limit " #lo " greater than high limit " #hi);	\
- 	BUILD_BUG_ON_MSG(!__types_ok3(uval, ulo, uhi),				\
- 		"clamp("#val", "#lo", "#hi") signedness error");		\
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c
+@@ -808,6 +808,8 @@ void dcn316_update_bw_bounding_box(struc
+ 
+ int dcn_get_max_non_odm_pix_rate_100hz(struct _vcs_dpi_soc_bounding_box_st *soc)
+ {
++	dc_assert_fp_enabled();
++
+ 	return soc->clock_limits[0].dispclk_mhz * 10000.0 / (1.0 + soc->dcn_downspread_percent / 100.0);
+ }
+ 
+@@ -815,6 +817,8 @@ int dcn_get_approx_det_segs_required_for
+ 		struct _vcs_dpi_soc_bounding_box_st *soc,
+ 		int pix_clk_100hz, int bpp, int seg_size_kb)
+ {
++	dc_assert_fp_enabled();
++
+ 	/* Roughly calculate required crb to hide latency. In practice there is slightly
+ 	 * more buffer available for latency hiding
+ 	 */
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c
+@@ -445,6 +445,8 @@ int dcn35_populate_dml_pipes_from_contex
+ 	bool upscaled = false;
+ 	const unsigned int max_allowed_vblank_nom = 1023;
+ 
++	dc_assert_fp_enabled();
++
+ 	dcn31_populate_dml_pipes_from_context(dc, context, pipes,
+ 					      validate_mode);
+ 
+@@ -498,9 +500,7 @@ int dcn35_populate_dml_pipes_from_contex
+ 
+ 		pipes[pipe_cnt].pipe.src.unbounded_req_mode = false;
+ 
+-		DC_FP_START();
+ 		dcn31_zero_pipe_dcc_fraction(pipes, pipe_cnt);
+-		DC_FP_END();
+ 
+ 		pipes[pipe_cnt].pipe.dest.vfront_porch = timing->v_front_porch;
+ 		pipes[pipe_cnt].pipe.src.dcc_rate = 3;
+@@ -581,6 +581,8 @@ void dcn35_decide_zstate_support(struct
+ 	unsigned int i, plane_count = 0;
+ 	DC_LOGGER_INIT(dc->ctx->logger);
+ 
++	dc_assert_fp_enabled();
++
+ 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 		if (context->res_ctx.pipe_ctx[i].plane_state)
+ 			plane_count++;
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn351/dcn351_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn351/dcn351_fpu.c
+@@ -478,6 +478,8 @@ int dcn351_populate_dml_pipes_from_conte
+ 	bool upscaled = false;
+ 	const unsigned int max_allowed_vblank_nom = 1023;
+ 
++	dc_assert_fp_enabled();
++
+ 	dcn31_populate_dml_pipes_from_context(dc, context, pipes,
+ 					      validate_mode);
+ 
+@@ -531,9 +533,7 @@ int dcn351_populate_dml_pipes_from_conte
+ 
+ 		pipes[pipe_cnt].pipe.src.unbounded_req_mode = false;
+ 
+-		DC_FP_START();
+ 		dcn31_zero_pipe_dcc_fraction(pipes, pipe_cnt);
+-		DC_FP_END();
+ 
+ 		pipes[pipe_cnt].pipe.dest.vfront_porch = timing->v_front_porch;
+ 		pipes[pipe_cnt].pipe.src.dcc_rate = 3;
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
+@@ -1760,6 +1760,20 @@ enum dc_status dcn35_patch_unknown_plane
+ }
+ 
+ 
++static int populate_dml_pipes_from_context_fpu(struct dc *dc,
++					       struct dc_state *context,
++					       display_e2e_pipe_params_st *pipes,
++					       enum dc_validate_mode validate_mode)
++{
++	int ret;
++
++	DC_FP_START();
++	ret = dcn35_populate_dml_pipes_from_context_fpu(dc, context, pipes, validate_mode);
++	DC_FP_END();
++
++	return ret;
++}
++
+ static struct resource_funcs dcn35_res_pool_funcs = {
+ 	.destroy = dcn35_destroy_resource_pool,
+ 	.link_enc_create = dcn35_link_encoder_create,
+@@ -1770,7 +1784,7 @@ static struct resource_funcs dcn35_res_p
+ 	.validate_bandwidth = dcn35_validate_bandwidth,
+ 	.calculate_wm_and_dlg = NULL,
+ 	.update_soc_for_wm_a = dcn31_update_soc_for_wm_a,
+-	.populate_dml_pipes = dcn35_populate_dml_pipes_from_context_fpu,
++	.populate_dml_pipes = populate_dml_pipes_from_context_fpu,
+ 	.acquire_free_pipe_as_secondary_dpp_pipe = dcn20_acquire_free_pipe_for_layer,
+ 	.release_pipe = dcn20_release_pipe,
+ 	.add_stream_to_ctx = dcn30_add_stream_to_ctx,
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
+@@ -1732,6 +1732,21 @@ static enum dc_status dcn351_validate_ba
+ 	return out ? DC_OK : DC_FAIL_BANDWIDTH_VALIDATE;
+ }
+ 
++static int populate_dml_pipes_from_context_fpu(struct dc *dc,
++					       struct dc_state *context,
++					       display_e2e_pipe_params_st *pipes,
++					       enum dc_validate_mode validate_mode)
++{
++	int ret;
++
++	DC_FP_START();
++	ret = dcn351_populate_dml_pipes_from_context_fpu(dc, context, pipes, validate_mode);
++	DC_FP_END();
++
++	return ret;
++
++}
++
+ static struct resource_funcs dcn351_res_pool_funcs = {
+ 	.destroy = dcn351_destroy_resource_pool,
+ 	.link_enc_create = dcn35_link_encoder_create,
+@@ -1742,7 +1757,7 @@ static struct resource_funcs dcn351_res_
+ 	.validate_bandwidth = dcn351_validate_bandwidth,
+ 	.calculate_wm_and_dlg = NULL,
+ 	.update_soc_for_wm_a = dcn31_update_soc_for_wm_a,
+-	.populate_dml_pipes = dcn351_populate_dml_pipes_from_context_fpu,
++	.populate_dml_pipes = populate_dml_pipes_from_context_fpu,
+ 	.acquire_free_pipe_as_secondary_dpp_pipe = dcn20_acquire_free_pipe_for_layer,
+ 	.release_pipe = dcn20_release_pipe,
+ 	.add_stream_to_ctx = dcn30_add_stream_to_ctx,
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn36/dcn36_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn36/dcn36_resource.c
+@@ -1734,6 +1734,20 @@ static enum dc_status dcn35_validate_ban
+ }
+ 
+ 
++static int populate_dml_pipes_from_context_fpu(struct dc *dc,
++					       struct dc_state *context,
++					       display_e2e_pipe_params_st *pipes,
++					       enum dc_validate_mode validate_mode)
++{
++	int ret;
++
++	DC_FP_START();
++	ret = dcn35_populate_dml_pipes_from_context_fpu(dc, context, pipes, validate_mode);
++	DC_FP_END();
++
++	return ret;
++}
++
+ static struct resource_funcs dcn36_res_pool_funcs = {
+ 	.destroy = dcn36_destroy_resource_pool,
+ 	.link_enc_create = dcn35_link_encoder_create,
+@@ -1744,7 +1758,7 @@ static struct resource_funcs dcn36_res_p
+ 	.validate_bandwidth = dcn35_validate_bandwidth,
+ 	.calculate_wm_and_dlg = NULL,
+ 	.update_soc_for_wm_a = dcn31_update_soc_for_wm_a,
+-	.populate_dml_pipes = dcn35_populate_dml_pipes_from_context_fpu,
++	.populate_dml_pipes = populate_dml_pipes_from_context_fpu,
+ 	.acquire_free_pipe_as_secondary_dpp_pipe = dcn20_acquire_free_pipe_for_layer,
+ 	.release_pipe = dcn20_release_pipe,
+ 	.add_stream_to_ctx = dcn30_add_stream_to_ctx,
 
 
-Patches currently in stable-queue which might be from farbere@amazon.com are
-
-queue-5.10/minmax-allow-comparisons-of-int-against-unsigned-char-short.patch
-queue-5.10/minmax-add-a-few-more-min_t-max_t-users.patch
-queue-5.10/minmax-improve-macro-expansion-and-type-checking.patch
-queue-5.10/minmax-fix-indentation-of-__cmp_once-and-__clamp_once.patch
-queue-5.10/minmax.h-simplify-the-variants-of-clamp.patch
-queue-5.10/minmax-add-in_range-macro.patch
-queue-5.10/minmax.h-move-all-the-clamp-definitions-after-the-min-max-ones.patch
-queue-5.10/minmax-allow-min-max-clamp-if-the-arguments-have-the-same-signedness.patch
-queue-5.10/minmax-don-t-use-max-in-situations-that-want-a-c-constant-expression.patch
-queue-5.10/minmax.h-remove-some-defines-that-are-only-expanded-once.patch
-queue-5.10/minmax.h-use-build_bug_on_msg-for-the-lo-hi-test-in-clamp.patch
-queue-5.10/minmax-simplify-min-max-clamp-implementation.patch
-queue-5.10/minmax-deduplicate-__unconst_integer_typeof.patch
-queue-5.10/minmax-simplify-and-clarify-min_t-max_t-implementation.patch
-queue-5.10/minmax.h-add-whitespace-around-operators-and-after-commas.patch
-queue-5.10/minmax-sanity-check-constant-bounds-when-clamping.patch
-queue-5.10/minmax-avoid-overly-complicated-constant-expressions-in-vm-code.patch
-queue-5.10/minmax-make-generic-min-and-max-macros-available-everywhere.patch
-queue-5.10/minmax-fix-up-min3-and-max3-too.patch
-queue-5.10/minmax.h-reduce-the-define-expansion-of-min-max-and-clamp.patch
-queue-5.10/minmax-fix-header-inclusions.patch
-queue-5.10/minmax-introduce-min-max-_array.patch
-queue-5.10/btrfs-remove-duplicated-in_range-macro.patch
-queue-5.10/overflow-tracing-define-the-is_signed_type-macro-once.patch
-queue-5.10/minmax-relax-check-to-allow-comparison-between-unsigned-arguments-and-signed-constants.patch
-queue-5.10/minmax-clamp-more-efficiently-by-avoiding-extra-comparison.patch
-queue-5.10/minmax.h-update-some-comments.patch
