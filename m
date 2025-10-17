@@ -2,53 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA63BECB79
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21616BECB3F
+	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FEC910E3FB;
-	Sat, 18 Oct 2025 08:50:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B707D10E3EA;
+	Sat, 18 Oct 2025 08:50:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="rWxm7rpM";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="cSItTMlZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E512910EB8A;
- Fri, 17 Oct 2025 09:14:40 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cnzfj37WPz9v7l;
- Fri, 17 Oct 2025 11:14:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1760692477; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=CiBeY4WW1js9rKGm/fIcWX6WwDK4gMjR18x6jCKLFfk=;
- b=rWxm7rpMrZmw4SefYc+byg/ueXYy92BsdwbJcS/KWxSNFHxFFYvC0VWEFajd6n03vYCorR
- 1hYZnKm4Mn+iMlelMgXl9Or47C1no5p9rlRbPOiWf8dyCU8OWEWFTR/IQvsTyiROxKyBjp
- YSt2JE3LLeNzwZ7yy/20DguS89RTdub6m6Qyd7TbKTLuLKWOLg65BBN35zxY+2k8cq8VYf
- Kcd0N1U24GMhOTXKrO5Xolpv8cC1/Zh/MieaW1SJObFCqquJ6qEBFXnxbnwUiC/2+l9co8
- 1Vpczebjdn01wAr6McfbEeM1qQPV3NVbgc6O8uzj5yJGDaPzoDzqbbxmOyEDfw==
-Message-ID: <d4283e9220df6ce6cd9ec2ae0b011f4931f4acf5.camel@mailbox.org>
-Subject: Re: [PATCH 04/15] dma-buf: detach fence ops on signal
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- alexdeucher@gmail.com, simona.vetter@ffwll.ch, tursulin@ursulin.net
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Date: Fri, 17 Oct 2025 11:14:35 +0200
-In-Reply-To: <20251013143502.1655-5-christian.koenig@amd.com>
-References: <20251013143502.1655-1-christian.koenig@amd.com>
- <20251013143502.1655-5-christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF6310EBC9;
+ Fri, 17 Oct 2025 11:59:38 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id AFE674B012;
+ Fri, 17 Oct 2025 11:59:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3037FC4CEE7;
+ Fri, 17 Oct 2025 11:59:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1760702377;
+ bh=38uFLiDTAO+A1PWpRP2bVJ1ijHpCWsegoKBcJwzF2PE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=cSItTMlZ+xkWo77L3dJDjTz61eq44oatBXCgbcCC5ycxjVd62F5ZBD5t/I/P7IMAl
+ lQe+zy+uvgq1Iphq58yIzjQNmbjsJLGcQk9xMD89Oyn29Qra+kKcuYPJON2XTLg6Wc
+ Tx4/0gvLYtBA9RdvGnygRkoazMU/mLdzs1fx2bZA=
+Date: Fri, 17 Oct 2025 13:59:33 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Eliav Farber <farbere@amazon.com>
+Cc: stable@vger.kernel.org, linux@armlinux.org.uk, jdike@addtoit.com,
+ richard@nod.at, anton.ivanov@cambridgegreys.com,
+ dave.hansen@linux.intel.com, luto@kernel.org, peterz@infradead.org,
+ tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, x86@kernel.org,
+ hpa@zytor.com, tony.luck@intel.com, qiuxu.zhuo@intel.com,
+ mchehab@kernel.org, james.morse@arm.com, rric@kernel.org,
+ harry.wentland@amd.com, sunpeng.li@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch, evan.quan@amd.com,
+ james.qian.wang@arm.com, liviu.dudau@arm.com,
+ mihail.atanassov@arm.com, brian.starkey@arm.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, robdclark@gmail.com, sean@poorly.run,
+ jdelvare@suse.com, linux@roeck-us.net, fery@cypress.com,
+ dmitry.torokhov@gmail.com, agk@redhat.com, snitzer@redhat.com,
+ dm-devel@redhat.com, rajur@chelsio.com, davem@davemloft.net,
+ kuba@kernel.org, peppe.cavallaro@st.com, alexandre.torgue@st.com,
+ joabreu@synopsys.com, mcoquelin.stm32@gmail.com, malattia@linux.it,
+ hdegoede@redhat.com, mgross@linux.intel.com,
+ intel-linux-scu@intel.com, artur.paszkiewicz@intel.com,
+ jejb@linux.ibm.com, martin.petersen@oracle.com,
+ sakari.ailus@linux.intel.com, clm@fb.com, josef@toxicpanda.com,
+ dsterba@suse.com, xiang@kernel.org, chao@kernel.org, jack@suse.com,
+ tytso@mit.edu, adilger.kernel@dilger.ca, dushistov@mail.ru,
+ luc.vanoostenryck@gmail.com, rostedt@goodmis.org, pmladek@suse.com,
+ sergey.senozhatsky@gmail.com, andriy.shevchenko@linux.intel.com,
+ linux@rasmusvillemoes.dk, minchan@kernel.org, ngupta@vflare.org,
+ akpm@linux-foundation.org, kuznet@ms2.inr.ac.ru,
+ yoshfuji@linux-ipv6.org, pablo@netfilter.org, kadlec@netfilter.org,
+ fw@strlen.de, jmaloy@redhat.com, ying.xue@windriver.com,
+ willy@infradead.org, sashal@kernel.org, ruanjinjie@huawei.com,
+ David.Laight@aculab.com, herve.codina@bootlin.com, Jason@zx2c4.com,
+ keescook@chromium.org, kbusch@kernel.org, nathan@kernel.org,
+ bvanassche@acm.org, ndesaulniers@google.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-um@lists.infradead.org, linux-edac@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-media@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ platform-driver-x86@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-btrfs@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, linux-ext4@vger.kernel.org,
+ linux-sparse@vger.kernel.org, linux-mm@kvack.org,
+ netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
+ tipc-discussion@lists.sourceforge.net, Arnd Bergmann <arnd@arndb.de>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Eric Dumazet <edumazet@google.com>, Isabella Basso <isabbasso@riseup.net>,
+ Josh Poimboeuf <jpoimboe@kernel.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Sander Vanheule <sander@svanheule.net>,
+ Vlastimil Babka <vbabka@suse.cz>, Yury Norov <yury.norov@gmail.com>
+Subject: Re: [PATCH v2 01/27 5.10.y] overflow, tracing: Define the
+ is_signed_type() macro once
+Message-ID: <2025101708-obtuse-ellipse-e355@gregkh>
+References: <20251017090519.46992-1-farbere@amazon.com>
+ <20251017090519.46992-2-farbere@amazon.com>
 MIME-Version: 1.0
-X-MBO-RS-ID: bfdc10839e07c76281e
-X-MBO-RS-META: 59q9m7qgunobce4xcuehq1oiwwn9tr64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251017090519.46992-2-farbere@amazon.com>
 X-Mailman-Approved-At: Sat, 18 Oct 2025 08:50:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,117 +104,16 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-10-13 at 15:48 +0200, Christian K=C3=B6nig wrote:
-> When neither a release nor a wait operation is specified it is possible
-> to let the dma_fence live on independent of the module who issued it.
->=20
-> This makes it possible to unload drivers and only wait for all their
-> fences to signal.
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
-> =C2=A0drivers/dma-buf/dma-fence.c | 16 ++++++++++++----
-> =C2=A0include/linux/dma-fence.h=C2=A0=C2=A0 |=C2=A0 4 ++--
-> =C2=A02 files changed, 14 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-> index 982f2b2a62c0..39f73edf3a33 100644
-> --- a/drivers/dma-buf/dma-fence.c
-> +++ b/drivers/dma-buf/dma-fence.c
-> @@ -374,6 +374,14 @@ int dma_fence_signal_timestamp_locked(struct dma_fen=
-ce *fence,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fence->flags)))
-> =C2=A0		return -EINVAL;
-> =C2=A0
-> +	/*
-> +	 * When neither a release nor a wait operation is specified set the ops
-> +	 * pointer to NULL to allow the fence structure to become independent
-> +	 * who originally issued it.
-> +	 */
-> +	if (!fence->ops->release && !fence->ops->wait)
-> +		RCU_INIT_POINTER(fence->ops, NULL);
+On Fri, Oct 17, 2025 at 09:04:53AM +0000, Eliav Farber wrote:
+> From: Bart Van Assche <bvanassche@acm.org>
+> 
+> [ Upstream commit 92d23c6e94157739b997cacce151586a0d07bb8a ]
 
-OK, so the basic idea is that still living fences can't access driver
-data or driver code anymore after the driver is unloaded. Good and
-well, nice idea. We need something like that in Rust, too.
+This isn't in 5.15.y, why is it needed in 5.10.y?
 
-That's based on the rule that the driver, on unload, must signal all
-the fences. Also OK.
+thanks,
 
-However, how can that possibly fly by relying on the release callback
-not being implemented? How many users don't need it, and could those
-who implement release() be ported to.. sth else?
-
-
-P.
-
-> +
-> =C2=A0	/* Stash the cb_list before replacing it with the timestamp */
-> =C2=A0	list_replace(&fence->cb_list, &cb_list);
-> =C2=A0
-> @@ -513,7 +521,7 @@ dma_fence_wait_timeout(struct dma_fence *fence, bool =
-intr, signed long timeout)
-> =C2=A0	rcu_read_lock();
-> =C2=A0	ops =3D rcu_dereference(fence->ops);
-> =C2=A0	trace_dma_fence_wait_start(fence);
-> -	if (ops->wait) {
-> +	if (ops && ops->wait) {
-> =C2=A0		/*
-> =C2=A0		 * Implementing the wait ops is deprecated and not supported for
-> =C2=A0		 * issuer independent fences, so it is ok to use the ops outside
-> @@ -578,7 +586,7 @@ void dma_fence_release(struct kref *kref)
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	ops =3D rcu_dereference(fence->ops);
-> -	if (ops->release)
-> +	if (ops && ops->release)
-> =C2=A0		ops->release(fence);
-> =C2=A0	else
-> =C2=A0		dma_fence_free(fence);
-> @@ -614,7 +622,7 @@ static bool __dma_fence_enable_signaling(struct dma_f=
-ence *fence)
-> =C2=A0
-> =C2=A0	rcu_read_lock();
-> =C2=A0	ops =3D rcu_dereference(fence->ops);
-> -	if (!was_set && ops->enable_signaling) {
-> +	if (!was_set && ops && ops->enable_signaling) {
-> =C2=A0		trace_dma_fence_enable_signal(fence);
-> =C2=A0
-> =C2=A0		if (!ops->enable_signaling(fence)) {
-> @@ -1000,7 +1008,7 @@ void dma_fence_set_deadline(struct dma_fence *fence=
-, ktime_t deadline)
-> =C2=A0
-> =C2=A0	rcu_read_lock();
-> =C2=A0	ops =3D rcu_dereference(fence->ops);
-> -	if (ops->set_deadline && !dma_fence_is_signaled(fence))
-> +	if (ops && ops->set_deadline && !dma_fence_is_signaled(fence))
-> =C2=A0		ops->set_deadline(fence, deadline);
-> =C2=A0	rcu_read_unlock();
-> =C2=A0}
-> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
-> index 38421a0c7c5b..e1ba1d53de88 100644
-> --- a/include/linux/dma-fence.h
-> +++ b/include/linux/dma-fence.h
-> @@ -425,7 +425,7 @@ dma_fence_is_signaled_locked(struct dma_fence *fence)
-> =C2=A0
-> =C2=A0	rcu_read_lock();
-> =C2=A0	ops =3D rcu_dereference(fence->ops);
-> -	if (ops->signaled && ops->signaled(fence)) {
-> +	if (ops && ops->signaled && ops->signaled(fence)) {
-> =C2=A0		rcu_read_unlock();
-> =C2=A0		dma_fence_signal_locked(fence);
-> =C2=A0		return true;
-> @@ -461,7 +461,7 @@ dma_fence_is_signaled(struct dma_fence *fence)
-> =C2=A0
-> =C2=A0	rcu_read_lock();
-> =C2=A0	ops =3D rcu_dereference(fence->ops);
-> -	if (ops->signaled && ops->signaled(fence)) {
-> +	if (ops && ops->signaled && ops->signaled(fence)) {
-> =C2=A0		rcu_read_unlock();
-> =C2=A0		dma_fence_signal(fence);
-> =C2=A0		return true;
-
+greg k-h
