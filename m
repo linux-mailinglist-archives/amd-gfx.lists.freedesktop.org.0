@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FE33BECBA0
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 184B7BECBC0
+	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:52:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0A7310ED04;
-	Sat, 18 Oct 2025 08:50:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55CBA10E406;
+	Sat, 18 Oct 2025 08:52:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="y4KcmjmU";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="UsZdQ3N3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C7B010EC3C;
- Fri, 17 Oct 2025 13:48:59 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B43810EC3E;
+ Fri, 17 Oct 2025 13:49:06 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 7018A6436B;
- Fri, 17 Oct 2025 13:48:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7553DC16AAE;
- Fri, 17 Oct 2025 13:48:56 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 1E5D24B414;
+ Fri, 17 Oct 2025 13:49:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C38DDC16AAE;
+ Fri, 17 Oct 2025 13:49:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1760708938;
- bh=K3Vod72wndBL8Jl9osf6Sjco5Cz5wu2HiJRhWmdhj5g=;
+ s=korg; t=1760708946;
+ bh=lNulQj6Pf71EV1G9N3rtKDxmU4z4cUa0H7/cVUNj/bI=;
  h=Subject:To:Cc:From:Date:In-Reply-To:From;
- b=y4KcmjmUQZDYHmcorELuXEr4C7NJFHRVibhvAkRjP2jc3VZmvGmMTOrXYFez2zBRr
- wVFQ3WD3KsNqO7f1K1B+Y91RI3LhjX9rueeCuGzIEP5IYCYnwnGmVA63UbJWqGWnox
- OE+uvduOhKz9cpAM7VTqHG5VYts8ZZy1R3RnLqwE=
-Subject: Patch "minmax: don't use max() in situations that want a C constant
- expression" has been added to the 5.10-stable tree
-To: David.Laight@ACULAB.COM, David.Laight@aculab.com,
-	Jason@zx2c4.com, adilger.kernel@dilger.ca, agk@redhat.com,
-	airlied@linux.ie, akpm@linux-foundation.org,
-	alexander.deucher@amd.com, alexandre.torgue@st.com,
-	amd-gfx@lists.freedesktop.org, andriy.shevchenko@linux.intel.com,
-	anton.ivanov@cambridgegreys.com, artur.paszkiewicz@intel.com,
-	bp@alien8.de, brian.starkey@arm.com, bvanassche@acm.org,
-	chao@kernel.org, christian.koenig@amd.com, clm@fb.com,
-	coreteam@netfilter.org, daniel@ffwll.ch, dave.hansen@linux.intel.com,
-	davem@davemloft.net, dm-devel@redhat.com, dmitry.torokhov@gmail.com,
+ b=UsZdQ3N3g1HA9IRop9e0zSxN4roBsUzfuXh2lOF7Ls0u+zs8T+DbQ/PIbdvi3tAUB
+ QmRlkdqorz+9DT4OB5ssGlIv1gvHCWHSThGhzuH1HTR44BAshXSkft+F4USe5TvZ1M
+ r5d8OpcowDu70hyNjetpCQQo/K2qgth9vKzGMuhU=
+Subject: Patch "minmax: clamp more efficiently by avoiding extra comparison"
+ has been added to the 5.10-stable tree
+To: David.Laight@ACULAB.COM, Jason@zx2c4.com,
+	adilger.kernel@dilger.ca, agk@redhat.com, airlied@linux.ie,
+	akpm@linux-foundation.org, alexander.deucher@amd.com,
+	alexandre.torgue@st.com, amd-gfx@lists.freedesktop.org,
+	andriy.shevchenko@linux.intel.com, anton.ivanov@cambridgegreys.com,
+	artur.paszkiewicz@intel.com, bp@alien8.de, brian.starkey@arm.com,
+	bvanassche@acm.org, chao@kernel.org, christian.koenig@amd.com,
+	clm@fb.com, coreteam@netfilter.org, daniel@ffwll.ch,
+	dave.hansen@linux.intel.com, davem@davemloft.net,
+	dm-devel@redhat.com, dmitry.torokhov@gmail.com,
 	dri-devel@lists.freedesktop.org, dsterba@suse.com, dushistov@mail.ru,
 	evan.quan@amd.com, farbere@amazon.com, fery@cypress.com,
 	freedreno@lists.freedesktop.org, fw@strlen.de,
@@ -46,18 +46,17 @@ To: David.Laight@ACULAB.COM, David.Laight@aculab.com,
 	hdegoede@redhat.com, herve.codina@bootlin.com, hpa@zytor.com,
 	intel-linux-scu@intel.com, jack@suse.com, james.morse@arm.com,
 	james.qian.wang@arm.com, jdelvare@suse.com, jdike@addtoit.com,
-	jejb@linux.ibm.com, jmaloy@redhat.com, jo@freedesktop.org,
-	abreu@synopsys.com, josef@toxicpanda.com, kadlec@netfilter.org,
-	kbusch@kernel.org, keescook@chromium.org, kuba@kernel.org,
-	kuznet@ms2.inr.ac.ru, linux-arm-kernel@lists.infradead.org,
-	linux-erofs@lists.ozlabs.org, linux-mm@kvack.org,
-	linux-staging@lists.linux.dev,
+	jejb@linux.ibm.com, jmaloy@redhat.com, joabreu@synopsys.com,
+	josef@toxicpanda.com, kadlec@netfilter.org, kbusch@kernel.org,
+	keescook@chromium.org, kuba@kernel.org, kuznet@ms2.inr.ac.ru,
+	linux-arm-kernel@lists.infradead.org, linux-erofs@lists.ozlabs.org,
+	linux-mm@kvack.org, linux-staging@lists.linux.dev,
 	linux-stm32@st-md-mailman.stormreply.com,
 	linux-um@lists.infradead.org, linux@armlinux.org.uk,
 	linux@rasmusvillemoes.dk, linux@roeck-us.net, liviu.dudau@arm.com,
-	lorenzo.stoakes@oracle.com, luc.vanoostenryck@gmail.com,
-	luto@kernel.org, maarten.lankhorst@linux.intel.com,
-	malattia@linux.it, martin.petersen@oracle.com, mchehab@kernel.org,
+	luc.vanoostenryck@gmail.com, luto@kernel.org,
+	maarten.lankhorst@linux.intel.com, malattia@linux.it,
+	martin.petersen@oracle.com, mchehab@kernel.org,
 	mcoquelin.stm32@gmail.com, mgross@linux.intel.com,
 	mihail.atanassov@arm.com, minchan@kernel.org, mingo@redhat.com,
 	mripard@kernel.org, nathan@kernel.org, ndesaulniers@google.com,
@@ -65,18 +64,18 @@ To: David.Laight@ACULAB.COM, David.Laight@aculab.com,
 	peterz@infradead.org, pmladek@suse.com, qiuxu.zhuo@intel.com,
 	rajur@chelsio.com, richard@nod.at, robdclark@gmail.com,
 	rostedt@goodmis.org, rric@kernel.org, ruanjinjie@huawei.com,
-	sakari.ailus@linu, x.intel.com@freedesktop.org, sashal@kernel.org,
-	sean@poorly.run, sergey.senozhatsky@gmail.com, snitzer@redhat.com,
+	sakari.ailus@linux.intel.com, sashal@kernel.org, sean@poorly.run,
+	serge@freedesktop.org, y.senozhatsky@gmail.com, snitzer@redhat.com,
 	sunpeng.li@amd.com, tglx@linutronix.de,
 	tipc-discussion@lists.sourceforge.net, tony.luck@intel.com,
-	torvalds@linux-foundation.org, tytso@mit.edu, tzimmermann@suse.de,
-	willy@infradead.org, x86@kernel.org, xiang@kernel.org,
-	ying.xue@windriver.com, yoshfuji@linux-ipv6.org
+	tytso@mit.edu, tzimmermann@suse.de, willy@infradead.org,
+	x86@kernel.org, xiang@kernel.org, ying.xue@windriver.com,
+	yoshfuji@linux-ipv6.org
 Cc: <stable-commits@vger.kernel.org>
 From: <gregkh@linuxfoundation.org>
 Date: Fri, 17 Oct 2025 15:48:29 +0200
-In-Reply-To: <20251017090519.46992-18-farbere@amazon.com>
-Message-ID: <2025101729-blubber-blinks-3a79@gregkh>
+In-Reply-To: <20251017090519.46992-5-farbere@amazon.com>
+Message-ID: <2025101729-giddiness-scrubbed-89be@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
@@ -100,106 +99,206 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 This is a note to let you know that I've just added the patch titled
 
-    minmax: don't use max() in situations that want a C constant expression
+    minmax: clamp more efficiently by avoiding extra comparison
 
 to the 5.10-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
-     minmax-don-t-use-max-in-situations-that-want-a-c-constant-expression.patch
+     minmax-clamp-more-efficiently-by-avoiding-extra-comparison.patch
 and it can be found in the queue-5.10 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
 
 
-From prvs=378230090=farbere@amazon.com Fri Oct 17 11:11:06 2025
+From prvs=378230090=farbere@amazon.com Fri Oct 17 11:07:07 2025
 From: Eliav Farber <farbere@amazon.com>
-Date: Fri, 17 Oct 2025 09:05:09 +0000
-Subject: minmax: don't use max() in situations that want a C constant expression
+Date: Fri, 17 Oct 2025 09:04:56 +0000
+Subject: minmax: clamp more efficiently by avoiding extra comparison
 To: <gregkh@linuxfoundation.org>, <stable@vger.kernel.org>, <linux@armlinux.org.uk>, <jdike@addtoit.com>, <richard@nod.at>, <anton.ivanov@cambridgegreys.com>, <dave.hansen@linux.intel.com>, <luto@kernel.org>, <peterz@infradead.org>, <tglx@linutronix.de>, <mingo@redhat.com>, <bp@alien8.de>, <x86@kernel.org>, <hpa@zytor.com>, <tony.luck@intel.com>, <qiuxu.zhuo@intel.com>, <mchehab@kernel.org>, <james.morse@arm.com>, <rric@kernel.org>, <harry.wentland@amd.com>, <sunpeng.li@amd.com>, <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>, <evan.quan@amd.com>, <james.qian.wang@arm.com>, <liviu.dudau@arm.com>, <mihail.atanassov@arm.com>, <brian.starkey@arm.com>, <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>, <tzimmermann@suse.de>, <robdclark@gmail.com>, <sean@poorly.run>, <jdelvare@suse.com>, <linux@roeck-us.net>, <fery@cypress.com>, <dmitry.torokhov@gmail.com>, <agk@redhat.com>, <snitzer@redhat.com>, <dm-devel@redhat.com>, <rajur@chelsio
  .com>, <davem@davemloft.net>, <kuba@kernel.org>, <peppe.cavallaro@st.com>, <alexandre.torgue@st.com>, <joabreu@synopsys.com>, <mcoquelin.stm32@gmail.com>, <malattia@linux.it>, <hdegoede@redhat.com>, <mgross@linux.intel.com>, <intel-linux-scu@intel.com>, <artur.paszkiewicz@intel.com>, <jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <sakari.ailus@linux.intel.com>, <clm@fb.com>, <josef@toxicpanda.com>, <dsterba@suse.com>, <xiang@kernel.org>, <chao@kernel.org>, <jack@suse.com>, <tytso@mit.edu>, <adilger.kernel@dilger.ca>, <dushistov@mail.ru>, <luc.vanoostenryck@gmail.com>, <rostedt@goodmis.org>, <pmladek@suse.com>, <sergey.senozhatsky@gmail.com>, <andriy.shevchenko@linux.intel.com>, <linux@rasmusvillemoes.dk>, <minchan@kernel.org>, <ngupta@vflare.org>, <akpm@linux-foundation.org>, <kuznet@ms2.inr.ac.ru>, <yoshfuji@linux-ipv6.org>, <pablo@netfilter.org>, <kadlec@netfilter.org>, <fw@strlen.de>, <jmaloy@redhat.com>, <ying.xue@windriver.com>, <willy@infradead.org>, <farbere@amazon.com>,
   <sashal@kernel.org>, <ruanjinjie@huawei.com>, <David.Laight@ACULAB.COM>, <herve.codina@bootlin.com>, <Jason@zx2c4.com>, <keescook@chromium.org>, <kbusch@kernel.org>, <nathan@kernel.org>, <bvanassche@acm.org>, <ndesaulniers@google.com>, <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <linux-um@lists.infradead.org>, <linux-edac@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>, <linux-hwmon@vger.kernel.org>, <linux-input@vger.kernel.org>, <linux-media@vger.kernel.org>, <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>, <platform-driver-x86@vger.kernel.org>, <linux-scsi@vger.kernel.org>, <linux-staging@lists.linux.dev>, <linux-btrfs@vger.kernel.org>, <linux-erofs@lists.ozlabs.org>, <linux-ext4@vger.kernel.org>, <linux-sparse@vger.kernel.org>, <linux-mm@kvack.org>, <netfilter-devel@vger.kernel.org>, <coreteam@netfilter.org>, <tipc-discussion@
  lists.sourceforge.net>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, David Laight <David.Laight@aculab.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Message-ID: <20251017090519.46992-18-farbere@amazon.com>
+Message-ID: <20251017090519.46992-5-farbere@amazon.com>
 
-From: Linus Torvalds <torvalds@linux-foundation.org>
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
 
-[ Upstream commit cb04e8b1d2f24c4c2c92f7b7529031fc35a16fed ]
+[ Upstream commit 2122e2a4efc2cd139474079e11939b6e07adfacd ]
 
-We only had a couple of array[] declarations, and changing them to just
-use 'MAX()' instead of 'max()' fixes the issue.
+Currently the clamp algorithm does:
 
-This will allow us to simplify our min/max macros enormously, since they
-can now unconditionally use temporary variables to avoid using the
-argument values multiple times.
+    if (val > hi)
+        val = hi;
+    if (val < lo)
+        val = lo;
 
-Cc: David Laight <David.Laight@aculab.com>
-Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+But since hi > lo by definition, this can be made more efficient with:
+
+    if (val > hi)
+        val = hi;
+    else if (val < lo)
+        val = lo;
+
+So fix up the clamp and clamp_t functions to do this, adding the same
+argument checking as for min and min_t.
+
+For simple cases, code generation on x86_64 and aarch64 stay about the
+same:
+
+    before:
+            cmp     edi, edx
+            mov     eax, esi
+            cmova   edi, edx
+            cmp     edi, esi
+            cmovnb  eax, edi
+            ret
+    after:
+            cmp     edi, esi
+            mov     eax, edx
+            cmovnb  esi, edi
+            cmp     edi, edx
+            cmovb   eax, esi
+            ret
+
+    before:
+            cmp     w0, w2
+            csel    w8, w0, w2, lo
+            cmp     w8, w1
+            csel    w0, w8, w1, hi
+            ret
+    after:
+            cmp     w0, w1
+            csel    w8, w0, w1, hi
+            cmp     w0, w2
+            csel    w0, w8, w2, lo
+            ret
+
+On MIPS64, however, code generation improves, by removing arithmetic in
+the second branch:
+
+    before:
+            sltu    $3,$6,$4
+            bne     $3,$0,.L2
+            move    $2,$6
+
+            move    $2,$4
+    .L2:
+            sltu    $3,$2,$5
+            bnel    $3,$0,.L7
+            move    $2,$5
+
+    .L7:
+            jr      $31
+            nop
+    after:
+            sltu    $3,$4,$6
+            beq     $3,$0,.L13
+            move    $2,$6
+
+            sltu    $3,$4,$5
+            bne     $3,$0,.L12
+            move    $2,$4
+
+    .L13:
+            jr      $31
+            nop
+
+    .L12:
+            jr      $31
+            move    $2,$5
+
+For more complex cases with surrounding code, the effects are a bit
+more complicated. For example, consider this simplified version of
+timestamp_truncate() from fs/inode.c on x86_64:
+
+    struct timespec64 timestamp_truncate(struct timespec64 t, struct inode *inode)
+    {
+        struct super_block *sb = inode->i_sb;
+        unsigned int gran = sb->s_time_gran;
+
+        t.tv_sec = clamp(t.tv_sec, sb->s_time_min, sb->s_time_max);
+        if (t.tv_sec == sb->s_time_max || t.tv_sec == sb->s_time_min)
+            t.tv_nsec = 0;
+        return t;
+    }
+
+    before:
+            mov     r8, rdx
+            mov     rdx, rsi
+            mov     rcx, QWORD PTR [r8]
+            mov     rax, QWORD PTR [rcx+8]
+            mov     rcx, QWORD PTR [rcx+16]
+            cmp     rax, rdi
+            mov     r8, rcx
+            cmovge  rdi, rax
+            cmp     rdi, rcx
+            cmovle  r8, rdi
+            cmp     rax, r8
+            je      .L4
+            cmp     rdi, rcx
+            jge     .L4
+            mov     rax, r8
+            ret
+    .L4:
+            xor     edx, edx
+            mov     rax, r8
+            ret
+
+    after:
+            mov     rax, QWORD PTR [rdx]
+            mov     rdx, QWORD PTR [rax+8]
+            mov     rax, QWORD PTR [rax+16]
+            cmp     rax, rdi
+            jg      .L6
+            mov     r8, rax
+            xor     edx, edx
+    .L2:
+            mov     rax, r8
+            ret
+    .L6:
+            cmp     rdx, rdi
+            mov     r8, rdi
+            cmovge  r8, rdx
+            cmp     rax, r8
+            je      .L4
+            xor     eax, eax
+            cmp     rdx, rdi
+            cmovl   rax, rsi
+            mov     rdx, rax
+            mov     rax, r8
+            ret
+    .L4:
+            xor     edx, edx
+            jmp     .L2
+
+In this case, we actually gain a branch, unfortunately, because the
+compiler's replacement axioms no longer as cleanly apply.
+
+So all and all, this change is a bit of a mixed bag.
+
+Link: https://lkml.kernel.org/r/20220926133435.1333846-2-Jason@zx2c4.com
+Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Kees Cook <keescook@chromium.org>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
 Signed-off-by: Eliav Farber <farbere@amazon.com>
 Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/input/touchscreen/cyttsp4_core.c |    2 +-
- drivers/md/dm-integrity.c                |    4 ++--
- fs/btrfs/tree-checker.c                  |    2 +-
- lib/vsprintf.c                           |    2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
+ include/linux/minmax.h |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---- a/drivers/input/touchscreen/cyttsp4_core.c
-+++ b/drivers/input/touchscreen/cyttsp4_core.c
-@@ -857,7 +857,7 @@ static void cyttsp4_get_mt_touches(struc
- 	struct cyttsp4_touch tch;
- 	int sig;
- 	int i, j, t = 0;
--	int ids[max(CY_TMA1036_MAX_TCH, CY_TMA4XX_MAX_TCH)];
-+	int ids[MAX(CY_TMA1036_MAX_TCH, CY_TMA4XX_MAX_TCH)];
+--- a/include/linux/minmax.h
++++ b/include/linux/minmax.h
+@@ -38,7 +38,7 @@
+ 		__cmp_once(x, y, __UNIQUE_ID(__x), __UNIQUE_ID(__y), op))
  
- 	memset(ids, 0, si->si_ofs.tch_abs[CY_TCH_T].max * sizeof(int));
- 	for (i = 0; i < num_cur_tch; i++) {
---- a/drivers/md/dm-integrity.c
-+++ b/drivers/md/dm-integrity.c
-@@ -1600,7 +1600,7 @@ static void integrity_metadata(struct wo
- 		struct bio *bio = dm_bio_from_per_bio_data(dio, sizeof(struct dm_integrity_io));
- 		char *checksums;
- 		unsigned extra_space = unlikely(digest_size > ic->tag_size) ? digest_size - ic->tag_size : 0;
--		char checksums_onstack[max((size_t)HASH_MAX_DIGESTSIZE, MAX_TAG_SIZE)];
-+		char checksums_onstack[MAX(HASH_MAX_DIGESTSIZE, MAX_TAG_SIZE)];
- 		sector_t sector;
- 		unsigned sectors_to_process;
+ #define __clamp(val, lo, hi)	\
+-	__cmp(__cmp(val, lo, >), hi, <)
++	((val) >= (hi) ? (hi) : ((val) <= (lo) ? (lo) : (val)))
  
-@@ -1882,7 +1882,7 @@ retry_kmap:
- 				} while (++s < ic->sectors_per_block);
- #ifdef INTERNAL_VERIFY
- 				if (ic->internal_hash) {
--					char checksums_onstack[max((size_t)HASH_MAX_DIGESTSIZE, MAX_TAG_SIZE)];
-+					char checksums_onstack[MAX(HASH_MAX_DIGESTSIZE, MAX_TAG_SIZE)];
- 
- 					integrity_sector_checksum(ic, logical_sector, mem + bv.bv_offset, checksums_onstack);
- 					if (unlikely(memcmp(checksums_onstack, journal_entry_tag(ic, je), ic->tag_size))) {
---- a/fs/btrfs/tree-checker.c
-+++ b/fs/btrfs/tree-checker.c
-@@ -587,7 +587,7 @@ static int check_dir_item(struct extent_
- 		 */
- 		if (key->type == BTRFS_DIR_ITEM_KEY ||
- 		    key->type == BTRFS_XATTR_ITEM_KEY) {
--			char namebuf[max(BTRFS_NAME_LEN, XATTR_NAME_MAX)];
-+			char namebuf[MAX(BTRFS_NAME_LEN, XATTR_NAME_MAX)];
- 
- 			read_extent_buffer(leaf, namebuf,
- 					(unsigned long)(di + 1), name_len);
---- a/lib/vsprintf.c
-+++ b/lib/vsprintf.c
-@@ -1078,7 +1078,7 @@ char *resource_string(char *buf, char *e
- #define FLAG_BUF_SIZE		(2 * sizeof(res->flags))
- #define DECODED_BUF_SIZE	sizeof("[mem - 64bit pref window disabled]")
- #define RAW_BUF_SIZE		sizeof("[mem - flags 0x]")
--	char sym[max(2*RSRC_BUF_SIZE + DECODED_BUF_SIZE,
-+	char sym[MAX(2*RSRC_BUF_SIZE + DECODED_BUF_SIZE,
- 		     2*RSRC_BUF_SIZE + FLAG_BUF_SIZE + RAW_BUF_SIZE)];
- 
- 	char *p = sym, *pend = sym + sizeof(sym);
+ #define __clamp_once(val, lo, hi, unique_val, unique_lo, unique_hi) ({	\
+ 		typeof(val) unique_val = (val);				\
 
 
 Patches currently in stable-queue which might be from farbere@amazon.com are
