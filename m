@@ -2,92 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB52BECBDB
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD177BECB6D
+	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B31910ED00;
-	Sat, 18 Oct 2025 08:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8CC710E857;
+	Sat, 18 Oct 2025 08:50:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YtSviiKK";
+	dkim=pass (2048-bit key; secure) header.d=lach.pw header.i=@lach.pw header.b="Gfk5dmlR";
+	dkim=permerror (0-bit key) header.d=lach.pw header.i=@lach.pw header.b="5M09VXGp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5738C10EC75;
- Fri, 17 Oct 2025 16:09:51 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 19A6443AD4;
- Fri, 17 Oct 2025 16:09:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBE17C4CEE7;
- Fri, 17 Oct 2025 16:09:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1760717391;
- bh=BOrYC+tXjLjRqJyXcD4crvrBNK2lkUpKkjfEmyc87bI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YtSviiKK7XhOypmn1B0JMTFJNg+aK9xkicr5kleBJoGLQsIHX6oRtRnPJgXbXWtLH
- cVrvwZYIhcft0nkxK/ZQBpXxxHeWHw5/VEilYnGTD4lEZyzXP8wqDKjbklEc7PQZxX
- jrw7mNWuagcjs3SnKes4mzFKMKH2tiSDMTY+zRgHS/b+KVlZKnLK4gb6spqja1+1F5
- LtRKkkOtABvH8jmUIF+maywb5ma9DVPFdB4So5FQ7XdD3Y3FN97CNzQWMZICjSRgyi
- XbXdYmBkEWUiq556ItdRa+tvmxGUk+V9ozsqtDgWFGhyHQtvMVM573eif+FMsCQ1J7
- ilRe5q/VN9eDQ==
-Date: Fri, 17 Oct 2025 17:09:24 +0100
-From: Nathan Chancellor <nathan@kernel.org>
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: Eliav Farber <farbere@amazon.com>, stable@vger.kernel.org,
- linux@armlinux.org.uk, jdike@addtoit.com, richard@nod.at,
- anton.ivanov@cambridgegreys.com, dave.hansen@linux.intel.com,
- luto@kernel.org, peterz@infradead.org, tglx@linutronix.de,
- mingo@redhat.com, bp@alien8.de, x86@kernel.org, hpa@zytor.com,
- tony.luck@intel.com, qiuxu.zhuo@intel.com, mchehab@kernel.org,
- james.morse@arm.com, rric@kernel.org, harry.wentland@amd.com,
- sunpeng.li@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- evan.quan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com,
- mihail.atanassov@arm.com, brian.starkey@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robdclark@gmail.com, sean@poorly.run,
- jdelvare@suse.com, linux@roeck-us.net, fery@cypress.com,
- dmitry.torokhov@gmail.com, agk@redhat.com, snitzer@redhat.com,
- dm-devel@redhat.com, rajur@chelsio.com, davem@davemloft.net,
- kuba@kernel.org, peppe.cavallaro@st.com, alexandre.torgue@st.com,
- joabreu@synopsys.com, mcoquelin.stm32@gmail.com, malattia@linux.it,
- hdegoede@redhat.com, mgross@linux.intel.com,
- intel-linux-scu@intel.com, artur.paszkiewicz@intel.com,
- jejb@linux.ibm.com, martin.petersen@oracle.com,
- sakari.ailus@linux.intel.com, clm@fb.com, josef@toxicpanda.com,
- dsterba@suse.com, xiang@kernel.org, chao@kernel.org, jack@suse.com,
- tytso@mit.edu, adilger.kernel@dilger.ca, dushistov@mail.ru,
- luc.vanoostenryck@gmail.com, rostedt@goodmis.org, pmladek@suse.com,
- sergey.senozhatsky@gmail.com, andriy.shevchenko@linux.intel.com,
- linux@rasmusvillemoes.dk, minchan@kernel.org, ngupta@vflare.org,
- akpm@linux-foundation.org, kuznet@ms2.inr.ac.ru,
- yoshfuji@linux-ipv6.org, pablo@netfilter.org, kadlec@netfilter.org,
- fw@strlen.de, jmaloy@redhat.com, ying.xue@windriver.com,
- willy@infradead.org, sashal@kernel.org, ruanjinjie@huawei.com,
- David.Laight@aculab.com, herve.codina@bootlin.com, Jason@zx2c4.com,
- keescook@chromium.org, kbusch@kernel.org, bvanassche@acm.org,
- ndesaulniers@google.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-um@lists.infradead.org,
- linux-edac@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
- linux-input@vger.kernel.org, linux-media@vger.kernel.org,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- platform-driver-x86@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-btrfs@vger.kernel.org,
- linux-erofs@lists.ozlabs.org, linux-ext4@vger.kernel.org,
- linux-sparse@vger.kernel.org, linux-mm@kvack.org,
- netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
- tipc-discussion@lists.sourceforge.net
-Subject: Re: [PATCH v2 00/27 5.10.y] Backport minmax.h updates from v6.17-rc7
-Message-ID: <20251017160924.GA2728735@ax162>
-References: <20251017090519.46992-1-farbere@amazon.com>
- <2025101704-rumble-chatroom-60b5@gregkh>
+Received: from mail.0la.ch (mail.0la.ch [78.47.82.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 399D210EC79;
+ Fri, 17 Oct 2025 16:28:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; s=202502r; d=lach.pw; c=relaxed/relaxed;
+ h=Message-ID:Date:Subject:To:From; t=1760718477; bh=TISoBNwEXTy+2dwSC0N2Ya5
+ Q1DPGHIdmijcD806QkPc=; b=Gfk5dmlR2UvzChTy9lgkesT5yQfzvJf/nYFNUMdE3M5DVMr1cT
+ 0y0JAdLq4H46eQN0UfO8SYBsrY3XvUDef+hAHWpoAv13jPMQmkdgxrn/nzUYH870+GRNMzcnmXD
+ H42s2SfexpchXRA8Fpnx7OpLJWrwFd84GHDxx8RxWAOi6qOuqo1XZoJe6fqgU+pefkFwOM/T6oT
+ 6oFWFzN+GrOJXEyQRcEAmeswDqMjpHIjyAb4wkKpDCTgkBHLpjuXO1sg6ukJ87hoy2wnIfwdqhM
+ Ucd4kBq+jsZtwmu0kX7cwaKHF6iliPX06hPP2qyF4asPaOhEQza+H9L1h8v/IOX14PQ==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202502e; d=lach.pw; c=relaxed/relaxed;
+ h=Message-ID:Date:Subject:To:From; t=1760718477; bh=TISoBNwEXTy+2dwSC0N2Ya5
+ Q1DPGHIdmijcD806QkPc=; b=5M09VXGp4u3s0GzWxgdA1v4amtDjSXrUBgBNoieyfkVTD6WP4U
+ 8XYLPECocfu/xHk9NuauGXloB6iOiGCMZRDw==;
+From: Yaroslav Bolyukin <iam@lach.pw>
+To: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Wayne Lin <Wayne.Lin@amd.com>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Lach <iam@lach.pw>
+Subject: [PATCH v5 0/7] DisplayID DSC passthrough timing support
+Date: Fri, 17 Oct 2025 18:27:29 +0200
+Message-ID: <20251017162736.45368-1-iam@lach.pw>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2025101704-rumble-chatroom-60b5@gregkh>
 X-Mailman-Approved-At: Sat, 18 Oct 2025 08:50:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -103,65 +61,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 17, 2025 at 05:03:02PM +0200, Greg KH wrote:
-> On Fri, Oct 17, 2025 at 09:04:52AM +0000, Eliav Farber wrote:
-> > This series backports 27 patches to update minmax.h in the 5.10.y
-> > branch, aligning it with v6.17-rc7.
-> > 
-> > The ultimate goal is to synchronize all long-term branches so that they
-> > include the full set of minmax.h changes.
-> > 
-> > - 6.12.y has already been backported; the changes are included in
-> >   v6.12.49.
-> > - 6.6.y has already been backported; the changes are included in
-> >   v6.6.109.
-> > - 6.1.y has already been backported; the changes are currently in the
-> >   6.1-stable tree.
-> > - 5.15.y has already been backported; the changes are currently in the
-> >   5.15-stable tree.
-> 
-> With this series applied, on an arm64 server, building 'allmodconfig', I
-> get the following build error.
-> 
-> Oddly I don't see it on my x86 server, perhaps due to different compiler
-> versions?
-> 
-> Any ideas?
-> 
-> thanks,
-> 
-> greg k-h
-> 
-> ------------------------
-> 
-> In function ‘rt2800_txpower_to_dev’,
->     inlined from ‘rt2800_config_channel’ at ../drivers/net/wireless/ralink/rt2x00/rt2800lib.c:4022:25:
-> ./../include/linux/compiler_types.h:309:45: error: call to ‘__compiletime_assert_1168’ declared with attribute error: clamp() low limit -7 greater than high limit 15
->   309 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
->       |                                             ^
-> ./../include/linux/compiler_types.h:290:25: note: in definition of macro ‘__compiletime_assert’
->   290 |                         prefix ## suffix();                             \
->       |                         ^~~~~~
-> ./../include/linux/compiler_types.h:309:9: note: in expansion of macro ‘_compiletime_assert’
->   309 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
->       |         ^~~~~~~~~~~~~~~~~~~
-> ../include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
->    39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
->       |                                     ^~~~~~~~~~~~~~~~~~
-> ../include/linux/minmax.h:188:9: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
->   188 |         BUILD_BUG_ON_MSG(statically_true(ulo > uhi),                            \
->       |         ^~~~~~~~~~~~~~~~
-> ../include/linux/minmax.h:195:9: note: in expansion of macro ‘__clamp_once’
->   195 |         __clamp_once(type, val, lo, hi, __UNIQUE_ID(v_), __UNIQUE_ID(l_), __UNIQUE_ID(h_))
->       |         ^~~~~~~~~~~~
-> ../include/linux/minmax.h:218:36: note: in expansion of macro ‘__careful_clamp’
->   218 | #define clamp_t(type, val, lo, hi) __careful_clamp(type, val, lo, hi)
->       |                                    ^~~~~~~~~~~~~~~
-> ../drivers/net/wireless/ralink/rt2x00/rt2800lib.c:3980:24: note: in expansion of macro ‘clamp_t’
->  3980 |                 return clamp_t(char, txpower, MIN_A_TXPOWER, MAX_A_TXPOWER);
->       |                        ^~~~~~~
+From: Lach <iam@lach.pw>
 
-Missing commit 3bc753c06dd0 ("kbuild: treat char as always unsigned")?
+VESA DisplayID spec allows the device to force its DSC bits per pixel
+value.
 
-Cheers,
-Nathan
+For example, the HTC Vive Pro 2 VR headset uses this value in
+high-resolution modes (3680x1836@90-120, 4896x2448@90-120), and when the
+kernel doesn't respect this parameter, garbage is displayed on the HMD
+instead.
+
+Me and other users have successfully tested the old (v3) version of this
+patch (which was applying DSC BPP value unconditionally, thus incorrect:
+https://lkml.org/lkml/2023/2/26/116) on Vive Pro 2 and
+Bigscreen Beyond VR headsets, and have been using it daily, it is known
+to work and doesn't seem to break anything else since 2022.
+
+Previously, I didn't have enough dedication to get it merged, I hope
+this time I will manage to get it to v6.19 :D
+
+Regarding driver support - I have looked at amdgpu and Nvidia's
+open-gpu-kernel-modules, and both seem to have some indication for this
+value; however, in Linux, it is unused in both.
+
+First patch implements parsing of DSC BPP values and display mode VII
+timings flag which mandates that the DSC BPP value should actually be
+used for this display mode.
+
+The second patch implements handling of this value for AMDGPU driver.
+
+The only thing that I don't like in the current implementation, is how
+the value of `dsc_passthrough_timings_support` flag is propagated from
+the connector display modes to the mode created in `DRM_IOCTL_MODE_SETCRTC`
+handler (which is used for VR display initialization in Monado and
+StreamVR), it feels like this flag should be initialized by the kernel
+itself, but as far as I can see there is no correct way to do this, as
+the timing constraints calculation belongs to the individual drivers.
+
+Another problem with how this flag is set, is that there is no hard
+connection between modes creaded in `SETCRTC` and the modes actually
+defined by connector, so I implement an assumption that this flag should
+be the same between choosen mode and the preferred display mode. Given
+that previously due to the missing support for this flag displays
+were only showing garbage, I believe this assumption won't break
+anything.
+
+Both of those downsides are due to the fact my understanding of DRM
+subsystem is not that high. If another implementation would be proposed
+by AMDGPU maintainers - I will gladly implement it here.
+
+v4->v5:
+ * The patch was split into multiple
+ * Disabled MSO parsing for eDP displays
+ * Disabled MSO logs if not used
+ * Passing of type VII timings block data
+ * Minor codestyle changes: lines moved around, naming
+v3->v4:
+ * This patch now parses timings support flag on type VII block, instead
+   of applying it unconditionally. Previously I didn't understand the
+   spec properly.
+ * Now it also is not being applied for non-supported and/or non-VII
+   blocks in amdgpu driver.
+
+Regards,
+
+Lach
+
+Yaroslav Bolyukin (7):
+  drm/edid: rename VESA block parsing functions to more generic name
+  drm/edid: prepare for VESA vendor-specific data block extension
+  drm/edid: MSO should only be used for non-eDP displays
+  drm/edid: parse DSC DPP passthru support flag for mode VII timings
+  drm/edid: for consistency, use mask everywhere for block rev parsing
+  drm/edid: parse DRM VESA dsc bpp target
+  drm/amd: use fixed dsc bits-per-pixel from edid
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  12 +++
+ drivers/gpu/drm/drm_displayid_internal.h      |  11 ++
+ drivers/gpu/drm/drm_edid.c                    | 101 +++++++++++-------
+ include/drm/drm_connector.h                   |   6 ++
+ include/drm/drm_modes.h                       |  10 ++
+ 5 files changed, 103 insertions(+), 37 deletions(-)
+
+-- 
+2.51.0
