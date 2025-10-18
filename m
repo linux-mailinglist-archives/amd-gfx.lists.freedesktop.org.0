@@ -2,53 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C84C6BF0EF5
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Oct 2025 13:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 516A8BF1513
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Oct 2025 14:48:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD17210E424;
-	Mon, 20 Oct 2025 11:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AB2C10E42A;
+	Mon, 20 Oct 2025 12:48:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="LDWcghus";
+	dkim=pass (2048-bit key; unprotected) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="UB1um/PY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A2BE10E427;
- Mon, 20 Oct 2025 11:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=GBzPJmdSuBvDvgcpfPHid7V4T9dYBbIgb1rCCJSQwuo=; b=LDWcghusUXSZU1M14ZVQghkv0F
- hVqoRJ5VVctF0F4WBtlNi8y8plJBtiKt6SF7S66vHnesjX2Une4GSVPLuWFFi/hON0Ozg1/PtPXKw
- njJa9kw2ZSoIp/Ff9o4NG4CyxqOUNNTAoGHiKItWAOGSNYPYeRuNrMSplsNxQicVsRYRCaBfALKRb
- so/HQ8ujgkNv5GnvsWTcoJ4nn1bFOxGS8FFAwXI1BzHaS5qFl2LlY1FaK94zmi+zJWjxNMok1re/F
- JvKkADeotsERTJ5bHGQC5JEF9gpcZut4SIDooyNuw9+cr2DJqxpP/urvbUGKc75D7nx2cMuewCtoA
- RvZogFiw==;
-Received: from [90.242.12.242] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vAoSw-00C5bO-OZ; Mon, 20 Oct 2025 13:54:18 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v5 6/6] drm/ttm: Add an allocation flag to propagate -ENOSPC
- on OOM
-Date: Mon, 20 Oct 2025 12:54:11 +0100
-Message-ID: <20251020115411.36818-7-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20251020115411.36818-1-tvrtko.ursulin@igalia.com>
-References: <20251020115411.36818-1-tvrtko.ursulin@igalia.com>
+Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com
+ [74.125.224.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4B6610E076
+ for <amd-gfx@lists.freedesktop.org>; Sat, 18 Oct 2025 14:32:39 +0000 (UTC)
+Received: by mail-yx1-f44.google.com with SMTP id
+ 956f58d0204a3-63bbf5f77daso3063045d50.3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 18 Oct 2025 07:32:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1760797959;
+ x=1761402759; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=u33yGeffbuYdlvlzL4H50ccSYsAIsX3t6iP87kPjVYE=;
+ b=UB1um/PY28UFZ6nAnbTNtCOxbBPZzBLv7Q2doaok/f6Fv/850ac5Xj2b13plkVvPE7
+ vQkbTSP9ofwFejPRTpf71+JiidB0POisqVM3SkQD15KjDvFSwYrRb+LKXzV1fEk7Cwbg
+ s0wi3ljqvW6uiIn2h9N5g/IC2ZnV7ADS4T1izS1T1e52KxND8g+ersLGBoqzWHhk+Jr5
+ efyaaml7CEkQ830LZ52k8aVDoelMomW2OUejAcTd+GKRtFA8TYRRkqIwQ8uW27Jyr3t0
+ CljY+NG12P8NOqURxDTsZa7as/si/UKlHubOeMLk0908oFqyNwtGmt0pi8V4dEeQ+7X6
+ 1KKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1760797959; x=1761402759;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=u33yGeffbuYdlvlzL4H50ccSYsAIsX3t6iP87kPjVYE=;
+ b=m8+slfBqRZrHWsjpMgInG3dUBIYbwsPZycDTI/dhIsC6k65pHDs4yMJ/hxEYtw5XDH
+ zpxEMeH/Eb0KzfYjB8MsyWtowaec+liENQE/tTlE5KiSa1yT6hlydDDrmCZJ6UaXA7gW
+ uLXz9IyWLRhhtzJ8ERXZaj+MjjB2Iv29NsynV223vLeIzcvJxFWT71GYDLomZoZfREMs
+ GFh9O8dbJ+LgvFFpfXA7iwMYDOHdt+Jlo4mbb7B4Z/aaWDKzMyjnDO94RMJ+bfYsLNCN
+ 4KMRII7PT0XsSbwIc9MPxWhw176d/Y0keUPSkDYD1SKFhQyU5nlrM4/fGXfj6+seWlN0
+ u7yQ==
+X-Gm-Message-State: AOJu0Ywmo4zRD1zJPaJM0o/8qEcGVP7R7TWV84g35w6z0Octgp/hFnve
+ 6vpyLjMTsfSW8ccjUa+prSO7b+nTv4Omr+WUc3x4smETAwXiqlcyQ/VQYIoSrBIAg/hnlgMrCPX
+ 8K/F/Q94=
+X-Gm-Gg: ASbGncvK4GjrSAs1d7Va1JNF9E1zckgG6lvHcTDd9F1f/hXeg66UwsPD1MvUyrm4DKM
+ DlII9FnBcsI/Ff7jq74LA3CCvQVYVDEUxyuyRb4VlnU6Hm9npGFsYB282X7pzOiHhhEtIYIhyda
+ cTjOiN7xsyDQfaArnBplmOm9hIrkZflFtC1iQ6RUM0AEQQYLoUws+jvmp0fRmv/l9fCzbfwT2hE
+ bumALjfHXtinXjKmcP6kMSIkij1gcRUSUjOMp7ujOo8fkZwiWuyk5hayePKa6zck4a8L8/sQUsO
+ 8SGqmZ8ig/3h5napCkmlRMUvmcCqSQCXtx/zNXlaC8EqXWqjTTVPC8KnZNI5huSiijxnstR2yzL
+ E6Y1lKF2XSMRA/a5Rk8h4nBLuBQkuVJk2LbkkXpLd/0GjhX6D8RtniRCycUwMHD8CgUqPhQo8Y9
+ VPVVYaoAd1OM3s5cWxQ6HUA1OVLPYUwWkKGo0GbFxgs9kH2dx9ED4/vw==
+X-Google-Smtp-Source: AGHT+IFF/uYaF5unMA2JrnG83glsTGgmsXzLJXAhREcADJm1ByIhJXYy/E/u2GiQDhtQixvIBaCmUg==
+X-Received: by 2002:a05:690e:11cc:b0:63e:1943:ce4f with SMTP id
+ 956f58d0204a3-63e1943d222mr4804190d50.6.1760797958795; 
+ Sat, 18 Oct 2025 07:32:38 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com.
+ [209.85.128.182]) by smtp.gmail.com with ESMTPSA id
+ 956f58d0204a3-63e2680b19esm817724d50.23.2025.10.18.07.32.37
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 18 Oct 2025 07:32:37 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id
+ 00721157ae682-78488cdc20aso2719837b3.1
+ for <amd-gfx@lists.freedesktop.org>; Sat, 18 Oct 2025 07:32:37 -0700 (PDT)
+X-Received: by 2002:a05:690e:1401:b0:63e:2001:96e0 with SMTP id
+ 956f58d0204a3-63e20019897mr4605587d50.32.1760797957548; Sat, 18 Oct 2025
+ 07:32:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251017133644.44747-1-tvrtko.ursulin@igalia.com>
+ <20251017133644.44747-16-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251017133644.44747-16-tvrtko.ursulin@igalia.com>
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Sat, 18 Oct 2025 16:32:26 +0200
+X-Gmail-Original-Message-ID: <CAAObsKDY1zs9R2HwnO6ESP7585rEzhBiTQr8eZFDtTCsbcQx4A@mail.gmail.com>
+X-Gm-Features: AS18NWCAB_kOwXa5sb329LHfQOFfSyknwHwT7YO9iNYjXbmCM8gGwoS9osAfhMw
+Message-ID: <CAAObsKDY1zs9R2HwnO6ESP7585rEzhBiTQr8eZFDtTCsbcQx4A@mail.gmail.com>
+Subject: Re: [PATCH v2 15/27] accel/rocket: Remove drm_sched_init_args->num_rqs
+ usage
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ kernel-dev@igalia.com, Oded Gabbay <ogabbay@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 20 Oct 2025 12:48:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,88 +101,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Some graphics APIs differentiate between out-of-graphics-memory and
-out-of-host-memory (system memory). Add a device init flag to have -ENOSPC
-propagated from the resource managers instead of being converted to
--ENOMEM, to aid driver stacks in determining what error code to return or
-whether corrective action can be taken at the driver level.
+On Fri, Oct 17, 2025 at 3:36=E2=80=AFPM Tvrtko Ursulin
+<tvrtko.ursulin@igalia.com> wrote:
+>
+> Remove member no longer used by the scheduler core.
+>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Cc: Oded Gabbay <ogabbay@kernel.org>
+> ---
+>  drivers/accel/rocket/rocket_job.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/accel/rocket/rocket_job.c b/drivers/accel/rocket/roc=
+ket_job.c
+> index acd606160dc9..6ff81cff81af 100644
+> --- a/drivers/accel/rocket/rocket_job.c
+> +++ b/drivers/accel/rocket/rocket_job.c
+> @@ -437,7 +437,6 @@ int rocket_job_init(struct rocket_core *core)
+>  {
+>         struct drm_sched_init_args args =3D {
+>                 .ops =3D &rocket_sched_ops,
+> -               .num_rqs =3D DRM_SCHED_PRIORITY_COUNT,
+>                 .credit_limit =3D 1,
+>                 .timeout =3D msecs_to_jiffies(JOB_TIMEOUT_MS),
+>                 .name =3D dev_name(core->dev),
+> --
+> 2.48.0
 
-Co-developed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
----
-Thomas, feel free to take the ownership if you end up liking this version.
-As you can see I lifted your commit text as is and the implementation is
-the same on the high level.
----
- drivers/gpu/drm/ttm/ttm_bo.c     | 4 +++-
- drivers/gpu/drm/ttm/ttm_device.c | 1 +
- include/drm/ttm/ttm_allocation.h | 1 +
- include/drm/ttm/ttm_device.h     | 5 +++++
- 4 files changed, 10 insertions(+), 1 deletion(-)
+Thanks, Tvrtko.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index fba2a68a556e..15b3cb199d45 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -31,6 +31,7 @@
- 
- #define pr_fmt(fmt) "[TTM] " fmt
- 
-+#include <drm/ttm/ttm_allocation.h>
- #include <drm/ttm/ttm_bo.h>
- #include <drm/ttm/ttm_placement.h>
- #include <drm/ttm/ttm_tt.h>
-@@ -877,7 +878,8 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
- 
- 	/* For backward compatibility with userspace */
- 	if (ret == -ENOSPC)
--		return -ENOMEM;
-+		return bo->bdev->alloc_flags & TTM_ALLOCATION_PROPAGATE_ENOSPC ?
-+		       ret : -ENOMEM;
- 
- 	/*
- 	 * We might need to add a TTM.
-diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-index 87c85ccb21ac..5c10e5fbf43b 100644
---- a/drivers/gpu/drm/ttm/ttm_device.c
-+++ b/drivers/gpu/drm/ttm/ttm_device.c
-@@ -227,6 +227,7 @@ int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *func
- 		return -ENOMEM;
- 	}
- 
-+	bdev->alloc_flags = alloc_flags;
- 	bdev->funcs = funcs;
- 
- 	ttm_sys_man_init(bdev);
-diff --git a/include/drm/ttm/ttm_allocation.h b/include/drm/ttm/ttm_allocation.h
-index 8f8544760306..655d1e44aba7 100644
---- a/include/drm/ttm/ttm_allocation.h
-+++ b/include/drm/ttm/ttm_allocation.h
-@@ -7,5 +7,6 @@
- #define TTM_ALLOCATION_POOL_BENEFICIAL_ORDER(n)	((n) & 0xff) /* Max order which caller can benefit from */
- #define TTM_ALLOCATION_POOL_USE_DMA_ALLOC 	BIT(8) /* Use coherent DMA allocations. */
- #define TTM_ALLOCATION_POOL_USE_DMA32		BIT(9) /* Use GFP_DMA32 allocations. */
-+#define TTM_ALLOCATION_PROPAGATE_ENOSPC		BIT(10) /* Do not convert ENOSPC from resource managers to ENOMEM. */
- 
- #endif
-diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
-index 074b98572275..d016360e5ceb 100644
---- a/include/drm/ttm/ttm_device.h
-+++ b/include/drm/ttm/ttm_device.h
-@@ -220,6 +220,11 @@ struct ttm_device {
- 	 */
- 	struct list_head device_list;
- 
-+	/**
-+	 * @alloc_flags: TTM_ALLOCATION_ flags.
-+	 */
-+	unsigned int alloc_flags;
-+
- 	/**
- 	 * @funcs: Function table for the device.
- 	 * Constant after bo device init
--- 
-2.48.0
+Reviewed-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 
+Regards,
+
+Tomeu
