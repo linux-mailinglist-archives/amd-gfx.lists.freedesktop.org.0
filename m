@@ -2,53 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51003BECB13
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2ACBECB3A
+	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F8410E3D6;
-	Sat, 18 Oct 2025 08:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31AC910E3DF;
+	Sat, 18 Oct 2025 08:50:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=lach.pw header.i=@lach.pw header.b="EFplJfyJ";
-	dkim=permerror (0-bit key) header.d=lach.pw header.i=@lach.pw header.b="U5669QGm";
+	dkim=pass (1024-bit key; unprotected) header.d=0x0f.com header.i=@0x0f.com header.b="TOPeRnch";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.0la.ch (mail.0la.ch [78.47.82.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54D3410EC7E;
- Fri, 17 Oct 2025 16:28:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; s=202502r; d=lach.pw; c=relaxed/relaxed;
- h=Message-ID:Date:Subject:To:From; t=1760718490; bh=i9hlKm1uSeiiZmxzIePKHJs
- FghgJVFB5WZw8+mDTUPw=; b=EFplJfyJJoitcPwcsbwdy5k+puBP4RaTYvZTqH9xG370gTOVM7
- XtE8rWdlfVFMjmFRtdOsP/VLtK66hH9TnLelszHq2b/+CT+8h0QZ/ONMvu5rpfYscdYeIigU9lu
- 1MBXlw5nsHTjjbpr+v6RoZddAkCvP8gZN9Z41Rc4y/kjvS9Plzi8v+k5TfjEgCt2Wg3c6e872wh
- HnIHrCdnUv2mdd+9Bo2uG21vDYxnRsbM2qgNXWTYFfaHeWNitMSDU3VM5JziYPnxVNLp3TFXIKI
- jLxh28X/CsPgY/RS6d+PiKNGplYVecmPZWjVIZsrX0V+/iR6shghgbvHRmGGniXSaDQ==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202502e; d=lach.pw; c=relaxed/relaxed;
- h=Message-ID:Date:Subject:To:From; t=1760718490; bh=i9hlKm1uSeiiZmxzIePKHJs
- FghgJVFB5WZw8+mDTUPw=; b=U5669QGmRWqlZWa8ap/q7ljLN8cyBMgPlOdCAOoNMt4IoTM9TD
- 6K8Lm8Rqi+8ozJiDsbA0M3nmpAFHyPl2q3Dg==;
-From: Yaroslav Bolyukin <iam@lach.pw>
-To: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Wayne Lin <Wayne.Lin@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yaroslav Bolyukin <iam@lach.pw>
-Subject: [PATCH v5 7/7] drm/amd: use fixed dsc bits-per-pixel from edid
-Date: Fri, 17 Oct 2025 18:27:36 +0200
-Message-ID: <20251017162736.45368-8-iam@lach.pw>
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+ [209.85.215.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64CAD10E08F
+ for <amd-gfx@lists.freedesktop.org>; Sat, 18 Oct 2025 05:44:58 +0000 (UTC)
+Received: by mail-pg1-f175.google.com with SMTP id
+ 41be03b00d2f7-b553412a19bso1778226a12.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Oct 2025 22:44:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=0x0f.com; s=google; t=1760766298; x=1761371098; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Z6J7CTQVzJTdpSsBpyYymkd2d5jUSp6/gZICW09ccYI=;
+ b=TOPeRnchGCTs6F4fgs1EpM0cSCZf7Xmx1bUcCF1LgrCuWPVxV8IDOl7fE+6bRdJBVV
+ W8HGLmp2zt0OmgkVbOQj5i5MxaRNhpCHhS/shTsoNxW9J1yRpKNydF4z5e1DnDxac09g
+ nhWw+KMhYK1Ug5DotSiC1HS0c90ArX23OYZqg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1760766298; x=1761371098;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Z6J7CTQVzJTdpSsBpyYymkd2d5jUSp6/gZICW09ccYI=;
+ b=byVsW1V3qa7GK3RkGX6PPc7RQi/AE5NB3v5xPI3q5AY9sOMg6m+kEHaOtt/8ItrMiE
+ x8YHl4wTtULcyDWtcsHVFjtWQ+6U1LAY62QG0vZGDbJQmcZrscDMPGAwfMquaNd/nAZY
+ /pCUwwpAWKAi3yAznrwu78tjhgRjMxeE6AINqFXxOReuqmBPcgTL+YVla3HkUgbkaJRN
+ kN3mnY+pCWtwSuaBWe3M7HqTUKcJ0PpcledcFl0Uyf3mUqvDFHSva1fCcuH23gVseA5G
+ izo+CCGgD484HA0WxjtTQZVAuYDHAvwRuUYsV54KOZyCE1r8MrR74z2Pdmq9jByNd0bG
+ YxeA==
+X-Gm-Message-State: AOJu0Yz0BnL9J/+9J/G066qiWvYY1qGuEK/OoycEewpYAIeTMG+UN2Ld
+ h+tv8O+SEzWN+Y5W66rhk6AcVuxIoxbRG1qyylxD5vQNp3rylWJopAgmGSR1OOlaYCs=
+X-Gm-Gg: ASbGnct/zw/Dre+BAZOUFZpewjCGCnUmIakIodMm3MlXWLgnQn+sqsuQWkyYPOn9ooq
+ QnenqqlJc9cePZgzKPx74xs6xSZox4xvAyos1rw/hKpEHphsW8pAwUhlMxL0Q4FqKF7gzP2+B4B
+ 0N0AWX8md0k7CHEe0bOta2aD/I+okLvPGlXvOxco0DOw4WPFGbcrpwowIZMaLtTkyIMx+3uZTWk
+ O/lEG4tS9wtJGSRu9IlKlJChzN0oH2ISTAC+inxHMDK5yv0KtdyWVNhamUEutTuMW4fvVCwyp+u
+ OZidcTDi4olFO9ZlNfO1n7PeMhXobQUY+hvTunM5HXVbCTFT3m3PFe6IBeJxDyjxl3jMFY5Uinz
+ ouM4CN0KZLfHML5Hyj0dBZcVPbpbNUYKolD7xoieOYIEdxd3hub6ERXhoNdEQ5Cl8ZWZn9zRdkB
+ iqWH3Dq5g0O6ibHuVMZzy43M0aC/bkONnITeNqjvyZeLnAjxeL698=
+X-Google-Smtp-Source: AGHT+IHf1Q2t9Le+gs9UNqzy+mF5hSF6zqhbbRPGceW+0BhDH7PF/VO1zXANTCABMZI3hDYV10XUbQ==
+X-Received: by 2002:a17:902:f642:b0:28a:5b8b:1f6b with SMTP id
+ d9443c01a7336-290c9cbbd49mr82013025ad.21.1760766297848; 
+ Fri, 17 Oct 2025 22:44:57 -0700 (PDT)
+Received: from shiro (p1391188-ipxg00a01sizuokaden.shizuoka.ocn.ne.jp.
+ [153.222.3.188]) by smtp.googlemail.com with ESMTPSA id
+ 41be03b00d2f7-b6a76645c61sm1657222a12.3.2025.10.17.22.44.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 17 Oct 2025 22:44:57 -0700 (PDT)
+From: Daniel Palmer <daniel@0x0f.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, wuhoipok@gmail.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Daniel Palmer <daniel@0x0f.com>
+Subject: [PATCH 0/3] drm/radeon: fix up some badness when probe fails
+Date: Sat, 18 Oct 2025 14:44:48 +0900
+Message-ID: <20251018054451.259432-1-daniel@0x0f.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251017162736.45368-1-iam@lach.pw>
-References: <20251017162736.45368-1-iam@lach.pw>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 18 Oct 2025 08:50:55 +0000
+X-Mailman-Approved-At: Sat, 18 Oct 2025 08:50:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,49 +83,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VESA vendor header from DisplayID spec may contain fixed bit per pixel
-rate, it should be used by drm driver for the modes that declare
-they are only supported with the declared fixed bits per pixel value.
+I have been trying to get a Radeon 9250 running on an Amiga 4000[0].
 
-It is however unclear how to deal with the modes created from userspace.
-Current implementation assumes that fixed bits per pixel value should
-always be used if the preferred display mode has this flag set, which is
-the case for all the known hardware.
+On that setup it fails to find the BIOS and the probe fails which is
+expected but then a bunch of WARN_ON()s etc are triggered.
 
-Signed-off-by: Yaroslav Bolyukin <iam@lach.pw>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+I though maybe this is "m68k problems" so I bought an old x86 board and
+there if I have a different primary VGA card the BIOS part of the
+probe fails in the same way and the same scary messages[1] are showing
+up in the console.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 0d03e324d5b9..739d5dabcf41 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6521,6 +6521,11 @@ static void fill_stream_properties_from_drm_display_mode(
- 
- 	stream->output_color_space = get_output_color_space(timing_out, connector_state);
- 	stream->content_type = get_output_content_type(connector_state);
-+
-+	/* DisplayID Type VII pass-through timings. */
-+	if (mode_in->dsc_passthrough_timings_support && info->dp_dsc_bpp_x16 != 0) {
-+		stream->timing.dsc_fixed_bits_per_pixel_x16 = info->dp_dsc_bpp_x16;
-+	}
- }
- 
- static void fill_audio_info(struct audio_info *audio_info,
-@@ -7067,6 +7072,13 @@ create_stream_for_sink(struct drm_connector *connector,
- 					&mode, preferred_mode, scale);
- 
- 			preferred_refresh = drm_mode_vrefresh(preferred_mode);
-+
-+			/*
-+			 * HACK: In case of multiple supported modes, we should look at the matching mode to decide this flag.
-+			 * But what is matching mode, how should it be decided?
-+			 * Assuming that only preferred mode would have this flag.
-+			 */
-+			mode.dsc_passthrough_timings_support = preferred_mode->dsc_passthrough_timings_support;
- 		}
- 	}
- 
+It seems like the probe failure path wasn't tested when some previous
+cleaning up happened.
+
+I'll fix the issues with not finding the BIOS if the card wasn't
+initialised in the normal x86 way later.
+
+0 - https://lore.kernel.org/lkml/20251007092313.755856-1-daniel@thingy.jp/
+1 - https://gist.github.com/fifteenhex/b971bd62c49383a0558395c62c05ce3b
+
+Daniel Palmer (3):
+  drm/radeon: Clean up pdev->dev instances in probe
+  drm/radeon: Do not kfree() devres managed rdev
+  drm/radeon: Remove calls to drm_put_dev()
+
+ drivers/gpu/drm/radeon/radeon_drv.c | 34 ++++++++---------------------
+ drivers/gpu/drm/radeon/radeon_kms.c |  1 -
+ 2 files changed, 9 insertions(+), 26 deletions(-)
+
 -- 
 2.51.0
+
