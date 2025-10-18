@@ -2,71 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ECD7BECBA8
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF6B3BECB4F
+	for <lists+amd-gfx@lfdr.de>; Sat, 18 Oct 2025 10:51:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0853E10E3EC;
-	Sat, 18 Oct 2025 08:51:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0274F10ECF5;
+	Sat, 18 Oct 2025 08:50:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=0x0f.com header.i=@0x0f.com header.b="Qj1yvM+K";
+	dkim=pass (1024-bit key; unprotected) header.d=0x0f.com header.i=@0x0f.com header.b="Gjr6tysT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 353C410E093
- for <amd-gfx@lists.freedesktop.org>; Sat, 18 Oct 2025 05:45:03 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-7930132f59aso3645031b3a.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Oct 2025 22:45:03 -0700 (PDT)
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5BE710E364
+ for <amd-gfx@lists.freedesktop.org>; Sat, 18 Oct 2025 05:45:05 +0000 (UTC)
+Received: by mail-pf1-f173.google.com with SMTP id
+ d2e1a72fcca58-793021f348fso2491697b3a.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Oct 2025 22:45:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=0x0f.com; s=google; t=1760766303; x=1761371103; darn=lists.freedesktop.org; 
+ d=0x0f.com; s=google; t=1760766305; x=1761371105; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=VmUPjTR3yMW64aVQGfGVjFZpeabfMfYHxfBKINbWsBI=;
- b=Qj1yvM+KismuC2Q29F5UmaM3yCr6eceMdAbMVANRe0j4MCACSheMjF9G0Yg8lLtLvM
- UpY3hv0wXwgWpDUzBd+4KwAoHBQPKwMbE60JG9E9MMJeRQft+1mUbXcxc42KWjI1vqOb
- UXRwjUQVl71PHM8fOWgI3h/ctjx/k50JP+ncE=
+ bh=MQOTysCBScI2CzYaQCtToYUiGDVsPF1DI/yzJf9rUmc=;
+ b=Gjr6tysTObc/jzjh/3h1vMengPF9rs+JiTONUzaspIJny0og3Bn50rPiS+yUxQnH/d
+ gl7WE0FDXi9Z1I1y6hqvfPnyl0FvQCh3f/xEsTFc1La3OcDyXODi1mV76OjsU3yCU0PV
+ rQiK47Tjoq2IXab1L2cfMrUj5tzFLzvTR8xtw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760766303; x=1761371103;
+ d=1e100.net; s=20230601; t=1760766305; x=1761371105;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=VmUPjTR3yMW64aVQGfGVjFZpeabfMfYHxfBKINbWsBI=;
- b=GbF+s02z33CsSSPYeRQobrBEBimjVL+8wZKXzzWZqj8aGIP84lB12M0XicCBxwgd8+
- 68dBB9K1aK0rhh9cCnN2UdsJ/JVecVXUa2RFUE6BSfyoXY+Da1vZD5ydzKETkvVZUTt0
- +rlJKD5CzwyaI7Okvl7BK76wi9qUk0ZLOeTIjSWWMeRlRorWXd9v4zzd//Q3vYLqofdx
- ljzA3OktvnswoxbpyjGsj1G63b1e9UHFj62qk11VBbTKEEzbzWvmsLQ02hmNCW61/vmd
- NdOYX3fLRt1gs7Xo8z1RgicINApWIZeNwI8KTFhVSDZQcKq7+sHVPpHRTimjcY92gyLM
- MbqQ==
-X-Gm-Message-State: AOJu0Yw2qO+/x+WG65zF7UDAS1YScCVC8BccV8mHeQoVUCBjiHLE3hPt
- z5zEbKKibhPofYzAG5aDn/xDZW7Ri2pVEUAxU02jWFf6xakE+a6sRe4JDbU9IA1jr+qpzF6V59d
- vVzenaU4=
-X-Gm-Gg: ASbGnctB7lkXQJSiwuacELeU834qWBkjOv1reKgICzup8ydgE7FXEDsveB1Buko5Z+R
- sZGDfdTtEhQll2gKFUB57xLCkJaVWO5q7Bhf8sltppzjKHvJeN9BdUOnjw+WkeXcSkFpxlAXzLi
- dweVme6k1jYgCH73WN8OrS6xa/g1STdWyVEIiJEYYOpqhd2XHtDFUz68B0GbaGeSBNaR+ReMYaY
- ye28KdeG20aotqFAF7Y5ONAdzqKMaqQG5Nc0oV5cOiYNIOoX9knLq3LD3X+i4wYUGFTkclyqouK
- mexVtIYw3ez1E8ICYRTzMH0nbCniWHUZ8g2w2k9tUCMLRIvAOg2k3wAJCNAK+Y8ZI5jQ83aMO1V
- hInCrIbf4hwmMPB1Rh8l48QFMjTz2S1rJzxJ01XcOQLQrHygMvhG37Lr7vyybbOEU4EMX7isKjR
- pjlYZTZ1wr+8kh7Mnn1rKZ+DlTKTU7TSrxC5GYF2f/
-X-Google-Smtp-Source: AGHT+IE0n5z7f/IMMhO8RMH8A+89s4jb/Yrjx1i30f1bpPQKuZW8GFOMc0cHZQNBYLb0n3r/GPAvpw==
-X-Received: by 2002:a05:6a21:3e15:b0:334:b57f:554a with SMTP id
- adf61e73a8af0-334b57f5562mr3664489637.25.1760766302707; 
- Fri, 17 Oct 2025 22:45:02 -0700 (PDT)
+ bh=MQOTysCBScI2CzYaQCtToYUiGDVsPF1DI/yzJf9rUmc=;
+ b=MNyYqOiwav8AJiv8u+874nYZ4ed+82e00YmV6GjNFil5B+3/GM62/PCBhlPxDhEEC8
+ I2J1VBukdjTV921qIdd8o8dVFzG7vHQm5xQNGjG5Cq5aq8kUK7e/glfR7/nadoq9nTPP
+ X02IUicT5t9LK638kg0Md5K01yAm/EGlTNNQEjXKlBJ2vhyAk7oUAyTeVJzuyHfrv5BI
+ kRfUmWuufGMCEfJc6TGKmcssQvhaAod6R1gM/Lzhrfq/wISDn68TUMS3UtbgNuuwFoYG
+ 4/9+TEAvvtfG8RKQi8BsUG+2Ok9dFnvB8i6ZjQR4s9hl4IL3FHvEa59nWpGu6ASPuSyt
+ 4Gpw==
+X-Gm-Message-State: AOJu0YwMmxumRQT0RspYLVS16XSm7DqXVMXarWS/gZiTbnofCpkwoTrz
+ xG/YZw617mMCzFt20yhJ06JDT4ZneIMpX8WlWOZGkAFllI+r3C6zKxxMZQ63yZlXiXY=
+X-Gm-Gg: ASbGncvX8F0snsedoRBKhno1L2byDIVeFRiuISiQpb6SwPLMypTXIrkpfN71RdA/Kx4
+ 4d41Z2oAkXeu6uL90muL6Lpy6II+hRjASCY0nV6O5PoX88DIHU8v5l0c3gXiD5XNSgaZZEXhTha
+ oUjPSLt5Rhv24aOxajw4tAmZH0BaLwR3EaFAWhyuRo4e7QaDv/rmNuHAtUcCUZZBq7iJpHWO7IX
+ f0e64Vc7n//n3SGgXOOg9egWpJt2yGpTb4GwC27KrrlIC1CgZ6FSdS1FgpaFewS7usnJZ56OxNF
+ rAID2O7bGvi+x18JXltBw087ggqITxOmblWPWIRsAvu9n222beQMY23Svb0ZuFixYY9PTXz86p1
+ lDQ1v0esVmKqHwWO5RaYR65pv/Gfr5ExRHilsfy0l4O1+a4k7S1lPJyLGdbrbbyZx+9ojE1/bra
+ zITyPsgdBKRpR3ncGSiu8jilIHum/Ggwi+YsgKFz37vNQMFvmx32U=
+X-Google-Smtp-Source: AGHT+IGy3J41ApbLMLRcrOO9pkHemkNxPjtpkJmBEBFlBmY9XVIw/TLuT/llEZB3A4RXYe9syKnQyg==
+X-Received: by 2002:a05:6a20:b38a:b0:334:aa54:bb2c with SMTP id
+ adf61e73a8af0-334aa54bbd2mr5825208637.8.1760766305361; 
+ Fri, 17 Oct 2025 22:45:05 -0700 (PDT)
 Received: from shiro (p1391188-ipxg00a01sizuokaden.shizuoka.ocn.ne.jp.
  [153.222.3.188]) by smtp.googlemail.com with ESMTPSA id
- 41be03b00d2f7-b6a76645c61sm1657222a12.3.2025.10.17.22.45.00
+ 41be03b00d2f7-b6a76645c61sm1657222a12.3.2025.10.17.22.45.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Oct 2025 22:45:02 -0700 (PDT)
+ Fri, 17 Oct 2025 22:45:04 -0700 (PDT)
 From: Daniel Palmer <daniel@0x0f.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
  simona@ffwll.ch, wuhoipok@gmail.com
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH 2/3] drm/radeon: Do not kfree() devres managed rdev
-Date: Sat, 18 Oct 2025 14:44:50 +0900
-Message-ID: <20251018054451.259432-3-daniel@0x0f.com>
+Subject: [PATCH 3/3] drm/radeon: Remove calls to drm_put_dev()
+Date: Sat, 18 Oct 2025 14:44:51 +0900
+Message-ID: <20251018054451.259432-4-daniel@0x0f.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251018054451.259432-1-daniel@0x0f.com>
 References: <20251018054451.259432-1-daniel@0x0f.com>
@@ -88,30 +87,90 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Since the allocation of the drivers main structure was changed to
-devm_drm_dev_alloc() rdev is managed by devres and we shouldn't be calling
-kfree() on it.
+devm_drm_dev_alloc() drm_put_dev()'ing to trigger it to be free'd
+should be done by devres.
 
-This fixes things exploding if the driver probe fails and devres cleans up
-the rdev after we already free'd it.
+However, drm_put_dev() is still in the probe error and device remove
+paths. When the driver fails to probe warnings like the following are
+shown because devres is trying to drm_put_dev() after the driver
+already did it.
+
+[    5.642230] radeon 0000:01:05.0: probe with driver radeon failed with error -22
+[    5.649605] ------------[ cut here ]------------
+[    5.649607] refcount_t: underflow; use-after-free.
+[    5.649620] WARNING: CPU: 0 PID: 357 at lib/refcount.c:28 refcount_warn_saturate+0xbe/0x110
 
 Fixes: a9ed2f052c5c ("drm/radeon: change drm_dev_alloc to devm_drm_dev_alloc")
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 ---
- drivers/gpu/drm/radeon/radeon_kms.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/radeon/radeon_drv.c | 25 ++++---------------------
+ 1 file changed, 4 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
-index 645e33bf7947..ba1446acd703 100644
---- a/drivers/gpu/drm/radeon/radeon_kms.c
-+++ b/drivers/gpu/drm/radeon/radeon_kms.c
-@@ -84,7 +84,6 @@ void radeon_driver_unload_kms(struct drm_device *dev)
- 	rdev->agp = NULL;
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+index eb5138da8d5b..350f88af888d 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.c
++++ b/drivers/gpu/drm/radeon/radeon_drv.c
+@@ -315,17 +315,17 @@ static int radeon_pci_probe(struct pci_dev *pdev,
  
- done_free:
--	kfree(rdev);
- 	dev->dev_private = NULL;
+ 	ret = pci_enable_device(pdev);
+ 	if (ret)
+-		goto err_free;
++		return ret;
+ 
+ 	pci_set_drvdata(pdev, ddev);
+ 
+ 	ret = radeon_driver_load_kms(ddev, flags);
+ 	if (ret)
+-		goto err_agp;
++		goto err;
+ 
+ 	ret = drm_dev_register(ddev, flags);
+ 	if (ret)
+-		goto err_agp;
++		goto err;
+ 
+ 	if (rdev->mc.real_vram_size <= (8 * 1024 * 1024))
+ 		format = drm_format_info(DRM_FORMAT_C8);
+@@ -338,30 +338,14 @@ static int radeon_pci_probe(struct pci_dev *pdev,
+ 
+ 	return 0;
+ 
+-err_agp:
++err:
+ 	pci_disable_device(pdev);
+-err_free:
+-	drm_dev_put(ddev);
+ 	return ret;
  }
  
+-static void
+-radeon_pci_remove(struct pci_dev *pdev)
+-{
+-	struct drm_device *dev = pci_get_drvdata(pdev);
+-
+-	drm_put_dev(dev);
+-}
+-
+ static void
+ radeon_pci_shutdown(struct pci_dev *pdev)
+ {
+-	/* if we are running in a VM, make sure the device
+-	 * torn down properly on reboot/shutdown
+-	 */
+-	if (radeon_device_is_virtual())
+-		radeon_pci_remove(pdev);
+-
+ #if defined(CONFIG_PPC64) || defined(CONFIG_MACH_LOONGSON64)
+ 	/*
+ 	 * Some adapters need to be suspended before a
+@@ -614,7 +598,6 @@ static struct pci_driver radeon_kms_pci_driver = {
+ 	.name = DRIVER_NAME,
+ 	.id_table = pciidlist,
+ 	.probe = radeon_pci_probe,
+-	.remove = radeon_pci_remove,
+ 	.shutdown = radeon_pci_shutdown,
+ 	.driver.pm = &radeon_pm_ops,
+ };
 -- 
 2.51.0
 
