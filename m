@@ -2,77 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8590BF4DAC
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Oct 2025 09:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4E3BF4DC7
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Oct 2025 09:12:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAD2A10E2D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B40BA10E2D0;
 	Tue, 21 Oct 2025 07:12:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kerneltoast.com header.i=@kerneltoast.com header.b="VUENkVNl";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="SNQ/HC59";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
- [209.85.210.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 674DA10E536
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Oct 2025 22:45:46 +0000 (UTC)
-Received: by mail-pf1-f175.google.com with SMTP id
- d2e1a72fcca58-7930132f59aso6577632b3a.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Oct 2025 15:45:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kerneltoast.com; s=google; t=1761000346; x=1761605146;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=RjA+D2gABjg6fRwb90P8FJ6zI+4eBjJEl6XrYNmNfy8=;
- b=VUENkVNlkFQsimQjkPHUy61tPNF08iBpffUjsfDE7JW90uZ77v8fIYtO/Blfb7R+GF
- 5BvwR85KMe2FOev7bSVRmoya+nnCvZMBY7m4LP9XOtiUeLZ2yslDVVfWvy496hAir13W
- PpiQT94I5kDaR8MWgtmlDwZVn1jRZ1+3DPWiOEqpTgLeVa6BS74fvS3Pr0feFLKYGlqL
- So1QWo7ldxbB1iT0YYKapBD4Vifs98ubfd3ZwQYy4wo+dahq0+aW/K53D3vKhoCNKmOn
- cYXjufWjQPvmqebSfAZ2q1hbkTNFoQfATBh6jeIIfU45C7GOxc2zEX5jvmnJMZlgvzwv
- iVEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761000346; x=1761605146;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=RjA+D2gABjg6fRwb90P8FJ6zI+4eBjJEl6XrYNmNfy8=;
- b=Y+XceVZ3RlTjwGaN2awJRXWNrUNzTCwz/BWP6UFXe25tFW+GrBIYBAhmjowcEuwsp3
- LTR4RuuVtdgok1Zq5YclJkYYLw9UNBltbuCzgU+BBtCKWdK8RypdYkWWpiJoJU0fZ5F/
- lUhn3H/tbV3QhpG+JaLbk1Xc5I4imtS9tNoJV9P9zYDacZCBcYWgvu5pll2aCA/qplVL
- 2jY8gzxm6Q06aCpkM/74yUISjBN2vpib9J+sv9P+re1UJFnLVgKmSnqx7r9Tn61kAfKi
- w3PiirD/aNwR07Iz2E7FnYOE/jQFiNB0h4McSJUVNg84B9+gAxw+VSuFNSqDknzsOWMm
- wjVw==
-X-Gm-Message-State: AOJu0Ywl6OOGJfvLyii0bWMCpB3RZJ7n62ywxUTpofHSaQAAnXT2Khf1
- iF/i7LYN1OBX3cDe5v4u8ZxvpqiyJWLuDnGGbq0PKCNGSrzees5eOYRi5OAdSbDjcIcCtBvu1+C
- hwMzIL2U7
-X-Gm-Gg: ASbGncuZFNyeJwrI9lqPML1WG1tzGFXONFRVKqn5pZro6194YUlBI/bL+7FlIgKjIk/
- Gqy0FTuusuZ41i9W0an0yHREi/pOixiHdWIhxzL4eW0bWgAMYDwN1ndj+9Fn2EojL1jh6k6pgPw
- 3VZxGBvb2zswNwe9Aqz9PSuVS3dt5uyutCNk0MdoEe+AfuqliXPjc2IXDYRF4Jxd+n7YrnMroxI
- q7sDdQUsZLtiHkJg9D/s0oVcplAChDaZ7AKXwut2ujbS2xHOa8GpYnVl5eK95mo6rrxTYBZ3+Iq
- ZTFJu4JPgfjq1Kp+3zpVWj8ycRGyXogxIf9isHrPuR88GPoG/Qiz3mNtN4NwAMjmhsanUSLYlWB
- nTefhVsHDrcVWQE3pE4hPQpu4/VxB6xWUmwBakh2p3fJaqRru74xolUkKfTZLd+NkWYelXJeP1I
- /QqA==
-X-Google-Smtp-Source: AGHT+IFMfVbHKDPJ93PraNhiZ4Nmaqe9rmEg5jcKWkWmKkIqhKzyHvYVhl0ZbDOR4Q8R+bGwGNNryw==
-X-Received: by 2002:a05:6a00:21c4:b0:772:45ee:9b9e with SMTP id
- d2e1a72fcca58-7a220aa8c36mr15402276b3a.9.1761000345917; 
- Mon, 20 Oct 2025 15:45:45 -0700 (PDT)
-Received: from sultan-box ([79.127.217.57]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7a23010e25asm9290207b3a.56.2025.10.20.15.45.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Oct 2025 15:45:45 -0700 (PDT)
-Date: Mon, 20 Oct 2025 15:45:43 -0700
-From: Sultan Alsawaf <sultan@kerneltoast.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/amd: Add missing return for VPE idle handler
-Message-ID: <aPa7lwfpALpbCmed@sultan-box>
-References: <20251020223434.5977-1-mario.limonciello@amd.com>
- <aPa60qtBV5iCiY2I@sultan-box>
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com
+ [91.218.175.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90DB310E546
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Oct 2025 23:10:18 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1761001816;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ZHy4AWrt+NUl0LwBuvIQCbQtTogfHk8+6iKBV+Xh/Jc=;
+ b=SNQ/HC59cdHjeOY7bhCMoDl7xwI/1gtMU1vJB1bW88WN5ct+86WS8fLCcwWBeiGE6qBNuJ
+ fhjlwTMQBlkiYKol7XIumnP0awdX9YUM/vmZuuiUN3ep9h8YN08JlAKC06BIrx6Dt0Ztzp
+ zo+d4XsxOfUjNfYeE3bV7/BCBKBmW/s=
+From: Matthew Schwartz <matthew.schwartz@linux.dev>
+To: amd-gfx@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, mario.limonciello@amd.com,
+ alexander.deucher@amd.com, alex.hung@amd.com, daniel.wheeler@amd.com,
+ roman.li@amd.com, misyl@froggi.es,
+ Matthew Schwartz <matthew.schwartz@linux.dev>
+Subject: [PATCH] drm/amd/display: Don't program BLNDGAM_MEM_PWR_FORCE when CM
+ low-power is disabled on DCN30
+Date: Mon, 20 Oct 2025 16:09:34 -0700
+Message-ID: <20251020230934.387745-1-matthew.schwartz@linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aPa60qtBV5iCiY2I@sultan-box>
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Tue, 21 Oct 2025 07:12:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,20 +55,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 20, 2025 at 03:42:26PM -0700, Sultan Alsawaf wrote:
-> On Mon, Oct 20, 2025 at 05:34:34PM -0500, Mario Limonciello wrote:
-> > Adjusting the idle handler for DPM0 handling forgot a return statement
-> > which causes the system to not be able to enter s0i3.
-> > 
-> > Add the missing return statement.
-> > 
-> > Cc: stable@vger.kernel.org
-> > Reported-by: Sultan Alsawaf <sultan@kerneltoast.com>
-> > Closes: https://lore.kernel.org/amd-gfx/aPawCXBY9eM8oZvG@sultan-box/
-> 
-> I just noticed that this link doesn't work; it seems like that email of mine
-> didn't make it onto the amd-gfx list?
+Before commit 33056a97ae5e ("drm/amd/display: Remove double checks for
+`debug.enable_mem_low_power.bits.cm`"), dpp3_program_blnd_lut(NULL)
+checked the low-power debug flag before calling
+dpp3_power_on_blnd_lut(false).
 
-Ouch, looks like none of my emails today are showing up on amd-gfx. :-\
+After commit 33056a97ae5e ("drm/amd/display: Remove double checks for
+`debug.enable_mem_low_power.bits.cm`"), dpp3_program_blnd_lut(NULL)
+unconditionally calls dpp3_power_on_blnd_lut(false). The BLNDGAM power
+helper writes BLNDGAM_MEM_PWR_FORCE when CM low-power is disabled, causing
+immediate SRAM power toggles instead of deferring at vupdate. This can
+disrupt atomic color/LUT sequencing during transitions between
+direct scanout and composition within gamescope's DRM backend on
+Steam Deck OLED.
 
-Sultan
+To fix this, leave the BLNDGAM power state unchanged when low-power is
+disabled, matching dpp3_power_on_hdr3dlut and dpp3_power_on_shaper.
+
+Fixes: 33056a97ae5e ("drm/amd/display: Remove double checks for `debug.enable_mem_low_power.bits.cm`")
+Signed-off-by: Matthew Schwartz <matthew.schwartz@linux.dev>
+---
+ drivers/gpu/drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c b/drivers/gpu/drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c
+index 09be2a90cc79d..4f569cd8a5d61 100644
+--- a/drivers/gpu/drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c
++++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c
+@@ -578,9 +578,6 @@ static void dpp3_power_on_blnd_lut(
+ 			dpp_base->ctx->dc->optimized_required = true;
+ 			dpp_base->deferred_reg_writes.bits.disable_blnd_lut = true;
+ 		}
+-	} else {
+-		REG_SET(CM_MEM_PWR_CTRL, 0,
+-				BLNDGAM_MEM_PWR_FORCE, power_on == true ? 0 : 1);
+ 	}
+ }
+ 
+-- 
+2.51.1.dirty
+
