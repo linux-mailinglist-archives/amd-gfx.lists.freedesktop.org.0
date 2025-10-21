@@ -2,94 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CAF7BFABAA
+	by mail.lfdr.de (Postfix) with ESMTPS id 17ADDBFABA4
 	for <lists+amd-gfx@lfdr.de>; Wed, 22 Oct 2025 09:59:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7F6910E6E7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 880EC10E6D1;
 	Wed, 22 Oct 2025 07:59:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TLmFnjHZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLdh8Xp7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD5B910E5EA;
- Tue, 21 Oct 2025 13:29:12 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id A6D036A6;
- Tue, 21 Oct 2025 15:27:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1761053248;
- bh=TdmnHYraVLXyq2KpB8KKjs8nVP++3l4uw6Cj2Qx6icU=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=TLmFnjHZ7QGrJGGch1/PS5cm/SEPmEHLgfnRuKGU633tUbrafTejahnxqwDqb8WUA
- BzvQIu/AKRvUSlGdmWCAqjQjW9PUt5VL1fWjA2Ktkz5YhQDUq8+cEhbqslGSWERmTI
- Acn2+DbnOn3ka05kWMPm1BmHMJcyPmrIx4Z+WbUg=
-Message-ID: <5ae8b52a-ff6c-4ab6-b2e6-83bd858b206a@ideasonboard.com>
-Date: Tue, 21 Oct 2025 16:29:08 +0300
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A78110E307;
+ Tue, 21 Oct 2025 14:11:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761055878; x=1792591878;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=zvgWk8XX25lGR59EwKKFHSzvIQQ+qXyF3981Jk8Ffrc=;
+ b=FLdh8Xp7+v6IklWyKr/UmkVWHNFBS4ry31KMqq3I/67pEfN2DArpi30b
+ leaqcWPpbTq2z+M2+JCDchJyi7jvN3oKhCpza7iKudPMOJV2p3L9VZa/A
+ MK1E9RJxyArdLMEsUMX5S2Ouo6CuZNcsAKta2xR5iOsVdWHXH7gfYfe67
+ BQ2D48IpxCdUahwthfJB4lu+qfavQTrOnvaSGIowkJlfwEAfOgTmGrotE
+ QIDnHqxbPe0DC2yJLivcDU/JdZC8lFsDLGbwfImZ/iLHZsb6YixU5ZTRY
+ n9TZLgRHLVXx8w7f2RjVYMWOwVnMG6a43VUmNS08i8vcoh7mPIPfexSBh w==;
+X-CSE-ConnectionGUID: 7llXwoCnSwmoLZN9KJ16xw==
+X-CSE-MsgGUID: laEEfKgcSNmWH4ec8kvJGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63085893"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63085893"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2025 07:11:18 -0700
+X-CSE-ConnectionGUID: qWSGZghiSSuJhvYRa+3yzA==
+X-CSE-MsgGUID: v36LiJrTRlWj82kUrOyJhA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; d="scan'208";a="183631044"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.135])
+ ([10.245.245.135])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2025 07:11:16 -0700
+Message-ID: <1ddcf0013b858e3bad20de420632259ad4d8a616.camel@linux.intel.com>
+Subject: Re: [PATCH v5 6/6] drm/ttm: Add an allocation flag to propagate
+ -ENOSPC on OOM
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ amd-gfx@lists.freedesktop.org, 	dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Matthew Brost <matthew.brost@intel.com>
+Date: Tue, 21 Oct 2025 16:11:14 +0200
+In-Reply-To: <20251020115411.36818-7-tvrtko.ursulin@igalia.com>
+References: <20251020115411.36818-1-tvrtko.ursulin@igalia.com>
+ <20251020115411.36818-7-tvrtko.ursulin@igalia.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] drm/client: Add client free callback to unprepare
- fb_helper
-To: Thomas Zimmermann <tzimmermann@suse.de>, jfalempe@redhat.com,
- javierm@redhat.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org
-References: <20251009132006.45834-1-tzimmermann@suse.de>
- <20251009132006.45834-2-tzimmermann@suse.de>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20251009132006.45834-2-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Wed, 22 Oct 2025 07:59:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -105,275 +74,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 09/10/2025 16:16, Thomas Zimmermann wrote:
-> Add free callback to struct drm_client_funcs. Invoke function to
-> free the client memory as part of the release process. Implement
-> free for fbdev emulation.
-> 
-> Fbdev emulation allocates and prepares client memory in
-> drm_fbdev_client_setup(). The release happens in fb_destroy from
-> struct fb_ops. Multiple implementations of this callback exist in
-> the various drivers that provide fbdev implementation. Each of them
-> needs to follow the implementation details of the fbdev setup code.
-> 
-> Adding a free callback for the client puts the unprepare and release
-> of the fbdev client in a single place.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+On Mon, 2025-10-20 at 12:54 +0100, Tvrtko Ursulin wrote:
+> Some graphics APIs differentiate between out-of-graphics-memory and
+> out-of-host-memory (system memory). Add a device init flag to have -
+> ENOSPC
+> propagated from the resource managers instead of being converted to
+> -ENOMEM, to aid driver stacks in determining what error code to
+> return or
+> whether corrective action can be taken at the driver level.
+>=20
+> Co-developed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 > ---
->  drivers/gpu/drm/armada/armada_fbdev.c      |  2 --
->  drivers/gpu/drm/clients/drm_fbdev_client.c | 17 +++++++++++++++--
->  drivers/gpu/drm/drm_client.c               |  4 ++++
->  drivers/gpu/drm/drm_fbdev_dma.c            |  4 ----
->  drivers/gpu/drm/drm_fbdev_shmem.c          |  2 --
->  drivers/gpu/drm/drm_fbdev_ttm.c            |  2 --
->  drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  2 --
->  drivers/gpu/drm/gma500/fbdev.c             |  3 ---
->  drivers/gpu/drm/i915/display/intel_fbdev.c |  2 --
->  drivers/gpu/drm/msm/msm_fbdev.c            |  2 --
->  drivers/gpu/drm/omapdrm/omap_fbdev.c       |  2 --
+> Thomas, feel free to take the ownership if you end up liking this
+> version.
+> As you can see I lifted your commit text as is and the implementation
+> is
+> the same on the high level.
 
-For omapdrm:
+Let's keep it like this. Thanks for doing this. I'll follow up with
+xeKMD change once this gets backmerged.
 
-Acked-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+FWIW:
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
- Tomi
 
->  drivers/gpu/drm/radeon/radeon_fbdev.c      |  2 --
->  drivers/gpu/drm/tegra/fbdev.c              |  2 --
->  include/drm/drm_client.h                   | 10 ++++++++++
->  14 files changed, 29 insertions(+), 27 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
-> index cb53cc91bafb..22e2081bfa04 100644
-> --- a/drivers/gpu/drm/armada/armada_fbdev.c
-> +++ b/drivers/gpu/drm/armada/armada_fbdev.c
-> @@ -28,8 +28,6 @@ static void armada_fbdev_fb_destroy(struct fb_info *info)
->  	fbh->fb->funcs->destroy(fbh->fb);
->  
->  	drm_client_release(&fbh->client);
-> -	drm_fb_helper_unprepare(fbh);
-> -	kfree(fbh);
->  }
->  
->  static const struct fb_ops armada_fb_ops = {
-> diff --git a/drivers/gpu/drm/clients/drm_fbdev_client.c b/drivers/gpu/drm/clients/drm_fbdev_client.c
-> index f894ba52bdb5..5336accab1b6 100644
-> --- a/drivers/gpu/drm/clients/drm_fbdev_client.c
-> +++ b/drivers/gpu/drm/clients/drm_fbdev_client.c
-> @@ -13,16 +13,28 @@
->   * struct drm_client_funcs
->   */
->  
-> +static void drm_fbdev_client_free(struct drm_client_dev *client)
-> +{
-> +	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
-> +
-> +	drm_fb_helper_unprepare(fb_helper);
-> +	kfree(fb_helper);
-> +}
-> +
->  static void drm_fbdev_client_unregister(struct drm_client_dev *client)
->  {
->  	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
->  
->  	if (fb_helper->info) {
-> +		/*
-> +		 * Fully probed framebuffer device
-> +		 */
->  		drm_fb_helper_unregister_info(fb_helper);
->  	} else {
-> +		/*
-> +		 * Partially initialized client, no framebuffer device yet
-> +		 */
->  		drm_client_release(&fb_helper->client);
-> -		drm_fb_helper_unprepare(fb_helper);
-> -		kfree(fb_helper);
->  	}
->  }
->  
-> @@ -88,6 +100,7 @@ static int drm_fbdev_client_resume(struct drm_client_dev *client, bool holds_con
->  
->  static const struct drm_client_funcs drm_fbdev_client_funcs = {
->  	.owner		= THIS_MODULE,
-> +	.free		= drm_fbdev_client_free,
->  	.unregister	= drm_fbdev_client_unregister,
->  	.restore	= drm_fbdev_client_restore,
->  	.hotplug	= drm_fbdev_client_hotplug,
-> diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
-> index 3fa38d4ac70b..fe9c6d7083ea 100644
-> --- a/drivers/gpu/drm/drm_client.c
-> +++ b/drivers/gpu/drm/drm_client.c
-> @@ -168,6 +168,10 @@ void drm_client_release(struct drm_client_dev *client)
->  
->  	drm_client_modeset_free(client);
->  	drm_client_close(client);
-> +
-> +	if (client->funcs && client->funcs->free)
-> +		client->funcs->free(client);
-> +
->  	drm_dev_put(dev);
->  }
->  EXPORT_SYMBOL(drm_client_release);
-> diff --git a/drivers/gpu/drm/drm_fbdev_dma.c b/drivers/gpu/drm/drm_fbdev_dma.c
-> index 8bd626ef16c7..c6196293e424 100644
-> --- a/drivers/gpu/drm/drm_fbdev_dma.c
-> +++ b/drivers/gpu/drm/drm_fbdev_dma.c
-> @@ -57,8 +57,6 @@ static void drm_fbdev_dma_fb_destroy(struct fb_info *info)
->  	drm_client_buffer_vunmap(fb_helper->buffer);
->  	drm_client_framebuffer_delete(fb_helper->buffer);
->  	drm_client_release(&fb_helper->client);
-> -	drm_fb_helper_unprepare(fb_helper);
-> -	kfree(fb_helper);
->  }
->  
->  static const struct fb_ops drm_fbdev_dma_fb_ops = {
-> @@ -92,8 +90,6 @@ static void drm_fbdev_dma_shadowed_fb_destroy(struct fb_info *info)
->  	drm_client_buffer_vunmap(fb_helper->buffer);
->  	drm_client_framebuffer_delete(fb_helper->buffer);
->  	drm_client_release(&fb_helper->client);
-> -	drm_fb_helper_unprepare(fb_helper);
-> -	kfree(fb_helper);
->  }
->  
->  static const struct fb_ops drm_fbdev_dma_shadowed_fb_ops = {
-> diff --git a/drivers/gpu/drm/drm_fbdev_shmem.c b/drivers/gpu/drm/drm_fbdev_shmem.c
-> index 1e827bf8b815..51573058df6f 100644
-> --- a/drivers/gpu/drm/drm_fbdev_shmem.c
-> +++ b/drivers/gpu/drm/drm_fbdev_shmem.c
-> @@ -65,8 +65,6 @@ static void drm_fbdev_shmem_fb_destroy(struct fb_info *info)
->  	drm_client_buffer_vunmap(fb_helper->buffer);
->  	drm_client_framebuffer_delete(fb_helper->buffer);
->  	drm_client_release(&fb_helper->client);
-> -	drm_fb_helper_unprepare(fb_helper);
-> -	kfree(fb_helper);
->  }
->  
->  static const struct fb_ops drm_fbdev_shmem_fb_ops = {
-> diff --git a/drivers/gpu/drm/drm_fbdev_ttm.c b/drivers/gpu/drm/drm_fbdev_ttm.c
-> index 85feb55bba11..ccf460fbc1f0 100644
-> --- a/drivers/gpu/drm/drm_fbdev_ttm.c
-> +++ b/drivers/gpu/drm/drm_fbdev_ttm.c
-> @@ -53,8 +53,6 @@ static void drm_fbdev_ttm_fb_destroy(struct fb_info *info)
->  	drm_client_framebuffer_delete(fb_helper->buffer);
->  
->  	drm_client_release(&fb_helper->client);
-> -	drm_fb_helper_unprepare(fb_helper);
-> -	kfree(fb_helper);
->  }
->  
->  static const struct fb_ops drm_fbdev_ttm_fb_ops = {
-> diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-> index 93de25b77e68..a3bd21a827ad 100644
-> --- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-> +++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
-> @@ -42,8 +42,6 @@ static void exynos_drm_fb_destroy(struct fb_info *info)
->  	drm_framebuffer_remove(fb);
->  
->  	drm_client_release(&fb_helper->client);
-> -	drm_fb_helper_unprepare(fb_helper);
-> -	kfree(fb_helper);
->  }
->  
->  static const struct fb_ops exynos_drm_fb_ops = {
-> diff --git a/drivers/gpu/drm/gma500/fbdev.c b/drivers/gpu/drm/gma500/fbdev.c
-> index a6af21514cff..bc92fa24a1e2 100644
-> --- a/drivers/gpu/drm/gma500/fbdev.c
-> +++ b/drivers/gpu/drm/gma500/fbdev.c
-> @@ -84,9 +84,6 @@ static void psb_fbdev_fb_destroy(struct fb_info *info)
->  	drm_gem_object_put(obj);
->  
->  	drm_client_release(&fb_helper->client);
-> -
-> -	drm_fb_helper_unprepare(fb_helper);
-> -	kfree(fb_helper);
->  }
->  
->  static const struct fb_ops psb_fbdev_fb_ops = {
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> index 3fbdf75415cc..d5f26c8bb102 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -146,8 +146,6 @@ static void intel_fbdev_fb_destroy(struct fb_info *info)
->  	drm_framebuffer_remove(fb_helper->fb);
->  
->  	drm_client_release(&fb_helper->client);
-> -	drm_fb_helper_unprepare(fb_helper);
-> -	kfree(fb_helper);
->  }
->  
->  __diag_push();
-> diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
-> index b5969374d53f..aad6fb77f0de 100644
-> --- a/drivers/gpu/drm/msm/msm_fbdev.c
-> +++ b/drivers/gpu/drm/msm/msm_fbdev.c
-> @@ -52,8 +52,6 @@ static void msm_fbdev_fb_destroy(struct fb_info *info)
->  	drm_framebuffer_remove(fb);
->  
->  	drm_client_release(&helper->client);
-> -	drm_fb_helper_unprepare(helper);
-> -	kfree(helper);
->  }
->  
->  static const struct fb_ops msm_fb_ops = {
-> diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
-> index 948af7ec1130..b5df2923d2a6 100644
-> --- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
-> +++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
-> @@ -103,8 +103,6 @@ static void omap_fbdev_fb_destroy(struct fb_info *info)
->  	drm_framebuffer_remove(fb);
->  
->  	drm_client_release(&helper->client);
-> -	drm_fb_helper_unprepare(helper);
-> -	kfree(helper);
->  }
->  
->  /*
-> diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
-> index dc81b0c2dbff..4df6c9167bf0 100644
-> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
-> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
-> @@ -184,8 +184,6 @@ static void radeon_fbdev_fb_destroy(struct fb_info *info)
->  	radeon_fbdev_destroy_pinned_object(gobj);
->  
->  	drm_client_release(&fb_helper->client);
-> -	drm_fb_helper_unprepare(fb_helper);
-> -	kfree(fb_helper);
->  }
->  
->  static const struct fb_ops radeon_fbdev_fb_ops = {
-> diff --git a/drivers/gpu/drm/tegra/fbdev.c b/drivers/gpu/drm/tegra/fbdev.c
-> index 1b70f5e164af..91aece6f34e0 100644
-> --- a/drivers/gpu/drm/tegra/fbdev.c
-> +++ b/drivers/gpu/drm/tegra/fbdev.c
-> @@ -53,8 +53,6 @@ static void tegra_fbdev_fb_destroy(struct fb_info *info)
->  	drm_framebuffer_remove(fb);
->  
->  	drm_client_release(&helper->client);
-> -	drm_fb_helper_unprepare(helper);
-> -	kfree(helper);
->  }
->  
->  static const struct fb_ops tegra_fb_ops = {
-> diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
-> index bdd845e383ef..eecb8d6e15c7 100644
-> --- a/include/drm/drm_client.h
-> +++ b/include/drm/drm_client.h
-> @@ -28,6 +28,16 @@ struct drm_client_funcs {
->  	 */
->  	struct module *owner;
->  
+> ---
+> =C2=A0drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0 | 4 +++-
+> =C2=A0drivers/gpu/drm/ttm/ttm_device.c | 1 +
+> =C2=A0include/drm/ttm/ttm_allocation.h | 1 +
+> =C2=A0include/drm/ttm/ttm_device.h=C2=A0=C2=A0=C2=A0=C2=A0 | 5 +++++
+> =C2=A04 files changed, 10 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+> b/drivers/gpu/drm/ttm/ttm_bo.c
+> index fba2a68a556e..15b3cb199d45 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -31,6 +31,7 @@
+> =C2=A0
+> =C2=A0#define pr_fmt(fmt) "[TTM] " fmt
+> =C2=A0
+> +#include <drm/ttm/ttm_allocation.h>
+> =C2=A0#include <drm/ttm/ttm_bo.h>
+> =C2=A0#include <drm/ttm/ttm_placement.h>
+> =C2=A0#include <drm/ttm/ttm_tt.h>
+> @@ -877,7 +878,8 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
+> =C2=A0
+> =C2=A0	/* For backward compatibility with userspace */
+> =C2=A0	if (ret =3D=3D -ENOSPC)
+> -		return -ENOMEM;
+> +		return bo->bdev->alloc_flags &
+> TTM_ALLOCATION_PROPAGATE_ENOSPC ?
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret : -ENOMEM;
+> =C2=A0
+> =C2=A0	/*
+> =C2=A0	 * We might need to add a TTM.
+> diff --git a/drivers/gpu/drm/ttm/ttm_device.c
+> b/drivers/gpu/drm/ttm/ttm_device.c
+> index 87c85ccb21ac..5c10e5fbf43b 100644
+> --- a/drivers/gpu/drm/ttm/ttm_device.c
+> +++ b/drivers/gpu/drm/ttm/ttm_device.c
+> @@ -227,6 +227,7 @@ int ttm_device_init(struct ttm_device *bdev,
+> const struct ttm_device_funcs *func
+> =C2=A0		return -ENOMEM;
+> =C2=A0	}
+> =C2=A0
+> +	bdev->alloc_flags =3D alloc_flags;
+> =C2=A0	bdev->funcs =3D funcs;
+> =C2=A0
+> =C2=A0	ttm_sys_man_init(bdev);
+> diff --git a/include/drm/ttm/ttm_allocation.h
+> b/include/drm/ttm/ttm_allocation.h
+> index 8f8544760306..655d1e44aba7 100644
+> --- a/include/drm/ttm/ttm_allocation.h
+> +++ b/include/drm/ttm/ttm_allocation.h
+> @@ -7,5 +7,6 @@
+> =C2=A0#define TTM_ALLOCATION_POOL_BENEFICIAL_ORDER(n)	((n) & 0xff)
+> /* Max order which caller can benefit from */
+> =C2=A0#define TTM_ALLOCATION_POOL_USE_DMA_ALLOC=C2=A0	BIT(8) /* Use
+> coherent DMA allocations. */
+> =C2=A0#define TTM_ALLOCATION_POOL_USE_DMA32		BIT(9) /* Use
+> GFP_DMA32 allocations. */
+> +#define TTM_ALLOCATION_PROPAGATE_ENOSPC		BIT(10) /*
+> Do not convert ENOSPC from resource managers to ENOMEM. */
+> =C2=A0
+> =C2=A0#endif
+> diff --git a/include/drm/ttm/ttm_device.h
+> b/include/drm/ttm/ttm_device.h
+> index 074b98572275..d016360e5ceb 100644
+> --- a/include/drm/ttm/ttm_device.h
+> +++ b/include/drm/ttm/ttm_device.h
+> @@ -220,6 +220,11 @@ struct ttm_device {
+> =C2=A0	 */
+> =C2=A0	struct list_head device_list;
+> =C2=A0
 > +	/**
-> +	 * @free:
-> +	 *
-> +	 * Called when the client gets unregistered. Implementations should
-> +	 * release all client-specific data and free the memory.
-> +	 *
-> +	 * This callback is optional.
+> +	 * @alloc_flags: TTM_ALLOCATION_ flags.
 > +	 */
-> +	void (*free)(struct drm_client_dev *client);
+> +	unsigned int alloc_flags;
 > +
->  	/**
->  	 * @unregister:
->  	 *
+> =C2=A0	/**
+> =C2=A0	 * @funcs: Function table for the device.
+> =C2=A0	 * Constant after bo device init
 
