@@ -2,83 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D00BBFFB64
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Oct 2025 09:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E151BFFB2C
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Oct 2025 09:51:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DB9F10E8BF;
-	Thu, 23 Oct 2025 07:51:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C89210E8B0;
+	Thu, 23 Oct 2025 07:51:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="t7F0onkJ";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="IvhIo3VN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB1910E74E
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Oct 2025 11:03:29 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-3ece0e4c5faso6572481f8f.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Oct 2025 04:03:29 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C50C310E751
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Oct 2025 11:03:39 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-4270a3464bcso3649278f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Oct 2025 04:03:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1761131008; x=1761735808; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1761131018; x=1761735818; darn=lists.freedesktop.org;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :from:to:cc:subject:date:message-id:reply-to;
- bh=NXsoFSKSD+Jxnxd3GCdpg7hzwIK45uE+7Oq4mebbZTI=;
- b=t7F0onkJcM00pWfyJdh1a8Ijxm6qwYd+uQJBqCv6rlQPOhrWZ3ngNGEQDWH2GVeiRj
- 3htd7yzrLpD5WbgzLIjQq9jISsjxmyP4mCq7V6XvYm2eBP+dSVDpg6/pQcHeyxgSgFD9
- xEEr5bLdg8xwFwb2/3B7V8tvzISsrS2KNfb6GHQ+/FUNIV9vQAKKt/GnY+gsSdlLAAfo
- YTsdOYq/zngalwhEt6Zi5hKtXp9u6hC37ZeYuxrJFkl2y3M/WpRPeTyI4iR48rvIFeY6
- I32mgo4JDFqIKerVDZgM3z1I3I8rXqJL1Um6Rky3tmwr/J3izr1QV+b7xjziAQAUsWYb
- M1og==
+ bh=UAcv1Nols3roleR0UnO7S1t1INuxWwIFkcQJLb9Fwrc=;
+ b=IvhIo3VNKuSu+elKK0QwNz0sn5IS/KFN5zerD4EL3pfLKB2beJkseljRsAXoOaE7ap
+ srShbF1MRWQYkHoiLRFZM4p4UcEkPePnUKmCFcg8qrGGxCzQdSE7hSHTpg/Z+avRQb1Q
+ ChQzTf6bC80qpg11D4vePpTM5ZVLVIrpIp1NDGCQcDWZjsa4cPWmW8rtNN1ReWWm+DbO
+ zDJOC6L8d6bgM9OEIz4gOmTGHjOC9kJPhyBeQqs/JJfQrRHCx9Ih/GR5XcYbfWWQGaJ+
+ 9XoRxcukm2kSeVgBqGBRum9RSaPhg+04XwvfCyxbuNrUaEBhrySZPXmdcqIhyFn8DQBg
+ x4Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761131008; x=1761735808;
+ d=1e100.net; s=20230601; t=1761131018; x=1761735818;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=NXsoFSKSD+Jxnxd3GCdpg7hzwIK45uE+7Oq4mebbZTI=;
- b=Hr0lJhUrZXlMOLdmgFtKV6tcb3oQeTwz4Ns6oFBXTEgsSMv956lotjb1JLRfImk+Lv
- 7KovUfC1E2zHBS/9JFjF8kJy/DlmHN9xloAHFywdkWRwJ6AVSos+loyfZc6oAKQkbs9s
- hTnc6pkQOLylJTXHv3wbiXni6VucCI1jcNiO1VFkjCkP67MiCLHNkhTKstMe85+5a2G5
- kXJuM+OXSYY1n9oLHWDYHX+QPujKZlFsvrS/rYCnvgEBKch4/D4KeCtzDIi6SSaCTkH+
- pmc0v9hclh/AgKSbbVtdwbEnUO1KcinndNhTdcjEE2TV+7vw8vH9eP2WqEGGHh/HR13t
- Vynw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXoQ7rysKDWHLuEMPalKCVNqPz+PeXIECCQB6VTzveKOWaZA9npRFxXoy8A5A586VzOFN1vWBpv@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwX0DhWAuhijt2nQ9Qp/lDqmpWmGcBsGHo5DWpqzxbN87UvmOwR
- hjz4yWAO1vDVoxg1GeVkKp3Lw7O+CHZmSyD1sFAAnPkt6D1TvcdabpUFXeydNyflx6c=
-X-Gm-Gg: ASbGncu07LDErH5Os0I5dYu8b/I4nsH7KllaCGRGMAKY0nMfovqVyQ0dQNYgs+SctT6
- gXQPIfgKWPEFDDPlCGou2BJ/uSNo7yvMi86IaWj3PEk4Dr9ZXnZgGnOxt02KMki6OTVNMfYVKxb
- WwzXdtxfsiFsUpeQqss6TNqu9aXB5Ef932iOq3QJq5x2yC/0SUJwqZBqBQpzzZdyhVkaSM8G6Wo
- prlbdu59+eqBKj0R7bpyj54SQhIipBDoiWMvjykT8N5bjtOH8lgNRZFbnQWuOzL8UGrpjjExyqz
- J++dKUo4LKr2vR1nQNCtxgVHCO3Goc1Oyo0rEFqn1IPsYAZGBnGohrTHVVVANDLkM+kxKCjXwr7
- l9VF8xAeDzaATNazJNtVerASGkJmEh9oQ+zDM/JFFH8yNWTPWXm50+rLpWDt8URURaGH+ouUggN
- BdqLcB00AhPXAVcacJ
-X-Google-Smtp-Source: AGHT+IGqGsmmm51ejlY0k7sOzKGZrFx3JPVXLYQMM7eHv3uJuXOnG04Xu33Xnd/PMxPWMzgUajg6yQ==
-X-Received: by 2002:a05:6000:470a:b0:427:491:e77d with SMTP id
- ffacd0b85a97d-42704da9e16mr13267011f8f.36.1761131007920; 
- Wed, 22 Oct 2025 04:03:27 -0700 (PDT)
+ bh=UAcv1Nols3roleR0UnO7S1t1INuxWwIFkcQJLb9Fwrc=;
+ b=JfKBY6h10QyWUTdTXDr6zpThnuAn/p7dHER6/h5J2BjzGbTKZ0PtbMMI2Nc5WJohuR
+ wcYfk9n0pzauST4pNF3iYN8Yqtn4Eka/GtvdzrKb9ig/yqXUU+baQjuyL96KyIF7Xnvp
+ EzePYwe+z5EWqZpcCPtk1rqIRchSOExTFFRE+xjEk127FoQzJ9Iru/jeaX2CnxFOvHR7
+ X9hGJ5V+5HI0H0IrhPBNUMSDVsGQdxAHri7FcfCX7gtTXmodk2bCZ/1ZGRJdwbYWJhSy
+ csH3DOglmcQmnDl8R/AYwL+gDU1Dmpa1xL08zLxyi9ZmzSTskG8FZYn8DnUTSQhktMny
+ OKVA==
+X-Gm-Message-State: AOJu0YwTX6di/msaqWWh+wmPecd0DqMzGGm6CnfnAnffss3i7f2hFpJZ
+ ZF1shitJpHnSupyozZg5NNAaFFYlHCBzSSBW4opysdMlap94VxMgM0DKb+r2RnUayR/sx3FG4rX
+ gBII8
+X-Gm-Gg: ASbGncserTet6dl9SfYErYL4AIS+kaJXWUYbzXTLL9Tf3l8WY4RxGUN8H1cLDfN9Nds
+ rDS/q2EU1d6xiJ9pw8sMFQnu3a5um7EI7AB7ocqx70Eh0RexDCiuezOOAcIASG395hH/AbJbmv3
+ Wy10KR76MSnvYVaeIEKrSiA4XmJQM1E89guxPgxIqGmghQE1GI9zNCc9ia8yYf+SJQ1sadP/RWN
+ 7qy1biGuLQeT3PcNfMryACV1iOqe2j7bQMtEQkfTAy7teh2pVa6iCa7xY/tcTOY/w4cw7lsrigi
+ 8UDqMn1Ko42svOakLgkSD5flUr1PgcHzShBo4WVMs0yzl53pWD2vzbsxdAxhgCTVghuQjcANyOR
+ Q22ogsLFuHVwFhiZwi9HJ6R0EbWKvRTkRszKlXhHyY0pNDI1BFIfzxBlxbY968nOLYHBzu9qi+Q
+ HLA2/DbAPIA0UbaNO/
+X-Google-Smtp-Source: AGHT+IGO8rcEntJrGuFmt8IrSanN96p05eBSdFPmlHIUoNSbp/dGN3a7biuE3ErGB9OA7/DGLaG/dQ==
+X-Received: by 2002:a5d:64e8:0:b0:427:7b7:dbdc with SMTP id
+ ffacd0b85a97d-42707b7dc04mr12260911f8f.24.1761131017893; 
+ Wed, 22 Oct 2025 04:03:37 -0700 (PDT)
 Received: from localhost ([196.207.164.177])
  by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-427ea5b3c65sm24546043f8f.15.2025.10.22.04.03.26
+ ffacd0b85a97d-427ea5b3b45sm24894864f8f.11.2025.10.22.04.03.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Oct 2025 04:03:27 -0700 (PDT)
-Date: Wed, 22 Oct 2025 14:03:24 +0300
+ Wed, 22 Oct 2025 04:03:37 -0700 (PDT)
+Date: Wed, 22 Oct 2025 14:03:34 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Prike Liang <Prike.Liang@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sunil Khatri <sunil.khatri@amd.com>,
- Shashank Sharma <shashank.sharma@amd.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH next] drm/amdgpu/userqueue: Fix use after free in
- amdgpu_userq_buffer_vas_list_cleanup()
-Message-ID: <aPi5_CILMKn3ZrVd@stanley.mountain>
+To: Sunil Khatri <sunil.khatri@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amdgpu: update the functions to use amdgpu version
+ of hmm
+Message-ID: <aPi6BuxP0SYlcFgu@stanley.mountain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
 X-Mailman-Approved-At: Thu, 23 Oct 2025 07:51:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,31 +86,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The amdgpu_userq_buffer_va_list_del() function frees "va_cursor" but it
-is dereferenced on the next line when we print the debug message.  Print
-the debug message first and then free it.
+Hello Sunil Khatri,
 
-Fixes: 2a28f9665dca ("drm/amdgpu: track the userq bo va for its obj management")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Commit 737da5363cc0 ("drm/amdgpu: update the functions to use amdgpu
+version of hmm") from Oct 10, 2025 (linux-next), leads to the
+following Smatch static checker warning:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 9d4751a39c20..2200e0bbf040 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -159,9 +159,9 @@ static int amdgpu_userq_buffer_vas_list_cleanup(struct amdgpu_device *adev,
- 			r = -EINVAL;
- 			goto err;
- 		}
--		amdgpu_userq_buffer_va_list_del(mapping, va_cursor);
- 		dev_dbg(adev->dev, "delete the userq:%p va:%llx\n",
- 			queue, va_cursor->gpu_addr);
-+		amdgpu_userq_buffer_va_list_del(mapping, va_cursor);
- 	}
- err:
- 	amdgpu_bo_unreserve(queue->vm->root.bo);
--- 
-2.51.0
+	drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_svm.c:1767 svm_range_validate_and_map()
+	warn: passing freed memory 'range' (line 1746)
 
+drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_svm.c
+    1698         start = map_start << PAGE_SHIFT;
+    1699         end = (map_last + 1) << PAGE_SHIFT;
+    1700         for (addr = start; !r && addr < end; ) {
+    1701                 struct amdgpu_hmm_range *range = NULL;
+    1702                 unsigned long map_start_vma;
+    1703                 unsigned long map_last_vma;
+    1704                 struct vm_area_struct *vma;
+    1705                 unsigned long next = 0;
+    1706                 unsigned long offset;
+    1707                 unsigned long npages;
+    1708                 bool readonly;
+    1709 
+    1710                 vma = vma_lookup(mm, addr);
+    1711                 if (vma) {
+    1712                         readonly = !(vma->vm_flags & VM_WRITE);
+    1713 
+    1714                         next = min(vma->vm_end, end);
+    1715                         npages = (next - addr) >> PAGE_SHIFT;
+    1716                         /* HMM requires at least READ permissions. If provided with PROT_NONE,
+    1717                          * unmap the memory. If it's not already mapped, this is a no-op
+    1718                          * If PROT_WRITE is provided without READ, warn first then unmap
+    1719                          */
+    1720                         if (!(vma->vm_flags & VM_READ)) {
+    1721                                 unsigned long e, s;
+    1722 
+    1723                                 svm_range_lock(prange);
+    1724                                 if (vma->vm_flags & VM_WRITE)
+    1725                                         pr_debug("VM_WRITE without VM_READ is not supported");
+    1726                                 s = max(start, prange->start);
+    1727                                 e = min(end, prange->last);
+    1728                                 if (e >= s)
+    1729                                         r = svm_range_unmap_from_gpus(prange, s, e,
+    1730                                                        KFD_SVM_UNMAP_TRIGGER_UNMAP_FROM_CPU);
+    1731                                 svm_range_unlock(prange);
+    1732                                 /* If unmap returns non-zero, we'll bail on the next for loop
+    1733                                  * iteration, so just leave r and continue
+    1734                                  */
+    1735                                 addr = next;
+    1736                                 continue;
+    1737                         }
+    1738 
+    1739                         WRITE_ONCE(p->svms.faulting_task, current);
+    1740                         range = amdgpu_hmm_range_alloc(NULL);
+    1741                         r = amdgpu_hmm_range_get_pages(&prange->notifier, addr, npages,
+    1742                                                        readonly, owner,
+    1743                                                        range);
+    1744                         WRITE_ONCE(p->svms.faulting_task, NULL);
+    1745                         if (r) {
+    1746                                 amdgpu_hmm_range_free(range);
+                                                               ^^^^^
+Freed here.
+
+    1747                                 pr_debug("failed %d to get svm range pages\n", r);
+    1748                         }
+    1749                 } else {
+    1750                         r = -EFAULT;
+    1751                 }
+    1752 
+    1753                 if (!r) {
+    1754                         offset = (addr >> PAGE_SHIFT) - prange->start;
+    1755                         r = svm_range_dma_map(prange, ctx->bitmap, offset, npages,
+    1756                                               range->hmm_range.hmm_pfns);
+    1757                         if (r)
+    1758                                 pr_debug("failed %d to dma map range\n", r);
+    1759                 }
+    1760 
+    1761                 svm_range_lock(prange);
+    1762 
+    1763                 /* Free backing memory of hmm_range if it was initialized
+    1764                  * Overrride return value to TRY AGAIN only if prior returns
+    1765                  * were successful
+    1766                  */
+--> 1767                 if (range && !amdgpu_hmm_range_valid(range) && !r) {
+                                                              ^^^^^
+Use after free
+
+    1768                         pr_debug("hmm update the range, need validate again\n");
+    1769                         r = -EAGAIN;
+    1770                 }
+    1771                 /* Free the hmm range */
+    1772                 amdgpu_hmm_range_free(range);
+                                               ^^^^^
+Double free
+
+    1773 
+    1774 
+    1775                 if (!r && !list_empty(&prange->child_list)) {
+    1776                         pr_debug("range split by unmap in parallel, validate again\n");
+    1777                         r = -EAGAIN;
+    1778                 }
+    1779 
+    1780                 if (!r) {
+    1781                         map_start_vma = max(map_start, prange->start + offset);
+    1782                         map_last_vma = min(map_last, prange->start + offset + npages - 1);
+    1783                         if (map_start_vma <= map_last_vma) {
+    1784                                 offset = map_start_vma - prange->start;
+    1785                                 npages = map_last_vma - map_start_vma + 1;
+    1786                                 r = svm_range_map_to_gpus(prange, offset, npages, readonly,
+    1787                                                           ctx->bitmap, wait, flush_tlb);
+    1788                         }
+    1789                 }
+    1790 
+    1791                 if (!r && next == end)
+    1792                         prange->mapped_to_gpu = true;
+    1793 
+    1794                 svm_range_unlock(prange);
+    1795 
+    1796                 addr = next;
+    1797         }
+    1798 
+    1799         svm_range_unreserve_bos(ctx);
+    1800         if (!r)
+    1801                 prange->validate_timestamp = ktime_get_boottime();
+    1802 
+    1803 free_ctx:
+    1804         kfree(ctx);
+    1805 
+    1806         return r;
+    1807 }
+
+regards,
+dan carpenter
