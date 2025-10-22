@@ -2,153 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DFACBFA5E1
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Oct 2025 08:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61883BFABAF
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Oct 2025 09:59:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF83410E6C0;
-	Wed, 22 Oct 2025 06:57:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C817710E6E8;
+	Wed, 22 Oct 2025 07:59:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TXZEy/LO";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="Sg6TLUDc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012068.outbound.protection.outlook.com [52.101.48.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D120810E6C0
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Oct 2025 06:57:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ge01y6Fdiy/ZPaEengiVx6H28sDrtFyaL/UMW1TAiOiDESn+lRfjYy2Ftgpq9r/U22bYM7sH5iLtGjrjqZDbwcRnmy+qFyQYwvVjRlX+O7xt65WGZEES0OT4g2zZvGJ3eXdH56XRDEDSMYOdrtfVLPsfLRIkN4XQ7F7NTHG2JY+Y6yogWB/lrv3m++dz883hUMx9UVS59FoXXGIJcot+hwoBAU3dyyhVOsFmHPAQ/9gg/Ms9yd0hCGGwhBaD1FV+wrCXp3HCXRmjqruKz5RBNB7kjzjxwkCNsOOH+rvf9R5eobNxHlk2DDkr5TE2YEoHD8PMsnOs7gDKq5wljyxr0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SNbjf1/mSYg+Nh7jyWZpk+ktek3XgJ5fd1YbCgtnGx8=;
- b=uiDjxHN60p1s7qDWFBbiPEpgjLcEEyftXP+Mk0PIxo8vMwJnDYZFSGxLtZc11h44rH2avXmY9l/58rTZR6rPqXPO6/CT+6Q0ASktN9BfPvJfdeWBvz5G8y802Bs0iaGTUSyRsszUivpAi2Rs7U0ZChemUAUJxiKq3RYmVaycuKL14JJkMBKrHj/NrA963li+67o+5vmb6vAjR+MKMsmmmRPV+hKWNV/CJ0NEO8HDx+WpYjBJVDd1VhgbbYHMPXauBgHHXI/zkpxjiuboiLiq2SZ396ifhdagKdZgPdxphDbPjYo2yXXpKPJKXIdpMCC49RkVSpnAqX/dzWDgkzRggw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SNbjf1/mSYg+Nh7jyWZpk+ktek3XgJ5fd1YbCgtnGx8=;
- b=TXZEy/LO1/JHY3p3lJ+3+5czoGLQ7TYhfecoLd9J4aIx0dugS2jsAiM89ITrY0VpHVwZ/qLdaMWZ9pX0qqDjfIvX6nb34qIt3DlG9ss0OjhEqsxFeT63KuOChZZaJRQiRHG4FPxNngqbMQKbUZG0Q0tZb4DSIFlEqCcNKGbfYMQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SN7PR12MB7835.namprd12.prod.outlook.com (2603:10b6:806:328::22)
- by DM4PR12MB7671.namprd12.prod.outlook.com (2603:10b6:8:104::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Wed, 22 Oct
- 2025 06:57:02 +0000
-Received: from SN7PR12MB7835.namprd12.prod.outlook.com
- ([fe80::ea3a:4720:99cb:32d8]) by SN7PR12MB7835.namprd12.prod.outlook.com
- ([fe80::ea3a:4720:99cb:32d8%7]) with mapi id 15.20.9228.015; Wed, 22 Oct 2025
- 06:57:02 +0000
-Content-Type: multipart/alternative;
- boundary="------------Z3LPK00Wv5F9ZIv65MSaZWiQ"
-Message-ID: <9039675e-d0c2-418e-bbd2-f2884ef34285@amd.com>
-Date: Wed, 22 Oct 2025 14:56:57 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 08/18] amdkfd: identify a secondary kfd process by its
- id
-To: Felix Kuehling <felix.kuehling@amd.com>, alexander.deucher@amd.com
-Cc: ray.huang@amd.com, amd-gfx@lists.freedesktop.org
-References: <20251017084222.54721-1-lingshan.zhu@amd.com>
- <20251017084222.54721-9-lingshan.zhu@amd.com>
- <1a34e488-72b3-4974-8807-e10d8170b1de@amd.com>
-Content-Language: en-US
-From: "Zhu, Lingshan" <lingshan.zhu@amd.com>
-In-Reply-To: <1a34e488-72b3-4974-8807-e10d8170b1de@amd.com>
-X-ClientProxiedBy: SI1PR02CA0004.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::12) To SN7PR12MB7835.namprd12.prod.outlook.com
- (2603:10b6:806:328::22)
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F26510E6C2;
+ Wed, 22 Oct 2025 06:57:08 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cs0Mh5Dxpz9t7p;
+ Wed, 22 Oct 2025 08:57:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1761116224; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=AIP5fB2IN7lemacuiDksTOGrPz0IXUOa/XX+96Fju9Q=;
+ b=Sg6TLUDcI6q2vbAw4t/U/4YdMxRhV9pjFWoIfZxhcg1xMHfQNingdj8cyRgEuR3iy9dTLq
+ SxcSwrZJkbDHnr4Qrk7dTt3Rj1g3mwmKnNHBqVJ5QdphP4rw6RhGC+fMbWAz/AE601mMnI
+ 2jD315F3EfJa6CqtBOEVa1jY6AoXA5aT4n/7Ddy+ChuMma6BsLtoTv9CemYAHTkDJ2fJko
+ 9CJuBTHIrw/5rwx4gLnffBDkEgELKujOyS0xw/s6Wm4wd6MFZL81UdkSBYbbuZmoFzjc0J
+ p1lRwm4tH416ncKf7JWmORmLDM5JejE0t8USRBUFx0J4FuG7kq1HHzMKnYK9Rg==
+Message-ID: <df3fa9d1893c3bd2a2b6de73613b26a3b8ed3d55.camel@mailbox.org>
+Subject: Re: [PATCH v2 09/27] drm/sched: Add fair scheduling policy
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, phasta@kernel.org, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
+ Brost <matthew.brost@intel.com>, Pierre-Eric Pelloux-Prayer
+ <pierre-eric.pelloux-prayer@amd.com>
+Date: Wed, 22 Oct 2025 08:56:59 +0200
+In-Reply-To: <a6a6e8da-e1ae-44c4-a34f-c684a441ffca@igalia.com>
+References: <20251017133644.44747-1-tvrtko.ursulin@igalia.com>
+ <20251017133644.44747-10-tvrtko.ursulin@igalia.com>
+ <2f1eb1943d4d6a7185391e6d35e9c5d9818649da.camel@mailbox.org>
+ <a6a6e8da-e1ae-44c4-a34f-c684a441ffca@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB7835:EE_|DM4PR12MB7671:EE_
-X-MS-Office365-Filtering-Correlation-Id: 563269fa-f755-47f6-1780-08de11383407
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|8096899003;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cTRKU2IwMTRZNnNpbHdrZjZVVWRjMi9XOGFhR1dvalRhekFjMWJQZ0VRQ2JC?=
- =?utf-8?B?Rko5Q2MxWEFocThjTGJ1bTdnRk01Q2dRcjhKWStxekF6aWYrMFNmRzFMalcw?=
- =?utf-8?B?NUxqc2p1T3dNSWEvZWJRMEY2YWhrSDVPaUtNbkh5VlJQU1VuM1p1Y1NSTXk2?=
- =?utf-8?B?dlNMRmUwZUNQRURlaTE2VzFZN1JWLzVvZmQ3aXByREx5U1Q2czNQTnAxOTFx?=
- =?utf-8?B?b0ZMMENyY2ZjS29KK092L2U5b0ZqY3BLUkZNT0h2L20zamNzSXVBZGlSTHhw?=
- =?utf-8?B?Nm84TlFjR096MWZjTmNTY1lZcGpFelZzblhFUUlWbmNYZzJBSHdZa3JVajZr?=
- =?utf-8?B?RVBoZXRzS2xOQjZ3dG95UjAvTkxLaEplMVcxRkIrUFRINkp2WFpOMTFUVjZZ?=
- =?utf-8?B?ZWV3VW9MYVp6U1ZpQ1QrSmtlV0xCdkNnNEljSHVjRkFNdTNuUXZxNlpxSUNh?=
- =?utf-8?B?c2d0NDVxSDNZaEJYM0lydU91eVBUZWpPQ1FWL285MHljbFFBVERWSXk4UU5D?=
- =?utf-8?B?a0NweWpZd2M0M09GdUtZbDQwdUVaUDZkUFArWm8wUjdKMzJNam5xWlhrZDFh?=
- =?utf-8?B?eWMvUXdIclBwYzNTTEJ4QzYyWGtEbzFZWlprRWhWTU55UkxIZ0wyT21wSWlZ?=
- =?utf-8?B?NkVFSklINHBwUUtxOHk5M0RLSGpkY2Y5Ny95YW5LRHVNdFZWTk5GalhSMkpo?=
- =?utf-8?B?NjZIQXhXQ21NaVV6amprbzZ1SjFnL1FWV1RqSG41ZCtNc00yWm5WcGk5ZkFZ?=
- =?utf-8?B?OFR0ZkRYTndZeEJNejhQR1ZmN05DSUluNTg1d3VjYTZnN1FiMXNIUUJCaG9X?=
- =?utf-8?B?Q0dmYld3TXU0VjJ2bWkzWW9pUHNLZjNpSWN3a2RvTVIrMWI2ckFWVGlwTUNn?=
- =?utf-8?B?UndEQ3hHOUVLUFk4OHZJUm5CUVdtbUhlc05FcDlGQStMUDVVNzhuRVcvQkNE?=
- =?utf-8?B?TVRzOG9EQ0ZXa1FVblJFRFhVREdyOHRTdFdpcUlMMGtmVm9EN3RkeXJHc1Ni?=
- =?utf-8?B?VVlRSnZYalJWVXM0aUllQ3ZJUEx6eWFTbksxanVPcUE4ZFE4b2xheWFLTXd3?=
- =?utf-8?B?YU9nNXpnc3RmUnFrbDR1UStjd2FXenIvZTZaVzNEc3kxeU1vR2tqUlBiRUVL?=
- =?utf-8?B?L3crZkZ1bk9FdGo4Zk41NnVDU3NKQTA4UTNTMG5TZnE0cXB6OUpoVmFTbVJz?=
- =?utf-8?B?WE5SMVRpUldCT0diemFraU9SZlRjb2lRbHk5V0tpWk9HSmZuS0psOG1kUXQ4?=
- =?utf-8?B?S0w5K0k3QTEvTVYrclBESWFnWWtUQmVUVkxobXFacE9BMVZicVJmWFUvNmFN?=
- =?utf-8?B?NWswa1VUdVRoRUJNN3VCOWRVM0RCN2hQdnNoTlMweXJYWlZYRk5RRUNTY05E?=
- =?utf-8?B?S1lTT0Nldjdza3h5ZlFqanhrWmMzK2VxWTg1YXJCY2JhM0Qzd1JKR3crWWVm?=
- =?utf-8?B?QTZ4d3NCakhSL2krcE9RYitQbW1FcklkVTNsNUFCdXMxRitLN3BlTkhPZ3Yr?=
- =?utf-8?B?V253UVBGWWdZbEttcW9zcnNRYktTMmlRNzNPTlNLRFA3a2xBMDBSMTRaT0Fo?=
- =?utf-8?B?dTZvQUZvUzllTTR1YjRJTFBiOW1hd1J5SWdhMm5GS1BCUUwxY09IYnBNK0JK?=
- =?utf-8?B?WnYyMjFGN3o4eDg3aG9LSGhFb2d4MURTSGdaeVRhWTZpUkc1Z1g1aC8zWktr?=
- =?utf-8?B?ckxsRDAwWjJjYzcyanlWdjk2M2tzYzZFbU5JenFKeEhSangyYmtWVU8yQUpC?=
- =?utf-8?B?bnFXeHpCTUdZbFozdEh4OFkwWEdMZ2h2SzZkdHRVc05mNUJxZnpSbFNDWXJX?=
- =?utf-8?B?ZS81bnVhWHMya2lwNmxjdHFqODJ5RW0rRmRXL3pKNGVGci91Mlh1WDJNQ1lT?=
- =?utf-8?B?M01HN2pzTWp0TDF0MXRrbjBwczdOR3FURlVZMXFpbVlNeUhhZ0VaTjZNQm8x?=
- =?utf-8?Q?7LDDi+B/sUaBpQqCwdsm7hheQgpZO43m?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR12MB7835.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(8096899003); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UDA2b2wxN2dBa0VTTFVwdHhFbkRmQi9kSzRBTmN2a2J4NWQyVTVsOGQ0U2ho?=
- =?utf-8?B?WWRGcU1vVUFtbWtXdjQyaWlwclNKNnJGWk43cndxeTdnK2ptdWp3dG1RRGpp?=
- =?utf-8?B?a1hTazlHalR6L0xJZUo0VGxGbG9mSElTTEV4anAxWUpSUjJzTnZLaWV6b01U?=
- =?utf-8?B?ZGhFMW1uOS9FVzQ5a1RkMldSVFRrWEw3bTdxNm1tSmRINVo5VFBiRUliVm5i?=
- =?utf-8?B?WGlnd2d1ZFpzQS9ROXRwcnpxK0lIaEZ6T2hVTWVvNHR3N3NRdEdZcEJHbzJE?=
- =?utf-8?B?TlpYQ0VmeWFwWUZNS01vWUxRS2VZUWdwaVdjQ0kxNktCTkpMbjVPOTkwWEZi?=
- =?utf-8?B?dDcvTUJ4eE84RUtVK3hpd0dseUx1WEpBSTIzbVJoZSsrZkRJZ3lnZ1dEdzFH?=
- =?utf-8?B?SUVxRVRFbnRONURBcGpHUE9mN0VubC9JeEFyNEVjZDdmRXFIUTg4V2J4ZlVk?=
- =?utf-8?B?SkR5V08zYzNQOWcrVjJndTFydDRHRWdZMUJoei91TC9ZdmpVVGwxTHJrcEtm?=
- =?utf-8?B?bEdCYnFialR3TDNVOGdQNmUyL0R0dWVFNTZ6dDRyd2FlUHk5WVdMUEVUL0JT?=
- =?utf-8?B?RDhza3hlSjJjMnVwVVZGUjkranNHN1cxek9WcG95dlhBdWVhQW15WXNPeHZu?=
- =?utf-8?B?S0xmOTkyOVRmdkpxUkErMFZuYUxyWWkwMTJlTmRudERSOXVMZnZJZm16VmUx?=
- =?utf-8?B?TkpxVVp0bEwyR3pxbkFaYWlBU2FTaHdxYjg5QTcxYlk1QmNDMXZzVmY5MHlL?=
- =?utf-8?B?VXlpdHFrTGNxZG5jR1k1clNRc2JlZEgzOURTdnR0OE0rdDQ3eThmOGlTYjU0?=
- =?utf-8?B?UlJIY21yRkN6MklESHZyNXZIRi9ZaXRNbWp5MEtqaTQ4c1BkZ00xaG5pS0hD?=
- =?utf-8?B?NTVDNTdxbVc4Y2FnNWc5ck1yakhCV1BrVkJ0a1lNK1c0dTVVTmQ5MkhDcm5t?=
- =?utf-8?B?alR3RDBNVDhXaytCdjh4R0wrejBtL01aRzFMTDZQMG1LaU9DTFpJWHNBRHNs?=
- =?utf-8?B?ZndNTEtpaWtvT0FhazU3ZTEwV05YbGN0bmlENmV4M09sN3doQ0xYOCsrTnlF?=
- =?utf-8?B?RU9UTmtxZXphSTRJODBtbFZFVUgxMXQ0S29ZWTJlRTI4WUZVbCs1Q1k4R3Nl?=
- =?utf-8?B?d2IxOTIrd1VVQlJZN1A4ZGRnMDF0d2laMFBHU0RrSno4MklhYXl4a28yd1dx?=
- =?utf-8?B?MFpHZUE5bzM5Z3NyQkUweUc4aWdnZFZCMFlkMmF4TXFqRTRUaGlLczgxQWJk?=
- =?utf-8?B?eFJGS044cHVIdE5PMFZ6bUk2cUlKbHhpMWEyODVPOFNkUHVtTXRMRStPbkQ4?=
- =?utf-8?B?ektRWnc0TWtZRGdJWkU5QmwyL2JQRUp5cWR2amFFRFhVZGhSR2V0VU9yRDlm?=
- =?utf-8?B?aXRGeDZNYWxUVXJqMEVnZmFNU0dNUE1GeThoQituSDdhUExEQlBnYXl0TnNO?=
- =?utf-8?B?aE1mMWpVSzhGQ1VKWU5DOEVsTFo1c0lLdjdTblIwamdkMlhhRU5UYjlhUkh3?=
- =?utf-8?B?dm1tMTBLSXZCYlM0QWR6V3lpbW52ZG40Q01DVGlLNGh1Z05yVGV2UkdGU3gv?=
- =?utf-8?B?OExYUEM0TFh0dXJPMW1WT044VkZnQUhTNFNDNkxjWVpGS1NIaWtnYXZKZnhj?=
- =?utf-8?B?YnBQTjBvSWo0blArSGdlQ1JjS2ZvV3l6ODFoTlF2N010UDlEMXdhRmVxdm5X?=
- =?utf-8?B?eFVXcllQc2dvMk1nUE83SDNyb1pXd2lLWHBiZ1lSYkdvaWhCQ09HTENrK05a?=
- =?utf-8?B?am9qb1pKYzVKT1NaaWdzeFVXMHJSaUZVZGRkalc2ekwwUnFFS1ZMaEhIa2JS?=
- =?utf-8?B?RzFNbFZQalkwY21jKzIrZmRyU3ZpTkNuaVJmSzFPcTQrSkFtejg1M1AxQVdB?=
- =?utf-8?B?aytpalE0S28zWHl3N2lrMzREdFBEaHk1VmZlSUhldzUxbDYzc202eGpEVzRj?=
- =?utf-8?B?TkZVdXo3QVpjdnJLM3ZoV1F0aTU4UUlFaEs2dXZlSExJYXFLcEFGaThsWDdX?=
- =?utf-8?B?d3dmU0d4NzIwVUxsNmtSOVZiY1kvdzVXT1dBN1hLUGhwMTBnWlRnTXR0TzF0?=
- =?utf-8?B?dk5VS3dMcS9pNCsrSWlzRWpTdHdsc3RnRUIyS0tabW0rZ0lkemJmMWJzRm42?=
- =?utf-8?Q?DEHTIDujccciRz3Z+K3PIviEN?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 563269fa-f755-47f6-1780-08de11383407
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7835.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2025 06:57:02.3678 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NQYA8o0CKiWljqe3NdVQxJrxCu+Ay8OHV8M2+3EhDUbba8eCII7zbmUNv5h6VD6v7hELemEJ7KjCmStH793hqg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7671
+X-MBO-RS-ID: 1bca62db929b4473e99
+X-MBO-RS-META: cotexgp5p78k1fhc8p4mw1s9yckycjia
+X-Mailman-Approved-At: Wed, 22 Oct 2025 07:59:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,544 +67,678 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---------------Z3LPK00Wv5F9ZIv65MSaZWiQ
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+On Mon, 2025-10-20 at 15:39 +0100, Tvrtko Ursulin wrote:
+>=20
+> On 20/10/2025 14:57, Philipp Stanner wrote:
+> > On Fri, 2025-10-17 at 14:36 +0100, Tvrtko Ursulin wrote:
+> > > The FAIR scheduling policy is built upon the same concepts as the wel=
+l
+> > > known CFS CPU scheduler - entity run queue is sorted by the virtual G=
+PU
+> > > time consumed by entities in a way that the entity with least vruntim=
+e
+> > > runs first.
+> > >=20
+> > > It is able to avoid total priority starvation, which is one of the
+> > > problems with FIFO, and it also does not need for per priority run qu=
+eues.
+> > > As it scales the actual GPU runtime by an exponential factor as the
+> > > priority decreases, the virtual runtime for low priority entities gro=
+ws
+> > > faster than for normal priority, pushing them further down the runque=
+ue
+> > > order for the same real GPU time spent.
+> > >=20
+> > > Apart from this fundamental fairness, fair policy is especially stron=
+g in
+> > > oversubscription workloads where it is able to give more GPU time to =
+short
+> > > and bursty workloads when they are running in parallel with GPU heavy
+> > > clients submitting deep job queues.
+> > >=20
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > Cc: Danilo Krummrich <dakr@kernel.org>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Philipp Stanner <phasta@kernel.org>
+> > > Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+> > > ---
+> > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0 |=C2=
+=A0 28 ++--
+> > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_internal.h |=C2=A0=C2=A0 =
+5 +
+> > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 11 +-
+> > > =C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_rq.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 166 ++++++++++++++++++++-
+> > > =C2=A0=C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 16 +-
+> > > =C2=A0=C2=A05 files changed, 207 insertions(+), 19 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/d=
+rm/scheduler/sched_entity.c
+> > > index 565eddebb667..4144a97702a5 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > @@ -107,6 +107,8 @@ int drm_sched_entity_init(struct drm_sched_entity=
+ *entity,
+> > > =C2=A0=C2=A0	entity->guilty =3D guilty;
+> > > =C2=A0=C2=A0	entity->num_sched_list =3D num_sched_list;
+> > > =C2=A0=C2=A0	entity->priority =3D priority;
+> > > +	entity->rq_priority =3D drm_sched_policy =3D=3D DRM_SCHED_POLICY_FA=
+IR ?
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DRM_SCHED_PRIORITY_KERNEL : priori=
+ty;
+> > > =C2=A0=C2=A0	/*
+> > > =C2=A0=C2=A0	 * It's perfectly valid to initialize an entity without =
+having a valid
+> > > =C2=A0=C2=A0	 * scheduler attached. It's just not valid to use the sc=
+heduler before it
+> > > @@ -123,17 +125,23 @@ int drm_sched_entity_init(struct drm_sched_enti=
+ty *entity,
+> > > =C2=A0=C2=A0		 */
+> > > =C2=A0=C2=A0		pr_warn("%s: called with uninitialized scheduler\n", __=
+func__);
+> > > =C2=A0=C2=A0	} else if (num_sched_list) {
+> > > -		/* The "priority" of an entity cannot exceed the number of run-que=
+ues of a
+> > > -		 * scheduler. Protect against num_rqs being 0, by converting to si=
+gned. Choose
+> > > -		 * the lowest priority available.
+> > > +		enum drm_sched_priority p =3D entity->priority;
+> > > +
+> > > +		/*
+> > > +		 * The "priority" of an entity cannot exceed the number of
+> > > +		 * run-queues of a scheduler. Protect against num_rqs being 0,
+> > > +		 * by converting to signed. Choose the lowest priority
+> > > +		 * available.
+> > > =C2=A0=C2=A0		 */
+> > > -		if (entity->priority >=3D sched_list[0]->num_rqs) {
+> > > -			dev_err(sched_list[0]->dev, "entity has out-of-bounds priority: %=
+u. num_rqs: %u\n",
+> > > -				entity->priority, sched_list[0]->num_rqs);
+> > > -			entity->priority =3D max_t(s32, (s32) sched_list[0]->num_rqs - 1,
+> > > -						 (s32) DRM_SCHED_PRIORITY_KERNEL);
+> > > +		if (p >=3D sched_list[0]->num_user_rqs) {
+> > > +			dev_err(sched_list[0]->dev, "entity with out-of-bounds priority:%=
+u num_user_rqs:%u\n",
+> > > +				p, sched_list[0]->num_user_rqs);
+> > > +			p =3D max_t(s32,
+> > > +				 (s32)sched_list[0]->num_user_rqs - 1,
+> > > +				 (s32)DRM_SCHED_PRIORITY_KERNEL);
+> > > +			entity->priority =3D p;
+> > > =C2=A0=C2=A0		}
+> > > -		entity->rq =3D sched_list[0]->sched_rq[entity->priority];
+> > > +		entity->rq =3D sched_list[0]->sched_rq[entity->rq_priority];
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	init_completion(&entity->entity_idle);
+> > > @@ -566,7 +574,7 @@ void drm_sched_entity_select_rq(struct drm_sched_=
+entity *entity)
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	spin_lock(&entity->lock);
+> > > =C2=A0=C2=A0	sched =3D drm_sched_pick_best(entity->sched_list, entity=
+->num_sched_list);
+> > > -	rq =3D sched ? sched->sched_rq[entity->priority] : NULL;
+> > > +	rq =3D sched ? sched->sched_rq[entity->rq_priority] : NULL;
+> > > =C2=A0=C2=A0	if (rq !=3D entity->rq) {
+> > > =C2=A0=C2=A0		drm_sched_rq_remove_entity(entity->rq, entity);
+> > > =C2=A0=C2=A0		entity->rq =3D rq;
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu=
+/drm/scheduler/sched_internal.h
+> > > index 9adad48ec084..593e380a2d59 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_internal.h
+> > > +++ b/drivers/gpu/drm/scheduler/sched_internal.h
+> > > @@ -12,6 +12,8 @@
+> > > =C2=A0=C2=A0 * @kref: reference count for the object.
+> > > =C2=A0=C2=A0 * @lock: lock guarding the @runtime updates.
+> > > =C2=A0=C2=A0 * @runtime: time entity spent on the GPU.
+> > > + * @prev_runtime: previous @runtime used to get the runtime delta.
+> > > + * @vruntime: virtual runtime as accumulated by the fair algorithm.
+> > > =C2=A0=C2=A0 *
+> > > =C2=A0=C2=A0 * Because jobs and entities have decoupled lifetimes, ie=
+. we cannot access the
+> > > =C2=A0=C2=A0 * entity once the job is completed and we know how much =
+time it took on the
+> > > @@ -22,6 +24,8 @@ struct drm_sched_entity_stats {
+> > > =C2=A0=C2=A0	struct kref	kref;
+> > > =C2=A0=C2=A0	spinlock_t	lock;
+> > > =C2=A0=C2=A0	ktime_t		runtime;
+> > > +	ktime_t		prev_runtime;
+> > > +	ktime_t		vruntime;
+> > > =C2=A0=C2=A0};
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0/* Used to choose between FIFO and RR job-scheduling */
+> > > @@ -29,6 +33,7 @@ extern int drm_sched_policy;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0#define DRM_SCHED_POLICY_RR=C2=A0=C2=A0=C2=A0 0
+> > > =C2=A0=C2=A0#define DRM_SCHED_POLICY_FIFO=C2=A0 1
+> > > +#define DRM_SCHED_POLICY_FAIR=C2=A0 2
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
+> > > =C2=A0=C2=A0			 struct drm_sched_entity *entity);
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm=
+/scheduler/sched_main.c
+> > > index 0c5f7a0594bf..74a155377561 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > @@ -90,7 +90,7 @@ int drm_sched_policy =3D DRM_SCHED_POLICY_FIFO;
+> > > =C2=A0=C2=A0 * DOC: sched_policy (int)
+> > > =C2=A0=C2=A0 * Used to override default entities scheduling policy in=
+ a run queue.
+> > > =C2=A0=C2=A0 */
+> > > -MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for en=
+tities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " =3D Round Robin=
+, " __stringify(DRM_SCHED_POLICY_FIFO) " =3D FIFO (default).");
+> > > +MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for en=
+tities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " =3D Round Robin=
+, " __stringify(DRM_SCHED_POLICY_FIFO) " =3D FIFO, " __stringify(DRM_SCHED_=
+POLICY_FAIR) " =3D Fair (default).");
+> > > =C2=A0=C2=A0module_param_named(sched_policy, drm_sched_policy, int, 0=
+444);
+> >=20
+> > Wrong. This patch does not make Fair the default scheduling policy.
+>=20
+> Right, forgot about this when splitting out the "set fair as default"
+> patch. Fixed locally.
+>=20
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0static u32 drm_sched_available_credits(struct drm_gpu_sch=
+eduler *sched)
+> > > @@ -1133,11 +1133,14 @@ int drm_sched_init(struct drm_gpu_scheduler *=
+sched, const struct drm_sched_init_
+> > > =C2=A0=C2=A0		sched->own_submit_wq =3D true;
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0=20
+> > > -	sched->sched_rq =3D kmalloc_array(args->num_rqs, sizeof(*sched->sch=
+ed_rq),
+> > > +	sched->num_user_rqs =3D args->num_rqs;
+> > > +	sched->num_rqs =3D drm_sched_policy !=3D DRM_SCHED_POLICY_FAIR ?
+> > > +			 args->num_rqs : 1;
+> > > +	sched->sched_rq =3D kmalloc_array(sched->num_rqs, sizeof(*sched->sc=
+hed_rq),
+> > > =C2=A0=C2=A0					GFP_KERNEL | __GFP_ZERO);
+> > > =C2=A0=C2=A0	if (!sched->sched_rq)
+> > > =C2=A0=C2=A0		goto Out_check_own;
+> > > -	sched->num_rqs =3D args->num_rqs;
+> > > +
+> > > =C2=A0=C2=A0	for (i =3D DRM_SCHED_PRIORITY_KERNEL; i < sched->num_rqs=
+; i++) {
+> > > =C2=A0=C2=A0		sched->sched_rq[i] =3D kzalloc(sizeof(*sched->sched_rq[=
+i]), GFP_KERNEL);
+> > > =C2=A0=C2=A0		if (!sched->sched_rq[i])
+> > > @@ -1279,7 +1282,7 @@ void drm_sched_increase_karma(struct drm_sched_=
+job *bad)
+> > > =C2=A0=C2=A0	if (bad->s_priority !=3D DRM_SCHED_PRIORITY_KERNEL) {
+> > > =C2=A0=C2=A0		atomic_inc(&bad->karma);
+> > > =C2=A0=20
+> > > -		for (i =3D DRM_SCHED_PRIORITY_HIGH; i < sched->num_rqs; i++) {
+> > > +		for (i =3D DRM_SCHED_PRIORITY_KERNEL; i < sched->num_rqs; i++) {
+> > > =C2=A0=C2=A0			struct drm_sched_rq *rq =3D sched->sched_rq[i];
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0			spin_lock(&rq->lock);
+> > > diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/s=
+cheduler/sched_rq.c
+> > > index 2d1f579d8352..b12d0f1859f0 100644
+> > > --- a/drivers/gpu/drm/scheduler/sched_rq.c
+> > > +++ b/drivers/gpu/drm/scheduler/sched_rq.c
+> > > @@ -5,6 +5,8 @@
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0#include "sched_internal.h"
+> > > =C2=A0=20
+> > > +#define DRM_SCHED_PRIORITY_INVALID (-1) /* Do not want the enum visi=
+ble outside. */
+> >=20
+> > Well nope, that's not what I had in mind at all =E2=80=93 there's no ha=
+rm at
+> > all by defining that in the real enum. Users know that "Invalid" is not
+> > supposed to be used.
+> >=20
+> > Setting it as the starter with -1 in the enum will guarantee
+> > correctness since the subsequent members will be numbered
+> > incrementingly.
+>=20
+> It is correct to say drivers should not use it. Therefore we have two
+> options.
+>=20
+> Option 1 - don't even show it to drivers which I chose for simplicity.
+>=20
+> Option 2 - add it to gpu_scheduler.h. Drivers can now use it so we'd=20
+> have to add error checking to drm_sched_entity_init and=20
+> drm_sched_entity_set_priority.
 
-On 10/18/2025 7:16 AM, Felix Kuehling wrote:
-> On 2025-10-17 04:42, Zhu Lingshan wrote:
->> This commit introduces a new id field for
->> struct kfd process, which helps identify
->> a kfd process among multiple contexts that
->> all belong to a single user space program.
->>
->> The sysfs entry of a secondary kfd process
->> is placed under the sysfs entry folder of
->> its primary kfd process.
->>
->> The naming format of the sysfs entry of a secondary
->> kfd process is "context_%u" where %u is the process id.
->>
->> Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |  6 ++
->>   drivers/gpu/drm/amd/amdkfd/kfd_process.c | 78 +++++++++++++++++++++++-
->>   2 files changed, 81 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->> b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->> index 919510f18249..9de658119cd9 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->> @@ -1021,10 +1021,16 @@ struct kfd_process {
->>         /*kfd context id */
->>       u16 context_id;
->> +
->> +    /* The primary kfd_process allocating IDs for its secondary
->> kfd_process, 0 for primary kfd_process */
->> +    struct ida id_table;
->> +
->>   };
->>     #define KFD_PROCESS_TABLE_SIZE 8 /* bits: 256 entries */
->>   #define KFD_CONTEXT_ID_PRIMARY    0xFFFF
->> +#define KFD_CONTEXT_ID_MIN 0
->> +#define KFD_CONTEXT_ID_WIDTH 16
->>     extern DECLARE_HASHTABLE(kfd_processes_table,
->> KFD_PROCESS_TABLE_SIZE);
->>   extern struct srcu_struct kfd_processes_srcu;
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
->> b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
->> index 995d27be06e3..157145c94314 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
->> @@ -827,6 +827,7 @@ static void
->> kfd_process_device_destroy_ib_mem(struct kfd_process_device *pdd)
->>     int kfd_create_process_sysfs(struct kfd_process *process)
->>   {
->> +    struct kfd_process *primary_process;
->>       int ret;
->>         if (process->kobj) {
->> @@ -839,9 +840,22 @@ int kfd_create_process_sysfs(struct kfd_process
->> *process)
->>           pr_warn("Creating procfs kobject failed");
->>           return -ENOMEM;
->>       }
->> -    ret = kobject_init_and_add(process->kobj, &procfs_type,
->> -                   procfs.kobj, "%d",
->> -                   (int)process->lead_thread->pid);
->> +
->> +    if (process->context_id == KFD_CONTEXT_ID_PRIMARY)
->> +        ret = kobject_init_and_add(process->kobj, &procfs_type,
->> +                       procfs.kobj, "%d",
->> +                       (int)process->lead_thread->pid);
->> +    else {
->> +        primary_process =
->> kfd_lookup_process_by_mm(process->lead_thread->mm);
->> +        if (!primary_process)
->> +            return -ESRCH;
->> +
->> +        ret = kobject_init_and_add(process->kobj, &procfs_type,
->> +                       primary_process->kobj, "context_%u",
->> +                       process->context_id);
->> +        kfd_unref_process(primary_process);
->> +    }
->> +
->>       if (ret) {
->>           pr_warn("Creating procfs pid directory failed");
->>           kobject_put(process->kobj);
->> @@ -863,6 +877,50 @@ int kfd_create_process_sysfs(struct kfd_process
->> *process)
->>       return 0;
->>   }
->>   +static int kfd_process_alloc_id(struct kfd_process *process)
->> +{
->> +    int ret;
->> +    struct kfd_process *primary_process;
->> +
->> +    /* already assign 0xFFFF when create */
->> +    if (process->context_id == KFD_CONTEXT_ID_PRIMARY)
->> +        return 0;
->> +
->> +    primary_process =
->> kfd_lookup_process_by_mm(process->lead_thread->mm);
->> +    if (!primary_process)
->> +        return -ESRCH;
->> +
->> +    /* id range: KFD_CONTEXT_ID_MIN to 0xFFFE */
->> +    ret = ida_alloc_range(&primary_process->id_table,
->> KFD_CONTEXT_ID_MIN,
->> +         (1 << KFD_CONTEXT_ID_WIDTH) - 2, GFP_KERNEL);
->
-> This would be safer and more obvious if you just set the upper limit
-> as KFD_CONTEXT_ID_PRIMARY - 1. Then you don't need
-> KFD_CONTEXT_ID_WIDTH at all. 
+I just think that's more consistent. Sure, they could use it, but the
+name and a little docstring "Internal initializer. Do not use." should
+lift responsibility from our shoulders.
 
-will fix in V6, thanks!
+>=20
+> Which is a bit is annoying since drm_sched_entity_set_priority has no
+> error checking. We can add a warn on.
+>=20
+> Although I believe I did add error checking to it when I was proposing=
+=20
+> to fix the drm_sched_entity_init() sched_list container=20
+> ownership/lifetime issue some time ago.
 
->
+Is that patch still around?
+
+
+> > > +
+> > > =C2=A0=C2=A0static __always_inline bool
+> > > =C2=A0=C2=A0drm_sched_entity_compare_before(struct rb_node *a, const =
+struct rb_node *b)
+> > > =C2=A0=C2=A0{
+> > > @@ -16,6 +18,32 @@ drm_sched_entity_compare_before(struct rb_node *a,=
+ const struct rb_node *b)
+> > > =C2=A0=C2=A0	return ktime_before(ea->oldest_job_waiting, eb->oldest_j=
+ob_waiting);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > +static void drm_sched_rq_update_prio(struct drm_sched_rq *rq)
+> > > +{
+> > > +	enum drm_sched_priority prio =3D DRM_SCHED_PRIORITY_INVALID;
+> > > +	struct rb_node *rb;
+> > > +
+> > > +	lockdep_assert_held(&rq->lock);
+> > > +
+> > > +	rb =3D rb_first_cached(&rq->rb_tree_root);
+> > > +	if (rb) {
+> > > +		struct drm_sched_entity *entity =3D
+> > > +			rb_entry(rb, typeof(*entity), rb_tree_node);
+
+I know declaring variables just for local scope can be desirable, but
+this function is very small and defining 'entity' at the function's top
+would you to eliminate the line break.
+
+> > > +
+> > > +		/*
+> > > +		 * Unlocked read is fine to avoid the rq vs entity lock
+> > > +		 * inversion. If the priority had just changed it is no big
+> > > +		 * deal for our algorithm, but just a transient reachable only
+> > > +		 * by drivers with userspace dynamic priority changes API. Equal
+> > > +		 * in effect to the priority change becoming visible a few
+> > > +		 * instructions later.
+> > > +		 */
+> > > +		prio =3D READ_ONCE(entity->priority);
+> >=20
+> > OK, so here's the good news:
+> >=20
+> > I just looked it through and once the _whole series_ is applied this
+> > actually is not an unlocked read anymore.
+> >=20
+> > Once the series is applied, the only callers of this function here are
+> > drm_sched_rq_remove_tree_locked() and
+> > drm_sched_rq_update_tree_locked(), both of which grab the entity lock.
+> >=20
+> >=20
+> > So what we could do is suffer the READ_ONCE for a few patches and then
+> > remove it again once the other code paths running into here are
+> > removed. And probably add the entity lockdep guard, too.
+> >=20
+> > Unless I'm mistaken?
+>=20
+> Yes a little bit. You overlooked that in some cases the it is a=20
+> different entity, which the comment alludes to when talks about priority=
+=20
+> inversion. I will make the comment clearer.
+
+Ah right. I got pulled in by my own optimism here.
+
+Still =E2=80=93 can you please explain to me where / why that leads to lock
+inversion with the rq lock?
+
+What I'm seeing so far is that drm_sched_rq_update_prio() +
+spin_lock(entity->lock) could deadlock because it could try to lock the
+same entity that its caller has already locked. Correct?
+
+>=20
+> >=20
+> > Best to detail that in the commit message, as always.
+> >=20
+> >=20
+> > > +	}
+> > > +
+> > > +	rq->head_prio =3D prio;
+> > > +}
+> > > +
+> > > =C2=A0=C2=A0static void drm_sched_rq_remove_fifo_locked(struct drm_sc=
+hed_entity *entity,
+> > > =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0 struct drm_sched_rq *rq)
+> > > =C2=A0=C2=A0{
+> > > @@ -25,6 +53,7 @@ static void drm_sched_rq_remove_fifo_locked(struct =
+drm_sched_entity *entity,
+> > > =C2=A0=C2=A0	if (!RB_EMPTY_NODE(&entity->rb_tree_node)) {
+> > > =C2=A0=C2=A0		rb_erase_cached(&entity->rb_tree_node, &rq->rb_tree_roo=
+t);
+> > > =C2=A0=C2=A0		RB_CLEAR_NODE(&entity->rb_tree_node);
+> > > +		drm_sched_rq_update_prio(rq);
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > @@ -46,6 +75,7 @@ static void drm_sched_rq_update_fifo_locked(struct =
+drm_sched_entity *entity,
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	rb_add_cached(&entity->rb_tree_node, &rq->rb_tree_root,
+> > > =C2=A0=C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_entity_compare=
+_before);
+> > > +	drm_sched_rq_update_prio(rq);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0/**
+> > > @@ -62,6 +92,123 @@ void drm_sched_rq_init(struct drm_gpu_scheduler *=
+sched,
+> > > =C2=A0=C2=A0	INIT_LIST_HEAD(&rq->entities);
+> > > =C2=A0=C2=A0	rq->rb_tree_root =3D RB_ROOT_CACHED;
+> > > =C2=A0=C2=A0	rq->sched =3D sched;
+> > > +	rq->head_prio =3D DRM_SCHED_PRIORITY_INVALID;
+> > > +}
+> > > +
+> > > +static ktime_t
+> > > +drm_sched_rq_get_min_vruntime(struct drm_sched_rq *rq)
+> > > +{
+> > > +	ktime_t vruntime =3D 0;
+> > > +	struct rb_node *rb;
+> > > +
+> > > +	lockdep_assert_held(&rq->lock);
+> > > +
+> > > +	for (rb =3D rb_first_cached(&rq->rb_tree_root); rb; rb =3D rb_next(=
+rb)) {
+> > > +		struct drm_sched_entity *entity =3D
+> > > +			rb_entry(rb, typeof(*entity), rb_tree_node);
+> > > +		struct drm_sched_entity_stats *stats =3D entity->stats;
+> > > +
+> > > +		/*
+> > > +		 * We only need the spin lock here on platforms where access to
+> > > +		 * 64-bit ktime_t can tear but for simplicity we take it un-
+> > > +		 * conditionally.
+> > > +		 */
+> > > +		spin_lock(&stats->lock);
+> > > +		vruntime =3D stats->vruntime;
+> > > +		spin_unlock(&stats->lock);
+> > > +	}
+> > > +
+> > > +	return vruntime;
+> > > +}
+> > > +
+> > > +static void
+> > > +drm_sched_entity_save_vruntime(struct drm_sched_entity *entity,
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ktime_t min_vruntime)
+> > > +{
+> > > +	struct drm_sched_entity_stats *stats =3D entity->stats;
+> > > +	ktime_t vruntime;
+> > > +
+> > > +	spin_lock(&stats->lock);
+> > > +	vruntime =3D stats->vruntime;
+> > > +	if (min_vruntime && vruntime > min_vruntime)
+> > > +		vruntime =3D ktime_sub(vruntime, min_vruntime);
+> > > +	else
+> > > +		vruntime =3D 0;
+> > > +	stats->vruntime =3D vruntime;
+> > > +	spin_unlock(&stats->lock);
+> > > +}
+> > > +
+> > > +static ktime_t
+> > > +drm_sched_entity_restore_vruntime(struct drm_sched_entity *entity,
+> > > +				=C2=A0 ktime_t min_vruntime,
+> > > +				=C2=A0 enum drm_sched_priority rq_prio)
+> > > +{
+> > > +	struct drm_sched_entity_stats *stats =3D entity->stats;
+> > > +	enum drm_sched_priority prio =3D entity->priority;
+> > > +	ktime_t vruntime;
+> > > +
+> > > +	BUILD_BUG_ON(DRM_SCHED_PRIORITY_NORMAL < DRM_SCHED_PRIORITY_HIGH);
+> >=20
+> > Why's that a build bug. Who is to set / change those values?
+>=20
+> It is a build bug because few lines below depend on the current reverse=
+=20
+> order.
+>=20
+> As to who can change it- who knows. Better be safe than sorry.=20
+
+Maybe I'm blind, but DRM_SCHED_PRIORITY_* are enumerators statically
+defined in gpu_scheduler.h, aren't they? How can NORMAL ever be smaller
+than HIGH?
+
+> Alternative is to add a helper such as drm_sched_priority_is_lower(p1,=
+=20
+> p2) if you prefer that. I don't mind either way.
+> > > +
+> > > +	spin_lock(&stats->lock);
+> > > +	vruntime =3D stats->vruntime;
+> > > +
+> > > +	/*
+> > > +	 * Special handling for entities which were picked from the top of =
+the
+> > > +	 * queue and are now re-joining the top with another one already th=
+ere.
+> > > +	 */
+> > > +	if (!vruntime && min_vruntime) {
+> > > +		if (prio > rq_prio) {
+> > > +			/*
+> > > +			 * Lower priority should not overtake higher when re-
+> > > +			 * joining at the top of the queue.
+> > > +			 */
+> > > +			vruntime =3D us_to_ktime(prio - rq_prio);
+> > > +		} else if (prio < rq_prio) {
+> > > +			/*
+> > > +			 * Higher priority can go first.
+> > > +			 */
+> > > +			vruntime =3D -us_to_ktime(rq_prio - prio);
+> > > +		}
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * Restore saved relative position in the queue.
+> > > +	 */
+> > > +	vruntime =3D ktime_add(min_vruntime, vruntime);
+> > > +
+> > > +	stats->vruntime =3D vruntime;
+> > > +	spin_unlock(&stats->lock);
+> > > +
+> > > +	return vruntime;
+> > > +}
+> > > +
+> > > +static ktime_t drm_sched_entity_update_vruntime(struct drm_sched_ent=
+ity *entity)
+> > > +{
+> > > +	static const unsigned int shift[] =3D {
+> > > +		[DRM_SCHED_PRIORITY_KERNEL] =3D 1,
+> > > +		[DRM_SCHED_PRIORITY_HIGH]=C2=A0=C2=A0 =3D 2,
+> > > +		[DRM_SCHED_PRIORITY_NORMAL] =3D 4,
+> > > +		[DRM_SCHED_PRIORITY_LOW]=C2=A0=C2=A0=C2=A0 =3D 7,
+> > > +	};
+> >=20
+> > Still no comments about these numbers origin?
+>=20
+> You asked, I answered, you said nothing, I respun with the feedback I
+> received. I can add some text no problem.
+
+That'd be great. Something small is perfectly sufficient
+
+> > > +	struct drm_sched_entity_stats *stats =3D entity->stats;
+> > > +	ktime_t runtime, prev;
+> > > +
+> > > +	spin_lock(&stats->lock);
+> > > +	prev =3D stats->prev_runtime;
+> > > +	runtime =3D stats->runtime;
+> > > +	stats->prev_runtime =3D runtime;
+> > > +	runtime =3D ktime_add_ns(stats->vruntime,
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ktime_to_ns(ktime_sub(runtim=
+e, prev)) <<
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 shift[entity->priority]);
+> > > +	stats->vruntime =3D runtime;
+> > > +	spin_unlock(&stats->lock);
+> > > +
+> > > +	return runtime;
+> > > +}
+> > > +
+> > > +static ktime_t drm_sched_entity_get_job_ts(struct drm_sched_entity *=
+entity)
+> > > +{
+> > > +	return drm_sched_entity_update_vruntime(entity);
+> > > =C2=A0=C2=A0}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0/**
+> > > @@ -98,8 +245,14 @@ drm_sched_rq_add_entity(struct drm_sched_entity *=
+entity, ktime_t ts)
+> > > =C2=A0=C2=A0		list_add_tail(&entity->list, &rq->entities);
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0=20
+> > > -	if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_RR)
+> > > +	if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FAIR) {
+> > > +		ts =3D drm_sched_rq_get_min_vruntime(rq);
+> > > +		ts =3D drm_sched_entity_restore_vruntime(entity, ts,
+> > > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rq->head_prio);
+> > > +	} else if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_RR) {
+> > > =C2=A0=C2=A0		ts =3D entity->rr_ts;
+> > > +	}
+> > > +
+> > > =C2=A0=C2=A0	drm_sched_rq_update_fifo_locked(entity, rq, ts);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	spin_unlock(&rq->lock);
+> > > @@ -171,7 +324,9 @@ void drm_sched_rq_pop_entity(struct drm_sched_ent=
+ity *entity)
+> > > =C2=A0=C2=A0	if (next_job) {
+> > > =C2=A0=C2=A0		ktime_t ts;
+> > > =C2=A0=20
+> > > -		if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
+> > > +		if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FAIR)
+> > > +			ts =3D drm_sched_entity_get_job_ts(entity);
+> > > +		else if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
+> >=20
+> > FAIR is not even the dafault policy in this patch, so git diff could be
+> > made smaller by reversing order. Same applies a few lines above.
+>=20
+> You asked before and I said I prefer FAIR to be first in the if ladder.
+
+Thinking about it, since you remove the other policies anyways we would
+then have a larger diff in a later patch..
+
+So it's OK I think. Your choice.
+
+Thx
+P.
+
+>=20
+> If you insist I can change but TBH in the grand scheme of things it=20
+> feels like churn with not much benefit.
+>=20
+> > (more comments later this week, am a bit busy)
+>=20
+> No worries, reviews are appreciated!
+>=20
 > Regards,
->   Felix
->
->
->> +    if (ret < 0)
->> +        goto out;
->> +
->> +    process->context_id = ret;
->> +    ret = 0;
->> +
->> +out:
->> +    kfd_unref_process(primary_process);
->> +
->> +    return ret;
->> +}
->> +
->> +static void kfd_process_free_id(struct kfd_process *process)
->> +{
->> +    struct kfd_process *primary_process;
->> +
->> +    if (process->context_id != KFD_CONTEXT_ID_PRIMARY)
->> +        return;
->> +
->> +    primary_process =
->> kfd_lookup_process_by_mm(process->lead_thread->mm);
->> +    if (!primary_process)
->> +        return;
->> +
->> +    ida_free(&primary_process->id_table, process->context_id);
->> +
->> +    kfd_unref_process(primary_process);
->> +}
->> +
->>   struct kfd_process *kfd_create_process(struct task_struct *thread)
->>   {
->>       struct kfd_process *process;
->> @@ -1195,6 +1253,11 @@ static void kfd_process_wq_release(struct
->> work_struct *work)
->>       if (ef)
->>           dma_fence_signal(ef);
->>   +    if (p->context_id != KFD_CONTEXT_ID_PRIMARY)
->> +        kfd_process_free_id(p);
->> +    else
->> +        ida_destroy(&p->id_table);
->> +
->>       kfd_process_remove_sysfs(p);
->>       kfd_debugfs_remove_process(p);
->>   @@ -1601,6 +1664,13 @@ static struct kfd_process
->> *create_process(const struct task_struct *thread, bool
->>               goto err_register_notifier;
->>           }
->>           BUG_ON(mn != &process->mmu_notifier);
->> +        ida_init(&process->id_table);
->> +    }
->> +
->> +    err = kfd_process_alloc_id(process);
->> +    if (err) {
->> +        pr_err("Creating kfd process: failed to alloc an id\n");
->> +        goto err_alloc_id;
->>       }
->>         kfd_unref_process(process);
->> @@ -1610,6 +1680,8 @@ static struct kfd_process *create_process(const
->> struct task_struct *thread, bool
->>         return process;
->>   +err_alloc_id:
->> +    kfd_process_free_id(process);
->>   err_register_notifier:
->>       hash_del_rcu(&process->kfd_processes);
->>       svm_range_list_fini(process);
---------------Z3LPK00Wv5F9ZIv65MSaZWiQ
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+>=20
+> Tvrtko
+>=20
+> > > =C2=A0=C2=A0			ts =3D next_job->submit_ts;
+> > > =C2=A0=C2=A0		else
+> > > =C2=A0=C2=A0			ts =3D drm_sched_rq_next_rr_ts(rq, entity);
+> > > @@ -179,6 +334,13 @@ void drm_sched_rq_pop_entity(struct drm_sched_en=
+tity *entity)
+> > > =C2=A0=C2=A0		drm_sched_rq_update_fifo_locked(entity, rq, ts);
+> > > =C2=A0=C2=A0	} else {
+> > > =C2=A0=C2=A0		drm_sched_rq_remove_fifo_locked(entity, rq);
+> > > +
+> > > +		if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FAIR) {
+> > > +			ktime_t min_vruntime;
+> > > +
+> > > +			min_vruntime =3D drm_sched_rq_get_min_vruntime(rq);
+> > > +			drm_sched_entity_save_vruntime(entity, min_vruntime);
+> > > +		}
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0=C2=A0	spin_unlock(&rq->lock);
+> > > =C2=A0=C2=A0	spin_unlock(&entity->lock);
+> > > diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.=
+h
+> > > index be382cacabb5..ff798ee9e3c2 100644
+> > > --- a/include/drm/gpu_scheduler.h
+> > > +++ b/include/drm/gpu_scheduler.h
+> > > @@ -150,6 +150,11 @@ struct drm_sched_entity {
+> > > =C2=A0=C2=A0	 */
+> > > =C2=A0=C2=A0	enum drm_sched_priority=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 priority;
+> > > =C2=A0=20
+> > > +	/**
+> > > +	 * @rq_priority: Run-queue priority
+> > > +	 */
+> > > +	enum drm_sched_priority=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 rq_priority;
+> > > +
+> > > =C2=A0=C2=A0	/**
+> > > =C2=A0=C2=A0	 * @rr_ts:
+> > > =C2=A0=C2=A0	 *
+> > > @@ -254,10 +259,11 @@ struct drm_sched_entity {
+> > > =C2=A0=C2=A0 * struct drm_sched_rq - queue of entities to be schedule=
+d.
+> > > =C2=A0=C2=A0 *
+> > > =C2=A0=C2=A0 * @sched: the scheduler to which this rq belongs to.
+> > > - * @lock: protects @entities, @rb_tree_root and @rr_ts.
+> > > + * @lock: protects @entities, @rb_tree_root, @rr_ts and @head_prio.
+> > > =C2=A0=C2=A0 * @rr_ts: monotonically incrementing fake timestamp for =
+RR mode.
+> > > =C2=A0=C2=A0 * @entities: list of the entities to be scheduled.
+> > > =C2=A0=C2=A0 * @rb_tree_root: root of time based priority queue of en=
+tities for FIFO scheduling
+> > > + * @head_prio: priority of the top tree element.
+> > > =C2=A0=C2=A0 *
+> > > =C2=A0=C2=A0 * Run queue is a set of entities scheduling command subm=
+issions for
+> > > =C2=A0=C2=A0 * one specific ring. It implements the scheduling policy=
+ that selects
+> > > @@ -271,6 +277,7 @@ struct drm_sched_rq {
+> > > =C2=A0=C2=A0	ktime_t				rr_ts;
+> > > =C2=A0=C2=A0	struct list_head		entities;
+> > > =C2=A0=C2=A0	struct rb_root_cached		rb_tree_root;
+> > > +	enum drm_sched_priority		head_prio;
+> > > =C2=A0=C2=A0};
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0/**
+> > > @@ -563,8 +570,10 @@ struct drm_sched_backend_ops {
+> > > =C2=A0=C2=A0 * @credit_count: the current credit count of this schedu=
+ler
+> > > =C2=A0=C2=A0 * @timeout: the time after which a job is removed from t=
+he scheduler.
+> > > =C2=A0=C2=A0 * @name: name of the ring for which this scheduler is be=
+ing used.
+> > > - * @num_rqs: Number of run-queues. This is at most DRM_SCHED_PRIORIT=
+Y_COUNT,
+> > > - *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 as th=
+ere's usually one run-queue per priority, but could be less.
+> > > + * @num_user_rqs: Number of run-queues. This is at most
+> > > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 DRM_SCHED_PRIORITY_COUNT, as there's usually one r=
+un-queue per
+> > > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 priority, but could be less.
+> > > + * @num_rqs: Equal to @num_user_rqs for FIFO and RR and 1 for the FA=
+IR policy.
+> > > =C2=A0=C2=A0 * @sched_rq: An allocated array of run-queues of size @n=
+um_rqs;
+> > > =C2=A0=C2=A0 * @job_scheduled: once drm_sched_entity_flush() is calle=
+d the scheduler
+> > > =C2=A0=C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 waits on this wait queue until a=
+ll the scheduled jobs are
+> > > @@ -597,6 +606,7 @@ struct drm_gpu_scheduler {
+> > > =C2=A0=C2=A0	long				timeout;
+> > > =C2=A0=C2=A0	const char			*name;
+> > > =C2=A0=C2=A0	u32=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_rqs;
+> > > +	u32=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_user_rqs;
+> > > =C2=A0=C2=A0	struct drm_sched_rq=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 **sched_rq;
+> > > =C2=A0=C2=A0	wait_queue_head_t		job_scheduled;
+> > > =C2=A0=C2=A0	atomic64_t			job_id_count;
+> >=20
+>=20
+>=20
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    On 10/18/2025 7:16 AM, Felix Kuehling wrote:
-    <blockquote type="cite" cite="mid:1a34e488-72b3-4974-8807-e10d8170b1de@amd.com">On
-      2025-10-17 04:42, Zhu Lingshan wrote:
-      <br>
-      <blockquote type="cite">This commit introduces a new id field for
-        <br>
-        struct kfd process, which helps identify
-        <br>
-        a kfd process among multiple contexts that
-        <br>
-        all belong to a single user space program.
-        <br>
-        <br>
-        The sysfs entry of a secondary kfd process
-        <br>
-        is placed under the sysfs entry folder of
-        <br>
-        its primary kfd process.
-        <br>
-        <br>
-        The naming format of the sysfs entry of a secondary
-        <br>
-        kfd process is &quot;context_%u&quot; where %u is the process id.
-        <br>
-        <br>
-        Signed-off-by: Zhu Lingshan <a class="moz-txt-link-rfc2396E" href="mailto:lingshan.zhu@amd.com">&lt;lingshan.zhu@amd.com&gt;</a>
-        <br>
-        ---
-        <br>
-        &nbsp; drivers/gpu/drm/amd/amdkfd/kfd_priv.h&nbsp;&nbsp;&nbsp; |&nbsp; 6 ++
-        <br>
-        &nbsp; drivers/gpu/drm/amd/amdkfd/kfd_process.c | 78
-        +++++++++++++++++++++++-
-        <br>
-        &nbsp; 2 files changed, 81 insertions(+), 3 deletions(-)
-        <br>
-        <br>
-        diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-        b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-        <br>
-        index 919510f18249..9de658119cd9 100644
-        <br>
-        --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-        <br>
-        +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-        <br>
-        @@ -1021,10 +1021,16 @@ struct kfd_process {
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*kfd context id */
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u16 context_id;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; /* The primary kfd_process allocating IDs for its secondary
-        kfd_process, 0 for primary kfd_process */
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct ida id_table;
-        <br>
-        +
-        <br>
-        &nbsp; };
-        <br>
-        &nbsp; &nbsp; #define KFD_PROCESS_TABLE_SIZE 8 /* bits: 256 entries */
-        <br>
-        &nbsp; #define KFD_CONTEXT_ID_PRIMARY&nbsp;&nbsp;&nbsp; 0xFFFF
-        <br>
-        +#define KFD_CONTEXT_ID_MIN 0
-        <br>
-        +#define KFD_CONTEXT_ID_WIDTH 16
-        <br>
-        &nbsp; &nbsp; extern DECLARE_HASHTABLE(kfd_processes_table,
-        KFD_PROCESS_TABLE_SIZE);
-        <br>
-        &nbsp; extern struct srcu_struct kfd_processes_srcu;
-        <br>
-        diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-        b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-        <br>
-        index 995d27be06e3..157145c94314 100644
-        <br>
-        --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-        <br>
-        +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-        <br>
-        @@ -827,6 +827,7 @@ static void
-        kfd_process_device_destroy_ib_mem(struct kfd_process_device
-        *pdd)
-        <br>
-        &nbsp; &nbsp; int kfd_create_process_sysfs(struct kfd_process *process)
-        <br>
-        &nbsp; {
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct kfd_process *primary_process;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (process-&gt;kobj) {
-        <br>
-        @@ -839,9 +840,22 @@ int kfd_create_process_sysfs(struct
-        kfd_process *process)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_warn(&quot;Creating procfs kobject failed&quot;);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -ENOMEM;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-        <br>
-        -&nbsp;&nbsp;&nbsp; ret = kobject_init_and_add(process-&gt;kobj,
-        &amp;procfs_type,
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; procfs.kobj, &quot;%d&quot;,
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (int)process-&gt;lead_thread-&gt;pid);
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; if (process-&gt;context_id == KFD_CONTEXT_ID_PRIMARY)
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret = kobject_init_and_add(process-&gt;kobj,
-        &amp;procfs_type,
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; procfs.kobj, &quot;%d&quot;,
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (int)process-&gt;lead_thread-&gt;pid);
-        <br>
-        +&nbsp;&nbsp;&nbsp; else {
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; primary_process =
-        kfd_lookup_process_by_mm(process-&gt;lead_thread-&gt;mm);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!primary_process)
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -ESRCH;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret = kobject_init_and_add(process-&gt;kobj,
-        &amp;procfs_type,
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; primary_process-&gt;kobj, &quot;context_%u&quot;,
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process-&gt;context_id);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_unref_process(primary_process);
-        <br>
-        +&nbsp;&nbsp;&nbsp; }
-        <br>
-        +
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) {
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_warn(&quot;Creating procfs pid directory failed&quot;);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kobject_put(process-&gt;kobj);
-        <br>
-        @@ -863,6 +877,50 @@ int kfd_create_process_sysfs(struct
-        kfd_process *process)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
-        <br>
-        &nbsp; }
-        <br>
-        &nbsp; +static int kfd_process_alloc_id(struct kfd_process *process)
-        <br>
-        +{
-        <br>
-        +&nbsp;&nbsp;&nbsp; int ret;
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct kfd_process *primary_process;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; /* already assign 0xFFFF when create */
-        <br>
-        +&nbsp;&nbsp;&nbsp; if (process-&gt;context_id == KFD_CONTEXT_ID_PRIMARY)
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; primary_process =
-        kfd_lookup_process_by_mm(process-&gt;lead_thread-&gt;mm);
-        <br>
-        +&nbsp;&nbsp;&nbsp; if (!primary_process)
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -ESRCH;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; /* id range: KFD_CONTEXT_ID_MIN to 0xFFFE */
-        <br>
-        +&nbsp;&nbsp;&nbsp; ret = ida_alloc_range(&amp;primary_process-&gt;id_table,
-        KFD_CONTEXT_ID_MIN,
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1 &lt;&lt; KFD_CONTEXT_ID_WIDTH) - 2, GFP_KERNEL);
-        <br>
-      </blockquote>
-      <br>
-      This would be safer and more obvious if you just set the upper
-      limit as KFD_CONTEXT_ID_PRIMARY - 1. Then you don't need
-      KFD_CONTEXT_ID_WIDTH at all.&nbsp;<br>
-    </blockquote>
-    <pre>will fix in V6, thanks!</pre>
-    <blockquote type="cite" cite="mid:1a34e488-72b3-4974-8807-e10d8170b1de@amd.com"><br>
-      Regards,
-      <br>
-      &nbsp; Felix
-      <br>
-      <br>
-      <br>
-      <blockquote type="cite">+&nbsp;&nbsp;&nbsp; if (ret &lt; 0)
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto out;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; process-&gt;context_id = ret;
-        <br>
-        +&nbsp;&nbsp;&nbsp; ret = 0;
-        <br>
-        +
-        <br>
-        +out:
-        <br>
-        +&nbsp;&nbsp;&nbsp; kfd_unref_process(primary_process);
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; return ret;
-        <br>
-        +}
-        <br>
-        +
-        <br>
-        +static void kfd_process_free_id(struct kfd_process *process)
-        <br>
-        +{
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct kfd_process *primary_process;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; if (process-&gt;context_id != KFD_CONTEXT_ID_PRIMARY)
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; primary_process =
-        kfd_lookup_process_by_mm(process-&gt;lead_thread-&gt;mm);
-        <br>
-        +&nbsp;&nbsp;&nbsp; if (!primary_process)
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; ida_free(&amp;primary_process-&gt;id_table,
-        process-&gt;context_id);
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; kfd_unref_process(primary_process);
-        <br>
-        +}
-        <br>
-        +
-        <br>
-        &nbsp; struct kfd_process *kfd_create_process(struct task_struct
-        *thread)
-        <br>
-        &nbsp; {
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct kfd_process *process;
-        <br>
-        @@ -1195,6 +1253,11 @@ static void kfd_process_wq_release(struct
-        work_struct *work)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ef)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dma_fence_signal(ef);
-        <br>
-        &nbsp; +&nbsp;&nbsp;&nbsp; if (p-&gt;context_id != KFD_CONTEXT_ID_PRIMARY)
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_process_free_id(p);
-        <br>
-        +&nbsp;&nbsp;&nbsp; else
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ida_destroy(&amp;p-&gt;id_table);
-        <br>
-        +
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_process_remove_sysfs(p);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_debugfs_remove_process(p);
-        <br>
-        &nbsp; @@ -1601,6 +1664,13 @@ static struct kfd_process
-        *create_process(const struct task_struct *thread, bool
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto err_register_notifier;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BUG_ON(mn != &amp;process-&gt;mmu_notifier);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ida_init(&amp;process-&gt;id_table);
-        <br>
-        +&nbsp;&nbsp;&nbsp; }
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; err = kfd_process_alloc_id(process);
-        <br>
-        +&nbsp;&nbsp;&nbsp; if (err) {
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_err(&quot;Creating kfd process: failed to alloc an
-        id\n&quot;);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto err_alloc_id;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_unref_process(process);
-        <br>
-        @@ -1610,6 +1680,8 @@ static struct kfd_process
-        *create_process(const struct task_struct *thread, bool
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return process;
-        <br>
-        &nbsp; +err_alloc_id:
-        <br>
-        +&nbsp;&nbsp;&nbsp; kfd_process_free_id(process);
-        <br>
-        &nbsp; err_register_notifier:
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hash_del_rcu(&amp;process-&gt;kfd_processes);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; svm_range_list_fini(process);
-        <br>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------Z3LPK00Wv5F9ZIv65MSaZWiQ--
