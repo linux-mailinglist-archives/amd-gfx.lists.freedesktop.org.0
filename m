@@ -2,58 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C21BC03A59
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Oct 2025 00:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19F79C03AF6
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Oct 2025 00:39:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2EB710E964;
-	Thu, 23 Oct 2025 22:13:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C90F510E973;
+	Thu, 23 Oct 2025 22:39:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iLgMzwRw";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="huN8hKsy";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E25010E964;
- Thu, 23 Oct 2025 22:13:26 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 8C8BA64168;
- Thu, 23 Oct 2025 22:13:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D307C4CEE7;
- Thu, 23 Oct 2025 22:13:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761257605;
- bh=hTBrDKVoeskq+MifAVXcmfFHC4o+oZ5r7Ay9n1/z9nM=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=iLgMzwRwqOy7sXJZ/cj7mFF4anpc72L+LOLPSOst+38/v7JsCdFZIWnetBjui1OZp
- yN9rhy18xXZFkMpJvT3bCqAxi3fO+pkh+MOmaEAMU2w73RWUHGkiSwoHDvolqgHifO
- laPHaAbteCJg3k/b1htoXUTJp5NAAji1iY4F576yFl0w0NQYjIgpclFc9+tOGmnT+4
- e8jP+OrOXoPfmaDh+HaT1WKhHadjTfdYLaX3ULIsY5VgsyZXqNPTKerWKaJ0kqWB1B
- N+0zaF4mRsDvn68jOb99Z3vIwQv/JhMqiP622akyX0d/1RuJGj9Nu4QkURbt7NFlvh
- N6Fr/s7aGkeRA==
-Date: Thu, 23 Oct 2025 17:13:23 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Michael J . Ruhl" <mjruhl@habana.ai>,
- Andi Shyti <andi.shyti@linux.intel.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/11] PCI: Resizable BAR improvements
-Message-ID: <20251023221323.GA1325049@bhelgaas>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30A7310E96B
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Oct 2025 22:39:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=t+IeegxqwkxcCj+lDMYbDXquUV5HwvmLA7fSVJDvO6c=; b=huN8hKsydg+Fy69lCoFGhNV1Nx
+ p2w0nBzDDykD9iNAR/Ee990TXNuc2w//a0V3fPLmS4iQxSybm+44PQDHpkjRTl8t5rQLbKYHOINuY
+ pSegORSx4yUqqS7EbUa0/z4Lghq2Ii3R3AlLuCcHRx5oSZU+hh7JJcYFPWVXlw5glLc1xrkx/4usm
+ PA3Yf8AoxyXkkAKLQ/rF/ElWao6H/ZTpMsabxamcKEn27B0jfkqbeiu/I3Yw6eiUEPRLs0+sLytoS
+ c80RtM0RQrRT+64ZqQAqxwKZ/nCkDuFvVyCc2zMq7G7oioH7kUk3sQoxQYsgFj+Yv/IBSbMd+jMhG
+ 0BDktuQA==;
+Received: from [104.193.135.201] (helo=debian.home.app)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1vC3y0-00DpJV-JJ; Fri, 24 Oct 2025 00:39:32 +0200
+From: Rodrigo Siqueira <siqueira@igalia.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Lijo Lazar <lijo.lazar@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rodrigo Siqueira <siqueira@igalia.com>
+Subject: [PATCH v4 0/5] Expand kernel-doc with more generic details and info
+ about ring buffers
+Date: Thu, 23 Oct 2025 16:38:43 -0600
+Message-ID: <20251023223918.601594-1-siqueira@igalia.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <w35eozxuh3netnt5kdwuqp7bespytvsyn2smznlrcigjb24eeh@amk26j7ihnpl>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,93 +61,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 23, 2025 at 05:02:42PM -0500, Lucas De Marchi wrote:
-> On Thu, Oct 23, 2025 at 04:29:43PM -0500, Bjorn Helgaas wrote:
-> > On Wed, Oct 22, 2025 at 04:33:20PM +0300, Ilpo Järvinen wrote:
-> > > pci.c has been used as catch everything that doesn't fits elsewhere
-> > > within PCI core and thus resizable BAR code has been placed there as
-> > > well. Move Resizable BAR related code to a newly introduced rebar.c to
-> > > reduce size of pci.c. After move, there are no pci_rebar_*() calls from
-> > > pci.c indicating this is indeed well-defined subset of PCI core.
-> > > 
-> > > Endpoint drivers perform Resizable BAR related operations which could
-> > > well be performed by PCI core to simplify driver-side code. This
-> > > series adds a few new API functions to that effect and converts the
-> > > drivers to use the new APIs (in separate patches).
-> > > 
-> > > While at it, also convert BAR sizes bitmask to u64 as PCIe spec already
-> > > specifies more sizes than what will fit u32 to make the API typing more
-> > > future-proof. The extra sizes beyond 128TB are not added at this point.
-> > > 
-> > > Some parts of this are to be used by the resizable BAR changes into the
-> > > resource fitting/assingment logic but these seem to stand on their own
-> > > so sending these out now to reduce the size of the other patch series.
-> > > 
-> > > v3:
-> > > - Rebased to solve minor conflicts
-> > > 
-> > > v2: https://lore.kernel.org/linux-pci/20250915091358.9203-1-ilpo.jarvinen@linux.intel.com/
-> > > - Kerneldoc:
-> > >   - Improve formatting of errno returns
-> > >   - Open "ctrl" -> "control"
-> > >   - Removed mislead "bit" words (when referring to BAR size)
-> > >   - Rewrote pci_rebar_get_possible_sizes() kernel doc to not claim the
-> > >     returned bitmask is defined in PCIe spec as the capability bits now
-> > >     span across two registers in the spec and are not continuous (we
-> > >     don't support the second block of bits yet, but this API is expected
-> > >     to return the bits without the hole so it will not be matching with
-> > >     the spec layout).
-> > > - Dropped superfluous zero check from pci_rebar_size_supported()
-> > > - Small improvement to changelog of patch 7
-> > > 
-> > > Ilpo Järvinen (11):
-> > >   PCI: Move Resizable BAR code into rebar.c
-> > >   PCI: Cleanup pci_rebar_bytes_to_size() and move into rebar.c
-> > >   PCI: Move pci_rebar_size_to_bytes() and export it
-> > >   PCI: Improve Resizable BAR functions kernel doc
-> > >   PCI: Add pci_rebar_size_supported() helper
-> > >   drm/i915/gt: Use pci_rebar_size_supported()
-> > >   drm/xe/vram: Use PCI rebar helpers in resize_vram_bar()
-> > >   PCI: Add pci_rebar_get_max_size()
-> > >   drm/xe/vram: Use pci_rebar_get_max_size()
-> > >   drm/amdgpu: Use pci_rebar_get_max_size()
-> > >   PCI: Convert BAR sizes bitmasks to u64
-> > > 
-> > >  Documentation/driver-api/pci/pci.rst        |   3 +
-> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   8 +-
-> > >  drivers/gpu/drm/i915/gt/intel_region_lmem.c |  10 +-
-> > >  drivers/gpu/drm/xe/xe_vram.c                |  32 +-
-> > >  drivers/pci/Makefile                        |   2 +-
-> > >  drivers/pci/iov.c                           |   9 +-
-> > >  drivers/pci/pci-sysfs.c                     |   2 +-
-> > >  drivers/pci/pci.c                           | 145 ---------
-> > >  drivers/pci/pci.h                           |   5 +-
-> > >  drivers/pci/rebar.c                         | 314 ++++++++++++++++++++
-> > >  drivers/pci/setup-res.c                     |  78 -----
-> > >  include/linux/pci.h                         |  15 +-
-> > >  12 files changed, 350 insertions(+), 273 deletions(-)
-> > >  create mode 100644 drivers/pci/rebar.c
-> > 
-> > Applied to pci/rebar for v6.18, thanks, Ilpo!
-> 
-> is this for v6.18 or it's a typo and it's going to v6.19?
+Lately, I have been part of multiple discussions around GPU recovery and
+other concepts associated with GFX/Compute. Most of the debate is spread
+around GitLab issues, emails, and some meeting conversations. This
+patchset aims to consolidate all that information into a single
+kernel-doc, which can be collaboratively improved and shared with other
+people.
 
-Oops, sorry, I meant v6.19!  I still have v6.18 regressions top of
-mind :)
+In this series, you will find new amdgpu glossary entries, more details
+about the IPs' interconnections, and a description of the ring buffer.
+This series includes multiple SVG diagrams; for this reason, it might be
+good to apply this series locally. However, if you want to check all the
+images quickly, check the links below:
 
-> > If we have follow-on resource assignment changes that depend on these,
-> > maybe I'll rename the branch to be more generic before applying them.
-> > 
-> > Also applied the drivers/gpu changes based on the acks.  I see the CI
-> > merge failures since this series is based on v6.18-rc1; I assume the
-> > CI applies to current linux-next or similar.  I'll check the conflicts
-> 
-> it tries on drm-tip that contains drm-xe-next going to v6.19. We have
-> some changes there that conflict, but shouldn't be hard.
-> 
-> We also need https://lore.kernel.org/linux-pci/20250918-xe-pci-rebar-2-v1-1-6c094702a074@intel.com/
-> to actually fix the rebar in some cases. Could you take a look?
+- https://people.igalia.com/siqueira/kernel-doc-imgs/v4/amd_overview_block.svg
+- https://people.igalia.com/siqueira/kernel-doc-imgs/v4/gfx_pipeline_seq.svg
+- https://people.igalia.com/siqueira/kernel-doc-imgs/v4/no_enforce_isolation.svg
+- https://people.igalia.com/siqueira/kernel-doc-imgs/v4/enforce_isolation.svg
+- https://people.igalia.com/siqueira/kernel-doc-imgs/v4/ring_buffers.svg
 
-Will do.  Remind me again if I forget!
+Finally, keep in mind that I tried to fill in some gaps between
+information, and hopefully, my description matches the reality.
 
-Bjorn
+Changes since V3:
+- Add more details in the glossary.
+- Move TMZ from the display glossary to the AMDGPU glossary.
+- Update the amd_overview_block.svg to describe PSP and hub connection with blocks better.
+- Improve amdgpu_ring documentation.
+- Improve block description overview.
+
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Timur Kristóf <timur.kristof@gmail.com>
+Cc: Lijo Lazar <lijo.lazar@amd.com>
+
+Thanks
+
+Rodrigo Siqueira (5):
+  drm/amdgpu: Expand kernel-doc in amdgpu_ring
+  Documentation/gpu: Add new glossary entries from UMR
+  Documentation/gpu: Expand generic block information
+  Documentation/gpu: Add more information about GC
+  Documentation/gpu: Add documentation about ring buffer
+
+ .../gpu/amdgpu/amd_overview_block.svg         |  687 +++++++
+ Documentation/gpu/amdgpu/amdgpu-glossary.rst  |   36 +
+ .../gpu/amdgpu/display/dc-glossary.rst        |    3 -
+ Documentation/gpu/amdgpu/driver-core.rst      |   31 +
+ .../gpu/amdgpu/enforce_isolation.svg          |  654 +++++++
+ Documentation/gpu/amdgpu/gc/index.rst         |   24 +-
+ Documentation/gpu/amdgpu/gfx_pipeline_seq.svg |  413 +++++
+ Documentation/gpu/amdgpu/index.rst            |    1 +
+ .../gpu/amdgpu/no_enforce_isolation.svg       |  707 +++++++
+ .../gpu/amdgpu/process-isolation.rst          |    1 +
+ Documentation/gpu/amdgpu/ring-buffer.rst      |   95 +
+ Documentation/gpu/amdgpu/ring_buffers.svg     | 1633 +++++++++++++++++
+ Documentation/gpu/amdgpu/userq.rst            |    2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c      |   14 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h      |    2 +
+ 15 files changed, 4286 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/gpu/amdgpu/amd_overview_block.svg
+ create mode 100644 Documentation/gpu/amdgpu/enforce_isolation.svg
+ create mode 100644 Documentation/gpu/amdgpu/gfx_pipeline_seq.svg
+ create mode 100644 Documentation/gpu/amdgpu/no_enforce_isolation.svg
+ create mode 100644 Documentation/gpu/amdgpu/ring-buffer.rst
+ create mode 100644 Documentation/gpu/amdgpu/ring_buffers.svg
+
+-- 
+2.51.0
+
