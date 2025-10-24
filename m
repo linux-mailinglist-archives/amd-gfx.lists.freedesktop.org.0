@@ -2,77 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 984FDC072A6
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Oct 2025 18:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 280A2C07369
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Oct 2025 18:12:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2EC610EAF6;
-	Fri, 24 Oct 2025 16:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4922F10EABC;
+	Fri, 24 Oct 2025 16:12:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dpHpJbbs";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WxDKsKLf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
- [209.85.214.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97F1810EAD2
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 16:08:20 +0000 (UTC)
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-290bcb326deso5149735ad.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 09:08:20 -0700 (PDT)
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
+ [209.85.215.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58F0B10E214
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 16:12:08 +0000 (UTC)
+Received: by mail-pg1-f174.google.com with SMTP id
+ 41be03b00d2f7-b5509894ee9so180444a12.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 09:12:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761322100; x=1761926900; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1761322328; x=1761927128; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=bTQVK2aQT1vIN8ZpKJaaMrUDsELoEiIRjPfw0a3iVhI=;
- b=dpHpJbbsVlYN4gnZ0xETK5hPz92or6Cj53CydBpLPz4PBo5Ju3PnPwv+u00NLVClaj
- V2qnYEHQ6Kz5p5aXZ8BuqoB1cptpKZj4KvrLMffStCVqQjnXei/2sxQrkSkleTq3CkKl
- mcgSmaUoZo+C5LQ+hBs2XIp1BU0wNdjKZJjYFd1loTVNDbheEWLmubhpi+ShiW1TQjZb
- g3GrMnilaZo/N1CPP3UIh/PgFypXBZSShVP0xx7o4N9pSqt3gV9GzELyoSwycfucXg99
- zQ54S8ChQePiiLY0aHmDhQ79xX9dXtGxfIUxZinMYQ6aEc/o/dzTrtfcO6dThZ/LQ42Q
- e2Ow==
+ bh=1SdMjFO5HgvAJP8iRdA2pQyVvp+HNuaWCVuWp1zkFNs=;
+ b=WxDKsKLfl+kdFpj/04iYOYYt3FWtU8Ow0R9dYM/seIrp5LVbiJTAXldTnXb6Xr1MqV
+ CCRzOwSyNyU178ZuX82xoY6yji/+jC5p64FRYfs77JaQXa14kqR5KVsgFDDJVwfgarFB
+ MUwhGnKOM/EQ1krvmBO+06r2IBQkWml/lPr0Yq+Fm4knZkClgyErBgbguBTfGCLPR0KY
+ Mfa75q7ItPc+yTLSYr02+kIBzFZikpCrggDDNi5jhyBcW7BxE0edrQxsgdWlLeQbZ6Ne
+ uCzWSwr6hMfR0x44V8VLRHCVjhsTLp9+hD7honKVue15DFqa1e8CbTy3NBswV9ePr9uh
+ 5WCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761322100; x=1761926900;
+ d=1e100.net; s=20230601; t=1761322328; x=1761927128;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=bTQVK2aQT1vIN8ZpKJaaMrUDsELoEiIRjPfw0a3iVhI=;
- b=dF3tsXMDx94OdTtKafGjjf1DfCSNqPm7Nc6h7gljhxjcK6nRxkyfRP4njOWRfRMdfl
- GbJkfBpQpUD/ep9x63/mSKbKrw1tIu7H6WlTHqV7jywDuGmN98RqVSpeBGJNLDzKnQM2
- Yz+QnYHpSeQLo05RG+dC5onFLrue1srH97dueCOCvxpf+qIjy6sOCLu/mP4i1PZNiuhE
- x4cCkOCQ46tdeDN8drcHlceQYW76CzAKsGJwzdTanCFgKvja37BiI2LTyrgQ1IyzXT28
- QAx911W3ibXVNn7HLrkrD+xAwS+TRiOu/OATC/X62w6gDDXBClItCKIBt4T3DY5gkBXG
- YGUA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUpo/R+Qmt8w6qb1go3/bfVaDmyx1pzt51O5uC0edGQT26zBqnH0Cf+bjKkf4k0wbFDLhwj8ra9@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyqniTXeD+Zg8k2T00RcAOAuB/PpDzjnsIWzrUcuB3MOKbQtcKb
- QEwg9sSatfL1W0aiHS5CxSiruafkWnuCqhvib4qBxJ5sXRcONUPWGyQ6KMNNhahIew9AgyijsOf
- VJZgbh5Wo0wF/clsrmJts6GrOZDKwcRA=
-X-Gm-Gg: ASbGncumkzpknPZwEnqrYFlVeH9nvapCXHxvt6aM6ZanK0OomFXn2fokxIP9apzvRWh
- CckUiXB3PGpQFSeqwDvdiviWeFJxIGDytHu2sUtWbZFUN+5KyjKq/k3iGM9K/YVknXIiNWR169u
- 0cGPmvWNHqa+4VJvIEeQwRwc4GV0F2ZBwqG+3Q4NgEBoe4buyoZBw9f/mN2SE3a/0HGDRMM2coL
- ZTY3JlEiHZNUsJpr0BMikcImGFSw+6HfD5V1tEzIr1JK+neI531d++1eVrc
-X-Google-Smtp-Source: AGHT+IHuKMHIzacDRQR5C0tlCqOGlXp+2mvpP1Rw2CFVttYDd7vViELLYU2FSf1zGiwr/4mecZiOM5Dzi7juFV5w05o=
+ bh=1SdMjFO5HgvAJP8iRdA2pQyVvp+HNuaWCVuWp1zkFNs=;
+ b=j831nftHALSGHg1oJuAKErsnBV7OHL9mTRknoj7cUfgGlQ44xWmB9HzJGb69+84O4V
+ YHNZU+soNBQGeaSiCPaBWeAGQm8HoB4KliYCxpESJjt/WC4rsrQd8xK0C6041MUIqCcT
+ iCdCZtXYXZdx79Nl07bz+m+f1v6AEZ9qvmWfdEE+Nd+9jDRr0O8C87TU8gx1Lvx/mHQS
+ DwLwjfFUJiTiXOcAulOcEOlWbWdfT7mmfU8N5znrdjrKxLOht6l6ZjWp2auXep8PCsEm
+ VFG4fJkWr6dxtfMIHtuYmoghz73+aAcxzVGrQ0VF4zC0KktsTF+tkyI9WTWetm4i7jMl
+ l9lg==
+X-Gm-Message-State: AOJu0Yyha6/sDQB90dPvW1QRufuCutN18HrU4wKH+Trb5LcCWA3jIjiW
+ hedQp7AlmamOHsuwHSNI0iK6v/Bn1x/9c4o847DJFssj1ROOu80/SW2cYLU4koR/JKCXlqhjjKW
+ jbLC5x7YE9LoDwf2W7BzNC8MaOzDINIJbhqTX
+X-Gm-Gg: ASbGncvur7vudalD19BiuaRsYyk+/DezcRWzRT1hZ39GEfWe/EKQpHUCvuUwAxG3U2c
+ dlr0mNICxUERJ3OhQRVRs/ZiidF+lybuy3EXYhcdBlQjFdeqvvOVwRDKM8WhZqiTcGrBNsx34kM
+ oz/0G/eAdSmKHJF+C7Hd/p2jvsRl/MU7bYcPGWT1BA3g2TOpdmfMSE9BI5nYSFFAINYwZmnGyUH
+ hrEG01huqi3bAOT32gmXyGF1jgirMmR3ZFymmZSZuUxJ89HAUhMb6VnSlpB
+X-Google-Smtp-Source: AGHT+IEa+0D18FpzdEEvMKmGUwySmm2A0qbSFPzPcyfqn59IcFd+Fa4kdW2QfL+kIk514ZI1uuV0i7Bpj86QuScqFos=
 X-Received: by 2002:a17:902:f787:b0:290:aaff:344e with SMTP id
- d9443c01a7336-292d3e447f2mr106851415ad.2.1761322099740; Fri, 24 Oct 2025
- 09:08:19 -0700 (PDT)
+ d9443c01a7336-292d3e447f2mr106930515ad.2.1761322327753; Fri, 24 Oct 2025
+ 09:12:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20251024152152.3981721-1-lkml@antheas.dev>
- <20251024152152.3981721-4-lkml@antheas.dev>
- <61da9864-b7c8-43f1-b437-36756077b545@amd.com>
-In-Reply-To: <61da9864-b7c8-43f1-b437-36756077b545@amd.com>
+References: <20250911114155.24786-1-tvrtko.ursulin@igalia.com>
+ <CADnq5_OD2FoiNxj3FqrqQSLCs7h_a-4uRy5ucceEA+Px-5Ea7w@mail.gmail.com>
+ <b9edaad2-06bf-4b6e-95a3-9b5ba0e37b86@igalia.com>
+In-Reply-To: <b9edaad2-06bf-4b6e-95a3-9b5ba0e37b86@igalia.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 24 Oct 2025 12:08:07 -0400
-X-Gm-Features: AS18NWDSc8rqEfOFx3bZ8_HjDIswouVHQNkmMydC8_vInVKkCJow-kZH_kpVpvU
-Message-ID: <CADnq5_NPwwtrjYaELVvrC+D5vb4_iosCnghud8i9+NO0zC+_qA@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] drm/amdgpu: only send the SMU RLC notification on
- S3
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Antheas Kapenekakis <lkml@antheas.dev>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Shyam Sundar S K <Shyam-sundar.S-k@amd.com>, Perry Yuan <perry.yuan@amd.com>, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+Date: Fri, 24 Oct 2025 12:11:54 -0400
+X-Gm-Features: AS18NWDBUWUn2d5c8fQhvDFjSy6dIVk1OuPjh6MTWqDLS7stJIFv_QECa8CC7RU
+Message-ID: <CADnq5_PPiCaAqv5juRjRSEpS4K6HQ6Wz0He8-2UqafANqD5qdg@mail.gmail.com>
+Subject: Re: [PATCH 00/16] More compact IB emission
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -89,124 +82,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 24, 2025 at 11:54=E2=80=AFAM Mario Limonciello
-<mario.limonciello@amd.com> wrote:
+On Wed, Oct 8, 2025 at 10:28=E2=80=AFAM Tvrtko Ursulin
+<tvrtko.ursulin@igalia.com> wrote:
 >
 >
+> On 08/10/2025 15:08, Alex Deucher wrote:
+> > Applied the series.  Thanks!
 >
-> On 10/24/2025 10:21 AM, Antheas Kapenekakis wrote:
-> > From: Alex Deucher <alexander.deucher@amd.com>
-> >
-> > For S0ix, the RLC is not powered down. Rework the Van Gogh logic to
-> > skip powering it down and skip part of post-init.
-> >
-> > Fixes: 8c4e9105b2a8 ("drm/amdgpu: optimize RLC powerdown notification o=
-n Vangogh")
-> > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4659
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > Tested-by: Antheas Kapenekakis <lkml@antheas.dev>
-> > Signed-off-by: Antheas Kapenekakis <lkml@antheas.dev>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c       | 8 +++++---
-> >   drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c        | 6 ++++++
-> >   drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c | 3 +++
-> >   3 files changed, 14 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_device.c
-> > index 3d032c4e2dce..220b12d59795 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > @@ -5243,9 +5243,11 @@ int amdgpu_device_suspend(struct drm_device *dev=
-, bool notify_clients)
-> >       if (amdgpu_sriov_vf(adev))
-> >               amdgpu_virt_release_full_gpu(adev, false);
-> >
-> > -     r =3D amdgpu_dpm_notify_rlc_state(adev, false);
-> > -     if (r)
-> > -             return r;
-> > +     if (!adev->in_s0ix) {
-> > +             r =3D amdgpu_dpm_notify_rlc_state(adev, false);
-> > +             if (r)
-> > +                     return r;
-> > +     }
->
-> Just FYI this is going to clash with my unwind failed suspend series [1].
->
-> This is fine, just whichever "lands" first the other will need to rework
-> a little bit and I wanted to mention it.
->
-> Link:
-> https://lore.kernel.org/amd-gfx/20251023165243.317153-2-mario.limonciello=
-@amd.com/
-> [1]
->
-> This does have me wondering though why amdgpu_dpm_notify_rlc_state() is
-> even in amdgpu_device_suspend()?  This is only used on Van Gogh.
-> Should we be pushing this deeper into amdgpu_device_ip_suspend_phase2()?
->
-> Or should we maybe overhaul this to move the RLC notification into a
-> .set_mp1_state callback instead so it's more similar to all the other ASI=
-Cs?
->
+> Thank you and fingers crossed I did not fat finger anything that your CI
+> wouldn't find!
 
-TBH, I don't think this is even required at all here.  The rlc is
-stopped in smu_disable_dpms() and we already notify the SMU at that
-point.  Notifying it again here seems superfluous.  Would need to test
-that removing this one doesn't cause an issue with S3.
-
-> >
-> >       return 0;
-> >   }
-> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/dr=
-m/amd/pm/swsmu/amdgpu_smu.c
-> > index fb8086859857..244b8c364d45 100644
-> > --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> > +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> > @@ -2040,6 +2040,12 @@ static int smu_disable_dpms(struct smu_context *=
-smu)
-> >           smu->is_apu && (amdgpu_in_reset(adev) || adev->in_s0ix))
-> >               return 0;
-> >
-> > +     /* vangogh s0ix */
-> > +     if ((amdgpu_ip_version(adev, MP1_HWIP, 0) =3D=3D IP_VERSION(11, 5=
-, 0) ||
-> > +          amdgpu_ip_version(adev, MP1_HWIP, 0) =3D=3D IP_VERSION(11, 5=
-, 2)) &&
-> > +         adev->in_s0ix)
-> > +             return 0;
-> > +
->
-> How about for GPU reset, does PMFW handle this too?
-
-I'm not 100% sure.  We need to check with the PMFW team.  I think
-vangogh works the same as gfx11 and newer APUs since the s0i3
-implementation was more aligned with those chips than RMB.  These
-special code paths were added specifically for S3 enablement since the
-behavior is different relative to S0ix.
+Sorry for the late reply.  This series broke the VCN IB tests on at
+least navi4x.  The issue is a GPUVM page fault caused by VCN when
+running the IB tests.
+I don't see any obvious problems with the patches, but I haven't had a
+chance to dig too much further.
 
 Alex
 
 >
-> >       /*
-> >        * For gpu reset, runpm and hibernation through BACO,
-> >        * BACO feature has to be kept enabled.
-> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers=
-/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-> > index 2c9869feba61..0708d0f0938b 100644
-> > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-> > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-> > @@ -2217,6 +2217,9 @@ static int vangogh_post_smu_init(struct smu_conte=
-xt *smu)
-> >       uint32_t total_cu =3D adev->gfx.config.max_cu_per_sh *
-> >               adev->gfx.config.max_sh_per_se * adev->gfx.config.max_sha=
-der_engines;
-> >
-> > +     if (adev->in_s0ix)
-> > +             return 0;
-> > +
-> >       /* allow message will be sent after enable message on Vangogh*/
-> >       if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_GFXCLK_BIT) &=
-&
-> >                       (adev->pg_flags & AMD_PG_SUPPORT_GFX_PG)) {
+> I wish something similar could be done for amdgpu_ring_write too, but
+> that one is waiting on Christian to, AFAIR, become idle enough to
+> untangle some ptr masking issues.
+>
+> Regards,
+>
+> Tvrtko
+>
+> > On Thu, Sep 11, 2025 at 7:42=E2=80=AFAM Tvrtko Ursulin
+> > <tvrtko.ursulin@igalia.com> wrote:
+> >>
+> >> In short, this series mostly does a lot of replacing of this pattern:
+> >>
+> >>         ib->ptr[ib->length_dw++] =3D SDMA_PKT_HEADER_OP(SDMA_OP_WRITE)=
+ |
+> >>                 SDMA_PKT_HEADER_SUB_OP(SDMA_SUBOP_WRITE_LINEAR);
+> >>         ib->ptr[ib->length_dw++] =3D lower_32_bits(pe);
+> >>         ib->ptr[ib->length_dw++] =3D upper_32_bits(pe);
+> >>         ib->ptr[ib->length_dw++] =3D ndw - 1;
+> >>         for (; ndw > 0; ndw -=3D 2) {
+> >>                ib->ptr[ib->length_dw++] =3D lower_32_bits(value);
+> >>                ib->ptr[ib->length_dw++] =3D upper_32_bits(value);
+> >>                 value +=3D incr;
+> >>         }
+> >>
+> >> With this one:
+> >>
+> >>         u32 *ptr =3D &ib->ptr[ib->length_dw];
+> >>
+> >>         *ptr++ =3D SDMA_PKT_HEADER_OP(SDMA_OP_WRITE) |
+> >>                  SDMA_PKT_HEADER_SUB_OP(SDMA_SUBOP_WRITE_LINEAR);
+> >>         *ptr++ =3D lower_32_bits(pe);
+> >>         *ptr++ =3D upper_32_bits(pe);
+> >>         *ptr++ =3D ndw - 1;
+> >>         for (; ndw > 0; ndw -=3D 2) {
+> >>                 *ptr++ =3D lower_32_bits(value);
+> >>                 *ptr++ =3D upper_32_bits(value);
+> >>                  value +=3D incr;
+> >>          }
+> >>
+> >>         ib->length_dw =3D ptr - ib->ptr;
+> >>
+> >> Latter avoids register reloads and length updates on every dword writt=
+en, and on
+> >> the overall makes the IB emission much more compact:
+> >>
+> >> add/remove: 0/1 grow/shrink: 10/58 up/down: 260/-6598 (-6338)
+> >> Function                                     old     new   delta
+> >> sdma_v7_0_ring_pad_ib                         99     127     +28
+> >> sdma_v6_0_ring_pad_ib                         99     127     +28
+> >> sdma_v5_2_ring_pad_ib                         99     127     +28
+> >> sdma_v5_0_ring_pad_ib                         99     127     +28
+> >> sdma_v4_4_2_ring_pad_ib                       99     127     +28
+> >> sdma_v4_0_ring_pad_ib                         99     127     +28
+> >> sdma_v3_0_ring_pad_ib                         99     127     +28
+> >> sdma_v2_4_ring_pad_ib                         99     127     +28
+> >> cik_sdma_ring_pad_ib                          99     127     +28
+> >> si_dma_ring_pad_ib                            36      44      +8
+> >> amdgpu_ring_generic_pad_ib                    56      52      -4
+> >> si_dma_emit_fill_buffer                      108      71     -37
+> >> si_dma_vm_write_pte                          158     115     -43
+> >> amdgpu_vcn_dec_sw_send_msg                   810     767     -43
+> >> si_dma_vm_copy_pte                           137      87     -50
+> >> si_dma_emit_copy_buffer                      134      84     -50
+> >> sdma_v3_0_vm_write_pte                       163     102     -61
+> >> sdma_v2_4_vm_write_pte                       163     102     -61
+> >> cik_sdma_vm_write_pte                        163     102     -61
+> >> sdma_v7_0_vm_write_pte                       168     105     -63
+> >> sdma_v7_0_emit_fill_buffer                   119      56     -63
+> >> sdma_v6_0_vm_write_pte                       168     105     -63
+> >> sdma_v6_0_emit_fill_buffer                   119      56     -63
+> >> sdma_v5_2_vm_write_pte                       168     105     -63
+> >> sdma_v5_2_emit_fill_buffer                   119      56     -63
+> >> sdma_v5_0_vm_write_pte                       168     105     -63
+> >> sdma_v5_0_emit_fill_buffer                   119      56     -63
+> >> sdma_v4_4_2_vm_write_pte                     168     105     -63
+> >> sdma_v4_4_2_emit_fill_buffer                 119      56     -63
+> >> sdma_v4_0_vm_write_pte                       168     105     -63
+> >> sdma_v4_0_emit_fill_buffer                   119      56     -63
+> >> sdma_v3_0_emit_fill_buffer                   116      53     -63
+> >> sdma_v2_4_emit_fill_buffer                   116      53     -63
+> >> cik_sdma_emit_fill_buffer                    116      53     -63
+> >> sdma_v6_0_emit_copy_buffer                   169      76     -93
+> >> sdma_v5_2_emit_copy_buffer                   169      76     -93
+> >> sdma_v5_0_emit_copy_buffer                   169      76     -93
+> >> sdma_v4_4_2_emit_copy_buffer                 169      76     -93
+> >> sdma_v4_0_emit_copy_buffer                   169      76     -93
+> >> sdma_v3_0_vm_copy_pte                        158      64     -94
+> >> sdma_v3_0_emit_copy_buffer                   155      61     -94
+> >> sdma_v2_4_vm_copy_pte                        158      64     -94
+> >> sdma_v2_4_emit_copy_buffer                   155      61     -94
+> >> cik_sdma_vm_copy_pte                         158      64     -94
+> >> cik_sdma_emit_copy_buffer                    155      61     -94
+> >> sdma_v6_0_vm_copy_pte                        163      68     -95
+> >> sdma_v5_2_vm_copy_pte                        163      68     -95
+> >> sdma_v5_0_vm_copy_pte                        163      68     -95
+> >> sdma_v4_4_2_vm_copy_pte                      163      68     -95
+> >> sdma_v4_0_vm_copy_pte                        163      68     -95
+> >> sdma_v7_0_vm_copy_pte                        183      75    -108
+> >> sdma_v7_0_emit_copy_buffer                   317     202    -115
+> >> si_dma_vm_set_pte_pde                        338     214    -124
+> >> amdgpu_vce_get_destroy_msg                   784     652    -132
+> >> sdma_v7_0_vm_set_pte_pde                     218      72    -146
+> >> sdma_v6_0_vm_set_pte_pde                     218      72    -146
+> >> sdma_v5_2_vm_set_pte_pde                     218      72    -146
+> >> sdma_v5_0_vm_set_pte_pde                     218      72    -146
+> >> sdma_v4_4_2_vm_set_pte_pde                   218      72    -146
+> >> sdma_v4_0_vm_set_pte_pde                     218      72    -146
+> >> sdma_v3_0_vm_set_pte_pde                     215      69    -146
+> >> sdma_v2_4_vm_set_pte_pde                     215      69    -146
+> >> cik_sdma_vm_set_pte_pde                      215      69    -146
+> >> amdgpu_vcn_unified_ring_ib_header            172       -    -172
+> >> gfx_v9_4_2_run_shader.constprop              739     532    -207
+> >> uvd_v6_0_enc_ring_test_ib                   1464    1162    -302
+> >> uvd_v7_0_enc_ring_test_ib                   1464    1138    -326
+> >> amdgpu_vce_ring_test_ib                     1357     936    -421
+> >> amdgpu_vcn_enc_ring_test_ib                 2042    1524    -518
+> >> Total: Before=3D9262623, After=3D9256285, chg -0.07%
+> >>
+> >> * Notice how _pad_ib functions have grown. I think the compiler used t=
+he
+> >> opportunity to unroll the loops.
+> >>
+> >> ** Series was only smoke tested on the Steam Deck.
+> >>
+> >> Tvrtko Ursulin (16):
+> >>    drm/amdgpu: Use memset32 for IB padding
+> >>    drm/amdgpu: More compact VCE IB emission
+> >>    drm/amdgpu: More compact VCN IB emission
+> >>    drm/amdgpu: More compact UVD 6 IB emission
+> >>    drm/amdgpu: More compact UVD 7 IB emission
+> >>    drm/amdgpu: More compact SI SDMA emission
+> >>    drm/amdgpu: More compact CIK SDMA IB emission
+> >>    drm/amdgpu: More compact GFX 9.4.2 IB emission
+> >>    drm/amdgpu: More compact SDMA 2.4 IB emission
+> >>    drm/amdgpu: More compact SDMA 3.0 IB emission
+> >>    drm/amdgpu: More compact SDMA 4.0 IB emission
+> >>    drm/amdgpu: More compact SDMA 4.4.2 IB emission
+> >>    drm/amdgpu: More compact SDMA 5.0 IB emission
+> >>    drm/amdgpu: More compact SDMA 5.2 IB emission
+> >>    drm/amdgpu: More compact SDMA 6.0 IB emission
+> >>    drm/amdgpu: More compact SDMA 7.0 IB emission
+> >>
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c |  12 ++-
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c  |  90 +++++++++--------
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c  | 101 ++++++++++---------
+> >>   drivers/gpu/drm/amd/amdgpu/cik_sdma.c    | 105 ++++++++++++--------
+> >>   drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c  |  46 ++++-----
+> >>   drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c   | 108 ++++++++++++--------
+> >>   drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c   | 108 ++++++++++++--------
+> >>   drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c   | 109 ++++++++++++---------
+> >>   drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 108 ++++++++++++--------
+> >>   drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   | 106 ++++++++++++--------
+> >>   drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   | 110 ++++++++++++---------
+> >>   drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   | 110 ++++++++++++---------
+> >>   drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   | 119 +++++++++++++--------=
+--
+> >>   drivers/gpu/drm/amd/amdgpu/si_dma.c      |  84 +++++++++-------
+> >>   drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c    |  66 +++++++------
+> >>   drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c    |  66 +++++++------
+> >>   16 files changed, 849 insertions(+), 599 deletions(-)
+> >>
+> >> --
+> >> 2.48.0
+> >>
 >
