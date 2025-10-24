@@ -2,64 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E461C0CAFE
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Oct 2025 10:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28D11C0CB02
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Oct 2025 10:36:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4170C10E421;
-	Mon, 27 Oct 2025 09:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1F210E425;
+	Mon, 27 Oct 2025 09:35:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="XDDcaUw0";
+	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="M1KmfxPo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 609 seconds by postgrey-1.36 at gabe;
- Fri, 24 Oct 2025 15:32:09 UTC
-Received: from relay10.grserver.gr (relay10.grserver.gr [37.27.248.198])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AD0C10E1FD
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 15:32:09 +0000 (UTC)
-Received: from relay10 (localhost.localdomain [127.0.0.1])
- by relay10.grserver.gr (Proxmox) with ESMTP id D0AF046309;
- Fri, 24 Oct 2025 18:21:58 +0300 (EEST)
+X-Greylist: delayed 320 seconds by postgrey-1.36 at gabe;
+ Fri, 24 Oct 2025 15:43:42 UTC
+Received: from relay12.grserver.gr (relay12.grserver.gr [88.99.38.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A984B10E20C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 15:43:42 +0000 (UTC)
+Received: from relay12 (localhost [127.0.0.1])
+ by relay12.grserver.gr (Proxmox) with ESMTP id 86DF9BDC76
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 18:38:20 +0300 (EEST)
 Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by relay10.grserver.gr (Proxmox) with ESMTPS id 0B2BF4630C;
- Fri, 24 Oct 2025 18:21:58 +0300 (EEST)
-Received: from antheas-z13 (unknown
- [IPv6:2a05:f6c2:511b:0:8d8a:5967:d692:ea4e])
- by linux3247.grserver.gr (Postfix) with ESMTPSA id 1C73F1FF3B7;
- Fri, 24 Oct 2025 18:21:57 +0300 (EEST)
+ by relay12.grserver.gr (Proxmox) with ESMTPS id C26D7BE030
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 18:38:19 +0300 (EEST)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
+ [209.85.208.174])
+ by linux3247.grserver.gr (Postfix) with ESMTPSA id 388C2200AD8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 18:38:19 +0300 (EEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
- s=default; t=1761319317;
- bh=spsglYgimcjKwr6ZwOdpCum8Zdo4KCEeTND/G6yrqnM=; h=From:To:Subject;
- b=XDDcaUw0K6REBNmirYfF4dAK3CUohzCLdCrJBgWBS/udhsmWE8Xnj3RzNdksgZyVm
- wSgXcCYm2fjBlkW92DTl50ML5iAR9c+BPbQYF20OZaLxYU2FyK3b3Zx3fG6M086Eok
- JzrykDp/yg+6gUeTvHfkDQCW1OzTce0fJdECRTpCoXc709/XEp1t9/nwIqjSkMquhZ
- O6gE2D0WWCNdYbGyqkBadjdNb0aO9G0KJe3A0UZWvczuBKV9cA4cZ/gXONoWt0kP3A
- xPFVL0MsTInBSfwoaBL/1v+zkhvY9GHsKN/yXPh80LZF0lnTzDFnveeO5r3tpaUafv
- bSTa/gRivq1Qw==
+ s=default; t=1761320299;
+ bh=eE7WOkDVyRJiHeSEMjNbildsHJzwmYxdrSeSojss7+I=;
+ h=Received:From:Subject:To;
+ b=M1KmfxPoxTmJHoXMWuS6hAq3HHdnBjUfO/1yZPGuKgZvxi4IJCiePPrtziMJufJs9
+ 5dxzXny6ukNBp2pKy2zPY92xqjnqSx4+EuxU1l8OvGFEnq0qq+UaRS6VsMpzpliRX1
+ 5enTHokqnyqH9Ax2ZUEu1BZUqL1rFDzT+4FbMeXn5m9OtlEtJCdvB9tVTEnzqqTB08
+ TjY2n4FPwgH8Prv8xCXnXSMKgD5blAQ6EabPVl3QR+honi0FxihB3YXlbAO2LrzZUt
+ gM0g75WKRVO8WVH+UDvXMlJDaCfGLXWlixPzgCX6XPtsZtQ/NhOxV800M7Xkt/Xtkk
+ 0B44EKGaeZQMw==
 Authentication-Results: linux3247.grserver.gr;
- spf=pass (sender IP is 2a05:f6c2:511b:0:8d8a:5967:d692:ea4e)
- smtp.mailfrom=lkml@antheas.dev smtp.helo=antheas-z13
+ spf=pass (sender IP is 209.85.208.174) smtp.mailfrom=lkml@antheas.dev
+ smtp.helo=mail-lj1-f174.google.com
 Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
-From: Antheas Kapenekakis <lkml@antheas.dev>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Perry Yuan <perry.yuan@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- Antheas Kapenekakis <lkml@antheas.dev>
-Subject: [PATCH v1 3/3] drm/amdgpu: only send the SMU RLC notification on S3
-Date: Fri, 24 Oct 2025 17:21:52 +0200
-Message-ID: <20251024152152.3981721-4-lkml@antheas.dev>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251024152152.3981721-1-lkml@antheas.dev>
-References: <20251024152152.3981721-1-lkml@antheas.dev>
+Received: by mail-lj1-f174.google.com with SMTP id
+ 38308e7fff4ca-3637d6e9923so22479851fa.3
+ for <amd-gfx@lists.freedesktop.org>;
+ Fri, 24 Oct 2025 08:38:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUaLMFPEgVcjwUqj9n7pLePEfEltkx3j+F/LPw4LnLA0fdcw6Ch+MEupGheTCP8hm9GsCptphiS@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwX88VQ7WUjHImZ0AbdXv0YxYNXq8RYbcPmzDJdVk45bm5HIGVg
+ WRYr9QePIA7Q24FwP54YdFLFjW0FzvV4udF0ggIhdMUYoOcOfgJDvWxRNjygI3/wjUN49/UXnUy
+ kGFyOtSvgIQJtFTuB4IfAMn72s8EQS3M=
+X-Google-Smtp-Source: AGHT+IHxSuFU8jGxWLfAcRJMzub8OItIQWU18+63KmTH6NWzOau5ckGJVk7oQpzgy0uOuN89F0gjkZf/h8PYxxtz6I4=
+X-Received: by 2002:a2e:bd05:0:b0:378:e12f:e5ed with SMTP id
+ 38308e7fff4ca-378e12fe7d7mr12930301fa.39.1761320298675; Fri, 24 Oct 2025
+ 08:38:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <176131931758.2356119.11738767784012382444@linux3247.grserver.gr>
+References: <20251024152152.3981721-1-lkml@antheas.dev>
+ <c71c3ee5-e101-440f-9533-508d37d05d04@amd.com>
+In-Reply-To: <c71c3ee5-e101-440f-9533-508d37d05d04@amd.com>
+From: Antheas Kapenekakis <lkml@antheas.dev>
+Date: Fri, 24 Oct 2025 17:38:07 +0200
+X-Gmail-Original-Message-ID: <CAGwozwG_uU_sA0npzj6u3Aet2exxMOWdJEi5GX72CSFZJWvyeQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bnGAPB1e1DIOoCXwc5AzboX6ZyXgVQP0rByT5pDDuJuAElRJgJRdq7RFTM
+Message-ID: <CAGwozwG_uU_sA0npzj6u3Aet2exxMOWdJEi5GX72CSFZJWvyeQ@mail.gmail.com>
+Subject: Re: [PATCH v1 0/3] platform/x86/amd: Add S0ix support to the Xbox Ally
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
+ Perry Yuan <perry.yuan@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-PPP-Message-ID: <176132029943.2412234.17478641508646617310@linux3247.grserver.gr>
 X-PPP-Vhost: antheas.dev
 X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
 X-Virus-Status: Clean
@@ -78,73 +93,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alex Deucher <alexander.deucher@amd.com>
+On Fri, 24 Oct 2025 at 17:32, Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+>
+>
+> On 10/24/2025 10:21 AM, Antheas Kapenekakis wrote:
+> > The Xbox Ally features a Van Gogh SoC that on the Steam Deck uses S3.
+> > Therefore, kernel support for S0ix was previously absent. Introduce
+> > this support in three patches:
+> >
+> > 1) Add Van Gogh to AMD PMC driver
+> > 2) Enable spurious_8042 quirk, as it is common in those generations
+> > 3) Adjust the Van Gogh init logic to avoid powering down the rlc
+> >     and tweak post init
+> >
+>
+> Just to be clear - there is no need for all 3 patches to go to one tree
+> or another.  The PMC patches should go platform-x86 and the DRM patch
+> should go through drm.
 
-For S0ix, the RLC is not powered down. Rework the Van Gogh logic to
-skip powering it down and skip part of post-init.
+Perhaps someone wants to test out all three. I will resend only the
+first two next time.
 
-Fixes: 8c4e9105b2a8 ("drm/amdgpu: optimize RLC powerdown notification on Vangogh")
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4659
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Tested-by: Antheas Kapenekakis <lkml@antheas.dev>
-Signed-off-by: Antheas Kapenekakis <lkml@antheas.dev>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c       | 8 +++++---
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c        | 6 ++++++
- drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c | 3 +++
- 3 files changed, 14 insertions(+), 3 deletions(-)
+> > This allows the Xbox Ally to properly enter and exit S0ix suspend.
+> > Perhaps it also allows the Steam Deck to use s2idle without crashing,
+> > note it is not currently possible [1].
+>
+> FWIW I don't anticipate this series actually gets Steam deck into a
+> hardware sleep state because you need firmware support as well.
+> But the drm patch will probably will help the hang that was observed
+> which lead to the patch you've linked below.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 3d032c4e2dce..220b12d59795 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5243,9 +5243,11 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
- 	if (amdgpu_sriov_vf(adev))
- 		amdgpu_virt_release_full_gpu(adev, false);
- 
--	r = amdgpu_dpm_notify_rlc_state(adev, false);
--	if (r)
--		return r;
-+	if (!adev->in_s0ix) {
-+		r = amdgpu_dpm_notify_rlc_state(adev, false);
-+		if (r)
-+			return r;
-+	}
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index fb8086859857..244b8c364d45 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -2040,6 +2040,12 @@ static int smu_disable_dpms(struct smu_context *smu)
- 	    smu->is_apu && (amdgpu_in_reset(adev) || adev->in_s0ix))
- 		return 0;
- 
-+	/* vangogh s0ix */
-+	if ((amdgpu_ip_version(adev, MP1_HWIP, 0) == IP_VERSION(11, 5, 0) ||
-+	     amdgpu_ip_version(adev, MP1_HWIP, 0) == IP_VERSION(11, 5, 2)) &&
-+	    adev->in_s0ix)
-+		return 0;
-+
- 	/*
- 	 * For gpu reset, runpm and hibernation through BACO,
- 	 * BACO feature has to be kept enabled.
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-index 2c9869feba61..0708d0f0938b 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-@@ -2217,6 +2217,9 @@ static int vangogh_post_smu_init(struct smu_context *smu)
- 	uint32_t total_cu = adev->gfx.config.max_cu_per_sh *
- 		adev->gfx.config.max_sh_per_se * adev->gfx.config.max_shader_engines;
- 
-+	if (adev->in_s0ix)
-+		return 0;
-+
- 	/* allow message will be sent after enable message on Vangogh*/
- 	if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_GFXCLK_BIT) &&
- 			(adev->pg_flags & AMD_PG_SUPPORT_GFX_PG)) {
--- 
-2.51.0
+That's what I think too
 
+Antheas
+
+> >
+> > Currently, around 1/10 times the SoC misses the PMC hint and does not
+> > enter S0ix, so perhaps 1 or 3 need tweaking further. It wakes up always,
+> > however.
+> >
+> > @Alex: I tweaked the text on patch 3 a bit. You can resend it separately
+> > after the issue with 1/10 failures is fixed.
+> >
+> > [1]: https://github.com/evlaV/linux-integration/commit/5ab73e9069017aa1b5351f91513ba540ce5905fb
+> >
+> > Alex Deucher (1):
+> >    drm/amdgpu: only send the SMU RLC notification on S3
+> >
+> > Antheas Kapenekakis (2):
+> >    platform/x86/amd/pmc: Add support for Van Gogh SoC
+> >    platform/x86/amd/pmc: Add spurious_8042 to Xbox Ally
+> >
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c       | 8 +++++---
+> >   drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c        | 6 ++++++
+> >   drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c | 3 +++
+> >   drivers/platform/x86/amd/pmc/pmc-quirks.c        | 8 ++++++++
+> >   drivers/platform/x86/amd/pmc/pmc.c               | 3 +++
+> >   drivers/platform/x86/amd/pmc/pmc.h               | 1 +
+> >   6 files changed, 26 insertions(+), 3 deletions(-)
+> >
+> >
+> > base-commit: 6fab32bb6508abbb8b7b1c5498e44f0c32320ed5
+>
+>
 
