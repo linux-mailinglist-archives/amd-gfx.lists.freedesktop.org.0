@@ -2,93 +2,145 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A63FC07D74
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Oct 2025 21:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F38CBC07F91
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Oct 2025 21:59:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D776410E1FA;
-	Fri, 24 Oct 2025 19:07:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B795E10E00D;
+	Fri, 24 Oct 2025 19:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PjkiOYqv";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="g3goTAEb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
- [209.85.208.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 768CB10E1FA
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 19:07:08 +0000 (UTC)
-Received: by mail-ed1-f51.google.com with SMTP id
- 4fb4d7f45d1cf-63c489f1e6cso3948504a12.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 12:07:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761332827; x=1761937627; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=VVBgaXuUCcqZUksTw8KSTo2g9fH1GP9T8gCUm/Gs8/4=;
- b=PjkiOYqvvQAELrsXFiYKUQB6pizlHncDCPJQ1SjtaKKOWersasHqqowVlDRdgWdApw
- S57nGTGyPo8I6ZkUpnAKjfUwt9DRInD2F8xxCWBMOUR49fnlmtIlPh/cikCP5Zp7GVn8
- qlrDG7GJtItQCLBgthcw29Xk6ePaPJwvu5lwqwKaViFNO+KmXADP9SAwTpXHmLG2V45L
- Z8J2E5MeUc/h/Qd0+/ArZCeplxb2SevFlCyvrAYQurjwXfrTA3I1Auz2ZV29ScRyz0Dn
- Fuyf2CabI7PJQx2jKvzs5UwsErQpPUfuCoTKbnNaagAHH3olufCCgPNVmDkn7KXNCe5u
- LlNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761332827; x=1761937627;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=VVBgaXuUCcqZUksTw8KSTo2g9fH1GP9T8gCUm/Gs8/4=;
- b=D6s/Bwr6MYy1/WSU6581QT2D+yj2dUHi9vss2KiqwUR3vKxr6tarj3cPYaCOJ9GSuE
- 66BeQvVIdJ68XzHT4qfArtMv0SUHa9aBa5giqQe6mZd0Y0hjUd3i6vjZ0WuFpmfAqquU
- M+8/wegrrgWXvSKYB8OtR9glrtiedoxzFqL92Iie6v0Qys0DC6KEiAom/sVlgxwlMPZy
- 6qwzW9TQpVUsZBQTcnvdZizc5l8l+LFyN2ESrcaeSBdYXVDQ38jIlIBpI9rXAgxnh5uV
- BsdLGQr57/lJbnMm/WDob+jyhsGedJvQSyf0ah14LO6ZsRgAA6c3aHZbxJQN2d+b8Mql
- 7uSQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXlAxtcfjkEdhPY4EzRq2uQ9bBlwahwPbuOp9+3+3Sc7rmilAkuvVNrh+xwWdFZssee9C018a3L@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx/IHP6e8+vx/Dy1VnIeJjLDSAh2nnZBYAH3Y17UwnJNU7zP1bd
- s2hu9gzR0ny8IT/nm8rv2MasnrH0zyKoEclfoq0kCWn1COc2YqQCLH0k
-X-Gm-Gg: ASbGncu7yqUZrFXan6GlD1y/i8pIa0lNYTfBINA33OLStAEF9dRkUSU7Ykl/dJFPw0K
- zffj/9wMzZHXEREhrWESJcQD9ckgYUSRr6gs+r/LrxqgKQ8r44fVg7CMPLkl+fJ0b1zRv+tBvtJ
- LpbEepPax10wcIRJzkO+0ddIFAra0KtCZMI6ZzotkwbcxeXwWNhSBAJq6UnX8Kyif9fx1efahA0
- eK07Mzn9qgboyspHdcWhNj3hWhzsQhZZiVc9qgVz37lvM1qr7wivIfcQVn/rnclr75GkeQZIBOC
- g9+ziuQwk+eBZIqWMK73F5kY5vc2ptrQ9kQEp2hpoLuSxUPD8EogC2sr3FOvmuMPvGfKaFyJaVU
- p5bitAo0c4Ya88iSMq8xMhjLWpHdSp1NT8ntxH19hNPBgUSQ2zFb/ePxy+1NNm5Ptvs+h1pXWs4
- t5IcWq7jRn86ZdaX128qxaGzCWdi2HhVCzJwy631Ep5HfqAKxanfxW+3T+KIE0Vv/Ecg7C3pm7H
- 1hEwiQZKgS7KhZu3PgujxC5jCyB0UY997UTLt3cga1R9gazKifBcDFSxlWdXLj28w==
-X-Google-Smtp-Source: AGHT+IGFr38YIfHjpdxnjrK7t9h/Lf6p3aZHrUATeHNNnvGP3IlOkWv3dU2teH5CmdGf83OISF2FQw==
-X-Received: by 2002:a05:6402:42c5:b0:634:c377:e1ae with SMTP id
- 4fb4d7f45d1cf-63e5eb29557mr3425014a12.14.1761332826724; 
- Fri, 24 Oct 2025 12:07:06 -0700 (PDT)
-Received: from ?IPv6:2001:4c4e:24da:6700:e4da:bdc8:a726:ec86?
- (20014C4E24DA6700E4DABDC8A726EC86.dsl.pool.telekom.hu.
- [2001:4c4e:24da:6700:e4da:bdc8:a726:ec86])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-63e3ebcd476sm5035733a12.13.2025.10.24.12.07.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Oct 2025 12:07:06 -0700 (PDT)
-Message-ID: <6feb7b2587b972154f5235ff1c7168e1124329a3.camel@gmail.com>
-Subject: Re: [PATCH 00/23] Analog connector support in DC (v2)
-From: timur.kristof@gmail.com
-To: "Wheeler, Daniel" <Daniel.Wheeler@amd.com>, "Wentland, Harry"
- <Harry.Wentland@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Chung, ChiaHsuan (Tom)"
- <ChiaHsuan.Chung@amd.com>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Hung, Alex"
- <Alex.Hung@amd.com>, "siqueira@igalia.com" <siqueira@igalia.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>
-Date: Fri, 24 Oct 2025 21:07:02 +0200
-In-Reply-To: <DS0PR12MB6534C9AB60795127DEB8BAC69CF2A@DS0PR12MB6534.namprd12.prod.outlook.com>
-References: <20250926180203.16690-1-timur.kristof@gmail.com>
- <0fb9b183-ba74-4837-86a1-499b3acf04d5@amd.com>
- <f7bb25e7-0a64-4057-b068-5fb63d5d287e@amd.com>
- <DS0PR12MB6534854A0932A7E3E0D05D939CEEA@DS0PR12MB6534.namprd12.prod.outlook.com>
- <f2672baf-1f02-480d-a8c3-54f7f7863695@amd.com>
- <1835c00c-780a-4530-9652-5ee4a3bb8622@gmail.com>
- <DS0PR12MB6534C9AB60795127DEB8BAC69CF2A@DS0PR12MB6534.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011056.outbound.protection.outlook.com [52.101.62.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D065710E00D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Oct 2025 19:59:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LWppG5KE5w8cMFsC6b1z2lLINhz8JkghgNlvxIpa6aYC9B6NXCLz3awQk7oZ6UMRIhZ+vsTvOG/D28trIoBrMPavqL6fSeW/8Pljd6othKCMiuRufEJw0qCo8TT5YqyfLVTDr97Gs63FQ/knDFKlHnRBb/lOoVd7LpTffnAvDHY9kF0oQsyqtaxZCt+wvPpYONXWXfFLiB2MS//dSz+DLwQXp4GHbGugGY7S3QAWdwCGqsHWtL+1N6iN+56HTy1kCrsz8XOlKk8Z/xGcNC2tZufYUF72Vjy7otZrCo8/zs+IKmHg2lYD0kJB8etsu2Z52UpTwoJwwTYhdlRu3NpXlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0Rkdwp5IfuPUc7drVBnha6XGMmsHl05+KZAlmv8Arw8=;
+ b=XVIjZBwiya1Kh75exBchTjFRrtcGhAHEDNEYHQ+T5CEVpyW7CfS1yOMe9IGtR2XPy754eHeXlmtzpqKzMjpl3G2MYCIrBqP1VWfmoZVh84I4pp7mtTP+kfAtKqfifPYBkIOLVD+8g28qc4rQ/0OyV7/h2TcvoJkXDdmoLxUribVQYxf2RN7LOC9lwdKdSDIjB+NN2ZuDvARDPSXuIjd1Dl0S3zwUkY5Q2/VySAA4VNLkBD5yPSdFeoKKKsuptKQmDO2gI/ZdFMku13qI82sOu5C6DNEqQNOLZh/nzjRblW3uUvV8E3Fcrq1DE1VzF0THwuYnd2XxkSzKeoZSzVLhrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0Rkdwp5IfuPUc7drVBnha6XGMmsHl05+KZAlmv8Arw8=;
+ b=g3goTAEbwL2hBptZhR51OD8x8WfCKpFJpW7pfCckSop8E9+nUFUqhy4nmrvS6e3HL5JoEN4Qi1xqwXhTE8Ag1j7KsQqNOSyHaNEjBfMhnKmwqf7ucXNvlwWd1h+3skrHLzrziQELt1qiGGSHfrU8Thhjg5fWuglbPAbe137RFJc=
+Received: from PH8PR12MB7112.namprd12.prod.outlook.com (2603:10b6:510:22c::15)
+ by DS7PR12MB9525.namprd12.prod.outlook.com (2603:10b6:8:251::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Fri, 24 Oct
+ 2025 19:59:02 +0000
+Received: from PH8PR12MB7112.namprd12.prod.outlook.com
+ ([fe80::527b:a523:24c6:a1d4]) by PH8PR12MB7112.namprd12.prod.outlook.com
+ ([fe80::527b:a523:24c6:a1d4%4]) with mapi id 15.20.9253.011; Fri, 24 Oct 2025
+ 19:59:02 +0000
+From: "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>
+To: "Clement, Sunday" <Sunday.Clement@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "Kuehling, Felix" <Felix.Kuehling@amd.com>, "Yang, Philip"
+ <Philip.Yang@amd.com>
+Subject: RE: [PATCH] drm/amdkfd: Fix Unchecked Return Value
+Thread-Topic: [PATCH] drm/amdkfd: Fix Unchecked Return Value
+Thread-Index: AQHcRRV3EmKQkE3KgEK/EkL0pFurnLTRtuMg
+Date: Fri, 24 Oct 2025 19:59:02 +0000
+Message-ID: <PH8PR12MB71124C72A9A51346D9FDF7458CF1A@PH8PR12MB7112.namprd12.prod.outlook.com>
+References: <20251024183828.2954594-1-Sunday.Clement@amd.com>
+In-Reply-To: <20251024183828.2954594-1-Sunday.Clement@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-10-24T19:58:59.0000000Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH8PR12MB7112:EE_|DS7PR12MB9525:EE_
+x-ms-office365-filtering-correlation-id: 6f7ff291-a2ef-4af1-6c04-08de1337c781
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|38070700021|7053199007; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?wJJC0Lf+sdOrBM9HyCitPLkAd4m1bzYQlWgr3c9QgQOn38Z2As4OaL0X6rOI?=
+ =?us-ascii?Q?VZCOePRZFU4tteIx3mFWf3DLj6js8eiA7HXMYT6ve5HsBbYuQjsr4SSvwAP3?=
+ =?us-ascii?Q?/lJLkb/bsXqsU0dVkrMugxyTAH1Pr99wx2LsZVelY5IT81zuBwYz7QOQ72Fd?=
+ =?us-ascii?Q?KjhWEPA2CDmVOFBGVu38acspLrxbnH3l6bo+PKokoIuUe3iKEkBVcccYiPOE?=
+ =?us-ascii?Q?Iko0M5Cidzhv78B0GR2HXnrF05EV93kKubI6YTRKIdS8f2OVsanAL/bfZc5T?=
+ =?us-ascii?Q?s1imKiPM8DtemgHJGtFCRA3jRjdEDDwId4j2Nd5ykMmfGB1z7mwja5oQJHWA?=
+ =?us-ascii?Q?SarwxDN7gmAp9JgEe6SGfyBaGn+8OPknC8tiIVQIkL9nuJcbnecZdfka8K1l?=
+ =?us-ascii?Q?zFjmjidvmms/aLmgTotLxVJ/7w/dD+jJWpfIjtSL8FZtAz+Hn+sJ/wI11cLP?=
+ =?us-ascii?Q?isFvagzqTIJms/VZ/oIG6pwciGNjUrZCosYv4UX8BDcYcKUaumkob/7K0Aj5?=
+ =?us-ascii?Q?zFtPg75Oe4MFDtZG1opR2+/IfTzSIHQR7IEaT/R+cZUKPpx1/p7vMX3rhZ4U?=
+ =?us-ascii?Q?/a/fWQvE09nlF3qhp/1Jjt1Fy6ntqI4V/aGH9mMG+GwJOlFhDbUBlQ9MVSsG?=
+ =?us-ascii?Q?qKVQpnzf8ntyEKhFsR0c6WuQQY4V6Ps30M2lATroO30n47DQgt0z6gwzSX0k?=
+ =?us-ascii?Q?BljNIPWKTYJVwCPTgDdOBsKODJDLIenEj5TpFMjie/Aqa37c+eTfwxeI8iZe?=
+ =?us-ascii?Q?1+X4jYr1ld8f2BiNZoMZ/KKCg7j9S2z40oy06yZ75Tioq/5TDvUyZAHH8dxB?=
+ =?us-ascii?Q?4GDB0su0hc1ZtmIZOmXtK4fUx4YuYVwbccPytyxiBBu8GT/ZfELDplNZClJg?=
+ =?us-ascii?Q?RY76zBYKrTRZll0tAAMrZYbgWNHYEWBInpRrCVyxR7J/BLLgY/aoCygRAUTM?=
+ =?us-ascii?Q?vmayi/1DvhZllATCcSdmLSszSIlbtZ1b6xM12QdIZHb6WtcFdl3u8P0scUvq?=
+ =?us-ascii?Q?dBv5UyeMQAiAdFIG0YPJ4V7V2x9pGKQBvgoDiAn/4eWGnZzyVJ4bdHYFfM+8?=
+ =?us-ascii?Q?PXGAg5GO/thChwADr2N/FdBltdEIweWOl+1F5SPbOqNWRNGaWQuqZBVZ4SOb?=
+ =?us-ascii?Q?uWFUxdrn4yNqOREm6my4zUDXhyscRHFDpXU1+q4jjDM+gP6l3KKhO0z2qHyi?=
+ =?us-ascii?Q?U+nBQtJh2UJumLa7zRN7cSYf1AXYf98IDCbToyuM/UGWWRHaTQfGjvJFrbQs?=
+ =?us-ascii?Q?OhvGP3TBkteyxUXeGoNRzjI85U6GbWDU2ic76jUnglBoubVxcS1KmgJVCKCJ?=
+ =?us-ascii?Q?EzumkpNnii+8PYBAUyqxAqq+9FP5ckm+dx5hV0h8BCLg7ObjGx1i9/PrDbFw?=
+ =?us-ascii?Q?CwlS25BKpLRHlCLDq6IDvDdMvpPNslQ3yD/CofPvVCGqrE7B7Bqm0YYGChzT?=
+ =?us-ascii?Q?Yp/Wgo9DbAnv7ZHFKdQCRg0Q+ADjAev5kz4cl3Eea3LM0F1JaSBnbKgiKtI+?=
+ =?us-ascii?Q?1jg/ICj/q7dT8P575Y+fEU1xLSSBEyBYWSMy?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7112.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?wYNew+tOG3DMxwRyH3w5Rzf9LdZLmFPeZ1Hjwk7kQL3uoejXZ9sG1vW08Ryi?=
+ =?us-ascii?Q?4x2Vg7CU5fZIL4EIHyH+2knh+Cw6buxTCrNwRqWlFrzt3bwyRZbr1JRgka0P?=
+ =?us-ascii?Q?lewlCSmH1bqdZE565c49Y+H65P19g05Qmxa1LE7nvs5EssOopKmMVcnThlHx?=
+ =?us-ascii?Q?VnRKeUNaLvxabDaJkfJ18JWxD0cQaRs1otMbYsP1kD3og8JZNC6j6coWlJi+?=
+ =?us-ascii?Q?jU6lovQWk/dJG1VUjYY/HP4mXum0NHR0zlOaxgJqhlU8S6Q1fgNT4Ei8iuon?=
+ =?us-ascii?Q?/Ceej1mOUnKdwMB88KpZKCItReXUwduXbV2fZxuVf6dYpG3JVlN7wJMZL5PV?=
+ =?us-ascii?Q?9QGGlG/FtBxu4kW6NNj8YzaqmHUMj/DYIh4kJ/KGAA3Lqr9CbZxODaW6xyPF?=
+ =?us-ascii?Q?dafu/7GIcpcmddI9BvFK0yIdEbRtinJ0Z3ZRthrl/hiuK/DIzu2Wb0ds8xrn?=
+ =?us-ascii?Q?+dG4N7hz4d3+QifQVLtMSKda7BThoiu2/j05IXGvl7BIAe/rHRugxAd99Kaw?=
+ =?us-ascii?Q?04SteydhTenjTyFKUVh21ndG1zay5ZMqQnXomX9BiJib8C8goBIRiXgV/PfK?=
+ =?us-ascii?Q?tuhYBQI3SPy65WUfAQ2IZMm7ypi/1gtVG1e8YWtnRkjX+gB+tGG4+qIS8/lt?=
+ =?us-ascii?Q?jm+f9dPTAJfv2WTF32QJGbarIUlvmuLomZvo5Eoxo2jA9xdfnApjvsHKMpod?=
+ =?us-ascii?Q?dH08TDUOHIg7fzNLFtkx9iglcp5JBahFiu2WJCcLYxBztnW0IfQtPZl42glT?=
+ =?us-ascii?Q?rYZvFKbBCx7lGoSQwUi66UKCu7qaJ15h0YvDD+85dGOc9rKA9BUWHm+gddb1?=
+ =?us-ascii?Q?Xllt7mSg71BK0Zr5Hv9a7TxvVZL8ezAlb9oTX9xhP4XUZNceXN3KzQ0Tcse8?=
+ =?us-ascii?Q?UnqxB9yUXLzhD/kMT176fas/jD1aXcLFJy5jU0Sl9FV8/nixAlpE3ikmTkLU?=
+ =?us-ascii?Q?Xlz08NKAZCVtjUA1wqj4uqX+Dr/i9Amy9xYEf9E73cM7O+HvMfJ72ccxyq8h?=
+ =?us-ascii?Q?BAEQ3whRdnr0EVZ+abtWZU4ezeYuFPR6Mby715M38h68efmGqN2zBhcs8cWf?=
+ =?us-ascii?Q?a9r7Kt9Cn2CXbXniwhetfduTd9f7+BXdunpQ+SGF7534E8Te+tZ7diikKtvS?=
+ =?us-ascii?Q?dV1TcGWfF/J+xLxwVdpySlhU9Vft/XwM8iaK1yaiOFv8Zi8jj5dm9aKuYiQ4?=
+ =?us-ascii?Q?66qrGNcAqEXeFOfrc96B/6ZGuWBbKVhzPmRYHdnH/kyDS4pQLq1t7fn/6j94?=
+ =?us-ascii?Q?gOd80jL6w3/5LsRVL25P+MTelFGKQPdPtAmZkGGw6mjolBj/At5UJop8Ic5t?=
+ =?us-ascii?Q?71qMONdcRlo2PN5yvaUJX1h9QQUJc3d1FQXmiJhS2acsxjdA6PgvQ3sfHrBq?=
+ =?us-ascii?Q?AIR29cq39SsAxJ10DTLhbgHuU5nkN+UHygWL47EiqiyCoaN5o3zfUVEiNSH4?=
+ =?us-ascii?Q?wbIV8XXnA43lVpqilu5j5jxsQv0vPJfJVj1j9exm6aUhDyI/HgwXbbovjpmi?=
+ =?us-ascii?Q?lbAe1wqtR5PeIgojB2nrKbbpoqAKQlWWYiLzMVbw3NJcq12sXKQKQiy00Nm0?=
+ =?us-ascii?Q?0Z3OTrvMpY/ztxO8OWk=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7112.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f7ff291-a2ef-4af1-6c04-08de1337c781
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2025 19:59:02.4332 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 19cjKisyldcI9CGPQsIz6fSNywj3FUzT7Ae62AlCmf0RMtxf+xVo/Kt+sXtBsX8qIublGAfXsmSWefLHZJt5cA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9525
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,293 +155,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dan,
+[Public]
 
-Thanks, I'm looking forward to it. Please let me know how it goes.
+Reviewed-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
 
-Is there any way I can help?
 
-I respect that testing and validating a huge series is non-trivial.
-However, considering that we have already missed the deadline for 6.18,
-I'd like to make sure, can this feature make it into 6.19?
+-----Original Message-----
+From: Clement, Sunday <Sunday.Clement@amd.com>
+Sent: Friday, October 24, 2025 2:38 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Kasiviswanathan, Harish <Harish.Kasiviswanathan@amd.com>; Kuehling, Fel=
+ix <Felix.Kuehling@amd.com>; Yang, Philip <Philip.Yang@amd.com>; Clement, S=
+unday <Sunday.Clement@amd.com>
+Subject: [PATCH] drm/amdkfd: Fix Unchecked Return Value
 
-Thanks & best regards,
-Timur
+Properly check the return values for function, as done elsewhere.
 
-On Tue, 2025-10-21 at 17:32 +0000, Wheeler, Daniel wrote:
-> [Public]
->=20
-> Hi Timur,
->=20
-> Sorry, the patches weren't added to either last week's or this week's
-> candidate. I'm going to add the patches on top of this week's
-> promotion and run the testing with them. I'll see about getting them
-> merged alongside the promotion this week.
->=20
-> Thank you,
->=20
-> Dan Wheeler
-> Sr. Technologist | AMD
-> SW Display
-> ---------------------------------------------------------------------
-> ---------------------------------------------
-> 1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
-> amd.com
->=20
->=20
-> -----Original Message-----
-> From: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> Sent: Tuesday, October 21, 2025 12:15 PM
-> To: Wentland, Harry <Harry.Wentland@amd.com>; Wheeler, Daniel
-> <Daniel.Wheeler@amd.com>; amd-gfx@lists.freedesktop.org; Chung,
-> ChiaHsuan (Tom) <ChiaHsuan.Chung@amd.com>
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Hung, Alex
-> <Alex.Hung@amd.com>; siqueira@igalia.com; Koenig, Christian
-> <Christian.Koenig@amd.com>
-> Subject: Re: [PATCH 00/23] Analog connector support in DC (v2)
->=20
-> Hi,
->=20
-> Did you guys manage to include the series in last week's promotion?
-> Are there any issues?
->=20
-> I'd really like it to be included in Linux 6.18, are we still on time
-> for that?
->=20
-> Thanks & best regards,
-> Timur
->=20
-> On 10/9/25 20:27, Harry Wentland wrote:
-> >=20
-> >=20
-> > On 2025-10-09 13:49, Wheeler, Daniel wrote:
-> > > [Public]
-> > >=20
-> > > Sure, we can add it to next week's promotion, I'm almost through
-> > > this week's candidate. Tom is scheduled to prepare next week's
-> > > candidate, so I'll tag him in.
-> > >=20
-> >=20
-> > Great. Thanks.
-> >=20
-> > Harry
-> >=20
-> > > Thank you,
-> > >=20
-> > > Dan Wheeler
-> > > Sr. Technologist | AMD
-> > > SW Display
-> > > -----------------------------------------------------------------
-> > > ----
-> > > ---------------------------------------------
-> > > 1 Commerce Valley Dr E, Thornhill, ON L3T 7X6 amd.com
-> > >=20
-> > >=20
-> > > -----Original Message-----
-> > > From: Wentland, Harry <Harry.Wentland@amd.com>
-> > > Sent: Thursday, October 9, 2025 1:27 PM
-> > > To: Timur Krist=C3=B3f <timur.kristof@gmail.com>;
-> > > amd-gfx@lists.freedesktop.org; Wheeler, Daniel
-> > > <Daniel.Wheeler@amd.com>
-> > > Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Hung, Alex
-> > > <Alex.Hung@amd.com>; siqueira@igalia.com; Koenig, Christian
-> > > <Christian.Koenig@amd.com>
-> > > Subject: Re: [PATCH 00/23] Analog connector support in DC (v2)
-> > >=20
-> > >=20
-> > >=20
-> > > On 2025-10-08 17:11, Harry Wentland wrote:
-> > > > On 2025-09-26 14:01, Timur Krist=C3=B3f wrote:
-> > > > > This series adds support for analog connectors to DC for
-> > > > > DCE6-10.
-> > > > > There are two reasons to add this support:
-> > > > >=20
-> > > > > 1. GPUs that already use DC by default and have analog
-> > > > > connectors.
-> > > > > Some Tonga and Hawaii graphics cards in fact have DVI-I
-> > > > > connectors,
-> > > > > and their analog part doesn't work with DC. This
-> > > > > functionality
-> > > > > regressed when switching from the amdgpu legacy display code
-> > > > > to DC.
-> > > > >=20
-> > > > > 2. GPUs that don't use amdgpu by default yet.
-> > > > > Currently, SI (GFX6) and CIK (GFX7) don't use amdgpu by
-> > > > > default
-> > > > > yet, and missing analog connector support in DC is cited as
-> > > > > one of
-> > > > > the main reasons why not.
-> > > > >=20
-> > > > > Before starting this work, I asked Harry and Alex about how
-> > > > > best to
-> > > > > do it and we agreed that we'd like to use the VBIOS to set up
-> > > > > the
-> > > > > DAC. So I used the amdgpu legacy display code as a reference.
-> > > > > The first few commits add some minor changes to DC to prepare
-> > > > > for
-> > > > > supporting analog stream and link encoders, then analog link
-> > > > > detection is added along with polling, and finally DAC load
-> > > > > detection support, which is useful for old displays and
-> > > > > adapters.
-> > > > >=20
-> > > > > With this analog support added to DC, we could already fully
-> > > > > switch
-> > > > > CIK discrete GPUs to use DC and switch them to the amdgpu
-> > > > > driver by
-> > > > > default. This series switches Bonaire to DC by default, we
-> > > > > can do
-> > > > > the switch to amdgpu in a later series.
-> > > > >=20
-> > > > > For SI dGPUs, there are other pending patches to make DC work
-> > > > > well,
-> > > > > afterwards we could switch to DC by default, but missing
-> > > > > VCE1 support is the blocker from using amdgpu by default.
-> > > > >=20
-> > > > > For GFX7 APUs, further work is needed before enabling DC by
-> > > > > default, specifically with regards to the TRAVIS and NUTMEG
-> > > > > external encoders which are not supported by DC at all.
-> > > > >=20
-> > > > > Changes in v2 of the series:
-> > > > > Fixed regression on RDNA2 and newer APUs.
-> > > > > Fixed flickering caused by polling analog connectors.
-> > > > > Fixed crash on Kaveri.
-> > > > > Fixed bug when HPD was high without a connected display.
-> > > > > Reduced code churn by reusing same link encoder.
-> > > > > Addressed other feedback from the review of v1.
-> > > >=20
-> > > > Thanks for the series.
-> > > >=20
-> > > > Patches 1-13 are
-> > > > Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-> > > >=20
-> > > > I'll hope to find time for the rest tomorrow or Friday.
-> > > >=20
-> > >=20
-> > > The rest looks good to me as well.
-> > >=20
-> > > The whole series is
-> > > Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-> > >=20
-> > > Dan, can we give this a spin in our weekly promotion tests before
-> > > I merge it?
-> > >=20
-> > > Harry
-> > >=20
-> > > > Harry
-> > > >=20
-> > > > >=20
-> > > > > Timur Krist=C3=B3f (23):
-> > > > > =C2=A0=C2=A0 drm/amd/display: Determine DVI-I connector type (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Add analog bit to edid_caps (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Introduce MAX_LINK_ENCODERS (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Hook up DAC to
-> > > > > bios_parser_encoder_control
-> > > > > =C2=A0=C2=A0 drm/amd/display: Add SelectCRTC_Source to BIOS parse=
-r
-> > > > > =C2=A0=C2=A0 drm/amd/display: Get maximum pixel clock from VBIOS
-> > > > > =C2=A0=C2=A0 drm/amd/display: Don't use stereo sync and audio on =
-RGB
-> > > > > signals (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Don't try to enable/disable HPD whe=
-n
-> > > > > unavailable
-> > > > > =C2=A0=C2=A0 drm/amd/display: Determine early if a link has suppo=
-rted
-> > > > > encoders (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Add concept of analog encoders (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Implement DCE analog stream encoder=
-s
-> > > > > =C2=A0=C2=A0 drm/amd/display: Implement DCE analog link encoders =
-(v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Support DAC in dce110_hwseq
-> > > > > =C2=A0=C2=A0 drm/amd/display: Add analog link detection (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Refactor amdgpu_dm_connector_detect=
- (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Poll analog connectors (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Add DCE BIOS_SCRATCH_0 register
-> > > > > =C2=A0=C2=A0 drm/amd/display: Make get_support_mask_for_device_id
-> > > > > reusable
-> > > > > =C2=A0=C2=A0 drm/amd/display: Add DAC_LoadDetection to BIOS parse=
-r (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Use DAC load detection on analog
-> > > > > connectors (v2)
-> > > > > =C2=A0=C2=A0 drm/amd/display: Add common modes to analog displays
-> > > > > without EDID
-> > > > > =C2=A0=C2=A0 drm/amd/display: Don't add freesync modes to analog
-> > > > > displays (v2)
-> > > > > =C2=A0=C2=A0 drm/amdgpu: Use DC by default for Bonaire
-> > > > >=20
-> > > > > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_device.c=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 1 -
-> > > > > =C2=A0 .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 173
-> > > > > ++++++++---
-> > > > > =C2=A0 .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |=C2=A0=C2=
-=A0 5 +-
-> > > > > =C2=A0 .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |=C2=A0=C2=
-=A0 1 +
-> > > > > =C2=A0 .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c |=C2=A0 20 +=
+Signed-off-by: Sunday Clement <Sunday.Clement@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/driver=
+s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 6e7bc983fc0b..3b696c58c530 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -1897,6 +1897,8 @@ static int start_cpsch(struct device_queue_manager *d=
+qm)
+
+ static int stop_cpsch(struct device_queue_manager *dqm)
+ {
++       int ret =3D 0;
 +
-> > > > > .../gpu/drm/amd/display/dc/bios/bios_parser.c |=C2=A0 95 +++++-
-> > > > > =C2=A0 .../drm/amd/display/dc/bios/command_table.c=C2=A0=C2=A0 | =
-286
-> > > > > ++++++++++++++++++
-> > > > > =C2=A0 .../drm/amd/display/dc/bios/command_table.h=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 6 +
-> > > > > =C2=A0 .../drm/amd/display/dc/core/dc_link_enc_cfg.c |=C2=A0=C2=
-=A0 4 +-
-> > > > > =C2=A0 .../gpu/drm/amd/display/dc/core/dc_resource.c |=C2=A0=C2=
-=A0 8 +
-> > > > > =C2=A0 .../gpu/drm/amd/display/dc/dc_bios_types.h=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 9 +
-> > > > > =C2=A0 drivers/gpu/drm/amd/display/dc/dc_types.h=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> > > > > =C2=A0 .../drm/amd/display/dc/dce/dce_link_encoder.c |=C2=A0 85 +=
-+++++
-> > > > > .../drm/amd/display/dc/dce/dce_link_encoder.h |=C2=A0 16 +-
-> > > > > =C2=A0 .../amd/display/dc/dce/dce_stream_encoder.c=C2=A0=C2=A0 |=
-=C2=A0 14 +
-> > > > > =C2=A0 .../amd/display/dc/dce/dce_stream_encoder.h=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 5 +
-> > > > > =C2=A0 .../amd/display/dc/hwss/dce110/dce110_hwseq.c |=C2=A0 75 +=
-+++-
-> > > > > =C2=A0 .../gpu/drm/amd/display/dc/inc/core_types.h=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 8 +-
-> > > > > =C2=A0 .../gpu/drm/amd/display/dc/inc/hw/hw_shared.h |=C2=A0 24 +=
-+
-> > > > > =C2=A0 .../drm/amd/display/dc/inc/hw/link_encoder.h=C2=A0 |=C2=A0=
-=C2=A0 2 +
-> > > > > =C2=A0 drivers/gpu/drm/amd/display/dc/inc/resource.h |=C2=A0=C2=
-=A0 1 +
-> > > > > =C2=A0 .../amd/display/dc/link/hwss/link_hwss_dio.c=C2=A0 |=C2=A0=
- 19 +-
-> > > > > .../drm/amd/display/dc/link/link_detection.c=C2=A0 | 147 ++++++++=
--
-> > > > > =C2=A0 .../gpu/drm/amd/display/dc/link/link_dpms.c=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 9 +-
-> > > > > =C2=A0 .../drm/amd/display/dc/link/link_factory.c=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 60 +++-
-> > > > > =C2=A0 .../dc/resource/dce100/dce100_resource.c=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 31 +-
-> > > > > =C2=A0 .../dc/resource/dce110/dce110_resource.c=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > > > > =C2=A0 .../dc/resource/dce112/dce112_resource.c=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > > > > =C2=A0 .../dc/resource/dce120/dce120_resource.c=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > > > =C2=A0 .../dc/resource/dce60/dce60_resource.c=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 29 +-
-> > > > > =C2=A0 .../dc/resource/dce80/dce80_resource.c=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 26 +-
-> > > > > =C2=A0 .../amd/display/include/bios_parser_types.h=C2=A0=C2=A0 |=
-=C2=A0 11 +-
-> > > > > =C2=A0 .../display/include/grph_object_ctrl_defs.h=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 1 +
-> > > > > =C2=A0 .../drm/amd/display/include/grph_object_id.h=C2=A0 |=C2=A0=
-=C2=A0 7 +
-> > > > > =C2=A0 .../drm/amd/display/include/signal_types.h=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 12 +
-> > > > > =C2=A0 35 files changed, 1117 insertions(+), 86 deletions(-)
-> > > > >=20
-> > > >=20
-> > >=20
-> >=20
+        dqm_lock(dqm);
+        if (!dqm->sched_running) {
+                dqm_unlock(dqm);
+@@ -1904,9 +1906,9 @@ static int stop_cpsch(struct device_queue_manager *dq=
+m)
+        }
+
+        if (!dqm->dev->kfd->shared_resources.enable_mes)
+-               unmap_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES,=
+ 0, USE_DEFAULT_GRACE_PERIOD, false);
++               ret =3D unmap_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL=
+_QUEUES, 0, USE_DEFAULT_GRACE_PERIOD, false);
+        else
+-               remove_all_kfd_queues_mes(dqm);
++               ret =3D remove_all_kfd_queues_mes(dqm);
+
+        dqm->sched_running =3D false;
+
+@@ -1920,7 +1922,7 @@ static int stop_cpsch(struct device_queue_manager *dq=
+m)
+        dqm->detect_hang_info =3D NULL;
+        dqm_unlock(dqm);
+
+-       return 0;
++       return ret;
+ }
+
+ static int create_kernel_queue_cpsch(struct device_queue_manager *dqm,
+--
+2.43.0
+
