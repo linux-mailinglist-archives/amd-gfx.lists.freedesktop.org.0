@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FC9DC0A264
-	for <lists+amd-gfx@lfdr.de>; Sun, 26 Oct 2025 05:30:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46325C0A26A
+	for <lists+amd-gfx@lfdr.de>; Sun, 26 Oct 2025 05:30:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1E9F10E049;
-	Sun, 26 Oct 2025 04:30:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD4F210E281;
+	Sun, 26 Oct 2025 04:30:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jbSJJGbZ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="c7zoMMux";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A159510E049
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBF5110E1B5
  for <amd-gfx@lists.freedesktop.org>; Sun, 26 Oct 2025 04:30:02 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 1A8D06026F
+ by sea.source.kernel.org (Postfix) with ESMTP id 9C8B7442F5
  for <amd-gfx@lists.freedesktop.org>; Sun, 26 Oct 2025 04:30:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76A80C4CEF7;
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03A0DC113D0;
  Sun, 26 Oct 2025 04:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761453001;
- bh=I16n8fGCETp1BK00kMZYIkYz3piA23yVG360rJlNfhU=;
+ s=k20201202; t=1761453002;
+ bh=8pr3E2oHhpQ5pysY03fh7Wawxdw2hFfRO/kRfwFa5xg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jbSJJGbZR4FaDYknCIMHrwVDKIUWocAdTdm2rLjITBecjnpe6bamZbNLBETrhNrmR
- OmYYTHXrCQfW12tbOIqctpCX16L4rdb8jCX7yezJ7YL15CH73l3epAb0HaUmU7gwI8
- pnU7LRTHLivqv3SU6asBLnpXbJ9dmVEeLSWxNMyDQu6STlSCA0qKU2C+SK8R87xKS2
- bvj0c93yGs/9a59dKawGf9epi6wGPSSp7i7cJjsk/7G/udOVC4cTptRu1Gpp4/TnKy
- pttQ2SW6BB5bk0kgNkyFRHcw4cF9Z/hKFTq+GrB8WBpXlvdQKHbJn8iUVhsPsc7Tb0
- lpQp7C75cJ0Nw==
+ b=c7zoMMuxQV7QO+7zHHNHAkKqKEeVg5qd51Jozceksadj0rmhiNEHVhMtTWnNgfpiX
+ A8wCZa/19B81SCrGHSHrwCpxcOrG/ovd4SorbIw4O36a2O5HUeJVryQNUDNwUfS+qT
+ eRujGtTYl5IZcRjlhUHn0me0mzBG/3yyVuPc11WgQGdxlPrV5Eqnv2r5PNlr2EqmeQ
+ /Lr/lXPhMxO5UUzQ+5uiIJcTtG465HvoZmRc+yJ4EqetTN5MtTcP3Pf6CpkiEHX9ba
+ Lrtjxx7uIDU9kxs8q8s342t9nm/dBwk2Y0T5Ce1PD6PuZFIQgw/5fCYwYkdr7KPVNj
+ knoGt1HebqbOw==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
 Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH v5 2/5] drm/amd: Add an unwind for failures in
- amdgpu_device_ip_suspend_phase1()
-Date: Sat, 25 Oct 2025 23:29:37 -0500
-Message-ID: <20251026042942.549389-3-superm1@kernel.org>
+Subject: [PATCH v5 3/5] drm/amd: Add an unwind for failures in
+ amdgpu_device_ip_suspend_phase2()
+Date: Sat, 25 Oct 2025 23:29:38 -0500
+Message-ID: <20251026042942.549389-4-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251026042942.549389-1-superm1@kernel.org>
 References: <20251026042942.549389-1-superm1@kernel.org>
@@ -56,55 +56,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If any hardware IPs involved with the first phase of suspend fail, unwind
+If any hardware IPs involved with the second phase of suspend fail, unwind
 all steps to restore back to original state.
 
 Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 36 ++++++++++++++++++++--
+ 1 file changed, 33 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index f6850b86e96f..b9ea91b2c92f 100644
+index b9ea91b2c92f..5945f441d01e 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -178,6 +178,7 @@ struct amdgpu_init_level amdgpu_init_minimal_xgmi = {
+@@ -178,6 +178,9 @@ struct amdgpu_init_level amdgpu_init_minimal_xgmi = {
  		BIT(AMD_IP_BLOCK_TYPE_COMMON) | BIT(AMD_IP_BLOCK_TYPE_IH) |
  		BIT(AMD_IP_BLOCK_TYPE_PSP)
  };
-+static int amdgpu_device_ip_resume_phase3(struct amdgpu_device *adev);
++
++static int amdgpu_device_ip_resume_phase1(struct amdgpu_device *adev);
++static int amdgpu_device_ip_resume_phase2(struct amdgpu_device *adev);
+ static int amdgpu_device_ip_resume_phase3(struct amdgpu_device *adev);
  
  static void amdgpu_device_load_switch_state(struct amdgpu_device *adev);
- 
-@@ -3784,7 +3785,7 @@ static void amdgpu_device_delay_enable_gfx_off(struct work_struct *work)
+@@ -3840,7 +3843,7 @@ static int amdgpu_device_ip_suspend_phase1(struct amdgpu_device *adev)
   */
- static int amdgpu_device_ip_suspend_phase1(struct amdgpu_device *adev)
+ static int amdgpu_device_ip_suspend_phase2(struct amdgpu_device *adev)
  {
 -	int i, r;
 +	int i, r, rec;
  
- 	amdgpu_device_set_pg_state(adev, AMD_PG_STATE_UNGATE);
- 	amdgpu_device_set_cg_state(adev, AMD_CG_STATE_UNGATE);
-@@ -3807,10 +3808,23 @@ static int amdgpu_device_ip_suspend_phase1(struct amdgpu_device *adev)
+ 	if (adev->in_s0ix)
+ 		amdgpu_dpm_gfx_state_change(adev, sGpuChangeState_D3Entry);
+@@ -3903,7 +3906,7 @@ static int amdgpu_device_ip_suspend_phase2(struct amdgpu_device *adev)
  
  		r = amdgpu_ip_block_suspend(&adev->ip_blocks[i]);
  		if (r)
 -			return r;
 +			goto unwind;
+ 
+ 		/* handle putting the SMC in the appropriate state */
+ 		if (!amdgpu_sriov_vf(adev)) {
+@@ -3913,13 +3916,40 @@ static int amdgpu_device_ip_suspend_phase2(struct amdgpu_device *adev)
+ 					dev_err(adev->dev,
+ 						"SMC failed to set mp1 state %d, %d\n",
+ 						adev->mp1_state, r);
+-					return r;
++					goto unwind;
+ 				}
+ 			}
+ 		}
  	}
  
  	return 0;
 +unwind:
-+	rec = amdgpu_device_ip_resume_phase3(adev);
-+	if (rec)
++	/* suspend phase 2 = resume phase 1 + resume phase 2 */
++	rec = amdgpu_device_ip_resume_phase1(adev);
++	if (rec) {
 +		dev_err(adev->dev,
-+			"amdgpu_device_ip_resume_phase3 failed during unwind: %d\n",
++			"amdgpu_device_ip_resume_phase1 failed during unwind: %d\n",
 +			rec);
++		return r;
++	}
 +
-+	amdgpu_dpm_set_df_cstate(adev, DF_CSTATE_ALLOW);
++	rec = amdgpu_device_fw_loading(adev);
++	if (rec) {
++		dev_err(adev->dev,
++			"amdgpu_device_fw_loading failed during unwind: %d\n",
++			rec);
++		return r;
++	}
 +
-+	amdgpu_device_set_pg_state(adev, AMD_PG_STATE_GATE);
-+	amdgpu_device_set_cg_state(adev, AMD_CG_STATE_GATE);
++	rec = amdgpu_device_ip_resume_phase2(adev);
++	if (rec) {
++		dev_err(adev->dev,
++			"amdgpu_device_ip_resume_phase2 failed during unwind: %d\n",
++			rec);
++		return r;
++	}
 +
 +	return r;
  }
