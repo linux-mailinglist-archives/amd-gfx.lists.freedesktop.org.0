@@ -2,41 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5A20C0A267
-	for <lists+amd-gfx@lfdr.de>; Sun, 26 Oct 2025 05:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C50DC0A261
+	for <lists+amd-gfx@lfdr.de>; Sun, 26 Oct 2025 05:30:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF98010E1B5;
-	Sun, 26 Oct 2025 04:30:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3A4210E27F;
+	Sun, 26 Oct 2025 04:30:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BSm/2Xo5";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="idGXWDGq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0D3210E049
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 949A110E049
  for <amd-gfx@lists.freedesktop.org>; Sun, 26 Oct 2025 04:30:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id E6AE06026F
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Oct 2025 04:30:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A290C4CEE7;
- Sun, 26 Oct 2025 04:29:59 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 5A11C43344;
+ Sun, 26 Oct 2025 04:30:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFBE1C4CEF7;
+ Sun, 26 Oct 2025 04:30:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761453000;
- bh=UoFLG8bNMjn4uj6/kPuTPYxOANwBfTzqwT+iZPywZmI=;
- h=From:To:Cc:Subject:Date:From;
- b=BSm/2Xo5M+8xW5RItescrIGMU9ojMc3jC+58ujzH6FZm3nAfMHZ3XRjY+gOb2sQSG
- Ed29DbbFKS1cdvGo2Z0WrWKUsMtt/3x4F4iZHh1bOBSvaWYCcGkLX+9uEvWYvE1gmD
- 67gAHe76tBuHwdntr3a3WmZVhVAX54RGv7oNlkmXQdFtX8YOEzqwmzBqh528/B3PIy
- TusZ6avI0MeD27LUNqPtiPkJoeDAoh7E0De4ufbIk3JCJd7B0eDWh5sFZ7TOhYmDf+
- TPcC768opQLXTz0SASkh8gmseOi/zTSJRkOqatQGo/bBjNTrKq9+HCg6KCAdCnKxzt
- SDucgmCDWqdEA==
+ s=k20201202; t=1761453001;
+ bh=sE2l5IJ2U14MFh/TQuB6IRZ4KW5SxAHQAG/NTdqe3cI=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=idGXWDGqpt4Ll/nYfljHBFe4SPKFCoXoGevTrT4bOSKy9ijEHbkuP79jqoxcOWbGO
+ LJVj2OILrcwFfu/7hpNkaULe8QhIR2MYJcu4s4m/zLr3uU02ZYeg9eMvV3BItHfTUZ
+ AEk4hzUfWSNIAfUTQpdTCuvAMIoxxdYe8H2QEo0ZTJyDiFZfWTOlqfOzRiLZB1ist6
+ M6yrSGx6dxKI+yIXkLn1L5xe4WQ7bAVc2ntTuVrGpuYU1UeuyF2Gsn9RqcHZ43koRS
+ 9bS9s/BOnzUuh8nYjsZuox6Ai1vfjhIThAyoc2cb6Vyi0qympHR0fknkSLzthejZ09
+ Ybe5Rvd7NHanQ==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: amd-gfx@lists.freedesktop.org
-Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH v5 0/5] Unwind failed suspend
-Date: Sat, 25 Oct 2025 23:29:35 -0500
-Message-ID: <20251026042942.549389-1-superm1@kernel.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Mario Limonciello <superm1@kernel.org>, lkml@antheas.dev
+Subject: [PATCH v5 1/5] drm/amdgpu: Drop PMFW RLC notifier from
+ amdgpu_device_suspend()
+Date: Sat, 25 Oct 2025 23:29:36 -0500
+Message-ID: <20251026042942.549389-2-superm1@kernel.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251026042942.549389-1-superm1@kernel.org>
+References: <20251026042942.549389-1-superm1@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -53,38 +57,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If a suspend fails the PM core doesn't clean it up, the device
-is just left in a bad state.  If this happens during memory pressure
-it could be a hung system from just trying to suspend.
+From: Alex Deucher <alexander.deucher@amd.com>
 
-For all phases of suspend that return an error code, add an unwind
-flow that will (try to) resume exactly the parts that have failed.
+For S3 on vangogh, PMFW needs to be notified before the
+driver powers down RLC.  This already happens in smu_disable_dpms()
+so drop the superfluous call in amdgpu_device_suspend().
 
-If this fails, then reset the GPU during complete() callback.
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Co-developed-by: Mario Limonciello (AMD) <superm1@kernel.org>
+Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
+---
+Cc: lkml@antheas.dev
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 ----
+ drivers/gpu/drm/amd/pm/amdgpu_dpm.c        | 18 ------------------
+ drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h    |  2 --
+ 3 files changed, 24 deletions(-)
 
-v5:
- * Take RLC patch from Alex's Van Gogh series, slight modifications
- * Unwind in middle of IP suspend too
- * Fix missing call to fix console
- * Cover issues with DPM_FLAG_SMART_SUSPEND
-
-Alex Deucher (1):
-  drm/amdgpu: Drop PMFW RLC notifier from amdgpu_device_suspend()
-
-Mario Limonciello (AMD) (3):
-  drm/amd: Reset the GPU if pmops failed
-  drm/amd: Add an unwind for failures in
-    amdgpu_device_ip_suspend_phase1()
-  drm/amd: Add an unwind for failures in
-    amdgpu_device_ip_suspend_phase2()
-  drm/amd: Unwind for failed device suspend
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 121 ++++++++++++++++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  11 ++
- drivers/gpu/drm/amd/pm/amdgpu_dpm.c        |  18 ---
- drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h    |   2 -
- 4 files changed, 117 insertions(+), 35 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index b8d91247f51a..f6850b86e96f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -5280,10 +5280,6 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
+ 	if (amdgpu_sriov_vf(adev))
+ 		amdgpu_virt_release_full_gpu(adev, false);
+ 
+-	r = amdgpu_dpm_notify_rlc_state(adev, false);
+-	if (r)
+-		return r;
+-
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+index 5d08dc3b7110..5c4d0eb198c4 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+@@ -195,24 +195,6 @@ int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
+ 	return ret;
+ }
+ 
+-int amdgpu_dpm_notify_rlc_state(struct amdgpu_device *adev, bool en)
+-{
+-	int ret = 0;
+-	const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
+-
+-	if (pp_funcs && pp_funcs->notify_rlc_state) {
+-		mutex_lock(&adev->pm.mutex);
+-
+-		ret = pp_funcs->notify_rlc_state(
+-				adev->powerplay.pp_handle,
+-				en);
+-
+-		mutex_unlock(&adev->pm.mutex);
+-	}
+-
+-	return ret;
+-}
+-
+ int amdgpu_dpm_is_baco_supported(struct amdgpu_device *adev)
+ {
+ 	const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+index 3bce74f8bb0a..c7ea29385682 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+@@ -424,8 +424,6 @@ int amdgpu_dpm_mode1_reset(struct amdgpu_device *adev);
+ int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
+ 			     enum pp_mp1_state mp1_state);
+ 
+-int amdgpu_dpm_notify_rlc_state(struct amdgpu_device *adev, bool en);
+-
+ int amdgpu_dpm_set_gfx_power_up_by_imu(struct amdgpu_device *adev);
+ 
+ int amdgpu_dpm_baco_exit(struct amdgpu_device *adev);
 -- 
 2.51.1
 
