@@ -2,49 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F73C0A25B
-	for <lists+amd-gfx@lfdr.de>; Sun, 26 Oct 2025 05:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A20C0A267
+	for <lists+amd-gfx@lfdr.de>; Sun, 26 Oct 2025 05:30:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA48E10E18A;
-	Sun, 26 Oct 2025 04:24:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF98010E1B5;
+	Sun, 26 Oct 2025 04:30:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ua+L8Agf";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BSm/2Xo5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0592710E18A
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Oct 2025 04:24:44 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0D3210E049
+ for <amd-gfx@lists.freedesktop.org>; Sun, 26 Oct 2025 04:30:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 5387843C6D;
- Sun, 26 Oct 2025 04:24:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6F66C4CEE7;
- Sun, 26 Oct 2025 04:24:43 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id E6AE06026F
+ for <amd-gfx@lists.freedesktop.org>; Sun, 26 Oct 2025 04:30:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A290C4CEE7;
+ Sun, 26 Oct 2025 04:29:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761452684;
- bh=dMPMRRoMJgccc7BS2ULEhV3/kgrJg53BMMGB3w7j5js=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=ua+L8Agf5hcpblDHmegCmONXhl2Y2fS66TM/va1Cjyww2CNYSCF2rsuHWF0Syy47s
- 2Pkl5Y9WGV6xWlKvYnPVO+9l1dWtk8YpFDs28QTKMHV21v0uN9mSnpxCBFTilcb6mk
- 6r5sIsY1mswD7BKaRQPQ4bKNPssN7TXYPPqARZyffLOt7JnRhjYBNiXRonXQnjc/su
- JGxD2LI/y9d1/rWz2ZdXQFmkYpuExY+A+hKNuR05FwvV3SFF/aO+mOJ6Nu53aCPM6H
- J3pdyYvx/EtmLuRqZsK/4gUfjE+DKgjxd+uwlYKhcmqvqRI3UKacqhSdYKTIlgMLjd
- 4FvZSVNRV4XDw==
-Message-ID: <2a9c8369-2fe6-45b3-84e3-b004bae74c47@kernel.org>
-Date: Sat, 25 Oct 2025 23:24:42 -0500
+ s=k20201202; t=1761453000;
+ bh=UoFLG8bNMjn4uj6/kPuTPYxOANwBfTzqwT+iZPywZmI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=BSm/2Xo5M+8xW5RItescrIGMU9ojMc3jC+58ujzH6FZm3nAfMHZ3XRjY+gOb2sQSG
+ Ed29DbbFKS1cdvGo2Z0WrWKUsMtt/3x4F4iZHh1bOBSvaWYCcGkLX+9uEvWYvE1gmD
+ 67gAHe76tBuHwdntr3a3WmZVhVAX54RGv7oNlkmXQdFtX8YOEzqwmzBqh528/B3PIy
+ TusZ6avI0MeD27LUNqPtiPkJoeDAoh7E0De4ufbIk3JCJd7B0eDWh5sFZ7TOhYmDf+
+ TPcC768opQLXTz0SASkh8gmseOi/zTSJRkOqatQGo/bBjNTrKq9+HCg6KCAdCnKxzt
+ SDucgmCDWqdEA==
+From: "Mario Limonciello (AMD)" <superm1@kernel.org>
+To: amd-gfx@lists.freedesktop.org
+Cc: "Mario Limonciello (AMD)" <superm1@kernel.org>
+Subject: [PATCH v5 0/5] Unwind failed suspend
+Date: Sat, 25 Oct 2025 23:29:35 -0500
+Message-ID: <20251026042942.549389-1-superm1@kernel.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amdgpu: move PMFW rlc notifier to where it's
- required
-To: Mario Limonciello <mario.limonciello@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: lkml@antheas.dev, bob.beckett@collabora.com
-References: <20251024170811.57760-1-alexander.deucher@amd.com>
- <c10ff333-d120-4ecf-94bf-7099feb48fed@amd.com>
-Content-Language: en-US
-From: Mario Limonciello <superm1@kernel.org>
-In-Reply-To: <c10ff333-d120-4ecf-94bf-7099feb48fed@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,104 +53,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+If a suspend fails the PM core doesn't clean it up, the device
+is just left in a bad state.  If this happens during memory pressure
+it could be a hung system from just trying to suspend.
 
+For all phases of suspend that return an error code, add an unwind
+flow that will (try to) resume exactly the parts that have failed.
 
-On 10/24/25 12:11 PM, Mario Limonciello wrote:
-> 
-> 
-> On 10/24/2025 12:08 PM, Alex Deucher wrote:
->> For S3 on vangogh, PMFW needs to be notified before the
->> driver powers down RLC.  Move this notification to
->> the rlc stop function so it will always get called bfore
->> stopping the RLC. The call in amdgpu_device_suspend()
->> seems to be superfluous so remove that as well.
->>
->> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> 
-> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
-> 
-> One nit below.
-> 
+If this fails, then reset the GPU during complete() callback.
 
-Antheas had feedback that this version didn't work on another thread.
-Also I noticed that amdgpu_dpm_notify_rlc_state() no longer was needed 
-after this change.
+v5:
+ * Take RLC patch from Alex's Van Gogh series, slight modifications
+ * Unwind in middle of IP suspend too
+ * Fix missing call to fix console
+ * Cover issues with DPM_FLAG_SMART_SUSPEND
 
-As my unwind series is on top of this I'm going to send an updated 
-unwind series that just takes the relevant chunk that we know works for now.
+Alex Deucher (1):
+  drm/amdgpu: Drop PMFW RLC notifier from amdgpu_device_suspend()
 
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 ----
->>   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c     | 12 +++++++++++-
->>   drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c  | 10 ----------
->>   3 files changed, 11 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/ 
->> drm/amd/amdgpu/amdgpu_device.c
->> index 5053c5f475ba9..78c0fc3a50ae8 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> @@ -5283,10 +5283,6 @@ int amdgpu_device_suspend(struct drm_device 
->> *dev, bool notify_clients)
->>       if (amdgpu_sriov_vf(adev))
->>           amdgpu_virt_release_full_gpu(adev, false);
->> -    r = amdgpu_dpm_notify_rlc_state(adev, false);
->> -    if (r)
->> -        return r;
->> -
->>       return 0;
->>   }
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/ 
->> amd/amdgpu/gfx_v10_0.c
->> index 39b8adf23a9fa..d64579f5fb1f8 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
->> @@ -5470,8 +5470,18 @@ static int gfx_v10_0_init_csb(struct 
->> amdgpu_device *adev)
->>   static void gfx_v10_0_rlc_stop(struct amdgpu_device *adev)
->>   {
->> -    u32 tmp = RREG32_SOC15(GC, 0, mmRLC_CNTL);
->> +    u32 tmp;
->> +    int r;
->> +
->> +    /* Notify SMU RLC is going to be off, stop RLC and SMU interaction.
->> +     * otherwise SMU will hang while interacting with RLC if RLC is 
->> halted
->> +     * this is a WA for Vangogh asic which fix the SMU hang issue.
->> +     */
->> +    r = amdgpu_dpm_notify_rlc_state(adev, false);
->> +    if (r)
->> +        dev_info(adev->dev, "failed to notify PMFW of RLC powerdown\n");
-> 
-> This should probably be dev_err().
-> 
->> +    tmp = RREG32_SOC15(GC, 0, mmRLC_CNTL);
->>       tmp = REG_SET_FIELD(tmp, RLC_CNTL, RLC_ENABLE_F32, 0);
->>       WREG32_SOC15(GC, 0, mmRLC_CNTL, tmp);
->>   }
->> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/ 
->> drm/amd/pm/swsmu/amdgpu_smu.c
->> index 4317da6f7c389..10d42267085b0 100644
->> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->> @@ -2072,16 +2072,6 @@ static int smu_disable_dpms(struct smu_context 
->> *smu)
->>           }
->>       }
->> -    /* Notify SMU RLC is going to be off, stop RLC and SMU interaction.
->> -     * otherwise SMU will hang while interacting with RLC if RLC is 
->> halted
->> -     * this is a WA for Vangogh asic which fix the SMU hang issue.
->> -     */
->> -    ret = smu_notify_rlc_state(smu, false);
->> -    if (ret) {
->> -        dev_err(adev->dev, "Fail to notify rlc status!\n");
->> -        return ret;
->> -    }
->> -
->>       if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(9, 4, 2) &&
->>           !((adev->flags & AMD_IS_APU) && adev->gfx.imu.funcs) &&
->>           !amdgpu_sriov_vf(adev) && adev->gfx.rlc.funcs->stop)
-> 
-> 
+Mario Limonciello (AMD) (3):
+  drm/amd: Reset the GPU if pmops failed
+  drm/amd: Add an unwind for failures in
+    amdgpu_device_ip_suspend_phase1()
+  drm/amd: Add an unwind for failures in
+    amdgpu_device_ip_suspend_phase2()
+  drm/amd: Unwind for failed device suspend
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 121 ++++++++++++++++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  11 ++
+ drivers/gpu/drm/amd/pm/amdgpu_dpm.c        |  18 ---
+ drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h    |   2 -
+ 4 files changed, 117 insertions(+), 35 deletions(-)
+
+-- 
+2.51.1
 
