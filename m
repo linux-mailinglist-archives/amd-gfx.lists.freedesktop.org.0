@@ -2,98 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5B6C1390F
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Oct 2025 09:38:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF55EC1391B
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Oct 2025 09:38:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C14610E0BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D873910E5BD;
 	Tue, 28 Oct 2025 08:38:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5JTx+DC";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="PsnPkIfR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C22410E48A;
- Mon, 27 Oct 2025 13:15:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761570905; x=1793106905;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0xbOnABFx4yaNxMOaQqBF3f8SvG8AUnBGKWAFQjol5Y=;
- b=C5JTx+DCTdTCa2yeeJcUt1jQLym1eIX0kfJLP19/e+qerhLUH+KrcJKM
- IxZRcQfBqwv+hdB5bioANFEjyqbYj4G3/BwX+8cxVwEGIaN2QuGKa76AO
- YZuGlENm9BAIDK8/d1CgjXgGxMD+65h6ukWnUA2u9WRkOxFcY0L5yxZe2
- FXfIxhg+5c80fkU2OVtmBKiN78G+gDR8qz9naJA7xsYUxNR1Ued9wPzKC
- An+rCoqZrSEI3PfTXDBxJIQVN5B/y4CB1P5HxbreNUa29qGJsme0Gb2Hu
- nV3b1YCmWvOzdANdeRRynWzdM4d4jCvzyu+BdTvZucq1u1hJ1FAryCjAx w==;
-X-CSE-ConnectionGUID: fM5Z0umSQk+Nl9UfXGMrpg==
-X-CSE-MsgGUID: IsFdC2YQQimhFWTDkRz5Mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73936330"
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="73936330"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 06:15:04 -0700
-X-CSE-ConnectionGUID: x3PgRH6oTZi6rfcuPXi6rQ==
-X-CSE-MsgGUID: Gms1rF0DRLWrbp92MMt7og==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="189078446"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com)
- ([10.245.244.31])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 06:14:54 -0700
-Received: from punajuuri.localdomain (unknown [192.168.240.130])
- by kekkonen.fi.intel.com (Postfix) with ESMTP id BCA5E121EF1;
- Mon, 27 Oct 2025 15:14:51 +0200 (EET)
-Received: from sailus by punajuuri.localdomain with local (Exim 4.98.2)
- (envelope-from <sakari.ailus@linux.intel.com>)
- id 1vDN3Y-00000001dzn-31Ja; Mon, 27 Oct 2025 15:14:40 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Kenneth Feng <kenneth.feng@amd.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Alex Hung <alex.hung@amd.com>, Antonio Quartulli <antonio@mandelbit.com>,
- Pratap Nirujogi <pratap.nirujogi@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Yang Wang <kevinyang.wang@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
- Jesse Zhang <jesse.zhang@amd.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@kernel.org>,
- Liao Yuanhong <liaoyuanhong@vivo.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, Prike Liang <Prike.Liang@amd.com>,
- Shashank Sharma <shashank.sharma@amd.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- Tao Zhou <tao.zhou1@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
- ganglxie <ganglxie@amd.com>, Xiang Liu <xiang.liu@amd.com>,
- Victor Skvortsov <victor.skvortsov@amd.com>, Ce Sun <cesun102@amd.com>,
- Dave Airlie <airlied@redhat.com>, Jani Nikula <jani.nikula@intel.com>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Imre Deak <imre.deak@intel.com>, Ben Skeggs <bskeggs@nvidia.com>,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/radeon: Remove redundant pm_runtime_mark_last_busy()
- calls
-Date: Mon, 27 Oct 2025 15:14:40 +0200
-Message-ID: <20251027131440.392052-3-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251027131440.392052-1-sakari.ailus@linux.intel.com>
-References: <20251027131440.392052-1-sakari.ailus@linux.intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 469C510E507;
+ Mon, 27 Oct 2025 16:58:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 0E3426035B;
+ Mon, 27 Oct 2025 16:58:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D3E5C4CEF1;
+ Mon, 27 Oct 2025 16:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1761584324;
+ bh=u/8LtKb/YZnTr0SdDWDpj3HXO1hrnkgpetw9i1zPxcs=;
+ h=Date:From:To:Subject:From;
+ b=PsnPkIfRXGQfwzNPMddGOxap3bFroka8vH7pZstmVC0R8MCrGjypFNyM0EHqQeq1B
+ bY0V7E0ibdQcGJ2N6pqoVS0EFBmQRvIn3wwtvZ7T//Jf0TamYbRAAE/k2+2VwK16if
+ A/JkYzptOebkQchA24VGtSwHMv2VFUH9aE5CaY8Y=
+Date: Mon, 27 Oct 2025 09:58:43 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Fw: [linux-next:master] BUILD REGRESSION
+ 8fec172c82c2b5f6f8e47ab837c1dc91ee3d1b87
+Message-Id: <20251027095843.1594c40cbcacbc3ebf8c575c@linux-foundation.org>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 28 Oct 2025 08:38:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -109,186 +52,244 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-pm_runtime_put_autosuspend(), pm_runtime_put_sync_autosuspend(),
-pm_runtime_autosuspend() and pm_request_autosuspend() now include a call
-to pm_runtime_mark_last_busy(). Remove the now-reduntant explicit call to
-pm_runtime_mark_last_busy().
+fyi, drivers/gpu/drm/amd/amdgpu has a 32-bit glitch.
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
----
- drivers/gpu/drm/radeon/radeon_acpi.c       |  1 -
- drivers/gpu/drm/radeon/radeon_connectors.c | 20 +++++---------------
- drivers/gpu/drm/radeon/radeon_display.c    |  2 --
- drivers/gpu/drm/radeon/radeon_drv.c        |  2 --
- drivers/gpu/drm/radeon/radeon_fbdev.c      |  2 --
- drivers/gpu/drm/radeon/radeon_kms.c        |  4 ----
- 6 files changed, 5 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_acpi.c b/drivers/gpu/drm/radeon/radeon_acpi.c
-index 22ce61bdfc06..08f8ba4fd148 100644
---- a/drivers/gpu/drm/radeon/radeon_acpi.c
-+++ b/drivers/gpu/drm/radeon/radeon_acpi.c
-@@ -408,7 +408,6 @@ static int radeon_atif_handler(struct radeon_device *rdev,
- 			pm_runtime_get_sync(rdev_to_drm(rdev)->dev);
- 			/* Just fire off a uevent and let userspace tell us what to do */
- 			drm_helper_hpd_irq_event(rdev_to_drm(rdev));
--			pm_runtime_mark_last_busy(rdev_to_drm(rdev)->dev);
- 			pm_runtime_put_autosuspend(rdev_to_drm(rdev)->dev);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
-index 9f6a3df951ba..012d8b2295b8 100644
---- a/drivers/gpu/drm/radeon/radeon_connectors.c
-+++ b/drivers/gpu/drm/radeon/radeon_connectors.c
-@@ -875,10 +875,8 @@ radeon_lvds_detect(struct drm_connector *connector, bool force)
- 
- 	radeon_connector_update_scratch_regs(connector, ret);
- 
--	if (!drm_kms_helper_is_poll_worker()) {
--		pm_runtime_mark_last_busy(connector->dev->dev);
-+	if (!drm_kms_helper_is_poll_worker())
- 		pm_runtime_put_autosuspend(connector->dev->dev);
--	}
- 
- 	return ret;
- }
-@@ -1066,10 +1064,8 @@ radeon_vga_detect(struct drm_connector *connector, bool force)
- 	radeon_connector_update_scratch_regs(connector, ret);
- 
- out:
--	if (!drm_kms_helper_is_poll_worker()) {
--		pm_runtime_mark_last_busy(connector->dev->dev);
-+	if (!drm_kms_helper_is_poll_worker())
- 		pm_runtime_put_autosuspend(connector->dev->dev);
--	}
- 
- 	return ret;
- }
-@@ -1154,10 +1150,8 @@ radeon_tv_detect(struct drm_connector *connector, bool force)
- 		ret = radeon_connector_analog_encoder_conflict_solve(connector, encoder, ret, false);
- 	radeon_connector_update_scratch_regs(connector, ret);
- 
--	if (!drm_kms_helper_is_poll_worker()) {
--		pm_runtime_mark_last_busy(connector->dev->dev);
-+	if (!drm_kms_helper_is_poll_worker())
- 		pm_runtime_put_autosuspend(connector->dev->dev);
--	}
- 
- 	return ret;
- }
-@@ -1402,10 +1396,8 @@ radeon_dvi_detect(struct drm_connector *connector, bool force)
- 	}
- 
- exit:
--	if (!drm_kms_helper_is_poll_worker()) {
--		pm_runtime_mark_last_busy(connector->dev->dev);
-+	if (!drm_kms_helper_is_poll_worker())
- 		pm_runtime_put_autosuspend(connector->dev->dev);
--	}
- 
- 	return ret;
- }
-@@ -1714,10 +1706,8 @@ radeon_dp_detect(struct drm_connector *connector, bool force)
- 	}
- 
- out:
--	if (!drm_kms_helper_is_poll_worker()) {
--		pm_runtime_mark_last_busy(connector->dev->dev);
-+	if (!drm_kms_helper_is_poll_worker())
- 		pm_runtime_put_autosuspend(connector->dev->dev);
--	}
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index 351b9dfcdad8..35fb99bcd9a7 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -644,8 +644,6 @@ radeon_crtc_set_config(struct drm_mode_set *set,
- 		if (crtc->enabled)
- 			active = true;
- 
--	pm_runtime_mark_last_busy(dev->dev);
--
- 	rdev = dev->dev_private;
- 	/* if we have active crtcs and we don't have a power ref,
- 	   take the current one */
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index 88e821d67af7..d0af0cef178a 100644
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -477,7 +477,6 @@ static int radeon_pmops_runtime_idle(struct device *dev)
- 		}
- 	}
- 
--	pm_runtime_mark_last_busy(dev);
- 	pm_runtime_autosuspend(dev);
- 	/* we don't want the main rpm_idle to call suspend - we want to autosuspend */
- 	return 1;
-@@ -499,7 +498,6 @@ long radeon_drm_ioctl(struct file *filp,
- 
- 	ret = drm_ioctl(filp, cmd, arg);
- 
--	pm_runtime_mark_last_busy(dev->dev);
- 	pm_runtime_put_autosuspend(dev->dev);
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
-index 4df6c9167bf0..c2cfe2d7915f 100644
---- a/drivers/gpu/drm/radeon/radeon_fbdev.c
-+++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
-@@ -154,7 +154,6 @@ static int radeon_fbdev_fb_open(struct fb_info *info, int user)
- 	return 0;
- 
- err_pm_runtime_mark_last_busy:
--	pm_runtime_mark_last_busy(rdev_to_drm(rdev)->dev);
- 	pm_runtime_put_autosuspend(rdev_to_drm(rdev)->dev);
- 	return ret;
- }
-@@ -164,7 +163,6 @@ static int radeon_fbdev_fb_release(struct fb_info *info, int user)
- 	struct drm_fb_helper *fb_helper = info->par;
- 	struct radeon_device *rdev = fb_helper->dev->dev_private;
- 
--	pm_runtime_mark_last_busy(rdev_to_drm(rdev)->dev);
- 	pm_runtime_put_autosuspend(rdev_to_drm(rdev)->dev);
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
-index 645e33bf7947..3144890b6007 100644
---- a/drivers/gpu/drm/radeon/radeon_kms.c
-+++ b/drivers/gpu/drm/radeon/radeon_kms.c
-@@ -170,7 +170,6 @@ int radeon_driver_load_kms(struct drm_device *dev, unsigned long flags)
- 		pm_runtime_set_autosuspend_delay(dev->dev, 5000);
- 		pm_runtime_set_active(dev->dev);
- 		pm_runtime_allow(dev->dev);
--		pm_runtime_mark_last_busy(dev->dev);
- 		pm_runtime_put_autosuspend(dev->dev);
- 	}
- 
-@@ -677,7 +676,6 @@ int radeon_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
- 		file_priv->driver_priv = fpriv;
- 	}
- 
--	pm_runtime_mark_last_busy(dev->dev);
- 	pm_runtime_put_autosuspend(dev->dev);
- 	return 0;
- 
-@@ -687,7 +685,6 @@ int radeon_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
- 	kfree(fpriv);
- 
- err_suspend:
--	pm_runtime_mark_last_busy(dev->dev);
- 	pm_runtime_put_autosuspend(dev->dev);
- 	return r;
- }
-@@ -737,7 +734,6 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
- 		kfree(fpriv);
- 		file_priv->driver_priv = NULL;
- 	}
--	pm_runtime_mark_last_busy(dev->dev);
- 	pm_runtime_put_autosuspend(dev->dev);
- }
- 
--- 
-2.47.3
+Begin forwarded message:
 
+Date: Tue, 28 Oct 2025 00:22:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Linux Memory Management List <linux-mm@kvack.org>
+Subject: [linux-next:master] BUILD REGRESSION 8fec172c82c2b5f6f8e47ab837c1dc91ee3d1b87
+
+
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 8fec172c82c2b5f6f8e47ab837c1dc91ee3d1b87  Add linux-next specific files for 20251027
+
+Error/Warning (recently discovered and may have been fixed):
+
+    https://lore.kernel.org/oe-kbuild-all/202510211913.5a4SfQab-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild-all/202510230222.gjGA0A40-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild-all/202510230749.0FuAVuUT-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild-all/202510271906.1346pSIO-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild-all/202510272037.nf7xzQxk-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510210011.tanwPBXz-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510222101.dxkptxL9-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510222308.6LSfjKDk-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510241912.s8uQLYlp-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510242155.afchO66g-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510242250.ZzaqW0pV-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510242322.aWclvr7e-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510250132.FdNONf4v-lkp@intel.com
+    https://lore.kernel.org/oe-kbuild/202510271426.wQOlaeao-lkp@intel.com
+
+    ERROR: modpost: "__aeabi_uldivmod" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+    ERROR: modpost: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+    include/linux/device/devres.h:59:(.text.unlikely+0xa3): undefined reference to `codec_info_list'
+    ld: sound/soc/sof/intel/hda.c:1172:(.text.unlikely+0xca): undefined reference to `asoc_sdw_get_codec_info_list_count'
+    ld: sound/soc/sof/intel/hda.c:1184:(.text.unlikely+0xf1): undefined reference to `codec_info_list'
+    sound/soc/sof/intel/hda.c:1179:(.text.unlikely+0x95): undefined reference to `codec_info_list'
+
+Unverified Error/Warning (likely false positive, kindly check if interested):
+
+    drivers/gpu/drm/amd/amdgpu/../ras/rascore/ras_core.c:512 ras_core_get_utc_second_timestamp() error: we previously assumed 'ras_core' could be null (see line 508)
+    drivers/gpu/drm/amd/amdgpu/../ras/rascore/ras_core.c:531 ras_core_ras_interrupt_detected() error: we previously assumed 'ras_core' could be null (see line 527)
+    drivers/gpu/drm/amd/amdgpu/../ras/rascore/ras_umc.c:210 ras_umc_log_pending_bad_bank() warn: variable dereferenced before check 'ecc_node' (see line 208)
+    drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1002 amdgpu_cs_parser_bos() warn: inconsistent returns '&p->bo_list->bo_list_mutex'.
+    drivers/gpu/drm/vkms/vkms_configfs.c:223 make_crtc_group() error: dereferencing freed memory 'crtc' (line 222)
+    drivers/gpu/drm/vkms/vkms_configfs.c:377 make_plane_group() error: dereferencing freed memory 'plane' (line 376)
+    drivers/gpu/drm/vkms/vkms_configfs.c:491 make_encoder_group() error: dereferencing freed memory 'encoder' (line 490)
+    drivers/gpu/drm/vkms/vkms_configfs.c:656 make_connector_group() error: dereferencing freed memory 'connector' (line 655)
+    drivers/gpu/drm/vkms/vkms_configfs.c:770 make_device_group() error: dereferencing freed memory 'dev' (line 769)
+    drivers/gpu/drm/xe/xe_pmu.c:517 set_supported_events() error: uninitialized symbol 'gt'.
+    drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c:684 stmmac_mdio_register() error: buffer overflow 'new_bus->irq' 32 <= 32
+    mm/userfaultfd.c:858 mfill_atomic() warn: inconsistent returns '&ctx->map_changing_lock'.
+
+Error/Warning ids grouped by kconfigs:
+
+recent_errors
+|-- arm-randconfig-002-20251027
+|   `-- ERROR:__aeabi_uldivmod-drivers-gpu-drm-amd-amdgpu-amdgpu.ko-undefined
+|-- i386-randconfig-015-20251027
+|   |-- include-linux-device-devres.h:(.text.unlikely):undefined-reference-to-codec_info_list
+|   |-- ld:sound-soc-sof-intel-hda.c:(.text.unlikely):undefined-reference-to-asoc_sdw_get_codec_info_list_count
+|   |-- ld:sound-soc-sof-intel-hda.c:(.text.unlikely):undefined-reference-to-codec_info_list
+|   `-- sound-soc-sof-intel-hda.c:(.text.unlikely):undefined-reference-to-codec_info_list
+|-- i386-randconfig-141-20251027
+|   |-- drivers-gpu-drm-amd-amdgpu-..-ras-rascore-ras_core.c-ras_core_get_utc_second_timestamp()-error:we-previously-assumed-ras_core-could-be-null-(see-line-)
+|   |-- drivers-gpu-drm-amd-amdgpu-..-ras-rascore-ras_core.c-ras_core_ras_interrupt_detected()-error:we-previously-assumed-ras_core-could-be-null-(see-line-)
+|   |-- drivers-gpu-drm-amd-amdgpu-..-ras-rascore-ras_umc.c-ras_umc_log_pending_bad_bank()-warn:variable-dereferenced-before-check-ecc_node-(see-line-)
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_cs.c-amdgpu_cs_parser_bos()-warn:inconsistent-returns-p-bo_list-bo_list_mutex-.
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_virt.c-amdgpu_virt_init_critical_region()-warn:unsigned-init_hdr_offset-is-never-less-than-zero.
+|   |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_connector_group()-error:dereferencing-freed-memory-connector-(line-)
+|   |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_crtc_group()-error:dereferencing-freed-memory-crtc-(line-)
+|   |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_device_group()-error:dereferencing-freed-memory-dev-(line-)
+|   |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_encoder_group()-error:dereferencing-freed-memory-encoder-(line-)
+|   |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_plane_group()-error:dereferencing-freed-memory-plane-(line-)
+|   |-- drivers-gpu-drm-xe-xe_pmu.c-set_supported_events()-error:uninitialized-symbol-gt-.
+|   `-- mm-userfaultfd.c-mfill_atomic()-warn:inconsistent-returns-ctx-map_changing_lock-.
+|-- microblaze-allmodconfig
+|   `-- ERROR:__udivdi3-drivers-gpu-drm-amd-amdgpu-amdgpu.ko-undefined
+|-- parisc-allmodconfig
+|   `-- ERROR:__udivdi3-drivers-gpu-drm-amd-amdgpu-amdgpu.ko-undefined
+|-- um-randconfig-001-20251027
+|   `-- clang:error:linker-command-failed-with-exit-code-(use-v-to-see-invocation)
+|-- um-randconfig-r073-20251025
+|   `-- drivers-net-ethernet-stmicro-stmmac-stmmac_mdio.c-stmmac_mdio_register()-error:buffer-overflow-new_bus-irq
+`-- x86_64-randconfig-161-20251027
+    |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_connector_group()-error:dereferencing-freed-memory-connector-(line-)
+    |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_crtc_group()-error:dereferencing-freed-memory-crtc-(line-)
+    |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_device_group()-error:dereferencing-freed-memory-dev-(line-)
+    |-- drivers-gpu-drm-vkms-vkms_configfs.c-make_encoder_group()-error:dereferencing-freed-memory-encoder-(line-)
+    `-- drivers-gpu-drm-vkms-vkms_configfs.c-make_plane_group()-error:dereferencing-freed-memory-plane-(line-)
+
+elapsed time: 728m
+
+configs tested: 139
+configs skipped: 4
+
+tested configs:
+alpha                             allnoconfig    gcc-15.1.0
+alpha                            allyesconfig    gcc-15.1.0
+alpha                               defconfig    gcc-15.1.0
+arc                              allmodconfig    gcc-15.1.0
+arc                               allnoconfig    gcc-15.1.0
+arc                              allyesconfig    gcc-15.1.0
+arc                                 defconfig    gcc-15.1.0
+arc                   randconfig-001-20251027    gcc-8.5.0
+arc                   randconfig-002-20251027    gcc-8.5.0
+arm                              allmodconfig    gcc-15.1.0
+arm                               allnoconfig    clang-22
+arm                              allyesconfig    gcc-15.1.0
+arm                                 defconfig    clang-22
+arm                   randconfig-001-20251027    clang-22
+arm                   randconfig-002-20251027    clang-22
+arm                   randconfig-003-20251027    gcc-8.5.0
+arm                   randconfig-004-20251027    clang-22
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    gcc-15.1.0
+arm64                               defconfig    gcc-15.1.0
+arm64                 randconfig-001-20251027    clang-22
+arm64                 randconfig-002-20251027    gcc-12.5.0
+arm64                 randconfig-003-20251027    gcc-9.5.0
+arm64                 randconfig-004-20251027    clang-22
+csky                              allnoconfig    gcc-15.1.0
+csky                                defconfig    gcc-15.1.0
+csky                  randconfig-001-20251027    gcc-14.3.0
+csky                  randconfig-002-20251027    gcc-13.4.0
+hexagon                          allmodconfig    clang-17
+hexagon                           allnoconfig    clang-22
+hexagon                          allyesconfig    clang-22
+hexagon                             defconfig    clang-22
+hexagon               randconfig-001-20251027    clang-22
+hexagon               randconfig-002-20251027    clang-17
+i386                             allmodconfig    gcc-14
+i386                              allnoconfig    gcc-14
+i386                             allyesconfig    gcc-14
+i386        buildonly-randconfig-001-20251027    gcc-13
+i386        buildonly-randconfig-002-20251027    clang-20
+i386        buildonly-randconfig-003-20251027    clang-20
+i386        buildonly-randconfig-004-20251027    gcc-14
+i386        buildonly-randconfig-005-20251027    clang-20
+i386        buildonly-randconfig-006-20251027    clang-20
+i386                                defconfig    clang-20
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-22
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20251027    gcc-15.1.0
+loongarch             randconfig-002-20251027    gcc-13.4.0
+m68k                             allmodconfig    gcc-15.1.0
+m68k                              allnoconfig    gcc-15.1.0
+m68k                             allyesconfig    gcc-15.1.0
+m68k                                defconfig    gcc-15.1.0
+m68k                          hp300_defconfig    gcc-15.1.0
+m68k                            mac_defconfig    gcc-15.1.0
+microblaze                       allmodconfig    gcc-15.1.0
+microblaze                        allnoconfig    gcc-15.1.0
+microblaze                       allyesconfig    gcc-15.1.0
+microblaze                          defconfig    gcc-15.1.0
+mips                              allnoconfig    gcc-15.1.0
+mips                         db1xxx_defconfig    clang-22
+nios2                             allnoconfig    gcc-11.5.0
+nios2                               defconfig    gcc-11.5.0
+nios2                 randconfig-001-20251027    gcc-8.5.0
+nios2                 randconfig-002-20251027    gcc-8.5.0
+openrisc                          allnoconfig    gcc-15.1.0
+openrisc                         allyesconfig    gcc-15.1.0
+openrisc                            defconfig    gcc-15.1.0
+parisc                           allmodconfig    gcc-15.1.0
+parisc                            allnoconfig    gcc-15.1.0
+parisc                           allyesconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                randconfig-001-20251027    gcc-8.5.0
+parisc                randconfig-002-20251027    gcc-12.5.0
+parisc64                            defconfig    gcc-15.1.0
+powerpc                          allmodconfig    gcc-15.1.0
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc                          allyesconfig    clang-22
+powerpc                      pcm030_defconfig    clang-22
+powerpc               randconfig-001-20251027    clang-22
+powerpc               randconfig-002-20251027    clang-22
+powerpc               randconfig-003-20251027    gcc-8.5.0
+powerpc64             randconfig-001-20251027    gcc-8.5.0
+powerpc64             randconfig-002-20251027    gcc-10.5.0
+powerpc64             randconfig-003-20251027    gcc-10.5.0
+riscv                            allmodconfig    clang-22
+riscv                             allnoconfig    gcc-15.1.0
+riscv                            allyesconfig    clang-16
+riscv                               defconfig    clang-22
+riscv                 randconfig-001-20251027    gcc-13.4.0
+riscv                 randconfig-002-20251027    clang-22
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-22
+s390                             allyesconfig    gcc-15.1.0
+s390                                defconfig    clang-22
+s390                  randconfig-001-20251027    clang-22
+s390                  randconfig-002-20251027    gcc-8.5.0
+sh                               allmodconfig    gcc-15.1.0
+sh                                allnoconfig    gcc-15.1.0
+sh                               allyesconfig    gcc-15.1.0
+sh                                  defconfig    gcc-15.1.0
+sh                               j2_defconfig    gcc-15.1.0
+sh                    randconfig-001-20251027    gcc-12.5.0
+sh                    randconfig-002-20251027    gcc-15.1.0
+sh                        sh7757lcr_defconfig    gcc-15.1.0
+sh                            shmin_defconfig    gcc-15.1.0
+sparc                            allmodconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc                 randconfig-001-20251027    gcc-12.5.0
+sparc                 randconfig-002-20251027    gcc-8.5.0
+sparc64                             defconfig    clang-20
+sparc64               randconfig-001-20251027    gcc-14.3.0
+sparc64               randconfig-002-20251027    gcc-15.1.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-22
+um                               allyesconfig    gcc-14
+um                                  defconfig    clang-22
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20251027    clang-22
+um                    randconfig-002-20251027    clang-22
+um                           x86_64_defconfig    clang-22
+x86_64                            allnoconfig    clang-20
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20251027    gcc-14
+x86_64      buildonly-randconfig-002-20251027    gcc-14
+x86_64      buildonly-randconfig-003-20251027    gcc-14
+x86_64      buildonly-randconfig-004-20251027    gcc-14
+x86_64      buildonly-randconfig-005-20251027    gcc-14
+x86_64      buildonly-randconfig-006-20251027    gcc-14
+x86_64                              defconfig    gcc-14
+x86_64                                  kexec    clang-20
+x86_64                               rhel-9.4    gcc-14
+x86_64                          rhel-9.4-func    gcc-14
+x86_64                    rhel-9.4-kselftests    gcc-14
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    gcc-15.1.0
+xtensa                randconfig-001-20251027    gcc-12.5.0
+xtensa                randconfig-002-20251027    gcc-10.5.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
