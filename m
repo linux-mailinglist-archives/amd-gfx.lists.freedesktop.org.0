@@ -2,76 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2797C171F4
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Oct 2025 23:06:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A516C171FD
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Oct 2025 23:06:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B11910E67E;
-	Tue, 28 Oct 2025 22:06:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFC6810E680;
+	Tue, 28 Oct 2025 22:06:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="P/3XlpHQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="exYSeZFE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
- [209.85.208.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4CF810E67E
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 22:06:42 +0000 (UTC)
-Received: by mail-ed1-f43.google.com with SMTP id
- 4fb4d7f45d1cf-63c0c9a408aso10585722a12.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 15:06:42 -0700 (PDT)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
+ [209.85.208.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10C6310E67E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 22:06:45 +0000 (UTC)
+Received: by mail-ed1-f47.google.com with SMTP id
+ 4fb4d7f45d1cf-63e076e24f2so4387239a12.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 15:06:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761689201; x=1762294001; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1761689203; x=1762294003; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=jKTOpVQOxdvg7bEaoHloWZG5m3QGYtmC8Ais7CXrFgU=;
- b=P/3XlpHQZj2nd/eNp7m3ggF0phhwmu3/mS5vBOQdq5l+qlFKXBrKm4RbIeYc+w7/P4
- cnrauxumIhu4qjjbIk+6wYGw7N9cEuYmVAGNiiDFe0immumRvzhGhNCGi2q5tGh9dcWj
- V9bnUyb7fozkR+LKtSJoJA84MNc1lB8MIPNV6GKM5n+KvZ8dhGS5iTlniVhEuHMEGRh9
- 9b6zQl/lrRCMEOyb4GP+CJuYPhzS7CJogljEmV7h0Ybzs8ZlsT9kFq4EYZ9ee0pP5WvY
- 9kg4iIzvmTGLsU3jMg8D3LnqVJwMokSLXMuY9JRyQTGXU9Fdfd75/Ni710icgKzOgvg7
- Tg9Q==
+ :reply-to; bh=tGrJ6j/w9JB4KdsKNkwkhZPKRA7XysrPZ/9yFKGiBzk=;
+ b=exYSeZFE5ZLymNWxYqxGx1mmgE/Pa7o72e8V75fOuAAztXQQGaO4Yy49ArttzuvDh8
+ Y+LyXy6z30hWpcqX5YlRmeL+23jkfY2fuhqOZ5d3NfrEMLiarYi6w2dlpw2yhPbEWxK8
+ EcSCYqaHaZich9+xU217J/GJBsLx9qKnVz/p1seVhoKLaJpL9s1xOkfRqdJvimEU+jxM
+ H12/fwCUI0y2toXkWRPRtkH/j2fQzaXkQQ6b7PQEEoQacol6y8kyE5X3npdWz7HnSjXx
+ soEKaPfXc/0/IqL6dIzK0G/J3M+A2/ZvXZN1VAESwpyaWfUepc3wY7PF0uyvqlQfDaEB
+ 7lvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761689201; x=1762294001;
+ d=1e100.net; s=20230601; t=1761689203; x=1762294003;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=jKTOpVQOxdvg7bEaoHloWZG5m3QGYtmC8Ais7CXrFgU=;
- b=hJoV/SeDt8RdklMSSWgU3AGnT3ftbt6v/K34EbU84u9Ifsjw2JyWXLkX7Prvy38U7t
- fxOBlkiLvCwI5f6m9M6s8s9E6Zhh06CWR9LQdm2iW0WTFDdnbUvioqtdiW7YI5ikB0LG
- KlzeBd8kuuCjZIeiqP4zbSP62VZxWRb2fJaLq8INzQILhXxlnnH7X0RDmOU7HBcWdSHz
- 4Xe4wRJpjIzjmRbsl9Y4MqG50JMLpEW2sDN573tZyEcuad8YYWBKFjkdqydeVU0+5mFV
- Rzcz/Pc2B2Quhy2SSwiDaZ67zUCYJZnhcmOOGHeho0p24OhGeD3SzcymNVaP9ifXELON
- BZ5A==
-X-Gm-Message-State: AOJu0YzYfzkBa/t9QE937O/7QUYLWxYIdc0Srr5jxS3ac2cGIb53Fxb8
- 4gxEu130ifDi/OeQFnnrU7GVpq6Qnd96xWyqDe0LWbTY2uCHiEtB9QD3HPFPJA==
-X-Gm-Gg: ASbGncuS20eBpqLHpenmUBLzyDTi98ygOSnrLkiTd5q1ZZyhBicX7V42OsmqT5YKTav
- eeoxo40iFGFNTcK9mrCxqOAKashMqbigCUxt3Sd7QOQIPrqYmLRNT4RUVuvk0477WKGbc81+Oue
- J6SojozHRctD6Soq+j9wJfjxBwcTOrQ5HuoKwNHB2jwczkNuAT+Yy/Eqk79ANl50LLC2axWV1zS
- Yz4MzHVqIQueBZgwz4rWscFW6gO1L1M5pG4h0qor89utOt/ETXTR3aDIEkayOYMpZgb8AG43/4M
- Cm59THwaboc/moACtDsJlII9JbzZoQyNtKmCsOn6Cmem+db8bKt/lux9V6WsgRZ59rmmuNrjNUu
- ibABQAo1WY5i+JzA3VidZj0Jquax5fuTyMQL8H/kKh99BncytWYbF1ZEqbupBBMGswjt2tCiFGn
- 05kqWXmaI1DQjh5CC501ZTgU8flf/N961NnwOvlsJp6tSN5uz01lUEfGdpOJXlZUTnn6v3N/xBv
- 4RPQJAP
-X-Google-Smtp-Source: AGHT+IGvUdstdBL1N35MmQHV81UEfCTM2v+xNpgKO60x0V3nTDLyTfE1iwzavzhgJ+ZfdnPI1Epskg==
-X-Received: by 2002:a05:6402:50d0:b0:638:74dc:cf78 with SMTP id
- 4fb4d7f45d1cf-64044380bd9mr576820a12.34.1761689200968; 
- Tue, 28 Oct 2025 15:06:40 -0700 (PDT)
+ bh=tGrJ6j/w9JB4KdsKNkwkhZPKRA7XysrPZ/9yFKGiBzk=;
+ b=fKElpoHCL2u6WSrDNsKyXAmPTd4gj+625K/vuoPdOZTIcpkthrx8KQEgor6Q3Hh+9I
+ 0JEniiCk+egVK6NEC9yKkE0YwtQeN42vdN13MaAaf+y9qLwrzuNbsQlwx3EFEUO1CpjE
+ dq9oWPMXaBUCkyvLT1EbRwjGOlesJ7qMCQwckGHKUZLDbKjuChKpXRD1pb0O49Cno/R5
+ +LQ6mrVw2LffL12bRSqtq6hbiS2oFZ6k0KM6q2GcaKhAlGio3Jb5GHj8vqnMy/8lnHuQ
+ zXpx2kn5F9XZiRP/k6bfSLhoNCOHlP621WU2h7thH6bxtt6tLLjVWFxa5/ROJ2m+sEG6
+ t3Lg==
+X-Gm-Message-State: AOJu0YwZM5F+a4oucbBIM76NnzSzB68zSXu6xfUlUgbKC7v5ZK4wmEjE
+ p+f36JQfQURlSPTlNUp5sjc/LkI9aHtALAnG2V9vCgRjaTNeEmC6LtKgR3aTMw==
+X-Gm-Gg: ASbGncuOqYzobkTqRezH5hTsajaKKEls9pcyj0mngIPZPO3vFTM14a0D1MkC+OUdvlW
+ 9igHz4hE0eWqlWkH3QsZQ6taZMgQxtAdjuy6weeXQYmMpvqTuaqTAKBIbY1jht8qXz3RWJSxLv2
+ QCTBbi/8JyVTRyEl452+YxmWaG85W1FzKoqhd7uzSI4fgBcJtrlQAw8gZTr0nubTD0nBsnzGXMI
+ TppPPHqdjSR5Jf9ojfhWbqNc8hgsziZGlKCpgQGHPoDWbK7Ed/4VTrg+TvGv6ywMB4tvIMRuGlm
+ oTQG2nDK0seP0gDBSi2McsT5tJWjK9xC3dHcirtpKZhn+w9SNrXJABIabiApSfuCQXA8e+0aZch
+ 8wkO4jq0GKTnZPQgt9JXFWF4AozU0zG3c+8Ce3CmpM1LqJmjFVNDiyJR2D2NiO5LC/HnSpI4eJw
+ XMRdMl0Qi9HfCsgiEY0N5b1Gm7VW9LyMPl1Gzjtcq1r4I/fC9Ms/fc1yNBFNAx2eYtIWTsdOcrH
+ aCoBuJh
+X-Google-Smtp-Source: AGHT+IFQo8/UxIbAqBj2qJOHO651iCe8TqtScgdAFUiRChXNkuMdl/sk46eBA9wfxgj5eaRdYgxDag==
+X-Received: by 2002:a05:6402:350e:b0:63a:35c:6ebc with SMTP id
+ 4fb4d7f45d1cf-64044251725mr488401a12.23.1761689203454; 
+ Tue, 28 Oct 2025 15:06:43 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4E24CBF70057E8101A3AD09709.dsl.pool.telekom.hu.
  [2001:4c4e:24cb:f700:57e8:101a:3ad0:9709])
  by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-640342e5acesm1881182a12.28.2025.10.28.15.06.40
+ 4fb4d7f45d1cf-640342e5acesm1881182a12.28.2025.10.28.15.06.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Oct 2025 15:06:40 -0700 (PDT)
+ Tue, 28 Oct 2025 15:06:42 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
  Alexandre Demers <alexandre.f.demers@gmail.com>,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH 04/14] drm/amdgpu/gart: Add helper to bind VRAM BO
-Date: Tue, 28 Oct 2025 23:06:18 +0100
-Message-ID: <20251028220628.8371-5-timur.kristof@gmail.com>
+Subject: [PATCH 05/14] drm/amdgpu/vce: Clear VCPU BO before copying firmware
+ to it
+Date: Tue, 28 Oct 2025 23:06:19 +0100
+Message-ID: <20251028220628.8371-6-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251028220628.8371-1-timur.kristof@gmail.com>
 References: <20251028220628.8371-1-timur.kristof@gmail.com>
@@ -92,85 +93,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Binds a BO that is allocated in VRAM to the GART page table.
+The VCPU BO doesn't only contain the VCE firmware but also other
+ranges that the VCE uses for its stack and data. Let's initialize
+this to zero to avoid having garbage in the VCPU BO.
 
-Useful when a kernel BO is located in VRAM but
-needs to be accessed from the GART address space,
-for example to give a kernel BO a 32-bit address
-when GART is placed in LOW address space.
-
-Co-developed-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Christian König <christian.koenig@amd.com>
+Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c | 41 ++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h |  2 ++
- 2 files changed, 43 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-index 83f3b94ed975..19b5e72a6a26 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-@@ -390,6 +390,47 @@ void amdgpu_gart_bind(struct amdgpu_device *adev, uint64_t offset,
- 	amdgpu_gart_map(adev, offset, pages, dma_addr, flags, adev->gart.ptr);
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+index b9060bcd4806..eaa06dbef5c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+@@ -310,6 +310,7 @@ int amdgpu_vce_resume(struct amdgpu_device *adev)
+ 	offset = le32_to_cpu(hdr->ucode_array_offset_bytes);
  
-+/**
-+ * amdgpu_gart_bind - bind VRAM BO into the GART page table
-+ *
-+ * @adev: amdgpu_device pointer
-+ * @offset: offset into the GPU's gart aperture
-+ * @bo: the BO whose pages should be mapped
-+ * @flags: page table entry flags
-+ *
-+ * Binds a BO that is allocated in VRAM to the GART page table
-+ * (all ASICs).
-+ * Useful when a kernel BO is located in VRAM but
-+ * needs to be accessed from the GART address space,
-+ * for example to give a kernel BO a 32-bit address
-+ * when GART is placed in LOW address space.
-+ */
-+void amdgpu_gart_bind_vram_bo(struct amdgpu_device *adev, uint64_t offset,
-+		     struct amdgpu_bo *bo, uint64_t flags)
-+{
-+	u64 pa, bo_size;
-+	u32 num_pages, start_page, i, idx;
-+
-+	if (!adev->gart.ptr)
-+		return;
-+
-+	if (!drm_dev_enter(adev_to_drm(adev), &idx))
-+		return;
-+
-+	pa = amdgpu_gmc_vram_pa(adev, bo);
-+	bo_size = amdgpu_bo_size(bo);
-+	num_pages = ALIGN(bo_size, AMDGPU_GPU_PAGE_SIZE) / AMDGPU_GPU_PAGE_SIZE;
-+	start_page = offset / AMDGPU_GPU_PAGE_SIZE;
-+
-+	for (i = 0; i < num_pages; ++i) {
-+		amdgpu_gmc_set_pte_pde(adev, adev->gart.ptr,
-+			start_page + i, pa + AMDGPU_GPU_PAGE_SIZE * i, flags);
-+	}
-+
-+	amdgpu_gart_invalidate_tlb(adev);
-+	drm_dev_exit(idx);
-+}
-+
- /**
-  * amdgpu_gart_invalidate_tlb - invalidate gart TLB
-  *
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
-index 7cc980bf4725..756548d0b520 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
-@@ -64,5 +64,7 @@ void amdgpu_gart_map(struct amdgpu_device *adev, uint64_t offset,
- 		     void *dst);
- void amdgpu_gart_bind(struct amdgpu_device *adev, uint64_t offset,
- 		      int pages, dma_addr_t *dma_addr, uint64_t flags);
-+void amdgpu_gart_bind_vram_bo(struct amdgpu_device *adev, uint64_t offset,
-+		     struct amdgpu_bo *bo, uint64_t flags);
- void amdgpu_gart_invalidate_tlb(struct amdgpu_device *adev);
- #endif
+ 	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
++		memset32(cpu_addr, 0, amdgpu_bo_size(adev->vce.vcpu_bo) / 4);
+ 		memcpy_toio(cpu_addr, adev->vce.fw->data + offset,
+ 			    adev->vce.fw->size - offset);
+ 		drm_dev_exit(idx);
 -- 
 2.51.0
 
