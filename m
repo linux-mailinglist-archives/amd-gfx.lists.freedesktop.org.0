@@ -2,76 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97AFBC17206
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Oct 2025 23:06:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47D83C1720C
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Oct 2025 23:06:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AEAE10E676;
-	Tue, 28 Oct 2025 22:06:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C83EB10E683;
+	Tue, 28 Oct 2025 22:06:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JUq0kzU/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SmiO/jCP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
- [209.85.208.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD03D10E683
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 22:06:50 +0000 (UTC)
-Received: by mail-ed1-f53.google.com with SMTP id
- 4fb4d7f45d1cf-63c2d72581fso9511998a12.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 15:06:50 -0700 (PDT)
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2BE010E676
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 22:06:51 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-6399328ff1fso11023711a12.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 15:06:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761689209; x=1762294009; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1761689210; x=1762294010; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=ywu9SCF+ZuSyHtfSGdOBnT1PjyHsW1z4PudyLZ+Y+LM=;
- b=JUq0kzU/zx46SNYaOBMoPRRbKLWfheJAN6XULEHSHCpZc8iaGwH3hOVFFSMMJiJ8T5
- 3J7GJMZXQcCVFaJUb/VE8TcXeEF0V1xohYK7LLN4lHPmtTssOoFVv1GKGWNHKr0UJrmO
- tttf7zSIsaKvkHUrvLRqXCrlM8wpMvtL0Qy+YabsortwJZ1pSMLe30rZpT28rkMZQVsK
- mDXY/kndjLlvESRL5lnwzJyHFeDGTcVCm0sua+JevjtebAgiShxnmQR00KWBlUac4pK3
- aFTQGiRcz3+sYbQmo429bv1DCcSqNnAoshWRk7TD6W3WzUHiiHLZ5/GQUzNONcczAu6g
- qi3A==
+ :reply-to; bh=r0q/pGvvnFD5F135Ci0/A2nad0Ak0eCeP5DRkdtsw9Y=;
+ b=SmiO/jCPOKTui1rOwsGiW7dlVwd7KIdRNJnYVZosSZcIUCIe8X+lpQtxzY54tFmRFl
+ 190gqahIlnP6iSrTeHj3gGuv5h9KAL1uSVMMp6f2ow36HIZOkHZtxuPHGyfhCuKa/3U6
+ znukiJxqaLpkItFVpa4vUo2OXA7vr9+xcwPIvntwbJf91fqCYVauYDdm3F5H54/2hzl6
+ IPMuvJ7A2knUT+3UK5XJ4bjULv0Hv4Gto/W7aXlx+thAIoipDnSKNjLir6MbyJTd+g57
+ YC//Ys0QjruaZf89961Nb6RiSLKgAZlF+0oUua8VrkrEqvE5JWBEXpMrB1LXSO7mVGg+
+ lsZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761689209; x=1762294009;
+ d=1e100.net; s=20230601; t=1761689210; x=1762294010;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ywu9SCF+ZuSyHtfSGdOBnT1PjyHsW1z4PudyLZ+Y+LM=;
- b=gqwKrXYPW+aN6qLUFR5zQUmHuZfnMOUU1LrL9fnhiB/LHCJUDRJxaKo0OmUENpo4FZ
- xXEXQFvUlOlqJkPHd3QRdsjoq1n9NhKp0enwsRSNQ/KUAm9BCqYop+E5qRYcd7dzzcb+
- fnvGIHSWmEt0xw8aB/fMpTKUB+NIXkQi81h097YrTP5fx3XPlYxZ/I/ajCo5XouxDG6x
- JlWIeakPsgwuj5Eqwx4us4fgSHovrEYGL9uEAY21/5skNhfAYAkNsldVK3/h1hXD0jG9
- YVTaIlQIfDQDM53pR3PhqSB67lpKAH8pq1l1xIRY1dWRDETbj/rQAMicNAuug/DotxeX
- evzg==
-X-Gm-Message-State: AOJu0YwozyUE/nXwqe8Zzj4d+MTOKCE0rjNzthXCwPtKBOzVOyjpiqLP
- UDmlkbJ4F/Nm5hLHgS3IkDaOGgtIdje9GaR21fH8zIhYYYKMmvvtXmKWv0RclA==
-X-Gm-Gg: ASbGncsuBFmpC4KFAneZQekN9bVZmVWcTlXobSGESajkoLJoOht+03aNRWyQ/9/N7k8
- TjRPgro8Hbn/sZv9zlKfYUUjlyC0d8nlhp6roZaNV4UrkcEff4iqEid6os+Kdlw4kQUQmHdpdiJ
- jQd5lVCusxDbivb10hZUuEx/E7bcC0I+qW4y9G+k9CADuTudlZQDs0TygUAH75BA1y0cVSZm1i7
- scB5zmfL00cNTWDB6rvsOfVsJf9Zwu6X2rMC/omz15ev68wetIjiFWxcSGmTWZWnmnZRBBHVtbC
- SfntWLjXDit5AGaFvdCYm91F1d09a0fFuAUTJZIkY4B0cI/Z/iRxSI+qqnJiA0YnBDAQ+BMqVp0
- mNvnNLGqLzYuKJSpqovvmjC4zF/Tp/jrqzzuQAAfUaxp9/pFaBkzpKtDqRReMZNQjVjI0QcIIWv
- pw5O6/OuiY1iOGJrvnCIbYDoJSEKkQKlRu7WkYLP318l24cAO4PBq6YIkQ4xNWRuoICHHlxPXFj
- HUoxQYj
-X-Google-Smtp-Source: AGHT+IF31ZRGlcrqpD2u7Zr4qr5/G3xWVWYq+/+gIOgvXp/PmtBLCJTKyeENPKjrgYkIgNsul7og7g==
-X-Received: by 2002:a05:6402:26d5:b0:63b:f909:df50 with SMTP id
- 4fb4d7f45d1cf-640441bc6d3mr471467a12.14.1761689209090; 
- Tue, 28 Oct 2025 15:06:49 -0700 (PDT)
+ bh=r0q/pGvvnFD5F135Ci0/A2nad0Ak0eCeP5DRkdtsw9Y=;
+ b=Km2uG0Z8GDU6NTHWnxFvBO32QJmFu9ekujQhGywuvW6Oh3DA7kk/0syrmXegbSja4k
+ DNeekwY+o9wH2mMJrpeZhmHgjHDQWjg4XSHakC//JpZY+L4ZAWa6pnyXb208asT5QgQJ
+ FTeOl3qlyayrlnZEl8RH84GUIjjZOahzuHf6/VHm5enCRYU3vaJCBNJlGEKpg3d0mZPj
+ nX5/Lbmvbr164KRulwxsSWhXIXXRTex9yUcwuzOVxWAECAYPNIDyrVd2wimZ8B8FxyvF
+ RxMLcnnQaoqmmsgvIc4l/SQjSEA63fRi43myNQAxwL6CiOBCxgqJHhg4Evzh4xlwYohs
+ g5Ow==
+X-Gm-Message-State: AOJu0YxmstY3bjp3Kzo+B/Ww4DQFiHb3ctMiqzRbqYYwq9SKYcH5ztWL
+ nI6rJ7Gh7BFDmFsCrHSPknQ4HEK1gEJXBgyExdVR/TkwgtQwoqSmmO3Wv6Yg5Q==
+X-Gm-Gg: ASbGnctW5nUQodKOEeVSMDYGPzboMTPA2UZk7csXjNG/mTQFVGRkWr4v9Pn3eAgBLOG
+ YokuNIB1T1L79AxiHTHYVwM2U6+GooHQria/8q2nKvtHSs8UqSb1ndz4KckpmeX4OX0kAllOlIY
+ 6y8yq5/nCNGpx9wl2eqYTB/zsMYNht3YTxja5B0R0bq4Auh3nXD4JX/y8Hrxhd9/vb/dLe9IzvW
+ /WKxCKpKmR2mcWsGgkOGrR667+LLtzkNyo5CpakhdN/gFxtPRjinMs9wb+jiZ3oRIRbr+s+yXNY
+ I+rNpFUAvA71Q0HYJWJssLb0AwHa1l2DyYEEQpgqNntr5YFk2zCnBsKmbXpiWpZpy4OvnOXB08x
+ 6+ioLzR7agkGR+zODypzQOZWR/ps+mYguzv686BeLr66x3uOC8r1T22Xn6u6qmvAILqEMxFi8MI
+ Y0X1gNirLodQEWd/dAaApJZh7GsdJFCC9LbT7eUulUm6NO3tToJNEjGIaeNJ87gSNA3ELiVEUsQ
+ Y9kqzIg
+X-Google-Smtp-Source: AGHT+IGIO5F/5uUe3+COz6Klupvb4Q8hl9rOgcBpwTZ1e8ILVwlXm6GMqHxq0Hre4Q7oSAvZowH2/Q==
+X-Received: by 2002:a05:6402:2347:b0:634:ad98:669e with SMTP id
+ 4fb4d7f45d1cf-64044188a38mr470756a12.3.1761689210292; 
+ Tue, 28 Oct 2025 15:06:50 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4E24CBF70057E8101A3AD09709.dsl.pool.telekom.hu.
  [2001:4c4e:24cb:f700:57e8:101a:3ad0:9709])
  by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-640342e5acesm1881182a12.28.2025.10.28.15.06.46
+ 4fb4d7f45d1cf-640342e5acesm1881182a12.28.2025.10.28.15.06.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Oct 2025 15:06:47 -0700 (PDT)
+ Tue, 28 Oct 2025 15:06:49 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
  Alexandre Demers <alexandre.f.demers@gmail.com>,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH 08/14] drm/amdgpu/vce1: Clean up register definitions
-Date: Tue, 28 Oct 2025 23:06:22 +0100
-Message-ID: <20251028220628.8371-9-timur.kristof@gmail.com>
+Subject: [PATCH 09/14] drm/amdgpu/vce1: Load VCE1 firmware
+Date: Tue, 28 Oct 2025 23:06:23 +0100
+Message-ID: <20251028220628.8371-10-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251028220628.8371-1-timur.kristof@gmail.com>
 References: <20251028220628.8371-1-timur.kristof@gmail.com>
@@ -92,12 +92,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The sid.h header contained some VCE1 register definitions, but
-they were using byte offsets (probably copied from the old radeon
-driver). Move all of these to the proper VCE1 headers.
+Load VCE1 firmware using amdgpu_ucode_request, just like
+it is done for other VCE versions.
 
-Also add the register definitions that we need for the
-firmware validation mechanism in VCE1.
+All SI chips share the same VCE1 firmware file: vce_1_0_0.bin
+which will be sent to linux-firmware soon.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Co-developed-by: Alexandre Demers <alexandre.f.demers@gmail.com>
@@ -105,111 +104,46 @@ Signed-off-by: Alexandre Demers <alexandre.f.demers@gmail.com>
 Co-developed-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/sid.h              | 40 -------------------
- .../drm/amd/include/asic_reg/vce/vce_1_0_d.h  |  5 +++
- .../include/asic_reg/vce/vce_1_0_sh_mask.h    | 10 +++++
- 3 files changed, 15 insertions(+), 40 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sid.h b/drivers/gpu/drm/amd/amdgpu/sid.h
-index cbd4f8951cfa..561462a8332e 100644
---- a/drivers/gpu/drm/amd/amdgpu/sid.h
-+++ b/drivers/gpu/drm/amd/amdgpu/sid.h
-@@ -582,45 +582,6 @@
- #define	DMA_PACKET_NOP					  0xf
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+index b23a48a1efc1..7fcc27d4453e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+@@ -41,6 +41,9 @@
+ #define VCE_IDLE_TIMEOUT	msecs_to_jiffies(1000)
  
- /* VCE */
--#define VCE_STATUS					0x20004
--#define VCE_VCPU_CNTL					0x20014
--#define		VCE_CLK_EN				(1 << 0)
--#define VCE_VCPU_CACHE_OFFSET0				0x20024
--#define VCE_VCPU_CACHE_SIZE0				0x20028
--#define VCE_VCPU_CACHE_OFFSET1				0x2002c
--#define VCE_VCPU_CACHE_SIZE1				0x20030
--#define VCE_VCPU_CACHE_OFFSET2				0x20034
--#define VCE_VCPU_CACHE_SIZE2				0x20038
--#define VCE_SOFT_RESET					0x20120
--#define 	VCE_ECPU_SOFT_RESET			(1 << 0)
--#define 	VCE_FME_SOFT_RESET			(1 << 2)
--#define VCE_RB_BASE_LO2					0x2016c
--#define VCE_RB_BASE_HI2					0x20170
--#define VCE_RB_SIZE2					0x20174
--#define VCE_RB_RPTR2					0x20178
--#define VCE_RB_WPTR2					0x2017c
--#define VCE_RB_BASE_LO					0x20180
--#define VCE_RB_BASE_HI					0x20184
--#define VCE_RB_SIZE					0x20188
--#define VCE_RB_RPTR					0x2018c
--#define VCE_RB_WPTR					0x20190
--#define VCE_CLOCK_GATING_A				0x202f8
--#define VCE_CLOCK_GATING_B				0x202fc
--#define VCE_UENC_CLOCK_GATING				0x205bc
--#define VCE_UENC_REG_CLOCK_GATING			0x205c0
--#define VCE_FW_REG_STATUS				0x20e10
--#	define VCE_FW_REG_STATUS_BUSY			(1 << 0)
--#	define VCE_FW_REG_STATUS_PASS			(1 << 3)
--#	define VCE_FW_REG_STATUS_DONE			(1 << 11)
--#define VCE_LMI_FW_START_KEYSEL				0x20e18
--#define VCE_LMI_FW_PERIODIC_CTRL			0x20e20
--#define VCE_LMI_CTRL2					0x20e74
--#define VCE_LMI_CTRL					0x20e98
--#define VCE_LMI_VM_CTRL					0x20ea0
--#define VCE_LMI_SWAP_CNTL				0x20eb4
--#define VCE_LMI_SWAP_CNTL1				0x20eb8
--#define VCE_LMI_CACHE_CTRL				0x20ef4
--
- #define VCE_CMD_NO_OP					0x00000000
- #define VCE_CMD_END					0x00000001
- #define VCE_CMD_IB					0x00000002
-@@ -629,7 +590,6 @@
- #define VCE_CMD_IB_AUTO					0x00000005
- #define VCE_CMD_SEMAPHORE				0x00000006
+ /* Firmware Names */
++#ifdef CONFIG_DRM_AMDGPU_SI
++#define FIRMWARE_VCE_V1_0	"amdgpu/vce_1_0_0.bin"
++#endif
+ #ifdef CONFIG_DRM_AMDGPU_CIK
+ #define FIRMWARE_BONAIRE	"amdgpu/bonaire_vce.bin"
+ #define FIRMWARE_KABINI	"amdgpu/kabini_vce.bin"
+@@ -61,6 +64,9 @@
+ #define FIRMWARE_VEGA12		"amdgpu/vega12_vce.bin"
+ #define FIRMWARE_VEGA20		"amdgpu/vega20_vce.bin"
  
--
- //#dce stupp
- /* display controller offsets used for crtc/cur/lut/grph/viewport/etc. */
- #define CRTC0_REGISTER_OFFSET                 (0x1b7c - 0x1b7c) //(0x6df0 - 0x6df0)/4
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/vce/vce_1_0_d.h b/drivers/gpu/drm/amd/include/asic_reg/vce/vce_1_0_d.h
-index 2176548e9203..9778822dd2a0 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/vce/vce_1_0_d.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/vce/vce_1_0_d.h
-@@ -60,5 +60,10 @@
- #define mmVCE_VCPU_CACHE_SIZE1 0x800C
- #define mmVCE_VCPU_CACHE_SIZE2 0x800E
- #define mmVCE_VCPU_CNTL 0x8005
-+#define mmVCE_VCPU_SCRATCH7 0x8037
-+#define mmVCE_FW_REG_STATUS 0x8384
-+#define mmVCE_LMI_FW_PERIODIC_CTRL 0x8388
-+#define mmVCE_LMI_FW_START_KEYSEL 0x8386
-+
- 
- #endif
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/vce/vce_1_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/vce/vce_1_0_sh_mask.h
-index ea5b26b11cb1..1f82d6f5abde 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/vce/vce_1_0_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/vce/vce_1_0_sh_mask.h
-@@ -61,6 +61,8 @@
- #define VCE_RB_WPTR__RB_WPTR__SHIFT 0x00000004
- #define VCE_SOFT_RESET__ECPU_SOFT_RESET_MASK 0x00000001L
- #define VCE_SOFT_RESET__ECPU_SOFT_RESET__SHIFT 0x00000000
-+#define VCE_SOFT_RESET__FME_SOFT_RESET_MASK 0x00000004L
-+#define VCE_SOFT_RESET__FME_SOFT_RESET__SHIFT 0x00000002
- #define VCE_STATUS__JOB_BUSY_MASK 0x00000001L
- #define VCE_STATUS__JOB_BUSY__SHIFT 0x00000000
- #define VCE_STATUS__UENC_BUSY_MASK 0x00000100L
-@@ -95,5 +97,13 @@
- #define VCE_VCPU_CNTL__CLK_EN__SHIFT 0x00000000
- #define VCE_VCPU_CNTL__RBBM_SOFT_RESET_MASK 0x00040000L
- #define VCE_VCPU_CNTL__RBBM_SOFT_RESET__SHIFT 0x00000012
-+#define VCE_CLOCK_GATING_A__CGC_DYN_CLOCK_MODE_MASK 0x00010000
-+#define VCE_CLOCK_GATING_A__CGC_DYN_CLOCK_MODE_SHIFT 0x00000010
-+#define VCE_FW_REG_STATUS__BUSY_MASK 0x0000001
-+#define VCE_FW_REG_STATUS__BUSY__SHIFT 0x0000001
-+#define VCE_FW_REG_STATUS__PASS_MASK 0x0000008
-+#define VCE_FW_REG_STATUS__PASS__SHIFT 0x0000003
-+#define VCE_FW_REG_STATUS__DONE_MASK 0x0000800
-+#define VCE_FW_REG_STATUS__DONE__SHIFT 0x000000b
- 
- #endif
++#ifdef CONFIG_DRM_AMDGPU_SI
++MODULE_FIRMWARE(FIRMWARE_VCE_V1_0);
++#endif
+ #ifdef CONFIG_DRM_AMDGPU_CIK
+ MODULE_FIRMWARE(FIRMWARE_BONAIRE);
+ MODULE_FIRMWARE(FIRMWARE_KABINI);
+@@ -99,6 +105,12 @@ static int amdgpu_vce_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
+ static const char *amdgpu_vce_firmware_name(struct amdgpu_device *adev)
+ {
+ 	switch (adev->asic_type) {
++#ifdef CONFIG_DRM_AMDGPU_SI
++	case CHIP_PITCAIRN:
++	case CHIP_TAHITI:
++	case CHIP_VERDE:
++		return FIRMWARE_VCE_V1_0;
++#endif
+ #ifdef CONFIG_DRM_AMDGPU_CIK
+ 	case CHIP_BONAIRE:
+ 		return FIRMWARE_BONAIRE;
 -- 
 2.51.0
 
