@@ -2,77 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6381C17200
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Oct 2025 23:06:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 991D8C17207
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Oct 2025 23:06:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06E6B10E682;
-	Tue, 28 Oct 2025 22:06:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C592F10E681;
+	Tue, 28 Oct 2025 22:06:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LWORgVhp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VfNNULqE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
- [209.85.208.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7914B10E680
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 22:06:47 +0000 (UTC)
-Received: by mail-ed1-f54.google.com with SMTP id
- 4fb4d7f45d1cf-62fc0b7bf62so3340589a12.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 15:06:47 -0700 (PDT)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 450BC10E676
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 22:06:48 +0000 (UTC)
+Received: by mail-ed1-f44.google.com with SMTP id
+ 4fb4d7f45d1cf-63e0cec110eso11211233a12.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Oct 2025 15:06:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761689206; x=1762294006; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1761689207; x=1762294007; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=ArpplmB8l4Lfo3RLpbDGW2Db8lajCaXkRcZFnRszzQc=;
- b=LWORgVhpISjgg3oZC3nPBwGVTan6hhVUv1Md2HP6WLsgG1x/izDQCscaDwKgrBcKYI
- OeaiM7WsSD25fjEckbiLwniqNLWKXEFzjGHgg2kTNvVqVkqpHVEAbWteYqUthhWwjiCA
- j93PVb1GbUe8DBatsjapoObKTXoYGuH5M9S9fnAREOe6SzefBtQIEspJ6On7pCb2imnj
- 8id0ahMKdS0EjEcWPjRv55FZ3NRFiCEu/hoCMhn1FlfH1H0uvuZZmnYMbpFtXBl+sc+P
- 3NPYDl8ML4HYIt1KlEo9ImaBJWqSBPJOYut/+rAkAEHwxk19EFWzCq1Wc6ow8YHfzJWN
- Dfvw==
+ :reply-to; bh=BgyLIr+ccGdWYEGbqCZXV/fc5aX/z2rkP7ewFzSKEts=;
+ b=VfNNULqE85b6/PB3prE5i738DBLdQpDCdRyduzyHolgmqGjaqKud9hrsgp1bFynpVL
+ 7dNKMPwj3v/HWFHWub06VJLAFd7R6E8m+qcnqX8FYcuie1zK5ujkSHQG6xenrG2YZN1s
+ mfaHMOjq8AgXFByctojExWOGGcCb2r0IUyN7doHLCAnf6bybus14KoGUAliBOpzF2FTE
+ 3urJ/KMzd+xeQ87BIadCZtMJj2OWQKyWTdap523o1WTCLCa+gaCYkO1KtrbMOH2/9byV
+ 3gWvk5vYs/cVnSrB6XyRA+EW1tUZFDcGpoBiXedYdniYTB7tXS9DXtcWhAwKuFY51alz
+ Nkaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761689206; x=1762294006;
+ d=1e100.net; s=20230601; t=1761689207; x=1762294007;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ArpplmB8l4Lfo3RLpbDGW2Db8lajCaXkRcZFnRszzQc=;
- b=ZB5nSNpbtftX7B6be2RYPltioHUy292XMf77QeZk3FZy3Y44vBNAo17pF9mnf6oP/m
- tmHle0R/jdVqsJlLTocxkX2Z5MCCdj7ibqbPePkml9eGOGVnYLv/dpfqQfX+WeU1idIH
- ZHElQEHpJYbIYGMcgkl+mprdU0b48ZpG+bXvR53687mQ3UXsxCU6aJoqh5OANiRqhZKj
- IRT5zwldBgPutOcSIY/AWH+P6kH5YOdGCIdC31B7IJM5wTR0AF4ILc4t5EGIoykzlGHS
- cjHq9slNc1L7Qltx+xVEt41HjpnKFsYRMkWU8viNv8pEmmnpMzNc83PoEQgBiHGhFa/+
- ry3A==
-X-Gm-Message-State: AOJu0YxtY4AGDG3DWsDEtQBcL5HAcu6CtVLdvEj4ed1MAWRoV2T1VAHZ
- lNe52JAZS+1Mz1fTIh8+09W10wobBzQ2vx1FQwyb8V1tkZ6CK+Fvqbikgl9Jyg==
-X-Gm-Gg: ASbGncuvzrFmv4Qpmjo1LYsLlh46vAl6/NgEhK1j5SrM8UNmaWwtV1StW928R507M/X
- BSLRtPZNwULqTubPdQf7Co8mYgBS1IT1wzegcDQORdIAamKLcNSvhFBUrB6tLQQKRTT93gSj4Cw
- m1H8/927RukWhqJimVrJ9s+ztrC2IsbQnptEQLXq1j+7nAyVuXFJxQbiSsA6u1jHTr9S3JIM0DJ
- viUNATqna08K0nV6I67+srh58SLCPopfwR1KF/3Eta/KT2G3ubbuS1mDCvA1BbhzhP+G2/+iHNE
- EFH7UYQ6hEd4xGHZJqd8Ztwgd/OuhjgHt19a5VIn3z0IEdpoLGQMXOMtX+R8B4WQDin2jB6ep+L
- pmOLbBLFBhXO8J+FRzMwjP0XN7l4HaZYpYPH25/Cr14ZJZAx44t7+mxPHm8U7evpkGRJ9IK2/Bk
- uhbw+T3lE5A+/fdaKAgFTpl+SeJDyZm7Dg5Tj0Fd73XgohRensJqO7YOf3/8YRVCMaTm+gMKclT
- c8RoIioq+iM5Vqxcxk=
-X-Google-Smtp-Source: AGHT+IGOC0jIhv6EZQxqKcn+t0KuLf7TTKtSl+gcwxE0XexhGdJwGRtT3oXScCaNXOp7eG8H6jfsFA==
-X-Received: by 2002:a05:6402:84f:b0:640:3730:285c with SMTP id
- 4fb4d7f45d1cf-6404437fb38mr444285a12.36.1761689205852; 
- Tue, 28 Oct 2025 15:06:45 -0700 (PDT)
+ bh=BgyLIr+ccGdWYEGbqCZXV/fc5aX/z2rkP7ewFzSKEts=;
+ b=X0VoRcYzxKhwMNabW+3le6H/A6J0may+r9j0E0lUY/9uEOK0BfeD30t9ch6iC0e5Jw
+ +qFjYSdYc+CJon57LbZ6TI83MDNGhiyy0bJqLqqoy+n7odw6kDb81LZlZcmd+RkoTLYZ
+ kbWIT+ws9e/PHB8BOj/DVNrHuVP8EExzrQmUATihi6JpEQrve+5Y6MKb8hDMev9wtbWK
+ 91r+U+Lh0nvubEO+99hXKBuHQe6li1Uqxc55QOI7/NcC/bD17UjRPYUX9Qg7gXNR1FoN
+ E9TcSVr4IKbCvHKp2L2H/yua2Vxc55BtyIqtqxNt3/XikFUB19Ig+G+N7KIsJ7KBd4tN
+ 5Ejw==
+X-Gm-Message-State: AOJu0YxFbYd0fKHsrta8VnPBaOSPh5KMcK6165x60sjXM3ugrlXr3BFj
+ iJSRQQV9REgpC8njX3LQAeSOyolrmO9mNhrT3dOS560ewGRnD978xe3kVeqdMA==
+X-Gm-Gg: ASbGncviCIq4tFkgK9LuNRc1gzZoOKSnpgESzzZiDBdEjt07cBC3CeLFFbpu0CqmqI8
+ vo4MGlTqJqzO3ad3x9Pf8v1+ZTbnnh3Pdw84LjKMN/HibQqxNFaMhAyk3f9Y2pORrdEnX2p/wRl
+ o0DQF8QhWvspLUTjgR1EhtJdLJ7hQHsHhQPrbL22jcgaPvofoCeHYuCWYQkLUpD6XTv6urM0fZh
+ 9R3Tj9KTRdxl9EQu0T64KAR1wiZpbPx4Cre7Znh9LQZJQ4kW4k2Y1lyBzkrpuE2SkWEYvnKCDsm
+ POZ7fJiAVqWFwqyv2djNksVGE82CQRd6VHh8lb1uLbrVBM6pdWwxcyTHZ7Xk3AfPr6rRPBe+xBb
+ h3MLQzspsaX4n0LXjD2FrrO2EacC8+rmnJ04zNtfkdhmSU+/Gpvx8vvu95hRVfUvuB/xnIQikjz
+ TyNWpbOYt5oOF2ifLil1ujKTcwABFQfhdESFOOnWya4h7Wb7DO+IxOEYEsEuc3KpTR4iGUISYMd
+ e7e9dBj
+X-Google-Smtp-Source: AGHT+IHfmRPolfBvdw7DCIaqorTOBB4nxGE7jZuKD4lvOkIKKrV5IrQfJeHGedVNLC1lMwHAPzFUMA==
+X-Received: by 2002:a05:6402:50cd:b0:63e:2d4d:5a60 with SMTP id
+ 4fb4d7f45d1cf-64044188bbcmr509971a12.8.1761689206641; 
+ Tue, 28 Oct 2025 15:06:46 -0700 (PDT)
 Received: from Timur-Hyperion.home
  (20014C4E24CBF70057E8101A3AD09709.dsl.pool.telekom.hu.
  [2001:4c4e:24cb:f700:57e8:101a:3ad0:9709])
  by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-640342e5acesm1881182a12.28.2025.10.28.15.06.43
+ 4fb4d7f45d1cf-640342e5acesm1881182a12.28.2025.10.28.15.06.45
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Oct 2025 15:06:44 -0700 (PDT)
+ Tue, 28 Oct 2025 15:06:46 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
  Alexandre Demers <alexandre.f.demers@gmail.com>,
  Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH 06/14] drm/amdgpu/vce: Move firmware load to
- amdgpu_vce_early_init
-Date: Tue, 28 Oct 2025 23:06:20 +0100
-Message-ID: <20251028220628.8371-7-timur.kristof@gmail.com>
+Subject: [PATCH 07/14] drm/amdgpu/si, cik,
+ vi: Verify IP block when querying video codecs
+Date: Tue, 28 Oct 2025 23:06:21 +0100
+Message-ID: <20251028220628.8371-8-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251028220628.8371-1-timur.kristof@gmail.com>
 References: <20251028220628.8371-1-timur.kristof@gmail.com>
@@ -93,269 +93,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Try to load the VCE firmware at early_init.
-
-When the correct firmware is not found, return -ENOENT.
-This way, the driver initialization will complete even
-without VCE, and the GPU will be functional, albeit
-without video encoding capabilities.
-
-This is necessary because we are planning to add support
-for the VCE1, and AMD hasn't yet publised the correct
-firmware for this version. So we need to anticipate that
-users will try to boot amdgpu on SI GPUs without the
-correct VCE1 firmware present on their system.
+Some harvested chips may not have any IP blocks,
+or we may not have the firmware for the IP blocks.
+In these cases, the query should return that no video
+codec is supported.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 121 +++++++++++++++---------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h |   1 +
- drivers/gpu/drm/amd/amdgpu/vce_v2_0.c   |   5 +
- drivers/gpu/drm/amd/amdgpu/vce_v3_0.c   |   5 +
- drivers/gpu/drm/amd/amdgpu/vce_v4_0.c   |   5 +
- 5 files changed, 91 insertions(+), 46 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 3 ++-
+ drivers/gpu/drm/amd/amdgpu/cik.c        | 6 ++++++
+ drivers/gpu/drm/amd/amdgpu/si.c         | 6 ++++++
+ drivers/gpu/drm/amd/amdgpu/vi.c         | 6 ++++++
+ 4 files changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
-index eaa06dbef5c4..b23a48a1efc1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
-@@ -88,82 +88,87 @@ static int amdgpu_vce_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
- 				      bool direct, struct dma_fence **fence);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index b3e6b3fcdf2c..42b5da59d00f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -1263,7 +1263,8 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 			-EFAULT : 0;
+ 	}
+ 	case AMDGPU_INFO_VIDEO_CAPS: {
+-		const struct amdgpu_video_codecs *codecs;
++		static const struct amdgpu_video_codecs no_codecs = {0};
++		const struct amdgpu_video_codecs *codecs = &no_codecs;
+ 		struct drm_amdgpu_info_video_caps *caps;
+ 		int r;
  
- /**
-- * amdgpu_vce_sw_init - allocate memory, load vce firmware
-+ * amdgpu_vce_firmware_name() - determine the firmware file name for VCE
-  *
-  * @adev: amdgpu_device pointer
-- * @size: size for the new BO
-  *
-- * First step to get VCE online, allocate memory and load the firmware
-+ * Each chip that has VCE IP may need a different firmware.
-+ * This function returns the name of the VCE firmware file
-+ * appropriate for the current chip.
-  */
--int amdgpu_vce_sw_init(struct amdgpu_device *adev, unsigned long size)
-+static const char *amdgpu_vce_firmware_name(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/cik.c b/drivers/gpu/drm/amd/amdgpu/cik.c
+index 9cd63b4177bf..b755238c2c3d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/cik.c
++++ b/drivers/gpu/drm/amd/amdgpu/cik.c
+@@ -130,6 +130,12 @@ static const struct amdgpu_video_codecs cik_video_codecs_decode =
+ static int cik_query_video_codecs(struct amdgpu_device *adev, bool encode,
+ 				  const struct amdgpu_video_codecs **codecs)
  {
--	const char *fw_name;
--	const struct common_firmware_header *hdr;
--	unsigned int ucode_version, version_major, version_minor, binary_id;
--	int i, r;
--
++	const enum amd_ip_block_type ip =
++		encode ? AMD_IP_BLOCK_TYPE_VCE : AMD_IP_BLOCK_TYPE_UVD;
++
++	if (!amdgpu_device_ip_is_valid(adev, ip))
++		return 0;
++
  	switch (adev->asic_type) {
- #ifdef CONFIG_DRM_AMDGPU_CIK
  	case CHIP_BONAIRE:
--		fw_name = FIRMWARE_BONAIRE;
--		break;
-+		return FIRMWARE_BONAIRE;
- 	case CHIP_KAVERI:
--		fw_name = FIRMWARE_KAVERI;
--		break;
-+		return FIRMWARE_KAVERI;
- 	case CHIP_KABINI:
--		fw_name = FIRMWARE_KABINI;
--		break;
-+		return FIRMWARE_KABINI;
  	case CHIP_HAWAII:
--		fw_name = FIRMWARE_HAWAII;
--		break;
-+		return FIRMWARE_HAWAII;
- 	case CHIP_MULLINS:
--		fw_name = FIRMWARE_MULLINS;
--		break;
-+		return FIRMWARE_MULLINS;
- #endif
- 	case CHIP_TONGA:
--		fw_name = FIRMWARE_TONGA;
--		break;
-+		return  FIRMWARE_TONGA;
- 	case CHIP_CARRIZO:
--		fw_name = FIRMWARE_CARRIZO;
--		break;
-+		return  FIRMWARE_CARRIZO;
- 	case CHIP_FIJI:
--		fw_name = FIRMWARE_FIJI;
--		break;
-+		return  FIRMWARE_FIJI;
- 	case CHIP_STONEY:
--		fw_name = FIRMWARE_STONEY;
--		break;
-+		return  FIRMWARE_STONEY;
- 	case CHIP_POLARIS10:
--		fw_name = FIRMWARE_POLARIS10;
--		break;
-+		return  FIRMWARE_POLARIS10;
- 	case CHIP_POLARIS11:
--		fw_name = FIRMWARE_POLARIS11;
--		break;
-+		return  FIRMWARE_POLARIS11;
- 	case CHIP_POLARIS12:
--		fw_name = FIRMWARE_POLARIS12;
--		break;
-+		return  FIRMWARE_POLARIS12;
- 	case CHIP_VEGAM:
--		fw_name = FIRMWARE_VEGAM;
--		break;
-+		return  FIRMWARE_VEGAM;
- 	case CHIP_VEGA10:
--		fw_name = FIRMWARE_VEGA10;
--		break;
-+		return  FIRMWARE_VEGA10;
- 	case CHIP_VEGA12:
--		fw_name = FIRMWARE_VEGA12;
--		break;
-+		return  FIRMWARE_VEGA12;
- 	case CHIP_VEGA20:
--		fw_name = FIRMWARE_VEGA20;
--		break;
-+		return  FIRMWARE_VEGA20;
- 
- 	default:
--		return -EINVAL;
-+		return NULL;
- 	}
-+}
-+
-+/**
-+ * amdgpu_vce_early_init() - try to load VCE firmware
-+ *
-+ * @adev: amdgpu_device pointer
-+ *
-+ * Tries to load the VCE firmware.
-+ *
-+ * When not found, returns ENOENT so that the driver can
-+ * still load and initialize the rest of the IP blocks.
-+ * The GPU can function just fine without VCE, they will just
-+ * not support video encoding.
-+ */
-+int amdgpu_vce_early_init(struct amdgpu_device *adev)
-+{
-+	const char *fw_name = amdgpu_vce_firmware_name(adev);
-+	const struct common_firmware_header *hdr;
-+	unsigned int ucode_version, version_major, version_minor, binary_id;
-+	int r;
-+
-+	if (!fw_name)
-+		return -ENOENT;
- 
- 	r = amdgpu_ucode_request(adev, &adev->vce.fw, AMDGPU_UCODE_REQUIRED, "%s", fw_name);
- 	if (r) {
--		dev_err(adev->dev, "amdgpu_vce: Can't validate firmware \"%s\"\n",
--			fw_name);
-+		dev_err(adev->dev,
-+			"amdgpu_vce: Firmware \"%s\" not found or failed to validate (%d)\n",
-+			fw_name, r);
-+
- 		amdgpu_ucode_release(&adev->vce.fw);
--		return r;
-+		return -ENOENT;
- 	}
- 
- 	hdr = (const struct common_firmware_header *)adev->vce.fw->data;
-@@ -172,11 +177,35 @@ int amdgpu_vce_sw_init(struct amdgpu_device *adev, unsigned long size)
- 	version_major = (ucode_version >> 20) & 0xfff;
- 	version_minor = (ucode_version >> 8) & 0xfff;
- 	binary_id = ucode_version & 0xff;
--	DRM_INFO("Found VCE firmware Version: %d.%d Binary ID: %d\n",
-+	dev_info(adev->dev, "Found VCE firmware Version: %d.%d Binary ID: %d\n",
- 		version_major, version_minor, binary_id);
- 	adev->vce.fw_version = ((version_major << 24) | (version_minor << 16) |
- 				(binary_id << 8));
- 
-+	return 0;
-+}
-+
-+/**
-+ * amdgpu_vce_sw_init() - allocate memory for VCE BO
-+ *
-+ * @adev: amdgpu_device pointer
-+ * @size: size for the new BO
-+ *
-+ * First step to get VCE online: allocate memory for VCE BO.
-+ * The VCE firmware binary is copied into the VCE BO later,
-+ * in amdgpu_vce_resume. The VCE executes its code from the
-+ * VCE BO and also uses the space in this BO for its stack and data.
-+ *
-+ * Ideally this BO should be placed in VRAM for optimal performance,
-+ * although technically it also runs from system RAM (albeit slowly).
-+ */
-+int amdgpu_vce_sw_init(struct amdgpu_device *adev, unsigned long size)
-+{
-+	int i, r;
-+
-+	if (!adev->vce.fw)
-+		return -ENOENT;
-+
- 	r = amdgpu_bo_create_kernel(adev, size, PAGE_SIZE,
- 				    AMDGPU_GEM_DOMAIN_VRAM |
- 				    AMDGPU_GEM_DOMAIN_GTT,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
-index 6e53f872d084..22acd7b35945 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
-@@ -53,6 +53,7 @@ struct amdgpu_vce {
- 	unsigned		num_rings;
- };
- 
-+int amdgpu_vce_early_init(struct amdgpu_device *adev);
- int amdgpu_vce_sw_init(struct amdgpu_device *adev, unsigned long size);
- int amdgpu_vce_sw_fini(struct amdgpu_device *adev);
- int amdgpu_vce_entity_init(struct amdgpu_device *adev, struct amdgpu_ring *ring);
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-index bee3e904a6bc..8ea8a6193492 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-@@ -407,6 +407,11 @@ static void vce_v2_0_enable_mgcg(struct amdgpu_device *adev, bool enable,
- static int vce_v2_0_early_init(struct amdgpu_ip_block *ip_block)
+diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
+index e0f139de7991..9468c03bdb1b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si.c
++++ b/drivers/gpu/drm/amd/amdgpu/si.c
+@@ -1003,6 +1003,12 @@ static const struct amdgpu_video_codecs hainan_video_codecs_decode =
+ static int si_query_video_codecs(struct amdgpu_device *adev, bool encode,
+ 				 const struct amdgpu_video_codecs **codecs)
  {
- 	struct amdgpu_device *adev = ip_block->adev;
-+	int r;
++	const enum amd_ip_block_type ip =
++		encode ? AMD_IP_BLOCK_TYPE_VCE : AMD_IP_BLOCK_TYPE_UVD;
 +
-+	r = amdgpu_vce_early_init(adev);
-+	if (r)
-+		return r;
- 
- 	adev->vce.num_rings = 2;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-index 708123899c41..719e9643c43d 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-@@ -399,6 +399,7 @@ static unsigned vce_v3_0_get_harvest_config(struct amdgpu_device *adev)
- static int vce_v3_0_early_init(struct amdgpu_ip_block *ip_block)
++	if (!amdgpu_device_ip_is_valid(adev, ip))
++		return 0;
++
+ 	switch (adev->asic_type) {
+ 	case CHIP_VERDE:
+ 	case CHIP_TAHITI:
+diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/amdgpu/vi.c
+index a611a7345125..f0e4193cf722 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vi.c
++++ b/drivers/gpu/drm/amd/amdgpu/vi.c
+@@ -256,6 +256,12 @@ static const struct amdgpu_video_codecs cz_video_codecs_decode =
+ static int vi_query_video_codecs(struct amdgpu_device *adev, bool encode,
+ 				 const struct amdgpu_video_codecs **codecs)
  {
- 	struct amdgpu_device *adev = ip_block->adev;
-+	int r;
- 
- 	adev->vce.harvest_config = vce_v3_0_get_harvest_config(adev);
- 
-@@ -407,6 +408,10 @@ static int vce_v3_0_early_init(struct amdgpu_ip_block *ip_block)
- 	    (AMDGPU_VCE_HARVEST_VCE0 | AMDGPU_VCE_HARVEST_VCE1))
- 		return -ENOENT;
- 
-+	r = amdgpu_vce_early_init(adev);
-+	if (r)
-+		return r;
++	const enum amd_ip_block_type ip =
++		encode ? AMD_IP_BLOCK_TYPE_VCE : AMD_IP_BLOCK_TYPE_UVD;
 +
- 	adev->vce.num_rings = 3;
- 
- 	vce_v3_0_set_ring_funcs(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
-index 335bda64ff5b..2d64002bed61 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
-@@ -410,6 +410,11 @@ static int vce_v4_0_stop(struct amdgpu_device *adev)
- static int vce_v4_0_early_init(struct amdgpu_ip_block *ip_block)
- {
- 	struct amdgpu_device *adev = ip_block->adev;
-+	int r;
++	if (!amdgpu_device_ip_is_valid(adev, ip))
++		return 0;
 +
-+	r = amdgpu_vce_early_init(adev);
-+	if (r)
-+		return r;
- 
- 	if (amdgpu_sriov_vf(adev)) /* currently only VCN0 support SRIOV */
- 		adev->vce.num_rings = 1;
+ 	switch (adev->asic_type) {
+ 	case CHIP_TOPAZ:
+ 		if (encode)
 -- 
 2.51.0
 
