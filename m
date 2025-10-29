@@ -2,62 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 560AEC18219
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Oct 2025 04:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CA19C18225
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Oct 2025 04:11:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5C4710E6E3;
-	Wed, 29 Oct 2025 03:10:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 298FF10E6E5;
+	Wed, 29 Oct 2025 03:11:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CJiAvngZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QgW1l97+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010064.outbound.protection.outlook.com [52.101.56.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E152710E6E3
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 03:10:35 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012038.outbound.protection.outlook.com
+ [40.93.195.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A79110E6E5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 03:11:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nwQCCtS/YCwPDZlGFz0A9LPkBkUaaoP9aCq1jx7E/wgiEspwIXuA+ASVE42KD9IQJu/DBv9OYnhjqAaU8qo0dNJPzmwcUssIm1iHSPFtbrQXilQPxQc6HsHkFkKfggpYBcaR3/bmKIta/nEJofz+k3plVqmqk1oD8iD3OB/Czuow+EbgtDLA7dfLTc2wzlb5pIILqOFZ1hfZUfQRiaNSq4F8c+JIHIEBvU4BV3pCoNdOyv3wYXTkr9Zd7OhNwtB3zbk3Ll3svbGNP1D7Y2SVqy1oSUeo+Y8ImT8RhjKvtWWSUgVV5ZoeJ6KSf+AxDhj5CGUbYj+cwNk1+Ha8v+UROQ==
+ b=RHG/lKzM/nFQcoiQjBmXO1qlkBFz+2SYIdkIGAzHcGnlqxx6VUEaLGxQKc9+MdV6EbNRuSbpdHz4hJuI1oiwRyQbFXzBpudwLmEzgh4BPszWMIK7v5MQSddelb2ez4ezv7v8xjnM9eRt/D2A5AitYWPy8uxPqSRu360+/ymV49a7c5UTKXrfhL8kJ1ELQrXu1Q6C4xin1eP6PdDqZ37EwC4xQIBXMZRiCKN/BKzLGd/z9/B5qhlpGEmuTMxTr8S6/o6mbV6AdH0inDVHJiTrNINxOpiSArT3MElMB3PobzzhqoAOpC2LAITj3RNJfPvjVsVrODgIIUhLXXf2gquWeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PArNdz/stQ7CLMOhrQBKSn4giyMtF5xLdvTXUd1NPDM=;
- b=aGx3+D+aCAIKyxnCfb3wPup/5Lr385qkfdlcLMdAXFPCCIxW6qMGedGQPkoq+JPuXghoUxuXLEo0NHD3tzWQkV65b0ZWOgMuTVzTz2CitnkIyflI9RPClprRUou5JVyICioVO83PFUfSors0u4fxuiafNYsm2WKu9rfi4G6d/W0BcLsOhf7b7jR2sCCTrp6XqlsIEbzETei1N2NVFvrHFC+d+YjWT/zrCt0deeWgfyntb3Utvcy1HOHAW974YQULrRJ4qNG26oZIWEJFdyVDMc730suyCHF08MhAS+JJUr5VcfpoMbFy3Is4GOraXfaUcQKzj/SpBf1ZaYtMhKUSkg==
+ bh=IK0cc/MIR/2263zID3P+io7wa2NoHYi5I5GFxee8jBU=;
+ b=lfOh/wdtdBwMA3xNjwfIy3DVabgGgLFyWMe4cjdYoYp3Pm9k7L6zEsUxXjJTrCvd6MgjO5q5hedx7VeCHNfkZ2NhydYWCos19nGZKSy8Tdr7e6t2xi+ne0ggAB0yUCA9XWkYtj5ooEWl5c/98dJV3U/KlTXVz3LY5Syx5FdrSoOjF03KxTWrLoPREWexkMpJh+MAI+61wWBz6zCC+Uuxq79dPzRBpcYLeLZnomtDBIdGtHM6L+lveAeIGRfsNUpXFgcbBvtuQ3MD9aHmuuxxDbeCPj/pESa6JJU/HWgUgLul2CxHJ4/Dckzs2t0oW09QbRNODndV/8VfyJ121fKs2A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PArNdz/stQ7CLMOhrQBKSn4giyMtF5xLdvTXUd1NPDM=;
- b=CJiAvngZRlhbWZE6BwK1TN4zJi9RYZhN4XUZERXhgVFwRqc1F0h30WrBVDLbGobiYxTqs1NwhxPG5QgM6HXT++3GtPysAM8t4cim9njgMysHY6XnumcNXMvHnR4rcMGOQojhN/fM0VlIBdKyHh7tyLqK9F4Ymnb6wJGGTpNVEUw=
-Received: from DM6PR08CA0024.namprd08.prod.outlook.com (2603:10b6:5:80::37) by
- IA1PR12MB7543.namprd12.prod.outlook.com (2603:10b6:208:42d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Wed, 29 Oct
- 2025 03:10:31 +0000
-Received: from DS3PEPF000099D9.namprd04.prod.outlook.com
- (2603:10b6:5:80:cafe::a1) by DM6PR08CA0024.outlook.office365.com
- (2603:10b6:5:80::37) with Microsoft SMTP Server (version=TLS1_3,
+ bh=IK0cc/MIR/2263zID3P+io7wa2NoHYi5I5GFxee8jBU=;
+ b=QgW1l97+Vg2KcRhw34Bg+Gx4qNc0K2ChNxUL6MVRtHWfwEzcuZlz7Qw/U2PxzD0Vhcvoi9nJ/s9biJ2V3b97BqTO5qmk8qPNMXgXX6u9rUb0EGqYy/6+F1IAG44dPxhNQkD4CPalj9jqFp1vqRk2S10Mhyr5eKqTvY6gxKBYZS8=
+Received: from BY3PR05CA0050.namprd05.prod.outlook.com (2603:10b6:a03:39b::25)
+ by BY5PR12MB4033.namprd12.prod.outlook.com (2603:10b6:a03:213::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Wed, 29 Oct
+ 2025 03:11:01 +0000
+Received: from SJ5PEPF000001C8.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b:cafe::47) by BY3PR05CA0050.outlook.office365.com
+ (2603:10b6:a03:39b::25) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.13 via Frontend Transport; Wed,
- 29 Oct 2025 03:10:30 +0000
+ 29 Oct 2025 03:11:01 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- DS3PEPF000099D9.mail.protection.outlook.com (10.167.17.10) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ5PEPF000001C8.mail.protection.outlook.com (10.167.242.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.10 via Frontend Transport; Wed, 29 Oct 2025 03:10:30 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Oct
- 2025 20:10:29 -0700
+ 15.20.9275.10 via Frontend Transport; Wed, 29 Oct 2025 03:11:00 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Tue, 28 Oct
+ 2025 20:10:38 -0700
+Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 28 Oct
+ 2025 22:10:38 -0500
 Received: from ray-Ubuntu.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 28 Oct 2025 20:10:21 -0700
+ Transport; Tue, 28 Oct 2025 20:10:29 -0700
 From: Ray Wu <ray.wu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -65,66 +70,69 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Andrew Mazour <Andrew.Mazour@amd.com>, "Nicholas
- Kazlauskas" <nicholas.kazlauskas@amd.com>, Ray Wu <ray.wu@amd.com>
-Subject: [PATCH 02/13] drm/amd/display: Extend inbox0 lock to run Replay/PSR
-Date: Wed, 29 Oct 2025 11:02:50 +0800
-Message-ID: <20251029030935.2785560-3-ray.wu@amd.com>
+ <alex.hung@amd.com>, Austin Zheng <Austin.Zheng@amd.com>, Dillon Varone
+ <dillon.varone@amd.com>, Ray Wu <ray.wu@amd.com>
+Subject: [PATCH 03/13] drm/amd/display: Add pte_buffer_mode and
+ force_one_row_for_frame in dchub reg
+Date: Wed, 29 Oct 2025 11:02:51 +0800
+Message-ID: <20251029030935.2785560-4-ray.wu@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251029030935.2785560-1-ray.wu@amd.com>
 References: <20251029030935.2785560-1-ray.wu@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB05.amd.com: ray.wu@amd.com does not designate
+ permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF000099D9:EE_|IA1PR12MB7543:EE_
-X-MS-Office365-Filtering-Correlation-Id: 895d8fa1-8e2d-4a0f-d3c9-08de1698b77a
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C8:EE_|BY5PR12MB4033:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50247b23-a47c-41fd-67b6-08de1698c9e5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ve4QdYAFrv8w66MO7gnVo3+33GiLD4SD1QaEirI4rhL5Zhb85z4lJaJJndxv?=
- =?us-ascii?Q?pH/r5YbfUBPaQ/MHozpdmWVI+5kkN75Rz1I7AylMSAb8X3IhV/UYwtcTm0w+?=
- =?us-ascii?Q?BRZBWcCDpIzbmz2tUpEQcMMhUGYlZWG/sHdCnHne84bMr70MBOhRIEkyzVOI?=
- =?us-ascii?Q?B4w0fvo8oPGPwJTIZomUNp42LANW/lFXFArmvAXoRI7tX93V+rSx99OxSxhU?=
- =?us-ascii?Q?bWyH7iqvJLk+ZUSIHUUsdgxzzx035cVNlxZ77QOV8FJ/zsSk4IksWpdaweYZ?=
- =?us-ascii?Q?tGFFbAtSwaMSpUOv2Y2MpmFauFy/eWNk8lb/oItB/Z+Brp/+yPuHAu1woD7u?=
- =?us-ascii?Q?l9tGhWbB7D8kQBkGkNW32BcLfs1xQXQwcCa7BniGaFe7xkM6iRw183PQOkxH?=
- =?us-ascii?Q?Rfi76QC+1S0dGd7Psx5gFJ8cbcCwH1tJJPFl1vygupJoSC7gli4/rMIeT1ao?=
- =?us-ascii?Q?1c94xQFwIWbO9khveaoRe0LaFivJNzk3lIA1cYAs2Y7WXcy8ioSQJJLXmZXA?=
- =?us-ascii?Q?UYTzyebT0s9b0Cjn/r9PHM3Irw0BpL0y+Dj81Q4NnoDXvr15gPoxJLAc6Ig0?=
- =?us-ascii?Q?Q2DDoKP8IyUzlFrk7MLnx9Z6FQ53d5fnt0NbRKvJohgD4TglC6hjVnOMy2cR?=
- =?us-ascii?Q?gQ1Ba1hCJ2LCSdHEahuJIl0jpPHLoIck9pnfUjQvsCE3hTEtcKbiR6CRyf4z?=
- =?us-ascii?Q?iOi3cX3pbPMeVKkKPGG8O1H151OmCwJEQH3KJVprISwh3GOEJGLFkbIET9iq?=
- =?us-ascii?Q?Sjh+PARruSt0ZRQ6deUCmn1/oOtpTf9j1SKW8CtFSH/IS1uNCTGmbiKAYIAr?=
- =?us-ascii?Q?SFERlZgPcy8FbyEZ4jdnTj67qo05TFJA4wXjqQ+Vu4x1eVw8tJYEelFHFV9n?=
- =?us-ascii?Q?wEGjwvsxWTdBTAR+TmVmEPwJSxhQjHJRILc4AxcJjGsvk0lFMTRKxS7MqINJ?=
- =?us-ascii?Q?yMRLSoOYlqecSAckBeG3EAJcnQ/0i6V2JFQhdDUxJlxAJxjsd0r1xt5tXj4e?=
- =?us-ascii?Q?Ywf+nRDrMc8R2XNzmNTBgvWTQCImA9QyRJJsl8KasgUT8Es8zM8KEBcw9XMX?=
- =?us-ascii?Q?3vZ0z7eaW4KpiM+1VmVxJQ1P59aDOkIuDNKjrH1zw5lXBVKYzX3YUstrH7UM?=
- =?us-ascii?Q?gMSzdFDvAdx+SeDckVcvBOQ/mZpO5bKra2uU/VjOmBVio8tQI5Vq3tLoWiao?=
- =?us-ascii?Q?IQO5l+mBgNTQlJM/2sJmd2o9ripuqgx77WAy3nY7tb+6TSwNvGWhbfoxJmUE?=
- =?us-ascii?Q?DiYYrv8RZFcCU4xK15yFomgqaljUxxDPA9yf/r3Q4dyfOOOguZsRZud1WEJO?=
- =?us-ascii?Q?mgUCKZacaor58f6R/sKsciATaetN4DmmnR7BOUq8Iav9UCTjQfWCBTaUQ9kJ?=
- =?us-ascii?Q?7MIiI6NdARbjGM0vHIxdfuuJU/aJU1MaoZXi5LMbhR4YskII0WyMn0rYPZEM?=
- =?us-ascii?Q?1wRiwAodvDu85uMSeuja9ygQEA4+GliXVe302AG6WRHgRpXO1U0mwbyL+G2M?=
- =?us-ascii?Q?Yumpf/36l/5ruqVnpUQWNVFMFxvuWUWMYLxF1YZscsXZ6rXQ19uTO0SXhR1m?=
- =?us-ascii?Q?85c/RXU3+09MwmrQWvQ=3D?=
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vQMxTX3J/iouULP2IIv6c8nGXTN+sRvSI8F0DytEVUGU84y5o4NkIs41LmBc?=
+ =?us-ascii?Q?Zvm5jeUO0+ysgUTd/p2a3KVVbNu2NNWwwPdWXcC8J2N4c3mhYIwm5zE/KOWm?=
+ =?us-ascii?Q?Tc77h3b/+BkEyk/aU2kt22IVYeHHEjYuKX1x269a/zU0VY2Vxh6VSUw5e9FA?=
+ =?us-ascii?Q?by35EuZKJQR1yyvJpydMaCWLPbPMOQcv5u10q+tg9jnTo7baP9ld/s3L94QC?=
+ =?us-ascii?Q?dxEMSeDwPw2P22tJHStBcGcLSLClAFMS25crV2r+kTgwEtcfzW5HNUgTHg1G?=
+ =?us-ascii?Q?/WCGFo+ELqNrpKTYcgAO5nCXEoZE3jJ9OIPvTid6gGjjB6Vt3gWsR5+ytcmt?=
+ =?us-ascii?Q?igRhqnRSiGH4xCQfmqFNpiXBtZ/mUQLaja8dCv4YR7K+hyN0R2HFXgt3TFQZ?=
+ =?us-ascii?Q?8r8GRSGlxTmIJtd52ByXSQbJCfm5NFCld9CsIRMI/v6dO2lhZNfTQIclt8r1?=
+ =?us-ascii?Q?fWxXqTMf4KiYta6I8HcRbe2e43FgNvlaT3GXefhiE2g7IvM27ifY4Bx/MWSP?=
+ =?us-ascii?Q?gOt6Ae7jPyUi8pdvmW7dNkgzPh3VRYc+fMnpa26NwJMPH8h5ZvZJOhEtDmeq?=
+ =?us-ascii?Q?ZxdewulqcFbsb6dSvmgeggFuI1r1TM+FfyVgVmJBD3CXIKKy8GRx7Fd65k28?=
+ =?us-ascii?Q?a7aUMRqshXRIcdqL9z7d/naD+IJrrhXzhEeeDvh7SedNtV+Hdxo9Yg0B/GMi?=
+ =?us-ascii?Q?cHdumTSYGqyVSWYnXFO1D2icpXWtGbh37vzIc5W5FBDcbb7I//WLfUrFV5uU?=
+ =?us-ascii?Q?dpPUcSIbT5OsDS5GwjgTMj/41TIjYij3b6fMV/YPEJe/SV6r6JMZ2jvSg1wr?=
+ =?us-ascii?Q?/t1/HtjHgVJwKekUR8OMk22sb5+VPHUslr6LlbH59qRl0NnE4WsHx2+aznTw?=
+ =?us-ascii?Q?pzmkj0Gzz6uNoOlIdsBiTEp5vyCsQj+CKogIux02SOBUkDLr8zxyLxy6gDZX?=
+ =?us-ascii?Q?nV648oLjvtlFjhiTM28XUqkcTXd5/FqQfL4E8wZm+f/Hogc9eSZDsCxr3dIa?=
+ =?us-ascii?Q?+yEykqMVLUlYH+hwEFR9nFy1MLNG7UfGyx/kMuUJLla7Q9sbuWmzPZsQr1sE?=
+ =?us-ascii?Q?3errq4Tg3f90pV32yuoHs/Bw63uQef24pN46N5ljY6gs8y9ymSMj0+Iss6uf?=
+ =?us-ascii?Q?C/vVywnCyXi+NuainD4MAVBSXIXMagoiio0k6wESwXIT6SA8E7Js3WSDAZSI?=
+ =?us-ascii?Q?D+LDj8a2QcpYC1BE/8UxwfsN7c6wEwI2xZS0RCT9DZAkVWO/tolrxnPMI067?=
+ =?us-ascii?Q?xNNPTYWYfTXpegZdr81AexvH3A9n310UYIfeP/gku/bsgYmI4Lx9uT/+GU5q?=
+ =?us-ascii?Q?qcq7KowxgloK3LhDTzugDzBM+u2pBA+8ptbX3T36nOa/dRKnwdFSNOI+mh5F?=
+ =?us-ascii?Q?D63zMKfjofgq22LAlksauQtlb1tXA8Mc3k/84NoNHp2zzWPeEEyGIXkXop4b?=
+ =?us-ascii?Q?6mNJtKa6zoQim+bpzBvJvqqqfbovf+CsmHflJo8DoiVbxYhlH4jtvt7S69XM?=
+ =?us-ascii?Q?2/geOoDkT4OiQV3Q0jr+t9nX7lWn8bfIjJ1GjXx75ctBHx9TvuNTYgWI3nvp?=
+ =?us-ascii?Q?xUSuuzT3uJJD8PFv2TE=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 03:10:30.1510 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 895d8fa1-8e2d-4a0f-d3c9-08de1698b77a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 03:11:00.9905 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50247b23-a47c-41fd-67b6-08de1698c9e5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D9.namprd04.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001C8.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7543
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4033
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,137 +147,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Andrew Mazour <Andrew.Mazour@amd.com>
+From: Austin Zheng <Austin.Zheng@amd.com>
 
-[Why]
-The inbox1 infrastructure is deprecated, so to support display
-power features requiring a DMUB interlock moving forward extend
-the inbox0 locking conditions to also include Replay or PSR.
+[Why & How]
+Update structs for rq regs
 
-[How]
-Implemented a series of changes to improve HW lock handling:
-- Deprecated should_use_dmub_inbox1_lock() and guarded it with
-  DCN401 flag.
-- Migrated lock checks into inbox0 helpers and added PSR/Replay
-  enablement checks to ensure correct behavior.
-- Updated HWSS fast update path to acquire HW lock as needed
-  using the new helpers.
-
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Andrew Mazour <Andrew.Mazour@amd.com>
+Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+Signed-off-by: Austin Zheng <Austin.Zheng@amd.com>
 Signed-off-by: Ray Wu <ray.wu@amd.com>
 ---
- .../drm/amd/display/dc/core/dc_hw_sequencer.c |  5 +-
- .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.c | 52 +++++++++++++------
- .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.h |  2 +
- 3 files changed, 41 insertions(+), 18 deletions(-)
+ .../amd/display/dc/dml2_0/dml21/inc/dml_top_dchub_registers.h   | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index f95cb0cf4b8a..a7ec633b26c0 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -38,6 +38,7 @@
- #include "dccg.h"
- #include "abm.h"
- #include "dcn10/dcn10_hubbub.h"
-+#include "dce/dmub_hw_lock_mgr.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_dchub_registers.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_dchub_registers.h
+index 8e5a30287220..bf57df42d1d9 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_dchub_registers.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_dchub_registers.h
+@@ -121,6 +121,8 @@ struct dml2_display_rq_regs {
+ 	uint32_t crq_expansion_mode;
+ 	uint32_t plane1_base_address;
+ 	uint32_t unbounded_request_enabled;
++	bool pte_buffer_mode;
++	bool force_one_row_for_frame;
  
- #define NUM_ELEMENTS(a) (sizeof(a) / sizeof((a)[0]))
- #define MAX_NUM_MCACHE 8
-@@ -764,7 +765,9 @@ void hwss_build_fast_sequence(struct dc *dc,
- 	if (dc->hwss.dmub_hw_control_lock_fast) {
- 		block_sequence[*num_steps].params.dmub_hw_control_lock_fast_params.dc = dc;
- 		block_sequence[*num_steps].params.dmub_hw_control_lock_fast_params.lock = true;
--		block_sequence[*num_steps].params.dmub_hw_control_lock_fast_params.is_required = dc_state_is_fams2_in_use(dc, context);
-+		block_sequence[*num_steps].params.dmub_hw_control_lock_fast_params.is_required =
-+			dc_state_is_fams2_in_use(dc, context) ||
-+			dmub_hw_lock_mgr_does_link_require_lock(dc, stream->link);
- 		block_sequence[*num_steps].func = DMUB_HW_CONTROL_LOCK_FAST;
- 		(*num_steps)++;
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
-index 39f5fa73c43e..5bfa2b0d2afd 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
-@@ -61,31 +61,49 @@ void dmub_hw_lock_mgr_inbox0_cmd(struct dc_dmub_srv *dmub_srv,
- 	dc_dmub_srv_wait_for_inbox0_ack(dmub_srv);
- }
- 
--bool should_use_dmub_inbox1_lock(const struct dc *dc, const struct dc_link *link)
-+bool dmub_hw_lock_mgr_does_link_require_lock(const struct dc *dc, const struct dc_link *link)
- {
--	/* ASIC doesn't support DMUB */
--	if (!dc->ctx->dmub_srv)
-+	if (!link)
- 		return false;
- 
--	if (link) {
-+	if (link->psr_settings.psr_version == DC_PSR_VERSION_SU_1)
-+		return true;
- 
--		if (link->psr_settings.psr_version == DC_PSR_VERSION_SU_1)
--			return true;
-+	if (link->replay_settings.replay_feature_enabled)
-+		return true;
- 
--		if (link->replay_settings.replay_feature_enabled)
--			return true;
-+	if (link->psr_settings.psr_version == DC_PSR_VERSION_1) {
-+		struct dc_link *edp_links[MAX_NUM_EDP];
-+		int edp_num;
- 
--			/* only use HW lock for PSR1 on single eDP */
--		if (link->psr_settings.psr_version == DC_PSR_VERSION_1) {
--			struct dc_link *edp_links[MAX_NUM_EDP];
--			int edp_num;
-+		dc_get_edp_links(dc, edp_links, &edp_num);
-+		if (edp_num == 1)
-+			return true;
-+	}
-+	return false;
-+}
- 
--			dc_get_edp_links(dc, edp_links, &edp_num);
-+bool dmub_hw_lock_mgr_does_context_require_lock(const struct dc *dc, const struct dc_state *context)
-+{
-+	if (!context)
-+		return false;
-+	for (int i = 0; i < context->stream_count; i++) {
-+		const struct dc_link *link = context->streams[i]->link;
- 
--			if (edp_num == 1)
--				return true;
--		}
-+		if (dmub_hw_lock_mgr_does_link_require_lock(dc, link))
-+			return true;
- 	}
--
- 	return false;
- }
-+
-+bool should_use_dmub_inbox1_lock(const struct dc *dc, const struct dc_link *link)
-+{
-+	/* ASIC doesn't support DMUB */
-+	if (!dc->ctx->dmub_srv)
-+		return false;
-+
-+	if (dc->ctx->dce_version >= DCN_VERSION_4_01)
-+		return false;
-+
-+	return dmub_hw_lock_mgr_does_link_require_lock(dc, link);
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h
-index 9f53d2ea5fa5..4c80ca8484ad 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.h
-@@ -46,5 +46,7 @@ void dmub_hw_lock_mgr_inbox0_cmd(struct dc_dmub_srv *dmub_srv,
-  * Return: true if the inbox1 lock should be used, false otherwise
-  */
- bool should_use_dmub_inbox1_lock(const struct dc *dc, const struct dc_link *link);
-+bool dmub_hw_lock_mgr_does_link_require_lock(const struct dc *dc, const struct dc_link *link);
-+bool dmub_hw_lock_mgr_does_context_require_lock(const struct dc *dc, const struct dc_state *context);
- 
- #endif /*_DMUB_HW_LOCK_MGR_H_ */
+ 	// MRQ
+ 	uint32_t mrq_expansion_mode;
 -- 
 2.43.0
 
