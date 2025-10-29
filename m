@@ -2,71 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24D2BC1F43A
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Oct 2025 10:24:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4268C1F459
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Oct 2025 10:24:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1906710E937;
-	Thu, 30 Oct 2025 09:24:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="czcqHsvu";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F07510E949;
+	Thu, 30 Oct 2025 09:24:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60D6110E63D;
- Tue, 28 Oct 2025 17:38:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761673083; x=1793209083;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rj0qgordGZNB+YdPjKDmtqTEG5yrczqeTMJCDVNmgm0=;
- b=czcqHsvuBt+Cd0uR/ZTJ2AxTRMMSPqWM7JyltnWkaww25r7Iy7p8xH6m
- w2LJJAPHSkbpNsDfOpdHV/Uls82kBh1e6d4vvgvhfLN5972U9a9whs9Jx
- 8UTV652d4ki/iKmBQXNzSoaV6T4oKUa2jV+qnaLKoHkF9POKlK5V5qkbC
- WoH/JYxyogM2J/nZFlBRnL/6AxxJUyMe9PyKmslpQiCpfqO53yDuJv5hO
- smgC5HDMG8wD3Ro+DQq/LWrVjetndd9PSDQTlNdaVPZLb3WWcTqbCJZFr
- 3DmskT1xk5uiatgkZkAXrZyotp44vWtf4X/lw5two5Mky0WGlNEYBEodi w==;
-X-CSE-ConnectionGUID: 34gN1EUdR+ew60r6H2C2eA==
-X-CSE-MsgGUID: iwieSlqSQB+oFYVrvghjBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="81413277"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="81413277"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:38:03 -0700
-X-CSE-ConnectionGUID: CNDiVW/JRC2hDk9azTLjtQ==
-X-CSE-MsgGUID: jG6aT9CEQn60hVk9anqSKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="185304310"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.182])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:37:56 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: =?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>,
- Simon Richter <Simon.Richter@hogyros.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH 9/9] PCI: Prevent restoring assigned resources
-Date: Tue, 28 Oct 2025 19:35:51 +0200
-Message-Id: <20251028173551.22578-10-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251028173551.22578-1-ilpo.jarvinen@linux.intel.com>
-References: <20251028173551.22578-1-ilpo.jarvinen@linux.intel.com>
+X-Greylist: delayed 938 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Oct 2025 07:57:01 UTC
+Received: from mail-vip.corpemail.net (mail-vip.corpemail.net
+ [162.243.126.186])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5B6E10E719;
+ Wed, 29 Oct 2025 07:57:01 +0000 (UTC)
+Received: from jtjnmail201623.home.langchao.com
+ by ssh248.corpemail.net ((D)) with ASMTP (SSL) id 202510291519137869;
+ Wed, 29 Oct 2025 15:19:13 +0800
+Received: from jtjnmail201626.home.langchao.com (10.100.2.36) by
+ jtjnmail201623.home.langchao.com (10.100.2.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 29 Oct 2025 15:19:13 +0800
+Received: from jtjnmailAR01.home.langchao.com (10.100.2.42) by
+ jtjnmail201626.home.langchao.com (10.100.2.36) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 29 Oct 2025 15:19:13 +0800
+Received: from inspur.com (10.100.2.113) by jtjnmailAR01.home.langchao.com
+ (10.100.2.42) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Wed, 29 Oct 2025 15:19:13 +0800
+Received: from localhost.localdomain.com (unknown [10.94.19.60])
+ by app9 (Coremail) with SMTP id cQJkCsDwlHjwvwFppzgHAA--.5619S2;
+ Wed, 29 Oct 2025 15:19:13 +0800 (CST)
+From: Bo Liu <liubo03@inspur.com>
+To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
+ <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@gmail.com>, 
+ <simona@ffwll.ch>
+CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, Bo Liu <liubo03@inspur.com>
+Subject: [PATCH] drm/amd/display: Fix double word in comments
+Date: Wed, 29 Oct 2025 15:19:11 +0800
+Message-ID: <20251029071911.17786-1-liubo03@inspur.com>
+X-Mailer: git-send-email 2.43.7
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: cQJkCsDwlHjwvwFppzgHAA--.5619S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kr4xCw18ZFWxJF15Cw4Uurg_yoW8Gr1rp3
+ yDKrWYq398GF17t39rWF1DWayag398WFy3t3s5CwsxCa1UJrWxXwn7uw1YkrWUCFWFyF1Y
+ yr98CFWrWFyqyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUBY14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26rxl
+ 6s0DM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+ 0DM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+ 64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8Jw
+ Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAG
+ YxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7V
+ AKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCj
+ r7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6x
+ IIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAI
+ w20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x
+ 0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbCPfPUUUUU==
+X-CM-SenderInfo: xolxu0iqt6x0hvsx2hhfrp/
+X-CM-DELIVERINFO: =?B?SVELsmLVRuiwy3Lqe5bb/wL3YD0Z3+qys2oM3YyJaJDj+48qHwuUARU7xYOAI0q1Re
+ KIpedjRVREeXrKp2GVcC1+hy8UA3v4YLioUy1QX4XtPbugOBkHUbSmiG4iRGoNFPrkYiqq
+ TaRnPrDe8agINCvjjdQ=
+Content-Type: text/plain
+tUid: 202510291519133de33ef3a36d45fee600a25e63dee77a
+X-Abuse-Reports-To: service@corp-email.com
+Abuse-Reports-To: service@corp-email.com
+X-Complaints-To: service@corp-email.com
+X-Report-Abuse-To: service@corp-email.com
 X-Mailman-Approved-At: Thu, 30 Oct 2025 09:24:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,45 +86,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-restore_dev_resource() copies saved addresses and flags from the struct
-pci_dev_resource back to the struct resource, typically, during
-rollback from a failure or in preparation for a retry attempt.
+Remove the repeated word "the" in comments.
 
-If the resource is within resource tree, the resource must not be
-modified as the resource tree could be corrupted. Thus, it's a bug to
-call restore_dev_resource() for assigned resources (which did happen
-due to logic flaws in the BAR resize rollback).
-
-Add WARN_ON_ONCE() into restore_dev_resource() to detect such bugs
-easily and return without altering the resource to prevent corruption.
-
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+Signed-off-by: Bo Liu <liubo03@inspur.com>
 ---
- drivers/pci/setup-bus.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/pci/setup-bus.c b/drivers/pci/setup-bus.c
-index 8da83b612c59..28d6ae822c0b 100644
---- a/drivers/pci/setup-bus.c
-+++ b/drivers/pci/setup-bus.c
-@@ -15,6 +15,7 @@
-  */
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+index f809c4073b43..4287f9d22f3d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+@@ -5624,7 +5624,7 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
+ 			// vs the latency based number
  
- #include <linux/bitops.h>
-+#include <linux/bug.h>
- #include <linux/init.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-@@ -135,6 +136,9 @@ static void restore_dev_resource(struct pci_dev_resource *dev_res)
- {
- 	struct resource *res = dev_res->res;
- 
-+	if (WARN_ON_ONCE(res->parent))
-+		return;
-+
- 	res->start = dev_res->start;
- 	res->end = dev_res->end;
- 	res->flags = dev_res->flags;
+ 			// prefetch_bw1: VM + 2*R0 + SW
+-			// so prefetch_bw1 will have enough bw to transfer the necessary data within Tpre_rounded - Tno_bw (Tpre is the the worst-case latency based time to fetch the data)
++			// so prefetch_bw1 will have enough bw to transfer the necessary data within Tpre_rounded - Tno_bw (Tpre is the worst-case latency based time to fetch the data)
+ 			// here is to make sure equ bw wont be more agressive than the latency-based requirement.
+ 			// check vm time >= vm_trips
+ 			// check r0 time >= r0_trips
 -- 
-2.39.5
+2.31.1
 
