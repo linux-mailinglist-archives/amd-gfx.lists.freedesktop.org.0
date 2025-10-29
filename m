@@ -2,125 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C380FC19C83
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Oct 2025 11:38:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B00C19D84
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Oct 2025 11:48:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEE110E788;
-	Wed, 29 Oct 2025 10:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2B1A10E790;
+	Wed, 29 Oct 2025 10:48:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BWGnlt/2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FBJajNBa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013018.outbound.protection.outlook.com
- [40.93.196.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00A4A10E788
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 10:38:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Pk+OErvvdbhfFbRLB37SjleQ+12SaxNcJd2jprVEZj+9pndojvs0jwvbnjSTauKI1Q8HYq+0akfFR+ufpEO6OcIOvstJVNnz2GgzyqUrVIxaJ3aL1QswLeDhdWyYcaEbWylpDwxhvQvDEofxm5Cq98iGFnDK8TtfSqGVNTnnn5DNnLtPrYSLRrZFdFP/StjBWPSQ7YInza/Da+XgfuvVMKw6bV6UIxnB4CdzR6G5uGy+xicgwZtFZSb8AUM2FpKZpV0dTluBRGw00Yrko1N91HG7HmAQ6+BQTJsU9YWudvd7iIqP8LzOB68x5+pHpmXRV8YfIG0HJ/lk8DddTqWLiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zQGjiRHRdxN8ssj4Hv3RReCHxT+S3YwIj/Dq9oKrHvM=;
- b=jsEJVRcXH4zGQZhM/QbB0GBFFKQi8rynKIliC+06HVf+LSv6TQY1ZzkC8pKLHC09GIuSem8BherHk+hK9e0YFeALwryXS5L7mOIjEq+k59sdcfKfBeTZfPnusabWZ+Zfp/eKpQrORITZbhsOPpm83Y2USR+IrZnHdOSJwDh34tB0RDAol5ld1ON2ZEbDd/GIUzyT8kMGo7GY0IKTd+Mi5O0JPoBR66FQCJoobR59yxXg5D7+xVR0pVitK2ThjCsnBsJTB+Q1TDU3cOQi2oZwMZnOKDKMMaXT+UQVaEbxEDXjD48/a4+ExsKbUqC1S6TXRMqDT/Q6I3K0QC7RA4B2zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zQGjiRHRdxN8ssj4Hv3RReCHxT+S3YwIj/Dq9oKrHvM=;
- b=BWGnlt/2rsPOrSKMXkRaj8e2AcTCklzeLuNHErpRqUhquCjzkMkn7fn0lRd+kP0fV3/U3kNUTc7LUgsV+8leui02Dur0aPmwbit5sKKTspnMcvMVnkxIADN0o6EiBDRiKtewObfMzLu9K+kx44prkq5RpLtYdd7LtL/PFdnFADI=
-Received: from MN2PR15CA0063.namprd15.prod.outlook.com (2603:10b6:208:237::32)
- by CY8PR12MB7194.namprd12.prod.outlook.com (2603:10b6:930:5a::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Wed, 29 Oct
- 2025 10:38:20 +0000
-Received: from BN3PEPF0000B370.namprd21.prod.outlook.com
- (2603:10b6:208:237:cafe::92) by MN2PR15CA0063.outlook.office365.com
- (2603:10b6:208:237::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.13 via Frontend Transport; Wed,
- 29 Oct 2025 10:38:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN3PEPF0000B370.mail.protection.outlook.com (10.167.243.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.0 via Frontend Transport; Wed, 29 Oct 2025 10:38:20 +0000
-Received: from tao-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 29 Oct
- 2025 03:38:19 -0700
-From: Tao Zhou <tao.zhou1@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Tao Zhou <tao.zhou1@amd.com>
-Subject: [PATCH 8/8] drm/amdgpu: add RAS bad page threshold handling for PMFW
- manages eeprom
-Date: Wed, 29 Oct 2025 18:38:02 +0800
-Message-ID: <20251029103802.1402199-8-tao.zhou1@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251029103802.1402199-1-tao.zhou1@amd.com>
-References: <20251029103802.1402199-1-tao.zhou1@amd.com>
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2835710E790
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 10:48:44 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id
+ a640c23a62f3a-b4f323cf89bso1677899866b.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Oct 2025 03:48:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1761734923; x=1762339723; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=NQ1iUsCuDn1lt7whBExzRGFwabZ4hHWfLLe5ml9YZRk=;
+ b=FBJajNBa23ADIhAd99nihQPp4WgESvpG9OEZaq2UP6mjWgFxwuyFrU+DbTonWcanc8
+ xnJnKCSKbXs2zacBTbNFUpavGP+XkLu9RWLtcFRCB6aCjmp3rH8rWG0UQjeKO/nwdG7e
+ OFl5n6P4rZKy0DdTrEDq4HC4ZQB09yE8Z3dMmRaFZdxCvts1FE/KQGNnlzUau6VABogF
+ u7k8Ue+o6XOHN/kcN5U67nkj2Qb5lORB7vucaO+tzv+DV48/epqTCK3OEMYfmqmCkMYp
+ uzh+yNHmR4IjC1ve0eSMvn3QGmFu3cG3Jq5mUmFCdN01WFSyJ7PWeMXI9j2l9wsaJ8N1
+ zn6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761734923; x=1762339723;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=NQ1iUsCuDn1lt7whBExzRGFwabZ4hHWfLLe5ml9YZRk=;
+ b=LlCVqO3uyVMr2J1TGPq+pAsuSfau30n2V9Cb3B7mBt6s1yOXtJkRCv8Gi7/qZvvXia
+ klJkoQD4zooK795/UufdOI54aXbrRDf4eid0yNosDorkEbcH446Sy06nBHqNKsoKG9Ir
+ riqesFCL2FV8XFSACxyMZUbBlKZf8GRnqsqgdBM3qGbVI4Bp99feftr+1DUDSUOZRqov
+ zgchR0m+CwGF0h/4IL6lvQUqHkbR9JMHlS00Dt+sffon8emQcPgiH5Q87xJZs+XUct5H
+ 8nq8+5XZWbuiSc4Q1fYk3gY2Cv9P/QLX+J0R9ZO6mV9Q/jvpRCj5DPd/V7gq7q3cDUxM
+ iUyw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWf7ASRU6CEHhA32PCfXTEJxBHRrDbG/3TghlL/2Q9KLGBvWSUSP1vdeaJJ8HjwCTivDiqOnBMY@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxi7W0fAjVPhf8RZziF9q7Uuy6De6PC4QZHIYovTML96lOBRSu8
+ foSZyXboDgVZiF5BsVokK3WeEC+/gIBnL5OiRJRzG2FQlCm3WZrMQd+J
+X-Gm-Gg: ASbGncszQjD4KWBjrrG84CAHbtTZZFigfFPymYvO5fwqC4Yw+dq5l/FL22ZAy0+q24k
+ XvraAG3QEAQgVNJMA6oQ5p15UcORB3GVviiS9N8pmi8kx3O8s277f97nKx1daCSrTON1r8lkm7R
+ BE9roUs1qJTqIgrPaDIVgPLWt+/sSlib+WzLtWikJ75qObIRpwxnEZg1NzeAib0+GxuECjpz/mc
+ hSCAvfrMe8qlfxdtEsOuCy5/afUGzS+C96/xqv75sYb+Hz61aiHf6cXWa/0N83u+/Xg7u1HrnwL
+ IF7QIWPA/s5rT2H8DvG0rY7FkjaO4xvLTs6NLmQhOc4SdTo4sFSrDq4gEsEl6Hcy2ZTRVPfi+24
+ K3XzA6j4s4PZxzSif7lmDkGwWrs1H1b4W5bv6Kclbo17zcHMJEfBZv4D+awHFo6lQOMj3lIN09a
+ 9dir0+NKxHYXrRiXsDfU5Fq7B98szXGPqh+qqfN6TKaVku6tpFXU8niJoXzC5u6jyu97pglHyaJ
+ FpxvuiePLhnMOfFK7KR8VqHpn+IKLCYT//2ZBvGf32G
+X-Google-Smtp-Source: AGHT+IEn6KNbH5Zu5pmWuG5+klUzp50xzDKAwMogD5KvCxFPlpCsoZ5YuZUp0uVoMTTOqtJ9kTGFDQ==
+X-Received: by 2002:a17:907:d8e:b0:b54:8670:7c2d with SMTP id
+ a640c23a62f3a-b703d55d49fmr234823566b.55.1761734922354; 
+ Wed, 29 Oct 2025 03:48:42 -0700 (PDT)
+Received: from ?IPv6:2001:4c4e:24cb:f700:23e8:3719:bda9:8268?
+ (20014C4E24CBF70023E83719BDA98268.dsl.pool.telekom.hu.
+ [2001:4c4e:24cb:f700:23e8:3719:bda9:8268])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b6d8541fb5bsm1382534366b.56.2025.10.29.03.48.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 Oct 2025 03:48:41 -0700 (PDT)
+Message-ID: <2f0591f9dc2dadac72e8def5977afdc0a1e876b1.camel@gmail.com>
+Subject: Re: [PATCH 05/14] drm/amdgpu/vce: Clear VCPU BO before copying
+ firmware to it
+From: Timur =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
+ Alexandre Demers <alexandre.f.demers@gmail.com>, Rodrigo Siqueira
+ <siqueira@igalia.com>
+Date: Wed, 29 Oct 2025 11:48:41 +0100
+In-Reply-To: <baa0105d-3b37-4e63-8232-4f45976a3e7c@amd.com>
+References: <20251028220628.8371-1-timur.kristof@gmail.com>
+ <20251028220628.8371-6-timur.kristof@gmail.com>
+ <baa0105d-3b37-4e63-8232-4f45976a3e7c@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B370:EE_|CY8PR12MB7194:EE_
-X-MS-Office365-Filtering-Correlation-Id: 75cd924d-b074-4b1f-a4b9-08de16d74761
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|30052699003|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3D8dscE7rknAdmGML3F2cTWrdQ6lq52G9reKPK+Md68UhydFtrZes+GfZnlR?=
- =?us-ascii?Q?cau4S8oDKR4aqB2i6F4Q2PmSyfRWu6/n2/bAsj2Xdu6mqlS0o1yyn8Iro16b?=
- =?us-ascii?Q?b+PlKoE/6duhcqaS8mXlUE3uSDCID6K2HCsnsKoauCIkTJeJHTvxwAZxWNfD?=
- =?us-ascii?Q?hCxiuJE935ZcljC1jxcbu1OMw0o/KmuygepHtjszUHA8SBjl+VjiOdeC2jId?=
- =?us-ascii?Q?UJBYZubCwjiFKH7agcr6wMijsWbYU2Nv3Ue/bsZUJ9ZbSeVzXc4zHpCd6ugm?=
- =?us-ascii?Q?Uh3yxahagRFg6ASXBF0FsbRi3fMw6hHRkrVFw6dpcF8KQhBbHeb0Yre4ge4S?=
- =?us-ascii?Q?Yz2LFxsgJp0K0+s1FS+tL+tL8zsQgzJE5fx6nqgCT6H+7RrA/qRtHHRDrqRc?=
- =?us-ascii?Q?tCCOpj7a7SgEvpEGxQrizf63rmXxzUH2ZbmiWhcpVcIKruC2FLXOfmO8k8Q+?=
- =?us-ascii?Q?j1/hXqlkfsj/b4JQM5BOLU8Flk2LlsP2zT7+775xUrNtPghKVAm+1Rdly74o?=
- =?us-ascii?Q?h+ttOg0WzDwjnr2zTqoqiPoxJcYUlYqXNkUTpOxzH5V2r53U+iPe/WnKhTjk?=
- =?us-ascii?Q?SW6ogz1MCnRtjlIGDONf2FSKir39uH/HVIYRm/Q4gF+KNKIRxEYe2AnC6wJX?=
- =?us-ascii?Q?b1YozWWn73qj9i0RN3qIlcBnXSdNXCMpjapBsETCLQsdxhrBbGHT9tADIGbT?=
- =?us-ascii?Q?wP+zI5QoUoVw4Gcv4dvv5cYQWPYlPEFsofAVbs6GvXn7Csb0lSsX3kSWXUgq?=
- =?us-ascii?Q?2Y/agOmyxNZ3N4nvopdEgNVDkNXMJ7zZZS2Ea3DkcDyjvO6f8e8RDbASbQpC?=
- =?us-ascii?Q?+FBeUwwZNVryLtDVyxyVF6h8pKCOy6FRfeJ12zYd8AWkevzfFyzsqMaFaX0j?=
- =?us-ascii?Q?xdJgMZK7kll/1xK3QLdH8GuwMy2cvIQmZrD7GQohBwzM7CENm+OjnnbndA5l?=
- =?us-ascii?Q?FijAeDgE6oJsBA7K2fTME3rtZHW4fxwKf9YP3zYbxPy5WL7Kxj9ai3hP/It2?=
- =?us-ascii?Q?RoEIeGPdQ16SJ4xQqpLFublV/rTXYGp05VbJ2n9uLo7R76tKl2yRcXGuqD+q?=
- =?us-ascii?Q?Of2itcyNjpA56/cyxeDf5ug0gMzmuCTvMNN47yzmB4mvztAFg7W2tPqdNofe?=
- =?us-ascii?Q?sSmQMQBZBTRPBU703q7PfbKdvqgJNJRzO8Xg35goqW9obuG/1mkdInGKP54O?=
- =?us-ascii?Q?1bD93TFRvnUj8uw97Bz99XPVxYTtDJaMt6+CmrF4JTj6vcZFT9RFvZ0es/V1?=
- =?us-ascii?Q?wl9EWyWiybcTIJqt/wVmPYvd8IKy/tZyXko3KikPoayu6AluNoemw6i+4kDG?=
- =?us-ascii?Q?8e/5MplS3VLfDL2W2DlnFZ0iJV1OF0l4h4PM5+Ds8JaK9t6DwvKJEOmoMRLz?=
- =?us-ascii?Q?fapyQD69tmjoiBMSTRD3gEzLcWodj3A08z+rc8TWd2u8jv++tvhNEp1EtOjh?=
- =?us-ascii?Q?2QqFzbtUtYyrwRTHikF2e/qBKsREzMyMeMgeGJtx6a8UYMyGZBFi7JN0l/cR?=
- =?us-ascii?Q?QAChhy1OxfmUsLtGNL6w12ALm9VWTvZBEavHY6rVzlprRrHbhLDbD99YnzGq?=
- =?us-ascii?Q?lQN5kL5RDPsmLA1hsco=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(30052699003)(376014)(82310400026);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 10:38:20.4136 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75cd924d-b074-4b1f-a4b9-08de16d74761
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B370.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7194
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,74 +97,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Check if bad page threshold is reached and take actions accordingly.
+On Wed, 2025-10-29 at 11:19 +0100, Christian K=C3=B6nig wrote:
+> On 10/28/25 23:06, Timur Krist=C3=B3f wrote:
+> > The VCPU BO doesn't only contain the VCE firmware but also other
+> > ranges that the VCE uses for its stack and data. Let's initialize
+> > this to zero to avoid having garbage in the VCPU BO.
+>=20
+> Absolutely clear NAK.
+>=20
+> This is intentionally not initialized on resume to avoid breaking
+> encode sessions which existed before suspend.
 
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
----
- .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    | 37 ++++++++++++++++---
- 1 file changed, 32 insertions(+), 5 deletions(-)
+How can there be encode sessions from before suspend?
+I think that there can't be.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-index de7b268a9862..0acf45d5fc54 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-@@ -896,6 +896,36 @@ int amdgpu_ras_eeprom_update_record_num(struct amdgpu_ras_eeprom_control *contro
- 	return ret;
- }
- 
-+static int amdgpu_ras_smu_eeprom_append(struct amdgpu_ras_eeprom_control *control)
-+{
-+	struct amdgpu_device *adev = to_amdgpu_device(control);
-+	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
-+
-+	if (!amdgpu_ras_smu_eeprom_supported(adev))
-+		return 0;
-+
-+	control->ras_num_bad_pages = con->bad_page_num;
-+
-+	if (amdgpu_bad_page_threshold != 0 &&
-+	    control->ras_num_bad_pages > con->bad_page_cnt_threshold) {
-+		dev_warn(adev->dev,
-+			"Saved bad pages %d reaches threshold value %d\n",
-+			control->ras_num_bad_pages, con->bad_page_cnt_threshold);
-+
-+		if (adev->cper.enabled && amdgpu_cper_generate_bp_threshold_record(adev))
-+			dev_warn(adev->dev, "fail to generate bad page threshold cper records\n");
-+
-+		if ((amdgpu_bad_page_threshold != -1) &&
-+		    (amdgpu_bad_page_threshold != -2))
-+			con->is_rma = true;
-+
-+		/* ignore the -ENOTSUPP return value */
-+		amdgpu_dpm_send_rma_reason(adev);
-+	}
-+
-+	return 0;
-+}
-+
- /**
-  * amdgpu_ras_eeprom_append -- append records to the EEPROM RAS table
-  * @control: pointer to control structure
-@@ -914,17 +944,14 @@ int amdgpu_ras_eeprom_append(struct amdgpu_ras_eeprom_control *control,
- 			     const u32 num)
- {
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
--	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
- 	int res, i;
- 	uint64_t nps = AMDGPU_NPS1_PARTITION_MODE;
- 
- 	if (!__is_ras_eeprom_supported(adev))
- 		return 0;
- 
--	if (amdgpu_ras_smu_eeprom_supported(adev)) {
--		control->ras_num_bad_pages = con->bad_page_num;
--		return 0;
--	}
-+	if (amdgpu_ras_smu_eeprom_supported(adev))
-+		return amdgpu_ras_smu_eeprom_append(control);
- 
- 	if (num == 0) {
- 		dev_err(adev->dev, "will not append 0 records\n");
--- 
-2.34.1
+As far as I see, before suspend we wait for the VCE to go idle, meaning
+that we wait for all pending work to finish.
+amdgpu_vce_suspend has a comment which says:
+suspending running encoding sessions isn't supported
 
+> Why exactly is that an issue?
+
+We need to clear at least some of the BO for the VCE1 firmware
+validation mechanism. This is done in a memset in vce_v1_0_load_fw in
+the old radeon driver.
+
+Also I think it's a good idea to avoid having garbage in the VCPU BO.
+
+> The VCE FW BO should be cleared to zero after initial allocation?
+
+To clarify, are you suggesting that I move the memset to after the BO
+creation, and then never clear it again? Or are you saying that
+amdgpu_bo_create_reserved already clears the BO?
+
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
+> > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 1 +
+> > =C2=A01 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> > index b9060bcd4806..eaa06dbef5c4 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> > @@ -310,6 +310,7 @@ int amdgpu_vce_resume(struct amdgpu_device
+> > *adev)
+> > =C2=A0	offset =3D le32_to_cpu(hdr->ucode_array_offset_bytes);
+> > =C2=A0
+> > =C2=A0	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
+> > +		memset32(cpu_addr, 0, amdgpu_bo_size(adev-
+> > >vce.vcpu_bo) / 4);
+> > =C2=A0		memcpy_toio(cpu_addr, adev->vce.fw->data + offset,
+> > =C2=A0			=C2=A0=C2=A0=C2=A0 adev->vce.fw->size - offset);
+> > =C2=A0		drm_dev_exit(idx);
