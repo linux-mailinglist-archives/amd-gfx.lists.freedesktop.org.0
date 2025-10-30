@@ -2,96 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3823EC23B3B
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 09:12:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E4E6C23B47
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 09:12:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88D6710EAC6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 995DE10EAC9;
 	Fri, 31 Oct 2025 08:12:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="S22ZZovO";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="dsCwq6ap";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E1C310E9C8
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 14:37:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1761835065;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=nkks9IPPTiRjudJKz2fy8ztuwHSVrBIwR6A4uWG3RWI=;
- b=S22ZZovOv4dk2DtO7f6rbdTBTGuyF0LZ84MApUzajYKYF8+3VgcX9Rp8w1uLRptBb2JjYW
- 1BnfhiPzDJCNKpttzh3fhPZVp8NUkA8MrxEe3XU+RIgeeLLDrQ/upvsjq9BjrD+oP1DEJ0
- xNyN+hJKrZJg3RNPYsiokGbnNDuzgsw=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-360-3SfXlRV0MD-j8yUBwzTmjg-1; Thu, 30 Oct 2025 10:37:44 -0400
-X-MC-Unique: 3SfXlRV0MD-j8yUBwzTmjg-1
-X-Mimecast-MFC-AGG-ID: 3SfXlRV0MD-j8yUBwzTmjg_1761835063
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-40cfb98eddbso1051752f8f.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 07:37:44 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FDC910E9FD
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 16:10:22 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-475dab5a5acso6814195e9.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 09:10:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1761840621; x=1762445421; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=z8txnxFWEuSZEvyBpZsokJZwR4vlD1MJiynWZzM4iDc=;
+ b=dsCwq6apHDetq70bZoTeHPanLm9d7vWBga3guhnM7KRLFgZQ6/MVPXeDimm56VteU0
+ L7YCjEphSe5YLQDI0aLnIkDnY7T1DQUR/APYwugUm+CAzpTyHKpAn5vcDP/KAM8FGwVB
+ Q75/Yki1IPLnOYyxf10xkaOBDt9Y+34KwBtVVRIZ3uv02NuWEUo+hSecHKeDhAm+7TZ/
+ oP7kC72koX5P5Zrl6chLw2TUhS8DxAKOyeDNKIY9a5tJS6QEnN18Ja1krYNITRU5hN5l
+ Mf9iwJ+QzwIPNsIHt3OMtBzPYUZDvi/jAWtmWWYe4pfcv6x/YJbmv04mJV6QfEf8wyI8
+ Fd5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761835063; x=1762439863;
+ d=1e100.net; s=20230601; t=1761840621; x=1762445421;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=nkks9IPPTiRjudJKz2fy8ztuwHSVrBIwR6A4uWG3RWI=;
- b=QJt81qpLTDbV7qX7JO525Z2P/XwzYMNKPvDSS+AJEvbjmgKuua/gpPlg/IR/uF4xOz
- HtsAF89nAg03lzpEGJtHaDkwi2tpq7Cm/fG0VtZDR1HM6T9/jhqsbg6htZt4TmxXiurI
- jaotzOUeOt+EJ+pvf/Qqu1XzhhOE+zSWZreU+GsIRsc5fQsW8c3JAwt5N0/06rQq85Gz
- JJ8gD6bnianVGwPYu+GTSc1XpOjNjEahHzEt75pTLwoT0bKcz5biTyzHQTcD+R14TzNe
- S1EgxXiHB56koNgL9L6x9r/299MmqV1AdN2KDHJFTDqsCRi8ESFU3iXFOnXCLX2EWFAV
- 6pWw==
+ bh=z8txnxFWEuSZEvyBpZsokJZwR4vlD1MJiynWZzM4iDc=;
+ b=HpagqyoJoVjMGOmkXZvZx+Gq9b4eSDhkgeYoAQSZjMe8o5vuOjnlMAwcB2Spn2cIFu
+ o38r4h8b+u2Z8Ey26LMfnB/rcCx+8kiXGmlIg8ih8EQqD194Dz3eeWNo2b3bYjwPLnIN
+ gU3lGR4MTLQFEt8Sw4bNBKL2nS57pnKm49x01j4Fwq44m1Skp3d6OfX3uKDtmYDCnKzq
+ lu58aA2kOW2MCS/acruvfkiAva5tM1MUoqL7CBkKf+KG2KdB+RqPciF2ynaNsGzG2RDq
+ 92HMdrctpWQUhHYiqtIss6n8wf6ctHSz1mteMRJesVMzOBOi2IneNRQKEs0ttXm9Ib5O
+ f9vQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXAjqvPRqgArxUbgjMKm80pUiYMbbUevaFyZbc9rrlwDBygZX97K48UHjeyn3CzFV6w4JQMLq6J@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz8b8qpS/oxf6FNbNh/snNU0pG4HuaPNRyZVfxclOqzRof6ycK5
- NPQ+XWYUp3a+G8XHi/tiWEAo/Fk4eoSQefjfwt0gUUuDyDOVNixU0RYmWep4VJQuz5PuObF14UR
- 2NdN/gPnDQpN+/hg+0APZRllxFSdJpIWdFbSPJFnfnuDdK43dmxOu8YYEjfZabfh3kWk=
-X-Gm-Gg: ASbGnct3xhEyrKSP09ZuETIvo926C/IVOY5/+Aw2TPNFSS7EFBV08Q/Lj2mY009KSsG
- F36mZLQFdRKxjdcxK+Q2j0F/8IcrwFQUDCKWY+FPFkNipmAdxYWoKuU0tU/uM/j495JVe3RegUN
- SYTewSdQKY0wBPjLB3+tA7xs9uAMZneNuwJXVbOCvQnwov5iTCAcscLDahs/ORUp82M6IYj0+ku
- tbsWryL7W4U0idB/25LTZqAFLcvBQsr3bLOPPnppS7LYzYGsX7sn3ac/eNxpv6qIYdnYwme2IC0
- O3efnrpMWErdvB4eQQmmB9pF0UNly4CrsCybRJ/ypPPKKRj0GPOckSiwROxaWpYRZF4xRxUqcs2
- zRtuxknSq33i1591egrfQ+umfH3dHcFubccBiKdt9SX6nDU/F
-X-Received: by 2002:a05:6000:1449:b0:429:b963:cdd5 with SMTP id
- ffacd0b85a97d-429bcccf0aamr87214f8f.5.1761835062918; 
- Thu, 30 Oct 2025 07:37:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH4Hb1Zr2+1H9F1aQQVjn8swQhMlyoOrBtrdyyo6F0SLZbU4syUP2hFz8P5UzKpetZ1C9iD6A==
-X-Received: by 2002:a05:6000:1449:b0:429:b963:cdd5 with SMTP id
- ffacd0b85a97d-429bcccf0aamr87184f8f.5.1761835062481; 
- Thu, 30 Oct 2025 07:37:42 -0700 (PDT)
-Received: from lbulwahn-thinkpadx1carbongen12.rmtde.csb
- ([2a02:810d:7e01:ef00:1622:5a48:afdc:799f])
+ AJvYcCX4bpEnvHaEa45iX5d5eKOebvD+YWyNqM98leFHFG4BUdaaYIe3ZLKZh1Xdn5CBJeY/te4e7Yqx@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywe4j9XUJK3eP2RSBlJoeJwvkEsDQQ5aRKrojK1na96NnUrhgZ8
+ HplANR08Qgx5lXsk1MrOrZDrqXBW4hedfUS79xDAYey1EB6ppbIq9DxRwFC7d5+Mzf0=
+X-Gm-Gg: ASbGncshLVMK9nHbcbAAmhyxLFGAJ3X+3dBt+SqkRaeTXm4XsAjB3nYYqV/1jpFAGPL
+ a2pVj+vBQKxt4DkhLiumjpJmXeLlDYHuLsbg2CYKyuEgrK2/WT6oZwB/RqOBC5EW/6Jeh2ILEfw
+ s6F49LcvsNNAECkHUDXtMfw0sjnefFHyUEaUUPs1Rr5ENU2rwqn4f95xwmr9n3FdNW/yEks7PGa
+ VC6gu/34u/q5VrubKkQscbaYJMIb8XLYVTAJBw/cilCCpX8ojXEXQbgJ/ESKXqkJI4BHSU7Ti2b
+ bQAVuf3+hp5ye8KHZACAJilv1EQwiDp51QxbNAzTuBBzV06ctHtQm/y9nNkkVDr9KxrppyXYKYk
+ yYwVHuc4L43kbLB72o2zXyEITlbwKln2BXQJ2R0SYBTHCxMp/FAtB9gP7e1mzaIDfokWOiLMTfd
+ XhOz5geNW3AC8fXpQ=
+X-Google-Smtp-Source: AGHT+IFUABxe82sEBxNr7aGuyc63kqBiirRpp/f4wHw9QtuKLHHuTYMkkkGE04OiUmg1LArsF4Jd1A==
+X-Received: by 2002:a05:600c:a345:b0:45d:dc85:c009 with SMTP id
+ 5b1f17b1804b1-477307c3595mr2031835e9.10.1761840620842; 
+ Thu, 30 Oct 2025 09:10:20 -0700 (PDT)
+Received: from linux.fritz.box ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-429952b7a94sm38472105f8f.5.2025.10.30.07.37.40
+ ffacd0b85a97d-429952b7a7csm33124857f8f.8.2025.10.30.09.10.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Oct 2025 07:37:41 -0700 (PDT)
-From: Lukas Bulwahn <lbulwahn@redhat.com>
-X-Google-Original-From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
-To: Austin Zheng <austin.zheng@amd.com>, Dillon Varone <dillon.varone@amd.com>,
- waynelin <Wayne.Lin@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Thu, 30 Oct 2025 09:10:20 -0700 (PDT)
+From: Marco Crivellari <marco.crivellari@suse.com>
+To: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Cc: Jun Lei <jun.lei@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Michal Hocko <mhocko@suse.com>, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- Lukas Bulwahn <lukas.bulwahn@redhat.com>
-Subject: [PATCH] MAINTAINERS: adjust file entry in AMD DISPLAY CORE - DML
-Date: Thu, 30 Oct 2025 15:37:37 +0100
-Message-ID: <20251030143737.136120-1-lukas.bulwahn@redhat.com>
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH 0/4] replace old wq(s), added WQ_PERCPU to alloc_workqueue
+Date: Thu, 30 Oct 2025 17:10:07 +0100
+Message-ID: <20251030161011.282924-1-marco.crivellari@suse.com>
 X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: wN3QyuRg2vPvnBYTu35q3uNAjQn2GtkkHup8nEXfvVo_1761835063
-X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
 X-Mailman-Approved-At: Fri, 31 Oct 2025 08:12:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -107,32 +94,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
+Hi,
 
-Commit e6a8a000cfe6 ("drm/amd/display: Rename dml2 to dml2_0 folder")
-renames the directory dml2 to dml2_0 in ./drivers/gpu/drm/amd/display/dc,
-but misses to adjust the file entry in AMD DISPLAY CORE - DML.
+=== Current situation: problems ===
 
-Adjust the file entry after this directory renaming.
+Let's consider a nohz_full system with isolated CPUs: wq_unbound_cpumask is
+set to the housekeeping CPUs, for !WQ_UNBOUND the local CPU is selected.
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@redhat.com>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This leads to different scenarios if a work item is scheduled on an
+isolated CPU where "delay" value is 0 or greater then 0:
+        schedule_delayed_work(, 0);
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4d739e18aab6..7031ee1e7cff 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1080,7 +1080,7 @@ M:	Austin Zheng <austin.zheng@amd.com>
- M:	Jun Lei <jun.lei@amd.com>
- S:	Supported
- F:	drivers/gpu/drm/amd/display/dc/dml/
--F:	drivers/gpu/drm/amd/display/dc/dml2/
-+F:	drivers/gpu/drm/amd/display/dc/dml2_0/
- 
- AMD FAM15H PROCESSOR POWER MONITORING DRIVER
- M:	Huang Rui <ray.huang@amd.com>
+This will be handled by __queue_work() that will queue the work item on the
+current local (isolated) CPU, while:
+
+        schedule_delayed_work(, 1);
+
+Will move the timer on an housekeeping CPU, and schedule the work there.
+
+Currently if a user enqueue a work item using schedule_delayed_work() the
+used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
+WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
+schedule_work() that is using system_wq and queue_work(), that makes use
+again of WORK_CPU_UNBOUND.
+
+This lack of consistency cannot be addressed without refactoring the API.
+
+=== Recent changes to the WQ API ===
+
+The following, address the recent changes in the Workqueue API:
+
+- commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
+- commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
+
+The old workqueues will be removed in a future release cycle.
+
+=== Introduced Changes by this series ===
+
+1) [P 1-2]  Replace uses of system_wq and system_unbound_wq
+
+	system_wq is a per-CPU workqueue, but his name is not clear.
+	system_unbound_wq is to be used when locality is not required.
+
+	Because of that, system_wq has been replaced with system_percpu_wq, and
+    system_unbound_wq has been replaced with system_dfl_wq.
+
+2) [P 3-4] WQ_PERCPU added to alloc_workqueue()
+
+	This change adds a new WQ_PERCPU flag to explicitly request
+    alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
+
+Thanks!
+
+Marco Crivellari (4):
+  drm/amdgpu: replace use of system_unbound_wq with system_dfl_wq
+  drm/amdgpu: replace use of system_wq with system_percpu_wq
+  amd/amdkfd: WQ_PERCPU added to alloc_workqueue users
+  drm/radeon: WQ_PERCPU added to alloc_workqueue users
+
+ drivers/gpu/drm/amd/amdgpu/aldebaran.c     | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c  | 2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c   | 3 ++-
+ drivers/gpu/drm/radeon/radeon_display.c    | 3 ++-
+ 5 files changed, 9 insertions(+), 7 deletions(-)
+
 -- 
 2.51.0
 
