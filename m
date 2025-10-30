@@ -2,75 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4268C1F459
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Oct 2025 10:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D129C1F42E
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Oct 2025 10:24:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F07510E949;
-	Thu, 30 Oct 2025 09:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDAB10E933;
+	Thu, 30 Oct 2025 09:24:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="R0//pqkp";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 938 seconds by postgrey-1.36 at gabe;
- Wed, 29 Oct 2025 07:57:01 UTC
-Received: from mail-vip.corpemail.net (mail-vip.corpemail.net
- [162.243.126.186])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5B6E10E719;
- Wed, 29 Oct 2025 07:57:01 +0000 (UTC)
-Received: from jtjnmail201623.home.langchao.com
- by ssh248.corpemail.net ((D)) with ASMTP (SSL) id 202510291519137869;
- Wed, 29 Oct 2025 15:19:13 +0800
-Received: from jtjnmail201626.home.langchao.com (10.100.2.36) by
- jtjnmail201623.home.langchao.com (10.100.2.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Wed, 29 Oct 2025 15:19:13 +0800
-Received: from jtjnmailAR01.home.langchao.com (10.100.2.42) by
- jtjnmail201626.home.langchao.com (10.100.2.36) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Wed, 29 Oct 2025 15:19:13 +0800
-Received: from inspur.com (10.100.2.113) by jtjnmailAR01.home.langchao.com
- (10.100.2.42) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Wed, 29 Oct 2025 15:19:13 +0800
-Received: from localhost.localdomain.com (unknown [10.94.19.60])
- by app9 (Coremail) with SMTP id cQJkCsDwlHjwvwFppzgHAA--.5619S2;
- Wed, 29 Oct 2025 15:19:13 +0800 (CST)
-From: Bo Liu <liubo03@inspur.com>
-To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
- <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <airlied@gmail.com>, 
- <simona@ffwll.ch>
-CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, Bo Liu <liubo03@inspur.com>
-Subject: [PATCH] drm/amd/display: Fix double word in comments
-Date: Wed, 29 Oct 2025 15:19:11 +0800
-Message-ID: <20251029071911.17786-1-liubo03@inspur.com>
-X-Mailer: git-send-email 2.43.7
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Thu, 30 Oct 2025 02:01:44 UTC
+Received: from out30-119.freemail.mail.aliyun.com
+ (out30-119.freemail.mail.aliyun.com [115.124.30.119])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C196710E068;
+ Thu, 30 Oct 2025 02:01:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux.alibaba.com; s=default;
+ t=1761789703; h=From:To:Subject:Date:Message-ID:MIME-Version;
+ bh=bz3NOx7T4kZd94YviM38jzlgzBI25Whvb17qsPXmPYo=;
+ b=R0//pqkpRE7YiXDWMoiep97ikvYyJD5rFwTi3R5Wz9itaPKZCHYt8e9JFmg/GttyC5Ub3lamto0Hdii4rDg1ehyVP6ron1q/sp6gQDQR1HBzLL3cX8PSHy/UmT5N1MkFT38SHw7rnixYIzxzHSFVMhWJVvpUXxXgAiD2+t/4uxA=
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0WrI.U.A_1761789393 cluster:ay36) by smtp.aliyun-inc.com;
+ Thu, 30 Oct 2025 09:56:39 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Abaci Robot <abaci@linux.alibaba.com>
+Subject: [PATCH -next 3/3] drm/amd/display: remove unneeded semicolon
+Date: Thu, 30 Oct 2025 09:56:29 +0800
+Message-ID: <20251030015631.3106732-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.43.5
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: cQJkCsDwlHjwvwFppzgHAA--.5619S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Kr4xCw18ZFWxJF15Cw4Uurg_yoW8Gr1rp3
- yDKrWYq398GF17t39rWF1DWayag398WFy3t3s5CwsxCa1UJrWxXwn7uw1YkrWUCFWFyF1Y
- yr98CFWrWFyqyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUBY14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26rxl
- 6s0DM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
- 64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8Jw
- Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAG
- YxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7V
- AKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCj
- r7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6x
- IIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAI
- w20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x
- 0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbCPfPUUUUU==
-X-CM-SenderInfo: xolxu0iqt6x0hvsx2hhfrp/
-X-CM-DELIVERINFO: =?B?SVELsmLVRuiwy3Lqe5bb/wL3YD0Z3+qys2oM3YyJaJDj+48qHwuUARU7xYOAI0q1Re
- KIpedjRVREeXrKp2GVcC1+hy8UA3v4YLioUy1QX4XtPbugOBkHUbSmiG4iRGoNFPrkYiqq
- TaRnPrDe8agINCvjjdQ=
-Content-Type: text/plain
-tUid: 202510291519133de33ef3a36d45fee600a25e63dee77a
-X-Abuse-Reports-To: service@corp-email.com
-Abuse-Reports-To: service@corp-email.com
-X-Complaints-To: service@corp-email.com
-X-Report-Abuse-To: service@corp-email.com
 X-Mailman-Approved-At: Thu, 30 Oct 2025 09:24:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,26 +55,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove the repeated word "the" in comments.
+No functional modification involved.
 
-Signed-off-by: Bo Liu <liubo03@inspur.com>
+./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:7392:3-4: Unneeded semicolon.
+
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=26821
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- .../dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c        | 2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-index f809c4073b43..4287f9d22f3d 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-@@ -5624,7 +5624,7 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
- 			// vs the latency based number
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index bb0fe91a1601..b53a2af1b30d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7389,7 +7389,7 @@ int amdgpu_dm_connector_atomic_set_property(struct drm_connector *connector,
+ 		default:
+ 			dm_new_state->abm_sysfs_forbidden = true;
+ 			dm_new_state->abm_level = val;
+-		};
++		}
+ 		ret = 0;
+ 	}
  
- 			// prefetch_bw1: VM + 2*R0 + SW
--			// so prefetch_bw1 will have enough bw to transfer the necessary data within Tpre_rounded - Tno_bw (Tpre is the the worst-case latency based time to fetch the data)
-+			// so prefetch_bw1 will have enough bw to transfer the necessary data within Tpre_rounded - Tno_bw (Tpre is the worst-case latency based time to fetch the data)
- 			// here is to make sure equ bw wont be more agressive than the latency-based requirement.
- 			// check vm time >= vm_trips
- 			// check r0 time >= r0_trips
 -- 
-2.31.1
+2.43.5
 
