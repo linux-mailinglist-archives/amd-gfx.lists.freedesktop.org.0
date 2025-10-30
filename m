@@ -2,71 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0FDC2255F
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Oct 2025 21:50:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DDC1C22579
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Oct 2025 21:51:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 688B010EA1F;
-	Thu, 30 Oct 2025 20:49:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA5710EA3A;
+	Thu, 30 Oct 2025 20:51:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bm647/T7";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="alGJANVZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
- [209.85.216.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C02B10EA1F
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 20:49:40 +0000 (UTC)
-Received: by mail-pj1-f41.google.com with SMTP id
- 98e67ed59e1d1-32ebcef552eso250816a91.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 13:49:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761857380; x=1762462180; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5MhkgAUMKOV9HXlk+s8+cg3Mqe1pJL2T4DxPb1i+FBw=;
- b=bm647/T7fHJayBSiEHWkYyP0sAEm6Eme4CSOPpSenZqbEgQytr2ec1LRgfzjeHRL+C
- VUiUhwHU/1wi3ZoULhBO14ILEc8+U8+kjpAS2+rae4LzVGGXlT4aVlVZadD48647Ac3i
- zqDvBz/y5k4wDK2NgJZTUYmwmIAvxgFLC8ffwzAubBG2q2p/b4W1NogPw9485mWh/ml/
- xny06JrJERp5MOQH85NHqsQNSNZrLjABRJEikQUpfi+dU8RC+2AGsBkk93SpQMLLtqVl
- 8oNtj4bysgm9FGL61ooUqaB2Hd//TM1sGaoZbNLF7SX38l78w1xoGyb5q5pHDQ1kIK17
- h8gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761857380; x=1762462180;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5MhkgAUMKOV9HXlk+s8+cg3Mqe1pJL2T4DxPb1i+FBw=;
- b=CKC72iO+rNXcTPxWC9Gve8WpfPXlb9Faa4hsyFkb6ACnSWr5VpiEO8jm/RWifl5oeS
- lO3XrNx9wKZhzOpq3oqJZa1/PLAkAfmeV/QBtvH0HQg8BEJTrSiqjKOJoAynN7ie4LkM
- 9uUjoSCgeWUZfUF6YxD15dvIwioRnphW/fYWvgtw/x5S5ohqbjE7fxEFGVXgSXLPQhaT
- EYsuizXLdbb5yicU8kFdFVlmvQEFWJ91rs9aLCSQ4S0Fkd1E0Ep1HyKxOUXT/M2jfagK
- Bzepg0fQRecIFN4suMkoQW1NGDu4w+U+1dLC2VM0lrSmGOQeXUg1JltfF6X1aJQV9eQ1
- d5ig==
-X-Gm-Message-State: AOJu0Ywn6iWGHKNnKQwbe7NsOsPoHoU2DDFP7035cHZDDlzYRaiEUfHI
- LTgk9hQ43NF9a95qUgaMT7XFS3g4q5JKwUTp1Bz5bQdDoAovLYaaKD6X+4qfsOGm1hIcaULg71g
- CXvtCl87Cb18ytUji5mAshlUOUnTnbJc=
-X-Gm-Gg: ASbGncut/bNbU4ffFQNrrdM1cg5l71XTJqsjI3qgzI+ljOx4KKs/eZZoQpRlT+PEMqy
- JSowA6ScHxONBj7n+hErEWrErxYGWlZwNN0aYQLCW7Bmm/G8eqbj3pdmPCJXabZY1u+UwWXoyAH
- C7f3lZYwupy0S/150vyHG9WjY3BfGN4Q21MYR1dwkloekAmkJFHFupkQaAVtY9P2024H6CW8I2R
- U6s/+l3rupDfO6cyy6rERcNSikf4ujv5ttL+zF4LTD/loLck4eg0ms1kw9NPSjzd+qAJ4E=
-X-Google-Smtp-Source: AGHT+IFbCD1Q3ccsOLRXX07f4q9lNZMoR/p+cyMaUrXpyqy5PGUh6CX2RvIQus21sUe3a4xnXPK2NMfNC65bkYqAWWs=
-X-Received: by 2002:a17:902:e415:b0:257:3283:b859 with SMTP id
- d9443c01a7336-2951a53baaemr5261425ad.9.1761857379947; Thu, 30 Oct 2025
- 13:49:39 -0700 (PDT)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013050.outbound.protection.outlook.com
+ [40.93.196.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 530D110EA37
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 20:51:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kjPgxybc1liMBHLcJvKGBf/8E0BrDRmSoGF1kT28pU+LnoHIOlByO0VWcJS5WJyS6MkZEhMw4phNRMt+vSKjhPjVeqI+CH0OZW7xeegn2Tgin8zth51gd37wFeS47xr4/ippgp/tKnihfj8F/twL3MlAjvzwBBjibqz6qT0mkrqa+51RVZKNaQcsrgpHOBPEQKL2rAbrcX+P7LVYnpL1/kmehAj4DKqSQbngsDofr/Qj3dV0onQgTtdKiGUQL4apyBGhvGDnqv6kJrS4zfd0hTzh/D2brH1gveAmsKol/h5v/rwKgefkuafomvV1w3vXZCpTnCwUw9xHV+BiM1nZ3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UjBwEMRb8w2vDuEatKzelqBgAQ6NoP2Q0b9aMa+fe0Y=;
+ b=byiLbU21b370b175bRzHbj3tO9axA31dOOqut6yefWOTtjui5IPOizQaKuJjfPFBHvFRrUCOqkyVUlsMpPyO+pcCET2Gf08jGyJZh3nhcKX7AW19usoXmPh9lyZJ7bnDfNVDWSkpkGB3ZpKEU4/BHGyoU2/Cs35S2PIeeT4uhwQwRg9kuYqk5awNISsardso4pMoaNpUFGm4GAjkCQUQ/FZa7QqQBFBixnrdXAkGHP3YQKOdC+FOh1zhTH4pZf+cHIvSvVPFsGENvk3hH8AeNpxtYuS9eF9JeosC6oXXwjJjhc8sORsb4H3I0shXQ8v3Q80Wb0y6qeBZkYDyloEFbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UjBwEMRb8w2vDuEatKzelqBgAQ6NoP2Q0b9aMa+fe0Y=;
+ b=alGJANVZAr5nF4Y0h+ctucfA1c0JvvnL8eZs3su/Ueb3iN6iLOE6Z1cTpyjJPiXcZycfJ5vSZcGDMOY7Ki4a4yNc4zLBZqHobHrAzNNWcpdP4N6FcGFEvkbXhWRMezQCHyC/U+luZdwuqtyhUny3QeEa3umRSijpojsEWvJN3kQ=
+Received: from SJ0PR05CA0008.namprd05.prod.outlook.com (2603:10b6:a03:33b::13)
+ by DM6PR12MB4106.namprd12.prod.outlook.com (2603:10b6:5:221::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.14; Thu, 30 Oct
+ 2025 20:51:09 +0000
+Received: from SJ1PEPF00002321.namprd03.prod.outlook.com
+ (2603:10b6:a03:33b:cafe::1c) by SJ0PR05CA0008.outlook.office365.com
+ (2603:10b6:a03:33b::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.4 via Frontend Transport; Thu,
+ 30 Oct 2025 20:50:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF00002321.mail.protection.outlook.com (10.167.242.91) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9275.10 via Frontend Transport; Thu, 30 Oct 2025 20:51:07 +0000
+Received: from tr4.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 30 Oct
+ 2025 13:51:05 -0700
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 0/2] Add mmhub 4.2.0 support
+Date: Thu, 30 Oct 2025 16:50:50 -0400
+Message-ID: <20251030205051.590971-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
-References: <20251030193943.4064454-1-superm1@kernel.org>
-In-Reply-To: <20251030193943.4064454-1-superm1@kernel.org>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 30 Oct 2025 16:49:28 -0400
-X-Gm-Features: AWmQ_bmw7COUPndW9iLbKLuUDkDJJyMDNxb0_ktVkl5byGDVNG_ceHOGBBAYF0E
-Message-ID: <CADnq5_N==TV+c99gq+PaxRpi9OVZpcCMZF6ro==JKp0n1zrWhw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Don't stretch non-native images by
- default in eDP
-To: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002321:EE_|DM6PR12MB4106:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d8a187b-dd39-439a-3069-08de17f60cd4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?UfQpdyY6swy722BnQC7Jy5FIZeKgNnitrmt1ja2ak7Z/DvuWZIehpQkwztbZ?=
+ =?us-ascii?Q?UBOCV9nGd12g+gIAIb0z0RxMlYB+Agz59F+VrqzX4QIkgjMyLXMj/o/tWsvJ?=
+ =?us-ascii?Q?7C4eXqbUeaJwpbX/B1VWy0p+d5esB1HZjMlehQUI+5yH4FcCtkk4wX4V7MFQ?=
+ =?us-ascii?Q?k6tfPO+LZK04T9o9WAClvDWU4fHosZz+qHnwazwqNC9Bd8lXRuoNEI4+/Ibg?=
+ =?us-ascii?Q?IYZVs+PTx0mU5kqrJty3kOLGRB49/VJfzoaYEusVrSu0eIYeHVx0e7Mtu+Nl?=
+ =?us-ascii?Q?QLSXHls1trIDkk5KU4yqcr+HSZrUF+Xa5fohuNuH3p6xe6Tdo+XG/kZIUfsF?=
+ =?us-ascii?Q?ksuoZiC5KrA6mIuLzVIwEmeUmDq1xX51OItgpYORMmMnqeghz0cWqUEZPwVQ?=
+ =?us-ascii?Q?36MrO17dSPubtV0oUUEoNgxNjb/4PwtpGTtUnfH2sbZYGTteV7O57OtbKiEA?=
+ =?us-ascii?Q?/I1/yq9jtKp1xIIQtZkOD3HKaVAaecbsbUEYI61i07oy7pIjq7H3EWLtEx/5?=
+ =?us-ascii?Q?p4SwUnriFTeVLmUVR2TM4ddvxA8y/fj6b001Wo1y72vyNfkSDOtqKB7A8Geu?=
+ =?us-ascii?Q?8UGNp+l5eC2KLI4o41/V0PKfU3crrKbPhDzih3/2poWKoiTYlV54Q4CaXMuE?=
+ =?us-ascii?Q?iRCuMNB6iw0T6nwjP943m1PYjC3v1j62viWYIaDdMkvkWPiEwwE1FReAL/S7?=
+ =?us-ascii?Q?TDTM9YrgvJRA5zAvm80vzSNNACLdDHmtCEMIU+wp5DPtN2swYqFWoc0SpiNC?=
+ =?us-ascii?Q?hWWBETciPd7QJYvbEI8bcBE91r5OVS7eyuX1D/7rx9Bzo/5y3YmZLLrl3DoV?=
+ =?us-ascii?Q?kgMBqsuwfd1AYkl4vhD0tRkMtjpMY3M4Q/qLg8vazYnchRKI8EFP5L5M+rI3?=
+ =?us-ascii?Q?TmnbrKWi5CxQrtf05b5DwxZtHWSD/2e5iyFevH8tST7RXImQQm1kBl4sBTQm?=
+ =?us-ascii?Q?BkiXNEsuS/zBpAL2GVygjjvLtoaUesvs2opDhr9kIjtAds77a5aaZiw/HRV6?=
+ =?us-ascii?Q?RRzj/EhER9yx7KtMOPvSscgVjgowWOkhUwglx3GF1h8ZqZvpehuXv7MCVio1?=
+ =?us-ascii?Q?Yct5ItcQ1KnnT4/VdAxVJObjv818EwIHsNQGX0WdegUmpuoHweIk/citCdLg?=
+ =?us-ascii?Q?zby3+FpRIpBy83TRVHvofCCrXyxHybXsJMkL7ahFhiqdD+XksFFtMg5Bdpvp?=
+ =?us-ascii?Q?RPdfODtMalr12qyiSi//x5yKU/wK71jWplDQNA0MVfY6grrkf9HhQ2jTSNqv?=
+ =?us-ascii?Q?7bjbloTqxZtLzFp+wtSMf4NpswP9B/HILgYuUodM63JgVrFftN8Q3iZhbh4O?=
+ =?us-ascii?Q?qK2sZ0o2bQDxKQr1akHI5+7qHZ0FdlYlNHTx135ZcSUSIwa7Cmkgv+6vNwwv?=
+ =?us-ascii?Q?xG7ufpgHZBGOShaZI1J4HPFpLbpUTrZ1GEDQ/z0i8bXlBDWOXr5sJR6DWYlM?=
+ =?us-ascii?Q?G91nzvPbiGBGl/7p77ifK55fTpC0VtCbmiw1+9Ni3T3u5PB2j9BkCTgp1JHX?=
+ =?us-ascii?Q?zyX9a1hCMzkGcgTSYIf/qK79IFlO8E+XhKdkYAVBkm6iXAVFB+Ei9g/3zQp4?=
+ =?us-ascii?Q?VlMBCMCU6fL/pALc5RA=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 20:51:07.6483 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d8a187b-dd39-439a-3069-08de17f60cd4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002321.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4106
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,55 +132,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 30, 2025 at 4:16=E2=80=AFPM Mario Limonciello (AMD)
-<superm1@kernel.org> wrote:
->
-> commit 978fa2f6d0b12 ("drm/amd/display: Use scaling for non-native
-> resolutions on eDP") started using the GPU scaler hardware to scale
-> when a non-native resolution was picked on eDP. This scaling was done
-> to fill the screen instead of maintain aspect ratio.
->
-> The idea was supposed to be that if a different scaling behavior is
-> preferred then the compositor would request it.  The not following
-> aspect ratio behavior however isn't desirable, so adjust it to follow
-> aspect ratio and still try to fill screen.
->
-> Note: This will lead to black bars in some cases for non-native
-> resolutions. Compositors can request the previous behavior if desired.
->
+Enable support for a new mmhub.  Patch 1 was
+just register headers and was very large so
+I'm just sending patch 2.
 
-We may end up getting bug reports about the black bars.  We had a
-similar debate about what the right default was for radeon 15 years
-ago.  That said, at least with this the pixels will be square with
-this patch.
+Hawking Zhang (1):
+  drm/amdgpu: Add mmhub v4_2_0 ip headers v5
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Likun Gao (1):
+  drm/amdgpu: Add initial support for mmhub v4_2
 
-> Fixes: 978fa2f6d0b12 ("drm/amd/display: Use scaling for non-native resolu=
-tions on eDP")
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4538
-> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 29b9197bbbc32..5b279182e66a8 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -8078,7 +8078,7 @@ static int dm_encoder_helper_atomic_check(struct dr=
-m_encoder *encoder,
->                                        "mode %dx%d@%dHz is not native, en=
-abling scaling\n",
->                                        adjusted_mode->hdisplay, adjusted_=
-mode->vdisplay,
->                                        drm_mode_vrefresh(adjusted_mode));
-> -                       dm_new_connector_state->scaling =3D RMX_FULL;
-> +                       dm_new_connector_state->scaling =3D RMX_ASPECT;
->                 }
->                 return 0;
->         }
-> --
-> 2.43.0
->
+ drivers/gpu/drm/amd/amdgpu/Makefile           |    3 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c     |  915 +++++
+ drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.h     |   28 +
+ .../asic_reg/mmhub/mmhub_4_2_0_offset.h       |  802 +++++
+ .../asic_reg/mmhub/mmhub_4_2_0_sh_mask.h      | 3013 +++++++++++++++++
+ 5 files changed, 4760 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.h
+ create mode 100644 drivers/gpu/drm/amd/include/asic_reg/mmhub/mmhub_4_2_0_offset.h
+ create mode 100644 drivers/gpu/drm/amd/include/asic_reg/mmhub/mmhub_4_2_0_sh_mask.h
+
+-- 
+2.51.1
+
