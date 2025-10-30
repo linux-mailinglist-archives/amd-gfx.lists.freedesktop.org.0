@@ -2,78 +2,158 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5CCC1F38A
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Oct 2025 10:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79D17C1FABE
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Oct 2025 11:59:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C48B10E8F7;
-	Thu, 30 Oct 2025 09:16:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBFA10E25B;
+	Thu, 30 Oct 2025 10:59:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fl0EDwp+";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Uw06uMS3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
- [209.85.218.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88F2C10E8F7
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 09:16:03 +0000 (UTC)
-Received: by mail-ej1-f49.google.com with SMTP id
- a640c23a62f3a-b6d3effe106so160159166b.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 02:16:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761815762; x=1762420562; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ZZi+hQhuqpWXQFBYBXX7m8UKdbyOJYlxmWQU3Ahn+nY=;
- b=Fl0EDwp+LYua995RBaG078Ny2mEK+o1DL2Mm3Sw9jIDX4N1sFY0eJSWyiyVta+faTT
- rx8JlpGjFq6cwDcBSLL0g/ykjsowFUSuxdRjRpY3VSzHRiG50ENNtpiB8FEnTjNwrfGA
- VQmBDjWyJdxOxU24wSzQLh/X4BoNISCDcdw+gONjhwr7tbEhBYG4CRlN4d2AnzHKvJxE
- KgrCJGQw3UsKrhetCKCytpAW9PNGD26ubObUU7el1ifLi15me4z9EBRd+2LPSW+Yxmvo
- XxusP2QHj/LR+/ido+87QaMYD6bG3/KodgQ3bwcpavARHf8ivSqjY8Lkk4GVPlwchjRN
- CApQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761815762; x=1762420562;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=ZZi+hQhuqpWXQFBYBXX7m8UKdbyOJYlxmWQU3Ahn+nY=;
- b=saaTWx5BwDHvrGKWLMvluh5dpXErLNygqN6Mb6VfUDO2rvBtVUlmvRdcPyUrKBZA/+
- 5MbksOHdWeRRC557Hihe2lsJnILwxJSrMb4rpVQHvyHx2S2YwvevwQ5PR46rM5agmKSF
- Dpyz+HTQULv/xfV5VF+saiUplwF4zTIXsLvewwCddmmj72pnYUw9xQQjBBEIVaL9AC/u
- 78SEK1Fo6DePpGBzCGMoZyfZE135kLob1etlKH1bgrfN64T7WU2D9Ce9hre1oBLVmOWL
- 9GIlGv+Nv6F34d78zzhPQTzJOUC2qI2d/Kw537ZKJA5IiThJFFHkBvNS1Ul/hdCtoI3y
- TbCw==
-X-Gm-Message-State: AOJu0Yx3WkYBIq4MqPDvAWO+RWsWCGOrYxufAPFZLipqpEP+SNgMSSUv
- tUmP/IYeqFX+ckOFIO9QX7dOpw8gHSkwM5VozX6KOvoaw/A6uYw0xh3/lHeEsk5T
-X-Gm-Gg: ASbGncvnvH59GDpz7vQ3boX82imG61WAaB4kvqq2tEznmtL4hFpk0SGPJKxtbz3CQuh
- cBuM5Gz74zei7ZBDYfwLYIL/F3/ElQKTiyYaHAaP2cw5F3NnX+iPjYIfnPXlN0GsP+J3CwCldfv
- sflMClJQYzhW+t/ZJ776oSgLeSw9ovmY588W8Vnbw6xaPrThjpMhQNfZlo6AWTerTO1QwlUNf0C
- DL5TyHpM/3ec+keUoiCHgPHbOG+rYYJtApKhrpAqMHOFq7PPI32Mh/6ABwL2v5KeUG9HxswDqW5
- daU69m0QLWhWsmf1JZBNQSYpIbqf73HsdaEhzqXyxcExCcaKoiDvTT7ZQ+eRK5qbdNN9CLHR2I2
- a8NbJKnAP6rBpP3RV1q6DVJKB7QOo0nlMev7j/MQw9juVrUuFpB28AYZ+cXoOfSKk5dem0EoRGP
- /O4jGeQJeXoTH3PAKt9ruKIq4XQni6ZOzeNlcL+r73Th+TgGUNI4SMzUfj9pNM2dRgmYhr/6QkU
- WGpAUXL
-X-Google-Smtp-Source: AGHT+IEaAeQPB5XFd7eZZzScLgl4EEc/KIxuwdFP4IWlcBbLbNGrOb0q9D1s6wVAJ14CggC8jV1E/A==
-X-Received: by 2002:a17:907:3e94:b0:b04:3bfe:5b20 with SMTP id
- a640c23a62f3a-b703d492ffamr657002566b.30.1761815761657; 
- Thu, 30 Oct 2025 02:16:01 -0700 (PDT)
-Received: from Timur-Hyperion.home
- (20014C4E24CBF70023E83719BDA98268.dsl.pool.telekom.hu.
- [2001:4c4e:24cb:f700:23e8:3719:bda9:8268])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b6da1e2226fsm1280151666b.20.2025.10.30.02.16.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Oct 2025 02:16:01 -0700 (PDT)
-From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org,
-	Alex Deucher <alexander.deucher@amd.com>
-Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH] drm/amd/pm/si: Delete unused structs and fields
-Date: Thu, 30 Oct 2025 10:15:56 +0100
-Message-ID: <20251030091556.68417-1-timur.kristof@gmail.com>
-X-Mailer: git-send-email 2.51.0
-MIME-Version: 1.0
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013005.outbound.protection.outlook.com
+ [40.93.196.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12C0C10E25B;
+ Thu, 30 Oct 2025 10:59:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NC06wpPSlXFnagAp9OrDOJUZdYJbI+9UBZqFwHe94IikKT0GNSEOtvh0Qj4tfNin8OzMvsfeqbBwjtL5FYoJyfizY7C5VQDnbR9g4dqCAkr8HYPRLiKmHWqs3vCdNKKL7IeEDZSutCpb2HiiU3S/L/lBcxBSrnh7DUL+KfVfSd0UWltqgF1nbnfuj9MgCGwAVdVIqDqR7odLyhnLMsEbQzxa73KJRVUEArodISmworro2wBMW5lQ/1UmQm+YFtLn3CnmfewQSR2bm1bt+0GSTUOCAOR8OstRWfSdTvW/fZqhIVaNdeJeugtOzF/WeemInbRMnmYM7NPB/wleI5uZGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Sk/1rAfi+7bGODpcqYhM3gfqkeHClSL8PIQiLBtrBFA=;
+ b=SBJor7urHob7+R/1oMrGMzEyxlwiml3gkJ0WIK7QADi9ZwSMKRs2z0ks9VBKu3QZoJjuXZ3Q8PS1QF+o2bLyfwneHwxwEGN9RngZEIprCCmLCoe4s8ZFODov215NGXB4Uj8MqTgnasum/grLRPpXFtqN8CG/dL7/kivsHH7ES76hWG0GYd7ca2M3ilo3WljVAf3pAo7M5rwvdNZOjGFgRhCLH3V51/XPsrw58gTID89X7PYxI/ehZmI1QP8jEB2licGGAiyN+LTfKD5FEg1MKoGNYN3Yy+YzMmyhvsf7+/raXlZClZQNxr0f4ULTwXm4/DgdpkZT691+fgbpkUtcjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Sk/1rAfi+7bGODpcqYhM3gfqkeHClSL8PIQiLBtrBFA=;
+ b=Uw06uMS3QaQQf3+F/yvNpthn2fglTVSO6fcw75FU3NNe0h4OqQklolumAjSNM/PIbCB2Q0+cikMhhg9iCXUmppUuRxUrx1qAA9CFGZeTV/tYwB1S0fTLRxW+weoAcvhdmlRe/f9AkZ+quIh0lQKK2t8AHMeVid0vBYDLsEm561o=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MW4PR12MB7144.namprd12.prod.outlook.com (2603:10b6:303:21b::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Thu, 30 Oct
+ 2025 10:59:05 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9275.013; Thu, 30 Oct 2025
+ 10:59:05 +0000
+Message-ID: <6739aebe-45eb-44a5-a539-209fc3ed809b@amd.com>
+Date: Thu, 30 Oct 2025 11:59:01 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: Independence for dma_fences!
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: phasta@kernel.org, alexdeucher@gmail.com, simona.vetter@ffwll.ch,
+ tursulin@ursulin.net, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20251013143502.1655-1-christian.koenig@amd.com>
+ <15b2f86e8d6cb1df93edf73001fda2c378926016.camel@mailbox.org>
+ <c5ee86a8-3c6d-462b-b435-e25e8a925bde@amd.com>
+ <0e7f3ab50a2c30f193491bb82f97004150b99772.camel@mailbox.org>
+ <2da2077c-4226-4ba4-8935-e7e15e6b9765@amd.com>
+ <aQJ+08BFLtmsM8LQ@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <aQJ+08BFLtmsM8LQ@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT4PR01CA0401.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:108::25) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW4PR12MB7144:EE_
+X-MS-Office365-Filtering-Correlation-Id: 43e0ed0d-8351-456c-42da-08de17a3579b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MXprNlRHS1R5U244c0t0ZHFSSXVGUFpjTUtlaHUwSXkwUTYxTWZqcDU0U1FX?=
+ =?utf-8?B?WlFFTVM3emxTNWc1M2RlWkJPS2NSQ1V4eXhJWlovdm0yNEx5M2cyd2puam9Y?=
+ =?utf-8?B?WjJFamhlc2FQTUFUQ2xlbXhYOGZVbkhLcjVZWEllYzV1L2labkUrWXdzMWo2?=
+ =?utf-8?B?MFd5b1pzRGlqN2wyWFN2ZzJuSWxCa0E5MVdIc0d1WkJhYWxxa1UweitHS1My?=
+ =?utf-8?B?WHdTYzEwM3dWRHpVN25mSExMZ1V5WTlucEtiNjBlUXpMUDEvOHY2MitLMjRl?=
+ =?utf-8?B?K09pYndEOXZDaHVnd1EvOHhaUUtZTnNNTzhlbDE5S29NT1ZxQlNEdk1JT3BW?=
+ =?utf-8?B?enpiT1h6TmQrbTgzRWpNREJiYmFVemdlNmhSSzVaRWlzTjNTTnNFTHlEVGlp?=
+ =?utf-8?B?YS9FYllCVmQzb29aNUpyaktzSXV2UFJ6UC9seU9hZmtrYjVJVnQzNEhYT3pK?=
+ =?utf-8?B?WndUbUFnV3dZSkJxVFo2OFBDTFc0U2lrWGRMQ041bDB5RkEycFdKeFN6elk1?=
+ =?utf-8?B?ZnozeEh0NGFiM01TQ1Joa3RaOHJjRW5uM1h3ckVhd042RkRrdTdHNUxTbjZ3?=
+ =?utf-8?B?Nm9jVmF2ZW5wZk9ZRU1KZE93VXo0QWJDQXlBSUczT3NBZExkSEJMN0NSMHd4?=
+ =?utf-8?B?MFMzNnU1YWhPa3pYTy9GRUhYR0lKd084YjlqNWp2Yk9lMExLOUNBdEFnM2pj?=
+ =?utf-8?B?dkRNc0VoVE9OVkZKWkp1NHY3OFdaU2x5M1h4aW0ySUhpczlwazRDdW1iMFZH?=
+ =?utf-8?B?aVJGemQ5RTdCSGZ5dU94M1V1TkJldXJ6V3pVMDgvWFJmYnRxQ0MzUTJqalRL?=
+ =?utf-8?B?MWpDV2g4Y3FURFk1N2s1c2Vaa05kWEZpVU1YSC80TFVhcSs5UGxlcjlnRGlq?=
+ =?utf-8?B?R2JBd2lvR3pBb0xVZmtKbldaaDc1SjdwUVQ0OTZNVEREc0dWaUs0aFJmckdt?=
+ =?utf-8?B?T2diakJNdndJTFdDYTMzc1lYMkc4bHIrUmRSR1k1QXo1V0hxS3lTVVE5UWdo?=
+ =?utf-8?B?RGw1MEZRclF6Qm9tS2UyRG9zYkV4Sjc4STMzNkovdkcwRlV5YmROaGd5cDZ0?=
+ =?utf-8?B?T0lrSVhTY2FvajZnQUxtaVdvOFhPQjZ2RC9rUmphZ1hNQVh2NHZJMWVSWkFw?=
+ =?utf-8?B?WnZGbWpXd3RNSkZjV3dBOFQzOWJTelhuRUtvc0tFYnhvOEt2SmR6VlVOSHBn?=
+ =?utf-8?B?ai9aU1ZlUXFNSGtwU3FlMEpYa1BRSmRJYmNqUGhsYi95TlowdVVNRVd3dCsz?=
+ =?utf-8?B?YkxJeWxhcUM1RWtURkpOdVZBNkp4Mk1ZQ2J5TW1VN3RZVHplMzdidForU1lu?=
+ =?utf-8?B?QnJON1Vha3RmY1RiYllWZmJmSFYvUHE4aHpubGFqRWE2ZWhmK1FGUnRCSy9C?=
+ =?utf-8?B?TEhuK0lOODYvWjRIUmxWYmx2aXNlL0pVK2g5NkFDMWhxK0RqendzR1hJNlEr?=
+ =?utf-8?B?Wkd4eHlQQXZhUUdEQTB1OWxqKzR1dlBWWEhnLzMwM0owNVc4NFdJTTB4MnJa?=
+ =?utf-8?B?Q3FZMk0vcTZwaUdORWd2M05ybzJRdDJDUk94TnFtQ0Q4Y3Zaa2t3NUhWTGNj?=
+ =?utf-8?B?dXlJWkt6bjUydjAyLzU1SWdVaWY0UmFDYTc5dnhrdWFOWVoxalU1RDFxVVFC?=
+ =?utf-8?B?M3k1NCtpVmJ2emtWUktxMU5aYUxveVlNejdjbXgvdlNDUFAxVlZ0dmlHR1A1?=
+ =?utf-8?B?b2ZkZHM1UDVkdkRzaGxjVkRtTTA0WHczV1dLMjh1TzFhUktZb0dxa095UnJL?=
+ =?utf-8?B?RXo0eFd6NGpnZmxPaUQ1eEJEVGdBNkZScW9BVXVDQXBKT1lOM2ZQSzlwaWJq?=
+ =?utf-8?B?UnhSTFVRSysrakt0dE0ra0dIeE1OSWZiUFY5NHJiVnVDK0VSVktlZXRFVGsy?=
+ =?utf-8?B?T3RtNzhTcWNpZjJwNVBraUt5Zkp4UGdacWxYVEswam1VMzBYeFlNeVpRb3dr?=
+ =?utf-8?Q?FaHvDe4i+qeFeuYG20U1IGY0cHIPls/X?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bWRBV0lqZllIUkEzRFlETWZvSGNUd1FCSS9mQmV1azdSbDhVajZyaEs4Skxq?=
+ =?utf-8?B?ZEI1WTJ3aEQrbWU4TmVpTjZUQWliZHpwcVlmYXV5R1NGbDloS245YkRLQ05w?=
+ =?utf-8?B?S09HdyswTnhvQWV0VUNrb1dPRVJLT3F6bmtMcWxhTHA4ME9ORFNrNStZTXBk?=
+ =?utf-8?B?QllWRHdOK3VnY3BwOVlVMUNQSXM4bkdiNFhxTTNKb3JZSUZGZGVDcjMrdlhi?=
+ =?utf-8?B?eEFNTGtMUDJxeHM1b2VGR2U5SjZ5MW1wdURhcU5FSW1YMjR1ZlZnVC9qSzVJ?=
+ =?utf-8?B?c2RmY0lvNyt5ZHp2VUtqRndaWFNQd1VONUdFSW96ZHFEaGFURXFuWFdrbkRQ?=
+ =?utf-8?B?d1NSa3JCS1hudjdPTi9MVjVPaHZDc3gxRDVtMC9uUk5vNUptSVdGYWtvWmkr?=
+ =?utf-8?B?OG1IT2RMamdnb3E0a3Y5aGpIU2Erc3JxNWZ0SVdyekZlYXB5OFJoMnZaWTVO?=
+ =?utf-8?B?cGN5djRNeEc3dC82ajJqczNXSkE3dVE4QWZrcVpXSVBnclM1ODJubm5GbXpC?=
+ =?utf-8?B?NEZ0UE4zNUpkU2FLZ0hsL0VLdGdSRzZXZExqdHJzTjlsdk9SN3VldEMxdy92?=
+ =?utf-8?B?clhmcnZDYVFUMU96enlRKzU5dlFJMGU5dVF5QUtYZzNnUHI2UnJFUFdQbjl5?=
+ =?utf-8?B?Q2gya3VHSVYwQmNPN05MTFRrSnpSOEI3WlFYc1VxZ2RJcGF0c2pKbmxVYkdp?=
+ =?utf-8?B?WnRrTEN0S3FPT1lScElDbE4zS25LdTJqMzlROTQyWk1DWU45ZGROcmMrZ3dC?=
+ =?utf-8?B?aFAvcGwxZy9tNUhhZDVMYXlSSmdzUWZqUXBRWUlqM0lubCtoRjF1N0hWRDNV?=
+ =?utf-8?B?OGczaDEwRENwNDMrdWx2dW10Q2ZELzM0SkdrUjA5YTl5QUlSYk1qS1EzZG12?=
+ =?utf-8?B?VE4xMGYxd3BJQWVGYUlRN1Jta2JycGtETVZtUjF1M1dJZFRmRUVWcUY5YW16?=
+ =?utf-8?B?dkplb0NhdVh3WFFjR0NvR0FHTUJTb25VUWlMNC90TUhML2NnV2ZBVEdHQmY3?=
+ =?utf-8?B?Qm1CdkkxYzM1UUZQQUVDaTg0MkR4djlVMGwxS1kyZ2oxaVM2M1VOelI3eGZW?=
+ =?utf-8?B?QkNtM2JQRlBTd05CZUprOGgveSthaXkzU2JwNXE5b3A5YVh5b0pvL0F2M1Vq?=
+ =?utf-8?B?U1hIUExwM3hGWFhUdWxHLzVXU2NmLytDV0tyNmpQSXRUeE5hb3NYQnpkKzB6?=
+ =?utf-8?B?WEQ3TjhMaGVwQ1lzTDdnaVNVWlNGRVRNUTB6K25nSFVSTmczNFNNWCs4QTBL?=
+ =?utf-8?B?MnJvZmpZWElWaEtqejJlRTFRVWtaOUg3OTZ2bHBnZmR0QmNBclhiR1QxTWNp?=
+ =?utf-8?B?WElJV3g1UERZWVdLWWExc1h6NlBwRERUd2IzakgySHFzWVBqMWpUQTI1RElj?=
+ =?utf-8?B?VDVVblFQWkwxSGkvWHFEV3VrMzdUZW5DRHY2V3g3aDk2ZUY2V0ZaV0tEUE1C?=
+ =?utf-8?B?dUphT2hqdmRLRWZnbnhpVWZSZnFldHBnQU5MSVovRXJ5SFNNdGcwbVZ3Y3NI?=
+ =?utf-8?B?S0xoYjFubWI1NmJtZmppanhnMjNNYkVFV1UwV1dJU2JLUDZDcklmQUkweGgw?=
+ =?utf-8?B?aDRqT1djWUc0NkoyQzhZYW1NYlJYL1V6bjlRVWRPT1JVVUVKeExUK1FhRk5T?=
+ =?utf-8?B?QXNLZk8rUGpwYlhkMnBZVlVVSDRZSVBObmxzblBDOERsR016SDdIUndYWTV2?=
+ =?utf-8?B?QnEwSUZ3UHNSYzJyMGkrQlcyMkFDZ0xUREpPMENpUkhKcm5QNTN3M2RGd3VU?=
+ =?utf-8?B?VmFQQ3QxMDEwcnBTQ0xjaFpVc2xZSkEwK2ZRcmZBWmkwV0dwQ0prRXZWT2VJ?=
+ =?utf-8?B?L0Z4S3F2aVl3QkdudkNUb0ExZjhnRFF4RmlxdVVDWmpNN2M5RmxlWDJJTTlZ?=
+ =?utf-8?B?T05VSnExTVVybWU2ZjY5c0J4d3ZCMmxQSHNIY1UwOFVzWEUrRjB2VTBTWHNI?=
+ =?utf-8?B?RFJhUVVjQ0VaMndLMlpveDBzR1MyaEg2VVdreTJXRmt6Y0pyekRSRFpqMTNP?=
+ =?utf-8?B?WXFoT3BXNFAvTWhKRjVIeC9OcE44QTY4UmEyQUlYQXFFcWFlNHBmZC82SEN1?=
+ =?utf-8?B?c1BBZWtKQTREKzN5dTF1dnNuMU5LZERyL1F0cVVtVkZBa3Bhd1dmbjA0VVZC?=
+ =?utf-8?Q?owkJeVOmY/xUyPKIawShkkjwf?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43e0ed0d-8351-456c-42da-08de17a3579b
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 10:59:05.1540 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5hJ+oPuHQiDSU6RThtd9A7X1gOxJW2YmyYKMvGsUrsxmxUv20R+UYzXoR22+yP4f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7144
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,740 +168,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The contents of si_dpm.h seem to have been copied from the
-old radeon driver, including a lot of structs and fields which
-were only relevant to GPU generations even older than SI.
+On 10/29/25 21:53, Matthew Brost wrote:
+> On Tue, Oct 28, 2025 at 03:06:22PM +0100, Christian König wrote:
+>> On 10/17/25 10:32, Philipp Stanner wrote:
+>>> On Tue, 2025-10-14 at 17:54 +0200, Christian König wrote:
+>>>> On 13.10.25 16:54, Philipp Stanner wrote:
+>>>>> On Mon, 2025-10-13 at 15:48 +0200, Christian König wrote:
+>>>>>> Hi everyone,
+>>>>>>
+>>>>>> dma_fences have ever lived under the tyranny dictated by the module
+>>>>>> lifetime of their issuer, leading to crashes should anybody still holding
+>>>>>> a reference to a dma_fence when the module of the issuer was unloaded.
+>>>>>>
+>>>>>> But those days are over! The patch set following this mail finally
+>>>>>> implements a way for issuers to release their dma_fence out of this
+>>>>>> slavery and outlive the module who originally created them.
+>>>>>>
+>>>>>> Previously various approaches have been discussed, including changing the
+>>>>>> locking semantics of the dma_fence callbacks (by me) as well as using the
+>>>>>> drm scheduler as intermediate layer (by Sima) to disconnect dma_fences
+>>>>>> from their actual users.
+>>>>>>
+>>>>>> Changing the locking semantics turned out to be much more trickier than
+>>>>>> originally thought because especially on older drivers (nouveau, radeon,
+>>>>>> but also i915) this locking semantics is actually needed for correct
+>>>>>> operation.
+>>>>>>
+>>>>>> Using the drm_scheduler as intermediate layer is still a good idea and
+>>>>>> should probably be implemented to make live simpler for some drivers, but
+>>>>>> doesn't work for all use cases. Especially TLB flush fences, preemption
+>>>>>> fences and userqueue fences don't go through the drm scheduler because it
+>>>>>> doesn't make sense for them.
+>>>>>>
+>>>>>> Tvrtko did some really nice prerequisite work by protecting the returned
+>>>>>> strings of the dma_fence_ops by RCU. This way dma_fence creators where
+>>>>>> able to just wait for an RCU grace period after fence signaling before
+>>>>>> they could be save to free those data structures.
+>>>>>>
+>>>>>> Now this patch set here goes a step further and protects the whole
+>>>>>> dma_fence_ops structure by RCU, so that after the fence signals the
+>>>>>> pointer to the dma_fence_ops is set to NULL when there is no wait nor
+>>>>>> release callback given. All functionality which use the dma_fence_ops
+>>>>>> reference are put inside an RCU critical section, except for the
+>>>>>> deprecated issuer specific wait and of course the optional release
+>>>>>> callback.
+>>>>>>
+>>>>>> Additional to the RCU changes the lock protecting the dma_fence state
+>>>>>> previously had to be allocated external. This set here now changes the
+>>>>>> functionality to make that external lock optional and allows dma_fences
+>>>>>> to use an inline lock and be self contained.
+>>>>>
+>>>>> Allowing for an embedded lock, is that actually necessary for the goals
+>>>>> of this series, or is it an optional change / improvement?
+>>>>
+>>>> It is kind of necessary because otherwise you can't fully determine the lifetime of the lock.
+>>>>
+>>>> The lock is used to avoid signaling a dma_fence when you modify the linked list of callbacks for example.
+>>>>
+>>>> An alternative would be to protect the lock by RCU as well instead of embedding it in the structure, but that would make things even more complicated.
+>>>>
+>>>>> If I understood you correctly at XDC you wanted to have an embedded
+>>>>> lock because it improves the memory footprint and because an external
+>>>>> lock couldn't achieve some goals about fence-signaling-order originally
+>>>>> intended. Can you elaborate on that?
+>>>>
+>>>> The embedded lock is also nice to have for the dma_fence_array, dma_fence_chain and drm_sched_fence, but that just saves a few cache lines in some use cases.
+>>>>
+>>>> The fence-signaling-order is important for drivers like radeon where the external lock is protecting multiple fences from signaling at the same time and makes sure that everything stays in order.
+> 
+> Not to derail the conversation, but I noticed that dma-fence-arrays can,
+> in fact, signal out of order. The issue lies in dma-fence-cb, which
+> signals the fence using irq_queue_work. Internally, irq_queue_work uses
+> llist, a LIFO structure. So, if two dma-fence-arrays have all their
+> fences signaled from a thread, the IRQ work that signals each individual
+> dma-fence-array will execute out of order.
+> 
+> We should probably fix this.
 
-A lot of these can be deleted without causing much churn to the
-actual SI DPM code. Let's delete them to make the code easier
-to understand.
+No we don't. That's what I'm trying to point out all the time.
 
-Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
----
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c |  10 +-
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h | 557 ---------------------
- 2 files changed, 1 insertion(+), 566 deletions(-)
+The original idea of sharing the lock was to guarantee that fence signal in order, but that never worked correct even for driver fences.
 
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-index bf7ab93b265d..1f539cc65f41 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-@@ -2558,18 +2558,13 @@ static int si_enable_power_containment(struct amdgpu_device *adev,
- 		if (enable) {
- 			if (!si_should_disable_uvd_powertune(adev, amdgpu_new_state)) {
- 				smc_result = amdgpu_si_send_msg_to_smc(adev, PPSMC_TDPClampingActive);
--				if (smc_result != PPSMC_Result_OK) {
-+				if (smc_result != PPSMC_Result_OK)
- 					ret = -EINVAL;
--					ni_pi->pc_enabled = false;
--				} else {
--					ni_pi->pc_enabled = true;
--				}
- 			}
- 		} else {
- 			smc_result = amdgpu_si_send_msg_to_smc(adev, PPSMC_TDPClampingInactive);
- 			if (smc_result != PPSMC_Result_OK)
- 				ret = -EINVAL;
--			ni_pi->pc_enabled = false;
- 		}
- 	}
+The background is the optimization we do in the signaling fast path. E.g. when dma_fence_is_signaled() is called.
+
+This means that when fence A,B and C are submitted to the HW it is perfectly possible that somebody query the status of fence B but not A and C. And this querying of the status is faster than the interrupt which signals A and C.
+
+So in this scenario B signals before A.
+
+The only way to avoid that is to not implement the fast path and as far as I know no real HW driver does that because it makes your driver horrible slow.
+
+So of to the trash bin with the signaling order, things have worked for over 10 years without it and as far as I know nobody complained about it.
+
+Regards,
+Christian.
  
-@@ -7516,8 +7511,6 @@ static int si_dpm_init(struct amdgpu_device *adev)
- 	pi->pasi = CYPRESS_HASI_DFLT;
- 	pi->vrc = SISLANDS_VRC_DFLT;
- 
--	pi->gfx_clock_gating = true;
--
- 	eg_pi->sclk_deep_sleep = true;
- 	si_pi->sclk_deep_sleep_above_low = false;
- 
-@@ -7528,7 +7521,6 @@ static int si_dpm_init(struct amdgpu_device *adev)
- 
- 	eg_pi->dynamic_ac_timing = true;
- 
--	eg_pi->light_sleep = true;
- #if defined(CONFIG_ACPI)
- 	eg_pi->pcie_performance_request =
- 		amdgpu_acpi_is_pcie_performance_request_supported(adev);
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
-index 11cb7874a6bb..3aed75fbf913 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.h
-@@ -38,11 +38,7 @@
- #define	MC_ARB_DRAM_TIMING2_2				0xa00
- #define	MC_ARB_DRAM_TIMING2_3				0xa01
- 
--#define MAX_NO_OF_MVDD_VALUES 2
--#define MAX_NO_VREG_STEPS 32
- #define NISLANDS_MAX_SMC_PERFORMANCE_LEVELS_PER_SWSTATE 16
--#define SMC_NISLANDS_MC_REGISTER_ARRAY_SIZE 32
--#define SMC_NISLANDS_MC_REGISTER_ARRAY_SET_COUNT 20
- #define RV770_ASI_DFLT                                1000
- #define CYPRESS_HASI_DFLT                               400000
- #define PCIE_PERF_REQ_PECI_GEN1         2
-@@ -51,11 +47,6 @@
- #define RV770_DEFAULT_VCLK_FREQ  53300 /* 10 khz */
- #define RV770_DEFAULT_DCLK_FREQ  40000 /* 10 khz */
- 
--#define SMC_EVERGREEN_MC_REGISTER_ARRAY_SIZE 16
--
--#define RV770_SMC_TABLE_ADDRESS 0xB000
--#define RV770_SMC_PERFORMANCE_LEVELS_PER_SWSTATE    3
--
- #define SMC_STROBE_RATIO    0x0F
- #define SMC_STROBE_ENABLE   0x10
- 
-@@ -64,27 +55,6 @@
- #define SMC_MC_RTT_ENABLE   0x04
- #define SMC_MC_STUTTER_EN   0x08
- 
--#define RV770_SMC_VOLTAGEMASK_VDDC 0
--#define RV770_SMC_VOLTAGEMASK_MVDD 1
--#define RV770_SMC_VOLTAGEMASK_VDDCI 2
--#define RV770_SMC_VOLTAGEMASK_MAX  4
--
--#define NISLANDS_MAX_SMC_PERFORMANCE_LEVELS_PER_SWSTATE 16
--#define NISLANDS_SMC_STROBE_RATIO    0x0F
--#define NISLANDS_SMC_STROBE_ENABLE   0x10
--
--#define NISLANDS_SMC_MC_EDC_RD_FLAG  0x01
--#define NISLANDS_SMC_MC_EDC_WR_FLAG  0x02
--#define NISLANDS_SMC_MC_RTT_ENABLE   0x04
--#define NISLANDS_SMC_MC_STUTTER_EN   0x08
--
--#define MAX_NO_VREG_STEPS 32
--
--#define NISLANDS_SMC_VOLTAGEMASK_VDDC  0
--#define NISLANDS_SMC_VOLTAGEMASK_MVDD  1
--#define NISLANDS_SMC_VOLTAGEMASK_VDDCI 2
--#define NISLANDS_SMC_VOLTAGEMASK_MAX   4
--
- #define SISLANDS_MCREGISTERTABLE_INITIAL_SLOT               0
- #define SISLANDS_MCREGISTERTABLE_ACPI_SLOT                  1
- #define SISLANDS_MCREGISTERTABLE_ULV_SLOT                   2
-@@ -219,32 +189,6 @@ enum si_cac_config_reg_type
- 	SISLANDS_CACCONFIG_MAX
- };
- 
--enum si_power_level {
--	SI_POWER_LEVEL_LOW = 0,
--	SI_POWER_LEVEL_MEDIUM = 1,
--	SI_POWER_LEVEL_HIGH = 2,
--	SI_POWER_LEVEL_CTXSW = 3,
--};
--
--enum si_td {
--	SI_TD_AUTO,
--	SI_TD_UP,
--	SI_TD_DOWN,
--};
--
--enum si_display_watermark {
--	SI_DISPLAY_WATERMARK_LOW = 0,
--	SI_DISPLAY_WATERMARK_HIGH = 1,
--};
--
--enum si_display_gap
--{
--    SI_PM_DISPLAY_GAP_VBLANK_OR_WM = 0,
--    SI_PM_DISPLAY_GAP_VBLANK       = 1,
--    SI_PM_DISPLAY_GAP_WATERMARK    = 2,
--    SI_PM_DISPLAY_GAP_IGNORE       = 3,
--};
--
- extern const struct amdgpu_ip_block_version si_smu_ip_block;
- 
- struct ni_leakage_coeffients
-@@ -258,56 +202,6 @@ struct ni_leakage_coeffients
- 	u32 t_ref;
- };
- 
--struct SMC_Evergreen_MCRegisterAddress
--{
--    uint16_t s0;
--    uint16_t s1;
--};
--
--typedef struct SMC_Evergreen_MCRegisterAddress SMC_Evergreen_MCRegisterAddress;
--
--struct evergreen_mc_reg_entry {
--	u32 mclk_max;
--	u32 mc_data[SMC_EVERGREEN_MC_REGISTER_ARRAY_SIZE];
--};
--
--struct evergreen_mc_reg_table {
--	u8 last;
--	u8 num_entries;
--	u16 valid_flag;
--	struct evergreen_mc_reg_entry mc_reg_table_entry[MAX_AC_TIMING_ENTRIES];
--	SMC_Evergreen_MCRegisterAddress mc_reg_address[SMC_EVERGREEN_MC_REGISTER_ARRAY_SIZE];
--};
--
--struct SMC_Evergreen_MCRegisterSet
--{
--    uint32_t value[SMC_EVERGREEN_MC_REGISTER_ARRAY_SIZE];
--};
--
--typedef struct SMC_Evergreen_MCRegisterSet SMC_Evergreen_MCRegisterSet;
--
--struct SMC_Evergreen_MCRegisters
--{
--    uint8_t                             last;
--    uint8_t                             reserved[3];
--    SMC_Evergreen_MCRegisterAddress     address[SMC_EVERGREEN_MC_REGISTER_ARRAY_SIZE];
--    SMC_Evergreen_MCRegisterSet         data[5];
--};
--
--typedef struct SMC_Evergreen_MCRegisters SMC_Evergreen_MCRegisters;
--
--struct SMC_NIslands_MCRegisterSet
--{
--    uint32_t value[SMC_NISLANDS_MC_REGISTER_ARRAY_SIZE];
--};
--
--typedef struct SMC_NIslands_MCRegisterSet SMC_NIslands_MCRegisterSet;
--
--struct ni_mc_reg_entry {
--	u32 mclk_max;
--	u32 mc_data[SMC_NISLANDS_MC_REGISTER_ARRAY_SIZE];
--};
--
- struct SMC_NIslands_MCRegisterAddress
- {
-     uint16_t s0;
-@@ -316,257 +210,20 @@ struct SMC_NIslands_MCRegisterAddress
- 
- typedef struct SMC_NIslands_MCRegisterAddress SMC_NIslands_MCRegisterAddress;
- 
--struct SMC_NIslands_MCRegisters
--{
--    uint8_t                             last;
--    uint8_t                             reserved[3];
--    SMC_NIslands_MCRegisterAddress      address[SMC_NISLANDS_MC_REGISTER_ARRAY_SIZE];
--    SMC_NIslands_MCRegisterSet          data[SMC_NISLANDS_MC_REGISTER_ARRAY_SET_COUNT];
--};
--
--typedef struct SMC_NIslands_MCRegisters SMC_NIslands_MCRegisters;
--
--struct evergreen_ulv_param {
--	bool supported;
--	struct rv7xx_pl *pl;
--};
--
--struct evergreen_arb_registers {
--	u32 mc_arb_dram_timing;
--	u32 mc_arb_dram_timing2;
--	u32 mc_arb_rfsh_rate;
--	u32 mc_arb_burst_time;
--};
--
--struct at {
--	u32 rlp;
--	u32 rmp;
--	u32 lhp;
--	u32 lmp;
--};
--
--struct ni_clock_registers {
--	u32 cg_spll_func_cntl;
--	u32 cg_spll_func_cntl_2;
--	u32 cg_spll_func_cntl_3;
--	u32 cg_spll_func_cntl_4;
--	u32 cg_spll_spread_spectrum;
--	u32 cg_spll_spread_spectrum_2;
--	u32 mclk_pwrmgt_cntl;
--	u32 dll_cntl;
--	u32 mpll_ad_func_cntl;
--	u32 mpll_ad_func_cntl_2;
--	u32 mpll_dq_func_cntl;
--	u32 mpll_dq_func_cntl_2;
--	u32 mpll_ss1;
--	u32 mpll_ss2;
--};
--
--struct RV770_SMC_SCLK_VALUE
--{
--    uint32_t        vCG_SPLL_FUNC_CNTL;
--    uint32_t        vCG_SPLL_FUNC_CNTL_2;
--    uint32_t        vCG_SPLL_FUNC_CNTL_3;
--    uint32_t        vCG_SPLL_SPREAD_SPECTRUM;
--    uint32_t        vCG_SPLL_SPREAD_SPECTRUM_2;
--    uint32_t        sclk_value;
--};
--
--typedef struct RV770_SMC_SCLK_VALUE RV770_SMC_SCLK_VALUE;
--
--struct RV770_SMC_MCLK_VALUE
--{
--    uint32_t        vMPLL_AD_FUNC_CNTL;
--    uint32_t        vMPLL_AD_FUNC_CNTL_2;
--    uint32_t        vMPLL_DQ_FUNC_CNTL;
--    uint32_t        vMPLL_DQ_FUNC_CNTL_2;
--    uint32_t        vMCLK_PWRMGT_CNTL;
--    uint32_t        vDLL_CNTL;
--    uint32_t        vMPLL_SS;
--    uint32_t        vMPLL_SS2;
--    uint32_t        mclk_value;
--};
--
--typedef struct RV770_SMC_MCLK_VALUE RV770_SMC_MCLK_VALUE;
--
--
--struct RV730_SMC_MCLK_VALUE
--{
--    uint32_t        vMCLK_PWRMGT_CNTL;
--    uint32_t        vDLL_CNTL;
--    uint32_t        vMPLL_FUNC_CNTL;
--    uint32_t        vMPLL_FUNC_CNTL2;
--    uint32_t        vMPLL_FUNC_CNTL3;
--    uint32_t        vMPLL_SS;
--    uint32_t        vMPLL_SS2;
--    uint32_t        mclk_value;
--};
--
--typedef struct RV730_SMC_MCLK_VALUE RV730_SMC_MCLK_VALUE;
--
--struct RV770_SMC_VOLTAGE_VALUE
--{
--    uint16_t             value;
--    uint8_t              index;
--    uint8_t              padding;
--};
--
--typedef struct RV770_SMC_VOLTAGE_VALUE RV770_SMC_VOLTAGE_VALUE;
--
--union RV7XX_SMC_MCLK_VALUE
--{
--    RV770_SMC_MCLK_VALUE    mclk770;
--    RV730_SMC_MCLK_VALUE    mclk730;
--};
--
--typedef union RV7XX_SMC_MCLK_VALUE RV7XX_SMC_MCLK_VALUE, *LPRV7XX_SMC_MCLK_VALUE;
--
--struct RV770_SMC_HW_PERFORMANCE_LEVEL
--{
--    uint8_t                 arbValue;
--    union{
--        uint8_t             seqValue;
--        uint8_t             ACIndex;
--    };
--    uint8_t                 displayWatermark;
--    uint8_t                 gen2PCIE;
--    uint8_t                 gen2XSP;
--    uint8_t                 backbias;
--    uint8_t                 strobeMode;
--    uint8_t                 mcFlags;
--    uint32_t                aT;
--    uint32_t                bSP;
--    RV770_SMC_SCLK_VALUE    sclk;
--    RV7XX_SMC_MCLK_VALUE    mclk;
--    RV770_SMC_VOLTAGE_VALUE vddc;
--    RV770_SMC_VOLTAGE_VALUE mvdd;
--    RV770_SMC_VOLTAGE_VALUE vddci;
--    uint8_t                 reserved1;
--    uint8_t                 reserved2;
--    uint8_t                 stateFlags;
--    uint8_t                 padding;
--};
--
--typedef struct RV770_SMC_HW_PERFORMANCE_LEVEL RV770_SMC_HW_PERFORMANCE_LEVEL;
--
--struct RV770_SMC_SWSTATE
--{
--    uint8_t           flags;
--    uint8_t           padding1;
--    uint8_t           padding2;
--    uint8_t           padding3;
--    RV770_SMC_HW_PERFORMANCE_LEVEL levels[RV770_SMC_PERFORMANCE_LEVELS_PER_SWSTATE];
--};
--
--typedef struct RV770_SMC_SWSTATE RV770_SMC_SWSTATE;
--
--struct RV770_SMC_VOLTAGEMASKTABLE
--{
--    uint8_t  highMask[RV770_SMC_VOLTAGEMASK_MAX];
--    uint32_t lowMask[RV770_SMC_VOLTAGEMASK_MAX];
--};
--
--typedef struct RV770_SMC_VOLTAGEMASKTABLE RV770_SMC_VOLTAGEMASKTABLE;
--
--struct RV770_SMC_STATETABLE
--{
--    uint8_t             thermalProtectType;
--    uint8_t             systemFlags;
--    uint8_t             maxVDDCIndexInPPTable;
--    uint8_t             extraFlags;
--    uint8_t             highSMIO[MAX_NO_VREG_STEPS];
--    uint32_t            lowSMIO[MAX_NO_VREG_STEPS];
--    RV770_SMC_VOLTAGEMASKTABLE voltageMaskTable;
--    RV770_SMC_SWSTATE   initialState;
--    RV770_SMC_SWSTATE   ACPIState;
--    RV770_SMC_SWSTATE   driverState;
--    RV770_SMC_SWSTATE   ULVState;
--};
--
--typedef struct RV770_SMC_STATETABLE RV770_SMC_STATETABLE;
--
--struct vddc_table_entry {
--	u16 vddc;
--	u8 vddc_index;
--	u8 high_smio;
--	u32 low_smio;
--};
--
--struct rv770_clock_registers {
--	u32 cg_spll_func_cntl;
--	u32 cg_spll_func_cntl_2;
--	u32 cg_spll_func_cntl_3;
--	u32 cg_spll_spread_spectrum;
--	u32 cg_spll_spread_spectrum_2;
--	u32 mpll_ad_func_cntl;
--	u32 mpll_ad_func_cntl_2;
--	u32 mpll_dq_func_cntl;
--	u32 mpll_dq_func_cntl_2;
--	u32 mclk_pwrmgt_cntl;
--	u32 dll_cntl;
--	u32 mpll_ss1;
--	u32 mpll_ss2;
--};
--
--struct rv730_clock_registers {
--	u32 cg_spll_func_cntl;
--	u32 cg_spll_func_cntl_2;
--	u32 cg_spll_func_cntl_3;
--	u32 cg_spll_spread_spectrum;
--	u32 cg_spll_spread_spectrum_2;
--	u32 mclk_pwrmgt_cntl;
--	u32 dll_cntl;
--	u32 mpll_func_cntl;
--	u32 mpll_func_cntl2;
--	u32 mpll_func_cntl3;
--	u32 mpll_ss;
--	u32 mpll_ss2;
--};
--
--union r7xx_clock_registers {
--	struct rv770_clock_registers rv770;
--	struct rv730_clock_registers rv730;
--};
--
- struct rv7xx_power_info {
- 	/* flags */
--	bool mem_gddr5;
--	bool pcie_gen2;
--	bool dynamic_pcie_gen2;
--	bool acpi_pcie_gen2;
--	bool boot_in_gen2;
- 	bool voltage_control; /* vddc */
- 	bool mvdd_control;
- 	bool sclk_ss;
- 	bool mclk_ss;
- 	bool dynamic_ss;
--	bool gfx_clock_gating;
--	bool mg_clock_gating;
--	bool mgcgtssm;
--	bool power_gating;
- 	bool thermal_protection;
--	bool display_gap;
--	bool dcodt;
--	bool ulps;
--	/* registers */
--	union r7xx_clock_registers clk_regs;
--	u32 s0_vid_lower_smio_cntl;
- 	/* voltage */
--	u32 vddc_mask_low;
--	u32 mvdd_mask_low;
- 	u32 mvdd_split_frequency;
--	u32 mvdd_low_smio[MAX_NO_OF_MVDD_VALUES];
- 	u16 max_vddc;
- 	u16 max_vddc_in_table;
- 	u16 min_vddc_in_table;
--	struct vddc_table_entry vddc_table[MAX_NO_VREG_STEPS];
--	u8 valid_vddc_entries;
--	/* dc odt */
--	u32 mclk_odt_threshold;
--	u8 odt_value_0[2];
--	u8 odt_value_1[2];
- 	/* stored values */
--	u32 boot_sclk;
- 	u16 acpi_vddc;
- 	u32 ref_div;
- 	u32 active_auto_throttle_sources;
-@@ -582,17 +239,6 @@ struct rv7xx_power_info {
- 	u32 asi;
- 	u32 pasi;
- 	u32 vrc;
--	u32 restricted_levels;
--	u32 rlp;
--	u32 rmp;
--	u32 lhp;
--	u32 lmp;
--	/* smc offsets */
--	u16 state_table_start;
--	u16 soft_regs_start;
--	u16 sram_end;
--	/* scratch structs */
--	RV770_SMC_STATETABLE smc_statetable;
- };
- 
- enum si_pcie_gen {
-@@ -611,44 +257,12 @@ struct rv7xx_pl {
- 	enum si_pcie_gen pcie_gen; /* si+ only */
- };
- 
--struct rv7xx_ps {
--	struct rv7xx_pl high;
--	struct rv7xx_pl medium;
--	struct rv7xx_pl low;
--	bool dc_compatible;
--};
--
- struct si_ps {
- 	u16 performance_level_count;
- 	bool dc_compatible;
- 	struct rv7xx_pl performance_levels[NISLANDS_MAX_SMC_PERFORMANCE_LEVELS_PER_SWSTATE];
- };
- 
--struct ni_mc_reg_table {
--	u8 last;
--	u8 num_entries;
--	u16 valid_flag;
--	struct ni_mc_reg_entry mc_reg_table_entry[MAX_AC_TIMING_ENTRIES];
--	SMC_NIslands_MCRegisterAddress mc_reg_address[SMC_NISLANDS_MC_REGISTER_ARRAY_SIZE];
--};
--
--struct ni_cac_data
--{
--	struct ni_leakage_coeffients leakage_coefficients;
--	u32 i_leakage;
--	s32 leakage_minimum_temperature;
--	u32 pwr_const;
--	u32 dc_cac_value;
--	u32 bif_cac_value;
--	u32 lkge_pwr;
--	u8 mc_wr_weight;
--	u8 mc_rd_weight;
--	u8 allow_ovrflw;
--	u8 num_win_tdp;
--	u8 l2num_win_tdp;
--	u8 lts_truncate_n;
--};
--
- struct evergreen_power_info {
- 	/* must be first! */
- 	struct rv7xx_power_info rv7xx;
-@@ -657,203 +271,33 @@ struct evergreen_power_info {
- 	bool dynamic_ac_timing;
- 	bool abm;
- 	bool mcls;
--	bool light_sleep;
--	bool memory_transition;
- 	bool pcie_performance_request;
--	bool pcie_performance_request_registered;
- 	bool sclk_deep_sleep;
--	bool dll_default_on;
--	bool ls_clock_gating;
- 	bool smu_uvd_hs;
- 	bool uvd_enabled;
- 	/* stored values */
- 	u16 acpi_vddci;
--	u8 mvdd_high_index;
--	u8 mvdd_low_index;
- 	u32 mclk_edc_wr_enable_threshold;
--	struct evergreen_mc_reg_table mc_reg_table;
- 	struct atom_voltage_table vddc_voltage_table;
- 	struct atom_voltage_table vddci_voltage_table;
--	struct evergreen_arb_registers bootup_arb_registers;
--	struct evergreen_ulv_param ulv;
--	struct at ats[2];
--	/* smc offsets */
--	u16 mc_reg_table_start;
- 	struct amdgpu_ps current_rps;
--	struct rv7xx_ps current_ps;
- 	struct amdgpu_ps requested_rps;
--	struct rv7xx_ps requested_ps;
--};
--
--struct PP_NIslands_Dpm2PerfLevel
--{
--    uint8_t     MaxPS;
--    uint8_t     TgtAct;
--    uint8_t     MaxPS_StepInc;
--    uint8_t     MaxPS_StepDec;
--    uint8_t     PSST;
--    uint8_t     NearTDPDec;
--    uint8_t     AboveSafeInc;
--    uint8_t     BelowSafeInc;
--    uint8_t     PSDeltaLimit;
--    uint8_t     PSDeltaWin;
--    uint8_t     Reserved[6];
--};
--
--typedef struct PP_NIslands_Dpm2PerfLevel PP_NIslands_Dpm2PerfLevel;
--
--struct PP_NIslands_DPM2Parameters
--{
--    uint32_t    TDPLimit;
--    uint32_t    NearTDPLimit;
--    uint32_t    SafePowerLimit;
--    uint32_t    PowerBoostLimit;
--};
--typedef struct PP_NIslands_DPM2Parameters PP_NIslands_DPM2Parameters;
--
--struct NISLANDS_SMC_SCLK_VALUE
--{
--    uint32_t        vCG_SPLL_FUNC_CNTL;
--    uint32_t        vCG_SPLL_FUNC_CNTL_2;
--    uint32_t        vCG_SPLL_FUNC_CNTL_3;
--    uint32_t        vCG_SPLL_FUNC_CNTL_4;
--    uint32_t        vCG_SPLL_SPREAD_SPECTRUM;
--    uint32_t        vCG_SPLL_SPREAD_SPECTRUM_2;
--    uint32_t        sclk_value;
--};
--
--typedef struct NISLANDS_SMC_SCLK_VALUE NISLANDS_SMC_SCLK_VALUE;
--
--struct NISLANDS_SMC_MCLK_VALUE
--{
--    uint32_t        vMPLL_FUNC_CNTL;
--    uint32_t        vMPLL_FUNC_CNTL_1;
--    uint32_t        vMPLL_FUNC_CNTL_2;
--    uint32_t        vMPLL_AD_FUNC_CNTL;
--    uint32_t        vMPLL_AD_FUNC_CNTL_2;
--    uint32_t        vMPLL_DQ_FUNC_CNTL;
--    uint32_t        vMPLL_DQ_FUNC_CNTL_2;
--    uint32_t        vMCLK_PWRMGT_CNTL;
--    uint32_t        vDLL_CNTL;
--    uint32_t        vMPLL_SS;
--    uint32_t        vMPLL_SS2;
--    uint32_t        mclk_value;
--};
--
--typedef struct NISLANDS_SMC_MCLK_VALUE NISLANDS_SMC_MCLK_VALUE;
--
--struct NISLANDS_SMC_VOLTAGE_VALUE
--{
--    uint16_t             value;
--    uint8_t              index;
--    uint8_t              padding;
--};
--
--typedef struct NISLANDS_SMC_VOLTAGE_VALUE NISLANDS_SMC_VOLTAGE_VALUE;
--
--struct NISLANDS_SMC_HW_PERFORMANCE_LEVEL
--{
--    uint8_t                     arbValue;
--    uint8_t                     ACIndex;
--    uint8_t                     displayWatermark;
--    uint8_t                     gen2PCIE;
--    uint8_t                     reserved1;
--    uint8_t                     reserved2;
--    uint8_t                     strobeMode;
--    uint8_t                     mcFlags;
--    uint32_t                    aT;
--    uint32_t                    bSP;
--    NISLANDS_SMC_SCLK_VALUE     sclk;
--    NISLANDS_SMC_MCLK_VALUE     mclk;
--    NISLANDS_SMC_VOLTAGE_VALUE  vddc;
--    NISLANDS_SMC_VOLTAGE_VALUE  mvdd;
--    NISLANDS_SMC_VOLTAGE_VALUE  vddci;
--    NISLANDS_SMC_VOLTAGE_VALUE  std_vddc;
--    uint32_t                    powergate_en;
--    uint8_t                     hUp;
--    uint8_t                     hDown;
--    uint8_t                     stateFlags;
--    uint8_t                     arbRefreshState;
--    uint32_t                    SQPowerThrottle;
--    uint32_t                    SQPowerThrottle_2;
--    uint32_t                    reserved[2];
--    PP_NIslands_Dpm2PerfLevel   dpm2;
--};
--
--typedef struct NISLANDS_SMC_HW_PERFORMANCE_LEVEL NISLANDS_SMC_HW_PERFORMANCE_LEVEL;
--
--struct NISLANDS_SMC_SWSTATE
--{
--    uint8_t                             flags;
--    uint8_t                             levelCount;
--    uint8_t                             padding2;
--    uint8_t                             padding3;
--    NISLANDS_SMC_HW_PERFORMANCE_LEVEL   levels[];
--};
--
--typedef struct NISLANDS_SMC_SWSTATE NISLANDS_SMC_SWSTATE;
--
--struct NISLANDS_SMC_VOLTAGEMASKTABLE
--{
--    uint8_t  highMask[NISLANDS_SMC_VOLTAGEMASK_MAX];
--    uint32_t lowMask[NISLANDS_SMC_VOLTAGEMASK_MAX];
--};
--
--typedef struct NISLANDS_SMC_VOLTAGEMASKTABLE NISLANDS_SMC_VOLTAGEMASKTABLE;
--
--#define NISLANDS_MAX_NO_VREG_STEPS 32
--
--struct NISLANDS_SMC_STATETABLE
--{
--    uint8_t                             thermalProtectType;
--    uint8_t                             systemFlags;
--    uint8_t                             maxVDDCIndexInPPTable;
--    uint8_t                             extraFlags;
--    uint8_t                             highSMIO[NISLANDS_MAX_NO_VREG_STEPS];
--    uint32_t                            lowSMIO[NISLANDS_MAX_NO_VREG_STEPS];
--    NISLANDS_SMC_VOLTAGEMASKTABLE       voltageMaskTable;
--    PP_NIslands_DPM2Parameters          dpm2Params;
--    NISLANDS_SMC_SWSTATE                initialState;
--    NISLANDS_SMC_SWSTATE                ACPIState;
--    NISLANDS_SMC_SWSTATE                ULVState;
--    NISLANDS_SMC_SWSTATE                driverState;
--    NISLANDS_SMC_HW_PERFORMANCE_LEVEL   dpmLevels[NISLANDS_MAX_SMC_PERFORMANCE_LEVELS_PER_SWSTATE - 1];
- };
- 
--typedef struct NISLANDS_SMC_STATETABLE NISLANDS_SMC_STATETABLE;
--
- struct ni_power_info {
- 	/* must be first! */
- 	struct evergreen_power_info eg;
--	struct ni_clock_registers clock_registers;
--	struct ni_mc_reg_table mc_reg_table;
- 	u32 mclk_rtt_mode_threshold;
- 	/* flags */
--	bool use_power_boost_limit;
- 	bool support_cac_long_term_average;
- 	bool cac_enabled;
- 	bool cac_configuration_required;
- 	bool driver_calculate_cac_leakage;
--	bool pc_enabled;
- 	bool enable_power_containment;
- 	bool enable_cac;
- 	bool enable_sq_ramping;
--	/* smc offsets */
--	u16 arb_table_start;
--	u16 fan_table_start;
--	u16 cac_table_start;
--	u16 spll_table_start;
--	/* CAC stuff */
--	struct ni_cac_data cac_data;
--	u32 dc_cac_table[NISLANDS_DCCAC_MAX_LEVELS];
--	const struct ni_cac_weights *cac_weights;
--	u8 lta_window_size;
--	u8 lts_truncate;
- 	struct si_ps current_ps;
- 	struct si_ps requested_ps;
--	/* scratch structs */
--	SMC_NIslands_MCRegisters smc_mc_reg_table;
--	NISLANDS_SMC_STATETABLE smc_statetable;
- };
- 
- struct si_cac_config_reg
-@@ -952,7 +396,6 @@ struct si_leakage_voltage
- 	struct si_leakage_voltage_entry entries[SISLANDS_MAX_LEAKAGE_COUNT];
- };
- 
--
- struct si_ulv_param {
- 	bool supported;
- 	u32 cg_ulv_control;
--- 
-2.51.0
+
+> 
+> Matt
+> 
+>>>
+>>> I mean, neither external nor internal lock can somehow force the driver
+>>> to signal fences in order, can they?
+>>
+>> Nope, as I said before this approach is actually pretty useless.
+>>
+>>> Only the driver can ensure this.
+>>
+>> Only when the signaled callback is not implemented which basically all driver do.
+>>
+>> So the whole point of sharing the lock is just not existent any more, it's just that changing it all at once as I tried before results in a way to big patch.
+>>
+>>>
+>>> I am, however, considering modeling something like that on a
+>>> FenceContext object:
+>>>
+>>> fctx.signal_all_fences_up_to_ordered(seqno);
+>>
+>> Yeah, I have patches for that as well. But then found that amdgpus TLB fences trigger that check and I won't have time to fix it.
+>>
+>>
+>>
+>>>
+>>>
+>>> P.
+>>>
+>>>>
+>>>> While it is possible to change the locking semantics on such old drivers, it's probably just better to stay away from it.
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>>
+>>>>> P.
+>>>>>
+>>>>>
+>>>>>>
+>>>>>> The new approach is then applied to amdgpu allowing the module to be
+>>>>>> unloaded even when dma_fences issued by it are still around.
+>>>>>>
+>>>>>> Please review and comment,
+>>>>>> Christian.
+>>>>>>
+>>>>>
+>>>>
+>>>
+>>
 
