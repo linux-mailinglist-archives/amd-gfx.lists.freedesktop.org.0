@@ -2,67 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F20C23B54
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 09:12:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C48E7C23B44
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 09:12:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F06110EACB;
-	Fri, 31 Oct 2025 08:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 936FF10EAC8;
+	Fri, 31 Oct 2025 08:12:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="aTqJkXrh";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="Gj+QYS5d";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 851EA10E9FE
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 16:10:25 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-4710022571cso14575095e9.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 09:10:25 -0700 (PDT)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89A5410E9FE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 16:10:26 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-475dd559b0bso16485535e9.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Oct 2025 09:10:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1761840624; x=1762445424; darn=lists.freedesktop.org; 
+ d=suse.com; s=google; t=1761840625; x=1762445425; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=1mzPZhnW69Ma46xdkUZL4rvYZEGa/gCP35bg1gX0aRM=;
- b=aTqJkXrhdmcsXauXM9ygj8M4lKWvNK/XYTtTPaN0Qp7+uu2/gly7M8s1bM8eS81D1/
- EZxjEObRidd5pg0X/3HPwoSC6/nd4wxhGwZzaOn3LIOqjQA4p3/bR8uFSYznbckPXKSi
- FA9LECmEB+M0J0a3WjqlvaZTQ6IwWa4OwcfWvs/BzSesXzPCpFqSAcMxWgNLdXrPExva
- nKhPghFobPlgt8VwV5Yzg+T4781VFc6FxBdNY1q7gNNzr/T5AaCQW6+P7ys5X3nwSoAd
- rjESnLfrB2l8uQzJBoqJNGnyyGIpbO2zfOaAEu+FzJJi0tWcHTzg0x21UK4PHUVfKljc
- K7FA==
+ bh=qUyLe55hA4hNh5avFZjcyEPUTCpSS8nAfdCLlggpt5s=;
+ b=Gj+QYS5dlNT9wcdFOenJk61DqPU+Ba9IlUSATdqhocWLaZMU2W0T2AfjnC2sVun8n8
+ oITwhbK8xtqvrdRnJkJ5tlxbcXNwB6jEeUO63llckIsSt0xJuGYKKeo0RWhz6cQwmlTI
+ FzPQjTAVejasVhq+pRIAb4XAYCFj3IOia3BzTibMzVEcU4bbGCzIUC2nLeYFP8VCN0Hy
+ Jz6K5/xTGP+b2LwjxIDQ7TYpVJfuE/qxdqT7PgCoupe2dewTZ2RmEALBDv4qsH91Wnz7
+ 79Ce/6s8BsZmn8btwYOZgOnFmierRdzwpuZiInnOczWaNsItAUkDj5V7w8nWmrzLE8Dt
+ 5jHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761840624; x=1762445424;
+ d=1e100.net; s=20230601; t=1761840625; x=1762445425;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=1mzPZhnW69Ma46xdkUZL4rvYZEGa/gCP35bg1gX0aRM=;
- b=brgiOpE7uPQC6QyVxegh//2N3YIAijorrEgVhqP0BYIN33nPrkB9F9WglM05lrFUu5
- hs5KpQuxftUwaHNWrGnHIr/ViOTuP/yOMMVYgsKT3VfGpJ4kF9wKfPl5TYBqYFNisJU8
- AfGpLYmZ5ZiI8w8oBaPe/kFAilAMJ9fSZnXKV1uXGf2usMclmNjyYZTknggBZzLazys1
- RuhbeyrGE77t5aOhy2LEPLsYOu0dsqOZjKTbq6JQH0BVca4aP0dhz61hkoT98jrgak9m
- RO7p5BUQ7u59LOaCiQxdpoHsi32HVN4Gcez4nMD7mn4aovsgybe/XODvXsL7bJSr1hQF
- O5Vw==
+ bh=qUyLe55hA4hNh5avFZjcyEPUTCpSS8nAfdCLlggpt5s=;
+ b=IJij4zj3g4r2J5/DOf9gInzhsG4DdDya3wymU7t4b5ikcY+yXXiMtZYmNdP4V4OjxA
+ qeggGPLo+g/47YNtBUouBKjIznN2VUr9rbv4jhdENmZdI2mbdFnmpXVANZoYIk7ZxMEM
+ T77v2Uj4qDnMCLfXSGdKOPERo78rGSNa2JRkkEwwfZzkJrmkme5kn7NSF2VD6ZoLEfw/
+ RqoOD2RE1UQ+Ui1bsrV3wojSpjyVTv6nm/9B9vYfSUPtgacFGdBrDlci3pSdkeJKTif2
+ cdNGqDDh8mp+8FCTOPA3UvMb7P2I1rMybVgUO9ZV6iUjnlYL0pv8jzamdAfhS7XKIJfL
+ HmLA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVrbHspNOElVjfhxzDabPbc0PoAVJD5nSBoIl2NJIIxP4RUr9Sli4NLWFch3Snj9jKTyFMMy8s4@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzq8ZwzJIDNSzz1z+7JGW9RvUIvAgBKopYX5QhUV8U+DUKfzg7Q
- QXrqT/2MER9J7xN5s9jxWNlZhQtUUxvzQJ62D5ppW+JHzEX7Z43EvgP2Wbfy2vzgNgk=
-X-Gm-Gg: ASbGncsuDHN0rpvEpkzp5RnCuCsFSnMOLjN/PNC08VYZc05YUlgYrgFPe7OUbGtMjZk
- yy9h+cQSlANQjPMXNf5AxocmstvStf1Thd7fXmuycCvVEP/ACtlvd7B/dPUTbo/uO2dYyjQMgok
- dA8QcUH+ZnrbYdOS6VtljrHrhrgKPfOad5dgpz0QTOZvDmfbQevHxGPzRWBIvLK6vWgqIMIduMT
- O0j/f/CsrMakK1hQysVJhX9813faOT4hBnwounuWHoQXp7gUQGAfAsLcPvPvWoNZhoOpYARHv2t
- 0VmrmjBp6vfsWfuHpJwmbiA+SXqSVx5rEfyLppmksUk4imzZ/KVpXBH8/GvwVS53p5pzDvabO8O
- ZB25s3Ra+xQvMzL+jd7fSoTeblvWQeqTJbof9Yb9XBa8pJdeAsOeoKZddZpOoewTfVONl5GdEB1
- vVBvi5OOpa6pCqv3M=
-X-Google-Smtp-Source: AGHT+IFroBmfAiCGL5XJxbZgL6hgq0wEFDb+ooauLfTFeIekjVl2CAAel/J5c/moOLtcfk84yd6I0g==
-X-Received: by 2002:a05:600c:4e43:b0:477:e66:406e with SMTP id
- 5b1f17b1804b1-4773088be60mr3082305e9.29.1761840624032; 
- Thu, 30 Oct 2025 09:10:24 -0700 (PDT)
+ AJvYcCV4NAps86dsP7eCpQo+QnMrOPn+12MqvMGEVeqbpW2PO30EC2+RsSKCbCJhbBD32QFlZrsjqjhq@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx8QBVhrVLlRdXeA2vpPjM5z9AbeQPNbdsvub2lzmJVpVsVCwER
+ k1NShap18CcNDuARUPoQh7W/uYnPSZbLAI5KVlG/ZI4nCoQtx2To1AoR4aPYFn0BxMc=
+X-Gm-Gg: ASbGncsOsIexE5Cr0GnWUnWXmV14Xtk0WVzS5ew3U3/bOu7SW0VNG3eugxbSbEMHajU
+ jrhnu2Optiwm1UekT4AcXlcCytGBSnMvKvWmCGltshYkZHYTyJq276Rl3P+ywHkvRcMG8YMwcP5
+ iwvCJf0cBMiOqQS06HfCuqkJ/ikeWHyDDXXXWhI6cS97Jf+z8BK/ItH7+08FoE9B3tyikbz1KmV
+ 547PToKtzNcGE1/7nU6+lxwsNVKI1RWQVuewLD3Qr0UhKfKSlXeSJyTF+wO8JK/48o/NRbqG78L
+ /mWzHI5DYy05FBUWlG3Qg7awKKWAPHN9yLScPBIiR2FW510ihtR+t8a5e5V/Ex7UI4jTpMCyGil
+ XzPfNALrgP+3Aoj795NEoF0SBG4T4LUKb31XaVDKJnGesaZr0/WTgfu7GMmZgCbeKl81hWwoPwT
+ +bTpBTOSCapt41fhw=
+X-Google-Smtp-Source: AGHT+IFyE5J11xUKBnyXYND4mxJaazGINsyI2NsqELziu7PEPOdM/yL8Wk6KNj6+t9t3bygj4S8Ayw==
+X-Received: by 2002:a05:600c:6986:b0:46e:7247:cbc0 with SMTP id
+ 5b1f17b1804b1-47730859cefmr2359355e9.18.1761840625061; 
+ Thu, 30 Oct 2025 09:10:25 -0700 (PDT)
 Received: from linux.fritz.box ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-429952b7a7csm33124857f8f.8.2025.10.30.09.10.23
+ ffacd0b85a97d-429952b7a7csm33124857f8f.8.2025.10.30.09.10.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Oct 2025 09:10:23 -0700 (PDT)
+ Thu, 30 Oct 2025 09:10:24 -0700 (PDT)
 From: Marco Crivellari <marco.crivellari@suse.com>
 To: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
@@ -73,9 +73,9 @@ Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
  Michal Hocko <mhocko@suse.com>, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH 3/4] amd/amdkfd: WQ_PERCPU added to alloc_workqueue users
-Date: Thu, 30 Oct 2025 17:10:10 +0100
-Message-ID: <20251030161011.282924-4-marco.crivellari@suse.com>
+Subject: [PATCH 4/4] drm/radeon: WQ_PERCPU added to alloc_workqueue users
+Date: Thu, 30 Oct 2025 17:10:11 +0100
+Message-ID: <20251030161011.282924-5-marco.crivellari@suse.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251030161011.282924-1-marco.crivellari@suse.com>
 References: <20251030161011.282924-1-marco.crivellari@suse.com>
@@ -124,23 +124,23 @@ become the implicit default.
 Suggested-by: Tejun Heo <tj@kernel.org>
 Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_process.c | 3 ++-
+ drivers/gpu/drm/radeon/radeon_display.c | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index ddfe30c13e9d..ebc9925f4e66 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -690,7 +690,8 @@ void kfd_procfs_del_queue(struct queue *q)
- int kfd_process_create_wq(void)
- {
- 	if (!kfd_process_wq)
--		kfd_process_wq = alloc_workqueue("kfd_process_wq", 0, 0);
-+		kfd_process_wq = alloc_workqueue("kfd_process_wq", WQ_PERCPU,
-+						 0);
- 	if (!kfd_restore_wq)
- 		kfd_restore_wq = alloc_ordered_workqueue("kfd_restore_wq",
- 							 WQ_FREEZABLE);
+diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+index 351b9dfcdad8..3c8aa5274c51 100644
+--- a/drivers/gpu/drm/radeon/radeon_display.c
++++ b/drivers/gpu/drm/radeon/radeon_display.c
+@@ -687,7 +687,8 @@ static void radeon_crtc_init(struct drm_device *dev, int index)
+ 	if (radeon_crtc == NULL)
+ 		return;
+ 
+-	radeon_crtc->flip_queue = alloc_workqueue("radeon-crtc", WQ_HIGHPRI, 0);
++	radeon_crtc->flip_queue = alloc_workqueue("radeon-crtc",
++						  WQ_HIGHPRI | WQ_PERCPU, 0);
+ 	if (!radeon_crtc->flip_queue) {
+ 		kfree(radeon_crtc);
+ 		return;
 -- 
 2.51.0
 
