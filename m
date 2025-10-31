@@ -2,50 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49770C2521E
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 13:59:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E18C25826
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 15:16:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEB9810E2C9;
-	Fri, 31 Oct 2025 12:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 217D710EBC7;
+	Fri, 31 Oct 2025 14:16:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HCQqu2NB";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="gfMnIMTV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D347810E2C9
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 12:59:22 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 8FB2543A89;
- Fri, 31 Oct 2025 12:59:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 194ACC4CEE7;
- Fri, 31 Oct 2025 12:59:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761915562;
- bh=2+bKvseDzlU36uPI8SuBPsdfoSIchUIH5Tb8M5x+liY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=HCQqu2NB90CiAEyDrlG8X166iR3B+sOyQmtrauNs38QgAkF6FB5OevnBZNWv0ripc
- MiEVKWvMy+cEbuUhWv68XR5F1qPqDRpri6A5WCBfLAR+aD9hpFeuQcy59uJYrtwHT6
- F+lfc56CMB4W1OemxX+rv6u8la1oFTfwFcNwdP25IGh7YIiiGWLr+Ba62XdEZL90oP
- azjyNMFFbrfrJVw4fCzX8JH0oBH0WxU5hQZTBpcNaj5AKYp7e6T1aQL5KDh6HbFNJ5
- vtYoRzFuxNJXIviSemsrHzZPVGtaPkDH57VtQC0ERHPFUga29825L+wOU3TG+yacDJ
- dtxLo1RDJ40rA==
-Message-ID: <b8cab278-fe8d-4edf-a951-ab1b1128be79@kernel.org>
-Date: Fri, 31 Oct 2025 07:59:21 -0500
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
+ [209.85.208.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5A4810EAD9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 08:43:00 +0000 (UTC)
+Received: by mail-lj1-f172.google.com with SMTP id
+ 38308e7fff4ca-3637d6e9923so18470021fa.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 01:43:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1761900179; x=1762504979; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8VPEaVnHIyEEykp68DuPbpbxptxzT5e1LgeffYCAMUg=;
+ b=gfMnIMTVkrgvnIRX28I08N9wBYIbHQ3hbElE4T044H+XWUDU0UD/7bWr73EsDpwSF0
+ CJ5YjHTJKNrIBXMnmjXA2le38J+Zedb53zYoGl/7tUkvimk9Zzxu0nm7EpOCD+1mkBDo
+ YeBEQ3PNq0lBYsAjosw+P6aT3Rk7kZQwpsrfTclVmGgbWk9W2hzqeSidsq6Ko/QWF6dP
+ k9K6p8+d2p/l3a1M5W3WlzrsfX87DXw9yISRz8ZTLXqnPvHagQxnAM3SVOGGFyHU/ATz
+ 17TEhwHVAIPPJeIDBkLre5GRhPyiMnKZO8dozSx+HMa1hCV3QaCBcdxIIsg/9JDNMFVN
+ 0sQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761900179; x=1762504979;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=8VPEaVnHIyEEykp68DuPbpbxptxzT5e1LgeffYCAMUg=;
+ b=nY98OJ+XegPi3Ls7AVH/fs0KLx9F7UKdBE6t8JRL657U1gaoiG9GeFirHvSw/58XL9
+ MFn22y7cPF1M/g/ynUnct0RWpfmCKxlvrYclh58fG7fcSWDvcr9oM43sR4BWL3xI/x5o
+ PYVZDQ7zYczfIes9Km/4vNj37ViGA/Un0wdyNX66DIlE+6Gfk/QDdgxU4b70RnuPtBbs
+ mLXgoQGduph1HvDx/7Kk3awLNWHqjt4ht01tpHawouPA13bymuWPcO6tE/sLdnGIbe70
+ 29AwejIveuopzux1KU83kUw8RPPv6/0yH5VVW74yMqnVpVMqjDMSJO8LFW0YTyOsrdlY
+ oExw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWRXTkOuxjnRh+CTzli0km5BXf0PXvPScSDSCPxLqMKafydjVODvsKuLulTyw31p9oi2WXqf1ip@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwUv2u5yzzeBDzxiZS1aDCQRI/VLfIefO9EkaxwbwZO0Wg4lHnW
+ B0onb/DWq/kaYUoB53NPsX33fPYDJHhbTxwz+GaAuFKolEwwUWPNTkzi+WjV+rkwVByQhEr2WAB
+ VdU5MrE5CUCSyn0mjjooeSmruRvz+MmqcytJbMfNuKA==
+X-Gm-Gg: ASbGnctF/VppS1xk2LkAhucuTVjB3LPub4Cj3FeOYl42WaY0stydUgZRI2c2Zi/r1ip
+ gmGXPdTRA+9jU7CaP7Lq1PHgaTR8i31q6ds4RJsOUsB9cug7j7QzYRhqFN3jmjAcKMIDDP4qpIq
+ cQ1/JKVrI0IyjHMfinZSQUr9lE2QPLorRjnjMImoBgxFDhpYM+sgAHCqVDyf1OeLeyWww3e9Zal
+ A/0tbWwIpKf44safcvjLdo4aMcZSfA6nzlN4VkxY1VFbFh8rnIRHg8L3rJfwEJvHATO/d3tWxmG
+ Wqkt7GSjEKrBikt+UUW5Umk3iW36
+X-Google-Smtp-Source: AGHT+IHGJmqlIXHNOm1UUUwV1F7p+xTwNQl9Kedsi6/i4Xko3qPnKOYsj5yIF7hW0Osmxc3o0wmHJE08wvPDk4Ri8KE=
+X-Received: by 2002:a05:6512:3a8a:b0:593:f74:91bb with SMTP id
+ 2adb3069b0e04-5941d52bf43mr870426e87.23.1761900179006; Fri, 31 Oct 2025
+ 01:42:59 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] drm/amdgpu: Drop PMFW RLC notifier from
- amdgpu_device_suspend()
-To: Antheas Kapenekakis <lkml@antheas.dev>
-Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
-References: <20251026042942.549389-1-superm1@kernel.org>
- <20251026042942.549389-2-superm1@kernel.org>
- <CAGwozwHcbfct6REgHA1fb3rLFiNrpcb4nek+FYP7np15Laibng@mail.gmail.com>
-Content-Language: en-US
-From: "Mario Limonciello (AMD) (kernel.org)" <superm1@kernel.org>
-In-Reply-To: <CAGwozwHcbfct6REgHA1fb3rLFiNrpcb4nek+FYP7np15Laibng@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251030161011.282924-1-marco.crivellari@suse.com>
+ <20251030161011.282924-2-marco.crivellari@suse.com>
+ <813d07f7-b430-4c95-bac3-931188415593@amd.com>
+In-Reply-To: <813d07f7-b430-4c95-bac3-931188415593@amd.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Fri, 31 Oct 2025 09:42:48 +0100
+X-Gm-Features: AWmQ_bmgqax5gxHAeWzVR_zTAqsONzdP2NZEDUwQUNjiw7YBE-IHcZ7XDLkhobU
+Message-ID: <CAAofZF7d+t8Qqojawes8WAR2YOWz7vMtgt2y=ofJHN6mChX6DQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] drm/amdgpu: replace use of system_unbound_wq with
+ system_dfl_wq
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
+ Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>, 
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Michal Hocko <mhocko@suse.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 31 Oct 2025 14:16:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,114 +94,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Oct 30, 2025 at 6:14=E2=80=AFPM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>[...]
+> In all the cases below we actually want the work to run on a different CP=
+U than the current one.
+>
+> So using system_unbound_wq seems to be more appropriate.
 
+Hello Christian,
 
-On 10/31/2025 7:01 AM, Antheas Kapenekakis wrote:
-> On Sun, 26 Oct 2025 at 05:30, Mario Limonciello (AMD)
-> <superm1@kernel.org> wrote:
->>
->> From: Alex Deucher <alexander.deucher@amd.com>
->>
->> For S3 on vangogh, PMFW needs to be notified before the
->> driver powers down RLC.  This already happens in smu_disable_dpms()
->> so drop the superfluous call in amdgpu_device_suspend().
->>
->> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->> Co-developed-by: Mario Limonciello (AMD) <superm1@kernel.org>
->> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
-> 
-> Just for this patch:
-> 
-> Tested-by: Antheas Kapenekakis <lkml@antheas.dev>
-> 
-> If the subject is refactored to take into account that it fixes sleep add:
-> #Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4659
-> #Reported-by: Antheas Kapenekakis <lkml@antheas.dev>
-> 
-> Tested on a Steam Deck OLED and Xbox Ally.
+system_dfl_wq is the new workqueue that will replace
+system_unbound_wq, but the behavior is the same.
+So, if you need system_unbound_wq, it means system_dfl_wq is fine here.
 
-Thanks for checking.  This series is already merged so too late for 
-tags.  But I'll add your tags to the other patch.
+Thanks!
+--=20
 
-> 
-> @Mario: For my series, can you have a look at the first two patches
-> and if they are ok push forward with merging? Also, reminder for the
-> Legion Go 2 quirk.
+Marco Crivellari
 
-I'll look at the two platform-x86 ones again and leave comments if 
-necessary.
-
-> 
-> Best,
-> Antheas
-> 
->> ---
->> Cc: lkml@antheas.dev
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 ----
->>   drivers/gpu/drm/amd/pm/amdgpu_dpm.c        | 18 ------------------
->>   drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h    |  2 --
->>   3 files changed, 24 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> index b8d91247f51a..f6850b86e96f 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> @@ -5280,10 +5280,6 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
->>          if (amdgpu_sriov_vf(adev))
->>                  amdgpu_virt_release_full_gpu(adev, false);
->>
->> -       r = amdgpu_dpm_notify_rlc_state(adev, false);
->> -       if (r)
->> -               return r;
->> -
->>          return 0;
->>   }
->>
->> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
->> index 5d08dc3b7110..5c4d0eb198c4 100644
->> --- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
->> +++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
->> @@ -195,24 +195,6 @@ int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
->>          return ret;
->>   }
->>
->> -int amdgpu_dpm_notify_rlc_state(struct amdgpu_device *adev, bool en)
->> -{
->> -       int ret = 0;
->> -       const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
->> -
->> -       if (pp_funcs && pp_funcs->notify_rlc_state) {
->> -               mutex_lock(&adev->pm.mutex);
->> -
->> -               ret = pp_funcs->notify_rlc_state(
->> -                               adev->powerplay.pp_handle,
->> -                               en);
->> -
->> -               mutex_unlock(&adev->pm.mutex);
->> -       }
->> -
->> -       return ret;
->> -}
->> -
->>   int amdgpu_dpm_is_baco_supported(struct amdgpu_device *adev)
->>   {
->>          const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
->> diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
->> index 3bce74f8bb0a..c7ea29385682 100644
->> --- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
->> +++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
->> @@ -424,8 +424,6 @@ int amdgpu_dpm_mode1_reset(struct amdgpu_device *adev);
->>   int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
->>                               enum pp_mp1_state mp1_state);
->>
->> -int amdgpu_dpm_notify_rlc_state(struct amdgpu_device *adev, bool en);
->> -
->>   int amdgpu_dpm_set_gfx_power_up_by_imu(struct amdgpu_device *adev);
->>
->>   int amdgpu_dpm_baco_exit(struct amdgpu_device *adev);
->> --
->> 2.51.1
->>
->>
-> 
-
+L3 Support Engineer, Technology & Product
