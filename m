@@ -2,72 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E18C25826
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 15:16:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E195FC2582C
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 15:16:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 217D710EBC7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C4D510EBC9;
 	Fri, 31 Oct 2025 14:16:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="gfMnIMTV";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="FEl1PeTE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
- [209.85.208.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5A4810EAD9
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 08:43:00 +0000 (UTC)
-Received: by mail-lj1-f172.google.com with SMTP id
- 38308e7fff4ca-3637d6e9923so18470021fa.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 01:43:00 -0700 (PDT)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+ [209.85.167.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5143810E2A4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 08:49:03 +0000 (UTC)
+Received: by mail-lf1-f50.google.com with SMTP id
+ 2adb3069b0e04-592f098f7adso1465517e87.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 01:49:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1761900179; x=1762504979; darn=lists.freedesktop.org; 
+ d=suse.com; s=google; t=1761900542; x=1762505342; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=8VPEaVnHIyEEykp68DuPbpbxptxzT5e1LgeffYCAMUg=;
- b=gfMnIMTVkrgvnIRX28I08N9wBYIbHQ3hbElE4T044H+XWUDU0UD/7bWr73EsDpwSF0
- CJ5YjHTJKNrIBXMnmjXA2le38J+Zedb53zYoGl/7tUkvimk9Zzxu0nm7EpOCD+1mkBDo
- YeBEQ3PNq0lBYsAjosw+P6aT3Rk7kZQwpsrfTclVmGgbWk9W2hzqeSidsq6Ko/QWF6dP
- k9K6p8+d2p/l3a1M5W3WlzrsfX87DXw9yISRz8ZTLXqnPvHagQxnAM3SVOGGFyHU/ATz
- 17TEhwHVAIPPJeIDBkLre5GRhPyiMnKZO8dozSx+HMa1hCV3QaCBcdxIIsg/9JDNMFVN
- 0sQw==
+ bh=YcNQB2cz7cmMdG+LgLrQkA0i5OOSEJyUpwul2usY/M0=;
+ b=FEl1PeTEJAkVEfmUvu9uPL2es7Xpz4XFyHdntup+BphQrid4w0khwRMunxDBjdH6lH
+ zf3IyfmhgGdRcITzytE+uj+54NvXrGtnqoJA/hcCh2WXzGm62yYRnIFQpOdf8WIEwh6V
+ ZGRHkmlI4vGjP+lHYizDlnHMJ6BfxJyb+QkJECChP1E/kSjwcPXgfzzDW+0TgPX+BJUQ
+ fIYxRVR8H3KMPWNcN6UdTLjhYSwkhVfp80jPE1OBC9LspqfxpERKCKMaJGvPcf4ODTHN
+ XfxyPZE0+qCzeWWkjXaUjtEQQsS7zUhQ+2yNaRkru9OkhWnHwaQqggx+TMsX3UoLr0ZS
+ oaeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761900179; x=1762504979;
+ d=1e100.net; s=20230601; t=1761900542; x=1762505342;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=8VPEaVnHIyEEykp68DuPbpbxptxzT5e1LgeffYCAMUg=;
- b=nY98OJ+XegPi3Ls7AVH/fs0KLx9F7UKdBE6t8JRL657U1gaoiG9GeFirHvSw/58XL9
- MFn22y7cPF1M/g/ynUnct0RWpfmCKxlvrYclh58fG7fcSWDvcr9oM43sR4BWL3xI/x5o
- PYVZDQ7zYczfIes9Km/4vNj37ViGA/Un0wdyNX66DIlE+6Gfk/QDdgxU4b70RnuPtBbs
- mLXgoQGduph1HvDx/7Kk3awLNWHqjt4ht01tpHawouPA13bymuWPcO6tE/sLdnGIbe70
- 29AwejIveuopzux1KU83kUw8RPPv6/0yH5VVW74yMqnVpVMqjDMSJO8LFW0YTyOsrdlY
- oExw==
+ bh=YcNQB2cz7cmMdG+LgLrQkA0i5OOSEJyUpwul2usY/M0=;
+ b=ubaCoHap/HA9/umT7TTFrRoRyRfjqwVyuQDzwQ00MHvtHWesbrKFFJlHERaxNozOJm
+ Gv936gFIN2SjSeo4qv823ZjSwCtmcevoPyTdzOck7waEPQ7p++y7wRbRU+z67lANy9u7
+ HwMWlJdUT9+LZphfmdfP7ChlUVyHUu8jTcaCM6Q2jcSQk2ev/GFEGhIIfK+Dm0De9IDm
+ 0D3kv75MdjJqZveIk6xHuoO09S1rPwiIPR4iKPy/OAucW2/VCsqDFAJC/NnhGnQpaQ2g
+ k5AUtkiKnfTNfaot2wbuZNDEdwruKBwkWLrn+oIfYlF9WsytUETXx7aJjo/Ik835lhgV
+ n+dQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWRXTkOuxjnRh+CTzli0km5BXf0PXvPScSDSCPxLqMKafydjVODvsKuLulTyw31p9oi2WXqf1ip@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwUv2u5yzzeBDzxiZS1aDCQRI/VLfIefO9EkaxwbwZO0Wg4lHnW
- B0onb/DWq/kaYUoB53NPsX33fPYDJHhbTxwz+GaAuFKolEwwUWPNTkzi+WjV+rkwVByQhEr2WAB
- VdU5MrE5CUCSyn0mjjooeSmruRvz+MmqcytJbMfNuKA==
-X-Gm-Gg: ASbGnctF/VppS1xk2LkAhucuTVjB3LPub4Cj3FeOYl42WaY0stydUgZRI2c2Zi/r1ip
- gmGXPdTRA+9jU7CaP7Lq1PHgaTR8i31q6ds4RJsOUsB9cug7j7QzYRhqFN3jmjAcKMIDDP4qpIq
- cQ1/JKVrI0IyjHMfinZSQUr9lE2QPLorRjnjMImoBgxFDhpYM+sgAHCqVDyf1OeLeyWww3e9Zal
- A/0tbWwIpKf44safcvjLdo4aMcZSfA6nzlN4VkxY1VFbFh8rnIRHg8L3rJfwEJvHATO/d3tWxmG
- Wqkt7GSjEKrBikt+UUW5Umk3iW36
-X-Google-Smtp-Source: AGHT+IHGJmqlIXHNOm1UUUwV1F7p+xTwNQl9Kedsi6/i4Xko3qPnKOYsj5yIF7hW0Osmxc3o0wmHJE08wvPDk4Ri8KE=
-X-Received: by 2002:a05:6512:3a8a:b0:593:f74:91bb with SMTP id
- 2adb3069b0e04-5941d52bf43mr870426e87.23.1761900179006; Fri, 31 Oct 2025
- 01:42:59 -0700 (PDT)
+ AJvYcCX9ORJ6o8ekUti1pRddAooHvvKqr4DQtN83rE9bPOgFs2C5wZLvhyfzN6Dl8GIZK0KNP1bMKj3B@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx55aJt86RdwT5Ub5/xBQd/LNxy5Sjk5uGxIwmdvxdK4ZdSJDzq
+ EGSaSadgc7jDStBYb0TLxrRfIp4z0necSAEcMtNThNziC7J21YBUeGYRyZtsIZyaEQ0+EV4TJjm
+ yyNCeUk02WWQ9BZxTlkrwwT43OWW36yzq4gu1UMT50Q==
+X-Gm-Gg: ASbGnctCipQ6VUqmz29cQ1s3XKt40iV/XZrjrradUBgPOWLt6RG9yy6smG/ZMqERZRB
+ 3G5MhhYy1UneBnA/Fl6MYtS44cP0ztvpK/t1/kYSCpRwDVQWsnq3ySCxQax0BGWANOSbPWz0eq6
+ LZ75tr2RYQ5dx2PDQjg0vqmw9bPHNm+yW7iNgO1vDfEp4PjzUwGODxOhuMVbCdzS/ogwgGbL7tE
+ zBxGmDzkYobgaJIySGnfSsrgXeuCLK15/llYL1XjnjbhvuE2JvYMfsr4q5136DECfpiyu3CYk0I
+ E81QwXAVRFULPvZm2Q==
+X-Google-Smtp-Source: AGHT+IG5f9LrT5nyeUFiNlUT6SjibsgaFtcZ7lVM5kJmZgFZMKb75gWV2jzCfnyesEQtIpQyfU8LfCkUsKtRhTh/eAQ=
+X-Received: by 2002:a05:6512:3d8a:b0:575:c6:edae with SMTP id
+ 2adb3069b0e04-5941d5561cdmr988285e87.53.1761900541585; Fri, 31 Oct 2025
+ 01:49:01 -0700 (PDT)
 MIME-Version: 1.0
 References: <20251030161011.282924-1-marco.crivellari@suse.com>
- <20251030161011.282924-2-marco.crivellari@suse.com>
- <813d07f7-b430-4c95-bac3-931188415593@amd.com>
-In-Reply-To: <813d07f7-b430-4c95-bac3-931188415593@amd.com>
+ <20251030161011.282924-4-marco.crivellari@suse.com>
+ <690b3fd0-20a1-4245-8fc4-4e8b40695c98@amd.com>
+In-Reply-To: <690b3fd0-20a1-4245-8fc4-4e8b40695c98@amd.com>
 From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Fri, 31 Oct 2025 09:42:48 +0100
-X-Gm-Features: AWmQ_bmgqax5gxHAeWzVR_zTAqsONzdP2NZEDUwQUNjiw7YBE-IHcZ7XDLkhobU
-Message-ID: <CAAofZF7d+t8Qqojawes8WAR2YOWz7vMtgt2y=ofJHN6mChX6DQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] drm/amdgpu: replace use of system_unbound_wq with
- system_dfl_wq
+Date: Fri, 31 Oct 2025 09:48:49 +0100
+X-Gm-Features: AWmQ_bn-4zPvtMBML6N9b1bZZjys-qRUhwoiBnh0rijwWGoJyeJGXQ7WQEI95VM
+Message-ID: <CAAofZF4V7gN=AqgLwcva+zhJyROYfSjzJ2uLxoNeS2KLuytW9Q@mail.gmail.com>
+Subject: Re: [PATCH 3/4] amd/amdkfd: WQ_PERCPU added to alloc_workqueue users
 To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
@@ -76,7 +75,8 @@ Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  Michal Hocko <mhocko@suse.com>, 
  Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>
+ Simona Vetter <simona@ffwll.ch>, "Yang, Philip" <Philip.Yang@amd.com>, 
+ "Kuehling, Felix" <Felix.Kuehling@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 31 Oct 2025 14:16:25 +0000
@@ -94,22 +94,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 30, 2025 at 6:14=E2=80=AFPM Christian K=C3=B6nig
+On Thu, Oct 30, 2025 at 6:15=E2=80=AFPM Christian K=C3=B6nig
 <christian.koenig@amd.com> wrote:
 >[...]
-> In all the cases below we actually want the work to run on a different CP=
-U than the current one.
->
-> So using system_unbound_wq seems to be more appropriate.
+> Adding Philip and Felix to comment, but this should most likely also not =
+execute on the same CPU as the one who scheduled the work.
 
-Hello Christian,
+Hi Christian,
 
-system_dfl_wq is the new workqueue that will replace
-system_unbound_wq, but the behavior is the same.
-So, if you need system_unbound_wq, it means system_dfl_wq is fine here.
+The actual behavior without WQ_PERCPU is exactly the same: with 0 it
+means the workqueue is per-cpu. We just enforced that, adding the
+WQ_PERCPU flag, so that it is explicit.
+
+So if you need this to be unbound, I can send the v2 with WQ_UNBOUND
+instead of WQ_PERCPU.
 
 Thanks!
---=20
+
+--
 
 Marco Crivellari
 
