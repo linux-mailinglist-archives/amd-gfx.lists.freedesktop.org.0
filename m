@@ -2,87 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAAD8C2582F
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 15:16:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4031C2529D
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 14:05:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3141310EBCA;
-	Fri, 31 Oct 2025 14:16:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4486E10EB51;
+	Fri, 31 Oct 2025 13:05:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="XKRqTA+N";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OuWmANOx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC7810EB32
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 13:02:31 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-47114a40161so25270955e9.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 06:02:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1761915750; x=1762520550; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=2FQGZCGnHsgyhdfpYgLWb8UhWYQWnOT5iNG04Z0iL94=;
- b=XKRqTA+N0FlOH8g4WHUgiXhqQ/loz/G5ZlKgaVEfoZLS2mbiBhdpYBSRAWcziIbiOB
- wxdtLh5V1RDNiW9e3+Jw2IisjSQ8qlfMbjMuQjGiUomYpJWUw53BEMZLE/TzMO7/Q91x
- 88kdR8rBUgBDbK0JN3TpBUYYF6H8iCTrVH2ioBAI5TKBg0YbLpfUkKS6kXtSQLxWARdp
- IM4x85Zur4MDY/sMlthQvp8AA1pJcGwGP/dUnnhFy4yNk0jPJXBs+28clAC3TSzjXt4k
- ftRhlSl2aStRu7ClP1sjUDhEM7DvnyfpLvVeI5Nk6oihVMFS9iy7n+Sz4HwalZRTjumR
- Vz2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761915750; x=1762520550;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=2FQGZCGnHsgyhdfpYgLWb8UhWYQWnOT5iNG04Z0iL94=;
- b=PDnsqKM6hZFJY4yNj5AO2Y7sN8LfeUzlFKrcNK85ln+dmJ2UiAKdDOfZIEnu5MXtbj
- xEf8PPidqNCnjejl7S4f16Q1TcDAc/R7OL5+u2z49161LmJQGeWjNCBZpuEPhyjU+Y2E
- 75zCZUHApLUQWALIAG6iE449uHsKZrh7ePRNWzj64nyZMYOSgRtXnhj9N8AxfdIZmIcO
- Lj4qot6KS7i5tOXWZQ65toST3OmgFBujFtNvMddeNImkqtsNNgxnz/VS4yFLQe/y83HK
- ne+5uQAD1KKlt6G2w2zuNnvo0kdY1VOiPnZNlccgt1niPt3cs1iiDIvxltmbkKWTLsRN
- VuvA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWrYcK0DkDJ2i6iRdBpkUVQSfJ97T9oBHHhFJzaxdIKttfM6V3WMw2TXu6RyP4c3YS1fEWnwilQ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YywE/BZCjniaReRy6LToLrfPvR8Nw6ZkLU77o8PI9o12LYyvdCd
- jBfwMQcPGBD5J4JJPLY1qvREeC9064BNJcasECRaLva/tvVTMpEhwZIgmbyf1DfUTec=
-X-Gm-Gg: ASbGncsKhQ10VlNH6u//whc76PbE4Tic30RDv0x1I+ulmD4DIt9QYG3VnW+g96CN37y
- mtabdMDxi8WAKmLA2HHwbTSBYzrqALBkm96bupO//W8SvuEQRWinegJNsphe/6n+HdAgMH5jB/K
- vWdfqTal30I7ndonAuGOE+GoEt+K8vS81LXqUvs7bNePzGxVxdQGD5XOG6fxL5sk/azG2q0AuvJ
- hhJ2Zv4ZLZ8X26bY2P7ZlPi42DmpXmqCWHTPm6P1DOuD3Gil7ZAiFk5+OYBNmDXhGVO8Na9Rl7+
- m3dxZ9b60AOigz3Eu0JWGLaw4eTc0aLE/d2pQ4I8upbgB7IbIo9vYE+pDBsVKE6WLusstP7BHlk
- hq+sfKT1Cp7/n1H7uiepwbzwRZW+nrqayk27OEZa+/HZ2PHJBqWIGEtqSGxU7hxjFMi6p2TGS68
- EoyghfHA==
-X-Google-Smtp-Source: AGHT+IFtOV4W0Y8ZfIuQZW9gadDZKRpyQvtO7XZin6e2iW2zHXOgFcxmDRDXqGF4RU8aG0zT2NZ4TQ==
-X-Received: by 2002:a05:600c:3149:b0:475:dd89:acb with SMTP id
- 5b1f17b1804b1-4773089c4a1mr29545645e9.22.1761915749827; 
- Fri, 31 Oct 2025 06:02:29 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-4772fbc32d9sm22667605e9.1.2025.10.31.06.02.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Oct 2025 06:02:29 -0700 (PDT)
-Date: Fri, 31 Oct 2025 16:02:25 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Harry Wentland <harry.wentland@amd.com>,
- Harshit Mogalapalli <harshit.m.mogalapalli@gmail.com>
-Cc: Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Hamish Claxton <hamishclaxton@gmail.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Zaeem Mohamed <zaeem.mohamed@amd.com>,
- Michael Strauss <michael.strauss@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Fix logical vs bitwise bug in
- get_embedded_panel_info_v2_1()
-Message-ID: <aQSzYV0ytfQK2kvN@stanley.mountain>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E20C510EB32;
+ Fri, 31 Oct 2025 13:05:27 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id A4787440E4;
+ Fri, 31 Oct 2025 13:05:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5338C4CEE7;
+ Fri, 31 Oct 2025 13:05:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1761915927;
+ bh=d2k8BDYCwAf8v+dGV9tcaTrmfQ4UjRPuay0/M32F87w=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=OuWmANOxQyavr2OndYJ4s3kbVDHfKfszLhmIgVZKhHzwjBDqzGTubQ2YBAqu1rGxT
+ urxkoJBdqH1PYxSlKvzMPdcgEtBKR5biV0TAQIWLQKobGNrpYa/Dv1F14VthpK/dlJ
+ eObnmE2o8jK0A6/AHnHwrLoI1CzA1Qo1NnO4e2Vu43c0wNGKDUK5wmEDalNoWlv94l
+ mhcbnmHRPH44Us/d4K2hu6TErPnmo17QZLj2rzxcpcgPL4GTRlPSJOPq7kT9LO4GiP
+ CnzKCaxWN71vt8Z6SZtqm8kkeV0N72WKRzfjCih97B2qpiYqvZTsgLeSIncB+GsXFA
+ ZVa5oSOiGoo5w==
+Message-ID: <a10c7757-567d-4312-b72d-159ab0c41ece@kernel.org>
+Date: Fri, 31 Oct 2025 08:05:26 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Mailman-Approved-At: Fri, 31 Oct 2025 14:16:25 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] platform/x86/amd/pmc: Add support for Van Gogh SoC
+To: Antheas Kapenekakis <lkml@antheas.dev>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Shyam Sundar S K <Shyam-sundar.S-k@amd.com>, Perry Yuan <perry.yuan@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+References: <20251024152152.3981721-1-lkml@antheas.dev>
+ <20251024152152.3981721-2-lkml@antheas.dev>
+Content-Language: en-US
+From: "Mario Limonciello (AMD) (kernel.org)" <superm1@kernel.org>
+In-Reply-To: <20251024152152.3981721-2-lkml@antheas.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,47 +61,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The .H_SYNC_POLARITY and .V_SYNC_POLARITY variables are 1 bit bitfields
-of a u32.  The ATOM_HSYNC_POLARITY define is 0x2 and the
-ATOM_VSYNC_POLARITY is 0x4.  When we do a bitwise negate of 0, 2, or 4
-then the last bit is always 1 so this code always sets .H_SYNC_POLARITY
-and .V_SYNC_POLARITY to true.
 
-This code is instead intended to check if the ATOM_HSYNC_POLARITY or
-ATOM_VSYNC_POLARITY flags are set and reverse the result.  In other
-words, it's supposed to be a logical negate instead of a bitwise negate.
 
-Fixes: ae79c310b1a6 ("drm/amd/display: Add DCE12 bios parser support")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
-Please note that I have not tested this.  It's straight forward enough to
-see that logical negate was intended, but it's always good to test things
-as well.
+On 10/24/2025 10:21 AM, Antheas Kapenekakis wrote:
+> The ROG Xbox Ally (non-X) SoC features a similar architecture to the
+> Steam Deck. While the Steam Deck supports S3 (s2idle causes a crash),
+> this support was dropped by the Xbox Ally which only S0ix suspend.
+> 
+> Since the handler is missing here, this causes the device to not suspend
+> and the AMD GPU driver to crash while trying to resume afterwards due to
+> a power hang.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4659
+> Signed-off-by: Antheas Kapenekakis <lkml@antheas.dev>
 
-Harshit and I only recently created this static checker warning.
+Having seen that a few things were tried for the idle mask which don't 
+work I think this patch makes sense as is.
 
- drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Reviewed-by: Mario Limonciello (AMD) <superm1@kernel.org>
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-index 04eb647acc4e..550a9f1d03f8 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-@@ -1480,10 +1480,10 @@ static enum bp_result get_embedded_panel_info_v2_1(
- 	/* not provided by VBIOS */
- 	info->lcd_timing.misc_info.HORIZONTAL_CUT_OFF = 0;
- 
--	info->lcd_timing.misc_info.H_SYNC_POLARITY = ~(uint32_t) (lvds->lcd_timing.miscinfo
--			& ATOM_HSYNC_POLARITY);
--	info->lcd_timing.misc_info.V_SYNC_POLARITY = ~(uint32_t) (lvds->lcd_timing.miscinfo
--			& ATOM_VSYNC_POLARITY);
-+	info->lcd_timing.misc_info.H_SYNC_POLARITY = !(lvds->lcd_timing.miscinfo &
-+						       ATOM_HSYNC_POLARITY);
-+	info->lcd_timing.misc_info.V_SYNC_POLARITY = !(lvds->lcd_timing.miscinfo &
-+						       ATOM_VSYNC_POLARITY);
- 
- 	/* not provided by VBIOS */
- 	info->lcd_timing.misc_info.VERTICAL_CUT_OFF = 0;
--- 
-2.51.0
+> ---
+>   drivers/platform/x86/amd/pmc/pmc.c | 3 +++
+>   drivers/platform/x86/amd/pmc/pmc.h | 1 +
+>   2 files changed, 4 insertions(+)
+> 
+> diff --git a/drivers/platform/x86/amd/pmc/pmc.c b/drivers/platform/x86/amd/pmc/pmc.c
+> index bd318fd02ccf..cae3fcafd4d7 100644
+> --- a/drivers/platform/x86/amd/pmc/pmc.c
+> +++ b/drivers/platform/x86/amd/pmc/pmc.c
+> @@ -106,6 +106,7 @@ static void amd_pmc_get_ip_info(struct amd_pmc_dev *dev)
+>   	switch (dev->cpu_id) {
+>   	case AMD_CPU_ID_PCO:
+>   	case AMD_CPU_ID_RN:
+> +	case AMD_CPU_ID_VG:
+>   	case AMD_CPU_ID_YC:
+>   	case AMD_CPU_ID_CB:
+>   		dev->num_ips = 12;
+> @@ -517,6 +518,7 @@ static int amd_pmc_get_os_hint(struct amd_pmc_dev *dev)
+>   	case AMD_CPU_ID_PCO:
+>   		return MSG_OS_HINT_PCO;
+>   	case AMD_CPU_ID_RN:
+> +	case AMD_CPU_ID_VG:
+>   	case AMD_CPU_ID_YC:
+>   	case AMD_CPU_ID_CB:
+>   	case AMD_CPU_ID_PS:
+> @@ -717,6 +719,7 @@ static const struct pci_device_id pmc_pci_ids[] = {
+>   	{ PCI_DEVICE(PCI_VENDOR_ID_AMD, AMD_CPU_ID_RV) },
+>   	{ PCI_DEVICE(PCI_VENDOR_ID_AMD, AMD_CPU_ID_SP) },
+>   	{ PCI_DEVICE(PCI_VENDOR_ID_AMD, AMD_CPU_ID_SHP) },
+> +	{ PCI_DEVICE(PCI_VENDOR_ID_AMD, AMD_CPU_ID_VG) },
+>   	{ PCI_DEVICE(PCI_VENDOR_ID_AMD, PCI_DEVICE_ID_AMD_1AH_M20H_ROOT) },
+>   	{ PCI_DEVICE(PCI_VENDOR_ID_AMD, PCI_DEVICE_ID_AMD_1AH_M60H_ROOT) },
+>   	{ }
+> diff --git a/drivers/platform/x86/amd/pmc/pmc.h b/drivers/platform/x86/amd/pmc/pmc.h
+> index 62f3e51020fd..fe3f53eb5955 100644
+> --- a/drivers/platform/x86/amd/pmc/pmc.h
+> +++ b/drivers/platform/x86/amd/pmc/pmc.h
+> @@ -156,6 +156,7 @@ void amd_mp2_stb_deinit(struct amd_pmc_dev *dev);
+>   #define AMD_CPU_ID_RN			0x1630
+>   #define AMD_CPU_ID_PCO			AMD_CPU_ID_RV
+>   #define AMD_CPU_ID_CZN			AMD_CPU_ID_RN
+> +#define AMD_CPU_ID_VG			0x1645
+>   #define AMD_CPU_ID_YC			0x14B5
+>   #define AMD_CPU_ID_CB			0x14D8
+>   #define AMD_CPU_ID_PS			0x14E8
 
