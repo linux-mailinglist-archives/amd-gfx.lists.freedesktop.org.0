@@ -2,77 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02A5C25835
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 15:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAAD8C2582F
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 15:16:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C15A10EBC6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3141310EBCA;
 	Fri, 31 Oct 2025 14:16:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="CB488Cyo";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="XKRqTA+N";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 456 seconds by postgrey-1.36 at gabe;
- Fri, 31 Oct 2025 12:09:49 UTC
-Received: from relay14.grserver.gr (relay14.grserver.gr [46.224.16.114])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48EB410EB1E
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 12:09:49 +0000 (UTC)
-Received: from relay14 (localhost [127.0.0.1])
- by relay14.grserver.gr (Proxmox) with ESMTP id B0F3A43E7E
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 12:02:11 +0000 (UTC)
-Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by relay14.grserver.gr (Proxmox) with ESMTPS id A0A4643F52
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 12:02:10 +0000 (UTC)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
- [209.85.208.177])
- by linux3247.grserver.gr (Postfix) with ESMTPSA id 1FB8B1FF1A5
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 14:02:10 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
- s=default; t=1761912130;
- bh=R/j5cdkBM7Sh/pgwtw7CGjxF21211Lkf1zQraIrMxTc=;
- h=Received:From:Subject:To;
- b=CB488Cyoe5zvZbTeY4cNuixOSdIFHc/NTxv7knXi0av1s2EAWkEOo6k+EsglNfmvT
- gwVBcvuOY59j6Rhyf+54oeZLASGbySfQbaVSWeoTVpx1dhX4tA/dSSnTZpVKqMcnMv
- kR3/pdNuLjQUx0hvnLg3kF708Bb6ewQUZw4ovfjLJbwcwKMprBczdF24tbHKwPFZhF
- ZriyJJsU/JoDRTi+XUg5e5pQxJMKPbFaL3FTpacO+yssvaZk4WCu3Kk54zN0K8OXRN
- K8wCmBZUmEibQHHAxQljA5S+zFjFFCqYQoFSrrsI7ngdq6wXZLFB3VkzvglftgD0th
- VBeEl8n1tkWCg==
-Authentication-Results: linux3247.grserver.gr;
- spf=pass (sender IP is 209.85.208.177) smtp.mailfrom=lkml@antheas.dev
- smtp.helo=mail-lj1-f177.google.com
-Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
-Received: by mail-lj1-f177.google.com with SMTP id
- 38308e7fff4ca-378cfd75fb0so25204251fa.1
- for <amd-gfx@lists.freedesktop.org>;
- Fri, 31 Oct 2025 05:02:10 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yym864FCsNpgUXAn4wUiHVms8potTI4zBZrSJ49+TVDGVIRWGys
- ntrgrveUIg8ZV1Iuj4UCzBO4NpIt81Ktpa8XtA9E0026KWQjuCDCkmd7PdJdy7d7jPYNAo/hrzY
- xxyMCnTNjG9hO8zhKpG+29xcqmpRNR0s=
-X-Google-Smtp-Source: AGHT+IEMLk+fAn8h8r1bhS4gk0+Gw9VBkU0ykzrpSa4Ic4/20JQ9buoYLRSMIybAH0GUi7SuCQ/1JlCH1FyoEsra2Vk=
-X-Received: by 2002:a05:651c:2209:b0:364:45a:5159 with SMTP id
- 38308e7fff4ca-37a18dc75bamr12265321fa.30.1761912129609; Fri, 31 Oct 2025
- 05:02:09 -0700 (PDT)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC7810EB32
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 13:02:31 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-47114a40161so25270955e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 06:02:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1761915750; x=1762520550; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=2FQGZCGnHsgyhdfpYgLWb8UhWYQWnOT5iNG04Z0iL94=;
+ b=XKRqTA+N0FlOH8g4WHUgiXhqQ/loz/G5ZlKgaVEfoZLS2mbiBhdpYBSRAWcziIbiOB
+ wxdtLh5V1RDNiW9e3+Jw2IisjSQ8qlfMbjMuQjGiUomYpJWUw53BEMZLE/TzMO7/Q91x
+ 88kdR8rBUgBDbK0JN3TpBUYYF6H8iCTrVH2ioBAI5TKBg0YbLpfUkKS6kXtSQLxWARdp
+ IM4x85Zur4MDY/sMlthQvp8AA1pJcGwGP/dUnnhFy4yNk0jPJXBs+28clAC3TSzjXt4k
+ ftRhlSl2aStRu7ClP1sjUDhEM7DvnyfpLvVeI5Nk6oihVMFS9iy7n+Sz4HwalZRTjumR
+ Vz2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761915750; x=1762520550;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=2FQGZCGnHsgyhdfpYgLWb8UhWYQWnOT5iNG04Z0iL94=;
+ b=PDnsqKM6hZFJY4yNj5AO2Y7sN8LfeUzlFKrcNK85ln+dmJ2UiAKdDOfZIEnu5MXtbj
+ xEf8PPidqNCnjejl7S4f16Q1TcDAc/R7OL5+u2z49161LmJQGeWjNCBZpuEPhyjU+Y2E
+ 75zCZUHApLUQWALIAG6iE449uHsKZrh7ePRNWzj64nyZMYOSgRtXnhj9N8AxfdIZmIcO
+ Lj4qot6KS7i5tOXWZQ65toST3OmgFBujFtNvMddeNImkqtsNNgxnz/VS4yFLQe/y83HK
+ ne+5uQAD1KKlt6G2w2zuNnvo0kdY1VOiPnZNlccgt1niPt3cs1iiDIvxltmbkKWTLsRN
+ VuvA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWrYcK0DkDJ2i6iRdBpkUVQSfJ97T9oBHHhFJzaxdIKttfM6V3WMw2TXu6RyP4c3YS1fEWnwilQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YywE/BZCjniaReRy6LToLrfPvR8Nw6ZkLU77o8PI9o12LYyvdCd
+ jBfwMQcPGBD5J4JJPLY1qvREeC9064BNJcasECRaLva/tvVTMpEhwZIgmbyf1DfUTec=
+X-Gm-Gg: ASbGncsKhQ10VlNH6u//whc76PbE4Tic30RDv0x1I+ulmD4DIt9QYG3VnW+g96CN37y
+ mtabdMDxi8WAKmLA2HHwbTSBYzrqALBkm96bupO//W8SvuEQRWinegJNsphe/6n+HdAgMH5jB/K
+ vWdfqTal30I7ndonAuGOE+GoEt+K8vS81LXqUvs7bNePzGxVxdQGD5XOG6fxL5sk/azG2q0AuvJ
+ hhJ2Zv4ZLZ8X26bY2P7ZlPi42DmpXmqCWHTPm6P1DOuD3Gil7ZAiFk5+OYBNmDXhGVO8Na9Rl7+
+ m3dxZ9b60AOigz3Eu0JWGLaw4eTc0aLE/d2pQ4I8upbgB7IbIo9vYE+pDBsVKE6WLusstP7BHlk
+ hq+sfKT1Cp7/n1H7uiepwbzwRZW+nrqayk27OEZa+/HZ2PHJBqWIGEtqSGxU7hxjFMi6p2TGS68
+ EoyghfHA==
+X-Google-Smtp-Source: AGHT+IFtOV4W0Y8ZfIuQZW9gadDZKRpyQvtO7XZin6e2iW2zHXOgFcxmDRDXqGF4RU8aG0zT2NZ4TQ==
+X-Received: by 2002:a05:600c:3149:b0:475:dd89:acb with SMTP id
+ 5b1f17b1804b1-4773089c4a1mr29545645e9.22.1761915749827; 
+ Fri, 31 Oct 2025 06:02:29 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 5b1f17b1804b1-4772fbc32d9sm22667605e9.1.2025.10.31.06.02.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 31 Oct 2025 06:02:29 -0700 (PDT)
+Date: Fri, 31 Oct 2025 16:02:25 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Harry Wentland <harry.wentland@amd.com>,
+ Harshit Mogalapalli <harshit.m.mogalapalli@gmail.com>
+Cc: Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Hamish Claxton <hamishclaxton@gmail.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Zaeem Mohamed <zaeem.mohamed@amd.com>,
+ Michael Strauss <michael.strauss@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Subject: [PATCH] drm/amd/display: Fix logical vs bitwise bug in
+ get_embedded_panel_info_v2_1()
+Message-ID: <aQSzYV0ytfQK2kvN@stanley.mountain>
 MIME-Version: 1.0
-References: <20251026042942.549389-1-superm1@kernel.org>
- <20251026042942.549389-2-superm1@kernel.org>
-In-Reply-To: <20251026042942.549389-2-superm1@kernel.org>
-From: Antheas Kapenekakis <lkml@antheas.dev>
-Date: Fri, 31 Oct 2025 13:01:58 +0100
-X-Gmail-Original-Message-ID: <CAGwozwHcbfct6REgHA1fb3rLFiNrpcb4nek+FYP7np15Laibng@mail.gmail.com>
-X-Gm-Features: AWmQ_bnlPD36OqVMs3UuSLgoW2n1FvIruvWwmKyhbE2qFWV2sznsF7uG9A0Ljls
-Message-ID: <CAGwozwHcbfct6REgHA1fb3rLFiNrpcb4nek+FYP7np15Laibng@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] drm/amdgpu: Drop PMFW RLC notifier from
- amdgpu_device_suspend()
-To: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-X-PPP-Message-ID: <176191213035.2909356.5305628377478794144@linux3247.grserver.gr>
-X-PPP-Vhost: antheas.dev
-X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
 X-Mailman-Approved-At: Fri, 31 Oct 2025 14:16:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,102 +97,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 26 Oct 2025 at 05:30, Mario Limonciello (AMD)
-<superm1@kernel.org> wrote:
->
-> From: Alex Deucher <alexander.deucher@amd.com>
->
-> For S3 on vangogh, PMFW needs to be notified before the
-> driver powers down RLC.  This already happens in smu_disable_dpms()
-> so drop the superfluous call in amdgpu_device_suspend().
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> Co-developed-by: Mario Limonciello (AMD) <superm1@kernel.org>
-> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
+The .H_SYNC_POLARITY and .V_SYNC_POLARITY variables are 1 bit bitfields
+of a u32.  The ATOM_HSYNC_POLARITY define is 0x2 and the
+ATOM_VSYNC_POLARITY is 0x4.  When we do a bitwise negate of 0, 2, or 4
+then the last bit is always 1 so this code always sets .H_SYNC_POLARITY
+and .V_SYNC_POLARITY to true.
 
-Just for this patch:
+This code is instead intended to check if the ATOM_HSYNC_POLARITY or
+ATOM_VSYNC_POLARITY flags are set and reverse the result.  In other
+words, it's supposed to be a logical negate instead of a bitwise negate.
 
-Tested-by: Antheas Kapenekakis <lkml@antheas.dev>
+Fixes: ae79c310b1a6 ("drm/amd/display: Add DCE12 bios parser support")
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+Please note that I have not tested this.  It's straight forward enough to
+see that logical negate was intended, but it's always good to test things
+as well.
 
-If the subject is refactored to take into account that it fixes sleep add:
-#Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4659
-#Reported-by: Antheas Kapenekakis <lkml@antheas.dev>
+Harshit and I only recently created this static checker warning.
 
-Tested on a Steam Deck OLED and Xbox Ally.
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-@Mario: For my series, can you have a look at the first two patches
-and if they are ok push forward with merging? Also, reminder for the
-Legion Go 2 quirk.
-
-Best,
-Antheas
-
-> ---
-> Cc: lkml@antheas.dev
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 ----
->  drivers/gpu/drm/amd/pm/amdgpu_dpm.c        | 18 ------------------
->  drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h    |  2 --
->  3 files changed, 24 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index b8d91247f51a..f6850b86e96f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -5280,10 +5280,6 @@ int amdgpu_device_suspend(struct drm_device *dev, bool notify_clients)
->         if (amdgpu_sriov_vf(adev))
->                 amdgpu_virt_release_full_gpu(adev, false);
->
-> -       r = amdgpu_dpm_notify_rlc_state(adev, false);
-> -       if (r)
-> -               return r;
-> -
->         return 0;
->  }
->
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-> index 5d08dc3b7110..5c4d0eb198c4 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-> @@ -195,24 +195,6 @@ int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
->         return ret;
->  }
->
-> -int amdgpu_dpm_notify_rlc_state(struct amdgpu_device *adev, bool en)
-> -{
-> -       int ret = 0;
-> -       const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
-> -
-> -       if (pp_funcs && pp_funcs->notify_rlc_state) {
-> -               mutex_lock(&adev->pm.mutex);
-> -
-> -               ret = pp_funcs->notify_rlc_state(
-> -                               adev->powerplay.pp_handle,
-> -                               en);
-> -
-> -               mutex_unlock(&adev->pm.mutex);
-> -       }
-> -
-> -       return ret;
-> -}
-> -
->  int amdgpu_dpm_is_baco_supported(struct amdgpu_device *adev)
->  {
->         const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
-> diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-> index 3bce74f8bb0a..c7ea29385682 100644
-> --- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-> +++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-> @@ -424,8 +424,6 @@ int amdgpu_dpm_mode1_reset(struct amdgpu_device *adev);
->  int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
->                              enum pp_mp1_state mp1_state);
->
-> -int amdgpu_dpm_notify_rlc_state(struct amdgpu_device *adev, bool en);
-> -
->  int amdgpu_dpm_set_gfx_power_up_by_imu(struct amdgpu_device *adev);
->
->  int amdgpu_dpm_baco_exit(struct amdgpu_device *adev);
-> --
-> 2.51.1
->
->
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index 04eb647acc4e..550a9f1d03f8 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -1480,10 +1480,10 @@ static enum bp_result get_embedded_panel_info_v2_1(
+ 	/* not provided by VBIOS */
+ 	info->lcd_timing.misc_info.HORIZONTAL_CUT_OFF = 0;
+ 
+-	info->lcd_timing.misc_info.H_SYNC_POLARITY = ~(uint32_t) (lvds->lcd_timing.miscinfo
+-			& ATOM_HSYNC_POLARITY);
+-	info->lcd_timing.misc_info.V_SYNC_POLARITY = ~(uint32_t) (lvds->lcd_timing.miscinfo
+-			& ATOM_VSYNC_POLARITY);
++	info->lcd_timing.misc_info.H_SYNC_POLARITY = !(lvds->lcd_timing.miscinfo &
++						       ATOM_HSYNC_POLARITY);
++	info->lcd_timing.misc_info.V_SYNC_POLARITY = !(lvds->lcd_timing.miscinfo &
++						       ATOM_VSYNC_POLARITY);
+ 
+ 	/* not provided by VBIOS */
+ 	info->lcd_timing.misc_info.VERTICAL_CUT_OFF = 0;
+-- 
+2.51.0
 
