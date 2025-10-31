@@ -2,83 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C132C25829
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 15:16:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 479FEC25832
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Oct 2025 15:16:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2729310EBC8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EBAA10EBCB;
 	Fri, 31 Oct 2025 14:16:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="Wbrcvng8";
+	dkim=temperror (0-bit key; unprotected) header.d=antheas.dev header.i=@antheas.dev header.b="RCv6JPCq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
- [209.85.167.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8EB10EAD6
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 09:01:34 +0000 (UTC)
-Received: by mail-lf1-f51.google.com with SMTP id
- 2adb3069b0e04-592f5fe03dcso2027950e87.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 02:01:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1761901293; x=1762506093; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=sz8A+kt2c263JVWpwySRC4hb0MoNUZ2J+PKEPthLk9k=;
- b=Wbrcvng8vP2ulQMKRl6ssHR5V7IYN/4gjaieh9oSFLjvDaQoQZ1Qaw/WhOSW6EwovK
- CzsymA3TMK9qm+xm/lIVEYcUIsd0qIaT3xu3D+VUkbf0EGR+keIVtTMXAA+WdlkFLFjN
- /jwtPCBgpmQEEur6R5v2Myon23CiGCXebRjftpnHKGHzfksHxVQsIVB+PEQ30Omu4mNd
- 31hIz5NjBy/CiLRqkgzj3IjLLYTbDF8XUnimg/H99znIAlviTl69cRFwLv1PeAGEIA35
- gKJt82sq2oEr+I+UF1hVJA0LurmBjQH/rviduEs4zOrg3TSVYOyITXu9yDMXhrqo8cz6
- C2wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761901293; x=1762506093;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=sz8A+kt2c263JVWpwySRC4hb0MoNUZ2J+PKEPthLk9k=;
- b=Lgya3bi06+ZF44Es1aOG/85qrnUqCLJL5FytW0JJup3ZpjzAC1HbFxuOTWea6W5w/N
- /QqehB85116slL4ClBuoNKA/y7kSuNiFkg9c0AvhhwY0y/8/GzTr9A2N5MLz1EfaHpLJ
- uAprA9iEINthIix23j/ps4sBIvTd0TR3eJcTUPNyODMW09GBcEpEIUdZFTJSOjshJ8UH
- fUF31o1CLaAHqYRxNKdC5X2XP7TuTHtBbqS0cJwcfWszwpvTiiDaxE8ck7W8l/r/ng4S
- gk13gRaL0Zs4sq20q0U/wOa2n22DNFW1H0UDemZna8VZQ6Q0PARqurRZWUYXJ6hUAShG
- SdAQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVg7sBeAkgo4SAgAH4MHWGD/SocowU9b53xszQw6LsvKQwSMH3nfLxmljnIr+ScX4SuFJnglDsJ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz5SW07W5POuv1xghLwB3Jfk9u9IeNUEv03lDAu7oVLaywru95t
- i9igYIWshTyWJB5vYyjZCUVhCabewFay60UOGdOPKvLxneRzsoShdA0xa7hQ26iEVLxz1hjBdg5
- DNxmcR4yG5TBK7CUkzFqYNsm9ZMxfs2go8NWVSE8ftQ==
-X-Gm-Gg: ASbGnctF/wSHjGK8xzzgPSrGIhHe2ScefMlOyW8a1DgqykYa782KB3uQ+WqGRbhrnHA
- q5tJOSMM5nw9+WSQwM4PaosQLD0aRdHvKg5n0/CQLLTWx3n/Rl0X+RoTUIkEYBp6Be+mk7eXGqW
- 8BTLXJR0x2hX1f90p/ampfih2ADCK6/XcnduFQEmKnvKyqb9KtKPUXl8Fe6MiEv9dT7BtI8eCu2
- MP9OIvuYdKijB+GTh8TVCeA7I20cwJv3tSR1yAYR1LmFw1psk8I4WjWW7jCj7oK6uW1vA2mDm9I
- 6rYxi2wPV07RtNc6PA==
-X-Google-Smtp-Source: AGHT+IG6dDTmqgRndauEm3n43gUUTvbxoIAo8xjrG46WEWaGTmwuwaI0CaRln1vBjuRad9gGiPuvQ5vdbLdXcNS55e0=
-X-Received: by 2002:a05:6512:3c93:b0:592:f9dd:8f28 with SMTP id
- 2adb3069b0e04-5941d53e85amr990212e87.35.1761901292415; Fri, 31 Oct 2025
- 02:01:32 -0700 (PDT)
+Received: from relay10.grserver.gr (relay10.grserver.gr [37.27.248.198])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 698A810EB1B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 11:59:08 +0000 (UTC)
+Received: from relay10 (localhost.localdomain [127.0.0.1])
+ by relay10.grserver.gr (Proxmox) with ESMTP id 6A14345F54
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 13:59:06 +0200 (EET)
+Received: from linux3247.grserver.gr (linux3247.grserver.gr [213.158.90.240])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by relay10.grserver.gr (Proxmox) with ESMTPS id 4545441F35
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 13:59:05 +0200 (EET)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
+ [209.85.208.170])
+ by linux3247.grserver.gr (Postfix) with ESMTPSA id 9F1AA1FC583
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Oct 2025 13:59:04 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=antheas.dev;
+ s=default; t=1761911944;
+ bh=ezmMeIAGlL1p0rcbQZaN16PF5C3rDoG8Uh08eods8rw=;
+ h=Received:From:Subject:To;
+ b=RCv6JPCqnHEKgO0YErILjbu0U35V/Rd3BHt8mr9a5VoOEoS2WjCQ8suMZEXe6ngtq
+ 15R3xy5fkavSUr7rKCPFIVSbcms4gLbbL7HcWrvLy4QH/AeOEZe1UiB/+Vn5oiZt2o
+ BVA0SMNdsD1k5kZxxUqraOtcGwGnYMwhP2E/prfPUm+QP10x5yIoMmROZioRB1c/Ti
+ koXsxiUhZQdrvWpr3Xnz6UGQbkF7bXqtqeFW/oUD2eZLyR5Oy8nVD6oH6qxDNKHZhC
+ 8FHEB4pb7XKk9vj3i6xYN/rIcMZ1oJHFIxlDJRy/z+Rxv/o9iYcbeaccoEbTAI0Jp+
+ NQU2TnPSGkzmA==
+Authentication-Results: linux3247.grserver.gr;
+ spf=pass (sender IP is 209.85.208.170) smtp.mailfrom=lkml@antheas.dev
+ smtp.helo=mail-lj1-f170.google.com
+Received-SPF: pass (linux3247.grserver.gr: connection is authenticated)
+Received: by mail-lj1-f170.google.com with SMTP id
+ 38308e7fff4ca-378d50e1c77so19667011fa.0
+ for <amd-gfx@lists.freedesktop.org>;
+ Fri, 31 Oct 2025 04:59:04 -0700 (PDT)
+X-Gm-Message-State: AOJu0Ywzr7g0aRboznRsEHT0dmRCkm7OSmnRo5F29SNz3fivPKlKopFq
+ d8k1v3dAXL8LoVsSdDO4Jv+BFvTWjqFXkqUIxeUhsdHh3Ot/CTV1YjKngk5oJih7g4tweYRDlPG
+ ebAQqpVYIb473D9Lsk1DqmlANwi0mSdg=
+X-Google-Smtp-Source: AGHT+IFcxqA9JhfTAesJy2+pbUXXy45iktmwEOIY3kepurKURRO8XlswiFIPQ1hljaaFOivbgmdRa+QJ0EK5uh2VYa4=
+X-Received: by 2002:a2e:8752:0:b0:378:cdf0:ad53 with SMTP id
+ 38308e7fff4ca-37a18df5999mr7951151fa.46.1761911944141; Fri, 31 Oct 2025
+ 04:59:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20251030161011.282924-1-marco.crivellari@suse.com>
- <20251030161011.282924-3-marco.crivellari@suse.com>
- <34829993-a888-4f7c-a2c6-e87723644c3c@amd.com>
-In-Reply-To: <34829993-a888-4f7c-a2c6-e87723644c3c@amd.com>
-From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Fri, 31 Oct 2025 10:01:21 +0100
-X-Gm-Features: AWmQ_blyHKRMjIwqs9IEExJag89S5F7s8p2T3thDh3CMhSPUjI4-6H-ukHS_NTs
-Message-ID: <CAAofZF5pSB-kJVr_PJbo_845VbpaB1Fbf+yeA74sWOU_vXfypQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] drm/amdgpu: replace use of system_wq with
- system_percpu_wq
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
- Lai Jiangshan <jiangshanlai@gmail.com>,
- Frederic Weisbecker <frederic@kernel.org>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Michal Hocko <mhocko@suse.com>, 
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>
+References: <20251024170811.57760-1-alexander.deucher@amd.com>
+ <20251024170811.57760-2-alexander.deucher@amd.com>
+In-Reply-To: <20251024170811.57760-2-alexander.deucher@amd.com>
+From: Antheas Kapenekakis <lkml@antheas.dev>
+Date: Fri, 31 Oct 2025 12:58:52 +0100
+X-Gmail-Original-Message-ID: <CAGwozwH0A83OEDJ04Oq7UDQRszXejfhTioTau3Q4LB39yRqJpg@mail.gmail.com>
+X-Gm-Features: AWmQ_blxs_UrsY0GBbouM9eGRQGImE04qjVYvcLkrptFkZrGw6H-7jgvLXN0Q1g
+Message-ID: <CAGwozwH0A83OEDJ04Oq7UDQRszXejfhTioTau3Q4LB39yRqJpg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu/smu: Handle S0ix for vangogh
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, bob.beckett@collabora.com,
+ mario.limonciello@amd.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-PPP-Message-ID: <176191194482.2893662.11571539876145772266@linux3247.grserver.gr>
+X-PPP-Vhost: antheas.dev
+X-Virus-Scanned: clamav-milter 1.4.3 at linux3247.grserver.gr
+X-Virus-Status: Clean
 X-Mailman-Approved-At: Fri, 31 Oct 2025 14:16:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,45 +86,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 30, 2025 at 6:10=E2=80=AFPM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->[...]
-> In this particular use case we actually don't want the percpu wq.
+Just for this patch:
+
+Reported-by: Antheas Kapenekakis <lkml@antheas.dev>
+Tested-by: Antheas Kapenekakis <lkml@antheas.dev>
+
+Tested on a Steam Deck OLED and Xbox Ally.
+
+On Fri, 24 Oct 2025 at 19:08, Alex Deucher <alexander.deucher@amd.com> wrote:
 >
-> This can execute on any CPU except for the current one.
+> Fix the flows for S0ix.  There is no need to stop
+> rlc or reintialize PMFW in S0ix.
 >
-> Regards,
-> Christian.
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4659
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c        | 6 ++++++
+>  drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c | 3 +++
+>  2 files changed, 9 insertions(+)
 >
-> >  exit:
-> >       if (amdgpu_sriov_vf(adev)) {
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> index 10d42267085b0..5bee02f0ba867 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> @@ -2054,6 +2054,12 @@ static int smu_disable_dpms(struct smu_context *smu)
+>             smu->is_apu && (amdgpu_in_reset(adev) || adev->in_s0ix))
+>                 return 0;
+>
+> +       /* vangogh s0ix */
+> +       if ((amdgpu_ip_version(adev, MP1_HWIP, 0) == IP_VERSION(11, 5, 0) ||
+> +            amdgpu_ip_version(adev, MP1_HWIP, 0) == IP_VERSION(11, 5, 2)) &&
+> +           adev->in_s0ix)
+> +               return 0;
+> +
+>         /*
+>          * For gpu reset, runpm and hibernation through BACO,
+>          * BACO feature has to be kept enabled.
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> index 53579208cffb4..9626da2dba584 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> @@ -2219,6 +2219,9 @@ static int vangogh_post_smu_init(struct smu_context *smu)
+>         uint32_t total_cu = adev->gfx.config.max_cu_per_sh *
+>                 adev->gfx.config.max_sh_per_se * adev->gfx.config.max_shader_engines;
+>
+> +       if (adev->in_s0ix)
+> +               return 0;
+> +
+>         /* allow message will be sent after enable message on Vangogh*/
+>         if (smu_cmn_feature_is_enabled(smu, SMU_FEATURE_DPM_GFXCLK_BIT) &&
+>                         (adev->pg_flags & AMD_PG_SUPPORT_GFX_PG)) {
+> --
+> 2.51.0
+>
 >
 
-Hi Christian,
-
-like for the unbound workqueue also the system_percpu_wq is just a
-rename for system_wq.
-Technically I changed the workqueue because we added in the code two wq:
-- system_percpu_wq
-- system_dfl_wq
-
-You can see the commits mentioned in the cover letter, shared also below:
-
-- commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
-- commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
-
-So basically the behavior is the same.
-
-But if it would be beneficial to have an unbound wq, I can send the v2
-with the change!
-We did so also for other subsystems.
-
-Thanks!
-
-
-
---
-
-Marco Crivellari
-
-L3 Support Engineer, Technology & Product
