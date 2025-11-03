@@ -2,86 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1179C2FE3E
-	for <lists+amd-gfx@lfdr.de>; Tue, 04 Nov 2025 09:30:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF465C2FE23
+	for <lists+amd-gfx@lfdr.de>; Tue, 04 Nov 2025 09:30:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40D2410E54B;
-	Tue,  4 Nov 2025 08:30:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A30D10E541;
+	Tue,  4 Nov 2025 08:30:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="X+b65Vnw";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kluwrNpM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8F8F10E434
- for <amd-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 15:58:04 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-475ca9237c2so24676875e9.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 03 Nov 2025 07:58:04 -0800 (PST)
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
+ [209.85.215.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB5E310E201
+ for <amd-gfx@lists.freedesktop.org>; Mon,  3 Nov 2025 18:08:17 +0000 (UTC)
+Received: by mail-pg1-f169.google.com with SMTP id
+ 41be03b00d2f7-b98e6ff90cbso1545451a12.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 03 Nov 2025 10:08:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1762185483; x=1762790283; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BSjslf49+4C1KeXizurd3u1HRFo6JeAJTXRM556HvGI=;
- b=X+b65VnwGamedqlRBC3nUBTdTvkA1xLkaLZT31yrWPcLcNmMF+OKMAvnQIEMwLluSz
- 9GofmgCNthQebg+oW9Vw0UdJKkwWHuayNtdKXxHUsHiHJMr8FF3+bpHeFhjDywaN9WWt
- SSSBgxAqkM1m8C1jLgK+gCblpHg2DcYViPd1t91zooNA0YFi6vjW3DOimLDzmvTbM+pF
- fgjdKdnG8TBAnME6TUQjbB/zu/xGQMIToPiI6nu9D3mzz0imVZnhjCs7OHTKRPFUvRct
- ev7hpV1rDbtA9KxOa16h5FwjoUK6H40x9vCOdqf+3uUgZkmubY7fotPHc0AJx6XHNxA0
- UnJg==
+ d=gmail.com; s=20230601; t=1762193297; x=1762798097; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Frfwa345H88CrVWdtRCwdX7IPCmH70e3211AOFpaNfs=;
+ b=kluwrNpMoeG1nbZwM2WQkewnLOk3qOdirjuoih6ZszaZ3V7yDBLJn+Fxfbzo/09NST
+ EuXRiEcHr7fz+6Zc18pE+Y/s+IXHHdfTJGHXGNbneB7GS0dfUFuH/X5YhhSexRtAl4Yf
+ LEX2w0DKHjxT+e+tE3npvC2qlQFtcfme+dK1kmDByG0QhB4myjVb7xTtvrq3XOqSgHOC
+ HFaTssFU7kpu+18IeAyKua/eNCdAdfEdDtpaT6XAfLtzA9P3lJcgGGiAoxevnF6zhvFc
+ 8m1Hbm9FqHfhGUW/91x4R76CHE7/TVHGe87vudvGzNIoctv+DOByid5JHy6Oj8IihjUu
+ C16w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762185483; x=1762790283;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=BSjslf49+4C1KeXizurd3u1HRFo6JeAJTXRM556HvGI=;
- b=W3unN41a7yypmmz/M499AAHdYxhwwONSo5Gp81QWFZThAHWS24BbFfAjWLZGG5ZKdN
- tVqQUzT6K0MBjleJFNnpNlxXVSbp+rqsj6XG9FuyJqk4aR4e5uWlRrDsaU3KTIzW+STj
- UMHJOZWYW42QJY2sgMants02AC61+qjuZMW8emd7+1BSRdZezi2H0yIKoCiZDaLMfuZ/
- NCkydajjTWsCYegJ4NKierFTTaJzmHP5JpsyiGSmyOyz3WQESxLsspMOTkcp0CTm4kl5
- DVAyxmLz66yZ8SCJMlLca07nV1HrFPwqYz2kG8VGlsjCEpIeNAh3Z+KBgdDP19KM8cUG
- Youw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUaAjjV5I5c5YmZ26aBXoD1ZigC0fHCerX998RrY23EywWTFoyUvldJYmWn3ePqPWdSsDV4r3WM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz983h5/RfXoL/1jUTtGZJA2zrJ4shJO7qgjvZl6PPI2XXnu8Jf
- 0DcURhaaTQldhK8ZZg30316SktMBK+NzgsGWkM1Vv+pp2ZD4PMEljKZ49oTS9roNXNA=
-X-Gm-Gg: ASbGncuxtsyqC+auMFYkfHUfZxNXus2TbO5Hul3tDTE1teyudqIyTL5Xm0E1oy4a9Ae
- RT1duxdR3KYCZUHlbk7zyVjk5dMnspBWfC3yQN5Au7BE9RI/ZC/APj0z0GzPvIBLQvH96fVn/LN
- 03LxXHVwdwkRqvh+A3rii+drRlMjjCGKGlK9nAnCLrQM9v6t4Dknk6pih5uOb6vjEnwi7U3FWjv
- mVWugSQDFsdqj6as+5Tf0CiyxWuRzA8v8ZwWdroxEgH80oj8NiYV9Omee9AH2uKxplcUbIwoWGg
- 2FOAcNYytiTpOJ1BqbWRCX7mOxhpl1xjEJl97q45N+6FJdV2bMFqYHUpWl/hn6RYN3mm+5AOpMQ
- N7JFDLqopgRpp/iVvYP62oOusLr2CFIX8IZ2NFLY+2T5WtVGdHbW/axKNfDvFdiR+eaeghIS4ax
- dYG+OPx2uW7OXh+0a4SFcabEsUjk6HBOqqLB4=
-X-Google-Smtp-Source: AGHT+IEBOwqlZ6rp5xc4yApoAq4SvaoICYZIEJ//QiOLN7wf/ONd9RM56bwB3wHPfebuEpSn8JNvnA==
-X-Received: by 2002:a05:600c:b85:b0:471:9da:5252 with SMTP id
- 5b1f17b1804b1-477308900e0mr115180965e9.29.1762185483424; 
- Mon, 03 Nov 2025 07:58:03 -0800 (PST)
-Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
+ d=1e100.net; s=20230601; t=1762193297; x=1762798097;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Frfwa345H88CrVWdtRCwdX7IPCmH70e3211AOFpaNfs=;
+ b=dZwYhdMk4dP5rFHR3RzREkT8h5N0NXlmHgkL9UYHEEFn1kfXYbUTGOpaftwMUYha5N
+ S/t6YCehWGsflQ2GWJGjSjcMGLjD5TGE0tWJOpfdJLoeK/fha9mxfJSrwwNz6D7j3jCT
+ rSsNdAXDhqz3OJQq8htFEF1KRXGuBF3T3B4BQ5VWqGTWC3XLft0F1qdIai36cEuKOc2c
+ fyJif1AHhsNrcYIYYORgLeQDO6VEi1BUci1uzsIwFSBhcRCgcZK1rpq3S7OkkVKHufVR
+ lQnbmuPKojYY6jTd9So0rYRu/M9mm3hNwWLBV830K3oBs//LT4vAr4867/7TzHMCuflJ
+ iVuA==
+X-Gm-Message-State: AOJu0Yy5fh/+gWaHprRlWi5ETFvco5OQSaw9EqcMA7JRRM2Yyy+6iJx0
+ 9zj9r6oitAJxc8IUNg6J6JLY2gDflYhHWdX62Pq7C9UfQ9QJnqcPr1Mg
+X-Gm-Gg: ASbGnctlIksV/YbePsDPu6titxo/mjEofju+jFdToDaT4DNpIC4jDxpOfDuDUmCg7om
+ /9i0uNG7Le9ikIb8J1AB1PpkeYXN1qzao/npo/hnl9N7XLazv8O2CTKAn5OSWlm4zyEgJoTtzfJ
+ iJSN7t8Orv6Dy/x7iZn1ghCOJPfL0FX3WHEzmYWESOxhvfo7U61RwieOYii+kDkjfDCbqHCknCX
+ W+/DECOu3I86oHlK3kBy22TO06vsmezwPKh4ZmtGSH3ujraYh33qH+5ofDH8D08t7b5c70TgJY+
+ uOzs0xMhvjPSt6TrOm96bZGoGdfcAjrs0fhrU2cf6zI/Ym31P/As2/yejsER6PK2ANxg+ztN989
+ rx9ylN9DbdtiaMwNjhOA6B2ILnFNIG4aWar07/5DJeQx09LB2hFh9lCmcBK4OaNziGCFfdpbEr9
+ vbDnYsVoHV3XNq2krOJNVWiIdWfg==
+X-Google-Smtp-Source: AGHT+IHGntG1Sm02Nexg5ky/LahI7hng6h4/EiKDnICJQxmXLYfqJK7C95190g2OAfp3VipnLPLSww==
+X-Received: by 2002:a17:903:24f:b0:295:24c3:8b49 with SMTP id
+ d9443c01a7336-29524c38fcdmr163866155ad.46.1762193297223; 
+ Mon, 03 Nov 2025 10:08:17 -0800 (PST)
+Received: from yjshouse-pc.. ([2401:7400:c804:fff5:49a8:2576:bfa8:b373])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-47754adcd08sm48245e9.5.2025.11.03.07.58.02
+ d9443c01a7336-295357a1851sm115236505ad.27.2025.11.03.10.08.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Nov 2025 07:58:03 -0800 (PST)
-From: Marco Crivellari <marco.crivellari@suse.com>
-To: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
- Frederic Weisbecker <frederic@kernel.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Marco Crivellari <marco.crivellari@suse.com>,
- Michal Hocko <mhocko@suse.com>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Philip Yang <yangp@amd.com>
-Subject: [PATCH v2 4/4] drm/radeon: add WQ_PERCPU to alloc_workqueue users
-Date: Mon,  3 Nov 2025 16:57:40 +0100
-Message-ID: <20251103155740.250398-5-marco.crivellari@suse.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251103155740.250398-1-marco.crivellari@suse.com>
-References: <20251103155740.250398-1-marco.crivellari@suse.com>
+ Mon, 03 Nov 2025 10:08:16 -0800 (PST)
+From: Yong Jie Wong <yjwong92@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+	Yong Jie Wong <yjwong92@gmail.com>
+Subject: [PATCH] drm/amdgpu/vcn: Fix sysfs cleanup in vcn_v4_0_5_sw_fini
+Date: Tue,  4 Nov 2025 02:07:43 +0800
+Message-ID: <20251103180743.265023-1-yjwong92@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 04 Nov 2025 08:30:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -98,54 +86,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Currently if a user enqueue a work item using schedule_delayed_work() the
-used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
-WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
-schedule_work() that is using system_wq and queue_work(), that makes use
-again of WORK_CPU_UNBOUND.
-This lack of consistentcy cannot be addressed without refactoring the API.
+Add missing amdgpu_vcn_sysfs_reset_mask_fini() call to properly clean
+up the vcn_reset_mask sysfs file during driver unload. Without this
+cleanup, subsequent driver reloads fail with "sysfs: cannot create
+duplicate filename" errors.
 
-alloc_workqueue() treats all queues as per-CPU by default, while unbound
-workqueues must opt-in via WQ_UNBOUND.
+The vcn_v4_0_5 driver creates the vcn_reset_mask sysfs file in
+vcn_v4_0_5_sw_init() via amdgpu_vcn_sysfs_reset_mask_init(), but was
+missing the corresponding amdgpu_vcn_sysfs_reset_mask_fini() call in
+vcn_v4_0_5_sw_fini(). This left the sysfs file orphaned after driver
+unload, causing -EEXIST errors on reload.
 
-This default is suboptimal: most workloads benefit from unbound queues,
-allowing the scheduler to place worker threads where they’re needed and
-reducing noise when CPUs are isolated.
+Error without fix:
+  sysfs: cannot create duplicate filename '/devices/.../vcn_reset_mask'
+  amdgpu_vcn_sysfs_reset_mask_init+0x2c/0x40 [amdgpu]
+  vcn_v4_0_5_sw_init+0x2d6/0x480 [amdgpu]
+  [drm:amdgpu_device_ip_init [amdgpu]] *ERROR* sw_init of IP block
+  <vcn_v4_0_5> failed -17
 
-This change adds a new WQ_PERCPU flag to explicitly request
-alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
-
-With the introduction of the WQ_PERCPU flag (equivalent to !WQ_UNBOUND),
-any alloc_workqueue() caller that doesn’t explicitly specify WQ_UNBOUND
-must now use WQ_PERCPU.
-
-The above change introduced in the Workqueue API has been introduced by:
-
-commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
-
-Once migration is complete, WQ_UNBOUND can be removed and unbound will
-become the implicit default.
-
-Suggested-by: Tejun Heo <tj@kernel.org>
-Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
+Signed-off-by: Yong Jie Wong <yjwong92@gmail.com>
 ---
- drivers/gpu/drm/radeon/radeon_display.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index 351b9dfcdad8..3c8aa5274c51 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -687,7 +687,8 @@ static void radeon_crtc_init(struct drm_device *dev, int index)
- 	if (radeon_crtc == NULL)
- 		return;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
+index b107ee80e4728..cd26d45845322 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
+@@ -269,9 +269,12 @@ static int vcn_v4_0_5_sw_fini(struct amdgpu_ip_block *ip_block)
+ 		r = amdgpu_vcn_suspend(adev, i);
+ 		if (r)
+ 			return r;
++	}
++
++	amdgpu_vcn_sysfs_reset_mask_fini(adev);
  
--	radeon_crtc->flip_queue = alloc_workqueue("radeon-crtc", WQ_HIGHPRI, 0);
-+	radeon_crtc->flip_queue = alloc_workqueue("radeon-crtc",
-+						  WQ_HIGHPRI | WQ_PERCPU, 0);
- 	if (!radeon_crtc->flip_queue) {
- 		kfree(radeon_crtc);
- 		return;
++	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
+ 		amdgpu_vcn_sw_fini(adev, i);
+-	}
+ 
+ 	return 0;
+ }
 -- 
-2.51.1
+2.43.0
 
