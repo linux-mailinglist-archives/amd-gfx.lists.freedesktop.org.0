@@ -2,123 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7997C30E90
-	for <lists+amd-gfx@lfdr.de>; Tue, 04 Nov 2025 13:14:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A001AC313BF
+	for <lists+amd-gfx@lfdr.de>; Tue, 04 Nov 2025 14:30:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D3310E244;
-	Tue,  4 Nov 2025 12:14:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41CC210E26A;
+	Tue,  4 Nov 2025 13:30:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mfrg48Fr";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="aBnRRmHc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010051.outbound.protection.outlook.com [52.101.201.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2AF710E244
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 12:14:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nIsdlgvUVz6avdcBoueD/F04XdxKFFX9xPOdgXJ4798TcsaHDnhs035v/BrZd+W9O67f2RXzm6wmhU3gnA+Mxa5sg+Wq18wLixPDXAP3V2PsR3ByYCyZKvfP9UDKBNYJNMaKeS1py0nHFxl2Ufbk+jOpPSvrA5Cubvm+qlBY939YTAJGfRm0vzJCuuEnF1cE9RmcOAbXlYjOg6VgyibZCEe1bMPDEvfOa1O5TvynWkqIoWzbLdSBJTiJXAof5UB2JagVPUZ3ZZ6VL1iGXmDnhf9fZjpIU7PS+IDi7bnzFU0G/GY46ZnDAEMDbbwv8heoQ8rFyMfbYaA6ET7FCYNlEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HRywy/St6+GFtm1fWXnLJGKLMVgaHvvTMTmGwjv2CwE=;
- b=rA6L+lrNnhKE2xvbLMInW6tdGgTPiARLbB5mrUBkCXA9O4HcKaEI5xASOFhP35pOTJf63QsB5tPxnK/clkA2p6gfWgPXrMUf/iNNcTCPXhhgU+eRYSnd/pkWdpGQHvMh4CGywAyUFsJgf8eNBYKmoOwCd2W8SpbIiWouxlQcwhbOOEeGlPd0mUY8rfKATy3CKOZOWxkKvqMDrySqTN3rwp7ozcsf6fuUmeYdn/rT3ejpo4UTha8ZkyboEUnNkwSIvz5eefrTBJSX9CktZG/ZBDN3AUQg4i5XMAl6B/sI5hX5+PYdYwIzU70bkzlGB0Y/MlFBu0d9xEwHdhKr1AY+mw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HRywy/St6+GFtm1fWXnLJGKLMVgaHvvTMTmGwjv2CwE=;
- b=mfrg48FrEESSkmhwCYvmJSD9dGNYq14EkCJAbX5F71Gsw4m4IBwaLLo1QVkWXmGrZvvcxHoHzALcROmXvWxHk+/LuaHNkJuxoUjo8t8ZD3D5twcDUX6v+DuKsD4LBZRngo8cTSI3qPq/Dg2RtoqQYwiFXlQUcOqXH41e+5s3C+c=
-Received: from BLAPR03CA0059.namprd03.prod.outlook.com (2603:10b6:208:32d::34)
- by SN7PR12MB7154.namprd12.prod.outlook.com (2603:10b6:806:2a5::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Tue, 4 Nov
- 2025 12:14:19 +0000
-Received: from BN2PEPF000044AA.namprd04.prod.outlook.com
- (2603:10b6:208:32d:cafe::8a) by BLAPR03CA0059.outlook.office365.com
- (2603:10b6:208:32d::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.16 via Frontend Transport; Tue,
- 4 Nov 2025 12:14:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF000044AA.mail.protection.outlook.com (10.167.243.105) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.6 via Frontend Transport; Tue, 4 Nov 2025 12:14:19 +0000
-Received: from amd-02.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 4 Nov
- 2025 04:14:16 -0800
-From: YiPeng Chai <YiPeng.Chai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Tao.Zhou1@amd.com>, <Candice.Li@amd.com>,
- <Stanley.Yang@amd.com>, <Jinzhou.Su@amd.com>, YiPeng Chai
- <YiPeng.Chai@amd.com>
-Subject: [PATCH] drm/amd/ras: ras supports i2c eeprom for mp1 v13_0_12
-Date: Tue, 4 Nov 2025 20:13:33 +0800
-Message-ID: <20251104121333.3655721-1-YiPeng.Chai@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BFDF10E5CB
+ for <amd-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 12:14:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1762258478;
+ bh=/Qy/aym9q8YCUfwjiPQd/n7jZkHfZZHQXb2JvW7Fapg=;
+ h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
+ b=aBnRRmHcCFeS3d9OTVFvs1wwX2Vs9HaoNn2YrPZE8uDhBVzlkTj6sgPxkUlFarxLn
+ 8i2qN8t7/L9BhXtA0KQ3Dpjz9nUnnYGFLDXNaAnJ9qeay6hlmbz0CSsXc8jSwLZ8f+
+ HLwQqvKoFOr/i+1RbQu87tRjbUIZvPSX5OOaQb/nh5Vh0nTaVqTexDIwv/N12Uc5YU
+ SPgRA82Ntv4093s6Bj4S8AoWkmhGKzqiG0FojVMfqxoSgW4OiPO4/I+ifUEIcn0pE2
+ uoC8druNYC/56d0sGq7Qkd0cTXZOKR4qgOoP63HuY+Kpx9C8NbYF598KjaOH1lBRBP
+ avJQBG/43GP1g==
+Received: from [192.168.100.50] (unknown [144.48.130.189])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: usama.anjum)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 640E217E12AA;
+ Tue,  4 Nov 2025 13:14:37 +0100 (CET)
+Message-ID: <4b9d9753-e097-4b39-873c-da1a118f3321@collabora.com>
+Date: Tue, 4 Nov 2025 17:14:07 +0500
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: usama.anjum@collabora.com, Alex Deucher <alexander.deucher@amd.com>,
+ "open list:HIBERNATION (aka Software Suspend, aka swsusp)"
+ <linux-pm@vger.kernel.org>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v2 1/2] PM: Allow device drivers to manage the frozen
+ state of a device
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>
+References: <20251025010058.2417352-1-superm1@kernel.org>
+ <20251025010058.2417352-2-superm1@kernel.org>
+ <CAJZ5v0icgrXW0ErPMqOnxKHXZ6cH4gd9274SkJfba981Z=s0fw@mail.gmail.com>
+Content-Language: en-US
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+In-Reply-To: <CAJZ5v0icgrXW0ErPMqOnxKHXZ6cH4gd9274SkJfba981Z=s0fw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044AA:EE_|SN7PR12MB7154:EE_
-X-MS-Office365-Filtering-Correlation-Id: b48ac8e0-3272-40ed-3136-08de1b9bae5b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CzenOsYdOnpepvIIC0LYt5Ma4LqTKYzTPXKK3A+ZwFGp6b6kYt7T39TerWpT?=
- =?us-ascii?Q?qw2o2D8pwI3XN9bATsQeKioQo/zzXIaqoL3uCISf+imD9yW9upfHKyHS8AWq?=
- =?us-ascii?Q?amfXQEnK7KzCVs0PnY4X61j4uxdXgjUwIdY/7t1kOv1AdQzWlGyEaPnFQEeB?=
- =?us-ascii?Q?Sa33EkMVbEe9NkdQLLQxjOtJUPmhSQwOdz0oOHGDWHrwndP80OoWx1MdUiye?=
- =?us-ascii?Q?yPto5JXvDOhHkxzjtD2rGHBGr//OMX1prgxgx+PVn29uqZyPcO/nRFC6KAp/?=
- =?us-ascii?Q?OisHmSQayaJS/XbKS9zRPHk299OvDz10YL/OH1RSXXIMa43PA8tNx6vSAtDR?=
- =?us-ascii?Q?wIUXp1ij6ByH6649XocT8vtbN0eQv8v6azoFV0iGxbqZFNiclk+LCuXChNRW?=
- =?us-ascii?Q?STCkzbpqafOa4dzEU4hpHLQVmGnBtiEqG2hSUPjVqFq5lyspmRur01o8eqEI?=
- =?us-ascii?Q?DhHXaqe3oOadA+bGOrPX2+8g+L8qoMgXgA3cldFyU1ibi6Rmb9CMEE3u491O?=
- =?us-ascii?Q?ueQngL70MxV/4oOEB0g9ASo+l0V7cBKv0htZhfiz8yG3L5WNeLhw5vaojYve?=
- =?us-ascii?Q?uYmqKFNrIRDFAzAbbuZV041TkSKODm6AXuA68YxD3sYpmI2jZKWE3X+sQ6UF?=
- =?us-ascii?Q?eRy02/s7tE+A0RkonRz4Z7vemECl5NhJ+Mr6xXIQ1bQH7z5VHBXLNrYSjRjq?=
- =?us-ascii?Q?H9kw7Cs/JHLGMfPb1U9Rlm1p5YLnLLDnAJZeM6aUKlE8qSmLAT+sRf5T2FuZ?=
- =?us-ascii?Q?RE7WyxD9S/m2nTuyeBqsovOfmE0EfHS8nDmFcgY1CHCBVNklDa9T42OJIfGC?=
- =?us-ascii?Q?JnN8+gVIqNst6KpRmKtHfDAbVSdx7hrknW1SG+ZUiIMb5Py/S+xkNEc2+f4i?=
- =?us-ascii?Q?EZJj8EXZsl/7Evc9vMzqUFWKyNs3oY7PiKMZtxnNXDtJv68XtxVm7lV2Ewup?=
- =?us-ascii?Q?5swOgCyllzYIVZEWiVT9bka1uEhEHEsOYvmeHQq98i3YDhVt2dPJx/KCtIEx?=
- =?us-ascii?Q?ju/jU2vPu3JAmj+qsZI54RIReANwrKmk+ZjSBsk6Hrb/CI/jK/56MiWVdbuU?=
- =?us-ascii?Q?6WTJrNixt/6oItcqUjqGQWBNfoZc5sVY+HnXCzFqMK+nnsAx2wmkMoB3Nbo6?=
- =?us-ascii?Q?KlQQJgCHi/zYktcYIV+uXhaf6c+9Y/30XavhXwFIZ30e2vvFsBVcZZi4GYZR?=
- =?us-ascii?Q?g/Qx63Nx0WAmFCulJgEzHo39Uv06wl/J/1YKKMXu9+sOoaCMGFAaLrqDHHc0?=
- =?us-ascii?Q?kOw9HiVZaOj3/1iIJJbKot5e+iLtPM+gTTJE9oYGR3ibbIOs+xevm/O6XmWa?=
- =?us-ascii?Q?7GepjXrSanrefD1YXsacGCfID5eW23wPhWzylcgW2r53lw5Ntj6X+LnckAEP?=
- =?us-ascii?Q?I+Oq/hlUFH9+UaJ1ek84zsFEqgbTn1UgJPNssjBhGK0X7ZnE+FdA3CtqBe/R?=
- =?us-ascii?Q?2owHZVkcxQOfqP/a7LHoGQhLSNVmC3it4jEMi1hDOtw57D1GevICckMdeVfH?=
- =?us-ascii?Q?YArt42n89U0dZAOzSHPv/MiykLqPmTKbDoWIQTYPu0DO9zZWxAh44GNJm7xQ?=
- =?us-ascii?Q?h19ydYx0mLbFaDXAG9o=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 12:14:19.1859 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b48ac8e0-3272-40ed-3136-08de1b9bae5b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044AA.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7154
+X-Mailman-Approved-At: Tue, 04 Nov 2025 13:30:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,25 +67,195 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ras supports i2c eeprom for mp1 v13_0_12.
+On 11/4/25 12:50 AM, Rafael J. Wysocki wrote:
+> On Sat, Oct 25, 2025 at 3:01 AM Mario Limonciello (AMD)
+> <superm1@kernel.org> wrote:
+>>
+>> During a normal successful hibernate sequence devices will go through
+>> the freeze() callbacks create an image, go through the thaw() callbacks,
+>> and poweroff() callbacks.
+>>
+>> During a successful hibernate sequence some device drivers may want to
+>> skip the thaw() callbacks.  This confuses the PM core though because it
+>> thinks the device is no longer suspended.
 
-Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
----
- drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_eeprom_i2c.c | 1 +
- 1 file changed, 1 insertion(+)
+With RFC [1] applied and hibernation is cancelled until or from inside of
+dpm_suspend(), this series restores the amdgpu driver. 
 
-diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_eeprom_i2c.c b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_eeprom_i2c.c
-index 1bb7b7001ec7..3ed3ff42b7e1 100644
---- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_eeprom_i2c.c
-+++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_eeprom_i2c.c
-@@ -85,6 +85,7 @@ static int ras_eeprom_i2c_config(struct ras_core_context *ras_core)
- 	case IP_VERSION(13, 0, 5):
- 	case IP_VERSION(13, 0, 6):
- 	case IP_VERSION(13, 0, 10):
-+	case IP_VERSION(13, 0, 12):
- 	case IP_VERSION(13, 0, 14):
- 		control->i2c_address = EEPROM_I2C_MADDR_4;
- 		return 0;
+hibernate()
+-> hibernation_snapshot()
+   -> dpm_suspend()
+
+> 
+> The problem only really occurs if hibernation is aborted before or
+> during the final "poweroff" transition.
+This isn't supported yet. I'm working on a new patch to cancel hibernation
+after dpm_suspend() and before power_down(). But it causes missed resumption
+of amdgpu even after applying this series. Probably some 
+dpm_resume_start(PMSG_RECOVER) and dpm_resume_end(PMSG_RECOVER) are missing.
+I've not been able to sort it out. 
+
+Its a very late stage and I'm not getting console logs. I don't have serial
+connection to get those logs as well.
+
+I'll send the series without this patch in coming days if I'm not able to sort
+it out.
+
+[1] https://lore.kernel.org/all/20251018142114.897445-1-usama.anjum@collabora.com 
+
+> 
+> What happens is that if a driver decides to leave the device in the
+> "frozen" state during its "thaw" callback and its "poweroff" callback
+> is not invoked because hibernation is aborted earlier, the device will
+> be left in the "frozen" state going forward.
+> 
+> The goal of the change should be to make the core detect that
+> situation and "thaw" the device.
+> 
+>> To accommodate drivers that want to do this, introduce a new is_frozen
+>> bit that the driver can set and manage.  From the driver perspective
+>> any thaw() or restore() callbacks that are being skipped should set
+>> is_frozen and return an error code.
+> 
+> "Restore" has nothing to do with this, it is just about "freeze".
+> 
+>> The PM core will then put the device back into the list of devices to resume for any aborted hibernate.
+> 
+> That's not what the patch does, though (see below).
+> 
+> All of this is mainly about what the core should do when it sees the
+> "is_frozen" flag set, so a few observations to that end:
+> 
+> 1. That flag is only relevant when hibernation is aborted before
+> invoking the given driver's "poweroff" callback (because that callback
+> must be prepared to deal with a "frozen" device).
+> 
+> 2. If the final "poweroff" transition is aborted during its "prepare"
+> phase, the "frozen" device may need to be "thawed" even if its
+> driver's "prepare" callback is not invoked.
+> 
+> 3. There is a possibility, not taken into account so far, that
+> hibernation is aborted because of a failure to save the image.  Then,
+> "frozen" devices will need to be "thawed" before starting the final
+> "poweroff" transition.
+> 
+> Moreover, I'm not sure if it really makes sense to invoke "complete"
+> callbacks during the "thaw" transition for the devices left in the
+> "frozen" state.
+> 
+> All of the above means that the approach needs to be rethought and my
+> advice is to revert the commit causing the AMD driver to leave its
+> device in the "frozen" for 6.18 (and previous kernels).
+> 
+>> Tested-by: Muhammad Usama Anjum <usama.anjum@collabora.com>
+>> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
+>> ---
+>> v2:
+>>  * add tag
+>>  * fix lkp robot issue
+>>  * rebase on linux-pm/bleeding-edge
+>> ---
+>>  Documentation/driver-api/pm/devices.rst | 8 ++++++++
+>>  drivers/base/power/main.c               | 7 +++++++
+>>  include/linux/pm.h                      | 3 +++
+>>  3 files changed, 18 insertions(+)
+>>
+>> diff --git a/Documentation/driver-api/pm/devices.rst b/Documentation/driver-api/pm/devices.rst
+>> index 36d5c9c9fd113..55c6337271086 100644
+>> --- a/Documentation/driver-api/pm/devices.rst
+>> +++ b/Documentation/driver-api/pm/devices.rst
+>> @@ -578,6 +578,14 @@ should already have been stored during the ``freeze``, ``freeze_late`` or
+>>  the entire system, so it is not necessary for the callback to put the device in
+>>  a low-power state.
+>>
+>> +Skipping thaw phase
+>> +-------------------
+>> +In some rare situations, it may be desirable to skip the thaw phases
+>> +(``thaw_noirq``, ``thaw_early``, ``thaw``) of a device entirely.  This can be
+>> +achieved by a device driver returning an error code from any of it's thaw
+>> +callbacks but also setting dev->power.is_frozen to true.
+> 
+> Returning an error code should not be necessary.
+> 
+> Also this needs to be done in "thaw_noirq" or maybe even in
+> "freeze_noirq" because "thaw_noirq" may involve some bus type actions
+> changing the state of the device before the driver gets to it.
+> 
+> So the driver would opt in for leaving the device in the "frozen"
+> state at the "noirq" stage of the preceding "freeze" transition.  That
+> can be achieved by setting a "leave_in_freeze" flag, so no callbacks
+> would be run for any devices with that flag set during the subsequent
+> "thaw" transition.
+> 
+> If hibernation is aborted before the final "poweroff" transition
+> begins, the "thaw*" and "complete" callbacks will have to be run for
+> all of those devices (I'm wondering if any ordering issues may arise
+> at that point; presumably, devices that depend on the "frozen" ones
+> would also need to be "frozen"?).
+> 
+> During the final "poweroff" transition, since "complete" has not been
+> called for any of the "frozen" devices, it should not be necessary to
+> call "prepare" for any of them, so that one can be skipped.
+> 
+> Again, if hibernation is aborted at this point, all of the "thaw*" and
+> complete callbacks need to be run for all of the "frozen" devices.
+> 
+> Now, "poweroff", "poweroff" and "poweroff_noirq" callbacks for the
+> "frozen" devices need to be prepared to deal with them, but the exact
+> rules there will need some consideration.  They kind of need to assume
+> that "freeze" may be changed into "poweroff" transparently without a
+> "thaw" in between and that generally depends on the bus type/PM domain
+> involved.
+> 
+>> This indicates to the
+>> +PM core that the device is still in the frozen state.  The PM core will consider
+>> +this when resuming the device in later phases such as `restore` or `poweroff`.
+>>
+>>  Leaving Hibernation
+>>  -------------------
+>> diff --git a/drivers/base/power/main.c b/drivers/base/power/main.c
+>> index 7a8807ec9a5d0..c5a192fc04344 100644
+>> --- a/drivers/base/power/main.c
+>> +++ b/drivers/base/power/main.c
+>> @@ -1110,6 +1110,13 @@ static void device_resume(struct device *dev, pm_message_t state, bool async)
+>>
+>>   End:
+>>         error = dpm_run_callback(callback, dev, state, info);
+>> +#ifdef CONFIG_HIBERNATE_CALLBACKS
+> 
+> CONFIG_HIBERNATION should be sufficient.
+> 
+>> +       /* device manages frozen state */
+>> +       if (error && dev->power.is_frozen) {
+>> +               dev->power.is_suspended = true;
+>> +               error = 0;
+>> +       }
+> 
+> This assumes that the callback will run, but what if hibernation is
+> aborted before running it?  Isn't that really the problem at hand?
+> 
+>> +#endif
+>>
+>>         device_unlock(dev);
+>>         dpm_watchdog_clear(&wd);
+>> diff --git a/include/linux/pm.h b/include/linux/pm.h
+>> index a72e42eec1303..852902fc72158 100644
+>> --- a/include/linux/pm.h
+>> +++ b/include/linux/pm.h
+>> @@ -689,6 +689,9 @@ struct dev_pm_info {
+>>  #else
+>>         bool                    should_wakeup:1;
+>>  #endif
+>> +#ifdef CONFIG_HIBERNATE_CALLBACKS
+>> +       bool                    is_frozen:1;    /* Owned by the driver */
+>> +#endif
+>>  #ifdef CONFIG_PM
+>>         struct hrtimer          suspend_timer;
+>>         u64                     timer_expires;
+>> --
+
+
 -- 
-2.34.1
-
+---
+Thanks,
+Usama
