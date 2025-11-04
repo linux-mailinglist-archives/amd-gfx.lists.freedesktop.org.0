@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6CBC2F86D
-	for <lists+amd-gfx@lfdr.de>; Tue, 04 Nov 2025 07:58:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D985C2F870
+	for <lists+amd-gfx@lfdr.de>; Tue, 04 Nov 2025 07:58:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB59A10E24C;
-	Tue,  4 Nov 2025 06:58:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF12110E525;
+	Tue,  4 Nov 2025 06:58:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="tIrUepKz";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Fe4t74Y9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012042.outbound.protection.outlook.com [52.101.53.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C9FB10E248
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 06:58:22 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010046.outbound.protection.outlook.com [52.101.56.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7027F10E524
+ for <amd-gfx@lists.freedesktop.org>; Tue,  4 Nov 2025 06:58:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZXOvtV3Hjn4x/RSnYfGhLrMi3Fi0S7tS4sCEm/FV4+hNrb9idwiBXQytLZesYpzfSYVozV01PaHw9AYiplR36GjITcQ0kYxWWKpc0LsdC9IIpwdZgl3HvxXKCOw6utYUY5Rp4K7ekGCy18wE9/ABjgn3XTMdchbHyQyErJsqF9LAg8n/9UVLYo5lgTKDLbeEZi2U5FbEBUIYaYki6cuqBmyjxveOU9Y9u+VzjMMPGFweAq8L2whXJIaAofmTftEbOlo+Gz3mUQFF0zABiBxLXHgPNuPNJMXiDk+/XkdUELDZwKntkURJXDI9HGDFNhirtDIfiEm4XHTiJBu/wjUGYA==
+ b=GgZB5geWg1oZD5AzyM+r0h0R20Ra8RCNSMRlyKZEhBiHU7TOIvEmLUhfm5sYL7oLEP85hdSffSlQ+/4QPz5+tNDONSQRCuxW+9EiU74v7EBYLJEnfg8wRIPT/eGX0FOIigmRs+6lfFwf8tRaufxBndlBoBegTrk7VY2mj9GmBk0XD+989qB3I2Hsb64qy93/DIajAIFVfctKdTpEVAwU5JJBYUMWqr+OT5MMROG6dNsuxgAlMb7FadQWdjl7qKcIRt+RxACPY9Db3s8Dh9PRpiLcZ0NzzvxMi1n4XCieBnfXOt25cuf83iuFBMwV1dS/y76xlUC/LaTBev2rVUePWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=10ofgD1jRpsMHwbOH4UOyYSSzir6BIQL6xAkeWPmkjE=;
- b=IIDY3R6TJxQqqX5JKVwO6AE0rAX5vcZxVO9h5uKfq1u3eIj9iGGIMpq5ovDpcXcXe0zV26U2eLsJXjnemd1KWQNeoPHeBJ7sw2wBRxoV46sM2gUV8YvFDh1PcjD40YH4LQTwLAi4ZQ6N6D6iURjvfzi9zaVvAE/v+PtXHN3Ook+hEx6gvqPjzbZwjAB0r32pSpKoTWjUU4e5OQaB7lF6PRGiuXJ2hLT5+tbf+fnlzLztmzkDWe8MN08m4Q4SDvD/bac+1A/RH05muHTKuzOgRZn/5pURA57lcK4Qq5ewNRPVIQU2frUNk/hwo9CUTbJ0r8a2xxYDery7MoFU+Bg7OA==
+ bh=SX+3IB7HmSrXkeDKthPmnWeufiPas2EdoivZAhmS1NQ=;
+ b=yowVKzn5OPuJ0jo3EcXmAvlAEHJKSsisHho7QcvuD6xqlqpNP6D7nYG+a5oUnOFaEZyqWwaibLO5eR5jz+kqTfPEfy/O6yzH3XQteYzFy55ZVM+16tdjMZ5ZHkKLOl709ZHJS/+SZkFBJVqdhx+NYLbAwxHiS0knuvt8Mw7zVlkmQcyFcW/3XwVxzcPA+Llv/c7uyIeChti+AaxGQ1+SIjzxr8Kq+A6jaHcM7GIlpgbdPWZU7PoF5GG8eZl36zhUoumlgwx8OpxWFAKnvDpcG1/dQuElhtP8gM/eWj/LsDdLIRYxxGAxYRHTmFLL0u+ZtO7vSItHZCQzOpJix+lu4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=10ofgD1jRpsMHwbOH4UOyYSSzir6BIQL6xAkeWPmkjE=;
- b=tIrUepKzT8JSK7Hk2vBhu80btnlrCrhMhC9i0a3WsTVE3q9K78EkIo4wYHi/onYHqiMrYnbiazDqTmROjn1vk/Z9UV3vtx7Fu0tbwnfzZ4TUo4Oyyc27rR+OwZdLvRdO4/j1XUaY1Rvr9fadZB4qSCO+4x1fQMUflwjoccra+Aw=
-Received: from BL1PR13CA0377.namprd13.prod.outlook.com (2603:10b6:208:2c0::22)
- by SN7PR12MB7177.namprd12.prod.outlook.com (2603:10b6:806:2a5::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.14; Tue, 4 Nov
- 2025 06:58:17 +0000
+ bh=SX+3IB7HmSrXkeDKthPmnWeufiPas2EdoivZAhmS1NQ=;
+ b=Fe4t74Y9Al/hocO/WwZXThxQ6b8XsAmAr/BQeyZKBqpbwNRQ7R6QL1tVd8xn9hzGQdaCkTGNXf+oIes4b02ti2/gdhQiXu2iNGRjKtON7ETSzujNzoV9r1dnjO4SAJnt5WGsF8BUrZ5GLSIk+BwcwQ/6aO1w8bWIx4/yTpSHAVw=
+Received: from BL1PR13CA0374.namprd13.prod.outlook.com (2603:10b6:208:2c0::19)
+ by SA5PPFE3F7EF2AE.namprd12.prod.outlook.com
+ (2603:10b6:80f:fc04::8e6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Tue, 4 Nov
+ 2025 06:58:20 +0000
 Received: from BL02EPF0002992A.namprd02.prod.outlook.com
- (2603:10b6:208:2c0:cafe::fc) by BL1PR13CA0377.outlook.office365.com
- (2603:10b6:208:2c0::22) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:208:2c0:cafe::7) by BL1PR13CA0374.outlook.office365.com
+ (2603:10b6:208:2c0::19) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.7 via Frontend Transport; Tue, 4
- Nov 2025 06:58:17 +0000
+ Nov 2025 06:58:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,18 +50,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  BL02EPF0002992A.mail.protection.outlook.com (10.167.249.55) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.6 via Frontend Transport; Tue, 4 Nov 2025 06:58:17 +0000
+ 15.20.9298.6 via Frontend Transport; Tue, 4 Nov 2025 06:58:19 +0000
 Received: from gangliang-mlse-vm.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 3 Nov 2025 22:58:15 -0800
+ 15.2.2562.17; Mon, 3 Nov 2025 22:58:17 -0800
 From: Gangliang Xie <ganglxie@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: <tao.zhou1@amd.com>, Gangliang Xie <ganglxie@amd.com>, Yang Wang
- <kevinyang.wang@amd.com>
-Subject: [PATCH 03/10] drm/amd/pm: add smu ras driver framework
-Date: Tue, 4 Nov 2025 14:57:38 +0800
-Message-ID: <20251104065745.1737050-3-ganglxie@amd.com>
+CC: <tao.zhou1@amd.com>, Gangliang Xie <ganglxie@amd.com>
+Subject: [PATCH 04/10] drm/amdgpu: add function to check if pmfw eeprom is
+ supported
+Date: Tue, 4 Nov 2025 14:57:39 +0800
+Message-ID: <20251104065745.1737050-4-ganglxie@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251104065745.1737050-1-ganglxie@amd.com>
 References: <20251104065745.1737050-1-ganglxie@amd.com>
@@ -73,53 +73,53 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0002992A:EE_|SN7PR12MB7177:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3643e867-a5f8-4e7e-44a3-08de1b6f884d
+X-MS-TrafficTypeDiagnostic: BL02EPF0002992A:EE_|SA5PPFE3F7EF2AE:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0915c25b-d54c-4252-1520-08de1b6f89bb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?1BxDCwiOMAL3KxShknjVXcQ0l/hPwa2L7FoyudhINkpSWJmI3g68QxgBxxxm?=
- =?us-ascii?Q?WzjynqTBo4CpQPkFH+z1i8vnoOfWIbtwwYvVEZnbs0XKyftyUGH7sJ10PSCz?=
- =?us-ascii?Q?IF61317fPDBg8TMU6QeWD+6+F9PmsC6rcvka0K60XRv4CsdDmx2FkJkHzxnV?=
- =?us-ascii?Q?XSXZsV0KGUw0IwEun/VAwa7Zyks0P4+49zPbiwkdsRPzik9jleZORIrm6mLM?=
- =?us-ascii?Q?KFDpxjnAj0KajE5Kc3sX8/8FvCDCzNTtnM8e2VEm2IBZATgiZKLHXSz+CbTB?=
- =?us-ascii?Q?OcfO6XTKdjkXYaPqjHy78bIiHhFrGfQh4KFeDyk8ejebx6OwzlMvzGa2my7i?=
- =?us-ascii?Q?mdz7sGpEQTINuDdyXKj0Tqc4NifrBH9SrW+S0nT7kIFNpyL9WmK+8HYHq2bO?=
- =?us-ascii?Q?G1n5y6WHFOqusq5+reWSGOOwR2gfjog9Xmfe/KGheM+/2lNLR0/3Tg+pnmEQ?=
- =?us-ascii?Q?1iPIDsUDjjEXnmtu8PQtt81j9wrdFb/s73Ze2VLREw+Q8FSPD2AoMIa5x3R1?=
- =?us-ascii?Q?cOk5wsdlQJ5ykjOPwElOBUIM4BCDYHSJ1FN+naEEgQtSHPb2IgqSRhM+VsAp?=
- =?us-ascii?Q?Ubo0V9A73FsDWh6xMq1qGWeQMCU+rswWTGRjPP3z40r5R7fZROkopMkIK+U4?=
- =?us-ascii?Q?5GONvYyw1rD/5lfZL6r8yud1l6tgyhfagF0Otlmy/AgLP7qgPQT5QJdYJiAs?=
- =?us-ascii?Q?A0iG1/q63EHa5eVifqO4aVz8tAE2Il4SQKl0WWKcMtoMrBzGPZvO2CHJ2iev?=
- =?us-ascii?Q?qYkP4TdM2M9M/lNxABUCdoyZssZyA2sAe9pH04vS3VztDmBXTm0GVVGsx40I?=
- =?us-ascii?Q?ocfBkq1CWsT31m7VuHhuLUxuxGYRcO7BwmOiTK3TDshTxg2vNPJoebx3RO8B?=
- =?us-ascii?Q?nwERkNCL+KJ8LVLNpqvqxAeO+9r/oTGRqfWKH1ANunbbxRM3VIJAiFiqLnXM?=
- =?us-ascii?Q?ThIOl6f2Mk98JRWnAVYEvfD1v8Rqa/YyRGQAtBnSm7/kQKmUJ71uwNQrL46z?=
- =?us-ascii?Q?i8RvArVuphhkKsRHWhBKVm5LaJ/tvUmyOGF6GkFcFOgQ3PTBumQ+M+PjnMxT?=
- =?us-ascii?Q?CwWQ+CugqC1ChzZ1uDH5oOgjc1W1IBJh3CeZcDxESu4C+0qtvo40wY5rjcJ7?=
- =?us-ascii?Q?EFtK7t5gahspSW7YE+gGs0NEuGLs8M0c+scHUikrEQBvqdN0v9A50hhGug6N?=
- =?us-ascii?Q?P919Aydzo4P0yoZwR+diIdQy81OjmjvczJ/ZR82hj2OvuUcH4DTz0HeYA/22?=
- =?us-ascii?Q?9VW4hFNoX3nPcdSelJ5wg9DGoaWjk7tBmR0YQWj9Qk4DU8xAf4HYC9c/FM7I?=
- =?us-ascii?Q?R2L7yO/DQqTnIjP1TKOcspt4jnCzAbn4qisoAIwSGOWNsl7r2dgdEeJwq910?=
- =?us-ascii?Q?ko1fMg1yPWQcaVSa6brdGXU657T8LHKI/YkSujpEZt4zAcq767F/mrPxvlrF?=
- =?us-ascii?Q?q6bw5WRDvINLyexreAvRwYUVxgEIgYgDGIuACUfbSDByMvgJyUmp0RCWrgfF?=
- =?us-ascii?Q?8wKkQyLtLqCcaVXESjBYhlQnl6tfbhWZYIUACJklvHCbPQTVMzMKXbEJxZE7?=
- =?us-ascii?Q?/SQnmNTROyJoX6KVD28=3D?=
+ ARA:13230040|376014|36860700013|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vCT7lHT1/j9mpg51d10e3XjREIxPtEMrHkMS1DYmiPF+FMopp50d13Q2fX5C?=
+ =?us-ascii?Q?O+vycgQax7ksmkTrKZzzIad4sIMokk2yavM7aVwUip837ArRyozFgc85v8L0?=
+ =?us-ascii?Q?lIUAPfJ9J77EAGEipzh3WHeyY/kRVMo/6ybp58zfDCzxp/SP7BsldZeJ4+sN?=
+ =?us-ascii?Q?BNp7Tl+wBm9FR6qFiPmD6Fwy+RZc6DZtTxqBr50YE1SvJhawgH4JU4FoJvWg?=
+ =?us-ascii?Q?OlvhZkZeomD9Oswr8Bswb/VHtYSGyGCuUme+wY5Q4saQpwJ3LG+W5fnVhXRt?=
+ =?us-ascii?Q?nCQxh9CVpY3idwvOmUd0SryYK8ZlVOBddTR/pLFE1V0r0K380fZXDiRCRH8Y?=
+ =?us-ascii?Q?qXjTvLks8VgmQiVYSuINBrvOw2sIUagCkquQin2wSJvD5ugToELB1hlvPkzX?=
+ =?us-ascii?Q?FyGXlnAfIkPqB/m91c888WH25T7NbrDOYbyAsdUedGQOP0RhcznSCzB+6Z6y?=
+ =?us-ascii?Q?VS2mZ23gDBVkqud/hOhbIF658ow+QBLtKJY1TyzEX2oFxPgYvUEEYBQUoN6w?=
+ =?us-ascii?Q?Cx6cs19bBK5kBUXnuyEPfm66gKYgUKWSEzxiOOAFbU4Rqru5JgQcl3ayONsp?=
+ =?us-ascii?Q?+FZJx2dwg3ikIVXrOmxU2yMJhX5oB4A1gS8eWUHa1UAjR3wbFQwXs0j6BaCZ?=
+ =?us-ascii?Q?LPFKzWEmNLiUyy0Y6YAq6H8WAmThHiD7HoNyqp/PxvVEPNTBQ9kRWLTHrWf3?=
+ =?us-ascii?Q?H5NCm6YzFrzBr00EsERyNzsQxq3Lfzn0g5IAKlNOrjviu3RJleOTWCiNDEyp?=
+ =?us-ascii?Q?5Cz4mWMEGYWodGkp0JRK5uO4efTSRcVfTnqJZygpWle/RpMn8lLT26bay7E8?=
+ =?us-ascii?Q?/A+zmOderq0xUlHbGWGpYn53LQzEiwp4bKPoRFyAey+vBTVrrFOIR7YeVbPU?=
+ =?us-ascii?Q?7QdOvQPoC2Ihwvk8pXg6WG3/f7CRVJi2uGG9j1rLHrgAGNfwMncfkHWKuO6x?=
+ =?us-ascii?Q?oqbMr73BVagCttLXyjHS7ScZpGXmIKqwQubik42sR62Qyopz+mtHglLI9rxX?=
+ =?us-ascii?Q?KXnne0yVWCMr1PbGhpoyYRFrsTdA03biTYAuemImIhK9aH/tBd17dMsIszj9?=
+ =?us-ascii?Q?Nj+S6h1T2I+89BSNQFiP45r3Ah71OK1dFFKkR1QaziN4LBbzJ/X0ifY9l/YE?=
+ =?us-ascii?Q?1iJP88Oan82n4h7kPVbTtg/OXV9b/lsnKSyRCLxk6GStHYvQSoZMgYnTq3yW?=
+ =?us-ascii?Q?Q+zJ2Pyhj+shiwOflmlOP2K+LH/UOmiVmpkecq6Yv8/2YDXvWpEo8nyAKPrx?=
+ =?us-ascii?Q?c5GXfbkWERGch49tZjkFa1nWRvRd/jAfX7tSOdWgTrnKxNB9jm3K0mttxurC?=
+ =?us-ascii?Q?kqwJAeHJTPPPHsZ9lhtcn9V9LjPzLuX2WfomRKMuCcwKMGsjsCLVEC5JLkaO?=
+ =?us-ascii?Q?xxmafxQUuU5wX46QKp/zc6NOK65D1xkvj6HmtYdXxirL1c8bC7qHU6w8XDH0?=
+ =?us-ascii?Q?tEehOyW40nNFVVY1w1xeFTcmuOYwKC1/sBHhHUT50NslB4Sk51BqofedB6lT?=
+ =?us-ascii?Q?HfoTj1jtp3sSCVzufie8HTeBiJz4W4z4OOUgzEku9AD5pbxBZici5jr9T2Ui?=
+ =?us-ascii?Q?G51DhbezG3uEJ/Yf5UQ=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 06:58:17.4833 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3643e867-a5f8-4e7e-44a3-08de1b6f884d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 06:58:19.8762 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0915c25b-d54c-4252-1520-08de1b6f89bb
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0002992A.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7177
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFE3F7EF2AE
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,156 +134,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-add functions to get smu ras driver
+add function to check if pmfw is supported, skip eeprom
+check and recover when pmfw eeprom is supported
 
 Signed-off-by: Gangliang Xie <ganglxie@amd.com>
-Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h       |  1 +
- drivers/gpu/drm/amd/pm/amdgpu_dpm.c           |  7 +++++++
- drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h       |  1 +
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 11 ++++++++++
- drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  7 +++++++
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c  | 21 +++++++++++++++++++
- drivers/gpu/drm/amd/pm/swsmu/smu_internal.h   |  1 +
- 7 files changed, 49 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |  2 +
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    | 46 ++++++++++++++++++-
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h    |  2 +
+ 3 files changed, 48 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-index 3c0b36dd37bf..674bcd3c814c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -620,6 +620,7 @@ struct amdgpu_ras {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 5377cde0c55d..402b6b002a11 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -3767,6 +3767,8 @@ int amdgpu_ras_init_badpage_info(struct amdgpu_device *adev)
+ 		return 0;
  
- 	/* Disable/Enable uniras switch */
- 	bool uniras_enabled;
-+	const struct ras_smu_drv *ras_smu_drv;
- };
- 
- struct ras_fs_data {
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-index 5c4d0eb198c4..c6f55d3522cd 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-@@ -2122,3 +2122,10 @@ ssize_t amdgpu_dpm_get_xcp_metrics(struct amdgpu_device *adev, int xcp_id,
- 
- 	return ret;
- }
+ 	control = &con->eeprom_control;
++	con->ras_smu_drv = amdgpu_dpm_get_ras_smu_driver(adev);
 +
-+const struct ras_smu_drv *amdgpu_dpm_get_ras_smu_driver(struct amdgpu_device *adev)
-+{
-+	void *pp_handle = adev->powerplay.pp_handle;
-+
-+	return smu_get_ras_smu_driver(pp_handle);
-+}
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-index c7ea29385682..aa3f427819a0 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-@@ -612,5 +612,6 @@ int amdgpu_dpm_reset_vcn(struct amdgpu_device *adev, uint32_t inst_mask);
- bool amdgpu_dpm_reset_vcn_is_supported(struct amdgpu_device *adev);
- bool amdgpu_dpm_is_temp_metrics_supported(struct amdgpu_device *adev,
- 					  enum smu_temp_metric_type type);
-+const struct ras_smu_drv *amdgpu_dpm_get_ras_smu_driver(struct amdgpu_device *adev);
+ 	ret = amdgpu_ras_eeprom_init(control);
+ 	control->is_eeprom_valid = !ret;
  
- #endif
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index b3510345a32a..c0e7c45ac0e6 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -2803,6 +2803,17 @@ const struct amdgpu_ip_block_version smu_v14_0_ip_block = {
- 	.funcs = &smu_ip_funcs,
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index 011fa4748084..89d0def82797 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -1546,7 +1546,8 @@ void amdgpu_ras_eeprom_check_and_recover(struct amdgpu_device *adev)
+ 	struct amdgpu_ras_eeprom_control *control;
+ 	int res;
  
-+const struct ras_smu_drv *smu_get_ras_smu_driver(void *handle)
-+{
-+	struct smu_context *smu = (struct smu_context *)handle;
-+	const struct ras_smu_drv *tmp = NULL;
-+	int ret;
-+
-+	ret = smu_get_ras_smu_drv(smu, &tmp);
-+
-+	return ret ? NULL : tmp;
+-	if (!__is_ras_eeprom_supported(adev) || !ras)
++	if (!__is_ras_eeprom_supported(adev) || !ras ||
++	    amdgpu_ras_smu_eeprom_supported(adev))
+ 		return;
+ 	control = &ras->eeprom_control;
+ 	if (!control->is_eeprom_valid)
+@@ -1566,4 +1567,45 @@ void amdgpu_ras_eeprom_check_and_recover(struct amdgpu_device *adev)
+ 		control->is_eeprom_valid = false;
+ 	}
+ 	return;
+-}
+\ No newline at end of file
 +}
 +
- static int smu_load_microcode(void *handle)
- {
- 	struct smu_context *smu = handle;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-index c48028abc8c4..8815fc70b63b 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-@@ -1531,6 +1531,12 @@ struct pptable_funcs {
- 	int (*ras_send_msg)(struct smu_context *smu,
- 			    enum smu_message_type msg, uint32_t param, uint32_t *read_arg);
- 
-+
-+	/**
-+	 * @get_ras_smu_drv: Get RAS smu driver interface
-+	 * Return: ras_smu_drv *
-+	 */
-+	int (*get_ras_smu_drv)(struct smu_context *smu, const struct ras_smu_drv **ras_smu_drv);
- };
- 
- typedef enum {
-@@ -1795,6 +1801,7 @@ int smu_set_pm_policy(struct smu_context *smu, enum pp_pm_policy p_type,
- 		      int level);
- ssize_t smu_get_pm_policy_info(struct smu_context *smu,
- 			       enum pp_pm_policy p_type, char *sysbuf);
-+const struct ras_smu_drv *smu_get_ras_smu_driver(void *handle);
- 
- int amdgpu_smu_ras_send_msg(struct amdgpu_device *adev, enum smu_message_type msg,
- 			    uint32_t param, uint32_t *readarg);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-index de4c944885f6..095f54b7e9e6 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-@@ -3905,6 +3905,26 @@ static void smu_v13_0_6_set_temp_funcs(struct smu_context *smu)
- 			== IP_VERSION(13, 0, 12)) ? &smu_v13_0_12_temp_funcs : NULL;
- }
- 
-+static int smu_v13_0_6_get_ras_smu_drv(struct smu_context *smu, const struct ras_smu_drv **ras_smu_drv)
++static const struct ras_smu_drv *amdgpu_ras_get_smu_ras_drv(struct amdgpu_device *adev)
 +{
++	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
++
++	if (!ras)
++		return NULL;
++
++	return ras->ras_smu_drv;
++}
++
++static uint64_t amdgpu_ras_smu_get_feature_flags(struct amdgpu_device *adev)
++{
++	const struct ras_smu_drv *ras_smu_drv = amdgpu_ras_get_smu_ras_drv(adev);
++	uint64_t flags = 0ULL;
++
 +	if (!ras_smu_drv)
-+		return -EINVAL;
++		goto out;
 +
-+	if (amdgpu_sriov_vf(smu->adev))
-+		return -EOPNOTSUPP;
++	if (ras_smu_drv->ras_smu_feature_flags)
++		ras_smu_drv->ras_smu_feature_flags(adev, &flags);
 +
-+	switch (amdgpu_ip_version(smu->adev, MP1_HWIP, 0)) {
-+	case IP_VERSION(13, 0, 12):
-+		*ras_smu_drv = &smu_v13_0_12_ras_smu_drv;
-+		break;
-+	default:
-+		*ras_smu_drv = NULL;
-+		break;
-+	}
-+
-+	return 0;
++out:
++	return flags;
 +}
 +
- static const struct pptable_funcs smu_v13_0_6_ppt_funcs = {
- 	/* init dpm */
- 	.get_allowed_feature_mask = smu_v13_0_6_get_allowed_feature_mask,
-@@ -3964,6 +3984,7 @@ static const struct pptable_funcs smu_v13_0_6_ppt_funcs = {
- 	.dpm_reset_vcn = smu_v13_0_6_reset_vcn,
- 	.post_init = smu_v13_0_6_post_init,
- 	.ras_send_msg = smu_v13_0_6_ras_send_msg,
-+	.get_ras_smu_drv = smu_v13_0_6_get_ras_smu_drv,
- };
++bool amdgpu_ras_smu_eeprom_supported(struct amdgpu_device *adev)
++{
++	const struct ras_smu_drv *smu_ras_drv = amdgpu_ras_get_smu_ras_drv(adev);
++	uint64_t flags = 0ULL;
++
++	if (!__is_ras_eeprom_supported(adev) || !smu_ras_drv)
++		return false;
++
++	if (!smu_ras_drv->smu_eeprom_funcs)
++		return false;
++
++	flags = amdgpu_ras_smu_get_feature_flags(adev);
++
++	return !!(flags & RAS_SMU_FEATURE_BIT__RAS_EEPROM);
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+index ebfca4cb5688..feff46b22b6f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+@@ -163,6 +163,8 @@ int amdgpu_ras_eeprom_check(struct amdgpu_ras_eeprom_control *control);
  
- void smu_v13_0_6_set_ppt_funcs(struct smu_context *smu)
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h b/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
-index c09ecf1a68a0..34f6b4b1c3ba 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu_internal.h
-@@ -100,6 +100,7 @@
- #define smu_is_asic_wbrf_supported(smu)			smu_ppt_funcs(is_asic_wbrf_supported, false, smu)
- #define smu_enable_uclk_shadow(smu, enable)		smu_ppt_funcs(enable_uclk_shadow, 0, smu, enable)
- #define smu_set_wbrf_exclusion_ranges(smu, freq_band_range)		smu_ppt_funcs(set_wbrf_exclusion_ranges, -EOPNOTSUPP, smu, freq_band_range)
-+#define smu_get_ras_smu_drv(smu, ras_smu_drv)			smu_ppt_funcs(get_ras_smu_drv, -EOPNOTSUPP, smu, ras_smu_drv)
+ void amdgpu_ras_eeprom_check_and_recover(struct amdgpu_device *adev);
  
- #endif
- #endif
++bool amdgpu_ras_smu_eeprom_supported(struct amdgpu_device *adev);
++
+ extern const struct file_operations amdgpu_ras_debugfs_eeprom_size_ops;
+ extern const struct file_operations amdgpu_ras_debugfs_eeprom_table_ops;
+ 
 -- 
 2.34.1
 
