@@ -2,125 +2,152 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20578C34098
-	for <lists+amd-gfx@lfdr.de>; Wed, 05 Nov 2025 07:16:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78C60C34157
+	for <lists+amd-gfx@lfdr.de>; Wed, 05 Nov 2025 07:47:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6A0F10E2A2;
-	Wed,  5 Nov 2025 06:16:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC99810E6BE;
+	Wed,  5 Nov 2025 06:47:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uBn2FONZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lZ6UWc4w";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013005.outbound.protection.outlook.com
- [40.93.196.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E14910E2A2
- for <amd-gfx@lists.freedesktop.org>; Wed,  5 Nov 2025 06:16:48 +0000 (UTC)
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011047.outbound.protection.outlook.com [52.101.62.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C8E910E6BA
+ for <amd-gfx@lists.freedesktop.org>; Wed,  5 Nov 2025 06:47:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tI6UalU8vbXWFjfx/5HdemzWWpshTWlMV4kyYXyPeP0oOAVVYt86QyhXlC4avBihAfZqnj+RD6T3RbMm5CgUwSs5lqSvh8Tpjwbu/TVYbJ3G6lqR3LMtAtuelqTUrD5134nCePgBBqPlmuABZlp5Ou3BIxNulh+Wvahy+PuEm/DreaVveklPqeUJAl51DeOwcB/NxFw/eE9i3EITRAL1xdfiTkBQtHABwG3fjyVUZwAaUssGcdi11wVnW+kPBrXhd3eFNnVWB8rszz3CswSHOEZU+lMcst8uZK/kcITIJI+79l9pCHhvQqhtfAZkGmkwLks2QRNz6AcnGFAlgZ0J7g==
+ b=QbomPcxVegzxpLmcykt0eTNDwjfTgqPtxQK6UTnJ0Q5Yhk0NUMhU6f8hLEpw5KhwQc7zTqfr/xErq1bMiGAkzvhgHsTgQNz4BEtrcsiqRkKOCkLNEyrwiW6Rqd6Wprhtjbc5sRYBhB1HV20fwjq8h3EpI5QNYArecVukJ4Yhh0yCZpDWjDCIeFmBiwYgqMJL7KB8N3xCPS+EJSyHF/aQo+2pnGKQUYaahrfn4k4UusfnKYfqDZYeK7EyaE2rysZ3hOQdAFq77hz8C3LD1yDZiOKL/eReoVamuB0xvWemNJpVKi3kQ6UKRiXOm9jRSWPW9OpQuPPipLF3CquGJewZmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uK4Q9LkXP8hg3/X4gXTKVtlDNXWvWfrLbDUqEQD1AWc=;
- b=s5qbvttKIiwr0z7koOxS5PXO/h6Dwf02taFWM0XFwmv58Clf9cE60/NEK7Ye4/BwcyjuLIgXnay4+sgKyXRxjje56SmKnxOuEmfjbruFp/ghZrK65mVYbcNVRsg2OtPBfmpB0P+zVCZ7befUahKF/jn2rZKp6lkpTHk/sUmYD54UVJY9ADb9dcq038TAoasLh0zebeYcQJSUUydZfaTSpfBiSkXWG6MMnAtAErL7aySXz2Xhp/CV0d9qXNbDq6RQzBi4EtYaNOxFGL3qKWzcsLzwDZXWJF7A3TeZkwg/aNdm+9p8UqEKVYWyXS2CvA/JPv77Q94aEyL7HMi2GF9WUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=bMdtuR/z/kUDAsRQnLHP/H1RrLte5pKLP2Hcsk9Ew3A=;
+ b=PnsuTT0GNX5mX28hWPPoyS6V89ldh2vrIYtuusyfGeQWsKAgREO3NhqvPOS0a9dj28ygAQ8/fOsato3qyKRYMGOv1Qs7p1XMfZSjurxSzQoSwpFGTcETQFd57czntgB2jJI0E9AJ2zY0w3vDtO/XGXXtMN+0r//VYel6aBaCqvVgNGwakXCWeuPIm5EEdW8LD0ijkuGqrarsW45CJFuXBTFhfdZD0u7a9mGjS4vSe+quahyV2BBuMiJ3A6VAwBk3ASg9SBkQ3/JwHMPSNHIhVsk+gJYUenW15kwqKWW6ErpOk35JEKpgp3OMiaX88vaYysWvEcUcNlteA+54FX6R/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uK4Q9LkXP8hg3/X4gXTKVtlDNXWvWfrLbDUqEQD1AWc=;
- b=uBn2FONZokicTAOX9bIu9ci6ZKPJgWtwkRajiswAI6EJ9txlCoyBQRbVW/i+QgxkNBRgsihe5lwboJ0foWL0TyI66/d5Wo2ps9dmtdHMEPQ9JAJ6YW8eMT6Kt/yq1K1pQLqoyrDOhuhZU9N8kIH4v9I0bRW6sD+tETFtjb5RWi4=
-Received: from BYAPR05CA0032.namprd05.prod.outlook.com (2603:10b6:a03:c0::45)
- by PH7PR12MB7114.namprd12.prod.outlook.com (2603:10b6:510:1ed::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Wed, 5 Nov
- 2025 06:16:45 +0000
-Received: from SJ5PEPF000001EF.namprd05.prod.outlook.com
- (2603:10b6:a03:c0:cafe::a7) by BYAPR05CA0032.outlook.office365.com
- (2603:10b6:a03:c0::45) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.7 via Frontend Transport; Wed, 5
- Nov 2025 06:16:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001EF.mail.protection.outlook.com (10.167.242.203) with Microsoft
+ bh=bMdtuR/z/kUDAsRQnLHP/H1RrLte5pKLP2Hcsk9Ew3A=;
+ b=lZ6UWc4wUqzaDsDr+mYjB+Lq/8lOJK2N6PfM7zDunYb79SgpPiSbc87eWeqL8FdYf4NyliqPZledyZextabFiqUyug+/m0ySmIUWQ0Pf4RDOsJkRvSYXpzEIFF4kF6KX6zqow+xZahq2Ulk0TuK5mnpzqWjE5nM/s3mrQLan7fU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
+ IA0PR12MB7628.namprd12.prod.outlook.com (2603:10b6:208:436::6) with
+ Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.6 via Frontend Transport; Wed, 5 Nov 2025 06:16:44 +0000
-Received: from prike-code-pc.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 4 Nov
- 2025 22:16:42 -0800
-From: Prike Liang <Prike.Liang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>, Prike Liang
- <Prike.Liang@amd.com>
-Subject: [PATCH 3/3] drm/amdgpu: fix the vm update tlb sequence
-Date: Wed, 5 Nov 2025 14:16:30 +0800
-Message-ID: <20251105061630.4146604-3-Prike.Liang@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251105061630.4146604-1-Prike.Liang@amd.com>
-References: <20251105061630.4146604-1-Prike.Liang@amd.com>
+ 15.20.9275.16; Wed, 5 Nov 2025 06:47:13 +0000
+Received: from DS0PR12MB7804.namprd12.prod.outlook.com
+ ([fe80::e71b:4ec9:237f:24ea]) by DS0PR12MB7804.namprd12.prod.outlook.com
+ ([fe80::e71b:4ec9:237f:24ea%5]) with mapi id 15.20.9298.006; Wed, 5 Nov 2025
+ 06:47:13 +0000
+Message-ID: <bba0794b-1c27-49f2-8391-c39530bb5afc@amd.com>
+Date: Wed, 5 Nov 2025 12:17:06 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] drm/amdgpu: fix gpu page fault after hibernation on PF
+ passthrough
+To: Samuel Zhang <guoqing.zhang@amd.com>
+Cc: victor.zhao@amd.com, haijun.chang@amd.com, Qing.Ma@amd.com,
+ Owen.Zhang2@amd.com, amd-gfx@lists.freedesktop.org
+References: <20251104073102.257287-1-guoqing.zhang@amd.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <20251104073102.257287-1-guoqing.zhang@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN4P287CA0120.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:2b0::6) To DS0PR12MB7804.namprd12.prod.outlook.com
+ (2603:10b6:8:142::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001EF:EE_|PH7PR12MB7114:EE_
-X-MS-Office365-Filtering-Correlation-Id: 188e929d-bb0b-46de-e3fb-08de1c32e50a
+X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|IA0PR12MB7628:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24cf4ad3-1f05-40ea-c4ed-08de1c372665
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?BXV9hcsZnAtoRRNICL9XswrqyfO0Wjc2wX3SNBy+Me/rmlBacfUaFFNKCU7s?=
- =?us-ascii?Q?lbrN/KV4szjfawfUtw7zCZfgq+BMsycBLMWno6cFnhmbozGF6HSbHxB/ilh0?=
- =?us-ascii?Q?8Ox563nZepw6jlFUhE8rott1tuDAxOxJyzyos1zs2FKsCfpEmeDhSe7gisJb?=
- =?us-ascii?Q?9SK5XQHKE7LAXzEf2T/9ctGt5N8GNMga1RhPK/DZ8uqdLfjEOYQqI70vqFY5?=
- =?us-ascii?Q?4cKk1OMsXk7q56VbIIMqmdQyF5WpsQKTo7TsB2s/vRneRoxXW7qpVzV/gVps?=
- =?us-ascii?Q?1sM4WxyitZ9MTfZtoe+gl2q1DFfN48dMvAbBXLJjNwuJ05VYoYTOKds0kPdY?=
- =?us-ascii?Q?4hLnjsnQ0us1p5A6+FEjvjEffulWHiCnszgLj8XF8ezQyH35828LJkxzeVgB?=
- =?us-ascii?Q?i4QbNljkqtJHi0ImePx5i8n4RIpcYVe4SE2dwJzsjQpq2c89yQzhL5W8DdbO?=
- =?us-ascii?Q?SzQu+ABjMcq2zRUYAlIBCDyXBpml0uo2i/TO8jLa61zhcHM3nnD2+PMoy5AL?=
- =?us-ascii?Q?2UKKvmX4iqzPp5LnW58vtmtxtF1I5PSjPQzuOW2Ivq/t5YLw5bGeGA2JhJML?=
- =?us-ascii?Q?LccvSpFxfoPDL5qtF9cOBkKkQVnhEWQmbBTwlwht3P4boiYM1K1wC3rzIrY2?=
- =?us-ascii?Q?RCIMGiX0wVaRlYQ+GJ8XBVQTmwmK8egS8KlwjyYr9W7kLwK/Z6He6gn6NbfT?=
- =?us-ascii?Q?TtN/cbUiuqQtB0a/ZUm8Aw5qFBaRLR3BRp6qfqSLnrIrg0QEoekYtO0PcEDY?=
- =?us-ascii?Q?DF4545Xkmu5SWpXl7GK8LrO6bNpKg5h8EhHbY+WUnLkwPMCNQFFfDPm2fWai?=
- =?us-ascii?Q?3kR3XzYJcsQWNZ/zTB2d05RiAICFjY5ms8hbKO5hvfz5W3aYVYKwl0/BWRNE?=
- =?us-ascii?Q?a3ENVKeB96F1inuCF7qDiChpycKDwBysYyEfU41UdPn5jh7lhwrvjg9r3Uyv?=
- =?us-ascii?Q?CdKMcEoblvigwRjkuLq0g3WfRQjFtrdHIWt0tMW/bAxk125egEapAv1TBGqk?=
- =?us-ascii?Q?EiPJa/UUsc4g49wCtYt90YgKobgL1lYn8YimpwyGOpOx8jHJvm7ZF2GoGsuE?=
- =?us-ascii?Q?Cn2pFMdKyr0CxIND27ug2QfEI38yWfCnx84kxNMASEZdNCIq41uCTKCGkeNT?=
- =?us-ascii?Q?ukdzFFvSuAWoNJtfxhWq/7G722BdIQ7I7k94CBsbukBZvsjlU8WuO4gWceLG?=
- =?us-ascii?Q?+X54pJMrP1yPvMba73PYuZRLariB3vHSxvc4TBnvp7dBsHJxg4+EXgwU3OOy?=
- =?us-ascii?Q?aaA8Tie59Vzo1dGZfXnwu78kQfGifYeWR9BYSqd4Je+gT1EuvVSLYZScC5B9?=
- =?us-ascii?Q?xUNDKRqo3F8B4v0M4L0AqyFd5BKRR5J/ThYOm8WqMFjDq7xyaC/Y2yeO+vNI?=
- =?us-ascii?Q?ow/420EcoZxw6rYXPI5KKgdtwOQXpzK5c5LRg/S6iR0WgQ2yuOAgNWj17zOP?=
- =?us-ascii?Q?a0Svkn9X3y2k/3HQZj/Iw1Ajfu+8YwspIj8XtDJSeTiM796VI2EhImrR5kd5?=
- =?us-ascii?Q?kU7gkcSYb7yrye0tNbk8t96U9hATK0AYvMQTORZEBhloCj4hXaXzuvTolQIO?=
- =?us-ascii?Q?vAnl6T4s6l1q6z08SRc=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TEVMK3JZSnJIUXRFVk05dm5idTMwT20wMFNQOFhYQ294QWJNNUdtTFlnV2pX?=
+ =?utf-8?B?K0t0R2NUZVBPa0JBdmhBRzM5K3hTbTlEV2sySGxkQ05PWDcyb3FaSkRUbWc1?=
+ =?utf-8?B?WnkxZUlBTmxrY3lESmlsUUdZVmFvVGRkOFpaeXVWWnlyQVBRSXZxeGZzM1lS?=
+ =?utf-8?B?bzA4eWVLTUVTN0NBOXRxOGtFQ0h6a1duNC9DM2VzTk9yRkhZSFFjeEh5Q21H?=
+ =?utf-8?B?Y1duUEZYTUVuL1poVlpockRlZHNyQVFrekJUdjhuSGpMT1pEdVRmQktkekJX?=
+ =?utf-8?B?TUhITk0zaXlVK0lxcEs1aDF4WXdmc0ZxampQMkVOSVo5N3BOc1MwMkwzZjAy?=
+ =?utf-8?B?dk1TWFBzbGcwcmttbld0Y3YrM0NQcWtDcEg5K051SElwWVBoR2hwaHB5NWtr?=
+ =?utf-8?B?OEJMd2ZYRGVUUXR1TmZGdW5aTGFuNC9RNXpLZndWRkRnMW0wWmREeW1JMjkv?=
+ =?utf-8?B?OFM1L0RTMXVsb05oaW5jTzhQbThVU2hMZFlwTnFnQ0NDTHNqWWh2cWNpNUpn?=
+ =?utf-8?B?SEp2Y1ErV2RQUUhKdyt2bmMvSERZYVZEL1Q0d1JYeWVFaXR2UlJuK0twMllv?=
+ =?utf-8?B?dVFQTi9zOHRnRCtDcVlRUUZiR1B2alRuTUtqK1Qyc1VveE5lVDIvZ1RjYk1E?=
+ =?utf-8?B?T0RUNitLVng3Smw5b0U3Qm5RUndSQ1ptbDFLM3B5MzB1cFE0RnhYcUJib2hB?=
+ =?utf-8?B?RzFYdHhaZkJNcEdCemd0WWtKdGU1bGs0enB5WllOK25xTGpzNE9pVEI4RERJ?=
+ =?utf-8?B?bk5waEorQXNoWlVKVXFzWEQwd21JVGZZWGh2Vy9ndDNVRkpEdVd1SXI5ZHIx?=
+ =?utf-8?B?UUYwS1NraU9jMXZzZG8vNW9za2ZrVjBjT3QvK1IvWHNPNmtkM2FXOU5NVXNT?=
+ =?utf-8?B?NjZSc01IdE1ndGlzN0JOcEF6TjYraHRiZ01RMk1neHhMcU5qQUNWZXNQbHFM?=
+ =?utf-8?B?SUlZeVJWcTNSaXFMdHhZQkNvMjRkRmtUODFMckovb3J2d2EvcndBazMxc0dT?=
+ =?utf-8?B?c1FlcmV1UDR5S3pZbVRtTVhkL3BUY3cwWi80VTBuOXZlWW5OVHdGT0xFSHo5?=
+ =?utf-8?B?UVpzeE90U2U5STFsWlFGb1FPek9UeWczNHllUHY3VUc0b0tLaEZCVklvMlRt?=
+ =?utf-8?B?VmhtMCtyUnRHck96M2xRbElqRTF6ZlRQM0pGTjNVS3VaelJkTWRzRG5wdWdB?=
+ =?utf-8?B?VFQzRFYxVnBtTXpBa2NIZkQ2VG5FVjFMUGpad25hSHY3eEN4b2lXNDdXZFZG?=
+ =?utf-8?B?eXJLaklqWnF6NW9UdnRoYTFQbk12enhWa2ErNGE3WnZ4VC9jbm4yYXVZZ3Br?=
+ =?utf-8?B?R0wrUk53Qm5FQStzMGUyakVkcUwvc0hPMGJXaFZGbFR4Y2g2NFQyVm5QWFNG?=
+ =?utf-8?B?dnhkSTVRUjd4emV6aHFHQmNUMDdEU1lxaVJTM0pYaURpb3lkRGxuMmlnazdv?=
+ =?utf-8?B?LytHZTB4ZzI2MFB6cGUrR0JxZlFXOXZnK2lvT0FWQ1R6YjVFZU1oZjFibUc2?=
+ =?utf-8?B?SGdKSkoxZmJscm5HUDBMaW5SclVJRlZ0bURIMlJjdGZTclFKSTdaanpuVXdF?=
+ =?utf-8?B?Tmh6SnR6L2lOR3ZpK0VtYjRFN09nMGNNem1MaVllY0twd1VTWXRaN05FaGNW?=
+ =?utf-8?B?SDA0eFFjWTRhZDJFdXZzUFEzcEJBTGhyZEdua3ltSmo4bXpVaTRsNXgvRDVR?=
+ =?utf-8?B?ajFQMlpKUnNZS2hGZWZDZWdBeldQTWpKdlJWb29ESC8xVi9nVklOTWZRNHlH?=
+ =?utf-8?B?WEV1bFd6U1VKWmZJVjByc0NCODRrWjVtcmRyTFZZVHNYTmJleERQWWRlYngz?=
+ =?utf-8?B?dnBkeW1UenMycTlqMEVXalFoRlRWZmR4cmJYUytxRnRzRWNHVUhVUzRGQ2Ur?=
+ =?utf-8?B?dDFUVFhZd2pNVzFGRWkyaGJNMmZuTjF5NnZJMTdiUXNENjA1a2wwNE9ua3dy?=
+ =?utf-8?Q?l5f+QsetnEw7vXDIjl1sGHWhTSs6HGu5?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NlVJc25oV0d1MUxvK0NKOXhSUHZZK29UQTVFUUZJUVRTQVZ2a0RMUzB4d2hW?=
+ =?utf-8?B?bXVmMFpHR01TMytsdHVUVmZPcTdUM080eVF6YnRRcnR5Tkh0eW5Jd2pVdUhz?=
+ =?utf-8?B?SEFhNVhiNGN5OW9WcXM0eU5pZ2l4WTdRQXVXK25NVHc4YkQ4QkNjT3JKVUtU?=
+ =?utf-8?B?SWE3c3pBbHJaMXFnMUhsdkJ4bThNamNRRFg4aHV6bi9nTzlmaDZlSXdyRTFQ?=
+ =?utf-8?B?WmxkU3dvaTlBQ1VYUURtVjRQWWFkUFl5RG1HVEpHekZmanpibld4cGhGeXVh?=
+ =?utf-8?B?SG0yNkJJNC9KMHYwRE02VkxaT0gzdUpKTno5RnZ4dXQ5bS96R0tmU0NkdmRy?=
+ =?utf-8?B?NHYzbHAvUDZDZ0plZG9EbGtGbng0OGFNSEF4TmprY1lqMU1PWjRBbTlLWWpF?=
+ =?utf-8?B?dzN1ZHRjVHkwVFVEbnZYeTFua1R5TEdpY3czNU45SWZIOEtRWEhFUERSNWxm?=
+ =?utf-8?B?aHNHenJoSE10Z0gvYXVxdTd5Z3dIOFNHUVVIcFBpNTdBdGdHTW1pVUxabkJG?=
+ =?utf-8?B?bmQ4QUtTc0tOZnZYT3U5NERheHV2K1NmSy9Ha3RsRHdzRWNQbU5qRzNld0ZH?=
+ =?utf-8?B?WDUwUlVqSDA3amE5eTNmNkF1c2UvMXE2NHB0WjBlRW83SW16bUExVWI4dnNr?=
+ =?utf-8?B?NTFKdTR0RVJoS2QvVGptR01OM1hxV2xweUJzRWVJVjNUbHRPQnpOVXpaaWZi?=
+ =?utf-8?B?c2dvbEc4V0xGSG02YnFlS2g2bVdxUkc3Mi9DUXNvZkNteXl0bDA3N0ltYnlw?=
+ =?utf-8?B?UnAyRGJmbXQ3VzlvMkxrZlk3OUkvTitqU0JBZjlvRG9hNjhqdVNwTlgrb3NO?=
+ =?utf-8?B?dXZlbHBuMHNhR2YxajNxNW9za09yUjRBRlhFc1Q3SkFzK3FoSVV3c2NORS9u?=
+ =?utf-8?B?WEJUejFpRGY2aVdOTFM0OFlESlBBYnRwczdUajgvTlZxWHhFdmdyZWRPM3dE?=
+ =?utf-8?B?N01RTklpaDBoQ3FrNVAwUEFQck5lSFhITXg3b0xsUzBCU2ZzYjBKZytKem5T?=
+ =?utf-8?B?SnUxRVNWcjNsVWJRQXdYS1NhYmNvYWNYSXNodUtOSG1uUW1pdE9DejJvaUk5?=
+ =?utf-8?B?T0NjeUg3N1o0R0hlNFFxUnBWamhBQzV5K1dhelNEWlUzUXA1Rm9QRDI5NG52?=
+ =?utf-8?B?bW15ZDRWTWM1MUhicnhSMmNuSktQYjJYNkJLRFhJdG40QlNMQ3pxMnY0V3hE?=
+ =?utf-8?B?RzQwSlFuMjFoUUlDc3RDMWVUSW05clVTZzlObkt1TmduMG9NV3hwNTJWZFpV?=
+ =?utf-8?B?am9YeVFycGY3MmU4VE1ndVNjOXJhWnZTR3NmV25xT0g0S3IwaVU4WjlLL05H?=
+ =?utf-8?B?L2wwa3NyRStQWEI4RFgrRGpxaHhmKzgrSm94ejFqb1BBeHFPa3Zlb0J0OTZk?=
+ =?utf-8?B?NUJkRTZudGdYakJZbm5qYlRpNTZoemJFYkFOaWpMdHk5K0pJV2R0WHN1MFl0?=
+ =?utf-8?B?UURYS0tiS2NZVHc5Rk5jRUY5UERVUGd5R29VNU10TEJMV0tTMzMrL1F4a2JH?=
+ =?utf-8?B?L2g4NjVEYzgzMXRFUGJwd3g1TUs4V3pRUys1M1pXcG5uTk9haStxY1Q3aHpL?=
+ =?utf-8?B?RUNGbW5SMFdaRm4zb1NjNDhpRUtrSUlTb01jaWJyR3IvK1liU2pyNnNVcCtu?=
+ =?utf-8?B?d3RXRmoxMDREWmFGQmhvWEYrTlZjaHpFbkJTM05lSWFHenRoZ0pqbjA4VTdw?=
+ =?utf-8?B?VlptZVU0RlQwVjVEbzY1Qmg3T3g1UktWMC9BTU8rVVlxeThHZ1RZbTFwanFi?=
+ =?utf-8?B?YnB2WE0xb0ovOHRvWFl4Z3l3ak4yYkdpcmpRbFZ6ZWlFOUZXeHI0NnQzNkNv?=
+ =?utf-8?B?T2JkYUttYU9UVnlJRUdKajBJUkVhZ01oOFVjSHRzb25KVTF0ZVJLMzNEVmlN?=
+ =?utf-8?B?b1Y0anRzSlJ6ZXZLWWtyQUVlRk5WcnltRUx6aWdicnRLVVQ5VTQ2OG84MDZ4?=
+ =?utf-8?B?RVVjSEtXbzBkZkhlNkZpWXk1S2FNZ3NkZE0xaC94dW92NklUQUhqMm4rMXJ5?=
+ =?utf-8?B?ZTdUNVVNWXJnRkwya2F3NnJOZkFpN0t6NFdFeUo0ZXNJSzRJdnVrV0dVWXdn?=
+ =?utf-8?B?WXFjMnNsM1VmdnV5RlJwUGg4dE12WnZLZmZMUTIra2VZTlAvS1FnS1dseXJV?=
+ =?utf-8?Q?0HYmTSgrcj1mi59CDGdwqEOeN?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2025 06:16:44.8496 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 188e929d-bb0b-46de-e3fb-08de1c32e50a
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24cf4ad3-1f05-40ea-c4ed-08de1c372665
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2025 06:47:13.0210 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001EF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: k1J3oTIx5mGCaAu86J4QRHnDc6FefWyAdgzMWwmEDwmfIXZ4yWLS7uJX7GYfwaRH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7628
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,57 +162,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The VM TLB sequence is incremented by the VM update
-commit invoker, so it should not be increased again
-in the commit callback.
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c  | 2 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c   | 2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c | 3 ---
- 3 files changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c
-index 0c1ef5850a5e..f7a5e71346df 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c
-@@ -106,8 +106,6 @@ static int amdgpu_vm_cpu_update(struct amdgpu_vm_update_params *p,
- static int amdgpu_vm_cpu_commit(struct amdgpu_vm_update_params *p,
- 				struct dma_fence **fence)
- {
--	if (p->needs_flush)
--		atomic64_inc(&p->vm->tlb_seq);
- 
- 	mb();
- 	amdgpu_device_flush_hdp(p->adev, NULL);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-index 30022123b0bf..869f9cb28d94 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-@@ -420,6 +420,8 @@ int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		goto exit;
- 
- 	r = vm->update_funcs->commit(&params, NULL);
-+	if (params.needs_flush)
-+		atomic64_inc(&vm->tlb_seq);
- exit:
- 	drm_dev_exit(idx);
- 	return r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
-index 46d9fb433ab2..0ceb2474a721 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
-@@ -115,9 +115,6 @@ static int amdgpu_vm_sdma_commit(struct amdgpu_vm_update_params *p,
- 	WARN_ON(ib->length_dw == 0);
- 	amdgpu_ring_pad_ib(ring, ib);
- 
--	if (p->needs_flush)
--		atomic64_inc(&p->vm->tlb_seq);
--
- 	WARN_ON(ib->length_dw > p->num_dw_left);
- 	f = amdgpu_job_submit(p->job);
- 
--- 
-2.34.1
+On 11/4/2025 1:01 PM, Samuel Zhang wrote:
+> On PF passthrough environment, after hibernate and then resume, coralgemm
+> will cause gpu page fault.
+> 
+> Mode1 reset happens during hibernate, but partition mode is not restored
+> on resume, register mmCP_HYP_XCP_CTL and mmCP_PSP_XCP_CTL is not right
+> after resume. When CP access the MQD BO, wrong stride size is used,
+> this will cause out of bound access on the MQD BO, resulting page fault.
+> 
+> The fix is to ensure gfx_v9_4_3_switch_compute_partition() is called
+> when resume from a hibernation.
+> KFD resume is called separately during a reset recovery or resume from
+> suspend sequence. Hence it's not required to be called as part of
+> partition switch.
+> 
+> v2: switch to use amdgpu_xcp_restore_partition_mode().
+> v3: use in_suspend to replace in_s4.
+> v4: refined commit message and remove comment
+> 
+> Signed-off-by: Samuel Zhang <guoqing.zhang@amd.com>
+
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+
+Thanks,
+Lijo
+
+> ---
+>   drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c | 3 ++-
+>   drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c    | 4 +++-
+>   2 files changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
+> index 811124ff88a8..f9e2edf5260b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
+> @@ -407,7 +407,8 @@ static int aqua_vanjaram_switch_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr,
+>   		return -EINVAL;
+>   	}
+>   
+> -	if (adev->kfd.init_complete && !amdgpu_in_reset(adev))
+> +	if (adev->kfd.init_complete && !amdgpu_in_reset(adev) &&
+> +		!adev->in_suspend)
+>   		flags |= AMDGPU_XCP_OPS_KFD;
+>   
+>   	if (flags & AMDGPU_XCP_OPS_KFD) {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> index c4c551ef6b87..cbb74ffc4792 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> @@ -2291,7 +2291,9 @@ static int gfx_v9_4_3_cp_resume(struct amdgpu_device *adev)
+>   		r = amdgpu_xcp_init(adev->xcp_mgr, num_xcp, mode);
+>   
+>   	} else {
+> -		if (amdgpu_xcp_query_partition_mode(adev->xcp_mgr,
+> +		if (adev->in_suspend)
+> +			amdgpu_xcp_restore_partition_mode(adev->xcp_mgr);
+> +		else if (amdgpu_xcp_query_partition_mode(adev->xcp_mgr,
+>   						    AMDGPU_XCP_FL_NONE) ==
+>   		    AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE)
+>   			r = amdgpu_xcp_switch_partition_mode(
 
