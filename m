@@ -2,62 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDEE4C3B4EA
-	for <lists+amd-gfx@lfdr.de>; Thu, 06 Nov 2025 14:41:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EDFEC3B4DE
+	for <lists+amd-gfx@lfdr.de>; Thu, 06 Nov 2025 14:41:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0190110E8D1;
-	Thu,  6 Nov 2025 13:41:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A123D10E8CC;
+	Thu,  6 Nov 2025 13:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDuIGQZV";
+	dkim=pass (2048-bit key; unprotected) header.d=kerneltoast.com header.i=@kerneltoast.com header.b="RO/jxi87";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46FD510E71D;
- Wed,  5 Nov 2025 12:24:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1762345478; x=1793881478;
- h=from:to:cc:in-reply-to:references:subject:message-id:
- date:mime-version:content-transfer-encoding;
- bh=0B1jhChxD6ZKpJ6Tuobc4Zvkfa6EY5vmp0IHl/3uNNo=;
- b=GDuIGQZVCwCW4gKpiwvURHFO7ZX0ugDnn9mRu2Xz/yBq9rlM2iZZMSo9
- lCtZ3QcA3Fbz36bE4yv4Y8iIwWSyXDv/QKgCjHN2MQ8E9FSUd5iXKeSs3
- D/uBz4ndO4yX2vSuVczstpO8JPHXFR3CRTYIb0vTgr0it3WEOrZ5pcfZa
- YHH+CnpLGyn9wrBW0FCdANW4LfHZyBteSNadBhEzHuLPu6QaOCgW7N1ab
- 2JawefR4QowJYYJyzeLgsQBXzN1nVJgnnzfUNhG2Oxtbhwv+s4uLCbvjm
- gXujSCq/fSgCAgiWg/ki7imXluVvcxCCA0I0iOkfXXymsUk7n6AdWUGqo Q==;
-X-CSE-ConnectionGUID: +3NOCuALSWOziZUiXKgdjg==
-X-CSE-MsgGUID: 9sf4XVHjRPeKwi/21pgyuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="75906385"
-X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; d="scan'208";a="75906385"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 04:24:38 -0800
-X-CSE-ConnectionGUID: hrEdSF8sSEOfh4uQ5YiACw==
-X-CSE-MsgGUID: Y8SSPBRqR+KSkimI4DZj/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; d="scan'208";a="192610893"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.252])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2025 04:24:34 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Alex Deucher <alexander.deucher@amd.com>, 
- Shyam Sundar S K <Shyam-sundar.S-k@amd.com>, 
- Mario Limonciello <mario.limonciello@amd.com>, 
- Perry Yuan <perry.yuan@amd.com>, Antheas Kapenekakis <lkml@antheas.dev>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-In-Reply-To: <20251024152152.3981721-1-lkml@antheas.dev>
-References: <20251024152152.3981721-1-lkml@antheas.dev>
-Subject: Re: [PATCH v1 0/3] platform/x86/amd: Add S0ix support to the Xbox Ally
-Message-Id: <176234546849.15175.7746615027448740430.b4-ty@linux.intel.com>
-Date: Wed, 05 Nov 2025 14:24:28 +0200
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54E7F10E7C6
+ for <amd-gfx@lists.freedesktop.org>; Wed,  5 Nov 2025 23:21:43 +0000 (UTC)
+Received: by mail-pg1-f177.google.com with SMTP id
+ 41be03b00d2f7-b95cdcacd95so207232a12.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 05 Nov 2025 15:21:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=kerneltoast.com; s=google; t=1762384903; x=1762989703;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=bJiprROu63G1frHmGSO+l8oyb9oBLslAg4j/kLd4BHY=;
+ b=RO/jxi87hjsaAOqxznd952V2wz2b8axlLYZVuI87NuYDWdvXXu7Rn5Fa3zYrLGh5jE
+ Zh9bt5zDq6Ov+dWx5Xt7UFcKGAXw1nAGeIbR3ufXvaxV9y5qrEbh3KZsHZZWlTnwRPBk
+ Zhg0s5fNzgxnUC1X33cPQoljBxqiwmtJlcTmZfpBRAavv89CH9IEQCPLiAFpqGQbWAz/
+ 8JI3zaPYB9E4Avn/701wxm6gJjZ8KdFMSiEdS0gwuy1cK9uXNEumBX3husqWuQbxV+46
+ OKInFPH7K1AiICa3IjzVIqWP2AekHpGX/d1fP4q0QKFXrhbxS89OV8LjFEN/AwP09Cxn
+ 9LrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762384903; x=1762989703;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=bJiprROu63G1frHmGSO+l8oyb9oBLslAg4j/kLd4BHY=;
+ b=X6J+S6JkpJ4rrXHvOn5WCBAJWXi/168Cdet/udMTvofVFPLaEVmgiBjAKyWlz2yyDR
+ jO6uF2Jbl+tMewaE2lOVv2MXsDY8L3YZIbERYx5z+9H+oSvAa25wae+M+UpG6/LDFNps
+ /P479gfj8Opd6t5fSGGTXbqkVuiyICViRf4Oz01ehaH2+zxyWaI6WEi6t7rwqgofUG9H
+ RoP8KqOvfv07XJ8uS0WAi5PKs7nck6d2MMcigWGSty+6NC0JuPFSDNe7d3SLFnLgoc01
+ P24ua5vWBBdOKoqXwfGVQtKZg7YFCADqYR1z64vWAdqhoeUuWcn3GtFMwilQfjbgOKuZ
+ ipcw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXd3gpgNa2603jQXSaLimVBY8fiAKGwfTA7XVvQGxSlxeBty9uccDgSVTM/MdLt0PxGNgDOQLhx@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwCyhp33lL5U2kFtoT4rmkaAIF7KQEvhu5yCdVmlnR8TRDtjoc2
+ wRS5eK+YHtxp5N7ZXbQjYPo0mEGQs5JfxmkIf+JeaiEMXxjnE3rlebBDAtXz4LG36zlV
+X-Gm-Gg: ASbGncuih48qqQowIYfE13YRkBa/HaTSQ770Sm/l/75U2tlFwmBhouQ0VfL29wx+GHd
+ QkZFt5uKz0UZ71FLNSXM5aDMwyonIKTspL35hQMXexBfcuJskr+HIz1QVtKS2Cpozi7gNVhRrfT
+ 4TypMhQSta0ATaNlej9fZq9A4vlDfrd0DLwCXajRvhbydU7d45CFxRPYRN8ybdH/V/16eCWbeVb
+ QO+/+mBWvcnE55cSIOCpPmQaF4+2O0/iSr7siPJ50RLKUU4KdzUlGP+KkVKArR+ykbpTxobM1U4
+ qkTI76XRUHuTjRFa//rOynvDHiD5JU4vq7Vge7d5pd+fISBhPg09G/YE29Dqbigv/rcoQHeW8eZ
+ k7HJiw7Xb11wE4LEBrUD6Al9CwUbcU7vqR8CyYStDjjcjHcG4FQ==
+X-Google-Smtp-Source: AGHT+IE091+lzdrv+Nj+YfcdrpAjegKIiESDWT7sHR4JWv61MvJE6IaL9ddG35gHuIh3zRLs14+FRg==
+X-Received: by 2002:a17:902:d2c6:b0:295:7453:b58b with SMTP id
+ d9443c01a7336-2962adb29cdmr52328925ad.4.1762384902532; 
+ Wed, 05 Nov 2025 15:21:42 -0800 (PST)
+Received: from sultan-box ([142.147.89.233]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-29650968298sm6719765ad.6.2025.11.05.15.21.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Nov 2025 15:21:42 -0800 (PST)
+From: Sultan Alsawaf <sultan@kerneltoast.com>
+X-Google-Original-From: Sultan Alsawaf
+To: bin.du@amd.com, pratap.nirujogi@amd.com, mario.limonciello@amd.com,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: alexander.deucher@amd.com, benjamin.chan@amd.com, christian.koenig@amd.com,
+ dantony@amd.com, gjorgji.rosikopulos@amd.com, king.li@amd.com,
+ phil.jawich@amd.com
+Subject: [PATCH] drm/amd/amdgpu: Ensure isp_kernel_buffer_alloc() creates a
+ new BO
+Date: Wed,  5 Nov 2025 15:21:08 -0800
+Message-ID: <20251105232108.107765-1-sultan@kerneltoast.com>
+X-Mailer: git-send-email 2.51.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 06 Nov 2025 13:41:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,33 +90,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 24 Oct 2025 17:21:49 +0200, Antheas Kapenekakis wrote:
+From: Sultan Alsawaf <sultan@kerneltoast.com>
 
-> The Xbox Ally features a Van Gogh SoC that on the Steam Deck uses S3.
-> Therefore, kernel support for S0ix was previously absent. Introduce
-> this support in three patches:
-> 
-> 1) Add Van Gogh to AMD PMC driver
-> 2) Enable spurious_8042 quirk, as it is common in those generations
-> 3) Adjust the Van Gogh init logic to avoid powering down the rlc
->    and tweak post init
-> 
-> [...]
+When the BO pointer provided to amdgpu_bo_create_kernel() points to
+non-NULL, amdgpu_bo_create_kernel() takes it as a hint to pin that address
+rather than allocate a new BO.
 
+This functionality is never desired for allocating ISP buffers. A new BO
+should always be created when isp_kernel_buffer_alloc() is called, per the
+description for isp_kernel_buffer_alloc().
 
-Thank you for your contribution, it has been applied to my local
-review-ilpo-fixes branch. Note it will show up in the public
-platform-drivers-x86/review-ilpo-fixes branch only once I've pushed my
-local branch there, which might take a while.
+Ensure this by zeroing *bo right before the amdgpu_bo_create_kernel() call.
 
-The list of commits applied:
-[1/3] platform/x86/amd/pmc: Add support for Van Gogh SoC
-      commit: a400f448c1ad5e22e7ec1700e911f8f9c6a85475
-[2/3] platform/x86/amd/pmc: Add spurious_8042 to Xbox Ally
-      commit: 50cb52ee1dd60247746a984392632ec4237df127
-[3/3] drm/amdgpu: only send the SMU RLC notification on S3
-      (no commit info)
+Fixes: 55d42f616976 ("drm/amd/amdgpu: Add helper functions for isp buffers")
+Signed-off-by: Sultan Alsawaf <sultan@kerneltoast.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_isp.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
---
- i.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_isp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_isp.c
+index 9cddbf50442a..37270c4dab8d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_isp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_isp.c
+@@ -280,6 +280,8 @@ int isp_kernel_buffer_alloc(struct device *dev, u64 size,
+ 	if (ret)
+ 		return ret;
+ 
++	/* Ensure *bo is NULL so a new BO will be created */
++	*bo = NULL;
+ 	ret = amdgpu_bo_create_kernel(adev,
+ 				      size,
+ 				      ISP_MC_ADDR_ALIGN,
+-- 
+2.51.2
 
