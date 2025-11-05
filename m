@@ -2,45 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C748EC36656
-	for <lists+amd-gfx@lfdr.de>; Wed, 05 Nov 2025 16:41:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F387C3665A
+	for <lists+amd-gfx@lfdr.de>; Wed, 05 Nov 2025 16:41:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF1D410E6C8;
-	Wed,  5 Nov 2025 15:41:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B7F810E700;
+	Wed,  5 Nov 2025 15:41:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0pfwvsRz";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xPgkYZy1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010025.outbound.protection.outlook.com [52.101.46.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC40210E2D2
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013056.outbound.protection.outlook.com
+ [40.107.201.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C24110E2D2
  for <amd-gfx@lists.freedesktop.org>; Wed,  5 Nov 2025 15:41:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KuGVKRZm/r4Yu6fWaFAsPDZIC6JVeeixv25vY2Tbew2XT2Wtf9ilehaf2Ufqv/VSk2zX7Go7QabEQ6hiHanOdjl2Dp1aArUqjfgXOGscel0tyeKwyZ4kMVvglQ3cduRFcrQPqy3KXWrASCyc9vtOtJEv4Uwq6sBGppATqMgMt5f9goT0URwppO+7f/2NpqlB10ADs7ltWlZMq61qJ20PLgmiS9Ra7OnMVZViT+H01r1U7GBJLE4Wd46BYCOliZ9XMGOeTPmHmdB0adUUGY6bS5sgFZ9IR9W+AR65VJ+ELL1tXxLCuP5m8dG1f29p1lrHU84mtlmZ+9Sft+/J0X2xWw==
+ b=rPk4KiBjl07R8s3xh9NxBmwwt1J2CVfRBjN3+5511XMz0mmxTlHSOumCkXwBUQe5O4nqaCfzfs0thM+fB/mAZrWODzU8c3tSHNZkSGt3ZC8jvuDdW6TqNCwSybs3sA+u6DVO+5QsmGtKaqrD24adObfiVVrV2DqhQJhGoROB6Xb5t0HMIBMc093e3Fov6FhOkG1iUVGsiNBmnJDd6sjo5kw4SyWFDVJgryvoxJbhlSGQEUm1P3WljH3geTu3Lrcd/j6oVHAmdMmEuCKv5BxM17x8ieaZ2y3bpo1pXPFurN1TCvTBooEswLPLk0iZJVs5vx44KJZ1E+TDbT6Q8f9Jpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i3pylKIWDwV8SxMUOWs8H/KKG1kyZhpbN+0eLaQUMbU=;
- b=S4+4mwVCRK33dYYwi0Q+IZU9rg9UGGbUVYwgo5fYayQ0uOUY0U2FoZ6GHRYdsBa7aePeMplgHh8Dl2JeEiBHe5sEwosRKCfj3d0/TT62hkeJwhTji1PfQwpz11sYVjI6VrtfTCcqdvRpyf3zxra/Z2ce7+e4FfxkuQKzIOFWM/a3wEjALM0NT23CE2S+V9qmjolLpV5BaU1ly1z7aeYIbQdzhErram59A/4AFsVCP6QhTTi2tZePbHjUPpI+jlUH7HDnunoo53ZdVeYvKDHDyvy2oivXmRVZdVeJpfAzk/lpnpimatDLTOC3SxrRxK4bi0q1p3LDTNP5uSaDHDfODA==
+ bh=2TTyg/5deR6agk/bg67mTr9UmkkLAu2ub401sCPdUfE=;
+ b=JCauyhfmKAqs9SeWI0XJ8W+iiFy1khPdIo6pYPTMhzFinrxu7+c/T6OUr+HeL1izp0c52E38nE6uXhGKCCg7qivrdXeqpGoRuj4poMEI+Ft7b+t4a8Wu/B9N3b7sjVaKEteBi7Z1/iJPXaVXo1nR339VBUrFuzukxnUZb2KZnVkxFXnpYXZHmYeuQ62mxG5vvIl0Ju5pfxO58lvPXc+iZpjytfJ4rKgC5WSGBl+tW9h+FTKH2PKVxCkHVR38muVgF85tVCCkKDfsOwVUiLzby+R0sEhq3IwAcG1w8Rg6IxVVXNkNNDMXbGReUe7g/BgENhZ7MufEtWOYOnYdcAJUEA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i3pylKIWDwV8SxMUOWs8H/KKG1kyZhpbN+0eLaQUMbU=;
- b=0pfwvsRzXi4281pgNyevtUbP9dmmlMFqKXxBnbgOk0puYkZTK/OlctCPj6JmJg3X9MYgBPy1SAGghhiHIoX1V33rPdBxbJKlgf4fFE1pn1W7oxHLWqvZPiwEqAVV23gbquYrJse3BQMf4v4VwbfF/07C3uQzRi4q8Qfmkymr6sw=
-Received: from BN1PR10CA0001.namprd10.prod.outlook.com (2603:10b6:408:e0::6)
- by PH7PR12MB7966.namprd12.prod.outlook.com (2603:10b6:510:274::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.9; Wed, 5 Nov
- 2025 15:41:03 +0000
-Received: from BN1PEPF0000468C.namprd05.prod.outlook.com
- (2603:10b6:408:e0:cafe::f5) by BN1PR10CA0001.outlook.office365.com
- (2603:10b6:408:e0::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.7 via Frontend Transport; Wed, 5
- Nov 2025 15:40:54 +0000
+ bh=2TTyg/5deR6agk/bg67mTr9UmkkLAu2ub401sCPdUfE=;
+ b=xPgkYZy1mG7G334u+fQtDf+moQ7UGtbJSf4mQnXTVniuoAJ9TAyqWTXKFo/p1/uY46t/sNYzQVjw+t2LbqkCkBXCJhAQvyFmErr6GfmnkTdFP7JY9zkgsXM9J73bv8aqIYR7BoeBuSLk7DKpGej8o7kYFxdT2vtaroRtxYmfpkk=
+Received: from BN0PR04CA0013.namprd04.prod.outlook.com (2603:10b6:408:ee::18)
+ by CH3PR12MB7523.namprd12.prod.outlook.com (2603:10b6:610:148::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.7; Wed, 5 Nov
+ 2025 15:41:04 +0000
+Received: from BN1PEPF0000468A.namprd05.prod.outlook.com
+ (2603:10b6:408:ee:cafe::de) by BN0PR04CA0013.outlook.office365.com
+ (2603:10b6:408:ee::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.8 via Frontend Transport; Wed, 5
+ Nov 2025 15:41:04 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,7 +49,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BN1PEPF0000468C.mail.protection.outlook.com (10.167.243.137) with Microsoft
+ BN1PEPF0000468A.mail.protection.outlook.com (10.167.243.135) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.9298.6 via Frontend Transport; Wed, 5 Nov 2025 15:41:03 +0000
 Received: from SATLEXMB06.amd.com (10.181.40.147) by satlexmb07.amd.com
@@ -58,7 +59,7 @@ Received: from SATLEXMB06.amd.com (10.181.40.147) by satlexmb07.amd.com
 Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 5 Nov
- 2025 09:40:53 -0600
+ 2025 09:40:54 -0600
 Received: from jzuo-laptop.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
  Transport; Wed, 5 Nov 2025 07:40:53 -0800
@@ -69,10 +70,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Ian Chen <ian.chen@amd.com>, Aric Cyr <aric.cyr@amd.com>
-Subject: [PATCH 05/13] drm/amd/display: Add new SMART POWER OLED interfaces
-Date: Wed, 5 Nov 2025 10:36:20 -0500
-Message-ID: <20251105154035.883188-6-Jerry.Zuo@amd.com>
+ <alex.hung@amd.com>, Mohit Bawa <Mohit.Bawa@amd.com>, Nicholas Kazlauskas
+ <nicholas.kazlauskas@amd.com>, Charlene Liu <charlene.liu@amd.com>, "Wenjing
+ Liu" <wenjing.liu@amd.com>
+Subject: [PATCH 06/13] drm/amd/display: refactor DSC cap calculation for dcn35
+Date: Wed, 5 Nov 2025 10:36:21 -0500
+Message-ID: <20251105154035.883188-7-Jerry.Zuo@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251105154035.883188-1-Jerry.Zuo@amd.com>
 References: <20251105154035.883188-1-Jerry.Zuo@amd.com>
@@ -81,53 +84,53 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF0000468C:EE_|PH7PR12MB7966:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4a1c12d-1774-40da-4c21-08de1c81ba3d
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000468A:EE_|CH3PR12MB7523:EE_
+X-MS-Office365-Filtering-Correlation-Id: cae369ed-58ba-4422-8aa4-08de1c81ba8d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3ucFAtz5Mdqr+jfLeExjF255v34ty+Sbf4JrD1mzs4zxJHX5Xj56/1CeTsRj?=
- =?us-ascii?Q?qOtlLJM5OGuaR8eWqnRku6YR37gZdVBmQrV7aujq6d/fjwBB1X5KsXtxgJVe?=
- =?us-ascii?Q?VLSVqKOGjSeFlmz156H/uU6CH6+E/zuGAe1Fjz4d7HFbGAOtVQHmMgRRGxzv?=
- =?us-ascii?Q?D17JJAmfAGNHYj4My+kdOUgg6Ri1CH1Nkoxb+HfHJm1qXUzl7yQbciJjKQRi?=
- =?us-ascii?Q?R13kgqq+60hQ7XWAHT9z+bRui70cWVGHET7236r2pSSL1GGX51C/dtYY8iS2?=
- =?us-ascii?Q?9cdNKtYT+dgW3i35+JTeWavuMSITz1hMZ6Tte4evJ8JiyRArfwwuyZ1qRWKD?=
- =?us-ascii?Q?I8Zz3y+xWX7DebVlFClqF2KnX25wwN/gpmtCRHSrR2WD52W+1fsLLm5TqU+a?=
- =?us-ascii?Q?xT3jCemVHrjOttkhjDwiOJpgdnebxKi1PCDsiL8MGMqTi6tu2gG43KiN6a+L?=
- =?us-ascii?Q?9KE9lRaz+S79RayefevFvkhGpF2lXpshB6Wi60cZvMz4lgGhY92h9YhA5USl?=
- =?us-ascii?Q?/qzqxuGv/3FiUGyCTxWPrp5xS4oe0p7fYpNwZg4aL6Dx7lNr00LXqBuyZNRA?=
- =?us-ascii?Q?owIq3lBYQ8scVARNgRbqg817vvilzS0UMThu+K4uYgsg9Q4rA6k/mcFhsAH0?=
- =?us-ascii?Q?T6KsgJHTzq5054JClbkhHbe+/mFy/dvITKCxxdQ3F9R+Rlq6zf4txgoddH9b?=
- =?us-ascii?Q?8YuQsAnHLTtuevEWvmr7FttTZyzNV6oI8ybXbTHBtsgly9tFboWq7Ss+AVCb?=
- =?us-ascii?Q?6tBOGuTmx5hOz+HCkwZhdAEPFohSyYT/n0UyKeoTa0pFPTCEUk/kySVFdPvt?=
- =?us-ascii?Q?tbHo5HNSJ9F02NInxjBu1GvuOCv6Y1G+LhxbIw0/Ptsa++WgDPrQ4fo94jhS?=
- =?us-ascii?Q?ERv0cy0ieGI0jHEa9nw3KpGZtpePPiv+f2LoOeedYOHoeGTttL5SJMtuxJYM?=
- =?us-ascii?Q?wz1K8dOv/CYZY8Eqmk1ZI8BmmcN/KCNkjs68S6xT0/dPRk1ezIH79djT5vvt?=
- =?us-ascii?Q?IG+iU5tXxCFXCekctPm20agy6IueEsFc10q4vm3Qi3WEHaflrM8JMyn/zGov?=
- =?us-ascii?Q?knl93SRi56+3n8RBhJZ8ejhfLW/ZLgXBeqgCsOEpcgrzHHKr8PoXK3BxF6Tj?=
- =?us-ascii?Q?ufXYxJLYMsyDWIOvsJ54SFFM1y6LqeDYbmmCiCrXRRHYTrnwv7b+lBH7Jk/t?=
- =?us-ascii?Q?79TEDngq/fdv9zM4RQzGhnzUAXUv4XnoTuvqGGN/pxcEctRODZaKEbGeinAp?=
- =?us-ascii?Q?ZQz4W4hyINsCcbnOC0ej3PAq/3LgnTBHQTVTqjKCR9Lg0iWC2WwAFDydpTG8?=
- =?us-ascii?Q?zmm/AxQnRcRLj6pq1Y1V8y0w+aUpGmRHFvpA+l/CK9tvLGklq48Ije9k87rm?=
- =?us-ascii?Q?dmQzkIq4DXHR/xIUSg7oxdkZyLFAA0oMwH4pQDoABCase7NfnIYkuhWV7e4M?=
- =?us-ascii?Q?V1eF5hMARPNm71EZayv4KMHdQNSDEc8thTxe+Lam/lehYBvkUDtjR8UOidfE?=
- =?us-ascii?Q?Xc9H81zjDTYDN7eFDzuQCOPRBS5YH8IDiemLCLahO3j6TvEG6yv1d6YVefZm?=
- =?us-ascii?Q?cTn2UaGNrmtHGy6V0V0=3D?=
+ ARA:13230040|1800799024|376014|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5V9uaIhJkXIPoAuN1QW49cw5qPxe8qpKXmdDS5/OXbTWd67t7CLi4SnLeXAv?=
+ =?us-ascii?Q?bXHqps49Gos5nro4i3wsIlzIdt9KgJSJLewKIerwoqf51iXCp7gb7/pTlK1h?=
+ =?us-ascii?Q?0TRzN6VN9piMZzG82bejEdaxewxQBazpgtxiSzZbOoeVEmBkw5aK83EYUeuk?=
+ =?us-ascii?Q?lVsbtGdZCmjQCt0zEQyIt+CC9iuSIyY3BLxjvmp3uGULW8i0SUBNF+VObAJr?=
+ =?us-ascii?Q?AG8stlMzQ1HyfAwLHe6iknDCTZ6bnLKSOvsPqVhSQpBfl16DJBq2NkULsE/1?=
+ =?us-ascii?Q?oEPm1NEsfXvxWpyqE+etrCLlcGbwAF9sG/Ph6RU1zD4Xc+Gy4xdAZDsCmNRY?=
+ =?us-ascii?Q?FIr5KxABL4QXCXSx4ar95Mg3LGKGIo4w+uxPK6sA4GPDwaVMNQyqXS0uud2s?=
+ =?us-ascii?Q?yV71gNjdtE4xoARDpRvqnSfi9JIwYlfmQ80PpnNq7PfKt9Akf+75F+6kj8gJ?=
+ =?us-ascii?Q?rsQdvIW3jFt1aoXN4WcRDsQTdzNSnk5R/Tr+xA7SRPRU29bHGC/OeFvC1x/H?=
+ =?us-ascii?Q?dgn/VUluDgF+l3SlFtV0M4vf0F7NjLXXYhZ8ASPJvQ2qllcDRw02jFQYOh4n?=
+ =?us-ascii?Q?+C65AwcTs9cGM/LUZNtYF7FQ/y1tNm5BBJdK07IqltGwR4tF5scGGQF60Zq1?=
+ =?us-ascii?Q?gBVTHtiRIfcLQpxmeUJpIlTBTlCUjY7eZ+Xg0a1D3KSqpHI0BsnZdyn4sRAK?=
+ =?us-ascii?Q?Kguq9g1KtRtsQpO8kW26gd+JkJ8wUxyEZCsIPw6xbFFjnDav8pbbnoQJtJD2?=
+ =?us-ascii?Q?pjlD7m+yV3kSq3nhYc5uHL75jBuCkh1OPRZHCFOfPvK+RX3XZr6a139lIX8y?=
+ =?us-ascii?Q?wBWmkkk0kz5mG0ZNzUqQhemj9azMbUlVagegjwb9SP5ZA/l+K9zZ/54Fst7D?=
+ =?us-ascii?Q?3Xc16+GKLEOWDQ2Bdktc5RrfBn0BopGdwKcq3GJNmLH3waKHxnwl6R0X6eaL?=
+ =?us-ascii?Q?jc54yYOYQgngNbzMntKXF95US41JUGOnocym2xasgAQyI7xzwJ6hNhpUwjyF?=
+ =?us-ascii?Q?VXJ4uFnrjKLjuqgp31LQMdLxeIRGhso4Bssedrw3qm9RiZkW2Gd4sEO1lG1a?=
+ =?us-ascii?Q?hP0lUTudUencVbn/RIbS6R2DKRlb0NA5aShXrzV6UKbFqVwkcVkLm9tBc+EQ?=
+ =?us-ascii?Q?4vtf/ykI4wnmd+2JePebjN2f0xUjkJWpoQg3l+sj+ey6llUOisANtaawa2+Q?=
+ =?us-ascii?Q?80MVYbfqEP7vRrw4z9ke+rvME1tFnjv7Jca2a5XRo9O6g4w/nnubARze1ues?=
+ =?us-ascii?Q?Br0E4zfYNdoGoTcKvQDCpnHFjC5piZGmJuNhx0kwKG8BoJ6NwLW1r6fZQvYH?=
+ =?us-ascii?Q?0nfqauY3sQs8farxliIwFP+73vq57OonuFhW2DNh2a9mYhM9djPslWH/3KTh?=
+ =?us-ascii?Q?Sv/Ep2q9EAZBna9w8Uxpd2buS4ZmEItzREKL1/1NXAGelBwsnEIBJX4bXCxZ?=
+ =?us-ascii?Q?c9yG3DkL2el7izcNhiYFQxPoqIlx0NZSx5n/DISRc8WMHzESsXTUC03WD8Bf?=
+ =?us-ascii?Q?eWNOLmiFvy+aKgLgbeZyu86DqTjtu/LYWTHrv6zUKya6D/GHFgsroQ0PMDKo?=
+ =?us-ascii?Q?l21YIB4lhoONr1QyugE=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2025 15:41:03.3696 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4a1c12d-1774-40da-4c21-08de1c81ba3d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2025 15:41:03.8971 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cae369ed-58ba-4422-8aa4-08de1c81ba8d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468C.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468A.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7966
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7523
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,138 +145,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ian Chen <ian.chen@amd.com>
+From: Mohit Bawa <Mohit.Bawa@amd.com>
 
-[why && how]
-To optimize power consumption on certain OLED LED panels
-by sending MaxCLL per frame to TCON
+why:
+dcn35 currently uses a hardcoded DSC display clock value which is incorrect
+for some asic types. Newer DCN versions retrieve dsc display clock from
+clk_mgr. The same can be done for dcn35.
 
-Reviewed-by: Aric Cyr <aric.cyr@amd.com>
-Signed-off-by: Ian Chen <ian.chen@amd.com>
+how:
+Refactor the DSC cap calculation using pre-existing logic.
+Handle ODM combine requirements in dc_dsc.c.
+Replace hardcoded display clock with actual value retrieved from clk_mgr.
+
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
+Signed-off-by: Mohit Bawa <Mohit.Bawa@amd.com>
 Signed-off-by: Fangzhi Zuo <jerry.zuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 89 ++++++++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dc.h      |  7 ++
- 2 files changed, 96 insertions(+)
+ .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 30 ++++++++++++++++++
+ .../drm/amd/display/dc/dsc/dcn35/dcn35_dsc.c  | 31 ++++++++++++++++++-
+ 2 files changed, 60 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 5e79962c5f2b..3999b5835066 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -5977,6 +5977,95 @@ bool dc_process_dmub_aux_transfer_async(struct dc *dc,
- 	return true;
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+index 35d20a663d67..dfd0c9505af0 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+@@ -1295,6 +1295,35 @@ static void dcn35_update_clocks_fpga(struct clk_mgr *clk_mgr,
+ 	dcn35_update_clocks_update_dtb_dto(clk_mgr_int, context, clk_mgr->clks.ref_dtbclk_khz);
  }
  
-+bool dc_smart_power_oled_enable(const struct dc_link *link, bool enable, uint16_t peak_nits,
-+			uint8_t debug_control, uint16_t fixed_CLL, uint32_t triggerline)
++static unsigned int dcn35_get_max_clock_khz(struct clk_mgr *clk_mgr_base, enum clk_type clk_type)
 +{
-+	bool status = false;
-+	struct dc *dc = link->ctx->dc;
-+	union dmub_rb_cmd cmd;
-+	uint8_t otg_inst = 0;
-+	unsigned int panel_inst = 0;
-+	struct pipe_ctx *pipe_ctx = NULL;
-+	struct resource_context *res_ctx = &link->ctx->dc->current_state->res_ctx;
-+	int i = 0;
++	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
 +
-+	// get panel_inst
-+	if (!dc_get_edp_link_panel_inst(dc, link, &panel_inst))
-+		return status;
++	unsigned int num_clk_levels;
 +
-+	// get otg_inst
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		if (res_ctx &&
-+			res_ctx->pipe_ctx[i].stream &&
-+			res_ctx->pipe_ctx[i].stream->link &&
-+			res_ctx->pipe_ctx[i].stream->link == link &&
-+			res_ctx->pipe_ctx[i].stream->link->connector_signal == SIGNAL_TYPE_EDP) {
-+			pipe_ctx = &res_ctx->pipe_ctx[i];
-+			//TODO: refactor for multi edp support
-+			break;
-+		}
++	switch (clk_type) {
++	case CLK_TYPE_DISPCLK:
++		num_clk_levels = clk_mgr->base.bw_params->clk_table.num_entries_per_clk.num_dispclk_levels;
++		return num_clk_levels ?
++				clk_mgr->base.bw_params->clk_table.entries[num_clk_levels - 1].dispclk_mhz * 1000 :
++				clk_mgr->base.boot_snapshot.dispclk;
++	case CLK_TYPE_DPPCLK:
++		num_clk_levels = clk_mgr->base.bw_params->clk_table.num_entries_per_clk.num_dppclk_levels;
++		return num_clk_levels ?
++				clk_mgr->base.bw_params->clk_table.entries[num_clk_levels - 1].dppclk_mhz * 1000 :
++				clk_mgr->base.boot_snapshot.dppclk;
++	case CLK_TYPE_DSCCLK:
++		num_clk_levels = clk_mgr->base.bw_params->clk_table.num_entries_per_clk.num_dispclk_levels;
++		return num_clk_levels ?
++				clk_mgr->base.bw_params->clk_table.entries[num_clk_levels - 1].dispclk_mhz * 1000 / 3 :
++				clk_mgr->base.boot_snapshot.dispclk / 3;
++	default:
++		break;
 +	}
 +
-+	if (pipe_ctx)
-+		otg_inst = pipe_ctx->stream_res.tg->inst;
-+
-+	// fill in cmd
-+	memset(&cmd, 0, sizeof(cmd));
-+
-+	cmd.smart_power_oled_enable.header.type = DMUB_CMD__SMART_POWER_OLED;
-+	cmd.smart_power_oled_enable.header.sub_type = DMUB_CMD__SMART_POWER_OLED_ENABLE;
-+	cmd.smart_power_oled_enable.header.payload_bytes =
-+		sizeof(struct dmub_rb_cmd_smart_power_oled_enable_data) - sizeof(struct dmub_cmd_header);
-+	cmd.smart_power_oled_enable.header.ret_status = 1;
-+	cmd.smart_power_oled_enable.data.enable = enable;
-+	cmd.smart_power_oled_enable.data.panel_inst = panel_inst;
-+	cmd.smart_power_oled_enable.data.peak_nits = peak_nits;
-+	cmd.smart_power_oled_enable.data.otg_inst = otg_inst;
-+	cmd.smart_power_oled_enable.data.digfe_inst = link->link_enc->preferred_engine;
-+	cmd.smart_power_oled_enable.data.digbe_inst = link->link_enc->transmitter;
-+
-+	cmd.smart_power_oled_enable.data.debugcontrol = debug_control;
-+	cmd.smart_power_oled_enable.data.triggerline = triggerline;
-+	cmd.smart_power_oled_enable.data.fixed_max_cll = fixed_CLL;
-+
-+	// send cmd
-+	status = dc_wake_and_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
-+
-+	return status;
++	return 0;
 +}
 +
-+bool dc_smart_power_oled_get_max_cll(const struct dc_link *link, unsigned int *pCurrent_MaxCLL)
-+{
-+	struct dc *dc = link->ctx->dc;
-+	union dmub_rb_cmd cmd;
-+	bool status = false;
-+	unsigned int panel_inst = 0;
-+
-+	// get panel_inst
-+	if (!dc_get_edp_link_panel_inst(dc, link, &panel_inst))
-+		return status;
-+
-+	// fill in cmd
-+	memset(&cmd, 0, sizeof(cmd));
-+
-+	cmd.smart_power_oled_getmaxcll.header.type = DMUB_CMD__SMART_POWER_OLED;
-+	cmd.smart_power_oled_getmaxcll.header.sub_type = DMUB_CMD__SMART_POWER_OLED_GETMAXCLL;
-+	cmd.smart_power_oled_getmaxcll.header.payload_bytes = sizeof(cmd.smart_power_oled_getmaxcll.data);
-+	cmd.smart_power_oled_getmaxcll.header.ret_status = 1;
-+
-+	cmd.smart_power_oled_getmaxcll.data.input.panel_inst = panel_inst;
-+
-+	// send cmd and wait for reply
-+	status = dc_wake_and_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_WAIT_WITH_REPLY);
-+
-+	if (status)
-+		*pCurrent_MaxCLL = cmd.smart_power_oled_getmaxcll.data.output.current_max_cll;
-+	else
-+		*pCurrent_MaxCLL = 0;
-+
-+	return status;
-+}
-+
- uint8_t get_link_index_from_dpia_port_index(const struct dc *dc,
- 					    uint8_t dpia_port_index)
- {
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 1ba7bab51a3b..4c501e12706d 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -2719,6 +2719,13 @@ bool dc_process_dmub_aux_transfer_async(struct dc *dc,
- 				uint32_t link_index,
- 				struct aux_payload *payload);
+ static struct clk_mgr_funcs dcn35_funcs = {
+ 	.get_dp_ref_clk_frequency = dce12_get_dp_ref_freq_khz,
+ 	.get_dtb_ref_clk_frequency = dcn31_get_dtb_ref_freq_khz,
+@@ -1306,6 +1335,7 @@ static struct clk_mgr_funcs dcn35_funcs = {
+ 	.set_low_power_state = dcn35_set_low_power_state,
+ 	.exit_low_power_state = dcn35_exit_low_power_state,
+ 	.is_ips_supported = dcn35_is_ips_supported,
++	.get_max_clock_khz = dcn35_get_max_clock_khz,
+ };
  
-+/*
-+ * smart power OLED Interfaces
-+ */
-+bool dc_smart_power_oled_enable(const struct dc_link *link, bool enable, uint16_t peak_nits,
-+	uint8_t debug_control, uint16_t fixed_CLL, uint32_t triggerline);
-+bool dc_smart_power_oled_get_max_cll(const struct dc_link *link, unsigned int *pCurrent_MaxCLL);
+ struct clk_mgr_funcs dcn35_fpga_funcs = {
+diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dcn35/dcn35_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dcn35/dcn35_dsc.c
+index f9c6377ac66c..e712985f7abd 100644
+--- a/drivers/gpu/drm/amd/display/dc/dsc/dcn35/dcn35_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dsc/dcn35/dcn35_dsc.c
+@@ -28,9 +28,9 @@
+ #include "reg_helper.h"
+ 
+ static void dsc35_enable(struct display_stream_compressor *dsc, int opp_pipe);
++static void dsc35_get_single_enc_caps(struct dsc_enc_caps *dsc_enc_caps, unsigned int max_dscclk_khz);
+ 
+ static const struct dsc_funcs dcn35_dsc_funcs = {
+-	.dsc_get_enc_caps = dsc2_get_enc_caps,
+ 	.dsc_read_state = dsc2_read_state,
+ 	.dsc_read_reg_state = dsc2_read_reg_state,
+ 	.dsc_validate_stream = dsc2_validate_stream,
+@@ -40,6 +40,7 @@ static const struct dsc_funcs dcn35_dsc_funcs = {
+ 	.dsc_disable = dsc2_disable,
+ 	.dsc_disconnect = dsc2_disconnect,
+ 	.dsc_wait_disconnect_pending_clear = dsc2_wait_disconnect_pending_clear,
++	.dsc_get_single_enc_caps = dsc35_get_single_enc_caps,
+ };
+ 
+ /* Macro definitios for REG_SET macros*/
+@@ -111,3 +112,31 @@ void dsc35_set_fgcg(struct dcn20_dsc *dsc20, bool enable)
+ {
+ 	REG_UPDATE(DSC_TOP_CONTROL, DSC_FGCG_REP_DIS, !enable);
+ }
 +
- /* Get dc link index from dpia port index */
- uint8_t get_link_index_from_dpia_port_index(const struct dc *dc,
- 				uint8_t dpia_port_index);
++void dsc35_get_single_enc_caps(struct dsc_enc_caps *dsc_enc_caps, unsigned int max_dscclk_khz)
++{
++	dsc_enc_caps->dsc_version = 0x21; /* v1.2 - DP spec defined it in reverse order and we kept it */
++
++	dsc_enc_caps->slice_caps.bits.NUM_SLICES_1 = 1;
++	dsc_enc_caps->slice_caps.bits.NUM_SLICES_2 = 1;
++	dsc_enc_caps->slice_caps.bits.NUM_SLICES_3 = 1;
++	dsc_enc_caps->slice_caps.bits.NUM_SLICES_4 = 1;
++
++	dsc_enc_caps->lb_bit_depth = 13;
++	dsc_enc_caps->is_block_pred_supported = true;
++
++	dsc_enc_caps->color_formats.bits.RGB = 1;
++	dsc_enc_caps->color_formats.bits.YCBCR_444 = 1;
++	dsc_enc_caps->color_formats.bits.YCBCR_SIMPLE_422 = 1;
++	dsc_enc_caps->color_formats.bits.YCBCR_NATIVE_422 = 0;
++	dsc_enc_caps->color_formats.bits.YCBCR_NATIVE_420 = 1;
++
++	dsc_enc_caps->color_depth.bits.COLOR_DEPTH_8_BPC = 1;
++	dsc_enc_caps->color_depth.bits.COLOR_DEPTH_10_BPC = 1;
++	dsc_enc_caps->color_depth.bits.COLOR_DEPTH_12_BPC = 1;
++
++	dsc_enc_caps->max_total_throughput_mps = max_dscclk_khz * 3 / 1000;
++
++	dsc_enc_caps->max_slice_width = 5184; /* (including 64 overlap pixels for eDP MSO mode) */
++	dsc_enc_caps->bpp_increment_div = 16; /* 1/16th of a bit */
++}
 -- 
 2.43.0
 
