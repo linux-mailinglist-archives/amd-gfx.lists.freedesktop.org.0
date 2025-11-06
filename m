@@ -2,86 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6241AC3B4F6
-	for <lists+amd-gfx@lfdr.de>; Thu, 06 Nov 2025 14:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05029C3B12C
+	for <lists+amd-gfx@lfdr.de>; Thu, 06 Nov 2025 14:06:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E869B10E8CD;
-	Thu,  6 Nov 2025 13:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDD5310E141;
+	Thu,  6 Nov 2025 13:06:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N3ZT/YcG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CXEQp2zn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
  [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCC7610E310
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Nov 2025 03:32:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E0AF10E141
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Nov 2025 13:06:40 +0000 (UTC)
 Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-47114a40161so4190625e9.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 05 Nov 2025 19:32:16 -0800 (PST)
+ 5b1f17b1804b1-47112a73785so6120255e9.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 06 Nov 2025 05:06:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762399935; x=1763004735; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:in-reply-to
- :mime-version:references:from:from:to:cc:subject:date:message-id
- :reply-to; bh=yrEk/Xf2Q2n9dlGq6cH1zvZkMfQfJdDOTEouv0yhkfE=;
- b=N3ZT/YcGn+ie03ugx0xGzl2euQBqZdo1DsETOflJei8wRkWBnGTLGaSR2DULucN04L
- p7N91fn9PXCBScAwGm/oXybCgB5lXCWFPbVCMvee5n1GRwFQlU2NKiDAy6FoA1Y2wYxq
- Bz3MTmlH+DkGfjY2QqoJZNQddQXCPBcBQwNQA83z8VDfBaHNlpe/l6lWow5umxZ+adDP
- q4QSmay1xgwPXAg+/dsIBsJf1qnwSsh/OEnUwH2aIXmrt+xno3ec78yLGG8Cpzv8qQIw
- CH4wO+p5Dg4EdOumcuml1yIBOyH3rmwEAKsNiLoNF3H9PjktwY2u5Z7As1eZW6kZmQWZ
- OPtw==
+ d=gmail.com; s=20230601; t=1762434399; x=1763039199; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=KuP1tX9bFfy2LxhPyrTfgTHZJBEVJRKPahcwkS5YzNg=;
+ b=CXEQp2znmV/hkJQ9kgOKW3OTNdbjtGcCusBrMuR/eSfWPycv5YDTHy5M7HF2mJ3Utz
+ J2NiUBYga2D3OxLY4iZyUtuNc/Z9BPE4HaY3MI00KloPhxT/r1mQOhoUAWdD1KA9YfLm
+ F7yau5TboU+J1tDHMAVlk8xIgD/XbzvyXmrzCitEiAFsZFxcWKjlPOESr1EJE9pX29ZP
+ tUexeOFPy9/YytSeC4KI2U10bVr+rlhJdC+Ym5b/+OSJgSB/bGLzYMkEnjSIhm3Gmgi3
+ F09JR44HpBlItbaDoDgqxKUdB8tPACYA8q0hc5WbQbYi8gkYtADkvl5X7YAGWx85Y6+O
+ GHhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762399935; x=1763004735;
- h=content-transfer-encoding:cc:to:subject:message-id:date:in-reply-to
- :mime-version:references:from:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=yrEk/Xf2Q2n9dlGq6cH1zvZkMfQfJdDOTEouv0yhkfE=;
- b=RPMmujXV4P7DbDPt5EejerXUH/UeVpHP5LkNl06Kw9lIJ3vsBjsAwxtj4IyeeOcebX
- MhezuCuua5Z6ZPR4v5+KGcK8R6z7w0ypB9zry6ozQaB/Smw6P5vCO6K85CBtBMxvEHhL
- 38MKrBRcgBqTndqGCixhH9VMdt48IQBxPzF1Iql98+/pgMsl/UIReXWQGlR2GNlMHmIh
- UGdl2g0+63lIqfYVmSD6r5Az+OMCpHrhyAcIVSmFHeEHr5Nz+I44fcmyfHnaC6ay50mH
- NIjrGW7FcDeY2uaA20Jb7UKH6+U+AVbme+wvP9GjGZnRkMBkU491c2olGBGxKx7jKDZw
- c5Hw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUwy3+9DLZugP44XPhF57+0LrmCoqB7hf7fdBveR9CfClagk7caBGLHOUZo0ut+qsGJYGnEfRKb@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxS5nBbjmodc+XzshNFUw3EB53HXa38pX55GU4A5/4/h8xbhnR0
- ZqVG1AFJeiH35J/4x8EsrOsdW8txnBJKvDlTDq0Wt0W3FfzOePQTRzde1u2lPewjK+SffhClLF+
- XIKEMDCUinQtKmXUh5a2MuGH2yFh8tcw=
-X-Gm-Gg: ASbGncuP9MK3TEsdPdZ913nOvOecxEdDj5NGGADQe4PIKOxcrmxRLGJ9RWui53ylpDV
- ytz+olobc7aEXhmQ6rvN4NRkxEci2kVQoWXRZkgjtsLlI4F1LGdvzaWNVbU8PIOgDTNxtXvcRMr
- Oqju0TODWmNrsJG3ymTv1g3hgbH21EtQdPvGHMX+WryDAkdxh2fUB8F3v2kUDsR9TT1ZNblGKc3
- /wfc9A3DNnIJSW1wuyqQCYZcCSdvFyP/AGsTEpsiaeExWJySAvrJRuM9Bdf
-X-Google-Smtp-Source: AGHT+IFrfGKqaeGd0M4rahJWdXYrfC2f9U8PYeDUdpZcxXT+BGPgGV/ia28mdz/Wa5fqNR6TklX63VW1vOs+z/WpW7g=
-X-Received: by 2002:adf:9dcc:0:b0:3eb:2428:4a05 with SMTP id
- ffacd0b85a97d-429e35d2979mr3812837f8f.3.1762399935152; Wed, 05 Nov 2025
- 19:32:15 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 5 Nov 2025 19:32:12 -0800
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 5 Nov 2025 19:32:12 -0800
-From: Amit Dhingra <mechanicalamit@gmail.com>
-References: <1043551.1761844832@turing-police>
- <32ed124e9d603cad950c4836c7a14a3ba8bc2068.camel@gmail.com>
- <1296761.1762045181@turing-police>
- <CAFF-SiU3XL5pZAzsB=eXi7e1LKzx5XwiNOyfGpPXOnnc6uo2cw@mail.gmail.com>
- <CAO=gReF+sWpKZFa+wbtGxa3+wSjAQG1UMG3iJaDt2EOPmH-7mQ@mail.gmail.com>
- <149f5bb52a21becedc17a5b0bf1a586672940af6.camel@gmail.com>
- <CAO=gReERBacxH6SjLrcCNcStiAzMosR=aW5D4W925CJ_yjzbhA@mail.gmail.com>
- <867953df79b54037ce91cf1886b09ec5c30f7442.camel@gmail.com>
+ d=1e100.net; s=20230601; t=1762434399; x=1763039199;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=KuP1tX9bFfy2LxhPyrTfgTHZJBEVJRKPahcwkS5YzNg=;
+ b=AZ2C8x5a1x5hdc/e28ecOlCNXOfUGZUHY11mXTOLo1Zk24MRdVnS8G4bebbT3iIdfB
+ nocSVzdI8a58HtWZ33hfwS/UGreXacl62dHNo/W/OGZRic017lINtSg8MOMWgmKIh5YZ
+ /EAJwIZjgGGwW6C6Q2LVRLcz95p/x2dN4NX7svsB2ErLn5NkHU4iEyjNNy6hARswNf+l
+ Wjy3IFdTvAkOka6/5rkw41fnZJLWvKGzzFS7YCB3QuIi8+/nAfe/Jeg06aDwivYA8IPr
+ YxtI3b0BWM3msbc891TGOwcMWiHo0dzNkFOI0L3K1lo5KxbMIpL6vnukvjQr939arhe8
+ DIuw==
+X-Gm-Message-State: AOJu0YyYNLkAj7k8gVnf2dUz5UWDMv9UA5Vd0fNCui6b4Pl7KmpW4CK3
+ Lz3Dc9L6L+nOj+XFq/GkOW+rOMzhj2bPb9nhmIq4WBVKmniOFPeEbJEG6sTdiQ==
+X-Gm-Gg: ASbGncvh5kWEtcOBbnJS2PSZ+vlbQWE7QnOhAbD34sosuMYS7w9zKRC40MTbKnTPDYk
+ J1yx3H7nHofNN1uDJuZ0Se1yMus8cKUX5NwjpQ5I4bv8dvpXYy/tRZRkuJ2BYPuQwmYWM7dlp+w
+ 0pH7FuFdmZSw8XuCLW0hh5FUtVQslrc6WrOvwhK2LSPoerHhJJfLiwX+PAYmKCPlwSflQK3vQWI
+ 1FbBVt65woAI3C4XUsi/SjcQMqROblAkjHy+RSYnNhTmRIyFAoa7ZycPI18z9K2MsT0PQ9wInr4
+ 8sYb7sC4UzPJ3BasodQ//QeGyuHpgz3vkW/6UM9Yy8nvegcM7io3hYgbGn6ZN7qBNcxqImla6RA
+ TeKWG4LpPYVDiAvoGqsjg0z8ldZvLrrWdISh/zePLCWodnIC0GhuxMLxSQXsXefvWt6uY3/7E0t
+ /mOK3jJjN03Bgw
+X-Google-Smtp-Source: AGHT+IEcycMgl85+o5JD2nwV5a0asbOzFzdbje+x2FQoixbsjUsnbwDbSnmraFmJ10QnrsT+sYNu3g==
+X-Received: by 2002:a05:600c:474e:b0:45d:dc85:c009 with SMTP id
+ 5b1f17b1804b1-4776a911bcfmr7476555e9.10.1762434398770; 
+ Thu, 06 Nov 2025 05:06:38 -0800 (PST)
+Received: from able.fritz.box ([2a00:e180:151c:500:cbed:dc34:903c:1eab])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-47763e4f13dsm15710095e9.5.2025.11.06.05.06.37
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 06 Nov 2025 05:06:38 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdgpu: avoid memory allocation in the critical code
+ path
+Date: Thu,  6 Nov 2025 14:06:36 +0100
+Message-ID: <20251106130637.2187-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-In-Reply-To: <867953df79b54037ce91cf1886b09ec5c30f7442.camel@gmail.com>
-Date: Wed, 5 Nov 2025 19:32:12 -0800
-X-Gm-Features: AWmQ_bnotwgT6unc_-gxGV9K6-s_IBREkpHZkpHK4M-tvSqJlBDCl1SbJWJwBdI
-Message-ID: <CAO=gReE5LThojtkZx3+6aJYuB7UpRs1tHVnvma+BynFduA_9Zg@mail.gmail.com>
-Subject: Re: linux-next-20251029 - build error in amdgpu
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-Cc: =?UTF-8?Q?Valdis_Kl=C4=93tnieks?= <valdis.kletnieks@vt.edu>, 
- Alex Deucher <alexander.deucher@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- David Airlie <airlied@gmail.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 06 Nov 2025 13:41:01 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,115 +86,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 06, 2025 at 04:29:05AM +0100, Timur Krist=C3=B3f wrote:
-> On Wed, 2025-11-05 at 19:24 -0800, Amit Dhingra wrote:
-> > On Thu, Nov 06, 2025 at 03:40:52AM +0100, Timur Krist=C3=B3f wrote:
-> > > On Wed, 2025-11-05 at 18:34 -0800, Amit Dhingra wrote:
-> > > >
-> > > > >
-> > > > > What do I need to do to trigger the warning?
-> > > > >
-> > > > I have the same problem.
-> > > >
-> > > > linux-next on Arch Linux
-> > > > GCC : 15.2.1 20250813
-> > > >
-> > > >
-> > > > Steps to reproduce the error
-> > > > - make mrproper
-> > > > - make allmodconfig
-> > > > - make drivers/gpu/drm/amd/amdgpu/
-> > > >
-> > > > Turns out its due to randconfig, See [1]
-> > > >
-> > > > Setting RANDSTRUCT_NONE=3Dy seems to stop the error.
-> > >
-> > > Can you please try and see if this fixes the warning?
-> > > https://pastebin.com/raw/b8j3UABj
-> >
-> > The patch above defining all fields seems to fix the error.
-> >
-> > >
-> > > Alternatively, if anyone has other recommendations on how to fix
-> > > it,
-> > > I'm also open to suggestions.
-> > >
-> >
-> > What seemed to also work for me is to defining the struct as below
-> > without an initialization.
-> >
-> > static const struct stream_encoder_funcs dce110_an_str_enc_funcs;
-> >
-> > Its static so should be initialized zeroed out. objdump shows correct
-> > size
-> > allocation.
-> >
-> > objdump -x dce_stream_encoder.o
-> >
-> > =C2=A0 0000000000000b60 l=C2=A0=C2=A0=C2=A0=C2=A0 O .rodata	00000000000=
-00130
-> > dce110_str_enc_funcs
-> > =C2=A0 0000000000000a00 l=C2=A0=C2=A0=C2=A0=C2=A0 O .rodata	00000000000=
-00130
-> > dce110_an_str_enc_funcs
-> >
->
-> Thanks! This looks even cleaner.
->
-> I will submit a patch to fix the warning next week.
-> Can I add your name and email to the Suggested-by tag?
+When we run out of VMIDs we need to wait for some to become available.
+Previously we were using a dma_fence_array for that, but this means that
+we have to allocate memory.
 
-Certainly. Thank you!!
+Instead just wait for the first not signaled fence from the least recently
+used VMID to signal. That is not as efficient since we end up in this
+function multiple times again, but allocating memory can easily fail or
+deadlock if we have to wait for memory to become available.
 
->
-> Thanks,
-> Timur
->
->
->
-> >
-> > > Thanks,
-> > > Timur
-> > >
-> > >
-> > > > >
-> > > > > Valdis Kl=C4=93tnieks <valdis.kletnieks@vt.edu> ezt =C3=ADrta (id=
-=C5=91pont:
-> > > > > 2025.
-> > > > > nov.
-> > > > > 2., Vas 1:59):
-> > > > >
-> > > > > > On Thu, 30 Oct 2025 19:05:30 +0100, Timur Krist=C3=B3f said:
-> > > > > >
-> > > > > > > Can you say how to reproduce that?
-> > > > > > > I use the same version of GCC but it hasn't given me any
-> > > > > > > warning or
-> > > > > > > error for that patch.
-> > > > > >
-> > > > > > Upon further testing,
-> > > > > >
-> > > > > > [/usr/src/linux-next] make
-> > > > > >
-> > > > > > is sufficient on my system. Turns out that it errors out even
-> > > > > > without W=3D1.
-> > > > > > My
-> > > > > > next guess was that it had to do with -Werror, which would
-> > > > > > cause
-> > > > > > warnings
-> > > > > > to
-> > > > > > be treated as errors, but my .config has
-> > > > > >
-> > > > > > # CONFIG_WERROR is not set
-> > > > > > # CONFIG_DRM_WERROR is not set
-> > > > > > # CONFIG_DRM_AMDGPU_WERROR is not set
-> > > > > >
-> > > > > > Do you perhaps have patches in your tree that aren't in next-
-> > > > > > 20251029?
-> > > > > >
-> > > > > > I wonder if Fedora's build of gcc 15.2.1 is different somehow
-> > > > > > from the
-> > > > > > build you're using....
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c | 51 ++++++-------------------
+ 1 file changed, 12 insertions(+), 39 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+index 3ef5bc95642c..5f94a66511af 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+@@ -201,58 +201,31 @@ static int amdgpu_vmid_grab_idle(struct amdgpu_ring *ring,
+ 	struct amdgpu_device *adev = ring->adev;
+ 	unsigned vmhub = ring->vm_hub;
+ 	struct amdgpu_vmid_mgr *id_mgr = &adev->vm_manager.id_mgr[vmhub];
+-	struct dma_fence **fences;
+-	unsigned i;
+ 
++	/* If anybody is waiting for a VMID let everybody wait for fairness */
+ 	if (!dma_fence_is_signaled(ring->vmid_wait)) {
+ 		*fence = dma_fence_get(ring->vmid_wait);
+ 		return 0;
+ 	}
+ 
+-	fences = kmalloc_array(id_mgr->num_ids, sizeof(void *), GFP_NOWAIT);
+-	if (!fences)
+-		return -ENOMEM;
+-
+ 	/* Check if we have an idle VMID */
+-	i = 0;
+-	list_for_each_entry((*idle), &id_mgr->ids_lru, list) {
++	list_for_each_entry_reverse((*idle), &id_mgr->ids_lru, list) {
+ 		/* Don't use per engine and per process VMID at the same time */
+ 		struct amdgpu_ring *r = adev->vm_manager.concurrent_flush ?
+ 			NULL : ring;
+ 
+-		fences[i] = amdgpu_sync_peek_fence(&(*idle)->active, r);
+-		if (!fences[i])
+-			break;
+-		++i;
+-	}
+-
+-	/* If we can't find a idle VMID to use, wait till one becomes available */
+-	if (&(*idle)->list == &id_mgr->ids_lru) {
+-		u64 fence_context = adev->vm_manager.fence_context + ring->idx;
+-		unsigned seqno = ++adev->vm_manager.seqno[ring->idx];
+-		struct dma_fence_array *array;
+-		unsigned j;
+-
+-		*idle = NULL;
+-		for (j = 0; j < i; ++j)
+-			dma_fence_get(fences[j]);
+-
+-		array = dma_fence_array_create(i, fences, fence_context,
+-					       seqno, true);
+-		if (!array) {
+-			for (j = 0; j < i; ++j)
+-				dma_fence_put(fences[j]);
+-			kfree(fences);
+-			return -ENOMEM;
+-		}
+-
+-		*fence = dma_fence_get(&array->base);
+-		dma_fence_put(ring->vmid_wait);
+-		ring->vmid_wait = &array->base;
+-		return 0;
++		*fence = amdgpu_sync_peek_fence(&(*idle)->active, r);
++		if (!(*fence))
++			return 0;
+ 	}
+-	kfree(fences);
+ 
++	/*
++	 * If we can't find a idle VMID to use, wait on a fence from the least
++	 * recently used in the hope that it will be available soon.
++	 */
++	*idle = NULL;
++	dma_fence_put(ring->vmid_wait);
++	ring->vmid_wait = dma_fence_get(*fence);
+ 	return 0;
+ }
+ 
+-- 
+2.43.0
+
