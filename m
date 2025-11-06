@@ -2,70 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC29C39F15
-	for <lists+amd-gfx@lfdr.de>; Thu, 06 Nov 2025 10:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F391C39FA2
+	for <lists+amd-gfx@lfdr.de>; Thu, 06 Nov 2025 11:00:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA4CF10E030;
-	Thu,  6 Nov 2025 09:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD6910E870;
+	Thu,  6 Nov 2025 10:00:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="NtvfKHtZ";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="RSQ6VQfh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
- [209.85.167.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6090A10E866
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Nov 2025 09:56:54 +0000 (UTC)
-Received: by mail-lf1-f45.google.com with SMTP id
- 2adb3069b0e04-592ee9a16adso1056304e87.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 06 Nov 2025 01:56:54 -0800 (PST)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2100210E86F
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Nov 2025 10:00:17 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-477549b3082so6663105e9.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 06 Nov 2025 02:00:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1762423013; x=1763027813; darn=lists.freedesktop.org;
+ d=ursulin.net; s=google; t=1762423215; x=1763028015; darn=lists.freedesktop.org;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=ah9B3sBKtJMQ90NKotd1CpXpyuKbVPGroKqtGBrjaj0=;
- b=NtvfKHtZ6IlDoD9uR2knoXPAnT3NXubx2ajtnd0QZ5qb2Ul+B+IT5nythgVqCDalqo
- 8KttgHApF7bqt1qxsd8IIqW0sGsOhHl2XAm90VQj5Coc4N3/cEGOCNETBlf6Rvu+hFf+
- sdo3pR/x5qDSZmavBvUhdM1yimhK9Nz8aNj/676bNdNl6vnsI4SR/OaMtPa7A7hW12WJ
- bCf8lVQEjld35w+nTvYe5P5htZgo7u2kTB6Ddyim1WfAOpb2rtfeTgLzEB36HX03jLVY
- 1ZND/zT/MaDtpoF+51PnZCcge2SHCXU/aZSSqPhVXskccdqbDeE9bqkazMftCceXp9Dd
- Eqpw==
+ bh=4/Zq2ZMLTkW/3rjXrb4929ZqxG9YuHUsxu8QuLD1NzA=;
+ b=RSQ6VQfh/AYyEpTQhCp8huyTeIe2Wf1Z0LYy3NDgv90L/dRow0FSyfO5MEdvLXXPMJ
+ Ur5G4BPRCrULQKTI9eCqbdKw9WNKrLcSyHj4jMtD1I8773JqAcAFXSZ45guyz5MANcOB
+ XzXvAPYcXL2tS6ghol3PFwcdasbA/hf65X9gzfOB3+89scu2opj1HgVqGQOkmCZjFzkD
+ GL0/zKF0q6jb37QCdDVLYGoNyFw8dxsLasULD1Vm53TgoR2cy7O3z2YO4OcQf+gxw/gV
+ s6L9Kbg+U7dcUkYgN0s1UmKlcH70nZaUK8C7UatAVIRhKy/nSEW7aafj0xO2UzW0Mvt+
+ k2MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762423013; x=1763027813;
+ d=1e100.net; s=20230601; t=1762423215; x=1763028015;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ah9B3sBKtJMQ90NKotd1CpXpyuKbVPGroKqtGBrjaj0=;
- b=VBFVnJqGKPeid11NWbuNxn9u1RpWMqRMTXJXiVP0AfpkgBdopVjjY5D2a7DvGvnHzW
- osg1FXzCATskFyurMmgaJ7Pw9LNzI/lMfGtHGkGtRXIR7REWwfU+LCvRLMLyg9bbNeiB
- nL7CS65aFjasV1VBPumZq6wSHBt14Y+3wKiH83r+x6Sed9Sk10nt06RxtsUryOX2wPik
- znY8AJHjVRf5jr05aAxT3ZOOmDQthxV6HpOfIqHRyV5NDU7LKiPQSKzggK+xeAMBCukX
- 2bQm3QsyFPyXi5m3EXrzU1gaJLtcfX9H17sxDJfxNuD5JYEuijnZA/TrGHXsqoFuQ15y
- MZQg==
-X-Gm-Message-State: AOJu0YzC4A2/Kve3uHIInvXuU2ek7mCTUzSyBhJUjf22ow9F5/saA1cj
- PT85/2zeyVVWdMPjwwG+o3tQ2bX8YM9tbxdlxIkKzRBtvtD146QhsdlMyWiwfTW7zNU=
-X-Gm-Gg: ASbGncu1MsM3qyWYTQOmCkQNfLjbF04/SC3jnmBxjAD1DRUHagY7Nm/7EvnGL/6M1uN
- kOI3mNnYT7EWEcEz3dOOJGFAV97HADH1h9nqIfZMPgMIpF79Zwb83EYvQsUR+t7tqvZmpEQgGVF
- H1U4pljo9jmpYzTpn4a+2axH97yGce5nfZJRnIO1jSczqV7HroVbaux0bq9y1I0C0fSAe0QZ/QJ
- ZrGIBzERt+bzX4GrPAk5hSPpuOqxsBhlaRsDMDJ8ZuS9B4MLB97uCPbcbMSX2USaKaOJo02/A44
- iv6zt0g1Dcmc/Fl3Ji5mhe8xZsbe6aGg1faCUAOl9abmxGO7vFtjYmjatQF+sqt0Z+WBhDcSAB+
- UIAtR8B7n25wFzoTjacoWZYLQ3bDXskshi5im+96d/kYNayrRpCr2JBBnSVn42yw/XevRLWxx0n
- frG8ySAi1U3ZfFay/h/VYPPNTMQvc=
-X-Google-Smtp-Source: AGHT+IH87qGloTPs2IJda89ZYDWYxle19K2T13CnSFSXTtTGmwBkX5fIkNyS4ZGBOcmSluALoZwAiw==
-X-Received: by 2002:a05:6512:3988:b0:57d:6fca:f208 with SMTP id
- 2adb3069b0e04-5943d7d5ed4mr1507581e87.45.1762423012315; 
- Thu, 06 Nov 2025 01:56:52 -0800 (PST)
+ bh=4/Zq2ZMLTkW/3rjXrb4929ZqxG9YuHUsxu8QuLD1NzA=;
+ b=xIRdAnJI2WWH7o+XgWteD+aJRyerFtB/twjEvSEFYqETjFbdljtqjs6OBwRwhaumXm
+ 0/cHwBvTjfQHv7aiK5yCjEmC90F5EwwN9dFRX9dfWLbYZEzvSKbDSqlZJEyHKOPSVa9S
+ mH5vbwI4Wjl8RzqHj9P7LDZOyJ93NidNmwyXFJnHA251kcsVyr2nB5arhpXbFFSYL53O
+ ipav28RaR5RBzeFyHUBUzpCbk1RhBht0ABo+05nr1NyZreu7aaSFAj2K2SUk/O+FJho7
+ fi9zMKTXDAZ21ODHaWPjXPuJus3Rkt/RQ+lRfNKV3jw/MLqHru7gVb+ZBTmn4l1fKhg9
+ +LqA==
+X-Gm-Message-State: AOJu0YxqcRCS+ecoePF1xp7VJlQ0l2O2JsP3fxk6e4JjV02Cq2Xs4yOc
+ KYTSlJLWGw2WoUwj2T0YeNmtJfsTGEO4eBgyXKQAvZhdlu/ye9EtgdVxHNbrR17dgCQ=
+X-Gm-Gg: ASbGncsxu6AVMJmluRvTCXCvPSCv9Khp/+eo2TfpMvA6a2QWiPIndqTVRXWtr/sOo0x
+ mzhhjlerH8VQI9lzEPelb+7kXgeVB+USMgQA1SkO2TTJk2Fpsa6nuAddCgpg74SuB+5JRpGQ9mB
+ u/dkHuswDsH0itZvymha92zPaQxF7zNH7M7EAvfKgFdjEg3Lgf1UGCUlYNOSOBra8ws/8Zc/Sfd
+ U64HeZ0BJGohif/NAph/fofK2Kv+T9EQ9wPfUpTnGMpyymudYYAI+XCMAWn3fZJ378ThR7HNr+x
+ ivqrsRvUgQ2bhORf01hTMrIVN2yup1kvKnTyOUfEJ0c1B6t2e3bMiE/GvyMAnYbZf57kyJ49Pcb
+ 7oofTkuM8Azlrf6WRpnQ/P8i190kFA3CmdlWoFm26Hf1pcGYTjyG4o586eu6jHqsmPVZBJ9YXoJ
+ 2+M3WYpstciMw1TpSKQA0kOeGg6Z4=
+X-Google-Smtp-Source: AGHT+IEZKVyRG59cakGUG/uu7olGLVJjMN0xfbpmUq5+ampqbuf/q1ePNFMJ6cguRcdgyKCUSlBC+w==
+X-Received: by 2002:a05:6000:210c:b0:429:8daa:c6b1 with SMTP id
+ ffacd0b85a97d-429e3308887mr4652869f8f.38.1762423214827; 
+ Thu, 06 Nov 2025 02:00:14 -0800 (PST)
 Received: from [192.168.0.101] ([90.240.106.137])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5944a019ef3sm594914e87.32.2025.11.06.01.56.51
+ ffacd0b85a97d-429eb41102bsm4118122f8f.17.2025.11.06.02.00.14
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 06 Nov 2025 01:56:51 -0800 (PST)
-Message-ID: <63ce6781-439d-4425-a3e9-f1d233a5abea@ursulin.net>
-Date: Thu, 6 Nov 2025 09:56:50 +0000
+ Thu, 06 Nov 2025 02:00:14 -0800 (PST)
+Message-ID: <9e5abc5f-1948-4b18-8485-6540f84cdfd8@ursulin.net>
+Date: Thu, 6 Nov 2025 10:00:13 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] drm/amdgpu: jump to the correct label on failure
+Subject: Re: [PATCH v3 3/4] drm/amdgpu: increment sched score on entity
+ selection
 To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -73,10 +74,10 @@ To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
 References: <20251106093933.18859-1-pierre-eric.pelloux-prayer@amd.com>
- <20251106093933.18859-2-pierre-eric.pelloux-prayer@amd.com>
+ <20251106093933.18859-3-pierre-eric.pelloux-prayer@amd.com>
 Content-Language: en-GB
 From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20251106093933.18859-2-pierre-eric.pelloux-prayer@amd.com>
+In-Reply-To: <20251106093933.18859-3-pierre-eric.pelloux-prayer@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -95,33 +96,113 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
 On 06/11/2025 09:39, Pierre-Eric Pelloux-Prayer wrote:
-> drm_sched_entity_init wasn't called yet, so the only thing to
-> do is to release allocated memory.
-> This doesn't fix any bug since entity is zero allocated and
-> drm_sched_entity_fini does nothing in this case.
+> For hw engines that can't load balance jobs, entities are
+> "statically" load balanced: on their first submit, they select
+> the best scheduler based on its score.
+> The score is made up of 2 parts:
+> * the job queue depth (how much jobs are executing/waiting)
+> * the number of entities assigned
+> 
+> The second part is only relevant for the static load balance:
+> it's a way to consider how many entities are attached to this
+> scheduler, knowing that if they ever submit jobs they will go
+> to this one.
+> 
+> For rings that can load balance jobs freely, idle entities
+> aren't a concern and shouldn't impact the scheduler's decisions.
 > 
 > Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 21 ++++++++++++++++-----
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h |  1 +
+>   2 files changed, 17 insertions(+), 5 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> index f5d5c45ddc0d..afedea02188d 100644
+> index afedea02188d..953c81c928c1 100644
 > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
 > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> @@ -236,7 +236,7 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, u32 hw_ip,
->   		r = amdgpu_xcp_select_scheds(adev, hw_ip, hw_prio, fpriv,
->   						&num_scheds, &scheds);
->   		if (r)
-> -			goto cleanup_entity;
-> +			goto error_free_entity;
+> @@ -209,6 +209,7 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, u32 hw_ip,
+>   	struct amdgpu_ctx_entity *entity;
+>   	enum drm_sched_priority drm_prio;
+>   	unsigned int hw_prio, num_scheds;
+> +	struct amdgpu_ring *aring;
+>   	int32_t ctx_prio;
+>   	int r;
+>   
+> @@ -239,11 +240,13 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, u32 hw_ip,
+>   			goto error_free_entity;
 >   	}
 >   
->   	/* disable load balance if the hw engine retains context among dependent jobs */
+> -	/* disable load balance if the hw engine retains context among dependent jobs */
+> -	if (hw_ip == AMDGPU_HW_IP_VCN_ENC ||
+> -	    hw_ip == AMDGPU_HW_IP_VCN_DEC ||
+> -	    hw_ip == AMDGPU_HW_IP_UVD_ENC ||
+> -	    hw_ip == AMDGPU_HW_IP_UVD) {
+> +	sched = scheds[0];
+> +	aring = container_of(sched, struct amdgpu_ring, sched);
+> +
+> +	if (aring->funcs->engine_retains_context) {
+> +		/* Disable load balancing between multiple schedulers if the hw
+> +		 * engine retains context among dependent jobs.
+> +		 */
+>   		sched = drm_sched_pick_best(scheds, num_scheds);
+>   		scheds = &sched;
+>   		num_scheds = 1;
+> @@ -258,6 +261,11 @@ static int amdgpu_ctx_init_entity(struct amdgpu_ctx *ctx, u32 hw_ip,
+>   	if (cmpxchg(&ctx->entities[hw_ip][ring], NULL, entity))
+>   		goto cleanup_entity;
+>   
+> +	if (aring->funcs->engine_retains_context) {
+> +		entity->sched_score = sched->score;
+> +		atomic_inc(entity->sched_score);
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Maybe you missed it, in the last round I asked this:
+
+"""
+Here is would always be sched->score == aring->sched_score, right?
+
+If so it would probably be good to either add that assert, or even to 
+just fetch it from there. Otherwise it can look potentially concerning 
+to be fishing out the pointer from scheduler internals.
+
+The rest looks good to me.
+"""
+
+Because grabbing a pointer from drm_sched->score and storing it in AMD 
+entity can look scary, since sched->score can be scheduler owned.
+
+Hence I was suggesting to either fish it out from aring->sched_score. If 
+it is true that they are always the same atomic_t at this point.
 
 Regards,
 
 Tvrtko
+
+> +	}
+> +
+>   	return 0;
+>   
+>   cleanup_entity:
+> @@ -514,6 +522,9 @@ static void amdgpu_ctx_do_release(struct kref *ref)
+>   			if (!ctx->entities[i][j])
+>   				continue;
+>   
+> +			if (ctx->entities[i][j]->sched_score)
+> +				atomic_dec(ctx->entities[i][j]->sched_score);
+> +
+>   			drm_sched_entity_destroy(&ctx->entities[i][j]->entity);
+>   		}
+>   	}
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
+> index 090dfe86f75b..f7b44f96f374 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
+> @@ -39,6 +39,7 @@ struct amdgpu_ctx_entity {
+>   	uint32_t		hw_ip;
+>   	uint64_t		sequence;
+>   	struct drm_sched_entity	entity;
+> +	atomic_t		*sched_score;
+>   	struct dma_fence	*fences[];
+>   };
+>   
 
